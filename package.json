@@ -1,0 +1,24 @@
+{
+  "name": "morning",
+  "version": "0.1.0",
+  "description": "modern efficient user interface, using human-friendly HTML",
+  "main": "index.js",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://git.husor.com.cn/fed/morning.git"
+  },
+  "keywords": [
+    "morning",
+    "ui"
+  ],
+  "homepage": "http://git.husor.com.cn/fed/morning",
+  "bugs": {
+    "url": "http://git.husor.com.cn/fed/morning/issues"
+  },
+  "author": "Early",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {}
+}
