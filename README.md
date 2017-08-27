@@ -7,15 +7,3 @@
 Under development.
 
 This project base on HMP2 UI, but is completely independent. We want to share our work with more people.
-
-#### Contributor list
-
-- CHENCHAO.HE
-- CHUNYAN.FENG
-- JINJIN.DU
-- PENG.ZHAO
-- YAXIN.ZHANG
-- YING.TONG
-- JUNJIE.DUAN
-
-Thank.

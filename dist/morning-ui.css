@@ -1,0 +1,54 @@
+
+i-h {
+  display: block;
+  line-height: 1.6em;
+  vertical-align: middle;
+  margin: 0.65em 0;
+}
+i-h.si-xxl {
+  font-size: 57.6px;
+}
+i-h.si-xl {
+  font-size: 46.08px;
+}
+i-h.si-l {
+  font-size: 34.56px;
+}
+i-h,
+i-h.si-m {
+  font-size: 28.8px;
+}
+i-h.si-s {
+  font-size: 23.04px;
+}
+i-h.si-xs {
+  font-size: 20.16px;
+}
+i-h.si-xxs {
+  font-size: 16px;
+}
+i-h.sy-theme {
+  color: #F3655A;
+}
+i-h.sy-success {
+  color: #5BBD72;
+}
+i-h.sy-warning {
+  color: #F0AD4E;
+}
+i-h.sy-danger {
+  color: #D34836;
+}
+i-h.sy-minor {
+  color: #bbb;
+}
+i-h.sy-light {
+  color: #fafafa;
+}
+i-h,
+i-h.sy-deep {
+  color: #1B1C1D;
+}
+i-h.sy-info {
+  color: #00B5AD;
+}
