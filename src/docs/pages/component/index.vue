@@ -57,7 +57,7 @@ export default {
                 '按钮' : 'b',
                 '链接' : 'b',
                 '下拉式按钮组' : 'b',
-                '级联菜单NEW' : 'b',
+                '级联菜单<i class="tag">NEW</i>' : 'b',
                 '标签页' : 'b',
                 '表格' : 'b',
                 '分页' : 'b',
@@ -103,4 +103,5 @@ export default {
 </script>
 
 <style lang="less">
+@import "~Docs/common/common.less";
 </style>

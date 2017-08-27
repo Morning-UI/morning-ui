@@ -1,5 +1,5 @@
 <template>
-    <header>
+    <header :class="{index:isIndex}">
         <div class="nav">
             <div class="logo">
                 <img src="http://h0.hucdn.com/open/201734/8f299e45f6693260_200x200.png" alt="morning-ui">
@@ -37,9 +37,8 @@ export default {
 <style lang="less">
 header {
     width: 100%;
-    background: #f1545f;
+    background: #333;
     height: 80px;
-    font-family: PingFangSC-Thin, sans-serif;
 
     .nav {
         width: 1000px;
@@ -102,6 +101,23 @@ header {
                     font-weight: 600;
                 }
             }
+        }
+    }
+
+    &.index{
+        background: #fff;
+
+        .logo img{
+            display: none;
+        }
+
+        .name {
+            color: #000;
+            font-size: 28px;
+        }
+
+        .menu li a {
+            color: #333;
         }
     }
 }

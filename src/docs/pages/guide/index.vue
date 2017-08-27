@@ -52,4 +52,5 @@ export default {
 </script>
 
 <style lang="less">
+@import "~Docs/common/common.less";
 </style>

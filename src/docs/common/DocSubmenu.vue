@@ -54,5 +54,9 @@ export default {
             margin: 20px 0 5px 0;
         }
     }
+
+    .tag{
+
+    }
 }
 </style>
