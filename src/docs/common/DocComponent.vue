@@ -13,8 +13,7 @@ import DocBody                      from 'Docs/common/DocBody.vue';
 export default {
     props : {
         page : String,
-        hasPadding : Boolean,
-        content : String
+        hasPadding : Boolean
     },
     data : function () {
 

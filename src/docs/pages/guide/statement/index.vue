@@ -2,7 +2,6 @@
 
     <doc-guide
         :page="page"
-        :content="content"
         :hasPadding="true" 
     >
     <script type="text/markdown">
@@ -220,8 +219,7 @@ export default {
     data : function () {
 
         return {
-            page : 'statement',
-            content : ''
+            page : 'statement'
         };
 
     },

@@ -8,7 +8,7 @@
             ></doc-submenu>
             <div class="content markdown-body"
                 :class="{padding : hasPadding}"
-                v-md="content"
+                v-md
             >
                 <slot></slot>
             </div>
@@ -24,12 +24,24 @@ import DocSubmenu                   from 'Docs/common/DocSubmenu.vue';
 
 Vue.directive('md',{
     bind : (el, binding, vnode) => {
+
+        console.log(el, binding, vnode); 
         
         let mdScript = el.getElementsByTagName('script')[0];
 
         if (mdScript.type === 'text/markdown') {
 
-            el.innerHTML = marked(mdScript.innerText);
+            let res = Vue.compile(`<div>${marked(mdScript.innerText)}</div>`);
+
+            let instance = new Vue({
+                render: res.render,
+                staticRenderFns: res.staticRenderFns
+            });
+
+            console.log(instance);
+            instance.$mount();
+            
+            el.innerHTML = instance.$el.innerHTML;
 
         }
 
@@ -40,8 +52,7 @@ export default {
     props : {
         category : String,
         page : String,
-        hasPadding : Boolean,
-        content : String
+        hasPadding : Boolean
     },
     data : function () {
 

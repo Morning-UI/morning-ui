@@ -66,6 +66,9 @@ commonConfig = {
     plugins : [
         new CleanWebpackPlugin([pathDist], {
             root : pathProjectRoot
+        }),
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV' : process.env.NODE_ENV
         })
     ],
     resolve : {
@@ -173,6 +176,9 @@ docsConfig = {
     plugins : [
         new CleanWebpackPlugin([pathDocs], {
             root : pathProjectRoot
+        }),
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV' : process.env.NODE_ENV
         }),
         extractDocsCss
     ],
