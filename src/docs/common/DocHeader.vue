@@ -8,7 +8,7 @@
             <ul class="menu">
 
                 <li><a :class="{current:isIndex}" href="index.html">HOME</a></li>
-                <li><a :class="{current:isGuide}" href="guide.html">GUIDE</a></li>
+                <li><a :class="{current:isGuide}" href="/guide/introduction.html">GUIDE</a></li>
                 <li><a :class="{current:isComponent}" href="component.html">COMPONENT</a></li>
             </ul>
         </div>
@@ -18,17 +18,17 @@
 <script>
 export default {
     props : {
-        menu : String
+        category : String
     },
     computed : {
         isIndex : function () {
-            return this.menu === 'home';
+            return this.category === 'home';
         },
         isGuide : function () {
-            return this.menu === 'guide';
+            return this.category === 'guide';
         },
         isComponent : function () {
-            return this.menu === 'component';
+            return this.category === 'component';
         }
     }
 };

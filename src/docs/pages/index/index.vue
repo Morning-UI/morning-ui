@@ -1,6 +1,6 @@
 <template>
     <div>
-        <doc-header :menu="name"></doc-header>
+        <doc-header :category="category"></doc-header>
         <!-- darg icon http://h0.hucdn.com/open/201734/175363ad9c01a51b_200x200.png -->
         <section class="s1">
             <div class="w1k center">
@@ -25,7 +25,7 @@ export default {
     data : function () {
 
         return {
-            name : 'home'
+            category : 'home'
         };
 
     },

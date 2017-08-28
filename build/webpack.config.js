@@ -1,16 +1,19 @@
 const path                          = require('path');
 const extend                        = require('extend');
 const webpack                       = require('webpack');
+const walk                          = require('walk');
 const CleanWebpackPlugin            = require('clean-webpack-plugin');
 const ExtractTextPlugin             = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin             = require('html-webpack-plugin');
 
 let pathProjectRoot = path.resolve(__dirname, '../');
+let pathNpm = path.resolve(pathProjectRoot, 'node_modules');
 let pathDist = path.resolve(pathProjectRoot, 'dist');
 let pathSrc = path.resolve(pathProjectRoot, 'src');
 let pathDocs = path.resolve(pathProjectRoot, 'docs');
 let pathSrcCommon = path.resolve(pathSrc, 'common');
 let pathSrcDocs = path.resolve(pathSrc, 'docs');
+let pathSrcDocsPages = path.resolve(pathSrcDocs, 'pages');
 
 let commonConfig = {};
 let devVerConfig = {};
@@ -20,6 +23,43 @@ let docsConfig = {};
 let extractDevCss = new ExtractTextPlugin('morning-ui.css');
 let extractProdCss = new ExtractTextPlugin('morning-ui.min.css');
 let extractDocsCss = new ExtractTextPlugin('[name].css');
+
+let getDocsEntry = async docsConfig => {
+
+    walk.walkSync(pathSrcDocsPages, {
+        listeners : {
+            file : (root, fileStats, next) => {
+
+                if (fileStats.name === 'index.js') {
+
+                    let urlPath = root.replace(`${pathSrcDocsPages}/`, '');
+                    let entryFile = `${root}/index.js`;
+
+                    docsConfig.entry[urlPath] = entryFile;
+
+                }
+
+                next();
+
+            }
+        }
+    });
+
+};
+
+let getDocsHtmlPlugin = async docsConfig => {
+
+    for (let urlPath of Object.keys(docsConfig.entry)) {
+
+        docsConfig.plugins.push(new HtmlWebpackPlugin({
+            chunks: [urlPath],
+            filename : `${urlPath}.html`,
+            template : path.resolve(pathSrcDocs, 'tpl.html')
+        }));
+
+    }
+
+};
 
 commonConfig = {
     entry : './src/index.js',
@@ -129,34 +169,17 @@ prodVerConfig = extend(
 );
 
 docsConfig = {
-    entry : {
-        index : './src/docs/pages/index/index.js',
-        guide : './src/docs/pages/guide/index.js',
-        component : './src/docs/pages/component/index.js'
-    },
+    entry : {},
     plugins : [
         new CleanWebpackPlugin([pathDocs], {
             root : pathProjectRoot
         }),
-        extractDocsCss,
-        new HtmlWebpackPlugin({
-            chunks: ['index'],
-            template : path.resolve(pathSrcDocs, 'tpl.html')
-        }),
-        new HtmlWebpackPlugin({
-            chunks: ['guide'],
-            filename : 'guide.html',
-            template : path.resolve(pathSrcDocs, 'tpl.html')
-        }),
-        new HtmlWebpackPlugin({
-            chunks: ['component'],
-            filename : 'component.html',
-            template : path.resolve(pathSrcDocs, 'tpl.html')
-        })
+        extractDocsCss
     ],
     resolve : {
         alias : {
-            Docs : pathSrcDocs
+            Docs : pathSrcDocs,
+            Npm : pathNpm
         }
     },
     externals : {
@@ -197,6 +220,9 @@ docsConfig = {
         filename : '[name].js'
     }
 };
+
+getDocsEntry(docsConfig);
+getDocsHtmlPlugin(docsConfig);
 
 module.exports = [
     // devVerConfig,
