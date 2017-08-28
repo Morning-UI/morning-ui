@@ -190,31 +190,24 @@
                 <p class="color">#ffffff</p>
             </div>
         </div>
-        <!-- <div class="item w5" style="background:#f0ad4e;">
-            <p class="key">warning</p>
-            <p class="name">警告/注意</p>
-            <p class="color">#f0ad4e</p>
-        </div>
-        <div class="item w5" style="background:#ec173d;">
-            <p class="key">danger</p>
-            <p class="name">错误/危险</p>
-            <p class="color">#ec173d</p>
-        </div>
-        <div class="item w5" style="background:#aaa;">
-            <p class="key">minor</p>
-            <p class="name">次要/不醒目</p>
-            <p class="color">#aaaaaa</p>
-        </div>
-        <div class="item w5" style="background:#03a6b9;">
-            <p class="key">info</p>
-            <p class="name">信息/额外</p>
-            <p class="color">#03a6b9</p>
-        </div> -->
     </div>
 
-
-
     ### 状态
+
+    声明了组件当前的状态，包括：
+
+    - `normal` : 正常状态 
+    - `hover` : Hover状态
+    - `active` : 激活状态
+    - `disabled` : 禁用状态
+    - `apparent` : 明显状态
+    - `loading` : 载入中
+    - `processing` : 处理中
+    
+    `loading`和`processing`的区别是，`loading`在等待远程处理的状态，`processing`一般用于本地处理。
+
+    组件会根据实际情况支持其中的部分状态(至少支持一种)，大部分组件的默认状态都是`normal`。
+
     </script>
     </doc-guide>
 
@@ -274,7 +267,7 @@ export default {
     }
 
     .w3{
-        width: 30%;
+        width: 31%;
     }
 
     .w4{

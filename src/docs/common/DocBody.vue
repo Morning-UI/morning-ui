@@ -119,7 +119,7 @@ export default {
     width: 900px;
     display: inline-block;
     vertical-align: top;
-    font-size: 16px;
+    font-size: 14px;
     box-sizing: border-box;
 
     &.padding {

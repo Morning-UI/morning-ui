@@ -7,7 +7,7 @@
             <div class="name">Morning UI</div>
             <ul class="menu">
 
-                <li><a :class="{current:isIndex}" href="index.html">HOME</a></li>
+                <li><a :class="{current:isIndex}" href="/index.html">HOME</a></li>
                 <li><a :class="{current:isGuide}" href="/guide/introduction.html">GUIDE</a></li>
                 <li><a :class="{current:isComponent}" href="component.html">COMPONENT</a></li>
             </ul>
