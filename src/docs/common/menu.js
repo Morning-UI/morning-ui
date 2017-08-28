@@ -1,11 +1,11 @@
 export default {
     component : {
         '布局组件' : null,
-        '标题' : 'a',
-        '中心内容' : 'b',
-        '标记的文本' : 'b',
-        '删除的文本' : 'b',
-        '带下划线的文本' : 'b',
+        '标题' : '/component/h.html',
+        '中心内容' : '/component/lead.html',
+        '标记的文本' : '/component/mark.html',
+        '删除的文本' : '/component/del.html',
+        '带下划线的文本' : '/component/u.html',
         '小号文本' : 'b',
         '着重' : 'b',
         '斜体' : 'b',

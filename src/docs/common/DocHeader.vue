@@ -9,7 +9,7 @@
 
                 <li><a :class="{current:isIndex}" href="/index.html">HOME</a></li>
                 <li><a :class="{current:isGuide}" href="/guide/introduction.html">GUIDE</a></li>
-                <li><a :class="{current:isComponent}" href="component.html">COMPONENT</a></li>
+                <li><a :class="{current:isComponent}" href="/component/h.html">COMPONENT</a></li>
             </ul>
         </div>
     </header>
