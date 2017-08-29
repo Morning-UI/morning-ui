@@ -24,12 +24,12 @@ i-quote{
     border-left-style: solid;
     border-left-width: 4px;
     
-    .setup-font-color-thmem();
+    .setup-font-color-theme();
     .setup-font-color-feature();
     .setup-font-color-misc();
 
     &{
-        .sy-light-blue;
+        .sy-lightBlue;
     }
 
 }

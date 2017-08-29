@@ -19,7 +19,7 @@ export default UI.extend({
 @import '~Common/common.less';
 
 i-textcenter{
-    display: inline;
+    display: block;
     text-align: center;
 
     // default statement

@@ -24,12 +24,13 @@ i-lead{
     margin: 0.672em 0;
     font-size: 1.2*@fontSize;
 
-    .setup-font-color-thmem();
+    .setup-font-color-theme();
     .setup-font-color-feature();
     .setup-font-color-misc();
 
     &.st-normal{}
     &.st-apparent{
+        transform-origin: left center;
         animation-name: apparent;
         animation-duration: 1s;
         animation-timing-function: linear;

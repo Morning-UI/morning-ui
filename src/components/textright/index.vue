@@ -19,7 +19,7 @@ export default UI.extend({
 @import '~Common/common.less';
 
 i-textright{
-    display: inline;
+    display: block;
     text-align: right;
 
     // default statement

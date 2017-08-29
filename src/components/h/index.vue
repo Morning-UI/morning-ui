@@ -32,12 +32,13 @@ i-h{
     &.si-xs{ font-size: 1.26*@fontSize; }
     &.si-xxs{ font-size: 1*@fontSize; }
 
-    .setup-font-color-thmem();
+    .setup-font-color-theme();
     .setup-font-color-feature();
     .setup-font-color-misc();
 
     &.st-normal{}
     &.st-apparent{
+        transform-origin: left center;
         animation-name: apparent;
         animation-duration: 1s;
         animation-timing-function: linear;

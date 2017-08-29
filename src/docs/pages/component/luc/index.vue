@@ -13,9 +13,9 @@
     大小写控制组件，这是一个内联元素。
     
     ````html
-    <ui-lowercase>小写的英文文本: tHere is A LEtter</ui-lowercase>
-    <ui-uppercase>大写的英文文本: tHere is A LEtter</ui-uppercase>
-    <ui-capitalize>首字母大写的文本: tHere is A LEtter</ui-capitalize>
+    <div><ui-lowercase>小写的英文文本: tHere is A LEtter</ui-lowercase></div>
+    <div><ui-uppercase>大写的英文文本: tHere is A LEtter</ui-uppercase></div>
+    <div><ui-capitalize>首字母大写的文本: tHere is A LEtter</ui-capitalize></div>
     ````
 
     ### 声明
