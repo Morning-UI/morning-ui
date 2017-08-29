@@ -1,7 +1,7 @@
 <template>
     <ul class="submenu">
         <li v-for="(link, name) in currentMenu">
-            <template v-if="link === '/' + category + '/' + page + '.html'">
+            <template v-if="link === '/docs/' + category + '/' + page + '.html'">
                 <a
                     v-if="typeof link === 'string'"
                     :href="link"
@@ -114,6 +114,30 @@ export default {
 
             &:before{
                 content: 'update'
+            }
+        }
+        
+        &.done{
+            background: #46c235;
+
+            &:before{
+                content: 'done'
+            }
+        }
+        
+        &.coming{
+            background: #666;
+
+            &:before{
+                content: 'coming'
+            }
+        }
+        
+        &.review{
+            background: #119100;
+
+            &:before{
+                content: 'CR PASS'
             }
         }
     }

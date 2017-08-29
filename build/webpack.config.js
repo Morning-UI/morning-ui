@@ -111,10 +111,7 @@ devVerConfig = extend(
                     test : /\.js$/,
                     exclude : /node_modules/,
                     use : {
-                        loader : 'babel-loader',
-                        options : {
-                            presets : ['env']
-                        }
+                        loader : 'babel-loader'
                     }
                 }
             ]
@@ -153,10 +150,7 @@ prodVerConfig = extend(
                     test : /\.js$/,
                     exclude : /node_modules/,
                     use : {
-                        loader : 'babel-loader',
-                        options : {
-                            presets : ['env']
-                        }
+                        loader : 'babel-loader'
                     }
                 }
                 // {
@@ -192,7 +186,12 @@ docsConfig = {
         vue : 'Vue'
     },
     devServer : {
-        contentBase : pathDocs
+        contentBase : [
+            pathDocs,
+            pathDist
+        ],
+        compress : true,
+        hot : false
     },
     module : {
         rules : [
@@ -213,10 +212,7 @@ docsConfig = {
                 test : /\.js$/,
                 exclude : /node_modules/,
                 use : {
-                    loader : 'babel-loader',
-                    options : {
-                        presets : ['env']
-                    }
+                    loader : 'babel-loader'
                 }
             }
         ]
@@ -231,7 +227,7 @@ getDocsEntry(docsConfig);
 getDocsHtmlPlugin(docsConfig);
 
 module.exports = [
-    // devVerConfig,
-    // prodVerConfig,
+    devVerConfig,
+    prodVerConfig,
     docsConfig
 ];

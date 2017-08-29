@@ -16,6 +16,8 @@ let morning = {
     map : {}
 };
 
+Vue.config.ignoredElements = [];
+
 // register component
 for (let category in morning._component) {
 
@@ -24,6 +26,7 @@ for (let category in morning._component) {
         let component = morning._component[category][name];
 
         Vue.component(`ui-${component.options.name}`, component);
+        Vue.config.ignoredElements.push(`i-${component.options.name}`);
 
     }
 

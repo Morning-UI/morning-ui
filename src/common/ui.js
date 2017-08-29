@@ -10,33 +10,71 @@ let UI = Vue.extend({
         xs : Boolean,
         xxs : Boolean,
         theme : Boolean,
+        lightTheme : Boolean,
+        darkTheme : Boolean,
         success : Boolean,
         warning : Boolean,
         danger : Boolean,
+        primary : Boolean,
         minor : Boolean,
-        light : Boolean,
-        deep : Boolean,
-        info : Boolean
+        info : Boolean,
+        black : Boolean,
+        lightBlack : Boolean,
+        extraLightBlack : Boolean,
+        blue : Boolean,
+        lightBlue : Boolean,
+        extraLightBlue : Boolean,
+        silver : Boolean,
+        lightSilver : Boolean,
+        extraLightSilver : Boolean,
+        gray : Boolean,
+        lightGray : Boolean,
+        white : Boolean,
+        normal : Boolean,
+        hover : Boolean,
+        active : Boolean,
+        disabled : Boolean,
+        apparent : Boolean,
+        loading : Boolean,
+        processing : Boolean
     },
     watch : {
-        size : function (val, oval) {
+        size : function (val) {
 
-            this.sizeClass[`si-${oval}`] = false;
-            this.sizeClass[`si-${val}`] = true;
+            if (val === null) {
 
-        },
-        style : function (val, oval) {
-
-            if (oval !== null) {
-
-                this.styleClass[`sy-${oval}`] = false;
+                this.sizeClass = '';
+            
+            } else {
+                
+                this.sizeClass = `si-${val}`;
 
             }
 
-            if (val !== null) {
-                
-                this.styleClass[`sy-${val}`] = true;
+        },
+        style : function (val) {
+
+            if (val === null) {
+
+                this.styleClass = '';
             
+            } else {
+                
+                this.styleClass = `sy-${val}`;
+
+            }
+
+        },
+        state : function (val) {
+
+            if (val === null) {
+
+                this.stateClass = '';
+            
+            } else {
+                
+                this.stateClass = `st-${val}`;
+
             }
 
         },
@@ -48,18 +86,39 @@ let UI = Vue.extend({
         xs : 'syncSize',
         xxs : 'syncSize',
         theme : 'syncStyle',
+        lightTheme : 'syncStyle',
+        darkTheme : 'syncStyle',
         success : 'syncStyle',
         warning : 'syncStyle',
         danger : 'syncStyle',
+        primary : 'syncStyle',
         minor : 'syncStyle',
-        light : 'syncStyle',
-        deep : 'syncStyle',
-        info : 'syncStyle'
+        info : 'syncStyle',
+        black : 'syncStyle',
+        lightBlack : 'syncStyle',
+        extraLightBlack : 'syncStyle',
+        blue : 'syncStyle',
+        lightBlue : 'syncStyle',
+        extraLightBlue : 'syncStyle',
+        silver : 'syncStyle',
+        lightSilver : 'syncStyle',
+        extraLightSilver : 'syncStyle',
+        gray : 'syncStyle',
+        lightGray : 'syncStyle',
+        white : 'syncStyle',
+        normal : 'syncState',
+        hover : 'syncState',
+        active : 'syncState',
+        disabled : 'syncState',
+        apparent : 'syncState',
+        loading : 'syncState',
+        processing : 'syncState'
     },
     created : function () {
 
         this.syncSize();
         this.syncStyle();
+        this.syncState();
 
     },
     mounted : function () {
@@ -74,37 +133,27 @@ let UI = Vue.extend({
     },
     methods : {
         syncSize : function () {
-            
-            let size = 'm';
 
-            if (this.m) {
+            let size = null;
+            let set = [
+                'm',
+                'l',
+                's',
+                'xl',
+                'xs',
+                'xxl',
+                'xxs'
+            ];
 
-                size = 'm';
-            
-            } else if (this.l) {
+            for (let val of set) {
 
-                size = 'l';
-            
-            } else if (this.s) {
+                if (this[val]) {
 
-                size = 's';
-            
-            } else if (this.xl) {
+                    size = val;
+                    break;
 
-                size = 'xl';
-            
-            } else if (this.xs) {
+                }
 
-                size = 'xs';
-            
-            } else if (this.xxl) {
-
-                size = 'xxl';
-            
-            } else if (this.xxs) {
-
-                size = 'xxs';
-            
             }
 
             this.size = size;
@@ -113,105 +162,85 @@ let UI = Vue.extend({
         syncStyle : function () {
 
             let style = null;
+            let set = [
+                'theme',
+                'lightTheme',
+                'darkTheme',
+                'success',
+                'warning',
+                'danger',
+                'primary',
+                'minor',
+                'info',
+                'black',
+                'lightBlack',
+                'extraLightBlack',
+                'blue',
+                'lightBlue',
+                'extraLightBlue',
+                'silver',
+                'lightSilver',
+                'extraLightSilver',
+                'gray',
+                'lightGray',
+                'white'
+            ];
 
-            if (this.theme) {
+            for (let val of set) {
 
-                style = 'theme';
-            
-            } else if (this.success) {
+                if (this[val]) {
 
-                style = 'success';
-            
-            } else if (this.warning) {
+                    style = val;
+                    break;
 
-                style = 'warning';
-            
-            } else if (this.danger) {
+                }
 
-                style = 'danger';
-            
-            } else if (this.minor) {
-
-                style = 'minor';
-            
-            } else if (this.light) {
-
-                style = 'light';
-            
-            } else if (this.deep) {
-
-                style = 'deep';
-            
-            } else if (this.info) {
-
-                style = 'info';
-            
             }
 
             this.style = style;
+
+        },
+        syncState : function () {
+
+            let state = null;
+            let set = [
+                'normal',
+                'hover',
+                'active',
+                'disabled',
+                'apparent',
+                'loading',
+                'processing'
+            ];
+
+            for (let val of set) {
+
+                if (this[val]) {
+
+                    state = val;
+                    break;
+
+                }
+
+            }
+
+            this.state = state;
 
         }
     },
     data : function () {
 
         return {
-            size : 'm',
-            sizeClass : {
-                'si-xxl' : false,
-                'si-xl' : false,
-                'si-l' : false,
-                'si-m' : true,
-                'si-s' : false,
-                'si-xs' : false,
-                'si-xxs' : false
-            },
-            style : 'theme',
-            styleClass : {
-                'sy-theme' : true,
-                'sy-success' : false,
-                'sy-warning' : false,
-                'sy-danger' : false,
-                'sy-minor' : false,
-                'sy-light' : false,
-                'sy-deep' : false,
-                'sy-info' : false
-            },
+            size : null,
+            sizeClass : '',
+            style : null,
+            styleClass : '',
+            state : null,
+            stateClass : '',
             uiid : window.morning._uiid++
         };
 
     }
-    // watch : {
-    //     size : function (val) {
-    //         this.$attrs.size = val;
-    //     }
-    // },
-    // props : {
-    //     m : String,
-    //     l : String
-    // },
-    // data : function () {
-
-    //     var size = 'm';
-
-    //     console.log('123', this.m, this.l);
-                
-    //     if ( this.m === '' ) {
-    //         size = 'm';
-    //     } else if ( this.l === '' ) {
-    //         size = 'l';
-    //     }
-        
-    //     return {
-    //         uiid : window.morning._uiid++,
-    //         // size : size,
-    //         size : {
-    //             m : 1,
-    //             l : 0,
-    //             xl : 0
-    //         }
-    //     };
-
-    // }
 });
 
 export default UI;

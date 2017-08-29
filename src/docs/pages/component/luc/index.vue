@@ -1,0 +1,53 @@
+<template>
+    <doc-component
+        :page="page"
+        :hasPadding="true"
+    >
+    <script type="text/markdown">
+    # 大小写 `<ui-lowercase>` `<ui-uppercase>` `<ui-capitalize>`
+
+    ### 基础
+
+    #### 使用
+
+    大小写控制组件，这是一个内联元素。
+    
+    ````html
+    <ui-lowercase>小写的英文文本: tHere is A LEtter</ui-lowercase>
+    <ui-uppercase>大写的英文文本: tHere is A LEtter</ui-uppercase>
+    <ui-capitalize>首字母大写的文本: tHere is A LEtter</ui-capitalize>
+    ````
+
+    ### 声明
+
+    #### 支持
+
+    |类型|支持|默认|
+    |-|-|-|
+    |尺寸|不支持|-|
+    |色彩|不支持|-|
+    |状态|不支持|-|
+
+    </script>
+    </doc-component>
+</template>
+ 
+<script>
+import DocComponent                from 'Docs/common/DocComponent.vue';
+
+export default {
+    data : function () {
+
+        return {
+            page : 'luc'
+        };
+
+    },
+    components : {
+        'doc-component' : DocComponent
+    }
+};
+</script>
+
+<style lang="less">
+</style>

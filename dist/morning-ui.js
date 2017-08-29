@@ -33,6 +33,9 @@
 /******/ 	// expose the module cache
 /******/ 	__webpack_require__.c = installedModules;
 /******/
+/******/ 	// identity function for calling harmony imports with the correct context
+/******/ 	__webpack_require__.i = function(value) { return value; };
+/******/
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
 /******/ 		if(!__webpack_require__.o(exports, name)) {
@@ -60,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 6);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -90,30 +93,63 @@ var UI = _vue2.default.extend({
         xs: Boolean,
         xxs: Boolean,
         theme: Boolean,
+        lightTheme: Boolean,
+        darkTheme: Boolean,
         success: Boolean,
         warning: Boolean,
         danger: Boolean,
+        primary: Boolean,
         minor: Boolean,
-        light: Boolean,
-        deep: Boolean,
-        info: Boolean
+        info: Boolean,
+        black: Boolean,
+        lightBlack: Boolean,
+        extraLightBlack: Boolean,
+        blue: Boolean,
+        lightBlue: Boolean,
+        extraLightBlue: Boolean,
+        silver: Boolean,
+        lightSilver: Boolean,
+        extraLightSilver: Boolean,
+        gray: Boolean,
+        lightGray: Boolean,
+        white: Boolean,
+        normal: Boolean,
+        hover: Boolean,
+        active: Boolean,
+        disabled: Boolean,
+        apparent: Boolean,
+        loading: Boolean,
+        processing: Boolean
     },
     watch: {
-        size: function size(val, oval) {
+        size: function size(val) {
 
-            this.sizeClass['si-' + oval] = false;
-            this.sizeClass['si-' + val] = true;
-        },
-        style: function style(val, oval) {
+            if (val === null) {
 
-            if (oval !== null) {
+                this.sizeClass = '';
+            } else {
 
-                this.styleClass['sy-' + oval] = false;
+                this.sizeClass = 'si-' + val;
             }
+        },
+        style: function style(val) {
 
-            if (val !== null) {
+            if (val === null) {
 
-                this.styleClass['sy-' + val] = true;
+                this.styleClass = '';
+            } else {
+
+                this.styleClass = 'sy-' + val;
+            }
+        },
+        state: function state(val) {
+
+            if (val === null) {
+
+                this.stateClass = '';
+            } else {
+
+                this.stateClass = 'st-' + val;
             }
         },
         xxl: 'syncSize',
@@ -124,18 +160,39 @@ var UI = _vue2.default.extend({
         xs: 'syncSize',
         xxs: 'syncSize',
         theme: 'syncStyle',
+        lightTheme: 'syncStyle',
+        darkTheme: 'syncStyle',
         success: 'syncStyle',
         warning: 'syncStyle',
         danger: 'syncStyle',
+        primary: 'syncStyle',
         minor: 'syncStyle',
-        light: 'syncStyle',
-        deep: 'syncStyle',
-        info: 'syncStyle'
+        info: 'syncStyle',
+        black: 'syncStyle',
+        lightBlack: 'syncStyle',
+        extraLightBlack: 'syncStyle',
+        blue: 'syncStyle',
+        lightBlue: 'syncStyle',
+        extraLightBlue: 'syncStyle',
+        silver: 'syncStyle',
+        lightSilver: 'syncStyle',
+        extraLightSilver: 'syncStyle',
+        gray: 'syncStyle',
+        lightGray: 'syncStyle',
+        white: 'syncStyle',
+        normal: 'syncState',
+        hover: 'syncState',
+        active: 'syncState',
+        disabled: 'syncState',
+        apparent: 'syncState',
+        loading: 'syncState',
+        processing: 'syncState'
     },
     created: function created() {
 
         this.syncSize();
         this.syncStyle();
+        this.syncState();
     },
     mounted: function mounted() {
 
@@ -148,29 +205,37 @@ var UI = _vue2.default.extend({
     methods: {
         syncSize: function syncSize() {
 
-            var size = 'm';
+            var size = null;
+            var set = ['m', 'l', 's', 'xl', 'xs', 'xxl', 'xxs'];
 
-            if (this.m) {
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
 
-                size = 'm';
-            } else if (this.l) {
+            try {
+                for (var _iterator = set[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var val = _step.value;
 
-                size = 'l';
-            } else if (this.s) {
 
-                size = 's';
-            } else if (this.xl) {
+                    if (this[val]) {
 
-                size = 'xl';
-            } else if (this.xs) {
-
-                size = 'xs';
-            } else if (this.xxl) {
-
-                size = 'xxl';
-            } else if (this.xxs) {
-
-                size = 'xxs';
+                        size = val;
+                        break;
+                    }
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return) {
+                        _iterator.return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
             }
 
             this.size = size;
@@ -178,98 +243,94 @@ var UI = _vue2.default.extend({
         syncStyle: function syncStyle() {
 
             var style = null;
+            var set = ['theme', 'lightTheme', 'darkTheme', 'success', 'warning', 'danger', 'primary', 'minor', 'info', 'black', 'lightBlack', 'extraLightBlack', 'blue', 'lightBlue', 'extraLightBlue', 'silver', 'lightSilver', 'extraLightSilver', 'gray', 'lightGray', 'white'];
 
-            if (this.theme) {
+            var _iteratorNormalCompletion2 = true;
+            var _didIteratorError2 = false;
+            var _iteratorError2 = undefined;
 
-                style = 'theme';
-            } else if (this.success) {
+            try {
+                for (var _iterator2 = set[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                    var val = _step2.value;
 
-                style = 'success';
-            } else if (this.warning) {
 
-                style = 'warning';
-            } else if (this.danger) {
+                    if (this[val]) {
 
-                style = 'danger';
-            } else if (this.minor) {
-
-                style = 'minor';
-            } else if (this.light) {
-
-                style = 'light';
-            } else if (this.deep) {
-
-                style = 'deep';
-            } else if (this.info) {
-
-                style = 'info';
+                        style = val;
+                        break;
+                    }
+                }
+            } catch (err) {
+                _didIteratorError2 = true;
+                _iteratorError2 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                        _iterator2.return();
+                    }
+                } finally {
+                    if (_didIteratorError2) {
+                        throw _iteratorError2;
+                    }
+                }
             }
 
             this.style = style;
+        },
+        syncState: function syncState() {
+
+            var state = null;
+            var set = ['normal', 'hover', 'active', 'disabled', 'apparent', 'loading', 'processing'];
+
+            var _iteratorNormalCompletion3 = true;
+            var _didIteratorError3 = false;
+            var _iteratorError3 = undefined;
+
+            try {
+                for (var _iterator3 = set[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                    var val = _step3.value;
+
+
+                    if (this[val]) {
+
+                        state = val;
+                        break;
+                    }
+                }
+            } catch (err) {
+                _didIteratorError3 = true;
+                _iteratorError3 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion3 && _iterator3.return) {
+                        _iterator3.return();
+                    }
+                } finally {
+                    if (_didIteratorError3) {
+                        throw _iteratorError3;
+                    }
+                }
+            }
+
+            this.state = state;
         }
     },
     data: function data() {
 
         return {
-            size: 'm',
-            sizeClass: {
-                'si-xxl': false,
-                'si-xl': false,
-                'si-l': false,
-                'si-m': true,
-                'si-s': false,
-                'si-xs': false,
-                'si-xxs': false
-            },
-            style: 'theme',
-            styleClass: {
-                'sy-theme': true,
-                'sy-success': false,
-                'sy-warning': false,
-                'sy-danger': false,
-                'sy-minor': false,
-                'sy-light': false,
-                'sy-deep': false,
-                'sy-info': false
-            },
+            size: null,
+            sizeClass: '',
+            style: null,
+            styleClass: '',
+            state: null,
+            stateClass: '',
             uiid: window.morning._uiid++
         };
     }
-    // watch : {
-    //     size : function (val) {
-    //         this.$attrs.size = val;
-    //     }
-    // },
-    // props : {
-    //     m : String,
-    //     l : String
-    // },
-    // data : function () {
-
-    //     var size = 'm';
-
-    //     console.log('123', this.m, this.l);
-
-    //     if ( this.m === '' ) {
-    //         size = 'm';
-    //     } else if ( this.l === '' ) {
-    //         size = 'l';
-    //     }
-
-    //     return {
-    //         uiid : window.morning._uiid++,
-    //         // size : size,
-    //         size : {
-    //             m : 1,
-    //             l : 0,
-    //             xl : 0
-    //         }
-    //     };
-
-    // }
 });
 
 exports.default = UI;
+module.exports = exports['default'];
 
 /***/ }),
 /* 1 */
@@ -279,55 +340,6 @@ module.exports = Vue;
 
 /***/ }),
 /* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _vue = __webpack_require__(1);
-
-var _vue2 = _interopRequireDefault(_vue);
-
-var _ui = __webpack_require__(0);
-
-var _ui2 = _interopRequireDefault(_ui);
-
-var _form = __webpack_require__(3);
-
-var _form2 = _interopRequireDefault(_form);
-
-var _components = __webpack_require__(4);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var morning = {
-    version: '1.0.0',
-    _origin: {
-        UI: _ui2.default,
-        Form: _form2.default
-    },
-    _component: {
-        style: _components.style
-    },
-    _uiid: 1,
-    map: {}
-};
-
-// register component
-for (var category in morning._component) {
-
-    for (var name in morning._component[category]) {
-
-        var component = morning._component[category][name];
-
-        _vue2.default.component('ui-' + component.options.name, component);
-    }
-}
-
-window.morning = morning;
-
-/***/ }),
-/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -346,9 +358,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Form = _ui2.default.extend({});
 
 exports.default = Form;
+module.exports = exports['default'];
 
 /***/ }),
-/* 4 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -371,6 +384,37 @@ Object.keys(_index).forEach(function (key) {
 });
 
 /***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _ui = __webpack_require__(0);
+
+var _ui2 = _interopRequireDefault(_ui);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _ui2.default.extend({
+    name: 'h'
+}); //
+//
+//
+//
+//
+//
+//
+//
+//
+
+module.exports = exports['default'];
+
+/***/ }),
 /* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -382,7 +426,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.style = undefined;
 
-var _index = __webpack_require__(6);
+var _index = __webpack_require__(8);
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -394,18 +438,77 @@ var style = exports.style = {
 
 /***/ }),
 /* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _vue = __webpack_require__(1);
+
+var _vue2 = _interopRequireDefault(_vue);
+
+var _ui = __webpack_require__(0);
+
+var _ui2 = _interopRequireDefault(_ui);
+
+var _form = __webpack_require__(2);
+
+var _form2 = _interopRequireDefault(_form);
+
+var _components = __webpack_require__(3);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var morning = {
+    version: '1.0.0',
+    _origin: {
+        UI: _ui2.default,
+        Form: _form2.default
+    },
+    _component: {
+        style: _components.style
+    },
+    _uiid: 1,
+    map: {}
+};
+
+_vue2.default.config.ignoredElements = [];
+
+// register component
+for (var category in morning._component) {
+
+    for (var name in morning._component[category]) {
+
+        var component = morning._component[category][name];
+
+        _vue2.default.component('ui-' + component.options.name, component);
+        _vue2.default.config.ignoredElements.push('i-' + component.options.name);
+    }
+}
+
+window.morning = morning;
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_302a0e98_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(10);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(7)
 }
-var normalizeComponent = __webpack_require__(8)
+var normalizeComponent = __webpack_require__(9)
 /* script */
 
 /* template */
@@ -417,7 +520,7 @@ var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
-  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default.a,
   __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_302a0e98_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__["a" /* default */],
   __vue_styles__,
   __vue_scopeId__,
@@ -447,13 +550,7 @@ if (false) {(function () {
 
 
 /***/ }),
-/* 7 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -550,36 +647,13 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 9 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_Common_ui__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_Common_ui___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_Common_ui__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-/* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0_Common_ui___default.a.extend({
-    name: 'h'
-}));
-
-/***/ }),
 /* 10 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('i-h', {
-    class: [_vm.sizeClass, _vm.styleClass],
+    class: [_vm.sizeClass, _vm.styleClass, _vm.stateClass],
     attrs: {
       "_uiid": _vm.uiid
     }

@@ -199,7 +199,7 @@
     - `hover` : Hover状态
     - `active` : 激活状态
     - `disabled` : 禁用状态
-    - `apparent` : 明显状态
+    - `apparent` : 醒目状态
     - `loading` : 载入中
     - `processing` : 处理中
     

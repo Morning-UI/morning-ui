@@ -1,12 +1,13 @@
 <template>
     <div>
-        <doc-header :category="category"></doc-header>
-        <div class="body">
+       <doc-header :category="category"></doc-header>
+         <div class="body">
             <doc-submenu
                 :category="category"
                 :page="page"
             ></doc-submenu>
-            <div class="content markdown-body"
+            <div
+                class="content markdown-body"
                 :class="{padding : hasPadding}"
                 v-md
             >
@@ -24,24 +25,33 @@ import DocSubmenu                   from 'Docs/common/DocSubmenu.vue';
 
 Vue.directive('md',{
     bind : (el, binding, vnode) => {
-
-        console.log(el, binding, vnode); 
         
         let mdScript = el.getElementsByTagName('script')[0];
 
-        if (mdScript.type === 'text/markdown') {
+        if (mdScript && mdScript.type === 'text/markdown') {
 
-            let res = Vue.compile(`<div>${marked(mdScript.innerText)}</div>`);
+            let text = mdScript.innerText;
+            let patt = /\`\`\`\`(html|js)\n((.|\n)+?)\n\`\`\`\`/g;
+            let result;
+
+            while((result = patt.exec(text)) !== null) {
+
+                let newText = '<div class="demo">'+result[2]+'</div>\n\n```'+result[1]+'\n'+result[2]+'\n```\n';
+
+                text = text.slice(0, result.index - 1) + newText + text.slice(result.index + result[0].length, text.length);
+
+            }
+
+            let res = Vue.compile(`<div>${marked(text)}</div>`);
 
             let instance = new Vue({
                 render: res.render,
                 staticRenderFns: res.staticRenderFns
             });
 
-            console.log(instance);
             instance.$mount();
             
-            el.innerHTML = instance.$el.innerHTML;
+            el.appendChild(instance.$el);
 
         }
 
@@ -67,50 +77,7 @@ export default {
 
         hljs.initHighlightingOnLoad();
 
-    } 
-    // render : function (h) {
-    //     console.log(55, this.$slots.default);
-
-    //     let html = '';
-
-    //     for (let node of this.$slots.default) {
-    //         html += node.text;
-    //     }
-
-    //     return h(
-    //         'div',
-    //         {},
-    //         [
-    //             h(DocHeader, {
-    //                 props : {
-    //                     category : this.category
-    //                 }
-    //             }),
-    //             h('div', {
-    //                 'class' : {
-    //                     body : true
-    //                 }
-    //             },
-    //             [
-    //                 h(DocSubmenu, {
-    //                     props : {
-    //                         category : this.category,
-    //                         page : this.page
-    //                     }
-    //                 }),
-    //                 h('div', {
-    //                     'class' : {
-    //                         content : true
-    //                     },
-    //                     domProps : {
-    //                         innerHTML : marked(html)
-    //                     }
-    //                 })
-    //             ])
-    //         ]
-    //     )
-
-    // }
+    }
 };
 </script>
 
@@ -133,8 +100,22 @@ export default {
     font-size: 14px;
     box-sizing: border-box;
 
+    div > h1 > code{
+        vertical-align: 6px;
+    }
+
     &.padding {
         padding: 50px;
+    }
+}
+.demo{
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px #f1f4f6 solid;
+    border-radius:3px 3px 0 0;
+
+    &+pre{
+        border-radius: 0 0 3px 3px;
     }
 }
 </style>

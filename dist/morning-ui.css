@@ -1,9 +1,28 @@
 
+@-webkit-keyframes apparent {
+from {
+    opacity: 1;
+}
+25% {
+    opacity: 0.7;
+}
+50% {
+    opacity: 0.3;
+}
+75% {
+    opacity: 0.7;
+}
+to {
+    opacity: 1;
+}
+}
 i-h {
   display: block;
   line-height: 1.6em;
   vertical-align: middle;
   margin: 0.65em 0;
+  color: #17212D;
+  font-size: 28.8px;
 }
 i-h.si-xxl {
   font-size: 57.6px;
@@ -14,7 +33,6 @@ i-h.si-xl {
 i-h.si-l {
   font-size: 34.56px;
 }
-i-h,
 i-h.si-m {
   font-size: 28.8px;
 }
@@ -28,27 +46,71 @@ i-h.si-xxs {
   font-size: 16px;
 }
 i-h.sy-theme {
-  color: #F3655A;
+  color: #F33D5D;
+}
+i-h.sy-lightTheme {
+  color: #F86F88;
+}
+i-h.sy-darkTheme {
+  color: #D22343;
 }
 i-h.sy-success {
-  color: #5BBD72;
+  color: #23C455;
 }
 i-h.sy-warning {
-  color: #F0AD4E;
+  color: #F1A437;
 }
 i-h.sy-danger {
-  color: #D34836;
+  color: #EB0E23;
+}
+i-h.sy-primary {
+  color: #2185D0;
 }
 i-h.sy-minor {
-  color: #bbb;
-}
-i-h.sy-light {
-  color: #fafafa;
-}
-i-h,
-i-h.sy-deep {
-  color: #1B1C1D;
+  color: #A9A9A9;
 }
 i-h.sy-info {
-  color: #00B5AD;
+  color: #03A6B9;
+}
+i-h.sy-black {
+  color: #17212D;
+}
+i-h.sy-lightBlack {
+  color: #303C4B;
+}
+i-h.sy-extraLightBlack {
+  color: #45505C;
+}
+i-h.sy-blue {
+  color: #7C8BA0;
+}
+i-h.sy-lightBlue {
+  color: #8E9CAF;
+}
+i-h.sy-extraLightBlue {
+  color: #A8B3C2;
+}
+i-h.sy-silver {
+  color: #D6DDE5;
+}
+i-h.sy-lightSilver {
+  color: #E2E8EE;
+}
+i-h.sy-extraLightSilver {
+  color: #EDF1F5;
+}
+i-h.sy-gray {
+  color: #E6E6E6;
+}
+i-h.sy-lightGray {
+  color: #F0F0F0;
+}
+i-h.sy-white {
+  color: #FFFFFF;
+}
+i-h.st-apparent {
+  animation-name: apparent;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
