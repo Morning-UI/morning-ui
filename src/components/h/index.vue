@@ -47,8 +47,8 @@ i-h{
     
     // default statement
     &{
-        .sy-black;
         .si-m;
+        .sy-black;
         .st-normal;
     }
 

@@ -9,6 +9,9 @@
     "lint": "node_modules/.bin/eslint src/ build/",
     "lint-fix": "npm run lint -- --fix"
   },
+  "todo": [
+    "色彩背景区分行为统一"
+  ],
   "repository": {
     "type": "git",
     "url": "http://git.husor.com.cn/fed/morning.git"

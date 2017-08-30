@@ -22,6 +22,7 @@ import grid                         from './grid/index.vue';
 import card                         from './card/index.vue';
 import box                          from './box/index.vue';
 import block                        from './block/index.vue';
+import header                       from './header/index.vue';
 
 export let style = {
     h,
@@ -47,5 +48,6 @@ export let style = {
     grid,
     card,
     box,
-    block
+    block,
+    header
 };
