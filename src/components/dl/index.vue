@@ -1,0 +1,84 @@
+<template>
+    <i-dl
+        :_uiid="uiid"
+        :class="[stateClass]"
+    >
+        <slot></slot>
+    </i-dl>
+</template>
+ 
+<script>
+import UI                           from 'Common/ui';
+
+export default UI.extend({
+    name : 'dl'
+});
+</script>
+
+<style lang="less">
+@import '~Common/common.less';
+
+i-dl{
+    display: block;
+
+    dt{
+        color: @fontColorBlack;
+        font-weight: bold;
+    }
+
+    dd{
+        margin-bottom: 0.7em;
+        color: @fontColor;
+        margin-left: 0;
+
+        &:last-child{
+            margin-bottom: 0;
+        }
+    }
+
+    &.horizon{
+        overflow: hidden;
+        dt{
+            width: 15%;
+            display: inline-block;
+            margin-bottom: 0.7em;
+        }
+        dd{
+            width: 80%;
+            display: inline-block;
+            vertical-align: top;
+        }
+    }
+
+    &.underline{
+        dt{
+            border-top: 1px solid @borderColor;
+            margin-top: 1em;
+            padding-top: 1em;
+        }
+        dt:first-child{
+            border-top: 0 none;
+            margin-top: 0;
+            padding-top: 0;
+        }
+        dd{
+            margin-bottom: 0;
+        }
+    }
+
+    &.st-normal{}
+    &.st-apparent{
+        transform-origin: left center;
+        animation-name: apparent;
+        animation-duration: 1s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+    }
+    
+    // default statement
+    &{
+        .st-normal;
+    }
+
+}
+</style>

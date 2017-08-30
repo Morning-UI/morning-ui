@@ -13,6 +13,15 @@ import lowercase                    from './lowercase/index.vue';
 import uppercase                    from './uppercase/index.vue';
 import capitalize                   from './capitalize/index.vue';
 import quote                        from './quote/index.vue';
+import ol                           from './ol/index.vue';
+import ul                           from './ul/index.vue';
+import il                           from './il/index.vue';
+import dl                           from './dl/index.vue';
+import textcolor                    from './textcolor/index.vue';
+import grid                         from './grid/index.vue';
+import card                         from './card/index.vue';
+import box                          from './box/index.vue';
+import block                        from './block/index.vue';
 
 export let style = {
     h,
@@ -29,5 +38,14 @@ export let style = {
     lowercase,
     uppercase,
     capitalize,
-    quote
+    quote,
+    ol,
+    ul,
+    il,
+    dl,
+    textcolor,
+    grid,
+    card,
+    box,
+    block
 };
