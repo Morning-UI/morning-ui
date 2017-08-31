@@ -86,7 +86,7 @@ export default {
         '基础' : null,
         '示例<i class="tag coming"></i>' : '/guide/demo.html',
         '声明<i class="tag done"></i>' : '/guide/statement.html',
-        '样式类<i class="tag coming"></i>' : '/guide/styleclass.html',
+        '样式类<i class="tag done"></i>' : '/guide/styleclass.html',
         '配置<i class="tag coming"></i>' : '/guide/config.html',
         '方法<i class="tag coming"></i>' : '/guide/method.html',
         '事件<i class="tag coming"></i>' : '/guide/event.html',

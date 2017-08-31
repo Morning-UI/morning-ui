@@ -92,13 +92,19 @@
     <ui-badge light-black>浅黑色</ui-badge>
     <ui-badge extra-light-black>超浅黑色</ui-badge>
 
+    <br>
+
     <ui-badge blue>青色</ui-badge>
     <ui-badge light-blue>浅青色</ui-badge>
     <ui-badge extra-light-blue>超浅青色</ui-badge>
 
+    <br>
+
     <ui-badge silver>银色</ui-badge>
     <ui-badge light-silver>浅银色</ui-badge>
     <ui-badge extra-light-silver>超浅银色</ui-badge>
+
+    <br>
 
     <ui-badge gray>灰色</ui-badge>
     <ui-badge light-gray>浅灰色</ui-badge>

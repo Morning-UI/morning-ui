@@ -38,9 +38,11 @@
 
     #### 带下划线的页头
 
+    ````html
     <ui-header class="underline">
         页头标题<small>页头子标题</small>
     </ui-header>
+    ````
 
     ### 声明
 

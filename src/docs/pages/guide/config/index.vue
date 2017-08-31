@@ -1,8 +1,11 @@
 <template>
     <doc-guide
         :page="page"
+        :hasPadding="true" 
     >
-        config
+    <script type="text/markdown">
+    # 配置
+    </script>
     </doc-guide>
 </template>
  

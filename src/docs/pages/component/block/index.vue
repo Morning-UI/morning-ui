@@ -89,7 +89,7 @@ export default {
     data : function () {
 
         return {
-            page : 'em'
+            page : 'block'
         };
 
     },
