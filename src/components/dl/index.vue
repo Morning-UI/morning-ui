@@ -22,13 +22,13 @@ i-dl{
     display: block;
 
     dt{
-        color: @fontColorBlack;
+        color: @colorBlack;
         font-weight: bold;
     }
 
     dd{
         margin-bottom: 0.7em;
-        color: @fontColor;
+        color: @colorBlue;
         margin-left: 0;
 
         &:last-child{
@@ -52,7 +52,7 @@ i-dl{
 
     &.underline{
         dt{
-            border-top: 1px solid @borderColor;
+            border-top: 1px solid @colorGray;
             margin-top: 1em;
             padding-top: 1em;
         }
