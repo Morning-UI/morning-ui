@@ -23,6 +23,7 @@ let docsConfig = {};
 let extractDevCss = new ExtractTextPlugin('morning-ui.css');
 let extractProdCss = new ExtractTextPlugin('morning-ui.min.css');
 let extractDocsCss = new ExtractTextPlugin('[name].css');
+let extractIconfont = new ExtractTextPlugin('iconfont.woff');
 
 let getDocsEntry = async docsConfig => {
 
@@ -117,7 +118,8 @@ devVerConfig = extend(
             ]
         },
         output : {
-            filename : 'morning-ui.js'
+            filename : 'morning-ui.js',
+            publicPath : '/dist'
         }
     }
 );
@@ -160,7 +162,8 @@ prodVerConfig = extend(
             ]
         },
         output : {
-            filename : 'morning-ui.min.js'
+            filename : 'morning-ui.min.js',
+            publicPath : '/dist'
         }
     }
 );
@@ -174,7 +177,8 @@ docsConfig = {
         new webpack.DefinePlugin({
             'process.env.NODE_ENV' : process.env.NODE_ENV
         }),
-        extractDocsCss
+        extractDocsCss,
+        extractIconfont
     ],
     resolve : {
         alias : {
@@ -195,6 +199,16 @@ docsConfig = {
     },
     module : {
         rules : [
+            {
+                test : /\.woff/,
+                exclude : /node_modules/,
+                use : [{
+                    loader : 'file-loader',
+                    options : {
+                        name : '[name].[ext]'
+                    }
+                }]
+            },
             {
                 test : /\.vue$/,
                 loader : 'vue-loader',
@@ -219,7 +233,8 @@ docsConfig = {
     },
     output : {
         path : pathDocs,
-        filename : '[name].js'
+        filename : '[name].js',
+        publicPath : '/'
     }
 };
 

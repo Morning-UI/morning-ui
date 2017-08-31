@@ -46,6 +46,7 @@
     "eslint-config-gaea": "^0.1.4",
     "extend": "^3.0.1",
     "extract-text-webpack-plugin": "^2.1.2",
+    "file-loader": "^0.11.2",
     "html-webpack-plugin": "^2.30.1",
     "less": "^2.7.2",
     "less-loader": "^4.0.5",

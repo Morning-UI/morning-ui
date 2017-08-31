@@ -6,10 +6,9 @@
             </div>
             <div class="name">Morning UI</div>
             <ul class="menu">
-
-                <li><a :class="{current:isIndex}" href="/docs/index.html">HOME</a></li>
-                <li><a :class="{current:isGuide}" href="/docs/guide/introduction.html">GUIDE</a></li>
-                <li><a :class="{current:isComponent}" href="/docs/component/h.html">COMPONENT</a></li>
+                <li><a :class="{current:isIndex}" href="/index.html">HOME</a></li>
+                <li><a :class="{current:isGuide}" href="/guide/introduction.html">GUIDE</a></li>
+                <li><a :class="{current:isComponent}" href="/component/h.html">COMPONENT</a></li>
             </ul>
         </div>
     </header>

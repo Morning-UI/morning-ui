@@ -1,17 +1,15 @@
 import Vue                          from 'vue';
 import UI                           from 'Common/ui';
 import Form                         from 'Common/form';
-import {style}                      from './components';
+import components                   from './components';
 
 let morning = {
-    version : '1.0.0',
+    version : '0.10.0',
     _origin : {
         UI,
         Form
     },
-    _component : {
-        style
-    },
+    _components : components,
     _uiid : 1,
     map : {}
 };
@@ -19,16 +17,12 @@ let morning = {
 Vue.config.ignoredElements = [];
 
 // register component
-for (let category in morning._component) {
+for (let name in morning._components) {
 
-    for (let name in morning._component[category]) {
+    let component = morning._components[name];
 
-        let component = morning._component[category][name];
-
-        Vue.component(`ui-${component.options.name}`, component);
-        Vue.config.ignoredElements.push(`i-${component.options.name}`);
-
-    }
+    Vue.component(`ui-${component.options.name}`, component);
+    Vue.config.ignoredElements.push(`i-${component.options.name}`);
 
 }
 

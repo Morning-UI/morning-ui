@@ -21,7 +21,7 @@
     ````html
     <ui-block>
         <ui-h white xs>标题内容</ui-h>
-        <ui-color white>正文内容</ui-color>
+        <ui-textcolor white>正文内容</ui-textcolor>
     </ui-block>
     ````
 

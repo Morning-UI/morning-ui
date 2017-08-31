@@ -42,8 +42,6 @@ Vue.directive('md',{
 
             }
 
-            console.log(5, text);
-
             let res = Vue.compile(`<div>${marked(text)}</div>`);
 
             let instance = new Vue({

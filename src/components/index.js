@@ -22,9 +22,12 @@ import grid                         from './grid/index.vue';
 import card                         from './card/index.vue';
 import box                          from './box/index.vue';
 import block                        from './block/index.vue';
+import center                       from './center/index.vue';
 import header                       from './header/index.vue';
+import badge                        from './badge/index.vue';
+import label                        from './label/index.vue';
 
-export let style = {
+export default {
     h,
     lead,
     mark,
@@ -49,5 +52,8 @@ export let style = {
     card,
     box,
     block,
-    header
+    center,
+    header,
+    badge,
+    label
 };
