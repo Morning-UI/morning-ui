@@ -17,6 +17,7 @@ import ol                           from './ol/index.vue';
 import ul                           from './ul/index.vue';
 import il                           from './il/index.vue';
 import dl                           from './dl/index.vue';
+import itemlist                     from './itemlist/index.vue';
 import textcolor                    from './textcolor/index.vue';
 import grid                         from './grid/index.vue';
 import card                         from './card/index.vue';
@@ -26,6 +27,7 @@ import center                       from './center/index.vue';
 import header                       from './header/index.vue';
 import badge                        from './badge/index.vue';
 import label                        from './label/index.vue';
+import img                          from './img/index.vue';
 
 export default {
     h,
@@ -47,6 +49,7 @@ export default {
     ul,
     il,
     dl,
+    itemlist,
     textcolor,
     grid,
     card,
@@ -55,5 +58,6 @@ export default {
     center,
     header,
     badge,
-    label
+    label,
+    img
 };
