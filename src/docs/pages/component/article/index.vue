@@ -4,7 +4,7 @@
         :hasPadding="true"
     >
     <script type="text/markdown">
-    # 斜体文本 `<ui-em>`
+    # 斜体文本 `<ui-article>`
 
     ### 基础
 
@@ -13,7 +13,7 @@
     标记一段斜体内容，这是一个内联元素。
     
     ````html
-    <ui-em>斜体文本</ui-em>
+    <ui-article>斜体文本</ui-article>
     ````
 
     ### 声明
@@ -37,7 +37,7 @@ export default {
     data : function () {
 
         return {
-            page : 'em'
+            page : 'article'
         };
 
     },
