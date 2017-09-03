@@ -11,7 +11,8 @@ let pathNpm = path.resolve(pathProjectRoot, 'node_modules');
 let pathDist = path.resolve(pathProjectRoot, 'dist');
 let pathSrc = path.resolve(pathProjectRoot, 'src');
 let pathDocs = path.resolve(pathProjectRoot, 'docs');
-let pathSrcCommon = path.resolve(pathSrc, 'common');
+let pathLib = path.resolve(pathSrc, 'lib');
+let pathLibCommon = path.resolve(pathLib, 'common');
 let pathSrcDocs = path.resolve(pathSrc, 'docs');
 let pathSrcDocsPages = path.resolve(pathSrcDocs, 'pages');
 
@@ -63,7 +64,7 @@ let getDocsHtmlPlugin = async docsConfig => {
 };
 
 commonConfig = {
-    entry : './src/index.js',
+    entry : './src/lib/index.js',
     plugins : [
         new CleanWebpackPlugin([pathDist], {
             root : pathProjectRoot
@@ -74,7 +75,7 @@ commonConfig = {
     ],
     resolve : {
         alias : {
-            Common : pathSrcCommon
+            Common : pathLibCommon
         }
     },
     externals : {
