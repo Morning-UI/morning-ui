@@ -30,17 +30,13 @@
     |色彩|不支持|-|
     |状态|`normal`<br/>`apparent`|`normal`|
 
-    #### 状态
-    
-    ````html
-    <ui-il normal>
-        <li>this is normal ui-il</li>
-        <li>this is normal ui-il</li>
-    </ui-il>
+    #### 状态    
 
-    <ui-il apparent>
-        <li>this is apparent ui-il</li>
-        <li>this is apparent ui-il</li>
+    ````html
+    @stateNA
+    <ui-il {$key}>
+        <li>this is {$&name} ui-il</li>
+        <li>this is {$&name} ui-il</li>
     </ui-il>
     ````
     </script>

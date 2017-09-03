@@ -25,21 +25,21 @@
     <ui-itemlist>
         <ui-ul>
             <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg?1408070984"></ui-img>
+                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
                 <h3 class="title">Header</h3>
                 <p class="desc">Description</p>
                 <div class="body">Body</div>
                 <div class="additional">Additional Details</div> 
             </li>
             <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg?1408070984"></ui-img>
+                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
                 <h3 class="title">Header</h3>
                 <p class="desc">Description</p>
                 <div class="body">Body</div>
                 <div class="additional">Additional Details</div> 
             </li>
             <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg?1408070984"></ui-img>
+                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
                 <h3 class="title">Header</h3>
                 <p class="desc">Description</p>
                 <div class="body">Body</div>
@@ -57,21 +57,21 @@
     <ui-itemlist class="underline">
         <ui-ul>
             <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg?1408070984"></ui-img>
+                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
                 <h3 class="title">Header</h3>
                 <p class="desc">Description</p>
                 <div class="body">Body</div>
                 <div class="additional">Additional Details</div> 
             </li>
             <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg?1408070984"></ui-img>
+                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
                 <h3 class="title">Header</h3>
                 <p class="desc">Description</p>
                 <div class="body">Body</div>
                 <div class="additional">Additional Details</div> 
             </li>
             <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg?1408070984"></ui-img>
+                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
                 <h3 class="title">Header</h3>
                 <p class="desc">Description</p>
                 <div class="body">Body</div>
@@ -89,15 +89,15 @@
     <ui-itemlist xs>
         <ui-ul>
             <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg?1408070984"></ui-img>
+                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
                 <h3 class="title">Header</h3>
             </li>
             <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg?1408070984"></ui-img>
+                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
                 <h3 class="title">Header</h3>
             </li>
             <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg?1408070984"></ui-img>
+                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
                 <h3 class="title">Header</h3>
             </li>
         </ui-ul>
@@ -112,15 +112,15 @@
     <ui-itemlist xs>
         <ui-ul>
             <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg?1408070984"></ui-img>
+                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
                 <div class="body">Body</div>
             </li>
             <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg?1408070984"></ui-img>
+                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
                 <div class="body">Body</div>
             </li>
             <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg?1408070984"></ui-img>
+                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
                 <div class="body">Body</div>
             </li>
         </ui-ul>
@@ -164,7 +164,7 @@
     <ui-itemlist>
         <ui-ul>
             <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg?1408070984"></ui-img>
+                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
                 <h3 class="title">Header</h3>
                 <p class="desc">Description</p>
                 <div class="body">Body</div>
@@ -173,7 +173,7 @@
                 </div> 
             </li>
             <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg?1408070984"></ui-img>
+                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
                 <h3 class="title">Header</h3>
                 <p class="desc">Description</p>
                 <div class="body">Body</div>
@@ -182,7 +182,7 @@
                 </div> 
             </li>
             <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg?1408070984"></ui-img>
+                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
                 <h3 class="title">Header</h3>
                 <p class="desc">Description</p>
                 <div class="body">Body</div>
@@ -208,26 +208,27 @@
     #### 尺寸
 
     ````html
+    @size
     <div style="width:400px">
-    <ui-itemlist xxl>
+    <ui-itemlist {$key}>
         <ui-ul>
             <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg?1408070984"></ui-img>
-                <h3 class="title">XXL尺寸</h3>
+                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                <h3 class="title">{$&name}</h3>
                 <p class="desc">Description</p>
                 <div class="body">Body</div>
                 <div class="additional">Additional Details</div> 
             </li>
             <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg?1408070984"></ui-img>
-                <h3 class="title">XXL尺寸</h3>
+                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                <h3 class="title">{$&name}</h3>
                 <p class="desc">Description</p>
                 <div class="body">Body</div>
                 <div class="additional">Additional Details</div> 
             </li>
             <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg?1408070984"></ui-img>
-                <h3 class="title">XXL尺寸</h3>
+                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                <h3 class="title">{$&name}</h3>
                 <p class="desc">Description</p>
                 <div class="body">Body</div>
                 <div class="additional">Additional Details</div> 
@@ -237,186 +238,8 @@
     </div>
 
     <br><br>
-
-    <div style="width:400px">
-    <ui-itemlist xl>
-        <ui-ul>
-            <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg?1408070984"></ui-img>
-                <h3 class="title">XL尺寸</h3>
-                <p class="desc">Description</p>
-                <div class="body">Body</div>
-                <div class="additional">Additional Details</div> 
-            </li>
-            <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg?1408070984"></ui-img>
-                <h3 class="title">XL尺寸</h3>
-                <p class="desc">Description</p>
-                <div class="body">Body</div>
-                <div class="additional">Additional Details</div> 
-            </li>
-            <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg?1408070984"></ui-img>
-                <h3 class="title">XL尺寸</h3>
-                <p class="desc">Description</p>
-                <div class="body">Body</div>
-                <div class="additional">Additional Details</div> 
-            </li>
-        </ui-ul>
-    </ui-itemlist>
-    </div>
-
-    <br><br>
-
-    <div style="width:400px">
-    <ui-itemlist l>
-        <ui-ul>
-            <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg?1408070984"></ui-img>
-                <h3 class="title">L尺寸</h3>
-                <p class="desc">Description</p>
-                <div class="body">Body</div>
-                <div class="additional">Additional Details</div> 
-            </li>
-            <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg?1408070984"></ui-img>
-                <h3 class="title">L尺寸</h3>
-                <p class="desc">Description</p>
-                <div class="body">Body</div>
-                <div class="additional">Additional Details</div> 
-            </li>
-            <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg?1408070984"></ui-img>
-                <h3 class="title">L尺寸</h3>
-                <p class="desc">Description</p>
-                <div class="body">Body</div>
-                <div class="additional">Additional Details</div> 
-            </li>
-        </ui-ul>
-    </ui-itemlist>
-    </div>
-
-    <br><br>
-
-    <div style="width:400px">
-    <ui-itemlist m>
-        <ui-ul>
-            <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg?1408070984"></ui-img>
-                <h3 class="title">M尺寸</h3>
-                <p class="desc">Description</p>
-                <div class="body">Body</div>
-                <div class="additional">Additional Details</div> 
-            </li>
-            <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg?1408070984"></ui-img>
-                <h3 class="title">M尺寸</h3>
-                <p class="desc">Description</p>
-                <div class="body">Body</div>
-                <div class="additional">Additional Details</div> 
-            </li>
-            <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg?1408070984"></ui-img>
-                <h3 class="title">M尺寸</h3>
-                <p class="desc">Description</p>
-                <div class="body">Body</div>
-                <div class="additional">Additional Details</div> 
-            </li>
-        </ui-ul>
-    </ui-itemlist>
-    </div>
-
-    <br><br>
-
-    <div style="width:400px">
-    <ui-itemlist s>
-        <ui-ul>
-            <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg?1408070984"></ui-img>
-                <h3 class="title">S尺寸</h3>
-                <p class="desc">Description</p>
-                <div class="body">Body</div>
-                <div class="additional">Additional Details</div> 
-            </li>
-            <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg?1408070984"></ui-img>
-                <h3 class="title">S尺寸</h3>
-                <p class="desc">Description</p>
-                <div class="body">Body</div>
-                <div class="additional">Additional Details</div> 
-            </li>
-            <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg?1408070984"></ui-img>
-                <h3 class="title">S尺寸</h3>
-                <p class="desc">Description</p>
-                <div class="body">Body</div>
-                <div class="additional">Additional Details</div> 
-            </li>
-        </ui-ul>
-    </ui-itemlist>
-    </div>
-
-    <br><br>
-
-    <div style="width:400px">
-    <ui-itemlist xs>
-        <ui-ul>
-            <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg?1408070984"></ui-img>
-                <h3 class="title">XS尺寸</h3>
-                <p class="desc">Description</p>
-                <div class="body">Body</div>
-                <div class="additional">Additional Details</div> 
-            </li>
-            <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg?1408070984"></ui-img>
-                <h3 class="title">XS尺寸</h3>
-                <p class="desc">Description</p>
-                <div class="body">Body</div>
-                <div class="additional">Additional Details</div> 
-            </li>
-            <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg?1408070984"></ui-img>
-                <h3 class="title">XS尺寸</h3>
-                <p class="desc">Description</p>
-                <div class="body">Body</div>
-                <div class="additional">Additional Details</div> 
-            </li>
-        </ui-ul>
-    </ui-itemlist>
-    </div>
-
-    <br><br>
-
-    <div style="width:400px">
-    <ui-itemlist xxs>
-        <ui-ul>
-            <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg?1408070984"></ui-img>
-                <h3 class="title">XXS尺寸</h3>
-                <p class="desc">Description</p>
-                <div class="body">Body</div>
-                <div class="additional">Additional Details</div> 
-            </li>
-            <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg?1408070984"></ui-img>
-                <h3 class="title">XXS尺寸</h3>
-                <p class="desc">Description</p>
-                <div class="body">Body</div>
-                <div class="additional">Additional Details</div> 
-            </li>
-            <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg?1408070984"></ui-img>
-                <h3 class="title">XXS尺寸</h3>
-                <p class="desc">Description</p>
-                <div class="body">Body</div>
-                <div class="additional">Additional Details</div> 
-            </li>
-        </ui-ul>
-    </ui-itemlist>
-    </div>
+    
     ````
-
     </script>
     </doc-component>
 </template>

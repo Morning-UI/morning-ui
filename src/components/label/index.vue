@@ -148,7 +148,6 @@ i-label{
 
     &.st-normal{}
     &.st-apparent{
-        transform-origin: center center;
         animation-name: apparent;
         animation-duration: 1s;
         animation-timing-function: linear;

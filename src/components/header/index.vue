@@ -1,7 +1,7 @@
 <template>
     <i-header
         :_uiid="uiid"
-        :class="[sizeClass, styleClass]"
+        :class="[sizeClass, styleClass, stateClass]"
     >
         <slot></slot>
     </i-header>

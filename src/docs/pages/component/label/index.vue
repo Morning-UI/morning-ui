@@ -27,13 +27,13 @@
 
     ````html
     <ui-label class="image">
-        <img src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg?1408070984"/>
+        <img src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"/>
         <span>标签</span>
     </ui-label>
 
     <ui-label class="image">
         <span>标签</span>
-        <img src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg?1408070984"/>
+        <img src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"/>
     </ui-label>
     ````
 
@@ -69,83 +69,38 @@
     #### 尺寸
 
     ````html
-    <ui-label xxl>XXL尺寸</ui-label>
-    <ui-label xl>XL尺寸</ui-label>
-    <ui-label l>L尺寸</ui-label>
-    <ui-label m>M尺寸</ui-label>
-    <ui-label s>S尺寸</ui-label>
-    <ui-label xs>XS尺寸</ui-label>
-    <ui-label xxs>XXS尺寸</ui-label>
+    @size
+    <ui-label {$key}>{$&name}</ui-label>
+    ````
 
-    <br>
+    ````html
+    @size
+    <ui-label class="icon" {$key}><i class="iconfont">&#xe6e2;</i> <span>{$&name}</span></ui-label>
+    ````
 
-    <ui-label class="icon" xxl><i class="iconfont">&#xe6e2;</i> <span>XXL尺寸</span></ui-label>
-    <ui-label class="icon" xl><i class="iconfont">&#xe6e2;</i> <span>XL尺寸</span></ui-label>
-    <ui-label class="icon" l><i class="iconfont">&#xe6e2;</i> <span>L尺寸</span></ui-label>
-    <ui-label class="icon" m><i class="iconfont">&#xe6e2;</i> <span>M尺寸</span></ui-label>
-    <ui-label class="icon" s><i class="iconfont">&#xe6e2;</i> <span>S尺寸</span></ui-label>
-    <ui-label class="icon" xs><i class="iconfont">&#xe6e2;</i> <span>XS尺寸</span></ui-label>
-    <ui-label class="icon" xxs><i class="iconfont">&#xe6e2;</i> <span>XXS尺寸</span></ui-label>
-
-    <br>
-
-    <ui-label class="image" xxl><img src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg?1408070984"/> <span>XXL尺寸</span></ui-label>
-    <ui-label class="image" xl><img src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg?1408070984"/> <span>XL尺寸</span></ui-label>
-    <ui-label class="image" l><img src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg?1408070984"/> <span>L尺寸</span></ui-label>
-    <ui-label class="image" m><img src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg?1408070984"/> <span>M尺寸</span></ui-label>
-    <ui-label class="image" s><img src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg?1408070984"/> <span>S尺寸</span></ui-label>
-    <ui-label class="image" xs><img src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg?1408070984"/> <span>XS尺寸</span></ui-label>
-    <ui-label class="image" xxs><img src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg?1408070984"/> <span>XXS尺寸</span></ui-label>
+    ````html
+    @size
+    <ui-label class="image" {$key}><img src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"/> <span>{$&name}</span></ui-label>
     ````
     
     #### 色彩
 
     ````html
-    <ui-label theme>主题色</ui-label>
-    <ui-label light-theme>浅主题色</ui-label>
-    <ui-label dark-theme>深主题色</ui-label>
-    ````
-
-    ````html
-    <ui-label success>成功/正确</ui-label>
-    <ui-label warning>警告/注意</ui-label>
-    <ui-label danger>错误/危险</ui-label>
-    <ui-label primary>主要/关键</ui-label>
-    <ui-label minor>次要/不醒目</ui-label>
-    <ui-label info>信息/额外</ui-label>
-    ````
-
-    ````html
-    <ui-label black>黑色</ui-label>
-    <ui-label light-black>浅黑色</ui-label>
-    <ui-label extra-light-black>超浅黑色</ui-label>
-
-    <br><br>
-
-    <ui-label blue>青色</ui-label>
-    <ui-label light-blue>浅青色</ui-label>
-    <ui-label extra-light-blue>超浅青色</ui-label>
-
-    <br><br>
-
-    <ui-label silver>银色</ui-label>
-    <ui-label light-silver>浅银色</ui-label>
-    <ui-label extra-light-silver>超浅银色</ui-label>
-
-    <br><br>
-
-    <ui-label gray>灰色</ui-label>
-    <ui-label light-gray>浅灰色</ui-label>
-    <ui-label white>白色</ui-label>
+    @colorTheme
+    @colorFeature
+    @colorBlack
+    @colorBlue
+    @colorSilver
+    @colorGray
+    <ui-label {$key}>{$&name}</ui-label>
     ````
 
     #### 状态
-    
-    ````html
-    <ui-label normal>正常</ui-label>
-    <ui-label apparent>醒目</ui-label>
-    ````
 
+    ````html
+    @stateNA
+    <ui-label {$key}>{$&name}</ui-label>
+    ````
     </script>
     </doc-component>
 </template>

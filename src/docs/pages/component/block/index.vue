@@ -46,38 +46,14 @@
     #### 色彩
 
     ````html
-    <ui-block theme>主题色</ui-block>
-    <ui-block light-theme>浅主题色</ui-block>
-    <ui-block dark-theme>深主题色</ui-block>
+    @colorTheme
+    @colorFeature
+    @colorBlack
+    @colorBlue
+    @colorSilver
+    @colorGray
+    <ui-block {$key}>{$&name}</ui-block>
     ````
-
-    ````html
-    <ui-block success>成功/正确</ui-block>
-    <ui-block warning>警告/注意</ui-block>
-    <ui-block danger>错误/危险</ui-block>
-    <ui-block primary>主要/关键</ui-block>
-    <ui-block minor>次要/不醒目</ui-block>
-    <ui-block info>信息/额外</ui-block>
-    ````
-
-    ````html
-    <ui-block black>黑色</ui-block>
-    <ui-block light-black>浅黑色</ui-block>
-    <ui-block extra-light-black>超浅黑色</ui-block>
-
-    <ui-block blue>青色</ui-block>
-    <ui-block light-blue>浅青色</ui-block>
-    <ui-block extra-light-blue>超浅青色</ui-block>
-
-    <ui-block silver>银色</ui-block>
-    <ui-block light-silver>浅银色</ui-block>
-    <ui-block extra-light-silver>超浅银色</ui-block>
-
-    <ui-block gray>灰色</ui-block>
-    <ui-block light-gray>浅灰色</ui-block>
-    <ui-block white>白色</ui-block>
-    ````
-
     </script>
     </doc-component>
 </template>

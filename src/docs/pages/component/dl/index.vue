@@ -60,21 +60,14 @@
     #### 状态
     
     ````html
-    <ui-dl normal>
-        <dt>Normal</dt>
+    @stateNA
+    <ui-dl {$key}>
+        <dt>{$&name}</dt>
         <dd>this is normal ui-dl</dd>
-        <dt>Normal</dt>
+        <dt>{$&name}</dt>
         <dd>this is normal ui-dl</dd>
     </ui-dl>
-
     <br>
-
-    <ui-dl apparent>
-        <dt>Apparent</dt>
-        <dd>this is apparent ui-dl</dd>
-        <dt>Apparent</dt>
-        <dd>this is apparent ui-dl</dd>
-    </ui-dl>
     ````
     </script>
 

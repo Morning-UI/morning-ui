@@ -38,7 +38,6 @@ i-h{
 
     &.st-normal{}
     &.st-apparent{
-        transform-origin: left center;
         animation-name: apparent;
         animation-duration: 1s;
         animation-timing-function: linear;
@@ -54,3 +53,7 @@ i-h{
 
 }
 </style>
+
+<docs>
+# 123asd213
+</docs>

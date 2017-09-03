@@ -29,51 +29,20 @@
     #### 色彩
 
     ````html
-    <ui-mark theme>主题色</ui-mark>
-    <ui-mark light-theme>浅主题色</ui-mark>
-    <ui-mark dark-theme>深主题色</ui-mark>
-    ````
-
-    ````html
-    <ui-mark success>成功/正确</ui-mark>
-    <ui-mark warning>警告/注意</ui-mark>
-    <ui-mark danger>错误/危险</ui-mark>
-    <ui-mark primary>主要/关键</ui-mark>
-    <ui-mark minor>次要/不醒目</ui-mark>
-    <ui-mark info>信息/额外</ui-mark>
-    ````
-
-    ````html
-    <div style="background: #fff;color: #fff;padding: 5px">
-        <ui-mark black>黑色</ui-mark>
-        <ui-mark light-black>浅黑色</ui-mark>
-        <ui-mark extra-light-black>超浅黑色</ui-mark>
-    </div>
-
-    <div style="background: #fff;padding: 5px">
-        <ui-mark blue>青色</ui-mark>
-        <ui-mark light-blue>浅青色</ui-mark>
-        <ui-mark extra-light-blue>超浅青色</ui-mark>
-    </div>
-
-    <div style="background: #fff;padding: 5px">
-        <ui-mark silver>银色</ui-mark>
-        <ui-mark light-silver>浅银色</ui-mark>
-        <ui-mark extra-light-silver>超浅银色</ui-mark>
-    </div>
-
-    <div style="background: #ccc;padding: 5px">
-        <ui-mark gray>灰色</ui-mark>
-        <ui-mark light-gray>浅灰色</ui-mark>
-        <ui-mark white>白色</ui-mark>
-    </div>
+    @colorTheme
+    @colorFeature
+    @colorBlack
+    @colorBlue
+    @colorSilver
+    @colorGray
+    <ui-mark {$key}>{$&name}</ui-mark>
     ````
 
     #### 状态
     
     ````html
-    <ui-mark normal>正常</ui-mark>
-    <ui-mark apparent>醒目</ui-mark>
+    @stateNA
+    <ui-mark {$key}>{$&name}</ui-mark>
     ````
     </script>
     </doc-component>

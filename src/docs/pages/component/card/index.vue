@@ -59,158 +59,19 @@
     #### 色彩
 
     ````html
+    @colorTheme
+    @colorFeature
+    @colorBlack
+    @colorBlue
+    @colorSilver
+    @colorGray
     <div style="width:180px;height:240px;display:inline-block;margin:10px;">
-        <ui-card theme>
-            <header>主题色</header>
-            <div>卡片</div>
-        </ui-card>
-    </div>
-    
-    <div style="width:180px;height:240px;display:inline-block;margin:10px;">
-        <ui-card light-theme>
-            <header>浅主题色</header>
-            <div>卡片</div>
-        </ui-card>
-    </div>
-    
-    <div style="width:180px;height:240px;display:inline-block;margin:10px;">
-        <ui-card dark-theme>
-            <header>深主题色</header>
+        <ui-card {$key}>
+            <header>{$&name}</header>
             <div>卡片</div>
         </ui-card>
     </div>
     ````
-
-    ````html
-    <div style="width:180px;height:240px;display:inline-block;margin:10px;">
-        <ui-card success>
-            <header>成功/正确</header>
-            <div>卡片</div>
-        </ui-card>
-    </div>
-    
-    <div style="width:180px;height:240px;display:inline-block;margin:10px;">
-        <ui-card warning>
-            <header>警告/注意</header>
-            <div>卡片</div>
-        </ui-card>
-    </div>
-
-    <div style="width:180px;height:240px;display:inline-block;margin:10px;">
-        <ui-card danger>
-            <header>错误/危险</header>
-            <div>卡片</div>
-        </ui-card>
-    </div>
-
-    <div style="width:180px;height:240px;display:inline-block;margin:10px;">
-        <ui-card primary>
-            <header>主要/关键</header>
-            <div>卡片</div>
-        </ui-card>
-    </div>
-
-    <div style="width:180px;height:240px;display:inline-block;margin:10px;">
-        <ui-card minor>
-            <header>次要/不醒目</header>
-            <div>卡片</div>
-        </ui-card>
-    </div>
-
-    <div style="width:180px;height:240px;display:inline-block;margin:10px;">
-        <ui-card info>
-            <header>信息/额外</header>
-            <div>卡片</div>
-        </ui-card>
-    </div>
-    ````
-
-    ````html
-    <div style="width:180px;height:240px;display:inline-block;margin:10px;">
-        <ui-card black>
-            <header>黑色</header>
-            <div>卡片</div>
-        </ui-card>
-    </div>
-
-    <div style="width:180px;height:240px;display:inline-block;margin:10px;">
-        <ui-card light-black>
-            <header>浅黑色</header>
-            <div>卡片</div>
-        </ui-card>
-    </div>
-
-    <div style="width:180px;height:240px;display:inline-block;margin:10px;">
-        <ui-card extra-light-black>
-            <header>超浅黑色</header>
-            <div>卡片</div>
-        </ui-card>
-    </div>
-
-    <div style="width:180px;height:240px;display:inline-block;margin:10px;">
-        <ui-card blue>
-            <header>青色</header>
-            <div>卡片</div>
-        </ui-card>
-    </div>
-
-    <div style="width:180px;height:240px;display:inline-block;margin:10px;">
-        <ui-card light-blue>
-            <header>浅青色</header>
-            <div>卡片</div>
-        </ui-card>
-    </div>
-
-    <div style="width:180px;height:240px;display:inline-block;margin:10px;">
-        <ui-card extra-light-blue>
-            <header>超浅青色</header>
-            <div>卡片</div>
-        </ui-card>
-    </div>
-
-    <div style="width:180px;height:240px;display:inline-block;margin:10px;">
-        <ui-card silver>
-            <header>银色</header>
-            <div>卡片</div>
-        </ui-card>
-    </div>
-
-    <div style="width:180px;height:240px;display:inline-block;margin:10px;">
-        <ui-card light-silver>
-            <header>浅银色</header>
-            <div>卡片</div>
-        </ui-card>
-    </div>
-
-    <div style="width:180px;height:240px;display:inline-block;margin:10px;">
-        <ui-card extra-light-silver>
-            <header>超浅银色</header>
-            <div>卡片</div>
-        </ui-card>
-    </div>
-
-    <div style="width:180px;height:240px;display:inline-block;margin:10px;">
-        <ui-card gray>
-            <header>灰色</header>
-            <div>卡片</div>
-        </ui-card>
-    </div>
-
-    <div style="width:180px;height:240px;display:inline-block;margin:10px;">
-        <ui-card light-gray>
-            <header>浅灰色</header>
-            <div>卡片</div>
-        </ui-card>
-    </div>
-
-    <div style="width:180px;height:240px;display:inline-block;margin:10px;">
-        <ui-card white>
-            <header>白色</header>
-            <div>卡片</div>
-        </ui-card>
-    </div>
-    ````
-
     </script>
     </doc-component>
 </template>
