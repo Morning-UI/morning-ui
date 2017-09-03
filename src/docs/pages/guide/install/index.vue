@@ -1,14 +1,8 @@
 <template>
     <doc-guide
         :page="page"
-        :hasPadding="true" 
     >
-    <script type="text/markdown">
-    # 方法
-    
-    -
-
-    </script>
+        install
     </doc-guide>
 </template>
  
@@ -19,7 +13,7 @@ export default {
     data : function () {
 
         return {
-            page : 'method'
+            page : 'install'
         };
 
     },

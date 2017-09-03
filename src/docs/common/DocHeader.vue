@@ -9,6 +9,7 @@
                 <li><a :class="{current:isIndex}" href="/index.html">HOME</a></li>
                 <li><a :class="{current:isGuide}" href="/guide/introduction.html">GUIDE</a></li>
                 <li><a :class="{current:isComponent}" href="/component/h.html">COMPONENT</a></li>
+                <li><a :class="{current:isCustom}" href="/custom.html">CUSTOM</a></li>
             </ul>
         </div>
     </header>
@@ -28,6 +29,9 @@ export default {
         },
         isComponent : function () {
             return this.category === 'component';
+        },
+        isCustom : function () {
+            return this.category === 'custom';
         }
     }
 };

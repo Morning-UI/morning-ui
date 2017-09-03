@@ -34,6 +34,7 @@
     "highlight.js": "^9.12.0",
     "marked": "^0.3.6",
     "mustache": "^2.3.0",
+    "underscore": "^1.8.3",
     "vue": "^2.4.2"
   },
   "devDependencies": {
@@ -52,6 +53,7 @@
     "less": "^2.7.2",
     "less-loader": "^4.0.5",
     "style-loader": "^0.18.2",
+    "url-loader": "^0.5.9",
     "vue-loader": "^13.0.4",
     "vue-template-compiler": "^2.4.2",
     "walk": "^2.3.9",

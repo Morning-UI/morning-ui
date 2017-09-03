@@ -32,16 +32,88 @@
     </div>
     ````
 
+    #### 多个行动入口
+
+    ````html
+    <div style="width:400px">
+        <ui-action>
+            <div class="title">
+                <h5>行动名称</h5>
+                <span class="note">行动说明</span>
+            </div>
+            <div class="action">
+                <ui-btn>确认</ui-btn>
+                <ui-link minor>取消</ui-link>
+            </div>
+        </ui-action>
+    </div>
+    ````
+
+    #### 垂直排列
+
+    ````html
+    <div style="width:400px">
+        <ui-action class="vertical">
+            <div class="title">
+                <h5>行动名称</h5>
+                <span class="note">行动说明</span>
+            </div>
+            <div class="action">
+                <ui-textinput></ui-textinput>
+            </div>
+        </ui-action>
+    </div>
+    ````
+
     ### 声明
 
     #### 支持
 
     |类型|支持|默认|
     |-|-|-|
-    |尺寸|不支持|-|
-    |色彩|不支持|-|
+    |尺寸|全部|`m`|
+    |色彩|全部|`black`|
     |状态|不支持|-|
 
+    #### 尺寸
+
+    ````html
+    @size
+    <div style="width:400px">
+        <ui-action {$key}>
+            <div class="title">
+                <h5>{$&name}</h5>
+                <span class="note">行动说明</span>
+            </div>
+            <div class="action">
+                <ui-btn>行动按钮</ui-btn>
+            </div>
+        </ui-action>
+    </div>
+    ````
+
+    #### 色彩
+
+    ````html
+    @colorTheme
+    @colorFeature
+    @colorBlack
+    @colorBlue
+    @colorSilver
+    @colorGray
+    <div style="width:400px">
+        <ui-action {$key}>
+            <div class="title">
+                <h5>{$&name}</h5>
+                <span class="note">行动说明</span>
+            </div>
+            <div class="action">
+                <ui-btn {$key}>{$name}按钮</ui-btn>
+            </div>
+        </ui-action>
+    </div>
+    <br>
+    ````
     </script>
     </doc-component>
 </template>

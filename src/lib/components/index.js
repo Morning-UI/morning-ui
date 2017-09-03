@@ -29,8 +29,11 @@ import badge                        from './badge/index.vue';
 import label                        from './label/index.vue';
 import statistic                    from './statistic/index.vue';
 import action                       from './action/index.vue';
+import jumbotron                    from './jumbotron/index.vue';
 import article                      from './article/index.vue';
 import img                          from './img/index.vue';
+
+import btn                          from './btn/index.vue';
 
 export default {
     h,
@@ -64,6 +67,8 @@ export default {
     label,
     statistic,
     action,
+    jumbotron,
     article,
-    img
+    img,
+    btn
 };

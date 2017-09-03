@@ -6,6 +6,20 @@
     <script type="text/markdown">
     # 致谢
 
+    #### 开源项目
+
+    MorningUI受到以下开源项目的启发：
+    
+    - Semantic UI [https://semantic-ui.com/](https://semantic-ui.com/)
+    - Bootstrap [http://getbootstrap.com/](http://getbootstrap.com/)
+    - Element [http://element.eleme.io/](http://element.eleme.io/)
+
+    在此向这些项目致谢。
+
+    #### Vue.js
+
+    MorningUI基于[Vue.js](https://vuejs.org/)开发，在此感谢。
+
     #### HmpUI贡献者
 
     MorningUI的诞生离不开HmpUI，在此感谢曾为HmpUI付出贡献的开发者：

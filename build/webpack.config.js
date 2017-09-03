@@ -97,6 +97,13 @@ devVerConfig = extend(
         module : {
             rules : [
                 {
+                    test : /\.woff/,
+                    exclude : /node_modules/,
+                    use : [{
+                        loader : 'url-loader'
+                    }]
+                },
+                {
                     test : /\.vue$/,
                     loader : 'vue-loader',
                     options : {
@@ -136,6 +143,16 @@ prodVerConfig = extend(
         ],
         module : {
             rules : [
+                {
+                    test : /\.woff/,
+                    exclude : /node_modules/,
+                    use : [{
+                        loader : 'file-loader',
+                        options : {
+                            name : '[name].[ext]'
+                        }
+                    }]
+                },
                 {
                     test : /\.vue$/,
                     loader : 'vue-loader',
@@ -201,7 +218,7 @@ docsConfig = {
     module : {
         rules : [
             {
-                test : /\.woff/,
+                test : /\.woff$/,
                 exclude : /node_modules/,
                 use : [{
                     loader : 'file-loader',

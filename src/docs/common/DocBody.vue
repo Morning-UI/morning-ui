@@ -20,261 +20,413 @@
 <script>
 import marked                       from 'marked';
 import Mustache                     from 'mustache';
+import _                            from 'underscore';
 import hljs                         from 'highlight.js';
 import DocHeader                    from 'Docs/common/DocHeader.vue';
 import DocSubmenu                   from 'Docs/common/DocSubmenu.vue';
 
+let evals = [];
+
 let data = {
     size : [
         {
-            key : 'xxl',
+            size : 'xxl',
             name : 'XXL尺寸'
         },
         {
-            key : 'xl',
+            size : 'xl',
             name : 'XL尺寸'
         },
         {
-            key : 'l',
+            size : 'l',
             name : 'L尺寸'
         },
         {
-            key : 'm',
+            size : 'm',
             name : 'M尺寸'
         },
         {
-            key : 's',
+            size : 's',
             name : 'S尺寸'
         },
         {
-            key : 'xs',
+            size : 'xs',
             name : 'XS尺寸'
         },
         {
-            key : 'xxs',
+            size : 'xxs',
             name : 'XXS尺寸'
         }
     ],
     theme : [
         {
-            key : 'theme',
+            color : 'theme',
             name : '主题色'
         },
         {
-            key : 'light-theme',
+            color : 'light-theme',
             name : '浅主题色'
         },
         {
-            key : 'dark-theme',
+            color : 'dark-theme',
             name : '深主题色'
         }
     ],
     feature : [
         {
-            key : 'success',
+            color : 'success',
             name : '成功/正确'
         },
         {
-            key : 'warning',
+            color : 'warning',
             name : '警告/注意'
         },
         {
-            key : 'danger',
+            color : 'danger',
             name : '错误/危险'
         },
         {
-            key : 'primary',
+            color : 'primary',
             name : '主要/关键'
         },
         {
-            key : 'minor',
+            color : 'minor',
             name : '次要/不醒目'
         },
         {
-            key : 'info',
+            color : 'info',
             name : '信息/额外'
         }
     ],
     black : [
         {
-            key : 'black',
+            color : 'black',
             name : '黑色'
         },
         {
-            key : 'light-black',
+            color : 'light-black',
             name : '浅黑色'
         },
         {
-            key : 'extra-light-black',
+            color : 'extra-light-black',
             name : '超浅黑色'
         }
     ],
     blue : [
         {
-            key : 'blue',
+            color : 'blue',
             name : '青色'
         },
         {
-            key : 'light-blue',
+            color : 'light-blue',
             name : '浅青色'
         },
         {
-            key : 'extra-light-blue',
+            color : 'extra-light-blue',
             name : '超浅青色'
         }
     ],
     silver : [
         {
-            key : 'silver',
+            color : 'silver',
             name : '银色'
         },
         {
-            key : 'light-silver',
+            color : 'light-silver',
             name : '浅银色'
         },
         {
-            key : 'extra-light-silver',
+            color : 'extra-light-silver',
             name : '超浅银色'
         }
     ],
     gray : [
         {
-            key : 'gray',
+            color : 'gray',
             name : '灰色'
         },
         {
-            key : 'light-gray',
+            color : 'light-gray',
             name : '浅灰色'
         },
         {
-            key : 'white',
+            color : 'white',
             name : '白色'
         }
     ],
     state : [
         {
-            key : 'normal',
+            state : 'normal',
             name : '正常'
         },
         {
-            key : 'hover',
+            state : 'hover',
             name : 'Hover'
         },
         {
-            key : 'active',
+            state : 'active',
             name : '激活'
         },
         {
-            key : 'disabled',
+            state : 'disabled',
             name : '禁用'
         },
         {
-            key : 'apparent',
+            state : 'apparent',
             name : '醒目'
         },
         {
-            key : 'loading',
+            state : 'loading',
             name : '载入中'
         },
         {
-            key : 'processing',
+            state : 'processing',
             name : '处理中'
         },
     ]
 }
 
 let helper = {
-    size : template => {
+    normal : opts => {
 
-        template = `{$#size}${template}\n{$/size}`;
-        Mustache.parse(template, ['{$', '}']);
+        if (!opts.style) {
 
-        return {
-            code : Mustache.render(template, data),
-            style : ''
-        };
+            opts.style = '';
 
-    },
-    colorTheme : template => {
+        }
 
-        template = `{$#theme}${template}\n{$/theme}`;
-        Mustache.parse(template, ['{$', '}']);
-
-        return {
-            code : Mustache.render(template, data),
-            style : ''
-        };
+        return '<div class="demo" style="'+opts.style+'">'+opts.code+'</div>\n\n```'+opts.result[1]+'\n'+opts.code+'\n```\n';
 
     },
-    colorFeature : template => {
+    size : opts => {
 
-        template = `{$#feature}${template}\n{$/feature}`;
+        let template = `{$#size}${opts.code}\n{$/size}`;
+        
         Mustache.parse(template, ['{$', '}']);
 
-        return {
+        return helper.normal({
             code : Mustache.render(template, data),
-            style : ''
-        };
+            result : opts.result
+        });
 
     },
-    colorBlack : template => {
+    colorTheme : opts => {
 
-        template = `{$#black}${template}\n{$/black}`;
+        let template = `{$#theme}${opts.code}\n{$/theme}`;
+        
         Mustache.parse(template, ['{$', '}']);
 
-        return {
+        return helper.normal({
             code : Mustache.render(template, data),
-            style : ''
-        };
+            result : opts.result
+        });
 
     },
-    colorBlue : template => {
+    colorFeature : opts => {
 
-        template = `{$#blue}${template}\n{$/blue}`;
+        let template = `{$#feature}${opts.code}\n{$/feature}`;
+        
         Mustache.parse(template, ['{$', '}']);
 
-        return {
+        return helper.normal({
             code : Mustache.render(template, data),
-            style : ''
-        };
+            result : opts.result
+        });
 
     },
-    colorSilver : template => {
+    colorBlack : opts => {
 
-        template = `{$#silver}${template}\n{$/silver}`;
+        let template = `{$#black}${opts.code}\n{$/black}`;
+
         Mustache.parse(template, ['{$', '}']);
 
-        return {
+        return helper.normal({
             code : Mustache.render(template, data),
+            result : opts.result
+        });
+
+    },
+    colorBlue : opts => {
+
+        let template = `{$#blue}${opts.code}\n{$/blue}`;
+
+        Mustache.parse(template, ['{$', '}']);
+
+        return helper.normal({
+            code : Mustache.render(template, data),
+            result : opts.result
+        });
+
+    },
+    colorSilver : opts => {
+
+        let template = `{$#silver}${opts.code}\n{$/silver}`;
+        
+        Mustache.parse(template, ['{$', '}']);
+
+        return helper.normal({
+            code : Mustache.render(template, data),
+            result : opts.result,
             style : 'background:#c3cad2;border-color:#b0b7c1'
-        };
+        });
 
     },
-    colorGray : template => {
+    colorGray : opts => {
 
-        template = `{$#gray}${template}\n{$/gray}`;
+        let template = `{$#gray}${opts.code}\n{$/gray}`;
         Mustache.parse(template, ['{$', '}']);
 
-        return {
+        return helper.normal({
             code : Mustache.render(template, data),
+            result : opts.result,
             style : 'background:#cfcfcf;border-color:#c6c6c6'
-        };
+        });
 
     },
-    stateNA : template => {
+    stateNA : opts => {
 
         let sna = [data.state[0], data.state[4]];
+        let template = `{$#sna}${opts.code}\n{$/sna}`;
 
-        template = `{$#sna}${template}\n{$/sna}`;
         Mustache.parse(template, ['{$', '}']);
 
-        return {
+        return helper.normal({
             code : Mustache.render(template, {sna}),
-            style : ''
-        };
+            result : opts.result
+        });
+
+    },
+    stateALLwithTheme : opts => {
+
+        let template = `{$#theme}<p>{$name}</p>\n{$#state}${opts.code}\n{$/state}<br/><br/>\n{$/theme}`;
+
+        Mustache.parse(template, ['{$', '}']);
+
+        return helper.normal({
+            code : Mustache.render(template, data),
+            result : opts.result
+        });
+
+    },
+    stateALLwithFeature : opts => {
+
+        let template = `{$#feature}<p>{$name}</p>\n{$#state}${opts.code}\n{$/state}<br/><br/>\n{$/feature}`;
+
+        Mustache.parse(template, ['{$', '}']);
+
+        return helper.normal({
+            code : Mustache.render(template, data),
+            result : opts.result
+        });
+
+    },
+    stateALLwithBlack : opts => {
+
+        let template = `{$#black}<p>{$name}</p>\n{$#state}${opts.code}\n{$/state}<br/><br/>\n{$/black}`;
+
+        Mustache.parse(template, ['{$', '}']);
+
+        return helper.normal({
+            code : Mustache.render(template, data),
+            result : opts.result
+        });
+
+    },
+    stateALLwithBlue : opts => {
+
+        let template = `{$#blue}<p>{$name}</p>\n{$#state}${opts.code}\n{$/state}<br/><br/>\n{$/blue}`;
+
+        Mustache.parse(template, ['{$', '}']);
+
+        return helper.normal({
+            code : Mustache.render(template, data),
+            result : opts.result
+        });
+
+    },
+    stateALLwithSilver : opts => {
+
+        let template = `{$#silver}<p>{$name}</p>\n{$#state}${opts.code}\n{$/state}<br/><br/>\n{$/silver}`;
+
+        Mustache.parse(template, ['{$', '}']);
+
+        return helper.normal({
+            code : Mustache.render(template, data),
+            result : opts.result,
+            style : 'background:#c3cad2;border-color:#b0b7c1'
+        });
+
+    },
+    stateALLwithGray : opts => {
+
+        let template = `{$#gray}<p>{$name}</p>\n{$#state}${opts.code}\n{$/state}<br/><br/>\n{$/gray}`;
+
+        Mustache.parse(template, ['{$', '}']);
+
+        return helper.normal({
+            code : Mustache.render(template, data),
+            result : opts.result,
+            style : 'background:#cfcfcf;border-color:#c6c6c6'
+        });
+
+    },
+    use : opts => {
+
+        let mixins = opts.value.split(',');
+        let codes = '';
+        let id = 'demo-'+_.random(1e3, 9e3);
+
+        for(let mixin of mixins) {
+
+            let lang = mixin.split('.')[0];
+            let name = mixin.split('.')[1];
+            let code = opts.vars[lang][name];
+
+            if (lang === 'html') {
+
+                let script = document.createElement('script');
+
+                code = code.replace(/(^|\n)/g, '$1\t');
+                script.innerHTML = '\n'+code+'\n';
+                script.type = 'x-template';
+                script.id = id+'-tmpl';
+
+                codes += script.outerHTML + '\n\n';
+
+                script.innerHTML = script.innerHTML.replace(/\{\%([a-zA-Z0-9\_]+)\%\}/g, '{{$1}}');
+                evals.push(script);
+
+            } else if (lang === 'js') {
+
+                Mustache.parse(code, ['{$', '}']);
+
+                code = Mustache.render(code, {
+                    template : '#'+id+'-tmpl',
+                    el : '#'+id+'-el'
+                });
+
+                let script = document.createElement('script');
+
+                code = code.replace(/(^|\n)/g, '$1\t');
+                script.innerHTML = '\n'+code+'\n';
+                
+                evals.push(script);
+
+                codes += script.outerHTML;
+
+            }
+
+        }
+
+        let con = '<div id="'+id+'-el"></div>';
+
+        codes = '<div class="demo">'+con+'</div>\n\n```html\n'+con+'\n\n'+codes+'\n```';
+
+        return codes;
 
     }
 };
+
 
 Vue.directive('docmd',{
     bind : (el, binding, vnode) => {
@@ -284,44 +436,66 @@ Vue.directive('docmd',{
         if (mdScript && mdScript.type === 'text/markdown') {
 
             let text = mdScript.innerText;
-            let patt = /\`\`\`\`(html|js)((\n[\t ]*\@[a-zA-Z]+)*)\n((.|\n)+?)\n([ \t]*)\`\`\`\`/g;
+            let patt = /\`\`\`\`(html|js|css|mixin)((\n[\t ]*\@[a-zA-Z0-9\:\.\,]+)*)\n((.|\n)*?)(\n)*([ \t]*)\`\`\`\`/g;
+            let varpatt = /\`\`\`\`(html|js|css)\n(\@var\:([a-zA-Z0-9]+))\n((.|\n)+?)\n([ \t]*)\`\`\`\`/g;
             let result;
+            let vars = {
+                js : {},
+                html : {}
+            };
 
+            while((result = varpatt.exec(text)) !== null) {
+
+                vars[result[1]][result[3]] = result[4];
+                text = text.slice(0, result.index - 1) + text.slice(result.index + result[0].length, text.length);
+
+                varpatt.lastIndex = 0;
+
+            }
+            
             while((result = patt.exec(text)) !== null) {
 
-                let demo = result[4];
+                let code = result[4];
                 let helpers = result[2].split('\n');
                 helpers.shift();
                 let newText = [];
 
                 if (helpers.length === 0) {
 
-                    let con = {
-                        code : demo,
-                        style : ''
+                    let opts = {
+                        code,
+                        result
                     };
 
-                    newText.push('<div class="demo" style="'+con.style+'">'+con.code+'</div>\n\n```'+result[1]+'\n'+con.code+'\n```\n');
+                    newText.push(helper.normal(opts));
 
                 } else {
 
                     for(let name of helpers) {
 
-                        name = name.replace(/^\@/, '');
-                        
-                        let con = helper[name](demo);
+                        let list = name.split(':');
+                        let fn = list[0].replace(/^\@/, '');
+                        let value = list[1];
 
-                        newText.push('<div class="demo" style="'+con.style+'">'+con.code+'</div>\n\n```'+result[1]+'\n'+con.code+'\n```\n');
+                        newText.push(helper[fn]({
+                            code,
+                            result,
+                            value,
+                            vars
+                        }));
 
                     }
 
                 }
 
+
                 text = text.slice(0, result.index - 1) + newText.join('\n') + text.slice(result.index + result[0].length, text.length);
 
             }
 
-            let res = Vue.compile(`<div>${marked(text)}</div>`);
+            let md = marked(text);
+            md = md.replace(/\{\%([a-zA-Z0-9\_]+)\%\}/g, '{{"\\\{\\\{$1\\\}\\\}"}}');
+            let res = Vue.compile(`<div>${md}</div>`);
 
             let instance = new Vue({
                 render: res.render,
@@ -355,6 +529,10 @@ export default {
     mounted : function () {
 
         hljs.initHighlightingOnLoad();
+
+        for(let js of evals) {
+            document.body.appendChild(js);
+        }
 
     }
 };
