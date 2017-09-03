@@ -4,16 +4,66 @@
         :hasPadding="true"
     >
     <script type="text/markdown">
-    # 斜体文本 `<ui-em>`
+    # 统计 `<ui-statistic>`
 
     ### 基础
 
+    定义统计区域，统计包含数值和名称，这是一个内联块标签。
+
+    统计可包含：
+
+    - 数值 .value
+    - 名称 .label
+
     #### 使用
 
-    标记一段斜体内容，这是一个内联元素。
-    
     ````html
-    <ui-em>斜体文本</ui-em>
+    <ui-statistic>
+        <div class="value">5,550</div>
+        <div class="label">downloads</div>
+    </ui-statistic>
+    ````
+
+    #### 带图片统计
+
+    ````html
+    <ui-statistic>
+        <div class="value"><img src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg" /><span>5,550</span></div>
+        <div class="label">downloads</div>
+    </ui-statistic>
+    ````
+
+    #### 带图标统计
+
+    ````html
+    <ui-statistic>
+        <div class="value"><i class="iconfont">&#xe6e2;</i><span>5,550</span></div>
+        <div class="label">downloads</div>
+    </ui-statistic>
+    ````
+
+    #### 水平名称
+
+    ````html
+    <ui-statistic class="horizon">
+        <div class="value">5,550</div>
+        <div class="label">downloads</div>
+    </ui-statistic>
+
+
+    <ui-statistic class="horizon">
+        <div class="label">downloads</div>
+        <div class="value">5,550</div>
+    </ui-statistic>
+    ````
+
+    #### 上方名称
+
+    ````html
+    <ui-statistic>
+        <div class="label">downloads</div>
+        <div class="value">5,550</div>
+    </ui-statistic>
     ````
 
     ### 声明
@@ -22,10 +72,44 @@
 
     |类型|支持|默认|
     |-|-|-|
-    |尺寸|不支持|-|
-    |色彩|不支持|-|
-    |状态|不支持|-|
+    |尺寸|全部|`m`|
+    |色彩|全部|`black`|
+    |状态|`normal`<br/>`apparent`|`normal`|
 
+    #### 尺寸
+
+    ````html
+    @size
+    <ui-statistic {$key}>
+        <div class="value">5,550</div>
+        <div class="label">{$&name}</div>
+    </ui-statistic>
+    ````
+
+    #### 色彩
+
+    ````html
+    @colorTheme
+    @colorFeature
+    @colorBlack
+    @colorBlue
+    @colorSilver
+    @colorGray
+    <ui-statistic {$key}>
+        <div class="value">5,550</div>
+        <div class="label">{$&name}</div>
+    </ui-statistic>
+    ````
+
+    #### 状态
+    
+    ````html
+    @stateNA
+    <ui-statistic {$key}>
+        <div class="value">5,550</div>
+        <div class="label">{$&name}</div>
+    </ui-statistic>
+    ````
     </script>
     </doc-component>
 </template>
@@ -37,7 +121,7 @@ export default {
     data : function () {
 
         return {
-            page : 'em'
+            page : 'statistic'
         };
 
     },

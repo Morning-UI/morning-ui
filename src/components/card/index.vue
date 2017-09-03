@@ -27,6 +27,7 @@ i-card{
     border-radius: @borderRadius;
     padding: 1em;
     position: relative;
+    background: #fff;
 
     &>header{
         line-height: 1.5em;

@@ -33,6 +33,7 @@
     "github-markdown-css": "^2.8.0",
     "highlight.js": "^9.12.0",
     "marked": "^0.3.6",
+    "mustache": "^2.3.0",
     "vue": "^2.4.2"
   },
   "devDependencies": {

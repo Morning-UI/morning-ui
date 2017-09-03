@@ -27,6 +27,8 @@ import center                       from './center/index.vue';
 import header                       from './header/index.vue';
 import badge                        from './badge/index.vue';
 import label                        from './label/index.vue';
+import statistic                    from './statistic/index.vue';
+import action                       from './action/index.vue';
 import article                      from './article/index.vue';
 import img                          from './img/index.vue';
 
@@ -60,6 +62,8 @@ export default {
     header,
     badge,
     label,
+    statistic,
+    action,
     article,
     img
 };

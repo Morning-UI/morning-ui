@@ -46,6 +46,9 @@
     - `circle` : 圆形
     - `image` : 使用图片
     - `icon` : 使用图标
+    - `rounded` : 圆角
+    - `circle` : 圆形
+    - `thumbnail` : 相框
 
     </script>
     </doc-guide>

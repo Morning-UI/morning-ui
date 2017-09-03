@@ -4,16 +4,32 @@
         :hasPadding="true"
     >
     <script type="text/markdown">
-    # 斜体文本 `<ui-em>`
+    # 行动栏 `<ui-action>`
 
     ### 基础
 
+    定义一个包含多个操作的行动栏。
+
+    行动栏可包含：
+    
+    - 名称 .title
+    - 说明 .note
+    - 行动区域 .action
+
     #### 使用
 
-    标记一段斜体内容，这是一个内联元素。
-    
     ````html
-    <ui-em>斜体文本</ui-em>
+    <div style="width:400px">
+        <ui-action>
+            <div class="title">
+                <h5>行动名称</h5>
+                <span class="note">行动说明</span>
+            </div>
+            <div class="action">
+                <ui-btn>行动按钮</ui-btn>
+            </div>
+        </ui-action>
+    </div>
     ````
 
     ### 声明

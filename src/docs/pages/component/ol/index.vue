@@ -73,17 +73,13 @@
     #### 状态
     
     ````html
-    <ui-ol normal>
-        <li>this is normal ui-ol</li>
-        <li>this is normal ui-ol</li>
+    @stateNA
+    <ui-ol {$key}>
+        <li>this is {$&name} ui-ol</li>
+        <li>this is {$&name} ui-ol</li>
     </ui-ol>
-        
-    <br>
 
-    <ui-ol apparent>
-        <li>this is apparent ui-ol</li>
-        <li>this is apparent ui-ol</li>
-    </ui-ol>
+    <br>
     ````
     </script>
 

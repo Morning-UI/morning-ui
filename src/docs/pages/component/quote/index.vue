@@ -29,58 +29,15 @@
     #### 色彩
 
     ````html
-    <ui-quote theme>主题色</ui-quote>
-    <br/>
-    <ui-quote light-theme>浅主题色</ui-quote>
-    <br/>
-    <ui-quote dark-theme>深主题色</ui-quote>
+    @colorTheme
+    @colorFeature
+    @colorBlack
+    @colorBlue
+    @colorSilver
+    @colorGray
+    <ui-quote {$key}>{$&name}</ui-quote>
+    <br>
     ````
-
-    ````html
-    <ui-quote success>成功/正确</ui-quote>
-    <br/>
-    <ui-quote warning>警告/注意</ui-quote>
-    <br/>
-    <ui-quote danger>错误/危险</ui-quote>
-    <br/>
-    <ui-quote primary>主要/关键</ui-quote>
-    <br/>
-    <ui-quote minor>次要/不醒目</ui-quote>
-    <br/>
-    <ui-quote info>信息/额外</ui-quote>
-    ````
-
-    ````html
-    <div style="background: #fff;padding: 5px;">
-        <ui-quote black>黑色</ui-quote>
-        <br/>
-        <ui-quote light-black>浅黑色</ui-quote>
-        <br/>
-        <ui-quote extra-light-black>超浅黑色</ui-quote>
-        <br/>
-        <ui-quote blue>青色</ui-quote>
-        <br/>
-        <ui-quote light-blue>浅青色</ui-quote>
-        <br/>
-        <ui-quote extra-light-blue>超浅青色</ui-quote>
-        <br/>
-    </div>
-    
-    <div style="background: #bbb;padding: 5px;">
-        <ui-quote silver>银色</ui-quote>
-        <br/>
-        <ui-quote light-silver>浅银色</ui-quote>
-        <br/>
-        <ui-quote extra-light-silver>超浅银色</ui-quote>
-        <br/>
-        <ui-quote gray>灰色</ui-quote>
-        <br/>
-        <ui-quote light-gray>浅灰色</ui-quote>
-        <br/>
-        <ui-quote white>白色</ui-quote>
-    </div>
-    ````
-
     </script>
     </doc-component>
 </template>

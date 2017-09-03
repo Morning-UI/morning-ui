@@ -29,51 +29,20 @@
     #### 色彩
 
     ````html
-    <ui-lead theme>主题色</ui-lead>
-    <ui-lead light-theme>浅主题色</ui-lead>
-    <ui-lead dark-theme>深主题色</ui-lead>
-    ````
-
-    ````html
-    <ui-lead success>成功/正确</ui-lead>
-    <ui-lead warning>警告/注意</ui-lead>
-    <ui-lead danger>错误/危险</ui-lead>
-    <ui-lead primary>主要/关键</ui-lead>
-    <ui-lead minor>次要/不醒目</ui-lead>
-    <ui-lead info>信息/额外</ui-lead>
-    ````
-
-    ````html
-    <ui-lead black>黑色</ui-lead>
-    <ui-lead light-black>浅黑色</ui-lead>
-    <ui-lead extra-light-black>超浅黑色</ui-lead>
-
-    <ui-lead blue>青色</ui-lead>
-    <ui-lead light-blue>浅青色</ui-lead>
-    <ui-lead extra-light-blue>超浅青色</ui-lead>
-
-    <ui-lead silver>银色</ui-lead>
-    <ui-lead light-silver>浅银色</ui-lead>
-    <ui-lead extra-light-silver>超浅银色</ui-lead>
-
-    <div style="background: #fff">
-        <ui-lead gray>灰色</ui-lead>
-    </div>
-
-    <div style="background: #aaa">
-        <ui-lead light-gray>浅灰色</ui-lead>
-    </div>
-
-    <div style="background: #ccc">
-        <ui-lead white>白色</ui-lead>
-    </div>
+    @colorTheme
+    @colorFeature
+    @colorBlack
+    @colorBlue
+    @colorSilver
+    @colorGray
+    <ui-lead {$key}>{$&name}</ui-lead>
     ````
 
     #### 状态
     
     ````html
-    <ui-lead normal>正常</ui-lead>
-    <ui-lead apparent>醒目</ui-lead>
+    @stateNA
+    <ui-lead {$key}>{$&name}</ui-lead>
     ````
     </script>
     </doc-component>

@@ -37,7 +37,6 @@ i-ul{
 
     &.st-normal{}
     &.st-apparent{
-        transform-origin: left center;
         animation-name: apparent;
         animation-duration: 1s;
         animation-timing-function: linear;
