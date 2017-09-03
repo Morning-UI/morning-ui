@@ -1,3 +1,4 @@
 *.handlebars
 *.html
 *.min.js
+/src/docs/icon/*.js

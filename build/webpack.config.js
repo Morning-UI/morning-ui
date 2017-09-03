@@ -26,7 +26,7 @@ let extractProdCss = new ExtractTextPlugin('morning-ui.min.css');
 let extractDocsCss = new ExtractTextPlugin('[name].css');
 let extractIconfont = new ExtractTextPlugin('iconfont.woff');
 
-let getDocsEntry = async docsConfig => {
+let getDocsEntry = async docsConf => {
 
     walk.walkSync(pathSrcDocsPages, {
         listeners : {
@@ -37,7 +37,7 @@ let getDocsEntry = async docsConfig => {
                     let urlPath = root.replace(`${pathSrcDocsPages}/`, '');
                     let entryFile = `${root}/index.js`;
 
-                    docsConfig.entry[urlPath] = entryFile;
+                    docsConf.entry[urlPath] = entryFile;
 
                 }
 
@@ -49,12 +49,12 @@ let getDocsEntry = async docsConfig => {
 
 };
 
-let getDocsHtmlPlugin = async docsConfig => {
+let getDocsHtmlPlugin = async docsConf => {
 
-    for (let urlPath of Object.keys(docsConfig.entry)) {
+    for (let urlPath of Object.keys(docsConf.entry)) {
 
-        docsConfig.plugins.push(new HtmlWebpackPlugin({
-            chunks: [urlPath],
+        docsConf.plugins.push(new HtmlWebpackPlugin({
+            chunks : [urlPath],
             filename : `${urlPath}.html`,
             template : path.resolve(pathSrcDocs, 'tpl.html')
         }));
