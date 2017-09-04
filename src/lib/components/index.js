@@ -1,3 +1,5 @@
+import                              'Common/common.less';
+
 import h                            from './h/index.vue';
 import lead                         from './lead/index.vue';
 import mark                         from './mark/index.vue';

@@ -32,7 +32,7 @@ export default UI.extend({
 </script>
 
 <style lang="less">
-@import '~Common/common.less';
+@import '~Common/var.less';
 
 i-img{
     display: inline-block;

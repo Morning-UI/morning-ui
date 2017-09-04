@@ -21,7 +21,10 @@ let devVerConfig = {};
 let prodVerConfig = {};
 let docsConfig = {};
 
-let extractDevCss = new ExtractTextPlugin('morning-ui.css');
+let extractDevCss = new ExtractTextPlugin({
+    filename : 'morning-ui.css',
+    allChunks : true
+});
 let extractProdCss = new ExtractTextPlugin('morning-ui.min.css');
 let extractDocsCss = new ExtractTextPlugin('[name].css');
 let extractIconfont = new ExtractTextPlugin('iconfont.woff');
@@ -65,14 +68,7 @@ let getDocsHtmlPlugin = async docsConf => {
 
 commonConfig = {
     entry : './src/lib/index.js',
-    plugins : [
-        new CleanWebpackPlugin([pathDist], {
-            root : pathProjectRoot
-        }),
-        new webpack.DefinePlugin({
-            'process.env.NODE_ENV' : process.env.NODE_ENV
-        })
-    ],
+    plugins : [],
     resolve : {
         alias : {
             Common : pathLibCommon
@@ -92,12 +88,29 @@ devVerConfig = extend(
     commonConfig,
     {
         plugins : [
+            new CleanWebpackPlugin([pathDist], {
+                root : pathProjectRoot
+            }),
+            new webpack.DefinePlugin({
+                'process.env.NODE_ENV' : process.env.NODE_ENV
+            }),
             extractDevCss
         ],
         module : {
             rules : [
                 {
-                    test : /\.woff/,
+                    test : /\.less$/,
+                    use : extractDevCss.extract({
+                        use : [{
+                            loader : 'css-loader'
+                        }, {
+                            loader : 'less-loader'
+                        }],
+                        fallback : 'style-loader'
+                    })
+                },
+                {
+                    test : /\.woff$/,
                     exclude : /node_modules/,
                     use : [{
                         loader : 'url-loader'
@@ -110,7 +123,7 @@ devVerConfig = extend(
                         loaders : {
                             js : 'babel-loader',
                             less : extractDevCss.extract({
-                                fallback : 'style-loader',
+                                fallback : 'vue-style-loader',
                                 use : ['css-loader', 'less-loader']
                             })
                         }
@@ -138,19 +151,35 @@ prodVerConfig = extend(
     commonConfig,
     {
         plugins : [
+            new CleanWebpackPlugin([pathDist], {
+                root : pathProjectRoot
+            }),
+            new webpack.DefinePlugin({
+                'process.env.NODE_ENV' : process.env.NODE_ENV
+            }),
             new webpack.optimize.UglifyJsPlugin(),
             extractProdCss
         ],
         module : {
             rules : [
                 {
+                    test : /\.less$/,
+                    use : extractProdCss.extract({
+                        use : [{
+                            loader : 'css-loader'
+                        }, {
+                            loader : 'clean-css-loader'
+                        }, {
+                            loader : 'less-loader'
+                        }],
+                        fallback : 'style-loader'
+                    })
+                },
+                {
                     test : /\.woff/,
                     exclude : /node_modules/,
                     use : [{
-                        loader : 'file-loader',
-                        options : {
-                            name : '[name].[ext]'
-                        }
+                        loader : 'url-loader'
                     }]
                 },
                 {
@@ -160,8 +189,12 @@ prodVerConfig = extend(
                         loaders : {
                             js : 'babel-loader',
                             less : extractProdCss.extract({
-                                fallback : 'style-loader',
-                                use : ['css-loader', 'clean-css-loader', 'less-loader']
+                                fallback : 'vue-style-loader',
+                                use : [
+                                    'css-loader',
+                                    'clean-css-loader',
+                                    'less-loader'
+                                ]
                             })
                         }
                     }
@@ -173,10 +206,6 @@ prodVerConfig = extend(
                         loader : 'babel-loader'
                     }
                 }
-                // {
-                //     test : /\.less$/,
-                //     use : extractProdCss.extract(['style-loader', 'css-loader', 'less-loader'])
-                // }
             ]
         },
         output : {
@@ -185,6 +214,8 @@ prodVerConfig = extend(
         }
     }
 );
+
+
 
 docsConfig = {
     entry : {},
@@ -234,7 +265,7 @@ docsConfig = {
                     loaders : {
                         js : 'babel-loader',
                         less : extractDocsCss.extract({
-                            fallback : 'style-loader',
+                            fallback : 'vue-style-loader',
                             use : ['css-loader', 'less-loader']
                         })
                     }

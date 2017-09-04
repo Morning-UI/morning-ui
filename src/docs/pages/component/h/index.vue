@@ -31,7 +31,7 @@
 
     ````html
     @size
-    <ui-h {$key}>{$&name}</ui-h>
+    <ui-h {$size}>{$&name}</ui-h>
     ````
 
     #### 色彩
@@ -43,14 +43,14 @@
     @colorBlue
     @colorSilver
     @colorGray
-    <ui-h {$key}>{$&name}</ui-h>
+    <ui-h {$color}>{$&name}</ui-h>
     ````
 
     #### 状态
     
     ````html
     @stateNA
-    <ui-h {$key}>{$&name}</ui-h>
+    <ui-h {$state}>{$&name}</ui-h>
     ````
     </script>
     </doc-component>

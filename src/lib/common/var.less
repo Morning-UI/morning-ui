@@ -32,23 +32,36 @@
 @gridColumnWidthGapAverage: (100% - (@gridColumnNumber + 1)*@gridGutterWidth)/@gridColumnNumber;
 @gridColumnWidthWithoutGap: 100%/@gridColumnNumber;
 
+// @formHeight: 42px;
+
 // ---
 
-// @borderColorBlack : #111;
-// @borderColorDark : #ccc;
-// @borderColor : #ddd;
-// @borderColorMinor : #eee;
-// @borderColorLight : #f0f0f0;
-// @borderColorLighter : #f6f6f6;
+.setup-font-color-theme() {
+    &.sy-theme{ color: @colorTheme; }
+    &.sy-lightTheme{ color: @colorLightTheme; }
+    &.sy-darkTheme{ color: @colorDarkTheme; }
+}
 
-// @bgColorLight : #f0f0f0;
+.setup-font-color-feature() {
+    &.sy-success{ color: @colorSuccess; }
+    &.sy-warning{ color: @colorWarning; }
+    &.sy-danger{ color: @colorDanger; }
+    &.sy-primary{ color: @colorPrimary; }
+    &.sy-minor{ color: @colorMinor; }
+    &.sy-info{ color: @colorInfo; }
+}
 
-// @fontColorBlack: #000;
-// @fontColorDark: #333;
-// @fontColor: #666;
-// @fontColorMinor: #999;
-// @fontColorLight: #aaa;
-// @fontColorLighter: #ccc;
-// @fontColorWhite: #fff;
-
-@formHeight: 42px;
+.setup-font-color-misc() {
+    &.sy-black{ color: @colorBlack; }
+    &.sy-lightBlack{ color: @colorLightBlack; }
+    &.sy-extraLightBlack{ color: @colorExtraLightBlack; }
+    &.sy-blue{ color: @colorBlue; }
+    &.sy-lightBlue{ color: @colorLightBlue; }
+    &.sy-extraLightBlue{ color: @colorExtraLightBlue; }
+    &.sy-silver{ color: @colorSilver; }
+    &.sy-lightSilver{ color: @colorLightSilver; }
+    &.sy-extraLightSilver{ color: @colorExtraLightSilver; }
+    &.sy-gray{ color: @colorGray; }
+    &.sy-lightGray{ color: @colorLightGray; }
+    &.sy-white{ color: @colorWhite; }
+}
