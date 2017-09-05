@@ -210,7 +210,7 @@
     ````html
     @size
     <div style="width:400px">
-    <ui-itemlist {$key}>
+    <ui-itemlist {$size}>
         <ui-ul>
             <li>
                 <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>

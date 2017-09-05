@@ -58,7 +58,7 @@
 
     ````html
     @size
-    <ui-header class="mark" {$key}>{$&name}<small>页头子标题</small></ui-header>
+    <ui-header class="mark" {$size}>{$&name}<small>页头子标题</small></ui-header>
     ````
 
     #### 色彩
@@ -70,7 +70,7 @@
     @colorBlue
     @colorSilver
     @colorGray
-    <ui-header {$key}>{$&name}<small>页头子标题</small></ui-header>
+    <ui-header {$color}>{$&name}<small>页头子标题</small></ui-header>
     ````
     </script>
     </doc-component>

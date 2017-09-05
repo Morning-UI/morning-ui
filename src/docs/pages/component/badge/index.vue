@@ -52,12 +52,12 @@
 
     ````html
     @size
-    <ui-badge {$key}>{$&name}</ui-badge>
+    <ui-badge {$size}>{$&name}</ui-badge>
     ````
 
     ````html
     @size
-    <ui-badge class="circle" {$key}>{$&name}</ui-badge>
+    <ui-badge class="circle" {$size}>{$&name}</ui-badge>
     ````
 
     #### 色彩
@@ -69,14 +69,14 @@
     @colorBlue
     @colorSilver
     @colorGray
-    <ui-badge {$key}>{$&name}</ui-badge>
+    <ui-badge {$color}>{$&name}</ui-badge>
     ````
 
     #### 状态
 
     ````html
     @stateNA
-    <ui-badge {$key}>{$&name}</ui-badge>
+    <ui-badge {$state}>{$&name}</ui-badge>
     ````
     </script>
     </doc-component>

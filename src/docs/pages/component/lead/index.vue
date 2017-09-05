@@ -35,14 +35,14 @@
     @colorBlue
     @colorSilver
     @colorGray
-    <ui-lead {$key}>{$&name}</ui-lead>
+    <ui-lead {$color}>{$&name}</ui-lead>
     ````
 
     #### 状态
     
     ````html
     @stateNA
-    <ui-lead {$key}>{$&name}</ui-lead>
+    <ui-lead {$state}>{$&name}</ui-lead>
     ````
     </script>
     </doc-component>

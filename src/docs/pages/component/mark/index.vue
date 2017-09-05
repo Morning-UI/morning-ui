@@ -35,14 +35,14 @@
     @colorBlue
     @colorSilver
     @colorGray
-    <ui-mark {$key}>{$&name}</ui-mark>
+    <ui-mark {$color}>{$&name}</ui-mark>
     ````
 
     #### 状态
     
     ````html
     @stateNA
-    <ui-mark {$key}>{$&name}</ui-mark>
+    <ui-mark {$state}>{$&name}</ui-mark>
     ````
     </script>
     </doc-component>

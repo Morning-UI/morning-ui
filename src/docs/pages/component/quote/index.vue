@@ -35,7 +35,7 @@
     @colorBlue
     @colorSilver
     @colorGray
-    <ui-quote {$key}>{$&name}</ui-quote>
+    <ui-quote {$color}>{$&name}</ui-quote>
     <br>
     ````
     </script>

@@ -35,7 +35,7 @@
     @colorBlue
     @colorSilver
     @colorGray
-    <ui-textcolor {$key}>{$&name}</ui-textcolor>
+    <ui-textcolor {$color}>{$&name}</ui-textcolor>
     ````
     </script>
     </doc-component>

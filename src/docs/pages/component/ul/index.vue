@@ -74,7 +74,7 @@
     
     ````html
     @stateNA
-    <ui-ul {$key}>
+    <ui-ul {$state}>
         <li>this is {$&name} ui-ul</li>
         <li>this is {$&name} ui-ul</li>
     </ui-ul>

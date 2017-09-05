@@ -74,7 +74,7 @@
     
     ````html
     @stateNA
-    <ui-ol {$key}>
+    <ui-ol {$state}>
         <li>this is {$&name} ui-ol</li>
         <li>this is {$&name} ui-ol</li>
     </ui-ol>

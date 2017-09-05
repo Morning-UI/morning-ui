@@ -34,7 +34,7 @@
 
     ````html
     @stateNA
-    <ui-il {$key}>
+    <ui-il {$state}>
         <li>this is {$&name} ui-il</li>
         <li>this is {$&name} ui-il</li>
     </ui-il>

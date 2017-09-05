@@ -80,7 +80,7 @@
 
     ````html
     @size
-    <ui-statistic {$key}>
+    <ui-statistic {$size}>
         <div class="value">5,550</div>
         <div class="label">{$&name}</div>
     </ui-statistic>
@@ -95,7 +95,7 @@
     @colorBlue
     @colorSilver
     @colorGray
-    <ui-statistic {$key}>
+    <ui-statistic {$color}>
         <div class="value">5,550</div>
         <div class="label">{$&name}</div>
     </ui-statistic>
@@ -105,7 +105,7 @@
     
     ````html
     @stateNA
-    <ui-statistic {$key}>
+    <ui-statistic {$state}>
         <div class="value">5,550</div>
         <div class="label">{$&name}</div>
     </ui-statistic>

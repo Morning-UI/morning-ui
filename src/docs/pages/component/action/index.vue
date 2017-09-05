@@ -80,13 +80,13 @@
     ````html
     @size
     <div style="width:400px">
-        <ui-action {$key}>
+        <ui-action {$size}>
             <div class="title">
                 <h5>{$&name}</h5>
                 <span class="note">行动说明</span>
             </div>
             <div class="action">
-                <ui-btn>行动按钮</ui-btn>
+                <ui-btn {$size}>行动按钮</ui-btn>
             </div>
         </ui-action>
     </div>
@@ -102,13 +102,13 @@
     @colorSilver
     @colorGray
     <div style="width:400px">
-        <ui-action {$key}>
+        <ui-action {$color}>
             <div class="title">
                 <h5>{$&name}</h5>
                 <span class="note">行动说明</span>
             </div>
             <div class="action">
-                <ui-btn {$key}>{$name}按钮</ui-btn>
+                <ui-btn {$color}>{$name}按钮</ui-btn>
             </div>
         </ui-action>
     </div>

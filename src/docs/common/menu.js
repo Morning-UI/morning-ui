@@ -88,7 +88,7 @@ export default {
         '声明<i class="tag done"></i>' : '/guide/statement.html',
         '样式类<i class="tag done"></i>' : '/guide/styleclass.html',
         '配置<i class="tag done"></i>' : '/guide/config.html',
-        '方法<i class="tag coming"></i>' : '/guide/method.html',
+        '方法<i class="tag done"></i>' : '/guide/method.html',
         '事件<i class="tag coming"></i>' : '/guide/event.html',
         表单值 : '/guide/value.html',
         '全局方法<i class="tag done"></i>' : '/guide/morning.html',

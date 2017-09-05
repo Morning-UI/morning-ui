@@ -61,7 +61,7 @@
     
     ````html
     @stateNA
-    <ui-dl {$key}>
+    <ui-dl {$state}>
         <dt>{$&name}</dt>
         <dd>this is normal ui-dl</dd>
         <dt>{$&name}</dt>

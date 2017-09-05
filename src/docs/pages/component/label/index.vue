@@ -70,17 +70,17 @@
 
     ````html
     @size
-    <ui-label {$key}>{$&name}</ui-label>
+    <ui-label {$size}>{$&name}</ui-label>
     ````
 
     ````html
     @size
-    <ui-label class="icon" {$key}><i class="iconfont">&#xe6e2;</i> <span>{$&name}</span></ui-label>
+    <ui-label class="icon" {$size}><i class="iconfont">&#xe6e2;</i> <span>{$&name}</span></ui-label>
     ````
 
     ````html
     @size
-    <ui-label class="image" {$key}><img src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"/> <span>{$&name}</span></ui-label>
+    <ui-label class="image" {$size}><img src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"/> <span>{$&name}</span></ui-label>
     ````
     
     #### 色彩
@@ -92,14 +92,14 @@
     @colorBlue
     @colorSilver
     @colorGray
-    <ui-label {$key}>{$&name}</ui-label>
+    <ui-label {$color}>{$&name}</ui-label>
     ````
 
     #### 状态
 
     ````html
     @stateNA
-    <ui-label {$key}>{$&name}</ui-label>
+    <ui-label {$state}>{$&name}</ui-label>
     ````
     </script>
     </doc-component>

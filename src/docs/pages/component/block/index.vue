@@ -52,7 +52,7 @@
     @colorBlue
     @colorSilver
     @colorGray
-    <ui-block {$key}>{$&name}</ui-block>
+    <ui-block {$color}>{$&name}</ui-block>
     ````
     </script>
     </doc-component>

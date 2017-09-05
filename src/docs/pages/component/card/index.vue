@@ -66,7 +66,7 @@
     @colorSilver
     @colorGray
     <div style="width:180px;height:240px;display:inline-block;margin:10px;">
-        <ui-card {$key}>
+        <ui-card {$color}>
             <header>{$&name}</header>
             <div>卡片</div>
         </ui-card>

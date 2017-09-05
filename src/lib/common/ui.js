@@ -99,15 +99,8 @@ let UI = Vue.extend({
 
         }
     },
-    created : function () {
-
-        this.initSize();
-        this.initStyle();
-        this.initState();
-
-    },
     methods : {
-        initSize : function () {
+        _initSize : function () {
 
             let size = null;
 
@@ -125,7 +118,7 @@ let UI = Vue.extend({
             this.conf.size = size;
 
         },
-        initStyle : function () {
+        _initStyle : function () {
 
             let style = null;
 
@@ -143,7 +136,7 @@ let UI = Vue.extend({
             this.conf.style = style;
 
         },
-        initState : function () {
+        _initState : function () {
 
             let state = null;
 
@@ -190,11 +183,9 @@ let UI = Vue.extend({
 
                 return conf[name];
 
-            } else {
-
-                return conf;
-
             }
+    
+            return conf;
 
         }
     },
@@ -223,16 +214,39 @@ let UI = Vue.extend({
         return data;
 
     },
+    beforeCretae : function () {
+
+        this.$emit('beforeCretae');
+
+    },
+    created : function () {
+
+        this._initSize();
+        this._initStyle();
+        this._initState();
+        this.$emit('created');
+
+    },
     mounted : function () {
 
         window.morning.map[this.uiid] = this;
 
-        // this.$emit('ready');
+        this.$emit('mounted');
+
+    },
+    beforeUpdate : function () {
+
+        this.$emit('beforeUpdate');
+
+    },
+    updated : function () {
+
+        this.$emit('updated');
 
     },
     beforeDestroy : function () {
 
-        // this.$emit('destroy');
+        this.$emit('beforeDestroy');
 
     },
     destroyed : function () {
