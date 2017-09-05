@@ -137,7 +137,7 @@
 
     获取组件的配置应该使用组件上的`getConf()`方法，这是因为组件配置在初始化之后可能会被组件内部的逻辑修改，也可能被`setConf()`方法重新设置。
 
-    #### .getConf([name])
+    #### getConf([name])
     
     ##### 参数
 
@@ -153,7 +153,7 @@
 
     当组件初始化完成后，组件的`Props`变更将不再影响组件配置。这时可以通过组件的`setConf()`方法来再次设置组件的配置。
 
-    #### .setConf(nameOrObj, [value])
+    #### setConf(nameOrObj, [value])
     
     ##### 参数
 

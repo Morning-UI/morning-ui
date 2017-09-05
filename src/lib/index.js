@@ -4,7 +4,6 @@ import Form                         from 'Common/form';
 import components                   from './components';
 
 let morning = {
-    version : '0.10.0',
     _origin : {
         UI,
         Form
@@ -12,6 +11,7 @@ let morning = {
     _components : components,
     _uiid : 1,
     _findCache : {},
+    version : '0.10.0',
     map : {},
     findVM : function (ref) {
 

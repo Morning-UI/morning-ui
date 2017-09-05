@@ -79,7 +79,7 @@ export default UI.extend({
             this.conf.state = this.data.lastState;
 
         },
-        lock : function (time = false) {
+        lock : function (time) {
 
             this.data.lock = true;
             this.data.lastState = this.conf.state;
@@ -101,17 +101,17 @@ export default UI.extend({
 
         this.data.lastState = this.conf.state;
 
+        if ( typeof this.locked === 'number' ) {
+
+            this.lock( +this.locked );
+
+        } else if ( this.locked === true ) {
+
+            this.lock();
+
+        }
+
         this.$on('emit', ({ui, evt}) => {
-
-            if ( typeof ui.locked === 'number' ) {
-
-                ui.lock( +ui.locked );
-
-            } else if ( ui.locked === true ) {
-
-                ui.lock();
-
-            }
 
             if (ui.link) {
 

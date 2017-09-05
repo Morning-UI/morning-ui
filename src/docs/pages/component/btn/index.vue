@@ -95,6 +95,34 @@
 
     ### 方法
 
+    #### lock([time])
+    
+    |KEY|可选|描述|接受值|值类型|默认值|
+    |-|-|-|-|-|-|
+    |time|YES|解锁的时间，单位ms。设置后组件将在解锁时间后自动解锁，不设置则需要调用`unlock()`方法解锁|`undefined`<br>数值(单位ms)|`Undefined`<br>`Number`|`undefined`|
+
+    锁定按钮，锁定后按钮不会触发`emit`事件。
+
+    ````html
+    <ui-btn ref="demo2">按钮</ui-btn>
+    <br><br> 
+    <a href="javascript:;" onclick="javascript:morning.findVM('demo2').lock();">锁定</a>
+    <a href="javascript:;" onclick="javascript:morning.findVM('demo2').lock(2000);">锁定2s</a>
+    <a href="javascript:;" onclick="javascript:morning.findVM('demo2').unlock();">解锁</a>
+    ````
+
+    #### unlock()
+
+    解锁按钮，解锁后按钮可触发`emit`事件。
+
+    ````html
+    <ui-btn ref="demo3" locked>按钮</ui-btn>
+    <br><br> 
+    <a href="javascript:;" onclick="javascript:morning.findVM('demo3').unlock();">解锁</a>
+    ````
+
+
+
     ### 事件
 
     </script>
