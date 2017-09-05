@@ -11,7 +11,30 @@ let morning = {
     },
     _components : components,
     _uiid : 1,
-    map : {}
+    _findCache : {},
+    map : {},
+    findVM : function (ref) {
+
+        if (this._findCache[ref]) {
+            
+            return this._findCache[ref];
+
+        }
+
+        for(let vm of Object.values(this.map)) {
+
+            if (vm.$vnode &&
+                vm.$vnode.data &&
+                vm.$vnode.data.ref === ref) {
+
+                this._findCache[ref] = vm;
+                
+                return vm;
+            
+            }
+        }
+
+    }
 };
 
 Vue.config.ignoredElements = [];

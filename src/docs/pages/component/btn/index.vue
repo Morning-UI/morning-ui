@@ -6,6 +6,70 @@
     <script type="text/markdown">
     # 按钮 `<ui-btn>`
 
+    ### 基础
+
+    定义一个按钮，这是一个内联块元素。
+
+    #### 使用
+
+    ````html
+    <ui-btn>按钮</ui-btn>
+    ````
+
+    ### 声明
+
+    #### 支持
+
+    |类型|支持|默认|
+    |-|-|-|
+    |尺寸|全部|`m`|
+    |色彩|全部|`theme`|
+    |状态|全部|`normal`|
+
+    #### 尺寸
+
+    ````html
+    @size
+    <ui-btn {$size}>{$&name}</ui-btn>
+    ````
+
+    ````html
+    @size
+    <ui-btn {$size} loading>{$&name}</ui-btn>
+    ````
+
+    #### 色彩
+
+    ````html
+    @colorTheme
+    @colorFeature
+    @colorBlack
+    @colorBlue
+    @colorSilver
+    @colorGray
+    <ui-btn {$color}>{$&name}</ui-btn>
+    ````
+
+    #### 状态
+    
+    ````html
+    @stateALLwithTheme
+    @stateALLwithFeature
+    @stateALLwithBlack
+    @stateALLwithBlue
+    @stateALLwithSilver
+    @stateALLwithGray
+    <ui-btn {$state} {$color}>{$&name}</ui-btn>
+    ````
+
+    ### 配置
+
+    |KEY|描述|接受值|值类型|默认值|
+    |-|-|-|
+    |link|链接地址，若为空则不跳转|url地址|String|`''`|
+    |locked|锁定模式，用来防止组件在短时间内被重复触发。若设置一个时间数值(ms)，该组件在时间内只触发一次。也可设为`true`，触发后需要通过`unlock()`方法来解锁组件。|`true`<br>`false`<br>数值(单位ms)|Number<br>Boolean|`false`|
+    |new-tab|是否在新窗口中打开链接|`true`<br>`false`|Boolean|`false`|
+
     #### link
 
     ````html
@@ -15,12 +79,19 @@
     #### locked
 
     ````html
-    <ui-btn :locked="5000">5秒后自动解锁</ui-btn>
+    <ui-btn :locked="3000">3秒后自动解锁</ui-btn>
     ````
 
+    ````html
+    <ui-btn ref="demo1" locked>手动解锁</ui-btn>
+    <a href="javascript:;" onclick="javascript:morning.findVM('demo1').unlock();">解锁</a>
+    ````
 
+    #### new-tab
 
-    ### 方法
+    ````html
+    <ui-btn new-tab :link="'http://www.google.com'">新窗口打开链接</ui-btn>
+    ````
 
     ### 方法
 

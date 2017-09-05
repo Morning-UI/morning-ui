@@ -3,12 +3,11 @@
         :_uiid="uiid"
         :class="[sizeClass, styleClass, stateClass]"
 
-        :route="route"
         :link="link"
         :locked="locked"
         :new-tab="newTab"
 
-        @click="onClick"
+        @click="_onClick"
     >
 
     <template v-if="conf.state === 'loading'">
@@ -32,40 +31,39 @@ import UI                           from 'Common/ui';
 export default UI.extend({
     name : 'btn',
     props : {
-        route : {
-            type : String
-        },
         link : {
             type : String,
             default : ''
         },
         locked : {
-            type : [Boolean, Number]
+            type : [Boolean, Number],
+            default : false
         },
         newTab : {
-            type : Boolean
+            type : Boolean,
+            default : false
         }
     },
     data : function () {
 
         return {
             conf : {
-                route : this.route,
                 link : this.link,
                 locked : this.locked,
                 newTab : this.newTab
             },
-            st : {
-                lock : false
+            data : {
+                lock : false,
+                lastState : null
             }
         };
 
     },
     methods : {
-        onClick : function (evt) {
+        _onClick : function (evt) {
 
             if ( this.state !== 'disabled' &&
-                 !this.st.lock ) {
+                 !this.data.lock ) {
 
                 this.$emit('emit', {
                     ui : this,
@@ -77,13 +75,14 @@ export default UI.extend({
         },
         unlock : function () {
 
-            this.st.lock = false;
-            this.conf.state = 'normal';
+            this.data.lock = false;
+            this.conf.state = this.data.lastState;
 
         },
         lock : function (time = false) {
 
-            this.st.lock = true;
+            this.data.lock = true;
+            this.data.lastState = this.conf.state;
             this.conf.state = 'loading';
 
             if ( time ) {
@@ -99,6 +98,8 @@ export default UI.extend({
         }
     },
     mounted : function () {
+
+        this.data.lastState = this.conf.state;
 
         this.$on('emit', ({ui, evt}) => {
 

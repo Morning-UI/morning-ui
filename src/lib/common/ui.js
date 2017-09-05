@@ -1,4 +1,5 @@
 import Vue                          from 'vue';
+import extend                       from 'extend';
 
 let sizeSet = [
     'xxl',
@@ -159,6 +160,42 @@ let UI = Vue.extend({
 
             this.conf.state = state;
 
+        },
+        setConf : function (name, value) {
+
+            if (typeof name === 'object') {
+
+                for (let key of Object.keys(name)) {
+
+                    let val = name[key];
+
+                    this.conf[key] = val;
+
+                }
+
+            } else if (typeof name === 'string') {
+
+                this.conf[name] = value;
+
+            }
+
+            return this;
+
+        },
+        getConf : function (name) {
+
+            let conf = extend(true, {}, this.conf);
+
+            if (typeof name === 'string') {
+
+                return conf[name];
+
+            } else {
+
+                return conf;
+
+            }
+
         }
     },
     data : function () {
@@ -167,6 +204,7 @@ let UI = Vue.extend({
 
         data.uiid = window.morning._uiid++;
         data.conf = {};
+        data.data = {};
 
         for (let key of [...sizeSet, ...styleSet, ...stateSet]) {
 
@@ -188,6 +226,13 @@ let UI = Vue.extend({
     mounted : function () {
 
         window.morning.map[this.uiid] = this;
+
+        // this.$emit('ready');
+
+    },
+    beforeDestroy : function () {
+
+        // this.$emit('destroy');
 
     },
     destroyed : function () {
