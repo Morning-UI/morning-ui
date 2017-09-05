@@ -494,16 +494,16 @@ Vue.directive('docmd',{
             }
 
             let md = marked(text);
+            
             md = md.replace(/\{\%([a-zA-Z0-9\_]+)\%\}/g, '{{"\\\{\\\{$1\\\}\\\}"}}');
+            
             let res = Vue.compile(`<div>${md}</div>`);
-
             let instance = new Vue({
                 render: res.render,
                 staticRenderFns: res.staticRenderFns
             });
 
             instance.$mount();
-            
             el.appendChild(instance.$el);
 
         }
