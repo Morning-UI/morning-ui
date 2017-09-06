@@ -36,6 +36,7 @@ import article                      from './article/index.vue';
 import img                          from './img/index.vue';
 
 import btn                          from './btn/index.vue';
+import link                         from './link/index.vue';
 import tab                          from './tab/index.vue';
 
 export default {
@@ -74,5 +75,6 @@ export default {
     article,
     img,
     btn,
+    link,
     tab
 };

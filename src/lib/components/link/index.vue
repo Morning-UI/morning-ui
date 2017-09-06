@@ -1,5 +1,5 @@
 <template>
-    <i-btn
+    <i-link
         :_uiid="uiid"
         :class="[sizeClass, styleClass, stateClass]"
 
@@ -21,15 +21,15 @@
     <template v-else>
         <slot></slot>
     </template>
-        
-    </i-btn>
+
+    </i-link>
 </template>
  
 <script>
 import UI                           from 'Common/ui';
 
 export default UI.extend({
-    name : 'btn',
+    name : 'link',
     props : {
         link : {
             type : String,
@@ -145,17 +145,16 @@ export default UI.extend({
 <style lang="less">
 @import '~Common/var.less';
 
-i-btn{
+i-link{
     display: inline-block;
-    padding: 0 1.1em;
-    border-radius: 0.3em;
     position: relative;
-    height: 2.8em;
-    line-height: 2.8em;
+    line-height: 1.4em;
+    height: 1.4em;
 
-    &:hover{
-        cursor: pointer;
+    &.margin{
+        padding: 0 0.6em;
     }
+
 
     &.si-xxl{
         font-size: 1.3*@fontSize;
@@ -195,9 +194,6 @@ i-btn{
 
     &.si-s{
         font-size: 0.75*@fontSize;
-        height: 2.6em;
-        line-height: 2.6em;
-        padding: 0 0.8em;
 
         .morningicon{
             font-size: 0.9*@fontSize;
@@ -207,9 +203,6 @@ i-btn{
 
     &.si-xs{
         font-size: 0.75*@fontSize;
-        height: 2.2em;
-        line-height: 2.2em;
-        padding: 0 0.6em;
 
         .morningicon{
             font-size: 0.85*@fontSize;
@@ -219,9 +212,6 @@ i-btn{
 
     &.si-xxs{
         font-size: 0.75*@fontSize;
-        height: 1.8em;
-        line-height: 1.8em;
-        padding: 0 0.4em;
 
         .morningicon{
             font-size: 0.75*@fontSize;
@@ -230,18 +220,16 @@ i-btn{
     }
     
     &.sy-theme{
-        background-color: @colorTheme;
-        color: @colorWhite;
+        color: @colorTheme;
 
         &:not(.st-disabled):hover,
         &.st-hover{
-            background-color: darken(@colorTheme, 5%);
+            color: darken(@colorTheme, 15%);
         }
 
         &:not(.st-disabled):active,
         &.st-active{
-            background-color: darken(@colorTheme, 10%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
+            color: darken(@colorTheme, 25%);
         }
 
         &.st-disabled{
@@ -250,18 +238,16 @@ i-btn{
     }
     
     &.sy-lightTheme{
-        background-color: @colorLightTheme;
-        color: @colorWhite;
+        color: @colorLightTheme;
 
         &:not(.st-disabled):hover,
         &.st-hover{
-            background-color: darken(@colorLightTheme, 5%);
+            color: darken(@colorLightTheme, 25%);
         }
 
         &:not(.st-disabled):active,
         &.st-active{
-            background-color: darken(@colorLightTheme, 10%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
+            color: darken(@colorLightTheme, 35%);
         }
 
         &.st-disabled{
@@ -270,18 +256,16 @@ i-btn{
     }
     
     &.sy-darkTheme{
-        background-color: @colorDarkTheme;
-        color: @colorWhite;
+        color: @colorDarkTheme;
 
         &:not(.st-disabled):hover,
         &.st-hover{
-            background-color: darken(@colorDarkTheme, 5%);
+            color: darken(@colorDarkTheme, 10%);
         }
 
         &:not(.st-disabled):active,
         &.st-active{
-            background-color: darken(@colorDarkTheme, 10%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
+            color: darken(@colorDarkTheme, 20%);
         }
 
         &.st-disabled{
@@ -290,138 +274,124 @@ i-btn{
     }
 
     &.sy-success{
-        background-color: @colorSuccess;
-        color: @colorWhite;
+        color: @colorSuccess;
 
         &:not(.st-disabled):hover,
         &.st-hover{
-            background-color: darken(@colorSuccess, 5%);
+            color: darken(@colorSuccess, 10%);
         }
 
         &:not(.st-disabled):active,
         &.st-active{
-            background-color: darken(@colorSuccess, 10%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
+            color: darken(@colorSuccess, 15%);
         }
 
         &.st-disabled{
-            color: lighten(@colorSuccess, 35%);
+            color: darken(@colorSuccess, 25%);
         }
     }
     
     &.sy-warning{
-        background-color: @colorWarning;
-        color: @colorWhite;
+        color: @colorWarning;
 
         &:not(.st-disabled):hover,
         &.st-hover{
-            background-color: darken(@colorWarning, 5%);
+            color: darken(@colorWarning, 10%);
         }
 
         &:not(.st-disabled):active,
         &.st-active{
-            background-color: darken(@colorWarning, 10%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
+            color: darken(@colorWarning, 15%);
         }
 
         &.st-disabled{
-            color: lighten(@colorWarning, 35%);
+            color: lighten(@colorWarning, 15%);
         }
     }
     
     &.sy-danger{
-        background-color: @colorDanger;
-        color: @colorWhite;
+        color: @colorDanger;
 
         &:not(.st-disabled):hover,
         &.st-hover{
-            background-color: darken(@colorDanger, 5%);
+            color: darken(@colorDanger, 5%);
         }
 
         &:not(.st-disabled):active,
         &.st-active{
-            background-color: darken(@colorDanger, 10%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
+            color: darken(@colorDanger, 10%);
         }
 
         &.st-disabled{
-            color: lighten(@colorDanger, 35%);
+            color: lighten(@colorDanger, 25%);
         }
     }
     
     &.sy-primary{
-        background-color: @colorPrimary;
-        color: @colorWhite;
+        color: @colorPrimary;
 
         &:not(.st-disabled):hover,
         &.st-hover{
-            background-color: darken(@colorPrimary, 5%);
+            color: darken(@colorPrimary, 10%);
         }
 
         &:not(.st-disabled):active,
         &.st-active{
-            background-color: darken(@colorPrimary, 10%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
+            color: darken(@colorPrimary, 15%);
         }
 
         &.st-disabled{
-            color: lighten(@colorPrimary, 35%);
+            color: lighten(@colorPrimary, 25%);
         }
     }
 
     &.sy-minor{
-        background-color: @colorMinor;
-        color: @colorWhite;
+        color: @colorMinor;
 
         &:not(.st-disabled):hover,
         &.st-hover{
-            background-color: darken(@colorMinor, 5%);
+            color: darken(@colorMinor, 10%);
         }
 
         &:not(.st-disabled):active,
         &.st-active{
-            background-color: darken(@colorMinor, 10%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
+            color: darken(@colorMinor, 15%);
         }
 
         &.st-disabled{
-            color: lighten(@colorMinor, 25%);
+            color: lighten(@colorMinor, 15%);
         }
     }
     
     &.sy-info{
-        background-color: @colorInfo;
-        color: @colorWhite;
+        color: @colorInfo;
 
         &:not(.st-disabled):hover,
         &.st-hover{
-            background-color: darken(@colorInfo, 5%);
+            color: darken(@colorInfo, 10%);
         }
 
         &:not(.st-disabled):active,
         &.st-active{
-            background-color: darken(@colorInfo, 10%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
+            color: darken(@colorInfo, 15%);
         }
 
         &.st-disabled{
-            color: lighten(@colorInfo, 20%);
+            color: darken(@colorInfo, 25%);
         }
     }
     
     &.sy-black{
-        background-color: @colorBlack;
-        color: @colorWhite;
+        color: @colorBlack;
 
         &:not(.st-disabled):hover,
         &.st-hover{
-            background-color: lighten(@colorBlack, 5%);
+            color: lighten(@colorBlack, 15%);
         }
 
         &:not(.st-disabled):active,
         &.st-active{
-            background-color: lighten(@colorBlack, 10%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.4) inset;
+            color: lighten(@colorBlack, 30%);
         }
 
         &.st-disabled{
@@ -430,18 +400,16 @@ i-btn{
     }
     
     &.sy-lightBlack{
-        background-color: @colorLightBlack;
-        color: @colorWhite;
+        color: @colorLightBlack;
 
         &:not(.st-disabled):hover,
         &.st-hover{
-            background-color: lighten(@colorLightBlack, 5%);
+            color: lighten(@colorLightBlack, 15%);
         }
 
         &:not(.st-disabled):active,
         &.st-active{
-            background-color: lighten(@colorLightBlack, 10%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.4) inset;
+            color: lighten(@colorLightBlack, 25%);
         }
 
         &.st-disabled{
@@ -450,18 +418,16 @@ i-btn{
     }
     
     &.sy-extraLightBlack{
-        background-color: @colorExtraLightBlack;
-        color: @colorWhite;
+        color: @colorExtraLightBlack;
 
         &:not(.st-disabled):hover,
         &.st-hover{
-            background-color: lighten(@colorExtraLightBlack, 5%);
+            color: lighten(@colorExtraLightBlack, 10%);
         }
 
         &:not(.st-disabled):active,
         &.st-active{
-            background-color: lighten(@colorExtraLightBlack, 10%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.4) inset;
+            color: lighten(@colorExtraLightBlack, 20%);
         }
 
         &.st-disabled{
@@ -470,78 +436,70 @@ i-btn{
     }
     
     &.sy-blue{
-        background-color: @colorBlue;
-        color: @colorWhite;
+        color: @colorBlue;
 
         &:not(.st-disabled):hover,
         &.st-hover{
-            background-color: darken(@colorBlue, 5%);
+            color: darken(@colorBlue, 15%);
         }
 
         &:not(.st-disabled):active,
         &.st-active{
-            background-color: darken(@colorBlue, 10%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
+            color: darken(@colorBlue, 20%);
         }
 
         &.st-disabled{
-            color: lighten(@colorBlue, 30%);
+            color: lighten(@colorBlue, 20%);
         }
     }
     
     &.sy-lightBlue{
-        background-color: @colorLightBlue;
-        color: @colorWhite;
+        color: @colorLightBlue;
 
         &:not(.st-disabled):hover,
         &.st-hover{
-            background-color: darken(@colorLightBlue, 5%);
+            color: darken(@colorLightBlue, 15%);
         }
 
         &:not(.st-disabled):active,
         &.st-active{
-            background-color: darken(@colorLightBlue, 10%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
+            color: darken(@colorLightBlue, 20%);
         }
 
         &.st-disabled{
-            color: lighten(@colorLightBlue, 30%);
+            color: lighten(@colorLightBlue, 20%);
         }
     }
     
     &.sy-extraLightBlue{
-        background-color: @colorExtraLightBlue;
-        color: @colorWhite;
+        color: @colorExtraLightBlue;
 
         &:not(.st-disabled):hover,
         &.st-hover{
-            background-color: darken(@colorExtraLightBlue, 5%);
+            color: darken(@colorExtraLightBlue, 15%);
         }
 
         &:not(.st-disabled):active,
         &.st-active{
-            background-color: darken(@colorExtraLightBlue, 10%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
+            color: darken(@colorExtraLightBlue, 20%);
         }
 
         &.st-disabled{
-            color: lighten(@colorExtraLightBlue, 20%);
+            color: lighten(@colorExtraLightBlue, 10%);
         }
     }
     
     &.sy-silver{
-        background-color: @colorSilver;
-        color: @colorExtraLightBlack;
+        color: @colorSilver;
 
         &:not(.st-disabled):hover,
         &.st-hover{
-            background-color: darken(@colorSilver, 3%);
+            color: darken(@colorSilver, 8%);
         }
 
         &:not(.st-disabled):active,
         &.st-active{
-            background-color: darken(@colorSilver, 6%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
+            color: darken(@colorSilver, 12%);
         }
 
         &.st-disabled{
@@ -550,18 +508,16 @@ i-btn{
     }
     
     &.sy-lightSilver{
-        background-color: @colorLightSilver;
-        color: @colorExtraLightBlack;
+        color: @colorLightSilver;
 
         &:not(.st-disabled):hover,
         &.st-hover{
-            background-color: darken(@colorLightSilver, 3%);
+            color: darken(@colorLightSilver, 8%);
         }
 
         &:not(.st-disabled):active,
         &.st-active{
-            background-color: darken(@colorLightSilver, 6%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
+            color: darken(@colorLightSilver, 12%);
         }
 
         &.st-disabled{
@@ -570,18 +526,16 @@ i-btn{
     }
     
     &.sy-extraLightSilver{
-        background-color: @colorExtraLightSilver;
-        color: @colorExtraLightBlack;
+        color: @colorExtraLightSilver;
 
         &:not(.st-disabled):hover,
         &.st-hover{
-            background-color: darken(@colorExtraLightSilver, 3%);
+            color: darken(@colorExtraLightSilver, 8%);
         }
 
         &:not(.st-disabled):active,
         &.st-active{
-            background-color: darken(@colorExtraLightSilver, 6%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
+            color: darken(@colorExtraLightSilver, 12%);
         }
 
         &.st-disabled{
@@ -590,18 +544,16 @@ i-btn{
     }
     
     &.sy-gray{
-        background-color: @colorGray;
-        color: @colorExtraLightBlack;
+        color: @colorGray;
 
         &:not(.st-disabled):hover,
         &.st-hover{
-            background-color: darken(@colorGray, 3%);
+            color: darken(@colorGray, 8%);
         }
 
         &:not(.st-disabled):active,
         &.st-active{
-            background-color: darken(@colorGray, 6%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
+            color: darken(@colorGray, 12%);
         }
 
         &.st-disabled{
@@ -610,18 +562,16 @@ i-btn{
     }
     
     &.sy-lightGray{
-        background-color: @colorLightGray;
-        color: @colorExtraLightBlack;
+        color: @colorLightGray;
 
         &:not(.st-disabled):hover,
         &.st-hover{
-            background-color: darken(@colorLightGray, 3%);
+            color: darken(@colorLightGray, 8%);
         }
 
         &:not(.st-disabled):active,
         &.st-active{
-            background-color: darken(@colorLightGray, 6%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
+            color: darken(@colorLightGray, 12%);
         }
 
         &.st-disabled{
@@ -630,18 +580,16 @@ i-btn{
     }
     
     &.sy-white{
-        background-color: @colorWhite;
-        color: @colorExtraLightBlack;
+        color: @colorWhite;
 
         &:not(.st-disabled):hover,
         &.st-hover{
-            background-color: darken(@colorWhite, 3%);
+            color: darken(@colorWhite, 8%);
         }
 
         &:not(.st-disabled):active,
         &.st-active{
-            background-color: darken(@colorWhite, 6%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
+            color: darken(@colorWhite, 12%);
         }
 
         &.st-disabled{
@@ -650,11 +598,12 @@ i-btn{
     }
 
     &.st-normal{}
-    &.st-hover{}
+    &.st-hover{
+        cursor: pointer;
+    }
     &.st-active{}
     &.st-disabled{
-        box-shadow: 0 0 5px rgba(0,0,0,0.6) inset;
-        cursor: not-allowed;
+        cursor: not-allowed !important;
     }
     &.st-apparent{
         animation-name: apparent;
@@ -692,6 +641,10 @@ i-btn{
         .si-m;
         .sy-theme;
         .st-normal;
+    }
+
+    &:hover{
+        .st-hover;
     }
 
 }

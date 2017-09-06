@@ -267,7 +267,7 @@ let helper = {
         return helper.normal({
             code : Mustache.render(template, data),
             result : opts.result,
-            style : 'background:#c3cad2;border-color:#b0b7c1'
+            style : 'background: #626b75;border-color: #454d57'
         });
 
     },
@@ -279,7 +279,7 @@ let helper = {
         return helper.normal({
             code : Mustache.render(template, data),
             result : opts.result,
-            style : 'background:#cfcfcf;border-color:#c6c6c6'
+            style : 'background:#676767;border-color:#494949;'
         });
 
     },
@@ -353,9 +353,9 @@ let helper = {
         return helper.normal({
             code : Mustache.render(template, data),
             result : opts.result,
-            style : 'background:#c3cad2;border-color:#b0b7c1'
+            style : 'background: #626b75;border-color: #454d57'
         });
-
+    
     },
     stateALLwithGray : opts => {
 
@@ -366,7 +366,7 @@ let helper = {
         return helper.normal({
             code : Mustache.render(template, data),
             result : opts.result,
-            style : 'background:#cfcfcf;border-color:#c6c6c6'
+            style : 'background:#676767;border-color:#494949;'
         });
 
     },
@@ -426,7 +426,6 @@ let helper = {
 
     }
 };
-
 
 Vue.directive('docmd',{
     bind : (el, binding, vnode) => {
