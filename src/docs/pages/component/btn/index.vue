@@ -121,10 +121,81 @@
     <a href="javascript:;" onclick="javascript:morning.findVM('demo3').unlock();">解锁</a>
     ````
 
-
-
     ### 事件
 
+    #### emit
+
+    当按钮被点击时触发。
+
+    ````mixin
+    @use:html.demo3,js.demo3
+    ````
+
+    ````html
+    @var:demo3
+    <div>
+        <ui-btn @emit="echo">点击触发emit事件</ui-btn>
+    </div>
+    ````
+
+    ````js
+    @var:demo3
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        methods : {
+            echo : function () {
+                console.log('demo3.console1', 'emit event!');
+            }
+        }
+    });
+    ````
+
+    #### 生命周期事件
+
+    ````mixin
+    @use:html.demoEventLifecycle,js.demoEventLifecycle
+    ````
+
+    ````html
+    @var:demoEventLifecycle
+    <div>
+        <ui-btn
+            ref="demoEventLifecycle"
+            v-show="show"
+            @created="echo('created')"
+            @mounted="echo('mounted')"
+            @beforeUpdate="echo('beforeUpdate')"
+            @updated="echo('updated')"
+            @beforeDestroy="echo('beforeDestroy')"
+            @destroyed="echo('destroyed')"
+        >{%text%}</ui-btn>
+
+        <br><br>
+    
+        <a href="javascript:;" onclick="javascript:window.demoEventLifecycle.text='生命周期事件';">触发update</a>
+        <a href="javascript:;" onclick="javascript:morning.findVM('demoEventLifecycle').$destroy();">触发destroy</a>
+    </div>
+    ````
+
+    ````js
+    @var:demoEventLifecycle
+    window.demoEventLifecycle = new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : function () {
+            return {
+               text : '按钮',
+               show : true
+            };
+        },
+        methods : {
+            echo : function (name) {
+                console.log('demo3.console1', `${name} event!`);
+            }
+        }
+    });
+    ````
     </script>
     </doc-component>
 </template>

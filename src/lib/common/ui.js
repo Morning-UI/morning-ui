@@ -214,11 +214,6 @@ let UI = Vue.extend({
         return data;
 
     },
-    beforeCretae : function () {
-
-        this.$emit('beforeCretae');
-
-    },
     created : function () {
 
         this._initSize();
@@ -251,7 +246,16 @@ let UI = Vue.extend({
     },
     destroyed : function () {
 
+        this.$el.remove();
         delete window.morning.map[this.uiid];
+
+        if (this.$vnode &&
+            this.$vnode.data &&
+            this.$vnode.data.ref) {
+        
+            delete window.morning._findCache[this.$vnode.data.ref];
+        
+        }
 
     }
 });

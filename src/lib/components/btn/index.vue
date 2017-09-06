@@ -113,15 +113,15 @@ export default UI.extend({
 
         this.$on('emit', ({ui, evt}) => {
 
-            if (ui.link) {
+            if (ui.conf.link) {
 
-                if ( ui.newTab ) {
+                if ( ui.conf.newTab ) {
 
-                    window.open(ui.link);
+                    window.open(ui.conf.link);
 
                 } else {
 
-                    window.location.href = ui.link;
+                    window.location.href = ui.conf.link;
 
                 }
 
