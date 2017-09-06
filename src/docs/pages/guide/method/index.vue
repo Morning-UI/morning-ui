@@ -93,6 +93,7 @@
     - `getConf` : 获取组件配置
     - `lock` : 锁定组件
     - `unlock` : 解锁组件
+    - `switch` : 切换
 
     </script>
     </doc-guide>

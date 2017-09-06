@@ -65,10 +65,7 @@ export default UI.extend({
             if ( this.state !== 'disabled' &&
                  !this.data.lock ) {
 
-                this.$emit('emit', {
-                    ui : this,
-                    evt
-                });
+                this.$emit('emit');
 
             }
     
@@ -97,6 +94,9 @@ export default UI.extend({
 
         }
     },
+    created : function () {
+        
+    },
     mounted : function () {
 
         this.data.lastState = this.conf.state;
@@ -111,17 +111,17 @@ export default UI.extend({
 
         }
 
-        this.$on('emit', ({ui, evt}) => {
+        this.$on('emit', () => {
 
-            if (ui.conf.link) {
+            if (this.conf.link) {
 
-                if ( ui.conf.newTab ) {
+                if ( this.conf.newTab ) {
 
-                    window.open(ui.conf.link);
+                    window.open(this.conf.link);
 
                 } else {
 
-                    window.location.href = ui.conf.link;
+                    window.location.href = this.conf.link;
 
                 }
 

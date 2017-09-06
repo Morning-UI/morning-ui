@@ -50,6 +50,8 @@
     - `rounded` : 圆角
     - `circle` : 圆形
     - `thumbnail` : 相框
+    - `noborder` : 无边框
+    - `block` : 区块
 
     </script>
     </doc-guide>

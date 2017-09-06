@@ -5,8 +5,8 @@
     >
     <script type="text/markdown">
     # 按钮 `<ui-btn>`
-
-    ### 基础
+    
+    [[[基础]]]
 
     定义一个按钮，这是一个内联块元素。
 
@@ -15,8 +15,8 @@
     ````html
     <ui-btn>按钮</ui-btn>
     ````
-
-    ### 声明
+    
+    [[[声明]]]
 
     #### 支持
 
@@ -49,7 +49,7 @@
     @colorGray
     <ui-btn {$color}>{$&name}</ui-btn>
     ````
-
+    
     #### 状态
     
     ````html
@@ -62,7 +62,7 @@
     <ui-btn {$state} {$color}>{$&name}</ui-btn>
     ````
 
-    ### 配置
+    [[[配置]]]
 
     |KEY|描述|接受值|值类型|默认值|
     |-|-|-|
@@ -93,15 +93,15 @@
     <ui-btn new-tab :link="'http://www.google.com'">新窗口打开链接</ui-btn>
     ````
 
-    ### 方法
+    [[[方法]]]
 
     #### lock([time])
+
+    锁定按钮，锁定后按钮不会触发`emit`事件。
     
     |KEY|可选|描述|接受值|值类型|默认值|
     |-|-|-|-|-|-|
     |time|YES|解锁的时间，单位ms。设置后组件将在解锁时间后自动解锁，不设置则需要调用`unlock()`方法解锁|`undefined`<br>数值(单位ms)|`Undefined`<br>`Number`|`undefined`|
-
-    锁定按钮，锁定后按钮不会触发`emit`事件。
 
     ````html
     <ui-btn ref="demo2">按钮</ui-btn>
@@ -121,7 +121,7 @@
     <a href="javascript:;" onclick="javascript:morning.findVM('demo3').unlock();">解锁</a>
     ````
 
-    ### 事件
+    [[[事件]]]
 
     #### emit
 
@@ -191,7 +191,7 @@
         },
         methods : {
             echo : function (name) {
-                console.log('demo3.console1', `${name} event!`);
+                console.log('demoEventLifecycle.console1', `${name} event!`);
             }
         }
     });

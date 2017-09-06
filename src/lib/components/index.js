@@ -36,6 +36,7 @@ import article                      from './article/index.vue';
 import img                          from './img/index.vue';
 
 import btn                          from './btn/index.vue';
+import tab                          from './tab/index.vue';
 
 export default {
     h,
@@ -72,5 +73,6 @@ export default {
     jumbotron,
     article,
     img,
-    btn
+    btn,
+    tab
 };

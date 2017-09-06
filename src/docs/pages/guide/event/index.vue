@@ -136,6 +136,7 @@
     - `updated` : 更新之后
     - `beforeDestroy` : 销毁之前
     - `emit` : 组件被触发
+    - `switch` : 切换事件
 
     </script>
     </doc-guide>
