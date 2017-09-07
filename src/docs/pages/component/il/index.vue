@@ -5,6 +5,8 @@
     >
     <script type="text/markdown">
     # 内联列表 `<ui-il>`
+    
+    <doc-component-status page="il"></doc-component-status>
 
     [[[基础]]]
 
@@ -39,6 +41,10 @@
         <li>this is {$&name} ui-il</li>
     </ui-il>
     ````
+
+    [[[单元测试]]]
+
+    <iframe src="/coverage/lib/components/il/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>
 
     </script>

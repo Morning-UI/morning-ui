@@ -5,6 +5,8 @@
     >
     <script type="text/markdown">
     # 标签 `<ui-label>`
+    
+    <doc-component-status page="label"></doc-component-status>
 
     [[[基础]]]
 
@@ -101,6 +103,10 @@
     @stateNA
     <ui-label {$state}>{$&name}</ui-label>
     ````
+
+    [[[单元测试]]]
+
+    <iframe src="/coverage/lib/components/label/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>
     </doc-component>
 </template>

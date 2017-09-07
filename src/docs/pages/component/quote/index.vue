@@ -5,6 +5,8 @@
     >
     <script type="text/markdown">
     # 引用文本 `<ui-quote>`
+    
+    <doc-component-status page="quote"></doc-component-status>
 
     [[[基础]]]
 
@@ -38,6 +40,10 @@
     <ui-quote {$color}>{$&name}</ui-quote>
     <br>
     ````
+
+    [[[单元测试]]]
+
+    <iframe src="/coverage/lib/components/quote/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>
     </doc-component>
 </template>

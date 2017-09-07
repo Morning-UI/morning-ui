@@ -5,6 +5,8 @@
     >
     <script type="text/markdown">
     # 文本颜色 `<ui-textcolor>`
+    
+    <doc-component-status page="textcolor"></doc-component-status>
 
     [[[基础]]]
 
@@ -37,6 +39,10 @@
     @colorGray
     <ui-textcolor {$color}>{$&name}</ui-textcolor>
     ````
+
+    [[[单元测试]]]
+
+    <iframe src="/coverage/lib/components/textcolor/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>
     </doc-component>
 </template>

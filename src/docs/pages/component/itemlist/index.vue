@@ -5,6 +5,8 @@
     >
     <script type="text/markdown">
     # 项目列表 `<ui-itemlist>`
+    
+    <doc-component-status page="itemlist"></doc-component-status>
 
     [[[基础]]]
 
@@ -240,6 +242,10 @@
     <br><br>
     
     ````
+
+    [[[单元测试]]]
+
+    <iframe src="/coverage/lib/components/itemlist/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>
     </doc-component>
 </template>

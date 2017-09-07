@@ -5,6 +5,8 @@
     >
     <script type="text/markdown">
     # 中心内容 `<ui-lead>`
+    
+    <doc-component-status page="lead"></doc-component-status>
 
     [[[基础]]]
 
@@ -44,6 +46,10 @@
     @stateNA
     <ui-lead {$state}>{$&name}</ui-lead>
     ````
+
+    [[[单元测试]]]
+
+    <iframe src="/coverage/lib/components/lead/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>
     </doc-component>
 </template>

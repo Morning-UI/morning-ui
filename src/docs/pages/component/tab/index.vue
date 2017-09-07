@@ -5,6 +5,8 @@
     >
     <script type="text/markdown">
     # 标签页 `<ui-tab>`
+    
+    <doc-component-status page="tab"></doc-component-status>
 
     [[[基础]]]
 
@@ -313,6 +315,10 @@
     });
     ````
 
+
+    [[[单元测试]]]
+
+    <iframe src="/coverage/lib/components/tab/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>
     </doc-component>
 </template>

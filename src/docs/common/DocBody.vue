@@ -24,6 +24,9 @@ import _                            from 'underscore';
 import hljs                         from 'highlight.js';
 import DocHeader                    from 'Docs/common/DocHeader.vue';
 import DocSubmenu                   from 'Docs/common/DocSubmenu.vue';
+import DocComponentStatus           from 'Docs/common/DocComponentStatus.vue';
+
+Vue.component('doc-component-status', DocComponentStatus);
 
 let evals = [];
 
@@ -502,6 +505,7 @@ Vue.directive('docmd',{
             md = md.replace(/\[\[\[配置\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="配置">$1</div>$3');
             md = md.replace(/\[\[\[方法\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="方法">$1</div>$3');
             md = md.replace(/\[\[\[事件\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="事件">$1</div>$3');
+            md = md.replace(/\[\[\[单元测试\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="源码">$1</div>$3');
             md = md.replace(/(.|\n)$/, '$1</ui-tab>');
 
             let res = Vue.compile(`<div>${md}</div>`);
@@ -537,7 +541,7 @@ export default {
 
         hljs.initHighlightingOnLoad();
 
-        for(let js of evals) {
+        for (let js of evals) {
             document.body.appendChild(js);
         }
 

@@ -11,6 +11,7 @@ let pathNpm = path.resolve(pathProjectRoot, 'node_modules');
 let pathDist = path.resolve(pathProjectRoot, 'dist');
 let pathSrc = path.resolve(pathProjectRoot, 'src');
 let pathDocs = path.resolve(pathProjectRoot, 'docs');
+let pathCoverage = path.resolve(pathProjectRoot, 'coverage');
 let pathLib = path.resolve(pathSrc, 'lib');
 let pathLibCommon = path.resolve(pathLib, 'common');
 let pathSrcDocs = path.resolve(pathSrc, 'docs');
@@ -215,8 +216,6 @@ prodVerConfig = extend(
     }
 );
 
-
-
 docsConfig = {
     entry : {},
     plugins : [
@@ -241,7 +240,8 @@ docsConfig = {
     devServer : {
         contentBase : [
             pathDocs,
-            pathDist
+            pathDist,
+            pathCoverage
         ],
         compress : true,
         hot : false

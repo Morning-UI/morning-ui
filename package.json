@@ -64,6 +64,7 @@
     "ignore-styles": "^5.0.1",
     "less": "^2.7.2",
     "less-loader": "^4.0.5",
+    "nightwatch": "^0.9.16",
     "nyc": "^11.2.1",
     "require-extension-hooks": "^0.3.0",
     "require-extension-hooks-babel": "^0.1.1",

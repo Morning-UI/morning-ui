@@ -6,6 +6,8 @@
     <script type="text/markdown">
     # 链接 `<ui-link>`
     
+    <doc-component-status page="link"></doc-component-status>
+    
     [[[基础]]]
 
     定义一个链接，这是一个内联块元素。
@@ -196,6 +198,10 @@
         }
     });
     ````
+
+    [[[单元测试]]]
+
+    <iframe src="/coverage/lib/components/link/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>
     </doc-component>
 </template>

@@ -5,6 +5,8 @@
     >
     <script type="text/markdown">
     # 卡片 `<ui-card>`
+    
+    <doc-component-status page="card"></doc-component-status>
 
     [[[基础]]]
 
@@ -72,6 +74,10 @@
         </ui-card>
     </div>
     ````
+
+    [[[单元测试]]]
+
+    <iframe src="/coverage/lib/components/card/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>
     </doc-component>
 </template>

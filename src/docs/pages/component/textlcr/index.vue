@@ -5,6 +5,8 @@
     >
     <script type="text/markdown">
     # 对齐文本 `<ui-textleft>` `<ui-textcenter>` `<ui-textright>`
+    
+    <doc-component-status page="textlcr"></doc-component-status>
 
     [[[基础]]]
 
@@ -28,6 +30,10 @@
     |色彩|不支持|-|
     |状态|不支持|-|
 
+
+    [[[单元测试]]]
+
+    <iframe src="/coverage/lib/components/textlcr/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>
     </doc-component>
 </template>

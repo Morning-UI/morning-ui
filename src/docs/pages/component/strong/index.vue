@@ -5,6 +5,8 @@
     >
     <script type="text/markdown">
     # 着重文本 `<ui-strong>`
+    
+    <doc-component-status page="strong"></doc-component-status>
 
     [[[基础]]]
 
@@ -26,6 +28,10 @@
     |色彩|不支持|-|
     |状态|不支持|-|
 
+
+    [[[单元测试]]]
+
+    <iframe src="/coverage/lib/components/strong/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>
     </doc-component>
 </template>

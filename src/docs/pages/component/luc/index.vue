@@ -5,6 +5,8 @@
     >
     <script type="text/markdown">
     # 大小写 `<ui-lowercase>` `<ui-uppercase>` `<ui-capitalize>`
+    
+    <doc-component-status page="luc"></doc-component-status>
 
     [[[基础]]]
 
@@ -28,6 +30,10 @@
     |色彩|不支持|-|
     |状态|不支持|-|
 
+
+    [[[单元测试]]]
+
+    <iframe src="/coverage/lib/components/luc/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>
     </doc-component>
 </template>

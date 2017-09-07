@@ -6,6 +6,8 @@
     <script type="text/markdown">
     # 按钮 `<ui-btn>`
     
+    <doc-component-status page="btn"></doc-component-status>
+    
     [[[基础]]]
 
     定义一个按钮，这是一个内联块元素。
@@ -196,12 +198,16 @@
         }
     });
     ````
+
+    [[[单元测试]]]
+
+    <iframe src="/coverage/lib/components/btn/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>
     </doc-component>
 </template>
  
 <script>
-import DocComponent                from 'Docs/common/DocComponent.vue';
+import DocComponent                 from 'Docs/common/DocComponent.vue';
 
 export default {
     data : function () {

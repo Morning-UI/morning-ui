@@ -5,6 +5,8 @@
     >
     <script type="text/markdown">
     # 页头 `<ui-header>`
+    
+    <doc-component-status page="header"></doc-component-status>
 
     [[[基础]]]
 
@@ -72,6 +74,10 @@
     @colorGray
     <ui-header {$color}>{$&name}<small>页头子标题</small></ui-header>
     ````
+
+    [[[单元测试]]]
+
+    <iframe src="/coverage/lib/components/header/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>
     </doc-component>
 </template>

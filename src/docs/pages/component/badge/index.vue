@@ -5,6 +5,8 @@
     >
     <script type="text/markdown">
     # 徽章 `<ui-badge>`
+    
+    <doc-component-status page="badge"></doc-component-status>
 
     [[[基础]]]
 
@@ -78,6 +80,10 @@
     @stateNA
     <ui-badge {$state}>{$&name}</ui-badge>
     ````
+
+    [[[单元测试]]]
+
+    <iframe src="/coverage/lib/components/badge/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>
     </doc-component>
 </template>

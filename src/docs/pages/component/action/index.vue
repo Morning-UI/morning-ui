@@ -5,6 +5,8 @@
     >
     <script type="text/markdown">
     # 行动栏 `<ui-action>`
+    
+    <doc-component-status page="action"></doc-component-status>
 
     [[[基础]]]
 
@@ -114,6 +116,11 @@
     </div>
     <br>
     ````
+
+    [[[单元测试]]]
+
+    <iframe src="/coverage/lib/components/action/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
+
     </script>
     </doc-component>
 </template>

@@ -5,6 +5,8 @@
     >
     <script type="text/markdown">
     # 统计 `<ui-statistic>`
+    
+    <doc-component-status page="statistic"></doc-component-status>
 
     [[[基础]]]
 
@@ -110,6 +112,10 @@
         <div class="label">{$&name}</div>
     </ui-statistic>
     ````
+
+    [[[单元测试]]]
+
+    <iframe src="/coverage/lib/components/statistic/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>
     </doc-component>
 </template>

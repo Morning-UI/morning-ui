@@ -5,6 +5,8 @@
     >
     <script type="text/markdown">
     # 描述列表 `<ui-dl>`
+    
+    <doc-component-status page="dl"></doc-component-status>
 
     [[[基础]]]
 
@@ -69,8 +71,10 @@
     </ui-dl>
     <br>
     ````
-    </script>
 
+    [[[单元测试]]]
+
+    <iframe src="/coverage/lib/components/dl/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>
     </doc-component>
 </template>

@@ -5,6 +5,8 @@
     >
     <script type="text/markdown">
     # 带下划线的文本 `<ui-u>`
+    
+    <doc-component-status page="u"></doc-component-status>
 
     [[[基础]]]
 
@@ -26,6 +28,10 @@
     |色彩|不支持|-|
     |状态|不支持|-|
 
+
+    [[[单元测试]]]
+
+    <iframe src="/coverage/lib/components/u/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>
     </doc-component>
 </template>

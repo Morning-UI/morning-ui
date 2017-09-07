@@ -5,6 +5,8 @@
     >
     <script type="text/markdown">
     # 无序列表 `<ui-ul>`
+    
+    <doc-component-status page="ul"></doc-component-status>
 
     [[[基础]]]
 
@@ -80,6 +82,10 @@
     </ui-ul>
     <br>
     ````
+
+    [[[单元测试]]]
+
+    <iframe src="/coverage/lib/components/ul/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>
 
     </script>
