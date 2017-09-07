@@ -9,6 +9,7 @@ let morning = {
         Form
     },
     _components : components,
+    _ignoreElements : [],
     _uiid : 1,
     _findCache : {},
     version : '0.10.0',
@@ -45,8 +46,10 @@ for (let name in morning._components) {
     let component = morning._components[name];
 
     Vue.component(`ui-${component.options.name}`, component);
-    Vue.config.ignoredElements.push(`i-${component.options.name}`);
+    morning._ignoreElements.push(`i-${component.options.name}`);
 
 }
+
+Vue.config.ignoredElements = morning._ignoreElements;
 
 window.morning = morning;

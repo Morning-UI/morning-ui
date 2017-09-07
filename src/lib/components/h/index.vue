@@ -53,7 +53,3 @@ i-h{
 
 }
 </style>
-
-<docs>
-# 123asd213
-</docs>

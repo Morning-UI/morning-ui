@@ -1,4 +1,5 @@
 *.handlebars
 *.html
 *.min.js
-/src/docs/icon/*.js
+/src/docs/**/*
+/src/lib/icon/iconfont.js
