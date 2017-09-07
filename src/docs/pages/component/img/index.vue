@@ -6,7 +6,7 @@
     <script type="text/markdown">
     # 图片 `<ui-img>`
 
-    ### 基础
+    [[[基础]]]
 
     定义图片容器，支持三种不同形状的图片，可为图片添加文字说明。
 
@@ -62,7 +62,7 @@
     <ui-img alt="这里是alt" src="https://d13yacurqjgar.cloudfront.net/noimg.jpeg"></ui-img>
     ````
 
-    ### 声明
+    [[[声明]]]
 
     #### 支持
 

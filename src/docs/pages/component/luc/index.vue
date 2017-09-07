@@ -6,7 +6,7 @@
     <script type="text/markdown">
     # 大小写 `<ui-lowercase>` `<ui-uppercase>` `<ui-capitalize>`
 
-    ### 基础
+    [[[基础]]]
 
     #### 使用
 
@@ -18,7 +18,7 @@
     <div><ui-capitalize>首字母大写的文本: tHere is A LEtter</ui-capitalize></div>
     ````
 
-    ### 声明
+    [[[声明]]]
 
     #### 支持
 

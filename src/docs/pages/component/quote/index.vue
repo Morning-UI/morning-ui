@@ -6,7 +6,7 @@
     <script type="text/markdown">
     # 引用文本 `<ui-quote>`
 
-    ### 基础
+    [[[基础]]]
 
     #### 使用
 
@@ -16,7 +16,7 @@
     <ui-quote>引用文本</ui-quote>
     ````
 
-    ### 声明
+    [[[声明]]]
 
     #### 支持
 

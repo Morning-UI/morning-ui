@@ -6,7 +6,7 @@
     <script type="text/markdown">
     # 对齐文本 `<ui-textleft>` `<ui-textcenter>` `<ui-textright>`
 
-    ### 基础
+    [[[基础]]]
 
     #### 使用
 
@@ -18,7 +18,7 @@
     <ui-textright>右对齐文本</ui-textright>
     ````
 
-    ### 声明
+    [[[声明]]]
 
     #### 支持
 

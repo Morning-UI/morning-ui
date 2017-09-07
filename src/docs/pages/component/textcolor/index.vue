@@ -6,7 +6,7 @@
     <script type="text/markdown">
     # 文本颜色 `<ui-textcolor>`
 
-    ### 基础
+    [[[基础]]]
 
     定义文本的颜色，这是一个内联元素。
 
@@ -16,7 +16,7 @@
     <ui-textcolor>This is ui-textcolor</ui-textcolor>
     ````
 
-    ### 声明
+    [[[声明]]]
 
     #### 支持
 

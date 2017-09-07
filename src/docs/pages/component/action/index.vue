@@ -6,7 +6,7 @@
     <script type="text/markdown">
     # 行动栏 `<ui-action>`
 
-    ### 基础
+    [[[基础]]]
 
     定义一个包含多个操作的行动栏。
 
@@ -65,7 +65,7 @@
     </div>
     ````
 
-    ### 声明
+    [[[声明]]]
 
     #### 支持
 
@@ -125,7 +125,7 @@ export default {
     data : function () {
 
         return {
-            page : 'em'
+            page : 'action'
         };
 
     },

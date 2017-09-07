@@ -6,7 +6,7 @@
     <script type="text/markdown">
     # 着重文本 `<ui-strong>`
 
-    ### 基础
+    [[[基础]]]
 
     #### 使用
 
@@ -16,7 +16,7 @@
     <ui-strong>着重文本</ui-strong>
     ````
 
-    ### 声明
+    [[[声明]]]
 
     #### 支持
 

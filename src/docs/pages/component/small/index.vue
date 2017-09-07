@@ -6,7 +6,7 @@
     <script type="text/markdown">
     # 小号文本 `<ui-small>`
 
-    ### 基础
+    [[[基础]]]
 
     #### 使用
 
@@ -16,7 +16,7 @@
     <ui-small>小号文本</ui-small>
     ````
 
-    ### 声明
+    [[[声明]]]
 
     #### 支持
 
