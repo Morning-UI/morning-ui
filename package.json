@@ -8,13 +8,18 @@
     "dev": "./node_modules/.bin/webpack-dev-server --config ./build/webpack.config.js",
     "lint": "node_modules/.bin/eslint --ext js,vue src/ build/",
     "lint-fix": "npm run lint -- --fix",
-    "test": "cross-env NODE_ENV=test node_modules/.bin/ava test/",
+    "test": "node_modules/.bin/cross-env NODE_ENV=test node_modules/.bin/ava test/",
     "test-watch": "npm run test -- --watch",
-    "unit": "cross-env NODE_ENV=test node_modules/.bin/ava test/unit",
+    "test-snapshot": "npm run unit-snapshot && npm run e2e-snapshot",
+    "test-report": "npm run test -- --tap | tap-out >> report/test.json",
+    "unit": "node_modules/.bin/cross-env NODE_ENV=test node_modules/.bin/ava test/unit",
     "unit-watch": "npm run unit -- --watch",
-    "unit-snapshot": "cross-env NODE_ENV=test node_modules/.bin/ava --update-snapshots",
-    "cover": "cross-env NODE_ENV=test node_modules/.bin/nyc npm run test",
-    "report": "npm run cover && node_modules/.bin/nyc report --reporter=html"
+    "unit-snapshot": "node_modules/.bin/cross-env NODE_ENV=test node_modules/.bin/ava test/unit  --update-snapshots",
+    "e2e": "node_modules/.bin/cross-env NODE_ENV=test node_modules/.bin/ava test/e2e",
+    "e2e-watch": "npm run e2e -- --watch",
+    "e2e-snapshot": "node_modules/.bin/cross-env NODE_ENV=test node_modules/.bin/ava test/e2e  --update-snapshots",
+    "cover": "node_modules/.bin/cross-env NODE_ENV=test node_modules/.bin/nyc npm run test",
+    "cover-report": "npm run cover && node_modules/.bin/nyc report --reporter=html"
   },
   "repository": {
     "type": "git",
@@ -39,6 +44,7 @@
     "highlight.js": "^9.12.0",
     "marked": "^0.3.6",
     "mustache": "^2.3.0",
+    "nightmare": "^2.10.0",
     "underscore": "^1.8.3",
     "vue": "^2.4.2"
   },
@@ -64,12 +70,12 @@
     "ignore-styles": "^5.0.1",
     "less": "^2.7.2",
     "less-loader": "^4.0.5",
-    "nightwatch": "^0.9.16",
     "nyc": "^11.2.1",
     "require-extension-hooks": "^0.3.0",
     "require-extension-hooks-babel": "^0.1.1",
     "require-extension-hooks-vue": "^0.4.0",
     "style-loader": "^0.18.2",
+    "tap-out": "^2.0.0",
     "url-loader": "^0.5.9",
     "vue-loader": "^13.0.4",
     "vue-style-loader": "^3.0.1",
@@ -94,6 +100,7 @@
     "extension": [
       ".js",
       ".vue"
-    ]
+    ],
+    "report-dir": "./report/coverage"
   }
 }

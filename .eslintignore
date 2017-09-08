@@ -3,3 +3,4 @@
 *.min.js
 /src/docs/**/*
 /src/lib/icon/iconfont.js
+nightwatch.config.js

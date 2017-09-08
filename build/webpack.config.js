@@ -11,7 +11,8 @@ let pathNpm = path.resolve(pathProjectRoot, 'node_modules');
 let pathDist = path.resolve(pathProjectRoot, 'dist');
 let pathSrc = path.resolve(pathProjectRoot, 'src');
 let pathDocs = path.resolve(pathProjectRoot, 'docs');
-let pathCoverage = path.resolve(pathProjectRoot, 'coverage');
+let pathReport = path.resolve(pathProjectRoot, 'report');
+let pathCoverage = path.resolve(pathReport, 'coverage');
 let pathLib = path.resolve(pathSrc, 'lib');
 let pathLibCommon = path.resolve(pathLib, 'common');
 let pathSrcDocs = path.resolve(pathSrc, 'docs');
@@ -241,7 +242,7 @@ docsConfig = {
         contentBase : [
             pathDocs,
             pathDist,
-            pathCoverage
+            pathReport
         ],
         compress : true,
         hot : false

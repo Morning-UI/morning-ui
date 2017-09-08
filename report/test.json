@@ -1,0 +1,188 @@
+{
+  "tests": [
+    {
+      "type": "test",
+      "name": "unit › components › h › base : init component",
+      "raw": "# unit › components › h › base : init component",
+      "number": 1
+    },
+    {
+      "type": "test",
+      "name": "unit › components › btn › base : init component",
+      "raw": "# unit › components › btn › base : init component",
+      "number": 2
+    },
+    {
+      "type": "test",
+      "name": "unit › components › btn › config : link",
+      "raw": "# unit › components › btn › config : link",
+      "number": 3
+    },
+    {
+      "type": "test",
+      "name": "unit › index › unit test is ready",
+      "raw": "# unit › index › unit test is ready",
+      "number": 4
+    },
+    {
+      "type": "test",
+      "name": "e2e › index › e2e test is ready",
+      "raw": "# e2e › index › e2e test is ready",
+      "number": 5
+    },
+    {
+      "type": "test",
+      "name": "e2e › components › h › size",
+      "raw": "# e2e › components › h › size",
+      "number": 6
+    }
+  ],
+  "asserts": [
+    {
+      "type": "assert",
+      "raw": "ok 1 - unit › components › h › base : init component",
+      "ok": true,
+      "number": 1,
+      "name": "unit › components › h › base : init component",
+      "test": 1
+    },
+    {
+      "type": "assert",
+      "raw": "ok 2 - unit › components › btn › base : init component",
+      "ok": true,
+      "number": 2,
+      "name": "unit › components › btn › base : init component",
+      "test": 2
+    },
+    {
+      "type": "assert",
+      "raw": "ok 3 - unit › components › btn › config : link",
+      "ok": true,
+      "number": 3,
+      "name": "unit › components › btn › config : link",
+      "test": 3
+    },
+    {
+      "type": "assert",
+      "raw": "ok 4 - unit › index › unit test is ready",
+      "ok": true,
+      "number": 4,
+      "name": "unit › index › unit test is ready",
+      "test": 4
+    },
+    {
+      "type": "assert",
+      "raw": "ok 5 - e2e › index › e2e test is ready",
+      "ok": true,
+      "number": 5,
+      "name": "e2e › index › e2e test is ready",
+      "test": 5
+    },
+    {
+      "type": "assert",
+      "raw": "ok 6 - e2e › components › h › size",
+      "ok": true,
+      "number": 6,
+      "name": "e2e › components › h › size",
+      "test": 6
+    }
+  ],
+  "versions": [
+    {
+      "type": "version",
+      "raw": "TAP version 13"
+    }
+  ],
+  "results": [
+    {
+      "type": "result",
+      "raw": "# tests 6",
+      "name": "tests",
+      "count": "6"
+    },
+    {
+      "type": "result",
+      "raw": "# pass 6",
+      "name": "pass",
+      "count": "6"
+    },
+    {
+      "type": "result",
+      "raw": "# fail 0",
+      "name": "fail",
+      "count": "0"
+    }
+  ],
+  "comments": [
+    {
+      "type": "comment",
+      "raw": "> morning-ui@1.0.0 test /Users/early/Work/HMP-dev/data/morning",
+      "test": 0
+    },
+    {
+      "type": "comment",
+      "raw": "> cross-env NODE_ENV=test node_modules/.bin/ava test/ \"--tap\"",
+      "test": 0
+    }
+  ],
+  "plans": [
+    {
+      "type": "plan",
+      "raw": "1..6",
+      "from": 1,
+      "to": 6
+    }
+  ],
+  "pass": [
+    {
+      "type": "assert",
+      "raw": "ok 1 - unit › components › h › base : init component",
+      "ok": true,
+      "number": 1,
+      "name": "unit › components › h › base : init component",
+      "test": 1
+    },
+    {
+      "type": "assert",
+      "raw": "ok 2 - unit › components › btn › base : init component",
+      "ok": true,
+      "number": 2,
+      "name": "unit › components › btn › base : init component",
+      "test": 2
+    },
+    {
+      "type": "assert",
+      "raw": "ok 3 - unit › components › btn › config : link",
+      "ok": true,
+      "number": 3,
+      "name": "unit › components › btn › config : link",
+      "test": 3
+    },
+    {
+      "type": "assert",
+      "raw": "ok 4 - unit › index › unit test is ready",
+      "ok": true,
+      "number": 4,
+      "name": "unit › index › unit test is ready",
+      "test": 4
+    },
+    {
+      "type": "assert",
+      "raw": "ok 5 - e2e › index › e2e test is ready",
+      "ok": true,
+      "number": 5,
+      "name": "e2e › index › e2e test is ready",
+      "test": 5
+    },
+    {
+      "type": "assert",
+      "raw": "ok 6 - e2e › components › h › size",
+      "ok": true,
+      "number": 6,
+      "name": "e2e › components › h › size",
+      "test": 6
+    }
+  ],
+  "fail": [],
+  "errors": []
+}

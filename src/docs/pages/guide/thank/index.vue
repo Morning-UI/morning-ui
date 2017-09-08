@@ -14,7 +14,7 @@
     - Bootstrap [http://getbootstrap.com/](http://getbootstrap.com/)
     - Element [http://element.eleme.io/](http://element.eleme.io/)
 
-    在此向这些项目致谢。
+    在此向这些项目致敬。
 
     #### Vue.js
 
@@ -27,6 +27,7 @@
     - 冯春艳(chunyan.feng@husor.com)
     - 杜金金(jinjin.du@husor.com)
     - 赵朋(peng.zhao@husor.com)
+    - 干有银(youyin.gan@husor.com)
     - 张桠鑫(yaxin.zhang@husor.com)
     - 童颖(ying.tong@husor.com)
     - 段俊杰(junjie.duan@husor.com)
