@@ -1,5 +1,6 @@
 <template>
     <doc-body
+        class="component"
         :category="category"
         v-bind="$props"
     >
