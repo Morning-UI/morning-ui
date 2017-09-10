@@ -75,6 +75,8 @@ export default UI.extend({
             this.data.lock = false;
             this.conf.state = this.data.lastState;
 
+            return this;
+
         },
         lock : function (time) {
 
@@ -87,7 +89,7 @@ export default UI.extend({
             this.data.lock = true;
             this.conf.state = 'loading';
 
-            if ( time ) {
+            if (time) {
 
                 setTimeout(() => {
 
@@ -101,20 +103,19 @@ export default UI.extend({
 
             }
 
+            return this;
+
         }
-    },
-    created : function () {
-        
     },
     mounted : function () {
 
         this.data.lastState = this.conf.state;
 
-        if ( typeof this.locked === 'number' ) {
+        if (typeof this.locked === 'number') {
 
-            this.lock( +this.locked );
+            this.lock(+this.locked);
 
-        } else if ( this.locked === true ) {
+        } else if (this.locked === true) {
 
             this.lock();
 
@@ -124,7 +125,7 @@ export default UI.extend({
 
             if (this.conf.link) {
 
-                if ( this.conf.newTab ) {
+                if (this.conf.newTab) {
 
                     window.open(this.conf.link);
 

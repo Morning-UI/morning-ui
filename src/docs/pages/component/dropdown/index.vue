@@ -4,130 +4,172 @@
         :hasPadding="true"
     >
     <script type="text/markdown">
-    # 按钮 `<ui-btn>`
+    # 下拉式按钮组 `<ui-dropdown>`
     
-    <doc-component-status page="btn"></doc-component-status>
+    <doc-component-status page="dropdown"></doc-component-status>
     
     [[[基础]]]
 
-    定义一个按钮，这是一个内联块元素。
+    定义下拉式按钮组，这是一个内联块元素。
+
+    `ui-dropdown`内包含一组`ui-btn`或`ui-btngroup`，可以标记两个特定的按钮:
+
+    - `slot="showbtn"` : 标记默认显示的按钮
+    - `emitbtn` : 标记触发按钮组的按钮。
 
     #### 使用
 
     ````html
-    <ui-btn>按钮</ui-btn>
+    <ui-dropdown>
+        <ui-btn slot="showbtn" emitbtn>更多 <i class="iconfont">&#xe697;</i></ui-btn>
+        <ui-btn white>收藏</ui-btn>
+        <ui-btn white>修改</ui-btn>
+        <ui-btn danger>删除</ui-btn>
+    </ui-dropdown>
     ````
+
+    #### 分别标记`showbtn`和`emitbtn`
     
+    分开标记`showbtn`和`emitbtn`，再配合`ui-btngroup`可以实现非常棒的效果。
+
+    ````html
+    <ui-dropdown>
+        <ui-btngroup slot="showbtn">
+            <ui-btn success>立即购买</ui-btn>
+            <ui-btn minor emitbtn><i class="iconfont">&#xe697;</i></ui-btn>
+        </ui-btngroup>
+        <ui-btn info>加入购物车</ui-btn>
+        <ui-btn white><i class="iconfont">&#xe6e9;</i> 收藏</ui-btn>
+        <ui-btn white><i class="iconfont">&#xe675;</i> 分享</ui-btn>
+    </ui-dropdown>
+    ````
+
+
     [[[声明]]]
 
     #### 支持
 
     |类型|支持|默认|
     |-|-|-|
-    |尺寸|全部|`m`|
-    |色彩|全部|`theme`|
-    |状态|全部|`normal`|
+    |尺寸|不支持|-|
+    |色彩|不支持|-|
+    |状态|不支持|-|
 
-    #### 尺寸
-
-    ````html
-    @size
-    <ui-btn {$size}>{$&name}</ui-btn>
-    ````
-
-    ````html
-    @size
-    <ui-btn {$size} loading>{$&name}</ui-btn>
-    ````
-
-    #### 色彩
-
-    ````html
-    @colorTheme
-    @colorFeature
-    @colorBlack
-    @colorBlue
-    @colorSilver
-    @colorGray
-    <ui-btn {$color}>{$&name}</ui-btn>
-    ````
-    
-    #### 状态
-    
-    ````html
-    @stateALLwithTheme
-    @stateALLwithFeature
-    @stateALLwithBlack
-    @stateALLwithBlue
-    @stateALLwithSilver
-    @stateALLwithGray
-    <ui-btn {$state} {$color}>{$&name}</ui-btn>
-    ````
+    下拉式按钮组不支持声明，但可通过`ui-btn`/`ui-btngroup`自身的声明来控制。
 
     [[[配置]]]
 
     |KEY|描述|接受值|值类型|默认值|
     |-|-|-|
-    |link|链接地址，若为空则不跳转|url地址|String|`''`|
-    |locked|锁定模式，用来防止组件在短时间内被重复触发。若设置一个时间数值(ms)，该组件在时间内只触发一次。也可设为`true`，触发后需要通过`unlock()`方法来解锁组件。|`true`<br>`false`<br>数值(单位ms)|Number<br>Boolean|`false`|
-    |new-tab|是否在新窗口中打开链接|`true`<br>`false`|Boolean|`false`|
+    |auto-hide|点击下拉菜单中按钮后自动隐藏|`true`<br>`false`|Boolean|`true`|
 
-    #### link
+    #### auto-hide
 
-    ````html
-    <ui-btn :link="'http://www.google.com'">链接</ui-btn>
-    ````
-
-    #### locked
+    点击菜单中按钮后不会自动隐藏，需要点击`更多`来隐藏。
 
     ````html
-    <ui-btn :locked="3000">3秒后自动解锁</ui-btn>
-    ````
-
-    ````html
-    <ui-btn ref="demo1" locked>手动解锁</ui-btn>
-    <a href="javascript:;" onclick="javascript:morning.findVM('demo1').unlock();">解锁</a>
-    ````
-
-    #### new-tab
-
-    ````html
-    <ui-btn new-tab :link="'http://www.google.com'">新窗口打开链接</ui-btn>
+    <ui-dropdown :auto-hide="false">
+        <ui-btn slot="showbtn" emitbtn>更多</ui-btn>
+        <ui-btn white>收藏</ui-btn>
+        <ui-btn white>修改</ui-btn>
+        <ui-btn danger>删除</ui-btn>
+    </ui-dropdown>
     ````
 
     [[[方法]]]
 
-    #### lock([time])
+    #### toggle([show])
 
-    锁定按钮，锁定后按钮不会触发`emit`事件。
+    切换下拉按钮组是否显示。
     
     |KEY|可选|描述|接受值|值类型|默认值|
     |-|-|-|-|-|-|
-    |time|YES|解锁的时间，单位ms。设置后组件将在解锁时间后自动解锁，不设置则需要调用`unlock()`方法解锁|`undefined`<br>数值(单位ms)|`Undefined`<br>`Number`|`undefined`|
+    |show|YES|指定按钮组需要切换到隐藏或显示，若不设置则切换到相反的状态。|`undefined`<br>`true`<br>`false`|`Undefined`<br>`Boolean`|`undefined`|
 
     ````html
-    <ui-btn ref="demo2">按钮</ui-btn>
+    <ui-dropdown ref="demo1">
+        <ui-btn slot="showbtn" emitbtn>更多 <i class="iconfont">&#xe697;</i></ui-btn>
+        <ui-btn white>收藏</ui-btn>
+        <ui-btn white>修改</ui-btn>
+        <ui-btn danger>删除</ui-btn>
+    </ui-dropdown>
     <br><br> 
-    <a href="javascript:;" onclick="javascript:morning.findVM('demo2').lock();">锁定</a>
-    <a href="javascript:;" onclick="javascript:morning.findVM('demo2').lock(2000);">锁定2s</a>
-    <a href="javascript:;" onclick="javascript:morning.findVM('demo2').unlock();">解锁</a>
-    ````
-
-    #### unlock()
-
-    解锁按钮，解锁后按钮可触发`emit`事件。
-
-    ````html
-    <ui-btn ref="demo3" locked>按钮</ui-btn>
-    <br><br> 
-    <a href="javascript:;" onclick="javascript:morning.findVM('demo3').unlock();">解锁</a>
+    <a href="javascript:;" onclick="javascript:morning.findVM('demo1').toggle();">切换相反状态</a>
+    <a href="javascript:;" onclick="javascript:morning.findVM('demo1').toggle(true);">切换至显示</a>
+    <a href="javascript:;" onclick="javascript:morning.findVM('demo1').toggle(false);">切换至隐藏</a>
     ````
 
     [[[事件]]]
 
     #### emit
 
-    当按钮被点击时触发。
+    当按钮组显示或隐藏时触发`emit`事件。
+
+    ````mixin
+    @use:html.demo1,js.demo1
+    ````
+
+    ````html
+    @var:demo1
+    <div>
+        <ui-dropdown @emit="echo">
+            <ui-btn slot="showbtn" emitbtn>emit事件 <i class="iconfont">&#xe697;</i></ui-btn>
+            <ui-btn white>收藏</ui-btn>
+            <ui-btn white>修改</ui-btn>
+            <ui-btn danger>删除</ui-btn>
+        </ui-dropdown>
+    </div>
+    ````
+
+    ````js
+    @var:demo1
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        methods : {
+            echo : function () {
+                console.log('demo1.console1', 'emit event!');
+            }
+        }
+    });
+    ````
+
+    #### show
+
+    当按钮组显示时触发`show`事件。
+
+    ````mixin
+    @use:html.demo2,js.demo2
+    ````
+
+    ````html
+    @var:demo2
+    <div>
+        <ui-dropdown @show="echo">
+            <ui-btn slot="showbtn" emitbtn>show事件 <i class="iconfont">&#xe697;</i></ui-btn>
+            <ui-btn white>收藏</ui-btn>
+            <ui-btn white>修改</ui-btn>
+            <ui-btn danger>删除</ui-btn>
+        </ui-dropdown>
+    </div>
+    ````
+
+    ````js
+    @var:demo2
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        methods : {
+            echo : function () {
+                console.log('demo2.console1', 'show event!');
+            }
+        }
+    });
+    ````
+
+    #### hide
+
+    当按钮组隐藏时触发`hide`事件。
 
     ````mixin
     @use:html.demo3,js.demo3
@@ -136,7 +178,12 @@
     ````html
     @var:demo3
     <div>
-        <ui-btn @emit="echo">点击触发emit事件</ui-btn>
+        <ui-dropdown @hide="echo">
+            <ui-btn slot="showbtn" emitbtn>hide事件 <i class="iconfont">&#xe697;</i></ui-btn>
+            <ui-btn white>收藏</ui-btn>
+            <ui-btn white>修改</ui-btn>
+            <ui-btn danger>删除</ui-btn>
+        </ui-dropdown>
     </div>
     ````
 
@@ -147,7 +194,7 @@
         template : '{$template}',
         methods : {
             echo : function () {
-                console.log('demo3.console1', 'emit event!');
+                console.log('demo3.console1', 'hide event!');
             }
         }
     });
@@ -162,7 +209,7 @@
     ````html
     @var:demoEventLifecycle
     <div>
-        <ui-btn
+        <ui-dropdown
             ref="demoEventLifecycle"
             v-show="show"
             @created="echo('created')"
@@ -171,7 +218,14 @@
             @updated="echo('updated')"
             @beforeDestroy="echo('beforeDestroy')"
             @destroyed="echo('destroyed')"
-        >{%text%}</ui-btn>
+        >
+
+            <ui-btn slot="showbtn" emitbtn>{%text%} <i class="iconfont">&#xe697;</i></ui-btn>
+            <ui-btn white>收藏</ui-btn>
+            <ui-btn white>修改</ui-btn>
+            <ui-btn danger>删除</ui-btn>
+
+        </ui-dropdown>
 
         <br><br>
     
@@ -187,7 +241,7 @@
         template : '{$template}',
         data : function () {
             return {
-               text : '按钮',
+               text : '下拉式按钮组',
                show : true
             };
         },
@@ -213,7 +267,7 @@ export default {
     data : function () {
 
         return {
-            page : 'btn'
+            page : 'dropdown'
         };
 
     },

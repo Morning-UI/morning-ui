@@ -65,7 +65,7 @@ export default {
             let e2ePassTest = 0;
             let e2eFailTest = 0;
 
-            console.log(data);
+            console.log(this.page);
 
             for (let item of data.tests) {
 

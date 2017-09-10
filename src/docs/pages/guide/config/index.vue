@@ -208,6 +208,8 @@
     - `link` : 链接
     - `locked` : 锁定
     - `new-tab` : 新标签
+    - `time` : 时间
+    - `note` : 备注
 
     </script>
     </doc-guide>

@@ -187,7 +187,7 @@
         template : '{$template}',
         data : function () {
             return {
-               text : '按钮',
+               text : '链接',
                show : true
             };
         },

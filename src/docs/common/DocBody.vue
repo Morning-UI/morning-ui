@@ -593,6 +593,8 @@ export default {
     box-sizing: border-box;
     border: 1px #f1f4f6 solid;
     border-radius:3px 3px 0 0;
+    z-index: 9;
+    position: relative;
 
     &+pre{
         border-radius: 0 0 3px 3px;

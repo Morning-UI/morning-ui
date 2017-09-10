@@ -113,6 +113,8 @@
     - `beforeUpdate` : 更新之前
     - `updated` : 更新之后
     - `beforeDestroy` : 销毁之前
+    - `show` : 显示
+    - `hide` : 隐藏
 
     通过生命周期事件，可以让组件在不同周期中执行父vm的逻辑。
 

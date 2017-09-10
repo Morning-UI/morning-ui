@@ -85,7 +85,7 @@ export default UI.extend({
 
             if ( name === this.data.selectTab ) {
 
-                return;
+                return this;
 
             }
 
@@ -133,6 +133,8 @@ export default UI.extend({
 
             this.$emit('switch');
 
+            return this;
+
         },
         switchNext : function () {
 
@@ -150,6 +152,8 @@ export default UI.extend({
 
             }
 
+            return this;
+
         },
         switchPrev : function () {
 
@@ -166,6 +170,8 @@ export default UI.extend({
                 this.switch(this.data.tabs[this.data.tabs.length - 1]);
         
             }
+
+            return this;
 
         }
     },

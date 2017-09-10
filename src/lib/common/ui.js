@@ -194,6 +194,7 @@ let UI = Vue.extend({
         let data = {};
 
         data.uiid = window.morning._uiid++;
+        data.morning = null;
         data.conf = {};
         data.data = {};
 
@@ -225,6 +226,7 @@ let UI = Vue.extend({
     mounted : function () {
 
         window.morning.map[this.uiid] = this;
+        this.morning = window.morning;
 
         this.$emit('mounted');
 

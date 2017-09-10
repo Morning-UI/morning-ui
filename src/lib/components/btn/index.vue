@@ -75,6 +75,8 @@ export default UI.extend({
             this.data.lock = false;
             this.conf.state = this.data.lastState;
 
+            return this;
+
         },
         lock : function (time) {
 
@@ -101,10 +103,9 @@ export default UI.extend({
 
             }
 
+            return this;
+
         }
-    },
-    created : function () {
-        
     },
     mounted : function () {
 

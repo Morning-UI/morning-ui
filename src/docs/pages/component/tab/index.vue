@@ -303,7 +303,7 @@
         template : '{$template}',
         data : function () {
             return {
-               text : '按钮',
+               text : '标签页',
                show : true
             };
         },
@@ -314,7 +314,6 @@
         }
     });
     ````
-
 
     [[[单元测试]]]
 

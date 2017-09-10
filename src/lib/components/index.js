@@ -38,7 +38,9 @@ import img                          from './img/index.vue';
 
 import btn                          from './btn/index.vue';
 import link                         from './link/index.vue';
+import dropdown                     from './dropdown/index.vue';
 import tab                          from './tab/index.vue';
+import load                         from './load/index.vue';
 
 export default {
     h,
@@ -78,5 +80,7 @@ export default {
     img,
     btn,
     link,
-    tab
+    dropdown,
+    tab,
+    load
 };
