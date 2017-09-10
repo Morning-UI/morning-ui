@@ -39,7 +39,7 @@
     - `fill` : 高度填满父元素
     - `full` : 元素没有内边距
     - `margin` : 元素有外边距
-    - `horizon` : 水平排列
+    - `horizontal` : 水平排列
     - `vertical` : 垂直排列
     - `underline` : 下划线
     - `mark` : 包含标记
@@ -52,6 +52,7 @@
     - `thumbnail` : 相框
     - `noborder` : 无边框
     - `block` : 区块
+    - `split` : 分隔
 
     </script>
     </doc-guide>

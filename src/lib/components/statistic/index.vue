@@ -33,12 +33,12 @@ i-statistic{
     .value i{ font-size: inherit; vertical-align: top !important; line-height: 1em; height: 1em; margin-right: 0.1em; }
     .value img{ vertical-align: baseline !important; margin-right: 0.25em; }
 
-    &.horizon .label,
-    &.horizon .value{
+    &.horizontal .label,
+    &.horizontal .value{
         display:inline-block;
     }
 
-    &.horizon{
+    &.horizontal{
         .label:last-child{
             margin-top: 0;
             margin-left: 0.2em;
@@ -48,7 +48,7 @@ i-statistic{
         }
     }
 
-    &.horizon {
+    &.horizontal {
         .label:first-child{
             margin-top: 0.2em;
             margin-left: 0;

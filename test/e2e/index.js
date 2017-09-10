@@ -2,7 +2,7 @@ import test                         from 'ava';
 import nightmare                    from 'nightmare';
 
 const runner = nightmare({
-    show : true
+    show : false
 });
 
 test.serial('e2e test is ready', async t => {

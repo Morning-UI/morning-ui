@@ -1,7 +1,7 @@
 <template>
-    <i-btn
+    <i-dropdown
         :_uiid="uiid"
-        :class="[sizeClass, styleClass, stateClass]"
+        :class="[]"
 
         :link="link"
         :locked="locked"
@@ -9,7 +9,7 @@
 
         @click="_onClick"
     >
-
+<div class="btnlist">{{{content}}}</div>
     <template v-if="conf.state === 'loading'">
         <i class="morningicon">&#xe703;</i>
         <span><slot></slot></span>
@@ -22,7 +22,7 @@
         <slot></slot>
     </template>
         
-    </i-btn>
+    </i-dropdown>
 </template>
  
 <script>
@@ -145,7 +145,7 @@ export default UI.extend({
 <style lang="less">
 @import '~Common/var.less';
 
-i-btn{
+i-dropdown{
     display: inline-block;
     padding: 0 1.1em;
     border-radius: 0.3em;

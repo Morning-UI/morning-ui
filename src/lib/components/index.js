@@ -31,6 +31,7 @@ import badge                        from './badge/index.vue';
 import label                        from './label/index.vue';
 import statistic                    from './statistic/index.vue';
 import action                       from './action/index.vue';
+import btngroup                     from './btngroup/index.vue';
 import jumbotron                    from './jumbotron/index.vue';
 import article                      from './article/index.vue';
 import img                          from './img/index.vue';
@@ -71,6 +72,7 @@ export default {
     label,
     statistic,
     action,
+    btngroup,
     jumbotron,
     article,
     img,

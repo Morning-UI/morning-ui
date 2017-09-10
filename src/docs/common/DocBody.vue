@@ -299,6 +299,18 @@ let helper = {
         });
 
     },
+    stateALL : opts => {
+
+        let template = `{$#state}${opts.code}\n{$/state}`;
+
+        Mustache.parse(template, ['{$', '}']);
+
+        return helper.normal({
+            code : Mustache.render(template, data),
+            result : opts.result
+        });
+
+    },
     stateALLwithTheme : opts => {
 
         let template = `{$#theme}<p>{$name}</p>\n{$#state}${opts.code}\n{$/state}<br/><br/>\n{$/theme}`;

@@ -31,7 +31,7 @@ export default {
         '统计<i class="tag done"></i>' : '/component/statistic.html',
         '行动栏<i class="tag done"></i>' : '/component/action.html',
         '表单组<i class="tag coming"></i>' : '/component/formgroup.html',
-        '按钮组<i class="tag coming"></i>' : '/component/btngroup.html',
+        '按钮组<i class="tag done"></i>' : '/component/btngroup.html',
         '步骤<i class="tag new"></i>' : 'b',
         '巨幕<i class="tag done"></i>' : '/component/jumbotron.html',
         工具条 : 'b',

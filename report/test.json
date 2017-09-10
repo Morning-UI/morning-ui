@@ -2,26 +2,26 @@
   "tests": [
     {
       "type": "test",
+      "name": "unit › index › unit test is ready",
+      "raw": "# unit › index › unit test is ready",
+      "number": 1
+    },
+    {
+      "type": "test",
       "name": "unit › components › h › base : init component",
       "raw": "# unit › components › h › base : init component",
-      "number": 1
+      "number": 2
     },
     {
       "type": "test",
       "name": "unit › components › btn › base : init component",
       "raw": "# unit › components › btn › base : init component",
-      "number": 2
+      "number": 3
     },
     {
       "type": "test",
       "name": "unit › components › btn › config : link",
       "raw": "# unit › components › btn › config : link",
-      "number": 3
-    },
-    {
-      "type": "test",
-      "name": "unit › index › unit test is ready",
-      "raw": "# unit › index › unit test is ready",
       "number": 4
     },
     {
@@ -35,39 +35,51 @@
       "name": "e2e › components › h › size",
       "raw": "# e2e › components › h › size",
       "number": 6
+    },
+    {
+      "type": "test",
+      "name": "e2e › components › h › style",
+      "raw": "# e2e › components › h › style",
+      "number": 7
+    },
+    {
+      "type": "test",
+      "name": "e2e › components › h › state",
+      "raw": "# e2e › components › h › state",
+      "number": 8
     }
   ],
   "asserts": [
     {
       "type": "assert",
-      "raw": "ok 1 - unit › components › h › base : init component",
+      "raw": "ok 1 - unit › index › unit test is ready",
       "ok": true,
       "number": 1,
-      "name": "unit › components › h › base : init component",
+      "name": "unit › index › unit test is ready",
       "test": 1
     },
     {
       "type": "assert",
-      "raw": "ok 2 - unit › components › btn › base : init component",
+      "raw": "ok 2 - unit › components › h › base : init component",
       "ok": true,
       "number": 2,
-      "name": "unit › components › btn › base : init component",
+      "name": "unit › components › h › base : init component",
       "test": 2
     },
     {
       "type": "assert",
-      "raw": "ok 3 - unit › components › btn › config : link",
+      "raw": "ok 3 - unit › components › btn › base : init component",
       "ok": true,
       "number": 3,
-      "name": "unit › components › btn › config : link",
+      "name": "unit › components › btn › base : init component",
       "test": 3
     },
     {
       "type": "assert",
-      "raw": "ok 4 - unit › index › unit test is ready",
+      "raw": "ok 4 - unit › components › btn › config : link",
       "ok": true,
       "number": 4,
-      "name": "unit › index › unit test is ready",
+      "name": "unit › components › btn › config : link",
       "test": 4
     },
     {
@@ -85,6 +97,22 @@
       "number": 6,
       "name": "e2e › components › h › size",
       "test": 6
+    },
+    {
+      "type": "assert",
+      "raw": "ok 7 - e2e › components › h › style",
+      "ok": true,
+      "number": 7,
+      "name": "e2e › components › h › style",
+      "test": 7
+    },
+    {
+      "type": "assert",
+      "raw": "ok 8 - e2e › components › h › state",
+      "ok": true,
+      "number": 8,
+      "name": "e2e › components › h › state",
+      "test": 8
     }
   ],
   "versions": [
@@ -96,15 +124,15 @@
   "results": [
     {
       "type": "result",
-      "raw": "# tests 6",
+      "raw": "# tests 8",
       "name": "tests",
-      "count": "6"
+      "count": "8"
     },
     {
       "type": "result",
-      "raw": "# pass 6",
+      "raw": "# pass 8",
       "name": "pass",
-      "count": "6"
+      "count": "8"
     },
     {
       "type": "result",
@@ -116,7 +144,7 @@
   "comments": [
     {
       "type": "comment",
-      "raw": "> morning-ui@1.0.0 test /Users/early/Work/HMP-dev/data/morning",
+      "raw": "> morning-ui@1.0.0 test /Users/early/Work/Husor.Inc/dev/data/morning",
       "test": 0
     },
     {
@@ -128,42 +156,42 @@
   "plans": [
     {
       "type": "plan",
-      "raw": "1..6",
+      "raw": "1..8",
       "from": 1,
-      "to": 6
+      "to": 8
     }
   ],
   "pass": [
     {
       "type": "assert",
-      "raw": "ok 1 - unit › components › h › base : init component",
+      "raw": "ok 1 - unit › index › unit test is ready",
       "ok": true,
       "number": 1,
-      "name": "unit › components › h › base : init component",
+      "name": "unit › index › unit test is ready",
       "test": 1
     },
     {
       "type": "assert",
-      "raw": "ok 2 - unit › components › btn › base : init component",
+      "raw": "ok 2 - unit › components › h › base : init component",
       "ok": true,
       "number": 2,
-      "name": "unit › components › btn › base : init component",
+      "name": "unit › components › h › base : init component",
       "test": 2
     },
     {
       "type": "assert",
-      "raw": "ok 3 - unit › components › btn › config : link",
+      "raw": "ok 3 - unit › components › btn › base : init component",
       "ok": true,
       "number": 3,
-      "name": "unit › components › btn › config : link",
+      "name": "unit › components › btn › base : init component",
       "test": 3
     },
     {
       "type": "assert",
-      "raw": "ok 4 - unit › index › unit test is ready",
+      "raw": "ok 4 - unit › components › btn › config : link",
       "ok": true,
       "number": 4,
-      "name": "unit › index › unit test is ready",
+      "name": "unit › components › btn › config : link",
       "test": 4
     },
     {
@@ -181,6 +209,22 @@
       "number": 6,
       "name": "e2e › components › h › size",
       "test": 6
+    },
+    {
+      "type": "assert",
+      "raw": "ok 7 - e2e › components › h › style",
+      "ok": true,
+      "number": 7,
+      "name": "e2e › components › h › style",
+      "test": 7
+    },
+    {
+      "type": "assert",
+      "raw": "ok 8 - e2e › components › h › state",
+      "ok": true,
+      "number": 8,
+      "name": "e2e › components › h › state",
+      "test": 8
     }
   ],
   "fail": [],

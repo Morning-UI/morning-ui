@@ -47,13 +47,13 @@
     #### 水平名称
 
     ````html
-    <ui-statistic class="horizon">
+    <ui-statistic class="horizontal">
         <div class="value">5,550</div>
         <div class="label">downloads</div>
     </ui-statistic>
 
 
-    <ui-statistic class="horizon">
+    <ui-statistic class="horizontal">
         <div class="label">downloads</div>
         <div class="value">5,550</div>
     </ui-statistic>

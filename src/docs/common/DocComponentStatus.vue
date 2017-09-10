@@ -30,13 +30,18 @@ export default {
     },
     computed : {
         isUnitPass : function () {
+
             return this.unit === 'pass';
+
         },
         isE2EPass : function () {
+
             return this.e2e === 'pass';
+
         }
     },
     data : function () {
+
         return {
             unit : '-',
             unitNote : '',
@@ -47,10 +52,11 @@ export default {
             coverage : '-',
             coverageLevel : '-'
         };
+
     },
     mounted : function () {
 
-        $.get('/report/test.json', (data) => {
+        $.get('/report/test.json', data => {
 
             let unitAllTest = 0;
             let unitPassTest = 0;
@@ -59,37 +65,65 @@ export default {
             let e2ePassTest = 0;
             let e2eFailTest = 0;
 
+            console.log(data);
+
             for (let item of data.tests) {
+
+                if (/\# SKIP/.test(item.name)) {
+
+                    return;
+
+                }
 
                 let unitReg = new RegExp(`unit › components › ${this.page} › `);
                 let e2eReg = new RegExp(`e2e › components › ${this.page} › `);
 
-                if(unitReg.test(item.name)) {
+                if (unitReg.test(item.name)) {
+
                     unitAllTest++;
+
                 }
 
-                if(e2eReg.test(item.name)) {
+                if (e2eReg.test(item.name)) {
+
                     e2eAllTest++;
+
                 }
 
             }
 
             for (let item of data.pass) {
 
+                if (/\# SKIP/.test(item.name)) {
+
+                    return;
+
+                }
+
                 let unitReg = new RegExp(`unit › components › ${this.page} › `);
                 let e2eReg = new RegExp(`e2e › components › ${this.page} › `);
 
-                if(unitReg.test(item.name)) {
+                if (unitReg.test(item.name)) {
+
                     unitPassTest++;
+
                 }
 
-                if(e2eReg.test(item.name)) {
+                if (e2eReg.test(item.name)) {
+
                     e2ePassTest++;
+
                 }
 
             }
 
             for (let item of data.fail) {
+
+                if (/\# SKIP/.test(item.name)) {
+
+                    return;
+
+                }
 
                 let unitReg = new RegExp(`unit › components › ${this.page} › `);
                 let e2eReg = new RegExp(`e2e › components › ${this.page} › `);
@@ -118,6 +152,7 @@ export default {
 
             }
             
+
             this.unitNote = `(${unitPassTest}/${unitAllTest})`;
             this.unitTitle = `All:${unitAllTest}, Pass:${unitPassTest}, Fail:${unitFailTest}`;
 
@@ -136,7 +171,7 @@ export default {
             }
             
             this.e2eNote = `(${e2ePassTest}/${e2eAllTest})`;
-            this.e2eTitle = `All:${e2eAllTest}, Pass:${e2ePassTest}, Fail:${e2eFailTest}`;;
+            this.e2eTitle = `All:${e2eAllTest}, Pass:${e2ePassTest}, Fail:${e2eFailTest}`;
 
         });
 

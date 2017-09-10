@@ -30,11 +30,11 @@
     #### 水平排列布局
 
     ````html
-    <ui-dl class="horizon">
+    <ui-dl class="horizontal">
         <dt>Horizon</dt>
-        <dd>this is horizon ui-dl</dd>
+        <dd>this is horizontal ui-dl</dd>
         <dt>Horizon</dt>
-        <dd>this is horizon ui-dl</dd>
+        <dd>this is horizontal ui-dl</dd>
     </ui-dl>
     ````
 
@@ -43,9 +43,9 @@
     ````html
     <ui-dl class="underline">
         <dt>Horizon</dt>
-        <dd>this is horizon ui-dl</dd>
+        <dd>this is horizontal ui-dl</dd>
         <dt>Horizon</dt>
-        <dd>this is horizon ui-dl</dd>
+        <dd>this is horizontal ui-dl</dd>
     </ui-dl>
     ````
 
