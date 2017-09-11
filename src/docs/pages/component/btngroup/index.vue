@@ -137,8 +137,8 @@
     ````html
     @size
     <ui-btngroup>
-        <ui-btn {$size}>{$&name}</ui-btn>
-        <ui-btn {$size}>{$&name}</ui-btn>
+        <ui-btn {$sizeKey}>{$&sizeName}</ui-btn>
+        <ui-btn {$sizeKey}>{$&sizeName}</ui-btn>
     </ui-btngroup>
 
     <br><br>
@@ -147,15 +147,15 @@
     #### `ui-btn`色彩
 
     ````html
-    @colorTheme
-    @colorFeature
-    @colorBlack
-    @colorBlue
-    @colorSilver
-    @colorGray
+    @color:theme
+    @color:feature
+    @color:black
+    @color:blue
+    @color:silver
+    @color:gray
     <ui-btngroup>
-        <ui-btn {$color}>{$&name}</ui-btn>
-        <ui-btn {$color}>{$&name}</ui-btn>
+        <ui-btn {$colorKey}>{$&colorName}</ui-btn>
+        <ui-btn {$colorKey}>{$&colorName}</ui-btn>
     </ui-btngroup>
 
     <br><br>
@@ -164,10 +164,10 @@
     #### `ui-btn`状态
     
     ````html
-    @stateALL
+    @state
     <ui-btngroup>
-        <ui-btn {$state}>{$&name}</ui-btn>
-        <ui-btn {$state}>{$&name}</ui-btn>
+        <ui-btn {$stateKey}>{$&stateName}</ui-btn>
+        <ui-btn {$stateKey}>{$&stateName}</ui-btn>
     </ui-btngroup>
 
     <br><br>

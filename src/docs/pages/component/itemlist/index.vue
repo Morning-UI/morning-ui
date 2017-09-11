@@ -212,25 +212,25 @@
     ````html
     @size
     <div style="width:400px">
-    <ui-itemlist {$size}>
+    <ui-itemlist {$sizeKey}>
         <ui-ul>
             <li>
                 <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
-                <h3 class="title">{$&name}</h3>
+                <h3 class="title">{$&sizeName}</h3>
                 <p class="desc">Description</p>
                 <div class="body">Body</div>
                 <div class="additional">Additional Details</div> 
             </li>
             <li>
                 <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
-                <h3 class="title">{$&name}</h3>
+                <h3 class="title">{$&sizeName}</h3>
                 <p class="desc">Description</p>
                 <div class="body">Body</div>
                 <div class="additional">Additional Details</div> 
             </li>
             <li>
                 <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
-                <h3 class="title">{$&name}</h3>
+                <h3 class="title">{$&sizeName}</h3>
                 <p class="desc">Description</p>
                 <div class="body">Body</div>
                 <div class="additional">Additional Details</div> 
@@ -238,9 +238,7 @@
         </ui-ul>
     </ui-itemlist>
     </div>
-
     <br><br>
-    
     ````
 
     [[[单元测试]]]

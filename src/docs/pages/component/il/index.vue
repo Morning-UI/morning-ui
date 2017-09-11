@@ -35,10 +35,10 @@
     #### 状态    
 
     ````html
-    @stateNA
-    <ui-il {$state}>
-        <li>this is {$&name} ui-il</li>
-        <li>this is {$&name} ui-il</li>
+    @state:normal,apparent
+    <ui-il {$stateKey}>
+        <li>this is {$&stateName} ui-il</li>
+        <li>this is {$&stateName} ui-il</li>
     </ui-il>
     ````
 

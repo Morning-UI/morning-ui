@@ -82,34 +82,34 @@
 
     ````html
     @size
-    <ui-statistic {$size}>
+    <ui-statistic {$sizeKey}>
         <div class="value">5,550</div>
-        <div class="label">{$&name}</div>
+        <div class="label">{$&sizeName}</div>
     </ui-statistic>
     ````
 
     #### 色彩
 
     ````html
-    @colorTheme
-    @colorFeature
-    @colorBlack
-    @colorBlue
-    @colorSilver
-    @colorGray
-    <ui-statistic {$color}>
+    @color:theme
+    @color:feature
+    @color:black
+    @color:blue
+    @color:silver
+    @color:gray
+    <ui-statistic {$colorKey}>
         <div class="value">5,550</div>
-        <div class="label">{$&name}</div>
+        <div class="label">{$&colorName}</div>
     </ui-statistic>
     ````
 
     #### 状态
     
     ````html
-    @stateNA
-    <ui-statistic {$state}>
+    @state:normal,apparent
+    <ui-statistic {$stateKey}>
         <div class="value">5,550</div>
-        <div class="label">{$&name}</div>
+        <div class="label">{$&stateName}</div>
     </ui-statistic>
     ````
 

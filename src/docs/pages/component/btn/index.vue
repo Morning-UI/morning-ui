@@ -32,36 +32,36 @@
 
     ````html
     @size
-    <ui-btn {$size}>{$&name}</ui-btn>
+    <ui-btn {$sizeKey}>{$&sizeName}</ui-btn>
     ````
 
     ````html
     @size
-    <ui-btn {$size} loading>{$&name}</ui-btn>
+    <ui-btn {$sizeKey} loading>{$&sizeName}</ui-btn>
     ````
 
     #### 色彩
 
     ````html
-    @colorTheme
-    @colorFeature
-    @colorBlack
-    @colorBlue
-    @colorSilver
-    @colorGray
-    <ui-btn {$color}>{$&name}</ui-btn>
+    @color:theme
+    @color:feature
+    @color:black
+    @color:blue
+    @color:silver
+    @color:gray
+    <ui-btn {$colorKey}>{$&colorName}</ui-btn>
     ````
     
     #### 状态
     
     ````html
-    @stateALLwithTheme
-    @stateALLwithFeature
-    @stateALLwithBlack
-    @stateALLwithBlue
-    @stateALLwithSilver
-    @stateALLwithGray
-    <ui-btn {$state} {$color}>{$&name}</ui-btn>
+    @state|@br:2|@color:theme
+    @state|@br:2|@color:feature
+    @state|@br:2|@color:black
+    @state|@br:2|@color:blue
+    @state|@br:2|@color:silver
+    @state|@br:2|@color:gray
+    <ui-btn {$stateKey} {$colorKey}>{$&stateName}</ui-btn>
     ````
 
     [[[配置]]]

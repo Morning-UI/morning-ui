@@ -31,13 +31,13 @@
     #### 色彩
 
     ````html
-    @colorTheme
-    @colorFeature
-    @colorBlack
-    @colorBlue
-    @colorSilver
-    @colorGray
-    <ui-textcolor {$color}>{$&name}</ui-textcolor>
+    @color:theme
+    @color:feature
+    @color:black
+    @color:blue
+    @color:silver
+    @color:gray
+    <ui-textcolor {$colorKey}>{$&colorName}</ui-textcolor>
     ````
 
     [[[单元测试]]]

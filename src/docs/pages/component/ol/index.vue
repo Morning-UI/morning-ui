@@ -75,10 +75,10 @@
     #### 状态
     
     ````html
-    @stateNA
-    <ui-ol {$state}>
-        <li>this is {$&name} ui-ol</li>
-        <li>this is {$&name} ui-ol</li>
+    @state:normal,apparent
+    <ui-ol {$stateKey}>
+        <li>this is {$&stateName} ui-ol</li>
+        <li>this is {$&stateName} ui-ol</li>
     </ui-ol>
 
     <br>

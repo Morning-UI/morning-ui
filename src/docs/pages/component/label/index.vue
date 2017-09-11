@@ -72,36 +72,36 @@
 
     ````html
     @size
-    <ui-label {$size}>{$&name}</ui-label>
+    <ui-label {$sizeKey}>{$&sizeName}</ui-label>
     ````
 
     ````html
     @size
-    <ui-label class="icon" {$size}><i class="iconfont">&#xe6e2;</i> <span>{$&name}</span></ui-label>
+    <ui-label class="icon" {$sizeKey}><i class="iconfont">&#xe6e2;</i> <span>{$&sizeName}</span></ui-label>
     ````
 
     ````html
     @size
-    <ui-label class="image" {$size}><img src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"/> <span>{$&name}</span></ui-label>
+    <ui-label class="image" {$sizeKey}><img src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"/> <span>{$&sizeName}</span></ui-label>
     ````
     
     #### 色彩
 
     ````html
-    @colorTheme
-    @colorFeature
-    @colorBlack
-    @colorBlue
-    @colorSilver
-    @colorGray
-    <ui-label {$color}>{$&name}</ui-label>
+    @color:theme
+    @color:feature
+    @color:black
+    @color:blue
+    @color:silver
+    @color:gray
+    <ui-label {$colorKey}>{$&colorName}</ui-label>
     ````
 
     #### 状态
 
     ````html
-    @stateNA
-    <ui-label {$state}>{$&name}</ui-label>
+    @state:normal,apparent
+    <ui-label {$stateKey}>{$&stateName}</ui-label>
     ````
 
     [[[单元测试]]]

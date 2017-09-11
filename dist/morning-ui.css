@@ -4383,3 +4383,123 @@ i-load .loading,
 i-load .loadfail {
   font-size: 14px;
 }
+
+i-breadcrumbs {
+  display: block;
+  vertical-align: middle;
+}
+i-breadcrumbs ul {
+  font-size: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0 !important;
+  vertical-align: middle;
+}
+i-breadcrumbs ul li {
+  display: inline-block;
+  color: #A8B3C2;
+  vertical-align: middle;
+}
+i-breadcrumbs ul li:hover {
+  color: #45505C;
+  cursor: pointer;
+}
+i-breadcrumbs ul li.root:not(.choose) {
+  color: #A8B3C2;
+  cursor: default;
+}
+i-breadcrumbs ul li.last {
+  color: #17212D;
+}
+i-breadcrumbs ul li.last:hover {
+  cursor: default;
+  color: #17212D;
+}
+i-breadcrumbs ul li.separator {
+  cursor: default;
+  color: #E6E6E6;
+  margin: 0 0.5em;
+}
+i-breadcrumbs.si-xxl ul {
+  height: 35px;
+}
+i-breadcrumbs.si-xxl ul li {
+  font-size: 22px;
+}
+i-breadcrumbs.si-xxl ul li.separator {
+  font-size: 26px;
+  vertical-align: -10px !important;
+  margin: 0 0.6em;
+}
+i-breadcrumbs.si-xl {
+  height: 28px;
+}
+i-breadcrumbs.si-xl ul li {
+  font-size: 18px;
+}
+i-breadcrumbs.si-xl ul li.separator {
+  font-size: 22px;
+  vertical-align: -9px !important;
+  margin: 0 0.6em;
+}
+i-breadcrumbs.si-l ul {
+  height: 25px;
+}
+i-breadcrumbs.si-l ul li {
+  font-size: 16px;
+}
+i-breadcrumbs.si-l ul li.separator {
+  font-size: 18px;
+  vertical-align: -7px !important;
+  margin: 0 0.6em;
+}
+i-breadcrumbs.si-m ul {
+  height: 22px;
+}
+i-breadcrumbs.si-m ul li {
+  font-size: 14px;
+}
+i-breadcrumbs.si-m ul li.separator {
+  font-size: 14px;
+  vertical-align: -5px !important;
+  margin: 0 0.5em;
+}
+i-breadcrumbs.si-s ul {
+  height: 20px;
+}
+i-breadcrumbs.si-s ul li {
+  font-size: 13px;
+}
+i-breadcrumbs.si-s ul li.separator {
+  font-size: 14px;
+  vertical-align: -5px !important;
+  margin: 0 0.5em;
+}
+i-breadcrumbs.si-xs ul li {
+  font-size: 12px;
+}
+i-breadcrumbs.si-xs ul li.separator {
+  font-size: 12px;
+  vertical-align: -5px !important;
+  margin: 0 0.4em;
+}
+i-breadcrumbs.si-xxs ul li {
+  font-size: 12px;
+  transform: scale(0.8);
+}
+i-breadcrumbs.si-xxs ul li.separator {
+  font-size: 12px;
+  vertical-align: -5px !important;
+  margin: 0 0.2em;
+}
+i-breadcrumbs ul {
+  height: 22px;
+}
+i-breadcrumbs ul li {
+  font-size: 14px;
+}
+i-breadcrumbs ul li.separator {
+  font-size: 14px;
+  vertical-align: -5px !important;
+  margin: 0 0.5em;
+}

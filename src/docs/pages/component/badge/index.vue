@@ -54,31 +54,31 @@
 
     ````html
     @size
-    <ui-badge {$size}>{$&name}</ui-badge>
+    <ui-badge {$sizeKey}>{$&sizeName}</ui-badge>
     ````
 
     ````html
     @size
-    <ui-badge class="circle" {$size}>{$&name}</ui-badge>
+    <ui-badge class="circle" {$sizeKey}>{$&sizeName}</ui-badge>
     ````
 
     #### 色彩
 
     ````html
-    @colorTheme
-    @colorFeature
-    @colorBlack
-    @colorBlue
-    @colorSilver
-    @colorGray
-    <ui-badge {$color}>{$&name}</ui-badge>
+    @color:theme
+    @color:feature
+    @color:black
+    @color:blue
+    @color:silver
+    @color:gray
+    <ui-badge {$colorKey}>{$&colorName}</ui-badge>
     ````
 
     #### 状态
 
     ````html
-    @stateNA
-    <ui-badge {$state}>{$&name}</ui-badge>
+    @state:normal,apparent
+    <ui-badge {$stateKey}>{$&stateName}</ui-badge>
     ````
 
     [[[单元测试]]]

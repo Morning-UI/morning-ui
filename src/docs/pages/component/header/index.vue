@@ -60,19 +60,19 @@
 
     ````html
     @size
-    <ui-header class="mark" {$size}>{$&name}<small>页头子标题</small></ui-header>
+    <ui-header class="mark" {$sizeKey}>{$&sizeName}<small>页头子标题</small></ui-header>
     ````
 
     #### 色彩
 
     ````html
-    @colorTheme
-    @colorFeature
-    @colorBlack
-    @colorBlue
-    @colorSilver
-    @colorGray
-    <ui-header {$color}>{$&name}<small>页头子标题</small></ui-header>
+    @color:theme
+    @color:feature
+    @color:black
+    @color:blue
+    @color:silver
+    @color:gray
+    <ui-header {$colorKey}>{$&colorName}<small>页头子标题</small></ui-header>
     ````
 
     [[[单元测试]]]

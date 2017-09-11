@@ -41,6 +41,7 @@ import link                         from './link/index.vue';
 import dropdown                     from './dropdown/index.vue';
 import tab                          from './tab/index.vue';
 import load                         from './load/index.vue';
+import breadcrumbs                  from './breadcrumbs/index.vue';
 
 export default {
     h,
@@ -82,5 +83,6 @@ export default {
     link,
     dropdown,
     tab,
-    load
+    load,
+    breadcrumbs
 };

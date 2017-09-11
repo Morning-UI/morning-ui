@@ -48,13 +48,13 @@
     #### 色彩
 
     ````html
-    @colorTheme
-    @colorFeature
-    @colorBlack
-    @colorBlue
-    @colorSilver
-    @colorGray
-    <ui-block {$color}>{$&name}</ui-block>
+    @color:theme
+    @color:feature
+    @color:black
+    @color:blue
+    @color:silver
+    @color:gray
+    <ui-block {$colorKey}>{$colorName}</ui-block>
     ````
 
     [[[单元测试]]]

@@ -80,7 +80,7 @@
     ````html
     @size
     <div style="width:400px;height:200px;background: #f6f6f6">
-        <ui-load {$size} :time="false" note="{$name}">加载成功</ui-load>
+        <ui-load {$sizeKey} :time="false" note="{$sizeName}">加载成功</ui-load>
     </div>
     ````
 

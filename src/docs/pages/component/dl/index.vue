@@ -62,11 +62,11 @@
     #### 状态
     
     ````html
-    @stateNA
-    <ui-dl {$state}>
-        <dt>{$&name}</dt>
+    @state:normal,apparent
+    <ui-dl {$stateKey}>
+        <dt>{$&stateName}</dt>
         <dd>this is normal ui-dl</dd>
-        <dt>{$&name}</dt>
+        <dt>{$&stateName}</dt>
         <dd>this is normal ui-dl</dd>
     </ui-dl>
     <br>

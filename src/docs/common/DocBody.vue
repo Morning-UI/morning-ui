@@ -19,6 +19,7 @@
 
 <script>
 import marked                       from 'marked';
+import extend                       from 'extend';
 import Mustache                     from 'mustache';
 import _                            from 'underscore';
 import hljs                         from 'highlight.js';
@@ -26,487 +27,602 @@ import DocHeader                    from 'Docs/common/DocHeader.vue';
 import DocSubmenu                   from 'Docs/common/DocSubmenu.vue';
 import DocComponentStatus           from 'Docs/common/DocComponentStatus.vue';
 
-Vue.component('doc-component-status', DocComponentStatus);
+const randomRangeMin = 1e3;
+const randomRangeMax = 9e3;
+
+window.Vue.component('doc-component-status', DocComponentStatus);
 
 let evals = [];
 
 let data = {
     size : [
         {
-            size : 'xxl',
-            name : 'XXL尺寸'
+            sizeKey : 'xxl',
+            sizeName : 'XXL尺寸'
         },
         {
-            size : 'xl',
-            name : 'XL尺寸'
+            sizeKey : 'xl',
+            sizeName : 'XL尺寸'
         },
         {
-            size : 'l',
-            name : 'L尺寸'
+            sizeKey : 'l',
+            sizeName : 'L尺寸'
         },
         {
-            size : 'm',
-            name : 'M尺寸'
+            sizeKey : 'm',
+            sizeName : 'M尺寸'
         },
         {
-            size : 's',
-            name : 'S尺寸'
+            sizeKey : 's',
+            sizeName : 'S尺寸'
         },
         {
-            size : 'xs',
-            name : 'XS尺寸'
+            sizeKey : 'xs',
+            sizeName : 'XS尺寸'
         },
         {
-            size : 'xxs',
-            name : 'XXS尺寸'
+            sizeKey : 'xxs',
+            sizeName : 'XXS尺寸'
         }
     ],
     theme : [
         {
-            color : 'theme',
-            name : '主题色'
+            colorKey : 'theme',
+            colorName : '主题色'
         },
         {
-            color : 'light-theme',
-            name : '浅主题色'
+            colorKey : 'light-theme',
+            colorName : '浅主题色'
         },
         {
-            color : 'dark-theme',
-            name : '深主题色'
+            colorKey : 'dark-theme',
+            colorName : '深主题色'
         }
     ],
     feature : [
         {
-            color : 'success',
-            name : '成功/正确'
+            colorKey : 'success',
+            colorName : '成功/正确'
         },
         {
-            color : 'warning',
-            name : '警告/注意'
+            colorKey : 'warning',
+            colorName : '警告/注意'
         },
         {
-            color : 'danger',
-            name : '错误/危险'
+            colorKey : 'danger',
+            colorName : '错误/危险'
         },
         {
-            color : 'primary',
-            name : '主要/关键'
+            colorKey : 'primary',
+            colorName : '主要/关键'
         },
         {
-            color : 'minor',
-            name : '次要/不醒目'
+            colorKey : 'minor',
+            colorName : '次要/不醒目'
         },
         {
-            color : 'info',
-            name : '信息/额外'
+            colorKey : 'info',
+            colorName : '信息/额外'
         }
     ],
     black : [
         {
-            color : 'black',
-            name : '黑色'
+            colorKey : 'black',
+            colorName : '黑色'
         },
         {
-            color : 'light-black',
-            name : '浅黑色'
+            colorKey : 'light-black',
+            colorName : '浅黑色'
         },
         {
-            color : 'extra-light-black',
-            name : '超浅黑色'
+            colorKey : 'extra-light-black',
+            colorName : '超浅黑色'
         }
     ],
     blue : [
         {
-            color : 'blue',
-            name : '青色'
+            colorKey : 'blue',
+            colorName : '青色'
         },
         {
-            color : 'light-blue',
-            name : '浅青色'
+            colorKey : 'light-blue',
+            colorName : '浅青色'
         },
         {
-            color : 'extra-light-blue',
-            name : '超浅青色'
+            colorKey : 'extra-light-blue',
+            colorName : '超浅青色'
         }
     ],
     silver : [
         {
-            color : 'silver',
-            name : '银色'
+            colorKey : 'silver',
+            colorName : '银色'
         },
         {
-            color : 'light-silver',
-            name : '浅银色'
+            colorKey : 'light-silver',
+            colorName : '浅银色'
         },
         {
-            color : 'extra-light-silver',
-            name : '超浅银色'
+            colorKey : 'extra-light-silver',
+            colorName : '超浅银色'
         }
     ],
     gray : [
         {
-            color : 'gray',
-            name : '灰色'
+            colorKey : 'gray',
+            colorName : '灰色'
         },
         {
-            color : 'light-gray',
-            name : '浅灰色'
+            colorKey : 'light-gray',
+            colorName : '浅灰色'
         },
         {
-            color : 'white',
-            name : '白色'
+            colorKey : 'white',
+            colorName : '白色'
         }
     ],
     state : [
         {
-            state : 'normal',
-            name : '正常'
+            stateKey : 'normal',
+            stateName : '正常'
         },
         {
-            state : 'hover',
-            name : 'Hover'
+            stateKey : 'hover',
+            stateName : 'Hover'
         },
         {
-            state : 'active',
-            name : '激活'
+            stateKey : 'active',
+            stateName : '激活'
         },
         {
-            state : 'disabled',
-            name : '禁用'
+            stateKey : 'disabled',
+            stateName : '禁用'
         },
         {
-            state : 'apparent',
-            name : '醒目'
+            stateKey : 'apparent',
+            stateName : '醒目'
         },
         {
-            state : 'loading',
-            name : '载入中'
+            stateKey : 'loading',
+            stateName : '载入中'
         },
         {
-            state : 'processing',
-            name : '处理中'
+            stateKey : 'processing',
+            stateName : '处理中'
         },
     ]
-}
+};
 
-let helper = {
-    normal : opts => {
+let parser = (text) => {
 
-        if (!opts.style) {
+    let patt = /````(html|js|css|mixin)((\n[\t ]*[\@a-zA-Z0-9\:\.\,\|]+)*)\n((.|\n)*?)(\n)*([ \t]*)````/g;
+    let varpatt = /````(html|js|css)\n(\@var\:([a-zA-Z0-9]+))\n((.|\n)+?)\n([ \t]*)````/g;
+    let result;
+    let vars = {
+        js : {},
+        html : {}
+    };
+    let blocks = [];
 
-            opts.style = '';
+    while ((result = varpatt.exec(text)) !== null) {
+
+        vars[result[1]][result[3]] = result[4];
+        text = text.slice(0, result.index - 1) + text.slice(result.index + result[0].length, text.length);
+
+        varpatt.lastIndex = 0;
+
+    }
+
+    while ((result = patt.exec(text)) !== null) {
+
+        let content = result[4];
+        let helpers = result[2].split('\n');
+
+        helpers.shift();
+        
+        // if (helpers.length === 0) {
+
+        let block = {
+            content,
+            type : result[1],
+            result,
+            helpers : []
+        };
+
+        for(let name of helpers) {
+
+            let list = name.split('|');
+            let group = [];
+
+            for (let help of list) {
+
+                let fn = help.split(':')[0].replace(/^\@/, '');
+                let param = help.split(':')[1];
+
+                group.push({
+                    fn,
+                    param
+                });
+
+            }
+
+            block.helpers.push(group);
 
         }
 
-        return '<div class="demo" style="'+opts.style+'">'+opts.code+'</div>\n\n```'+opts.result[1]+'\n'+opts.code+'\n```\n';
+        blocks.push(block);
 
-    },
-    size : opts => {
+    }
 
-        let template = `{$#size}${opts.code}\n{$/size}`;
-        
-        Mustache.parse(template, ['{$', '}']);
+    return {
+        vars,
+        blocks,
+        text
+    };
 
-        return helper.normal({
-            code : Mustache.render(template, data),
-            result : opts.result
-        });
+};
 
-    },
-    colorTheme : opts => {
+let helpers = {
+    size : opt => {
 
-        let template = `{$#theme}${opts.code}\n{$/theme}`;
-        
-        Mustache.parse(template, ['{$', '}']);
+        if (typeof opt.content === 'string') {
 
-        return helper.normal({
-            code : Mustache.render(template, data),
-            result : opts.result
-        });
+            opt.content = `{$#size}${opt.content}\n{$/size}`;
 
-    },
-    colorFeature : opts => {
+        } else if (typeof opt.content === 'object') {
 
-        let template = `{$#feature}${opts.code}\n{$/feature}`;
-        
-        Mustache.parse(template, ['{$', '}']);
+            for (let key in opt.content) {
 
-        return helper.normal({
-            code : Mustache.render(template, data),
-            result : opts.result
-        });
-
-    },
-    colorBlack : opts => {
-
-        let template = `{$#black}${opts.code}\n{$/black}`;
-
-        Mustache.parse(template, ['{$', '}']);
-
-        return helper.normal({
-            code : Mustache.render(template, data),
-            result : opts.result
-        });
-
-    },
-    colorBlue : opts => {
-
-        let template = `{$#blue}${opts.code}\n{$/blue}`;
-
-        Mustache.parse(template, ['{$', '}']);
-
-        return helper.normal({
-            code : Mustache.render(template, data),
-            result : opts.result
-        });
-
-    },
-    colorSilver : opts => {
-
-        let template = `{$#silver}${opts.code}\n{$/silver}`;
-        
-        Mustache.parse(template, ['{$', '}']);
-
-        return helper.normal({
-            code : Mustache.render(template, data),
-            result : opts.result,
-            style : 'background: #626b75;border-color: #454d57'
-        });
-
-    },
-    colorGray : opts => {
-
-        let template = `{$#gray}${opts.code}\n{$/gray}`;
-        Mustache.parse(template, ['{$', '}']);
-
-        return helper.normal({
-            code : Mustache.render(template, data),
-            result : opts.result,
-            style : 'background:#676767;border-color:#494949;'
-        });
-
-    },
-    stateNA : opts => {
-
-        let sna = [data.state[0], data.state[4]];
-        let template = `{$#sna}${opts.code}\n{$/sna}`;
-
-        Mustache.parse(template, ['{$', '}']);
-
-        return helper.normal({
-            code : Mustache.render(template, {sna}),
-            result : opts.result
-        });
-
-    },
-    stateALL : opts => {
-
-        let template = `{$#state}${opts.code}\n{$/state}`;
-
-        Mustache.parse(template, ['{$', '}']);
-
-        return helper.normal({
-            code : Mustache.render(template, data),
-            result : opts.result
-        });
-
-    },
-    stateALLwithTheme : opts => {
-
-        let template = `{$#theme}<p>{$name}</p>\n{$#state}${opts.code}\n{$/state}<br/><br/>\n{$/theme}`;
-
-        Mustache.parse(template, ['{$', '}']);
-
-        return helper.normal({
-            code : Mustache.render(template, data),
-            result : opts.result
-        });
-
-    },
-    stateALLwithFeature : opts => {
-
-        let template = `{$#feature}<p>{$name}</p>\n{$#state}${opts.code}\n{$/state}<br/><br/>\n{$/feature}`;
-
-        Mustache.parse(template, ['{$', '}']);
-
-        return helper.normal({
-            code : Mustache.render(template, data),
-            result : opts.result
-        });
-
-    },
-    stateALLwithBlack : opts => {
-
-        let template = `{$#black}<p>{$name}</p>\n{$#state}${opts.code}\n{$/state}<br/><br/>\n{$/black}`;
-
-        Mustache.parse(template, ['{$', '}']);
-
-        return helper.normal({
-            code : Mustache.render(template, data),
-            result : opts.result
-        });
-
-    },
-    stateALLwithBlue : opts => {
-
-        let template = `{$#blue}<p>{$name}</p>\n{$#state}${opts.code}\n{$/state}<br/><br/>\n{$/blue}`;
-
-        Mustache.parse(template, ['{$', '}']);
-
-        return helper.normal({
-            code : Mustache.render(template, data),
-            result : opts.result
-        });
-
-    },
-    stateALLwithSilver : opts => {
-
-        let template = `{$#silver}<p>{$name}</p>\n{$#state}${opts.code}\n{$/state}<br/><br/>\n{$/silver}`;
-
-        Mustache.parse(template, ['{$', '}']);
-
-        return helper.normal({
-            code : Mustache.render(template, data),
-            result : opts.result,
-            style : 'background: #626b75;border-color: #454d57'
-        });
-    
-    },
-    stateALLwithGray : opts => {
-
-        let template = `{$#gray}<p>{$name}</p>\n{$#state}${opts.code}\n{$/state}<br/><br/>\n{$/gray}`;
-
-        Mustache.parse(template, ['{$', '}']);
-
-        return helper.normal({
-            code : Mustache.render(template, data),
-            result : opts.result,
-            style : 'background:#676767;border-color:#494949;'
-        });
-
-    },
-    use : opts => {
-
-        let mixins = opts.value.split(',');
-        let codes = '';
-        let id = 'demo-'+_.random(1e3, 9e3);
-
-        for(let mixin of mixins) {
-
-            let lang = mixin.split('.')[0];
-            let name = mixin.split('.')[1];
-            let code = opts.vars[lang][name];
-
-            if (lang === 'html') {
-
-                let script = document.createElement('script');
-
-                code = code.replace(/(^|\n)/g, '$1\t');
-                script.innerHTML = '\n'+code+'\n';
-                script.type = 'x-template';
-                script.id = id+'-tmpl';
-
-                codes += script.outerHTML + '\n\n';
-
-                script.innerHTML = script.innerHTML.replace(/\{\%([a-zA-Z0-9\_]+)\%\}/g, '{{$1}}');
-                evals.push(script);
-
-            } else if (lang === 'js') {
-
-                Mustache.parse(code, ['{$', '}']);
-
-                code = Mustache.render(code, {
-                    template : '#'+id+'-tmpl',
-                    el : '#'+id+'-el'
-                });
-
-                let script = document.createElement('script');
-
-                code = code.replace(/(^|\n)/g, '$1\t');
-                script.innerHTML = '\n'+code+'\n';
-                
-                evals.push(script);
-
-                codes += script.outerHTML;
+                opt.content[key] = `{$#size}${opt.content[key]}\n{$/size}`;
 
             }
 
         }
 
-        let con = '<div id="'+id+'-el"></div>';
+        return opt;
 
-        codes = '<div class="demo">'+con+'</div>\n\n```html\n'+con+'\n\n'+codes+'\n```';
+    },
+    color : opt => {
 
-        return codes;
+        let color = opt.param;
+        
+        if (typeof opt.content === 'string') {
+
+            opt.content = `{$#${color}}${opt.content}\n{$/${color}}`;
+
+        } else if (typeof opt.contnet === 'object') {
+
+            for (let key in opt.content) {
+                    
+                opt.content[key] = `{$#${color}}${opt.content[key]}\n{$/${color}}`;
+                
+            }
+
+        }
+
+        if (color === 'silver') {
+
+            opt.style.push('background: #626b75;border-color: #454d57');
+
+        } else if (color === 'gray') {
+
+            opt.style.push('background:#676767;border-color:#494949');
+        
+        }
+
+        return opt;
+
+    },
+    state : opt => {
+
+        if (opt.param === undefined) {
+            
+            opt.param = 'all';
+
+        }
+
+        let states = opt.param.split(',');
+
+        if (states.length > 0 &&
+            states.indexOf('all') === -1) {
+
+            let sna = [];
+
+            for (let state of data.state) {
+
+                if (states.indexOf(state.stateKey) !== -1) {
+
+                    sna.push(state);
+
+                }
+
+            }
+
+            opt.context = {
+                state : sna
+            };
+
+        }
+
+        if (typeof opt.content === 'string') {
+
+            opt.content = `{$#state}${opt.content}\n{$/state}`;
+
+        } else if (typeof opt.contnet === 'object') {
+
+            for (let key in opt.content) {
+                    
+                opt.content[key] = `{$#state}${opt.content[key]}\n{$/state}`;
+                
+            }
+
+        }
+
+        return opt;
+
+    },
+    br : opt => {
+
+        let num = +opt.param || 1;
+        let brs = '';
+
+        while (num--) {
+
+            brs += '<br/>';
+
+        }
+
+        if (typeof opt.content === 'string') {
+
+            opt.content = `${opt.content}\n${brs}\n`;
+
+        } else if (typeof opt.content === 'object') {
+
+            for (let key in opt.content) {
+
+                opt.content[key] = `${opt.content[key]}\n${brs}\n`;
+
+            }
+
+        }
+
+        return opt;
+
+    },
+    use : opt => {
+
+        let links = opt.param.split(',');
+
+        opt.content = {};
+
+        for (let link of links) {
+
+            let type = link.split('.')[0];
+            let key = link.split('.')[1];
+
+            opt.content[type] = `&&&&&{$id}|${opt.vars[type][key]}`;
+
+        }
+
+        opt.render = sopt => {
+
+            let list = {};
+            let code = '';
+            let demo = '';
+            let newData = extend(true, {}, sopt.context);
+            let lastType;
+
+            for (let key of Object.keys(newData)) {
+
+                let value = newData[key];
+
+                for (let svalue of value) {
+
+                    let id = `demo-${_.random(randomRangeMin, randomRangeMax)}`;
+
+                    svalue.id = id;
+                    svalue.el = `#${id}-el`;
+                    svalue.template = `#${id}-tmpl`;
+
+                }
+
+            }
+
+            let id = `demo-${_.random(randomRangeMin, randomRangeMax)}`;
+
+            newData.id = id;
+            newData.el = `#${id}-el`;
+            newData.template = `#${id}-tmpl`;
+
+            for (let type of Object.keys(sopt.content)) {
+
+                Mustache.parse(sopt.content[type], ['{$', '}']);
+                
+                list[type] = Mustache.render(sopt.content[type], newData).split('&&&&&');
+                list[type].shift();
+                lastType = type;
+
+            }
+
+            for (let i in list[lastType]) {
+
+                let html = list.html[i];
+                let js = list.js[i];
+                let demoid = html.match(/^([0-9a-z-]+?)\|/)[1];
+
+                html = html.replace(/^[0-9a-z-]+?\|/, '');
+                js = js.replace(/^[0-9a-z-]+?\|/, '');
+
+                code += `<div id="${demoid}-el"><!-- ${demoid} 容器 --></div>\n\n`;
+                demo += `<div id="${demoid}-el"></div>\n`;
+
+                // html
+                let htmlScript = document.createElement('script');
+
+                html = html.replace(/[\n]*?$/, '');
+                htmlScript.innerHTML = `\n${html}\n`;
+                htmlScript.type = 'x-template';
+                htmlScript.id = `${demoid}-tmpl`;
+
+                code += `${htmlScript.outerHTML}\n\n`;
+
+                htmlScript.innerHTML = htmlScript.innerHTML.replace(/\{%([a-zA-Z0-9_]+)%\}/g, '{{$1}}');
+                evals.push(htmlScript);
+
+                // js
+
+                let jsScript = document.createElement('script');
+
+                js = js.replace(/[\n]*?$/, '');
+                jsScript.innerHTML = `\n${js}\n`;
+                
+                evals.push(jsScript);
+
+                code += jsScript.outerHTML;
+
+                if (i < list[lastType].length - 1) {
+
+                    code += '\n\n------------------------------------------------\n\n';
+
+                }
+
+            }
+
+            return {
+                demo,
+                code 
+            };
+
+        };
+
+        return opt;
 
     }
 };
 
-Vue.directive('docmd',{
-    bind : (el, binding, vnode) => {
+let make = {
+    block : block => {
+
+        return '<div class="demo">\n' + block.content + '</div>\n\n```' + block.type + '\n' + block.content + '\n```\n';
+
+    },
+    opt : (opts, block) => {
+
+        let text = '';
+
+        for (let opt of opts) {
+
+            let code,
+                demo;
+
+            opt.context = extend({}, data, opt.context);
+
+            if (typeof opt.render === 'function') {
+
+                let result = opt.render(opt);
+
+                code = result.code;
+                demo = result.demo;
+
+            } else {
+
+                let template = opt.content;
+
+                Mustache.parse(template, ['{$', '}']);
+
+                code = Mustache.render(template, opt.context);
+
+            }
+
+            if (opt.style.length === 0) {
+
+                opt.style = '';
+
+            } else {
+
+                opt.style = opt.style.join(';');
+            
+            }
+
+            if (block.type === 'mixin') {
+
+                block.type = 'html';
+
+            }
+
+            text += '<div class="demo" style="' + opt.style + '">\n' + (demo || code) + '</div>\n\n```' + block.type + '\n' + code + '\n```\n';
+
+        }
+
+        return text;
+
+    }
+};
+
+let runner = (tree) => {
+
+    for (let block of tree.blocks) {
+
+        if (block.helpers.length > 0) {
+
+            let opts = [];
+
+            for(let group of block.helpers) {
+
+                let opt = {
+                    content : block.content,
+                    vars : tree.vars,
+                    helperlist : group,
+                    style : []
+                };
+
+                for(let helper of group) {
+
+                    opt.param = helper.param;
+                    opt = helpers[helper.fn](opt);
+
+                }
+
+                opts.push(opt);
+
+            }
+
+            block._html = make.opt(opts, block);
+
+        } else {
+
+            block._html = make.block(block);
+
+        }
+
+    }
+
+    let text = tree.text;
+    let patt = /````(html|js|css|mixin)((\n[\t ]*[\@a-zA-Z0-9\:\.\,\|]+)*)\n((.|\n)*?)(\n)*([ \t]*)````/g;
+    let index = 0;
+    let result;
+
+    while ((result = patt.exec(text)) !== null) {
+
+        text = text.slice(0, result.index - 1) + tree.blocks[index++]._html + text.slice(result.index + result[0].length, text.length);
+
+    }
+
+    return text;
+    
+};
+window.Vue.directive('docmd', {
+    bind : el => {
 
         let mdScript = el.getElementsByTagName('script')[0];
 
         if (mdScript && mdScript.type === 'text/markdown') {
 
             let text = mdScript.innerText;
-            let patt = /\`\`\`\`(html|js|css|mixin)((\n[\t ]*\@[a-zA-Z0-9\:\.\,]+)*)\n((.|\n)*?)(\n)*([ \t]*)\`\`\`\`/g;
-            let varpatt = /\`\`\`\`(html|js|css)\n(\@var\:([a-zA-Z0-9]+))\n((.|\n)+?)\n([ \t]*)\`\`\`\`/g;
-            let result;
-            let vars = {
-                js : {},
-                html : {}
-            };
+            let tree = parser(text);
 
-            while((result = varpatt.exec(text)) !== null) {
-
-                vars[result[1]][result[3]] = result[4];
-                text = text.slice(0, result.index - 1) + text.slice(result.index + result[0].length, text.length);
-
-                varpatt.lastIndex = 0;
-
-            }
+            text = runner(tree);
             
-            while((result = patt.exec(text)) !== null) {
-
-                let code = result[4];
-                let helpers = result[2].split('\n');
-                helpers.shift();
-                let newText = [];
-
-                if (helpers.length === 0) {
-
-                    let opts = {
-                        code,
-                        result
-                    };
-
-                    newText.push(helper.normal(opts));
-
-                } else {
-
-                    for(let name of helpers) {
-
-                        let list = name.split(':');
-                        let fn = list[0].replace(/^\@/, '');
-                        let value = list[1];
-
-                        newText.push(helper[fn]({
-                            code,
-                            result,
-                            value,
-                            vars
-                        }));
-
-                    }
-
-                }
-
-
-                text = text.slice(0, result.index - 1) + newText.join('\n') + text.slice(result.index + result[0].length, text.length);
-
-            }
-
             let md = marked(text);
             
             md = md.replace(/\{\%([a-zA-Z0-9\_]+)\%\}/g, '{{"\\\{\\\{$1\\\}\\\}"}}');

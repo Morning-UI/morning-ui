@@ -31,13 +31,13 @@
     #### 色彩
 
     ````html
-    @colorTheme
-    @colorFeature
-    @colorBlack
-    @colorBlue
-    @colorSilver
-    @colorGray
-    <ui-quote {$color}>{$&name}</ui-quote>
+    @color:theme
+    @color:feature
+    @color:black
+    @color:blue
+    @color:silver
+    @color:gray
+    <ui-quote {$colorKey}>{$&colorName}</ui-quote>
     <br>
     ````
 

@@ -32,36 +32,36 @@
 
     ````html
     @size
-    <ui-link {$size}>{$&name}</ui-link>
+    <ui-link {$sizeKey}>{$&sizeName}</ui-link>
     ````
 
     ````html
     @size
-    <ui-link {$size} loading>{$&name}</ui-link>
+    <ui-link {$sizeKey} loading>{$&sizeName}</ui-link>
     ````
 
     #### 色彩
 
     ````html
-    @colorTheme
-    @colorFeature
-    @colorBlack
-    @colorBlue
-    @colorSilver
-    @colorGray
-    <ui-link {$color}>{$&name}</ui-link>
+    @color:theme
+    @color:feature
+    @color:black
+    @color:blue
+    @color:silver
+    @color:gray
+    <ui-link {$colorKey}>{$&colorName}</ui-link>
     ````
     
     #### 状态
     
     ````html
-    @stateALLwithTheme
-    @stateALLwithFeature
-    @stateALLwithBlack
-    @stateALLwithBlue
-    @stateALLwithSilver
-    @stateALLwithGray
-    <ui-link {$state} {$color}>{$&name}</ui-link>
+    @state|@br:2|@color:theme
+    @state|@br:2|@color:feature
+    @state|@br:2|@color:black
+    @state|@br:2|@color:blue
+    @state|@br:2|@color:silver
+    @state|@br:2|@color:gray
+    <ui-link {$stateKey} {$colorKey}>{$&stateName}</ui-link>
     ````
 
     [[[配置]]]

@@ -31,20 +31,20 @@
     #### 色彩
 
     ````html
-    @colorTheme
-    @colorFeature
-    @colorBlack
-    @colorBlue
-    @colorSilver
-    @colorGray
-    <ui-lead {$color}>{$&name}</ui-lead>
+    @color:theme
+    @color:feature
+    @color:black
+    @color:blue
+    @color:silver
+    @color:gray
+    <ui-lead {$colorKey}>{$&colorName}</ui-lead>
     ````
 
     #### 状态
     
     ````html
-    @stateNA
-    <ui-lead {$state}>{$&name}</ui-lead>
+    @state:normal,apparent
+    <ui-lead {$stateKey}>{$&stateName}</ui-lead>
     ````
 
     [[[单元测试]]]

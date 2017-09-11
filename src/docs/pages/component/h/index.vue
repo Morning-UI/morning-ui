@@ -33,26 +33,26 @@
 
     ````html
     @size
-    <ui-h {$size}>{$&name}</ui-h>
+    <ui-h {$sizeKey}>{$&sizeName}</ui-h>
     ````
 
     #### 色彩
 
     ````html
-    @colorTheme
-    @colorFeature
-    @colorBlack
-    @colorBlue
-    @colorSilver
-    @colorGray
-    <ui-h {$color}>{$&name}</ui-h>
+    @color:theme
+    @color:feature
+    @color:black
+    @color:blue
+    @color:silver
+    @color:gray
+    <ui-h {$colorKey}>{$&colorName}</ui-h>
     ````
 
     #### 状态
     
     ````html
-    @stateNA
-    <ui-h {$state}>{$&name}</ui-h>
+    @state:normal,apparent
+    <ui-h {$stateKey}>{$&stateName}</ui-h>
     ````
 
     [[[单元测试]]]

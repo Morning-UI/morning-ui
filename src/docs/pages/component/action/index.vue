@@ -82,35 +82,36 @@
     ````html
     @size
     <div style="width:400px">
-        <ui-action {$size}>
+        <ui-action {$sizeKey}>
             <div class="title">
-                <h5>{$&name}</h5>
+                <h5>{$&sizeName}</h5>
                 <span class="note">行动说明</span>
             </div>
             <div class="action">
-                <ui-btn {$size}>行动按钮</ui-btn>
+                <ui-btn {$sizeKey}>行动按钮</ui-btn>
             </div>
         </ui-action>
     </div>
+    <br>
     ````
 
     #### 色彩
 
     ````html
-    @colorTheme
-    @colorFeature
-    @colorBlack
-    @colorBlue
-    @colorSilver
-    @colorGray
+    @color:theme
+    @color:feature
+    @color:black
+    @color:blue
+    @color:silver
+    @color:gray
     <div style="width:400px">
-        <ui-action {$color}>
+        <ui-action {$colorKey}>
             <div class="title">
-                <h5>{$&name}</h5>
+                <h5>{$&colorName}</h5>
                 <span class="note">行动说明</span>
             </div>
             <div class="action">
-                <ui-btn {$color}>{$name}按钮</ui-btn>
+                <ui-btn {$colorKey}>{$name}按钮</ui-btn>
             </div>
         </ui-action>
     </div>

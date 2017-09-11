@@ -61,15 +61,15 @@
     #### 色彩
 
     ````html
-    @colorTheme
-    @colorFeature
-    @colorBlack
-    @colorBlue
-    @colorSilver
-    @colorGray
+    @color:theme
+    @color:feature
+    @color:black
+    @color:blue
+    @color:silver
+    @color:gray
     <div style="width:180px;height:240px;display:inline-block;margin:10px;">
-        <ui-card {$color}>
-            <header>{$&name}</header>
+        <ui-card {$colorKey}>
+            <header>{$&colorName}</header>
             <div>卡片</div>
         </ui-card>
     </div>

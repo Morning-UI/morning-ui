@@ -36,6 +36,9 @@
 .markdown-body iframe {
   width: 100%;
 }
+.markdown-body i-breadcrumbs li + li {
+  margin-top: 0;
+}
 .w1k {
   width: 1100px;
   margin: 0 auto;
