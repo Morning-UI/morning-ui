@@ -784,7 +784,8 @@ header.index .menu li a {
   position: relative;
 }
 .markdown-body .lang-js:before,
-.markdown-body .lang-html:before {
+.markdown-body .lang-html:before,
+.markdown-body .lang-bash:before {
   font-family: PingFangSC-Light, sans-serif;
   font-size: 12px;
   color: #ccc;
@@ -799,6 +800,9 @@ header.index .menu li a {
 }
 .markdown-body .lang-js:before {
   content: 'JavaScript';
+}
+.markdown-body .lang-bash:before {
+  content: 'Bash';
 }
 .body {
   width: 1100px;
