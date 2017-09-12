@@ -35,6 +35,10 @@ export default UI.extend({
             type : String,
             default : ''
         },
+        js : {
+            type : String,
+            default : ''
+        },
         locked : {
             type : [Boolean, Number],
             default : false
@@ -49,6 +53,7 @@ export default UI.extend({
         return {
             conf : {
                 link : this.link,
+                js : this.js,
                 locked : this.locked,
                 newTab : this.newTab
             },
@@ -122,6 +127,12 @@ export default UI.extend({
         }
 
         this.$on('emit', () => {
+
+            if (this.conf.js) {
+
+                eval(this.conf.js);
+
+            }
 
             if (this.conf.link) {
 

@@ -61,14 +61,14 @@
 
     |KEY|描述|接受值|值类型|默认值|
     |-|-|-|
-    |auto-hide|点击下拉菜单中按钮后自动隐藏|`true`<br>`false`|Boolean|`true`|
+    |auto-close|点击下拉菜单中按钮后自动隐藏|`true`<br>`false`|Boolean|`true`|
 
-    #### auto-hide
+    #### auto-close
 
     点击菜单中按钮后不会自动隐藏，需要点击`更多`来隐藏。
 
     ````html
-    <ui-dropdown :auto-hide="false">
+    <ui-dropdown :auto-close="false">
         <ui-btn slot="showbtn" emitbtn>更多</ui-btn>
         <ui-btn white>收藏</ui-btn>
         <ui-btn white>修改</ui-btn>

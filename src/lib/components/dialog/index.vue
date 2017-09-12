@@ -1,142 +1,168 @@
 <template>
-    <i-btn
+    <i-dialog
         :_uiid="uiid"
-        :class="[sizeClass, styleClass, stateClass]"
+        :class="[styleClass, moreClass]"
 
-        :link="link"
-        :locked="locked"
-        :new-tab="newTab"
+        :width="width"
+        :height="height"
+        :auto-close="autoClose"
+        :show-type="showType"
 
         @click="_onClick"
     >
 
-    <template v-if="conf.state === 'loading'">
-        <i class="morningicon">&#xe703;</i>
-        <span><slot></slot></span>
-    </template>
-    <template v-else-if="conf.state === 'processing'">
-        <i class="morningicon">&#xe703;</i>
-        <span><slot></slot></span>
-    </template>
-    <template v-else>
-        <slot></slot>
-    </template>
+    <div class="mask"></div>
+    <div
+        class="content"
+        :style="{width: conf.width, height: conf.height}"
+    >
+        <slot name="header"></slot>
+        <div class="body"><slot></slot></div>
+        <slot name="footer"></slot>
+    </div>
         
-    </i-btn>
+    </i-dialog>
 </template>
  
 <script>
 import UI                           from 'Common/ui';
+import PopupManager                 from 'Utils/PopupManager';
+
+const rmIndexTimeout = 120;
 
 export default UI.extend({
-    name : 'btn',
+    name : 'dialog',
+    mixins : [PopupManager],
     props : {
-        link : {
+        width : {
             type : String,
-            default : ''
+            default : '50%'
         },
-        locked : {
-            type : [Boolean, Number],
-            default : false
+        height : {
+            type : String,
+            default : '50%'
         },
-        newTab : {
+        autoClose : {
             type : Boolean,
-            default : false
+            default : true
+        },
+        showType : {
+            type : String,
+            default : 'top'
         }
     },
     data : function () {
 
         return {
             conf : {
-                link : this.link,
-                locked : this.locked,
-                newTab : this.newTab
+                width : this.width,
+                height : this.height,
+                autoClose : this.autoClose,
+                showType : this.showType
             },
             data : {
-                lock : false,
-                lastState : null
+                show : false,
+                hasHeader : false,
+                hasFooter : false
             }
         };
 
     },
+    computed : {
+        moreClass : function () {
+
+            return {
+                hasHeader : this.data.hasHeader,
+                hasFooter : this.data.hasFooter,
+                showTop : (this.conf.showType === 'top'),
+                showCenter : (this.conf.showType === 'center'),
+                showNoAnimate : (this.conf.showType === 'no')
+            };
+
+        }
+    },
     methods : {
         _onClick : function (evt) {
 
-            if ( this.state !== 'disabled' &&
-                 !this.data.lock ) {
+            let $content = this.$el.querySelector('.content');
 
-                this.$emit('emit');
+            if (this.conf.autoClose &&
+                evt.path.indexOf($content) === -1) {
+
+                this.toggle();
 
             }
-    
-        },
-        unlock : function () {
-
-            this.data.lock = false;
-            this.conf.state = this.data.lastState;
 
         },
-        lock : function (time) {
+        _isShown : function () {
 
-            if (this.data.lock !== true) {
-                
-                this.data.lastState = this.conf.state;
-    
-            }
+            return (this.$el.classList.value.split(' ').indexOf('show') !== -1);
 
-            this.data.lock = true;
-            this.conf.state = 'loading';
+        },
+        toggle : function (show) {
 
-            if ( time ) {
+            let isShown = this._isShown();
 
-                setTimeout(() => {
+            if ( show === undefined ) {
 
-                    if (this.data.lock) {
-                    
-                        this.unlock();
-                    
-                    }
-
-                }, +time);
+                show = !this.data.show;
 
             }
 
-        }
-    },
-    created : function () {
-        
-    },
-    mounted : function () {
+            this.data.show = !!show;
 
-        this.data.lastState = this.conf.state;
+            if ( this.data.show ) {
 
-        if ( typeof this.locked === 'number' ) {
+                if (!isShown) {
 
-            this.lock( +this.locked );
+                    this._popupShow();
 
-        } else if ( this.locked === true ) {
+                    setTimeout(() =>{
 
-            this.lock();
+                        this.$el.classList.add('show');
 
-        }
-
-        this.$on('emit', () => {
-
-            if (this.conf.link) {
-
-                if ( this.conf.newTab ) {
-
-                    window.open(this.conf.link);
-
-                } else {
-
-                    window.location.href = this.conf.link;
+                    });
 
                 }
 
+                this.$emit('show');
+                this.$emit('emit');
+                
+            } else {
+
+                if (isShown) {
+
+                    this.$el.classList.remove('show');
+
+                    setTimeout(() => {
+
+                        this._popupHide();
+
+                    }, rmIndexTimeout);
+
+                }
+
+                this.$emit('hide');
+                this.$emit('emit');
+            
             }
 
-        });
+        }
+
+    },
+    mounted : function () {
+
+        if (this.$slots.header) {
+
+            this.data.hasHeader = true;
+
+        }
+
+        if (this.$slots.footer) {
+
+            this.data.hasFooter = true;
+
+        }
 
     }
 });
@@ -145,553 +171,326 @@ export default UI.extend({
 <style lang="less">
 @import '~Common/var.less';
 
-i-btn{
-    display: inline-block;
-    padding: 0 1.1em;
-    border-radius: 0.3em;
-    position: relative;
-    height: 2.8em;
-    line-height: 2.8em;
+@footerHeight: 50px;
+@headerHeight: 50px;
 
-    &:hover{
-        cursor: pointer;
+i-dialog{
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    position: fixed;
+    z-index: 999;
+    overflow: hidden;
+    pointer-events: none;
+    visibility: hidden;
+    transition: 0.3s;
+
+    >.mask{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background-color: rgba(0,0,0,0.7);
+        opacity: 0;
+        transition: 0.2s;
+        pointer-events: none;
     }
 
-    &.si-xxl{
-        font-size: 1.3*@fontSize;
 
-        .morningicon{
-            font-size: 1.6*@fontSize;
-            transform-origin: 0.8*@fontSize 0.78125*@fontSize;
-        }
-    }
-
-    &.si-xl{
-        font-size: 1.1*@fontSize;
-
-        .morningicon{
-            font-size: 1.4*@fontSize;
-            transform-origin: 0.69375*@fontSize 0.6875*@fontSize;
-        }
-    }
-
-    &.si-l{
-        font-size: 1*@fontSize;
-
-        .morningicon{
-            font-size: 1.3*@fontSize;
-            transform-origin: 0.65*@fontSize 0.625*@fontSize;
-        }
-    }
-
-    &.si-m{
-        font-size: 0.8125*@fontSize;
-
-        .morningicon{
-            font-size: 1.15*@fontSize;
-            transform-origin: 0.575*@fontSize 0.5625*@fontSize;
-        }
-    }
-
-    &.si-s{
-        font-size: 0.75*@fontSize;
-        height: 2.6em;
-        line-height: 2.6em;
-        padding: 0 0.8em;
-
-        .morningicon{
-            font-size: 0.9*@fontSize;
-            transform-origin: 0.45*@fontSize 0.4375*@fontSize;
-        }
-    }
-
-    &.si-xs{
-        font-size: 0.75*@fontSize;
-        height: 2.2em;
-        line-height: 2.2em;
-        padding: 0 0.6em;
-
-        .morningicon{
-            font-size: 0.85*@fontSize;
-            transform-origin: 0.425*@fontSize 0.40625*@fontSize;
-        }
-    }
-
-    &.si-xxs{
-        font-size: 0.75*@fontSize;
-        height: 1.8em;
-        line-height: 1.8em;
-        padding: 0 0.4em;
-
-        .morningicon{
-            font-size: 0.75*@fontSize;
-            transform-origin: 0.375*@fontSize 0.375*@fontSize;
-        }
-    }
-    
-    &.sy-theme{
-        background-color: @colorTheme;
-        color: @colorWhite;
-
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            background-color: darken(@colorTheme, 5%);
-        }
-
-        &:not(.st-disabled):active,
-        &.st-active{
-            background-color: darken(@colorTheme, 10%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
-        }
-
-        &.st-disabled{
-            color: lighten(@colorTheme, 25%);
-        }
-    }
-    
-    &.sy-lightTheme{
-        background-color: @colorLightTheme;
-        color: @colorWhite;
-
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            background-color: darken(@colorLightTheme, 5%);
-        }
-
-        &:not(.st-disabled):active,
-        &.st-active{
-            background-color: darken(@colorLightTheme, 10%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
-        }
-
-        &.st-disabled{
-            color: lighten(@colorLightTheme, 20%);
-        }
-    }
-    
-    &.sy-darkTheme{
-        background-color: @colorDarkTheme;
-        color: @colorWhite;
-
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            background-color: darken(@colorDarkTheme, 5%);
-        }
-
-        &:not(.st-disabled):active,
-        &.st-active{
-            background-color: darken(@colorDarkTheme, 10%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
-        }
-
-        &.st-disabled{
-            color: lighten(@colorDarkTheme, 25%);
-        }
-    }
-
-    &.sy-success{
-        background-color: @colorSuccess;
-        color: @colorWhite;
-
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            background-color: darken(@colorSuccess, 5%);
-        }
-
-        &:not(.st-disabled):active,
-        &.st-active{
-            background-color: darken(@colorSuccess, 10%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
-        }
-
-        &.st-disabled{
-            color: lighten(@colorSuccess, 35%);
-        }
-    }
-    
-    &.sy-warning{
-        background-color: @colorWarning;
-        color: @colorWhite;
-
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            background-color: darken(@colorWarning, 5%);
-        }
-
-        &:not(.st-disabled):active,
-        &.st-active{
-            background-color: darken(@colorWarning, 10%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
-        }
-
-        &.st-disabled{
-            color: lighten(@colorWarning, 35%);
-        }
-    }
-    
-    &.sy-danger{
-        background-color: @colorDanger;
-        color: @colorWhite;
-
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            background-color: darken(@colorDanger, 5%);
-        }
-
-        &:not(.st-disabled):active,
-        &.st-active{
-            background-color: darken(@colorDanger, 10%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
-        }
-
-        &.st-disabled{
-            color: lighten(@colorDanger, 35%);
-        }
-    }
-    
-    &.sy-primary{
-        background-color: @colorPrimary;
-        color: @colorWhite;
-
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            background-color: darken(@colorPrimary, 5%);
-        }
-
-        &:not(.st-disabled):active,
-        &.st-active{
-            background-color: darken(@colorPrimary, 10%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
-        }
-
-        &.st-disabled{
-            color: lighten(@colorPrimary, 35%);
-        }
-    }
-
-    &.sy-minor{
-        background-color: @colorMinor;
-        color: @colorWhite;
-
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            background-color: darken(@colorMinor, 5%);
-        }
-
-        &:not(.st-disabled):active,
-        &.st-active{
-            background-color: darken(@colorMinor, 10%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
-        }
-
-        &.st-disabled{
-            color: lighten(@colorMinor, 25%);
-        }
-    }
-    
-    &.sy-info{
-        background-color: @colorInfo;
-        color: @colorWhite;
-
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            background-color: darken(@colorInfo, 5%);
-        }
-
-        &:not(.st-disabled):active,
-        &.st-active{
-            background-color: darken(@colorInfo, 10%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
-        }
-
-        &.st-disabled{
-            color: lighten(@colorInfo, 20%);
-        }
-    }
-    
-    &.sy-black{
-        background-color: @colorBlack;
-        color: @colorWhite;
-
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            background-color: lighten(@colorBlack, 5%);
-        }
-
-        &:not(.st-disabled):active,
-        &.st-active{
-            background-color: lighten(@colorBlack, 10%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.4) inset;
-        }
-
-        &.st-disabled{
-            color: lighten(@colorBlack, 40%);
-        }
-    }
-    
-    &.sy-lightBlack{
-        background-color: @colorLightBlack;
-        color: @colorWhite;
-
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            background-color: lighten(@colorLightBlack, 5%);
-        }
-
-        &:not(.st-disabled):active,
-        &.st-active{
-            background-color: lighten(@colorLightBlack, 10%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.4) inset;
-        }
-
-        &.st-disabled{
-            color: lighten(@colorLightBlack, 40%);
-        }
-    }
-    
-    &.sy-extraLightBlack{
-        background-color: @colorExtraLightBlack;
-        color: @colorWhite;
-
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            background-color: lighten(@colorExtraLightBlack, 5%);
-        }
-
-        &:not(.st-disabled):active,
-        &.st-active{
-            background-color: lighten(@colorExtraLightBlack, 10%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.4) inset;
-        }
-
-        &.st-disabled{
-            color: lighten(@colorExtraLightBlack, 40%);
-        }
-    }
-    
-    &.sy-blue{
-        background-color: @colorBlue;
-        color: @colorWhite;
-
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            background-color: darken(@colorBlue, 5%);
-        }
-
-        &:not(.st-disabled):active,
-        &.st-active{
-            background-color: darken(@colorBlue, 10%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
-        }
-
-        &.st-disabled{
-            color: lighten(@colorBlue, 30%);
-        }
-    }
-    
-    &.sy-lightBlue{
-        background-color: @colorLightBlue;
-        color: @colorWhite;
-
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            background-color: darken(@colorLightBlue, 5%);
-        }
-
-        &:not(.st-disabled):active,
-        &.st-active{
-            background-color: darken(@colorLightBlue, 10%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
-        }
-
-        &.st-disabled{
-            color: lighten(@colorLightBlue, 30%);
-        }
-    }
-    
-    &.sy-extraLightBlue{
-        background-color: @colorExtraLightBlue;
-        color: @colorWhite;
-
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            background-color: darken(@colorExtraLightBlue, 5%);
-        }
-
-        &:not(.st-disabled):active,
-        &.st-active{
-            background-color: darken(@colorExtraLightBlue, 10%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
-        }
-
-        &.st-disabled{
-            color: lighten(@colorExtraLightBlue, 20%);
-        }
-    }
-    
-    &.sy-silver{
-        background-color: @colorSilver;
-        color: @colorExtraLightBlack;
-
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            background-color: darken(@colorSilver, 3%);
-        }
-
-        &:not(.st-disabled):active,
-        &.st-active{
-            background-color: darken(@colorSilver, 6%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
-        }
-
-        &.st-disabled{
-            color: darken(@colorSilver, 30%);
-        }
-    }
-    
-    &.sy-lightSilver{
-        background-color: @colorLightSilver;
-        color: @colorExtraLightBlack;
-
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            background-color: darken(@colorLightSilver, 3%);
-        }
-
-        &:not(.st-disabled):active,
-        &.st-active{
-            background-color: darken(@colorLightSilver, 6%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
-        }
-
-        &.st-disabled{
-            color: darken(@colorLightSilver, 30%);
-        }
-    }
-    
-    &.sy-extraLightSilver{
-        background-color: @colorExtraLightSilver;
-        color: @colorExtraLightBlack;
-
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            background-color: darken(@colorExtraLightSilver, 3%);
-        }
-
-        &:not(.st-disabled):active,
-        &.st-active{
-            background-color: darken(@colorExtraLightSilver, 6%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
-        }
-
-        &.st-disabled{
-            color: darken(@colorExtraLightSilver, 30%);
-        }
-    }
-    
-    &.sy-gray{
-        background-color: @colorGray;
-        color: @colorExtraLightBlack;
-
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            background-color: darken(@colorGray, 3%);
-        }
-
-        &:not(.st-disabled):active,
-        &.st-active{
-            background-color: darken(@colorGray, 6%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
-        }
-
-        &.st-disabled{
-            color: darken(@colorGray, 30%);
-        }
-    }
-    
-    &.sy-lightGray{
-        background-color: @colorLightGray;
-        color: @colorExtraLightBlack;
-
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            background-color: darken(@colorLightGray, 3%);
-        }
-
-        &:not(.st-disabled):active,
-        &.st-active{
-            background-color: darken(@colorLightGray, 6%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
-        }
-
-        &.st-disabled{
-            color: darken(@colorLightGray, 30%);
-        }
-    }
-    
-    &.sy-white{
-        background-color: @colorWhite;
-        color: @colorExtraLightBlack;
-
-        &:not(.st-disabled):hover,
-        &.st-hover{
-            background-color: darken(@colorWhite, 3%);
-        }
-
-        &:not(.st-disabled):active,
-        &.st-active{
-            background-color: darken(@colorWhite, 6%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
-        }
-
-        &.st-disabled{
-            color: darken(@colorWhite, 30%);
-        }
-    }
-
-    &.st-normal{}
-    &.st-hover{}
-    &.st-active{}
-    &.st-disabled{
-        box-shadow: 0 0 5px rgba(0,0,0,0.6) inset;
-        cursor: not-allowed;
-    }
-    &.st-apparent{
-        animation-name: apparent;
-        animation-duration: 1s;
-        animation-timing-function: linear;
-        animation-iteration-count: infinite;
-
-        &:hover{
-            animation-name: none;
-        }
-    }
-    &.st-loading{
-        .morningicon{
+    >.content{
+        width: 50%;
+        height: 50%;
+        position: absolute;
+        left: 50%;
+        background-color: #fff;
+        box-sizing: border-box;
+
+        >.body{
             position: absolute;
-            left: ~`"calc( 50% - 0.5em )"`;
-            top: ~`"calc( 50% - 0.5em )"`;
-            line-height: 1em;
-            animation-name: rotation;
-            animation-duration: 1s;
-            animation-timing-function: linear;
-            animation-iteration-count: infinite;
+            overflow: auto;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+            box-sizing: border-box;
+            padding: @fontSize;
         }
-        span{ opacity: 0; }
-        &:hover{ cursor: default; }
+
+        >header{
+            font-size: @fontSize;
+            line-height: @headerHeight;
+            height: @headerHeight;
+            width: 100%;
+            padding: 0 1.5em;
+            box-sizing: border-box;
+            position: relative;
+
+            &:empty{
+                display: none;
+            }
+            
+            >h1{
+                font-size: @fontSize;
+                margin: 0;
+                padding: 0;
+                font-weight: normal;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+            }
+
+            >i-link{
+                position: absolute;
+                top: 0;
+                right: 1.5em;
+                line-height: 3em;
+                height: 3em;
+                font-size: initial;
+            }
+
+            >i-link>.iconfont{
+                font-size: initial;
+            }
+        }
+
+        >footer{
+            font-size: 0.8125*@fontSize;
+            line-height: @footerHeight;;
+            height: @footerHeight;;
+            width: 100%;
+            background: @colorExtraLightSilver;
+            color: @colorBlue;
+            padding: 0 1.5em;
+            box-sizing: border-box;
+            position: absolute;
+            bottom: 0;
+
+            &:empty{
+                display: none;
+            }
+            
+            >div{
+                position: absolute;
+                right: 1em;
+                top: 0;
+
+                >*{
+                    margin-left: 0.2em;
+                }
+            }
+        }
     }
-    &.st-processing{
-        .st-loading;
-        .morningicon{
-            animation-name: rotationContrast;
+
+    &.hasFooter>.content>.body{
+        bottom: @footerHeight;
+    }
+    &.hasHeader>.content>.body{
+        top: @headerHeight;
+    }
+
+    &.showTop{
+        >.content{
+            top: 0;
+            transform: translateX(-50%) translateY(-100%) scale(1);
+            opacity: 1;
+            height: 200px;
+            transition: 0.2s;
+        }
+
+        &.show{
+            >.content{
+                top: 3%;
+                transform: translateX(-50%) translateY(0%) scale(1);
+            }
+        }
+    }
+
+    &.showCenter{
+        >.content{
+            top: 50%;
+            transform: translateX(-50%) translateY(-50%) scale(0.3);
+            opacity: 0;
+            transition: 0.26s;
+        }
+
+        &.show{
+            >.content{
+                transform: translateX(-50%) translateY(-50%) scale(1);
+                opacity: 1;
+            }
+        }
+    }
+
+    &.showNoAnimate{
+        >.mask{
+            transition: 0s;
+        }
+        
+        >.content{
+            top: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            opacity: 0;
+            transition: 0s;
+        }
+
+        &.show{
+            >.content{
+                opacity: 1;
+            }
+        }
+    }
+
+    &.show{
+        pointer-events: auto;
+        visibility: visible;
+
+        >.mask{
+            opacity: 1;
+        }
+    }
+
+    &.sy-theme {
+        >.content>header{
+            background-color: @colorTheme;
+            color: @colorWhite;
+        }
+    }
+    &.sy-lightTheme {
+        >.content>header{
+            background-color: @colorLightTheme;
+            color: @colorWhite;
+        }
+    }
+    &.sy-darkTheme {
+        >.content>header{
+            background-color: @colorDarkTheme;
+            color: @colorWhite;
+        }
+    }
+
+    &.sy-success {
+        >.content>header{
+            background-color: @colorSuccess;
+            color: @colorWhite;
+        }
+    }
+    &.sy-warning {
+        >.content>header{
+            background-color: @colorWarning;
+            color: @colorWhite;
+        }
+    }
+    &.sy-danger {
+        >.content>header{
+            background-color: @colorDanger;
+            color: @colorWhite;
+        }
+    }
+    &.sy-primary {
+        >.content>header{
+            background-color: @colorPrimary;
+            color: @colorWhite;
+        }
+    }
+    &.sy-minor {
+        >.content>header{
+            background-color: @colorMinor;
+            color: @colorWhite;
+        }
+    }
+    &.sy-info {
+        >.content>header{
+            background-color: @colorInfo;
+            color: @colorWhite;
+        }
+    }
+
+    &.sy-black {
+        >.content>header{
+            background-color: @colorBlack;
+            color: @colorWhite;
+        }
+    }
+    &.sy-lightBlack {
+        >.content>header{
+            background-color: @colorLightBlack;
+            color: @colorWhite;
+        }
+    }
+    &.sy-extraLightBlack {
+        >.content>header{
+            background-color: @colorExtraLightBlack;
+            color: @colorWhite;
+        }
+    }
+    &.sy-blue {
+        >.content>header{
+            background-color: @colorBlue;
+            color: @colorWhite;
+        }
+    }
+    &.sy-lightBlue {
+        >.content>header{
+            background-color: @colorLightBlue;
+            color: @colorWhite;
+        }
+    }
+    &.sy-extraLightBlue {
+        >.content>header{
+            background-color: @colorExtraLightBlue;
+            color: @colorWhite;
+        }
+    }
+    &.sy-silver {
+        >.content>header{
+            background-color: @colorSilver;
+            color: @colorLightBlack;
+        }
+    }
+    &.sy-lightSilver {
+        >.content>header{
+            background-color: @colorLightSilver;
+            color: @colorLightBlack;
+        }
+    }
+    &.sy-extraLightSilver {
+        >.content>header{
+            background-color: @colorExtraLightSilver;
+            color: @colorLightBlack;
+        }
+    }
+    &.sy-gray {
+        >.content>header{
+            background-color: @colorGray;
+            color: @colorLightBlack;
+        }
+        >.content>footer{
+            background-color: @colorLightGray;
+        }
+    }
+    &.sy-lightGray {
+        >.content>header{
+            background-color: @colorLightGray;
+            color: @colorLightBlack;
+        }
+        >.content>footer{
+            background-color: @colorLightGray;
+        }
+    }
+    &.sy-white {
+        >.content>header{
+            background-color: @colorWhite;
+            color: @colorLightBlack;
+        }
+        >.content>footer{
+            background-color: @colorLightGray;
         }
     }
 
     // default statement
     &{
-        .si-m;
         .sy-theme;
-        .st-normal;
     }
 
 }

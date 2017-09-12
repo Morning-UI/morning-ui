@@ -3,7 +3,7 @@
         :_uiid="uiid"
         :class="[showClass]"
         
-        :auto-hide="autoHide"
+        :auto-close="autoClose"
     >
     
     <slot name="showbtn"></slot>
@@ -18,7 +18,7 @@ import UI                           from 'Common/ui';
 export default UI.extend({
     name : 'dropdown',
     props : {
-        autoHide : {
+        autoClose : {
             type : Boolean,
             default : true
         }
@@ -37,7 +37,7 @@ export default UI.extend({
 
         return {
             conf : {
-                autoHide : this.autoHide
+                autoClose : this.autoClose
             },
             data : {
                 show : false,
@@ -53,8 +53,8 @@ export default UI.extend({
 
             let $emitbtn = this.$el.querySelector('[emitbtn]');
 
-            if ((this.conf.autoHide && (evt.path.indexOf($emitbtn) === notFound)) ||
-                (!this.conf.autoHide && (evt.path.indexOf(this.$el) === notFound))) {
+            if ((this.conf.autoClose && (evt.path.indexOf($emitbtn) === notFound)) ||
+                (!this.conf.autoClose && (evt.path.indexOf(this.$el) === notFound))) {
 
                 this.toggle();
 

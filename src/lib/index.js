@@ -12,6 +12,7 @@ let morning = {
     _ignoreElements : [],
     _uiid : 1,
     _findCache : {},
+    _popupId : 0,
     version : '0.10.0',
     map : {},
     findVM : function (ref) {

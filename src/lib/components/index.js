@@ -40,6 +40,7 @@ import btn                          from './btn/index.vue';
 import link                         from './link/index.vue';
 import dropdown                     from './dropdown/index.vue';
 import tab                          from './tab/index.vue';
+import dialog                       from './dialog/index.vue';
 import load                         from './load/index.vue';
 import breadcrumbs                  from './breadcrumbs/index.vue';
 
@@ -83,6 +84,7 @@ export default {
     link,
     dropdown,
     tab,
+    dialog,
     load,
     breadcrumbs
 };

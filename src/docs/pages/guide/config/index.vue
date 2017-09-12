@@ -210,6 +210,9 @@
     - `new-tab` : 新标签
     - `time` : 时间
     - `note` : 备注
+    - `width` : 宽度
+    - `height` : 高度
+    - `auto-close` : 自动关闭
 
     </script>
     </doc-guide>

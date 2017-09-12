@@ -15,6 +15,7 @@ let pathReport = path.resolve(pathProjectRoot, 'report');
 let pathCoverage = path.resolve(pathReport, 'coverage');
 let pathLib = path.resolve(pathSrc, 'lib');
 let pathLibCommon = path.resolve(pathLib, 'common');
+let pathLibUtils = path.resolve(pathLib, 'utils');
 let pathSrcDocs = path.resolve(pathSrc, 'docs');
 let pathSrcDocsPages = path.resolve(pathSrcDocs, 'pages');
 
@@ -73,7 +74,8 @@ commonConfig = {
     plugins : [],
     resolve : {
         alias : {
-            Common : pathLibCommon
+            Common : pathLibCommon,
+            Utils : pathLibUtils
         }
     },
     externals : {
