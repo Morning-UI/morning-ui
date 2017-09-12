@@ -1581,7 +1581,7 @@ exports.default = {
         '标签页<i class="tag done"></i>': '/component/tab.html',
         表格: 'b',
         '分页<i class="tag coming"></i>': '/component/pagination.html',
-        '模拟盒<i class="tag coming"></i>': '/component/dialog.html',
+        '模拟盒<i class="tag done"></i>': '/component/dialog.html',
         消息提示: 'b',
         日历: 'b',
         '加载<i class="tag update"></i> <i class="tag done"></i>': '/component/load.html',
@@ -1641,7 +1641,7 @@ exports.default = {
         '版本计划<i class="tag coming"></i>': '/guide/versionplan.html',
         更多: null,
         '致谢<i class="tag done"></i>': '/guide/thank.html',
-        '反馈问题<i class="tag coming"></i>': '/guide/report.html',
+        '反馈问题<i class="tag done"></i>': '/guide/report.html',
         '更新日志<i class="tag done"></i>': '/guide/logs.html'
     }
 };
@@ -23436,13 +23436,102 @@ exports.default = {
     data: function data() {
 
         return {
-            page: 'method'
+            page: 'report'
         };
     },
     components: {
         'doc-guide': _DocGuide2.default
     }
 }; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -23652,9 +23741,14 @@ new _vue2.default({
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('doc-guide', {
     attrs: {
-      "page": _vm.page
+      "page": _vm.page,
+      "hasPadding": true
     }
-  }, [_vm._v("\n    method\n")])
+  }, [_c('script', {
+    attrs: {
+      "type": "text/markdown"
+    }
+  }, [_vm._v("\n# 反馈问题\n\nMorningUI采用Gitlab Issue管理反馈的问题，如果你在使用过程中发现Bug或希望支持新的功能，可以通过[Gitlab Issue](http://git.husor.com/fed/morning/issues)提出。\n\n为了便于开发者快速了解你的诉求，Issue请按照以下模板填写：\n\n#### BUG报告\n\n```\n### 问题类型\n\nBUG报告\n\n### 版本\n\n(如果是BUG报告需要填写出现问题的版本)\n\n### 问题\n\n(如果是BUG报告需要填写)\n\n### 复现环境及步骤\n\n(如果是BUG报告需要填写)\n\n### 期望的时间\n\n(填写BUG解决或功能支持的期望时间)\n\n### 其他\n\n(填写更多你想阐述的内容)\n\n```\n    \n#### 功能请求\n\n```\n### 问题类型\n\n功能请求\n\n### 功能描述\n\n(如果是功能请求需要填写)\n\n### 解决了什么问题\n\n(如果是功能请求需要填写)\n\n### 期望的时间\n\n(填写BUG解决或功能支持的期望时间)\n\n### 其他\n\n(填写更多你想阐述的内容)\n\n```\n\n填写完毕后，请根据问题的类型添加对应的标签：\n\n- bug report : BUG报告\n- feature request : 功能请求\n\n### 跟踪进展\n\n当你通过Issue反馈问题后，MorningUI的开发者会对Issue添加标签，你可以根据标签的情况了解进展：\n\n- need repro : 需要提供更多的复现内容\n- pending : 待定\n- wont solve : 暂时不会解决\n- bug confirmed : 报告的bug被开发者确认\n- intend to solve : 计划解决\n- in progress : 解决中\n- in review : 审查中\n- launched : 已解决并发布\n\n### 其他\n\n除了反馈问题外，还会有一些讨论或开发性质的Issue：\n\n- important : 重要\n- discussion : 讨论\n- document : 文档相关\n- feature : 新功能开发\n- fix : 修复开发\n\n")])])
 }
 var staticRenderFns = []
 render._withStripped = true

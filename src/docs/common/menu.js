@@ -46,7 +46,7 @@ export default {
         '标签页<i class="tag done"></i>' : '/component/tab.html',
         表格 : 'b',
         '分页<i class="tag coming"></i>' : '/component/pagination.html',
-        '模拟盒<i class="tag coming"></i>' : '/component/dialog.html',
+        '模拟盒<i class="tag done"></i>' : '/component/dialog.html',
         消息提示 : 'b',
         日历 : 'b',
         '加载<i class="tag update"></i> <i class="tag done"></i>' : '/component/load.html',
@@ -106,7 +106,7 @@ export default {
         '版本计划<i class="tag coming"></i>' : '/guide/versionplan.html',
         更多 : null,
         '致谢<i class="tag done"></i>' : '/guide/thank.html',
-        '反馈问题<i class="tag coming"></i>' : '/guide/report.html',
+        '反馈问题<i class="tag done"></i>' : '/guide/report.html',
         '更新日志<i class="tag done"></i>' : '/guide/logs.html'
     }
 };
