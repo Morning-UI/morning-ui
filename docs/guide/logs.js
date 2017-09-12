@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 376);
+/******/ 	return __webpack_require__(__webpack_require__.s = 385);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -1558,8 +1558,8 @@ exports.default = {
         '卡片<i class="tag done"></i>': '/component/card.html',
         '容器<i class="tag done"></i>': '/component/box.html',
         '区块<i class="tag done"></i>': '/component/block.html',
-        '分频器<i class="tag update"></i>': '/component/divider.html',
-        '居中容器<i class="tag done"></i> <i class="tag coming"></i> dialog': '/component/center.html',
+        '分频器<i class="tag update"></i> <i class="tag coming"></i> dialog': '/component/divider.html',
+        '居中容器<i class="tag done"></i>': '/component/center.html',
         '页头<i class="tag done"></i>': '/component/header.html',
         '徽章<i class="tag done"></i>': '/component/badge.html',
         '标签<i class="tag done"></i>': '/component/label.html',
@@ -1588,7 +1588,7 @@ exports.default = {
         '进度条<i class="tag new"></i>': 'b',
         '滚动跟随<i class="tag update"></i>': 'b',
         '面包屑<i class="tag done"></i>': '/component/breadcrumbs.html',
-        提示框: 'b',
+        '提示框<i class="tag coming"></i>': '/component/tip.html',
         视频: 'b',
         '音频<i class="tag new"></i>': 'b',
         表单组件: null,
@@ -1625,7 +1625,7 @@ exports.default = {
         '配置<i class="tag done"></i>': '/guide/config.html',
         '方法<i class="tag done"></i>': '/guide/method.html',
         '事件<i class="tag done"></i>': '/guide/event.html',
-        表单值: '/guide/value.html',
+        '表单值<i class="tag coming"></i>': '/guide/value.html',
         '全局方法<i class="tag done"></i>': '/guide/morning.html',
         进阶: null,
         设计思想: 'a',
@@ -23300,18 +23300,21 @@ if (false) {
 /* 255 */,
 /* 256 */,
 /* 257 */,
-/* 258 */
+/* 258 */,
+/* 259 */,
+/* 260 */,
+/* 261 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(317);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(323);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_79d69490_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(487);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_79d69490_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(502);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(428)
+  __webpack_require__(440)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
@@ -23355,9 +23358,6 @@ if (false) {(function () {
 
 
 /***/ }),
-/* 259 */,
-/* 260 */,
-/* 261 */,
 /* 262 */,
 /* 263 */,
 /* 264 */,
@@ -23413,7 +23413,13 @@ if (false) {(function () {
 /* 314 */,
 /* 315 */,
 /* 316 */,
-/* 317 */
+/* 317 */,
+/* 318 */,
+/* 319 */,
+/* 320 */,
+/* 321 */,
+/* 322 */,
+/* 323 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23477,12 +23483,6 @@ exports.default = {
 module.exports = exports['default'];
 
 /***/ }),
-/* 318 */,
-/* 319 */,
-/* 320 */,
-/* 321 */,
-/* 322 */,
-/* 323 */,
 /* 324 */,
 /* 325 */,
 /* 326 */,
@@ -23535,7 +23535,16 @@ module.exports = exports['default'];
 /* 373 */,
 /* 374 */,
 /* 375 */,
-/* 376 */
+/* 376 */,
+/* 377 */,
+/* 378 */,
+/* 379 */,
+/* 380 */,
+/* 381 */,
+/* 382 */,
+/* 383 */,
+/* 384 */,
+/* 385 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23545,7 +23554,7 @@ var _vue = __webpack_require__(1);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _index = __webpack_require__(258);
+var _index = __webpack_require__(261);
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -23559,15 +23568,6 @@ new _vue2.default({
 });
 
 /***/ }),
-/* 377 */,
-/* 378 */,
-/* 379 */,
-/* 380 */,
-/* 381 */,
-/* 382 */,
-/* 383 */,
-/* 384 */,
-/* 385 */,
 /* 386 */,
 /* 387 */,
 /* 388 */,
@@ -23610,12 +23610,7 @@ new _vue2.default({
 /* 425 */,
 /* 426 */,
 /* 427 */,
-/* 428 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
+/* 428 */,
 /* 429 */,
 /* 430 */,
 /* 431 */,
@@ -23627,7 +23622,12 @@ new _vue2.default({
 /* 437 */,
 /* 438 */,
 /* 439 */,
-/* 440 */,
+/* 440 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
 /* 441 */,
 /* 442 */,
 /* 443 */,
@@ -23674,7 +23674,22 @@ new _vue2.default({
 /* 484 */,
 /* 485 */,
 /* 486 */,
-/* 487 */
+/* 487 */,
+/* 488 */,
+/* 489 */,
+/* 490 */,
+/* 491 */,
+/* 492 */,
+/* 493 */,
+/* 494 */,
+/* 495 */,
+/* 496 */,
+/* 497 */,
+/* 498 */,
+/* 499 */,
+/* 500 */,
+/* 501 */,
+/* 502 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -23688,7 +23703,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "type": "text/markdown"
     }
-  }, [_vm._v("\n# 更新日志\n\n### 说明\n\nMorningUI采用[语义化版本控制规范](http://semver.org/lang/zh-CN/)。\n\n同时采用以下三种标记标示不同的版本：\n\n- `Stable` : 稳定版本，各个功能都经过一段时间的测试，非常稳定，建议在生成环境使用。\n- `Beta` : 公开测试版本，里面包含了一些新的特性，相对较为稳定。\n- `Forerunner` : 先行者版本，包含大量新特性的版本，这个版本是实验性的，不适合用于生产环境。\n\n<!-- ### 1.0.0 <ui-badge class=\"circle\" s light-black>Stable</ui-badge> -->\n\n<!-- ### 0.11.0 <ui-badge class=\"circle\" s light-blue>Beta</ui-badge> -->\n\n<!-- ### 0.10.1 <ui-badge class=\"circle\" s light-theme>Forerunner</ui-badge> -->\n\n### 0.10.0 <ui-badge class=\"circle\" s light-theme>Forerunner</ui-badge>\n\n<ui-textcolor light-blue><ui-small>发布于2017年9月17日</ui-small></ui-textcolor>\n\nMorningUI第一个版本，基于HMP UI，规范了定义，实现部分组件。\n\n")])])
+  }, [_vm._v("\n# 更新日志\n\n### 说明\n\nMorningUI采用[语义化版本控制规范](http://semver.org/lang/zh-CN/)。\n\n同时采用以下三种标记标示不同的版本：\n\n- `Stable` : 稳定版本，各个功能都经过一段时间的测试，非常稳定，建议在生成环境使用。\n- `Beta` : 公开测试版本，里面包含了一些新的特性，相对较为稳定。\n- `Forerunner` : 先行者版本，包含大量新特性的版本，这个版本是实验性的，不适合用于生产环境。\n\n<!-- ### 1.0.0 <ui-badge class=\"circle\" s light-black>Stable</ui-badge> -->\n\n<!-- ### 0.11.0 <ui-badge class=\"circle\" s light-blue>Beta</ui-badge> -->\n\n<!-- ### 0.10.1 <ui-badge class=\"circle\" s light-theme>Forerunner</ui-badge> -->\n\n### 0.10.0 <ui-badge class=\"circle\" s light-theme>Forerunner</ui-badge>\n\n<ui-textcolor light-blue><ui-small>发布于2017年9月23日</ui-small></ui-textcolor>\n\nMorningUI第一个版本，基于HMP UI，规范了定义，实现部分组件。\n\n")])])
 }
 var staticRenderFns = []
 render._withStripped = true

@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 382);
+/******/ 	return __webpack_require__(__webpack_require__.s = 391);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -1558,8 +1558,8 @@ exports.default = {
         '卡片<i class="tag done"></i>': '/component/card.html',
         '容器<i class="tag done"></i>': '/component/box.html',
         '区块<i class="tag done"></i>': '/component/block.html',
-        '分频器<i class="tag update"></i>': '/component/divider.html',
-        '居中容器<i class="tag done"></i> <i class="tag coming"></i> dialog': '/component/center.html',
+        '分频器<i class="tag update"></i> <i class="tag coming"></i> dialog': '/component/divider.html',
+        '居中容器<i class="tag done"></i>': '/component/center.html',
         '页头<i class="tag done"></i>': '/component/header.html',
         '徽章<i class="tag done"></i>': '/component/badge.html',
         '标签<i class="tag done"></i>': '/component/label.html',
@@ -1588,7 +1588,7 @@ exports.default = {
         '进度条<i class="tag new"></i>': 'b',
         '滚动跟随<i class="tag update"></i>': 'b',
         '面包屑<i class="tag done"></i>': '/component/breadcrumbs.html',
-        提示框: 'b',
+        '提示框<i class="tag coming"></i>': '/component/tip.html',
         视频: 'b',
         '音频<i class="tag new"></i>': 'b',
         表单组件: null,
@@ -1625,7 +1625,7 @@ exports.default = {
         '配置<i class="tag done"></i>': '/guide/config.html',
         '方法<i class="tag done"></i>': '/guide/method.html',
         '事件<i class="tag done"></i>': '/guide/event.html',
-        表单值: '/guide/value.html',
+        '表单值<i class="tag coming"></i>': '/guide/value.html',
         '全局方法<i class="tag done"></i>': '/guide/morning.html',
         进阶: null,
         设计思想: 'a',
@@ -23306,18 +23306,21 @@ if (false) {
 /* 261 */,
 /* 262 */,
 /* 263 */,
-/* 264 */
+/* 264 */,
+/* 265 */,
+/* 266 */,
+/* 267 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(323);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(329);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_d4438270_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(500);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_d4438270_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(515);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(441)
+  __webpack_require__(453)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
@@ -23361,9 +23364,6 @@ if (false) {(function () {
 
 
 /***/ }),
-/* 265 */,
-/* 266 */,
-/* 267 */,
 /* 268 */,
 /* 269 */,
 /* 270 */,
@@ -23419,7 +23419,13 @@ if (false) {(function () {
 /* 320 */,
 /* 321 */,
 /* 322 */,
-/* 323 */
+/* 323 */,
+/* 324 */,
+/* 325 */,
+/* 326 */,
+/* 327 */,
+/* 328 */,
+/* 329 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23509,12 +23515,6 @@ exports.default = {
 module.exports = exports['default'];
 
 /***/ }),
-/* 324 */,
-/* 325 */,
-/* 326 */,
-/* 327 */,
-/* 328 */,
-/* 329 */,
 /* 330 */,
 /* 331 */,
 /* 332 */,
@@ -23567,7 +23567,16 @@ module.exports = exports['default'];
 /* 379 */,
 /* 380 */,
 /* 381 */,
-/* 382 */
+/* 382 */,
+/* 383 */,
+/* 384 */,
+/* 385 */,
+/* 386 */,
+/* 387 */,
+/* 388 */,
+/* 389 */,
+/* 390 */,
+/* 391 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23577,7 +23586,7 @@ var _vue = __webpack_require__(1);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _index = __webpack_require__(264);
+var _index = __webpack_require__(267);
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -23591,15 +23600,6 @@ new _vue2.default({
 });
 
 /***/ }),
-/* 383 */,
-/* 384 */,
-/* 385 */,
-/* 386 */,
-/* 387 */,
-/* 388 */,
-/* 389 */,
-/* 390 */,
-/* 391 */,
 /* 392 */,
 /* 393 */,
 /* 394 */,
@@ -23649,12 +23649,7 @@ new _vue2.default({
 /* 438 */,
 /* 439 */,
 /* 440 */,
-/* 441 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
+/* 441 */,
 /* 442 */,
 /* 443 */,
 /* 444 */,
@@ -23666,7 +23661,12 @@ new _vue2.default({
 /* 450 */,
 /* 451 */,
 /* 452 */,
-/* 453 */,
+/* 453 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
 /* 454 */,
 /* 455 */,
 /* 456 */,
@@ -23713,7 +23713,22 @@ new _vue2.default({
 /* 497 */,
 /* 498 */,
 /* 499 */,
-/* 500 */
+/* 500 */,
+/* 501 */,
+/* 502 */,
+/* 503 */,
+/* 504 */,
+/* 505 */,
+/* 506 */,
+/* 507 */,
+/* 508 */,
+/* 509 */,
+/* 510 */,
+/* 511 */,
+/* 512 */,
+/* 513 */,
+/* 514 */,
+/* 515 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
