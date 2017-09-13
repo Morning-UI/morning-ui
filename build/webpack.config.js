@@ -11,6 +11,7 @@ let pathNpm = path.resolve(pathProjectRoot, 'node_modules');
 let pathDist = path.resolve(pathProjectRoot, 'dist');
 let pathSrc = path.resolve(pathProjectRoot, 'src');
 let pathDocs = path.resolve(pathProjectRoot, 'docs');
+let pathDocsCommon = path.resolve(pathDocs, 'common');
 let pathReport = path.resolve(pathProjectRoot, 'report');
 let pathCoverage = path.resolve(pathReport, 'coverage');
 let pathLib = path.resolve(pathSrc, 'lib');
@@ -30,7 +31,7 @@ let extractDevCss = new ExtractTextPlugin({
 });
 let extractProdCss = new ExtractTextPlugin('morning-ui.min.css');
 let extractDocsCss = new ExtractTextPlugin('[name].css');
-let extractIconfont = new ExtractTextPlugin('iconfont.woff');
+// let extractLibHighlightHopscotch = new ExtractTextPlugin('highlight.style.hopscotch.css');
 
 let getDocsEntry = async docsConf => {
 
@@ -59,11 +60,15 @@ let getDocsHtmlPlugin = async docsConf => {
 
     for (let urlPath of Object.keys(docsConf.entry)) {
 
-        docsConf.plugins.push(new HtmlWebpackPlugin({
-            chunks : [urlPath],
-            filename : `${urlPath}.html`,
-            template : path.resolve(pathSrcDocs, 'tpl.html')
-        }));
+        if (['doc-common'].indexOf(urlPath) === -1) {
+
+            docsConf.plugins.push(new HtmlWebpackPlugin({
+                chunks : [urlPath],
+                filename : `${urlPath}.html`,
+                template : path.resolve(pathSrcDocs, 'tpl.html')
+            }));
+
+        }
 
     }
 
@@ -220,7 +225,16 @@ prodVerConfig = extend(
 );
 
 docsConfig = {
-    entry : {},
+    entry : {
+        'doc-common' : [
+            'underscore',
+            'highlight.js',
+            'marked',
+            'mustache',
+            'extend',
+            'Docs/common/menu.js'
+        ]
+    },
     plugins : [
         new CleanWebpackPlugin([pathDocs], {
             root : pathProjectRoot
@@ -228,8 +242,11 @@ docsConfig = {
         new webpack.DefinePlugin({
             'process.env.NODE_ENV' : process.env.NODE_ENV
         }),
-        extractDocsCss,
-        extractIconfont
+        new webpack.optimize.CommonsChunkPlugin({
+            name : 'doc-common',
+            minChunks : Infinity
+        }),
+        extractDocsCss
     ],
     resolve : {
         alias : {
@@ -276,7 +293,7 @@ docsConfig = {
             },
             {
                 test : /\.js$/,
-                exclude : /node_modules/,
+                exclude : /(node_modules|libs)/,
                 use : {
                     loader : 'babel-loader'
                 }
@@ -292,6 +309,8 @@ docsConfig = {
 
 getDocsEntry(docsConfig);
 getDocsHtmlPlugin(docsConfig);
+
+// console.log(docsConfig);
 
 module.exports = [
     devVerConfig,

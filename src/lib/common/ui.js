@@ -195,6 +195,7 @@ let UI = Vue.extend({
 
         data.uiid = window.morning._uiid++;
         data.morning = null;
+        data.Vue = Vue;
         data.conf = {};
         data.data = {};
 

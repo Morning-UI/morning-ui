@@ -5,7 +5,8 @@ let PopupManager = {
             Popup : {
                 index : 1000,
                 keepDiv : null,
-                popupDiv : null
+                oldIndex : undefined
+                // popupDiv : null
             }
         };
 
@@ -21,33 +22,28 @@ let PopupManager = {
 
             let id = this.morning._popupId++;
             let keepDiv = document.createElement('div');
-            let popupDiv = document.createElement('div');
 
             keepDiv.setAttribute('popup-id', id);
-
+            keepDiv.style.display = 'none';
             this.$el.before(keepDiv);
-            popupDiv.append(this.$el);
-            popupDiv.style.zIndex = this.Popup.index + id;
-
-            document.body.append(popupDiv);
-
+            this.Popup.oldIndex = this.$el.style.zIndex;
+            this.$el.style.zIndex = this.Popup.index + id;
+            document.body.append(this.$el);
             this.Popup.keepDiv = keepDiv;
-            this.Popup.popupDiv = popupDiv;
 
         },
         _popupHide : function () {
 
-            if (!this.Popup.keepDiv || !this.Popup.popupDiv) {
+            if (!this.Popup.keepDiv) {
 
                 return;
 
             }
 
-            this.Popup.keepDiv.before(this.Popup.popupDiv.children[0]);
+            this.$el.style.zIndex = this.Popup.oldIndex;
+            this.Popup.keepDiv.before(this.$el);
             this.Popup.keepDiv.remove();
-            this.Popup.popupDiv.remove();
             this.Popup.keepDiv = null;
-            this.Popup.popupDiv = null;
 
         }
     }

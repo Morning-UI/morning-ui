@@ -1,1 +1,2 @@
 - `ui-dropdown`增加仅点击emitbtn隐藏
+- `ui-tip` click点击其他区域隐藏 逻辑优化
