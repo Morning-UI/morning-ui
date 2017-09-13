@@ -53,7 +53,7 @@ export default {
         '进度条<i class="tag new"></i>' : 'b',
         '滚动跟随<i class="tag update"></i>' : 'b',
         '面包屑<i class="tag done"></i>' : '/component/breadcrumbs.html',
-        '提示框<i class="tag coming"></i>' : '/component/tip.html',
+        '小提示<i class="tag coming"></i>' : '/component/tip.html',
         视频 : 'b',
         '音频<i class="tag new"></i>' : 'b',
         表单组件 : null,

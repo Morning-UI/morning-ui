@@ -1588,7 +1588,7 @@ exports.default = {
         '进度条<i class="tag new"></i>': 'b',
         '滚动跟随<i class="tag update"></i>': 'b',
         '面包屑<i class="tag done"></i>': '/component/breadcrumbs.html',
-        '提示框<i class="tag coming"></i>': '/component/tip.html',
+        '小提示<i class="tag coming"></i>': '/component/tip.html',
         视频: 'b',
         '音频<i class="tag new"></i>': 'b',
         表单组件: null,
@@ -23429,200 +23429,13 @@ exports.default = {
     data: function data() {
 
         return {
-            page: 'btn'
+            page: 'tip'
         };
     },
     components: {
         'doc-component': _DocComponent2.default
     }
 }; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -23870,7 +23683,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "type": "text/markdown"
     }
-  }, [_vm._v("\n# 按钮 `<ui-btn>`\n\n<doc-component-status page=\"btn\"></doc-component-status>\n\n[[[基础]]]\n\n定义一个按钮，这是一个内联块元素。\n\n#### 使用\n\n````html\n<ui-btn>按钮</ui-btn>\n````\n\n[[[声明]]]\n\n#### 支持\n\n|类型|支持|默认|\n|-|-|-|\n|尺寸|全部|`m`|\n|色彩|全部|`theme`|\n|状态|全部|`normal`|\n\n#### 尺寸\n\n````html\n@size\n<ui-btn {$sizeKey}>{$&sizeName}</ui-btn>\n````\n\n````html\n@size\n<ui-btn {$sizeKey} loading>{$&sizeName}</ui-btn>\n````\n\n#### 色彩\n\n````html\n@color:theme\n@color:feature\n@color:black\n@color:blue\n@color:silver\n@color:gray\n<ui-btn {$colorKey}>{$&colorName}</ui-btn>\n````\n\n#### 状态\n\n````html\n@state|@br:2|@color:theme\n@state|@br:2|@color:feature\n@state|@br:2|@color:black\n@state|@br:2|@color:blue\n@state|@br:2|@color:silver\n@state|@br:2|@color:gray\n<ui-btn {$stateKey} {$colorKey}>{$&stateName}</ui-btn>\n````\n\n[[[配置]]]\n\n|KEY|描述|接受值|值类型|默认值|\n|-|-|-|\n|link|链接地址，若为空则不跳转|url地址|String|`''`|\n|js|点击后执行JS逻辑|JS代码|String|`''`|\n|locked|锁定模式，用来防止组件在短时间内被重复触发。若设置一个时间数值(ms)，该组件在时间内只触发一次。也可设为`true`，触发后需要通过`unlock()`方法来解锁组件。|`true`<br>`false`<br>数值(单位ms)|Number<br>Boolean|`false`|\n|new-tab|是否在新窗口中打开链接|`true`<br>`false`|Boolean|`false`|\n\n#### link\n\n````html\n<ui-btn :link=\"'http://www.google.com'\">链接</ui-btn>\n````\n\n#### js\n\n````html\n<ui-btn :js=\"'alert(\"hello.\")'\">执行JS</ui-btn>\n````\n\n#### locked\n\n````html\n<ui-btn :locked=\"3000\">3秒后自动解锁</ui-btn>\n````\n\n````html\n<ui-btn ref=\"demo1\" locked>手动解锁</ui-btn>\n<a href=\"javascript:;\" onclick=\"javascript:morning.findVM('demo1').unlock();\">解锁</a>\n````\n\n#### new-tab\n\n````html\n<ui-btn new-tab :link=\"'http://www.google.com'\">新窗口打开链接</ui-btn>\n````\n\n[[[方法]]]\n\n#### lock([time])\n\n锁定按钮，锁定后按钮不会触发`emit`事件。\n\n|KEY|可选|描述|接受值|值类型|默认值|\n|-|-|-|-|-|-|\n|time|YES|解锁的时间，单位ms。设置后组件将在解锁时间后自动解锁，不设置则需要调用`unlock()`方法解锁|`undefined`<br>数值(单位ms)|`Undefined`<br>`Number`|`undefined`|\n\n````html\n<ui-btn ref=\"demo2\">按钮</ui-btn>\n<br><br> \n<a href=\"javascript:;\" onclick=\"javascript:morning.findVM('demo2').lock();\">锁定</a>\n<a href=\"javascript:;\" onclick=\"javascript:morning.findVM('demo2').lock(2000);\">锁定2s</a>\n<a href=\"javascript:;\" onclick=\"javascript:morning.findVM('demo2').unlock();\">解锁</a>\n````\n\n#### unlock()\n\n解锁按钮，解锁后按钮可触发`emit`事件。\n\n````html\n<ui-btn ref=\"demo3\" locked>按钮</ui-btn>\n<br><br> \n<a href=\"javascript:;\" onclick=\"javascript:morning.findVM('demo3').unlock();\">解锁</a>\n````\n\n[[[事件]]]\n\n#### emit\n\n当按钮被点击时触发。\n\n````mixin\n@use:html.demo3,js.demo3\n````\n\n````html\n@var:demo3\n<div>\n    <ui-btn @emit=\"echo\">点击触发emit事件</ui-btn>\n</div>\n````\n\n````js\n@var:demo3\nnew Vue({\n    el : '{$el}',\n    template : '{$template}',\n    methods : {\n        echo : function () {\n            console.log('demo3.console1', 'emit event!');\n        }\n    }\n});\n````\n\n#### 生命周期事件\n\n````mixin\n@use:html.demoEventLifecycle,js.demoEventLifecycle\n````\n\n````html\n@var:demoEventLifecycle\n<div>\n    <ui-btn\n        ref=\"demoEventLifecycle\"\n        v-show=\"show\"\n        @created=\"echo('created')\"\n        @mounted=\"echo('mounted')\"\n        @beforeUpdate=\"echo('beforeUpdate')\"\n        @updated=\"echo('updated')\"\n        @beforeDestroy=\"echo('beforeDestroy')\"\n        @destroyed=\"echo('destroyed')\"\n    >{%text%}</ui-btn>\n\n    <br><br>\n\n    <a href=\"javascript:;\" onclick=\"javascript:window.demoEventLifecycle.text='生命周期事件';\">触发update</a>\n    <a href=\"javascript:;\" onclick=\"javascript:morning.findVM('demoEventLifecycle').$destroy();\">触发destroy</a>\n</div>\n````\n\n````js\n@var:demoEventLifecycle\nwindow.demoEventLifecycle = new Vue({\n    el : '{$el}',\n    template : '{$template}',\n    data : function () {\n        return {\n           text : '按钮',\n           show : true\n        };\n    },\n    methods : {\n        echo : function (name) {\n            console.log('demoEventLifecycle.console1', `${name} event!`);\n        }\n    }\n});\n````\n\n[[[单元测试]]]\n\n<iframe src=\"/report/coverage/lib/components/btn/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n\n")])])
+  }, [_vm._v("\n# 小提示 `<ui-tip>`\n\n<doc-component-status page=\"tip\"></doc-component-status>\n\n[[[基础]]]\n\n定义一个小提示，为界面的元素提供简要说明。\n\n#### 使用\n\n````html\n<span id=\"demo1\">鼠标悬浮显示小提示</span>\n<ui-tip target=\"#demo1\">提示内容</ui-tip>\n````\n\n[[[单元测试]]]\n\n<iframe src=\"/report/coverage/lib/components/tip/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n\n")])])
 }
 var staticRenderFns = []
 render._withStripped = true

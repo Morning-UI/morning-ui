@@ -43,6 +43,7 @@ import tab                          from './tab/index.vue';
 import dialog                       from './dialog/index.vue';
 import load                         from './load/index.vue';
 import breadcrumbs                  from './breadcrumbs/index.vue';
+import tip                          from './tip/index.vue';
 
 export default {
     h,
@@ -86,5 +87,6 @@ export default {
     tab,
     dialog,
     load,
-    breadcrumbs
+    breadcrumbs,
+    tip
 };
