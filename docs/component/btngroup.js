@@ -850,7 +850,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 260:
+/***/ 261:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -927,11 +927,11 @@ if (false) {(function () {
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(102);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_6f9f013a_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(499);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_6f9f013a_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(500);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(260)
+  __webpack_require__(261)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
@@ -973,35 +973,6 @@ if (false) {(function () {
 
 /* harmony default export */ __webpack_exports__["default"] = (Component.exports);
 
-
-/***/ }),
-
-/***/ 499:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('doc-component', {
-    attrs: {
-      "page": _vm.page,
-      "hasPadding": true
-    }
-  }, [_c('script', {
-    attrs: {
-      "type": "text/markdown"
-    }
-  }, [_vm._v("\n# 按钮组 `<ui-btngroup>`\n\n<doc-component-status page=\"em\"></doc-component-status>\n\n[[[基础]]]\n\n定义一个按钮组，按钮组可以通过特定的HTML结构格式化按钮。\n\n按钮组默认水平排列。\n\n#### 使用\n\n````html\n <ui-btngroup>\n    <ui-btn>按钮一</ui-btn>\n    <ui-btn>按钮二</ui-btn>\n    <ui-btn>按钮三</ui-btn>\n    <ui-btn>按钮四</ui-btn>\n</ui-btngroup>\n````\n\n#### 水平排列示例\n\n````html\n<ui-btngroup class=\"horizontal\">\n    <ui-btn>按钮一</ui-btn>\n    <ui-btn>按钮二</ui-btn>\n    <ui-btn>按钮三</ui-btn>\n    <ui-btn>按钮四</ui-btn>\n</ui-btngroup>\n````\n\n#### 垂直排列示例\n\n````html\n<ui-btngroup class=\"vertical\">\n    <ui-btn>按钮一</ui-btn>\n    <ui-btn>按钮二</ui-btn>\n    <ui-btn>按钮三</ui-btn>\n    <ui-btn>按钮四</ui-btn>\n</ui-btngroup>\n````\n\n#### 无间隔按钮组\n\n````html\n<ui-btngroup class=\"nogap\">\n    <ui-btn success>确认</ui-btn>\n    <ui-btn minor>取消</ui-btn>\n</ui-btngroup>\n\n<br/><br/>\n\n<ui-btngroup class=\"vertical nogap\">\n    <ui-btn success>确认</ui-btn>\n    <ui-btn minor>取消</ui-btn>\n</ui-btngroup>\n````\n\n#### 分隔按钮组\n\n按钮之间可以插入文本分隔。\n\n````html\n<ui-btngroup class=\"split\">\n    <ui-btn success>确认</ui-btn>\n    <span>或</span>\n    <ui-btn minor>取消</ui-btn>\n</ui-btngroup>\n\n<br><br>\n\n<ui-btngroup class=\"split\">\n    <ui-btn minor>选择一</ui-btn>\n    <span>或</span>\n    <ui-btn minor>选择二</ui-btn>\n    <span>或</span>\n    <ui-btn info>热门选择</ui-btn>\n</ui-btngroup>\n````\n\n[[[声明]]]\n\n#### 支持\n\n|类型|支持|默认|\n|-|-|-|\n|尺寸|不支持|-|\n|色彩|不支持|-|\n|状态|不支持|-|\n\n按钮组不支持声明，但可通过`ui-btn`自身的声明来控制。\n\n这也意味着你可以组合不同声明的按钮，这是一个十分有用的特性。\n\n#### 组合不同的声明\n\n````html\n<p>不同尺寸组合</p>\n<ui-btngroup>\n    <ui-btn l>按钮一</ui-btn>\n    <ui-btn m minor>按钮二</ui-btn>\n</ui-btngroup>\n\n<br><br>\n\n<p>不同色彩组合</p>\n<ui-btngroup>\n    <ui-btn success>按钮一</ui-btn>\n    <ui-btn minor>按钮二</ui-btn>\n</ui-btngroup>\n\n<br><br>\n\n<p>不同状态组合</p>\n<ui-btngroup>\n    <ui-btn normal minor>按钮一</ui-btn>\n    <ui-btn apparent>按钮二</ui-btn>\n</ui-btngroup>\n\n<br><br>\n\n<ui-btngroup>\n    <ui-btn normal>按钮一</ui-btn>\n    <ui-btn loading>按钮二</ui-btn>\n</ui-btngroup>\n````\n\n#### `ui-btn`尺寸\n\n````html\n@size\n<ui-btngroup>\n    <ui-btn {$sizeKey}>{$&sizeName}</ui-btn>\n    <ui-btn {$sizeKey}>{$&sizeName}</ui-btn>\n</ui-btngroup>\n\n<br><br>\n````\n\n#### `ui-btn`色彩\n\n````html\n@color:theme\n@color:feature\n@color:black\n@color:blue\n@color:silver\n@color:gray\n<ui-btngroup>\n    <ui-btn {$colorKey}>{$&colorName}</ui-btn>\n    <ui-btn {$colorKey}>{$&colorName}</ui-btn>\n</ui-btngroup>\n\n<br><br>\n````\n\n#### `ui-btn`状态\n\n````html\n@state\n<ui-btngroup>\n    <ui-btn {$stateKey}>{$&stateName}</ui-btn>\n    <ui-btn {$stateKey}>{$&stateName}</ui-btn>\n</ui-btngroup>\n\n<br><br>\n````\n\n[[[单元测试]]]\n\n<iframe src=\"/report/coverage/lib/components/em/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n")])])
-}
-var staticRenderFns = []
-render._withStripped = true
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-6f9f013a", esExports)
-  }
-}
 
 /***/ }),
 
@@ -1060,6 +1031,35 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
      require("vue-hot-reload-api").rerender("data-v-19496861", esExports)
+  }
+}
+
+/***/ }),
+
+/***/ 500:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('doc-component', {
+    attrs: {
+      "page": _vm.page,
+      "hasPadding": true
+    }
+  }, [_c('script', {
+    attrs: {
+      "type": "text/markdown"
+    }
+  }, [_vm._v("\n# 按钮组 `<ui-btngroup>`\n\n<doc-component-status page=\"em\"></doc-component-status>\n\n[[[基础]]]\n\n定义一个按钮组，按钮组可以通过特定的HTML结构格式化按钮。\n\n按钮组默认水平排列。\n\n#### 使用\n\n````html\n <ui-btngroup>\n    <ui-btn>按钮一</ui-btn>\n    <ui-btn>按钮二</ui-btn>\n    <ui-btn>按钮三</ui-btn>\n    <ui-btn>按钮四</ui-btn>\n</ui-btngroup>\n````\n\n#### 水平排列示例\n\n````html\n<ui-btngroup class=\"horizontal\">\n    <ui-btn>按钮一</ui-btn>\n    <ui-btn>按钮二</ui-btn>\n    <ui-btn>按钮三</ui-btn>\n    <ui-btn>按钮四</ui-btn>\n</ui-btngroup>\n````\n\n#### 垂直排列示例\n\n````html\n<ui-btngroup class=\"vertical\">\n    <ui-btn>按钮一</ui-btn>\n    <ui-btn>按钮二</ui-btn>\n    <ui-btn>按钮三</ui-btn>\n    <ui-btn>按钮四</ui-btn>\n</ui-btngroup>\n````\n\n#### 无间隔按钮组\n\n````html\n<ui-btngroup class=\"nogap\">\n    <ui-btn success>确认</ui-btn>\n    <ui-btn minor>取消</ui-btn>\n</ui-btngroup>\n\n<br/><br/>\n\n<ui-btngroup class=\"vertical nogap\">\n    <ui-btn success>确认</ui-btn>\n    <ui-btn minor>取消</ui-btn>\n</ui-btngroup>\n````\n\n#### 分隔按钮组\n\n按钮之间可以插入文本分隔。\n\n````html\n<ui-btngroup class=\"split\">\n    <ui-btn success>确认</ui-btn>\n    <span>或</span>\n    <ui-btn minor>取消</ui-btn>\n</ui-btngroup>\n\n<br><br>\n\n<ui-btngroup class=\"split\">\n    <ui-btn minor>选择一</ui-btn>\n    <span>或</span>\n    <ui-btn minor>选择二</ui-btn>\n    <span>或</span>\n    <ui-btn info>热门选择</ui-btn>\n</ui-btngroup>\n````\n\n[[[声明]]]\n\n#### 支持\n\n|类型|支持|默认|\n|-|-|-|\n|尺寸|不支持|-|\n|色彩|不支持|-|\n|状态|不支持|-|\n\n按钮组不支持声明，但可通过`ui-btn`自身的声明来控制。\n\n这也意味着你可以组合不同声明的按钮，这是一个十分有用的特性。\n\n#### 组合不同的声明\n\n````html\n<p>不同尺寸组合</p>\n<ui-btngroup>\n    <ui-btn l>按钮一</ui-btn>\n    <ui-btn m minor>按钮二</ui-btn>\n</ui-btngroup>\n\n<br><br>\n\n<p>不同色彩组合</p>\n<ui-btngroup>\n    <ui-btn success>按钮一</ui-btn>\n    <ui-btn minor>按钮二</ui-btn>\n</ui-btngroup>\n\n<br><br>\n\n<p>不同状态组合</p>\n<ui-btngroup>\n    <ui-btn normal minor>按钮一</ui-btn>\n    <ui-btn apparent>按钮二</ui-btn>\n</ui-btngroup>\n\n<br><br>\n\n<ui-btngroup>\n    <ui-btn normal>按钮一</ui-btn>\n    <ui-btn loading>按钮二</ui-btn>\n</ui-btngroup>\n````\n\n#### `ui-btn`尺寸\n\n````html\n@size\n<ui-btngroup>\n    <ui-btn {$sizeKey}>{$&sizeName}</ui-btn>\n    <ui-btn {$sizeKey}>{$&sizeName}</ui-btn>\n</ui-btngroup>\n\n<br><br>\n````\n\n#### `ui-btn`色彩\n\n````html\n@color:theme\n@color:feature\n@color:black\n@color:blue\n@color:silver\n@color:gray\n<ui-btngroup>\n    <ui-btn {$colorKey}>{$&colorName}</ui-btn>\n    <ui-btn {$colorKey}>{$&colorName}</ui-btn>\n</ui-btngroup>\n\n<br><br>\n````\n\n#### `ui-btn`状态\n\n````html\n@state\n<ui-btngroup>\n    <ui-btn {$stateKey}>{$&stateName}</ui-btn>\n    <ui-btn {$stateKey}>{$&stateName}</ui-btn>\n</ui-btngroup>\n\n<br><br>\n````\n\n[[[单元测试]]]\n\n<iframe src=\"/report/coverage/lib/components/em/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n")])])
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-6f9f013a", esExports)
   }
 }
 

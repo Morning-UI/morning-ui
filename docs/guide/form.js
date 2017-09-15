@@ -1,4 +1,4 @@
-webpackJsonp([0],{
+webpackJsonp([11],{
 
 /***/ 0:
 /***/ (function(module, exports) {
@@ -287,6 +287,105 @@ if (false) {(function () {
 
 /***/ }),
 
+/***/ 143:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _DocGuide = __webpack_require__(30);
+
+var _DocGuide2 = _interopRequireDefault(_DocGuide);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+    data: function data() {
+
+        return {
+            page: 'form'
+        };
+    },
+    components: {
+        'doc-guide': _DocGuide2.default
+    }
+}; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+module.exports = exports['default'];
+
+/***/ }),
+
 /***/ 15:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -333,45 +432,6 @@ if (false) {
      require("vue-hot-reload-api").rerender("data-v-1b1c570a", esExports)
   }
 }
-
-/***/ }),
-
-/***/ 154:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _DocGuide = __webpack_require__(30);
-
-var _DocGuide2 = _interopRequireDefault(_DocGuide);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-    data: function data() {
-
-        return {
-            page: 'value'
-        };
-    },
-    components: {
-        'doc-guide': _DocGuide2.default
-    }
-}; //
-//
-//
-//
-//
-//
-//
-//
-
-module.exports = exports['default'];
 
 /***/ }),
 
@@ -518,7 +578,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 216:
+/***/ 205:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -528,7 +588,7 @@ var _vue = __webpack_require__(1);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _index = __webpack_require__(92);
+var _index = __webpack_require__(81);
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -543,7 +603,7 @@ new _vue2.default({
 
 /***/ }),
 
-/***/ 278:
+/***/ 219:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -744,6 +804,35 @@ if (false) {(function () {
 
 /***/ }),
 
+/***/ 458:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('doc-guide', {
+    attrs: {
+      "page": _vm.page,
+      "hasPadding": true
+    }
+  }, [_c('script', {
+    attrs: {
+      "type": "text/markdown"
+    }
+  }, [_vm._v("\n# 表单\n\n表单组件区别于布局和交互组件，包含很多通用的逻辑。MorningUI的全局对象上也对表单组件进行了扩展。\n\n### 通用逻辑\n\n所有的表单都支持以下这些通用逻辑。\n\n#### 表单声明\n\n表单组件支持两种状态声明：`正常`和`禁用`。\n\n`禁用`状态下的表单无法修改表单值，一般用于展示。\n\n#### 表单配置\n\n表单组件支持下面几种通用配置：\n\n- name : 表单的名称(用于显示)\n- key : 表单的KEY(用于逻辑中作为识别标示)\n- group : 表单组\n- default : 表单的默认值\n- hide-name : 隐藏表单名(所有表单默认都有显示表单名的位置，你可以隐藏后自行设置)\n\n#### 表单方法\n\n表单组件支持下面几种通用方法：\n\n- set() : 设置表单的值\n- get() : 获取表单的值\n- setName() : 设置表单的名称\n- getName() : 获取表单的名称\n- setKey() : 设置表单的KEY\n- getKey() : 获取表单的KEY\n- setGroup() : 设置表单组件所属的表单组\n- getGroup() : 获取表单组件所属的表单组\n- addGroup() : 将表单组件添加到表单组\n- removeGroup() : 将表单组件从表单组中移除\n\n#### 表单事件\n\n表单组件支持下面几种通用事件：\n\n- valueChange : 表单值发生改变时触发\n\n### 全局扩展\n\nMorningUI的全局对象`morning`上对表单组件进行了扩展，可以让使用者更方便的获取、设置表单值。\n\n#### 表单组\n\n通过在组件上设置`group`属性，可以将表单组件添加到同一个表单组。\n\n表单组内的所有表单KEY和值都会以键值对的形式存在一个对象中。\n\nTODO DEMO\n\n\n")])])
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-05e9c565", esExports)
+  }
+}
+
+/***/ }),
+
 /***/ 5:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -799,30 +888,6 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
      require("vue-hot-reload-api").rerender("data-v-19496861", esExports)
-  }
-}
-
-/***/ }),
-
-/***/ 517:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('doc-guide', {
-    attrs: {
-      "page": _vm.page
-    }
-  }, [_vm._v("\n    value\n")])
-}
-var staticRenderFns = []
-render._withStripped = true
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-ede20cf4", esExports)
   }
 }
 
@@ -2016,25 +2081,18 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 9:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 92:
+/***/ 81:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(154);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(143);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_ede20cf4_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(517);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_05e9c565_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(458);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(278)
+  __webpack_require__(219)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
@@ -2049,12 +2107,12 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_ede20cf4_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_05e9c565_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__["a" /* default */],
   __vue_styles__,
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "src/docs/pages/guide/value/index.vue"
+Component.options.__file = "src/docs/pages/guide/form/index.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] index.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -2065,9 +2123,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-ede20cf4", Component.options)
+    hotAPI.createRecord("data-v-05e9c565", Component.options)
   } else {
-    hotAPI.reload("data-v-ede20cf4", Component.options)
+    hotAPI.reload("data-v-05e9c565", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -2077,6 +2135,13 @@ if (false) {(function () {
 /* harmony default export */ __webpack_exports__["default"] = (Component.exports);
 
 
+/***/ }),
+
+/***/ 9:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
 /***/ })
 
-},[216]);
+},[205]);

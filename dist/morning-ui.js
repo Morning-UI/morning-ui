@@ -79,11 +79,11 @@ Object.defineProperty(exports, "__esModule", {
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var _vue = __webpack_require__(2);
+var _vue = __webpack_require__(3);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _extend = __webpack_require__(4);
+var _extend = __webpack_require__(2);
 
 var _extend2 = _interopRequireDefault(_extend);
 
@@ -469,71 +469,6 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 /* 2 */
-/***/ (function(module, exports) {
-
-module.exports = Vue;
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-var PopupManager = {
-    data: function data() {
-
-        return {
-            Popup: {
-                index: 1000,
-                keepDiv: null,
-                oldIndex: undefined
-                // popupDiv : null
-            }
-        };
-    },
-    methods: {
-        _popupShow: function _popupShow() {
-
-            if (this.Popup.keepDiv || this.Popup.popupDiv) {
-
-                return;
-            }
-
-            var id = this.morning._popupId++;
-            var keepDiv = document.createElement('div');
-
-            keepDiv.setAttribute('popup-id', id);
-            keepDiv.style.display = 'none';
-            this.$el.before(keepDiv);
-            this.Popup.oldIndex = this.$el.style.zIndex;
-            this.$el.style.zIndex = this.Popup.index + id;
-            document.body.append(this.$el);
-            this.Popup.keepDiv = keepDiv;
-        },
-        _popupHide: function _popupHide() {
-
-            if (!this.Popup.keepDiv) {
-
-                return;
-            }
-
-            this.$el.style.zIndex = this.Popup.oldIndex;
-            this.Popup.keepDiv.before(this.$el);
-            this.Popup.keepDiv.remove();
-            this.Popup.keepDiv = null;
-        }
-    }
-};
-
-exports.default = PopupManager;
-module.exports = exports['default'];
-
-/***/ }),
-/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -626,6 +561,71 @@ module.exports = function extend() {
 
 
 /***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+module.exports = Vue;
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var PopupManager = {
+    data: function data() {
+
+        return {
+            Popup: {
+                index: 1000,
+                keepDiv: null,
+                oldIndex: undefined
+                // popupDiv : null
+            }
+        };
+    },
+    methods: {
+        _popupShow: function _popupShow() {
+
+            if (this.Popup.keepDiv || this.Popup.popupDiv) {
+
+                return;
+            }
+
+            var id = this.morning._popupId++;
+            var keepDiv = document.createElement('div');
+
+            keepDiv.setAttribute('popup-id', id);
+            keepDiv.style.display = 'none';
+            this.$el.before(keepDiv);
+            this.Popup.oldIndex = this.$el.style.zIndex;
+            this.$el.style.zIndex = this.Popup.index + id;
+            document.body.append(this.$el);
+            this.Popup.keepDiv = keepDiv;
+        },
+        _popupHide: function _popupHide() {
+
+            if (!this.Popup.keepDiv) {
+
+                return;
+            }
+
+            this.$el.style.zIndex = this.Popup.oldIndex;
+            this.Popup.keepDiv.before(this.$el);
+            this.Popup.keepDiv.remove();
+            this.Popup.keepDiv = null;
+        }
+    }
+};
+
+exports.default = PopupManager;
+module.exports = exports['default'];
+
+/***/ }),
 /* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -633,8 +633,14 @@ module.exports = function extend() {
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _extend = __webpack_require__(2);
+
+var _extend2 = _interopRequireDefault(_extend);
 
 var _ui = __webpack_require__(0);
 
@@ -642,7 +648,227 @@ var _ui2 = _interopRequireDefault(_ui);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Form = _ui2.default.extend({});
+var Form = _ui2.default.extend({
+    props: {
+        name: {
+            type: String,
+            default: undefined
+        },
+        key: {
+            type: String,
+            default: undefined
+        },
+        group: {
+            type: [Array, String],
+            default: function _default() {
+                return [];
+            }
+        },
+        default: {
+            default: undefined
+        },
+        hideName: {
+            type: Boolean,
+            default: false
+        }
+    },
+    data: function data() {
+
+        var groups = [];
+
+        if (typeof this.group === 'string') {
+
+            groups.push(this.group);
+        } else if (_typeof(this.group) === 'object') {
+
+            groups = groups.concat(this.group);
+        }
+
+        return {
+            conf: {
+                name: this.name,
+                key: this.key,
+                group: groups,
+                default: this.default,
+                hideName: this.hideName
+            },
+            data: {
+                value: undefined
+            }
+        };
+    },
+    methods: {
+        _set: function _set(value) {
+            var ignoreDisable = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+
+            if (this.conf.state === 'disabled' && !ignoreDisable) {
+
+                return this;
+            }
+
+            var val = void 0;
+
+            try {
+
+                val = JSON.parse(value);
+            } catch (e) {}
+
+            if ((typeof val === 'undefined' ? 'undefined' : _typeof(val)) === 'object') {
+
+                this.data.value = val;
+            } else {
+
+                this.data.value = value;
+            }
+
+            return this;
+        },
+        set: function set(value) {
+
+            return this._set(value);
+        },
+        get: function get() {
+            var json = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+
+
+            var result = void 0;
+
+            if (_typeof(this.data.value) === 'object') {
+
+                if (this.data.value instanceof Array) {
+
+                    result = (0, _extend2.default)(true, [], this.data.value);
+                } else if (this.data.value === null) {
+
+                    result = null;
+                } else {
+
+                    result = (0, _extend2.default)(true, {}, this.data.value);
+                }
+            } else {
+
+                result = this.data.value;
+            }
+
+            if (json) {
+
+                return JSON.stringify(result);
+            } else {
+
+                return result;
+            }
+        },
+        setName: function setName() {
+            var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+
+
+            return this.setConf('name', name);
+        },
+        getName: function getName() {
+
+            return this.getConf('name');
+        },
+        setKey: function setKey(key) {
+
+            return this.setConf('key', key);
+        },
+        getKey: function getKey() {
+
+            return this.getConf('key');
+        },
+        setGroup: function setGroup() {
+            var group = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+
+
+            var groups = [];
+
+            if (typeof group === 'string') {
+
+                groups.push(group);
+            } else if ((typeof group === 'undefined' ? 'undefined' : _typeof(group)) === 'object') {
+
+                groups = groups.concat(group);
+            }
+
+            return this.setConf('group', groups);
+        },
+        getGroup: function getGroup() {
+
+            return this.getConf('group');
+        },
+        addGroup: function addGroup(group) {
+
+            var groups = this.getConf('group');
+
+            if (typeof group === 'string') {
+
+                var uniqGroups = {};
+
+                groups.push(group);
+
+                var _iteratorNormalCompletion = true;
+                var _didIteratorError = false;
+                var _iteratorError = undefined;
+
+                try {
+                    for (var _iterator = groups[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                        var key = _step.value;
+
+
+                        uniqGroups[key] = 0;
+                    }
+                } catch (err) {
+                    _didIteratorError = true;
+                    _iteratorError = err;
+                } finally {
+                    try {
+                        if (!_iteratorNormalCompletion && _iterator.return) {
+                            _iterator.return();
+                        }
+                    } finally {
+                        if (_didIteratorError) {
+                            throw _iteratorError;
+                        }
+                    }
+                }
+
+                uniqGroups = Object.keys(uniqGroups);
+
+                return this.setConf('group', uniqGroups);
+            }
+
+            return this;
+        },
+        removeGroup: function removeGroup(group) {
+
+            var groups = this.getConf('group');
+
+            for (var index in groups) {
+
+                if (group === groups[index]) {
+
+                    groups.splice(index, 1);
+                    this.setConf('group', groups);
+
+                    break;
+                }
+            }
+
+            return this;
+        }
+    },
+    created: function created() {
+        var _this = this;
+
+        this.$watch('data.value', function () {
+
+            _this.$emit('valueChange');
+        }, {
+            deep: true
+        });
+    }
+});
 
 exports.default = Form;
 module.exports = exports['default'];
@@ -1047,7 +1273,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _extend = __webpack_require__(4);
+var _extend = __webpack_require__(2);
 
 var _extend2 = _interopRequireDefault(_extend);
 
@@ -1651,7 +1877,7 @@ var _ui = __webpack_require__(0);
 
 var _ui2 = _interopRequireDefault(_ui);
 
-var _PopupManager = __webpack_require__(3);
+var _PopupManager = __webpack_require__(4);
 
 var _PopupManager2 = _interopRequireDefault(_PopupManager);
 
@@ -3192,7 +3418,7 @@ var _ui = __webpack_require__(0);
 
 var _ui2 = _interopRequireDefault(_ui);
 
-var _PopupManager = __webpack_require__(3);
+var _PopupManager = __webpack_require__(4);
 
 var _PopupManager2 = _interopRequireDefault(_PopupManager);
 
@@ -3682,7 +3908,7 @@ module.exports = exports['default'];
 "use strict";
 
 
-var _vue = __webpack_require__(2);
+var _vue = __webpack_require__(3);
 
 var _vue2 = _interopRequireDefault(_vue);
 
