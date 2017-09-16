@@ -46,6 +46,7 @@ import breadcrumbs                  from './breadcrumbs/index.vue';
 import tip                          from './tip/index.vue';
 
 import textinput                    from './textinput/index.vue';
+import textarea                     from './textarea/index.vue';
 
 export default {
     h,
@@ -91,5 +92,6 @@ export default {
     load,
     breadcrumbs,
     tip,
-    textinput
+    textinput,
+    textarea
 };

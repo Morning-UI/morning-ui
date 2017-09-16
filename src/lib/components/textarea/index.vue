@@ -1,46 +1,117 @@
 <template>
-    <i-textinput
+    <i-textarea
         :_uiid="uiid"
-        :class="[sizeClass, styleClass, stateClass]"
+        :class="[stateClass]"
 
-        :link="link"
-        :js="js"
-        :locked="locked"
-        :new-tab="newTab"
-
-        @click="_onClick"
+        :form-name="formName"
+        :form-key="formKey"
+        :group="group"
+        :default-value="defaultValue"
+        :hide-name="hideName"
+        :rows="rows"
     >
 
-    <template v-if="conf.state === 'loading'">
-        <i class="morningicon">&#xe703;</i>
-        <span><slot></slot></span>
-    </template>
-    <template v-else-if="conf.state === 'processing'">
-        <i class="morningicon">&#xe703;</i>
-        <span><slot></slot></span>
-    </template>
-    <template v-else>
-        <slot></slot>
-    </template>
-        
-    </i-textinput>
+    <textarea
+        :placeholder="placeholder"
+        :disabled="conf.state === 'disabled'"
+        :rows="conf.rows"
+
+        v-model="data.value"
+    ></textarea>
+
+    </i-textarea>
 </template>
  
 <script>
 import Form                         from 'Common/form';
 
 export default Form.extend({
-    name : 'textinput',
-    props : {},
+    name : 'textarea',
+    props : {
+        rows : {
+            type : Number,
+            default : 4
+        }
+    },
     data : function () {
 
         return {
-            conf : {},
+            conf : {
+                rows : this.rows
+            },
             data : {}
         };
 
     },
-    methods : {},
+    computed : {
+        placeholder : function () {
+
+            if (!this.conf.hideName) {
+
+                return this.conf.formName;
+
+            }
+
+            return false;
+
+        }
+    },
+    methods : {
+        setRows : function (num) {
+
+            let row = this.conf.rows;
+
+            if (typeof num === 'number') {
+                
+                row = num;
+
+            } else if (typeof num === 'string') {
+
+                if (/^\+/.test(num)) {
+
+                    row += +num.replace(/^\+/, '');
+
+                } else if (/^-/.test(num)) {
+
+                    row -= +num.replace(/^-/, '');
+
+                }
+
+            }
+
+            if (row) {
+
+                if (row < 1) {
+                
+                    row = 1;
+                
+                }
+                
+                this.conf.rows = row;
+
+            }
+
+        }
+    },
+    created : function () {
+
+        this.$watch('data.value', (newVal) => {
+
+            if (newVal === undefined) {
+
+                this.data.value = '';
+
+                return;
+
+            }
+
+            this.data.value = String(newVal);
+
+        }, {
+            immediate : true
+        });
+
+    },
     mounted : function () {}
 });
 </script>
@@ -48,12 +119,61 @@ export default Form.extend({
 <style lang="less">
 @import '~Common/var.less';
 
-i-textinput{
+i-textarea{
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    vertical-align: top;
+
+    textarea{
+        box-sizing: border-box;
+        z-index: 2;
+        font-size: 14px;
+        border: none;
+        padding: 0.8em;
+        width: 100%;
+        background: @colorWhite;
+        border: 1px @colorGray solid;
+        border-radius: @borderRadius;
+        line-height: 1.4em;
+        color: darken(@colorGray, 20%) !important;
+        outline: none;
+        -webkit-appearance: none;
+        resize: none;
+        transition: height 0.2s;
+
+        &:focus{
+            border-color: @colorLightBlue;
+            color: @colorBlack !important;
+        }
+
+        &::-webkit-scrollbar{
+            width: 8px;
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        &::-webkit-scrollbar-thumb{
+            width: 8px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+        }
+    }
+
+    &.st-normal{}
+    &.st-disabled{
+        textarea{
+            border: 1px darken(@colorGray, 25%) solid;
+            background-color: @colorGray;
+            -webkit-user-select: none;
+            cursor: not-allowed !important;
+            color: darken(@colorGray, 35%) !important;
+        }
+    }
 
     // default statement
     &{
-        .si-m;
-        .sy-theme;
         .st-normal;
     }
 

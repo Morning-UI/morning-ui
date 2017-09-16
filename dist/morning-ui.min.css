@@ -2733,3 +2733,15 @@ i-textinput.inputGroup .inputGroupAddon+input{border-top-right-radius:0;border-b
 }
 i-textinput.st-disabled input[disabled]{border:1px #a6a6a6 solid;background-color:#e6e6e6;-webkit-user-select:none;cursor:not-allowed!important;color:#8d8d8d!important
 }
+i-textarea{position:relative;z-index:1;display:block;width:100%;box-sizing:border-box;vertical-align:top
+}
+i-textarea textarea{box-sizing:border-box;z-index:2;font-size:14px;border:none;padding:.8em;width:100%;background:#fff;border:1px #e6e6e6 solid;border-radius:3px;line-height:1.4em;color:#b3b3b3!important;outline:0;-webkit-appearance:none;resize:none;transition:height .2s
+}
+i-textarea textarea:focus{border-color:#8e9caf;color:#17212d!important
+}
+i-textarea textarea::-webkit-scrollbar{width:8px;background-color:rgba(0,0,0,.05)
+}
+i-textarea textarea::-webkit-scrollbar-thumb{width:8px;background:rgba(0,0,0,.1);border-radius:4px
+}
+i-textarea.st-disabled textarea{border:1px #a6a6a6 solid;background-color:#e6e6e6;-webkit-user-select:none;cursor:not-allowed!important;color:#8d8d8d!important
+}

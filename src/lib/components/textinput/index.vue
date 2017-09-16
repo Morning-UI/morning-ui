@@ -10,7 +10,7 @@
         :hide-name="hideName"
         :hide-value="hideValue"
         :prepend="prepend"
-        :append="append"        
+        :append="append" 
     >
 
     <template v-if="conf.prepend">
@@ -42,8 +42,6 @@
         <div class="inputGroupAddon">{{conf.append}}</div>
     </template>
 
-    <span class="tips"></span>
-        
     </i-textinput>
 </template>
  
@@ -65,6 +63,18 @@ export default Form.extend({
             type : String,
             default : undefined
         }
+    },
+    data : function () {
+
+        return {
+            conf : {
+                hideValue : this.hideValue,
+                prepend : this.prepend,
+                append : this.append
+            },
+            data : {}
+        };
+
     },
     computed : {
         inputType : function () {
@@ -96,18 +106,6 @@ export default Form.extend({
             };
 
         }
-    },
-    data : function () {
-
-        return {
-            conf : {
-                hideValue : this.hideValue,
-                prepend : this.prepend,
-                append : this.append
-            },
-            data : {}
-        };
-
     },
     methods : {},
     created : function () {
