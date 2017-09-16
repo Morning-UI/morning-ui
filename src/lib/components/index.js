@@ -45,6 +45,8 @@ import load                         from './load/index.vue';
 import breadcrumbs                  from './breadcrumbs/index.vue';
 import tip                          from './tip/index.vue';
 
+import textinput                    from './textinput/index.vue';
+
 export default {
     h,
     lead,
@@ -88,5 +90,6 @@ export default {
     dialog,
     load,
     breadcrumbs,
-    tip
+    tip,
+    textinput
 };

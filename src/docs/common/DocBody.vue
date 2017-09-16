@@ -190,12 +190,52 @@ let data = {
             stateKey : 'processing',
             stateName : '处理中'
         },
-    ]
+    ],
+    formConfig : {
+        formName : '表单名',
+        formKey : 'formKey',
+        formGroupOne : 'groupName'
+    },
+    formValueType : [
+        {
+            valueType : 'String',
+            valueContent : `'Jim'`
+        },
+        {
+            valueType : 'Number',
+            valueContent : '5'
+        },
+        {
+            valueType : 'Boolean',
+            valueContent : 'true'
+        },
+        {
+            valueType : 'Null',
+            valueContent : 'null'
+        },
+        {
+            valueType : 'Undefined',
+            valueContent : 'undefined'
+        },
+        {
+            valueType : 'Object',
+            valueContent : '{}'
+        },
+        {
+            valueType : 'Array',
+            valueContent : '[]'
+        }
+    ],
+    formConfigTable : '\n|form-name|表单的名称（用于显示）|任意字符串|String|`undefined`|\n' +
+        '|form-key|表单的Key（用于逻辑中作为识别标示）|任意字符串(唯一)|String|`undefined`|\n' +
+        '|group|表单组，用于将多个表单的数值添加到同一个对象中。一个表单可以同时属于多个组|若是字符串，则将表单添加到单个组<br>若是数组，则将表单添加到多个组|String<br/>Array|`[]`|\n' +
+        '|default-value|表单的默认值|任意(接受表单原始数值，也接受JSON序列化后的表单数值，若数值是JSON序列化的会自动转换成原始数值)|Any|`undefined`|\n' +
+        '|hide-name|链接地址，若为空则不跳转|url地址|Boolean|`false`|'
 };
 
-let parser = (text) => {
+let parser = text => {
 
-    let patt = /````(html|js|css|mixin)((\n[\t ]*[\@a-zA-Z0-9\:\.\,\|]+)*)\n((.|\n)*?)(\n)*([ \t]*)````/g;
+    let patt = /````(html|js|css|mixin|)((\n[\t ]*[\@a-zA-Z0-9\:\.\,\|]+)*)\n((.|\n)*?)(\n)*([ \t]*)````/g;
     let varpatt = /````(html|js|css)\n(\@var\:([a-zA-Z0-9]+))\n((.|\n)+?)\n([ \t]*)````/g;
     let result;
     let vars = {
@@ -263,6 +303,13 @@ let parser = (text) => {
 };
 
 let helpers = {
+    render : opt => {
+
+        opt.isText = true;
+
+        return opt;
+
+    },
     size : opt => {
 
         if (typeof opt.content === 'string') {
@@ -415,14 +462,23 @@ let helpers = {
             for (let key of Object.keys(newData)) {
 
                 let value = newData[key];
+                let id = `demo-${_.random(randomRangeMin, randomRangeMax)}`;
 
-                for (let svalue of value) {
+                if (value instanceof Array) {
 
-                    let id = `demo-${_.random(randomRangeMin, randomRangeMax)}`;
+                    for (let svalue of value) {
 
-                    svalue.id = id;
-                    svalue.el = `#${id}-el`;
-                    svalue.template = `#${id}-tmpl`;
+                        svalue.id = id;
+                        svalue.el = `#${id}-el`;
+                        svalue.template = `#${id}-tmpl`;
+
+                    }
+
+                } else if (typeof value === 'object') {
+
+                    value.id = id;
+                    value.el = `#${id}-el`;
+                    value.template = `#${id}-tmpl`;
 
                 }
 
@@ -497,6 +553,44 @@ let helpers = {
 
         return opt;
 
+    },
+    formConfig : opt => {
+
+        if (typeof opt.content === 'string') {
+
+            opt.content = `{$#formConfig}${opt.content}\n{$/formConfig}`;
+
+        } else if (typeof opt.content === 'object') {
+
+            for (let key in opt.content) {
+
+                opt.content[key] = `{$#formConfig}${opt.content[key]}\n{$/formConfig}`;
+
+            }
+
+        }
+
+        return opt;
+
+    },
+    formValueType : opt => {
+
+        if (typeof opt.content === 'string') {
+
+            opt.content = `{$#formValueType}${opt.content}\n{$/formValueType}`;
+
+        } else if (typeof opt.content === 'object') {
+
+            for (let key in opt.content) {
+
+                opt.content[key] = `{$#formValueType}${opt.content[key]}\n{$/formValueType}`;
+
+            }
+
+        }
+
+        return opt;
+
     }
 };
 
@@ -550,7 +644,15 @@ let make = {
 
             }
 
-            text += '<div class="demo" style="' + opt.style + '">\n' + (demo || code) + '</div>\n\n```' + block.type + '\n' + code + '\n```\n';
+            if (opt.isText) {
+
+                text += code;
+
+            } else {
+
+                text += '<div class="demo" style="' + opt.style + '">\n' + (demo || code) + '</div>\n\n```' + block.type + '\n' + code + '\n```\n';
+
+            }
 
         }
 
@@ -559,7 +661,7 @@ let make = {
     }
 };
 
-let runner = (tree) => {
+let runner = tree => {
 
     for (let block of tree.blocks) {
 
@@ -567,7 +669,7 @@ let runner = (tree) => {
 
             let opts = [];
 
-            for(let group of block.helpers) {
+            for (let group of block.helpers) {
 
                 let opt = {
                     content : block.content,
@@ -592,13 +694,13 @@ let runner = (tree) => {
         } else {
 
             block._html = make.block(block);
-
+        
         }
 
     }
 
     let text = tree.text;
-    let patt = /````(html|js|css|mixin)((\n[\t ]*[\@a-zA-Z0-9\:\.\,\|]+)*)\n((.|\n)*?)(\n)*([ \t]*)````/g;
+    let patt = /````(html|js|css|mixin|)((\n[\t ]*[\@a-zA-Z0-9\:\.\,\|]+)*)\n((.|\n)*?)(\n)*([ \t]*)````/g;
     let index = 0;
     let result;
 
@@ -633,6 +735,7 @@ window.Vue.directive('docmd', {
             md = md.replace(/\[\[\[配置\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="配置">$1</div>$3');
             md = md.replace(/\[\[\[方法\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="方法">$1</div>$3');
             md = md.replace(/\[\[\[事件\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="事件">$1</div>$3');
+            md = md.replace(/\[\[\[表单值\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="表单值">$1</div>$3');
             md = md.replace(/\[\[\[单元测试\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="源码">$1</div>$3');
             md = md.replace(/(.|\n)$/, '$1</ui-tab>');
 

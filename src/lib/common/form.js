@@ -3,11 +3,11 @@ import UI                           from './ui';
 
 let Form = UI.extend({
     props : {
-        name : {
+        formName : {
             type : String,
             default : undefined
         },
-        key : {
+        formKey : {
             type : String,
             default : undefined
         },
@@ -15,7 +15,7 @@ let Form = UI.extend({
             type : [Array, String],
             default : () => ([])
         },
-        default : {
+        defaultValue : {
             default : undefined
         },
         hideName : {
@@ -39,10 +39,10 @@ let Form = UI.extend({
 
         return {
             conf : {
-                name : this.name,
-                key : this.key,
+                formName : this.formName,
+                formKey : this.formKey,
                 group : groups,
-                default : this.default,
+                defaultValue : this.defaultValue,
                 hideName : this.hideName
             },
             data : {
@@ -127,22 +127,22 @@ let Form = UI.extend({
         },
         setName : function (name = '') {
 
-            return this.setConf('name', name);
+            return this.setConf('formName', name);
 
         },
         getName : function () {
 
-            return this.getConf('name');
+            return this.getConf('formName');
 
         },
         setKey : function (key) {
 
-            return this.setConf('key', key);
+            return this.setConf('formKey', key);
 
         },
         getKey : function () {
 
-            return this.getConf('key');
+            return this.getConf('formKey');
 
         },
         setGroup : function (group = []) {
@@ -214,6 +214,8 @@ let Form = UI.extend({
         }
     },
     created : function () {
+
+        this.data.value = this.conf.defaultValue;
 
         this.$watch('data.value', () => {
 
