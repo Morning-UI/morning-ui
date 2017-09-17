@@ -25,10 +25,10 @@ i-box{
         height: 100%;
     }
     &.margin{
-        margin:2*@fontSize;
+        margin:@fontSize*2;
     }
     &.margin.fill{
-        height: ~"calc(100% - " 2*@fontSize ~")";
+        height: ~'calc(100% - ' @fontSize*2 ~')';
     }
 
     // default statement

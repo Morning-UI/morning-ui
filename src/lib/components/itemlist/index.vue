@@ -59,18 +59,18 @@ i-itemlist{
             }
 
             >.title{
-                font-weight: bold;
+                font-weight: 700;
             }
 
             >.desc{
-                margin: 0.3em 0 0 0 !important;
+                margin: 0.3em 0 0 !important;
                 color: @colorBlue;
                 line-height: 1em;
             }
 
             >.body{
                 color: @colorBlack;
-                margin: 0.6em 0 0.8em 0 !important;
+                margin: 0.6em 0 0.8em !important;
                 line-height: 1em;
             }
 
@@ -80,7 +80,7 @@ i-itemlist{
             }
 
             &::after{
-                content:" ";
+                content:' ';
                 height:0;
                 display:block;
                 clear:both;
@@ -98,81 +98,264 @@ i-itemlist{
 
 
     &.si-xxl{
-        >i-ul>li{ margin-top: 0.8*@fontSize !important; padding-bottom: 0.8*@fontSize; }
-        >i-ul>li>*:not(.img){ width: ~"calc(100% - " 9*@fontSize ~")"; padding: 0 6%; }
-        >i-ul>li>i-img{ height: 9*@fontSize; width: 9*@fontSize; }
-        >i-ul>li>.title{ font-size: 2.2*@fontSize; }
-        >i-ul>li>.desc{ font-size: @fontSize; margin: 0.4em 0 0 0 !important; }
-        >i-ul>li>.body{ font-size: 1.2*@fontSize; margin: 1em 0 1.2em 0 !important; }
-        >i-ul>li>.additional{ font-size: 0.8125*@fontSize; }
-        >i-ul>li>i-img+.title:last-child{ height: 9*@fontSize; font-size: 4.4*@fontSize; padding: 0 9%; }
-        >i-ul>li>i-img+.body{ height: 9*@fontSize; font-size: 4*@fontSize; padding: 0 9%; }
+        >i-ul>li{
+			margin-top: @fontSize*0.8 !important;
+			padding-bottom: @fontSize*0.8;
+        }
+        >i-ul>li>*:not(.img){
+			width: ~'calc(100% - ' @fontSize*9 ~')';
+            padding: 0 6%;
+        }
+        >i-ul>li>i-img{
+            height: @fontSize*9;
+            width: @fontSize*9;
+        }
+        >i-ul>li>.title{
+            font-size: @fontSize*2.2;
+        }
+        >i-ul>li>.desc{
+            font-size: @fontSize;
+            margin: 0.4em 0 0 !important; 
+        }
+        >i-ul>li>.body{
+            font-size: @fontSize*1.2;
+            margin: 1em 0 1.2em !important; 
+        }
+        >i-ul>li>.additional{
+            font-size: @fontSize*0.8125; 
+        }
+        >i-ul>li>i-img+.title:last-child{
+            height: @fontSize*9;
+            font-size: @fontSize*4.4;
+            padding: 0 9%; 
+        }
+        >i-ul>li>i-img+.body{
+            height: @fontSize*9;
+            font-size: @fontSize*4;
+            padding: 0 9%; 
+        }
     }
     &.si-xl{
-        >i-ul>li{ margin-top: 0.8*@fontSize !important; padding-bottom: 0.8*@fontSize; }
-        >i-ul>li>*:not(.img){ width: ~"calc(100% - " 8*@fontSize ~")"; padding: 0 5%; }
-        >i-ul>li>i-img{ height: 8*@fontSize; width: 8*@fontSize; }
-        >i-ul>li>.title{ font-size: 1.8*@fontSize; }
-        >i-ul>li>.desc{ font-size: 0.8125*@fontSize; margin: 0.4em 0 0 0 !important; }
-        >i-ul>li>.body{ font-size: @fontSize; margin: 0.8em 0 1em 0 !important; }
-        >i-ul>li>.additional{ font-size: 0.8125*@fontSize; }
-        >i-ul>li>i-img+.title:last-child{ height: 8*@fontSize; font-size: 3.6*@fontSize; padding: 0 8%; }
-        >i-ul>li>i-img+.body{ height: 8*@fontSize; font-size: 3.2*@fontSize; padding: 0 8%; }
+        >i-ul>li{
+			margin-top: @fontSize*0.8 !important;
+			padding-bottom: @fontSize*0.8;
+        }
+        >i-ul>li>*:not(.img){
+			width: ~'calc(100% - ' @fontSize*8 ~')'; 
+            padding: 0 5%;
+        }
+        >i-ul>li>i-img{
+			height: @fontSize*8; 
+            width: @fontSize*8;
+        }
+        >i-ul>li>.title{ 
+            font-size: @fontSize*1.8;
+        }
+        >i-ul>li>.desc{ 
+            font-size: @fontSize*0.8125; 
+            margin: 0.4em 0 0 !important;
+        }
+        >i-ul>li>.body{ 
+            font-size: @fontSize; 
+            margin: 0.8em 0 1em !important;
+        }
+        >i-ul>li>.additional{ 
+            font-size: @fontSize*0.8125;
+        }
+        >i-ul>li>i-img+.title:last-child{ 
+            height: @fontSize*8; 
+            font-size: @fontSize*3.6; 
+            padding: 0 8%;
+        }
+        >i-ul>li>i-img+.body{ 
+            height: @fontSize*8; 
+            font-size: @fontSize*3.2; 
+            padding: 0 8%;
+        }
     }
     &.si-l{
-        >i-ul>li{ margin-top: 0.6*@fontSize !important; padding-bottom: 0.6*@fontSize; }
-        >i-ul>li>*:not(.img){ width: ~"calc(100% - " 7*@fontSize ~")"; padding: 0 4%; }
-        >i-ul>li>i-img{ height: 7*@fontSize; width: 7*@fontSize; }
-        >i-ul>li>.title{ font-size: 1.4*@fontSize; }
-        >i-ul>li>.desc{ font-size: 0.8125*@fontSize; margin: 0.4em 0 0 0 !important; }
-        >i-ul>li>.body{ font-size: 0.8125*@fontSize; margin: 0.8em 0 1em 0 !important; }
-        >i-ul>li>.additional{ font-size: 0.8125*@fontSize; }
-        >i-ul>li>i-img+.title:last-child{ height: 7*@fontSize; font-size: 3.2*@fontSize; padding: 0 7%; }
-        >i-ul>li>i-img+.body{ height: 7*@fontSize; font-size: 2.8*@fontSize; padding: 0 7%; }
+        >i-ul>li{
+			margin-top: @fontSize*0.6 !important;
+			padding-bottom: @fontSize*0.6;
+        }
+        >i-ul>li>*:not(.img){
+			width: ~'calc(100% - ' @fontSize*7 ~')';
+            padding: 0 4%;
+        }
+        >i-ul>li>i-img{
+            height: @fontSize*7;
+            width: @fontSize*7;
+        }
+        >i-ul>li>.title{
+            font-size: @fontSize*1.4;
+        }
+        >i-ul>li>.desc{
+            font-size: @fontSize*0.8125;
+            margin: 0.4em 0 0 !important;
+        }
+        >i-ul>li>.body{
+            font-size: @fontSize*0.8125;
+            margin: 0.8em 0 1em !important;
+        }
+        >i-ul>li>.additional{
+            font-size: @fontSize*0.8125; 
+        }
+        >i-ul>li>i-img+.title:last-child{
+            height: @fontSize*7;
+            font-size: @fontSize*3.2;
+            padding: 0 7%; 
+        }
+        >i-ul>li>i-img+.body{
+            height: @fontSize*7;
+            font-size: @fontSize*2.8;
+            padding: 0 7%; 
+        }
     }
     &.si-m{
-        >i-ul>li{ margin-top: 0.5*@fontSize !important; padding-bottom: 0.5*@fontSize; }
-        >i-ul>li>*:not(.img){ width: ~"calc(100% - " 6*@fontSize ~")"; padding: 0 3.5%; }
-        >i-ul>li>i-img{ height: 6*@fontSize; width: 6*@fontSize; }
-        >i-ul>li>.title{ font-size: 1*@fontSize; }
-        >i-ul>li>.desc{ font-size: 0.75*@fontSize; }
-        >i-ul>li>.body{ font-size: 0.75*@fontSize; }
-        >i-ul>li>.additional{ font-size: 0.75*@fontSize; }
-        >i-ul>li>i-img+.title:last-child{ height: 6*@fontSize; font-size: 2.8*@fontSize; padding: 0 6%; }
-        >i-ul>li>i-img+.body{ height: 6*@fontSize; font-size: 2.4*@fontSize; padding: 0 6%; }
+        >i-ul>li{
+			margin-top: @fontSize*0.5 !important;
+			padding-bottom: @fontSize*0.5;
+        }
+        >i-ul>li>*:not(.img){
+			width: ~'calc(100% - ' @fontSize*6 ~')';
+            padding: 0 3.5%;
+        }
+        >i-ul>li>i-img{
+            height: @fontSize*6;
+            width: @fontSize*6;
+        }
+        >i-ul>li>.title{
+            font-size: @fontSize*1;
+        }
+        >i-ul>li>.desc{
+            font-size: @fontSize*0.75;
+        }
+        >i-ul>li>.body{
+            font-size: @fontSize*0.75;
+        }
+        >i-ul>li>.additional{
+			font-size: @fontSize*0.75;
+        }
+        >i-ul>li>i-img+.title:last-child{
+            height: @fontSize*6;
+            font-size: @fontSize*2.8;
+            padding: 0 6%;
+        }
+        >i-ul>li>i-img+.body{
+            height: @fontSize*6;
+            font-size: @fontSize*2.4;
+            padding: 0 6%;
+        }
     }
     &.si-s{
-        >i-ul>li{ margin-top: 0.4*@fontSize !important; padding-bottom: 0.4*@fontSize; }
-        >i-ul>li>*:not(.img){ width: ~"calc(100% - " 5*@fontSize ~")"; padding: 0 2.5%; }
-        >i-ul>li>i-img{ height: 5*@fontSize; width: 5*@fontSize; }
-        >i-ul>li>.title{ font-size: 1*@fontSize; }
-        >i-ul>li>.desc{ font-size: 0.75*@fontSize; }
-        >i-ul>li>.body{ font-size: 0.75*@fontSize; }
-        >i-ul>li>.additional{ font-size: 0.75*@fontSize; }
-        >i-ul>li>i-img+.title:last-child{ height: 5*@fontSize; font-size: 2.4*@fontSize; padding: 0 5%; }
-        >i-ul>li>i-img+.body{ height: 5*@fontSize; font-size: 2*@fontSize; padding: 0 5%; }
+        >i-ul>li{
+			margin-top: @fontSize*0.4 !important;
+			padding-bottom: @fontSize*0.4;
+        }
+        >i-ul>li>*:not(.img){
+			width: ~'calc(100% - ' @fontSize*5 ~')';
+            padding: 0 2.5%;
+        }
+        >i-ul>li>i-img{
+			height: @fontSize*5;
+            width: @fontSize*5;
+        }
+        >i-ul>li>.title{
+			font-size: @fontSize*1;
+        }
+        >i-ul>li>.desc{
+			font-size: @fontSize*0.75;
+        }
+        >i-ul>li>.body{
+			font-size: @fontSize*0.75;
+        }
+        >i-ul>li>.additional{
+			font-size: @fontSize*0.75;
+        }
+        >i-ul>li>i-img+.title:last-child{
+			height: @fontSize*5;
+            font-size: @fontSize*2.4;
+            padding: 0 5%;
+        }
+        >i-ul>li>i-img+.body{
+			height: @fontSize*5;
+            font-size: @fontSize*2;
+            padding: 0 5%;
+        }
     }   
     &.si-xs{
-        >i-ul>li{ margin-top: 0.3*@fontSize !important; padding-bottom: 0.3*@fontSize; }
-        >i-ul>li>*:not(.img){ width: ~"calc(100% - " 4*@fontSize ~")"; padding: 0 2%; }
-        >i-ul>li>i-img{ height: 4*@fontSize; width: 4*@fontSize; }
-        >i-ul>li>.title{ font-size: 0.75*@fontSize; }
-        >i-ul>li>.desc{ font-size: 0.75*@fontSize; margin: 0.1em 0 0 0 !important; }
-        >i-ul>li>.body{ font-size: 0.75*@fontSize; margin: 0.3em 0 0.4em 0 !important; }
-        >i-ul>li>.additional{ font-size: 0.6*@fontSize; }
-        >i-ul>li>i-img+.title:last-child{ height: 4*@fontSize; font-size: 2*@fontSize; padding: 0 4%; }
-        >i-ul>li>i-img+.body{ height: 4*@fontSize; font-size: 1.6*@fontSize; padding: 0 4%; }
+        >i-ul>li{
+			margin-top: @fontSize*0.3 !important;
+			padding-bottom: @fontSize*0.3;
+        }
+        >i-ul>li>*:not(.img){
+			width: ~'calc(100% - ' @fontSize*4 ~')';
+            padding: 0 2%;
+        }
+        >i-ul>li>i-img{
+			height: @fontSize*4;
+            width: @fontSize*4;
+        }
+        >i-ul>li>.title{
+			font-size: @fontSize*0.75;
+        }
+        >i-ul>li>.desc{
+			font-size: @fontSize*0.75;
+            margin: 0.1em 0 0 !important;
+        }
+        >i-ul>li>.body{
+			font-size: @fontSize*0.75;
+            margin: 0.3em 0 0.4em !important;
+        }
+        >i-ul>li>.additional{
+			font-size: @fontSize*0.6; }
+        >i-ul>li>i-img+.title:last-child{
+			height: @fontSize*4;
+            font-size: @fontSize*2;
+            padding: 0 4%;
+        }
+        >i-ul>li>i-img+.body{
+			height: @fontSize*4;
+            font-size: @fontSize*1.6;
+            padding: 0 4%;
+        }
     }   
     &.si-xxs{
-        >i-ul>li{ margin-top: 0.2*@fontSize !important; padding-bottom: 0.2*@fontSize; }
-        >i-ul>li>*:not(.img){ width: ~"calc(100% - " 3*@fontSize ~")"; padding: 0 1.5%; }
-        >i-ul>li>i-img{ height: 3*@fontSize; width: 3*@fontSize; }
-        >i-ul>li>.title{ font-size: 0.75*@fontSize; margin-top: -0.3em; }
-        >i-ul>li>.desc{ font-size: 0.75*@fontSize; margin: 0 !important; }
-        >i-ul>li>.body{ font-size: 0.75*@fontSize; margin: 0.1em 0 0.1em 0 !important; }
-        >i-ul>li>.additional{ font-size: 0.75*@fontSize; }
-        >i-ul>li>i-img+.title:last-child{ height: 3*@fontSize; font-size: 1.6*@fontSize; padding: 0 3%; }
-        >i-ul>li>i-img+.body{ height: 3*@fontSize; font-size: 1.2*@fontSize; padding: 0 3%; }
+        >i-ul>li{
+			margin-top: @fontSize*0.2 !important;
+			padding-bottom: @fontSize*0.2;
+        }
+        >i-ul>li>*:not(.img){
+			width: ~'calc(100% - ' @fontSize*3 ~')';
+            padding: 0 1.5%;
+        }
+        >i-ul>li>i-img{
+			height: @fontSize*3;
+            width: @fontSize*3;
+        }
+        >i-ul>li>.title{
+			font-size: @fontSize*0.75;
+            margin-top: -0.3em;
+        }
+        >i-ul>li>.desc{
+			font-size: @fontSize*0.75;
+            margin: 0 !important;
+        }
+        >i-ul>li>.body{
+			font-size: @fontSize*0.75;
+            margin: 0.1em 0 !important;
+        }
+        >i-ul>li>.additional{
+			font-size: @fontSize*0.75;
+        }
+        >i-ul>li>i-img+.title:last-child{
+			height: @fontSize*3;
+            font-size: @fontSize*1.6; padding: 0 3%;
+        }
+        >i-ul>li>i-img+.body{
+			height: @fontSize*3;
+            font-size: @fontSize*1.2; padding: 0 3%;
+        }
     }
 
     &,

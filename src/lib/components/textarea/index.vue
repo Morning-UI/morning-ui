@@ -131,7 +131,6 @@ i-textarea{
         box-sizing: border-box;
         z-index: 2;
         font-size: 14px;
-        border: none;
         padding: 0.8em;
         width: 100%;
         background: @colorWhite;

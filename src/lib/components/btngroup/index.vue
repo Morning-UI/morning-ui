@@ -71,7 +71,7 @@ i-btngroup{
           display: inline-block;
           position: absolute;
           z-index:3;
-          background-color: #fff;
+          background-color: #FFF;
           border-radius: 100%;
           text-align: center;
           // position: relative;
@@ -83,44 +83,44 @@ i-btngroup{
 
     i-btn.si-xxl {
         +span {
-            font-size: 1.25*@fontSize;
-            width: 2*@fontSize;
-            height: 2*@fontSize;
-            line-height: 2*@fontSize;
-            margin-left: -2*@fontSize/2;
-            margin-top: 0.68067*@fontSize;
+            font-size: @fontSize*1.25;
+            width: @fontSize*2;
+            height: @fontSize*2;
+            line-height: @fontSize*2;
+            margin-left: @fontSize*-2/2;
+            margin-top: @fontSize*0.68067;
         }
     }
 
     i-btn.si-xl {
         +span {
-            font-size: 1.125*@fontSize;
-            width: 1.8*@fontSize;
-            height: 1.8*@fontSize;
-            line-height: 1.8*@fontSize;
-            margin-left: -1.8*@fontSize/2;
-            margin-top: 0.5249*@fontSize;
+            font-size: @fontSize*1.125;
+            width: @fontSize*1.8;
+            height: @fontSize*1.8;
+            line-height: @fontSize*1.8;
+            margin-left: @fontSize*-1.8/2;
+            margin-top: @fontSize*0.5249;
         }
     }
     
     i-btn.si-l {
         +span {
             font-size: @fontSize;
-            width: 1.6*@fontSize;
-            height: 1.6*@fontSize;
-            line-height: 1.6*@fontSize;
-            margin-left: -1.6*@fontSize/2;
-            margin-top: 0.48144*@fontSize;
+            width: @fontSize*1.6;
+            height: @fontSize*1.6;
+            line-height: @fontSize*1.6;
+            margin-left: @fontSize*-1.6/2;
+            margin-top: @fontSize*0.48144;
         }
     }
 
     i-btn, i-btn.si-m {
         +span {
-            font-size: 0.75*@fontSize;
+            font-size: @fontSize*0.75;
             width: 2em;
             height: 2em;
             line-height: 2em;
-            margin-left: ~"calc(-1em - " @btnGap  ~")";
+            margin-left: ~'calc(-1em - ' @btnGap  ~')';
             margin-top: -1em;
             top: 50%;
         }
@@ -128,34 +128,34 @@ i-btngroup{
 
     i-btn.si-s {
         +span {
-            font-size: 0.625*@fontSize;
-            width: 1.2*@fontSize;
-            height: 1.2*@fontSize;
-            margin-left: -1.2*@fontSize/2;
-            line-height: 1.2*@fontSize;
-            margin-top: 0.25*@fontSize;
+            font-size: @fontSize*0.625;
+            width: @fontSize*1.2;
+            height: @fontSize*1.2;
+            margin-left: @fontSize*-1.2/2;
+            line-height: @fontSize*1.2;
+            margin-top: @fontSize*0.25;
         }
     }
 
     i-btn.si-xs {
         +span {
-            font-size: 0.625*@fontSize;
-            width: 1*@fontSize;
-            height: 1*@fontSize;
-            line-height: 1*@fontSize;
-            margin-left: -1*@fontSize/2;
-            margin-top: 0.1875*@fontSize;
+            font-size: @fontSize*0.625;
+            width: @fontSize*1;
+            height: @fontSize*1;
+            line-height: @fontSize*1;
+            margin-left: @fontSize*-1/2;
+            margin-top: @fontSize*0.1875;
         }
     }
 
     i-btn.si-xxs {
         +span {
-            font-size: 0.625*@fontSize;
-            width: 1*@fontSize;
-            height: 1*@fontSize;
-            line-height: 1*@fontSize;
-            margin-left: -1*@fontSize/2;
-            margin-top: 0.125*@fontSize;
+            font-size: @fontSize*0.625;
+            width: @fontSize*1;
+            height: @fontSize*1;
+            line-height: @fontSize*1;
+            margin-left: @fontSize*-1/2;
+            margin-top: @fontSize*0.125;
         }
     }
 
@@ -163,7 +163,7 @@ i-btngroup{
         >i-btn{
             padding-right: 1.5em;
             padding-left: 1.5em;
-            margin-right: 2*@btnGap;
+            margin-right: @btnGap*2;
         }
     }
 

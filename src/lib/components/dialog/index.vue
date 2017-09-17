@@ -192,7 +192,7 @@ i-dialog{
         position: absolute;
         left: 0;
         top: 0;
-        background-color: rgba(0,0,0,0.7);
+        background-color: rgba(0, 0, 0, 0.7);
         opacity: 0;
         transition: 0.2s;
         pointer-events: none;
@@ -204,7 +204,7 @@ i-dialog{
         height: 50%;
         position: absolute;
         left: 50%;
-        background-color: #fff;
+        background-color: #FFF;
         box-sizing: border-box;
 
         >.body{
@@ -234,7 +234,7 @@ i-dialog{
                 font-size: @fontSize;
                 margin: 0;
                 padding: 0;
-                font-weight: normal;
+                font-weight: 400;
                 white-space: nowrap;
                 text-overflow: ellipsis;
                 overflow: hidden;
@@ -255,9 +255,9 @@ i-dialog{
         }
 
         >footer{
-            font-size: 0.8125*@fontSize;
-            line-height: @footerHeight;;
-            height: @footerHeight;;
+            font-size: @fontSize*0.8125;
+            line-height: @footerHeight;
+            height: @footerHeight;
             width: 100%;
             background: @colorExtraLightSilver;
             color: @colorBlue;

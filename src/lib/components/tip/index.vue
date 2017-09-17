@@ -436,7 +436,7 @@ i-tip{
     position: absolute;
     // z-index: @tipIndex;
     display: block;
-    font-size: 0.75*@fontSize;
+    font-size: @fontSize*0.75;
     opacity: 0;
     z-index: -1;
 
@@ -446,7 +446,7 @@ i-tip{
 
     &.morningTether-element-attached-bottom {
         padding: @tipArrowWidth 0;
-        margin-top: -0.1875*@fontSize;
+        margin-top: @fontSize*-0.1875;
 
         .tipArrow {
             bottom: 0;
@@ -459,7 +459,7 @@ i-tip{
 
     &.morningTether-element-attached-left {
         padding: 0 @tipArrowWidth;
-        margin-left: 0.1875*@fontSize;
+        margin-left: @fontSize*0.1875;
 
         .tipArrow {
             top: 50%;
@@ -472,7 +472,7 @@ i-tip{
 
     &.morningTether-element-attached-top {
         padding: @tipArrowWidth 0;
-        margin-top: 0.1875*@fontSize;
+        margin-top: @fontSize*0.1875;
 
         .tipArrow {
             top: 0;
@@ -485,7 +485,7 @@ i-tip{
 
     &.morningTether-element-attached-right {
         padding: 0 @tipArrowWidth;
-        margin-left: -0.1875*@fontSize;
+        margin-left: @fontSize*-0.1875;
 
         .tipArrow {
             top: 50%;
@@ -497,8 +497,8 @@ i-tip{
     }
 
     .tipContent {
-        max-width: 12.5*@fontSize;
-        padding: 0.1875*@fontSize 0.5*@fontSize;
+        max-width: @fontSize*12.5;
+        padding: @fontSize*0.1875 @fontSize*0.5;
         // color: @colorWhite;
         text-align: center;
         // background-color: @tipBg;

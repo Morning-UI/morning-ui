@@ -301,7 +301,7 @@ i-tab{
                     border-top: 1px @colorTheme solid;
                     box-shadow: inset 0 3px 0 @colorTheme;
                     border-bottom: none;
-                    background: #fff;
+                    background: #FFF;
                     color: @colorBlack;
                     top: 1px;
                 }

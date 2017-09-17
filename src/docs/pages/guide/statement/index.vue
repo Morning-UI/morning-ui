@@ -236,7 +236,7 @@ export default {
     margin: 5px 0;
 
     .item{
-        color: #fff;
+        color: #FFF;
         padding: 20px;
         box-sizing: border-box;
 

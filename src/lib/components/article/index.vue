@@ -24,27 +24,27 @@ i-article{
     word-break: break-word;
 
     .title{
-        font-size: 2*@fontSize;
-        font-weight: bold;
+        font-size: @fontSize*2;
+        font-weight: 700;
         margin-bottom: 0.3em;
         line-height: 1.2em;
     }
 
     .meta{
-        font-size: 0.8*@fontSize;
+        font-size: @fontSize*0.8;
         color: @colorExtraLightBlue;
         margin-bottom: 0.7em;
         line-height: 1.6em;
     }
 
     .lead{
-        font-size: 1.4*@fontSize;
+        font-size: @fontSize*1.4;
         line-height: 1.4em;
         margin-bottom: 0.4em;
     }
 
     .body{
-        font-size: 0.875*@fontSize;
+        font-size: @fontSize*0.875;
         line-height: 1.4em;
         color: @colorLightBlack; //lighten(@colorLightBlack, 30%);]
         width: 100%;

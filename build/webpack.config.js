@@ -8,6 +8,7 @@ const HtmlWebpackPlugin             = require('html-webpack-plugin');
 
 let pathProjectRoot = path.resolve(__dirname, '../');
 let pathNpm = path.resolve(pathProjectRoot, 'node_modules');
+let pathBuild = path.resolve(pathProjectRoot, 'build');
 let pathDist = path.resolve(pathProjectRoot, 'dist');
 let pathSrc = path.resolve(pathProjectRoot, 'src');
 let pathDocs = path.resolve(pathProjectRoot, 'docs');
@@ -111,7 +112,17 @@ devVerConfig = extend(
                     test : /\.less$/,
                     use : extractDevCss.extract({
                         use : [{
-                            loader : 'css-loader'
+                            loader : 'css-loader',
+                            options : {
+                                importLoaders : 1
+                            }
+                        }, {
+                            loader : 'postcss-loader',
+                            options : {
+                                config : {
+                                    path : path.resolve(pathBuild, 'postcss.config.js')
+                                }
+                            }
                         }, {
                             loader : 'less-loader'
                         }],
@@ -133,7 +144,19 @@ devVerConfig = extend(
                             js : 'babel-loader',
                             less : extractDevCss.extract({
                                 fallback : 'vue-style-loader',
-                                use : ['css-loader', 'less-loader']
+                                use : [{
+                                    loader : 'css-loader',
+                                    options : {
+                                        importLoaders : 1
+                                    }
+                                }, {
+                                    loader : 'postcss-loader',
+                                    options : {
+                                        config : {
+                                            path : path.resolve(pathBuild, 'postcss.config.js')
+                                        }
+                                    }
+                                }, 'less-loader']
                             })
                         }
                     }
@@ -175,9 +198,14 @@ prodVerConfig = extend(
                     test : /\.less$/,
                     use : extractProdCss.extract({
                         use : [{
-                            loader : 'css-loader'
+                            loader : 'css-loader',
+                            options : {
+                                importLoaders : 1
+                            }
                         }, {
                             loader : 'clean-css-loader'
+                        }, {
+                            loader : 'postcss-loader'
                         }, {
                             loader : 'less-loader'
                         }],
@@ -202,6 +230,7 @@ prodVerConfig = extend(
                                 use : [
                                     'css-loader',
                                     'clean-css-loader',
+                                    'postcss-loader',
                                     'less-loader'
                                 ]
                             })
@@ -286,7 +315,7 @@ docsConfig = {
                         js : 'babel-loader',
                         less : extractDocsCss.extract({
                             fallback : 'vue-style-loader',
-                            use : ['css-loader', 'less-loader']
+                            use : ['css-loader', 'postcss-loader', 'less-loader']
                         })
                     }
                 }
@@ -314,6 +343,6 @@ getDocsHtmlPlugin(docsConfig);
 
 module.exports = [
     devVerConfig,
-    prodVerConfig,
-    docsConfig
+    // prodVerConfig,
+    // docsConfig
 ];

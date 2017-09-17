@@ -20,8 +20,8 @@ export default UI.extend({
 
 i-badge{
     display: inline-block;
-    color:#fff;
-    margin:0.125*@fontSize;
+    color:#FFF;
+    margin:@fontSize*0.125;
     text-align: center;
     vertical-align: middle;
     height: auto;
@@ -32,55 +32,55 @@ i-badge{
     }
 
     &.si-xxl{ 
-        font-size: 1.4*@fontSize;
-        padding:0 1*@fontSize;
-        margin: 0.5*@fontSize;
+        font-size: @fontSize*1.4;
+        padding:0 @fontSize*1;
+        margin: @fontSize*0.5;
 
         &,
         &.flat{
-            border-radius: 1.6*@borderRadius;
+            border-radius: @borderRadius*1.6;
         }
 
         &.circle{
-            border-radius: 1.6*@fontSize;
+            border-radius: @fontSize*1.6;
         }
     }
     &.si-xl{ 
-        font-size: 1.2*@fontSize; 
-        padding:0 0.8*@fontSize; 
-        margin: 0.3*@fontSize;
+        font-size: @fontSize*1.2; 
+        padding:0 @fontSize*0.8; 
+        margin: @fontSize*0.3;
 
         &,
         &.flat{
-            border-radius: 1.4*@borderRadius;
+            border-radius: @borderRadius*1.4;
         }
 
         &.circle{
-            border-radius: 1.4*@fontSize;
+            border-radius: @fontSize*1.4;
         } 
     }
 
     &.si-l{ 
-        font-size: 1*@fontSize; 
-        padding:0 0.75*@fontSize;  
-        margin: 0.1*@fontSize;
+        font-size: @fontSize*1; 
+        padding:0 @fontSize*0.75;  
+        margin: @fontSize*0.1;
 
         &,
         &.flat{
-            border-radius: 1.2*@borderRadius;
+            border-radius: @borderRadius*1.2;
         }
 
         &.circle{
-            border-radius: 1.2*@fontSize;
+            border-radius: @fontSize*1.2;
         }
     }
     &.si-m{ 
-        font-size: 0.8*@fontSize;
-        padding:0 0.65*@fontSize;
+        font-size: @fontSize*0.8;
+        padding:0 @fontSize*0.65;
 
         &,
         &.flat{
-            border-radius: 1*@borderRadius;
+            border-radius: @borderRadius*1;
         }
         
         &.circle{
@@ -88,42 +88,42 @@ i-badge{
         }
     }
     &.si-s{ 
-        font-size: 0.75*@fontSize; 
-        padding:0 0.55*@fontSize;
+        font-size: @fontSize*0.75; 
+        padding:0 @fontSize*0.55;
 
         &,
         &.flat{
-            border-radius: 0.8*@borderRadius;
+            border-radius: @borderRadius*0.8;
         }
         
         &.circle{
-            border-radius: 0.8*@fontSize;
+            border-radius: @fontSize*0.8;
         }
     }
     &.si-xs{ 
-        font-size: 0.75*@fontSize; 
-        padding:0 0.3*@fontSize;
+        font-size: @fontSize*0.75; 
+        padding:0 @fontSize*0.3;
 
         &,
         &.flat{
-            border-radius: 0.75*@borderRadius;
+            border-radius: @borderRadius*0.75;
         }
         &.circle{
-            border-radius: 0.75*@fontSize;
+            border-radius: @fontSize*0.75;
         }
     }
     &.si-xxs{ 
-        font-size: 0.75*@fontSize;
-        padding:0 0.3125*@fontSize;
+        font-size: @fontSize*0.75;
+        padding:0 @fontSize*0.3125;
         transform: scale(0.8);
 
         &,
         &.flat{
-            border-radius: 0.625*@borderRadius;
+            border-radius: @borderRadius*0.625;
         }
 
         &.circle{
-            border-radius: 0.625*@fontSize;
+            border-radius: @fontSize*0.625;
         }
     }
     
@@ -144,12 +144,30 @@ i-badge{
     &.sy-blue{ background-color: @colorBlue; }
     &.sy-lightBlue{ background-color: @colorLightBlue; }
     &.sy-extraLightBlue{ background-color: @colorExtraLightBlue; }
-    &.sy-silver{ background-color: @colorSilver; color: @colorLightBlack; }
-    &.sy-lightSilver{ background-color: @colorLightSilver; color: @colorLightBlack; }
-    &.sy-extraLightSilver{ background-color: @colorExtraLightSilver; color: @colorLightBlack; }
-    &.sy-gray{ background-color: @colorGray; color: @colorLightBlack; }
-    &.sy-lightGray{ background-color: @colorLightGray; color: @colorLightBlack; }
-    &.sy-white{ background-color: @colorWhite; color: @colorLightBlack; }
+    &.sy-silver{
+        background-color: @colorSilver;
+        color: @colorLightBlack;
+    }
+    &.sy-lightSilver{
+        background-color: @colorLightSilver;
+        color: @colorLightBlack;
+    }
+    &.sy-extraLightSilver{
+        background-color: @colorExtraLightSilver;
+        color: @colorLightBlack;
+    }
+    &.sy-gray{
+        background-color: @colorGray;
+        color: @colorLightBlack;
+    }
+    &.sy-lightGray{
+        background-color: @colorLightGray;
+        color: @colorLightBlack;
+    }
+    &.sy-white{
+        background-color: @colorWhite;
+        color: @colorLightBlack;
+    }
 
     &.st-normal{}
     &.st-apparent{

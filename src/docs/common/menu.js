@@ -59,6 +59,7 @@ export default {
         表单组件 : null,
         '文本输入<i class="tag done"></i>' : '/component/textinput.html',
         '段落输入<i class="tag done"></i>' : '/component/textarea.html',
+        富文本输入 : 'b',
         '开关<i class="tag update"></i><i class="tag coming"></i>' : '/component/switch.html',
         '计数器<i class="tag new"></i>' : 'b',
         '下拉选择<i class="tag coming"></i>' : '/component/select.html',

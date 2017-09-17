@@ -19,7 +19,7 @@ export default UI.extend({
 @import '~Common/var.less';
 
 i-del{
-    display: inline;;
+    display: inline;
     text-decoration: line-through;
 
     // default statement

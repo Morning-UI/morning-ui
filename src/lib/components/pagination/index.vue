@@ -175,7 +175,7 @@ i-pagination{
             }
 
             .iconfont{
-                font-size: 0.8125*@fontSize;
+                font-size: @fontSize*0.8125;
                 vertical-align: top !important;
             }
 
@@ -223,7 +223,7 @@ i-pagination{
                 position: relative;
                 z-index: 2;
                 outline: none;
-                -webkit-appearance: none;
+                appearance: none;
                 border-top-right-radius: @borderRadius;
                 border-bottom-right-radius: @borderRadius;
 
@@ -261,29 +261,47 @@ i-pagination{
     }
 
 // TODO
-    &[xl]>.pagination>.pageJump>.pageNum>input{ font-size: 1.2*@fontSize; width: 4.5em; }
-    &[l]>.pagination>.pageJump>.pageNum>input{ font-size: 1.1*@fontSize; width: 4.5em; }
-    &>.pagination>.pageJump>.pageNum>input,&[m]>.pagination>pageJump>#pageNum>input{ font-size: 1*@fontSize; width: 4.5em; }
-    &[s]>.pagination>.pageJump>.pageNum>input{ font-size: 0.875*@fontSize; width: 4.5em; }
-    &[xs]>.pagination>.pageJump>.pageNum>input{ font-size: 0.75*@fontSize; padding: 0 0.6em; line-height: 2.2em; height: 2.2em; width: 4.5em; }
-    &[xxs]>.pagination>.pageJump>.pageNum>input{ font-size: 0.75*@fontSize; padding: 0 0.4em; line-height: 2em; height: 2em; width: 4.5em; }
+    &[xl]>.pagination>.pageJump>.pageNum>input{ font-size: @fontSize*1.2;
+        width: 4.5em; }
+    &[l]>.pagination>.pageJump>.pageNum>input{ font-size: @fontSize*1.1;
+        width: 4.5em; }
+    &>.pagination>.pageJump>.pageNum>input,&[m]>.pagination>.pageJump>#pageNum>input{ font-size: @fontSize*1;
+        width: 4.5em; }
+    &[s]>.pagination>.pageJump>.pageNum>input{ font-size: @fontSize*0.875;
+        width: 4.5em; }
+    &[xs]>.pagination>.pageJump>.pageNum>input{ font-size: @fontSize*0.75;
+        padding: 0 0.6em;
+    line-height: 2.2em;
+    height: 2.2em;
+    width: 4.5em; }
+    &[xxs]>.pagination>.pageJump>.pageNum>input{ font-size: @fontSize*0.75;
+        padding: 0 0.4em;
+    line-height: 2em;
+    height: 2em;
+    width: 4.5em; }
 
-    &[xxl]>.pagination>.pageJump>i{ line-height: 50px; font-size: 17px; }
-    &[xl]>.pagination>.pageJump>i{ line-height: 46px; font-size: 16px; }
-    &>.pagination>.pageJump>i,&[m]>.pagination>.pageJump>i{ line-height: 40px; font-size: 15px; }
-    &[s]>.pagination>.pageJump>i{ line-height: 34px; font-size: 13px; }
-    &[xs]>.pagination>.pageJump>i{ line-height: 25px; font-size: 12px; }
-    &[xxs]>.pagination>.pageJump>i{ line-height: 24px; font-size: 12px; }
+    &[xxl]>.pagination>.pageJump>i{ line-height: 50px;
+        font-size: 17px; }
+    &[xl]>.pagination>.pageJump>i{ line-height: 46px;
+        font-size: 16px; }
+    &>.pagination>.pageJump>i,&[m]>.pagination>.pageJump>i{ line-height: 40px;
+        font-size: 15px; }
+    &[s]>.pagination>.pageJump>i{ line-height: 34px;
+        font-size: 13px; }
+    &[xs]>.pagination>.pageJump>i{ line-height: 25px;
+        font-size: 12px; }
+    &[xxs]>.pagination>.pageJump>i{ line-height: 24px;
+        font-size: 12px; }
 // TODO
     &.si-xxl {
         >.pagination{
             >a {
-                font-size: 1.3*@fontSize;
+                font-size: @fontSize*1.3;
             }
 
             .pageJump{
                 .pageNum>input{
-                    font-size: 1.3*@fontSize;
+                    font-size: @fontSize*1.3;
                     width: 4.5em;
                 }
 
@@ -296,31 +314,31 @@ i-pagination{
 
     &.si-xl {
         >.pagination>a{
-            font-size: 1.2*@fontSize;
+            font-size: @fontSize*1.2;
         }
     }
 
     &.si-l {
         >.pagination>a{
-            font-size: 1.1*@fontSize;
+            font-size: @fontSize*1.1;
         }
     }
 
     &.si-m {
         >.pagination>a{
-            font-size: 1*@fontSize;
+            font-size: @fontSize*1;
         }
     }
 
     &.si-s {
         >.pagination>a{
-            font-size: 0.875*@fontSize;
+            font-size: @fontSize*0.875;
         }
     }
 
     &.si-xs {
         >.pagination>a{
-            font-size: 0.75*@fontSize;
+            font-size: @fontSize*0.75;
             padding: 0 0.6em;
             line-height: 2.2em;
             height: 2.2em;
@@ -334,14 +352,14 @@ i-pagination{
 
     &.si-xxs {
         >.pagination>a{
-            font-size: 0.75*@fontSize;
+            font-size: @fontSize*0.75;
             padding: 0 0.4em;
             line-height: 2em;
             height: 2em;
 
             &.ignore{
                 line-height: 1.4em;
-                padding: 0 0;
+                padding: 0;
             }
         }
     }
@@ -406,9 +424,9 @@ i-pagination{
         border: 1px solid #000;
         color: #000 !important;
 
-        &::-webkit-input-placeholder {
-            color: #555 !important;
-        }
+        // &::-webkit-input-placeholder {
+        //     color: #555 !important;
+        // }
 
     }
 

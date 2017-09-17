@@ -20,7 +20,7 @@ export default UI.extend({
 
 i-strong{
     display: inline;
-    font-weight: bold;
+    font-weight: 700;
 
     // default statement
     &{}

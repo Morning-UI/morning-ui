@@ -36,7 +36,7 @@ export default {
 </script>
 
 <style lang="less">
-@import "~Docs/common/common.less";
+@import '~Docs/common/common.less';
 
 .w1k{
     width: 1100px;
@@ -55,19 +55,19 @@ export default {
     }
 
     &.gray{
-        background: #eee;
+        background: #EEE;
     }
 
     h1 {
         text-align: center;
-        font-weight: normal;
+        font-weight: 400;
     }
 }
 .keywork{
     width: 900px;
     font-size: 0;
     padding: 0 100px;
-    margin: 50px 0 0 0;
+    margin: 50px 0 0;
 
     span {
         display: inline-block;

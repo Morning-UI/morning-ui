@@ -145,7 +145,7 @@ export default UI.extend({
 <style lang="less">
 @import '~Common/var.less';
 
-@-webkit-keyframes dropdown_popup{
+@keyframes dropdown_popup{
     from {
         transform: translateX(-50%) scale(0);
     }
@@ -160,7 +160,7 @@ export default UI.extend({
     }
 }
 
-@-webkit-keyframes dropdown_popin{
+@keyframes dropdown_popin{
     from {
         transform: translateX(-50%) scale(1);
     }

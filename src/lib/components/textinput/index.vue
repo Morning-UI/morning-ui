@@ -145,7 +145,7 @@ i-textinput{
     input{
         box-sizing: border-box;
         z-index: 2;
-        font-size: 0.875*@fontSize;
+        font-size: @fontSize*0.875;
         padding: 0 1em;
         width: 100%;
         background: @colorWhite;
@@ -169,8 +169,8 @@ i-textinput{
         vertical-align: middle;
 
         .inputGroupAddon {
-            padding: 0.375*@fontSize 0.75*@fontSize;
-            font-size: 0.875rem;
+            padding: @fontSize*0.375 @fontSize*0.75;
+            font-size: 0.875em;
             color: @colorBlue;
             text-align: center;
             background-color: @colorLightGray;
@@ -179,9 +179,7 @@ i-textinput{
             border-radius: @borderRadius;
 
             display: flex;
-            box-align: center;
             align-items: center;
-            box-pack: center;
             justify-content: center;
 
             &:first-child {

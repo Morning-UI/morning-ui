@@ -157,10 +157,10 @@ i-load{
         .morningicon{
             vertical-align: 1px;
             line-height: 1em;
-            -webkit-animation-name: rotation;
-            -webkit-animation-duration: 1s;
-            -webkit-animation-timing-function: linear;
-            -webkit-animation-iteration-count: infinite;
+            animation-name: rotation;
+            animation-duration: 1s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
             display: inline-block;
             color: @colorLightBlue;
         }
@@ -170,91 +170,91 @@ i-load{
     &.si-xxl {
         .loading {
             .morningicon{
-                font-size: 2.8*@fontSize;
+                font-size: @fontSize*2.8;
             }
         }
 
         .loading,
         .loadfail{
-            font-size: 1.6*@fontSize;
+            font-size: @fontSize*1.6;
         }
     }
 
     &.si-xl {
         .loading {
             .morningicon{
-                font-size: 2*@fontSize;
+                font-size: @fontSize*2;
             }
         }
 
         .loading,
         .loadfail{
-            font-size: 1.3*@fontSize
+            font-size: @fontSize*1.3
         }
     }
 
     &.si-l {
         .loading {
             .morningicon{
-                font-size: 1.6*@fontSize;
+                font-size: @fontSize*1.6;
             }
         }
 
         .loading,
         .loadfail{
-            font-size: 1*@fontSize;
+            font-size: @fontSize*1;
         }
     }
 
     &.si-m {
         .loading {
             .morningicon{
-                font-size: 1*@fontSize;
+                font-size: @fontSize*1;
             }
         }
 
         .loading,
         .loadfail{
-            font-size: 0.875*@fontSize;
+            font-size: @fontSize*0.875;
         }
     }
 
     &.si-s {
         .loading {
             .morningicon{
-                font-size: 0.875*@fontSize;
+                font-size: @fontSize*0.875;
             }
         }
 
         .loading,
         .loadfail{
-            font-size: 0.875*@fontSize;
+            font-size: @fontSize*0.875;
         }
     }
 
     &.si-xs {
         .loading {
             .morningicon{
-                font-size: 0.8125*@fontSize;
+                font-size: @fontSize*0.8125;
             }
         }
 
         .loading,
         .loadfail{
-            font-size: 0.8125*@fontSize;
+            font-size: @fontSize*0.8125;
         }
     }
 
     &.si-xxs {
         .loading {
             .morningicon{
-                font-size: 0.75*@fontSize;
+                font-size: @fontSize*0.75;
             }
         }
 
         .loading,
         .loadfail{
-            font-size: 0.75*@fontSize;
+            font-size: @fontSize*0.75;
         }
     }
 

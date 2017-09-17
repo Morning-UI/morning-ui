@@ -275,14 +275,14 @@ i-breadcrumbs{
 
     &.si-xxl {
         ul {
-            height: 2.1875*@fontSize;
+            height: @fontSize*2.1875;
 
             li {
-                font-size: 1.375*@fontSize;
+                font-size: @fontSize*1.375;
                 
                 &.separator{
-                    font-size: 1.625*@fontSize;
-                    vertical-align: -0.625*@fontSize !important;
+                    font-size: @fontSize*1.625;
+                    vertical-align: @fontSize*-0.625 !important;
                     margin: 0 0.6em;
                 }
             }
@@ -290,15 +290,15 @@ i-breadcrumbs{
     }
 
     &.si-xl {
-        height: 1.75*@fontSize;
+        height: @fontSize*1.75;
 
         ul {
             li {
-                font-size: 1.125*@fontSize;
+                font-size: @fontSize*1.125;
                 
                 &.separator{
-                    font-size: 1.375*@fontSize;
-                    vertical-align: -0.5625*@fontSize !important;
+                    font-size: @fontSize*1.375;
+                    vertical-align: @fontSize*-0.5625 !important;
                     margin: 0 0.6em;
                 }
             }
@@ -307,14 +307,14 @@ i-breadcrumbs{
 
     &.si-l {
         ul {
-            height: 1.5625*@fontSize;
+            height: @fontSize*1.5625;
 
             li {
-                font-size: 1*@fontSize;
+                font-size: @fontSize*1;
                 
                 &.separator{
-                    font-size: 1.125*@fontSize;
-                    vertical-align: -0.4375*@fontSize !important;
+                    font-size: @fontSize*1.125;
+                    vertical-align: @fontSize*-0.4375 !important;
                     margin: 0 0.6em;
                 }
             }
@@ -323,14 +323,14 @@ i-breadcrumbs{
 
     &.si-m {
         ul {
-            height: 1.375*@fontSize;
+            height: @fontSize*1.375;
 
             li {
-                font-size: 0.875*@fontSize;
+                font-size: @fontSize*0.875;
                 
                 &.separator{
-                    font-size: 0.875*@fontSize;
-                    vertical-align: -0.3125*@fontSize !important;
+                    font-size: @fontSize*0.875;
+                    vertical-align: @fontSize*-0.3125 !important;
                     margin: 0 0.5em;
                 }
             }
@@ -339,14 +339,14 @@ i-breadcrumbs{
 
     &.si-s {
         ul {
-            height: 1.25*@fontSize;
+            height: @fontSize*1.25;
 
             li {
-                font-size: 0.8125*@fontSize;
+                font-size: @fontSize*0.8125;
                 
                 &.separator{
-                    font-size: 0.875*@fontSize;
-                    vertical-align: -0.3125*@fontSize !important;
+                    font-size: @fontSize*0.875;
+                    vertical-align: @fontSize*-0.3125 !important;
                     margin: 0 0.5em;
                 }
             }
@@ -356,11 +356,11 @@ i-breadcrumbs{
     &.si-xs {
         ul {
             li {
-                font-size: 0.75*@fontSize;
+                font-size: @fontSize*0.75;
                 
                 &.separator{
                     font-size: 12px;
-                    vertical-align: -0.3125*@fontSize !important;
+                    vertical-align: @fontSize*-0.3125 !important;
                     margin: 0 0.4em;
                 }
             }
@@ -370,12 +370,12 @@ i-breadcrumbs{
     &.si-xxs {
         ul {
             li {
-                font-size: 0.75*@fontSize;
+                font-size: @fontSize*0.75;
                 transform: scale(0.8);
                 
                 &.separator{
                     font-size: 12px;
-                    vertical-align: -0.3125*@fontSize !important;
+                    vertical-align: @fontSize*-0.3125 !important;
                     margin: 0 0.2em;
                 }
             }

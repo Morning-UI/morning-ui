@@ -53,7 +53,7 @@ export default {
     width: 200px;
     display: inline-block;
     vertical-align: top;
-    border-right: 1px #eee solid;
+    border-right: 1px #EEE solid;
     box-sizing: border-box;
     padding: 20px 10px;
     margin: 0;
@@ -75,19 +75,19 @@ export default {
 
             &.current {
                 color: #333;
-                font-weight: bold;
+                font-weight: 700;
             }
         }
 
         .title{
             font-size: 14px;
             color: #333;
-            margin: 20px 0 5px 0;
+            margin: 20px 0 5px;
         }
     }
 
     .tag{
-        color: #fff;
+        color: #FFF;
         padding: 2px 5px;
         border-radius: 15px;
         font-size: 12px;
@@ -102,26 +102,26 @@ export default {
         text-transform: uppercase;
         
         &.new{
-            background: #f34562;
+            background: #F34562;
 
             &:before{
-                content: 'new'
+                content: 'new';
             }
         }
         
         &.update{
-            background: #41b4d2;
+            background: #41B4D2;
 
             &:before{
-                content: 'update'
+                content: 'update';
             }
         }
         
         &.done{
-            background: #46c235;
+            background: #46C235;
 
             &:before{
-                content: 'done'
+                content: 'done';
             }
         }
         
@@ -129,7 +129,7 @@ export default {
             background: #666;
 
             &:before{
-                content: 'coming'
+                content: 'coming';
             }
         }
         
@@ -137,7 +137,7 @@ export default {
             background: #119100;
 
             &:before{
-                content: 'CR PASS'
+                content: 'CR PASS';
             }
         }
     }

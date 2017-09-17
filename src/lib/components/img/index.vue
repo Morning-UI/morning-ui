@@ -50,9 +50,9 @@ i-img{
         bottom: 0;
         left: 0;
         padding: 5px;
-        font-size: 0.75*@fontSize;
-        background-color: rgba(0, 0, 0, .6);
-        color: #ddd;
+        font-size: @fontSize*0.75;
+        background-color: rgba(0, 0, 0, 0.6);
+        color: #DDD;
         box-sizing: border-box;
         line-height: 1.4em;
         &:empty{
@@ -70,7 +70,7 @@ i-img{
     }
     &.thumbnail{
         border-radius: @borderRadius;
-        padding: 0.4*@fontSize;
+        padding: @fontSize*0.4;
         overflow: hidden;
         border: 1px solid @colorGray;
     }

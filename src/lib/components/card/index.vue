@@ -27,7 +27,7 @@ i-card{
     border-radius: @borderRadius;
     padding: 1em;
     position: relative;
-    background: #fff;
+    background: #FFF;
 
     &>header{
         line-height: 1.5em;
@@ -38,32 +38,136 @@ i-card{
         right: 0;
         padding: 0.5em 1em;
         border-radius: @borderRadius @borderRadius 0 0;
-        font-size: 0.875*@fontSize;
+        font-size: @fontSize*0.875;
     }
 
-    &.sy-theme{ &>header { background-color: @colorTheme; color: @colorWhite; } }
-    &.sy-lightTheme{ &>header { background-color: @colorLightTheme; color: @colorWhite; } }
-    &.sy-darkTheme{ &>header { background-color: @colorDarkTheme; color: @colorWhite; } }
+    &.sy-theme{
+        &>header {
+            background-color: @colorTheme;
+            color: @colorWhite;
+        }
+    }
+    &.sy-lightTheme{
+        &>header {
+            background-color: @colorLightTheme;
+            color: @colorWhite;
+        }
+    }
+    &.sy-darkTheme{
+        &>header {
+            background-color: @colorDarkTheme;
+            color: @colorWhite;
+        }
+    }
 
-    &.sy-success{ &>header { background-color: @colorSuccess; } }
-    &.sy-warning{ &>header { background-color: @colorWarning; color: @colorWhite; } }
-    &.sy-danger{ &>header { background-color: @colorDanger; color: @colorWhite; } }
-    &.sy-primary{ &>header { background-color: @colorPrimary; color: @colorWhite; } }
-    &.sy-minor{ &>header { background-color: @colorMinor; color: @colorWhite; } }
-    &.sy-info{ &>header { background-color: @colorInfo; color: @colorWhite; } }
+    &.sy-success{
+        &>header {
+            background-color: @colorSuccess;
+        }
+    }
+    &.sy-warning{
+        &>header {
+            background-color: @colorWarning;
+            color: @colorWhite;
+        }
+    }
+    &.sy-danger{
+        &>header {
+            background-color: @colorDanger;
+            color: @colorWhite;
+        }
+    }
+    &.sy-primary{
+        &>header {
+            background-color: @colorPrimary;
+            color: @colorWhite;
+        }
+    }
+    &.sy-minor{
+        &>header {
+            background-color: @colorMinor;
+            color: @colorWhite;
+        }
+    }
+    &.sy-info{
+        &>header {
+            background-color: @colorInfo;
+            color: @colorWhite;
+        }
+    }
 
-    &.sy-black{ &>header { background-color: @colorBlack; color: @colorWhite; } }
-    &.sy-lightBlack{ &>header { background-color: @colorLightBlack; color: @colorWhite; } }
-    &.sy-extraLightBlack{ &>header { background-color: @colorExtraLightBlack; color: @colorWhite; } }
-    &.sy-blue{ &>header { background-color: @colorBlue; color: @colorWhite; } }
-    &.sy-lightBlue{ &>header { background-color: @colorLightBlue; color: @colorWhite; } }
-    &.sy-extraLightBlue{ &>header { background-color: @colorExtraLightBlue; color: @colorWhite; } }
-    &.sy-silver{ &>header { background-color: @colorSilver; color: @colorLightBlack; } }
-    &.sy-lightSilver{ &>header { background-color: @colorLightSilver; color: @colorLightBlack; } }
-    &.sy-extraLightSilver{ &>header { background-color: @colorExtraLightSilver; color: @colorLightBlack; } }
-    &.sy-gray{ &>header { background-color: @colorGray; color: @colorLightBlack; } }
-    &.sy-lightGray{ &>header { background-color: @colorLightGray; color: @colorLightBlack; } }
-    &.sy-white{ &>header { background-color: @colorWhite; color: @colorLightBlack; } }
+    &.sy-black{
+        &>header {
+            background-color: @colorBlack;
+            color: @colorWhite;
+        }
+    }
+    &.sy-lightBlack{
+        &>header {
+            background-color: @colorLightBlack;
+            color: @colorWhite;
+        }
+    }
+    &.sy-extraLightBlack{
+        &>header {
+            background-color: @colorExtraLightBlack;
+            color: @colorWhite;
+        }
+    }
+    &.sy-blue{
+        &>header {
+            background-color: @colorBlue;
+            color: @colorWhite;
+        }
+    }
+    &.sy-lightBlue{
+        &>header {
+            background-color: @colorLightBlue;
+            color: @colorWhite;
+        }
+    }
+    &.sy-extraLightBlue{
+        &>header {
+            background-color: @colorExtraLightBlue;
+            color: @colorWhite;
+        }
+    }
+    &.sy-silver{
+        &>header {
+            background-color: @colorSilver;
+            color: @colorLightBlack;
+        }
+    }
+    &.sy-lightSilver{
+        &>header {
+            background-color: @colorLightSilver;
+            color: @colorLightBlack;
+        }
+    }
+    &.sy-extraLightSilver{
+        &>header {
+            background-color: @colorExtraLightSilver;
+            color: @colorLightBlack;
+        }
+    }
+    &.sy-gray{
+        &>header {
+            background-color: @colorGray;
+            color: @colorLightBlack;
+        }
+    }
+    &.sy-lightGray{
+        &>header {
+            background-color: @colorLightGray;
+            color: @colorLightBlack;
+        }
+    }
+    &.sy-white{
+        &>header {
+            background-color: @colorWhite;
+            color: @colorLightBlack;
+        }
+    }
 
     &>div{
         padding: 0;

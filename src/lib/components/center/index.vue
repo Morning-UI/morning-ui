@@ -20,9 +20,7 @@ export default UI.extend({
 
 i-center{
     display:flex;
-    box-align:center;
     align-items:center;
-    box-pack:center;
     justify-content:center;
 
     &.fill{

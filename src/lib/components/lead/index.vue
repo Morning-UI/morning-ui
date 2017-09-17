@@ -22,7 +22,7 @@ i-lead{
     display: block;
     line-height: 1.428em;
     margin: 0.672em 0;
-    font-size: 1.2*@fontSize;
+    font-size: @fontSize*1.2;
 
     .setup-font-color-theme();
     .setup-font-color-feature();

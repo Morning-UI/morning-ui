@@ -20,21 +20,21 @@ export default UI.extend({
 
 i-jumbotron{
     display: block;
-    padding: 1.3*@fontSize;
+    padding: @fontSize*1.3;
     border-radius: @borderRadius;
     overflow: hidden;
-    background-color:#fff;
+    background-color:#FFF;
 
     h1{
-        font-size: 3.6*@fontSize !important;
-        margin: 0 0 0.4em 0 !important;
+        font-size: @fontSize*3.6 !important;
+        margin: 0 0 0.4em !important;
         padding: 0 !important;
         border-bottom: 0 none !important;
     }
     p{
         color: lighten(@colorBlack, 50%) !important;
         font-size: @fontSize !important;
-        margin: 0.9*@fontSize 0 1.3*@fontSize 0;
+        margin: @fontSize*0.9 0 @fontSize*1.3 0;
     }
 
     // default statement

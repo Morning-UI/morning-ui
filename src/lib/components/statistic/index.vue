@@ -28,10 +28,25 @@ i-statistic{
     .label+.value{ margin-top: 0.3em; }
 
     .value,
-    .value>span{ line-height: 1em; height: 1em;  }
-    .value>span{ display: inline-block; vertical-align: top !important; }
-    .value i{ font-size: inherit; vertical-align: top !important; line-height: 1em; height: 1em; margin-right: 0.1em; }
-    .value img{ vertical-align: baseline !important; margin-right: 0.25em; }
+    .value>span{
+        line-height: 1em;
+        height: 1em;  
+    }
+    .value>span{
+        display: inline-block;
+        vertical-align: top !important;
+    }
+    .value i{
+        font-size: inherit;
+        vertical-align: top !important;
+        line-height: 1em;
+        height: 1em;
+        margin-right: 0.1em;
+    }
+    .value img{
+        vertical-align: baseline !important;
+        margin-right: 0.25em;
+    }
 
     &.horizontal .label,
     &.horizontal .value{
@@ -60,86 +75,86 @@ i-statistic{
     
     &.si-xxl {
         .value{
-            font-size: 3*@fontSize;
+            font-size: @fontSize*3;
 
             img {
-                height: 3*@fontSize;
+                height: @fontSize*3;
             }
         }
         .label{
-            font-size: 1.4*@fontSize;
+            font-size: @fontSize*1.4;
         }
     }
     &.si-xl {
         .value{
-            font-size: 2.4*@fontSize;
+            font-size: @fontSize*2.4;
 
             img {
-                height: 2.4*@fontSize;
+                height: @fontSize*2.4;
             }
         }
         .label{
-            font-size: 1.3*@fontSize;
+            font-size: @fontSize*1.3;
         }
     }
     &.si-l {
         .value{
-            font-size: 2*@fontSize;
+            font-size: @fontSize*2;
 
             img {
-                height: 2*@fontSize;
+                height: @fontSize*2;
             }
         }
         .label{
-            font-size: 1*@fontSize;
+            font-size: @fontSize*1;
         }
     }
     &.si-m {
         .value{
-            font-size: 1.8*@fontSize;
+            font-size: @fontSize*1.8;
 
             img {
-                height: 1.8*@fontSize;
+                height: @fontSize*1.8;
             }
         }
         .label{
-            font-size: 0.8125*@fontSize;
+            font-size: @fontSize*0.8125;
         }
     }
     &.si-s {
         .value{
-            font-size: 1.6*@fontSize;
+            font-size: @fontSize*1.6;
 
             img {
-                height: 1.6*@fontSize;
+                height: @fontSize*1.6;
             }
         }
         .label{
-            font-size: 0.8125*@fontSize;
+            font-size: @fontSize*0.8125;
         }
     }
     &.si-xs {
         .value{
-            font-size: 1.4*@fontSize;
+            font-size: @fontSize*1.4;
 
             img {
-                height: 1.4*@fontSize;
+                height: @fontSize*1.4;
             }
         }
         .label{
-            font-size: 0.75*@fontSize;
+            font-size: @fontSize*0.75;
         }
     }
     &.si-xxs {
         .value{
-            font-size: 1.2*@fontSize;
+            font-size: @fontSize*1.2;
 
             img {
-                height: 1.2*@fontSize;
+                height: @fontSize*1.2;
             }
         }
         .label{
-            font-size: 0.75*@fontSize;
+            font-size: @fontSize*0.75;
         }
     }
 

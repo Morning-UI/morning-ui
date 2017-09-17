@@ -171,74 +171,74 @@ i-btn{
     }
 
     &.si-xxl{
-        font-size: 1.3*@fontSize;
+        font-size: @fontSize*1.3;
 
         .morningicon{
-            font-size: 1.6*@fontSize;
-            transform-origin: 0.8*@fontSize 0.78125*@fontSize;
+            font-size: @fontSize*1.6;
+            transform-origin: @fontSize*0.8 @fontSize*0.78125;
         }
     }
 
     &.si-xl{
-        font-size: 1.1*@fontSize;
+        font-size: @fontSize*1.1;
 
         .morningicon{
-            font-size: 1.4*@fontSize;
-            transform-origin: 0.69375*@fontSize 0.6875*@fontSize;
+            font-size: @fontSize*1.4;
+            transform-origin: @fontSize*0.69375 @fontSize*0.6875;
         }
     }
 
     &.si-l{
-        font-size: 1*@fontSize;
+        font-size: @fontSize*1;
 
         .morningicon{
-            font-size: 1.3*@fontSize;
-            transform-origin: 0.65*@fontSize 0.625*@fontSize;
+            font-size: @fontSize*1.3;
+            transform-origin: @fontSize*0.65 @fontSize*0.625;
         }
     }
 
     &.si-m{
-        font-size: 0.8125*@fontSize;
+        font-size: @fontSize*0.8125;
 
         .morningicon{
-            font-size: 1.15*@fontSize;
-            transform-origin: 0.575*@fontSize 0.5625*@fontSize;
+            font-size: @fontSize*1.15;
+            transform-origin: @fontSize*0.575 @fontSize*0.5625;
         }
     }
 
     &.si-s{
-        font-size: 0.75*@fontSize;
+        font-size: @fontSize*0.75;
         height: 2.6em;
         line-height: 2.6em;
         padding: 0 0.8em;
 
         .morningicon{
-            font-size: 0.9*@fontSize;
-            transform-origin: 0.45*@fontSize 0.4375*@fontSize;
+            font-size: @fontSize*0.9;
+            transform-origin: @fontSize*0.45 @fontSize*0.4375;
         }
     }
 
     &.si-xs{
-        font-size: 0.75*@fontSize;
+        font-size: @fontSize*0.75;
         height: 2.2em;
         line-height: 2.2em;
         padding: 0 0.6em;
 
         .morningicon{
-            font-size: 0.85*@fontSize;
-            transform-origin: 0.425*@fontSize 0.40625*@fontSize;
+            font-size: @fontSize*0.85;
+            transform-origin: @fontSize*0.425 @fontSize*0.40625;
         }
     }
 
     &.si-xxs{
-        font-size: 0.75*@fontSize;
+        font-size: @fontSize*0.75;
         height: 1.8em;
         line-height: 1.8em;
         padding: 0 0.4em;
 
         .morningicon{
-            font-size: 0.75*@fontSize;
-            transform-origin: 0.375*@fontSize 0.375*@fontSize;
+            font-size: @fontSize*0.75;
+            transform-origin: @fontSize*0.375 @fontSize*0.375;
         }
     }
     
@@ -254,7 +254,7 @@ i-btn{
         &:not(.st-disabled):active,
         &.st-active{
             background-color: darken(@colorTheme, 10%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.25) inset;
         }
 
         &.st-disabled{
@@ -274,7 +274,7 @@ i-btn{
         &:not(.st-disabled):active,
         &.st-active{
             background-color: darken(@colorLightTheme, 10%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.25) inset;
         }
 
         &.st-disabled{
@@ -294,7 +294,7 @@ i-btn{
         &:not(.st-disabled):active,
         &.st-active{
             background-color: darken(@colorDarkTheme, 10%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.25) inset;
         }
 
         &.st-disabled{
@@ -314,7 +314,7 @@ i-btn{
         &:not(.st-disabled):active,
         &.st-active{
             background-color: darken(@colorSuccess, 10%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.25) inset;
         }
 
         &.st-disabled{
@@ -334,7 +334,7 @@ i-btn{
         &:not(.st-disabled):active,
         &.st-active{
             background-color: darken(@colorWarning, 10%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.25) inset;
         }
 
         &.st-disabled{
@@ -354,7 +354,7 @@ i-btn{
         &:not(.st-disabled):active,
         &.st-active{
             background-color: darken(@colorDanger, 10%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.25) inset;
         }
 
         &.st-disabled{
@@ -374,7 +374,7 @@ i-btn{
         &:not(.st-disabled):active,
         &.st-active{
             background-color: darken(@colorPrimary, 10%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.25) inset;
         }
 
         &.st-disabled{
@@ -394,7 +394,7 @@ i-btn{
         &:not(.st-disabled):active,
         &.st-active{
             background-color: darken(@colorMinor, 10%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.25) inset;
         }
 
         &.st-disabled{
@@ -414,7 +414,7 @@ i-btn{
         &:not(.st-disabled):active,
         &.st-active{
             background-color: darken(@colorInfo, 10%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.25) inset;
         }
 
         &.st-disabled{
@@ -434,7 +434,7 @@ i-btn{
         &:not(.st-disabled):active,
         &.st-active{
             background-color: lighten(@colorBlack, 10%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.4) inset;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.4) inset;
         }
 
         &.st-disabled{
@@ -454,7 +454,7 @@ i-btn{
         &:not(.st-disabled):active,
         &.st-active{
             background-color: lighten(@colorLightBlack, 10%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.4) inset;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.4) inset;
         }
 
         &.st-disabled{
@@ -474,7 +474,7 @@ i-btn{
         &:not(.st-disabled):active,
         &.st-active{
             background-color: lighten(@colorExtraLightBlack, 10%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.4) inset;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.4) inset;
         }
 
         &.st-disabled{
@@ -494,7 +494,7 @@ i-btn{
         &:not(.st-disabled):active,
         &.st-active{
             background-color: darken(@colorBlue, 10%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.25) inset;
         }
 
         &.st-disabled{
@@ -514,7 +514,7 @@ i-btn{
         &:not(.st-disabled):active,
         &.st-active{
             background-color: darken(@colorLightBlue, 10%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.25) inset;
         }
 
         &.st-disabled{
@@ -534,7 +534,7 @@ i-btn{
         &:not(.st-disabled):active,
         &.st-active{
             background-color: darken(@colorExtraLightBlue, 10%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.25) inset;
         }
 
         &.st-disabled{
@@ -554,7 +554,7 @@ i-btn{
         &:not(.st-disabled):active,
         &.st-active{
             background-color: darken(@colorSilver, 6%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.25) inset;
         }
 
         &.st-disabled{
@@ -574,7 +574,7 @@ i-btn{
         &:not(.st-disabled):active,
         &.st-active{
             background-color: darken(@colorLightSilver, 6%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.25) inset;
         }
 
         &.st-disabled{
@@ -594,7 +594,7 @@ i-btn{
         &:not(.st-disabled):active,
         &.st-active{
             background-color: darken(@colorExtraLightSilver, 6%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.25) inset;
         }
 
         &.st-disabled{
@@ -614,7 +614,7 @@ i-btn{
         &:not(.st-disabled):active,
         &.st-active{
             background-color: darken(@colorGray, 6%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.25) inset;
         }
 
         &.st-disabled{
@@ -634,7 +634,7 @@ i-btn{
         &:not(.st-disabled):active,
         &.st-active{
             background-color: darken(@colorLightGray, 6%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.25) inset;
         }
 
         &.st-disabled{
@@ -654,7 +654,7 @@ i-btn{
         &:not(.st-disabled):active,
         &.st-active{
             background-color: darken(@colorWhite, 6%);
-            box-shadow: 0 0 5px rgba(0,0,0,0.25) inset;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.25) inset;
         }
 
         &.st-disabled{
@@ -666,7 +666,7 @@ i-btn{
     &.st-hover{}
     &.st-active{}
     &.st-disabled{
-        box-shadow: 0 0 5px rgba(0,0,0,0.6) inset;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.6) inset;
         cursor: not-allowed;
     }
     &.st-apparent{
@@ -682,8 +682,8 @@ i-btn{
     &.st-loading{
         .morningicon{
             position: absolute;
-            left: ~`"calc( 50% - 0.5em )"`;
-            top: ~`"calc( 50% - 0.5em )"`;
+            left: ~`'calc( 50% - 0.5em )'`;
+            top: ~`'calc( 50% - 0.5em )'`;
             line-height: 1em;
             animation-name: rotation;
             animation-duration: 1s;

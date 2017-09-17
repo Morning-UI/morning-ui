@@ -236,38 +236,38 @@ export default {
             padding: 2px 12px 2px 8px;
             border-radius: 0 15px 15px 0;
             background: #45505C;
-            color: #fff;
+            color: #FFF;
             vertical-align: top;
             text-transform: uppercase;
         }
 
         &.pass{
             .value{
-                background: #15bc5c;
-                color: #fff;
+                background: #15BC5C;
+                color: #FFF;
             }
         }
 
         &.low,
         &.fail{
             .value{
-                background: #da3939;
-                color: #fff;
+                background: #DA3939;
+                color: #FFF;
             }
         }
 
         &.medium{
             .value{
-                background: #dfae19;
-                color: #fff;
+                background: #DFAE19;
+                color: #FFF;
             }
         }
 
         &.pass,
         &.high{
             .value{
-                background: #15bc5c;
-                color: #fff;
+                background: #15BC5C;
+                color: #FFF;
             }
         }
     }

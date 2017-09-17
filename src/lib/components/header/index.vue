@@ -28,73 +28,73 @@ i-header{
     }
 
     &.si-xxl{ 
-        font-size: 3.2*@fontSize; 
-        padding-left:1.6*@fontSize;
-        border-left-width: 0.7*@fontSize;
+        font-size: @fontSize*3.2; 
+        padding-left:@fontSize*1.6;
+        border-left-width: @fontSize*0.7;
 
         small{
-            font-size: 1.8*@fontSize;
-            margin-left:1.1*@fontSize;
+            font-size: @fontSize*1.8;
+            margin-left:@fontSize*1.1;
         }
     }
     &.si-xl{ 
-        font-size: 2.88*@fontSize; 
-        padding-left:1.4*@fontSize;
-        border-left-width: 0.7*@fontSize;
+        font-size: @fontSize*2.88; 
+        padding-left:@fontSize*1.4;
+        border-left-width: @fontSize*0.7;
 
         small{
-            font-size: 1.44*@fontSize;
-            margin-left:0.9*@fontSize;
+            font-size: @fontSize*1.44;
+            margin-left:@fontSize*0.9;
         }
     }
     &.si-l{ 
-        font-size: 2.16*@fontSize; 
-        padding-left:1.2*@fontSize;
-        border-left-width: 0.6*@fontSize;
+        font-size: @fontSize*2.16; 
+        padding-left:@fontSize*1.2;
+        border-left-width: @fontSize*0.6;
 
         small{
-            font-size: 1.08*@fontSize;
-            margin-left:0.7*@fontSize;
+            font-size: @fontSize*1.08;
+            margin-left:@fontSize*0.7;
         }
     }
     &.si-m{ 
-        font-size: 1.8*@fontSize; 
-        padding-left:1*@fontSize;
-        border-left-width: 0.5*@fontSize;
+        font-size: @fontSize*1.8; 
+        padding-left:@fontSize*1;
+        border-left-width: @fontSize*0.5;
 
         small{
-            font-size: 0.9*@fontSize;
-            margin-left:0.5*@fontSize;
+            font-size: @fontSize*0.9;
+            margin-left:@fontSize*0.5;
         }
     }
     &.si-s{ 
-        font-size: 1.44*@fontSize; 
-        padding-left:0.8*@fontSize;
-        border-left-width: 0.3*@fontSize;
+        font-size: @fontSize*1.44; 
+        padding-left:@fontSize*0.8;
+        border-left-width: @fontSize*0.3;
 
         small{
-            font-size: 0.72*@fontSize;
-            margin-left:0.4*@fontSize;
+            font-size: @fontSize*0.72;
+            margin-left:@fontSize*0.4;
         }
     }
     &.si-xs{ 
-        font-size: 1.26*@fontSize; 
-        padding-left:0.6*@fontSize;
-        border-left-width: 0.2*@fontSize;
+        font-size: @fontSize*1.26; 
+        padding-left:@fontSize*0.6;
+        border-left-width: @fontSize*0.2;
 
         small{
-            font-size: 0.63*@fontSize;
-            margin-left:0.3*@fontSize;
+            font-size: @fontSize*0.63;
+            margin-left:@fontSize*0.3;
         }
     }
     &.si-xxs{ 
-        font-size: 1*@fontSize; 
-        padding-left:0.4*@fontSize;
-        border-left-width: 0.15*@fontSize;
+        font-size: @fontSize*1; 
+        padding-left:@fontSize*0.4;
+        border-left-width: @fontSize*0.15;
 
         small{
-            font-size: 0.5*@fontSize;
-            margin-left:0.25*@fontSize;
+            font-size: @fontSize*0.5;
+            margin-left:@fontSize*0.25;
         }
     }
     

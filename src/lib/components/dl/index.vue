@@ -23,7 +23,7 @@ i-dl{
 
     dt{
         color: @colorBlack;
-        font-weight: bold;
+        font-weight: 700;
     }
 
     dd{

@@ -1175,11 +1175,13 @@ export default {
 </script>
 
 <style lang="less">
-@import "~Docs/common/common.less";
-@import "~github-markdown-css";
-@import "~Docs/common/markdown.less";
-@import "~Npm/highlight.js/styles/hopscotch.css";
-@import "~Docs/common/highlight.less";
+@import '~Docs/common/common.less';
+@import '~github-markdown-css';
+@import '~Docs/common/markdown.less';
+@import '~Npm/highlight.js/styles/hopscotch.css';
+@import '~Docs/common/highlight.less';
+
+a{ }
 
 .body {
     width: 1100px;
@@ -1204,8 +1206,8 @@ export default {
 .demo{
     padding: 10px;
     box-sizing: border-box;
-    border: 1px #f1f4f6 solid;
-    border-radius:3px 3px 0 0;
+    border: 1px #F1F4F6 solid;
+    border-radius: 3px 3px 0 0;
     z-index: 9;
     position: relative;
 

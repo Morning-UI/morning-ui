@@ -169,65 +169,65 @@ i-link{
 
 
     &.si-xxl{
-        font-size: 1.3*@fontSize;
+        font-size: @fontSize*1.3;
 
         .morningicon{
-            font-size: 1.6*@fontSize;
-            transform-origin: 0.8*@fontSize 0.78125*@fontSize;
+            font-size: @fontSize*1.6;
+            transform-origin: @fontSize*0.8 @fontSize*0.78125;
         }
     }
 
     &.si-xl{
-        font-size: 1.1*@fontSize;
+        font-size: @fontSize*1.1;
 
         .morningicon{
-            font-size: 1.4*@fontSize;
-            transform-origin: 0.69375*@fontSize 0.6875*@fontSize;
+            font-size: @fontSize*1.4;
+            transform-origin: @fontSize*0.69375 @fontSize*0.6875;
         }
     }
 
     &.si-l{
-        font-size: 1*@fontSize;
+        font-size: @fontSize*1;
 
         .morningicon{
-            font-size: 1.3*@fontSize;
-            transform-origin: 0.65*@fontSize 0.625*@fontSize;
+            font-size: @fontSize*1.3;
+            transform-origin: @fontSize*0.65 @fontSize*0.625;
         }
     }
 
     &.si-m{
-        font-size: 0.8125*@fontSize;
+        font-size: @fontSize*0.8125;
 
         .morningicon{
-            font-size: 1.15*@fontSize;
-            transform-origin: 0.575*@fontSize 0.5625*@fontSize;
+            font-size: @fontSize*1.15;
+            transform-origin: @fontSize*0.575 @fontSize*0.5625;
         }
     }
 
     &.si-s{
-        font-size: 0.75*@fontSize;
+        font-size: @fontSize*0.75;
 
         .morningicon{
-            font-size: 0.9*@fontSize;
-            transform-origin: 0.45*@fontSize 0.4375*@fontSize;
+            font-size: @fontSize*0.9;
+            transform-origin: @fontSize*0.45 @fontSize*0.4375;
         }
     }
 
     &.si-xs{
-        font-size: 0.75*@fontSize;
+        font-size: @fontSize*0.75;
 
         .morningicon{
-            font-size: 0.85*@fontSize;
-            transform-origin: 0.425*@fontSize 0.40625*@fontSize;
+            font-size: @fontSize*0.85;
+            transform-origin: @fontSize*0.425 @fontSize*0.40625;
         }
     }
 
     &.si-xxs{
-        font-size: 0.75*@fontSize;
+        font-size: @fontSize*0.75;
 
         .morningicon{
-            font-size: 0.75*@fontSize;
-            transform-origin: 0.375*@fontSize 0.375*@fontSize;
+            font-size: @fontSize*0.75;
+            transform-origin: @fontSize*0.375 @fontSize*0.375;
         }
     }
     
@@ -630,8 +630,8 @@ i-link{
     &.st-loading{
         .morningicon{
             position: absolute;
-            left: ~`"calc( 50% - 0.5em )"`;
-            top: ~`"calc( 50% - 0.5em )"`;
+            left: ~`'calc( 50% - 0.5em )'`;
+            top: ~`'calc( 50% - 0.5em )'`;
             line-height: 1em;
             animation-name: rotation;
             animation-duration: 1s;

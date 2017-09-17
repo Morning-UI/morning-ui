@@ -19,7 +19,7 @@ export default UI.extend({
 @import '~Common/var.less';
 
 i-action{
-    display:block;
+    display: block;
     margin-top: @fontSize;
     vertical-align: middle;
 
@@ -33,7 +33,7 @@ i-action{
         margin-right: -5px;
         h5{
             margin: 0;
-            font-weight: normal;
+            font-weight: 400;
         }
         .note{
             color: lighten(@colorBlack, 60%);
@@ -70,57 +70,97 @@ i-action{
     }
 
     &.si-xxl{
-        margin-top: 1.6*@fontSize;
+        margin-top: @fontSize*1.6;
         
-        .title h5{ font-size: 1.6*@fontSize; }
-        .title .note{ font-size: 1.2*@fontSize; }
+        .title h5{
+            font-size: @fontSize*1.6;
+        }
+        .title .note{
+            font-size: @fontSize*1.2;
+        }
     }
 
     &.si-xl{
-        margin-top: 1.4*@fontSize;
+        margin-top: @fontSize*1.4;
         
-        .title h5{ font-size: 1.4*@fontSize; }
-        .title .note{ font-size: 1.1*@fontSize; }
+        .title h5{
+            font-size: @fontSize*1.4;
+        }
+        .title .note{
+            font-size: @fontSize*1.1;
+        }
     }
 
     &.si-l{
-        margin-top: 1*@fontSize;
+        margin-top: @fontSize*1;
         
-        .title h5{ font-size: 1.2*@fontSize; }
-        .title .note{ font-size: 1*@fontSize; }
+        .title h5{
+            font-size: @fontSize*1.2;
+        }
+        .title .note{
+            font-size: @fontSize*1;
+        }
     }
 
     &.si-m{
-        margin-top: 0.9*@fontSize;
+        margin-top: @fontSize*0.9;
         
-        .title h5{ font-size: 1*@fontSize; }
-        .title .note{ font-size: 0.8125*@fontSize; }
+        .title h5{
+            font-size: @fontSize*1;
+        }
+        .title .note{
+            font-size: @fontSize*0.8125;
+        }
     }
 
     &.si-s{
-        margin-top: 0.8*@fontSize;
+        margin-top: @fontSize*0.8;
         
-        .title h5{ font-size: 0.8125*@fontSize; }
-        .title .note{ font-size: 0.75*@fontSize; }
+        .title h5{
+            font-size: @fontSize*0.8125;
+        }
+        .title .note{
+            font-size: @fontSize*0.75;
+        }
     }
 
     &.si-xs{
-        margin-top: 0.6*@fontSize;
+        margin-top: @fontSize*0.6;
         
-        .title h5{ font-size: 0.75*@fontSize; }
-        .title .note{ font-size: 0.75*@fontSize; }
+        .title h5{
+            font-size: @fontSize*0.75;
+        }
+        .title .note{
+            font-size: @fontSize*0.75;
+        }
     }
 
     &.si-xxs{
-        margin-top: 0.4*@fontSize;
+        margin-top: @fontSize*0.4;
         
-        .title h5{ font-size: 0.75*@fontSize; }
-        .title .note{ font-size: 0.75*@fontSize; }
+        .title h5{
+            font-size: @fontSize*0.75;
+        }
+        .title .note{
+            font-size: @fontSize*0.75;
+        }
     }
 
-    &.sy-theme { .title h5{ color: @colorTheme; } }
-    &.sy-lightTheme { .title h5{ color: @colorLightTheme; } }
-    &.sy-darkTheme { .title h5{ color: @colorDarkTheme; } }
+    &.sy-theme {
+        .title h5{
+            color: @colorTheme;
+        }
+    }
+    &.sy-lightTheme {
+        .title h5{
+            color: @colorLightTheme;
+        }
+    }
+    &.sy-darkTheme {
+        .title h5{
+            color: @colorDarkTheme;
+        }
+    }
 
     &.sy-success { .title h5{ color: @colorSuccess; } }
     &.sy-warning { .title h5{ color: @colorWarning; } }

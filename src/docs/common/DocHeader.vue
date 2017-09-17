@@ -65,9 +65,9 @@ header {
     .name {
         display: inline-block;
         vertical-align: top;
-        color: #fff;
+        color: #FFF;
         line-height: 80px;
-        margin-left: 0px;
+        margin-left: 0;
         font-size: 26px;
         opacity: 0.8;
     }
@@ -90,7 +90,7 @@ header {
             a {
                 height: 50px;
                 line-height: 50px;
-                color: #fff;
+                color: #FFF;
                 opacity: 0.7;
                 font-size: 13px;
                 text-decoration: none;
@@ -108,7 +108,7 @@ header {
     }
 
     &.index{
-        background: #fff;
+        background: #FFF;
 
         .logo img{
             display: none;
