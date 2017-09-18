@@ -15,15 +15,4 @@ export default UI.extend({
 });
 </script>
 
-<style lang="less">
-@import '~Common/var.less';
-
-i-del{
-    display: inline;
-    text-decoration: line-through;
-
-    // default statement
-    &{}
-
-}
-</style>
+<style lang="less" src="index.less"></style>

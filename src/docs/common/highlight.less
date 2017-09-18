@@ -3,9 +3,9 @@
         position: relative;
     }
     
-    .lang-js:before,
-    .lang-html:before,
-    .lang-bash:before{
+    .lang-js::before,
+    .lang-html::before,
+    .lang-bash::before{
         font-family: PingFangSC-Light, sans-serif;
         font-size: 12px;
         color: #CCC;
@@ -16,15 +16,15 @@
         letter-spacing: 1px;
     }
 
-    .lang-html:before{
+    .lang-html::before{
         content: 'HTML';
     }
     
-    .lang-js:before{
+    .lang-js::before{
         content: 'JavaScript';
     }
     
-    .lang-bash:before{
+    .lang-bash::before{
         content: 'Bash';
     }
 }

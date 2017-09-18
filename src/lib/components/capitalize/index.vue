@@ -15,15 +15,4 @@ export default UI.extend({
 });
 </script>
 
-<style lang="less">
-@import '~Common/var.less';
-
-i-capitalize{
-    display: inline;
-    text-transform: capitalize;
-
-    // default statement
-    &{}
-
-}
-</style>
+<style lang="less" src="index.less"></style>

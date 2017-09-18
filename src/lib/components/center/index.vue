@@ -15,21 +15,4 @@ export default UI.extend({
 });
 </script>
 
-<style lang="less">
-@import '~Common/var.less';
-
-i-center{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    &.fill{
-        width: 100%;
-        height: 100%;
-    }
-
-    // default statement
-    &{}
-
-}
-</style>
+<style lang="less" src="index.less"></style>

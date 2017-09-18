@@ -15,30 +15,4 @@ export default UI.extend({
 });
 </script>
 
-<style lang="less">
-@import '~Common/var.less';
-
-i-il{
-    display: block;
-
-    li{
-        display: inline-block;
-        margin: 0 0.4em;
-        line-height: 1.4em;
-    }
-
-    &.st-normal{}
-    &.st-apparent{
-        animation-name: apparent;
-        animation-duration: 1s;
-        animation-timing-function: linear;
-        animation-iteration-count: infinite;
-    }
-    
-    // default statement
-    &{
-        .st-normal;
-    }
-
-}
-</style>
+<style lang="less" src="index.less"></style>

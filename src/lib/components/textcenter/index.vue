@@ -24,6 +24,5 @@ i-textcenter{
 
     // default statement
     &{}
-
 }
 </style>

@@ -15,15 +15,4 @@ export default UI.extend({
 });
 </script>
 
-<style lang="less">
-@import '~Common/var.less';
-
-i-strong{
-    display: inline;
-    font-weight: 700;
-
-    // default statement
-    &{}
-
-}
-</style>
+<style lang="less" src="index.less"></style>

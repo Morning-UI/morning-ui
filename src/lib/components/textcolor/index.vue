@@ -15,20 +15,4 @@ export default UI.extend({
 });
 </script>
 
-<style lang="less">
-@import '~Common/var.less';
-
-i-textcolor{
-    display: inline;
-
-    .setup-font-color-theme();
-    .setup-font-color-feature();
-    .setup-font-color-misc();
-
-    // default statement
-    &{
-        .sy-theme;
-    }
-
-}
-</style>
+<style lang="less" src="index.less"></style>

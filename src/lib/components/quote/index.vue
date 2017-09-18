@@ -15,22 +15,4 @@ export default UI.extend({
 });
 </script>
 
-<style lang="less">
-@import '~Common/var.less';
-
-i-quote{
-    display:block;
-    padding: 0 1em;
-    border-left-style: solid;
-    border-left-width: 4px;
-    
-    .setup-font-color-theme();
-    .setup-font-color-feature();
-    .setup-font-color-misc();
-
-    &{
-        .sy-lightBlue;
-    }
-
-}
-</style>
+<style lang="less" src="index.less"></style>

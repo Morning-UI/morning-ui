@@ -15,32 +15,4 @@ export default UI.extend({
 });
 </script>
 
-<style lang="less">
-@import '~Common/var.less';
-
-i-lead{
-    display: block;
-    line-height: 1.428em;
-    margin: 0.672em 0;
-    font-size: @fontSize*1.2;
-
-    .setup-font-color-theme();
-    .setup-font-color-feature();
-    .setup-font-color-misc();
-
-    &.st-normal{}
-    &.st-apparent{
-        animation-name: apparent;
-        animation-duration: 1s;
-        animation-timing-function: linear;
-        animation-iteration-count: infinite;
-    }
-    
-    // default statement
-    &{
-        .sy-black;
-        .st-normal;
-    }
-
-}
-</style>
+<style lang="less" src="index.less"></style>

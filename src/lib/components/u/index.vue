@@ -1,3 +1,4 @@
+
 <template>
     <i-u
         :_uiid="uiid"
@@ -15,15 +16,4 @@ export default UI.extend({
 });
 </script>
 
-<style lang="less">
-@import '~Common/var.less';
-
-i-u{
-    display: inline;
-    text-decoration: underline;
-
-    // default statement
-    &{}
-
-}
-</style>
+<style lang="less" src="index.less"></style>
