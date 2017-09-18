@@ -103,6 +103,15 @@
         "selector-pseudo-class-case" : "lower",
         "selector-pseudo-class-parentheses-space-inside" : "never",
         "selector-pseudo-element-case" : "lower",
-        "selector-pseudo-element-colon-notation" : "double"
+        "selector-pseudo-element-colon-notation" : "double",
+        "selector-type-case" : "lower",
+        "selector-list-comma-newline-after" : "always",
+        "selector-list-comma-newline-before" : "never-multi-line",
+        "selector-list-comma-space-after" : "always-single-line",
+        "selector-list-comma-space-before" : "never",
+        "rule-empty-line-before" : ["always", {
+            "except" : ["first-nested"],
+            "ignore" : ["after-comment"]
+        }]
     }
 }

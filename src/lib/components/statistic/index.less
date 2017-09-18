@@ -9,6 +9,7 @@ i-statistic{
     .value + .label{
         margin-top: 0.3em;
     }
+
     .label + .value{
         margin-top: 0.3em;
     }
@@ -18,10 +19,12 @@ i-statistic{
         line-height: 1em;
         height: 1em;
     }
+
     .value > span{
         display: inline-block;
         vertical-align: top !important;
     }
+
     .value i{
         font-size: inherit;
         vertical-align: top !important;
@@ -29,6 +32,7 @@ i-statistic{
         height: 1em;
         margin-right: 0.1em;
     }
+
     .value img{
         vertical-align: baseline !important;
         margin-right: 0.25em;
@@ -71,6 +75,7 @@ i-statistic{
             font-size: @fontSize*1.4;
         }
     }
+
     &.si-xl {
         .value{
             font-size: @fontSize*2.4;
@@ -83,6 +88,7 @@ i-statistic{
             font-size: @fontSize*1.3;
         }
     }
+
     &.si-l {
         .value{
             font-size: @fontSize*2;
@@ -95,6 +101,7 @@ i-statistic{
             font-size: @fontSize*1;
         }
     }
+
     &.si-m {
         .value{
             font-size: @fontSize*1.8;
@@ -107,6 +114,7 @@ i-statistic{
             font-size: @fontSize*0.8125;
         }
     }
+
     &.si-s {
         .value{
             font-size: @fontSize*1.6;
@@ -119,6 +127,7 @@ i-statistic{
             font-size: @fontSize*0.8125;
         }
     }
+
     &.si-xs {
         .value{
             font-size: @fontSize*1.4;
@@ -127,10 +136,12 @@ i-statistic{
                 height: @fontSize*1.4;
             }
         }
+
         .label{
             font-size: @fontSize*0.75;
         }
     }
+
     &.si-xxs {
         .value{
             font-size: @fontSize*1.2;
@@ -139,6 +150,7 @@ i-statistic{
                 height: @fontSize*1.2;
             }
         }
+
         .label{
             font-size: @fontSize*0.75;
         }
@@ -148,6 +160,7 @@ i-statistic{
         .value{
             color: @colorTheme;
         }
+
         .label{
             color: lighten(@colorTheme, 10%);
         }
@@ -160,10 +173,12 @@ i-statistic{
             color: lighten(@colorLightTheme, 10%);
         }
     }
+
     &.sy-darkTheme{
         .value{
             color: @colorDarkTheme;
         }
+
         .label{
             color: lighten(@colorDarkTheme, 10%);
         }
@@ -173,46 +188,57 @@ i-statistic{
         .value{
             color: @colorSuccess;
         }
+
         .label{
             color: darken(@colorSuccess, 6%);
         }
     }
+
     &.sy-warning{
         .value{
             color: @colorWarning;
         }
+
         .label{
             color: darken(@colorWarning, 6%);
         }
     }
+
     &.sy-danger{
         .value{
             color: @colorDanger;
         }
+
         .label{
             color: darken(@colorDanger, 6%);
         }
     }
+
     &.sy-primary{
         .value{
             color: @colorPrimary;
         }
+
         .label{
             color: darken(@colorPrimary, 6%);
         }
     }
+
     &.sy-minor{
         .value{
             color: @colorMinor;
         }
+
         .label{
             color: darken(@colorMinor, 6%);
         }
     }
+
     &.sy-info{
         .value{
             color: @colorInfo;
         }
+
         .label{
             color: darken(@colorInfo, 6%);
         }
@@ -222,100 +248,124 @@ i-statistic{
         .value{
             color: @colorBlack;
         }
+
         .label{
             color: lighten(@colorBlack, 30%);
         }
     }
+
     &.sy-lightBlack{
         .value{
             color: @colorLightBlack;
         }
+
         .label{
             color: lighten(@colorLightBlack, 30%);
         }
     }
+
     &.sy-extraLightBlack{
         .value{
             color: @colorExtraLightBlack;
         }
+
         .label{
             color: lighten(@colorExtraLightBlack, 30%);
         }
     }
+
     &.sy-blue{
         .value{
             color: @colorBlue;
         }
+
         .label{
             color: lighten(@colorBlue, 20%);
         }
     }
+
     &.sy-lightBlue{
         .value{
             color: @colorLightBlue;
         }
+
         .label{
             color: lighten(@colorLightBlue, 20%);
         }
     }
+
     &.sy-extraLightBlue{
         .value{
             color: @colorExtraLightBlue;
         }
+
         .label{
             color: lighten(@colorExtraLightBlue, 20%);
         }
     }
+
     &.sy-silver{
         .value{
             color: @colorSilver;
         }
+
         .label{
             color: darken(@colorSilver, 5%);
         }
     }
+
     &.sy-lightSilver{
         .value{
             color: @colorLightSilver;
         }
+
         .label{
             color: darken(@colorLightSilver, 5%);
         }
     }
+
     &.sy-extraLightSilver{
         .value{
             color: @colorExtraLightSilver;
         }
+
         .label{
             color: darken(@colorExtraLightSilver, 5%);
         }
     }
+
     &.sy-gray{
         .value{
             color: @colorGray;
         }
+
         .label{
             color: darken(@colorGray, 5%);
         }
     }
+
     &.sy-lightGray{
         .value{
             color: @colorLightGray;
         }
+
         .label{
             color: darken(@colorLightGray, 5%);
         }
     }
+
     &.sy-white{
         .value{
             color: @colorWhite;
         }
+
         .label{
             color: darken(@colorWhite, 5%);
         }
     }
 
     &.st-normal{}
+
     &.st-apparent{
         animation-name: apparent;
         animation-duration: 1s;
