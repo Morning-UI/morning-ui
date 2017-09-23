@@ -10,6 +10,7 @@
     "js-lint": "node_modules/.bin/eslint --ext js,vue src/ build/ test/",
     "js-lint-fix": "npm run lint -- --fix",
     "css-lint": "node_modules/.bin/stylelint \"src/**/*.less\"",
+    "css-lint-fix": "npm run css-lint -- --fix",
     "test": "node_modules/.bin/cross-env NODE_ENV=test node_modules/.bin/ava test/",
     "test-watch": "npm run test -- --watch",
     "test-snapshot": "npm run unit-snapshot && npm run e2e-snapshot",

@@ -112,6 +112,31 @@
         "rule-empty-line-before" : ["always", {
             "except" : ["first-nested"],
             "ignore" : ["after-comment"]
-        }]
+        }],
+        "media-feature-colon-space-after" : "always",
+        "media-feature-colon-space-before" : "never",
+        "media-feature-name-case" : "lower",
+        "media-feature-parentheses-space-inside" : "never",
+        "media-feature-range-operator-space-after" : "always",
+        "media-feature-range-operator-space-before" : "always",
+        "media-query-list-comma-newline-after" : "always",
+        "media-query-list-comma-newline-before" : "never-multi-line",
+        "at-rule-empty-line-before" : ["always", {
+            "except" : ["after-same-name", "blockless-after-same-name-blockless", "blockless-after-blockless", "first-nested"]
+        }],
+        "at-rule-name-newline-after" : "always-multi-line",
+        "at-rule-name-space-after" : "always",
+        "at-rule-semicolon-newline-after" : "always",
+        "at-rule-semicolon-space-before" : "never",
+        "comment-empty-line-before" : ["always", {
+            "ignore" : ["after-comment", "stylelint-commands"]
+        }],
+        "comment-whitespace-inside" : "always",
+        "indentation" : 4,
+        "max-empty-lines" : [1, {
+            ignore : ["comments"]
+        }],
+        "max-line-length" : 100,
+        "no-eol-whitespace" : true
     }
 }
