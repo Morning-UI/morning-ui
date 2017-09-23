@@ -505,12 +505,16 @@ i-btn{
     }
 
     &.st-normal{}
+
     &.st-hover{}
+
     &.st-active{}
+
     &.st-disabled{
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.6) inset;
         cursor: not-allowed;
     }
+
     &.st-apparent{
         animation-name: apparent;
         animation-duration: 1s;
@@ -521,6 +525,7 @@ i-btn{
             animation-name: none;
         }
     }
+
     &.st-loading{
         .morningicon{
             position: absolute;
@@ -532,15 +537,19 @@ i-btn{
             animation-timing-function: linear;
             animation-iteration-count: infinite;
         }
+
         span{
             opacity: 0;
         }
+
         &:hover{
             cursor: default;
         }
     }
+
     &.st-processing{
         .st-loading;
+
         .morningicon{
             animation-name: rotationContrast;
         }

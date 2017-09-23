@@ -10,7 +10,6 @@ i-link{
         padding: 0 0.6em;
     }
 
-
     &.si-xxl{
         font-size: @fontSize*1.3;
 
@@ -453,13 +452,17 @@ i-link{
     }
 
     &.st-normal{}
+
     &.st-hover{
         cursor: pointer;
     }
+
     &.st-active{}
+
     &.st-disabled{
         cursor: not-allowed !important;
     }
+
     &.st-apparent{
         animation-name: apparent;
         animation-duration: 1s;
@@ -470,6 +473,7 @@ i-link{
             animation-name: none;
         }
     }
+
     &.st-loading{
         .morningicon{
             position: absolute;
@@ -481,15 +485,19 @@ i-link{
             animation-timing-function: linear;
             animation-iteration-count: infinite;
         }
+
         span{
             opacity: 0;
         }
+
         &:hover{
             cursor: default;
         }
     }
+
     &.st-processing{
         .st-loading;
+
         .morningicon{
             animation-name: rotationContrast;
         }
