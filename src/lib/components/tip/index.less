@@ -1,0 +1,148 @@
+@import '~Common/var.less';
+
+@tipArrowWidth : 5px;
+
+.tipStyle(@background; @color; @style) {
+    &.sy-@{style} {
+        .tipContent {
+            color: @color;
+            background-color: @background;
+        }
+
+        &.morningTether-element-attached-bottom {
+            .tipArrow {
+                border-top-color: @background;
+            }
+        }
+
+        &.morningTether-element-attached-top {
+            .tipArrow {
+                border-bottom-color: @background;
+            }
+        }
+
+        &.morningTether-element-attached-left {
+            .tipArrow {
+                border-right-color: @background;
+            }
+        }
+
+        &.morningTether-element-attached-right {
+            .tipArrow {
+                border-left-color: @background;
+            }
+        }
+    }
+}
+
+i-tip{
+    // cursor: pointer;
+    position: absolute;
+    // z-index: @tipIndex;
+    display: block;
+    font-size: @fontSize*0.75;
+    opacity: 0;
+    z-index: -1;
+
+    &.in {
+        opacity: 1;
+    }
+
+    &.morningTether-element-attached-bottom {
+        padding: @tipArrowWidth 0;
+        margin-top: @fontSize*-0.1875;
+
+        .tipArrow {
+            bottom: 0;
+            left: 50%;
+            margin-left: -@tipArrowWidth;
+            border-width: @tipArrowWidth @tipArrowWidth 0;
+            // border-top-color: @tipArrowColor;
+        }
+    }
+
+    &.morningTether-element-attached-left {
+        padding: 0 @tipArrowWidth;
+        margin-left: @fontSize*0.1875;
+
+        .tipArrow {
+            top: 50%;
+            left: 0;
+            margin-top: -@tipArrowWidth;
+            border-width: @tipArrowWidth @tipArrowWidth @tipArrowWidth 0;
+            // border-right-color: @tipArrowColor;
+        }
+    }
+
+    &.morningTether-element-attached-top {
+        padding: @tipArrowWidth 0;
+        margin-top: @fontSize*0.1875;
+
+        .tipArrow {
+            top: 0;
+            left: 50%;
+            margin-left: -@tipArrowWidth;
+            border-width: 0 @tipArrowWidth @tipArrowWidth;
+            // border-bottom-color: @tipArrowColor;
+        }
+    }
+
+    &.morningTether-element-attached-right {
+        padding: 0 @tipArrowWidth;
+        margin-left: @fontSize*-0.1875;
+
+        .tipArrow {
+            top: 50%;
+            right: 0;
+            margin-top: -@tipArrowWidth;
+            border-width: @tipArrowWidth 0 @tipArrowWidth @tipArrowWidth;
+            // border-left-color: @tipArrowColor;
+        }
+    }
+
+    .tipContent {
+        max-width: @fontSize*12.5;
+        padding: @fontSize*0.1875 @fontSize*0.5;
+        // color: @colorWhite;
+        text-align: center;
+        // background-color: @tipBg;
+        border-radius: @borderRadius;
+    }
+
+    .tipArrow {
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-color: transparent;
+        border-style: solid;
+    }
+
+    .tipStyle(@colorTheme, @colorWhite, theme);
+    .tipStyle(@colorLightTheme, @colorWhite, lightTheme);
+    .tipStyle(@colorDarkTheme, @colorWhite, darkTheme);
+
+    .tipStyle(@colorSuccess, @colorWhite, success);
+    .tipStyle(@colorWarning, @colorWhite, warning);
+    .tipStyle(@colorDanger, @colorWhite, danger);
+    .tipStyle(@colorPrimary, @colorWhite, primary);
+    .tipStyle(@colorMinor, @colorWhite, minor);
+    .tipStyle(@colorInfo, @colorWhite, info);
+
+    .tipStyle(@colorBlack, @colorWhite, black);
+    .tipStyle(@colorLightBlack, @colorWhite, lightBlack);
+    .tipStyle(@colorExtraLightBlack, @colorWhite, extraLightBlack);
+    .tipStyle(@colorBlue, @colorWhite, blue);
+    .tipStyle(@colorLightBlue, @colorWhite, lightBlue);
+    .tipStyle(@colorExtraLightBlue, @colorWhite, extraLightBlue);
+    .tipStyle(@colorSilver, @colorLightBlack, silver);
+    .tipStyle(@colorLightSilver, @colorLightBlack, lightSilver);
+    .tipStyle(@colorExtraLightSilver, @colorLightBlack, extraLightSilver);
+    .tipStyle(@colorGray, @colorLightBlack, gray);
+    .tipStyle(@colorLightGray, @colorLightBlack, lightGray);
+    .tipStyle(@colorWhite, @colorLightBlack, white);
+
+    // default statement
+    &{
+        .sy-theme;
+    }
+}

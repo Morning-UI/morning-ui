@@ -23,7 +23,8 @@
                 /^font/,
                 /^color/,
                 /^border/,
-                /^tip/
+                /^tip/,
+                /^import\-normalize/
             ]
         }],
         "comment-no-empty" : true,
@@ -137,6 +138,7 @@
             ignore : ["comments"]
         }],
         "max-line-length" : 100,
-        "no-eol-whitespace" : true
+        "no-eol-whitespace" : true,
+        "no-missing-end-of-source-newline" : true
     }
 }

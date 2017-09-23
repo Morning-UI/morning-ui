@@ -1,3 +1,5 @@
 module.exports = {
-    plugins : []
+    plugins : [require('postcss-normalize')({
+        browsers : 'Chrome > 56'
+    })]
 };
