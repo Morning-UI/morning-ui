@@ -41,6 +41,7 @@
   ],
   "license": "MIT",
   "dependencies": {
+    "array-uniq": "^1.0.3",
     "css-loader": "^0.28.5",
     "eslint-config-gaea": "^0.1.5",
     "extend": "^3.0.1",

@@ -86,7 +86,7 @@
     ````import
     @id:formEvent
     @uikey:switch
-    @eventValue:!window.morning.findVM('demoValueChange').get(false)
+    @eventValue:true
     ````
 
     [[[表单值]]]

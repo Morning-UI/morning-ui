@@ -51,7 +51,7 @@ let imports = {
 \`\`\`\`html
 @state:normal,disabled
 <div style="width:300px;">
-    <ui-{$uikey} {$stateKey} :default-value="{$&statementDefaultValue}" form-name="{$&stateName}"></ui-{$uikey}>
+    <ui-{$uikey} {$stateKey} :default-value="{$&statementDefaultValue}" form-name="{$&stateName}" {$&statementMoreAttr}></ui-{$uikey}>
 </div>
 <br>
 \`\`\`\`
@@ -76,7 +76,7 @@ let imports = {
 @color:silver
 @color:gray
 <div style="width:300px;">
-    <ui-{$uikey} {$colorKey} :default-value="{$&statementDefaultValue}" form-name="{$&colorName}">{$&colorName}</ui-{$uikey}>
+    <ui-{$uikey} {$colorKey} :default-value="{$&statementDefaultValue}" form-name="{$&colorName}" {$&statementMoreAttr}>{$&colorName}</ui-{$uikey}>
 </div>
 <br>
 \`\`\`\`
@@ -86,7 +86,7 @@ let imports = {
 \`\`\`\`html
 @state:normal,disabled
 <div style="width:300px;">
-    <ui-{$uikey} {$stateKey} :default-value="{$&statementDefaultValue}" form-name="{$&stateName}"></ui-{$uikey}>
+    <ui-{$uikey} {$stateKey} :default-value="{$&statementDefaultValue}" form-name="{$&stateName}" {$&statementMoreAttr}></ui-{$uikey}>
 </div>
 <br>
 \`\`\`\`
@@ -97,7 +97,7 @@ let imports = {
 \`\`\`\`html
 @formConfig
 <div style="width:300px;">
-    <ui-{$uikey} form-name="{$formName}"></ui-{$uikey}>
+    <ui-{$uikey} form-name="{$formName}" {$&configMoreAttr}></ui-{$uikey}>
 </div>
 \`\`\`\`
 
@@ -106,7 +106,7 @@ let imports = {
 \`\`\`\`html
 @formConfig
 <div style="width:300px;">
-    <ui-{$uikey} form-name="{$formName}" form-key="{$formKey}"></ui-{$uikey}>
+    <ui-{$uikey} form-name="{$formName}" form-key="{$formKey}" {$&configMoreAttr}></ui-{$uikey}>
 </div>
 \`\`\`\`
 
@@ -118,7 +118,7 @@ let imports = {
 @formConfig
 <div style="width:300px;">
     <!-- 设置单个组 -->
-    <ui-{$uikey} form-name="{$formName}" form-key="{$formKey}" group="{$formGroupOne}"></ui-{$uikey}>
+    <ui-{$uikey} form-name="{$formName}" form-key="{$formKey}" group="{$formGroupOne}" {$&configMoreAttr}></ui-{$uikey}>
 </div>
 \`\`\`\`
 
@@ -132,7 +132,7 @@ let imports = {
 @var:demoGroup
 <div style="width:300px;">
     <!-- 设置多个组 -->
-    <ui-{$uikey} form-name="{$formName}" form-key="{$formKey}" :group="group"></ui-{$uikey}>
+    <ui-{$uikey} form-name="{$formName}" form-key="{$formKey}" :group="group" {$&configMoreAttr}></ui-{$uikey}>
 </div>
 \`\`\`\`
 
@@ -152,7 +152,7 @@ new Vue({
 \`\`\`\`html
 @formConfig
 <div style="width:300px;">
-    <ui-{$uikey} form-name="{$formName}" :default-value="{$&configDefaultValue}"></ui-{$uikey}>
+    <ui-{$uikey} form-name="{$formName}" :default-value="{$&configDefaultValue}" {$&configMoreAttr}></ui-{$uikey}>
 </div>
 \`\`\`\`
 
@@ -164,7 +164,7 @@ new Vue({
 @formConfig
 <div style="width:300px;">
     <p>{$formName}</p>
-    <ui-{$uikey} form-name="{$formName}" hide-name></ui-{$uikey}>
+    <ui-{$uikey} form-name="{$formName}" hide-name {$&configMoreAttr}></ui-{$uikey}>
 </div>
 \`\`\`\`
     `,
@@ -186,7 +186,7 @@ new Vue({
 \`\`\`\`html
 @origin
 <div style="width:300px;">
-    <ui-{$uikey} ref="demoMethodSet" form-name="表单名"></ui-{$uikey}>
+    <ui-{$uikey} ref="demoMethodSet" form-name="表单名" {$&methodMoreAttr}></ui-{$uikey}>
     <br>
     <a href="javascript:;" onclick="window.morning.findVM('demoMethodSet').set({$&methodValue})">设置值</a>
     <a href="javascript:;" onclick="window.morning.findVM('demoMethodSet').set()">移除值</a>
@@ -204,7 +204,7 @@ new Vue({
 \`\`\`\`html
 @origin
 <div style="width:300px;">
-    <ui-{$uikey} ref="demoMethodGet" form-name="表单名" :default-value="{$&methodDefaultValue}"></ui-{$uikey}>
+    <ui-{$uikey} ref="demoMethodGet" form-name="表单名" :default-value="{$&methodDefaultValue}" {$&methodMoreAttr}></ui-{$uikey}>
     <br>
     <a href="javascript:;" onclick="alert(window.morning.findVM('demoMethodGet').get(false))">获取表单原始值</a>
     <a href="javascript:;" onclick="alert(window.morning.findVM('demoMethodGet').get())">获取表单JSON值</a>
@@ -222,7 +222,7 @@ new Vue({
 \`\`\`\`html
 @origin
 <div style="width:300px;">
-    <ui-{$uikey} ref="demoMethodSetName" form-name="姓名"></ui-{$uikey}>
+    <ui-{$uikey} ref="demoMethodSetName" form-name="姓名" {$&methodMoreAttr}></ui-{$uikey}>
     <br>
     <a href="javascript:;" onclick="alert(window.morning.findVM('demoMethodSetName').getName())">获取表单名称</a>
     <a href="javascript:;" onclick="window.morning.findVM('demoMethodSetName').setName('年龄')">设置表单名称</a>
@@ -237,7 +237,7 @@ new Vue({
 \`\`\`\`html
 @origin
 <div style="width:300px;">
-    <ui-{$uikey} ref="demoMethodGetName" form-name="姓名"></ui-{$uikey}>
+    <ui-{$uikey} ref="demoMethodGetName" form-name="姓名" {$&methodMoreAttr}></ui-{$uikey}>
     <br>
     <a href="javascript:;" onclick="alert(window.morning.findVM('demoMethodGetName').getName())">获取表单名称</a>
 </div>
@@ -254,7 +254,7 @@ new Vue({
 \`\`\`\`html
 @origin
 <div style="width:300px;">
-    <ui-{$uikey} ref="demoMethodSetKey" form-name="表单名" form-key="name"></ui-{$uikey}>
+    <ui-{$uikey} ref="demoMethodSetKey" form-name="表单名" form-key="name" {$&methodMoreAttr}></ui-{$uikey}>
     <br>
     <a href="javascript:;" onclick="alert(window.morning.findVM('demoMethodSetKey').getKey())">获取表单KEY</a>
     <a href="javascript:;" onclick="window.morning.findVM('demoMethodSetKey').setKey('age')">设置表单KEY</a>
@@ -269,7 +269,7 @@ new Vue({
 \`\`\`\`html
 @origin
 <div style="width:300px;">
-    <ui-{$uikey} ref="demoMethodGetKey" form-name="表单名" form-key="name"></ui-{$uikey}>
+    <ui-{$uikey} ref="demoMethodGetKey" form-name="表单名" form-key="name" {$&methodMoreAttr}></ui-{$uikey}>
     <br>
     <a href="javascript:;" onclick="alert(window.morning.findVM('demoMethodGetKey').getKey())">获取表单KEY</a>
 </div>
@@ -287,7 +287,7 @@ new Vue({
 @origin
 <div style="width:300px;">
     <!-- 设置多个组 -->
-    <ui-{$uikey} ref="demoMethodSetGroup" form-name="表单名" form-key="name"></ui-{$uikey}>
+    <ui-{$uikey} ref="demoMethodSetGroup" form-name="表单名" form-key="name" {$&methodMoreAttr}></ui-{$uikey}>
     <br>
     <a href="javascript:;" onclick="alert(JSON.stringify(window.morning.findVM('demoMethodSetGroup').getGroup()))">获取表单组</a>
     <a href="javascript:;" onclick="window.morning.findVM('demoMethodSetGroup').setGroup('group1')">设置单个表单组</a>
@@ -304,7 +304,7 @@ new Vue({
 @origin
 <div style="width:300px;">
     <!-- 设置多个组 -->
-    <ui-{$uikey} ref="demoMethodGetGroup" form-name="表单名" form-key="name" group="group1"></ui-{$uikey}>
+    <ui-{$uikey} ref="demoMethodGetGroup" form-name="表单名" form-key="name" group="group1" {$&methodMoreAttr}></ui-{$uikey}>
     <br>
     <a href="javascript:;" onclick="alert(JSON.stringify(window.morning.findVM('demoMethodGetGroup').getGroup()))">获取表单组</a>
 </div>
@@ -322,7 +322,7 @@ new Vue({
 @origin
 <div style="width:300px;">
     <!-- 设置多个组 -->
-    <ui-{$uikey} ref="demoMethodAddGroup" form-name="表单名" form-key="name"></ui-{$uikey}>
+    <ui-{$uikey} ref="demoMethodAddGroup" form-name="表单名" form-key="name" {$&methodMoreAttr}></ui-{$uikey}>
     <br>
     <a href="javascript:;" onclick="alert(JSON.stringify(window.morning.findVM('demoMethodAddGroup').getGroup()))">获取表单组</a>
     <a href="javascript:;" onclick="window.morning.findVM('demoMethodAddGroup').addGroup('group1')">添加表单组</a>
@@ -341,7 +341,7 @@ new Vue({
 @origin
 <div style="width:300px;">
     <!-- 设置多个组 -->
-    <ui-{$uikey} ref="demoMethodRemoveGroup" form-name="表单名" form-key="name" group="group1"></ui-{$uikey}>
+    <ui-{$uikey} ref="demoMethodRemoveGroup" form-name="表单名" form-key="name" group="group1" {$&methodMoreAttr}></ui-{$uikey}>
     <br>
     <a href="javascript:;" onclick="alert(JSON.stringify(window.morning.findVM('demoMethodRemoveGroup').getGroup()))">获取表单组</a>
     <a href="javascript:;" onclick="window.morning.findVM('demoMethodRemoveGroup').removeGroup('group1')">移除表单组</a>
@@ -360,7 +360,7 @@ new Vue({
 \`\`\`\`html
 @var:demoValueChange
 <div style="width:300px;">
-    <ui-{$uikey} ref="demoValueChange" form-name="表单名" @valueChange="echo"></ui-{$uikey}>
+    <ui-{$uikey} ref="demoValueChange" form-name="表单名" @valueChange="echo" {$&eventMoreAttr}></ui-{$uikey}>
     <br>
     <a href="javascript:;" onclick="window.morning.findVM('demoValueChange').set({$&eventValue})">触发valueChange事件</a>
 </div>
@@ -398,6 +398,7 @@ new Vue({
         @updated="echo('updated')"
         @beforeDestroy="echo('beforeDestroy')"
         @destroyed="echo('destroyed')"
+        {$&eventMoreAttr}
     >{%text%}</ui-{$uikey}>
 
     <br><br>
@@ -589,43 +590,75 @@ let data = {
         formKey : 'formKey',
         formGroupOne : 'groupName'
     },
-    formValueType : [
-        {
-            valueType : 'String',
-            valueContent : `'Jim'`
-        },
-        {
-            valueType : 'Number',
-            valueContent : '5'
-        },
-        {
-            valueType : 'Boolean',
-            valueContent : 'true'
-        },
-        {
-            valueType : 'Null',
-            valueContent : 'null'
-        },
-        {
-            valueType : 'Undefined',
-            valueContent : 'undefined'
-        },
-        {
-            valueType : 'Object',
-            valueContent : '{}'
-        },
-        {
-            valueType : 'Array',
-            valueContent : '[]'
-        }
-    ]
+    formValueType : {
+        default : [
+            {
+                valueType : 'String',
+                valueContent : `'Jim'`
+            },
+            {
+                valueType : 'Number',
+                valueContent : '5'
+            },
+            {
+                valueType : 'Boolean',
+                valueContent : 'true'
+            },
+            {
+                valueType : 'Null',
+                valueContent : 'null'
+            },
+            {
+                valueType : 'Undefined',
+                valueContent : 'undefined'
+            },
+            {
+                valueType : 'Object',
+                valueContent : '{}'
+            },
+            {
+                valueType : 'Array',
+                valueContent : '[]'
+            }
+        ],
+        checkbox : [
+            {
+                valueType : 'String',
+                valueContent : `'Tim'`
+            },
+            {
+                valueType : 'Number',
+                valueContent : '5'
+            },
+            {
+                valueType : 'Boolean',
+                valueContent : 'true'
+            },
+            {
+                valueType : 'Null',
+                valueContent : 'null'
+            },
+            {
+                valueType : 'Undefined',
+                valueContent : 'undefined'
+            },
+            {
+                valueType : 'Object',
+                valueContent : '{\'Tim\':\'Tim\'}'
+            },
+            {
+                valueType : 'Array',
+                valueContent : '[\'Tim\']'
+            }
+        ]
+    }
 };
 
 let parser = (text, el) => {
 
     let patt = /````(html|js|css|mixin|)((\n[\t ]*[\@a-zA-Z0-9\:\.\,\|]+)*)\n((.|\n)*?)(\n)*([ \t]*)````/g;
     let varpatt = /````(html|js|css)\n(\@var\:([a-zA-Z0-9]+))\n((.|\n)+?)\n([ \t]*)````/g;
-    let importpatt = /````(import)((\n[\t ]*[\@a-zA-Z0-9\'\:\.\,\|\!\(\)\u4e00-\u9fa5]+)*)\n((.|\n)*?)(\n)*([ \t]*)````/g;
+    let importpatt = /````(import)((\n[\t ]*[a-zA-Z0-9@'"\[\]{}=:.,|!()\u4e00-\u9fa5 ]+)*)\n((.|\n)*?)(\n)*([ \t]*)````/g;
     let result;
     let vars = {
         js : {},
@@ -644,7 +677,13 @@ let parser = (text, el) => {
         for (let item of rdata) {
 
             let name = item.split(':')[0].replace(/^@/, '');
-            let value = item.split(':')[1];
+            let valuelist = item.split(':');
+
+            valuelist.shift();
+
+            let value = valuelist.join(':');
+
+            console.log(name, value);
 
             mixinContext[name] = value;
 
@@ -1004,15 +1043,19 @@ let helpers = {
     },
     formValueType : opt => {
 
+        let key = opt.param || 'default';
+
+        console.log(555, key);
+
         if (typeof opt.content === 'string') {
 
-            opt.content = `{$#formValueType}${opt.content}\n{$/formValueType}`;
+            opt.content = `{$#formValueType.${key}}${opt.content}\n{$/formValueType.${key}}`;
 
         } else if (typeof opt.content === 'object') {
 
             for (let key in opt.content) {
 
-                opt.content[key] = `{$#formValueType}${opt.content[key]}\n{$/formValueType}`;
+                opt.content[key] = `{$#formValueType.${key}}${opt.content[key]}\n{$/formValueType.${key}}`;
 
             }
 

@@ -48,6 +48,7 @@ import tip                          from './tip/index.vue';
 import textinput                    from './textinput/index.vue';
 import textarea                     from './textarea/index.vue';
 import _switch                      from './switch/index.vue';
+import checkbox                     from './checkbox/index.vue';
 
 export default {
     h,
@@ -95,5 +96,6 @@ export default {
     tip,
     textinput,
     textarea,
-    switch : _switch
+    switch : _switch,
+    checkbox
 };

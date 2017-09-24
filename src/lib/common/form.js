@@ -68,11 +68,17 @@ let Form = UI.extend({
 
             } catch (e) {
 
+                val = value;
+
             }
 
             if (typeof val === 'object') {
 
-                this.data.value = val;
+                if (JSON.stringify(val) !== JSON.stringify(this.data.value)) {
+
+                    this.data.value = val;
+
+                }
 
             } else {
 

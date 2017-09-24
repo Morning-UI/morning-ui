@@ -1,0 +1,383 @@
+@import '~Common/var.less';
+
+i-checkbox{
+    width: 100%;
+    position: relative;
+    display: inline-block;
+    z-index: 9;
+    -webkit-user-select: none;
+
+    >.note{
+        color: @colorLightBlack;
+        font-size: @fontSize;
+        margin-bottom: 0.5em;
+        -webkit-user-select: text;
+    }
+
+    >.itemlist{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        label.item{
+
+            display: inline-block;
+            margin: 0 1em 0.5em 0;
+            cursor: pointer;
+
+            span{
+                vertical-align: middle;
+                font-size: 0.875*@fontSize;
+                color: @colorBlue;
+                transition: 0.2s;
+                -webkit-user-select: text;
+            }
+            
+            .box{
+                vertical-align: middle;
+                background: #FFF;
+                width: 1.25*@fontSize;
+                height: 1.25*@fontSize;
+                border-radius: @borderRadius;
+                display: inline-block;
+                border: 1px @colorSilver solid;
+                transition: 0.2s;
+                margin: 0 0.375em 0 0;
+                box-sizing: border-box;
+
+                .iconfont{
+                    color: #fff;
+                    opacity: 0;
+                    transform: scale(0);
+                    transition: 0.2s;
+                    font-size: 0.75*@fontSize;
+                    width: 100%;
+                    display: block;
+                    line-height: 1.25*@fontSize - 1px;
+                    text-align: center;
+                    vertical-align: middle;
+                    word-break: break-word;
+                }
+            }
+
+            &:hover{
+                span{
+                    color: @colorExtraLightBlack;
+                }
+                .box{
+                    border-color: @colorLightBlue;
+                }
+            }
+
+
+            &.checked{
+                span{
+                    color: @colorLightBlack;
+                }
+                .box{
+                    .iconfont{
+                        opacity: 1;
+                        transform: scale(0.9);
+                    }
+                }
+            }   
+        }
+    }
+
+    &.sy-theme{
+        >.itemlist label.item.checked .box{
+            background: @colorTheme;
+            border-color: @colorTheme;
+        }
+    }
+    &.sy-lightTheme{
+        >.itemlist label.item.checked .box{
+            background: @colorLightTheme;
+            border-color: @colorLightTheme;
+        }
+    }
+    &.sy-darkTheme{
+        >.itemlist label.item.checked .box{
+            background: @colorDarkTheme;
+            border-color: @colorDarkTheme;
+        }
+    }
+
+    &.sy-success{
+        >.itemlist label.item.checked .box{
+            background: @colorSuccess;
+            border-color: @colorSuccess;
+        }
+    }
+    &.sy-warning{
+        >.itemlist label.item.checked .box{
+            background: @colorWarning;
+            border-color: @colorWarning;
+        }
+    }
+    &.sy-danger{
+        >.itemlist label.item.checked .box{
+            background: @colorDanger;
+            border-color: @colorDanger;
+        }
+    }
+    &.sy-primary{
+        >.itemlist label.item.checked .box{
+            background: @colorPrimary;
+            border-color: @colorPrimary;
+        }
+    }
+    &.sy-minor{
+        >.itemlist label.item.checked .box{
+            background: @colorMinor;
+            border-color: @colorMinor;
+        }
+    }
+    &.sy-info{
+        >.itemlist label.item.checked .box{
+            background: @colorInfo;
+            border-color: @colorInfo;
+        }
+    }
+
+
+    &.sy-black{
+        >.itemlist label.item.checked .box{
+            background: @colorBlack;
+            border-color: @colorBlack;
+        }
+    }
+    &.sy-lightBlack{
+        >.itemlist label.item.checked .box{
+            background: @colorLightBlack;
+            border-color: @colorLightBlack;
+        }
+    }
+    &.sy-extraLightBlack{
+        >.itemlist label.item.checked .box{
+            background: @colorExtraLightBlack;
+            border-color: @colorExtraLightBlack;
+        }
+    }
+    &.sy-blue{
+        >.itemlist label.item.checked .box{
+            background: @colorBlue;
+            border-color: @colorBlue;
+        }
+    }
+    &.sy-lightBlue{
+        >.itemlist label.item.checked .box{
+            background: @colorLightBlue;
+            border-color: @colorLightBlue;
+        }
+    }
+    &.sy-extraLightBlue{
+        >.itemlist label.item.checked .box{
+            background: @colorExtraLightBlue;
+            border-color: @colorExtraLightBlue;
+        }
+    }
+    &.sy-silver{
+        >.itemlist label.item{
+            span{
+                color: @colorExtraLightBlue;
+            }
+
+            .box{
+                border: 1px @colorWhite solid;
+            }
+
+            &:hover,
+            &.checked{
+                span{
+                    color: @colorLightSilver;
+                }
+            }
+
+            &.checked{
+                .box{
+                    background: @colorSilver;
+                    border-color: @colorSilver;
+                    color: @colorSilver;
+
+                    .iconfont{
+                        color: @colorExtraLightBlack;
+                    }
+                }
+            }
+        }
+    }
+    &.sy-lightSilver{
+        >.itemlist label.item{
+            span{
+                color: @colorExtraLightBlue;
+            }
+
+            .box{
+                border: 1px @colorWhite solid;
+            }
+
+            &:hover,
+            &.checked{
+                span{
+                    color: @colorLightSilver;
+                }
+            }
+
+            &.checked{
+                .box{
+                    background: @colorLightSilver;
+                    border-color: @colorLightSilver;
+                    color: @colorLightSilver;
+
+                    .iconfont{
+                        color: @colorExtraLightBlack;
+                    }
+                }
+            }
+        }
+    }
+    &.sy-extraLightSilver{
+        >.itemlist label.item{
+            span{
+                color: @colorExtraLightBlue;
+            }
+
+            .box{
+                border: 1px @colorWhite solid;
+            }
+
+            &:hover,
+            &.checked{
+                span{
+                    color: @colorLightSilver;
+                }
+            }
+
+            &.checked{
+                .box{
+                    background: @colorExtraLightSilver;
+                    border-color: @colorExtraLightSilver;
+                    color: @colorExtraLightSilver;
+
+                    .iconfont{
+                        color: @colorExtraLightBlack;
+                    }
+                }
+            }
+        }
+    }
+    &.sy-gray{
+        >.itemlist label.item{
+            span{
+                color: @colorGray;
+            }
+
+            .box{
+                border: 1px @colorWhite solid;
+            }
+
+            &:hover,
+            &.checked{
+                span{
+                    color: @colorWhite;
+                }
+            }
+
+            &.checked{
+                .box{
+                    background: @colorGray;
+                    border-color: @colorGray;
+                    color: @colorGray;
+
+                    .iconfont{
+                        color: @colorBlack;
+                    }
+                }
+            }
+        }
+    }
+    &.sy-lightGray{
+        >.itemlist label.item{
+            span{
+                color: @colorGray;
+            }
+
+            .box{
+                border: 1px @colorWhite solid;
+            }
+
+            &:hover,
+            &.checked{
+                span{
+                    color: @colorWhite;
+                }
+            }
+
+            &.checked{
+                .box{
+                    background: @colorLightGray;
+                    border-color: @colorLightGray;
+                    color: @colorLightGray;
+
+                    .iconfont{
+                        color: @colorBlack;
+                    }
+                }
+            }
+        }
+    }
+    &.sy-white{
+        >.itemlist label.item{
+            span{
+                color: @colorGray;
+            }
+
+            .box{
+                border: 1px @colorWhite solid;
+            }
+
+            &:hover,
+            &.checked{
+                span{
+                    color: @colorWhite;
+                }
+            }
+
+            &.checked{
+                .box{
+                    background: @colorWhite;
+                    border-color: @colorWhite;
+                    color: @colorWhite;
+
+                    .iconfont{
+                        color: @colorBlack;
+                    }
+                }
+            }
+        }
+    }
+
+    &.st-normal{}
+
+    &.st-disabled{
+        >.itemlist{
+            >label.item{
+                border-color: @colorLightBlack;
+                -webkit-user-select: none;
+                cursor: not-allowed !important;
+
+                >.box{
+                    background-color: @colorGray;
+                    border-color: @colorGray
+                }
+            }
+        }
+    }
+
+    // default statement
+    &{
+        .sy-theme;
+        .st-normal;
+    }
+}
