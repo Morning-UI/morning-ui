@@ -335,7 +335,7 @@ docsConfig = {
                         js : 'babel-loader',
                         less : extractDocsCss.extract({
                             fallback : 'vue-style-loader',
-                            use : ['css-loader', 'postcss-loader', 'less-loader']
+                            use : ['css-loader', 'less-loader']
                         })
                     }
                 }
@@ -359,10 +359,8 @@ docsConfig = {
 getDocsEntry(docsConfig);
 getDocsHtmlPlugin(docsConfig);
 
-// console.log(docsConfig);
-
 module.exports = [
     devVerConfig,
     prodVerConfig,
-    // docsConfig
+    docsConfig
 ];

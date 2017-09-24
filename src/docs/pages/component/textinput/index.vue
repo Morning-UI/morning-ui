@@ -45,6 +45,7 @@
     ````import
     @id:formStatement
     @uikey:textinput
+    @statementDefaultValue:''
     ````
     
     [[[配置]]]
@@ -61,6 +62,7 @@
     ````import
     @id:formConfigDemo
     @uikey:textinput
+    @configDefaultValue:'默认值'
     ````
 
     #### hide-value
@@ -94,6 +96,8 @@
     ````import
     @id:formMethod
     @uikey:textinput
+    @methodValue:'Jim'
+    @methodDefaultValue:'Jim'
     ````
 
     [[[事件]]]
@@ -101,6 +105,7 @@
     ````import
     @id:formEvent
     @uikey:textinput
+    @eventValue:'Jim'
     ````
 
     [[[表单值]]]
@@ -118,8 +123,6 @@
     内容值字符串。
 
     #### 默认值
-
-    默认值为空字符串：
 
     `''`
 

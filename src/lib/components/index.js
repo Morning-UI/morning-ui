@@ -47,6 +47,7 @@ import tip                          from './tip/index.vue';
 
 import textinput                    from './textinput/index.vue';
 import textarea                     from './textarea/index.vue';
+import _switch                      from './switch/index.vue';
 
 export default {
     h,
@@ -93,5 +94,6 @@ export default {
     breadcrumbs,
     tip,
     textinput,
-    textarea
+    textarea,
+    switch : _switch
 };

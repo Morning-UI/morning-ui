@@ -5329,3 +5329,380 @@ i-textarea.st-disabled textarea {
   cursor: not-allowed !important;
   color: #8d8d8d !important;
 }
+
+@keyframes switchOpen {
+0% {
+    left: 2px;
+    width: 24px;
+}
+15% {
+    left: 2px;
+    width: 30px;
+}
+50% {
+    left: 13px;
+    width: 30px;
+}
+100% {
+    left: 22px;
+    width: 24px;
+}
+}
+@keyframes switchClose {
+0% {
+    left: 22px;
+    width: 24px;
+}
+15% {
+    left: 18px;
+    width: 30px;
+}
+50% {
+    left: 13px;
+    width: 30px;
+}
+100% {
+    left: 2px;
+    width: 24px;
+}
+}
+i-switch {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  width: 100%;
+  box-sizing: border-box;
+}
+i-switch .note {
+  color: #303C4B;
+  font-size: 16px;
+  height: 42px;
+  line-height: 42px;
+  margin-right: 70px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+i-switch .track {
+  position: absolute;
+  right: 20px;
+  top: 6px;
+  height: 30px;
+  width: 50px;
+  background: #fff;
+  box-shadow: 0 0 2px #dce2e9 inset;
+  border: 1px #e2e7ed solid;
+  border-radius: 15px;
+  display: inline-block;
+  cursor: pointer;
+  box-sizing: border-box;
+  -webkit-user-select: none;
+  transition: background 0.16s, box-shadow 0.16s, border 0.16s;
+}
+i-switch .track:hover {
+  box-shadow: 0 0 3px #d0d8e1 inset;
+  border: 1px #d9e0e7 solid;
+}
+i-switch .track .point {
+  border-radius: 12px;
+  height: 24px;
+  width: 24px;
+  background: #FFF;
+  box-shadow: 0 0 4px #bdc8d5;
+  display: inline-block;
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  animation-name: switchClose;
+  animation-duration: 0.24s;
+  animation-fill-mode: forwards;
+}
+i-switch.open .track .point {
+  animation-name: switchOpen;
+  animation-duration: 0.24s;
+  animation-fill-mode: forwards;
+}
+i-switch.hideName .note {
+  display: none;
+}
+i-switch.hideName .track {
+  position: relative;
+  left: 0;
+  right: auto;
+}
+i-switch.sy-theme.open .track {
+  background: #F33D5D;
+  box-shadow: 0 0 3px #be0c2b inset;
+  border: 1px #d60d31 solid;
+}
+i-switch.sy-theme.open .track .point {
+  box-shadow: 0 0 4px #a60a26;
+}
+i-switch.sy-lightTheme.open .track {
+  background: #F86F88;
+  box-shadow: 0 0 3px #f64868 inset;
+  border: 1px #f75270 solid;
+}
+i-switch.sy-lightTheme.open .track .point {
+  box-shadow: 0 0 4px #f4264c;
+}
+i-switch.sy-darkTheme.open .track {
+  background: #D22343;
+  box-shadow: 0 0 3px #991a31 inset;
+  border: 1px #a61c35 solid;
+}
+i-switch.sy-darkTheme.open .track .point {
+  box-shadow: 0 0 4px #7b1427;
+}
+i-switch.sy-success.open .track {
+  background: #23C455;
+  box-shadow: 0 0 3px #198c3d inset;
+  border: 1px #1b9942 solid;
+}
+i-switch.sy-success.open .track .point {
+  box-shadow: 0 0 4px #105826;
+}
+i-switch.sy-warning.open .track {
+  background: #F1A437;
+  box-shadow: 0 0 3px #d7840f inset;
+  border: 1px #e58d10 solid;
+}
+i-switch.sy-warning.open .track .point {
+  box-shadow: 0 0 4px #9d610b;
+}
+i-switch.sy-danger.open .track {
+  background: #EB0E23;
+  box-shadow: 0 0 3px #c00b1d inset;
+  border: 1px #d80d20 solid;
+}
+i-switch.sy-danger.open .track .point {
+  box-shadow: 0 0 4px #8b0815;
+}
+i-switch.sy-primary.open .track {
+  background: #2185D0;
+  box-shadow: 0 0 3px #186097 inset;
+  border: 1px #1a69a4 solid;
+}
+i-switch.sy-primary.open .track .point {
+  box-shadow: 0 0 4px #103f62;
+}
+i-switch.sy-minor.open .track {
+  background: #A9A9A9;
+  box-shadow: 0 0 3px #888888 inset;
+  border: 1px #909090 solid;
+}
+i-switch.sy-minor.open .track .point {
+  box-shadow: 0 0 4px #696969;
+}
+i-switch.sy-info.open .track {
+  background: #03A6B9;
+  box-shadow: 0 0 3px #026b78 inset;
+  border: 1px #027987 solid;
+}
+i-switch.sy-info.open .track .point {
+  box-shadow: 0 0 4px #01353c;
+}
+i-switch.sy-black.open .track {
+  background: #17212D;
+  box-shadow: 0 0 3px #000000 inset;
+  border: 1px #000000 solid;
+}
+i-switch.sy-black.open .track .point {
+  box-shadow: 0 0 4px #000000;
+}
+i-switch.sy-lightBlack.open .track {
+  background: #303C4B;
+  box-shadow: 0 0 3px #161c23 inset;
+  border: 1px #1c232c solid;
+}
+i-switch.sy-lightBlack.open .track .point {
+  box-shadow: 0 0 4px #000000;
+}
+i-switch.sy-extraLightBlack.open .track {
+  background: #45505C;
+  box-shadow: 0 0 3px #292f36 inset;
+  border: 1px #2f373f solid;
+}
+i-switch.sy-extraLightBlack.open .track .point {
+  box-shadow: 0 0 4px #0e1113;
+}
+i-switch.sy-blue.open .track {
+  background: #7C8BA0;
+  box-shadow: 0 0 3px #5c6a7e inset;
+  border: 1px #627187 solid;
+}
+i-switch.sy-blue.open .track .point {
+  box-shadow: 0 0 4px #424c5b;
+}
+i-switch.sy-lightBlue.open .track {
+  background: #8E9CAF;
+  box-shadow: 0 0 3px #687a93 inset;
+  border: 1px #70829a solid;
+}
+i-switch.sy-lightBlue.open .track .point {
+  box-shadow: 0 0 4px #4f5c6f;
+}
+i-switch.sy-extraLightBlue.open .track {
+  background: #A8B3C2;
+  box-shadow: 0 0 3px #8191a7 inset;
+  border: 1px #8a99ad solid;
+}
+i-switch.sy-extraLightBlue.open .track .point {
+  box-shadow: 0 0 4px #61728a;
+}
+i-switch.sy-silver .note {
+  color: #D6DDE5;
+}
+i-switch.sy-silver .track {
+  background: #889cb4;
+  box-shadow: 0 0 2px #6982a0 inset;
+  border: 1px #788faa solid;
+}
+i-switch.sy-silver .track:hover {
+  box-shadow: 0 0 3px #5d7692 inset;
+  border: 1px #6982a0 solid;
+}
+i-switch.sy-silver .track .point {
+  box-shadow: 0 0 4px #5d7692;
+}
+i-switch.sy-silver.open .track {
+  background: #D6DDE5;
+  box-shadow: 0 0 3px #c3cdd9 inset;
+  border: 1px #cad3dd solid;
+}
+i-switch.sy-silver.open .track .point {
+  box-shadow: 0 0 4px #b7c3d1;
+}
+i-switch.sy-lightSilver .note {
+  color: #D6DDE5;
+}
+i-switch.sy-lightSilver .track {
+  background: #92a8bf;
+  box-shadow: 0 0 2px #718fac inset;
+  border: 1px #829bb5 solid;
+}
+i-switch.sy-lightSilver .track:hover {
+  box-shadow: 0 0 3px #6182a3 inset;
+  border: 1px #718fac solid;
+}
+i-switch.sy-lightSilver .track .point {
+  box-shadow: 0 0 4px #6182a3;
+}
+i-switch.sy-lightSilver.open .track {
+  background: #E2E8EE;
+  box-shadow: 0 0 3px #cfd9e3 inset;
+  border: 1px #d5dee6 solid;
+}
+i-switch.sy-lightSilver.open .track .point {
+  box-shadow: 0 0 4px #c2cfdb;
+}
+i-switch.sy-extraLightSilver .note {
+  color: #D6DDE5;
+}
+i-switch.sy-extraLightSilver .track {
+  background: #9bb1c7;
+  box-shadow: 0 0 2px #7a98b5 inset;
+  border: 1px #8ba4be solid;
+}
+i-switch.sy-extraLightSilver .track:hover {
+  box-shadow: 0 0 3px #6a8bac inset;
+  border: 1px #7a98b5 solid;
+}
+i-switch.sy-extraLightSilver .track .point {
+  box-shadow: 0 0 4px #6a8bac;
+}
+i-switch.sy-extraLightSilver.open .track {
+  background: #EDF1F5;
+  box-shadow: 0 0 3px #d9e2ea inset;
+  border: 1px #e0e7ee solid;
+}
+i-switch.sy-extraLightSilver.open .track .point {
+  box-shadow: 0 0 4px #ccd7e3;
+}
+i-switch.sy-gray .note {
+  color: #E6E6E6;
+}
+i-switch.sy-gray .track {
+  background: #a6a6a6;
+  box-shadow: 0 0 2px #8d8d8d inset;
+  border: 1px #9a9a9a solid;
+}
+i-switch.sy-gray .track:hover {
+  box-shadow: 0 0 3px #808080 inset;
+  border: 1px #8d8d8d solid;
+}
+i-switch.sy-gray .track .point {
+  box-shadow: 0 0 4px #808080;
+}
+i-switch.sy-gray.open .track {
+  background: #E6E6E6;
+  box-shadow: 0 0 3px #d7d7d7 inset;
+  border: 1px #dcdcdc solid;
+}
+i-switch.sy-gray.open .track .point {
+  box-shadow: 0 0 4px #cdcdcd;
+}
+i-switch.sy-lightGray .note {
+  color: #E6E6E6;
+}
+i-switch.sy-lightGray .track {
+  background: #b0b0b0;
+  box-shadow: 0 0 2px #979797 inset;
+  border: 1px #a3a3a3 solid;
+}
+i-switch.sy-lightGray .track:hover {
+  box-shadow: 0 0 3px #8a8a8a inset;
+  border: 1px #979797 solid;
+}
+i-switch.sy-lightGray .track .point {
+  box-shadow: 0 0 4px #8a8a8a;
+}
+i-switch.sy-lightGray.open .track {
+  background: #F0F0F0;
+  box-shadow: 0 0 3px #e1e1e1 inset;
+  border: 1px #e6e6e6 solid;
+}
+i-switch.sy-lightGray.open .track .point {
+  box-shadow: 0 0 4px #d7d7d7;
+}
+i-switch.sy-white .note {
+  color: #E6E6E6;
+}
+i-switch.sy-white .track {
+  background: #000000;
+  box-shadow: 0 0 2px #000000 inset;
+  border: 1px #000000 solid;
+}
+i-switch.sy-white .track:hover {
+  box-shadow: 0 0 3px #000000 inset;
+  border: 1px #000000 solid;
+}
+i-switch.sy-white .track .point {
+  box-shadow: 0 0 4px #000000;
+}
+i-switch.sy-white.open .track {
+  background: #F0F0F0;
+  box-shadow: 0 0 3px #e1e1e1 inset;
+  border: 1px #e6e6e6 solid;
+}
+i-switch.sy-white.open .track .point {
+  box-shadow: 0 0 4px #d7d7d7;
+}
+i-switch.st-disabled .point {
+  transform: scale(0.85);
+}
+i-switch.st-disabled .track {
+  cursor: not-allowed !important;
+  color: #E6E6E6 !important;
+}
+i-switch.st-disabled .track .point {
+  background: #d9d9d9;
+}
+i-switch.open .track {
+  background: #F33D5D;
+  box-shadow: 0 0 3px #be0c2b inset;
+  border: 1px #d60d31 solid;
+}
+i-switch.open .track .point {
+  box-shadow: 0 0 4px #a60a26;
+}

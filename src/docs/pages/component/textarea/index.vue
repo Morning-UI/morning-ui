@@ -25,6 +25,7 @@
     ````import
     @id:formStatement
     @uikey:textarea
+    @statementDefaultValue:''
     ````
     
     [[[配置]]]
@@ -39,6 +40,7 @@
     ````import
     @id:formConfigDemo
     @uikey:textarea
+    @configDefaultValue:'默认值'
     ````
 
     #### rows
@@ -54,6 +56,8 @@
     ````import
     @id:formMethod
     @uikey:textarea
+    @methodValue:'Jim'
+    @methodDefaultValue:'Jim'
     ````
 
     #### setRows(num)
@@ -79,6 +83,7 @@
     ````import
     @id:formEvent
     @uikey:textarea
+    @eventValue:'Jim'
     ````
 
     [[[表单值]]]
@@ -96,8 +101,6 @@
     内容值字符串。
 
     #### 默认值
-
-    默认值为空字符串：
 
     `''`
 

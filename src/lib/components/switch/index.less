@@ -1,0 +1,479 @@
+@import '~Common/var.less';
+
+@keyframes switchOpen{
+    0%{
+        left: 2px;
+        width: 24px;
+    }
+
+    15%{
+        left: 2px;
+        width: 30px;
+    }
+
+    50%{
+        left: 13px;
+        width: 30px;
+    }
+
+    100%{
+        left: 22px;
+        width: 24px;
+    }
+}
+
+@keyframes switchClose{
+    0%{
+        left: 22px;
+        width: 24px;
+    }
+
+    15%{
+        left: 18px;
+        width: 30px;
+    }
+
+    50%{
+        left: 13px;
+        width: 30px;
+    }
+
+    100%{
+        left: 2px;
+        width: 24px;
+    }
+}
+
+i-switch{
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+    
+    .note{
+        color: @colorLightBlack;
+        font-size: @fontSize;
+        height: @formHeight;
+        line-height: @formHeight;
+        margin-right: 70px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .track{
+        position: absolute;
+        right: 20px;
+        top: (@formHeight - 30px)/2;
+        height: 30px;
+        width: 50px;
+        background: #fff;
+        box-shadow: 0 0 2px lighten(@colorSilver, 2%) inset;
+        border: 1px lighten(@colorSilver, 4%) solid;
+        border-radius: 15px;
+        display: inline-block;
+        cursor: pointer;
+        box-sizing: border-box;
+        -webkit-user-select: none;
+        transition: background 0.16s, box-shadow 0.16s, border 0.16s;
+
+        &:hover{
+            box-shadow: 0 0 3px darken(@colorSilver, 2%) inset;
+            border: 1px lighten(@colorSilver, 1%) solid;
+        }
+
+        .point{
+            border-radius: 12px;
+            height: 24px;
+            width: 24px;
+            background: #FFF;
+            box-shadow: 0 0 4px darken(@colorSilver, 8%);
+            display: inline-block;
+            position: absolute;
+            left: 2px;
+            top: 2px;
+            animation-name: switchClose;
+            animation-duration: 0.24s;
+            animation-fill-mode: forwards;
+        }
+    }
+
+    &.open{
+        .track{
+            .point{
+                animation-name: switchOpen;
+                animation-duration: 0.24s;
+                animation-fill-mode: forwards;
+            }
+        }
+    }
+    
+    &.hideName{
+        .note{
+            display: none;
+        }
+
+        .track{
+            position: relative;
+            left: 0;
+            right: auto;
+        }
+    }
+
+    &.sy-theme{
+        &.open .track{
+            background: @colorTheme;
+            box-shadow: 0 0 3px darken(@colorTheme, 20%) inset;
+            border: 1px darken(@colorTheme, 15%) solid;
+
+            .point{
+                box-shadow: 0 0 4px darken(@colorTheme, 25%);
+            }
+        }
+    }
+    &.sy-lightTheme{
+        &.open .track{
+            background: @colorLightTheme;
+            box-shadow: 0 0 3px darken(@colorLightTheme, 8%) inset;
+            border: 1px darken(@colorLightTheme, 6%) solid;
+
+            .point{
+                box-shadow: 0 0 4px darken(@colorLightTheme, 15%);
+            }
+        }
+    }
+    &.sy-darkTheme{
+        &.open .track{
+            background: @colorDarkTheme;
+            box-shadow: 0 0 3px darken(@colorDarkTheme, 13%) inset;
+            border: 1px darken(@colorDarkTheme, 10%) solid;
+
+            .point{
+                box-shadow: 0 0 4px darken(@colorDarkTheme, 20%);
+            }
+        }
+    }
+
+    &.sy-success{
+        &.open .track{
+            background: @colorSuccess;
+            box-shadow: 0 0 3px darken(@colorSuccess, 13%) inset;
+            border: 1px darken(@colorSuccess, 10%) solid;
+
+            .point{
+                box-shadow: 0 0 4px darken(@colorSuccess, 25%);
+            }
+        }
+    }
+    &.sy-warning{
+        &.open .track{
+            background: @colorWarning;
+            box-shadow: 0 0 3px darken(@colorWarning, 13%) inset;
+            border: 1px darken(@colorWarning, 10%) solid;
+            .point{
+                box-shadow: 0 0 4px darken(@colorWarning, 25%);
+            }
+        }
+    }
+    &.sy-danger{
+        &.open .track{
+            background: @colorDanger;
+            box-shadow: 0 0 3px darken(@colorDanger, 9%) inset;
+            border: 1px darken(@colorDanger, 4%) solid;
+            .point{
+                box-shadow: 0 0 4px darken(@colorDanger, 20%);
+            }
+        }
+    }
+    &.sy-primary{
+        &.open .track{
+            background: @colorPrimary;
+            box-shadow: 0 0 3px darken(@colorPrimary, 13%) inset;
+            border: 1px darken(@colorPrimary, 10%) solid;
+            .point{
+                box-shadow: 0 0 4px darken(@colorPrimary, 25%);
+            }
+        }
+    }
+    &.sy-minor{
+        &.open .track{
+            background: @colorMinor;
+            box-shadow: 0 0 3px darken(@colorMinor, 13%) inset;
+            border: 1px darken(@colorMinor, 10%) solid;
+            .point{
+                box-shadow: 0 0 4px darken(@colorMinor, 25%);
+            }
+        }
+    }
+    &.sy-info{
+        &.open .track{
+            background: @colorInfo;
+            box-shadow: 0 0 3px darken(@colorInfo, 13%) inset;
+            border: 1px darken(@colorInfo, 10%) solid;
+            .point{
+                box-shadow: 0 0 4px darken(@colorInfo, 25%);
+            }
+        }
+    }
+
+
+    &.sy-black{
+        &.open .track{
+            background: @colorBlack;
+            box-shadow: 0 0 3px darken(@colorBlack, 30%) inset;
+            border: 1px darken(@colorBlack, 20%) solid;
+            .point{
+                box-shadow: 0 0 4px darken(@colorBlack, 30%);
+            }
+        }
+    }
+    &.sy-lightBlack{
+        &.open .track{
+            background: @colorLightBlack;
+            box-shadow: 0 0 3px darken(@colorLightBlack, 13%) inset;
+            border: 1px darken(@colorLightBlack, 10%) solid;
+            .point{
+                box-shadow: 0 0 4px darken(@colorLightBlack, 25%);
+            }
+        }
+    }
+    &.sy-extraLightBlack{
+        &.open .track{
+            background: @colorExtraLightBlack;
+            box-shadow: 0 0 3px darken(@colorExtraLightBlack, 13%) inset;
+            border: 1px darken(@colorExtraLightBlack, 10%) solid;
+            .point{
+                box-shadow: 0 0 4px darken(@colorExtraLightBlack, 25%);
+            }
+        }
+    }
+    &.sy-blue{
+        &.open .track{
+            background: @colorBlue;
+            box-shadow: 0 0 3px darken(@colorBlue, 13%) inset;
+            border: 1px darken(@colorBlue, 10%) solid;
+            .point{
+                box-shadow: 0 0 4px darken(@colorBlue, 25%);
+            }
+        }
+    }
+    &.sy-lightBlue{
+        &.open .track{
+            background: @colorLightBlue;
+            box-shadow: 0 0 3px darken(@colorLightBlue, 13%) inset;
+            border: 1px darken(@colorLightBlue, 10%) solid;
+            .point{
+                box-shadow: 0 0 4px darken(@colorLightBlue, 25%);
+            }
+        }
+    }
+    &.sy-extraLightBlue{
+        &.open .track{
+            background: @colorExtraLightBlue;
+            box-shadow: 0 0 3px darken(@colorExtraLightBlue, 13%) inset;
+            border: 1px darken(@colorExtraLightBlue, 10%) solid;
+            .point{
+                box-shadow: 0 0 4px darken(@colorExtraLightBlue, 25%);
+            }
+        }
+    }
+    &.sy-silver{
+        .note{
+            color: @colorSilver;
+        }
+
+        .track{
+            background: darken(@colorSilver, 25%);
+            box-shadow: 0 0 2px darken(@colorSilver, 35%) inset;
+            border: 1px darken(@colorSilver, 30%) solid;
+
+            &:hover{
+                box-shadow: 0 0 3px darken(@colorSilver, 40%) inset;
+                border: 1px darken(@colorSilver, 35%) solid;
+            }
+
+            .point{
+                box-shadow: 0 0 4px darken(@colorSilver, 40%);
+            }
+        }
+
+        &.open .track{
+            background: @colorSilver;
+            box-shadow: 0 0 3px darken(@colorSilver, 6%) inset;
+            border: 1px darken(@colorSilver, 4%) solid;
+            .point{
+                box-shadow: 0 0 4px darken(@colorSilver, 10%);
+            }
+        }
+    }
+    &.sy-lightSilver{
+        .note{
+            color: @colorSilver;
+        }
+
+        .track{
+            background: darken(@colorLightSilver, 25%);
+            box-shadow: 0 0 2px darken(@colorLightSilver, 35%) inset;
+            border: 1px darken(@colorLightSilver, 30%) solid;
+
+            &:hover{
+                box-shadow: 0 0 3px darken(@colorLightSilver, 40%) inset;
+                border: 1px darken(@colorLightSilver, 35%) solid;
+            }
+
+            .point{
+                box-shadow: 0 0 4px darken(@colorLightSilver, 40%);
+            }
+        }
+
+        &.open .track{
+            background: @colorLightSilver;
+            box-shadow: 0 0 3px darken(@colorLightSilver, 6%) inset;
+            border: 1px darken(@colorLightSilver, 4%) solid;
+            .point{
+                box-shadow: 0 0 4px darken(@colorLightSilver, 10%);
+            }
+        }
+    }
+    &.sy-extraLightSilver{
+        .note{
+            color: @colorSilver;
+        }
+
+        .track{
+            background: darken(@colorExtraLightSilver, 25%);
+            box-shadow: 0 0 2px darken(@colorExtraLightSilver, 35%) inset;
+            border: 1px darken(@colorExtraLightSilver, 30%) solid;
+
+            &:hover{
+                box-shadow: 0 0 3px darken(@colorExtraLightSilver, 40%) inset;
+                border: 1px darken(@colorExtraLightSilver, 35%) solid;
+            }
+
+            .point{
+                box-shadow: 0 0 4px darken(@colorExtraLightSilver, 40%);
+            }
+        }
+
+        &.open .track{
+            background: @colorExtraLightSilver;
+            box-shadow: 0 0 3px darken(@colorExtraLightSilver, 6%) inset;
+            border: 1px darken(@colorExtraLightSilver, 4%) solid;
+            .point{
+                box-shadow: 0 0 4px darken(@colorExtraLightSilver, 10%);
+            }
+        }
+    }
+    &.sy-gray{
+        .note{
+            color: @colorGray;
+        }
+
+        .track{
+            background: darken(@colorGray, 25%);
+            box-shadow: 0 0 2px darken(@colorGray, 35%) inset;
+            border: 1px darken(@colorGray, 30%) solid;
+
+            &:hover{
+                box-shadow: 0 0 3px darken(@colorGray, 40%) inset;
+                border: 1px darken(@colorGray, 35%) solid;
+            }
+
+            .point{
+                box-shadow: 0 0 4px darken(@colorGray, 40%);
+            }
+        }
+
+        &.open .track{
+            background: @colorGray;
+            box-shadow: 0 0 3px darken(@colorGray, 6%) inset;
+            border: 1px darken(@colorGray, 4%) solid;
+            .point{
+                box-shadow: 0 0 4px darken(@colorGray, 10%);
+            }
+        }
+    }
+    &.sy-lightGray{
+        .note{
+            color: @colorGray;
+        }
+
+        .track{
+            background: darken(@colorLightGray, 25%);
+            box-shadow: 0 0 2px darken(@colorLightGray, 35%) inset;
+            border: 1px darken(@colorLightGray, 30%) solid;
+
+            &:hover{
+                box-shadow: 0 0 3px darken(@colorLightGray, 40%) inset;
+                border: 1px darken(@colorLightGray, 35%) solid;
+            }
+
+            .point{
+                box-shadow: 0 0 4px darken(@colorLightGray, 40%);
+            }
+        }
+
+        &.open .track{
+            background: @colorLightGray;
+            box-shadow: 0 0 3px darken(@colorLightGray, 6%) inset;
+            border: 1px darken(@colorLightGray, 4%) solid;
+            .point{
+                box-shadow: 0 0 4px darken(@colorLightGray, 10%);
+            }
+        }
+    }
+    &.sy-white{
+        .note{
+            color: @colorGray;
+        }
+
+        .track{
+            background: darken(@colorBlack, 25%);
+            box-shadow: 0 0 2px darken(@colorBlack, 35%) inset;
+            border: 1px darken(@colorBlack, 30%) solid;
+
+            &:hover{
+                box-shadow: 0 0 3px darken(@colorBlack, 40%) inset;
+                border: 1px darken(@colorBlack, 35%) solid;
+            }
+
+            .point{
+                box-shadow: 0 0 4px darken(@colorBlack, 40%);
+            }
+        }
+
+        &.open .track{
+            background: @colorLightGray;
+            box-shadow: 0 0 3px darken(@colorLightGray, 6%) inset;
+            border: 1px darken(@colorLightGray, 4%) solid;
+
+            .point{
+                box-shadow: 0 0 4px darken(@colorLightGray, 10%);
+            }
+        }
+    }
+
+    &.st-normal{}
+
+    &.st-disabled{
+        .point{
+            transform: scale(0.85);
+        }
+
+        .track{
+            cursor: not-allowed !important;
+            color: @colorGray !important;
+            
+            .point{
+                background: darken(@colorGray, 5%);
+            }
+        }
+    }
+
+    // default statement
+    &{
+        .sy-theme;
+        .st-normal;
+    }
+}

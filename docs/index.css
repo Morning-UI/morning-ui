@@ -3,11 +3,11 @@
   font-family: PingFangSC-Thin, sans-serif;
 }
 @font-face {
-  font-family: "iconfont";
+  font-family: 'iconfont';
   src: url(/iconfont.woff) format('woff');
 }
 .iconfont {
-  font-family: "iconfont" !important;
+  font-family: 'iconfont' !important;
   font-size: 16px;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
@@ -21,14 +21,11 @@
   line-height: 1.35;
   margin-top: 0;
 }
-.component .markdown-body > div > h1 {
-  margin-bottom: 0;
-}
 .markdown-body > div > i-tab > .contents > .item > div {
   margin-top: 30px;
 }
 .markdown-body > div > h3 > i-badge {
-  font-weight: normal;
+  font-weight: 400;
   vertical-align: 4px;
   transform: scale(0.9);
   transform-origin: left center;
@@ -43,11 +40,14 @@
   border-bottom: none;
   line-height: inherit;
 }
+.component .markdown-body > div > h1 {
+  margin-bottom: 0;
+}
 i-dialog .body {
   font-size: inherit;
 }
 i-dialog a {
-  color: #0366d6;
+  color: #0366D6;
   text-decoration: none;
 }
 i-dialog a:hover {
@@ -69,17 +69,17 @@ i-dialog a:hover {
   margin: 0 auto;
 }
 .s1.gray {
-  background: #eee;
+  background: #EEE;
 }
 .s1 h1 {
   text-align: center;
-  font-weight: normal;
+  font-weight: 400;
 }
 .keywork {
   width: 900px;
   font-size: 0;
   padding: 0 100px;
-  margin: 50px 0 0 0;
+  margin: 50px 0 0;
 }
 .keywork span {
   display: inline-block;
@@ -115,9 +115,9 @@ header .logo img {
 header .name {
   display: inline-block;
   vertical-align: top;
-  color: #fff;
+  color: #FFF;
   line-height: 80px;
-  margin-left: 0px;
+  margin-left: 0;
   font-size: 26px;
   opacity: 0.8;
 }
@@ -139,7 +139,7 @@ header .menu li {
 header .menu li a {
   height: 50px;
   line-height: 50px;
-  color: #fff;
+  color: #FFF;
   opacity: 0.7;
   font-size: 13px;
   text-decoration: none;
@@ -152,7 +152,7 @@ header .menu li a.current {
   font-weight: 600;
 }
 header.index {
-  background: #fff;
+  background: #FFF;
 }
 header.index .logo img {
   display: none;

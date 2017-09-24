@@ -23,9 +23,9 @@ header .logo img {
 header .name {
   display: inline-block;
   vertical-align: top;
-  color: #fff;
+  color: #FFF;
   line-height: 80px;
-  margin-left: 0px;
+  margin-left: 0;
   font-size: 26px;
   opacity: 0.8;
 }
@@ -47,7 +47,7 @@ header .menu li {
 header .menu li a {
   height: 50px;
   line-height: 50px;
-  color: #fff;
+  color: #FFF;
   opacity: 0.7;
   font-size: 13px;
   text-decoration: none;
@@ -60,7 +60,7 @@ header .menu li a.current {
   font-weight: 600;
 }
 header.index {
-  background: #fff;
+  background: #FFF;
 }
 header.index .logo img {
   display: none;
@@ -160,11 +160,11 @@ header.index .menu li a {
   font-family: PingFangSC-Thin, sans-serif;
 }
 @font-face {
-  font-family: "iconfont";
+  font-family: 'iconfont';
   src: url(/iconfont.woff) format('woff');
 }
 .iconfont {
-  font-family: "iconfont" !important;
+  font-family: 'iconfont' !important;
   font-size: 16px;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
@@ -178,14 +178,11 @@ header.index .menu li a {
   line-height: 1.35;
   margin-top: 0;
 }
-.component .markdown-body > div > h1 {
-  margin-bottom: 0;
-}
 .markdown-body > div > i-tab > .contents > .item > div {
   margin-top: 30px;
 }
 .markdown-body > div > h3 > i-badge {
-  font-weight: normal;
+  font-weight: 400;
   vertical-align: 4px;
   transform: scale(0.9);
   transform-origin: left center;
@@ -200,11 +197,14 @@ header.index .menu li a {
   border-bottom: none;
   line-height: inherit;
 }
+.component .markdown-body > div > h1 {
+  margin-bottom: 0;
+}
 i-dialog .body {
   font-size: inherit;
 }
 i-dialog a {
-  color: #0366d6;
+  color: #0366D6;
   text-decoration: none;
 }
 i-dialog a:hover {
@@ -797,25 +797,25 @@ i-dialog a:hover {
 .markdown-body pre {
   position: relative;
 }
-.markdown-body .lang-js:before,
-.markdown-body .lang-html:before,
-.markdown-body .lang-bash:before {
+.markdown-body .lang-js::before,
+.markdown-body .lang-html::before,
+.markdown-body .lang-bash::before {
   font-family: PingFangSC-Light, sans-serif;
   font-size: 12px;
-  color: #ccc;
+  color: #CCC;
   position: absolute;
   transform: scale(0.8);
   top: 5px;
   right: 5px;
   letter-spacing: 1px;
 }
-.markdown-body .lang-html:before {
+.markdown-body .lang-html::before {
   content: 'HTML';
 }
-.markdown-body .lang-js:before {
+.markdown-body .lang-js::before {
   content: 'JavaScript';
 }
-.markdown-body .lang-bash:before {
+.markdown-body .lang-bash::before {
   content: 'Bash';
 }
 .body {
@@ -839,7 +839,7 @@ i-dialog a:hover {
 .demo {
   padding: 10px;
   box-sizing: border-box;
-  border: 1px #f1f4f6 solid;
+  border: 1px #F1F4F6 solid;
   border-radius: 3px 3px 0 0;
   z-index: 9;
   position: relative;
@@ -852,7 +852,7 @@ i-dialog a:hover {
   width: 200px;
   display: inline-block;
   vertical-align: top;
-  border-right: 1px #eee solid;
+  border-right: 1px #EEE solid;
   box-sizing: border-box;
   padding: 20px 10px;
   margin: 0;
@@ -871,15 +871,15 @@ i-dialog a:hover {
 }
 .submenu li a.current {
   color: #333;
-  font-weight: bold;
+  font-weight: 700;
 }
 .submenu li .title {
   font-size: 14px;
   color: #333;
-  margin: 20px 0 5px 0;
+  margin: 20px 0 5px;
 }
 .submenu .tag {
-  color: #fff;
+  color: #FFF;
   padding: 2px 5px;
   border-radius: 15px;
   font-size: 12px;
@@ -894,19 +894,19 @@ i-dialog a:hover {
   text-transform: uppercase;
 }
 .submenu .tag.new {
-  background: #f34562;
+  background: #F34562;
 }
 .submenu .tag.new:before {
   content: 'new';
 }
 .submenu .tag.update {
-  background: #41b4d2;
+  background: #41B4D2;
 }
 .submenu .tag.update:before {
   content: 'update';
 }
 .submenu .tag.done {
-  background: #46c235;
+  background: #46C235;
 }
 .submenu .tag.done:before {
   content: 'done';
@@ -950,25 +950,25 @@ i-dialog a:hover {
   padding: 2px 12px 2px 8px;
   border-radius: 0 15px 15px 0;
   background: #45505C;
-  color: #fff;
+  color: #FFF;
   vertical-align: top;
   text-transform: uppercase;
 }
 .doc-status-bar .item.pass .value {
-  background: #15bc5c;
-  color: #fff;
+  background: #15BC5C;
+  color: #FFF;
 }
 .doc-status-bar .item.low .value,
 .doc-status-bar .item.fail .value {
-  background: #da3939;
-  color: #fff;
+  background: #DA3939;
+  color: #FFF;
 }
 .doc-status-bar .item.medium .value {
-  background: #dfae19;
-  color: #fff;
+  background: #DFAE19;
+  color: #FFF;
 }
 .doc-status-bar .item.pass .value,
 .doc-status-bar .item.high .value {
-  background: #15bc5c;
-  color: #fff;
+  background: #15BC5C;
+  color: #FFF;
 }

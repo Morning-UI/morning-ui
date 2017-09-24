@@ -51,7 +51,42 @@ let imports = {
 \`\`\`\`html
 @state:normal,disabled
 <div style="width:300px;">
-    <ui-{$uikey} {$stateKey} default-value="{$&stateName}"></ui-{$uikey}>
+    <ui-{$uikey} {$stateKey} :default-value="{$&statementDefaultValue}" form-name="{$&stateName}"></ui-{$uikey}>
+</div>
+<br>
+\`\`\`\`
+`,
+    formStatementWithStyle : `
+#### 支持
+
+|类型|支持|默认|
+|-|-|-|
+|尺寸|不支持|-|
+|色彩|全部|\`theme\`|
+|状态|\`normal\`<br/>\`disabled\`|\`normal\`|
+
+
+#### 色彩
+
+\`\`\`\`html
+@color:theme
+@color:feature
+@color:black
+@color:blue
+@color:silver
+@color:gray
+<div style="width:300px;">
+    <ui-{$uikey} {$colorKey} :default-value="{$&statementDefaultValue}" form-name="{$&colorName}">{$&colorName}</ui-{$uikey}>
+</div>
+<br>
+\`\`\`\`
+
+#### 状态
+
+\`\`\`\`html
+@state:normal,disabled
+<div style="width:300px;">
+    <ui-{$uikey} {$stateKey} :default-value="{$&statementDefaultValue}" form-name="{$&stateName}"></ui-{$uikey}>
 </div>
 <br>
 \`\`\`\`
@@ -117,7 +152,7 @@ new Vue({
 \`\`\`\`html
 @formConfig
 <div style="width:300px;">
-    <ui-{$uikey} form-name="{$formName}" default-value="默认值"></ui-{$uikey}>
+    <ui-{$uikey} form-name="{$formName}" :default-value="{$&configDefaultValue}"></ui-{$uikey}>
 </div>
 \`\`\`\`
 
@@ -151,9 +186,9 @@ new Vue({
 \`\`\`\`html
 @origin
 <div style="width:300px;">
-    <ui-{$uikey} ref="demoMethodSet" form-name="姓名"></ui-{$uikey}>
+    <ui-{$uikey} ref="demoMethodSet" form-name="表单名"></ui-{$uikey}>
     <br>
-    <a href="javascript:;" onclick="window.morning.findVM('demoMethodSet').set('Jim')">设置值</a>
+    <a href="javascript:;" onclick="window.morning.findVM('demoMethodSet').set({$&methodValue})">设置值</a>
     <a href="javascript:;" onclick="window.morning.findVM('demoMethodSet').set()">移除值</a>
 </div>
 \`\`\`\`
@@ -169,7 +204,7 @@ new Vue({
 \`\`\`\`html
 @origin
 <div style="width:300px;">
-    <ui-{$uikey} ref="demoMethodGet" form-name="姓名" default-value="Jim"></ui-{$uikey}>
+    <ui-{$uikey} ref="demoMethodGet" form-name="表单名" :default-value="{$&methodDefaultValue}"></ui-{$uikey}>
     <br>
     <a href="javascript:;" onclick="alert(window.morning.findVM('demoMethodGet').get(false))">获取表单原始值</a>
     <a href="javascript:;" onclick="alert(window.morning.findVM('demoMethodGet').get())">获取表单JSON值</a>
@@ -219,7 +254,7 @@ new Vue({
 \`\`\`\`html
 @origin
 <div style="width:300px;">
-    <ui-{$uikey} ref="demoMethodSetKey" form-key="name"></ui-{$uikey}>
+    <ui-{$uikey} ref="demoMethodSetKey" form-name="表单名" form-key="name"></ui-{$uikey}>
     <br>
     <a href="javascript:;" onclick="alert(window.morning.findVM('demoMethodSetKey').getKey())">获取表单KEY</a>
     <a href="javascript:;" onclick="window.morning.findVM('demoMethodSetKey').setKey('age')">设置表单KEY</a>
@@ -234,7 +269,7 @@ new Vue({
 \`\`\`\`html
 @origin
 <div style="width:300px;">
-    <ui-{$uikey} ref="demoMethodGetKey" form-key="name"></ui-{$uikey}>
+    <ui-{$uikey} ref="demoMethodGetKey" form-name="表单名" form-key="name"></ui-{$uikey}>
     <br>
     <a href="javascript:;" onclick="alert(window.morning.findVM('demoMethodGetKey').getKey())">获取表单KEY</a>
 </div>
@@ -252,7 +287,7 @@ new Vue({
 @origin
 <div style="width:300px;">
     <!-- 设置多个组 -->
-    <ui-{$uikey} ref="demoMethodSetGroup" form-key="name"></ui-{$uikey}>
+    <ui-{$uikey} ref="demoMethodSetGroup" form-name="表单名" form-key="name"></ui-{$uikey}>
     <br>
     <a href="javascript:;" onclick="alert(JSON.stringify(window.morning.findVM('demoMethodSetGroup').getGroup()))">获取表单组</a>
     <a href="javascript:;" onclick="window.morning.findVM('demoMethodSetGroup').setGroup('group1')">设置单个表单组</a>
@@ -269,7 +304,7 @@ new Vue({
 @origin
 <div style="width:300px;">
     <!-- 设置多个组 -->
-    <ui-{$uikey} ref="demoMethodGetGroup" form-key="name" group="group1"></ui-{$uikey}>
+    <ui-{$uikey} ref="demoMethodGetGroup" form-name="表单名" form-key="name" group="group1"></ui-{$uikey}>
     <br>
     <a href="javascript:;" onclick="alert(JSON.stringify(window.morning.findVM('demoMethodGetGroup').getGroup()))">获取表单组</a>
 </div>
@@ -287,7 +322,7 @@ new Vue({
 @origin
 <div style="width:300px;">
     <!-- 设置多个组 -->
-    <ui-{$uikey} ref="demoMethodAddGroup" form-key="name"></ui-{$uikey}>
+    <ui-{$uikey} ref="demoMethodAddGroup" form-name="表单名" form-key="name"></ui-{$uikey}>
     <br>
     <a href="javascript:;" onclick="alert(JSON.stringify(window.morning.findVM('demoMethodAddGroup').getGroup()))">获取表单组</a>
     <a href="javascript:;" onclick="window.morning.findVM('demoMethodAddGroup').addGroup('group1')">添加表单组</a>
@@ -306,10 +341,10 @@ new Vue({
 @origin
 <div style="width:300px;">
     <!-- 设置多个组 -->
-    <ui-{$uikey} ref="demoMethodRemoveGroup" form-key="name" group="group1"></ui-{$uikey}>
+    <ui-{$uikey} ref="demoMethodRemoveGroup" form-name="表单名" form-key="name" group="group1"></ui-{$uikey}>
     <br>
     <a href="javascript:;" onclick="alert(JSON.stringify(window.morning.findVM('demoMethodRemoveGroup').getGroup()))">获取表单组</a>
-    <a href="javascript:;" onclick="window.morning.findVM('demoMethodRemoveGroup').removeGroup('group1')">添加表单组</a>
+    <a href="javascript:;" onclick="window.morning.findVM('demoMethodRemoveGroup').removeGroup('group1')">移除表单组</a>
 </div>
 \`\`\`\`
     `,
@@ -325,9 +360,9 @@ new Vue({
 \`\`\`\`html
 @var:demoValueChange
 <div style="width:300px;">
-    <ui-{$uikey} ref="demoValueChange" @valueChange="echo"></ui-{$uikey}>
+    <ui-{$uikey} ref="demoValueChange" form-name="表单名" @valueChange="echo"></ui-{$uikey}>
     <br>
-    <a href="javascript:;" onclick="window.morning.findVM('demoValueChange').set('Jim')">触发valueChange事件</a>
+    <a href="javascript:;" onclick="window.morning.findVM('demoValueChange').set({$&eventValue})">触发valueChange事件</a>
 </div>
 \`\`\`\`
 
@@ -355,6 +390,7 @@ new Vue({
 <div style="width:300px;">
     <ui-{$uikey}
         ref="demoEventLifecycle"
+        form-name="表单名"
         v-show="show"
         @created="echo('created')"
         @mounted="echo('mounted')"
@@ -589,7 +625,7 @@ let parser = (text, el) => {
 
     let patt = /````(html|js|css|mixin|)((\n[\t ]*[\@a-zA-Z0-9\:\.\,\|]+)*)\n((.|\n)*?)(\n)*([ \t]*)````/g;
     let varpatt = /````(html|js|css)\n(\@var\:([a-zA-Z0-9]+))\n((.|\n)+?)\n([ \t]*)````/g;
-    let importpatt = /````(import)((\n[\t ]*[\@a-zA-Z0-9\:\.\,\|]+)*)\n((.|\n)*?)(\n)*([ \t]*)````/g;
+    let importpatt = /````(import)((\n[\t ]*[\@a-zA-Z0-9\'\:\.\,\|\!\(\)\u4e00-\u9fa5]+)*)\n((.|\n)*?)(\n)*([ \t]*)````/g;
     let result;
     let vars = {
         js : {},
@@ -746,7 +782,7 @@ let helpers = {
 
         } else if (color === 'gray') {
 
-            opt.style.push('background:#676767;border-color:#494949');
+            opt.style.push('background:#676767;border-color: #494949');
         
         }
 
@@ -1090,6 +1126,8 @@ let runner = tree => {
             block._html = make.block(block);
         
         }
+
+        console.log(block._html);
 
     }
 

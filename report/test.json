@@ -2,26 +2,26 @@
   "tests": [
     {
       "type": "test",
-      "name": "unit › index › unit test is ready",
-      "raw": "# unit › index › unit test is ready",
-      "number": 1
-    },
-    {
-      "type": "test",
-      "name": "unit › components › h › base : init component",
-      "raw": "# unit › components › h › base : init component",
-      "number": 2
-    },
-    {
-      "type": "test",
       "name": "unit › components › btn › base : init component",
       "raw": "# unit › components › btn › base : init component",
-      "number": 3
+      "number": 1
     },
     {
       "type": "test",
       "name": "unit › components › btn › config : link",
       "raw": "# unit › components › btn › config : link",
+      "number": 2
+    },
+    {
+      "type": "test",
+      "name": "unit › index › unit test is ready",
+      "raw": "# unit › index › unit test is ready",
+      "number": 3
+    },
+    {
+      "type": "test",
+      "name": "unit › components › h › base : init component",
+      "raw": "# unit › components › h › base : init component",
       "number": 4
     },
     {
@@ -52,34 +52,34 @@
   "asserts": [
     {
       "type": "assert",
-      "raw": "ok 1 - unit › index › unit test is ready",
+      "raw": "ok 1 - unit › components › btn › base : init component",
       "ok": true,
       "number": 1,
-      "name": "unit › index › unit test is ready",
+      "name": "unit › components › btn › base : init component",
       "test": 1
     },
     {
       "type": "assert",
-      "raw": "ok 2 - unit › components › h › base : init component",
+      "raw": "ok 2 - unit › components › btn › config : link",
       "ok": true,
       "number": 2,
-      "name": "unit › components › h › base : init component",
+      "name": "unit › components › btn › config : link",
       "test": 2
     },
     {
       "type": "assert",
-      "raw": "ok 3 - unit › components › btn › base : init component",
+      "raw": "ok 3 - unit › index › unit test is ready",
       "ok": true,
       "number": 3,
-      "name": "unit › components › btn › base : init component",
+      "name": "unit › index › unit test is ready",
       "test": 3
     },
     {
       "type": "assert",
-      "raw": "ok 4 - unit › components › btn › config : link",
+      "raw": "ok 4 - unit › components › h › base : init component",
       "ok": true,
       "number": 4,
-      "name": "unit › components › btn › config : link",
+      "name": "unit › components › h › base : init component",
       "test": 4
     },
     {
@@ -164,34 +164,34 @@
   "pass": [
     {
       "type": "assert",
-      "raw": "ok 1 - unit › index › unit test is ready",
+      "raw": "ok 1 - unit › components › btn › base : init component",
       "ok": true,
       "number": 1,
-      "name": "unit › index › unit test is ready",
+      "name": "unit › components › btn › base : init component",
       "test": 1
     },
     {
       "type": "assert",
-      "raw": "ok 2 - unit › components › h › base : init component",
+      "raw": "ok 2 - unit › components › btn › config : link",
       "ok": true,
       "number": 2,
-      "name": "unit › components › h › base : init component",
+      "name": "unit › components › btn › config : link",
       "test": 2
     },
     {
       "type": "assert",
-      "raw": "ok 3 - unit › components › btn › base : init component",
+      "raw": "ok 3 - unit › index › unit test is ready",
       "ok": true,
       "number": 3,
-      "name": "unit › components › btn › base : init component",
+      "name": "unit › index › unit test is ready",
       "test": 3
     },
     {
       "type": "assert",
-      "raw": "ok 4 - unit › components › btn › config : link",
+      "raw": "ok 4 - unit › components › h › base : init component",
       "ok": true,
       "number": 4,
-      "name": "unit › components › btn › config : link",
+      "name": "unit › components › h › base : init component",
       "test": 4
     },
     {
