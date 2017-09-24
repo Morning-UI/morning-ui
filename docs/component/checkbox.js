@@ -1,4 +1,4 @@
-webpackJsonp([53],{
+webpackJsonp([54],{
 
 /***/ 0:
 /***/ (function(module, exports) {
@@ -112,7 +112,14 @@ module.exports = Vue;
 
 /***/ }),
 
-/***/ 109:
+/***/ 11:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 110:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -291,15 +298,27 @@ exports.default = {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 module.exports = exports['default'];
-
-/***/ }),
-
-/***/ 11:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ }),
 
@@ -613,7 +632,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 175:
+/***/ 177:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -821,7 +840,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 289:
+/***/ 293:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -896,13 +915,13 @@ if (false) {(function () {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(109);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(110);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_c2fd3cfa_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(532);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_c2fd3cfa_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(537);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(289)
+  __webpack_require__(293)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
@@ -1007,7 +1026,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 532:
+/***/ 537:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1021,7 +1040,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "type": "text/markdown"
     }
-  }, [_vm._v("\n# 复选框组 `<ui-checkbox>`\n\n<doc-component-status page=\"checkbox\"></doc-component-status>\n\n[[[基础]]]\n\n定义文本输入框。\n\n#### 使用\n\n````html\n<div style=\"width:300px;\">\n    <ui-checkbox form-name=\"姓名\" :list=\"{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}\"></ui-checkbox>\n</div>\n````\n\n[[[声明]]]\n\n````import\n@id:formStatementWithStyle\n@uikey:checkbox\n@statementDefaultValue:['Tim']\n@statementMoreAttr::list=\"{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}\"\n````\n\n[[[配置]]]\n\n|KEY|描述|接受值|值类型|默认值|\n|-|-|-|\n````import\n@id:formConfigTable\n````\n|accept-html|项目的的名称可以使用HTML|`true`<br>`false`|Boolean|`false`|\n|list|可选项目列表|可选项目列表的对象，键名是key，键值是name用于显示|Object|`{}`|\n\n````import\n@id:formConfigDemo\n@uikey:checkbox\n@configDefaultValue:['Tim']\n@configMoreAttr::list=\"{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}\"\n````\n\n#### accept-html\n\n如果让`ui-checkbox`的显示文本，渲染成HTML，而不是字符串。可以设置`accept-html`。\n\n````mixin\n@use:html.demo1,js.demo1\n````\n\n````html\n@var:demo1\n<div style=\"width:300px;\">\n    <ui-checkbox\n        form-name=\"姓名\"\n        accept-html\n        :list=\"list\"\n    ></ui-checkbox>\n</div>\n````\n\n````js\n@var:demo1\nnew Vue({\n    el : '{$el}',\n    template : '{$template}',\n    data : function () {\n        return {\n            list : {\n                Red : '<span style=\"color:red;\">我是红色span</span>',\n                Green : '<span style=\"color:green;\">我是绿色span</span>'\n            }\n        }\n    }\n});\n````\n\n#### list\n\n````html\n<div style=\"width:300px;\">\n    <ui-checkbox form-name=\"姓名\" :list=\"{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}\"></ui-checkbox>\n</div>\n````\n\n[[[方法]]]\n\n````import\n@id:formMethod\n@uikey:checkbox\n@methodValue:['Tim', 'Andrew']\n@methodDefaultValue:['Tim']\n@methodMoreAttr::list=\"{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}\"\n````\n\n[[[事件]]]\n\n````import\n@id:formEvent\n@uikey:checkbox\n@eventValue:['Tim', 'Andrew']\n@eventMoreAttr::list=\"{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}\"\n````\n\n[[[表单值]]]\n\n#### 值类型\n\n此表单返回值类型包含:\n\n- `Array` : 数组\n\n任何其他类型的数值，都会被转换成空数组(`[]`)。\n\n#### 值格式\n\n包含选中键值的无序数组。\n\n#### 默认值\n\n`[]`\n\n#### 输入/输出示例\n\n````html\n@formValueType:checkbox\n<div>\n    <p>{$valueType}类型</p>\n    <div style=\"width:300px;\">\n        <ui-checkbox ref=\"demoType{$valueType}\" :list=\"{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}\"></ui-checkbox>\n    </div>\n    <br>\n    <a href=\"javascript:;\" onclick=\"window.morning.findVM('demoType{$valueType}').set({$&valueContent})\">设置{$valueType}类型</a>\n    <a href=\"javascript:;\" onclick=\"alert(window.morning.findVM('demoType{$valueType}').get())\">获取表单JSON值</a>\n</div>\n<br>\n<br>\n````\n\n[[[单元测试]]]\n\n<iframe src=\"/report/coverage/lib/components/checkbox/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n\n")])])
+  }, [_vm._v("\n# 复选框组 `<ui-checkbox>`\n\n<doc-component-status page=\"checkbox\"></doc-component-status>\n\n[[[基础]]]\n\n定义复选框组，复选框组可以多选，若需要单选请使用`ui-radio`。\n\n#### 使用\n\n````html\n<div style=\"width:300px;\">\n    <ui-checkbox form-name=\"姓名\" :list=\"{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}\"></ui-checkbox>\n</div>\n````\n\n[[[声明]]]\n\n````import\n@id:formStatementWithStyle\n@uikey:checkbox\n@statementDefaultValue:['Tim']\n@statementMoreAttr::list=\"{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}\"\n````\n\n[[[配置]]]\n\n|KEY|描述|接受值|值类型|默认值|\n|-|-|-|\n````import\n@id:formConfigTable\n````\n|accept-html|项目的的名称可以使用HTML|`true`<br>`false`|Boolean|`false`|\n|list|可选项目列表|可选项目列表的对象，键名是key，键值是name用于显示|Object|`{}`|\n\n````import\n@id:formConfigDemo\n@uikey:checkbox\n@configDefaultValue:['Tim']\n@configMoreAttr::list=\"{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}\"\n````\n\n#### accept-html\n\n如果让`ui-checkbox`的显示文本，渲染成HTML，而不是字符串。可以设置`accept-html`。\n\n````mixin\n@use:html.demo1,js.demo1\n````\n\n````html\n@var:demo1\n<div style=\"width:300px;\">\n    <ui-checkbox\n        form-name=\"姓名\"\n        accept-html\n        :list=\"list\"\n    ></ui-checkbox>\n</div>\n````\n\n````js\n@var:demo1\nnew Vue({\n    el : '{$el}',\n    template : '{$template}',\n    data : function () {\n        return {\n            list : {\n                Red : '<span style=\"color:red;\">我是红色span</span>',\n                Green : '<span style=\"color:green;\">我是绿色span</span>'\n            }\n        }\n    }\n});\n````\n\n#### list\n\n````html\n<div style=\"width:300px;\">\n    <ui-checkbox form-name=\"姓名\" :list=\"{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}\"></ui-checkbox>\n</div>\n````\n\n[[[方法]]]\n\n````import\n@id:formMethod\n@uikey:checkbox\n@methodValue:['Tim', 'Andrew']\n@methodDefaultValue:['Tim']\n@methodMoreAttr::list=\"{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}\"\n````\n\n#### toggle(key, [checked])\n\n切换单个选项的选中状态。\n\n|KEY|可选|描述|接受值|值类型|默认值|\n|-|-|-|-|-|-|\n|key|NO|需要切换状态的选项的键值|键值字符串|`String`|`undefined`|\n|checked|YES|需要切换的状态|`undefined`: 切换到相反的状态<br>`true`: 切换到选中状态<br>`false`: 切换到未选中状态|`Undefined`<br>`Boolean`|`undefined`|\n\n````html\n<div style=\"width:300px;\">\n    <ui-checkbox ref=\"demo2\" form-name=\"姓名\" :list=\"{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}\"></ui-checkbox>\n</div>\n<br>\n<a href=\"javascript:;\" onclick=\"javascript:morning.findVM('demo2').toggle('Tim');\">切换Tim至相反状态</a>\n<a href=\"javascript:;\" onclick=\"javascript:morning.findVM('demo2').toggle('Tim', true);\">切换Tim至选中</a>\n<a href=\"javascript:;\" onclick=\"javascript:morning.findVM('demo2').toggle('Tim', false);\">切换Tim至未选中</a>\n````\n\n[[[事件]]]\n\n````import\n@id:formEvent\n@uikey:checkbox\n@eventValue:['Tim', 'Andrew']\n@eventMoreAttr::list=\"{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}\"\n````\n\n[[[表单值]]]\n\n#### 值类型\n\n此表单返回值类型包含:\n\n- `Array` : 数组\n\n任何其他类型的数值，都会被转换成空数组(`[]`)。\n\n#### 值格式\n\n包含选中键值的无序数组。\n\n#### 默认值\n\n`[]`\n\n#### 输入/输出示例\n\n````html\n@formValueType:checkbox\n<div>\n    <p>{$valueType}类型</p>\n    <div style=\"width:300px;\">\n        <ui-checkbox ref=\"demoType{$valueType}\" :list=\"{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}\"></ui-checkbox>\n    </div>\n    <br>\n    <a href=\"javascript:;\" onclick=\"window.morning.findVM('demoType{$valueType}').set({$&valueContent})\">设置{$valueType}类型</a>\n    <a href=\"javascript:;\" onclick=\"alert(window.morning.findVM('demoType{$valueType}').get())\">获取表单JSON值</a>\n</div>\n<br>\n<br>\n````\n\n[[[单元测试]]]\n\n<iframe src=\"/report/coverage/lib/components/checkbox/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n\n")])])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -2413,4 +2432,4 @@ module.exports = exports['default'];
 
 /***/ })
 
-},[175]);
+},[177]);

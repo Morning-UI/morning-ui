@@ -1,5 +1,5 @@
 <template>
-    <i-checkbox
+    <i-radio
         :_uiid="uiid"
         :class="[styleClass, stateClass]"
 
@@ -17,7 +17,7 @@
     <div class="itemlist">
         <template v-for="(name, key) in conf.list">
 
-            <template v-if="data.value.indexOf(key) !== -1">
+            <template v-if="data.value === key">
                 <label
                     class="item checked"
                     :value="key"
@@ -52,16 +52,14 @@
         </template>
     </div>
 
-    </i-checkbox>
+    </i-radio>
 </template>
  
 <script>
-import extend                       from 'extend';
-import arrayUniq                    from 'array-uniq';
 import Form                         from 'Common/form';
 
 export default Form.extend({
-    name : 'checkbox',
+    name : 'radio',
     props : {
         acceptHtml : {
             type : Boolean,
@@ -85,48 +83,35 @@ export default Form.extend({
     },
     computed : {},
     methods : {
-        toggle : function (key, checked) {
+        toggle : function (key) {
 
-            let list = extend(true, [], this.data.value);
+            let keys = Object.keys(this.conf.list);
 
-            if (checked === undefined) {
+            if (keys.indexOf(String(key)) === -1) {
 
-                if (list.indexOf(key) !== -1) {
-                
-                    checked = false;
-                
-                } else {
-                
-                    checked = true;
-                
-                }
-            
-            }
+                this.set();
 
-            checked = !!checked;
+            } else {
 
-            if (checked) {
+                this.set(String(key));
 
-                list.push(key);
-            
-            } else if (list.indexOf(key) !== -1) {
-
-                list.splice(list.indexOf(key), 1);
-            
             }
             
-            this.set(arrayUniq(list));
-
         }
     },
     created : function () {
 
         this.$watch('data.value', newVal => {
 
-            if (typeof newVal !== 'object' ||
-                !(newVal instanceof Array)) {
+            if (newVal === undefined) {
 
-                this.data.value = [];
+                return;
+
+            }
+
+            if (Object.keys(this.conf.list).indexOf(String(newVal)) === -1) {
+
+                this.data.value = undefined;
 
             }
 
