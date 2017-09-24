@@ -54,6 +54,7 @@
     "vue": "^2.4.2"
   },
   "devDependencies": {
+    "autoprefixer": "^7.1.4",
     "ava": "^0.22.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
@@ -75,6 +76,7 @@
     "less": "^2.7.2",
     "less-loader": "^4.0.5",
     "nyc": "^11.2.1",
+    "postcss-less": "^1.1.0",
     "postcss-loader": "^2.0.6",
     "postcss-normalize": "^4.0.0",
     "require-extension-hooks": "^0.3.0",

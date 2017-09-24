@@ -75,6 +75,8 @@ let getDocsHtmlPlugin = async docsConf => {
 
 };
 
+
+
 commonConfig = {
     entry : './src/lib/index.js',
     plugins : [],
@@ -111,11 +113,14 @@ devVerConfig = extend(
                 {
                     test : /\.less$/,
                     use : extractDevCss.extract({
+                        fallback : 'vue-style-loader',
                         use : [{
                             loader : 'css-loader',
                             options : {
-                                importLoaders : 1
+                                importLoaders : 2
                             }
+                        }, {
+                            loader : 'less-loader'
                         }, {
                             loader : 'postcss-loader',
                             options : {
@@ -123,10 +128,7 @@ devVerConfig = extend(
                                     path : path.resolve(pathBuild, 'postcss.config.js')
                                 }
                             }
-                        }, {
-                            loader : 'less-loader'
-                        }],
-                        fallback : 'style-loader'
+                        }]
                     })
                 },
                 {
@@ -147,8 +149,10 @@ devVerConfig = extend(
                                 use : [{
                                     loader : 'css-loader',
                                     options : {
-                                        importLoaders : 1
+                                        importLoaders : 2
                                     }
+                                }, {
+                                    loader : 'less-loader'
                                 }, {
                                     loader : 'postcss-loader',
                                     options : {
@@ -156,7 +160,7 @@ devVerConfig = extend(
                                             path : path.resolve(pathBuild, 'postcss.config.js')
                                         }
                                     }
-                                }, 'less-loader']
+                                }]
                             })
                         }
                     }
@@ -200,14 +204,19 @@ prodVerConfig = extend(
                         use : [{
                             loader : 'css-loader',
                             options : {
-                                importLoaders : 1
+                                importLoaders : 3
                             }
                         }, {
                             loader : 'clean-css-loader'
                         }, {
-                            loader : 'postcss-loader'
-                        }, {
                             loader : 'less-loader'
+                        }, {
+                            loader : 'postcss-loader',
+                            options : {
+                                config : {
+                                    path : path.resolve(pathBuild, 'postcss.config.js')
+                                }
+                            }
                         }],
                         fallback : 'style-loader'
                     })
@@ -225,7 +234,26 @@ prodVerConfig = extend(
                     options : {
                         loaders : {
                             js : 'babel-loader',
-                            // ·
+                            less : extractDevCss.extract({
+                                fallback : 'vue-style-loader',
+                                use : [{
+                                    loader : 'css-loader',
+                                    options : {
+                                        importLoaders : 3
+                                    }
+                                }, {
+                                    loader : 'clean-css-loader'
+                                }, {
+                                    loader : 'less-loader'
+                                }, {
+                                    loader : 'postcss-loader',
+                                    options : {
+                                        config : {
+                                            path : path.resolve(pathBuild, 'postcss.config.js')
+                                        }
+                                    }
+                                }]
+                            })
                         }
                     }
                 },
@@ -335,6 +363,6 @@ getDocsHtmlPlugin(docsConfig);
 
 module.exports = [
     devVerConfig,
-    // prodVerConfig,
+    prodVerConfig,
     // docsConfig
 ];

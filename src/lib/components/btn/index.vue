@@ -66,10 +66,10 @@ export default UI.extend({
 
     },
     methods : {
-        _onClick : function (evt) {
+        _onClick : function () {
 
-            if ( this.state !== 'disabled' &&
-                 !this.data.lock ) {
+            if (this.state !== 'disabled' &&
+                !this.data.lock) {
 
                 this.$emit('emit');
 
@@ -95,7 +95,7 @@ export default UI.extend({
             this.data.lock = true;
             this.conf.state = 'loading';
 
-            if ( time ) {
+            if (time) {
 
                 setTimeout(() => {
 
@@ -117,11 +117,11 @@ export default UI.extend({
 
         this.data.lastState = this.conf.state;
 
-        if ( typeof this.locked === 'number' ) {
+        if (typeof this.locked === 'number') {
 
-            this.lock( +this.locked );
+            this.lock(+this.locked);
 
-        } else if ( this.locked === true ) {
+        } else if (this.locked === true) {
 
             this.lock();
 
@@ -155,4 +155,4 @@ export default UI.extend({
 });
 </script>
 
-<style lang="less" src="index.less"></style>
+<style lang="less" src="./index.less"></style>
