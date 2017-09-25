@@ -19,7 +19,7 @@
 
             <template v-if="data.value.indexOf(key) !== -1">
                 <label
-                    class="item checked"
+                    class="checked"
                     :value="key"
                     @click="toggle(key)"
                 >
@@ -35,7 +35,6 @@
 
             <template v-else>
                 <label 
-                    class="item"
                     :value="key"
                     @click="toggle(key)"
                 >

@@ -336,7 +336,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 156:
+/***/ 158:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -544,7 +544,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 223:
+/***/ 226:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -554,7 +554,7 @@ var _vue = __webpack_require__(1);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _index = __webpack_require__(89);
+var _index = __webpack_require__(90);
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -613,7 +613,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 282:
+/***/ 286:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -830,7 +830,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 526:
+/***/ 531:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -844,7 +844,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "type": "text/markdown"
     }
-  }, [_vm._v("\n# 更新日志\n\n### 说明\n\nMorningUI采用[语义化版本控制规范](http://semver.org/lang/zh-CN/)。\n\n同时采用以下三种标记标示不同的版本：\n\n- `Stable` : 稳定版本，各个功能都经过一段时间的测试，非常稳定，建议在生成环境使用。\n- `Beta` : 公开测试版本，里面包含了一些新的特性，相对较为稳定。\n- `Forerunner` : 先行者版本，包含大量新特性的版本，这个版本是实验性的，不适合用于生产环境。\n\n<!-- ### 1.0.0 <ui-badge class=\"circle\" s light-black>Stable</ui-badge> -->\n\n<!-- ### 0.11.0 <ui-badge class=\"circle\" s light-blue>Beta</ui-badge> -->\n\n<!-- ### 0.10.1 <ui-badge class=\"circle\" s light-theme>Forerunner</ui-badge> -->\n\n### 0.10.0 <ui-badge class=\"circle\" s light-theme>Forerunner</ui-badge>\n\n<ui-textcolor light-blue><ui-small>发布于2017年9月23日</ui-small></ui-textcolor>\n\nMorningUI第一个版本，基于HMP UI，规范了定义，实现部分组件。\n\n")])])
+  }, [_vm._v("\n# 更新日志\n\n### 说明\n\nMorningUI采用[语义化版本控制规范](http://semver.org/lang/zh-CN/)。\n\n同时采用以下三种标记标示不同的版本：\n\n- `Stable` : 稳定版本，各个功能都经过一段时间的测试，非常稳定，建议在生成环境使用。\n- `Beta` : 公开测试版本，里面包含了一些新的特性，相对较为稳定。\n- `Forerunner` : 先行者版本，包含大量新特性的版本，这个版本是实验性的，不适合用于生产环境。\n\n<!-- ### 1.0.0 <ui-badge class=\"circle\" s light-black>Stable</ui-badge> -->\n\n<!-- ### 0.11.0 <ui-badge class=\"circle\" s light-blue>Beta</ui-badge> -->\n\n<!-- ### 0.10.1 <ui-badge class=\"circle\" s light-theme>Forerunner</ui-badge> -->\n\n### 0.10.0 <ui-badge class=\"circle\" s light-theme>Forerunner</ui-badge>\n\n<ui-textcolor light-blue><ui-small>发布于2017年10月9日</ui-small></ui-textcolor>\n\nMorningUI第一个版本，基于HMP UI，规范了定义，实现部分组件。\n\n")])])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -2229,18 +2229,25 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 89:
+/***/ 9:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 90:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(156);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(158);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_79d69490_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(526);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_79d69490_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(531);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(282)
+  __webpack_require__(286)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
@@ -2283,13 +2290,6 @@ if (false) {(function () {
 /* harmony default export */ __webpack_exports__["default"] = (Component.exports);
 
 
-/***/ }),
-
-/***/ 9:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
 /***/ })
 
-},[223]);
+},[226]);

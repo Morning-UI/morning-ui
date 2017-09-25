@@ -1,4 +1,4 @@
-webpackJsonp([38],{
+webpackJsonp([39],{
 
 /***/ 0:
 /***/ (function(module, exports) {
@@ -175,7 +175,7 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 126:
+/***/ 127:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -727,7 +727,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 193:
+/***/ 195:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -883,7 +883,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 253:
+/***/ 256:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -953,35 +953,6 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 497:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('doc-component', {
-    attrs: {
-      "page": _vm.page,
-      "hasPadding": true
-    }
-  }, [_c('script', {
-    attrs: {
-      "type": "text/markdown"
-    }
-  }, [_vm._v("\n# 链接 `<ui-link>`\n\n<doc-component-status page=\"link\"></doc-component-status>\n\n[[[基础]]]\n\n定义一个链接，这是一个内联块元素。\n\n#### 使用\n\n````html\n<ui-link>链接</ui-link>\n````\n\n[[[声明]]]\n\n#### 支持\n\n|类型|支持|默认|\n|-|-|-|\n|尺寸|全部|`m`|\n|色彩|全部|`theme`|\n|状态|全部|`normal`|\n\n#### 尺寸\n\n````html\n@size\n<ui-link {$sizeKey}>{$&sizeName}</ui-link>\n````\n\n````html\n@size\n<ui-link {$sizeKey} loading>{$&sizeName}</ui-link>\n````\n\n#### 色彩\n\n````html\n@color:theme\n@color:feature\n@color:black\n@color:blue\n@color:silver\n@color:gray\n<ui-link {$colorKey}>{$&colorName}</ui-link>\n````\n\n#### 状态\n\n````html\n@state|@br:2|@color:theme\n@state|@br:2|@color:feature\n@state|@br:2|@color:black\n@state|@br:2|@color:blue\n@state|@br:2|@color:silver\n@state|@br:2|@color:gray\n<ui-link {$stateKey} {$colorKey}>{$&stateName}</ui-link>\n````\n\n[[[配置]]]\n\n|KEY|描述|接受值|值类型|默认值|\n|-|-|-|\n|link|链接地址，若为空则不跳转|url地址|String|`''`|\n|js|点击后执行JS逻辑|JS代码|String|`''`|\n|locked|锁定模式，用来防止组件在短时间内被重复触发。若设置一个时间数值(ms)，该组件在时间内只触发一次。也可设为`true`，触发后需要通过`unlock()`方法来解锁组件。|`true`<br>`false`<br>数值(单位ms)|Number<br>Boolean|`false`|\n|new-tab|是否在新窗口中打开链接|`true`<br>`false`|Boolean|`false`|\n\n#### link\n\n````html\n<ui-link :link=\"'http://www.google.com'\">链接</ui-link>\n````\n\n#### js\n\n````html\n<ui-link :js=\"'alert(\"hello.\")'\">执行JS</ui-link>\n````\n\n#### locked\n\n````html\n<ui-link :locked=\"3000\">3秒后自动解锁</ui-link>\n````\n\n````html\n<ui-link ref=\"demo1\" locked>手动解锁</ui-link>\n<a href=\"javascript:;\" onclick=\"javascript:morning.findVM('demo1').unlock();\">解锁</a>\n````\n\n#### new-tab\n\n````html\n<ui-link new-tab :link=\"'http://www.google.com'\">新窗口打开链接</ui-link>\n````\n\n[[[方法]]]\n\n#### lock([time])\n\n锁定按钮，锁定后按钮不会触发`emit`事件。\n\n|KEY|可选|描述|接受值|值类型|默认值|\n|-|-|-|-|-|-|\n|time|YES|解锁的时间，单位ms。设置后组件将在解锁时间后自动解锁，不设置则需要调用`unlock()`方法解锁|`undefined`<br>数值(单位ms)|`Undefined`<br>`Number`|`undefined`|\n\n````html\n<ui-link ref=\"demo2\">按钮</ui-link>\n<br><br> \n<a href=\"javascript:;\" onclick=\"javascript:morning.findVM('demo2').lock();\">锁定</a>\n<a href=\"javascript:;\" onclick=\"javascript:morning.findVM('demo2').lock(2000);\">锁定2s</a>\n<a href=\"javascript:;\" onclick=\"javascript:morning.findVM('demo2').unlock();\">解锁</a>\n````\n\n#### unlock()\n\n解锁按钮，解锁后按钮可触发`emit`事件。\n\n````html\n<ui-link ref=\"demo3\" locked>按钮</ui-link>\n<br><br> \n<a href=\"javascript:;\" onclick=\"javascript:morning.findVM('demo3').unlock();\">解锁</a>\n````\n\n[[[事件]]]\n\n#### emit\n\n当按钮被点击时触发。\n\n````mixin\n@use:html.demo3,js.demo3\n````\n\n````html\n@var:demo3\n<div>\n    <ui-link @emit=\"echo\">点击触发emit事件</ui-link>\n</div>\n````\n\n````js\n@var:demo3\nnew Vue({\n    el : '{$el}',\n    template : '{$template}',\n    methods : {\n        echo : function () {\n            console.log('demo3.console1', 'emit event!');\n        }\n    }\n});\n````\n\n#### 生命周期事件\n\n````mixin\n@use:html.demoEventLifecycle,js.demoEventLifecycle\n````\n\n````html\n@var:demoEventLifecycle\n<div>\n    <ui-link\n        ref=\"demoEventLifecycle\"\n        v-show=\"show\"\n        @created=\"echo('created')\"\n        @mounted=\"echo('mounted')\"\n        @beforeUpdate=\"echo('beforeUpdate')\"\n        @updated=\"echo('updated')\"\n        @beforeDestroy=\"echo('beforeDestroy')\"\n        @destroyed=\"echo('destroyed')\"\n    >{%text%}</ui-link>\n\n    <br><br>\n\n    <a href=\"javascript:;\" onclick=\"javascript:window.demoEventLifecycle.text='生命周期事件';\">触发update</a>\n    <a href=\"javascript:;\" onclick=\"javascript:morning.findVM('demoEventLifecycle').$destroy();\">触发destroy</a>\n</div>\n````\n\n````js\n@var:demoEventLifecycle\nwindow.demoEventLifecycle = new Vue({\n    el : '{$el}',\n    template : '{$template}',\n    data : function () {\n        return {\n           text : '链接',\n           show : true\n        };\n    },\n    methods : {\n        echo : function (name) {\n            console.log('demoEventLifecycle.console1', `${name} event!`);\n        }\n    }\n});\n````\n\n[[[单元测试]]]\n\n<iframe src=\"/report/coverage/lib/components/link/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n")])])
-}
-var staticRenderFns = []
-render._withStripped = true
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-31af577a", esExports)
-  }
-}
-
-/***/ }),
-
 /***/ 5:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1042,18 +1013,47 @@ if (false) {
 
 /***/ }),
 
+/***/ 501:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('doc-component', {
+    attrs: {
+      "page": _vm.page,
+      "hasPadding": true
+    }
+  }, [_c('script', {
+    attrs: {
+      "type": "text/markdown"
+    }
+  }, [_vm._v("\n# 链接 `<ui-link>`\n\n<doc-component-status page=\"link\"></doc-component-status>\n\n[[[基础]]]\n\n定义一个链接，这是一个内联块元素。\n\n#### 使用\n\n````html\n<ui-link>链接</ui-link>\n````\n\n[[[声明]]]\n\n#### 支持\n\n|类型|支持|默认|\n|-|-|-|\n|尺寸|全部|`m`|\n|色彩|全部|`theme`|\n|状态|全部|`normal`|\n\n#### 尺寸\n\n````html\n@size\n<ui-link {$sizeKey}>{$&sizeName}</ui-link>\n````\n\n````html\n@size\n<ui-link {$sizeKey} loading>{$&sizeName}</ui-link>\n````\n\n#### 色彩\n\n````html\n@color:theme\n@color:feature\n@color:black\n@color:blue\n@color:silver\n@color:gray\n<ui-link {$colorKey}>{$&colorName}</ui-link>\n````\n\n#### 状态\n\n````html\n@state|@br:2|@color:theme\n@state|@br:2|@color:feature\n@state|@br:2|@color:black\n@state|@br:2|@color:blue\n@state|@br:2|@color:silver\n@state|@br:2|@color:gray\n<ui-link {$stateKey} {$colorKey}>{$&stateName}</ui-link>\n````\n\n[[[配置]]]\n\n|KEY|描述|接受值|值类型|默认值|\n|-|-|-|\n|link|链接地址，若为空则不跳转|url地址|String|`''`|\n|js|点击后执行JS逻辑|JS代码|String|`''`|\n|locked|锁定模式，用来防止组件在短时间内被重复触发。若设置一个时间数值(ms)，该组件在时间内只触发一次。也可设为`true`，触发后需要通过`unlock()`方法来解锁组件。|`true`<br>`false`<br>数值(单位ms)|Number<br>Boolean|`false`|\n|new-tab|是否在新窗口中打开链接|`true`<br>`false`|Boolean|`false`|\n\n#### link\n\n````html\n<ui-link :link=\"'http://www.google.com'\">链接</ui-link>\n````\n\n#### js\n\n````html\n<ui-link :js=\"'alert(\"hello.\")'\">执行JS</ui-link>\n````\n\n#### locked\n\n````html\n<ui-link :locked=\"3000\">3秒后自动解锁</ui-link>\n````\n\n````html\n<ui-link ref=\"demo1\" locked>手动解锁</ui-link>\n<a href=\"javascript:;\" onclick=\"javascript:morning.findVM('demo1').unlock();\">解锁</a>\n````\n\n#### new-tab\n\n````html\n<ui-link new-tab :link=\"'http://www.google.com'\">新窗口打开链接</ui-link>\n````\n\n[[[方法]]]\n\n#### lock([time])\n\n锁定按钮，锁定后按钮不会触发`emit`事件。\n\n|KEY|可选|描述|接受值|值类型|默认值|\n|-|-|-|-|-|-|\n|time|YES|解锁的时间，单位ms。设置后组件将在解锁时间后自动解锁，不设置则需要调用`unlock()`方法解锁|`undefined`<br>数值(单位ms)|`Undefined`<br>`Number`|`undefined`|\n\n````html\n<ui-link ref=\"demo2\">按钮</ui-link>\n<br><br> \n<a href=\"javascript:;\" onclick=\"javascript:morning.findVM('demo2').lock();\">锁定</a>\n<a href=\"javascript:;\" onclick=\"javascript:morning.findVM('demo2').lock(2000);\">锁定2s</a>\n<a href=\"javascript:;\" onclick=\"javascript:morning.findVM('demo2').unlock();\">解锁</a>\n````\n\n#### unlock()\n\n解锁按钮，解锁后按钮可触发`emit`事件。\n\n````html\n<ui-link ref=\"demo3\" locked>按钮</ui-link>\n<br><br> \n<a href=\"javascript:;\" onclick=\"javascript:morning.findVM('demo3').unlock();\">解锁</a>\n````\n\n[[[事件]]]\n\n#### emit\n\n当按钮被点击时触发。\n\n````mixin\n@use:html.demo3,js.demo3\n````\n\n````html\n@var:demo3\n<div>\n    <ui-link @emit=\"echo\">点击触发emit事件</ui-link>\n</div>\n````\n\n````js\n@var:demo3\nnew Vue({\n    el : '{$el}',\n    template : '{$template}',\n    methods : {\n        echo : function () {\n            console.log('demo3.console1', 'emit event!');\n        }\n    }\n});\n````\n\n#### 生命周期事件\n\n````mixin\n@use:html.demoEventLifecycle,js.demoEventLifecycle\n````\n\n````html\n@var:demoEventLifecycle\n<div>\n    <ui-link\n        ref=\"demoEventLifecycle\"\n        v-show=\"show\"\n        @created=\"echo('created')\"\n        @mounted=\"echo('mounted')\"\n        @beforeUpdate=\"echo('beforeUpdate')\"\n        @updated=\"echo('updated')\"\n        @beforeDestroy=\"echo('beforeDestroy')\"\n        @destroyed=\"echo('destroyed')\"\n    >{%text%}</ui-link>\n\n    <br><br>\n\n    <a href=\"javascript:;\" onclick=\"javascript:window.demoEventLifecycle.text='生命周期事件';\">触发update</a>\n    <a href=\"javascript:;\" onclick=\"javascript:morning.findVM('demoEventLifecycle').$destroy();\">触发destroy</a>\n</div>\n````\n\n````js\n@var:demoEventLifecycle\nwindow.demoEventLifecycle = new Vue({\n    el : '{$el}',\n    template : '{$template}',\n    data : function () {\n        return {\n           text : '链接',\n           show : true\n        };\n    },\n    methods : {\n        echo : function (name) {\n            console.log('demoEventLifecycle.console1', `${name} event!`);\n        }\n    }\n});\n````\n\n[[[单元测试]]]\n\n<iframe src=\"/report/coverage/lib/components/link/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n")])])
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-31af577a", esExports)
+  }
+}
+
+/***/ }),
+
 /***/ 59:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(126);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(127);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_31af577a_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(497);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_31af577a_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(501);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(253)
+  __webpack_require__(256)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
@@ -2475,4 +2475,4 @@ module.exports = exports['default'];
 
 /***/ })
 
-},[193]);
+},[195]);

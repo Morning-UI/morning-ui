@@ -2001,7 +2001,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
-//
 
 var _extend = __webpack_require__(3);
 
@@ -3282,7 +3281,6 @@ exports.default = _form2.default.extend({
     },
     mounted: function mounted() {}
 }); //
-//
 //
 //
 //
@@ -9533,7 +9531,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     staticClass: "itemlist"
   }, [_vm._l((_vm.conf.list), function(name, key) {
     return [(_vm.data.value === key) ? [_c('label', {
-      staticClass: "item checked",
+      staticClass: "checked",
       attrs: {
         "value": key
       },
@@ -9551,7 +9549,6 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
         "innerHTML": _vm._s(name)
       }
     })] : [_c('span', [_vm._v(_vm._s(name))])]], 2)] : [_c('label', {
-      staticClass: "item",
       attrs: {
         "value": key
       },
@@ -9702,7 +9699,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     staticClass: "itemlist"
   }, [_vm._l((_vm.conf.list), function(name, key) {
     return [(_vm.data.value.indexOf(key) !== -1) ? [_c('label', {
-      staticClass: "item checked",
+      staticClass: "checked",
       attrs: {
         "value": key
       },
@@ -9720,7 +9717,6 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
         "innerHTML": _vm._s(name)
       }
     })] : [_c('span', [_vm._v(_vm._s(name))])]], 2)] : [_c('label', {
-      staticClass: "item",
       attrs: {
         "value": key
       },
