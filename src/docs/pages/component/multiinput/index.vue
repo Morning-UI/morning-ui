@@ -4,39 +4,29 @@
         :hasPadding="true"
     >
     <script type="text/markdown">
-    # 文本输入框 `<ui-textinput>`
+    # 多项输入框 `<ui-multiinput>`
     
-    <doc-component-status page="textinput"></doc-component-status>
+    <doc-component-status page="multiinput"></doc-component-status>
     
     [[[基础]]]
 
-    定义文本输入框。
+    定义多项输入框。
 
     #### 使用
 
     ````html
     <div style="width:300px;">
-        <ui-textinput form-name="姓名"></ui-textinput>
+        <ui-multiinput form-name="输入标签"></ui-multiinput>
     </div>
     ````
 
-    #### 支持前缀、后缀
+    #### 说明回车输入
+
+    多项输入框会在用户按下回车时添加项目，在使用时建议说明使用回车输入。
 
     ````html
     <div style="width:300px;">
-        <ui-textinput form-name="姓名" prepend="@"></ui-textinput>
-    </div>
-    ````
-
-    ````html
-    <div style="width:300px;">
-        <ui-textinput form-name="百分比" append="%"></ui-textinput>
-    </div>
-    ````
-
-    ````html
-    <div style="width:300px;">
-        <ui-textinput form-name="价格" prepend="价格" append="元"></ui-textinput>
+        <ui-multiinput form-name="按下回车输入标签"></ui-multiinput>
     </div>
     ````
 
@@ -44,10 +34,10 @@
 
     ````import
     @id:formStatement
-    @uikey:textinput
-    @statementDefaultValue:''
+    @uikey:multiinput
+    @statementDefaultValue:['value1', 'value2']
     ````
-    
+
     [[[配置]]]
 
     |KEY|描述|接受值|值类型|默认值|
@@ -55,97 +45,27 @@
     ````import
     @id:formConfigTable
     ````
-    |hide-value|表单的数值不可见，一般用于密码表单|`true`<br>`false`|Boolean|`false`|
-    |prepend|表单前缀|任意字符串|String|`undefined`|
-    |append|表单后缀|任意字符串|String|`undefined`|
+    |can-move|输入项目是否可以移动|`true`<br>`false`|Boolean|`false`|
+    |max|可输入的最大项数|数字<br>`false`:不限制数量|String<br>Boolean|`false`|
 
     ````import
     @id:formConfigDemo
-    @uikey:textinput
-    @configDefaultValue:'默认值'
+    @uikey:multiinput
+    @configDefaultValue:['value1', 'value2']
     ````
 
-    #### hide-value
-    
-    隐藏数值后表单的值在界面中不可见。
+    #### can-move
 
     ````html
     <div style="width:300px;">
-        <ui-textinput hide-value default-value="this is password"></ui-textinput>
+        <ui-multiinput form-name="输入标签" :default-value="['value1', 'value2']" can-move></ui-multiinput>
     </div>
     ````
 
-    #### prepend
-
-    ````html
-    <div style="width:300px;">
-        <ui-textinput form-name="姓名" prepend="@"></ui-textinput>
-    </div>
-    ````
-
-    #### append
-
-    ````html
-    <div style="width:300px;">
-        <ui-textinput form-name="百分比" append="%"></ui-textinput>
-    </div>
-    ````
-
-    [[[方法]]]
-
-    ````import
-    @id:formMethod
-    @uikey:textinput
-    @methodValue:'Jim'
-    @methodDefaultValue:'Jim'
-    ````
-
-    [[[事件]]]
-
-    ````import
-    @id:formEvent
-    @uikey:textinput
-    @eventValue:'Jim'
-    ````
-
-    [[[表单值]]]
-
-    #### 值类型
-
-    此表单返回值类型包含:
-
-    - `String` : 字符串
-
-    任何其他类型的数值，都会被尝试转换成这些类型。
-
-    #### 值格式
-
-    内容值字符串。
-
-    #### 默认值
-
-    `''`
-
-    #### 输入/输出示例
-
-    ````html
-    @formValueType
-    <div>
-        <p>{$valueType}类型</p>
-        <div style="width:300px;">
-            <ui-textinput ref="demoType{$valueType}"></ui-textinput>
-        </div>
-        <br>
-        <a href="javascript:;" onclick="window.morning.findVM('demoType{$valueType}').set({$&valueContent})">设置{$valueType}类型</a>
-        <a href="javascript:;" onclick="alert(window.morning.findVM('demoType{$valueType}').get())">获取表单JSON值</a>
-    </div>
-    <br>
-    <br>
-    ````
 
     [[[单元测试]]]
 
-    <iframe src="/report/coverage/lib/components/textinput/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
+    <iframe src="/report/coverage/lib/components/multiinput/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
 
     </script>
     </doc-component>
@@ -158,7 +78,7 @@ export default {
     data : function () {
 
         return {
-            page : 'textinput'
+            page : 'multiinput'
         };
 
     },

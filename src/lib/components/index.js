@@ -50,6 +50,7 @@ import textarea                     from './textarea/index.vue';
 import _switch                      from './switch/index.vue';
 import checkbox                     from './checkbox/index.vue';
 import radio                        from './radio/index.vue';
+import multiinput                   from './multiinput/index.vue';
 
 export default {
     h,
@@ -99,5 +100,6 @@ export default {
     textarea,
     switch : _switch,
     checkbox,
-    radio
+    radio,
+    multiinput
 };

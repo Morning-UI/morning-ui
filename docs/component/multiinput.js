@@ -251,93 +251,13 @@ exports.default = {
     data: function data() {
 
         return {
-            page: 'textinput'
+            page: 'multiinput'
         };
     },
     components: {
         'doc-component': _DocComponent2.default
     }
 }; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -965,7 +885,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "type": "text/markdown"
     }
-  }, [_vm._v("\n# 文本输入框 `<ui-textinput>`\n\n<doc-component-status page=\"textinput\"></doc-component-status>\n\n[[[基础]]]\n\n定义文本输入框。\n\n#### 使用\n\n````html\n<div style=\"width:300px;\">\n    <ui-textinput form-name=\"姓名\"></ui-textinput>\n</div>\n````\n\n#### 支持前缀、后缀\n\n````html\n<div style=\"width:300px;\">\n    <ui-textinput form-name=\"姓名\" prepend=\"@\"></ui-textinput>\n</div>\n````\n\n````html\n<div style=\"width:300px;\">\n    <ui-textinput form-name=\"百分比\" append=\"%\"></ui-textinput>\n</div>\n````\n\n````html\n<div style=\"width:300px;\">\n    <ui-textinput form-name=\"价格\" prepend=\"价格\" append=\"元\"></ui-textinput>\n</div>\n````\n\n[[[声明]]]\n\n````import\n@id:formStatement\n@uikey:textinput\n@statementDefaultValue:''\n````\n\n[[[配置]]]\n\n|KEY|描述|接受值|值类型|默认值|\n|-|-|-|\n````import\n@id:formConfigTable\n````\n|hide-value|表单的数值不可见，一般用于密码表单|`true`<br>`false`|Boolean|`false`|\n|prepend|表单前缀|任意字符串|String|`undefined`|\n|append|表单后缀|任意字符串|String|`undefined`|\n\n````import\n@id:formConfigDemo\n@uikey:textinput\n@configDefaultValue:'默认值'\n````\n\n#### hide-value\n\n隐藏数值后表单的值在界面中不可见。\n\n````html\n<div style=\"width:300px;\">\n    <ui-textinput hide-value default-value=\"this is password\"></ui-textinput>\n</div>\n````\n\n#### prepend\n\n````html\n<div style=\"width:300px;\">\n    <ui-textinput form-name=\"姓名\" prepend=\"@\"></ui-textinput>\n</div>\n````\n\n#### append\n\n````html\n<div style=\"width:300px;\">\n    <ui-textinput form-name=\"百分比\" append=\"%\"></ui-textinput>\n</div>\n````\n\n[[[方法]]]\n\n````import\n@id:formMethod\n@uikey:textinput\n@methodValue:'Jim'\n@methodDefaultValue:'Jim'\n````\n\n[[[事件]]]\n\n````import\n@id:formEvent\n@uikey:textinput\n@eventValue:'Jim'\n````\n\n[[[表单值]]]\n\n#### 值类型\n\n此表单返回值类型包含:\n\n- `String` : 字符串\n\n任何其他类型的数值，都会被尝试转换成这些类型。\n\n#### 值格式\n\n内容值字符串。\n\n#### 默认值\n\n`''`\n\n#### 输入/输出示例\n\n````html\n@formValueType\n<div>\n    <p>{$valueType}类型</p>\n    <div style=\"width:300px;\">\n        <ui-textinput ref=\"demoType{$valueType}\"></ui-textinput>\n    </div>\n    <br>\n    <a href=\"javascript:;\" onclick=\"window.morning.findVM('demoType{$valueType}').set({$&valueContent})\">设置{$valueType}类型</a>\n    <a href=\"javascript:;\" onclick=\"alert(window.morning.findVM('demoType{$valueType}').get())\">获取表单JSON值</a>\n</div>\n<br>\n<br>\n````\n\n[[[单元测试]]]\n\n<iframe src=\"/report/coverage/lib/components/textinput/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n\n")])])
+  }, [_vm._v("\n# 多项输入框 `<ui-multiinput>`\n\n<doc-component-status page=\"multiinput\"></doc-component-status>\n\n[[[基础]]]\n\n定义多项输入框。\n\n#### 使用\n\n````html\n<div style=\"width:300px;\">\n    <ui-multiinput form-name=\"输入标签\"></ui-multiinput>\n</div>\n````\n\n#### 说明回车输入\n\n多项输入框会在用户按下回车时添加项目，在使用时建议说明使用回车输入。\n\n````html\n<div style=\"width:300px;\">\n    <ui-multiinput form-name=\"按下回车输入标签\"></ui-multiinput>\n</div>\n````\n\n[[[声明]]]\n\n````import\n@id:formStatement\n@uikey:multiinput\n@statementDefaultValue:['value1', 'value2']\n````\n\n[[[配置]]]\n\n|KEY|描述|接受值|值类型|默认值|\n|-|-|-|\n````import\n@id:formConfigTable\n````\n|can-move|输入项目是否可以移动|`true`<br>`false`|Boolean|`false`|\n|max|可输入的最大项数|数字<br>`false`:不限制数量|String<br>Boolean|`false`|\n\n````import\n@id:formConfigDemo\n@uikey:multiinput\n@configDefaultValue:['value1', 'value2']\n````\n\n#### can-move\n\n````html\n<div style=\"width:300px;\">\n    <ui-multiinput form-name=\"输入标签\" :default-value=\"['value1', 'value2']\" can-move></ui-multiinput>\n</div>\n````\n\n\n[[[单元测试]]]\n\n<iframe src=\"/report/coverage/lib/components/multiinput/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n\n")])])
 }
 var staticRenderFns = []
 render._withStripped = true
