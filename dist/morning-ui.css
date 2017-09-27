@@ -91,6 +91,9 @@ summary {
     transform: rotate(0deg);
   }
 }
+.move-drag-item {
+  position: fixed !important;
+}
 
 i-h {
   display: block;
@@ -6273,6 +6276,20 @@ i-multiinput > .itemlist > .item > i.morningicon {
 }
 i-multiinput > .itemlist > .item > i.morningicon:hover {
   color: #EB0E23 !important;
+}
+i-multiinput > .itemlist > .item.move-moving {
+  opacity: 0.5;
+}
+i-multiinput > .itemlist > .item.move-drag-item {
+  opacity: 1;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.35);
+  max-width: none;
+  z-index: 9;
+}
+i-multiinput > .itemlist > .item.move-drag-item:hover {
+  cursor: move;
+  color: #303C4B !important;
+  background: #dedede;
 }
 i-multiinput > .itemlist > input {
   padding: 0.2em;

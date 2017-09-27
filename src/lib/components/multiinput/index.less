@@ -66,23 +66,22 @@ i-multiinput{
                 }
             }
 
-            // &.moving{
-            //     opacity: 0.2;
-            // }
+            &.move-moving{
+                opacity: 0.5;
+            }
 
-            // &.movingBlock {
-            //     opacity: 1;
-            //     position: absolute;
-            //     box-shadow: 0 0 2px rgba(0, 0, 0, 0.35);
-            //     max-width: none;
-            //     z-index: 9;
+            &.move-drag-item {
+                opacity: 1;
+                box-shadow: 0 0 2px rgba(0, 0, 0, 0.35);
+                max-width: none;
+                z-index: 9;
 
-            //     &:hover{
-            //         cursor: move;
-            //         color: @colorLightBlack !important;
-            //         background: darken(@colorGray, 3%);
-            //     }
-            // }
+                &:hover{
+                    cursor: move;
+                    color: @colorLightBlack !important;
+                    background: darken(@colorGray, 3%);
+                }
+            }
         }
 
         >input{

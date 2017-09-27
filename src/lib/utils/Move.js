@@ -1,14 +1,27 @@
+import arrayUniq                    from 'array-uniq';
+
 let Move = {
     data : function () {
 
         return {
             Move : {
                 can : false,
-                $target : null,
-                $container : null,
-                $moveItem : null,
-                initTimeout : null,
-                moveInitXy : {
+                target : null,
+                container : null,
+                lastMousedownIndex : -1,
+                movedIndex : -1,
+                $moveDragItem : null,
+                // startTimeout : null,
+                moving : false,
+                moveMouseFrom : {
+                    x : 0,
+                    y : 0
+                },
+                moveItemXy : {
+                    x : 0,
+                    y : 0
+                },
+                current : {
                     x : 0,
                     y : 0
                 }
@@ -26,55 +39,185 @@ let Move = {
         }
     },
     methods : {
-        _moveStart : function (evt) {
-                console.log(evt);
-            
-            const initTimeout = 200;
+        _moveItemRecord : function (index) {
 
-            let $moveItem;
+            this.lastMousedownIndex = index;
+
+        },
+        _moveStart : function (evt) {
+            
+            // const startTimeout = 200;
+
+            let $targets = this.$el.querySelectorAll(this.Move.target);
+            let found = false;
 
             for (let $node of evt.path) {
 
-                if (this.Move.$target.indexOf($node) !== -1) {
+                for (let $value of $targets.values()) {
 
-                    $moveItem = $node;
+                    if ($value === $node) {
 
+                        found = true;
+
+                        break;
+
+                    }
+
+                }
+
+                if (found) {
+                    
                     break;
 
                 }
 
             }
 
-            this.Move.initTimeout = setTimeout(() => {
+            if (found) {
 
-                this.Move.$moveItem = $moveItem;
-                this.Move.moveInitXy.x = evt.clientX;
-                this.Move.moveInitXy.y = evt.clientY;
+
+                let $target = this.$el.querySelectorAll(`${this.Move.container} ${this.Move.target}`)[this.lastMousedownIndex];
+                let $container = this.$el.querySelector(this.Move.container);
+                
+                $target.classList.add('move-moving');
+                
+                let $moveDragItem = $target.cloneNode(true);
+                let {x, y} = this._moveElementXy($target);
+                
+                $moveDragItem.classList.add('move-drag-item');
+                $moveDragItem.style.top = `${y}px`;
+                $moveDragItem.style.left = `${x}px`;
+                $container.append($moveDragItem);
+
+                this.Move.movedIndex = this.lastMousedownIndex;
+                this.Move.moveMouseFrom.x = evt.clientX;
+                this.Move.moveMouseFrom.y = evt.clientY;
+                this.Move.moveItemXy.x = x;
+                this.Move.moveItemXy.y = y;
+                this.Move.$moveDragItem = $moveDragItem;
+                this.Move.moving = true;
+
                 this.$emit('_moveStarted');
 
-                // this._blurInput();
-            
-            }, initTimeout);
+            }
 
         },
-        _moveMousemove : function () {},
-        _moveMouseup : function () {}
+        _moveMousemove : function (evt) {
+
+            if (this.Move.moving === false) {
+
+                return;
+
+            }
+
+            let x = evt.clientX - this.Move.moveMouseFrom.x + this.Move.moveItemXy.x;
+            let y = evt.clientY - this.Move.moveMouseFrom.y + this.Move.moveItemXy.y;
+
+            this.Move.$moveDragItem.style.top = `${y}px`;
+            this.Move.$moveDragItem.style.left = `${x}px`;
+            this.Move.current.x = x;
+            this.Move.current.y = y;
+
+            this.$emit('_moveChange');
+
+        },
+        _moveMouseup : function () {
+
+            // clearTimeout(this.Move.startTimeout);
+
+            if (!this.Move.moving) {
+
+                return;
+
+            }
+
+            let $target = this.$el.querySelector(`.move-moving`);
+
+            if ($target) {
+
+                $target.classList.remove('move-moving');
+
+            }
+
+            this.Move.movedIndex = -1;
+            this.Move.lastMousedownIndex = -1;
+            this.Move.$moveDragItem.remove();
+            this.Move.$moveDragItem = null;
+            this.Move.moving = false;
+
+            this.$emit('_moveEnded');
+
+        },
+        _moveAddGlobalListener : function () {
+
+            this.morning._moveListener.push(this.uiid);
+            this.morning._moveListener = arrayUniq(this.morning._moveListener);
+
+            if (this.morning._moveListener.length > 0) {
+
+                document.addEventListener('mousemove', this._moveMousemove);
+                document.addEventListener('mouseup', this._moveMouseup);
+
+            }
+
+        },
+        _moveRemoveGlobalListener : function () {
+
+            let index = this.morning._moveListener.indexOf(this.uiid);
+
+            if (index !== -1) {
+
+                this.morning._moveListener.splice(index, 1);
+
+            }
+
+            if (this.morning._moveListener.length === 0) {
+
+                document.addEventListener('mousemove', this._moveMousemove);
+                document.addEventListener('mouseup', this._moveMouseup);
+            
+            }
+        
+        },
+        _moveElementXy : function ($ele) {
+
+            let client = $ele.getBoundingClientRect();
+            let marginLeft = $ele.ownerDocument.defaultView.getComputedStyle($ele).marginLeft;
+            let marginTop = $ele.ownerDocument.defaultView.getComputedStyle($ele).marginTop;
+
+            marginLeft = +marginLeft.split('px')[0];
+            marginTop = +marginTop.split('px')[0];
+
+            let x = client.left - marginLeft;
+            let y = client.top - marginTop;
+
+            return {
+                x,
+                y
+            };
+
+        }
     },
     mounted : function () {
 
         this.$watch('Move.can', newVal => {
 
+            let $container = this.$el.querySelector(this.Move.container);
+
             if (newVal) {
                 
-                this.Move.$container.addEventListener('mousedown', this._moveStart);
-                document.addEventListener('mousemove', this._moveMousemove);
-                document.addEventListener('mouseup', this._moveMouseup);
+                $container.addEventListener('mousedown', this._moveStart);
+                this._moveAddGlobalListener();
 
             } else {
 
-                this.Move.$container.removeEventListener('mousedown', this._initMoveItem);
-                document.removeEventListener('mousemove', this._moveMousemove);
-                document.removeEventListener('mouseup', this._moveMouseup);
+                if ($container) {
+
+                    $container.removeEventListener('mousedown', this._initMoveItem);
+
+                }
+
+                this._moveRemoveGlobalListener();
 
             }
 
@@ -83,13 +226,33 @@ let Move = {
         });
 
     },
+    updated : function () {
+
+        let $oldTarget = this.$el.querySelector(`${this.Move.target}.move-moving:not(.move-drag-item)`);
+        let $newTarget = this.$el.querySelectorAll(`${this.Move.target}:not(.move-drag-item)`)[this.Move.movedIndex];
+
+        if ($oldTarget) {
+
+            $oldTarget.classList.remove('move-moving');
+
+        }
+
+        if ($newTarget) {
+            
+            $newTarget.classList.add('move-moving');
+
+        }
+
+    },
     beforeDestroy : function () {
 
-        clearTimeout(this.Move.initTimeout);
-        document.removeEventListener('mousemove', this._moveMousemove);
-        document.removeEventListener('mouseup', this._moveMouseup);
+        // clearTimeout(this.Move.startTimeout);
+
+        this._moveRemoveGlobalListener();
 
     }
 };
 
 export default Move;
+
+// css: moving:moved movingBlock:moving

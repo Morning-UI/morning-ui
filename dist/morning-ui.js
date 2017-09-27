@@ -827,6 +827,76 @@ module.exports = Vue;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+/* WEBPACK VAR INJECTION */(function(global) {
+
+// there's 3 implementations written in increasing order of efficiency
+
+// 1 - no Set type is defined
+function uniqNoSet(arr) {
+	var ret = [];
+
+	for (var i = 0; i < arr.length; i++) {
+		if (ret.indexOf(arr[i]) === -1) {
+			ret.push(arr[i]);
+		}
+	}
+
+	return ret;
+}
+
+// 2 - a simple Set type is defined
+function uniqSet(arr) {
+	var seen = new Set();
+	return arr.filter(function (el) {
+		if (!seen.has(el)) {
+			seen.add(el);
+			return true;
+		}
+
+		return false;
+	});
+}
+
+// 3 - a standard Set type is defined and it has a forEach method
+function uniqSetWithForEach(arr) {
+	var ret = [];
+
+	(new Set(arr)).forEach(function (el) {
+		ret.push(el);
+	});
+
+	return ret;
+}
+
+// V8 currently has a broken implementation
+// https://github.com/joyent/node/issues/8449
+function doesForEachActuallyWork() {
+	var ret = false;
+
+	(new Set([true])).forEach(function (el) {
+		ret = el;
+	});
+
+	return ret === true;
+}
+
+if ('Set' in global) {
+	if (typeof Set.prototype.forEach === 'function' && doesForEachActuallyWork()) {
+		module.exports = uniqSetWithForEach;
+	} else {
+		module.exports = uniqSet;
+	}
+} else {
+	module.exports = uniqNoSet;
+}
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(208)))
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 
 
 Object.defineProperty(exports, "__esModule", {
@@ -882,7 +952,7 @@ exports.default = PopupManager;
 module.exports = exports['default'];
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1144,76 +1214,6 @@ exports.default = {
     multiinput: _index98.default
 };
 module.exports = exports['default'];
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(global) {
-
-// there's 3 implementations written in increasing order of efficiency
-
-// 1 - no Set type is defined
-function uniqNoSet(arr) {
-	var ret = [];
-
-	for (var i = 0; i < arr.length; i++) {
-		if (ret.indexOf(arr[i]) === -1) {
-			ret.push(arr[i]);
-		}
-	}
-
-	return ret;
-}
-
-// 2 - a simple Set type is defined
-function uniqSet(arr) {
-	var seen = new Set();
-	return arr.filter(function (el) {
-		if (!seen.has(el)) {
-			seen.add(el);
-			return true;
-		}
-
-		return false;
-	});
-}
-
-// 3 - a standard Set type is defined and it has a forEach method
-function uniqSetWithForEach(arr) {
-	var ret = [];
-
-	(new Set(arr)).forEach(function (el) {
-		ret.push(el);
-	});
-
-	return ret;
-}
-
-// V8 currently has a broken implementation
-// https://github.com/joyent/node/issues/8449
-function doesForEachActuallyWork() {
-	var ret = false;
-
-	(new Set([true])).forEach(function (el) {
-		ret = el;
-	});
-
-	return ret === true;
-}
-
-if ('Set' in global) {
-	if (typeof Set.prototype.forEach === 'function' && doesForEachActuallyWork()) {
-		module.exports = uniqSetWithForEach;
-	} else {
-		module.exports = uniqSet;
-	}
-} else {
-	module.exports = uniqNoSet;
-}
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(208)))
 
 /***/ }),
 /* 8 */
@@ -2011,7 +2011,7 @@ var _extend = __webpack_require__(3);
 
 var _extend2 = _interopRequireDefault(_extend);
 
-var _arrayUniq = __webpack_require__(7);
+var _arrayUniq = __webpack_require__(5);
 
 var _arrayUniq2 = _interopRequireDefault(_arrayUniq);
 
@@ -2138,7 +2138,7 @@ var _ui = __webpack_require__(1);
 
 var _ui2 = _interopRequireDefault(_ui);
 
-var _PopupManager = __webpack_require__(5);
+var _PopupManager = __webpack_require__(6);
 
 var _PopupManager2 = _interopRequireDefault(_PopupManager);
 
@@ -3236,6 +3236,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
+//
 
 var _form = __webpack_require__(2);
 
@@ -3285,15 +3288,13 @@ exports.default = _form2.default.extend({
     methods: {
         _focusInput: function _focusInput() {
 
-            var $input = this.$el.querySelector('input');
-
             // this.data.moving === false
             if (this.data.focus === false) {
 
-                var _$input = this.$el.querySelector('input');
+                var $input = this.$el.querySelector('input');
 
                 this.data.focus = true;
-                _$input.focus();
+                $input.focus();
                 this.$emit('inputFocus');
             }
         },
@@ -3358,10 +3359,14 @@ exports.default = _form2.default.extend({
 
             var value = this.get(false);
 
-            value.splice(to, 0, value.splice(from, 1));
+            if (this.Move.movedIndex !== -1) {
+
+                this.Move.movedIndex = to;
+            }
+
+            value.splice(to, 0, value.splice(from, 1)[0]);
             this.set(value);
         },
-
         add: function add(item, index) {
 
             var value = this.get(false);
@@ -3397,8 +3402,8 @@ exports.default = _form2.default.extend({
 
         this.$watch('conf.canMove', function (newVal) {
 
-            _this2.Move.$target = _this2.$el.querySelectorAll('.item');
-            _this2.Move.$container = _this2.$el;
+            _this2.Move.target = '.item';
+            _this2.Move.container = '.itemlist';
             _this2.Move.can = !!newVal;
         }, {
             immediate: true
@@ -3427,6 +3432,62 @@ exports.default = _form2.default.extend({
             _this2.data.inputValue = '';
         }, {
             immediate: true
+        });
+
+        this.$on('_moveStarted', function () {
+
+            _this2._blurInput();
+        });
+
+        var movingReg = /(^| )move\-moving($| )/g;
+
+        this.$on('_moveChange', function () {
+
+            var maxDistance = 20;
+
+            var $items = _this2.$el.querySelectorAll('.item');
+
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+                for (var _iterator = $items.entries()[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var item = _step.value;
+
+
+                    var index = item[0];
+                    var $item = item[1];
+
+                    if (!movingReg.test($item.className)) {
+                        var _moveElementXy = _this2._moveElementXy($item),
+                            x = _moveElementXy.x,
+                            y = _moveElementXy.y;
+
+                        var distance = Math.sqrt(Math.pow(Math.abs(_this2.Move.current.x - x), 2) + Math.pow(Math.abs(_this2.Move.current.y - y), 2));
+
+                        if (distance < maxDistance) {
+
+                            _this2.move(_this2.Move.movedIndex, index);
+
+                            break;
+                        }
+                    }
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return) {
+                        _iterator.return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
         });
     }
 });
@@ -4465,7 +4526,7 @@ var _ui = __webpack_require__(1);
 
 var _ui2 = _interopRequireDefault(_ui);
 
-var _PopupManager = __webpack_require__(5);
+var _PopupManager = __webpack_require__(6);
 
 var _PopupManager2 = _interopRequireDefault(_PopupManager);
 
@@ -4968,7 +5029,7 @@ var _form = __webpack_require__(2);
 
 var _form2 = _interopRequireDefault(_form);
 
-var _components = __webpack_require__(6);
+var _components = __webpack_require__(7);
 
 var _components2 = _interopRequireDefault(_components);
 
@@ -4984,6 +5045,7 @@ var morning = {
     _uiid: 1,
     _findCache: {},
     _popupId: 0,
+    _moveListener: [],
     version: '0.10.0',
     map: {},
     findVM: function findVM(ref) {
@@ -5051,17 +5113,35 @@ window.morning = morning;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+
+var _arrayUniq = __webpack_require__(5);
+
+var _arrayUniq2 = _interopRequireDefault(_arrayUniq);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var Move = {
     data: function data() {
 
         return {
             Move: {
                 can: false,
-                $target: null,
-                $container: null,
-                $moveItem: null,
-                initTimeout: null,
-                moveInitXy: {
+                target: null,
+                container: null,
+                lastMousedownIndex: -1,
+                movedIndex: -1,
+                $moveDragItem: null,
+                // startTimeout : null,
+                moving: false,
+                moveMouseFrom: {
+                    x: 0,
+                    y: 0
+                },
+                moveItemXy: {
+                    x: 0,
+                    y: 0
+                },
+                current: {
                     x: 0,
                     y: 0
                 }
@@ -5077,14 +5157,16 @@ var Move = {
         }
     },
     methods: {
+        _moveItemRecord: function _moveItemRecord(index) {
+
+            this.lastMousedownIndex = index;
+        },
         _moveStart: function _moveStart(evt) {
-            var _this = this;
 
-            console.log(evt);
+            // const startTimeout = 200;
 
-            var initTimeout = 200;
-
-            var $moveItem = void 0;
+            var $targets = this.$el.querySelectorAll(this.Move.target);
+            var found = false;
 
             var _iteratorNormalCompletion = true;
             var _didIteratorError = false;
@@ -5093,11 +5175,39 @@ var Move = {
             try {
                 for (var _iterator = evt.path[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                     var $node = _step.value;
+                    var _iteratorNormalCompletion2 = true;
+                    var _didIteratorError2 = false;
+                    var _iteratorError2 = undefined;
+
+                    try {
+
+                        for (var _iterator2 = $targets.values()[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                            var $value = _step2.value;
 
 
-                    if (this.Move.$target.indexOf($node) !== -1) {
+                            if ($value === $node) {
 
-                        $moveItem = $node;
+                                found = true;
+
+                                break;
+                            }
+                        }
+                    } catch (err) {
+                        _didIteratorError2 = true;
+                        _iteratorError2 = err;
+                    } finally {
+                        try {
+                            if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                                _iterator2.return();
+                            }
+                        } finally {
+                            if (_didIteratorError2) {
+                                throw _iteratorError2;
+                            }
+                        }
+                    }
+
+                    if (found) {
 
                         break;
                     }
@@ -5117,48 +5227,171 @@ var Move = {
                 }
             }
 
-            this.Move.initTimeout = setTimeout(function () {
+            if (found) {
 
-                _this.Move.$moveItem = $moveItem;
-                _this.Move.moveInitXy.x = evt.clientX;
-                _this.Move.moveInitXy.y = evt.clientY;
-                _this.$emit('_moveStarted');
+                var $target = this.$el.querySelectorAll(this.Move.container + ' ' + this.Move.target)[this.lastMousedownIndex];
+                var $container = this.$el.querySelector(this.Move.container);
 
-                // this._blurInput();
-            }, initTimeout);
+                $target.classList.add('move-moving');
+
+                var $moveDragItem = $target.cloneNode(true);
+
+                var _moveElementXy = this._moveElementXy($target),
+                    x = _moveElementXy.x,
+                    y = _moveElementXy.y;
+
+                $moveDragItem.classList.add('move-drag-item');
+                $moveDragItem.style.top = y + 'px';
+                $moveDragItem.style.left = x + 'px';
+                $container.append($moveDragItem);
+
+                this.Move.movedIndex = this.lastMousedownIndex;
+                this.Move.moveMouseFrom.x = evt.clientX;
+                this.Move.moveMouseFrom.y = evt.clientY;
+                this.Move.moveItemXy.x = x;
+                this.Move.moveItemXy.y = y;
+                this.Move.$moveDragItem = $moveDragItem;
+                this.Move.moving = true;
+
+                this.$emit('_moveStarted');
+            }
         },
-        _moveMousemove: function _moveMousemove() {},
-        _moveMouseup: function _moveMouseup() {}
+        _moveMousemove: function _moveMousemove(evt) {
+
+            if (this.Move.moving === false) {
+
+                return;
+            }
+
+            var x = evt.clientX - this.Move.moveMouseFrom.x + this.Move.moveItemXy.x;
+            var y = evt.clientY - this.Move.moveMouseFrom.y + this.Move.moveItemXy.y;
+
+            this.Move.$moveDragItem.style.top = y + 'px';
+            this.Move.$moveDragItem.style.left = x + 'px';
+            this.Move.current.x = x;
+            this.Move.current.y = y;
+
+            this.$emit('_moveChange');
+        },
+        _moveMouseup: function _moveMouseup() {
+
+            // clearTimeout(this.Move.startTimeout);
+
+            if (!this.Move.moving) {
+
+                return;
+            }
+
+            var $target = this.$el.querySelector('.move-moving');
+
+            if ($target) {
+
+                $target.classList.remove('move-moving');
+            }
+
+            this.Move.movedIndex = -1;
+            this.Move.lastMousedownIndex = -1;
+            this.Move.$moveDragItem.remove();
+            this.Move.$moveDragItem = null;
+            this.Move.moving = false;
+
+            this.$emit('_moveEnded');
+        },
+        _moveAddGlobalListener: function _moveAddGlobalListener() {
+
+            this.morning._moveListener.push(this.uiid);
+            this.morning._moveListener = (0, _arrayUniq2.default)(this.morning._moveListener);
+
+            if (this.morning._moveListener.length > 0) {
+
+                document.addEventListener('mousemove', this._moveMousemove);
+                document.addEventListener('mouseup', this._moveMouseup);
+            }
+        },
+        _moveRemoveGlobalListener: function _moveRemoveGlobalListener() {
+
+            var index = this.morning._moveListener.indexOf(this.uiid);
+
+            if (index !== -1) {
+
+                this.morning._moveListener.splice(index, 1);
+            }
+
+            if (this.morning._moveListener.length === 0) {
+
+                document.addEventListener('mousemove', this._moveMousemove);
+                document.addEventListener('mouseup', this._moveMouseup);
+            }
+        },
+        _moveElementXy: function _moveElementXy($ele) {
+
+            var client = $ele.getBoundingClientRect();
+            var marginLeft = $ele.ownerDocument.defaultView.getComputedStyle($ele).marginLeft;
+            var marginTop = $ele.ownerDocument.defaultView.getComputedStyle($ele).marginTop;
+
+            marginLeft = +marginLeft.split('px')[0];
+            marginTop = +marginTop.split('px')[0];
+
+            var x = client.left - marginLeft;
+            var y = client.top - marginTop;
+
+            return {
+                x: x,
+                y: y
+            };
+        }
     },
     mounted: function mounted() {
-        var _this2 = this;
+        var _this = this;
 
         this.$watch('Move.can', function (newVal) {
 
+            var $container = _this.$el.querySelector(_this.Move.container);
+
             if (newVal) {
 
-                _this2.Move.$container.addEventListener('mousedown', _this2._moveStart);
-                document.addEventListener('mousemove', _this2._moveMousemove);
-                document.addEventListener('mouseup', _this2._moveMouseup);
+                $container.addEventListener('mousedown', _this._moveStart);
+                _this._moveAddGlobalListener();
             } else {
 
-                _this2.Move.$container.removeEventListener('mousedown', _this2._initMoveItem);
-                document.removeEventListener('mousemove', _this2._moveMousemove);
-                document.removeEventListener('mouseup', _this2._moveMouseup);
+                if ($container) {
+
+                    $container.removeEventListener('mousedown', _this._initMoveItem);
+                }
+
+                _this._moveRemoveGlobalListener();
             }
         }, {
             immediate: true
         });
     },
+    updated: function updated() {
+
+        var $oldTarget = this.$el.querySelector(this.Move.target + '.move-moving:not(.move-drag-item)');
+        var $newTarget = this.$el.querySelectorAll(this.Move.target + ':not(.move-drag-item)')[this.Move.movedIndex];
+
+        if ($oldTarget) {
+
+            $oldTarget.classList.remove('move-moving');
+        }
+
+        if ($newTarget) {
+
+            $newTarget.classList.add('move-moving');
+        }
+    },
     beforeDestroy: function beforeDestroy() {
 
-        clearTimeout(this.Move.initTimeout);
-        document.removeEventListener('mousemove', this._moveMousemove);
-        document.removeEventListener('mouseup', this._moveMouseup);
+        // clearTimeout(this.Move.startTimeout);
+
+        this._moveRemoveGlobalListener();
     }
 };
 
 exports.default = Move;
+
+// css: moving:moved movingBlock:moving
+
 module.exports = exports['default'];
 
 /***/ }),
@@ -11244,7 +11477,7 @@ if (false) {
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('i-multiinput', {
-    class: [_vm.stateClass, _vm.moreClass, _vm.moveClass],
+    class: [_vm.stateClass, _vm.moreClass, _vm.Move.moveClass],
     attrs: {
       "_uiid": _vm.uiid,
       "form-name": _vm.formName,
@@ -11266,7 +11499,12 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     staticClass: "itemlist"
   }, [_vm._l((_vm.data.value), function(value, index) {
     return _c('div', {
-      staticClass: "item"
+      staticClass: "item",
+      on: {
+        "mousedown": function($event) {
+          _vm._moveItemRecord(index)
+        }
+      }
     }, [_c('span', {
       attrs: {
         "title": value

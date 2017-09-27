@@ -1,7 +1,7 @@
 <template>
     <i-multiinput
         :_uiid="uiid"
-        :class="[stateClass, moreClass, moveClass]"
+        :class="[stateClass, moreClass, Move.moveClass]"
 
         :form-name="formName"
         :form-key="formKey"
@@ -17,7 +17,10 @@
 
     <div class="itemlist">
 
-        <div class="item" v-for="(value, index) in data.value">
+        <div
+            class="item"
+            v-for="(value, index) in data.value"
+            @mousedown="_moveItemRecord(index)">
             <span :title="value">{{value}}</span>
             <i
                 class="morningicon"
@@ -119,8 +122,6 @@ export default Form.extend({
     methods : {
         _focusInput : function () {
 
-            let $input = this.$el.querySelector('input');
-
             // this.data.moving === false
             if (this.data.focus === false) {
 
@@ -186,7 +187,7 @@ export default Form.extend({
             this.set(value);
 
         },
-        _moveItem (from, to) {
+        _moveItem : function (from, to) {
 
             if (from >= this.data.value.length ||
                 from < 0 ||
@@ -205,8 +206,14 @@ export default Form.extend({
             // } else {
 
             let value = this.get(false);
+
+            if (this.Move.movedIndex !== -1) {
             
-            value.splice(to, 0, value.splice(from, 1));
+                this.Move.movedIndex = to;
+
+            }
+            
+            value.splice(to, 0, value.splice(from, 1)[0]);
             this.set(value);
                 
         },
@@ -251,8 +258,8 @@ export default Form.extend({
 
         this.$watch('conf.canMove', newVal => {
 
-            this.Move.$target = this.$el.querySelectorAll('.item');
-            this.Move.$container = this.$el;
+            this.Move.target = '.item';
+            this.Move.container = '.itemlist';
             this.Move.can = !!newVal;
 
         }, {
@@ -288,6 +295,45 @@ export default Form.extend({
 
         }, {
             immediate : true
+        });
+
+        this.$on('_moveStarted', () => {
+
+            this._blurInput();
+
+        });
+
+        let movingReg = /(^| )move\-moving($| )/g;
+        
+        this.$on('_moveChange', () => {
+
+            const maxDistance = 20;
+
+            let $items = this.$el.querySelectorAll('.item');
+
+            for (let item of $items.entries()) {
+
+                let index = item[0];
+                let $item = item[1];
+
+                if (!movingReg.test($item.className)) {
+
+                    let {x, y} = this._moveElementXy($item);
+                    let distance = Math.sqrt(Math.pow(Math.abs(this.Move.current.x - x), 2) +
+                                   Math.pow(Math.abs(this.Move.current.y - y), 2));
+
+                    if (distance < maxDistance) {
+                        
+                        this.move(this.Move.movedIndex, index);
+
+                        break;
+
+                    }
+
+                }
+
+            }
+
         });
 
     }

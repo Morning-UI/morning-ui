@@ -13,6 +13,7 @@ let morning = {
     _uiid : 1,
     _findCache : {},
     _popupId : 0,
+    _moveListener : [],
     version : '0.10.0',
     map : {},
     findVM : function (ref) {
@@ -23,7 +24,7 @@ let morning = {
 
         }
 
-        for(let vm of Object.values(this.map)) {
+        for (let vm of Object.values(this.map)) {
 
             if (vm.$vnode &&
                 vm.$vnode.data &&
