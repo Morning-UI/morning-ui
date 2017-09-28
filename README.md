@@ -33,3 +33,32 @@ MorningUI库基于HMP2 UI库，但是完全不依赖于HMP2平台。你可以在
 > 注意：此项目仍处于开发状态，请勿在任何项目中使用。
 
 __这是个人项目，采用MIT Licence__
+
+## 致谢
+
+#### 开源项目
+
+MorningUI受到以下开源项目的启发：
+
+- Semantic UI
+- Bootstrap
+- Element
+
+在此向这些项目致敬。
+
+
+#### Vue.js
+
+MorningUI基于Vue.js开发，在此感谢。
+
+#### HmpUI贡献者
+
+MorningUI的诞生离不开HmpUI，在此感谢曾为HmpUI付出贡献的开发者：
+
+- 冯春艳(chunyan.feng@husor.com)
+- 杜金金(jinjin.du@husor.com)
+- 赵朋(peng.zhao@husor.com)
+- 干有银(youyin.gan@husor.com)
+- 张桠鑫(yaxin.zhang@husor.com)
+- 童颖(ying.tong@husor.com)
+- 段俊杰(junjie.duan@husor.com)
