@@ -3350,13 +3350,6 @@ exports.default = _form2.default.extend({
                 return;
             }
 
-            // if ( valueChange ) {
-            //     var list = this.clone(this.prop.value);
-            //     var copy = list.splice(index, 1)[0];
-            //     list.splice(to, 0, copy);
-            //     this.set(list);
-            // } else {
-
             var value = this.get(false);
 
             if (this.Move.movedIndex !== -1) {
@@ -3429,7 +3422,10 @@ exports.default = _form2.default.extend({
                 _this2.set(newVal.slice(0, _this2.conf.max));
             }
 
-            _this2.data.inputValue = '';
+            if (!_this2.Move.moving) {
+
+                _this2.data.inputValue = '';
+            }
         }, {
             immediate: true
         });
@@ -3439,7 +3435,7 @@ exports.default = _form2.default.extend({
             _this2._blurInput();
         });
 
-        var movingReg = /(^| )move\-moving($| )/g;
+        var movingReg = /(^| )move-moving($| )/g;
 
         this.$on('_moveChange', function () {
 
@@ -5131,7 +5127,6 @@ var Move = {
                 lastMousedownIndex: -1,
                 movedIndex: -1,
                 $moveDragItem: null,
-                // startTimeout : null,
                 moving: false,
                 moveMouseFrom: {
                     x: 0,
@@ -5162,8 +5157,6 @@ var Move = {
             this.lastMousedownIndex = index;
         },
         _moveStart: function _moveStart(evt) {
-
-            // const startTimeout = 200;
 
             var $targets = this.$el.querySelectorAll(this.Move.target);
             var found = false;
@@ -5382,16 +5375,11 @@ var Move = {
     },
     beforeDestroy: function beforeDestroy() {
 
-        // clearTimeout(this.Move.startTimeout);
-
         this._moveRemoveGlobalListener();
     }
 };
 
 exports.default = Move;
-
-// css: moving:moved movingBlock:moving
-
 module.exports = exports['default'];
 
 /***/ }),
