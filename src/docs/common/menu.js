@@ -23,7 +23,7 @@ export default {
         '卡片<i class="tag done"></i>' : '/component/card.html',
         '容器<i class="tag done"></i>' : '/component/box.html',
         '区块<i class="tag done"></i>' : '/component/block.html',
-        '分频器<i class="tag update"></i> <i class="tag coming"></i> dialog' : '/component/divider.html',
+        '分频器<i class="tag done"></i>' : '/component/divider.html',
         '居中容器<i class="tag done"></i>' : '/component/center.html',
         '页头<i class="tag done"></i>' : '/component/header.html',
         '徽章<i class="tag done"></i>' : '/component/badge.html',

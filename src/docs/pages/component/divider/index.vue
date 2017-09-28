@@ -4,18 +4,66 @@
         :hasPadding="true"
     >
     <script type="text/markdown">
-    # 斜体文本 `<ui-em>`
+    # 分频器 `<ui-divider>`
     
-    <doc-component-status page="em"></doc-component-status>
+    <doc-component-status page="divider"></doc-component-status>
 
     [[[基础]]]
 
     #### 使用
 
-    标记一段斜体内容，这是一个内联元素。
+    定义一个分频器，分频器用来区分一个区块内的左右或上下两部分。
+
+    分频器常配合`ui-grid`使用。
     
     ````html
-    <ui-em>斜体文本</ui-em>
+    <div style="width:500px;height:300px;border:1px solid #eee;">
+        <ui-grid class="fill">
+            <div class="c-7">
+                <ui-center class="fill"><p>LEFT</p></ui-center>
+            </div>
+            <div class="c-2">
+                <ui-divider>OR</ui-divider>
+            </div>
+            <div class="c-7">
+                <ui-center class="fill"><p>RIGHT</p></ui-center>
+            </div>
+        </ui-grid>
+    </div>
+    ````
+
+    #### 竖直的分频器
+
+    ````html
+    <div style="width:500px;height:300px;border:1px solid #eee;">
+        <div style="width:100%;height:140px;">
+            <ui-center class="fill"><p>TOP</p></ui-center>
+        </div>
+        <div style="width:100%;height:20px;">
+            <ui-divider class="vertical">OR</ui-divider>
+        </div>
+        <div style="width:100%;height:140px;">
+            <ui-center class="fill"><p>BOTTOM</p></ui-center>
+        </div>
+    </div>
+    ````
+
+    #### 无内容的分频器
+    
+    ````html
+    <div style="width:500px;height:300px;border:1px solid #eee;">
+        <ui-grid class="fill">
+            <div class="c-7">
+                <ui-center class="fill"><p>LEFT</p></ui-center>
+            </div>
+            <div class="c-2">
+                <ui-divider></ui-divider>
+            </div>
+            <div class="c-7">
+                <ui-center class="fill"><p>RIGHT</p></ui-center>
+            </div>
+        </ui-grid>
+    </div>
     ````
 
     [[[声明]]]
@@ -31,7 +79,7 @@
 
     [[[单元测试]]]
 
-    <iframe src="/report/coverage/lib/components/em/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
+    <iframe src="/report/coverage/lib/components/divider/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>
     </doc-component>
 </template>
@@ -43,7 +91,7 @@ export default {
     data : function () {
 
         return {
-            page : 'em'
+            page : 'divider'
         };
 
     },

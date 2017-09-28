@@ -1,17 +1,17 @@
 <template>
-    <i-em
+    <i-divider
         :_uiid="uiid"
         :class="[]"
     >
         <slot></slot>
-    </i-em>
+    </i-divider>
 </template>
  
 <script>
 import UI                           from 'Common/ui';
 
 export default UI.extend({
-    name : 'em'
+    name : 'divider'
 });
 </script>
 

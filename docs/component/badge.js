@@ -1,4 +1,4 @@
-webpackJsonp([63],{
+webpackJsonp([64],{
 
 /***/ 0:
 /***/ (function(module, exports) {
@@ -112,7 +112,7 @@ module.exports = Vue;
 
 /***/ }),
 
-/***/ 103:
+/***/ 104:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -550,7 +550,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 171:
+/***/ 173:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -758,7 +758,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 253:
+/***/ 256:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -777,13 +777,13 @@ if (false) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(104);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_2af4828e_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(498);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_2af4828e_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(502);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(253)
+  __webpack_require__(256)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
@@ -884,35 +884,6 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 498:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('doc-component', {
-    attrs: {
-      "page": _vm.page,
-      "hasPadding": true
-    }
-  }, [_c('script', {
-    attrs: {
-      "type": "text/markdown"
-    }
-  }, [_vm._v("\n# 徽章 `<ui-badge>`\n\n<doc-component-status page=\"badge\"></doc-component-status>\n\n[[[基础]]]\n\n定义一个徽章，徽章一般跟在内容后面，来标记一些特殊的内容(通常是数字)，这是一个内联块元素。\n\n徽章内部只能包含文本内容。\n\n#### 使用\n\n````html\n<ui-badge>24</ui-badge>\n````\n\n#### 扁平徽章\n\n````html\n<ui-badge class=\"flat\">24</ui-badge>\n````\n\n#### 圆形徽章\n\n````html\n<ui-badge class=\"circle\">圆形徽章</ui-badge>\n````\n\n#### 无内容隐藏\n\n当徽章内没有内容时，会自动隐藏。\n\n````html\n<ui-badge></ui-badge>\n````\n\n[[[声明]]]\n\n#### 支持\n\n|类型|支持|默认|\n|-|-|-|\n|尺寸|全部|`m`|\n|色彩|全部|`theme`|\n|状态|`normal`<br/>`apparent`|`normal`|\n\n#### 尺寸\n\n````html\n@size\n<ui-badge {$sizeKey}>{$&sizeName}</ui-badge>\n````\n\n````html\n@size\n<ui-badge class=\"circle\" {$sizeKey}>{$&sizeName}</ui-badge>\n````\n\n#### 色彩\n\n````html\n@color:theme\n@color:feature\n@color:black\n@color:blue\n@color:silver\n@color:gray\n<ui-badge {$colorKey}>{$&colorName}</ui-badge>\n````\n\n#### 状态\n\n````html\n@state:normal,apparent\n<ui-badge {$stateKey}>{$&stateName}</ui-badge>\n````\n\n[[[单元测试]]]\n\n<iframe src=\"/report/coverage/lib/components/badge/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n")])])
-}
-var staticRenderFns = []
-render._withStripped = true
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-2af4828e", esExports)
-  }
-}
-
-/***/ }),
-
 /***/ 5:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -968,6 +939,35 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
      require("vue-hot-reload-api").rerender("data-v-19496861", esExports)
+  }
+}
+
+/***/ }),
+
+/***/ 502:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('doc-component', {
+    attrs: {
+      "page": _vm.page,
+      "hasPadding": true
+    }
+  }, [_c('script', {
+    attrs: {
+      "type": "text/markdown"
+    }
+  }, [_vm._v("\n# 徽章 `<ui-badge>`\n\n<doc-component-status page=\"badge\"></doc-component-status>\n\n[[[基础]]]\n\n定义一个徽章，徽章一般跟在内容后面，来标记一些特殊的内容(通常是数字)，这是一个内联块元素。\n\n徽章内部只能包含文本内容。\n\n#### 使用\n\n````html\n<ui-badge>24</ui-badge>\n````\n\n#### 扁平徽章\n\n````html\n<ui-badge class=\"flat\">24</ui-badge>\n````\n\n#### 圆形徽章\n\n````html\n<ui-badge class=\"circle\">圆形徽章</ui-badge>\n````\n\n#### 无内容隐藏\n\n当徽章内没有内容时，会自动隐藏。\n\n````html\n<ui-badge></ui-badge>\n````\n\n[[[声明]]]\n\n#### 支持\n\n|类型|支持|默认|\n|-|-|-|\n|尺寸|全部|`m`|\n|色彩|全部|`theme`|\n|状态|`normal`<br/>`apparent`|`normal`|\n\n#### 尺寸\n\n````html\n@size\n<ui-badge {$sizeKey}>{$&sizeName}</ui-badge>\n````\n\n````html\n@size\n<ui-badge class=\"circle\" {$sizeKey}>{$&sizeName}</ui-badge>\n````\n\n#### 色彩\n\n````html\n@color:theme\n@color:feature\n@color:black\n@color:blue\n@color:silver\n@color:gray\n<ui-badge {$colorKey}>{$&colorName}</ui-badge>\n````\n\n#### 状态\n\n````html\n@state:normal,apparent\n<ui-badge {$stateKey}>{$&stateName}</ui-badge>\n````\n\n[[[单元测试]]]\n\n<iframe src=\"/report/coverage/lib/components/badge/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n")])])
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-2af4828e", esExports)
   }
 }
 
@@ -2350,4 +2350,4 @@ module.exports = exports['default'];
 
 /***/ })
 
-},[171]);
+},[173]);
