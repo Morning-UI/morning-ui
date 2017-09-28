@@ -8,7 +8,7 @@
 
 This project base on HMP2 UI, but is completely independent. We want to share our work with more people.
 
-If you want to follow our progress, clone this project, execute command:
+If you want to keep track of our progress, clone this project, execute command:
 
     npm install
     npm run dev
@@ -16,6 +16,8 @@ If you want to follow our progress, clone this project, execute command:
 when you done, open you browser, input `localhost:8080`. hope you enjoy ^ ^.
 
 > WARNING : THIS PROJECT UNDER DEVELOPMENT, DO NOT USE IN ANY PROJECT.
+
+__This is a personal project, under MIT licence__
 
 ## 本项目仍在开发
 
@@ -29,3 +31,5 @@ MorningUI库基于HMP2 UI库，但是完全不依赖于HMP2平台。你可以在
 完成后，打开浏览器访问`localhost:8080`，希望你喜欢 ^ ^。
 
 > 注意：此项目仍处于开发状态，请勿在任何项目中使用。
+
+__这是个人项目，采用MIT Licence__
