@@ -67,7 +67,7 @@ export default {
         '滑块输入<i class="tag new"></i>' : 'b',
         '复选框组<i class="tag done"></i>' : '/component/checkbox.html',
         '单选框组<i class="tag done"></i>' : '/component/radio.html',
-        '多项输入<i class="tag coming"></i>' : '/component/multiinput.html',
+        '多项输入<i class="tag done"></i>' : '/component/multiinput.html',
         '多项表单输入<i class="tag coming"></i>' : '/component/multiform.html',
         多项文本输入 : 'b',
         批量表单输入 : 'b',
