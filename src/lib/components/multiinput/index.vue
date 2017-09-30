@@ -198,13 +198,6 @@ export default Form.extend({
 
             }
 
-            // if ( valueChange ) {
-            //     var list = this.clone(this.prop.value);
-            //     var copy = list.splice(index, 1)[0];
-            //     list.splice(to, 0, copy);
-            //     this.set(list);
-            // } else {
-
             let value = this.get(false);
 
             if (this.Move.movedIndex !== -1) {
@@ -275,7 +268,7 @@ export default Form.extend({
             immediate : true
         });
 
-        this.$watch('data.value', newVal => {
+        this.$watch('data.value', (newVal) => {
 
             if (typeof newVal !== 'object' ||
                 !(newVal instanceof Array)) {
@@ -291,7 +284,11 @@ export default Form.extend({
 
             }
 
-            this.data.inputValue = '';
+            if (!this.Move.moving) {
+
+                this.data.inputValue = '';
+            
+            }
 
         }, {
             immediate : true
@@ -303,7 +300,7 @@ export default Form.extend({
 
         });
 
-        let movingReg = /(^| )move\-moving($| )/g;
+        let movingReg = /(^| )move-moving($| )/g;
         
         this.$on('_moveChange', () => {
 

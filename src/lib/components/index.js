@@ -25,6 +25,7 @@ import grid                         from './grid/index.vue';
 import card                         from './card/index.vue';
 import box                          from './box/index.vue';
 import block                        from './block/index.vue';
+import divider                      from './divider/index.vue';
 import center                       from './center/index.vue';
 import header                       from './header/index.vue';
 import badge                        from './badge/index.vue';
@@ -78,6 +79,7 @@ export default {
     card,
     box,
     block,
+    divider,
     center,
     header,
     badge,

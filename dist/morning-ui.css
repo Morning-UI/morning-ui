@@ -1691,6 +1691,45 @@ i-block.full {
   padding: 0;
 }
 
+i-divider {
+  height: 100%;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  position: relative;
+}
+i-divider::before,
+i-divider::after {
+  content: ' ';
+  position: absolute;
+  background-color: #E2E8EE;
+}
+i-divider:not(.vertical)::before,
+i-divider:not(.vertical)::after {
+  height: calc(45% - 1em);
+  width: 1px;
+  left: 50%;
+  top: 5%;
+}
+i-divider:not(.vertical)::after {
+  top: calc(50% + 1em);
+}
+i-divider.vertical::before,
+i-divider.vertical::after {
+  width: calc(45% - 1.5em);
+  height: 1px;
+  top: 50%;
+  left: 5%;
+}
+i-divider.vertical::after {
+  left: calc(50% + 1.5em);
+}
+i-divider:empty {
+  font-size: 0;
+}
+
 i-center {
   display: flex;
   align-items: center;
@@ -6309,7 +6348,7 @@ i-multiinput > .itemlist > input:focus {
 }
 i-multiinput > .itemlist > span {
   font-size: 12px;
-  color: #d9d9d9 !important;
+  color: #A8B3C2 !important;
   width: 100%;
   padding: 0.4em 0.7em;
   text-align: center;

@@ -11,7 +11,6 @@ let Move = {
                 lastMousedownIndex : -1,
                 movedIndex : -1,
                 $moveDragItem : null,
-                // startTimeout : null,
                 moving : false,
                 moveMouseFrom : {
                     x : 0,
@@ -46,8 +45,6 @@ let Move = {
         },
         _moveStart : function (evt) {
             
-            // const startTimeout = 200;
-
             let $targets = this.$el.querySelectorAll(this.Move.target);
             let found = false;
 
@@ -74,7 +71,6 @@ let Move = {
             }
 
             if (found) {
-
 
                 let $target = this.$el.querySelectorAll(`${this.Move.container} ${this.Move.target}`)[this.lastMousedownIndex];
                 let $container = this.$el.querySelector(this.Move.container);
@@ -246,13 +242,9 @@ let Move = {
     },
     beforeDestroy : function () {
 
-        // clearTimeout(this.Move.startTimeout);
-
         this._moveRemoveGlobalListener();
 
     }
 };
 
 export default Move;
-
-// css: moving:moved movingBlock:moving

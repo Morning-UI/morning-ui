@@ -234,7 +234,7 @@ prodVerConfig = extend(
                     options : {
                         loaders : {
                             js : 'babel-loader',
-                            less : extractDevCss.extract({
+                            less : extractProdCss.extract({
                                 fallback : 'vue-style-loader',
                                 use : [{
                                     loader : 'css-loader',
