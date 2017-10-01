@@ -21,6 +21,7 @@ import il                           from './il/index.vue';
 import dl                           from './dl/index.vue';
 import itemlist                     from './itemlist/index.vue';
 import textcolor                    from './textcolor/index.vue';
+import apparent                     from './apparent/index.vue';
 import grid                         from './grid/index.vue';
 import card                         from './card/index.vue';
 import box                          from './box/index.vue';
@@ -76,6 +77,7 @@ export default {
     dl,
     itemlist,
     textcolor,
+    apparent,
     grid,
     card,
     box,

@@ -1253,8 +1253,6 @@ var parser = function parser(text, el) {
 
                 var value = valuelist.join(':');
 
-                console.log(name, value);
-
                 mixinContext[name] = value;
             }
         } catch (err) {
@@ -1728,8 +1726,6 @@ var helpers = {
 
         var key = opt.param || 'default';
 
-        console.log(555, key);
-
         if (typeof opt.content === 'string') {
 
             opt.content = '{$#formValueType.' + key + '}' + opt.content + '\n{$/formValueType.' + key + '}';
@@ -1904,8 +1900,6 @@ var runner = function runner(tree) {
 
                 block._html = make.block(block);
             }
-
-            console.log(block._html);
         }
     } catch (err) {
         _didIteratorError10 = true;
@@ -2094,8 +2088,6 @@ exports.default = {
             var e2ePassTest = 0;
             var e2eFailTest = 0;
 
-            console.log(_this.page);
-
             var _iteratorNormalCompletion = true;
             var _didIteratorError = false;
             var _iteratorError = undefined;
@@ -2105,7 +2097,7 @@ exports.default = {
                     var item = _step.value;
 
 
-                    if (/\# SKIP/.test(item.name)) {
+                    if (/# SKIP/.test(item.name)) {
 
                         return;
                     }
@@ -2147,7 +2139,7 @@ exports.default = {
                     var _item = _step2.value;
 
 
-                    if (/\# SKIP/.test(_item.name)) {
+                    if (/# SKIP/.test(_item.name)) {
 
                         return;
                     }
@@ -2189,7 +2181,7 @@ exports.default = {
                     var _item2 = _step3.value;
 
 
-                    if (/\# SKIP/.test(_item2.name)) {
+                    if (/# SKIP/.test(_item2.name)) {
 
                         return;
                     }
@@ -2198,10 +2190,12 @@ exports.default = {
                     var e2eReg = new RegExp('e2e \u203A components \u203A ' + _this.page + ' \u203A ');
 
                     if (unitReg.test(_item2.name)) {
+
                         unitFailTest++;
                     }
 
                     if (e2eReg.test(_item2.name)) {
+
                         e2eFailTest++;
                     }
                 }
@@ -2251,8 +2245,8 @@ exports.default = {
 
         $.get('/report/coverage/lib/components/' + this.page + '/index.vue.html', function (data) {
 
-            var lineCoverage = data.match(/\>([0-9\.]+?)% \<\/span\>(.|\n)+?Statements/);
-            var coverageLevel = data.match(/status\-line ([a-z]+?)(\"|\')/);
+            var lineCoverage = data.match(/>([0-9.]+?)% <\/span>(.|\n)+?Statements/);
+            var coverageLevel = data.match(/status-line ([a-z]+?)("|')/);
 
             if (lineCoverage && lineCoverage[1]) {
 

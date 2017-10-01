@@ -132,13 +132,59 @@ exports.default = {
     data: function data() {
 
         return {
-            page: 'em'
+            page: 'apparent'
         };
     },
     components: {
         'doc-component': _DocComponent2.default
     }
 }; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -906,7 +952,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "type": "text/markdown"
     }
-  }, [_vm._v("\n# 斜体文本 `<ui-em>`\n\n<doc-component-status page=\"em\"></doc-component-status>\n\n[[[基础]]]\n\n#### 使用\n\n标记一段斜体内容，这是一个内联元素。\n\n````html\n<ui-em>斜体文本</ui-em>\n````\n\n[[[声明]]]\n\n#### 支持\n\n|类型|支持|默认|\n|-|-|-|\n|尺寸|不支持|-|\n|色彩|不支持|-|\n|状态|不支持|-|\n\n\n[[[单元测试]]]\n\n<iframe src=\"/report/coverage/lib/components/em/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n")])])
+  }, [_vm._v("\n# 醒目内容 `<ui-apparent>`\n\n<doc-component-status page=\"apparent\"></doc-component-status>\n\n[[[基础]]]\n\n定义醒目的内容，这是一个内联元素。\n\n由于`ui-apparent`需要配合其他元素使用，因此你可以通过样式类来修改它的元素类型：\n\n- `inline` : 内联元素(默认)\n- `inline-block` : 内联块元素\n- `block` : 块级元素\n\n此组件作为无醒目状态组件以及HTML元素的补充，若组件自带醒目状态请使用组件自身状态。\n\n#### 使用\n\n````html\n<ui-apparent>醒目内容</ui-apparent>\n````\n\n#### 配合内联元素\n\n````html\n<ui-apparent class=\"inline\">\n    <span>This is inline element</span>\n</ui-apparent>\n````\n\n#### 配合内联块元素\n\n````html\n<ui-apparent class=\"inline-block\">\n    <div style=\"background:#eee;display:inline-block\">\n        This is inline-block element\n    </div>\n</ui-apparent>\n````\n\n#### 配合块级元素\n\n````html\n<ui-apparent class=\"inline-block\">\n    <div style=\"width:200px;height:50px;background:#eee;\">\n        This is block element\n    </div>\n</ui-apparent>\n````\n\n#### 配合无`apparent`状态组件\n\n由于`ui-block`是块级元素，需要为`ui-apparent`添加`block`样式类。\n\n````html\n<ui-apparent class=\"block\">\n    <ui-block>区块</ui-block>\n</ui-apparent>\n````\n\n[[[声明]]]\n\n#### 支持\n\n|类型|支持|默认|\n|-|-|-|\n|尺寸|不支持|-|\n|色彩|不支持|-|\n|状态|不支持|-|\n\n\n[[[单元测试]]]\n\n<iframe src=\"/report/coverage/lib/components/apparent/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n")])])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -1204,8 +1250,6 @@ var parser = function parser(text, el) {
                 valuelist.shift();
 
                 var value = valuelist.join(':');
-
-                console.log(name, value);
 
                 mixinContext[name] = value;
             }
@@ -1680,8 +1724,6 @@ var helpers = {
 
         var key = opt.param || 'default';
 
-        console.log(555, key);
-
         if (typeof opt.content === 'string') {
 
             opt.content = '{$#formValueType.' + key + '}' + opt.content + '\n{$/formValueType.' + key + '}';
@@ -1856,8 +1898,6 @@ var runner = function runner(tree) {
 
                 block._html = make.block(block);
             }
-
-            console.log(block._html);
         }
     } catch (err) {
         _didIteratorError10 = true;
@@ -2046,8 +2086,6 @@ exports.default = {
             var e2ePassTest = 0;
             var e2eFailTest = 0;
 
-            console.log(_this.page);
-
             var _iteratorNormalCompletion = true;
             var _didIteratorError = false;
             var _iteratorError = undefined;
@@ -2057,7 +2095,7 @@ exports.default = {
                     var item = _step.value;
 
 
-                    if (/\# SKIP/.test(item.name)) {
+                    if (/# SKIP/.test(item.name)) {
 
                         return;
                     }
@@ -2099,7 +2137,7 @@ exports.default = {
                     var _item = _step2.value;
 
 
-                    if (/\# SKIP/.test(_item.name)) {
+                    if (/# SKIP/.test(_item.name)) {
 
                         return;
                     }
@@ -2141,7 +2179,7 @@ exports.default = {
                     var _item2 = _step3.value;
 
 
-                    if (/\# SKIP/.test(_item2.name)) {
+                    if (/# SKIP/.test(_item2.name)) {
 
                         return;
                     }
@@ -2150,10 +2188,12 @@ exports.default = {
                     var e2eReg = new RegExp('e2e \u203A components \u203A ' + _this.page + ' \u203A ');
 
                     if (unitReg.test(_item2.name)) {
+
                         unitFailTest++;
                     }
 
                     if (e2eReg.test(_item2.name)) {
+
                         e2eFailTest++;
                     }
                 }
@@ -2203,8 +2243,8 @@ exports.default = {
 
         $.get('/report/coverage/lib/components/' + this.page + '/index.vue.html', function (data) {
 
-            var lineCoverage = data.match(/\>([0-9\.]+?)% \<\/span\>(.|\n)+?Statements/);
-            var coverageLevel = data.match(/status\-line ([a-z]+?)(\"|\')/);
+            var lineCoverage = data.match(/>([0-9.]+?)% <\/span>(.|\n)+?Statements/);
+            var coverageLevel = data.match(/status-line ([a-z]+?)("|')/);
 
             if (lineCoverage && lineCoverage[1]) {
 

@@ -683,8 +683,6 @@ let parser = (text, el) => {
 
             let value = valuelist.join(':');
 
-            console.log(name, value);
-
             mixinContext[name] = value;
 
         }
@@ -1045,8 +1043,6 @@ let helpers = {
 
         let key = opt.param || 'default';
 
-        console.log(555, key);
-
         if (typeof opt.content === 'string') {
 
             opt.content = `{$#formValueType.${key}}${opt.content}\n{$/formValueType.${key}}`;
@@ -1169,8 +1165,6 @@ let runner = tree => {
             block._html = make.block(block);
         
         }
-
-        console.log(block._html);
 
     }
 

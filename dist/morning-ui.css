@@ -1025,6 +1025,23 @@ i-textcolor.sy-white {
   color: #FFFFFF;
 }
 
+i-apparent {
+  display: inline;
+  animation-name: apparent;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+i-apparent.inline {
+  display: inline;
+}
+i-apparent.inline-block {
+  display: inline-block;
+}
+i-apparent.block {
+  display: block;
+}
+
 i-grid {
   display: block;
 }

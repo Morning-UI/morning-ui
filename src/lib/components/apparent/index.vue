@@ -1,17 +1,17 @@
 <template>
-    <i-em
+    <i-apparent
         :_uiid="uiid"
-        :class="[]"
+        :class="[stateClass]"
     >
         <slot></slot>
-    </i-em>
+    </i-apparent>
 </template>
  
 <script>
 import UI                           from 'Common/ui';
 
 export default UI.extend({
-    name : 'em'
+    name : 'apparent'
 });
 </script>
 

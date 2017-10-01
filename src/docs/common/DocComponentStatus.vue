@@ -65,11 +65,9 @@ export default {
             let e2ePassTest = 0;
             let e2eFailTest = 0;
 
-            console.log(this.page);
-
             for (let item of data.tests) {
 
-                if (/\# SKIP/.test(item.name)) {
+                if (/# SKIP/.test(item.name)) {
 
                     return;
 
@@ -94,7 +92,7 @@ export default {
 
             for (let item of data.pass) {
 
-                if (/\# SKIP/.test(item.name)) {
+                if (/# SKIP/.test(item.name)) {
 
                     return;
 
@@ -119,7 +117,7 @@ export default {
 
             for (let item of data.fail) {
 
-                if (/\# SKIP/.test(item.name)) {
+                if (/# SKIP/.test(item.name)) {
 
                     return;
 
@@ -128,12 +126,16 @@ export default {
                 let unitReg = new RegExp(`unit › components › ${this.page} › `);
                 let e2eReg = new RegExp(`e2e › components › ${this.page} › `);
 
-                if(unitReg.test(item.name)) {
+                if (unitReg.test(item.name)) {
+
                     unitFailTest++;
+
                 }
 
-                if(e2eReg.test(item.name)) {
+                if (e2eReg.test(item.name)) {
+
                     e2eFailTest++;
+
                 }
 
             }
@@ -142,7 +144,7 @@ export default {
 
                 this.unit = 'no';
 
-            } else if (unitPassTest === unitAllTest ) {
+            } else if (unitPassTest === unitAllTest) {
 
                 this.unit = 'pass';
 
@@ -151,7 +153,6 @@ export default {
                 this.unit = 'fail';
 
             }
-            
 
             this.unitNote = `(${unitPassTest}/${unitAllTest})`;
             this.unitTitle = `All:${unitAllTest}, Pass:${unitPassTest}, Fail:${unitFailTest}`;
@@ -175,10 +176,10 @@ export default {
 
         });
 
-        $.get(`/report/coverage/lib/components/${this.page}/index.vue.html`, (data) => {
+        $.get(`/report/coverage/lib/components/${this.page}/index.vue.html`, data => {
 
-            let lineCoverage = data.match(/\>([0-9\.]+?)% \<\/span\>(.|\n)+?Statements/);
-            let coverageLevel = data.match(/status\-line ([a-z]+?)(\"|\')/);
+            let lineCoverage = data.match(/>([0-9.]+?)% <\/span>(.|\n)+?Statements/);
+            let coverageLevel = data.match(/status-line ([a-z]+?)("|')/);
 
             if (lineCoverage &&
                 lineCoverage[1]) {
