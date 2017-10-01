@@ -3112,6 +3112,94 @@ i-action .title h5 {
   color: #17212D;
 }
 
+i-formgroup {
+  width: 100%;
+  display: block;
+}
+i-formgroup > header {
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+  text-align: center;
+  background: inherit;
+  margin-top: 1.875em;
+}
+i-formgroup > header h5 {
+  color: #666;
+  font-weight: 600;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6em;
+}
+i-formgroup > header p {
+  font-size: 12px;
+  color: #ccc;
+  margin: 0;
+}
+i-formgroup > .action {
+  width: 100%;
+  text-align: center;
+  padding: 1.875em 0;
+}
+i-formgroup > .item {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin-left: 5%;
+  margin-right: 5%;
+  padding: 1.875em 0;
+}
+i-formgroup > .item + .item {
+  border-top: 1px #EDF1F5 solid;
+}
+i-formgroup .item > .title {
+  position: relative;
+  width: 30%;
+  font-weight: normal;
+  text-align: left;
+  vertical-align: middle;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+i-formgroup .item > .title ui-center p {
+  color: #BBB;
+  font-size: 13px;
+  text-align: left;
+  white-space: nowrap;
+}
+i-formgroup .item > .content {
+  width: 70%;
+}
+i-formgroup .item > .content .form {
+  margin-bottom: 10px;
+}
+i-formgroup .item > .content .form > * {
+  margin: 0;
+}
+i-formgroup .item > .content .form:last-child {
+  margin-bottom: 0;
+}
+i-formgroup .item > .content > h6 {
+  font-size: 13px;
+  color: #666;
+  font-weight: normal;
+  margin: 0 0 0.375em 0;
+}
+i-formgroup .item > .content > p {
+  font-size: 12px;
+  color: #aaa;
+  margin: 0 0 0.375em 0;
+  line-height: 1em;
+  transform-origin: 0;
+  transform: scale(0.8);
+}
+i-formgroup .item > .content > h6 + p {
+  margin: -0.15em 0 0.375em 0;
+}
+
 i-btngroup {
   display: inline-block;
   font-size: 0;

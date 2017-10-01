@@ -1,9 +1,107 @@
 @import '~Common/var.less';
 
-i-em{
-    display: inline;
-    font-style: italic;
+i-formgroup{
+    width: 100%;
+    display: block;
+    
+    > header{
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+        text-align: center;
+        background: inherit;
+        margin-top: 1.875em;
 
-    // default statement
-    &{}
+        h5{
+            color: #666;
+            font-weight: 600;
+            margin: 0;
+            font-size: @fontSize*0.875;
+            line-height: 1.6em;
+        }
+
+        p{
+            font-size: @fontSize*0.75;
+            color: #ccc;
+            margin: 0;
+        }
+
+    }
+
+    > .action{
+        width: 100%;
+        text-align: center;
+        padding: 1.875em 0;
+    }
+
+    > .item{
+        width: 90%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        margin-left: 5%;
+        margin-right: 5%;
+        padding: 1.875em 0;
+    
+        & + .item{
+            border-top: 1px @colorExtraLightSilver solid;
+        }
+    }
+
+    .item > .title{
+        position: relative;
+        width: 30%;
+        font-weight: normal;
+        text-align: left;
+        vertical-align: middle;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        box-sizing:border-box;
+        
+
+        ui-center p{
+            color: #BBB;
+            font-size: @fontSize*0.8125;
+            text-align: left;
+            white-space:nowrap;
+        }
+    }
+
+    .item > .content{
+        width: 70%;
+
+        .form{
+            margin-bottom: 10px;
+
+            & > *{
+                margin: 0;
+            }
+
+            &:last-child{
+                margin-bottom: 0;
+            }
+        }
+
+        & > h6{
+            font-size: @fontSize*0.8125;
+            color: #666;
+            font-weight: normal;
+            margin: 0 0 0.375em 0;
+        }
+
+        & > p{
+            font-size: @fontSize*0.75;
+            color: #aaa;
+            margin: 0 0 0.375em 0;
+            line-height: 1em;
+            transform-origin: 0;
+            transform: scale(0.8);
+        }
+
+        & > h6 + p{
+            margin: -0.15em 0 0.375em 0;
+        }
+    }
+
 }

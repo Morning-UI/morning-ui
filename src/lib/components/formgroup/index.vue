@@ -1,17 +1,17 @@
 <template>
-    <i-em
+    <i-formgroup
         :_uiid="uiid"
         :class="[]"
     >
         <slot></slot>
-    </i-em>
+    </i-formgroup>
 </template>
  
 <script>
 import UI                           from 'Common/ui';
 
 export default UI.extend({
-    name : 'em'
+    name : 'formgroup'
 });
 </script>
 
