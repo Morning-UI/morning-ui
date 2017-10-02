@@ -24,6 +24,9 @@
             :placeholder="placeholder"
             :disabled="conf.state === 'disabled'"
 
+            @focus="_focus()"
+            @blur="_blur()"
+
             v-model="data.value"
         />
     </template>
@@ -33,6 +36,9 @@
             
             :placeholder="placeholder"
             :disabled="conf.state === 'disabled'"
+
+            @focus="_focus()"
+            @blur="_blur()"
 
             v-model="data.value"
         />
@@ -107,7 +113,18 @@ export default Form.extend({
 
         }
     },
-    methods : {},
+    methods : {
+        _focus : function () {
+
+            this.$emit('focus');
+
+        },
+        _blur : function () {
+
+            this.$emit('blur');
+
+        }
+    },
     created : function () {
 
         this.$watch('data.value', newVal => {

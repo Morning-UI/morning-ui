@@ -130,6 +130,35 @@
     <a href="javascript:;" onclick="javascript:morning.findVM('demo4').move(2, 0);">将第2项移到第0项</a>
     ````
 
+    #### setInput([value])
+
+    设置输入框的内容。
+    
+    |KEY|可选|描述|接受值|值类型|默认值|
+    |-|-|-|-|-|-|
+    |value|YES|需要设置的内容|字符串：设置字符串内容<br>`undefined`：清空内容|`String`|`undefined`|
+
+    ````html
+    <div style="width:300px;">
+        <ui-multiinput ref="demo8" form-name="输入标签"></ui-multiinput>
+    </div>
+    <br>
+    <a href="javascript:;" onclick="javascript:morning.findVM('demo8').setInput('value1');">设置输入框内容</a>
+    <a href="javascript:;" onclick="javascript:morning.findVM('demo8').setInput();">清空输入框内容</a>
+    ````
+
+    #### getInput()
+
+    获取输入框的内容。
+    
+    ````html
+    <div style="width:300px;">
+        <ui-multiinput ref="demo9" form-name="输入标签"></ui-multiinput>
+    </div>
+    <br>
+    <a href="javascript:;" onclick="javascript:alert(morning.findVM('demo9').getInput());">获取输入框内容</a>
+    ````
+
     [[[事件]]]
 
     ````import

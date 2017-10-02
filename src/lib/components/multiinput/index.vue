@@ -233,21 +233,38 @@ export default Form.extend({
 
             this.set(value);
             this.data.inputValue = '';
+
+            return this;
         
         },
         del : function (index) {
 
             this._deleteItem(index);
 
+            return this;
+
         },
         move : function (from, to) {
 
             this._moveItem(from, to);
 
+            return this;
+
+        },
+        setInput : function (value) {
+
+            this.data.inputValue = String(value || '');
+
+            return this;
+
+        },
+        getInput : function () {
+
+            return this.data.inputValue;
+
         }
     },
-    created : function () {},
-    mounted : function () {
+    created : function () {
 
         this.$watch('conf.canMove', newVal => {
 
@@ -275,12 +292,16 @@ export default Form.extend({
 
                 this.data.value = [];
 
+                return;
+
             }
 
             if (this.conf.max &&
                 this.data.value.length > this.conf.max) {
 
-                this.set(newVal.slice(0, this.conf.max));
+                this.data.value = newVal.slice(0, this.conf.max);
+            
+                return;
 
             }
 
@@ -293,6 +314,9 @@ export default Form.extend({
         }, {
             immediate : true
         });
+        
+    },
+    mounted : function () {
 
         this.$on('_moveStarted', () => {
 

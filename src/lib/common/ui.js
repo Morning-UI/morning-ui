@@ -228,6 +228,7 @@ let UI = Vue.extend({
 
         window.morning.map[this.uiid] = this;
         this.morning = window.morning;
+        this.$el._vm = this;
 
         this.$emit('mounted');
 
@@ -239,6 +240,7 @@ let UI = Vue.extend({
     },
     updated : function () {
 
+        this.$el._vm = this;
         this.$emit('updated');
 
     },

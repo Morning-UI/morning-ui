@@ -112,6 +112,8 @@ export default Form.extend({
 
                 this.data.value = undefined;
 
+                return;
+
             }
 
         }, {

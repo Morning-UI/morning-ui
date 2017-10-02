@@ -51,7 +51,7 @@ let imports = {
 \`\`\`\`html
 @state:normal,disabled
 <div style="width:300px;">
-    <ui-{$uikey} {$stateKey} :default-value="{$&statementDefaultValue}" form-name="{$&stateName}" {$&statementMoreAttr}></ui-{$uikey}>
+    <ui-{$uikey} {$stateKey} :default-value="{$&statementDefaultValue}" form-name="{$&stateName}" {$&statementMoreAttr}>{$&statementSlot}</ui-{$uikey}>
 </div>
 <br>
 \`\`\`\`
@@ -76,7 +76,7 @@ let imports = {
 @color:silver
 @color:gray
 <div style="width:300px;">
-    <ui-{$uikey} {$colorKey} :default-value="{$&statementDefaultValue}" form-name="{$&colorName}" {$&statementMoreAttr}>{$&colorName}</ui-{$uikey}>
+    <ui-{$uikey} {$colorKey} :default-value="{$&statementDefaultValue}" form-name="{$&colorName}" {$&statementMoreAttr}>{$&statementSlot}</ui-{$uikey}>
 </div>
 <br>
 \`\`\`\`
@@ -86,7 +86,7 @@ let imports = {
 \`\`\`\`html
 @state:normal,disabled
 <div style="width:300px;">
-    <ui-{$uikey} {$stateKey} :default-value="{$&statementDefaultValue}" form-name="{$&stateName}" {$&statementMoreAttr}></ui-{$uikey}>
+    <ui-{$uikey} {$stateKey} :default-value="{$&statementDefaultValue}" form-name="{$&stateName}" {$&statementMoreAttr}>{$&statementSlot}</ui-{$uikey}>
 </div>
 <br>
 \`\`\`\`
@@ -97,7 +97,7 @@ let imports = {
 \`\`\`\`html
 @formConfig
 <div style="width:300px;">
-    <ui-{$uikey} form-name="{$formName}" {$&configMoreAttr}></ui-{$uikey}>
+    <ui-{$uikey} form-name="{$formName}" {$&configMoreAttr}>{$&configSlot}</ui-{$uikey}>
 </div>
 \`\`\`\`
 
@@ -106,7 +106,7 @@ let imports = {
 \`\`\`\`html
 @formConfig
 <div style="width:300px;">
-    <ui-{$uikey} form-name="{$formName}" form-key="{$formKey}" {$&configMoreAttr}></ui-{$uikey}>
+    <ui-{$uikey} form-name="{$formName}" form-key="{$formKey}" {$&configMoreAttr}>{$&configSlot}</ui-{$uikey}>
 </div>
 \`\`\`\`
 
@@ -118,7 +118,7 @@ let imports = {
 @formConfig
 <div style="width:300px;">
     <!-- 设置单个组 -->
-    <ui-{$uikey} form-name="{$formName}" form-key="{$formKey}" group="{$formGroupOne}" {$&configMoreAttr}></ui-{$uikey}>
+    <ui-{$uikey} form-name="{$formName}" form-key="{$formKey}" group="{$formGroupOne}" {$&configMoreAttr}>{$&configSlot}</ui-{$uikey}>
 </div>
 \`\`\`\`
 
@@ -132,7 +132,7 @@ let imports = {
 @var:demoGroup
 <div style="width:300px;">
     <!-- 设置多个组 -->
-    <ui-{$uikey} form-name="{$formName}" form-key="{$formKey}" :group="group" {$&configMoreAttr}></ui-{$uikey}>
+    <ui-{$uikey} form-name="{$formName}" form-key="{$formKey}" :group="group" {$&configMoreAttr}>{$&configSlot}</ui-{$uikey}>
 </div>
 \`\`\`\`
 
@@ -152,7 +152,7 @@ new Vue({
 \`\`\`\`html
 @formConfig
 <div style="width:300px;">
-    <ui-{$uikey} form-name="{$formName}" :default-value="{$&configDefaultValue}" {$&configMoreAttr}></ui-{$uikey}>
+    <ui-{$uikey} form-name="{$formName}" :default-value="{$&configDefaultValue}" {$&configMoreAttr}>{$&configSlot}</ui-{$uikey}>
 </div>
 \`\`\`\`
 
@@ -164,7 +164,7 @@ new Vue({
 @formConfig
 <div style="width:300px;">
     <p>{$formName}</p>
-    <ui-{$uikey} form-name="{$formName}" hide-name {$&configMoreAttr}></ui-{$uikey}>
+    <ui-{$uikey} form-name="{$formName}" hide-name {$&configMoreAttr}>{$&configSlot}</ui-{$uikey}>
 </div>
 \`\`\`\`
     `,
@@ -658,7 +658,7 @@ let parser = (text, el) => {
 
     let patt = /````(html|js|css|mixin|)((\n[\t ]*[\@a-zA-Z0-9\:\.\,\|]+)*)\n((.|\n)*?)(\n)*([ \t]*)````/g;
     let varpatt = /````(html|js|css)\n(\@var\:([a-zA-Z0-9]+))\n((.|\n)+?)\n([ \t]*)````/g;
-    let importpatt = /````(import)((\n[\t ]*[a-zA-Z0-9@'"\[\]{}=:.,|!()\u4e00-\u9fa5 ]+)*)\n((.|\n)*?)(\n)*([ \t]*)````/g;
+    let importpatt = /````(import)((\n[\t ]*[a-zA-Z0-9@'"[\]?<>/\-_{}=:.,|!()\u4e00-\u9fa5 ]+)*)\n((.|\n)*?)(\n)*([ \t]*)````/g;
     let result;
     let vars = {
         js : {},
@@ -668,6 +668,8 @@ let parser = (text, el) => {
     let mixinContext = {};
 
     while ((result = importpatt.exec(text)) !== null) {
+
+        console.log(56, result);
 
         let rdata = result[2].replace(/^\n/, '').split('\n');
         let id = rdata[0].split(':')[1];

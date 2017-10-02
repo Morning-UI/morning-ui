@@ -14,6 +14,7 @@ let morning = {
     _findCache : {},
     _popupId : 0,
     _moveListener : [],
+    _selectClickListener : [],
     version : '0.10.0',
     map : {},
     findVM : function (ref) {

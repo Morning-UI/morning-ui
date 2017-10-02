@@ -1,0 +1,296 @@
+@import '~Common/var.less';
+
+i-select{
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+    vertical-align: middle;
+    min-height: @formHeight;
+    // z-index: 10;
+    
+    // TODO : USE indexManager
+    // &+ui-select{
+    //     z-index: 8;
+    //     +ui-select{
+    //         z-index: 7;
+    //         +ui-select{
+    //             z-index: 6;
+    //             +ui-select{
+    //                 z-index: 5;
+    //             }
+    //         }
+    //     }
+    // }
+
+    >.wrap{
+        border: 1px solid @colorLightSilver;
+        border-radius: @borderRadius;
+        position: relative;
+        cursor: pointer;
+        transition: border-radius 0.2s, border 0.2s;
+        -webkit-user-select: none;
+        background-color: #FFF;
+        // z-index: 9;
+        overflow: hidden;
+
+        >i-textinput{
+            width: ~"calc( 100% - 30px )";
+            height: @formHeight - 2px;
+            line-height: @formHeight - 2px;
+            padding: 0;
+            cursor: pointer;
+            margin: 0;
+            position: absolute;
+            // z-index: 2;
+
+            input{
+                vertical-align: top !important;
+                border: none;
+                height: @formHeight - 2px;
+                line-height: @formHeight - 2px;
+                font-size: @fontSize*0.875;
+            }
+        }
+
+        >i-multiinput{
+            margin: 0;
+            width: ~"calc( 100% - 30px )";
+            background-color: #FFF;
+            vertical-align: top;
+
+            .itemlist{
+                border: none;
+
+                >input{
+                    cursor: pointer;
+                }
+            }
+        }
+
+        >.selected{
+            color: @colorBlue;
+            width: ~"calc( 100% - 30px )";
+            height: @formHeight - 2px;
+            line-height: @formHeight - 2px;
+            padding: 0 1em;
+            position: relative;
+            pointer-events: none;
+            z-index: 1;
+            font-size: @fontSize*0.875;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+
+            img,
+            i-img {
+                height: 2em;
+                width: 2em;
+                margin-right: 0.5em;
+                vertical-align: middle;
+            }
+
+            i-img > img{
+                vertical-align: top;
+            }
+        }
+
+        > .morningicon{
+            position: absolute;
+            line-height: @formHeight - 2px;         
+            width: 24px;
+            transform: rotateX(0deg); 
+            transition: transform 0.2s;
+            z-index: 2;
+            color: @colorExtraLightBlack;
+
+            &.drop{
+                top: 0;
+                right: 0;
+                font-size: 30px;
+                text-indent: 1px;
+            }
+            
+            &.clean{
+                top: 0;
+                right: 26px;
+                width: 18px;
+                font-size: 16px;
+            }
+        }
+
+        &:hover{
+            border-color: @colorSilver;
+        }
+    }
+
+    >.list{
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        border: 1px @colorSilver solid;
+        border-top-width: 0;
+        border-radius: 0 0 @borderRadius @borderRadius;
+        overflow-x: hidden;
+        overflow-y: auto;
+        visibility: hidden;
+        transform: scaleY(0);
+        transition: transform 0.2s, visibility 0.2s, border 0.2s;
+        transform-origin: 50% 0%;
+        width: 100%;
+        background-color: #FFF;
+        box-sizing: border-box;
+        position: absolute;
+        // z-index: 2;
+
+        &::-webkit-scrollbar{
+            width: 5px;
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        &::-webkit-scrollbar-thumb{
+            width: 5px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+        }
+
+        li{
+            padding: 0.5em 1em;
+            border-top: 1px @colorLightGray solid;
+            cursor: pointer;
+            font-size: 14px;
+            color: @colorExtraLightBlack;
+
+            &.noitem{
+                color: @colorExtraLightBlue;
+                cursor: default;
+                display: none;
+
+                &.show{
+                    display: list-item;
+                }
+            }
+
+            img,
+            i-img {
+                height: 2em;
+                width: 2em;
+                margin-right: 0.5em;
+                vertical-align: middle;
+            }
+
+            i-img > img{
+                vertical-align: top;
+            }
+
+            &.current{
+                background: lighten(@colorLightGray, 3%);
+                color: @colorLightBlack;
+            }
+
+            &.hide,
+            &.selected{
+                display: none;
+            }
+
+            &:hover{
+                background: lighten(@colorLightGray, 3%);
+            }
+        }
+    }
+
+    // &.can-search.multi-select>.wrap > i-multiinput .itemlist > input{
+    //     cursor: initial;
+    // }
+
+    &.showlist{
+        // z-index: 11;
+        
+        >.wrap{
+            border-color: @colorSilver;
+            border-bottom-width: 0;
+            border-radius: @borderRadius @borderRadius 0 0;
+            padding-bottom: 1px;
+
+            >i-textinput{
+                cursor: initial;
+            }
+
+            >.drop{
+                transform: rotateX(180deg); 
+            }
+        }
+
+        >.list{
+            visibility: visible;
+            transform: scaleY(1);
+        }
+    }
+
+    &.selected{
+        >.wrap{
+            >i-textinput{
+                input{
+                    color: @colorLightBlack !important;
+                }
+            }
+
+            >.selected{
+                color: @colorLightBlack;
+            }
+        }
+    }
+
+    &.focus-search{
+        >.wrap>.selected{
+            opacity: 0.3;
+        }
+    }
+
+    &.searching{
+        >.wrap>.selected{
+            visibility: hidden;
+        }
+    }
+
+    // &.full{
+    //     .wrap{
+    //         cursor: default;
+    //         >.iconfont{
+    //             display: none;
+    //         }
+    //     }
+    // }
+
+    &.st-normal{}
+
+    &.st-disabled{
+        >.wrap{
+            background-color: @colorLightGray;
+            border-color: @colorExtraLightBlue;
+            -webkit-user-select: none;
+            cursor: not-allowed !important;
+
+            >.morningicon{
+                display: none;
+            }
+
+            >.selected{
+                color: @colorLightBlack;
+            }
+        }
+
+        > .wrap > i-multiinput{
+            background: transparent;
+        }
+        
+        > .wrap > i-textinput{
+            display: none;
+        }
+    }
+
+    // default statement
+    &{
+        .st-normal;
+    }
+}

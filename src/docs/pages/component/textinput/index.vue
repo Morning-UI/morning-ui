@@ -108,6 +108,62 @@
     @eventValue:'Jim'
     ````
 
+    #### focus
+
+    当表单聚焦后触发。
+
+    ````mixin
+    @use:html.demo2,js.demo2
+    ````
+
+    ````html
+    @var:demo2
+    <div style="width:300px;">
+        <ui-textinput @focus="echo" ref="demo2"></ui-textinput>
+    </div>
+    ````
+
+    ````js
+    @var:demo2
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        methods : {
+            echo : function () {
+                console.log('demo2.console1', 'focus event!');
+            }
+        }
+    });
+    ````
+
+    #### blur
+
+    当表单失焦后触发。
+
+    ````mixin
+    @use:html.demo3,js.demo3
+    ````
+
+    ````html
+    @var:demo3
+    <div style="width:300px;">
+        <ui-textinput @blur="echo" ref="demo3"></ui-textinput>
+    </div>
+    ````
+
+    ````js
+    @var:demo3
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        methods : {
+            echo : function () {
+                console.log('demo3.console1', 'blur event!');
+            }
+        }
+    });
+    ````
+
     [[[表单值]]]
 
     #### 值类型

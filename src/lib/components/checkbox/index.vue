@@ -127,6 +127,28 @@ export default Form.extend({
 
                 this.data.value = [];
 
+                return;
+
+            }
+
+            let valList = this.get(false);
+
+            for (let index in valList) {
+
+                let val = valList[index];
+
+                if (Object.keys(this.conf.list).indexOf(String(val)) === -1) {
+
+                    valList.splice(index, 1);
+
+                }
+
+            }
+
+            if (valList.length !== newVal.length) {
+
+                this.data.value = valList;
+
             }
 
         }, {

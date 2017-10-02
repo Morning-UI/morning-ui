@@ -6,7 +6,7 @@
     <script type="text/markdown">
     # 更新日志
 
-    ### 说明
+    ### 版本规范
 
     MorningUI采用[语义化版本控制规范](http://semver.org/lang/zh-CN/)。
 
@@ -17,7 +17,6 @@
     |<ui-badge class="circle ver-stable" s theme>Stable</ui-badge>|稳定版本|此版本中的各个功能都经过一段时间的测试及使用，非常稳定|month|推荐使用|
     |<ui-badge class="circle ver-beta" s extra-light-black>Beta</ui-badge>|公开测试版本|包含了一些新的特性，并且修复了大部分问题的版本，相对较为稳定|week|可用<br>不推荐|
     |<ui-badge class="circle ver-canary" s>Canary</ui-badge>|金丝雀版本|包含大量新特性的版本，这个版本是实验性的，可能存在较多的问题<br><ui-small><ui-textcolor extra-light-blue>为开发者及早期用户设计的版本</ui-textcolor></ui-small>|~daily|请勿使用|
-
 
     <!-- ### 1.0.0 <ui-badge class="circle" s light-black>Stable</ui-badge> -->
 

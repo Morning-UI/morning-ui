@@ -16,6 +16,9 @@
         :disabled="conf.state === 'disabled'"
         :rows="conf.rows"
 
+        @focus="_focus()"
+        @blur="_blur()"
+
         v-model="data.value"
     ></textarea>
 
@@ -57,6 +60,16 @@ export default Form.extend({
         }
     },
     methods : {
+        _focus : function () {
+
+            this.$emit('focus');
+
+        },
+        _blur : function () {
+
+            this.$emit('blur');
+
+        },
         setRows : function (num) {
 
             let row = this.conf.rows;
