@@ -3958,6 +3958,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
+//
+//
 
 var _arrayUniq = __webpack_require__(4);
 
@@ -4039,7 +4043,8 @@ exports.default = _form2.default.extend({
                 selectedContent: null,
                 searching: false,
                 focusSearch: false,
-                mounted: false
+                mounted: false,
+                isMax: false
             },
             listStyle: {}
         };
@@ -4050,7 +4055,9 @@ exports.default = _form2.default.extend({
             return {
                 showlist: !!this.data.showlist,
                 searching: !!this.data.searching,
-                'focus-search': !!this.data.focusSearch
+                'focus-search': !!this.data.focusSearch,
+                'is-max': !!this.data.isMax,
+                'has-clean-btn': !!this.conf.cleanBtn
             };
         }
     },
@@ -4062,14 +4069,21 @@ exports.default = _form2.default.extend({
                 return;
             }
 
+            if (this.conf.multiSelect && this.data.value.length === this.conf.max) {
+
+                return;
+            }
+
             var $searchTextinput = this.$el.querySelector('.wrap i-textinput'),
                 $searchMultiinput = this.$el.querySelector('.wrap i-multiinput'),
+                $cleanBtn = this.$el.querySelector('.wrap .clean'),
                 hasTextinput = evt.path.indexOf($searchTextinput) !== -1,
-                hasMultiinput = evt.path.indexOf($searchMultiinput) !== -1;
+                hasMultiinput = evt.path.indexOf($searchMultiinput) !== -1,
+                hasCleanBtn = evt.path.indexOf($cleanBtn) !== -1;
             // searchTextinput = ($(ev.target).is($multiInput) || $multiInput.find($(ev.target)).length),
             // searchMultiinput = $(ev.target).is($searchInput) || $searchInput.has($(ev.target)).length;
 
-            if (!hasTextinput && !hasMultiinput) {
+            if (!hasTextinput && !hasMultiinput && !hasCleanBtn) {
 
                 this.toggle();
             } else if ((hasTextinput || hasMultiinput) && this.data.showlist === false) {
@@ -4230,7 +4244,7 @@ exports.default = _form2.default.extend({
         },
         _refreshValue: function _refreshValue(values) {
 
-            letpValue = [];
+            var setValue = [];
             var $items = this.$el.querySelectorAll('.list>li:not(.noitem)');
 
             var _iteratorNormalCompletion3 = true;
@@ -4505,9 +4519,16 @@ exports.default = _form2.default.extend({
                 return;
             }
 
-            if (_this.conf.multiSelect && _this.conf.max && _this.data.value.length > _this.conf.max || !_this.conf.multiSelect && _this.data.value.length > 1) {
+            if (_this.conf.multiSelect && _this.conf.max && _this.data.value.length > _this.conf.max) {
 
                 _this.data.value = newVal.slice(0, _this.conf.max);
+
+                return;
+            }
+
+            if (!_this.conf.multiSelect && _this.data.value.length > 1) {
+
+                _this.data.value = newVal.slice(0, 1);
 
                 return;
             }
@@ -4624,12 +4645,20 @@ exports.default = _form2.default.extend({
                 }
             }
 
-            if (_this.conf.multiSelect && _this.data.value.length === _this.conf.max) {
+            if (_this.conf.multiSelect && _this.data.value.length === $items.length) {
 
                 $noitem.classList.add('show');
             } else {
 
                 $noitem.classList.remove('show');
+            }
+
+            if (_this.conf.multiSelect && _this.data.value.length === _this.conf.max) {
+
+                _this.data.isMax = true;
+            } else {
+
+                _this.data.isMax = false;
             }
 
             if (!_this.conf.multiSelect && (_this.data.value.length === 0 || _this.data.value === undefined)) {
@@ -4660,7 +4689,7 @@ exports.default = _form2.default.extend({
 
             _this.$watch('conf.maxShow', function (newVal) {
 
-                var $item = _this.$el.querySelector('.list>li:not(.noitem)');
+                var $item = _this.$el.querySelector('.list>li:not(.noitem):not(.current):not(.selected)');
 
                 if (!$item) {
 
@@ -13237,7 +13266,12 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
   }, [_vm._v("\n             \n        ")])], _vm._v(" "), _c('i', {
     staticClass: "morningicon drop"
   }, [_vm._v("")]), _vm._v(" "), (_vm.conf.cleanBtn) ? _c('i', {
-    staticClass: "morningicon clean"
+    staticClass: "morningicon clean",
+    on: {
+      "click": function($event) {
+        _vm._set(undefined, true)
+      }
+    }
   }, [_vm._v("")]) : _vm._e()], 2), _vm._v(" "), _c('ul', {
     staticClass: "list",
     style: (_vm.listStyle),

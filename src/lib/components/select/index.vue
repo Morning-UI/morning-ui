@@ -86,7 +86,11 @@
         </template>
 
         <i class="morningicon drop">&#xe6b1;</i>
-        <i class="morningicon clean" v-if="conf.cleanBtn">&#xe67c;</i>
+        <i
+            class="morningicon clean"
+            v-if="conf.cleanBtn"
+            @click="_set(undefined, true)"
+        >&#xe67c;</i>
 
     </div>
 
@@ -173,7 +177,8 @@ export default Form.extend({
                 selectedContent : null,
                 searching : false,
                 focusSearch : false,
-                mounted : false
+                mounted : false,
+                isMax : false
             },
             listStyle : {}
         };
@@ -185,7 +190,9 @@ export default Form.extend({
             return {
                 showlist : !!this.data.showlist,
                 searching : !!this.data.searching,
-                'focus-search' : !!this.data.focusSearch
+                'focus-search' : !!this.data.focusSearch,
+                'is-max' : !!this.data.isMax,
+                'has-clean-btn' : !!this.conf.cleanBtn
             };
 
         }
@@ -199,14 +206,23 @@ export default Form.extend({
                 
             }
 
+            if (this.conf.multiSelect &&
+                this.data.value.length === this.conf.max) {
+
+                return;
+
+            }
+
             let $searchTextinput = this.$el.querySelector('.wrap i-textinput'),
                 $searchMultiinput = this.$el.querySelector('.wrap i-multiinput'),
+                $cleanBtn = this.$el.querySelector('.wrap .clean'),
                 hasTextinput = (evt.path.indexOf($searchTextinput) !== -1),
-                hasMultiinput = (evt.path.indexOf($searchMultiinput) !== -1);
+                hasMultiinput = (evt.path.indexOf($searchMultiinput) !== -1),
+                hasCleanBtn = (evt.path.indexOf($cleanBtn) !== -1);
                 // searchTextinput = ($(ev.target).is($multiInput) || $multiInput.find($(ev.target)).length),
                 // searchMultiinput = $(ev.target).is($searchInput) || $searchInput.has($(ev.target)).length;
 
-            if (!hasTextinput && !hasMultiinput) {
+            if (!hasTextinput && !hasMultiinput && !hasCleanBtn) {
 
                 this.toggle();
 
@@ -353,7 +369,7 @@ export default Form.extend({
         },
         _refreshValue : function (values) {
 
-            letpValue = [];
+            let setValue = [];
             let $items = this.$el.querySelectorAll('.list>li:not(.noitem)');
 
             for (let value of values) {
@@ -556,17 +572,20 @@ export default Form.extend({
 
             }
 
-            if ((
-                this.conf.multiSelect &&
+            if (this.conf.multiSelect &&
                 this.conf.max &&
-                this.data.value.length > this.conf.max
-            ) ||
-            (
-                !this.conf.multiSelect &&
-                this.data.value.length > 1
-            )) {
+                this.data.value.length > this.conf.max) {
 
                 this.data.value = newVal.slice(0, this.conf.max);
+
+                return;
+
+            }
+
+            if (!this.conf.multiSelect &&
+                this.data.value.length > 1) {
+
+                this.data.value = newVal.slice(0, 1);
 
                 return;
 
@@ -637,13 +656,24 @@ export default Form.extend({
             }
 
             if (this.conf.multiSelect &&
-                this.data.value.length === this.conf.max) {
+                this.data.value.length === $items.length) {
 
                 $noitem.classList.add('show');
 
             } else {
-
+                
                 $noitem.classList.remove('show');
+
+            }
+
+            if (this.conf.multiSelect &&
+                this.data.value.length === this.conf.max) {
+
+                this.data.isMax = true;
+
+            } else {
+
+                this.data.isMax = false;
 
             }
 
@@ -681,7 +711,7 @@ export default Form.extend({
 
             this.$watch('conf.maxShow', newVal => {
 
-                let $item = this.$el.querySelector('.list>li:not(.noitem)');
+                let $item = this.$el.querySelector('.list>li:not(.noitem):not(.current):not(.selected)');
 
                 if (!$item) {
 

@@ -102,7 +102,7 @@ i-select{
             transform: rotateX(0deg); 
             transition: transform 0.2s;
             z-index: 2;
-            color: @colorExtraLightBlack;
+            color: @colorBlue;
 
             &.drop{
                 top: 0;
@@ -116,6 +116,10 @@ i-select{
                 right: 26px;
                 width: 18px;
                 font-size: 16px;
+
+                &:hover{
+                    color: @colorExtraLightBlack;
+                }
             }
         }
 
@@ -203,6 +207,18 @@ i-select{
     //     cursor: initial;
     // }
 
+    &.has-clean-btn{
+        >.wrap {
+            >i-textinput,
+            >i-multiinput,
+            >.selected{
+    
+                width: ~"calc( 100% - 50px )";
+
+            }
+        }
+    }
+
     &.showlist{
         // z-index: 11;
         
@@ -253,14 +269,14 @@ i-select{
         }
     }
 
-    // &.full{
-    //     .wrap{
-    //         cursor: default;
-    //         >.iconfont{
-    //             display: none;
-    //         }
-    //     }
-    // }
+    &.is-max{
+        .wrap{
+            cursor: default;
+            >.drop{
+                display: none;
+            }
+        }
+    }
 
     &.st-normal{}
 

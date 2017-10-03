@@ -5931,7 +5931,7 @@ i-select > .wrap > .morningicon {
   transform: rotateX(0deg);
   transition: transform 0.2s;
   z-index: 2;
-  color: #45505C;
+  color: #7C8BA0;
 }
 i-select > .wrap > .morningicon.drop {
   top: 0;
@@ -5944,6 +5944,9 @@ i-select > .wrap > .morningicon.clean {
   right: 26px;
   width: 18px;
   font-size: 16px;
+}
+i-select > .wrap > .morningicon.clean:hover {
+  color: #45505C;
 }
 i-select > .wrap:hover {
   border-color: #D6DDE5;
@@ -6011,6 +6014,11 @@ i-select > .list li.selected {
 i-select > .list li:hover {
   background: #f8f8f8;
 }
+i-select.has-clean-btn > .wrap > i-textinput,
+i-select.has-clean-btn > .wrap > i-multiinput,
+i-select.has-clean-btn > .wrap > .selected {
+  width: calc( 100% - 50px );
+}
 i-select.showlist > .wrap {
   border-color: #D6DDE5;
   border-bottom-width: 0;
@@ -6038,6 +6046,12 @@ i-select.focus-search > .wrap > .selected {
 }
 i-select.searching > .wrap > .selected {
   visibility: hidden;
+}
+i-select.is-max .wrap {
+  cursor: default;
+}
+i-select.is-max .wrap > .drop {
+  display: none;
 }
 i-select.st-disabled > .wrap {
   background-color: #F0F0F0;
