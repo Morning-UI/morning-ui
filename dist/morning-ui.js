@@ -542,6 +542,47 @@ var Form = _ui2.default.extend({
         };
     },
     methods: {
+        _syncGroup: function _syncGroup() {
+
+            var morning = window.morning;
+
+            if (this.conf.group && this.conf.group.length > 0) {
+                var _iteratorNormalCompletion = true;
+                var _didIteratorError = false;
+                var _iteratorError = undefined;
+
+                try {
+
+                    for (var _iterator = this.conf.group[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                        var gname = _step.value;
+
+
+                        if (morning.groupData[gname] === undefined) {
+
+                            morning.groupData[gname] = {};
+                        }
+
+                        if (this.conf.formKey !== undefined) {
+
+                            morning.groupData[gname][this.conf.formKey] = this.get(false);
+                        }
+                    }
+                } catch (err) {
+                    _didIteratorError = true;
+                    _iteratorError = err;
+                } finally {
+                    try {
+                        if (!_iteratorNormalCompletion && _iterator.return) {
+                            _iterator.return();
+                        }
+                    } finally {
+                        if (_didIteratorError) {
+                            throw _iteratorError;
+                        }
+                    }
+                }
+            }
+        },
         _set: function _set(value) {
             var ignoreDisable = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
 
@@ -621,6 +662,8 @@ var Form = _ui2.default.extend({
         },
         setKey: function setKey(key) {
 
+            // TODO remove group data this key
+
             return this.setConf('formKey', key);
         },
         getKey: function getKey() {
@@ -630,6 +673,8 @@ var Form = _ui2.default.extend({
         setGroup: function setGroup() {
             var group = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
 
+
+            // TODO remove group data this key
 
             var groups = [];
 
@@ -657,28 +702,28 @@ var Form = _ui2.default.extend({
 
                 groups.push(group);
 
-                var _iteratorNormalCompletion = true;
-                var _didIteratorError = false;
-                var _iteratorError = undefined;
+                var _iteratorNormalCompletion2 = true;
+                var _didIteratorError2 = false;
+                var _iteratorError2 = undefined;
 
                 try {
-                    for (var _iterator = groups[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                        var key = _step.value;
+                    for (var _iterator2 = groups[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                        var key = _step2.value;
 
 
                         uniqGroups[key] = 0;
                     }
                 } catch (err) {
-                    _didIteratorError = true;
-                    _iteratorError = err;
+                    _didIteratorError2 = true;
+                    _iteratorError2 = err;
                 } finally {
                     try {
-                        if (!_iteratorNormalCompletion && _iterator.return) {
-                            _iterator.return();
+                        if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                            _iterator2.return();
                         }
                     } finally {
-                        if (_didIteratorError) {
-                            throw _iteratorError;
+                        if (_didIteratorError2) {
+                            throw _iteratorError2;
                         }
                     }
                 }
@@ -712,9 +757,11 @@ var Form = _ui2.default.extend({
         var _this = this;
 
         this.data.value = this.conf.defaultValue;
+        this._syncGroup();
 
         this.$watch('data.value', function () {
 
+            _this._syncGroup();
             _this.$emit('valueChange');
         }, {
             deep: true
@@ -6173,6 +6220,10 @@ var _vue = __webpack_require__(5);
 
 var _vue2 = _interopRequireDefault(_vue);
 
+var _extend = __webpack_require__(3);
+
+var _extend2 = _interopRequireDefault(_extend);
+
 var _ui = __webpack_require__(1);
 
 var _ui2 = _interopRequireDefault(_ui);
@@ -6201,6 +6252,8 @@ var morning = {
     _selectClickListener: [],
     version: '0.10.0',
     map: {},
+    groupData: {},
+    // groupVmMap : {},
     findVM: function findVM(ref) {
 
         if (this._findCache[ref]) {
@@ -6238,7 +6291,18 @@ var morning = {
                 }
             }
         }
+    },
+    getGroupData: function getGroupData(groupName) {
+
+        return (0, _extend2.default)(true, {}, this.groupData[groupName]);
+    },
+    getGroupJson: function getGroupJson(groupName) {
+
+        return JSON.stringify(this.getGroupData(groupName));
     }
+    // TODO
+    // setGroupData : function (groupName, data) {},
+    // setGroupJson : function (groupName, data) {}
 };
 
 _vue2.default.config.ignoredElements = [];

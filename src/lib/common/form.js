@@ -52,6 +52,32 @@ let Form = UI.extend({
 
     },
     methods : {
+        _syncGroup : function () {
+
+            let morning = window.morning;
+    
+            if (this.conf.group &&
+                this.conf.group.length > 0) {
+
+                for (let gname of this.conf.group) {
+
+                    if (morning.groupData[gname] === undefined) {
+
+                        morning.groupData[gname] = {};
+
+                    }
+
+                    if (this.conf.formKey !== undefined) {
+
+                        morning.groupData[gname][this.conf.formKey] = this.get(false);
+
+                    }
+
+                }
+
+            }
+
+        },
         _set : function (value, ignoreDisable = false) {
 
             if (this.conf.state === 'disabled' && !ignoreDisable) {
@@ -143,6 +169,8 @@ let Form = UI.extend({
         },
         setKey : function (key) {
 
+            // TODO remove group data this key
+
             return this.setConf('formKey', key);
 
         },
@@ -152,6 +180,8 @@ let Form = UI.extend({
 
         },
         setGroup : function (group = []) {
+
+            // TODO remove group data this key
 
             let groups = [];
 
@@ -222,9 +252,11 @@ let Form = UI.extend({
     created : function () {
 
         this.data.value = this.conf.defaultValue;
+        this._syncGroup();
 
         this.$watch('data.value', () => {
 
+            this._syncGroup();
             this.$emit('valueChange');
 
         }, {

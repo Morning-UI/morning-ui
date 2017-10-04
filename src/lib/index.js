@@ -1,4 +1,5 @@
 import Vue                          from 'vue';
+import extend                       from 'extend';
 import UI                           from 'Common/ui';
 import Form                         from 'Common/form';
 import components                   from './components';
@@ -17,6 +18,8 @@ let morning = {
     _selectClickListener : [],
     version : '0.10.0',
     map : {},
+    groupData : {},
+    // groupVmMap : {},
     findVM : function (ref) {
 
         if (this._findCache[ref]) {
@@ -36,9 +39,23 @@ let morning = {
                 return vm;
             
             }
+
         }
 
-    }
+    },
+    getGroupData : function (groupName) {
+
+        return extend(true, {}, this.groupData[groupName]);
+
+    },
+    getGroupJson : function (groupName) {
+
+        return JSON.stringify(this.getGroupData(groupName));
+
+    },
+    // TODO
+    // setGroupData : function (groupName, data) {},
+    // setGroupJson : function (groupName, data) {}
 };
 
 Vue.config.ignoredElements = [];
