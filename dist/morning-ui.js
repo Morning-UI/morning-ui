@@ -4433,6 +4433,104 @@ exports.default = _form2.default.extend({
                 document.addEventListener('click', this._checkArea);
             }
         },
+        _resizeInlineImg: function _resizeInlineImg() {
+
+            if (!this.conf.inlineImgSize) {
+
+                return;
+            }
+
+            var $inlineImgs = this.$el.querySelectorAll('.list>li i-img,.list>li img');
+
+            var _iteratorNormalCompletion7 = true;
+            var _didIteratorError7 = false;
+            var _iteratorError7 = undefined;
+
+            try {
+                for (var _iterator7 = $inlineImgs.values()[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
+                    var $img = _step7.value;
+
+
+                    $img.style.width = this.conf.inlineImgSize;
+                    $img.style.height = this.conf.inlineImgSize;
+                }
+            } catch (err) {
+                _didIteratorError7 = true;
+                _iteratorError7 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion7 && _iterator7.return) {
+                        _iterator7.return();
+                    }
+                } finally {
+                    if (_didIteratorError7) {
+                        throw _iteratorError7;
+                    }
+                }
+            }
+        },
+        _initTips: function _initTips() {
+
+            if (!this.conf.itemTip) {
+
+                return;
+            }
+
+            var $items = this.$el.querySelectorAll('.list>li:not(.noitem)');
+            var $list = this.$el.querySelector('.list');
+
+            var _iteratorNormalCompletion8 = true;
+            var _didIteratorError8 = false;
+            var _iteratorError8 = undefined;
+
+            try {
+                for (var _iterator8 = $items.keys()[Symbol.iterator](), _step8; !(_iteratorNormalCompletion8 = (_step8 = _iterator8.next()).done); _iteratorNormalCompletion8 = true) {
+                    var index = _step8.value;
+
+
+                    var $item = $items[index];
+                    var $tip = $item.nextElementSibling;
+
+                    if ($tip === null || $tip.classList.value.split(' ').indexOf('item-tip') === -1) {
+
+                        return;
+                    }
+
+                    var random = 1e8;
+
+                    var tipContent = $tip.innerHTML;
+                    var tipId = 'select-tip-' + Math.floor(Math.random() * random);
+                    var $newTip = document.createElement('ui-tip');
+
+                    $newTip.setAttribute(':minor', true);
+                    $newTip.setAttribute('target', '#' + tipId);
+                    $newTip.setAttribute('placement', this.conf.itemTipDirect);
+                    $newTip.innerHTML = tipContent;
+
+                    var tipVm = new this.Vue({
+                        el: $newTip
+                    });
+
+                    $item.setAttribute('id', tipId);
+                    $tip.remove();
+                    tipVm.$mount();
+                    $list.append(tipVm.$el);
+                }
+            } catch (err) {
+                _didIteratorError8 = true;
+                _iteratorError8 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion8 && _iterator8.return) {
+                        _iterator8.return();
+                    }
+                } finally {
+                    if (_didIteratorError8) {
+                        throw _iteratorError8;
+                    }
+                }
+            }
+        },
         toggle: function toggle(show) {
 
             if (show === undefined) {
@@ -4454,14 +4552,14 @@ exports.default = _form2.default.extend({
 
                     this._refreshShowItems();
                 } else if ($currentItem) {
-                    var _iteratorNormalCompletion7 = true;
-                    var _didIteratorError7 = false;
-                    var _iteratorError7 = undefined;
+                    var _iteratorNormalCompletion9 = true;
+                    var _didIteratorError9 = false;
+                    var _iteratorError9 = undefined;
 
                     try {
 
-                        for (var _iterator7 = $items.keys()[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
-                            var index = _step7.value;
+                        for (var _iterator9 = $items.keys()[Symbol.iterator](), _step9; !(_iteratorNormalCompletion9 = (_step9 = _iterator9.next()).done); _iteratorNormalCompletion9 = true) {
+                            var index = _step9.value;
 
 
                             if ($items[index] === $currentItem) {
@@ -4472,16 +4570,16 @@ exports.default = _form2.default.extend({
                             }
                         }
                     } catch (err) {
-                        _didIteratorError7 = true;
-                        _iteratorError7 = err;
+                        _didIteratorError9 = true;
+                        _iteratorError9 = err;
                     } finally {
                         try {
-                            if (!_iteratorNormalCompletion7 && _iterator7.return) {
-                                _iterator7.return();
+                            if (!_iteratorNormalCompletion9 && _iterator9.return) {
+                                _iterator9.return();
                             }
                         } finally {
-                            if (_didIteratorError7) {
-                                throw _iteratorError7;
+                            if (_didIteratorError9) {
+                                throw _iteratorError9;
                             }
                         }
                     }
@@ -4533,28 +4631,28 @@ exports.default = _form2.default.extend({
                 return;
             }
 
-            var _iteratorNormalCompletion8 = true;
-            var _didIteratorError8 = false;
-            var _iteratorError8 = undefined;
+            var _iteratorNormalCompletion10 = true;
+            var _didIteratorError10 = false;
+            var _iteratorError10 = undefined;
 
             try {
-                for (var _iterator8 = $currentItems.values()[Symbol.iterator](), _step8; !(_iteratorNormalCompletion8 = (_step8 = _iterator8.next()).done); _iteratorNormalCompletion8 = true) {
-                    var $item = _step8.value;
+                for (var _iterator10 = $currentItems.values()[Symbol.iterator](), _step10; !(_iteratorNormalCompletion10 = (_step10 = _iterator10.next()).done); _iteratorNormalCompletion10 = true) {
+                    var $item = _step10.value;
 
 
                     $item.classList.remove('current');
                 }
             } catch (err) {
-                _didIteratorError8 = true;
-                _iteratorError8 = err;
+                _didIteratorError10 = true;
+                _iteratorError10 = err;
             } finally {
                 try {
-                    if (!_iteratorNormalCompletion8 && _iterator8.return) {
-                        _iterator8.return();
+                    if (!_iteratorNormalCompletion10 && _iterator10.return) {
+                        _iterator10.return();
                     }
                 } finally {
-                    if (_didIteratorError8) {
-                        throw _iteratorError8;
+                    if (_didIteratorError10) {
+                        throw _iteratorError10;
                     }
                 }
             }
@@ -4577,21 +4675,21 @@ exports.default = _form2.default.extend({
                 }
             }
 
-            var _iteratorNormalCompletion9 = true;
-            var _didIteratorError9 = false;
-            var _iteratorError9 = undefined;
+            var _iteratorNormalCompletion11 = true;
+            var _didIteratorError11 = false;
+            var _iteratorError11 = undefined;
 
             try {
-                for (var _iterator9 = newVal[Symbol.iterator](), _step9; !(_iteratorNormalCompletion9 = (_step9 = _iterator9.next()).done); _iteratorNormalCompletion9 = true) {
-                    var val = _step9.value;
-                    var _iteratorNormalCompletion10 = true;
-                    var _didIteratorError10 = false;
-                    var _iteratorError10 = undefined;
+                for (var _iterator11 = newVal[Symbol.iterator](), _step11; !(_iteratorNormalCompletion11 = (_step11 = _iterator11.next()).done); _iteratorNormalCompletion11 = true) {
+                    var val = _step11.value;
+                    var _iteratorNormalCompletion12 = true;
+                    var _didIteratorError12 = false;
+                    var _iteratorError12 = undefined;
 
                     try {
 
-                        for (var _iterator10 = $items.values()[Symbol.iterator](), _step10; !(_iteratorNormalCompletion10 = (_step10 = _iterator10.next()).done); _iteratorNormalCompletion10 = true) {
-                            var _$item = _step10.value;
+                        for (var _iterator12 = $items.values()[Symbol.iterator](), _step12; !(_iteratorNormalCompletion12 = (_step12 = _iterator12.next()).done); _iteratorNormalCompletion12 = true) {
+                            var _$item = _step12.value;
 
 
                             if (_$item.getAttribute('value') === val) {
@@ -4616,31 +4714,31 @@ exports.default = _form2.default.extend({
                             }
                         }
                     } catch (err) {
-                        _didIteratorError10 = true;
-                        _iteratorError10 = err;
+                        _didIteratorError12 = true;
+                        _iteratorError12 = err;
                     } finally {
                         try {
-                            if (!_iteratorNormalCompletion10 && _iterator10.return) {
-                                _iterator10.return();
+                            if (!_iteratorNormalCompletion12 && _iterator12.return) {
+                                _iterator12.return();
                             }
                         } finally {
-                            if (_didIteratorError10) {
-                                throw _iteratorError10;
+                            if (_didIteratorError12) {
+                                throw _iteratorError12;
                             }
                         }
                     }
                 }
             } catch (err) {
-                _didIteratorError9 = true;
-                _iteratorError9 = err;
+                _didIteratorError11 = true;
+                _iteratorError11 = err;
             } finally {
                 try {
-                    if (!_iteratorNormalCompletion9 && _iterator9.return) {
-                        _iterator9.return();
+                    if (!_iteratorNormalCompletion11 && _iterator11.return) {
+                        _iterator11.return();
                     }
                 } finally {
-                    if (_didIteratorError9) {
-                        throw _iteratorError9;
+                    if (_didIteratorError11) {
+                        throw _iteratorError11;
                     }
                 }
             }
@@ -4684,6 +4782,8 @@ exports.default = _form2.default.extend({
         });
 
         this._addGlobalListener();
+        this._resizeInlineImg();
+        this._initTips();
 
         setTimeout(function () {
 
@@ -4703,6 +4803,10 @@ exports.default = _form2.default.extend({
                 immediate: true
             });
         });
+    },
+    updated: function updated() {
+
+        this._resizeInlineImg();
     },
     beforeDestroy: function beforeDestroy() {
 

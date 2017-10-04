@@ -498,6 +498,70 @@ export default Form.extend({
             }
         
         },
+        _resizeInlineImg : function () {
+
+            if (!this.conf.inlineImgSize) {
+
+                return;
+
+            }
+
+            let $inlineImgs = this.$el.querySelectorAll('.list>li i-img,.list>li img');
+
+            for (let $img of $inlineImgs.values()) {
+
+                $img.style.width = this.conf.inlineImgSize;
+                $img.style.height = this.conf.inlineImgSize;
+
+            }
+
+        },
+        _initTips : function () {
+
+            if (!this.conf.itemTip) {
+
+                return;
+
+            }
+
+            let $items = this.$el.querySelectorAll('.list>li:not(.noitem)');
+            let $list = this.$el.querySelector('.list');
+
+            for (let index of $items.keys()) {
+
+                let $item = $items[index];
+                let $tip = $item.nextElementSibling;
+
+                if ($tip === null ||
+                    $tip.classList.value.split(' ').indexOf('item-tip') === -1) {
+
+                    return;
+
+                }
+
+                const random = 1e8;
+
+                let tipContent = $tip.innerHTML;
+                let tipId = `select-tip-${Math.floor(Math.random() * random)}`;
+                let $newTip = document.createElement('ui-tip');
+
+                $newTip.setAttribute(':minor', true);
+                $newTip.setAttribute('target', `#${tipId}`);
+                $newTip.setAttribute('placement', this.conf.itemTipDirect);
+                $newTip.innerHTML = tipContent;
+
+                let tipVm = new this.Vue({
+                    el : $newTip
+                });
+
+                $item.setAttribute('id', tipId);
+                $tip.remove();
+                tipVm.$mount();
+                $list.append(tipVm.$el);
+
+            }
+
+        },
         toggle : function (show) {
 
             if (show === undefined) {
@@ -706,6 +770,8 @@ export default Form.extend({
         });
 
         this._addGlobalListener();
+        this._resizeInlineImg();
+        this._initTips();
 
         setTimeout(() => {
 
@@ -728,6 +794,11 @@ export default Form.extend({
             });
         
         });
+
+    },
+    updated : function () {
+
+        this._resizeInlineImg();
 
     },
     beforeDestroy : function () {
