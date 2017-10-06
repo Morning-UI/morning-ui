@@ -62,7 +62,7 @@ export default {
         // 富文本输入 : 'b',
         '开关<i class="tag update"></i><i class="tag done"></i>' : '/component/switch.html',
         // '计数器<i class="tag new"></i>' : 'b',
-        '下拉选择<i class="tag coming"></i>' : '/component/select.html',
+        '下拉选择<i class="tag done"></i>' : '/component/select.html',
         // '级联选择<i class="tag update"></i>' : 'b',
         // '滑块输入<i class="tag new"></i>' : 'b',
         '复选框组<i class="tag done"></i>' : '/component/checkbox.html',

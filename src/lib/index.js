@@ -14,6 +14,7 @@ let morning = {
     _uiid : 1,
     _findCache : {},
     _popupId : 0,
+    _indexGroups : {},
     _moveListener : [],
     _selectClickListener : [],
     version : '0.10.0',

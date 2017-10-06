@@ -186,7 +186,7 @@ new Vue({
 \`\`\`\`html
 @origin
 <div style="width:300px;">
-    <ui-{$uikey} ref="demoMethodSet" form-name="表单名" {$&methodMoreAttr}></ui-{$uikey}>
+    <ui-{$uikey} ref="demoMethodSet" form-name="表单名" {$&methodMoreAttr}>{$&methodSlot}</ui-{$uikey}>
     <br>
     <a href="javascript:;" onclick="window.morning.findVM('demoMethodSet').set({$&methodValue})">设置值</a>
     <a href="javascript:;" onclick="window.morning.findVM('demoMethodSet').set()">移除值</a>
@@ -204,7 +204,7 @@ new Vue({
 \`\`\`\`html
 @origin
 <div style="width:300px;">
-    <ui-{$uikey} ref="demoMethodGet" form-name="表单名" :default-value="{$&methodDefaultValue}" {$&methodMoreAttr}></ui-{$uikey}>
+    <ui-{$uikey} ref="demoMethodGet" form-name="表单名" :default-value="{$&methodDefaultValue}" {$&methodMoreAttr}>{$&methodSlot}</ui-{$uikey}>
     <br>
     <a href="javascript:;" onclick="alert(window.morning.findVM('demoMethodGet').get(false))">获取表单原始值</a>
     <a href="javascript:;" onclick="alert(window.morning.findVM('demoMethodGet').get())">获取表单JSON值</a>
@@ -222,7 +222,7 @@ new Vue({
 \`\`\`\`html
 @origin
 <div style="width:300px;">
-    <ui-{$uikey} ref="demoMethodSetName" form-name="姓名" {$&methodMoreAttr}></ui-{$uikey}>
+    <ui-{$uikey} ref="demoMethodSetName" form-name="姓名" {$&methodMoreAttr}>{$&methodSlot}</ui-{$uikey}>
     <br>
     <a href="javascript:;" onclick="alert(window.morning.findVM('demoMethodSetName').getName())">获取表单名称</a>
     <a href="javascript:;" onclick="window.morning.findVM('demoMethodSetName').setName('年龄')">设置表单名称</a>
@@ -237,7 +237,7 @@ new Vue({
 \`\`\`\`html
 @origin
 <div style="width:300px;">
-    <ui-{$uikey} ref="demoMethodGetName" form-name="姓名" {$&methodMoreAttr}></ui-{$uikey}>
+    <ui-{$uikey} ref="demoMethodGetName" form-name="姓名" {$&methodMoreAttr}>{$&methodSlot}</ui-{$uikey}>
     <br>
     <a href="javascript:;" onclick="alert(window.morning.findVM('demoMethodGetName').getName())">获取表单名称</a>
 </div>
@@ -254,7 +254,7 @@ new Vue({
 \`\`\`\`html
 @origin
 <div style="width:300px;">
-    <ui-{$uikey} ref="demoMethodSetKey" form-name="表单名" form-key="name" {$&methodMoreAttr}></ui-{$uikey}>
+    <ui-{$uikey} ref="demoMethodSetKey" form-name="表单名" form-key="name" {$&methodMoreAttr}>{$&methodSlot}</ui-{$uikey}>
     <br>
     <a href="javascript:;" onclick="alert(window.morning.findVM('demoMethodSetKey').getKey())">获取表单KEY</a>
     <a href="javascript:;" onclick="window.morning.findVM('demoMethodSetKey').setKey('age')">设置表单KEY</a>
@@ -269,7 +269,7 @@ new Vue({
 \`\`\`\`html
 @origin
 <div style="width:300px;">
-    <ui-{$uikey} ref="demoMethodGetKey" form-name="表单名" form-key="name" {$&methodMoreAttr}></ui-{$uikey}>
+    <ui-{$uikey} ref="demoMethodGetKey" form-name="表单名" form-key="name" {$&methodMoreAttr}>{$&methodSlot}</ui-{$uikey}>
     <br>
     <a href="javascript:;" onclick="alert(window.morning.findVM('demoMethodGetKey').getKey())">获取表单KEY</a>
 </div>
@@ -287,7 +287,7 @@ new Vue({
 @origin
 <div style="width:300px;">
     <!-- 设置多个组 -->
-    <ui-{$uikey} ref="demoMethodSetGroup" form-name="表单名" form-key="name" {$&methodMoreAttr}></ui-{$uikey}>
+    <ui-{$uikey} ref="demoMethodSetGroup" form-name="表单名" form-key="name" {$&methodMoreAttr}>{$&methodSlot}</ui-{$uikey}>
     <br>
     <a href="javascript:;" onclick="alert(JSON.stringify(window.morning.findVM('demoMethodSetGroup').getGroup()))">获取表单组</a>
     <a href="javascript:;" onclick="window.morning.findVM('demoMethodSetGroup').setGroup('group1')">设置单个表单组</a>
@@ -304,7 +304,7 @@ new Vue({
 @origin
 <div style="width:300px;">
     <!-- 设置多个组 -->
-    <ui-{$uikey} ref="demoMethodGetGroup" form-name="表单名" form-key="name" group="group1" {$&methodMoreAttr}></ui-{$uikey}>
+    <ui-{$uikey} ref="demoMethodGetGroup" form-name="表单名" form-key="name" group="group1" {$&methodMoreAttr}>{$&methodSlot}</ui-{$uikey}>
     <br>
     <a href="javascript:;" onclick="alert(JSON.stringify(window.morning.findVM('demoMethodGetGroup').getGroup()))">获取表单组</a>
 </div>
@@ -322,7 +322,7 @@ new Vue({
 @origin
 <div style="width:300px;">
     <!-- 设置多个组 -->
-    <ui-{$uikey} ref="demoMethodAddGroup" form-name="表单名" form-key="name" {$&methodMoreAttr}></ui-{$uikey}>
+    <ui-{$uikey} ref="demoMethodAddGroup" form-name="表单名" form-key="name" {$&methodMoreAttr}>{$&methodSlot}</ui-{$uikey}>
     <br>
     <a href="javascript:;" onclick="alert(JSON.stringify(window.morning.findVM('demoMethodAddGroup').getGroup()))">获取表单组</a>
     <a href="javascript:;" onclick="window.morning.findVM('demoMethodAddGroup').addGroup('group1')">添加表单组</a>
@@ -341,7 +341,7 @@ new Vue({
 @origin
 <div style="width:300px;">
     <!-- 设置多个组 -->
-    <ui-{$uikey} ref="demoMethodRemoveGroup" form-name="表单名" form-key="name" group="group1" {$&methodMoreAttr}></ui-{$uikey}>
+    <ui-{$uikey} ref="demoMethodRemoveGroup" form-name="表单名" form-key="name" group="group1" {$&methodMoreAttr}>{$&methodSlot}</ui-{$uikey}>
     <br>
     <a href="javascript:;" onclick="alert(JSON.stringify(window.morning.findVM('demoMethodRemoveGroup').getGroup()))">获取表单组</a>
     <a href="javascript:;" onclick="window.morning.findVM('demoMethodRemoveGroup').removeGroup('group1')">移除表单组</a>
@@ -360,7 +360,7 @@ new Vue({
 \`\`\`\`html
 @var:demoValueChange
 <div style="width:300px;">
-    <ui-{$uikey} ref="demoValueChange" form-name="表单名" @valueChange="echo" {$&eventMoreAttr}></ui-{$uikey}>
+    <ui-{$uikey} ref="demoValueChange" form-name="表单名" @valueChange="echo" {$&eventMoreAttr}>{$&eventSlot}</ui-{$uikey}>
     <br>
     <a href="javascript:;" onclick="window.morning.findVM('demoValueChange').set({$&eventValue})">触发valueChange事件</a>
 </div>
@@ -373,7 +373,7 @@ new Vue({
     template : '{$template}',
     methods : {
         echo : function () {
-            console.log('demo3.console1', 'valueChange event!');
+            console.log('demoValueChange.console1', 'valueChange event!');
         }
     }
 });
@@ -399,7 +399,7 @@ new Vue({
         @beforeDestroy="echo('beforeDestroy')"
         @destroyed="echo('destroyed')"
         {$&eventMoreAttr}
-    >{%text%}</ui-{$uikey}>
+    >{$&eventSlot}<span style="display:none;">{%text%}</span></ui-{$uikey}>
 
     <br><br>
 
@@ -650,6 +650,36 @@ let data = {
                 valueType : 'Array',
                 valueContent : '[\'Tim\']'
             }
+        ],
+        select : [
+            {
+                valueType : 'String',
+                valueContent : `'Tim'`
+            },
+            {
+                valueType : 'Number',
+                valueContent : '5'
+            },
+            {
+                valueType : 'Boolean',
+                valueContent : 'true'
+            },
+            {
+                valueType : 'Null',
+                valueContent : 'null'
+            },
+            {
+                valueType : 'Undefined',
+                valueContent : 'undefined'
+            },
+            {
+                valueType : 'Object',
+                valueContent : '{\'Tim\':\'Tim\'}'
+            },
+            {
+                valueType : 'Array',
+                valueContent : '[\'Tim Boelaars\', \'Andrew Colin Beck\']'
+            }
         ]
     }
 };
@@ -668,8 +698,6 @@ let parser = (text, el) => {
     let mixinContext = {};
 
     while ((result = importpatt.exec(text)) !== null) {
-
-        console.log(56, result);
 
         let rdata = result[2].replace(/^\n/, '').split('\n');
         let id = rdata[0].split(':')[1];

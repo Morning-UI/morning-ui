@@ -4657,6 +4657,8 @@ exports.default = _form2.default.extend({
             var searchMultiinput = void 0;
             var multiValue = [];
 
+            console.log(newVal);
+
             if ((typeof newVal === 'undefined' ? 'undefined' : _typeof(newVal)) !== 'object' || !(newVal instanceof Array)) {
 
                 _this.data.value = [];
@@ -6248,6 +6250,7 @@ var morning = {
     _uiid: 1,
     _findCache: {},
     _popupId: 0,
+    _indexGroups: {},
     _moveListener: [],
     _selectClickListener: [],
     version: '0.10.0',
@@ -13422,7 +13425,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
         _vm._textinputBlur()
       }
     }
-  })] : _vm._e(), _vm._v(" "), (!_vm.conf.multiSelect && _vm.data.value !== undefined && _vm.data.value.length === 1) ? _c('div', {
+  })] : _vm._e(), _vm._v(" "), (!_vm.conf.multiSelect && _vm.data.value && _vm.data.value.length === 1) ? _c('div', {
     staticClass: "selected",
     domProps: {
       "innerHTML": _vm._s(_vm.data.selectedContent)

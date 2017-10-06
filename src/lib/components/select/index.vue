@@ -67,7 +67,7 @@
 
             <div
                 class="selected"
-                v-if="!conf.multiSelect && data.value !== undefined && data.value.length === 1"
+                v-if="!conf.multiSelect && data.value && data.value.length === 1"
                 v-html="data.selectedContent"
             >
             </div>
@@ -626,6 +626,8 @@ export default Form.extend({
             let searchTextinput;
             let searchMultiinput;
             let multiValue = [];
+
+            console.log(newVal);
 
             if (typeof newVal !== 'object' ||
                 !(newVal instanceof Array)) {
