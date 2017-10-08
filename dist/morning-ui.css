@@ -5461,11 +5461,11 @@ i-textarea textarea:focus {
   color: #17212D !important;
 }
 i-textarea textarea::-webkit-scrollbar {
-  width: 8px;
+  width: 5px;
   background-color: rgba(0, 0, 0, 0.05);
 }
 i-textarea textarea::-webkit-scrollbar-thumb {
-  width: 8px;
+  width: 5px;
   background: rgba(0, 0, 0, 0.1);
   border-radius: 4px;
 }

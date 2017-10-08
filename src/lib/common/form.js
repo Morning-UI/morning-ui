@@ -54,7 +54,7 @@ let Form = UI.extend({
     methods : {
         _syncGroup : function () {
 
-            let morning = window.morning;
+            let morning = this.morning;
     
             if (this.conf.group &&
                 this.conf.group.length > 0) {

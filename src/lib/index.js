@@ -1,76 +1,102 @@
-import Vue                          from 'vue';
-import extend                       from 'extend';
-import UI                           from 'Common/ui';
-import Form                         from 'Common/form';
-import components                   from './components';
+import Vue                              from 'vue';
+import extend                           from 'extend';
+import {default as UI, injectMorning}   from 'Common/ui';
+import Form                             from 'Common/form';
+import components                       from './components';
 
-let morning = {
-    _origin : {
-        UI,
-        Form
-    },
-    _components : components,
-    _ignoreElements : [],
-    _uiid : 1,
-    _findCache : {},
-    _popupId : 0,
-    _indexGroups : {},
-    _moveListener : [],
-    _selectClickListener : [],
-    version : '0.10.0',
-    map : {},
-    groupData : {},
-    // groupVmMap : {},
-    findVM : function (ref) {
+// UMD : https://github.com/umdjs/umd/blob/master/templates/amdWebGlobal.js
+((root, factory) => {
 
-        if (this._findCache[ref]) {
-            
-            return this._findCache[ref];
+    if (typeof define === 'function' && define.amd) {
 
-        }
+        define(() => {
 
-        for (let vm of Object.values(this.map)) {
+            // Also create a global in case some scripts
+            // that are loaded still are looking for
+            // a global even when an AMD loader is in use.
+            return (root.morning = factory());
 
-            if (vm.$vnode &&
-                vm.$vnode.data &&
-                vm.$vnode.data.ref === ref) {
+        });
 
-                this._findCache[ref] = vm;
+    } else {
+
+        root.morning = factory();
+
+    }
+
+})(window, () => {
+
+    let morning = {
+        _origin : {
+            UI,
+            Form
+        },
+        _components : components,
+        _ignoreElements : [],
+        _uiid : 1,
+        _findCache : {},
+        _popupId : 0,
+        _indexGroups : {},
+        _moveListener : [],
+        _selectClickListener : [],
+        version : '0.10.0',
+        map : {},
+        groupData : {},
+        // groupVmMap : {},
+        findVM : function (ref) {
+
+            if (this._findCache[ref]) {
                 
-                return vm;
-            
+                return this._findCache[ref];
+
             }
 
-        }
+            for (let vm of Object.values(this.map)) {
 
-    },
-    getGroupData : function (groupName) {
+                if (vm.$vnode &&
+                    vm.$vnode.data &&
+                    vm.$vnode.data.ref === ref) {
 
-        return extend(true, {}, this.groupData[groupName]);
+                    this._findCache[ref] = vm;
+                    
+                    return vm;
+                
+                }
 
-    },
-    getGroupJson : function (groupName) {
+            }
 
-        return JSON.stringify(this.getGroupData(groupName));
+        },
+        getGroupData : function (groupName) {
 
-    },
-    // TODO
-    // setGroupData : function (groupName, data) {},
-    // setGroupJson : function (groupName, data) {}
-};
+            return extend(true, {}, this.groupData[groupName]);
 
-Vue.config.ignoredElements = [];
+        },
+        getGroupJson : function (groupName) {
 
-// register component
-for (let name in morning._components) {
+            return JSON.stringify(this.getGroupData(groupName));
 
-    let component = morning._components[name];
+        },
+        // TODO
+        // setGroupData : function (groupName, data) {},
+        // setGroupJson : function (groupName, data) {}
+    };
 
-    Vue.component(`ui-${component.options.name}`, component);
-    morning._ignoreElements.push(`i-${component.options.name}`);
+    injectMorning(morning);
 
-}
+    Vue.config.ignoredElements = [];
 
-Vue.config.ignoredElements = morning._ignoreElements;
+    // register component
+    for (let name in morning._components) {
 
-window.morning = morning;
+        let component = morning._components[name];
+
+        Vue.component(`ui-${component.options.name}`, component);
+        morning._ignoreElements.push(`i-${component.options.name}`);
+
+    }
+
+    Vue.config.ignoredElements = morning._ignoreElements;
+
+    return morning;
+
+});

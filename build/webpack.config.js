@@ -75,8 +75,6 @@ let getDocsHtmlPlugin = async docsConf => {
 
 };
 
-
-
 commonConfig = {
     entry : './src/lib/index.js',
     plugins : [],

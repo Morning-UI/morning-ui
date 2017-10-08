@@ -2793,9 +2793,9 @@ i-textarea textarea{box-sizing:border-box;z-index:2;font-size:14px;padding:.8em;
 }
 i-textarea textarea:focus{border-color:#8e9caf;color:#17212d!important
 }
-i-textarea textarea::-webkit-scrollbar{width:8px;background-color:rgba(0,0,0,.05)
+i-textarea textarea::-webkit-scrollbar{width:5px;background-color:rgba(0,0,0,.05)
 }
-i-textarea textarea::-webkit-scrollbar-thumb{width:8px;background:rgba(0,0,0,.1);border-radius:4px
+i-textarea textarea::-webkit-scrollbar-thumb{width:5px;background:rgba(0,0,0,.1);border-radius:4px
 }
 i-textarea.st-disabled textarea{border:1px #a6a6a6 solid;background-color:#e6e6e6;-webkit-user-select:none;cursor:not-allowed!important;color:#8d8d8d!important
 }

@@ -2,6 +2,7 @@ env:
   browser: true
   commonjs: true
   es6: true
+  define: true
 extends: 'gaea'
 plugins:
  - html

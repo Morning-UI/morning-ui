@@ -173,6 +173,7 @@ module.exports = function normalizeComponent (
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.injectMorning = undefined;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
@@ -192,6 +193,7 @@ var styleSet = ['theme', 'lightTheme', 'darkTheme', 'success', 'warning', 'dange
 
 var stateSet = ['normal', 'hover', 'active', 'disabled', 'apparent', 'loading', 'processing'];
 
+var morning = void 0;
 var props = {};
 
 var _arr = [].concat(sizeSet, styleSet, stateSet);
@@ -402,7 +404,7 @@ var UI = _vue2.default.extend({
 
         var data = {};
 
-        data.uiid = window.morning._uiid++;
+        data.uiid = morning._uiid++;
         data.morning = null;
         data.Vue = _vue2.default;
         data.conf = {};
@@ -428,6 +430,7 @@ var UI = _vue2.default.extend({
     },
     created: function created() {
 
+        this.morning = morning;
         this._initSize();
         this._initStyle();
         this._initState();
@@ -435,8 +438,7 @@ var UI = _vue2.default.extend({
     },
     mounted: function mounted() {
 
-        window.morning.map[this.uiid] = this;
-        this.morning = window.morning;
+        morning.map[this.uiid] = this;
         this.$el._vm = this;
 
         this.$emit('mounted');
@@ -457,17 +459,20 @@ var UI = _vue2.default.extend({
     destroyed: function destroyed() {
 
         this.$el.remove();
-        delete window.morning.map[this.uiid];
+        delete morning.map[this.uiid];
 
         if (this.$vnode && this.$vnode.data && this.$vnode.data.ref) {
 
-            delete window.morning._findCache[this.$vnode.data.ref];
+            delete morning._findCache[this.$vnode.data.ref];
         }
     }
 });
 
 exports.default = UI;
-module.exports = exports['default'];
+var injectMorning = exports.injectMorning = function injectMorning(_morning) {
+
+    morning = _morning;
+};
 
 /***/ }),
 /* 2 */
@@ -544,7 +549,7 @@ var Form = _ui2.default.extend({
     methods: {
         _syncGroup: function _syncGroup() {
 
-            var morning = window.morning;
+            var morning = this.morning;
 
             if (this.conf.group && this.conf.group.length > 0) {
                 var _iteratorNormalCompletion = true;
@@ -6216,7 +6221,7 @@ module.exports = exports['default'];
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
+var __WEBPACK_AMD_DEFINE_RESULT__;
 
 var _vue = __webpack_require__(5);
 
@@ -6240,88 +6245,110 @@ var _components2 = _interopRequireDefault(_components);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var morning = {
-    _origin: {
-        UI: _ui2.default,
-        Form: _form2.default
-    },
-    _components: _components2.default,
-    _ignoreElements: [],
-    _uiid: 1,
-    _findCache: {},
-    _popupId: 0,
-    _indexGroups: {},
-    _moveListener: [],
-    _selectClickListener: [],
-    version: '0.10.0',
-    map: {},
-    groupData: {},
-    // groupVmMap : {},
-    findVM: function findVM(ref) {
+// UMD : https://github.com/umdjs/umd/blob/master/templates/amdWebGlobal.js
+(function (root, factory) {
 
-        if (this._findCache[ref]) {
+    if (true) {
 
-            return this._findCache[ref];
-        }
+        !(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
 
-        var _iteratorNormalCompletion = true;
-        var _didIteratorError = false;
-        var _iteratorError = undefined;
+            // Also create a global in case some scripts
+            // that are loaded still are looking for
+            // a global even when an AMD loader is in use.
+            return root.morning = factory();
+        }.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else {
 
-        try {
-            for (var _iterator = Object.values(this.map)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                var vm = _step.value;
-
-
-                if (vm.$vnode && vm.$vnode.data && vm.$vnode.data.ref === ref) {
-
-                    this._findCache[ref] = vm;
-
-                    return vm;
-                }
-            }
-        } catch (err) {
-            _didIteratorError = true;
-            _iteratorError = err;
-        } finally {
-            try {
-                if (!_iteratorNormalCompletion && _iterator.return) {
-                    _iterator.return();
-                }
-            } finally {
-                if (_didIteratorError) {
-                    throw _iteratorError;
-                }
-            }
-        }
-    },
-    getGroupData: function getGroupData(groupName) {
-
-        return (0, _extend2.default)(true, {}, this.groupData[groupName]);
-    },
-    getGroupJson: function getGroupJson(groupName) {
-
-        return JSON.stringify(this.getGroupData(groupName));
+        root.morning = factory();
     }
-    // TODO
-    // setGroupData : function (groupName, data) {},
-    // setGroupJson : function (groupName, data) {}
-};
+})(window, function () {
 
-_vue2.default.config.ignoredElements = [];
+    var morning = {
+        _origin: {
+            UI: _ui2.default,
+            Form: _form2.default
+        },
+        _components: _components2.default,
+        _ignoreElements: [],
+        _uiid: 1,
+        _findCache: {},
+        _popupId: 0,
+        _indexGroups: {},
+        _moveListener: [],
+        _selectClickListener: [],
+        version: '0.10.0',
+        map: {},
+        groupData: {},
+        // groupVmMap : {},
+        findVM: function findVM(ref) {
 
-// register component
-for (var name in morning._components) {
+            if (this._findCache[ref]) {
 
-    var component = morning._components[name];
+                return this._findCache[ref];
+            }
 
-    _vue2.default.component('ui-' + component.options.name, component);
-    morning._ignoreElements.push('i-' + component.options.name);
-}
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
 
-_vue2.default.config.ignoredElements = morning._ignoreElements;
+            try {
+                for (var _iterator = Object.values(this.map)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var vm = _step.value;
 
-window.morning = morning;
+
+                    if (vm.$vnode && vm.$vnode.data && vm.$vnode.data.ref === ref) {
+
+                        this._findCache[ref] = vm;
+
+                        return vm;
+                    }
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return) {
+                        _iterator.return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
+        },
+        getGroupData: function getGroupData(groupName) {
+
+            return (0, _extend2.default)(true, {}, this.groupData[groupName]);
+        },
+        getGroupJson: function getGroupJson(groupName) {
+
+            return JSON.stringify(this.getGroupData(groupName));
+        }
+        // TODO
+        // setGroupData : function (groupName, data) {},
+        // setGroupJson : function (groupName, data) {}
+    };
+
+    (0, _ui.injectMorning)(morning);
+
+    _vue2.default.config.ignoredElements = [];
+
+    // register component
+    for (var name in morning._components) {
+
+        var component = morning._components[name];
+
+        _vue2.default.component('ui-' + component.options.name, component);
+        morning._ignoreElements.push('i-' + component.options.name);
+    }
+
+    _vue2.default.config.ignoredElements = morning._ignoreElements;
+
+    return morning;
+});
 
 /***/ }),
 /* 62 */

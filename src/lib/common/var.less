@@ -119,3 +119,16 @@
         color: @colorWhite;
     }
 }
+
+.setup-scrollbar() {
+    &::-webkit-scrollbar{
+        width: 5px;
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    &::-webkit-scrollbar-thumb{
+        width: 5px;
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
+    }
+}

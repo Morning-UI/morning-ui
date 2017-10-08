@@ -45,6 +45,7 @@ let stateSet = [
     'processing'
 ];
 
+let morning;
 let props = {};
 
 for (let key of [...sizeSet, ...styleSet, ...stateSet]) {
@@ -193,7 +194,7 @@ let UI = Vue.extend({
 
         let data = {};
 
-        data.uiid = window.morning._uiid++;
+        data.uiid = morning._uiid++;
         data.morning = null;
         data.Vue = Vue;
         data.conf = {};
@@ -218,6 +219,7 @@ let UI = Vue.extend({
     },
     created : function () {
 
+        this.morning = morning;
         this._initSize();
         this._initStyle();
         this._initState();
@@ -226,8 +228,7 @@ let UI = Vue.extend({
     },
     mounted : function () {
 
-        window.morning.map[this.uiid] = this;
-        this.morning = window.morning;
+        morning.map[this.uiid] = this;
         this.$el._vm = this;
 
         this.$emit('mounted');
@@ -252,13 +253,13 @@ let UI = Vue.extend({
     destroyed : function () {
 
         this.$el.remove();
-        delete window.morning.map[this.uiid];
+        delete morning.map[this.uiid];
 
         if (this.$vnode &&
             this.$vnode.data &&
             this.$vnode.data.ref) {
         
-            delete window.morning._findCache[this.$vnode.data.ref];
+            delete morning._findCache[this.$vnode.data.ref];
         
         }
 
@@ -266,3 +267,9 @@ let UI = Vue.extend({
 });
 
 export default UI;
+
+export var injectMorning = _morning => {
+
+    morning = _morning;
+
+};
