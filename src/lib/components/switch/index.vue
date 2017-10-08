@@ -63,6 +63,8 @@ export default Form.extend({
 
             this.set(!!open);
 
+            return this;
+
         }
     },
     created : function () {

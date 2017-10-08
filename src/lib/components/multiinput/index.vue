@@ -138,7 +138,10 @@ export default Form.extend({
 
             if (this.data.focus === true) {
 
+                let $input = this.$el.querySelector('input');
+
                 this.data.focus = false;
+                $input.blur();
                 this.$emit('inputBlur');
 
             }
@@ -146,7 +149,6 @@ export default Form.extend({
         },
         _enterInput : function () {
 
-            // this.conf.allowInput
             if (this.data.focus) {
 
                 let $input = this.$el.querySelector('input');

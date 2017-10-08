@@ -404,9 +404,7 @@ var UI = _vue2.default.extend({
 
         var data = {};
 
-        data.uiid = morning._uiid++;
-        data.morning = null;
-        data.Vue = _vue2.default;
+        data.uiid = this.morning._uiid++;
         data.conf = {};
         data.data = {};
 
@@ -428,17 +426,22 @@ var UI = _vue2.default.extend({
 
         return data;
     },
+    beforeCreate: function beforeCreate() {
+
+        this.Vue = _vue2.default;
+        this.morning = morning;
+    },
     created: function created() {
 
-        this.morning = morning;
         this._initSize();
         this._initStyle();
         this._initState();
+
         this.$emit('created');
     },
     mounted: function mounted() {
 
-        morning.map[this.uiid] = this;
+        this.morning.map[this.uiid] = this;
         this.$el._vm = this;
 
         this.$emit('mounted');
@@ -459,11 +462,11 @@ var UI = _vue2.default.extend({
     destroyed: function destroyed() {
 
         this.$el.remove();
-        delete morning.map[this.uiid];
+        delete this.morning.map[this.uiid];
 
         if (this.$vnode && this.$vnode.data && this.$vnode.data.ref) {
 
-            delete morning._findCache[this.$vnode.data.ref];
+            delete this.morning._findCache[this.$vnode.data.ref];
         }
     }
 });
@@ -764,7 +767,7 @@ var Form = _ui2.default.extend({
         this.data.value = this.conf.defaultValue;
         this._syncGroup();
 
-        this.$watch('data.value', function () {
+        this.$watch('data.value', function (newVal) {
 
             _this._syncGroup();
             _this.$emit('valueChange');
@@ -3488,14 +3491,18 @@ exports.default = _form2.default.extend({
 
             if (this.data.focus === true) {
 
+                console.log(5656);
+
+                var $input = this.$el.querySelector('input');
+
                 this.data.focus = false;
+                $input.blur();
                 this.$emit('inputBlur');
             }
         },
         _enterInput: function _enterInput() {
             var _this = this;
 
-            // this.conf.allowInput
             if (this.data.focus) {
 
                 var $input = this.$el.querySelector('input');
@@ -3522,6 +3529,8 @@ exports.default = _form2.default.extend({
             }
         },
         _deleteItem: function _deleteItem(index) {
+
+            console.log(index);
 
             var value = this.get(false);
 
@@ -4012,8 +4021,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
-//
-//
 
 var _arrayUniq = __webpack_require__(4);
 
@@ -4096,7 +4103,9 @@ exports.default = _form2.default.extend({
                 searching: false,
                 focusSearch: false,
                 mounted: false,
-                isMax: false
+                isMax: false,
+                multiinputLastValue: [],
+                selectInput: false
             },
             listStyle: {}
         };
@@ -4258,7 +4267,7 @@ exports.default = _form2.default.extend({
                     if (!this.data.searching) {
 
                         $item.classList.remove('hide');
-                    } else if (this.data.showlist && (0, _trim2.default)($item.innerText).search(key) !== -1) {
+                    } else if (this.data.showlist && (0, _trim2.default)($item.textContent).search(key) !== -1) {
 
                         foundNum++;
                         $item.classList.remove('hide');
@@ -4290,6 +4299,13 @@ exports.default = _form2.default.extend({
                 $noitem.classList.remove('show');
             }
         },
+        _multiinputFocusNoSearch: function _multiinputFocusNoSearch() {
+
+            var searchMultiinput = this.$el.querySelector('#ui-select-mi-' + this.uiid)._vm;
+
+            searchMultiinput._blurInput();
+            this._multiinputFocus();
+        },
         _multiinputFocus: function _multiinputFocus() {
 
             this.toggle(true);
@@ -4316,7 +4332,7 @@ exports.default = _form2.default.extend({
                             var $item = _step4.value;
 
 
-                            if ((0, _trim2.default)($item.innerText) === value) {
+                            if ((0, _trim2.default)($item.textContent) === value) {
 
                                 setValue.push($item.getAttribute('value'));
 
@@ -4365,6 +4381,15 @@ exports.default = _form2.default.extend({
             var searchMultiinput = this.$el.querySelector('#ui-select-mi-' + this.uiid)._vm;
             var values = searchMultiinput.get(false);
 
+            if (!this.data.selectInput && this.data.multiinputLastValue.length <= values.length) {
+
+                searchMultiinput._set(this.data.multiinputLastValue, true);
+
+                return;
+            }
+
+            this.data.selectInput = false;
+            this.data.multiinputLastValue = values;
             this._refreshValue(values);
 
             // if (this.data.value &&
@@ -4409,7 +4434,7 @@ exports.default = _form2.default.extend({
                             var value = _step6.value;
 
 
-                            if (value === (0, _trim2.default)($item.innerText)) {
+                            if (value === (0, _trim2.default)($item.textContent)) {
 
                                 selected = true;
 
@@ -4662,8 +4687,6 @@ exports.default = _form2.default.extend({
             var searchMultiinput = void 0;
             var multiValue = [];
 
-            console.log(newVal);
-
             if ((typeof newVal === 'undefined' ? 'undefined' : _typeof(newVal)) !== 'object' || !(newVal instanceof Array)) {
 
                 _this.data.value = [];
@@ -4760,7 +4783,7 @@ exports.default = _form2.default.extend({
 
                                 if (_this.conf.multiSelect) {
 
-                                    multiValue.push((0, _trim2.default)(_$item.innerText));
+                                    multiValue.push((0, _trim2.default)(_$item.textContent));
                                 } else {
 
                                     _this.data.selectedContent = _$item.innerHTML;
@@ -4822,6 +4845,7 @@ exports.default = _form2.default.extend({
 
                 var inputValue = searchMultiinput.getInput();
 
+                _this.data.selectInput = true;
                 searchMultiinput._set(multiValue, true);
 
                 _this.Vue.nextTick(function () {
@@ -5016,6 +5040,8 @@ exports.default = _form2.default.extend({
             }
 
             this.set(!!open);
+
+            return this;
         }
     },
     created: function created() {
@@ -5577,7 +5603,8 @@ exports.default = _form2.default.extend({
             this.$emit('blur');
         }
     },
-    created: function created() {
+    created: function created() {},
+    mounted: function mounted() {
         var _this = this;
 
         this.$watch('data.value', function (newVal) {
@@ -5593,8 +5620,7 @@ exports.default = _form2.default.extend({
         }, {
             immediate: true
         });
-    },
-    mounted: function mounted() {}
+    }
 }); //
 //
 //
@@ -13406,7 +13432,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "disabled": _vm.conf.state === 'disabled'
     },
     on: {
-      "focusInput": function($event) {
+      "inputFocus": function($event) {
         _vm._multiinputFocus()
       },
       "valueChange": function($event) {
@@ -13423,18 +13449,14 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "max": _vm.conf.max,
       "form-name": _vm.conf.formName,
       "hide-name": _vm.conf.hideName,
-      "disabled": _vm.conf.state === 'disabled',
-      "allow-input": false
+      "disabled": _vm.conf.state === 'disabled'
     },
     on: {
-      "focusInput": function($event) {
-        _vm._multiinputFocus()
+      "inputFocus": function($event) {
+        _vm._multiinputFocusNoSearch()
       },
       "valueChange": function($event) {
         _vm._multiinputValueChange()
-      },
-      "inputValueChange": function($event) {
-        _vm._searchKeyChange()
       }
     }
   })] : [(_vm.conf.canSearch) ? [_c('ui-textinput', {

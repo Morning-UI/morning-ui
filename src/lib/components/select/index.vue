@@ -33,7 +33,7 @@
 
                 v-if="conf.canSearch"
 
-                @focusInput="_multiinputFocus()"
+                @inputFocus="_multiinputFocus()"
                 @valueChange="_multiinputValueChange()"
                 @inputValueChange="_searchKeyChange()"
             ></ui-multiinput>
@@ -45,13 +45,11 @@
                 :form-name="conf.formName"
                 :hide-name="conf.hideName"
                 :disabled="conf.state === 'disabled'"
-                :allow-input="false"
 
                 v-else
 
-                @focusInput="_multiinputFocus()"
+                @inputFocus="_multiinputFocusNoSearch()"
                 @valueChange="_multiinputValueChange()"
-                @inputValueChange="_searchKeyChange()"
             ></ui-multiinput>
         </template>
 
@@ -178,7 +176,9 @@ export default Form.extend({
                 searching : false,
                 focusSearch : false,
                 mounted : false,
-                isMax : false
+                isMax : false,
+                multiinputLastValue : [],
+                selectInput : false
             },
             listStyle : {}
         };
@@ -337,7 +337,7 @@ export default Form.extend({
 
                     $item.classList.remove('hide');
 
-                } else if (this.data.showlist && trim($item.innerText).search(key) !== -1) {
+                } else if (this.data.showlist && trim($item.textContent).search(key) !== -1) {
 
                     foundNum++;
                     $item.classList.remove('hide');
@@ -362,6 +362,14 @@ export default Form.extend({
             }
 
         },
+        _multiinputFocusNoSearch : function () {
+
+            let searchMultiinput = this.$el.querySelector(`#ui-select-mi-${this.uiid}`)._vm;
+
+            searchMultiinput._blurInput();
+            this._multiinputFocus();
+
+        },
         _multiinputFocus : function () {
 
             this.toggle(true);
@@ -376,7 +384,7 @@ export default Form.extend({
 
                 for (let $item of $items.values()) {
 
-                    if (trim($item.innerText) === value) {
+                    if (trim($item.textContent) === value) {
 
                         setValue.push($item.getAttribute('value'));
 
@@ -398,10 +406,22 @@ export default Form.extend({
                 return;
 
             }
-            
+
             let searchMultiinput = this.$el.querySelector(`#ui-select-mi-${this.uiid}`)._vm;
             let values = searchMultiinput.get(false);
+
+            if (!this.data.selectInput &&
+                this.data.multiinputLastValue.length <= values.length) {
+
+                searchMultiinput._set(this.data.multiinputLastValue, true);
+
+                return;
+
+            }
             
+            
+            this.data.selectInput = false;
+            this.data.multiinputLastValue = values;
             this._refreshValue(values);
 
             // if (this.data.value &&
@@ -435,7 +455,7 @@ export default Form.extend({
 
                 for (let value of values) {
 
-                    if (value === trim($item.innerText)) {
+                    if (value === trim($item.textContent)) {
 
                         selected = true;
 
@@ -627,8 +647,6 @@ export default Form.extend({
             let searchMultiinput;
             let multiValue = [];
 
-            console.log(newVal);
-
             if (typeof newVal !== 'object' ||
                 !(newVal instanceof Array)) {
 
@@ -707,7 +725,7 @@ export default Form.extend({
 
                         if (this.conf.multiSelect) {
 
-                            multiValue.push(trim($item.innerText));
+                            multiValue.push(trim($item.textContent));
                         
                         } else {
                             
@@ -755,6 +773,7 @@ export default Form.extend({
 
                 let inputValue = searchMultiinput.getInput();
 
+                this.data.selectInput = true;
                 searchMultiinput._set(multiValue, true);
 
                 this.Vue.nextTick(() => {

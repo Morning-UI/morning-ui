@@ -68,8 +68,6 @@ export default UI.extend({
         },
         toggle : function (show) {
 
-        console.log(show);
-
             if (show === undefined) {
 
                 show = !this.data.show;

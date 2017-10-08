@@ -194,9 +194,7 @@ let UI = Vue.extend({
 
         let data = {};
 
-        data.uiid = morning._uiid++;
-        data.morning = null;
-        data.Vue = Vue;
+        data.uiid = this.morning._uiid++;
         data.conf = {};
         data.data = {};
 
@@ -217,18 +215,24 @@ let UI = Vue.extend({
         return data;
 
     },
+    beforeCreate : function () {
+
+        this.Vue = Vue;
+        this.morning = morning;
+
+    },
     created : function () {
 
-        this.morning = morning;
         this._initSize();
         this._initStyle();
         this._initState();
+        
         this.$emit('created');
 
     },
     mounted : function () {
 
-        morning.map[this.uiid] = this;
+        this.morning.map[this.uiid] = this;
         this.$el._vm = this;
 
         this.$emit('mounted');
@@ -253,13 +257,13 @@ let UI = Vue.extend({
     destroyed : function () {
 
         this.$el.remove();
-        delete morning.map[this.uiid];
+        delete this.morning.map[this.uiid];
 
         if (this.$vnode &&
             this.$vnode.data &&
             this.$vnode.data.ref) {
         
-            delete morning._findCache[this.$vnode.data.ref];
+            delete this.morning._findCache[this.$vnode.data.ref];
         
         }
 
