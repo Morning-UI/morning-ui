@@ -767,7 +767,7 @@ var Form = _ui2.default.extend({
         this.data.value = this.conf.defaultValue;
         this._syncGroup();
 
-        this.$watch('data.value', function (newVal) {
+        this.$watch('data.value', function () {
 
             _this._syncGroup();
             _this.$emit('valueChange');
@@ -2548,8 +2548,6 @@ exports.default = _ui2.default.extend({
         },
         toggle: function toggle(show) {
 
-            console.log(show);
-
             if (show === undefined) {
 
                 show = !this.data.show;
@@ -3491,8 +3489,6 @@ exports.default = _form2.default.extend({
 
             if (this.data.focus === true) {
 
-                console.log(5656);
-
                 var $input = this.$el.querySelector('input');
 
                 this.data.focus = false;
@@ -3529,8 +3525,6 @@ exports.default = _form2.default.extend({
             }
         },
         _deleteItem: function _deleteItem(index) {
-
-            console.log(index);
 
             var value = this.get(false);
 
