@@ -18,10 +18,10 @@
 
     ### 获取源码
 
-    MorningUI的源码托管在gitlab上：
+    MorningUI的源码托管在github上：
 
     ```bash
-    $ git clone http://git.husor.com/fed/morning.git
+    $ git clone https://github.com/EarlyH/morning-ui.git
     ```
 
     ### 本地安装

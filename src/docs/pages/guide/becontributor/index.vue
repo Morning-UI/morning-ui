@@ -15,7 +15,7 @@
     - 检视代码(Review)
     - 提交代码(Coding)
 
-    如果你决定通过检视代码(Review)的方式来提供贡献，请直接查阅：<a href="/docs/guide/review.html">检视代码</a>章节。
+    如果你决定通过检视代码(Review)的方式来提供贡献，请直接查阅：<a href="/guide/review.html">检视代码</a>章节。
     
     如果你决定提交代码至项目请发送邮件至`chenchao.he@husor.com`我们会联系你，在等待回复的时候请阅读以下章节了解详细情况：
     
