@@ -24,8 +24,7 @@
     "cover-report": "npm run cover && node_modules/.bin/nyc report --reporter=html",
     "update-log-report": "node ./bin/get-last-update-info.js",
     "report": "npm run test-report && npm run cover-report && update-log-report",
-    "package" : "npm run ./bin/package-latest-version.js",
-    "commit": "npm run build && npm run report && npm run package"
+    "commit": "npm run build && npm run report"
   },
   "repository": {
     "type": "git",

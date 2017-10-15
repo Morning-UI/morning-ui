@@ -87,9 +87,11 @@
     ```bash
     $ npm run build                     # 构建项目(库文件及文档)
     $ npm run dev                       # 运行开发环境(运行后通过http://localhost:8080/访问)
-    $ npm run lint                      # 通过ESLint检查代码
-    $ npm run lint-fix                  # 通过ESLint自动修复代码中的问题
-    $ npm run test                       # 运行所有测试
+    $ npm run lint                      # 通过ESLint及StyleLint检查代码
+    $ npm run js-lint                   # 通过ESLint检查代码
+    $ npm run js-lint-fix               # 通过ESLint自动修复代码中的问题
+    $ npm run css-lint                  # 通过StyleLint检查代码
+    $ npm run test                      # 运行所有测试
     $ npm run test-watch                 # 当文件变化时执行测试
     $ npm run test-snapshot              # 为所有测试进行快照
     $ npm run test-report                # 生成测试报告
@@ -101,9 +103,11 @@
     $ npm run e2e-snapshot              # 为端点测试进行快照
     $ npm run cover                     # 检查测试覆盖
     $ npm run cover-report              # 生成测试覆盖报告
+    $ npm run update-log-report         # 根据Git Log生成组件更新日志
     $ npm run report                    # 生成所有测试报告
+    $ npm run commit                    # 提交处理，包含：构建项目、生成测试报告
     ```
-
+    
     </script>
     </doc-guide>
 </template>
