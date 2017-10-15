@@ -292,7 +292,7 @@ if (false) {(function () {
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
+  return _c('div', [_c('div', {
     staticClass: "doc-status-bar"
   }, [_c('div', {
     staticClass: "item",
@@ -325,7 +325,19 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     staticClass: "name"
   }, [_vm._v("Coverage")]), _vm._v(" "), _c('span', {
     staticClass: "value"
-  }, [_vm._v(_vm._s(_vm.coverage))])])])
+  }, [_vm._v(_vm._s(_vm.coverage))])])]), _vm._v(" "), (_vm.lastupdate) ? _c('div', {
+    staticClass: "last-update"
+  }, [_vm._v("\n        Last update by "), _c('a', {
+    attrs: {
+      "target": "_blank",
+      "href": 'https://github.com/search?q=' + _vm.lastupdate.mail + '&type=Users'
+    }
+  }, [_vm._v(_vm._s(_vm.lastupdate.author))]), _vm._v(" at " + _vm._s(_vm.lastupdate.date) + " (" + _vm._s(_vm.lastupdate.ar) + "), commit id : "), _c('a', {
+    attrs: {
+      "target": "_blank",
+      "href": 'https://github.com/EarlyH/morning-ui/commit/' + _vm.lastupdate.cid
+    }
+  }, [_vm._v(_vm._s(_vm.lastupdate.scid))])]) : _vm._e()])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -416,6 +428,49 @@ exports.default = {
         'doc-guide': _DocGuide2.default
     }
 }; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -811,9 +866,14 @@ if (false) {
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('doc-guide', {
     attrs: {
-      "page": _vm.page
+      "page": _vm.page,
+      "hasPadding": true
     }
-  }, [_vm._v("\n    custom\n")])
+  }, [_c('script', {
+    attrs: {
+      "type": "text/markdown"
+    }
+  }, [_vm._v("\n\n# 开发规范\n\n所有的开发者及代码检视者都必须遵循以下的规范。\n\n> 若下面的规范后添加了<ui-badge xxs class=\"circle\">TEST</ui-badge>标记，则表示此条规范会在自动化测试中检测。\n\n### 组件规范\n\n#### 通用\n\n- 组件中的`this.$watch`优先写到`mounted()`生命周期钩子函数中。\n- 支持`slot`的组件，在模板代码中加入了`slot`。\n- 组件生成的HTML，最外层容器使用这样的标签：`<i-[name]>`，其中`name`是组件的名称。\n- 组件的`index.vue`，从上至下分别为:`<template>`、`<script>`、`<style>`三个标签。\n- `<style>`标签必须有`lang=\"less\"`属性。\n- 每个组件必须包含两个文件：`index.vue`和`index.less`。\n- 除了表单组件之外的组件继承了`UI`类，表单组件继承了`Form`类。\n\n#### 交互组件\n\n#### 表单组件\n\n- 表单组件的边框/背景颜色需要使用统一的颜色。\n\n### 文档规范\n\n#### 通用\n\n#### 交互组件\n\n#### 表单组件\n\n### 测试用例规范\n\n#### 通用\n\n#### 交互组件\n\n#### 表单组件\n\n")])])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -1929,6 +1989,11 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
 
 exports.default = {
     props: {
@@ -1954,7 +2019,8 @@ exports.default = {
             e2eNote: '',
             e2eTitle: '',
             coverage: '-',
-            coverageLevel: '-'
+            coverageLevel: '-',
+            lastupdate: null
         };
     },
     mounted: function mounted() {
@@ -2144,6 +2210,12 @@ exports.default = {
 
                 _this.coverageLevel = 'no';
             }
+        });
+
+        $.get('/report/updatelog/' + this.page + '.json', function (data) {
+
+            data.date = data.date.replace(/((^")|("$))/g, '');
+            _this.lastupdate = data;
         });
     }
 };

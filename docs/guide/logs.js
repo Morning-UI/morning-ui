@@ -292,7 +292,7 @@ if (false) {(function () {
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
+  return _c('div', [_c('div', {
     staticClass: "doc-status-bar"
   }, [_c('div', {
     staticClass: "item",
@@ -325,7 +325,19 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     staticClass: "name"
   }, [_vm._v("Coverage")]), _vm._v(" "), _c('span', {
     staticClass: "value"
-  }, [_vm._v(_vm._s(_vm.coverage))])])])
+  }, [_vm._v(_vm._s(_vm.coverage))])])]), _vm._v(" "), (_vm.lastupdate) ? _c('div', {
+    staticClass: "last-update"
+  }, [_vm._v("\n        Last update by "), _c('a', {
+    attrs: {
+      "target": "_blank",
+      "href": 'https://github.com/search?q=' + _vm.lastupdate.mail + '&type=Users'
+    }
+  }, [_vm._v(_vm._s(_vm.lastupdate.author))]), _vm._v(" at " + _vm._s(_vm.lastupdate.date) + " (" + _vm._s(_vm.lastupdate.ar) + "), commit id : "), _c('a', {
+    attrs: {
+      "target": "_blank",
+      "href": 'https://github.com/EarlyH/morning-ui/commit/' + _vm.lastupdate.cid
+    }
+  }, [_vm._v(_vm._s(_vm.lastupdate.scid))])]) : _vm._e()])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -416,13 +428,6 @@ exports.default = {
         'doc-guide': _DocGuide2.default
     }
 }; //
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -855,7 +860,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "type": "text/markdown"
     }
-  }, [_vm._v("\n# 更新日志\n\n### 版本规范\n\nMorningUI采用[语义化版本控制规范](http://semver.org/lang/zh-CN/)。\n\n同时采用以下三种标记标示不同的版本：\n\n|标记|名称|说明|更新<br>频率|生产环境|\n|-|-|-|-|-|\n|<ui-badge class=\"circle ver-stable\" s theme>Stable</ui-badge>|稳定版本|此版本中的各个功能都经过一段时间的测试及使用，非常稳定|month|推荐使用|\n|<ui-badge class=\"circle ver-beta\" s extra-light-black>Beta</ui-badge>|公开测试版本|包含了一些新的特性，并且修复了大部分问题的版本，相对较为稳定|week|可用<br>不推荐|\n|<ui-badge class=\"circle ver-canary\" s>Canary</ui-badge>|金丝雀版本|包含大量新特性的版本，这个版本是实验性的，可能存在较多的问题<br><ui-small><ui-textcolor extra-light-blue>为开发者及早期用户设计的版本</ui-textcolor></ui-small>|~daily|请勿使用|\n\n<!-- ### 1.0.0 <ui-badge class=\"circle\" s light-black>Stable</ui-badge> -->\n\n<!-- ### 0.11.0 <ui-badge class=\"circle\" s light-blue>Beta</ui-badge> -->\n\n<!-- ### 0.10.1 <ui-badge class=\"circle\" s light-theme>Forerunner</ui-badge> -->\n\n### 更新记录\n\n### 0.10.1 <ui-badge class=\"circle ver-canary\" s light-theme>Canary</ui-badge>\n\n<ui-textcolor light-blue><ui-small>发布于2017年10月12日</ui-small></ui-textcolor>\n\n- 文档更新\n- 增加组件单元测试\n\n### 0.10.0 <ui-badge class=\"circle ver-canary\" s light-theme>Canary</ui-badge>\n\n<ui-textcolor light-blue><ui-small>发布于2017年10月11日</ui-small></ui-textcolor>\n\nMorningUI第一个版本，基于HMP UI，规范了定义，实现部分组件。\n\n")])])
+  }, [_vm._v("\n# 更新日志\n\n### 版本规范\n\nMorningUI采用[语义化版本控制规范](http://semver.org/lang/zh-CN/)。\n\n同时采用以下三种标记标示不同的版本：\n\n|标记|名称|说明|更新<br>频率|生产环境|\n|-|-|-|-|-|\n|<ui-badge class=\"circle ver-stable\" s theme>Stable</ui-badge>|稳定版本|此版本中的各个功能都经过一段时间的测试及使用，非常稳定|month|推荐使用|\n|<ui-badge class=\"circle ver-beta\" s extra-light-black>Beta</ui-badge>|公开测试版本|包含了一些新的特性，并且修复了大部分问题的版本，相对较为稳定|week|可用<br>不推荐|\n|<ui-badge class=\"circle ver-canary\" s>Canary</ui-badge>|金丝雀版本|包含大量新特性的版本，这个版本是实验性的，可能存在较多的问题<br><ui-small><ui-textcolor extra-light-blue>为开发者及早期用户设计的版本</ui-textcolor></ui-small>|~daily|请勿使用|\n\n<!-- ### 1.0.0 <ui-badge class=\"circle\" s light-black>Stable</ui-badge> -->\n\n<!-- ### 0.11.0 <ui-badge class=\"circle\" s light-blue>Beta</ui-badge> -->\n\n<!-- ### 0.10.1 <ui-badge class=\"circle\" s light-theme>Forerunner</ui-badge> -->\n\n### 更新记录\n\n### 0.10.0 <ui-badge class=\"circle ver-canary\" s light-theme>Canary</ui-badge>\n\n<ui-textcolor light-blue><ui-small>发布于2017年10月19日</ui-small></ui-textcolor>\n\nMorningUI第一个版本，基于HMP UI，规范了定义，实现部分组件。\n\n")])])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -1971,6 +1976,11 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
 
 exports.default = {
     props: {
@@ -1996,7 +2006,8 @@ exports.default = {
             e2eNote: '',
             e2eTitle: '',
             coverage: '-',
-            coverageLevel: '-'
+            coverageLevel: '-',
+            lastupdate: null
         };
     },
     mounted: function mounted() {
@@ -2186,6 +2197,12 @@ exports.default = {
 
                 _this.coverageLevel = 'no';
             }
+        });
+
+        $.get('/report/updatelog/' + this.page + '.json', function (data) {
+
+            data.date = data.date.replace(/((^")|("$))/g, '');
+            _this.lastupdate = data;
         });
     }
 };

@@ -1,24 +1,29 @@
 <template>
-    <div class="doc-status-bar">
-        <div class="item"
-            :class="{pass: isUnitPass, fail: !isUnitPass}"
-            :title="unitTitle"
-        >
-            <span class="name">Unit Test</span>
-            <span class="value">{{unit}} {{unitNote}}</span>
+    <div>
+        <div class="doc-status-bar">
+            <div class="item"
+                :class="{pass: isUnitPass, fail: !isUnitPass}"
+                :title="unitTitle"
+            >
+                <span class="name">Unit Test</span>
+                <span class="value">{{unit}} {{unitNote}}</span>
+            </div>
+            <div class="item"
+                :class="{pass: isE2EPass, fail: !isE2EPass}"
+                :title="e2eTitle"
+            >
+                <span class="name">E2E Test</span>
+                <span class="value">{{e2e}} {{e2eNote}}</span>
+            </div>
+            <div class="item"
+                :class="[coverageLevel]"
+            >
+                <span class="name">Coverage</span>
+                <span class="value">{{coverage}}</span>
+            </div>
         </div>
-        <div class="item"
-            :class="{pass: isE2EPass, fail: !isE2EPass}"
-            :title="e2eTitle"
-        >
-            <span class="name">E2E Test</span>
-            <span class="value">{{e2e}} {{e2eNote}}</span>
-        </div>
-        <div class="item"
-            :class="[coverageLevel]"
-        >
-            <span class="name">Coverage</span>
-            <span class="value">{{coverage}}</span>
+        <div class="last-update" v-if="lastupdate">
+            Last update by <a target="_blank" :href="'https://github.com/search?q='+lastupdate.mail+'&type=Users'">{{lastupdate.author}}</a> at {{lastupdate.date}} ({{lastupdate.ar}}), commit id : <a target="_blank" :href="'https://github.com/EarlyH/morning-ui/commit/'+lastupdate.cid">{{lastupdate.scid}}</a>
         </div>
     </div>
 </template>
@@ -50,7 +55,8 @@ export default {
             e2eNote : '',
             e2eTitle : '',
             coverage : '-',
-            coverageLevel : '-'
+            coverageLevel : '-',
+            lastupdate : null
         };
 
     },
@@ -205,13 +211,19 @@ export default {
 
         });
 
+        $.get(`/report/updatelog/${this.page}.json`, data => {
+
+            data.date = data.date.replace(/((^")|("$))/g, '');
+            this.lastupdate = data;
+
+        });
+
     }
 };
 </script>
 
 <style lang="less">
 .doc-status-bar{
-    margin-bottom: 20px;
     padding: 4px 0;
     height: 35px;
     transform: scale(0.8);
@@ -272,5 +284,13 @@ export default {
             }
         }
     }
+}
+.last-update{
+    font-size: 12px;
+    color: #999;
+    margin: 5px 0 20px 0;
+    transform: scale(0.85);
+    transform-origin: left;
+    padding-left: 3px;
 }
 </style>

@@ -22,7 +22,8 @@
     "e2e-snapshot": "node_modules/.bin/cross-env NODE_ENV=test node_modules/.bin/ava test/e2e  --update-snapshots",
     "cover": "node_modules/.bin/cross-env NODE_ENV=test node_modules/.bin/nyc npm run test",
     "cover-report": "npm run cover && node_modules/.bin/nyc report --reporter=html",
-    "report": "npm run test-report && npm run cover-report"
+    "update-log-report": "node ./bin/get-last-update-info.js",
+    "report": "npm run test-report && npm run cover-report && update-log-report"
   },
   "repository": {
     "type": "git",
@@ -73,6 +74,7 @@
     "eslint-plugin-html": "^3.2.1",
     "extract-text-webpack-plugin": "^2.1.2",
     "file-loader": "^0.11.2",
+    "fs-extra": "^4.0.2",
     "html-webpack-plugin": "^2.30.1",
     "ignore-styles": "^5.0.1",
     "less": "^2.7.2",

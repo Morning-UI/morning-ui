@@ -35,10 +35,6 @@
     Review代码需要一定的耐心和经验，我们为你整理了一份注意事项：
     
     - class中正确的绑定了支持的声明
-    - 支持slot的组件，代码中加入了slot
-    - 组件`i-*`标签正确
-    - 从上至下template、script、style三个区域
-    - style注明了`lang="less"`
     - 引入了正确的基类(UI/Form)
     - 组件name正确
     - 引入了`common.less`

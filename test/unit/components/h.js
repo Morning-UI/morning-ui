@@ -7,9 +7,10 @@ test('base : init component', async t => {
 
     const vm = new Vue(h).$mount();
 
-    t.plan(2);
+    t.plan(3);
 
     t.is(vm.uiid, 1);
+    t.is(h.options.name, 'h');
     snapshot(t, vm);
 
 });

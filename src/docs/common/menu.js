@@ -99,7 +99,7 @@ export default {
         贡献代码 : null,
         '成为贡献者<i class="tag done"></i>' : '/guide/becontributor.html',
         '开发环境<i class="tag done"></i>' : '/guide/devenv.html',
-        '组件及开发规范<i class="tag coming"></i>' : '/guide/devrule.html',
+        '开发规范<i class="tag coming"></i>' : '/guide/devrule.html',
         '编写文档<i class="tag coming"></i>' : '/guide/writedoc.html',
         '测试<i class="tag coming"></i>' : 'b',
         '检视代码<i class="tag done"></i>' : '/guide/review.html',

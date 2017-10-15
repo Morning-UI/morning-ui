@@ -292,7 +292,7 @@ if (false) {(function () {
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
+  return _c('div', [_c('div', {
     staticClass: "doc-status-bar"
   }, [_c('div', {
     staticClass: "item",
@@ -325,7 +325,19 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     staticClass: "name"
   }, [_vm._v("Coverage")]), _vm._v(" "), _c('span', {
     staticClass: "value"
-  }, [_vm._v(_vm._s(_vm.coverage))])])])
+  }, [_vm._v(_vm._s(_vm.coverage))])])]), _vm._v(" "), (_vm.lastupdate) ? _c('div', {
+    staticClass: "last-update"
+  }, [_vm._v("\n        Last update by "), _c('a', {
+    attrs: {
+      "target": "_blank",
+      "href": 'https://github.com/search?q=' + _vm.lastupdate.mail + '&type=Users'
+    }
+  }, [_vm._v(_vm._s(_vm.lastupdate.author))]), _vm._v(" at " + _vm._s(_vm.lastupdate.date) + " (" + _vm._s(_vm.lastupdate.ar) + "), commit id : "), _c('a', {
+    attrs: {
+      "target": "_blank",
+      "href": 'https://github.com/EarlyH/morning-ui/commit/' + _vm.lastupdate.cid
+    }
+  }, [_vm._v(_vm._s(_vm.lastupdate.scid))])]) : _vm._e()])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -456,10 +468,6 @@ exports.default = {
         'doc-guide': _DocGuide2.default
     }
 }; //
-//
-//
-//
-//
 //
 //
 //
@@ -909,7 +917,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "type": "text/markdown"
     }
-  }, [_vm._v("\n# 检视代码(Review)\n\nReview其他开发者贡献的代码也是一项非常重要的工作，带来的价值和贡献代码是一致的。\n\n### 成为一名Code Reviewer\n\n请发送邮件至`chenchao.he@husor.com`。\n\n### 请求Review\n\n当你开发并提交需要贡献的代码后，请在`Merge Request`中发起一个新的合并请求，合并的源分支是你的贡献分支，目标分支是`dev`。\n\n在你的合并请求创建时，请添加`Request Review`标签。这个标签表示你的合并请求需要Review，你可以在`Assignee`中指定特定的人来为你Review，否则将由第一个申请的贡献者为你Review代码。\n\n> `dev`是项目的主开发分支，所有的贡献最终都会合并至此。最终由项目管理员通过版本发布的形式将代码提交至`master`分支。\n\n### 申请Review别人的代码\n\n打开`Merge Request`页面，筛选出包含`Request Review`标签的合并请求，然后：\n\n- 如果这个请求指定了`Assignee`，并且不是你：请交给指定的人来Review，跳过这个合并请求\n- 如果这个请求指定了`Assignee`，并且是你：请打开这个合并请求，然后开始Review\n- 如果这个请求没有指定`Assignee`：打开它，然后将`Assignee`改成你，然后开始Review\n\n> 一个合并请求的`Assignee`表明了当前正在Review的人是谁。\n\n### Review代码注意事项\n\nReview代码需要一定的耐心和经验，我们为你整理了一份注意事项：\n\n- class中正确的绑定了支持的声明\n- 支持slot的组件，代码中加入了slot\n- 组件`i-*`标签正确\n- 从上至下template、script、style三个区域\n- style注明了`lang=\"less\"`\n- 引入了正确的基类(UI/Form)\n- 组件name正确\n- 引入了`common.less`\n- 支持声明的情况下，加入了声明的样式\n- 设置了默认声明样式\n- 通过ESLint\n- 在index.js中导出了组件\n- 确保代码不受压缩的影响\n- $watch放到created中\n- watch尽量用$watch方法\n\n请务必逐条确认以上的事项，经过你Review的代码未来将会构建成千上完的应用。\n\n### Review文档注意事项\n\n文档的重要性和代码一样，一份完善的文档会为使用者节约不少时间，我们为你整理了一份关于文档的注意事项：\n\n- 组件标题及tag正确\n- 组件介绍跟在基础后面，清晰明白\n- 组件的基础中应该包含组件中可用的标签或类的名称及作用\n- “使用”示例最简单，如需要可补充示例说明\n- 声明注明支持情况\n- 支持的声明均有每一种值的示例，且示例遵循最小化原则，如需要可补充示例说明\n- 文档page正确\n- 文档示例应尽可能展示所有的声明组合使用情况\n- 文档中代码示例部分应该具有较高的可读性，如果代码量较多需要加入适量的空行\n- 文档中色彩演示部分，主题/功能/杂项色彩应该分区展示\n- 演示中代码的分块应该和演示分块保持一致(合理使用`<br/>`)\n- 组件使用的样式类在文档中声明\n- 样式类、配置、方法、事件命名加入到全局命名规范中\n- 文档中源码正确\n- 文档中事件/生命周期事件中名称正确\n- 文档全局名称及key正确\n- 文档示例及源码区块没有分离\n- 文档中值类型一行一个，不需要加反引号\n- 文档中默认值需要加反引号\n- 文档中接受值一行一个，如有必要需要加说明，数值用反引号，说明直接写\n\n请务必逐条确认以上的事项，经过你Review的文档未来将会开发者指明方向。\n\n### 持续集成\n\n持续集成中包含了很多自动化的检查，如果一个合并请求未通过持续集成，请通知代码贡献者。在持续集成通过后再开始Review。\n\n### 指出问题及沟通\n\n你可以在有问题的代码上开启一个`Discussion`，指出你的疑问或纠正错误。代码贡献者需要会在这个`Discussion`上和你沟通，当你们达成一致后，请点击`Resolve discussion`，这表示这个`Discussion`已经被解决。\n\n### 允许合并\n\n当所有的`Discussion`都被解决后，且通过持续集成，这个合并请求可被合并。点击绿色的`Accept Merge Request`按钮合并代码，恭喜你完成了一次代码Review贡献。\n\n> 合并前请务必确认目标分支是`dev`，否则通知代码贡献者修改合并请求。\n\n")])])
+  }, [_vm._v("\n# 检视代码(Review)\n\nReview其他开发者贡献的代码也是一项非常重要的工作，带来的价值和贡献代码是一致的。\n\n### 成为一名Code Reviewer\n\n请发送邮件至`chenchao.he@husor.com`。\n\n### 请求Review\n\n当你开发并提交需要贡献的代码后，请在`Merge Request`中发起一个新的合并请求，合并的源分支是你的贡献分支，目标分支是`dev`。\n\n在你的合并请求创建时，请添加`Request Review`标签。这个标签表示你的合并请求需要Review，你可以在`Assignee`中指定特定的人来为你Review，否则将由第一个申请的贡献者为你Review代码。\n\n> `dev`是项目的主开发分支，所有的贡献最终都会合并至此。最终由项目管理员通过版本发布的形式将代码提交至`master`分支。\n\n### 申请Review别人的代码\n\n打开`Merge Request`页面，筛选出包含`Request Review`标签的合并请求，然后：\n\n- 如果这个请求指定了`Assignee`，并且不是你：请交给指定的人来Review，跳过这个合并请求\n- 如果这个请求指定了`Assignee`，并且是你：请打开这个合并请求，然后开始Review\n- 如果这个请求没有指定`Assignee`：打开它，然后将`Assignee`改成你，然后开始Review\n\n> 一个合并请求的`Assignee`表明了当前正在Review的人是谁。\n\n### Review代码注意事项\n\nReview代码需要一定的耐心和经验，我们为你整理了一份注意事项：\n\n- class中正确的绑定了支持的声明\n- 引入了正确的基类(UI/Form)\n- 组件name正确\n- 引入了`common.less`\n- 支持声明的情况下，加入了声明的样式\n- 设置了默认声明样式\n- 通过ESLint\n- 在index.js中导出了组件\n- 确保代码不受压缩的影响\n- $watch放到created中\n- watch尽量用$watch方法\n\n请务必逐条确认以上的事项，经过你Review的代码未来将会构建成千上完的应用。\n\n### Review文档注意事项\n\n文档的重要性和代码一样，一份完善的文档会为使用者节约不少时间，我们为你整理了一份关于文档的注意事项：\n\n- 组件标题及tag正确\n- 组件介绍跟在基础后面，清晰明白\n- 组件的基础中应该包含组件中可用的标签或类的名称及作用\n- “使用”示例最简单，如需要可补充示例说明\n- 声明注明支持情况\n- 支持的声明均有每一种值的示例，且示例遵循最小化原则，如需要可补充示例说明\n- 文档page正确\n- 文档示例应尽可能展示所有的声明组合使用情况\n- 文档中代码示例部分应该具有较高的可读性，如果代码量较多需要加入适量的空行\n- 文档中色彩演示部分，主题/功能/杂项色彩应该分区展示\n- 演示中代码的分块应该和演示分块保持一致(合理使用`<br/>`)\n- 组件使用的样式类在文档中声明\n- 样式类、配置、方法、事件命名加入到全局命名规范中\n- 文档中源码正确\n- 文档中事件/生命周期事件中名称正确\n- 文档全局名称及key正确\n- 文档示例及源码区块没有分离\n- 文档中值类型一行一个，不需要加反引号\n- 文档中默认值需要加反引号\n- 文档中接受值一行一个，如有必要需要加说明，数值用反引号，说明直接写\n\n请务必逐条确认以上的事项，经过你Review的文档未来将会开发者指明方向。\n\n### 持续集成\n\n持续集成中包含了很多自动化的检查，如果一个合并请求未通过持续集成，请通知代码贡献者。在持续集成通过后再开始Review。\n\n### 指出问题及沟通\n\n你可以在有问题的代码上开启一个`Discussion`，指出你的疑问或纠正错误。代码贡献者需要会在这个`Discussion`上和你沟通，当你们达成一致后，请点击`Resolve discussion`，这表示这个`Discussion`已经被解决。\n\n### 允许合并\n\n当所有的`Discussion`都被解决后，且通过持续集成，这个合并请求可被合并。点击绿色的`Accept Merge Request`按钮合并代码，恭喜你完成了一次代码Review贡献。\n\n> 合并前请务必确认目标分支是`dev`，否则通知代码贡献者修改合并请求。\n\n")])])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -2025,6 +2033,11 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
 
 exports.default = {
     props: {
@@ -2050,7 +2063,8 @@ exports.default = {
             e2eNote: '',
             e2eTitle: '',
             coverage: '-',
-            coverageLevel: '-'
+            coverageLevel: '-',
+            lastupdate: null
         };
     },
     mounted: function mounted() {
@@ -2240,6 +2254,12 @@ exports.default = {
 
                 _this.coverageLevel = 'no';
             }
+        });
+
+        $.get('/report/updatelog/' + this.page + '.json', function (data) {
+
+            data.date = data.date.replace(/((^")|("$))/g, '');
+            _this.lastupdate = data;
         });
     }
 };
