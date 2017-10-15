@@ -327,17 +327,42 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     staticClass: "value"
   }, [_vm._v(_vm._s(_vm.coverage))])])]), _vm._v(" "), (_vm.lastupdate) ? _c('div', {
     staticClass: "last-update"
-  }, [_vm._v("\n        Last update by "), _c('a', {
+  }, [_vm._v("\n        Last update : "), _c('a', {
+    attrs: {
+      "href": 'https://github.com/EarlyH/morning-ui/releases/tag/' + _vm.lastupdate.version
+    }
+  }, [_vm._v(_vm._s(_vm.lastupdate.version))]), _vm._v(" by "), _c('img', {
+    staticClass: "avatar",
+    attrs: {
+      "src": _vm.lastupdate.avatar,
+      "alt": ""
+    }
+  }), _vm._v(" "), _c('a', {
     attrs: {
       "target": "_blank",
-      "href": 'https://github.com/search?q=' + _vm.lastupdate.mail + '&type=Users'
+      "href": _vm.lastupdate.github
     }
   }, [_vm._v(_vm._s(_vm.lastupdate.author))]), _vm._v(" at " + _vm._s(_vm.lastupdate.date) + " (" + _vm._s(_vm.lastupdate.ar) + "), commit id : "), _c('a', {
     attrs: {
       "target": "_blank",
       "href": 'https://github.com/EarlyH/morning-ui/commit/' + _vm.lastupdate.cid
     }
-  }, [_vm._v(_vm._s(_vm.lastupdate.scid))])]) : _vm._e()])
+  }, [_vm._v(_vm._s(_vm.lastupdate.scid))]), _vm._v(" "), _c('br'), _vm._v(" "), _c('p', {
+    staticClass: "contributors"
+  }, [_vm._v("\n            Contributors : \n            "), _vm._l((_vm.lastupdate.contributors), function(item) {
+    return _c('span', [_c('img', {
+      staticClass: "avatar",
+      attrs: {
+        "src": item.avatar,
+        "alt": ""
+      }
+    }), _vm._v(" "), _c('a', {
+      attrs: {
+        "target": "_blank",
+        "href": item.github
+      }
+    }, [_vm._v(_vm._s(item.name))])])
+  }), _vm._v("   \n        ")], 2)]) : _vm._e()])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -379,6 +404,7 @@ exports.default = {
         'doc-guide': _DocGuide2.default
     }
 }; //
+//
 //
 //
 //
@@ -854,7 +880,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "type": "text/markdown"
     }
-  }, [_vm._v("\n# 成为贡献者\n\n首先非常感谢你愿意为MorningUI贡献自己的时间及能力。\n\n### 成为哪种贡献者\n\n目前你可以通过两种方式为项目做出贡献：\n\n- 检视代码(Review)\n- 提交代码(Coding)\n\n如果你决定通过检视代码(Review)的方式来提供贡献，请直接查阅：<a href=\"/guide/review.html\">检视代码</a>章节。\n\n如果你决定提交代码至项目请发送邮件至`chenchao.he@husor.com`我们会联系你，在等待回复的时候请阅读以下章节了解详细情况：\n\n- 开发环境\n- 组件及开发规范\n- 文档及测试\n- 提交代码\n- 检视代码\n- 版本发布\n\n")])])
+  }, [_vm._v("\n# 成为贡献者\n\n首先非常感谢你愿意为MorningUI贡献自己的时间及能力。\n\n### 成为哪种贡献者\n\n目前你可以通过两种方式为项目做出贡献：\n\n- 检视代码(Review)\n- 提交代码(Coding)\n\n如果你决定通过检视代码(Review)的方式来提供贡献，请直接查阅：<a href=\"/guide/review.html\">检视代码</a>章节。\n\n如果你决定提交代码至项目请发送邮件至`chenchao.he@husor.com`我们会联系你，在等待回复的时候请阅读以下章节了解详细情况：\n\n- 开发环境\n- 开发规范\n- 编写文档\n- 编写测试\n- 检视代码\n- 提交代码\n- 版本计划\n\n")])])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -1858,10 +1884,12 @@ window.Vue.directive('docmd', {
         if (mdScript && mdScript.type === 'text/markdown') {
 
             var text = mdScript.innerText;
+
+            text = text.replace(/\&lt\;\/script\>/g, '<\/script>');
+
             var tree = parser(text, el);
 
             text = runner(tree);
-
             var md = (0, _marked2.default)(text);
 
             md = md.replace(/\{\%([a-zA-Z0-9\_]+)\%\}/g, '{{"\\\{\\\{$1\\\}\\\}"}}');
@@ -1975,6 +2003,14 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
     props: {
@@ -2006,6 +2042,8 @@ exports.default = {
     },
     mounted: function mounted() {
         var _this = this;
+
+        var usrs = {};
 
         $.get('/report/test.json', function (data) {
 
@@ -2195,7 +2233,10 @@ exports.default = {
 
         $.get('/report/updatelog/' + this.page + '.json', function (data) {
 
+            var promises = [];
+
             data.date = data.date.replace(/((^")|("$))/g, '');
+
             _this.lastupdate = data;
         });
     }

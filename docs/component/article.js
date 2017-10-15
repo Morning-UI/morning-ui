@@ -425,17 +425,42 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     staticClass: "value"
   }, [_vm._v(_vm._s(_vm.coverage))])])]), _vm._v(" "), (_vm.lastupdate) ? _c('div', {
     staticClass: "last-update"
-  }, [_vm._v("\n        Last update by "), _c('a', {
+  }, [_vm._v("\n        Last update : "), _c('a', {
+    attrs: {
+      "href": 'https://github.com/EarlyH/morning-ui/releases/tag/' + _vm.lastupdate.version
+    }
+  }, [_vm._v(_vm._s(_vm.lastupdate.version))]), _vm._v(" by "), _c('img', {
+    staticClass: "avatar",
+    attrs: {
+      "src": _vm.lastupdate.avatar,
+      "alt": ""
+    }
+  }), _vm._v(" "), _c('a', {
     attrs: {
       "target": "_blank",
-      "href": 'https://github.com/search?q=' + _vm.lastupdate.mail + '&type=Users'
+      "href": _vm.lastupdate.github
     }
   }, [_vm._v(_vm._s(_vm.lastupdate.author))]), _vm._v(" at " + _vm._s(_vm.lastupdate.date) + " (" + _vm._s(_vm.lastupdate.ar) + "), commit id : "), _c('a', {
     attrs: {
       "target": "_blank",
       "href": 'https://github.com/EarlyH/morning-ui/commit/' + _vm.lastupdate.cid
     }
-  }, [_vm._v(_vm._s(_vm.lastupdate.scid))])]) : _vm._e()])
+  }, [_vm._v(_vm._s(_vm.lastupdate.scid))]), _vm._v(" "), _c('br'), _vm._v(" "), _c('p', {
+    staticClass: "contributors"
+  }, [_vm._v("\n            Contributors : \n            "), _vm._l((_vm.lastupdate.contributors), function(item) {
+    return _c('span', [_c('img', {
+      staticClass: "avatar",
+      attrs: {
+        "src": item.avatar,
+        "alt": ""
+      }
+    }), _vm._v(" "), _c('a', {
+      attrs: {
+        "target": "_blank",
+        "href": item.github
+      }
+    }, [_vm._v(_vm._s(item.name))])])
+  }), _vm._v("   \n        ")], 2)]) : _vm._e()])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -1951,10 +1976,12 @@ window.Vue.directive('docmd', {
         if (mdScript && mdScript.type === 'text/markdown') {
 
             var text = mdScript.innerText;
+
+            text = text.replace(/\&lt\;\/script\>/g, '<\/script>');
+
             var tree = parser(text, el);
 
             text = runner(tree);
-
             var md = (0, _marked2.default)(text);
 
             md = md.replace(/\{\%([a-zA-Z0-9\_]+)\%\}/g, '{{"\\\{\\\{$1\\\}\\\}"}}');
@@ -2068,6 +2095,14 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
     props: {
@@ -2099,6 +2134,8 @@ exports.default = {
     },
     mounted: function mounted() {
         var _this = this;
+
+        var usrs = {};
 
         $.get('/report/test.json', function (data) {
 
@@ -2288,7 +2325,10 @@ exports.default = {
 
         $.get('/report/updatelog/' + this.page + '.json', function (data) {
 
+            var promises = [];
+
             data.date = data.date.replace(/((^")|("$))/g, '');
+
             _this.lastupdate = data;
         });
     }

@@ -1220,10 +1220,12 @@ window.Vue.directive('docmd', {
         if (mdScript && mdScript.type === 'text/markdown') {
 
             let text = mdScript.innerText;
+
+            text = text.replace(/\&lt\;\/script\>/g, '<\/script>');
+
             let tree = parser(text, el);
 
             text = runner(tree);
-            
             let md = marked(text);
             
             md = md.replace(/\{\%([a-zA-Z0-9\_]+)\%\}/g, '{{"\\\{\\\{$1\\\}\\\}"}}');

@@ -23,7 +23,15 @@
             </div>
         </div>
         <div class="last-update" v-if="lastupdate">
-            Last update by <a target="_blank" :href="'https://github.com/search?q='+lastupdate.mail+'&type=Users'">{{lastupdate.author}}</a> at {{lastupdate.date}} ({{lastupdate.ar}}), commit id : <a target="_blank" :href="'https://github.com/EarlyH/morning-ui/commit/'+lastupdate.cid">{{lastupdate.scid}}</a>
+            Last update : <a :href="'https://github.com/EarlyH/morning-ui/releases/tag/'+lastupdate.version">{{lastupdate.version}}</a> by <img class="avatar" :src="lastupdate.avatar" alt=""> <a target="_blank" :href="lastupdate.github">{{lastupdate.author}}</a> at {{lastupdate.date}} ({{lastupdate.ar}}), commit id : <a target="_blank" :href="'https://github.com/EarlyH/morning-ui/commit/'+lastupdate.cid">{{lastupdate.scid}}</a>
+            <br>
+            <p class="contributors">
+                Contributors : 
+                <span v-for="item in lastupdate.contributors">
+                    <img class="avatar" :src="item.avatar" alt="">
+                    <a target="_blank" :href="item.github">{{item.name}}</a>
+                </span> &nbsp;&nbsp;
+            </p>
         </div>
     </div>
 </template>
@@ -61,6 +69,8 @@ export default {
 
     },
     mounted : function () {
+
+        let usrs = {};
 
         $.get('/report/test.json', data => {
 
@@ -213,11 +223,15 @@ export default {
 
         $.get(`/report/updatelog/${this.page}.json`, data => {
 
+            let promises = [];
+
             data.date = data.date.replace(/((^")|("$))/g, '');
+
             this.lastupdate = data;
 
         });
 
+            
     }
 };
 </script>
@@ -292,5 +306,19 @@ export default {
     transform: scale(0.85);
     transform-origin: left;
     padding-left: 3px;
+
+    .avatar{
+        width: 16px;
+        height: 16px;
+        border-radius: 100%;
+        vertical-align: top;
+        border: 1px #e6e6e6 solid;
+    }
+
+    .contributors{
+        margin-top: 5px;
+    }
+
+
 }
 </style>

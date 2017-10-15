@@ -995,6 +995,16 @@ i-dialog a:hover {
   transform-origin: left;
   padding-left: 3px;
 }
+.last-update .avatar {
+  width: 16px;
+  height: 16px;
+  border-radius: 100%;
+  vertical-align: top;
+  border: 1px #e6e6e6 solid;
+}
+.last-update .contributors {
+  margin-top: 5px;
+}
 
 .colorFlex {
   display: flex;

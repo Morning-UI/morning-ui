@@ -327,17 +327,42 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     staticClass: "value"
   }, [_vm._v(_vm._s(_vm.coverage))])])]), _vm._v(" "), (_vm.lastupdate) ? _c('div', {
     staticClass: "last-update"
-  }, [_vm._v("\n        Last update by "), _c('a', {
+  }, [_vm._v("\n        Last update : "), _c('a', {
+    attrs: {
+      "href": 'https://github.com/EarlyH/morning-ui/releases/tag/' + _vm.lastupdate.version
+    }
+  }, [_vm._v(_vm._s(_vm.lastupdate.version))]), _vm._v(" by "), _c('img', {
+    staticClass: "avatar",
+    attrs: {
+      "src": _vm.lastupdate.avatar,
+      "alt": ""
+    }
+  }), _vm._v(" "), _c('a', {
     attrs: {
       "target": "_blank",
-      "href": 'https://github.com/search?q=' + _vm.lastupdate.mail + '&type=Users'
+      "href": _vm.lastupdate.github
     }
   }, [_vm._v(_vm._s(_vm.lastupdate.author))]), _vm._v(" at " + _vm._s(_vm.lastupdate.date) + " (" + _vm._s(_vm.lastupdate.ar) + "), commit id : "), _c('a', {
     attrs: {
       "target": "_blank",
       "href": 'https://github.com/EarlyH/morning-ui/commit/' + _vm.lastupdate.cid
     }
-  }, [_vm._v(_vm._s(_vm.lastupdate.scid))])]) : _vm._e()])
+  }, [_vm._v(_vm._s(_vm.lastupdate.scid))]), _vm._v(" "), _c('br'), _vm._v(" "), _c('p', {
+    staticClass: "contributors"
+  }, [_vm._v("\n            Contributors : \n            "), _vm._l((_vm.lastupdate.contributors), function(item) {
+    return _c('span', [_c('img', {
+      staticClass: "avatar",
+      attrs: {
+        "src": item.avatar,
+        "alt": ""
+      }
+    }), _vm._v(" "), _c('a', {
+      attrs: {
+        "target": "_blank",
+        "href": item.github
+      }
+    }, [_vm._v(_vm._s(item.name))])])
+  }), _vm._v("   \n        ")], 2)]) : _vm._e()])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -428,6 +453,39 @@ exports.default = {
         'doc-guide': _DocGuide2.default
     }
 }; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -823,9 +881,14 @@ if (false) {
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('doc-guide', {
     attrs: {
-      "page": _vm.page
+      "page": _vm.page,
+      "hasPadding": true
     }
-  }, [_vm._v("\n    introduction\n")])
+  }, [_c('script', {
+    attrs: {
+      "type": "text/markdown"
+    }
+  }, [_vm._v("\n\n# 介绍\n\n### Morning UI是什么？\n\nMorning UI是一套桌面Web端的UI库，基于[Vue.js](https://vuejs.org/)。\n\n### 快速开始\n\n首先确保你的页面采用了Vue.js，然后只需简单三步即可使用Morning UI:\n\n1. [下载Morning UI](/dist/morning-ui.latest.gzip)\n2. 在页面中引用JS和CSS：\n    - `<script type=\"text/javascript\" src=\"path-to-morning/morning-ui.js\">&lt;/script>`\n    - `<style rel=\"stylesheet\" link=\"path-to-morning/morning-ui.css\">&lt;/style>`\n3. 在Vue的模板中使用：`<ui-btn>Hello Mroning.</ui-btn>`\n\n然后即可看到：\n\n<ui-btn>Hello Mroning.</ui-btn>\n\n恭喜你使用了第一个Morning UI组件。\n\n### 接下来\n\n通过CDN、Webpack或更多途径使用Morning UI，见：[安装](/guide/install.html)\n\n使用Morning UI的更多特性，见：[使用](/guide/usage.html)\n\n为Morning UI贡献自己的力量，见：[成为贡献者](/guide/becontributor.html)\n\n")])])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -1829,10 +1892,12 @@ window.Vue.directive('docmd', {
         if (mdScript && mdScript.type === 'text/markdown') {
 
             var text = mdScript.innerText;
+
+            text = text.replace(/\&lt\;\/script\>/g, '<\/script>');
+
             var tree = parser(text, el);
 
             text = runner(tree);
-
             var md = (0, _marked2.default)(text);
 
             md = md.replace(/\{\%([a-zA-Z0-9\_]+)\%\}/g, '{{"\\\{\\\{$1\\\}\\\}"}}');
@@ -1946,6 +2011,14 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
     props: {
@@ -1977,6 +2050,8 @@ exports.default = {
     },
     mounted: function mounted() {
         var _this = this;
+
+        var usrs = {};
 
         $.get('/report/test.json', function (data) {
 
@@ -2166,7 +2241,10 @@ exports.default = {
 
         $.get('/report/updatelog/' + this.page + '.json', function (data) {
 
+            var promises = [];
+
             data.date = data.date.replace(/((^")|("$))/g, '');
+
             _this.lastupdate = data;
         });
     }
