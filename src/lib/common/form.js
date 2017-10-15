@@ -61,15 +61,60 @@ let Form = UI.extend({
 
                 for (let gname of this.conf.group) {
 
-                    if (morning.groupData[gname] === undefined) {
+                    if (morning._groupData[gname] === undefined) {
 
-                        morning.groupData[gname] = {};
+                        morning._groupData[gname] = {};
 
                     }
 
                     if (this.conf.formKey !== undefined) {
 
-                        morning.groupData[gname][this.conf.formKey] = this.get(false);
+                        morning._groupData[gname][this.conf.formKey] = this.get(false);
+
+                    }
+
+                }
+
+            }
+
+        },
+        _syncGroupVm : function (newGroup, oldGroup) {
+
+            if (oldGroup) {
+
+                for (let name of oldGroup) {
+
+                    if (this.morning._groupVmMap[name] === undefined) {
+
+                        break;
+
+                    }
+
+                    let index = this.morning._groupVmMap[name].indexOf(this.uiid);
+
+                    if (index !== -1) {
+
+                        this.morning._groupVmMap[name].splice(index, 1);
+
+                    }
+
+                }
+
+            }
+
+            if (newGroup) {
+
+                for (let name of newGroup) {
+
+                    if (this.morning._groupVmMap[name] === undefined) {
+
+                        this.morning._groupVmMap[name] = [];
+
+                    }
+
+                    if (this.morning._groupVmMap[name].indexOf(this.uiid) === -1) {
+
+                        this.morning._groupVmMap[name].push(this.uiid);
 
                     }
 
@@ -262,6 +307,19 @@ let Form = UI.extend({
         }, {
             deep : true
         });
+
+        this.$watch('conf.group', (newVal, oldVal) => {
+
+            this._syncGroupVm(newVal, oldVal);
+
+        }, {
+            immediate : true
+        });
+
+    },
+    beforeDestroy : function () {
+
+        this._syncGroupVm([], oldVal);
 
     }
 });

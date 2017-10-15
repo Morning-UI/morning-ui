@@ -256,7 +256,7 @@ exports.default = {
         '配置<i class="tag done"></i>': '/guide/config.html',
         '方法<i class="tag done"></i>': '/guide/method.html',
         '事件<i class="tag done"></i>': '/guide/event.html',
-        '表单<i class="tag coming"></i>': '/guide/form.html',
+        '表单<i class="tag done"></i>': '/guide/form.html',
         '全局方法<i class="tag done"></i>': '/guide/morning.html',
         // 进阶 : null,
         // 设计思想 : 'a',

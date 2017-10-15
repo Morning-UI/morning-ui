@@ -39,10 +39,10 @@ import components                       from './components';
         _indexGroups : {},
         _moveListener : [],
         _selectClickListener : [],
+        _groupData : {},
+        _groupVmMap : {},
         version : '0.10.0',
         map : {},
-        groupData : {},
-        // groupVmMap : {},
         findVM : function (ref) {
 
             if (this._findCache[ref]) {
@@ -66,9 +66,9 @@ import components                       from './components';
             }
 
         },
-        getGroupData : function (groupName) {
+        getGroup : function (groupName) {
 
-            return extend(true, {}, this.groupData[groupName]);
+            return extend(true, {}, this._groupData[groupName]);
 
         },
         getGroupJson : function (groupName) {
@@ -76,9 +76,48 @@ import components                       from './components';
             return JSON.stringify(this.getGroupData(groupName));
 
         },
-        // TODO
-        // setGroupData : function (groupName, data) {},
-        // setGroupJson : function (groupName, data) {}
+        setGroup : function (groupName, data) {
+
+            let uiids = this._groupVmMap[groupName];
+            let setKeys = Object.keys(data);
+            let key, vm;
+
+            if (uiids) {
+
+                for (let uiid of uiids) {
+
+                    vm = this.map[uiid];
+
+                    if (!vm) {
+
+                        continue;
+
+                    }
+
+                    key = vm.conf.formKey;
+
+                    if (setKeys.indexOf(key) === -1) {
+
+                        continue;
+
+                    }
+
+                    this.map[uiid].set(data[key]);
+
+                }
+
+            }
+
+            return this;
+
+        },
+        setGroupJson : function (groupName, data) {
+
+            console.log(data);
+
+            return this.setGroup(groupName, JSON.parse(data));
+
+        }
     };
 
     injectMorning(morning);

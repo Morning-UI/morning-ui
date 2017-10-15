@@ -14,9 +14,9 @@
 
     #### 表单声明
 
-    表单组件支持两种状态声明：`正常`和`禁用`。
+    表单组件支持两种状态声明：`normal`和`disabled`。
 
-    `禁用`状态下的表单无法修改表单值，一般用于展示。
+    `disabled`状态下的表单无法修改表单值，一般用于展示。
 
     #### 表单配置
 
@@ -73,7 +73,7 @@
 
     你可以通过两种方式获取：
 
-    - `morning.getGroupData(groupKey)` : 获取指定表单组的数据
+    - `morning.getGroup(groupKey)` : 获取指定表单组的数据
     - `morning.getGroupJson(groupKey)` : 获取指定表单组的JSON数据
 
     ````html
@@ -87,32 +87,58 @@
         <ui-multiinput group="demo1" form-key="tags" form-name="标签" :default-value="['Happy']"></ui-multiinput>
     </div>
     <br><br>
-    <ui-btn js="console.log('demo1 data', window.morning.getGroupData('demo1'));">在Console输出表单组数据</ui-btn>
+    <ui-btn js="console.log('demo1 data', window.morning.getGroup('demo1'));">在Console输出表单组数据</ui-btn>
     <ui-btn js="console.log('demo1 data', window.morning.getGroupJson('demo1'));">在Console输出表单组JSON数据</ui-btn>
     ````
 
     一组表单也可以同时设置值：
 
-    - `morning.setGroupData(groupKey, dataObject)` : 设置指定表单组的数据
+    - `morning.setGroup(groupKey, dataObject)` : 设置指定表单组的数据
     - `morning.setGroupJson(groupKey, dataJson)` : 设置指定表单组的JSON数据
     
     `dataObject`是一组键值对，键名为表单的KEY，键值是需要设置的表单值。`dataJson`是`dataObject`经过JSON序列化后的字符串。
     
-    TODO
+    ````html
+    <div style="width:300px;">
+        <ui-textinput group="demo2" form-key="name" form-name="姓名"></ui-textinput>
+        <br> 
+        <ui-textinput group="demo2" form-key="age" form-name="年龄"></ui-textinput>
+        <br> 
+        <ui-radio :list="{male:'Male',female:'Female'}" group="demo2" form-key="gender" form-name="性别"></ui-radio>
+        <br> 
+        <ui-multiinput group="demo2" form-key="tags" form-name="标签"></ui-multiinput>
+    </div>
+    <br><br>
+    <ui-btn js="window.morning.setGroup('demo2', {name:'Jim', age:'17', gender: 'male', tags: ['Happy']});">通过对象设置一组表单值</ui-btn>
+    <ui-btn js='window.morning.setGroupJson("demo2", "{\"name\":\"Jim\",\"age\":\"17\",\"gender\":\"male\",\"tags\":[\"Happy\"]}");'>通过JSON设置一组表单值</ui-btn>
+    ````
+
+    #### 设置部分值
+
+    在`dataJson`或`dataObject`中你可以只设置部分表单的数值，比如：
 
     ````html
     <div style="width:300px;">
-        <ui-textinput group="demo1" form-key="name" form-name="姓名"></ui-textinput>
+        <ui-textinput group="demo3" form-key="name" form-name="姓名"></ui-textinput>
         <br> 
-        <ui-textinput group="demo1" form-key="age" form-name="年龄"></ui-textinput>
-        <br> 
-        <ui-radio :list="{male:'Male',female:'Female'}" group="demo1" form-key="gender" form-name="性别"></ui-radio>
-        <br> 
-        <ui-multiinput group="demo1" form-key="tags" form-name="标签"></ui-multiinput>
+        <ui-radio :list="{male:'Male',female:'Female'}" group="demo3" form-key="gender" form-name="性别"></ui-radio>
     </div>
     <br><br>
-    <ui-btn js="console.log('demo1 data', window.morning.setGroupData({name:'Jim', age:'17', gender: 'male', tags: ['Happy']}));">通过对象设置一组表单值</ui-btn>
-    <ui-btn js="console.log('demo1 data', window.morning.setGroupJson('{\\\"name\\\":\"Jim\",\"age\":\"17\",\"gender\":\"male\",\"tags\":[\"Happy\"]}'));">通过JSON设置一组表单值</ui-btn>
+    <ui-btn js="window.morning.setGroup('demo3', {gender: 'male'});">只设置性别表单</ui-btn>
+    ````
+
+    #### 清空表单的值
+
+    在`dataJson`或`dataObject`中若显式的设置`undefined`，则会清空对应表单的值，比如：
+
+    ````html
+    <div style="width:300px;">
+        <ui-textinput group="demo4" form-key="name" form-name="姓名" default-value="Jim"></ui-textinput>
+        <br> 
+        <ui-radio :list="{male:'Male',female:'Female'}" group="demo4" form-key="gender" form-name="性别" default-value="male"></ui-radio>
+    </div>
+    <br><br>
+    <ui-btn js="window.morning.setGroup('demo4', {gender:undefined});">清空性别表单</ui-btn>
     ````
 
     ### 全局扩展

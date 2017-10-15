@@ -565,14 +565,14 @@ var Form = _ui2.default.extend({
                         var gname = _step.value;
 
 
-                        if (morning.groupData[gname] === undefined) {
+                        if (morning._groupData[gname] === undefined) {
 
-                            morning.groupData[gname] = {};
+                            morning._groupData[gname] = {};
                         }
 
                         if (this.conf.formKey !== undefined) {
 
-                            morning.groupData[gname][this.conf.formKey] = this.get(false);
+                            morning._groupData[gname][this.conf.formKey] = this.get(false);
                         }
                     }
                 } catch (err) {
@@ -586,6 +586,84 @@ var Form = _ui2.default.extend({
                     } finally {
                         if (_didIteratorError) {
                             throw _iteratorError;
+                        }
+                    }
+                }
+            }
+        },
+        _syncGroupVm: function _syncGroupVm(newGroup, oldGroup) {
+
+            if (oldGroup) {
+                var _iteratorNormalCompletion2 = true;
+                var _didIteratorError2 = false;
+                var _iteratorError2 = undefined;
+
+                try {
+
+                    for (var _iterator2 = oldGroup[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                        var name = _step2.value;
+
+
+                        if (this.morning._groupVmMap[name] === undefined) {
+
+                            break;
+                        }
+
+                        var index = this.morning._groupVmMap[name].indexOf(this.uiid);
+
+                        if (index !== -1) {
+
+                            this.morning._groupVmMap[name].splice(index, 1);
+                        }
+                    }
+                } catch (err) {
+                    _didIteratorError2 = true;
+                    _iteratorError2 = err;
+                } finally {
+                    try {
+                        if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                            _iterator2.return();
+                        }
+                    } finally {
+                        if (_didIteratorError2) {
+                            throw _iteratorError2;
+                        }
+                    }
+                }
+            }
+
+            if (newGroup) {
+                var _iteratorNormalCompletion3 = true;
+                var _didIteratorError3 = false;
+                var _iteratorError3 = undefined;
+
+                try {
+
+                    for (var _iterator3 = newGroup[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                        var _name = _step3.value;
+
+
+                        if (this.morning._groupVmMap[_name] === undefined) {
+
+                            this.morning._groupVmMap[_name] = [];
+                        }
+
+                        if (this.morning._groupVmMap[_name].indexOf(this.uiid) === -1) {
+
+                            this.morning._groupVmMap[_name].push(this.uiid);
+                        }
+                    }
+                } catch (err) {
+                    _didIteratorError3 = true;
+                    _iteratorError3 = err;
+                } finally {
+                    try {
+                        if (!_iteratorNormalCompletion3 && _iterator3.return) {
+                            _iterator3.return();
+                        }
+                    } finally {
+                        if (_didIteratorError3) {
+                            throw _iteratorError3;
                         }
                     }
                 }
@@ -710,28 +788,28 @@ var Form = _ui2.default.extend({
 
                 groups.push(group);
 
-                var _iteratorNormalCompletion2 = true;
-                var _didIteratorError2 = false;
-                var _iteratorError2 = undefined;
+                var _iteratorNormalCompletion4 = true;
+                var _didIteratorError4 = false;
+                var _iteratorError4 = undefined;
 
                 try {
-                    for (var _iterator2 = groups[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                        var key = _step2.value;
+                    for (var _iterator4 = groups[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+                        var key = _step4.value;
 
 
                         uniqGroups[key] = 0;
                     }
                 } catch (err) {
-                    _didIteratorError2 = true;
-                    _iteratorError2 = err;
+                    _didIteratorError4 = true;
+                    _iteratorError4 = err;
                 } finally {
                     try {
-                        if (!_iteratorNormalCompletion2 && _iterator2.return) {
-                            _iterator2.return();
+                        if (!_iteratorNormalCompletion4 && _iterator4.return) {
+                            _iterator4.return();
                         }
                     } finally {
-                        if (_didIteratorError2) {
-                            throw _iteratorError2;
+                        if (_didIteratorError4) {
+                            throw _iteratorError4;
                         }
                     }
                 }
@@ -774,6 +852,17 @@ var Form = _ui2.default.extend({
         }, {
             deep: true
         });
+
+        this.$watch('conf.group', function (newVal, oldVal) {
+
+            _this._syncGroupVm(newVal, oldVal);
+        }, {
+            immediate: true
+        });
+    },
+    beforeDestroy: function beforeDestroy() {
+
+        this._syncGroupVm([], oldVal);
     }
 });
 
@@ -6297,10 +6386,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
         _indexGroups: {},
         _moveListener: [],
         _selectClickListener: [],
+        _groupData: {},
+        _groupVmMap: {},
         version: '0.10.0',
         map: {},
-        groupData: {},
-        // groupVmMap : {},
         findVM: function findVM(ref) {
 
             if (this._findCache[ref]) {
@@ -6339,17 +6428,72 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
                 }
             }
         },
-        getGroupData: function getGroupData(groupName) {
+        getGroup: function getGroup(groupName) {
 
-            return (0, _extend2.default)(true, {}, this.groupData[groupName]);
+            return (0, _extend2.default)(true, {}, this._groupData[groupName]);
         },
         getGroupJson: function getGroupJson(groupName) {
 
             return JSON.stringify(this.getGroupData(groupName));
+        },
+        setGroup: function setGroup(groupName, data) {
+
+            var uiids = this._groupVmMap[groupName];
+            var setKeys = Object.keys(data);
+            var key = void 0,
+                vm = void 0;
+
+            if (uiids) {
+                var _iteratorNormalCompletion2 = true;
+                var _didIteratorError2 = false;
+                var _iteratorError2 = undefined;
+
+                try {
+
+                    for (var _iterator2 = uiids[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                        var uiid = _step2.value;
+
+
+                        vm = this.map[uiid];
+
+                        if (!vm) {
+
+                            continue;
+                        }
+
+                        key = vm.conf.formKey;
+
+                        if (setKeys.indexOf(key) === -1) {
+
+                            continue;
+                        }
+
+                        this.map[uiid].set(data[key]);
+                    }
+                } catch (err) {
+                    _didIteratorError2 = true;
+                    _iteratorError2 = err;
+                } finally {
+                    try {
+                        if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                            _iterator2.return();
+                        }
+                    } finally {
+                        if (_didIteratorError2) {
+                            throw _iteratorError2;
+                        }
+                    }
+                }
+            }
+
+            return this;
+        },
+        setGroupJson: function setGroupJson(groupName, data) {
+
+            console.log(data);
+
+            return this.setGroup(groupName, JSON.parse(data));
         }
-        // TODO
-        // setGroupData : function (groupName, data) {},
-        // setGroupJson : function (groupName, data) {}
     };
 
     (0, _ui.injectMorning)(morning);
