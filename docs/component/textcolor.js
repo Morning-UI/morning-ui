@@ -1,4 +1,4 @@
-webpackJsonp([27],{
+webpackJsonp([29],{
 
 /***/ 0:
 /***/ (function(module, exports) {
@@ -287,86 +287,6 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 149:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _DocComponent = __webpack_require__(20);
-
-var _DocComponent2 = _interopRequireDefault(_DocComponent);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-    data: function data() {
-
-        return {
-            page: 'textcolor'
-        };
-    },
-    components: {
-        'doc-component': _DocComponent2.default
-    }
-}; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-module.exports = exports['default'];
-
-/***/ }),
-
 /***/ 15:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -454,6 +374,86 @@ if (false) {
      require("vue-hot-reload-api").rerender("data-v-33244de6", esExports)
   }
 }
+
+/***/ }),
+
+/***/ 155:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _DocComponent = __webpack_require__(20);
+
+var _DocComponent2 = _interopRequireDefault(_DocComponent);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+    data: function data() {
+
+        return {
+            page: 'textcolor'
+        };
+    },
+    components: {
+        'doc-component': _DocComponent2.default
+    }
+}; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+module.exports = exports['default'];
 
 /***/ }),
 
@@ -729,7 +729,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 222:
+/***/ 232:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -739,7 +739,7 @@ var _vue = __webpack_require__(1);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _index = __webpack_require__(76);
+var _index = __webpack_require__(78);
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -761,7 +761,7 @@ new _vue2.default({
 
 /***/ }),
 
-/***/ 309:
+/***/ 325:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -884,7 +884,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 559:
+/***/ 579:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2263,18 +2263,18 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 76:
+/***/ 78:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(155);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_926fdcb2_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(559);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_926fdcb2_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(579);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(309)
+  __webpack_require__(325)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
@@ -2389,4 +2389,4 @@ module.exports = exports['default'];
 
 /***/ })
 
-},[222]);
+},[232]);

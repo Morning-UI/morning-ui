@@ -4,20 +4,18 @@
         :hasPadding="true"
     >
     <script type="text/markdown">
-    # 大小写 `<ui-lowercase>` `<ui-uppercase>` `<ui-capitalize>`
+    # 小写文本 `<ui-lowercase>`
     
-    <doc-component-status page="luc"></doc-component-status>
+    <doc-component-status page="lowercase"></doc-component-status>
 
     [[[基础]]]
 
     #### 使用
 
-    大小写控制组件，这是一个内联元素。
+    小写文本组件，这是一个内联元素。
     
     ````html
     <div><ui-lowercase>小写的英文文本: tHere is A LEtter</ui-lowercase></div>
-    <div><ui-uppercase>大写的英文文本: tHere is A LEtter</ui-uppercase></div>
-    <div><ui-capitalize>首字母大写的文本: tHere is A LEtter</ui-capitalize></div>
     ````
 
     [[[声明]]]
@@ -33,7 +31,7 @@
 
     [[[单元测试]]]
 
-    <iframe src="/report/coverage/lib/components/luc/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
+    <iframe src="/report/coverage/lib/components/lowercase/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>
     </doc-component>
 </template>
@@ -45,7 +43,7 @@ export default {
     data : function () {
 
         return {
-            page : 'luc'
+            page : 'lowercase'
         };
 
     },

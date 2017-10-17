@@ -4,20 +4,18 @@
         :hasPadding="true"
     >
     <script type="text/markdown">
-    # 对齐文本 `<ui-textleft>` `<ui-textcenter>` `<ui-textright>`
+    # 居中对齐文本 `<ui-textcenter>`
     
-    <doc-component-status page="textlcr"></doc-component-status>
+    <doc-component-status page="textcenter"></doc-component-status>
 
     [[[基础]]]
 
     #### 使用
 
-    内容对齐组件，这是一个块级元素。
+    内容居中对齐组件，这是一个块级元素。
     
     ````html
-    <ui-textleft>左对齐文本</ui-textleft>
     <ui-textcenter>居中的文本</ui-textcenter>
-    <ui-textright>右对齐文本</ui-textright>
     ````
 
     [[[声明]]]
@@ -33,7 +31,7 @@
 
     [[[单元测试]]]
 
-    <iframe src="/report/coverage/lib/components/textlcr/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
+    <iframe src="/report/coverage/lib/components/textcenter/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>
     </doc-component>
 </template>
@@ -45,7 +43,7 @@ export default {
     data : function () {
 
         return {
-            page : 'textlcr'
+            page : 'textcenter'
         };
 
     },

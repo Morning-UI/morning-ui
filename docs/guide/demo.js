@@ -377,45 +377,6 @@ if (false) {
 
 /***/ }),
 
-/***/ 159:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _DocGuide = __webpack_require__(30);
-
-var _DocGuide2 = _interopRequireDefault(_DocGuide);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-    data: function data() {
-
-        return {
-            page: 'demo'
-        };
-    },
-    components: {
-        'doc-guide': _DocGuide2.default
-    }
-}; //
-//
-//
-//
-//
-//
-//
-//
-
-module.exports = exports['default'];
-
-/***/ }),
-
 /***/ 16:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -462,6 +423,45 @@ if (false) {
      require("vue-hot-reload-api").rerender("data-v-3d3ae136", esExports)
   }
 }
+
+/***/ }),
+
+/***/ 167:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _DocGuide = __webpack_require__(30);
+
+var _DocGuide2 = _interopRequireDefault(_DocGuide);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+    data: function data() {
+
+        return {
+            page: 'demo'
+        };
+    },
+    components: {
+        'doc-guide': _DocGuide2.default
+    }
+}; //
+//
+//
+//
+//
+//
+//
+//
+
+module.exports = exports['default'];
 
 /***/ }),
 
@@ -555,7 +555,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 232:
+/***/ 244:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -565,7 +565,7 @@ var _vue = __webpack_require__(1);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _index = __webpack_require__(86);
+var _index = __webpack_require__(90);
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -694,13 +694,6 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 308:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
 /***/ 31:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -722,6 +715,13 @@ if (false) {
      require("vue-hot-reload-api").rerender("data-v-7e9905d3", esExports)
   }
 }
+
+/***/ }),
+
+/***/ 324:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 
@@ -841,7 +841,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 558:
+/***/ 578:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2278,18 +2278,25 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 86:
+/***/ 9:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 90:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(159);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(167);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_8f0c682e_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(558);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_8f0c682e_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(578);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(308)
+  __webpack_require__(324)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
@@ -2332,13 +2339,6 @@ if (false) {(function () {
 /* harmony default export */ __webpack_exports__["default"] = (Component.exports);
 
 
-/***/ }),
-
-/***/ 9:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
 /***/ })
 
-},[232]);
+},[244]);

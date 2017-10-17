@@ -1,4 +1,4 @@
-webpackJsonp([25],{
+webpackJsonp([26],{
 
 /***/ 0:
 /***/ (function(module, exports) {
@@ -377,7 +377,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 151:
+/***/ 158:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -397,15 +397,13 @@ exports.default = {
     data: function data() {
 
         return {
-            page: 'textlcr'
+            page: 'textright'
         };
     },
     components: {
         'doc-component': _DocComponent2.default
     }
 }; //
-//
-//
 //
 //
 //
@@ -720,7 +718,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 224:
+/***/ 235:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -730,7 +728,7 @@ var _vue = __webpack_require__(1);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _index = __webpack_require__(78);
+var _index = __webpack_require__(81);
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -745,7 +743,7 @@ new _vue2.default({
 
 /***/ }),
 
-/***/ 293:
+/***/ 269:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -875,7 +873,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 543:
+/***/ 523:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -889,7 +887,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "type": "text/markdown"
     }
-  }, [_vm._v("\n# 对齐文本 `<ui-textleft>` `<ui-textcenter>` `<ui-textright>`\n\n<doc-component-status page=\"textlcr\"></doc-component-status>\n\n[[[基础]]]\n\n#### 使用\n\n内容对齐组件，这是一个块级元素。\n\n````html\n<ui-textleft>左对齐文本</ui-textleft>\n<ui-textcenter>居中的文本</ui-textcenter>\n<ui-textright>右对齐文本</ui-textright>\n````\n\n[[[声明]]]\n\n#### 支持\n\n|类型|支持|默认|\n|-|-|-|\n|尺寸|不支持|-|\n|色彩|不支持|-|\n|状态|不支持|-|\n\n\n[[[单元测试]]]\n\n<iframe src=\"/report/coverage/lib/components/textlcr/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n")])])
+  }, [_vm._v("\n# 右对齐文本 `<ui-textright>`\n\n<doc-component-status page=\"textright\"></doc-component-status>\n\n[[[基础]]]\n\n#### 使用\n\n内容右对齐组件，这是一个块级元素。\n\n````html\n<ui-textright>右对齐文本</ui-textright>\n````\n\n[[[声明]]]\n\n#### 支持\n\n|类型|支持|默认|\n|-|-|-|\n|尺寸|不支持|-|\n|色彩|不支持|-|\n|状态|不支持|-|\n\n\n[[[单元测试]]]\n\n<iframe src=\"/report/coverage/lib/components/textright/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n")])])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -898,7 +896,7 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-62891742", esExports)
+     require("vue-hot-reload-api").rerender("data-v-0a615dc0", esExports)
   }
 }
 
@@ -2254,62 +2252,6 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 78:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(151);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_62891742_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(543);
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(293)
-}
-var normalizeComponent = __webpack_require__(0)
-/* script */
-
-/* template */
-
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_62891742_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__["a" /* default */],
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "src/docs/pages/component/textlcr/index.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] index.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-62891742", Component.options)
-  } else {
-    hotAPI.reload("data-v-62891742", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
-
-
-/***/ }),
-
 /***/ 8:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2373,6 +2315,62 @@ module.exports = exports['default'];
 
 /***/ }),
 
+/***/ 81:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(158);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_0a615dc0_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(523);
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(269)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+
+/* template */
+
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default.a,
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_0a615dc0_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__["a" /* default */],
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "src/docs/pages/component/textright/index.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] index.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0a615dc0", Component.options)
+  } else {
+    hotAPI.reload("data-v-0a615dc0", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
+
+
+/***/ }),
+
 /***/ 9:
 /***/ (function(module, exports) {
 
@@ -2380,4 +2378,4 @@ module.exports = exports['default'];
 
 /***/ })
 
-},[224]);
+},[235]);

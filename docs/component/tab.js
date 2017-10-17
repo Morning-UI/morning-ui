@@ -1,4 +1,4 @@
-webpackJsonp([29],{
+webpackJsonp([32],{
 
 /***/ 0:
 /***/ (function(module, exports) {
@@ -287,7 +287,97 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 147:
+/***/ 15:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('div', {
+    staticClass: "doc-status-bar"
+  }, [_c('div', {
+    staticClass: "item",
+    class: {
+      pass: _vm.isUnitPass, fail: !_vm.isUnitPass
+    },
+    attrs: {
+      "title": _vm.unitTitle
+    }
+  }, [_c('span', {
+    staticClass: "name"
+  }, [_vm._v("Unit Test")]), _vm._v(" "), _c('span', {
+    staticClass: "value"
+  }, [_vm._v(_vm._s(_vm.unit) + " " + _vm._s(_vm.unitNote))])]), _vm._v(" "), _c('div', {
+    staticClass: "item",
+    class: {
+      pass: _vm.isE2EPass, fail: !_vm.isE2EPass
+    },
+    attrs: {
+      "title": _vm.e2eTitle
+    }
+  }, [_c('span', {
+    staticClass: "name"
+  }, [_vm._v("E2E Test")]), _vm._v(" "), _c('span', {
+    staticClass: "value"
+  }, [_vm._v(_vm._s(_vm.e2e) + " " + _vm._s(_vm.e2eNote))])]), _vm._v(" "), _c('div', {
+    staticClass: "item",
+    class: [_vm.coverageLevel]
+  }, [_c('span', {
+    staticClass: "name"
+  }, [_vm._v("Coverage")]), _vm._v(" "), _c('span', {
+    staticClass: "value"
+  }, [_vm._v(_vm._s(_vm.coverage))])])]), _vm._v(" "), (_vm.lastupdate) ? _c('div', {
+    staticClass: "last-update"
+  }, [_vm._v("\n        Last update : "), _c('a', {
+    attrs: {
+      "href": 'https://github.com/EarlyH/morning-ui/releases/tag/' + _vm.lastupdate.version
+    }
+  }, [_vm._v(_vm._s(_vm.lastupdate.version))]), _vm._v(" by "), _c('img', {
+    staticClass: "avatar",
+    attrs: {
+      "src": _vm.lastupdate.avatar,
+      "alt": ""
+    }
+  }), _vm._v(" "), _c('a', {
+    attrs: {
+      "target": "_blank",
+      "href": _vm.lastupdate.github
+    }
+  }, [_vm._v(_vm._s(_vm.lastupdate.author))]), _vm._v(" at " + _vm._s(_vm.lastupdate.date) + " (" + _vm._s(_vm.lastupdate.ar) + "), commit id : "), _c('a', {
+    attrs: {
+      "target": "_blank",
+      "href": 'https://github.com/EarlyH/morning-ui/commit/' + _vm.lastupdate.cid
+    }
+  }, [_vm._v(_vm._s(_vm.lastupdate.scid))]), _vm._v(" "), _c('br'), _vm._v(" "), _c('p', {
+    staticClass: "contributors"
+  }, [_vm._v("\n            Contributors : \n            "), _vm._l((_vm.lastupdate.contributors), function(item) {
+    return _c('span', [_c('img', {
+      staticClass: "avatar",
+      attrs: {
+        "src": item.avatar,
+        "alt": ""
+      }
+    }), _vm._v(" "), _c('a', {
+      attrs: {
+        "target": "_blank",
+        "href": item.github
+      }
+    }, [_vm._v(_vm._s(item.name))])])
+  }), _vm._v("   \n        ")], 2)]) : _vm._e()])
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-33244de6", esExports)
+  }
+}
+
+/***/ }),
+
+/***/ 152:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -642,96 +732,6 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 15:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('div', {
-    staticClass: "doc-status-bar"
-  }, [_c('div', {
-    staticClass: "item",
-    class: {
-      pass: _vm.isUnitPass, fail: !_vm.isUnitPass
-    },
-    attrs: {
-      "title": _vm.unitTitle
-    }
-  }, [_c('span', {
-    staticClass: "name"
-  }, [_vm._v("Unit Test")]), _vm._v(" "), _c('span', {
-    staticClass: "value"
-  }, [_vm._v(_vm._s(_vm.unit) + " " + _vm._s(_vm.unitNote))])]), _vm._v(" "), _c('div', {
-    staticClass: "item",
-    class: {
-      pass: _vm.isE2EPass, fail: !_vm.isE2EPass
-    },
-    attrs: {
-      "title": _vm.e2eTitle
-    }
-  }, [_c('span', {
-    staticClass: "name"
-  }, [_vm._v("E2E Test")]), _vm._v(" "), _c('span', {
-    staticClass: "value"
-  }, [_vm._v(_vm._s(_vm.e2e) + " " + _vm._s(_vm.e2eNote))])]), _vm._v(" "), _c('div', {
-    staticClass: "item",
-    class: [_vm.coverageLevel]
-  }, [_c('span', {
-    staticClass: "name"
-  }, [_vm._v("Coverage")]), _vm._v(" "), _c('span', {
-    staticClass: "value"
-  }, [_vm._v(_vm._s(_vm.coverage))])])]), _vm._v(" "), (_vm.lastupdate) ? _c('div', {
-    staticClass: "last-update"
-  }, [_vm._v("\n        Last update : "), _c('a', {
-    attrs: {
-      "href": 'https://github.com/EarlyH/morning-ui/releases/tag/' + _vm.lastupdate.version
-    }
-  }, [_vm._v(_vm._s(_vm.lastupdate.version))]), _vm._v(" by "), _c('img', {
-    staticClass: "avatar",
-    attrs: {
-      "src": _vm.lastupdate.avatar,
-      "alt": ""
-    }
-  }), _vm._v(" "), _c('a', {
-    attrs: {
-      "target": "_blank",
-      "href": _vm.lastupdate.github
-    }
-  }, [_vm._v(_vm._s(_vm.lastupdate.author))]), _vm._v(" at " + _vm._s(_vm.lastupdate.date) + " (" + _vm._s(_vm.lastupdate.ar) + "), commit id : "), _c('a', {
-    attrs: {
-      "target": "_blank",
-      "href": 'https://github.com/EarlyH/morning-ui/commit/' + _vm.lastupdate.cid
-    }
-  }, [_vm._v(_vm._s(_vm.lastupdate.scid))]), _vm._v(" "), _c('br'), _vm._v(" "), _c('p', {
-    staticClass: "contributors"
-  }, [_vm._v("\n            Contributors : \n            "), _vm._l((_vm.lastupdate.contributors), function(item) {
-    return _c('span', [_c('img', {
-      staticClass: "avatar",
-      attrs: {
-        "src": item.avatar,
-        "alt": ""
-      }
-    }), _vm._v(" "), _c('a', {
-      attrs: {
-        "target": "_blank",
-        "href": item.github
-      }
-    }, [_vm._v(_vm._s(item.name))])])
-  }), _vm._v("   \n        ")], 2)]) : _vm._e()])
-}
-var staticRenderFns = []
-render._withStripped = true
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-33244de6", esExports)
-  }
-}
-
-/***/ }),
-
 /***/ 16:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1004,7 +1004,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 220:
+/***/ 229:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1014,7 +1014,7 @@ var _vue = __webpack_require__(1);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _index = __webpack_require__(74);
+var _index = __webpack_require__(75);
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -1029,14 +1029,14 @@ new _vue2.default({
 
 /***/ }),
 
-/***/ 286:
+/***/ 3:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 3:
+/***/ 302:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -1159,7 +1159,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 536:
+/***/ 556:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2538,18 +2538,18 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 74:
+/***/ 75:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(147);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(152);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_57641eb4_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(536);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_57641eb4_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(556);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(286)
+  __webpack_require__(302)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
@@ -2664,4 +2664,4 @@ module.exports = exports['default'];
 
 /***/ })
 
-},[220]);
+},[229]);
