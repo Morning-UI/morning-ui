@@ -175,7 +175,8 @@ export default UI.extend({
 
         }
     },
-    created : function () {
+    created : function () {},
+    mounted : function () {
 
         this.$watch(() => {
 
@@ -194,9 +195,6 @@ export default UI.extend({
         }, {
             immediate : true
         });
-
-    },
-    mounted : function () {
 
         if (!this.conf.tab) {
     

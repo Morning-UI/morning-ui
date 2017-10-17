@@ -1771,7 +1771,8 @@ exports.default = _ui2.default.extend({
             return (0, _extend2.default)(true, [], this.data.historys);
         }
     },
-    created: function created() {
+    created: function created() {},
+    mounted: function mounted() {
         var _this = this;
 
         this.$watch('data.lvlist', function () {
@@ -1823,14 +1824,12 @@ exports.default = _ui2.default.extend({
 
             _this.$emit('emit');
         });
-    },
-    mounted: function mounted() {
+
         var _iteratorNormalCompletion3 = true;
         var _didIteratorError3 = false;
         var _iteratorError3 = undefined;
 
         try {
-
             for (var _iterator3 = this.conf.list[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
                 var item = _step3.value;
 
@@ -2272,7 +2271,8 @@ exports.default = _form2.default.extend({
             this.set((0, _arrayUniq2.default)(list));
         }
     },
-    created: function created() {
+    created: function created() {},
+    mounted: function mounted() {
         var _this = this;
 
         this.$watch('data.value', function (newVal) {
@@ -2303,8 +2303,7 @@ exports.default = _form2.default.extend({
         }, {
             immediate: true
         });
-    },
-    mounted: function mounted() {}
+    }
 });
 module.exports = exports['default'];
 
@@ -3339,7 +3338,8 @@ exports.default = _ui2.default.extend({
             return this;
         }
     },
-    created: function created() {
+    created: function created() {},
+    mounted: function mounted() {
         var _this2 = this;
 
         this.$watch('data.loaded', function () {
@@ -3354,8 +3354,6 @@ exports.default = _ui2.default.extend({
                 _this2.$emit('done');
             }
         });
-    },
-    mounted: function mounted() {
 
         this.reload();
     }
@@ -3683,7 +3681,8 @@ exports.default = _form2.default.extend({
             return this.data.inputValue;
         }
     },
-    created: function created() {
+    created: function created() {},
+    mounted: function mounted() {
         var _this2 = this;
 
         this.$watch('conf.canMove', function (newVal) {
@@ -3726,13 +3725,10 @@ exports.default = _form2.default.extend({
         }, {
             immediate: true
         });
-    },
-    mounted: function mounted() {
-        var _this3 = this;
 
         this.$on('_moveStarted', function () {
 
-            _this3._blurInput();
+            _this2._blurInput();
         });
 
         var movingReg = /(^| )move-moving($| )/g;
@@ -3741,7 +3737,7 @@ exports.default = _form2.default.extend({
 
             var maxDistance = 20;
 
-            var $items = _this3.$el.querySelectorAll('.item');
+            var $items = _this2.$el.querySelectorAll('.item');
 
             var _iteratorNormalCompletion = true;
             var _didIteratorError = false;
@@ -3756,15 +3752,15 @@ exports.default = _form2.default.extend({
                     var $item = item[1];
 
                     if (!movingReg.test($item.className)) {
-                        var _moveElementXy = _this3._moveElementXy($item),
+                        var _moveElementXy = _this2._moveElementXy($item),
                             x = _moveElementXy.x,
                             y = _moveElementXy.y;
 
-                        var distance = Math.sqrt(Math.pow(Math.abs(_this3.Move.current.x - x), 2) + Math.pow(Math.abs(_this3.Move.current.y - y), 2));
+                        var distance = Math.sqrt(Math.pow(Math.abs(_this2.Move.current.x - x), 2) + Math.pow(Math.abs(_this2.Move.current.y - y), 2));
 
                         if (distance < maxDistance) {
 
-                            _this3.move(_this3.Move.movedIndex, index);
+                            _this2.move(_this2.Move.movedIndex, index);
 
                             break;
                         }
@@ -3907,7 +3903,8 @@ exports.default = _form2.default.extend({
             }
         }
     },
-    created: function created() {
+    created: function created() {},
+    mounted: function mounted() {
         var _this = this;
 
         this.$watch('data.value', function (newVal) {
@@ -3926,8 +3923,7 @@ exports.default = _form2.default.extend({
         }, {
             immediate: true
         });
-    },
-    mounted: function mounted() {}
+    }
 }); //
 //
 //
@@ -5127,7 +5123,8 @@ exports.default = _form2.default.extend({
             return this;
         }
     },
-    created: function created() {
+    created: function created() {},
+    mounted: function mounted() {
         var _this = this;
 
         this.$watch('data.value', function (newVal) {
@@ -5154,8 +5151,7 @@ exports.default = _form2.default.extend({
         }, {
             immediate: true
         });
-    },
-    mounted: function mounted() {}
+    }
 }); //
 //
 //
@@ -5357,7 +5353,8 @@ exports.default = _ui2.default.extend({
             return this;
         }
     },
-    created: function created() {
+    created: function created() {},
+    mounted: function mounted() {
         var _this = this;
 
         this.$watch(function () {
@@ -5375,8 +5372,6 @@ exports.default = _ui2.default.extend({
         }, {
             immediate: true
         });
-    },
-    mounted: function mounted() {
 
         if (!this.conf.tab) {
 
@@ -5496,7 +5491,8 @@ exports.default = _form2.default.extend({
             }
         }
     },
-    created: function created() {
+    created: function created() {},
+    mounted: function mounted() {
         var _this = this;
 
         this.$watch('data.value', function (newVal) {
@@ -5512,8 +5508,7 @@ exports.default = _form2.default.extend({
         }, {
             immediate: true
         });
-    },
-    mounted: function mounted() {}
+    }
 }); //
 //
 //

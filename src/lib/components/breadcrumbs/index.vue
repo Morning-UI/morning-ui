@@ -179,7 +179,8 @@ export default UI.extend({
 
         }
     },
-    created : function () {
+    created : function () {},
+    mounted : function () {
 
         this.$watch('data.lvlist', () => {
 
@@ -211,9 +212,6 @@ export default UI.extend({
             this.$emit('emit');
 
         });
-
-    },
-    mounted : function () {
 
         for (let item of this.conf.list) {
 

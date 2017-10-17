@@ -109,7 +109,8 @@ export default UI.extend({
 
         }
     },
-    created : function () {
+    created : function () {},
+    mounted : function () {
 
         this.$watch('data.loaded', () => {
 
@@ -126,9 +127,6 @@ export default UI.extend({
             }
 
         });
-        
-    },
-    mounted : function () {
 
         this.reload();
 

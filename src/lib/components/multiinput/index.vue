@@ -266,7 +266,8 @@ export default Form.extend({
 
         }
     },
-    created : function () {
+    created : function () {},
+    mounted : function () {
 
         this.$watch('conf.canMove', newVal => {
 
@@ -316,9 +317,6 @@ export default Form.extend({
         }, {
             immediate : true
         });
-        
-    },
-    mounted : function () {
 
         this.$on('_moveStarted', () => {
 
