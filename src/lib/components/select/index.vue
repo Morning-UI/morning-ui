@@ -633,9 +633,7 @@ export default Form.extend({
 
         }
     },
-    mounted : function () {
-
-        this.data.mounted = true;
+    created : function () {
 
         this.$watch('data.value', newVal => {
 
@@ -789,6 +787,11 @@ export default Form.extend({
         }, {
             immediate : true
         });
+
+    },
+    mounted : function () {
+
+        this.data.mounted = true;
 
         this._addGlobalListener();
         this._resizeInlineImg();

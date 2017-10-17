@@ -446,13 +446,14 @@ exports.default = {
     data: function data() {
 
         return {
-            page: 'custom'
+            page: 'devrule'
         };
     },
     components: {
         'doc-guide': _DocGuide2.default
     }
 }; //
+//
 //
 //
 //
@@ -898,7 +899,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "type": "text/markdown"
     }
-  }, [_vm._v("\n\n# 开发规范\n\n所有的开发者及代码检视者都必须遵循以下的规范。\n\n> 若下面的规范后添加了<ui-badge xxs class=\"circle\">TEST</ui-badge>标记，则表示此条规范会在自动化测试中检测。\n\n### 组件规范\n\n#### 通用\n\n- 组件中的`this.$watch`优先写到`mounted()`生命周期钩子函数中。\n- 支持`slot`的组件，在模板代码中加入了`slot`。\n- 组件生成的HTML，最外层容器使用这样的标签：`<i-[name]>`，其中`name`是组件的名称。\n- 组件的`index.vue`，从上至下分别为:`<template>`、`<script>`、`<style>`三个标签。\n- `<style>`标签必须有`lang=\"less\"`属性。\n- 每个组件必须包含两个文件：`index.vue`和`index.less`。\n- 除了表单组件之外的组件继承了`UI`类，表单组件继承了`Form`类。\n\n#### 交互组件\n\n#### 表单组件\n\n- 表单组件的边框/背景颜色需要使用统一的颜色。\n\n### 文档规范\n\n#### 通用\n\n#### 交互组件\n\n#### 表单组件\n\n### 测试用例规范\n\n#### 通用\n\n#### 交互组件\n\n#### 表单组件\n\n")])])
+  }, [_vm._v("\n\n# 开发规范\n\n所有的开发者及代码检视者都必须遵循以下的规范。\n\n> 若下面的规范后添加了<ui-badge xxs class=\"circle\">TEST</ui-badge>标记，则表示此条规范会在自动化测试中检测。\n\n### 组件规范\n\n#### 通用\n\n- 组件中的`this.$watch`优先写到`mounted()`生命周期钩子函数中。\n- 组件中有关`data.value`和`conf.group`的观察函数`this.$watch`优先写到`created()`生命周期钩子函数中。\n- 支持`slot`的组件，在模板代码中加入了`slot`。\n- 组件生成的HTML，最外层容器使用这样的标签：`<i-[name]>`，其中`name`是组件的名称。\n- 组件的`index.vue`，从上至下分别为:`<template>`、`<script>`、`<style>`三个标签。\n- `<style>`标签必须有`lang=\"less\"`属性。\n- 每个组件必须包含两个文件：`index.vue`和`index.less`。\n- 除了表单组件之外的组件继承了`UI`类，表单组件继承了`Form`类。\n\n#### 交互组件\n\n#### 表单组件\n\n- 表单组件的边框/背景颜色需要使用统一的颜色。\n\n### 文档规范\n\n#### 通用\n\n#### 交互组件\n\n#### 表单组件\n\n### 测试用例规范\n\n#### 通用\n\n#### 交互组件\n\n#### 表单组件\n\n")])])
 }
 var staticRenderFns = []
 render._withStripped = true

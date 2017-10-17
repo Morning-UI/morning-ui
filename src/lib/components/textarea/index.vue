@@ -106,8 +106,7 @@ export default Form.extend({
 
         }
     },
-    created : function () {},
-    mounted : function () {
+    created : function () {
 
         this.$watch('data.value', (newVal) => {
 
@@ -125,7 +124,8 @@ export default Form.extend({
             immediate : true
         });
 
-    }
+    },
+    mounted : function () {}
 });
 </script>
 

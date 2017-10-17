@@ -266,18 +266,7 @@ export default Form.extend({
 
         }
     },
-    created : function () {},
-    mounted : function () {
-
-        this.$watch('conf.canMove', newVal => {
-
-            this.Move.target = '.item';
-            this.Move.container = '.itemlist';
-            this.Move.can = !!newVal;
-
-        }, {
-            immediate : true
-        });
+    created : function () {
 
         this.$watch('data.inputValue', () => {
 
@@ -313,6 +302,19 @@ export default Form.extend({
                 this.data.inputValue = '';
             
             }
+
+        }, {
+            immediate : true
+        });
+        
+    },
+    mounted : function () {
+
+        this.$watch('conf.canMove', newVal => {
+
+            this.Move.target = '.item';
+            this.Move.container = '.itemlist';
+            this.Move.can = !!newVal;
 
         }, {
             immediate : true

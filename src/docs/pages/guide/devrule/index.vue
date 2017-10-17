@@ -16,6 +16,7 @@
     #### 通用
 
     - 组件中的`this.$watch`优先写到`mounted()`生命周期钩子函数中。
+    - 组件中有关`data.value`和`conf.group`的观察函数`this.$watch`优先写到`created()`生命周期钩子函数中。
     - 支持`slot`的组件，在模板代码中加入了`slot`。
     - 组件生成的HTML，最外层容器使用这样的标签：`<i-[name]>`，其中`name`是组件的名称。
     - 组件的`index.vue`，从上至下分别为:`<template>`、`<script>`、`<style>`三个标签。
@@ -56,7 +57,7 @@ export default {
     data : function () {
 
         return {
-            page : 'custom'
+            page : 'devrule'
         };
 
     },

@@ -202,7 +202,11 @@ export default UI.extend({
     
         }
 
-        this.switch(this.conf.tab);
+        this.Vue.nextTick(() => {
+
+            this.switch(this.conf.tab);
+
+        });
 
     }
 

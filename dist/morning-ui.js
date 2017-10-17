@@ -2271,8 +2271,7 @@ exports.default = _form2.default.extend({
             this.set((0, _arrayUniq2.default)(list));
         }
     },
-    created: function created() {},
-    mounted: function mounted() {
+    created: function created() {
         var _this = this;
 
         this.$watch('data.value', function (newVal) {
@@ -2303,7 +2302,8 @@ exports.default = _form2.default.extend({
         }, {
             immediate: true
         });
-    }
+    },
+    mounted: function mounted() {}
 });
 module.exports = exports['default'];
 
@@ -3681,18 +3681,8 @@ exports.default = _form2.default.extend({
             return this.data.inputValue;
         }
     },
-    created: function created() {},
-    mounted: function mounted() {
+    created: function created() {
         var _this2 = this;
-
-        this.$watch('conf.canMove', function (newVal) {
-
-            _this2.Move.target = '.item';
-            _this2.Move.container = '.itemlist';
-            _this2.Move.can = !!newVal;
-        }, {
-            immediate: true
-        });
 
         this.$watch('data.inputValue', function () {
 
@@ -3725,10 +3715,22 @@ exports.default = _form2.default.extend({
         }, {
             immediate: true
         });
+    },
+    mounted: function mounted() {
+        var _this3 = this;
+
+        this.$watch('conf.canMove', function (newVal) {
+
+            _this3.Move.target = '.item';
+            _this3.Move.container = '.itemlist';
+            _this3.Move.can = !!newVal;
+        }, {
+            immediate: true
+        });
 
         this.$on('_moveStarted', function () {
 
-            _this2._blurInput();
+            _this3._blurInput();
         });
 
         var movingReg = /(^| )move-moving($| )/g;
@@ -3737,7 +3739,7 @@ exports.default = _form2.default.extend({
 
             var maxDistance = 20;
 
-            var $items = _this2.$el.querySelectorAll('.item');
+            var $items = _this3.$el.querySelectorAll('.item');
 
             var _iteratorNormalCompletion = true;
             var _didIteratorError = false;
@@ -3752,15 +3754,15 @@ exports.default = _form2.default.extend({
                     var $item = item[1];
 
                     if (!movingReg.test($item.className)) {
-                        var _moveElementXy = _this2._moveElementXy($item),
+                        var _moveElementXy = _this3._moveElementXy($item),
                             x = _moveElementXy.x,
                             y = _moveElementXy.y;
 
-                        var distance = Math.sqrt(Math.pow(Math.abs(_this2.Move.current.x - x), 2) + Math.pow(Math.abs(_this2.Move.current.y - y), 2));
+                        var distance = Math.sqrt(Math.pow(Math.abs(_this3.Move.current.x - x), 2) + Math.pow(Math.abs(_this3.Move.current.y - y), 2));
 
                         if (distance < maxDistance) {
 
-                            _this2.move(_this2.Move.movedIndex, index);
+                            _this3.move(_this3.Move.movedIndex, index);
 
                             break;
                         }
@@ -3903,8 +3905,7 @@ exports.default = _form2.default.extend({
             }
         }
     },
-    created: function created() {},
-    mounted: function mounted() {
+    created: function created() {
         var _this = this;
 
         this.$watch('data.value', function (newVal) {
@@ -3923,7 +3924,8 @@ exports.default = _form2.default.extend({
         }, {
             immediate: true
         });
-    }
+    },
+    mounted: function mounted() {}
 }); //
 //
 //
@@ -4751,10 +4753,8 @@ exports.default = _form2.default.extend({
             }
         }
     },
-    mounted: function mounted() {
+    created: function created() {
         var _this = this;
-
-        this.data.mounted = true;
 
         this.$watch('data.value', function (newVal) {
 
@@ -4937,6 +4937,11 @@ exports.default = _form2.default.extend({
         }, {
             immediate: true
         });
+    },
+    mounted: function mounted() {
+        var _this2 = this;
+
+        this.data.mounted = true;
 
         this._addGlobalListener();
         this._resizeInlineImg();
@@ -4944,16 +4949,16 @@ exports.default = _form2.default.extend({
 
         setTimeout(function () {
 
-            _this.$watch('conf.maxShow', function (newVal) {
+            _this2.$watch('conf.maxShow', function (newVal) {
 
-                var $item = _this.$el.querySelector('.list>li:not(.noitem):not(.current):not(.selected)');
+                var $item = _this2.$el.querySelector('.list>li:not(.noitem):not(.current):not(.selected)');
 
                 if (!$item) {
 
                     return;
                 }
 
-                _this.listStyle = {
+                _this2.listStyle = {
                     maxHeight: $item.offsetHeight * newVal + 'px'
                 };
             }, {
@@ -5123,8 +5128,7 @@ exports.default = _form2.default.extend({
             return this;
         }
     },
-    created: function created() {},
-    mounted: function mounted() {
+    created: function created() {
         var _this = this;
 
         this.$watch('data.value', function (newVal) {
@@ -5133,20 +5137,23 @@ exports.default = _form2.default.extend({
         }, {
             immediate: true
         });
+    },
+    mounted: function mounted() {
+        var _this2 = this;
 
         this.$watch('conf.formName', function (newVal) {
 
-            if (!_this.conf.autoHideName) {
+            if (!_this2.conf.autoHideName) {
 
                 return;
             }
 
             if (newVal === '' || newVal === undefined) {
 
-                _this.data.nameIsEmpty = true;
+                _this2.data.nameIsEmpty = true;
             } else {
 
-                _this.data.nameIsEmpty = false;
+                _this2.data.nameIsEmpty = false;
             }
         }, {
             immediate: true
@@ -5378,7 +5385,10 @@ exports.default = _ui2.default.extend({
             this.conf.tab = this.data.tabs[0];
         }
 
-        this.switch(this.conf.tab);
+        this.Vue.nextTick(function () {
+
+            _this.switch(_this.conf.tab);
+        });
     }
 
 }); //
@@ -5491,8 +5501,7 @@ exports.default = _form2.default.extend({
             }
         }
     },
-    created: function created() {},
-    mounted: function mounted() {
+    created: function created() {
         var _this = this;
 
         this.$watch('data.value', function (newVal) {
@@ -5508,7 +5517,8 @@ exports.default = _form2.default.extend({
         }, {
             immediate: true
         });
-    }
+    },
+    mounted: function mounted() {}
 }); //
 //
 //
@@ -5681,8 +5691,7 @@ exports.default = _form2.default.extend({
             this.$emit('blur');
         }
     },
-    created: function created() {},
-    mounted: function mounted() {
+    created: function created() {
         var _this = this;
 
         this.$watch('data.value', function (newVal) {
@@ -5698,7 +5707,8 @@ exports.default = _form2.default.extend({
         }, {
             immediate: true
         });
-    }
+    },
+    mounted: function mounted() {}
 }); //
 //
 //
