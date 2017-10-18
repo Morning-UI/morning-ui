@@ -84,20 +84,20 @@ export default UI.extend({
             });
 
             this.loadPromise
-            .then(() => {
+                .then(() => {
 
-                this.data.loaded = true;
+                    this.data.loaded = true;
 
-            }, () => {
+                }, () => {
 
-                this.data.fail = true;
-                this.data.loaded = true;
+                    this.data.fail = true;
+                    this.data.loaded = true;
 
-            });
+                });
 
             if (this.conf.time) {
 
-                setTimeout(()=>{
+                setTimeout(() => {
 
                     this.data.loaded = true;
 

@@ -108,7 +108,7 @@ export default Form.extend({
     },
     created : function () {
 
-        this.$watch('data.value', (newVal) => {
+        this.$watch('data.value', newVal => {
 
             if (newVal === undefined) {
 

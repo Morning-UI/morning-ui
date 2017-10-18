@@ -277,7 +277,7 @@ export default Form.extend({
             immediate : true
         });
 
-        this.$watch('data.value', (newVal) => {
+        this.$watch('data.value', newVal => {
 
             if (typeof newVal !== 'object' ||
                 !(newVal instanceof Array)) {

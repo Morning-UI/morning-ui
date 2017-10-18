@@ -272,7 +272,7 @@ let UI = Vue.extend({
 
 export default UI;
 
-export var injectMorning = _morning => {
+export let injectMorning = _morning => {
 
     morning = _morning;
 

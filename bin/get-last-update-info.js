@@ -12,7 +12,7 @@ let userList = {};
 
 fsExtra.emptyDirSync(REPORT_DIR);
 
-let getUserInfo = async (user) => {
+let getUserInfo = async user => {
 
     if (!userList[user.mail]) {
 

@@ -145,7 +145,7 @@ export default UI.extend({
         },
         setLevel : function (levelList) {
 
-            if ( levelList && levelList.length > 0 ) {
+            if (levelList && levelList.length > 0) {
 
                 this.data.lvlist.splice(0);
 
@@ -157,7 +157,7 @@ export default UI.extend({
 
                 this._recordHistory();
 
-            } else if ( levelList && levelList.length === 0 ) {
+            } else if (levelList && levelList.length === 0) {
 
                 this.data.lvlist.splice(0, this.data.lvlist.length);
 

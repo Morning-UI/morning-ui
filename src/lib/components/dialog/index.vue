@@ -103,7 +103,7 @@ export default UI.extend({
 
             let isShown = this._isShown();
 
-            if ( show === undefined ) {
+            if (show === undefined) {
 
                 show = !this.data.show;
 
@@ -111,13 +111,13 @@ export default UI.extend({
 
             this.data.show = !!show;
 
-            if ( this.data.show ) {
+            if (this.data.show) {
 
                 if (!isShown) {
 
                     this._popupShow();
 
-                    setTimeout(() =>{
+                    setTimeout(() => {
 
                         this.$el.classList.add('show');
 

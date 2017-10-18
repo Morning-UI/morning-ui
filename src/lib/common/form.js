@@ -195,11 +195,9 @@ let Form = UI.extend({
 
                 return JSON.stringify(result);
 
-            } else {
-
-                return result;
-
             }
+
+            return result;
 
         },
         setName : function (name = '') {
@@ -319,7 +317,7 @@ let Form = UI.extend({
     },
     beforeDestroy : function () {
 
-        this._syncGroupVm([], oldVal);
+        this._syncGroupVm([], this.conf.group);
 
     }
 });

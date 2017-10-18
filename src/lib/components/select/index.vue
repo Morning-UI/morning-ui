@@ -429,7 +429,6 @@ export default Form.extend({
 
             }
             
-            
             this.data.selectInput = false;
             this.data.multiinputLastValue = values;
             this._refreshValue(values);
@@ -490,7 +489,7 @@ export default Form.extend({
         },
         _checkArea : function (evt) {
 
-            if (this.data.showlist && 
+            if (this.data.showlist &&
                 this.conf.autoClose &&
                 evt.path.indexOf(this.$el) === -1) {
                 
@@ -719,7 +718,6 @@ export default Form.extend({
                 for (let $item of $items.values()) {
 
                     if ($item.getAttribute('value') === val) {
-
 
                         $item.classList.add('current');
 

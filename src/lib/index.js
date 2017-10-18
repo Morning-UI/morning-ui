@@ -9,14 +9,7 @@ import components                       from './components';
 
     if (typeof define === 'function' && define.amd) {
 
-        define(() => {
-
-            // Also create a global in case some scripts
-            // that are loaded still are looking for
-            // a global even when an AMD loader is in use.
-            return (root.morning = factory());
-
-        });
+        define(() => (root.morning = factory()));
 
     } else {
 
@@ -80,7 +73,8 @@ import components                       from './components';
 
             let uiids = this._groupVmMap[groupName];
             let setKeys = Object.keys(data);
-            let key, vm;
+            let key,
+                vm;
 
             if (uiids) {
 
@@ -88,21 +82,17 @@ import components                       from './components';
 
                     vm = this.map[uiid];
 
-                    if (!vm) {
+                    if (vm) {
 
-                        continue;
+                        key = vm.conf.formKey;
 
-                    }
+                        if (setKeys.indexOf(key) !== -1) {
 
-                    key = vm.conf.formKey;
+                            this.map[uiid].set(data[key]);
 
-                    if (setKeys.indexOf(key) === -1) {
-
-                        continue;
+                        }
 
                     }
-
-                    this.map[uiid].set(data[key]);
 
                 }
 
@@ -112,8 +102,6 @@ import components                       from './components';
 
         },
         setGroupJson : function (groupName, data) {
-
-            console.log(data);
 
             return this.setGroup(groupName, JSON.parse(data));
 

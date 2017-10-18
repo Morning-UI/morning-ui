@@ -1,9 +1,11 @@
 let PopupManager = {
     data : function () {
 
+        const popupIndex = 1000;
+
         return {
             Popup : {
-                index : 1000,
+                index : popupIndex,
                 keepDiv : null,
                 oldIndex : undefined
                 // popupDiv : null
@@ -18,7 +20,7 @@ let PopupManager = {
 
                 return;
 
-            } 
+            }
 
             let id = this.morning._popupId++;
             let keepDiv = document.createElement('div');

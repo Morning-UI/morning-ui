@@ -67,7 +67,7 @@ export default UI.extend({
             let names = Object.keys(this.$slots);
             let list = [];
 
-            for(let name of names) {
+            for (let name of names) {
 
                 let prepend = this.conf.prepend[name];
                 let append = this.conf.append[name];
@@ -76,6 +76,7 @@ export default UI.extend({
                     name : name,
                     html : `${prepend || ''}${name}${append || ''}`
                 });
+
             }
 
             this.data.namelist = list;
@@ -83,7 +84,7 @@ export default UI.extend({
         },
         switch : function (name) {
 
-            if ( name === this.data.selectTab ) {
+            if (name === this.data.selectTab) {
 
                 return this;
 
@@ -142,7 +143,7 @@ export default UI.extend({
 
             index++;
 
-            if(index < this.data.tabs.length) {
+            if (index < this.data.tabs.length) {
         
                 this.switch(this.data.tabs[index]);
 
@@ -161,7 +162,7 @@ export default UI.extend({
 
             index--;
 
-            if(index >= 0) {
+            if (index >= 0) {
         
                 this.switch(this.data.tabs[index]);
 
@@ -178,11 +179,7 @@ export default UI.extend({
     created : function () {},
     mounted : function () {
 
-        this.$watch(() => {
-
-            return this.conf.prepend + this.conf.append;
-
-        }, this._getNamelist, {
+        this.$watch(() => (this.conf.prepend + this.conf.append), this._getNamelist, {
             deep : true,
             immediate : true
         });
