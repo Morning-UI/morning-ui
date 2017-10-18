@@ -187,12 +187,22 @@ export default Form.extend({
     computed : {
         moreClass : function () {
 
+            let selectItem = false;
+
+            if (this.data.value &&
+                this.data.value.length > 0) {
+
+                selectItem = true;
+
+            }
+
             return {
                 showlist : !!this.data.showlist,
                 searching : !!this.data.searching,
                 'focus-search' : !!this.data.focusSearch,
                 'is-max' : !!this.data.isMax,
-                'has-clean-btn' : !!this.conf.cleanBtn
+                'has-clean-btn' : !!this.conf.cleanBtn,
+                'select-item' : selectItem
             };
 
         }
@@ -633,14 +643,16 @@ export default Form.extend({
 
         }
     },
-    created : function () {
+    created : function () {},
+    mounted : function () {
 
+        // this $watch must in mounted
         this.$watch('data.value', newVal => {
 
             let $items = this.$el.querySelectorAll('.list>li:not(.noitem)');
             let $currentItems = this.$el.querySelectorAll('.list>li.current');
             let $noitem = this.$el.querySelector('.noitem');
-            let $selected = this.$el.querySelector('.selected');
+            // let $selected = this.$el.querySelector('.selected');
             let searchTextinput;
             let searchMultiinput;
             let multiValue = [];
@@ -787,9 +799,6 @@ export default Form.extend({
         }, {
             immediate : true
         });
-
-    },
-    mounted : function () {
 
         this.data.mounted = true;
 

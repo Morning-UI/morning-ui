@@ -10,15 +10,15 @@ i-multiinput{
     -webkit-user-select: none;
 
     >.itemlist{
-        border: 1px @colorSilver solid;
+        border: 1px @colorFormBorder solid;
         border-radius: @borderRadius;
         padding: @fontSize*0.2 @fontSize*0.3;
         position: relative;
         font-size: 0;
 
         >.item{
-            color: @colorBlue !important;
-            background-color: @colorGray;
+            color: darken(@colorFormText, 10%) !important;
+            background-color: darken(@colorFormBackgroundHover, 2%);
             display: inline-block;
             padding: 0.4em 0.7em;
             border-radius: @borderRadius;
@@ -45,11 +45,11 @@ i-multiinput{
 
             &:hover{
                 text-decoration: none;
-                color: @colorLightBlack !important;
-                background: darken(@colorGray, 3%);
+                color: darken(@colorFormTextHover, 10%) !important;
+                background: darken(@colorFormBackgroundHover, 5%);
 
                 >i.morningicon{
-                    color: @colorExtraLightBlack !important;
+                    color: darken(@colorFormTextHover, 10%) !important;
                 }
             }
 
@@ -78,8 +78,8 @@ i-multiinput{
 
                 &:hover{
                     cursor: move;
-                    color: @colorLightBlack !important;
-                    background: darken(@colorGray, 3%);
+                    color: darken(@colorFormText, 10%) !important;
+                    background-color: darken(@colorFormBackgroundHover, 2%);
                 }
             }
         }
@@ -89,7 +89,7 @@ i-multiinput{
             border: none;
             outline: none;
             font-size: 14px;
-            color: @colorBlue !important;
+            color: @colorFormText !important;
             line-height: 1.7em;
             width: 0em;
             margin: @fontSize*0.2 @fontSize*0.1;
@@ -97,14 +97,18 @@ i-multiinput{
             min-width: 2em;
             background: rgba(0, 0, 0, 0);
 
+            &::-webkit-input-placeholder{
+                color: @colorFormText;
+            }
+
             &:focus{
-                color: @colorBlack !important;
+                color: @colorFormTextFocus !important;
             }
         }
         
         >span{
             font-size: 12px;
-            color: @colorExtraLightBlue !important;
+            color: @colorFormTextMisc !important;
             width: 100%;
             padding: 0.4em 0.7em;
             text-align: center;
@@ -115,7 +119,7 @@ i-multiinput{
     &.focus,
     &:hover{
         >.itemlist{
-            border-color: @colorExtraLightBlue;
+            border-color: @colorFormBorderHover;
         }
     }
 
@@ -130,26 +134,26 @@ i-multiinput{
     &.st-disabled{
         -webkit-user-select: none;
         cursor: not-allowed !important;
-        background-color: @colorLightGray;
+        background-color: @colorFormBackgroundDisable;
 
         >.itemlist{
-            border-color: @colorLightBlue;
+            border-color: @colorFormBorderDisable;
 
             >.item{
                 cursor: not-allowed !important;
-                background: darken(@colorGray, 6%);
+                background: darken(@colorFormBackgroundDisable, 6%);
 
                 >span{
                     padding-right: 0;
                 }
 
                 &:hover{
-                    color: @colorBlue !important;
+                    color: darken(@colorFormText, 10%) !important;
                 }
             }
 
             &:hover{
-                border-color: @colorLightBlue;
+                border-color: @colorFormBorderDisable;
             }
         }
     }

@@ -14,19 +14,28 @@ i-textarea{
         font-size: 14px;
         padding: 0.8em;
         width: 100%;
-        background: @colorWhite;
-        border: 1px @colorGray solid;
+        background: @colorFormBackground;
+        border: 1px @colorFormBorder solid;
         border-radius: @borderRadius;
         line-height: 1.4em;
-        color: darken(@colorGray, 20%) !important;
+        color: @colorFormText !important;
         outline: none;
         -webkit-appearance: none;
         resize: none;
         transition: height 0.2s;
 
+        &::-webkit-input-placeholder{
+            color: @colorFormText;
+        }
+
+        &:hover{
+            border-color: @colorFormBorderHover;
+            color: @colorFormTextHover !important;
+        }
+
         &:focus{
-            border-color: @colorLightBlue;
-            color: @colorBlack !important;
+            border-color: @colorFormBorderFocus;
+            color: @colorFormTextFocus !important;
         }
 
         .setup-scrollbar();
@@ -36,11 +45,11 @@ i-textarea{
 
     &.st-disabled{
         textarea{
-            border: 1px darken(@colorGray, 25%) solid;
-            background-color: @colorGray;
+            border: 1px @colorFormBorderDisable solid;
+            background-color: @colorFormBackgroundDisable;
             -webkit-user-select: none;
             cursor: not-allowed !important;
-            color: darken(@colorGray, 35%) !important;
+            color: @colorFormTextDisable !important;
         }
     }
 

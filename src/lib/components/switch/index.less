@@ -51,7 +51,7 @@ i-switch{
     box-sizing: border-box;
 
     .note{
-        color: @colorLightBlack;
+        color: @colorFormTextNote;
         font-size: @fontSize;
         height: @formHeight;
         line-height: @formHeight;
@@ -68,8 +68,8 @@ i-switch{
         height: 30px;
         width: 50px;
         background: #FFF;
-        box-shadow: 0 0 2px lighten(@colorSilver, 2%) inset;
-        border: 1px lighten(@colorSilver, 4%) solid;
+        box-shadow: 0 0 2px @colorFormBorder inset;
+        border: 1px lighten(@colorFormBorder, 2%) solid;
         border-radius: 15px;
         display: inline-block;
         cursor: pointer;
@@ -78,8 +78,8 @@ i-switch{
         transition: background 0.16s, box-shadow 0.16s, border 0.16s;
 
         &:hover{
-            box-shadow: 0 0 3px darken(@colorSilver, 2%) inset;
-            border: 1px lighten(@colorSilver, 1%) solid;
+            box-shadow: 0 0 3px @colorFormBorderHover inset;
+            border: 1px lighten(@colorFormBorderHover, 1%) solid;
         }
 
         .point{
@@ -87,7 +87,7 @@ i-switch{
             height: 24px;
             width: 24px;
             background: #FFF;
-            box-shadow: 0 0 4px darken(@colorSilver, 8%);
+            box-shadow: 0 0 4px darken(@colorFormBorder, 14%);
             display: inline-block;
             position: absolute;
             left: 2px;
@@ -495,10 +495,10 @@ i-switch{
 
         .track{
             cursor: not-allowed !important;
-            color: @colorGray !important;
+            color: @colorFormBorderDisable !important;
 
             .point{
-                background: darken(@colorGray, 5%);
+                background: lighten(@colorFormBorderDisable, 15%);
             }
         }
     }

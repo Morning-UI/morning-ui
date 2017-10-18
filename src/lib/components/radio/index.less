@@ -8,7 +8,7 @@ i-radio{
     -webkit-user-select: none;
 
     > .note{
-        color: @colorLightBlack;
+        color: @colorFormTextNote;
         font-size: @fontSize;
         margin-bottom: 0.5em;
         -webkit-user-select: text;
@@ -27,7 +27,7 @@ i-radio{
             span{
                 vertical-align: middle;
                 font-size: @fontSize*0.875;
-                color: @colorBlue;
+                color: @colorFormText;
                 transition: 0.2s;
                 -webkit-user-select: text;
             }
@@ -39,7 +39,7 @@ i-radio{
                 height: @fontSize*1.25;
                 border-radius: 50%;
                 display: inline-block;
-                border: 1px @colorSilver solid;
+                border: 1px @colorFormBorder solid;
                 transition: 0.2s;
                 margin: 0 0.375em 0 0;
                 box-sizing: border-box;
@@ -61,17 +61,17 @@ i-radio{
 
             &:hover{
                 span{
-                    color: @colorExtraLightBlack;
+                    color: darken(@colorFormTextHover, 10%);
                 }
 
                 .box{
-                    border-color: @colorLightBlue;
+                    border-color: darken(@colorFormBorderHover, 10%);
                 }
             }
 
             &.checked{
                 span{
-                    color: @colorLightBlack;
+                    color: @colorFormTextFocus;
                 }
 
                 .morningicon{
@@ -378,13 +378,17 @@ i-radio{
     &.st-disabled{
         > .itemlist{
             > label{
-                border-color: @colorLightBlack;
+                border-color: darken(@colorFormBackgroundDisable, 5%);;
                 -webkit-user-select: none;
                 cursor: not-allowed !important;
 
                 > .box{
-                    background-color: @colorGray;
-                    border-color: @colorGray;
+                    background-color: darken(@colorFormBackgroundDisable, 5%);;
+                    border-color: darken(@colorFormBackgroundDisable, 5%);;
+                }
+
+                &:hover span{
+                    color: @colorFormText;
                 }
 
                 &.checked{

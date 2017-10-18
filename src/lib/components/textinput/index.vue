@@ -20,6 +20,7 @@
     <template v-if="inputType === 'text'">
         <input
             type="text"
+            :class="inputClass"
             
             :placeholder="placeholder"
             :disabled="conf.state === 'disabled'"
@@ -109,6 +110,13 @@ export default Form.extend({
 
             return {
                 inputGroup : !!(this.conf.prepend || this.conf.append)
+            };
+
+        },
+        inputClass : function () {
+
+            return {
+                hasAppend : !!this.conf.append
             };
 
         }

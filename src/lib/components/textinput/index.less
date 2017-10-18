@@ -14,18 +14,27 @@ i-textinput{
         font-size: @fontSize*0.875;
         padding: 0 1em;
         width: 100%;
-        background: @colorWhite;
-        border: 1px @colorGray solid;
+        background: @colorFormBackground;
+        border: 1px @colorFormBorder solid;
         border-radius: @borderRadius;
         height: @formHeight;
         line-height: @formHeight;
-        color: darken(@colorGray, 20%) !important;
+        color: @colorFormText !important;
         outline: none;
         -webkit-appearance: none;
 
+        &::-webkit-input-placeholder{
+            color: @colorFormText;
+        }
+
+        &:hover{
+            border-color: @colorFormBorderHover;
+            color: @colorFormTextHover !important;
+        }
+
         &:focus{
-            border-color: @colorLightBlue;
-            color: @colorBlack !important;
+            border-color: @colorFormBorderFocus;
+            color: @colorFormTextFocus !important;
         }
     }
 
@@ -39,7 +48,7 @@ i-textinput{
             color: @colorBlue;
             text-align: center;
             background-color: @colorLightGray;
-            border: 1px solid @colorGray;
+            border: 1px solid @colorFormBorder;
             white-space: nowrap;
             border-radius: @borderRadius;
             display: flex;
@@ -73,7 +82,7 @@ i-textinput{
             border-left: 0;
         }
 
-        .inputGroupAddon + input {
+        .inputGroupAddon + input.hasAppend {
             border-top-right-radius: 0;
             border-bottom-right-radius: 0;
         }
@@ -83,11 +92,11 @@ i-textinput{
 
     &.st-disabled{
         input[disabled] {
-            border: 1px darken(@colorGray, 25%) solid;
-            background-color: @colorGray;
+            border: 1px @colorFormBorderDisable solid;
+            background-color: @colorFormBackgroundDisable;
             -webkit-user-select: none;
             cursor: not-allowed !important;
-            color: darken(@colorGray, 35%) !important;
+            color: @colorFormTextDisable !important;
         }
     }
 
