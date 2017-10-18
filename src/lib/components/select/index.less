@@ -8,7 +8,7 @@ i-select{
     vertical-align: middle;
     min-height: @formHeight;
     // z-index: 10;
-    
+
     // TODO : USE indexManager
     // &+ui-select{
     //     z-index: 8;
@@ -23,7 +23,7 @@ i-select{
     //     }
     // }
 
-    >.wrap{
+    > .wrap{
         border: 1px solid @colorFormBorder;
         border-radius: @borderRadius;
         position: relative;
@@ -34,8 +34,8 @@ i-select{
         // z-index: 9;
         overflow: hidden;
 
-        >i-textinput{
-            width: ~"calc( 100% - 30px )";
+        > i-textinput{
+            width: ~'calc( 100% - 30px )';
             height: @formHeight - 2px;
             line-height: @formHeight - 2px;
             padding: 0;
@@ -53,24 +53,24 @@ i-select{
             }
         }
 
-        >i-multiinput{
+        > i-multiinput{
             margin: 0;
-            width: ~"calc( 100% - 30px )";
+            width: ~'calc( 100% - 30px )';
             background-color: #FFF;
             vertical-align: top;
 
             .itemlist{
                 border: none;
 
-                >input{
+                > input{
                     cursor: pointer;
                 }
             }
         }
 
-        >.selected{
+        > .selected{
             color: @colorFormText;
-            width: ~"calc( 100% - 30px )";
+            width: ~'calc( 100% - 30px )';
             height: @formHeight - 2px;
             line-height: @formHeight - 2px;
             padding: 0 1em;
@@ -97,9 +97,9 @@ i-select{
 
         > .morningicon{
             position: absolute;
-            line-height: @formHeight - 2px;         
+            line-height: @formHeight - 2px;
             width: 24px;
-            transform: rotateX(0deg); 
+            transform: rotateX(0deg);
             transition: transform 0.2s;
             z-index: 2;
             color: @colorFormText;
@@ -110,7 +110,7 @@ i-select{
                 font-size: 30px;
                 text-indent: 1px;
             }
-            
+
             &.clean{
                 top: 0;
                 right: 26px;
@@ -128,7 +128,7 @@ i-select{
         }
     }
 
-    >.list{
+    > .list{
         margin: 0;
         padding: 0;
         list-style: none;
@@ -195,68 +195,66 @@ i-select{
         }
     }
 
-    // &.can-search.multi-select>.wrap > i-multiinput .itemlist > input{
+    // &.can-search.multi-select> .wrap > i-multiinput .itemlist > input{
     //     cursor: initial;
     // }
 
     &.has-clean-btn{
-        >.wrap {
-            >i-textinput,
-            >i-multiinput,
-            >.selected{
-    
-                width: ~"calc( 100% - 50px )";
-
+        > .wrap{
+            > i-textinput,
+            > i-multiinput,
+            > .selected{
+                width: ~'calc( 100% - 50px )';
             }
         }
     }
 
     &.showlist{
         // z-index: 11;
-        
-        >.wrap{
+
+        > .wrap{
             border-color: @colorFormBorder;
             border-bottom-width: 0;
             border-radius: @borderRadius @borderRadius 0 0;
             padding-bottom: 1px;
 
-            >i-textinput{
+            > i-textinput{
                 cursor: initial;
             }
 
-            >.drop{
-                transform: rotateX(180deg); 
+            > .drop{
+                transform: rotateX(180deg);
             }
         }
 
-        >.list{
+        > .list{
             visibility: visible;
             transform: scaleY(1);
         }
     }
 
     &.select-item{
-        >.wrap{
-            >i-textinput{
+        > .wrap{
+            > i-textinput{
                 input{
                     color: @colorFormTextFocus !important;
                 }
             }
 
-            >.selected{
+            > .selected{
                 color: @colorFormTextFocus;
             }
         }
     }
 
     &.focus-search{
-        >.wrap>.selected{
+        > .wrap > .selected{
             opacity: 0.3;
         }
     }
 
     &.searching{
-        >.wrap>.selected{
+        > .wrap > .selected{
             visibility: hidden;
         }
     }
@@ -264,7 +262,8 @@ i-select{
     &.is-max{
         .wrap{
             cursor: default;
-            >.drop{
+
+            > .drop{
                 display: none;
             }
         }
@@ -273,17 +272,17 @@ i-select{
     &.st-normal{}
 
     &.st-disabled{
-        >.wrap{
+        > .wrap {
             background-color: @colorFormBackgroundDisable;
             border-color: @colorFormBorderDisable;
             -webkit-user-select: none;
             cursor: not-allowed !important;
 
-            >.morningicon{
+            > .morningicon{
                 display: none;
             }
 
-            >.selected{
+            > .selected{
                 color: @colorFormTextDisable;
             }
         }
@@ -291,7 +290,7 @@ i-select{
         > .wrap > i-multiinput{
             background: transparent;
         }
-        
+
         > .wrap > i-textinput{
             display: none;
         }

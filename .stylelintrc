@@ -24,6 +24,8 @@
                 /^color/,
                 /^border/,
                 /^tip/,
+                /^grid/,
+                /^form/,
                 /^import\-normalize/
             ]
         }],

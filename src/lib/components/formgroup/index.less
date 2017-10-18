@@ -3,7 +3,7 @@
 i-formgroup{
     width: 100%;
     display: block;
-    
+
     > header{
         width: 90%;
         margin-left: 5%;
@@ -22,10 +22,9 @@ i-formgroup{
 
         p{
             font-size: @fontSize*0.75;
-            color: #ccc;
+            color: #CCC;
             margin: 0;
         }
-
     }
 
     > .action{
@@ -37,12 +36,11 @@ i-formgroup{
     > .item{
         width: 90%;
         display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
+        flex-flow: row nowrap;
         margin-left: 5%;
         margin-right: 5%;
         padding: 1.875em 0;
-    
+
         & + .item{
             border-top: 1px @colorExtraLightSilver solid;
         }
@@ -51,20 +49,19 @@ i-formgroup{
     .item > .title{
         position: relative;
         width: 30%;
-        font-weight: normal;
+        font-weight: 400;
         text-align: left;
         vertical-align: middle;
         margin: 0;
         display: flex;
         align-items: center;
-        box-sizing:border-box;
-        
+        box-sizing: border-box;
 
         ui-center p{
             color: #BBB;
             font-size: @fontSize*0.8125;
             text-align: left;
-            white-space:nowrap;
+            white-space: nowrap;
         }
     }
 
@@ -86,14 +83,14 @@ i-formgroup{
         & > h6{
             font-size: @fontSize*0.8125;
             color: #666;
-            font-weight: normal;
-            margin: 0 0 0.375em 0;
+            font-weight: 400;
+            margin-bottom: 0.375em;
         }
 
         & > p{
             font-size: @fontSize*0.75;
-            color: #aaa;
-            margin: 0 0 0.375em 0;
+            color: #AAA;
+            margin-bottom: 0.375em;
             line-height: 1em;
             transform-origin: 0;
             transform: scale(0.8);

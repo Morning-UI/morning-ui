@@ -731,10 +731,9 @@ var Form = _ui2.default.extend({
             if (json) {
 
                 return JSON.stringify(result);
-            } else {
-
-                return result;
             }
+
+            return result;
         },
         setName: function setName() {
             var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
@@ -862,7 +861,7 @@ var Form = _ui2.default.extend({
     },
     beforeDestroy: function beforeDestroy() {
 
-        this._syncGroupVm([], oldVal);
+        this._syncGroupVm([], this.conf.group);
     }
 });
 
@@ -1051,9 +1050,11 @@ Object.defineProperty(exports, "__esModule", {
 var PopupManager = {
     data: function data() {
 
+        var popupIndex = 1000;
+
         return {
             Popup: {
-                index: 1000,
+                index: popupIndex,
                 keepDiv: null,
                 oldIndex: undefined
                 // popupDiv : null
@@ -3122,7 +3123,7 @@ exports.default = _ui2.default.extend({
         };
     },
     methods: {
-        _onClick: function _onClick(evt) {
+        _onClick: function _onClick() {
 
             if (this.state !== 'disabled' && !this.data.lock) {
 
@@ -5372,7 +5373,6 @@ exports.default = _ui2.default.extend({
         var _this = this;
 
         this.$watch(function () {
-
             return _this.conf.prepend + _this.conf.append;
         }, this._getNamelist, {
             deep: true,
@@ -6379,10 +6379,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
     if (true) {
 
         !(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
-
-            // Also create a global in case some scripts
-            // that are loaded still are looking for
-            // a global even when an AMD loader is in use.
             return root.morning = factory();
         }.call(exports, __webpack_require__, exports, module),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -6475,19 +6471,15 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
                         vm = this.map[uiid];
 
-                        if (!vm) {
+                        if (vm) {
 
-                            continue;
+                            key = vm.conf.formKey;
+
+                            if (setKeys.indexOf(key) !== -1) {
+
+                                this.map[uiid].set(data[key]);
+                            }
                         }
-
-                        key = vm.conf.formKey;
-
-                        if (setKeys.indexOf(key) === -1) {
-
-                            continue;
-                        }
-
-                        this.map[uiid].set(data[key]);
                     }
                 } catch (err) {
                     _didIteratorError2 = true;
@@ -6508,8 +6500,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
             return this;
         },
         setGroupJson: function setGroupJson(groupName, data) {
-
-            console.log(data);
 
             return this.setGroup(groupName, JSON.parse(data));
         }

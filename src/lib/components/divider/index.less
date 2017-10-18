@@ -19,29 +19,28 @@ i-divider{
     &:not(.vertical) {
         &::before,
         &::after{
-            height: ~`"calc(45% - 1em)"`;
+            height: ~`'calc(45% - 1em)'`;
             width: 1px;
             left: 50%;
             top: 5%;
         }
 
         &::after{
-            top: ~`"calc(50% + 1em)"`;
+            top: ~`'calc(50% + 1em)'`;
         }
     }
 
     &.vertical{
-
         &::before,
         &::after {
-            width: ~`"calc(45% - 1.5em)"`;
+            width: ~`'calc(45% - 1.5em)'`;
             height: 1px;
             top: 50%;
             left: 5%;
         }
 
         &::after{
-            left: ~`"calc(50% + 1.5em)"`;
+            left: ~`'calc(50% + 1.5em)'`;
         }
     }
 

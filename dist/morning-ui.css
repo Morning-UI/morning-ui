@@ -48,7 +48,7 @@ summary {
   display: list-item;
 }
 *,
-textinput,
+input,
 textarea {
   font-family: PingFangSC-Thin, sans-serif;
 }
@@ -3155,7 +3155,7 @@ i-formgroup > header h5 {
 }
 i-formgroup > header p {
   font-size: 12px;
-  color: #ccc;
+  color: #CCC;
   margin: 0;
 }
 i-formgroup > .action {
@@ -3166,8 +3166,7 @@ i-formgroup > .action {
 i-formgroup > .item {
   width: 90%;
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+  flex-flow: row nowrap;
   margin-left: 5%;
   margin-right: 5%;
   padding: 1.875em 0;
@@ -3178,7 +3177,7 @@ i-formgroup > .item + .item {
 i-formgroup .item > .title {
   position: relative;
   width: 30%;
-  font-weight: normal;
+  font-weight: 400;
   text-align: left;
   vertical-align: middle;
   margin: 0;
@@ -3207,13 +3206,13 @@ i-formgroup .item > .content .form:last-child {
 i-formgroup .item > .content > h6 {
   font-size: 13px;
   color: #666;
-  font-weight: normal;
-  margin: 0 0 0.375em 0;
+  font-weight: 400;
+  margin-bottom: 0.375em;
 }
 i-formgroup .item > .content > p {
   font-size: 12px;
-  color: #aaa;
-  margin: 0 0 0.375em 0;
+  color: #AAA;
+  margin-bottom: 0.375em;
   line-height: 1em;
   transform-origin: 0;
   transform: scale(0.8);
@@ -5384,6 +5383,9 @@ i-textinput input {
 i-textinput input::-webkit-input-placeholder {
   color: #b3b3b3;
 }
+i-textinput input::placeholder {
+  color: #b3b3b3;
+}
 i-textinput input:hover {
   border-color: #d7d7d7;
   color: #9a9a9a !important;
@@ -5469,6 +5471,9 @@ i-textarea textarea {
   transition: height 0.2s;
 }
 i-textarea textarea::-webkit-input-placeholder {
+  color: #b3b3b3;
+}
+i-textarea textarea::placeholder {
   color: #b3b3b3;
 }
 i-textarea textarea:hover {
@@ -6686,13 +6691,16 @@ i-multiinput > .itemlist > input {
   font-size: 14px;
   color: #b3b3b3 !important;
   line-height: 1.7em;
-  width: 0em;
+  width: 0;
   margin: 3.2px 1.6px;
   max-width: 100%;
   min-width: 2em;
   background: rgba(0, 0, 0, 0);
 }
 i-multiinput > .itemlist > input::-webkit-input-placeholder {
+  color: #b3b3b3;
+}
+i-multiinput > .itemlist > input::placeholder {
   color: #b3b3b3;
 }
 i-multiinput > .itemlist > input:focus {
