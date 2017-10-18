@@ -170,6 +170,9 @@ header.index .menu li a {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.markdown-body h5 {
+  font-size: 1em !important;
+}
 .markdown-body i-ul h3 {
   margin: 0;
   line-height: initial;

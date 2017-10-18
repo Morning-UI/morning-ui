@@ -1958,13 +1958,17 @@ window.Vue.directive('docmd', {
         if (mdScript && mdScript.type === 'text/markdown') {
 
             var text = mdScript.innerText;
-
             text = text.replace(/\&lt\;\/script\>/g, '<\/script>');
+            text = text.replace(/\/`/g, '`');
 
             var tree = parser(text, el);
 
             text = runner(tree);
+
             var md = (0, _marked2.default)(text);
+
+            console.log(md);
+            md = md.replace(/\\`/g, '`');
 
             md = md.replace(/\{\%([a-zA-Z0-9\_]+)\%\}/g, '{{"\\\{\\\{$1\\\}\\\}"}}');
             md = md.replace(/\<p\>(\[\[\[(.+)\]\]\])\<\/p\>/g, '$1');
