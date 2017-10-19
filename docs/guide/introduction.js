@@ -1901,7 +1901,6 @@ window.Vue.directive('docmd', {
 
             var md = (0, _marked2.default)(text);
 
-            console.log(md);
             md = md.replace(/\\`/g, '`');
 
             md = md.replace(/\{\%([a-zA-Z0-9\_]+)\%\}/g, '{{"\\\{\\\{$1\\\}\\\}"}}');
@@ -1915,6 +1914,10 @@ window.Vue.directive('docmd', {
             md = md.replace(/\[\[\[表单值\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="表单值">$1</div>$3');
             md = md.replace(/\[\[\[单元测试\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="源码">$1</div>$3');
             md = md.replace(/(.|\n)$/, '$1</ui-tab>');
+
+            console.log(md);
+            md = md.replace(/<p>---demostart---<\/p>/g, '<div class="demo-area"><p class="demo-title">DEMO</p>');
+            md = md.replace(/<p>---demoend---<\/p>/g, '\n</div>');
 
             var res = Vue.compile('<div>' + md + '</div>');
             var instance = new Vue({

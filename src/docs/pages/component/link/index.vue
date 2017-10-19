@@ -82,7 +82,7 @@
     #### js
 
     ````html
-    <ui-link :js="'alert("hello.")'">执行JS</ui-link>
+    <ui-link :js="'alert(\'hello.\')'">执行JS</ui-link>
     ````
 
     #### locked
