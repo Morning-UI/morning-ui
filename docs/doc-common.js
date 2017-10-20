@@ -273,7 +273,7 @@ exports.default = {
         '编写测试<i class="tag coming"></i>': 'b',
         '检视代码<i class="tag done"></i>': '/guide/review.html',
         '提交代码<i class="tag coming"></i>': '/guide/commitcode.html',
-        '版本计划<i class="tag coming"></i>': '/guide/versionplan.html',
+        '版本计划<i class="tag done"></i>': '/guide/versionplan.html',
         更多: null,
         '致谢<i class="tag done"></i>': '/guide/thank.html',
         '反馈问题<i class="tag done"></i>': '/guide/report.html',

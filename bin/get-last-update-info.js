@@ -111,21 +111,23 @@ let getUpdateInfo = async () => {
 
                 data = data.toString().split('\n');
                 data.shift();
-                lastUpdate.contributors = [];
+                lastUpdate.contributors = {};
 
                 for (let contributor of data) {
                     
                     let info = contributor.replace(/((^")|("$))/g, '').split('|||');
 
-                    lastUpdate.contributors.push({
+                    lastUpdate.contributors[info[1]] = {
                         name : info[0],
                         mail : info[1]
-                    });
+                    };
 
                 }
 
-            });
+                lastUpdate.contributors = Object.values(lastUpdate.contributors);
 
+            });
+            
             gitContributors.stdout.on('close', resolve);
 
         });
