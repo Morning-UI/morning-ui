@@ -160,12 +160,6 @@
     ````
 
     [[[事件]]]
-
-    ````import
-    @id:formEvent
-    @uikey:multiinput
-    @eventValue:['value1']
-    ````
     
     #### inputValueChange
 
@@ -249,6 +243,12 @@
             }
         }
     });
+    ````
+
+    ````import
+    @id:formEvent
+    @uikey:multiinput
+    @eventValue:['value1']
     ````
 
     [[[表单值]]]

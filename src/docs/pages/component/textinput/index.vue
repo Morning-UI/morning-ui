@@ -102,12 +102,6 @@
 
     [[[事件]]]
 
-    ````import
-    @id:formEvent
-    @uikey:textinput
-    @eventValue:'Jim'
-    ````
-
     #### focus
 
     当表单聚焦后触发。
@@ -162,6 +156,12 @@
             }
         }
     });
+    ````
+
+    ````import
+    @id:formEvent
+    @uikey:textinput
+    @eventValue:'Jim'
     ````
 
     [[[表单值]]]
