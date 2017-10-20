@@ -188,8 +188,8 @@ new Vue({
 <div style="width:300px;">
     <ui-{$uikey} ref="demoMethodSet" form-name="表单名" {$&methodMoreAttr}>{$&methodSlot}</ui-{$uikey}>
     <br>
-    <a href="javascript:;" onclick="window.morning.findVM('demoMethodSet').set({$&methodValue})">设置值</a>
-    <a href="javascript:;" onclick="window.morning.findVM('demoMethodSet').set()">移除值</a>
+    <ui-link js="window.morning.findVM('demoMethodSet').set({$&methodValue})">设置值</ui-link>
+    <ui-link js="window.morning.findVM('demoMethodSet').set()">移除值</ui-link>
 </div>
 \`\`\`\`
 
@@ -206,8 +206,8 @@ new Vue({
 <div style="width:300px;">
     <ui-{$uikey} ref="demoMethodGet" form-name="表单名" :default-value="{$&methodDefaultValue}" {$&methodMoreAttr}>{$&methodSlot}</ui-{$uikey}>
     <br>
-    <a href="javascript:;" onclick="alert(window.morning.findVM('demoMethodGet').get(false))">获取表单原始值</a>
-    <a href="javascript:;" onclick="alert(window.morning.findVM('demoMethodGet').get())">获取表单JSON值</a>
+    <ui-link js="alert(window.morning.findVM('demoMethodGet').get(false))">获取表单原始值</ui-link>
+    <ui-link js="alert(window.morning.findVM('demoMethodGet').get())">获取表单JSON值</ui-link>
 </div>
 \`\`\`\`
 
@@ -224,9 +224,9 @@ new Vue({
 <div style="width:300px;">
     <ui-{$uikey} ref="demoMethodSetName" form-name="姓名" {$&methodMoreAttr}>{$&methodSlot}</ui-{$uikey}>
     <br>
-    <a href="javascript:;" onclick="alert(window.morning.findVM('demoMethodSetName').getName())">获取表单名称</a>
-    <a href="javascript:;" onclick="window.morning.findVM('demoMethodSetName').setName('年龄')">设置表单名称</a>
-    <a href="javascript:;" onclick="window.morning.findVM('demoMethodSetName').setName()">移除表单名称</a>
+    <ui-link js="alert(window.morning.findVM('demoMethodSetName').getName())">获取表单名称</ui-link>
+    <ui-link js="window.morning.findVM('demoMethodSetName').setName('年龄')">设置表单名称</ui-link>
+    <ui-link js="window.morning.findVM('demoMethodSetName').setName()">移除表单名称</ui-link>
 </div>
 \`\`\`\`
 
@@ -239,7 +239,7 @@ new Vue({
 <div style="width:300px;">
     <ui-{$uikey} ref="demoMethodGetName" form-name="姓名" {$&methodMoreAttr}>{$&methodSlot}</ui-{$uikey}>
     <br>
-    <a href="javascript:;" onclick="alert(window.morning.findVM('demoMethodGetName').getName())">获取表单名称</a>
+    <ui-link js="alert(window.morning.findVM('demoMethodGetName').getName())">获取表单名称</ui-link>
 </div>
 \`\`\`\`
 
@@ -256,9 +256,9 @@ new Vue({
 <div style="width:300px;">
     <ui-{$uikey} ref="demoMethodSetKey" form-name="表单名" form-key="name" {$&methodMoreAttr}>{$&methodSlot}</ui-{$uikey}>
     <br>
-    <a href="javascript:;" onclick="alert(window.morning.findVM('demoMethodSetKey').getKey())">获取表单KEY</a>
-    <a href="javascript:;" onclick="window.morning.findVM('demoMethodSetKey').setKey('age')">设置表单KEY</a>
-    <a href="javascript:;" onclick="window.morning.findVM('demoMethodSetKey').setKey()">移除表单KEY</a>
+    <ui-link js="alert(window.morning.findVM('demoMethodSetKey').getKey())">获取表单KEY</ui-link>
+    <ui-link js="window.morning.findVM('demoMethodSetKey').setKey('age')">设置表单KEY</ui-link>
+    <ui-link js="window.morning.findVM('demoMethodSetKey').setKey()">移除表单KEY</ui-link>
 </div>
 \`\`\`\`
 
@@ -271,7 +271,7 @@ new Vue({
 <div style="width:300px;">
     <ui-{$uikey} ref="demoMethodGetKey" form-name="表单名" form-key="name" {$&methodMoreAttr}>{$&methodSlot}</ui-{$uikey}>
     <br>
-    <a href="javascript:;" onclick="alert(window.morning.findVM('demoMethodGetKey').getKey())">获取表单KEY</a>
+    <ui-link js="alert(window.morning.findVM('demoMethodGetKey').getKey())">获取表单KEY</ui-link>
 </div>
 \`\`\`\`
 
@@ -289,10 +289,10 @@ new Vue({
     <!-- 设置多个组 -->
     <ui-{$uikey} ref="demoMethodSetGroup" form-name="表单名" form-key="name" {$&methodMoreAttr}>{$&methodSlot}</ui-{$uikey}>
     <br>
-    <a href="javascript:;" onclick="alert(JSON.stringify(window.morning.findVM('demoMethodSetGroup').getGroup()))">获取表单组</a>
-    <a href="javascript:;" onclick="window.morning.findVM('demoMethodSetGroup').setGroup('group1')">设置单个表单组</a>
-    <a href="javascript:;" onclick="window.morning.findVM('demoMethodSetGroup').setGroup(['group1', 'group2'])">设置多个表单组</a>
-    <a href="javascript:;" onclick="window.morning.findVM('demoMethodSetGroup').setGroup()">移除所有表单组</a>
+    <ui-link js="alert(JSON.stringify(window.morning.findVM('demoMethodSetGroup').getGroup()))">获取表单组</ui-link>
+    <ui-link js="window.morning.findVM('demoMethodSetGroup').setGroup('group1')">设置单个表单组</ui-link>
+    <ui-link js="window.morning.findVM('demoMethodSetGroup').setGroup(['group1', 'group2'])">设置多个表单组</ui-link>
+    <ui-link js="window.morning.findVM('demoMethodSetGroup').setGroup()">移除所有表单组</ui-link>
 </div>
 \`\`\`\`
 
@@ -306,7 +306,7 @@ new Vue({
     <!-- 设置多个组 -->
     <ui-{$uikey} ref="demoMethodGetGroup" form-name="表单名" form-key="name" group="group1" {$&methodMoreAttr}>{$&methodSlot}</ui-{$uikey}>
     <br>
-    <a href="javascript:;" onclick="alert(JSON.stringify(window.morning.findVM('demoMethodGetGroup').getGroup()))">获取表单组</a>
+    <ui-link js="alert(JSON.stringify(window.morning.findVM('demoMethodGetGroup').getGroup()))">获取表单组</ui-link>
 </div>
 \`\`\`\`
 
@@ -324,8 +324,8 @@ new Vue({
     <!-- 设置多个组 -->
     <ui-{$uikey} ref="demoMethodAddGroup" form-name="表单名" form-key="name" {$&methodMoreAttr}>{$&methodSlot}</ui-{$uikey}>
     <br>
-    <a href="javascript:;" onclick="alert(JSON.stringify(window.morning.findVM('demoMethodAddGroup').getGroup()))">获取表单组</a>
-    <a href="javascript:;" onclick="window.morning.findVM('demoMethodAddGroup').addGroup('group1')">添加表单组</a>
+    <ui-link js="alert(JSON.stringify(window.morning.findVM('demoMethodAddGroup').getGroup()))">获取表单组</ui-link>
+    <ui-link js="window.morning.findVM('demoMethodAddGroup').addGroup('group1')">添加表单组</ui-link>
 </div>
 \`\`\`\`
 
@@ -343,8 +343,8 @@ new Vue({
     <!-- 设置多个组 -->
     <ui-{$uikey} ref="demoMethodRemoveGroup" form-name="表单名" form-key="name" group="group1" {$&methodMoreAttr}>{$&methodSlot}</ui-{$uikey}>
     <br>
-    <a href="javascript:;" onclick="alert(JSON.stringify(window.morning.findVM('demoMethodRemoveGroup').getGroup()))">获取表单组</a>
-    <a href="javascript:;" onclick="window.morning.findVM('demoMethodRemoveGroup').removeGroup('group1')">移除表单组</a>
+    <ui-link js="alert(JSON.stringify(window.morning.findVM('demoMethodRemoveGroup').getGroup()))">获取表单组</ui-link>
+    <ui-link js="window.morning.findVM('demoMethodRemoveGroup').removeGroup('group1')">移除表单组</ui-link>
 </div>
 \`\`\`\`
     `,
@@ -362,7 +362,7 @@ new Vue({
 <div style="width:300px;">
     <ui-{$uikey} ref="demoValueChange" form-name="表单名" @valueChange="echo" {$&eventMoreAttr}>{$&eventSlot}</ui-{$uikey}>
     <br>
-    <a href="javascript:;" onclick="window.morning.findVM('demoValueChange').set({$&eventValue})">触发valueChange事件</a>
+    <ui-link js="window.morning.findVM('demoValueChange').set({$&eventValue})">触发valueChange事件</ui-link>
 </div>
 \`\`\`\`
 
@@ -403,8 +403,8 @@ new Vue({
 
     <br><br>
 
-    <a href="javascript:;" onclick="javascript:window.demoEventLifecycle.text='生命周期事件';">触发update</a>
-    <a href="javascript:;" onclick="javascript:morning.findVM('demoEventLifecycle').$destroy();">触发destroy</a>
+    <ui-link js="javascript:window.demoEventLifecycle.text='生命周期事件';">触发update</ui-link>
+    <ui-link js="javascript:morning.findVM('demoEventLifecycle').$destroy();">触发destroy</ui-link>
 </div>
 \`\`\`\`
 

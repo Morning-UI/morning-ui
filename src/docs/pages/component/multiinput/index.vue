@@ -93,8 +93,8 @@
         <ui-multiinput ref="demo2" form-name="输入标签"></ui-multiinput>
     </div>
     <br>
-    <a href="javascript:;" onclick="javascript:morning.findVM('demo2').add('value1');">添加到最后</a>
-    <a href="javascript:;" onclick="javascript:morning.findVM('demo2').add('value2', 0);">添加到第0项</a>
+    <ui-link js="javascript:morning.findVM('demo2').add('value1');">添加到最后</ui-link>
+    <ui-link js="javascript:morning.findVM('demo2').add('value2', 0);">添加到第0项</ui-link>
     ````
 
     #### del(index)
@@ -110,7 +110,7 @@
         <ui-multiinput ref="demo3" form-name="输入标签" :default-value="['value1', 'value2', 'value3', 'value4']"></ui-multiinput>
     </div>
     <br>
-    <a href="javascript:;" onclick="javascript:morning.findVM('demo3').del(0);">删除第0项</a>
+    <ui-link js="javascript:morning.findVM('demo3').del(0);">删除第0项</ui-link>
     ````
 
     #### move(from, to)
@@ -127,7 +127,7 @@
         <ui-multiinput ref="demo4" form-name="输入标签" :default-value="['value1', 'value2', 'value3', 'value4']"></ui-multiinput>
     </div>
     <br>
-    <a href="javascript:;" onclick="javascript:morning.findVM('demo4').move(2, 0);">将第2项移到第0项</a>
+    <ui-link js="javascript:morning.findVM('demo4').move(2, 0);">将第2项移到第0项</ui-link>
     ````
 
     #### setInput([value])
@@ -143,8 +143,8 @@
         <ui-multiinput ref="demo8" form-name="输入标签"></ui-multiinput>
     </div>
     <br>
-    <a href="javascript:;" onclick="javascript:morning.findVM('demo8').setInput('value1');">设置输入框内容</a>
-    <a href="javascript:;" onclick="javascript:morning.findVM('demo8').setInput();">清空输入框内容</a>
+    <ui-link js="javascript:morning.findVM('demo8').setInput('value1');">设置输入框内容</ui-link>
+    <ui-link js="javascript:morning.findVM('demo8').setInput();">清空输入框内容</ui-link>
     ````
 
     #### getInput()
@@ -156,7 +156,7 @@
         <ui-multiinput ref="demo9" form-name="输入标签"></ui-multiinput>
     </div>
     <br>
-    <a href="javascript:;" onclick="javascript:alert(morning.findVM('demo9').getInput());">获取输入框内容</a>
+    <ui-link js="javascript:alert(morning.findVM('demo9').getInput());">获取输入框内容</ui-link>
     ````
 
     [[[事件]]]
@@ -281,8 +281,8 @@
             <ui-multiinput ref="demoType{$valueType}" form-name="输入标签"></ui-multiinput>
         </div>
         <br>
-        <a href="javascript:;" onclick="window.morning.findVM('demoType{$valueType}').set({$&valueContent})">设置{$valueType}类型</a>
-        <a href="javascript:;" onclick="alert(window.morning.findVM('demoType{$valueType}').get())">获取表单JSON值</a>
+        <ui-link js="window.morning.findVM('demoType{$valueType}').set({$&valueContent})">设置{$valueType}类型</ui-link>
+        <ui-link js="alert(window.morning.findVM('demoType{$valueType}').get())">获取表单JSON值</ui-link>
     </div>
     <br>
     <br>

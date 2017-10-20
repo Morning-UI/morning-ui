@@ -72,9 +72,9 @@
     <div style="width:300px;">
         <ui-textarea ref="demo1"></ui-textarea>
         <br>
-        <a href="javascript:;" onclick="window.morning.findVM('demo1').setRows(2)">设置为2行</a>
-        <a href="javascript:;" onclick="window.morning.findVM('demo1').setRows('+1')">增加1行</a>
-        <a href="javascript:;" onclick="window.morning.findVM('demo1').setRows('-1')">减少1行</a>
+        <ui-link js="window.morning.findVM('demo1').setRows(2)">设置为2行</ui-link>
+        <ui-link js="window.morning.findVM('demo1').setRows('+1')">增加1行</ui-link>
+        <ui-link js="window.morning.findVM('demo1').setRows('-1')">减少1行</ui-link>
     </div>
     ````
 
@@ -170,8 +170,8 @@
             <ui-textarea ref="demoType{$valueType}"></ui-textarea>
         </div>
         <br>
-        <a href="javascript:;" onclick="window.morning.findVM('demoType{$valueType}').set({$&valueContent})">设置{$valueType}类型</a>
-        <a href="javascript:;" onclick="alert(window.morning.findVM('demoType{$valueType}').get())">获取表单JSON值</a>
+        <ui-link js="window.morning.findVM('demoType{$valueType}').set({$&valueContent})">设置{$valueType}类型</ui-link>
+        <ui-link js="alert(window.morning.findVM('demoType{$valueType}').get())">获取表单JSON值</ui-link>
     </div>
     <br>
     <br>

@@ -145,7 +145,7 @@
     <span id="demo14">鼠标悬浮显示小提示</span>
     <ui-tip target="#demo14" ref="demo14">提示内容</ui-tip>
     
-    <a href="javascript:;" onclick="javascript:morning.findVM('demo14').show();" onmouseout="javascript:morning.findVM('demo14').hide();">显示小提示</a>
+    <ui-link js="javascript:morning.findVM('demo14').show();" onmouseout="javascript:morning.findVM('demo14').hide();">显示小提示</ui-link>
     ````
 
     #### hide()
@@ -156,7 +156,7 @@
     <span id="demo15">鼠标悬浮显示小提示</span>
     <ui-tip target="#demo15" ref="demo15">提示内容</ui-tip>
     
-    <a href="javascript:;" onclick="javascript:morning.findVM('demo15').hide();" onmouseenter="javascript:morning.findVM('demo15').show();">隐藏小提示</a>
+    <ui-link js="javascript:morning.findVM('demo15').hide();" onmouseenter="javascript:morning.findVM('demo15').show();">隐藏小提示</ui-link>
     ````
 
     #### toggle()
@@ -167,7 +167,7 @@
     <span id="demo16">鼠标悬浮显示小提示</span>
     <ui-tip target="#demo16" ref="demo16">提示内容</ui-tip>
     
-    <a href="javascript:;" onclick="javascript:morning.findVM('demo16').toggle();">切换小提示</a>
+    <ui-link js="javascript:morning.findVM('demo16').toggle();">切换小提示</ui-link>
     ````
     
     [[[事件]]]
@@ -283,8 +283,8 @@
 
         <br><br>
     
-        <a href="javascript:;" onclick="javascript:window.demoEventLifecycle.text='生命周期事件';">触发update</a>
-        <a href="javascript:;" onclick="javascript:morning.findVM('demoEventLifecycle').$destroy();">触发destroy</a>
+        <ui-link js="javascript:window.demoEventLifecycle.text='生命周期事件';">触发update</ui-link>
+        <ui-link js="javascript:morning.findVM('demoEventLifecycle').$destroy();">触发destroy</ui-link>
     </div>
     ````
 

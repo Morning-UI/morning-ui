@@ -75,9 +75,9 @@
     <div style="width:300px;">
         <ui-switch ref="demo1" form-name="姓名"></ui-switch>
         <br><br> 
-        <a href="javascript:;" onclick="javascript:morning.findVM('demo1').toggle();">切换相反状态</a>
-        <a href="javascript:;" onclick="javascript:morning.findVM('demo1').toggle(true);">切换至开启</a>
-        <a href="javascript:;" onclick="javascript:morning.findVM('demo1').toggle(false);">切换至关闭</a>
+        <ui-link js="javascript:morning.findVM('demo1').toggle();">切换相反状态</ui-link>
+        <ui-link js="javascript:morning.findVM('demo1').toggle(true);">切换至开启</ui-link>
+        <ui-link js="javascript:morning.findVM('demo1').toggle(false);">切换至关闭</ui-link>
     </div>
     ````
 
@@ -117,8 +117,8 @@
             <ui-switch ref="demoType{$valueType}"></ui-switch>
         </div>
         <br>
-        <a href="javascript:;" onclick="window.morning.findVM('demoType{$valueType}').set({$&valueContent})">设置{$valueType}类型</a>
-        <a href="javascript:;" onclick="alert(window.morning.findVM('demoType{$valueType}').get())">获取表单JSON值</a>
+        <ui-link js="window.morning.findVM('demoType{$valueType}').set({$&valueContent})">设置{$valueType}类型</ui-link>
+        <ui-link js="alert(window.morning.findVM('demoType{$valueType}').get())">获取表单JSON值</ui-link>
     </div>
     <br>
     <br>

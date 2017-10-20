@@ -38,8 +38,8 @@
         <br><br>
 
         <!-- 在父vm中通过`$refs`找到组件vm并调用挂载的方法 -->
-        <a href="javascript:;" onclick="javascript:window.parentVm1.$refs.demo1.lock();">锁定按钮</a>
-        <a href="javascript:;" onclick="javascript:window.parentVm1.$refs.demo1.unlock();">解锁按钮</a>
+        <ui-link js="javascript:window.parentVm1.$refs.demo1.lock();">锁定按钮</ui-link>
+        <ui-link js="javascript:window.parentVm1.$refs.demo1.unlock();">解锁按钮</ui-link>
     </div>
     ````
 
@@ -63,8 +63,8 @@
         <br><br>
 
         <!-- 通过findVM方法全局查找组件vm并调用挂载的方法 -->
-        <a href="javascript:;" onclick="javascript:window.morning.findVM('demo2').lock();">锁定按钮</a>
-        <a href="javascript:;" onclick="javascript:window.morning.findVM('demo2').unlock();">解锁按钮</a>
+        <ui-link js="javascript:window.morning.findVM('demo2').lock();">锁定按钮</ui-link>
+        <ui-link js="javascript:window.morning.findVM('demo2').unlock();">解锁按钮</ui-link>
     </div>
     ````
     

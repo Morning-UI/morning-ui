@@ -44,7 +44,7 @@
     <div style="width:400px;height:200px;background: #f6f6f6">
         <ui-load ref="demo1" :time="false">加载成功</ui-load>
     </div>
-    <a href="javascript:;" onclick="window.morning.findVM('demo1').resolve();">完成加载</a>
+    <ui-link js="window.morning.findVM('demo1').resolve();">完成加载</ui-link>
     ````
 
     #### 使用Promise失败加载
@@ -53,7 +53,7 @@
     <div style="width:400px;height:200px;background: #f6f6f6">
         <ui-load ref="demo2" :time="false">加载失败</ui-load>
     </div>
-    <a href="javascript:;" onclick="window.morning.findVM('demo2').reject();">失败加载</a>
+    <ui-link js="window.morning.findVM('demo2').reject();">失败加载</ui-link>
     ````
 
     #### 带提示的加载
@@ -119,7 +119,7 @@
     <div style="width:400px;height:200px;background: #f6f6f6">
         <ui-load ref="demo3" :time="false">加载成功</ui-load>
     </div>
-    <a href="javascript:;" onclick="window.morning.findVM('demo3').resolve();">完成加载</a>
+    <ui-link js="window.morning.findVM('demo3').resolve();">完成加载</ui-link>
     ````
 
     #### reject()
@@ -130,7 +130,7 @@
     <div style="width:400px;height:200px;background: #f6f6f6">
         <ui-load ref="demo4" :time="false">加载成功</ui-load>
     </div>
-    <a href="javascript:;" onclick="window.morning.findVM('demo4').reject();">失败加载</a>
+    <ui-link js="window.morning.findVM('demo4').reject();">失败加载</ui-link>
     ````
 
     #### reload()
@@ -141,7 +141,7 @@
     <div style="width:400px;height:200px;background: #f6f6f6">
         <ui-load ref="demo5" :time="3000">加载成功</ui-load>
     </div>
-    <a href="javascript:;" onclick="window.morning.findVM('demo5').reload();">重新加载</a>
+    <ui-link js="window.morning.findVM('demo5').reload();">重新加载</ui-link>
     ````
 
     [[[事件]]]
@@ -160,7 +160,7 @@
         <div style="width:400px;height:200px;background: #f6f6f6">
             <ui-load ref="demo6" @emit="echo" :time="false">加载成功</ui-load>
         </div>
-        <a href="javascript:;" onclick="window.morning.findVM('demo6').resolve();">触发emit</a>
+        <ui-link js="window.morning.findVM('demo6').resolve();">触发emit</ui-link>
     </div>
     ````
 
@@ -191,7 +191,7 @@
         <div style="width:400px;height:200px;background: #f6f6f6">
             <ui-load ref="demo7" @done="echo" :time="false">加载成功</ui-load>
         </div>
-        <a href="javascript:;" onclick="window.morning.findVM('demo7').resolve();">触发done</a>
+        <ui-link js="window.morning.findVM('demo7').resolve();">触发done</ui-link>
     </div>
     ````
 
@@ -222,7 +222,7 @@
         <div style="width:400px;height:200px;background: #f6f6f6">
             <ui-load ref="demo8" @fail="echo" :time="false">加载失败</ui-load>
         </div>
-        <a href="javascript:;" onclick="window.morning.findVM('demo8').reject();">触发fail</a>
+        <ui-link js="window.morning.findVM('demo8').reject();">触发fail</ui-link>
     </div>
     ````
 
@@ -261,8 +261,8 @@
 
         <br><br>
     
-        <a href="javascript:;" onclick="javascript:window.demoEventLifecycle.text='生命周期事件';">触发update</a>
-        <a href="javascript:;" onclick="javascript:morning.findVM('demoEventLifecycle').$destroy();">触发destroy</a>
+        <ui-link js="javascript:window.demoEventLifecycle.text='生命周期事件';">触发update</ui-link>
+        <ui-link js="javascript:morning.findVM('demoEventLifecycle').$destroy();">触发destroy</ui-link>
     </div>
     ````
 

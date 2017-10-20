@@ -187,7 +187,7 @@
     <!-- 设置最多回退1步 -->
     <div>
         <ui-breadcrumbs ref="demo6" :list="list" :max-history="2"></ui-breadcrumbs>
-        <a href="javascript:;" onclick="javascript:morning.findVM('demo6').backLast();">回退一步</a>
+        <ui-link js="morning.findVM('demo6').backLast();">回退一步</ui-link>
     </div>
     ````
 
@@ -229,9 +229,9 @@
     @var:demo7
     <div>
         <ui-breadcrumbs ref="demo7" :list="list"></ui-breadcrumbs>
-        <a href="javascript:;" onclick="javascript:morning.findVM('demo7').toLevel(1);">切换到第2级</a>
-        <a href="javascript:;" onclick="javascript:morning.findVM('demo7').toLevel('level3');">切换到level3</a>
-        <a href="javascript:;" onclick="javascript:morning.findVM('demo7').backLast();">恢复</a>
+        <ui-link js="morning.findVM('demo7').toLevel(1);">切换到第2级</ui-link>
+        <ui-link js="morning.findVM('demo7').toLevel('level3');">切换到level3</ui-link>
+        <ui-link js="morning.findVM('demo7').backLast();">恢复</ui-link>
     </div>
     ````
 
@@ -271,7 +271,7 @@
     @var:demo8
     <div>
         <ui-breadcrumbs ref="demo8" :list="list"></ui-breadcrumbs>
-        <a href="javascript:;" onclick="javascript:alert(JSON.stringify(morning.findVM('demo8').getLevel()));">获取层级信息</a>
+        <ui-link js="alert(JSON.stringify(morning.findVM('demo8').getLevel()));">获取层级信息</ui-link>
     </div>
     ````
 
@@ -302,7 +302,7 @@
     @var:demo9
     <div>
         <ui-breadcrumbs ref="demo9" :list="list"></ui-breadcrumbs>
-        <a href="javascript:;" onclick="javascript:alert(JSON.stringify(morning.findVM('demo9').getHistory()));">获取历史步骤</a>
+        <ui-link js="alert(JSON.stringify(morning.findVM('demo9').getHistory()));">获取历史步骤</ui-link>
     </div>
     ````
 
@@ -338,8 +338,8 @@
     @var:demo10
     <div>
         <ui-breadcrumbs ref="demo10" :list="list"></ui-breadcrumbs>
-        <a href="javascript:;" onclick="javascript:morning.findVM('demo10').backLast(1);">回退一步</a>
-        <a href="javascript:;" onclick="javascript:morning.findVM('demo10').backLast(2);">回退两步</a>
+        <ui-link js="morning.findVM('demo10').backLast(1);">回退一步</ui-link>
+        <ui-link js="morning.findVM('demo10').backLast(2);">回退两步</ui-link>
     </div>
     ````
 
@@ -377,7 +377,7 @@
     @var:demo11
     <div>
         <ui-breadcrumbs ref="demo11" :list="list"></ui-breadcrumbs>
-        <a href="javascript:;" onclick="javascript:morning.findVM('demo11').addLevel({'level4':'新层级'});">新增一个层级</a>
+        <ui-link js="morning.findVM('demo11').addLevel({'level4':'新层级'});">新增一个层级</ui-link>
     </div>
     ````
 
@@ -412,8 +412,8 @@
     @var:demo12
     <div>
         <ui-breadcrumbs ref="demo12" :list="list"></ui-breadcrumbs>
-        <a href="javascript:;" onclick="javascript:morning.findVM('demo12').setLevel([{'level6':'第六级'},{'level7':'第七级'}]);">重设整个层级</a>
-        <a href="javascript:;" onclick="javascript:morning.findVM('demo12').backLast();">恢复</a>
+        <ui-link js="morning.findVM('demo12').setLevel([{'level6':'第六级'},{'level7':'第七级'}]);">重设整个层级</ui-link>
+        <ui-link js="morning.findVM('demo12').backLast();">恢复</ui-link>
     </div>
     ````
 
@@ -490,8 +490,8 @@
 
         <br><br>
     
-        <a href="javascript:;" onclick="javascript:window.demoEventLifecycle.text='生命周期事件';">触发update</a>
-        <a href="javascript:;" onclick="javascript:morning.findVM('demoEventLifecycle').$destroy();">触发destroy</a>
+        <ui-link js="window.demoEventLifecycle.text='生命周期事件';">触发update</ui-link>
+        <ui-link js="morning.findVM('demoEventLifecycle').$destroy();">触发destroy</ui-link>
     </div>
     ````
 
