@@ -298,7 +298,7 @@
 
     当模拟盒切换显示状态时触发。
 
-    ````mixin
+    ````vue
     @use:html.demo22,js.demo22
     ````
 
@@ -331,7 +331,7 @@
 
     当模拟盒显示时触发。
 
-    ````mixin
+    ````vue
     @use:html.demo23,js.demo23
     ````
 
@@ -364,7 +364,7 @@
 
     当模拟盒隐藏时触发。
 
-    ````mixin
+    ````vue
     @use:html.demo24,js.demo24
     ````
 
@@ -395,7 +395,7 @@
 
     #### 生命周期事件
 
-    ````mixin
+    ````vue
     @use:html.demoEventLifecycle,js.demoEventLifecycle
     ````
 

@@ -111,7 +111,7 @@
 
     #### prepend
 
-    ````mixin
+    ````vue
     @use:html.demo1,js.demo1
     ````
 
@@ -147,7 +147,7 @@
 
     #### append
 
-    ````mixin
+    ````vue
     @use:html.demo2,js.demo2
     ````
 
@@ -237,7 +237,7 @@
 
     当标签页切换后触发。
 
-    ````mixin
+    ````vue
     @use:html.demo6,js.demo6
     ````
 
@@ -267,7 +267,7 @@
 
     #### 生命周期事件
 
-    ````mixin
+    ````vue
     @use:html.demoEventLifecycle,js.demoEventLifecycle
     ````
 

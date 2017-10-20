@@ -176,7 +176,7 @@
 
     当小提示切换显示状态时时触发。
 
-    ````mixin
+    ````vue
     @use:html.demo17,js.demo17
     ````
 
@@ -205,7 +205,7 @@
 
     当小提示显示时触发。
 
-    ````mixin
+    ````vue
     @use:html.demo18,js.demo18
     ````
 
@@ -234,7 +234,7 @@
 
     当小提示显示时触发。
 
-    ````mixin
+    ````vue
     @use:html.demo19,js.demo19
     ````
 
@@ -261,7 +261,7 @@
 
     #### 生命周期事件
 
-    ````mixin
+    ````vue
     @use:html.demoEventLifecycle,js.demoEventLifecycle
     ````
 

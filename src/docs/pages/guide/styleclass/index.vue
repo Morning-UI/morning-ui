@@ -32,27 +32,27 @@
 
     在为组件添加样式类前应先检查下面的列表，是否有含义相同的样式类，若有请使用，若没有请将新的样式类添加到下面列表并注明它的含义。
 
-    - `c-[*]` : 栅格用，标记所占用的列
-    - `offset-[*]` : 栅格用，标记所偏移列
+    - `horizontal` : 水平排列
+    - `vertical` : 垂直排列
     - `nogap` : 子元素间没有间隙
     - `averagegap` : 子元素间(包括两侧)均有相等间隙
     - `fill` : 高度填满父元素
     - `full` : 元素没有内边距
     - `margin` : 元素有外边距
-    - `horizontal` : 水平排列
-    - `vertical` : 垂直排列
-    - `underline` : 下划线
+    - `inline` : 内联
+    - `inline-block` : 内联块
+    - `block` : 块级 / 区块
     - `mark` : 包含标记
+    - `underline` : 下划线
+    - `noborder` : 无边框
     - `flat` : 扁平
     - `circle` : 圆形
     - `image` : 使用图片
     - `icon` : 使用图标
+    - `split` : 分隔
     - `rounded` : 圆角
     - `circle` : 圆形
     - `thumbnail` : 相框
-    - `noborder` : 无边框
-    - `block` : 区块
-    - `split` : 分隔
 
     </script>
     </doc-guide>

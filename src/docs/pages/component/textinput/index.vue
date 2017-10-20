@@ -112,7 +112,7 @@
 
     当表单聚焦后触发。
 
-    ````mixin
+    ````vue
     @use:html.demo2,js.demo2
     ````
 
@@ -140,7 +140,7 @@
 
     当表单失焦后触发。
 
-    ````mixin
+    ````vue
     @use:html.demo3,js.demo3
     ````
 

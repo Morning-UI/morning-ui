@@ -150,7 +150,7 @@
 
     当加载完毕时触发，不管加载是否成功都会触发此事件。
 
-    ````mixin
+    ````vue
     @use:html.demo6,js.demo6
     ````
 
@@ -181,7 +181,7 @@
 
     当加载完毕并成功时触发。
 
-    ````mixin
+    ````vue
     @use:html.demo7,js.demo7
     ````
 
@@ -212,7 +212,7 @@
 
     当加载完毕并成功时触发。
 
-    ````mixin
+    ````vue
     @use:html.demo8,js.demo8
     ````
 
@@ -241,7 +241,7 @@
 
     #### 生命周期事件
 
-    ````mixin
+    ````vue
     @use:html.demoEventLifecycle,js.demoEventLifecycle
     ````
 

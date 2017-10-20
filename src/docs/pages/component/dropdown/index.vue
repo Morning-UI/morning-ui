@@ -105,7 +105,7 @@
 
     当按钮组显示或隐藏时触发`emit`事件。
 
-    ````mixin
+    ````vue
     @use:html.demo1,js.demo1
     ````
 
@@ -138,7 +138,7 @@
 
     当按钮组显示时触发`show`事件。
 
-    ````mixin
+    ````vue
     @use:html.demo2,js.demo2
     ````
 
@@ -171,7 +171,7 @@
 
     当按钮组隐藏时触发`hide`事件。
 
-    ````mixin
+    ````vue
     @use:html.demo3,js.demo3
     ````
 
@@ -202,7 +202,7 @@
 
     #### 生命周期事件
 
-    ````mixin
+    ````vue
     @use:html.demoEventLifecycle,js.demoEventLifecycle
     ````
 

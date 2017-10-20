@@ -531,7 +531,7 @@
 
     当下拉列表显示时触发。
 
-    ````mixin
+    ````vue
     @use:html.demo2,js.demo2
     ````
 
@@ -571,7 +571,7 @@
 
     当下拉列表隐藏时触发。
 
-    ````mixin
+    ````vue
     @use:html.demo3,js.demo3
     ````
 

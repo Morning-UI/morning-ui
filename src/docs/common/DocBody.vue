@@ -124,7 +124,7 @@ let imports = {
 
 设置多个组：
 
-\`\`\`\`mixin
+\`\`\`\`vue
 @use:html.demoGroup,js.demoGroup|@formConfig
 \`\`\`\`
 
@@ -173,7 +173,7 @@ new Vue({
 |form-key|表单的Key（用于逻辑中作为识别标示）|任意字符串(唯一)|String|\`undefined\`|
 |group|表单组，用于将多个表单的数值添加到同一个对象中。一个表单可以同时属于多个组|若是字符串，则将表单添加到单个组<br>若是数组，则将表单添加到多个组|String<br/>Array|\`[]\`|
 |default-value|表单的默认值|任意(接受表单原始数值，也接受JSON序列化后的表单数值，若数值是JSON序列化的会自动转换成原始数值)|Any|\`undefined\`|
-|hide-name|链接地址，若为空则不跳转|url地址|Boolean|\`false\`|`,
+|hide-name|隐藏表单名|\`true\`<br>\`false\`|Boolean|\`false\`|`,
     formMethod : `
 #### set([value])
 
@@ -353,7 +353,7 @@ new Vue({
 
 当表单值变化时触发。
 
-\`\`\`\`mixin
+\`\`\`\`vue
 @use:html.demoValueChange,js.demoValueChange
 \`\`\`\`
 
@@ -381,7 +381,7 @@ new Vue({
 
 #### 生命周期事件
 
-\`\`\`\`mixin
+\`\`\`\`vue
 @use:html.demoEventLifecycle,js.demoEventLifecycle
 \`\`\`\`
 
@@ -686,7 +686,7 @@ let data = {
 
 let parser = (text, el) => {
 
-    let patt = /````(html|js|css|mixin|)((\n[\t ]*[\@a-zA-Z0-9\:\.\,\|]+)*)\n((.|\n)*?)(\n)*([ \t]*)````/g;
+    let patt = /````(html|js|css|vue|)((\n[\t ]*[\@a-zA-Z0-9\:\.\,\|]+)*)\n((.|\n)*?)(\n)*([ \t]*)````/g;
     let varpatt = /````(html|js|css)\n(\@var\:([a-zA-Z0-9]+))\n((.|\n)+?)\n([ \t]*)````/g;
     let importpatt = /````(import)((\n[\t ]*[a-zA-Z0-9@'"[\]?<>/\-_{}=:.,|!()\u4e00-\u9fa5 ]+)*)\n((.|\n)*?)(\n)*([ \t]*)````/g;
     let result;
@@ -695,7 +695,7 @@ let parser = (text, el) => {
         html : {}
     };
     let blocks = [];
-    let mixinContext = {};
+    let vueContext = {};
 
     while ((result = importpatt.exec(text)) !== null) {
 
@@ -713,7 +713,7 @@ let parser = (text, el) => {
 
             let value = valuelist.join(':');
 
-            mixinContext[name] = value;
+            vueContext[name] = value;
 
         }
 
@@ -744,7 +744,7 @@ let parser = (text, el) => {
             content,
             type : result[1],
             result,
-            context : mixinContext,
+            context : vueContext,
             helpers : []
         };
 
@@ -1136,7 +1136,7 @@ let make = {
             
             }
 
-            if (block.type === 'mixin') {
+            if (block.type === 'vue') {
 
                 block.type = 'html';
 
@@ -1199,7 +1199,7 @@ let runner = tree => {
     }
 
     let text = tree.text;
-    let patt = /````(html|js|css|mixin|)((\n[\t ]*[\@a-zA-Z0-9\:\.\,\|]+)*)\n((.|\n)*?)(\n)*([ \t]*)````/g;
+    let patt = /````(html|js|css|vue|)((\n[\t ]*[\@a-zA-Z0-9\:\.\,\|]+)*)\n((.|\n)*?)(\n)*([ \t]*)````/g;
     let index = 0;
     let result;
 

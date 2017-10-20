@@ -25,7 +25,7 @@
 
     使用前需要在被调用的组件上通过`ref`指定一个索引ID，然后在父vm中通过`this.$refs.[refId]`即可找到组件的vm：
 
-    ````mixin
+    ````vue
     @use:html.demo1,js.demo1
     ````
     
@@ -89,11 +89,39 @@
 
     在为组件添加方法前应先检查下面的列表，是否有含义相同的事件，若有请使用，若没有请将新的方法添加到下面列表并注明它的含义。
     
-    - `setConf` : 设置组件配置
-    - `getConf` : 获取组件配置
-    - `lock` : 锁定组件
-    - `unlock` : 解锁组件
+    - `show` : 显示
+    - `hide` : 隐藏
+    - `toLevel` : 至某层级
+    - `setLevel` : 设置层级
+    - `getLevel` : 获取层级
+    - `addLevel` : 添加层级
+    - `getHistory` : 获取历史
+    - `backLast` : 回退一步
+    - `resolve` : 完成
+    - `reject` : 失败
+    - `reload` : 重载
     - `switch` : 切换
+    - `switchNext` : 切换至下一个
+    - `switchPrev` : 切换至上一个
+    - `lock` : 锁定
+    - `unlock` : 解锁
+    - `set` : 设置表单值
+    - `get` : 获取表单值
+    - `setName` : 设置表单名
+    - `getName` : 获取表单名
+    - `setKey` : 设置表单Key
+    - `getKey` : 获取表单Key
+    - `setGroup` : 设置表单组
+    - `getGroup` : 获取表单组
+    - `addGroup` : 添加表单组
+    - `removeGroup` : 移除表单组
+    - `setRows` : 设置行数
+    - `toggle` : 切换状态
+    - `add` : 添加项目
+    - `del` : 删除项目
+    - `move` : 移动项目
+    - `setInput` : 设置输入框值
+    - `getInput` : 获取输入框值
 
     </script>
     </doc-guide>

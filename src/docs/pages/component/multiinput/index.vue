@@ -171,7 +171,7 @@
 
     当输入标签内容变化后触发。
 
-    ````mixin
+    ````vue
     @use:html.demo5,js.demo5
     ````
 
@@ -199,7 +199,7 @@
 
     当标签内容输入框聚焦后触发。
 
-    ````mixin
+    ````vue
     @use:html.demo6,js.demo6
     ````
 
@@ -227,7 +227,7 @@
 
     当标签内容输入框失焦后触发。
 
-    ````mixin
+    ````vue
     @use:html.demo7,js.demo7
     ````
 

@@ -50,7 +50,7 @@
 
     如果让`ui-radio`的显示文本，渲染成HTML，而不是字符串。可以设置`accept-html`。
 
-    ````mixin
+    ````vue
     @use:html.demo1,js.demo1
     ````
 
