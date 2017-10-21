@@ -47,7 +47,7 @@
     #### 配合块级元素
 
     ````html
-    <ui-apparent class="inline-block">
+    <ui-apparent class="block">
         <div style="width:200px;height:50px;background:#eee;">
             This is block element
         </div>

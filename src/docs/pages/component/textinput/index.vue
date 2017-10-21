@@ -102,17 +102,11 @@
 
     [[[事件]]]
 
-    ````import
-    @id:formEvent
-    @uikey:textinput
-    @eventValue:'Jim'
-    ````
-
     #### focus
 
     当表单聚焦后触发。
 
-    ````mixin
+    ````vue
     @use:html.demo2,js.demo2
     ````
 
@@ -140,7 +134,7 @@
 
     当表单失焦后触发。
 
-    ````mixin
+    ````vue
     @use:html.demo3,js.demo3
     ````
 
@@ -162,6 +156,12 @@
             }
         }
     });
+    ````
+
+    ````import
+    @id:formEvent
+    @uikey:textinput
+    @eventValue:'Jim'
     ````
 
     [[[表单值]]]
@@ -192,8 +192,8 @@
             <ui-textinput ref="demoType{$valueType}"></ui-textinput>
         </div>
         <br>
-        <a href="javascript:;" onclick="window.morning.findVM('demoType{$valueType}').set({$&valueContent})">设置{$valueType}类型</a>
-        <a href="javascript:;" onclick="alert(window.morning.findVM('demoType{$valueType}').get())">获取表单JSON值</a>
+        <ui-link js="window.morning.findVM('demoType{$valueType}').set({$&valueContent})">设置{$valueType}类型</ui-link>
+        <ui-link js="alert(window.morning.findVM('demoType{$valueType}').get())">获取表单JSON值</ui-link>
     </div>
     <br>
     <br>

@@ -93,7 +93,7 @@
 
     ````html
     <ui-btn ref="demo1" locked>手动解锁</ui-btn>
-    <a href="javascript:;" onclick="javascript:morning.findVM('demo1').unlock();">解锁</a>
+    <ui-link js="morning.findVM('demo1').unlock();">解锁</ui-link>
     ````
 
     #### new-tab
@@ -115,9 +115,9 @@
     ````html
     <ui-btn ref="demo2">按钮</ui-btn>
     <br><br> 
-    <a href="javascript:;" onclick="javascript:morning.findVM('demo2').lock();">锁定</a>
-    <a href="javascript:;" onclick="javascript:morning.findVM('demo2').lock(2000);">锁定2s</a>
-    <a href="javascript:;" onclick="javascript:morning.findVM('demo2').unlock();">解锁</a>
+    <ui-link js="morning.findVM('demo2').lock();">锁定</ui-link>
+    <ui-link js="morning.findVM('demo2').lock(2000);">锁定2s</ui-link>
+    <ui-link js="morning.findVM('demo2').unlock();">解锁</ui-link>
     ````
 
     #### unlock()
@@ -127,7 +127,7 @@
     ````html
     <ui-btn ref="demo3" locked>按钮</ui-btn>
     <br><br> 
-    <a href="javascript:;" onclick="javascript:morning.findVM('demo3').unlock();">解锁</a>
+    <ui-link js="morning.findVM('demo3').unlock();">解锁</ui-link>
     ````
 
     [[[事件]]]
@@ -136,7 +136,7 @@
 
     当按钮被点击时触发。
 
-    ````mixin
+    ````vue
     @use:html.demo3,js.demo3
     ````
 
@@ -162,7 +162,7 @@
 
     #### 生命周期事件
 
-    ````mixin
+    ````vue
     @use:html.demoEventLifecycle,js.demoEventLifecycle
     ````
 
@@ -182,8 +182,8 @@
 
         <br><br>
     
-        <a href="javascript:;" onclick="javascript:window.demoEventLifecycle.text='生命周期事件';">触发update</a>
-        <a href="javascript:;" onclick="javascript:morning.findVM('demoEventLifecycle').$destroy();">触发destroy</a>
+        <ui-link js="window.demoEventLifecycle.text='生命周期事件';">触发update</ui-link>
+        <ui-link js="morning.findVM('demoEventLifecycle').$destroy();">触发destroy</ui-link>
     </div>
     ````
 

@@ -50,7 +50,7 @@
 
     如果让`ui-checkbox`的显示文本，渲染成HTML，而不是字符串。可以设置`accept-html`。
 
-    ````mixin
+    ````vue
     @use:html.demo1,js.demo1
     ````
 
@@ -113,9 +113,9 @@
         <ui-checkbox ref="demo2" form-name="姓名" :list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"></ui-checkbox>
     </div>
     <br>
-    <a href="javascript:;" onclick="javascript:morning.findVM('demo2').toggle('Tim');">切换Tim至相反状态</a>
-    <a href="javascript:;" onclick="javascript:morning.findVM('demo2').toggle('Tim', true);">切换Tim至选中</a>
-    <a href="javascript:;" onclick="javascript:morning.findVM('demo2').toggle('Tim', false);">切换Tim至未选中</a>
+    <ui-link js="javascript:morning.findVM('demo2').toggle('Tim');">切换Tim至相反状态</ui-link>
+    <ui-link js="javascript:morning.findVM('demo2').toggle('Tim', true);">切换Tim至选中</ui-link>
+    <ui-link js="javascript:morning.findVM('demo2').toggle('Tim', false);">切换Tim至未选中</ui-link>
     ````
 
     [[[事件]]]
@@ -155,8 +155,8 @@
             <ui-checkbox ref="demoType{$valueType}" :list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"></ui-checkbox>
         </div>
         <br>
-        <a href="javascript:;" onclick="window.morning.findVM('demoType{$valueType}').set({$&valueContent})">设置{$valueType}类型</a>
-        <a href="javascript:;" onclick="alert(window.morning.findVM('demoType{$valueType}').get())">获取表单JSON值</a>
+        <ui-link js="window.morning.findVM('demoType{$valueType}').set({$&valueContent})">设置{$valueType}类型</ui-link>
+        <ui-link js="alert(window.morning.findVM('demoType{$valueType}').get())">获取表单JSON值</ui-link>
     </div>
     <br>
     <br>

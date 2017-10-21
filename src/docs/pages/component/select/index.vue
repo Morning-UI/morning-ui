@@ -520,18 +520,11 @@
 
     [[[事件]]]
 
-    ````import
-    @id:formEvent
-    @uikey:select
-    @eventValue:['Tim Boelaars']
-    @eventSlot:<li value="Tim Boelaars"><ui-img class="circle" src="https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894"></ui-img>Tim Boelaars</li><li value="Andrew Colin Beck"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444"></ui-img>Andrew Colin Beck</li><li value="Gustavo Zambelli"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442"></ui-img>Gustavo Zambelli</li><li value="Victor Erixon"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/96387/avatars/normal/debda2342580bda98269c0165054464c.jpg?1435151464"></ui-img>Victor Erixon</li><li value="Shaun Moynihan"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/2944/avatars/normal/e08c0e446862572facf0e48316d91c8f.png?1429207992"></ui-img>Shaun Moynihan</li><li value="Emir Ayouni"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934"></ui-img>Emir Ayouni</li><li value="Katherine Rainey"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/460187/avatars/normal/eb8e273c036ae93b134b10358c5f19f5.jpg?1418705072"></ui-img>Katherine Rainey</li><li value="Jax Berndt"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/119911/avatars/normal/531fd12e5775ed5ac6a07aea7b492151.jpg?1427986143"></ui-img>Jax Berndt</li><li value="Elizabeth Chiu"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/857412/avatars/normal/8f5f9fbdd66cc70f22304f2ed3be4fa1.png?1440078204"></ui-img>Elizabeth Chiu</li><li value="Sara Nicely"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/162566/avatars/normal/1012292_10104881398564961_565325188_n.jpg?1403561573"></ui-img>Sara Nicely</li><li value="Anna Broussard"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/243797/avatars/normal/657a04cfaeca8f6f5bb7ecf64267bc67.jpg?1416007045"></ui-img>Anna Broussard</li>
-    ````
-
     #### listShow
 
     当下拉列表显示时触发。
 
-    ````mixin
+    ````vue
     @use:html.demo2,js.demo2
     ````
 
@@ -571,7 +564,7 @@
 
     当下拉列表隐藏时触发。
 
-    ````mixin
+    ````vue
     @use:html.demo3,js.demo3
     ````
 
@@ -605,6 +598,13 @@
             }
         }
     });
+    ````
+
+    ````import
+    @id:formEvent
+    @uikey:select
+    @eventValue:['Tim Boelaars']
+    @eventSlot:<li value="Tim Boelaars"><ui-img class="circle" src="https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894"></ui-img>Tim Boelaars</li><li value="Andrew Colin Beck"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444"></ui-img>Andrew Colin Beck</li><li value="Gustavo Zambelli"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442"></ui-img>Gustavo Zambelli</li><li value="Victor Erixon"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/96387/avatars/normal/debda2342580bda98269c0165054464c.jpg?1435151464"></ui-img>Victor Erixon</li><li value="Shaun Moynihan"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/2944/avatars/normal/e08c0e446862572facf0e48316d91c8f.png?1429207992"></ui-img>Shaun Moynihan</li><li value="Emir Ayouni"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934"></ui-img>Emir Ayouni</li><li value="Katherine Rainey"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/460187/avatars/normal/eb8e273c036ae93b134b10358c5f19f5.jpg?1418705072"></ui-img>Katherine Rainey</li><li value="Jax Berndt"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/119911/avatars/normal/531fd12e5775ed5ac6a07aea7b492151.jpg?1427986143"></ui-img>Jax Berndt</li><li value="Elizabeth Chiu"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/857412/avatars/normal/8f5f9fbdd66cc70f22304f2ed3be4fa1.png?1440078204"></ui-img>Elizabeth Chiu</li><li value="Sara Nicely"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/162566/avatars/normal/1012292_10104881398564961_565325188_n.jpg?1403561573"></ui-img>Sara Nicely</li><li value="Anna Broussard"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/243797/avatars/normal/657a04cfaeca8f6f5bb7ecf64267bc67.jpg?1416007045"></ui-img>Anna Broussard</li>
     ````
 
     [[[表单值]]]
@@ -651,8 +651,8 @@
             </ui-select>
         </div>
         <br>
-        <a href="javascript:;" onclick="window.morning.findVM('demoType{$valueType}').set({$&valueContent})">设置{$valueType}类型</a>
-        <a href="javascript:;" onclick="alert(window.morning.findVM('demoType{$valueType}').get())">获取表单JSON值</a>
+        <ui-link js="window.morning.findVM('demoType{$valueType}').set({$&valueContent})">设置{$valueType}类型</ui-link>
+        <ui-link js="alert(window.morning.findVM('demoType{$valueType}').get())">获取表单JSON值</ui-link>
     </div>
     <br>
     <br>

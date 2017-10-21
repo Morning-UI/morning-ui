@@ -20,7 +20,7 @@
 
     组件的事件监听，基于Vue的自定义事件，你可以在模板中通过`v-on`指令监听事件：
 
-    ````mixin
+    ````vue
     @use:html.demo1,js.demo1
     ````
 
@@ -49,7 +49,7 @@
 
     你也可以通过`@`来缩写`v-on`用法：
 
-    ````mixin
+    ````vue
     @use:html.demo2,js.demo2
     ````
 
@@ -78,7 +78,7 @@
 
     你还可以通过组件vm上的`$on`方法来监听事件：
 
-    ````mixin
+    ````vue
     @use:html.demo3,js.demo3
     ````
 
@@ -136,9 +136,19 @@
     - `updated` : 更新之后
     - `beforeDestroy` : 销毁之前
     - `emit` : 组件被触发
-    - `switch` : 切换事件
+    - `switch` : 切换
     - `show` : 显示
     - `hide` : 隐藏
+    - `done` : 完成
+    - `fail` : 失败
+    - `valueChange` : 表单值改变
+    - `focus` : 表单聚焦
+    - `blur` : 表单失焦
+    - `listShow` : 列表显示
+    - `listHide` : 列表隐藏
+    - `inputValueChange` : 输入框值变化
+    - `inputFocus` : 输入框聚焦
+    - `inputBlur` : 输入框失焦
 
     </script>
     </doc-guide>

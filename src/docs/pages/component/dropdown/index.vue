@@ -44,7 +44,6 @@
     </ui-dropdown>
     ````
 
-
     [[[声明]]]
 
     #### 支持
@@ -94,9 +93,9 @@
         <ui-btn danger>删除</ui-btn>
     </ui-dropdown>
     <br><br> 
-    <a href="javascript:;" onclick="javascript:morning.findVM('demo1').toggle();">切换相反状态</a>
-    <a href="javascript:;" onclick="javascript:morning.findVM('demo1').toggle(true);">切换至显示</a>
-    <a href="javascript:;" onclick="javascript:morning.findVM('demo1').toggle(false);">切换至隐藏</a>
+    <ui-link js="javascript:morning.findVM('demo1').toggle();">切换相反状态</ui-link>
+    <ui-link js="javascript:morning.findVM('demo1').toggle(true);">切换至显示</ui-link>
+    <ui-link js="javascript:morning.findVM('demo1').toggle(false);">切换至隐藏</ui-link>
     ````
 
     [[[事件]]]
@@ -105,7 +104,7 @@
 
     当按钮组显示或隐藏时触发`emit`事件。
 
-    ````mixin
+    ````vue
     @use:html.demo1,js.demo1
     ````
 
@@ -138,7 +137,7 @@
 
     当按钮组显示时触发`show`事件。
 
-    ````mixin
+    ````vue
     @use:html.demo2,js.demo2
     ````
 
@@ -171,7 +170,7 @@
 
     当按钮组隐藏时触发`hide`事件。
 
-    ````mixin
+    ````vue
     @use:html.demo3,js.demo3
     ````
 
@@ -202,7 +201,7 @@
 
     #### 生命周期事件
 
-    ````mixin
+    ````vue
     @use:html.demoEventLifecycle,js.demoEventLifecycle
     ````
 
@@ -229,8 +228,8 @@
 
         <br><br>
     
-        <a href="javascript:;" onclick="javascript:window.demoEventLifecycle.text='生命周期事件';">触发update</a>
-        <a href="javascript:;" onclick="javascript:morning.findVM('demoEventLifecycle').$destroy();">触发destroy</a>
+        <ui-link js="javascript:window.demoEventLifecycle.text='生命周期事件';">触发update</ui-link>
+        <ui-link js="javascript:morning.findVM('demoEventLifecycle').$destroy();">触发destroy</ui-link>
     </div>
     ````
 

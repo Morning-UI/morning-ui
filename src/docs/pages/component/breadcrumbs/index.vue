@@ -14,7 +14,7 @@
 
     #### 使用
 
-    ````mixin
+    ````vue
     @use:html.demo1,js.demo1
     ````
 
@@ -50,7 +50,7 @@
 
     #### 尺寸
 
-    ````mixin
+    ````vue
     @use:html.demo2,js.demo2|@size
     ````
 
@@ -90,7 +90,7 @@
 
     `root-name`不在层级关系中，仅仅作为一个提示存在。
 
-    ````mixin
+    ````vue
     @use:html.demo3,js.demo3
     ````
 
@@ -118,7 +118,7 @@
 
     跟层级可被选中，选中时所有层级会被清空。
 
-    ````mixin
+    ````vue
     @use:html.demo4,js.demo4
     ````
 
@@ -144,7 +144,7 @@
 
     #### list
 
-    ````mixin
+    ````vue
     @use:html.demo5,js.demo5
     ````
 
@@ -178,7 +178,7 @@
     - 如果限制不准回退，`max-history`设为1
 
 
-    ````mixin
+    ````vue
     @use:html.demo6,js.demo6
     ````
 
@@ -187,7 +187,7 @@
     <!-- 设置最多回退1步 -->
     <div>
         <ui-breadcrumbs ref="demo6" :list="list" :max-history="2"></ui-breadcrumbs>
-        <a href="javascript:;" onclick="javascript:morning.findVM('demo6').backLast();">回退一步</a>
+        <ui-link js="morning.findVM('demo6').backLast();">回退一步</ui-link>
     </div>
     ````
 
@@ -221,7 +221,7 @@
     |-|-|-|-|-|-|
     |index|NO|若是数字则切换到指定深度的层级，若是字符串切换到指定键名的层级|数值(指定的层级)<br>字符串(指定键名的层级)|`Number`<br>`String`|`undefined`|
 
-    ````mixin
+    ````vue
     @use:html.demo7,js.demo7
     ````
 
@@ -229,9 +229,9 @@
     @var:demo7
     <div>
         <ui-breadcrumbs ref="demo7" :list="list"></ui-breadcrumbs>
-        <a href="javascript:;" onclick="javascript:morning.findVM('demo7').toLevel(1);">切换到第2级</a>
-        <a href="javascript:;" onclick="javascript:morning.findVM('demo7').toLevel('level3');">切换到level3</a>
-        <a href="javascript:;" onclick="javascript:morning.findVM('demo7').backLast();">恢复</a>
+        <ui-link js="morning.findVM('demo7').toLevel(1);">切换到第2级</ui-link>
+        <ui-link js="morning.findVM('demo7').toLevel('level3');">切换到level3</ui-link>
+        <ui-link js="morning.findVM('demo7').backLast();">恢复</ui-link>
     </div>
     ````
 
@@ -263,7 +263,7 @@
     - length : 层级长度
 
 
-    ````mixin
+    ````vue
     @use:html.demo8,js.demo8
     ````
 
@@ -271,7 +271,7 @@
     @var:demo8
     <div>
         <ui-breadcrumbs ref="demo8" :list="list"></ui-breadcrumbs>
-        <a href="javascript:;" onclick="javascript:alert(JSON.stringify(morning.findVM('demo8').getLevel()));">获取层级信息</a>
+        <ui-link js="alert(JSON.stringify(morning.findVM('demo8').getLevel()));">获取层级信息</ui-link>
     </div>
     ````
 
@@ -294,7 +294,7 @@
 
     获取当前面包屑历史，返回一个数组，数组中每一项都是一个完整的层级信息，可以通过`setLevel()`方法设置。
 
-    ````mixin
+    ````vue
     @use:html.demo9,js.demo9
     ````
 
@@ -302,7 +302,7 @@
     @var:demo9
     <div>
         <ui-breadcrumbs ref="demo9" :list="list"></ui-breadcrumbs>
-        <a href="javascript:;" onclick="javascript:alert(JSON.stringify(morning.findVM('demo9').getHistory()));">获取历史步骤</a>
+        <ui-link js="alert(JSON.stringify(morning.findVM('demo9').getHistory()));">获取历史步骤</ui-link>
     </div>
     ````
 
@@ -330,7 +330,7 @@
     |num|YES|指定要返回的步数，从最后开始，从1开始|回退的步骤数|`Number`|`1`|
 
 
-    ````mixin
+    ````vue
     @use:html.demo10,js.demo10
     ````
 
@@ -338,8 +338,8 @@
     @var:demo10
     <div>
         <ui-breadcrumbs ref="demo10" :list="list"></ui-breadcrumbs>
-        <a href="javascript:;" onclick="javascript:morning.findVM('demo10').backLast(1);">回退一步</a>
-        <a href="javascript:;" onclick="javascript:morning.findVM('demo10').backLast(2);">回退两步</a>
+        <ui-link js="morning.findVM('demo10').backLast(1);">回退一步</ui-link>
+        <ui-link js="morning.findVM('demo10').backLast(2);">回退两步</ui-link>
     </div>
     ````
 
@@ -369,7 +369,7 @@
     |-|-|-|-|-|-|
     |level|NO|添加的层级|对象，键名为层级的值，键值为层级的名称|`Object`|`undefined`|
 
-    ````mixin
+    ````vue
     @use:html.demo11,js.demo11
     ````
 
@@ -377,7 +377,7 @@
     @var:demo11
     <div>
         <ui-breadcrumbs ref="demo11" :list="list"></ui-breadcrumbs>
-        <a href="javascript:;" onclick="javascript:morning.findVM('demo11').addLevel({'level4':'新层级'});">新增一个层级</a>
+        <ui-link js="morning.findVM('demo11').addLevel({'level4':'新层级'});">新增一个层级</ui-link>
     </div>
     ````
 
@@ -404,7 +404,7 @@
     |-|-|-|-|-|-|
     |levelList|NO|添加的层级|一个数组，数组中每一个对象代表一个层级，对象的键名是层级的值，对象的键值是层级的名称|`Array`|`undefined`|
 
-    ````mixin
+    ````vue
     @use:html.demo12,js.demo12
     ````
 
@@ -412,8 +412,8 @@
     @var:demo12
     <div>
         <ui-breadcrumbs ref="demo12" :list="list"></ui-breadcrumbs>
-        <a href="javascript:;" onclick="javascript:morning.findVM('demo12').setLevel([{'level6':'第六级'},{'level7':'第七级'}]);">重设整个层级</a>
-        <a href="javascript:;" onclick="javascript:morning.findVM('demo12').backLast();">恢复</a>
+        <ui-link js="morning.findVM('demo12').setLevel([{'level6':'第六级'},{'level7':'第七级'}]);">重设整个层级</ui-link>
+        <ui-link js="morning.findVM('demo12').backLast();">恢复</ui-link>
     </div>
     ````
 
@@ -438,7 +438,7 @@
 
     当选择层级改变时触发。
 
-    ````mixin
+    ````vue
     @use:html.demo13,js.demo13
     ````
 
@@ -469,7 +469,7 @@
 
     #### 生命周期事件
 
-    ````mixin
+    ````vue
     @use:html.demoEventLifecycle,js.demoEventLifecycle
     ````
 
@@ -490,8 +490,8 @@
 
         <br><br>
     
-        <a href="javascript:;" onclick="javascript:window.demoEventLifecycle.text='生命周期事件';">触发update</a>
-        <a href="javascript:;" onclick="javascript:morning.findVM('demoEventLifecycle').$destroy();">触发destroy</a>
+        <ui-link js="window.demoEventLifecycle.text='生命周期事件';">触发update</ui-link>
+        <ui-link js="morning.findVM('demoEventLifecycle').$destroy();">触发destroy</ui-link>
     </div>
     ````
 

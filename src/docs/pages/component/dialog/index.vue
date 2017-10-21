@@ -161,12 +161,12 @@
     ````html
     <ui-dialog ref="demo10" black width="60%" height="60%">
         <header slot="header">第一级</header>
-        <a href="javascript:;" onclick="javascript:window.morning.findVM('demo11').toggle(true);">显示第二级模拟盒</a>
+        <ui-link js="javascript:window.morning.findVM('demo11').toggle(true);">显示第二级模拟盒</ui-link>
     </ui-dialog>
 
     <ui-dialog ref="demo11" extra-light-black width="40%" height="40%">
         <header slot="header">第二级</header>
-        <a href="javascript:;" onclick="javascript:window.morning.findVM('demo12').toggle(true);">显示第三级模拟盒</a>
+        <ui-link js="javascript:window.morning.findVM('demo12').toggle(true);">显示第三级模拟盒</ui-link>
     </ui-dialog>
 
     <ui-dialog ref="demo12" light-blue width="20%" height="20%">
@@ -298,7 +298,7 @@
 
     当模拟盒切换显示状态时触发。
 
-    ````mixin
+    ````vue
     @use:html.demo22,js.demo22
     ````
 
@@ -331,7 +331,7 @@
 
     当模拟盒显示时触发。
 
-    ````mixin
+    ````vue
     @use:html.demo23,js.demo23
     ````
 
@@ -364,7 +364,7 @@
 
     当模拟盒隐藏时触发。
 
-    ````mixin
+    ````vue
     @use:html.demo24,js.demo24
     ````
 
@@ -395,7 +395,7 @@
 
     #### 生命周期事件
 
-    ````mixin
+    ````vue
     @use:html.demoEventLifecycle,js.demoEventLifecycle
     ````
 
@@ -421,8 +421,8 @@
 
         <br><br>
     
-        <a href="javascript:;" onclick="javascript:window.demoEventLifecycle.text='生命周期事件';">触发update</a>
-        <a href="javascript:;" onclick="javascript:morning.findVM('demoEventLifecycle').$destroy();">触发destroy</a>
+        <ui-link js="javascript:window.demoEventLifecycle.text='生命周期事件';">触发update</ui-link>
+        <ui-link js="javascript:morning.findVM('demoEventLifecycle').$destroy();">触发destroy</ui-link>
     </div>
     ````
 

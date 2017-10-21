@@ -28,7 +28,7 @@
 
     由于初始化配置基于`Vue`的`props`，你也可以使用`v-bind`来传入配置，或使用JavaScript表达式。
 
-    ````mixin
+    ````vue
     @use:html.demo1,js.demo1
     ````
 
@@ -60,7 +60,7 @@
 
     HTML特性是不区分大小写的。所以，当配置的名称是camelCased(驼峰式)命名的prop，在HTML中需要转换为相对应的kebab-case(短横线隔开式)命名：
 
-    ````mixin
+    ````vue
     @use:html.demo3,js.demo3
     ````
 
@@ -94,7 +94,7 @@
     - 当父VM的`link`发生变更时，也不会同步到组件的配置`link`中
 
 
-    ````mixin
+    ````vue
     @use:html.demo2,js.demo2
     ````
 
@@ -201,18 +201,45 @@
 
     在为组件添加配置前应先检查下面的列表，是否有含义相同的配置，若有请使用，若没有请将新的配置添加到下面列表并注明它的含义。
 
-    - `c-[*]` : 栅格用，标记所占用的列
-    - `tab` : 标签
-    - `prepend` : 前部追加(内部)
-    - `append` : 尾部追加(内部)
     - `link` : 链接
+    - `js` : JS代码
     - `locked` : 锁定
     - `new-tab` : 新标签
-    - `time` : 时间
-    - `note` : 备注
+    - `auto-close` : 点击组件外区域关闭
+    - `tab` : 标签
+    - `prepend` : 在之后插入
+    - `append` : 在之前插入
     - `width` : 宽度
     - `height` : 高度
-    - `auto-close` : 自动关闭
+    - `show-type` : 展示方式
+    - `time` : 时间
+    - `note` : 提示
+    - `root-name` : 跟节点名称
+    - `choose-root` : 选择跟节点
+    - `list` : 内容列表
+    - `max-history` : 最大历史纪录
+    - `target` : 目标
+    - `placement` : 位置
+    - `offset` : 偏移量
+    - `trigger` : 触发类型
+    - `form-name` : 表单名
+    - `form-key` : 表单Key
+    - `group` : 表单组
+    - `default-value` : 表单默认值
+    - `hide-name` : 隐藏表单名
+    - `hide-value` : 表单数值不可见
+    - `rows` : 行数
+    - `auto-hide-name` : 自动隐藏表单名
+    - `max-show` : 最大显示项目
+    - `can-search` : 可搜索
+    - `multi-select` : 多选
+    - `max` : 最大可输入项目
+    - `clean-btn` : 清空按钮
+    - `inline-img-size` : 内联图片尺寸
+    - `item-tip` : 项目提示
+    - `item-tip-direct` : 项目提示方向
+    - `accept-html` : 可使用HTML
+    - `can-move` : 可移动
 
     </script>
     </doc-guide>

@@ -111,7 +111,7 @@
 
     #### prepend
 
-    ````mixin
+    ````vue
     @use:html.demo1,js.demo1
     ````
 
@@ -147,7 +147,7 @@
 
     #### append
 
-    ````mixin
+    ````vue
     @use:html.demo2,js.demo2
     ````
 
@@ -198,9 +198,9 @@
         <div slot="第三页">第三页</div>
     </ui-tab>
     <br><br> 
-    <a href="javascript:;" onclick="javascript:morning.findVM('demo3').switch('第一页');">切换到第一页</a>
-    <a href="javascript:;" onclick="javascript:morning.findVM('demo3').switch('第二页');">切换到第二页</a>
-    <a href="javascript:;" onclick="javascript:morning.findVM('demo3').switch('第三页');">切换到第三页</a>
+    <ui-link js="javascript:morning.findVM('demo3').switch('第一页');">切换到第一页</ui-link>
+    <ui-link js="javascript:morning.findVM('demo3').switch('第二页');">切换到第二页</ui-link>
+    <ui-link js="javascript:morning.findVM('demo3').switch('第三页');">切换到第三页</ui-link>
     ````
 
     #### switchNext()
@@ -214,7 +214,7 @@
         <div slot="第三页">第三页</div>
     </ui-tab>
     <br><br> 
-    <a href="javascript:;" onclick="javascript:morning.findVM('demo4').switchNext();">切换到下一个标签</a>
+    <ui-link js="javascript:morning.findVM('demo4').switchNext();">切换到下一个标签</ui-link>
     ````
 
     #### switchPrev()
@@ -228,7 +228,7 @@
         <div slot="第三页">第三页</div>
     </ui-tab>
     <br><br>
-    <a href="javascript:;" onclick="javascript:morning.findVM('demo5').switchPrev();">切换到上一个标签</a>
+    <ui-link js="javascript:morning.findVM('demo5').switchPrev();">切换到上一个标签</ui-link>
     ````
    
     [[[事件]]]
@@ -237,7 +237,7 @@
 
     当标签页切换后触发。
 
-    ````mixin
+    ````vue
     @use:html.demo6,js.demo6
     ````
 
@@ -267,7 +267,7 @@
 
     #### 生命周期事件
 
-    ````mixin
+    ````vue
     @use:html.demoEventLifecycle,js.demoEventLifecycle
     ````
 
@@ -291,8 +291,8 @@
 
         <br><br>
     
-        <a href="javascript:;" onclick="javascript:window.demoEventLifecycle.text='生命周期事件';">触发update</a>
-        <a href="javascript:;" onclick="javascript:morning.findVM('demoEventLifecycle').$destroy();">触发destroy</a>
+        <ui-link js="javascript:window.demoEventLifecycle.text='生命周期事件';">触发update</ui-link>
+        <ui-link js="javascript:morning.findVM('demoEventLifecycle').$destroy();">触发destroy</ui-link>
     </div>
     ````
 
