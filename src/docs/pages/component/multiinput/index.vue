@@ -32,7 +32,7 @@
 
     [[[声明]]]
 
-    ````import
+    ````preset
     @id:formStatement
     @uikey:multiinput
     @statementDefaultValue:['value1', 'value2']
@@ -42,13 +42,13 @@
 
     |KEY|描述|接受值|值类型|默认值|
     |-|-|-|
-    ````import
+    ````preset
     @id:formConfigTable
     ````
     |can-move|输入项目是否可以移动|`true`<br>`false`|Boolean|`false`|
     |max|可输入的最大项数|数字<br>`false`:不限制数量|String<br>Boolean|`false`|
 
-    ````import
+    ````preset
     @id:formConfigDemo
     @uikey:multiinput
     @configDefaultValue:['value1', 'value2']
@@ -72,7 +72,7 @@
 
     [[[方法]]]
 
-    ````import
+    ````preset
     @id:formMethod
     @uikey:multiinput
     @methodValue:['value1']
@@ -245,7 +245,7 @@
     });
     ````
 
-    ````import
+    ````preset
     @id:formEvent
     @uikey:multiinput
     @eventValue:['value1']

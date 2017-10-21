@@ -118,7 +118,7 @@
 
     [[[声明]]]
 
-    ````import
+    ````preset
     @id:formStatement
     @uikey:select
     @statementDefaultValue:['Tim Boelaars']
@@ -171,7 +171,7 @@
 
     |KEY|描述|接受值|值类型|默认值|
     |-|-|-|
-    ````import
+    ````preset
     @id:formConfigTable
     ````
     |max-show|下拉列表最多显示几项(超过出现滚动条)|项目数量|Number|`5`|
@@ -184,7 +184,7 @@
     |item-tip|允许为下拉菜单设置提示|`true`<br>`false`|Boolean|`false`|
     |item-tip-direct|为下拉菜单设置提示的方向，需要开启`list-tip`才有效|`top`<br>`right`<br>`bottom`<br>`left`|String|`top`|
     
-    ````import
+    ````preset
     @id:formConfigDemo
     @uikey:select
     @configDefaultValue:['Tim Boelaars']
@@ -478,7 +478,7 @@
    
     [[[方法]]]
 
-    ````import
+    ````preset
     @id:formMethod
     @uikey:select
     @methodValue:['Tim Boelaars']
@@ -600,7 +600,7 @@
     });
     ````
 
-    ````import
+    ````preset
     @id:formEvent
     @uikey:select
     @eventValue:['Tim Boelaars']

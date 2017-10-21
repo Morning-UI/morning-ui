@@ -22,7 +22,7 @@
 
     [[[声明]]]
 
-    ````import
+    ````preset
     @id:formStatementWithStyle
     @uikey:checkbox
     @statementDefaultValue:['Tim']
@@ -33,13 +33,13 @@
 
     |KEY|描述|接受值|值类型|默认值|
     |-|-|-|
-    ````import
+    ````preset
     @id:formConfigTable
     ````
     |accept-html|项目的的名称可以使用HTML|`true`<br>`false`|Boolean|`false`|
     |list|可选项目列表|可选项目列表的对象，键名是key，键值是name用于显示|Object|`{}`|
 
-    ````import
+    ````preset
     @id:formConfigDemo
     @uikey:checkbox
     @configDefaultValue:['Tim']
@@ -91,7 +91,7 @@
 
     [[[方法]]]
 
-    ````import
+    ````preset
     @id:formMethod
     @uikey:checkbox
     @methodValue:['Tim', 'Andrew']
@@ -120,7 +120,7 @@
 
     [[[事件]]]
 
-    ````import
+    ````preset
     @id:formEvent
     @uikey:checkbox
     @eventValue:['Tim', 'Andrew']

@@ -22,7 +22,7 @@
 
     [[[声明]]]
 
-    ````import
+    ````preset
     @id:formStatement
     @uikey:textarea
     @statementDefaultValue:''
@@ -32,12 +32,12 @@
 
     |KEY|描述|接受值|值类型|默认值|
     |-|-|-|
-    ````import
+    ````preset
     @id:formConfigTable
     ````
     |rows|段落输入框的高度对应的行数|大于0的数字|Number|`4`|
 
-    ````import
+    ````preset
     @id:formConfigDemo
     @uikey:textarea
     @configDefaultValue:'默认值'
@@ -53,7 +53,7 @@
 
     [[[方法]]]
 
-    ````import
+    ````preset
     @id:formMethod
     @uikey:textarea
     @methodValue:'Jim'
@@ -136,7 +136,7 @@
     });
     ````
 
-    ````import
+    ````preset
     @id:formEvent
     @uikey:textarea
     @eventValue:'Jim'

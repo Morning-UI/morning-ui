@@ -22,7 +22,7 @@
 
     [[[声明]]]
 
-    ````import
+    ````preset
     @id:formStatementWithStyle
     @uikey:switch
     @statementDefaultValue:true
@@ -32,12 +32,12 @@
 
     |KEY|描述|接受值|值类型|默认值|
     |-|-|-|
-    ````import
+    ````preset
     @id:formConfigTable
     ````
     |auto-hide-name|当表档名为空时自动隐藏表单名部分|`true`<br>`false`|Boolean|`false`|
 
-    ````import
+    ````preset
     @id:formConfigDemo
     @uikey:switch
     @configDefaultValue:true
@@ -56,7 +56,7 @@
 
     [[[方法]]]
 
-    ````import
+    ````preset
     @id:formMethod
     @uikey:switch
     @methodValue:true
@@ -83,7 +83,7 @@
 
     [[[事件]]]
 
-    ````import
+    ````preset
     @id:formEvent
     @uikey:switch
     @eventValue:true

@@ -35,7 +35,7 @@ window.Vue.component('doc-component-status', DocComponentStatus);
 
 let evals = [];
 
-let imports = {
+let presets = {
     formStatement : `
 #### 支持
 
@@ -688,7 +688,7 @@ let parser = (text, el) => {
 
     let patt = /````(html|js|css|vue|)((\n[\t ]*[\@a-zA-Z0-9\:\.\,\|]+)*)\n((.|\n)*?)(\n)*([ \t]*)````/g;
     let varpatt = /````(html|js|css)\n(\@var\:([a-zA-Z0-9]+))\n((.|\n)+?)\n([ \t]*)````/g;
-    let importpatt = /````(import)((\n[\t ]*[a-zA-Z0-9@'"[\]?<>/\-_{}=:.,|!()\u4e00-\u9fa5 ]+)*)\n((.|\n)*?)(\n)*([ \t]*)````/g;
+    let presetpatt = /````(preset)((\n[\t ]*[a-zA-Z0-9@'"[\]?<>/\-_{}=:.,|!()\u4e00-\u9fa5 ]+)*)\n((.|\n)*?)(\n)*([ \t]*)````/g;
     let result;
     let vars = {
         js : {},
@@ -697,7 +697,7 @@ let parser = (text, el) => {
     let blocks = [];
     let vueContext = {};
 
-    while ((result = importpatt.exec(text)) !== null) {
+    while ((result = presetpatt.exec(text)) !== null) {
 
         let rdata = result[2].replace(/^\n/, '').split('\n');
         let id = rdata[0].split(':')[1];
@@ -717,10 +717,10 @@ let parser = (text, el) => {
 
         }
 
-        let content = imports[id];
+        let content = presets[id];
 
         text = text.slice(0, result.index - 1) + content + text.slice(result.index + result[0].length, text.length);
-        importpatt.lastIndex = 0;
+        presetpatt.lastIndex = 0;
 
     }
 

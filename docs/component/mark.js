@@ -992,7 +992,7 @@ window.Vue.component('doc-component-status', _DocComponentStatus2.default);
 
 var evals = [];
 
-var imports = {
+var presets = {
     formStatement: '\n#### \u652F\u6301\n\n|\u7C7B\u578B|\u652F\u6301|\u9ED8\u8BA4|\n|-|-|-|\n|\u5C3A\u5BF8|\u4E0D\u652F\u6301|-|\n|\u8272\u5F69|\u4E0D\u652F\u6301|-|\n|\u72B6\u6001|`normal`<br/>`disabled`|`normal`|\n\n\n#### \u72B6\u6001\n\n````html\n@state:normal,disabled\n<div style="width:300px;">\n    <ui-{$uikey} {$stateKey} :default-value="{$&statementDefaultValue}" form-name="{$&stateName}" {$&statementMoreAttr}>{$&statementSlot}</ui-{$uikey}>\n</div>\n<br>\n````\n',
     formStatementWithStyle: '\n#### \u652F\u6301\n\n|\u7C7B\u578B|\u652F\u6301|\u9ED8\u8BA4|\n|-|-|-|\n|\u5C3A\u5BF8|\u4E0D\u652F\u6301|-|\n|\u8272\u5F69|\u5168\u90E8|`theme`|\n|\u72B6\u6001|`normal`<br/>`disabled`|`normal`|\n\n\n#### \u8272\u5F69\n\n````html\n@color:theme\n@color:feature\n@color:black\n@color:blue\n@color:silver\n@color:gray\n<div style="width:300px;">\n    <ui-{$uikey} {$colorKey} :default-value="{$&statementDefaultValue}" form-name="{$&colorName}" {$&statementMoreAttr}>{$&statementSlot}</ui-{$uikey}>\n</div>\n<br>\n````\n\n#### \u72B6\u6001\n\n````html\n@state:normal,disabled\n<div style="width:300px;">\n    <ui-{$uikey} {$stateKey} :default-value="{$&statementDefaultValue}" form-name="{$&stateName}" {$&statementMoreAttr}>{$&statementSlot}</ui-{$uikey}>\n</div>\n<br>\n````\n',
     formConfigDemo: '\n#### form-name\n\n````html\n@formConfig\n<div style="width:300px;">\n    <ui-{$uikey} form-name="{$formName}" {$&configMoreAttr}>{$&configSlot}</ui-{$uikey}>\n</div>\n````\n\n#### form-key\n\n````html\n@formConfig\n<div style="width:300px;">\n    <ui-{$uikey} form-name="{$formName}" form-key="{$formKey}" {$&configMoreAttr}>{$&configSlot}</ui-{$uikey}>\n</div>\n````\n\n#### group\n\n\u8BBE\u7F6E\u5355\u4E2A\u7EC4\uFF1A\n\n````html\n@formConfig\n<div style="width:300px;">\n    <!-- \u8BBE\u7F6E\u5355\u4E2A\u7EC4 -->\n    <ui-{$uikey} form-name="{$formName}" form-key="{$formKey}" group="{$formGroupOne}" {$&configMoreAttr}>{$&configSlot}</ui-{$uikey}>\n</div>\n````\n\n\u8BBE\u7F6E\u591A\u4E2A\u7EC4\uFF1A\n\n````vue\n@use:html.demoGroup,js.demoGroup|@formConfig\n````\n\n````html\n@var:demoGroup\n<div style="width:300px;">\n    <!-- \u8BBE\u7F6E\u591A\u4E2A\u7EC4 -->\n    <ui-{$uikey} form-name="{$formName}" form-key="{$formKey}" :group="group" {$&configMoreAttr}>{$&configSlot}</ui-{$uikey}>\n</div>\n````\n\n````js\n@var:demoGroup\nnew Vue({\n    el : \'{$el}\',\n    template : \'{$template}\',\n    data : {\n        group : [\'group1\', \'group2\', \'group3\']\n    }\n});\n````\n\n#### default-value\n\n````html\n@formConfig\n<div style="width:300px;">\n    <ui-{$uikey} form-name="{$formName}" :default-value="{$&configDefaultValue}" {$&configMoreAttr}>{$&configSlot}</ui-{$uikey}>\n</div>\n````\n\n#### hide-name\n\n\u9690\u85CF\u540E\u8868\u5355\u9ED8\u8BA4\u4F4D\u7F6E\u7684\u540D\u5B57\u4E0D\u4F1A\u663E\u793A\uFF0C\u53EF\u4EE5\u5728\u5176\u4ED6\u5730\u65B9\u8BBE\u7F6E\u8868\u5355\u540D\u3002\n\n````html\n@formConfig\n<div style="width:300px;">\n    <p>{$formName}</p>\n    <ui-{$uikey} form-name="{$formName}" hide-name {$&configMoreAttr}>{$&configSlot}</ui-{$uikey}>\n</div>\n````\n    ',
@@ -1194,7 +1194,7 @@ var parser = function parser(text, el) {
 
     var patt = /````(html|js|css|vue|)((\n[\t ]*[\@a-zA-Z0-9\:\.\,\|]+)*)\n((.|\n)*?)(\n)*([ \t]*)````/g;
     var varpatt = /````(html|js|css)\n(\@var\:([a-zA-Z0-9]+))\n((.|\n)+?)\n([ \t]*)````/g;
-    var importpatt = /````(import)((\n[\t ]*[a-zA-Z0-9@'"[\]?<>/\-_{}=:.,|!()\u4e00-\u9fa5 ]+)*)\n((.|\n)*?)(\n)*([ \t]*)````/g;
+    var presetpatt = /````(preset)((\n[\t ]*[a-zA-Z0-9@'"[\]?<>/\-_{}=:.,|!()\u4e00-\u9fa5 ]+)*)\n((.|\n)*?)(\n)*([ \t]*)````/g;
     var result = void 0;
     var vars = {
         js: {},
@@ -1203,7 +1203,7 @@ var parser = function parser(text, el) {
     var blocks = [];
     var vueContext = {};
 
-    while ((result = importpatt.exec(text)) !== null) {
+    while ((result = presetpatt.exec(text)) !== null) {
 
         var rdata = result[2].replace(/^\n/, '').split('\n');
         var id = rdata[0].split(':')[1];
@@ -1243,10 +1243,10 @@ var parser = function parser(text, el) {
             }
         }
 
-        var content = imports[id];
+        var content = presets[id];
 
         text = text.slice(0, result.index - 1) + content + text.slice(result.index + result[0].length, text.length);
-        importpatt.lastIndex = 0;
+        presetpatt.lastIndex = 0;
     }
 
     while ((result = varpatt.exec(text)) !== null) {

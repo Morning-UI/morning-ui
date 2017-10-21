@@ -42,7 +42,7 @@
 
     [[[声明]]]
 
-    ````import
+    ````preset
     @id:formStatement
     @uikey:textinput
     @statementDefaultValue:''
@@ -52,14 +52,14 @@
 
     |KEY|描述|接受值|值类型|默认值|
     |-|-|-|
-    ````import
+    ````preset
     @id:formConfigTable
     ````
     |hide-value|表单的数值不可见，一般用于密码表单|`true`<br>`false`|Boolean|`false`|
     |prepend|表单前缀|任意字符串|String|`undefined`|
     |append|表单后缀|任意字符串|String|`undefined`|
 
-    ````import
+    ````preset
     @id:formConfigDemo
     @uikey:textinput
     @configDefaultValue:'默认值'
@@ -93,7 +93,7 @@
 
     [[[方法]]]
 
-    ````import
+    ````preset
     @id:formMethod
     @uikey:textinput
     @methodValue:'Jim'
@@ -158,7 +158,7 @@
     });
     ````
 
-    ````import
+    ````preset
     @id:formEvent
     @uikey:textinput
     @eventValue:'Jim'

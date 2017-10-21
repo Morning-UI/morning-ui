@@ -983,7 +983,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "type": "text/markdown"
     }
-  }, [_vm._v("\n# 开关 `<ui-switch>`\n\n<doc-component-status page=\"switch\"></doc-component-status>\n\n[[[基础]]]\n\n定义开关，开关只存在布尔状态。\n\n#### 使用\n\n````html\n<div style=\"width:300px;\">\n    <ui-switch form-name=\"姓名\"></ui-switch>\n</div>\n````\n\n[[[声明]]]\n\n````import\n@id:formStatementWithStyle\n@uikey:switch\n@statementDefaultValue:true\n````\n\n[[[配置]]]\n\n|KEY|描述|接受值|值类型|默认值|\n|-|-|-|\n````import\n@id:formConfigTable\n````\n|auto-hide-name|当表档名为空时自动隐藏表单名部分|`true`<br>`false`|Boolean|`false`|\n\n````import\n@id:formConfigDemo\n@uikey:switch\n@configDefaultValue:true\n````\n\n#### auto-hide-name\n\n第二个组件表单名为空，名字部分被隐藏。\n\n````html\n<div style=\"width:300px;\">\n    <ui-switch form-name=\"姓名\" auto-hide-name></ui-switch>\n    <ui-switch form-name=\"\" auto-hide-name></ui-switch>\n</div>\n````\n\n[[[方法]]]\n\n````import\n@id:formMethod\n@uikey:switch\n@methodValue:true\n@methodDefaultValue:true\n````\n\n#### toggle([open])\n\n切换下拉按钮组是否显示。\n\n|KEY|可选|描述|接受值|值类型|默认值|\n|-|-|-|-|-|-|\n|open|YES|指定开关切换到开启或关闭，若不设置则切换到相反的状态。|`undefined`<br>`true`<br>`false`|`Undefined`<br>`Boolean`|`undefined`|\n\n````html\n<div style=\"width:300px;\">\n    <ui-switch ref=\"demo1\" form-name=\"姓名\"></ui-switch>\n    <br><br> \n    <ui-link js=\"javascript:morning.findVM('demo1').toggle();\">切换相反状态</ui-link>\n    <ui-link js=\"javascript:morning.findVM('demo1').toggle(true);\">切换至开启</ui-link>\n    <ui-link js=\"javascript:morning.findVM('demo1').toggle(false);\">切换至关闭</ui-link>\n</div>\n````\n\n[[[事件]]]\n\n````import\n@id:formEvent\n@uikey:switch\n@eventValue:true\n````\n\n[[[表单值]]]\n\n#### 值类型\n\n此表单返回值类型包含:\n\n- `Boolean` : 布尔值\n\n任何其他类型的数值，都会被尝试转换成这些类型。\n\n#### 值格式\n\n`true`或`false`\n\n#### 默认值\n\n`false`\n\n#### 输入/输出示例\n\n````html\n@formValueType\n<div>\n    <p>{$valueType}类型</p>\n    <div style=\"width:300px;\">\n        <ui-switch ref=\"demoType{$valueType}\"></ui-switch>\n    </div>\n    <br>\n    <ui-link js=\"window.morning.findVM('demoType{$valueType}').set({$&valueContent})\">设置{$valueType}类型</ui-link>\n    <ui-link js=\"alert(window.morning.findVM('demoType{$valueType}').get())\">获取表单JSON值</ui-link>\n</div>\n<br>\n<br>\n````\n\n[[[单元测试]]]\n\n<iframe src=\"/report/coverage/lib/components/switch/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n\n")])])
+  }, [_vm._v("\n# 开关 `<ui-switch>`\n\n<doc-component-status page=\"switch\"></doc-component-status>\n\n[[[基础]]]\n\n定义开关，开关只存在布尔状态。\n\n#### 使用\n\n````html\n<div style=\"width:300px;\">\n    <ui-switch form-name=\"姓名\"></ui-switch>\n</div>\n````\n\n[[[声明]]]\n\n````preset\n@id:formStatementWithStyle\n@uikey:switch\n@statementDefaultValue:true\n````\n\n[[[配置]]]\n\n|KEY|描述|接受值|值类型|默认值|\n|-|-|-|\n````preset\n@id:formConfigTable\n````\n|auto-hide-name|当表档名为空时自动隐藏表单名部分|`true`<br>`false`|Boolean|`false`|\n\n````preset\n@id:formConfigDemo\n@uikey:switch\n@configDefaultValue:true\n````\n\n#### auto-hide-name\n\n第二个组件表单名为空，名字部分被隐藏。\n\n````html\n<div style=\"width:300px;\">\n    <ui-switch form-name=\"姓名\" auto-hide-name></ui-switch>\n    <ui-switch form-name=\"\" auto-hide-name></ui-switch>\n</div>\n````\n\n[[[方法]]]\n\n````preset\n@id:formMethod\n@uikey:switch\n@methodValue:true\n@methodDefaultValue:true\n````\n\n#### toggle([open])\n\n切换下拉按钮组是否显示。\n\n|KEY|可选|描述|接受值|值类型|默认值|\n|-|-|-|-|-|-|\n|open|YES|指定开关切换到开启或关闭，若不设置则切换到相反的状态。|`undefined`<br>`true`<br>`false`|`Undefined`<br>`Boolean`|`undefined`|\n\n````html\n<div style=\"width:300px;\">\n    <ui-switch ref=\"demo1\" form-name=\"姓名\"></ui-switch>\n    <br><br> \n    <ui-link js=\"javascript:morning.findVM('demo1').toggle();\">切换相反状态</ui-link>\n    <ui-link js=\"javascript:morning.findVM('demo1').toggle(true);\">切换至开启</ui-link>\n    <ui-link js=\"javascript:morning.findVM('demo1').toggle(false);\">切换至关闭</ui-link>\n</div>\n````\n\n[[[事件]]]\n\n````preset\n@id:formEvent\n@uikey:switch\n@eventValue:true\n````\n\n[[[表单值]]]\n\n#### 值类型\n\n此表单返回值类型包含:\n\n- `Boolean` : 布尔值\n\n任何其他类型的数值，都会被尝试转换成这些类型。\n\n#### 值格式\n\n`true`或`false`\n\n#### 默认值\n\n`false`\n\n#### 输入/输出示例\n\n````html\n@formValueType\n<div>\n    <p>{$valueType}类型</p>\n    <div style=\"width:300px;\">\n        <ui-switch ref=\"demoType{$valueType}\"></ui-switch>\n    </div>\n    <br>\n    <ui-link js=\"window.morning.findVM('demoType{$valueType}').set({$&valueContent})\">设置{$valueType}类型</ui-link>\n    <ui-link js=\"alert(window.morning.findVM('demoType{$valueType}').get())\">获取表单JSON值</ui-link>\n</div>\n<br>\n<br>\n````\n\n[[[单元测试]]]\n\n<iframe src=\"/report/coverage/lib/components/switch/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n\n")])])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -1070,7 +1070,7 @@ window.Vue.component('doc-component-status', _DocComponentStatus2.default);
 
 var evals = [];
 
-var imports = {
+var presets = {
     formStatement: '\n#### \u652F\u6301\n\n|\u7C7B\u578B|\u652F\u6301|\u9ED8\u8BA4|\n|-|-|-|\n|\u5C3A\u5BF8|\u4E0D\u652F\u6301|-|\n|\u8272\u5F69|\u4E0D\u652F\u6301|-|\n|\u72B6\u6001|`normal`<br/>`disabled`|`normal`|\n\n\n#### \u72B6\u6001\n\n````html\n@state:normal,disabled\n<div style="width:300px;">\n    <ui-{$uikey} {$stateKey} :default-value="{$&statementDefaultValue}" form-name="{$&stateName}" {$&statementMoreAttr}>{$&statementSlot}</ui-{$uikey}>\n</div>\n<br>\n````\n',
     formStatementWithStyle: '\n#### \u652F\u6301\n\n|\u7C7B\u578B|\u652F\u6301|\u9ED8\u8BA4|\n|-|-|-|\n|\u5C3A\u5BF8|\u4E0D\u652F\u6301|-|\n|\u8272\u5F69|\u5168\u90E8|`theme`|\n|\u72B6\u6001|`normal`<br/>`disabled`|`normal`|\n\n\n#### \u8272\u5F69\n\n````html\n@color:theme\n@color:feature\n@color:black\n@color:blue\n@color:silver\n@color:gray\n<div style="width:300px;">\n    <ui-{$uikey} {$colorKey} :default-value="{$&statementDefaultValue}" form-name="{$&colorName}" {$&statementMoreAttr}>{$&statementSlot}</ui-{$uikey}>\n</div>\n<br>\n````\n\n#### \u72B6\u6001\n\n````html\n@state:normal,disabled\n<div style="width:300px;">\n    <ui-{$uikey} {$stateKey} :default-value="{$&statementDefaultValue}" form-name="{$&stateName}" {$&statementMoreAttr}>{$&statementSlot}</ui-{$uikey}>\n</div>\n<br>\n````\n',
     formConfigDemo: '\n#### form-name\n\n````html\n@formConfig\n<div style="width:300px;">\n    <ui-{$uikey} form-name="{$formName}" {$&configMoreAttr}>{$&configSlot}</ui-{$uikey}>\n</div>\n````\n\n#### form-key\n\n````html\n@formConfig\n<div style="width:300px;">\n    <ui-{$uikey} form-name="{$formName}" form-key="{$formKey}" {$&configMoreAttr}>{$&configSlot}</ui-{$uikey}>\n</div>\n````\n\n#### group\n\n\u8BBE\u7F6E\u5355\u4E2A\u7EC4\uFF1A\n\n````html\n@formConfig\n<div style="width:300px;">\n    <!-- \u8BBE\u7F6E\u5355\u4E2A\u7EC4 -->\n    <ui-{$uikey} form-name="{$formName}" form-key="{$formKey}" group="{$formGroupOne}" {$&configMoreAttr}>{$&configSlot}</ui-{$uikey}>\n</div>\n````\n\n\u8BBE\u7F6E\u591A\u4E2A\u7EC4\uFF1A\n\n````vue\n@use:html.demoGroup,js.demoGroup|@formConfig\n````\n\n````html\n@var:demoGroup\n<div style="width:300px;">\n    <!-- \u8BBE\u7F6E\u591A\u4E2A\u7EC4 -->\n    <ui-{$uikey} form-name="{$formName}" form-key="{$formKey}" :group="group" {$&configMoreAttr}>{$&configSlot}</ui-{$uikey}>\n</div>\n````\n\n````js\n@var:demoGroup\nnew Vue({\n    el : \'{$el}\',\n    template : \'{$template}\',\n    data : {\n        group : [\'group1\', \'group2\', \'group3\']\n    }\n});\n````\n\n#### default-value\n\n````html\n@formConfig\n<div style="width:300px;">\n    <ui-{$uikey} form-name="{$formName}" :default-value="{$&configDefaultValue}" {$&configMoreAttr}>{$&configSlot}</ui-{$uikey}>\n</div>\n````\n\n#### hide-name\n\n\u9690\u85CF\u540E\u8868\u5355\u9ED8\u8BA4\u4F4D\u7F6E\u7684\u540D\u5B57\u4E0D\u4F1A\u663E\u793A\uFF0C\u53EF\u4EE5\u5728\u5176\u4ED6\u5730\u65B9\u8BBE\u7F6E\u8868\u5355\u540D\u3002\n\n````html\n@formConfig\n<div style="width:300px;">\n    <p>{$formName}</p>\n    <ui-{$uikey} form-name="{$formName}" hide-name {$&configMoreAttr}>{$&configSlot}</ui-{$uikey}>\n</div>\n````\n    ',
@@ -1272,7 +1272,7 @@ var parser = function parser(text, el) {
 
     var patt = /````(html|js|css|vue|)((\n[\t ]*[\@a-zA-Z0-9\:\.\,\|]+)*)\n((.|\n)*?)(\n)*([ \t]*)````/g;
     var varpatt = /````(html|js|css)\n(\@var\:([a-zA-Z0-9]+))\n((.|\n)+?)\n([ \t]*)````/g;
-    var importpatt = /````(import)((\n[\t ]*[a-zA-Z0-9@'"[\]?<>/\-_{}=:.,|!()\u4e00-\u9fa5 ]+)*)\n((.|\n)*?)(\n)*([ \t]*)````/g;
+    var presetpatt = /````(preset)((\n[\t ]*[a-zA-Z0-9@'"[\]?<>/\-_{}=:.,|!()\u4e00-\u9fa5 ]+)*)\n((.|\n)*?)(\n)*([ \t]*)````/g;
     var result = void 0;
     var vars = {
         js: {},
@@ -1281,7 +1281,7 @@ var parser = function parser(text, el) {
     var blocks = [];
     var vueContext = {};
 
-    while ((result = importpatt.exec(text)) !== null) {
+    while ((result = presetpatt.exec(text)) !== null) {
 
         var rdata = result[2].replace(/^\n/, '').split('\n');
         var id = rdata[0].split(':')[1];
@@ -1321,10 +1321,10 @@ var parser = function parser(text, el) {
             }
         }
 
-        var content = imports[id];
+        var content = presets[id];
 
         text = text.slice(0, result.index - 1) + content + text.slice(result.index + result[0].length, text.length);
-        importpatt.lastIndex = 0;
+        presetpatt.lastIndex = 0;
     }
 
     while ((result = varpatt.exec(text)) !== null) {
