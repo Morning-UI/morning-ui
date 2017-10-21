@@ -1,4 +1,4 @@
-webpackJsonp([11],{
+webpackJsonp([12],{
 
 /***/ 0:
 /***/ (function(module, exports) {
@@ -109,6 +109,62 @@ module.exports = Vue;
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 103:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(198);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_a70d9b40_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(607);
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(351)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+
+/* template */
+
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default.a,
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_a70d9b40_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__["a" /* default */],
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "src/docs/pages/guide/introduction/index.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] index.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-a70d9b40", Component.options)
+  } else {
+    hotAPI.reload("data-v-a70d9b40", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
+
 
 /***/ }),
 
@@ -466,7 +522,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 173:
+/***/ 198:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -588,7 +644,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 250:
+/***/ 275:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -598,7 +654,7 @@ var _vue = __webpack_require__(1);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _index = __webpack_require__(96);
+var _index = __webpack_require__(103);
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -751,7 +807,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 326:
+/***/ 351:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -869,35 +925,6 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
      require("vue-hot-reload-api").rerender("data-v-6dc34f74", esExports)
-  }
-}
-
-/***/ }),
-
-/***/ 580:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('doc-guide', {
-    attrs: {
-      "page": _vm.page,
-      "hasPadding": true
-    }
-  }, [_c('script', {
-    attrs: {
-      "type": "text/markdown"
-    }
-  }, [_vm._v("\n\n# 介绍\n\n### Morning UI是什么？\n\nMorning UI是一套桌面Web端的UI库，基于[Vue.js](https://vuejs.org/)。\n\n### 快速开始\n\n首先确保你的页面采用了Vue.js，然后只需简单三步即可使用Morning UI:\n\n1. [下载Morning UI](/dist/morning-ui.latest.gzip)\n2. 在页面中引用JS和CSS：\n    - `<script type=\"text/javascript\" src=\"path-to-morning/morning-ui.js\">&lt;/script>`\n    - `<style rel=\"stylesheet\" link=\"path-to-morning/morning-ui.css\">&lt;/style>`\n3. 在Vue的模板中使用：`<ui-btn>Hello Mroning.</ui-btn>`\n\n然后即可看到：\n\n<ui-btn>Hello Mroning.</ui-btn>\n\n恭喜你使用了第一个Morning UI组件。\n\n### 接下来\n\n通过CDN、Webpack或更多途径使用Morning UI，见：[安装](/guide/install.html)\n\n使用Morning UI的更多特性，见：[使用](/guide/usage.html)\n\n为Morning UI贡献自己的力量，见：[成为贡献者](/guide/becontributor.html)\n\n")])])
-}
-var staticRenderFns = []
-render._withStripped = true
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-a70d9b40", esExports)
   }
 }
 
@@ -1976,6 +2003,35 @@ module.exports = exports['default'];
 
 /***/ }),
 
+/***/ 607:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('doc-guide', {
+    attrs: {
+      "page": _vm.page,
+      "hasPadding": true
+    }
+  }, [_c('script', {
+    attrs: {
+      "type": "text/markdown"
+    }
+  }, [_vm._v("\n\n# 介绍\n\n### Morning UI是什么？\n\nMorning UI是一套桌面Web端的UI库，基于[Vue.js](https://vuejs.org/)。\n\n### 快速开始\n\n首先确保你的页面采用了Vue.js，然后只需简单三步即可使用Morning UI:\n\n1. [下载Morning UI](/dist/morning-ui.latest.gzip)\n2. 在页面中引用JS和CSS：\n    - `<script type=\"text/javascript\" src=\"path-to-morning/morning-ui.js\">&lt;/script>`\n    - `<style rel=\"stylesheet\" link=\"path-to-morning/morning-ui.css\">&lt;/style>`\n3. 在Vue的模板中使用：`<ui-btn>Hello Mroning.</ui-btn>`\n\n然后即可看到：\n\n<ui-btn>Hello Mroning.</ui-btn>\n\n恭喜你使用了第一个Morning UI组件。\n\n### 接下来\n\n通过CDN、Webpack或更多途径使用Morning UI，见：[安装](/guide/install.html)\n\n使用Morning UI的更多特性，见：[使用](/guide/usage.html)\n\n为Morning UI贡献自己的力量，见：[成为贡献者](/guide/becontributor.html)\n\n")])])
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-a70d9b40", esExports)
+  }
+}
+
+/***/ }),
+
 /***/ 7:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2325,62 +2381,6 @@ module.exports = exports['default'];
 
 // removed by extract-text-webpack-plugin
 
-/***/ }),
-
-/***/ 96:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(173);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_a70d9b40_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(580);
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(326)
-}
-var normalizeComponent = __webpack_require__(0)
-/* script */
-
-/* template */
-
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_a70d9b40_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__["a" /* default */],
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "src/docs/pages/guide/introduction/index.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] index.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-a70d9b40", Component.options)
-  } else {
-    hotAPI.reload("data-v-a70d9b40", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
-
-
 /***/ })
 
-},[250]);
+},[275]);

@@ -1,4 +1,4 @@
-webpackJsonp([7],{
+webpackJsonp([8],{
 
 /***/ 0:
 /***/ (function(module, exports) {
@@ -112,18 +112,18 @@ module.exports = Vue;
 
 /***/ }),
 
-/***/ 100:
+/***/ 107:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(177);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(202);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_dfb8198c_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(588);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_dfb8198c_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(615);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(334)
+  __webpack_require__(359)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
@@ -522,7 +522,57 @@ if (false) {
 
 /***/ }),
 
-/***/ 177:
+/***/ 2:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+    props: {
+        category: String
+    },
+    computed: {
+        isIndex: function isIndex() {
+            return this.category === 'home';
+        },
+        isGuide: function isGuide() {
+            return this.category === 'guide';
+        },
+        isComponent: function isComponent() {
+            return this.category === 'component';
+        },
+        isCustom: function isCustom() {
+            return this.category === 'custom';
+        }
+    }
+};
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 202:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -650,57 +700,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 2:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-exports.default = {
-    props: {
-        category: String
-    },
-    computed: {
-        isIndex: function isIndex() {
-            return this.category === 'home';
-        },
-        isGuide: function isGuide() {
-            return this.category === 'guide';
-        },
-        isComponent: function isComponent() {
-            return this.category === 'component';
-        },
-        isCustom: function isCustom() {
-            return this.category === 'custom';
-        }
-    }
-};
-module.exports = exports['default'];
-
-/***/ }),
-
-/***/ 254:
+/***/ 279:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -710,7 +710,7 @@ var _vue = __webpack_require__(1);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _index = __webpack_require__(100);
+var _index = __webpack_require__(107);
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -863,7 +863,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 334:
+/***/ 359:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -981,35 +981,6 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
      require("vue-hot-reload-api").rerender("data-v-6dc34f74", esExports)
-  }
-}
-
-/***/ }),
-
-/***/ 588:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('doc-guide', {
-    attrs: {
-      "page": _vm.page,
-      "hasPadding": true
-    }
-  }, [_c('script', {
-    attrs: {
-      "type": "text/markdown"
-    }
-  }, [_vm._v("\n# 反馈问题\n\nMorningUI采用Github Issue管理反馈的问题，如果你在使用过程中发现Bug或希望支持新的功能，可以通过[Github Issue](https://github.com/EarlyH/morning-ui/issues)提出。\n\n为了便于开发者快速了解你的诉求，Issue请按照以下模板填写：\n\n#### BUG报告\n\n```\n### 问题类型\n\nBUG报告\n\n### 版本\n\n(如果是BUG报告需要填写出现问题的版本)\n\n### 问题\n\n(如果是BUG报告需要填写)\n\n### 复现环境及步骤\n\n(如果是BUG报告需要填写)\n\n### 期望的时间\n\n(填写BUG解决或功能支持的期望时间)\n\n### 其他\n\n(填写更多你想阐述的内容)\n\n```\n    \n#### 功能请求\n\n```\n### 问题类型\n\n功能请求\n\n### 功能描述\n\n(如果是功能请求需要填写)\n\n### 解决了什么问题\n\n(如果是功能请求需要填写)\n\n### 期望的时间\n\n(填写BUG解决或功能支持的期望时间)\n\n### 其他\n\n(填写更多你想阐述的内容)\n\n```\n\n填写完毕后，请根据问题的类型添加对应的标签：\n\n- bug report : BUG报告\n- feature request : 功能请求\n\n### 跟踪进展\n\n当你通过Issue反馈问题后，MorningUI的开发者会对Issue添加标签，你可以根据标签的情况了解进展：\n\n- need repro : 需要提供更多的复现内容\n- pending : 待定\n- wont solve : 暂时不会解决\n- bug confirmed : 报告的bug被开发者确认\n- intend to solve : 计划解决\n- in progress : 解决中\n- in review : 审查中\n- launched : 已解决并发布\n\n### 其他\n\n除了反馈问题外，还会有一些讨论或开发性质的Issue：\n\n- important : 重要\n- discussion : 讨论\n- document : 文档相关\n- feature : 新功能开发\n- fix : 修复开发\n\n")])])
-}
-var staticRenderFns = []
-render._withStripped = true
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-dfb8198c", esExports)
   }
 }
 
@@ -2088,6 +2059,35 @@ module.exports = exports['default'];
 
 /***/ }),
 
+/***/ 615:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('doc-guide', {
+    attrs: {
+      "page": _vm.page,
+      "hasPadding": true
+    }
+  }, [_c('script', {
+    attrs: {
+      "type": "text/markdown"
+    }
+  }, [_vm._v("\n# 反馈问题\n\nMorningUI采用Github Issue管理反馈的问题，如果你在使用过程中发现Bug或希望支持新的功能，可以通过[Github Issue](https://github.com/EarlyH/morning-ui/issues)提出。\n\n为了便于开发者快速了解你的诉求，Issue请按照以下模板填写：\n\n#### BUG报告\n\n```\n### 问题类型\n\nBUG报告\n\n### 版本\n\n(如果是BUG报告需要填写出现问题的版本)\n\n### 问题\n\n(如果是BUG报告需要填写)\n\n### 复现环境及步骤\n\n(如果是BUG报告需要填写)\n\n### 期望的时间\n\n(填写BUG解决或功能支持的期望时间)\n\n### 其他\n\n(填写更多你想阐述的内容)\n\n```\n    \n#### 功能请求\n\n```\n### 问题类型\n\n功能请求\n\n### 功能描述\n\n(如果是功能请求需要填写)\n\n### 解决了什么问题\n\n(如果是功能请求需要填写)\n\n### 期望的时间\n\n(填写BUG解决或功能支持的期望时间)\n\n### 其他\n\n(填写更多你想阐述的内容)\n\n```\n\n填写完毕后，请根据问题的类型添加对应的标签：\n\n- bug report : BUG报告\n- feature request : 功能请求\n\n### 跟踪进展\n\n当你通过Issue反馈问题后，MorningUI的开发者会对Issue添加标签，你可以根据标签的情况了解进展：\n\n- need repro : 需要提供更多的复现内容\n- pending : 待定\n- wont solve : 暂时不会解决\n- bug confirmed : 报告的bug被开发者确认\n- intend to solve : 计划解决\n- in progress : 解决中\n- in review : 审查中\n- launched : 已解决并发布\n\n### 其他\n\n除了反馈问题外，还会有一些讨论或开发性质的Issue：\n\n- important : 重要\n- discussion : 讨论\n- document : 文档相关\n- feature : 新功能开发\n- fix : 修复开发\n\n")])])
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-dfb8198c", esExports)
+  }
+}
+
+/***/ }),
+
 /***/ 7:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2439,4 +2439,4 @@ module.exports = exports['default'];
 
 /***/ })
 
-},[254]);
+},[279]);

@@ -7,6 +7,7 @@ const ExtractTextPlugin             = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin             = require('html-webpack-plugin');
 
 let pathProjectRoot = path.resolve(__dirname, '../');
+let pathPackage = path.resolve(pathProjectRoot, 'package.json');
 let pathNpm = path.resolve(pathProjectRoot, 'node_modules');
 let pathBuild = path.resolve(pathProjectRoot, 'build');
 let pathDist = path.resolve(pathProjectRoot, 'dist');
@@ -308,7 +309,8 @@ docsConfig = {
         contentBase : [
             pathDocs,
             pathDist,
-            pathReport
+            pathReport,
+            pathPackage
         ],
         compress : true,
         hot : false

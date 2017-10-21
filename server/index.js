@@ -28,6 +28,9 @@ app
     .use(mount('/', serve('./docs', {
         maxage : CACHE_MAXAGE
     })))
+    .use(mount('/', serve('./package.json', {
+        maxage : CACHE_MAXAGE
+    })))
     .use(router.routes())
     .use(router.allowedMethods())
     .listen(WEB_PORT);

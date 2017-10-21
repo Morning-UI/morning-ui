@@ -14,19 +14,58 @@
 
     ### 获取MorningUI
 
-    MorningUI包含两个文件(JS及CSS)。
+    Morning UI的构建版本位于`dist`目录，包含四个文件：
 
-    你可以直接下载MorningUI使用：
+    - `morning-ui.js` : 开发版本JS
+    - `morning-ui.css` : 开发版本CSS
+    - `morning-ui.min.js` : 生产版本JS
+    - `morning-ui.min.css` : 生产版本CSS
 
-    <ui-btn m >开发版本</ui-btn> <ui-btn m>生产版本</ui-btn>
+    你可以通过两种方式获取：
 
-    也可以通过npm进行安装：
+    ##### 直接下载
+
+    <ui-btn m new-tab id="download">下载</ui-btn>
+    
+    ##### NPM安装
 
     `npm install morning-ui`
+    
+    ##### CDN
+
+    Coming soon.
 
     ### 页面引用
 
-    获取MorningUI后分别使用`<script>`及`<style>`标签在页面中引用。MorningUI会在全局注册`window.morning`变量。
+    ##### 使用标签
+
+    获取Morning UI后分别使用`<script>`及`<style>`标签在页面中引用：
+
+    ```html
+    <link href="./path-to-morning/morning-ui.css" rel="stylesheet">
+    <script src="/path-to-morning/morning-ui.js">&lt;/script>
+    ```
+
+    ##### 使用模块打包器
+
+    如果你使用了类似[Webpack](https://webpack.js.org/)或[Browserify](http://browserify.org/)之类的模块打包工具，你可以使用`require`或`import`等方式引用。
+    
+    下面拿[Webpack](https://webpack.js.org/)举例，如果你下载了Morning UI并放在了某个目录，直接从那个目录引入即可：
+
+    ```html
+    import './path-to-morning/morning-ui.js';
+    import './path-to-morning/morning-ui.css';
+    ```
+
+    如果你通过NPM安装：
+
+    ```html
+    import 'morning-ui';
+    ```
+    
+    ### 全局变量
+
+    无论你采用哪种方式引用Morning UI，都会在全局注册`window.morning`变量。
 
     ### 更多
 
@@ -44,18 +83,39 @@
 </template>
  
 <script>
+import axios                       from 'axios';
 import DocGuide                    from 'Docs/common/DocGuide.vue';
 
 export default {
     data : function () {
 
         return {
-            page : 'install'
+            page : 'install',
+            version : '-'
         };
 
     },
     components : {
         'doc-guide' : DocGuide
+    },
+    mounted : function () {
+    
+        axios.get('/package.json')
+        .then(response => {
+    
+            let version = response.data.version;
+            let $download = this.$el.querySelector('#download');
+
+            $download._vm.setConf('link', `https://github.com/EarlyH/morning-ui/archive/.${version}.zip`);
+            $download.innerText = `下载v${version}`;
+
+        })
+        .catch(error => {
+
+            throw new Error(error);
+
+        });
+
     }
 };
 </script>

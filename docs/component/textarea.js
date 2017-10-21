@@ -377,7 +377,96 @@ if (false) {
 
 /***/ }),
 
-/***/ 153:
+/***/ 16:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('ul', {
+    staticClass: "submenu"
+  }, _vm._l((_vm.currentMenu), function(link, name) {
+    return _c('li', [(link === '/' + _vm.category + '/' + _vm.page + '.html') ? [(typeof link === 'string') ? _c('a', {
+      staticClass: "current",
+      attrs: {
+        "href": link
+      },
+      domProps: {
+        "innerHTML": _vm._s(name)
+      }
+    }) : _c('p', {
+      staticClass: "title",
+      domProps: {
+        "innerHTML": _vm._s(name)
+      }
+    })] : [(typeof link === 'string') ? _c('a', {
+      attrs: {
+        "href": link
+      },
+      domProps: {
+        "innerHTML": _vm._s(name)
+      }
+    }) : _c('p', {
+      staticClass: "title",
+      domProps: {
+        "innerHTML": _vm._s(name)
+      }
+    })]], 2)
+  }))
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-3d3ae136", esExports)
+  }
+}
+
+/***/ }),
+
+/***/ 17:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('doc-header', {
+    attrs: {
+      "category": _vm.category
+    }
+  }), _vm._v(" "), _c('div', {
+    staticClass: "body"
+  }, [_c('doc-submenu', {
+    attrs: {
+      "category": _vm.category,
+      "page": _vm.page
+    }
+  }), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "docmd",
+      rawName: "v-docmd"
+    }],
+    staticClass: "content markdown-body",
+    class: {
+      padding: _vm.hasPadding
+    }
+  }, [_vm._t("default")], 2)], 1)], 1)
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-6f53ddca", esExports)
+  }
+}
+
+/***/ }),
+
+/***/ 178:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -595,95 +684,6 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 16:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('ul', {
-    staticClass: "submenu"
-  }, _vm._l((_vm.currentMenu), function(link, name) {
-    return _c('li', [(link === '/' + _vm.category + '/' + _vm.page + '.html') ? [(typeof link === 'string') ? _c('a', {
-      staticClass: "current",
-      attrs: {
-        "href": link
-      },
-      domProps: {
-        "innerHTML": _vm._s(name)
-      }
-    }) : _c('p', {
-      staticClass: "title",
-      domProps: {
-        "innerHTML": _vm._s(name)
-      }
-    })] : [(typeof link === 'string') ? _c('a', {
-      attrs: {
-        "href": link
-      },
-      domProps: {
-        "innerHTML": _vm._s(name)
-      }
-    }) : _c('p', {
-      staticClass: "title",
-      domProps: {
-        "innerHTML": _vm._s(name)
-      }
-    })]], 2)
-  }))
-}
-var staticRenderFns = []
-render._withStripped = true
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-3d3ae136", esExports)
-  }
-}
-
-/***/ }),
-
-/***/ 17:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('doc-header', {
-    attrs: {
-      "category": _vm.category
-    }
-  }), _vm._v(" "), _c('div', {
-    staticClass: "body"
-  }, [_c('doc-submenu', {
-    attrs: {
-      "category": _vm.category,
-      "page": _vm.page
-    }
-  }), _vm._v(" "), _c('div', {
-    directives: [{
-      name: "docmd",
-      rawName: "v-docmd"
-    }],
-    staticClass: "content markdown-body",
-    class: {
-      padding: _vm.hasPadding
-    }
-  }, [_vm._t("default")], 2)], 1)], 1)
-}
-var staticRenderFns = []
-render._withStripped = true
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-6f53ddca", esExports)
-  }
-}
-
-/***/ }),
-
 /***/ 18:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -867,7 +867,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 230:
+/***/ 255:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -877,7 +877,7 @@ var _vue = __webpack_require__(1);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _index = __webpack_require__(76);
+var _index = __webpack_require__(83);
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -899,7 +899,7 @@ new _vue2.default({
 
 /***/ }),
 
-/***/ 322:
+/***/ 347:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -1017,35 +1017,6 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
      require("vue-hot-reload-api").rerender("data-v-6dc34f74", esExports)
-  }
-}
-
-/***/ }),
-
-/***/ 576:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('doc-component', {
-    attrs: {
-      "page": _vm.page,
-      "hasPadding": true
-    }
-  }, [_c('script', {
-    attrs: {
-      "type": "text/markdown"
-    }
-  }, [_vm._v("\n# 段落输入框 `<ui-textarea>`\n\n<doc-component-status page=\"textarea\"></doc-component-status>\n\n[[[基础]]]\n\n定义段落输入框。\n\n#### 使用\n\n````html\n<div style=\"width:300px;\">\n    <ui-textarea form-name=\"姓名\"></ui-textarea>\n</div>\n````\n\n[[[声明]]]\n\n````import\n@id:formStatement\n@uikey:textarea\n@statementDefaultValue:''\n````\n\n[[[配置]]]\n\n|KEY|描述|接受值|值类型|默认值|\n|-|-|-|\n````import\n@id:formConfigTable\n````\n|rows|段落输入框的高度对应的行数|大于0的数字|Number|`4`|\n\n````import\n@id:formConfigDemo\n@uikey:textarea\n@configDefaultValue:'默认值'\n````\n\n#### rows\n\n````html\n<div style=\"width:300px;\">\n    <ui-textarea :rows=\"8\"></ui-textarea>\n</div>\n````\n\n[[[方法]]]\n\n````import\n@id:formMethod\n@uikey:textarea\n@methodValue:'Jim'\n@methodDefaultValue:'Jim'\n````\n\n#### setRows(num)\n\n增加或减少表单的行数。\n\n|KEY|可选|描述|接受值|值类型|默认值|\n|-|-|-|-|-|-|\n|num|NO|指定行数，或增加/减少指定行数|以加号开头的字符串:增加指定行数<br>以减号开头的字符串:减少指定行数<br>数字:设置为指定行数|String<br>Number|`undefined`|\n\n````html\n<div style=\"width:300px;\">\n    <ui-textarea ref=\"demo1\"></ui-textarea>\n    <br>\n    <ui-link js=\"window.morning.findVM('demo1').setRows(2)\">设置为2行</ui-link>\n    <ui-link js=\"window.morning.findVM('demo1').setRows('+1')\">增加1行</ui-link>\n    <ui-link js=\"window.morning.findVM('demo1').setRows('-1')\">减少1行</ui-link>\n</div>\n````\n\n[[[事件]]]\n\n#### focus\n\n当表单聚焦后触发。\n\n````vue\n@use:html.demo2,js.demo2\n````\n\n````html\n@var:demo2\n<div style=\"width:300px;\">\n    <ui-textarea @focus=\"echo\" ref=\"demo2\"></ui-textarea>\n</div>\n````\n\n````js\n@var:demo2\nnew Vue({\n    el : '{$el}',\n    template : '{$template}',\n    methods : {\n        echo : function () {\n            console.log('demo2.console1', 'focus event!');\n        }\n    }\n});\n````\n\n#### blur\n\n当表单失焦后触发。\n\n````vue\n@use:html.demo3,js.demo3\n````\n\n````html\n@var:demo3\n<div style=\"width:300px;\">\n    <ui-textarea @blur=\"echo\" ref=\"demo3\"></ui-textarea>\n</div>\n````\n\n````js\n@var:demo3\nnew Vue({\n    el : '{$el}',\n    template : '{$template}',\n    methods : {\n        echo : function () {\n            console.log('demo3.console1', 'blur event!');\n        }\n    }\n});\n````\n\n````import\n@id:formEvent\n@uikey:textarea\n@eventValue:'Jim'\n````\n\n[[[表单值]]]\n\n#### 值类型\n\n此表单返回值类型包含:\n\n- `String` : 字符串\n\n任何其他类型的数值，都会被尝试转换成这些类型。\n\n#### 值格式\n\n内容值字符串。\n\n#### 默认值\n\n`''`\n\n#### 输入/输出示例\n\n````html\n@formValueType\n<div>\n    <p>{$valueType}类型</p>\n    <div style=\"width:300px;\">\n        <ui-textarea ref=\"demoType{$valueType}\"></ui-textarea>\n    </div>\n    <br>\n    <ui-link js=\"window.morning.findVM('demoType{$valueType}').set({$&valueContent})\">设置{$valueType}类型</ui-link>\n    <ui-link js=\"alert(window.morning.findVM('demoType{$valueType}').get())\">获取表单JSON值</ui-link>\n</div>\n<br>\n<br>\n````\n\n[[[单元测试]]]\n\n<iframe src=\"/report/coverage/lib/components/textarea/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n\n")])])
-}
-var staticRenderFns = []
-render._withStripped = true
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-7df00f5f", esExports)
   }
 }
 
@@ -2124,6 +2095,35 @@ module.exports = exports['default'];
 
 /***/ }),
 
+/***/ 603:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('doc-component', {
+    attrs: {
+      "page": _vm.page,
+      "hasPadding": true
+    }
+  }, [_c('script', {
+    attrs: {
+      "type": "text/markdown"
+    }
+  }, [_vm._v("\n# 段落输入框 `<ui-textarea>`\n\n<doc-component-status page=\"textarea\"></doc-component-status>\n\n[[[基础]]]\n\n定义段落输入框。\n\n#### 使用\n\n````html\n<div style=\"width:300px;\">\n    <ui-textarea form-name=\"姓名\"></ui-textarea>\n</div>\n````\n\n[[[声明]]]\n\n````import\n@id:formStatement\n@uikey:textarea\n@statementDefaultValue:''\n````\n\n[[[配置]]]\n\n|KEY|描述|接受值|值类型|默认值|\n|-|-|-|\n````import\n@id:formConfigTable\n````\n|rows|段落输入框的高度对应的行数|大于0的数字|Number|`4`|\n\n````import\n@id:formConfigDemo\n@uikey:textarea\n@configDefaultValue:'默认值'\n````\n\n#### rows\n\n````html\n<div style=\"width:300px;\">\n    <ui-textarea :rows=\"8\"></ui-textarea>\n</div>\n````\n\n[[[方法]]]\n\n````import\n@id:formMethod\n@uikey:textarea\n@methodValue:'Jim'\n@methodDefaultValue:'Jim'\n````\n\n#### setRows(num)\n\n增加或减少表单的行数。\n\n|KEY|可选|描述|接受值|值类型|默认值|\n|-|-|-|-|-|-|\n|num|NO|指定行数，或增加/减少指定行数|以加号开头的字符串:增加指定行数<br>以减号开头的字符串:减少指定行数<br>数字:设置为指定行数|String<br>Number|`undefined`|\n\n````html\n<div style=\"width:300px;\">\n    <ui-textarea ref=\"demo1\"></ui-textarea>\n    <br>\n    <ui-link js=\"window.morning.findVM('demo1').setRows(2)\">设置为2行</ui-link>\n    <ui-link js=\"window.morning.findVM('demo1').setRows('+1')\">增加1行</ui-link>\n    <ui-link js=\"window.morning.findVM('demo1').setRows('-1')\">减少1行</ui-link>\n</div>\n````\n\n[[[事件]]]\n\n#### focus\n\n当表单聚焦后触发。\n\n````vue\n@use:html.demo2,js.demo2\n````\n\n````html\n@var:demo2\n<div style=\"width:300px;\">\n    <ui-textarea @focus=\"echo\" ref=\"demo2\"></ui-textarea>\n</div>\n````\n\n````js\n@var:demo2\nnew Vue({\n    el : '{$el}',\n    template : '{$template}',\n    methods : {\n        echo : function () {\n            console.log('demo2.console1', 'focus event!');\n        }\n    }\n});\n````\n\n#### blur\n\n当表单失焦后触发。\n\n````vue\n@use:html.demo3,js.demo3\n````\n\n````html\n@var:demo3\n<div style=\"width:300px;\">\n    <ui-textarea @blur=\"echo\" ref=\"demo3\"></ui-textarea>\n</div>\n````\n\n````js\n@var:demo3\nnew Vue({\n    el : '{$el}',\n    template : '{$template}',\n    methods : {\n        echo : function () {\n            console.log('demo3.console1', 'blur event!');\n        }\n    }\n});\n````\n\n````import\n@id:formEvent\n@uikey:textarea\n@eventValue:'Jim'\n````\n\n[[[表单值]]]\n\n#### 值类型\n\n此表单返回值类型包含:\n\n- `String` : 字符串\n\n任何其他类型的数值，都会被尝试转换成这些类型。\n\n#### 值格式\n\n内容值字符串。\n\n#### 默认值\n\n`''`\n\n#### 输入/输出示例\n\n````html\n@formValueType\n<div>\n    <p>{$valueType}类型</p>\n    <div style=\"width:300px;\">\n        <ui-textarea ref=\"demoType{$valueType}\"></ui-textarea>\n    </div>\n    <br>\n    <ui-link js=\"window.morning.findVM('demoType{$valueType}').set({$&valueContent})\">设置{$valueType}类型</ui-link>\n    <ui-link js=\"alert(window.morning.findVM('demoType{$valueType}').get())\">获取表单JSON值</ui-link>\n</div>\n<br>\n<br>\n````\n\n[[[单元测试]]]\n\n<iframe src=\"/report/coverage/lib/components/textarea/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n\n")])])
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-7df00f5f", esExports)
+  }
+}
+
+/***/ }),
+
 /***/ 7:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2405,62 +2405,6 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 76:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_7df00f5f_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(576);
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(322)
-}
-var normalizeComponent = __webpack_require__(0)
-/* script */
-
-/* template */
-
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_7df00f5f_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__["a" /* default */],
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "src/docs/pages/component/textarea/index.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] index.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-7df00f5f", Component.options)
-  } else {
-    hotAPI.reload("data-v-7df00f5f", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
-
-
-/***/ }),
-
 /***/ 8:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2524,6 +2468,62 @@ module.exports = exports['default'];
 
 /***/ }),
 
+/***/ 83:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(178);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_7df00f5f_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(603);
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(347)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+
+/* template */
+
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default.a,
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_7df00f5f_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__["a" /* default */],
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "src/docs/pages/component/textarea/index.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] index.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7df00f5f", Component.options)
+  } else {
+    hotAPI.reload("data-v-7df00f5f", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
+
+
+/***/ }),
+
 /***/ 9:
 /***/ (function(module, exports) {
 
@@ -2531,4 +2531,4 @@ module.exports = exports['default'];
 
 /***/ })
 
-},[230]);
+},[255]);
