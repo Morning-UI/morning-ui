@@ -1,4 +1,4 @@
-webpackJsonp([74],{
+webpackJsonp([73],{
 
 /***/ 0:
 /***/ (function(module, exports) {
@@ -2073,13 +2073,13 @@ window.Vue.directive('docmd', {
             md = md.replace(/\{\*([a-zA-Z0-9_]+)\*\}/g, '{{"\\{\\{$1\\}\\}"}}');
             md = md.replace(/<p>(\[\[\[(.+)\]\]\])<\/p>/g, '$1');
             md = md.replace(/(\[\[\[)/, '<ui-tab class="block noborder">$1');
-            md = md.replace(/\[\[\[基础\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="开始">$1</div>$3');
+            md = md.replace(/\[\[\[开始\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="开始">$1</div>$3');
             md = md.replace(/\[\[\[声明\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="声明">$1</div>$3');
             md = md.replace(/\[\[\[配置\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="配置">$1</div>$3');
             md = md.replace(/\[\[\[方法\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="方法">$1</div>$3');
             md = md.replace(/\[\[\[事件\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="事件">$1</div>$3');
             md = md.replace(/\[\[\[表单值\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="表单值">$1</div>$3');
-            md = md.replace(/\[\[\[单元测试\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="源码">$1</div>$3');
+            md = md.replace(/\[\[\[源码\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="源码">$1</div>$3');
             md = md.replace(/(.|\n)$/, '$1</ui-tab>');
 
             md = md.replace(/<p>---demostart---<\/p>/g, '<div class="demo-area"><p class="demo-title">DEMO</p>');
@@ -2160,7 +2160,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "type": "text/markdown"
     }
-  }, [_vm._v("\n# 醒目内容 `<ui-apparent>`\n\n<doc-component-status page=\"apparent\"></doc-component-status>\n\n[[[基础]]]\n\n定义醒目的内容，这是一个内联元素。\n\n由于`ui-apparent`需要配合其他元素使用，因此你可以通过样式类来修改它的元素类型：\n\n- `inline` : 内联元素(默认)\n- `inline-block` : 内联块元素\n- `block` : 块级元素\n\n此组件作为无醒目状态组件以及HTML元素的补充，若组件自带醒目状态请使用组件自身状态。\n\n#### 使用\n\n:::democode/html\n<ui-apparent>醒目内容</ui-apparent>\n:::\n\n#### 配合内联元素\n\n:::democode/html\n<ui-apparent class=\"inline\">\n    <span>This is inline element</span>\n</ui-apparent>\n:::\n\n#### 配合内联块元素\n\n:::democode/html\n<ui-apparent class=\"inline-block\">\n    <div style=\"background:#eee;display:inline-block\">\n        This is inline-block element\n    </div>\n</ui-apparent>\n:::\n\n#### 配合块级元素\n\n:::democode/html\n<ui-apparent class=\"block\">\n    <div style=\"width:200px;height:50px;background:#eee;\">\n        This is block element\n    </div>\n</ui-apparent>\n:::\n\n#### 配合无`apparent`状态组件\n\n由于`ui-block`是块级元素，需要为`ui-apparent`添加`block`样式类。\n\n:::democode/html\n<ui-apparent class=\"block\">\n    <ui-block>区块</ui-block>\n</ui-apparent>\n:::\n\n[[[声明]]]\n\n#### 支持\n\n|类型|支持|默认|\n|-|-|-|\n|尺寸|不支持|-|\n|色彩|不支持|-|\n|状态|不支持|-|\n\n\n[[[单元测试]]]\n\n<iframe src=\"/report/coverage/lib/components/apparent/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n")])])
+  }, [_vm._v("\n# 醒目内容 `<ui-apparent>`\n\n<doc-component-status page=\"apparent\"></doc-component-status>\n\n[[[开始]]]\n\n定义醒目的内容，这是一个内联元素。\n\n由于`ui-apparent`需要配合其他元素使用，因此你可以通过样式类来修改它的元素类型：\n\n- `inline` : 内联元素(默认)\n- `inline-block` : 内联块元素\n- `block` : 块级元素\n\n此组件作为无醒目状态组件以及HTML元素的补充，若组件自带醒目状态请使用组件自身状态。\n\n#### 使用\n\n:::democode/html\n<ui-apparent>醒目内容</ui-apparent>\n:::\n\n#### 配合内联元素\n\n:::democode/html\n<ui-apparent class=\"inline\">\n    <span>This is inline element</span>\n</ui-apparent>\n:::\n\n#### 配合内联块元素\n\n:::democode/html\n<ui-apparent class=\"inline-block\">\n    <div style=\"background:#eee;display:inline-block\">\n        This is inline-block element\n    </div>\n</ui-apparent>\n:::\n\n#### 配合块级元素\n\n:::democode/html\n<ui-apparent class=\"block\">\n    <div style=\"width:200px;height:50px;background:#eee;\">\n        This is block element\n    </div>\n</ui-apparent>\n:::\n\n#### 配合无`apparent`状态组件\n\n由于`ui-block`是块级元素，需要为`ui-apparent`添加`block`样式类。\n\n:::democode/html\n<ui-apparent class=\"block\">\n    <ui-block>区块</ui-block>\n</ui-apparent>\n:::\n\n[[[声明]]]\n\n#### 支持\n\n|类型|支持|默认|\n|-|-|-|\n|尺寸|不支持|-|\n|色彩|不支持|-|\n|状态|不支持|-|\n\n\n[[[源码]]]\n\n<iframe src=\"/report/coverage/lib/components/apparent/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n")])])
 }
 var staticRenderFns = []
 render._withStripped = true

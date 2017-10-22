@@ -8,7 +8,7 @@
     
     <doc-component-status page="box"></doc-component-status>
 
-    [[[基础]]]
+    [[[开始]]]
 
     定义一个容器，`ui-box`常用来作为最外部的容器，容器是块级元素。
 
@@ -64,7 +64,7 @@
     |色彩|不支持|-|
     |状态|不支持|-|
 
-    [[[单元测试]]]
+    [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/box/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>

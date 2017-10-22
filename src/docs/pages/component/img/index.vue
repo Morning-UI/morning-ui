@@ -8,7 +8,7 @@
     
     <doc-component-status page="img"></doc-component-status>
 
-    [[[基础]]]
+    [[[开始]]]
 
     定义图片容器，支持三种不同形状的图片，可为图片添加文字说明。
 
@@ -75,7 +75,7 @@
     |状态|不支持|-|
 
 
-    [[[单元测试]]]
+    [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/img/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>

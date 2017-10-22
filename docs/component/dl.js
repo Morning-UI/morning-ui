@@ -2015,13 +2015,13 @@ window.Vue.directive('docmd', {
             md = md.replace(/\{\*([a-zA-Z0-9_]+)\*\}/g, '{{"\\{\\{$1\\}\\}"}}');
             md = md.replace(/<p>(\[\[\[(.+)\]\]\])<\/p>/g, '$1');
             md = md.replace(/(\[\[\[)/, '<ui-tab class="block noborder">$1');
-            md = md.replace(/\[\[\[基础\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="开始">$1</div>$3');
+            md = md.replace(/\[\[\[开始\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="开始">$1</div>$3');
             md = md.replace(/\[\[\[声明\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="声明">$1</div>$3');
             md = md.replace(/\[\[\[配置\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="配置">$1</div>$3');
             md = md.replace(/\[\[\[方法\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="方法">$1</div>$3');
             md = md.replace(/\[\[\[事件\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="事件">$1</div>$3');
             md = md.replace(/\[\[\[表单值\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="表单值">$1</div>$3');
-            md = md.replace(/\[\[\[单元测试\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="源码">$1</div>$3');
+            md = md.replace(/\[\[\[源码\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="源码">$1</div>$3');
             md = md.replace(/(.|\n)$/, '$1</ui-tab>');
 
             md = md.replace(/<p>---demostart---<\/p>/g, '<div class="demo-area"><p class="demo-title">DEMO</p>');
@@ -2158,7 +2158,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "type": "text/markdown"
     }
-  }, [_vm._v("\n# 描述列表 `<ui-dl>`\n\n<doc-component-status page=\"dl\"></doc-component-status>\n\n[[[基础]]]\n\n定义一个描述列表，不支持嵌套，列表中每一项包含两个标签`<dt>`和`<dd>`。\n\n描述列表是一个块级元素。\n\n描述列表支持多种布局样式，可以通过额外的`class`来使用。\n\n#### 使用\n\n:::democode/html\n<ui-dl>\n    <dt>Foo</dt>\n    <dd>this is detail of foo</dd>\n    <dt>Bar</dt>\n    <dd>this is detail of bar</dd>\n</ui-dl>\n:::\n\n#### 水平排列布局\n\n:::democode/html\n<ui-dl class=\"horizontal\">\n    <dt>Horizon</dt>\n    <dd>this is horizontal ui-dl</dd>\n    <dt>Horizon</dt>\n    <dd>this is horizontal ui-dl</dd>\n</ui-dl>\n:::\n\n#### 下划线布局\n\n:::democode/html\n<ui-dl class=\"underline\">\n    <dt>Horizon</dt>\n    <dd>this is horizontal ui-dl</dd>\n    <dt>Horizon</dt>\n    <dd>this is horizontal ui-dl</dd>\n</ui-dl>\n:::\n\n[[[声明]]]\n\n#### 支持\n\n|类型|支持|默认|\n|-|-|-|\n|尺寸|不支持|-|\n|色彩|不支持|-|\n|状态|`normal`<br/>`apparent`|`normal`|\n\n#### 状态\n\n:::repeat/html\nstate:normal,apparent\n---\n<ui-dl {$stateKey}>\n    <dt>{$&stateName}</dt>\n    <dd>this is normal ui-dl</dd>\n    <dt>{$&stateName}</dt>\n    <dd>this is normal ui-dl</dd>\n</ui-dl>\n<br>\n:::\n\n[[[单元测试]]]\n\n<iframe src=\"/report/coverage/lib/components/dl/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n")])])
+  }, [_vm._v("\n# 描述列表 `<ui-dl>`\n\n<doc-component-status page=\"dl\"></doc-component-status>\n\n[[[开始]]]\n\n定义一个描述列表，不支持嵌套，列表中每一项包含两个标签`<dt>`和`<dd>`。\n\n描述列表是一个块级元素。\n\n描述列表支持多种布局样式，可以通过额外的`class`来使用。\n\n#### 使用\n\n:::democode/html\n<ui-dl>\n    <dt>Foo</dt>\n    <dd>this is detail of foo</dd>\n    <dt>Bar</dt>\n    <dd>this is detail of bar</dd>\n</ui-dl>\n:::\n\n#### 水平排列布局\n\n:::democode/html\n<ui-dl class=\"horizontal\">\n    <dt>Horizon</dt>\n    <dd>this is horizontal ui-dl</dd>\n    <dt>Horizon</dt>\n    <dd>this is horizontal ui-dl</dd>\n</ui-dl>\n:::\n\n#### 下划线布局\n\n:::democode/html\n<ui-dl class=\"underline\">\n    <dt>Horizon</dt>\n    <dd>this is horizontal ui-dl</dd>\n    <dt>Horizon</dt>\n    <dd>this is horizontal ui-dl</dd>\n</ui-dl>\n:::\n\n[[[声明]]]\n\n#### 支持\n\n|类型|支持|默认|\n|-|-|-|\n|尺寸|不支持|-|\n|色彩|不支持|-|\n|状态|`normal`<br/>`apparent`|`normal`|\n\n#### 状态\n\n:::repeat/html\nstate:normal,apparent\n---\n<ui-dl {$stateKey}>\n    <dt>{$&stateName}</dt>\n    <dd>this is normal ui-dl</dd>\n    <dt>{$&stateName}</dt>\n    <dd>this is normal ui-dl</dd>\n</ui-dl>\n<br>\n:::\n\n[[[源码]]]\n\n<iframe src=\"/report/coverage/lib/components/dl/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n")])])
 }
 var staticRenderFns = []
 render._withStripped = true

@@ -8,7 +8,7 @@
     
     <doc-component-status page="grid"></doc-component-status>
 
-    [[[基础]]]
+    [[[开始]]]
 
     定义一个栅格系统，栅格系统支持嵌套。
 
@@ -224,7 +224,7 @@
     |状态|不支持|-|
 
 
-    [[[单元测试]]]
+    [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/grid/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>

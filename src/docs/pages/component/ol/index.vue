@@ -8,7 +8,7 @@
     
     <doc-component-status page="ol"></doc-component-status>
 
-    [[[基础]]]
+    [[[开始]]]
 
     定义一个有序列表，支持多层嵌套，列表中每一项使用`<li>`标签。
 
@@ -84,7 +84,7 @@
     <br>
     :::
 
-    [[[单元测试]]]
+    [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/ol/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>

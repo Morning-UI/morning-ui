@@ -8,7 +8,7 @@
     
     <doc-component-status page="checkbox"></doc-component-status>
     
-    [[[基础]]]
+    [[[开始]]]
 
     定义复选框组，复选框组可以多选，若需要单选请使用`ui-radio`。
 
@@ -150,7 +150,7 @@
     <br>
     :::
 
-    [[[单元测试]]]
+    [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/checkbox/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
 

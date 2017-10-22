@@ -8,7 +8,7 @@
     
     <doc-component-status page="dropdown"></doc-component-status>
     
-    [[[基础]]]
+    [[[开始]]]
 
     定义下拉式按钮组，这是一个内联块元素。
 
@@ -220,7 +220,7 @@
     </div>
     :::
 
-    [[[单元测试]]]
+    [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/dropdown/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>

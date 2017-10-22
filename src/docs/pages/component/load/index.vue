@@ -8,7 +8,7 @@
     
     <doc-component-status page="load"></doc-component-status>
     
-    [[[基础]]]
+    [[[开始]]]
 
     定义一个加载，加载可以通过时间或`Promise`控制载入状态：
 
@@ -254,7 +254,7 @@
     </div>
     :::
 
-    [[[单元测试]]]
+    [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/load/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
 

@@ -8,7 +8,7 @@
     
     <doc-component-status page="header"></doc-component-status>
 
-    [[[基础]]]
+    [[[开始]]]
 
     定义一个页头，常用在容器内部，这是一个块级元素。
 
@@ -77,7 +77,7 @@
     <ui-header {$colorKey}>{$&colorName}<small>页头子标题</small></ui-header>
     :::
 
-    [[[单元测试]]]
+    [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/header/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>

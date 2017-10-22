@@ -50,7 +50,7 @@
     "extend": "^3.0.1",
     "github-markdown-css": "^2.8.0",
     "highlight.js": "^9.12.0",
-    "mustache": "^2.3.0",
+    " he": "^2.3.0",
     "nightmare": "^2.10.0",
     "tether": "^1.4.0",
     "trim": "0.0.1",

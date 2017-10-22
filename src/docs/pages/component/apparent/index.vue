@@ -8,7 +8,7 @@
     
     <doc-component-status page="apparent"></doc-component-status>
 
-    [[[基础]]]
+    [[[开始]]]
 
     定义醒目的内容，这是一个内联元素。
 
@@ -75,7 +75,7 @@
     |状态|不支持|-|
 
 
-    [[[单元测试]]]
+    [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/apparent/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>

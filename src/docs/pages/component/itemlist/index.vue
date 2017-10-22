@@ -8,7 +8,7 @@
     
     <doc-component-status page="itemlist"></doc-component-status>
 
-    [[[基础]]]
+    [[[开始]]]
 
     定义项目列表组件，项目列表中的每一项包含图片及文字内容，这是一个块级元素。
 
@@ -242,7 +242,7 @@
     <br><br>
     :::
 
-    [[[单元测试]]]
+    [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/itemlist/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>

@@ -8,7 +8,7 @@
     
     <doc-component-status page="badge"></doc-component-status>
 
-    [[[基础]]]
+    [[[开始]]]
 
     定义一个徽章，徽章一般跟在内容后面，来标记一些特殊的内容(通常是数字)，这是一个内联块元素。
 
@@ -80,7 +80,7 @@
     <ui-badge {$stateKey}>{$&stateName}</ui-badge>
     :::
 
-    [[[单元测试]]]
+    [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/badge/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>

@@ -8,7 +8,7 @@
     
     <doc-component-status page="tab"></doc-component-status>
 
-    [[[基础]]]
+    [[[开始]]]
 
     定义一个标签页，标签页支持嵌套。
 
@@ -283,7 +283,7 @@
     </div>
     :::
 
-    [[[单元测试]]]
+    [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/tab/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>

@@ -8,7 +8,7 @@
     
     <doc-component-status page="block"></doc-component-status>
 
-    [[[基础]]]
+    [[[开始]]]
 
     定义一个区块，区块一般包含标题和正文内容，区块与其他布局组件不同的是可以用来定义一个带风格的区域。
 
@@ -53,7 +53,7 @@
     uikey:block
     :::
 
-    [[[单元测试]]]
+    [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/block/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>

@@ -8,7 +8,7 @@
     
     <doc-component-status page="select"></doc-component-status>
     
-    [[[基础]]]
+    [[[开始]]]
 
     定义下拉选择框。
 
@@ -649,7 +649,7 @@
 
 
 
-    [[[单元测试]]]
+    [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/select/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
 

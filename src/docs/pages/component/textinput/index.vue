@@ -8,7 +8,7 @@
     
     <doc-component-status page="textinput"></doc-component-status>
     
-    [[[基础]]]
+    [[[开始]]]
 
     定义文本输入框。
 
@@ -187,7 +187,7 @@
     <br>
     :::
 
-    [[[单元测试]]]
+    [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/textinput/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
 

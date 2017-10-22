@@ -8,7 +8,7 @@
     
     <doc-component-status page="radio"></doc-component-status>
     
-    [[[基础]]]
+    [[[开始]]]
 
     定义单选框组，单选框组只能单选，若需要多选请使用`ui-checkbox`。
 
@@ -156,7 +156,7 @@
     <br>
     :::
 
-    [[[单元测试]]]
+    [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/radio/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
 

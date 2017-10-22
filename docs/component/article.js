@@ -1,4 +1,4 @@
-webpackJsonp([73],{
+webpackJsonp([72],{
 
 /***/ 0:
 /***/ (function(module, exports) {
@@ -2056,13 +2056,13 @@ window.Vue.directive('docmd', {
             md = md.replace(/\{\*([a-zA-Z0-9_]+)\*\}/g, '{{"\\{\\{$1\\}\\}"}}');
             md = md.replace(/<p>(\[\[\[(.+)\]\]\])<\/p>/g, '$1');
             md = md.replace(/(\[\[\[)/, '<ui-tab class="block noborder">$1');
-            md = md.replace(/\[\[\[基础\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="开始">$1</div>$3');
+            md = md.replace(/\[\[\[开始\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="开始">$1</div>$3');
             md = md.replace(/\[\[\[声明\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="声明">$1</div>$3');
             md = md.replace(/\[\[\[配置\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="配置">$1</div>$3');
             md = md.replace(/\[\[\[方法\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="方法">$1</div>$3');
             md = md.replace(/\[\[\[事件\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="事件">$1</div>$3');
             md = md.replace(/\[\[\[表单值\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="表单值">$1</div>$3');
-            md = md.replace(/\[\[\[单元测试\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="源码">$1</div>$3');
+            md = md.replace(/\[\[\[源码\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="源码">$1</div>$3');
             md = md.replace(/(.|\n)$/, '$1</ui-tab>');
 
             md = md.replace(/<p>---demostart---<\/p>/g, '<div class="demo-area"><p class="demo-title">DEMO</p>');
@@ -2143,7 +2143,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "type": "text/markdown"
     }
-  }, [_vm._v("\n# 文章 `<ui-article>`\n\n<doc-component-status page=\"article\"></doc-component-status>\n\n[[[基础]]]\n\n定义文章内容区域，支持多种类来格式化文章标题、元信息及内容。\n\n文章可包含：\n\n- 标题 .title\n- 元信息 .meta\n- 核心内容 .lead\n- 正文 .body\n\n#### 使用\n\n:::democode/html\n<ui-article>\n    <div class=\"title\">A Guide to Upgrading to Polymer 1.0</div>\n    <div class=\"meta\">July 15, 2015 by Pankaj Parashar</div>\n    <div class=\"lead\">At the recently concluded Google IO 2015, Google released the much awaited 1.0 version of Polymer and declared it production-ready.</div>\n    <div class=\"body\">\n        <p>For those of you who have been using the Polymer library while it was still in developer preview, this article will serve as a guide to migrate your existing application to the latest version of Polymer.</p>\n        <p>The steps to install the latest version of Polymer remain exactly the same as described in this article. To update an existing installation of Polymer, navigate to the app directory and run the following command in your terminal</p>\n    </div>\n</ui-article>\n:::\n\n#### 带下划线的元信息\n\n:::democode/html\n<ui-article class=\"underline\">\n    <div class=\"title\">A Guide to Upgrading to Polymer 1.0</div>\n    <div class=\"meta\">July 15, 2015 by Pankaj Parashar</div>\n    <div class=\"lead\">At the recently concluded Google IO 2015, Google released the much awaited 1.0 version of Polymer and declared it production-ready.</div>\n    <div class=\"body\">\n        <p>For those of you who have been using the Polymer library while it was still in developer preview, this article will serve as a guide to migrate your existing application to the latest version of Polymer.</p>\n        <p>The steps to install the latest version of Polymer remain exactly the same as described in this article. To update an existing installation of Polymer, navigate to the app directory and run the following command in your terminal</p>\n    </div>\n</ui-article>\n:::\n\n[[[声明]]]\n\n#### 支持\n\n|类型|支持|默认|\n|-|-|-|\n|尺寸|不支持|-|\n|色彩|不支持|-|\n|状态|不支持|-|\n\n[[[单元测试]]]\n\n<iframe src=\"/report/coverage/lib/components/article/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n\n")])])
+  }, [_vm._v("\n# 文章 `<ui-article>`\n\n<doc-component-status page=\"article\"></doc-component-status>\n\n[[[开始]]]\n\n定义文章内容区域，支持多种类来格式化文章标题、元信息及内容。\n\n文章可包含：\n\n- 标题 .title\n- 元信息 .meta\n- 核心内容 .lead\n- 正文 .body\n\n#### 使用\n\n:::democode/html\n<ui-article>\n    <div class=\"title\">A Guide to Upgrading to Polymer 1.0</div>\n    <div class=\"meta\">July 15, 2015 by Pankaj Parashar</div>\n    <div class=\"lead\">At the recently concluded Google IO 2015, Google released the much awaited 1.0 version of Polymer and declared it production-ready.</div>\n    <div class=\"body\">\n        <p>For those of you who have been using the Polymer library while it was still in developer preview, this article will serve as a guide to migrate your existing application to the latest version of Polymer.</p>\n        <p>The steps to install the latest version of Polymer remain exactly the same as described in this article. To update an existing installation of Polymer, navigate to the app directory and run the following command in your terminal</p>\n    </div>\n</ui-article>\n:::\n\n#### 带下划线的元信息\n\n:::democode/html\n<ui-article class=\"underline\">\n    <div class=\"title\">A Guide to Upgrading to Polymer 1.0</div>\n    <div class=\"meta\">July 15, 2015 by Pankaj Parashar</div>\n    <div class=\"lead\">At the recently concluded Google IO 2015, Google released the much awaited 1.0 version of Polymer and declared it production-ready.</div>\n    <div class=\"body\">\n        <p>For those of you who have been using the Polymer library while it was still in developer preview, this article will serve as a guide to migrate your existing application to the latest version of Polymer.</p>\n        <p>The steps to install the latest version of Polymer remain exactly the same as described in this article. To update an existing installation of Polymer, navigate to the app directory and run the following command in your terminal</p>\n    </div>\n</ui-article>\n:::\n\n[[[声明]]]\n\n#### 支持\n\n|类型|支持|默认|\n|-|-|-|\n|尺寸|不支持|-|\n|色彩|不支持|-|\n|状态|不支持|-|\n\n[[[源码]]]\n\n<iframe src=\"/report/coverage/lib/components/article/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n\n")])])
 }
 var staticRenderFns = []
 render._withStripped = true

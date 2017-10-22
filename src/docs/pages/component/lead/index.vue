@@ -8,7 +8,7 @@
     
     <doc-component-status page="lead"></doc-component-status>
 
-    [[[基础]]]
+    [[[开始]]]
 
     #### 使用
 
@@ -44,7 +44,7 @@
     <ui-lead {$stateKey}>{$&stateName}</ui-lead>
     :::
 
-    [[[单元测试]]]
+    [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/lead/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>

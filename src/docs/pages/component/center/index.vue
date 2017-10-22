@@ -8,7 +8,7 @@
     
     <doc-component-status page="center"></doc-component-status>
 
-    [[[基础]]]
+    [[[开始]]]
 
     定义居中的容器，容器的内容将被居中显示，这是一个块级元素。
 
@@ -48,7 +48,7 @@
     |状态|不支持|-|
 
 
-    [[[单元测试]]]
+    [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/center/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>

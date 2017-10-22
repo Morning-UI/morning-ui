@@ -8,7 +8,7 @@
     
     <doc-component-status page="multiinput"></doc-component-status>
     
-    [[[基础]]]
+    [[[开始]]]
 
     定义多项输入框。
 
@@ -270,7 +270,7 @@
     <br>
     :::
 
-    [[[单元测试]]]
+    [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/multiinput/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
 

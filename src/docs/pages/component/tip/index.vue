@@ -8,7 +8,7 @@
     
     <doc-component-status page="tip"></doc-component-status>
     
-    [[[基础]]]
+    [[[开始]]]
 
     定义一个小提示，为界面的元素提供简要说明。
 
@@ -276,7 +276,7 @@
     </div>
     :::
 
-    [[[单元测试]]]
+    [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/tip/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
 

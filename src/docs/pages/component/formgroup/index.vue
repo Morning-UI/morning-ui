@@ -8,7 +8,7 @@
     
     <doc-component-status page="formgroup"></doc-component-status>
 
-    [[[基础]]]
+    [[[开始]]]
 
     定义一个表单组，通过不同的HTML结构表单组可以组合出不同的表单结构，这是一个块级元素。
 
@@ -247,7 +247,7 @@
     |状态|不支持|-|
 
 
-    [[[单元测试]]]
+    [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/formgroup/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>

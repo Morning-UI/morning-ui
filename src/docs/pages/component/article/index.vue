@@ -8,7 +8,7 @@
     
     <doc-component-status page="article"></doc-component-status>
 
-    [[[基础]]]
+    [[[开始]]]
 
     定义文章内容区域，支持多种类来格式化文章标题、元信息及内容。
 
@@ -57,7 +57,7 @@
     |色彩|不支持|-|
     |状态|不支持|-|
 
-    [[[单元测试]]]
+    [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/article/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
 

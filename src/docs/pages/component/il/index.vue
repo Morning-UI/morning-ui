@@ -8,7 +8,7 @@
     
     <doc-component-status page="il"></doc-component-status>
 
-    [[[基础]]]
+    [[[开始]]]
 
     定义一个内联列表，不支持嵌套，列表中每一项使用`<li>`标签。
 
@@ -43,7 +43,7 @@
     </ui-il>
     :::
 
-    [[[单元测试]]]
+    [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/il/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>

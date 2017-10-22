@@ -8,7 +8,7 @@
     
     <doc-component-status page="card"></doc-component-status>
 
-    [[[基础]]]
+    [[[开始]]]
 
     定义一张卡片，卡片包含头部和主体部分。
 
@@ -61,7 +61,7 @@
     #### 色彩
 
     :::repeat/html
-    color:theme
+    color:theme 
     color:feature
     color:black
     color:blue
@@ -76,7 +76,7 @@
     </div>
     :::
 
-    [[[单元测试]]]
+    [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/card/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>

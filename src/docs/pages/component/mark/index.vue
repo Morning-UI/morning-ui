@@ -8,7 +8,7 @@
     
     <doc-component-status page="mark"></doc-component-status>
 
-    [[[基础]]]
+    [[[开始]]]
 
     #### 使用
 
@@ -43,7 +43,7 @@
     <ui-mark {$stateKey}>{$&stateName}</ui-mark>
     :::
 
-    [[[单元测试]]]
+    [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/mark/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>

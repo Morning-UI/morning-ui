@@ -8,7 +8,7 @@
     
     <doc-component-status page="textarea"></doc-component-status>
     
-    [[[基础]]]
+    [[[开始]]]
 
     定义段落输入框。
 
@@ -165,7 +165,7 @@
     <br>
     :::
 
-    [[[单元测试]]]
+    [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/textarea/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
 

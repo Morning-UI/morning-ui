@@ -8,7 +8,7 @@
     
     <doc-component-status page="switch"></doc-component-status>
     
-    [[[基础]]]
+    [[[开始]]]
 
     定义开关，开关只存在布尔状态。
 
@@ -128,7 +128,7 @@
     <br>
     :::
 
-    [[[单元测试]]]
+    [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/switch/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
 

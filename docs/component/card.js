@@ -927,7 +927,7 @@ if (false) {
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(131);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_f8ca5696_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(659);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_f8ca5696_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(658);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
@@ -2074,13 +2074,13 @@ window.Vue.directive('docmd', {
             md = md.replace(/\{\*([a-zA-Z0-9_]+)\*\}/g, '{{"\\{\\{$1\\}\\}"}}');
             md = md.replace(/<p>(\[\[\[(.+)\]\]\])<\/p>/g, '$1');
             md = md.replace(/(\[\[\[)/, '<ui-tab class="block noborder">$1');
-            md = md.replace(/\[\[\[基础\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="开始">$1</div>$3');
+            md = md.replace(/\[\[\[开始\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="开始">$1</div>$3');
             md = md.replace(/\[\[\[声明\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="声明">$1</div>$3');
             md = md.replace(/\[\[\[配置\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="配置">$1</div>$3');
             md = md.replace(/\[\[\[方法\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="方法">$1</div>$3');
             md = md.replace(/\[\[\[事件\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="事件">$1</div>$3');
             md = md.replace(/\[\[\[表单值\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="表单值">$1</div>$3');
-            md = md.replace(/\[\[\[单元测试\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="源码">$1</div>$3');
+            md = md.replace(/\[\[\[源码\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="源码">$1</div>$3');
             md = md.replace(/(.|\n)$/, '$1</ui-tab>');
 
             md = md.replace(/<p>---demostart---<\/p>/g, '<div class="demo-area"><p class="demo-title">DEMO</p>');
@@ -2147,7 +2147,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 659:
+/***/ 658:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2161,7 +2161,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "type": "text/markdown"
     }
-  }, [_vm._v("\n# 卡片 `<ui-card>`\n\n<doc-component-status page=\"card\"></doc-component-status>\n\n[[[基础]]]\n\n定义一张卡片，卡片包含头部和主体部分。\n\n#### 使用\n\n:::democode/html\n<div style=\"width:180px;height:240px;\">\n    <ui-card>卡片</ui-card>\n</div>\n:::\n\n#### 带头部的卡片\n\n:::democode/html\n<div style=\"width:180px;height:240px;\">\n    <ui-card>\n        <header>头部</header>\n        <div>卡片</div>\n    </ui-card>\n</div>\n:::\n\n#### 无间隙卡片\n\n卡片内容部分默认具有间隙，可以通过full类来去除间隙。\n\n:::democode/html\n<div style=\"width:180px;height:240px;display:inline-block;margin:10px;vertical-align: top;\">\n    <ui-card class=\"full\">卡片</ui-card>\n</div>\n\n<div style=\"width:180px;height:240px;display:inline-block;margin:10px;vertical-align: top;\">\n    <ui-card class=\"full\">\n        <header>头部</header>\n        <div>卡片</div>\n    </ui-card>\n</div>\n:::\n\n[[[声明]]]\n\n#### 支持\n\n|类型|支持|默认|\n|-|-|-|\n|尺寸|不支持|-|\n|色彩|全部|-|\n|状态|不支持|-|\n\n#### 色彩\n\n:::repeat/html\ncolor:theme\ncolor:feature\ncolor:black\ncolor:blue\ncolor:silver\ncolor:gray\n---\n<div style=\"width:180px;height:240px;display:inline-block;margin:10px;\">\n    <ui-card {$colorKey}>\n        <header>{$&colorName}</header>\n        <div>卡片</div>\n    </ui-card>\n</div>\n:::\n\n[[[单元测试]]]\n\n<iframe src=\"/report/coverage/lib/components/card/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n")])])
+  }, [_vm._v("\n# 卡片 `<ui-card>`\n\n<doc-component-status page=\"card\"></doc-component-status>\n\n[[[开始]]]\n\n定义一张卡片，卡片包含头部和主体部分。\n\n#### 使用\n\n:::democode/html\n<div style=\"width:180px;height:240px;\">\n    <ui-card>卡片</ui-card>\n</div>\n:::\n\n#### 带头部的卡片\n\n:::democode/html\n<div style=\"width:180px;height:240px;\">\n    <ui-card>\n        <header>头部</header>\n        <div>卡片</div>\n    </ui-card>\n</div>\n:::\n\n#### 无间隙卡片\n\n卡片内容部分默认具有间隙，可以通过full类来去除间隙。\n\n:::democode/html\n<div style=\"width:180px;height:240px;display:inline-block;margin:10px;vertical-align: top;\">\n    <ui-card class=\"full\">卡片</ui-card>\n</div>\n\n<div style=\"width:180px;height:240px;display:inline-block;margin:10px;vertical-align: top;\">\n    <ui-card class=\"full\">\n        <header>头部</header>\n        <div>卡片</div>\n    </ui-card>\n</div>\n:::\n\n[[[声明]]]\n\n#### 支持\n\n|类型|支持|默认|\n|-|-|-|\n|尺寸|不支持|-|\n|色彩|全部|-|\n|状态|不支持|-|\n\n#### 色彩\n\n:::repeat/html\ncolor:theme \ncolor:feature\ncolor:black\ncolor:blue\ncolor:silver\ncolor:gray\n---\n<div style=\"width:180px;height:240px;display:inline-block;margin:10px;\">\n    <ui-card {$colorKey}>\n        <header>{$&colorName}</header>\n        <div>卡片</div>\n    </ui-card>\n</div>\n:::\n\n[[[源码]]]\n\n<iframe src=\"/report/coverage/lib/components/card/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n")])])
 }
 var staticRenderFns = []
 render._withStripped = true

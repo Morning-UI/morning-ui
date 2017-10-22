@@ -8,7 +8,7 @@
     
     <doc-component-status page="em"></doc-component-status>
 
-    [[[基础]]]
+    [[[开始]]]
 
     定义一个按钮组，按钮组可以通过特定的HTML结构格式化按钮。
 
@@ -176,7 +176,7 @@
     <br><br>
     :::
 
-    [[[单元测试]]]
+    [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/em/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>

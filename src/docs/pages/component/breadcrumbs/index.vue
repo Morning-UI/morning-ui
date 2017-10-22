@@ -1,4 +1,3 @@
-<template>
     <doc-component
         :page="page"
         :hasPadding="true"
@@ -8,7 +7,7 @@
     
     <doc-component-status page="breadcrumbs"></doc-component-status>
     
-    [[[基础]]]
+    [[[开始]]]
 
     定义一个模面包屑导航。
 
@@ -510,7 +509,7 @@
     </div>
     :::
 
-    [[[单元测试]]]
+    [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/breadcrumbs/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
 

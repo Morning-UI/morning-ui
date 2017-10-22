@@ -8,7 +8,7 @@
     
     <doc-component-status page="dialog"></doc-component-status>
     
-    [[[基础]]]
+    [[[开始]]]
 
     定义一个模拟盒，标准的模拟盒分为三部分：
 
@@ -414,7 +414,7 @@
     </div>
     :::
 
-    [[[单元测试]]]
+    [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/dialog/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>

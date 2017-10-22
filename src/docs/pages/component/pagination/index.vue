@@ -8,7 +8,7 @@
     
     <doc-component-status page="btn"></doc-component-status>
     
-    [[[基础]]]
+    [[[开始]]]
 
     定义一个按钮，这是一个内联块元素。
 
@@ -199,7 +199,7 @@
     });
     ````
 
-    [[[单元测试]]]
+    [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/btn/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
 

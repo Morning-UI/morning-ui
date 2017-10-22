@@ -8,7 +8,7 @@
     
     <doc-component-status page="label"></doc-component-status>
 
-    [[[基础]]]
+    [[[开始]]]
 
     定义一个标签，标签和徽章不同在于标签可以插入图片或图标，这是一个内联块元素。
 
@@ -104,7 +104,7 @@
     <ui-label {$stateKey}>{$&stateName}</ui-label>
     :::
 
-    [[[单元测试]]]
+    [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/label/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>

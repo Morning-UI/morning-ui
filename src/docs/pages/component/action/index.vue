@@ -8,7 +8,7 @@
     
     <doc-component-status page="action"></doc-component-status>
 
-    [[[基础]]]
+    [[[开始]]]
 
     定义一个包含多个操作的行动栏。
 
@@ -120,7 +120,7 @@
     <br>
     :::
 
-    [[[单元测试]]]
+    [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/action/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
 
