@@ -112,18 +112,25 @@ module.exports = Vue;
 
 /***/ }),
 
-/***/ 107:
+/***/ 11:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 119:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(184);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(196);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_555b49ff_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(554);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_555b49ff_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(620);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(300)
+  __webpack_require__(313)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
@@ -165,13 +172,6 @@ if (false) {(function () {
 
 /* harmony default export */ __webpack_exports__["default"] = (Component.exports);
 
-
-/***/ }),
-
-/***/ 11:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ }),
 
@@ -522,7 +522,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 184:
+/***/ 196:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -549,6 +549,62 @@ exports.default = {
         'doc-guide': _DocGuide2.default
     }
 }; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -991,7 +1047,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 261:
+/***/ 273:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1001,7 +1057,7 @@ var _vue = __webpack_require__(1);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _index = __webpack_require__(107);
+var _index = __webpack_require__(119);
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -1130,13 +1186,6 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 300:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
 /***/ 31:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1158,6 +1207,13 @@ if (false) {
      require("vue-hot-reload-api").rerender("data-v-7e9905d3", esExports)
   }
 }
+
+/***/ }),
+
+/***/ 313:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 
@@ -1277,35 +1333,6 @@ if (false) {
 
 /***/ }),
 
-/***/ 554:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('doc-guide', {
-    attrs: {
-      "page": _vm.page,
-      "hasPadding": true
-    }
-  }, [_c('script', {
-    attrs: {
-      "type": "text/markdown"
-    }
-  }, [_vm._v("\n\n# 编写文档\n\n文档作为Morning UI的组成部分，是非常重要且必不可少的。\n\nMorning UI使用了一套基于[GFM(GitHub Flavored Markdown)](https://guides.github.com/features/mastering-markdown/)扩展的文档解析器，这意味着你可以使用任何[GFM](https://guides.github.com/features/mastering-markdown/)语法。\n\n### 如何编写\n\n#### 创建新文档\n\n在开始使用这些方便的用法前，你需要先为你的组件创建文档。\n\n组件的文档放在项目的`src/docs/pages/component`目录下，每一个文件夹就是一份组件文档。\n\n文件夹中包含:\n\n- index.js : 文档的视图模型\n- index.vue : 文档的内容\n\n为你的组件新建一个文件夹，然后生成这两个文件，`index.js`每个组件都一样只需要从别的组件拷贝一份即可，`index.vue`的模板如下：\n\n```html\n<template>\n    <doc-component\n            :page=\"page\"\n            :hasPadding=\"true\"\n        >\n    <script type=\"text/markdown\">\n\n        <!-- 文档内容 -->\n\n        &lt;/script>\n    </doc-component>\n</template>\n \n<script>\nimport DocComponent                 from 'Docs/common/DocComponent.vue';\n\nexport default {\n    data : function () {\n\n        return {\n            page : '页面KEY'\n        };\n\n    },\n    components : {\n        'doc-component' : DocComponent\n    }\n};\n&lt;/script>\n\n<style lang=\"less\">\n</style>\n```\n\n这里只需要修改两个地方：\n\n1. `<template>`中的`文档内容`部分，你的文档写在这里\n2. `<script>`标签中的`页面KEY`部分，这里需要和组件的KEY保持一致\n\n这两个文件创建完成后，运行`npm run dev`，即可在`http://localhost:8080/component/[页面KEY].html`访问你的文档。\n\n### 扩展功能\n\nMorning UI为了让开发者尽可能轻松的写文档，扩展了GFM。提供了很多方便的用法：\n\n- 演示 : 一份代码，同时生成可视化的示例和完整展示代码。\n- 快捷指令 : 可以按预设的规则重复你的演示代码。\n- Vue实例 : 快速生成Vue容器、模板和JS，并进行绑定。\n- 预设 : 预设的演示代码，传入配置即可生成演示代码。\n- 示例区域 : 用虚线框起来的一个区域，告诉使用者这里面是示例。用以区分文档和示例。\n\n现在你对于这些新概念一定很懵逼，下面的章节详细为你解释了这些新的用法。\n\n#### 演示\n\n下面这段代码标记了一段演示区域:\n\n```text\n\\`\\`\\`\\`html\n<p>通过两个\\`\\`\\`\\`来标记一个演示区域</p>\n\\`\\`\\`\\`\n```\n\n最后会在文档中生成如下的内容:\n\n---demostart---\n\n````html\n<p>通过两个\\`\\`\\`\\`来标记一个演示区域</p>\n````\n\n---demoend---\n\n演示代码会同时生成示例和代码。避免了示例和代码需要重复写两份，这也可以确保示例和代码的一致性。\n\n在上面示例中的`html`你也可以替换成其他语言。\n\n#### 快捷指令\n\n在演示区域中支持使用快捷指令来减少重复文档的书写，比如你的演示需要展现所有支持的组件尺寸：\n\n```text\n\\`\\`\\`\\`html\n<ui-btn xxl>XXL尺寸</ui-btn>\n<ui-btn xl>XL尺寸</ui-btn>\n<ui-btn l>L尺寸</ui-btn>\n<ui-btn m>M尺寸</ui-btn>\n<ui-btn s>S尺寸</ui-btn>\n<ui-btn xs>XS尺寸</ui-btn>\n<ui-btn xxs>XXS尺寸</ui-btn>\n\\`\\`\\`\\`\n```\n\n上面的写法十分繁琐，快捷指令让你只需写出一个尺寸的演示，然后循环输出其余的尺寸。通过`@size`快捷指令，简写成：\n\n```text\n\\`\\`\\`\\`html\n@size\n<ui-btn {$sizeKey}>{$&sizeName}</ui-btn>\n\\`\\`\\`\\`\n```\n\n最终的效果：\n\n---demostart---\n\n````html\n@size\n<ui-btn {$sizeKey}>{$&sizeName}</ui-btn>\n````\n\n---demoend---\n\n所有快捷指令以`@`开头，必须写在演示区域的最前面。快捷指令将会重复下面的文档内容，并且会支持一些变量你可以在文档中使用，变量的使用基于[mustache](https://github.com/janl/mustache.js)语法，采用`{$`和`}`来包裹变量。\n\n比如这里的`@size`快捷指令，支持`sizeKey`和`sizeName`，所以你可以在下面的文档中使用这两个变量，通过`@size`的循环来输出所有的尺寸示例。\n\n##### 快捷指令参数\n\n快捷指令支持参数，你可以在指令后通过`:`来添加参数（一条捷指令仅支持一个参数）。\n\n比如`@color`需要传入一个色彩参数，来告诉指令需要渲染哪组色彩：\n\n```text\n\\`\\`\\`\\`html\n@color:theme\n<ui-btn {$colorKey}>{$&colorName}</ui-btn>\n\\`\\`\\`\\`\n```\n\n最终的效果：\n\n---demostart---\n\n````html\n@color:theme\n<ui-btn {$colorKey}>{$&colorName}</ui-btn>\n````\n\n---demoend---\n\n##### 多个演示区域\n\n有时候在一个演示区域内放太多示例会让使用者难以阅读，所以快捷指令也可以用来循环生成多个演示区域：\n\n```text\n\\`\\`\\`\\`html\n@color:blue\n@color:silver\n@color:gray\n<ui-btn {$colorKey}>{$&colorName}</ui-btn>\n\\`\\`\\`\\`\n```\n\n最终的效果：\n\n---demostart---\n\n````html\n@color:blue\n@color:silver\n@color:gray\n<ui-btn {$colorKey}>{$&colorName}</ui-btn>\n````\n\n---demoend---\n\n如同上面的示例，每一行的快捷指令都会生成一个新的演示区域。同时，快捷指令也会非常贴心的帮改变演示区域的样式，让示例看起来更易读。\n\n\n##### 使用多个快捷指令\n\n有些时候为了展示复杂的情况，你需要同时使用多个快捷指令进行循环输出示例，你可以这样使用：\n\n```text\n\\`\\`\\`\\`html\n@state|@br:2|@color:theme\n<ui-btn {$stateKey} {$colorKey}>{$&stateName}</ui-btn>\n\\`\\`\\`\\`\n```\n\n最终的效果：\n\n---demostart---\n\n````html\n@state|@br:2|@color:theme\n<ui-btn {$stateKey} {$colorKey}>{$&stateName}</ui-btn>\n````\n\n---demoend---\n\n通过`|`分隔你可以在一行中使用多个指令，你的文档将会从左向右重复这些指令。其中`@br`指令用来向文档插入换行符，让示例更易读。\n\n##### 所有快捷指令\n\n|指令|参数|说明|支持变量|\n|-|-|-|\n|@size|无|循环输出尺寸声明|sizeKey / sizeName|\n|@color|`theme`:主题色组<br>`feature`:功能色组<br>`black`:黑色组<br>`blue`:青色组<br>`silver`:银色组<br>`gray`:浅色组<br>|循环输出颜色声明|colorKey / colorName|\n|@state|需要输出的状态，多个之间用`,`分隔。<br>`normal`:正常状态<br>`hover`:Hover状态<br>`active`:激活状态<br>`disabled`:禁用状态<br>`apparent`:醒目状态<br>`loading`:载入中<br>`processing`:处理中|循环输出状态声明|stateKey / stateName|\n|@br|需要插入的换行符数量|在循环中插入换行符`<br>`|无|\n\n#### Vue实例\n\n有些时候你的演示会需要使用到Vue的实例，这意味着需要创建Vue的容器、模板、JS并将它们绑定在一起，这时候你可以使用Vue实例来简化操作。\n\n首先使用`@var`来声明Vue的模板：\n\n```text\n\\`\\`\\`\\`html\n@var:demo1\n<div>\n    <ui-btn @emit=\"echo\">点击触发emit事件</ui-btn>\n</div>\n\\`\\`\\`\\`\n```\n\n然后用相同的方法声明Vue的实例：\n\n```text\n\\`\\`\\`\\`js\n@var:demo1\nnew Vue({\n    el : '{$el}',\n    template : '{$template}',\n    methods : {\n        echo : function () {\n            console.log('emit event!');\n        }\n    }\n});\n\\`\\`\\`\\`\n```\n\n你一定注意到上面代码中的`{$el}`和`${template}`，这是[mustache](https://github.com/janl/mustache.js)语法，在生成文档时Vue实例会自动帮你替换成对应的Vue元素及模板id。\n\n这是为了防止同一个页面中的Vue元素或模板id冲突，Vue实例会帮你管理这些id。\n\n接下来在一个语言类型为`vue`的演示区域中使用`@use`引用注册的演示：\n\n```text\n\\`\\`\\`\\`vue\n@use:html.demo1,js.demo1\n\\`\\`\\`\\`\n```\n\n`@use`后面是你需要引用的其他演示区域，采用`,`分隔多个引用，每个引用格式:`[语言类型].[演示区域名称]`。\n\n由于引用区分语言类型，所以你可以在不同语言的演示区域中`@var`相同的名称。\n\n将上面的代码合在一起之后：\n\n---demostart---\n\n````vue\n@use:html.demo1,js.demo1\n````\n\n````html\n@var:demo1\n<div>\n    <ui-btn @emit=\"echo\">点击触发emit事件</ui-btn>\n</div>\n````\n\n````js\n@var:demo1\nnew Vue({\n    el : '{$el}',\n    template : '{$template}',\n    methods : {\n        echo : function () {\n            alert('emit event!');\n        }\n    }\n});\n````\n\n---demoend---\n\n其中的`<div id=\"demo-5483-el\">`就是Vue实例自动帮你生成的Vue实例根节点。\n\n注意：一般被引用的演示区域紧跟在`vue`区域之后。\n\n#### 预设\n\n在表单组件的文档中存在着大量的重复文档，不同组件之间仅有几处区别，为了降低这部分重复工作。我们将这些文档做成了预设模板，你只需要传入对应的参数即可生成最终文档。\n\n首先你需要将演示区域的语言设置成`preset`来使用预设功能。\n\n```text\n\\`\\`\\`\\`preset\n@id:formStatement\n@uikey:textinput\n@statementDefaultValue:''\n\\`\\`\\`\\`\n```\n\n然后在下一行使用`@id`来说明你要使用哪个预设，比如上面的示例使用了`formStatement`预设。\n\n在`@id`之后每一行都是一个参数，格式是`@[参数名]:[参数值]`，这些参数会填写到预设模板中对应的位置。\n\n最终的效果：\n\n---demostart---\n\n````preset\n@id:formStatement\n@uikey:textinput\n@statementDefaultValue:''\n````\n\n---demoend---\n\n可以看到上面这一大段的文档，仅需5行代码就可以生成，这就是导入的效果。\n\n##### 所有导入\n\n#### 示例区域\n\n有些时候你的示例不需要代码片段，仅仅是一段效果的HTML。这时候示例和文档会难以区分，比如这篇文档上面的那些`最终效果`。\n\n这时候你可以使用`---demostart---`和`---demoend---`将你的演示区域包裹起来，最终整个演示区域会被虚线框起来，用以区分示例和文档。\n\n注意：`---demostart---`和`---demoend---`前后需要空一行。\n\n### 文档编写规范\n\n编写文档时请遵循[开发规范](/guide/devrule.html)中的文档规范，[Code Review](/guide/review.html)将会检查文档编写规范。\n\n### 组件(Component)文档\n\n#### 内容组成\n\n#### 组件状态栏\n\n#### 基础\n\n#### 声明\n\n#### 配置\n\n#### 方法\n\n#### 事件\n\n#### 表单值\n\n#### 源码\n\n### 指南(Guide)文档\n\nComing soon.\n\n")])])
-}
-var staticRenderFns = []
-render._withStripped = true
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-555b49ff", esExports)
-  }
-}
-
-/***/ }),
-
 /***/ 6:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1316,34 +1343,13 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+var _markdownIt = __webpack_require__(25);
 
-var _marked = __webpack_require__(25);
+var _markdownIt2 = _interopRequireDefault(_markdownIt);
 
-var _marked2 = _interopRequireDefault(_marked);
+var _extend2 = __webpack_require__(23);
 
-var _extend = __webpack_require__(23);
-
-var _extend2 = _interopRequireDefault(_extend);
+var _extend3 = _interopRequireDefault(_extend2);
 
 var _mustache = __webpack_require__(26);
 
@@ -1371,21 +1377,35 @@ var _DocComponentStatus2 = _interopRequireDefault(_DocComponentStatus);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; } //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 var randomRangeMin = 1e3;
 var randomRangeMax = 9e3;
 
-window.Vue.component('doc-component-status', _DocComponentStatus2.default);
+var markdown = new _markdownIt2.default({
+    html: true
+});
 
 var evals = [];
-
-var presets = {
-    formStatement: '\n#### \u652F\u6301\n\n|\u7C7B\u578B|\u652F\u6301|\u9ED8\u8BA4|\n|-|-|-|\n|\u5C3A\u5BF8|\u4E0D\u652F\u6301|-|\n|\u8272\u5F69|\u4E0D\u652F\u6301|-|\n|\u72B6\u6001|`normal`<br/>`disabled`|`normal`|\n\n\n#### \u72B6\u6001\n\n````html\n@state:normal,disabled\n<div style="width:300px;">\n    <ui-{$uikey} {$stateKey} :default-value="{$&statementDefaultValue}" form-name="{$&stateName}" {$&statementMoreAttr}>{$&statementSlot}</ui-{$uikey}>\n</div>\n<br>\n````\n',
-    formStatementWithStyle: '\n#### \u652F\u6301\n\n|\u7C7B\u578B|\u652F\u6301|\u9ED8\u8BA4|\n|-|-|-|\n|\u5C3A\u5BF8|\u4E0D\u652F\u6301|-|\n|\u8272\u5F69|\u5168\u90E8|`theme`|\n|\u72B6\u6001|`normal`<br/>`disabled`|`normal`|\n\n\n#### \u8272\u5F69\n\n````html\n@color:theme\n@color:feature\n@color:black\n@color:blue\n@color:silver\n@color:gray\n<div style="width:300px;">\n    <ui-{$uikey} {$colorKey} :default-value="{$&statementDefaultValue}" form-name="{$&colorName}" {$&statementMoreAttr}>{$&statementSlot}</ui-{$uikey}>\n</div>\n<br>\n````\n\n#### \u72B6\u6001\n\n````html\n@state:normal,disabled\n<div style="width:300px;">\n    <ui-{$uikey} {$stateKey} :default-value="{$&statementDefaultValue}" form-name="{$&stateName}" {$&statementMoreAttr}>{$&statementSlot}</ui-{$uikey}>\n</div>\n<br>\n````\n',
-    formConfigDemo: '\n#### form-name\n\n````html\n@formConfig\n<div style="width:300px;">\n    <ui-{$uikey} form-name="{$formName}" {$&configMoreAttr}>{$&configSlot}</ui-{$uikey}>\n</div>\n````\n\n#### form-key\n\n````html\n@formConfig\n<div style="width:300px;">\n    <ui-{$uikey} form-name="{$formName}" form-key="{$formKey}" {$&configMoreAttr}>{$&configSlot}</ui-{$uikey}>\n</div>\n````\n\n#### group\n\n\u8BBE\u7F6E\u5355\u4E2A\u7EC4\uFF1A\n\n````html\n@formConfig\n<div style="width:300px;">\n    <!-- \u8BBE\u7F6E\u5355\u4E2A\u7EC4 -->\n    <ui-{$uikey} form-name="{$formName}" form-key="{$formKey}" group="{$formGroupOne}" {$&configMoreAttr}>{$&configSlot}</ui-{$uikey}>\n</div>\n````\n\n\u8BBE\u7F6E\u591A\u4E2A\u7EC4\uFF1A\n\n````vue\n@use:html.demoGroup,js.demoGroup|@formConfig\n````\n\n````html\n@var:demoGroup\n<div style="width:300px;">\n    <!-- \u8BBE\u7F6E\u591A\u4E2A\u7EC4 -->\n    <ui-{$uikey} form-name="{$formName}" form-key="{$formKey}" :group="group" {$&configMoreAttr}>{$&configSlot}</ui-{$uikey}>\n</div>\n````\n\n````js\n@var:demoGroup\nnew Vue({\n    el : \'{$el}\',\n    template : \'{$template}\',\n    data : {\n        group : [\'group1\', \'group2\', \'group3\']\n    }\n});\n````\n\n#### default-value\n\n````html\n@formConfig\n<div style="width:300px;">\n    <ui-{$uikey} form-name="{$formName}" :default-value="{$&configDefaultValue}" {$&configMoreAttr}>{$&configSlot}</ui-{$uikey}>\n</div>\n````\n\n#### hide-name\n\n\u9690\u85CF\u540E\u8868\u5355\u9ED8\u8BA4\u4F4D\u7F6E\u7684\u540D\u5B57\u4E0D\u4F1A\u663E\u793A\uFF0C\u53EF\u4EE5\u5728\u5176\u4ED6\u5730\u65B9\u8BBE\u7F6E\u8868\u5355\u540D\u3002\n\n````html\n@formConfig\n<div style="width:300px;">\n    <p>{$formName}</p>\n    <ui-{$uikey} form-name="{$formName}" hide-name {$&configMoreAttr}>{$&configSlot}</ui-{$uikey}>\n</div>\n````\n    ',
-    formConfigTable: '\n|form-name|\u8868\u5355\u7684\u540D\u79F0\uFF08\u7528\u4E8E\u663E\u793A\uFF09|\u4EFB\u610F\u5B57\u7B26\u4E32|String|`undefined`|\n|form-key|\u8868\u5355\u7684Key\uFF08\u7528\u4E8E\u903B\u8F91\u4E2D\u4F5C\u4E3A\u8BC6\u522B\u6807\u793A\uFF09|\u4EFB\u610F\u5B57\u7B26\u4E32(\u552F\u4E00)|String|`undefined`|\n|group|\u8868\u5355\u7EC4\uFF0C\u7528\u4E8E\u5C06\u591A\u4E2A\u8868\u5355\u7684\u6570\u503C\u6DFB\u52A0\u5230\u540C\u4E00\u4E2A\u5BF9\u8C61\u4E2D\u3002\u4E00\u4E2A\u8868\u5355\u53EF\u4EE5\u540C\u65F6\u5C5E\u4E8E\u591A\u4E2A\u7EC4|\u82E5\u662F\u5B57\u7B26\u4E32\uFF0C\u5219\u5C06\u8868\u5355\u6DFB\u52A0\u5230\u5355\u4E2A\u7EC4<br>\u82E5\u662F\u6570\u7EC4\uFF0C\u5219\u5C06\u8868\u5355\u6DFB\u52A0\u5230\u591A\u4E2A\u7EC4|String<br/>Array|`[]`|\n|default-value|\u8868\u5355\u7684\u9ED8\u8BA4\u503C|\u4EFB\u610F(\u63A5\u53D7\u8868\u5355\u539F\u59CB\u6570\u503C\uFF0C\u4E5F\u63A5\u53D7JSON\u5E8F\u5217\u5316\u540E\u7684\u8868\u5355\u6570\u503C\uFF0C\u82E5\u6570\u503C\u662FJSON\u5E8F\u5217\u5316\u7684\u4F1A\u81EA\u52A8\u8F6C\u6362\u6210\u539F\u59CB\u6570\u503C)|Any|`undefined`|\n|hide-name|\u9690\u85CF\u8868\u5355\u540D|`true`<br>`false`|Boolean|`false`|',
-    formMethod: '\n#### set([value])\n\n\u8BBE\u7F6E\u8868\u5355\u7684\u503C\u3002\n\n|KEY|\u53EF\u9009|\u63CF\u8FF0|\u63A5\u53D7\u503C|\u503C\u7C7B\u578B|\u9ED8\u8BA4\u503C|\n|-|-|-|-|-|-|\n|value|YES|\u9700\u8981\u8BBE\u7F6E\u8868\u5355\u7684\u503C\uFF0C\u5982\u679C\u9700\u8981\u6E05\u7A7A\u8868\u5355\u7684\u503C\uFF0C\u53EF\u4EE5\u4E0D\u4F20\u6B64\u53C2\u6570\u3002|\u63A5\u53D7\u4EFB\u4F55\u6570\u503C\u3002<br/>`undefined`:\u6E05\u7A7A\u8868\u5355\u7684\u503C<br>\u539F\u59CB\u503C:\u8868\u5355\u7684\u539F\u59CB\u503C\uFF0C\u6839\u636E\u8868\u5355\u4E0D\u540C\u53EF\u4EE5\u662F\u5B57\u7B26\u4E32\u3001\u5BF9\u8C61\u3001\u6570\u7EC4\u7B49<br>JSON\u6570\u503C:\u8868\u5355\u539F\u59CB\u503CJSON\u5E8F\u5217\u5316\u540E\u7684\u503C\uFF0C\u4F20\u5165\u540E\u8868\u5355\u4F1A\u81EA\u52A8\u89E3\u6790\u5E76\u8FD8\u539F\u539F\u59CB\u503C\u3002|Any|`undefined`|\n\n````html\n@origin\n<div style="width:300px;">\n    <ui-{$uikey} ref="demoMethodSet" form-name="\u8868\u5355\u540D" {$&methodMoreAttr}>{$&methodSlot}</ui-{$uikey}>\n    <br>\n    <ui-link js="window.morning.findVM(\'demoMethodSet\').set({$&methodValue})">\u8BBE\u7F6E\u503C</ui-link>\n    <ui-link js="window.morning.findVM(\'demoMethodSet\').set()">\u79FB\u9664\u503C</ui-link>\n</div>\n````\n\n#### get([json])\n\n\u83B7\u53D6\u8868\u5355\u7684\u503C\u3002\n\n|KEY|\u53EF\u9009|\u63CF\u8FF0|\u63A5\u53D7\u503C|\u503C\u7C7B\u578B|\u9ED8\u8BA4\u503C|\n|-|-|-|-|-|-|\n|json|YES|\u8868\u5355\u7684\u503C\u662F\u5426\u9700\u8981JSON\u5E8F\u5217\u5316\u540E\u8FD4\u56DE\uFF0C\u82E5\u4F60\u9700\u8981\u548C\u5176\u4ED6\u7A0B\u5E8F\u8FDB\u884C\u6570\u636E\u4EA4\u4E92\uFF0C\u4F7F\u7528JSON\u662F\u4E00\u79CD\u8F83\u597D\u7684\u65B9\u6CD5\u3002|`true`<br>`false`|Boolean|`true`|\n\n````html\n@origin\n<div style="width:300px;">\n    <ui-{$uikey} ref="demoMethodGet" form-name="\u8868\u5355\u540D" :default-value="{$&methodDefaultValue}" {$&methodMoreAttr}>{$&methodSlot}</ui-{$uikey}>\n    <br>\n    <ui-link js="alert(window.morning.findVM(\'demoMethodGet\').get(false))">\u83B7\u53D6\u8868\u5355\u539F\u59CB\u503C</ui-link>\n    <ui-link js="alert(window.morning.findVM(\'demoMethodGet\').get())">\u83B7\u53D6\u8868\u5355JSON\u503C</ui-link>\n</div>\n````\n\n#### setName([name])\n\n\u8BBE\u7F6E\u8868\u5355\u7684\u540D\u79F0\u3002\n\n|KEY|\u53EF\u9009|\u63CF\u8FF0|\u63A5\u53D7\u503C|\u503C\u7C7B\u578B|\u9ED8\u8BA4\u503C|\n|-|-|-|-|-|-|\n|name|YES|\u9700\u8981\u8BBE\u7F6E\u8868\u5355\u7684\u540D\u79F0\uFF0C\u5982\u679C\u9700\u8981\u6E05\u7A7A\u8868\u5355\u7684\u540D\u79F0\uFF0C\u53EF\u4EE5\u4E0D\u4F20\u6B64\u53C2\u6570\u3002|\u4EFB\u610F\u5B57\u7B26\u4E32|String|`undefined`|\n\n````html\n@origin\n<div style="width:300px;">\n    <ui-{$uikey} ref="demoMethodSetName" form-name="\u59D3\u540D" {$&methodMoreAttr}>{$&methodSlot}</ui-{$uikey}>\n    <br>\n    <ui-link js="alert(window.morning.findVM(\'demoMethodSetName\').getName())">\u83B7\u53D6\u8868\u5355\u540D\u79F0</ui-link>\n    <ui-link js="window.morning.findVM(\'demoMethodSetName\').setName(\'\u5E74\u9F84\')">\u8BBE\u7F6E\u8868\u5355\u540D\u79F0</ui-link>\n    <ui-link js="window.morning.findVM(\'demoMethodSetName\').setName()">\u79FB\u9664\u8868\u5355\u540D\u79F0</ui-link>\n</div>\n````\n\n#### getName()\n\n\u83B7\u53D6\u8868\u5355\u7684\u540D\u79F0\u3002\n\n````html\n@origin\n<div style="width:300px;">\n    <ui-{$uikey} ref="demoMethodGetName" form-name="\u59D3\u540D" {$&methodMoreAttr}>{$&methodSlot}</ui-{$uikey}>\n    <br>\n    <ui-link js="alert(window.morning.findVM(\'demoMethodGetName\').getName())">\u83B7\u53D6\u8868\u5355\u540D\u79F0</ui-link>\n</div>\n````\n\n#### setKey([key])\n\n\u8BBE\u7F6E\u8868\u5355\u7684KEY\u3002\n\n|KEY|\u53EF\u9009|\u63CF\u8FF0|\u63A5\u53D7\u503C|\u503C\u7C7B\u578B|\u9ED8\u8BA4\u503C|\n|-|-|-|-|-|-|\n|key|YES|\u9700\u8981\u8BBE\u7F6E\u8868\u5355\u7684KEY\uFF0C\u5982\u679C\u9700\u8981\u6E05\u7A7A\u8868\u5355\u7684KEY\uFF0C\u53EF\u4EE5\u4E0D\u4F20\u6B64\u53C2\u6570\u3002|\u4EFB\u610F\u5B57\u7B26\u4E32|String|`undefined`|\n\n````html\n@origin\n<div style="width:300px;">\n    <ui-{$uikey} ref="demoMethodSetKey" form-name="\u8868\u5355\u540D" form-key="name" {$&methodMoreAttr}>{$&methodSlot}</ui-{$uikey}>\n    <br>\n    <ui-link js="alert(window.morning.findVM(\'demoMethodSetKey\').getKey())">\u83B7\u53D6\u8868\u5355KEY</ui-link>\n    <ui-link js="window.morning.findVM(\'demoMethodSetKey\').setKey(\'age\')">\u8BBE\u7F6E\u8868\u5355KEY</ui-link>\n    <ui-link js="window.morning.findVM(\'demoMethodSetKey\').setKey()">\u79FB\u9664\u8868\u5355KEY</ui-link>\n</div>\n````\n\n#### getKey()\n\n\u83B7\u53D6\u8868\u5355\u7684KEY\u3002\n\n````html\n@origin\n<div style="width:300px;">\n    <ui-{$uikey} ref="demoMethodGetKey" form-name="\u8868\u5355\u540D" form-key="name" {$&methodMoreAttr}>{$&methodSlot}</ui-{$uikey}>\n    <br>\n    <ui-link js="alert(window.morning.findVM(\'demoMethodGetKey\').getKey())">\u83B7\u53D6\u8868\u5355KEY</ui-link>\n</div>\n````\n\n#### setGroup([groups])\n\n\u8BBE\u7F6E\u8868\u5355\u6240\u5C5E\u7684\u8868\u5355\u7EC4\u3002\n\n|KEY|\u53EF\u9009|\u63CF\u8FF0|\u63A5\u53D7\u503C|\u503C\u7C7B\u578B|\u9ED8\u8BA4\u503C|\n|-|-|-|-|-|-|\n|groups|YES|\u9700\u8981\u8BBE\u7F6E\u7684\u8868\u5355\u7EC4\u3002\u5982\u679C\u9700\u8981\u6E05\u7A7A\u6240\u6709\u8868\u5355\u7EC4\uFF0C\u53EF\u4EE5\u4E0D\u4F20\u6B64\u53C2\u6570\u3002|`undefined`:\u6E05\u7A7A\u6240\u6709\u8868\u5355\u7EC4<br>String:\u8BBE\u7F6E\u4E00\u4E2A\u8868\u5355\u7EC4<br>Array:\u8BBE\u7F6E\u591A\u4E2A\u8868\u5355\u7EC4\u3002|String<br>Array<br>Undefined|`undefined`|\n\n````html\n@origin\n<div style="width:300px;">\n    <!-- \u8BBE\u7F6E\u591A\u4E2A\u7EC4 -->\n    <ui-{$uikey} ref="demoMethodSetGroup" form-name="\u8868\u5355\u540D" form-key="name" {$&methodMoreAttr}>{$&methodSlot}</ui-{$uikey}>\n    <br>\n    <ui-link js="alert(JSON.stringify(window.morning.findVM(\'demoMethodSetGroup\').getGroup()))">\u83B7\u53D6\u8868\u5355\u7EC4</ui-link>\n    <ui-link js="window.morning.findVM(\'demoMethodSetGroup\').setGroup(\'group1\')">\u8BBE\u7F6E\u5355\u4E2A\u8868\u5355\u7EC4</ui-link>\n    <ui-link js="window.morning.findVM(\'demoMethodSetGroup\').setGroup([\'group1\', \'group2\'])">\u8BBE\u7F6E\u591A\u4E2A\u8868\u5355\u7EC4</ui-link>\n    <ui-link js="window.morning.findVM(\'demoMethodSetGroup\').setGroup()">\u79FB\u9664\u6240\u6709\u8868\u5355\u7EC4</ui-link>\n</div>\n````\n\n#### getGroup()\n\n\u83B7\u53D6\u8868\u5355\u6240\u5C5E\u7684\u8868\u5355\u7EC4\u3002\n\n````html\n@origin\n<div style="width:300px;">\n    <!-- \u8BBE\u7F6E\u591A\u4E2A\u7EC4 -->\n    <ui-{$uikey} ref="demoMethodGetGroup" form-name="\u8868\u5355\u540D" form-key="name" group="group1" {$&methodMoreAttr}>{$&methodSlot}</ui-{$uikey}>\n    <br>\n    <ui-link js="alert(JSON.stringify(window.morning.findVM(\'demoMethodGetGroup\').getGroup()))">\u83B7\u53D6\u8868\u5355\u7EC4</ui-link>\n</div>\n````\n\n#### addGroup(group)\n\n\u6DFB\u52A0\u4E00\u4E2A\u6307\u5B9A\u7684\u8868\u5355\u7EC4\u3002\n\n|KEY|\u53EF\u9009|\u63CF\u8FF0|\u63A5\u53D7\u503C|\u503C\u7C7B\u578B|\u9ED8\u8BA4\u503C|\n|-|-|-|-|-|-|\n|group|NO|\u6DFB\u52A0\u8868\u5355\u7EC4\u7684KEY|\u8868\u5355\u7EC4\u7684KEY|String|`undefined`|\n\n````html\n@origin\n<div style="width:300px;">\n    <!-- \u8BBE\u7F6E\u591A\u4E2A\u7EC4 -->\n    <ui-{$uikey} ref="demoMethodAddGroup" form-name="\u8868\u5355\u540D" form-key="name" {$&methodMoreAttr}>{$&methodSlot}</ui-{$uikey}>\n    <br>\n    <ui-link js="alert(JSON.stringify(window.morning.findVM(\'demoMethodAddGroup\').getGroup()))">\u83B7\u53D6\u8868\u5355\u7EC4</ui-link>\n    <ui-link js="window.morning.findVM(\'demoMethodAddGroup\').addGroup(\'group1\')">\u6DFB\u52A0\u8868\u5355\u7EC4</ui-link>\n</div>\n````\n\n#### removeGroup(group)\n\n\u79FB\u9664\u4E00\u4E2A\u6307\u5B9A\u7684\u8868\u5355\u7EC4\u3002\n\n|KEY|\u53EF\u9009|\u63CF\u8FF0|\u63A5\u53D7\u503C|\u503C\u7C7B\u578B|\u9ED8\u8BA4\u503C|\n|-|-|-|-|-|-|\n|group|NO|\u79FB\u9664\u8868\u5355\u7EC4\u7684KEY|\u8868\u5355\u7EC4\u7684KEY|String|`undefined`|\n\n````html\n@origin\n<div style="width:300px;">\n    <!-- \u8BBE\u7F6E\u591A\u4E2A\u7EC4 -->\n    <ui-{$uikey} ref="demoMethodRemoveGroup" form-name="\u8868\u5355\u540D" form-key="name" group="group1" {$&methodMoreAttr}>{$&methodSlot}</ui-{$uikey}>\n    <br>\n    <ui-link js="alert(JSON.stringify(window.morning.findVM(\'demoMethodRemoveGroup\').getGroup()))">\u83B7\u53D6\u8868\u5355\u7EC4</ui-link>\n    <ui-link js="window.morning.findVM(\'demoMethodRemoveGroup\').removeGroup(\'group1\')">\u79FB\u9664\u8868\u5355\u7EC4</ui-link>\n</div>\n````\n    ',
-    formEvent: '\n#### valueChange\n\n\u5F53\u8868\u5355\u503C\u53D8\u5316\u65F6\u89E6\u53D1\u3002\n\n````vue\n@use:html.demoValueChange,js.demoValueChange\n````\n\n````html\n@var:demoValueChange\n<div style="width:300px;">\n    <ui-{$uikey} ref="demoValueChange" form-name="\u8868\u5355\u540D" @valueChange="echo" {$&eventMoreAttr}>{$&eventSlot}</ui-{$uikey}>\n    <br>\n    <ui-link js="window.morning.findVM(\'demoValueChange\').set({$&eventValue})">\u89E6\u53D1valueChange\u4E8B\u4EF6</ui-link>\n</div>\n````\n\n````js\n@var:demoValueChange\nnew Vue({\n    el : \'{$el}\',\n    template : \'{$template}\',\n    methods : {\n        echo : function () {\n            console.log(\'demoValueChange.console1\', \'valueChange event!\');\n        }\n    }\n});\n````\n\n#### \u751F\u547D\u5468\u671F\u4E8B\u4EF6\n\n````vue\n@use:html.demoEventLifecycle,js.demoEventLifecycle\n````\n\n````html\n@var:demoEventLifecycle\n<div style="width:300px;">\n    <ui-{$uikey}\n        ref="demoEventLifecycle"\n        form-name="\u8868\u5355\u540D"\n        v-show="show"\n        @created="echo(\'created\')"\n        @mounted="echo(\'mounted\')"\n        @beforeUpdate="echo(\'beforeUpdate\')"\n        @updated="echo(\'updated\')"\n        @beforeDestroy="echo(\'beforeDestroy\')"\n        @destroyed="echo(\'destroyed\')"\n        {$&eventMoreAttr}\n    >{$&eventSlot}<span style="display:none;">{%text%}</span></ui-{$uikey}>\n\n    <br><br>\n\n    <ui-link js="javascript:window.demoEventLifecycle.text=\'\u751F\u547D\u5468\u671F\u4E8B\u4EF6\';">\u89E6\u53D1update</ui-link>\n    <ui-link js="javascript:morning.findVM(\'demoEventLifecycle\').$destroy();">\u89E6\u53D1destroy</ui-link>\n</div>\n````\n\n````js\n@var:demoEventLifecycle\nwindow.demoEventLifecycle = new Vue({\n    el : \'{$el}\',\n    template : \'{$template}\',\n    data : function () {\n        return {\n           text : \'\u6309\u94AE\',\n           show : true\n        };\n    },\n    methods : {\n        echo : function (name) {\n            console.log(\'demoEventLifecycle.console1\', name + \' event!\');\n        }\n    }\n});\n````'
-};
 
 var data = {
     size: [{
@@ -1576,246 +1596,231 @@ var data = {
     }
 };
 
-var parser = function parser(text, el) {
+var repeater = {
+    size: function size(_opt) {
 
-    var patt = /````(html|js|css|vue|)((\n[\t ]*[\@a-zA-Z0-9\:\.\,\|]+)*)\n((.|\n)*?)(\n)*([ \t]*)````/g;
-    var varpatt = /````(html|js|css)\n(\@var\:([a-zA-Z0-9]+))\n((.|\n)+?)\n([ \t]*)````/g;
-    var presetpatt = /````(preset)((\n[\t ]*[a-zA-Z0-9@'"[\]?<>/\-_{}=:.,|!()\u4e00-\u9fa5 ]+)*)\n((.|\n)*?)(\n)*([ \t]*)````/g;
-    var result = void 0;
-    var vars = {
-        js: {},
-        html: {}
-    };
-    var blocks = [];
-    var vueContext = {};
+        _opt.content = '{$#size}' + _opt.content + '{$/size}';
+        _opt.context = (0, _extend3.default)(true, _opt.context, {
+            size: data.size
+        });
 
-    while ((result = presetpatt.exec(text)) !== null) {
-
-        var rdata = result[2].replace(/^\n/, '').split('\n');
-        var id = rdata[0].split(':')[1];
-
-        rdata.shift();
-
-        var _iteratorNormalCompletion = true;
-        var _didIteratorError = false;
-        var _iteratorError = undefined;
-
-        try {
-            for (var _iterator = rdata[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                var item = _step.value;
-
-
-                var name = item.split(':')[0].replace(/^@/, '');
-                var valuelist = item.split(':');
-
-                valuelist.shift();
-
-                var value = valuelist.join(':');
-
-                vueContext[name] = value;
-            }
-        } catch (err) {
-            _didIteratorError = true;
-            _iteratorError = err;
-        } finally {
-            try {
-                if (!_iteratorNormalCompletion && _iterator.return) {
-                    _iterator.return();
-                }
-            } finally {
-                if (_didIteratorError) {
-                    throw _iteratorError;
-                }
-            }
-        }
-
-        var content = presets[id];
-
-        text = text.slice(0, result.index - 1) + content + text.slice(result.index + result[0].length, text.length);
-        presetpatt.lastIndex = 0;
-    }
-
-    while ((result = varpatt.exec(text)) !== null) {
-
-        vars[result[1]][result[3]] = result[4];
-        text = text.slice(0, result.index - 1) + text.slice(result.index + result[0].length, text.length);
-
-        varpatt.lastIndex = 0;
-    }
-
-    while ((result = patt.exec(text)) !== null) {
-
-        var _content = result[4];
-        var _helpers = result[2].split('\n');
-
-        _helpers.shift();
-
-        var block = {
-            content: _content,
-            type: result[1],
-            result: result,
-            context: vueContext,
-            helpers: []
-        };
-
-        var _iteratorNormalCompletion2 = true;
-        var _didIteratorError2 = false;
-        var _iteratorError2 = undefined;
-
-        try {
-            for (var _iterator2 = _helpers[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                var _name = _step2.value;
-
-
-                var list = _name.split('|');
-                var group = [];
-
-                var _iteratorNormalCompletion3 = true;
-                var _didIteratorError3 = false;
-                var _iteratorError3 = undefined;
-
-                try {
-                    for (var _iterator3 = list[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-                        var help = _step3.value;
-
-
-                        var fn = help.split(':')[0].replace(/^\@/, '');
-                        var param = help.split(':')[1];
-
-                        group.push({
-                            fn: fn,
-                            param: param
-                        });
-                    }
-                } catch (err) {
-                    _didIteratorError3 = true;
-                    _iteratorError3 = err;
-                } finally {
-                    try {
-                        if (!_iteratorNormalCompletion3 && _iterator3.return) {
-                            _iterator3.return();
-                        }
-                    } finally {
-                        if (_didIteratorError3) {
-                            throw _iteratorError3;
-                        }
-                    }
-                }
-
-                block.helpers.push(group);
-            }
-        } catch (err) {
-            _didIteratorError2 = true;
-            _iteratorError2 = err;
-        } finally {
-            try {
-                if (!_iteratorNormalCompletion2 && _iterator2.return) {
-                    _iterator2.return();
-                }
-            } finally {
-                if (_didIteratorError2) {
-                    throw _iteratorError2;
-                }
-            }
-        }
-
-        blocks.push(block);
-    }
-
-    return {
-        vars: vars,
-        blocks: blocks,
-        text: text
-    };
-};
-
-var helpers = {
-    import: function _import(opt) {
-
-        var name = opt.param.split(',');
-
-        opt.content = window.$('script#' + name[0]);
-        opt.context = {
-            uiname: name[1]
-        };
-
-        return opt;
+        return _opt;
     },
-    origin: function origin(opt) {
+    color: function color(_opt) {
 
-        return opt;
-    },
-    render: function render(opt) {
+        var color = _opt.param;
 
-        opt.isText = true;
-
-        return opt;
-    },
-    size: function size(opt) {
-
-        if (typeof opt.content === 'string') {
-
-            opt.content = '{$#size}' + opt.content + '\n{$/size}';
-        } else if (_typeof(opt.content) === 'object') {
-
-            for (var key in opt.content) {
-
-                opt.content[key] = '{$#size}' + opt.content[key] + '\n{$/size}';
-            }
-        }
-
-        return opt;
-    },
-    color: function color(opt) {
-
-        var color = opt.param;
-
-        if (typeof opt.content === 'string') {
-
-            opt.content = '{$#' + color + '}' + opt.content + '\n{$/' + color + '}';
-        } else if (_typeof(opt.contnet) === 'object') {
-
-            for (var key in opt.content) {
-
-                opt.content[key] = '{$#' + color + '}' + opt.content[key] + '\n{$/' + color + '}';
-            }
-        }
+        _opt.content = '{$#' + color + '}' + _opt.content + '{$/' + color + '}';
+        _opt.context = (0, _extend3.default)(true, _opt.context, _defineProperty({}, color, data[color]));
 
         if (color === 'silver') {
 
-            opt.style.push('background: #626b75;border-color: #454d57');
+            _opt.style.push('background: #626b75;border-color: #454d57');
         } else if (color === 'gray') {
 
-            opt.style.push('background:#676767;border-color: #494949');
+            _opt.style.push('background:#676767;border-color: #494949');
         }
 
-        return opt;
+        return _opt;
     },
-    state: function state(opt) {
+    state: function state(_opt) {
 
-        if (opt.param === undefined) {
+        if (_opt.param === undefined) {
 
-            opt.param = 'all';
+            _opt.param = 'all';
         }
 
-        var states = opt.param.split(',');
+        var states = _opt.param.split(',');
 
         if (states.length > 0 && states.indexOf('all') === -1) {
 
             var sna = [];
+
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+                for (var _iterator = data.state[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var state = _step.value;
+
+
+                    if (states.indexOf(state.stateKey) !== -1) {
+
+                        sna.push(state);
+                    }
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return) {
+                        _iterator.return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
+
+            _opt.context = (0, _extend3.default)(true, _opt.context, {
+                state: sna
+            });
+        } else if (states[0] === 'all') {
+
+            _opt.context = (0, _extend3.default)(true, _opt.context, {
+                state: data.state
+            });
+        }
+
+        // if (typeof opt.content === 'string') {
+
+        _opt.content = '{$#state}' + _opt.content + '{$/state}';
+
+        // } else if (typeof opt.contnet === 'object') {
+
+        //     for (let key in opt.content) {
+
+        //         opt.content[key] = `{$#state}${opt.content[key]}\n{$/state}`;
+
+        //     }
+
+        // }
+
+        return _opt;
+    },
+    br: function br(_opt) {
+
+        var num = +_opt.param || 1;
+        var brs = '';
+
+        while (num--) {
+
+            brs += '<br/>';
+        }
+
+        _opt.content = _opt.content + '\n' + brs + '\n';
+
+        return _opt;
+    },
+    formConfig: function formConfig(_opt) {
+
+        _opt.content = '{$#formConfig}' + _opt.content + '\n{$/formConfig}';
+        _opt.context = (0, _extend3.default)(true, _opt.context, {
+            formConfig: data.formConfig
+        });
+
+        return _opt;
+    },
+    formValueType: function formValueType(_opt) {
+
+        var key = _opt.param || 'default';
+
+        _opt.content = '{$#formValueType.' + key + '}' + _opt.content + '\n{$/formValueType.' + key + '}';
+        _opt.context = (0, _extend3.default)(true, _opt.context, {
+            formValueType: data.formValueType
+        });
+
+        return _opt;
+    }
+};
+
+var presets = {
+    statementColor: '\n:::repeat/html\ncolor:theme\ncolor:feature\ncolor:black\ncolor:blue\ncolor:silver\ncolor:gray\n---\n<ui-{%uikey%} {$colorKey}>{$&colorName}</ui-{%uikey%}>\n:::\n',
+    formStatement: '\n#### \u652F\u6301\n\n|\u7C7B\u578B|\u652F\u6301|\u9ED8\u8BA4|\n|-|-|-|\n|\u5C3A\u5BF8|\u4E0D\u652F\u6301|-|\n|\u8272\u5F69|\u4E0D\u652F\u6301|-|\n|\u72B6\u6001|`normal`<br/>`disabled`|`normal`|\n\n#### \u72B6\u6001\n\n:::repeat/html\nstate:normal,disabled\n---\n<div style="width:300px;">\n    <ui-{%uikey%} {$stateKey} :default-value="{%&statementDefaultValue%}" form-name="{$&stateName}" {%&statementMoreAttr%}>{%&statementSlot%}</ui-{%uikey%}>\n</div>\n<br>\n:::\n',
+    formStatementWithStyle: '\n#### \u652F\u6301\n\n|\u7C7B\u578B|\u652F\u6301|\u9ED8\u8BA4|\n|-|-|-|\n|\u5C3A\u5BF8|\u4E0D\u652F\u6301|-|\n|\u8272\u5F69|\u5168\u90E8|`theme`|\n|\u72B6\u6001|`normal`<br/>`disabled`|`normal`|\n\n\n#### \u8272\u5F69\n\n:::repeat/html\ncolor:theme\ncolor:feature\ncolor:black\ncolor:blue\ncolor:silver\ncolor:gray\n---\n<div style="width:300px;">\n    <ui-{%uikey%} {$colorKey} :default-value="{%&statementDefaultValue%}" form-name="{$&colorName}" {%&statementMoreAttr%}>{%&statementSlot%}</ui-{%uikey%}>\n</div>\n<br>\n:::\n\n#### \u72B6\u6001\n\n:::repeat/html\nstate:normal,disabled\n---\n<div style="width:300px;">\n    <ui-{%uikey%} {$stateKey} :default-value="{%&statementDefaultValue%}" form-name="{$&stateName}" {%&statementMoreAttr%}>{%&statementSlot%}</ui-{%uikey%}>\n</div>\n<br>\n:::\n',
+    formConfigDemo: '\n#### form-name\n\n:::repeat/html\nformConfig\n---\n<div style="width:300px;">\n    <ui-{%uikey%} form-name="{$formName}" {%&configMoreAttr%}>{%&configSlot%}</ui-{%uikey%}>\n</div>\n:::\n\n#### form-key\n\n:::repeat/html\nformConfig\n---\n<div style="width:300px;">\n    <ui-{%uikey%} form-name="{$formName}" form-key="{$formKey}" {%&configMoreAttr%}>{%&configSlot%}</ui-{%uikey%}>\n</div>\n:::\n\n#### group\n\n\u8BBE\u7F6E\u5355\u4E2A\u7EC4\uFF1A\n\n:::repeat/html\nformConfig\n---\n<div style="width:300px;">\n    <!-- \u8BBE\u7F6E\u5355\u4E2A\u7EC4 -->\n    <ui-{%uikey%} form-name="{$formName}" form-key="{$formKey}" group="{$formGroupOne}" {%&configMoreAttr%}>{%&configSlot%}</ui-{%uikey%}>\n</div>\n:::\n\n\u8BBE\u7F6E\u591A\u4E2A\u7EC4\uFF1A\n\n:::repeat/html\nformConfig\n---\n<div style="width:300px;">\n    <!-- \u8BBE\u7F6E\u591A\u4E2A\u7EC4 -->\n    <ui-{%uikey%} form-name="{$formName}" form-key="{$formKey}" :group="[\'group1\', \'group2\', \'group3\']" {%&configMoreAttr%}>{%&configSlot%}</ui-{%uikey%}>\n</div>\n:::\n\n#### default-value\n\n:::repeat/html\nformConfig\n---\n<div style="width:300px;">\n    <ui-{%uikey%} form-name="{$formName}" :default-value="{%&configDefaultValue%}" {%&configMoreAttr%}>{%&configSlot%}</ui-{%uikey%}>\n</div>\n:::\n\n#### hide-name\n\n\u9690\u85CF\u540E\u8868\u5355\u9ED8\u8BA4\u4F4D\u7F6E\u7684\u540D\u5B57\u4E0D\u4F1A\u663E\u793A\uFF0C\u53EF\u4EE5\u5728\u5176\u4ED6\u5730\u65B9\u8BBE\u7F6E\u8868\u5355\u540D\u3002\n\n:::repeat/html\nformConfig\n---\n<div style="width:300px;">\n    <p>{$formName}</p>\n    <ui-{%uikey%} form-name="{$formName}" hide-name {%&configMoreAttr%}>{%&configSlot%}</ui-{%uikey%}>\n</div>\n:::\n    ',
+    formConfigTable: '\n|KEY|\u63CF\u8FF0|\u63A5\u53D7\u503C|\u503C\u7C7B\u578B|\u9ED8\u8BA4\u503C|\n|-|-|-|-|-|\n|form-name|\u8868\u5355\u7684\u540D\u79F0\uFF08\u7528\u4E8E\u663E\u793A\uFF09|\u4EFB\u610F\u5B57\u7B26\u4E32|String|`undefined`|\n|form-key|\u8868\u5355\u7684Key\uFF08\u7528\u4E8E\u903B\u8F91\u4E2D\u4F5C\u4E3A\u8BC6\u522B\u6807\u793A\uFF09|\u4EFB\u610F\u5B57\u7B26\u4E32(\u552F\u4E00)|String|`undefined`|\n|group|\u8868\u5355\u7EC4\uFF0C\u7528\u4E8E\u5C06\u591A\u4E2A\u8868\u5355\u7684\u6570\u503C\u6DFB\u52A0\u5230\u540C\u4E00\u4E2A\u5BF9\u8C61\u4E2D\u3002\u4E00\u4E2A\u8868\u5355\u53EF\u4EE5\u540C\u65F6\u5C5E\u4E8E\u591A\u4E2A\u7EC4|\u82E5\u662F\u5B57\u7B26\u4E32\uFF0C\u5219\u5C06\u8868\u5355\u6DFB\u52A0\u5230\u5355\u4E2A\u7EC4<br>\u82E5\u662F\u6570\u7EC4\uFF0C\u5219\u5C06\u8868\u5355\u6DFB\u52A0\u5230\u591A\u4E2A\u7EC4|String<br/>Array|`[]`|\n|default-value|\u8868\u5355\u7684\u9ED8\u8BA4\u503C|\u4EFB\u610F(\u63A5\u53D7\u8868\u5355\u539F\u59CB\u6570\u503C\uFF0C\u4E5F\u63A5\u53D7JSON\u5E8F\u5217\u5316\u540E\u7684\u8868\u5355\u6570\u503C\uFF0C\u82E5\u6570\u503C\u662FJSON\u5E8F\u5217\u5316\u7684\u4F1A\u81EA\u52A8\u8F6C\u6362\u6210\u539F\u59CB\u6570\u503C)|Any|`undefined`|\n|hide-name|\u9690\u85CF\u8868\u5355\u540D|`true`<br>`false`|Boolean|`false`|\n{%&content%}\n',
+    formMethod: '\n#### set([value])\n\n\u8BBE\u7F6E\u8868\u5355\u7684\u503C\u3002\n\n|KEY|\u53EF\u9009|\u63CF\u8FF0|\u63A5\u53D7\u503C|\u503C\u7C7B\u578B|\u9ED8\u8BA4\u503C|\n|-|-|-|-|-|-|\n|value|YES|\u9700\u8981\u8BBE\u7F6E\u8868\u5355\u7684\u503C\uFF0C\u5982\u679C\u9700\u8981\u6E05\u7A7A\u8868\u5355\u7684\u503C\uFF0C\u53EF\u4EE5\u4E0D\u4F20\u6B64\u53C2\u6570\u3002|\u63A5\u53D7\u4EFB\u4F55\u6570\u503C\u3002<br/>`undefined`:\u6E05\u7A7A\u8868\u5355\u7684\u503C<br>\u539F\u59CB\u503C:\u8868\u5355\u7684\u539F\u59CB\u503C\uFF0C\u6839\u636E\u8868\u5355\u4E0D\u540C\u53EF\u4EE5\u662F\u5B57\u7B26\u4E32\u3001\u5BF9\u8C61\u3001\u6570\u7EC4\u7B49<br>JSON\u6570\u503C:\u8868\u5355\u539F\u59CB\u503CJSON\u5E8F\u5217\u5316\u540E\u7684\u503C\uFF0C\u4F20\u5165\u540E\u8868\u5355\u4F1A\u81EA\u52A8\u89E3\u6790\u5E76\u8FD8\u539F\u539F\u59CB\u503C\u3002|Any|`undefined`|\n\n:::democode/html\n<div style="width:300px;">\n    <ui-{%uikey%} ref="demoMethodSet" form-name="\u8868\u5355\u540D" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>\n    <br>\n    <ui-link js="window.morning.findVM(\'demoMethodSet\').set({%&methodValue%})">\u8BBE\u7F6E\u503C</ui-link>\n    <ui-link js="window.morning.findVM(\'demoMethodSet\').set()">\u79FB\u9664\u503C</ui-link>\n</div>\n:::\n\n#### get([json])\n\n\u83B7\u53D6\u8868\u5355\u7684\u503C\u3002\n\n|KEY|\u53EF\u9009|\u63CF\u8FF0|\u63A5\u53D7\u503C|\u503C\u7C7B\u578B|\u9ED8\u8BA4\u503C|\n|-|-|-|-|-|-|\n|json|YES|\u8868\u5355\u7684\u503C\u662F\u5426\u9700\u8981JSON\u5E8F\u5217\u5316\u540E\u8FD4\u56DE\uFF0C\u82E5\u4F60\u9700\u8981\u548C\u5176\u4ED6\u7A0B\u5E8F\u8FDB\u884C\u6570\u636E\u4EA4\u4E92\uFF0C\u4F7F\u7528JSON\u662F\u4E00\u79CD\u8F83\u597D\u7684\u65B9\u6CD5\u3002|`true`<br>`false`|Boolean|`true`|\n\n:::democode/html\n<div style="width:300px;">\n    <ui-{%uikey%} ref="demoMethodGet" form-name="\u8868\u5355\u540D" :default-value="{%&methodDefaultValue%}" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>\n    <br>\n    <ui-link js="alert(window.morning.findVM(\'demoMethodGet\').get(false))">\u83B7\u53D6\u8868\u5355\u539F\u59CB\u503C</ui-link>\n    <ui-link js="alert(window.morning.findVM(\'demoMethodGet\').get())">\u83B7\u53D6\u8868\u5355JSON\u503C</ui-link>\n</div>\n:::\n\n#### setName([name])\n\n\u8BBE\u7F6E\u8868\u5355\u7684\u540D\u79F0\u3002\n\n|KEY|\u53EF\u9009|\u63CF\u8FF0|\u63A5\u53D7\u503C|\u503C\u7C7B\u578B|\u9ED8\u8BA4\u503C|\n|-|-|-|-|-|-|\n|name|YES|\u9700\u8981\u8BBE\u7F6E\u8868\u5355\u7684\u540D\u79F0\uFF0C\u5982\u679C\u9700\u8981\u6E05\u7A7A\u8868\u5355\u7684\u540D\u79F0\uFF0C\u53EF\u4EE5\u4E0D\u4F20\u6B64\u53C2\u6570\u3002|\u4EFB\u610F\u5B57\u7B26\u4E32|String|`undefined`|\n\n:::democode/html\n<div style="width:300px;">\n    <ui-{%uikey%} ref="demoMethodSetName" form-name="\u59D3\u540D" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>\n    <br>\n    <ui-link js="alert(window.morning.findVM(\'demoMethodSetName\').getName())">\u83B7\u53D6\u8868\u5355\u540D\u79F0</ui-link>\n    <ui-link js="window.morning.findVM(\'demoMethodSetName\').setName(\'\u5E74\u9F84\')">\u8BBE\u7F6E\u8868\u5355\u540D\u79F0</ui-link>\n    <ui-link js="window.morning.findVM(\'demoMethodSetName\').setName()">\u79FB\u9664\u8868\u5355\u540D\u79F0</ui-link>\n</div>\n:::\n\n#### getName()\n\n\u83B7\u53D6\u8868\u5355\u7684\u540D\u79F0\u3002\n\n:::democode/html\n<div style="width:300px;">\n    <ui-{%uikey%} ref="demoMethodGetName" form-name="\u59D3\u540D" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>\n    <br>\n    <ui-link js="alert(window.morning.findVM(\'demoMethodGetName\').getName())">\u83B7\u53D6\u8868\u5355\u540D\u79F0</ui-link>\n</div>\n:::\n\n#### setKey([key])\n\n\u8BBE\u7F6E\u8868\u5355\u7684KEY\u3002\n\n|KEY|\u53EF\u9009|\u63CF\u8FF0|\u63A5\u53D7\u503C|\u503C\u7C7B\u578B|\u9ED8\u8BA4\u503C|\n|-|-|-|-|-|-|\n|key|YES|\u9700\u8981\u8BBE\u7F6E\u8868\u5355\u7684KEY\uFF0C\u5982\u679C\u9700\u8981\u6E05\u7A7A\u8868\u5355\u7684KEY\uFF0C\u53EF\u4EE5\u4E0D\u4F20\u6B64\u53C2\u6570\u3002|\u4EFB\u610F\u5B57\u7B26\u4E32|String|`undefined`|\n\n:::democode/html\n<div style="width:300px;">\n    <ui-{%uikey%} ref="demoMethodSetKey" form-name="\u8868\u5355\u540D" form-key="name" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>\n    <br>\n    <ui-link js="alert(window.morning.findVM(\'demoMethodSetKey\').getKey())">\u83B7\u53D6\u8868\u5355KEY</ui-link>\n    <ui-link js="window.morning.findVM(\'demoMethodSetKey\').setKey(\'age\')">\u8BBE\u7F6E\u8868\u5355KEY</ui-link>\n    <ui-link js="window.morning.findVM(\'demoMethodSetKey\').setKey()">\u79FB\u9664\u8868\u5355KEY</ui-link>\n</div>\n:::\n\n#### getKey()\n\n\u83B7\u53D6\u8868\u5355\u7684KEY\u3002\n\n:::democode/html\n<div style="width:300px;">\n    <ui-{%uikey%} ref="demoMethodGetKey" form-name="\u8868\u5355\u540D" form-key="name" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>\n    <br>\n    <ui-link js="alert(window.morning.findVM(\'demoMethodGetKey\').getKey())">\u83B7\u53D6\u8868\u5355KEY</ui-link>\n</div>\n:::\n\n#### setGroup([groups])\n\n\u8BBE\u7F6E\u8868\u5355\u6240\u5C5E\u7684\u8868\u5355\u7EC4\u3002\n\n|KEY|\u53EF\u9009|\u63CF\u8FF0|\u63A5\u53D7\u503C|\u503C\u7C7B\u578B|\u9ED8\u8BA4\u503C|\n|-|-|-|-|-|-|\n|groups|YES|\u9700\u8981\u8BBE\u7F6E\u7684\u8868\u5355\u7EC4\u3002\u5982\u679C\u9700\u8981\u6E05\u7A7A\u6240\u6709\u8868\u5355\u7EC4\uFF0C\u53EF\u4EE5\u4E0D\u4F20\u6B64\u53C2\u6570\u3002|`undefined`:\u6E05\u7A7A\u6240\u6709\u8868\u5355\u7EC4<br>String:\u8BBE\u7F6E\u4E00\u4E2A\u8868\u5355\u7EC4<br>Array:\u8BBE\u7F6E\u591A\u4E2A\u8868\u5355\u7EC4\u3002|String<br>Array<br>Undefined|`undefined`|\n\n:::democode/html\n<div style="width:300px;">\n    <!-- \u8BBE\u7F6E\u591A\u4E2A\u7EC4 -->\n    <ui-{%uikey%} ref="demoMethodSetGroup" form-name="\u8868\u5355\u540D" form-key="name" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>\n    <br>\n    <ui-link js="alert(JSON.stringify(window.morning.findVM(\'demoMethodSetGroup\').getGroup()))">\u83B7\u53D6\u8868\u5355\u7EC4</ui-link>\n    <ui-link js="window.morning.findVM(\'demoMethodSetGroup\').setGroup(\'group1\')">\u8BBE\u7F6E\u5355\u4E2A\u8868\u5355\u7EC4</ui-link>\n    <ui-link js="window.morning.findVM(\'demoMethodSetGroup\').setGroup([\'group1\', \'group2\'])">\u8BBE\u7F6E\u591A\u4E2A\u8868\u5355\u7EC4</ui-link>\n    <ui-link js="window.morning.findVM(\'demoMethodSetGroup\').setGroup()">\u79FB\u9664\u6240\u6709\u8868\u5355\u7EC4</ui-link>\n</div>\n:::\n\n#### getGroup()\n\n\u83B7\u53D6\u8868\u5355\u6240\u5C5E\u7684\u8868\u5355\u7EC4\u3002\n\n:::democode/html\n<div style="width:300px;">\n    <!-- \u8BBE\u7F6E\u591A\u4E2A\u7EC4 -->\n    <ui-{%uikey%} ref="demoMethodGetGroup" form-name="\u8868\u5355\u540D" form-key="name" group="group1" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>\n    <br>\n    <ui-link js="alert(JSON.stringify(window.morning.findVM(\'demoMethodGetGroup\').getGroup()))">\u83B7\u53D6\u8868\u5355\u7EC4</ui-link>\n</div>\n:::\n\n#### addGroup(group)\n\n\u6DFB\u52A0\u4E00\u4E2A\u6307\u5B9A\u7684\u8868\u5355\u7EC4\u3002\n\n|KEY|\u53EF\u9009|\u63CF\u8FF0|\u63A5\u53D7\u503C|\u503C\u7C7B\u578B|\u9ED8\u8BA4\u503C|\n|-|-|-|-|-|-|\n|group|NO|\u6DFB\u52A0\u8868\u5355\u7EC4\u7684KEY|\u8868\u5355\u7EC4\u7684KEY|String|`undefined`|\n\n:::democode/html\n<div style="width:300px;">\n    <!-- \u8BBE\u7F6E\u591A\u4E2A\u7EC4 -->\n    <ui-{%uikey%} ref="demoMethodAddGroup" form-name="\u8868\u5355\u540D" form-key="name" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>\n    <br>\n    <ui-link js="alert(JSON.stringify(window.morning.findVM(\'demoMethodAddGroup\').getGroup()))">\u83B7\u53D6\u8868\u5355\u7EC4</ui-link>\n    <ui-link js="window.morning.findVM(\'demoMethodAddGroup\').addGroup(\'group1\')">\u6DFB\u52A0\u8868\u5355\u7EC4</ui-link>\n</div>\n:::\n\n#### removeGroup(group)\n\n\u79FB\u9664\u4E00\u4E2A\u6307\u5B9A\u7684\u8868\u5355\u7EC4\u3002\n\n|KEY|\u53EF\u9009|\u63CF\u8FF0|\u63A5\u53D7\u503C|\u503C\u7C7B\u578B|\u9ED8\u8BA4\u503C|\n|-|-|-|-|-|-|\n|group|NO|\u79FB\u9664\u8868\u5355\u7EC4\u7684KEY|\u8868\u5355\u7EC4\u7684KEY|String|`undefined`|\n\n:::democode/html\n<div style="width:300px;">\n    <!-- \u8BBE\u7F6E\u591A\u4E2A\u7EC4 -->\n    <ui-{%uikey%} ref="demoMethodRemoveGroup" form-name="\u8868\u5355\u540D" form-key="name" group="group1" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>\n    <br>\n    <ui-link js="alert(JSON.stringify(window.morning.findVM(\'demoMethodRemoveGroup\').getGroup()))">\u83B7\u53D6\u8868\u5355\u7EC4</ui-link>\n    <ui-link js="window.morning.findVM(\'demoMethodRemoveGroup\').removeGroup(\'group1\')">\u79FB\u9664\u8868\u5355\u7EC4</ui-link>\n</div>\n:::\n    ',
+    formEvent: '\n#### valueChange\n\n\u5F53\u8868\u5355\u503C\u53D8\u5316\u65F6\u89E6\u53D1\u3002\n\n:::vue/html\nnew Vue({\n    el : \'{$el}\',\n    template : \'{$template}\',\n    methods : {\n        echo : function () {\n            console.log(\'demoValueChange.console1\', \'valueChange event!\');\n        }\n    }\n});\n---\n<div style="width:300px;">\n    <ui-{%uikey%} ref="demoValueChange" form-name="\u8868\u5355\u540D" @valueChange="echo" {%&eventMoreAttr%}>{%&eventSlot%}</ui-{%uikey%}>\n    <br>\n    <ui-link js="window.morning.findVM(\'demoValueChange\').set({%&eventValue%})">\u89E6\u53D1valueChange\u4E8B\u4EF6</ui-link>\n</div>\n:::\n\n#### \u751F\u547D\u5468\u671F\u4E8B\u4EF6\n\n:::vue/html\nwindow.demoEventLifecycle = new Vue({\n    el : \'{$el}\',\n    template : \'{$template}\',\n    data : function () {\n        return {\n           text : \'\u6309\u94AE\',\n           show : true\n        };\n    },\n    methods : {\n        echo : function (name) {\n            console.log(\'demoEventLifecycle.console1\', name + \' event!\');\n        }\n    }\n});\n---\n<div style="width:300px;">\n    <ui-{%uikey%}\n        ref="demoEventLifecycle"\n        form-name="\u8868\u5355\u540D"\n        v-show="show"\n        @created="echo(\'created\')"\n        @mounted="echo(\'mounted\')"\n        @beforeUpdate="echo(\'beforeUpdate\')"\n        @updated="echo(\'updated\')"\n        @beforeDestroy="echo(\'beforeDestroy\')"\n        @destroyed="echo(\'destroyed\')"\n        {%&eventMoreAttr%}\n    >{%&eventSlot%}<span style="display:none;">{*text*}</span></ui-{%uikey%}>\n\n    <br><br>\n\n    <ui-link js="javascript:window.demoEventLifecycle.text=\'\u751F\u547D\u5468\u671F\u4E8B\u4EF6\';">\u89E6\u53D1update</ui-link>\n    <ui-link js="javascript:morning.findVM(\'demoEventLifecycle\').$destroy();">\u89E6\u53D1destroy</ui-link>\n</div>\n:::\n'
+};
+
+var extRepeat = function extRepeat(content, paramStr, token, md) {
+
+    var params = {};
+
+    params.list = [];
+
+    var _iteratorNormalCompletion2 = true;
+    var _didIteratorError2 = false;
+    var _iteratorError2 = undefined;
+
+    try {
+        for (var _iterator2 = paramStr[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+            var item = _step2.value;
+
+
+            item = item.split('|');
+
+            params.list.push(item);
+        }
+    } catch (err) {
+        _didIteratorError2 = true;
+        _iteratorError2 = err;
+    } finally {
+        try {
+            if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                _iterator2.return();
+            }
+        } finally {
+            if (_didIteratorError2) {
+                throw _iteratorError2;
+            }
+        }
+    }
+
+    var fullContent = '';
+
+    var _iteratorNormalCompletion3 = true;
+    var _didIteratorError3 = false;
+    var _iteratorError3 = undefined;
+
+    try {
+        for (var _iterator3 = params.list[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+            var _item = _step3.value;
+
+
+            var _opt = {
+                content: content,
+                context: {},
+                style: []
+            };
 
             var _iteratorNormalCompletion4 = true;
             var _didIteratorError4 = false;
             var _iteratorError4 = undefined;
 
             try {
-                for (var _iterator4 = data.state[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-                    var state = _step4.value;
+                for (var _iterator4 = _item[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+                    var sitem = _step4.value;
 
 
-                    if (states.indexOf(state.stateKey) !== -1) {
+                    _opt.param = undefined;
 
-                        sna.push(state);
+                    if (sitem === 'size') {
+
+                        repeater.size(_opt);
+                    } else if (/^color/.test(sitem)) {
+
+                        _opt.param = sitem.split(':')[1];
+                        repeater.color(_opt);
+                    } else if (/^state/.test(sitem)) {
+
+                        _opt.param = sitem.split(':')[1];
+                        repeater.state(_opt);
+                    } else if (/^br/.test(sitem)) {
+
+                        _opt.param = sitem.split(':')[1];
+                        repeater.br(_opt);
+                    } else if (/^formConfig/.test(sitem)) {
+
+                        repeater.formConfig(_opt);
+                    } else if (/^formValueType/.test(sitem)) {
+
+                        _opt.param = sitem.split(':')[1];
+                        repeater.formValueType(_opt);
                     }
                 }
             } catch (err) {
@@ -1833,460 +1838,574 @@ var helpers = {
                 }
             }
 
-            opt.context = (0, _extend2.default)(true, opt.context, {
-                state: sna
-            });
+            _mustache2.default.parse(_opt.content, ['{$', '}']);
+
+            var renderContent = _mustache2.default.render(_opt.content, _opt.context);
+
+            fullContent += '<div class="demo" style="' + _opt.style.join('') + '">' + renderContent + '</div><pre><code class="lang-' + token.lang + '">' + md.utils.escapeHtml(renderContent) + '</code></pre>\n';
         }
-
-        if (typeof opt.content === 'string') {
-
-            opt.content = '{$#state}' + opt.content + '\n{$/state}';
-        } else if (_typeof(opt.contnet) === 'object') {
-
-            for (var key in opt.content) {
-
-                opt.content[key] = '{$#state}' + opt.content[key] + '\n{$/state}';
-            }
-        }
-
-        return opt;
-    },
-    br: function br(opt) {
-
-        var num = +opt.param || 1;
-        var brs = '';
-
-        while (num--) {
-
-            brs += '<br/>';
-        }
-
-        if (typeof opt.content === 'string') {
-
-            opt.content = opt.content + '\n' + brs + '\n';
-        } else if (_typeof(opt.content) === 'object') {
-
-            for (var key in opt.content) {
-
-                opt.content[key] = opt.content[key] + '\n' + brs + '\n';
-            }
-        }
-
-        return opt;
-    },
-    use: function use(opt) {
-
-        var links = opt.param.split(',');
-
-        opt.content = {};
-
-        var _iteratorNormalCompletion5 = true;
-        var _didIteratorError5 = false;
-        var _iteratorError5 = undefined;
-
+    } catch (err) {
+        _didIteratorError3 = true;
+        _iteratorError3 = err;
+    } finally {
         try {
-            for (var _iterator5 = links[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
-                var link = _step5.value;
-
-
-                var type = link.split('.')[0];
-                var key = link.split('.')[1];
-
-                opt.content[type] = '&&&&&{$id}|' + opt.vars[type][key];
+            if (!_iteratorNormalCompletion3 && _iterator3.return) {
+                _iterator3.return();
             }
-        } catch (err) {
-            _didIteratorError5 = true;
-            _iteratorError5 = err;
         } finally {
-            try {
-                if (!_iteratorNormalCompletion5 && _iterator5.return) {
-                    _iterator5.return();
-                }
-            } finally {
-                if (_didIteratorError5) {
-                    throw _iteratorError5;
-                }
+            if (_didIteratorError3) {
+                throw _iteratorError3;
             }
         }
-
-        opt.render = function (sopt) {
-
-            var list = {};
-            var code = '';
-            var demo = '';
-            var newData = (0, _extend2.default)(true, {}, sopt.context);
-            var lastType = void 0;
-
-            var _iteratorNormalCompletion6 = true;
-            var _didIteratorError6 = false;
-            var _iteratorError6 = undefined;
-
-            try {
-                for (var _iterator6 = Object.keys(newData)[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
-                    var key = _step6.value;
-
-
-                    var value = newData[key];
-                    var _id = 'demo-' + _underscore2.default.random(randomRangeMin, randomRangeMax);
-
-                    if (value instanceof Array) {
-                        var _iteratorNormalCompletion8 = true;
-                        var _didIteratorError8 = false;
-                        var _iteratorError8 = undefined;
-
-                        try {
-
-                            for (var _iterator8 = value[Symbol.iterator](), _step8; !(_iteratorNormalCompletion8 = (_step8 = _iterator8.next()).done); _iteratorNormalCompletion8 = true) {
-                                var svalue = _step8.value;
-
-
-                                svalue.id = _id;
-                                svalue.el = '#' + _id + '-el';
-                                svalue.template = '#' + _id + '-tmpl';
-                            }
-                        } catch (err) {
-                            _didIteratorError8 = true;
-                            _iteratorError8 = err;
-                        } finally {
-                            try {
-                                if (!_iteratorNormalCompletion8 && _iterator8.return) {
-                                    _iterator8.return();
-                                }
-                            } finally {
-                                if (_didIteratorError8) {
-                                    throw _iteratorError8;
-                                }
-                            }
-                        }
-                    } else if ((typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object') {
-
-                        value.id = _id;
-                        value.el = '#' + _id + '-el';
-                        value.template = '#' + _id + '-tmpl';
-                    }
-                }
-            } catch (err) {
-                _didIteratorError6 = true;
-                _iteratorError6 = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion6 && _iterator6.return) {
-                        _iterator6.return();
-                    }
-                } finally {
-                    if (_didIteratorError6) {
-                        throw _iteratorError6;
-                    }
-                }
-            }
-
-            var id = 'demo-' + _underscore2.default.random(randomRangeMin, randomRangeMax);
-
-            newData.id = id;
-            newData.el = '#' + id + '-el';
-            newData.template = '#' + id + '-tmpl';
-
-            var _iteratorNormalCompletion7 = true;
-            var _didIteratorError7 = false;
-            var _iteratorError7 = undefined;
-
-            try {
-                for (var _iterator7 = Object.keys(sopt.content)[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
-                    var type = _step7.value;
-
-
-                    _mustache2.default.parse(sopt.content[type], ['{$', '}']);
-
-                    list[type] = _mustache2.default.render(sopt.content[type], newData).split('&&&&&');
-                    list[type].shift();
-                    lastType = type;
-                }
-            } catch (err) {
-                _didIteratorError7 = true;
-                _iteratorError7 = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion7 && _iterator7.return) {
-                        _iterator7.return();
-                    }
-                } finally {
-                    if (_didIteratorError7) {
-                        throw _iteratorError7;
-                    }
-                }
-            }
-
-            for (var i in list[lastType]) {
-
-                var html = list.html[i];
-                var js = list.js[i];
-                var demoid = html.match(/^([0-9a-z-]+?)\|/)[1];
-
-                html = html.replace(/^[0-9a-z-]+?\|/, '');
-                js = js.replace(/^[0-9a-z-]+?\|/, '');
-
-                code += '<div id="' + demoid + '-el"><!-- ' + demoid + ' \u5BB9\u5668 --></div>\n\n';
-                demo += '<div id="' + demoid + '-el"></div>\n';
-
-                // html
-                var htmlScript = document.createElement('script');
-
-                html = html.replace(/[\n]*?$/, '');
-                htmlScript.innerHTML = '\n' + html + '\n';
-                htmlScript.type = 'x-template';
-                htmlScript.id = demoid + '-tmpl';
-
-                code += htmlScript.outerHTML + '\n\n';
-
-                htmlScript.innerHTML = htmlScript.innerHTML.replace(/\{%([a-zA-Z0-9_]+)%\}/g, '{{$1}}');
-                evals.push(htmlScript);
-
-                // js
-
-                var jsScript = document.createElement('script');
-
-                js = js.replace(/[\n]*?$/, '');
-                jsScript.innerHTML = '\n' + js + '\n';
-
-                evals.push(jsScript);
-
-                code += jsScript.outerHTML;
-
-                if (i < list[lastType].length - 1) {
-
-                    code += '\n\n------------------------------------------------\n\n';
-                }
-            }
-
-            return {
-                demo: demo,
-                code: code
-            };
-        };
-
-        return opt;
-    },
-    formConfig: function formConfig(opt) {
-
-        if (typeof opt.content === 'string') {
-
-            opt.content = '{$#formConfig}' + opt.content + '\n{$/formConfig}';
-        } else if (_typeof(opt.content) === 'object') {
-
-            for (var key in opt.content) {
-
-                opt.content[key] = '{$#formConfig}' + opt.content[key] + '\n{$/formConfig}';
-            }
-        }
-
-        return opt;
-    },
-    formValueType: function formValueType(opt) {
-
-        var key = opt.param || 'default';
-
-        if (typeof opt.content === 'string') {
-
-            opt.content = '{$#formValueType.' + key + '}' + opt.content + '\n{$/formValueType.' + key + '}';
-        } else if (_typeof(opt.content) === 'object') {
-
-            for (var _key in opt.content) {
-
-                opt.content[_key] = '{$#formValueType.' + _key + '}' + opt.content[_key] + '\n{$/formValueType.' + _key + '}';
-            }
-        }
-
-        return opt;
     }
+
+    return fullContent;
 };
 
-var make = {
-    block: function block(_block) {
+var extVue = function extVue(content, paramStr, token, md) {
 
-        return '<div class="demo">\n' + _block.content + '</div>\n\n```' + _block.type + '\n' + _block.content + '\n```\n';
-    },
-    opt: function opt(opts, block) {
+    var js = paramStr.join('\n');
+    var html = content;
+    var demoid = 'demo-' + _underscore2.default.random(randomRangeMin, randomRangeMax);
+    var context = {
+        id: demoid,
+        el: '#' + demoid + '-el',
+        template: '#' + demoid + '-tmpl'
+    };
+    var code = void 0,
+        demo = void 0;
 
-        var text = '';
+    _mustache2.default.parse(js, ['{$', '}']);
+    js = _mustache2.default.render(js, context);
 
-        var _iteratorNormalCompletion9 = true;
-        var _didIteratorError9 = false;
-        var _iteratorError9 = undefined;
+    _mustache2.default.parse(html, ['{$', '}']);
+    html = _mustache2.default.render(html, context);
 
-        try {
-            for (var _iterator9 = opts[Symbol.iterator](), _step9; !(_iteratorNormalCompletion9 = (_step9 = _iterator9.next()).done); _iteratorNormalCompletion9 = true) {
-                var opt = _step9.value;
+    code = '<div id="' + demoid + '-el"><!-- ' + demoid + ' \u5BB9\u5668 --></div>\n\n';
+    demo = '<div id="' + demoid + '-el"></div>';
 
+    var htmlScript = document.createElement('script');
 
-                var code = void 0,
-                    demo = void 0;
+    htmlScript.innerHTML = '\n' + html;
+    htmlScript.type = 'x-template';
+    htmlScript.id = demoid + '-tmpl';
 
-                opt.context = (0, _extend2.default)({}, data, opt.context);
+    code += htmlScript.outerHTML + '\n\n';
 
-                if (typeof opt.render === 'function') {
+    htmlScript.innerHTML = htmlScript.innerHTML.replace(/\{\*([a-zA-Z0-9_]+)\*\}/g, '{{$1}}');
+    evals.push(htmlScript);
 
-                    var result = opt.render(opt);
+    var jsScript = document.createElement('script');
 
-                    code = result.code;
-                    demo = result.demo;
-                } else {
+    jsScript.innerHTML = '\n' + js + '\n';
+    evals.push(jsScript);
+    code += jsScript.outerHTML;
 
-                    var template = opt.content;
-
-                    _mustache2.default.parse(template, ['{$', '}']);
-
-                    code = _mustache2.default.render(template, opt.context);
-                }
-
-                if (opt.style.length === 0) {
-
-                    opt.style = '';
-                } else {
-
-                    opt.style = opt.style.join(';');
-                }
-
-                if (block.type === 'vue') {
-
-                    block.type = 'html';
-                }
-
-                if (opt.isText) {
-
-                    text += code;
-                } else {
-
-                    text += '<div class="demo" style="' + opt.style + '">\n' + (demo || code) + '</div>\n\n```' + block.type + '\n' + code + '\n```\n';
-                }
-            }
-        } catch (err) {
-            _didIteratorError9 = true;
-            _iteratorError9 = err;
-        } finally {
-            try {
-                if (!_iteratorNormalCompletion9 && _iterator9.return) {
-                    _iterator9.return();
-                }
-            } finally {
-                if (_didIteratorError9) {
-                    throw _iteratorError9;
-                }
-            }
-        }
-
-        return text;
-    }
+    return '<div class="demo">' + demo + '</div><pre><code class="lang-' + token.lang + '">' + md.utils.escapeHtml(code) + '</code></pre>\n';
 };
 
-var runner = function runner(tree) {
-    var _iteratorNormalCompletion10 = true;
-    var _didIteratorError10 = false;
-    var _iteratorError10 = undefined;
+var extPreset = function extPreset(content, paramStr) {
+
+    var context = {
+        content: content
+    };
+    var template = presets[paramStr[0]];
+
+    content = content.split('\n');
+
+    var _iteratorNormalCompletion5 = true;
+    var _didIteratorError5 = false;
+    var _iteratorError5 = undefined;
 
     try {
-
-        for (var _iterator10 = tree.blocks[Symbol.iterator](), _step10; !(_iteratorNormalCompletion10 = (_step10 = _iterator10.next()).done); _iteratorNormalCompletion10 = true) {
-            var block = _step10.value;
-
-
-            if (block.helpers.length > 0) {
-
-                var opts = [];
-
-                var _iteratorNormalCompletion11 = true;
-                var _didIteratorError11 = false;
-                var _iteratorError11 = undefined;
-
-                try {
-                    for (var _iterator11 = block.helpers[Symbol.iterator](), _step11; !(_iteratorNormalCompletion11 = (_step11 = _iterator11.next()).done); _iteratorNormalCompletion11 = true) {
-                        var group = _step11.value;
+        for (var _iterator5 = content[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+            var item = _step5.value;
 
 
-                        var opt = {
-                            content: block.content,
-                            vars: tree.vars,
-                            helperlist: group,
-                            context: block.context,
-                            style: []
-                        };
+            if (item) {
 
-                        var _iteratorNormalCompletion12 = true;
-                        var _didIteratorError12 = false;
-                        var _iteratorError12 = undefined;
-
-                        try {
-                            for (var _iterator12 = group[Symbol.iterator](), _step12; !(_iteratorNormalCompletion12 = (_step12 = _iterator12.next()).done); _iteratorNormalCompletion12 = true) {
-                                var helper = _step12.value;
-
-
-                                opt.param = helper.param;
-                                opt = helpers[helper.fn](opt);
-                            }
-                        } catch (err) {
-                            _didIteratorError12 = true;
-                            _iteratorError12 = err;
-                        } finally {
-                            try {
-                                if (!_iteratorNormalCompletion12 && _iterator12.return) {
-                                    _iterator12.return();
-                                }
-                            } finally {
-                                if (_didIteratorError12) {
-                                    throw _iteratorError12;
-                                }
-                            }
-                        }
-
-                        opts.push(opt);
-                    }
-                } catch (err) {
-                    _didIteratorError11 = true;
-                    _iteratorError11 = err;
-                } finally {
-                    try {
-                        if (!_iteratorNormalCompletion11 && _iterator11.return) {
-                            _iterator11.return();
-                        }
-                    } finally {
-                        if (_didIteratorError11) {
-                            throw _iteratorError11;
-                        }
-                    }
-                }
-
-                block._html = make.opt(opts, block);
-            } else {
-
-                block._html = make.block(block);
+                item = item.split(':');
+                context[item.shift()] = item.join(':');
             }
         }
     } catch (err) {
-        _didIteratorError10 = true;
-        _iteratorError10 = err;
+        _didIteratorError5 = true;
+        _iteratorError5 = err;
     } finally {
         try {
-            if (!_iteratorNormalCompletion10 && _iterator10.return) {
-                _iterator10.return();
+            if (!_iteratorNormalCompletion5 && _iterator5.return) {
+                _iterator5.return();
             }
         } finally {
-            if (_didIteratorError10) {
-                throw _iteratorError10;
+            if (_didIteratorError5) {
+                throw _iteratorError5;
             }
         }
     }
 
-    var text = tree.text;
-    var patt = /````(html|js|css|vue|)((\n[\t ]*[\@a-zA-Z0-9\:\.\,\|]+)*)\n((.|\n)*?)(\n)*([ \t]*)````/g;
-    var index = 0;
-    var result = void 0;
+    _mustache2.default.parse(template, ['{%', '%}']);
+    template = _mustache2.default.render(template, context);
 
-    while ((result = patt.exec(text)) !== null) {
-
-        text = text.slice(0, result.index - 1) + tree.blocks[index++]._html + text.slice(result.index + result[0].length, text.length);
-    }
-
-    return text;
+    return markdown.render(template);
 };
+
+var demoWithCodePlugin = function demoWithCodePlugin(md, opt) {
+    md.block.ruler.before('table', 'codeWithDemo', function (state, startLine, endLine) {
+
+        // if it's indented more than 3 spaces, it should be a code block
+        if (state.sCount[startLine] - state.blkIndent >= 4) {
+
+            return false;
+        }
+
+        var charCode = 0x3A;
+
+        var pos = state.bMarks[startLine] + state.tShift[startLine];
+        var end = state.eMarks[startLine];
+        var marker = state.src.charCodeAt(pos);
+        var start = void 0,
+            len = void 0,
+            markup = void 0,
+            method = void 0,
+            nextLine = void 0,
+            token = void 0,
+            haveEndMarker = void 0;
+
+        // 0x3a is :
+        if (marker !== charCode) {
+
+            return false;
+        }
+
+        // scan marker length
+        start = pos;
+        pos = state.skipChars(pos, marker);
+        len = pos - start;
+        markup = state.src.slice(start, pos);
+        method = state.src.slice(pos, end);
+
+        if (len !== 3) {
+
+            return false;
+        }
+
+        nextLine = startLine;
+
+        for (;;) {
+
+            nextLine++;
+
+            if (nextLine >= endLine) {
+
+                // unclosed block should be autoclosed by end of document.
+                // also block seems to be autoclosed by end of parent
+                break;
+            }
+
+            pos = start = state.bMarks[nextLine] + state.tShift[nextLine];
+            end = state.eMarks[nextLine];
+
+            if (pos < end && state.sCount[nextLine] < state.blkIndent) {
+
+                // non-empty line with negative indent should stop the list:
+                // - ```
+                //  test
+                break;
+            }
+
+            /* eslint-disable no-continue */
+            if (state.src.charCodeAt(pos) !== marker) {
+
+                continue;
+            }
+
+            if (state.sCount[nextLine] - state.blkIndent >= 4) {
+
+                // closing fence should be indented less than 4 spaces
+                continue;
+            }
+
+            pos = state.skipChars(pos, marker);
+
+            // closing code fence must be at least as long as the opening one
+            if (pos - start < len) {
+
+                continue;
+            }
+
+            // make sure tail has spaces only
+            pos = state.skipSpaces(pos);
+
+            if (pos < end) {
+
+                continue;
+            }
+
+            /* eslint-enable no-continue */
+
+            haveEndMarker = true;
+
+            break;
+        }
+
+        len = state.sCount[startLine];
+        state.line = nextLine + (haveEndMarker ? 1 : 0);
+
+        token = state.push('extMethod', 'div', 1);
+        token.method = method.split('/')[0];
+        token.lang = method.split('/')[1];
+        token.content = state.getLines(startLine + 1, nextLine, len, true);
+        token.markup = markup;
+        token.map = [startLine, state.line];
+
+        return true;
+    });
+
+    md.renderer.rules.extMethod = function (tokens, idx) {
+
+        var token = tokens[idx];
+        var method = token.method;
+        var list = token.content.split('\n---\n');
+        var paramStr = '';
+        var content = void 0;
+        var result = '';
+
+        if (list.length > 1) {
+
+            paramStr = list.shift();
+        }
+
+        content = list.join('\n---\n');
+
+        paramStr = paramStr.split('\n');
+
+        if (method === 'democode') {
+
+            result = '<div class="demo">' + content + '</div><pre><code class="lang-' + token.lang + '">' + md.utils.escapeHtml(content) + '</code></pre>\n';
+        }
+
+        if (method === 'repeat') {
+
+            result = extRepeat(content, paramStr, token, md);
+        }
+
+        if (method === 'vue') {
+
+            result = extVue(content, paramStr, token, md);
+        }
+
+        if (method === 'preset') {
+
+            result = extPreset(content, paramStr);
+        }
+
+        console.log(method, result);
+
+        return result;
+    };
+};
+
+markdown.use(demoWithCodePlugin);
+
+window.Vue.component('doc-component-status', _DocComponentStatus2.default);
+
+// let parser = (text, el) => {
+
+//     let patt = /````(html|js|css|vue|)((\n[\t ]*[\@a-zA-Z0-9\:\.\,\|]+)*)\n((.|\n)*?)(\n)*([ \t]*)````/g;
+//     let varpatt = /````(html|js|css)\n(\@var\:([a-zA-Z0-9]+))\n((.|\n)+?)\n([ \t]*)````/g;
+//     let presetpatt = /````(preset)((\n[\t ]*[a-zA-Z0-9@'"[\]?<>/\-_{}=:.,|!()\u4e00-\u9fa5 ]+)*)\n((.|\n)*?)(\n)*([ \t]*)````/g;
+//     let result;
+//     let vars = {
+//         js : {},
+//         html : {}
+//     };
+//     let blocks = [];
+//     let vueContext = {};
+
+//     while ((result = presetpatt.exec(text)) !== null) {
+
+//         let rdata = result[2].replace(/^\n/, '').split('\n');
+//         let id = rdata[0].split(':')[1];
+
+//         rdata.shift();
+
+//         for (let item of rdata) {
+
+//             let name = item.split(':')[0].replace(/^@/, '');
+//             let valuelist = item.split(':');
+
+//             valuelist.shift();
+
+//             let value = valuelist.join(':');
+
+//             vueContext[name] = value;
+
+//         }
+
+//         let content = presets[id];
+
+//         text = text.slice(0, result.index - 1) + content + text.slice(result.index + result[0].length, text.length);
+//         presetpatt.lastIndex = 0;
+
+//     }
+
+//     while ((result = varpatt.exec(text)) !== null) {
+
+//         vars[result[1]][result[3]] = result[4];
+//         text = text.slice(0, result.index - 1) + text.slice(result.index + result[0].length, text.length);
+
+//         varpatt.lastIndex = 0;
+
+//     }
+
+//     while ((result = patt.exec(text)) !== null) {
+
+//         let content = result[4];
+//         let helpers = result[2].split('\n');
+
+//         helpers.shift();
+
+//         let block = {
+//             content,
+//             type : result[1],
+//             result,
+//             context : vueContext,
+//             helpers : []
+//         };
+
+//         for (let name of helpers) {
+
+//             let list = name.split('|');
+//             let group = [];
+
+//             for (let help of list) {
+
+//                 let fn = help.split(':')[0].replace(/^\@/, '');
+//                 let param = help.split(':')[1];
+
+//                 group.push({
+//                     fn,
+//                     param
+//                 });
+
+//             }
+
+//             block.helpers.push(group);
+
+//         }
+
+//         blocks.push(block);
+
+//     }
+
+//     return {
+//         vars,
+//         blocks,
+//         text
+//     };
+
+// };
+
+// let helpers = {
+//     import : opt => {
+
+//         let name = opt.param.split(',');
+
+//         opt.content = window.$(`script#${name[0]}`);
+//         opt.context = {
+//             uiname : name[1]
+//         };
+
+//         return opt;
+
+//     },
+//     origin : opt => {
+
+//         return opt;
+
+//     },
+//     render : opt => {
+
+//         opt.isText = true;
+
+//         return opt;
+
+//     },
+//     use : opt => {
+
+//         let links = opt.param.split(',');
+
+//         opt.content = {};
+
+//         for (let link of links) {
+
+//             let type = link.split('.')[0];
+//             let key = link.split('.')[1];
+
+//             opt.content[type] = `&&&&&{$id}|${opt.vars[type][key]}`;
+
+//         }
+
+//         opt.render = sopt => {
+
+//             let list = {};
+//             let code = '';
+//             let demo = '';
+//             let newData = extend(true, {}, sopt.context);
+//             let lastType;
+
+//             for (let key of Object.keys(newData)) {
+
+//                 let value = newData[key];
+//                 let id = `demo-${_.random(randomRangeMin, randomRangeMax)}`;
+
+//                 if (value instanceof Array) {
+
+//                     for (let svalue of value) {
+
+//                         svalue.id = id;
+//                         svalue.el = `#${id}-el`;
+//                         svalue.template = `#${id}-tmpl`;
+
+//                     }
+
+//                 } else if (typeof value === 'object') {
+
+//                     value.id = id;
+//                     value.el = `#${id}-el`;
+//                     value.template = `#${id}-tmpl`;
+
+//                 }
+
+//             }
+
+//         };
+
+//         return opt;
+
+//     }
+// };
+
+// let make = {
+//     block : block => {
+
+//         return '<div class="demo">\n' + block.content + '</div>\n\n```' + block.type + '\n' + block.content + '\n```\n';
+
+//     },
+//     opt : (opts, block) => {
+
+//         let text = '';
+
+//         for (let opt of opts) {
+
+//             let code,
+//                 demo;
+
+//             opt.context = extend({}, data, opt.context);
+
+//             if (typeof opt.render === 'function') {
+
+//                 let result = opt.render(opt);
+
+//                 code = result.code;
+//                 demo = result.demo;
+
+//             } else {
+
+//                 let template = opt.content;
+
+//                 Mustache.parse(template, ['{$', '}']);
+
+//                 code = Mustache.render(template, opt.context);
+
+//             }
+
+//             if (opt.style.length === 0) {
+
+//                 opt.style = '';
+
+//             } else {
+
+//                 opt.style = opt.style.join(';');
+
+//             }
+
+//             if (block.type === 'vue') {
+
+//                 block.type = 'html';
+
+//             }
+
+//             if (opt.isText) {
+
+//                 text += code;
+
+//             } else {
+
+//                 text += '<div class="demo" style="' + opt.style + '">\n' + (demo || code) + '</div>\n\n```' + block.type + '\n' + code + '\n```\n';
+
+//             }
+
+//         }
+
+//         return text;
+
+//     }
+// };
+
+// let runner = tree => {
+
+//     for (let block of tree.blocks) {
+
+//         if (block.helpers.length > 0) {
+
+//             let opts = [];
+
+//             for (let group of block.helpers) {
+
+//                 let opt = {
+//                     content : block.content,
+//                     vars : tree.vars,
+//                     helperlist : group,
+//                     context : block.context,
+//                     style : []
+//                 };
+
+//                 for (let helper of group) {
+
+//                     opt.param = helper.param;
+//                     opt = helpers[helper.fn](opt);
+
+//                 }
+
+//                 opts.push(opt);
+
+//             }
+
+//             block._html = make.opt(opts, block);
+
+//         } else {
+
+//             block._html = make.block(block);
+
+//         }
+
+//     }
+
+//     let text = tree.text;
+//     let patt = /````(html|js|css|vue|)((\n[\t ]*[\@a-zA-Z0-9\:\.\,\|]+)*)\n((.|\n)*?)(\n)*([ \t]*)````/g;
+//     let index = 0;
+//     let result;
+
+//     while ((result = patt.exec(text)) !== null) {
+
+//         text = text.slice(0, result.index - 1) + tree.blocks[index++]._html + text.slice(result.index + result[0].length, text.length);
+
+//     }
+
+//     return text;
+
+// };
 window.Vue.directive('docmd', {
     bind: function bind(el) {
 
@@ -2295,19 +2414,22 @@ window.Vue.directive('docmd', {
         if (mdScript && mdScript.type === 'text/markdown') {
 
             var text = mdScript.innerText;
-            text = text.replace(/\&lt\;\/script\>/g, '<\/script>');
+
+            /* eslint-disable no-useless-escape */
+            text = text.replace(/&lt;\/script>/g, '\<\/script>');
+            /* eslint-enable no-useless-escape */
+
             text = text.replace(/\/`/g, '`');
 
-            var tree = parser(text, el);
+            // let tree = parser(text, el);
+            // text = runner(tree);
 
-            text = runner(tree);
-
-            var md = (0, _marked2.default)(text);
+            var md = markdown.render(text);
 
             md = md.replace(/\\`/g, '`');
 
-            md = md.replace(/\{\%([a-zA-Z0-9\_]+)\%\}/g, '{{"\\\{\\\{$1\\\}\\\}"}}');
-            md = md.replace(/\<p\>(\[\[\[(.+)\]\]\])\<\/p\>/g, '$1');
+            md = md.replace(/\{\*([a-zA-Z0-9_]+)\*\}/g, '{{"\\{\\{$1\\}\\}"}}');
+            md = md.replace(/<p>(\[\[\[(.+)\]\]\])<\/p>/g, '$1');
             md = md.replace(/(\[\[\[)/, '<ui-tab class="block noborder">$1');
             md = md.replace(/\[\[\[基础\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="开始">$1</div>$3');
             md = md.replace(/\[\[\[声明\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="声明">$1</div>$3');
@@ -2318,12 +2440,11 @@ window.Vue.directive('docmd', {
             md = md.replace(/\[\[\[单元测试\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="源码">$1</div>$3');
             md = md.replace(/(.|\n)$/, '$1</ui-tab>');
 
-            console.log(md);
             md = md.replace(/<p>---demostart---<\/p>/g, '<div class="demo-area"><p class="demo-title">DEMO</p>');
             md = md.replace(/<p>---demoend---<\/p>/g, '\n</div>');
 
-            var res = Vue.compile('<div>' + md + '</div>');
-            var instance = new Vue({
+            var res = window.Vue.compile('<div>' + md + '</div>');
+            var instance = new window.Vue({
                 render: res.render,
                 staticRenderFns: res.staticRenderFns
             });
@@ -2352,33 +2473,63 @@ exports.default = {
 
         _highlight2.default.initHighlightingOnLoad();
 
-        var _iteratorNormalCompletion13 = true;
-        var _didIteratorError13 = false;
-        var _iteratorError13 = undefined;
+        var _iteratorNormalCompletion6 = true;
+        var _didIteratorError6 = false;
+        var _iteratorError6 = undefined;
 
         try {
-            for (var _iterator13 = evals[Symbol.iterator](), _step13; !(_iteratorNormalCompletion13 = (_step13 = _iterator13.next()).done); _iteratorNormalCompletion13 = true) {
-                var js = _step13.value;
+            for (var _iterator6 = evals[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
+                var js = _step6.value;
+
 
                 document.body.appendChild(js);
             }
         } catch (err) {
-            _didIteratorError13 = true;
-            _iteratorError13 = err;
+            _didIteratorError6 = true;
+            _iteratorError6 = err;
         } finally {
             try {
-                if (!_iteratorNormalCompletion13 && _iterator13.return) {
-                    _iterator13.return();
+                if (!_iteratorNormalCompletion6 && _iterator6.return) {
+                    _iterator6.return();
                 }
             } finally {
-                if (_didIteratorError13) {
-                    throw _iteratorError13;
+                if (_didIteratorError6) {
+                    throw _iteratorError6;
                 }
             }
         }
     }
 };
 module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 620:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('doc-guide', {
+    attrs: {
+      "page": _vm.page,
+      "hasPadding": true
+    }
+  }, [_c('script', {
+    attrs: {
+      "type": "text/markdown"
+    }
+  }, [_vm._v("\n\n# 编写文档\n\n文档作为Morning UI的组成部分，是非常重要且必不可少的。\n\nMorning UI使用了一套基于[CommonMark Spec](http://spec.commonmark.org/)扩展的Markdown解析器，这意味着你可以使用任何[CommonMark Spec](http://spec.commonmark.org/)语法。\n\n### 如何编写\n\n#### 创建新文档\n\n在开始使用这些方便的用法前，你需要先为你的组件创建文档。\n\n组件的文档放在项目的`src/docs/pages/component`目录下，每一个文件夹就是一份组件文档。\n\n文件夹中包含:\n\n- index.js : 文档的视图模型\n- index.vue : 文档的内容\n\n为你的组件新建一个文件夹，然后生成这两个文件，`index.js`每个组件都一样只需要从别的组件拷贝一份即可，`index.vue`的模板如下：\n\n```html\n<template>\n    <doc-component\n            :page=\"page\"\n            :hasPadding=\"true\"\n        >\n    <script type=\"text/markdown\">\n\n        <!-- 文档内容 -->\n\n        &lt;/script>\n    </doc-component>\n</template>\n \n<script>\nimport DocComponent                 from 'Docs/common/DocComponent.vue';\n\nexport default {\n    data : function () {\n\n        return {\n            page : '页面KEY'\n        };\n\n    },\n    components : {\n        'doc-component' : DocComponent\n    }\n};\n&lt;/script>\n\n<style lang=\"less\">\n</style>\n```\n\n这里只需要修改两个地方：\n\n1. `<template>`中的`文档内容`部分，你的文档写在这里\n2. `<script>`标签中的`页面KEY`部分，这里需要和组件的KEY保持一致\n\n这两个文件创建完成后，运行`npm run dev`，即可在`http://localhost:8080/component/[页面KEY].html`访问你的文档。\n\n#### 文档格式\n\n为了保证文档的一致性，请遵循下面的文档格式。\n\n##### 标题\n\n- `#` : 用于文档主标题\n- `###` : 用于每个章节的标题\n- `####` : 用于每个二级章节的标题\n- `#####` : 用于每个三级章节的标题\n\n文档中最多只能包含三级章节，且不使用`##`。\n\n##### 代码、演示及示例\n\n- ` ``` ` : 代码区域([CommonMark Spec](http://spec.commonmark.org/)支持)\n- `:::democode` : 演示区域，包含示例和代码(扩展用法，见下面章节)\n- `:::demo` : 示例区域(扩展用法，见下面章节)\n\n##### 链接\n\n- `[标题](链接)` : 采用[CommonMark Spec](http://spec.commonmark.org/)的链接，如果是站内采用`/path/page.html`这样的跟相对路径。\n\n##### 文本样式\n\n- `__ __` : 加粗\n- `_ _` : 斜体\n- `~~ ~~` : 删除，采用[GFM的删除线](https://help.github.com/articles/basic-writing-and-formatting-syntax/#styling-text)\n\n##### 表格\n\n采用[GFM的表格](https://help.github.com/articles/organizing-information-with-tables/)。\n\n##### HTML或组件内容\n\n采用HTML。\n\n### 扩展功能\n\nMorning UI为了让开发者尽可能轻松的写文档，扩展了[CommonMark Spec](http://spec.commonmark.org/)。提供了很多方便的用法：\n\n- [删除线(GFM)](https://help.github.com/articles/basic-writing-and-formatting-syntax/#styling-text)\n- [表格(GFM)](https://help.github.com/articles/organizing-information-with-tables/)\n- 演示 : 一份代码，同时生成可视化的示例和完整展示代码。\n- 重复 : 可以按预设的规则重复你的演示代码。\n- Vue实例 : 快速生成Vue容器、模板和JS，并进行绑定。\n- 预设 : 预设的演示代码，传入配置即可生成演示代码。\n- 示例 : 用虚线框起来的一个区域，告诉使用者这里面是示例。用以区分文档和示例。\n\n现在你对于这些新概念一定很懵逼，下面的章节详细为你解释了这些新的用法。\n\n#### 扩展语法\n\n除示例之外的，演示、重复、Vue实例、预设都基于了同一种扩展语法：使用`:::`声明的区块，格式如下：\n\n```text\n:::[扩展名]/[代码语言]\n[配置部分]\n---\n[内容部分]\n:::\n```\n\n- `扩展名` : 标记需要使用的扩展功能\n- `代码语言` : <ui-badge xxs minor>非必需</ui-badge>声明`内容部分`的语言类型\n- `配置部分` : <ui-badge xxs minor>非必需</ui-badge>可以用来配置不同的扩展功能，不同扩展的配置方式不同，会在后面详细说明\n- `内容部分` : <ui-badge xxs minor>非必需</ui-badge>是扩展的主体内容部分\n\n其中配置和内容采用`---`分隔。\n\n#### 演示\n\n下面这段代码标记了一段演示区域:\n\n```text\n:::democode/html\n<p>这是一个演示区域</p>\n:::\n```\n\n最后会在文档中生成如下的内容:\n\n---demostart---\n\n:::democode/html\n<p>这是一个演示区域</p>\n:::\n\n---demoend---\n\n`演示`会同时生成示例和代码。避免了示例和代码需要重复写两份，这也可以确保示例和代码的一致性。\n\n在上面示例中的`html`你也可以替换成其他语言。\n\n#### 重复\n\n在演示区域中支持使用重复来减少重复文档的书写，比如你的`演示`需要展现所有支持的组件尺寸：\n\n```text\n:::democode/html\n<ui-btn xxl>XXL尺寸</ui-btn>\n<ui-btn xl>XL尺寸</ui-btn>\n<ui-btn l>L尺寸</ui-btn>\n<ui-btn m>M尺寸</ui-btn>\n<ui-btn s>S尺寸</ui-btn>\n<ui-btn xs>XS尺寸</ui-btn>\n<ui-btn xxs>XXS尺寸</ui-btn>\n:::\n```\n\n上面的写法十分繁琐，`重复`让你只需写出一个尺寸的演示，然后循环输出其余的尺寸。通过`size`配置，简写成：\n\n```text\n:::repeat/html\nsize\n---\n<ui-btn {$sizeKey}>{$&sizeName}</ui-btn>\n:::\n```\n\n最终的效果：\n\n---demostart---\n\n:::repeat/html\nsize\n---\n<ui-btn {$sizeKey}>{$&sizeName}</ui-btn>\n:::\n\n---demoend---\n\n`重复`的配置部分声明了需要采用哪种重复方式，`重复`会循环渲染输出内容部分。并且内容部分支持变量，在循环时会动态渲染，语法基于[mustache](https://github.com/janl/mustache.js)，采用`{$`和`}`来包裹变量。\n\n比如上面示例中的的`size`重复，支持`sizeKey`和`sizeName`，所以你可以在下面的内容部分中使用这两个变量，通过`重复`的循环来输出所有的尺寸示例。\n\n##### 配置参数\n\n`重复`的配置支持参数，你可以在配置后通过`:`来添加参数（一条配置仅支持一个参数）。\n\n比如`color`需要传入一个色彩参数，来告诉指令需要渲染哪组色彩：\n\n```text\n:::repeat/html\ncolor:theme\n---\n<ui-btn {$colorKey}>{$&colorName}</ui-btn>\n:::\n```\n\n最终的效果：\n\n---demostart---\n\n:::repeat/html\ncolor:theme\n---\n<ui-btn {$colorKey}>{$&colorName}</ui-btn>\n:::\n\n---demoend---\n\n##### 多个演示区域\n\n有时候在一个演示区域内放太多示例会让使用者难以阅读，所以`重复`也支持循环生成多个演示区域：\n\n```text\n:::repeat/html\ncolor:blue\ncolor:silver\ncolor:gray\n---\n<ui-btn {$colorKey}>{$&colorName}</ui-btn>\n:::\n```\n\n最终的效果：\n\n---demostart---\n\n:::repeat/html\ncolor:blue\ncolor:silver\ncolor:gray\n---\n<ui-btn {$colorKey}>{$&colorName}</ui-btn>\n:::\n\n---demoend---\n\n如同上面的示例，每一行的配置都会生成一个新的演示区域。同时，`重复`也会非常贴心的帮改变演示区域的样式，让示例看起来更易读。\n\n##### 多配置\n\n有些时候为了展示复杂的重复情况，你需要同时使用多个配置进行循环输出示例，你可以这样使用：\n\n```text\n:::repeat/html\nstate|br:2|color:theme\n---\n<ui-btn {$stateKey} {$colorKey}>{$&stateName}</ui-btn>\n:::\n```\n\n最终的效果：\n\n---demostart---\n\n:::repeat/html\nstate|br:2|color:theme\n---\n<ui-btn {$stateKey} {$colorKey}>{$&stateName}</ui-btn>\n:::\n\n---demoend---\n\n通过`|`分隔你可以在一行中使用多个配置，你的文档将会从左向右重复这些配置。其中`br`配置用来向文档插入换行符，让示例更易读。\n\n##### 所有配置\n\n|配置名|参数|说明|支持变量|\n|-|-|-|-|\n|size|无|循环输出尺寸声明|sizeKey / sizeName|\n|color|`theme`:主题色组<br>`feature`:功能色组<br>`black`:黑色组<br>`blue`:青色组<br>`silver`:银色组<br>`gray`:浅色组<br>|循环输出颜色声明|colorKey / colorName|\n|state|需要输出的状态，多个之间用`,`分隔。<br>`normal`:正常状态<br>`hover`:Hover状态<br>`active`:激活状态<br>`disabled`:禁用状态<br>`apparent`:醒目状态<br>`loading`:载入中<br>`processing`:处理中|循环输出状态声明|stateKey / stateName|\n|br|需要插入的换行符数量|在循环中插入换行符`<br>`|无|\n|formConfig|无|输出演示用的表单名称、Key、表单组(由预设使用)|formName / formKey / formGroupOne|\n|formValueType|需要输出一组值的名称|在表单值演示中输出一组包含所有类型的数值|valueType / valueContent|\n\n#### Vue实例\n\n有些时候你的演示会需要使用到Vue的实例，这意味着需要创建Vue的容器、模板、JS并将它们绑定在一起，这时候你可以使用`Vue实例`来简化操作。\n\n扩展中的配置部分变为了初始化`Vue实例`的JS脚本，内容部分为Vue的模板：\n\n```text\n:::vue/html\nnew Vue({\n    el : '{$el}',\n    template : '{$template}',\n    methods : {\n        echo : function () {\n            console.log('emit event!');\n        }\n    }\n});\n---\n<div>\n    <ui-btn @emit=\"echo\">点击触发emit事件</ui-btn>\n</div>\n:::\n```\n\n你一定注意到上面代码中的`{$el}`和`${template}`，这是[mustache](https://github.com/janl/mustache.js)语法，在生成文档时`Vue实例`会自动帮你替换成对应的Vue元素及模板id。\n\n这是为了防止同一个页面中的Vue元素或模板id冲突，`Vue实例`会帮你管理这些id。\n\n最终效果：\n\n---demostart---\n\n:::vue/html\nnew Vue({\n    el : '{$el}',\n    template : '{$template}',\n    methods : {\n        echo : function () {\n            alert('emit event!');\n        }\n    }\n});\n---\n<div>\n    <ui-btn @emit=\"echo\">点击触发emit事件</ui-btn>\n</div>\n:::\n\n---demoend---\n\n其中的`<div id=\"demo-[id]-el\">`就是`Vue实例`自动帮你生成的Vue实例根节点。\n\n#### 预设\n\n在文档中存在着大量的雷同的文档，不同组件之间仅有几处区别，为了降低这部分重复工作。我们将这些文档做成了预设模板，你只需要传入对应的参数即可生成最终文档。\n\n使用方式如下：\n\n```text\n:::preset/html\nformStatement\n---\nuikey:textinput\nstatementDefaultValue:''\n:::\n```\n\n在扩展的配置区域设置需要使用`预设`的名称，比如上面示例使用了`formStatement`预设。\n\n在内容区域有两种用法：\n\n一种是为`预设`传入的参数，一行一个，格式是`[参数名]:[参数值]`，冒号分隔参数名和参数值，这些参数会填写到预设模板中对应的位置。\n\n另一种是不设置参数，内容区域整个传入。不同的预设支持不同的用法，详见下面的`所有预设`章节。\n\n最终的效果：\n\n---demostart---\n\n:::preset\nformStatement\n---\nuikey:textinput\nstatementDefaultValue:''\n:::\n\n---demoend---\n\n可以看到上面这一大段的文档，仅需6行代码就可以生成，这就是`预设`的效果。\n\n##### 所有预设\n\n下面罗列了所有可以使用的预设及参数：\n\n|预设|参数/内容|说明|\n|-|-|-|\n|statementColor|@uikey：组件的Key|除表单组件外的色彩声明文档(仅简单情况，负责情况请使用自定义模板和`重复`来生成)|\n|formStatement|@uikey：组件的Key<br>@statementDefaultValue：组件的默认值<br>@statementMoreAttr：组件的配置<br>@statementSlot：组件的插值|输出表单组件的声明文档(仅状态)|\n|formStatementWithStyle|@uikey：组件的Key<br>@statementDefaultValue：组件的默认值<br>@statementMoreAttr：组件的配置<br>@statementSlot：组件的插值|输出表单组件的声明文档(包含状态及色彩)|\n|formConfigDemo|@uikey：组件的Key<br>@configDefaultValue：组件的默认值<br>@configMoreAttr：组件的配置<br>@configSlot：组件的插值|表单基本配置示例文档|\n|formConfigTable|组件的其余配置作为内容部分|表单配置说明文档(表格)|\n|formMethod|@uikey：组件的Key<br>@methodDefaultValue：组件的默认值<br>@methodMoreAttr：组件的配置<br>@methodSlot：组件的插值<br>@methodValue：组件的值|表单基本方法示例文档|\n|formEvent|@uikey：组件的Key<br>@eventMoreAttr：组件的配置<br>@eventSlot：组件的插值<br>@eventValue：组件的值|表单基本事件示例文档|\n\n\n#### 示例\n\n有些时候你的示例不需要代码片段，仅仅是一段效果的HTML。这时候示例和文档会难以区分，比如这篇文档上面的那些`最终效果`。\n\n这时候你可以使用`---demostart---`和`---demoend---`将你的演示区域包裹起来，最终整个演示区域会被虚线框起来，用以区分示例和文档。\n\n注意：`---demostart---`和`---demoend---`前后需要空一行。\n\n### 文档编写规范\n\n编写文档时请遵循[开发规范](/guide/devrule.html)中的文档规范，[Code Review](/guide/review.html)将会检查文档编写规范。\n\n### 组件(Component)文档\n\n#### 内容组成\n\n#### 组件状态栏\n\n#### 基础\n\n#### 声明\n\n#### 配置\n\n#### 方法\n\n#### 事件\n\n#### 表单值\n\n#### 源码\n\n### 指南(Guide)文档\n\nComing soon.\n\n")])])
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-555b49ff", esExports)
+  }
+}
 
 /***/ }),
 
@@ -2733,4 +2884,4 @@ module.exports = exports['default'];
 
 /***/ })
 
-},[261]);
+},[273]);

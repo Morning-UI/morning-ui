@@ -14,9 +14,9 @@
 
     #### 使用
 
-    ````html
+    :::democode/html
     <ui-link>链接</ui-link>
-    ````
+    :::
     
     [[[声明]]]
 
@@ -30,44 +30,43 @@
 
     #### 尺寸
 
-    ````html
-    @size
+    :::repeat/html
+    size
+    ---
     <ui-link {$sizeKey}>{$&sizeName}</ui-link>
-    ````
+    :::
 
-    ````html
-    @size
+    :::repeat/html
+    size
+    ---
     <ui-link {$sizeKey} loading>{$&sizeName}</ui-link>
-    ````
+    :::
 
     #### 色彩
 
-    ````html
-    @color:theme
-    @color:feature
-    @color:black
-    @color:blue
-    @color:silver
-    @color:gray
-    <ui-link {$colorKey}>{$&colorName}</ui-link>
-    ````
+    :::preset/html
+    statementColor
+    ---
+    uikey:link
+    :::
     
     #### 状态
     
-    ````html
-    @state|@br:2|@color:theme
-    @state|@br:2|@color:feature
-    @state|@br:2|@color:black
-    @state|@br:2|@color:blue
-    @state|@br:2|@color:silver
-    @state|@br:2|@color:gray
+    :::repeat/html
+    state|br:2|color:theme
+    state|br:2|color:feature
+    state|br:2|color:black
+    state|br:2|color:blue
+    state|br:2|color:silver
+    state|br:2|color:gray
+    ---
     <ui-link {$stateKey} {$colorKey}>{$&stateName}</ui-link>
-    ````
+    :::
 
     [[[配置]]]
 
     |KEY|描述|接受值|值类型|默认值|
-    |-|-|-|
+    |-|-|-|-|-|
     |link|链接地址，若为空则不跳转|url地址|String|`''`|
     |js|点击后执行JS逻辑|JS代码|String|`''`|
     |locked|锁定模式，用来防止组件在短时间内被重复触发。若设置一个时间数值(ms)，该组件在时间内只触发一次。也可设为`true`，触发后需要通过`unlock()`方法来解锁组件。|`true`<br>`false`<br>数值(单位ms)|Number<br>Boolean|`false`|
@@ -75,32 +74,32 @@
 
     #### link
 
-    ````html
+    :::democode/html
     <ui-link :link="'http://www.google.com'">链接</ui-link>
-    ````
+    :::
 
     #### js
 
-    ````html
+    :::democode/html
     <ui-link :js="'alert(\'hello.\')'">执行JS</ui-link>
-    ````
+    :::
 
     #### locked
 
-    ````html
+    :::democode/html
     <ui-link :locked="3000">3秒后自动解锁</ui-link>
-    ````
+    :::
 
-    ````html
+    :::democode/html
     <ui-link ref="demo1" locked>手动解锁</ui-link>
     <ui-link js="javascript:morning.findVM('demo1').unlock();">解锁</ui-link>
-    ````
+    :::
 
     #### new-tab
 
-    ````html
+    :::democode/html
     <ui-link new-tab :link="'http://www.google.com'">新窗口打开链接</ui-link>
-    ````
+    :::
 
     [[[方法]]]
 
@@ -112,23 +111,23 @@
     |-|-|-|-|-|-|
     |time|YES|解锁的时间，单位ms。设置后组件将在解锁时间后自动解锁，不设置则需要调用`unlock()`方法解锁|`undefined`<br>数值(单位ms)|`Undefined`<br>`Number`|`undefined`|
 
-    ````html
+    :::democode/html
     <ui-link ref="demo2">按钮</ui-link>
     <br><br> 
     <ui-link js="javascript:morning.findVM('demo2').lock();">锁定</ui-link>
     <ui-link js="javascript:morning.findVM('demo2').lock(2000);">锁定2s</ui-link>
     <ui-link js="javascript:morning.findVM('demo2').unlock();">解锁</ui-link>
-    ````
+    :::
 
     #### unlock()
 
     解锁按钮，解锁后按钮可触发`emit`事件。
 
-    ````html
+    :::democode/html
     <ui-link ref="demo3" locked>按钮</ui-link>
     <br><br> 
     <ui-link js="javascript:morning.findVM('demo3').unlock();">解锁</ui-link>
-    ````
+    :::
 
     [[[事件]]]
 
@@ -136,19 +135,7 @@
 
     当按钮被点击时触发。
 
-    ````vue
-    @use:html.demo3,js.demo3
-    ````
-
-    ````html
-    @var:demo3
-    <div>
-        <ui-link @emit="echo">点击触发emit事件</ui-link>
-    </div>
-    ````
-
-    ````js
-    @var:demo3
+    :::vue/html
     new Vue({
         el : '{$el}',
         template : '{$template}',
@@ -158,37 +145,15 @@
             }
         }
     });
-    ````
-
+    ---
+    <div>
+        <ui-link @emit="echo">点击触发emit事件</ui-link>
+    </div>
+    :::
+    
     #### 生命周期事件
 
-    ````vue
-    @use:html.demoEventLifecycle,js.demoEventLifecycle
-    ````
-
-    ````html
-    @var:demoEventLifecycle
-    <div>
-        <ui-link
-            ref="demoEventLifecycle"
-            v-show="show"
-            @created="echo('created')"
-            @mounted="echo('mounted')"
-            @beforeUpdate="echo('beforeUpdate')"
-            @updated="echo('updated')"
-            @beforeDestroy="echo('beforeDestroy')"
-            @destroyed="echo('destroyed')"
-        >{%text%}</ui-link>
-
-        <br><br>
-    
-        <ui-link js="javascript:window.demoEventLifecycle.text='生命周期事件';">触发update</ui-link>
-        <ui-link js="javascript:morning.findVM('demoEventLifecycle').$destroy();">触发destroy</ui-link>
-    </div>
-    ````
-
-    ````js
-    @var:demoEventLifecycle
+    :::vue/html
     window.demoEventLifecycle = new Vue({
         el : '{$el}',
         template : '{$template}',
@@ -200,11 +165,29 @@
         },
         methods : {
             echo : function (name) {
-                console.log('demoEventLifecycle.console1', `${name} event!`);
+                console.log('demoEventLifecycle.console1', name + ' event!');
             }
         }
     });
-    ````
+    ---
+    <div>
+        <ui-link
+            ref="demoEventLifecycle"
+            v-show="show"
+            @created="echo('created')"
+            @mounted="echo('mounted')"
+            @beforeUpdate="echo('beforeUpdate')"
+            @updated="echo('updated')"
+            @beforeDestroy="echo('beforeDestroy')"
+            @destroyed="echo('destroyed')"
+        >{*text*}</ui-link>
+
+        <br><br>
+
+        <ui-link js="window.demoEventLifecycle.text='生命周期事件';">触发update</ui-link>
+        <ui-link js="morning.findVM('demoEventLifecycle').$destroy();">触发destroy</ui-link>
+    </div>
+    :::
 
     [[[单元测试]]]
 

@@ -16,9 +16,9 @@
 
     #### 使用
 
-    ````html
+    :::democode/html
     <ui-label>标签</ui-label>
-    ````
+    :::
 
     #### 使用图片
 
@@ -27,7 +27,7 @@
     > 注意：使用时请确保`<span>`和`<img>`标签之间有空格。
 
 
-    ````html
+    :::democode/html
     <ui-label class="image">
         <img src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"/>
         <span>标签</span>
@@ -37,7 +37,7 @@
         <span>标签</span>
         <img src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"/>
     </ui-label>
-    ````
+    :::
 
     #### 使用图标
 
@@ -46,7 +46,7 @@
     > 注意：使用时请确保`<span>`和`<img>`标签之间有空格。
 
 
-    ````html
+    :::democode/html
     <ui-label class="icon">
         <i class="iconfont">&#xe6e2;</i>
         <span>标签</span>
@@ -56,7 +56,7 @@
         <span>标签</span>
         <i class="iconfont">&#xe6e2;</i>
     </ui-label>
-    ````
+    :::
 
     [[[声明]]]
 
@@ -69,40 +69,40 @@
     |状态|`normal`<br/>`apparent`|`normal`|
 
     #### 尺寸
-
-    ````html
-    @size
+    
+    :::repeat/html
+    size
+    ---
     <ui-label {$sizeKey}>{$&sizeName}</ui-label>
-    ````
-
-    ````html
-    @size
+    :::
+    
+    :::repeat/html
+    size
+    ---
     <ui-label class="icon" {$sizeKey}><i class="iconfont">&#xe6e2;</i> <span>{$&sizeName}</span></ui-label>
-    ````
-
-    ````html
-    @size
+    :::
+    
+    :::repeat/html
+    size
+    ---
     <ui-label class="image" {$sizeKey}><img src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"/> <span>{$&sizeName}</span></ui-label>
-    ````
+    :::
     
     #### 色彩
 
-    ````html
-    @color:theme
-    @color:feature
-    @color:black
-    @color:blue
-    @color:silver
-    @color:gray
-    <ui-label {$colorKey}>{$&colorName}</ui-label>
-    ````
+    :::preset/html
+    statementColor
+    ---
+    uikey:label
+    :::
 
     #### 状态
-
-    ````html
-    @state:normal,apparent
+    
+    :::repeat/html
+    state:normal,apparent
+    ---
     <ui-label {$stateKey}>{$&stateName}</ui-label>
-    ````
+    :::
 
     [[[单元测试]]]
 

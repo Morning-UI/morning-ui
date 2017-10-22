@@ -20,14 +20,14 @@
 
     #### 使用
 
-    ````html
+    :::democode/html
     <ui-jumbotron>
         <h1>标题</h1>
         <p>这个一个介绍区域，用来放置一些介绍内容。<br>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
         <ui-btn m>行动</ui-btn> &nbsp;
         <ui-link minor m>查看更多</ui-link>
     </ui-jumbotron>
-    ````
+    :::
 
     [[[声明]]]
 

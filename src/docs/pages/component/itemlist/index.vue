@@ -22,7 +22,7 @@
 
     #### 使用
 
-    ````html
+    :::democode/html
     <div style="width:400px">
     <ui-itemlist>
         <ui-ul>
@@ -50,11 +50,11 @@
         </ui-ul>
     </ui-itemlist>
     </div>
-    ````
+    :::
 
     #### 下划线分隔
     
-    ````html
+    :::democode/html
     <div style="width:400px">
     <ui-itemlist class="underline">
         <ui-ul>
@@ -82,11 +82,11 @@
         </ui-ul>
     </ui-itemlist>
     </div>
-    ````
+    :::
 
     #### 单行标题
     
-    ````html
+    :::democode/html
     <div style="width:400px">
     <ui-itemlist xs>
         <ui-ul>
@@ -105,11 +105,11 @@
         </ui-ul>
     </ui-itemlist>
     </div>
-    ````
+    :::
 
     #### 单行内容
     
-    ````html
+    :::democode/html
     <div style="width:400px">
     <ui-itemlist xs>
         <ui-ul>
@@ -128,11 +128,11 @@
         </ui-ul>
     </ui-itemlist>
     </div>
-    ````
+    :::
 
     #### 无图片
     
-    ````html
+    :::democode/html
     <div style="width:400px">
     <ui-itemlist>
         <ui-ul>
@@ -157,11 +157,11 @@
         </ui-ul>
     </ui-itemlist>
     </div>
-    ````
+    :::
 
     #### 配合`ui-label`
     
-    ````html
+    :::democode/html
     <div style="width:400px">
     <ui-itemlist>
         <ui-ul>
@@ -195,7 +195,7 @@
         </ui-ul>
     </ui-itemlist>
     </div>
-    ````
+    :::
 
     [[[声明]]]
 
@@ -208,9 +208,10 @@
     |状态|不支持|-|
 
     #### 尺寸
-
-    ````html
-    @size
+    
+    :::repeat/html
+    size
+    ---
     <div style="width:400px">
     <ui-itemlist {$sizeKey}>
         <ui-ul>
@@ -239,7 +240,7 @@
     </ui-itemlist>
     </div>
     <br><br>
-    ````
+    :::
 
     [[[单元测试]]]
 

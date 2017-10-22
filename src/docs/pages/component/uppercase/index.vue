@@ -14,9 +14,9 @@
 
     大写文本组件，这是一个内联元素。
     
-    ````html
+    :::democode/html
     <div><ui-uppercase>大写的英文文本: tHere is A LEtter</ui-uppercase></div>
-    ````
+    :::
 
     [[[声明]]]
 

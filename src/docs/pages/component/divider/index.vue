@@ -16,7 +16,7 @@
 
     分频器常配合`ui-grid`使用。
     
-    ````html
+    :::democode/html
     <div style="width:500px;height:300px;border:1px solid #eee;">
         <ui-grid class="fill">
             <div class="c-7">
@@ -30,11 +30,11 @@
             </div>
         </ui-grid>
     </div>
-    ````
+    :::
 
     #### 竖直的分频器
 
-    ````html
+    :::democode/html
     <div style="width:500px;height:300px;border:1px solid #eee;">
         <div style="width:100%;height:140px;">
             <ui-center class="fill"><p>TOP</p></ui-center>
@@ -46,11 +46,11 @@
             <ui-center class="fill"><p>BOTTOM</p></ui-center>
         </div>
     </div>
-    ````
+    :::
 
     #### 无内容的分频器
     
-    ````html
+    :::democode/html
     <div style="width:500px;height:300px;border:1px solid #eee;">
         <ui-grid class="fill">
             <div class="c-7">
@@ -64,7 +64,7 @@
             </div>
         </ui-grid>
     </div>
-    ````
+    :::
 
     [[[声明]]]
 

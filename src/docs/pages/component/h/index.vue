@@ -15,9 +15,9 @@
 
     #### 使用
     
-    ````html
+    :::democode/html
     <ui-h>标题</ui-h>
-    ````
+    :::
 
     [[[声明]]]
 
@@ -30,30 +30,28 @@
     |状态|`normal`<br/>`apparent`|`normal`|
 
     #### 尺寸
-
-    ````html
-    @size
+    
+    :::repeat/html
+    size
+    ---
     <ui-h {$sizeKey}>{$&sizeName}</ui-h>
-    ````
+    :::
 
     #### 色彩
 
-    ````html
-    @color:theme
-    @color:feature
-    @color:black
-    @color:blue
-    @color:silver
-    @color:gray
-    <ui-h {$colorKey}>{$&colorName}</ui-h>
-    ````
+    :::preset/html
+    statementColor
+    ---
+    uikey:h
+    :::
 
     #### 状态
     
-    ````html
-    @state:normal,apparent
+    :::repeat/html
+    state:normal,apparent
+    ---
     <ui-h {$stateKey}>{$&stateName}</ui-h>
-    ````
+    :::
 
     [[[单元测试]]]
 

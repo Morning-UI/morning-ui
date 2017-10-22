@@ -3568,9 +3568,12 @@ exports.default = _form2.default.extend({
 
                 var $input = this.$el.querySelector('input');
 
-                this.data.focus = true;
-                $input.focus();
-                this.$emit('inputFocus');
+                if ($input) {
+
+                    this.data.focus = true;
+                    $input.focus();
+                    this.$emit('inputFocus');
+                }
             }
         },
         _blurInput: function _blurInput() {

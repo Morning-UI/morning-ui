@@ -14,111 +14,101 @@
 
     #### 使用
 
-    ````html
+    :::democode/html
     <div style="width:300px;">
         <ui-textinput form-name="姓名"></ui-textinput>
     </div>
-    ````
+    :::
 
     #### 支持前缀、后缀
 
-    ````html
+    :::democode/html
     <div style="width:300px;">
         <ui-textinput form-name="姓名" prepend="@"></ui-textinput>
     </div>
-    ````
+    :::
 
-    ````html
+    :::democode/html
     <div style="width:300px;">
         <ui-textinput form-name="百分比" append="%"></ui-textinput>
     </div>
-    ````
+    :::
 
-    ````html
+    :::democode/html
     <div style="width:300px;">
         <ui-textinput form-name="价格" prepend="价格" append="元"></ui-textinput>
     </div>
-    ````
+    :::
 
     [[[声明]]]
 
-    ````preset
-    @id:formStatement
-    @uikey:textinput
-    @statementDefaultValue:''
-    ````
+    :::preset/html
+    formStatement
+    ---
+    uikey:textinput
+    statementDefaultValue:''
+    :::
     
     [[[配置]]]
 
-    |KEY|描述|接受值|值类型|默认值|
-    |-|-|-|
-    ````preset
-    @id:formConfigTable
-    ````
+    :::preset/html
+    formConfigTable
+    ---
     |hide-value|表单的数值不可见，一般用于密码表单|`true`<br>`false`|Boolean|`false`|
     |prepend|表单前缀|任意字符串|String|`undefined`|
     |append|表单后缀|任意字符串|String|`undefined`|
+    :::
 
-    ````preset
-    @id:formConfigDemo
-    @uikey:textinput
-    @configDefaultValue:'默认值'
-    ````
+    :::preset/html
+    formConfigDemo
+    ---
+    uikey:textinput
+    configDefaultValue:'默认值'
+    :::
 
     #### hide-value
     
     隐藏数值后表单的值在界面中不可见。
 
-    ````html
+    :::democode/html
     <div style="width:300px;">
         <ui-textinput hide-value default-value="this is password"></ui-textinput>
     </div>
-    ````
+    :::
 
     #### prepend
 
-    ````html
+    :::democode/html
     <div style="width:300px;">
         <ui-textinput form-name="姓名" prepend="@"></ui-textinput>
     </div>
-    ````
+    :::
 
     #### append
 
-    ````html
+    :::democode/html
     <div style="width:300px;">
         <ui-textinput form-name="百分比" append="%"></ui-textinput>
     </div>
-    ````
+    :::
 
     [[[方法]]]
 
-    ````preset
-    @id:formMethod
-    @uikey:textinput
-    @methodValue:'Jim'
-    @methodDefaultValue:'Jim'
-    ````
-
+    :::preset/html
+    formMethod
+    ---
+    uikey:textinput
+    methodValue:'Jim'
+    methodDefaultValue:'Jim'
+    :::
+    
     [[[事件]]]
 
     #### focus
 
     当表单聚焦后触发。
 
-    ````vue
-    @use:html.demo2,js.demo2
-    ````
-
-    ````html
-    @var:demo2
-    <div style="width:300px;">
-        <ui-textinput @focus="echo" ref="demo2"></ui-textinput>
-    </div>
-    ````
-
-    ````js
-    @var:demo2
+    :::vue/html
     new Vue({
         el : '{$el}',
         template : '{$template}',
@@ -128,25 +118,17 @@
             }
         }
     });
-    ````
+    ---
+    <div style="width:300px;">
+        <ui-textinput @focus="echo" ref="demo2"></ui-textinput>
+    </div>
+    :::
 
     #### blur
 
     当表单失焦后触发。
 
-    ````vue
-    @use:html.demo3,js.demo3
-    ````
-
-    ````html
-    @var:demo3
-    <div style="width:300px;">
-        <ui-textinput @blur="echo" ref="demo3"></ui-textinput>
-    </div>
-    ````
-
-    ````js
-    @var:demo3
+    :::vue/html
     new Vue({
         el : '{$el}',
         template : '{$template}',
@@ -156,13 +138,18 @@
             }
         }
     });
-    ````
+    ---
+    <div style="width:300px;">
+        <ui-textinput @blur="echo" ref="demo3"></ui-textinput>
+    </div>
+    :::
 
-    ````preset
-    @id:formEvent
-    @uikey:textinput
-    @eventValue:'Jim'
-    ````
+    :::preset/html
+    formEvent
+    ---
+    uikey:textinput
+    eventValue:'Jim'
+    :::
 
     [[[表单值]]]
 
@@ -184,8 +171,9 @@
 
     #### 输入/输出示例
 
-    ````html
-    @formValueType
+    :::repeat/html
+    formValueType
+    ---
     <div>
         <p>{$valueType}类型</p>
         <div style="width:300px;">
@@ -197,7 +185,7 @@
     </div>
     <br>
     <br>
-    ````
+    :::
 
     [[[单元测试]]]
 

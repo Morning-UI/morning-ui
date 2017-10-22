@@ -14,13 +14,13 @@
 
     #### 使用
     
-    ````html
+    :::democode/html
     <ui-il>
         <li>This is first</li>
         <li>This is second</li>
         <li>This is third</li>
     </ui-il>
-    ````
+    :::
 
     [[[声明]]]
 
@@ -33,14 +33,15 @@
     |状态|`normal`<br/>`apparent`|`normal`|
 
     #### 状态    
-
-    ````html
-    @state:normal,apparent
+    
+    :::repeat/html
+    state:normal,apparent
+    ---
     <ui-il {$stateKey}>
         <li>this is {$&stateName} ui-il</li>
         <li>this is {$&stateName} ui-il</li>
     </ui-il>
-    ````
+    :::
 
     [[[单元测试]]]
 

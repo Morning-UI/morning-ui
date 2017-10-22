@@ -14,26 +14,26 @@
 
     #### 使用
     
-    ````html
+    :::democode/html
     <ui-block>区块</ui-block>
-    ````
+    :::
 
     #### 常用示例
     
-    ````html
+    :::democode/html
     <ui-block>
         <ui-h white xs>标题内容</ui-h>
         <ui-textcolor white>正文内容</ui-textcolor>
     </ui-block>
-    ````
+    :::
 
     #### 无间隙的区块
 
     可以通过添加`full`类来标记一个无间隙的区块。
 
-    ````html
+    :::democode/html
     <ui-block class="full">无间隙的区块</ui-block>
-    ````
+    :::
 
     [[[声明]]]
 
@@ -47,15 +47,11 @@
 
     #### 色彩
 
-    ````html
-    @color:theme
-    @color:feature
-    @color:black
-    @color:blue
-    @color:silver
-    @color:gray
-    <ui-block {$colorKey}>{$colorName}</ui-block>
-    ````
+    :::preset/html
+    statementColor
+    ---
+    uikey:block
+    :::
 
     [[[单元测试]]]
 

@@ -14,9 +14,9 @@
 
     标记一段着重内容，这是一个内联元素。
     
-    ````html
+    :::democode/html
     <ui-strong>着重文本</ui-strong>
-    ````
+    :::
 
     [[[声明]]]
 

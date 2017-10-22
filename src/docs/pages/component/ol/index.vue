@@ -14,17 +14,17 @@
 
     #### 使用
     
-    ````html
+    :::democode/html
     <ui-ol>
         <li>This is first</li>
         <li>This is second</li>
         <li>This is third</li>
     </ui-ol>
-    ````
+    :::
 
     #### 三层嵌套
     
-    ````html
+    :::democode/html
     <ui-ol>
         <li>This is 1</li>
         <ui-ol>
@@ -37,13 +37,13 @@
         </ui-ol>
         <li>This is 3</li>
     </ui-ol>
-    ````
+    :::
 
     #### 超过三层嵌套
 
     超过三层的无序列表，项目序号均为`lower-latin`。
     
-    ````html
+    :::democode/html
     <ui-ol>
         <li>This is 1</li>
         <ui-ol>
@@ -60,7 +60,7 @@
         </ui-ol>
         <li>This is 3</li>
     </ui-ol>
-    ````
+    :::
 
     [[[声明]]]
 
@@ -74,15 +74,15 @@
 
     #### 状态
     
-    ````html
-    @state:normal,apparent
+    :::repeat/html
+    state:normal,apparent
+    ---
     <ui-ol {$stateKey}>
         <li>this is {$&stateName} ui-ol</li>
         <li>this is {$&stateName} ui-ol</li>
     </ui-ol>
-
     <br>
-    ````
+    :::
 
     [[[单元测试]]]
 

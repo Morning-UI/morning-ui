@@ -14,9 +14,9 @@
 
     定义一段中心内容，这是一个块级元素。
     
-    ````html
+    :::democode/html
     <ui-lead>中心内容</ui-lead>
-    ````
+    :::
 
     [[[声明]]]
 
@@ -30,22 +30,19 @@
 
     #### 色彩
 
-    ````html
-    @color:theme
-    @color:feature
-    @color:black
-    @color:blue
-    @color:silver
-    @color:gray
-    <ui-lead {$colorKey}>{$&colorName}</ui-lead>
-    ````
+    :::preset/html
+    statementColor
+    ---
+    uikey:lead
+    :::
 
     #### 状态
     
-    ````html
-    @state:normal,apparent
+    :::repeat/html
+    state:normal,apparent
+    ---
     <ui-lead {$stateKey}>{$&stateName}</ui-lead>
-    ````
+    :::
 
     [[[单元测试]]]
 

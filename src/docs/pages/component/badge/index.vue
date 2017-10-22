@@ -16,29 +16,29 @@
 
     #### 使用
 
-    ````html
+    :::democode/html
     <ui-badge>24</ui-badge>
-    ````
+    :::
 
     #### 扁平徽章
 
-    ````html
+    :::democode/html
     <ui-badge class="flat">24</ui-badge>
-    ````
+    :::
     
     #### 圆形徽章
 
-    ````html
+    :::democode/html
     <ui-badge class="circle">圆形徽章</ui-badge>
-    ````
+    :::
 
     #### 无内容隐藏
 
     当徽章内没有内容时，会自动隐藏。
 
-    ````html
+    :::democode/html
     <ui-badge></ui-badge>
-    ````
+    :::
 
     [[[声明]]]
 
@@ -51,35 +51,34 @@
     |状态|`normal`<br/>`apparent`|`normal`|
 
     #### 尺寸
-
-    ````html
-    @size
+    
+    :::repeat/html
+    size
+    ---
     <ui-badge {$sizeKey}>{$&sizeName}</ui-badge>
-    ````
-
-    ````html
-    @size
+    :::
+    
+    :::repeat/html
+    size
+    ---
     <ui-badge class="circle" {$sizeKey}>{$&sizeName}</ui-badge>
-    ````
+    :::
 
     #### 色彩
 
-    ````html
-    @color:theme
-    @color:feature
-    @color:black
-    @color:blue
-    @color:silver
-    @color:gray
-    <ui-badge {$colorKey}>{$&colorName}</ui-badge>
-    ````
+    :::preset/html
+    statementColor
+    ---
+    uikey:badge
+    :::
 
     #### 状态
-
-    ````html
-    @state:normal,apparent
+    
+    :::repeat/html
+    state:normal,apparent
+    ---
     <ui-badge {$stateKey}>{$&stateName}</ui-badge>
-    ````
+    :::
 
     [[[单元测试]]]
 

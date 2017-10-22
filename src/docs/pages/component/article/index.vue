@@ -21,7 +21,7 @@
 
     #### 使用
     
-    ````html
+    :::democode/html
     <ui-article>
         <div class="title">A Guide to Upgrading to Polymer 1.0</div>
         <div class="meta">July 15, 2015 by Pankaj Parashar</div>
@@ -31,11 +31,11 @@
             <p>The steps to install the latest version of Polymer remain exactly the same as described in this article. To update an existing installation of Polymer, navigate to the app directory and run the following command in your terminal</p>
         </div>
     </ui-article>
-    ````
+    :::
 
     #### 带下划线的元信息
     
-    ````html
+    :::democode/html
     <ui-article class="underline">
         <div class="title">A Guide to Upgrading to Polymer 1.0</div>
         <div class="meta">July 15, 2015 by Pankaj Parashar</div>
@@ -45,7 +45,7 @@
             <p>The steps to install the latest version of Polymer remain exactly the same as described in this article. To update an existing installation of Polymer, navigate to the app directory and run the following command in your terminal</p>
         </div>
     </ui-article>
-    ````
+    :::
 
     [[[声明]]]
 

@@ -18,36 +18,36 @@
 
     #### 使用
     
-    ````html
+    :::democode/html
     <ui-dl>
         <dt>Foo</dt>
         <dd>this is detail of foo</dd>
         <dt>Bar</dt>
         <dd>this is detail of bar</dd>
     </ui-dl>
-    ````
+    :::
 
     #### 水平排列布局
 
-    ````html
+    :::democode/html
     <ui-dl class="horizontal">
         <dt>Horizon</dt>
         <dd>this is horizontal ui-dl</dd>
         <dt>Horizon</dt>
         <dd>this is horizontal ui-dl</dd>
     </ui-dl>
-    ````
+    :::
 
     #### 下划线布局
 
-    ````html
+    :::democode/html
     <ui-dl class="underline">
         <dt>Horizon</dt>
         <dd>this is horizontal ui-dl</dd>
         <dt>Horizon</dt>
         <dd>this is horizontal ui-dl</dd>
     </ui-dl>
-    ````
+    :::
 
     [[[声明]]]
 
@@ -61,8 +61,9 @@
 
     #### 状态
     
-    ````html
-    @state:normal,apparent
+    :::repeat/html
+    state:normal,apparent
+    ---
     <ui-dl {$stateKey}>
         <dt>{$&stateName}</dt>
         <dd>this is normal ui-dl</dd>
@@ -70,7 +71,7 @@
         <dd>this is normal ui-dl</dd>
     </ui-dl>
     <br>
-    ````
+    :::
 
     [[[单元测试]]]
 

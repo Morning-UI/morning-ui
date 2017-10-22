@@ -29,7 +29,7 @@
     
     #### 使用
 
-    ````html
+    :::democode/html
     <div style="width:500px;margin:auto">
         <ui-formgroup>
             <!-- .item : 表单项 -->
@@ -48,11 +48,11 @@
             </div>
         </ui-formgroup>
     </div>
-    ````
+    :::
 
     #### 表单项小标题及说明
 
-    ````html
+    :::democode/html
     <div style="width:500px;margin:auto">
         <ui-formgroup>
             <div class="item">
@@ -71,13 +71,13 @@
             </div>
         </ui-formgroup>
     </div>
-    ````
+    :::
 
     #### 多个表单项
 
     多个表单项之前会有间隔线。
 
-    ````html
+    :::democode/html
     <div style="width:500px;margin:auto">
         <ui-formgroup>
             <!-- .item : 表单项 -->
@@ -106,11 +106,11 @@
             </div>
         </ui-formgroup>
     </div>
-    ````
+    :::
     
     #### 表单组标题
     
-    ````html
+    :::democode/html
     <div style="width:500px;margin:auto">
         <ui-formgroup>
             <!-- header : 表单组头部 -->
@@ -144,13 +144,13 @@
             </div>
         </ui-formgroup>
     </div>
-    ````
+    :::
 
     #### 行动栏
 
     在表尾添加行动区域。
     
-    ````html
+    :::democode/html
     <div style="width:500px;margin:auto">
         <ui-formgroup>
             <header>
@@ -186,13 +186,13 @@
             </div>
         </ui-formgroup>
     </div>
-    ````
+    :::
 
     #### 单项多表单
     
     你可以在单个表单项中添加多个表单。
     
-    ````html
+    :::democode/html
     <div style="width:500px;margin:auto">
         <ui-formgroup>
             <header>
@@ -234,7 +234,7 @@
             </div>
         </ui-formgroup>
     </div>
-    ````
+    :::
 
     [[[声明]]]
 

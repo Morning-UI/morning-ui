@@ -23,18 +23,18 @@
 
     #### 使用
 
-    ````html
+    :::democode/html
     <ui-grid>
         <div class="c-4" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-4</div>
         <div class="c-4" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-4</div>
         <div class="c-4" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-4</div>
         <div class="c-4" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-4</div>
     </ui-grid>
-    ````
+    :::
 
     #### 栅格组合
 
-    ````html
+    :::democode/html
     <ui-grid>
         <div class="c-16" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-16</div>
     </ui-grid>
@@ -68,11 +68,11 @@
         <div class="c-5" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-5</div>
         <div class="c-6" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-6</div>
     </ui-grid>
-    ````
+    :::
 
     #### 栅格偏移
 
-    ````html
+    :::democode/html
     <ui-grid>
         <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
         <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
@@ -97,7 +97,7 @@
         <div class="c-4 offset-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-4 offset-2</div>
         <div class="c-9 offset-1" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-9 offset-1</div>
     </ui-grid>
-    ````
+    :::
 
 
 
@@ -105,7 +105,7 @@
 
     栅格系统支持多层级嵌套。
     
-    ````html
+    :::democode/html
     <ui-grid>
         <div class="c-4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-4</div>
         <div class="c-12" style="background-color:#D6DDE5;">
@@ -115,13 +115,13 @@
             </ui-grid>
         </div>
     </ui-grid>
-    ````
+    :::
 
     #### 无间隔栅格
 
     添加`nogap`的样式类可以使栅格之间无间隔。
 
-    ````html
+    :::democode/html
     <ui-grid class="nogap">
         <div class="c-4" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-4</div>
         <div class="c-4" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-4</div>
@@ -155,13 +155,13 @@
         <div class="c-4 offset-4" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-4 offset-4</div>
         <div class="c-4 offset-4" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-4 offset-4</div>
     </ui-grid>
-    ````
+    :::
 
     #### 两端包含间隙栅格
 
     添加`averagegap`的样式类可以使栅格两端也有间隙。
 
-    ````html
+    :::democode/html
     <ui-grid class="averagegap">
         <div class="c-4" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-4</div>
         <div class="c-4" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-4</div>
@@ -195,13 +195,13 @@
         <div class="c-4 offset-4" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-4 offset-4</div>
         <div class="c-4 offset-4" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-4 offset-4</div>
     </ui-grid>
-    ````
+    :::
 
     #### 填满容器的栅格
 
     填满容器的栅格高度为100%。
 
-    ````html
+    :::democode/html
     <div style="height:200px;">
         <ui-grid class="fill">
             <div class="c-4" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-4</div>
@@ -210,7 +210,7 @@
             <div class="c-4" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-4</div>
         </ui-grid>
     </div>
-    ````
+    :::
 
 
     [[[声明]]]

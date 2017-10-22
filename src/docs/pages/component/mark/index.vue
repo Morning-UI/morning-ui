@@ -14,9 +14,9 @@
 
     定义标记内容，这是一个内联元素。
     
-    ````html
+    :::democode/html
     <ui-mark>标记的文本</ui-mark>
-    ````
+    :::
 
     [[[声明]]]
 
@@ -30,22 +30,18 @@
 
     #### 色彩
 
-    ````html
-    @color:theme
-    @color:feature
-    @color:black
-    @color:blue
-    @color:silver
-    @color:gray
-    <ui-mark {$colorKey}>{$&colorName}</ui-mark>
-    ````
-
+    :::preset/html
+    statementColor
+    ---
+    uikey:mark
+    :::
     #### 状态
     
-    ````html
-    @state:normal,apparent
+    :::repeat/html
+    state:normal,apparent
+    ---
     <ui-mark {$stateKey}>{$&stateName}</ui-mark>
-    ````
+    :::
 
     [[[单元测试]]]
 

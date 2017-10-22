@@ -14,9 +14,9 @@
 
     定义一段引用的内容，这是一个块级元素。
     
-    ````html
+    :::democode/html
     <ui-quote>引用文本</ui-quote>
-    ````
+    :::
 
     [[[声明]]]
 
@@ -30,16 +30,17 @@
 
     #### 色彩
 
-    ````html
-    @color:theme
-    @color:feature
-    @color:black
-    @color:blue
-    @color:silver
-    @color:gray
+    :::repeat/html
+    color:theme
+    color:feature
+    color:black
+    color:blue
+    color:silver
+    color:gray
+    ---
     <ui-quote {$colorKey}>{$&colorName}</ui-quote>
     <br>
-    ````
+    :::
 
     [[[单元测试]]]
 

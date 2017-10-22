@@ -24,27 +24,27 @@
 
     #### 使用
 
-    ````html
+    :::democode/html
     <ui-dialog ref="demo1"></ui-dialog>
     <ui-link js="window.morning.findVM('demo1').toggle(true);">显示模拟盒</ui-link>
-    ````
+    :::
 
     #### 带头部的模拟盒
 
     通过`<header slot="header">`标签声明一个头部内容。
 
-    ````html
+    :::democode/html
     <ui-dialog ref="demo2">
         <header slot="header">This is title</header>
     </ui-dialog>
     <ui-link js="window.morning.findVM('demo2').toggle(true);">显示模拟盒</ui-link>
-    ````
+    :::
 
     #### 带关闭的头部
 
     头部标题也可以在`<h1>`标签中。
 
-    ````html
+    :::democode/html
     <ui-dialog ref="demo3">
         <header slot="header">
             <h1>This is title</h1>
@@ -52,33 +52,33 @@
         </header>
     </ui-dialog>
     <ui-link js="window.morning.findVM('demo3').toggle(true);">显示模拟盒</ui-link>
-    ````
+    :::
 
     #### 当头部无内容时自动隐藏
 
-    ````html
+    :::democode/html
     <ui-dialog ref="demo4">
         <header slot="header"></header>
     </ui-dialog>
     <ui-link js="window.morning.findVM('demo4').toggle(true);">显示模拟盒</ui-link>
-    ````
+    :::
 
     #### 带尾部的模拟盒
 
     通过`<footer slot="footer">`标签声明一个尾部内容。
 
-    ````html
+    :::democode/html
     <ui-dialog ref="demo5">
         <footer slot="footer">This is footer</footer>
     </ui-dialog>
     <ui-link js="window.morning.findVM('demo5').toggle(true);">显示模拟盒</ui-link>
-    ````
+    :::
 
     #### 带操作的尾部
 
     你可以在尾部的`<div>`中加入`ui-btn`和`ui-link`来实现可选操作。
 
-    ````html
+    :::democode/html
     <ui-dialog ref="demo6">
         <footer slot="footer">
             <span>This is footer</span>
@@ -89,22 +89,22 @@
         </footer>
     </ui-dialog>
     <ui-link js="window.morning.findVM('demo6').toggle(true);">显示模拟盒</ui-link>
-    ````
+    :::
 
     #### 包含内容的模拟盒
 
     在组件内添加除`<header slot="header">`和`<footer slot="footer">`以外的元素会加载到模拟盒的主体部分。
 
-    ````html
+    :::democode/html
     <ui-dialog ref="demo7">
         This is body.
     </ui-dialog>
     <ui-link js="window.morning.findVM('demo7').toggle(true);">显示模拟盒</ui-link>
-    ````
+    :::
 
     #### 包含HTML内容的模拟盒
 
-    ````html
+    :::democode/html
     <ui-dialog ref="demo8">
         <ui-grid class="fill">
             <div class="c-7">
@@ -119,14 +119,14 @@
         </ui-grid>
     </ui-dialog>
     <ui-link js="window.morning.findVM('demo8').toggle(true);">显示模拟盒</ui-link>
-    ````
+    :::
 
 
     #### 包含头部/主体/尾部的模拟盒
 
     下面是一个完整的模拟盒内容推荐布局。
 
-    ````html
+    :::democode/html
     <ui-dialog ref="demo9" light-gray>
         <header slot="header">选择一张图片</header>
         <ui-grid class="fill">
@@ -152,13 +152,13 @@
         </footer>
     </ui-dialog>
     <ui-link js="window.morning.findVM('demo9').toggle(true);">显示模拟盒</ui-link>
-    ````
+    :::
 
     #### 多层模拟盒
 
     模拟盒支持多层嵌套打开，组件会自动按照打开的顺序设置层级。(注意：使用时不用嵌套)
 
-    ````html
+    :::democode/html
     <ui-dialog ref="demo10" black width="60%" height="60%">
         <header slot="header">第一级</header>
         <ui-link js="javascript:window.morning.findVM('demo11').toggle(true);">显示第二级模拟盒</ui-link>
@@ -174,7 +174,7 @@
     </ui-dialog>
 
     <ui-link js="window.morning.findVM('demo10').toggle(true);">显示模拟盒</ui-link>
-    ````
+    :::
 
     [[[声明]]]
 
@@ -188,13 +188,14 @@
 
     #### 色彩
 
-    ````html
-    @color:theme
-    @color:feature
-    @color:black
-    @color:blue
-    @color:silver
-    @color:gray
+    :::repeat/html
+    color:theme
+    color:feature
+    color:black
+    color:blue
+    color:silver
+    color:gray
+    ---
     <ui-dialog ref="demo{$colorKey}" {$colorKey}>
         <header slot="header">This is title</header>
         <footer slot="footer">This is footer</footer>
@@ -202,12 +203,12 @@
     <ui-link js="window.morning.findVM('demo{$colorKey}').toggle(true);" {$colorKey}>{$colorName}模拟盒</ui-link>
 
     <br>
-    ````
+    :::
 
     [[[配置]]]
 
     |KEY|描述|接受值|值类型|默认值|
-    |-|-|-|
+    |-|-|-|-|-|
     |width|模拟盒宽度|宽度数值（可以是`px`、`em`、`%`等任何css合法单位）|String|`'50%'`|
     |height|模拟盒高度|高度数值（可以是`px`、`em`、`%`等任何css合法单位）|String|`'50%'`|
     |auto-close|点击模拟盒以外的区域自动关闭模拟盒|`true`<br>`false`|Boolean|`true`|
@@ -215,33 +216,33 @@
 
     #### width
 
-    ````html
+    :::democode/html
     <ui-dialog ref="demo13" width="200px"></ui-dialog>
     <ui-link js="window.morning.findVM('demo13').toggle(true);">显示模拟盒</ui-link>
-    ````
+    :::
 
-    ````html
+    :::democode/html
     <ui-dialog ref="demo14" width="80%"></ui-dialog>
     <ui-link js="window.morning.findVM('demo14').toggle(true);">显示模拟盒</ui-link>
-    ````
+    :::
 
     #### height
 
-    ````html
+    :::democode/html
     <ui-dialog ref="demo15" height="50px"></ui-dialog>
     <ui-link js="window.morning.findVM('demo15').toggle(true);">显示模拟盒</ui-link>
-    ````
+    :::
 
-    ````html
+    :::democode/html
     <ui-dialog ref="demo16" height="80%"></ui-dialog>
     <ui-link js="window.morning.findVM('demo16').toggle(true);">显示模拟盒</ui-link>
-    ````
+    :::
 
     #### auto-close
 
     设为`false`点击模拟盒以外的区域不会关闭模拟盒。
 
-    ````html
+    :::democode/html
     <ui-dialog ref="demo17" :auto-close="false">
         <header slot="header">
             <h1>点击外部区域不会关闭，需要点击右侧关闭</h1>
@@ -249,27 +250,27 @@
         </header>
     </ui-dialog>
     <ui-link js="window.morning.findVM('demo17').toggle(true);">显示模拟盒</ui-link>
-    ````
+    :::
 
     #### show-type
 
-    ````html
+    :::democode/html
     <!-- 从上往下弹出 -->
     <ui-dialog ref="demo18" show-type="top"></ui-dialog>
     <ui-link js="window.morning.findVM('demo18').toggle(true);">显示模拟盒</ui-link>
-    ````
+    :::
 
-    ````html
+    :::democode/html
     <!-- 从中间弹出 -->
     <ui-dialog ref="demo19" show-type="center"></ui-dialog>
     <ui-link js="window.morning.findVM('demo19').toggle(true);">显示模拟盒</ui-link>
-    ````
+    :::
 
-    ````html
+    :::democode/html
     <!-- 无动画直接出现 -->
     <ui-dialog ref="demo20" show-type="no"></ui-dialog>
     <ui-link js="window.morning.findVM('demo20').toggle(true);">显示模拟盒</ui-link>
-    ````
+    :::
 
     [[[方法]]]
 
@@ -281,7 +282,7 @@
     |-|-|-|-|-|-|
     |show|YES|切换到显示或隐藏状态，不输入则切换到反向状态。|`undefined`<br>`true`<br>`false`|`Undefined`<br>`Boolean`|`undefined`|
 
-    ````html
+    :::democode/html
     <ui-dialog ref="demo21">
         <ui-center class="fill">
             <ui-link js="window.morning.findVM('demo21').toggle(false);">隐藏模拟盒</ui-link> &nbsp;
@@ -290,32 +291,15 @@
     </ui-dialog>
     <ui-link js="window.morning.findVM('demo21').toggle(true);">显示模拟盒</ui-link>
     <ui-link js="window.morning.findVM('demo21').toggle();">切换到反向状态</ui-link>
-    ````
+    :::
 
     [[[事件]]]
 
     #### emit
 
     当模拟盒切换显示状态时触发。
-
-    ````vue
-    @use:html.demo22,js.demo22
-    ````
-
-    ````html
-    @var:demo22
-    <div>
-        <ui-dialog ref="demo22" @emit="echo">
-            <ui-center class="fill">
-                <ui-link js="window.morning.findVM('demo22').toggle();">隐藏模拟盒</ui-link> &nbsp;
-            </ui-center>
-        </ui-dialog>
-        <ui-link js="window.morning.findVM('demo22').toggle();">显示模拟盒</ui-link>
-    </div>
-    ````
-
-    ````js
-    @var:demo22
+    
+    :::vue/html
     new Vue({
         el : '{$el}',
         template : '{$template}',
@@ -325,30 +309,22 @@
             }
         }
     });
-    ````
+    ---
+    <div>
+        <ui-dialog ref="demo22" @emit="echo">
+            <ui-center class="fill">
+                <ui-link js="window.morning.findVM('demo22').toggle();">隐藏模拟盒</ui-link> &nbsp;
+            </ui-center>
+        </ui-dialog>
+        <ui-link js="window.morning.findVM('demo22').toggle();">显示模拟盒</ui-link>
+    </div>
+    :::
 
     #### show
 
     当模拟盒显示时触发。
-
-    ````vue
-    @use:html.demo23,js.demo23
-    ````
-
-    ````html
-    @var:demo23
-    <div>
-        <ui-dialog ref="demo23" @show="echo">
-            <ui-center class="fill">
-                <ui-link js="window.morning.findVM('demo23').toggle();">隐藏模拟盒</ui-link> &nbsp;
-            </ui-center>
-        </ui-dialog>
-        <ui-link js="window.morning.findVM('demo23').toggle();">显示模拟盒</ui-link>
-    </div>
-    ````
-
-    ````js
-    @var:demo23
+    
+    :::vue/html
     new Vue({
         el : '{$el}',
         template : '{$template}',
@@ -358,30 +334,22 @@
             }
         }
     });
-    ````
+    ---
+    <div>
+        <ui-dialog ref="demo23" @show="echo">
+            <ui-center class="fill">
+                <ui-link js="window.morning.findVM('demo23').toggle();">隐藏模拟盒</ui-link> &nbsp;
+            </ui-center>
+        </ui-dialog>
+        <ui-link js="window.morning.findVM('demo23').toggle();">显示模拟盒</ui-link>
+    </div>
+    :::
 
     #### hide
 
     当模拟盒隐藏时触发。
-
-    ````vue
-    @use:html.demo24,js.demo24
-    ````
-
-    ````html
-    @var:demo24
-    <div>
-        <ui-dialog ref="demo24" @hide="echo">
-            <ui-center class="fill">
-                <ui-link js="window.morning.findVM('demo24').toggle();">隐藏模拟盒</ui-link> &nbsp;
-            </ui-center>
-        </ui-dialog>
-        <ui-link js="window.morning.findVM('demo24').toggle();">显示模拟盒</ui-link>
-    </div>
-    ````
-
-    ````js
-    @var:demo24
+    
+    :::vue/html
     new Vue({
         el : '{$el}',
         template : '{$template}',
@@ -391,43 +359,20 @@
             }
         }
     });
-    ````
-
-    #### 生命周期事件
-
-    ````vue
-    @use:html.demoEventLifecycle,js.demoEventLifecycle
-    ````
-
-    ````html
-    @var:demoEventLifecycle
+    ---
     <div>
-        <ui-dialog
-            ref="demoEventLifecycle"
-            v-show="show"
-            @created="echo('created')"
-            @mounted="echo('mounted')"
-            @beforeUpdate="echo('beforeUpdate')"
-            @updated="echo('updated')"
-            @beforeDestroy="echo('beforeDestroy')"
-            @destroyed="echo('destroyed')"
-        >
+        <ui-dialog ref="demo24" @hide="echo">
             <ui-center class="fill">
-                {%text%}
-                <ui-link js="window.morning.findVM('demoEventLifecycle').toggle();">隐藏模拟盒</ui-link> &nbsp;
+                <ui-link js="window.morning.findVM('demo24').toggle();">隐藏模拟盒</ui-link> &nbsp;
             </ui-center>
         </ui-dialog>
-        <ui-link js="window.morning.findVM('demoEventLifecycle').toggle();">显示模拟盒</ui-link>
-
-        <br><br>
-    
-        <ui-link js="javascript:window.demoEventLifecycle.text='生命周期事件';">触发update</ui-link>
-        <ui-link js="javascript:morning.findVM('demoEventLifecycle').$destroy();">触发destroy</ui-link>
+        <ui-link js="window.morning.findVM('demo24').toggle();">显示模拟盒</ui-link>
     </div>
-    ````
+    :::
 
-    ````js
-    @var:demoEventLifecycle
+    #### 生命周期事件
+    
+    :::vue/html
     window.demoEventLifecycle = new Vue({
         el : '{$el}',
         template : '{$template}',
@@ -443,8 +388,32 @@
             }
         }
     });
-    ````
+    ---
+    <div>
+        <ui-dialog
+            ref="demoEventLifecycle"
+            v-show="show"
+            @created="echo('created')"
+            @mounted="echo('mounted')"
+            @beforeUpdate="echo('beforeUpdate')"
+            @updated="echo('updated')"
+            @beforeDestroy="echo('beforeDestroy')"
+            @destroyed="echo('destroyed')"
+        >
+            <ui-center class="fill">
+                {*text*}
+                <ui-link js="window.morning.findVM('demoEventLifecycle').toggle();">隐藏模拟盒</ui-link> &nbsp;
+            </ui-center>
+        </ui-dialog>
+        <ui-link js="window.morning.findVM('demoEventLifecycle').toggle();">显示模拟盒</ui-link>
+
+        <br><br>
     
+        <ui-link js="javascript:window.demoEventLifecycle.text='生命周期事件';">触发update</ui-link>
+        <ui-link js="javascript:morning.findVM('demoEventLifecycle').$destroy();">触发destroy</ui-link>
+    </div>
+    :::
+
     [[[单元测试]]]
 
     <iframe src="/report/coverage/lib/components/dialog/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>

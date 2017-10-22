@@ -20,7 +20,7 @@
 
     #### 使用
 
-    ````html
+    :::democode/html
     <div style="width:400px">
         <ui-action>
             <div class="title">
@@ -32,11 +32,11 @@
             </div>
         </ui-action>
     </div>
-    ````
+    :::
 
     #### 多个行动入口
 
-    ````html
+    :::democode/html
     <div style="width:400px">
         <ui-action>
             <div class="title">
@@ -49,11 +49,11 @@
             </div>
         </ui-action>
     </div>
-    ````
+    :::
 
     #### 垂直排列
 
-    ````html
+    :::democode/html
     <div style="width:400px">
         <ui-action class="vertical">
             <div class="title">
@@ -65,7 +65,7 @@
             </div>
         </ui-action>
     </div>
-    ````
+    :::
 
     [[[声明]]]
 
@@ -78,9 +78,10 @@
     |状态|不支持|-|
 
     #### 尺寸
-
-    ````html
-    @size
+    
+    :::repeat/html
+    size
+    ---
     <div style="width:400px">
         <ui-action {$sizeKey}>
             <div class="title">
@@ -93,17 +94,18 @@
         </ui-action>
     </div>
     <br>
-    ````
+    :::
 
     #### 色彩
 
-    ````html
-    @color:theme
-    @color:feature
-    @color:black
-    @color:blue
-    @color:silver
-    @color:gray
+    :::repeat/html
+    color:theme
+    color:feature
+    color:black
+    color:blue
+    color:silver
+    color:gray
+    ---
     <div style="width:400px">
         <ui-action {$colorKey}>
             <div class="title">
@@ -116,7 +118,7 @@
         </ui-action>
     </div>
     <br>
-    ````
+    :::
 
     [[[单元测试]]]
 

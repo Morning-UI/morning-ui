@@ -14,9 +14,9 @@
 
     内容左对齐组件，这是一个块级元素。
     
-    ````html
+    :::democode/html
     <ui-textleft>左对齐文本</ui-textleft>
-    ````
+    :::
 
     [[[声明]]]
 

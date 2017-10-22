@@ -14,9 +14,9 @@
 
     内容居中对齐组件，这是一个块级元素。
     
-    ````html
+    :::democode/html
     <ui-textcenter>居中的文本</ui-textcenter>
-    ````
+    :::
 
     [[[声明]]]
 

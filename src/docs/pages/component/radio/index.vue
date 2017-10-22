@@ -14,59 +14,44 @@
 
     #### 使用
 
-    ````html
+    :::democode/html
     <div style="width:300px;">
         <ui-radio form-name="姓名" :list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"></ui-radio>
     </div>
-    ````
+    :::
 
     [[[声明]]]
 
-    ````preset
-    @id:formStatementWithStyle
-    @uikey:radio
-    @statementDefaultValue:'Tim'
-    @statementMoreAttr::list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"
-    ````
+    :::preset/html
+    formStatementWithStyle
+    ---
+    uikey:radio
+    statementDefaultValue:'Tim'
+    statementMoreAttr::list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"
+    :::
 
     [[[配置]]]
 
-    |KEY|描述|接受值|值类型|默认值|
-    |-|-|-|
-    ````preset
-    @id:formConfigTable
-    ````
+    :::preset/html
+    formConfigTable
+    ---
     |accept-html|项目的的名称可以使用HTML|`true`<br>`false`|Boolean|`false`|
     |list|可选项目列表|可选项目列表的对象，键名是key，键值是name用于显示|Object|`{}`|
+    :::
 
-    ````preset
-    @id:formConfigDemo
-    @uikey:radio
-    @configDefaultValue:'Tim'
-    @configMoreAttr::list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"
-    ````
+    :::preset/html
+    formConfigDemo
+    ---
+    uikey:radio
+    configDefaultValue:'Tim'
+    configMoreAttr::list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"
+    :::
     
     #### accept-html
 
     如果让`ui-radio`的显示文本，渲染成HTML，而不是字符串。可以设置`accept-html`。
 
-    ````vue
-    @use:html.demo1,js.demo1
-    ````
-
-    ````html
-    @var:demo1
-    <div style="width:300px;">
-        <ui-radio
-            form-name="姓名"
-            accept-html
-            :list="list"
-        ></ui-radio>
-    </div>
-    ````
-
-    ````js
-    @var:demo1
+    :::vue/html
     new Vue({
         el : '{$el}',
         template : '{$template}',
@@ -79,25 +64,34 @@
             }
         }
     });
-    ````
+    ---
+    <div style="width:300px;">
+        <ui-radio
+            form-name="姓名"
+            accept-html
+            :list="list"
+        ></ui-radio>
+    </div>
+    :::
 
     #### list
 
-    ````html
+    :::democode/html
     <div style="width:300px;">
         <ui-radio form-name="姓名" :list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"></ui-radio>
     </div>
-    ````
+    :::
 
     [[[方法]]]
 
-    ````preset
-    @id:formMethod
-    @uikey:radio
-    @methodValue:'Tim'
-    @methodDefaultValue:'Tim'
-    @methodMoreAttr::list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"
-    ````
+    :::preset/html
+    formMethod
+    ---
+    uikey:radio
+    methodValue:'Tim'
+    methodDefaultValue:'Tim'
+    methodMoreAttr::list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"
+    :::
     
     #### toggle(key)
 
@@ -107,23 +101,24 @@
     |-|-|-|-|-|-|
     |key|NO|需要选中选项的键值|键值字符串|`String`|`undefined`|
 
-    ````html
+    :::democode/html
     <div style="width:300px;">
         <ui-radio ref="demo2" form-name="姓名" :list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"></ui-radio>
     </div>
     <br>
     <ui-link js="javascript:morning.findVM('demo2').toggle('Tim');">选中Tim</ui-link>
     <ui-link js="javascript:morning.findVM('demo2').toggle('Andrew');">选中Andrew</ui-link>
-    ````
+    :::
 
     [[[事件]]]
 
-    ````preset
-    @id:formEvent
-    @uikey:radio
-    @eventValue:'Tim'
-    @eventMoreAttr::list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"
-    ````
+    :::preset/html
+    formEvent
+    ---
+    uikey:radio
+    eventValue:'Tim'
+    eventMoreAttr::list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"
+    :::
 
     [[[表单值]]]
 
@@ -145,8 +140,9 @@
 
     #### 输入/输出示例
 
-    ````html
-    @formValueType
+    :::repeat/html
+    formValueType
+    ---
     <div>
         <p>{$valueType}类型</p>
         <div style="width:300px;">
@@ -158,7 +154,7 @@
     </div>
     <br>
     <br>
-    ````
+    :::
 
     [[[单元测试]]]
 

@@ -14,9 +14,9 @@
 
     小写文本组件，这是一个内联元素。
     
-    ````html
+    :::democode/html
     <div><ui-lowercase>小写的英文文本: tHere is A LEtter</ui-lowercase></div>
-    ````
+    :::
 
     [[[声明]]]
 

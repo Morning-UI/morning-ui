@@ -22,47 +22,47 @@
 
     #### 使用
     
-    ````html
+    :::democode/html
     <ui-apparent>醒目内容</ui-apparent>
-    ````
+    :::
 
     #### 配合内联元素
 
-    ````html
+    :::democode/html
     <ui-apparent class="inline">
         <span>This is inline element</span>
     </ui-apparent>
-    ````
+    :::
 
     #### 配合内联块元素
 
-    ````html
+    :::democode/html
     <ui-apparent class="inline-block">
         <div style="background:#eee;display:inline-block">
             This is inline-block element
         </div>
     </ui-apparent>
-    ````
+    :::
     
     #### 配合块级元素
 
-    ````html
+    :::democode/html
     <ui-apparent class="block">
         <div style="width:200px;height:50px;background:#eee;">
             This is block element
         </div>
     </ui-apparent>
-    ````
+    :::
 
     #### 配合无`apparent`状态组件
 
     由于`ui-block`是块级元素，需要为`ui-apparent`添加`block`样式类。
 
-    ````html
+    :::democode/html
     <ui-apparent class="block">
         <ui-block>区块</ui-block>
     </ui-apparent>
-    ````
+    :::
 
     [[[声明]]]
 

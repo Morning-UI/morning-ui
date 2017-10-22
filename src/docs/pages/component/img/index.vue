@@ -24,15 +24,15 @@
 
     标记一段斜体内容，这是一个内联元素。
     
-    ````html
+    :::democode/html
     <ui-img src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
-    ````
+    :::
 
     #### 带文字说明图片
 
-    ````html
+    :::democode/html
     <ui-img src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg">说明文字</ui-img>
-    ````
+    :::
 
     #### 不同形状
     
@@ -42,15 +42,15 @@
     - `circle` : 圆形
     - `thumbnail` : 相框
 
-    ````html
+    :::democode/html
     <ui-img class="rounded" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
     <ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
     <ui-img class="thumbnail" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
-    ````
+    :::
 
     #### 支持的属性
 
-    ````html
+    :::democode/html
     <!-- 添加width属性，自动设置图片宽度 -->
     <ui-img width="130" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
 
@@ -62,7 +62,7 @@
 
     <!-- 添加alt属性，自动设置图片alt属性，当图片无法显示时候，显示alt内容。 -->
     <ui-img alt="这里是alt" src="https://d13yacurqjgar.cloudfront.net/noimg.jpeg"></ui-img>
-    ````
+    :::
 
     [[[声明]]]
 

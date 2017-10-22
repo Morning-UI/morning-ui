@@ -14,9 +14,9 @@
 
     #### 使用
 
-    ````html
+    :::democode/html
     <ui-textcolor>This is ui-textcolor</ui-textcolor>
-    ````
+    :::
 
     [[[声明]]]
 
@@ -30,15 +30,11 @@
 
     #### 色彩
 
-    ````html
-    @color:theme
-    @color:feature
-    @color:black
-    @color:blue
-    @color:silver
-    @color:gray
-    <ui-textcolor {$colorKey}>{$&colorName}</ui-textcolor>
-    ````
+    :::preset/html
+    statementColor
+    ---
+    uikey:textcolor
+    :::
 
     [[[单元测试]]]
 
