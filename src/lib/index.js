@@ -4,6 +4,12 @@ import {default as UI, injectMorning}   from 'Common/ui';
 import Form                             from 'Common/form';
 import components                       from './components';
 
+if (typeof Vue === 'undefined') {
+
+    throw new Error('can\'t find Vue.js, import Vue.js first please.');
+
+}
+
 // UMD : https://github.com/umdjs/umd/blob/master/templates/amdWebGlobal.js
 ((root, factory) => {
 
@@ -34,6 +40,7 @@ import components                       from './components';
         _selectClickListener : [],
         _groupData : {},
         _groupVmMap : {},
+        isMorning : true,
         version : '0.10.0',
         map : {},
         findVM : function (ref) {

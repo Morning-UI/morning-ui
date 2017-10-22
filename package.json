@@ -2,7 +2,7 @@
   "name": "morning-ui",
   "version": "0.10.0",
   "description": "modern efficient user interface, using human-friendly HTML",
-  "main": "dist/morning.js",
+  "main": "dist/morning-ui.js",
   "scripts": {
     "build": "./node_modules/.bin/webpack --config ./build/webpack.config.js",
     "dev": "./node_modules/.bin/webpack-dev-server --config ./build/webpack.config.js",
@@ -43,6 +43,10 @@
     "Early <chenchao.he@husor.com>"
   ],
   "license": "MIT",
+  "files": [
+    "dist",
+    "src/lib"
+  ],
   "dependencies": {
     "array-uniq": "^1.0.3",
     "css-loader": "^0.28.5",
@@ -50,7 +54,7 @@
     "extend": "^3.0.1",
     "github-markdown-css": "^2.8.0",
     "highlight.js": "^9.12.0",
-    " he": "^2.3.0",
+    "mustache": "^2.3.0",
     "nightmare": "^2.10.0",
     "tether": "^1.4.0",
     "trim": "0.0.1",
