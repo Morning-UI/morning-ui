@@ -1,4 +1,4 @@
-webpackJsonp([9],{
+webpackJsonp([10],{
 
 /***/ 0:
 /***/ (function(module, exports) {
@@ -112,18 +112,25 @@ module.exports = Vue;
 
 /***/ }),
 
-/***/ 105:
+/***/ 11:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 118:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(200);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(214);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_03488f54_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(545);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_03488f54_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(616);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(289)
+  __webpack_require__(306)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
@@ -165,13 +172,6 @@ if (false) {(function () {
 
 /* harmony default export */ __webpack_exports__["default"] = (Component.exports);
 
-
-/***/ }),
-
-/***/ 11:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ }),
 
@@ -572,7 +572,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 200:
+/***/ 214:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -582,7 +582,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _DocGuide = __webpack_require__(29);
+var _DocGuide = __webpack_require__(30);
 
 var _DocGuide2 = _interopRequireDefault(_DocGuide);
 
@@ -696,7 +696,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 27:
+/***/ 28:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -740,7 +740,14 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 277:
+/***/ 29:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 292:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -750,7 +757,7 @@ var _vue = __webpack_require__(1);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _index = __webpack_require__(105);
+var _index = __webpack_require__(118);
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -765,32 +772,25 @@ new _vue2.default({
 
 /***/ }),
 
-/***/ 28:
+/***/ 3:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 289:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 29:
+/***/ 30:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_DocGuide_vue__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_DocGuide_vue__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_DocGuide_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_DocGuide_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_7e9905d3_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_DocGuide_vue__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_7e9905d3_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_DocGuide_vue__ = __webpack_require__(31);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(28)
+  __webpack_require__(29)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
@@ -835,14 +835,14 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 3:
+/***/ 306:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 30:
+/***/ 31:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -982,35 +982,6 @@ if (false) {
 
 /***/ }),
 
-/***/ 545:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('doc-guide', {
-    attrs: {
-      "page": _vm.page,
-      "hasPadding": true
-    }
-  }, [_c('script', {
-    attrs: {
-      "type": "text/markdown"
-    }
-  }, [_vm._v("\n# 全局方法\n\nMorningUI在全局会暴露一个`morning`对象，你可以通过`window.morning`来方法。这个对象上有一些有用的属性及方法。\n\n> 注意`window.morning`对象上以下划线开头的都是私有属性，用法及变动不会再文档中提及，不应该访问及使用。\n\n### 属性\n\n- version : MorningUI当前的版本，使用者可以根据不同版本增加不同的逻辑。\n- map : 所有组件的vm对象都会挂载到map对象上，对象的键名是组件的`_uiid`。\n\n### 方法\n\n#### findVM(ref)\n\n##### 参数\n\n|参数|可选|描述|类型|\n|-|-|-|\n|ref|NO|通过组件的`ref`名称来找到组件的vm对象|`string`|\n\n##### 返回值\n\n匹配组件的vm对象。\n\n#### getGroup(groupName)\n\n获取一组表单的数值，详见：[表单](/guide/form.html)中的表单组章节。\n\n##### 参数\n\n|参数|可选|描述|类型|\n|-|-|-|\n|groupName|NO|需要获取数据表单组的名称|`string`|\n\n##### 返回值\n\n查找到的表单数据对象，键名是表单的KEY，键值是表单的值\n\n#### getGroupJson(groupName)\n\n获取一组表单的数值(JSON)，详见：[表单](/guide/form.html)中的表单组章节。\n\n##### 参数\n\n|参数|可选|描述|类型|\n|-|-|-|\n|groupName|NO|需要获取数据表单组的名称|`string`|\n\n##### 返回值\n\n查找到的表单数据对象的JSON字符串\n\n#### setGroup(groupName, dataObject)\n\n设置一组表单的数值(采用JSON)，详见：[表单](/guide/form.html)中的表单组章节。\n\n##### 参数\n\n|参数|可选|描述|类型|\n|-|-|-|\n|groupName|NO|需要设置数据表单组的名称|`string`|\n|dataObject|NO|一组键值对，键名为表单的KEY，键值是需要设置的表单值。可以只设置部分KEY。如果显示的设置键值为`undefined`则会清空对应的表单。|`object`|\n\n##### 返回值\n\nMorning对象\n\n#### setGroupJson(groupName, dataJson)\n\n设置一组表单的数值(采用JSON)，详见：[表单](/guide/form.html)中的表单组章节。\n\n##### 参数\n\n|参数|可选|描述|类型|\n|-|-|-|\n|groupName|NO|需要设置数据表单组的名称|`string`|\n|dataJson|NO|一组键值对的JSON字符串，键名为表单的KEY，键值是需要设置的表单值。可以只设置部分KEY。如果显示的设置键值为`undefined`则会清空对应的表单。|`object`|\n\n##### 返回值\n\nMorning对象。\n\n")])])
-}
-var staticRenderFns = []
-render._withStripped = true
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-03488f54", esExports)
-  }
-}
-
-/***/ }),
-
 /***/ 6:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1021,7 +992,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _markdownIt = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"markdown-it\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+var _markdownIt = __webpack_require__(25);
 
 var _markdownIt2 = _interopRequireDefault(_markdownIt);
 
@@ -1029,11 +1000,11 @@ var _extend2 = __webpack_require__(23);
 
 var _extend3 = _interopRequireDefault(_extend2);
 
-var _mustache = __webpack_require__(25);
+var _mustache = __webpack_require__(26);
 
 var _mustache2 = _interopRequireDefault(_mustache);
 
-var _underscore = __webpack_require__(26);
+var _underscore = __webpack_require__(27);
 
 var _underscore2 = _interopRequireDefault(_underscore);
 
@@ -1777,8 +1748,6 @@ var demoWithCodePlugin = function demoWithCodePlugin(md, opt) {
             result = extPreset(content, paramStr);
         }
 
-        console.log(method, result);
-
         return result;
     };
 };
@@ -2182,6 +2151,35 @@ module.exports = exports['default'];
 
 /***/ }),
 
+/***/ 616:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('doc-guide', {
+    attrs: {
+      "page": _vm.page,
+      "hasPadding": true
+    }
+  }, [_c('script', {
+    attrs: {
+      "type": "text/markdown"
+    }
+  }, [_vm._v("\n# 全局方法\n\nMorningUI在全局会暴露一个`morning`对象，你可以通过`window.morning`来方法。这个对象上有一些有用的属性及方法。\n\n> 注意`window.morning`对象上以下划线开头的都是私有属性，用法及变动不会再文档中提及，不应该访问及使用。\n\n### 属性\n\n- version : MorningUI当前的版本，使用者可以根据不同版本增加不同的逻辑。\n- map : 所有组件的vm对象都会挂载到map对象上，对象的键名是组件的`_uiid`。\n\n### 方法\n\n#### findVM(ref)\n\n##### 参数\n\n|参数|可选|描述|类型|\n|-|-|-|\n|ref|NO|通过组件的`ref`名称来找到组件的vm对象|`string`|\n\n##### 返回值\n\n匹配组件的vm对象。\n\n#### getGroup(groupName)\n\n获取一组表单的数值，详见：[表单](/guide/form.html)中的表单组章节。\n\n##### 参数\n\n|参数|可选|描述|类型|\n|-|-|-|\n|groupName|NO|需要获取数据表单组的名称|`string`|\n\n##### 返回值\n\n查找到的表单数据对象，键名是表单的KEY，键值是表单的值\n\n#### getGroupJson(groupName)\n\n获取一组表单的数值(JSON)，详见：[表单](/guide/form.html)中的表单组章节。\n\n##### 参数\n\n|参数|可选|描述|类型|\n|-|-|-|\n|groupName|NO|需要获取数据表单组的名称|`string`|\n\n##### 返回值\n\n查找到的表单数据对象的JSON字符串\n\n#### setGroup(groupName, dataObject)\n\n设置一组表单的数值(采用JSON)，详见：[表单](/guide/form.html)中的表单组章节。\n\n##### 参数\n\n|参数|可选|描述|类型|\n|-|-|-|\n|groupName|NO|需要设置数据表单组的名称|`string`|\n|dataObject|NO|一组键值对，键名为表单的KEY，键值是需要设置的表单值。可以只设置部分KEY。如果显示的设置键值为`undefined`则会清空对应的表单。|`object`|\n\n##### 返回值\n\nMorning对象\n\n#### setGroupJson(groupName, dataJson)\n\n设置一组表单的数值(采用JSON)，详见：[表单](/guide/form.html)中的表单组章节。\n\n##### 参数\n\n|参数|可选|描述|类型|\n|-|-|-|\n|groupName|NO|需要设置数据表单组的名称|`string`|\n|dataJson|NO|一组键值对的JSON字符串，键名为表单的KEY，键值是需要设置的表单值。可以只设置部分KEY。如果显示的设置键值为`undefined`则会清空对应的表单。|`object`|\n\n##### 返回值\n\nMorning对象。\n\n")])])
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-03488f54", esExports)
+  }
+}
+
+/***/ }),
+
 /***/ 7:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2533,4 +2531,4 @@ module.exports = exports['default'];
 
 /***/ })
 
-},[277]);
+},[292]);

@@ -30,13 +30,71 @@
 
     ### 标记Issue
 
+    找到你想要处理的Issue，在标记之前请先确保此Issue未处于以下任何一个状态：
+
+    - `need repro` : 需要提供更多信息复现内容，以确认问题
+    - `pending` : 处于待定的Issue
+    - `wont solve` : 暂时不回解决的Issue
+    - `in progress` : 已经有人在处理
+    - `in review` : 正在Code Review的Issue
+    - `launched` : 已解决并发布的Issue
+    - `discussion` : 这是一个讨论
+
+    一般你可以选择处于下面这些状态切没有指定Assignees的Issue：
+
+    - `bug confirmed` : 已经确认的Bug
+    - `intend to solve` : 计划解决
+    - `feature request` : 功能请求
+    - `bug report` : BUG报告
+
+    若一个Issue被指定了Assignees，请先和那个人商量到底由谁来处理。
+
+    针对上面四个标签的Issue，在开始着手处理前，你需要添加一些额外的标记来告示别人你开始处理了：
+
+    1. 首先将Assignees指向你自己
+    2. 根据不同的标签做不同的处理：
+        - `bug confirmed` : 添加`in progress`
+        - `intend to solve` : 添加`in progress`，并移除`intend to solve`
+        - `feature request` : 添加`in progress`/`feature`，并移除`feature request`
+        - `bug report` : 首先先确认BUG是存在的：
+            - 复现条件不足：请添加`need repro`标签
+            - 确认不是BUG：关闭Issue
+            - 可被复现：添加`bug confirmed`/`in progress`/`fix`，并移除`bug report`。若你只想确认这个BUG不想修复，也可以不添加`in progress`/`fix`。
+
+    完成上面的操作后，你需要创建一个新的分支来处理Issue。
+
+    > 注意：目前新增功能、优化代码、更新逻辑等处理都被认为是`feature`。
+
     ### 新建分支
+
+    在你的本地项目中切换到`dev`分支：`git checkout dev`，然后执行`git pull`确保代码库是最新的。
+
+    接下来为要处理的Issue新建一个名为`issue-[Issue ID]`的分支，其中`[Issue ID]`替换成Git上的Issue ID，你可以在下面的地方找到：
+
+    <img src="http://h0.hucdn.com/open/201743/9498878cf00b0e68_922x180.png" width="300" alt="">
+
+    注意不需要加上`#`，比如上图中的Issue你需要执行：`git checkout -b issue-1`。
+
+    接下来就可以正式编码了。
 
     ### 提交代码
 
+    当你完成改动后，使用`git add`和`git commit`命令提交你的改动，请在提交前确保处在正确的分支上。
+
+    `git commit`的信息请确保是可以描述你改动的一句话，避免使用无意义的提交信息，比如：`update`等。
+
     ### Pull Request
+    
+    当你完成了所有的编码工作，前往：`https://github.com/EarlyH/morning-ui/pulls`，点击`New pull request`：
+
+    <img src="http://h0.hucdn.com/open/201743/7e973819a866761f_2010x240.png" alt="" width="700">
+
+    
+
 
     ### 合入主开发分支
+
+
 
     ### 版本发布
 

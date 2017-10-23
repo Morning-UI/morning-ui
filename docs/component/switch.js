@@ -1,4 +1,4 @@
-webpackJsonp([33],{
+webpackJsonp([34],{
 
 /***/ 0:
 /***/ (function(module, exports) {
@@ -466,7 +466,52 @@ if (false) {
 
 /***/ }),
 
-/***/ 175:
+/***/ 18:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _DocBody = __webpack_require__(12);
+
+var _DocBody2 = _interopRequireDefault(_DocBody);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+    props: {
+        page: String,
+        hasPadding: Boolean
+    },
+    data: function data() {
+
+        return {
+            category: 'component'
+        };
+    },
+    components: {
+        'doc-body': _DocBody2.default
+    }
+}; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 189:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -635,51 +680,6 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 18:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _DocBody = __webpack_require__(12);
-
-var _DocBody2 = _interopRequireDefault(_DocBody);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-    props: {
-        page: String,
-        hasPadding: Boolean
-    },
-    data: function data() {
-
-        return {
-            category: 'component'
-        };
-    },
-    components: {
-        'doc-body': _DocBody2.default
-    }
-}; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-module.exports = exports['default'];
-
-/***/ }),
-
 /***/ 19:
 /***/ (function(module, exports) {
 
@@ -818,7 +818,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 252:
+/***/ 267:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -828,7 +828,7 @@ var _vue = __webpack_require__(1);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _index = __webpack_require__(80);
+var _index = __webpack_require__(93);
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -850,7 +850,7 @@ new _vue2.default({
 
 /***/ }),
 
-/***/ 342:
+/***/ 360:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -973,35 +973,6 @@ if (false) {
 
 /***/ }),
 
-/***/ 598:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('doc-component', {
-    attrs: {
-      "page": _vm.page,
-      "hasPadding": true
-    }
-  }, [_c('script', {
-    attrs: {
-      "type": "text/markdown"
-    }
-  }, [_vm._v("\n# 开关 `<ui-switch>`\n\n<doc-component-status page=\"switch\"></doc-component-status>\n\n[[[开始]]]\n\n定义开关，开关只存在布尔状态。\n\n#### 使用\n\n:::democode/html\n<div style=\"width:300px;\">\n    <ui-switch form-name=\"姓名\"></ui-switch>\n</div>\n:::\n\n[[[声明]]]\n\n:::preset/html\nformStatementWithStyle\n---\nuikey:switch\nstatementDefaultValue:true\n:::\n\n[[[配置]]]\n\n:::preset/html\nformConfigTable\n---\n|auto-hide-name|当表档名为空时自动隐藏表单名部分|`true`<br>`false`|Boolean|`false`|\n:::\n\n:::preset/html\nformConfigDemo\n---\nuikey:switch\nconfigDefaultValue:true\n:::\n\n#### auto-hide-name\n\n第二个组件表单名为空，名字部分被隐藏。\n\n:::democode/html\n<div style=\"width:300px;\">\n    <ui-switch form-name=\"姓名\" auto-hide-name></ui-switch>\n    <ui-switch form-name=\"\" auto-hide-name></ui-switch>\n</div>\n:::\n\n[[[方法]]]\n\n:::preset/html\nformMethod\n---\nuikey:switch\nmethodValue:true\nmethodDefaultValue:true\n:::\n\n#### toggle([open])\n\n切换下拉按钮组是否显示。\n\n|KEY|可选|描述|接受值|值类型|默认值|\n|-|-|-|-|-|-|\n|open|YES|指定开关切换到开启或关闭，若不设置则切换到相反的状态。|`undefined`<br>`true`<br>`false`|`Undefined`<br>`Boolean`|`undefined`|\n\n:::democode/html\n<div style=\"width:300px;\">\n    <ui-switch ref=\"demo1\" form-name=\"姓名\"></ui-switch>\n    <br><br> \n    <ui-link js=\"javascript:morning.findVM('demo1').toggle();\">切换相反状态</ui-link>\n    <ui-link js=\"javascript:morning.findVM('demo1').toggle(true);\">切换至开启</ui-link>\n    <ui-link js=\"javascript:morning.findVM('demo1').toggle(false);\">切换至关闭</ui-link>\n</div>\n:::\n\n[[[事件]]]\n\n:::preset/html\nformEvent\n---\nuikey:switch\neventValue:true\n:::\n\n[[[表单值]]]\n\n#### 值类型\n\n此表单返回值类型包含:\n\n- `Boolean` : 布尔值\n\n任何其他类型的数值，都会被尝试转换成这些类型。\n\n#### 值格式\n\n`true`或`false`\n\n#### 默认值\n\n`false`\n\n#### 输入/输出示例\n\n:::repeat/html\nformValueType\n---\n<div>\n    <p>{$valueType}类型</p>\n    <div style=\"width:300px;\">\n        <ui-switch ref=\"demoType{$valueType}\" form-name=\"开关\"></ui-switch>\n    </div>\n    <br>\n    <ui-link js=\"window.morning.findVM('demoType{$valueType}').set({$&valueContent})\">设置{$valueType}类型</ui-link>\n    <ui-link js=\"alert(window.morning.findVM('demoType{$valueType}').get())\">获取表单JSON值</ui-link>\n</div>\n<br>\n<br>\n:::\n\n[[[源码]]]\n\n<iframe src=\"/report/coverage/lib/components/switch/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n\n")])])
-}
-var staticRenderFns = []
-render._withStripped = true
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-76ceb959", esExports)
-  }
-}
-
-/***/ }),
-
 /***/ 6:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1012,7 +983,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _markdownIt = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"markdown-it\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+var _markdownIt = __webpack_require__(25);
 
 var _markdownIt2 = _interopRequireDefault(_markdownIt);
 
@@ -1020,11 +991,11 @@ var _extend2 = __webpack_require__(23);
 
 var _extend3 = _interopRequireDefault(_extend2);
 
-var _mustache = __webpack_require__(25);
+var _mustache = __webpack_require__(26);
 
 var _mustache2 = _interopRequireDefault(_mustache);
 
-var _underscore = __webpack_require__(26);
+var _underscore = __webpack_require__(27);
 
 var _underscore2 = _interopRequireDefault(_underscore);
 
@@ -1768,8 +1739,6 @@ var demoWithCodePlugin = function demoWithCodePlugin(md, opt) {
             result = extPreset(content, paramStr);
         }
 
-        console.log(method, result);
-
         return result;
     };
 };
@@ -2173,6 +2142,35 @@ module.exports = exports['default'];
 
 /***/ }),
 
+/***/ 670:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('doc-component', {
+    attrs: {
+      "page": _vm.page,
+      "hasPadding": true
+    }
+  }, [_c('script', {
+    attrs: {
+      "type": "text/markdown"
+    }
+  }, [_vm._v("\n# 开关 `<ui-switch>`\n\n<doc-component-status page=\"switch\"></doc-component-status>\n\n[[[开始]]]\n\n定义开关，开关只存在布尔状态。\n\n#### 使用\n\n:::democode/html\n<div style=\"width:300px;\">\n    <ui-switch form-name=\"姓名\"></ui-switch>\n</div>\n:::\n\n[[[声明]]]\n\n:::preset/html\nformStatementWithStyle\n---\nuikey:switch\nstatementDefaultValue:true\n:::\n\n[[[配置]]]\n\n:::preset/html\nformConfigTable\n---\n|auto-hide-name|当表档名为空时自动隐藏表单名部分|`true`<br>`false`|Boolean|`false`|\n:::\n\n:::preset/html\nformConfigDemo\n---\nuikey:switch\nconfigDefaultValue:true\n:::\n\n#### auto-hide-name\n\n第二个组件表单名为空，名字部分被隐藏。\n\n:::democode/html\n<div style=\"width:300px;\">\n    <ui-switch form-name=\"姓名\" auto-hide-name></ui-switch>\n    <ui-switch form-name=\"\" auto-hide-name></ui-switch>\n</div>\n:::\n\n[[[方法]]]\n\n:::preset/html\nformMethod\n---\nuikey:switch\nmethodValue:true\nmethodDefaultValue:true\n:::\n\n#### toggle([open])\n\n切换下拉按钮组是否显示。\n\n|KEY|可选|描述|接受值|值类型|默认值|\n|-|-|-|-|-|-|\n|open|YES|指定开关切换到开启或关闭，若不设置则切换到相反的状态。|`undefined`<br>`true`<br>`false`|`Undefined`<br>`Boolean`|`undefined`|\n\n:::democode/html\n<div style=\"width:300px;\">\n    <ui-switch ref=\"demo1\" form-name=\"姓名\"></ui-switch>\n    <br><br> \n    <ui-link js=\"javascript:morning.findVM('demo1').toggle();\">切换相反状态</ui-link>\n    <ui-link js=\"javascript:morning.findVM('demo1').toggle(true);\">切换至开启</ui-link>\n    <ui-link js=\"javascript:morning.findVM('demo1').toggle(false);\">切换至关闭</ui-link>\n</div>\n:::\n\n[[[事件]]]\n\n:::preset/html\nformEvent\n---\nuikey:switch\neventValue:true\n:::\n\n[[[表单值]]]\n\n#### 值类型\n\n此表单返回值类型包含:\n\n- `Boolean` : 布尔值\n\n任何其他类型的数值，都会被尝试转换成这些类型。\n\n#### 值格式\n\n`true`或`false`\n\n#### 默认值\n\n`false`\n\n#### 输入/输出示例\n\n:::repeat/html\nformValueType\n---\n<div>\n    <p>{$valueType}类型</p>\n    <div style=\"width:300px;\">\n        <ui-switch ref=\"demoType{$valueType}\" form-name=\"开关\"></ui-switch>\n    </div>\n    <br>\n    <ui-link js=\"window.morning.findVM('demoType{$valueType}').set({$&valueContent})\">设置{$valueType}类型</ui-link>\n    <ui-link js=\"alert(window.morning.findVM('demoType{$valueType}').get())\">获取表单JSON值</ui-link>\n</div>\n<br>\n<br>\n:::\n\n[[[源码]]]\n\n<iframe src=\"/report/coverage/lib/components/switch/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n\n")])])
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-76ceb959", esExports)
+  }
+}
+
+/***/ }),
+
 /***/ 7:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2517,18 +2515,25 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 80:
+/***/ 9:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 93:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(175);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(189);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_76ceb959_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(598);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_76ceb959_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(670);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(342)
+  __webpack_require__(360)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
@@ -2571,13 +2576,6 @@ if (false) {(function () {
 /* harmony default export */ __webpack_exports__["default"] = (Component.exports);
 
 
-/***/ }),
-
-/***/ 9:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
 /***/ })
 
-},[252]);
+},[267]);

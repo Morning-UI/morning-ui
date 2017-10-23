@@ -6511,23 +6511,29 @@ if (typeof _vue2.default === 'undefined') {
         setGroupJson: function setGroupJson(groupName, data) {
 
             return this.setGroup(groupName, JSON.parse(data));
+        },
+        init: function init(options) {
+
+            options = (0, _extend2.default)(true, {
+                prefix: 'ui'
+            }, options);
+
+            _vue2.default.config.ignoredElements = [];
+
+            // register component
+            for (var name in morning._components) {
+
+                var component = morning._components[name];
+
+                _vue2.default.component(options.prefix + '-' + component.options.name, component);
+                morning._ignoreElements.push('i-' + component.options.name);
+            }
+
+            _vue2.default.config.ignoredElements = morning._ignoreElements;
         }
     };
 
     (0, _ui.injectMorning)(morning);
-
-    _vue2.default.config.ignoredElements = [];
-
-    // register component
-    for (var name in morning._components) {
-
-        var component = morning._components[name];
-
-        _vue2.default.component('ui-' + component.options.name, component);
-        morning._ignoreElements.push('i-' + component.options.name);
-    }
-
-    _vue2.default.config.ignoredElements = morning._ignoreElements;
 
     return morning;
 });

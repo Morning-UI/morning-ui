@@ -1,4 +1,4 @@
-webpackJsonp([11],{
+webpackJsonp([12],{
 
 /***/ 0:
 /***/ (function(module, exports) {
@@ -112,18 +112,25 @@ module.exports = Vue;
 
 /***/ }),
 
-/***/ 103:
+/***/ 11:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 116:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(198);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(212);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_3def44b5_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(567);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_3def44b5_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(638);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(311)
+  __webpack_require__(328)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
@@ -165,13 +172,6 @@ if (false) {(function () {
 
 /* harmony default export */ __webpack_exports__["default"] = (Component.exports);
 
-
-/***/ }),
-
-/***/ 11:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ }),
 
@@ -522,67 +522,6 @@ if (false) {
 
 /***/ }),
 
-/***/ 198:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _DocGuide = __webpack_require__(29);
-
-var _DocGuide2 = _interopRequireDefault(_DocGuide);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-    data: function data() {
-
-        return {
-            page: 'logs'
-        };
-    },
-    components: {
-        'doc-guide': _DocGuide2.default
-    }
-}; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-module.exports = exports['default'];
-
-/***/ }),
-
 /***/ 2:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -633,7 +572,68 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 27:
+/***/ 212:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _DocGuide = __webpack_require__(30);
+
+var _DocGuide2 = _interopRequireDefault(_DocGuide);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+    data: function data() {
+
+        return {
+            page: 'logs'
+        };
+    },
+    components: {
+        'doc-guide': _DocGuide2.default
+    }
+}; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 28:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -677,7 +677,14 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 275:
+/***/ 29:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 290:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -687,7 +694,7 @@ var _vue = __webpack_require__(1);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _index = __webpack_require__(103);
+var _index = __webpack_require__(116);
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -702,25 +709,25 @@ new _vue2.default({
 
 /***/ }),
 
-/***/ 28:
+/***/ 3:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 29:
+/***/ 30:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_DocGuide_vue__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_DocGuide_vue__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_DocGuide_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_DocGuide_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_7e9905d3_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_DocGuide_vue__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_7e9905d3_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_DocGuide_vue__ = __webpack_require__(31);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(28)
+  __webpack_require__(29)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
@@ -765,14 +772,7 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 3:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 30:
+/***/ 31:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -796,7 +796,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 311:
+/***/ 328:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -919,35 +919,6 @@ if (false) {
 
 /***/ }),
 
-/***/ 567:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('doc-guide', {
-    attrs: {
-      "page": _vm.page,
-      "hasPadding": true
-    }
-  }, [_c('script', {
-    attrs: {
-      "type": "text/markdown"
-    }
-  }, [_vm._v("\n# 更新日志\n\n### 版本规范\n\nMorning UI采用[语义化版本控制规范](http://semver.org/lang/zh-CN/)，同时采用`Stable`、`Beta`、`Canary`三种标记分别来标记版本。详见：[版本计划](/guide/versionplan.html)\n\n<!-- ### 1.0.0 <ui-badge class=\"circle\" s light-black>Stable</ui-badge> -->\n\n<!-- ### 0.11.0 <ui-badge class=\"circle\" s light-blue>Beta</ui-badge> -->\n\n<!-- ### 0.10.1 <ui-badge class=\"circle\" s light-theme>Forerunner</ui-badge> -->\n\n### 更新记录\n\n### 0.10.0 <ui-badge class=\"circle ver-canary\" s light-theme>Canary</ui-badge>\n\n<ui-textcolor light-blue><ui-small>发布于2017年10月19日</ui-small></ui-textcolor>\n\nMorningUI第一个版本，基于HMP UI，规范了定义，实现部分组件。\n\n")])])
-}
-var staticRenderFns = []
-render._withStripped = true
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-3def44b5", esExports)
-  }
-}
-
-/***/ }),
-
 /***/ 6:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -958,7 +929,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _markdownIt = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"markdown-it\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+var _markdownIt = __webpack_require__(25);
 
 var _markdownIt2 = _interopRequireDefault(_markdownIt);
 
@@ -966,11 +937,11 @@ var _extend2 = __webpack_require__(23);
 
 var _extend3 = _interopRequireDefault(_extend2);
 
-var _mustache = __webpack_require__(25);
+var _mustache = __webpack_require__(26);
 
 var _mustache2 = _interopRequireDefault(_mustache);
 
-var _underscore = __webpack_require__(26);
+var _underscore = __webpack_require__(27);
 
 var _underscore2 = _interopRequireDefault(_underscore);
 
@@ -1714,8 +1685,6 @@ var demoWithCodePlugin = function demoWithCodePlugin(md, opt) {
             result = extPreset(content, paramStr);
         }
 
-        console.log(method, result);
-
         return result;
     };
 };
@@ -2119,6 +2088,35 @@ module.exports = exports['default'];
 
 /***/ }),
 
+/***/ 638:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('doc-guide', {
+    attrs: {
+      "page": _vm.page,
+      "hasPadding": true
+    }
+  }, [_c('script', {
+    attrs: {
+      "type": "text/markdown"
+    }
+  }, [_vm._v("\n# 更新日志\n\n### 版本规范\n\nMorning UI采用[语义化版本控制规范](http://semver.org/lang/zh-CN/)，同时采用`Stable`、`Beta`、`Canary`三种标记分别来标记版本。详见：[版本计划](/guide/versionplan.html)\n\n<!-- ### 1.0.0 <ui-badge class=\"circle\" s light-black>Stable</ui-badge> -->\n\n<!-- ### 0.11.0 <ui-badge class=\"circle\" s light-blue>Beta</ui-badge> -->\n\n<!-- ### 0.10.1 <ui-badge class=\"circle\" s light-theme>Forerunner</ui-badge> -->\n\n### 更新记录\n\n### 0.10.0 <ui-badge class=\"circle ver-canary\" s light-theme>Canary</ui-badge>\n\n<ui-textcolor light-blue><ui-small>发布于2017年10月19日</ui-small></ui-textcolor>\n\nMorningUI第一个版本，基于HMP UI，规范了定义，实现部分组件。\n\n")])])
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-3def44b5", esExports)
+  }
+}
+
+/***/ }),
+
 /***/ 7:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2470,4 +2468,4 @@ module.exports = exports['default'];
 
 /***/ })
 
-},[275]);
+},[290]);

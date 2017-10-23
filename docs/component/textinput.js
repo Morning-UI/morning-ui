@@ -1,4 +1,4 @@
-webpackJsonp([28],{
+webpackJsonp([29],{
 
 /***/ 0:
 /***/ (function(module, exports) {
@@ -511,7 +511,14 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 180:
+/***/ 19:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 194:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -739,13 +746,6 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 19:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
 /***/ 2:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -877,7 +877,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 257:
+/***/ 272:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -887,7 +887,7 @@ var _vue = __webpack_require__(1);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _index = __webpack_require__(85);
+var _index = __webpack_require__(98);
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -902,14 +902,14 @@ new _vue2.default({
 
 /***/ }),
 
-/***/ 288:
+/***/ 3:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 3:
+/***/ 305:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -1032,35 +1032,6 @@ if (false) {
 
 /***/ }),
 
-/***/ 544:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('doc-component', {
-    attrs: {
-      "page": _vm.page,
-      "hasPadding": true
-    }
-  }, [_c('script', {
-    attrs: {
-      "type": "text/markdown"
-    }
-  }, [_vm._v("\n# 文本输入框 `<ui-textinput>`\n\n<doc-component-status page=\"textinput\"></doc-component-status>\n\n[[[开始]]]\n\n定义文本输入框。\n\n#### 使用\n\n:::democode/html\n<div style=\"width:300px;\">\n    <ui-textinput form-name=\"姓名\"></ui-textinput>\n</div>\n:::\n\n#### 支持前缀、后缀\n\n:::democode/html\n<div style=\"width:300px;\">\n    <ui-textinput form-name=\"姓名\" prepend=\"@\"></ui-textinput>\n</div>\n:::\n\n:::democode/html\n<div style=\"width:300px;\">\n    <ui-textinput form-name=\"百分比\" append=\"%\"></ui-textinput>\n</div>\n:::\n\n:::democode/html\n<div style=\"width:300px;\">\n    <ui-textinput form-name=\"价格\" prepend=\"价格\" append=\"元\"></ui-textinput>\n</div>\n:::\n\n[[[声明]]]\n\n:::preset/html\nformStatement\n---\nuikey:textinput\nstatementDefaultValue:''\n:::\n\n[[[配置]]]\n\n:::preset/html\nformConfigTable\n---\n|hide-value|表单的数值不可见，一般用于密码表单|`true`<br>`false`|Boolean|`false`|\n|prepend|表单前缀|任意字符串|String|`undefined`|\n|append|表单后缀|任意字符串|String|`undefined`|\n:::\n\n:::preset/html\nformConfigDemo\n---\nuikey:textinput\nconfigDefaultValue:'默认值'\n:::\n\n#### hide-value\n\n隐藏数值后表单的值在界面中不可见。\n\n:::democode/html\n<div style=\"width:300px;\">\n    <ui-textinput hide-value default-value=\"this is password\"></ui-textinput>\n</div>\n:::\n\n#### prepend\n\n:::democode/html\n<div style=\"width:300px;\">\n    <ui-textinput form-name=\"姓名\" prepend=\"@\"></ui-textinput>\n</div>\n:::\n\n#### append\n\n:::democode/html\n<div style=\"width:300px;\">\n    <ui-textinput form-name=\"百分比\" append=\"%\"></ui-textinput>\n</div>\n:::\n\n[[[方法]]]\n\n:::preset/html\nformMethod\n---\nuikey:textinput\nmethodValue:'Jim'\nmethodDefaultValue:'Jim'\n:::\n\n[[[事件]]]\n\n#### focus\n\n当表单聚焦后触发。\n\n:::vue/html\nnew Vue({\n    el : '{$el}',\n    template : '{$template}',\n    methods : {\n        echo : function () {\n            console.log('demo2.console1', 'focus event!');\n        }\n    }\n});\n---\n<div style=\"width:300px;\">\n    <ui-textinput @focus=\"echo\" ref=\"demo2\"></ui-textinput>\n</div>\n:::\n\n#### blur\n\n当表单失焦后触发。\n\n:::vue/html\nnew Vue({\n    el : '{$el}',\n    template : '{$template}',\n    methods : {\n        echo : function () {\n            console.log('demo3.console1', 'blur event!');\n        }\n    }\n});\n---\n<div style=\"width:300px;\">\n    <ui-textinput @blur=\"echo\" ref=\"demo3\"></ui-textinput>\n</div>\n:::\n\n:::preset/html\nformEvent\n---\nuikey:textinput\neventValue:'Jim'\n:::\n\n[[[表单值]]]\n\n#### 值类型\n\n此表单返回值类型包含:\n\n- `String` : 字符串\n\n任何其他类型的数值，都会被尝试转换成这些类型。\n\n#### 值格式\n\n内容值字符串。\n\n#### 默认值\n\n`''`\n\n#### 输入/输出示例\n\n:::repeat/html\nformValueType\n---\n<div>\n    <p>{$valueType}类型</p>\n    <div style=\"width:300px;\">\n        <ui-textinput ref=\"demoType{$valueType}\"></ui-textinput>\n    </div>\n    <br>\n    <ui-link js=\"window.morning.findVM('demoType{$valueType}').set({$&valueContent})\">设置{$valueType}类型</ui-link>\n    <ui-link js=\"alert(window.morning.findVM('demoType{$valueType}').get())\">获取表单JSON值</ui-link>\n</div>\n<br>\n<br>\n:::\n\n[[[源码]]]\n\n<iframe src=\"/report/coverage/lib/components/textinput/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n\n")])])
-}
-var staticRenderFns = []
-render._withStripped = true
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-020e254e", esExports)
-  }
-}
-
-/***/ }),
-
 /***/ 6:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1071,7 +1042,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _markdownIt = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"markdown-it\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+var _markdownIt = __webpack_require__(25);
 
 var _markdownIt2 = _interopRequireDefault(_markdownIt);
 
@@ -1079,11 +1050,11 @@ var _extend2 = __webpack_require__(23);
 
 var _extend3 = _interopRequireDefault(_extend2);
 
-var _mustache = __webpack_require__(25);
+var _mustache = __webpack_require__(26);
 
 var _mustache2 = _interopRequireDefault(_mustache);
 
-var _underscore = __webpack_require__(26);
+var _underscore = __webpack_require__(27);
 
 var _underscore2 = _interopRequireDefault(_underscore);
 
@@ -1827,8 +1798,6 @@ var demoWithCodePlugin = function demoWithCodePlugin(md, opt) {
             result = extPreset(content, paramStr);
         }
 
-        console.log(method, result);
-
         return result;
     };
 };
@@ -2232,6 +2201,35 @@ module.exports = exports['default'];
 
 /***/ }),
 
+/***/ 615:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('doc-component', {
+    attrs: {
+      "page": _vm.page,
+      "hasPadding": true
+    }
+  }, [_c('script', {
+    attrs: {
+      "type": "text/markdown"
+    }
+  }, [_vm._v("\n# 文本输入框 `<ui-textinput>`\n\n<doc-component-status page=\"textinput\"></doc-component-status>\n\n[[[开始]]]\n\n定义文本输入框。\n\n#### 使用\n\n:::democode/html\n<div style=\"width:300px;\">\n    <ui-textinput form-name=\"姓名\"></ui-textinput>\n</div>\n:::\n\n#### 支持前缀、后缀\n\n:::democode/html\n<div style=\"width:300px;\">\n    <ui-textinput form-name=\"姓名\" prepend=\"@\"></ui-textinput>\n</div>\n:::\n\n:::democode/html\n<div style=\"width:300px;\">\n    <ui-textinput form-name=\"百分比\" append=\"%\"></ui-textinput>\n</div>\n:::\n\n:::democode/html\n<div style=\"width:300px;\">\n    <ui-textinput form-name=\"价格\" prepend=\"价格\" append=\"元\"></ui-textinput>\n</div>\n:::\n\n[[[声明]]]\n\n:::preset/html\nformStatement\n---\nuikey:textinput\nstatementDefaultValue:''\n:::\n\n[[[配置]]]\n\n:::preset/html\nformConfigTable\n---\n|hide-value|表单的数值不可见，一般用于密码表单|`true`<br>`false`|Boolean|`false`|\n|prepend|表单前缀|任意字符串|String|`undefined`|\n|append|表单后缀|任意字符串|String|`undefined`|\n:::\n\n:::preset/html\nformConfigDemo\n---\nuikey:textinput\nconfigDefaultValue:'默认值'\n:::\n\n#### hide-value\n\n隐藏数值后表单的值在界面中不可见。\n\n:::democode/html\n<div style=\"width:300px;\">\n    <ui-textinput hide-value default-value=\"this is password\"></ui-textinput>\n</div>\n:::\n\n#### prepend\n\n:::democode/html\n<div style=\"width:300px;\">\n    <ui-textinput form-name=\"姓名\" prepend=\"@\"></ui-textinput>\n</div>\n:::\n\n#### append\n\n:::democode/html\n<div style=\"width:300px;\">\n    <ui-textinput form-name=\"百分比\" append=\"%\"></ui-textinput>\n</div>\n:::\n\n[[[方法]]]\n\n:::preset/html\nformMethod\n---\nuikey:textinput\nmethodValue:'Jim'\nmethodDefaultValue:'Jim'\n:::\n\n[[[事件]]]\n\n#### focus\n\n当表单聚焦后触发。\n\n:::vue/html\nnew Vue({\n    el : '{$el}',\n    template : '{$template}',\n    methods : {\n        echo : function () {\n            console.log('demo2.console1', 'focus event!');\n        }\n    }\n});\n---\n<div style=\"width:300px;\">\n    <ui-textinput @focus=\"echo\" ref=\"demo2\"></ui-textinput>\n</div>\n:::\n\n#### blur\n\n当表单失焦后触发。\n\n:::vue/html\nnew Vue({\n    el : '{$el}',\n    template : '{$template}',\n    methods : {\n        echo : function () {\n            console.log('demo3.console1', 'blur event!');\n        }\n    }\n});\n---\n<div style=\"width:300px;\">\n    <ui-textinput @blur=\"echo\" ref=\"demo3\"></ui-textinput>\n</div>\n:::\n\n:::preset/html\nformEvent\n---\nuikey:textinput\neventValue:'Jim'\n:::\n\n[[[表单值]]]\n\n#### 值类型\n\n此表单返回值类型包含:\n\n- `String` : 字符串\n\n任何其他类型的数值，都会被尝试转换成这些类型。\n\n#### 值格式\n\n内容值字符串。\n\n#### 默认值\n\n`''`\n\n#### 输入/输出示例\n\n:::repeat/html\nformValueType\n---\n<div>\n    <p>{$valueType}类型</p>\n    <div style=\"width:300px;\">\n        <ui-textinput ref=\"demoType{$valueType}\"></ui-textinput>\n    </div>\n    <br>\n    <ui-link js=\"window.morning.findVM('demoType{$valueType}').set({$&valueContent})\">设置{$valueType}类型</ui-link>\n    <ui-link js=\"alert(window.morning.findVM('demoType{$valueType}').get())\">获取表单JSON值</ui-link>\n</div>\n<br>\n<br>\n:::\n\n[[[源码]]]\n\n<iframe src=\"/report/coverage/lib/components/textinput/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n\n")])])
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-020e254e", esExports)
+  }
+}
+
+/***/ }),
+
 /***/ 7:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2576,18 +2574,25 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 85:
+/***/ 9:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 98:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(180);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(194);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_020e254e_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(544);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_020e254e_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(615);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(288)
+  __webpack_require__(305)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
@@ -2630,13 +2635,6 @@ if (false) {(function () {
 /* harmony default export */ __webpack_exports__["default"] = (Component.exports);
 
 
-/***/ }),
-
-/***/ 9:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
 /***/ })
 
-},[257]);
+},[272]);

@@ -1,4 +1,4 @@
-webpackJsonp([13],{
+webpackJsonp([14],{
 
 /***/ 0:
 /***/ (function(module, exports) {
@@ -112,18 +112,25 @@ module.exports = Vue;
 
 /***/ }),
 
-/***/ 100:
+/***/ 11:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 113:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(195);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(209);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_6bfb14ec_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(592);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_6bfb14ec_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(664);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(336)
+  __webpack_require__(354)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
@@ -165,13 +172,6 @@ if (false) {(function () {
 
 /* harmony default export */ __webpack_exports__["default"] = (Component.exports);
 
-
-/***/ }),
-
-/***/ 11:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ }),
 
@@ -522,7 +522,57 @@ if (false) {
 
 /***/ }),
 
-/***/ 195:
+/***/ 2:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+    props: {
+        category: String
+    },
+    computed: {
+        isIndex: function isIndex() {
+            return this.category === 'home';
+        },
+        isGuide: function isGuide() {
+            return this.category === 'guide';
+        },
+        isComponent: function isComponent() {
+            return this.category === 'component';
+        },
+        isCustom: function isCustom() {
+            return this.category === 'custom';
+        }
+    }
+};
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 209:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -532,7 +582,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _DocGuide = __webpack_require__(29);
+var _DocGuide = __webpack_require__(30);
 
 var _DocGuide2 = _interopRequireDefault(_DocGuide);
 
@@ -704,57 +754,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 2:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-exports.default = {
-    props: {
-        category: String
-    },
-    computed: {
-        isIndex: function isIndex() {
-            return this.category === 'home';
-        },
-        isGuide: function isGuide() {
-            return this.category === 'guide';
-        },
-        isComponent: function isComponent() {
-            return this.category === 'component';
-        },
-        isCustom: function isCustom() {
-            return this.category === 'custom';
-        }
-    }
-};
-module.exports = exports['default'];
-
-/***/ }),
-
-/***/ 27:
+/***/ 28:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -798,7 +798,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 272:
+/***/ 287:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -808,7 +808,7 @@ var _vue = __webpack_require__(1);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _index = __webpack_require__(100);
+var _index = __webpack_require__(113);
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -823,25 +823,32 @@ new _vue2.default({
 
 /***/ }),
 
-/***/ 28:
+/***/ 29:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 29:
+/***/ 3:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 30:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_DocGuide_vue__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_DocGuide_vue__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_DocGuide_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_DocGuide_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_7e9905d3_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_DocGuide_vue__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_7e9905d3_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_DocGuide_vue__ = __webpack_require__(31);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(28)
+  __webpack_require__(29)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
@@ -886,14 +893,7 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 3:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 30:
+/***/ 31:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -917,7 +917,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 336:
+/***/ 354:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -1040,35 +1040,6 @@ if (false) {
 
 /***/ }),
 
-/***/ 592:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('doc-guide', {
-    attrs: {
-      "page": _vm.page,
-      "hasPadding": true
-    }
-  }, [_c('script', {
-    attrs: {
-      "type": "text/markdown"
-    }
-  }, [_vm._v("\n# 表单\n\n表单组件区别于布局和交互组件，包含很多通用的逻辑。MorningUI的全局对象上也对表单组件进行了扩展。\n\n### 通用逻辑\n\n所有的表单都支持以下这些通用逻辑。\n\n#### 表单声明\n\n表单组件支持两种状态声明：`normal`和`disabled`。\n\n`disabled`状态下的表单无法修改表单值，一般用于展示。\n\n#### 表单配置\n\n表单组件支持下面几种通用配置：\n\n- form-name : 表单的名称(用于显示)\n- form-key : 表单的KEY(用于逻辑中作为识别标示)\n- group : 表单组\n- default-value : 表单的默认值\n- hide-name : 隐藏表单名(所有表单默认都有显示表单名的位置，你可以隐藏后自行设置)\n\n#### 表单方法\n\n表单组件支持下面几种通用方法：\n\n- set() : 设置表单的值\n- get() : 获取表单的值\n- setName() : 设置表单的名称\n- getName() : 获取表单的名称\n- setKey() : 设置表单的KEY\n- getKey() : 获取表单的KEY\n- setGroup() : 设置表单组件所属的表单组\n- getGroup() : 获取表单组件所属的表单组\n- addGroup() : 将表单组件添加到表单组\n- removeGroup() : 将表单组件从表单组中移除\n\n#### 表单事件\n\n表单组件支持下面几种通用事件：\n\n- valueChange : 表单值发生改变时触发\n- created : 组件实例创建后(组件生命周期事件，等同于vue中的`created`)\n- mounted : 组件挂载到DOM后(组件生命周期事件，等同于vue中的`mounted`)\n- beforeUpdate : 组件更新前(组件生命周期事件，等同于vue中的`beforeUpdate`)\n- updated : 组件更新后(组件生命周期事件，等同于vue中的`updated`)\n- beforeDestroy : 组件销毁前(组件生命周期事件，等同于vue中的`beforeDestroy`)\n- destroyed : 组件销毁后(组件生命周期事件，等同于vue中的`destroyed`)\n\n### 表单值\n\n表单中所有的值都有支持的类型，若输入的值不符合表单支持的类型，表单会进行转换。\n\n所有的表单都会说明：\n\n- 值类型\n- 值格式\n- 默认值\n\n### 表单组\n\n通过在组件上设置`group`属性，可以将表单组件添加到同一个表单组。\n\n表单组内的所有表单KEY和值都会以键值对的形式存在一个对象中。\n\n你可以通过两种方式获取：\n\n- `morning.getGroup(groupKey)` : 获取指定表单组的数据\n- `morning.getGroupJson(groupKey)` : 获取指定表单组的JSON数据\n\n````html\n<div style=\"width:300px;\">\n    <ui-textinput group=\"demo1\" form-key=\"name\" form-name=\"姓名\" default-value=\"Jim\"></ui-textinput>\n    <br> \n    <ui-textinput group=\"demo1\" form-key=\"age\" form-name=\"年龄\" default-value=\"17\"></ui-textinput>\n    <br> \n    <ui-radio :list=\"{male:'Male',female:'Female'}\" group=\"demo1\" form-key=\"gender\" form-name=\"性别\" default-value=\"male\"></ui-radio>\n    <br> \n    <ui-multiinput group=\"demo1\" form-key=\"tags\" form-name=\"标签\" :default-value=\"['Happy']\"></ui-multiinput>\n</div>\n<br><br>\n<ui-btn js=\"console.log('demo1 data', window.morning.getGroup('demo1'));\">在Console输出表单组数据</ui-btn>\n<ui-btn js=\"console.log('demo1 data', window.morning.getGroupJson('demo1'));\">在Console输出表单组JSON数据</ui-btn>\n````\n\n一组表单也可以同时设置值：\n\n- `morning.setGroup(groupKey, dataObject)` : 设置指定表单组的数据\n- `morning.setGroupJson(groupKey, dataJson)` : 设置指定表单组的JSON数据\n\n`dataObject`是一组键值对，键名为表单的KEY，键值是需要设置的表单值。`dataJson`是`dataObject`经过JSON序列化后的字符串。\n\n````html\n<div style=\"width:300px;\">\n    <ui-textinput group=\"demo2\" form-key=\"name\" form-name=\"姓名\"></ui-textinput>\n    <br> \n    <ui-textinput group=\"demo2\" form-key=\"age\" form-name=\"年龄\"></ui-textinput>\n    <br> \n    <ui-radio :list=\"{male:'Male',female:'Female'}\" group=\"demo2\" form-key=\"gender\" form-name=\"性别\"></ui-radio>\n    <br> \n    <ui-multiinput group=\"demo2\" form-key=\"tags\" form-name=\"标签\"></ui-multiinput>\n</div>\n<br><br>\n<ui-btn js=\"window.morning.setGroup('demo2', {name:'Jim', age:'17', gender: 'male', tags: ['Happy']});\">通过对象设置一组表单值</ui-btn>\n<ui-btn js='window.morning.setGroupJson(\"demo2\", \"{\\\"name\\\":\\\"Jim\\\",\\\"age\\\":\\\"17\\\",\\\"gender\\\":\\\"male\\\",\\\"tags\\\":[\\\"Happy\\\"]}\");'>通过JSON设置一组表单值</ui-btn>\n````\n\n#### 设置部分值\n\n在`dataJson`或`dataObject`中你可以只设置部分表单的数值，比如：\n\n````html\n<div style=\"width:300px;\">\n    <ui-textinput group=\"demo3\" form-key=\"name\" form-name=\"姓名\"></ui-textinput>\n    <br> \n    <ui-radio :list=\"{male:'Male',female:'Female'}\" group=\"demo3\" form-key=\"gender\" form-name=\"性别\"></ui-radio>\n</div>\n<br><br>\n<ui-btn js=\"window.morning.setGroup('demo3', {gender: 'male'});\">只设置性别表单</ui-btn>\n````\n\n#### 清空表单的值\n\n在`dataJson`或`dataObject`中若显式的设置`undefined`，则会清空对应表单的值，比如：\n\n````html\n<div style=\"width:300px;\">\n    <ui-textinput group=\"demo4\" form-key=\"name\" form-name=\"姓名\" default-value=\"Jim\"></ui-textinput>\n    <br> \n    <ui-radio :list=\"{male:'Male',female:'Female'}\" group=\"demo4\" form-key=\"gender\" form-name=\"性别\" default-value=\"male\"></ui-radio>\n</div>\n<br><br>\n<ui-btn js=\"window.morning.setGroup('demo4', {gender:undefined});\">清空性别表单</ui-btn>\n````\n\n### 全局扩展\n\nMorningUI的全局对象`morning`上对表单组件进行了扩展，可以让使用者更方便的获取、设置表单值。\n\n")])])
-}
-var staticRenderFns = []
-render._withStripped = true
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-6bfb14ec", esExports)
-  }
-}
-
-/***/ }),
-
 /***/ 6:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1079,7 +1050,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _markdownIt = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"markdown-it\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+var _markdownIt = __webpack_require__(25);
 
 var _markdownIt2 = _interopRequireDefault(_markdownIt);
 
@@ -1087,11 +1058,11 @@ var _extend2 = __webpack_require__(23);
 
 var _extend3 = _interopRequireDefault(_extend2);
 
-var _mustache = __webpack_require__(25);
+var _mustache = __webpack_require__(26);
 
 var _mustache2 = _interopRequireDefault(_mustache);
 
-var _underscore = __webpack_require__(26);
+var _underscore = __webpack_require__(27);
 
 var _underscore2 = _interopRequireDefault(_underscore);
 
@@ -1835,8 +1806,6 @@ var demoWithCodePlugin = function demoWithCodePlugin(md, opt) {
             result = extPreset(content, paramStr);
         }
 
-        console.log(method, result);
-
         return result;
     };
 };
@@ -2240,6 +2209,35 @@ module.exports = exports['default'];
 
 /***/ }),
 
+/***/ 664:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('doc-guide', {
+    attrs: {
+      "page": _vm.page,
+      "hasPadding": true
+    }
+  }, [_c('script', {
+    attrs: {
+      "type": "text/markdown"
+    }
+  }, [_vm._v("\n# 表单\n\n表单组件区别于布局和交互组件，包含很多通用的逻辑。MorningUI的全局对象上也对表单组件进行了扩展。\n\n### 通用逻辑\n\n所有的表单都支持以下这些通用逻辑。\n\n#### 表单声明\n\n表单组件支持两种状态声明：`normal`和`disabled`。\n\n`disabled`状态下的表单无法修改表单值，一般用于展示。\n\n#### 表单配置\n\n表单组件支持下面几种通用配置：\n\n- form-name : 表单的名称(用于显示)\n- form-key : 表单的KEY(用于逻辑中作为识别标示)\n- group : 表单组\n- default-value : 表单的默认值\n- hide-name : 隐藏表单名(所有表单默认都有显示表单名的位置，你可以隐藏后自行设置)\n\n#### 表单方法\n\n表单组件支持下面几种通用方法：\n\n- set() : 设置表单的值\n- get() : 获取表单的值\n- setName() : 设置表单的名称\n- getName() : 获取表单的名称\n- setKey() : 设置表单的KEY\n- getKey() : 获取表单的KEY\n- setGroup() : 设置表单组件所属的表单组\n- getGroup() : 获取表单组件所属的表单组\n- addGroup() : 将表单组件添加到表单组\n- removeGroup() : 将表单组件从表单组中移除\n\n#### 表单事件\n\n表单组件支持下面几种通用事件：\n\n- valueChange : 表单值发生改变时触发\n- created : 组件实例创建后(组件生命周期事件，等同于vue中的`created`)\n- mounted : 组件挂载到DOM后(组件生命周期事件，等同于vue中的`mounted`)\n- beforeUpdate : 组件更新前(组件生命周期事件，等同于vue中的`beforeUpdate`)\n- updated : 组件更新后(组件生命周期事件，等同于vue中的`updated`)\n- beforeDestroy : 组件销毁前(组件生命周期事件，等同于vue中的`beforeDestroy`)\n- destroyed : 组件销毁后(组件生命周期事件，等同于vue中的`destroyed`)\n\n### 表单值\n\n表单中所有的值都有支持的类型，若输入的值不符合表单支持的类型，表单会进行转换。\n\n所有的表单都会说明：\n\n- 值类型\n- 值格式\n- 默认值\n\n### 表单组\n\n通过在组件上设置`group`属性，可以将表单组件添加到同一个表单组。\n\n表单组内的所有表单KEY和值都会以键值对的形式存在一个对象中。\n\n你可以通过两种方式获取：\n\n- `morning.getGroup(groupKey)` : 获取指定表单组的数据\n- `morning.getGroupJson(groupKey)` : 获取指定表单组的JSON数据\n\n````html\n<div style=\"width:300px;\">\n    <ui-textinput group=\"demo1\" form-key=\"name\" form-name=\"姓名\" default-value=\"Jim\"></ui-textinput>\n    <br> \n    <ui-textinput group=\"demo1\" form-key=\"age\" form-name=\"年龄\" default-value=\"17\"></ui-textinput>\n    <br> \n    <ui-radio :list=\"{male:'Male',female:'Female'}\" group=\"demo1\" form-key=\"gender\" form-name=\"性别\" default-value=\"male\"></ui-radio>\n    <br> \n    <ui-multiinput group=\"demo1\" form-key=\"tags\" form-name=\"标签\" :default-value=\"['Happy']\"></ui-multiinput>\n</div>\n<br><br>\n<ui-btn js=\"console.log('demo1 data', window.morning.getGroup('demo1'));\">在Console输出表单组数据</ui-btn>\n<ui-btn js=\"console.log('demo1 data', window.morning.getGroupJson('demo1'));\">在Console输出表单组JSON数据</ui-btn>\n````\n\n一组表单也可以同时设置值：\n\n- `morning.setGroup(groupKey, dataObject)` : 设置指定表单组的数据\n- `morning.setGroupJson(groupKey, dataJson)` : 设置指定表单组的JSON数据\n\n`dataObject`是一组键值对，键名为表单的KEY，键值是需要设置的表单值。`dataJson`是`dataObject`经过JSON序列化后的字符串。\n\n````html\n<div style=\"width:300px;\">\n    <ui-textinput group=\"demo2\" form-key=\"name\" form-name=\"姓名\"></ui-textinput>\n    <br> \n    <ui-textinput group=\"demo2\" form-key=\"age\" form-name=\"年龄\"></ui-textinput>\n    <br> \n    <ui-radio :list=\"{male:'Male',female:'Female'}\" group=\"demo2\" form-key=\"gender\" form-name=\"性别\"></ui-radio>\n    <br> \n    <ui-multiinput group=\"demo2\" form-key=\"tags\" form-name=\"标签\"></ui-multiinput>\n</div>\n<br><br>\n<ui-btn js=\"window.morning.setGroup('demo2', {name:'Jim', age:'17', gender: 'male', tags: ['Happy']});\">通过对象设置一组表单值</ui-btn>\n<ui-btn js='window.morning.setGroupJson(\"demo2\", \"{\\\"name\\\":\\\"Jim\\\",\\\"age\\\":\\\"17\\\",\\\"gender\\\":\\\"male\\\",\\\"tags\\\":[\\\"Happy\\\"]}\");'>通过JSON设置一组表单值</ui-btn>\n````\n\n#### 设置部分值\n\n在`dataJson`或`dataObject`中你可以只设置部分表单的数值，比如：\n\n````html\n<div style=\"width:300px;\">\n    <ui-textinput group=\"demo3\" form-key=\"name\" form-name=\"姓名\"></ui-textinput>\n    <br> \n    <ui-radio :list=\"{male:'Male',female:'Female'}\" group=\"demo3\" form-key=\"gender\" form-name=\"性别\"></ui-radio>\n</div>\n<br><br>\n<ui-btn js=\"window.morning.setGroup('demo3', {gender: 'male'});\">只设置性别表单</ui-btn>\n````\n\n#### 清空表单的值\n\n在`dataJson`或`dataObject`中若显式的设置`undefined`，则会清空对应表单的值，比如：\n\n````html\n<div style=\"width:300px;\">\n    <ui-textinput group=\"demo4\" form-key=\"name\" form-name=\"姓名\" default-value=\"Jim\"></ui-textinput>\n    <br> \n    <ui-radio :list=\"{male:'Male',female:'Female'}\" group=\"demo4\" form-key=\"gender\" form-name=\"性别\" default-value=\"male\"></ui-radio>\n</div>\n<br><br>\n<ui-btn js=\"window.morning.setGroup('demo4', {gender:undefined});\">清空性别表单</ui-btn>\n````\n\n### 全局扩展\n\nMorningUI的全局对象`morning`上对表单组件进行了扩展，可以让使用者更方便的获取、设置表单值。\n\n")])])
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-6bfb14ec", esExports)
+  }
+}
+
+/***/ }),
+
 /***/ 7:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2591,4 +2589,4 @@ module.exports = exports['default'];
 
 /***/ })
 
-},[272]);
+},[287]);

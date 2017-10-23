@@ -1105,8 +1105,6 @@ let demoWithCodePlugin = (md, opt) => {
 
         }
 
-        console.log(method, result);
-
         return result;
 
     };

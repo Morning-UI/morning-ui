@@ -85,7 +85,7 @@ export default {
     guide : {
         开始使用 : null,
         介绍 : '/guide/introduction.html',
-        '安装<i class="tag coming"></i>' : '/guide/install.html',
+        安装 : '/guide/install.html',
         '使用<i class="tag coming"></i>' : '/guide/usage.html',
         // 定制化 : '/guide/custom.html',
         基础 : null,
@@ -105,7 +105,7 @@ export default {
         开发环境 : '/guide/devenv.html',
         '开发规范<i class="tag coming"></i>' : '/guide/devrule.html',
         编写文档 : '/guide/writedoc.html',
-        '编写测试<i class="tag coming"></i>' : 'b',
+        '编写测试<i class="tag coming"></i>' : '/guide/writetest.html',
         检视代码 : '/guide/review.html',
         '提交代码<i class="tag coming"></i>' : '/guide/commitcode.html',
         版本计划 : '/guide/versionplan.html',

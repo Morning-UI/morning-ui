@@ -112,24 +112,31 @@ if (typeof Vue === 'undefined') {
 
             return this.setGroup(groupName, JSON.parse(data));
 
+        },
+        init : function (options) {
+
+            options = extend(true, {
+                prefix : 'ui'
+            }, options);
+
+            Vue.config.ignoredElements = [];
+
+            // register component
+            for (let name in morning._components) {
+
+                let component = morning._components[name];
+
+                Vue.component(`${options.prefix}-${component.options.name}`, component);
+                morning._ignoreElements.push(`i-${component.options.name}`);
+
+            }
+
+            Vue.config.ignoredElements = morning._ignoreElements;
+
         }
     };
 
     injectMorning(morning);
-
-    Vue.config.ignoredElements = [];
-
-    // register component
-    for (let name in morning._components) {
-
-        let component = morning._components[name];
-
-        Vue.component(`ui-${component.options.name}`, component);
-        morning._ignoreElements.push(`i-${component.options.name}`);
-
-    }
-
-    Vue.config.ignoredElements = morning._ignoreElements;
 
     return morning;
 

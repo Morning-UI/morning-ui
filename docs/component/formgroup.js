@@ -1,4 +1,4 @@
-webpackJsonp([56],{
+webpackJsonp([57],{
 
 /***/ 0:
 /***/ (function(module, exports) {
@@ -377,7 +377,56 @@ if (false) {
 
 /***/ }),
 
-/***/ 152:
+/***/ 16:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('ul', {
+    staticClass: "submenu"
+  }, _vm._l((_vm.currentMenu), function(link, name) {
+    return _c('li', [(link === '/' + _vm.category + '/' + _vm.page + '.html') ? [(typeof link === 'string') ? _c('a', {
+      staticClass: "current",
+      attrs: {
+        "href": link
+      },
+      domProps: {
+        "innerHTML": _vm._s(name)
+      }
+    }) : _c('p', {
+      staticClass: "title",
+      domProps: {
+        "innerHTML": _vm._s(name)
+      }
+    })] : [(typeof link === 'string') ? _c('a', {
+      attrs: {
+        "href": link
+      },
+      domProps: {
+        "innerHTML": _vm._s(name)
+      }
+    }) : _c('p', {
+      staticClass: "title",
+      domProps: {
+        "innerHTML": _vm._s(name)
+      }
+    })]], 2)
+  }))
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-3d3ae136", esExports)
+  }
+}
+
+/***/ }),
+
+/***/ 166:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -664,55 +713,6 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 16:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('ul', {
-    staticClass: "submenu"
-  }, _vm._l((_vm.currentMenu), function(link, name) {
-    return _c('li', [(link === '/' + _vm.category + '/' + _vm.page + '.html') ? [(typeof link === 'string') ? _c('a', {
-      staticClass: "current",
-      attrs: {
-        "href": link
-      },
-      domProps: {
-        "innerHTML": _vm._s(name)
-      }
-    }) : _c('p', {
-      staticClass: "title",
-      domProps: {
-        "innerHTML": _vm._s(name)
-      }
-    })] : [(typeof link === 'string') ? _c('a', {
-      attrs: {
-        "href": link
-      },
-      domProps: {
-        "innerHTML": _vm._s(name)
-      }
-    }) : _c('p', {
-      staticClass: "title",
-      domProps: {
-        "innerHTML": _vm._s(name)
-      }
-    })]], 2)
-  }))
-}
-var staticRenderFns = []
-render._withStripped = true
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-3d3ae136", esExports)
-  }
-}
-
-/***/ }),
-
 /***/ 17:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -936,7 +936,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 229:
+/***/ 244:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -946,7 +946,7 @@ var _vue = __webpack_require__(1);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _index = __webpack_require__(57);
+var _index = __webpack_require__(70);
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -961,14 +961,14 @@ new _vue2.default({
 
 /***/ }),
 
-/***/ 298:
+/***/ 3:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 3:
+/***/ 315:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -1091,91 +1091,6 @@ if (false) {
 
 /***/ }),
 
-/***/ 554:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('doc-component', {
-    attrs: {
-      "page": _vm.page,
-      "hasPadding": true
-    }
-  }, [_c('script', {
-    attrs: {
-      "type": "text/markdown"
-    }
-  }, [_vm._v("\n# 表单组 `<ui-formgroup>`\n\n<doc-component-status page=\"formgroup\"></doc-component-status>\n\n[[[开始]]]\n\n定义一个表单组，通过不同的HTML结构表单组可以组合出不同的表单结构，这是一个块级元素。\n\n表单组内包含了各种表单，一般由表单组抬头、各种表单项、行动栏组成。\n\n你可以用下面的类或元素来声明不同的表单部分：\n\n- `header` : 表单组头部\n- `header > h5` : 表单组标题\n- `header > p` : 表单组说明信息\n- `.item` : 表单项\n- `.item > .title` : 表单项名称\n- `.item > .content` : 表单项内容\n- `.item > .content > h6` : 表单项小标题\n- `.item > .content > p` : 表单项说明信息\n- `.item > .content > .form` : 表单容器\n- `.action` : 行动区域\n\n#### 使用\n\n:::democode/html\n<div style=\"width:500px;margin:auto\">\n    <ui-formgroup>\n        <!-- .item : 表单项 -->\n        <div class=\"item\">\n            <!-- .title : 表单项名称 -->\n            <h5 class=\"title\">\n                <ui-center class=\"fill\">Name</ui-center>\n            </h5>\n            <!-- .content : 表单项内容 -->\n            <div class=\"content\">\n                <!-- .content : 表单容器 -->\n                <div class=\"form\">\n                    <ui-textinput></ui-textinput>\n                </div>\n            </div>\n        </div>\n    </ui-formgroup>\n</div>\n:::\n\n#### 表单项小标题及说明\n\n:::democode/html\n<div style=\"width:500px;margin:auto\">\n    <ui-formgroup>\n        <div class=\"item\">\n            <h5 class=\"title\">\n                <ui-center class=\"fill\">Name</ui-center>\n            </h5>\n            <div class=\"content\">\n                <!-- h6 : 小标题 -->\n                <h6>Full Name?</h6>\n                <!-- p : 说明信息 -->\n                <p>Please fill in your full name.</p>\n                <div class=\"form\">\n                    <ui-textinput></ui-textinput>\n                </div>\n            </div>\n        </div>\n    </ui-formgroup>\n</div>\n:::\n\n#### 多个表单项\n\n多个表单项之前会有间隔线。\n\n:::democode/html\n<div style=\"width:500px;margin:auto\">\n    <ui-formgroup>\n        <!-- .item : 表单项 -->\n        <div class=\"item\">\n            <h5 class=\"title\">\n                <ui-center class=\"fill\">Name</ui-center>\n            </h5>\n            <div class=\"content\">\n                <h6>Full Name</h6>\n                <p>Please fill in your full name.</p>\n                <div class=\"form\">\n                    <ui-textinput></ui-textinput>\n                </div>\n            </div>\n        </div>\n        <!-- .item : 表单项 -->\n        <div class=\"item\">\n            <h5 class=\"title\">\n                <ui-center class=\"fill\">Introduction</ui-center>\n            </h5>\n            <div class=\"content\">\n                <div class=\"form\">\n                    <ui-textarea></ui-textarea>\n                </div>\n            </div>\n        </div>\n    </ui-formgroup>\n</div>\n:::\n\n#### 表单组标题\n\n:::democode/html\n<div style=\"width:500px;margin:auto\">\n    <ui-formgroup>\n        <!-- header : 表单组头部 -->\n        <header>\n            <!-- h5 : 表单组标题 -->\n            <h5>YOUR HEALTH</h5>\n            <!-- p : 表单组说明信息 -->\n            <p>Let's talk about your health.</p>\n        </header>\n        <div class=\"item\">\n            <h5 class=\"title\">\n                <ui-center class=\"fill\">Name</ui-center>\n            </h5>\n            <div class=\"content\">\n                <h6>Full Name</h6>\n                <p>Please fill in your full name.</p>\n                <div class=\"form\">\n                    <ui-textinput></ui-textinput>\n                </div>\n            </div>\n        </div>\n        <div class=\"item\">\n            <h5 class=\"title\">\n                <ui-center class=\"fill\">Introduction</ui-center>\n            </h5>\n            <div class=\"content\">\n                <div class=\"form\">\n                    <ui-textarea></ui-textarea>\n                </div>\n            </div>\n        </div>\n    </ui-formgroup>\n</div>\n:::\n\n#### 行动栏\n\n在表尾添加行动区域。\n\n:::democode/html\n<div style=\"width:500px;margin:auto\">\n    <ui-formgroup>\n        <header>\n            <h5>YOUR HEALTH</h5>\n            <p>Let's talk about your health.</p>\n        </header>\n        <div class=\"item\">\n            <h5 class=\"title\">\n                <ui-center class=\"fill\">Name</ui-center>\n            </h5>\n            <div class=\"content\">\n                <h6>Full Name</h6>\n                <p>Please fill in your full name.</p>\n                <div class=\"form\">\n                    <ui-textinput></ui-textinput>\n                </div>\n            </div>\n        </div>\n        <div class=\"item\">\n            <h5 class=\"title\">\n                <ui-center class=\"fill\">Introduction</ui-center>\n            </h5>\n            <div class=\"content\">\n                <div class=\"form\">\n                    <ui-textarea></ui-textarea>\n                </div>\n            </div>\n        </div>\n        <!-- .action : 行动区域 -->\n        <div class=\"action\">\n            <ui-btn>提交</ui-btn>&nbsp;\n            <ui-btn minor>取消</ui-btn>\n        </div>\n    </ui-formgroup>\n</div>\n:::\n\n#### 单项多表单\n\n你可以在单个表单项中添加多个表单。\n\n:::democode/html\n<div style=\"width:500px;margin:auto\">\n    <ui-formgroup>\n        <header>\n            <h5>YOUR HEALTH</h5>\n            <p>Let's talk about your health.</p>\n        </header>\n        <div class=\"item\">\n            <h5 class=\"title\">\n                <ui-center class=\"fill\">Name</ui-center>\n            </h5>\n            <div class=\"content\">\n                <!-- 第一个表单 -->\n                <h6>First Name</h6>\n                <p>Please fill in your first name.</p>\n                <div class=\"form\">\n                    <ui-textinput></ui-textinput>\n                </div>\n                <!-- 第二个表单 -->\n                <h6>Last Name</h6>\n                <p>Please fill in your last name.</p>\n                <div class=\"form\">\n                    <ui-textinput></ui-textinput>\n                </div>\n            </div>\n        </div>\n        <div class=\"item\">\n            <h5 class=\"title\">\n                <ui-center class=\"fill\">Introduction</ui-center>\n            </h5>\n            <div class=\"content\">\n                <div class=\"form\">\n                    <ui-textarea></ui-textarea>\n                </div>\n            </div>\n        </div>\n        <div class=\"action\">\n            <ui-btn>提交</ui-btn>&nbsp;\n            <ui-btn minor>取消</ui-btn>\n        </div>\n    </ui-formgroup>\n</div>\n:::\n\n[[[声明]]]\n\n#### 支持\n\n|类型|支持|默认|\n|-|-|-|\n|尺寸|不支持|-|\n|色彩|不支持|-|\n|状态|不支持|-|\n\n\n[[[源码]]]\n\n<iframe src=\"/report/coverage/lib/components/formgroup/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n")])])
-}
-var staticRenderFns = []
-render._withStripped = true
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-19bc4568", esExports)
-  }
-}
-
-/***/ }),
-
-/***/ 57:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(152);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_19bc4568_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(554);
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(298)
-}
-var normalizeComponent = __webpack_require__(0)
-/* script */
-
-/* template */
-
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_19bc4568_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__["a" /* default */],
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "src/docs/pages/component/formgroup/index.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] index.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-19bc4568", Component.options)
-  } else {
-    hotAPI.reload("data-v-19bc4568", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
-
-
-/***/ }),
-
 /***/ 6:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1186,7 +1101,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _markdownIt = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"markdown-it\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+var _markdownIt = __webpack_require__(25);
 
 var _markdownIt2 = _interopRequireDefault(_markdownIt);
 
@@ -1194,11 +1109,11 @@ var _extend2 = __webpack_require__(23);
 
 var _extend3 = _interopRequireDefault(_extend2);
 
-var _mustache = __webpack_require__(25);
+var _mustache = __webpack_require__(26);
 
 var _mustache2 = _interopRequireDefault(_mustache);
 
-var _underscore = __webpack_require__(26);
+var _underscore = __webpack_require__(27);
 
 var _underscore2 = _interopRequireDefault(_underscore);
 
@@ -1942,8 +1857,6 @@ var demoWithCodePlugin = function demoWithCodePlugin(md, opt) {
             result = extPreset(content, paramStr);
         }
 
-        console.log(method, result);
-
         return result;
     };
 };
@@ -2347,6 +2260,35 @@ module.exports = exports['default'];
 
 /***/ }),
 
+/***/ 625:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('doc-component', {
+    attrs: {
+      "page": _vm.page,
+      "hasPadding": true
+    }
+  }, [_c('script', {
+    attrs: {
+      "type": "text/markdown"
+    }
+  }, [_vm._v("\n# 表单组 `<ui-formgroup>`\n\n<doc-component-status page=\"formgroup\"></doc-component-status>\n\n[[[开始]]]\n\n定义一个表单组，通过不同的HTML结构表单组可以组合出不同的表单结构，这是一个块级元素。\n\n表单组内包含了各种表单，一般由表单组抬头、各种表单项、行动栏组成。\n\n你可以用下面的类或元素来声明不同的表单部分：\n\n- `header` : 表单组头部\n- `header > h5` : 表单组标题\n- `header > p` : 表单组说明信息\n- `.item` : 表单项\n- `.item > .title` : 表单项名称\n- `.item > .content` : 表单项内容\n- `.item > .content > h6` : 表单项小标题\n- `.item > .content > p` : 表单项说明信息\n- `.item > .content > .form` : 表单容器\n- `.action` : 行动区域\n\n#### 使用\n\n:::democode/html\n<div style=\"width:500px;margin:auto\">\n    <ui-formgroup>\n        <!-- .item : 表单项 -->\n        <div class=\"item\">\n            <!-- .title : 表单项名称 -->\n            <h5 class=\"title\">\n                <ui-center class=\"fill\">Name</ui-center>\n            </h5>\n            <!-- .content : 表单项内容 -->\n            <div class=\"content\">\n                <!-- .content : 表单容器 -->\n                <div class=\"form\">\n                    <ui-textinput></ui-textinput>\n                </div>\n            </div>\n        </div>\n    </ui-formgroup>\n</div>\n:::\n\n#### 表单项小标题及说明\n\n:::democode/html\n<div style=\"width:500px;margin:auto\">\n    <ui-formgroup>\n        <div class=\"item\">\n            <h5 class=\"title\">\n                <ui-center class=\"fill\">Name</ui-center>\n            </h5>\n            <div class=\"content\">\n                <!-- h6 : 小标题 -->\n                <h6>Full Name?</h6>\n                <!-- p : 说明信息 -->\n                <p>Please fill in your full name.</p>\n                <div class=\"form\">\n                    <ui-textinput></ui-textinput>\n                </div>\n            </div>\n        </div>\n    </ui-formgroup>\n</div>\n:::\n\n#### 多个表单项\n\n多个表单项之前会有间隔线。\n\n:::democode/html\n<div style=\"width:500px;margin:auto\">\n    <ui-formgroup>\n        <!-- .item : 表单项 -->\n        <div class=\"item\">\n            <h5 class=\"title\">\n                <ui-center class=\"fill\">Name</ui-center>\n            </h5>\n            <div class=\"content\">\n                <h6>Full Name</h6>\n                <p>Please fill in your full name.</p>\n                <div class=\"form\">\n                    <ui-textinput></ui-textinput>\n                </div>\n            </div>\n        </div>\n        <!-- .item : 表单项 -->\n        <div class=\"item\">\n            <h5 class=\"title\">\n                <ui-center class=\"fill\">Introduction</ui-center>\n            </h5>\n            <div class=\"content\">\n                <div class=\"form\">\n                    <ui-textarea></ui-textarea>\n                </div>\n            </div>\n        </div>\n    </ui-formgroup>\n</div>\n:::\n\n#### 表单组标题\n\n:::democode/html\n<div style=\"width:500px;margin:auto\">\n    <ui-formgroup>\n        <!-- header : 表单组头部 -->\n        <header>\n            <!-- h5 : 表单组标题 -->\n            <h5>YOUR HEALTH</h5>\n            <!-- p : 表单组说明信息 -->\n            <p>Let's talk about your health.</p>\n        </header>\n        <div class=\"item\">\n            <h5 class=\"title\">\n                <ui-center class=\"fill\">Name</ui-center>\n            </h5>\n            <div class=\"content\">\n                <h6>Full Name</h6>\n                <p>Please fill in your full name.</p>\n                <div class=\"form\">\n                    <ui-textinput></ui-textinput>\n                </div>\n            </div>\n        </div>\n        <div class=\"item\">\n            <h5 class=\"title\">\n                <ui-center class=\"fill\">Introduction</ui-center>\n            </h5>\n            <div class=\"content\">\n                <div class=\"form\">\n                    <ui-textarea></ui-textarea>\n                </div>\n            </div>\n        </div>\n    </ui-formgroup>\n</div>\n:::\n\n#### 行动栏\n\n在表尾添加行动区域。\n\n:::democode/html\n<div style=\"width:500px;margin:auto\">\n    <ui-formgroup>\n        <header>\n            <h5>YOUR HEALTH</h5>\n            <p>Let's talk about your health.</p>\n        </header>\n        <div class=\"item\">\n            <h5 class=\"title\">\n                <ui-center class=\"fill\">Name</ui-center>\n            </h5>\n            <div class=\"content\">\n                <h6>Full Name</h6>\n                <p>Please fill in your full name.</p>\n                <div class=\"form\">\n                    <ui-textinput></ui-textinput>\n                </div>\n            </div>\n        </div>\n        <div class=\"item\">\n            <h5 class=\"title\">\n                <ui-center class=\"fill\">Introduction</ui-center>\n            </h5>\n            <div class=\"content\">\n                <div class=\"form\">\n                    <ui-textarea></ui-textarea>\n                </div>\n            </div>\n        </div>\n        <!-- .action : 行动区域 -->\n        <div class=\"action\">\n            <ui-btn>提交</ui-btn>&nbsp;\n            <ui-btn minor>取消</ui-btn>\n        </div>\n    </ui-formgroup>\n</div>\n:::\n\n#### 单项多表单\n\n你可以在单个表单项中添加多个表单。\n\n:::democode/html\n<div style=\"width:500px;margin:auto\">\n    <ui-formgroup>\n        <header>\n            <h5>YOUR HEALTH</h5>\n            <p>Let's talk about your health.</p>\n        </header>\n        <div class=\"item\">\n            <h5 class=\"title\">\n                <ui-center class=\"fill\">Name</ui-center>\n            </h5>\n            <div class=\"content\">\n                <!-- 第一个表单 -->\n                <h6>First Name</h6>\n                <p>Please fill in your first name.</p>\n                <div class=\"form\">\n                    <ui-textinput></ui-textinput>\n                </div>\n                <!-- 第二个表单 -->\n                <h6>Last Name</h6>\n                <p>Please fill in your last name.</p>\n                <div class=\"form\">\n                    <ui-textinput></ui-textinput>\n                </div>\n            </div>\n        </div>\n        <div class=\"item\">\n            <h5 class=\"title\">\n                <ui-center class=\"fill\">Introduction</ui-center>\n            </h5>\n            <div class=\"content\">\n                <div class=\"form\">\n                    <ui-textarea></ui-textarea>\n                </div>\n            </div>\n        </div>\n        <div class=\"action\">\n            <ui-btn>提交</ui-btn>&nbsp;\n            <ui-btn minor>取消</ui-btn>\n        </div>\n    </ui-formgroup>\n</div>\n:::\n\n[[[声明]]]\n\n#### 支持\n\n|类型|支持|默认|\n|-|-|-|\n|尺寸|不支持|-|\n|色彩|不支持|-|\n|状态|不支持|-|\n\n\n[[[源码]]]\n\n<iframe src=\"/report/coverage/lib/components/formgroup/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n")])])
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-19bc4568", esExports)
+  }
+}
+
+/***/ }),
+
 /***/ 7:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2628,6 +2570,62 @@ module.exports = exports['default'];
 
 /***/ }),
 
+/***/ 70:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(166);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_19bc4568_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(625);
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(315)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+
+/* template */
+
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default.a,
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_19bc4568_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__["a" /* default */],
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "src/docs/pages/component/formgroup/index.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] index.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-19bc4568", Component.options)
+  } else {
+    hotAPI.reload("data-v-19bc4568", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
+
+
+/***/ }),
+
 /***/ 8:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2698,4 +2696,4 @@ module.exports = exports['default'];
 
 /***/ })
 
-},[229]);
+},[244]);

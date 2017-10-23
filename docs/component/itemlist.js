@@ -1,4 +1,4 @@
-webpackJsonp([50],{
+webpackJsonp([51],{
 
 /***/ 0:
 /***/ (function(module, exports) {
@@ -377,7 +377,96 @@ if (false) {
 
 /***/ }),
 
-/***/ 158:
+/***/ 16:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('ul', {
+    staticClass: "submenu"
+  }, _vm._l((_vm.currentMenu), function(link, name) {
+    return _c('li', [(link === '/' + _vm.category + '/' + _vm.page + '.html') ? [(typeof link === 'string') ? _c('a', {
+      staticClass: "current",
+      attrs: {
+        "href": link
+      },
+      domProps: {
+        "innerHTML": _vm._s(name)
+      }
+    }) : _c('p', {
+      staticClass: "title",
+      domProps: {
+        "innerHTML": _vm._s(name)
+      }
+    })] : [(typeof link === 'string') ? _c('a', {
+      attrs: {
+        "href": link
+      },
+      domProps: {
+        "innerHTML": _vm._s(name)
+      }
+    }) : _c('p', {
+      staticClass: "title",
+      domProps: {
+        "innerHTML": _vm._s(name)
+      }
+    })]], 2)
+  }))
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-3d3ae136", esExports)
+  }
+}
+
+/***/ }),
+
+/***/ 17:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('doc-header', {
+    attrs: {
+      "category": _vm.category
+    }
+  }), _vm._v(" "), _c('div', {
+    staticClass: "body"
+  }, [_c('doc-submenu', {
+    attrs: {
+      "category": _vm.category,
+      "page": _vm.page
+    }
+  }), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "docmd",
+      rawName: "v-docmd"
+    }],
+    staticClass: "content markdown-body",
+    class: {
+      padding: _vm.hasPadding
+    }
+  }, [_vm._t("default")], 2)], 1)], 1)
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-6f53ddca", esExports)
+  }
+}
+
+/***/ }),
+
+/***/ 172:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -659,95 +748,6 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 16:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('ul', {
-    staticClass: "submenu"
-  }, _vm._l((_vm.currentMenu), function(link, name) {
-    return _c('li', [(link === '/' + _vm.category + '/' + _vm.page + '.html') ? [(typeof link === 'string') ? _c('a', {
-      staticClass: "current",
-      attrs: {
-        "href": link
-      },
-      domProps: {
-        "innerHTML": _vm._s(name)
-      }
-    }) : _c('p', {
-      staticClass: "title",
-      domProps: {
-        "innerHTML": _vm._s(name)
-      }
-    })] : [(typeof link === 'string') ? _c('a', {
-      attrs: {
-        "href": link
-      },
-      domProps: {
-        "innerHTML": _vm._s(name)
-      }
-    }) : _c('p', {
-      staticClass: "title",
-      domProps: {
-        "innerHTML": _vm._s(name)
-      }
-    })]], 2)
-  }))
-}
-var staticRenderFns = []
-render._withStripped = true
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-3d3ae136", esExports)
-  }
-}
-
-/***/ }),
-
-/***/ 17:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('doc-header', {
-    attrs: {
-      "category": _vm.category
-    }
-  }), _vm._v(" "), _c('div', {
-    staticClass: "body"
-  }, [_c('doc-submenu', {
-    attrs: {
-      "category": _vm.category,
-      "page": _vm.page
-    }
-  }), _vm._v(" "), _c('div', {
-    directives: [{
-      name: "docmd",
-      rawName: "v-docmd"
-    }],
-    staticClass: "content markdown-body",
-    class: {
-      padding: _vm.hasPadding
-    }
-  }, [_vm._t("default")], 2)], 1)], 1)
-}
-var staticRenderFns = []
-render._withStripped = true
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-6f53ddca", esExports)
-  }
-}
-
-/***/ }),
-
 /***/ 18:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -931,7 +931,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 235:
+/***/ 250:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -941,7 +941,7 @@ var _vue = __webpack_require__(1);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _index = __webpack_require__(63);
+var _index = __webpack_require__(76);
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -963,7 +963,7 @@ new _vue2.default({
 
 /***/ }),
 
-/***/ 330:
+/***/ 348:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -1086,35 +1086,6 @@ if (false) {
 
 /***/ }),
 
-/***/ 586:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('doc-component', {
-    attrs: {
-      "page": _vm.page,
-      "hasPadding": true
-    }
-  }, [_c('script', {
-    attrs: {
-      "type": "text/markdown"
-    }
-  }, [_vm._v("\n# 项目列表 `<ui-itemlist>`\n\n<doc-component-status page=\"itemlist\"></doc-component-status>\n\n[[[开始]]]\n\n定义项目列表组件，项目列表中的每一项包含图片及文字内容，这是一个块级元素。\n\n项目列表可包含：\n\n- 缩略图 `img`\n- 标题 `.title`\n- 描述 `.desc`\n- 主体内容 `.body`\n- 附加信息 `.additional`\n\n#### 使用\n\n:::democode/html\n<div style=\"width:400px\">\n<ui-itemlist>\n    <ui-ul>\n        <li>\n            <ui-img class=\"img\" src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"></ui-img>\n            <h3 class=\"title\">Header</h3>\n            <p class=\"desc\">Description</p>\n            <div class=\"body\">Body</div>\n            <div class=\"additional\">Additional Details</div> \n        </li>\n        <li>\n            <ui-img class=\"img\" src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"></ui-img>\n            <h3 class=\"title\">Header</h3>\n            <p class=\"desc\">Description</p>\n            <div class=\"body\">Body</div>\n            <div class=\"additional\">Additional Details</div> \n        </li>\n        <li>\n            <ui-img class=\"img\" src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"></ui-img>\n            <h3 class=\"title\">Header</h3>\n            <p class=\"desc\">Description</p>\n            <div class=\"body\">Body</div>\n            <div class=\"additional\">Additional Details</div> \n        </li>\n    </ui-ul>\n</ui-itemlist>\n</div>\n:::\n\n#### 下划线分隔\n\n:::democode/html\n<div style=\"width:400px\">\n<ui-itemlist class=\"underline\">\n    <ui-ul>\n        <li>\n            <ui-img class=\"img\" src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"></ui-img>\n            <h3 class=\"title\">Header</h3>\n            <p class=\"desc\">Description</p>\n            <div class=\"body\">Body</div>\n            <div class=\"additional\">Additional Details</div> \n        </li>\n        <li>\n            <ui-img class=\"img\" src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"></ui-img>\n            <h3 class=\"title\">Header</h3>\n            <p class=\"desc\">Description</p>\n            <div class=\"body\">Body</div>\n            <div class=\"additional\">Additional Details</div> \n        </li>\n        <li>\n            <ui-img class=\"img\" src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"></ui-img>\n            <h3 class=\"title\">Header</h3>\n            <p class=\"desc\">Description</p>\n            <div class=\"body\">Body</div>\n            <div class=\"additional\">Additional Details</div> \n        </li>\n    </ui-ul>\n</ui-itemlist>\n</div>\n:::\n\n#### 单行标题\n\n:::democode/html\n<div style=\"width:400px\">\n<ui-itemlist xs>\n    <ui-ul>\n        <li>\n            <ui-img class=\"img\" src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"></ui-img>\n            <h3 class=\"title\">Header</h3>\n        </li>\n        <li>\n            <ui-img class=\"img\" src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"></ui-img>\n            <h3 class=\"title\">Header</h3>\n        </li>\n        <li>\n            <ui-img class=\"img\" src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"></ui-img>\n            <h3 class=\"title\">Header</h3>\n        </li>\n    </ui-ul>\n</ui-itemlist>\n</div>\n:::\n\n#### 单行内容\n\n:::democode/html\n<div style=\"width:400px\">\n<ui-itemlist xs>\n    <ui-ul>\n        <li>\n            <ui-img class=\"img\" src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"></ui-img>\n            <div class=\"body\">Body</div>\n        </li>\n        <li>\n            <ui-img class=\"img\" src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"></ui-img>\n            <div class=\"body\">Body</div>\n        </li>\n        <li>\n            <ui-img class=\"img\" src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"></ui-img>\n            <div class=\"body\">Body</div>\n        </li>\n    </ui-ul>\n</ui-itemlist>\n</div>\n:::\n\n#### 无图片\n\n:::democode/html\n<div style=\"width:400px\">\n<ui-itemlist>\n    <ui-ul>\n        <li>\n            <h3 class=\"title\">Header</h3>\n            <p class=\"desc\">Description</p>\n            <div class=\"body\">Body</div>\n            <div class=\"additional\">Additional Details</div> \n        </li>\n        <li>\n            <h3 class=\"title\">Header</h3>\n            <p class=\"desc\">Description</p>\n            <div class=\"body\">Body</div>\n            <div class=\"additional\">Additional Details</div> \n        </li>\n        <li>\n            <h3 class=\"title\">Header</h3>\n            <p class=\"desc\">Description</p>\n            <div class=\"body\">Body</div>\n            <div class=\"additional\">Additional Details</div> \n        </li>\n    </ui-ul>\n</ui-itemlist>\n</div>\n:::\n\n#### 配合`ui-label`\n\n:::democode/html\n<div style=\"width:400px\">\n<ui-itemlist>\n    <ui-ul>\n        <li>\n            <ui-img class=\"img\" src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"></ui-img>\n            <h3 class=\"title\">Header</h3>\n            <p class=\"desc\">Description</p>\n            <div class=\"body\">Body</div>\n            <div class=\"additional\">\n                <ui-label s minor>Normal</ui-label>\n            </div> \n        </li>\n        <li>\n            <ui-img class=\"img\" src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"></ui-img>\n            <h3 class=\"title\">Header</h3>\n            <p class=\"desc\">Description</p>\n            <div class=\"body\">Body</div>\n            <div class=\"additional\">\n                <ui-label s danger>High</ui-label>\n            </div> \n        </li>\n        <li>\n            <ui-img class=\"img\" src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"></ui-img>\n            <h3 class=\"title\">Header</h3>\n            <p class=\"desc\">Description</p>\n            <div class=\"body\">Body</div>\n            <div class=\"additional\">\n                <ui-label s minor>Normal</ui-label>\n            </div> \n        </li>\n    </ui-ul>\n</ui-itemlist>\n</div>\n:::\n\n[[[声明]]]\n\n#### 支持\n\n|类型|支持|默认|\n|-|-|-|\n|尺寸|全部|`m`|\n|色彩|不支持|-|\n|状态|不支持|-|\n\n#### 尺寸\n\n:::repeat/html\nsize\n---\n<div style=\"width:400px\">\n<ui-itemlist {$sizeKey}>\n    <ui-ul>\n        <li>\n            <ui-img class=\"img\" src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"></ui-img>\n            <h3 class=\"title\">{$&sizeName}</h3>\n            <p class=\"desc\">Description</p>\n            <div class=\"body\">Body</div>\n            <div class=\"additional\">Additional Details</div> \n        </li>\n        <li>\n            <ui-img class=\"img\" src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"></ui-img>\n            <h3 class=\"title\">{$&sizeName}</h3>\n            <p class=\"desc\">Description</p>\n            <div class=\"body\">Body</div>\n            <div class=\"additional\">Additional Details</div> \n        </li>\n        <li>\n            <ui-img class=\"img\" src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"></ui-img>\n            <h3 class=\"title\">{$&sizeName}</h3>\n            <p class=\"desc\">Description</p>\n            <div class=\"body\">Body</div>\n            <div class=\"additional\">Additional Details</div> \n        </li>\n    </ui-ul>\n</ui-itemlist>\n</div>\n<br><br>\n:::\n\n[[[源码]]]\n\n<iframe src=\"/report/coverage/lib/components/itemlist/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n")])])
-}
-var staticRenderFns = []
-render._withStripped = true
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-5d68b996", esExports)
-  }
-}
-
-/***/ }),
-
 /***/ 6:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1125,7 +1096,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _markdownIt = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"markdown-it\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+var _markdownIt = __webpack_require__(25);
 
 var _markdownIt2 = _interopRequireDefault(_markdownIt);
 
@@ -1133,11 +1104,11 @@ var _extend2 = __webpack_require__(23);
 
 var _extend3 = _interopRequireDefault(_extend2);
 
-var _mustache = __webpack_require__(25);
+var _mustache = __webpack_require__(26);
 
 var _mustache2 = _interopRequireDefault(_mustache);
 
-var _underscore = __webpack_require__(26);
+var _underscore = __webpack_require__(27);
 
 var _underscore2 = _interopRequireDefault(_underscore);
 
@@ -1881,8 +1852,6 @@ var demoWithCodePlugin = function demoWithCodePlugin(md, opt) {
             result = extPreset(content, paramStr);
         }
 
-        console.log(method, result);
-
         return result;
     };
 };
@@ -2286,59 +2255,32 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 63:
+/***/ 658:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(158);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_5d68b996_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(586);
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(330)
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('doc-component', {
+    attrs: {
+      "page": _vm.page,
+      "hasPadding": true
+    }
+  }, [_c('script', {
+    attrs: {
+      "type": "text/markdown"
+    }
+  }, [_vm._v("\n# 项目列表 `<ui-itemlist>`\n\n<doc-component-status page=\"itemlist\"></doc-component-status>\n\n[[[开始]]]\n\n定义项目列表组件，项目列表中的每一项包含图片及文字内容，这是一个块级元素。\n\n项目列表可包含：\n\n- 缩略图 `img`\n- 标题 `.title`\n- 描述 `.desc`\n- 主体内容 `.body`\n- 附加信息 `.additional`\n\n#### 使用\n\n:::democode/html\n<div style=\"width:400px\">\n<ui-itemlist>\n    <ui-ul>\n        <li>\n            <ui-img class=\"img\" src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"></ui-img>\n            <h3 class=\"title\">Header</h3>\n            <p class=\"desc\">Description</p>\n            <div class=\"body\">Body</div>\n            <div class=\"additional\">Additional Details</div> \n        </li>\n        <li>\n            <ui-img class=\"img\" src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"></ui-img>\n            <h3 class=\"title\">Header</h3>\n            <p class=\"desc\">Description</p>\n            <div class=\"body\">Body</div>\n            <div class=\"additional\">Additional Details</div> \n        </li>\n        <li>\n            <ui-img class=\"img\" src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"></ui-img>\n            <h3 class=\"title\">Header</h3>\n            <p class=\"desc\">Description</p>\n            <div class=\"body\">Body</div>\n            <div class=\"additional\">Additional Details</div> \n        </li>\n    </ui-ul>\n</ui-itemlist>\n</div>\n:::\n\n#### 下划线分隔\n\n:::democode/html\n<div style=\"width:400px\">\n<ui-itemlist class=\"underline\">\n    <ui-ul>\n        <li>\n            <ui-img class=\"img\" src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"></ui-img>\n            <h3 class=\"title\">Header</h3>\n            <p class=\"desc\">Description</p>\n            <div class=\"body\">Body</div>\n            <div class=\"additional\">Additional Details</div> \n        </li>\n        <li>\n            <ui-img class=\"img\" src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"></ui-img>\n            <h3 class=\"title\">Header</h3>\n            <p class=\"desc\">Description</p>\n            <div class=\"body\">Body</div>\n            <div class=\"additional\">Additional Details</div> \n        </li>\n        <li>\n            <ui-img class=\"img\" src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"></ui-img>\n            <h3 class=\"title\">Header</h3>\n            <p class=\"desc\">Description</p>\n            <div class=\"body\">Body</div>\n            <div class=\"additional\">Additional Details</div> \n        </li>\n    </ui-ul>\n</ui-itemlist>\n</div>\n:::\n\n#### 单行标题\n\n:::democode/html\n<div style=\"width:400px\">\n<ui-itemlist xs>\n    <ui-ul>\n        <li>\n            <ui-img class=\"img\" src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"></ui-img>\n            <h3 class=\"title\">Header</h3>\n        </li>\n        <li>\n            <ui-img class=\"img\" src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"></ui-img>\n            <h3 class=\"title\">Header</h3>\n        </li>\n        <li>\n            <ui-img class=\"img\" src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"></ui-img>\n            <h3 class=\"title\">Header</h3>\n        </li>\n    </ui-ul>\n</ui-itemlist>\n</div>\n:::\n\n#### 单行内容\n\n:::democode/html\n<div style=\"width:400px\">\n<ui-itemlist xs>\n    <ui-ul>\n        <li>\n            <ui-img class=\"img\" src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"></ui-img>\n            <div class=\"body\">Body</div>\n        </li>\n        <li>\n            <ui-img class=\"img\" src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"></ui-img>\n            <div class=\"body\">Body</div>\n        </li>\n        <li>\n            <ui-img class=\"img\" src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"></ui-img>\n            <div class=\"body\">Body</div>\n        </li>\n    </ui-ul>\n</ui-itemlist>\n</div>\n:::\n\n#### 无图片\n\n:::democode/html\n<div style=\"width:400px\">\n<ui-itemlist>\n    <ui-ul>\n        <li>\n            <h3 class=\"title\">Header</h3>\n            <p class=\"desc\">Description</p>\n            <div class=\"body\">Body</div>\n            <div class=\"additional\">Additional Details</div> \n        </li>\n        <li>\n            <h3 class=\"title\">Header</h3>\n            <p class=\"desc\">Description</p>\n            <div class=\"body\">Body</div>\n            <div class=\"additional\">Additional Details</div> \n        </li>\n        <li>\n            <h3 class=\"title\">Header</h3>\n            <p class=\"desc\">Description</p>\n            <div class=\"body\">Body</div>\n            <div class=\"additional\">Additional Details</div> \n        </li>\n    </ui-ul>\n</ui-itemlist>\n</div>\n:::\n\n#### 配合`ui-label`\n\n:::democode/html\n<div style=\"width:400px\">\n<ui-itemlist>\n    <ui-ul>\n        <li>\n            <ui-img class=\"img\" src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"></ui-img>\n            <h3 class=\"title\">Header</h3>\n            <p class=\"desc\">Description</p>\n            <div class=\"body\">Body</div>\n            <div class=\"additional\">\n                <ui-label s minor>Normal</ui-label>\n            </div> \n        </li>\n        <li>\n            <ui-img class=\"img\" src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"></ui-img>\n            <h3 class=\"title\">Header</h3>\n            <p class=\"desc\">Description</p>\n            <div class=\"body\">Body</div>\n            <div class=\"additional\">\n                <ui-label s danger>High</ui-label>\n            </div> \n        </li>\n        <li>\n            <ui-img class=\"img\" src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"></ui-img>\n            <h3 class=\"title\">Header</h3>\n            <p class=\"desc\">Description</p>\n            <div class=\"body\">Body</div>\n            <div class=\"additional\">\n                <ui-label s minor>Normal</ui-label>\n            </div> \n        </li>\n    </ui-ul>\n</ui-itemlist>\n</div>\n:::\n\n[[[声明]]]\n\n#### 支持\n\n|类型|支持|默认|\n|-|-|-|\n|尺寸|全部|`m`|\n|色彩|不支持|-|\n|状态|不支持|-|\n\n#### 尺寸\n\n:::repeat/html\nsize\n---\n<div style=\"width:400px\">\n<ui-itemlist {$sizeKey}>\n    <ui-ul>\n        <li>\n            <ui-img class=\"img\" src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"></ui-img>\n            <h3 class=\"title\">{$&sizeName}</h3>\n            <p class=\"desc\">Description</p>\n            <div class=\"body\">Body</div>\n            <div class=\"additional\">Additional Details</div> \n        </li>\n        <li>\n            <ui-img class=\"img\" src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"></ui-img>\n            <h3 class=\"title\">{$&sizeName}</h3>\n            <p class=\"desc\">Description</p>\n            <div class=\"body\">Body</div>\n            <div class=\"additional\">Additional Details</div> \n        </li>\n        <li>\n            <ui-img class=\"img\" src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"></ui-img>\n            <h3 class=\"title\">{$&sizeName}</h3>\n            <p class=\"desc\">Description</p>\n            <div class=\"body\">Body</div>\n            <div class=\"additional\">Additional Details</div> \n        </li>\n    </ui-ul>\n</ui-itemlist>\n</div>\n<br><br>\n:::\n\n[[[源码]]]\n\n<iframe src=\"/report/coverage/lib/components/itemlist/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n")])])
 }
-var normalizeComponent = __webpack_require__(0)
-/* script */
-
-/* template */
-
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_5d68b996_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__["a" /* default */],
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "src/docs/pages/component/itemlist/index.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] index.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
   module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-5d68b996", Component.options)
-  } else {
-    hotAPI.reload("data-v-5d68b996", Component.options)
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-5d68b996", esExports)
   }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
-
+}
 
 /***/ }),
 
@@ -2623,6 +2565,62 @@ module.exports = exports['default'];
 
 /***/ }),
 
+/***/ 76:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(172);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_5d68b996_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(658);
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(348)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+
+/* template */
+
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default.a,
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_5d68b996_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__["a" /* default */],
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "src/docs/pages/component/itemlist/index.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] index.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5d68b996", Component.options)
+  } else {
+    hotAPI.reload("data-v-5d68b996", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
+
+
+/***/ }),
+
 /***/ 8:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2693,4 +2691,4 @@ module.exports = exports['default'];
 
 /***/ })
 
-},[235]);
+},[250]);

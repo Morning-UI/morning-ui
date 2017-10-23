@@ -13,6 +13,10 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.markdown-body img {
+  border: 1px #E6E6E6 solid !important;
+  padding: 2px;
+}
 .markdown-body h5 {
   font-size: 1em !important;
 }

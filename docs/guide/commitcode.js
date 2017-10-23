@@ -1,4 +1,4 @@
-webpackJsonp([20],{
+webpackJsonp([21],{
 
 /***/ 0:
 /***/ (function(module, exports) {
@@ -109,6 +109,62 @@ module.exports = Vue;
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 106:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_71a8c82a_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(668);
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(358)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+
+/* template */
+
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default.a,
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_71a8c82a_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__["a" /* default */],
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "src/docs/pages/guide/commitcode/index.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] index.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-71a8c82a", Component.options)
+  } else {
+    hotAPI.reload("data-v-71a8c82a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
+
 
 /***/ }),
 
@@ -466,7 +522,57 @@ if (false) {
 
 /***/ }),
 
-/***/ 188:
+/***/ 2:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+    props: {
+        category: String
+    },
+    computed: {
+        isIndex: function isIndex() {
+            return this.category === 'home';
+        },
+        isGuide: function isGuide() {
+            return this.category === 'guide';
+        },
+        isComponent: function isComponent() {
+            return this.category === 'component';
+        },
+        isCustom: function isCustom() {
+            return this.category === 'custom';
+        }
+    }
+};
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ 202:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -476,7 +582,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _DocGuide = __webpack_require__(29);
+var _DocGuide = __webpack_require__(30);
 
 var _DocGuide2 = _interopRequireDefault(_DocGuide);
 
@@ -543,87 +649,70 @@ exports.default = {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 2:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-exports.default = {
-    props: {
-        category: String
-    },
-    computed: {
-        isIndex: function isIndex() {
-            return this.category === 'home';
-        },
-        isGuide: function isGuide() {
-            return this.category === 'guide';
-        },
-        isComponent: function isComponent() {
-            return this.category === 'component';
-        },
-        isCustom: function isCustom() {
-            return this.category === 'custom';
-        }
-    }
-};
-module.exports = exports['default'];
-
-/***/ }),
-
-/***/ 265:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _vue = __webpack_require__(1);
-
-var _vue2 = _interopRequireDefault(_vue);
-
-var _index = __webpack_require__(93);
-
-var _index2 = _interopRequireDefault(_index);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-new _vue2.default({
-    el: '#root',
-    render: function render(h) {
-        return h(_index2.default);
-    }
-});
-
-/***/ }),
-
-/***/ 27:
+/***/ 28:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -667,25 +756,57 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 28:
+/***/ 280:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _vue = __webpack_require__(1);
+
+var _vue2 = _interopRequireDefault(_vue);
+
+var _index = __webpack_require__(106);
+
+var _index2 = _interopRequireDefault(_index);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+new _vue2.default({
+    el: '#root',
+    render: function render(h) {
+        return h(_index2.default);
+    }
+});
+
+/***/ }),
+
+/***/ 29:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 29:
+/***/ 3:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 30:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_DocGuide_vue__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_DocGuide_vue__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_DocGuide_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_DocGuide_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_7e9905d3_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_DocGuide_vue__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_7e9905d3_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_DocGuide_vue__ = __webpack_require__(31);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(28)
+  __webpack_require__(29)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
@@ -730,14 +851,7 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 3:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 30:
+/***/ 31:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -761,7 +875,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 340:
+/***/ 358:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -884,35 +998,6 @@ if (false) {
 
 /***/ }),
 
-/***/ 596:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('doc-guide', {
-    attrs: {
-      "page": _vm.page,
-      "hasPadding": true
-    }
-  }, [_c('script', {
-    attrs: {
-      "type": "text/markdown"
-    }
-  }, [_vm._v("\n\n# 提交代码\n\nMorning UI的协作开发基于Git的分支。\n\n### Git分支\n\nMorning UI的分支分为：\n\n- `master` : 正式版本发布的分支。\n- `dev` : 主开发分支，所有开发完毕但未发布的功能都会先合并至此。\n- `issue_[id]` : Issue开发分支，所有正在开发中的功能代码都会被提交至此分支。\n\n当你从一个issue开始，开发代码，提交代码到版本发布分为以下几个步骤：\n\n1. 标记Issue : 找到Issue，将Assignees指向你，并添加`in progress`标签，表示你正在开发中。\n2. 新建分支 : 从`dev`分支切出一个新的分支`issue_[id]`，其中id是issue的编号。\n3. 提交代码 : 将开发代码提交到这个分支上。\n4. Pull Request : 当所有开发完成之后，发起一个新的Pull Request来将代码合并到`dev`。\n5. 合入主开发分支 : 当Pull Request完成后，代码会被自动合入主开发分支`dev`。\n6. 版本发布 : 当一个版本下的所有Issue代码都被合入`dev`后，这些改动会被合入master，并添加版本tag，代码被正式发布。\n\n下面的内容将会进一步说明提交代码每一步需要做什么及注意的事项。\n\n### 标记Issue\n\n### 新建分支\n\n### 提交代码\n\n### Pull Request\n\n### 合入主开发分支\n\n### 版本发布\n\n\n当一个版本中的所有功能都完成，会将此分支合并到master，并打上tag发布。\n当你需要根据某个issue开发时，需要切换到此分支。\n\n\n")])])
-}
-var staticRenderFns = []
-render._withStripped = true
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-71a8c82a", esExports)
-  }
-}
-
-/***/ }),
-
 /***/ 6:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -923,7 +1008,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _markdownIt = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"markdown-it\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+var _markdownIt = __webpack_require__(25);
 
 var _markdownIt2 = _interopRequireDefault(_markdownIt);
 
@@ -931,11 +1016,11 @@ var _extend2 = __webpack_require__(23);
 
 var _extend3 = _interopRequireDefault(_extend2);
 
-var _mustache = __webpack_require__(25);
+var _mustache = __webpack_require__(26);
 
 var _mustache2 = _interopRequireDefault(_mustache);
 
-var _underscore = __webpack_require__(26);
+var _underscore = __webpack_require__(27);
 
 var _underscore2 = _interopRequireDefault(_underscore);
 
@@ -1679,8 +1764,6 @@ var demoWithCodePlugin = function demoWithCodePlugin(md, opt) {
             result = extPreset(content, paramStr);
         }
 
-        console.log(method, result);
-
         return result;
     };
 };
@@ -2084,6 +2167,35 @@ module.exports = exports['default'];
 
 /***/ }),
 
+/***/ 668:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('doc-guide', {
+    attrs: {
+      "page": _vm.page,
+      "hasPadding": true
+    }
+  }, [_c('script', {
+    attrs: {
+      "type": "text/markdown"
+    }
+  }, [_vm._v("\n\n# 提交代码\n\nMorning UI的协作开发基于Git的分支。\n\n### Git分支\n\nMorning UI的分支分为：\n\n- `master` : 正式版本发布的分支。\n- `dev` : 主开发分支，所有开发完毕但未发布的功能都会先合并至此。\n- `issue_[id]` : Issue开发分支，所有正在开发中的功能代码都会被提交至此分支。\n\n当你从一个issue开始，开发代码，提交代码到版本发布分为以下几个步骤：\n\n1. 标记Issue : 找到Issue，将Assignees指向你，并添加`in progress`标签，表示你正在开发中。\n2. 新建分支 : 从`dev`分支切出一个新的分支`issue_[id]`，其中id是issue的编号。\n3. 提交代码 : 将开发代码提交到这个分支上。\n4. Pull Request : 当所有开发完成之后，发起一个新的Pull Request来将代码合并到`dev`。\n5. 合入主开发分支 : 当Pull Request完成后，代码会被自动合入主开发分支`dev`。\n6. 版本发布 : 当一个版本下的所有Issue代码都被合入`dev`后，这些改动会被合入master，并添加版本tag，代码被正式发布。\n\n下面的内容将会进一步说明提交代码每一步需要做什么及注意的事项。\n\n### 标记Issue\n\n找到你想要处理的Issue，在标记之前请先确保此Issue未处于以下任何一个状态：\n\n- `need repro` : 需要提供更多信息复现内容，以确认问题\n- `pending` : 处于待定的Issue\n- `wont solve` : 暂时不回解决的Issue\n- `in progress` : 已经有人在处理\n- `in review` : 正在Code Review的Issue\n- `launched` : 已解决并发布的Issue\n- `discussion` : 这是一个讨论\n\n一般你可以选择处于下面这些状态切没有指定Assignees的Issue：\n\n- `bug confirmed` : 已经确认的Bug\n- `intend to solve` : 计划解决\n- `feature request` : 功能请求\n- `bug report` : BUG报告\n\n若一个Issue被指定了Assignees，请先和那个人商量到底由谁来处理。\n\n针对上面四个标签的Issue，在开始着手处理前，你需要添加一些额外的标记来告示别人你开始处理了：\n\n1. 首先将Assignees指向你自己\n2. 根据不同的标签做不同的处理：\n    - `bug confirmed` : 添加`in progress`\n    - `intend to solve` : 添加`in progress`，并移除`intend to solve`\n    - `feature request` : 添加`in progress`/`feature`，并移除`feature request`\n    - `bug report` : 首先先确认BUG是存在的：\n        - 复现条件不足：请添加`need repro`标签\n        - 确认不是BUG：关闭Issue\n        - 可被复现：添加`bug confirmed`/`in progress`/`fix`，并移除`bug report`。若你只想确认这个BUG不想修复，也可以不添加`in progress`/`fix`。\n\n完成上面的操作后，你需要创建一个新的分支来处理Issue。\n\n> 注意：目前新增功能、优化代码、更新逻辑等处理都被认为是`feature`。\n\n### 新建分支\n\n在你的本地项目中切换到`dev`分支：`git checkout dev`，然后执行`git pull`确保代码库是最新的。\n\n接下来为要处理的Issue新建一个名为`issue-[Issue ID]`的分支，其中`[Issue ID]`替换成Git上的Issue ID，你可以在下面的地方找到：\n\n<img src=\"http://h0.hucdn.com/open/201743/9498878cf00b0e68_922x180.png\" width=\"300\" alt=\"\">\n\n注意不需要加上`#`，比如上图中的Issue你需要执行：`git checkout -b issue-1`。\n\n接下来就可以正式编码了。\n\n### 提交代码\n\n当你完成改动后，使用`git add`和`git commit`命令提交你的改动，请在提交前确保处在正确的分支上。\n\n`git commit`的信息请确保是可以描述你改动的一句话，避免使用无意义的提交信息，比如：`update`等。\n\n### Pull Request\n\n当你完成了所有的编码工作，前往：`https://github.com/EarlyH/morning-ui/pulls`，点击`New pull request`：\n\n<img src=\"http://h0.hucdn.com/open/201743/7e973819a866761f_2010x240.png\" alt=\"\" width=\"700\">\n\n\n\n\n### 合入主开发分支\n\n\n\n### 版本发布\n\n\n当一个版本中的所有功能都完成，会将此分支合并到master，并打上tag发布。\n当你需要根据某个issue开发时，需要切换到此分支。\n\n\n")])])
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-71a8c82a", esExports)
+  }
+}
+
+/***/ }),
+
 /***/ 7:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2433,62 +2545,6 @@ module.exports = exports['default'];
 
 // removed by extract-text-webpack-plugin
 
-/***/ }),
-
-/***/ 93:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(188);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_71a8c82a_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(596);
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(340)
-}
-var normalizeComponent = __webpack_require__(0)
-/* script */
-
-/* template */
-
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_71a8c82a_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__["a" /* default */],
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "src/docs/pages/guide/commitcode/index.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] index.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-71a8c82a", Component.options)
-  } else {
-    hotAPI.reload("data-v-71a8c82a", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
-
-
 /***/ })
 
-},[265]);
+},[280]);
