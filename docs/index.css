@@ -16,6 +16,25 @@
 .markdown-body h5 {
   font-size: 1em !important;
 }
+.markdown-body .demo-area {
+  border: 3px #e6e6e6 dashed;
+  padding: 40px 10px 10px 10px;
+  position: relative;
+  margin-bottom: 16px;
+}
+.markdown-body .demo-title {
+  position: absolute;
+  padding: 0 20px;
+  right: 0;
+  top: 0;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  font-size: 20px;
+  margin: 0;
+  display: inline-block;
+  background: #f0f0f0;
+}
 .markdown-body i-ul h3 {
   margin: 0;
   line-height: initial;

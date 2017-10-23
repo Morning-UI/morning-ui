@@ -8,15 +8,15 @@
     
     <doc-component-status page="uppercase"></doc-component-status>
 
-    [[[基础]]]
+    [[[开始]]]
 
     #### 使用
 
     大写文本组件，这是一个内联元素。
     
-    ````html
+    :::democode/html
     <div><ui-uppercase>大写的英文文本: tHere is A LEtter</ui-uppercase></div>
-    ````
+    :::
 
     [[[声明]]]
 
@@ -29,7 +29,7 @@
     |状态|不支持|-|
 
 
-    [[[单元测试]]]
+    [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/uppercase/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>

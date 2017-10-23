@@ -8,43 +8,43 @@
     
     <doc-component-status page="header"></doc-component-status>
 
-    [[[基础]]]
+    [[[开始]]]
 
     定义一个页头，常用在容器内部，这是一个块级元素。
 
     #### 使用
 
-    ````html
+    :::democode/html
     <ui-header>
         页头标题
     </ui-header>
-    ````
+    :::
 
     #### 子标题
 
     你可以使用`<small>`标记子标题。
 
-    ````html
+    :::democode/html
     <ui-header>
         页头标题<small>页头子标题</small>
     </ui-header>
-    ````
+    :::
 
     #### 带标记的页头
 
-    ````html
+    :::democode/html
     <ui-header class="mark">
         页头标题<small>页头子标题</small>
     </ui-header>
-    ````
+    :::
 
     #### 带下划线的页头
 
-    ````html
+    :::democode/html
     <ui-header class="underline">
         页头标题<small>页头子标题</small>
     </ui-header>
-    ````
+    :::
 
     [[[声明]]]
 
@@ -57,25 +57,27 @@
     |状态|不支持|-|
 
     #### 尺寸
-
-    ````html
-    @size
+    
+    :::repeat/html
+    size
+    ---
     <ui-header class="mark" {$sizeKey}>{$&sizeName}<small>页头子标题</small></ui-header>
-    ````
+    :::
 
     #### 色彩
 
-    ````html
-    @color:theme
-    @color:feature
-    @color:black
-    @color:blue
-    @color:silver
-    @color:gray
+    :::repeat/html
+    color:theme
+    color:feature
+    color:black
+    color:blue
+    color:silver
+    color:gray
+    ---
     <ui-header {$colorKey}>{$&colorName}<small>页头子标题</small></ui-header>
-    ````
+    :::
 
-    [[[单元测试]]]
+    [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/header/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>

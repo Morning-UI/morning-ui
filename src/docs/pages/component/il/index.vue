@@ -8,19 +8,19 @@
     
     <doc-component-status page="il"></doc-component-status>
 
-    [[[基础]]]
+    [[[开始]]]
 
     定义一个内联列表，不支持嵌套，列表中每一项使用`<li>`标签。
 
     #### 使用
     
-    ````html
+    :::democode/html
     <ui-il>
         <li>This is first</li>
         <li>This is second</li>
         <li>This is third</li>
     </ui-il>
-    ````
+    :::
 
     [[[声明]]]
 
@@ -33,16 +33,17 @@
     |状态|`normal`<br/>`apparent`|`normal`|
 
     #### 状态    
-
-    ````html
-    @state:normal,apparent
+    
+    :::repeat/html
+    state:normal,apparent
+    ---
     <ui-il {$stateKey}>
         <li>this is {$&stateName} ui-il</li>
         <li>this is {$&stateName} ui-il</li>
     </ui-il>
-    ````
+    :::
 
-    [[[单元测试]]]
+    [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/il/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>

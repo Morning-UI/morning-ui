@@ -8,15 +8,15 @@
     
     <doc-component-status page="capitalize"></doc-component-status>
 
-    [[[基础]]]
+    [[[开始]]]
 
     #### 使用
 
     首字大写文本组件，这是一个内联元素。
     
-    ````html
+    :::democode/html
     <div><ui-capitalize>首字母大写的文本: tHere is A LEtter</ui-capitalize></div>
-    ````
+    :::
 
     [[[声明]]]
 
@@ -29,7 +29,7 @@
     |状态|不支持|-|
 
 
-    [[[单元测试]]]
+    [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/capitalize/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>

@@ -8,15 +8,15 @@
     
     <doc-component-status page="quote"></doc-component-status>
 
-    [[[基础]]]
+    [[[开始]]]
 
     #### 使用
 
     定义一段引用的内容，这是一个块级元素。
     
-    ````html
+    :::democode/html
     <ui-quote>引用文本</ui-quote>
-    ````
+    :::
 
     [[[声明]]]
 
@@ -30,18 +30,19 @@
 
     #### 色彩
 
-    ````html
-    @color:theme
-    @color:feature
-    @color:black
-    @color:blue
-    @color:silver
-    @color:gray
+    :::repeat/html
+    color:theme
+    color:feature
+    color:black
+    color:blue
+    color:silver
+    color:gray
+    ---
     <ui-quote {$colorKey}>{$&colorName}</ui-quote>
     <br>
-    ````
+    :::
 
-    [[[单元测试]]]
+    [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/quote/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>

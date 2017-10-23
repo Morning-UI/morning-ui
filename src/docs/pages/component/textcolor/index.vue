@@ -8,15 +8,15 @@
     
     <doc-component-status page="textcolor"></doc-component-status>
 
-    [[[基础]]]
+    [[[开始]]]
 
     定义文本的颜色，这是一个内联元素。
 
     #### 使用
 
-    ````html
+    :::democode/html
     <ui-textcolor>This is ui-textcolor</ui-textcolor>
-    ````
+    :::
 
     [[[声明]]]
 
@@ -30,17 +30,13 @@
 
     #### 色彩
 
-    ````html
-    @color:theme
-    @color:feature
-    @color:black
-    @color:blue
-    @color:silver
-    @color:gray
-    <ui-textcolor {$colorKey}>{$&colorName}</ui-textcolor>
-    ````
+    :::preset/html
+    statementColor
+    ---
+    uikey:textcolor
+    :::
 
-    [[[单元测试]]]
+    [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/textcolor/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>

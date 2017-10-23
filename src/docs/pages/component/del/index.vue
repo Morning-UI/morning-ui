@@ -8,15 +8,15 @@
     
     <doc-component-status page="del"></doc-component-status>
 
-    [[[基础]]]
+    [[[开始]]]
 
     #### 使用
 
     将一段内容标记为废弃的，这是内联元素。
     
-    ````html
+    :::democode/html
     <ui-del>中心内容</ui-del>
-    ````
+    :::
 
     [[[声明]]]
 
@@ -29,7 +29,7 @@
     |状态|不支持|-|
 
 
-    [[[单元测试]]]
+    [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/del/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>

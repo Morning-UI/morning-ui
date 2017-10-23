@@ -8,7 +8,7 @@
     
     <doc-component-status page="dl"></doc-component-status>
 
-    [[[基础]]]
+    [[[开始]]]
 
     定义一个描述列表，不支持嵌套，列表中每一项包含两个标签`<dt>`和`<dd>`。
 
@@ -18,36 +18,36 @@
 
     #### 使用
     
-    ````html
+    :::democode/html
     <ui-dl>
         <dt>Foo</dt>
         <dd>this is detail of foo</dd>
         <dt>Bar</dt>
         <dd>this is detail of bar</dd>
     </ui-dl>
-    ````
+    :::
 
     #### 水平排列布局
 
-    ````html
+    :::democode/html
     <ui-dl class="horizontal">
         <dt>Horizon</dt>
         <dd>this is horizontal ui-dl</dd>
         <dt>Horizon</dt>
         <dd>this is horizontal ui-dl</dd>
     </ui-dl>
-    ````
+    :::
 
     #### 下划线布局
 
-    ````html
+    :::democode/html
     <ui-dl class="underline">
         <dt>Horizon</dt>
         <dd>this is horizontal ui-dl</dd>
         <dt>Horizon</dt>
         <dd>this is horizontal ui-dl</dd>
     </ui-dl>
-    ````
+    :::
 
     [[[声明]]]
 
@@ -61,8 +61,9 @@
 
     #### 状态
     
-    ````html
-    @state:normal,apparent
+    :::repeat/html
+    state:normal,apparent
+    ---
     <ui-dl {$stateKey}>
         <dt>{$&stateName}</dt>
         <dd>this is normal ui-dl</dd>
@@ -70,9 +71,9 @@
         <dd>this is normal ui-dl</dd>
     </ui-dl>
     <br>
-    ````
+    :::
 
-    [[[单元测试]]]
+    [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/dl/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>

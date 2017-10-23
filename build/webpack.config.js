@@ -277,7 +277,7 @@ docsConfig = {
         'doc-common' : [
             'underscore',
             'highlight.js',
-            'marked',
+            'markdown-it',
             'mustache',
             'extend',
             'Docs/common/menu.js'

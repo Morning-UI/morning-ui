@@ -8,15 +8,15 @@
     
     <doc-component-status page="strong"></doc-component-status>
 
-    [[[基础]]]
+    [[[开始]]]
 
     #### 使用
 
     标记一段着重内容，这是一个内联元素。
     
-    ````html
+    :::democode/html
     <ui-strong>着重文本</ui-strong>
-    ````
+    :::
 
     [[[声明]]]
 
@@ -29,7 +29,7 @@
     |状态|不支持|-|
 
 
-    [[[单元测试]]]
+    [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/strong/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>

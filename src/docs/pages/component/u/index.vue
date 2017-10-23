@@ -8,15 +8,15 @@
     
     <doc-component-status page="u"></doc-component-status>
 
-    [[[基础]]]
+    [[[开始]]]
 
     #### 使用
 
     定义一段带下划线的内容，这是一个内联元素。
     
-    ````html
+    :::democode/html
     <ui-u>带下划线的文本</ui-u>
-    ````
+    :::
 
     [[[声明]]]
 
@@ -29,7 +29,7 @@
     |状态|不支持|-|
 
 
-    [[[单元测试]]]
+    [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/u/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>

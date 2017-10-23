@@ -8,34 +8,34 @@
     
     <doc-component-status page="card"></doc-component-status>
 
-    [[[基础]]]
+    [[[开始]]]
 
     定义一张卡片，卡片包含头部和主体部分。
 
     #### 使用
 
-    ````html
+    :::democode/html
     <div style="width:180px;height:240px;">
         <ui-card>卡片</ui-card>
     </div>
-    ````
+    :::
 
     #### 带头部的卡片
 
-    ````html
+    :::democode/html
     <div style="width:180px;height:240px;">
         <ui-card>
             <header>头部</header>
             <div>卡片</div>
         </ui-card>
     </div>
-    ````
+    :::
 
     #### 无间隙卡片
 
     卡片内容部分默认具有间隙，可以通过full类来去除间隙。
 
-    ````html
+    :::democode/html
     <div style="width:180px;height:240px;display:inline-block;margin:10px;vertical-align: top;">
         <ui-card class="full">卡片</ui-card>
     </div>
@@ -46,7 +46,7 @@
             <div>卡片</div>
         </ui-card>
     </div>
-    ````
+    :::
 
     [[[声明]]]
 
@@ -60,22 +60,23 @@
 
     #### 色彩
 
-    ````html
-    @color:theme
-    @color:feature
-    @color:black
-    @color:blue
-    @color:silver
-    @color:gray
+    :::repeat/html
+    color:theme 
+    color:feature
+    color:black
+    color:blue
+    color:silver
+    color:gray
+    ---
     <div style="width:180px;height:240px;display:inline-block;margin:10px;">
         <ui-card {$colorKey}>
             <header>{$&colorName}</header>
             <div>卡片</div>
         </ui-card>
     </div>
-    ````
+    :::
 
-    [[[单元测试]]]
+    [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/card/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>

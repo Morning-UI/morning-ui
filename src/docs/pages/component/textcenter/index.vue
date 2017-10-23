@@ -8,15 +8,15 @@
     
     <doc-component-status page="textcenter"></doc-component-status>
 
-    [[[基础]]]
+    [[[开始]]]
 
     #### 使用
 
     内容居中对齐组件，这是一个块级元素。
     
-    ````html
+    :::democode/html
     <ui-textcenter>居中的文本</ui-textcenter>
-    ````
+    :::
 
     [[[声明]]]
 
@@ -29,7 +29,7 @@
     |状态|不支持|-|
 
 
-    [[[单元测试]]]
+    [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/textcenter/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>

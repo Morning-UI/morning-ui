@@ -8,7 +8,7 @@
     
     <doc-component-status page="em"></doc-component-status>
 
-    [[[基础]]]
+    [[[开始]]]
 
     定义一个按钮组，按钮组可以通过特定的HTML结构格式化按钮。
 
@@ -16,40 +16,40 @@
 
     #### 使用
     
-    ````html
+    :::democode/html
      <ui-btngroup>
         <ui-btn>按钮一</ui-btn>
         <ui-btn>按钮二</ui-btn>
         <ui-btn>按钮三</ui-btn>
         <ui-btn>按钮四</ui-btn>
     </ui-btngroup>
-    ````
+    :::
 
     #### 水平排列示例
 
-    ````html
+    :::democode/html
     <ui-btngroup class="horizontal">
         <ui-btn>按钮一</ui-btn>
         <ui-btn>按钮二</ui-btn>
         <ui-btn>按钮三</ui-btn>
         <ui-btn>按钮四</ui-btn>
     </ui-btngroup>
-    ````
+    :::
 
     #### 垂直排列示例
 
-    ````html
+    :::democode/html
     <ui-btngroup class="vertical">
         <ui-btn>按钮一</ui-btn>
         <ui-btn>按钮二</ui-btn>
         <ui-btn>按钮三</ui-btn>
         <ui-btn>按钮四</ui-btn>
     </ui-btngroup>
-    ````
+    :::
 
     #### 无间隔按钮组
 
-    ````html
+    :::democode/html
     <ui-btngroup class="nogap">
         <ui-btn success>确认</ui-btn>
         <ui-btn minor>取消</ui-btn>
@@ -61,13 +61,13 @@
         <ui-btn success>确认</ui-btn>
         <ui-btn minor>取消</ui-btn>
     </ui-btngroup>
-    ````
+    :::
 
     #### 分隔按钮组
 
     按钮之间可以插入文本分隔。
 
-    ````html
+    :::democode/html
     <ui-btngroup class="split">
         <ui-btn success>确认</ui-btn>
         <span>或</span>
@@ -83,7 +83,7 @@
         <span>或</span>
         <ui-btn info>热门选择</ui-btn>
     </ui-btngroup>
-    ````
+    :::
 
     [[[声明]]]
 
@@ -101,7 +101,7 @@
 
     #### 组合不同的声明
 
-    ````html
+    :::democode/html
     <p>不同尺寸组合</p>
     <ui-btngroup>
         <ui-btn l>按钮一</ui-btn>
@@ -130,50 +130,53 @@
         <ui-btn normal>按钮一</ui-btn>
         <ui-btn loading>按钮二</ui-btn>
     </ui-btngroup>
-    ````
+    :::
 
     #### `ui-btn`尺寸
-
-    ````html
-    @size
+    
+    :::repeat/html
+    size
+    ---
     <ui-btngroup>
         <ui-btn {$sizeKey}>{$&sizeName}</ui-btn>
         <ui-btn {$sizeKey}>{$&sizeName}</ui-btn>
     </ui-btngroup>
 
     <br><br>
-    ````
+    :::
 
     #### `ui-btn`色彩
 
-    ````html
-    @color:theme
-    @color:feature
-    @color:black
-    @color:blue
-    @color:silver
-    @color:gray
+    :::repeat/html
+    color:theme
+    color:feature
+    color:black
+    color:blue
+    color:silver
+    color:gray
+    ---
     <ui-btngroup>
         <ui-btn {$colorKey}>{$&colorName}</ui-btn>
         <ui-btn {$colorKey}>{$&colorName}</ui-btn>
     </ui-btngroup>
 
     <br><br>
-    ````
+    :::
 
     #### `ui-btn`状态
     
-    ````html
-    @state
+    :::repeat/html
+    state
+    ---
     <ui-btngroup>
         <ui-btn {$stateKey}>{$&stateName}</ui-btn>
         <ui-btn {$stateKey}>{$&stateName}</ui-btn>
     </ui-btngroup>
 
     <br><br>
-    ````
+    :::
 
-    [[[单元测试]]]
+    [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/em/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>

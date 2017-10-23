@@ -3568,9 +3568,12 @@ exports.default = _form2.default.extend({
 
                 var $input = this.$el.querySelector('input');
 
-                this.data.focus = true;
-                $input.focus();
-                this.$emit('inputFocus');
+                if ($input) {
+
+                    this.data.focus = true;
+                    $input.focus();
+                    this.$emit('inputFocus');
+                }
             }
         },
         _blurInput: function _blurInput() {
@@ -6373,6 +6376,11 @@ var _components2 = _interopRequireDefault(_components);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+if (typeof _vue2.default === 'undefined') {
+
+    throw new Error('can\'t find Vue.js, import Vue.js first please.');
+}
+
 // UMD : https://github.com/umdjs/umd/blob/master/templates/amdWebGlobal.js
 (function (root, factory) {
 
@@ -6403,6 +6411,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
         _selectClickListener: [],
         _groupData: {},
         _groupVmMap: {},
+        isMorning: true,
         version: '0.10.0',
         map: {},
         findVM: function findVM(ref) {

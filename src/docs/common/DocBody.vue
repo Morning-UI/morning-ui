@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import marked                       from 'marked';
+import MarkdownIt                   from 'markdown-it';
 import extend                       from 'extend';
 import Mustache                     from 'mustache';
 import _                            from 'underscore';
@@ -31,402 +31,11 @@ import DocComponentStatus           from 'Docs/common/DocComponentStatus.vue';
 const randomRangeMin = 1e3;
 const randomRangeMax = 9e3;
 
-window.Vue.component('doc-component-status', DocComponentStatus);
+const markdown = new MarkdownIt({
+    html : true
+});
 
 let evals = [];
-
-let imports = {
-    formStatement : `
-#### 支持
-
-|类型|支持|默认|
-|-|-|-|
-|尺寸|不支持|-|
-|色彩|不支持|-|
-|状态|\`normal\`<br/>\`disabled\`|\`normal\`|
-
-
-#### 状态
-
-\`\`\`\`html
-@state:normal,disabled
-<div style="width:300px;">
-    <ui-{$uikey} {$stateKey} :default-value="{$&statementDefaultValue}" form-name="{$&stateName}" {$&statementMoreAttr}>{$&statementSlot}</ui-{$uikey}>
-</div>
-<br>
-\`\`\`\`
-`,
-    formStatementWithStyle : `
-#### 支持
-
-|类型|支持|默认|
-|-|-|-|
-|尺寸|不支持|-|
-|色彩|全部|\`theme\`|
-|状态|\`normal\`<br/>\`disabled\`|\`normal\`|
-
-
-#### 色彩
-
-\`\`\`\`html
-@color:theme
-@color:feature
-@color:black
-@color:blue
-@color:silver
-@color:gray
-<div style="width:300px;">
-    <ui-{$uikey} {$colorKey} :default-value="{$&statementDefaultValue}" form-name="{$&colorName}" {$&statementMoreAttr}>{$&statementSlot}</ui-{$uikey}>
-</div>
-<br>
-\`\`\`\`
-
-#### 状态
-
-\`\`\`\`html
-@state:normal,disabled
-<div style="width:300px;">
-    <ui-{$uikey} {$stateKey} :default-value="{$&statementDefaultValue}" form-name="{$&stateName}" {$&statementMoreAttr}>{$&statementSlot}</ui-{$uikey}>
-</div>
-<br>
-\`\`\`\`
-`,
-    formConfigDemo : `
-#### form-name
-
-\`\`\`\`html
-@formConfig
-<div style="width:300px;">
-    <ui-{$uikey} form-name="{$formName}" {$&configMoreAttr}>{$&configSlot}</ui-{$uikey}>
-</div>
-\`\`\`\`
-
-#### form-key
-
-\`\`\`\`html
-@formConfig
-<div style="width:300px;">
-    <ui-{$uikey} form-name="{$formName}" form-key="{$formKey}" {$&configMoreAttr}>{$&configSlot}</ui-{$uikey}>
-</div>
-\`\`\`\`
-
-#### group
-
-设置单个组：
-
-\`\`\`\`html
-@formConfig
-<div style="width:300px;">
-    <!-- 设置单个组 -->
-    <ui-{$uikey} form-name="{$formName}" form-key="{$formKey}" group="{$formGroupOne}" {$&configMoreAttr}>{$&configSlot}</ui-{$uikey}>
-</div>
-\`\`\`\`
-
-设置多个组：
-
-\`\`\`\`vue
-@use:html.demoGroup,js.demoGroup|@formConfig
-\`\`\`\`
-
-\`\`\`\`html
-@var:demoGroup
-<div style="width:300px;">
-    <!-- 设置多个组 -->
-    <ui-{$uikey} form-name="{$formName}" form-key="{$formKey}" :group="group" {$&configMoreAttr}>{$&configSlot}</ui-{$uikey}>
-</div>
-\`\`\`\`
-
-\`\`\`\`js
-@var:demoGroup
-new Vue({
-    el : '{$el}',
-    template : '{$template}',
-    data : {
-        group : ['group1', 'group2', 'group3']
-    }
-});
-\`\`\`\`
-
-#### default-value
-
-\`\`\`\`html
-@formConfig
-<div style="width:300px;">
-    <ui-{$uikey} form-name="{$formName}" :default-value="{$&configDefaultValue}" {$&configMoreAttr}>{$&configSlot}</ui-{$uikey}>
-</div>
-\`\`\`\`
-
-#### hide-name
-
-隐藏后表单默认位置的名字不会显示，可以在其他地方设置表单名。
-
-\`\`\`\`html
-@formConfig
-<div style="width:300px;">
-    <p>{$formName}</p>
-    <ui-{$uikey} form-name="{$formName}" hide-name {$&configMoreAttr}>{$&configSlot}</ui-{$uikey}>
-</div>
-\`\`\`\`
-    `,
-    formConfigTable : `
-|form-name|表单的名称（用于显示）|任意字符串|String|\`undefined\`|
-|form-key|表单的Key（用于逻辑中作为识别标示）|任意字符串(唯一)|String|\`undefined\`|
-|group|表单组，用于将多个表单的数值添加到同一个对象中。一个表单可以同时属于多个组|若是字符串，则将表单添加到单个组<br>若是数组，则将表单添加到多个组|String<br/>Array|\`[]\`|
-|default-value|表单的默认值|任意(接受表单原始数值，也接受JSON序列化后的表单数值，若数值是JSON序列化的会自动转换成原始数值)|Any|\`undefined\`|
-|hide-name|隐藏表单名|\`true\`<br>\`false\`|Boolean|\`false\`|`,
-    formMethod : `
-#### set([value])
-
-设置表单的值。
-
-|KEY|可选|描述|接受值|值类型|默认值|
-|-|-|-|-|-|-|
-|value|YES|需要设置表单的值，如果需要清空表单的值，可以不传此参数。|接受任何数值。<br/>\`undefined\`:清空表单的值<br>原始值:表单的原始值，根据表单不同可以是字符串、对象、数组等<br>JSON数值:表单原始值JSON序列化后的值，传入后表单会自动解析并还原原始值。|Any|\`undefined\`|
-
-\`\`\`\`html
-@origin
-<div style="width:300px;">
-    <ui-{$uikey} ref="demoMethodSet" form-name="表单名" {$&methodMoreAttr}>{$&methodSlot}</ui-{$uikey}>
-    <br>
-    <ui-link js="window.morning.findVM('demoMethodSet').set({$&methodValue})">设置值</ui-link>
-    <ui-link js="window.morning.findVM('demoMethodSet').set()">移除值</ui-link>
-</div>
-\`\`\`\`
-
-#### get([json])
-
-获取表单的值。
-
-|KEY|可选|描述|接受值|值类型|默认值|
-|-|-|-|-|-|-|
-|json|YES|表单的值是否需要JSON序列化后返回，若你需要和其他程序进行数据交互，使用JSON是一种较好的方法。|\`true\`<br>\`false\`|Boolean|\`true\`|
-
-\`\`\`\`html
-@origin
-<div style="width:300px;">
-    <ui-{$uikey} ref="demoMethodGet" form-name="表单名" :default-value="{$&methodDefaultValue}" {$&methodMoreAttr}>{$&methodSlot}</ui-{$uikey}>
-    <br>
-    <ui-link js="alert(window.morning.findVM('demoMethodGet').get(false))">获取表单原始值</ui-link>
-    <ui-link js="alert(window.morning.findVM('demoMethodGet').get())">获取表单JSON值</ui-link>
-</div>
-\`\`\`\`
-
-#### setName([name])
-
-设置表单的名称。
-
-|KEY|可选|描述|接受值|值类型|默认值|
-|-|-|-|-|-|-|
-|name|YES|需要设置表单的名称，如果需要清空表单的名称，可以不传此参数。|任意字符串|String|\`undefined\`|
-
-\`\`\`\`html
-@origin
-<div style="width:300px;">
-    <ui-{$uikey} ref="demoMethodSetName" form-name="姓名" {$&methodMoreAttr}>{$&methodSlot}</ui-{$uikey}>
-    <br>
-    <ui-link js="alert(window.morning.findVM('demoMethodSetName').getName())">获取表单名称</ui-link>
-    <ui-link js="window.morning.findVM('demoMethodSetName').setName('年龄')">设置表单名称</ui-link>
-    <ui-link js="window.morning.findVM('demoMethodSetName').setName()">移除表单名称</ui-link>
-</div>
-\`\`\`\`
-
-#### getName()
-
-获取表单的名称。
-
-\`\`\`\`html
-@origin
-<div style="width:300px;">
-    <ui-{$uikey} ref="demoMethodGetName" form-name="姓名" {$&methodMoreAttr}>{$&methodSlot}</ui-{$uikey}>
-    <br>
-    <ui-link js="alert(window.morning.findVM('demoMethodGetName').getName())">获取表单名称</ui-link>
-</div>
-\`\`\`\`
-
-#### setKey([key])
-
-设置表单的KEY。
-
-|KEY|可选|描述|接受值|值类型|默认值|
-|-|-|-|-|-|-|
-|key|YES|需要设置表单的KEY，如果需要清空表单的KEY，可以不传此参数。|任意字符串|String|\`undefined\`|
-
-\`\`\`\`html
-@origin
-<div style="width:300px;">
-    <ui-{$uikey} ref="demoMethodSetKey" form-name="表单名" form-key="name" {$&methodMoreAttr}>{$&methodSlot}</ui-{$uikey}>
-    <br>
-    <ui-link js="alert(window.morning.findVM('demoMethodSetKey').getKey())">获取表单KEY</ui-link>
-    <ui-link js="window.morning.findVM('demoMethodSetKey').setKey('age')">设置表单KEY</ui-link>
-    <ui-link js="window.morning.findVM('demoMethodSetKey').setKey()">移除表单KEY</ui-link>
-</div>
-\`\`\`\`
-
-#### getKey()
-
-获取表单的KEY。
-
-\`\`\`\`html
-@origin
-<div style="width:300px;">
-    <ui-{$uikey} ref="demoMethodGetKey" form-name="表单名" form-key="name" {$&methodMoreAttr}>{$&methodSlot}</ui-{$uikey}>
-    <br>
-    <ui-link js="alert(window.morning.findVM('demoMethodGetKey').getKey())">获取表单KEY</ui-link>
-</div>
-\`\`\`\`
-
-#### setGroup([groups])
-
-设置表单所属的表单组。
-
-|KEY|可选|描述|接受值|值类型|默认值|
-|-|-|-|-|-|-|
-|groups|YES|需要设置的表单组。如果需要清空所有表单组，可以不传此参数。|\`undefined\`:清空所有表单组<br>String:设置一个表单组<br>Array:设置多个表单组。|String<br>Array<br>Undefined|\`undefined\`|
-
-\`\`\`\`html
-@origin
-<div style="width:300px;">
-    <!-- 设置多个组 -->
-    <ui-{$uikey} ref="demoMethodSetGroup" form-name="表单名" form-key="name" {$&methodMoreAttr}>{$&methodSlot}</ui-{$uikey}>
-    <br>
-    <ui-link js="alert(JSON.stringify(window.morning.findVM('demoMethodSetGroup').getGroup()))">获取表单组</ui-link>
-    <ui-link js="window.morning.findVM('demoMethodSetGroup').setGroup('group1')">设置单个表单组</ui-link>
-    <ui-link js="window.morning.findVM('demoMethodSetGroup').setGroup(['group1', 'group2'])">设置多个表单组</ui-link>
-    <ui-link js="window.morning.findVM('demoMethodSetGroup').setGroup()">移除所有表单组</ui-link>
-</div>
-\`\`\`\`
-
-#### getGroup()
-
-获取表单所属的表单组。
-
-\`\`\`\`html
-@origin
-<div style="width:300px;">
-    <!-- 设置多个组 -->
-    <ui-{$uikey} ref="demoMethodGetGroup" form-name="表单名" form-key="name" group="group1" {$&methodMoreAttr}>{$&methodSlot}</ui-{$uikey}>
-    <br>
-    <ui-link js="alert(JSON.stringify(window.morning.findVM('demoMethodGetGroup').getGroup()))">获取表单组</ui-link>
-</div>
-\`\`\`\`
-
-#### addGroup(group)
-
-添加一个指定的表单组。
-
-|KEY|可选|描述|接受值|值类型|默认值|
-|-|-|-|-|-|-|
-|group|NO|添加表单组的KEY|表单组的KEY|String|\`undefined\`|
-
-\`\`\`\`html
-@origin
-<div style="width:300px;">
-    <!-- 设置多个组 -->
-    <ui-{$uikey} ref="demoMethodAddGroup" form-name="表单名" form-key="name" {$&methodMoreAttr}>{$&methodSlot}</ui-{$uikey}>
-    <br>
-    <ui-link js="alert(JSON.stringify(window.morning.findVM('demoMethodAddGroup').getGroup()))">获取表单组</ui-link>
-    <ui-link js="window.morning.findVM('demoMethodAddGroup').addGroup('group1')">添加表单组</ui-link>
-</div>
-\`\`\`\`
-
-#### removeGroup(group)
-
-移除一个指定的表单组。
-
-|KEY|可选|描述|接受值|值类型|默认值|
-|-|-|-|-|-|-|
-|group|NO|移除表单组的KEY|表单组的KEY|String|\`undefined\`|
-
-\`\`\`\`html
-@origin
-<div style="width:300px;">
-    <!-- 设置多个组 -->
-    <ui-{$uikey} ref="demoMethodRemoveGroup" form-name="表单名" form-key="name" group="group1" {$&methodMoreAttr}>{$&methodSlot}</ui-{$uikey}>
-    <br>
-    <ui-link js="alert(JSON.stringify(window.morning.findVM('demoMethodRemoveGroup').getGroup()))">获取表单组</ui-link>
-    <ui-link js="window.morning.findVM('demoMethodRemoveGroup').removeGroup('group1')">移除表单组</ui-link>
-</div>
-\`\`\`\`
-    `,
-    formEvent : `
-#### valueChange
-
-当表单值变化时触发。
-
-\`\`\`\`vue
-@use:html.demoValueChange,js.demoValueChange
-\`\`\`\`
-
-\`\`\`\`html
-@var:demoValueChange
-<div style="width:300px;">
-    <ui-{$uikey} ref="demoValueChange" form-name="表单名" @valueChange="echo" {$&eventMoreAttr}>{$&eventSlot}</ui-{$uikey}>
-    <br>
-    <ui-link js="window.morning.findVM('demoValueChange').set({$&eventValue})">触发valueChange事件</ui-link>
-</div>
-\`\`\`\`
-
-\`\`\`\`js
-@var:demoValueChange
-new Vue({
-    el : '{$el}',
-    template : '{$template}',
-    methods : {
-        echo : function () {
-            console.log('demoValueChange.console1', 'valueChange event!');
-        }
-    }
-});
-\`\`\`\`
-
-#### 生命周期事件
-
-\`\`\`\`vue
-@use:html.demoEventLifecycle,js.demoEventLifecycle
-\`\`\`\`
-
-\`\`\`\`html
-@var:demoEventLifecycle
-<div style="width:300px;">
-    <ui-{$uikey}
-        ref="demoEventLifecycle"
-        form-name="表单名"
-        v-show="show"
-        @created="echo('created')"
-        @mounted="echo('mounted')"
-        @beforeUpdate="echo('beforeUpdate')"
-        @updated="echo('updated')"
-        @beforeDestroy="echo('beforeDestroy')"
-        @destroyed="echo('destroyed')"
-        {$&eventMoreAttr}
-    >{$&eventSlot}<span style="display:none;">{%text%}</span></ui-{$uikey}>
-
-    <br><br>
-
-    <ui-link js="javascript:window.demoEventLifecycle.text='生命周期事件';">触发update</ui-link>
-    <ui-link js="javascript:morning.findVM('demoEventLifecycle').$destroy();">触发destroy</ui-link>
-</div>
-\`\`\`\`
-
-\`\`\`\`js
-@var:demoEventLifecycle
-window.demoEventLifecycle = new Vue({
-    el : '{$el}',
-    template : '{$template}',
-    data : function () {
-        return {
-           text : '按钮',
-           show : true
-        };
-    },
-    methods : {
-        echo : function (name) {
-            console.log('demoEventLifecycle.console1', name + ' event!');
-        }
-    }
-});
-\`\`\`\``
-};
 
 let data = {
     size : [
@@ -684,187 +293,48 @@ let data = {
     }
 };
 
-let parser = (text, el) => {
+let repeater = {
+    size : _opt => {
 
-    let patt = /````(html|js|css|vue|)((\n[\t ]*[\@a-zA-Z0-9\:\.\,\|]+)*)\n((.|\n)*?)(\n)*([ \t]*)````/g;
-    let varpatt = /````(html|js|css)\n(\@var\:([a-zA-Z0-9]+))\n((.|\n)+?)\n([ \t]*)````/g;
-    let importpatt = /````(import)((\n[\t ]*[a-zA-Z0-9@'"[\]?<>/\-_{}=:.,|!()\u4e00-\u9fa5 ]+)*)\n((.|\n)*?)(\n)*([ \t]*)````/g;
-    let result;
-    let vars = {
-        js : {},
-        html : {}
-    };
-    let blocks = [];
-    let vueContext = {};
+        _opt.content = `{$#size}${_opt.content}{$/size}`;
+        _opt.context = extend(true, _opt.context, {
+            size : data.size
+        });
 
-    while ((result = importpatt.exec(text)) !== null) {
-
-        let rdata = result[2].replace(/^\n/, '').split('\n');
-        let id = rdata[0].split(':')[1];
-
-        rdata.shift();
-
-        for (let item of rdata) {
-
-            let name = item.split(':')[0].replace(/^@/, '');
-            let valuelist = item.split(':');
-
-            valuelist.shift();
-
-            let value = valuelist.join(':');
-
-            vueContext[name] = value;
-
-        }
-
-        let content = imports[id];
-
-        text = text.slice(0, result.index - 1) + content + text.slice(result.index + result[0].length, text.length);
-        importpatt.lastIndex = 0;
-
-    }
-
-    while ((result = varpatt.exec(text)) !== null) {
-
-        vars[result[1]][result[3]] = result[4];
-        text = text.slice(0, result.index - 1) + text.slice(result.index + result[0].length, text.length);
-
-        varpatt.lastIndex = 0;
-
-    }
-
-    while ((result = patt.exec(text)) !== null) {
-
-        let content = result[4];
-        let helpers = result[2].split('\n');
-
-        helpers.shift();
-        
-        let block = {
-            content,
-            type : result[1],
-            result,
-            context : vueContext,
-            helpers : []
-        };
-
-        for(let name of helpers) {
-
-            let list = name.split('|');
-            let group = [];
-
-            for (let help of list) {
-
-                let fn = help.split(':')[0].replace(/^\@/, '');
-                let param = help.split(':')[1];
-
-                group.push({
-                    fn,
-                    param
-                });
-
-            }
-
-            block.helpers.push(group);
-
-        }
-
-        blocks.push(block);
-
-    }
-
-    return {
-        vars,
-        blocks,
-        text
-    };
-
-};
-
-let helpers = {
-    import : opt => {
-
-        let name = opt.param.split(',');
-
-        opt.content = window.$(`script#${name[0]}`);
-        opt.context = {
-            uiname : name[1]
-        };
-
-        return opt;
+        return _opt;
 
     },
-    origin : opt => {
+    color : _opt => {
 
-        return opt;
+        let color = _opt.param;
 
-    },
-    render : opt => {
-
-        opt.isText = true;
-
-        return opt;
-
-    },
-    size : opt => {
-
-        if (typeof opt.content === 'string') {
-
-            opt.content = `{$#size}${opt.content}\n{$/size}`;
-
-        } else if (typeof opt.content === 'object') {
-
-            for (let key in opt.content) {
-
-                opt.content[key] = `{$#size}${opt.content[key]}\n{$/size}`;
-
-            }
-
-        }
-
-        return opt;
-
-    },
-    color : opt => {
-
-        let color = opt.param;
-        
-        if (typeof opt.content === 'string') {
-
-            opt.content = `{$#${color}}${opt.content}\n{$/${color}}`;
-
-        } else if (typeof opt.contnet === 'object') {
-
-            for (let key in opt.content) {
-                    
-                opt.content[key] = `{$#${color}}${opt.content[key]}\n{$/${color}}`;
-                
-            }
-
-        }
+        _opt.content = `{$#${color}}${_opt.content}{$/${color}}`;
+        _opt.context = extend(true, _opt.context, {
+            [color] : data[color]
+        });
 
         if (color === 'silver') {
 
-            opt.style.push('background: #626b75;border-color: #454d57');
+            _opt.style.push('background: #626b75;border-color: #454d57');
 
         } else if (color === 'gray') {
 
-            opt.style.push('background:#676767;border-color: #494949');
-        
+            _opt.style.push('background:#676767;border-color: #494949');
+
         }
 
-        return opt;
+        return _opt;
 
     },
-    state : opt => {
+    state : _opt => {
 
-        if (opt.param === undefined) {
+        if (_opt.param === undefined) {
             
-            opt.param = 'all';
+            _opt.param = 'all';
 
         }
 
-        let states = opt.param.split(',');
+        let states = _opt.param.split(',');
 
         if (states.length > 0 &&
             states.indexOf('all') === -1) {
@@ -881,32 +351,38 @@ let helpers = {
 
             }
 
-            opt.context = extend(true, opt.context, {
+            _opt.context = extend(true, _opt.context, {
                 state : sna
+            });
+
+        } else if (states[0] === 'all') {
+
+            _opt.context = extend(true, _opt.context, {
+                state : data.state
             });
 
         }
 
-        if (typeof opt.content === 'string') {
+        // if (typeof opt.content === 'string') {
 
-            opt.content = `{$#state}${opt.content}\n{$/state}`;
+        _opt.content = `{$#state}${_opt.content}{$/state}`;
 
-        } else if (typeof opt.contnet === 'object') {
+        // } else if (typeof opt.contnet === 'object') {
 
-            for (let key in opt.content) {
+        //     for (let key in opt.content) {
                     
-                opt.content[key] = `{$#state}${opt.content[key]}\n{$/state}`;
+        //         opt.content[key] = `{$#state}${opt.content[key]}\n{$/state}`;
                 
-            }
+        //     }
 
-        }
+        // }
 
-        return opt;
+        return _opt;
 
     },
-    br : opt => {
+    br : _opt => {
 
-        let num = +opt.param || 1;
+        let num = +_opt.param || 1;
         let brs = '';
 
         while (num--) {
@@ -915,303 +391,1029 @@ let helpers = {
 
         }
 
-        if (typeof opt.content === 'string') {
+        _opt.content = `${_opt.content}\n${brs}\n`;
 
-            opt.content = `${opt.content}\n${brs}\n`;
-
-        } else if (typeof opt.content === 'object') {
-
-            for (let key in opt.content) {
-
-                opt.content[key] = `${opt.content[key]}\n${brs}\n`;
-
-            }
-
-        }
-
-        return opt;
+        return _opt;
 
     },
-    use : opt => {
+    formConfig : _opt => {
 
-        let links = opt.param.split(',');
+        _opt.content = `{$#formConfig}${_opt.content}\n{$/formConfig}`;
+        _opt.context = extend(true, _opt.context, {
+            formConfig : data.formConfig
+        });
 
-        opt.content = {};
+        return _opt;
 
-        for (let link of links) {
+    },
+    formValueType : _opt => {
 
-            let type = link.split('.')[0];
-            let key = link.split('.')[1];
+        let key = _opt.param || 'default';
 
-            opt.content[type] = `&&&&&{$id}|${opt.vars[type][key]}`;
+        _opt.content = `{$#formValueType.${key}}${_opt.content}\n{$/formValueType.${key}}`;
+        _opt.context = extend(true, _opt.context, {
+            formValueType : data.formValueType
+        });
 
+        return _opt;
+
+    }
+};
+
+let presets = {
+    statementColor : `
+:::repeat/html
+color:theme
+color:feature
+color:black
+color:blue
+color:silver
+color:gray
+---
+<ui-{%uikey%} {$colorKey}>{$&colorName}</ui-{%uikey%}>
+:::
+`,
+    formStatement : `
+#### 支持
+
+|类型|支持|默认|
+|-|-|-|
+|尺寸|不支持|-|
+|色彩|不支持|-|
+|状态|\`normal\`<br/>\`disabled\`|\`normal\`|
+
+#### 状态
+
+:::repeat/html
+state:normal,disabled
+---
+<div style="width:300px;">
+    <ui-{%uikey%} {$stateKey} :default-value="{%&statementDefaultValue%}" form-name="{$&stateName}" {%&statementMoreAttr%}>{%&statementSlot%}</ui-{%uikey%}>
+</div>
+<br>
+:::
+`,
+    formStatementWithStyle : `
+#### 支持
+
+|类型|支持|默认|
+|-|-|-|
+|尺寸|不支持|-|
+|色彩|全部|\`theme\`|
+|状态|\`normal\`<br/>\`disabled\`|\`normal\`|
+
+
+#### 色彩
+
+:::repeat/html
+color:theme
+color:feature
+color:black
+color:blue
+color:silver
+color:gray
+---
+<div style="width:300px;">
+    <ui-{%uikey%} {$colorKey} :default-value="{%&statementDefaultValue%}" form-name="{$&colorName}" {%&statementMoreAttr%}>{%&statementSlot%}</ui-{%uikey%}>
+</div>
+<br>
+:::
+
+#### 状态
+
+:::repeat/html
+state:normal,disabled
+---
+<div style="width:300px;">
+    <ui-{%uikey%} {$stateKey} :default-value="{%&statementDefaultValue%}" form-name="{$&stateName}" {%&statementMoreAttr%}>{%&statementSlot%}</ui-{%uikey%}>
+</div>
+<br>
+:::
+`,
+    formConfigDemo : `
+#### form-name
+
+:::repeat/html
+formConfig
+---
+<div style="width:300px;">
+    <ui-{%uikey%} form-name="{$formName}" {%&configMoreAttr%}>{%&configSlot%}</ui-{%uikey%}>
+</div>
+:::
+
+#### form-key
+
+:::repeat/html
+formConfig
+---
+<div style="width:300px;">
+    <ui-{%uikey%} form-name="{$formName}" form-key="{$formKey}" {%&configMoreAttr%}>{%&configSlot%}</ui-{%uikey%}>
+</div>
+:::
+
+#### group
+
+设置单个组：
+
+:::repeat/html
+formConfig
+---
+<div style="width:300px;">
+    <!-- 设置单个组 -->
+    <ui-{%uikey%} form-name="{$formName}" form-key="{$formKey}" group="{$formGroupOne}" {%&configMoreAttr%}>{%&configSlot%}</ui-{%uikey%}>
+</div>
+:::
+
+设置多个组：
+
+:::repeat/html
+formConfig
+---
+<div style="width:300px;">
+    <!-- 设置多个组 -->
+    <ui-{%uikey%} form-name="{$formName}" form-key="{$formKey}" :group="['group1', 'group2', 'group3']" {%&configMoreAttr%}>{%&configSlot%}</ui-{%uikey%}>
+</div>
+:::
+
+#### default-value
+
+:::repeat/html
+formConfig
+---
+<div style="width:300px;">
+    <ui-{%uikey%} form-name="{$formName}" :default-value="{%&configDefaultValue%}" {%&configMoreAttr%}>{%&configSlot%}</ui-{%uikey%}>
+</div>
+:::
+
+#### hide-name
+
+隐藏后表单默认位置的名字不会显示，可以在其他地方设置表单名。
+
+:::repeat/html
+formConfig
+---
+<div style="width:300px;">
+    <p>{$formName}</p>
+    <ui-{%uikey%} form-name="{$formName}" hide-name {%&configMoreAttr%}>{%&configSlot%}</ui-{%uikey%}>
+</div>
+:::
+    `,
+    formConfigTable : `
+|KEY|描述|接受值|值类型|默认值|
+|-|-|-|-|-|
+|form-name|表单的名称（用于显示）|任意字符串|String|\`undefined\`|
+|form-key|表单的Key（用于逻辑中作为识别标示）|任意字符串(唯一)|String|\`undefined\`|
+|group|表单组，用于将多个表单的数值添加到同一个对象中。一个表单可以同时属于多个组|若是字符串，则将表单添加到单个组<br>若是数组，则将表单添加到多个组|String<br/>Array|\`[]\`|
+|default-value|表单的默认值|任意(接受表单原始数值，也接受JSON序列化后的表单数值，若数值是JSON序列化的会自动转换成原始数值)|Any|\`undefined\`|
+|hide-name|隐藏表单名|\`true\`<br>\`false\`|Boolean|\`false\`|
+{%&content%}
+`,
+    formMethod : `
+#### set([value])
+
+设置表单的值。
+
+|KEY|可选|描述|接受值|值类型|默认值|
+|-|-|-|-|-|-|
+|value|YES|需要设置表单的值，如果需要清空表单的值，可以不传此参数。|接受任何数值。<br/>\`undefined\`:清空表单的值<br>原始值:表单的原始值，根据表单不同可以是字符串、对象、数组等<br>JSON数值:表单原始值JSON序列化后的值，传入后表单会自动解析并还原原始值。|Any|\`undefined\`|
+
+:::democode/html
+<div style="width:300px;">
+    <ui-{%uikey%} ref="demoMethodSet" form-name="表单名" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>
+    <br>
+    <ui-link js="window.morning.findVM('demoMethodSet').set({%&methodValue%})">设置值</ui-link>
+    <ui-link js="window.morning.findVM('demoMethodSet').set()">移除值</ui-link>
+</div>
+:::
+
+#### get([json])
+
+获取表单的值。
+
+|KEY|可选|描述|接受值|值类型|默认值|
+|-|-|-|-|-|-|
+|json|YES|表单的值是否需要JSON序列化后返回，若你需要和其他程序进行数据交互，使用JSON是一种较好的方法。|\`true\`<br>\`false\`|Boolean|\`true\`|
+
+:::democode/html
+<div style="width:300px;">
+    <ui-{%uikey%} ref="demoMethodGet" form-name="表单名" :default-value="{%&methodDefaultValue%}" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>
+    <br>
+    <ui-link js="alert(window.morning.findVM('demoMethodGet').get(false))">获取表单原始值</ui-link>
+    <ui-link js="alert(window.morning.findVM('demoMethodGet').get())">获取表单JSON值</ui-link>
+</div>
+:::
+
+#### setName([name])
+
+设置表单的名称。
+
+|KEY|可选|描述|接受值|值类型|默认值|
+|-|-|-|-|-|-|
+|name|YES|需要设置表单的名称，如果需要清空表单的名称，可以不传此参数。|任意字符串|String|\`undefined\`|
+
+:::democode/html
+<div style="width:300px;">
+    <ui-{%uikey%} ref="demoMethodSetName" form-name="姓名" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>
+    <br>
+    <ui-link js="alert(window.morning.findVM('demoMethodSetName').getName())">获取表单名称</ui-link>
+    <ui-link js="window.morning.findVM('demoMethodSetName').setName('年龄')">设置表单名称</ui-link>
+    <ui-link js="window.morning.findVM('demoMethodSetName').setName()">移除表单名称</ui-link>
+</div>
+:::
+
+#### getName()
+
+获取表单的名称。
+
+:::democode/html
+<div style="width:300px;">
+    <ui-{%uikey%} ref="demoMethodGetName" form-name="姓名" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>
+    <br>
+    <ui-link js="alert(window.morning.findVM('demoMethodGetName').getName())">获取表单名称</ui-link>
+</div>
+:::
+
+#### setKey([key])
+
+设置表单的KEY。
+
+|KEY|可选|描述|接受值|值类型|默认值|
+|-|-|-|-|-|-|
+|key|YES|需要设置表单的KEY，如果需要清空表单的KEY，可以不传此参数。|任意字符串|String|\`undefined\`|
+
+:::democode/html
+<div style="width:300px;">
+    <ui-{%uikey%} ref="demoMethodSetKey" form-name="表单名" form-key="name" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>
+    <br>
+    <ui-link js="alert(window.morning.findVM('demoMethodSetKey').getKey())">获取表单KEY</ui-link>
+    <ui-link js="window.morning.findVM('demoMethodSetKey').setKey('age')">设置表单KEY</ui-link>
+    <ui-link js="window.morning.findVM('demoMethodSetKey').setKey()">移除表单KEY</ui-link>
+</div>
+:::
+
+#### getKey()
+
+获取表单的KEY。
+
+:::democode/html
+<div style="width:300px;">
+    <ui-{%uikey%} ref="demoMethodGetKey" form-name="表单名" form-key="name" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>
+    <br>
+    <ui-link js="alert(window.morning.findVM('demoMethodGetKey').getKey())">获取表单KEY</ui-link>
+</div>
+:::
+
+#### setGroup([groups])
+
+设置表单所属的表单组。
+
+|KEY|可选|描述|接受值|值类型|默认值|
+|-|-|-|-|-|-|
+|groups|YES|需要设置的表单组。如果需要清空所有表单组，可以不传此参数。|\`undefined\`:清空所有表单组<br>String:设置一个表单组<br>Array:设置多个表单组。|String<br>Array<br>Undefined|\`undefined\`|
+
+:::democode/html
+<div style="width:300px;">
+    <!-- 设置多个组 -->
+    <ui-{%uikey%} ref="demoMethodSetGroup" form-name="表单名" form-key="name" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>
+    <br>
+    <ui-link js="alert(JSON.stringify(window.morning.findVM('demoMethodSetGroup').getGroup()))">获取表单组</ui-link>
+    <ui-link js="window.morning.findVM('demoMethodSetGroup').setGroup('group1')">设置单个表单组</ui-link>
+    <ui-link js="window.morning.findVM('demoMethodSetGroup').setGroup(['group1', 'group2'])">设置多个表单组</ui-link>
+    <ui-link js="window.morning.findVM('demoMethodSetGroup').setGroup()">移除所有表单组</ui-link>
+</div>
+:::
+
+#### getGroup()
+
+获取表单所属的表单组。
+
+:::democode/html
+<div style="width:300px;">
+    <!-- 设置多个组 -->
+    <ui-{%uikey%} ref="demoMethodGetGroup" form-name="表单名" form-key="name" group="group1" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>
+    <br>
+    <ui-link js="alert(JSON.stringify(window.morning.findVM('demoMethodGetGroup').getGroup()))">获取表单组</ui-link>
+</div>
+:::
+
+#### addGroup(group)
+
+添加一个指定的表单组。
+
+|KEY|可选|描述|接受值|值类型|默认值|
+|-|-|-|-|-|-|
+|group|NO|添加表单组的KEY|表单组的KEY|String|\`undefined\`|
+
+:::democode/html
+<div style="width:300px;">
+    <!-- 设置多个组 -->
+    <ui-{%uikey%} ref="demoMethodAddGroup" form-name="表单名" form-key="name" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>
+    <br>
+    <ui-link js="alert(JSON.stringify(window.morning.findVM('demoMethodAddGroup').getGroup()))">获取表单组</ui-link>
+    <ui-link js="window.morning.findVM('demoMethodAddGroup').addGroup('group1')">添加表单组</ui-link>
+</div>
+:::
+
+#### removeGroup(group)
+
+移除一个指定的表单组。
+
+|KEY|可选|描述|接受值|值类型|默认值|
+|-|-|-|-|-|-|
+|group|NO|移除表单组的KEY|表单组的KEY|String|\`undefined\`|
+
+:::democode/html
+<div style="width:300px;">
+    <!-- 设置多个组 -->
+    <ui-{%uikey%} ref="demoMethodRemoveGroup" form-name="表单名" form-key="name" group="group1" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>
+    <br>
+    <ui-link js="alert(JSON.stringify(window.morning.findVM('demoMethodRemoveGroup').getGroup()))">获取表单组</ui-link>
+    <ui-link js="window.morning.findVM('demoMethodRemoveGroup').removeGroup('group1')">移除表单组</ui-link>
+</div>
+:::
+    `,
+    formEvent : `
+#### valueChange
+
+当表单值变化时触发。
+
+:::vue/html
+new Vue({
+    el : '{$el}',
+    template : '{$template}',
+    methods : {
+        echo : function () {
+            console.log('demoValueChange.console1', 'valueChange event!');
         }
+    }
+});
+---
+<div style="width:300px;">
+    <ui-{%uikey%} ref="demoValueChange" form-name="表单名" @valueChange="echo" {%&eventMoreAttr%}>{%&eventSlot%}</ui-{%uikey%}>
+    <br>
+    <ui-link js="window.morning.findVM('demoValueChange').set({%&eventValue%})">触发valueChange事件</ui-link>
+</div>
+:::
 
-        opt.render = sopt => {
+#### 生命周期事件
 
-            let list = {};
-            let code = '';
-            let demo = '';
-            let newData = extend(true, {}, sopt.context);
-            let lastType;
+:::vue/html
+window.demoEventLifecycle = new Vue({
+    el : '{$el}',
+    template : '{$template}',
+    data : function () {
+        return {
+           text : '按钮',
+           show : true
+        };
+    },
+    methods : {
+        echo : function (name) {
+            console.log('demoEventLifecycle.console1', name + ' event!');
+        }
+    }
+});
+---
+<div style="width:300px;">
+    <ui-{%uikey%}
+        ref="demoEventLifecycle"
+        form-name="表单名"
+        v-show="show"
+        @created="echo('created')"
+        @mounted="echo('mounted')"
+        @beforeUpdate="echo('beforeUpdate')"
+        @updated="echo('updated')"
+        @beforeDestroy="echo('beforeDestroy')"
+        @destroyed="echo('destroyed')"
+        {%&eventMoreAttr%}
+    >{%&eventSlot%}<span style="display:none;">{*text*}</span></ui-{%uikey%}>
 
-            for (let key of Object.keys(newData)) {
+    <br><br>
 
-                let value = newData[key];
-                let id = `demo-${_.random(randomRangeMin, randomRangeMax)}`;
+    <ui-link js="javascript:window.demoEventLifecycle.text='生命周期事件';">触发update</ui-link>
+    <ui-link js="javascript:morning.findVM('demoEventLifecycle').$destroy();">触发destroy</ui-link>
+</div>
+:::
+`
+};
 
-                if (value instanceof Array) {
+let extRepeat = (content, paramStr, token, md) => {
 
-                    for (let svalue of value) {
+    let params = {};
 
-                        svalue.id = id;
-                        svalue.el = `#${id}-el`;
-                        svalue.template = `#${id}-tmpl`;
+    params.list = [];
 
-                    }
+    for (let item of paramStr) {
 
-                } else if (typeof value === 'object') {
+        item = item.split('|');
 
-                    value.id = id;
-                    value.el = `#${id}-el`;
-                    value.template = `#${id}-tmpl`;
+        params.list.push(item);
 
-                }
+    }
 
-            }
+    let fullContent = '';
 
-            let id = `demo-${_.random(randomRangeMin, randomRangeMax)}`;
+    for (let item of params.list) {
 
-            newData.id = id;
-            newData.el = `#${id}-el`;
-            newData.template = `#${id}-tmpl`;
-
-            for (let type of Object.keys(sopt.content)) {
-
-                Mustache.parse(sopt.content[type], ['{$', '}']);
-                
-                list[type] = Mustache.render(sopt.content[type], newData).split('&&&&&');
-                list[type].shift();
-                lastType = type;
-
-            }
-
-            for (let i in list[lastType]) {
-
-                let html = list.html[i];
-                let js = list.js[i];
-                let demoid = html.match(/^([0-9a-z-]+?)\|/)[1];
-
-                html = html.replace(/^[0-9a-z-]+?\|/, '');
-                js = js.replace(/^[0-9a-z-]+?\|/, '');
-
-                code += `<div id="${demoid}-el"><!-- ${demoid} 容器 --></div>\n\n`;
-                demo += `<div id="${demoid}-el"></div>\n`;
-
-                // html
-                let htmlScript = document.createElement('script');
-
-                html = html.replace(/[\n]*?$/, '');
-                htmlScript.innerHTML = `\n${html}\n`;
-                htmlScript.type = 'x-template';
-                htmlScript.id = `${demoid}-tmpl`;
-
-                code += `${htmlScript.outerHTML}\n\n`;
-
-                htmlScript.innerHTML = htmlScript.innerHTML.replace(/\{%([a-zA-Z0-9_]+)%\}/g, '{{$1}}');
-                evals.push(htmlScript);
-
-                // js
-
-                let jsScript = document.createElement('script');
-
-                js = js.replace(/[\n]*?$/, '');
-                jsScript.innerHTML = `\n${js}\n`;
-                
-                evals.push(jsScript);
-
-                code += jsScript.outerHTML;
-
-                if (i < list[lastType].length - 1) {
-
-                    code += '\n\n------------------------------------------------\n\n';
-
-                }
-
-            }
-
-            return {
-                demo,
-                code 
-            };
-
+        let _opt = {
+            content,
+            context : {},
+            style : []
         };
 
-        return opt;
+        for (let sitem of item) {
 
-    },
-    formConfig : opt => {
+            _opt.param = undefined;
 
-        if (typeof opt.content === 'string') {
+            if (sitem === 'size') {
 
-            opt.content = `{$#formConfig}${opt.content}\n{$/formConfig}`;
+                repeater.size(_opt);
 
-        } else if (typeof opt.content === 'object') {
+            } else if (/^color/.test(sitem)) {
 
-            for (let key in opt.content) {
+                _opt.param = sitem.split(':')[1];
+                repeater.color(_opt);
 
-                opt.content[key] = `{$#formConfig}${opt.content[key]}\n{$/formConfig}`;
+            } else if (/^state/.test(sitem)) {
 
-            }
+                _opt.param = sitem.split(':')[1];
+                repeater.state(_opt);
 
-        }
+            } else if (/^br/.test(sitem)) {
 
-        return opt;
+                _opt.param = sitem.split(':')[1];
+                repeater.br(_opt);
 
-    },
-    formValueType : opt => {
+            } else if (/^formConfig/.test(sitem)) {
 
-        let key = opt.param || 'default';
+                repeater.formConfig(_opt);
 
-        if (typeof opt.content === 'string') {
+            } else if (/^formValueType/.test(sitem)) {
 
-            opt.content = `{$#formValueType.${key}}${opt.content}\n{$/formValueType.${key}}`;
-
-        } else if (typeof opt.content === 'object') {
-
-            for (let key in opt.content) {
-
-                opt.content[key] = `{$#formValueType.${key}}${opt.content[key]}\n{$/formValueType.${key}}`;
+                _opt.param = sitem.split(':')[1];
+                repeater.formValueType(_opt);
 
             }
 
         }
 
-        return opt;
+        Mustache.parse(_opt.content, ['{$', '}']);
+
+        let renderContent = Mustache.render(_opt.content, _opt.context);
+
+        fullContent += `<div class="demo" style="${_opt.style.join('')}">${renderContent}</div><pre><code class="lang-${token.lang}">${md.utils.escapeHtml(renderContent)}</code></pre>\n`;
 
     }
+
+    return fullContent;
+
 };
 
-let make = {
-    block : block => {
+let extVue = (content, paramStr, token, md) => {
 
-        return '<div class="demo">\n' + block.content + '</div>\n\n```' + block.type + '\n' + block.content + '\n```\n';
+    let js = paramStr.join('\n');
+    let html = content;
+    let demoid = `demo-${_.random(randomRangeMin, randomRangeMax)}`;
+    let context = {
+        id : demoid,
+        el : `#${demoid}-el`,
+        template : `#${demoid}-tmpl`
+    };
+    let code,
+        demo;
 
-    },
-    opt : (opts, block) => {
+    Mustache.parse(js, ['{$', '}']);
+    js = Mustache.render(js, context);
 
-        let text = '';
+    Mustache.parse(html, ['{$', '}']);
+    html = Mustache.render(html, context);
 
-        for (let opt of opts) {
+    code = `<div id="${demoid}-el"><!-- ${demoid} 容器 --></div>\n\n`;
+    demo = `<div id="${demoid}-el"></div>`;
 
-            let code,
-                demo;
+    let htmlScript = document.createElement('script');
 
-            opt.context = extend({}, data, opt.context);
+    htmlScript.innerHTML = `\n${html}`;
+    htmlScript.type = 'x-template';
+    htmlScript.id = `${demoid}-tmpl`;
 
-            if (typeof opt.render === 'function') {
+    code += `${htmlScript.outerHTML}\n\n`;
 
-                let result = opt.render(opt);
+    htmlScript.innerHTML = htmlScript.innerHTML.replace(/\{\*([a-zA-Z0-9_]+)\*\}/g, '{{$1}}');
+    evals.push(htmlScript);
 
-                code = result.code;
-                demo = result.demo;
+    let jsScript = document.createElement('script');
 
-            } else {
+    jsScript.innerHTML = `\n${js}\n`;
+    evals.push(jsScript);
+    code += jsScript.outerHTML;
 
-                let template = opt.content;
+    return `<div class="demo">${demo}</div><pre><code class="lang-${token.lang}">${md.utils.escapeHtml(code)}</code></pre>\n`;
 
-                Mustache.parse(template, ['{$', '}']);
+};
 
-                code = Mustache.render(template, opt.context);
+let extPreset = (content, paramStr) => {
 
-            }
+    let context = {
+        content : content
+    };
+    let template = presets[paramStr[0]];
 
-            if (opt.style.length === 0) {
+    content = content.split('\n');
 
-                opt.style = '';
+    for (let item of content) {
+        
+        if (item) {
 
-            } else {
-
-                opt.style = opt.style.join(';');
-            
-            }
-
-            if (block.type === 'vue') {
-
-                block.type = 'html';
-
-            }
-
-            if (opt.isText) {
-
-                text += code;
-
-            } else {
-
-                text += '<div class="demo" style="' + opt.style + '">\n' + (demo || code) + '</div>\n\n```' + block.type + '\n' + code + '\n```\n';
-
-            }
+            item = item.split(':');
+            context[item.shift()] = item.join(':');
 
         }
 
-        return text;
-
     }
+
+    Mustache.parse(template, ['{%', '%}']);
+    template = Mustache.render(template, context);
+
+    return markdown.render(template);
+
 };
 
-let runner = tree => {
+let demoWithCodePlugin = (md, opt) => {
+    md.block.ruler.before('table', 'codeWithDemo', (state, startLine, endLine) => {
 
-    for (let block of tree.blocks) {
+        // if it's indented more than 3 spaces, it should be a code block
+        if (state.sCount[startLine] - state.blkIndent >= 4) {
 
-        if (block.helpers.length > 0) {
+            return false;
 
-            let opts = [];
+        }
 
-            for (let group of block.helpers) {
+        const charCode = 0x3A;
 
-                let opt = {
-                    content : block.content,
-                    vars : tree.vars,
-                    helperlist : group,
-                    context : block.context,
-                    style : []
-                };
+        let pos = state.bMarks[startLine] + state.tShift[startLine];
+        let end = state.eMarks[startLine];
+        let marker = state.src.charCodeAt(pos);
+        let start,
+            len,
+            markup,
+            method,
+            nextLine,
+            token,
+            haveEndMarker;
 
-                for (let helper of group) {
+        // 0x3a is :
+        if (marker !== charCode) {
 
-                    opt.param = helper.param;
-                    opt = helpers[helper.fn](opt);
+            return false;
 
-                }
+        }
 
-                opts.push(opt);
+        // scan marker length
+        start = pos;
+        pos = state.skipChars(pos, marker);
+        len = pos - start;
+        markup = state.src.slice(start, pos);
+        method = state.src.slice(pos, end);
 
-            }
+        if (len !== 3) {
 
-            block._html = make.opt(opts, block);
-
-        } else {
-
-            block._html = make.block(block);
+            return false;
         
         }
 
-    }
+        nextLine = startLine;
 
-    let text = tree.text;
-    let patt = /````(html|js|css|vue|)((\n[\t ]*[\@a-zA-Z0-9\:\.\,\|]+)*)\n((.|\n)*?)(\n)*([ \t]*)````/g;
-    let index = 0;
-    let result;
+        for (;;) {
 
-    while ((result = patt.exec(text)) !== null) {
+            nextLine++;
 
-        text = text.slice(0, result.index - 1) + tree.blocks[index++]._html + text.slice(result.index + result[0].length, text.length);
+            if (nextLine >= endLine) {
 
-    }
+                // unclosed block should be autoclosed by end of document.
+                // also block seems to be autoclosed by end of parent
+                break;
 
-    return text;
-    
+            }
+
+            pos = start = state.bMarks[nextLine] + state.tShift[nextLine];
+            end = state.eMarks[nextLine];
+
+            if (pos < end && state.sCount[nextLine] < state.blkIndent) {
+                
+                // non-empty line with negative indent should stop the list:
+                // - ```
+                //  test
+                break;
+            
+            }
+
+            /* eslint-disable no-continue */
+            if (state.src.charCodeAt(pos) !== marker) {
+
+                continue;
+
+            }
+
+            if (state.sCount[nextLine] - state.blkIndent >= 4) {
+                
+                // closing fence should be indented less than 4 spaces
+                continue;
+        
+            }
+
+            pos = state.skipChars(pos, marker);
+
+            // closing code fence must be at least as long as the opening one
+            if (pos - start < len) {
+
+                continue;
+
+            }
+
+            // make sure tail has spaces only
+            pos = state.skipSpaces(pos);
+
+            if (pos < end) {
+
+                continue;
+
+            }
+
+            /* eslint-enable no-continue */
+
+            haveEndMarker = true;
+
+            break;
+
+        }
+
+        len = state.sCount[startLine];
+        state.line = nextLine + (haveEndMarker ? 1 : 0);
+
+        token = state.push('extMethod', 'div', 1);
+        token.method = method.split('/')[0];
+        token.lang = method.split('/')[1];
+        token.content = state.getLines(startLine + 1, nextLine, len, true);
+        token.markup = markup;
+        token.map = [startLine, state.line];
+
+        return true;
+
+    });
+
+    md.renderer.rules.extMethod = (tokens, idx) => {
+
+        let token = tokens[idx];
+        let method = token.method;
+        let list = token.content.split('\n---\n');
+        let paramStr = '';
+        let content;
+        let result = '';
+
+        if (list.length > 1) {
+
+            paramStr = list.shift();
+
+        }
+
+        content = list.join('\n---\n');
+
+        paramStr = paramStr.split('\n');
+
+        if (method === 'democode') {
+
+            result = `<div class="demo">${content}</div><pre><code class="lang-${token.lang}">${md.utils.escapeHtml(content)}</code></pre>\n`;
+
+        }
+
+        if (method === 'repeat') {
+
+            result = extRepeat(content, paramStr, token, md);
+
+        }
+
+        if (method === 'vue') {
+
+            result = extVue(content, paramStr, token, md);
+
+        }
+
+        if (method === 'preset') {
+
+            result = extPreset(content, paramStr);
+
+        }
+
+        console.log(method, result);
+
+        return result;
+
+    };
+
 };
+
+markdown.use(demoWithCodePlugin);
+
+window.Vue.component('doc-component-status', DocComponentStatus);
+
+// let parser = (text, el) => {
+
+//     let patt = /````(html|js|css|vue|)((\n[\t ]*[\@a-zA-Z0-9\:\.\,\|]+)*)\n((.|\n)*?)(\n)*([ \t]*)````/g;
+//     let varpatt = /````(html|js|css)\n(\@var\:([a-zA-Z0-9]+))\n((.|\n)+?)\n([ \t]*)````/g;
+//     let presetpatt = /````(preset)((\n[\t ]*[a-zA-Z0-9@'"[\]?<>/\-_{}=:.,|!()\u4e00-\u9fa5 ]+)*)\n((.|\n)*?)(\n)*([ \t]*)````/g;
+//     let result;
+//     let vars = {
+//         js : {},
+//         html : {}
+//     };
+//     let blocks = [];
+//     let vueContext = {};
+
+//     while ((result = presetpatt.exec(text)) !== null) {
+
+//         let rdata = result[2].replace(/^\n/, '').split('\n');
+//         let id = rdata[0].split(':')[1];
+
+//         rdata.shift();
+
+//         for (let item of rdata) {
+
+//             let name = item.split(':')[0].replace(/^@/, '');
+//             let valuelist = item.split(':');
+
+//             valuelist.shift();
+
+//             let value = valuelist.join(':');
+
+//             vueContext[name] = value;
+
+//         }
+
+//         let content = presets[id];
+
+//         text = text.slice(0, result.index - 1) + content + text.slice(result.index + result[0].length, text.length);
+//         presetpatt.lastIndex = 0;
+
+//     }
+
+//     while ((result = varpatt.exec(text)) !== null) {
+
+//         vars[result[1]][result[3]] = result[4];
+//         text = text.slice(0, result.index - 1) + text.slice(result.index + result[0].length, text.length);
+
+//         varpatt.lastIndex = 0;
+
+//     }
+
+//     while ((result = patt.exec(text)) !== null) {
+
+//         let content = result[4];
+//         let helpers = result[2].split('\n');
+
+//         helpers.shift();
+        
+//         let block = {
+//             content,
+//             type : result[1],
+//             result,
+//             context : vueContext,
+//             helpers : []
+//         };
+
+//         for (let name of helpers) {
+
+//             let list = name.split('|');
+//             let group = [];
+
+//             for (let help of list) {
+
+//                 let fn = help.split(':')[0].replace(/^\@/, '');
+//                 let param = help.split(':')[1];
+
+//                 group.push({
+//                     fn,
+//                     param
+//                 });
+
+//             }
+
+//             block.helpers.push(group);
+
+//         }
+
+//         blocks.push(block);
+
+//     }
+
+//     return {
+//         vars,
+//         blocks,
+//         text
+//     };
+
+// };
+
+// let helpers = {
+//     import : opt => {
+
+//         let name = opt.param.split(',');
+
+//         opt.content = window.$(`script#${name[0]}`);
+//         opt.context = {
+//             uiname : name[1]
+//         };
+
+//         return opt;
+
+//     },
+//     origin : opt => {
+
+//         return opt;
+
+//     },
+//     render : opt => {
+
+//         opt.isText = true;
+
+//         return opt;
+
+//     },
+//     use : opt => {
+
+//         let links = opt.param.split(',');
+
+//         opt.content = {};
+
+//         for (let link of links) {
+
+//             let type = link.split('.')[0];
+//             let key = link.split('.')[1];
+
+//             opt.content[type] = `&&&&&{$id}|${opt.vars[type][key]}`;
+
+//         }
+
+//         opt.render = sopt => {
+
+//             let list = {};
+//             let code = '';
+//             let demo = '';
+//             let newData = extend(true, {}, sopt.context);
+//             let lastType;
+
+//             for (let key of Object.keys(newData)) {
+
+//                 let value = newData[key];
+//                 let id = `demo-${_.random(randomRangeMin, randomRangeMax)}`;
+
+//                 if (value instanceof Array) {
+
+//                     for (let svalue of value) {
+
+//                         svalue.id = id;
+//                         svalue.el = `#${id}-el`;
+//                         svalue.template = `#${id}-tmpl`;
+
+//                     }
+
+//                 } else if (typeof value === 'object') {
+
+//                     value.id = id;
+//                     value.el = `#${id}-el`;
+//                     value.template = `#${id}-tmpl`;
+
+//                 }
+
+//             }
+
+//         };
+
+//         return opt;
+
+//     }
+// };
+
+// let make = {
+//     block : block => {
+
+//         return '<div class="demo">\n' + block.content + '</div>\n\n```' + block.type + '\n' + block.content + '\n```\n';
+
+//     },
+//     opt : (opts, block) => {
+
+//         let text = '';
+
+//         for (let opt of opts) {
+
+//             let code,
+//                 demo;
+
+//             opt.context = extend({}, data, opt.context);
+
+//             if (typeof opt.render === 'function') {
+
+//                 let result = opt.render(opt);
+
+//                 code = result.code;
+//                 demo = result.demo;
+
+//             } else {
+
+//                 let template = opt.content;
+
+//                 Mustache.parse(template, ['{$', '}']);
+
+//                 code = Mustache.render(template, opt.context);
+
+//             }
+
+//             if (opt.style.length === 0) {
+
+//                 opt.style = '';
+
+//             } else {
+
+//                 opt.style = opt.style.join(';');
+            
+//             }
+
+//             if (block.type === 'vue') {
+
+//                 block.type = 'html';
+
+//             }
+
+//             if (opt.isText) {
+
+//                 text += code;
+
+//             } else {
+
+//                 text += '<div class="demo" style="' + opt.style + '">\n' + (demo || code) + '</div>\n\n```' + block.type + '\n' + code + '\n```\n';
+
+//             }
+
+//         }
+
+//         return text;
+
+//     }
+// };
+
+// let runner = tree => {
+
+//     for (let block of tree.blocks) {
+
+//         if (block.helpers.length > 0) {
+
+//             let opts = [];
+
+//             for (let group of block.helpers) {
+
+//                 let opt = {
+//                     content : block.content,
+//                     vars : tree.vars,
+//                     helperlist : group,
+//                     context : block.context,
+//                     style : []
+//                 };
+
+//                 for (let helper of group) {
+
+//                     opt.param = helper.param;
+//                     opt = helpers[helper.fn](opt);
+
+//                 }
+
+//                 opts.push(opt);
+
+//             }
+
+//             block._html = make.opt(opts, block);
+
+//         } else {
+
+//             block._html = make.block(block);
+        
+//         }
+
+//     }
+
+//     let text = tree.text;
+//     let patt = /````(html|js|css|vue|)((\n[\t ]*[\@a-zA-Z0-9\:\.\,\|]+)*)\n((.|\n)*?)(\n)*([ \t]*)````/g;
+//     let index = 0;
+//     let result;
+
+//     while ((result = patt.exec(text)) !== null) {
+
+//         text = text.slice(0, result.index - 1) + tree.blocks[index++]._html + text.slice(result.index + result[0].length, text.length);
+
+//     }
+
+//     return text;
+    
+// };
 window.Vue.directive('docmd', {
     bind : el => {
 
@@ -1220,34 +1422,39 @@ window.Vue.directive('docmd', {
         if (mdScript && mdScript.type === 'text/markdown') {
 
             let text = mdScript.innerText;
-            text = text.replace(/\&lt\;\/script\>/g, '<\/script>');
+            
+            /* eslint-disable no-useless-escape */
+            text = text.replace(/&lt;\/script>/g, '\<\/script>');
+            /* eslint-enable no-useless-escape */
+
             text = text.replace(/\/`/g, '`');
 
-            let tree = parser(text, el);
+            // let tree = parser(text, el);
+            // text = runner(tree);
 
-            text = runner(tree);
-
-            let md = marked(text);
+            let md = markdown.render(text);
             
-            console.log(md);
             md = md.replace(/\\`/g, '`');
             
-            md = md.replace(/\{\%([a-zA-Z0-9\_]+)\%\}/g, '{{"\\\{\\\{$1\\\}\\\}"}}');
-            md = md.replace(/\<p\>(\[\[\[(.+)\]\]\])\<\/p\>/g, '$1');
+            md = md.replace(/\{\*([a-zA-Z0-9_]+)\*\}/g, '{{"\\{\\{$1\\}\\}"}}');
+            md = md.replace(/<p>(\[\[\[(.+)\]\]\])<\/p>/g, '$1');
             md = md.replace(/(\[\[\[)/, '<ui-tab class="block noborder">$1');
-            md = md.replace(/\[\[\[基础\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="开始">$1</div>$3');
+            md = md.replace(/\[\[\[开始\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="开始">$1</div>$3');
             md = md.replace(/\[\[\[声明\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="声明">$1</div>$3');
             md = md.replace(/\[\[\[配置\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="配置">$1</div>$3');
             md = md.replace(/\[\[\[方法\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="方法">$1</div>$3');
             md = md.replace(/\[\[\[事件\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="事件">$1</div>$3');
             md = md.replace(/\[\[\[表单值\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="表单值">$1</div>$3');
-            md = md.replace(/\[\[\[单元测试\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="源码">$1</div>$3');
+            md = md.replace(/\[\[\[源码\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="源码">$1</div>$3');
             md = md.replace(/(.|\n)$/, '$1</ui-tab>');
 
-            let res = Vue.compile(`<div>${md}</div>`);
-            let instance = new Vue({
-                render: res.render,
-                staticRenderFns: res.staticRenderFns
+            md = md.replace(/<p>---demostart---<\/p>/g, '<div class="demo-area"><p class="demo-title">DEMO</p>');
+            md = md.replace(/<p>---demoend---<\/p>/g, '\n</div>');
+
+            let res = window.Vue.compile(`<div>${md}</div>`);
+            let instance = new window.Vue({
+                render : res.render,
+                staticRenderFns : res.staticRenderFns
             });
 
             instance.$mount();
@@ -1278,7 +1485,9 @@ export default {
         hljs.initHighlightingOnLoad();
 
         for (let js of evals) {
+
             document.body.appendChild(js);
+
         }
 
     }

@@ -8,23 +8,23 @@
     
     <doc-component-status page="ul"></doc-component-status>
 
-    [[[基础]]]
+    [[[开始]]]
 
     定义一个无序列表，支持多层嵌套，列表中每一项使用`<li>`标签。
 
     #### 使用
     
-    ````html
+    :::democode/html
     <ui-ul>
         <li>This is first</li>
         <li>This is second</li>
         <li>This is third</li>
     </ui-ul>
-    ````
+    :::
 
     #### 三层嵌套
     
-    ````html
+    :::democode/html
     <ui-ul>
         <li>This is 1</li>
         <ui-ul>
@@ -37,13 +37,13 @@
         </ui-ul>
         <li>This is 3</li>
     </ui-ul>
-    ````
+    :::
 
     #### 超过三层嵌套
 
     超过三层的无序列表，项目序号均为square。
     
-    ````html
+    :::democode/html
     <ui-ul>
         <li>This is 1</li>
         <ui-ul>
@@ -60,7 +60,7 @@
         </ui-ul>
         <li>This is 3</li>
     </ui-ul>
-    ````
+    :::
 
     [[[声明]]]
 
@@ -74,16 +74,17 @@
 
     #### 状态
     
-    ````html
-    @state:normal,apparent
+    :::repeat/html
+    state:normal,apparent
+    ---
     <ui-ul {$stateKey}>
         <li>this is {$&stateName} ui-ul</li>
         <li>this is {$&stateName} ui-ul</li>
     </ui-ul>
     <br>
-    ````
-
-    [[[单元测试]]]
+    :::
+    
+    [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/ul/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
     </script>

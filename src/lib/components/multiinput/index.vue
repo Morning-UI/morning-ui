@@ -127,9 +127,13 @@ export default Form.extend({
 
                 let $input = this.$el.querySelector('input');
 
-                this.data.focus = true;
-                $input.focus();
-                this.$emit('inputFocus');
+                if ($input) {
+
+                    this.data.focus = true;
+                    $input.focus();
+                    this.$emit('inputFocus');
+
+                }
 
             }
 
