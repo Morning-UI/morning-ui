@@ -3,6 +3,21 @@
         :page="page"
         :hasPadding="true" 
     >
+    <!-- 如果你使用了类似[Webpack](https://webpack.js.org/)或[Browserify](http://browserify.org/)之类的模块打包工具，你可以使用`require`或`import`等方式引用。
+    
+    下面拿[Webpack](https://webpack.js.org/)举例，如果你下载了Morning UI并放在了某个目录，直接从那个目录引入即可：
+
+    ```html
+    import './path-to-morning/morning-ui.js';
+    import './path-to-morning/morning-ui.css';
+    
+    
+    如果你通过NPM安装：
+
+    ```html
+    import 'morning-ui';
+    ```
+    ``` -->
     <script type="text/markdown">
     # 安装
 
@@ -21,7 +36,7 @@
     - `morning-ui.min.js` : 生产版本JS
     - `morning-ui.min.css` : 生产版本CSS
 
-    你可以通过两种方式获取：
+    你可以通过下面的方式获取：
 
     ##### 直接下载
 
@@ -29,7 +44,7 @@
     
     ##### NPM安装
 
-    `npm install morning-ui`
+    Coming soon.
     
     ##### CDN
 
@@ -48,20 +63,7 @@
 
     ##### 使用模块打包器
 
-    如果你使用了类似[Webpack](https://webpack.js.org/)或[Browserify](http://browserify.org/)之类的模块打包工具，你可以使用`require`或`import`等方式引用。
-    
-    下面拿[Webpack](https://webpack.js.org/)举例，如果你下载了Morning UI并放在了某个目录，直接从那个目录引入即可：
-
-    ```html
-    import './path-to-morning/morning-ui.js';
-    import './path-to-morning/morning-ui.css';
-    ```
-
-    如果你通过NPM安装：
-
-    ```html
-    import 'morning-ui';
-    ```
+    Coming soon.
     
     ### 全局变量
 
