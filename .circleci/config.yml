@@ -42,6 +42,6 @@ workflows:
         - /issue-.*/
     jobs:
       - install
-      - lint
+      - lint:
         requires:
           - install
