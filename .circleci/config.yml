@@ -12,12 +12,13 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          - v2-node_modules-{{ checksum "package.json" }}
+          keys:
+            - v2-node_modules-{{ checksum "package.json" }}
       - run: npm install
       - save_cache:
+          key: v2-node_modules-{{ checksum "package.json" }}
           paths:
             - node_modules
-          key: v2-node_modules-{{ checksum "package.json" }}
   lint: 
     docker:
       - image: circleci/node:8.7-browsers
@@ -25,7 +26,8 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          - v2-node_modules-{{ checksum "package.json" }}
+          keys:
+            - v2-node_modules-{{ checksum "package.json" }}
       - run: npm run lint
 
 workflows:
