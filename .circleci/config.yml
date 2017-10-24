@@ -1,0 +1,44 @@
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+version: 2
+jobs:
+
+  install:
+    docker:
+      - image: circleci/node:8.7-browsers
+    working_directory: ~/repo
+    branches:
+      only:
+        - master
+        - dev
+        - born
+        - /issue-.*/
+    resource_class: medium
+    steps:
+      - checkout
+      - restore_cache:
+        - v2-node_modules-{{ checksum "package.json" }}
+      - run: npm install
+      - save_cache:
+        paths:
+          - node_modules
+        key: v2-node_modules-{{ checksum "package.json" }}
+
+  lint: 
+    docker:
+      - image: circleci/node:8.7-browsers
+    working_directory: ~/repo
+    branches:
+      only:
+        - master
+        - dev
+        - born
+        - /issue-.*/
+    resource_class: medium
+    steps:
+      - checkout
+      - restore_cache:
+        - v2-node_modules-{{ checksum "package.json" }}
+      - run: npm run lint
