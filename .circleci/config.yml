@@ -2,19 +2,13 @@
 #
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
-version: 2
+version: 2.0
+
 jobs:
   install:
     docker:
       - image: circleci/node:8.7-browsers
     working_directory: ~/repo
-    resource_class: medium
-    branches:
-      only:
-        - master
-        - dev
-        - born
-        - /issue-.*/
     steps:
       - checkout
       - restore_cache:
@@ -29,13 +23,6 @@ jobs:
     docker:
       - image: circleci/node:8.7-browsers
     working_directory: ~/repo
-    resource_class: medium
-    branches:
-      only:
-        - master
-        - dev
-        - born
-        - /issue-.*/
     steps:
       - checkout
       - restore_cache:
