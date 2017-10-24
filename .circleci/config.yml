@@ -18,7 +18,6 @@ jobs:
         paths:
           - node_modules
         key: v2-node_modules-{{ checksum "package.json" }}
-
   lint: 
     docker:
       - image: circleci/node:8.7-browsers
