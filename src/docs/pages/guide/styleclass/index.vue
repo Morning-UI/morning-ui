@@ -17,14 +17,14 @@
 
     样式类必须用在UI组件标签`<ui-*>`的`class`中。
 
-    ````html
+    :::democode/html
     <!-- ui-label标签上的icon是样式类 -->
     <!-- span标签上的icon不是样式类 -->
     <ui-label class="icon">
         <i class="iconfont">&#xe6e2;</i>
         <span class="icon">标签</span>
     </ui-label>
-    ````
+    :::
 
     ### 样式类全局命名规范
 

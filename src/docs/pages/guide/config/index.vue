@@ -17,23 +17,26 @@
 
     在使用组件时，可以在组件标签`<ui-*>`的`attr`属性中传入初始化配置：
 
-    ````html
+    :::democode/html
     <!-- ui-btn设置link配置 -->
     <!-- 配置名称是: link -->
     <!-- 配置数值是: http://www.google.com -->
     <ui-btn new-tab link="http://www.google.com">Google</ui-btn>
-    ````
+    :::
 
     键名为配置的名称，键值是配置的数值。
 
     由于初始化配置基于`Vue`的`props`，你也可以使用`v-bind`来传入配置，或使用JavaScript表达式。
 
-    ````vue
-    @use:html.demo1,js.demo1
-    ````
-
-    ````html
-    @var:demo1
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            link : 'http://www.google.com'
+        }
+    });
+    ---
     <div>
         <!-- 通过v-bind为ui-btn设置link -->
         <ui-btn new-tab :link="link">Google</ui-btn>
@@ -41,18 +44,7 @@
         <!-- 通过JavaScript表达式为ui-btn设置link -->
         <ui-btn new-tab :link="'http://www.google.com'">Google</ui-btn>
     </div>
-    ````
-
-    ````js
-    @var:demo1
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
-        data : {
-            link : 'http://www.google.com'
-        }
-    });
-    ````
+    :::
 
     更多用法见:[Vue/模板语法](https://cn.vuejs.org/v2/guide/syntax.html)。
 
@@ -60,20 +52,7 @@
 
     HTML特性是不区分大小写的。所以，当配置的名称是camelCased(驼峰式)命名的prop，在HTML中需要转换为相对应的kebab-case(短横线隔开式)命名：
 
-    ````vue
-    @use:html.demo3,js.demo3
-    ````
-
-    ````html
-    @var:demo3
-    <div>
-        <!-- new-tab在HTML中是kebab-case命名 -->
-        <ui-btn ref="demo3" new-tab :link="link">Google</ui-btn>
-    </div>
-    ````
-
-    ````js
-    @var:demo3
+    :::vue/html
     new Vue({
         el : '{$el}',
         template : '{$template}',
@@ -81,10 +60,12 @@
             link : 'http://www.google.com'
         }
     });
-
-    // 在JS中通过newTab来获取(camelCased命名)
-    console.log('demo3.console1', morning.findVM('demo3').conf.newTab); // `true`
-    ````
+    ---
+    <div>
+        <!-- new-tab在HTML中是kebab-case命名 -->
+        <ui-btn ref="demo3" new-tab :link="link">Google</ui-btn>
+    </div>
+    :::
 
     ### 单次初始化
 
@@ -93,21 +74,7 @@
     - 当组件的配置`link`发生变更时，并不会同步到父VM的`link`中
     - 当父VM的`link`发生变更时，也不会同步到组件的配置`link`中
 
-
-    ````vue
-    @use:html.demo2,js.demo2
-    ````
-
-    ````html
-    @var:demo2
-    <div>
-        <!-- 通过v-bind为ui-btn设置link -->
-        <ui-btn ref="demo2" new-tab :link="link">Google</ui-btn>
-    </div>
-    ````
-
-    ````js
-    @var:demo2
+    :::vue/html
     var demo2 = new Vue({
         el : '{$el}',
         template : '{$template}',
@@ -123,7 +90,12 @@
     // 父VM`link`的改变也不会同步到组件的配置中
     demo2.link = 'http://bing.com';
     console.log('demo2.console2', morning.findVM('demo2').getConf('link')); // `http://www.baidu.com`
-    ````
+    ---
+    <div>
+        <!-- 通过v-bind为ui-btn设置link -->
+        <ui-btn ref="demo2" new-tab :link="link">Google</ui-btn>
+    </div>
+    :::
 
     ### 配置生命周期
 

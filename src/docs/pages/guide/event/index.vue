@@ -20,20 +20,7 @@
 
     组件的事件监听，基于Vue的自定义事件，你可以在模板中通过`v-on`指令监听事件：
 
-    ````vue
-    @use:html.demo1,js.demo1
-    ````
-
-    ````html
-    @var:demo1
-    <div>
-        <!-- 监听emit事件，并调用echo方法 -->
-        <ui-btn v-on:emit="echo">监听emit事件</ui-btn>
-    </div>
-    ````
-
-    ````js
-    @var:demo1
+    :::vue/html
     new Vue({
         el : '{$el}',
         template : '{$template}',
@@ -43,26 +30,18 @@
             }
         }
     });
-    ````
+    ---
+    <div>
+        <!-- 监听emit事件，并调用echo方法 -->
+        <ui-btn v-on:emit="echo">监听emit事件</ui-btn>
+    </div>
+    :::
 
     #### v-on缩写
 
     你也可以通过`@`来缩写`v-on`用法：
 
-    ````vue
-    @use:html.demo2,js.demo2
-    ````
-
-    ````html
-    @var:demo2
-    <div>
-        <!-- 监听emit事件，并调用echo方法 -->
-        <ui-btn @emit="echo">监听emit事件</ui-btn>
-    </div>
-    ````
-
-    ````js
-    @var:demo2
+    :::vue/html
     new Vue({
         el : '{$el}',
         template : '{$template}',
@@ -72,25 +51,18 @@
             }
         }
     });
-    ````
+    ---
+    <div>
+        <!-- 监听emit事件，并调用echo方法 -->
+        <ui-btn @emit="echo">监听emit事件</ui-btn>
+    </div>
+    :::
 
     #### $on监听
 
     你还可以通过组件vm上的`$on`方法来监听事件：
 
-    ````vue
-    @use:html.demo3,js.demo3
-    ````
-
-    ````html
-    @var:demo3
-    <div>
-        <ui-btn ref="demo3">监听emit事件</ui-btn>
-    </div>
-    ````
-
-    ````js
-    @var:demo3
+    :::vue/html
     new Vue({
         el : '{$el}',
         template : '{$template}'
@@ -100,7 +72,11 @@
     window.morning.findVM('demo3').$on('emit', () => {
         console.log('demo3.console1', 'emit event!');
     });
-    ````
+    ---
+    <div>
+        <ui-btn ref="demo3">监听emit事件</ui-btn>
+    </div>
+    :::
     
     你可以查看[Vue/事件处理](https://vuejs.org/v2/guide/events.html)获取更多细节，但是需要注意Vue中的事件修饰符、键值修饰符、鼠标按钮修饰符等特性在MorningUI中并不支持。
 
