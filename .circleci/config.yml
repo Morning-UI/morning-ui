@@ -33,6 +33,4 @@ workflows:
   lint_and_test:
     jobs:
       - install
-      - lint:
-        requires:
-          - install
+      - lint
