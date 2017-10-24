@@ -10,6 +10,12 @@ jobs:
       - image: circleci/node:8.7-browsers
     working_directory: ~/repo
     resource_class: medium
+    branches:
+      only:
+        - master
+        - dev
+        - born
+        - /issue-.*/
     steps:
       - checkout
       - restore_cache:
@@ -25,6 +31,12 @@ jobs:
       - image: circleci/node:8.7-browsers
     working_directory: ~/repo
     resource_class: medium
+    branches:
+      only:
+        - master
+        - dev
+        - born
+        - /issue-.*/
     steps:
       - checkout
       - restore_cache:
@@ -34,12 +46,6 @@ jobs:
 workflows:
   version: 2
   lint_and_test:
-    branches:
-      only:
-        - master
-        - dev
-        - born
-        - /issue-.*/
     jobs:
       - install
       - lint:
