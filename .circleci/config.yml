@@ -9,12 +9,6 @@ jobs:
     docker:
       - image: circleci/node:8.7-browsers
     working_directory: ~/repo
-    branches:
-      only:
-        - master
-        - dev
-        - born
-        - /issue-.*/
     resource_class: medium
     steps:
       - checkout
@@ -30,15 +24,24 @@ jobs:
     docker:
       - image: circleci/node:8.7-browsers
     working_directory: ~/repo
-    branches:
-      only:
-        - master
-        - dev
-        - born
-        - /issue-.*/
     resource_class: medium
     steps:
       - checkout
       - restore_cache:
         - v2-node_modules-{{ checksum "package.json" }}
       - run: npm run lint
+
+workflows:
+  version: 2
+  lint_and_test:
+    branches:
+      only:
+        - master
+        - dev
+        - born
+        - /issue-.*/
+    jobs:
+      - install
+      - lint
+        requires:
+          - install
