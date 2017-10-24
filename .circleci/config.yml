@@ -4,7 +4,6 @@
 #
 version: 2
 jobs:
-
   install:
     docker:
       - image: circleci/node:8.7-browsers
