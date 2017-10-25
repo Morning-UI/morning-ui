@@ -208,6 +208,155 @@ export default Form.extend({
         }
     },
     methods : {
+        _valueFilter : function (value) {
+
+            if (typeof value !== 'object' ||
+                !(value instanceof Array)) {
+
+                return [];
+
+            }
+
+            if (this.conf.multiSelect &&
+                this.conf.max &&
+                this.data.value.length > this.conf.max) {
+
+                return value.slice(0, this.conf.max);
+
+            }
+
+            if (!this.conf.multiSelect &&
+                this.data.value.length > 1) {
+
+                return value.slice(0, 1);
+
+            }
+
+            return value;
+
+        },
+        _onValueChange : function () {
+
+            let newVal = this.get(false);
+            let $items = this.$el.querySelectorAll('.list>li:not(.noitem)');
+            let $currentItems = this.$el.querySelectorAll('.list>li.current');
+            let $noitem = this.$el.querySelector('.noitem');
+            // let $selected = this.$el.querySelector('.selected');
+            let searchTextinput;
+            let searchMultiinput;
+            let multiValue = [];
+
+            for (let $item of $currentItems.values()) {
+
+                $item.classList.remove('current');
+
+            }
+
+            if (this.conf.canSearch &&
+                !this.conf.multiSelect) {
+
+                searchTextinput = this.$el.querySelector(`#ui-select-ti-${this.uiid}`);
+
+                if (searchTextinput) {
+
+                    searchTextinput = searchTextinput._vm;
+
+                }
+
+            } else if (this.conf.multiSelect) {
+
+                searchMultiinput = this.$el.querySelector(`#ui-select-mi-${this.uiid}`);
+
+                if (searchMultiinput) {
+
+                    searchMultiinput = searchMultiinput._vm;
+
+                }
+
+            }
+
+            for (let val of newVal) {
+
+                for (let $item of $items.values()) {
+
+                    if ($item.getAttribute('value') === val) {
+
+                        $item.classList.add('current');
+
+                        if (this.conf.canSearch) {
+
+                            if (searchTextinput) {
+
+                                searchTextinput._set(undefined, true);
+
+                            }
+
+                        }
+
+                        if (this.conf.multiSelect) {
+
+                            multiValue.push(trim($item.textContent));
+                        
+                        } else {
+                            
+                            this.data.selectedContent = $item.innerHTML;
+
+                        }
+                    
+                    }
+
+                }
+
+            }
+
+            if (this.conf.multiSelect &&
+                this.data.value.length === $items.length) {
+
+                $noitem.classList.add('show');
+
+            } else {
+                
+                $noitem.classList.remove('show');
+
+            }
+
+            if (this.conf.multiSelect &&
+                this.data.value.length === this.conf.max) {
+
+                this.data.isMax = true;
+
+            } else {
+
+                this.data.isMax = false;
+
+            }
+
+            if (!this.conf.multiSelect &&
+                (this.data.value.length === 0 || this.data.value === undefined)) {
+
+                this.data.selectedContent = this.conf.formName || '';
+            
+            }
+
+            if (searchMultiinput &&
+                searchMultiinput.get() !== JSON.stringify(multiValue)) {
+
+                let inputValue = searchMultiinput.getInput();
+
+                this.data.selectInput = true;
+                searchMultiinput._set(multiValue, true);
+
+                this.Vue.nextTick(() => {
+                    
+                    searchMultiinput.setInput(inputValue);
+
+                });
+            
+            }
+
+            this._refreshShowItems();
+
+        },
         _wrapClick : function (evt) {
 
             if (this.conf.state === 'disabled') {
@@ -645,158 +794,9 @@ export default Form.extend({
     created : function () {},
     mounted : function () {
 
-        // this $watch must in mounted
-        this.$watch('data.value', newVal => {
+        this._onValueChange();
 
-            let $items = this.$el.querySelectorAll('.list>li:not(.noitem)');
-            let $currentItems = this.$el.querySelectorAll('.list>li.current');
-            let $noitem = this.$el.querySelector('.noitem');
-            // let $selected = this.$el.querySelector('.selected');
-            let searchTextinput;
-            let searchMultiinput;
-            let multiValue = [];
-
-            if (typeof newVal !== 'object' ||
-                !(newVal instanceof Array)) {
-
-                this.data.value = [];
-
-                return;
-
-            }
-
-            if (this.conf.multiSelect &&
-                this.conf.max &&
-                this.data.value.length > this.conf.max) {
-
-                this.data.value = newVal.slice(0, this.conf.max);
-
-                return;
-
-            }
-
-            if (!this.conf.multiSelect &&
-                this.data.value.length > 1) {
-
-                this.data.value = newVal.slice(0, 1);
-
-                return;
-
-            }
-
-            for (let $item of $currentItems.values()) {
-
-                $item.classList.remove('current');
-
-            }
-
-            if (this.conf.canSearch &&
-                !this.conf.multiSelect) {
-
-                searchTextinput = this.$el.querySelector(`#ui-select-ti-${this.uiid}`);
-
-                if (searchTextinput) {
-
-                    searchTextinput = searchTextinput._vm;
-
-                }
-
-            } else if (this.conf.multiSelect) {
-
-                searchMultiinput = this.$el.querySelector(`#ui-select-mi-${this.uiid}`);
-
-                if (searchMultiinput) {
-
-                    searchMultiinput = searchMultiinput._vm;
-
-                }
-
-            }
-
-            for (let val of newVal) {
-
-                for (let $item of $items.values()) {
-
-                    if ($item.getAttribute('value') === val) {
-
-                        $item.classList.add('current');
-
-                        if (this.conf.canSearch) {
-
-                            if (searchTextinput) {
-
-                                searchTextinput._set(undefined, true);
-
-                            }
-
-                        }
-
-                        if (this.conf.multiSelect) {
-
-                            multiValue.push(trim($item.textContent));
-                        
-                        } else {
-                            
-                            this.data.selectedContent = $item.innerHTML;
-
-                        }
-                    
-                    }
-
-                }
-
-            }
-
-            if (this.conf.multiSelect &&
-                this.data.value.length === $items.length) {
-
-                $noitem.classList.add('show');
-
-            } else {
-                
-                $noitem.classList.remove('show');
-
-            }
-
-            if (this.conf.multiSelect &&
-                this.data.value.length === this.conf.max) {
-
-                this.data.isMax = true;
-
-            } else {
-
-                this.data.isMax = false;
-
-            }
-
-            if (!this.conf.multiSelect &&
-                (this.data.value.length === 0 || this.data.value === undefined)) {
-
-                this.data.selectedContent = this.conf.formName || '';
-            
-            }
-
-            if (searchMultiinput &&
-                searchMultiinput.get() !== JSON.stringify(multiValue)) {
-
-                let inputValue = searchMultiinput.getInput();
-
-                this.data.selectInput = true;
-                searchMultiinput._set(multiValue, true);
-
-                this.Vue.nextTick(() => {
-                    
-                    searchMultiinput.setInput(inputValue);
-
-                });
-            
-            }
-
-            this._refreshShowItems();
-
-        }, {
-            immediate : true
-        });
+        this.$on('valueChange', this._onValueChange);
 
         this.data.mounted = true;
 

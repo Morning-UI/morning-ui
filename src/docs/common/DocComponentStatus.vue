@@ -312,7 +312,8 @@ export default {
         height: 16px;
         border-radius: 100%;
         vertical-align: top;
-        border: 1px #e6e6e6 solid;
+        border: 1px #e6e6e6 solid !important;
+        padding: 0;
     }
 
     .contributors{

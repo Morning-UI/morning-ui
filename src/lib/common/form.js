@@ -160,6 +160,11 @@ let Form = UI.extend({
             return this;
 
         },
+        _valueFilter : function (value) {
+
+            return value;
+
+        },
         set : function (value) {
 
             return this._set(value);
@@ -297,13 +302,27 @@ let Form = UI.extend({
         this.data.value = this.conf.defaultValue;
         this._syncGroup();
 
-        this.$watch('data.value', () => {
+        this.$watch('data.value', newValue => {
+
+            let filteredValue = this._valueFilter(newValue);
+
+            if ((typeof newValue === 'object' &&
+                typeof filteredValue === 'object' &&
+                JSON.stringify(newValue) !== JSON.stringify(filteredValue)) ||
+                newValue !== filteredValue) {
+
+                this.data.value = filteredValue;
+
+                return;
+
+            }
 
             this._syncGroup();
             this.$emit('valueChange');
 
         }, {
-            deep : true
+            deep : true,
+            immediate : true
         });
 
         this.$watch('conf.group', (newVal, oldVal) => {

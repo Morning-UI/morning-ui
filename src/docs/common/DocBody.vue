@@ -263,7 +263,7 @@ let data = {
         select : [
             {
                 valueType : 'String',
-                valueContent : `'Tim'`
+                valueContent : `'Tim Boelaars'`
             },
             {
                 valueType : 'Number',

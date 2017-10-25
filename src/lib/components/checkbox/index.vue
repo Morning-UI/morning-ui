@@ -84,6 +84,18 @@ export default Form.extend({
     },
     computed : {},
     methods : {
+        _valueFilter : function (value) {
+
+            if (typeof value !== 'object' ||
+                !(value instanceof Array)) {
+
+                return [];
+
+            }
+
+            return value;
+
+        },
         toggle : function (key, checked) {
 
             let list = extend(true, [], this.data.value);
@@ -120,40 +132,31 @@ export default Form.extend({
     },
     created : function () {
 
-        this.$watch('data.value', newVal => {
+        // this.$watch('data.value', newVal => {
 
-            if (typeof newVal !== 'object' ||
-                !(newVal instanceof Array)) {
+        //     let valList = this.get(false);
 
-                this.data.value = [];
+        //     for (let index in valList) {
 
-                return;
+        //         let val = valList[index];
 
-            }
+        //         if (Object.keys(this.conf.list).indexOf(String(val)) === -1) {
 
-            let valList = this.get(false);
+        //             valList.splice(index, 1);
 
-            for (let index in valList) {
+        //         }
 
-                let val = valList[index];
+        //     }
 
-                if (Object.keys(this.conf.list).indexOf(String(val)) === -1) {
+        //     if (valList.length !== newVal.length) {
 
-                    valList.splice(index, 1);
+        //         this.data.value = valList;
 
-                }
+        //     }
 
-            }
-
-            if (valList.length !== newVal.length) {
-
-                this.data.value = valList;
-
-            }
-
-        }, {
-            immediate : true
-        });
+        // }, {
+        //     immediate : true
+        // });
 
     },
     mounted : function () {}

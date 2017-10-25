@@ -53,6 +53,11 @@ export default Form.extend({
         }
     },
     methods : {
+        _valueFilter : function (value) {
+
+            return !!value;
+
+        },
         toggle : function (open) {
 
             if (open === undefined) {
@@ -67,17 +72,7 @@ export default Form.extend({
 
         }
     },
-    created : function () {
-
-        this.$watch('data.value', newVal => {
-
-            this.data.value = !!newVal;
-
-        }, {
-            immediate : true
-        });
-    
-    },
+    created : function () {},
     mounted : function () {
 
         this.$watch('conf.formName', newVal => {
