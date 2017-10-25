@@ -83,25 +83,41 @@
 
     `git commit`的信息请确保是可以描述你改动的一句话，避免使用无意义的提交信息，比如：`update`等。
 
+    然后通过`git push`将代码推送到Github，首次推送新分支时需要使用`git push --set-upstream origin [分支名]`。
+
     ### Pull Request
     
     当你完成了所有的编码工作，前往：`https://github.com/EarlyH/morning-ui/pulls`，点击`New pull request`：
 
     <img src="http://h0.hucdn.com/open/201743/7e973819a866761f_2010x240.png" alt="" width="700">
 
-    
+    然后`base`选择`dev`，`compare`选择你的分支，然后你可以看到：
 
+    <img src="http://h0.hucdn.com/open/201743/5e4e7f5309fbc627_1708x456.png" alt="" width="600">
+
+    > 若显示无法自动合并分支，请先在本地处理完冲突的改动。
+
+    点击`Create pull request`：
+
+    <img src="http://h0.hucdn.com/open/201743/7ad9a3006740642f_1988x828.png" alt="" width="600">
+    
+    按照上面的示例，写清楚你改动的内容及注意事项，指定贡献者为你Code Review。或者也可以添加`Request Review`标签让其他贡献者为你Code Review。
+
+    若Review中存在问题你们可在`pull request`下面进行讨论，当进行Code Review的贡献者通过后，会增加`Accept Pull Request`的标签，接下来项目管理员会对代码进行合并。
 
     ### 合入主开发分支
+    
+    当你的`pull request`满足下面的条件：
 
+    - 可被自动合并
+    - 通过Code Review并有`Accept Pull Request`标签
+    - 通过持续集成
 
+    项目管理员会将你的代码合并至主开发分支。
 
     ### 版本发布
 
-
-    当一个版本中的所有功能都完成，会将此分支合并到master，并打上tag发布。
-    当你需要根据某个issue开发时，需要切换到此分支。
-
+    当项目管理员合并完版本中的所有`pull request`之后，会将主开发分支代码合入`master`。然后发布版本。
 
     </script>
     </doc-guide>

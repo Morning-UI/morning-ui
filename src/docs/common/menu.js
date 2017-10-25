@@ -107,7 +107,7 @@ export default {
         编写文档 : '/guide/writedoc.html',
         '编写测试<i class="tag coming"></i>' : '/guide/writetest.html',
         检视代码 : '/guide/review.html',
-        '提交代码<i class="tag coming"></i>' : '/guide/commitcode.html',
+        提交代码 : '/guide/commitcode.html',
         版本计划 : '/guide/versionplan.html',
         更多 : null,
         致谢 : '/guide/thank.html',

@@ -16,7 +16,7 @@
 
     当你开发并提交需要贡献的代码后，请在`Merge Request`中发起一个新的合并请求，合并的源分支是你的贡献分支，目标分支是`dev`。
 
-    在你的合并请求创建时，请添加`Request Review`标签。这个标签表示你的合并请求需要Review，你可以在`Assignee`中指定特定的人来为你Review，否则将由第一个申请的贡献者为你Review代码。
+    在你的合并请求创建时，请添加`Request Review`标签。这个标签表示你的合并请求需要Review，你可以在`Reviewers`中指定特定的人来为你Review，否则将由申请的贡献者为你Review代码。
 
     > `dev`是项目的主开发分支，所有的贡献最终都会合并至此。最终由项目管理员通过版本发布的形式将代码提交至`master`分支。
 
@@ -24,11 +24,11 @@
 
     打开`Merge Request`页面，筛选出包含`Request Review`标签的合并请求，然后：
 
-    - 如果这个请求指定了`Assignee`，并且不是你：请交给指定的人来Review，跳过这个合并请求
-    - 如果这个请求指定了`Assignee`，并且是你：请打开这个合并请求，然后开始Review
-    - 如果这个请求没有指定`Assignee`：打开它，然后将`Assignee`改成你，然后开始Review
+    - 如果这个请求指定了`Reviewers`，并且不是你：请交给指定的人来Review，跳过这个合并请求
+    - 如果这个请求指定了`Reviewers`，并且是你：请打开这个合并请求，然后开始Review
+    - 如果这个请求没有指定`Reviewers`：打开它，然后将`Reviewers`改成你，然后开始Review
 
-    > 一个合并请求的`Assignee`表明了当前正在Review的人是谁。
+    > 一个合并请求的`Reviewers`表明了当前正在Review的人是谁。
 
     ### Review代码注意事项
 
@@ -72,11 +72,12 @@
 
     ### 指出问题及沟通
 
-    你可以在有问题的代码上开启一个`Discussion`，指出你的疑问或纠正错误。代码贡献者需要会在这个`Discussion`上和你沟通，当你们达成一致后，请点击`Resolve discussion`，这表示这个`Discussion`已经被解决。
+    你可以在有问题的代码上开启一个`Review`，指出你的疑问或纠正错误。代码贡献者需要会在这个`Review`上和你沟通，直到达成一致。
 
     ### 允许合并
 
-    当所有的`Discussion`都被解决后，且通过持续集成，这个合并请求可被合并。点击绿色的`Accept Merge Request`按钮合并代码，恭喜你完成了一次代码Review贡献。
+    当所有的`Review`都达成一致后，且通过持续集成，这个合并请求可被合并。添加`Accept Pull Request`标签并移除`Request Review
+ `标签，恭喜你完成了一次代码Review贡献。后续会有项目管理员对代码进行合并。
 
     > 合并前请务必确认目标分支是`dev`，否则通知代码贡献者修改合并请求。
     

@@ -173,6 +173,7 @@ header.index .menu li a {
 .markdown-body img {
   border: 1px #E6E6E6 solid !important;
   padding: 2px;
+  margin-bottom: 10px;
 }
 .markdown-body i-img img {
   border: none !important;
