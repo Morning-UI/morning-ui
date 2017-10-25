@@ -116,6 +116,31 @@
     </div>
     :::
 
+    #### 通过`v-for`生成可选项
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            list : [
+                {name : 'Tim Boelaars'},
+                {name : 'Andrew Colin Beck'},
+                {name : 'Gustavo Zambelli'},
+                {name : 'Victor Erixon'},
+                {name : 'Shaun Moynihan'},
+                {name : 'Emir Ayouni'}
+            ]
+        }
+    });
+    ---
+    <div style="width:300px;">
+        <ui-select form-name="Select designer">
+            <li :value="item.name" v-for="item in list">{*item.name*}</li>
+        </ui-select>
+    </div>
+    :::
+
     [[[声明]]]
 
     :::preset/html
@@ -646,8 +671,6 @@
     <br>
     <br>
     :::
-
-
 
     [[[源码]]]
 

@@ -238,7 +238,7 @@ export default Form.extend({
 
                 let val = value[index];
 
-                if (Object.keys(this.data.itemValueList).indexOf(String(val)) === -1) {
+                if (this.data.itemValueList.indexOf(String(val)) === -1) {
 
                     value.splice(index, 1);
 
@@ -768,6 +768,29 @@ export default Form.extend({
             }
 
         },
+        _setListHeight : function () {
+
+            let $item = this.$el.querySelector('.list>li:not(.noitem):not(.current):not(.selected)');
+
+            if (!$item) {
+
+                return;
+
+            }
+
+            let maxHeight = $item.offsetHeight * this.conf.maxShow;
+
+            if (this.listStyle.maxHeight === `${maxHeight}px`) {
+
+                return;
+
+            }
+
+            this.listStyle = {
+                maxHeight : `${maxHeight}px`,
+            };
+
+        },
         toggle : function (show) {
 
             if (show === undefined) {
@@ -835,21 +858,7 @@ export default Form.extend({
 
         setTimeout(() => {
 
-            this.$watch('conf.maxShow', newVal => {
-
-                let $item = this.$el.querySelector('.list>li:not(.noitem):not(.current):not(.selected)');
-
-                if (!$item) {
-
-                    return;
-
-                }
-
-                this.listStyle = {
-                    maxHeight : `${$item.offsetHeight * newVal}px`,
-                };
-
-            }, {
+            this.$watch('conf.maxShow', this._setListHeight, {
                 immediate : true
             });
         
@@ -858,6 +867,7 @@ export default Form.extend({
     },
     updated : function () {
 
+        this._setListHeight();
         this._resizeInlineImg();
         this._updateItemValueList();
 
