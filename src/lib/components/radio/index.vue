@@ -87,7 +87,7 @@ export default Form.extend({
             // filter not exist value.
             if (Object.keys(this.conf.list).indexOf(String(value)) === -1) {
 
-                return [];
+                return undefined;
 
             }
 
