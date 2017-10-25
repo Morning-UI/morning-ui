@@ -93,6 +93,19 @@ export default Form.extend({
 
             }
 
+            // filter not exist value.
+            for (let index in value) {
+
+                let val = value[index];
+
+                if (Object.keys(this.conf.list).indexOf(String(val)) === -1) {
+
+                    value.splice(index, 1);
+
+                }
+
+            }
+
             return value;
 
         },
@@ -130,35 +143,7 @@ export default Form.extend({
 
         }
     },
-    created : function () {
-
-        // this.$watch('data.value', newVal => {
-
-        //     let valList = this.get(false);
-
-        //     for (let index in valList) {
-
-        //         let val = valList[index];
-
-        //         if (Object.keys(this.conf.list).indexOf(String(val)) === -1) {
-
-        //             valList.splice(index, 1);
-
-        //         }
-
-        //     }
-
-        //     if (valList.length !== newVal.length) {
-
-        //         this.data.value = valList;
-
-        //     }
-
-        // }, {
-        //     immediate : true
-        // });
-
-    },
+    created : function () {},
     mounted : function () {}
 });
 </script>

@@ -84,6 +84,13 @@ export default Form.extend({
     methods : {
         _valueFilter : function (value) {
 
+            // filter not exist value.
+            if (Object.keys(this.conf.list).indexOf(String(value)) === -1) {
+
+                return [];
+
+            }
+
             return String(value);
 
         },
@@ -108,14 +115,6 @@ export default Form.extend({
         // this.$watch('data.value', newVal => {
 
         //     if (newVal === undefined) {
-
-        //         return;
-
-        //     }
-
-        //     if (Object.keys(this.conf.list).indexOf(String(newVal)) === -1) {
-
-        //         this.data.value = undefined;
 
         //         return;
 

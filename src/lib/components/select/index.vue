@@ -178,7 +178,8 @@ export default Form.extend({
                 mounted : false,
                 isMax : false,
                 multiinputLastValue : [],
-                selectInput : false
+                selectInput : false,
+                itemValueList : []
             },
             listStyle : {}
         };
@@ -229,6 +230,19 @@ export default Form.extend({
                 this.data.value.length > 1) {
 
                 return value.slice(0, 1);
+
+            }
+
+            // filter not exist value.
+            for (let index in value) {
+
+                let val = value[index];
+
+                if (Object.keys(this.data.itemValueList).indexOf(String(val)) === -1) {
+
+                    value.splice(index, 1);
+
+                }
 
             }
 
@@ -355,6 +369,20 @@ export default Form.extend({
             }
 
             this._refreshShowItems();
+
+        },
+        _updateItemValueList : function () {
+
+            let $items = this.$el.querySelectorAll('.list>li:not(.noitem)');
+            let list = [];
+
+            for (let $item of $items.values()) {
+
+                list.push($item.getAttribute('value'));
+
+            }
+
+            this.data.itemValueList = list;
 
         },
         _wrapClick : function (evt) {
@@ -803,6 +831,7 @@ export default Form.extend({
         this._addGlobalListener();
         this._resizeInlineImg();
         this._initTips();
+        this._updateItemValueList();
 
         setTimeout(() => {
 
@@ -830,6 +859,7 @@ export default Form.extend({
     updated : function () {
 
         this._resizeInlineImg();
+        this._updateItemValueList();
 
     },
     beforeDestroy : function () {
