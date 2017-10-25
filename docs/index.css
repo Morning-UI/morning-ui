@@ -1,0 +1,212 @@
+
+* {
+  font-family: PingFangSC-Thin, sans-serif;
+}
+@font-face {
+  font-family: 'iconfont';
+  src: url(/iconfont.woff) format('woff');
+}
+.iconfont {
+  font-family: 'iconfont' !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.markdown-body img {
+  border: 1px #E6E6E6 solid !important;
+  padding: 2px;
+}
+.markdown-body i-img img {
+  border: none !important;
+  padding: 0;
+}
+.markdown-body h5 {
+  font-size: 1em !important;
+}
+.markdown-body .demo-area {
+  border: 3px #e6e6e6 dashed;
+  padding: 40px 10px 10px 10px;
+  position: relative;
+  margin-bottom: 16px;
+}
+.markdown-body .demo-title {
+  position: absolute;
+  padding: 0 20px;
+  right: 0;
+  top: 0;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  font-size: 20px;
+  margin: 0;
+  display: inline-block;
+  background: #f0f0f0;
+}
+.markdown-body i-ul h3 {
+  margin: 0;
+  line-height: initial;
+}
+.markdown-body > div > h1 {
+  line-height: 1.35;
+  margin-top: 0;
+}
+.markdown-body > div > i-tab > .contents > .item > div {
+  margin-top: 30px;
+}
+.markdown-body > div > h3 > i-badge {
+  font-weight: 400;
+  vertical-align: 4px;
+  transform: scale(0.9);
+  transform-origin: left center;
+}
+.markdown-body iframe {
+  width: 100%;
+}
+.markdown-body i-breadcrumbs li + li {
+  margin-top: 0;
+}
+.markdown-body i-dialog h1 {
+  border-bottom: none;
+  line-height: inherit;
+}
+.component .markdown-body > div > h1 {
+  margin-bottom: 0;
+}
+.markdown-body i-formgroup header {
+  height: inherit;
+}
+.markdown-body i-formgroup h5 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 1.6em;
+}
+.markdown-body i-formgroup p {
+  margin-bottom: 0;
+}
+.markdown-body i-select li + li {
+  margin-top: 0;
+}
+i-dialog .body {
+  font-size: inherit;
+}
+i-dialog a {
+  color: #0366D6;
+  text-decoration: none;
+}
+i-dialog a:hover {
+  text-decoration: underline;
+}
+.w1k {
+  width: 1100px;
+  margin: 0 auto;
+}
+.center {
+  text-align: center;
+}
+.s1 {
+  padding: 50px 0;
+}
+.s1 .mainLogo {
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
+}
+.s1.gray {
+  background: #EEE;
+}
+.s1 h1 {
+  text-align: center;
+  font-weight: 400;
+}
+.keywork {
+  width: 900px;
+  font-size: 0;
+  padding: 0 100px;
+  margin: 50px 0 0;
+}
+.keywork span {
+  display: inline-block;
+  font-size: 36px;
+  vertical-align: top;
+  width: 30%;
+  margin: 0 1.25%;
+  color: #000;
+  text-align: center;
+}
+
+header {
+  width: 100%;
+  background: #333;
+  height: 80px;
+}
+header .nav {
+  width: 1000px;
+  margin: 0 auto;
+  position: relative;
+}
+header .logo {
+  display: inline-block;
+  vertical-align: top;
+  opacity: 0.8;
+}
+header .logo img {
+  width: 50px;
+  height: 50px;
+  margin-top: 15px;
+  display: inline-block;
+}
+header .name {
+  display: inline-block;
+  vertical-align: top;
+  color: #FFF;
+  line-height: 80px;
+  margin-left: 0;
+  font-size: 26px;
+  opacity: 0.8;
+}
+header .menu {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+header .menu li {
+  display: inline-block;
+  vertical-align: top;
+  margin: 15px 10px;
+  height: 50px;
+}
+header .menu li a {
+  height: 50px;
+  line-height: 50px;
+  color: #FFF;
+  opacity: 0.7;
+  font-size: 13px;
+  text-decoration: none;
+}
+header .menu li a:hover {
+  opacity: 0.8;
+}
+header .menu li a.current {
+  opacity: 1;
+  font-weight: 600;
+}
+header.index {
+  background: #FFF;
+}
+header.index .logo img {
+  display: none;
+}
+header.index .name {
+  color: #000;
+  font-size: 28px;
+}
+header.index .menu li a {
+  color: #333;
+}
