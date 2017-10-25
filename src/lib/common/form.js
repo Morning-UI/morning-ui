@@ -318,7 +318,7 @@ let Form = UI.extend({
             }
 
             this._syncGroup();
-            this.$emit('valueChange');
+            this.$emit('value-change');
 
         }, {
             deep : true,

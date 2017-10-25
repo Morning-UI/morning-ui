@@ -163,7 +163,7 @@
 
     [[[事件]]]
     
-    #### inputValueChange
+    #### input-value-change
 
     当输入标签内容变化后触发。
 
@@ -173,17 +173,17 @@
         template : '{$template}',
         methods : {
             echo : function () {
-                console.log('demo5.console1', 'inputValueChange event!');
+                console.log('demo5.console1', 'input-value-change event!');
             }
         }
     });
     ---
     <div style="width:300px;">
-        <ui-multiinput @inputValueChange="echo" ref="demo5" form-name="输入标签"></ui-multiinput>
+        <ui-multiinput @input-value-change="echo" ref="demo5" form-name="输入标签"></ui-multiinput>
     </div>
     :::
     
-    #### inputFocus
+    #### input-focus
 
     当标签内容输入框聚焦后触发。
 
@@ -193,17 +193,17 @@
         template : '{$template}',
         methods : {
             echo : function () {
-                console.log('demo6.console1', 'inputFocus event!');
+                console.log('demo6.console1', 'input-focus event!');
             }
         }
     });
     ---
     <div style="width:300px;">
-        <ui-multiinput @inputFocus="echo" ref="demo6" form-name="输入标签"></ui-multiinput>
+        <ui-multiinput @input-focus="echo" ref="demo6" form-name="输入标签"></ui-multiinput>
     </div>
     :::
 
-    #### inputBlur
+    #### input-blur
 
     当标签内容输入框失焦后触发。
 
@@ -215,13 +215,13 @@
         template : '{$template}',
         methods : {
             echo : function () {
-                console.log('demo7.console1', 'inputBlur event!');
+                console.log('demo7.console1', 'input-blur event!');
             }
         }
     });
     ---
     <div style="width:300px;">
-        <ui-multiinput @inputBlur="echo" ref="demo7" form-name="输入标签"></ui-multiinput>
+        <ui-multiinput @input-blur="echo" ref="demo7" form-name="输入标签"></ui-multiinput>
     </div>
     :::
 

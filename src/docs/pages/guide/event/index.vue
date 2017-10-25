@@ -86,9 +86,9 @@
 
     - `created` : 创建之后
     - `mounted` : 挂载之后
-    - `beforeUpdate` : 更新之前
+    - `before-update` : 更新之前
     - `updated` : 更新之后
-    - `beforeDestroy` : 销毁之前
+    - `before-destroy` : 销毁之前
 
     通过生命周期事件，可以让组件在不同周期中执行父vm的逻辑。
 
@@ -104,27 +104,29 @@
 
     事件在全局有一套命名规范，这样是为了防止不同的组件对于某个名词理解不同，导致同一名词在不同组件的不同行为。
 
+    由于Vue支持In-dom template，所以请勿使用驼峰法命名事件名称，这是因为在HTML的标签中属性名不区分大小写。
+
     在为组件添加事件前应先检查下面的列表，是否有含义相同的事件，若有请使用，若没有请将新的事件添加到下面列表并注明它的含义。
 
     - `created` : 创建之后
     - `mounted` : 挂载之后
-    - `beforeUpdate` : 更新之前
+    - `before-update` : 更新之前
     - `updated` : 更新之后
-    - `beforeDestroy` : 销毁之前
+    - `before-destroy` : 销毁之前
     - `emit` : 组件被触发
     - `switch` : 切换
     - `show` : 显示
     - `hide` : 隐藏
     - `done` : 完成
     - `fail` : 失败
-    - `valueChange` : 表单值改变
+    - `value-change` : 表单值改变
     - `focus` : 表单聚焦
     - `blur` : 表单失焦
-    - `listShow` : 列表显示
-    - `listHide` : 列表隐藏
-    - `inputValueChange` : 输入框值变化
-    - `inputFocus` : 输入框聚焦
-    - `inputBlur` : 输入框失焦
+    - `list-show` : 列表显示
+    - `list-hide` : 列表隐藏
+    - `input-value-change` : 输入框值变化
+    - `input-focus` : 输入框聚焦
+    - `input-blur` : 输入框失焦
 
     </script>
     </doc-guide>

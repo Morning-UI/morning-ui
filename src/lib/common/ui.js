@@ -240,7 +240,7 @@ let UI = Vue.extend({
     },
     beforeUpdate : function () {
 
-        this.$emit('beforeUpdate');
+        this.$emit('before-update');
 
     },
     updated : function () {
@@ -251,7 +251,7 @@ let UI = Vue.extend({
     },
     beforeDestroy : function () {
 
-        this.$emit('beforeDestroy');
+        this.$emit('before-destroy');
 
     },
     destroyed : function () {

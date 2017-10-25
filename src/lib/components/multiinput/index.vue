@@ -150,7 +150,7 @@ export default Form.extend({
 
                     this.data.focus = true;
                     $input.focus();
-                    this.$emit('inputFocus');
+                    this.$emit('input-focus');
 
                 }
 
@@ -165,7 +165,7 @@ export default Form.extend({
 
                 this.data.focus = false;
                 $input.blur();
-                this.$emit('inputBlur');
+                this.$emit('input-blur');
 
             }
 
@@ -294,13 +294,13 @@ export default Form.extend({
         this.$watch('data.inputValue', () => {
 
             this._resetInputWidth();
-            this.$emit('inputValueChange');
+            this.$emit('input-value-change');
 
         }, {
             immediate : true
         });
 
-        this.$on('valueChange', () => {
+        this.$on('value-change', () => {
 
             if (!this.Move.moving) {
 

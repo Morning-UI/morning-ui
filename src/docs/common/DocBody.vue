@@ -733,7 +733,7 @@ formConfig
 :::
     `,
     formEvent : `
-#### valueChange
+#### value-change
 
 当表单值变化时触发。
 
@@ -743,15 +743,15 @@ new Vue({
     template : '{$template}',
     methods : {
         echo : function () {
-            console.log('demoValueChange.console1', 'valueChange event!');
+            console.log('demoValueChange.console1', 'value-change event!');
         }
     }
 });
 ---
 <div style="width:300px;">
-    <ui-{%uikey%} ref="demoValueChange" form-name="表单名" @valueChange="echo" {%&eventMoreAttr%}>{%&eventSlot%}</ui-{%uikey%}>
+    <ui-{%uikey%} ref="demoValueChange" form-name="表单名" @value-change="echo" {%&eventMoreAttr%}>{%&eventSlot%}</ui-{%uikey%}>
     <br>
-    <ui-link js="window.morning.findVM('demoValueChange').set({%&eventValue%})">触发valueChange事件</ui-link>
+    <ui-link js="window.morning.findVM('demoValueChange').set({%&eventValue%})">触发value-change事件</ui-link>
 </div>
 :::
 
@@ -777,13 +777,13 @@ window.demoEventLifecycle = new Vue({
 <div style="width:300px;">
     <ui-{%uikey%}
         ref="demoEventLifecycle"
-        form-name="表单名"
+        form-name="表单名123"
         v-show="show"
         @created="echo('created')"
         @mounted="echo('mounted')"
-        @beforeUpdate="echo('beforeUpdate')"
+        @before-update="echo('before-update')"
         @updated="echo('updated')"
-        @beforeDestroy="echo('beforeDestroy')"
+        @before-destroy="echo('before-destroy')"
         @destroyed="echo('destroyed')"
         {%&eventMoreAttr%}
     >{%&eventSlot%}<span style="display:none;">{*text*}</span></ui-{%uikey%}>

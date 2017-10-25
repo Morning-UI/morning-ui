@@ -47,12 +47,12 @@
 
     表单组件支持下面几种通用事件：
 
-    - valueChange : 表单值发生改变时触发
+    - value-change : 表单值发生改变时触发
     - created : 组件实例创建后(组件生命周期事件，等同于vue中的`created`)
     - mounted : 组件挂载到DOM后(组件生命周期事件，等同于vue中的`mounted`)
-    - beforeUpdate : 组件更新前(组件生命周期事件，等同于vue中的`beforeUpdate`)
+    - before-update : 组件更新前(组件生命周期事件，等同于vue中的`before-update`)
     - updated : 组件更新后(组件生命周期事件，等同于vue中的`updated`)
-    - beforeDestroy : 组件销毁前(组件生命周期事件，等同于vue中的`beforeDestroy`)
+    - before-destroy : 组件销毁前(组件生命周期事件，等同于vue中的`before-destroy`)
     - destroyed : 组件销毁后(组件生命周期事件，等同于vue中的`destroyed`)
 
     ### 表单值

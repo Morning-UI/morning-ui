@@ -547,7 +547,7 @@
 
     [[[事件]]]
 
-    #### listShow
+    #### list-show
 
     当下拉列表显示时触发。
 
@@ -557,13 +557,13 @@
         template : '{$template}',
         methods : {
             echo : function () {
-                console.log('demo2.console1', 'listShow event!');
+                console.log('demo2.console1', 'list-show event!');
             }
         }
     });
     ---
     <div style="width:300px;">
-        <ui-select ref="demo2" form-name="Select designer" @listShow="echo">
+        <ui-select ref="demo2" form-name="Select designer" @list-show="echo">
             <li value="Tim Boelaars"><ui-img class="circle" src="https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894"></ui-img>Tim Boelaars</li>
             <li value="Andrew Colin Beck"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444"></ui-img>Andrew Colin Beck</li>
             <li value="Gustavo Zambelli"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442"></ui-img>Gustavo Zambelli</li>
@@ -579,7 +579,7 @@
     </div>
     :::
 
-    #### listHide
+    #### list-hide
 
     当下拉列表隐藏时触发。
 
@@ -589,13 +589,13 @@
         template : '{$template}',
         methods : {
             echo : function () {
-                console.log('demo3.console1', 'listHide event!');
+                console.log('demo3.console1', 'list-hide event!');
             }
         }
     });
     ---
     <div style="width:300px;">
-        <ui-select ref="demo3" form-name="Select designer" @listHide="echo">
+        <ui-select ref="demo3" form-name="Select designer" @list-hide="echo">
             <li value="Tim Boelaars"><ui-img class="circle" src="https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894"></ui-img>Tim Boelaars</li>
             <li value="Andrew Colin Beck"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444"></ui-img>Andrew Colin Beck</li>
             <li value="Gustavo Zambelli"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442"></ui-img>Gustavo Zambelli</li>

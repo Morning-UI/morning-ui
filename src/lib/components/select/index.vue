@@ -33,9 +33,9 @@
 
                 v-if="conf.canSearch"
 
-                @inputFocus="_multiinputFocus()"
-                @valueChange="_multiinputValueChange()"
-                @inputValueChange="_searchKeyChange()"
+                @input-focus="_multiinputFocus()"
+                @value-change="_multiinputValueChange()"
+                @input-value-change="_searchKeyChange()"
             ></ui-multiinput>
 
             <ui-multiinput
@@ -48,8 +48,8 @@
 
                 v-else
 
-                @inputFocus="_multiinputFocusNoSearch()"
-                @valueChange="_multiinputValueChange()"
+                @input-focus="_multiinputFocusNoSearch()"
+                @value-change="_multiinputValueChange()"
             ></ui-multiinput>
         </template>
 
@@ -57,7 +57,7 @@
             <template v-if="conf.canSearch">
                 <ui-textinput
                     :id="'ui-select-ti-' + uiid"
-                    @valueChange="_searchKeyChange()"
+                    @value-change="_searchKeyChange()"
                     @focus="_textinputFocus()"
                     @blur="_textinputBlur()"
                 ></ui-textinput>
@@ -831,12 +831,12 @@ export default Form.extend({
                 
                 // this._searchKeyChange();
                 this.data.showlist = true;
-                this.$emit('listShow');
+                this.$emit('list-show');
 
             } else {
 
                 this.data.showlist = false;
-                this.$emit('listHide');
+                this.$emit('list-hide');
 
             }
 
@@ -847,7 +847,7 @@ export default Form.extend({
 
         this._onValueChange();
 
-        this.$on('valueChange', this._onValueChange);
+        this.$on('value-change', this._onValueChange);
 
         this.data.mounted = true;
 
