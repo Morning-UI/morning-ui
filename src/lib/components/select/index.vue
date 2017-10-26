@@ -105,14 +105,15 @@
 </template>
  
 <script>
-import arrayUniq                    from 'array-uniq';
 import trim                         from 'trim';
 import Form                         from 'Common/form';
+import GlobalEvent                  from 'Utils/GlobalEvent';
 
 // action="emit:_refreshShowItems"
 
 export default Form.extend({
     name : 'select',
+    mixins : [GlobalEvent],
     props : {
         maxShow : {
             type : Number,
@@ -675,35 +676,6 @@ export default Form.extend({
             }
 
         },
-        _addGlobalListener : function () {
-
-            this.morning._selectClickListener.push(this.uiid);
-            this.morning._selectClickListener = arrayUniq(this.morning._selectClickListener);
-
-            if (this.morning._selectClickListener.length > 0) {
-
-                document.addEventListener('click', this._checkArea);
-
-            }
-
-        },
-        _removeGlobalListener : function () {
-
-            let index = this.morning._selectClickListener.indexOf(this.uiid);
-
-            if (index !== -1) {
-
-                this.morning._selectClickListener.splice(index, 1);
-
-            }
-
-            if (this.morning._selectClickListener.length === 0) {
-
-                document.addEventListener('click', this._checkArea);
-            
-            }
-        
-        },
         _resizeInlineImg : function () {
 
             if (!this.conf.inlineImgSize) {
@@ -851,7 +823,7 @@ export default Form.extend({
 
         this.data.mounted = true;
 
-        this._addGlobalListener();
+        // this._globalEventAdd('click', '_checkArea');
         this._resizeInlineImg();
         this._initTips();
         this._updateItemValueList();
@@ -864,6 +836,22 @@ export default Form.extend({
         
         });
 
+        this.$on('list-show', () => {
+
+            setTimeout(() => {
+
+                this._globalEventAdd('click', '_checkArea');
+
+            });
+
+        });
+
+        this.$on('list-hide', () => {
+            
+            this._globalEventRemove('click', '_checkArea');
+
+        });
+
     },
     updated : function () {
 
@@ -874,7 +862,7 @@ export default Form.extend({
     },
     beforeDestroy : function () {
 
-        this._removeGlobalListener();
+        this._globalEventRemove('click', '_checkArea');
 
     }
 });

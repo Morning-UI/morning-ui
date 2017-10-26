@@ -14,9 +14,11 @@
  
 <script>
 import UI                           from 'Common/ui';
+import GlobalEvent                  from 'Utils/GlobalEvent';
 
 export default UI.extend({
     name : 'dropdown',
+    mixins : [GlobalEvent],
     props : {
         autoClose : {
             type : Boolean,
@@ -114,7 +116,7 @@ export default UI.extend({
 
             setTimeout(() => {
 
-                document.addEventListener('click', this._checkArea);
+                this._globalEventAdd('click', '_checkArea');
 
             });
             
@@ -126,7 +128,7 @@ export default UI.extend({
 
             this.data.first = false;
             this.data.show = false;
-            document.removeEventListener('click', this._checkArea);
+            this._globalEventRemove('click', '_checkArea');
             this.$emit('emit');
 
         });
@@ -134,7 +136,7 @@ export default UI.extend({
     },
     beforeDestroy : function () {
 
-        document.removeEventListener('click', this._checkArea);
+        this._globalEventRemove('click', '_checkArea');
 
     }
 });

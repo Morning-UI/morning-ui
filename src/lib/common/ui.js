@@ -46,7 +46,9 @@ let stateSet = [
 ];
 
 let morning;
-let props = {};
+let props = {
+    name : String
+};
 
 for (let key of [...sizeSet, ...styleSet, ...stateSet]) {
 

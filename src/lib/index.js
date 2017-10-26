@@ -37,7 +37,7 @@ if (typeof Vue === 'undefined') {
         _popupId : 0,
         _indexGroups : {},
         _moveListener : [],
-        _selectClickListener : [],
+        _globalEventListener : {},
         _groupData : {},
         _groupVmMap : {},
         isMorning : true,
