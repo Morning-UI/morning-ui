@@ -23,7 +23,7 @@
 
     ### 安装Vue
 
-    由于MorningUI依赖Vue.js，请先安装`2.0.0`以上的Vue.js。
+    由于MorningUI依赖Vue.js，请先安装`2.4.0`以上的Vue.js。
 
     [了解如何安装Vue.js](https://cn.vuejs.org/v2/guide/installation.html)
 
@@ -57,8 +57,8 @@
     获取Morning UI后分别使用`<script>`及`<style>`标签在页面中引用：
 
     ```html
-    <link href="./path-to-morning/morning-ui.css" rel="stylesheet">
-    <script src="/path-to-morning/morning-ui.js">&lt;/script>
+    <link href="path-to-morning/morning-ui.css" rel="stylesheet">
+    <script src="path-to-morning/morning-ui.js">&lt;/script>
     ```
 
     ##### 使用模块打包器
