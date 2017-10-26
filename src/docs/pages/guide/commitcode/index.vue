@@ -105,6 +105,8 @@
 
     若Review中存在问题你们可在`pull request`下面进行讨论，当进行Code Review的贡献者通过后，会增加`Accept Pull Request`的标签，接下来项目管理员会对代码进行合并。
 
+    关于Reviwe详见：[检视代码/指出问题及沟通](/guide/review.html)
+
     ### 合入主开发分支
     
     当你的`pull request`满足下面的条件：
