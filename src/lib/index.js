@@ -135,6 +135,8 @@ if (typeof Vue === 'undefined') {
 
             Vue.config.ignoredElements = morning._ignoreElements;
 
+            return this;
+
         }
     };
 

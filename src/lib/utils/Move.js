@@ -3,6 +3,7 @@ import arrayUniq                    from 'array-uniq';
 import GlobalEvent                  from './GlobalEvent';
 
 let Move = {
+    mixins : [GlobalEvent],
     data : function () {
 
         return {
@@ -146,37 +147,6 @@ let Move = {
             this.$emit('_moveEnded');
 
         },
-        // _moveAddGlobalListener : function () {
-
-        //     this.morning._moveListener.push(this.uiid);
-        //     this.morning._moveListener = arrayUniq(this.morning._moveListener);
-
-        //     if (this.morning._moveListener.length > 0) {
-
-        //         document.addEventListener('mousemove', this._moveMousemove);
-        //         document.addEventListener('mouseup', this._moveMouseup);
-
-        //     }
-
-        // },
-        // _moveRemoveGlobalListener : function () {
-
-        //     let index = this.morning._moveListener.indexOf(this.uiid);
-
-        //     if (index !== -1) {
-
-        //         this.morning._moveListener.splice(index, 1);
-
-        //     }
-
-        //     if (this.morning._moveListener.length === 0) {
-
-        //         document.addEventListener('mousemove', this._moveMousemove);
-        //         document.addEventListener('mouseup', this._moveMouseup);
-            
-        //     }
-        
-        // },
         _moveElementXy : function ($ele) {
 
             let client = $ele.getBoundingClientRect();
@@ -219,7 +189,6 @@ let Move = {
 
                 this._globalEventRemove('mousemove', '_moveMousemove');
                 this._globalEventRemove('mouseup', '_moveMouseup');
-                // this._moveRemoveGlobalListener();
 
             }
 
@@ -250,11 +219,8 @@ let Move = {
 
         this._globalEventRemove('mousemove', '_moveMousemove');
         this._globalEventRemove('mouseup', '_moveMouseup');
-        // this._moveRemoveGlobalListener();
 
     }
 };
-
-Move = extend(true, Move, GlobalEvent);
 
 export default Move;

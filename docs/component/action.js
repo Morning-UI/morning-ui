@@ -508,9 +508,9 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "target": "_blank",
       "href": 'https://github.com/EarlyH/morning-ui/commit/' + _vm.lastupdate.cid
     }
-  }, [_vm._v(_vm._s(_vm.lastupdate.scid))]), _vm._v(" "), _c('br'), _vm._v(" "), _c('p', {
+  }, [_vm._v(_vm._s(_vm.lastupdate.scid))]), _vm._v(" "), _c('br')]) : _vm._e(), _vm._v(" "), _c('div', {
     staticClass: "contributors"
-  }, [_vm._v("\n            Contributors : \n            "), _vm._l((_vm.lastupdate.contributors), function(item) {
+  }, [_vm._v("\n        Contributors : \n        "), _vm._l((_vm.lastupdate.contributors), function(item) {
     return _c('span', [_c('img', {
       staticClass: "avatar",
       attrs: {
@@ -523,7 +523,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
         "href": item.github
       }
     }, [_vm._v(_vm._s(item.name))])])
-  }), _vm._v("   \n        ")], 2)]) : _vm._e()])
+  }), _vm._v("   \n    ")], 2)])
 }
 var staticRenderFns = []
 render._withStripped = true

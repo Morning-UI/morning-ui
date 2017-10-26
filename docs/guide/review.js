@@ -403,9 +403,9 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "target": "_blank",
       "href": 'https://github.com/EarlyH/morning-ui/commit/' + _vm.lastupdate.cid
     }
-  }, [_vm._v(_vm._s(_vm.lastupdate.scid))]), _vm._v(" "), _c('br'), _vm._v(" "), _c('p', {
+  }, [_vm._v(_vm._s(_vm.lastupdate.scid))]), _vm._v(" "), _c('br')]) : _vm._e(), _vm._v(" "), _c('div', {
     staticClass: "contributors"
-  }, [_vm._v("\n            Contributors : \n            "), _vm._l((_vm.lastupdate.contributors), function(item) {
+  }, [_vm._v("\n        Contributors : \n        "), _vm._l((_vm.lastupdate.contributors), function(item) {
     return _c('span', [_c('img', {
       staticClass: "avatar",
       attrs: {
@@ -418,7 +418,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
         "href": item.github
       }
     }, [_vm._v(_vm._s(item.name))])])
-  }), _vm._v("   \n        ")], 2)]) : _vm._e()])
+  }), _vm._v("   \n    ")], 2)])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -599,23 +599,6 @@ exports.default = {
         'doc-guide': _DocGuide2.default
     }
 }; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -2159,7 +2142,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "type": "text/markdown"
     }
-  }, [_vm._v("\n   # 检视代码(Review)\n\n   Review其他开发者贡献的代码也是一项非常重要的工作，带来的价值和贡献代码是一致的。\n\n   ### 成为一名Code Reviewer\n\n   请发送邮件至`chenchao.he@husor.com`。\n\n   ### 请求Review\n\n   当你开发并提交需要贡献的代码后，请在`Merge Request`中发起一个新的合并请求，合并的源分支是你的贡献分支，目标分支是`dev`。\n\n   在你的合并请求创建时，请添加`Request Review`标签。这个标签表示你的合并请求需要Review，你可以在`Reviewers`中指定特定的人来为你Review，否则将由申请的贡献者为你Review代码。\n\n   > `dev`是项目的主开发分支，所有的贡献最终都会合并至此。最终由项目管理员通过版本发布的形式将代码提交至`master`分支。\n\n   ### 申请Review别人的代码\n\n   打开`Merge Request`页面，筛选出包含`Request Review`标签的合并请求，然后：\n\n   - 如果这个请求指定了`Reviewers`，并且不是你：请交给指定的人来Review，跳过这个合并请求\n   - 如果这个请求指定了`Reviewers`，并且是你：请打开这个合并请求，然后开始Review\n   - 如果这个请求没有指定`Reviewers`：打开它，然后将`Reviewers`改成你，然后开始Review\n\n   > 一个合并请求的`Reviewers`表明了当前正在Review的人是谁。\n\n   ### Review代码注意事项\n\n   Review代码需要一定的耐心和经验，我们为你整理了一份注意事项：\n   \n   - 支持声明的情况下，加入了声明的样式\n   - 设置了默认声明样式\n\n   请务必逐条确认以上的事项，经过你Review的代码未来将会构建成千上完的应用。\n\n   ### Review文档注意事项\n\n   文档的重要性和代码一样，一份完善的文档会为使用者节约不少时间，我们为你整理了一份关于文档的注意事项：\n\n   - 组件标题及tag正确\n   - 组件介绍跟在基础后面，清晰明白\n   - 组件的基础中应该包含组件中可用的标签或类的名称及作用\n   - “使用”示例最简单，如需要可补充示例说明\n   - 声明注明支持情况\n   - 支持的声明均有每一种值的示例，且示例遵循最小化原则，如需要可补充示例说明\n   - 文档page正确\n   - 文档示例应尽可能展示所有的声明组合使用情况\n   - 文档中代码示例部分应该具有较高的可读性，如果代码量较多需要加入适量的空行\n   - 文档中色彩演示部分，主题/功能/杂项色彩应该分区展示\n   - 演示中代码的分块应该和演示分块保持一致(合理使用`<br/>`)\n   - 组件使用的样式类在文档中声明\n   - 样式类、配置、方法、事件命名加入到全局命名规范中\n   - 文档中源码正确\n   - 文档中事件/生命周期事件中名称正确\n   - 文档全局名称及key正确\n   - 文档示例及源码区块没有分离\n   - 文档中值类型一行一个，不需要加反引号\n   - 文档中默认值需要加反引号\n   - 文档中接受值一行一个，如有必要需要加说明，数值用反引号，说明直接写\n\n   请务必逐条确认以上的事项，经过你Review的文档未来将会开发者指明方向。\n\n   ### 持续集成\n\n   持续集成中包含了很多自动化的检查，如果一个合并请求未通过持续集成，请通知代码贡献者。在持续集成通过后再开始Review。\n\n   ### 指出问题及沟通\n\n   你可以在有问题的代码上开启一个`Review`，指出你的疑问或纠正错误。代码贡献者需要会在这个`Review`上和你沟通，直到达成一致。\n\n   ### 允许合并\n\n   当所有的`Review`都达成一致后，且通过持续集成，这个合并请求可被合并。添加`Accept Pull Request`标签并移除`Request Review\n`标签，恭喜你完成了一次代码Review贡献。后续会有项目管理员对代码进行合并。\n\n   > 合并前请务必确认目标分支是`dev`，否则通知代码贡献者修改合并请求。\n   \n   ")])])
+  }, [_vm._v("\n   # 检视代码(Review)\n\n   Review其他开发者贡献的代码也是一项非常重要的工作，带来的价值和贡献代码是一致的。\n\n   ### 成为一名Code Reviewer\n\n   请发送邮件至`chenchao.he@husor.com`。\n\n   ### 请求Review\n\n   当你开发并提交需要贡献的代码后，请在`Pull Request`中发起一个新的合并请求，合并的源分支是你的贡献分支，目标分支是`dev`。\n\n   在你的合并请求创建时，请添加`Request Review`标签。这个标签表示你的合并请求需要Review，你可以在`Reviewers`中指定特定的人来为你Review，否则将由任意贡献者为你Review代码。\n\n   详见：[Requesting a pull request review](https://help.github.com/articles/requesting-a-pull-request-review/)\n\n   > `dev`是项目的主开发分支，所有的贡献最终都会合并至此。最终由项目管理员通过版本发布的形式将代码提交至`master`分支。\n\n   ### 申请Review别人的代码\n\n   打开`Pull Request`页面，筛选出包含`Request Review`标签的合并请求，然后：\n\n   - 如果这个请求指定了`Reviewers`，并且不是你：请交给指定的人来Review，跳过这个合并请求\n   - 如果这个请求指定了`Reviewers`，并且是你：请打开这个合并请求，然后开始Review\n   - 如果这个请求没有指定`Reviewers`：打开它，然后将`Reviewers`改成你，然后开始Review\n\n   > 一个合并请求的`Reviewers`表明了当前正在Review的人是谁。\n\n   请务必逐条确认以上的事项，经过你Review的文档未来将会开发者指明方向。\n\n   ### 检视变更\n\n   Review需要耐心和细心，除了代码内容外，提交的文档、测试等内容也是Review的重点。\n\n   请务必确保`Pull Request`中的变更符合[开发规范](/guide/devrule.html)，经过你Review的代码未来将会构建成千上万的应用。\n\n   ### 指出问题及沟通\n\n   你可以在有问题的代码上开启一个`Review`，指出你的疑问或纠正错误。代码贡献者需要会在这个`Review`上和你沟通，直到达成一致。\n   \n   详见：\n   \n   - [About pull request reviews](https://help.github.com/articles/about-pull-request-reviews/)\n   - [Reviewing proposed changes in a pull request](https://help.github.com/articles/reviewing-proposed-changes-in-a-pull-request/)\n   - [Viewing a pull request review](https://help.github.com/articles/viewing-a-pull-request-review/)\n   - [Approving a pull request with required reviews](https://help.github.com/articles/approving-a-pull-request-with-required-reviews/)\n   - [Dismissing a pull request review](https://help.github.com/articles/dismissing-a-pull-request-review/)\n   - [Checking out pull requests locally](https://help.github.com/articles/checking-out-pull-requests-locally/)\n\n   ### 持续集成\n\n   持续集成中包含了很多自动化的检查，如果一个合并请求未通过持续集成，请通知代码贡献者。在持续集成通过后再开始Review。\n\n   ### 允许合并\n\n   当所有的`Review`都达成一致后，且通过持续集成，这个合并请求可被合并。添加`Accept Pull Request`标签并移除`Request Review\n`标签，恭喜你完成了一次代码Review贡献。后续会有项目管理员对代码进行合并。\n\n   > 合并前请务必确认目标分支是`dev`，否则通知代码贡献者修改合并请求。\n   \n   ")])])
 }
 var staticRenderFns = []
 render._withStripped = true

@@ -403,9 +403,9 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "target": "_blank",
       "href": 'https://github.com/EarlyH/morning-ui/commit/' + _vm.lastupdate.cid
     }
-  }, [_vm._v(_vm._s(_vm.lastupdate.scid))]), _vm._v(" "), _c('br'), _vm._v(" "), _c('p', {
+  }, [_vm._v(_vm._s(_vm.lastupdate.scid))]), _vm._v(" "), _c('br')]) : _vm._e(), _vm._v(" "), _c('div', {
     staticClass: "contributors"
-  }, [_vm._v("\n            Contributors : \n            "), _vm._l((_vm.lastupdate.contributors), function(item) {
+  }, [_vm._v("\n        Contributors : \n        "), _vm._l((_vm.lastupdate.contributors), function(item) {
     return _c('span', [_c('img', {
       staticClass: "avatar",
       attrs: {
@@ -418,7 +418,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
         "href": item.github
       }
     }, [_vm._v(_vm._s(item.name))])])
-  }), _vm._v("   \n        ")], 2)]) : _vm._e()])
+  }), _vm._v("   \n    ")], 2)])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -599,6 +599,25 @@ exports.default = {
         'doc-guide': _DocGuide2.default
     }
 }; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2165,7 +2184,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "type": "text/markdown"
     }
-  }, [_vm._v("\n# 全局方法\n\nMorningUI在全局会暴露一个`morning`对象，你可以通过`window.morning`来方法。这个对象上有一些有用的属性及方法。\n\n> 注意`window.morning`对象上以下划线开头的都是私有属性，用法及变动不会再文档中提及，不应该访问及使用。\n\n### 属性\n\n- version : MorningUI当前的版本，使用者可以根据不同版本增加不同的逻辑。\n- map : 所有组件的vm对象都会挂载到map对象上，对象的键名是组件的`_uiid`。\n\n### 方法\n\n#### findVM(ref)\n\n##### 参数\n\n|参数|可选|描述|类型|\n|-|-|-|-|\n|ref|NO|通过组件的`ref`名称来找到组件的vm对象|`string`|\n\n##### 返回值\n\n匹配组件的vm对象。\n\n#### getGroup(groupName)\n\n获取一组表单的数值，详见：[表单](/guide/form.html)中的表单组章节。\n\n##### 参数\n\n|参数|可选|描述|类型|\n|-|-|-|-|\n|groupName|NO|需要获取数据表单组的名称|`string`|\n\n##### 返回值\n\n查找到的表单数据对象，键名是表单的KEY，键值是表单的值\n\n#### getGroupJson(groupName)\n\n获取一组表单的数值(JSON)，详见：[表单](/guide/form.html)中的表单组章节。\n\n##### 参数\n\n|参数|可选|描述|类型|\n|-|-|-|-|\n|groupName|NO|需要获取数据表单组的名称|`string`|\n\n##### 返回值\n\n查找到的表单数据对象的JSON字符串\n\n#### setGroup(groupName, dataObject)\n\n设置一组表单的数值(采用JSON)，详见：[表单](/guide/form.html)中的表单组章节。\n\n##### 参数\n\n|参数|可选|描述|类型|\n|-|-|-|-|\n|groupName|NO|需要设置数据表单组的名称|`string`|\n|dataObject|NO|一组键值对，键名为表单的KEY，键值是需要设置的表单值。可以只设置部分KEY。如果显示的设置键值为`undefined`则会清空对应的表单。|`object`|\n\n##### 返回值\n\nMorning对象\n\n#### setGroupJson(groupName, dataJson)\n\n设置一组表单的数值(采用JSON)，详见：[表单](/guide/form.html)中的表单组章节。\n\n##### 参数\n\n|参数|可选|描述|类型|\n|-|-|-|-|\n|groupName|NO|需要设置数据表单组的名称|`string`|\n|dataJson|NO|一组键值对的JSON字符串，键名为表单的KEY，键值是需要设置的表单值。可以只设置部分KEY。如果显示的设置键值为`undefined`则会清空对应的表单。|`object`|\n\n##### 返回值\n\nMorning对象。\n\n")])])
+  }, [_vm._v("\n# 全局方法\n\nMorningUI在全局会注册一个`morning`对象，你可以通过`window.morning`来方法。这个对象上有一些有用的属性及方法。\n\n> 注意`window.morning`对象上以下划线开头的都是私有属性，用法及变动不会再文档中提及，不应该访问及使用。\n\n### 属性\n\n- isMorning : Morning组件被引用的标记，数值为`true`。\n- version : MorningUI当前的版本，使用者可以根据不同版本增加不同的逻辑。\n- map : 所有组件的vm对象都会挂载到map对象上，对象的键名是组件的`_uiid`。\n\n### 方法\n\n#### init(options)\n\n##### 参数\n\n|参数|可选|描述|类型|\n|-|-|-|-|\n|options|YES|初始化配置对象|`object`|\n\noptions对象如下：\n\n|参数|可选|描述|类型|\n|-|-|-|-|\n|options.prefix|YES| 组件标签前缀，默认为`ui`，可在冲突时使用自定义|`string`|\n\n##### 返回值\n\n返回`window.morning`。\n\n#### findVM(ref)\n\n##### 参数\n\n|参数|可选|描述|类型|\n|-|-|-|-|\n|ref|NO|通过组件的`ref`名称来找到组件的vm对象|`string`|\n\n##### 返回值\n\n匹配组件的vm对象。\n\n#### getGroup(groupName)\n\n获取一组表单的数值，详见：[表单](/guide/form.html)中的表单组章节。\n\n##### 参数\n\n|参数|可选|描述|类型|\n|-|-|-|-|\n|groupName|NO|需要获取数据表单组的名称|`string`|\n\n##### 返回值\n\n查找到的表单数据对象，键名是表单的KEY，键值是表单的值\n\n#### getGroupJson(groupName)\n\n获取一组表单的数值(JSON)，详见：[表单](/guide/form.html)中的表单组章节。\n\n##### 参数\n\n|参数|可选|描述|类型|\n|-|-|-|-|\n|groupName|NO|需要获取数据表单组的名称|`string`|\n\n##### 返回值\n\n查找到的表单数据对象的JSON字符串\n\n#### setGroup(groupName, dataObject)\n\n设置一组表单的数值(采用JSON)，详见：[表单](/guide/form.html)中的表单组章节。\n\n##### 参数\n\n|参数|可选|描述|类型|\n|-|-|-|-|\n|groupName|NO|需要设置数据表单组的名称|`string`|\n|dataObject|NO|一组键值对，键名为表单的KEY，键值是需要设置的表单值。可以只设置部分KEY。如果显示的设置键值为`undefined`则会清空对应的表单。|`object`|\n\n##### 返回值\n\nMorning对象\n\n#### setGroupJson(groupName, dataJson)\n\n设置一组表单的数值(采用JSON)，详见：[表单](/guide/form.html)中的表单组章节。\n\n##### 参数\n\n|参数|可选|描述|类型|\n|-|-|-|-|\n|groupName|NO|需要设置数据表单组的名称|`string`|\n|dataJson|NO|一组键值对的JSON字符串，键名为表单的KEY，键值是需要设置的表单值。可以只设置部分KEY。如果显示的设置键值为`undefined`则会清空对应的表单。|`object`|\n\n##### 返回值\n\nMorning对象。\n\n")])])
 }
 var staticRenderFns = []
 render._withStripped = true

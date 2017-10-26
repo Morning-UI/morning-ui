@@ -25,13 +25,13 @@
         <div class="last-update" v-if="lastupdate">
             Last update : <a :href="'https://github.com/EarlyH/morning-ui/releases/tag/'+lastupdate.version">{{lastupdate.version}}</a> by <img class="avatar" :src="lastupdate.avatar" alt=""> <a target="_blank" :href="lastupdate.github">{{lastupdate.author}}</a> at {{lastupdate.date}} ({{lastupdate.ar}}), commit id : <a target="_blank" :href="'https://github.com/EarlyH/morning-ui/commit/'+lastupdate.cid">{{lastupdate.scid}}</a>
             <br>
-            <p class="contributors">
-                Contributors : 
-                <span v-for="item in lastupdate.contributors">
-                    <img class="avatar" :src="item.avatar" alt="">
-                    <a target="_blank" :href="item.github">{{item.name}}</a>
-                </span> &nbsp;&nbsp;
-            </p>
+        </div>
+        <div class="contributors">
+            Contributors : 
+            <span v-for="item in lastupdate.contributors">
+                <img class="avatar" :src="item.avatar" alt="">
+                <a target="_blank" :href="item.github">{{item.name}}</a>
+            </span> &nbsp;&nbsp;
         </div>
     </div>
 </template>
@@ -247,6 +247,7 @@ export default {
         display: inline-block;
         font-size: 0;
         margin-right: 10px;
+        vertical-align: top;
 
         .name {
             font-size: 12px;
@@ -299,13 +300,14 @@ export default {
         }
     }
 }
-.last-update{
+.last-update,
+.contributors{
     font-size: 12px;
     color: #999;
-    margin: 5px 0 20px 0;
     transform: scale(0.85);
     transform-origin: left;
     padding-left: 3px;
+    height: 1.25em;
 
     .avatar{
         width: 16px;
@@ -315,11 +317,9 @@ export default {
         border: 1px #e6e6e6 solid !important;
         padding: 0;
     }
+}
 
-    .contributors{
-        margin-top: 5px;
-    }
-
-
+.contributors{
+    margin: 5px 0 20px 0;
 }
 </style>

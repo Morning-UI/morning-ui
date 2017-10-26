@@ -403,9 +403,9 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "target": "_blank",
       "href": 'https://github.com/EarlyH/morning-ui/commit/' + _vm.lastupdate.cid
     }
-  }, [_vm._v(_vm._s(_vm.lastupdate.scid))]), _vm._v(" "), _c('br'), _vm._v(" "), _c('p', {
+  }, [_vm._v(_vm._s(_vm.lastupdate.scid))]), _vm._v(" "), _c('br')]) : _vm._e(), _vm._v(" "), _c('div', {
     staticClass: "contributors"
-  }, [_vm._v("\n            Contributors : \n            "), _vm._l((_vm.lastupdate.contributors), function(item) {
+  }, [_vm._v("\n        Contributors : \n        "), _vm._l((_vm.lastupdate.contributors), function(item) {
     return _c('span', [_c('img', {
       staticClass: "avatar",
       attrs: {
@@ -418,7 +418,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
         "href": item.github
       }
     }, [_vm._v(_vm._s(item.name))])])
-  }), _vm._v("   \n        ")], 2)]) : _vm._e()])
+  }), _vm._v("   \n    ")], 2)])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -599,6 +599,8 @@ exports.default = {
         'doc-guide': _DocGuide2.default
     }
 }; //
+//
+//
 //
 //
 //
@@ -2132,7 +2134,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "type": "text/markdown"
     }
-  }, [_vm._v("\n# 样式类\n\n样式类就是CSS类，可以给组件提供不同的样式。所有的组件都可以支持样式类，但是不同的组件有不同的样式类。\n\n样式类与声明的区别：\n\n- 声明是一种通用的组件属性，可以区分样式及JS逻辑，有一套全局的规范，大部分组件都支持。\n- 样式类不同的组件有不同的支持，仅用于区分样式，全局仅在命名上有规范，当组件有样式需求时才支持。\n\n### 用法\n\n样式类必须用在UI组件标签`<ui-*>`的`class`中。\n\n:::democode/html\n<!-- ui-label标签上的icon是样式类 -->\n<!-- span标签上的icon不是样式类 -->\n<ui-label class=\"icon\">\n    <i class=\"iconfont\">&#xe6e2;</i>\n    <span class=\"icon\">标签</span>\n</ui-label>\n:::\n\n### 样式类全局命名规范\n\n样式类在全局有一套命名规范，这样是为了防止不同的组件对于某个名词理解不同，导致同一名词在不同组件的不同行为。\n\n在为组件添加样式类前应先检查下面的列表，是否有含义相同的样式类，若有请使用，若没有请将新的样式类添加到下面列表并注明它的含义。\n\n- `horizontal` : 水平排列\n- `vertical` : 垂直排列\n- `nogap` : 子元素间没有间隙\n- `averagegap` : 子元素间(包括两侧)均有相等间隙\n- `fill` : 高度填满父元素\n- `full` : 元素没有内边距\n- `margin` : 元素有外边距\n- `inline` : 内联\n- `inline-block` : 内联块\n- `block` : 块级 / 区块\n- `mark` : 包含标记\n- `underline` : 下划线\n- `noborder` : 无边框\n- `flat` : 扁平\n- `circle` : 圆形\n- `image` : 使用图片\n- `icon` : 使用图标\n- `split` : 分隔\n- `rounded` : 圆角\n- `circle` : 圆形\n- `thumbnail` : 相框\n\n")])])
+  }, [_vm._v("\n# 样式类\n\n样式类就是CSS类，可以给组件提供不同的样式。所有的组件都可以支持样式类，但是不同的组件有不同的样式类。\n\n样式类与声明的区别：\n\n- 声明是一种通用的组件属性，可以区分样式及JS逻辑，有一套全局的规范，大部分组件都支持。\n- 样式类不同的组件有不同的支持，仅用于区分样式，全局仅在命名上有规范，当组件有样式需求时才支持。\n\n你可以在组件文档的开始标签中找到支持的样式类。\n\n### 用法\n\n样式类必须用在UI组件标签`<ui-*>`的`class`中。\n\n:::democode/html\n<!-- ui-label标签上的icon是样式类 -->\n<!-- span标签上的icon不是样式类 -->\n<ui-label class=\"icon\">\n    <i class=\"iconfont\">&#xe6e2;</i>\n    <span class=\"icon\">标签</span>\n</ui-label>\n:::\n\n### 样式类全局命名规范\n\n样式类在全局有一套命名规范，这样是为了防止不同的组件对于某个名词理解不同，导致同一名词在不同组件的不同行为。\n\n在为组件添加样式类前应先检查下面的列表，是否有含义相同的样式类，若有请使用，若没有请将新的样式类添加到下面列表并注明它的含义。\n\n- `horizontal` : 水平排列\n- `vertical` : 垂直排列\n- `nogap` : 子元素间没有间隙\n- `averagegap` : 子元素间(包括两侧)均有相等间隙\n- `fill` : 高度填满父元素\n- `full` : 元素没有内边距\n- `margin` : 元素有外边距\n- `inline` : 内联\n- `inline-block` : 内联块\n- `block` : 块级 / 区块\n- `mark` : 包含标记\n- `underline` : 下划线\n- `noborder` : 无边框\n- `flat` : 扁平\n- `circle` : 圆形\n- `image` : 使用图片\n- `icon` : 使用图标\n- `split` : 分隔\n- `rounded` : 圆角\n- `circle` : 圆形\n- `thumbnail` : 相框\n\n")])])
 }
 var staticRenderFns = []
 render._withStripped = true
