@@ -3185,7 +3185,7 @@ i-formgroup .item > .title {
   align-items: center;
   box-sizing: border-box;
 }
-i-formgroup .item > .title ui-center p {
+i-formgroup .item > .title i-center p {
   color: #BBB;
   font-size: 13px;
   text-align: left;

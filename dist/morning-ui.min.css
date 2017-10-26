@@ -1703,7 +1703,7 @@ i-formgroup>.item+.item{border-top:1px #edf1f5 solid
 }
 i-formgroup .item>.title{position:relative;width:30%;font-weight:400;text-align:left;vertical-align:middle;margin:0;display:flex;align-items:center;box-sizing:border-box
 }
-i-formgroup .item>.title ui-center p{color:#bbb;font-size:13px;text-align:left;white-space:nowrap
+i-formgroup .item>.title i-center p{color:#bbb;font-size:13px;text-align:left;white-space:nowrap
 }
 i-formgroup .item>.content{width:70%
 }

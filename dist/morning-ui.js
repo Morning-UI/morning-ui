@@ -3914,7 +3914,7 @@ exports.default = _form2.default.extend({
             // filter not exist value.
             if (Object.keys(this.conf.list).indexOf(String(value)) === -1) {
 
-                return [];
+                return undefined;
             }
 
             return String(value);
@@ -4911,7 +4911,7 @@ exports.default = _form2.default.extend({
 
                     var tipContent = $tip.innerHTML;
                     var tipId = 'select-tip-' + Math.floor(Math.random() * random);
-                    var $newTip = document.createElement('ui-tip');
+                    var $newTip = document.createElement('morning-tip');
 
                     $newTip.setAttribute(':minor', true);
                     $newTip.setAttribute('target', '#' + tipId);
@@ -6580,7 +6580,9 @@ if (typeof _vue2.default === 'undefined') {
                 var component = morning._components[name];
 
                 _vue2.default.component(options.prefix + '-' + component.options.name, component);
+                _vue2.default.component('morning-' + component.options.name, component);
                 morning._ignoreElements.push('i-' + component.options.name);
+                morning._ignoreElements.push('morning-' + component.options.name);
             }
 
             _vue2.default.config.ignoredElements = morning._ignoreElements;
@@ -12631,7 +12633,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     on: {
       "click": _vm._wrapClick
     }
-  }, [(_vm.conf.multiSelect) ? [(_vm.conf.canSearch) ? _c('ui-multiinput', {
+  }, [(_vm.conf.multiSelect) ? [(_vm.conf.canSearch) ? _c('morning-multiinput', {
     attrs: {
       "id": 'ui-select-mi-' + _vm.uiid,
       "can-move": _vm.conf.canMove,
@@ -12651,7 +12653,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
         _vm._searchKeyChange()
       }
     }
-  }) : _c('ui-multiinput', {
+  }) : _c('morning-multiinput', {
     attrs: {
       "id": 'ui-select-mi-' + _vm.uiid,
       "can-move": _vm.conf.canMove,
@@ -12668,7 +12670,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
         _vm._multiinputValueChange()
       }
     }
-  })] : [(_vm.conf.canSearch) ? [_c('ui-textinput', {
+  })] : [(_vm.conf.canSearch) ? [_c('morning-textinput', {
     attrs: {
       "id": 'ui-select-ti-' + _vm.uiid
     },
@@ -12875,7 +12877,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       },
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.$set(_vm.data, "value", $event.target.value)
+        _vm.data.value = $event.target.value
       }
     }
   })] : [_c('input', {
@@ -12902,7 +12904,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       },
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.$set(_vm.data, "value", $event.target.value)
+        _vm.data.value = $event.target.value
       }
     }
   })], _vm._v(" "), (_vm.conf.append) ? [_c('div', {
@@ -13036,7 +13038,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     },
     on: {
       "keydown": function($event) {
-        if (!('button' in $event) && _vm._k($event.keyCode, "enter", 13, $event.key)) { return null; }
+        if (!('button' in $event) && _vm._k($event.keyCode, "enter", 13)) { return null; }
         _vm._enterInput($event)
       },
       "click": _vm._focusInput
@@ -13085,7 +13087,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "blur": _vm._blurInput,
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.$set(_vm.data, "inputValue", $event.target.value)
+        _vm.data.inputValue = $event.target.value
       }
     }
   }) : _c('input', {
@@ -13109,7 +13111,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "blur": _vm._blurInput,
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.$set(_vm.data, "inputValue", $event.target.value)
+        _vm.data.inputValue = $event.target.value
       }
     }
   })] : [_c('span', [_vm._v("最多只能输入" + _vm._s(_vm.conf.max) + "项")])]] : [(!_vm.conf.hideName) ? _c('input', {
@@ -13134,7 +13136,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "blur": _vm._blurInput,
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.$set(_vm.data, "inputValue", $event.target.value)
+        _vm.data.inputValue = $event.target.value
       }
     }
   }) : _c('input', {
@@ -13158,7 +13160,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "blur": _vm._blurInput,
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.$set(_vm.data, "inputValue", $event.target.value)
+        _vm.data.inputValue = $event.target.value
       }
     }
   })]] : _vm._e()], 2)])
@@ -13299,7 +13301,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       },
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.$set(_vm.data, "value", $event.target.value)
+        _vm.data.value = $event.target.value
       }
     }
   })])
@@ -13448,11 +13450,11 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "time": _vm.time,
       "note": _vm.note
     }
-  }, [(_vm.data.loaded) ? [(_vm.data.fail) ? [_c('ui-center', {
+  }, [(_vm.data.loaded) ? [(_vm.data.fail) ? [_c('morning-center', {
     staticClass: "fill loadfail"
   }, [_c('i', {
     staticClass: "morningicon"
-  }, [_vm._v(" ")]), _vm._v(" 加载失败")])] : [_vm._t("default")]] : [_c('ui-center', {
+  }, [_vm._v(" ")]), _vm._v(" 加载失败")])] : [_vm._t("default")]] : [_c('morning-center', {
     staticClass: "fill"
   }, [_c('p', {
     staticClass: "loading"

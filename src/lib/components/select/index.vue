@@ -23,7 +23,7 @@
     <div class="wrap" @click="_wrapClick">
 
         <template v-if="conf.multiSelect">
-            <ui-multiinput
+            <morning-multiinput
                 :id="'ui-select-mi-' + uiid"
                 :can-move="conf.canMove"
                 :max="conf.max"
@@ -36,9 +36,9 @@
                 @input-focus="_multiinputFocus()"
                 @value-change="_multiinputValueChange()"
                 @input-value-change="_searchKeyChange()"
-            ></ui-multiinput>
+            ></morning-multiinput>
 
-            <ui-multiinput
+            <morning-multiinput
                 :id="'ui-select-mi-' + uiid"
                 :can-move="conf.canMove"
                 :max="conf.max"
@@ -50,17 +50,17 @@
 
                 @input-focus="_multiinputFocusNoSearch()"
                 @value-change="_multiinputValueChange()"
-            ></ui-multiinput>
+            ></morning-multiinput>
         </template>
 
         <template v-else>
             <template v-if="conf.canSearch">
-                <ui-textinput
+                <morning-textinput
                     :id="'ui-select-ti-' + uiid"
                     @value-change="_searchKeyChange()"
                     @focus="_textinputFocus()"
                     @blur="_textinputBlur()"
-                ></ui-textinput>
+                ></morning-textinput>
             </template>
 
             <div
@@ -749,7 +749,7 @@ export default Form.extend({
 
                 let tipContent = $tip.innerHTML;
                 let tipId = `select-tip-${Math.floor(Math.random() * random)}`;
-                let $newTip = document.createElement('ui-tip');
+                let $newTip = document.createElement('morning-tip');
 
                 $newTip.setAttribute(':minor', true);
                 $newTip.setAttribute('target', `#${tipId}`);

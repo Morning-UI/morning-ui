@@ -127,7 +127,9 @@ if (typeof Vue === 'undefined') {
                 let component = morning._components[name];
 
                 Vue.component(`${options.prefix}-${component.options.name}`, component);
+                Vue.component(`morning-${component.options.name}`, component);
                 morning._ignoreElements.push(`i-${component.options.name}`);
+                morning._ignoreElements.push(`morning-${component.options.name}`);
 
             }
 
