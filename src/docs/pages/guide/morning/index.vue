@@ -24,13 +24,7 @@
 
     |参数|可选|描述|类型|
     |-|-|-|-|
-    |options|YES|初始化配置对象|`object`|
-
-    options对象如下：
-
-    |参数|可选|描述|类型|
-    |-|-|-|-|
-    |options.prefix|YES| 组件标签前缀，默认为`ui`，可在冲突时使用自定义|`string`|
+    |options|YES|初始化配置对象，详见：[初始化](/guide/init.html)|`object`|
 
     ##### 返回值
 

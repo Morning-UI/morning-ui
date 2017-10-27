@@ -108,12 +108,13 @@
 import trim                         from 'trim';
 import Form                         from 'Common/form';
 import GlobalEvent                  from 'Utils/GlobalEvent';
+import IndexManager                 from 'Utils/IndexManager';
 
 // action="emit:_refreshShowItems"
 
 export default Form.extend({
     name : 'select',
-    mixins : [GlobalEvent],
+    mixins : [GlobalEvent, IndexManager],
     props : {
         maxShow : {
             type : Number,
@@ -814,12 +815,15 @@ export default Form.extend({
 
         }
     },
-    created : function () {},
+    created : function () {
+
+        this._indexReg('list.show', 2);
+        this._indexReg('list.hide', 1);
+
+    },
     mounted : function () {
 
-        this._onValueChange();
-
-        this.$on('value-change', this._onValueChange);
+        const timeout = 200;
 
         this.data.mounted = true;
 
@@ -827,6 +831,9 @@ export default Form.extend({
         this._resizeInlineImg();
         this._initTips();
         this._updateItemValueList();
+        this._onValueChange();
+
+        this.$on('value-change', this._onValueChange);
 
         setTimeout(() => {
 
@@ -838,6 +845,8 @@ export default Form.extend({
 
         this.$on('list-show', () => {
 
+            this.$el.style.zIndex = this._indexGet('list.show');
+
             setTimeout(() => {
 
                 this._globalEventAdd('click', '_checkArea');
@@ -847,8 +856,14 @@ export default Form.extend({
         });
 
         this.$on('list-hide', () => {
-            
+
             this._globalEventRemove('click', '_checkArea');
+
+            setTimeout(() => {
+
+                this.$el.style.zIndex = this._indexGet('list.hide');
+
+            }, timeout);
 
         });
 

@@ -15,10 +15,11 @@
 <script>
 import UI                           from 'Common/ui';
 import GlobalEvent                  from 'Utils/GlobalEvent';
+import IndexManager                 from 'Utils/IndexManager';
 
 export default UI.extend({
     name : 'dropdown',
-    mixins : [GlobalEvent],
+    mixins : [GlobalEvent, IndexManager],
     props : {
         autoClose : {
             type : Boolean,
@@ -99,7 +100,15 @@ export default UI.extend({
         }
         
     },
+    created : function () {
+
+        this._indexReg('list.show', 2);
+        this._indexReg('list.hide', 1);
+
+    },
     mounted : function () {
+
+        const timeout = 200;
 
         let $emitbtn = this.$el.querySelector(`[emitbtn]`);
         
@@ -113,6 +122,7 @@ export default UI.extend({
 
             this.data.first = false;
             this.data.show = true;
+            this.$el.style.zIndex = this._indexGet('list.show');
 
             setTimeout(() => {
 
@@ -130,6 +140,12 @@ export default UI.extend({
             this.data.show = false;
             this._globalEventRemove('click', '_checkArea');
             this.$emit('emit');
+
+            setTimeout(() => {
+
+                this.$el.style.zIndex = this._indexGet('list.hide');
+
+            }, timeout);
 
         });
 

@@ -1,14 +1,13 @@
-let PopupManager = {
-    data : function () {
+import IndexManager                 from './IndexManager';
 
-        const popupIndex = 1000;
+let PopupManager = {
+    mixins : [IndexManager],
+    data : function () {
 
         return {
             Popup : {
-                index : popupIndex,
                 keepDiv : null,
                 oldIndex : undefined
-                // popupDiv : null
             }
         };
 
@@ -16,7 +15,7 @@ let PopupManager = {
     methods : {
         _popupShow : function () {
 
-            if (this.Popup.keepDiv || this.Popup.popupDiv) {
+            if (this.Popup.keepDiv) {
 
                 return;
 
@@ -29,7 +28,7 @@ let PopupManager = {
             keepDiv.style.display = 'none';
             this.$el.before(keepDiv);
             this.Popup.oldIndex = this.$el.style.zIndex;
-            this.$el.style.zIndex = this.Popup.index + id;
+            this.$el.style.zIndex = this._indexGet('Popup') + id;
             document.body.append(this.$el);
             this.Popup.keepDiv = keepDiv;
 
@@ -48,6 +47,13 @@ let PopupManager = {
             this.Popup.keepDiv = null;
 
         }
+    },
+    created : function () {
+
+        const popupIndex = 1000;
+
+        this._indexReg('Popup', popupIndex);
+
     }
 };
 

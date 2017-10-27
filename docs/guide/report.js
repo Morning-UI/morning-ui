@@ -119,62 +119,6 @@ module.exports = Vue;
 
 /***/ }),
 
-/***/ 119:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(215);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_dfb8198c_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(685);
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(376)
-}
-var normalizeComponent = __webpack_require__(0)
-/* script */
-
-/* template */
-
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_dfb8198c_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__["a" /* default */],
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "src/docs/pages/guide/report/index.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] index.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-dfb8198c", Component.options)
-  } else {
-    hotAPI.reload("data-v-dfb8198c", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
-
-
-/***/ }),
-
 /***/ 12:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -220,6 +164,62 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-6f53ddca", Component.options)
   } else {
     hotAPI.reload("data-v-6f53ddca", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
+
+
+/***/ }),
+
+/***/ 120:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(217);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_dfb8198c_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(690);
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(380)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+
+/* template */
+
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default.a,
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_dfb8198c_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__["a" /* default */],
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "src/docs/pages/guide/report/index.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] index.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-dfb8198c", Component.options)
+  } else {
+    hotAPI.reload("data-v-dfb8198c", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -403,7 +403,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "target": "_blank",
       "href": 'https://github.com/EarlyH/morning-ui/commit/' + _vm.lastupdate.cid
     }
-  }, [_vm._v(_vm._s(_vm.lastupdate.scid))]), _vm._v(" "), _c('br')]) : _vm._e(), _vm._v(" "), _c('div', {
+  }, [_vm._v(_vm._s(_vm.lastupdate.scid))]), _vm._v(" "), _c('br')]) : _vm._e(), _vm._v(" "), (_vm.lastupdate) ? _c('div', {
     staticClass: "contributors"
   }, [_vm._v("\n        Contributors : \n        "), _vm._l((_vm.lastupdate.contributors), function(item) {
     return _c('span', [_c('img', {
@@ -418,7 +418,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
         "href": item.github
       }
     }, [_vm._v(_vm._s(item.name))])])
-  }), _vm._v("   \n    ")], 2)])
+  }), _vm._v("   \n    ")], 2) : _vm._e()])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -572,7 +572,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 215:
+/***/ 217:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -751,7 +751,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 293:
+/***/ 296:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -761,7 +761,7 @@ var _vue = __webpack_require__(1);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _index = __webpack_require__(119);
+var _index = __webpack_require__(120);
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -863,7 +863,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 376:
+/***/ 380:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -2155,7 +2155,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 685:
+/***/ 690:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2169,7 +2169,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "type": "text/markdown"
     }
-  }, [_vm._v("\n# 反馈问题\n\nMorningUI采用Github Issue管理反馈的问题，如果你在使用过程中发现Bug或希望支持新的功能，可以通过[Github Issue](https://github.com/EarlyH/morning-ui/issues)提出。\n\n为了便于开发者快速了解你的诉求，Issue请按照以下模板填写：\n\n#### BUG报告\n\n```\n### 问题类型\n\nBUG报告\n\n### 版本\n\n(如果是BUG报告需要填写出现问题的版本)\n\n### 问题\n\n(如果是BUG报告需要填写)\n\n### 复现环境及步骤\n\n(如果是BUG报告需要填写)\n\n### 期望的时间\n\n(填写BUG解决或功能支持的期望时间)\n\n### 其他\n\n(填写更多你想阐述的内容)\n\n```\n    \n#### 功能请求\n\n```\n### 问题类型\n\n功能请求\n\n### 功能描述\n\n(如果是功能请求需要填写)\n\n### 解决了什么问题\n\n(如果是功能请求需要填写)\n\n### 期望的时间\n\n(填写BUG解决或功能支持的期望时间)\n\n### 其他\n\n(填写更多你想阐述的内容)\n\n```\n\n填写完毕后，请根据问题的类型添加对应的标签：\n\n- bug report : BUG报告\n- feature request : 功能请求\n\n### 跟踪进展\n\n当你通过Issue反馈问题后，MorningUI的开发者会对Issue添加标签，你可以根据标签的情况了解进展：\n\n- need repro : 需要提供更多的复现内容\n- pending : 待定\n- wont solve : 暂时不会解决\n- bug confirmed : 报告的bug被开发者确认\n- intend to solve : 计划解决\n- in progress : 解决中\n- in review : 审查中\n- launched : 已解决并发布\n\n### 其他\n\n除了反馈问题外，还会有一些讨论或开发性质的Issue：\n\n- important : 重要\n- discussion : 讨论\n- document : 文档相关\n- feature : 新功能开发\n- fix : 修复开发\n\n")])])
+  }, [_vm._v("\n# 反馈问题\n\nMorningUI采用Github Issue管理反馈的问题，如果你在使用过程中发现Bug或希望支持新的功能，可以通过[Github Issue](https://github.com/EarlyH/morning-ui/issues)提出。\n\n为了便于开发者快速了解你的诉求，Issue请按照以下模板填写：\n\n### BUG报告\n\n```\n### 问题类型\n\nBUG报告\n\n### 版本\n\n(如果是BUG报告需要填写出现问题的版本)\n\n### 问题\n\n(如果是BUG报告需要填写)\n\n### 复现环境及步骤\n\n(如果是BUG报告需要填写)\n\n### 期望的时间\n\n(填写BUG解决或功能支持的期望时间)\n\n### 其他\n\n(填写更多你想阐述的内容)\n\n```\n    \n### 功能请求\n\n```\n### 问题类型\n\n功能请求\n\n### 功能描述\n\n(如果是功能请求需要填写)\n\n### 解决了什么问题\n\n(如果是功能请求需要填写)\n\n### 期望的时间\n\n(填写BUG解决或功能支持的期望时间)\n\n### 其他\n\n(填写更多你想阐述的内容)\n\n```\n\n填写完毕后，请根据问题的类型添加对应的标签：\n\n- bug report : BUG报告\n- feature request : 功能请求\n\n### 跟踪进展\n\n当你通过Issue反馈问题后，MorningUI的开发者会对Issue添加标签，你可以根据标签的情况了解进展：\n\n- need repro : 需要提供更多的复现内容\n- pending : 待定\n- wont solve : 暂时不会解决\n- bug confirmed : 报告的bug被开发者确认\n- intend to solve : 计划解决\n- in progress : 解决中\n- in review : 审查中\n- launched : 已解决并发布\n\n### 其他\n\n除了反馈问题外，还会有一些讨论或开发性质的Issue：\n\n- important : 重要\n- discussion : 讨论\n- document : 文档相关\n- feature : 新功能开发\n- fix : 修复开发\n\n")])])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -2535,4 +2535,4 @@ module.exports = exports['default'];
 
 /***/ })
 
-},[293]);
+},[296]);

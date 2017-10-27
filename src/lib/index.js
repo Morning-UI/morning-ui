@@ -35,7 +35,11 @@ if (typeof Vue === 'undefined') {
         _uiid : 1,
         _findCache : {},
         _popupId : 0,
-        _indexGroups : {},
+        _indexMap : {
+            regIndex : {},
+            vmMap : {},
+            useIndex : {}
+        },
         _moveListener : [],
         _globalEventListener : {},
         _groupData : {},
