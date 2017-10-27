@@ -86,7 +86,7 @@ export default {
         开始使用 : null,
         介绍 : '/guide/introduction.html',
         安装 : '/guide/install.html',
-        '使用<i class="tag coming"></i>' : '/guide/usage.html',
+        使用 : '/guide/usage.html',
         // 定制化 : '/guide/custom.html',
         基础 : null,
         '示例<i class="tag coming"></i>' : '/guide/demo.html',
