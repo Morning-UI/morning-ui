@@ -316,6 +316,7 @@ export default {
         vertical-align: top;
         border: 1px #e6e6e6 solid !important;
         padding: 0;
+        background: #f0f0f0;
     }
 }
 

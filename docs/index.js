@@ -257,6 +257,36 @@ exports.default = {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 module.exports = exports['default'];
 
@@ -426,7 +456,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "category": _vm.category
     }
-  }), _vm._v(" "), _vm._m(0), _vm._v(" "), _vm._m(1)], 1)
+  }), _vm._v(" "), _vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _vm._m(3)], 1)
 }
 var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('section', {
@@ -445,7 +475,44 @@ var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _
 },function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('section', {
     staticClass: "s1 gray"
-  }, [_c('h1', [_vm._v("How to use")])])
+  }, [_c('h1', [_vm._v("起步")])])
+},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('section', {
+    staticClass: "s1"
+  }, [_c('div', {
+    staticClass: "w1k col"
+  }, [_c('div', {
+    staticClass: "c31 center"
+  }, [_c('p', {
+    staticClass: "icon"
+  }, [_c('i', {
+    staticClass: "iconfont"
+  }, [_vm._v("")])]), _vm._v(" "), _c('h3', [_vm._v("源于HMP UI")]), _vm._v(" "), _c('p', {
+    staticClass: "desc"
+  }, [_vm._v("HMP UI是面向桌面Web的UI库，在过去两年中被用在了各种场景。Morning UI起源于此。")])]), _vm._v(" "), _c('div', {
+    staticClass: "c31 center"
+  }, [_c('p', {
+    staticClass: "icon"
+  }, [_c('i', {
+    staticClass: "iconfont"
+  }, [_vm._v("")])]), _vm._v(" "), _c('h3', [_vm._v("50+组件")]), _vm._v(" "), _c('p', {
+    staticClass: "desc"
+  }, [_vm._v("Morning UI有超过50个组件，丰富的组件为你构建的应用提供了有力的支持。")])]), _vm._v(" "), _c('div', {
+    staticClass: "c31 center"
+  }, [_c('p', {
+    staticClass: "icon"
+  }, [_c('i', {
+    staticClass: "iconfont"
+  }, [_vm._v("")])]), _vm._v(" "), _c('h3', [_vm._v("开源社区")]), _vm._v(" "), _c('p', {
+    staticClass: "desc"
+  }, [_vm._v("Morning UI基于MIT协议开源，你可以免费使用它。我们欢迎开发者加入到Morning UI的社区中。")])])])])
+},function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('footer', [_vm._v("\n        Under "), _c('a', {
+    attrs: {
+      "href": "https://opensource.org/licenses/MIT",
+      "target": "_blank"
+    }
+  }, [_vm._v("MIT Licence")]), _vm._v(" "), _c('br'), _vm._v("\n        Copyright © 2015-2017 Early He\n    ")])
 }]
 render._withStripped = true
 var esExports = { render: render, staticRenderFns: staticRenderFns }

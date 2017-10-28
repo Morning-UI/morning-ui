@@ -101,7 +101,7 @@ i-dialog a:hover {
   text-decoration: underline;
 }
 .w1k {
-  width: 1100px;
+  width: 1110px;
   margin: 0 auto;
 }
 .center {
@@ -111,9 +111,36 @@ i-dialog a:hover {
   padding: 50px 0;
 }
 .s1 .mainLogo {
-  width: 300px;
-  height: 300px;
+  width: 260px;
+  height: 260px;
   margin: 0 auto;
+}
+.s1 .col {
+  font-size: 0;
+}
+.s1 .c31 {
+  display: inline-block;
+  width: 370px;
+  padding: 20px 0;
+  border-right: 1px #eee solid;
+  box-sizing: border-box;
+}
+.s1 .c31 > .icon > .iconfont {
+  font-size: 60px;
+  color: #444;
+}
+.s1 .c31 > h3 {
+  font-size: 20px;
+}
+.s1 .c31 > .desc {
+  font-size: 13px;
+  padding: 0 40px;
+  text-align: center;
+  line-height: 1.4em;
+  color: #999;
+}
+.s1 .c31:last-child {
+  border-right: none;
 }
 .s1.gray {
   background: #EEE;
@@ -121,6 +148,7 @@ i-dialog a:hover {
 .s1 h1 {
   text-align: center;
   font-weight: 400;
+  font-size: 54px;
 }
 .keywork {
   width: 900px;
@@ -136,6 +164,18 @@ i-dialog a:hover {
   margin: 0 1.25%;
   color: #000;
   text-align: center;
+}
+footer {
+  font-size: 13px;
+  color: #D6DDE5;
+  padding: 30px 0;
+  text-align: center;
+  background: #303C4B;
+  line-height: 1.4em;
+}
+footer a,
+footer a:hover {
+  color: #D6DDE5;
 }
 
 header {
