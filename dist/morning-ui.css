@@ -4358,7 +4358,10 @@ i-dropdown {
 }
 i-dropdown i-btn .morningicon {
   vertical-align: middle;
-  font-size: inherit;
+  font-size: 30px;
+  width: 10px;
+  display: inline-block;
+  vertical-align: top;
 }
 i-dropdown .btnlist {
   font-size: 0;

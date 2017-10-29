@@ -2269,7 +2269,7 @@ to{transform:translateX(-50%) scale(0)
 }
 i-dropdown{display:inline-block;position:relative
 }
-i-dropdown i-btn .morningicon{vertical-align:middle;font-size:inherit
+i-dropdown i-btn .morningicon{vertical-align:middle;font-size:30px;width:10px;display:inline-block;vertical-align:top
 }
 i-dropdown .btnlist{font-size:0;position:absolute;top:110%;min-width:80px;left:50%;transform:translateX(-50%) scale(0);transform-origin:top center;border-radius:3px;box-shadow:0 0 3px rgba(0,0,0,.2)
 }

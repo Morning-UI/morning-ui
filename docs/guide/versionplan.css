@@ -175,9 +175,12 @@ header.index .menu li a {
   padding: 2px;
   margin-bottom: 10px;
 }
-.markdown-body i-img img {
+.markdown-body i-img img,
+.markdown-body i-label img,
+.markdown-body i-statistic img {
   border: none !important;
   padding: 0;
+  margin-bottom: inherit;
 }
 .markdown-body h5 {
   font-size: 1em !important;

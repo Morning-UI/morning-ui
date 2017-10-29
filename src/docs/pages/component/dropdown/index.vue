@@ -17,11 +17,13 @@
     - `slot="showbtn"` : 标记默认显示的按钮
     - `emitbtn` : 标记触发按钮组的按钮。
 
+    组件内支持一个向下箭头图标，可以通过`<i class="morningicon">&#xe6b1;</i>`使用。
+
     #### 使用
 
     :::democode/html
     <ui-dropdown>
-        <ui-btn slot="showbtn" emitbtn>更多 <i class="morningicon">&#xe697;</i></ui-btn>
+        <ui-btn slot="showbtn" emitbtn>更多 <i class="morningicon">&#xe6b1;</i></ui-btn>
         <ui-btn white>收藏</ui-btn>
         <ui-btn white>修改</ui-btn>
         <ui-btn danger>删除</ui-btn>
@@ -36,11 +38,13 @@
     <ui-dropdown>
         <ui-btngroup slot="showbtn">
             <ui-btn success>立即购买</ui-btn>
-            <ui-btn minor emitbtn><i class="morningicon">&#xe697;</i></ui-btn>
+            <!-- 这里的morningicon组件附带，可直接使用 -->
+            <ui-btn minor emitbtn><i class="morningicon">&#xe6b1;</i></ui-btn>
         </ui-btngroup>
         <ui-btn info>加入购物车</ui-btn>
-        <ui-btn white><i class="morningicon">&#xe6e9;</i> 收藏</ui-btn>
-        <ui-btn white><i class="morningicon">&#xe675;</i> 分享</ui-btn>
+        <!-- 这里的iconfont组件不附带 -->
+        <ui-btn white><i class="iconfont">&#xe6e2;</i> 收藏</ui-btn>
+        <ui-btn white><i class="iconfont">&#xe70a;</i> 分享</ui-btn>
     </ui-dropdown>
     :::
 
@@ -54,7 +58,7 @@
     |色彩|不支持|-|
     |状态|不支持|-|
 
-    下拉式按钮组不支持声明，但可通过`ui-btn`/`ui-btngroup`自身的声明来控制。
+    下拉式按钮组不支持声明，但可通过`ui-btn` / `ui-btngroup`自身的声明来控制。
 
     [[[配置]]]
 
@@ -87,7 +91,7 @@
 
     :::democode/html
     <ui-dropdown ref="demo1">
-        <ui-btn slot="showbtn" emitbtn>更多 <i class="morningicon">&#xe697;</i></ui-btn>
+        <ui-btn slot="showbtn" emitbtn>更多 <i class="morningicon">&#xe6b1;</i></ui-btn>
         <ui-btn white>收藏</ui-btn>
         <ui-btn white>修改</ui-btn>
         <ui-btn danger>删除</ui-btn>
@@ -117,7 +121,7 @@
     ---
     <div>
         <ui-dropdown @emit="echo">
-            <ui-btn slot="showbtn" emitbtn>emit事件 <i class="morningicon">&#xe697;</i></ui-btn>
+            <ui-btn slot="showbtn" emitbtn>emit事件 <i class="morningicon">&#xe6b1;</i></ui-btn>
             <ui-btn white>收藏</ui-btn>
             <ui-btn white>修改</ui-btn>
             <ui-btn danger>删除</ui-btn>
@@ -142,7 +146,7 @@
     ---
     <div>
         <ui-dropdown @show="echo">
-            <ui-btn slot="showbtn" emitbtn>show事件 <i class="morningicon">&#xe697;</i></ui-btn>
+            <ui-btn slot="showbtn" emitbtn>show事件 <i class="morningicon">&#xe6b1;</i></ui-btn>
             <ui-btn white>收藏</ui-btn>
             <ui-btn white>修改</ui-btn>
             <ui-btn danger>删除</ui-btn>
@@ -167,7 +171,7 @@
     ---
     <div>
         <ui-dropdown @hide="echo">
-            <ui-btn slot="showbtn" emitbtn>hide事件 <i class="morningicon">&#xe697;</i></ui-btn>
+            <ui-btn slot="showbtn" emitbtn>hide事件 <i class="morningicon">&#xe6b1;</i></ui-btn>
             <ui-btn white>收藏</ui-btn>
             <ui-btn white>修改</ui-btn>
             <ui-btn danger>删除</ui-btn>
@@ -206,7 +210,7 @@
             @destroyed="echo('destroyed')"
         >
 
-            <ui-btn slot="showbtn" emitbtn>{*text*} <i class="morningicon">&#xe697;</i></ui-btn>
+            <ui-btn slot="showbtn" emitbtn>{*text*} <i class="morningicon">&#xe6b1;</i></ui-btn>
             <ui-btn white>收藏</ui-btn>
             <ui-btn white>修改</ui-btn>
             <ui-btn danger>删除</ui-btn>
