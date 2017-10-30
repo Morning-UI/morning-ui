@@ -89,7 +89,7 @@ export default {
         使用 : '/guide/usage.html',
         // 定制化 : '/guide/custom.html',
         基础 : null,
-        '示例<i class="tag coming"></i>' : '/guide/demo.html',
+        组件文档 : '/guide/componentdoc.html',
         初始化 : '/guide/init.html',
         声明 : '/guide/statement.html',
         样式类 : '/guide/styleclass.html',
