@@ -67,7 +67,7 @@ export default UI.extend({
     methods : {
         _onClick : function () {
 
-            if (this.state !== 'disabled' &&
+            if (this.conf.state !== 'disabled' &&
                  !this.data.lock) {
 
                 this.$emit('emit');
