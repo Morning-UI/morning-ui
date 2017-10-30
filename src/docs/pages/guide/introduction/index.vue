@@ -13,15 +13,14 @@
 
     ### 快速开始
 
-    首先确保你的页面采用了Vue.js，然后只需简单四步即可使用Morning UI:
+    首先确保你的页面采用了Vue.js，然后只需简单三步即可使用Morning UI:
 
-    1. [获取Morning UI](/dist/morning-ui.latest.gzip)
-    2. 在页面中引用Vue.js以及Morning UI的JS和CSS：
+    1. 首先[获取Morning UI](/dist/morning-ui.latest.gzip)，并在页面中引用Vue.js以及Morning UI的JS和CSS：
         - `<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue">&lt;/script>`
         - `<script type="text/javascript" src="path-to-morning/morning-ui.js">&lt;/script>`
         - `<style rel="stylesheet" link="path-to-morning/morning-ui.css">&lt;/style>`
-    3. 初始化Morning UI： `window.morning.init();`
-    4. 在Vue的模板中使用：`<ui-btn>Hello Mroning.</ui-btn>`
+    2. 初始化Morning UI： `window.morning.init();`
+    3. 在Vue的模板中使用：`<ui-btn>Hello Mroning.</ui-btn>`
 
     完整的代码如下：
 

@@ -14,6 +14,64 @@
         </section>
         <section class="s1 gray">
             <h1>起步</h1>
+            <div class="w900">
+                <div class="lrBox">
+                    <div class="left">
+                        <h3>引入Vue.js及Morning UI</h3>
+                        <p>首先获取<a href="https://cn.vuejs.org/v2/guide/installation.html#直接-lt-script-gt-引入" target="_blank">Vue.js</a>及<a href="/dist/morning-ui.latest.gzip" target="_blank">Morning UI</a>，然后通过<code>&lt;script></code>将它们引入到页面中。</p>
+                        <p>你也可以通过其它方式引入，详见：<a href="/guide/install.html">开始使用/安装</a></p>
+                    </div>
+                    <div class="right">
+                        <pre>
+                        <code class="language-html hljs xml">
+&lt;script src="https://cdn.jsdelivr.net/npm/vue">&lt;/script>
+
+&lt;link href="path-to-morning/morning-ui.css" rel="stylesheet">
+&lt;script src="path-to-morning/morning-ui.js">&lt;/script>
+                        </code>
+                        </pre>
+                    </div>
+                </div>
+                <div class="lrBox">
+                    <div class="left">
+                        <h3>初始化</h3>
+                        <p>在使用组件之前需要先初始化Morning UI，可以在初始化时进行配置。</p>
+                    </div>
+                    <div class="right">
+                        <pre>
+                        <code class="language-js hljs">
+window.morning.init();
+                        </code>
+                        </pre>
+                    </div>
+                </div>
+                <div class="lrBox">
+                    <div class="left">
+                        <h3>使用组件</h3>
+                        <p>Morning UI基于Vue.js的Components，所以你可以像使用原生DOM元素一样使用。</p>
+                    </div>
+                    <div class="right">
+                        <pre>
+                        <code class="language-html hljs xml">
+&lt;ui-textinput form-name="E-Mail">&lt;/ui-textinput>
+&lt;br>
+&lt;ui-btn success>提交&lt;/ui-btn> &lt;ui-btn minor>取消&lt;/ui-btn>
+                        </code>
+                        </pre>
+                    </div>
+                </div>
+                <div class="lrBox">
+                    <div class="left">
+                        <h3>完成！</h3>
+                        <p>使用Morning UI只需简单三步。</p>
+                    </div>
+                    <div class="right">
+                        <ui-textinput form-name="E-Mail"></ui-textinput>
+                        <br>
+                        <ui-btn success>提交</ui-btn> <ui-btn minor>取消</ui-btn>
+                    </div>
+                </div>
+            </div>
         </section>
         <section class="s1">
             <div class="w1k col">
@@ -40,16 +98,14 @@
                 </div>
             </div>
         </section>
-        <footer>
-            Under <a href="https://opensource.org/licenses/MIT" target="_blank">MIT Licence</a>
-            <br>
-            Copyright © 2015-2017 Early He
-        </footer>
+        <doc-footer></doc-footer>
     </div>
 </template>
  
 <script>
+import hljs                         from 'highlight.js';
 import DocHeader                    from 'Docs/common/DocHeader.vue';
+import DocFooter                    from 'Docs/common/DocFooter.vue';
 
 export default {
     data : function () {
@@ -60,16 +116,27 @@ export default {
 
     },
     components : {
-        'doc-header' : DocHeader
+        'doc-header' : DocHeader,
+        'doc-footer' : DocFooter
+    },
+    mounted : () => {
+
+        hljs.initHighlightingOnLoad();
+
     }
 };
 </script>
 
 <style lang="less">
 @import '~Docs/common/common.less';
+@import '~Npm/highlight.js/styles/hopscotch.css';
 
 .w1k{
     width: 1110px;
+    margin: 0 auto;
+}
+.w900{
+    width: 900px;
     margin: 0 auto;
 }
 .center{
@@ -145,17 +212,41 @@ export default {
         text-align: center;
     }
 }
-footer{
-    font-size: 13px;
-    color: #D6DDE5;
-    padding: 30px 0;
-    text-align: center;
-    background: #303C4B;
-    line-height: 1.4em;
+.lrBox{
+    font-size: 0;
+    border-bottom: 1px #e0e0e0 solid;
+    padding-bottom: 20px;
 
-    a,
-    a:hover {
-        color: #D6DDE5;
+    &:last-child{
+        border-bottom: none;
+    }
+
+    .left,
+    .right{
+        width: 50%;
+        display: inline-block;
+        padding: 20px;
+        box-sizing: border-box;
+        font-size: 14px;
+
+        h3{
+            font-size: 28px;
+            font-weight: 400;
+        }
+
+        p{
+            font-size: 15px;
+            line-height: 1.4em;
+        }
+
+        a{
+            color: #000;
+            padding: 0 5px;
+        }
+
+        pre{
+            font-size: 13px;
+        }
     }
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
     <div>
-       <doc-header :category="category"></doc-header>
-         <div class="body">
+        <doc-header :category="category"></doc-header>
+        <div class="body">
             <doc-submenu
                 :category="category"
                 :page="page"
@@ -14,7 +14,7 @@
                 <slot></slot>
             </div>
         </div>
-
+        <doc-footer></doc-footer>
     </div>
 </template>
 
@@ -25,6 +25,7 @@ import Mustache                     from 'mustache';
 import _                            from 'underscore';
 import hljs                         from 'highlight.js';
 import DocHeader                    from 'Docs/common/DocHeader.vue';
+import DocFooter                    from 'Docs/common/DocFooter.vue';
 import DocSubmenu                   from 'Docs/common/DocSubmenu.vue';
 import DocComponentStatus           from 'Docs/common/DocComponentStatus.vue';
 
@@ -1476,7 +1477,8 @@ export default {
     },
     components : {
         'doc-header' : DocHeader,
-        'doc-submenu' : DocSubmenu
+        'doc-submenu' : DocSubmenu,
+        'doc-footer' : DocFooter
     },
     mounted : function () {
 
