@@ -18,7 +18,7 @@
                 <div class="lrBox">
                     <div class="left">
                         <h3>引入Vue.js及Morning UI</h3>
-                        <p>首先获取<a href="https://cn.vuejs.org/v2/guide/installation.html#直接-lt-script-gt-引入" target="_blank">Vue.js</a>及<a href="/dist/morning-ui.latest.gzip" target="_blank">Morning UI</a>，然后通过<code>&lt;script></code>将它们引入到页面中。</p>
+                        <p>首先获取<a href="https://cn.vuejs.org/v2/guide/installation.html#直接-lt-script-gt-引入" target="_blank">Vue.js</a>及<a href="/guide/install.html" target="_blank">Morning UI</a>，然后通过<code>&lt;script></code>将它们引入到页面中。</p>
                         <p>你也可以通过其它方式引入，详见：<a href="/guide/install.html">开始使用/安装</a></p>
                     </div>
                     <div class="right">
@@ -64,6 +64,10 @@ window.morning.init();
                     <div class="left">
                         <h3>完成！</h3>
                         <p>使用Morning UI只需简单三步。</p>
+                        <p>接下来：
+                            <br><a href="/guide/usage.html">了解Morning UI的更多用法</a>
+                            <br><a href="/guide/becontributor.html">成为Morning UI的贡献者</a>
+                        </p>
                     </div>
                     <div class="right">
                         <ui-textinput form-name="E-Mail"></ui-textinput>
@@ -228,6 +232,7 @@ export default {
         padding: 20px;
         box-sizing: border-box;
         font-size: 14px;
+        vertical-align: middle;
 
         h3{
             font-size: 28px;

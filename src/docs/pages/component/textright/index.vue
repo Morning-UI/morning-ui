@@ -10,9 +10,9 @@
 
     [[[开始]]]
 
-    #### 使用
-
     内容右对齐组件，这是一个块级元素。
+
+    #### 使用
     
     :::democode/html
     <ui-textright>右对齐文本</ui-textright>
