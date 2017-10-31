@@ -1,0 +1,60 @@
+@import '~Common/var.less';
+
+i-textarea{
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    vertical-align: top;
+
+    textarea{
+        box-sizing: border-box;
+        z-index: 2;
+        font-size: 14px;
+        padding: 0.8em;
+        width: 100%;
+        background: @colorFormBackground;
+        border: 1px @colorFormBorder solid;
+        border-radius: @borderRadius;
+        line-height: 1.4em;
+        color: @colorFormText !important;
+        outline: none;
+        -webkit-appearance: none;
+        resize: none;
+        transition: height 0.2s;
+
+        &::placeholder{
+            color: @colorFormText;
+        }
+
+        &:hover{
+            border-color: @colorFormBorderHover;
+            color: @colorFormTextHover !important;
+        }
+
+        &:focus{
+            border-color: @colorFormBorderFocus;
+            color: @colorFormTextFocus !important;
+        }
+
+        .setup-scrollbar();
+    }
+
+    &.st-normal{}
+
+    &.st-disabled{
+        textarea{
+            border: 1px @colorFormBorderDisable solid;
+            background-color: @colorFormBackgroundDisable;
+            -webkit-user-select: none;
+            cursor: not-allowed !important;
+            color: @colorFormTextDisable !important;
+        }
+    }
+
+    // default statement
+    &{
+        .st-normal;
+    }
+}

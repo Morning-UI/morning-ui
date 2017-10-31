@@ -1,0 +1,270 @@
+<template>
+    <doc-component
+        :page="page"
+        :hasPadding="true"
+    >
+    <script type="text/markdown">
+    # 项目列表 `<ui-itemlist>`
+    
+    <doc-component-status page="itemlist"></doc-component-status>
+
+    [[[开始]]]
+
+    定义项目列表组件，项目列表中的每一项包含图片及文字内容，这是一个块级元素。
+
+    项目列表可包含：
+
+    - 缩略图 `img`
+    - 标题 `.title`
+    - 描述 `.desc`
+    - 主体内容 `.body`
+    - 附加信息 `.additional`
+
+    #### 使用
+
+    :::democode/html
+    <div style="width:400px">
+    <ui-itemlist>
+        <ui-ul>
+            <li>
+                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                <h3 class="title">Header</h3>
+                <p class="desc">Description</p>
+                <div class="body">Body</div>
+                <div class="additional">Additional Details</div> 
+            </li>
+            <li>
+                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                <h3 class="title">Header</h3>
+                <p class="desc">Description</p>
+                <div class="body">Body</div>
+                <div class="additional">Additional Details</div> 
+            </li>
+            <li>
+                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                <h3 class="title">Header</h3>
+                <p class="desc">Description</p>
+                <div class="body">Body</div>
+                <div class="additional">Additional Details</div> 
+            </li>
+        </ui-ul>
+    </ui-itemlist>
+    </div>
+    :::
+
+    #### 下划线分隔
+    
+    :::democode/html
+    <div style="width:400px">
+    <ui-itemlist class="underline">
+        <ui-ul>
+            <li>
+                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                <h3 class="title">Header</h3>
+                <p class="desc">Description</p>
+                <div class="body">Body</div>
+                <div class="additional">Additional Details</div> 
+            </li>
+            <li>
+                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                <h3 class="title">Header</h3>
+                <p class="desc">Description</p>
+                <div class="body">Body</div>
+                <div class="additional">Additional Details</div> 
+            </li>
+            <li>
+                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                <h3 class="title">Header</h3>
+                <p class="desc">Description</p>
+                <div class="body">Body</div>
+                <div class="additional">Additional Details</div> 
+            </li>
+        </ui-ul>
+    </ui-itemlist>
+    </div>
+    :::
+
+    #### 单行标题
+    
+    :::democode/html
+    <div style="width:400px">
+    <ui-itemlist xs>
+        <ui-ul>
+            <li>
+                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                <h3 class="title">Header</h3>
+            </li>
+            <li>
+                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                <h3 class="title">Header</h3>
+            </li>
+            <li>
+                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                <h3 class="title">Header</h3>
+            </li>
+        </ui-ul>
+    </ui-itemlist>
+    </div>
+    :::
+
+    #### 单行内容
+    
+    :::democode/html
+    <div style="width:400px">
+    <ui-itemlist xs>
+        <ui-ul>
+            <li>
+                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                <div class="body">Body</div>
+            </li>
+            <li>
+                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                <div class="body">Body</div>
+            </li>
+            <li>
+                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                <div class="body">Body</div>
+            </li>
+        </ui-ul>
+    </ui-itemlist>
+    </div>
+    :::
+
+    #### 无图片
+    
+    :::democode/html
+    <div style="width:400px">
+    <ui-itemlist>
+        <ui-ul>
+            <li>
+                <h3 class="title">Header</h3>
+                <p class="desc">Description</p>
+                <div class="body">Body</div>
+                <div class="additional">Additional Details</div> 
+            </li>
+            <li>
+                <h3 class="title">Header</h3>
+                <p class="desc">Description</p>
+                <div class="body">Body</div>
+                <div class="additional">Additional Details</div> 
+            </li>
+            <li>
+                <h3 class="title">Header</h3>
+                <p class="desc">Description</p>
+                <div class="body">Body</div>
+                <div class="additional">Additional Details</div> 
+            </li>
+        </ui-ul>
+    </ui-itemlist>
+    </div>
+    :::
+
+    #### 配合`ui-label`
+    
+    :::democode/html
+    <div style="width:400px">
+    <ui-itemlist>
+        <ui-ul>
+            <li>
+                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                <h3 class="title">Header</h3>
+                <p class="desc">Description</p>
+                <div class="body">Body</div>
+                <div class="additional">
+                    <ui-label s minor>Normal</ui-label>
+                </div> 
+            </li>
+            <li>
+                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                <h3 class="title">Header</h3>
+                <p class="desc">Description</p>
+                <div class="body">Body</div>
+                <div class="additional">
+                    <ui-label s danger>High</ui-label>
+                </div> 
+            </li>
+            <li>
+                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                <h3 class="title">Header</h3>
+                <p class="desc">Description</p>
+                <div class="body">Body</div>
+                <div class="additional">
+                    <ui-label s minor>Normal</ui-label>
+                </div> 
+            </li>
+        </ui-ul>
+    </ui-itemlist>
+    </div>
+    :::
+
+    [[[声明]]]
+
+    #### 支持
+
+    |类型|支持|默认|
+    |-|-|-|
+    |尺寸|全部|`m`|
+    |色彩|不支持|-|
+    |状态|不支持|-|
+
+    #### 尺寸
+    
+    :::repeat/html
+    size
+    ---
+    <div style="width:400px">
+    <ui-itemlist {$sizeKey}>
+        <ui-ul>
+            <li>
+                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                <h3 class="title">{$&sizeName}</h3>
+                <p class="desc">Description</p>
+                <div class="body">Body</div>
+                <div class="additional">Additional Details</div> 
+            </li>
+            <li>
+                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                <h3 class="title">{$&sizeName}</h3>
+                <p class="desc">Description</p>
+                <div class="body">Body</div>
+                <div class="additional">Additional Details</div> 
+            </li>
+            <li>
+                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                <h3 class="title">{$&sizeName}</h3>
+                <p class="desc">Description</p>
+                <div class="body">Body</div>
+                <div class="additional">Additional Details</div> 
+            </li>
+        </ui-ul>
+    </ui-itemlist>
+    </div>
+    <br><br>
+    :::
+
+    [[[源码]]]
+
+    <iframe src="/report/coverage/lib/components/itemlist/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
+    </script>
+    </doc-component>
+</template>
+ 
+<script>
+import DocComponent                from 'Docs/common/DocComponent.vue';
+
+export default {
+    data : function () {
+
+        return {
+            page : 'itemlist'
+        };
+
+    },
+    components : {
+        'doc-component' : DocComponent
+    }
+};
+</script>
+
+<style lang="less">
+</style>

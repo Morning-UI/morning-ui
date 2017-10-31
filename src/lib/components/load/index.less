@@ -1,0 +1,124 @@
+@import '~Common/var.less';
+
+i-load{
+    .loadfail{
+        color: @colorLightBlue;
+
+        .iconfont{
+            font-size: inherit;
+        }
+    }
+
+    .loading{
+        margin: 0;
+        text-align: center;
+        color: @colorLightBlue;
+
+        .morningicon{
+            vertical-align: 1px;
+            line-height: 1em;
+            animation-name: rotation;
+            animation-duration: 1s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            display: inline-block;
+            color: @colorLightBlue;
+        }
+    }
+
+    &.si-xxl {
+        .loading {
+            .morningicon{
+                font-size: @fontSize*2.8;
+            }
+        }
+
+        .loading,
+        .loadfail{
+            font-size: @fontSize*1.6;
+        }
+    }
+
+    &.si-xl {
+        .loading {
+            .morningicon{
+                font-size: @fontSize*2;
+            }
+        }
+
+        .loading,
+        .loadfail{
+            font-size: @fontSize*1.3;
+        }
+    }
+
+    &.si-l {
+        .loading {
+            .morningicon{
+                font-size: @fontSize*1.6;
+            }
+        }
+
+        .loading,
+        .loadfail{
+            font-size: @fontSize*1;
+        }
+    }
+
+    &.si-m {
+        .loading {
+            .morningicon{
+                font-size: @fontSize*1;
+            }
+        }
+
+        .loading,
+        .loadfail{
+            font-size: @fontSize*0.875;
+        }
+    }
+
+    &.si-s {
+        .loading {
+            .morningicon{
+                font-size: @fontSize*0.875;
+            }
+        }
+
+        .loading,
+        .loadfail{
+            font-size: @fontSize*0.875;
+        }
+    }
+
+    &.si-xs {
+        .loading {
+            .morningicon{
+                font-size: @fontSize*0.8125;
+            }
+        }
+
+        .loading,
+        .loadfail{
+            font-size: @fontSize*0.8125;
+        }
+    }
+
+    &.si-xxs {
+        .loading {
+            .morningicon{
+                font-size: @fontSize*0.75;
+            }
+        }
+
+        .loading,
+        .loadfail{
+            font-size: @fontSize*0.75;
+        }
+    }
+
+    // default statement
+    &{
+        .si-m;
+    }
+}

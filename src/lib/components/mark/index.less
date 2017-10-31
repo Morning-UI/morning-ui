@@ -1,0 +1,104 @@
+@import '~Common/var.less';
+
+i-mark{
+    display: inline;
+
+    &.sy-theme{
+        background-color: lighten(@colorTheme, 25%);
+    }
+
+    &.sy-lightTheme{
+        background-color: lighten(@colorLightTheme, 25%);
+    }
+
+    &.sy-darkTheme{
+        background-color: lighten(@colorDarkTheme, 25%);
+    }
+
+    &.sy-success{
+        background-color: lighten(@colorSuccess, 25%);
+    }
+
+    &.sy-warning{
+        background-color: lighten(@colorWarning, 25%);
+    }
+
+    &.sy-danger{
+        background-color: lighten(@colorDanger, 25%);
+    }
+
+    &.sy-primary{
+        background-color: lighten(@colorPrimary, 25%);
+    }
+
+    &.sy-minor{
+        background-color: lighten(@colorMinor, 25%);
+    }
+
+    &.sy-info{
+        background-color: lighten(@colorInfo, 25%);
+    }
+
+    &.sy-black{
+        background-color: lighten(@colorBlack, 25%);
+    }
+
+    &.sy-lightBlack{
+        background-color: lighten(@colorLightBlack, 25%);
+    }
+
+    &.sy-extraLightBlack{
+        background-color: lighten(@colorExtraLightBlack, 25%);
+    }
+
+    &.sy-blue{
+        background-color: lighten(@colorBlue, 18%);
+    }
+
+    &.sy-lightBlue{
+        background-color: lighten(@colorLightBlue, 18%);
+    }
+
+    &.sy-extraLightBlue{
+        background-color: lighten(@colorExtraLightBlue, 18%);
+    }
+
+    &.sy-silver{
+        background-color: lighten(@colorSilver, 0%);
+    }
+
+    &.sy-lightSilver{
+        background-color: lighten(@colorLightSilver, 0%);
+    }
+
+    &.sy-extraLightSilver{
+        background-color: lighten(@colorExtraLightSilver, 0%);
+    }
+
+    &.sy-gray{
+        background-color: lighten(@colorGray, 0%);
+    }
+
+    &.sy-lightGray{
+        background-color: lighten(@colorLightGray, 0%);
+    }
+
+    &.sy-white{
+        background-color: lighten(@colorWhite, 0%);
+    }
+
+    &.st-normal{}
+
+    &.st-apparent{
+        animation-name: apparent;
+        animation-duration: 1s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+    }
+
+    // default statement
+    &{
+        .sy-theme;
+        .st-normal;
+    }
+}

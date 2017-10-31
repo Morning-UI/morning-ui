@@ -1,0 +1,408 @@
+@import '~Common/var.less';
+
+i-radio{
+    width: 100%;
+    position: relative;
+    display: inline-block;
+    z-index: 9;
+    -webkit-user-select: none;
+
+    > .note{
+        color: @colorFormTextNote;
+        font-size: @fontSize;
+        margin-bottom: 0.5em;
+        -webkit-user-select: text;
+    }
+
+    > .itemlist{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        label{
+            display: inline-block;
+            margin: 0 1em 0.5em 0;
+            cursor: pointer;
+
+            span{
+                vertical-align: middle;
+                font-size: @fontSize*0.875;
+                color: @colorFormText;
+                transition: 0.2s;
+                -webkit-user-select: text;
+            }
+
+            .box{
+                vertical-align: middle;
+                background: #FFF;
+                width: @fontSize*1.25;
+                height: @fontSize*1.25;
+                border-radius: 50%;
+                display: inline-block;
+                border: 1px @colorFormBorder solid;
+                transition: 0.2s;
+                margin: 0 0.375em 0 0;
+                box-sizing: border-box;
+            }
+
+            .morningicon{
+                color: #FFF;
+                opacity: 0;
+                transform: scale(0);
+                transition: 0.2s;
+                font-size: @fontSize*0.75;
+                width: 100%;
+                display: block;
+                line-height: @fontSize*1.25 - 1px;
+                text-align: center;
+                vertical-align: middle;
+                word-break: break-word;
+            }
+
+            &:hover{
+                span{
+                    color: darken(@colorFormTextHover, 10%);
+                }
+
+                .box{
+                    border-color: darken(@colorFormBorderHover, 10%);
+                }
+            }
+
+            &.checked{
+                span{
+                    color: @colorFormTextFocus;
+                }
+
+                .morningicon{
+                    opacity: 1;
+                    transform: scale(0.9);
+                }
+            }
+        }
+    }
+
+    &.sy-theme{
+        > .itemlist label.checked .box{
+            background: @colorTheme;
+            border-color: @colorTheme;
+        }
+    }
+
+    &.sy-lightTheme{
+        > .itemlist label.checked .box{
+            background: @colorLightTheme;
+            border-color: @colorLightTheme;
+        }
+    }
+
+    &.sy-darkTheme{
+        > .itemlist label.checked .box{
+            background: @colorDarkTheme;
+            border-color: @colorDarkTheme;
+        }
+    }
+
+    &.sy-success{
+        > .itemlist label.checked .box{
+            background: @colorSuccess;
+            border-color: @colorSuccess;
+        }
+    }
+
+    &.sy-warning{
+        > .itemlist label.checked .box{
+            background: @colorWarning;
+            border-color: @colorWarning;
+        }
+    }
+
+    &.sy-danger{
+        > .itemlist label.checked .box{
+            background: @colorDanger;
+            border-color: @colorDanger;
+        }
+    }
+
+    &.sy-primary{
+        > .itemlist label.checked .box{
+            background: @colorPrimary;
+            border-color: @colorPrimary;
+        }
+    }
+
+    &.sy-minor{
+        > .itemlist label.checked .box{
+            background: @colorMinor;
+            border-color: @colorMinor;
+        }
+    }
+
+    &.sy-info{
+        > .itemlist label.checked .box{
+            background: @colorInfo;
+            border-color: @colorInfo;
+        }
+    }
+
+    &.sy-black{
+        > .itemlist label.checked .box{
+            background: @colorBlack;
+            border-color: @colorBlack;
+        }
+    }
+
+    &.sy-lightBlack{
+        > .itemlist label.checked .box{
+            background: @colorLightBlack;
+            border-color: @colorLightBlack;
+        }
+    }
+
+    &.sy-extraLightBlack{
+        > .itemlist label.checked .box{
+            background: @colorExtraLightBlack;
+            border-color: @colorExtraLightBlack;
+        }
+    }
+
+    &.sy-blue{
+        > .itemlist label.checked .box{
+            background: @colorBlue;
+            border-color: @colorBlue;
+        }
+    }
+
+    &.sy-lightBlue{
+        > .itemlist label.checked .box{
+            background: @colorLightBlue;
+            border-color: @colorLightBlue;
+        }
+    }
+
+    &.sy-extraLightBlue{
+        > .itemlist label.checked .box{
+            background: @colorExtraLightBlue;
+            border-color: @colorExtraLightBlue;
+        }
+    }
+
+    &.sy-silver{
+        > .itemlist label{
+            span{
+                color: @colorExtraLightBlue;
+            }
+
+            .box{
+                border: 1px @colorWhite solid;
+            }
+
+            &:hover,
+            &.checked{
+                span{
+                    color: @colorLightSilver;
+                }
+            }
+
+            &.checked{
+                .box{
+                    background: @colorSilver;
+                    border-color: @colorSilver;
+                    color: @colorSilver;
+                }
+
+                .morningicon{
+                    color: @colorExtraLightBlack;
+                }
+            }
+        }
+    }
+
+    &.sy-lightSilver{
+        > .itemlist label{
+            span{
+                color: @colorExtraLightBlue;
+            }
+
+            .box{
+                border: 1px @colorWhite solid;
+            }
+
+            &:hover,
+            &.checked{
+                span{
+                    color: @colorLightSilver;
+                }
+            }
+
+            &.checked{
+                .box{
+                    background: @colorLightSilver;
+                    border-color: @colorLightSilver;
+                    color: @colorLightSilver;
+                }
+
+                .morningicon{
+                    color: @colorExtraLightBlack;
+                }
+            }
+        }
+    }
+
+    &.sy-extraLightSilver{
+        > .itemlist label{
+            span{
+                color: @colorExtraLightBlue;
+            }
+
+            .box{
+                border: 1px @colorWhite solid;
+            }
+
+            &:hover,
+            &.checked{
+                span{
+                    color: @colorLightSilver;
+                }
+            }
+
+            &.checked{
+                .box{
+                    background: @colorExtraLightSilver;
+                    border-color: @colorExtraLightSilver;
+                    color: @colorExtraLightSilver;
+                }
+
+                .morningicon{
+                    color: @colorExtraLightBlack;
+                }
+            }
+        }
+    }
+
+    &.sy-gray{
+        > .itemlist label{
+            span{
+                color: @colorGray;
+            }
+
+            .box{
+                border: 1px @colorWhite solid;
+            }
+
+            &:hover,
+            &.checked{
+                span{
+                    color: @colorWhite;
+                }
+            }
+
+            &.checked{
+                .box{
+                    background: @colorGray;
+                    border-color: @colorGray;
+                    color: @colorGray;
+                }
+
+                .morningicon{
+                    color: @colorBlack;
+                }
+            }
+        }
+    }
+
+    &.sy-lightGray{
+        > .itemlist label{
+            span{
+                color: @colorGray;
+            }
+
+            .box{
+                border: 1px @colorWhite solid;
+            }
+
+            &:hover,
+            &.checked{
+                span{
+                    color: @colorWhite;
+                }
+            }
+
+            &.checked{
+                .box{
+                    background: @colorLightGray;
+                    border-color: @colorLightGray;
+                    color: @colorLightGray;
+                }
+
+                .morningicon{
+                    color: @colorBlack;
+                }
+            }
+        }
+    }
+
+    &.sy-white{
+        > .itemlist label{
+            span{
+                color: @colorGray;
+            }
+
+            .box{
+                border: 1px @colorWhite solid;
+            }
+
+            &:hover,
+            &.checked{
+                span{
+                    color: @colorWhite;
+                }
+            }
+
+            &.checked{
+                .box{
+                    background: @colorWhite;
+                    border-color: @colorWhite;
+                    color: @colorWhite;
+                }
+
+                .morningicon{
+                    color: @colorBlack;
+                }
+            }
+        }
+    }
+
+    &.st-normal{}
+
+    &.st-disabled{
+        > .itemlist{
+            > label{
+                border-color: darken(@colorFormBackgroundDisable, 5%);
+                -webkit-user-select: none;
+                cursor: not-allowed !important;
+
+                > .box{
+                    background-color: darken(@colorFormBackgroundDisable, 5%);
+                    border-color: darken(@colorFormBackgroundDisable, 5%);
+                }
+
+                &:hover span{
+                    color: @colorFormText;
+                }
+
+                &.checked{
+                    .morningicon{
+                        opacity: 0.7;
+                    }
+                }
+            }
+        }
+    }
+
+    // default statement
+    &{
+        .sy-theme;
+        .st-normal;
+    }
+}

@@ -1,0 +1,167 @@
+@import '~Common/var.less';
+
+@btnGap: 2px;
+
+i-btngroup{
+    display: inline-block;
+    font-size: 0;
+    vertical-align: middle;
+    position: relative;
+
+    i-btn{
+        &:not(:first-child):not(:last-child){
+            border-radius: 0;
+        }
+    }
+
+    &.vertical{
+        > i-btn{
+            display: block;
+            float: none;
+            margin-bottom: 1px;
+        }
+
+        :first-child{
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        :last-child{
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+            margin-bottom: 0;
+        }
+    }
+
+    &:not(.vertical),
+    &.horizontal{
+        > i-btn{
+            margin-right: 1px;
+        }
+
+        :first-child{
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        :last-child{
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            margin-right: 0;
+        }
+    }
+
+    > span {
+        display: inline-block;
+        position: absolute;
+        z-index: 3;
+        background-color: #FFF;
+        border-radius: 100%;
+        text-align: center;
+        // position: relative;
+        // left: 50%;
+        // top: 50%;
+        color: @colorExtraLightBlue;
+        // transform: translateX(-50%) translateY(-50%);
+    }
+
+    i-btn.si-xxl {
+        + span {
+            font-size: @fontSize*1.25;
+            width: @fontSize*2;
+            height: @fontSize*2;
+            line-height: @fontSize*2;
+            margin-left: @fontSize*-2/2;
+            margin-top: @fontSize*0.68067;
+        }
+    }
+
+    i-btn.si-xl {
+        + span {
+            font-size: @fontSize*1.125;
+            width: @fontSize*1.8;
+            height: @fontSize*1.8;
+            line-height: @fontSize*1.8;
+            margin-left: @fontSize*-1.8/2;
+            margin-top: @fontSize*0.5249;
+        }
+    }
+
+    i-btn.si-l {
+        + span {
+            font-size: @fontSize;
+            width: @fontSize*1.6;
+            height: @fontSize*1.6;
+            line-height: @fontSize*1.6;
+            margin-left: @fontSize*-1.6/2;
+            margin-top: @fontSize*0.48144;
+        }
+    }
+
+    i-btn,
+    i-btn.si-m {
+        + span {
+            font-size: @fontSize*0.75;
+            width: 2em;
+            height: 2em;
+            line-height: 2em;
+            margin-left: ~'calc(-1em - ' @btnGap  ~')';
+            margin-top: -1em;
+            top: 50%;
+        }
+    }
+
+    i-btn.si-s {
+        + span {
+            font-size: @fontSize*0.625;
+            width: @fontSize*1.2;
+            height: @fontSize*1.2;
+            margin-left: @fontSize*-1.2/2;
+            line-height: @fontSize*1.2;
+            margin-top: @fontSize*0.25;
+        }
+    }
+
+    i-btn.si-xs {
+        + span {
+            font-size: @fontSize*0.625;
+            width: @fontSize*1;
+            height: @fontSize*1;
+            line-height: @fontSize*1;
+            margin-left: @fontSize*-1/2;
+            margin-top: @fontSize*0.1875;
+        }
+    }
+
+    i-btn.si-xxs {
+        + span {
+            font-size: @fontSize*0.625;
+            width: @fontSize*1;
+            height: @fontSize*1;
+            line-height: @fontSize*1;
+            margin-left: @fontSize*-1/2;
+            margin-top: @fontSize*0.125;
+        }
+    }
+
+    &.split {
+        > i-btn{
+            padding-right: 1.5em;
+            padding-left: 1.5em;
+            margin-right: @btnGap*2;
+        }
+    }
+
+    &.nogap{
+        > i-btn{
+            margin-right: 0;
+        }
+
+        &.vertical > i-btn{
+            margin-bottom: 0;
+        }
+    }
+
+    // default statement
+    &{}
+}

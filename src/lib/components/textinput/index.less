@@ -1,0 +1,107 @@
+@import '~Common/var.less';
+
+i-textinput{
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    vertical-align: middle;
+
+    input{
+        box-sizing: border-box;
+        z-index: 2;
+        font-size: @fontSize*0.875;
+        padding: 0 1em;
+        width: 100%;
+        background: @colorFormBackground;
+        border: 1px @colorFormBorder solid;
+        border-radius: @borderRadius;
+        height: @formHeight;
+        line-height: @formHeight;
+        color: @colorFormText !important;
+        outline: none;
+        -webkit-appearance: none;
+
+        &::placeholder{
+            color: @colorFormText;
+        }
+
+        &:hover{
+            border-color: @colorFormBorderHover;
+            color: @colorFormTextHover !important;
+        }
+
+        &:focus{
+            border-color: @colorFormBorderFocus;
+            color: @colorFormTextFocus !important;
+        }
+    }
+
+    &.inputGroup {
+        display: flex;
+        vertical-align: middle;
+
+        .inputGroupAddon {
+            padding: @fontSize*0.375 @fontSize*0.75;
+            font-size: 0.875em;
+            color: @colorBlue;
+            text-align: center;
+            background-color: @colorLightGray;
+            border: 1px solid @colorFormBorder;
+            white-space: nowrap;
+            border-radius: @borderRadius;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &:first-child {
+                border-right: 0;
+            }
+        }
+
+        .inputGroupAddon,
+        input {
+            vertical-align: middle;
+            margin: 0;
+
+            &:first-child {
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+
+            &:nth-child(2) {
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+            }
+        }
+
+        input + .inputGroupAddon {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            border-left: 0;
+        }
+
+        .inputGroupAddon + input.hasAppend {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+    }
+
+    &.st-normal{}
+
+    &.st-disabled{
+        input[disabled] {
+            border: 1px @colorFormBorderDisable solid;
+            background-color: @colorFormBackgroundDisable;
+            -webkit-user-select: none;
+            cursor: not-allowed !important;
+            color: @colorFormTextDisable !important;
+        }
+    }
+
+    // default statement
+    &{
+        .st-normal;
+    }
+}

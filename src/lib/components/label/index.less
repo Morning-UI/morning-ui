@@ -1,0 +1,471 @@
+@import '~Common/var.less';
+
+i-label{
+    display: inline-block;
+    white-space: nowrap;
+    vertical-align: middle;
+    height: 1.8em;
+    margin: 0 @fontSize*0.125;
+    overflow: hidden;
+    font-size: 0;
+
+    &.image,
+    &.icon{
+        padding: 0 !important;
+    }
+
+    &,
+    & > span{
+        line-height: 1.8em;
+    }
+
+    & > span{
+        display: inline-block;
+        line-height: 1.8em;
+        height: 1.8em;
+        vertical-align: top !important;
+    }
+
+    &.image img{
+        vertical-align: top !important;
+        height: 1.8em;
+        width: 1.8em;
+    }
+
+    &.icon > .iconfont{
+        display: inline-block;
+        vertical-align: top !important;
+    }
+
+    &.si-xxl{
+        border-radius: @borderRadius*1.6;
+        margin: @fontSize*0.5;
+
+        &,
+        & > span{
+            font-size: @fontSize*1.3;
+            padding: 0 @fontSize*1.3;
+        }
+
+        &.image > span:last-child{
+            padding: 0 @fontSize*1.4 0 @fontSize*1;
+        }
+
+        &.image > span:first-child{
+            padding: 0 @fontSize*1 0 @fontSize*1.4;
+        }
+
+        &.image > img:first-child{
+            border-radius: @borderRadius*1.6 0 0 @borderRadius*1.6;
+        }
+
+        &.image > img:last-child{
+            border-radius: 0 @borderRadius*1.6 @borderRadius*1.6 0;
+        }
+
+        &.icon > .iconfont:first-child{
+            font-size: @fontSize*1.4;
+            padding-left: @fontSize*0.8;
+        }
+
+        &.icon > .iconfont:last-child{
+            font-size: @fontSize*1.4;
+            padding-right: @fontSize*0.8;
+        }
+
+        &.icon > span:last-child{
+            padding: 0 @fontSize*1.3 0 @fontSize*0.4;
+        }
+
+        &.icon > span:first-child{
+            padding: 0 @fontSize*0.4 0 @fontSize*1.3;
+        }
+    }
+
+    &.si-xl{
+        border-radius: @borderRadius*1.4;
+        margin: @fontSize*0.3;
+
+        &,
+        & > span{
+            font-size: @fontSize*1.2;
+            padding: 0 @fontSize*1.2;
+        }
+
+        &.image > span:last-child{
+            padding: 0 @fontSize*1.2 0 @fontSize*0.8;
+        }
+
+        &.image > span:first-child{
+            padding: 0 @fontSize*0.8 0 @fontSize*1.2;
+        }
+
+        &.image > img:first-child{
+            border-radius: @borderRadius*1.4 0 0 @borderRadius*1.4;
+        }
+
+        &.image > img:last-child{
+            border-radius: 0 @borderRadius*1.4 @borderRadius*1.4 0;
+        }
+
+        &.icon > .iconfont:first-child{
+            font-size: @fontSize*1.2;
+            padding-left: @fontSize*0.75;
+        }
+
+        &.icon > .iconfont:last-child{
+            font-size: @fontSize*1.2;
+            padding-right: @fontSize*0.75;
+        }
+
+        &.icon > span:last-child{
+            padding: 0 @fontSize*1.2 0 @fontSize*0.3;
+        }
+
+        &.icon > span:first-child{
+            padding: 0 @fontSize*0.3 0 @fontSize*1.2;
+        }
+    }
+
+    &.si-l{
+        border-radius: @borderRadius*1.2;
+        margin: @fontSize*0.1;
+
+        &,
+        & > span{
+            font-size: @fontSize*1;
+            padding: 0 @fontSize*1;
+        }
+
+        &.image > span:last-child{
+            padding: 0 @fontSize*1 0 @fontSize*0.7;
+        }
+
+        &.image > span:first-child{
+            padding: 0 @fontSize*0.7 0 @fontSize*1;
+        }
+
+        &.image > img:first-child{
+            border-radius: @borderRadius*1.2 0 0 @borderRadius*1.2;
+        }
+
+        &.image > img:last-child{
+            border-radius: 0 @borderRadius*1.2 @borderRadius*1.2 0;
+        }
+
+        &.icon > .iconfont:first-child{
+            font-size: @fontSize*1;
+            padding-left: @fontSize*0.6;
+        }
+
+        &.icon > .iconfont:last-child{
+            font-size: @fontSize*1;
+            padding-right: @fontSize*0.6;
+        }
+
+        &.icon > span:last-child{
+            padding: 0 @fontSize*1 0 @fontSize*0.2;
+        }
+
+        &.icon > span:first-child{
+            padding: 0 @fontSize*0.2 0 @fontSize*1;
+        }
+    }
+
+    &.si-m{
+        border-radius: @borderRadius;
+
+        &,
+        & > span{
+            font-size: @fontSize*0.8;
+            padding: 0 @fontSize*0.8 0;
+        }
+
+        &.image > span:last-child{
+            padding: 0 @fontSize*0.8 0 @fontSize*0.5;
+        }
+
+        &.image > span:first-child{
+            padding: 0 @fontSize*0.5 0 @fontSize*0.8;
+        }
+
+        &.image > img:first-child{
+            border-radius: @borderRadius 0 0 @borderRadius;
+        }
+
+        &.image > img:last-child{
+            border-radius: 0 @borderRadius @borderRadius 0;
+        }
+
+        &.icon > .iconfont:first-child{
+            font-size: @fontSize*0.8;
+            padding-left: @fontSize*0.5;
+        }
+
+        &.icon > .iconfont:last-child{
+            font-size: @fontSize*0.8;
+            padding-right: @fontSize*0.5;
+        }
+
+        &.icon > span:last-child{
+            padding: 0 @fontSize*0.8 0 @fontSize*0.1;
+        }
+
+        &.icon > span:first-child{
+            padding: 0 @fontSize*0.1 0 @fontSize*0.8;
+        }
+    }
+
+    &.si-s{
+        border-radius: @borderRadius*0.8;
+
+        &,
+        & > span{
+            font-size: @fontSize*0.75;
+            padding: 0 @fontSize*0.6 0;
+        }
+
+        &.image > span:last-child{
+            padding: 0 @fontSize*0.6 0 @fontSize*0.3;
+        }
+
+        &.image > span:first-child{
+            padding: 0 @fontSize*0.3 0 @fontSize*0.6;
+        }
+
+        &.image > img:first-child{
+            border-radius: @borderRadius*0.8 0 0 @borderRadius*0.8;
+        }
+
+        &.image > img:last-child{
+            border-radius: 0 @borderRadius*0.8 @borderRadius*0.8 0;
+        }
+
+        &.icon > .iconfont:first-child{
+            font-size: @fontSize*0.8;
+            padding-left: @fontSize*0.4;
+        }
+
+        &.icon > .iconfont:last-child{
+            font-size: @fontSize*0.8;
+            padding-right: @fontSize*0.4;
+        }
+
+        &.icon > span:last-child{
+            padding: 0 @fontSize*0.6 0 @fontSize*0.1;
+        }
+
+        &.icon > span:first-child{
+            padding: 0 @fontSize*0.1 0 @fontSize*0.6;
+        }
+    }
+
+    &.si-xs{
+        border-radius: @borderRadius*0.75;
+
+        &,
+        & > span{
+            font-size: @fontSize*0.75;
+            padding: 0 @fontSize*0.4 0;
+        }
+
+        &.image > span:last-child{
+            padding: 0 @fontSize*0.4 0 @fontSize*0.2;
+        }
+
+        &.image > span:first-child{
+            padding: 0 @fontSize*0.2 0 @fontSize*0.4;
+        }
+
+        &.image > img:first-child{
+            border-radius: @borderRadius*0.75 0 0 @borderRadius*0.75;
+        }
+
+        &.image > img:last-child{
+            border-radius: 0 @borderRadius*0.75 @borderRadius*0.75 0;
+        }
+
+        &.icon > .iconfont:first-child{
+            font-size: @fontSize*0.8;
+            padding-left: @fontSize*0.25;
+        }
+
+        &.icon > .iconfont:last-child{
+            font-size: @fontSize*0.8;
+            padding-right: @fontSize*0.25;
+        }
+
+        &.icon > span:last-child{
+            padding: 0 @fontSize*0.4 0 @fontSize*0;
+        }
+
+        &.icon > span:first-child{
+            padding: 0 @fontSize*0 0 @fontSize*0.4;
+        }
+    }
+
+    &.si-xxs{
+        border-radius: @borderRadius*0.75;
+        transform: scale(0.8);
+
+        &,
+        & > span{
+            font-size: @fontSize*0.75;
+            padding: 0 @fontSize*0.2 0;
+        }
+
+        &.image > span:last-child{
+            padding: 0 @fontSize*0.2 0 @fontSize*0;
+        }
+
+        &.image > span:first-child{
+            padding: 0 @fontSize*0 0 @fontSize*0.2;
+        }
+
+        &.image > img:first-child{
+            border-radius: @borderRadius*0.625 0 0 @borderRadius*0.625;
+        }
+
+        &.image > img:last-child{
+            border-radius: 0 @borderRadius*0.625 @borderRadius*0.625 0;
+        }
+
+        &.icon > .iconfont:first-child{
+            font-size: @fontSize*0.8;
+            padding-left: @fontSize*0.2;
+        }
+
+        &.icon > .iconfont:last-child{
+            font-size: @fontSize*0.8;
+            padding-right: @fontSize*0.2;
+        }
+
+        &.icon > span:last-child{
+            padding: 0 @fontSize*0.2 0 @fontSize*0;
+        }
+
+        &.icon > span:first-child{
+            padding: 0 @fontSize*0 0 @fontSize*0.2;
+        }
+    }
+
+    &.sy-theme{
+        background-color: @colorTheme;
+        color: @colorWhite;
+    }
+
+    &.sy-lightTheme{
+        background-color: @colorLightTheme;
+        color: @colorWhite;
+    }
+
+    &.sy-darkTheme{
+        background-color: @colorDarkTheme;
+        color: @colorWhite;
+    }
+
+    &.sy-success{
+        background-color: @colorSuccess;
+        color: @colorWhite;
+    }
+
+    &.sy-warning{
+        background-color: @colorWarning;
+        color: @colorWhite;
+    }
+
+    &.sy-danger{
+        background-color: @colorDanger;
+        color: @colorWhite;
+    }
+
+    &.sy-primary{
+        background-color: @colorPrimary;
+        color: @colorWhite;
+    }
+
+    &.sy-minor{
+        background-color: @colorMinor;
+        color: @colorWhite;
+    }
+
+    &.sy-info{
+        background-color: @colorInfo;
+        color: @colorWhite;
+    }
+
+    &.sy-black{
+        background-color: @colorBlack;
+        color: @colorWhite;
+    }
+
+    &.sy-lightBlack{
+        background-color: @colorLightBlack;
+        color: @colorWhite;
+    }
+
+    &.sy-extraLightBlack{
+        background-color: @colorExtraLightBlack;
+        color: @colorWhite;
+    }
+
+    &.sy-blue{
+        background-color: @colorBlue;
+        color: @colorWhite;
+    }
+
+    &.sy-lightBlue{
+        background-color: @colorLightBlue;
+        color: @colorWhite;
+    }
+
+    &.sy-extraLightBlue{
+        background-color: @colorExtraLightBlue;
+        color: @colorWhite;
+    }
+
+    &.sy-silver{
+        background-color: @colorSilver;
+        color: @colorLightBlack;
+    }
+
+    &.sy-lightSilver{
+        background-color: @colorLightSilver;
+        color: @colorLightBlack;
+    }
+
+    &.sy-extraLightSilver{
+        background-color: @colorExtraLightSilver;
+        color: @colorLightBlack;
+    }
+
+    &.sy-gray{
+        background-color: @colorGray;
+        color: @colorLightBlack;
+    }
+
+    &.sy-lightGray{
+        background-color: @colorLightGray;
+        color: @colorLightBlack;
+    }
+
+    &.sy-white{
+        background-color: @colorWhite;
+        color: @colorLightBlack;
+    }
+
+    &.st-normal{}
+
+    &.st-apparent{
+        animation-name: apparent;
+        animation-duration: 1s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+    }
+
+    // default statement
+    &{
+        .si-m;
+        .sy-theme;
+    }
+}

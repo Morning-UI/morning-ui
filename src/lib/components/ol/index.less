@@ -1,0 +1,33 @@
+@import '~Common/var.less';
+
+i-ol{
+    display: block;
+    list-style-type: decimal;
+
+    i-ol{
+        list-style-type: lower-roman;
+        margin-left: 1em;
+
+        i-ol{
+            list-style-type: lower-latin;
+        }
+    }
+
+    li{
+        line-height: 1.4em;
+    }
+
+    &.st-normal{}
+
+    &.st-apparent{
+        animation-name: apparent;
+        animation-duration: 1s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+    }
+
+    // default statement
+    &{
+        .st-normal;
+    }
+}

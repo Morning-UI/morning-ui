@@ -1,0 +1,148 @@
+@fontSize : 16px;
+@colorTheme : #F33D5D;
+@colorLightTheme : #F86F88;
+@colorDarkTheme : #D22343;
+@colorSuccess : #23C455;
+@colorWarning : #F1A437;
+@colorDanger : #EB0E23;
+@colorPrimary : #2185D0;
+@colorMinor : #A9A9A9;
+@colorInfo : #03A6B9;
+@colorBlack : #17212D;
+@colorLightBlack : #303C4B;
+@colorExtraLightBlack : #45505C;
+@colorBlue : #7C8BA0;
+@colorLightBlue : #8E9CAF;
+@colorExtraLightBlue : #A8B3C2;
+@colorSilver : #D6DDE5;
+@colorLightSilver : #E2E8EE;
+@colorExtraLightSilver : #EDF1F5;
+@colorGray : #E6E6E6;
+@colorLightGray : #F0F0F0;
+@colorWhite : #FFFFFF;
+@borderRadius : 3px;
+@gridColumnNumber : 16;
+@gridGutterWidth : 1.5%;
+@gridColumnWidth : (100% - (@gridColumnNumber - 1)*@gridGutterWidth)/@gridColumnNumber;
+@gridColumnWidthGapAverage : (100% - (@gridColumnNumber + 1)*@gridGutterWidth)/@gridColumnNumber;
+@gridColumnWidthWithoutGap : 100%/@gridColumnNumber;
+@formHeight : 42px;
+@colorFormBorder : @colorGray;
+@colorFormBorderHover : darken(@colorGray, 6%);
+@colorFormBorderFocus : @colorLightBlue;
+@colorFormBorderDisable : darken(@colorGray, 25%);
+@colorFormBackground : @colorWhite;
+@colorFormBackgroundHover : lighten(@colorLightGray, 2%);
+@colorFormBackgroundFocus : lighten(@colorLightGray, 1.2%);
+@colorFormBackgroundDisable : lighten(@colorGray, 2%);
+@colorFormText : darken(@colorGray, 20%);
+@colorFormTextNote : @colorLightBlack;
+@colorFormTextMisc : darken(@colorGray, 15%);
+@colorFormTextHover : darken(@colorGray, 30%);
+@colorFormTextFocus : @colorBlack;
+@colorFormTextDisable : darken(@colorGray, 35%);
+
+// ---
+
+.setup-font-color-theme() {
+    &.sy-theme{
+        color: @colorTheme;
+    }
+
+    &.sy-lightTheme{
+        color: @colorLightTheme;
+    }
+
+    &.sy-darkTheme{
+        color: @colorDarkTheme;
+    }
+}
+
+.setup-font-color-feature() {
+    &.sy-success{
+        color: @colorSuccess;
+    }
+
+    &.sy-warning{
+        color: @colorWarning;
+    }
+
+    &.sy-danger{
+        color: @colorDanger;
+    }
+
+    &.sy-primary{
+        color: @colorPrimary;
+    }
+
+    &.sy-minor{
+        color: @colorMinor;
+    }
+
+    &.sy-info{
+        color: @colorInfo;
+    }
+}
+
+.setup-font-color-misc() {
+    &.sy-black{
+        color: @colorBlack;
+    }
+
+    &.sy-lightBlack{
+        color: @colorLightBlack;
+    }
+
+    &.sy-extraLightBlack{
+        color: @colorExtraLightBlack;
+    }
+
+    &.sy-blue{
+        color: @colorBlue;
+    }
+
+    &.sy-lightBlue{
+        color: @colorLightBlue;
+    }
+
+    &.sy-extraLightBlue{
+        color: @colorExtraLightBlue;
+    }
+
+    &.sy-silver{
+        color: @colorSilver;
+    }
+
+    &.sy-lightSilver{
+        color: @colorLightSilver;
+    }
+
+    &.sy-extraLightSilver{
+        color: @colorExtraLightSilver;
+    }
+
+    &.sy-gray{
+        color: @colorGray;
+    }
+
+    &.sy-lightGray{
+        color: @colorLightGray;
+    }
+
+    &.sy-white{
+        color: @colorWhite;
+    }
+}
+
+.setup-scrollbar() {
+    &::-webkit-scrollbar{
+        width: 5px;
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    &::-webkit-scrollbar-thumb{
+        width: 5px;
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
+    }
+}

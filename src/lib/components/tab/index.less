@@ -1,0 +1,141 @@
+@import '~Common/var.less';
+
+i-tab{
+    > ul{
+        list-style: none;
+        padding: 0 !important;
+        margin: 0 !important;
+        font-size: 0;
+        position: relative;
+
+        > li{
+            display: inline-block;
+            font-size: 14px;
+            border: 1px rgba(0, 0, 0, 0) solid;
+            border-bottom: none;
+            padding: 0.5em 1em;
+            margin: 0 0.3em;
+            border-radius: @borderRadius @borderRadius 0 0;
+            color: @colorExtraLightBlue;
+            position: relative;
+            background-color: #FFF;
+            top: 1px;
+            cursor: pointer;
+
+            &:first-child{
+                margin-left: 0;
+            }
+
+            &:hover{
+                color: @colorExtraLightBlack;
+            }
+
+            &.current{
+                border: 1px @colorGray solid;
+                border-bottom: none;
+                color: @colorBlack;
+                z-index: 5;
+                cursor: default;
+                top: 2px;
+            }
+        }
+    }
+
+    .contents{
+        border: 1px @colorGray solid;
+        position: relative;
+
+        > .item{
+
+            /*opacity: 0;*/
+            /*pointer-events: none;*/
+            height: 0;
+            overflow: hidden;
+
+            &.current{
+
+                /*display: block;*/
+                height: auto;
+                overflow: visible;
+            }
+        }
+    }
+
+    &.block{
+        > ul{
+            display: flex;
+
+            > li{
+                margin: 0;
+                display: block;
+                border: 1px @colorGray solid;
+                background: @colorLightGray;
+                padding: 1em 0;
+                text-align: center;
+                flex: 1;
+                border-radius: 0;
+
+                &:hover{
+                    background: @colorExtraLightSilver;
+                }
+
+                &:not(:last-child){
+                    border-right: none;
+                }
+
+                &.current{
+                    border-top: 1px @colorTheme solid;
+                    box-shadow: inset 0 3px 0 @colorTheme;
+                    border-bottom: none;
+                    background: #FFF;
+                    color: @colorBlack;
+                    top: 1px;
+                }
+            }
+        }
+    }
+
+    &.underline{
+        > ul::before{
+            content: ' ';
+            width: 100%;
+            height: 2px;
+            position: absolute;
+            background: @colorGray;
+            left: 0;
+            bottom: 0;
+        }
+
+        > ul > li{
+            border: none;
+            border-bottom: 2px @colorExtraLightSilver solid;
+            margin: 0;
+            padding: 0.5em 1.3em;
+            top: 0;
+            background: transparent;
+
+            &:hover{
+                color: @colorExtraLightBlack;
+                border-bottom-color: @colorSilver;
+            }
+
+            &.current{
+                border-bottom-color: @colorTheme;
+                color: @colorBlack;
+            }
+        }
+
+        > .contents{
+            border-top: none;
+        }
+    }
+
+    &.noborder{
+        > .contents{
+            border: none;
+        }
+    }
+
+    // default statement
+    &{}
+}

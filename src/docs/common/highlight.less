@@ -1,0 +1,57 @@
+.markdown-body {
+    pre{
+        position: relative;
+    }
+
+    .lang-js::before,
+    .language-js::before,
+    .lang-html::before,
+    .language-html::before,
+    .lang-bash::before,
+    .language-bash::before,
+    .lang-md::before,
+    .language-md::before,
+    .lang-text::before,
+    .language-text::before,
+    .lang-less::before,
+    .language-less::before{
+        font-family: PingFangSC-Light, sans-serif;
+        font-size: 12px;
+        color: #CCC;
+        position: absolute;
+        transform: scale(0.8);
+        top: 5px;
+        right: 5px;
+        letter-spacing: 1px;
+    }
+
+    .lang-html::before,
+    .language-html::before{
+        content: 'HTML';
+    }
+
+    .lang-less::before,
+    .language-less::before{
+        content: 'LESS';
+    }
+
+    .lang-js::before,
+    .language-js::before{
+        content: 'JavaScript';
+    }
+
+    .lang-bash::before,
+    .language-bash::before{
+        content: 'Bash';
+    }
+
+    .lang-md::before,
+    .language-md::before{
+        content: 'Markdown';
+    }
+
+    .lang-text::before,
+    .language-text::before{
+        content: 'Text';
+    }
+}
