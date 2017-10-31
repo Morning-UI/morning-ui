@@ -52,7 +52,7 @@ let Form = UI.extend({
 
     },
     methods : {
-        _syncGroup : function () {
+        _syncGroup : function (remove = false) {
 
             let morning = this.morning;
     
@@ -60,6 +60,16 @@ let Form = UI.extend({
                 this.conf.group.length > 0) {
 
                 for (let gname of this.conf.group) {
+
+                    if (remove &&
+                        morning._groupData[gname] &&
+                        morning._groupData[gname][this.conf.formKey] !== undefined) {
+
+                        delete morning._groupData[gname][this.conf.formKey];
+
+                        return;
+
+                    }
 
                     if (morning._groupData[gname] === undefined) {
 
@@ -217,8 +227,6 @@ let Form = UI.extend({
         },
         setKey : function (key) {
 
-            // TODO remove group data this key
-
             return this.setConf('formKey', key);
 
         },
@@ -228,8 +236,6 @@ let Form = UI.extend({
 
         },
         setGroup : function (group = []) {
-
-            // TODO remove group data this key
 
             let groups = [];
 
@@ -336,6 +342,7 @@ let Form = UI.extend({
     },
     beforeDestroy : function () {
 
+        this._syncGroup(true);
         this._syncGroupVm([], this.conf.group);
 
     }

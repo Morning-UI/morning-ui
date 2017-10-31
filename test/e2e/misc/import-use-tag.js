@@ -35,6 +35,7 @@ test.only.serial('import-use-tag', async t => {
         <script src="https://cdn.bootcss.com/vue/2.4.2/vue.js"></script>
         <script src="./morning-ui.js"></script>
         <script>
+        morning.init();
         new Vue({
             el : '#vue',
             template : '<ui-link>link</ui-link>'

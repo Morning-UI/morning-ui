@@ -19,7 +19,7 @@ jobs:
           key: v2-node_modules-{{ checksum "package.json" }}
           paths:
             - node_modules
-  lint: 
+  lint:
     docker:
       - image: circleci/node:8.7-browsers
     working_directory: ~/repo
@@ -29,6 +29,43 @@ jobs:
           keys:
             - v2-node_modules-{{ checksum "package.json" }}
       - run: npm run lint
+  build:
+    docker:
+      - image: circleci/node:8.7-browsers
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v2-node_modules-{{ checksum "package.json" }}
+      - run: npm run build
+      - save_cache:
+          key: v2-build-{{ .CheckoutKey }}
+          paths:
+            - dist
+            - docs
+  test:
+    docker:
+      - image: circleci/node:8.7-browsers
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v2-node_modules-{{ checksum "package.json" }}
+            - v2-build-{{ .CheckoutKey }}
+      - run: npm run doc -- --port 8089 & npm run test
+  coverage:
+    docker:
+      - image: circleci/node:8.7-browsers
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v2-node_modules-{{ checksum "package.json" }}
+            - v2-build-{{ .CheckoutKey }}
+      - run: npm run doc -- --port 8089 & npm run cover
 
 workflows:
   version: 2
@@ -38,3 +75,12 @@ workflows:
       - lint:
           requires:
             - install
+      - build:
+          requires:
+            - install
+      - test:
+          requires:
+            - build
+      - coverage:
+          requires:
+            - test
