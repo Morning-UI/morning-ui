@@ -110,21 +110,7 @@ export default Form.extend({
             
         }
     },
-    created : function () {
-
-        // this.$watch('data.value', newVal => {
-
-        //     if (newVal === undefined) {
-
-        //         return;
-
-        //     }
-
-        // }, {
-        //     immediate : true
-        // });
-
-    },
+    created : function () {},
     mounted : function () {}
 });
 </script>
