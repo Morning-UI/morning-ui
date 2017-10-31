@@ -177,7 +177,7 @@ exports.injectMorning = undefined;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var _vue = __webpack_require__(7);
+var _vue = __webpack_require__(6);
 
 var _vue2 = _interopRequireDefault(_vue);
 
@@ -982,83 +982,13 @@ module.exports = function extend() {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(global) {
-
-// there's 3 implementations written in increasing order of efficiency
-
-// 1 - no Set type is defined
-function uniqNoSet(arr) {
-	var ret = [];
-
-	for (var i = 0; i < arr.length; i++) {
-		if (ret.indexOf(arr[i]) === -1) {
-			ret.push(arr[i]);
-		}
-	}
-
-	return ret;
-}
-
-// 2 - a simple Set type is defined
-function uniqSet(arr) {
-	var seen = new Set();
-	return arr.filter(function (el) {
-		if (!seen.has(el)) {
-			seen.add(el);
-			return true;
-		}
-
-		return false;
-	});
-}
-
-// 3 - a standard Set type is defined and it has a forEach method
-function uniqSetWithForEach(arr) {
-	var ret = [];
-
-	(new Set(arr)).forEach(function (el) {
-		ret.push(el);
-	});
-
-	return ret;
-}
-
-// V8 currently has a broken implementation
-// https://github.com/joyent/node/issues/8449
-function doesForEachActuallyWork() {
-	var ret = false;
-
-	(new Set([true])).forEach(function (el) {
-		ret = el;
-	});
-
-	return ret === true;
-}
-
-if ('Set' in global) {
-	if (typeof Set.prototype.forEach === 'function' && doesForEachActuallyWork()) {
-		module.exports = uniqSetWithForEach;
-	} else {
-		module.exports = uniqSet;
-	}
-} else {
-	module.exports = uniqNoSet;
-}
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(227)))
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
 
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _arrayUniq = __webpack_require__(4);
+var _arrayUniq = __webpack_require__(7);
 
 var _arrayUniq2 = _interopRequireDefault(_arrayUniq);
 
@@ -1160,7 +1090,7 @@ exports.default = GlobalEvent;
 module.exports = exports['default'];
 
 /***/ }),
-/* 6 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1276,10 +1206,80 @@ exports.default = IndexManager;
 module.exports = exports["default"];
 
 /***/ }),
-/* 7 */
+/* 6 */
 /***/ (function(module, exports) {
 
 module.exports = Vue;
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(global) {
+
+// there's 3 implementations written in increasing order of efficiency
+
+// 1 - no Set type is defined
+function uniqNoSet(arr) {
+	var ret = [];
+
+	for (var i = 0; i < arr.length; i++) {
+		if (ret.indexOf(arr[i]) === -1) {
+			ret.push(arr[i]);
+		}
+	}
+
+	return ret;
+}
+
+// 2 - a simple Set type is defined
+function uniqSet(arr) {
+	var seen = new Set();
+	return arr.filter(function (el) {
+		if (!seen.has(el)) {
+			seen.add(el);
+			return true;
+		}
+
+		return false;
+	});
+}
+
+// 3 - a standard Set type is defined and it has a forEach method
+function uniqSetWithForEach(arr) {
+	var ret = [];
+
+	(new Set(arr)).forEach(function (el) {
+		ret.push(el);
+	});
+
+	return ret;
+}
+
+// V8 currently has a broken implementation
+// https://github.com/joyent/node/issues/8449
+function doesForEachActuallyWork() {
+	var ret = false;
+
+	(new Set([true])).forEach(function (el) {
+		ret = el;
+	});
+
+	return ret === true;
+}
+
+if ('Set' in global) {
+	if (typeof Set.prototype.forEach === 'function' && doesForEachActuallyWork()) {
+		module.exports = uniqSetWithForEach;
+	} else {
+		module.exports = uniqSet;
+	}
+} else {
+	module.exports = uniqNoSet;
+}
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(227)))
 
 /***/ }),
 /* 8 */
@@ -1292,7 +1292,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _IndexManager = __webpack_require__(6);
+var _IndexManager = __webpack_require__(5);
 
 var _IndexManager2 = _interopRequireDefault(_IndexManager);
 
@@ -2468,7 +2468,7 @@ var _extend = __webpack_require__(3);
 
 var _extend2 = _interopRequireDefault(_extend);
 
-var _arrayUniq = __webpack_require__(4);
+var _arrayUniq = __webpack_require__(7);
 
 var _arrayUniq2 = _interopRequireDefault(_arrayUniq);
 
@@ -2837,11 +2837,11 @@ var _ui = __webpack_require__(1);
 
 var _ui2 = _interopRequireDefault(_ui);
 
-var _GlobalEvent = __webpack_require__(5);
+var _GlobalEvent = __webpack_require__(4);
 
 var _GlobalEvent2 = _interopRequireDefault(_GlobalEvent);
 
-var _IndexManager = __webpack_require__(6);
+var _IndexManager = __webpack_require__(5);
 
 var _IndexManager2 = _interopRequireDefault(_IndexManager);
 
@@ -4395,11 +4395,11 @@ var _form = __webpack_require__(2);
 
 var _form2 = _interopRequireDefault(_form);
 
-var _GlobalEvent = __webpack_require__(5);
+var _GlobalEvent = __webpack_require__(4);
 
 var _GlobalEvent2 = _interopRequireDefault(_GlobalEvent);
 
-var _IndexManager = __webpack_require__(6);
+var _IndexManager = __webpack_require__(5);
 
 var _IndexManager2 = _interopRequireDefault(_IndexManager);
 
@@ -6676,7 +6676,7 @@ module.exports = exports['default'];
 "use strict";
 var __WEBPACK_AMD_DEFINE_RESULT__;
 
-var _vue = __webpack_require__(7);
+var _vue = __webpack_require__(6);
 
 var _vue2 = _interopRequireDefault(_vue);
 
@@ -6879,15 +6879,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _extend = __webpack_require__(3);
-
-var _extend2 = _interopRequireDefault(_extend);
-
-var _arrayUniq = __webpack_require__(4);
-
-var _arrayUniq2 = _interopRequireDefault(_arrayUniq);
-
-var _GlobalEvent = __webpack_require__(5);
+var _GlobalEvent = __webpack_require__(4);
 
 var _GlobalEvent2 = _interopRequireDefault(_GlobalEvent);
 
@@ -13138,7 +13130,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       },
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.data.value = $event.target.value
+        _vm.$set(_vm.data, "value", $event.target.value)
       }
     }
   })] : [_c('input', {
@@ -13165,7 +13157,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       },
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.data.value = $event.target.value
+        _vm.$set(_vm.data, "value", $event.target.value)
       }
     }
   })], _vm._v(" "), (_vm.conf.append) ? [_c('div', {
@@ -13299,7 +13291,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     },
     on: {
       "keydown": function($event) {
-        if (!('button' in $event) && _vm._k($event.keyCode, "enter", 13)) { return null; }
+        if (!('button' in $event) && _vm._k($event.keyCode, "enter", 13, $event.key)) { return null; }
         _vm._enterInput($event)
       },
       "click": _vm._focusInput
@@ -13348,7 +13340,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "blur": _vm._blurInput,
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.data.inputValue = $event.target.value
+        _vm.$set(_vm.data, "inputValue", $event.target.value)
       }
     }
   }) : _c('input', {
@@ -13372,7 +13364,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "blur": _vm._blurInput,
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.data.inputValue = $event.target.value
+        _vm.$set(_vm.data, "inputValue", $event.target.value)
       }
     }
   })] : [_c('span', [_vm._v("最多只能输入" + _vm._s(_vm.conf.max) + "项")])]] : [(!_vm.conf.hideName) ? _c('input', {
@@ -13397,7 +13389,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "blur": _vm._blurInput,
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.data.inputValue = $event.target.value
+        _vm.$set(_vm.data, "inputValue", $event.target.value)
       }
     }
   }) : _c('input', {
@@ -13421,7 +13413,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "blur": _vm._blurInput,
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.data.inputValue = $event.target.value
+        _vm.$set(_vm.data, "inputValue", $event.target.value)
       }
     }
   })]] : _vm._e()], 2)])
@@ -13562,7 +13554,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       },
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.data.value = $event.target.value
+        _vm.$set(_vm.data, "value", $event.target.value)
       }
     }
   })])

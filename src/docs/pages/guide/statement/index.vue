@@ -81,20 +81,20 @@
     功能色具有一定的含义，可以用在特定的场景，比如绿色表示成功，黄色表示警告。
 
     <div class="colorFlex">
-        <div class="item w3" style="background:#23c455;">
+        <div class="item w3" style="background:#4dbd67;">
             <p class="key">success</p>
             <p class="name">成功/正确</p>
-            <p class="color">#23c455</p>
+            <p class="color">#4dbd67</p>
         </div>
-        <div class="item w3" style="background:#f1a437;">
+        <div class="item w3" style="background:#f0ad4e;">
             <p class="key">warning</p>
             <p class="name">警告/注意</p>
-            <p class="color">#f1a437</p>
+            <p class="color">#f0ad4e</p>
         </div>
-        <div class="item w3" style="background:#eb0e23;">
+        <div class="item w3" style="background:#d64431;">
             <p class="key">danger</p>
             <p class="name">错误/危险</p>
-            <p class="color">#eb0e23</p>
+            <p class="color">#d64431</p>
         </div>
     </div>
     

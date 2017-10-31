@@ -87,7 +87,7 @@
 
     ### Pull Request
     
-    当你完成了所有的编码工作，前往：`https://github.com/EarlyH/morning-ui/pulls`，点击`New pull request`：
+    当你完成了所有的编码工作，前往：`https://github.com/Morning-UI/morning-ui/pulls`，点击`New pull request`：
 
     <img src="http://h0.hucdn.com/open/201743/7e973819a866761f_2010x240.png" alt="" width="700">
 

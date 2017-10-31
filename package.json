@@ -1,6 +1,6 @@
 {
   "name": "morning-ui",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "description": "modern efficient user interface, using human-friendly HTML",
   "main": "dist/morning-ui.js",
   "scripts": {
@@ -29,15 +29,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://git.husor.com.cn/fed/morning.git"
+    "url": "https://github.com/Morning-UI/morning-ui.git"
   },
   "keywords": [
     "morning",
     "ui"
   ],
-  "homepage": "http://git.husor.com.cn/fed/morning",
+  "homepage": "https://github.com/Morning-UI/morning-ui",
   "bugs": {
-    "url": "http://git.husor.com.cn/fed/morning/issues"
+    "url": "https://github.com/Morning-UI/morning-ui/issues"
   },
   "contributors": [
     "Early <chenchao.he@husor.com>"
@@ -89,12 +89,14 @@
     "koa-compress": "^2.0.0",
     "koa-conditional-get": "^2.0.0",
     "koa-etag": "^3.0.0",
+    "koa-logger": "^3.1.0",
     "koa-mount": "^3.0.0",
     "koa-router": "^7.2.1",
     "koa-static": "^4.0.1",
     "less": "^2.7.2",
     "less-loader": "^4.0.5",
     "markdown-it": "^8.4.0",
+    "minimist": "^1.2.0",
     "nyc": "^11.2.1",
     "postcss-less": "^1.1.0",
     "postcss-loader": "^2.0.6",

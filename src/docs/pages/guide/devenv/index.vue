@@ -21,7 +21,7 @@
     MorningUI的源码托管在github上：
 
     ```bash
-    $ git clone https://github.com/EarlyH/morning-ui.git
+    $ git clone https://github.com/Morning-UI/morning-ui.git
     ```
 
     ### 本地安装

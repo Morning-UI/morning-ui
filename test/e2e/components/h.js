@@ -5,13 +5,15 @@ const runner = nightmare({
     show : false
 });
 
+let testHost = 'http://localhost:8089';
+
 // fot eslint
 let $ = null;
 
 test.serial('size', async t => {
 
     const result = await runner
-        .goto('http://localhost:8080/component/h.html')
+        .goto(`${testHost}/component/h.html`)
         .wait('[name="声明"]')
         .evaluate(() => ({
             size : {
@@ -34,7 +36,7 @@ test.serial('size', async t => {
 test.serial('style', async t => {
 
     const result = await runner
-        .goto('http://localhost:8080/component/h.html')
+        .goto(`${testHost}/component/h.html`)
         .wait('[name="声明"]')
         .evaluate(() => ({
             color : {
@@ -71,7 +73,7 @@ test.serial('style', async t => {
 test.serial('state', async t => {
 
     const result = await runner
-        .goto('http://localhost:8080/component/h.html')
+        .goto(`${testHost}/component/h.html`)
         .wait('[name="声明"]')
         .evaluate(() => ({
             animationName : {
