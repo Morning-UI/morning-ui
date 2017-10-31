@@ -20,7 +20,7 @@
 
     ### 0.10.0 <ui-badge class="circle ver-canary" s light-theme>Canary</ui-badge>
 
-    <ui-textcolor light-blue><ui-small>发布于2017年10月19日</ui-small></ui-textcolor>
+    <ui-textcolor light-blue><ui-small>发布于2017年10月31日</ui-small></ui-textcolor>
 
     MorningUI第一个版本，基于HMP UI，规范了定义，实现部分组件。
 
