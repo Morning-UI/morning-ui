@@ -29,15 +29,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://git.husor.com.cn/fed/morning.git"
+    "url": "https://github.com/Morning-UI/morning-ui.git"
   },
   "keywords": [
     "morning",
     "ui"
   ],
-  "homepage": "http://git.husor.com.cn/fed/morning",
+  "homepage": "https://github.com/Morning-UI/morning-ui",
   "bugs": {
-    "url": "http://git.husor.com.cn/fed/morning/issues"
+    "url": "https://github.com/Morning-UI/morning-ui/issues"
   },
   "contributors": [
     "Early <chenchao.he@husor.com>"
