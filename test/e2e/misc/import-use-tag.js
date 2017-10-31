@@ -35,6 +35,7 @@ test.only.serial('import-use-tag', async t => {
         <script src="https://cdn.bootcss.com/vue/2.4.2/vue.js"></script>
         <script src="./morning-ui.js"></script>
         <script>
+        morning.init();
         new Vue({
             el : '#vue',
             template : '<ui-link>link</ui-link>'
@@ -53,6 +54,14 @@ test.only.serial('import-use-tag', async t => {
             morning : window.morning,
             style : window.getComputedStyle(document.querySelector('i-link'))
         }));
+
+    // circleci
+    delete result.style.inlineSize;
+    delete result.style.perspectiveOrigin;
+    delete result.style.transformOrigin;
+    delete result.style.webkitLogicalWidth;
+    delete result.style.webkitTapHighlightColor;
+    delete result.style.width;
 
     t.is(result.morning.isMorning, true);
     t.snapshot(result.style);

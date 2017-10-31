@@ -1,7 +1,0 @@
-/.nyc_output/
-/.tmp/
-.*.swp
-.DS_Store
-.git
-.npmrc
-npm-debug.log

@@ -1910,7 +1910,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     staticClass: "last-update"
   }, [_vm._v("\n        Last update : "), _c('a', {
     attrs: {
-      "href": 'https://github.com/EarlyH/morning-ui/releases/tag/' + _vm.lastupdate.version
+      "href": 'https://github.com/Morning-UI/morning-ui/releases/tag/' + _vm.lastupdate.version
     }
   }, [_vm._v(_vm._s(_vm.lastupdate.version))]), _vm._v(" by "), _c('img', {
     staticClass: "avatar",
@@ -1926,7 +1926,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
   }, [_vm._v(_vm._s(_vm.lastupdate.author))]), _vm._v(" at " + _vm._s(_vm.lastupdate.date) + " (" + _vm._s(_vm.lastupdate.ar) + "), commit id : "), _c('a', {
     attrs: {
       "target": "_blank",
-      "href": 'https://github.com/EarlyH/morning-ui/commit/' + _vm.lastupdate.cid
+      "href": 'https://github.com/Morning-UI/morning-ui/commit/' + _vm.lastupdate.cid
     }
   }, [_vm._v(_vm._s(_vm.lastupdate.scid))]), _vm._v(" "), _c('br')]) : _vm._e(), _vm._v(" "), (_vm.lastupdate) ? _c('div', {
     staticClass: "contributors"
@@ -2496,7 +2496,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "type": "text/markdown"
     }
-  }, [_vm._v("\n# 反馈问题\n\nMorningUI采用Github Issue管理反馈的问题，如果你在使用过程中发现Bug或希望支持新的功能，可以通过[Github Issue](https://github.com/EarlyH/morning-ui/issues)提出。\n\n为了便于开发者快速了解你的诉求，Issue请按照以下模板填写：\n\n### BUG报告\n\n```\n### 问题类型\n\nBUG报告\n\n### 版本\n\n(如果是BUG报告需要填写出现问题的版本)\n\n### 问题\n\n(如果是BUG报告需要填写)\n\n### 复现环境及步骤\n\n(如果是BUG报告需要填写)\n\n### 期望的时间\n\n(填写BUG解决或功能支持的期望时间)\n\n### 其他\n\n(填写更多你想阐述的内容)\n\n```\n    \n### 功能请求\n\n```\n### 问题类型\n\n功能请求\n\n### 功能描述\n\n(如果是功能请求需要填写)\n\n### 解决了什么问题\n\n(如果是功能请求需要填写)\n\n### 期望的时间\n\n(填写BUG解决或功能支持的期望时间)\n\n### 其他\n\n(填写更多你想阐述的内容)\n\n```\n\n填写完毕后，请根据问题的类型添加对应的标签：\n\n- bug report : BUG报告\n- feature request : 功能请求\n\n### 跟踪进展\n\n当你通过Issue反馈问题后，MorningUI的开发者会对Issue添加标签，你可以根据标签的情况了解进展：\n\n- need repro : 需要提供更多的复现内容\n- pending : 待定\n- wont solve : 暂时不会解决\n- bug confirmed : 报告的bug被开发者确认\n- intend to solve : 计划解决\n- in progress : 解决中\n- in review : 审查中\n- launched : 已解决并发布\n\n### 其他\n\n除了反馈问题外，还会有一些讨论或开发性质的Issue：\n\n- important : 重要\n- discussion : 讨论\n- document : 文档相关\n- feature : 新功能开发\n- fix : 修复开发\n\n")])])
+  }, [_vm._v("\n# 反馈问题\n\nMorningUI采用Github Issue管理反馈的问题，如果你在使用过程中发现Bug或希望支持新的功能，可以通过[Github Issue](https://github.com/Morning-UI/morning-ui/issues)提出。\n\n为了便于开发者快速了解你的诉求，Issue请按照以下模板填写：\n\n### BUG报告\n\n```\n### 问题类型\n\nBUG报告\n\n### 版本\n\n(如果是BUG报告需要填写出现问题的版本)\n\n### 问题\n\n(如果是BUG报告需要填写)\n\n### 复现环境及步骤\n\n(如果是BUG报告需要填写)\n\n### 期望的时间\n\n(填写BUG解决或功能支持的期望时间)\n\n### 其他\n\n(填写更多你想阐述的内容)\n\n```\n    \n### 功能请求\n\n```\n### 问题类型\n\n功能请求\n\n### 功能描述\n\n(如果是功能请求需要填写)\n\n### 解决了什么问题\n\n(如果是功能请求需要填写)\n\n### 期望的时间\n\n(填写BUG解决或功能支持的期望时间)\n\n### 其他\n\n(填写更多你想阐述的内容)\n\n```\n\n填写完毕后，请根据问题的类型添加对应的标签：\n\n- bug report : BUG报告\n- feature request : 功能请求\n\n### 跟踪进展\n\n当你通过Issue反馈问题后，MorningUI的开发者会对Issue添加标签，你可以根据标签的情况了解进展：\n\n- need repro : 需要提供更多的复现内容\n- pending : 待定\n- wont solve : 暂时不会解决\n- bug confirmed : 报告的bug被开发者确认\n- intend to solve : 计划解决\n- in progress : 解决中\n- in review : 审查中\n- launched : 已解决并发布\n\n### 其他\n\n除了反馈问题外，还会有一些讨论或开发性质的Issue：\n\n- important : 重要\n- discussion : 讨论\n- document : 文档相关\n- feature : 新功能开发\n- fix : 修复开发\n\n")])])
 }
 var staticRenderFns = []
 render._withStripped = true

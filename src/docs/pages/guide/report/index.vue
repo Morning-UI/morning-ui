@@ -6,7 +6,7 @@
     <script type="text/markdown">
     # 反馈问题
 
-    MorningUI采用Github Issue管理反馈的问题，如果你在使用过程中发现Bug或希望支持新的功能，可以通过[Github Issue](https://github.com/EarlyH/morning-ui/issues)提出。
+    MorningUI采用Github Issue管理反馈的问题，如果你在使用过程中发现Bug或希望支持新的功能，可以通过[Github Issue](https://github.com/Morning-UI/morning-ui/issues)提出。
 
     为了便于开发者快速了解你的诉求，Issue请按照以下模板填写：
 

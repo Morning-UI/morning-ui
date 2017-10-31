@@ -1,7 +1,7 @@
 import test                         from 'ava';
 import snapshot                     from '../../helpers/snapshot';
 import Vue                          from 'vue/dist/vue.common.js';
-import del                         from '../../../src/lib/components/del/index.vue';
+import del                          from '../../../src/lib/components/del/index.vue';
 
 test('base : init component', async t => {
 

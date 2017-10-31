@@ -108,7 +108,7 @@ export default {
             let version = response.data.version;
             let $download = this.$el.querySelector('#download');
 
-            $download._vm.setConf('link', `https://github.com/EarlyH/morning-ui/archive/.${version}.zip`);
+            $download._vm.setConf('link', `https://github.com/Morning-UI/morning-ui/archive/${version}.zip`);
             $download.innerText = `下载v${version}`;
 
         })
