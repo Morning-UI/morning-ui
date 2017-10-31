@@ -17,7 +17,7 @@ test('base : init component', async t => {
 
 });
 
-test.only('config : default-value : with v-for slot : value exist', async t => {
+test('config : default-value : with v-for slot : value exist', async t => {
 
     const vm = new Vue({
         template : `
@@ -45,7 +45,7 @@ test.only('config : default-value : with v-for slot : value exist', async t => {
 
 });
 
-test.only('config : default-value : with v-for slot : value not exist', async t => {
+test('config : default-value : with v-for slot : value not exist', async t => {
 
     const vm = new Vue({
         template : `
