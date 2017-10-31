@@ -13,10 +13,20 @@
     <!-- ### 1.0.0 <ui-badge class="circle" s light-black>Stable</ui-badge> -->
 
     <!-- ### 0.11.0 <ui-badge class="circle" s light-blue>Beta</ui-badge> -->
-
-    <!-- ### 0.10.1 <ui-badge class="circle" s light-theme>Forerunner</ui-badge> -->
     
     ### 更新记录
+
+    ### 0.10.1 <ui-badge class="circle ver-canary" s light-theme>Canary</ui-badge>
+
+    <ui-textcolor light-blue><ui-small>发布于2017年10月31日</ui-small></ui-textcolor>
+    
+    - 增加codacy代码质量检测
+    - 增加Lint、Build、Test、Coverage等CI流程
+    - 更新README
+    - 优化功能色彩
+    - 移除`.npmignore`
+    - 修复ESLint和StyleLint检测到的问题
+    - 修复表单组的中表单销毁了，但值还可以通过`getGroup`取到的问题
 
     ### 0.10.0 <ui-badge class="circle ver-canary" s light-theme>Canary</ui-badge>
 

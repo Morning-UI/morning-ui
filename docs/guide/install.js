@@ -2775,7 +2775,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     staticClass: "last-update"
   }, [_vm._v("\n        Last update : "), _c('a', {
     attrs: {
-      "href": 'https://github.com/EarlyH/morning-ui/releases/tag/' + _vm.lastupdate.version
+      "href": 'https://github.com/Morning-UI/morning-ui/releases/tag/' + _vm.lastupdate.version
     }
   }, [_vm._v(_vm._s(_vm.lastupdate.version))]), _vm._v(" by "), _c('img', {
     staticClass: "avatar",
@@ -2791,7 +2791,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
   }, [_vm._v(_vm._s(_vm.lastupdate.author))]), _vm._v(" at " + _vm._s(_vm.lastupdate.date) + " (" + _vm._s(_vm.lastupdate.ar) + "), commit id : "), _c('a', {
     attrs: {
       "target": "_blank",
-      "href": 'https://github.com/EarlyH/morning-ui/commit/' + _vm.lastupdate.cid
+      "href": 'https://github.com/Morning-UI/morning-ui/commit/' + _vm.lastupdate.cid
     }
   }, [_vm._v(_vm._s(_vm.lastupdate.scid))]), _vm._v(" "), _c('br')]) : _vm._e(), _vm._v(" "), (_vm.lastupdate) ? _c('div', {
     staticClass: "contributors"
@@ -3062,7 +3062,7 @@ exports.default = {
             var version = response.data.version;
             var $download = _this.$el.querySelector('#download');
 
-            $download._vm.setConf('link', 'https://github.com/EarlyH/morning-ui/archive/.' + version + '.zip');
+            $download._vm.setConf('link', 'https://github.com/Morning-UI/morning-ui/archive/' + version + '.zip');
             $download.innerText = '\u4E0B\u8F7Dv' + version;
         }).catch(function (error) {
 

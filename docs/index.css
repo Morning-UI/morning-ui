@@ -112,8 +112,8 @@
   font-size: 1em !important;
 }
 .markdown-body .demo-area {
-  border: 3px #e6e6e6 dashed;
-  padding: 40px 10px 10px 10px;
+  border: 3px #E6E6E6 dashed;
+  padding: 40px 10px 10px;
   position: relative;
   margin-bottom: 16px;
 }
@@ -128,7 +128,7 @@
   font-size: 20px;
   margin: 0;
   display: inline-block;
-  background: #f0f0f0;
+  background: #F0F0F0;
 }
 .markdown-body i-ul h3 {
   margin: 0;
