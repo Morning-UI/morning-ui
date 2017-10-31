@@ -40,11 +40,11 @@ jobs:
             - v2-node_modules-{{ checksum "package.json" }}
       - run: npm run build
       - save_cache:
-          key: v2-build-{{ .CheckoutKey }}
+          key: v2-build
           paths:
             - dist
             - docs
-  test:
+  test-unit:
     docker:
       - image: circleci/node:8.7-browsers
     working_directory: ~/repo
@@ -53,8 +53,19 @@ jobs:
       - restore_cache:
           keys:
             - v2-node_modules-{{ checksum "package.json" }}
-            - v2-build-{{ .CheckoutKey }}
-      - run: npm run doc -- --port 8089 & npm run test
+            - v2-build-{{ .Environment.CIRCLE_SHA1 }}
+      - run: npm run unit
+  test-e2e:
+    docker:
+      - image: circleci/node:8.7-browsers
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v2-node_modules-{{ checksum "package.json" }}
+            - v2-build-{{ .Environment.CIRCLE_SHA1 }}
+      - run: npm run doc -- --port 8089 & npm run e2e
   coverage:
     docker:
       - image: circleci/node:8.7-browsers
@@ -64,7 +75,7 @@ jobs:
       - restore_cache:
           keys:
             - v2-node_modules-{{ checksum "package.json" }}
-            - v2-build-{{ .CheckoutKey }}
+            - v2-build-{{ .Environment.CIRCLE_SHA1 }}
       - run: npm run doc -- --port 8089 & npm run cover
 
 workflows:
@@ -78,9 +89,13 @@ workflows:
       - build:
           requires:
             - install
-      - test:
+      - test-unit:
+          requires:
+            - build
+      - test-e2e:
           requires:
             - build
       - coverage:
           requires:
-            - test
+            - test-unit
+            - test-e2e
