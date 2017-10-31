@@ -1,5 +1,3 @@
-import extend                       from 'extend';
-import arrayUniq                    from 'array-uniq';
 import GlobalEvent                  from './GlobalEvent';
 
 let Move = {
