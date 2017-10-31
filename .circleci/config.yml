@@ -40,7 +40,7 @@ jobs:
             - v2-node_modules-{{ checksum "package.json" }}
       - run: npm run build
       - save_cache:
-          key: v2-build
+          key: v2-build-{{ .Environment.CIRCLE_SHA1 }}
           paths:
             - dist
             - docs
@@ -53,7 +53,9 @@ jobs:
       - restore_cache:
           keys:
             - v2-node_modules-{{ checksum "package.json" }}
-            - v2-build
+      - restore_cache:
+          keys:
+            - v2-build-{{ .Environment.CIRCLE_SHA1 }}
       - run: npm run unit
   test-e2e:
     docker:
@@ -64,7 +66,9 @@ jobs:
       - restore_cache:
           keys:
             - v2-node_modules-{{ checksum "package.json" }}
-            - v2-build
+      - restore_cache:
+          keys:
+            - v2-build-{{ .Environment.CIRCLE_SHA1 }}
       - run: npm run doc -- --port 8089 & npm run e2e
   coverage:
     docker:
@@ -75,7 +79,9 @@ jobs:
       - restore_cache:
           keys:
             - v2-node_modules-{{ checksum "package.json" }}
-            - v2-build
+      - restore_cache:
+          keys:
+            - v2-build-{{ .Environment.CIRCLE_SHA1 }}
       - run: npm run doc -- --port 8089 & npm run cover
 
 workflows:
