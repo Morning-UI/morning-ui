@@ -50,24 +50,18 @@ test.only.serial('import-use-tag', async t => {
     const result = await runner
         .goto(`file://${pathHtml}`)
         .wait('i-link')
-        .evaluate(() => {
-            
-            let styleObj = window.getComputedStyle(document.querySelector('i-link'));
+        .evaluate(() => ({
+            morning : window.morning,
+            style : window.getComputedStyle(document.querySelector('i-link'))
+        }));
 
-            // circleci
-            delete styleObj.inlineSize;
-            delete styleObj.perspectiveOrigin;
-            delete styleObj.transformOrigin;
-            delete styleObj.webkitLogicalWidth;
-            delete styleObj.webkitTapHighlightColor;
-            delete styleObj.width;
-
-            return {
-                morning : window.morning,
-                style : styleObj
-            };
-
-        });
+    // circleci
+    delete result.style.inlineSize;
+    delete result.style.perspectiveOrigin;
+    delete result.style.transformOrigin;
+    delete result.style.webkitLogicalWidth;
+    delete result.style.webkitTapHighlightColor;
+    delete result.style.width;
 
     t.is(result.morning.isMorning, true);
     t.snapshot(result.style);
