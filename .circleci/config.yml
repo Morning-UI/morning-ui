@@ -40,7 +40,7 @@ jobs:
             - v2-node_modules-{{ checksum "package.json" }}
       - run: npm run build
       - save_cache:
-          key: v2-build
+          key: v2-build-{{ .Environment.CIRCLE_SHA1 }}
           paths:
             - dist
             - docs
