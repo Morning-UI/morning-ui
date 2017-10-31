@@ -1,7 +1,7 @@
 {
   "name": "morning-ui",
   "version": "0.10.0",
-  "description": "modern efficient user interface, using human-friendly HTML",
+  "description": "some new description",
   "main": "dist/morning-ui.js",
   "scripts": {
     "build": "./node_modules/.bin/webpack --config ./build/webpack.config.js",
