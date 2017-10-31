@@ -8,7 +8,6 @@
 
 [![CircleCI branch](https://img.shields.io/circleci/project/github/Morning-UI/morning-ui/master.svg)](https://circleci.com/gh/Morning-UI/morning-ui)
 [![Codacy branch grade](https://img.shields.io/codacy/grade/91448799c68e4422ba6436a7ecdb08a7/master.svg)](https://www.codacy.com/app/EarlyH/morning-ui?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Morning-UI/morning-ui&amp;utm_campaign=Badge_Grade)
-[![npm](https://img.shields.io/npm/dt/morning-ui.svg)](https://www.npmjs.com/package/morning-ui)
 [![npm](https://img.shields.io/npm/l/morning-ui.svg)](https://www.npmjs.com/package/morning-ui)
 
 ## Under development
