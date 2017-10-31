@@ -328,6 +328,10 @@ exports.default = {
 //
 //
 //
+//
+//
+//
+//
 
 module.exports = exports['default'];
 
@@ -542,7 +546,7 @@ var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _
     }
   }, [_vm._v("Vue.js")]), _vm._v("及"), _c('a', {
     attrs: {
-      "href": "/dist/morning-ui.latest.gzip",
+      "href": "/guide/install.html",
       "target": "_blank"
     }
   }, [_vm._v("Morning UI")]), _vm._v("，然后通过"), _c('code', [_vm._v("<script>")]), _vm._v("将它们引入到页面中。")]), _vm._v(" "), _c('p', [_vm._v("你也可以通过其它方式引入，详见："), _c('a', {
@@ -577,7 +581,15 @@ var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _
 },function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "left"
-  }, [_c('h3', [_vm._v("完成！")]), _vm._v(" "), _c('p', [_vm._v("使用Morning UI只需简单三步。")])])
+  }, [_c('h3', [_vm._v("完成！")]), _vm._v(" "), _c('p', [_vm._v("使用Morning UI只需简单三步。")]), _vm._v(" "), _c('p', [_vm._v("接下来：\n                            "), _c('br'), _c('a', {
+    attrs: {
+      "href": "/guide/usage.html"
+    }
+  }, [_vm._v("了解Morning UI的更多用法")]), _vm._v(" "), _c('br'), _c('a', {
+    attrs: {
+      "href": "/guide/becontributor.html"
+    }
+  }, [_vm._v("成为Morning UI的贡献者")])])])
 },function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('section', {
     staticClass: "s1"

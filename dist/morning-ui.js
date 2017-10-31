@@ -2166,7 +2166,7 @@ exports.default = _ui2.default.extend({
     methods: {
         _onClick: function _onClick() {
 
-            if (this.state !== 'disabled' && !this.data.lock) {
+            if (this.conf.state !== 'disabled' && !this.data.lock) {
 
                 this.$emit('emit');
             }
@@ -3396,7 +3396,7 @@ exports.default = _ui2.default.extend({
     methods: {
         _onClick: function _onClick() {
 
-            if (this.state !== 'disabled' && !this.data.lock) {
+            if (this.conf.state !== 'disabled' && !this.data.lock) {
 
                 this.$emit('emit');
             }

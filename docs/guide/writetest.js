@@ -2108,6 +2108,8 @@ exports.default = {
 //
 //
 //
+//
+//
 
 module.exports = exports['default'];
 
@@ -2410,7 +2412,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "type": "text/markdown"
     }
-  }, [_vm._v("\n# 编写测试\n")])])
+  }, [_vm._v("\n# 编写测试\n\nComing soon\n")])])
 }
 var staticRenderFns = []
 render._withStripped = true

@@ -2432,7 +2432,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "type": "text/markdown"
     }
-  }, [_vm._v("\n# 成为贡献者\n\n首先非常感谢你愿意为MorningUI贡献自己的时间及能力。\n\n### 成为哪种贡献者\n\n目前你可以通过两种方式为项目做出贡献：\n\n- 检视代码(Review)\n- 提交代码(Coding)\n\n如果你决定通过检视代码(Review)的方式来提供贡献，请直接查阅：[检视代码](/guide/review.html)章节。\n\n如果你决定提交代码至项目请发送邮件至`chenchao.he@husor.com`我们会联系你，在等待回复的时候请阅读以下章节了解详细情况：\n\n- 开发环境\n- 开发规范\n- 编写文档\n- 编写测试\n- 检视代码\n- 提交代码\n- 版本计划\n\n")])])
+  }, [_vm._v("\n# 成为贡献者\n\n首先非常感谢你愿意为MorningUI贡献自己的时间及能力。\n\n### 成为哪种贡献者\n\n目前你可以通过两种方式为项目做出贡献：\n\n- 检视代码(Review)\n- 编写代码(Coding)\n\n如果你决定通过检视代码(Review)的方式来提供贡献，请直接查阅：[检视代码](/guide/review.html)章节。\n\n如果你决定编写代码至项目请发送邮件至`chenchao.he@husor.com`我们会联系你，在等待回复的时候请阅读以下章节了解详细情况：\n\n- [开发环境](/guide/devenv.html)\n- [开发规范](/guide/devrule.html)\n- [编写文档](/guide/writedoc.html)\n- [编写测试](/guide/writetest.html)\n- [检视代码](/guide/review.html)\n- [提交代码](/guide/commitcode.html)\n- [版本计划](/guide/versionplan.html)\n\n")])])
 }
 var staticRenderFns = []
 render._withStripped = true

@@ -270,6 +270,7 @@ i-dialog a:hover {
   padding: 20px;
   box-sizing: border-box;
   font-size: 14px;
+  vertical-align: middle;
 }
 .lrBox .left h3,
 .lrBox .right h3 {

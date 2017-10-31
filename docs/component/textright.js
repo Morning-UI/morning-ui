@@ -2439,7 +2439,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "type": "text/markdown"
     }
-  }, [_vm._v("\n# 右对齐文本 `<ui-textright>`\n\n<doc-component-status page=\"textright\"></doc-component-status>\n\n[[[开始]]]\n\n#### 使用\n\n内容右对齐组件，这是一个块级元素。\n\n:::democode/html\n<ui-textright>右对齐文本</ui-textright>\n:::\n\n[[[声明]]]\n\n#### 支持\n\n|类型|支持|默认|\n|-|-|-|\n|尺寸|不支持|-|\n|色彩|不支持|-|\n|状态|不支持|-|\n\n\n[[[源码]]]\n\n<iframe src=\"/report/coverage/lib/components/textright/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n")])])
+  }, [_vm._v("\n# 右对齐文本 `<ui-textright>`\n\n<doc-component-status page=\"textright\"></doc-component-status>\n\n[[[开始]]]\n\n内容右对齐组件，这是一个块级元素。\n\n#### 使用\n\n:::democode/html\n<ui-textright>右对齐文本</ui-textright>\n:::\n\n[[[声明]]]\n\n#### 支持\n\n|类型|支持|默认|\n|-|-|-|\n|尺寸|不支持|-|\n|色彩|不支持|-|\n|状态|不支持|-|\n\n\n[[[源码]]]\n\n<iframe src=\"/report/coverage/lib/components/textright/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n")])])
 }
 var staticRenderFns = []
 render._withStripped = true

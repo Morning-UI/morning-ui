@@ -875,7 +875,9 @@ i-dialog a:hover {
 .markdown-body .lang-md::before,
 .markdown-body .language-md::before,
 .markdown-body .lang-text::before,
-.markdown-body .language-text::before {
+.markdown-body .language-text::before,
+.markdown-body .lang-less::before,
+.markdown-body .language-less::before {
   font-family: PingFangSC-Light, sans-serif;
   font-size: 12px;
   color: #CCC;
@@ -888,6 +890,10 @@ i-dialog a:hover {
 .markdown-body .lang-html::before,
 .markdown-body .language-html::before {
   content: 'HTML';
+}
+.markdown-body .lang-less::before,
+.markdown-body .language-less::before {
+  content: 'LESS';
 }
 .markdown-body .lang-js::before,
 .markdown-body .language-js::before {
