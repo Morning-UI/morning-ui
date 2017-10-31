@@ -1,6 +1,9 @@
+import extend                       from 'extend';
 import arrayUniq                    from 'array-uniq';
+import GlobalEvent                  from './GlobalEvent';
 
 let Move = {
+    mixins : [GlobalEvent],
     data : function () {
 
         return {
@@ -144,37 +147,6 @@ let Move = {
             this.$emit('_moveEnded');
 
         },
-        _moveAddGlobalListener : function () {
-
-            this.morning._moveListener.push(this.uiid);
-            this.morning._moveListener = arrayUniq(this.morning._moveListener);
-
-            if (this.morning._moveListener.length > 0) {
-
-                document.addEventListener('mousemove', this._moveMousemove);
-                document.addEventListener('mouseup', this._moveMouseup);
-
-            }
-
-        },
-        _moveRemoveGlobalListener : function () {
-
-            let index = this.morning._moveListener.indexOf(this.uiid);
-
-            if (index !== -1) {
-
-                this.morning._moveListener.splice(index, 1);
-
-            }
-
-            if (this.morning._moveListener.length === 0) {
-
-                document.addEventListener('mousemove', this._moveMousemove);
-                document.addEventListener('mouseup', this._moveMouseup);
-            
-            }
-        
-        },
         _moveElementXy : function ($ele) {
 
             let client = $ele.getBoundingClientRect();
@@ -203,7 +175,9 @@ let Move = {
             if (newVal) {
                 
                 $container.addEventListener('mousedown', this._moveStart);
-                this._moveAddGlobalListener();
+                this._globalEventAdd('mousemove', '_moveMousemove');
+                this._globalEventAdd('mouseup', '_moveMouseup');
+                // this._moveAddGlobalListener();
 
             } else {
 
@@ -213,7 +187,8 @@ let Move = {
 
                 }
 
-                this._moveRemoveGlobalListener();
+                this._globalEventRemove('mousemove', '_moveMousemove');
+                this._globalEventRemove('mouseup', '_moveMouseup');
 
             }
 
@@ -242,7 +217,8 @@ let Move = {
     },
     beforeDestroy : function () {
 
-        this._moveRemoveGlobalListener();
+        this._globalEventRemove('mousemove', '_moveMousemove');
+        this._globalEventRemove('mouseup', '_moveMouseup');
 
     }
 };

@@ -1,77 +1,3 @@
-
-header {
-  width: 100%;
-  background: #333;
-  height: 80px;
-}
-header .nav {
-  width: 1000px;
-  margin: 0 auto;
-  position: relative;
-}
-header .logo {
-  display: inline-block;
-  vertical-align: top;
-  opacity: 0.8;
-}
-header .logo img {
-  width: 50px;
-  height: 50px;
-  margin-top: 15px;
-  display: inline-block;
-}
-header .name {
-  display: inline-block;
-  vertical-align: top;
-  color: #FFF;
-  line-height: 80px;
-  margin-left: 0;
-  font-size: 26px;
-  opacity: 0.8;
-}
-header .menu {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: inline-block;
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-header .menu li {
-  display: inline-block;
-  vertical-align: top;
-  margin: 15px 10px;
-  height: 50px;
-}
-header .menu li a {
-  height: 50px;
-  line-height: 50px;
-  color: #FFF;
-  opacity: 0.7;
-  font-size: 13px;
-  text-decoration: none;
-}
-header .menu li a:hover {
-  opacity: 0.8;
-}
-header .menu li a.current {
-  opacity: 1;
-  font-weight: 600;
-}
-header.index {
-  background: #FFF;
-}
-header.index .logo img {
-  display: none;
-}
-header.index .name {
-  color: #000;
-  font-size: 28px;
-}
-header.index .menu li a {
-  color: #333;
-}
 /*
  * Hopscotch
  * by Jan T. Sott
@@ -156,6 +82,99 @@ header.index .menu li a {
   font-weight: bold;
 }
 
+header {
+  width: 100%;
+  background: #333;
+  height: 80px;
+}
+header .nav {
+  width: 1000px;
+  margin: 0 auto;
+  position: relative;
+}
+header .logo {
+  display: inline-block;
+  vertical-align: top;
+  opacity: 0.8;
+}
+header .logo img {
+  width: 50px;
+  height: 50px;
+  margin-top: 15px;
+  display: inline-block;
+}
+header .name {
+  display: inline-block;
+  vertical-align: top;
+  color: #FFF;
+  line-height: 80px;
+  margin-left: 0;
+  font-size: 26px;
+  opacity: 0.8;
+}
+header .menu {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+header .menu li {
+  display: inline-block;
+  vertical-align: top;
+  margin: 15px 10px;
+  height: 50px;
+}
+header .menu li a {
+  height: 50px;
+  line-height: 50px;
+  color: #FFF;
+  opacity: 0.7;
+  font-size: 13px;
+  text-decoration: none;
+}
+header .menu li a:hover {
+  opacity: 0.8;
+}
+header .menu li a.current {
+  opacity: 1;
+  font-weight: 600;
+}
+header.index {
+  background: #FFF;
+}
+header.index .logo img {
+  display: none;
+}
+header.index .name {
+  color: #000;
+  font-size: 28px;
+}
+header.index .menu li a {
+  color: #333;
+}
+
+footer {
+  font-size: 12px;
+  color: #aaa;
+  padding: 30px 0;
+  text-align: center;
+  background: #333;
+  line-height: 1.4em;
+}
+footer img {
+  width: 43px;
+  height: 40px;
+  opacity: 0.8;
+}
+footer a,
+footer a:hover {
+  color: #aaa;
+  text-decoration: none;
+}
+
 * {
   font-family: PingFangSC-Thin, sans-serif;
 }
@@ -174,6 +193,13 @@ header.index .menu li a {
   border: 1px #E6E6E6 solid !important;
   padding: 2px;
   margin-bottom: 10px;
+}
+.markdown-body i-img img,
+.markdown-body i-label img,
+.markdown-body i-statistic img {
+  border: none !important;
+  padding: 0;
+  margin-bottom: inherit;
 }
 .markdown-body h5 {
   font-size: 1em !important;
@@ -841,8 +867,17 @@ i-dialog a:hover {
   position: relative;
 }
 .markdown-body .lang-js::before,
+.markdown-body .language-js::before,
 .markdown-body .lang-html::before,
-.markdown-body .lang-bash::before {
+.markdown-body .language-html::before,
+.markdown-body .lang-bash::before,
+.markdown-body .language-bash::before,
+.markdown-body .lang-md::before,
+.markdown-body .language-md::before,
+.markdown-body .lang-text::before,
+.markdown-body .language-text::before,
+.markdown-body .lang-less::before,
+.markdown-body .language-less::before {
   font-family: PingFangSC-Light, sans-serif;
   font-size: 12px;
   color: #CCC;
@@ -852,14 +887,29 @@ i-dialog a:hover {
   right: 5px;
   letter-spacing: 1px;
 }
-.markdown-body .lang-html::before {
+.markdown-body .lang-html::before,
+.markdown-body .language-html::before {
   content: 'HTML';
 }
-.markdown-body .lang-js::before {
+.markdown-body .lang-less::before,
+.markdown-body .language-less::before {
+  content: 'LESS';
+}
+.markdown-body .lang-js::before,
+.markdown-body .language-js::before {
   content: 'JavaScript';
 }
-.markdown-body .lang-bash::before {
+.markdown-body .lang-bash::before,
+.markdown-body .language-bash::before {
   content: 'Bash';
+}
+.markdown-body .lang-md::before,
+.markdown-body .language-md::before {
+  content: 'Markdown';
+}
+.markdown-body .lang-text::before,
+.markdown-body .language-text::before {
+  content: 'Text';
 }
 .body {
   width: 1100px;
@@ -977,6 +1027,7 @@ i-dialog a:hover {
   display: inline-block;
   font-size: 0;
   margin-right: 10px;
+  vertical-align: top;
 }
 .doc-status-bar .item .name {
   font-size: 12px;
@@ -1014,21 +1065,25 @@ i-dialog a:hover {
   background: #15BC5C;
   color: #FFF;
 }
-.last-update {
+.last-update,
+.contributors {
   font-size: 12px;
   color: #999;
-  margin: 5px 0 20px 0;
   transform: scale(0.85);
   transform-origin: left;
   padding-left: 3px;
+  height: 1.25em;
 }
-.last-update .avatar {
+.last-update .avatar,
+.contributors .avatar {
   width: 16px;
   height: 16px;
   border-radius: 100%;
   vertical-align: top;
-  border: 1px #e6e6e6 solid;
+  border: 1px #e6e6e6 solid !important;
+  padding: 0;
+  background: #f0f0f0;
 }
-.last-update .contributors {
-  margin-top: 5px;
+.contributors {
+  margin: 5px 0 20px 0;
 }

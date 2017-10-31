@@ -1,5 +1,7 @@
 # Morning UI
 
+![](https://circleci.com/gh/EarlyH/morning-ui.svg?style=shield&circle-token=c64ff8f421341210ca2ac744872dbc6fba5e3d17)
+
 > modern efficient user interface, using human-friendly HTML
 
 <img src="http://h0.hucdn.com/open/201643/b11d51da34591932_1200x1200.jpg" width="400" alt="">

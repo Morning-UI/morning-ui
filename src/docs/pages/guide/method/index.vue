@@ -25,12 +25,12 @@
 
     使用前需要在被调用的组件上通过`ref`指定一个索引ID，然后在父vm中通过`this.$refs.[refId]`即可找到组件的vm：
 
-    ````vue
-    @use:html.demo1,js.demo1
-    ````
-    
-    ````html
-    @var:demo1
+    :::vue/html
+    window.parentVm1 = new Vue({
+        el : '{$el}',
+        template : '{$template}'
+    });
+    ---
     <div>
         <!-- 在组件上添加`ref`，指定索引ID -->
         <ui-btn ref="demo1">按钮</ui-btn>
@@ -41,21 +41,13 @@
         <ui-link js="javascript:window.parentVm1.$refs.demo1.lock();">锁定按钮</ui-link>
         <ui-link js="javascript:window.parentVm1.$refs.demo1.unlock();">解锁按钮</ui-link>
     </div>
-    ````
-
-    ````js
-    @var:demo1
-    window.parentVm1 = new Vue({
-        el : '{$el}',
-        template : '{$template}'
-    });
-    ````
+    :::
 
     #### 全局查找调用
 
     使用前需要在被调用的组件上通过ref指定一个索引ID，然后通过MorningUI提供的全局方法`window.morning.findVM()`查找组件vm：
 
-    ````html
+    :::democode/html
     <div>
         <!-- 在组件上添加`ref`，指定索引ID -->
         <ui-btn ref="demo2">按钮</ui-btn>
@@ -66,7 +58,7 @@
         <ui-link js="javascript:window.morning.findVM('demo2').lock();">锁定按钮</ui-link>
         <ui-link js="javascript:window.morning.findVM('demo2').unlock();">解锁按钮</ui-link>
     </div>
-    ````
+    :::
     
     `findVM()`方法本质上也是基于`ref`来实现的，只是提供了一个全局查找的快捷方法。
     

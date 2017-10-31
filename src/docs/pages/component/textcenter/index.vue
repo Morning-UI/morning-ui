@@ -10,9 +10,9 @@
 
     [[[开始]]]
 
-    #### 使用
-
     内容居中对齐组件，这是一个块级元素。
+
+    #### 使用
     
     :::democode/html
     <ui-textcenter>居中的文本</ui-textcenter>

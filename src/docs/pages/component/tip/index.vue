@@ -263,9 +263,9 @@
             v-show="show"
             @created="echo('created')"
             @mounted="echo('mounted')"
-            @beforeUpdate="echo('beforeUpdate')"
+            @before-update="echo('before-update')"
             @updated="echo('updated')"
-            @beforeDestroy="echo('beforeDestroy')"
+            @before-destroy="echo('before-destroy')"
             @destroyed="echo('destroyed')"
         >{*text*}</ui-tip>
 

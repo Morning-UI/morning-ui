@@ -1,3 +1,86 @@
+/*
+ * Hopscotch
+ * by Jan T. Sott
+ * https://github.com/idleberg/Hopscotch
+ *
+ * This work is licensed under the Creative Commons CC0 1.0 Universal License
+ */
+
+/* Comment */
+.hljs-comment,
+.hljs-quote {
+  color: #989498;
+}
+
+/* Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-attribute,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-link,
+.hljs-deletion {
+  color: #dd464c;
+}
+
+/* Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params {
+  color: #fd8b19;
+}
+
+/* Yellow */
+.hljs-class .hljs-title {
+  color: #fdcc59;
+}
+
+/* Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+  color: #8fc13e;
+}
+
+/* Aqua */
+.hljs-meta {
+  color: #149b93;
+}
+
+/* Blue */
+.hljs-function,
+.hljs-section,
+.hljs-title {
+  color: #1290bf;
+}
+
+/* Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+  color: #c85e7c;
+}
+
+.hljs {
+  display: block;
+  background: #322931;
+  color: #b9b5b8;
+  padding: 0.5em;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
 
 * {
   font-family: PingFangSC-Thin, sans-serif;
@@ -17,6 +100,13 @@
   border: 1px #E6E6E6 solid !important;
   padding: 2px;
   margin-bottom: 10px;
+}
+.markdown-body i-img img,
+.markdown-body i-label img,
+.markdown-body i-statistic img {
+  border: none !important;
+  padding: 0;
+  margin-bottom: inherit;
 }
 .markdown-body h5 {
   font-size: 1em !important;
@@ -97,7 +187,11 @@ i-dialog a:hover {
   text-decoration: underline;
 }
 .w1k {
-  width: 1100px;
+  width: 1110px;
+  margin: 0 auto;
+}
+.w900 {
+  width: 900px;
   margin: 0 auto;
 }
 .center {
@@ -107,9 +201,36 @@ i-dialog a:hover {
   padding: 50px 0;
 }
 .s1 .mainLogo {
-  width: 300px;
-  height: 300px;
+  width: 260px;
+  height: 260px;
   margin: 0 auto;
+}
+.s1 .col {
+  font-size: 0;
+}
+.s1 .c31 {
+  display: inline-block;
+  width: 370px;
+  padding: 20px 0;
+  border-right: 1px #eee solid;
+  box-sizing: border-box;
+}
+.s1 .c31 > .icon > .iconfont {
+  font-size: 60px;
+  color: #444;
+}
+.s1 .c31 > h3 {
+  font-size: 20px;
+}
+.s1 .c31 > .desc {
+  font-size: 13px;
+  padding: 0 40px;
+  text-align: center;
+  line-height: 1.4em;
+  color: #999;
+}
+.s1 .c31:last-child {
+  border-right: none;
 }
 .s1.gray {
   background: #EEE;
@@ -117,6 +238,7 @@ i-dialog a:hover {
 .s1 h1 {
   text-align: center;
   font-weight: 400;
+  font-size: 54px;
 }
 .keywork {
   width: 900px;
@@ -132,6 +254,42 @@ i-dialog a:hover {
   margin: 0 1.25%;
   color: #000;
   text-align: center;
+}
+.lrBox {
+  font-size: 0;
+  border-bottom: 1px #e0e0e0 solid;
+  padding-bottom: 20px;
+}
+.lrBox:last-child {
+  border-bottom: none;
+}
+.lrBox .left,
+.lrBox .right {
+  width: 50%;
+  display: inline-block;
+  padding: 20px;
+  box-sizing: border-box;
+  font-size: 14px;
+  vertical-align: middle;
+}
+.lrBox .left h3,
+.lrBox .right h3 {
+  font-size: 28px;
+  font-weight: 400;
+}
+.lrBox .left p,
+.lrBox .right p {
+  font-size: 15px;
+  line-height: 1.4em;
+}
+.lrBox .left a,
+.lrBox .right a {
+  color: #000;
+  padding: 0 5px;
+}
+.lrBox .left pre,
+.lrBox .right pre {
+  font-size: 13px;
 }
 
 header {
@@ -206,4 +364,23 @@ header.index .name {
 }
 header.index .menu li a {
   color: #333;
+}
+
+footer {
+  font-size: 12px;
+  color: #aaa;
+  padding: 30px 0;
+  text-align: center;
+  background: #333;
+  line-height: 1.4em;
+}
+footer img {
+  width: 43px;
+  height: 40px;
+  opacity: 0.8;
+}
+footer a,
+footer a:hover {
+  color: #aaa;
+  text-decoration: none;
 }

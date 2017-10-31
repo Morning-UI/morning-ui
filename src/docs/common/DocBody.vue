@@ -1,7 +1,7 @@
 <template>
     <div>
-       <doc-header :category="category"></doc-header>
-         <div class="body">
+        <doc-header :category="category"></doc-header>
+        <div class="body">
             <doc-submenu
                 :category="category"
                 :page="page"
@@ -14,7 +14,7 @@
                 <slot></slot>
             </div>
         </div>
-
+        <doc-footer></doc-footer>
     </div>
 </template>
 
@@ -25,6 +25,7 @@ import Mustache                     from 'mustache';
 import _                            from 'underscore';
 import hljs                         from 'highlight.js';
 import DocHeader                    from 'Docs/common/DocHeader.vue';
+import DocFooter                    from 'Docs/common/DocFooter.vue';
 import DocSubmenu                   from 'Docs/common/DocSubmenu.vue';
 import DocComponentStatus           from 'Docs/common/DocComponentStatus.vue';
 
@@ -263,7 +264,7 @@ let data = {
         select : [
             {
                 valueType : 'String',
-                valueContent : `'Tim'`
+                valueContent : `'Tim Boelaars'`
             },
             {
                 valueType : 'Number',
@@ -733,7 +734,7 @@ formConfig
 :::
     `,
     formEvent : `
-#### valueChange
+#### value-change
 
 当表单值变化时触发。
 
@@ -743,15 +744,15 @@ new Vue({
     template : '{$template}',
     methods : {
         echo : function () {
-            console.log('demoValueChange.console1', 'valueChange event!');
+            console.log('demoValueChange.console1', 'value-change event!');
         }
     }
 });
 ---
 <div style="width:300px;">
-    <ui-{%uikey%} ref="demoValueChange" form-name="表单名" @valueChange="echo" {%&eventMoreAttr%}>{%&eventSlot%}</ui-{%uikey%}>
+    <ui-{%uikey%} ref="demoValueChange" form-name="表单名" @value-change="echo" {%&eventMoreAttr%}>{%&eventSlot%}</ui-{%uikey%}>
     <br>
-    <ui-link js="window.morning.findVM('demoValueChange').set({%&eventValue%})">触发valueChange事件</ui-link>
+    <ui-link js="window.morning.findVM('demoValueChange').set({%&eventValue%})">触发value-change事件</ui-link>
 </div>
 :::
 
@@ -777,13 +778,13 @@ window.demoEventLifecycle = new Vue({
 <div style="width:300px;">
     <ui-{%uikey%}
         ref="demoEventLifecycle"
-        form-name="表单名"
+        form-name="表单名123"
         v-show="show"
         @created="echo('created')"
         @mounted="echo('mounted')"
-        @beforeUpdate="echo('beforeUpdate')"
+        @before-update="echo('before-update')"
         @updated="echo('updated')"
-        @beforeDestroy="echo('beforeDestroy')"
+        @before-destroy="echo('before-destroy')"
         @destroyed="echo('destroyed')"
         {%&eventMoreAttr%}
     >{%&eventSlot%}<span style="display:none;">{*text*}</span></ui-{%uikey%}>
@@ -899,7 +900,7 @@ let extVue = (content, paramStr, token, md) => {
 
     code += `${htmlScript.outerHTML}\n\n`;
 
-    htmlScript.innerHTML = htmlScript.innerHTML.replace(/\{\*([a-zA-Z0-9_]+)\*\}/g, '{{$1}}');
+    htmlScript.innerHTML = htmlScript.innerHTML.replace(/\{\*([a-zA-Z0-9_.]+)\*\}/g, '{{$1}}');
     evals.push(htmlScript);
 
     let jsScript = document.createElement('script');
@@ -1434,7 +1435,7 @@ window.Vue.directive('docmd', {
             
             md = md.replace(/\\`/g, '`');
             
-            md = md.replace(/\{\*([a-zA-Z0-9_]+)\*\}/g, '{{"\\{\\{$1\\}\\}"}}');
+            md = md.replace(/\{\*([a-zA-Z0-9_.]+)\*\}/g, '{{"\\{\\{$1\\}\\}"}}');
             md = md.replace(/<p>(\[\[\[(.+)\]\]\])<\/p>/g, '$1');
             md = md.replace(/(\[\[\[)/, '<ui-tab class="block noborder">$1');
             md = md.replace(/\[\[\[开始\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="开始">$1</div>$3');
@@ -1476,7 +1477,8 @@ export default {
     },
     components : {
         'doc-header' : DocHeader,
-        'doc-submenu' : DocSubmenu
+        'doc-submenu' : DocSubmenu,
+        'doc-footer' : DocFooter
     },
     mounted : function () {
 

@@ -35,9 +35,13 @@ if (typeof Vue === 'undefined') {
         _uiid : 1,
         _findCache : {},
         _popupId : 0,
-        _indexGroups : {},
+        _indexMap : {
+            regIndex : {},
+            vmMap : {},
+            useIndex : {}
+        },
         _moveListener : [],
-        _selectClickListener : [],
+        _globalEventListener : {},
         _groupData : {},
         _groupVmMap : {},
         isMorning : true,
@@ -127,11 +131,15 @@ if (typeof Vue === 'undefined') {
                 let component = morning._components[name];
 
                 Vue.component(`${options.prefix}-${component.options.name}`, component);
+                Vue.component(`morning-${component.options.name}`, component);
                 morning._ignoreElements.push(`i-${component.options.name}`);
+                morning._ignoreElements.push(`morning-${component.options.name}`);
 
             }
 
             Vue.config.ignoredElements = morning._ignoreElements;
+
+            return this;
 
         }
     };

@@ -84,6 +84,31 @@ export default Form.extend({
     },
     computed : {},
     methods : {
+        _valueFilter : function (value) {
+
+            if (typeof value !== 'object' ||
+                !(value instanceof Array)) {
+
+                return [];
+
+            }
+
+            // filter not exist value.
+            for (let index in value) {
+
+                let val = value[index];
+
+                if (Object.keys(this.conf.list).indexOf(String(val)) === -1) {
+
+                    value.splice(index, 1);
+
+                }
+
+            }
+
+            return value;
+
+        },
         toggle : function (key, checked) {
 
             let list = extend(true, [], this.data.value);
@@ -118,44 +143,7 @@ export default Form.extend({
 
         }
     },
-    created : function () {
-
-        this.$watch('data.value', newVal => {
-
-            if (typeof newVal !== 'object' ||
-                !(newVal instanceof Array)) {
-
-                this.data.value = [];
-
-                return;
-
-            }
-
-            let valList = this.get(false);
-
-            for (let index in valList) {
-
-                let val = valList[index];
-
-                if (Object.keys(this.conf.list).indexOf(String(val)) === -1) {
-
-                    valList.splice(index, 1);
-
-                }
-
-            }
-
-            if (valList.length !== newVal.length) {
-
-                this.data.value = valList;
-
-            }
-
-        }, {
-            immediate : true
-        });
-
-    },
+    created : function () {},
     mounted : function () {}
 });
 </script>

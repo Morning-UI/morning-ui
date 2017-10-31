@@ -1,114 +1,110 @@
 let IndexManager = {
-    data : function () {
-
-        return {};
-
-    },
     methods : {
-        _indexGroupReg : function (group, indexList) {
+        _indexReg : function (namespace, index = 1) {
 
-            if (!this.morning._indexGroups[group]) {
+            let key = `${this.$options.name}.${namespace}`;
 
-                this.morning._indexGroups[group] = {
-                    indexList,
-                    vmList : []
-                };
+            if (this.morning._indexMap.regIndex[key] === undefined) {
 
-            }
-
-            if (this.morning._indexGroups.vmList.indexOf(this) === -1) {
-                
-                this.morning._indexGroups.vmList.push({
-                    vm : this,
-                    key : null
-                });
+                this.morning._indexMap.regIndex[key] = index;
 
             }
+
+            return this;
 
         },
-        _indexSet : function (group, key, vms) {
+        _indexFetch : function (namespace, step) {
 
-            let groupObj = this.morning._indexGroups[group];
+            let vmMap = this.morning._indexMap.vmMap;
+            let useIndex = this.morning._indexMap.useIndex;
+            let regIndex = this.morning._indexMap.regIndex;
+            let key = `${this.$options.name}.${namespace}`;
 
-            if (!groupObj) {
+            if (useIndex[key] === undefined) {
 
-                return;
-
-            }
-
-            vms = [].concat(vms);
-
-            if (vms[0] === undefined) {
-
-                for (let svm of groupObj.vmList) {
-
-                    svm.key = key || null;
-
-                }
-
-            } else {
-
-                for (let svm of groupObj.vmList) {
-
-                    if (vms.indexOf(svm !== -1)) {
-
-                        svm.key = key || null;
-
-                        break;
-
-                    }
-
-                }
+                useIndex[key] = regIndex[key];
 
             }
 
-            this.$emit('_IndexChanged', group);
+            if (vmMap[`${this.uiid},${namespace}`] === undefined) {
+
+                vmMap[`${this.uiid},${namespace}`] = useIndex[key];
+
+            }
+
+            if (step !== 0 && step !== undefined) {
+
+                useIndex[key] += step;
+
+            }
+
+            return vmMap[`${this.uiid},${namespace}`];
 
         },
-        _indexGet : function (group) {
+        _indexInc : function (namespace) {
 
-            let groupObj = this.morning._indexGroups[group];
-            let index = 0;
+            return this._indexFetch(namespace, 1);
 
-            if (!groupObj) {
+        },
+        _indexGet : function (namespace) {
 
-                return;
+            return this._indexFetch(namespace, 0);
 
-            }
+        },
+        _indexDim : function (namespace) {
 
-            for (let svm of groupObj.vmList) {
-
-                if (svm === this) {
-
-                    let indexConf = groupObj.keyList[svm.key];
-
-                    if (typeof indexConf === 'number') {
-
-                        index = indexConf;
-
-                    } else if (typeof indexConf === 'object') {
-                        
-                        if (indexConf.increment) {
-
-                            index = ++indexConf.start;
-
-                        } else {
-
-                            index = indexConf.start;
-                            
-                        }
-
-                    }
-
-                    break;
-
-                }
-
-            }
-
-            return index;
+            return this._indexFetch(namespace, -1);
 
         }
+        // _indexNew : function (namespace) {
+
+        //     let section = this.morning._indexSection[namespace];
+
+        //     if (section === undefined) {
+
+        //         let sectionId = this.morning._indexSectionId++;
+
+        //         this.morning._indexSection[namespace] = {
+        //             id : sectionId,
+        //             prepend : (sectionLen / 2) - 1,
+        //             append : (sectionLen / 2)
+        //         };
+
+        //         section = this.morning._indexSection[namespace];
+
+        //     } 
+
+        //     return ((section.id * sectionLen) + section.append++);
+
+        // },
+        // _indexSectionAppend : function (namespace) {
+
+        //     if (this.morning._indexSection[sectionId] === undefined) {
+
+        //         return 1;
+
+        //     }
+
+        //     let section = this.morning._indexSection[sectionId];
+        //     let index = section.append++;
+
+        //     return ((section * sectionLen) + index);
+
+        // },
+        // _indexSectionPrepend : function (sectionId) {
+
+        //     if (this.morning._indexSection[sectionId] === undefined) {
+
+        //         return 1;
+
+        //     }
+
+        //     let section = this.morning._indexSection[sectionId];
+        //     let index = section.prepend++;
+
+        //     return ((section * sectionLen) + index);
+
+        // }
     }
 };
 

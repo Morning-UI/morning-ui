@@ -122,6 +122,17 @@ export default Form.extend({
         }
     },
     methods : {
+        _valueFilter : function (value) {
+
+            if (value === undefined) {
+
+                return '';
+
+            }
+
+            return String(value);
+
+        },
         _focus : function () {
 
             this.$emit('focus');
@@ -133,25 +144,7 @@ export default Form.extend({
 
         }
     },
-    created : function () {
-
-        this.$watch('data.value', newVal => {
-
-            if (newVal === undefined) {
-
-                this.data.value = '';
-
-                return;
-
-            }
-
-            this.data.value = String(newVal);
-
-        }, {
-            immediate : true
-        });
-
-    },
+    created : function () {},
     mounted : function () {}
 });
 </script>

@@ -3185,7 +3185,7 @@ i-formgroup .item > .title {
   align-items: center;
   box-sizing: border-box;
 }
-i-formgroup .item > .title ui-center p {
+i-formgroup .item > .title i-center p {
   color: #BBB;
   font-size: 13px;
   text-align: left;
@@ -3212,6 +3212,7 @@ i-formgroup .item > .content > h6 {
 i-formgroup .item > .content > p {
   font-size: 12px;
   color: #AAA;
+  margin-top: 0;
   margin-bottom: 0.375em;
   line-height: 1em;
   transform-origin: 0;
@@ -4357,7 +4358,10 @@ i-dropdown {
 }
 i-dropdown i-btn .morningicon {
   vertical-align: middle;
-  font-size: inherit;
+  font-size: 30px;
+  width: 10px;
+  display: inline-block;
+  vertical-align: top;
 }
 i-dropdown .btnlist {
   font-size: 0;

@@ -20,20 +20,7 @@
 
     组件的事件监听，基于Vue的自定义事件，你可以在模板中通过`v-on`指令监听事件：
 
-    ````vue
-    @use:html.demo1,js.demo1
-    ````
-
-    ````html
-    @var:demo1
-    <div>
-        <!-- 监听emit事件，并调用echo方法 -->
-        <ui-btn v-on:emit="echo">监听emit事件</ui-btn>
-    </div>
-    ````
-
-    ````js
-    @var:demo1
+    :::vue/html
     new Vue({
         el : '{$el}',
         template : '{$template}',
@@ -43,26 +30,18 @@
             }
         }
     });
-    ````
+    ---
+    <div>
+        <!-- 监听emit事件，并调用echo方法 -->
+        <ui-btn v-on:emit="echo">监听emit事件</ui-btn>
+    </div>
+    :::
 
     #### v-on缩写
 
     你也可以通过`@`来缩写`v-on`用法：
 
-    ````vue
-    @use:html.demo2,js.demo2
-    ````
-
-    ````html
-    @var:demo2
-    <div>
-        <!-- 监听emit事件，并调用echo方法 -->
-        <ui-btn @emit="echo">监听emit事件</ui-btn>
-    </div>
-    ````
-
-    ````js
-    @var:demo2
+    :::vue/html
     new Vue({
         el : '{$el}',
         template : '{$template}',
@@ -72,25 +51,18 @@
             }
         }
     });
-    ````
+    ---
+    <div>
+        <!-- 监听emit事件，并调用echo方法 -->
+        <ui-btn @emit="echo">监听emit事件</ui-btn>
+    </div>
+    :::
 
     #### $on监听
 
     你还可以通过组件vm上的`$on`方法来监听事件：
 
-    ````vue
-    @use:html.demo3,js.demo3
-    ````
-
-    ````html
-    @var:demo3
-    <div>
-        <ui-btn ref="demo3">监听emit事件</ui-btn>
-    </div>
-    ````
-
-    ````js
-    @var:demo3
+    :::vue/html
     new Vue({
         el : '{$el}',
         template : '{$template}'
@@ -100,7 +72,11 @@
     window.morning.findVM('demo3').$on('emit', () => {
         console.log('demo3.console1', 'emit event!');
     });
-    ````
+    ---
+    <div>
+        <ui-btn ref="demo3">监听emit事件</ui-btn>
+    </div>
+    :::
     
     你可以查看[Vue/事件处理](https://vuejs.org/v2/guide/events.html)获取更多细节，但是需要注意Vue中的事件修饰符、键值修饰符、鼠标按钮修饰符等特性在MorningUI中并不支持。
 
@@ -110,9 +86,9 @@
 
     - `created` : 创建之后
     - `mounted` : 挂载之后
-    - `beforeUpdate` : 更新之前
+    - `before-update` : 更新之前
     - `updated` : 更新之后
-    - `beforeDestroy` : 销毁之前
+    - `before-destroy` : 销毁之前
 
     通过生命周期事件，可以让组件在不同周期中执行父vm的逻辑。
 
@@ -128,27 +104,29 @@
 
     事件在全局有一套命名规范，这样是为了防止不同的组件对于某个名词理解不同，导致同一名词在不同组件的不同行为。
 
+    由于Vue支持in-DOM template，所以请勿使用驼峰法命名事件名称，这是因为在HTML的标签中属性名不区分大小写。
+
     在为组件添加事件前应先检查下面的列表，是否有含义相同的事件，若有请使用，若没有请将新的事件添加到下面列表并注明它的含义。
 
     - `created` : 创建之后
     - `mounted` : 挂载之后
-    - `beforeUpdate` : 更新之前
+    - `before-update` : 更新之前
     - `updated` : 更新之后
-    - `beforeDestroy` : 销毁之前
+    - `before-destroy` : 销毁之前
     - `emit` : 组件被触发
     - `switch` : 切换
     - `show` : 显示
     - `hide` : 隐藏
     - `done` : 完成
     - `fail` : 失败
-    - `valueChange` : 表单值改变
+    - `value-change` : 表单值改变
     - `focus` : 表单聚焦
     - `blur` : 表单失焦
-    - `listShow` : 列表显示
-    - `listHide` : 列表隐藏
-    - `inputValueChange` : 输入框值变化
-    - `inputFocus` : 输入框聚焦
-    - `inputBlur` : 输入框失焦
+    - `list-show` : 列表显示
+    - `list-hide` : 列表隐藏
+    - `input-value-change` : 输入框值变化
+    - `input-focus` : 输入框聚焦
+    - `input-blur` : 输入框失焦
 
     </script>
     </doc-guide>

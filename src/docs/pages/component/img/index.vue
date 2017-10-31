@@ -21,8 +21,6 @@
     - title : 图标标题
 
     #### 使用
-
-    标记一段斜体内容，这是一个内联元素。
     
     :::democode/html
     <ui-img src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>

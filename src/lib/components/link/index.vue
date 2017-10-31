@@ -67,13 +67,26 @@ export default UI.extend({
     methods : {
         _onClick : function () {
 
-            if (this.state !== 'disabled' &&
+            if (this.conf.state !== 'disabled' &&
                  !this.data.lock) {
 
                 this.$emit('emit');
 
             }
     
+        },
+        _emitLock : function () {
+
+            if (typeof this.locked === 'number') {
+
+                this.lock(+this.locked);
+
+            } else if (this.locked === true) {
+
+                this.lock();
+
+            }
+
         },
         unlock : function () {
 
@@ -116,17 +129,11 @@ export default UI.extend({
 
         this.data.lastState = this.conf.state;
 
-        if (typeof this.locked === 'number') {
-
-            this.lock(+this.locked);
-
-        } else if (this.locked === true) {
-
-            this.lock();
-
-        }
+        this._emitLock();
 
         this.$on('emit', () => {
+
+            this._emitLock();
 
             if (this.conf.js) {
 

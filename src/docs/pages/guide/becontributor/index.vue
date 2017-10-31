@@ -13,19 +13,19 @@
     目前你可以通过两种方式为项目做出贡献：
 
     - 检视代码(Review)
-    - 提交代码(Coding)
+    - 编写代码(Coding)
 
     如果你决定通过检视代码(Review)的方式来提供贡献，请直接查阅：[检视代码](/guide/review.html)章节。
     
-    如果你决定提交代码至项目请发送邮件至`chenchao.he@husor.com`我们会联系你，在等待回复的时候请阅读以下章节了解详细情况：
+    如果你决定编写代码至项目请发送邮件至`chenchao.he@husor.com`我们会联系你，在等待回复的时候请阅读以下章节了解详细情况：
     
-    - 开发环境
-    - 开发规范
-    - 编写文档
-    - 编写测试
-    - 检视代码
-    - 提交代码
-    - 版本计划
+    - [开发环境](/guide/devenv.html)
+    - [开发规范](/guide/devrule.html)
+    - [编写文档](/guide/writedoc.html)
+    - [编写测试](/guide/writetest.html)
+    - [检视代码](/guide/review.html)
+    - [提交代码](/guide/commitcode.html)
+    - [版本计划](/guide/versionplan.html)
 
     </script>
     </doc-guide>

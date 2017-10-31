@@ -120,6 +120,25 @@ export default Form.extend({
         }
     },
     methods : {
+        _valueFilter : function (value) {
+
+            if (typeof value !== 'object' ||
+                !(value instanceof Array)) {
+
+                return [];
+
+            }
+
+            if (this.conf.max &&
+                this.data.value.length > this.conf.max) {
+
+                return value.slice(0, this.conf.max);
+
+            }
+
+            return value;
+
+        },
         _focusInput : function () {
 
             // this.data.moving === false
@@ -131,7 +150,7 @@ export default Form.extend({
 
                     this.data.focus = true;
                     $input.focus();
-                    this.$emit('inputFocus');
+                    this.$emit('input-focus');
 
                 }
 
@@ -146,7 +165,7 @@ export default Form.extend({
 
                 this.data.focus = false;
                 $input.blur();
-                this.$emit('inputBlur');
+                this.$emit('input-blur');
 
             }
 
@@ -275,31 +294,13 @@ export default Form.extend({
         this.$watch('data.inputValue', () => {
 
             this._resetInputWidth();
-            this.$emit('inputValueChange');
+            this.$emit('input-value-change');
 
         }, {
             immediate : true
         });
 
-        this.$watch('data.value', newVal => {
-
-            if (typeof newVal !== 'object' ||
-                !(newVal instanceof Array)) {
-
-                this.data.value = [];
-
-                return;
-
-            }
-
-            if (this.conf.max &&
-                this.data.value.length > this.conf.max) {
-
-                this.data.value = newVal.slice(0, this.conf.max);
-            
-                return;
-
-            }
+        this.$on('value-change', () => {
 
             if (!this.Move.moving) {
 
@@ -307,8 +308,6 @@ export default Form.extend({
             
             }
 
-        }, {
-            immediate : true
         });
         
     },

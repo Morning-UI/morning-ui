@@ -82,6 +82,18 @@ export default Form.extend({
     },
     computed : {},
     methods : {
+        _valueFilter : function (value) {
+
+            // filter not exist value.
+            if (Object.keys(this.conf.list).indexOf(String(value)) === -1) {
+
+                return undefined;
+
+            }
+
+            return String(value);
+
+        },
         toggle : function (key) {
 
             let keys = Object.keys(this.conf.list);
@@ -100,25 +112,17 @@ export default Form.extend({
     },
     created : function () {
 
-        this.$watch('data.value', newVal => {
+        // this.$watch('data.value', newVal => {
 
-            if (newVal === undefined) {
+        //     if (newVal === undefined) {
 
-                return;
+        //         return;
 
-            }
+        //     }
 
-            if (Object.keys(this.conf.list).indexOf(String(newVal)) === -1) {
-
-                this.data.value = undefined;
-
-                return;
-
-            }
-
-        }, {
-            immediate : true
-        });
+        // }, {
+        //     immediate : true
+        // });
 
     },
     mounted : function () {}

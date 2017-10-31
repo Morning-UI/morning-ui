@@ -46,7 +46,9 @@ let stateSet = [
 ];
 
 let morning;
-let props = {};
+let props = {
+    name : String
+};
 
 for (let key of [...sizeSet, ...styleSet, ...stateSet]) {
 
@@ -240,7 +242,7 @@ let UI = Vue.extend({
     },
     beforeUpdate : function () {
 
-        this.$emit('beforeUpdate');
+        this.$emit('before-update');
 
     },
     updated : function () {
@@ -251,7 +253,7 @@ let UI = Vue.extend({
     },
     beforeDestroy : function () {
 
-        this.$emit('beforeDestroy');
+        this.$emit('before-destroy');
 
     },
     destroyed : function () {

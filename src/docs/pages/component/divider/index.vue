@@ -10,11 +10,11 @@
 
     [[[开始]]]
 
-    #### 使用
-
     定义一个分频器，分频器用来区分一个区块内的左右或上下两部分。
 
     分频器常配合`ui-grid`使用。
+
+    #### 使用
     
     :::democode/html
     <div style="width:500px;height:300px;border:1px solid #eee;">

@@ -1703,7 +1703,7 @@ i-formgroup>.item+.item{border-top:1px #edf1f5 solid
 }
 i-formgroup .item>.title{position:relative;width:30%;font-weight:400;text-align:left;vertical-align:middle;margin:0;display:flex;align-items:center;box-sizing:border-box
 }
-i-formgroup .item>.title ui-center p{color:#bbb;font-size:13px;text-align:left;white-space:nowrap
+i-formgroup .item>.title i-center p{color:#bbb;font-size:13px;text-align:left;white-space:nowrap
 }
 i-formgroup .item>.content{width:70%
 }
@@ -1715,7 +1715,7 @@ i-formgroup .item>.content .form:last-child{margin-bottom:0
 }
 i-formgroup .item>.content>h6{font-size:13px;color:#666;font-weight:400;margin-bottom:.375em
 }
-i-formgroup .item>.content>p{font-size:12px;color:#aaa;margin-bottom:.375em;line-height:1em;transform-origin:0;transform:scale(.8)
+i-formgroup .item>.content>p{font-size:12px;color:#aaa;margin-top:0;margin-bottom:.375em;line-height:1em;transform-origin:0;transform:scale(.8)
 }
 i-formgroup .item>.content>h6+p{margin:-.15em 0 .375em 0
 }
@@ -2269,7 +2269,7 @@ to{transform:translateX(-50%) scale(0)
 }
 i-dropdown{display:inline-block;position:relative
 }
-i-dropdown i-btn .morningicon{vertical-align:middle;font-size:inherit
+i-dropdown i-btn .morningicon{vertical-align:middle;font-size:30px;width:10px;display:inline-block;vertical-align:top
 }
 i-dropdown .btnlist{font-size:0;position:absolute;top:110%;min-width:80px;left:50%;transform:translateX(-50%) scale(0);transform-origin:top center;border-radius:3px;box-shadow:0 0 3px rgba(0,0,0,.2)
 }

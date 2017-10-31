@@ -5,6 +5,8 @@
     >
     <script type="text/markdown">
     # 编写测试
+
+    Coming soon
     </script>
     </doc-guide>
 </template>
