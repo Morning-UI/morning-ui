@@ -7,21 +7,6 @@ i-select{
     box-sizing: border-box;
     vertical-align: middle;
     min-height: @formHeight;
-    // z-index: 10;
-
-    // TODO : USE indexManager
-    // &+i-select{
-    //     z-index: 8;
-    //     +i-select{
-    //         z-index: 7;
-    //         +i-select{
-    //             z-index: 6;
-    //             +i-select{
-    //                 z-index: 5;
-    //             }
-    //         }
-    //     }
-    // }
 
     > .wrap{
         border: 1px solid @colorFormBorder;
@@ -31,7 +16,6 @@ i-select{
         transition: border-radius 0.2s, border 0.2s;
         -webkit-user-select: none;
         background-color: #FFF;
-        // z-index: 9;
         overflow: hidden;
 
         > i-textinput{
@@ -42,7 +26,6 @@ i-select{
             cursor: pointer;
             margin: 0;
             position: absolute;
-            // z-index: 2;
 
             input{
                 vertical-align: top !important;
@@ -145,7 +128,6 @@ i-select{
         background-color: #FFF;
         box-sizing: border-box;
         position: absolute;
-        // z-index: 2;
 
         .setup-scrollbar();
 
@@ -195,10 +177,6 @@ i-select{
         }
     }
 
-    // &.can-search.multi-select> .wrap > i-multiinput .itemlist > input{
-    //     cursor: initial;
-    // }
-
     &.has-clean-btn{
         > .wrap{
             > i-textinput,
@@ -210,8 +188,6 @@ i-select{
     }
 
     &.showlist{
-        // z-index: 11;
-
         > .wrap{
             border-color: @colorFormBorder;
             border-bottom-width: 0;
