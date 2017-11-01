@@ -2314,6 +2314,11 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
 
 exports.default = {
     props: {
@@ -2592,7 +2597,24 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "href": "/component/h.html"
     }
-  }, [_vm._v("COMPONENT")])])])])])
+  }, [_vm._v("COMPONENT")])]), _vm._v(" "), _c('li', [_c('a', {
+    attrs: {
+      "target": "_blank",
+      "href": "https://github.com/Morning-UI/morning-ui"
+    }
+  }, [(_vm.isIndex) ? _c('img', {
+    staticClass: "githublogo",
+    attrs: {
+      "src": "http://h0.hucdn.com/open/201744/f87561b8bb354ef8_32x32.png",
+      "alt": "GitHub"
+    }
+  }) : _c('img', {
+    staticClass: "githublogo",
+    attrs: {
+      "src": "http://h0.hucdn.com/open/201744/d56df49a807a9fd0_32x32.png",
+      "alt": "GitHub"
+    }
+  }), _vm._v("\n                GitHub\n            ")])])])])])
 }
 var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
