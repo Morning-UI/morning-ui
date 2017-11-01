@@ -83,6 +83,20 @@ jobs:
           keys:
             - v2-build-{{ .Environment.CIRCLE_SHA1 }}
       - run: npm run doc -- --port 8089 & npm run cover
+  codecov:
+    docker:
+      - image: circleci/node:8.7-browsers
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v2-node_modules-{{ checksum "package.json" }}
+      - restore_cache:
+          keys:
+            - v2-build-{{ .Environment.CIRCLE_SHA1 }}
+      - run: sudo npm install -g codecov
+      - run: npm run doc -- --port 8089 & npm run codecov-report && codecov
 
 workflows:
   version: 2
@@ -101,6 +115,10 @@ workflows:
       - test-e2e:
           requires:
             - build
+      - codecov:
+          requires:
+            - test-unit
+            - test-e2e
       - coverage:
           requires:
             - test-unit
