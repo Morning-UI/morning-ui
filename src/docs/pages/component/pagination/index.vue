@@ -4,20 +4,134 @@
         :hasPadding="true"
     >
     <script type="text/markdown">
-    # 按钮 `<ui-btn>`
+    # 分页 `<ui-pagination>`
     
-    <doc-component-status page="btn"></doc-component-status>
+    <doc-component-status page="pagination"></doc-component-status>
     
     [[[开始]]]
 
-    定义一个按钮，这是一个内联块元素。
+    定义分页，这是一个内联块标签。
+
+    分页组件有两种用法，后面示例中会演示：
+
+    - 关联列表：必须配置`list`，会自动计算总页码。页码切换时，会根据页面从`list`中获取项目渲染内容。
+    - 单独使用：必须配置`total`。页码切换时，会触发事件，页面内容由外部逻辑控制。
 
     #### 使用
 
-    ````html
-    <ui-btn>按钮</ui-btn>
-    ````
+    :::democode/html
+    <ui-pagination :total="10"></ui-pagination>
+    :::
+
+    #### 自动计算总页码
     
+    当配置`list`时组件会根据`page-size`自动计算总页码。
+
+    :::democode/html
+    <ui-pagination :list="[1,2,3,4,5,6,7,8]" :page-size="3"></ui-pagination>
+    :::
+
+    #### 关联列表使用
+
+    关联列表时，把内容模板放到`ui-pagination`标签内，当页码切换时，会根据页面选取`list`中指定的项目作为上下文渲染内容。
+
+    这里用到了Vue.js的[作用域插槽](https://cn.vuejs.org/v2/guide/components.html#作用域插槽)。
+
+    通过`slot-scope`解构可以在内容模板中获取到的变量：
+
+    - `page` : 当前页码(从1开始)
+    - `items` : 当前页的数据(数组，`list`中的区间)
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            list : [
+                {name : 'Tim', age : 15},
+                {name : 'Andrew', age : 20},
+                {name : 'Gustavo', age : 17},
+                {name : 'Victor', age : 11},
+                {name : 'Shaun', age : 30},
+                {name : 'Emir', age : 24},
+                {name : 'Katherine', age : 18},
+                {name : 'Jax', age : 10}
+            ]
+        }
+    });
+    ---
+    <ui-pagination :list="list" :page-size="3">
+        <template slot-scope="{page, items}">
+            <h5>这是第{*page*}页，内容是：</h5>
+            <ul>
+                <li v-for="item in items">Name : {*item.name*}, Age : {*item.age*}</li>
+            </ul>
+        </template>
+    </ui-pagination>
+    :::
+
+    #### 单独使用
+
+    单独使用时，通过监听分页的`emit`事件来获取页码变化，并在页码变化后通过修改`slot`来改变内容。
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            list : [
+                {name : 'Tim', age : 15},
+                {name : 'Andrew', age : 20},
+                {name : 'Gustavo', age : 17},
+                {name : 'Victor', age : 11},
+                {name : 'Shaun', age : 30},
+                {name : 'Emir', age : 24},
+                {name : 'Katherine', age : 18},
+                {name : 'Jax', age : 10}
+            ],
+            content : ''
+        },
+        methods : {
+            rerender : function () {
+    
+                // 通过组件实例获取当前页码信息
+                let vm = window.morning.findVM('demo1');
+                let page = vm.getPage();
+                let list = this.list.slice((page-1)*3, page*3);
+                let content = '';
+                
+                // 生成内容
+                content = `<h5>这是第${page}页，内容是：</h5><ul>`;
+                
+                for (let item of list) {
+
+                    content += `<li>Name : ${item.name}, Age : ${item.age}</li>`;
+
+                }
+                
+                content += `</ul>`;
+
+                this.content = content;
+
+            }
+        }
+    });
+    ---
+    <ui-pagination ref="demo1" :total="3" @emit="rerender">
+        <div v-html="content"></div>
+    </ui-pagination>
+    :::
+
+    #### 页面跳转
+
+    当总页数大于设置的显示页数，则默认启用页面跳转框。在右侧框中输入数字（非数字会被忽略，小数则向下取整），可快速跳转到该页面。
+    
+    当输入值大于总页数则显示最后一页，输入负值则倒序跳转。
+    
+    :::democode/html
+    <ui-pagination :total='16'></ui-pagination>
+    :::
+
     [[[声明]]]
 
     #### 支持
@@ -26,162 +140,185 @@
     |-|-|-|
     |尺寸|全部|`m`|
     |色彩|全部|`theme`|
-    |状态|全部|`normal`|
+    |状态|不支持|-|
 
     #### 尺寸
 
-    ````html
-    @size
-    <ui-btn {$size}>{$&name}</ui-btn>
-    ````
-
-    ````html
-    @size
-    <ui-btn {$size} loading>{$&name}</ui-btn>
-    ````
+    :::repeat/html
+    size
+    ---
+    <ui-pagination :total='10' {$sizeKey}></ui-pagination> &nbsp;&nbsp; <span>{$&sizeName}</span>
+    <br>
+    :::
 
     #### 色彩
 
-    ````html
-    @colorTheme
-    @colorFeature
-    @colorBlack
-    @colorBlue
-    @colorSilver
-    @colorGray
-    <ui-btn {$color}>{$&name}</ui-btn>
-    ````
-    
-    #### 状态
-    
-    ````html
-    @stateALLwithTheme
-    @stateALLwithFeature
-    @stateALLwithBlack
-    @stateALLwithBlue
-    @stateALLwithSilver
-    @stateALLwithGray
-    <ui-btn {$state} {$color}>{$&name}</ui-btn>
-    ````
+    :::repeat/html
+    color:theme
+    color:feature
+    color:black
+    color:blue
+    color:silver
+    color:gray
+    ---
+    <ui-pagination :total='10' {$colorKey}></ui-pagination> &nbsp;&nbsp; <span>{$&colorName}</span>
+    <br>
+    :::
 
     [[[配置]]]
 
     |KEY|描述|接受值|值类型|默认值|
-    |-|-|-|
-    |link|链接地址，若为空则不跳转|url地址|String|`''`|
-    |locked|锁定模式，用来防止组件在短时间内被重复触发。若设置一个时间数值(ms)，该组件在时间内只触发一次。也可设为`true`，触发后需要通过`unlock()`方法来解锁组件。|`true`<br>`false`<br>数值(单位ms)|Number<br>Boolean|`false`|
-    |new-tab|是否在新窗口中打开链接|`true`<br>`false`|Boolean|`false`|
+    |-|-|-|-|-|
+    |total|设置分页总页数，当设置list时，会根据`page-size`和`list`的长度自动计算total|总页数|Number|`1`|
+    |list|需要分页的数据组，一个数组或对象|数据对象<br>数据数组|Object<br>Array|`undefined`|
+    |page-size|每页多少条记录，只有设置`list`时才有效|每页记录数量|Number|`10`|
+    |page|默认在第几页|页码|Number|`1`|
+    |max-show|分页栏最多显示几页，超过的页码会隐藏|页码数，一般为奇数|Number|`9`|
+    |jump-page|是否允许输入页码跳转|`true`<br>`false`|Boolean|`true`|
 
-    #### link
+    #### total
 
-    ````html
-    <ui-btn :link="'http://www.google.com'">链接</ui-btn>
-    ````
+    :::democode/html
+    <ui-pagination :total="10"></ui-pagination>
+    :::
 
-    #### locked
+    #### list
+    
+    当配置`list`时组件会根据`page-size`自动计算总页码。
+    
+    :::democode/html
+    <ui-pagination :list="[1,2,3,4,5,6,7,8]" :page-size='3'></ui-pagination>
+    :::
 
-    ````html
-    <ui-btn :locked="3000">3秒后自动解锁</ui-btn>
-    ````
+    #### page-size
+    
+    :::democode/html
+    <ui-pagination :list="[1,2,3,4,5,6,7,8]" :page-size='5'></ui-pagination>
+    :::
 
-    ````html
-    <ui-btn ref="demo1" locked>手动解锁</ui-btn>
-    <ui-link js="javascript:morning.findVM('demo1').unlock();">解锁</ui-link>
-    ````
+    #### page
+    
+    :::democode/html
+    <ui-pagination :total="10" :page="4"></ui-pagination>
+    :::
 
-    #### new-tab
+    #### max-show
+    
+    :::democode/html
+    <ui-pagination :total="10" :page="4" :max-show="3"></ui-pagination>
+    :::
 
-    ````html
-    <ui-btn new-tab :link="'http://www.google.com'">新窗口打开链接</ui-btn>
-    ````
+    #### jump-page
+
+    可以关闭通过页码跳转页面。
+    
+    :::democode/html
+    <ui-pagination :total="10" :max-show="5" :jump-page="false"></ui-pagination>
+    :::
 
     [[[方法]]]
 
-    #### lock([time])
+    #### getPage()
 
-    锁定按钮，锁定后按钮不会触发`emit`事件。
-    
+    获取当前页码。
+
+    :::democode/html
+    <ui-pagination ref="demo2" :total="10"></ui-pagination>
+    <br><br> 
+    <ui-link js="javascript:alert(morning.findVM('demo2').getPage());">获取当前页码</ui-link>
+    :::
+
+    #### to(num)
+
+    跳转到指定页码。
+
     |KEY|可选|描述|接受值|值类型|默认值|
     |-|-|-|-|-|-|
-    |time|YES|解锁的时间，单位ms。设置后组件将在解锁时间后自动解锁，不设置则需要调用`unlock()`方法解锁|`undefined`<br>数值(单位ms)|`Undefined`<br>`Number`|`undefined`|
+    |num|NO|需要跳转的页码|大于最大页数：跳转到最后一页<br>小于0：跳转到从最后开始往前`num`页<br>等于0：跳转到第一页|`Number`|`undefined`|
 
-    ````html
-    <ui-btn ref="demo2">按钮</ui-btn>
+    :::democode/html
+    <ui-pagination ref="demo3" :total="10"></ui-pagination>
     <br><br> 
-    <ui-link js="javascript:morning.findVM('demo2').lock();">锁定</ui-link>
-    <ui-link js="javascript:morning.findVM('demo2').lock(2000);">锁定2s</ui-link>
-    <ui-link js="javascript:morning.findVM('demo2').unlock();">解锁</ui-link>
-    ````
+    <ui-link js="javascript:morning.findVM('demo3').to(5);">跳转到第5页</ui-link><br>
+    <ui-link js="javascript:morning.findVM('demo3').to(20);">跳转到大于最大页数</ui-link><br>
+    <ui-link js="javascript:morning.findVM('demo3').to(-5);">跳转到从后往前第5页</ui-link><br>
+    <ui-link js="javascript:morning.findVM('demo3').to(1);">跳转到第1页(输入1)</ui-link><br>
+    <ui-link js="javascript:morning.findVM('demo3').to(0);">跳转到第1页(输入0)</ui-link>
+    :::
 
-    #### unlock()
+    #### next([offset])
 
-    解锁按钮，解锁后按钮可触发`emit`事件。
+    跳转到后几页。
 
-    ````html
-    <ui-btn ref="demo3" locked>按钮</ui-btn>
+    |KEY|可选|描述|接受值|值类型|默认值|
+    |-|-|-|-|-|-|
+    |offset|YES|需要往后跳转的页码数|页码数|`Number`|`1`|
+
+    :::democode/html
+    <ui-pagination ref="demo4" :total="10"></ui-pagination>
     <br><br> 
-    <ui-link js="javascript:morning.findVM('demo3').unlock();">解锁</ui-link>
-    ````
+    <ui-link js="javascript:morning.findVM('demo4').next();">往后跳转1页</ui-link><br>
+    <ui-link js="javascript:morning.findVM('demo4').next(3);">往后跳转3页</ui-link>
+    :::
 
+    #### prev([offset])
+
+    跳转到前几页。
+
+    |KEY|可选|描述|接受值|值类型|默认值|
+    |-|-|-|-|-|-|
+    |offset|YES|需要往前跳转的页码数|页码数|`Number`|`1`|
+
+    :::democode/html
+    <ui-pagination ref="demo5" :total="10" :page="8"></ui-pagination>
+    <br><br> 
+    <ui-link js="javascript:morning.findVM('demo5').prev();">往前跳转1页</ui-link><br>
+    <ui-link js="javascript:morning.findVM('demo5').prev(3);">往前跳转3页</ui-link>
+    :::
+
+    #### setTotal(num)
+
+    重新设置总页数。如果设置了`list`此方法无效。
+
+    如果新的页数小于当前所在的页码，则会跳到新页数的最后一页。
+
+    |KEY|可选|描述|接受值|值类型|默认值|
+    |-|-|-|-|-|-|
+    |num|NO|总页码数|页码数|`Number`|`undefined`|
+
+    :::democode/html
+    <ui-pagination ref="demo6" :total="2"></ui-pagination>
+    <br><br> 
+    <ui-link js="javascript:morning.findVM('demo6').setTotal(10);">总页数设为10</ui-link><br>
+    <ui-link js="javascript:morning.findVM('demo6').setTotal(3);">总页数设为3</ui-link><br>
+    :::
+    
     [[[事件]]]
 
     #### emit
 
-    当按钮被点击时触发。
+    当页码改变时时触发。
 
-    ````vue
-    @use:html.demo3,js.demo3
-    ````
-
-    ````html
-    @var:demo3
-    <div>
-        <ui-btn @emit="echo">点击触发emit事件</ui-btn>
-    </div>
-    ````
-
-    ````js
-    @var:demo3
+    :::vue/html
     new Vue({
         el : '{$el}',
         template : '{$template}',
         methods : {
             echo : function () {
-                console.log('demo3.console1', 'emit event!');
+                console.log('demo7.console1', 'emit event!');
             }
         }
     });
-    ````
+    ---
+    <div>
+        <p>切换页码触发emit事件</p>
+        <ui-pagination @emit="echo" :total="10"></ui-pagination>
+    </div>
+    :::
 
     #### 生命周期事件
 
-    ````vue
-    @use:html.demoEventLifecycle,js.demoEventLifecycle
-    ````
-
-    ````html
-    @var:demoEventLifecycle
-    <div>
-        <ui-btn
-            ref="demoEventLifecycle"
-            v-show="show"
-            @created="echo('created')"
-            @mounted="echo('mounted')"
-            @before-update="echo('before-update')"
-            @updated="echo('updated')"
-            @before-destroy="echo('before-destroy')"
-            @destroyed="echo('destroyed')"
-        >{%text%}</ui-btn>
-
-        <br><br>
-    
-        <ui-link js="javascript:window.demoEventLifecycle.text='生命周期事件';">触发update</ui-link>
-        <ui-link js="javascript:morning.findVM('demoEventLifecycle').$destroy();">触发destroy</ui-link>
-    </div>
-    ````
-
-    ````js
-    @var:demoEventLifecycle
+    :::vue/html
     window.demoEventLifecycle = new Vue({
         el : '{$el}',
         template : '{$template}',
@@ -193,15 +330,35 @@
         },
         methods : {
             echo : function (name) {
-                console.log('demoEventLifecycle.console1', `${name} event!`);
+                console.log('demoEventLifecycle.console1', name + ' event!');
             }
         }
     });
-    ````
+    ---
+    <div>
+        <ui-pagination
+            ref="demoEventLifecycle"
+            v-show="show"
+            :total="10"
+            @created="echo('created')"
+            @mounted="echo('mounted')"
+            @before-update="echo('before-update')"
+            @updated="echo('updated')"
+            @before-destroy="echo('before-destroy')"
+            @destroyed="echo('destroyed')"
+        >{*text*}</ui-pagination>
+
+        <br><br>
+
+        <ui-link js="window.demoEventLifecycle.text='生命周期事件';">触发update</ui-link>
+        <ui-link js="morning.findVM('demoEventLifecycle').$destroy();">触发destroy</ui-link>
+    </div>
+    :::
+
 
     [[[源码]]]
 
-    <iframe src="/report/coverage/lib/components/btn/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
+    <iframe src="/report/coverage/lib/components/pagination/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
 
     </script>
     </doc-component>
@@ -214,7 +371,7 @@ export default {
     data : function () {
 
         return {
-            page : 'btn'
+            page : 'pagination'
         };
 
     },
