@@ -16,6 +16,15 @@
     
     ### 更新记录
 
+    ### 0.10.2 <ui-badge class="circle ver-canary" s light-theme>Canary</ui-badge>
+
+    <ui-textcolor light-blue><ui-small>发布于2017年11月1日</ui-small></ui-textcolor>
+    
+    - 增加`ui-pagination`分页组件
+    - 增加codecov.io统计测试覆盖率
+    - 更新文档
+    - 修复`ui-select`组件的`list`通过模板渲染，会导致默认值被过滤的问题
+
     ### 0.10.1 <ui-badge class="circle ver-canary" s light-theme>Canary</ui-badge>
 
     <ui-textcolor light-blue><ui-small>发布于2017年10月31日</ui-small></ui-textcolor>
