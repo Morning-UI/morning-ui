@@ -22,7 +22,7 @@
     "e2e-snapshot": "node_modules/.bin/cross-env NODE_ENV=test node_modules/.bin/ava test/e2e  --update-snapshots",
     "cover": "node_modules/.bin/cross-env NODE_ENV=test node_modules/.bin/nyc npm run test",
     "cover-report": "npm run cover && node_modules/.bin/nyc report --reporter=html",
-    "codecov-report": "node_modules/.bin/nyc report --reporter=lcov",
+    "codecov-report": "npm run cover && node_modules/.bin/nyc report --reporter=lcov > coverage.lcov",
     "update-log-report": "node ./build/get-last-update-info.js",
     "report": "npm run test-report && npm run cover-report && update-log-report",
     "commit": "npm run build && npm run report",
