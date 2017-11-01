@@ -56,4 +56,7 @@ export default {
 </script>
 
 <style lang="less">
+.ver-canary{
+    background: #f5ab27 !important;
+}
 </style>
