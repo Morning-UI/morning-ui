@@ -2137,6 +2137,15 @@ exports.default = {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 module.exports = exports['default'];
 
@@ -2176,6 +2185,11 @@ new _vue2.default({
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2439,7 +2453,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "type": "text/markdown"
     }
-  }, [_vm._v("\n# 更新日志\n\n### 版本规范\n\nMorning UI采用[语义化版本控制规范](http://semver.org/lang/zh-CN/)，同时采用`Stable`、`Beta`、`Canary`三种标记分别来标记版本。详见：[版本计划](/guide/versionplan.html)\n\n<!-- ### 1.0.0 <ui-badge class=\"circle\" s light-black>Stable</ui-badge> -->\n\n<!-- ### 0.11.0 <ui-badge class=\"circle\" s light-blue>Beta</ui-badge> -->\n\n### 更新记录\n\n### 0.10.1 <ui-badge class=\"circle ver-canary\" s light-theme>Canary</ui-badge>\n\n<ui-textcolor light-blue><ui-small>发布于2017年10月31日</ui-small></ui-textcolor>\n\n- 增加codacy代码质量检测\n- 增加Lint、Build、Test、Coverage等CI流程\n- 更新README\n- 优化功能色彩\n- 移除`.npmignore`\n- 修复ESLint和StyleLint检测到的问题\n- 修复表单组的中表单销毁了，但值还可以通过`getGroup`取到的问题\n\n### 0.10.0 <ui-badge class=\"circle ver-canary\" s light-theme>Canary</ui-badge>\n\n<ui-textcolor light-blue><ui-small>发布于2017年10月31日</ui-small></ui-textcolor>\n\nMorningUI第一个版本，基于HMP UI，规范了定义，实现部分组件。\n\n")])])
+  }, [_vm._v("\n# 更新日志\n\n### 版本规范\n\nMorning UI采用[语义化版本控制规范](http://semver.org/lang/zh-CN/)，同时采用`Stable`、`Beta`、`Canary`三种标记分别来标记版本。详见：[版本计划](/guide/versionplan.html)\n\n<!-- ### 1.0.0 <ui-badge class=\"circle\" s light-black>Stable</ui-badge> -->\n\n<!-- ### 0.11.0 <ui-badge class=\"circle\" s light-blue>Beta</ui-badge> -->\n\n### 更新记录\n\n### 0.10.2 <ui-badge class=\"circle ver-canary\" s light-theme>Canary</ui-badge>\n\n<ui-textcolor light-blue><ui-small>发布于2017年11月1日</ui-small></ui-textcolor>\n\n- 增加`ui-pagination`分页组件\n- 增加codecov.io统计测试覆盖率\n- 更新文档\n- 修复`ui-select`组件的`list`通过模板渲染，会导致默认值被过滤的问题\n\n### 0.10.1 <ui-badge class=\"circle ver-canary\" s light-theme>Canary</ui-badge>\n\n<ui-textcolor light-blue><ui-small>发布于2017年10月31日</ui-small></ui-textcolor>\n\n- 增加codacy代码质量检测\n- 增加Lint、Build、Test、Coverage等CI流程\n- 更新README\n- 优化功能色彩\n- 移除`.npmignore`\n- 修复ESLint和StyleLint检测到的问题\n- 修复表单组的中表单销毁了，但值还可以通过`getGroup`取到的问题\n\n### 0.10.0 <ui-badge class=\"circle ver-canary\" s light-theme>Canary</ui-badge>\n\n<ui-textcolor light-blue><ui-small>发布于2017年10月31日</ui-small></ui-textcolor>\n\nMorningUI第一个版本，基于HMP UI，规范了定义，实现部分组件。\n\n")])])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -2546,7 +2560,24 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "href": "/component/h.html"
     }
-  }, [_vm._v("COMPONENT")])])])])])
+  }, [_vm._v("COMPONENT")])]), _vm._v(" "), _c('li', [_c('a', {
+    attrs: {
+      "target": "_blank",
+      "href": "https://github.com/Morning-UI/morning-ui"
+    }
+  }, [(_vm.isIndex) ? _c('img', {
+    staticClass: "githublogo",
+    attrs: {
+      "src": "http://h0.hucdn.com/open/201744/f87561b8bb354ef8_32x32.png",
+      "alt": "GitHub"
+    }
+  }) : _c('img', {
+    staticClass: "githublogo",
+    attrs: {
+      "src": "http://h0.hucdn.com/open/201744/d56df49a807a9fd0_32x32.png",
+      "alt": "GitHub"
+    }
+  }), _vm._v("\n                GitHub\n            ")])])])])])
 }
 var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {

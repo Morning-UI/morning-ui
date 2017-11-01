@@ -26,6 +26,9 @@
     - `.item > .content > p` : 表单项说明信息
     - `.item > .content > .form` : 表单容器
     - `.action` : 行动区域
+    - `.row` : 单行(仅内联表单组可用)
+
+    表单组通过`.inline`样式类来实现内联的表单样式。
     
     #### 使用
 
@@ -235,6 +238,281 @@
         </ui-formgroup>
     </div>
     :::
+
+    #### 内联表单组
+
+    表单组支持内联方式，这种方式一行支持多个表单。表单的宽度会根据一行中表单的数量适配。
+
+    添加`.inline`样式类来使用内联的表单样式。
+    
+    :::democode/html
+    <div style="width:600px;margin:auto">
+        <ui-formgroup class="inline">
+            <!-- .row : 单行 -->
+            <div class="row">
+                <!-- .item : 表单项 -->
+                <div class="item">
+                    <!-- .title : 表单项名称 -->
+                    <h5 class="title">Name</h5>
+                    <!-- .content : 表单项内容 -->
+                    <div class="content">
+                        <!-- .content : 表单容器 -->
+                        <div class="form">
+                            <ui-textinput></ui-textinput>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <h5 class="title">Introduction</h5>
+                    <div class="content">
+                        <div class="form">
+                            <ui-textinput></ui-textinput>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ui-formgroup>
+    </div>
+    :::
+    
+    #### 内联表单组的小标题及说明
+    
+    :::democode/html
+    <div style="width:600px;margin:auto">
+        <ui-formgroup class="inline">
+            <div class="row">
+                <div class="item">
+                    <h5 class="title">Name</h5>
+                    <div class="content">
+                        <div class="form">
+                            <ui-textinput></ui-textinput>
+                        </div>
+                        <!-- h6 : 小标题 -->
+                        <h6>Full Name?</h6>
+                        <!-- p : 说明信息 -->
+                        <p>Please fill in your full name.</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <h5 class="title">Introduction</h5>
+                    <div class="content">
+                        <div class="form">
+                            <ui-textinput></ui-textinput>
+                        </div>
+                        <!-- 仅使用说明信息 -->
+                        <p>You introduction.</p>
+                    </div>
+                </div>
+            </div>
+        </ui-formgroup>
+    </div>
+    :::
+    
+    #### 多行内联表单组
+
+    通过多个`.row`可以实现多行的内联表单组。
+    
+    :::democode/html
+    <div style="width:600px;margin:auto">
+        <ui-formgroup class="inline">
+            <div class="row">
+                <div class="item">
+                    <h5 class="title">First Name</h5>
+                    <div class="content">
+                        <div class="form">
+                            <ui-textinput></ui-textinput>
+                        </div>
+                        <h6>First Name?</h6>
+                        <p>Please fill in your first name.</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <h5 class="title">Last Name</h5>
+                    <div class="content">
+                        <div class="form">
+                            <ui-textinput></ui-textinput>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="item">
+                    <h5 class="title">Introduction</h5>
+                    <div class="content">
+                        <div class="form">
+                            <ui-textarea></ui-textarea>
+                        </div>
+                        <p>You introduction.</p>
+                    </div>
+                </div>
+            </div>
+        </ui-formgroup>
+    </div>
+    :::
+    
+    #### 内联表单组加表单组标题
+    
+    :::democode/html
+    <div style="width:600px;margin:auto">
+        <ui-formgroup class="inline">
+            <!-- header : 表单组头部 -->
+            <header>
+                <!-- h5 : 表单组标题 -->
+                <h5>YOUR HEALTH</h5>
+                <!-- p : 表单组说明信息 -->
+                <p>Let's talk about your health.</p>
+            </header>
+            <div class="row">
+                <div class="item">
+                    <h5 class="title">First Name</h5>
+                    <div class="content">
+                        <div class="form">
+                            <ui-textinput></ui-textinput>
+                        </div>
+                        <h6>First Name?</h6>
+                        <p>Please fill in your first name.</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <h5 class="title">Last Name</h5>
+                    <div class="content">
+                        <div class="form">
+                            <ui-textinput></ui-textinput>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="item">
+                    <h5 class="title">Introduction</h5>
+                    <div class="content">
+                        <div class="form">
+                            <ui-textarea></ui-textarea>
+                        </div>
+                        <p>You introduction.</p>
+                    </div>
+                </div>
+            </div>
+        </ui-formgroup>
+    </div>
+    :::
+    
+    #### 内联表单组加行动栏
+    
+    :::democode/html
+    <div style="width:600px;margin:auto">
+        <ui-formgroup class="inline">
+            <header>
+                <h5>YOUR HEALTH</h5>
+                <p>Let's talk about your health.</p>
+            </header>
+            <div class="row">
+                <div class="item">
+                    <h5 class="title">First Name</h5>
+                    <div class="content">
+                        <div class="form">
+                            <ui-textinput></ui-textinput>
+                        </div>
+                        <h6>First Name?</h6>
+                        <p>Please fill in your first name.</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <h5 class="title">Last Name</h5>
+                    <div class="content">
+                        <div class="form">
+                            <ui-textinput></ui-textinput>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="item">
+                    <h5 class="title">Introduction</h5>
+                    <div class="content">
+                        <div class="form">
+                            <ui-textarea></ui-textarea>
+                        </div>
+                        <p>You introduction.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="action">
+                <ui-btn>提交</ui-btn>&nbsp;
+                <ui-btn minor>取消</ui-btn>
+            </div>
+        </ui-formgroup>
+    </div>
+    :::
+
+    #### 内联表单组调整表单宽度
+
+    默认情况下所有表单会均分一行，你也可以通过样式按比例调整宽度占比。
+
+    注意由于采用了`flex`布局，样式的宽度只能影响比例，并不能设置固定值。
+    
+    :::democode/html
+    <div style="width:600px;margin:auto">
+        <ui-formgroup class="inline">
+            <header>
+                <h5>YOUR HEALTH</h5>
+                <p>Let's talk about your health.</p>
+            </header>
+            <div class="row">
+                <!-- 通过50%的宽度样式来缩短这个表单的宽度占比 -->
+                <div class="item" style="width:50%">
+                    <h5 class="title">First Name</h5>
+                    <div class="content">
+                        <div class="form">
+                            <ui-textinput></ui-textinput>
+                        </div>
+                        <h6>First Name?</h6>
+                        <p>Please fill in your first name.</p>
+                    </div>
+                </div>
+                
+                <div class="item">
+                    <h5 class="title">Middle Name</h5>
+                    <div class="content">
+                        <div class="form">
+                            <ui-textinput></ui-textinput>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <h5 class="title">Last Name</h5>
+                    <div class="content">
+                        <div class="form">
+                            <ui-textinput></ui-textinput>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="item">
+                    <h5 class="title">Introduction</h5>
+                    <div class="content">
+                        <div class="form">
+                            <ui-textarea></ui-textarea>
+                        </div>
+                        <p>You introduction.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="action">
+                <ui-btn>提交</ui-btn>&nbsp;
+                <ui-btn minor>取消</ui-btn>
+            </div>
+        </ui-formgroup>
+    </div>
+    :::
+
 
     [[[声明]]]
 
