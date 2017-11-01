@@ -10,6 +10,10 @@
 [![Codacy branch grade](https://img.shields.io/codacy/grade/91448799c68e4422ba6436a7ecdb08a7/master.svg)](https://www.codacy.com/app/EarlyH/morning-ui?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Morning-UI/morning-ui&amp;utm_campaign=Badge_Grade)
 [![npm](https://img.shields.io/npm/l/morning-ui.svg)](https://www.npmjs.com/package/morning-ui)
 
+## Documentation
+
+You can find the Morning UI documentation on the [website](http://morning-ui.com/).
+
 ## Under development
 
 This project base on HMP2 UI, but is completely independent. We want to share our work with more people.

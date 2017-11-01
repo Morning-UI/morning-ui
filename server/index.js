@@ -1,3 +1,4 @@
+const fs                            = require('fs');
 const Koa                           = require('koa');
 const route                         = require('koa-router');
 const etag                          = require('koa-etag');
@@ -17,12 +18,23 @@ const THRESHOLD = 2048;
 
 let argvs = minimist(process.argv.slice(2));
 
+router
+    .get('/package.json', async (ctx, next) => {
+        
+        ctx.set('Content-Type', 'application/json');
+        ctx.body = fs.readFileSync('./package.json');
+
+        next();
+
+    });
+
 app
     .use(compress({
         threshold : THRESHOLD
     }))
     .use(conditional())
     .use(etag())
+    .use(logger())
     .use(mount('/dist', serve('./dist', {
         maxage : CACHE_MAXAGE
     })))
@@ -32,12 +44,8 @@ app
     .use(mount('/', serve('./docs', {
         maxage : CACHE_MAXAGE
     })))
-    .use(mount('/', serve('./package.json', {
-        maxage : CACHE_MAXAGE
-    })))
     .use(router.routes())
     .use(router.allowedMethods())
-    .use(logger())
     .listen(argvs.port || WEB_PORT);
 
 /* eslint-disable no-console*/
