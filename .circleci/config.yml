@@ -96,7 +96,7 @@ jobs:
           keys:
             - v2-build-{{ .Environment.CIRCLE_SHA1 }}
       - run: npm run doc -- --port 8089 &
-      - run: npm install -g codecov && npm run codecov-report > coverage.lcov && sudo codecov
+      - run: sudo npm install -g codecov && npm run codecov-report > coverage.lcov && sudo codecov
 
 workflows:
   version: 2
