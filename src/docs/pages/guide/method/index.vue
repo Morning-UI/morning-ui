@@ -114,6 +114,11 @@
     - `move` : 移动项目
     - `setInput` : 设置输入框值
     - `getInput` : 获取输入框值
+    - `getPage` : 获取页数
+    - `to` : 至某一项
+    - `next` : 下一项
+    - `prev` : 上一项
+    - `setTotal` : 设置总数
 
     </script>
     </doc-guide>
