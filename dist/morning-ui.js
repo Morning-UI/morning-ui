@@ -553,6 +553,8 @@ var Form = _ui2.default.extend({
     },
     methods: {
         _syncGroup: function _syncGroup() {
+            var remove = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+
 
             var morning = this.morning;
 
@@ -566,6 +568,13 @@ var Form = _ui2.default.extend({
                     for (var _iterator = this.conf.group[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                         var gname = _step.value;
 
+
+                        if (remove && morning._groupData[gname] && morning._groupData[gname][this.conf.formKey] !== undefined) {
+
+                            delete morning._groupData[gname][this.conf.formKey];
+
+                            return;
+                        }
 
                         if (morning._groupData[gname] === undefined) {
 
@@ -753,8 +762,6 @@ var Form = _ui2.default.extend({
         },
         setKey: function setKey(key) {
 
-            // TODO remove group data this key
-
             return this.setConf('formKey', key);
         },
         getKey: function getKey() {
@@ -764,8 +771,6 @@ var Form = _ui2.default.extend({
         setGroup: function setGroup() {
             var group = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
 
-
-            // TODO remove group data this key
 
             var groups = [];
 
@@ -877,6 +882,7 @@ var Form = _ui2.default.extend({
     },
     beforeDestroy: function beforeDestroy() {
 
+        this._syncGroup(true);
         this._syncGroupVm([], this.conf.group);
     }
 });
@@ -4476,7 +4482,8 @@ exports.default = _form2.default.extend({
                 isMax: false,
                 multiinputLastValue: [],
                 selectInput: false,
-                itemValueList: []
+                itemValueList: [],
+                filterNotExist: false
             },
             listStyle: {}
         };
@@ -4520,13 +4527,16 @@ exports.default = _form2.default.extend({
             }
 
             // filter not exist value.
-            for (var index in value) {
+            if (this.data.filterNotExist) {
 
-                var val = value[index];
+                for (var index in value) {
 
-                if (this.data.itemValueList.indexOf(String(val)) === -1) {
+                    var val = value[index];
 
-                    value.splice(index, 1);
+                    if (this.data.itemValueList.indexOf(String(val)) === -1) {
+
+                        value.splice(index, 1);
+                    }
                 }
             }
 
@@ -4723,6 +4733,12 @@ exports.default = _form2.default.extend({
             }
 
             this.data.itemValueList = list;
+
+            if (this.data.filterNotExist === false) {
+
+                this.data.filterNotExist = true;
+                this.set(this._valueFilter(this.get(false)));
+            }
         },
         _wrapClick: function _wrapClick(evt) {
 
@@ -6738,7 +6754,7 @@ if (typeof _vue2.default === 'undefined') {
         _groupData: {},
         _groupVmMap: {},
         isMorning: true,
-        version: '0.10.0',
+        version: '0.10.1',
         map: {},
         findVM: function findVM(ref) {
 
