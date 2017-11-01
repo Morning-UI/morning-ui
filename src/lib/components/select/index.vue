@@ -181,7 +181,8 @@ export default Form.extend({
                 isMax : false,
                 multiinputLastValue : [],
                 selectInput : false,
-                itemValueList : []
+                itemValueList : [],
+                filterNotExist : false
             },
             listStyle : {}
         };
@@ -236,13 +237,17 @@ export default Form.extend({
             }
 
             // filter not exist value.
-            for (let index in value) {
+            if (this.data.filterNotExist) {
 
-                let val = value[index];
+                for (let index in value) {
 
-                if (this.data.itemValueList.indexOf(String(val)) === -1) {
+                    let val = value[index];
 
-                    value.splice(index, 1);
+                    if (this.data.itemValueList.indexOf(String(val)) === -1) {
+
+                        value.splice(index, 1);
+
+                    }
 
                 }
 
@@ -385,6 +390,13 @@ export default Form.extend({
             }
 
             this.data.itemValueList = list;
+
+            if (this.data.filterNotExist === false) {
+
+                this.data.filterNotExist = true;
+                this.set(this._valueFilter(this.get(false)));
+            
+            }
 
         },
         _wrapClick : function (evt) {
@@ -832,7 +844,7 @@ export default Form.extend({
         this._initTips();
         this._updateItemValueList();
         this._onValueChange();
-
+        
         this.$on('value-change', this._onValueChange);
 
         setTimeout(() => {
