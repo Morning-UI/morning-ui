@@ -33,7 +33,7 @@ i-formgroup{
         padding: 1.875em 0;
     }
 
-    > .item{
+    .item{
         width: 90%;
         display: flex;
         flex-flow: row nowrap;
@@ -85,6 +85,7 @@ i-formgroup{
             color: #666;
             font-weight: 400;
             margin-bottom: 0.375em;
+            margin-top: 0;
         }
 
         & > p{
@@ -99,6 +100,47 @@ i-formgroup{
 
         & > h6 + p{
             margin: -0.15em 0 0.375em 0;
+        }
+    }
+
+    &.inline {
+        > header{
+            margin-bottom: 1.5em;
+        }
+
+        .row{
+            width: 100%;
+            font-size: 0;
+            display: flex;
+
+            .item{
+                width: inherit;
+                font-size: @fontSize;
+                display: block;
+                border-top: none;
+                padding: 0.5em;
+                margin: 0;
+
+                > .title,
+                > .content{
+                    display: block;
+                    width: 100%;
+                }
+
+                > .title{
+                    margin-bottom: 8px;
+                }
+
+                > .content{
+                    > h6 {
+                        font-size: @fontSize*0.75;
+                    }
+
+                    .form {
+                        margin-bottom: 4px;
+                    }
+                }
+            }
         }
     }
 

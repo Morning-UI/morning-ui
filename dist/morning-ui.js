@@ -7013,7 +7013,7 @@ if (typeof _vue2.default === 'undefined') {
         _groupData: {},
         _groupVmMap: {},
         isMorning: true,
-        version: '0.10.1',
+        version: '0.10.2',
         map: {},
         findVM: function findVM(ref) {
 

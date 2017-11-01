@@ -4528,7 +4528,6 @@ i-pagination > .pagination > a {
   height: 2.4em;
   color: #8E9CAF !important;
   text-decoration: none !important;
-  /* &[disabled]{ opacity: 0; } */
 }
 i-pagination > .pagination > a.ignore {
   cursor: default;
@@ -4582,7 +4581,7 @@ i-pagination > .pagination > .page-jump .page-num {
 }
 i-pagination > .pagination > .page-jump .page-num > input {
   vertical-align: top !important;
-  border: 1px solid #f0f0f0;
+  border: 1px solid #F0F0F0;
   padding: 0 0.8em;
   line-height: 2.4em;
   height: 2.4em;
