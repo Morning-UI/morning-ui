@@ -1087,3 +1087,7 @@ i-dialog a:hover {
 .contributors {
   margin: 5px 0 20px 0;
 }
+
+.ver-canary {
+  background: #f5ab27 !important;
+}

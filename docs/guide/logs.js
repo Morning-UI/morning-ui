@@ -2127,6 +2127,16 @@ exports.default = {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 module.exports = exports['default'];
 
@@ -2429,7 +2439,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "type": "text/markdown"
     }
-  }, [_vm._v("\n# 更新日志\n\n### 版本规范\n\nMorning UI采用[语义化版本控制规范](http://semver.org/lang/zh-CN/)，同时采用`Stable`、`Beta`、`Canary`三种标记分别来标记版本。详见：[版本计划](/guide/versionplan.html)\n\n<!-- ### 1.0.0 <ui-badge class=\"circle\" s light-black>Stable</ui-badge> -->\n\n<!-- ### 0.11.0 <ui-badge class=\"circle\" s light-blue>Beta</ui-badge> -->\n\n<!-- ### 0.10.1 <ui-badge class=\"circle\" s light-theme>Forerunner</ui-badge> -->\n\n### 更新记录\n\n### 0.10.0 <ui-badge class=\"circle ver-canary\" s light-theme>Canary</ui-badge>\n\n<ui-textcolor light-blue><ui-small>发布于2017年10月31日</ui-small></ui-textcolor>\n\nMorningUI第一个版本，基于HMP UI，规范了定义，实现部分组件。\n\n")])])
+  }, [_vm._v("\n# 更新日志\n\n### 版本规范\n\nMorning UI采用[语义化版本控制规范](http://semver.org/lang/zh-CN/)，同时采用`Stable`、`Beta`、`Canary`三种标记分别来标记版本。详见：[版本计划](/guide/versionplan.html)\n\n<!-- ### 1.0.0 <ui-badge class=\"circle\" s light-black>Stable</ui-badge> -->\n\n<!-- ### 0.11.0 <ui-badge class=\"circle\" s light-blue>Beta</ui-badge> -->\n\n### 更新记录\n\n### 0.10.1 <ui-badge class=\"circle ver-canary\" s light-theme>Canary</ui-badge>\n\n<ui-textcolor light-blue><ui-small>发布于2017年10月31日</ui-small></ui-textcolor>\n\n- 增加codacy代码质量检测\n- 增加Lint、Build、Test、Coverage等CI流程\n- 更新README\n- 优化功能色彩\n- 移除`.npmignore`\n- 修复ESLint和StyleLint检测到的问题\n- 修复表单组的中表单销毁了，但值还可以通过`getGroup`取到的问题\n\n### 0.10.0 <ui-badge class=\"circle ver-canary\" s light-theme>Canary</ui-badge>\n\n<ui-textcolor light-blue><ui-small>发布于2017年10月31日</ui-small></ui-textcolor>\n\nMorningUI第一个版本，基于HMP UI，规范了定义，实现部分组件。\n\n")])])
 }
 var staticRenderFns = []
 render._withStripped = true
