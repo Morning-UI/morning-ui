@@ -49,7 +49,7 @@ export default {
         // 级联菜单<i class="tag new"></i> : 'b',
         标签页 : '/component/tab.html',
         // 表格 : 'b',
-        // 分页<i class="tag coming"></i> : '/component/pagination.html',
+        分页 : '/component/pagination.html',
         模拟盒 : '/component/dialog.html',
         // 消息提示 : 'b',
         // 日历 : 'b',

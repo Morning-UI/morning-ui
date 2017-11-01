@@ -23,7 +23,7 @@
     "cover": "node_modules/.bin/cross-env NODE_ENV=test node_modules/.bin/nyc npm run test",
     "cover-report": "npm run cover && node_modules/.bin/nyc report --reporter=html",
     "update-log-report": "node ./build/get-last-update-info.js",
-    "report": "npm run test-report && npm run cover-report && update-log-report",
+    "report": "npm run test-report && npm run cover-report && npm run update-log-report",
     "commit": "npm run build && npm run report",
     "doc": "node ./server/index.js"
   },
