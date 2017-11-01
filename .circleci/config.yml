@@ -95,8 +95,8 @@ jobs:
       - restore_cache:
           keys:
             - v2-build-{{ .Environment.CIRCLE_SHA1 }}
-      - run: npm run doc -- --port 8089 &
-      - run: sudo npm install -g codecov && npm run codecov-report && codecov
+      - run: sudo npm install -g codecov
+      - run: npm run doc -- --port 8089 & npm run codecov-report && codecov
 
 workflows:
   version: 2
