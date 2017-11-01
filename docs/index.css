@@ -352,6 +352,10 @@ header .menu li a.current {
   opacity: 1;
   font-weight: 600;
 }
+header .menu li .githublogo {
+  vertical-align: text-bottom;
+  width: 16px;
+}
 header.index {
   background: #FFF;
 }
