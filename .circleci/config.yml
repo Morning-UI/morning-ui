@@ -82,7 +82,7 @@ jobs:
       - restore_cache:
           keys:
             - v2-build-{{ .Environment.CIRCLE_SHA1 }}
-      - run: npm run doc -- --port 8089 & npm run cover
+      - run: npm run doc -- --port 8089 & npm run ci-cover
       - save_cache:
           key: v2-coverage-output-{{ .Environment.CIRCLE_SHA1 }}
           paths:
