@@ -93,8 +93,6 @@
     - `reject` : 失败
     - `reload` : 重载
     - `switch` : 切换
-    - `switchNext` : 切换至下一个
-    - `switchPrev` : 切换至上一个
     - `lock` : 锁定
     - `unlock` : 解锁
     - `set` : 设置表单值

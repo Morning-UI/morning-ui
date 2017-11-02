@@ -9,8 +9,8 @@
         :trigger="trigger"
     >
     
-    <div class="tipArrow"></div>
-    <div class="tipContent">
+    <div class="tip-arrow"></div>
+    <div class="tip-content">
         <template v-if="!$slots.default">
             {{data.title}}
         </template>
@@ -72,7 +72,7 @@ export default UI.extend({
                 },
                 timeout : null,
                 // isEnabled : true,
-                classPrefix : 'morningTether',
+                classPrefix : 'morning-tether',
                 attachmentMap : {
                     top : 'bottom center',
                     right : 'middle left',
@@ -282,7 +282,7 @@ export default UI.extend({
 
             if (!this._hasContent()) {
 
-                return;
+                return this;
 
             }
 
@@ -315,12 +315,14 @@ export default UI.extend({
             this.$el.classList.add(this.data.classNames.in);
             this._showComplete();
 
+            return this;
+
         },
         hide : function () {
 
             if (!this._hasContent()) {
 
-                return;
+                return this;
 
             }
 
@@ -328,6 +330,8 @@ export default UI.extend({
             this._popupHide();
             this._cleanupTether();
             this._hideComplete();
+
+            return this;
 
         },
         toggle : function () {
@@ -343,6 +347,8 @@ export default UI.extend({
                 this._leave();
 
             }
+            
+            return this;
 
         }
     },

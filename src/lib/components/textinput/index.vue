@@ -14,7 +14,7 @@
     >
 
     <template v-if="conf.prepend">
-        <div class="inputGroupAddon">{{conf.prepend}}</div>
+        <div class="input-group-addon">{{conf.prepend}}</div>
     </template>
     
     <template v-if="inputType === 'text'">
@@ -46,7 +46,7 @@
     </template>
 
     <template v-if="conf.append">
-        <div class="inputGroupAddon">{{conf.append}}</div>
+        <div class="input-group-addon">{{conf.append}}</div>
     </template>
 
     </i-textinput>
@@ -109,14 +109,14 @@ export default Form.extend({
         moreClass : function () {
 
             return {
-                inputGroup : !!(this.conf.prepend || this.conf.append)
+                'input-group' : !!(this.conf.prepend || this.conf.append)
             };
 
         },
         inputClass : function () {
 
             return {
-                hasAppend : !!this.conf.append
+                'has-append' : !!this.conf.append
             };
 
         }
