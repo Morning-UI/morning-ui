@@ -45,7 +45,7 @@ if (typeof Vue === 'undefined') {
         _groupData : {},
         _groupVmMap : {},
         isMorning : true,
-        version : '0.10.2',
+        version : '0.10.3',
         map : {},
         findVM : function (ref) {
 

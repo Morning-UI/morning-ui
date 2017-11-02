@@ -18,6 +18,25 @@
     
     ### 更新记录
 
+    ### 0.10.3 <ui-badge class="circle ver-canary" s light-theme>Canary</ui-badge>
+
+    <ui-textcolor light-blue><ui-small>发布于2017年11月2日</ui-small></ui-textcolor>
+
+    - `ui-formgroup`支持内联布局
+    - 现在表单方法`.get()`返回原始值，`.getJson()`返回JSON值
+    - 新增布局组件的单元测试
+    - 更新开发者规范
+    - 优化CI流程中的测试覆盖率部分，避免重复的测试
+    - 优化文档构建方式，减小文档体积
+    - 修复`ui-select`在搜索模式下不会出现`无项目`提示的问题
+
+    <ui-label primary>Upgrade Precautions</ui-label>
+
+    - 表单组件的`.get()`方法变更，请查询最新文档
+    - 组件样式中以驼峰法命名的`class`现在换成了中划线法命名(声明的`class`除外)
+    - 所有之前返回`undeifned`的组件方法，现在都会返回组件的Vue实例(取值方法除外)
+    - `ui-tab`的`switchNext()`和`switchPrev()`方法换成了`next()`和`prev()`方法
+
     ### 0.10.2 <ui-badge class="circle ver-canary" s light-theme>Canary</ui-badge>
 
     <ui-textcolor light-blue><ui-small>发布于2017年11月1日</ui-small></ui-textcolor>
