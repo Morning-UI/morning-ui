@@ -3001,9 +3001,9 @@ i-switch .track .point{border-radius:12px;height:24px;width:24px;background:#fff
 }
 i-switch.open .track .point{animation-name:switchOpen;animation-duration:.24s;animation-fill-mode:forwards
 }
-i-switch.hideName .note{display:none
+i-switch.hide-name .note{display:none
 }
-i-switch.hideName .track{position:relative;left:0;right:auto
+i-switch.hide-name .track{position:relative;left:0;right:auto
 }
 i-switch.sy-theme.open .track{background:#f33d5d;box-shadow:0 0 3px #be0c2b inset;border:1px #d60d31 solid
 }
