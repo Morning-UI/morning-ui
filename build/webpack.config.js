@@ -280,7 +280,14 @@ docsConfig = {
             'markdown-it',
             'mustache',
             'extend',
-            'Docs/common/menu.js'
+            'Docs/common/menu.js',
+            'Docs/common/DocBody.vue',
+            'Docs/common/DocComponent.vue',
+            'Docs/common/DocComponentStatus.vue',
+            'Docs/common/DocFooter.vue',
+            'Docs/common/DocGuide.vue',
+            'Docs/common/DocHeader.vue',
+            'Docs/common/DocSubmenu.vue'
         ]
     },
     plugins : [

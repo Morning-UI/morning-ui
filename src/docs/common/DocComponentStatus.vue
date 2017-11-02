@@ -223,14 +223,11 @@ export default {
 
         $.get(`/report/updatelog/${this.page}.json`, data => {
 
-            let promises = [];
-
             data.date = data.date.replace(/((^")|("$))/g, '');
 
             this.lastupdate = data;
 
         });
-
             
     }
 };
