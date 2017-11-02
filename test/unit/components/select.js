@@ -7,13 +7,13 @@ const name = 'select';
 
 Vue.component(`ui-${name}`, select);
 
-test('base : component tag name is t-*', async t => {
+test('base : component snapshot', async t => {
 
     const vm = new Vue(select).$mount();
 
     t.plan(1);
-
-    t.is(vm.$el.tagName, `i-${name}`.toUpperCase());
+    
+    snapshot(t, vm);
 
 });
 
