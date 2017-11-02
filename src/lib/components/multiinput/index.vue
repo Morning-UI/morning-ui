@@ -205,7 +205,7 @@ export default Form.extend({
         },
         _deleteItem : function (index) {
 
-            let value = this.get(false);
+            let value = this.get();
 
             value.splice(index, 1);
 
@@ -223,7 +223,7 @@ export default Form.extend({
 
             }
 
-            let value = this.get(false);
+            let value = this.get();
 
             if (this.Move.movedIndex !== -1) {
             
@@ -237,7 +237,7 @@ export default Form.extend({
         },
         add : function (item, index) {
 
-            let value = this.get(false);
+            let value = this.get();
 
             if (this.conf.max &&
                 this.conf.max <= value.length) {
