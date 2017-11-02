@@ -85,7 +85,7 @@
     
     - ` ``` ` : 代码区域([CommonMark Spec](http://spec.commonmark.org/)支持)
     - `:::democode` : 演示区域，包含示例和代码(扩展用法，见下面章节)
-    - `:::demo` : 示例区域(扩展用法，见下面章节)
+    - `---demostart---`和`---demoend---` : 示例区域(扩展用法，见下面章节)
 
     ##### 链接
 
