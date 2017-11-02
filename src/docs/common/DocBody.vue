@@ -601,7 +601,7 @@ formConfig
 
 #### getJson()
 
-获取表单值的JSON序列化字符串。
+获取表单值的JSON序列化字符串。若你需要和其他程序进行数据交互，使用JSON是一种较好的方法。
 
 :::democode/html
 <div style="width:300px;">
