@@ -2690,11 +2690,11 @@ exports.default = _ui2.default.extend({
         moreClass: function moreClass() {
 
             return {
-                hasHeader: this.data.hasHeader,
-                hasFooter: this.data.hasFooter,
-                showTop: this.conf.showType === 'top',
-                showCenter: this.conf.showType === 'center',
-                showNoAnimate: this.conf.showType === 'no'
+                'has-header': this.data.hasHeader,
+                'has-Footer': this.data.hasFooter,
+                'show-top': this.conf.showType === 'top',
+                'show-center': this.conf.showType === 'center',
+                'show-no-animate': this.conf.showType === 'no'
             };
         }
     },
@@ -6291,13 +6291,13 @@ exports.default = _form2.default.extend({
         moreClass: function moreClass() {
 
             return {
-                inputGroup: !!(this.conf.prepend || this.conf.append)
+                'input-group': !!(this.conf.prepend || this.conf.append)
             };
         },
         inputClass: function inputClass() {
 
             return {
-                hasAppend: !!this.conf.append
+                'has-append': !!this.conf.append
             };
         }
     },
@@ -6511,7 +6511,7 @@ exports.default = _ui2.default.extend({
                 },
                 timeout: null,
                 // isEnabled : true,
-                classPrefix: 'morningTether',
+                classPrefix: 'morning-tether',
                 attachmentMap: {
                     top: 'bottom center',
                     right: 'middle left',
@@ -12627,9 +12627,9 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "trigger": _vm.trigger
     }
   }, [_c('div', {
-    staticClass: "tipArrow"
+    staticClass: "tip-arrow"
   }), _vm._v(" "), _c('div', {
-    staticClass: "tipContent"
+    staticClass: "tip-content"
   }, [(!_vm.$slots.default) ? [_vm._v("\n        " + _vm._s(_vm.data.title) + "\n    ")] : [_vm._t("default")]], 2)])
 }
 var staticRenderFns = []
@@ -13440,7 +13440,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "append": _vm.append
     }
   }, [(_vm.conf.prepend) ? [_c('div', {
-    staticClass: "inputGroupAddon"
+    staticClass: "input-group-addon"
   }, [_vm._v(_vm._s(_vm.conf.prepend))])] : _vm._e(), _vm._v(" "), (_vm.inputType === 'text') ? [_c('input', {
     directives: [{
       name: "model",
@@ -13497,7 +13497,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       }
     }
   })], _vm._v(" "), (_vm.conf.append) ? [_c('div', {
-    staticClass: "inputGroupAddon"
+    staticClass: "input-group-addon"
   }, [_vm._v(_vm._s(_vm.conf.append))])] : _vm._e()], 2)
 }
 var staticRenderFns = []

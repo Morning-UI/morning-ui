@@ -107,6 +107,8 @@ export default Form.extend({
                 this.set(String(key));
 
             }
+
+            return this;
             
         }
     },

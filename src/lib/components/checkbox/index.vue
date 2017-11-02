@@ -141,6 +141,8 @@ export default Form.extend({
             
             this.set(arrayUniq(list));
 
+            return this;
+
         }
     },
     created : function () {},
