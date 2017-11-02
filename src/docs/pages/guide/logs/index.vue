@@ -10,6 +10,8 @@
 
     Morning UI采用[语义化版本控制规范](http://semver.org/lang/zh-CN/)，同时采用`Stable`、`Beta`、`Canary`三种标记分别来标记版本。详见：[版本计划](/guide/versionplan.html)
 
+    如果更新对使用方法有影响，会在更新记录的`Upgrade Precautions`说明。
+
     <!-- ### 1.0.0 <ui-badge class="circle" s light-black>Stable</ui-badge> -->
 
     <!-- ### 0.11.0 <ui-badge class="circle" s light-blue>Beta</ui-badge> -->

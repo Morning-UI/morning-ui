@@ -182,7 +182,8 @@ export default Form.extend({
                 multiinputLastValue : [],
                 selectInput : false,
                 itemValueList : [],
-                filterNotExist : false
+                filterNotExist : false,
+                lastItemHeight : 0
             },
             listStyle : {}
         };
@@ -258,7 +259,7 @@ export default Form.extend({
         },
         _onValueChange : function () {
 
-            let newVal = this.get(false);
+            let newVal = this.get();
             let $items = this.$el.querySelectorAll('.list>li:not(.noitem)');
             let $currentItems = this.$el.querySelectorAll('.list>li.current');
             let $noitem = this.$el.querySelector('.noitem');
@@ -360,7 +361,7 @@ export default Form.extend({
             }
 
             if (searchMultiinput &&
-                searchMultiinput.get() !== JSON.stringify(multiValue)) {
+                searchMultiinput.getJson() !== JSON.stringify(multiValue)) {
 
                 let inputValue = searchMultiinput.getInput();
 
@@ -394,7 +395,7 @@ export default Form.extend({
             if (this.data.filterNotExist === false) {
 
                 this.data.filterNotExist = true;
-                this.set(this._valueFilter(this.get(false)));
+                this.set(this._valueFilter(this.get()));
             
             }
 
@@ -459,7 +460,7 @@ export default Form.extend({
                 if (this.conf.multiSelect &&
                     this.data.value !== undefined) {
 
-                    value = this.get(false);
+                    value = this.get();
                     value.push($clickItem.getAttribute('value'));
                
                 }
@@ -513,7 +514,7 @@ export default Form.extend({
                 let searchTextinput = this.$el.querySelector(`#ui-select-ti-${this.uiid}`);
 
                 searchTextinput = searchTextinput._vm;
-                key = searchTextinput.get(false);
+                key = searchTextinput.get();
             
             }
 
@@ -609,7 +610,7 @@ export default Form.extend({
             }
 
             let searchMultiinput = this.$el.querySelector(`#ui-select-mi-${this.uiid}`)._vm;
-            let values = searchMultiinput.get(false);
+            let values = searchMultiinput.get();
 
             if (!this.data.selectInput &&
                 this.data.multiinputLastValue.length <= values.length) {
@@ -646,7 +647,7 @@ export default Form.extend({
             }
            
             let searchMultiinput = this.$el.querySelector(`#ui-select-mi-${this.uiid}`)._vm;
-            let values = searchMultiinput.get(false);
+            let values = searchMultiinput.get();
             let $items = this.$el.querySelectorAll('.list>li:not(.noitem)');
 
             for (let $item of $items) {
@@ -763,7 +764,14 @@ export default Form.extend({
 
             }
 
-            let maxHeight = $item.offsetHeight * this.conf.maxShow;
+            let itemHeight = $item.offsetHeight || this.data.lastItemHeight;
+            let maxHeight = itemHeight * this.conf.maxShow;
+
+            if (itemHeight) {
+
+                this.data.lastItemHeight = itemHeight;
+
+            }
 
             if (this.listStyle.maxHeight === `${maxHeight}px`) {
 

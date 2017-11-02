@@ -34,6 +34,7 @@
 
     - set() : 设置表单的值
     - get() : 获取表单的值
+    - getJson() : 获取表单的JSON值
     - setName() : 设置表单的名称
     - getName() : 获取表单的名称
     - setKey() : 设置表单的KEY

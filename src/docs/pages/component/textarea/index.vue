@@ -159,7 +159,7 @@
         </div>
         <br>
         <ui-link js="window.morning.findVM('demoType{$valueType}').set({$&valueContent})">设置{$valueType}类型</ui-link>
-        <ui-link js="alert(window.morning.findVM('demoType{$valueType}').get())">获取表单JSON值</ui-link>
+        <ui-link js="alert(window.morning.findVM('demoType{$valueType}').getJson())">获取表单JSON值</ui-link>
     </div>
     <br>
     <br>
