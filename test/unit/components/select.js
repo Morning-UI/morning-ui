@@ -3,21 +3,42 @@ import snapshot                     from '../../helpers/snapshot';
 import Vue                          from 'vue/dist/vue.common.js';
 import select                       from '../../../src/lib/components/select/index.vue';
 
-Vue.component(`ui-select`, select);
+const name = 'select';
+
+Vue.component(`ui-${name}`, select);
+
+test('base : component snapshot', async t => {
+
+    const vm = new Vue(select).$mount();
+
+    t.plan(1);
+    
+    snapshot(t, vm);
+
+});
 
 test('base : init component', async t => {
 
     const vm = new Vue(select).$mount();
 
-    t.plan(3);
+    t.plan(2);
 
-    t.is(vm.uiid, 1);
-    t.is(select.options.name, 'select');
-    snapshot(t, vm);
+    t.is(vm.uiid, 2);
+    t.is(select.options.name, name);
 
 });
 
-test('config : default-value : with v-for slot : value exist', async t => {
+test('base : component tag name is t-*', async t => {
+
+    const vm = new Vue(select).$mount();
+
+    t.plan(1);
+
+    t.is(vm.$el.tagName, `i-${name}`.toUpperCase());
+
+});
+
+test.only('config : default-value : with v-for slot : value exist', async t => {
 
     const vm = new Vue({
         template : `

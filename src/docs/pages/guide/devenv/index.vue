@@ -102,6 +102,7 @@
     $ npm run e2e-watch                 # 当文件变化时执行端点测试
     $ npm run e2e-snapshot              # 为端点测试进行快照
     $ npm run cover                     # 检查测试覆盖
+    $ npm run ci-cover                  # 检查测试覆盖(持续集成时使用，限制了进程数)
     $ npm run cover-report              # 生成测试覆盖报告
     $ npm run codecov-report            # 生成codecov测试覆盖报告
     $ npm run update-log-report         # 根据Git Log生成组件更新日志
