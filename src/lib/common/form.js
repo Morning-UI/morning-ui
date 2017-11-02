@@ -79,7 +79,7 @@ let Form = UI.extend({
 
                     if (this.conf.formKey !== undefined) {
 
-                        morning._groupData[gname][this.conf.formKey] = this.get(false);
+                        morning._groupData[gname][this.conf.formKey] = this.get();
 
                     }
 
@@ -180,7 +180,7 @@ let Form = UI.extend({
             return this._set(value);
 
         },
-        get : function (json = true) {
+        get : function () {
 
             let result;
 
@@ -206,13 +206,12 @@ let Form = UI.extend({
 
             }
 
-            if (json) {
-
-                return JSON.stringify(result);
-
-            }
-
             return result;
+
+        },
+        getJson : function () {
+
+            return JSON.stringify(this.get());
 
         },
         setName : function (name = '') {

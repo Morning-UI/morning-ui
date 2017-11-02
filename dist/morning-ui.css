@@ -5934,10 +5934,10 @@ i-switch.open .track .point {
   animation-duration: 0.24s;
   animation-fill-mode: forwards;
 }
-i-switch.hideName .note {
+i-switch.hide-name .note {
   display: none;
 }
-i-switch.hideName .track {
+i-switch.hide-name .track {
   position: relative;
   left: 0;
   right: auto;

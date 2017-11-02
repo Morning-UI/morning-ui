@@ -130,7 +130,7 @@ export default UI.extend({
         _jump : function () {
 
             let inputVm = this.morning.findVM(`ui-select-input-${this.uiid}`);
-            let jumpPage = +inputVm.get(false);
+            let jumpPage = +inputVm.get();
 
             inputVm.set();
 
