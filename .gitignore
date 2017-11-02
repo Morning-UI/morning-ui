@@ -1,6 +1,7 @@
 /node_modules/
 /.nyc_output/
 /.tmp/
+/report/
 .*.swp
 .DS_Store
 .npmrc

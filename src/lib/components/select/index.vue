@@ -825,6 +825,8 @@ export default Form.extend({
 
             }
 
+            return this;
+
         }
     },
     created : function () {

@@ -48,6 +48,9 @@
     - 组件内所有的色彩以`common/var.less`中`@color`开头的变量为基础，可以修改亮度
     - 组件内的尺寸应尽量使用`common/var.less`中`@fontSize`变量为基础
     - 组件内的尺寸单位首选`em`
+    - LESS中的`id`、`class`、函数命名采用中划线命名(声明的命名除外)<ui-badge xxs class="circle">AUTO</ui-badge>
+    - 声明在LESS中的书写顺序为：尺寸、颜色、状态
+    - 组件的公开方法若不需要返回值，则返回当前`vm`实例
 
     #### 交互组件
 

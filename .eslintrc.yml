@@ -7,3 +7,4 @@ plugins:
  - html
 globals:
   define: true
+  $: true
