@@ -93,8 +93,6 @@
     - `reject` : 失败
     - `reload` : 重载
     - `switch` : 切换
-    - `switchNext` : 切换至下一个
-    - `switchPrev` : 切换至上一个
     - `lock` : 锁定
     - `unlock` : 解锁
     - `set` : 设置表单值
@@ -114,6 +112,11 @@
     - `move` : 移动项目
     - `setInput` : 设置输入框值
     - `getInput` : 获取输入框值
+    - `getPage` : 获取页数
+    - `to` : 至某一项
+    - `next` : 下一项
+    - `prev` : 上一项
+    - `setTotal` : 设置总数
 
     </script>
     </doc-guide>

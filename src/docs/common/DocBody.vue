@@ -587,20 +587,27 @@ formConfig
 </div>
 :::
 
-#### get([json])
+#### get()
 
-获取表单的值。
-
-|KEY|可选|描述|接受值|值类型|默认值|
-|-|-|-|-|-|-|
-|json|YES|表单的值是否需要JSON序列化后返回，若你需要和其他程序进行数据交互，使用JSON是一种较好的方法。|\`true\`<br>\`false\`|Boolean|\`true\`|
+获取表单的原始值。
 
 :::democode/html
 <div style="width:300px;">
     <ui-{%uikey%} ref="demoMethodGet" form-name="表单名" :default-value="{%&methodDefaultValue%}" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>
     <br>
-    <ui-link js="alert(window.morning.findVM('demoMethodGet').get(false))">获取表单原始值</ui-link>
-    <ui-link js="alert(window.morning.findVM('demoMethodGet').get())">获取表单JSON值</ui-link>
+    <ui-link js="alert(window.morning.findVM('demoMethodGet').get())">获取表单原始值</ui-link>
+</div>
+:::
+
+#### getJson()
+
+获取表单值的JSON序列化字符串。若你需要和其他程序进行数据交互，使用JSON是一种较好的方法。
+
+:::democode/html
+<div style="width:300px;">
+    <ui-{%uikey%} ref="demoMethodGetJson" form-name="表单名" :default-value="{%&methodDefaultValue%}" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>
+    <br>
+    <ui-link js="alert(window.morning.findVM('demoMethodGetJson').getJson())">获取表单值的JSON序列化字符串</ui-link>
 </div>
 :::
 

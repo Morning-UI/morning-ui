@@ -212,6 +212,10 @@
     - `item-tip-direct` : 项目提示方向
     - `accept-html` : 可使用HTML
     - `can-move` : 可移动
+    - `total` : 总数
+    - `page-size` : 每页数量
+    - `page` : 页数
+    - `jump-page` : 跳转页面
 
     </script>
     </doc-guide>

@@ -23,7 +23,7 @@
 
     ### 安装Vue
 
-    由于MorningUI依赖Vue.js，请先安装`2.4.0`以上的Vue.js。
+    由于MorningUI依赖Vue.js，请先安装`2.5.0`以上的Vue.js。
 
     [了解如何安装Vue.js](https://cn.vuejs.org/v2/guide/installation.html)
 

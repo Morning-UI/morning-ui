@@ -72,11 +72,11 @@ export default UI.extend({
         moreClass : function () {
 
             return {
-                hasHeader : this.data.hasHeader,
-                hasFooter : this.data.hasFooter,
-                showTop : (this.conf.showType === 'top'),
-                showCenter : (this.conf.showType === 'center'),
-                showNoAnimate : (this.conf.showType === 'no')
+                'has-header' : this.data.hasHeader,
+                'has-Footer' : this.data.hasFooter,
+                'show-top' : (this.conf.showType === 'top'),
+                'show-center' : (this.conf.showType === 'center'),
+                'show-no-animate' : (this.conf.showType === 'no')
             };
 
         }
@@ -146,6 +146,8 @@ export default UI.extend({
                 this.$emit('emit');
             
             }
+
+            return this;
 
         }
 
