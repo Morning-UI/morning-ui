@@ -137,7 +137,7 @@ export default UI.extend({
             return this;
 
         },
-        switchNext : function () {
+        next : function () {
 
             let index = this.data.tabs.indexOf(this.data.selectTab);
 
@@ -156,7 +156,7 @@ export default UI.extend({
             return this;
 
         },
-        switchPrev : function () {
+        prev : function () {
 
             let index = this.data.tabs.indexOf(this.data.selectTab);
 

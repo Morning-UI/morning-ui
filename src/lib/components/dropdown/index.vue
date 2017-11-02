@@ -81,7 +81,7 @@ export default UI.extend({
 
             if (show === this.data.show) {
 
-                return;
+                return this;
 
             }
 
@@ -96,6 +96,8 @@ export default UI.extend({
                 this.$emit('hide');
 
             }
+
+            return this;
 
         }
         

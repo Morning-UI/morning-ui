@@ -46,7 +46,7 @@ export default Form.extend({
         moreClass : function () {
 
             return {
-                hideName : !!this.conf.hideName || !!this.data.nameIsEmpty,
+                'hide-name' : !!this.conf.hideName || !!this.data.nameIsEmpty,
                 open : !!this.data.value
             };
 

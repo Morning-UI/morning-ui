@@ -1,6 +1,6 @@
 {
   "name": "morning-ui",
-  "version": "0.10.2",
+  "version": "0.10.3",
   "description": "modern efficient user interface, using human-friendly HTML",
   "main": "dist/morning-ui.js",
   "scripts": {
@@ -13,7 +13,7 @@
     "test": "node_modules/.bin/cross-env NODE_ENV=test node_modules/.bin/ava test/",
     "test-watch": "npm run test -- --watch",
     "test-snapshot": "npm run unit-snapshot && npm run e2e-snapshot",
-    "test-report": "npm run test -- --tap | tap-out > report/test.json",
+    "test-report": "(test -d report || mkdir report) && npm run test -- --tap | node_modules/.bin/tap-out > report/test.json",
     "unit": "node_modules/.bin/cross-env NODE_ENV=test node_modules/.bin/ava test/unit",
     "unit-watch": "npm run unit -- --watch",
     "unit-snapshot": "node_modules/.bin/cross-env NODE_ENV=test node_modules/.bin/ava test/unit  --update-snapshots",
@@ -21,10 +21,11 @@
     "e2e-watch": "npm run e2e -- --watch",
     "e2e-snapshot": "node_modules/.bin/cross-env NODE_ENV=test node_modules/.bin/ava test/e2e  --update-snapshots",
     "cover": "node_modules/.bin/cross-env NODE_ENV=test node_modules/.bin/nyc npm run test",
+    "ci-cover": "node_modules/.bin/cross-env NODE_ENV=test node_modules/.bin/nyc npm run test -- -c 2",
     "cover-report": "npm run cover && node_modules/.bin/nyc report --reporter=html",
-    "codecov-report": "npm run cover && node_modules/.bin/nyc report --reporter=text-lcov > coverage.lcov",
+    "codecov-report": "node_modules/.bin/nyc report --reporter=text-lcov > coverage.lcov",
     "update-log-report": "node ./build/get-last-update-info.js",
-    "report": "npm run test-report && npm run cover-report && npm run update-log-report",
+    "report": "npm run update-log-report && npm run test-report && npm run cover-report",
     "commit": "npm run build && npm run report",
     "doc": "node ./server/index.js"
   },

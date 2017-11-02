@@ -583,7 +583,7 @@ var Form = _ui2.default.extend({
 
                         if (this.conf.formKey !== undefined) {
 
-                            morning._groupData[gname][this.conf.formKey] = this.get(false);
+                            morning._groupData[gname][this.conf.formKey] = this.get();
                         }
                     }
                 } catch (err) {
@@ -721,8 +721,6 @@ var Form = _ui2.default.extend({
             return this._set(value);
         },
         get: function get() {
-            var json = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
-
 
             var result = void 0;
 
@@ -743,12 +741,11 @@ var Form = _ui2.default.extend({
                 result = this.data.value;
             }
 
-            if (json) {
-
-                return JSON.stringify(result);
-            }
-
             return result;
+        },
+        getJson: function getJson() {
+
+            return JSON.stringify(this.get());
         },
         setName: function setName() {
             var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
@@ -2561,6 +2558,8 @@ exports.default = _form2.default.extend({
             }
 
             this.set((0, _arrayUniq2.default)(list));
+
+            return this;
         }
     },
     created: function created() {},
@@ -2690,11 +2689,11 @@ exports.default = _ui2.default.extend({
         moreClass: function moreClass() {
 
             return {
-                hasHeader: this.data.hasHeader,
-                hasFooter: this.data.hasFooter,
-                showTop: this.conf.showType === 'top',
-                showCenter: this.conf.showType === 'center',
-                showNoAnimate: this.conf.showType === 'no'
+                'has-header': this.data.hasHeader,
+                'has-Footer': this.data.hasFooter,
+                'show-top': this.conf.showType === 'top',
+                'show-center': this.conf.showType === 'center',
+                'show-no-animate': this.conf.showType === 'no'
             };
         }
     },
@@ -2753,6 +2752,8 @@ exports.default = _ui2.default.extend({
                 this.$emit('hide');
                 this.$emit('emit');
             }
+
+            return this;
         }
 
     },
@@ -2915,7 +2916,7 @@ exports.default = _ui2.default.extend({
 
             if (show === this.data.show) {
 
-                return;
+                return this;
             }
 
             this.data.show = show;
@@ -2927,6 +2928,8 @@ exports.default = _ui2.default.extend({
 
                 this.$emit('hide');
             }
+
+            return this;
         }
 
     },
@@ -3919,7 +3922,7 @@ exports.default = _form2.default.extend({
         },
         _deleteItem: function _deleteItem(index) {
 
-            var value = this.get(false);
+            var value = this.get();
 
             value.splice(index, 1);
 
@@ -3932,7 +3935,7 @@ exports.default = _form2.default.extend({
                 return;
             }
 
-            var value = this.get(false);
+            var value = this.get();
 
             if (this.Move.movedIndex !== -1) {
 
@@ -3944,7 +3947,7 @@ exports.default = _form2.default.extend({
         },
         add: function add(item, index) {
 
-            var value = this.get(false);
+            var value = this.get();
 
             if (this.conf.max && this.conf.max <= value.length) {
 
@@ -4250,7 +4253,7 @@ exports.default = _ui2.default.extend({
         _jump: function _jump() {
 
             var inputVm = this.morning.findVM('ui-select-input-' + this.uiid);
-            var jumpPage = +inputVm.get(false);
+            var jumpPage = +inputVm.get();
 
             inputVm.set();
 
@@ -4329,7 +4332,7 @@ exports.default = _ui2.default.extend({
 
             if (this.conf.list) {
 
-                return;
+                return this;
             }
 
             num = +num || this.conf.total;
@@ -4347,6 +4350,8 @@ exports.default = _ui2.default.extend({
 
                 this.to(num);
             }
+
+            return this;
         }
     },
     mounted: function mounted() {
@@ -4471,6 +4476,8 @@ exports.default = _form2.default.extend({
 
                 this.set(String(key));
             }
+
+            return this;
         }
     },
     created: function created() {},
@@ -4742,7 +4749,8 @@ exports.default = _form2.default.extend({
                 multiinputLastValue: [],
                 selectInput: false,
                 itemValueList: [],
-                filterNotExist: false
+                filterNotExist: false,
+                lastItemHeight: 0
             },
             listStyle: {}
         };
@@ -4803,7 +4811,7 @@ exports.default = _form2.default.extend({
         },
         _onValueChange: function _onValueChange() {
 
-            var newVal = this.get(false);
+            var newVal = this.get();
             var $items = this.$el.querySelectorAll('.list>li:not(.noitem)');
             var $currentItems = this.$el.querySelectorAll('.list>li.current');
             var $noitem = this.$el.querySelector('.noitem');
@@ -4945,7 +4953,7 @@ exports.default = _form2.default.extend({
                 this.data.selectedContent = this.conf.formName || '';
             }
 
-            if (searchMultiinput && searchMultiinput.get() !== JSON.stringify(multiValue)) {
+            if (searchMultiinput && searchMultiinput.getJson() !== JSON.stringify(multiValue)) {
 
                 var inputValue = searchMultiinput.getInput();
 
@@ -4996,7 +5004,7 @@ exports.default = _form2.default.extend({
             if (this.data.filterNotExist === false) {
 
                 this.data.filterNotExist = true;
-                this.set(this._valueFilter(this.get(false)));
+                this.set(this._valueFilter(this.get()));
             }
         },
         _wrapClick: function _wrapClick(evt) {
@@ -5071,7 +5079,7 @@ exports.default = _form2.default.extend({
 
                 if (this.conf.multiSelect && this.data.value !== undefined) {
 
-                    value = this.get(false);
+                    value = this.get();
                     value.push($clickItem.getAttribute('value'));
                 }
 
@@ -5115,7 +5123,7 @@ exports.default = _form2.default.extend({
                 var searchTextinput = this.$el.querySelector('#ui-select-ti-' + this.uiid);
 
                 searchTextinput = searchTextinput._vm;
-                key = searchTextinput.get(false);
+                key = searchTextinput.get();
             }
 
             var $items = this.$el.querySelectorAll('.list>li:not(.noitem):not(.selected)');
@@ -5255,7 +5263,7 @@ exports.default = _form2.default.extend({
             }
 
             var searchMultiinput = this.$el.querySelector('#ui-select-mi-' + this.uiid)._vm;
-            var values = searchMultiinput.get(false);
+            var values = searchMultiinput.get();
 
             if (!this.data.selectInput && this.data.multiinputLastValue.length <= values.length) {
 
@@ -5287,7 +5295,7 @@ exports.default = _form2.default.extend({
             }
 
             var searchMultiinput = this.$el.querySelector('#ui-select-mi-' + this.uiid)._vm;
-            var values = searchMultiinput.get(false);
+            var values = searchMultiinput.get();
             var $items = this.$el.querySelectorAll('.list>li:not(.noitem)');
 
             var _iteratorNormalCompletion9 = true;
@@ -5469,7 +5477,13 @@ exports.default = _form2.default.extend({
                 return;
             }
 
-            var maxHeight = $item.offsetHeight * this.conf.maxShow;
+            var itemHeight = $item.offsetHeight || this.data.lastItemHeight;
+            var maxHeight = itemHeight * this.conf.maxShow;
+
+            if (itemHeight) {
+
+                this.data.lastItemHeight = itemHeight;
+            }
 
             if (this.listStyle.maxHeight === maxHeight + 'px') {
 
@@ -5542,6 +5556,8 @@ exports.default = _form2.default.extend({
                 this.data.showlist = false;
                 this.$emit('list-hide');
             }
+
+            return this;
         }
     },
     created: function created() {
@@ -5737,7 +5753,7 @@ exports.default = _form2.default.extend({
         moreClass: function moreClass() {
 
             return {
-                hideName: !!this.conf.hideName || !!this.data.nameIsEmpty,
+                'hide-name': !!this.conf.hideName || !!this.data.nameIsEmpty,
                 open: !!this.data.value
             };
         }
@@ -5949,7 +5965,7 @@ exports.default = _ui2.default.extend({
 
             return this;
         },
-        switchNext: function switchNext() {
+        next: function next() {
 
             var index = this.data.tabs.indexOf(this.data.selectTab);
 
@@ -5965,7 +5981,7 @@ exports.default = _ui2.default.extend({
 
             return this;
         },
-        switchPrev: function switchPrev() {
+        prev: function prev() {
 
             var index = this.data.tabs.indexOf(this.data.selectTab);
 
@@ -6129,6 +6145,8 @@ exports.default = _form2.default.extend({
 
                 this.conf.rows = row;
             }
+
+            return this;
         }
     },
     created: function created() {},
@@ -6291,13 +6309,13 @@ exports.default = _form2.default.extend({
         moreClass: function moreClass() {
 
             return {
-                inputGroup: !!(this.conf.prepend || this.conf.append)
+                'input-group': !!(this.conf.prepend || this.conf.append)
             };
         },
         inputClass: function inputClass() {
 
             return {
-                hasAppend: !!this.conf.append
+                'has-append': !!this.conf.append
             };
         }
     },
@@ -6511,7 +6529,7 @@ exports.default = _ui2.default.extend({
                 },
                 timeout: null,
                 // isEnabled : true,
-                classPrefix: 'morningTether',
+                classPrefix: 'morning-tether',
                 attachmentMap: {
                     top: 'bottom center',
                     right: 'middle left',
@@ -6728,7 +6746,7 @@ exports.default = _ui2.default.extend({
 
             if (!this._hasContent()) {
 
-                return;
+                return this;
             }
 
             this._popupShow();
@@ -6758,18 +6776,22 @@ exports.default = _ui2.default.extend({
 
             this.$el.classList.add(this.data.classNames.in);
             this._showComplete();
+
+            return this;
         },
         hide: function hide() {
 
             if (!this._hasContent()) {
 
-                return;
+                return this;
             }
 
             this.$el.classList.remove(this.data.classNames.in);
             this._popupHide();
             this._cleanupTether();
             this._hideComplete();
+
+            return this;
         },
         toggle: function toggle() {
 
@@ -6782,6 +6804,8 @@ exports.default = _ui2.default.extend({
 
                 this._leave();
             }
+
+            return this;
         }
     },
     mounted: function mounted() {
@@ -7013,7 +7037,7 @@ if (typeof _vue2.default === 'undefined') {
         _groupData: {},
         _groupVmMap: {},
         isMorning: true,
-        version: '0.10.1',
+        version: '0.10.3',
         map: {},
         findVM: function findVM(ref) {
 
@@ -12627,9 +12651,9 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "trigger": _vm.trigger
     }
   }, [_c('div', {
-    staticClass: "tipArrow"
+    staticClass: "tip-arrow"
   }), _vm._v(" "), _c('div', {
-    staticClass: "tipContent"
+    staticClass: "tip-content"
   }, [(!_vm.$slots.default) ? [_vm._v("\n        " + _vm._s(_vm.data.title) + "\n    ")] : [_vm._t("default")]], 2)])
 }
 var staticRenderFns = []
@@ -13440,7 +13464,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "append": _vm.append
     }
   }, [(_vm.conf.prepend) ? [_c('div', {
-    staticClass: "inputGroupAddon"
+    staticClass: "input-group-addon"
   }, [_vm._v(_vm._s(_vm.conf.prepend))])] : _vm._e(), _vm._v(" "), (_vm.inputType === 'text') ? [_c('input', {
     directives: [{
       name: "model",
@@ -13497,7 +13521,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       }
     }
   })], _vm._v(" "), (_vm.conf.append) ? [_c('div', {
-    staticClass: "inputGroupAddon"
+    staticClass: "input-group-addon"
   }, [_vm._v(_vm._s(_vm.conf.append))])] : _vm._e()], 2)
 }
 var staticRenderFns = []
