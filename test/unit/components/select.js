@@ -41,7 +41,7 @@ test('config : default-value : with v-for slot : value exist', async t => {
     let uiid = vm.$el.querySelector('i-select').getAttribute('_uiid');
 
     t.plan(1);
-    t.is(window.morning.map[uiid].get(false)[0], 'Tim');
+    t.is(window.morning.map[uiid].get()[0], 'Tim');
 
 });
 
@@ -69,6 +69,6 @@ test('config : default-value : with v-for slot : value not exist', async t => {
     let uiid = vm.$el.querySelector('i-select').getAttribute('_uiid');
 
     t.plan(1);
-    t.is(window.morning.map[uiid].get(false).length, 0);
+    t.is(window.morning.map[uiid].get().length, 0);
 
 });

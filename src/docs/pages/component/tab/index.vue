@@ -187,7 +187,7 @@
     <ui-link js="javascript:morning.findVM('demo3').switch('第三页');">切换到第三页</ui-link>
     :::
 
-    #### switchNext()
+    #### next()
 
     切换到下一个标签，若是最后一个则切换到第一个。
     
@@ -198,10 +198,10 @@
         <div slot="第三页">第三页</div>
     </ui-tab>
     <br><br> 
-    <ui-link js="javascript:morning.findVM('demo4').switchNext();">切换到下一个标签</ui-link>
+    <ui-link js="javascript:morning.findVM('demo4').next();">切换到下一个标签</ui-link>
     :::
 
-    #### switchPrev()
+    #### prev()
 
     切换到上一个标签，若是第一个则切换到最后一个。
     
@@ -212,7 +212,7 @@
         <div slot="第三页">第三页</div>
     </ui-tab>
     <br><br>
-    <ui-link js="javascript:morning.findVM('demo5').switchPrev();">切换到上一个标签</ui-link>
+    <ui-link js="javascript:morning.findVM('demo5').prev();">切换到上一个标签</ui-link>
     :::
    
     [[[事件]]]
