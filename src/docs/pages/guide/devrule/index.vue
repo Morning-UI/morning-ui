@@ -15,8 +15,8 @@
 
     #### 通用
         
-    - 组件在Vue模板中的标签以`i-`开头
-    - 组件绑定`:_uiid="uiid"`
+    - 组件在Vue模板中的标签以`i-`开头<ui-badge xxs class="circle">AUTO</ui-badge>
+    - 组件绑定`:_uiid="uiid"`<ui-badge xxs class="circle">AUTO</ui-badge>
     - 组件的`index.vue`，从上至下分别为:`<template>`、`<script>`、`<style>`三个标签
     - `<style>`标签必须有`lang="less"`属性
     - 引入了`<style lang="less" src="./index.less"></style>`

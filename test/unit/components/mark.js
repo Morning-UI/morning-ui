@@ -3,14 +3,35 @@ import snapshot                     from '../../helpers/snapshot';
 import Vue                          from 'vue/dist/vue.common.js';
 import mark                         from '../../../src/lib/components/mark/index.vue';
 
+const name = 'mark';
+
+test('base : component snapshot', async t => {
+
+    const vm = new Vue(mark).$mount();
+
+    t.plan(1);
+    
+    snapshot(t, vm);
+
+});
+
 test('base : init component', async t => {
 
     const vm = new Vue(mark).$mount();
 
-    t.plan(3);
+    t.plan(2);
 
-    t.is(vm.uiid, 1);
-    t.is(mark.options.name, 'mark');
-    snapshot(t, vm);
+    t.is(vm.uiid, 2);
+    t.is(mark.options.name, name);
+
+});
+
+test('base : component tag name is t-*', async t => {
+
+    const vm = new Vue(mark).$mount();
+
+    t.plan(1);
+
+    t.is(vm.$el.tagName, `i-${name}`.toUpperCase());
 
 });

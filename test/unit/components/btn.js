@@ -3,15 +3,36 @@ import snapshot                     from '../../helpers/snapshot';
 import Vue                          from 'vue/dist/vue.common.js';
 import btn                          from '../../../src/lib/components/btn/index.vue';
 
+const name = 'btn';
+
+test('base : component snapshot', async t => {
+
+    const vm = new Vue(btn).$mount();
+
+    t.plan(1);
+
+    snapshot(t, vm);
+
+});
+
 test('base : init component', async t => {
 
     const vm = new Vue(btn).$mount();
 
-    t.plan(3);
+    t.plan(2);
 
-    t.is(vm.uiid, 1);
-    t.is(btn.options.name, 'btn');
-    snapshot(t, vm);
+    t.is(vm.uiid, 2);
+    t.is(btn.options.name, name);
+
+});
+
+test('base : component tag name is t-*', async t => {
+
+    const vm = new Vue(btn).$mount();
+
+    t.plan(1);
+
+    t.is(vm.$el.tagName, `i-${name}`.toUpperCase());
 
 });
 
