@@ -4749,7 +4749,8 @@ exports.default = _form2.default.extend({
                 multiinputLastValue: [],
                 selectInput: false,
                 itemValueList: [],
-                filterNotExist: false
+                filterNotExist: false,
+                lastItemHeight: 0
             },
             listStyle: {}
         };
@@ -5476,7 +5477,13 @@ exports.default = _form2.default.extend({
                 return;
             }
 
-            var maxHeight = $item.offsetHeight * this.conf.maxShow;
+            var itemHeight = $item.offsetHeight || this.data.lastItemHeight;
+            var maxHeight = itemHeight * this.conf.maxShow;
+
+            if (itemHeight) {
+
+                this.data.lastItemHeight = itemHeight;
+            }
 
             if (this.listStyle.maxHeight === maxHeight + 'px') {
 
@@ -7030,7 +7037,7 @@ if (typeof _vue2.default === 'undefined') {
         _groupData: {},
         _groupVmMap: {},
         isMorning: true,
-        version: '0.10.2',
+        version: '0.10.3',
         map: {},
         findVM: function findVM(ref) {
 
