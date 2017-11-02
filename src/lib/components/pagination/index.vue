@@ -219,7 +219,7 @@ export default UI.extend({
         
             if (this.conf.list) {
             
-                return;
+                return this;
             
             }
             
@@ -240,6 +240,8 @@ export default UI.extend({
                 this.to(num);
             
             }
+
+            return this;
 
         }
     },

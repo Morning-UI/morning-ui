@@ -96,6 +96,12 @@
         "block-closing-brace-empty-line-before" : "never",
         "block-closing-brace-newline-after" : "always",
         "block-closing-brace-newline-before" : "always",
+        "selector-class-pattern" : ["^([a-z0-9-]+|(sy\\-[a-zA-Z]+))$", {
+            "resolveNestedSelectors" : true
+        }],
+        "selector-id-pattern" : ["^([a-z0-9-]+|(sy\\-[a-zA-Z]+))$", {
+            "resolveNestedSelectors" : true
+        }],
         "selector-attribute-brackets-space-inside" : "never",
         "selector-attribute-operator-space-after" : "never",
         "selector-attribute-operator-space-before" : "never",
