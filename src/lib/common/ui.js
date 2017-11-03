@@ -217,9 +217,7 @@ export default (Vue, morning) => Vue.extend({
     },
     beforeCreate : function () {
 
-        /* eslint-disable no-undef */
         this.Vue = Vue;
-        /* eslint-enable no-undef */
         this.morning = morning;
 
     },
