@@ -65,11 +65,10 @@
 </template>
  
 <script>
-import UI                           from 'Common/ui';
-
 const PAGE_SIZE_DEFAULT = 10;
 
-export default UI.extend({
+export default {
+    origin : 'UI',
     name : 'pagination',
     props : {
         total : {
@@ -273,7 +272,7 @@ export default UI.extend({
         this.to(this.conf.page);
 
     }
-});
+};
 </script>
 
 <style lang="less" src="./index.less"></style>

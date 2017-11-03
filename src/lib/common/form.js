@@ -1,7 +1,6 @@
 import extend                       from 'extend';
-import UI                           from './ui';
 
-let Form = UI.extend({
+export default UI => UI.extend({
     props : {
         formName : {
             type : String,
@@ -346,5 +345,3 @@ let Form = UI.extend({
 
     }
 });
-
-export default Form;

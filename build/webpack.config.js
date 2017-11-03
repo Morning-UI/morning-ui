@@ -85,9 +85,6 @@ commonConfig = {
             Utils : pathLibUtils
         }
     },
-    externals : {
-        vue : 'Vue'
-    },
     output : {
         path : pathDist
     }

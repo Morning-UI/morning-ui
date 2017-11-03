@@ -4,10 +4,11 @@ import Vue                          from 'vue/dist/vue.common.js';
 import textcenter                   from '../../../src/lib/components/textcenter/index.vue';
 
 const name = 'textcenter';
+const component = window.morning._origin.UI.extend(textcenter);
 
 test('base : component snapshot', async t => {
 
-    const vm = new Vue(textcenter).$mount();
+    const vm = new Vue(component).$mount();
 
     t.plan(1);
     
@@ -17,18 +18,18 @@ test('base : component snapshot', async t => {
 
 test('base : init component', async t => {
 
-    const vm = new Vue(textcenter).$mount();
+    const vm = new Vue(component).$mount();
 
     t.plan(2);
 
     t.is(vm.uiid, 2);
-    t.is(textcenter.options.name, name);
+    t.is(component.options.name, name);
 
 });
 
 test('base : component tag name is t-*', async t => {
 
-    const vm = new Vue(textcenter).$mount();
+    const vm = new Vue(component).$mount();
 
     t.plan(1);
 
