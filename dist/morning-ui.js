@@ -1,4 +1,14 @@
-/******/ (function(modules) { // webpackBootstrap
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else if(typeof exports === 'object')
+		exports["morning"] = factory();
+	else
+		root["morning"] = factory();
+})(this, function() {
+return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -6702,7 +6712,11 @@ module.exports = exports['default'];
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var __WEBPACK_AMD_DEFINE_RESULT__;
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 
 var _extend = __webpack_require__(1);
 
@@ -6722,194 +6736,177 @@ var _components2 = _interopRequireDefault(_components);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// UMD : https://github.com/umdjs/umd/blob/master/templates/amdWebGlobal.js
-(function (root, factory) {
+var morning = {
+    _origin: {},
+    _components: {},
+    _ignoreElements: [],
+    _uiid: 1,
+    _findCache: {},
+    _popupId: 0,
+    _indexMap: {
+        regIndex: {},
+        vmMap: {},
+        useIndex: {}
+    },
+    _moveListener: [],
+    _globalEventListener: {},
+    _groupData: {},
+    _groupVmMap: {},
+    isMorning: true,
+    version: '0.10.3',
+    map: {}
+};
 
-    if (true) {
+morning.findVM = function (ref) {
 
-        !(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
-            return root.morning = factory(root);
-        }.call(exports, __webpack_require__, exports, module),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    } else {
+    if (this._findCache[ref]) {
 
-        root.morning = factory(root);
-
-        return root.morning;
+        return this._findCache[ref];
     }
-})(window, function (root) {
 
-    var morning = {
-        _origin: {},
-        _components: {},
-        _ignoreElements: [],
-        _uiid: 1,
-        _findCache: {},
-        _popupId: 0,
-        _indexMap: {
-            regIndex: {},
-            vmMap: {},
-            useIndex: {}
-        },
-        _moveListener: [],
-        _globalEventListener: {},
-        _groupData: {},
-        _groupVmMap: {},
-        isMorning: true,
-        version: '0.10.3',
-        map: {},
-        findVM: function findVM(ref) {
+    var _iteratorNormalCompletion = true;
+    var _didIteratorError = false;
+    var _iteratorError = undefined;
 
-            if (this._findCache[ref]) {
+    try {
+        for (var _iterator = Object.values(this.map)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+            var vm = _step.value;
 
-                return this._findCache[ref];
+
+            if (vm.$vnode && vm.$vnode.data && vm.$vnode.data.ref === ref) {
+
+                this._findCache[ref] = vm;
+
+                return vm;
             }
+        }
+    } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+    } finally {
+        try {
+            if (!_iteratorNormalCompletion && _iterator.return) {
+                _iterator.return();
+            }
+        } finally {
+            if (_didIteratorError) {
+                throw _iteratorError;
+            }
+        }
+    }
+};
 
-            var _iteratorNormalCompletion = true;
-            var _didIteratorError = false;
-            var _iteratorError = undefined;
+morning.getGroup = function (groupName) {
 
+    return (0, _extend2.default)(true, {}, this._groupData[groupName]);
+};
+
+morning.getGroupJson = function (groupName) {
+
+    return JSON.stringify(this.getGroupData(groupName));
+};
+
+morning.setGroup = function (groupName, data) {
+
+    var uiids = this._groupVmMap[groupName];
+    var setKeys = Object.keys(data);
+    var key = void 0,
+        vm = void 0;
+
+    if (uiids) {
+        var _iteratorNormalCompletion2 = true;
+        var _didIteratorError2 = false;
+        var _iteratorError2 = undefined;
+
+        try {
+
+            for (var _iterator2 = uiids[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                var uiid = _step2.value;
+
+
+                vm = this.map[uiid];
+
+                if (vm) {
+
+                    key = vm.conf.formKey;
+
+                    if (setKeys.indexOf(key) !== -1) {
+
+                        this.map[uiid].set(data[key]);
+                    }
+                }
+            }
+        } catch (err) {
+            _didIteratorError2 = true;
+            _iteratorError2 = err;
+        } finally {
             try {
-                for (var _iterator = Object.values(this.map)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                    var vm = _step.value;
-
-
-                    if (vm.$vnode && vm.$vnode.data && vm.$vnode.data.ref === ref) {
-
-                        this._findCache[ref] = vm;
-
-                        return vm;
-                    }
+                if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                    _iterator2.return();
                 }
-            } catch (err) {
-                _didIteratorError = true;
-                _iteratorError = err;
             } finally {
-                try {
-                    if (!_iteratorNormalCompletion && _iterator.return) {
-                        _iterator.return();
-                    }
-                } finally {
-                    if (_didIteratorError) {
-                        throw _iteratorError;
-                    }
+                if (_didIteratorError2) {
+                    throw _iteratorError2;
                 }
             }
-        },
-        getGroup: function getGroup(groupName) {
-
-            return (0, _extend2.default)(true, {}, this._groupData[groupName]);
-        },
-        getGroupJson: function getGroupJson(groupName) {
-
-            return JSON.stringify(this.getGroupData(groupName));
-        },
-        setGroup: function setGroup(groupName, data) {
-
-            var uiids = this._groupVmMap[groupName];
-            var setKeys = Object.keys(data);
-            var key = void 0,
-                vm = void 0;
-
-            if (uiids) {
-                var _iteratorNormalCompletion2 = true;
-                var _didIteratorError2 = false;
-                var _iteratorError2 = undefined;
-
-                try {
-
-                    for (var _iterator2 = uiids[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                        var uiid = _step2.value;
-
-
-                        vm = this.map[uiid];
-
-                        if (vm) {
-
-                            key = vm.conf.formKey;
-
-                            if (setKeys.indexOf(key) !== -1) {
-
-                                this.map[uiid].set(data[key]);
-                            }
-                        }
-                    }
-                } catch (err) {
-                    _didIteratorError2 = true;
-                    _iteratorError2 = err;
-                } finally {
-                    try {
-                        if (!_iteratorNormalCompletion2 && _iterator2.return) {
-                            _iterator2.return();
-                        }
-                    } finally {
-                        if (_didIteratorError2) {
-                            throw _iteratorError2;
-                        }
-                    }
-                }
-            }
-
-            return this;
-        },
-        setGroupJson: function setGroupJson(groupName, data) {
-
-            return this.setGroup(groupName, JSON.parse(data));
         }
-    };
+    }
 
-    var init = function init() {
-        var Vue = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : root.Vue;
-        var options = arguments[1];
+    return this;
+};
 
+morning.setGroupJson = function (groupName, data) {
 
-        if (typeof Vue === 'undefined') {
+    return this.setGroup(groupName, JSON.parse(data));
+};
 
-            throw new Error('can\'t find Vue.js, import Vue.js first please.');
+morning.install = function (Vue, options) {
+
+    if (typeof Vue === 'undefined') {
+
+        throw new Error('can\'t find Vue.js, import Vue.js first please.');
+    }
+
+    options = (0, _extend2.default)(true, {
+        prefix: 'ui'
+    }, options);
+
+    Vue.config.ignoredElements = [];
+
+    this._origin.UI = (0, _ui2.default)(Vue, this);
+    this._origin.Form = (0, _form2.default)(this._origin.UI);
+
+    // register component
+    for (var name in _components2.default) {
+
+        var creater = _components2.default[name];
+        var component = void 0;
+
+        if (creater.origin === 'UI') {
+
+            component = this._origin.UI.extend(creater);
+        } else if (creater.origin === 'Form') {
+
+            component = this._origin.Form.extend(creater);
+        } else {
+
+            return;
         }
 
-        options = (0, _extend2.default)(true, {
-            prefix: 'ui'
-        }, options);
+        Vue.component(options.prefix + '-' + component.options.name, component);
+        Vue.component('morning-' + component.options.name, component);
+        this._components[name] = component;
+        this._ignoreElements.push('i-' + component.options.name);
+        this._ignoreElements.push('morning-' + component.options.name);
+    }
 
-        Vue.config.ignoredElements = [];
+    Vue.config.ignoredElements = this._ignoreElements;
 
-        this._origin.UI = (0, _ui2.default)(Vue, this);
-        this._origin.Form = (0, _form2.default)(this._origin.UI);
+    return this;
+};
 
-        // register component
-        for (var name in _components2.default) {
-
-            var creater = _components2.default[name];
-            var component = void 0;
-
-            if (creater.origin === 'UI') {
-
-                component = this._origin.UI.extend(creater);
-            } else if (creater.origin === 'Form') {
-
-                component = this._origin.Form.extend(creater);
-            } else {
-
-                return;
-            }
-
-            Vue.component(options.prefix + '-' + component.options.name, component);
-            Vue.component('morning-' + component.options.name, component);
-            this._components[name] = component;
-            this._ignoreElements.push('i-' + component.options.name);
-            this._ignoreElements.push('morning-' + component.options.name);
-        }
-
-        Vue.config.ignoredElements = this._ignoreElements;
-
-        return this;
-    };
-
-    morning.init = init.bind(morning);
-
-    return morning;
-});
+exports.default = morning;
+module.exports = exports['default'];
 
 /***/ }),
 /* 64 */
@@ -14292,3 +14289,4 @@ module.exports = g;
 
 /***/ })
 /******/ ]);
+});

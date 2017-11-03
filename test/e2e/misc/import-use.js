@@ -1,4 +1,4 @@
-import {exec}                       from 'child_process';
+// import {exec}                       from 'child_process';
 import fs                           from 'fs';
 import fse                          from 'fs-extra';
 import path                         from 'path';
@@ -36,7 +36,7 @@ test.serial('import-use-tag', async t => {
         <script src="https://cdn.bootcss.com/vue/2.4.2/vue.js"></script>
         <script src="./morning-ui.js"></script>
         <script>
-        morning.init();
+        Vue.use(morning);
         new Vue({
             el : '#vue',
             template : '<ui-link>link</ui-link>'
@@ -69,103 +69,107 @@ test.serial('import-use-tag', async t => {
 
 });
 
-test.serial.only('import-use-webpack', async t => {
+// test.serial('import-use-webpack', async t => {
 
-    t.plan(2);
+//     t.plan(2);
 
-    let pathProjectRoot = path.resolve(__dirname, '../../../');
-    // let pathMroningJs = path.resolve(pathProjectRoot, 'dist/morning-ui.js');
-    // let pathMroningCss = path.resolve(pathProjectRoot, 'dist/morning-ui.css');
-    let pathTmp = path.resolve(pathProjectRoot, '.tmp');
-    let pathDir = path.resolve(pathTmp, 'import-use-webpack/');
-    let pathPackage = path.resolve(pathDir, 'package.json');
-    let pathWebpack = path.resolve(pathDir, 'webpack.config.js');
-    let pathSrc = path.resolve(pathDir, 'src/');
-    let pathDist = path.resolve(pathDir, 'dist/');
-    let pathHtml = path.resolve(pathDist, 'index.html');
-    let pathJs = path.resolve(pathSrc, 'index.js');
-    // let pathHtml = path.resolve(pathSrc, 'index.html');
-    // let pathJs = path.resolve(pathDir, 'morning-ui.js');
-    // let pathCss = path.resolve(pathDir, 'morning-ui.css');
+//     let pathProjectRoot = path.resolve(__dirname, '../../../');
+//     let pathTmp = path.resolve(pathProjectRoot, '.tmp');
+//     let pathDir = path.resolve(pathTmp, 'import-use-webpack/');
+//     let pathPackage = path.resolve(pathDir, 'package.json');
+//     let pathWebpack = path.resolve(pathDir, 'webpack.config.js');
+//     let pathSrc = path.resolve(pathDir, 'src/');
+//     let pathDist = path.resolve(pathDir, 'dist/');
+//     let pathHtml = path.resolve(pathDist, 'index.html');
+//     let pathJs = path.resolve(pathSrc, 'index.js');
 
-    fse.emptyDirSync(pathTmp);
-    fse.emptyDirSync(pathDir);
-    fse.emptyDirSync(pathSrc);
-    fse.emptyDirSync(pathDist);
+//     fse.emptyDirSync(pathTmp);
+//     fse.emptyDirSync(pathDir);
+//     fse.emptyDirSync(pathSrc);
+//     fse.emptyDirSync(pathDist);
 
-    fs.writeFileSync(pathPackage, `{}`);
+//     fs.writeFileSync(pathPackage, `{}`);
 
-    fs.writeFileSync(pathWebpack, `
-    const path = require('path');
+//     fs.writeFileSync(pathWebpack, `
+//     const path = require('path');
 
-    module.exports = {
-        entry: './src/index.js',
-        output: {
-            filename: 'bundle.js',
-            path: '${pathDist}'
-        }
-    };
-    `);
+//     module.exports = {
+//         entry: './src/index.js',
+//         output: {
+//             filename: 'bundle.js',
+//             path: '/Users/early/Work/HMP-dev/data/morning-ui/.tmp/import-use-webpack/dist'
+//         },
+//         module: {
+//             rules: [
+//                 {
+//                     test: /\\.css$/,
+//                     use: [
+//                        'style-loader',
+//                        'css-loader'
+//                     ]
+//                 }
+//             ]
+//         }
+//     };
+//     `);
 
-    fs.writeFileSync(pathJs, `
-    import vue from 'vue';
-    import morning from 'morning-ui';
+//     fs.writeFileSync(pathJs, `
+//     import Vue from 'vue/dist/vue.esm.js';
+//     import morning from 'morning-ui';
+//     import 'morning-ui/dist/morning-ui.css';
 
-    morning.init(vue);
-    new Vue({
-        el : '#vue',
-        template : '<ui-link>link</ui-link>'
-    });
-    `);
+//     Vue.use(morning);
+//     new Vue({
+//         el : '#vue',
+//         template : '<ui-link>link</ui-link>'
+//     });
+//     `);
 
-    fs.writeFileSync(pathHtml, `
-    <html>
-        <head>
-            <title>e2e test : import-use-webpack</title>
-        </head>
-        <body>
-            <div id="vue"></div>
-        <script src="./bundle.js"></script>
-        </body>
-    </html>
-    `);
+//     fs.writeFileSync(pathHtml, `
+//     <html>
+//         <head>
+//             <title>e2e test : import-use-webpack</title>
+//         </head>
+//         <body>
+//             <div id="vue"></div>
+//         <script src="./bundle.js"></script>
+//         </body>
+//     </html>
+//     `);
 
-    await new Promise(resolve => {
+//     await new Promise(resolve => {
 
-        exec(`cd ${pathDir} && npm install morning-ui webpack vue`, () => {
+//         exec(`cd ${pathDir} && npm install morning-ui webpack style-loader css-loader vue`, () => {
 
-            resolve();
+//             resolve();
         
-        });
+//         });
 
-    });
+//     });
 
-    await new Promise(resolve => {
+//     await new Promise(resolve => {
 
-        exec(`cd ${pathDir} && node_modules/.bin/webpack webpack.config.js`, resolve);
+//         exec(`cd ${pathDir} && node_modules/.bin/webpack webpack.config.js`, resolve);
 
-    });
+//     });
 
-    // fse.copySync(pathMroningJs, pathJs);
-    // fse.copySync(pathMroningCss, pathCss);
+//     const result = await runner
+//         .goto(`file://${pathHtml}`)
+//         .wait('i-link')
+//         .evaluate(() => ({
+//             morning : window.morning,
+//             style : window.getComputedStyle(document.querySelector('i-link'))
+//         }));
 
-    // const result = await runner
-    //     .goto(`file://${pathHtml}`)
-    //     .wait('i-link')
-    //     .evaluate(() => ({
-    //         morning : window.morning,
-    //         style : window.getComputedStyle(document.querySelector('i-link'))
-    //     }));
+//     // circleci
+//     delete result.style.inlineSize;
+//     delete result.style.perspectiveOrigin;
+//     delete result.style.transformOrigin;
+//     delete result.style.webkitLogicalWidth;
+//     delete result.style.webkitTapHighlightColor;
+//     delete result.style.width;
 
-    // // circleci
-    // delete result.style.inlineSize;
-    // delete result.style.perspectiveOrigin;
-    // delete result.style.transformOrigin;
-    // delete result.style.webkitLogicalWidth;
-    // delete result.style.webkitTapHighlightColor;
-    // delete result.style.width;
+//     t.is(result.morning.isMorning, true);
+//     t.snapshot(result.style);
 
-    // t.is(result.morning.isMorning, true);
-    // t.snapshot(result.style);
-
-});
+// });

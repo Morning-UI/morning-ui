@@ -3,174 +3,151 @@ import uiClass                          from 'Common/ui';
 import formClass                        from 'Common/form';
 import components                       from './components';
 
-// TODO
-// UMD : https://github.com/umdjs/umd/blob/master/templates/amdWebGlobal.js
-((root, factory) => {
+let morning = {
+    _origin : {},
+    _components : {},
+    _ignoreElements : [],
+    _uiid : 1,
+    _findCache : {},
+    _popupId : 0,
+    _indexMap : {
+        regIndex : {},
+        vmMap : {},
+        useIndex : {}
+    },
+    _moveListener : [],
+    _globalEventListener : {},
+    _groupData : {},
+    _groupVmMap : {},
+    isMorning : true,
+    version : '0.10.3',
+    map : {}
+};
 
-    if (typeof define === 'function' && define.amd) {
+morning.findVM = function (ref) {
 
-        // define(() => (root.morning = factory(root)));
-
-    } else if (typeof exports === 'object' && typeof exports.nodeName !== 'string') {
-
-        // CommonJS
-        factory(exports, require('vue'));
-
-    } else {
-
-        // Browser globals
-        factory(root, root.vue);
+    if (this._findCache[ref]) {
+            
+        return this._findCache[ref];
 
     }
 
-})(window, (export, vue) => {
+    for (let vm of Object.values(this.map)) {
 
-    let morning = {
-        _origin : {},
-        _components : {},
-        _ignoreElements : [],
-        _uiid : 1,
-        _findCache : {},
-        _popupId : 0,
-        _indexMap : {
-            regIndex : {},
-            vmMap : {},
-            useIndex : {}
-        },
-        _moveListener : [],
-        _globalEventListener : {},
-        _groupData : {},
-        _groupVmMap : {},
-        isMorning : true,
-        version : '0.10.3',
-        map : {},
-        findVM : function (ref) {
+        if (vm.$vnode &&
+            vm.$vnode.data &&
+            vm.$vnode.data.ref === ref) {
 
-            if (this._findCache[ref]) {
-                
-                return this._findCache[ref];
+            this._findCache[ref] = vm;
+            
+            return vm;
+        
+        }
 
-            }
+    }
 
-            for (let vm of Object.values(this.map)) {
+};
 
-                if (vm.$vnode &&
-                    vm.$vnode.data &&
-                    vm.$vnode.data.ref === ref) {
+morning.getGroup = function (groupName) {
 
-                    this._findCache[ref] = vm;
-                    
-                    return vm;
-                
-                }
+    return extend(true, {}, this._groupData[groupName]);
 
-            }
+};
 
-        },
-        getGroup : function (groupName) {
+morning.getGroupJson = function (groupName) {
 
-            return extend(true, {}, this._groupData[groupName]);
+    return JSON.stringify(this.getGroupData(groupName));
 
-        },
-        getGroupJson : function (groupName) {
+};
 
-            return JSON.stringify(this.getGroupData(groupName));
+morning.setGroup = function (groupName, data) {
 
-        },
-        setGroup : function (groupName, data) {
+    let uiids = this._groupVmMap[groupName];
+    let setKeys = Object.keys(data);
+    let key,
+        vm;
 
-            let uiids = this._groupVmMap[groupName];
-            let setKeys = Object.keys(data);
-            let key,
-                vm;
+    if (uiids) {
 
-            if (uiids) {
+        for (let uiid of uiids) {
 
-                for (let uiid of uiids) {
+            vm = this.map[uiid];
 
-                    vm = this.map[uiid];
+            if (vm) {
 
-                    if (vm) {
+                key = vm.conf.formKey;
 
-                        key = vm.conf.formKey;
+                if (setKeys.indexOf(key) !== -1) {
 
-                        if (setKeys.indexOf(key) !== -1) {
-
-                            this.map[uiid].set(data[key]);
-
-                        }
-
-                    }
+                    this.map[uiid].set(data[key]);
 
                 }
 
             }
 
-            return this;
-
-        },
-        setGroupJson : function (groupName, data) {
-
-            return this.setGroup(groupName, JSON.parse(data));
-
-        }
-    };
-
-    let init = function (options) {
-
-        if (typeof vue === 'undefined') {
-
-            throw new Error('can\'t find Vue.js, import Vue.js first please.');
-
         }
 
-        options = extend(true, {
-            prefix : 'ui'
-        }, options);
+    }
 
-        vue.config.ignoredElements = [];
+    return this;
 
-        this._origin.UI = uiClass(vue, this);
-        this._origin.Form = formClass(this._origin.UI);
+};
 
-        // register component
-        for (let name in components) {
+morning.setGroupJson = function (groupName, data) {
 
-            let creater = components[name];
-            let component;
+    return this.setGroup(groupName, JSON.parse(data));
 
-            if (creater.origin === 'UI') {
+};
 
-                component = this._origin.UI.extend(creater);
+morning.install = function (Vue, options) {
 
-            } else if (creater.origin === 'Form') {
+    if (typeof Vue === 'undefined') {
 
-                component = this._origin.Form.extend(creater);
+        throw new Error('can\'t find Vue.js, import Vue.js first please.');
 
-            } else {
+    }
 
-                return;
+    options = extend(true, {
+        prefix : 'ui'
+    }, options);
 
-            }
+    Vue.config.ignoredElements = [];
 
-            vue.component(`${options.prefix}-${component.options.name}`, component);
-            vue.component(`morning-${component.options.name}`, component);
-            this._components[name] = component;
-            this._ignoreElements.push(`i-${component.options.name}`);
-            this._ignoreElements.push(`morning-${component.options.name}`);
+    this._origin.UI = uiClass(Vue, this);
+    this._origin.Form = formClass(this._origin.UI);
+
+    // register component
+    for (let name in components) {
+
+        let creater = components[name];
+        let component;
+
+        if (creater.origin === 'UI') {
+
+            component = this._origin.UI.extend(creater);
+
+        } else if (creater.origin === 'Form') {
+
+            component = this._origin.Form.extend(creater);
+
+        } else {
+
+            return;
 
         }
 
-        vue.config.ignoredElements = this._ignoreElements;
+        Vue.component(`${options.prefix}-${component.options.name}`, component);
+        Vue.component(`morning-${component.options.name}`, component);
+        this._components[name] = component;
+        this._ignoreElements.push(`i-${component.options.name}`);
+        this._ignoreElements.push(`morning-${component.options.name}`);
 
-        return this;
+    }
 
-    };
+    Vue.config.ignoredElements = this._ignoreElements;
 
-    morning.init = init.bind(morning);
+    return this;
 
-    return morning;
+};
 
-    export.morning = morning;
-
-});
+export default morning;

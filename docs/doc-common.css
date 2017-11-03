@@ -780,8 +780,8 @@ i-dialog a:hover {
 .markdown-body .language-js::before,
 .markdown-body .lang-html::before,
 .markdown-body .language-html::before,
-.markdown-body .lang-bash::before,
-.markdown-body .language-bash::before,
+.markdown-body .lang-shell::before,
+.markdown-body .language-shell::before,
 .markdown-body .lang-md::before,
 .markdown-body .language-md::before,
 .markdown-body .lang-text::before,
@@ -809,9 +809,9 @@ i-dialog a:hover {
 .markdown-body .language-js::before {
   content: 'JavaScript';
 }
-.markdown-body .lang-bash::before,
-.markdown-body .language-bash::before {
-  content: 'Bash';
+.markdown-body .lang-shell::before,
+.markdown-body .language-shell::before {
+  content: 'Shell';
 }
 .markdown-body .lang-md::before,
 .markdown-body .language-md::before {

@@ -325,7 +325,7 @@ var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _
     staticClass: "right"
   }, [_c('pre', [_vm._v("                        "), _c('code', {
     staticClass: "language-js hljs"
-  }, [_vm._v("\nwindow.morning.init();\n                        ")]), _vm._v("\n                        ")])])])
+  }, [_vm._v("\nVue.use(morning);\n                        ")]), _vm._v("\n                        ")])])])
 },function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "lrBox"
