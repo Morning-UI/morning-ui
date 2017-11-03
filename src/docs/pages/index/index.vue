@@ -40,7 +40,7 @@
                     <div class="right">
                         <pre>
                         <code class="language-js hljs">
-window.morning.init();
+Vue.use(morning);
                         </code>
                         </pre>
                     </div>

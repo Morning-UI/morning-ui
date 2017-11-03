@@ -60,8 +60,6 @@ test('config : default-value : with v-for slot : value exist', async t => {
 
     vm.$mount();
 
-    console.log(vm.$el.innerHTML);
-
     let uiid = vm.$el.querySelector('i-select').getAttribute('_uiid');
 
     t.plan(1);

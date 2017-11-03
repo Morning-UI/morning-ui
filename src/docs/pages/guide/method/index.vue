@@ -45,7 +45,7 @@
 
     #### 全局查找调用
 
-    使用前需要在被调用的组件上通过ref指定一个索引ID，然后通过MorningUI提供的全局方法`window.morning.findVM()`查找组件vm：
+    使用前需要在被调用的组件上通过ref指定一个索引ID，然后通过Morning UI提供的全局方法`morning.findVM()`查找组件vm：
 
     :::democode/html
     <div>
