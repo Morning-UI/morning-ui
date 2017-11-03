@@ -57,9 +57,9 @@
 <script>
 import extend                       from 'extend';
 import arrayUniq                    from 'array-uniq';
-import Form                         from 'Common/form';
 
-export default Form.extend({
+export default {
+    origin : 'Form',
     name : 'checkbox',
     props : {
         acceptHtml : {
@@ -147,7 +147,7 @@ export default Form.extend({
     },
     created : function () {},
     mounted : function () {}
-});
+};
 </script>
 
 <style lang="less" src="./index.less"></style>

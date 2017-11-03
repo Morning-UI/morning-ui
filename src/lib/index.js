@@ -1,36 +1,33 @@
-import Vue                              from 'vue';
 import extend                           from 'extend';
-import {default as UI, injectMorning}   from 'Common/ui';
-import Form                             from 'Common/form';
+import uiClass                          from 'Common/ui';
+import formClass                        from 'Common/form';
 import components                       from './components';
 
-if (typeof Vue === 'undefined') {
-
-    throw new Error('can\'t find Vue.js, import Vue.js first please.');
-
-}
-
+// TODO
 // UMD : https://github.com/umdjs/umd/blob/master/templates/amdWebGlobal.js
 ((root, factory) => {
 
     if (typeof define === 'function' && define.amd) {
 
-        define(() => (root.morning = factory()));
+        // define(() => (root.morning = factory(root)));
+
+    } else if (typeof exports === 'object' && typeof exports.nodeName !== 'string') {
+
+        // CommonJS
+        factory(exports, require('vue'));
 
     } else {
 
-        root.morning = factory();
+        // Browser globals
+        factory(root, root.vue);
 
     }
 
-})(window, () => {
+})(window, (export, vue) => {
 
     let morning = {
-        _origin : {
-            UI,
-            Form
-        },
-        _components : components,
+        _origin : {},
+        _components : {},
         _ignoreElements : [],
         _uiid : 1,
         _findCache : {},
@@ -116,36 +113,64 @@ if (typeof Vue === 'undefined') {
 
             return this.setGroup(groupName, JSON.parse(data));
 
-        },
-        init : function (options) {
-
-            options = extend(true, {
-                prefix : 'ui'
-            }, options);
-
-            Vue.config.ignoredElements = [];
-
-            // register component
-            for (let name in morning._components) {
-
-                let component = morning._components[name];
-
-                Vue.component(`${options.prefix}-${component.options.name}`, component);
-                Vue.component(`morning-${component.options.name}`, component);
-                morning._ignoreElements.push(`i-${component.options.name}`);
-                morning._ignoreElements.push(`morning-${component.options.name}`);
-
-            }
-
-            Vue.config.ignoredElements = morning._ignoreElements;
-
-            return this;
-
         }
     };
 
-    injectMorning(morning);
+    let init = function (options) {
+
+        if (typeof vue === 'undefined') {
+
+            throw new Error('can\'t find Vue.js, import Vue.js first please.');
+
+        }
+
+        options = extend(true, {
+            prefix : 'ui'
+        }, options);
+
+        vue.config.ignoredElements = [];
+
+        this._origin.UI = uiClass(vue, this);
+        this._origin.Form = formClass(this._origin.UI);
+
+        // register component
+        for (let name in components) {
+
+            let creater = components[name];
+            let component;
+
+            if (creater.origin === 'UI') {
+
+                component = this._origin.UI.extend(creater);
+
+            } else if (creater.origin === 'Form') {
+
+                component = this._origin.Form.extend(creater);
+
+            } else {
+
+                return;
+
+            }
+
+            vue.component(`${options.prefix}-${component.options.name}`, component);
+            vue.component(`morning-${component.options.name}`, component);
+            this._components[name] = component;
+            this._ignoreElements.push(`i-${component.options.name}`);
+            this._ignoreElements.push(`morning-${component.options.name}`);
+
+        }
+
+        vue.config.ignoredElements = this._ignoreElements;
+
+        return this;
+
+    };
+
+    morning.init = init.bind(morning);
 
     return morning;
+
+    export.morning = morning;
 
 });

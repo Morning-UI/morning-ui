@@ -22,6 +22,6 @@ hooks(['vue', 'js'])
 
 require('../../src/lib/index');
 
-window.morning.init();
+window.morning.init(Vue);
 
 VueCommon.config.ignoredElements = window.morning._ignoreElements;

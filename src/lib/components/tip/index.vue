@@ -24,10 +24,10 @@
  
 <script>
 import Tether                       from 'tether';
-import UI                           from 'Common/ui';
 import PopupManager                 from 'Utils/PopupManager';
 
-export default UI.extend({
+export default {
+    origin : 'UI',
     name : 'tip',
     mixins : [PopupManager],
     props : {
@@ -396,7 +396,7 @@ export default UI.extend({
         this.data.$target.removeEventListener('focusout', this._leave);
 
     }
-});
+};
 </script>
 
 <style lang="less" src="./index.less"></style>

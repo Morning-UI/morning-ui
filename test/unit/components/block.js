@@ -4,10 +4,11 @@ import Vue                          from 'vue/dist/vue.common.js';
 import block                        from '../../../src/lib/components/block/index.vue';
 
 const name = 'block';
+const component = window.morning._origin.UI.extend(block);
 
 test('base : component snapshot', async t => {
 
-    const vm = new Vue(block).$mount();
+    const vm = new Vue(component).$mount();
 
     t.plan(1);
     
@@ -17,18 +18,18 @@ test('base : component snapshot', async t => {
 
 test('base : init component', async t => {
 
-    const vm = new Vue(block).$mount();
+    const vm = new Vue(component).$mount();
 
     t.plan(2);
 
     t.is(vm.uiid, 2);
-    t.is(block.options.name, name);
+    t.is(component.options.name, name);
 
 });
 
 test('base : component tag name is t-*', async t => {
 
-    const vm = new Vue(block).$mount();
+    const vm = new Vue(component).$mount();
 
     t.plan(1);
 
