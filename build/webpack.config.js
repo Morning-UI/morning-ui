@@ -89,7 +89,9 @@ commonConfig = {
         vue : 'Vue'
     },
     output : {
-        path : pathDist
+        path : pathDist,
+        library : 'morning',
+        libraryTarget : 'umd'
     }
 };
 

@@ -106,13 +106,13 @@
  
 <script>
 import trim                         from 'trim';
-import Form                         from 'Common/form';
 import GlobalEvent                  from 'Utils/GlobalEvent';
 import IndexManager                 from 'Utils/IndexManager';
 
 // action="emit:_refreshShowItems"
 
-export default Form.extend({
+export default {
+    origin : 'Form',
     name : 'select',
     mixins : [GlobalEvent, IndexManager],
     props : {
@@ -902,7 +902,7 @@ export default Form.extend({
         this._globalEventRemove('click', '_checkArea');
 
     }
-});
+};
 </script>
 
 <style lang="less" src="./index.less"></style>

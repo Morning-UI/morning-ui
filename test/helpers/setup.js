@@ -20,8 +20,7 @@ hooks(['vue', 'js'])
     .plugin('babel')
     .push();
 
-require('../../src/lib/index');
+window.morning = require('../../src/lib/index').default;
 
-window.morning.init();
-
+VueCommon.use(window.morning);
 VueCommon.config.ignoredElements = window.morning._ignoreElements;
