@@ -20,9 +20,8 @@
 </template>
  
 <script>
-import Form                         from 'Common/form';
-
-export default Form.extend({
+export default {
+    origin : 'Form',
     name : 'switch',
     props : {
         autoHideName : {
@@ -98,7 +97,7 @@ export default Form.extend({
         });
 
     }
-});
+};
 </script>
 
 <style lang="less" src="./index.less"></style>

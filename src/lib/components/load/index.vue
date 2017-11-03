@@ -23,11 +23,10 @@
 </template>
  
 <script>
-import UI                           from 'Common/ui';
-
 const defaultTime = 200;
 
-export default UI.extend({
+export default {
+    origin : 'UI',
     name : 'load',
     props : {
         time : {
@@ -131,7 +130,7 @@ export default UI.extend({
         this.reload();
 
     }
-});
+};
 </script>
 
 <style lang="less" src="./index.less"></style>

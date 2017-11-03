@@ -4,10 +4,11 @@ import Vue                          from 'vue/dist/vue.common.js';
 import del                          from '../../../src/lib/components/del/index.vue';
 
 const name = 'del';
+const component = window.morning._origin.UI.extend(del);
 
 test('base : component snapshot', async t => {
 
-    const vm = new Vue(del).$mount();
+    const vm = new Vue(component).$mount();
 
     t.plan(1);
     
@@ -17,18 +18,18 @@ test('base : component snapshot', async t => {
 
 test('base : init component', async t => {
 
-    const vm = new Vue(del).$mount();
+    const vm = new Vue(component).$mount();
 
     t.plan(2);
 
     t.is(vm.uiid, 2);
-    t.is(del.options.name, name);
+    t.is(component.options.name, name);
 
 });
 
 test('base : component tag name is t-*', async t => {
 
-    const vm = new Vue(del).$mount();
+    const vm = new Vue(component).$mount();
 
     t.plan(1);
 

@@ -20,7 +20,7 @@
 
     MorningUI的源码托管在github上：
 
-    ```bash
+    ```shell
     $ git clone https://github.com/Morning-UI/morning-ui.git
     ```
 
@@ -28,7 +28,7 @@
 
     由于MorningUI依赖一些npm包，源码获取后需要安装：
 
-    ```bash
+    ```shell
     $ cd morning
     $ export ELECTRON_MIRROR="https://npm.taobao.org/mirrors/electron/"
     $ npm install --registry=https://registry.npm.taobao.org
@@ -40,7 +40,7 @@
 
     运行测试来校验安装是否完成：
 
-    ```bash
+    ```shell
     $ npm run test
     ```
 
@@ -84,7 +84,7 @@
 
     MorningUI为开发者准备了一套命令来帮助快速开发：
 
-    ```bash
+    ```shell
     $ npm run build                     # 构建项目(库文件及文档)
     $ npm run dev                       # 运行开发环境(运行后通过http://localhost:8080/访问)
     $ npm run lint                      # 通过ESLint及StyleLint检查代码
