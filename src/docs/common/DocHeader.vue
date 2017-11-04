@@ -168,6 +168,14 @@ header {
         &::placeholder{
             color: #999;
         }
+        
+        &:hover{
+            border-color: #666;
+        }
+
+        &:focus{
+            border-color: #777;
+        }
     }
 
     .ds-dropdown-menu{
