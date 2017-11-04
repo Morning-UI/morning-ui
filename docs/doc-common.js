@@ -31129,7 +31129,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "target": "_blank",
       "href": _vm.lastupdate.github
     }
-  }, [_vm._v(_vm._s(_vm.lastupdate.author))]), _vm._v(" at " + _vm._s(_vm.lastupdate.date) + " (" + _vm._s(_vm.lastupdate.ar) + "), commit id : "), _c('a', {
+  }, [_vm._v(_vm._s(_vm.lastupdate.author))]), _vm._v(" at " + _vm._s(_vm.lastupdate.date) + ", commit id : "), _c('a', {
     attrs: {
       "target": "_blank",
       "href": 'https://github.com/Morning-UI/morning-ui/commit/' + _vm.lastupdate.cid

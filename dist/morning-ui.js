@@ -1302,9 +1302,7 @@ exports.default = function (Vue, morning) {
         },
         beforeCreate: function beforeCreate() {
 
-            /* eslint-disable no-undef */
             this.Vue = Vue;
-            /* eslint-enable no-undef */
             this.morning = morning;
         },
         created: function created() {
