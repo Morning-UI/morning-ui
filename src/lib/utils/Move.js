@@ -7,10 +7,13 @@ let Move = {
         return {
             Move : {
                 can : false,
+                // 延迟多久触发拖拽，为了和click兼容
+                delay : 0,
                 target : null,
                 container : null,
                 lastMousedownIndex : -1,
                 movedIndex : -1,
+                delayTimeout : null,
                 $moveDragItem : null,
                 moving : false,
                 moveMouseFrom : {
@@ -41,7 +44,16 @@ let Move = {
     methods : {
         _moveItemRecord : function (index) {
 
-            this.lastMousedownIndex = index;
+            this.Move.lastMousedownIndex = index;
+
+        },
+        _moveMousedown : function (evt) {
+
+            this.Move.delayTimeout = setTimeout(()=>{
+
+                this._moveStart(evt);
+
+            }, this.Move.delay);
 
         },
         _moveStart : function (evt) {
@@ -73,9 +85,10 @@ let Move = {
 
             if (found) {
 
-                let $target = this.$el.querySelectorAll(`${this.Move.container} ${this.Move.target}`)[this.lastMousedownIndex];
+                let $target = this.$el.querySelectorAll(`${this.Move.container} ${this.Move.target}`)[this.Move.lastMousedownIndex];
                 let $container = this.$el.querySelector(this.Move.container);
                 
+                console.log($target);
                 $target.classList.add('move-moving');
                 
                 let $moveDragItem = $target.cloneNode(true);
@@ -86,7 +99,7 @@ let Move = {
                 $moveDragItem.style.left = `${x}px`;
                 $container.append($moveDragItem);
 
-                this.Move.movedIndex = this.lastMousedownIndex;
+                this.Move.movedIndex = this.Move.lastMousedownIndex;
                 this.Move.moveMouseFrom.x = evt.clientX;
                 this.Move.moveMouseFrom.y = evt.clientY;
                 this.Move.moveItemXy.x = x;
@@ -120,7 +133,7 @@ let Move = {
         },
         _moveMouseup : function () {
 
-            // clearTimeout(this.Move.startTimeout);
+            clearTimeout(this.Move.delayTimeout);
 
             if (!this.Move.moving) {
 
@@ -172,7 +185,7 @@ let Move = {
 
             if (newVal) {
                 
-                $container.addEventListener('mousedown', this._moveStart);
+                $container.addEventListener('mousedown', this._moveMousedown);
                 this._globalEventAdd('mousemove', '_moveMousemove');
                 this._globalEventAdd('mouseup', '_moveMouseup');
                 // this._moveAddGlobalListener();

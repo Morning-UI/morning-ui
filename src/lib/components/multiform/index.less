@@ -1,0 +1,207 @@
+@import '~Common/var.less';
+
+@borderRadiusMax : 100px;
+
+i-multiform{
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+    vertical-align: middle;
+    -webkit-user-select: none;
+
+    > .itemlist{
+        border: 1px @colorFormBorder solid;
+        border-radius: @borderRadius;
+        padding: @fontSize*0.2 @fontSize*0.3;
+        position: relative;
+        overflow: hidden;
+        font-size: 0;
+        min-height: @formHeight;
+        box-sizing: border-box;
+
+        > .name{
+            height: 100%;
+            position: absolute;
+            width: 20%;
+            max-width: @fontSize*9.375;
+            margin: 0;
+            background-color: @colorLightGray;
+            color: @colorBlue;
+            font-size: @fontSize*0.8125;
+            display: inline-block;
+            left: 0;
+            top: 0;
+        }
+
+        > .itemwrap{
+            position: relative;
+            font-size: 0;
+            display: inline-block;
+            width: 80%;
+            left: 20%;
+            top: 0;
+
+            &.hidename{
+                width: 100%;
+                left: 0;
+            }
+
+            > .item{
+                color: @colorFormItemColor !important;
+                background-color: @colorFromItemBackground;
+                display: inline-block;
+                padding: 0.4em 0.7em;
+                // TODO border-radius is not work
+                border-radius: @borderRadiusMax;
+                margin: @fontSize*0.2 @fontSize*0.1;
+                vertical-align: top;
+                line-height: 1.2em;
+                text-decoration: none;
+                position: relative;
+                cursor: pointer;
+                font-size: @fontSize*0.8125;
+                box-sizing: border-box;
+                max-width: 95%;
+
+                > span{
+                    max-width: 100%;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    display: inline-block;
+                    padding-right: 1em;
+                    vertical-align: middle;
+                    box-sizing: border-box;
+                }
+
+                &:hover{
+                    text-decoration: none;
+                    color: @colorFormItemColorHover !important;
+                    background: @colorFromItemBackgroundHover;
+                }
+
+                &.move-moving{
+                    opacity: 0.2;
+                }
+
+                > i.morningicon{
+                    font-size: @fontSize*0.75;
+                    position: absolute;
+                    right: 0.5em;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    cursor: pointer;
+
+                    &:hover{
+                        color: @colorDanger !important;
+                    }
+                }
+
+                &.move-drag-item {
+                    opacity: 1;
+                    position: absolute;
+                    box-shadow: 0 0 2px rgba(0, 0, 0, 0.35);
+                    z-index: 9;
+                    box-sizing: border-box;
+                    max-width: 95%;
+
+                    &:hover{
+                        cursor: move;
+                        color: @colorFormItemColor !important;
+                        background-color: @colorFromItemBackgroundHover;
+                    }
+                }
+
+                &.add{
+                    padding: 0.4em 1em;
+
+                    > span{
+                        padding-right: 0;
+                        padding-left: 1em;
+                    }
+
+                    > i.morningicon{
+                        top: 51%;
+                        left: 0.9em;
+                        right: auto;
+                    }
+
+                    &:hover{
+                        cursor: pointer;
+
+                        > i.morningicon{
+                            color: @colorFormTextHover !important;
+                        }
+                    }
+                }
+            }
+
+            > span{
+                font-size: @fontSize*0.75;
+                color: @colorFormTextMisc !important;
+                width: 100%;
+                padding: 0.4em 0.7em;
+                text-align: center;
+                display: block;
+            }
+        }
+    }
+
+    &.focus,
+    &:hover{
+        > .itemlist{
+            border-color: @colorFormBorderHover;
+        }
+    }
+
+    &.can-move{
+        > .itemlist > .itemwrap > .item:not(.add){
+            cursor: move ;
+        }
+    }
+
+    &.st-normal{}
+
+    &.st-disabled{
+        -webkit-user-select: none;
+        cursor: not-allowed !important;
+        background-color: @colorFormBackgroundDisable;
+
+        > .itemlist{
+            border-color: @colorFormBorderDisable;
+
+            > .name{
+                background-color: darken(@colorLightGray, 10%);
+                color: darken(@colorBlue, 10%);
+            }
+
+            > .itemwrap > .item{
+                cursor: not-allowed !important;
+                background-color: @colorFromItemBackgroundDisable;
+
+                > span{
+                    padding-right: 0;
+                }
+
+                &:hover{
+                    color: @colorFormItemColorDisable !important;
+                }
+
+                &.add:hover{
+                    cursor: default;
+                }
+            }
+
+            &:hover{
+                border-color: @colorFormBorderDisable;
+            }
+        }
+    }
+
+    // default statement
+    &{
+        .st-normal;
+    }
+}

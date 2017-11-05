@@ -60,7 +60,7 @@ header {
         opacity: 0.8;
 
         img {
-            width: 50px;
+            width: 53px;
             height: 50px;
             margin-top: 15px;
             display: inline-block;
