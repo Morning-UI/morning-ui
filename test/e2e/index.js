@@ -8,7 +8,7 @@ const runner = nightmare({
 test.serial('e2e test is ready', async t => {
 
     const result = await runner
-        .goto('http://www.apple.com')
+        .goto('https://www.apple.com')
         .wait('body')
         .evaluate(() => true);
 
