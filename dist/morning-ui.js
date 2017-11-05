@@ -702,7 +702,6 @@ var Move = {
                 var $target = this.$el.querySelectorAll(this.Move.container + ' ' + this.Move.target)[this.Move.lastMousedownIndex];
                 var $container = this.$el.querySelector(this.Move.container);
 
-                console.log($target);
                 $target.classList.add('move-moving');
 
                 var $moveDragItem = $target.cloneNode(true);
@@ -4206,7 +4205,7 @@ exports.default = {
             this.data.modifyIndex = index;
             this._showDialog();
         },
-        _moveItem: function _moveItem(from, to, valueChange) {
+        _moveItem: function _moveItem(from, to) {
 
             if (from >= this.data.value.length || from < 0 || to >= this.data.value.length || to < 0) {
 
@@ -7515,7 +7514,7 @@ var morning = {
     _groupData: {},
     _groupVmMap: {},
     isMorning: true,
-    version: '0.10.3',
+    version: '0.10.4',
     map: {}
 };
 
