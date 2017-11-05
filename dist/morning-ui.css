@@ -7223,7 +7223,7 @@ i-multiform:hover > .itemlist {
   border-color: #d7d7d7;
 }
 i-multiform.can-move > .itemlist > .itemwrap > .item:not(.add) {
-  cursor: move ;
+  cursor: move;
 }
 i-multiform.st-disabled {
   -webkit-user-select: none;
