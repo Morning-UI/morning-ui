@@ -49,7 +49,7 @@ let Move = {
         },
         _moveMousedown : function (evt) {
 
-            this.Move.delayTimeout = setTimeout(()=>{
+            this.Move.delayTimeout = setTimeout(() => {
 
                 this._moveStart(evt);
 
@@ -88,7 +88,6 @@ let Move = {
                 let $target = this.$el.querySelectorAll(`${this.Move.container} ${this.Move.target}`)[this.Move.lastMousedownIndex];
                 let $container = this.$el.querySelector(this.Move.container);
                 
-                console.log($target);
                 $target.classList.add('move-moving');
                 
                 let $moveDragItem = $target.cloneNode(true);

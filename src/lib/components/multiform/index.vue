@@ -309,7 +309,7 @@ export default {
             this._showDialog();
 
         },
-        _moveItem : function (from, to, valueChange) {
+        _moveItem : function (from, to) {
 
             if (from >= this.data.value.length ||
                 from < 0 ||
