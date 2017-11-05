@@ -73,7 +73,7 @@ export default {
 
             return {
                 'has-header' : this.data.hasHeader,
-                'has-Footer' : this.data.hasFooter,
+                'has-footer' : this.data.hasFooter,
                 'show-top' : (this.conf.showType === 'top'),
                 'show-center' : (this.conf.showType === 'center'),
                 'show-no-animate' : (this.conf.showType === 'no')

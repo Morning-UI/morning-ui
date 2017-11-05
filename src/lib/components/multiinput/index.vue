@@ -1,7 +1,7 @@
 <template>
     <i-multiinput
         :_uiid="uiid"
-        :class="[stateClass, moreClass, Move.moveClass]"
+        :class="[stateClass, moreClass, moveClass]"
 
         :form-name="formName"
         :form-key="formKey"
@@ -20,7 +20,8 @@
         <div
             class="item"
             v-for="(value, index) in data.value"
-            @mousedown="_moveItemRecord(index)">
+            @mousedown="_moveItemRecord(index)"
+        >
             <span :title="value">{{value}}</span>
             <i
                 class="morningicon"
