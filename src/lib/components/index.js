@@ -56,6 +56,7 @@ import select                       from './select/index.vue';
 import checkbox                     from './checkbox/index.vue';
 import radio                        from './radio/index.vue';
 import multiinput                   from './multiinput/index.vue';
+import multiform                    from './multiform/index.vue';
 import upload                       from './upload/index.vue';
 
 export default {
@@ -113,5 +114,6 @@ export default {
     checkbox,
     radio,
     multiinput,
+    multiform,
     upload
 };
