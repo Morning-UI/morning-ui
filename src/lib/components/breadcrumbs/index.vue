@@ -39,11 +39,11 @@
  
 <script>
 import extend                       from 'extend';
-import UI                           from 'Common/ui';
 
 const maxHistoryNum = 20;
 
-export default UI.extend({
+export default {
+    origin : 'UI',
     name : 'breadcrumbs',
     props : {
         rootName : {
@@ -222,7 +222,7 @@ export default UI.extend({
         this._recordHistory();
 
     }
-});
+};
 </script>
 
 <style lang="less" src="./index.less"></style>

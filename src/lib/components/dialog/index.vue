@@ -25,12 +25,12 @@
 </template>
  
 <script>
-import UI                           from 'Common/ui';
 import PopupManager                 from 'Utils/PopupManager';
 
 const rmIndexTimeout = 120;
 
-export default UI.extend({
+export default {
+    origin : 'UI',
     name : 'dialog',
     mixins : [PopupManager],
     props : {
@@ -73,7 +73,7 @@ export default UI.extend({
 
             return {
                 'has-header' : this.data.hasHeader,
-                'has-Footer' : this.data.hasFooter,
+                'has-footer' : this.data.hasFooter,
                 'show-top' : (this.conf.showType === 'top'),
                 'show-center' : (this.conf.showType === 'center'),
                 'show-no-animate' : (this.conf.showType === 'no')
@@ -167,7 +167,7 @@ export default UI.extend({
         }
 
     }
-});
+};
 </script>
 
 <style lang="less" src="./index.less"></style>

@@ -6,29 +6,17 @@
     <script type="text/markdown">
     # 全局方法
     
-    MorningUI在全局会注册一个`morning`对象，你可以通过`window.morning`来方法。这个对象上有一些有用的属性及方法。
+    Morning UI引入后会返回一个`morning`对象，这个对象上有一些有用的属性及方法。
 
-    > 注意`window.morning`对象上以下划线开头的都是私有属性，用法及变动不会再文档中提及，不应该访问及使用。
+    > 注意`morning`对象上以下划线开头的都是私有属性，用法及变动不会再文档中提及，不应该访问及使用。
 
     ### 属性
 
     - isMorning : Morning组件被引用的标记，数值为`true`。
-    - version : MorningUI当前的版本，使用者可以根据不同版本增加不同的逻辑。
+    - version : Morning UI当前的版本，使用者可以根据不同版本增加不同的逻辑。
     - map : 所有组件的vm对象都会挂载到map对象上，对象的键名是组件的`_uiid`。
 
     ### 方法
-
-    #### init(options)
-
-    ##### 参数
-
-    |参数|可选|描述|类型|
-    |-|-|-|-|
-    |options|YES|初始化配置对象，详见：[初始化](/guide/init.html)|`object`|
-
-    ##### 返回值
-
-    返回`window.morning`。
 
     #### findVM(ref)
 

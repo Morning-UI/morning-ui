@@ -8,22 +8,22 @@
 
     ### 初始化
 
-    在引入Morning UI后需要进行初始化：
+    在引入Morning UI后需要在Vue中进行初始化：
     
     ```js
-    window.morning.init();
+    Vue.use(morninig);
     ```
 
     你也可以在初始化的时候进行配置，比如：
     
     ```js
     // 将组件的标签前缀改为v，比如`v-btn`
-    window.morning.init({
+    Vue.use(morninig, {
         prefix : 'v'
     });
     ```
 
-    更多初始化配置见：[全局方法/init](/guide/morning.html)。
+    更多初始化配置见：[基础/初始化](/guide/init.html)。
 
     ### 使用组件
 

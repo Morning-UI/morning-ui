@@ -53,9 +53,8 @@
 </template>
  
 <script>
-import Form                         from 'Common/form';
-
-export default Form.extend({
+export default {
+    origin : 'Form',
     name : 'textinput',
     props : {
         hideValue : {
@@ -146,7 +145,7 @@ export default Form.extend({
     },
     created : function () {},
     mounted : function () {}
-});
+};
 </script>
 
 <style lang="less" src="./index.less"></style>

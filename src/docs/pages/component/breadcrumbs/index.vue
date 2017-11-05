@@ -1,3 +1,4 @@
+<template>
     <doc-component
         :page="page"
         :hasPadding="true"

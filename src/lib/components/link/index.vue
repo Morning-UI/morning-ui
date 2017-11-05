@@ -26,9 +26,8 @@
 </template>
  
 <script>
-import UI                           from 'Common/ui';
-
-export default UI.extend({
+export default {
+    origin : 'UI',
     name : 'link',
     props : {
         link : {
@@ -158,7 +157,7 @@ export default UI.extend({
         });
 
     }
-});
+};
 </script>
 
 <style lang="less" src="./index.less"></style>

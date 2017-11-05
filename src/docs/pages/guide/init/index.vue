@@ -6,7 +6,7 @@
     <script type="text/markdown">
     # 初始化
 
-    在使用Morning UI之前，需要先通过`morning.init(options)`方法来初始化。
+    在使用Morning UI之前，需要先通过`Vue.use(morning, [options])`方法来初始化。
 
     初始化方法接受一个`options`对象来对Morning UI进行初始化配置，`options`的参数都是可选的，详见下表：
     
@@ -19,7 +19,7 @@
     默认情况下Morning UI采用`ui`作为组件标签的前缀，比如使用按钮组件时，需要使用`<ui-btn></ui-btn>`标签。但在某些场景下可能`<ui-*>`这样的标签已经被占用，因此Morning UI允许你在初始化时修改组件标签的前缀：
 
     ```js
-    morning.init({
+    Vue.use(morning, {
         prefix : 'v'
     });
     ```

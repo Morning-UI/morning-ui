@@ -7,18 +7,18 @@ module.exports = Vue;
 
 /***/ }),
 
-/***/ 112:
+/***/ 113:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(216);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(218);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_23d6d735_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(631);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_23d6d735_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(635);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(313)
+  __webpack_require__(316)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
@@ -63,7 +63,7 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 216:
+/***/ 218:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -215,7 +215,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 295:
+/***/ 298:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -225,7 +225,7 @@ var _vue = __webpack_require__(0);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _index = __webpack_require__(112);
+var _index = __webpack_require__(113);
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -240,14 +240,14 @@ new _vue2.default({
 
 /***/ }),
 
-/***/ 313:
+/***/ 316:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 631:
+/***/ 635:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -325,7 +325,7 @@ var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _
     staticClass: "right"
   }, [_c('pre', [_vm._v("                        "), _c('code', {
     staticClass: "language-js hljs"
-  }, [_vm._v("\nwindow.morning.init();\n                        ")]), _vm._v("\n                        ")])])])
+  }, [_vm._v("\nVue.use(morning);\n                        ")]), _vm._v("\n                        ")])])])
 },function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "lrBox"
@@ -391,4 +391,4 @@ if (false) {
 
 /***/ })
 
-},[295]);
+},[298]);

@@ -8,11 +8,10 @@
 </template>
  
 <script>
-import UI                           from 'Common/ui';
-
-export default UI.extend({
+export default {
+    origin : 'UI',
     name : 'grid'
-});
+};
 </script>
 
 <style lang="less" src="./index.less"></style>

@@ -19,8 +19,15 @@
         - `<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue">&lt;/script>`
         - `<script type="text/javascript" src="path-to-morning/morning-ui.js">&lt;/script>`
         - `<style rel="stylesheet" link="path-to-morning/morning-ui.css">&lt;/style>`
-    2. 初始化Morning UI： `window.morning.init();`
-    3. 在Vue的模板中使用：`<ui-btn>Hello Mroning.</ui-btn>`
+    2. 在Vue的模板中使用组件： `<ui-btn>Hello Mroning.</ui-btn>`
+    3. 初始化Morning UI及Vue模板：
+
+    ```js
+    Vue.use(morning);
+    new Vue({
+        el : '#vue-template'
+    });
+    ```
 
     完整的代码如下：
 
@@ -32,16 +39,21 @@
             <style rel="stylesheet" link="path-to-morning/morning-ui.css">&lt;/style>
         </head>
         <body>
-            <!-- 使用组件 -->
-            <ui-btn>Hello Mroning.</ui-btn>
-
             <!-- 引入Vue.js和Morning UI的js  -->
             <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue">&lt;/script>
             <script type="text/javascript" src="path-to-morning/morning-ui.js">&lt;/script>
 
-            <!-- 初始化Morning UI -->
+            <!-- 在Vue的模板中使用组件 -->
+            <div id="vue-template">
+                <ui-btn>Hello Mroning.</ui-btn>
+            </div>
+
+            <!-- 初始化Morning UI及Vue模板 -->
             <script type="text/javascript">
-            window.morning.init();
+            Vue.use(morning);
+            new Vue({
+                el : '#vue-template'
+            });
             &lt;/script>
         </body>
     </html>

@@ -1,7 +1,7 @@
 <template>
     <i-multiinput
         :_uiid="uiid"
-        :class="[stateClass, moreClass, Move.moveClass]"
+        :class="[stateClass, moreClass, moveClass]"
 
         :form-name="formName"
         :form-key="formKey"
@@ -20,7 +20,8 @@
         <div
             class="item"
             v-for="(value, index) in data.value"
-            @mousedown="_moveItemRecord(index)">
+            @mousedown="_moveItemRecord(index)"
+        >
             <span :title="value">{{value}}</span>
             <i
                 class="morningicon"
@@ -79,10 +80,10 @@
 </template>
  
 <script>
-import Form                         from 'Common/form';
 import Move                         from 'Utils/Move';
 
-export default Form.extend({
+export default {
+    origin : 'Form',
     name : 'multiinput',
     mixins : [Move],
     props : {
@@ -363,7 +364,7 @@ export default Form.extend({
         });
 
     }
-});
+};
 </script>
 
 <style lang="less" src="./index.less"></style>
