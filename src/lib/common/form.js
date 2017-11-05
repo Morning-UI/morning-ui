@@ -37,6 +37,7 @@ export default UI => UI.extend({
         }
 
         return {
+            isForm : true,
             conf : {
                 formName : this.formName,
                 formKey : this.formKey,

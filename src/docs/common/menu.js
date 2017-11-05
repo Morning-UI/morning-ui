@@ -72,7 +72,7 @@ export default {
         复选框组 : '/component/checkbox.html',
         单选框组 : '/component/radio.html',
         多项输入 : '/component/multiinput.html',
-        // 多项表单输入<i class="tag coming"></i> : '/component/multiform.html'
+        多项表单输入 : '/component/multiform.html'
         // 多项文本输入 : 'b',
         // 批量表单输入 : 'b',
         // 时间输入<i class="tag new"></i> : 'b',
