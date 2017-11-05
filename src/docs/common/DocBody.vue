@@ -290,6 +290,36 @@ let data = {
                 valueType : 'Array',
                 valueContent : '[\'Tim Boelaars\', \'Andrew Colin Beck\']'
             }
+        ],
+        multiform : [
+            {
+                valueType : 'String',
+                valueContent : `'Tim Boelaars'`
+            },
+            {
+                valueType : 'Number',
+                valueContent : '5'
+            },
+            {
+                valueType : 'Boolean',
+                valueContent : 'true'
+            },
+            {
+                valueType : 'Null',
+                valueContent : 'null'
+            },
+            {
+                valueType : 'Undefined',
+                valueContent : 'undefined'
+            },
+            {
+                valueType : 'Object',
+                valueContent : '{\'name\':\'Tim Boelaars\'}'
+            },
+            {
+                valueType : 'Array',
+                valueContent : '[{\'name\':\'Tim Boelaars\'}]'
+            }
         ]
     }
 };
@@ -595,7 +625,7 @@ formConfig
 <div style="width:300px;">
     <ui-{%uikey%} ref="demoMethodGet" form-name="表单名" :default-value="{%&methodDefaultValue%}" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>
     <br>
-    <ui-link js="alert(window.morning.findVM('demoMethodGet').get())">获取表单原始值</ui-link>
+    <ui-link js="console.log(window.morning.findVM('demoMethodGet').get())">获取表单原始值</ui-link>
 </div>
 :::
 
@@ -607,7 +637,7 @@ formConfig
 <div style="width:300px;">
     <ui-{%uikey%} ref="demoMethodGetJson" form-name="表单名" :default-value="{%&methodDefaultValue%}" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>
     <br>
-    <ui-link js="alert(window.morning.findVM('demoMethodGetJson').getJson())">获取表单值的JSON序列化字符串</ui-link>
+    <ui-link js="console.log(window.morning.findVM('demoMethodGetJson').getJson())">获取表单值的JSON序列化字符串</ui-link>
 </div>
 :::
 
@@ -785,7 +815,7 @@ window.demoEventLifecycle = new Vue({
 <div style="width:300px;">
     <ui-{%uikey%}
         ref="demoEventLifecycle"
-        form-name="表单名123"
+        form-name="表单名"
         v-show="show"
         @created="echo('created')"
         @mounted="echo('mounted')"
