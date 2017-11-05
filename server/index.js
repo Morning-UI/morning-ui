@@ -26,6 +26,13 @@ router
 
         next();
 
+    })
+    .get('/favicon.ico', async (ctx, next) => {
+        
+        ctx.body = fs.readFileSync('./favicon.ico');
+
+        next();
+
     });
 
 app

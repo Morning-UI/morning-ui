@@ -78,7 +78,7 @@ export default {
         // 时间输入<i class="tag new"></i> : 'b',
         // 日期输入<i class="tag new"></i> : 'b',
         // 日期时间输入<i class="tag update"></i> : 'b',
-        // 文件上传 : 'b',
+        文件上传 : '/component/upload.html',
         // 图片热区输入 : 'b',
         // 颜色选择 : 'b'
     },
