@@ -839,6 +839,9 @@ i-dialog a:hover {
 .content.padding {
   padding: 50px;
 }
+.content .content-title {
+  display: none;
+}
 .demo {
   padding: 10px;
   box-sizing: border-box;
@@ -855,6 +858,8 @@ header {
   width: 100%;
   background: #333;
   height: 80px;
+  position: relative;
+  z-index: 5;
 }
 header .nav {
   width: 1000px;
@@ -867,7 +872,7 @@ header .logo {
   opacity: 0.8;
 }
 header .logo img {
-  width: 50px;
+  width: 53px;
   height: 50px;
   margin-top: 15px;
   display: inline-block;
@@ -927,6 +932,33 @@ header.index .name {
 }
 header.index .menu li a {
   color: #333;
+}
+header .doc-search input {
+  height: 30px;
+  font-size: 12px;
+  margin-top: 10px;
+}
+header .doc-search.dark input {
+  background: #333;
+  border: 1px #555 solid;
+  color: #eee !important;
+}
+header .doc-search.dark input::placeholder {
+  color: #999;
+}
+header .doc-search.dark input:hover {
+  border-color: #666;
+}
+header .doc-search.dark input:focus {
+  border-color: #777;
+}
+header .ds-dropdown-menu {
+  font-size: 12px;
+  width: 380px;
+  min-width: 380px !important;
+}
+header .ds-dataset-1 {
+  width: 380px;
 }
 
 footer {
