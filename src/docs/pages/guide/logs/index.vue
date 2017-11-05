@@ -18,6 +18,20 @@
     
     ### 更新记录
 
+    ### 0.10.4 <ui-badge class="circle ver-canary" s light-theme>Canary</ui-badge>
+
+    <ui-textcolor light-blue><ui-small>发布于2017年11月5日</ui-small></ui-textcolor>
+    
+    - 新增`ui-multiform`多项表单输入组件
+    - 支持文档搜索([DocSearch](https://community.algolia.com/docsearch/))
+    - 支持使用模块管理器(Webpack/Rollup等)
+    - 支持CDN引用(cdn.jsdelivr.net)
+
+    <ui-label primary>Upgrade Precautions</ui-label>
+
+    - 通过模块方式引入，不会在全局注册window.morning变量
+    - 初始化方法从`morning.init([options])`变为`Vue.use(morning, [options])`
+
     ### 0.10.3 <ui-badge class="circle ver-canary" s light-theme>Canary</ui-badge>
 
     <ui-textcolor light-blue><ui-small>发布于2017年11月2日</ui-small></ui-textcolor>

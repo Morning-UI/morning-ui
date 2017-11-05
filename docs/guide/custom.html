@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Morning UI</title>
     <link href="https://cdn.bootcss.com/normalize/7.0.0/normalize.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css" />
     <link href="/doc-common.css" rel="stylesheet">
     <link href="/dist/morning-ui.css" rel="stylesheet">
   <body>
@@ -14,7 +15,8 @@
     <script src="/doc-common.js"></script>
     <script src="/dist/morning-ui.js"></script>
     <script>
-      morning.init();
+    Vue.use(morning);
     </script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script>
   <script type="text/javascript" src="/guide/custom.js"></script></body>
 </html>

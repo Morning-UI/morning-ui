@@ -1,4 +1,3 @@
-import Vue                          from 'vue';
 import extend                       from 'extend';
 
 let sizeSet = [
@@ -45,7 +44,6 @@ let stateSet = [
     'processing'
 ];
 
-let morning;
 let props = {
     name : String
 };
@@ -59,7 +57,7 @@ for (let key of [...sizeSet, ...styleSet, ...stateSet]) {
 
 }
 
-let UI = Vue.extend({
+export default (Vue, morning) => Vue.extend({
     props : props,
     watch : {
         'conf.size' : function (val) {
@@ -196,6 +194,7 @@ let UI = Vue.extend({
 
         let data = {};
 
+        data.isUI = true;
         data.uiid = this.morning._uiid++;
         data.conf = {};
         data.data = {};
@@ -271,11 +270,3 @@ let UI = Vue.extend({
 
     }
 });
-
-export default UI;
-
-export let injectMorning = _morning => {
-
-    morning = _morning;
-
-};

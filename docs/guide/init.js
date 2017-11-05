@@ -7,7 +7,7 @@ module.exports = Vue;
 
 /***/ }),
 
-/***/ 201:
+/***/ 203:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70,7 +70,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 280:
+/***/ 283:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -80,7 +80,7 @@ var _vue = __webpack_require__(0);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _index = __webpack_require__(97);
+var _index = __webpack_require__(98);
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -95,14 +95,14 @@ new _vue2.default({
 
 /***/ }),
 
-/***/ 337:
+/***/ 340:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 655:
+/***/ 659:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -116,7 +116,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "type": "text/markdown"
     }
-  }, [_vm._v("\n# 初始化\n\n在使用Morning UI之前，需要先通过`morning.init(options)`方法来初始化。\n\n初始化方法接受一个`options`对象来对Morning UI进行初始化配置，`options`的参数都是可选的，详见下表：\n\n|参数|描述|类型|\n|-|-|-|\n|prefix|组件标签前缀，默认为ui，可在冲突时使用自定义|`string`|\n\n### 更改组件标签前缀\n\n默认情况下Morning UI采用`ui`作为组件标签的前缀，比如使用按钮组件时，需要使用`<ui-btn></ui-btn>`标签。但在某些场景下可能`<ui-*>`这样的标签已经被占用，因此Morning UI允许你在初始化时修改组件标签的前缀：\n\n```js\nmorning.init({\n    prefix : 'v'\n});\n```\n\n比如通过上面的代码初始化后，需要使用`<v-btn><v-btn>`来使用按钮组件。注意`前缀`和`组件名`之间的中划线是固定的无法改变。\n\n")])])
+  }, [_vm._v("\n# 初始化\n\n在使用Morning UI之前，需要先通过`Vue.use(morning, [options])`方法来初始化。\n\n初始化方法接受一个`options`对象来对Morning UI进行初始化配置，`options`的参数都是可选的，详见下表：\n\n|参数|描述|类型|\n|-|-|-|\n|prefix|组件标签前缀，默认为ui，可在冲突时使用自定义|`string`|\n\n### 更改组件标签前缀\n\n默认情况下Morning UI采用`ui`作为组件标签的前缀，比如使用按钮组件时，需要使用`<ui-btn></ui-btn>`标签。但在某些场景下可能`<ui-*>`这样的标签已经被占用，因此Morning UI允许你在初始化时修改组件标签的前缀：\n\n```js\nVue.use(morning, {\n    prefix : 'v'\n});\n```\n\n比如通过上面的代码初始化后，需要使用`<v-btn><v-btn>`来使用按钮组件。注意`前缀`和`组件名`之间的中划线是固定的无法改变。\n\n")])])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -131,18 +131,18 @@ if (false) {
 
 /***/ }),
 
-/***/ 97:
+/***/ 98:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(203);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_4e1aded6_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(655);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_4e1aded6_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(659);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(337)
+  __webpack_require__(340)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
@@ -187,4 +187,4 @@ if (false) {(function () {
 
 /***/ })
 
-},[280]);
+},[283]);
