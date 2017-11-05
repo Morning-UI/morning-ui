@@ -286,7 +286,7 @@ var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _
   }, [_c('img', {
     staticClass: "mainLogo",
     attrs: {
-      "src": "http://h0.hucdn.com/open/201734/d693b26dc14f52a0_800x800.png",
+      "src": "https://h0.hucdn.com/open/201734/d693b26dc14f52a0_800x800.png",
       "alt": "morning-ui"
     }
   }), _vm._v(" "), _c('div', {

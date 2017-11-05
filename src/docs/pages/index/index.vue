@@ -1,10 +1,10 @@
 <template>
     <div>
         <doc-header :category="category"></doc-header>
-        <!-- darg icon http://h0.hucdn.com/open/201734/175363ad9c01a51b_200x200.png -->
+        <!-- darg icon https://h0.hucdn.com/open/201734/175363ad9c01a51b_200x200.png -->
         <section class="s1">
             <div class="w1k center">
-                <img class="mainLogo" src="http://h0.hucdn.com/open/201734/d693b26dc14f52a0_800x800.png" alt="morning-ui">
+                <img class="mainLogo" src="https://h0.hucdn.com/open/201734/d693b26dc14f52a0_800x800.png" alt="morning-ui">
                 <div class="keywork">
                     <span>Efficiency</span>
                     <span>Modern</span>
