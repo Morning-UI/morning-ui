@@ -75,6 +75,10 @@
     |item-title-key|每一项内容标题的取值。设置为某个表单的`key`后，项目的标题将取这个表单的值。|表单的`key`|String|`undefined`|
     |can-move|输入项目是否可以移动|`true`<br>`false`|Boolean|`false`|
     |max|可输入的最大项目数|数字：最大项目数<br>`undefined`：无限制|Number|`undefined`|
+    |input-type|表单的输入模式<br><br>在批量输入模式下会进行下面操作：<br>1. 将用户输入的字符串解析成id数组(按一定的规则)<br>2. 将id数组会输入一个填值函数(用户定义填值函数)<br>3. 填值函数解析id后，返回由多个项目对象组成的数组<br>4. 这些项目会被添加到表单中<br><br>批量输入必需添加：<br>`batch-reg`将字符串解析为id数组的正则表达式<br>`batch-filler`来将输入数组转换成项目对象数组|`'single'`：每次输入一项<br>`'batch-separate'`：批量输入，通过内容分割得到id数组<br>`'batch-pluck'`：批量输入，通过内容匹配选取得到id数组|String|`'single'`|
+    |batch-reg|解析用户输入字符串的正则表达式<br>在`batch-separate`模式下通过这个正则分割字符串得到id数组<br>在`batch-pluck`模式下通过匹配这个正则得到id数组(每匹配到一项添加到数组中)|正则表达式字符串|String|`','`|
+    |batch-filler|批量输入的填值函数，此函数有一个参数：<br>`ids`：用户输入的id数组<br><br>通过解析这些id，此函数返回多个项目对象组成的数组<br><br>如果解析是异步的，此函数也可以返回一个`Promise`对象|填值函数|Function|`value => value`|
+    |batch-uniq|对用户输入解析后的id数组进行去重|`true`<br>`false`|Boolean|`false`|
     :::
 
     :::preset/html
@@ -175,6 +179,370 @@
         </ui-multiform>
     </div>
     :::
+
+    #### input-type
+
+    下面是`input-type`为`batch-separate`的情况：
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            list : {
+                hz : {
+                    city : '杭州',
+                    province : '浙江'
+                },
+                sh : {
+                    city : '上海',
+                    province : '上海'
+                },
+                sz : {
+                    city : '深圳',
+                    province : '广东'
+                }
+            }
+        },
+        methods : {
+            filler : function (ids) {
+                let list = [];
+                for (let id of ids) {
+                    if (this.list[id]) {
+                        list.push(this.list[id]);
+                    }
+                }
+                return list;
+            }
+        }
+    });
+    ---
+    <div style="width:400px;">
+        <p>点击添加城市，输入城市的拼音缩写(使用逗号分隔)<code>hz,sh,sz</code>，然后查看效果</p>
+        <ui-multiform
+            form-name="地区"
+            item-name="城市"
+            item-title-key="city"
+            input-type="batch-separate"
+            :batch-filler="filler"
+        >
+            <ui-formgroup>
+                <div class="item">
+                    <h5 class="title">
+                        <ui-center class="fill">城市</ui-center>
+                    </h5>
+                    <div class="content">
+                        <div class="form">
+                            <ui-textinput form-key="city"></ui-textinput>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <h5 class="title">
+                        <ui-center class="fill">省份</ui-center>
+                    </h5>
+                    <div class="content">
+                        <div class="form">
+                            <ui-textinput form-key="province"></ui-textinput>
+                        </div>
+                    </div>
+                </div>
+            </ui-formgroup>
+        </ui-multiform>
+    </div>
+    :::
+
+    下面是`input-type`为`batch-pluck`的情况，输入的内容混入了数字，采用了正则匹配并选取城市的字母：
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            list : {
+                hz : {
+                    city : '杭州',
+                    province : '浙江'
+                },
+                sh : {
+                    city : '上海',
+                    province : '上海'
+                },
+                sz : {
+                    city : '深圳',
+                    province : '广东'
+                }
+            }
+        },
+        methods : {
+            filler : function (ids) {
+                let list = [];
+                for (let id of ids) {
+                    if (this.list[id]) {
+                        list.push(this.list[id]);
+                    }
+                }
+                return list;
+            }
+        }
+    });
+    ---
+    <div style="width:400px;">
+        <p>点击添加城市，输入城市的拼音缩写(混入数字)<code>hz1sh23sz45</code>，然后查看效果</p>
+        <ui-multiform
+            form-name="地区"
+            item-name="城市"
+            item-title-key="city"
+            input-type="batch-pluck"
+            batch-reg="(hz|sh|sz)"
+            :batch-filler="filler"
+        >
+            <ui-formgroup>
+                <div class="item">
+                    <h5 class="title">
+                        <ui-center class="fill">城市</ui-center>
+                    </h5>
+                    <div class="content">
+                        <div class="form">
+                            <ui-textinput form-key="city"></ui-textinput>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <h5 class="title">
+                        <ui-center class="fill">省份</ui-center>
+                    </h5>
+                    <div class="content">
+                        <div class="form">
+                            <ui-textinput form-key="province"></ui-textinput>
+                        </div>
+                    </div>
+                </div>
+            </ui-formgroup>
+        </ui-multiform>
+    </div>
+    :::
+
+    #### batch-reg
+
+    通过`batch-reg`你可以修改输入id字符串的分隔符或是选取条件：
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            list : {
+                hz : {
+                    city : '杭州',
+                    province : '浙江'
+                },
+                sh : {
+                    city : '上海',
+                    province : '上海'
+                },
+                sz : {
+                    city : '深圳',
+                    province : '广东'
+                }
+            }
+        },
+        methods : {
+            filler : function (ids) {
+                let list = [];
+                for (let id of ids) {
+                    if (this.list[id]) {
+                        list.push(this.list[id]);
+                    }
+                }
+                return list;
+            }
+        }
+    });
+    ---
+    <div style="width:400px;">
+        <p>点击添加城市，输入城市的拼音缩写(使用斜线分隔)<code>hz/sh/sz</code>，然后查看效果</p>
+        <ui-multiform
+            form-name="地区"
+            item-name="城市"
+            item-title-key="city"
+            input-type="batch-separate"
+            batch-reg="\/"
+            :batch-filler="filler"
+        >
+            <ui-formgroup>
+                <div class="item">
+                    <h5 class="title">
+                        <ui-center class="fill">城市</ui-center>
+                    </h5>
+                    <div class="content">
+                        <div class="form">
+                            <ui-textinput form-key="city"></ui-textinput>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <h5 class="title">
+                        <ui-center class="fill">省份</ui-center>
+                    </h5>
+                    <div class="content">
+                        <div class="form">
+                            <ui-textinput form-key="province"></ui-textinput>
+                        </div>
+                    </div>
+                </div>
+            </ui-formgroup>
+        </ui-multiform>
+    </div>
+    :::
+
+    #### batch-filler
+
+    在上面的`batch-reg`中已经演示同步的`batch-filler`下面来看看异步的情况，异步的`batch-filler`允许你通过输入的id数组从远程拉取数据。
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            list : {
+                hz : {
+                    city : '杭州',
+                    province : '浙江'
+                },
+                sh : {
+                    city : '上海',
+                    province : '上海'
+                },
+                sz : {
+                    city : '深圳',
+                    province : '广东'
+                }
+            }
+        },
+        methods : {
+            filler : function (ids) {
+                let list = [];
+                for (let id of ids) {
+                    if (this.list[id]) {
+                        list.push(this.list[id]);
+                    }
+                }
+                return new Promise(resolve => {
+                    setTimeout(()=>{
+                        resolve(list);
+                    }, 3000);
+                });
+            }
+        }
+    });
+    ---
+    <div style="width:400px;">
+        <p>点击添加城市，输入城市的拼音缩写(使用逗号分隔)<code>hz,sh,sz</code>，等待3秒查看效果</p>
+        <ui-multiform
+            form-name="地区"
+            item-name="城市"
+            item-title-key="city"
+            input-type="batch-separate"
+            :batch-filler="filler"
+        >
+            <ui-formgroup>
+                <div class="item">
+                    <h5 class="title">
+                        <ui-center class="fill">城市</ui-center>
+                    </h5>
+                    <div class="content">
+                        <div class="form">
+                            <ui-textinput form-key="city"></ui-textinput>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <h5 class="title">
+                        <ui-center class="fill">省份</ui-center>
+                    </h5>
+                    <div class="content">
+                        <div class="form">
+                            <ui-textinput form-key="province"></ui-textinput>
+                        </div>
+                    </div>
+                </div>
+            </ui-formgroup>
+        </ui-multiform>
+    </div>
+    :::
+
+    #### batch-uniq
+    
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            list : {
+                hz : {
+                    city : '杭州',
+                    province : '浙江'
+                },
+                sh : {
+                    city : '上海',
+                    province : '上海'
+                },
+                sz : {
+                    city : '深圳',
+                    province : '广东'
+                }
+            }
+        },
+        methods : {
+            filler : function (ids) {
+                let list = [];
+                for (let id of ids) {
+                    if (this.list[id]) {
+                        list.push(this.list[id]);
+                    }
+                }
+                return list;
+            }
+        }
+    });
+    ---
+    <div style="width:400px;">
+        <p>点击添加城市，输入城市的拼音缩写(使用逗号分隔)<code>hz,sh,sz,hz,sh,sz</code>，然后查看效果</p>
+        <ui-multiform
+            form-name="地区"
+            item-name="城市"
+            item-title-key="city"
+            input-type="batch-separate"
+            :batch-uniq="true"
+            :batch-filler="filler"
+        >
+            <ui-formgroup>
+                <div class="item">
+                    <h5 class="title">
+                        <ui-center class="fill">城市</ui-center>
+                    </h5>
+                    <div class="content">
+                        <div class="form">
+                            <ui-textinput form-key="city"></ui-textinput>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <h5 class="title">
+                        <ui-center class="fill">省份</ui-center>
+                    </h5>
+                    <div class="content">
+                        <div class="form">
+                            <ui-textinput form-key="province"></ui-textinput>
+                        </div>
+                    </div>
+                </div>
+            </ui-formgroup>
+        </ui-multiform>
+    </div>
+    :::
+
 
     [[[方法]]]
 

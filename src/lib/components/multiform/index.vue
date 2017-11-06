@@ -12,6 +12,10 @@
         :item-title-key="itemTitleKey"
         :can-move="canMove"
         :max="max"
+        :input-type="inputType"
+        :batch-reg="batchReg"
+        :batch-filler="batchFiller"
+        :batch-uniq="batchUniq"
     >
 
     <div class="itemlist">
@@ -47,7 +51,7 @@
                         href="javascript:;"
                         class="add item"
                         v-if="data.value.length < conf.max"
-                        @click="_showDialog"
+                        @click="_addItemDialog"
                     >
                         <span>添加{{conf.itemName}}</span> <i class="morningicon">&#xe698;</i>
                     </a>
@@ -58,7 +62,7 @@
                     <a
                         href="javascript:;"
                         class="add item"
-                        @click="_showDialog"
+                        @click="_addItemDialog"
                     >
                         <span>添加{{conf.itemName}}</span> <i class="morningicon">&#xe698;</i>
                     </a>
@@ -87,11 +91,35 @@
         </footer>
     </morning-dialog>
 
+    <morning-dialog
+        class="multiform-batch-dialog"
+        width="500px"
+        height="240px"
+        gray
+        v-if="conf.inputType !== 'single'"
+        :ref="'ui-multiform-batchdialog-'+uiid"
+    >
+        <header slot="header">请输入需要添加的项目</header>
+        <ui-textarea :ref="'ui-multiform-batchinput-'+uiid"></ui-textarea>
+        <footer slot="footer">
+            <div>
+                <!-- action="emit:toggle" -->
+                <morning-link class="margin" minor @emit="_hideBatchDialog">取消</morning-link>
+                <morning-btn success :ref="'ui-multiform-batchsave-'+uiid" @emit="_batchInput">确认</morning-btn>
+            </div>
+        </footer>
+    </morning-dialog>
+
+
+
     </i-multiform>
 </template>
  
 <script>
+import arrayUniq                    from 'array-uniq';
 import Move                         from 'Utils/Move';
+
+const returnValueFn = value => value;
 
 export default {
     origin : 'Form',
@@ -113,6 +141,23 @@ export default {
         max : {
             type : Number,
             default : undefined
+        },
+        inputType : {
+            type : String,
+            default : 'single',
+            validator : (value => ['single', 'batch-separate', 'batch-pluck'].indexOf(value) !== -1)
+        },
+        batchReg : {
+            type : String,
+            default : ','
+        },
+        batchFiller : {
+            type : Function,
+            default : returnValueFn
+        },
+        batchUniq : {
+            type : Boolean,
+            default : false
         }
     },
     computed : {
@@ -129,7 +174,11 @@ export default {
                 itemName : this.itemName,
                 itemTitleKey : this.itemTitleKey,
                 canMove : this.canMove,
-                max : this.max
+                max : this.max,
+                inputType : this.inputType,
+                batchReg : this.batchReg,
+                batchFiller : this.batchFiller,
+                batchUniq : this.batchUniq
             },
             data : {
                 modifyIndex : null
@@ -212,6 +261,19 @@ export default {
             return forms;
 
         },
+        _addItemDialog : function () {
+
+            if (this.conf.inputType === 'single') {
+
+                this._showDialog();
+
+            } else {
+
+                this._showBatchDialog();
+
+            }
+
+        },
         _showDialog : function () {
 
             this.$refs[`ui-multiform-dialog-${this.uiid}`].toggle(true);
@@ -220,6 +282,16 @@ export default {
         _hideDialog : function () {
 
             this.$refs[`ui-multiform-dialog-${this.uiid}`].toggle(false);
+
+        },
+        _showBatchDialog : function () {
+
+            this.$refs[`ui-multiform-batchdialog-${this.uiid}`].toggle(true);
+
+        },
+        _hideBatchDialog : function () {
+
+            this.$refs[`ui-multiform-batchdialog-${this.uiid}`].toggle(false);
 
         },
         _saveItem : function () {
@@ -332,6 +404,59 @@ export default {
 
             this.set(value);
                 
+        },
+        _batchInput : function () {
+
+            let inputVm = this.$refs[`ui-multiform-batchinput-${this.uiid}`];
+            let saveBtnVm = this.$refs[`ui-multiform-batchsave-${this.uiid}`];
+            let inputStr = inputVm.get();
+            let ids = [];
+
+            saveBtnVm.lock();
+
+            if (this.conf.inputType === 'batch-separate') {
+
+                ids = inputStr.split(new RegExp(this.conf.batchReg, 'g'));
+
+            } else if (this.conf.inputType === 'batch-pluck') {
+
+                let pluckReg = new RegExp(this.conf.batchReg, 'g');
+                let result;
+
+                while ((result = pluckReg.exec(inputStr)) !== null) {
+
+                    ids.push(result[0]);
+
+                }
+
+            }
+
+            if (this.conf.batchUniq) {
+
+                ids = arrayUniq(ids);
+
+            }
+
+            Promise
+                .resolve(this.conf.batchFiller.call(this, ids))
+                .then(items => {
+
+                    for (let item of items) {
+
+                        if (typeof item === 'object') {
+                        
+                            this._addItem(item);
+
+                        }
+
+                    }
+
+                    inputVm.set(undefined);
+                    saveBtnVm.unlock();
+                    this._hideBatchDialog();
+
+                });
+
         },
         add : function (value, index) {
 
