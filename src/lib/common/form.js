@@ -1,6 +1,10 @@
 import extend                       from 'extend';
 
 export default UI => UI.extend({
+    model : {
+        prop : 'modelValue',
+        event : 'value-change'
+    },
     props : {
         formName : {
             type : String,
@@ -20,6 +24,9 @@ export default UI => UI.extend({
         hideName : {
             type : Boolean,
             default : false
+        },
+        modelValue : {
+            default : undefined
         }
     },
     data : function () {
@@ -307,6 +314,12 @@ export default UI => UI.extend({
         this.data.value = this.conf.defaultValue;
         this._syncGroup();
 
+        this.$watch('modelValue', newValue => {
+
+            this._set(newValue);
+
+        });
+
         this.$watch('data.value', newValue => {
 
             let filteredValue = this._valueFilter(newValue);
@@ -323,7 +336,7 @@ export default UI => UI.extend({
             }
 
             this._syncGroup();
-            this.$emit('value-change');
+            this.$emit('value-change', newValue);
 
         }, {
             deep : true,
