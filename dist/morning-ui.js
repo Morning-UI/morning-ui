@@ -271,13 +271,83 @@ module.exports = function extend() {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+/* WEBPACK VAR INJECTION */(function(global) {
+
+// there's 3 implementations written in increasing order of efficiency
+
+// 1 - no Set type is defined
+function uniqNoSet(arr) {
+	var ret = [];
+
+	for (var i = 0; i < arr.length; i++) {
+		if (ret.indexOf(arr[i]) === -1) {
+			ret.push(arr[i]);
+		}
+	}
+
+	return ret;
+}
+
+// 2 - a simple Set type is defined
+function uniqSet(arr) {
+	var seen = new Set();
+	return arr.filter(function (el) {
+		if (!seen.has(el)) {
+			seen.add(el);
+			return true;
+		}
+
+		return false;
+	});
+}
+
+// 3 - a standard Set type is defined and it has a forEach method
+function uniqSetWithForEach(arr) {
+	var ret = [];
+
+	(new Set(arr)).forEach(function (el) {
+		ret.push(el);
+	});
+
+	return ret;
+}
+
+// V8 currently has a broken implementation
+// https://github.com/joyent/node/issues/8449
+function doesForEachActuallyWork() {
+	var ret = false;
+
+	(new Set([true])).forEach(function (el) {
+		ret = el;
+	});
+
+	return ret === true;
+}
+
+if ('Set' in global) {
+	if (typeof Set.prototype.forEach === 'function' && doesForEachActuallyWork()) {
+		module.exports = uniqSetWithForEach;
+	} else {
+		module.exports = uniqSet;
+	}
+} else {
+	module.exports = uniqNoSet;
+}
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(234)))
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _arrayUniq = __webpack_require__(4);
+var _arrayUniq = __webpack_require__(2);
 
 var _arrayUniq2 = _interopRequireDefault(_arrayUniq);
 
@@ -379,7 +449,7 @@ exports.default = GlobalEvent;
 module.exports = exports['default'];
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -495,76 +565,6 @@ exports.default = IndexManager;
 module.exports = exports["default"];
 
 /***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(global) {
-
-// there's 3 implementations written in increasing order of efficiency
-
-// 1 - no Set type is defined
-function uniqNoSet(arr) {
-	var ret = [];
-
-	for (var i = 0; i < arr.length; i++) {
-		if (ret.indexOf(arr[i]) === -1) {
-			ret.push(arr[i]);
-		}
-	}
-
-	return ret;
-}
-
-// 2 - a simple Set type is defined
-function uniqSet(arr) {
-	var seen = new Set();
-	return arr.filter(function (el) {
-		if (!seen.has(el)) {
-			seen.add(el);
-			return true;
-		}
-
-		return false;
-	});
-}
-
-// 3 - a standard Set type is defined and it has a forEach method
-function uniqSetWithForEach(arr) {
-	var ret = [];
-
-	(new Set(arr)).forEach(function (el) {
-		ret.push(el);
-	});
-
-	return ret;
-}
-
-// V8 currently has a broken implementation
-// https://github.com/joyent/node/issues/8449
-function doesForEachActuallyWork() {
-	var ret = false;
-
-	(new Set([true])).forEach(function (el) {
-		ret = el;
-	});
-
-	return ret === true;
-}
-
-if ('Set' in global) {
-	if (typeof Set.prototype.forEach === 'function' && doesForEachActuallyWork()) {
-		module.exports = uniqSetWithForEach;
-	} else {
-		module.exports = uniqSet;
-	}
-} else {
-	module.exports = uniqNoSet;
-}
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(234)))
-
-/***/ }),
 /* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -575,7 +575,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _GlobalEvent = __webpack_require__(2);
+var _GlobalEvent = __webpack_require__(3);
 
 var _GlobalEvent2 = _interopRequireDefault(_GlobalEvent);
 
@@ -848,7 +848,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _IndexManager = __webpack_require__(3);
+var _IndexManager = __webpack_require__(4);
 
 var _IndexManager2 = _interopRequireDefault(_IndexManager);
 
@@ -929,6 +929,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = function (UI) {
     return UI.extend({
+        model: {
+            prop: 'modelValue',
+            event: 'value-change'
+        },
         props: {
             formName: {
                 type: String,
@@ -950,6 +954,9 @@ exports.default = function (UI) {
             hideName: {
                 type: Boolean,
                 default: false
+            },
+            modelValue: {
+                default: undefined
             }
         },
         data: function data() {
@@ -1279,6 +1286,11 @@ exports.default = function (UI) {
             this.data.value = this.conf.defaultValue;
             this._syncGroup();
 
+            this.$watch('modelValue', function (newValue) {
+
+                _this._set(newValue);
+            });
+
             this.$watch('data.value', function (newValue) {
 
                 var filteredValue = _this._valueFilter(newValue);
@@ -1291,7 +1303,7 @@ exports.default = function (UI) {
                 }
 
                 _this._syncGroup();
-                _this.$emit('value-change');
+                _this.$emit('value-change', newValue);
             }, {
                 deep: true,
                 immediate: true
@@ -2689,7 +2701,7 @@ var _extend = __webpack_require__(1);
 
 var _extend2 = _interopRequireDefault(_extend);
 
-var _arrayUniq = __webpack_require__(4);
+var _arrayUniq = __webpack_require__(2);
 
 var _arrayUniq2 = _interopRequireDefault(_arrayUniq);
 
@@ -3035,11 +3047,11 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _GlobalEvent = __webpack_require__(2);
+var _GlobalEvent = __webpack_require__(3);
 
 var _GlobalEvent2 = _interopRequireDefault(_GlobalEvent);
 
-var _IndexManager = __webpack_require__(3);
+var _IndexManager = __webpack_require__(4);
 
 var _IndexManager2 = _interopRequireDefault(_IndexManager);
 
@@ -3931,12 +3943,45 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+var _arrayUniq = __webpack_require__(2);
+
+var _arrayUniq2 = _interopRequireDefault(_arrayUniq);
 
 var _Move = __webpack_require__(5);
 
 var _Move2 = _interopRequireDefault(_Move);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var returnValueFn = function returnValueFn(value) {
+    return value;
+};
 
 exports.default = {
     origin: 'Form',
@@ -3958,6 +4003,25 @@ exports.default = {
         max: {
             type: Number,
             default: undefined
+        },
+        inputType: {
+            type: String,
+            default: 'single',
+            validator: function validator(value) {
+                return ['single', 'batch-separate', 'batch-pluck'].indexOf(value) !== -1;
+            }
+        },
+        batchReg: {
+            type: String,
+            default: ','
+        },
+        batchFiller: {
+            type: Function,
+            default: returnValueFn
+        },
+        batchUniq: {
+            type: Boolean,
+            default: false
         }
     },
     computed: {
@@ -3973,7 +4037,11 @@ exports.default = {
                 itemName: this.itemName,
                 itemTitleKey: this.itemTitleKey,
                 canMove: this.canMove,
-                max: this.max
+                max: this.max,
+                inputType: this.inputType,
+                batchReg: this.batchReg,
+                batchFiller: this.batchFiller,
+                batchUniq: this.batchUniq
             },
             data: {
                 modifyIndex: null
@@ -4082,6 +4150,16 @@ exports.default = {
 
             return forms;
         },
+        _addItemDialog: function _addItemDialog() {
+
+            if (this.conf.inputType === 'single') {
+
+                this._showDialog();
+            } else {
+
+                this._showBatchDialog();
+            }
+        },
         _showDialog: function _showDialog() {
 
             this.$refs['ui-multiform-dialog-' + this.uiid].toggle(true);
@@ -4089,6 +4167,14 @@ exports.default = {
         _hideDialog: function _hideDialog() {
 
             this.$refs['ui-multiform-dialog-' + this.uiid].toggle(false);
+        },
+        _showBatchDialog: function _showBatchDialog() {
+
+            this.$refs['ui-multiform-batchdialog-' + this.uiid].toggle(true);
+        },
+        _hideBatchDialog: function _hideBatchDialog() {
+
+            this.$refs['ui-multiform-batchdialog-' + this.uiid].toggle(false);
         },
         _saveItem: function _saveItem() {
 
@@ -4223,6 +4309,71 @@ exports.default = {
 
             this.set(value);
         },
+        _batchInput: function _batchInput() {
+            var _this = this;
+
+            var inputVm = this.$refs['ui-multiform-batchinput-' + this.uiid];
+            var saveBtnVm = this.$refs['ui-multiform-batchsave-' + this.uiid];
+            var inputStr = inputVm.get();
+            var ids = [];
+
+            saveBtnVm.lock();
+
+            if (this.conf.inputType === 'batch-separate') {
+
+                ids = inputStr.split(new RegExp(this.conf.batchReg, 'g'));
+            } else if (this.conf.inputType === 'batch-pluck') {
+
+                var pluckReg = new RegExp(this.conf.batchReg, 'g');
+                var result = void 0;
+
+                while ((result = pluckReg.exec(inputStr)) !== null) {
+
+                    ids.push(result[0]);
+                }
+            }
+
+            if (this.conf.batchUniq) {
+
+                ids = (0, _arrayUniq2.default)(ids);
+            }
+
+            Promise.resolve(this.conf.batchFiller.call(this, ids)).then(function (items) {
+                var _iteratorNormalCompletion5 = true;
+                var _didIteratorError5 = false;
+                var _iteratorError5 = undefined;
+
+                try {
+
+                    for (var _iterator5 = items[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+                        var item = _step5.value;
+
+
+                        if ((typeof item === 'undefined' ? 'undefined' : _typeof(item)) === 'object') {
+
+                            _this._addItem(item);
+                        }
+                    }
+                } catch (err) {
+                    _didIteratorError5 = true;
+                    _iteratorError5 = err;
+                } finally {
+                    try {
+                        if (!_iteratorNormalCompletion5 && _iterator5.return) {
+                            _iterator5.return();
+                        }
+                    } finally {
+                        if (_didIteratorError5) {
+                            throw _iteratorError5;
+                        }
+                    }
+                }
+
+                inputVm.set(undefined);
+                saveBtnVm.unlock();
+                _this._hideBatchDialog();
+            });
+        },
         add: function add(value, index) {
 
             this._addItem(value, index);
@@ -4242,16 +4393,16 @@ exports.default = {
     },
     created: function created() {},
     mounted: function mounted() {
-        var _this = this;
+        var _this2 = this;
 
         var moveDelayTime = 200;
 
         this.$watch('conf.canMove', function (newVal) {
 
-            _this.Move.target = '.item:not(.add)';
-            _this.Move.container = '.itemwrap';
-            _this.Move.delay = moveDelayTime;
-            _this.Move.can = !!newVal;
+            _this2.Move.target = '.item:not(.add)';
+            _this2.Move.container = '.itemwrap';
+            _this2.Move.delay = moveDelayTime;
+            _this2.Move.can = !!newVal;
         }, {
             immediate: true
         });
@@ -4262,46 +4413,46 @@ exports.default = {
 
             var maxDistance = 20;
 
-            var $items = _this.$el.querySelectorAll('.item:not(.add)');
+            var $items = _this2.$el.querySelectorAll('.item:not(.add)');
 
-            var _iteratorNormalCompletion5 = true;
-            var _didIteratorError5 = false;
-            var _iteratorError5 = undefined;
+            var _iteratorNormalCompletion6 = true;
+            var _didIteratorError6 = false;
+            var _iteratorError6 = undefined;
 
             try {
-                for (var _iterator5 = $items.entries()[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
-                    var item = _step5.value;
+                for (var _iterator6 = $items.entries()[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
+                    var item = _step6.value;
 
 
                     var index = item[0];
                     var $item = item[1];
 
                     if (!movingReg.test($item.className)) {
-                        var _moveElementXy = _this._moveElementXy($item),
+                        var _moveElementXy = _this2._moveElementXy($item),
                             x = _moveElementXy.x,
                             y = _moveElementXy.y;
 
-                        var distance = Math.sqrt(Math.pow(Math.abs(_this.Move.current.x - x), 2) + Math.pow(Math.abs(_this.Move.current.y - y), 2));
+                        var distance = Math.sqrt(Math.pow(Math.abs(_this2.Move.current.x - x), 2) + Math.pow(Math.abs(_this2.Move.current.y - y), 2));
 
                         if (distance < maxDistance) {
 
-                            _this.move(_this.Move.movedIndex, index);
+                            _this2.move(_this2.Move.movedIndex, index);
 
                             break;
                         }
                     }
                 }
             } catch (err) {
-                _didIteratorError5 = true;
-                _iteratorError5 = err;
+                _didIteratorError6 = true;
+                _iteratorError6 = err;
             } finally {
                 try {
-                    if (!_iteratorNormalCompletion5 && _iterator5.return) {
-                        _iterator5.return();
+                    if (!_iteratorNormalCompletion6 && _iterator6.return) {
+                        _iterator6.return();
                     }
                 } finally {
-                    if (_didIteratorError5) {
-                        throw _iteratorError5;
+                    if (_didIteratorError6) {
+                        throw _iteratorError6;
                     }
                 }
             }
@@ -5238,11 +5389,11 @@ var _trim = __webpack_require__(123);
 
 var _trim2 = _interopRequireDefault(_trim);
 
-var _GlobalEvent = __webpack_require__(2);
+var _GlobalEvent = __webpack_require__(3);
 
 var _GlobalEvent2 = _interopRequireDefault(_GlobalEvent);
 
-var _IndexManager = __webpack_require__(3);
+var _IndexManager = __webpack_require__(4);
 
 var _IndexManager2 = _interopRequireDefault(_IndexManager);
 
@@ -7514,7 +7665,7 @@ var morning = {
     _groupData: {},
     _groupVmMap: {},
     isMorning: true,
-    version: '0.10.4',
+    version: '0.10.5',
     map: {}
 };
 
@@ -13106,7 +13257,11 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "item-name": _vm.itemName,
       "item-title-key": _vm.itemTitleKey,
       "can-move": _vm.canMove,
-      "max": _vm.max
+      "max": _vm.max,
+      "input-type": _vm.inputType,
+      "batch-reg": _vm.batchReg,
+      "batch-filler": _vm.batchFiller,
+      "batch-uniq": _vm.batchUniq
     }
   }, [_c('div', {
     staticClass: "itemlist"
@@ -13145,7 +13300,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "href": "javascript:;"
     },
     on: {
-      "click": _vm._showDialog
+      "click": _vm._addItemDialog
     }
   }, [_c('span', [_vm._v("添加" + _vm._s(_vm.conf.itemName))]), _vm._v(" "), _c('i', {
     staticClass: "morningicon"
@@ -13155,7 +13310,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "href": "javascript:;"
     },
     on: {
-      "click": _vm._showDialog
+      "click": _vm._addItemDialog
     }
   }, [_c('span', [_vm._v("添加" + _vm._s(_vm.conf.itemName))]), _vm._v(" "), _c('i', {
     staticClass: "morningicon"
@@ -13196,7 +13351,43 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     on: {
       "emit": _vm._saveItem
     }
-  }, [_vm._v("确认")])], 1)])], 2)], 1)
+  }, [_vm._v("确认")])], 1)])], 2), _vm._v(" "), (_vm.conf.inputType !== 'single') ? _c('morning-dialog', {
+    ref: 'ui-multiform-batchdialog-' + _vm.uiid,
+    staticClass: "multiform-batch-dialog",
+    attrs: {
+      "width": "500px",
+      "height": "240px",
+      "gray": ""
+    }
+  }, [_c('header', {
+    attrs: {
+      "slot": "header"
+    },
+    slot: "header"
+  }, [_vm._v("请输入需要添加的项目")]), _vm._v(" "), _c('ui-textarea', {
+    ref: 'ui-multiform-batchinput-' + _vm.uiid
+  }), _vm._v(" "), _c('footer', {
+    attrs: {
+      "slot": "footer"
+    },
+    slot: "footer"
+  }, [_c('div', [_c('morning-link', {
+    staticClass: "margin",
+    attrs: {
+      "minor": ""
+    },
+    on: {
+      "emit": _vm._hideBatchDialog
+    }
+  }, [_vm._v("取消")]), _vm._v(" "), _c('morning-btn', {
+    ref: 'ui-multiform-batchsave-' + _vm.uiid,
+    attrs: {
+      "success": ""
+    },
+    on: {
+      "emit": _vm._batchInput
+    }
+  }, [_vm._v("确认")])], 1)])], 1) : _vm._e()], 1)
 }
 var staticRenderFns = []
 render._withStripped = true

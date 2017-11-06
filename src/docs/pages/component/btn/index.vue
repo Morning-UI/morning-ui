@@ -75,7 +75,7 @@
     #### link
 
     :::democode/html
-    <ui-btn :link="'http://www.google.com'">链接</ui-btn>
+    <ui-btn :link="'https://www.google.com'">链接</ui-btn>
     :::
 
     #### js
@@ -98,7 +98,7 @@
     #### new-tab
 
     :::democode/html
-    <ui-btn new-tab :link="'http://www.google.com'">新窗口打开链接</ui-btn>
+    <ui-btn new-tab :link="'https://www.google.com'">新窗口打开链接</ui-btn>
     :::
 
     [[[方法]]]

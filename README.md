@@ -15,7 +15,7 @@
 
 ## Documentation
 
-You can find the Morning UI documentation on the [website](http://morning-ui.com/).
+You can find the Morning UI documentation on the [website](https://morning-ui.com/).
 
 ## Under development
 

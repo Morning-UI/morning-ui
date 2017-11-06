@@ -1650,7 +1650,6 @@ exports.default = {
         多项输入: '/component/multiinput.html',
         多项表单输入: '/component/multiform.html'
         // 多项文本输入 : 'b',
-        // 批量表单输入 : 'b',
         // 时间输入<i class="tag new"></i> : 'b',
         // 日期输入<i class="tag new"></i> : 'b',
         // 日期时间输入<i class="tag update"></i> : 'b',
@@ -31039,13 +31038,13 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
   }, [(_vm.isIndex) ? _c('img', {
     staticClass: "githublogo",
     attrs: {
-      "src": "http://h0.hucdn.com/open/201744/f87561b8bb354ef8_32x32.png",
+      "src": "https://h0.hucdn.com/open/201744/f87561b8bb354ef8_32x32.png",
       "alt": "GitHub"
     }
   }) : _c('img', {
     staticClass: "githublogo",
     attrs: {
-      "src": "http://h0.hucdn.com/open/201744/d56df49a807a9fd0_32x32.png",
+      "src": "https://h0.hucdn.com/open/201744/d56df49a807a9fd0_32x32.png",
       "alt": "GitHub"
     }
   })])])])])])
@@ -31055,7 +31054,7 @@ var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _
     staticClass: "logo"
   }, [_c('img', {
     attrs: {
-      "src": "http://h0.hucdn.com/open/201734/8f299e45f6693260_200x200.png",
+      "src": "https://h0.hucdn.com/open/201734/8f299e45f6693260_200x200.png",
       "alt": "morning-ui"
     }
   })])
@@ -31159,7 +31158,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
 var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('footer', [_c('img', {
     attrs: {
-      "src": "http://h0.hucdn.com/open/201734/8f299e45f6693260_200x200.png",
+      "src": "https://h0.hucdn.com/open/201734/8f299e45f6693260_200x200.png",
       "alt": ""
     }
   }), _c('br'), _vm._v("\n    Under "), _c('a', {
