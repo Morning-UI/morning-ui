@@ -18,6 +18,14 @@
     
     ### 更新记录
 
+    ### 0.10.5 <ui-badge class="circle ver-canary" s light-theme>Canary</ui-badge>
+
+    <ui-textcolor light-blue><ui-small>发布于2017年11月6日</ui-small></ui-textcolor>
+    
+    - `ui-multiform`组件支持批量输入
+    - 表单组件数据支持通过`v-model`指令双向绑定
+    - 网站支持HTTPS，增加Google Analytics
+
     ### 0.10.4 <ui-badge class="circle ver-canary" s light-theme>Canary</ui-badge>
 
     <ui-textcolor light-blue><ui-small>发布于2017年11月5日</ui-small></ui-textcolor>
