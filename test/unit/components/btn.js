@@ -42,7 +42,7 @@ test('config : link', async t => {
     const vm = new Vue({
         template : '<ui-btn :link="link">按钮</ui-btn>',
         data : {
-            link : 'http://www.google.com'
+            link : 'https://www.google.com'
         },
         components : {
             'ui-btn' : component
@@ -53,7 +53,7 @@ test('config : link', async t => {
 
     t.plan(2);
 
-    t.is(vm.$children[0].conf.link, 'http://www.google.com');
+    t.is(vm.$children[0].conf.link, 'https://www.google.com');
     snapshot(t, vm);
 
 });
