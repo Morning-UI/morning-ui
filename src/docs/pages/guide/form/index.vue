@@ -143,6 +143,52 @@
     <ui-btn js="window.morning.setGroup('demo4', {gender:undefined});">清空性别表单</ui-btn>
     :::
 
+    ### 表单数据双向绑定
+    
+    大部分情况下表单的值和父视图中的数据是关联的，这时候可以使用`v-model`指令将表单值绑定到父视图中。
+
+    绑定是双向的，组件值改变会同步到父视图的data中，父视图的值改变也会改变组件的值：
+    
+    :::vue/html
+    window.demoVm = new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            name : undefined,
+            gender : undefined
+        },
+        methods : {
+            getData : function() {
+                return JSON.stringify({
+                    name : this.name,
+                    gender : this.gender
+                })
+            },
+            setData : function() {
+                this.name = 'Sam';
+                this.gender = 'female';
+            }
+        }
+    });
+    ---
+    <div style="width:400px;">
+        <p>1. 修改下面表单内容，然后点击<code>获取父视图的data</code>，父视图的数据同步变化</p>
+        <p>2. 点击<code>修改父视图的data</code>，表单的值也会变化</p>
+        <ui-formgroup>
+        <ui-textinput v-model="name" form-name="姓名" default-value="Jim"></ui-textinput>
+        <br>
+        <ui-radio :list="{male:'Male',female:'Female'}" v-model="gender" default-value="male"></ui-radio>
+        </ui-formgroup>
+        <br><br>
+        <ui-btn js="alert(demoVm.getData());">获取父视图的data</ui-btn>
+        <ui-btn js="demoVm.setData();">修改父视图的data</ui-btn>
+    </div>
+    :::
+
+    注意：如果表单处于`disable`状态，父视图中的数值变化将不会同步到表单。
+
+    `v-model`指令的用法详见：<a href="https://cn.vuejs.org/v2/guide/forms.html" target="_blank">表单输入绑定</a>
+
     ### 全局扩展
 
     MorningUI的全局对象`morning`上对表单组件进行了扩展，可以让使用者更方便的获取、设置表单值。
