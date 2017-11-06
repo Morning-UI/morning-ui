@@ -929,6 +929,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = function (UI) {
     return UI.extend({
+        model: {
+            prop: 'modelValue',
+            event: 'value-change'
+        },
         props: {
             formName: {
                 type: String,
@@ -950,6 +954,9 @@ exports.default = function (UI) {
             hideName: {
                 type: Boolean,
                 default: false
+            },
+            modelValue: {
+                default: undefined
             }
         },
         data: function data() {
@@ -1279,6 +1286,11 @@ exports.default = function (UI) {
             this.data.value = this.conf.defaultValue;
             this._syncGroup();
 
+            this.$watch('modelValue', function (newValue) {
+
+                _this._set(newValue);
+            });
+
             this.$watch('data.value', function (newValue) {
 
                 var filteredValue = _this._valueFilter(newValue);
@@ -1291,7 +1303,7 @@ exports.default = function (UI) {
                 }
 
                 _this._syncGroup();
-                _this.$emit('value-change');
+                _this.$emit('value-change', newValue);
             }, {
                 deep: true,
                 immediate: true
@@ -7662,6 +7674,18 @@ morning.install = function (Vue, options) {
     }
 
     Vue.config.ignoredElements = this._ignoreElements;
+
+    Vue.directive('formdata', {
+        bind: function bind(el, binding) {
+
+            console.log('bind', binding.value);
+        },
+        componentUpdated: function componentUpdated(el, binding) {
+
+            console.log('componentUpdated', binding.value);
+            el._vm.set(binding.value);
+        }
+    });
 
     return this;
 };
