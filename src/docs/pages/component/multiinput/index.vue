@@ -99,6 +99,23 @@
     <ui-link js="javascript:morning.findVM('demo2').add('value2', 0);">添加到第0项</ui-link>
     :::
 
+    #### update(item, index)
+
+    更新指定位置的项。
+    
+    |KEY|可选|描述|接受值|值类型|默认值|
+    |-|-|-|-|-|-|
+    |item|NO|更新的项目内容|内容字符串|`String`|`undefined`|
+    |index|NO|更新的位置|更新项目的index位置|`Number`|`undefined`|
+
+    :::democode/html
+    <div style="width:300px;">
+        <ui-multiinput ref="demo8" form-name="输入标签" :default-value="['value1', 'value2', 'value3', 'value4']"></ui-multiinput>
+    </div>
+    <br>
+    <ui-link js="javascript:morning.findVM('demo8').update('newValue', 1);">将第2项的更新为newValue</ui-link>
+    :::
+
     #### del(index)
 
     删除指定位置的项。

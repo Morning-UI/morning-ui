@@ -614,7 +614,7 @@
         </ui-multiform>
     </div>
     <br>
-    <ui-link js="javascript:morning.findVM('demo4').update({name: 'Katherine'}, 1);">将第1项的name更新为Katherine</ui-link>
+    <ui-link js="javascript:morning.findVM('demo4').update({name: 'Katherine'}, 1);">将第2项的name更新为Katherine</ui-link>
     :::
 
     #### del(index)
