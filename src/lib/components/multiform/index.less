@@ -52,11 +52,12 @@ i-multiform{
                 color: @colorFormItemColor !important;
                 background-color: @colorFromItemBackground;
                 display: inline-block;
-                padding: 0.4em 0.7em;
+                padding: 0 1.2em;
                 border-radius: @borderRadiusMax;
                 margin: @fontSize*0.2 @fontSize*0.1;
                 vertical-align: top;
-                line-height: 1.2em;
+                line-height: 2.4em;
+                height: 2.4em;
                 text-decoration: none;
                 position: relative;
                 cursor: pointer;
@@ -88,7 +89,7 @@ i-multiform{
                 > i.morningicon{
                     font-size: @fontSize*0.75;
                     position: absolute;
-                    right: 0.5em;
+                    right: 1em;
                     top: 50%;
                     transform: translateY(-50%);
                     cursor: pointer;
@@ -114,7 +115,7 @@ i-multiform{
                 }
 
                 &.add{
-                    padding: 0.4em 1em;
+                    padding: 0 1.4em;
 
                     > span{
                         padding-right: 0;
@@ -123,7 +124,7 @@ i-multiform{
 
                     > i.morningicon{
                         top: 51%;
-                        left: 0.9em;
+                        left: 1.3em;
                         right: auto;
                     }
 
@@ -133,6 +134,22 @@ i-multiform{
                         > i.morningicon{
                             color: @colorFormTextHover !important;
                         }
+                    }
+                }
+
+                &.has-img{
+                    border-radius: 0 @borderRadiusMax @borderRadiusMax 0;
+                    padding-left: 3em;
+
+                    .thumb{
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        height: 2.4em;
+                        width: 2.4em;
+                        padding: 1px;
+                        box-sizing: border-box;
+                        background: darken(@colorGray, 2%);
                     }
                 }
             }
@@ -146,6 +163,17 @@ i-multiform{
                 display: block;
             }
         }
+    }
+
+    &.has-cleanbtn{
+        padding-bottom: @fontSize*1.25;
+    }
+
+    .cleanbtn{
+        position: absolute;
+        right: 0;
+        font-size: 12px;
+        margin-top: 1px;
     }
 
     &.focus,
