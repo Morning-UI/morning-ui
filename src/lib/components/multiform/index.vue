@@ -462,20 +462,28 @@ export default {
 
             this._addItem(value, index);
 
+            return this;
+
         },
         del : function (index) {
 
             this._deleteItem(index);
+
+            return this;
 
         },
         update : function (value, index) {
 
             this._updateItem(value, index);
 
+            return this;
+
         },
         move : function (from, to) {
 
             this._moveItem(from, to);
+
+            return this;
 
         }
     },
