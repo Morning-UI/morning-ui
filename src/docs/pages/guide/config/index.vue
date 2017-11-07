@@ -216,6 +216,12 @@
     - `page-size` : 每页数量
     - `page` : 页数
     - `jump-page` : 跳转页面
+    - `item-name` : 项目名称
+    - `item-filler` : 项目填充
+    - `input-type` : 输入类型
+    - `batch-reg` : 批量输入正则表达式
+    - `batch-filler` : 批量输入填充
+    - `batch-uniq` : 批量输入去重
 
     </script>
     </doc-guide>
