@@ -79,7 +79,7 @@
     "eslint": "^4.5.0",
     "eslint-config-gaea": "^0.1.5",
     "eslint-plugin-html": "^3.2.1",
-    "extract-text-webpack-plugin": "^2.1.2",
+    "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^0.11.2",
     "fs-extra": "^4.0.2",
     "github-markdown-css": "^2.8.0",
@@ -120,8 +120,8 @@
     "vue-style-loader": "^3.0.1",
     "vue-template-compiler": "^2.5.2",
     "walk": "^2.3.9",
-    "webpack": "^2.7.0",
-    "webpack-dev-server": "^2.7.1"
+    "webpack": "^3.8.1",
+    "webpack-dev-server": "^2.9.4"
   },
   "ava": {
     "require": [
