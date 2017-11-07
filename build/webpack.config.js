@@ -5,6 +5,7 @@ const walk                          = require('walk');
 const CleanWebpackPlugin            = require('clean-webpack-plugin');
 const ExtractTextPlugin             = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin             = require('html-webpack-plugin');
+const UglifyJsPlugin                = require('uglifyjs-webpack-plugin');
 
 let pathProjectRoot = path.resolve(__dirname, '../');
 let pathPackage = path.resolve(pathProjectRoot, 'package.json');
@@ -194,7 +195,7 @@ prodVerConfig = extend(
             new webpack.DefinePlugin({
                 'process.env.NODE_ENV' : process.env.NODE_ENV
             }),
-            new webpack.optimize.UglifyJsPlugin(),
+            new UglifyJsPlugin(),
             extractProdCss
         ],
         module : {
