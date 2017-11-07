@@ -113,6 +113,7 @@
     "stylelint": "^8.1.1",
     "stylelint-processor-html": "^1.0.0",
     "tap-out": "^2.0.0",
+    "uglifyjs-webpack-plugin": "^1.0.1",
     "underscore": "^1.8.3",
     "url-loader": "^0.5.9",
     "vue": "^2.5.2",
