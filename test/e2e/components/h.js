@@ -1,89 +1,98 @@
 import test                         from 'ava';
 import nightmare                    from 'nightmare';
+import cleanstyle                   from '../../helpers/cleanstyle';
+import common                       from '../../helpers/common';
 
 const runner = nightmare({
     show : false
 });
 
-let testHost = 'http://localhost:8089';
+let tagName = 'h';
+let docUrl = `${common.TEST_HOST}/component/${tagName}.html`;
+let basicDemo = `[name="开始"] i-${tagName}`;
 
-// fot eslint
-let $ = null;
+let context = {
+    tagName,
+    basicDemo,
+    common
+};
 
-test.serial('size', async t => {
+test.serial('basic style', async t => {
 
     const result = await runner
-        .goto(`${testHost}/component/h.html`)
-        .wait('[name="声明"]')
-        .evaluate(() => ({
-            size : {
-                xxl : $('[name="声明"] .si-xxl').css('font-size'),
-                xl : $('[name="声明"] .si-xl').css('font-size'),
-                l : $('[name="声明"] .si-l').css('font-size'),
-                m : $('[name="声明"] .si-m').css('font-size'),
-                s : $('[name="声明"] .si-s').css('font-size'),
-                xs : $('[name="声明"] .si-xs').css('font-size'),
-                xxs : $('[name="声明"] .si-xxs').css('font-size')
-            }
-        }));
+        .goto(docUrl)
+        .wait(basicDemo)
+        .evaluate(
+            eval(`(${common.e2eBasicFnString})`),
+            context
+        );
 
     t.plan(1);
 
+    cleanstyle(result.style);
     t.snapshot(result);
 
 });
 
-test.serial('style', async t => {
+test.serial('size', async t => {
 
     const result = await runner
-        .goto(`${testHost}/component/h.html`)
-        .wait('[name="声明"]')
-        .evaluate(() => ({
-            color : {
-                theme : $('[name="声明"] .sy-theme').css('color'),
-                lightTheme : $('[name="声明"] .sy-lightTheme').css('color'),
-                darkTheme : $('[name="声明"] .sy-darkTheme').css('color'),
-                success : $('[name="声明"] .sy-success').css('color'),
-                warning : $('[name="声明"] .sy-warning').css('color'),
-                danger : $('[name="声明"] .sy-danger').css('color'),
-                primary : $('[name="声明"] .sy-primary').css('color'),
-                minor : $('[name="声明"] .sy-minor').css('color'),
-                info : $('[name="声明"] .sy-info').css('color'),
-                black : $('[name="声明"] .sy-black').css('color'),
-                lightBlack : $('[name="声明"] .sy-lightBlack').css('color'),
-                extraLightBlack : $('[name="声明"] .sy-extraLightBlack').css('color'),
-                blue : $('[name="声明"] .sy-blue').css('color'),
-                lightBlue : $('[name="声明"] .sy-lightBlue').css('color'),
-                extraLightBlue : $('[name="声明"] .sy-extraLightBlue').css('color'),
-                silver : $('[name="声明"] .sy-silver').css('color'),
-                lightSilver : $('[name="声明"] .sy-lightSilver').css('color'),
-                extraLightSilver : $('[name="声明"] .sy-extraLightSilver').css('color'),
-                gray : $('[name="声明"] .sy-gray').css('color'),
-                lightGray : $('[name="声明"] .sy-lightGray').css('color'),
-                white : $('[name="声明"] .sy-white').css('color')
-            }
-        }));
+        .goto(docUrl)
+        .wait(basicDemo)
+        .evaluate(
+            eval(`(${common.e2eStatementFnString})`),
+            context,
+            'size',
+            [
+                'font-size'
+            ]
+        );
 
-    t.plan(1);
+    t.plan(2);
 
     t.snapshot(result);
+    t.is(JSON.stringify(result.size.m), JSON.stringify(result.default));
+
+});
+
+test.serial('color', async t => {
+
+    const result = await runner
+        .goto(docUrl)
+        .wait(basicDemo)
+        .evaluate(
+            eval(`(${common.e2eStatementFnString})`),
+            context,
+            'color',
+            [
+                'color'
+            ]
+        );
+
+    t.plan(2);
+
+    t.snapshot(result);
+    t.is(JSON.stringify(result.color.black), JSON.stringify(result.default));
 
 });
 
 test.serial('state', async t => {
 
     const result = await runner
-        .goto(`${testHost}/component/h.html`)
-        .wait('[name="声明"]')
-        .evaluate(() => ({
-            animationName : {
-                theme : $('[name="声明"] .st-normal').css('animation-name'),
-                lightTheme : $('[name="声明"] .st-apparent').css('animation-name')
-            }
-        }));
+        .goto(docUrl)
+        .wait(basicDemo)
+        .evaluate(
+            eval(`(${common.e2eStatementFnString})`),
+            context,
+            'state_na',
+            [
+                'animation-name'
+            ]
+        );
 
-    t.plan(1);
+    t.plan(2);
 
     t.snapshot(result);
+    t.is(JSON.stringify(result.state_na.normal), JSON.stringify(result.default));
 
 });
