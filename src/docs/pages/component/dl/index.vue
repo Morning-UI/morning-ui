@@ -42,10 +42,10 @@
 
     :::democode/html
     <ui-dl class="underline">
-        <dt>Horizon</dt>
-        <dd>this is horizontal ui-dl</dd>
-        <dt>Horizon</dt>
-        <dd>this is horizontal ui-dl</dd>
+        <dt>Underline</dt>
+        <dd>this is underline ui-dl</dd>
+        <dt>Underline</dt>
+        <dd>this is underline ui-dl</dd>
     </ui-dl>
     :::
 

@@ -13995,6 +13995,14 @@ exports.default = {
                 this.data.inputWidth = this.conf.formName.length * valueWidth + 'em';
             }
         },
+        _updateItem: function _updateItem(value, index) {
+
+            var list = this.get();
+
+            list.splice(index, 1, value || {});
+
+            this.set(list);
+        },
         _deleteItem: function _deleteItem(index) {
 
             var value = this.get();
@@ -14045,6 +14053,12 @@ exports.default = {
         del: function del(index) {
 
             this._deleteItem(index);
+
+            return this;
+        },
+        update: function update(item, index) {
+
+            this._updateItem(item, index);
 
             return this;
         },
@@ -14502,6 +14516,13 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 var _arrayUniq = __webpack_require__(3);
 
@@ -14517,6 +14538,8 @@ var returnValueFn = function returnValueFn(value) {
     return value;
 };
 
+var noopFn = function noopFn() {};
+
 exports.default = {
     origin: 'Form',
     name: 'multiform',
@@ -14526,9 +14549,9 @@ exports.default = {
             type: String,
             default: '项目'
         },
-        itemTitleKey: {
-            type: String,
-            default: undefined
+        itemFiller: {
+            type: Function,
+            default: noopFn
         },
         canMove: {
             type: Boolean,
@@ -14537,6 +14560,10 @@ exports.default = {
         max: {
             type: Number,
             default: undefined
+        },
+        cleanBtn: {
+            type: Boolean,
+            default: false
         },
         inputType: {
             type: String,
@@ -14561,7 +14588,9 @@ exports.default = {
     computed: {
         moreClass: function moreClass() {
 
-            return {};
+            return {
+                'has-cleanbtn': this.conf.cleanBtn
+            };
         }
     },
     data: function data() {
@@ -14569,9 +14598,10 @@ exports.default = {
         return {
             conf: {
                 itemName: this.itemName,
-                itemTitleKey: this.itemTitleKey,
+                itemFiller: this.itemFiller,
                 canMove: this.canMove,
                 max: this.max,
+                cleanBtn: this.cleanBtn,
                 inputType: this.inputType,
                 batchReg: this.batchReg,
                 batchFiller: this.batchFiller,
@@ -14621,7 +14651,7 @@ exports.default = {
                     var vm = _step.value;
 
 
-                    vm.set(undefined);
+                    vm.set(vm.conf.defaultValue || undefined);
                 }
             } catch (err) {
                 _didIteratorError = true;
@@ -14786,6 +14816,10 @@ exports.default = {
 
             this.set(list);
         },
+        _cleanAllItems: function _cleanAllItems() {
+
+            this.set(undefined);
+        },
         _fillItem: function _fillItem(index) {
 
             if (this.conf.state === 'disabled') {
@@ -14911,18 +14945,26 @@ exports.default = {
         add: function add(value, index) {
 
             this._addItem(value, index);
+
+            return this;
         },
         del: function del(index) {
 
             this._deleteItem(index);
+
+            return this;
         },
         update: function update(value, index) {
 
             this._updateItem(value, index);
+
+            return this;
         },
         move: function move(from, to) {
 
             this._moveItem(from, to);
+
+            return this;
         }
     },
     created: function created() {},
@@ -15011,9 +15053,10 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "default-value": _vm.defaultValue,
       "hide-name": _vm.hideName,
       "item-name": _vm.itemName,
-      "item-title-key": _vm.itemTitleKey,
+      "item-filler": _vm.itemFiller,
       "can-move": _vm.canMove,
       "max": _vm.max,
+      "clean-btn": _vm.cleanBtn,
       "input-type": _vm.inputType,
       "batch-reg": _vm.batchReg,
       "batch-filler": _vm.batchFiller,
@@ -15033,6 +15076,9 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
   }, [_vm._l((_vm.data.value), function(item, index) {
     return _c('div', {
       staticClass: "item",
+      class: {
+        'has-img': (_vm.conf.itemFiller(item) && _vm.conf.itemFiller(item).thumb)
+      },
       on: {
         "click": function($event) {
           _vm._fillItem(index)
@@ -15041,7 +15087,12 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
           _vm._moveItemRecord(index)
         }
       }
-    }, [(_vm.conf.itemTitleKey) ? _c('span', [_vm._v("\n                " + _vm._s(_vm.conf.itemName) + " : " + _vm._s(item[_vm.conf.itemTitleKey]) + "\n            ")]) : _c('span', [_vm._v("\n                " + _vm._s(_vm.conf.itemName) + "\n            ")]), _vm._v(" "), (_vm.conf.state !== 'disabled') ? _c('i', {
+    }, [(_vm.conf.itemFiller(item) && _vm.conf.itemFiller(item).thumb) ? _c('img', {
+      staticClass: "thumb",
+      attrs: {
+        "src": _vm.conf.itemFiller(item).thumb
+      }
+    }) : _vm._e(), _vm._v(" "), (_vm.conf.itemFiller(item) && _vm.conf.itemFiller(item).title) ? _c('span', [_vm._v("\n                " + _vm._s(_vm.conf.itemName) + " : " + _vm._s(_vm.conf.itemFiller(item).title) + "\n            ")]) : _c('span', [_vm._v("\n                " + _vm._s(_vm.conf.itemName) + "\n            ")]), _vm._v(" "), (_vm.conf.state !== 'disabled') ? _c('i', {
       staticClass: "morningicon",
       on: {
         "click": function($event) {
@@ -15143,7 +15194,15 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     on: {
       "emit": _vm._batchInput
     }
-  }, [_vm._v("确认")])], 1)])], 1) : _vm._e()], 1)
+  }, [_vm._v("确认")])], 1)])], 1) : _vm._e(), _vm._v(" "), (_vm.conf.cleanBtn) ? _c('ui-link', {
+    staticClass: "cleanbtn",
+    attrs: {
+      "minor": ""
+    },
+    on: {
+      "emit": _vm._cleanAllItems
+    }
+  }, [_vm._v("清空全部")]) : _vm._e()], 1)
 }
 var staticRenderFns = []
 render._withStripped = true

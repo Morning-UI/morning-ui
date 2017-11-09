@@ -548,15 +548,15 @@ i-dl dd {
 i-dl dd:last-child {
   margin-bottom: 0;
 }
-i-dl.horizon {
+i-dl.horizontal {
   overflow: hidden;
 }
-i-dl.horizon dt {
+i-dl.horizontal dt {
   width: 15%;
   display: inline-block;
   margin-bottom: 0.7em;
 }
-i-dl.horizon dd {
+i-dl.horizontal dd {
   width: 80%;
   display: inline-block;
   vertical-align: top;
@@ -7138,11 +7138,12 @@ i-multiform > .itemlist > .itemwrap > .item {
   color: #9a9a9a !important;
   background-color: #f0f0f0;
   display: inline-block;
-  padding: 0.4em 0.7em;
+  padding: 0 1.2em;
   border-radius: 100px;
   margin: 3.2px 1.6px;
   vertical-align: top;
-  line-height: 1.2em;
+  line-height: 2.4em;
+  height: 2.4em;
   text-decoration: none;
   position: relative;
   cursor: pointer;
@@ -7171,7 +7172,7 @@ i-multiform > .itemlist > .itemwrap > .item.move-moving {
 i-multiform > .itemlist > .itemwrap > .item > i.morningicon {
   font-size: 12px;
   position: absolute;
-  right: 0.5em;
+  right: 1em;
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
@@ -7193,7 +7194,7 @@ i-multiform > .itemlist > .itemwrap > .item.move-drag-item:hover {
   background-color: #e8e8e8;
 }
 i-multiform > .itemlist > .itemwrap > .item.add {
-  padding: 0.4em 1em;
+  padding: 0 1.4em;
 }
 i-multiform > .itemlist > .itemwrap > .item.add > span {
   padding-right: 0;
@@ -7201,7 +7202,7 @@ i-multiform > .itemlist > .itemwrap > .item.add > span {
 }
 i-multiform > .itemlist > .itemwrap > .item.add > i.morningicon {
   top: 51%;
-  left: 0.9em;
+  left: 1.3em;
   right: auto;
 }
 i-multiform > .itemlist > .itemwrap > .item.add:hover {
@@ -7210,6 +7211,20 @@ i-multiform > .itemlist > .itemwrap > .item.add:hover {
 i-multiform > .itemlist > .itemwrap > .item.add:hover > i.morningicon {
   color: #9a9a9a !important;
 }
+i-multiform > .itemlist > .itemwrap > .item.has-img {
+  border-radius: 0 100px 100px 0;
+  padding-left: 3em;
+}
+i-multiform > .itemlist > .itemwrap > .item.has-img .thumb {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2.4em;
+  width: 2.4em;
+  padding: 1px;
+  box-sizing: border-box;
+  background: #e1e1e1;
+}
 i-multiform > .itemlist > .itemwrap > span {
   font-size: 12px;
   color: #c0c0c0 !important;
@@ -7217,6 +7232,15 @@ i-multiform > .itemlist > .itemwrap > span {
   padding: 0.4em 0.7em;
   text-align: center;
   display: block;
+}
+i-multiform.has-cleanbtn {
+  padding-bottom: 20px;
+}
+i-multiform .cleanbtn {
+  position: absolute;
+  right: 0;
+  font-size: 12px;
+  margin-top: 1px;
 }
 i-multiform.focus > .itemlist,
 i-multiform:hover > .itemlist {
