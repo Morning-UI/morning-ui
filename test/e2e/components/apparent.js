@@ -30,6 +30,8 @@ test.serial('basic style', async t => {
     t.plan(1);
 
     cleanstyle(result.style);
+    delete result.style.opacity;
+
     t.snapshot(result);
 
 });
