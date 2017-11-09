@@ -68,7 +68,7 @@ header {
     background: #333;
     height: 80px;
     position: relative;
-    z-index: 5;
+    z-index: 99;
 
     .nav {
         width: 1000px;
