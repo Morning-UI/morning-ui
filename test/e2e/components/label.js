@@ -131,6 +131,12 @@ test.serial('icon', async t => {
 
     t.plan(1);
 
+    delete result.icon.inlineSize;
+    delete result.icon.perspectiveOrigin;
+    delete result.icon.transformOrigin;
+    delete result.icon.webkitLogicalWidth;
+    delete result.icon.width;
+
     cleanstyle(result.icon);
     t.snapshot(result);
 

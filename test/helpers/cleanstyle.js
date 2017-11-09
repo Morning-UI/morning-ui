@@ -10,6 +10,9 @@ export default style => {
 
     }
 
+    delete style.webkitTapHighlightColor;
+    delete style.transformOrigin;
+
     return style;
 
 };
