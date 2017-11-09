@@ -99,6 +99,7 @@
     $ npm run unit-watch                # 当文件变化时执行单元测试
     $ npm run unit-snapshot             # 为单元测试进行快照
     $ npm run e2e                       # 运行端点测试
+    $ npm run ci-e2e                    # 运行端点测试(持续集成时使用，限制了进程数)
     $ npm run e2e-watch                 # 当文件变化时执行端点测试
     $ npm run e2e-snapshot              # 为端点测试进行快照
     $ npm run cover                     # 检查测试覆盖
