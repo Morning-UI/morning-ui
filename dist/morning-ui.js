@@ -2066,6 +2066,10 @@ var _index109 = __webpack_require__(231);
 
 var _index110 = _interopRequireDefault(_index109);
 
+var _index111 = __webpack_require__(235);
+
+var _index112 = _interopRequireDefault(_index111);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
@@ -2123,7 +2127,8 @@ exports.default = {
     checkbox: _index104.default,
     radio: _index106.default,
     multiinput: _index108.default,
-    multiform: _index110.default
+    multiform: _index110.default,
+    upload: _index112.default
 };
 module.exports = exports['default'];
 
@@ -15212,6 +15217,525 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
      require("vue-hot-reload-api").rerender("data-v-1abf8890", esExports)
+  }
+}
+
+/***/ }),
+/* 235 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(237);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_392f52b8_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(238);
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(236)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+
+/* template */
+
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default.a,
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_392f52b8_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__["a" /* default */],
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "src/lib/components/upload/index.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] index.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-392f52b8", Component.options)
+  } else {
+    hotAPI.reload("data-v-392f52b8", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
+
+
+/***/ }),
+/* 236 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 237 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+var uploadWaitTime = 100;
+
+exports.default = {
+    origin: 'Form',
+    name: 'upload',
+    props: {
+        validate: {
+            type: Object,
+            default: function _default() {
+                return {};
+            }
+        },
+        itemName: {
+            type: String,
+            default: ''
+        },
+        multi: {
+            type: Boolean,
+            default: false
+        },
+        max: {
+            type: Number,
+            default: 1
+        },
+        allowUrl: {
+            type: Boolean,
+            default: false
+        },
+        valueData: {
+            type: Object,
+            default: function _default() {
+                return ['full', 'path'];
+            }
+        }
+    },
+    data: function data() {
+
+        return {
+            conf: {
+                validate: this.validate,
+                itemName: this.itemName,
+                multi: this.multi,
+                max: this.max,
+                allowUrl: this.allowUrl,
+                valueData: this.valueData
+            },
+            data: {
+                index: 0,
+                files: {},
+                uploadQueue: [],
+                uploading: false,
+                isMax: false
+            }
+        };
+    },
+    computed: {},
+    methods: {
+        _valueFilter: function _valueFilter() {},
+        _getFiles: function _getFiles(evt) {
+
+            var files = evt.target.files || evt.dataTransfer.files;
+            var len = files.length;
+
+            if (!this.conf.multi) {
+
+                len = 1;
+            }
+
+            for (var i = 0; i < len; i++) {
+
+                this._addFile(files.item(i));
+            }
+        },
+        _addFile: function _addFile(file) {
+            var _this = this;
+
+            var index = this.data.index++;
+
+            this.data.files[index] = {
+                file: file,
+                name: file.name,
+                status: 'wait',
+                classList: {
+                    fail: false,
+                    uploading: false,
+                    uploaded: false,
+                    done: false,
+                    wait: true
+                },
+                index: index
+            };
+
+            if (!/^(http|https|\/\/)/.test(file.path)) {
+
+                setTimeout(function () {
+
+                    // TODO
+                    _this._upload(index);
+                }, uploadWaitTime);
+            } else {}
+
+            // this._setStatus(index, 'done');
+            // this.$.find('.file[index="'+index+'"]').attr('href', file.path);
+
+            // if ( this.attr.max && _.size(this.prop.files) >= +this.attr.max ) {
+            //     this.$.find('.file.add').hide();
+            //     this.$.find('.max').addClass('show');
+            //     return;
+            // }
+        },
+        _upload: function _upload(index) {
+
+            this.data.uploadQueue.push(index);
+            this._execUploadQueue();
+        },
+        _execUploadOnce: function _execUploadOnce() {
+
+            if (this.data.uploadQueue.length === 0) {
+
+                this.data.uploading = false;
+
+                return;
+            }
+
+            var index = this.data.uploadQueue.shift(),
+                $file = this.$el.querySelector('.file[index="' + index + '"]'),
+                uploadObj = {};
+
+            this._setStatus(index, 'uploading');
+
+            // if ( ['img', 'file'].indexOf(this.attr.mode) === -1 ) {
+            //     this._setStatus(index, 'fail');
+            //     uploadOne();
+            //     return;
+            // }
+
+            if (this.conf.max && this.data.isMax) {
+
+                this._setStatus(index, 'fail');
+                this._execUploadOnce();
+
+                return;
+            }
+
+            // if ( this.attr.mode === 'img' ) {
+            //     pushObj.image = this.files[index];
+            //     pushObj.quality = +this.attr.lossy;
+            // } else {
+            //     pushObj.content = this.files[index];
+            // }
+            uploadObj.file = this.data.files[index].file;
+
+            // TODO LAST
+
+            // this.adapter.push(`${this.attr.mode}@${this.attr.space}`, pushObj)
+            // .then(({result, res})=>{
+            //     if ( res.status ) {
+
+            //         var list = this.clone(this.prop.value||[]);
+            //         list.push({
+            //             name : this.prop.files[index].name,
+            //             path : this.attr.httpUrl ? result.fullPath : result.fullPath.replace(/(http|https):/, ''),
+            //             width: result.meta.width,
+            //             height: result.meta.height,
+            //             size: result.meta.size
+            //         });
+            //         !this.blockValue && this._set(list);
+
+            //         if ( this.attr.max && list.length === +this.attr.max ) {
+            //             this.$.find('.file.add').hide();
+            //             this.$.find('.max').addClass('show');
+            //             this.isMax = true;
+            //         }
+
+            //         this._setStatus(index, 'uploaded');
+
+            //         this._setStatus(index, 'done');
+
+            //         if ( !this.attr.multi && !_.isEmpty(this.attr.validate) ) {                     
+            //             this._validate(this.attr.validate, list[0]);                        
+            //         }
+
+            //         this.prop.files[index].path = result.fullPath;
+            //         $file.attr('href', result.fullPath);
+            //         uploadOne();
+
+            //     } else {
+            //         this._setStatus(index, 'fail');
+            //         uploadOne();
+            //     }
+            // });
+        },
+        _execUploadQueue: function _execUploadQueue() {
+
+            if (this.data.uploading) {
+
+                return;
+            }
+
+            this.data.uploading = true;
+            this._execUploadOnce();
+        },
+        _setStatus: function _setStatus(index, status) {
+
+            // status include: wait/uploading/done/fail/uploaded
+            this.data.files[index].status = status;
+
+            for (var key in this.data.files[index].styleList) {
+
+                if (key !== status) {
+
+                    this.data.files[index].styleList[key] = false;
+                } else {
+
+                    this.data.files[index].styleList[key] = true;
+                }
+            }
+
+            /*eslint-disable */
+            // switch(status) {
+            //     case 'done':
+            //     case 'fail':
+            //         let status = _.pluck(_.values(this.prop.files), 'status'),
+            //             dones = _.filter(status, (state) => state === 'done' || state === 'fail');
+
+            //         if (dones.length === _.size(this.prop.files)) {
+            //             this.st.status = 'done';
+            //         }
+            //         break;
+            //     case 'uploading': 
+            //         this.st.status = status;
+            //         break;
+            // }
+            /*eslint-enable */
+        }
+    },
+    created: function created() {},
+    mounted: function mounted() {}
+};
+module.exports = exports['default'];
+
+/***/ }),
+/* 238 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('i-upload', {
+    class: [_vm.stateClass, _vm.moreClass],
+    attrs: {
+      "_uiid": _vm.uiid,
+      "form-name": _vm.formName,
+      "form-key": _vm.formKey,
+      "group": _vm.group,
+      "default-value": _vm.defaultValue,
+      "hide-name": _vm.hideName,
+      "validate": _vm.validate,
+      "item-name": _vm.itemName,
+      "multi": _vm.multi,
+      "max": _vm.max,
+      "allow-url": _vm.allowUrl,
+      "value-data": _vm.valueData
+    }
+  }, [_c('input', {
+    staticClass: "fileinput",
+    attrs: {
+      "type": "file",
+      "id": 'ui-select-fileinput-' + _vm.uiid,
+      "multiple": _vm.conf.multi
+    },
+    on: {
+      "change": _vm._getFiles
+    }
+  }), _vm._v(" "), _c('div', {
+    staticClass: "filelist"
+  }, [(!_vm.conf.hideName) ? _c('p', {
+    staticClass: "name"
+  }, [_c('ui-center', {
+    staticClass: "fill"
+  }, [_vm._v(_vm._s(_vm.conf.formName))])], 1) : _vm._e(), _vm._v(" "), _c('div', {
+    staticClass: "filewrap",
+    class: {
+      hidename: _vm.conf.hideName
+    }
+  }, [_vm._l((_vm.data.files), function(item) {
+    return [_c('a', {
+      staticClass: "file",
+      class: item.styleList,
+      attrs: {
+        "href": "javascript:;",
+        "target": "_blank;",
+        "index": item.index
+      }
+    }, [_c('i', {
+      staticClass: "progress"
+    }), _vm._v(" "), _c('span', [_vm._v("\n                    " + _vm._s(item.name) + "\n                ")]), _vm._v(" "), _c('i', {
+      staticClass: "morningicon remove"
+    }, [_vm._v("")]), _vm._v(" "), _c('i', {
+      staticClass: "morningicon uploading",
+      attrs: {
+        "title": "上传中"
+      }
+    }, [_vm._v("")]), _vm._v(" "), _c('i', {
+      staticClass: "morningicon reupload",
+      attrs: {
+        "title": "重新上传"
+      }
+    }, [_vm._v("")])])]
+  }), _vm._v(" "), _c('br'), _vm._v(" "), (_vm.conf.allowUrl) ? [(_vm.conf.state !== 'disabled') ? _c('label', {
+    staticClass: "add file local",
+    attrs: {
+      "for": 'ui-select-fileinput-' + _vm.uiid
+    }
+  }, [_c('span', [_vm._v("本地上传" + _vm._s(_vm.conf.itemName))]), _vm._v(" "), _c('i', {
+    staticClass: "morningicon"
+  }, [_vm._v("")])]) : _vm._e(), _vm._v(" "), (_vm.conf.state !== 'disabled') ? _c('label', {
+    staticClass: "add file url",
+    attrs: {
+      "for": 'ui-select-fileinput-' + _vm.uiid
+    }
+  }, [_c('span', [_vm._v("URL上传" + _vm._s(_vm.conf.itemName))]), _vm._v(" "), _c('i', {
+    staticClass: "iconfont"
+  }, [_vm._v("")]), _vm._v(" "), _c('i', {
+    staticClass: "iconfont load"
+  }, [_vm._v("")])]) : _vm._e()] : [(_vm.conf.state !== 'disabled') ? _c('label', {
+    staticClass: "add file",
+    attrs: {
+      "for": 'ui-select-fileinput-' + _vm.uiid
+    }
+  }, [_c('span', [_vm._v("上传" + _vm._s(_vm.conf.itemName))]), _vm._v(" "), _c('i', {
+    staticClass: "morningicon"
+  }, [_vm._v("")])]) : _vm._e()], _vm._v(" "), (Object.keys(_vm.conf.validate).length > 0) ? _c('p', {
+    staticClass: "status"
+  }) : _vm._e(), _vm._v(" "), _c('span', {
+    staticClass: "max"
+  }, [_vm._v("最多只能上传" + _vm._s(_vm.conf.max) + "个文件")])], 2), _vm._v(" "), _c('div', {
+    staticClass: "dragNote"
+  }, [_c('p', [_c('i', {
+    staticClass: "iconfont"
+  }, [_vm._v("")]), _vm._v(" 松开鼠标上传")])])])])
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-392f52b8", esExports)
   }
 }
 
