@@ -34,7 +34,7 @@
 /******/
 /******/ 	// objects to store loaded and loading chunks
 /******/ 	var installedChunks = {
-/******/ 		80: 0
+/******/ 		81: 0
 /******/ 	};
 /******/
 /******/ 	// The require function
@@ -4281,12 +4281,12 @@ exports.default = {
         复选框组: '/component/checkbox.html',
         单选框组: '/component/radio.html',
         多项输入: '/component/multiinput.html',
-        多项表单输入: '/component/multiform.html'
+        多项表单输入: '/component/multiform.html',
         // 多项文本输入 : 'b',
         // 时间输入<i class="tag new"></i> : 'b',
         // 日期输入<i class="tag new"></i> : 'b',
         // 日期时间输入<i class="tag update"></i> : 'b',
-        // 文件上传 : 'b',
+        文件上传: '/component/upload.html'
         // 图片热区输入 : 'b',
         // 颜色选择 : 'b'
     },
@@ -30655,7 +30655,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "target": "_blank",
       "href": _vm.lastupdate.github
     }
-  }, [_vm._v(_vm._s(_vm.lastupdate.author))]), _vm._v(" at " + _vm._s(_vm.lastupdate.date) + " (" + _vm._s(_vm.lastupdate.ar) + "), commit id : "), _c('a', {
+  }, [_vm._v(_vm._s(_vm.lastupdate.author))]), _vm._v(" at " + _vm._s(_vm.lastupdate.date) + ", commit id : "), _c('a', {
     attrs: {
       "target": "_blank",
       "href": 'https://github.com/Morning-UI/morning-ui/commit/' + _vm.lastupdate.cid
@@ -31294,7 +31294,12 @@ if (false) {
 /* 708 */,
 /* 709 */,
 /* 710 */,
-/* 711 */
+/* 711 */,
+/* 712 */,
+/* 713 */,
+/* 714 */,
+/* 715 */,
+/* 716 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(269)(undefined);
@@ -31308,13 +31313,13 @@ exports.push([module.i, "/*\n * Hopscotch\n * by Jan T. Sott\n * https://github.
 
 
 /***/ }),
-/* 712 */
+/* 717 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "iconfont.woff";
 
 /***/ }),
-/* 713 */
+/* 718 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
