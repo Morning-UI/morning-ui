@@ -9,9 +9,10 @@
         :default-value="defaultValue"
         :hide-name="hideName"
         :item-name="itemName"
-        :item-title-key="itemTitleKey"
+        :item-filler="itemFiller"
         :can-move="canMove"
         :max="max"
+        :clean-btn="cleanBtn"
         :input-type="inputType"
         :batch-reg="batchReg"
         :batch-filler="batchFiller"
@@ -27,12 +28,18 @@
         
             <div
                 class="item"
+                :class="{'has-img' : (conf.itemFiller(item) && conf.itemFiller(item).thumb)}"
                 v-for="(item, index) of data.value"
                 @click="_fillItem(index)"
                 @mousedown="_moveItemRecord(index)"
             >
-                <span v-if="conf.itemTitleKey">
-                    {{conf.itemName}} : {{item[conf.itemTitleKey]}}
+                <img
+                    class="thumb"
+                    v-if="conf.itemFiller(item) && conf.itemFiller(item).thumb"
+                    :src="conf.itemFiller(item).thumb" />
+
+                <span v-if="conf.itemFiller(item) && conf.itemFiller(item).title">
+                    {{conf.itemName}} : {{conf.itemFiller(item).title}}
                 </span>
                 <span v-else>
                     {{conf.itemName}}
@@ -110,7 +117,7 @@
         </footer>
     </morning-dialog>
 
-
+    <ui-link v-if="conf.cleanBtn" minor @emit="_cleanAllItems" class="cleanbtn">清空全部</ui-link>
 
     </i-multiform>
 </template>
@@ -121,6 +128,8 @@ import Move                         from 'Utils/Move';
 
 const returnValueFn = value => value;
 
+let noopFn = () => {};
+
 export default {
     origin : 'Form',
     name : 'multiform',
@@ -130,9 +139,9 @@ export default {
             type : String,
             default : '项目'
         },
-        itemTitleKey : {
-            type : String,
-            default : undefined
+        itemFiller : {
+            type : Function,
+            default : noopFn
         },
         canMove : {
             type : Boolean,
@@ -141,6 +150,10 @@ export default {
         max : {
             type : Number,
             default : undefined
+        },
+        cleanBtn : {
+            type : Boolean,
+            default : false
         },
         inputType : {
             type : String,
@@ -163,7 +176,9 @@ export default {
     computed : {
         moreClass : function () {
 
-            return {};
+            return {
+                'has-cleanbtn' : this.conf.cleanBtn
+            };
 
         }
     },
@@ -172,9 +187,10 @@ export default {
         return {
             conf : {
                 itemName : this.itemName,
-                itemTitleKey : this.itemTitleKey,
+                itemFiller : this.itemFiller,
                 canMove : this.canMove,
                 max : this.max,
+                cleanBtn : this.cleanBtn,
                 inputType : this.inputType,
                 batchReg : this.batchReg,
                 batchFiller : this.batchFiller,
@@ -225,7 +241,7 @@ export default {
 
             for (let vm of formVm) {
 
-                vm.set(undefined);
+                vm.set(vm.conf.defaultValue || undefined);
 
             }
 
@@ -360,6 +376,11 @@ export default {
             this.set(list);
 
         },
+        _cleanAllItems : function () {
+
+            this.set(undefined);
+
+        },
         _fillItem : function (index) {
 
             if (this.conf.state === 'disabled') {
@@ -462,20 +483,28 @@ export default {
 
             this._addItem(value, index);
 
+            return this;
+
         },
         del : function (index) {
 
             this._deleteItem(index);
+
+            return this;
 
         },
         update : function (value, index) {
 
             this._updateItem(value, index);
 
+            return this;
+
         },
         move : function (from, to) {
 
             this._moveItem(from, to);
+
+            return this;
 
         }
     },

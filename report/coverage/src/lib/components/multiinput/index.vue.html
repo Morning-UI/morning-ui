@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">3.54% </span>
+        <span class="strong">3.39% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>4/113</span>
+        <span class='fraction'>4/118</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">10.11% </span>
+        <span class="strong">9.89% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>9/89</span>
+        <span class='fraction'>9/91</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/31</span>
+        <span class='fraction'>0/33</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">4.55% </span>
+        <span class="strong">4.3% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>4/88</span>
+        <span class='fraction'>4/93</span>
       </div>
     </div>
   </div>
@@ -413,7 +413,23 @@
 368
 369
 370
-371</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -495,7 +511,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">44x</span>
+<span class="cline-any cline-yes">81x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -632,9 +648,18 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -669,10 +694,17 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -782,8 +814,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">44x</span>
-<span class="cline-any cline-yes">44x</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
+<span class="cline-any cline-yes">81x</span>
+<span class="cline-any cline-yes">81x</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
     &lt;i-multiinput
         :_uiid="uiid"
         :class="[stateClass, moreClass, moveClass]"
@@ -989,6 +1021,15 @@ export default {
             }
 &nbsp;
         },
+        _updateItem : <span class="fstat-no" title="function not covered" >function (</span>value, index) {
+&nbsp;
+            let list = <span class="cstat-no" title="statement not covered" >this.get();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            list.splice(index, 1, value || {});</span>
+            
+<span class="cstat-no" title="statement not covered" >            this.set(list);</span>
+&nbsp;
+        },
         _deleteItem : <span class="fstat-no" title="function not covered" >function (</span>index) {
 &nbsp;
             let value = <span class="cstat-no" title="statement not covered" >this.get();</span>
@@ -1051,6 +1092,13 @@ export default {
         del : <span class="fstat-no" title="function not covered" >function (</span>index) {
 &nbsp;
 <span class="cstat-no" title="statement not covered" >            this._deleteItem(index);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return this;</span>
+&nbsp;
+        },
+        update : <span class="fstat-no" title="function not covered" >function (</span>item, index) {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            this._updateItem(item, index);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >            return this;</span>
 &nbsp;
@@ -1159,7 +1207,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Nov 07 2017 00:02:45 GMT+0800 (CST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Nov 10 2017 12:06:29 GMT+0800 (CST)
 </div>
 </div>
 <script src="../../../../prettify.js"></script>

@@ -103,7 +103,8 @@
 }
 .markdown-body i-img img,
 .markdown-body i-label img,
-.markdown-body i-statistic img {
+.markdown-body i-statistic img,
+.markdown-body i-multiform img {
   border: none !important;
   padding: 0;
   margin-bottom: inherit;
@@ -859,7 +860,7 @@ header {
   background: #333;
   height: 80px;
   position: relative;
-  z-index: 5;
+  z-index: 99;
 }
 header .nav {
   width: 1000px;
