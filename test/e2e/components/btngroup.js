@@ -29,6 +29,11 @@ test.serial('basic style', async t => {
 
     t.plan(1);
 
+    delete result.style.inlineSize;
+    delete result.style.perspectiveOrigin;
+    delete result.style.webkitLogicalWidth;
+    delete result.style.width;
+
     cleanstyle(result.style);
     t.snapshot(result);
 
@@ -44,6 +49,11 @@ test.serial('vertical', async t => {
         }));
 
     t.plan(1);
+
+    delete result.vertical.inlineSize;
+    delete result.vertical.perspectiveOrigin;
+    delete result.vertical.webkitLogicalWidth;
+    delete result.vertical.width;
 
     cleanstyle(result.vertical);
     t.snapshot(result);
@@ -61,6 +71,11 @@ test.serial('nogap', async t => {
 
     t.plan(1);
 
+    delete result.nogap.inlineSize;
+    delete result.nogap.perspectiveOrigin;
+    delete result.nogap.webkitLogicalWidth;
+    delete result.nogap.width;
+
     cleanstyle(result.nogap);
     t.snapshot(result);
 
@@ -76,6 +91,11 @@ test.serial('split', async t => {
         }));
 
     t.plan(1);
+
+    delete result.split.inlineSize;
+    delete result.split.perspectiveOrigin;
+    delete result.split.webkitLogicalWidth;
+    delete result.split.width;
 
     cleanstyle(result.split);
     t.snapshot(result);

@@ -29,6 +29,11 @@ test.serial('basic style', async t => {
 
     t.plan(1);
 
+    delete result.style.inlineSize;
+    delete result.style.perspectiveOrigin;
+    delete result.style.webkitLogicalWidth;
+    delete result.style.width;
+
     cleanstyle(result.style);
     t.snapshot(result);
 
@@ -112,6 +117,11 @@ test.serial('flat', async t => {
 
     t.plan(1);
 
+    delete result.flat.inlineSize;
+    delete result.flat.perspectiveOrigin;
+    delete result.flat.webkitLogicalWidth;
+    delete result.flat.width;
+
     cleanstyle(result.flat);
     t.snapshot(result);
 
@@ -127,6 +137,11 @@ test.serial('circle', async t => {
         }));
 
     t.plan(1);
+
+    delete result.circle.inlineSize;
+    delete result.circle.perspectiveOrigin;
+    delete result.circle.webkitLogicalWidth;
+    delete result.circle.width;
 
     cleanstyle(result.circle);
     t.snapshot(result);
