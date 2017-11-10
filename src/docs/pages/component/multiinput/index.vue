@@ -83,7 +83,7 @@
 
     #### add(item, [index])
 
-    切换单个选项的选中状态。
+    在指定位置添加项。
     
     |KEY|可选|描述|接受值|值类型|默认值|
     |-|-|-|-|-|-|
@@ -99,9 +99,26 @@
     <ui-link js="javascript:morning.findVM('demo2').add('value2', 0);">添加到第0项</ui-link>
     :::
 
+    #### update(item, index)
+
+    更新指定位置的项。
+    
+    |KEY|可选|描述|接受值|值类型|默认值|
+    |-|-|-|-|-|-|
+    |item|NO|更新的项目内容|内容字符串|`String`|`undefined`|
+    |index|NO|更新的位置|更新项目的index位置|`Number`|`undefined`|
+
+    :::democode/html
+    <div style="width:300px;">
+        <ui-multiinput ref="demo8" form-name="输入标签" :default-value="['value1', 'value2', 'value3', 'value4']"></ui-multiinput>
+    </div>
+    <br>
+    <ui-link js="javascript:morning.findVM('demo8').update('newValue', 1);">将第2项的更新为newValue</ui-link>
+    :::
+
     #### del(index)
 
-    切换单个选项的选中状态。
+    删除指定位置的项。
     
     |KEY|可选|描述|接受值|值类型|默认值|
     |-|-|-|-|-|-|
@@ -117,7 +134,7 @@
 
     #### move(from, to)
 
-    切换单个选项的选中状态。
+    移动项目。
     
     |KEY|可选|描述|接受值|值类型|默认值|
     |-|-|-|-|-|-|
@@ -239,6 +256,7 @@
     #### 值过滤
 
     - 所有不支持的值类型，都会被尝试转换成空数组(`[]`)。
+    - 若启用`max`，最多不会超过max设置的项目数量。
 
     #### 值格式
 

@@ -56,6 +56,7 @@ import select                       from './select/index.vue';
 import checkbox                     from './checkbox/index.vue';
 import radio                        from './radio/index.vue';
 import multiinput                   from './multiinput/index.vue';
+import multiform                    from './multiform/index.vue';
 
 export default {
     h,
@@ -111,5 +112,6 @@ export default {
     select,
     checkbox,
     radio,
-    multiinput
+    multiinput,
+    multiform
 };

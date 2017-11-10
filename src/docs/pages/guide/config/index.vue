@@ -20,8 +20,8 @@
     :::democode/html
     <!-- ui-btn设置link配置 -->
     <!-- 配置名称是: link -->
-    <!-- 配置数值是: http://www.google.com -->
-    <ui-btn new-tab link="http://www.google.com">Google</ui-btn>
+    <!-- 配置数值是: https://www.google.com -->
+    <ui-btn new-tab link="https://www.google.com">Google</ui-btn>
     :::
 
     键名为配置的名称，键值是配置的数值。
@@ -33,7 +33,7 @@
         el : '{$el}',
         template : '{$template}',
         data : {
-            link : 'http://www.google.com'
+            link : 'https://www.google.com'
         }
     });
     ---
@@ -42,7 +42,7 @@
         <ui-btn new-tab :link="link">Google</ui-btn>
 
         <!-- 通过JavaScript表达式为ui-btn设置link -->
-        <ui-btn new-tab :link="'http://www.google.com'">Google</ui-btn>
+        <ui-btn new-tab :link="'https://www.google.com'">Google</ui-btn>
     </div>
     :::
 
@@ -57,7 +57,7 @@
         el : '{$el}',
         template : '{$template}',
         data : {
-            link : 'http://www.google.com'
+            link : 'https://www.google.com'
         }
     });
     ---
@@ -79,17 +79,17 @@
         el : '{$el}',
         template : '{$template}',
         data : {
-            link : 'http://www.google.com'
+            link : 'https://www.google.com'
         }
     });
 
     // 通过组件的`setConf`方法改变配置，父VM获取不到变化的配置
-    morning.findVM('demo2').setConf('link', 'http://www.baidu.com');
-    console.log('demo2.console1', demo2.link); // `http://www.google.com`
+    morning.findVM('demo2').setConf('link', 'https://www.baidu.com');
+    console.log('demo2.console1', demo2.link); // `https://www.google.com`
 
     // 父VM`link`的改变也不会同步到组件的配置中
-    demo2.link = 'http://bing.com';
-    console.log('demo2.console2', morning.findVM('demo2').getConf('link')); // `http://www.baidu.com`
+    demo2.link = 'https://bing.com';
+    console.log('demo2.console2', morning.findVM('demo2').getConf('link')); // `https://www.baidu.com`
     ---
     <div>
         <!-- 通过v-bind为ui-btn设置link -->
@@ -101,7 +101,7 @@
 
     下图是整个组件配置的生命周期，可以帮助你更好的理解上面的概念：
 
-    <img src="http://h0.hucdn.com/open/201736/5c4e0e68a9f4c192_1370x851.png" width="600" alt="">
+    <img src="https://h0.hucdn.com/open/201736/5c4e0e68a9f4c192_1370x851.png" width="600" alt="">
 
     `props`在组件`mounted`时会被初始化成`vm.conf`，所以之后无论是`props`或`vm.conf`更改互相之间都不会同步。应该使用`setConf()`/`getConf()`方法来设置和获取配置。
 
@@ -142,11 +142,11 @@
 
     ```js
     // 设置单个配置
-    vm.setConf('link', 'http://baidu.com');
+    vm.setConf('link', 'https://baidu.com');
 
     // 设置多个配置
     vm.setConf({
-        link : 'http://baidu.com',
+        link : 'https://baidu.com',
         newTab : true
     });
     ```
@@ -216,6 +216,12 @@
     - `page-size` : 每页数量
     - `page` : 页数
     - `jump-page` : 跳转页面
+    - `item-name` : 项目名称
+    - `item-filler` : 项目填充
+    - `input-type` : 输入类型
+    - `batch-reg` : 批量输入正则表达式
+    - `batch-filler` : 批量输入填充
+    - `batch-uniq` : 批量输入去重
 
     </script>
     </doc-guide>
