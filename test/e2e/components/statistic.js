@@ -29,6 +29,11 @@ test.serial('basic style', async t => {
 
     t.plan(1);
 
+    delete result.style.inlineSize;
+    delete result.style.perspectiveOrigin;
+    delete result.style.webkitLogicalWidth;
+    delete result.style.width;
+
     cleanstyle(result.style);
     t.snapshot(result);
 
@@ -156,6 +161,11 @@ test.serial('horizontal left', async t => {
 
     t.plan(1);
 
+    delete result.horizontal.inlineSize;
+    delete result.horizontal.perspectiveOrigin;
+    delete result.horizontal.webkitLogicalWidth;
+    delete result.horizontal.width;
+
     cleanstyle(result.horizontal);
     t.snapshot(result);
 
@@ -172,6 +182,11 @@ test.serial('horizontal right', async t => {
 
     t.plan(1);
 
+    delete result.horizontal.inlineSize;
+    delete result.horizontal.perspectiveOrigin;
+    delete result.horizontal.webkitLogicalWidth;
+    delete result.horizontal.width;
+
     cleanstyle(result.horizontal);
     t.snapshot(result);
 
@@ -187,6 +202,11 @@ test.serial('top name', async t => {
         }));
 
     t.plan(1);
+
+    delete result.topname.inlineSize;
+    delete result.topname.perspectiveOrigin;
+    delete result.topname.webkitLogicalWidth;
+    delete result.topname.width;
 
     cleanstyle(result.topname);
     t.snapshot(result);
