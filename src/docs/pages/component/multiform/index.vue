@@ -62,7 +62,7 @@
     ---
     uikey:multiform
     statementDefaultValue:[{name:'Jim'}, {name:'Sam'}]
-    statementMoreAttr:item-title-key="name"
+    statementMoreAttr::item-filler="item => ({title: item.name})"
     statementSlot:<ui-formgroup><div class="item"><h5 class="title"><ui-center class="fill">名称</ui-center></h5><div class="content"><div class="form"><ui-textinput form-key="name"></ui-textinput></div></div></div></ui-formgroup>
     :::
 
@@ -71,10 +71,11 @@
     :::preset/html
     formConfigTable
     ---
-    |item-name|项目的名称，如果没有设置`item-title-key`，会作为每项的标题显示。同时会作为添加按钮标题的后缀。|项目的名称|String|`'项目'`|
-    |item-title-key|每一项内容标题的取值。设置为某个表单的`key`后，项目的标题将取这个表单的值。|表单的`key`|String|`undefined`|
+    |item-name|项目的名称，如果没有设置`item-filler`，会作为每项的标题显示。同时会作为添加按钮标题的后缀。|项目的名称|String|`'项目'`|
+    |item-filler|项目内容填充函数，此函数有一个参数：<br>`item`：每一项的数据对象<br><br>此函数通过`item`获取项目的标题及缩略图，然后返回给组件，最终将标题和缩略图显示在项目上。<br><br>返回值是一个对象，包含两个KEY：`title`、`thumb`(缩略图地址)|填充函数|Function|`() => {}`|
     |can-move|输入项目是否可以移动|`true`<br>`false`|Boolean|`false`|
     |max|可输入的最大项目数|数字：最大项目数<br>`undefined`：无限制|Number|`undefined`|
+    |clean-btn|显示清空全部项目的按钮|`true`<br>`false`|Boolean|`false`|
     |input-type|表单的输入模式<br><br>在批量输入模式下会进行下面操作：<br>1. 将用户输入的字符串解析成id数组(按一定的规则)<br>2. 将id数组会输入一个填值函数(用户定义填值函数)<br>3. 填值函数解析id后，返回由多个项目对象组成的数组<br>4. 这些项目会被添加到表单中<br><br>批量输入必需添加：<br>`batch-reg`将字符串解析为id数组的正则表达式<br>`batch-filler`来将输入数组转换成项目对象数组|`'single'`：每次输入一项<br>`'batch-separate'`：批量输入，通过内容分割得到id数组<br>`'batch-pluck'`：批量输入，通过内容匹配选取得到id数组|String|`'single'`|
     |batch-reg|解析用户输入字符串的正则表达式<br>在`batch-separate`模式下通过这个正则分割字符串得到id数组<br>在`batch-pluck`模式下通过匹配这个正则得到id数组(每匹配到一项添加到数组中)|正则表达式字符串|String|`','`|
     |batch-filler|批量输入的填值函数，此函数有一个参数：<br>`ids`：用户输入的id数组<br><br>通过解析这些id，此函数返回多个项目对象组成的数组<br><br>如果解析是异步的，此函数也可以返回一个`Promise`对象|填值函数|Function|`value => value`|
@@ -87,14 +88,14 @@
     uikey:multiform
     configDefaultValue:'默认值'
     configDefaultValue:[{name:'Jim'}, {name:'Sam'}]
-    configMoreAttr:item-title-key="name"
+    configMoreAttr::item-filler="item => ({title: item.name})"
     configSlot:<ui-formgroup><div class="item"><h5 class="title"><ui-center class="fill">名称</ui-center></h5><div class="content"><div class="form"><ui-textinput form-key="name"></ui-textinput></div></div></div></ui-formgroup>
     :::
 
 
     #### item-name
     
-    项目名称可以告知使用者输入项目的含义。建议和`item-title-key`一起使用。
+    项目名称可以告知使用者输入项目的含义。建议和`item-filler`一起使用。
 
     :::democode/html
     <div style="width:300px;">
@@ -115,13 +116,15 @@
     </div>
     :::
 
-    #### item-title-key
+    #### item-filler
 
-    `item-title-key`是某项表单的`key`，这个表单的值将作为项目的标题。设置后可以让使用者更好区分每一项。
+    `item-filler`可以中项目中选出标题和缩略图，显示在项目的区块中。设置后可以让使用者更好区分每一项。
+
+    下面是使用`item-filler`选出项目的标题及缩略图：
 
     :::democode/html
     <div style="width:300px;">
-        <ui-multiform form-name="名单" item-title-key="name">
+        <ui-multiform form-name="名单" :item-filler="item => ({title: item.name, thumb: item.img})">
             <ui-formgroup>
                 <div class="item">
                     <h5 class="title">
@@ -133,16 +136,26 @@
                         </div>
                     </div>
                 </div>
+                <div class="item">
+                    <h5 class="title">
+                        <ui-center class="fill">图片URL</ui-center>
+                    </h5>
+                    <div class="content">
+                        <div class="form">
+                            <ui-textinput form-key="img" default-value="https://d13yacurqjgara.cloudfront.net/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934"></ui-textinput>
+                        </div>
+                    </div>
+                </div>
             </ui-formgroup>
         </ui-multiform>
     </div>
     :::
 
-    建议和`item-name`一起使用：
+    和`item-name`一起使用：
 
     :::democode/html
     <div style="width:300px;">
-        <ui-multiform form-name="名单" item-name="使用者" item-title-key="name">
+        <ui-multiform form-name="名单" item-name="使用者" :item-filler="item => ({title: item.name})">
             <ui-formgroup>
                 <div class="item">
                     <h5 class="title">
@@ -163,7 +176,7 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-multiform form-name="名单" can-move item-title-key="name" :default-value="[{name:'Jim'}, {name:'Sam'}, {name:'Gustavo'}]">
+        <ui-multiform form-name="名单" can-move :item-filler="item => ({title: item.name})" :default-value="[{name:'Jim'}, {name:'Sam'}, {name:'Gustavo'}]">
             <ui-formgroup>
                 <div class="item">
                     <h5 class="title">
@@ -179,6 +192,54 @@
         </ui-multiform>
     </div>
     :::
+
+    #### max
+    
+    下面的演示中设置了最多输入3项。
+    
+    :::democode/html
+    <div style="width:300px;">
+        <ui-multiform form-name="名单" max=3 :default-value="[{name:'Jim'}, {name:'Sam'}, {name:'Gustavo'}]">
+            <ui-formgroup>
+                <div class="item">
+                    <h5 class="title">
+                        <ui-center class="fill">姓名</ui-center>
+                    </h5>
+                    <div class="content">
+                        <div class="form">
+                            <ui-textinput form-key="name"></ui-textinput>
+                        </div>
+                    </div>
+                </div>
+            </ui-formgroup>
+        </ui-multiform>
+    </div>
+    :::
+
+    #### clean-btn
+
+    开启后会在右下角增加清空全部的按钮。
+    
+    :::democode/html
+    <div style="width:300px;">
+        <ui-multiform form-name="名单" :clean-btn="true" :default-value="[{name:'Jim'}, {name:'Sam'}, {name:'Gustavo'}]">
+            <ui-formgroup>
+                <div class="item">
+                    <h5 class="title">
+                        <ui-center class="fill">姓名</ui-center>
+                    </h5>
+                    <div class="content">
+                        <div class="form">
+                            <ui-textinput form-key="name"></ui-textinput>
+                        </div>
+                    </div>
+                </div>
+            </ui-formgroup>
+        </ui-multiform>
+    </div>
+    :::
+
+
 
     #### input-type
 
@@ -222,7 +283,7 @@
         <ui-multiform
             form-name="地区"
             item-name="城市"
-            item-title-key="city"
+            :item-filler="item => ({title: item.city})"
             input-type="batch-separate"
             :batch-filler="filler"
         >
@@ -292,7 +353,7 @@
         <ui-multiform
             form-name="地区"
             item-name="城市"
-            item-title-key="city"
+            :item-filler="item => ({title: item.city})"
             input-type="batch-pluck"
             batch-reg="(hz|sh|sz)"
             :batch-filler="filler"
@@ -365,7 +426,7 @@
         <ui-multiform
             form-name="地区"
             item-name="城市"
-            item-title-key="city"
+            :item-filler="item => ({title: item.city})"
             input-type="batch-separate"
             batch-reg="\/"
             :batch-filler="filler"
@@ -442,7 +503,7 @@
         <ui-multiform
             form-name="地区"
             item-name="城市"
-            item-title-key="city"
+            :item-filler="item => ({title: item.city})"
             input-type="batch-separate"
             :batch-filler="filler"
         >
@@ -512,7 +573,7 @@
         <ui-multiform
             form-name="地区"
             item-name="城市"
-            item-title-key="city"
+            :item-filler="item => ({title: item.city})"
             input-type="batch-separate"
             :batch-uniq="true"
             :batch-filler="filler"
@@ -552,7 +613,7 @@
     uikey:multiform
     methodValue:[{name:'Jim'}, {name:'Sam'}]
     methodDefaultValue:[{name:'Jim'}, {name:'Sam'}]
-    methodMoreAttr:item-title-key="name"
+    methodMoreAttr::item-filler="item => ({title: item.name})"
     methodSlot:<ui-formgroup><div class="item"><h5 class="title"><ui-center class="fill">名称</ui-center></h5><div class="content"><div class="form"><ui-textinput form-key="name"></ui-textinput></div></div></div></ui-formgroup>
     :::
 
@@ -567,7 +628,7 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-multiform ref="demo2" form-name="名单" item-title-key="name" :default-value="[{name:'Jim'}]">
+        <ui-multiform ref="demo2" form-name="名单" :item-filler="item => ({title: item.name})" :default-value="[{name:'Jim'}]">
             <ui-formgroup>
                 <div class="item">
                     <h5 class="title">
@@ -598,7 +659,7 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-multiform ref="demo4" form-name="名单" item-title-key="name" :default-value="[{name:'Jim'}, {name:'Sam'}, {name:'Gustavo'}]">
+        <ui-multiform ref="demo4" form-name="名单" :item-filler="item => ({title: item.name})" :default-value="[{name:'Jim'}, {name:'Sam'}, {name:'Gustavo'}]">
             <ui-formgroup>
                 <div class="item">
                     <h5 class="title">
@@ -614,7 +675,7 @@
         </ui-multiform>
     </div>
     <br>
-    <ui-link js="javascript:morning.findVM('demo4').update({name: 'Katherine'}, 1);">将第1项的name更新为Katherine</ui-link>
+    <ui-link js="javascript:morning.findVM('demo4').update({name: 'Katherine'}, 1);">将第2项的name更新为Katherine</ui-link>
     :::
 
     #### del(index)
@@ -627,7 +688,7 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-multiform ref="demo3" form-name="名单" item-title-key="name" :default-value="[{name:'Jim'}, {name:'Sam'}, {name:'Gustavo'}]">
+        <ui-multiform ref="demo3" form-name="名单" :item-filler="item => ({title: item.name})" :default-value="[{name:'Jim'}, {name:'Sam'}, {name:'Gustavo'}]">
             <ui-formgroup>
                 <div class="item">
                     <h5 class="title">
@@ -657,7 +718,7 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-multiform ref="demo5" form-name="名单" item-title-key="name" :default-value="[{name:'Jim'}, {name:'Sam'}, {name:'Gustavo'}]">
+        <ui-multiform ref="demo5" form-name="名单" :item-filler="item => ({title: item.name})" :default-value="[{name:'Jim'}, {name:'Sam'}, {name:'Gustavo'}]">
             <ui-formgroup>
                 <div class="item">
                     <h5 class="title">
@@ -750,7 +811,7 @@
     uikey:multiform
     eventValue:[{name:'Jim'}, {name:'Sam'}]
     eventDefaultValue:[{name:'Jim'}, {name:'Sam'}]
-    eventMoreAttr:item-title-key="name"
+    eventMoreAttr::item-filler="item => ({title: item.name})"
     eventSlot:<ui-formgroup><div class="item"><h5 class="title"><ui-center class="fill">名称</ui-center></h5><div class="content"><div class="form"><ui-textinput form-key="name"></ui-textinput></div></div></div></ui-formgroup>
     :::
 

@@ -108,6 +108,7 @@
     - `setRows` : 设置行数
     - `toggle` : 切换状态
     - `add` : 添加项目
+    - `update` : 更新项目
     - `del` : 删除项目
     - `move` : 移动项目
     - `setInput` : 设置输入框值

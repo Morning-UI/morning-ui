@@ -16,18 +16,18 @@
 
     :::democode/html
     <div style="width:180px;height:240px;">
-        <ui-card>卡片</ui-card>
-    </div>
-    :::
-
-    #### 带头部的卡片
-
-    :::democode/html
-    <div style="width:180px;height:240px;">
         <ui-card>
             <header>头部</header>
             <div>卡片</div>
         </ui-card>
+    </div>
+    :::
+
+    #### 没有头部的卡片
+
+    :::democode/html
+    <div style="width:180px;height:240px;">
+        <ui-card>卡片</ui-card>
     </div>
     :::
 
@@ -55,13 +55,13 @@
     |类型|支持|默认|
     |-|-|-|
     |尺寸|不支持|-|
-    |色彩|全部|-|
+    |色彩|全部|`theme`|
     |状态|不支持|-|
 
     #### 色彩
 
     :::repeat/html
-    color:theme 
+    color:theme
     color:feature
     color:black
     color:blue

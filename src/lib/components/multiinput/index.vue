@@ -204,6 +204,15 @@ export default {
             }
 
         },
+        _updateItem : function (value, index) {
+
+            let list = this.get();
+
+            list.splice(index, 1, value || {});
+            
+            this.set(list);
+
+        },
         _deleteItem : function (index) {
 
             let value = this.get();
@@ -266,6 +275,13 @@ export default {
         del : function (index) {
 
             this._deleteItem(index);
+
+            return this;
+
+        },
+        update : function (item, index) {
+
+            this._updateItem(item, index);
 
             return this;
 
