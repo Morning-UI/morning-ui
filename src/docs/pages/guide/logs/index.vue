@@ -18,6 +18,26 @@
     
     ### 更新记录
 
+    ### 0.10.6 <ui-badge class="circle ver-canary" s light-theme>Canary</ui-badge>
+
+    <ui-textcolor light-blue>
+        <ui-small>
+            发布于2017年11月10日，
+            Archive : 
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.6" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.6/dist/" target="_blank">CDN</a>
+        </ui-small>
+    </ui-textcolor>
+    
+    - `ui-multiinput`组件新增`update`方法
+    - `ui-multiform`组件新增`item-filler`和`clean-btn`配置
+    - 完善布局组件的端点(E2E)测试
+    - 项目构建工具升级至Webpack3
+
+    <ui-label primary>Upgrade Precautions</ui-label>
+
+    - `ui-multiform`的`item-title-key`配置被移除，使用`item-filler`替代
+
     ### 0.10.5 <ui-badge class="circle ver-canary" s light-theme>Canary</ui-badge>
 
     <ui-textcolor light-blue>

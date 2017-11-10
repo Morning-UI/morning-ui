@@ -140,7 +140,7 @@ test.serial('import-use-webpack', async t => {
 
     await new Promise(resolve => {
 
-        exec(`cd ${pathDir} && npm install morning-ui webpack style-loader css-loader vue`, resolve);
+        exec(`cd ${pathDir} && npm install morning-ui webpack style-loader css-loader vue --registry=https://registry.npm.taobao.org`, resolve);
 
     });
 
