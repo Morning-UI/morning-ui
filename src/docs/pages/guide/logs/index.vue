@@ -18,9 +18,72 @@
     
     ### 更新记录
 
+    ### 0.10.6 <ui-badge class="circle ver-canary" s light-theme>Canary</ui-badge>
+
+    <ui-textcolor light-blue>
+        <ui-small>
+            发布于2017年11月10日，
+            Archive : 
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.6" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.6/dist/" target="_blank">CDN</a>
+        </ui-small>
+    </ui-textcolor>
+    
+    - `ui-multiinput`组件新增`update`方法
+    - `ui-multiform`组件新增`item-filler`和`clean-btn`配置
+    - 完善布局组件的端点(E2E)测试
+    - 项目构建工具升级至Webpack3
+
+    <ui-label primary>Upgrade Precautions</ui-label>
+
+    - `ui-multiform`的`item-title-key`配置被移除，使用`item-filler`替代
+
+    ### 0.10.5 <ui-badge class="circle ver-canary" s light-theme>Canary</ui-badge>
+
+    <ui-textcolor light-blue>
+        <ui-small>
+            发布于2017年11月6日，
+            Archive : 
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.5" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.5/dist/" target="_blank">CDN</a>
+        </ui-small>
+    </ui-textcolor><br><br>
+
+    - `ui-multiform`组件支持批量输入
+    - 表单组件数据支持通过`v-model`指令双向绑定
+    - 网站支持HTTPS，增加Google Analytics
+
+    ### 0.10.4 <ui-badge class="circle ver-canary" s light-theme>Canary</ui-badge>
+
+    <ui-textcolor light-blue>
+        <ui-small>
+        发布于2017年11月5日，
+            Archive : 
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.4" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.4/dist/" target="_blank">CDN</a>
+        </ui-small>
+    </ui-textcolor><br><br>
+    
+    - 新增`ui-multiform`多项表单输入组件
+    - 支持文档搜索([DocSearch](https://community.algolia.com/docsearch/))
+    - 支持使用模块管理器(Webpack/Rollup等)
+    - 支持CDN引用(cdn.jsdelivr.net)
+
+    <ui-label primary>Upgrade Precautions</ui-label>
+
+    - 通过模块方式引入，不会在全局注册window.morning变量
+    - 初始化方法从`morning.init([options])`变为`Vue.use(morning, [options])`
+
     ### 0.10.3 <ui-badge class="circle ver-canary" s light-theme>Canary</ui-badge>
 
-    <ui-textcolor light-blue><ui-small>发布于2017年11月2日</ui-small></ui-textcolor>
+    <ui-textcolor light-blue>
+        <ui-small>
+        发布于2017年11月2日，
+            Archive : 
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.3" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.3/dist/" target="_blank">CDN</a>
+        </ui-small>
+    </ui-textcolor><br><br>
 
     - `ui-formgroup`支持内联布局
     - 现在表单方法`.get()`返回原始值，`.getJson()`返回JSON值
@@ -39,7 +102,14 @@
 
     ### 0.10.2 <ui-badge class="circle ver-canary" s light-theme>Canary</ui-badge>
 
-    <ui-textcolor light-blue><ui-small>发布于2017年11月1日</ui-small></ui-textcolor>
+    <ui-textcolor light-blue>
+        <ui-small>
+        发布于2017年11月1日，
+            Archive : 
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.2" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.2/dist/" target="_blank">CDN</a>
+        </ui-small>
+    </ui-textcolor><br><br>
     
     - 增加`ui-pagination`分页组件
     - 增加codecov.io统计测试覆盖率
@@ -48,8 +118,15 @@
 
     ### 0.10.1 <ui-badge class="circle ver-canary" s light-theme>Canary</ui-badge>
 
-    <ui-textcolor light-blue><ui-small>发布于2017年10月31日</ui-small></ui-textcolor>
-    
+    <ui-textcolor light-blue>
+        <ui-small>
+        发布于2017年10月31日，
+            Archive : 
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.1" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.1/dist/" target="_blank">CDN</a>
+        </ui-small>
+    </ui-textcolor><br><br>
+
     - 增加codacy代码质量检测
     - 增加Lint、Build、Test、Coverage等CI流程
     - 更新README
@@ -60,7 +137,14 @@
 
     ### 0.10.0 <ui-badge class="circle ver-canary" s light-theme>Canary</ui-badge>
 
-    <ui-textcolor light-blue><ui-small>发布于2017年10月31日</ui-small></ui-textcolor>
+    <ui-textcolor light-blue>
+        <ui-small>
+        发布于2017年10月31日，
+            Archive : 
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.0" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.0/dist/" target="_blank">CDN</a>
+        </ui-small>
+    </ui-textcolor><br><br>
 
     MorningUI第一个版本，基于HMP UI，规范了定义，实现部分组件。
 

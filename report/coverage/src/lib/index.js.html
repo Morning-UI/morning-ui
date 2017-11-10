@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/lib/index.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">All files</a> / <a href="index.html">src/lib</a> index.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">52.63% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>30/57</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">17.39% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>4/23</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">16.67% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/6</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">56.6% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>30/53</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154</td><td class="line-coverage quiet"><span class="cline-any cline-yes">81x</span>
+<span class="cline-any cline-yes">81x</span>
+<span class="cline-any cline-yes">81x</span>
+<span class="cline-any cline-yes">81x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">81x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">81x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">81x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">81x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">81x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">81x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">81x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">81x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">81x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">81x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">81x</span>
+<span class="cline-any cline-yes">81x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">81x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4455x</span>
+<span class="cline-any cline-yes">4455x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4455x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3807x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">648x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">648x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4455x</span>
+<span class="cline-any cline-yes">4455x</span>
+<span class="cline-any cline-yes">4455x</span>
+<span class="cline-any cline-yes">4455x</span>
+<span class="cline-any cline-yes">4455x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">81x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">81x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import extend                           from 'extend';
+import uiClass                          from 'Common/ui';
+import formClass                        from 'Common/form';
+import components                       from './components';
+&nbsp;
+let morning = {
+    _origin : {},
+    _components : {},
+    _ignoreElements : [],
+    _uiid : 1,
+    _findCache : {},
+    _popupId : 0,
+    _indexMap : {
+        regIndex : {},
+        vmMap : {},
+        useIndex : {}
+    },
+    _moveListener : [],
+    _globalEventListener : {},
+    _groupData : {},
+    _groupVmMap : {},
+    isMorning : true,
+    version : '0.10.6',
+    map : {}
+};
+&nbsp;
+morning.findVM = <span class="fstat-no" title="function not covered" >function (</span>ref) <span class="cstat-no" title="statement not covered" >{</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (this._findCache[ref]) {</span>
+            
+<span class="cstat-no" title="statement not covered" >        return this._findCache[ref];</span>
+&nbsp;
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    for (let vm of Object.values(this.map)) <span class="cstat-no" title="statement not covered" >{</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (vm.$vnode &amp;&amp;</span>
+            vm.$vnode.data &amp;&amp;
+            vm.$vnode.data.ref === ref) {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            this._findCache[ref] = vm;</span>
+            
+<span class="cstat-no" title="statement not covered" >            return vm;</span>
+        
+        }
+&nbsp;
+    }
+&nbsp;
+};
+&nbsp;
+morning.getGroup = <span class="fstat-no" title="function not covered" >function (</span>groupName) {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return extend(true, {}, this._groupData[groupName]);</span>
+&nbsp;
+};
+&nbsp;
+morning.getGroupJson = <span class="fstat-no" title="function not covered" >function (</span>groupName) {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return JSON.stringify(this.getGroupData(groupName));</span>
+&nbsp;
+};
+&nbsp;
+morning.setGroup = <span class="fstat-no" title="function not covered" >function (</span>groupName, data) {
+&nbsp;
+    let uiids = <span class="cstat-no" title="statement not covered" >this._groupVmMap[groupName];</span>
+    let setKeys = <span class="cstat-no" title="statement not covered" >Object.keys(data);</span>
+    let <span class="cstat-no" title="statement not covered" >key,</span>
+<span class="cstat-no" title="statement not covered" >        vm;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (uiids) <span class="cstat-no" title="statement not covered" >{</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        for (let uiid of uiids) <span class="cstat-no" title="statement not covered" >{</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            vm = this.map[uiid];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (vm) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                key = vm.conf.formKey;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if (setKeys.indexOf(key) !== -1) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    this.map[uiid].set(data[key]);</span>
+&nbsp;
+                }
+&nbsp;
+            }
+&nbsp;
+        }
+&nbsp;
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return this;</span>
+&nbsp;
+};
+&nbsp;
+morning.setGroupJson = <span class="fstat-no" title="function not covered" >function (</span>groupName, data) {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return this.setGroup(groupName, JSON.parse(data));</span>
+&nbsp;
+};
+&nbsp;
+morning.install = function (Vue, options) {
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (typeof Vue === 'undefined') {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        throw new Error('can\'t find Vue.js, import Vue.js first please.');</span>
+&nbsp;
+    }
+&nbsp;
+    options = extend(true, {
+        prefix : 'ui'
+    }, options);
+&nbsp;
+    Vue.config.ignoredElements = [];
+&nbsp;
+    this._origin.UI = uiClass(Vue, this);
+    this._origin.Form = formClass(this._origin.UI);
+&nbsp;
+    // register component
+    for (let name in components) {
+&nbsp;
+        let creater = components[name];
+        let component;
+&nbsp;
+        if (creater.origin === 'UI') {
+&nbsp;
+            component = this._origin.UI.extend(creater);
+&nbsp;
+        } else <span class="missing-if-branch" title="else path not taken" >E</span>if (creater.origin === 'Form') {
+&nbsp;
+            component = this._origin.Form.extend(creater);
+&nbsp;
+        } else {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return;</span>
+&nbsp;
+        }
+&nbsp;
+        Vue.component(`${options.prefix}-${component.options.name}`, component);
+        Vue.component(`morning-${component.options.name}`, component);
+        this._components[name] = component;
+        this._ignoreElements.push(`i-${component.options.name}`);
+        this._ignoreElements.push(`morning-${component.options.name}`);
+&nbsp;
+    }
+&nbsp;
+    Vue.config.ignoredElements = this._ignoreElements;
+&nbsp;
+    return this;
+&nbsp;
+};
+&nbsp;
+export default morning;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Nov 10 2017 12:06:29 GMT+0800 (CST)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">7.35% </span>
+        <span class="strong">5.97% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>5/68</span>
+        <span class='fraction'>4/67</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">8% </span>
+        <span class="strong">12% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>6/75</span>
+        <span class='fraction'>9/75</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>0/17</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">8.47% </span>
+        <span class="strong">6.9% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>5/59</span>
+        <span class='fraction'>4/58</span>
       </div>
     </div>
   </div>
@@ -321,8 +321,7 @@
 276
 277
 278
-279
-280</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+279</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -391,7 +390,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">44x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">44x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -656,7 +654,7 @@
             class="page-jump"
             v-if="conf.jumpPage &amp;&amp; conf.total &gt; conf.maxShow"
         &gt;
-            &lt;ui-textinput :ref="'ui-select-input-' + uiid" class="page-num" form-name="页码"&gt;&lt;/ui-textinput&gt;
+            &lt;morning-textinput :ref="'ui-select-input-' + uiid" class="page-num" form-name="页码"&gt;&lt;/morning-textinput&gt;
             &lt;i class="morningicon" @click="_jump()"&gt;&amp;#xe6c8;&lt;/i&gt;
         &lt;/div&gt;
     &lt;/div&gt;
@@ -668,11 +666,10 @@
 &lt;/template&gt;
  
 &lt;script&gt;
-import UI                           from 'Common/ui';
-&nbsp;
 const PAGE_SIZE_DEFAULT = 10;
 &nbsp;
-export default UI.extend({
+export default {
+    origin : 'UI',
     name : 'pagination',
     props : {
         total : {
@@ -876,17 +873,17 @@ export default UI.extend({
 <span class="cstat-no" title="statement not covered" >        this.to(this.conf.page);</span>
 &nbsp;
     }
-});
+};
 &lt;/script&gt;
 &nbsp;
-&lt;style lang="less" src="./ind<span class="branch-1 cbranch-no" title="branch not covered" >ex.less"&gt;&lt;/style&gt;<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-2 cbranch-no" title="branch not covered" ><span class="branch-1 cbranch-no" title="branch not covered" ></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>
-<span class="branch-1 cbranch-no" title="branch not covered" ><span class="branch-2 cbranch-no" title="branch not covered" ><span class="branch-1 cbranch-no" title="branch not covered" ></span></span></span></pre></td></tr>
+&lt;style lang="less" src="./ind<span class="branch-1 cbranch-no" title="branch not covered" >ex.less"&gt;&lt;/style&gt;<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-2 cbranch-no" title="branch not covered" ></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>
+<span class="branch-1 cbranch-no" title="branch not covered" ><span class="branch-2 cbranch-no" title="branch not covered" ></span></span></pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Nov 02 2017 15:53:50 GMT+0800 (CST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Nov 05 2017 20:16:17 GMT+0800 (CST)
 </div>
 </div>
 <script src="../../../prettify.js"></script>

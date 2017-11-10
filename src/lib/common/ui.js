@@ -194,6 +194,7 @@ export default (Vue, morning) => Vue.extend({
 
         let data = {};
 
+        data.isUI = true;
         data.uiid = this.morning._uiid++;
         data.conf = {};
         data.data = {};

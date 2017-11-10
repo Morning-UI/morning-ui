@@ -2,17 +2,19 @@
     <header :class="{index:isIndex}">
         <div class="nav">
             <div class="logo">
-                <img src="http://h0.hucdn.com/open/201734/8f299e45f6693260_200x200.png" alt="morning-ui">
+                <img src="https://h0.hucdn.com/open/201734/8f299e45f6693260_200x200.png" alt="morning-ui">
             </div>
             <div class="name">Morning UI</div>
             <ul class="menu">
+                <li>
+                    <ui-textinput form-name="搜索文档" class="doc-search" :class="{dark:!isIndex}"></ui-textinput>
+                </li>
                 <li><a :class="{current:isIndex}" href="/index.html">HOME</a></li>
                 <li><a :class="{current:isGuide}" href="/guide/introduction.html">GUIDE</a></li>
                 <li><a :class="{current:isComponent}" href="/component/h.html">COMPONENT</a></li>
                 <li><a target="_blank" href="https://github.com/Morning-UI/morning-ui">
-                    <img v-if="isIndex" src="http://h0.hucdn.com/open/201744/f87561b8bb354ef8_32x32.png" class="githublogo" alt="GitHub">
-                    <img v-else src="http://h0.hucdn.com/open/201744/d56df49a807a9fd0_32x32.png" class="githublogo" alt="GitHub">
-                    GitHub
+                    <img v-if="isIndex" src="https://h0.hucdn.com/open/201744/f87561b8bb354ef8_32x32.png" class="githublogo" alt="GitHub">
+                    <img v-else src="https://h0.hucdn.com/open/201744/d56df49a807a9fd0_32x32.png" class="githublogo" alt="GitHub">
                 </a></li>
                 <!-- <li><a :class="{current:isCustom}" href="/custom.html">CUSTOM</a></li> -->
             </ul>
@@ -27,17 +29,35 @@ export default {
     },
     computed : {
         isIndex : function () {
+
             return this.category === 'home';
+
         },
         isGuide : function () {
+
             return this.category === 'guide';
+
         },
         isComponent : function () {
+
             return this.category === 'component';
+
         },
         isCustom : function () {
+
             return this.category === 'custom';
+
         }
+    },
+    mounted : function () {
+
+        window.docsearch({
+            appId : 'DLVXHL947A',
+            apiKey : 'd65302099392ae084914db95ff986f66',
+            indexName : 'morning',
+            inputSelector : '.doc-search > input'
+        });
+
     }
 };
 </script>
@@ -47,6 +67,8 @@ header {
     width: 100%;
     background: #333;
     height: 80px;
+    position: relative;
+    z-index: 99;
 
     .nav {
         width: 1000px;
@@ -60,7 +82,7 @@ header {
         opacity: 0.8;
 
         img {
-            width: 50px;
+            width: 53px;
             height: 50px;
             margin-top: 15px;
             display: inline-block;
@@ -132,6 +154,40 @@ header {
         .menu li a {
             color: #333;
         }
+    }
+
+    .doc-search input{
+        height: 30px;
+        font-size: 12px;
+        margin-top: 10px;
+    }
+
+    .doc-search.dark input{
+        background: #333;
+        border: 1px #555 solid;
+        color: #eee !important;
+
+        &::placeholder{
+            color: #999;
+        }
+        
+        &:hover{
+            border-color: #666;
+        }
+
+        &:focus{
+            border-color: #777;
+        }
+    }
+
+    .ds-dropdown-menu{
+        font-size: 12px;
+        width: 380px;
+        min-width: 380px !important;
+    }
+
+    .ds-dataset-1{
+        width: 380px;
     }
 }
 </style>
