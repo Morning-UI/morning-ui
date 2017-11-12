@@ -43,6 +43,7 @@ import btn                          from './btn/index.vue';
 import link                         from './link/index.vue';
 import dropdown                     from './dropdown/index.vue';
 import tab                          from './tab/index.vue';
+import table                        from './table/index.vue';
 import pagination                   from './pagination/index.vue';
 import dialog                       from './dialog/index.vue';
 import load                         from './load/index.vue';
@@ -101,6 +102,7 @@ export default {
     link,
     dropdown,
     tab,
+    table,
     pagination,
     dialog,
     load,
