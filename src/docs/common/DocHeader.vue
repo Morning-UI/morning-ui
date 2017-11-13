@@ -63,7 +63,7 @@ export default {
 </script>
 
 <style lang="less">
-header {
+body > div > header {
     width: 100%;
     background: #333;
     height: 80px;
