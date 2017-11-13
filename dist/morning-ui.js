@@ -951,7 +951,7 @@ var morning = {
     _groupData: {},
     _groupVmMap: {},
     isMorning: true,
-    version: '0.10.6',
+    version: '0.10.7',
     map: {}
 };
 

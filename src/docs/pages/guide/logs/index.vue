@@ -18,6 +18,24 @@
     
     ### 更新记录
 
+    ### 0.10.7 <ui-badge class="circle ver-canary" s light-theme>Canary</ui-badge>
+
+    <ui-textcolor light-blue>
+        <ui-small>
+            发布于2017年11月13日，
+            Archive : 
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.7" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.7/dist/" target="_blank">CDN</a>
+        </ui-small>
+    </ui-textcolor>
+    
+    - 新增`ui-table`表格组件
+    - `ui-grid`栅格组件列数从16变为24
+
+    <ui-label primary>Upgrade Precautions</ui-label>
+
+    - `ui-grid`栅格组件一行列数更新至24列
+
     ### 0.10.6 <ui-badge class="circle ver-canary" s light-theme>Canary</ui-badge>
 
     <ui-textcolor light-blue>
