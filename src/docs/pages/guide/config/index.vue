@@ -222,6 +222,19 @@
     - `batch-reg` : 批量输入正则表达式
     - `batch-filler` : 批量输入填充
     - `batch-uniq` : 批量输入去重
+    - `empty-cell-value` : 空单元格的数值
+    - `title` : 标题
+    - `zebra-pattern` : 斑马线
+    - `vertical-border` : 竖向边框
+    - `horizontal-border` : 横向边框
+    - `align` : 对齐
+    - `show-col-name` : 显示列名称
+    - `fixed-title-col` : 固定标题列
+    - `col-set` : 列设置
+    - `row-set` : 行设置
+    - `cell-set` : 单元格设置
+    - `export-csv` : 导出CSV文件
+    - `csv-name` : CSV文件的名称
 
     </script>
     </doc-guide>

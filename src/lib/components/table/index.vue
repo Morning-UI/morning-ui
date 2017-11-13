@@ -9,14 +9,14 @@
         :zebra-pattern="zebraPattern"
         :vertical-border="verticalBorder"
         :horizontal-border="horizontalBorder"
-        :col-align="colAlign"
+        :align="align"
         :show-col-name="showColName"
         :fixed-title-col="fixedTitleCol"
         :col-set="colSet"
         :row-set="rowSet"
         :cell-set="cellSet"
         :export-csv="exportCsv"
-        :export-csv-name="exportCsvName"
+        :csv-name="csvName"
     >
 
     <template v-if="conf.title || conf.exportCsv">
@@ -123,7 +123,7 @@ export default {
             type : Boolean,
             default : true
         },
-        colAlign : {
+        align : {
             type : String,
             default : 'center',
             validator : (value => ['left', 'center', 'right'].indexOf(value) !== -1)
@@ -153,7 +153,7 @@ export default {
             type : Boolean,
             default : false
         },
-        exportCsvName : {
+        csvName : {
             type : String,
             default : undefined
         }
@@ -168,20 +168,21 @@ export default {
                 zebraPattern : this.zebraPattern,
                 verticalBorder : this.verticalBorder,
                 horizontalBorder : this.horizontalBorder,
-                colAlign : this.colAlign,
+                align : this.align,
                 showColName : this.showColName,
                 fixedTitleCol : this.fixedTitleCol,
                 colSet : this.colSet,
                 rowSet : this.rowSet,
                 cellSet : this.cellSet,
                 exportCsv : this.exportCsv,
-                exportCsvName : this.exportCsvName
+                csvName : this.csvName
             },
             data : {
                 normalKeys : [],
                 normalRows : [],
                 titleKeys : [],
-                titleRows : []
+                titleRows : [],
+                listDataJson : '[]'
             }
         };
 
@@ -204,7 +205,7 @@ export default {
 
             let classes = {};
 
-            classes[`col-align-${this.conf.colAlign}`] = true;
+            classes[`align-${this.conf.align}`] = true;
             classes[`title-col-${this.conf.fixedTitleCol}`] = true;
 
             return Object.assign({
@@ -351,7 +352,7 @@ export default {
                 if (colIndex === -1) {
 
                     colType = 'title';
-                    colIndex = this.data.keyKeys.indexOf(set.col);
+                    colIndex = this.data.titleKeys.indexOf(set.col);
 
                 }
 
@@ -581,9 +582,9 @@ export default {
             downloadLink.style.display = 'none';
             downloadLink.href = URL.createObjectURL(blob);
 
-            if (this.conf.exportCsvName !== undefined) {
+            if (this.conf.csvName !== undefined) {
     
-                downloadLink.download = `${this.conf.exportCsvName}.csv`;
+                downloadLink.download = `${this.conf.csvName}.csv`;
 
             } else {
                 
@@ -653,6 +654,12 @@ export default {
             this.data.normalKeys = normalKeys;
             this.data.titleRows = titleRows;
             this.data.normalRows = normalRows;
+            this.data.listDataJson = JSON.stringify(list);
+
+        },
+        setList : function (list) {
+
+            this._importList(list);
 
         }
     },
@@ -676,6 +683,24 @@ export default {
                 immediate : true,
                 deep : true
             });
+
+            this._fixedTitleCol();
+            this._setCol();
+            this._setRow();
+            this._setCell();
+
+            this.$watch('data.listDataJson', () => {
+
+                this.$emit('list-change');
+
+            });
+
+        });
+
+    },
+    updated : function () {
+
+        this.Vue.nextTick(() => {
 
             this._fixedTitleCol();
             this._setCol();
