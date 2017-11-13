@@ -83,14 +83,6 @@ import arrayUniq                    from 'array-uniq';
 import titleTable                   from './title-table.vue';
 import normalTable                   from './normal-table.vue';
 
-// cell-set : [{
-//     x,
-//     y,
-//     style,
-//     disabled,
-//     align
-// }]
-
 export default {
     origin : 'UI',
     name : 'table',
@@ -461,7 +453,6 @@ export default {
             let elWidth = this.$el.clientWidth;
 
             $normalTable.parentElement.style.maxWidth = `${elWidth - titleColWidth}px`;
-            // $normalTable.parentElement.style.width = `${elWidth - titleColWidth}px`;
             $normalTable.parentElement.style.overflowX = 'auto';
             
             $titleTable.parentElement.style.width = `${titleColWidth}px`;
@@ -470,7 +461,6 @@ export default {
             if (this.conf.fixedTitleCol === 'left-fixed') {
 
                 $normalTable.style.borderLeft = `${titleColWidth}px rgba(0,0,0,0) solid`;
-                // $normalTable.parentElement.style.paddingLeft = `${titleColWidth + 1}px`;
                 $titleTable.parentElement.style.left = 0;
 
             } else {
