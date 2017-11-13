@@ -127,6 +127,7 @@
     - `input-value-change` : 输入框值变化
     - `input-focus` : 输入框聚焦
     - `input-blur` : 输入框失焦
+    - `list-change` : 列表数值变化
 
     </script>
     </doc-guide>
