@@ -178,420 +178,895 @@ i-table{
     }
 
     &.sy-theme{
-        th,
-        td,
-        table{
-            border-color: darken(@colorTheme, 20%) !important;
-        }
+        border-color: darken(@colorTheme, 20%) !important;
 
-        tr{
-            background-color: darken(@colorTheme, 15%) !important;
+        header{
+            background-color: darken(@colorTheme, 20%);
             color: @colorWhite;
         }
 
-        &.zebra-pattern tr:nth-child(2n) td{
-            background-color: darken(@colorTheme, 10%) !important;
+        .title-table,
+        .normal-table{
+            border-color: darken(@colorTheme, 20%) !important;
+        
+            th,
+            td{
+                color: @colorWhite;
+            }
+
+            th,
+            td,
+            tr,
+            &{
+                border-color: darken(@colorTheme, 20%) !important;
+            }
+
+            tr{
+                background-color: darken(@colorTheme, 15%);
+            }
         }
 
-        tr:hover td,
-        tr.hover td{
-            background-color: darken(@colorTheme, 20%) !important;
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table{
+            tr:nth-child(2n) td{
+                background-color: darken(@colorTheme, 10%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table,
+        .title-table,
+        .normal-table{
+            tr:hover td,
+            tr.hover td{
+                background-color: darken(@colorTheme, 20%);
+            }
         }
     }
 
     &.sy-lightTheme{
-        th,
-        td,
-        table{
-            border-color: darken(@colorLightTheme, 25%) !important;
-        }
+        border-color: darken(@colorLightTheme, 25%) !important;
 
-        tr{
-            background-color: darken(@colorLightTheme, 15%) !important;
+        header{
+            background-color: darken(@colorLightTheme, 25%);
             color: @colorWhite;
         }
 
-        &.zebra-pattern tr:nth-child(2n) td{
-            background-color: darken(@colorLightTheme, 10%) !important;
+        .title-table,
+        .normal-table{
+            border-color: darken(@colorLightTheme, 25%) !important;
+        
+            th,
+            td{
+                color: @colorWhite;
+            }
+
+            th,
+            td,
+            tr,
+            &{
+                border-color: darken(@colorLightTheme, 25%) !important;
+            }
+
+            tr{
+                background-color: darken(@colorLightTheme, 15%);
+            }
         }
 
-        tr:hover td,
-        tr.hover td{
-            background-color: darken(@colorLightTheme, 25%) !important;
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table{
+            tr:nth-child(2n) td{
+                background-color: darken(@colorLightTheme, 10%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table,
+        .title-table,
+        .normal-table{
+            tr:hover td,
+            tr.hover td{
+                background-color: darken(@colorLightTheme, 25%);
+            }
         }
     }
 
     &.sy-darkTheme{
-        th,
-        td,
-        table{
-            border-color: darken(@colorDarkTheme, 20%) !important;
-        }
+        border-color: darken(@colorDarkTheme, 20%) !important;
 
-        tr{
-            background-color: darken(@colorDarkTheme, 15%) !important;
+        header{
+            background-color: darken(@colorDarkTheme, 20%);
             color: @colorWhite;
         }
 
-        &.zebra-pattern tr:nth-child(2n) td{
-            background-color: darken(@colorDarkTheme, 10%) !important;
+        .title-table,
+        .normal-table{
+            border-color: darken(@colorDarkTheme, 20%) !important;
+        
+            th,
+            td{
+                color: @colorWhite;
+            }
+
+            th,
+            td,
+            tr,
+            &{
+                border-color: darken(@colorDarkTheme, 20%) !important;
+            }
+
+            tr{
+                background-color: darken(@colorDarkTheme, 15%);
+            }
         }
 
-        tr:hover td,
-        tr.hover td{
-            background-color: darken(@colorDarkTheme, 20%) !important;
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table{
+            tr:nth-child(2n) td{
+                background-color: darken(@colorDarkTheme, 10%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table,
+        .title-table,
+        .normal-table{
+            tr:hover td,
+            tr.hover td{
+                background-color: darken(@colorDarkTheme, 20%);
+            }
         }
     }
 
     &.sy-success{
-        th,
-        td,
-        table{
-            border-color: darken(@colorSuccess, 25%) !important;
-        }
+        border-color: darken(@colorSuccess, 25%) !important;
 
-        tr{
-            background-color: darken(@colorSuccess, 15%) !important;
+        header{
+            background-color: darken(@colorSuccess, 25%);
             color: @colorWhite;
         }
 
-        &.zebra-pattern tr:nth-child(2n) td{
-            background-color: darken(@colorSuccess, 10%) !important;
+        .title-table,
+        .normal-table{
+            border-color: darken(@colorSuccess, 25%) !important;
+        
+            th,
+            td{
+                color: @colorWhite;
+            }
+
+            th,
+            td,
+            tr,
+            &{
+                border-color: darken(@colorSuccess, 25%) !important;
+            }
+
+            tr{
+                background-color: darken(@colorSuccess, 15%);
+            }
         }
 
-        tr:hover td,
-        tr.hover td{
-            background-color: darken(@colorSuccess, 25%) !important;
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table{
+            tr:nth-child(2n) td{
+                background-color: darken(@colorSuccess, 10%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table,
+        .title-table,
+        .normal-table{
+            tr:hover td,
+            tr.hover td{
+                background-color: darken(@colorSuccess, 25%);
+            }
         }
     }
 
     &.sy-warning{
-        th,
-        td,
-        table{
-            border-color: darken(@colorWarning, 25%) !important;
-        }
+        border-color: darken(@colorWarning, 25%) !important;
 
-        tr{
-            background-color: darken(@colorWarning, 15%) !important;
+        header{
+            background-color: darken(@colorWarning, 25%);
             color: @colorWhite;
         }
 
-        &.zebra-pattern tr:nth-child(2n) td{
-            background-color: darken(@colorWarning, 10%) !important;
+        .title-table,
+        .normal-table{
+            border-color: darken(@colorWarning, 25%) !important;
+        
+            th,
+            td{
+                color: @colorWhite;
+            }
+
+            th,
+            td,
+            tr,
+            &{
+                border-color: darken(@colorWarning, 25%) !important;
+            }
+
+            tr{
+                background-color: darken(@colorWarning, 15%);
+            }
         }
 
-        tr:hover td,
-        tr.hover td{
-            background-color: darken(@colorWarning, 25%) !important;
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table{
+            tr:nth-child(2n) td{
+                background-color: darken(@colorWarning, 10%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table,
+        .title-table,
+        .normal-table{
+            tr:hover td,
+            tr.hover td{
+                background-color: darken(@colorWarning, 25%);
+            }
         }
     }
 
     &.sy-danger{
-        th,
-        td,
-        table{
-            border-color: darken(@colorDanger, 25%) !important;
-        }
+        border-color: darken(@colorDanger, 25%) !important;
 
-        tr{
-            background-color: darken(@colorDanger, 15%) !important;
+        header{
+            background-color: darken(@colorDanger, 25%);
             color: @colorWhite;
         }
 
-        &.zebra-pattern tr:nth-child(2n) td{
-            background-color: darken(@colorDanger, 10%) !important;
+        .title-table,
+        .normal-table{
+            border-color: darken(@colorDanger, 25%) !important;
+        
+            th,
+            td{
+                color: @colorWhite;
+            }
+
+            th,
+            td,
+            tr,
+            &{
+                border-color: darken(@colorDanger, 25%) !important;
+            }
+
+            tr{
+                background-color: darken(@colorDanger, 15%);
+            }
         }
 
-        tr:hover td,
-        tr.hover td{
-            background-color: darken(@colorDanger, 25%) !important;
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table{
+            tr:nth-child(2n) td{
+                background-color: darken(@colorDanger, 10%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table,
+        .title-table,
+        .normal-table{
+            tr:hover td,
+            tr.hover td{
+                background-color: darken(@colorDanger, 25%);
+            }
         }
     }
 
     &.sy-primary{
-        th,
-        td,
-        table{
-            border-color: darken(@colorPrimary, 25%) !important;
-        }
+        border-color: darken(@colorPrimary, 25%) !important;
 
-        tr{
-            background-color: darken(@colorPrimary, 15%) !important;
+        header{
+            background-color: darken(@colorPrimary, 25%);
             color: @colorWhite;
         }
 
-        &.zebra-pattern tr:nth-child(2n) td{
-            background-color: darken(@colorPrimary, 10%) !important;
+        .title-table,
+        .normal-table{
+            border-color: darken(@colorPrimary, 25%) !important;
+        
+            th,
+            td{
+                color: @colorWhite;
+            }
+
+            th,
+            td,
+            tr,
+            &{
+                border-color: darken(@colorPrimary, 25%) !important;
+            }
+
+            tr{
+                background-color: darken(@colorPrimary, 15%);
+            }
         }
 
-        tr:hover td,
-        tr.hover td{
-            background-color: darken(@colorPrimary, 25%) !important;
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table{
+            tr:nth-child(2n) td{
+                background-color: darken(@colorPrimary, 10%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table,
+        .title-table,
+        .normal-table{
+            tr:hover td,
+            tr.hover td{
+                background-color: darken(@colorPrimary, 25%);
+            }
         }
     }
 
     &.sy-minor{
-        th,
-        td,
-        table{
-            border-color: darken(@colorMinor, 25%) !important;
-        }
+        border-color: darken(@colorMinor, 25%) !important;
 
-        tr{
-            background-color: darken(@colorMinor, 15%) !important;
+        header{
+            background-color: darken(@colorMinor, 25%);
             color: @colorWhite;
         }
 
-        &.zebra-pattern tr:nth-child(2n) td{
-            background-color: darken(@colorMinor, 10%) !important;
+        .title-table,
+        .normal-table{
+            border-color: darken(@colorMinor, 25%) !important;
+        
+            th,
+            td{
+                color: @colorWhite;
+            }
+
+            th,
+            td,
+            tr,
+            &{
+                border-color: darken(@colorMinor, 25%) !important;
+            }
+
+            tr{
+                background-color: darken(@colorMinor, 15%);
+            }
         }
 
-        tr:hover td,
-        tr.hover td{
-            background-color: darken(@colorMinor, 25%) !important;
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table{
+            tr:nth-child(2n) td{
+                background-color: darken(@colorMinor, 10%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table,
+        .title-table,
+        .normal-table{
+            tr:hover td,
+            tr.hover td{
+                background-color: darken(@colorMinor, 25%);
+            }
         }
     }
 
     &.sy-info{
-        th,
-        td,
-        table{
-            border-color: darken(@colorInfo, 25%) !important;
-        }
+        border-color: darken(@colorInfo, 25%) !important;
 
-        tr{
-            background-color: darken(@colorInfo, 15%) !important;
+        header{
+            background-color: darken(@colorInfo, 25%);
             color: @colorWhite;
         }
 
-        &.zebra-pattern tr:nth-child(2n) td{
-            background-color: darken(@colorInfo, 10%) !important;
+        .title-table,
+        .normal-table{
+            border-color: darken(@colorInfo, 25%) !important;
+        
+            th,
+            td{
+                color: @colorWhite;
+            }
+
+            th,
+            td,
+            tr,
+            &{
+                border-color: darken(@colorInfo, 25%) !important;
+            }
+
+            tr{
+                background-color: darken(@colorInfo, 15%);
+            }
         }
 
-        tr:hover td,
-        tr.hover td{
-            background-color: darken(@colorInfo, 25%) !important;
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table{
+            tr:nth-child(2n) td{
+                background-color: darken(@colorInfo, 10%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table,
+        .title-table,
+        .normal-table{
+            tr:hover td,
+            tr.hover td{
+                background-color: darken(@colorInfo, 25%);
+            }
         }
     }
 
     &.sy-black{
-        th,
-        td,
-        table{
-            border-color: @colorBlack !important;
-        }
+        border-color: @colorBlack !important;
 
-        tr{
-            background-color: darken(@colorBlack, 5%) !important;
+        header{
+            background-color: @colorBlack;
             color: @colorWhite;
         }
 
-        &.zebra-pattern tr:nth-child(2n) td{
-            background-color: darken(@colorBlack, 10%) !important;
+        .title-table,
+        .normal-table{
+            border-color: @colorBlack !important;
+        
+            th,
+            td{
+                color: @colorWhite;
+            }
+
+            th,
+            td,
+            tr,
+            &{
+                border-color: @colorBlack !important;
+            }
+
+            tr{
+                background-color: darken(@colorBlack, 5%);
+            }
         }
 
-        tr:hover td,
-        tr.hover td{
-            background-color: @colorBlack !important;
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table{
+            tr:nth-child(2n) td{
+                background-color: darken(@colorBlack, 10%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table,
+        .title-table,
+        .normal-table{
+            tr:hover td,
+            tr.hover td{
+                background-color: @colorBlack;
+            }
         }
     }
 
     &.sy-lightBlack{
-        th,
-        td,
-        table{
-            border-color: @colorLightBlack !important;
-        }
+        border-color: @colorLightBlack !important;
 
-        tr{
-            background-color: darken(@colorLightBlack, 5%) !important;
+        header{
+            background-color: @colorLightBlack;
             color: @colorWhite;
         }
 
-        &.zebra-pattern tr:nth-child(2n) td{
-            background-color: darken(@colorLightBlack, 10%) !important;
+        .title-table,
+        .normal-table{
+            border-color: @colorLightBlack !important;
+        
+            th,
+            td{
+                color: @colorWhite;
+            }
+
+            th,
+            td,
+            tr,
+            &{
+                border-color: @colorLightBlack !important;
+            }
+
+            tr{
+                background-color: darken(@colorLightBlack, 5%);
+            }
         }
 
-        tr:hover td,
-        tr.hover td{
-            background-color: @colorLightBlack !important;
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table{
+            tr:nth-child(2n) td{
+                background-color: darken(@colorLightBlack, 10%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table,
+        .title-table,
+        .normal-table{
+            tr:hover td,
+            tr.hover td{
+                background-color: @colorLightBlack;
+            }
         }
     }
 
     &.sy-extraLightBlack{
-        th,
-        td,
-        table{
-            border-color: @colorExtraLightBlack !important;
-        }
+        border-color: @colorExtraLightBlack !important;
 
-        tr{
-            background-color: darken(@colorExtraLightBlack, 5%) !important;
+        header{
+            background-color: @colorExtraLightBlack;
             color: @colorWhite;
         }
 
-        &.zebra-pattern tr:nth-child(2n) td{
-            background-color: darken(@colorExtraLightBlack, 10%) !important;
+        .title-table,
+        .normal-table{
+            border-color: @colorExtraLightBlack !important;
+        
+            th,
+            td{
+                color: @colorWhite;
+            }
+
+            th,
+            td,
+            tr,
+            &{
+                border-color: @colorExtraLightBlack !important;
+            }
+
+            tr{
+                background-color: darken(@colorExtraLightBlack, 5%);
+            }
         }
 
-        tr:hover td,
-        tr.hover td{
-            background-color: @colorExtraLightBlack !important;
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table{
+            tr:nth-child(2n) td{
+                background-color: darken(@colorExtraLightBlack, 10%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table,
+        .title-table,
+        .normal-table{
+            tr:hover td,
+            tr.hover td{
+                background-color: @colorExtraLightBlack;
+            }
         }
     }
 
     &.sy-blue{
-        th,
-        td,
-        table{
-            border-color: darken(@colorBlue, 25%) !important;
-        }
+        border-color: darken(@colorBlue, 25%) !important;
 
-        tr{
-            background-color: darken(@colorBlue, 10%) !important;
+        header{
+            background-color: darken(@colorBlue, 25%);
             color: @colorWhite;
         }
 
-        &.zebra-pattern tr:nth-child(2n) td{
-            background-color: darken(@colorBlue, 15%) !important;
+        .title-table,
+        .normal-table{
+            border-color: darken(@colorBlue, 25%) !important;
+        
+            th,
+            td{
+                color: @colorWhite;
+            }
+
+            th,
+            td,
+            tr,
+            &{
+                border-color: darken(@colorBlue, 25%) !important;
+            }
+
+            tr{
+                background-color: darken(@colorBlue, 10%);
+            }
         }
 
-        tr:hover td,
-        tr.hover td{
-            background-color: darken(@colorBlue, 25%) !important;
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table{
+            tr:nth-child(2n) td{
+                background-color: darken(@colorBlue, 15%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table,
+        .title-table,
+        .normal-table{
+            tr:hover td,
+            tr.hover td{
+                background-color: darken(@colorBlue, 25%);
+            }
         }
     }
 
     &.sy-lightBlue{
-        th,
-        td,
-        table{
-            border-color: darken(@colorLightBlue, 25%) !important;
-        }
+        border-color: darken(@colorLightBlue, 25%) !important;
 
-        tr{
-            background-color: darken(@colorLightBlue, 10%) !important;
+        header{
+            background-color: darken(@colorLightBlue, 25%);
             color: @colorWhite;
         }
 
-        &.zebra-pattern tr:nth-child(2n) td{
-            background-color: darken(@colorLightBlue, 15%) !important;
+        .title-table,
+        .normal-table{
+            border-color: darken(@colorLightBlue, 25%) !important;
+        
+            th,
+            td{
+                color: @colorWhite;
+            }
+
+            th,
+            td,
+            tr,
+            &{
+                border-color: darken(@colorLightBlue, 25%) !important;
+            }
+
+            tr{
+                background-color: darken(@colorLightBlue, 10%);
+            }
         }
 
-        tr:hover td,
-        tr.hover td{
-            background-color: darken(@colorLightBlue, 25%) !important;
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table{
+            tr:nth-child(2n) td{
+                background-color: darken(@colorLightBlue, 15%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table,
+        .title-table,
+        .normal-table{
+            tr:hover td,
+            tr.hover td{
+                background-color: darken(@colorLightBlue, 25%);
+            }
         }
     }
 
     &.sy-extraLightBlue{
-        th,
-        td,
-        table{
-            border-color: darken(@colorExtraLightBlue, 25%) !important;
-        }
+        border-color: darken(@colorExtraLightBlue, 25%) !important;
 
-        tr{
-            background-color: darken(@colorExtraLightBlue, 10%) !important;
+        header{
+            background-color: darken(@colorExtraLightBlue, 25%);
             color: @colorWhite;
         }
 
-        &.zebra-pattern tr:nth-child(2n) td{
-            background-color: darken(@colorExtraLightBlue, 15%) !important;
+        .title-table,
+        .normal-table{
+            border-color: darken(@colorExtraLightBlue, 25%) !important;
+        
+            th,
+            td{
+                color: @colorWhite;
+            }
+
+            th,
+            td,
+            tr,
+            &{
+                border-color: darken(@colorExtraLightBlue, 25%) !important;
+            }
+
+            tr{
+                background-color: darken(@colorExtraLightBlue, 10%);
+            }
         }
 
-        tr:hover td,
-        tr.hover td{
-            background-color: darken(@colorExtraLightBlue, 25%) !important;
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table{
+            tr:nth-child(2n) td{
+                background-color: darken(@colorExtraLightBlue, 15%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table,
+        .title-table,
+        .normal-table{
+            tr:hover td,
+            tr.hover td{
+                background-color: darken(@colorExtraLightBlue, 25%);
+            }
         }
     }
 
     &.sy-silver{
-        th,
-        td,
-        table{
-            border-color: darken(@colorSilver, 10%) !important;
-        }
+        border-color: darken(@colorSilver, 10%) !important;
 
-        tr{
-            background-color: darken(@colorSilver, 5%) !important;
+        header{
+            background-color: darken(@colorSilver, 10%);
             color: @colorBlack;
         }
 
-        &.zebra-pattern tr:nth-child(2n) td{
-            background-color: @colorSilver !important;
+        .title-table,
+        .normal-table{
+            border-color: darken(@colorSilver, 10%) !important;
+        
+            th,
+            td{
+                color: @colorBlack;
+            }
+
+            th,
+            td,
+            tr,
+            &{
+                border-color: darken(@colorSilver, 10%) !important;
+            }
+
+            tr{
+                background-color: darken(@colorSilver, 5%);
+            }
         }
 
-        tr:hover td,
-        tr.hover td{
-            background-color: darken(@colorSilver, 10%) !important;
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table{
+            tr:nth-child(2n) td{
+                background-color: @colorSilver;
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table,
+        .title-table,
+        .normal-table{
+            tr:hover td,
+            tr.hover td{
+                background-color: darken(@colorSilver, 10%);
+            }
         }
     }
 
     &.sy-lightSilver{
-        th,
-        td,
-        table{
-            border-color: @colorLightSilver !important;
-        }
+        border-color: darken(@colorLightSilver, 10%) !important;
 
-        tr{
-            background-color: darken(@colorLightSilver, 10%) !important;
+        header{
+            background-color: @colorLightSilver;
             color: @colorBlack;
         }
 
-        &.zebra-pattern tr:nth-child(2n) td{
-            background-color: darken(@colorLightSilver, 5%) !important;
+        .title-table,
+        .normal-table{
+            border-color: darken(@colorLightSilver, 10%) !important;
+        
+            th,
+            td{
+                color: @colorBlack;
+            }
+
+            th,
+            td,
+            tr,
+            &{
+                border-color: darken(@colorLightSilver, 10%) !important;
+            }
+
+            tr{
+                background-color: darken(@colorLightSilver, 5%);
+            }
         }
 
-        tr:hover td,
-        tr.hover td{
-            background-color: darken(@colorLightSilver, 10%) !important;
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table{
+            tr:nth-child(2n) td{
+                background-color: @colorLightSilver;
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table,
+        .title-table,
+        .normal-table{
+            tr:hover td,
+            tr.hover td{
+                background-color: darken(@colorLightSilver, 10%);
+            }
         }
     }
 
     &.sy-extraLightSilver{
-        th,
-        td,
-        table{
-            border-color: darken(@colorExtraLightSilver, 10%) !important;
-        }
+        border-color: darken(@colorExtraLightSilver, 10%) !important;
 
-        tr{
-            background-color: darken(@colorExtraLightSilver, 5%) !important;
+        header{
+            background-color: darken(@colorExtraLightSilver, 10%);
             color: @colorBlack;
         }
 
-        &.zebra-pattern tr:nth-child(2n) td{
-            background-color: @colorExtraLightSilver !important;
+        .title-table,
+        .normal-table{
+            border-color: darken(@colorExtraLightSilver, 10%) !important;
+        
+            th,
+            td{
+                color: @colorBlack;
+            }
+
+            th,
+            td,
+            tr,
+            &{
+                border-color: darken(@colorExtraLightSilver, 10%) !important;
+            }
+
+            tr{
+                background-color: darken(@colorExtraLightSilver, 5%);
+            }
         }
 
-        tr:hover td,
-        tr.hover td{
-            background-color: darken(@colorExtraLightSilver, 10%) !important;
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table{
+            tr:nth-child(2n) td{
+                background-color: @colorExtraLightSilver;
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table,
+        .title-table,
+        .normal-table{
+            tr:hover td,
+            tr.hover td{
+                background-color: darken(@colorExtraLightSilver, 10%);
+            }
         }
     }
 
     &.sy-gray{
-        th,
-        td,
-        table{
-            border-color: darken(@colorGray, 5%) !important;
-        }
+        border-color: darken(@colorGray, 5%) !important;
 
-        tr{
-            background-color: lighten(@colorGray, 6%) !important;
+        header{
+            background-color: darken(@colorGray, 5%);
             color: @colorBlack;
         }
 
-        &.zebra-pattern tr:nth-child(2n) td{
-            background-color: @colorGray !important;
+        .title-table,
+        .normal-table{
+            border-color: darken(@colorGray, 5%) !important;
+        
+            th,
+            td{
+                color: @colorBlack;
+            }
+
+            th,
+            td,
+            tr,
+            &{
+                border-color: darken(@colorGray, 5%) !important;
+            }
+
+            tr{
+                background-color: lighten(@colorGray, 6%);
+            }
         }
 
-        tr:hover td,
-        tr.hover td{
-            background-color: darken(@colorGray, 5%) !important;
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table{
+            tr:nth-child(2n) td{
+                background-color: @colorGray;
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table,
+        .title-table,
+        .normal-table{
+            tr:hover td,
+            tr.hover td{
+                background-color: darken(@colorGray, 5%);
+            }
         }
     }
 
@@ -643,23 +1118,49 @@ i-table{
     }
 
     &.sy-white{
-        th,
-        td,
-        table{
+        border-color: darken(@colorWhite, 5%) !important;
+
+        header{
+            background-color: darken(@colorWhite, 5%);
+            color: @colorBlack;
+        }
+
+        .title-table,
+        .normal-table{
             border-color: darken(@colorWhite, 5%) !important;
+        
+            th,
+            td{
+                color: @colorBlack;
+            }
+
+            th,
+            td,
+            tr,
+            &{
+                border-color: darken(@colorWhite, 5%) !important;
+            }
+
+            tr{
+                background-color: @colorWhite;
+            }
         }
 
-        tr{
-            background-color: @colorWhite !important;
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table{
+            tr:nth-child(2n) td{
+                background-color: darken(@colorWhite, 2%);
+            }
         }
 
-        &.zebra-pattern tr:nth-child(2n) td{
-            background-color: darken(@colorWhite, 2%) !important;
-        }
-
-        tr:hover td,
-        tr.hover td{
-            background-color: darken(@colorWhite, 5%) !important;
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table,
+        .title-table,
+        .normal-table{
+            tr:hover td,
+            tr.hover td{
+                background-color: darken(@colorWhite, 5%);
+            }
         }
     }
 
