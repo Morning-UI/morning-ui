@@ -4538,6 +4538,1239 @@ i-tab.noborder > .contents {
   border: none;
 }
 
+i-table {
+  width: 100%;
+  overflow: auto;
+  display: block;
+  border: 0 none;
+  font-size: 14px;
+  background-color: #FFFFFF;
+  border-radius: 3px;
+  border-width: 1px !important;
+  border-style: solid !important;
+  position: relative;
+  border-color: #e3e3e3 !important;
+}
+i-table header {
+  position: relative;
+  height: 52px;
+}
+i-table header h1 {
+  margin: 0 !important;
+  font-size: 24px !important;
+  font-weight: 400 !important;
+  padding: 8px 16px !important;
+}
+i-table header .action {
+  position: absolute;
+  top: 13px;
+  right: 13px;
+}
+i-table > .wrap {
+  overflow: hidden !important;
+  width: 100% !important;
+  border-width: 0 !important;
+}
+i-table > .wrap > tbody > tr > td::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+i-table > .wrap > tbody > tr > td::-webkit-scrollbar-thumb {
+  width: 5px;
+  height: 5px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+i-table .title-table,
+i-table .normal-table {
+  display: table;
+  min-width: 100%;
+  text-align: center;
+  color: #666;
+  font-size: 14px;
+  margin: 0;
+  box-sizing: content-box !important;
+  border-collapse: separate;
+}
+i-table .title-table thead tr,
+i-table .normal-table thead tr {
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+}
+i-table .title-table tbody,
+i-table .normal-table tbody {
+  width: 100%;
+}
+i-table .title-table tr,
+i-table .normal-table tr {
+  height: 40px;
+}
+i-table .title-table tr th,
+i-table .normal-table tr th {
+  font-weight: 400;
+  padding: 10px !important;
+  line-height: 1.2em;
+  height: 20px;
+  overflow: hidden;
+  white-space: nowrap;
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+}
+i-table .title-table tr td,
+i-table .normal-table tr td {
+  padding: 10px !important;
+  min-width: 50px;
+  overflow: hidden;
+  word-break: break-all;
+  text-overflow: ellipsis;
+}
+i-table .title-table {
+  border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px;
+}
+i-table .normal-table {
+  border-radius: 3px;
+}
+i-table.title-col-left-fixed,
+i-table.title-col-right-fixed {
+  position: relative;
+  overflow: hidden;
+}
+i-table.title-col-right .title-table,
+i-table.title-col-right-fixed .title-table {
+  border-left-style: solid;
+  border-left-width: 2px;
+}
+i-table.title-col-left .title-table,
+i-table.title-col-left-fixed .title-table {
+  border-right-style: solid;
+  border-right-width: 2px;
+}
+i-table.has-title-col .normal-table {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
+}
+i-table.has-title-col .title-table {
+  display: table;
+}
+i-table.align-left .title-table,
+i-table.align-left .normal-table,
+i-table .cell-align-left {
+  text-align: left;
+}
+i-table.align-left .title-table,
+i-table.align-left .normal-table,
+i-table .cell-align-center {
+  text-align: center;
+}
+i-table.align-left .title-table,
+i-table.align-left .normal-table,
+i-table .cell-align-right {
+  text-align: right;
+}
+i-table.vertical-border .title-table th,
+i-table.vertical-border .normal-table th,
+i-table.vertical-border .title-table td,
+i-table.vertical-border .normal-table td {
+  border-left-width: 1px !important;
+  border-left-style: solid !important;
+}
+i-table.vertical-border .title-table th:first-child,
+i-table.vertical-border .normal-table th:first-child,
+i-table.vertical-border .title-table td:first-child,
+i-table.vertical-border .normal-table td:first-child {
+  border-left: none !important;
+}
+i-table.horizontal-border .title-table th,
+i-table.horizontal-border .normal-table th,
+i-table.horizontal-border .title-table td,
+i-table.horizontal-border .normal-table td {
+  border-top-width: 1px !important;
+  border-top-style: solid !important;
+}
+i-table.horizontal-border .title-table tr:first-child th,
+i-table.horizontal-border .normal-table tr:first-child th,
+i-table.horizontal-border .title-table tr:first-child td,
+i-table.horizontal-border .normal-table tr:first-child td {
+  border-top: none !important;
+}
+i-table.sy-theme {
+  border-color: #be0c2b !important;
+}
+i-table.sy-theme header {
+  background-color: #be0c2b;
+  color: #FFFFFF;
+}
+i-table.sy-theme .title-table,
+i-table.sy-theme .normal-table {
+  border-color: #be0c2b !important;
+}
+i-table.sy-theme .title-table th,
+i-table.sy-theme .normal-table th,
+i-table.sy-theme .title-table td,
+i-table.sy-theme .normal-table td {
+  color: #FFFFFF;
+}
+i-table.sy-theme .title-table th,
+i-table.sy-theme .normal-table th,
+i-table.sy-theme .title-table td,
+i-table.sy-theme .normal-table td,
+i-table.sy-theme .title-table tr,
+i-table.sy-theme .normal-table tr,
+i-table.sy-theme .title-table,
+i-table.sy-theme .normal-table {
+  border-color: #be0c2b !important;
+}
+i-table.sy-theme .title-table tr,
+i-table.sy-theme .normal-table tr {
+  background-color: #d60d31;
+}
+i-table.sy-theme.zebra-pattern .title-table tr:nth-child(2n) td,
+i-table.sy-theme.zebra-pattern .normal-table tr:nth-child(2n) td {
+  background-color: #ee0f36;
+}
+i-table.sy-theme.zebra-pattern .title-table tr:hover td,
+i-table.sy-theme.zebra-pattern .normal-table tr:hover td,
+i-table.sy-theme .title-table tr:hover td,
+i-table.sy-theme .normal-table tr:hover td,
+i-table.sy-theme.zebra-pattern .title-table tr.hover td,
+i-table.sy-theme.zebra-pattern .normal-table tr.hover td,
+i-table.sy-theme .title-table tr.hover td,
+i-table.sy-theme .normal-table tr.hover td {
+  background-color: #be0c2b;
+}
+i-table.sy-lightTheme {
+  border-color: #dd0b31 !important;
+}
+i-table.sy-lightTheme header {
+  background-color: #dd0b31;
+  color: #FFFFFF;
+}
+i-table.sy-lightTheme .title-table,
+i-table.sy-lightTheme .normal-table {
+  border-color: #dd0b31 !important;
+}
+i-table.sy-lightTheme .title-table th,
+i-table.sy-lightTheme .normal-table th,
+i-table.sy-lightTheme .title-table td,
+i-table.sy-lightTheme .normal-table td {
+  color: #FFFFFF;
+}
+i-table.sy-lightTheme .title-table th,
+i-table.sy-lightTheme .normal-table th,
+i-table.sy-lightTheme .title-table td,
+i-table.sy-lightTheme .normal-table td,
+i-table.sy-lightTheme .title-table tr,
+i-table.sy-lightTheme .normal-table tr,
+i-table.sy-lightTheme .title-table,
+i-table.sy-lightTheme .normal-table {
+  border-color: #dd0b31 !important;
+}
+i-table.sy-lightTheme .title-table tr,
+i-table.sy-lightTheme .normal-table tr {
+  background-color: #f4264c;
+}
+i-table.sy-lightTheme.zebra-pattern .title-table tr:nth-child(2n) td,
+i-table.sy-lightTheme.zebra-pattern .normal-table tr:nth-child(2n) td {
+  background-color: #f63e60;
+}
+i-table.sy-lightTheme.zebra-pattern .title-table tr:hover td,
+i-table.sy-lightTheme.zebra-pattern .normal-table tr:hover td,
+i-table.sy-lightTheme .title-table tr:hover td,
+i-table.sy-lightTheme .normal-table tr:hover td,
+i-table.sy-lightTheme.zebra-pattern .title-table tr.hover td,
+i-table.sy-lightTheme.zebra-pattern .normal-table tr.hover td,
+i-table.sy-lightTheme .title-table tr.hover td,
+i-table.sy-lightTheme .normal-table tr.hover td {
+  background-color: #dd0b31;
+}
+i-table.sy-darkTheme {
+  border-color: #7b1427 !important;
+}
+i-table.sy-darkTheme header {
+  background-color: #7b1427;
+  color: #FFFFFF;
+}
+i-table.sy-darkTheme .title-table,
+i-table.sy-darkTheme .normal-table {
+  border-color: #7b1427 !important;
+}
+i-table.sy-darkTheme .title-table th,
+i-table.sy-darkTheme .normal-table th,
+i-table.sy-darkTheme .title-table td,
+i-table.sy-darkTheme .normal-table td {
+  color: #FFFFFF;
+}
+i-table.sy-darkTheme .title-table th,
+i-table.sy-darkTheme .normal-table th,
+i-table.sy-darkTheme .title-table td,
+i-table.sy-darkTheme .normal-table td,
+i-table.sy-darkTheme .title-table tr,
+i-table.sy-darkTheme .normal-table tr,
+i-table.sy-darkTheme .title-table,
+i-table.sy-darkTheme .normal-table {
+  border-color: #7b1427 !important;
+}
+i-table.sy-darkTheme .title-table tr,
+i-table.sy-darkTheme .normal-table tr {
+  background-color: #90182e;
+}
+i-table.sy-darkTheme.zebra-pattern .title-table tr:nth-child(2n) td,
+i-table.sy-darkTheme.zebra-pattern .normal-table tr:nth-child(2n) td {
+  background-color: #a61c35;
+}
+i-table.sy-darkTheme.zebra-pattern .title-table tr:hover td,
+i-table.sy-darkTheme.zebra-pattern .normal-table tr:hover td,
+i-table.sy-darkTheme .title-table tr:hover td,
+i-table.sy-darkTheme .normal-table tr:hover td,
+i-table.sy-darkTheme.zebra-pattern .title-table tr.hover td,
+i-table.sy-darkTheme.zebra-pattern .normal-table tr.hover td,
+i-table.sy-darkTheme .title-table tr.hover td,
+i-table.sy-darkTheme .normal-table tr.hover td {
+  background-color: #7b1427;
+}
+i-table.sy-success {
+  border-color: #256534 !important;
+}
+i-table.sy-success header {
+  background-color: #256534;
+  color: #FFFFFF;
+}
+i-table.sy-success .title-table,
+i-table.sy-success .normal-table {
+  border-color: #256534 !important;
+}
+i-table.sy-success .title-table th,
+i-table.sy-success .normal-table th,
+i-table.sy-success .title-table td,
+i-table.sy-success .normal-table td {
+  color: #FFFFFF;
+}
+i-table.sy-success .title-table th,
+i-table.sy-success .normal-table th,
+i-table.sy-success .title-table td,
+i-table.sy-success .normal-table td,
+i-table.sy-success .title-table tr,
+i-table.sy-success .normal-table tr,
+i-table.sy-success .title-table,
+i-table.sy-success .normal-table {
+  border-color: #256534 !important;
+}
+i-table.sy-success .title-table tr,
+i-table.sy-success .normal-table tr {
+  background-color: #338a47;
+}
+i-table.sy-success.zebra-pattern .title-table tr:nth-child(2n) td,
+i-table.sy-success.zebra-pattern .normal-table tr:nth-child(2n) td {
+  background-color: #3a9d51;
+}
+i-table.sy-success.zebra-pattern .title-table tr:hover td,
+i-table.sy-success.zebra-pattern .normal-table tr:hover td,
+i-table.sy-success .title-table tr:hover td,
+i-table.sy-success .normal-table tr:hover td,
+i-table.sy-success.zebra-pattern .title-table tr.hover td,
+i-table.sy-success.zebra-pattern .normal-table tr.hover td,
+i-table.sy-success .title-table tr.hover td,
+i-table.sy-success .normal-table tr.hover td {
+  background-color: #256534;
+}
+i-table.sy-warning {
+  border-color: #b06d0f !important;
+}
+i-table.sy-warning header {
+  background-color: #b06d0f;
+  color: #FFFFFF;
+}
+i-table.sy-warning .title-table,
+i-table.sy-warning .normal-table {
+  border-color: #b06d0f !important;
+}
+i-table.sy-warning .title-table th,
+i-table.sy-warning .normal-table th,
+i-table.sy-warning .title-table td,
+i-table.sy-warning .normal-table td {
+  color: #FFFFFF;
+}
+i-table.sy-warning .title-table th,
+i-table.sy-warning .normal-table th,
+i-table.sy-warning .title-table td,
+i-table.sy-warning .normal-table td,
+i-table.sy-warning .title-table tr,
+i-table.sy-warning .normal-table tr,
+i-table.sy-warning .title-table,
+i-table.sy-warning .normal-table {
+  border-color: #b06d0f !important;
+}
+i-table.sy-warning .title-table tr,
+i-table.sy-warning .normal-table tr {
+  background-color: #df8a13;
+}
+i-table.sy-warning.zebra-pattern .title-table tr:nth-child(2n) td,
+i-table.sy-warning.zebra-pattern .normal-table tr:nth-child(2n) td {
+  background-color: #ec971f;
+}
+i-table.sy-warning.zebra-pattern .title-table tr:hover td,
+i-table.sy-warning.zebra-pattern .normal-table tr:hover td,
+i-table.sy-warning .title-table tr:hover td,
+i-table.sy-warning .normal-table tr:hover td,
+i-table.sy-warning.zebra-pattern .title-table tr.hover td,
+i-table.sy-warning.zebra-pattern .normal-table tr.hover td,
+i-table.sy-warning .title-table tr.hover td,
+i-table.sy-warning .normal-table tr.hover td {
+  background-color: #b06d0f;
+}
+i-table.sy-danger {
+  border-color: #712116 !important;
+}
+i-table.sy-danger header {
+  background-color: #712116;
+  color: #FFFFFF;
+}
+i-table.sy-danger .title-table,
+i-table.sy-danger .normal-table {
+  border-color: #712116 !important;
+}
+i-table.sy-danger .title-table th,
+i-table.sy-danger .normal-table th,
+i-table.sy-danger .title-table td,
+i-table.sy-danger .normal-table td {
+  color: #FFFFFF;
+}
+i-table.sy-danger .title-table th,
+i-table.sy-danger .normal-table th,
+i-table.sy-danger .title-table td,
+i-table.sy-danger .normal-table td,
+i-table.sy-danger .title-table tr,
+i-table.sy-danger .normal-table tr,
+i-table.sy-danger .title-table,
+i-table.sy-danger .normal-table {
+  border-color: #712116 !important;
+}
+i-table.sy-danger .title-table tr,
+i-table.sy-danger .normal-table tr {
+  background-color: #9c2d1f;
+}
+i-table.sy-danger.zebra-pattern .title-table tr:nth-child(2n) td,
+i-table.sy-danger.zebra-pattern .normal-table tr:nth-child(2n) td {
+  background-color: #b13323;
+}
+i-table.sy-danger.zebra-pattern .title-table tr:hover td,
+i-table.sy-danger.zebra-pattern .normal-table tr:hover td,
+i-table.sy-danger .title-table tr:hover td,
+i-table.sy-danger .normal-table tr:hover td,
+i-table.sy-danger.zebra-pattern .title-table tr.hover td,
+i-table.sy-danger.zebra-pattern .normal-table tr.hover td,
+i-table.sy-danger .title-table tr.hover td,
+i-table.sy-danger .normal-table tr.hover td {
+  background-color: #712116;
+}
+i-table.sy-primary {
+  border-color: #103f62 !important;
+}
+i-table.sy-primary header {
+  background-color: #103f62;
+  color: #FFFFFF;
+}
+i-table.sy-primary .title-table,
+i-table.sy-primary .normal-table {
+  border-color: #103f62 !important;
+}
+i-table.sy-primary .title-table th,
+i-table.sy-primary .normal-table th,
+i-table.sy-primary .title-table td,
+i-table.sy-primary .normal-table td {
+  color: #FFFFFF;
+}
+i-table.sy-primary .title-table th,
+i-table.sy-primary .normal-table th,
+i-table.sy-primary .title-table td,
+i-table.sy-primary .normal-table td,
+i-table.sy-primary .title-table tr,
+i-table.sy-primary .normal-table tr,
+i-table.sy-primary .title-table,
+i-table.sy-primary .normal-table {
+  border-color: #103f62 !important;
+}
+i-table.sy-primary .title-table tr,
+i-table.sy-primary .normal-table tr {
+  background-color: #175b8e;
+}
+i-table.sy-primary.zebra-pattern .title-table tr:nth-child(2n) td,
+i-table.sy-primary.zebra-pattern .normal-table tr:nth-child(2n) td {
+  background-color: #1a69a4;
+}
+i-table.sy-primary.zebra-pattern .title-table tr:hover td,
+i-table.sy-primary.zebra-pattern .normal-table tr:hover td,
+i-table.sy-primary .title-table tr:hover td,
+i-table.sy-primary .normal-table tr:hover td,
+i-table.sy-primary.zebra-pattern .title-table tr.hover td,
+i-table.sy-primary.zebra-pattern .normal-table tr.hover td,
+i-table.sy-primary .title-table tr.hover td,
+i-table.sy-primary .normal-table tr.hover td {
+  background-color: #103f62;
+}
+i-table.sy-minor {
+  border-color: #696969 !important;
+}
+i-table.sy-minor header {
+  background-color: #696969;
+  color: #FFFFFF;
+}
+i-table.sy-minor .title-table,
+i-table.sy-minor .normal-table {
+  border-color: #696969 !important;
+}
+i-table.sy-minor .title-table th,
+i-table.sy-minor .normal-table th,
+i-table.sy-minor .title-table td,
+i-table.sy-minor .normal-table td {
+  color: #FFFFFF;
+}
+i-table.sy-minor .title-table th,
+i-table.sy-minor .normal-table th,
+i-table.sy-minor .title-table td,
+i-table.sy-minor .normal-table td,
+i-table.sy-minor .title-table tr,
+i-table.sy-minor .normal-table tr,
+i-table.sy-minor .title-table,
+i-table.sy-minor .normal-table {
+  border-color: #696969 !important;
+}
+i-table.sy-minor .title-table tr,
+i-table.sy-minor .normal-table tr {
+  background-color: #838383;
+}
+i-table.sy-minor.zebra-pattern .title-table tr:nth-child(2n) td,
+i-table.sy-minor.zebra-pattern .normal-table tr:nth-child(2n) td {
+  background-color: #909090;
+}
+i-table.sy-minor.zebra-pattern .title-table tr:hover td,
+i-table.sy-minor.zebra-pattern .normal-table tr:hover td,
+i-table.sy-minor .title-table tr:hover td,
+i-table.sy-minor .normal-table tr:hover td,
+i-table.sy-minor.zebra-pattern .title-table tr.hover td,
+i-table.sy-minor.zebra-pattern .normal-table tr.hover td,
+i-table.sy-minor .title-table tr.hover td,
+i-table.sy-minor .normal-table tr.hover td {
+  background-color: #696969;
+}
+i-table.sy-info {
+  border-color: #01353c !important;
+}
+i-table.sy-info header {
+  background-color: #01353c;
+  color: #FFFFFF;
+}
+i-table.sy-info .title-table,
+i-table.sy-info .normal-table {
+  border-color: #01353c !important;
+}
+i-table.sy-info .title-table th,
+i-table.sy-info .normal-table th,
+i-table.sy-info .title-table td,
+i-table.sy-info .normal-table td {
+  color: #FFFFFF;
+}
+i-table.sy-info .title-table th,
+i-table.sy-info .normal-table th,
+i-table.sy-info .title-table td,
+i-table.sy-info .normal-table td,
+i-table.sy-info .title-table tr,
+i-table.sy-info .normal-table tr,
+i-table.sy-info .title-table,
+i-table.sy-info .normal-table {
+  border-color: #01353c !important;
+}
+i-table.sy-info .title-table tr,
+i-table.sy-info .normal-table tr {
+  background-color: #02626e;
+}
+i-table.sy-info.zebra-pattern .title-table tr:nth-child(2n) td,
+i-table.sy-info.zebra-pattern .normal-table tr:nth-child(2n) td {
+  background-color: #027987;
+}
+i-table.sy-info.zebra-pattern .title-table tr:hover td,
+i-table.sy-info.zebra-pattern .normal-table tr:hover td,
+i-table.sy-info .title-table tr:hover td,
+i-table.sy-info .normal-table tr:hover td,
+i-table.sy-info.zebra-pattern .title-table tr.hover td,
+i-table.sy-info.zebra-pattern .normal-table tr.hover td,
+i-table.sy-info .title-table tr.hover td,
+i-table.sy-info .normal-table tr.hover td {
+  background-color: #01353c;
+}
+i-table.sy-black {
+  border-color: #17212D !important;
+}
+i-table.sy-black header {
+  background-color: #17212D;
+  color: #FFFFFF;
+}
+i-table.sy-black .title-table,
+i-table.sy-black .normal-table {
+  border-color: #17212D !important;
+}
+i-table.sy-black .title-table th,
+i-table.sy-black .normal-table th,
+i-table.sy-black .title-table td,
+i-table.sy-black .normal-table td {
+  color: #FFFFFF;
+}
+i-table.sy-black .title-table th,
+i-table.sy-black .normal-table th,
+i-table.sy-black .title-table td,
+i-table.sy-black .normal-table td,
+i-table.sy-black .title-table tr,
+i-table.sy-black .normal-table tr,
+i-table.sy-black .title-table,
+i-table.sy-black .normal-table {
+  border-color: #17212D !important;
+}
+i-table.sy-black .title-table tr,
+i-table.sy-black .normal-table tr {
+  background-color: #0e151c;
+}
+i-table.sy-black.zebra-pattern .title-table tr:nth-child(2n) td,
+i-table.sy-black.zebra-pattern .normal-table tr:nth-child(2n) td {
+  background-color: #06080b;
+}
+i-table.sy-black.zebra-pattern .title-table tr:hover td,
+i-table.sy-black.zebra-pattern .normal-table tr:hover td,
+i-table.sy-black .title-table tr:hover td,
+i-table.sy-black .normal-table tr:hover td,
+i-table.sy-black.zebra-pattern .title-table tr.hover td,
+i-table.sy-black.zebra-pattern .normal-table tr.hover td,
+i-table.sy-black .title-table tr.hover td,
+i-table.sy-black .normal-table tr.hover td {
+  background-color: #17212D;
+}
+i-table.sy-lightBlack {
+  border-color: #303C4B !important;
+}
+i-table.sy-lightBlack header {
+  background-color: #303C4B;
+  color: #FFFFFF;
+}
+i-table.sy-lightBlack .title-table,
+i-table.sy-lightBlack .normal-table {
+  border-color: #303C4B !important;
+}
+i-table.sy-lightBlack .title-table th,
+i-table.sy-lightBlack .normal-table th,
+i-table.sy-lightBlack .title-table td,
+i-table.sy-lightBlack .normal-table td {
+  color: #FFFFFF;
+}
+i-table.sy-lightBlack .title-table th,
+i-table.sy-lightBlack .normal-table th,
+i-table.sy-lightBlack .title-table td,
+i-table.sy-lightBlack .normal-table td,
+i-table.sy-lightBlack .title-table tr,
+i-table.sy-lightBlack .normal-table tr,
+i-table.sy-lightBlack .title-table,
+i-table.sy-lightBlack .normal-table {
+  border-color: #303C4B !important;
+}
+i-table.sy-lightBlack .title-table tr,
+i-table.sy-lightBlack .normal-table tr {
+  background-color: #26303b;
+}
+i-table.sy-lightBlack.zebra-pattern .title-table tr:nth-child(2n) td,
+i-table.sy-lightBlack.zebra-pattern .normal-table tr:nth-child(2n) td {
+  background-color: #1c232c;
+}
+i-table.sy-lightBlack.zebra-pattern .title-table tr:hover td,
+i-table.sy-lightBlack.zebra-pattern .normal-table tr:hover td,
+i-table.sy-lightBlack .title-table tr:hover td,
+i-table.sy-lightBlack .normal-table tr:hover td,
+i-table.sy-lightBlack.zebra-pattern .title-table tr.hover td,
+i-table.sy-lightBlack.zebra-pattern .normal-table tr.hover td,
+i-table.sy-lightBlack .title-table tr.hover td,
+i-table.sy-lightBlack .normal-table tr.hover td {
+  background-color: #303C4B;
+}
+i-table.sy-extraLightBlack {
+  border-color: #45505C !important;
+}
+i-table.sy-extraLightBlack header {
+  background-color: #45505C;
+  color: #FFFFFF;
+}
+i-table.sy-extraLightBlack .title-table,
+i-table.sy-extraLightBlack .normal-table {
+  border-color: #45505C !important;
+}
+i-table.sy-extraLightBlack .title-table th,
+i-table.sy-extraLightBlack .normal-table th,
+i-table.sy-extraLightBlack .title-table td,
+i-table.sy-extraLightBlack .normal-table td {
+  color: #FFFFFF;
+}
+i-table.sy-extraLightBlack .title-table th,
+i-table.sy-extraLightBlack .normal-table th,
+i-table.sy-extraLightBlack .title-table td,
+i-table.sy-extraLightBlack .normal-table td,
+i-table.sy-extraLightBlack .title-table tr,
+i-table.sy-extraLightBlack .normal-table tr,
+i-table.sy-extraLightBlack .title-table,
+i-table.sy-extraLightBlack .normal-table {
+  border-color: #45505C !important;
+}
+i-table.sy-extraLightBlack .title-table tr,
+i-table.sy-extraLightBlack .normal-table tr {
+  background-color: #3a434d;
+}
+i-table.sy-extraLightBlack.zebra-pattern .title-table tr:nth-child(2n) td,
+i-table.sy-extraLightBlack.zebra-pattern .normal-table tr:nth-child(2n) td {
+  background-color: #2f373f;
+}
+i-table.sy-extraLightBlack.zebra-pattern .title-table tr:hover td,
+i-table.sy-extraLightBlack.zebra-pattern .normal-table tr:hover td,
+i-table.sy-extraLightBlack .title-table tr:hover td,
+i-table.sy-extraLightBlack .normal-table tr:hover td,
+i-table.sy-extraLightBlack.zebra-pattern .title-table tr.hover td,
+i-table.sy-extraLightBlack.zebra-pattern .normal-table tr.hover td,
+i-table.sy-extraLightBlack .title-table tr.hover td,
+i-table.sy-extraLightBlack .normal-table tr.hover td {
+  background-color: #45505C;
+}
+i-table.sy-blue {
+  border-color: #424c5b !important;
+}
+i-table.sy-blue header {
+  background-color: #424c5b;
+  color: #FFFFFF;
+}
+i-table.sy-blue .title-table,
+i-table.sy-blue .normal-table {
+  border-color: #424c5b !important;
+}
+i-table.sy-blue .title-table th,
+i-table.sy-blue .normal-table th,
+i-table.sy-blue .title-table td,
+i-table.sy-blue .normal-table td {
+  color: #FFFFFF;
+}
+i-table.sy-blue .title-table th,
+i-table.sy-blue .normal-table th,
+i-table.sy-blue .title-table td,
+i-table.sy-blue .normal-table td,
+i-table.sy-blue .title-table tr,
+i-table.sy-blue .normal-table tr,
+i-table.sy-blue .title-table,
+i-table.sy-blue .normal-table {
+  border-color: #424c5b !important;
+}
+i-table.sy-blue .title-table tr,
+i-table.sy-blue .normal-table tr {
+  background-color: #627187;
+}
+i-table.sy-blue.zebra-pattern .title-table tr:nth-child(2n) td,
+i-table.sy-blue.zebra-pattern .normal-table tr:nth-child(2n) td {
+  background-color: #576578;
+}
+i-table.sy-blue.zebra-pattern .title-table tr:hover td,
+i-table.sy-blue.zebra-pattern .normal-table tr:hover td,
+i-table.sy-blue .title-table tr:hover td,
+i-table.sy-blue .normal-table tr:hover td,
+i-table.sy-blue.zebra-pattern .title-table tr.hover td,
+i-table.sy-blue.zebra-pattern .normal-table tr.hover td,
+i-table.sy-blue .title-table tr.hover td,
+i-table.sy-blue .normal-table tr.hover td {
+  background-color: #424c5b;
+}
+i-table.sy-lightBlue {
+  border-color: #4f5c6f !important;
+}
+i-table.sy-lightBlue header {
+  background-color: #4f5c6f;
+  color: #FFFFFF;
+}
+i-table.sy-lightBlue .title-table,
+i-table.sy-lightBlue .normal-table {
+  border-color: #4f5c6f !important;
+}
+i-table.sy-lightBlue .title-table th,
+i-table.sy-lightBlue .normal-table th,
+i-table.sy-lightBlue .title-table td,
+i-table.sy-lightBlue .normal-table td {
+  color: #FFFFFF;
+}
+i-table.sy-lightBlue .title-table th,
+i-table.sy-lightBlue .normal-table th,
+i-table.sy-lightBlue .title-table td,
+i-table.sy-lightBlue .normal-table td,
+i-table.sy-lightBlue .title-table tr,
+i-table.sy-lightBlue .normal-table tr,
+i-table.sy-lightBlue .title-table,
+i-table.sy-lightBlue .normal-table {
+  border-color: #4f5c6f !important;
+}
+i-table.sy-lightBlue .title-table tr,
+i-table.sy-lightBlue .normal-table tr {
+  background-color: #70829a;
+}
+i-table.sy-lightBlue.zebra-pattern .title-table tr:nth-child(2n) td,
+i-table.sy-lightBlue.zebra-pattern .normal-table tr:nth-child(2n) td {
+  background-color: #64758d;
+}
+i-table.sy-lightBlue.zebra-pattern .title-table tr:hover td,
+i-table.sy-lightBlue.zebra-pattern .normal-table tr:hover td,
+i-table.sy-lightBlue .title-table tr:hover td,
+i-table.sy-lightBlue .normal-table tr:hover td,
+i-table.sy-lightBlue.zebra-pattern .title-table tr.hover td,
+i-table.sy-lightBlue.zebra-pattern .normal-table tr.hover td,
+i-table.sy-lightBlue .title-table tr.hover td,
+i-table.sy-lightBlue .normal-table tr.hover td {
+  background-color: #4f5c6f;
+}
+i-table.sy-extraLightBlue {
+  border-color: #61728a !important;
+}
+i-table.sy-extraLightBlue header {
+  background-color: #61728a;
+  color: #FFFFFF;
+}
+i-table.sy-extraLightBlue .title-table,
+i-table.sy-extraLightBlue .normal-table {
+  border-color: #61728a !important;
+}
+i-table.sy-extraLightBlue .title-table th,
+i-table.sy-extraLightBlue .normal-table th,
+i-table.sy-extraLightBlue .title-table td,
+i-table.sy-extraLightBlue .normal-table td {
+  color: #FFFFFF;
+}
+i-table.sy-extraLightBlue .title-table th,
+i-table.sy-extraLightBlue .normal-table th,
+i-table.sy-extraLightBlue .title-table td,
+i-table.sy-extraLightBlue .normal-table td,
+i-table.sy-extraLightBlue .title-table tr,
+i-table.sy-extraLightBlue .normal-table tr,
+i-table.sy-extraLightBlue .title-table,
+i-table.sy-extraLightBlue .normal-table {
+  border-color: #61728a !important;
+}
+i-table.sy-extraLightBlue .title-table tr,
+i-table.sy-extraLightBlue .normal-table tr {
+  background-color: #8a99ad;
+}
+i-table.sy-extraLightBlue.zebra-pattern .title-table tr:nth-child(2n) td,
+i-table.sy-extraLightBlue.zebra-pattern .normal-table tr:nth-child(2n) td {
+  background-color: #7b8ca2;
+}
+i-table.sy-extraLightBlue.zebra-pattern .title-table tr:hover td,
+i-table.sy-extraLightBlue.zebra-pattern .normal-table tr:hover td,
+i-table.sy-extraLightBlue .title-table tr:hover td,
+i-table.sy-extraLightBlue .normal-table tr:hover td,
+i-table.sy-extraLightBlue.zebra-pattern .title-table tr.hover td,
+i-table.sy-extraLightBlue.zebra-pattern .normal-table tr.hover td,
+i-table.sy-extraLightBlue .title-table tr.hover td,
+i-table.sy-extraLightBlue .normal-table tr.hover td {
+  background-color: #61728a;
+}
+i-table.sy-silver {
+  border-color: #b7c3d1 !important;
+}
+i-table.sy-silver header {
+  background-color: #b7c3d1;
+  color: #17212D;
+}
+i-table.sy-silver .title-table,
+i-table.sy-silver .normal-table {
+  border-color: #b7c3d1 !important;
+}
+i-table.sy-silver .title-table th,
+i-table.sy-silver .normal-table th,
+i-table.sy-silver .title-table td,
+i-table.sy-silver .normal-table td {
+  color: #17212D;
+}
+i-table.sy-silver .title-table th,
+i-table.sy-silver .normal-table th,
+i-table.sy-silver .title-table td,
+i-table.sy-silver .normal-table td,
+i-table.sy-silver .title-table tr,
+i-table.sy-silver .normal-table tr,
+i-table.sy-silver .title-table,
+i-table.sy-silver .normal-table {
+  border-color: #b7c3d1 !important;
+}
+i-table.sy-silver .title-table tr,
+i-table.sy-silver .normal-table tr {
+  background-color: #c6d0db;
+}
+i-table.sy-silver.zebra-pattern .title-table tr:nth-child(2n) td,
+i-table.sy-silver.zebra-pattern .normal-table tr:nth-child(2n) td {
+  background-color: #D6DDE5;
+}
+i-table.sy-silver.zebra-pattern .title-table tr:hover td,
+i-table.sy-silver.zebra-pattern .normal-table tr:hover td,
+i-table.sy-silver .title-table tr:hover td,
+i-table.sy-silver .normal-table tr:hover td,
+i-table.sy-silver.zebra-pattern .title-table tr.hover td,
+i-table.sy-silver.zebra-pattern .normal-table tr.hover td,
+i-table.sy-silver .title-table tr.hover td,
+i-table.sy-silver .normal-table tr.hover td {
+  background-color: #b7c3d1;
+}
+i-table.sy-lightSilver {
+  border-color: #c2cfdb !important;
+}
+i-table.sy-lightSilver header {
+  background-color: #E2E8EE;
+  color: #17212D;
+}
+i-table.sy-lightSilver .title-table,
+i-table.sy-lightSilver .normal-table {
+  border-color: #c2cfdb !important;
+}
+i-table.sy-lightSilver .title-table th,
+i-table.sy-lightSilver .normal-table th,
+i-table.sy-lightSilver .title-table td,
+i-table.sy-lightSilver .normal-table td {
+  color: #17212D;
+}
+i-table.sy-lightSilver .title-table th,
+i-table.sy-lightSilver .normal-table th,
+i-table.sy-lightSilver .title-table td,
+i-table.sy-lightSilver .normal-table td,
+i-table.sy-lightSilver .title-table tr,
+i-table.sy-lightSilver .normal-table tr,
+i-table.sy-lightSilver .title-table,
+i-table.sy-lightSilver .normal-table {
+  border-color: #c2cfdb !important;
+}
+i-table.sy-lightSilver .title-table tr,
+i-table.sy-lightSilver .normal-table tr {
+  background-color: #d2dbe5;
+}
+i-table.sy-lightSilver.zebra-pattern .title-table tr:nth-child(2n) td,
+i-table.sy-lightSilver.zebra-pattern .normal-table tr:nth-child(2n) td {
+  background-color: #E2E8EE;
+}
+i-table.sy-lightSilver.zebra-pattern .title-table tr:hover td,
+i-table.sy-lightSilver.zebra-pattern .normal-table tr:hover td,
+i-table.sy-lightSilver .title-table tr:hover td,
+i-table.sy-lightSilver .normal-table tr:hover td,
+i-table.sy-lightSilver.zebra-pattern .title-table tr.hover td,
+i-table.sy-lightSilver.zebra-pattern .normal-table tr.hover td,
+i-table.sy-lightSilver .title-table tr.hover td,
+i-table.sy-lightSilver .normal-table tr.hover td {
+  background-color: #c2cfdb;
+}
+i-table.sy-extraLightSilver {
+  border-color: #ccd7e3 !important;
+}
+i-table.sy-extraLightSilver header {
+  background-color: #ccd7e3;
+  color: #17212D;
+}
+i-table.sy-extraLightSilver .title-table,
+i-table.sy-extraLightSilver .normal-table {
+  border-color: #ccd7e3 !important;
+}
+i-table.sy-extraLightSilver .title-table th,
+i-table.sy-extraLightSilver .normal-table th,
+i-table.sy-extraLightSilver .title-table td,
+i-table.sy-extraLightSilver .normal-table td {
+  color: #17212D;
+}
+i-table.sy-extraLightSilver .title-table th,
+i-table.sy-extraLightSilver .normal-table th,
+i-table.sy-extraLightSilver .title-table td,
+i-table.sy-extraLightSilver .normal-table td,
+i-table.sy-extraLightSilver .title-table tr,
+i-table.sy-extraLightSilver .normal-table tr,
+i-table.sy-extraLightSilver .title-table,
+i-table.sy-extraLightSilver .normal-table {
+  border-color: #ccd7e3 !important;
+}
+i-table.sy-extraLightSilver .title-table tr,
+i-table.sy-extraLightSilver .normal-table tr {
+  background-color: #dde4ec;
+}
+i-table.sy-extraLightSilver.zebra-pattern .title-table tr:nth-child(2n) td,
+i-table.sy-extraLightSilver.zebra-pattern .normal-table tr:nth-child(2n) td {
+  background-color: #EDF1F5;
+}
+i-table.sy-extraLightSilver.zebra-pattern .title-table tr:hover td,
+i-table.sy-extraLightSilver.zebra-pattern .normal-table tr:hover td,
+i-table.sy-extraLightSilver .title-table tr:hover td,
+i-table.sy-extraLightSilver .normal-table tr:hover td,
+i-table.sy-extraLightSilver.zebra-pattern .title-table tr.hover td,
+i-table.sy-extraLightSilver.zebra-pattern .normal-table tr.hover td,
+i-table.sy-extraLightSilver .title-table tr.hover td,
+i-table.sy-extraLightSilver .normal-table tr.hover td {
+  background-color: #ccd7e3;
+}
+i-table.sy-gray {
+  border-color: #d9d9d9 !important;
+}
+i-table.sy-gray header {
+  background-color: #d9d9d9;
+  color: #17212D;
+}
+i-table.sy-gray .title-table,
+i-table.sy-gray .normal-table {
+  border-color: #d9d9d9 !important;
+}
+i-table.sy-gray .title-table th,
+i-table.sy-gray .normal-table th,
+i-table.sy-gray .title-table td,
+i-table.sy-gray .normal-table td {
+  color: #17212D;
+}
+i-table.sy-gray .title-table th,
+i-table.sy-gray .normal-table th,
+i-table.sy-gray .title-table td,
+i-table.sy-gray .normal-table td,
+i-table.sy-gray .title-table tr,
+i-table.sy-gray .normal-table tr,
+i-table.sy-gray .title-table,
+i-table.sy-gray .normal-table {
+  border-color: #d9d9d9 !important;
+}
+i-table.sy-gray .title-table tr,
+i-table.sy-gray .normal-table tr {
+  background-color: #f5f5f5;
+}
+i-table.sy-gray.zebra-pattern .title-table tr:nth-child(2n) td,
+i-table.sy-gray.zebra-pattern .normal-table tr:nth-child(2n) td {
+  background-color: #E6E6E6;
+}
+i-table.sy-gray.zebra-pattern .title-table tr:hover td,
+i-table.sy-gray.zebra-pattern .normal-table tr:hover td,
+i-table.sy-gray .title-table tr:hover td,
+i-table.sy-gray .normal-table tr:hover td,
+i-table.sy-gray.zebra-pattern .title-table tr.hover td,
+i-table.sy-gray.zebra-pattern .normal-table tr.hover td,
+i-table.sy-gray .title-table tr.hover td,
+i-table.sy-gray .normal-table tr.hover td {
+  background-color: #d9d9d9;
+}
+i-table.sy-lightGray {
+  border-color: #e3e3e3 !important;
+}
+i-table.sy-lightGray header {
+  background-color: #e3e3e3;
+  color: #17212D;
+}
+i-table.sy-lightGray .title-table,
+i-table.sy-lightGray .normal-table {
+  border-color: #e3e3e3 !important;
+}
+i-table.sy-lightGray .title-table th,
+i-table.sy-lightGray .normal-table th,
+i-table.sy-lightGray .title-table td,
+i-table.sy-lightGray .normal-table td {
+  color: #17212D;
+}
+i-table.sy-lightGray .title-table th,
+i-table.sy-lightGray .normal-table th,
+i-table.sy-lightGray .title-table td,
+i-table.sy-lightGray .normal-table td,
+i-table.sy-lightGray .title-table tr,
+i-table.sy-lightGray .normal-table tr,
+i-table.sy-lightGray .title-table,
+i-table.sy-lightGray .normal-table {
+  border-color: #e3e3e3 !important;
+}
+i-table.sy-lightGray .title-table tr,
+i-table.sy-lightGray .normal-table tr {
+  background-color: #fafafa;
+}
+i-table.sy-lightGray.zebra-pattern .title-table tr:nth-child(2n) td,
+i-table.sy-lightGray.zebra-pattern .normal-table tr:nth-child(2n) td {
+  background-color: #F0F0F0;
+}
+i-table.sy-lightGray.zebra-pattern .title-table tr:hover td,
+i-table.sy-lightGray.zebra-pattern .normal-table tr:hover td,
+i-table.sy-lightGray .title-table tr:hover td,
+i-table.sy-lightGray .normal-table tr:hover td,
+i-table.sy-lightGray.zebra-pattern .title-table tr.hover td,
+i-table.sy-lightGray.zebra-pattern .normal-table tr.hover td,
+i-table.sy-lightGray .title-table tr.hover td,
+i-table.sy-lightGray .normal-table tr.hover td {
+  background-color: #e3e3e3;
+}
+i-table.sy-white {
+  border-color: #f2f2f2 !important;
+}
+i-table.sy-white header {
+  background-color: #f2f2f2;
+  color: #17212D;
+}
+i-table.sy-white .title-table,
+i-table.sy-white .normal-table {
+  border-color: #f2f2f2 !important;
+}
+i-table.sy-white .title-table th,
+i-table.sy-white .normal-table th,
+i-table.sy-white .title-table td,
+i-table.sy-white .normal-table td {
+  color: #17212D;
+}
+i-table.sy-white .title-table th,
+i-table.sy-white .normal-table th,
+i-table.sy-white .title-table td,
+i-table.sy-white .normal-table td,
+i-table.sy-white .title-table tr,
+i-table.sy-white .normal-table tr,
+i-table.sy-white .title-table,
+i-table.sy-white .normal-table {
+  border-color: #f2f2f2 !important;
+}
+i-table.sy-white .title-table tr,
+i-table.sy-white .normal-table tr {
+  background-color: #FFFFFF;
+}
+i-table.sy-white.zebra-pattern .title-table tr:nth-child(2n) td,
+i-table.sy-white.zebra-pattern .normal-table tr:nth-child(2n) td {
+  background-color: #fafafa;
+}
+i-table.sy-white.zebra-pattern .title-table tr:hover td,
+i-table.sy-white.zebra-pattern .normal-table tr:hover td,
+i-table.sy-white .title-table tr:hover td,
+i-table.sy-white .normal-table tr:hover td,
+i-table.sy-white.zebra-pattern .title-table tr.hover td,
+i-table.sy-white.zebra-pattern .normal-table tr.hover td,
+i-table.sy-white .title-table tr.hover td,
+i-table.sy-white .normal-table tr.hover td {
+  background-color: #f2f2f2;
+}
+i-table .title-table th.cell-sy-success,
+i-table .normal-table th.cell-sy-success,
+i-table .title-table td.cell-sy-success,
+i-table .normal-table td.cell-sy-success {
+  background: #41af5b !important;
+  color: #FFFFFF !important;
+}
+i-table .title-table th.cell-sy-warning,
+i-table .normal-table th.cell-sy-warning,
+i-table .title-table td.cell-sy-warning,
+i-table .normal-table td.cell-sy-warning {
+  background: #eea236 !important;
+  color: #FFFFFF !important;
+}
+i-table .title-table th.cell-sy-danger,
+i-table .normal-table th.cell-sy-danger,
+i-table .title-table td.cell-sy-danger,
+i-table .normal-table td.cell-sy-danger {
+  background: #c63a27 !important;
+  color: #FFFFFF !important;
+}
+i-table .title-table th.cell-sy-primary,
+i-table .normal-table th.cell-sy-primary,
+i-table .title-table td.cell-sy-primary,
+i-table .normal-table td.cell-sy-primary {
+  background: #1e77ba !important;
+  color: #FFFFFF !important;
+}
+i-table .title-table th.cell-sy-minor,
+i-table .normal-table th.cell-sy-minor,
+i-table .title-table td.cell-sy-minor,
+i-table .normal-table td.cell-sy-minor {
+  background: #9c9c9c !important;
+  color: #FFFFFF !important;
+}
+i-table .title-table th.cell-sy-info,
+i-table .normal-table th.cell-sy-info,
+i-table .title-table td.cell-sy-info,
+i-table .normal-table td.cell-sy-info {
+  background: #038fa0 !important;
+  color: #FFFFFF !important;
+}
+i-table .title-table tr.hover th.cell-sy-success,
+i-table .normal-table tr.hover th.cell-sy-success,
+i-table .title-table tr.hover td.cell-sy-success,
+i-table .normal-table tr.hover td.cell-sy-success {
+  background: #3a9d51 !important;
+}
+i-table .title-table tr.hover th.cell-sy-warning,
+i-table .normal-table tr.hover th.cell-sy-warning,
+i-table .title-table tr.hover td.cell-sy-warning,
+i-table .normal-table tr.hover td.cell-sy-warning {
+  background: #ec971f !important;
+}
+i-table .title-table tr.hover th.cell-sy-danger,
+i-table .normal-table tr.hover th.cell-sy-danger,
+i-table .title-table tr.hover td.cell-sy-danger,
+i-table .normal-table tr.hover td.cell-sy-danger {
+  background: #b13323 !important;
+}
+i-table .title-table tr.hover th.cell-sy-primary,
+i-table .normal-table tr.hover th.cell-sy-primary,
+i-table .title-table tr.hover td.cell-sy-primary,
+i-table .normal-table tr.hover td.cell-sy-primary {
+  background: #1a69a4 !important;
+}
+i-table .title-table tr.hover th.cell-sy-minor,
+i-table .normal-table tr.hover th.cell-sy-minor,
+i-table .title-table tr.hover td.cell-sy-minor,
+i-table .normal-table tr.hover td.cell-sy-minor {
+  background: #909090 !important;
+}
+i-table .title-table tr.hover th.cell-sy-info,
+i-table .normal-table tr.hover th.cell-sy-info,
+i-table .title-table tr.hover td.cell-sy-info,
+i-table .normal-table tr.hover td.cell-sy-info {
+  background: #027987 !important;
+}
+i-table .title-table th.cell-disabled,
+i-table .normal-table th.cell-disabled,
+i-table .title-table td.cell-disabled,
+i-table .normal-table td.cell-disabled {
+  background: #c0c0c0 !important;
+  color: #17212D !important;
+  cursor: not-allowed;
+}
+i-table header {
+  background-color: #e3e3e3;
+  color: #17212D;
+}
+i-table .title-table,
+i-table .normal-table {
+  border-color: #e3e3e3 !important;
+}
+i-table .title-table th,
+i-table .normal-table th,
+i-table .title-table td,
+i-table .normal-table td {
+  color: #17212D;
+}
+i-table .title-table th,
+i-table .normal-table th,
+i-table .title-table td,
+i-table .normal-table td,
+i-table .title-table tr,
+i-table .normal-table tr,
+i-table .title-table,
+i-table .normal-table {
+  border-color: #e3e3e3 !important;
+}
+i-table .title-table tr,
+i-table .normal-table tr {
+  background-color: #fafafa;
+}
+i-table.zebra-pattern .title-table tr:nth-child(2n) td,
+i-table.zebra-pattern .normal-table tr:nth-child(2n) td {
+  background-color: #F0F0F0;
+}
+i-table.zebra-pattern .title-table tr:hover td,
+i-table.zebra-pattern .normal-table tr:hover td,
+i-table .title-table tr:hover td,
+i-table .normal-table tr:hover td,
+i-table.zebra-pattern .title-table tr.hover td,
+i-table.zebra-pattern .normal-table tr.hover td,
+i-table .title-table tr.hover td,
+i-table .normal-table tr.hover td {
+  background-color: #e3e3e3;
+}
+
 i-pagination {
   display: inline-block;
 }
@@ -4887,10 +6120,12 @@ i-dialog > .content > .body {
 }
 i-dialog > .content > .body::-webkit-scrollbar {
   width: 5px;
+  height: 5px;
   background-color: rgba(0, 0, 0, 0.05);
 }
 i-dialog > .content > .body::-webkit-scrollbar-thumb {
   width: 5px;
+  height: 5px;
   background: rgba(0, 0, 0, 0.1);
   border-radius: 4px;
 }
@@ -5836,10 +7071,12 @@ i-textarea textarea:focus {
 }
 i-textarea textarea::-webkit-scrollbar {
   width: 5px;
+  height: 5px;
   background-color: rgba(0, 0, 0, 0.05);
 }
 i-textarea textarea::-webkit-scrollbar-thumb {
   width: 5px;
+  height: 5px;
   background: rgba(0, 0, 0, 0.1);
   border-radius: 4px;
 }
@@ -6345,10 +7582,12 @@ i-select > .list {
 }
 i-select > .list::-webkit-scrollbar {
   width: 5px;
+  height: 5px;
   background-color: rgba(0, 0, 0, 0.05);
 }
 i-select > .list::-webkit-scrollbar-thumb {
   width: 5px;
+  height: 5px;
   background: rgba(0, 0, 0, 0.1);
   border-radius: 4px;
 }
