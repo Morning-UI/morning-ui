@@ -6,7 +6,10 @@ i-table{
     display: block; 
     border: 0 none;
     font-size: @fontSize*0.875;
-    background-color: #fff;
+    background-color: @colorWhite;
+    border-radius: @borderRadius;
+    border-width: 1px !important;
+    border-style: solid !important;
     position: relative;
 
     header{
@@ -28,9 +31,13 @@ i-table{
     }
 
     &>.wrap{
-        border-radius: @borderRadius;
         overflow: hidden !important;
         width: 100% !important;
+        border-width: 0 !important;
+
+        > tbody > tr > td {
+            .setup-scrollbar();
+        }
     }
 
     .title-table,
@@ -41,8 +48,8 @@ i-table{
         color: #666;
         font-size: @fontSize*0.875;
         margin: 0;
-        border-width: 1px !important;
-        border-style: solid !important;
+        box-sizing: content-box !important;
+        border-collapse: separate;
 
         thead{
             tr{
@@ -59,14 +66,16 @@ i-table{
             height: @fontSize*2.5;
 
             th{
-                font-weight: normal;
+                font-weight: 400;
                 padding: @fontSize*0.625 !important;
                 line-height: 1.2em;
                 height: @fontSize*1.25;
                 overflow: hidden;
                 white-space: nowrap;
+                border-bottom-width: 2px;
+                border-bottom-style: solid;
             }
-            
+
             td{
                 padding: @fontSize*0.625 !important;
                 min-width: @fontSize*3.125;
@@ -86,11 +95,24 @@ i-table{
         border-radius: @borderRadius;
     }
 
-    &.title-col-left-fixed{}
-
+    &.title-col-left-fixed,
     &.title-col-right-fixed{
-
+        position: relative;
+        overflow: hidden;
     }
+
+    &.title-col-right .title-table,
+    &.title-col-right-fixed .title-table{
+        border-left-style: solid;
+        border-left-width: 2px;
+    }
+
+    &.title-col-left .title-table,
+    &.title-col-left-fixed .title-table{
+        border-right-style: solid;
+        border-right-width: 2px;
+    }
+
 
     &.has-title-col{
         .normal-table {
@@ -98,6 +120,10 @@ i-table{
             border-top-left-radius: 0;
             border-bottom-right-radius: @borderRadius;
             border-top-right-radius: @borderRadius;
+        }
+
+        .title-table{
+            display: table;
         }
     }
 
@@ -127,6 +153,11 @@ i-table{
                 border-left-width: 1px !important;
                 border-left-style: solid !important;
             }
+
+            th:first-child,
+            td:first-child{
+                border-left: none !important;
+            }
         }
     }
 
@@ -137,6 +168,11 @@ i-table{
             td{
                 border-top-width: 1px !important;
                 border-top-style: solid !important;
+            }
+
+            tr:first-child th,
+            tr:first-child td{
+                border-top: none !important;
             }
         }
     }
@@ -560,6 +596,8 @@ i-table{
     }
 
     &.sy-lightGray{
+        border-color: darken(@colorLightGray, 5%) !important;
+
         header{
             background-color: darken(@colorLightGray, 5%);
             color: @colorBlack;
@@ -567,6 +605,8 @@ i-table{
 
         .title-table,
         .normal-table{
+            border-color: darken(@colorLightGray, 5%) !important;
+        
             th,
             td{
                 color: @colorBlack;
@@ -580,14 +620,14 @@ i-table{
             }
 
             tr{
-                background-color: lighten(@colorLightGray, 4%) !important;
+                background-color: lighten(@colorLightGray, 4%);
             }
         }
 
         &.zebra-pattern .title-table,
         &.zebra-pattern .normal-table{
             tr:nth-child(2n) td{
-                background-color: @colorLightGray !important;
+                background-color: @colorLightGray;
             }
         }
 
@@ -597,7 +637,7 @@ i-table{
         .normal-table{
             tr:hover td,
             tr.hover td{
-                background-color: darken(@colorLightGray, 5%) !important;
+                background-color: darken(@colorLightGray, 5%);
             }
         }
     }
@@ -620,6 +660,80 @@ i-table{
         tr:hover td,
         tr.hover td{
             background-color: darken(@colorWhite, 5%) !important;
+        }
+    }
+
+    .title-table,
+    .normal-table{
+        th,
+        td{
+            &.cell-sy-success{
+                background: darken(@colorSuccess, 5%) !important;
+                color: @colorWhite !important;
+            }
+
+            &.cell-sy-warning{
+                background: darken(@colorWarning, 5%) !important;
+                color: @colorWhite !important;
+            }
+
+            &.cell-sy-danger{
+                background: darken(@colorDanger, 5%) !important;
+                color: @colorWhite !important;
+            }
+
+            &.cell-sy-primary{
+                background: darken(@colorPrimary, 5%) !important;
+                color: @colorWhite !important;
+            }
+
+            &.cell-sy-minor{
+                background: darken(@colorMinor, 5%) !important;
+                color: @colorWhite !important;
+            }
+
+            &.cell-sy-info{
+                background: darken(@colorInfo, 5%) !important;
+                color: @colorWhite !important;
+            }
+        }
+
+        tr.hover{
+            th,
+            td{
+                &.cell-sy-success{
+                    background: darken(@colorSuccess, 10%) !important;
+                }
+
+                &.cell-sy-warning{
+                    background: darken(@colorWarning, 10%) !important;
+                }
+
+                &.cell-sy-danger{
+                    background: darken(@colorDanger, 10%) !important;
+                }
+
+                &.cell-sy-primary{
+                    background: darken(@colorPrimary, 10%) !important;
+                }
+
+                &.cell-sy-minor{
+                    background: darken(@colorMinor, 10%) !important;
+                }
+
+                &.cell-sy-info{
+                    background: darken(@colorInfo, 10%) !important;
+                }
+            }
+        }
+
+        th,
+        td{
+            &.cell-disabled{
+                background: darken(@colorGray, 15%) !important;
+                color: @colorBlack !important;
+                cursor: not-allowed;
+            }
         }
     }
 

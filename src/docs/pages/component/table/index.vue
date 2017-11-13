@@ -33,6 +33,111 @@
     <ui-table :list="list"></ui-table>
     :::
 
+    #### 单列控制
+
+    `ui-table`通过`col-set`配置，可以设置单列的：
+
+    - 宽度
+    - 最小宽度
+    - 最大宽度
+    - 样式
+    - 禁用状态
+    - 对齐方式
+    - 是否是标题列(标题列将被聚合在一起)
+
+    更多单列控制见`col-set`配置。
+    
+    下面是一个简单的示例：
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            list : window.list,
+            colset : [
+                {col : 'name', name : 'Name', title : true},
+                {col : 'age', name : 'Age', minwidth : '150px'},
+                {col : 'gender', name : 'Gender', disabled : true},
+                {col : 'job', name : 'Job', align : 'right', style : 'success'}
+            ]
+        }
+    });
+    ---
+    <ui-table :list="list" :col-set="colset" :show-col-name="true"></ui-table>
+    :::
+
+    #### 单行控制
+
+    `ui-table`通过`row-set`配置，可以设置行的：
+
+    - 样式
+    - 禁用状态
+    - 对齐方式
+
+    更多单元格控制见`row-set`配置。
+    
+    下面是一个简单的示例：
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            list : window.list,
+            colset : [
+                {col : 'name', name : 'Name'},
+                {col : 'age', name : 'Age'},
+                {col : 'gender', name : 'Gender'},
+                {col : 'job', name : 'Job'}
+            ],
+            rowset : [
+                {row : 1, align : 'left'},
+                {row : 2, style : 'warning'},
+                {row : 4, disabled : true}
+            ]
+        }
+    });
+    ---
+    <ui-table :list="list" :col-set="colset" :row-set="rowset" :show-col-name="true"></ui-table>
+    :::
+
+    #### 单元格控制
+
+    `ui-table`通过`cell-set`配置，可以设置单元格的：
+
+    - 样式
+    - 禁用状态
+    - 对齐方式
+
+    更多单元格控制见`cell-set`配置。
+    
+    下面是一个简单的示例：
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            list : window.list,
+            colset : [
+                {col : 'name', name : 'Name'},
+                {col : 'age', name : 'Age'},
+                {col : 'gender', name : 'Gender'},
+                {col : 'job', name : 'Job'}
+            ],
+            cellset : [
+                {row : 0, col : 'age', style : 'success'},
+                {row : 2, col : 'gender', disabled : true},
+                {row : 3, col : 'job', style : 'danger'},
+                {row : 4, col : 'job', align : 'left'}
+            ]
+        }
+    });
+    ---
+    <ui-table :list="list" :col-set="colset" :cell-set="cellset" :show-col-name="true"></ui-table>
+    :::
+
     [[[声明]]]
 
     #### 支持
@@ -71,7 +176,9 @@
     |col-align|列的对齐方式，这是单个表格的全局设置，可以使用`col-set`来单独设置某一列的对齐方式|`'left'`: 左对齐<br>`'center'`: 居中对齐<br>`'right'`: 右对齐|String|`'center'`|
     |show-col-name|在标题行显示列的名称，需要先在`col-set`中设置每列的名称|`true`<br>`false`|Boolean|`false`|
     |fixed-title-col|标题列的位置，可以设置左侧或右侧。对于列数较多的表格，可以使用固定标题列。|`'left'`: 位于左侧，不固定<br>`'right'`: 位于右侧，不固定<br>`'left-fixed'`: 位于左侧，固定<br>`'right-fixed'`: 位于右侧，固定|String|`'left'`|
-    |col-set|列设置，这是一个对象，对象的键名对应列的KEY，对象的键值是一个配置对象，用来设置列。<br><br>配置对象包含：<br>`name`: 列的名称(String)，如果开启`show-col-name`会显示在标题行<br>`width`: 列的宽度(`px` / `%`)，宽度数组会改变列在宽度分配时的权重，但不一定完全符合设置的宽度值，如果需要控制宽度的绝对值使用`minwidth`或`maxwidth`<br>`minwidth`: 列的最小宽度(`px` / `%`)<br>`maxwidth`: 列的最大宽度(`px` / `%`)<br>`align`: 此列的对齐方式，支持三种：`left`、`center`、`right`，默认使用`col-align`的设置<br>`title`: 此列是否是标题列(Boolean)，根据`fixed-title-col`的设置所有的标题列会被放到最左或最右<br><br>注意：在设置`width`、`minwidth`、`maxwidth`为0时，需要加上单位，如：`0px`或`0%`。|数组|Array|`[]`|
+    |col-set|列设置可以用来控制单独的一列。这是一个数组，数组的每项都是一个配置对象。<br><br>配置对象包含：<br>`col`: 需要设置单元格所在列的KEY<br>`name`: 列的名称(String)，如果开启`show-col-name`会显示在标题行<br>`width`: 列的宽度(`px` / `%`)，宽度数组会改变列在宽度分配时的权重，但不一定完全符合设置的宽度值，如果需要控制宽度的绝对值使用`minwidth`或`maxwidth`<br>`minwidth`: 列的最小宽度(`px` / `%`)<br>`maxwidth`: 列的最大宽度(`px` / `%`)<br>`style`: 设置列的色彩样式(String)，支持[声明](/guide/statement.html)中所有的功能色彩<br>`disabled`: 是否展示列的禁用样式(Boolean)<br>`align`: 此列的对齐方式，支持三种：`left`、`center`、`right`，默认使用`col-align`的设置<br>`title`: 此列是否是标题列(Boolean)，根据`fixed-title-col`的设置所有的标题列会被放到最左或最右<br><br>注意：在设置`width`、`minwidth`、`maxwidth`为0时，需要加上单位，如：`0px`或`0%`。|数组|Array|`[]`|
+    |row-set|单行设置可以用来控制一行。这是一个数组，数组的每项都是一个配置对象，用来设置单行。<br><br>配置对象包含：<br>`row`: 需要设置的行数(从0开始，0表示标题行)<br>`style`: 设置单行的色彩样式(String)，支持[声明](/guide/statement.html)中所有的功能色彩<br>`disabled`: 是否展示单行的禁用样式(Boolean)<br>`align`: 单行的对齐方式，支持三种：`left`、`center`、`right`，默认使用`col-align`的设置<br><br>注意：在设置`width`、`minwidth`、`maxwidth`为0时，需要加上单位，如：`0px`或`0%`。|数组|Array|`[]`|
+    |cell-set|单元格设置可以用来控制单个单元格。这是一个数组，数组的每项都是一个配置对象，用来设置单个单元格。<br><br>配置对象包含：<br>`row`: 需要设置单元格的行数(从0开始，0表示标题行)<br>`col`: 需要设置单元格所在列的KEY<br>`style`: 设置对应单元格的色彩样式(String)，支持[声明](/guide/statement.html)中所有的功能色彩<br>`disabled`: 是否展示单元格的禁用样式(Boolean)<br>`align`: 单元格的对齐方式，支持三种：`left`、`center`、`right`，默认使用`col-align`的设置<br><br>注意：在设置`width`、`minwidth`、`maxwidth`为0时，需要加上单位，如：`0px`或`0%`。|数组|Array|`[]`|
     |export-csv|开启将表格导出csv文件的功能|`true`<br>`false`|Boolean|`false`|
     |export-csv-name|导出csv文件的名称|文件名称(不需要加尾缀)|String|`undefined`|
 
@@ -202,12 +309,12 @@
         template : '{$template}',
         data : {
             list : window.list,
-            colset : {
-                name : {name : 'Name', title : true},
-                age : {name : 'Age'},
-                gender : {name : 'Gender', title : true},
-                job : {name : 'Job'}
-            }
+            colset : [
+                {col : 'name', name : 'Name', title : true},
+                {col : 'age', name : 'Age'},
+                {col : 'gender', name : 'Gender', title : true},
+                {col : 'job', name : 'Job'}
+            ]
         }
     });
     ---
@@ -222,19 +329,42 @@
         template : '{$template}',
         data : {
             list : window.biglist,
-            colset : {
-                name : {name : 'Name', title : true},
-                age : {name : 'Age'},
-                gender : {name : 'Gender', title : true},
-                job : {name : 'Job'},
-                country : {name : 'Country'},
-                height : {name : 'Height'},
-                weight : {name : 'Body weight'}
-            }
+            colset : [
+                {col : 'name', name : 'Name', title : true, minwidth : '120px'},
+                {col : 'age', name : 'Age', minwidth : '300px'},
+                {col : 'gender', name : 'Gender', title : true, minwidth : '80px'},
+                {col : 'job', name : 'Job', minwidth : '300px'},
+                {col : 'country', name : 'Country', minwidth : '300px'},
+                {col : 'height', name : 'Height', minwidth : '300px'},
+                {col : 'weight', name : 'Body weight', minwidth : '300px'}
+            ]
         }
     });
     ---
     <ui-table :list="list" :col-set="colset" :show-col-name="true" fixed-title-col="left-fixed"></ui-table>
+    :::
+
+    将标题列固定在右侧，且导出的表格的列顺序也一样：
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            list : window.biglist,
+            colset : [
+                {col : 'name', name : 'Name', title : true, minwidth : '120px'},
+                {col : 'age', name : 'Age', minwidth : '300px'},
+                {col : 'gender', name : 'Gender', title : true, minwidth : '80px'},
+                {col : 'job', name : 'Job', minwidth : '300px'},
+                {col : 'country', name : 'Country', minwidth : '300px'},
+                {col : 'height', name : 'Height', minwidth : '300px'},
+                {col : 'weight', name : 'Body weight', minwidth : '300px'}
+            ]
+        }
+    });
+    ---
+    <ui-table :list="list" :col-set="colset" :show-col-name="true" fixed-title-col="right-fixed" export-csv></ui-table>
     :::
 
     #### col-set
@@ -247,32 +377,12 @@
         template : '{$template}',
         data : {
             list : window.list,
-            colset : {
-                name : {name : 'Name'},
-                age : {name : 'Age'},
-                gender : {name : 'Gender'},
-                job : {name : 'Job'}
-            }
-        }
-    });
-    ---
-    <ui-table :list="list" :col-set="colset" :show-col-name="true"></ui-table>
-    :::
-
-    设置列的`width` 、 `minwidth` 、 `maxwidth`：
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
-        data : {
-            list : window.list,
-            colset : {
-                name : {name : 'Name', maxwidth : '50px'},
-                age : {name : 'Age', width : '150px'},
-                gender : {name : 'Gender', minwidth : '150px'},
-                job : {name : 'Job'}
-            }
+            colset : [
+                {col : 'name', name : 'Name'},
+                {col : 'age', name : 'Age'},
+                {col : 'gender', name : 'Gender'},
+                {col : 'job', name : 'Job'}
+            ]
         }
     });
     ---
@@ -287,16 +397,76 @@
         template : '{$template}',
         data : {
             list : window.list,
-            colset : {
-                name : {name : 'Name'},
-                age : {name : 'Age'},
-                gender : {name : 'Gender'},
-                job : {name : 'Job'}
-            }
+            colset : [
+                {col : 'name', name : 'Name'},
+                {col : 'age', name : 'Age'},
+                {col : 'gender', name : 'Gender'},
+                {col : 'job', name : 'Job'}
+            ]
         }
     });
     ---
     <ui-table :list="list" title="表名" :col-set="colset" :show-col-name="true"></ui-table>
+    :::
+
+    设置列的`width` 、 `minwidth` 、 `maxwidth`：
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            list : window.list,
+            colset : [
+                {col : 'name', name : 'Name', maxwidth : '50px'},
+                {col : 'age', name : 'Age', width : '150px'},
+                {col : 'gender', name : 'Gender', minwidth : '150px'},
+                {col : 'job', name : 'Job'}
+            ]
+        }
+    });
+    ---
+    <ui-table :list="list" :col-set="colset" :show-col-name="true"></ui-table>
+    :::
+
+    设置指定列的样式（仅支持声明中的功能色彩）：
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            list : window.list,
+            colset : [
+                {col : 'name', name : 'Name'},
+                {col : 'age', name : 'Age', style : 'primary'},
+                {col : 'gender', name : 'Gender'},
+                {col : 'job', name : 'Job'}
+            ]
+        }
+    });
+    ---
+    <ui-table :list="list" :col-set="colset" :show-col-name="true"></ui-table>
+    :::
+
+    将单元格设置为禁用样式：
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            list : window.list,
+            colset : [
+                {col : 'name', name : 'Name'},
+                {col : 'age', name : 'Age', disabled : true},
+                {col : 'gender', name : 'Gender'},
+                {col : 'job', name : 'Job'}
+            ]
+        }
+    });
+    ---
+    <ui-table :list="list" :col-set="colset" :show-col-name="true"></ui-table>
     :::
 
     使用`align`来单独设置某一列的对齐方式：
@@ -307,12 +477,12 @@
         template : '{$template}',
         data : {
             list : window.list,
-            colset : {
-                name : {name : 'Name', align : 'right'},
-                age : {name : 'Age', align : 'left'},
-                gender : {name : 'Gender', align : 'center'},
-                job : {name : 'Job'}
-            }
+            colset : [
+                {col : 'name', name : 'Name', align : 'right'},
+                {col : 'age', name : 'Age', align : 'left'},
+                {col : 'gender', name : 'Gender', align : 'center'},
+                {col : 'job', name : 'Job'}
+            ]
         }
     });
     ---
@@ -327,12 +497,12 @@
         template : '{$template}',
         data : {
             list : window.list,
-            colset : {
-                name : {name : 'Name', title : true},
-                age : {name : 'Age'},
-                gender : {name : 'Gender', title : true},
-                job : {name : 'Job'}
-            }
+            colset : [
+                {col : 'name', name : 'Name', title : true},
+                {col : 'age', name : 'Age'},
+                {col : 'gender', name : 'Gender', title : true},
+                {col : 'job', name : 'Job'}
+            ]
         }
     });
     ---
@@ -347,12 +517,12 @@
         template : '{$template}',
         data : {
             list : window.list,
-            colset : {
-                name : {name : 'Name', title : true},
-                age : {name : 'Age'},
-                gender : {name : 'Gender', title : true},
-                job : {name : 'Job'}
-            }
+            colset : [
+                {col : 'name', name : 'Name', title : true},
+                {col : 'age', name : 'Age'},
+                {col : 'gender', name : 'Gender', title : true},
+                {col : 'job', name : 'Job'}
+            ]
         }
     });
     ---
@@ -367,18 +537,156 @@
         template : '{$template}',
         data : {
             list : window.list,
-            colset : {
-                name : {name : 'Name', title : true},
-                age : {name : 'Age'},
-                gender : {name : 'Gender', title : true},
-                job : {name : 'Job'}
-            }
+            colset : [
+                {col : 'name', name : 'Name', title : true},
+                {col : 'age', name : 'Age'},
+                {col : 'gender', name : 'Gender', title : true},
+                {col : 'job', name : 'Job'}
+            ]
         }
     });
     ---
     <ui-table :list="list" :col-set="colset" export-csv></ui-table>
     :::
 
+    #### row-set
+
+    设置指定行的样式（仅支持声明中的功能色彩）：
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            list : window.list,
+            colset : [
+                {col : 'name', name : 'Name'},
+                {col : 'age', name : 'Age'},
+                {col : 'gender', name : 'Gender'},
+                {col : 'job', name : 'Job'}
+            ],
+            rowset : [
+                {row : 0, style : 'success'},
+                {row : 2, style : 'warning'}
+            ]
+        }
+    });
+    ---
+    <ui-table :list="list" :col-set="colset" :row-set="rowset" :show-col-name="true"></ui-table>
+    :::
+
+    将单行设置为禁用样式：
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            list : window.list,
+            rowset : [
+                {row : 1, disabled : true}
+            ]
+        }
+    });
+    ---
+    <ui-table :list="list" :row-set="rowset" export-csv></ui-table>
+    :::
+
+    使用`align`来设置单行的对齐方式：
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            list : window.list,
+            colset : [
+                {col : 'name', name : 'Name'},
+                {col : 'age', name : 'Age'},
+                {col : 'gender', name : 'Gender'},
+                {col : 'job', name : 'Job'}
+            ],
+            rowset : [
+                {row : 0, align : 'left'},
+                {row : 1, align : 'right'},
+                {row : 2, align : 'center'}
+            ]
+        }
+    });
+    ---
+    <ui-table :list="list" :col-set="colset" :row-set="rowset" :show-col-name="true"></ui-table>
+    :::
+
+    #### cell-set
+
+    设置指定单元格的样式（仅支持声明中的功能色彩）：
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            list : window.list,
+            colset : [
+                {col : 'name', name : 'Name'},
+                {col : 'age', name : 'Age'},
+                {col : 'gender', name : 'Gender'},
+                {col : 'job', name : 'Job'}
+            ],
+            cellset : [
+                {row : 0, col : 'age', style : 'success'},
+                {row : 2, col : 'age', style : 'warning'},
+                {row : 3, col : 'job', style : 'danger'}
+            ]
+        }
+    });
+    ---
+    <ui-table :list="list" :col-set="colset" :cell-set="cellset" :show-col-name="true"></ui-table>
+    :::
+
+    将单元格设置为禁用样式：
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            list : window.list,
+            cellset : [
+                {row : 1, col : 'age', disabled : true}
+            ]
+        }
+    });
+    ---
+    <ui-table :list="list" :cell-set="cellset" export-csv></ui-table>
+    :::
+
+    使用`align`来单独设置单元格的对齐方式：
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            list : window.list,
+            colset : [
+                {col : 'name', name : 'Name'},
+                {col : 'age', name : 'Age'},
+                {col : 'gender', name : 'Gender'},
+                {col : 'job', name : 'Job'}
+            ],
+            cellset : [
+                {row : 0, col : 'age', align : 'left'},
+                {row : 1, col : 'age', align : 'right'},
+                {row : 2, col : 'age', align : 'center'},
+                {row : 3, col : 'age', align : 'left'},
+                {row : 4, col : 'age', align : 'right'}
+            ]
+        }
+    });
+    ---
+    <ui-table :list="list" :col-set="colset" :cell-set="cellset" :show-col-name="true"></ui-table>
+    :::
 
     #### export-csv
 
