@@ -3,7 +3,7 @@
 i-table{
     width: 100%;
     overflow: auto;
-    display: block; 
+    display: block;
     border: 0 none;
     font-size: @fontSize*0.875;
     background-color: @colorWhite;
@@ -30,7 +30,7 @@ i-table{
         }
     }
 
-    &>.wrap{
+    & > .wrap{
         overflow: hidden !important;
         width: 100% !important;
         border-width: 0 !important;
@@ -113,13 +113,9 @@ i-table{
         border-right-width: 2px;
     }
 
-
     &.has-title-col{
         .normal-table {
-            border-bottom-left-radius: 0;
-            border-top-left-radius: 0;
-            border-bottom-right-radius: @borderRadius;
-            border-top-right-radius: @borderRadius;
+            border-radius: 0 @borderRadius @borderRadius 0;
         }
 
         .title-table{
@@ -188,7 +184,7 @@ i-table{
         .title-table,
         .normal-table{
             border-color: darken(@colorTheme, 20%) !important;
-        
+
             th,
             td{
                 color: @colorWhite;
@@ -235,7 +231,7 @@ i-table{
         .title-table,
         .normal-table{
             border-color: darken(@colorLightTheme, 25%) !important;
-        
+
             th,
             td{
                 color: @colorWhite;
@@ -282,7 +278,7 @@ i-table{
         .title-table,
         .normal-table{
             border-color: darken(@colorDarkTheme, 20%) !important;
-        
+
             th,
             td{
                 color: @colorWhite;
@@ -329,7 +325,7 @@ i-table{
         .title-table,
         .normal-table{
             border-color: darken(@colorSuccess, 25%) !important;
-        
+
             th,
             td{
                 color: @colorWhite;
@@ -376,7 +372,7 @@ i-table{
         .title-table,
         .normal-table{
             border-color: darken(@colorWarning, 25%) !important;
-        
+
             th,
             td{
                 color: @colorWhite;
@@ -423,7 +419,7 @@ i-table{
         .title-table,
         .normal-table{
             border-color: darken(@colorDanger, 25%) !important;
-        
+
             th,
             td{
                 color: @colorWhite;
@@ -470,7 +466,7 @@ i-table{
         .title-table,
         .normal-table{
             border-color: darken(@colorPrimary, 25%) !important;
-        
+
             th,
             td{
                 color: @colorWhite;
@@ -517,7 +513,7 @@ i-table{
         .title-table,
         .normal-table{
             border-color: darken(@colorMinor, 25%) !important;
-        
+
             th,
             td{
                 color: @colorWhite;
@@ -564,7 +560,7 @@ i-table{
         .title-table,
         .normal-table{
             border-color: darken(@colorInfo, 25%) !important;
-        
+
             th,
             td{
                 color: @colorWhite;
@@ -611,7 +607,7 @@ i-table{
         .title-table,
         .normal-table{
             border-color: @colorBlack !important;
-        
+
             th,
             td{
                 color: @colorWhite;
@@ -658,7 +654,7 @@ i-table{
         .title-table,
         .normal-table{
             border-color: @colorLightBlack !important;
-        
+
             th,
             td{
                 color: @colorWhite;
@@ -705,7 +701,7 @@ i-table{
         .title-table,
         .normal-table{
             border-color: @colorExtraLightBlack !important;
-        
+
             th,
             td{
                 color: @colorWhite;
@@ -752,7 +748,7 @@ i-table{
         .title-table,
         .normal-table{
             border-color: darken(@colorBlue, 25%) !important;
-        
+
             th,
             td{
                 color: @colorWhite;
@@ -799,7 +795,7 @@ i-table{
         .title-table,
         .normal-table{
             border-color: darken(@colorLightBlue, 25%) !important;
-        
+
             th,
             td{
                 color: @colorWhite;
@@ -846,7 +842,7 @@ i-table{
         .title-table,
         .normal-table{
             border-color: darken(@colorExtraLightBlue, 25%) !important;
-        
+
             th,
             td{
                 color: @colorWhite;
@@ -893,7 +889,7 @@ i-table{
         .title-table,
         .normal-table{
             border-color: darken(@colorSilver, 10%) !important;
-        
+
             th,
             td{
                 color: @colorBlack;
@@ -940,7 +936,7 @@ i-table{
         .title-table,
         .normal-table{
             border-color: darken(@colorLightSilver, 10%) !important;
-        
+
             th,
             td{
                 color: @colorBlack;
@@ -987,7 +983,7 @@ i-table{
         .title-table,
         .normal-table{
             border-color: darken(@colorExtraLightSilver, 10%) !important;
-        
+
             th,
             td{
                 color: @colorBlack;
@@ -1034,7 +1030,7 @@ i-table{
         .title-table,
         .normal-table{
             border-color: darken(@colorGray, 5%) !important;
-        
+
             th,
             td{
                 color: @colorBlack;
@@ -1081,7 +1077,7 @@ i-table{
         .title-table,
         .normal-table{
             border-color: darken(@colorLightGray, 5%) !important;
-        
+
             th,
             td{
                 color: @colorBlack;
@@ -1128,7 +1124,7 @@ i-table{
         .title-table,
         .normal-table{
             border-color: darken(@colorWhite, 5%) !important;
-        
+
             th,
             td{
                 color: @colorBlack;
