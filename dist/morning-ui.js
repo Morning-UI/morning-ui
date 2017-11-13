@@ -7666,14 +7666,6 @@ var _normalTable2 = _interopRequireDefault(_normalTable);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// cell-set : [{
-//     x,
-//     y,
-//     style,
-//     disabled,
-//     align
-// }]
-
 exports.default = {
     origin: 'UI',
     name: 'table',
@@ -8180,7 +8172,6 @@ exports.default = {
             var elWidth = this.$el.clientWidth;
 
             $normalTable.parentElement.style.maxWidth = elWidth - titleColWidth + 'px';
-            // $normalTable.parentElement.style.width = `${elWidth - titleColWidth}px`;
             $normalTable.parentElement.style.overflowX = 'auto';
 
             $titleTable.parentElement.style.width = titleColWidth + 'px';
@@ -8189,7 +8180,6 @@ exports.default = {
             if (this.conf.fixedTitleCol === 'left-fixed') {
 
                 $normalTable.style.borderLeft = titleColWidth + 'px rgba(0,0,0,0) solid';
-                // $normalTable.parentElement.style.paddingLeft = `${titleColWidth + 1}px`;
                 $titleTable.parentElement.style.left = 0;
             } else {
 
