@@ -125,7 +125,7 @@
 
     :::democode/html
     <ui-btn ref="demo3" locked>按钮</ui-btn>
-    <br><br> 
+    <br><br>
     <ui-link js="morning.findVM('demo3').unlock();">解锁</ui-link>
     :::
 
