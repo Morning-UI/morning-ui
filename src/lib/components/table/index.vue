@@ -36,7 +36,8 @@
                     <normal-table
                         :conf="conf"
                         :data="data"
-                        :colSetMap="colSetMap"
+                        :col-set-map="colSetMap"
+                        :uiid="uiid"
                         @row-mouseover="_rowOver"
                         @row-mouseout="_rowOut"
                     ></normal-table>
@@ -45,7 +46,8 @@
                     <title-table
                         :conf="conf"
                         :data="data"
-                        :colSetMap="colSetMap"
+                        :col-set-map="colSetMap"
+                        :uiid="uiid"
                         @row-mouseover="_rowOver"
                         @row-mouseout="_rowOut"
                     ></title-table>
@@ -57,7 +59,8 @@
                     <title-table
                         :conf="conf"
                         :data="data"
-                        :colSetMap="colSetMap"
+                        :col-set-map="colSetMap"
+                        :uiid="uiid"
                         @row-mouseover="_rowOver"
                         @row-mouseout="_rowOut"
                     ></title-table>
@@ -66,7 +69,8 @@
                     <normal-table
                         :conf="conf"
                         :data="data"
-                        :colSetMap="colSetMap"
+                        :col-set-map="colSetMap"
+                        :uiid="uiid"
                         @row-mouseover="_rowOver"
                         @row-mouseout="_rowOut"
                     ></normal-table>
@@ -80,8 +84,9 @@
  
 <script>
 import arrayUniq                    from 'array-uniq';
+import extend                       from 'extend';
 import titleTable                   from './title-table.vue';
-import normalTable                   from './normal-table.vue';
+import normalTable                  from './normal-table.vue';
 
 export default {
     origin : 'UI',
@@ -178,6 +183,21 @@ export default {
             }
         };
 
+    },
+    directives : {
+        render : {
+            inserted : function (el, binding) {
+
+                console.log(el, binding.value);
+            
+                let $vue = new this.Vue({
+                    template : `<div>${binding.value}</div>`
+                });
+
+                $vue.$mount(el);
+
+            }
+        }
     },
     computed : {
         colSetMap : function () {
@@ -593,6 +613,8 @@ export default {
             let normalRows = [];
             let titleKeys = [];
             let normalKeys = [];
+
+            list = extend(true, [], list);
 
             for (let item of list) {
 
