@@ -15,8 +15,8 @@
                 @mouseout="$emit('row-mouseout', line)"
             >
                 <template v-for="(col, index) of row">
-                    <td v-if="colSetMap[data.titleKeys[index]]">{{col}}</td>
-                    <td v-else>{{col}}</td>
+                    <td v-if="colSetMap[data.titleKeys[index]]" v-render="{template : col, uiid : uiid}"></td>
+                    <td v-else v-render="{template : col, uiid : uiid}"></td>
                 </template>
             </tr>
         </tbody>
@@ -28,7 +28,8 @@ export default {
     props : [
         'conf',
         'data',
-        'colSetMap'
+        'colSetMap',
+        'uiid'
     ]
 };
 </script>
