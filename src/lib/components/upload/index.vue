@@ -36,7 +36,7 @@
                     href="javascript:;"
                     target="_blank;"
                     :index="item.index"
-                    :class="item.styleList"
+                    :class="item.classList"
                 >
                     <i class="progress"></i>
                     <span>
@@ -87,7 +87,7 @@
             <span class="max">最多只能上传{{conf.max}}个文件</span>
         </div>
 
-        <div class="dragNote"><p><i class="iconfont">&#xe606;</i> 松开鼠标上传</p></div>
+        <div class="drag-note"><p><i class="iconfont">&#xe606;</i> 松开鼠标上传</p></div>
     </div>
 
     </i-upload>
@@ -137,8 +137,8 @@ export default {
                 valueData : this.valueData
             },
             data : {
-                index : 0,
-                files : {},
+                // index : 0,
+                files : [],
                 uploadQueue : [],
                 uploading : false,
                 isMax : false
@@ -169,9 +169,7 @@ export default {
         },
         _addFile : function (file) {
 
-            let index = this.data.index++;
-
-            this.data.files[index] = {
+            let fileObj = {
                 file : file,
                 name : file.name,
                 status : 'wait',
@@ -181,15 +179,16 @@ export default {
                     uploaded : false,
                     done : false,
                     wait : true
-                },
-                index
+                }
             };
+            let index = this.data.files.push(fileObj) - 1;
+
+            fileObj.index = index;
 
             if (!/^(http|https|\/\/)/.test(file.path)) {
 
                 setTimeout(() => {
 
-                    // TODO
                     this._upload(index);
 
                 }, uploadWaitTime);
@@ -308,18 +307,20 @@ export default {
         },
         _setStatus : function (index, status) {
 
+            console.log(index, status);
+
             // status include: wait/uploading/done/fail/uploaded
             this.data.files[index].status = status;
 
-            for (let key in this.data.files[index].styleList) {
+            for (let key in this.data.files[index].classList) {
 
                 if (key !== status) {
 
-                    this.data.files[index].styleList[key] = false;
+                    this.data.files[index].classList[key] = false;
 
                 } else {
 
-                    this.data.files[index].styleList[key] = true;
+                    this.data.files[index].classList[key] = true;
 
                 }
 

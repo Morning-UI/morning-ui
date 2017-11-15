@@ -3683,13 +3683,13 @@ i-upload>.filelist>.filewrap .max{font-size:12px;color:silver!important;width:10
 }
 i-upload>.filelist>.filewrap .max.show{display:block
 }
-i-upload>.filelist>.dragNote{position:absolute;left:0;top:0;background:#fff;width:100%;height:100%;z-index:3;opacity:0;pointer-events:none;transition:opacity .2s
+i-upload>.filelist>.drag-note{position:absolute;left:0;top:0;background:#fff;width:100%;height:100%;z-index:3;opacity:0;pointer-events:none;transition:opacity .2s
 }
-i-upload>.filelist>.dragNote.show{opacity:1
+i-upload>.filelist>.drag-note.show{opacity:1
 }
-i-upload>.filelist>.dragNote p{width:100%;position:absolute;top:50%;transform:translateY(-50%);text-align:center;color:#666;margin:0;font-size:12px
+i-upload>.filelist>.drag-note p{width:100%;position:absolute;top:50%;transform:translateY(-50%);text-align:center;color:#666;margin:0;font-size:12px
 }
-i-upload>.filelist>.dragNote p .morningicon{font-size:13px;vertical-align:1px
+i-upload>.filelist>.drag-note p .morningicon{font-size:13px;vertical-align:1px
 }
 i-upload:hover>.filelist{border-color:#d7d7d7
 }

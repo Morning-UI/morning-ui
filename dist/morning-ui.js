@@ -1066,7 +1066,8 @@ morning.install = function (Vue, options) {
     }
 
     options = (0, _extend2.default)(true, {
-        prefix: 'ui'
+        prefix: 'ui',
+        uploader: null
     }, options);
 
     Vue.config.ignoredElements = [];
@@ -15434,8 +15435,8 @@ exports.default = {
                 valueData: this.valueData
             },
             data: {
-                index: 0,
-                files: {},
+                // index : 0,
+                files: [],
                 uploadQueue: [],
                 uploading: false,
                 isMax: false
@@ -15463,9 +15464,7 @@ exports.default = {
         _addFile: function _addFile(file) {
             var _this = this;
 
-            var index = this.data.index++;
-
-            this.data.files[index] = {
+            var fileObj = {
                 file: file,
                 name: file.name,
                 status: 'wait',
@@ -15475,15 +15474,16 @@ exports.default = {
                     uploaded: false,
                     done: false,
                     wait: true
-                },
-                index: index
+                }
             };
+            var index = this.data.files.push(fileObj) - 1;
+
+            fileObj.index = index;
 
             if (!/^(http|https|\/\/)/.test(file.path)) {
 
                 setTimeout(function () {
 
-                    // TODO
                     _this._upload(index);
                 }, uploadWaitTime);
             } else {}
@@ -15591,17 +15591,19 @@ exports.default = {
         },
         _setStatus: function _setStatus(index, status) {
 
+            console.log(index, status);
+
             // status include: wait/uploading/done/fail/uploaded
             this.data.files[index].status = status;
 
-            for (var key in this.data.files[index].styleList) {
+            for (var key in this.data.files[index].classList) {
 
                 if (key !== status) {
 
-                    this.data.files[index].styleList[key] = false;
+                    this.data.files[index].classList[key] = false;
                 } else {
 
-                    this.data.files[index].styleList[key] = true;
+                    this.data.files[index].classList[key] = true;
                 }
             }
 
@@ -15674,7 +15676,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
   }, [_vm._l((_vm.data.files), function(item) {
     return [_c('a', {
       staticClass: "file",
-      class: item.styleList,
+      class: item.classList,
       attrs: {
         "href": "javascript:;",
         "target": "_blank;",
@@ -15723,7 +15725,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
   }) : _vm._e(), _vm._v(" "), _c('span', {
     staticClass: "max"
   }, [_vm._v("最多只能上传" + _vm._s(_vm.conf.max) + "个文件")])], 2), _vm._v(" "), _c('div', {
-    staticClass: "dragNote"
+    staticClass: "drag-note"
   }, [_c('p', [_c('i', {
     staticClass: "iconfont"
   }, [_vm._v("")]), _vm._v(" 松开鼠标上传")])])])])

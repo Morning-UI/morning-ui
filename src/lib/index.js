@@ -108,7 +108,8 @@ morning.install = function (Vue, options) {
     }
 
     options = extend(true, {
-        prefix : 'ui'
+        prefix : 'ui',
+        uploader : null
     }, options);
 
     Vue.config.ignoredElements = [];
