@@ -35,7 +35,7 @@
     <ui-block class="full">无间隙的区块</ui-block>
     :::
 
-    [[[声明]]]
+    [[[形态]]]
 
     #### 支持
 
@@ -48,7 +48,7 @@
     #### 色彩
 
     :::preset/html
-    statementColor
+    statusColor
     ---
     uikey:block
     :::

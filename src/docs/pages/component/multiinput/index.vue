@@ -30,13 +30,13 @@
     </div>
     :::
 
-    [[[声明]]]
+    [[[形态]]]
 
     :::preset/html
-    formStatement
+    formStatus
     ---
     uikey:multiinput
-    statementDefaultValue:['value1', 'value2']
+    statusDefaultValue:['value1', 'value2']
     :::
 
     [[[配置]]]

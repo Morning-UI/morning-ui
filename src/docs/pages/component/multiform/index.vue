@@ -55,15 +55,15 @@
     </div>
     :::
 
-    [[[声明]]]
+    [[[形态]]]
 
     :::preset/html
-    formStatement
+    formStatus
     ---
     uikey:multiform
-    statementDefaultValue:[{name:'Jim'}, {name:'Sam'}]
-    statementMoreAttr::item-filler="item => ({title: item.name})"
-    statementSlot:<ui-formgroup><div class="item"><h5 class="title"><ui-center class="fill">名称</ui-center></h5><div class="content"><div class="form"><ui-textinput form-key="name"></ui-textinput></div></div></div></ui-formgroup>
+    statusDefaultValue:[{name:'Jim'}, {name:'Sam'}]
+    statusMoreAttr::item-filler="item => ({title: item.name})"
+    statusSlot:<ui-formgroup><div class="item"><h5 class="title"><ui-center class="fill">名称</ui-center></h5><div class="content"><div class="form"><ui-textinput form-key="name"></ui-textinput></div></div></div></ui-formgroup>
     :::
 
     [[[配置]]]

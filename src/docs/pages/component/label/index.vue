@@ -58,7 +58,7 @@
     </ui-label>
     :::
 
-    [[[声明]]]
+    [[[形态]]]
 
     #### 支持
 
@@ -91,7 +91,7 @@
     #### 色彩
 
     :::preset/html
-    statementColor
+    statusColor
     ---
     uikey:label
     :::

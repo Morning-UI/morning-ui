@@ -18,7 +18,7 @@
     <ui-textcenter>居中的文本</ui-textcenter>
     :::
 
-    [[[声明]]]
+    [[[形态]]]
 
     #### 支持
 

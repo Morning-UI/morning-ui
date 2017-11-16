@@ -197,7 +197,7 @@
     </div>
     :::
 
-    [[[声明]]]
+    [[[形态]]]
 
     #### 支持
 
@@ -213,7 +213,7 @@
     size
     ---
     <div style="width:400px">
-    <ui-itemlist {$sizeKey}>
+    <ui-itemlist size="{$sizeKey}">
         <ui-ul>
             <li>
                 <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>

@@ -1117,227 +1117,37 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-var _extend = __webpack_require__(1);
-
-var _extend2 = _interopRequireDefault(_extend);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var sizeSet = ['xxl', 'xl', 'l', 'm', 's', 'xs', 'xxs'];
-
-var styleSet = ['theme', 'lightTheme', 'darkTheme', 'success', 'warning', 'danger', 'primary', 'minor', 'info', 'black', 'lightBlack', 'extraLightBlack', 'blue', 'lightBlue', 'extraLightBlue', 'silver', 'lightSilver', 'extraLightSilver', 'gray', 'lightGray', 'white'];
-
-var stateSet = ['normal', 'hover', 'active', 'disabled', 'apparent', 'loading', 'processing'];
-
-var props = {
-    name: String
-};
-
-var _arr = [].concat(sizeSet, styleSet, stateSet);
-
-for (var _i = 0; _i < _arr.length; _i++) {
-    var key = _arr[_i];
-
-    props[key] = {
-        type: Boolean,
-        default: false
-    };
-}
-
+// import extend                       from 'extend';
 exports.default = function (Vue, morning) {
     return Vue.extend({
-        props: props,
-        watch: {
-            'conf.size': function confSize(val) {
-
-                if (val === null) {
-
-                    this.sizeClass = '';
-                } else {
-
-                    this.sizeClass = 'si-' + val;
+        props: {
+            size: {
+                type: String,
+                default: undefined,
+                validator: function validator(value) {
+                    return ['xxl', 'xl', 'l', 'm', 's', 'xs', 'xxs'].indexOf(value) !== -1;
                 }
             },
-            'conf.style': function confStyle(val) {
-
-                if (val === null) {
-
-                    this.styleClass = '';
-                } else {
-
-                    this.styleClass = 'sy-' + val;
+            color: {
+                type: String,
+                default: undefined,
+                validator: function validator(value) {
+                    return ['theme', 'light-theme', 'dark-theme', 'success', 'warning', 'danger', 'primary', 'minor', 'info', 'black', 'light-black', 'extra-light-black', 'blue', 'light-blue', 'extra-light-blue', 'silver', 'light-silver', 'extra-light-silver', 'gray', 'light-gray', 'white'].indexOf(value) !== -1;
                 }
             },
-            'conf.state': function confState(val) {
-
-                if (val === null) {
-
-                    this.stateClass = '';
-                } else {
-
-                    this.stateClass = 'st-' + val;
+            state: {
+                type: String,
+                default: undefined,
+                validator: function validator(value) {
+                    return ['normal', 'hover', 'active', 'disabled', 'apparent'].indexOf(value) !== -1;
                 }
+
             }
         },
-        methods: {
-            _initSize: function _initSize() {
+        computed: {
+            _conf: function _conf() {
 
-                var size = null;
-
-                var _iteratorNormalCompletion = true;
-                var _didIteratorError = false;
-                var _iteratorError = undefined;
-
-                try {
-                    for (var _iterator = sizeSet[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                        var _key = _step.value;
-
-
-                        if (this.conf[_key] === true) {
-
-                            size = _key;
-                            break;
-                        }
-                    }
-                } catch (err) {
-                    _didIteratorError = true;
-                    _iteratorError = err;
-                } finally {
-                    try {
-                        if (!_iteratorNormalCompletion && _iterator.return) {
-                            _iterator.return();
-                        }
-                    } finally {
-                        if (_didIteratorError) {
-                            throw _iteratorError;
-                        }
-                    }
-                }
-
-                this.conf.size = size;
-            },
-            _initStyle: function _initStyle() {
-
-                var style = null;
-
-                var _iteratorNormalCompletion2 = true;
-                var _didIteratorError2 = false;
-                var _iteratorError2 = undefined;
-
-                try {
-                    for (var _iterator2 = styleSet[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                        var _key2 = _step2.value;
-
-
-                        if (this.conf[_key2] === true) {
-
-                            style = _key2;
-                            break;
-                        }
-                    }
-                } catch (err) {
-                    _didIteratorError2 = true;
-                    _iteratorError2 = err;
-                } finally {
-                    try {
-                        if (!_iteratorNormalCompletion2 && _iterator2.return) {
-                            _iterator2.return();
-                        }
-                    } finally {
-                        if (_didIteratorError2) {
-                            throw _iteratorError2;
-                        }
-                    }
-                }
-
-                this.conf.style = style;
-            },
-            _initState: function _initState() {
-
-                var state = null;
-
-                var _iteratorNormalCompletion3 = true;
-                var _didIteratorError3 = false;
-                var _iteratorError3 = undefined;
-
-                try {
-                    for (var _iterator3 = stateSet[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-                        var _key3 = _step3.value;
-
-
-                        if (this.conf[_key3] === true) {
-
-                            state = _key3;
-                            break;
-                        }
-                    }
-                } catch (err) {
-                    _didIteratorError3 = true;
-                    _iteratorError3 = err;
-                } finally {
-                    try {
-                        if (!_iteratorNormalCompletion3 && _iterator3.return) {
-                            _iterator3.return();
-                        }
-                    } finally {
-                        if (_didIteratorError3) {
-                            throw _iteratorError3;
-                        }
-                    }
-                }
-
-                this.conf.state = state;
-            },
-            setConf: function setConf(name, value) {
-
-                if ((typeof name === 'undefined' ? 'undefined' : _typeof(name)) === 'object') {
-                    var _iteratorNormalCompletion4 = true;
-                    var _didIteratorError4 = false;
-                    var _iteratorError4 = undefined;
-
-                    try {
-
-                        for (var _iterator4 = Object.keys(name)[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-                            var _key4 = _step4.value;
-
-
-                            var val = name[_key4];
-
-                            this.conf[_key4] = val;
-                        }
-                    } catch (err) {
-                        _didIteratorError4 = true;
-                        _iteratorError4 = err;
-                    } finally {
-                        try {
-                            if (!_iteratorNormalCompletion4 && _iterator4.return) {
-                                _iterator4.return();
-                            }
-                        } finally {
-                            if (_didIteratorError4) {
-                                throw _iteratorError4;
-                            }
-                        }
-                    }
-                } else if (typeof name === 'string') {
-
-                    this.conf[name] = value;
-                }
-
-                return this;
-            },
-            getConf: function getConf(name) {
-
-                var conf = (0, _extend2.default)(true, {}, this.conf);
-
-                if (typeof name === 'string') {
-
-                    return conf[name];
-                }
-
-                return conf;
+                return {};
             }
         },
         data: function data() {
@@ -1346,23 +1156,11 @@ exports.default = function (Vue, morning) {
 
             data.isUI = true;
             data.uiid = this.morning._uiid++;
-            data.conf = {};
             data.data = {};
-
-            var _arr2 = [].concat(sizeSet, styleSet, stateSet);
-
-            for (var _i2 = 0; _i2 < _arr2.length; _i2++) {
-                var _key5 = _arr2[_i2];
-
-                data.conf[_key5] = this[_key5];
-            }
-
-            data.conf.size = null;
-            data.conf.style = null;
-            data.conf.state = null;
+            data.conf = {};
 
             data.sizeClass = '';
-            data.styleClass = '';
+            data.colorClass = '';
             data.stateClass = '';
 
             return data;
@@ -1373,10 +1171,60 @@ exports.default = function (Vue, morning) {
             this.morning = morning;
         },
         created: function created() {
+            var _this = this;
 
-            this._initSize();
-            this._initStyle();
-            this._initState();
+            this.$watch('size', function (val) {
+
+                _this.conf.size = val;
+
+                if (val === undefined) {
+
+                    _this.sizeClass = '';
+                } else {
+
+                    _this.sizeClass = 'si-' + val;
+                }
+            }, {
+                immediate: true
+            });
+
+            this.$watch('color', function (val) {
+
+                _this.conf.color = val;
+
+                if (val === undefined) {
+
+                    _this.colorClass = '';
+                } else {
+
+                    _this.colorClass = 'co-' + val;
+                }
+            }, {
+                immediate: true
+            });
+
+            this.$watch('state', function (val) {
+
+                _this.conf.state = val;
+
+                if (val === undefined) {
+
+                    _this.stateClass = '';
+                } else {
+
+                    _this.stateClass = 'st-' + val;
+                }
+            }, {
+                immediate: true
+            });
+
+            this.$watch('_conf', function (val) {
+
+                _this.conf = Object.assign(_this.conf, val);
+            }, {
+                immediate: true,
+                deep: true
+            });
 
             this.$emit('created');
         },
@@ -2232,7 +2080,7 @@ module.exports = exports['default'];
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('i-h', {
-    class: [_vm.sizeClass, _vm.styleClass, _vm.stateClass],
+    class: [_vm.sizeClass, _vm.colorClass, _vm.stateClass],
     attrs: {
       "_uiid": _vm.uiid
     }
@@ -2343,7 +2191,7 @@ module.exports = exports['default'];
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('i-lead', {
-    class: [_vm.styleClass, _vm.stateClass],
+    class: [_vm.colorClass, _vm.stateClass],
     attrs: {
       "_uiid": _vm.uiid
     }
@@ -2454,7 +2302,7 @@ module.exports = exports['default'];
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('i-mark', {
-    class: [_vm.styleClass, _vm.stateClass],
+    class: [_vm.colorClass, _vm.stateClass],
     attrs: {
       "_uiid": _vm.uiid
     }
@@ -3787,7 +3635,7 @@ module.exports = exports['default'];
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('i-quote', {
-    class: [_vm.styleClass],
+    class: [_vm.colorClass],
     attrs: {
       "_uiid": _vm.uiid
     }
@@ -4453,7 +4301,7 @@ module.exports = exports['default'];
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('i-textcolor', {
-    class: [_vm.styleClass],
+    class: [_vm.colorClass],
     attrs: {
       "_uiid": _vm.uiid
     }
@@ -4786,7 +4634,7 @@ module.exports = exports['default'];
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('i-card', {
-    class: [_vm.styleClass],
+    class: [_vm.colorClass],
     attrs: {
       "_uiid": _vm.uiid
     }
@@ -5008,7 +4856,7 @@ module.exports = exports['default'];
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('i-block', {
-    class: [_vm.styleClass],
+    class: [_vm.colorClass],
     attrs: {
       "_uiid": _vm.uiid
     }
@@ -5341,7 +5189,7 @@ module.exports = exports['default'];
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('i-header', {
-    class: [_vm.sizeClass, _vm.styleClass, _vm.stateClass],
+    class: [_vm.sizeClass, _vm.colorClass, _vm.stateClass],
     attrs: {
       "_uiid": _vm.uiid
     }
@@ -5452,7 +5300,7 @@ module.exports = exports['default'];
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('i-badge', {
-    class: [_vm.sizeClass, _vm.styleClass, _vm.stateClass],
+    class: [_vm.sizeClass, _vm.colorClass, _vm.stateClass],
     attrs: {
       "_uiid": _vm.uiid
     }
@@ -5563,7 +5411,7 @@ module.exports = exports['default'];
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('i-label', {
-    class: [_vm.sizeClass, _vm.styleClass, _vm.stateClass],
+    class: [_vm.sizeClass, _vm.colorClass, _vm.stateClass],
     attrs: {
       "_uiid": _vm.uiid
     }
@@ -5674,7 +5522,7 @@ module.exports = exports['default'];
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('i-statistic', {
-    class: [_vm.sizeClass, _vm.styleClass, _vm.stateClass],
+    class: [_vm.sizeClass, _vm.colorClass, _vm.stateClass],
     attrs: {
       "_uiid": _vm.uiid
     }
@@ -5785,7 +5633,7 @@ module.exports = exports['default'];
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('i-action', {
-    class: [_vm.sizeClass, _vm.styleClass],
+    class: [_vm.sizeClass, _vm.colorClass],
     attrs: {
       "_uiid": _vm.uiid
     }
@@ -6482,6 +6330,8 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
 
 exports.default = {
     origin: 'UI',
@@ -6504,18 +6354,28 @@ exports.default = {
             default: false
         }
     },
-    data: function data() {
+    computed: {
+        _conf: function _conf() {
 
-        return {
-            conf: {
+            return {
                 link: this.link,
                 js: this.js,
                 locked: this.locked,
                 newTab: this.newTab
-            },
+            };
+        },
+        moreClass: function moreClass() {
+
+            return {
+                loading: this.data.lock
+            };
+        }
+    },
+    data: function data() {
+
+        return {
             data: {
-                lock: false,
-                lastState: null
+                lock: false
             }
         };
     },
@@ -6529,10 +6389,10 @@ exports.default = {
         },
         _emitLock: function _emitLock() {
 
-            if (typeof this.locked === 'number') {
+            if (typeof this.conf.locked === 'number') {
 
-                this.lock(+this.locked);
-            } else if (this.locked === true) {
+                this.lock(+this.conf.locked);
+            } else if (this.conf.locked === true) {
 
                 this.lock();
             }
@@ -6540,20 +6400,13 @@ exports.default = {
         unlock: function unlock() {
 
             this.data.lock = false;
-            this.conf.state = this.data.lastState;
 
             return this;
         },
         lock: function lock(time) {
             var _this = this;
 
-            if (this.data.lock !== true) {
-
-                this.data.lastState = this.conf.state;
-            }
-
             this.data.lock = true;
-            this.conf.state = 'loading';
 
             if (time) {
 
@@ -6571,8 +6424,6 @@ exports.default = {
     },
     mounted: function mounted() {
         var _this2 = this;
-
-        this.data.lastState = this.conf.state;
 
         this._emitLock();
 
@@ -6607,7 +6458,7 @@ module.exports = exports['default'];
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('i-btn', {
-    class: [_vm.sizeClass, _vm.styleClass, _vm.stateClass],
+    class: [_vm.sizeClass, _vm.colorClass, _vm.stateClass, _vm.moreClass],
     attrs: {
       "_uiid": _vm.uiid,
       "link": _vm.link,
@@ -6618,9 +6469,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     on: {
       "click": _vm._onClick
     }
-  }, [(_vm.conf.state === 'loading') ? [_c('i', {
-    staticClass: "morningicon"
-  }, [_vm._v("")]), _vm._v(" "), _c('span', [_vm._t("default")], 2)] : (_vm.conf.state === 'processing') ? [_c('i', {
+  }, [(_vm.data.lock) ? [_c('i', {
     staticClass: "morningicon"
   }, [_vm._v("")]), _vm._v(" "), _c('span', [_vm._t("default")], 2)] : [_vm._t("default")]], 2)
 }
@@ -6858,7 +6707,7 @@ module.exports = exports['default'];
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('i-link', {
-    class: [_vm.sizeClass, _vm.styleClass, _vm.stateClass],
+    class: [_vm.sizeClass, _vm.colorClass, _vm.stateClass],
     attrs: {
       "_uiid": _vm.uiid,
       "link": _vm.link,
@@ -7881,7 +7730,7 @@ exports.default = {
 
                                 if ($cell && set.style) {
 
-                                    $cell.classList.add('cell-sy-' + set.style);
+                                    $cell.classList.add('cell-co-' + set.style);
                                 }
 
                                 if ($cell && set.disabled) {
@@ -8007,7 +7856,7 @@ exports.default = {
 
                                 if (set.style) {
 
-                                    _$cell2.classList.add('cell-sy-' + set.style);
+                                    _$cell2.classList.add('cell-co-' + set.style);
                                 }
 
                                 if (set.disabled) {
@@ -8091,7 +7940,7 @@ exports.default = {
 
                             if (set.style) {
 
-                                $cell.classList.add('cell-sy-' + set.style);
+                                $cell.classList.add('cell-co-' + set.style);
                             }
 
                             if (set.disabled) {
@@ -8776,7 +8625,7 @@ if (false) {
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('i-table', {
-    class: [_vm.styleClass, _vm.moreClass],
+    class: [_vm.colorClass, _vm.moreClass],
     attrs: {
       "_uiid": _vm.uiid,
       "list": _vm.list,
@@ -9193,7 +9042,7 @@ module.exports = exports['default'];
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('i-pagination', {
-    class: [_vm.sizeClass, _vm.styleClass],
+    class: [_vm.sizeClass, _vm.colorClass],
     attrs: {
       "_uiid": _vm.uiid,
       "total": _vm.total,
@@ -9525,7 +9374,7 @@ module.exports = exports['default'];
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('i-dialog', {
-    class: [_vm.styleClass, _vm.moreClass],
+    class: [_vm.colorClass, _vm.moreClass],
     attrs: {
       "_uiid": _vm.uiid,
       "width": _vm.width,
@@ -12496,7 +12345,7 @@ return Tether;
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('i-tip', {
-    class: [_vm.styleClass],
+    class: [_vm.colorClass],
     attrs: {
       "_uiid": _vm.uiid,
       "target": _vm.target,
@@ -13232,7 +13081,7 @@ module.exports = exports['default'];
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('i-switch', {
-    class: [_vm.styleClass, _vm.stateClass, _vm.moreClass],
+    class: [_vm.colorClass, _vm.stateClass, _vm.moreClass],
     attrs: {
       "_uiid": _vm.uiid,
       "form-name": _vm.formName,
@@ -14773,7 +14622,7 @@ module.exports = exports['default'];
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('i-checkbox', {
-    class: [_vm.styleClass, _vm.stateClass],
+    class: [_vm.colorClass, _vm.stateClass],
     attrs: {
       "_uiid": _vm.uiid,
       "form-name": _vm.formName,
@@ -15030,7 +14879,7 @@ module.exports = exports['default'];
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('i-radio', {
-    class: [_vm.styleClass, _vm.stateClass],
+    class: [_vm.colorClass, _vm.stateClass],
     attrs: {
       "_uiid": _vm.uiid,
       "form-name": _vm.formName,

@@ -1,7 +1,7 @@
 <template>
     <i-table
         :_uiid="uiid"
-        :class="[styleClass, moreClass]"
+        :class="[colorClass, moreClass]"
 
         :list="list"
         :empty-cell-value="emptyCellValue"
@@ -260,7 +260,7 @@ export default {
 
                         if ($cell && set.style) {
                         
-                            $cell.classList.add(`cell-sy-${set.style}`);
+                            $cell.classList.add(`cell-co-${set.style}`);
 
                         }
 
@@ -310,7 +310,7 @@ export default {
 
                         if (set.style) {
                             
-                            $cell.classList.add(`cell-sy-${set.style}`);
+                            $cell.classList.add(`cell-co-${set.style}`);
 
                         }
 
@@ -369,7 +369,7 @@ export default {
 
                         if (set.style) {
                             
-                            $cell.classList.add(`cell-sy-${set.style}`);
+                            $cell.classList.add(`cell-co-${set.style}`);
 
                         }
 

@@ -18,7 +18,7 @@
     <div><ui-capitalize>首字母大写的文本: tHere is A LEtter</ui-capitalize></div>
     :::
 
-    [[[声明]]]
+    [[[形态]]]
 
     #### 支持
 

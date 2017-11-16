@@ -18,7 +18,7 @@
     <div><ui-uppercase>大写的英文文本: tHere is A LEtter</ui-uppercase></div>
     :::
 
-    [[[声明]]]
+    [[[形态]]]
 
     #### 支持
 

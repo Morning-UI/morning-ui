@@ -1,7 +1,7 @@
 <template>
     <i-switch
         :_uiid="uiid"
-        :class="[styleClass, stateClass, moreClass]"
+        :class="[colorClass, stateClass, moreClass]"
 
         :form-name="formName"
         :form-key="formKey"

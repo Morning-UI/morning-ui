@@ -20,13 +20,13 @@
     </div>
     :::
 
-    [[[声明]]]
+    [[[形态]]]
 
     :::preset/html
-    formStatement
+    formStatus
     ---
     uikey:textarea
-    statementDefaultValue:''
+    statusDefaultValue:''
     :::
     
     [[[配置]]]

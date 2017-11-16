@@ -18,7 +18,7 @@
     <ui-textcolor>This is ui-textcolor</ui-textcolor>
     :::
 
-    [[[声明]]]
+    [[[形态]]]
 
     #### 支持
 
@@ -31,7 +31,7 @@
     #### 色彩
 
     :::preset/html
-    statementColor
+    statusColor
     ---
     uikey:textcolor
     :::

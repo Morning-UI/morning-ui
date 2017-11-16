@@ -1,192 +1,63 @@
-import extend                       from 'extend';
-
-let sizeSet = [
-    'xxl',
-    'xl',
-    'l',
-    'm',
-    's',
-    'xs',
-    'xxs'
-];
-
-let styleSet = [
-    'theme',
-    'lightTheme',
-    'darkTheme',
-    'success',
-    'warning',
-    'danger',
-    'primary',
-    'minor',
-    'info',
-    'black',
-    'lightBlack',
-    'extraLightBlack',
-    'blue',
-    'lightBlue',
-    'extraLightBlue',
-    'silver',
-    'lightSilver',
-    'extraLightSilver',
-    'gray',
-    'lightGray',
-    'white'
-];
-
-let stateSet = [
-    'normal',
-    'hover',
-    'active',
-    'disabled',
-    'apparent',
-    'loading',
-    'processing'
-];
-
-let props = {
-    name : String
-};
-
-for (let key of [...sizeSet, ...styleSet, ...stateSet]) {
-
-    props[key] = {
-        type : Boolean,
-        default : false
-    };
-
-}
-
+// import extend                       from 'extend';
 export default (Vue, morning) => Vue.extend({
-    props : props,
-    watch : {
-        'conf.size' : function (val) {
-
-            if (val === null) {
-
-                this.sizeClass = '';
-            
-            } else {
-                
-                this.sizeClass = `si-${val}`;
-
-            }
-
+    props : {
+        size : {
+            type : String,
+            default : undefined,
+            validator : value => ([
+                'xxl',
+                'xl',
+                'l',
+                'm',
+                's',
+                'xs',
+                'xxs'
+            ].indexOf(value) !== -1)
         },
-        'conf.style' : function (val) {
-
-            if (val === null) {
-
-                this.styleClass = '';
-            
-            } else {
-                
-                this.styleClass = `sy-${val}`;
-
-            }
-
+        color : {
+            type : String,
+            default : undefined,
+            validator : value => ([
+                'theme',
+                'light-theme',
+                'dark-theme',
+                'success',
+                'warning',
+                'danger',
+                'primary',
+                'minor',
+                'info',
+                'black',
+                'light-black',
+                'extra-light-black',
+                'blue',
+                'light-blue',
+                'extra-light-blue',
+                'silver',
+                'light-silver',
+                'extra-light-silver',
+                'gray',
+                'light-gray',
+                'white'
+            ].indexOf(value) !== -1)
         },
-        'conf.state' : function (val) {
-
-            if (val === null) {
-
-                this.stateClass = '';
-            
-            } else {
-                
-                this.stateClass = `st-${val}`;
-
-            }
+        state : {
+            type : String,
+            default : undefined,
+            validator : value => ([
+                'normal',
+                'hover',
+                'active',
+                'disabled',
+                'apparent'
+            ].indexOf(value) !== -1)
 
         }
     },
-    methods : {
-        _initSize : function () {
+    computed : {
+        _conf : function () {
 
-            let size = null;
-
-            for (let key of sizeSet) {
-
-                if (this.conf[key] === true) {
-
-                    size = key;
-                    break;
-
-                }
-
-            }
-
-            this.conf.size = size;
-
-        },
-        _initStyle : function () {
-
-            let style = null;
-
-            for (let key of styleSet) {
-
-                if (this.conf[key] === true) {
-
-                    style = key;
-                    break;
-
-                }
-
-            }
-
-            this.conf.style = style;
-
-        },
-        _initState : function () {
-
-            let state = null;
-
-            for (let key of stateSet) {
-
-                if (this.conf[key] === true) {
-
-                    state = key;
-                    break;
-
-                }
-
-            }
-
-            this.conf.state = state;
-
-        },
-        setConf : function (name, value) {
-
-            if (typeof name === 'object') {
-
-                for (let key of Object.keys(name)) {
-
-                    let val = name[key];
-
-                    this.conf[key] = val;
-
-                }
-
-            } else if (typeof name === 'string') {
-
-                this.conf[name] = value;
-
-            }
-
-            return this;
-
-        },
-        getConf : function (name) {
-
-            let conf = extend(true, {}, this.conf);
-
-            if (typeof name === 'string') {
-
-                return conf[name];
-
-            }
-    
-            return conf;
+            return {};
 
         }
     },
@@ -196,21 +67,11 @@ export default (Vue, morning) => Vue.extend({
 
         data.isUI = true;
         data.uiid = this.morning._uiid++;
-        data.conf = {};
         data.data = {};
-
-        for (let key of [...sizeSet, ...styleSet, ...stateSet]) {
-
-            data.conf[key] = this[key];
-
-        }
-
-        data.conf.size = null;
-        data.conf.style = null;
-        data.conf.state = null;
+        data.conf = {};
 
         data.sizeClass = '';
-        data.styleClass = '';
+        data.colorClass = '';
         data.stateClass = '';
 
         return data;
@@ -224,10 +85,69 @@ export default (Vue, morning) => Vue.extend({
     },
     created : function () {
 
-        this._initSize();
-        this._initStyle();
-        this._initState();
-        
+        this.$watch('size', val => {
+
+            this.conf.size = val;
+
+            if (val === undefined) {
+
+                this.sizeClass = '';
+            
+            } else {
+                
+                this.sizeClass = `si-${val}`;
+
+            }
+
+        }, {
+            immediate : true
+        });
+
+        this.$watch('color', val => {
+
+            this.conf.color = val;
+
+            if (val === undefined) {
+
+                this.colorClass = '';
+            
+            } else {
+                
+                this.colorClass = `co-${val}`;
+
+            }
+
+        }, {
+            immediate : true
+        });
+
+        this.$watch('state', val => {
+
+            this.conf.state = val;
+
+            if (val === undefined) {
+
+                this.stateClass = '';
+            
+            } else {
+                
+                this.stateClass = `st-${val}`;
+
+            }
+
+        }, {
+            immediate : true
+        });
+
+        this.$watch('_conf', val => {
+
+            this.conf = Object.assign(this.conf, val);
+
+        }, {
+            immediate : true,
+            deep : true
+        });
+
         this.$emit('created');
 
     },

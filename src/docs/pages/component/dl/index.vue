@@ -49,7 +49,7 @@
     </ui-dl>
     :::
 
-    [[[声明]]]
+    [[[形态]]]
 
     #### 支持
 
@@ -64,7 +64,7 @@
     :::repeat/html
     state:normal,apparent
     ---
-    <ui-dl {$stateKey}>
+    <ui-dl state="{$stateKey}">
         <dt>{$&stateName}</dt>
         <dd>this is normal ui-dl</dd>
         <dt>{$&stateName}</dt>
