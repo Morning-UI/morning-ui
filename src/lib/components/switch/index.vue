@@ -29,19 +29,14 @@ export default {
             default : false
         }
     },
-    data : function () {
-
-        return {
-            conf : {
-                autoHideName : this.autoHideName
-            },
-            data : {
-                nameIsEmpty : false
-            }
-        };
-
-    },
     computed : {
+        _conf : function () {
+
+            return {
+                autoHideName : this.autoHideName
+            };
+
+        },
         moreClass : function () {
 
             return {
@@ -50,6 +45,15 @@ export default {
             };
 
         }
+    },
+    data : function () {
+
+        return {
+            data : {
+                nameIsEmpty : false
+            }
+        };
+
     },
     methods : {
         _valueFilter : function (value) {

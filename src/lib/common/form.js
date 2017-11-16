@@ -29,6 +29,19 @@ export default UI => UI.extend({
             default : undefined
         }
     },
+    computed : {
+        _formConf : function () {
+
+            return {
+                formName : this.formName,
+                formKey : this.formKey,
+                group : this.group,
+                defaultValue : this.defaultValue,
+                hideName : this.hideName
+            };
+
+        }
+    },
     data : function () {
 
         let groups = [];
@@ -45,13 +58,6 @@ export default UI => UI.extend({
 
         return {
             isForm : true,
-            conf : {
-                formName : this.formName,
-                formKey : this.formKey,
-                group : groups,
-                defaultValue : this.defaultValue,
-                hideName : this.hideName
-            },
             data : {
                 value : undefined
             }
@@ -223,22 +229,22 @@ export default UI => UI.extend({
         },
         setName : function (name = '') {
 
-            return this.setConf('formName', name);
+            return (this.formName = name);
 
         },
         getName : function () {
 
-            return this.getConf('formName');
+            return this.conf.formName;
 
         },
         setKey : function (key) {
 
-            return this.setConf('formKey', key);
+            return (this.formKey = key);
 
         },
         getKey : function () {
 
-            return this.getConf('formKey');
+            return this.conf.formKey;
 
         },
         setGroup : function (group = []) {
@@ -255,17 +261,17 @@ export default UI => UI.extend({
 
             }
 
-            return this.setConf('group', groups);
+            return (this.group = groups);
 
         },
         getGroup : function () {
 
-            return this.getConf('group');
+            return extend(true, [], this.conf.group);
 
         },
         addGroup : function (group) {
 
-            let groups = this.getConf('group');
+            let groups = this.getGroup();
 
             if (typeof group === 'string') {
 
@@ -281,7 +287,7 @@ export default UI => UI.extend({
 
                 uniqGroups = Object.keys(uniqGroups);
 
-                return this.setConf('group', uniqGroups);
+                return (this.group = uniqGroups);
 
             }
 
@@ -290,14 +296,15 @@ export default UI => UI.extend({
         },
         removeGroup : function (group) {
 
-            let groups = this.getConf('group');
+            let groups = this.getGroup();
 
             for (let index in groups) {
 
                 if (group === groups[index]) {
 
                     groups.splice(index, 1);
-                    this.setConf('group', groups);
+
+                    this.group = groups;
 
                     break;
 
@@ -310,6 +317,21 @@ export default UI => UI.extend({
         }
     },
     created : function () {
+
+        this.$watch('_formConf', val => {
+
+            if (typeof val.group === 'string') {
+
+                val.group = [val.group];
+
+            }
+
+            this.conf = Object.assign({}, this.conf, val);
+
+        }, {
+            immediate : true,
+            deep : true
+        });
 
         this.data.value = this.conf.defaultValue;
         this._syncGroup();

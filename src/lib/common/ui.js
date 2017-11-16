@@ -141,7 +141,7 @@ export default (Vue, morning) => Vue.extend({
 
         this.$watch('_conf', val => {
 
-            this.conf = Object.assign(this.conf, val);
+            this.conf = Object.assign({}, this.conf, val);
 
         }, {
             immediate : true,
