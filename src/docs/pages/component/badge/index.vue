@@ -55,13 +55,13 @@
     :::repeat/html
     size
     ---
-    <ui-badge {$sizeKey}>{$&sizeName}</ui-badge>
+    <ui-badge size="{$sizeKey}">{$&sizeName}</ui-badge>
     :::
     
     :::repeat/html
     size
     ---
-    <ui-badge class="circle" {$sizeKey}>{$&sizeName}</ui-badge>
+    <ui-badge class="circle" size="{$sizeKey}">{$&sizeName}</ui-badge>
     :::
 
     #### 色彩
@@ -77,7 +77,7 @@
     :::repeat/html
     state:normal,apparent
     ---
-    <ui-badge {$stateKey}>{$&stateName}</ui-badge>
+    <ui-badge state="{$stateKey}">{$&stateName}</ui-badge>
     :::
 
     [[[源码]]]

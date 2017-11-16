@@ -10,6 +10,27 @@ i-link{
         padding: 0 0.6em;
     }
 
+    &.loading{
+        .morningicon{
+            position: absolute;
+            left: ~`'calc( 50% - 0.5em )'`;
+            top: ~`'calc( 50% - 0.5em )'`;
+            line-height: 1em;
+            animation-name: rotation;
+            animation-duration: 1s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+
+        span{
+            opacity: 0;
+        }
+
+        &:hover{
+            cursor: default;
+        }
+    }
+
     &.si-xxl{
         font-size: @fontSize*1.3;
 
@@ -471,35 +492,6 @@ i-link{
 
         &:hover{
             animation-name: none;
-        }
-    }
-
-    &.st-loading{
-        .morningicon{
-            position: absolute;
-            left: ~`'calc( 50% - 0.5em )'`;
-            top: ~`'calc( 50% - 0.5em )'`;
-            line-height: 1em;
-            animation-name: rotation;
-            animation-duration: 1s;
-            animation-timing-function: linear;
-            animation-iteration-count: infinite;
-        }
-
-        span{
-            opacity: 0;
-        }
-
-        &:hover{
-            cursor: default;
-        }
-    }
-
-    &.st-processing{
-        .st-loading;
-
-        .morningicon{
-            animation-name: rotationContrast;
         }
     }
 

@@ -19,7 +19,7 @@
     </div>
 
     <div class="pagination">
-        <template v-for="index in conf.total">
+        <template v-for="index in data.total">
         
             <template v-if="(data.hideEnd - 1) === index && data.hideEnd !== 1">
                 <a href="javascript:;" class="prev" @click="to(data.currentPage - 1)"><i class="morningicon">&#xe696;</i></a>
@@ -42,7 +42,7 @@
                 </a>
             </template>
 
-            <template v-if="(data.hideStart + 1) === index && data.hideStart !== conf.total">
+            <template v-if="(data.hideStart + 1) === index && data.hideStart !== data.total">
                 <a href="javascript:;" class="ignore">...</a>
                 <a href="javascript:;" class="next" @click="to(data.currentPage + 1)"><i class="morningicon">&#xe695;</i></a>
             </template>
@@ -51,7 +51,7 @@
 
         <div
             class="page-jump"
-            v-if="conf.jumpPage && conf.total > conf.maxShow"
+            v-if="conf.jumpPage && data.total > conf.maxShow"
         >
             <morning-textinput :ref="'ui-select-input-' + uiid" class="page-num" form-name="页码"></morning-textinput>
             <i class="morningicon" @click="_jump()">&#xe6c8;</i>
@@ -96,22 +96,29 @@ export default {
             default : true
         }
     },
-    data : function () {
+    computed : {
+        _conf : function () {
 
-        return {
-            conf : {
+            return {
                 total : this.total,
                 list : this.list,
                 pageSize : this.pageSize,
                 page : this.page,
                 maxShow : this.maxShow,
                 jumpPage : this.jumpPage
-            },
+            };
+
+        }
+    },
+    data : function () {
+
+        return {
             data : {
                 currentPage : 0,
                 currentItems : [],
                 hideEnd : 0,
-                hideStart : Infinity
+                hideStart : Infinity,
+                total : 0
             }
         };
 
@@ -146,7 +153,7 @@ export default {
             let end = this.data.currentPage - Math.floor(this.conf.maxShow / 2),
                 start = this.data.currentPage + Math.floor(this.conf.maxShow / 2);
 
-            this.data.hideEnd = end - (start > this.conf.total ? (start - this.conf.total) - 1 : 0);
+            this.data.hideEnd = end - (start > this.data.total ? (start - this.data.total) - 1 : 0);
             this.data.hideStart = start + (end < 1 ? - end + 1 : 0);
 
         },
@@ -169,13 +176,13 @@ export default {
 
             if (index < 0) {
             
-                index = this.conf.total + index + 1;
+                index = this.data.total + index + 1;
             
             }
 
-            if (index > this.conf.total) {
+            if (index > this.data.total) {
                 
-                index = this.conf.total;
+                index = this.data.total;
             
             }
 
@@ -222,7 +229,7 @@ export default {
             
             }
             
-            num = +num || this.conf.total;
+            num = +num || this.data.total;
             
             if (num < 1) {
 
@@ -230,7 +237,7 @@ export default {
 
             }
             
-            this.conf.total = num;
+            this.data.total = num;
 
             this._setMaxshow();
 
@@ -250,13 +257,17 @@ export default {
 
             if (this.conf.list instanceof Array) {
 
-                this.conf.total = Math.ceil(this.conf.list.length / this.conf.pageSize);
+                this.data.total = Math.ceil(this.conf.list.length / this.conf.pageSize);
             
             } else {
 
-                this.conf.total = Math.ceil(Object.keys(this.conf.list).length / this.conf.pageSize);
+                this.data.total = Math.ceil(Object.keys(this.conf.list).length / this.conf.pageSize);
 
             }
+
+        } else {
+
+            this.data.total = this.conf.total;
 
         }
 

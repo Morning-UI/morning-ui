@@ -24,7 +24,7 @@
             <h1 v-if="conf.title">{{conf.title}}</h1>
 
             <div class="action">
-                <morning-btn v-if="conf.exportCsv" success xs @emit="_exportCsv">导出</morning-btn>
+                <morning-btn v-if="conf.exportCsv" color="success" size="xs" @emit="_exportCsv">导出</morning-btn>
             </div>        
         </header>
     </template>
@@ -150,10 +150,10 @@ export default {
             default : undefined
         }
     },
-    data : function () {
+    computed : {
+        _conf : function () {
 
-        return {
-            conf : {
+            return {
                 list : this.list,
                 emptyCellValue : this.emptyCellValue,
                 title : this.title,
@@ -168,18 +168,9 @@ export default {
                 cellSet : this.cellSet,
                 exportCsv : this.exportCsv,
                 csvName : this.csvName
-            },
-            data : {
-                normalKeys : [],
-                normalRows : [],
-                titleKeys : [],
-                titleRows : [],
-                listDataJson : '[]'
-            }
-        };
+            };
 
-    },
-    computed : {
+        },
         colSetMap : function () {
 
             let map = {};
@@ -208,6 +199,19 @@ export default {
             }, classes);
 
         }
+    },
+    data : function () {
+
+        return {
+            data : {
+                normalKeys : [],
+                normalRows : [],
+                titleKeys : [],
+                titleRows : [],
+                listDataJson : '[]'
+            }
+        };
+
     },
     methods : {
         _setCol : function () {

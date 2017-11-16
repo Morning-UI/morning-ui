@@ -72,8 +72,8 @@
     color:silver
     color:gray
     ---
-    <span id="demo{$colorKey}"><ui-textcolor {$colorKey}>{$&colorName}小提示</ui-textcolor></span>
-    <ui-tip {$colorKey} target="#demo{$colorKey}">{$&colorName} 小提示</ui-tip>
+    <span id="demo{$colorKey}"><ui-textcolor color="{$colorKey}">{$&colorName}小提示</ui-textcolor></span>
+    <ui-tip color="{$colorKey}" target="#demo{$colorKey}">{$&colorName} 小提示</ui-tip>
     <br>
     :::
 

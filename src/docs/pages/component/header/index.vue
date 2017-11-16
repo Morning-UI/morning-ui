@@ -61,7 +61,7 @@
     :::repeat/html
     size
     ---
-    <ui-header class="mark" {$sizeKey}>{$&sizeName}<small>页头子标题</small></ui-header>
+    <ui-header class="mark" size="{$sizeKey}">{$&sizeName}<small>页头子标题</small></ui-header>
     :::
 
     #### 色彩
@@ -74,7 +74,7 @@
     color:silver
     color:gray
     ---
-    <ui-header {$colorKey}>{$&colorName}<small>页头子标题</small></ui-header>
+    <ui-header color="{$colorKey}">{$&colorName}<small>页头子标题</small></ui-header>
     :::
 
     [[[源码]]]

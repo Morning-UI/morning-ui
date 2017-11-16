@@ -51,15 +51,15 @@
 
     :::democode/html
     <ui-btngroup class="nogap">
-        <ui-btn success>确认</ui-btn>
-        <ui-btn minor>取消</ui-btn>
+        <ui-btn color="success">确认</ui-btn>
+        <ui-btn color="minor">取消</ui-btn>
     </ui-btngroup>
 
     <br/><br/>
 
     <ui-btngroup class="vertical nogap">
-        <ui-btn success>确认</ui-btn>
-        <ui-btn minor>取消</ui-btn>
+        <ui-btn color="success">确认</ui-btn>
+        <ui-btn color="minor">取消</ui-btn>
     </ui-btngroup>
     :::
 
@@ -69,17 +69,17 @@
 
     :::democode/html
     <ui-btngroup class="split">
-        <ui-btn success>确认</ui-btn>
+        <ui-btn color="success">确认</ui-btn>
         <span>或</span>
-        <ui-btn minor>取消</ui-btn>
+        <ui-btn color="minor">取消</ui-btn>
     </ui-btngroup>
 
     <br><br>
 
     <ui-btngroup class="split">
-        <ui-btn minor>选择一</ui-btn>
+        <ui-btn color="minor">选择一</ui-btn>
         <span>或</span>
-        <ui-btn minor>选择二</ui-btn>
+        <ui-btn color="minor">选择二</ui-btn>
         <span>或</span>
         <ui-btn info>热门选择</ui-btn>
     </ui-btngroup>
@@ -104,31 +104,31 @@
     :::democode/html
     <p>不同尺寸组合</p>
     <ui-btngroup>
-        <ui-btn l>按钮一</ui-btn>
-        <ui-btn m minor>按钮二</ui-btn>
+        <ui-btn size="l">按钮一</ui-btn>
+        <ui-btn size="m" color="minor">按钮二</ui-btn>
     </ui-btngroup>
 
     <br><br>
 
     <p>不同色彩组合</p>
     <ui-btngroup>
-        <ui-btn success>按钮一</ui-btn>
-        <ui-btn minor>按钮二</ui-btn>
+        <ui-btn color="success">按钮一</ui-btn>
+        <ui-btn color="minor">按钮二</ui-btn>
     </ui-btngroup>
 
     <br><br>
 
     <p>不同状态组合</p>
     <ui-btngroup>
-        <ui-btn normal minor>按钮一</ui-btn>
-        <ui-btn apparent>按钮二</ui-btn>
+        <ui-btn state="normal" color="minor">按钮一</ui-btn>
+        <ui-btn state="apparent">按钮二</ui-btn>
     </ui-btngroup>
 
     <br><br>
 
     <ui-btngroup>
-        <ui-btn normal>按钮一</ui-btn>
-        <ui-btn loading>按钮二</ui-btn>
+        <ui-btn state="normal">按钮一</ui-btn>
+        <ui-btn state="disabled">按钮二</ui-btn>
     </ui-btngroup>
     :::
 
@@ -138,8 +138,8 @@
     size
     ---
     <ui-btngroup>
-        <ui-btn {$sizeKey}>{$&sizeName}</ui-btn>
-        <ui-btn {$sizeKey}>{$&sizeName}</ui-btn>
+        <ui-btn size="{$sizeKey}">{$&sizeName}</ui-btn>
+        <ui-btn size="{$sizeKey}">{$&sizeName}</ui-btn>
     </ui-btngroup>
 
     <br><br>
@@ -156,8 +156,8 @@
     color:gray
     ---
     <ui-btngroup>
-        <ui-btn {$colorKey}>{$&colorName}</ui-btn>
-        <ui-btn {$colorKey}>{$&colorName}</ui-btn>
+        <ui-btn color="{$colorKey}">{$&colorName}</ui-btn>
+        <ui-btn color="{$colorKey}">{$&colorName}</ui-btn>
     </ui-btngroup>
 
     <br><br>
@@ -169,8 +169,8 @@
     state
     ---
     <ui-btngroup>
-        <ui-btn {$stateKey}>{$&stateName}</ui-btn>
-        <ui-btn {$stateKey}>{$&stateName}</ui-btn>
+        <ui-btn state="{$stateKey}">{$&stateName}</ui-btn>
+        <ui-btn state="{$stateKey}">{$&stateName}</ui-btn>
     </ui-btngroup>
 
     <br><br>

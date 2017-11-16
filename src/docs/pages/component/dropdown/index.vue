@@ -24,9 +24,9 @@
     :::democode/html
     <ui-dropdown>
         <ui-btn slot="showbtn" emitbtn>更多 <i class="morningicon">&#xe6b1;</i></ui-btn>
-        <ui-btn white>收藏</ui-btn>
-        <ui-btn white>修改</ui-btn>
-        <ui-btn danger>删除</ui-btn>
+        <ui-btn color="white">收藏</ui-btn>
+        <ui-btn color="white">修改</ui-btn>
+        <ui-btn color="danger">删除</ui-btn>
     </ui-dropdown>
     :::
 
@@ -37,14 +37,14 @@
     :::democode/html
     <ui-dropdown>
         <ui-btngroup slot="showbtn">
-            <ui-btn success>立即购买</ui-btn>
+            <ui-btn color="success">立即购买</ui-btn>
             <!-- 这里的morningicon组件附带，可直接使用 -->
-            <ui-btn minor emitbtn><i class="morningicon">&#xe6b1;</i></ui-btn>
+            <ui-btn color="minor" emitbtn><i class="morningicon">&#xe6b1;</i></ui-btn>
         </ui-btngroup>
-        <ui-btn info>加入购物车</ui-btn>
+        <ui-btn color="info">加入购物车</ui-btn>
         <!-- 这里的iconfont组件不附带 -->
-        <ui-btn white><i class="iconfont">&#xe6e2;</i> 收藏</ui-btn>
-        <ui-btn white><i class="iconfont">&#xe70a;</i> 分享</ui-btn>
+        <ui-btn color="white"><i class="iconfont">&#xe6e2;</i> 收藏</ui-btn>
+        <ui-btn color="white"><i class="iconfont">&#xe70a;</i> 分享</ui-btn>
     </ui-dropdown>
     :::
 
@@ -73,9 +73,9 @@
     :::democode/html
     <ui-dropdown :auto-close="false">
         <ui-btn slot="showbtn" emitbtn>更多</ui-btn>
-        <ui-btn white>收藏</ui-btn>
-        <ui-btn white>修改</ui-btn>
-        <ui-btn danger>删除</ui-btn>
+        <ui-btn color="white">收藏</ui-btn>
+        <ui-btn color="white">修改</ui-btn>
+        <ui-btn color="danger">删除</ui-btn>
     </ui-dropdown>
     :::
 
@@ -92,9 +92,9 @@
     :::democode/html
     <ui-dropdown ref="demo1">
         <ui-btn slot="showbtn" emitbtn>更多 <i class="morningicon">&#xe6b1;</i></ui-btn>
-        <ui-btn white>收藏</ui-btn>
-        <ui-btn white>修改</ui-btn>
-        <ui-btn danger>删除</ui-btn>
+        <ui-btn color="white">收藏</ui-btn>
+        <ui-btn color="white">修改</ui-btn>
+        <ui-btn color="danger">删除</ui-btn>
     </ui-dropdown>
     <br><br> 
     <ui-link js="javascript:morning.findVM('demo1').toggle();">切换相反状态</ui-link>
@@ -122,9 +122,9 @@
     <div>
         <ui-dropdown @emit="echo">
             <ui-btn slot="showbtn" emitbtn>emit事件 <i class="morningicon">&#xe6b1;</i></ui-btn>
-            <ui-btn white>收藏</ui-btn>
-            <ui-btn white>修改</ui-btn>
-            <ui-btn danger>删除</ui-btn>
+            <ui-btn color="white">收藏</ui-btn>
+            <ui-btn color="white">修改</ui-btn>
+            <ui-btn color="danger">删除</ui-btn>
         </ui-dropdown>
     </div>
     :::
@@ -147,9 +147,9 @@
     <div>
         <ui-dropdown @show="echo">
             <ui-btn slot="showbtn" emitbtn>show事件 <i class="morningicon">&#xe6b1;</i></ui-btn>
-            <ui-btn white>收藏</ui-btn>
-            <ui-btn white>修改</ui-btn>
-            <ui-btn danger>删除</ui-btn>
+            <ui-btn color="white">收藏</ui-btn>
+            <ui-btn color="white">修改</ui-btn>
+            <ui-btn color="danger">删除</ui-btn>
         </ui-dropdown>
     </div>
     :::
@@ -172,9 +172,9 @@
     <div>
         <ui-dropdown @hide="echo">
             <ui-btn slot="showbtn" emitbtn>hide事件 <i class="morningicon">&#xe6b1;</i></ui-btn>
-            <ui-btn white>收藏</ui-btn>
-            <ui-btn white>修改</ui-btn>
-            <ui-btn danger>删除</ui-btn>
+            <ui-btn color="white">收藏</ui-btn>
+            <ui-btn color="white">修改</ui-btn>
+            <ui-btn color="danger">删除</ui-btn>
         </ui-dropdown>
     </div>
     :::
@@ -211,9 +211,9 @@
         >
 
             <ui-btn slot="showbtn" emitbtn>{*text*} <i class="morningicon">&#xe6b1;</i></ui-btn>
-            <ui-btn white>收藏</ui-btn>
-            <ui-btn white>修改</ui-btn>
-            <ui-btn danger>删除</ui-btn>
+            <ui-btn color="white">收藏</ui-btn>
+            <ui-btn color="white">修改</ui-btn>
+            <ui-btn color="danger">删除</ui-btn>
 
         </ui-dropdown>
 

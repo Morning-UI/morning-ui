@@ -51,24 +51,17 @@ export default {
             default : 'top'
         }
     },
-    data : function () {
+    computed : {
+        _conf : function () {
 
-        return {
-            conf : {
+            return {
                 width : this.width,
                 height : this.height,
                 autoClose : this.autoClose,
                 showType : this.showType
-            },
-            data : {
-                show : false,
-                hasHeader : false,
-                hasFooter : false
-            }
-        };
+            };
 
-    },
-    computed : {
+        },
         moreClass : function () {
 
             return {
@@ -80,6 +73,17 @@ export default {
             };
 
         }
+    },
+    data : function () {
+
+        return {
+            data : {
+                show : false,
+                hasHeader : false,
+                hasFooter : false
+            }
+        };
+
     },
     methods : {
         _onClick : function (evt) {

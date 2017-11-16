@@ -1,23 +1,21 @@
 <template>
     <i-link
         :_uiid="uiid"
-        :class="[sizeClass, colorClass, stateClass]"
+        :class="[sizeClass, colorClass, stateClass, moreClass]"
 
         :link="link"
+        :js="js"
         :locked="locked"
         :new-tab="newTab"
 
         @click="_onClick"
     >
 
-    <template v-if="conf.state === 'loading'">
+    <template v-if="data.lock">
         <i class="morningicon">&#xe703;</i>
         <span><slot></slot></span>
     </template>
-    <template v-else-if="conf.state === 'processing'">
-        <i class="morningicon">&#xe703;</i>
-        <span><slot></slot></span>
-    </template>
+
     <template v-else>
         <slot></slot>
     </template>
@@ -47,18 +45,30 @@ export default {
             default : false
         }
     },
-    data : function () {
+    computed : {
+        _conf : function () {
 
-        return {
-            conf : {
+            return {
                 link : this.link,
                 js : this.js,
                 locked : this.locked,
                 newTab : this.newTab
-            },
+            };
+
+        },
+        moreClass : function () {
+
+            return {
+                loading : this.data.lock
+            };
+
+        }
+    },
+    data : function () {
+
+        return {
             data : {
-                lock : false,
-                lastState : null
+                lock : false
             }
         };
 
@@ -76,11 +86,11 @@ export default {
         },
         _emitLock : function () {
 
-            if (typeof this.locked === 'number') {
+            if (typeof this.conf.locked === 'number') {
 
                 this.lock(+this.locked);
 
-            } else if (this.locked === true) {
+            } else if (this.conf.locked === true) {
 
                 this.lock();
 
@@ -90,21 +100,13 @@ export default {
         unlock : function () {
 
             this.data.lock = false;
-            this.conf.state = this.data.lastState;
 
             return this;
 
         },
         lock : function (time) {
 
-            if (this.data.lock !== true) {
-                
-                this.data.lastState = this.conf.state;
-    
-            }
-
             this.data.lock = true;
-            this.conf.state = 'loading';
 
             if (time) {
 
@@ -125,8 +127,6 @@ export default {
         }
     },
     mounted : function () {
-
-        this.data.lastState = this.conf.state;
 
         this._emitLock();
 

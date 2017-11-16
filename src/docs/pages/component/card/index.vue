@@ -69,7 +69,7 @@
     color:gray
     ---
     <div style="width:180px;height:240px;display:inline-block;margin:10px;">
-        <ui-card {$colorKey}>
+        <ui-card color="{$colorKey}">
             <header>{$&colorName}</header>
             <div>卡片</div>
         </ui-card>

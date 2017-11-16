@@ -45,7 +45,7 @@
             </div>
             <div class="action">
                 <ui-btn>确认</ui-btn>
-                <ui-link minor>取消</ui-link>
+                <ui-link color="minor">取消</ui-link>
             </div>
         </ui-action>
     </div>
@@ -83,13 +83,13 @@
     size
     ---
     <div style="width:400px">
-        <ui-action {$sizeKey}>
+        <ui-action size="{$sizeKey}">
             <div class="title">
                 <h5>{$&sizeName}</h5>
                 <span class="note">行动说明</span>
             </div>
             <div class="action">
-                <ui-btn {$sizeKey}>行动按钮</ui-btn>
+                <ui-btn size="{$sizeKey}">行动按钮</ui-btn>
             </div>
         </ui-action>
     </div>
@@ -107,13 +107,13 @@
     color:gray
     ---
     <div style="width:400px">
-        <ui-action {$colorKey}>
+        <ui-action color="{$colorKey}">
             <div class="title">
                 <h5>{$&colorName}</h5>
                 <span class="note">行动说明</span>
             </div>
             <div class="action">
-                <ui-btn {$colorKey}>{$name}按钮</ui-btn>
+                <ui-btn color="{$colorKey}">{$name}按钮</ui-btn>
             </div>
         </ui-action>
     </div>

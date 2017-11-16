@@ -33,13 +33,7 @@
     :::repeat/html
     size
     ---
-    <ui-link {$sizeKey}>{$&sizeName}</ui-link>
-    :::
-
-    :::repeat/html
-    size
-    ---
-    <ui-link {$sizeKey} loading>{$&sizeName}</ui-link>
+    <ui-link size="{$sizeKey}">{$&sizeName}</ui-link>
     :::
 
     #### 色彩
@@ -60,7 +54,7 @@
     state|br:2|color:silver
     state|br:2|color:gray
     ---
-    <ui-link {$stateKey} {$colorKey}>{$&stateName}</ui-link>
+    <ui-link state="{$stateKey}" color="{$colorKey}">{$&stateName}</ui-link>
     :::
 
     [[[配置]]]

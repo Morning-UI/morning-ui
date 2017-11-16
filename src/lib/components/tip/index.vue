@@ -48,15 +48,21 @@ export default {
             default : 'hover'
         }
     },
-    data : function () {
+    computed : {
+        _conf : function () {
 
-        return {
-            conf : {
+            return {
                 target : this.target,
                 placement : this.placement,
                 offset : this.offset,
                 trigger : this.trigger
-            },
+            };
+
+        }
+    },
+    data : function () {
+
+        return {
             data : {
                 title : null,
                 $target : null,
