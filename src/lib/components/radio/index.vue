@@ -1,7 +1,7 @@
 <template>
     <i-radio
         :_uiid="uiid"
-        :class="[styleClass, stateClass]"
+        :class="[colorClass, stateClass]"
 
         :form-name="formName"
         :form-key="formKey"

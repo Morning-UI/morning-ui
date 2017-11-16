@@ -18,7 +18,7 @@
     <ui-lead>中心内容</ui-lead>
     :::
 
-    [[[声明]]]
+    [[[形态]]]
 
     #### 支持
 
@@ -31,7 +31,7 @@
     #### 色彩
 
     :::preset/html
-    statementColor
+    statusColor
     ---
     uikey:lead
     :::
@@ -41,7 +41,7 @@
     :::repeat/html
     state:normal,apparent
     ---
-    <ui-lead {$stateKey}>{$&stateName}</ui-lead>
+    <ui-lead state="{$stateKey}">{$&stateName}</ui-lead>
     :::
 
     [[[源码]]]

@@ -18,7 +18,7 @@
     <ui-btn>按钮</ui-btn>
     :::
     
-    [[[声明]]]
+    [[[形态]]]
 
     #### 支持
 
@@ -33,19 +33,19 @@
     :::repeat/html
     size
     ---
-    <ui-btn {$sizeKey}>{$&sizeName}</ui-btn>
+    <ui-btn size="{$sizeKey}">{$&sizeName}</ui-btn>
     :::
 
     :::repeat/html
     size
     ---
-    <ui-btn {$sizeKey} loading>{$&sizeName}</ui-btn>
+    <ui-btn size="{$sizeKey}" loading>{$&sizeName}</ui-btn>
     :::
 
     #### 色彩
 
     :::preset/html
-    statementColor
+    statusColor
     ---
     uikey:btn
     :::
@@ -60,7 +60,7 @@
     state|br:2|color:silver
     state|br:2|color:gray
     ---
-    <ui-btn {$stateKey} {$colorKey}>{$&stateName}</ui-btn>
+    <ui-btn state="{$stateKey}" color="{$colorKey}">{$&stateName}</ui-btn>
     :::
 
     [[[配置]]]

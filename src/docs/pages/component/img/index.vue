@@ -62,7 +62,7 @@
     <ui-img alt="这里是alt" src="https://d13yacurqjgar.cloudfront.net/noimg.jpeg"></ui-img>
     :::
 
-    [[[声明]]]
+    [[[形态]]]
 
     #### 支持
 

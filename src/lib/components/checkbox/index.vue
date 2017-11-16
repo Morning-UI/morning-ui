@@ -1,7 +1,7 @@
 <template>
     <i-checkbox
         :_uiid="uiid"
-        :class="[styleClass, stateClass]"
+        :class="[colorClass, stateClass]"
 
         :form-name="formName"
         :form-key="formKey"

@@ -1,7 +1,7 @@
 <template>
     <i-link
         :_uiid="uiid"
-        :class="[sizeClass, styleClass, stateClass]"
+        :class="[sizeClass, colorClass, stateClass]"
 
         :link="link"
         :locked="locked"

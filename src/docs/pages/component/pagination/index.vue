@@ -132,7 +132,7 @@
     <ui-pagination :total='16'></ui-pagination>
     :::
 
-    [[[声明]]]
+    [[[形态]]]
 
     #### 支持
 

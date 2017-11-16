@@ -20,14 +20,14 @@
     </div>
     :::
 
-    [[[声明]]]
+    [[[形态]]]
 
     :::preset/html
-    formStatementWithStyle
+    formStatusWithStyle
     ---
     uikey:checkbox
-    statementDefaultValue:['Tim']
-    statementMoreAttr::list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"
+    statusDefaultValue:['Tim']
+    statusMoreAttr::list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"
     :::
 
     [[[配置]]]

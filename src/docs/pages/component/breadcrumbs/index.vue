@@ -30,7 +30,7 @@
     <ui-breadcrumbs :list="list"></ui-breadcrumbs>
     :::
 
-    [[[声明]]]
+    [[[形态]]]
 
     #### 支持
 

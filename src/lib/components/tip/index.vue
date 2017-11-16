@@ -1,7 +1,7 @@
 <template>
     <i-tip
         :_uiid="uiid"
-        :class="[styleClass]"
+        :class="[colorClass]"
 
         :target="target"
         :placement="placement"

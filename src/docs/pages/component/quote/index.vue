@@ -18,7 +18,7 @@
     <ui-quote>引用文本</ui-quote>
     :::
 
-    [[[声明]]]
+    [[[形态]]]
 
     #### 支持
 
@@ -38,7 +38,7 @@
     color:silver
     color:gray
     ---
-    <ui-quote {$colorKey}>{$&colorName}</ui-quote>
+    <ui-quote color="{$colorKey}">{$&colorName}</ui-quote>
     <br>
     :::
 

@@ -31,7 +31,7 @@
 
     #### 带头部的模拟盒
 
-    通过`<header slot="header">`标签声明一个头部内容。
+    通过`<header slot="header">`标签标记一个头部内容。
 
     :::democode/html
     <ui-dialog ref="demo2">
@@ -65,7 +65,7 @@
 
     #### 带尾部的模拟盒
 
-    通过`<footer slot="footer">`标签声明一个尾部内容。
+    通过`<footer slot="footer">`标签标记一个尾部内容。
 
     :::democode/html
     <ui-dialog ref="demo5">
@@ -176,7 +176,7 @@
     <ui-link js="window.morning.findVM('demo10').toggle(true);">显示模拟盒</ui-link>
     :::
 
-    [[[声明]]]
+    [[[形态]]]
 
     #### 支持
 

@@ -18,7 +18,7 @@
     <ui-mark>标记的文本</ui-mark>
     :::
 
-    [[[声明]]]
+    [[[形态]]]
 
     #### 支持
 
@@ -31,7 +31,7 @@
     #### 色彩
 
     :::preset/html
-    statementColor
+    statusColor
     ---
     uikey:mark
     :::
@@ -40,7 +40,7 @@
     :::repeat/html
     state:normal,apparent
     ---
-    <ui-mark {$stateKey}>{$&stateName}</ui-mark>
+    <ui-mark state="{$stateKey}">{$&stateName}</ui-mark>
     :::
 
     [[[源码]]]

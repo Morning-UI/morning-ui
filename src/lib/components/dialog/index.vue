@@ -1,7 +1,7 @@
 <template>
     <i-dialog
         :_uiid="uiid"
-        :class="[styleClass, moreClass]"
+        :class="[colorClass, moreClass]"
 
         :width="width"
         :height="height"

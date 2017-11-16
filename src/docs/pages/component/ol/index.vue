@@ -62,7 +62,7 @@
     </ui-ol>
     :::
 
-    [[[声明]]]
+    [[[形态]]]
 
     #### 支持
 
@@ -77,7 +77,7 @@
     :::repeat/html
     state:normal,apparent
     ---
-    <ui-ol {$stateKey}>
+    <ui-ol state="{$stateKey}">
         <li>this is {$&stateName} ui-ol</li>
         <li>this is {$&stateName} ui-ol</li>
     </ui-ol>

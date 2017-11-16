@@ -3,7 +3,7 @@
 @tip-arrowWidth : 5px;
 
 .tip-style(@background; @color; @style) {
-    &.sy-@{style} {
+    &.co-@{style} {
         .tip-content {
             color: @color;
             background-color: @background;
@@ -141,8 +141,8 @@ i-tip{
     .tip-style(@colorLightGray, @colorLightBlack, lightGray);
     .tip-style(@colorWhite, @colorLightBlack, white);
 
-    // default statement
+    // default status
     &{
-        .sy-theme;
+        .co-theme;
     }
 }

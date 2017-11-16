@@ -121,7 +121,7 @@
 
     #### 扩展语法
 
-    除示例之外的，演示、重复、Vue实例、预设都基于了同一种扩展语法：使用`:::`声明的区块，格式如下：
+    除示例之外的，演示、重复、Vue实例、预设都基于了同一种扩展语法：使用`:::`标记的区块，格式如下：
 
     ```text
     :::[扩展名]/[代码语言]
@@ -132,7 +132,7 @@
     ```
 
     - `扩展名` : 标记需要使用的扩展功能
-    - `代码语言` : <ui-badge xxs minor>非必需</ui-badge>声明`内容部分`的语言类型
+    - `代码语言` : <ui-badge xxs minor>非必需</ui-badge>标记`内容部分`的语言类型
     - `配置部分` : <ui-badge xxs minor>非必需</ui-badge>可以用来配置不同的扩展功能，不同扩展的配置方式不同，会在后面详细说明
     - `内容部分` : <ui-badge xxs minor>非必需</ui-badge>是扩展的主体内容部分
 
@@ -290,9 +290,9 @@
 
     |配置名|参数|说明|支持变量|
     |-|-|-|-|
-    |size|无|循环输出尺寸声明|sizeKey / sizeName|
-    |color|`theme`:主题色组<br>`feature`:功能色组<br>`black`:黑色组<br>`blue`:青色组<br>`silver`:银色组<br>`gray`:浅色组<br>|循环输出颜色声明|colorKey / colorName|
-    |state|需要输出的状态，多个之间用`,`分隔。<br>`normal`:正常状态<br>`hover`:Hover状态<br>`active`:激活状态<br>`disabled`:禁用状态<br>`apparent`:醒目状态<br>`loading`:载入中<br>`processing`:处理中|循环输出状态声明|stateKey / stateName|
+    |size|无|循环输出尺寸形态|sizeKey / sizeName|
+    |color|`theme`:主题色组<br>`feature`:功能色组<br>`black`:黑色组<br>`blue`:青色组<br>`silver`:银色组<br>`gray`:浅色组<br>|循环输出颜色形态|colorKey / colorName|
+    |state|需要输出的状态，多个之间用`,`分隔。<br>`normal`:正常状态<br>`hover`:Hover状态<br>`active`:激活状态<br>`disabled`:禁用状态<br>`apparent`:醒目状态<br>`loading`:载入中<br>`processing`:处理中|循环输出状态形态|stateKey / stateName|
     |br|需要插入的换行符数量|在循环中插入换行符`<br>`|无|
     |formConfig|无|输出演示用的表单名称、Key、表单组(由预设使用)|formName / formKey / formGroupOne|
     |formValueType|需要输出一组值的名称|在表单值演示中输出一组包含所有类型的数值|valueType / valueContent|
@@ -357,14 +357,14 @@
 
     ```text
     :::preset/html
-    formStatement
+    formStatus
     ---
     uikey:textinput
-    statementDefaultValue:''
+    statusDefaultValue:''
     :::
     ```
 
-    在扩展的配置区域设置需要使用`预设`的名称，比如上面示例使用了`formStatement`预设。
+    在扩展的配置区域设置需要使用`预设`的名称，比如上面示例使用了`formStatus`预设。
 
     在内容区域有两种用法：
 
@@ -377,10 +377,10 @@
     ---demostart---
 
     :::preset
-    formStatement
+    formStatus
     ---
     uikey:textinput
-    statementDefaultValue:''
+    statusDefaultValue:''
     :::
 
     ---demoend---
@@ -393,9 +393,9 @@
 
     |预设|参数/内容|说明|
     |-|-|-|
-    |statementColor|@uikey：组件的Key|除表单组件外的色彩声明文档(仅简单情况，负责情况请使用自定义模板和`重复`来生成)|
-    |formStatement|@uikey：组件的Key<br>@statementDefaultValue：组件的默认值<br>@statementMoreAttr：组件的配置<br>@statementSlot：组件的插值|输出表单组件的声明文档(仅状态)|
-    |formStatementWithStyle|@uikey：组件的Key<br>@statementDefaultValue：组件的默认值<br>@statementMoreAttr：组件的配置<br>@statementSlot：组件的插值|输出表单组件的声明文档(包含状态及色彩)|
+    |colorColor|@uikey：组件的Key|除表单组件外的色彩形态文档(仅简单情况，负责情况请使用自定义模板和`重复`来生成)|
+    |formStatus|@uikey：组件的Key<br>@statusDefaultValue：组件的默认值<br>@statusMoreAttr：组件的配置<br>@statusSlot：组件的插值|输出表单组件的形态文档(仅状态)|
+    |formStatusWithStyle|@uikey：组件的Key<br>@statusDefaultValue：组件的默认值<br>@statusMoreAttr：组件的配置<br>@statusSlot：组件的插值|输出表单组件的形态文档(包含状态及色彩)|
     |formConfigDemo|@uikey：组件的Key<br>@configDefaultValue：组件的默认值<br>@configMoreAttr：组件的配置<br>@configSlot：组件的插值|表单基本配置示例文档|
     |formConfigTable|组件的其余配置作为内容部分|表单配置说明文档(表格)|
     |formMethod|@uikey：组件的Key<br>@methodDefaultValue：组件的默认值<br>@methodMoreAttr：组件的配置<br>@methodSlot：组件的插值<br>@methodValue：组件的值|表单基本方法示例文档|
@@ -423,7 +423,7 @@
     - 标题 : 组件的名称及标签。
     - 组件状态栏 : 组件的单元/集成测试情况，测试覆盖率。组件最后更新日期、作者、commid id以及所有贡献者。
     - 开始 : 简单介绍组件，并从组件最简单的用法开始，一一列举组件常见的用法。
-    - 声明 : 组件的声明支持情况，及所有声明的演示。
+    - 形态 : 组件的形态支持情况，及所有形态的演示。
     - 配置 : 组件的配置详情，及配置的演示。
     - 方法 : 组件所有方法的演示及文档。
     - 事件 : 组件所有的事件演示及文档。
@@ -432,7 +432,7 @@
 
     从`开始`至`源码`部分都在标签页内，需要用添加标签名称。
 
-    其中布局组件只需要：`标题`、`组件状态栏`、`开始`、`声明`、`源码`。
+    其中布局组件只需要：`标题`、`组件状态栏`、`开始`、`形态`、`源码`。
 
     交互组件在布局组件的基础上增加：`配置`、`方法`、`事件`。
 
@@ -465,9 +465,9 @@
 
     每一种用法的标题采用`####`，最简单的用法命名：`使用`，其余用法根据情况取名。
 
-    #### 声明
+    #### 形态
 
-    声明包含：`支持`、`尺寸`、`色彩`、`状态`四部分，其中`支持`是必需有的部分，`支持`部分的写法如下：
+    形态包含：`支持`、`尺寸`、`色彩`、`状态`四部分，其中`支持`是必需有的部分，`支持`部分的写法如下：
 
     ```md
     |类型|支持|默认|
@@ -479,7 +479,7 @@
 
     若支持多种值，值之间用`<br/>`分隔。
 
-    其余部分若组件支持则需要写出组件在这种声明下的所有情况，具体可参考[标题组件的声明](/component/h.html)。
+    其余部分若组件支持则需要写出组件在这种形态下的所有情况，具体可参考[标题组件的形态](/component/h.html)。
 
     #### 配置
 

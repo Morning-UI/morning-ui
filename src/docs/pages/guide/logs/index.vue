@@ -114,7 +114,7 @@
     <ui-label primary>Upgrade Precautions</ui-label>
 
     - 表单组件的`.get()`方法变更，请查询最新文档
-    - 组件样式中以驼峰法命名的`class`现在换成了中划线法命名(声明的`class`除外)
+    - 组件样式中以驼峰法命名的`class`现在换成了中划线法命名
     - 所有之前返回`undeifned`的组件方法，现在都会返回组件的Vue实例(取值方法除外)
     - `ui-tab`的`switchNext()`和`switchPrev()`方法换成了`next()`和`prev()`方法
 

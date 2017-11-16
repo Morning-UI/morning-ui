@@ -185,15 +185,7 @@ let data = {
         {
             stateKey : 'apparent',
             stateName : '醒目'
-        },
-        {
-            stateKey : 'loading',
-            stateName : '载入中'
-        },
-        {
-            stateKey : 'processing',
-            stateName : '处理中'
-        },
+        }
     ],
     formConfig : {
         formName : '表单名',
@@ -452,7 +444,7 @@ let repeater = {
 };
 
 let presets = {
-    statementColor : `
+    statusColor : `
 :::repeat/html
 color:theme
 color:feature
@@ -461,10 +453,10 @@ color:blue
 color:silver
 color:gray
 ---
-<ui-{%uikey%} {$colorKey}>{$&colorName}</ui-{%uikey%}>
+<ui-{%uikey%} color="{$colorKey}">{$&colorName}</ui-{%uikey%}>
 :::
 `,
-    formStatement : `
+    formStatus : `
 #### 支持
 
 |类型|支持|默认|
@@ -473,18 +465,20 @@ color:gray
 |色彩|不支持|-|
 |状态|\`normal\`<br/>\`disabled\`|\`normal\`|
 
+<a href="/guide/status.html">查看形态文档</a>
+
 #### 状态
 
 :::repeat/html
 state:normal,disabled
 ---
 <div style="width:300px;">
-    <ui-{%uikey%} {$stateKey} :default-value="{%&statementDefaultValue%}" form-name="{$&stateName}" {%&statementMoreAttr%}>{%&statementSlot%}</ui-{%uikey%}>
+    <ui-{%uikey%} state="{$stateKey}" :default-value="{%&statusDefaultValue%}" form-name="{$&stateName}" {%&statusMoreAttr%}>{%&statusSlot%}</ui-{%uikey%}>
 </div>
 <br>
 :::
 `,
-    formStatementWithStyle : `
+    formStatusWithStyle : `
 #### 支持
 
 |类型|支持|默认|
@@ -493,6 +487,7 @@ state:normal,disabled
 |色彩|全部|\`theme\`|
 |状态|\`normal\`<br/>\`disabled\`|\`normal\`|
 
+<a href="/guide/status.html">查看形态文档</a>
 
 #### 色彩
 
@@ -505,7 +500,7 @@ color:silver
 color:gray
 ---
 <div style="width:300px;">
-    <ui-{%uikey%} {$colorKey} :default-value="{%&statementDefaultValue%}" form-name="{$&colorName}" {%&statementMoreAttr%}>{%&statementSlot%}</ui-{%uikey%}>
+    <ui-{%uikey%} color="{$colorKey}" :default-value="{%&statusDefaultValue%}" form-name="{$&colorName}" {%&statusMoreAttr%}>{%&statusSlot%}</ui-{%uikey%}>
 </div>
 <br>
 :::
@@ -516,7 +511,7 @@ color:gray
 state:normal,disabled
 ---
 <div style="width:300px;">
-    <ui-{%uikey%} {$stateKey} :default-value="{%&statementDefaultValue%}" form-name="{$&stateName}" {%&statementMoreAttr%}>{%&statementSlot%}</ui-{%uikey%}>
+    <ui-{%uikey%} state="{$stateKey}" :default-value="{%&statusDefaultValue%}" form-name="{$&stateName}" {%&statusMoreAttr%}>{%&statusSlot%}</ui-{%uikey%}>
 </div>
 <br>
 :::
@@ -1179,7 +1174,7 @@ window.Vue.directive('docmd', {
             md = md.replace(/<p>(\[\[\[(.+)\]\]\])<\/p>/g, '$1');
             md = md.replace(/(\[\[\[)/, '<ui-tab class="block noborder">$1');
             md = md.replace(/\[\[\[开始\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="开始"><div class="content-title">开始</div>$1</div>$3');
-            md = md.replace(/\[\[\[声明\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="声明"><div class="content-title">声明</div>$1</div>$3');
+            md = md.replace(/\[\[\[形态\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="形态"><div class="content-title">形态</div>$1</div>$3');
             md = md.replace(/\[\[\[配置\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="配置"><div class="content-title">配置</div>$1</div>$3');
             md = md.replace(/\[\[\[方法\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="方法"><div class="content-title">方法</div>$1</div>$3');
             md = md.replace(/\[\[\[事件\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="事件"><div class="content-title">事件</div>$1</div>$3');

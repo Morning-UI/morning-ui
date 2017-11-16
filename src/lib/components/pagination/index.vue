@@ -1,7 +1,7 @@
 <template>
     <i-pagination
         :_uiid="uiid"
-        :class="[sizeClass, styleClass]"
+        :class="[sizeClass, colorClass]"
 
         :total="total"
         :list="list"
