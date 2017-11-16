@@ -157,10 +157,10 @@ export default {
             default : 'top'
         }
     },
-    data : function () {
+    computed : {
+        _conf : function () {
 
-        return {
-            conf : {
+            return {
                 maxShow : this.maxShow,
                 autoClose : this.autoClose,
                 canSearch : this.canSearch,
@@ -171,25 +171,9 @@ export default {
                 inlineImgSize : this.inlineImgSize,
                 itemTip : this.itemTip,
                 itemTipDirect : this.itemTipDirect
-            },
-            data : {
-                showlist : false,
-                selectedContent : null,
-                searching : false,
-                focusSearch : false,
-                mounted : false,
-                isMax : false,
-                multiinputLastValue : [],
-                selectInput : false,
-                itemValueList : [],
-                filterNotExist : false,
-                lastItemHeight : 0
-            },
-            listStyle : {}
-        };
+            };
 
-    },
-    computed : {
+        },
         moreClass : function () {
 
             let selectItem = false;
@@ -211,6 +195,26 @@ export default {
             };
 
         }
+    },
+    data : function () {
+
+        return {
+            data : {
+                showlist : false,
+                selectedContent : null,
+                searching : false,
+                focusSearch : false,
+                mounted : false,
+                isMax : false,
+                multiinputLastValue : [],
+                selectInput : false,
+                itemValueList : [],
+                filterNotExist : false,
+                lastItemHeight : 0
+            },
+            listStyle : {}
+        };
+
     },
     methods : {
         _valueFilter : function (value) {

@@ -220,7 +220,7 @@ let data = {
             },
             {
                 valueType : 'Array',
-                valueContent : '[]'
+                valueContent : `['Jim', 'Tom']`
             }
         ],
         checkbox : [
