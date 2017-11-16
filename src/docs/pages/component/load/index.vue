@@ -81,7 +81,7 @@
     size
     ---
     <div style="width:400px;height:200px;background: #f6f6f6">
-        <ui-load {$sizeKey} :time="false" note="{$sizeName}">加载成功</ui-load>
+        <ui-load size="{$sizeKey}" :time="false" note="{$sizeName}">加载成功</ui-load>
     </div>
     :::
 
@@ -151,7 +151,7 @@
 
     当加载完毕时触发，不管加载是否成功都会触发此事件。
 
-    :::vue
+    :::vue/html
     new Vue({
         el : '{$el}',
         template : '{$template}',
@@ -174,7 +174,7 @@
 
     当加载完毕并成功时触发。
 
-    :::vue
+    :::vue/html
     new Vue({
         el : '{$el}',
         template : '{$template}',
@@ -197,7 +197,7 @@
 
     当加载完毕并成功时触发。
 
-    :::vue
+    :::vue/html
     new Vue({
         el : '{$el}',
         template : '{$template}',

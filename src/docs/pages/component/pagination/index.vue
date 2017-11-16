@@ -147,7 +147,7 @@
     :::repeat/html
     size
     ---
-    <ui-pagination :total='10' {$sizeKey}></ui-pagination> &nbsp;&nbsp; <span>{$&sizeName}</span>
+    <ui-pagination :total='10' size="{$sizeKey}"></ui-pagination> &nbsp;&nbsp; <span>{$&sizeName}</span>
     <br>
     :::
 
@@ -161,7 +161,7 @@
     color:silver
     color:gray
     ---
-    <ui-pagination :total='10' {$colorKey}></ui-pagination> &nbsp;&nbsp; <span>{$&colorName}</span>
+    <ui-pagination :total='10' color="{$colorKey}"></ui-pagination> &nbsp;&nbsp; <span>{$&colorName}</span>
     <br>
     :::
 

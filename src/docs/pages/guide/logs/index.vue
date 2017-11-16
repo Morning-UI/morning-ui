@@ -49,7 +49,7 @@
     
     - `ui-multiinput`组件新增`update`方法
     - `ui-multiform`组件新增`item-filler`和`clean-btn`配置
-    - 完善布局组件的端点(E2E)测试
+    - 完善样式组件的端点(E2E)测试
     - 项目构建工具升级至Webpack3
 
     <ui-label primary>Upgrade Precautions</ui-label>
@@ -105,7 +105,7 @@
 
     - `ui-formgroup`支持内联布局
     - 现在表单方法`.get()`返回原始值，`.getJson()`返回JSON值
-    - 新增布局组件的单元测试
+    - 新增样式组件的单元测试
     - 更新开发者规范
     - 优化CI流程中的测试覆盖率部分，避免重复的测试
     - 优化文档构建方式，减小文档体积

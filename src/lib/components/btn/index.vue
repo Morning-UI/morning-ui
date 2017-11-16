@@ -16,11 +16,6 @@
         <span><slot></slot></span>
     </template>
 
-   <!--  <template v-else-if="state === 'processing'">
-        <i class="morningicon">&#xe703;</i>
-        <span><slot></slot></span>
-    </template> -->
-
     <template v-else>
         <slot></slot>
     </template>

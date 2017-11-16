@@ -19,13 +19,13 @@
     :::democode/html
     <div style="width:500px;height:300px;border:1px solid #eee;">
         <ui-grid class="fill">
-            <div class="c-7">
+            <div class="c-11">
                 <ui-center class="fill"><p>LEFT</p></ui-center>
             </div>
             <div class="c-2">
                 <ui-divider>OR</ui-divider>
             </div>
-            <div class="c-7">
+            <div class="c-11">
                 <ui-center class="fill"><p>RIGHT</p></ui-center>
             </div>
         </ui-grid>
@@ -53,13 +53,13 @@
     :::democode/html
     <div style="width:500px;height:300px;border:1px solid #eee;">
         <ui-grid class="fill">
-            <div class="c-7">
+            <div class="c-11">
                 <ui-center class="fill"><p>LEFT</p></ui-center>
             </div>
             <div class="c-2">
                 <ui-divider></ui-divider>
             </div>
-            <div class="c-7">
+            <div class="c-11">
                 <ui-center class="fill"><p>RIGHT</p></ui-center>
             </div>
         </ui-grid>

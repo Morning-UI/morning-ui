@@ -39,14 +39,20 @@ export default {
             default : () => ({})
         }
     },
-    data : function () {
+    computed : {
+        _conf : function () {
 
-        return {
-            conf : {
+            return {
                 tab : this.tab,
                 prepend : this.prepend,
                 append : this.append
-            },
+            };
+
+        }
+    },
+    data : function () {
+
+        return {
             data : {
                 tabs : [],
                 selectTab : null,

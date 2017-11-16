@@ -83,7 +83,7 @@
     :::repeat/html
     size
     ---
-    <ui-statistic {$sizeKey}>
+    <ui-statistic size="{$sizeKey}">
         <div class="value">5,550</div>
         <div class="label">{$&sizeName}</div>
     </ui-statistic>
@@ -99,7 +99,7 @@
     color:silver
     color:gray
     ---
-    <ui-statistic {$colorKey}>
+    <ui-statistic color="{$colorKey}">
         <div class="value">5,550</div>
         <div class="label">{$&colorName}</div>
     </ui-statistic>
@@ -110,7 +110,7 @@
     :::repeat/html
     state:normal,apparent
     ---
-    <ui-statistic {$stateKey}>
+    <ui-statistic state="{$stateKey}">
         <div class="value">5,550</div>
         <div class="label">{$&stateName}</div>
     </ui-statistic>

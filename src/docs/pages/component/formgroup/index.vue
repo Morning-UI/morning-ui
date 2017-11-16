@@ -185,7 +185,7 @@
             <!-- .action : 行动区域 -->
             <div class="action">
                 <ui-btn>提交</ui-btn>&nbsp;
-                <ui-btn minor>取消</ui-btn>
+                <ui-btn color="minor">取消</ui-btn>
             </div>
         </ui-formgroup>
     </div>
@@ -233,7 +233,7 @@
             </div>
             <div class="action">
                 <ui-btn>提交</ui-btn>&nbsp;
-                <ui-btn minor>取消</ui-btn>
+                <ui-btn color="minor">取消</ui-btn>
             </div>
         </ui-formgroup>
     </div>
@@ -444,7 +444,7 @@
             </div>
             <div class="action">
                 <ui-btn>提交</ui-btn>&nbsp;
-                <ui-btn minor>取消</ui-btn>
+                <ui-btn color="minor">取消</ui-btn>
             </div>
         </ui-formgroup>
     </div>
@@ -507,7 +507,7 @@
             </div>
             <div class="action">
                 <ui-btn>提交</ui-btn>&nbsp;
-                <ui-btn minor>取消</ui-btn>
+                <ui-btn color="minor">取消</ui-btn>
             </div>
         </ui-formgroup>
     </div>

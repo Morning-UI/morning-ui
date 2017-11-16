@@ -159,7 +159,7 @@
     color:gray
     ---
     <p>{$colorName}</p>
-    <ui-table :list="window.list" {$colorKey}></ui-table>
+    <ui-table :list="window.list" color="{$colorKey}"></ui-table>
     <br>
     :::
 

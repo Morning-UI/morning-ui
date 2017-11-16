@@ -38,13 +38,19 @@ export default {
             default : ''
         }
     },
+    computed : {
+        _conf : function () {
+
+            return {
+                time : this.time,
+                note : this.note
+            };
+
+        }
+    },
     data : function () {
 
         return {
-            conf : {
-                time : this.time,
-                note : this.note
-            },
             data : {
                 loaded : false,
                 fail : false,

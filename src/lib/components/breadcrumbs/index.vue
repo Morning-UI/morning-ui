@@ -63,15 +63,21 @@ export default {
             default : maxHistoryNum
         }
     },
-    data : function () {
+    computed : {
+        _conf : function () {
 
-        return {
-            conf : {
+            return {
                 rootName : this.rootName,
                 chooseRoot : this.chooseRoot,
                 list : this.list,
                 maxHistory : this.maxHistory
-            },
+            };
+
+        }
+    },
+    data : function () {
+
+        return {
             data : {
                 historys : [],
                 lvlist : [],

@@ -48,7 +48,7 @@
     <ui-dialog ref="demo3">
         <header slot="header">
             <h1>This is title</h1>
-            <ui-link dark-theme js="window.morning.findVM('demo3').toggle();"><i class="iconfont">&#xe62e;</i></ui-link>
+            <ui-link color="dark-theme" js="window.morning.findVM('demo3').toggle();"><i class="iconfont">&#xe62e;</i></ui-link>
         </header>
     </ui-dialog>
     <ui-link js="window.morning.findVM('demo3').toggle(true);">显示模拟盒</ui-link>
@@ -83,8 +83,8 @@
         <footer slot="footer">
             <span>This is footer</span>
             <div>
-                <ui-link class="margin" minor js="window.morning.findVM('demo6').toggle();">取消</ui-link>
-                <ui-btn success>确认</ui-btn>
+                <ui-link class="margin" color="minor" js="window.morning.findVM('demo6').toggle();">取消</ui-link>
+                <ui-btn color="success">确认</ui-btn>
             </div>
         </footer>
     </ui-dialog>
@@ -107,13 +107,13 @@
     :::democode/html
     <ui-dialog ref="demo8">
         <ui-grid class="fill">
-            <div class="c-7">
+            <div class="c-11">
                 <ui-center class="fill"><p>LEFT</p></ui-center>
             </div>
             <div class="c-2">
                 <ui-divider>OR</ui-divider>
             </div>
-            <div class="c-7">
+            <div class="c-11">
                 <ui-center class="fill"><p>RIGHT</p></ui-center>
             </div>
         </ui-grid>
@@ -130,24 +130,24 @@
     <ui-dialog ref="demo9" light-gray>
         <header slot="header">选择一张图片</header>
         <ui-grid class="fill">
-            <div class="c-7">
+            <div class="c-11">
                 <ui-center class="fill"><ui-img class="rounded" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img></ui-center>
             </div>
             <div class="c-2">
                 <ui-divider>OR</ui-divider>
             </div>
-            <div class="c-7">
+            <div class="c-11">
                 <ui-center class="fill"><ui-img class="rounded" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img></ui-center>
             </div>
         </ui-grid>
         <footer slot="footer">
             <span>
-                需要帮助? <ui-link info xxs >获取帮助</ui-link>
+                需要帮助? <ui-link color="info" size="xxs">获取帮助</ui-link>
             </span>
             <div>
-                <ui-link class="margin" minor action="emit:toggle">取消</ui-link>
-                <ui-btn success>左边</ui-btn>
-                <ui-btn success>右边</ui-btn>
+                <ui-link class="margin" color="minor" action="emit:toggle">取消</ui-link>
+                <ui-btn color="success">左边</ui-btn>
+                <ui-btn color="success">右边</ui-btn>
             </div>
         </footer>
     </ui-dialog>
@@ -159,17 +159,17 @@
     模拟盒支持多层嵌套打开，组件会自动按照打开的顺序设置层级。(注意：使用时不用嵌套)
 
     :::democode/html
-    <ui-dialog ref="demo10" black width="60%" height="60%">
+    <ui-dialog ref="demo10" color="black" width="60%" height="60%">
         <header slot="header">第一级</header>
         <ui-link js="javascript:window.morning.findVM('demo11').toggle(true);">显示第二级模拟盒</ui-link>
     </ui-dialog>
 
-    <ui-dialog ref="demo11" extra-light-black width="40%" height="40%">
+    <ui-dialog ref="demo11" color="extra-light-black" width="40%" height="40%">
         <header slot="header">第二级</header>
         <ui-link js="javascript:window.morning.findVM('demo12').toggle(true);">显示第三级模拟盒</ui-link>
     </ui-dialog>
 
-    <ui-dialog ref="demo12" light-blue width="20%" height="20%">
+    <ui-dialog ref="demo12" color="light-blue" width="20%" height="20%">
         <header slot="header">第三级</header>
     </ui-dialog>
 
@@ -196,11 +196,11 @@
     color:silver
     color:gray
     ---
-    <ui-dialog ref="demo{$colorKey}" {$colorKey}>
+    <ui-dialog ref="demo{$colorKey}" color="{$colorKey}">
         <header slot="header">This is title</header>
         <footer slot="footer">This is footer</footer>
     </ui-dialog>
-    <ui-link js="window.morning.findVM('demo{$colorKey}').toggle(true);" {$colorKey}>{$colorName}模拟盒</ui-link>
+    <ui-link js="window.morning.findVM('demo{$colorKey}').toggle(true);" color="{$colorKey}">{$colorName}模拟盒</ui-link>
 
     <br>
     :::
@@ -246,7 +246,7 @@
     <ui-dialog ref="demo17" :auto-close="false">
         <header slot="header">
             <h1>点击外部区域不会关闭，需要点击右侧关闭</h1>
-            <ui-link dark-theme js="window.morning.findVM('demo17').toggle();"><i class="iconfont">&#xe62e;</i></ui-link>
+            <ui-link color="dark-theme" js="window.morning.findVM('demo17').toggle();"><i class="iconfont">&#xe62e;</i></ui-link>
         </header>
     </ui-dialog>
     <ui-link js="window.morning.findVM('demo17').toggle(true);">显示模拟盒</ui-link>
