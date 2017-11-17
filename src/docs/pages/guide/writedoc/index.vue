@@ -132,9 +132,9 @@
     ```
 
     - `扩展名` : 标记需要使用的扩展功能
-    - `代码语言` : <ui-badge xxs minor>非必需</ui-badge>标记`内容部分`的语言类型
-    - `配置部分` : <ui-badge xxs minor>非必需</ui-badge>可以用来配置不同的扩展功能，不同扩展的配置方式不同，会在后面详细说明
-    - `内容部分` : <ui-badge xxs minor>非必需</ui-badge>是扩展的主体内容部分
+    - `代码语言` : <ui-badge size="xxs" color="minor">非必需</ui-badge>标记`内容部分`的语言类型
+    - `配置部分` : <ui-badge size="xxs" color="minor">非必需</ui-badge>可以用来配置不同的扩展功能，不同扩展的配置方式不同，会在后面详细说明
+    - `内容部分` : <ui-badge size="xxs" color="minor">非必需</ui-badge>是扩展的主体内容部分
 
     其中配置和内容采用`---`分隔。
 
@@ -168,13 +168,13 @@
 
     ```text
     :::democode/html
-    <ui-btn xxl>XXL尺寸</ui-btn>
-    <ui-btn xl>XL尺寸</ui-btn>
-    <ui-btn l>L尺寸</ui-btn>
-    <ui-btn m>M尺寸</ui-btn>
-    <ui-btn s>S尺寸</ui-btn>
-    <ui-btn xs>XS尺寸</ui-btn>
-    <ui-btn xxs>XXS尺寸</ui-btn>
+    <ui-btn size="xxl">XXL尺寸</ui-btn>
+    <ui-btn size="xl">XL尺寸</ui-btn>
+    <ui-btn size="l">L尺寸</ui-btn>
+    <ui-btn size="m">M尺寸</ui-btn>
+    <ui-btn size="s">S尺寸</ui-btn>
+    <ui-btn size="xs">XS尺寸</ui-btn>
+    <ui-btn size="xxs">XXS尺寸</ui-btn>
     :::
     ```
 
@@ -184,7 +184,7 @@
     :::repeat/html
     size
     ---
-    <ui-btn {$sizeKey}>{$&sizeName}</ui-btn>
+    <ui-btn size="{$sizeKey}">{$&sizeName}</ui-btn>
     :::
     ```
 
@@ -195,7 +195,7 @@
     :::repeat/html
     size
     ---
-    <ui-btn {$sizeKey}>{$&sizeName}</ui-btn>
+    <ui-btn size="{$sizeKey}">{$&sizeName}</ui-btn>
     :::
     
     ---demoend---
@@ -214,7 +214,7 @@
     :::repeat/html
     color:theme
     ---
-    <ui-btn {$colorKey}>{$&colorName}</ui-btn>
+    <ui-btn color="{$colorKey}">{$&colorName}</ui-btn>
     :::
     ```
 
@@ -225,7 +225,7 @@
     :::repeat/html
     color:theme
     ---
-    <ui-btn {$colorKey}>{$&colorName}</ui-btn>
+    <ui-btn color="{$colorKey}">{$&colorName}</ui-btn>
     :::
     
     ---demoend---
@@ -240,7 +240,7 @@
     color:silver
     color:gray
     ---
-    <ui-btn {$colorKey}>{$&colorName}</ui-btn>
+    <ui-btn color="{$colorKey}">{$&colorName}</ui-btn>
     :::
     ```
 
@@ -253,7 +253,7 @@
     color:silver
     color:gray
     ---
-    <ui-btn {$colorKey}>{$&colorName}</ui-btn>
+    <ui-btn color="{$colorKey}">{$&colorName}</ui-btn>
     :::
     
     ---demoend---
@@ -268,7 +268,7 @@
     :::repeat/html
     state|br:2|color:theme
     ---
-    <ui-btn {$stateKey} {$colorKey}>{$&stateName}</ui-btn>
+    <ui-btn state="{$stateKey}" color="{$colorKey}">{$&stateName}</ui-btn>
     :::
     ```
 
@@ -279,7 +279,7 @@
     :::repeat/html
     state|br:2|color:theme
     ---
-    <ui-btn {$stateKey} {$colorKey}>{$&stateName}</ui-btn>
+    <ui-btn state="{$stateKey}" color="{$colorKey}">{$&stateName}</ui-btn>
     :::
 
     ---demoend---
@@ -292,7 +292,7 @@
     |-|-|-|-|
     |size|无|循环输出尺寸形态|sizeKey / sizeName|
     |color|`theme`:主题色组<br>`feature`:功能色组<br>`black`:黑色组<br>`blue`:青色组<br>`silver`:银色组<br>`gray`:浅色组<br>|循环输出颜色形态|colorKey / colorName|
-    |state|需要输出的状态，多个之间用`,`分隔。<br>`normal`:正常状态<br>`hover`:Hover状态<br>`active`:激活状态<br>`disabled`:禁用状态<br>`apparent`:醒目状态<br>`loading`:载入中<br>`processing`:处理中|循环输出状态形态|stateKey / stateName|
+    |state|需要输出的状态，多个之间用`,`分隔。<br>`normal`:正常状态<br>`hover`:Hover状态<br>`active`:激活状态<br>`disabled`:禁用状态<br>`apparent`:醒目状态|循环输出状态形态|stateKey / stateName|
     |br|需要插入的换行符数量|在循环中插入换行符`<br>`|无|
     |formConfig|无|输出演示用的表单名称、Key、表单组(由预设使用)|formName / formKey / formGroupOne|
     |formValueType|需要输出一组值的名称|在表单值演示中输出一组包含所有类型的数值|valueType / valueContent|
