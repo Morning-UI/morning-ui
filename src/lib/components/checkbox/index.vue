@@ -71,18 +71,23 @@ export default {
             default : () => ({})
         }
     },
+    computed : {
+        _conf : function () {
+
+            return {
+                acceptHtml : this.acceptHtml,
+                list : this.list
+            };
+
+        }
+    },
     data : function () {
 
         return {
-            conf : {
-                acceptHtml : this.acceptHtml,
-                list : this.list
-            },
             data : {}
         };
 
     },
-    computed : {},
     methods : {
         _valueFilter : function (value) {
 

@@ -159,11 +159,11 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-multiinput ref="demo8" form-name="输入标签"></ui-multiinput>
+        <ui-multiinput ref="demo10" form-name="输入标签"></ui-multiinput>
     </div>
     <br>
-    <ui-link js="javascript:morning.findVM('demo8').setInput('value1');">设置输入框内容</ui-link>
-    <ui-link js="javascript:morning.findVM('demo8').setInput();">清空输入框内容</ui-link>
+    <ui-link js="javascript:morning.findVM('demo10').setInput('value1');">设置输入框内容</ui-link>
+    <ui-link js="javascript:morning.findVM('demo10').setInput();">清空输入框内容</ui-link>
     :::
 
     #### getInput()
