@@ -52,7 +52,7 @@
 
     :::democode/html
     <!-- 使用黑色xl尺寸的按钮 -->
-    <ui-btn xl black>按钮</ui-btn>  
+    <ui-btn size="xl" color="black">按钮</ui-btn>  
     :::
 
     更多内容见：[形态](/guide/status.html)。

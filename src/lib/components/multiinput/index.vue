@@ -96,22 +96,15 @@ export default {
             default : false
         }
     },
-    data : function () {
+    computed : {
+        _conf : function () {
 
-        return {
-            conf : {
+            return {
                 canMove : this.canMove,
                 max : this.max
-            },
-            data : {
-                inputValue : '',
-                inputWidth : '0em',
-                focus : false
-            }
-        };
+            };
 
-    },
-    computed : {
+        },
         moreClass : function () {
 
             return {
@@ -119,6 +112,17 @@ export default {
             };
 
         }
+    },
+    data : function () {
+
+        return {
+            data : {
+                inputValue : '',
+                inputWidth : '0em',
+                focus : false
+            }
+        };
+
     },
     methods : {
         _valueFilter : function (value) {

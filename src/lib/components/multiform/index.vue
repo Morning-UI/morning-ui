@@ -82,7 +82,7 @@
         class="multiform-dialog"
         width="500px"
         height="75%"
-        gray
+        color="gray"
         :ref="'ui-multiform-dialog-'+uiid"
         @show="_showForm"
         @hide="_hideForm"
@@ -92,8 +92,8 @@
         <footer slot="footer">
             <div>
                 <!-- action="emit:toggle" -->
-                <morning-link class="margin" minor @emit="_hideDialog">取消</morning-link>
-                <morning-btn success @emit="_saveItem">确认</morning-btn>
+                <morning-link class="margin" color="minor" @emit="_hideDialog">取消</morning-link>
+                <morning-btn color="success" @emit="_saveItem">确认</morning-btn>
             </div>
         </footer>
     </morning-dialog>
@@ -102,7 +102,7 @@
         class="multiform-batch-dialog"
         width="500px"
         height="240px"
-        gray
+        color="gray"
         v-if="conf.inputType !== 'single'"
         :ref="'ui-multiform-batchdialog-'+uiid"
     >
@@ -111,8 +111,8 @@
         <footer slot="footer">
             <div>
                 <!-- action="emit:toggle" -->
-                <morning-link class="margin" minor @emit="_hideBatchDialog">取消</morning-link>
-                <morning-btn success :ref="'ui-multiform-batchsave-'+uiid" @emit="_batchInput">确认</morning-btn>
+                <morning-link class="margin" color="minor" @emit="_hideBatchDialog">取消</morning-link>
+                <morning-btn color="success" :ref="'ui-multiform-batchsave-'+uiid" @emit="_batchInput">确认</morning-btn>
             </div>
         </footer>
     </morning-dialog>
@@ -174,6 +174,21 @@ export default {
         }
     },
     computed : {
+        _conf : function () {
+
+            return {
+                itemName : this.itemName,
+                itemFiller : this.itemFiller,
+                canMove : this.canMove,
+                max : this.max,
+                cleanBtn : this.cleanBtn,
+                inputType : this.inputType,
+                batchReg : this.batchReg,
+                batchFiller : this.batchFiller,
+                batchUniq : this.batchUniq
+            };
+
+        },
         moreClass : function () {
 
             return {
@@ -185,17 +200,6 @@ export default {
     data : function () {
 
         return {
-            conf : {
-                itemName : this.itemName,
-                itemFiller : this.itemFiller,
-                canMove : this.canMove,
-                max : this.max,
-                cleanBtn : this.cleanBtn,
-                inputType : this.inputType,
-                batchReg : this.batchReg,
-                batchFiller : this.batchFiller,
-                batchUniq : this.batchUniq
-            },
             data : {
                 modifyIndex : null
             }

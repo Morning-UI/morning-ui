@@ -73,6 +73,14 @@
         ></ui-checkbox>
     </div>
     :::
+
+    #### list
+
+    :::democode/html
+    <div style="width:300px;">
+        <ui-checkbox form-name="姓名" :list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"></ui-checkbox>
+    </div>
+    :::
    
     [[[方法]]]
 
