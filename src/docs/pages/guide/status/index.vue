@@ -192,11 +192,7 @@
     - `active` : 激活状态
     - `disabled` : 禁用状态
     - `apparent` : 醒目状态
-    - `loading` : 载入中
-    - `processing` : 处理中
     
-    `loading`和`processing`的区别是，`loading`在等待远程处理的状态，`processing`一般用于本地处理。
-
     组件会根据实际情况支持其中的部分状态(至少支持一种)，大部分组件的默认状态都是`normal`。
 
     </script>

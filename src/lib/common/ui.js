@@ -77,6 +77,21 @@ export default (Vue, morning) => Vue.extend({
         return data;
 
     },
+    methods : {
+        getConf : function (name) {
+
+            let conf = extend(true, {}, this.conf);
+
+            if (typeof name === 'string') {
+
+                return conf[name];
+
+            }
+    
+            return conf;
+
+        }
+    },
     beforeCreate : function () {
 
         this.Vue = Vue;
