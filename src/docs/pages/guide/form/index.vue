@@ -25,7 +25,7 @@
     - form-name : 表单的名称(用于显示)
     - form-key : 表单的KEY(用于逻辑中作为识别标示)
     - group : 表单组
-    - default-value : 表单的默认值
+    - default-value : 表单的默认值(不支持单向数据流)
     - hide-name : 隐藏表单名(所有表单默认都有显示表单名的位置，你可以隐藏后自行设置)
     
     #### 表单方法

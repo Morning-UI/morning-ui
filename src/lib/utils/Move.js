@@ -8,7 +8,7 @@ let Move = {
             Move : {
                 can : false,
                 // 延迟多久触发拖拽，为了和click兼容
-                delay : 0,
+                delay : 200,
                 target : null,
                 container : null,
                 lastMousedownIndex : -1,
@@ -193,7 +193,7 @@ let Move = {
 
                 if ($container) {
 
-                    $container.removeEventListener('mousedown', this._initMoveItem);
+                    $container.removeEventListener('mousedown', this._moveMousedown);
 
                 }
 

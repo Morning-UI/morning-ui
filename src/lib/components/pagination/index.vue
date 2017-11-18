@@ -124,6 +124,31 @@ export default {
 
     },
     methods : {
+        _setTotal : function () {
+
+            let total = this.data.total;
+
+            if (this.conf.list) {
+
+                if (this.conf.list instanceof Array) {
+
+                    total = Math.ceil(this.conf.list.length / this.conf.pageSize);
+                
+                } else {
+
+                    total = Math.ceil(Object.keys(this.conf.list).length / this.conf.pageSize);
+
+                }
+
+            } else {
+
+                total = this.conf.total;
+
+            }
+            
+            this.data.total = total;
+
+        },
         _refreshCurrentItems : function () {
 
             if (this.conf.list) {
@@ -231,21 +256,7 @@ export default {
             
             num = +num || this.data.total;
             
-            if (num < 1) {
-
-                num = 1;
-
-            }
-            
             this.data.total = num;
-
-            this._setMaxshow();
-
-            if (this.data.currentPage > num) {
-
-                this.to(num);
-            
-            }
 
             return this;
 
@@ -253,23 +264,33 @@ export default {
     },
     mounted : function () {
 
-        if (this.conf.list) {
+        this.$watch('conf.total', () => {
 
-            if (this.conf.list instanceof Array) {
+            this._setTotal();
 
-                this.data.total = Math.ceil(this.conf.list.length / this.conf.pageSize);
-            
-            } else {
+        });
 
-                this.data.total = Math.ceil(Object.keys(this.conf.list).length / this.conf.pageSize);
+        this.$watch('conf.list', () => {
 
-            }
+            this._setTotal();
+            this._refreshCurrentItems();
 
-        } else {
+        }, {
+            deep : true
+        });
 
-            this.data.total = this.conf.total;
+        this.$watch('conf.pageSize', () => {
 
-        }
+            this._setTotal();
+            this._refreshCurrentItems();
+
+        });
+
+        this.$watch('conf.maxShow', () => {
+
+            this._setMaxshow();
+
+        });
 
         this.$watch('data.currentPage', () => {
             
@@ -279,8 +300,36 @@ export default {
 
         });
 
+        this.$watch('data.total', () => {
+            
+            if (this.data.total < 1) {
+
+                this.data.total = 1;
+
+                return;
+
+            }
+
+            if (this.data.currentPage > this.data.total) {
+
+                this.to(this.data.total);
+            
+            }
+
+            this._setMaxshow();
+
+        });
+
+        this._setTotal();
         this._refreshCurrentItems();
-        this.to(this.conf.page);
+
+        this.$watch('conf.page', () => {
+    
+            this.to(this.conf.page);
+    
+        }, {
+            immediate : true
+        });
 
     }
 };

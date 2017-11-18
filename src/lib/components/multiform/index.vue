@@ -515,13 +515,10 @@ export default {
     created : function () {},
     mounted : function () {
 
-        const moveDelayTime = 200;
-
         this.$watch('conf.canMove', newVal => {
 
             this.Move.target = '.item:not(.add)';
             this.Move.container = '.itemwrap';
-            this.Move.delay = moveDelayTime;
             this.Move.can = !!newVal;
 
         }, {
