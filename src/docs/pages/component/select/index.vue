@@ -202,6 +202,7 @@
     |auto-close|点击下拉选择框以外的区域自动关闭下拉选择框|`true`<br>`false`|Boolean|`true`|
     |can-search|允许通过项目内容搜索项目|`true`<br>`false`|Boolean|`false`|
     |multi-select|允许选择多个项目|`true`<br>`false`|Boolean|`false`|
+    |can-move|项目是否可以移动|`true`<br>`false`|Boolean|`false`|
     |max|允许多选的最大项数，仅在开启`multi-select`后生效，未开启`multi-select`至多只能选择一项|数字|Number|`Infinity`|
     |clean-btn|出现清空按钮，允许清空所选值|`true`<br>`false`|Boolean|`false`|
     |inline-img-size|项目的缩略图大小(这不会影响选中项目的缩略图大小)|px或em为单位的数值字符串|String|'2em'|
@@ -286,6 +287,26 @@
     :::democode/html
     <div style="width:300px;">
         <ui-select form-name="Select designer" multi-select>
+            <li value="Tim Boelaars"><ui-img class="circle" src="https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894"></ui-img>Tim Boelaars</li>
+            <li value="Andrew Colin Beck"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444"></ui-img>Andrew Colin Beck</li>
+            <li value="Gustavo Zambelli"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442"></ui-img>Gustavo Zambelli</li>
+            <li value="Victor Erixon"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/96387/avatars/normal/debda2342580bda98269c0165054464c.jpg?1435151464"></ui-img>Victor Erixon</li>
+            <li value="Shaun Moynihan"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/2944/avatars/normal/e08c0e446862572facf0e48316d91c8f.png?1429207992"></ui-img>Shaun Moynihan</li>
+            <li value="Emir Ayouni"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934"></ui-img>Emir Ayouni</li>
+            <li value="Katherine Rainey"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/460187/avatars/normal/eb8e273c036ae93b134b10358c5f19f5.jpg?1418705072"></ui-img>Katherine Rainey</li>
+            <li value="Jax Berndt"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/119911/avatars/normal/531fd12e5775ed5ac6a07aea7b492151.jpg?1427986143"></ui-img>Jax Berndt</li>
+            <li value="Elizabeth Chiu"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/857412/avatars/normal/8f5f9fbdd66cc70f22304f2ed3be4fa1.png?1440078204"></ui-img>Elizabeth Chiu</li>
+            <li value="Sara Nicely"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/162566/avatars/normal/1012292_10104881398564961_565325188_n.jpg?1403561573"></ui-img>Sara Nicely</li>
+            <li value="Anna Broussard"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/243797/avatars/normal/657a04cfaeca8f6f5bb7ecf64267bc67.jpg?1416007045"></ui-img>Anna Broussard</li>
+        </ui-select>
+    </div>
+    :::
+
+    #### can-move
+
+    :::democode/html
+    <div style="width:300px;">
+        <ui-select form-name="Select designer" :default-value="['Tim Boelaars', 'Andrew Colin Beck', 'Gustavo Zambelli']" multi-select can-move>
             <li value="Tim Boelaars"><ui-img class="circle" src="https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894"></ui-img>Tim Boelaars</li>
             <li value="Andrew Colin Beck"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444"></ui-img>Andrew Colin Beck</li>
             <li value="Gustavo Zambelli"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442"></ui-img>Gustavo Zambelli</li>

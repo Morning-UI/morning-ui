@@ -69,7 +69,8 @@ export default {
                 'has-footer' : this.data.hasFooter,
                 'show-top' : (this.conf.showType === 'top'),
                 'show-center' : (this.conf.showType === 'center'),
-                'show-no-animate' : (this.conf.showType === 'no')
+                'show-no-animate' : (this.conf.showType === 'no'),
+                show : this.data.show
             };
 
         }
@@ -113,9 +114,9 @@ export default {
 
             }
 
-            this.data.show = !!show;
+            show = !!show;
 
-            if (this.data.show) {
+            if (show) {
 
                 if (!isShown) {
 
@@ -123,7 +124,7 @@ export default {
 
                     setTimeout(() => {
 
-                        this.$el.classList.add('show');
+                        this.data.show = show;
 
                     });
 
@@ -136,7 +137,7 @@ export default {
 
                 if (isShown) {
 
-                    this.$el.classList.remove('show');
+                    this.data.show = show;
 
                     setTimeout(() => {
 

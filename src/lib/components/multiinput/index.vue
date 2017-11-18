@@ -134,8 +134,15 @@ export default {
 
             }
 
+            value = this._maxFilter(value);
+
+            return value;
+
+        },
+        _maxFilter : function (value) {
+
             if (this.conf.max &&
-                this.data.value.length > this.conf.max) {
+                value.length > this.conf.max) {
 
                 return value.slice(0, this.conf.max);
 
@@ -342,6 +349,12 @@ export default {
 
         }, {
             immediate : true
+        });
+
+        this.$watch('conf.max', () => {
+
+            this._set(this._maxFilter(this.get()), true);
+
         });
 
         this.$on('_moveStarted', () => {

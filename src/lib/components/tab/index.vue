@@ -28,7 +28,8 @@ export default {
     name : 'tab',
     props : {
         tab : {
-            type : String
+            type : String,
+            default : undefined
         },
         prepend : {
             type : Object,
@@ -184,7 +185,7 @@ export default {
     created : function () {},
     mounted : function () {
 
-        this.$watch(() => (this.conf.prepend + this.conf.append), this._getNamelist, {
+        this.$watch(() => ((JSON.stringify(this.conf.prepend) + JSON.stringify(this.conf.append))), this._getNamelist, {
             deep : true,
             immediate : true
         });
@@ -198,15 +199,23 @@ export default {
             immediate : true
         });
 
-        if (!this.conf.tab) {
-    
-            this.conf.tab = this.data.tabs[0];
-    
-        }
-
         this.Vue.nextTick(() => {
 
-            this.switch(this.conf.tab);
+            this.$watch('conf.tab', () => {
+
+                if (this.conf.tab) {
+
+                    this.switch(this.conf.tab);
+
+                } else {
+
+                    this.switch(this.data.tabs[0]);
+
+                }
+
+            }, {
+                immediate : true
+            });
 
         });
 

@@ -109,8 +109,6 @@ import trim                         from 'trim';
 import GlobalEvent                  from 'Utils/GlobalEvent';
 import IndexManager                 from 'Utils/IndexManager';
 
-// action="emit:_refreshShowItems"
-
 export default {
     origin : 'Form',
     name : 'select',
@@ -189,10 +187,24 @@ export default {
                 showlist : !!this.data.showlist,
                 searching : !!this.data.searching,
                 'focus-search' : !!this.data.focusSearch,
-                'is-max' : !!this.data.isMax,
+                'is-max' : !!this.isMax,
                 'has-clean-btn' : !!this.conf.cleanBtn,
                 'select-item' : selectItem
             };
+
+        },
+        isMax : function () {
+
+            if (this.conf.multiSelect &&
+                this.data.value.length === this.conf.max) {
+
+                return true;
+
+            } else {
+
+                return false;
+
+            }
 
         }
     },
@@ -210,7 +222,9 @@ export default {
                 selectInput : false,
                 itemValueList : [],
                 filterNotExist : false,
-                lastItemHeight : 0
+                lastItemHeight : 0,
+                tipsContent : [],
+                tips : []
             },
             listStyle : {}
         };
@@ -226,13 +240,7 @@ export default {
 
             }
 
-            if (this.conf.multiSelect &&
-                this.conf.max &&
-                this.data.value.length > this.conf.max) {
-
-                return value.slice(0, this.conf.max);
-
-            }
+            this._maxFilter(value);
 
             if (!this.conf.multiSelect &&
                 this.data.value.length > 1) {
@@ -255,6 +263,19 @@ export default {
                     }
 
                 }
+
+            }
+
+            return value;
+
+        },
+        _maxFilter : function (value) {
+
+            if (this.conf.multiSelect &&
+                this.conf.max &&
+                value.length > this.conf.max) {
+
+                return value.slice(0, this.conf.max);
 
             }
 
@@ -343,17 +364,6 @@ export default {
             } else {
                 
                 $noitem.classList.remove('show');
-
-            }
-
-            if (this.conf.multiSelect &&
-                this.data.value.length === this.conf.max) {
-
-                this.data.isMax = true;
-
-            } else {
-
-                this.data.isMax = false;
 
             }
 
@@ -497,8 +507,25 @@ export default {
         },
         _searchKeyChange : function () {
 
-            if (!this.conf.canSearch ||
-                !this.data.mounted) {
+            if (!this.data.mounted) {
+
+                return;
+
+            }
+
+            let $items = this.$el.querySelectorAll('.list>li:not(.noitem):not(.selected)');
+            let $noitem = this.$el.querySelector('.noitem');
+
+            if (!this.conf.canSearch) {
+
+                this.data.searching = false;
+
+                for (let $item of $items.values()) {
+
+                    $item.classList.remove('hide');
+                    $noitem.classList.remove('show');
+
+                }
 
                 return;
 
@@ -521,9 +548,6 @@ export default {
                 key = searchTextinput.get();
             
             }
-
-            let $items = this.$el.querySelectorAll('.list>li:not(.noitem):not(.selected)');
-            let $noitem = this.$el.querySelector('.noitem');
 
             if (key !== '' && key !== undefined) {
 
@@ -616,7 +640,8 @@ export default {
             let searchMultiinput = this.$el.querySelector(`#ui-select-mi-${this.uiid}`)._vm;
             let values = searchMultiinput.get();
 
-            if (!this.data.selectInput &&
+            if (!searchMultiinput.Move.moving &&
+                !this.data.selectInput &&
                 this.data.multiinputLastValue.length <= values.length) {
 
                 searchMultiinput._set(this.data.multiinputLastValue, true);
@@ -629,29 +654,16 @@ export default {
             this.data.multiinputLastValue = values;
             this._refreshValue(values);
 
-            // if (this.data.value &&
-            //     values &&
-            //     (this.prop.value.length > values.length)) {
-                
-            // } else if ( !_.isEqual(this.lastMultiItemSort, values) ) {
-
-            //     this.refreshValue(values);
-            //     this.lastMultiItemSort = values;
-
-            // }
-
         },
         _refreshShowItems : function () {
 
-            if (!this.conf.multiSelect ||
-                !this.data.mounted) {
+            if (!this.data.mounted) {
 
                 return;
-            
+
             }
            
-            let searchMultiinput = this.$el.querySelector(`#ui-select-mi-${this.uiid}`)._vm;
-            let values = searchMultiinput.get();
+            let values = this.get();
             let $items = this.$el.querySelectorAll('.list>li:not(.noitem)');
 
             for (let $item of $items) {
@@ -712,9 +724,17 @@ export default {
             }
 
         },
-        _initTips : function () {
+        _refreshTips : function () {
 
             if (!this.conf.itemTip) {
+
+                for (let tipVm of this.data.tips) {
+
+                    tipVm.$destroy();
+
+                }
+
+                this.data.tips = [];
 
                 return;
 
@@ -728,32 +748,39 @@ export default {
                 let $item = $items[index];
                 let $tip = $item.nextElementSibling;
 
-                if ($tip === null ||
-                    $tip.classList.value.split(' ').indexOf('item-tip') === -1) {
+                if (!this.data.tipsContent[index] &&
+                    ($tip === null ||
+                    $tip.classList.value.split(' ').indexOf('item-tip') === -1)) {
 
                     return;
 
                 }
 
+                if (!this.data.tipsContent[index]) {
+                
+                    this.data.tipsContent[index] = $tip.innerHTML;
+                    $tip.remove();
+
+                }
+
                 const random = 1e8;
 
-                let tipContent = $tip.innerHTML;
                 let tipId = `select-tip-${Math.floor(Math.random() * random)}`;
                 let $newTip = document.createElement('morning-tip');
 
                 $newTip.setAttribute(':minor', true);
                 $newTip.setAttribute('target', `#${tipId}`);
                 $newTip.setAttribute('placement', this.conf.itemTipDirect);
-                $newTip.innerHTML = tipContent;
+                $newTip.innerHTML = this.data.tipsContent[index];
 
                 let tipVm = new this.Vue({
                     el : $newTip
                 });
 
                 $item.setAttribute('id', tipId);
-                $tip.remove();
                 tipVm.$mount();
                 $list.append(tipVm.$el);
+                this.data.tips.push(tipVm);
 
             }
 
@@ -853,9 +880,6 @@ export default {
 
         this.data.mounted = true;
 
-        // this._globalEventAdd('click', '_checkArea');
-        this._resizeInlineImg();
-        this._initTips();
         this._updateItemValueList();
         this._onValueChange();
         
@@ -867,6 +891,58 @@ export default {
                 immediate : true
             });
         
+        });
+
+        this.$watch('conf.canSearch', this._searchKeyChange);
+
+        this.$watch('conf.multiSelect', () => {
+
+            let value = this.get();
+
+            if (!this.conf.multiSelect &&
+                value.length > 1) {
+
+                value = value.slice(0, 1);
+
+            }
+
+            this._set(value, true);
+            this._onValueChange();
+
+        });
+
+        this.$watch('conf.max', () => {
+
+            this._set(this._maxFilter(this.get()), true);
+
+        });
+
+        this.$watch('conf.inlineImgSize', () => {
+
+            this._resizeInlineImg();
+
+        }, {
+            immediate : true
+        });
+
+        this.$watch('conf.itemTip', () => {
+
+            this._refreshTips();
+
+        }, {
+            immediate : true
+        });
+
+        this.$watch('conf.itemTipDirect', () => {
+
+            for (let tipVm of this.data.tips) {
+
+                tipVm.$el._vm.conf.placement = this.conf.itemTipDirect;
+
+            }
+
+        }, {
+            immediate : true
         });
 
         this.$on('list-show', () => {

@@ -65,22 +65,47 @@ export default UI => UI.extend({
 
     },
     methods : {
-        _syncGroup : function (remove = false) {
+        _syncGroup : function (remove = false, changeKey = false, changeGroup = false) {
 
             let morning = this.morning;
+
+            if (changeGroup) {
+
+                changeGroup = [].concat(changeGroup);
+
+                for (let gname of changeGroup) {
+
+                    if (morning._groupData[gname] &&
+                        morning._groupData[gname][this.conf.formKey]) {
+
+                        delete morning._groupData[gname][this.conf.formKey];
+
+                    }
+
+                }
+
+            }
     
             if (this.conf.group &&
                 this.conf.group.length > 0) {
 
                 for (let gname of this.conf.group) {
 
-                    if (remove &&
-                        morning._groupData[gname] &&
-                        morning._groupData[gname][this.conf.formKey] !== undefined) {
+                    if (morning._groupData[gname] &&
+                        morning._groupData[gname][this.conf.formKey] !== undefined &&
+                        remove === true) {
 
                         delete morning._groupData[gname][this.conf.formKey];
 
                         return;
+
+                    }
+
+                    if (changeKey &&
+                        morning._groupData[gname] &&
+                        morning._groupData[gname][changeKey]) {
+
+                        delete morning._groupData[gname][changeKey];
 
                     }
 
@@ -365,12 +390,20 @@ export default UI => UI.extend({
             immediate : true
         });
 
+        this.$watch('conf.formKey', (newVal, oldVal) => {
+
+            this._syncGroup(false, oldVal);
+
+        });
+
         this.$watch('conf.group', (newVal, oldVal) => {
 
+            this._syncGroup(false, false, oldVal);
             this._syncGroupVm(newVal, oldVal);
 
         }, {
-            immediate : true
+            immediate : true,
+            deep : true
         });
 
     },

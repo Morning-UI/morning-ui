@@ -38,9 +38,12 @@ i-select{
 
         > i-multiinput{
             margin: 0;
-            width: ~'calc( 100% - 30px )';
+            width: ~'calc( 100% - 30px - 2em)';
             background-color: #FFF;
             vertical-align: top;
+            min-height: @formHeight - 2px;
+            left: 0.35em;
+            font-size: @fontSize*0.875;
 
             .itemlist{
                 border: none;
