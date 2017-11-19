@@ -56,7 +56,7 @@ export default {
         加载 : '/component/load.html',
         // 进度条<i class="tag new"></i> : 'b',
         // 滚动跟随<i class="tag update"></i> : 'b',
-        '面包屑<i class="tag update"></i>' : '/component/breadcrumbs.html',
+        面包屑 : '/component/breadcrumbs.html',
         小提示 : '/component/tip.html',
         // 视频 : 'b',
         // 音频<i class="tag new"></i> : 'b',
@@ -72,7 +72,7 @@ export default {
         复选框组 : '/component/checkbox.html',
         单选框组 : '/component/radio.html',
         多项输入 : '/component/multiinput.html',
-        '多项表单输入<i class="tag update"></i>' : '/component/multiform.html'
+        多项表单输入 : '/component/multiform.html'
         // 多项文本输入 : 'b',
         // 时间输入<i class="tag new"></i> : 'b',
         // 日期输入<i class="tag new"></i> : 'b',
