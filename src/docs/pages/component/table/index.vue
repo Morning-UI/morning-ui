@@ -138,6 +138,107 @@
     <ui-table :list="list" :col-set="colset" :cell-set="cellset" :show-col-name="true"></ui-table>
     :::
 
+    #### 内嵌HTML
+
+    表格数据列表支持传入HTML内容，在渲染这些HTML也会被渲染：
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            list : [
+                {name : 'Tim Boelaars', age : 20, gender : 'male', action : '<a href="#">发送</a>'},
+                {name : 'Andrew Colin Beck', age : 41, gender : 'female', action : '<a href="#">发送</a>'},
+                {name : 'Gustavo Zambelli', age : 23, gender : 'male', action : '<a href="#">发送</a>'},
+                {name : 'Victor Erixon', age : 15, gender : 'female', action : '<a href="#">发送</a>'},
+                {name : 'Shaun Moynihan', age : 27, gender : 'female', action : '<a href="#">发送</a>'},
+                {name : 'Emir Ayouni', age : 21, gender : 'male', action : '<a href="#">发送</a>'}
+            ]
+        }
+    });
+    ---
+    <ui-table :list="list"></ui-table>
+    :::
+
+    #### 内嵌Vue组件
+
+    表格数据列表的内容会通过Vue渲染，所以你可以使用Vue组件。
+
+    :::vue/html
+    window.demoVue = new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            list : [
+                {name : 'Tim Boelaars', age : 20, gender : 'male', action : '<ui-btn success xs>发送</ui-btn> <ui-link minor xs>详情</ui-link>'},
+                {name : 'Andrew Colin Beck', age : 41, gender : 'female', action : '<ui-btn success xs>发送</ui-btn> <ui-link minor xs>详情</ui-link>'},
+                {name : 'Gustavo Zambelli', age : 23, gender : 'male', action : '<ui-btn success xs>发送</ui-btn> <ui-link minor xs>详情</ui-link>'}
+            ]
+        }
+    });
+    ---
+    <ui-table :list="list"></ui-table>
+    :::
+
+    但需要注意的是由于在`list`中使用的组件是动态生成的，所以在组件中无法使用父辈Vue实例上的`props`、`data`、`methods`等属性或方法。
+
+    `props`、`data`可以将`list`设为计算属性，再通过JS模板以及表格的`setList`方法来实现：
+
+    :::vue/html
+    window.demoVue2 = new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        computed : {
+            list : function () {
+                return [
+                    {name : 'Tim Boelaars', age : 20, gender : 'male', action : `<ui-btn success xs>${this.btntext}</ui-btn> <ui-link minor xs>详情</ui-link>`},
+                    {name : 'Andrew Colin Beck', age : 41, gender : 'female', action : `<ui-btn success xs>${this.btntext}</ui-btn> <ui-link minor xs>详情</ui-link>`},
+                    {name : 'Gustavo Zambelli', age : 23, gender : 'male', action : `<ui-btn success xs>${this.btntext}</ui-btn> <ui-link minor xs>详情</ui-link>`}
+                ];
+            }
+        },
+        data : {
+            btntext : '发送'
+        },
+        mounted : function () {
+    
+            this.$watch('list', () => window.morning.findVM('demoPropsData').setList(this.list));
+
+        }
+    });
+    ---
+    <div>
+        <ui-table ref="demoPropsData" :list="list"></ui-table>
+        <ui-link js="window.demoVue2.btntext = '发送至邮箱'">修改btntext</ui-link>
+    </div>
+    :::
+
+    `methods`可以通过全局方法来代理，比如在下面的例子中第一个发送是无法直接调用`this.send`，会报错。而第二个发送通过全局的`window.sendProxy`来进行转发，从而调用父辈Vue实例的方法：
+
+    :::vue/html
+    window.demoVue = new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            list : [
+                {name : 'Tim Boelaars', age : 20, gender : 'male', action : '<ui-btn success xs @emit="send(0);">第一个发送</ui-btn> <ui-link minor xs>详情</ui-link>'},
+                {name : 'Andrew Colin Beck', age : 41, gender : 'female', action : '<ui-btn success xs @emit="window.sendProxy(1);">第二个发送</ui-btn> <ui-link minor xs>详情</ui-link>'},
+                {name : 'Gustavo Zambelli', age : 23, gender : 'male', action : '<ui-btn success xs>发送</ui-btn> <ui-link minor xs>详情</ui-link>'}
+            ]
+        },
+        methods : {
+            send : function (id) {
+                alert(`${this.list[id].name}发送成功!`);
+            }
+        }
+    });
+
+    window.sendProxy = id => window.demoVue.send(id);
+    ---
+    <ui-table :list="list"></ui-table>
+    :::
+
     [[[声明]]]
 
     #### 支持
@@ -737,7 +838,8 @@
     <div>
         <ui-table ref="demo1" :list="list" :col-set="colset" :cell-set="cellset" :show-col-name="true"></ui-table>
         <br><br>
-        <ui-link js="morning.findVM('demo1').setList(window.biglist);">重新设置表格数据</ui-link>
+        <ui-link js="morning.findVM('demo1').setList(window.biglist);">设置表格数据1</ui-link>
+        <ui-link js="morning.findVM('demo1').setList(window.list);">设置表格数据2</ui-link>
     </div>
     :::
 
