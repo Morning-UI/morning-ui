@@ -28,6 +28,8 @@
     |色彩|全部|`theme`|
     |状态|不支持|-|
 
+    <a href="/guide/status.html">查看形态文档</a>
+
     #### 色彩
 
     :::preset/html

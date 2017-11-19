@@ -56,6 +56,8 @@
     |色彩|全部|`black`|
     |状态|不支持|-|
 
+    <a href="/guide/status.html">查看形态文档</a>
+
     #### 尺寸
     
     :::repeat/html

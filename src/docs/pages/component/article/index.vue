@@ -57,6 +57,8 @@
     |色彩|不支持|-|
     |状态|不支持|-|
 
+    <a href="/guide/status.html">查看形态文档</a>
+
     [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/article/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
