@@ -1,4 +1,4 @@
-webpackJsonp([72],{
+webpackJsonp([73],{
 
 /***/ 0:
 /***/ (function(module, exports) {
@@ -7,7 +7,7 @@ module.exports = Vue;
 
 /***/ }),
 
-/***/ 671:
+/***/ 676:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17,7 +17,7 @@ var _vue = __webpack_require__(0);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _index = __webpack_require__(672);
+var _index = __webpack_require__(677);
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -32,18 +32,18 @@ new _vue2.default({
 
 /***/ }),
 
-/***/ 672:
+/***/ 677:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(674);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(679);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_6e7d3a88_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(675);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_6e7d3a88_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(680);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(673)
+  __webpack_require__(678)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
@@ -88,14 +88,14 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 673:
+/***/ 678:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 674:
+/***/ 679:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -306,12 +306,14 @@ exports.default = {
 //
 //
 //
+//
+//
 
 module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 675:
+/***/ 680:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -325,7 +327,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "type": "text/markdown"
     }
-  }, [_vm._v("\n# 按钮组 `<ui-btngroup>`\n\n<doc-component-status page=\"em\"></doc-component-status>\n\n[[[开始]]]\n\n定义一个按钮组，按钮组可以通过特定的HTML结构格式化按钮。\n\n按钮组默认水平排列。\n\n#### 使用\n\n:::democode/html\n <ui-btngroup>\n    <ui-btn>按钮一</ui-btn>\n    <ui-btn>按钮二</ui-btn>\n    <ui-btn>按钮三</ui-btn>\n    <ui-btn>按钮四</ui-btn>\n</ui-btngroup>\n:::\n\n#### 水平排列示例\n\n:::democode/html\n<ui-btngroup class=\"horizontal\">\n    <ui-btn>按钮一</ui-btn>\n    <ui-btn>按钮二</ui-btn>\n    <ui-btn>按钮三</ui-btn>\n    <ui-btn>按钮四</ui-btn>\n</ui-btngroup>\n:::\n\n#### 垂直排列示例\n\n:::democode/html\n<ui-btngroup class=\"vertical\">\n    <ui-btn>按钮一</ui-btn>\n    <ui-btn>按钮二</ui-btn>\n    <ui-btn>按钮三</ui-btn>\n    <ui-btn>按钮四</ui-btn>\n</ui-btngroup>\n:::\n\n#### 无间隔按钮组\n\n:::democode/html\n<ui-btngroup class=\"nogap\">\n    <ui-btn color=\"success\">确认</ui-btn>\n    <ui-btn color=\"minor\">取消</ui-btn>\n</ui-btngroup>\n\n<br/><br/>\n\n<ui-btngroup class=\"vertical nogap\">\n    <ui-btn color=\"success\">确认</ui-btn>\n    <ui-btn color=\"minor\">取消</ui-btn>\n</ui-btngroup>\n:::\n\n#### 分隔按钮组\n\n按钮之间可以插入文本分隔。\n\n:::democode/html\n<ui-btngroup class=\"split\">\n    <ui-btn color=\"success\">确认</ui-btn>\n    <span>或</span>\n    <ui-btn color=\"minor\">取消</ui-btn>\n</ui-btngroup>\n\n<br><br>\n\n<ui-btngroup class=\"split\">\n    <ui-btn color=\"minor\">选择一</ui-btn>\n    <span>或</span>\n    <ui-btn color=\"minor\">选择二</ui-btn>\n    <span>或</span>\n    <ui-btn info>热门选择</ui-btn>\n</ui-btngroup>\n:::\n\n[[[形态]]]\n\n#### 支持\n\n|类型|支持|默认|\n|-|-|-|\n|尺寸|不支持|-|\n|色彩|不支持|-|\n|状态|不支持|-|\n\n按钮组不支持形态，但可通过`ui-btn`自身的形态来控制。\n\n这也意味着你可以组合不同形态的按钮，这是一个十分有用的特性。\n\n#### 组合不同的形态\n\n:::democode/html\n<p>不同尺寸组合</p>\n<ui-btngroup>\n    <ui-btn size=\"l\">按钮一</ui-btn>\n    <ui-btn size=\"m\" color=\"minor\">按钮二</ui-btn>\n</ui-btngroup>\n\n<br><br>\n\n<p>不同色彩组合</p>\n<ui-btngroup>\n    <ui-btn color=\"success\">按钮一</ui-btn>\n    <ui-btn color=\"minor\">按钮二</ui-btn>\n</ui-btngroup>\n\n<br><br>\n\n<p>不同状态组合</p>\n<ui-btngroup>\n    <ui-btn state=\"normal\" color=\"minor\">按钮一</ui-btn>\n    <ui-btn state=\"apparent\">按钮二</ui-btn>\n</ui-btngroup>\n\n<br><br>\n\n<ui-btngroup>\n    <ui-btn state=\"normal\">按钮一</ui-btn>\n    <ui-btn state=\"disabled\">按钮二</ui-btn>\n</ui-btngroup>\n:::\n\n#### `ui-btn`尺寸\n\n:::repeat/html\nsize\n---\n<ui-btngroup>\n    <ui-btn size=\"{$sizeKey}\">{$&sizeName}</ui-btn>\n    <ui-btn size=\"{$sizeKey}\">{$&sizeName}</ui-btn>\n</ui-btngroup>\n\n<br><br>\n:::\n\n#### `ui-btn`色彩\n\n:::repeat/html\ncolor:theme\ncolor:feature\ncolor:black\ncolor:blue\ncolor:silver\ncolor:gray\n---\n<ui-btngroup>\n    <ui-btn color=\"{$colorKey}\">{$&colorName}</ui-btn>\n    <ui-btn color=\"{$colorKey}\">{$&colorName}</ui-btn>\n</ui-btngroup>\n\n<br><br>\n:::\n\n#### `ui-btn`状态\n\n:::repeat/html\nstate\n---\n<ui-btngroup>\n    <ui-btn state=\"{$stateKey}\">{$&stateName}</ui-btn>\n    <ui-btn state=\"{$stateKey}\">{$&stateName}</ui-btn>\n</ui-btngroup>\n\n<br><br>\n:::\n\n[[[源码]]]\n\n<iframe src=\"/report/coverage/lib/components/em/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n")])])
+  }, [_vm._v("\n# 按钮组 `<ui-btngroup>`\n\n<doc-component-status page=\"em\"></doc-component-status>\n\n[[[开始]]]\n\n定义一个按钮组，按钮组可以通过特定的HTML结构格式化按钮。\n\n按钮组默认水平排列。\n\n#### 使用\n\n:::democode/html\n <ui-btngroup>\n    <ui-btn>按钮一</ui-btn>\n    <ui-btn>按钮二</ui-btn>\n    <ui-btn>按钮三</ui-btn>\n    <ui-btn>按钮四</ui-btn>\n</ui-btngroup>\n:::\n\n#### 水平排列示例\n\n:::democode/html\n<ui-btngroup class=\"horizontal\">\n    <ui-btn>按钮一</ui-btn>\n    <ui-btn>按钮二</ui-btn>\n    <ui-btn>按钮三</ui-btn>\n    <ui-btn>按钮四</ui-btn>\n</ui-btngroup>\n:::\n\n#### 垂直排列示例\n\n:::democode/html\n<ui-btngroup class=\"vertical\">\n    <ui-btn>按钮一</ui-btn>\n    <ui-btn>按钮二</ui-btn>\n    <ui-btn>按钮三</ui-btn>\n    <ui-btn>按钮四</ui-btn>\n</ui-btngroup>\n:::\n\n#### 无间隔按钮组\n\n:::democode/html\n<ui-btngroup class=\"nogap\">\n    <ui-btn color=\"success\">确认</ui-btn>\n    <ui-btn color=\"minor\">取消</ui-btn>\n</ui-btngroup>\n\n<br/><br/>\n\n<ui-btngroup class=\"vertical nogap\">\n    <ui-btn color=\"success\">确认</ui-btn>\n    <ui-btn color=\"minor\">取消</ui-btn>\n</ui-btngroup>\n:::\n\n#### 分隔按钮组\n\n按钮之间可以插入文本分隔。\n\n:::democode/html\n<ui-btngroup class=\"split\">\n    <ui-btn color=\"success\">确认</ui-btn>\n    <span>或</span>\n    <ui-btn color=\"minor\">取消</ui-btn>\n</ui-btngroup>\n\n<br><br>\n\n<ui-btngroup class=\"split\">\n    <ui-btn color=\"minor\">选择一</ui-btn>\n    <span>或</span>\n    <ui-btn color=\"minor\">选择二</ui-btn>\n    <span>或</span>\n    <ui-btn info>热门选择</ui-btn>\n</ui-btngroup>\n:::\n\n[[[形态]]]\n\n#### 支持\n\n|类型|支持|默认|\n|-|-|-|\n|尺寸|不支持|-|\n|色彩|不支持|-|\n|状态|不支持|-|\n\n<a href=\"/guide/status.html\">查看形态文档</a>\n\n按钮组不支持形态，但可通过`ui-btn`自身的形态来控制。\n\n这也意味着你可以组合不同形态的按钮，这是一个十分有用的特性。\n\n#### 组合不同的形态\n\n:::democode/html\n<p>不同尺寸组合</p>\n<ui-btngroup>\n    <ui-btn size=\"l\">按钮一</ui-btn>\n    <ui-btn size=\"m\" color=\"minor\">按钮二</ui-btn>\n</ui-btngroup>\n\n<br><br>\n\n<p>不同色彩组合</p>\n<ui-btngroup>\n    <ui-btn color=\"success\">按钮一</ui-btn>\n    <ui-btn color=\"minor\">按钮二</ui-btn>\n</ui-btngroup>\n\n<br><br>\n\n<p>不同状态组合</p>\n<ui-btngroup>\n    <ui-btn state=\"normal\" color=\"minor\">按钮一</ui-btn>\n    <ui-btn state=\"apparent\">按钮二</ui-btn>\n</ui-btngroup>\n\n<br><br>\n\n<ui-btngroup>\n    <ui-btn state=\"normal\">按钮一</ui-btn>\n    <ui-btn state=\"disabled\">按钮二</ui-btn>\n</ui-btngroup>\n:::\n\n#### `ui-btn`尺寸\n\n:::repeat/html\nsize\n---\n<ui-btngroup>\n    <ui-btn size=\"{$sizeKey}\">{$&sizeName}</ui-btn>\n    <ui-btn size=\"{$sizeKey}\">{$&sizeName}</ui-btn>\n</ui-btngroup>\n\n<br><br>\n:::\n\n#### `ui-btn`色彩\n\n:::repeat/html\ncolor:theme\ncolor:feature\ncolor:black\ncolor:blue\ncolor:silver\ncolor:gray\n---\n<ui-btngroup>\n    <ui-btn color=\"{$colorKey}\">{$&colorName}</ui-btn>\n    <ui-btn color=\"{$colorKey}\">{$&colorName}</ui-btn>\n</ui-btngroup>\n\n<br><br>\n:::\n\n#### `ui-btn`状态\n\n:::repeat/html\nstate\n---\n<ui-btngroup>\n    <ui-btn state=\"{$stateKey}\">{$&stateName}</ui-btn>\n    <ui-btn state=\"{$stateKey}\">{$&stateName}</ui-btn>\n</ui-btngroup>\n\n<br><br>\n:::\n\n[[[源码]]]\n\n<iframe src=\"/report/coverage/lib/components/em/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n")])])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -340,4 +342,4 @@ if (false) {
 
 /***/ })
 
-},[671]);
+},[676]);

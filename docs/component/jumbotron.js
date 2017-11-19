@@ -1,4 +1,4 @@
-webpackJsonp([54],{
+webpackJsonp([55],{
 
 /***/ 0:
 /***/ (function(module, exports) {
@@ -7,7 +7,7 @@ module.exports = Vue;
 
 /***/ }),
 
-/***/ 581:
+/***/ 586:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17,7 +17,7 @@ var _vue = __webpack_require__(0);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _index = __webpack_require__(582);
+var _index = __webpack_require__(587);
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -32,18 +32,18 @@ new _vue2.default({
 
 /***/ }),
 
-/***/ 582:
+/***/ 587:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(584);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(589);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_f264f506_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(585);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_f264f506_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(590);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(583)
+  __webpack_require__(588)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
@@ -88,14 +88,14 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 583:
+/***/ 588:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 584:
+/***/ 589:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -170,12 +170,14 @@ exports.default = {
 //
 //
 //
+//
+//
 
 module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 585:
+/***/ 590:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -189,7 +191,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "type": "text/markdown"
     }
-  }, [_vm._v("\n# 巨幕 `<ui-jumbotron>`\n\n<doc-component-status page=\"jumbotron\"></doc-component-status>\n\n[[[开始]]]\n\n定义一个巨幕，巨幕包含标题、内容和一组按钮或链接，巨幕往往用来定义一个显眼的行动区域。\n\n巨幕可包含：\n\n- 标题 h1\n- 说明 p\n- 行动区域\n\n#### 使用\n\n:::democode/html\n<ui-jumbotron>\n    <h1>标题</h1>\n    <p>这个一个介绍区域，用来放置一些介绍内容。<br>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>\n    <ui-btn size=\"m\">行动</ui-btn> &nbsp;\n    <ui-link color=\"minor\" size=\"m\">查看更多</ui-link>\n</ui-jumbotron>\n:::\n\n[[[形态]]]\n\n#### 支持\n\n|类型|支持|默认|\n|-|-|-|\n|尺寸|不支持|-|\n|色彩|不支持|-|\n|状态|不支持|-|\n\n\n[[[源码]]]\n\n<iframe src=\"/report/coverage/lib/components/jumbotron/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n")])])
+  }, [_vm._v("\n# 巨幕 `<ui-jumbotron>`\n\n<doc-component-status page=\"jumbotron\"></doc-component-status>\n\n[[[开始]]]\n\n定义一个巨幕，巨幕包含标题、内容和一组按钮或链接，巨幕往往用来定义一个显眼的行动区域。\n\n巨幕可包含：\n\n- 标题 h1\n- 说明 p\n- 行动区域\n\n#### 使用\n\n:::democode/html\n<ui-jumbotron>\n    <h1>标题</h1>\n    <p>这个一个介绍区域，用来放置一些介绍内容。<br>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>\n    <ui-btn size=\"m\">行动</ui-btn> &nbsp;\n    <ui-link color=\"minor\" size=\"m\">查看更多</ui-link>\n</ui-jumbotron>\n:::\n\n[[[形态]]]\n\n#### 支持\n\n|类型|支持|默认|\n|-|-|-|\n|尺寸|不支持|-|\n|色彩|不支持|-|\n|状态|不支持|-|\n\n<a href=\"/guide/status.html\">查看形态文档</a>\n\n\n[[[源码]]]\n\n<iframe src=\"/report/coverage/lib/components/jumbotron/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n")])])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -204,4 +206,4 @@ if (false) {
 
 /***/ })
 
-},[581]);
+},[586]);

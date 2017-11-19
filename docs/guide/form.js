@@ -1,4 +1,4 @@
-webpackJsonp([16],{
+webpackJsonp([17],{
 
 /***/ 0:
 /***/ (function(module, exports) {
@@ -7,7 +7,7 @@ module.exports = Vue;
 
 /***/ }),
 
-/***/ 391:
+/***/ 396:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17,7 +17,7 @@ var _vue = __webpack_require__(0);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _index = __webpack_require__(392);
+var _index = __webpack_require__(397);
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -32,18 +32,18 @@ new _vue2.default({
 
 /***/ }),
 
-/***/ 392:
+/***/ 397:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(394);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(399);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_6bfb14ec_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(395);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_6bfb14ec_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(400);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(393)
+  __webpack_require__(398)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
@@ -88,14 +88,14 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 393:
+/***/ 398:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 394:
+/***/ 399:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -325,7 +325,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 395:
+/***/ 400:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -339,7 +339,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "type": "text/markdown"
     }
-  }, [_vm._v("\n# 表单\n\n表单组件区别于布局和交互组件，包含很多通用的逻辑。MorningUI的全局对象上也对表单组件进行了扩展。\n\n### 通用逻辑\n\n所有的表单都支持以下这些通用逻辑。\n\n#### 表单形态\n\n表单组件支持两种形态：`normal`和`disabled`。\n\n`disabled`状态下的表单无法修改表单值，一般用于展示。\n\n#### 表单配置\n\n表单组件支持下面几种通用配置：\n\n- form-name : 表单的名称(用于显示)\n- form-key : 表单的KEY(用于逻辑中作为识别标示)\n- group : 表单组\n- default-value : 表单的默认值(不支持单向数据流)\n- hide-name : 隐藏表单名(所有表单默认都有显示表单名的位置，你可以隐藏后自行设置)\n\n#### 表单方法\n\n表单组件支持下面几种通用方法：\n\n- set() : 设置表单的值\n- get() : 获取表单的值\n- getJson() : 获取表单的JSON值\n- setName() : 设置表单的名称\n- getName() : 获取表单的名称\n- setKey() : 设置表单的KEY\n- getKey() : 获取表单的KEY\n- setGroup() : 设置表单组件所属的表单组\n- getGroup() : 获取表单组件所属的表单组\n- addGroup() : 将表单组件添加到表单组\n- removeGroup() : 将表单组件从表单组中移除\n\n#### 表单事件\n\n表单组件支持下面几种通用事件：\n\n- value-change : 表单值发生改变时触发\n- created : 组件实例创建后(组件生命周期事件，等同于vue中的`created`)\n- mounted : 组件挂载到DOM后(组件生命周期事件，等同于vue中的`mounted`)\n- before-update : 组件更新前(组件生命周期事件，等同于vue中的`before-update`)\n- updated : 组件更新后(组件生命周期事件，等同于vue中的`updated`)\n- before-destroy : 组件销毁前(组件生命周期事件，等同于vue中的`before-destroy`)\n- destroyed : 组件销毁后(组件生命周期事件，等同于vue中的`destroyed`)\n\n### 表单值\n\n表单中所有的值都有支持的类型，若输入的值不符合表单支持的类型，表单会进行转换。\n\n所有的表单都会说明：\n\n- 值类型 : 表单支持数值的类型\n- 值过滤 : 表单过滤数值的条件\n- 值格式 : 表单数值格式说明\n- 默认值\n\n### 表单组\n\n通过在组件上设置`group`属性，可以将表单组件添加到同一个表单组。\n\n表单组内的所有表单KEY和值都会以键值对的形式存在一个对象中。\n\n你可以通过两种方式获取：\n\n- `morning.getGroup(groupKey)` : 获取指定表单组的数据\n- `morning.getGroupJson(groupKey)` : 获取指定表单组的JSON数据\n\n:::democode/html\n<div style=\"width:300px;\">\n    <ui-textinput group=\"demo1\" form-key=\"name\" form-name=\"姓名\" default-value=\"Jim\"></ui-textinput>\n    <br> \n    <ui-textinput group=\"demo1\" form-key=\"age\" form-name=\"年龄\" default-value=\"17\"></ui-textinput>\n    <br> \n    <ui-radio :list=\"{male:'Male',female:'Female'}\" group=\"demo1\" form-key=\"gender\" form-name=\"性别\" default-value=\"male\"></ui-radio>\n    <br> \n    <ui-multiinput group=\"demo1\" form-key=\"tags\" form-name=\"标签\" :default-value=\"['Happy']\"></ui-multiinput>\n</div>\n<br><br>\n<ui-btn js=\"console.log('demo1 data', window.morning.getGroup('demo1'));\">在Console输出表单组数据</ui-btn>\n<ui-btn js=\"console.log('demo1 data', window.morning.getGroupJson('demo1'));\">在Console输出表单组JSON数据</ui-btn>\n:::\n\n一组表单也可以同时设置值：\n\n- `morning.setGroup(groupKey, dataObject)` : 设置指定表单组的数据\n- `morning.setGroupJson(groupKey, dataJson)` : 设置指定表单组的JSON数据\n\n`dataObject`是一组键值对，键名为表单的KEY，键值是需要设置的表单值。`dataJson`是`dataObject`经过JSON序列化后的字符串。\n\n:::democode/html\n<div style=\"width:300px;\">\n    <ui-textinput group=\"demo2\" form-key=\"name\" form-name=\"姓名\"></ui-textinput>\n    <br> \n    <ui-textinput group=\"demo2\" form-key=\"age\" form-name=\"年龄\"></ui-textinput>\n    <br> \n    <ui-radio :list=\"{male:'Male',female:'Female'}\" group=\"demo2\" form-key=\"gender\" form-name=\"性别\"></ui-radio>\n    <br> \n    <ui-multiinput group=\"demo2\" form-key=\"tags\" form-name=\"标签\"></ui-multiinput>\n</div>\n<br><br>\n<ui-btn js=\"window.morning.setGroup('demo2', {name:'Jim', age:'17', gender: 'male', tags: ['Happy']});\">通过对象设置一组表单值</ui-btn>\n<ui-btn js='window.morning.setGroupJson(\"demo2\", \"{\\\"name\\\":\\\"Jim\\\",\\\"age\\\":\\\"17\\\",\\\"gender\\\":\\\"male\\\",\\\"tags\\\":[\\\"Happy\\\"]}\");'>通过JSON设置一组表单值</ui-btn>\n:::\n\n#### 设置部分值\n\n在`dataJson`或`dataObject`中你可以只设置部分表单的数值，比如：\n\n:::democode/html\n<div style=\"width:300px;\">\n    <ui-textinput group=\"demo3\" form-key=\"name\" form-name=\"姓名\"></ui-textinput>\n    <br> \n    <ui-radio :list=\"{male:'Male',female:'Female'}\" group=\"demo3\" form-key=\"gender\" form-name=\"性别\"></ui-radio>\n</div>\n<br><br>\n<ui-btn js=\"window.morning.setGroup('demo3', {gender: 'male'});\">只设置性别表单</ui-btn>\n:::\n\n#### 清空表单的值\n\n在`dataJson`或`dataObject`中若显式的设置`undefined`，则会清空对应表单的值，比如：\n\n:::democode/html\n<div style=\"width:300px;\">\n    <ui-textinput group=\"demo4\" form-key=\"name\" form-name=\"姓名\" default-value=\"Jim\"></ui-textinput>\n    <br> \n    <ui-radio :list=\"{male:'Male',female:'Female'}\" group=\"demo4\" form-key=\"gender\" form-name=\"性别\" default-value=\"male\"></ui-radio>\n</div>\n<br><br>\n<ui-btn js=\"window.morning.setGroup('demo4', {gender:undefined});\">清空性别表单</ui-btn>\n:::\n\n### 表单数据双向绑定\n\n大部分情况下表单的值和父视图中的数据是关联的，这时候可以使用`v-model`指令将表单值绑定到父视图中。\n\n绑定是双向的，组件值改变会同步到父视图的data中，父视图的值改变也会改变组件的值：\n\n:::vue/html\nwindow.demoVm = new Vue({\n    el : '{$el}',\n    template : '{$template}',\n    data : {\n        name : undefined,\n        gender : undefined\n    },\n    methods : {\n        getData : function() {\n            return JSON.stringify({\n                name : this.name,\n                gender : this.gender\n            })\n        },\n        setData : function() {\n            this.name = 'Sam';\n            this.gender = 'female';\n        }\n    }\n});\n---\n<div style=\"width:400px;\">\n    <p>1. 修改下面表单内容，然后点击<code>获取父视图的data</code>，父视图的数据同步变化</p>\n    <p>2. 点击<code>修改父视图的data</code>，表单的值也会变化</p>\n    <ui-formgroup>\n    <ui-textinput v-model=\"name\" form-name=\"姓名\" default-value=\"Jim\"></ui-textinput>\n    <br>\n    <ui-radio :list=\"{male:'Male',female:'Female'}\" v-model=\"gender\" default-value=\"male\"></ui-radio>\n    </ui-formgroup>\n    <br><br>\n    <ui-btn js=\"alert(demoVm.getData());\">获取父视图的data</ui-btn>\n    <ui-btn js=\"demoVm.setData();\">修改父视图的data</ui-btn>\n</div>\n:::\n\n注意：如果表单处于`disable`状态，父视图中的数值变化将不会同步到表单。\n\n`v-model`指令的用法详见：<a href=\"https://cn.vuejs.org/v2/guide/forms.html\" target=\"_blank\">表单输入绑定</a>\n\n### 全局扩展\n\nMorningUI的全局对象`morning`上对表单组件进行了扩展，可以让使用者更方便的获取、设置表单值。\n\n")])])
+  }, [_vm._v("\n# 表单\n\n表单组件区别于样式和交互组件，包含很多通用的逻辑。MorningUI的全局对象上也对表单组件进行了扩展。\n\n### 通用逻辑\n\n所有的表单都支持以下这些通用逻辑。\n\n#### 表单形态\n\n表单组件支持两种形态：`normal`和`disabled`。\n\n`disabled`状态下的表单无法修改表单值，一般用于展示。\n\n#### 表单配置\n\n表单组件支持下面几种通用配置：\n\n- form-name : 表单的名称(用于显示)\n- form-key : 表单的KEY(用于逻辑中作为识别标示)\n- group : 表单组\n- default-value : 表单的默认值(不支持单向数据流)\n- hide-name : 隐藏表单名(所有表单默认都有显示表单名的位置，你可以隐藏后自行设置)\n\n#### 表单方法\n\n表单组件支持下面几种通用方法：\n\n- set() : 设置表单的值\n- get() : 获取表单的值\n- getJson() : 获取表单的JSON值\n- setName() : 设置表单的名称\n- getName() : 获取表单的名称\n- setKey() : 设置表单的KEY\n- getKey() : 获取表单的KEY\n- setGroup() : 设置表单组件所属的表单组\n- getGroup() : 获取表单组件所属的表单组\n- addGroup() : 将表单组件添加到表单组\n- removeGroup() : 将表单组件从表单组中移除\n\n#### 表单事件\n\n表单组件支持下面几种通用事件：\n\n- value-change : 表单值发生改变时触发\n- created : 组件实例创建后(组件生命周期事件，等同于vue中的`created`)\n- mounted : 组件挂载到DOM后(组件生命周期事件，等同于vue中的`mounted`)\n- before-update : 组件更新前(组件生命周期事件，等同于vue中的`before-update`)\n- updated : 组件更新后(组件生命周期事件，等同于vue中的`updated`)\n- before-destroy : 组件销毁前(组件生命周期事件，等同于vue中的`before-destroy`)\n- destroyed : 组件销毁后(组件生命周期事件，等同于vue中的`destroyed`)\n\n### 表单值\n\n表单中所有的值都有支持的类型，若输入的值不符合表单支持的类型，表单会进行转换。\n\n所有的表单都会说明：\n\n- 值类型 : 表单支持数值的类型\n- 值过滤 : 表单过滤数值的条件\n- 值格式 : 表单数值格式说明\n- 默认值\n\n### 表单组\n\n通过在组件上设置`group`属性，可以将表单组件添加到同一个表单组。\n\n表单组内的所有表单KEY和值都会以键值对的形式存在一个对象中。\n\n你可以通过两种方式获取：\n\n- `morning.getGroup(groupKey)` : 获取指定表单组的数据\n- `morning.getGroupJson(groupKey)` : 获取指定表单组的JSON数据\n\n:::democode/html\n<div style=\"width:300px;\">\n    <ui-textinput group=\"demo1\" form-key=\"name\" form-name=\"姓名\" default-value=\"Jim\"></ui-textinput>\n    <br> \n    <ui-textinput group=\"demo1\" form-key=\"age\" form-name=\"年龄\" default-value=\"17\"></ui-textinput>\n    <br> \n    <ui-radio :list=\"{male:'Male',female:'Female'}\" group=\"demo1\" form-key=\"gender\" form-name=\"性别\" default-value=\"male\"></ui-radio>\n    <br> \n    <ui-multiinput group=\"demo1\" form-key=\"tags\" form-name=\"标签\" :default-value=\"['Happy']\"></ui-multiinput>\n</div>\n<br><br>\n<ui-btn js=\"console.log('demo1 data', window.morning.getGroup('demo1'));\">在Console输出表单组数据</ui-btn>\n<ui-btn js=\"console.log('demo1 data', window.morning.getGroupJson('demo1'));\">在Console输出表单组JSON数据</ui-btn>\n:::\n\n一组表单也可以同时设置值：\n\n- `morning.setGroup(groupKey, dataObject)` : 设置指定表单组的数据\n- `morning.setGroupJson(groupKey, dataJson)` : 设置指定表单组的JSON数据\n\n`dataObject`是一组键值对，键名为表单的KEY，键值是需要设置的表单值。`dataJson`是`dataObject`经过JSON序列化后的字符串。\n\n:::democode/html\n<div style=\"width:300px;\">\n    <ui-textinput group=\"demo2\" form-key=\"name\" form-name=\"姓名\"></ui-textinput>\n    <br> \n    <ui-textinput group=\"demo2\" form-key=\"age\" form-name=\"年龄\"></ui-textinput>\n    <br> \n    <ui-radio :list=\"{male:'Male',female:'Female'}\" group=\"demo2\" form-key=\"gender\" form-name=\"性别\"></ui-radio>\n    <br> \n    <ui-multiinput group=\"demo2\" form-key=\"tags\" form-name=\"标签\"></ui-multiinput>\n</div>\n<br><br>\n<ui-btn js=\"window.morning.setGroup('demo2', {name:'Jim', age:'17', gender: 'male', tags: ['Happy']});\">通过对象设置一组表单值</ui-btn>\n<ui-btn js='window.morning.setGroupJson(\"demo2\", \"{\\\"name\\\":\\\"Jim\\\",\\\"age\\\":\\\"17\\\",\\\"gender\\\":\\\"male\\\",\\\"tags\\\":[\\\"Happy\\\"]}\");'>通过JSON设置一组表单值</ui-btn>\n:::\n\n#### 设置部分值\n\n在`dataJson`或`dataObject`中你可以只设置部分表单的数值，比如：\n\n:::democode/html\n<div style=\"width:300px;\">\n    <ui-textinput group=\"demo3\" form-key=\"name\" form-name=\"姓名\"></ui-textinput>\n    <br> \n    <ui-radio :list=\"{male:'Male',female:'Female'}\" group=\"demo3\" form-key=\"gender\" form-name=\"性别\"></ui-radio>\n</div>\n<br><br>\n<ui-btn js=\"window.morning.setGroup('demo3', {gender: 'male'});\">只设置性别表单</ui-btn>\n:::\n\n#### 清空表单的值\n\n在`dataJson`或`dataObject`中若显式的设置`undefined`，则会清空对应表单的值，比如：\n\n:::democode/html\n<div style=\"width:300px;\">\n    <ui-textinput group=\"demo4\" form-key=\"name\" form-name=\"姓名\" default-value=\"Jim\"></ui-textinput>\n    <br> \n    <ui-radio :list=\"{male:'Male',female:'Female'}\" group=\"demo4\" form-key=\"gender\" form-name=\"性别\" default-value=\"male\"></ui-radio>\n</div>\n<br><br>\n<ui-btn js=\"window.morning.setGroup('demo4', {gender:undefined});\">清空性别表单</ui-btn>\n:::\n\n### 表单数据双向绑定\n\n大部分情况下表单的值和父视图中的数据是关联的，这时候可以使用`v-model`指令将表单值绑定到父视图中。\n\n绑定是双向的，组件值改变会同步到父视图的data中，父视图的值改变也会改变组件的值：\n\n:::vue/html\nwindow.demoVm = new Vue({\n    el : '{$el}',\n    template : '{$template}',\n    data : {\n        name : undefined,\n        gender : undefined\n    },\n    methods : {\n        getData : function() {\n            return JSON.stringify({\n                name : this.name,\n                gender : this.gender\n            })\n        },\n        setData : function() {\n            this.name = 'Sam';\n            this.gender = 'female';\n        }\n    }\n});\n---\n<div style=\"width:400px;\">\n    <p>1. 修改下面表单内容，然后点击<code>获取父视图的data</code>，父视图的数据同步变化</p>\n    <p>2. 点击<code>修改父视图的data</code>，表单的值也会变化</p>\n    <ui-formgroup>\n    <ui-textinput v-model=\"name\" form-name=\"姓名\" default-value=\"Jim\"></ui-textinput>\n    <br>\n    <ui-radio :list=\"{male:'Male',female:'Female'}\" v-model=\"gender\" default-value=\"male\"></ui-radio>\n    </ui-formgroup>\n    <br><br>\n    <ui-btn js=\"alert(demoVm.getData());\">获取父视图的data</ui-btn>\n    <ui-btn js=\"demoVm.setData();\">修改父视图的data</ui-btn>\n</div>\n:::\n\n注意：如果表单处于`disable`状态，父视图中的数值变化将不会同步到表单。\n\n`v-model`指令的用法详见：<a href=\"https://cn.vuejs.org/v2/guide/forms.html\" target=\"_blank\">表单输入绑定</a>\n\n### 全局扩展\n\nMorningUI的全局对象`morning`上对表单组件进行了扩展，可以让使用者更方便的获取、设置表单值。\n\n")])])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -354,4 +354,4 @@ if (false) {
 
 /***/ })
 
-},[391]);
+},[396]);
