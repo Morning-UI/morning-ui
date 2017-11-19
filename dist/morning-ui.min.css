@@ -2451,7 +2451,7 @@ i-table{width:100%;overflow:auto;display:block;border:0 none;font-size:14px;back
 }
 i-table header{position:relative;height:52px
 }
-i-table header h1{margin:0!important;font-size:24px!important;font-weight:400!important;padding:8px 16px!important
+i-table header h1{margin:0!important;font-size:24px!important;font-weight:400!important;text-align:left;padding:8px 16px!important
 }
 i-table header .action{position:absolute;top:13px;right:13px
 }

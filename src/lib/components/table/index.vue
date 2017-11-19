@@ -215,6 +215,38 @@ export default {
 
     },
     methods : {
+        _refreshTable : function () {
+
+            this._cleanupCell();
+            this._fixedTitleCol();
+            this._setCol();
+            this._setRow();
+            this._setCell();
+
+        },
+        _cleanupCell : function () {
+
+            let $cells = this.$el.querySelectorAll('td, th');
+
+            for (let $cell of $cells) {
+
+                if ($cell) {
+
+                    $cell.style.width = '';
+                    $cell.style.minWidth = '';
+                    $cell.style.maxWidth = '';
+                    
+                    for (let className of $cell.classList.values()) {
+
+                        $cell.classList.remove(className);
+
+                    }
+
+                }
+
+            }
+
+        },
         _setCol : function () {
 
             for (let set of this.conf.colSet) {
@@ -238,6 +270,11 @@ export default {
                     for (let $row of $rows) {
 
                         let $cell = $row.querySelectorAll('td, th')[colIndex];
+
+                        // cleanup
+                        if ($cell) {
+
+                        }
 
                         if ($cell && set.width) {
 
@@ -280,6 +317,28 @@ export default {
                 }
 
             }
+
+        },
+        _fillColSet : function (colset) {
+
+            let result = [];
+
+            for (let item of colset) {
+
+                result.push(extend({
+                    col : undefined,
+                    name : undefined,
+                    width : undefined,
+                    minwidth : undefined,
+                    maxwidth : undefined,
+                    style : undefined,
+                    disabled : undefined,
+                    align : undefined
+                }, item));
+
+            }
+
+            return result;
 
         },
         _setRow : function () {
@@ -336,6 +395,24 @@ export default {
                 }
 
             }
+
+        },
+        _fillRowSet : function (colset) {
+
+            let result = [];
+
+            for (let item of colset) {
+
+                result.push(extend({
+                    row : undefined,
+                    style : undefined,
+                    disabled : undefined,
+                    align : undefined
+                }, item));
+
+            }
+
+            return result;
 
         },
         _setCell : function () {
@@ -397,6 +474,25 @@ export default {
             }
 
         },
+        _fillCellSet : function (colset) {
+
+            let result = [];
+
+            for (let item of colset) {
+
+                result.push(extend({
+                    row : undefined,
+                    col : undefined,
+                    style : undefined,
+                    disabled : undefined,
+                    align : undefined
+                }, item));
+
+            }
+
+            return result;
+
+        },
         _toggleTitleCol : function () {
 
             let $titleTd = this.$el.querySelector('.title-table').parentElement;
@@ -446,14 +542,31 @@ export default {
         },
         _fixedTitleCol : function () {
 
+            let $titleTable = this.$el.querySelector('.title-table');
+            let $normalTable = this.$el.querySelector('.normal-table');
+
+            $normalTable.parentElement.style.maxWidth = '';
+            $titleTable.parentElement.style.maxWidth = '';
+            $normalTable.parentElement.style.overflowX = '';
+            $titleTable.parentElement.style.overflowX = '';
+            $normalTable.parentElement.style.width = '';
+            $titleTable.parentElement.style.width = '';
+            $normalTable.parentElement.style.position = '';
+            $titleTable.parentElement.style.position = '';
+            $normalTable.parentElement.style.left = '';
+            $titleTable.parentElement.style.left = '';
+            $normalTable.parentElement.style.right = '';
+            $titleTable.parentElement.style.right = '';
+            $normalTable.style.borderLeft = '';
+            $titleTable.style.borderLeft = '';
+            $normalTable.style.borderRight = '';
+            $titleTable.style.borderRight = '';
+
             if (!/fixed/.test(this.conf.fixedTitleCol)) {
 
                 return;
 
             }
-
-            let $titleTable = this.$el.querySelector('.title-table');
-            let $normalTable = this.$el.querySelector('.normal-table');
             let titleColWidth = $titleTable.clientWidth;
             let elWidth = this.$el.clientWidth;
 
@@ -653,16 +766,24 @@ export default {
             this.data.normalRows = normalRows;
             this.data.listDataJson = JSON.stringify(list);
 
-        },
-        setList : function (list) {
-
-            this._importList(list);
-
         }
     },
     mounted : function () {
 
-        this._importList(this.conf.list);
+        this.$watch('conf.list', () => {
+
+            this._importList(this.conf.list);
+
+        }, {
+            immediate : true,
+            deep : true
+        });
+
+        this.$watch('conf.emptyCellValue', () => {
+
+            this._importList(this.conf.list);
+
+        });
 
         this.Vue.nextTick(() => {
 
@@ -697,10 +818,50 @@ export default {
                 deep : true
             });
 
-            this._fixedTitleCol();
-            this._setCol();
-            this._setRow();
-            this._setCell();
+            this.$watch(() => (`${JSON.stringify(this.conf.colSet)}||${JSON.stringify(this.conf.rowSet)}||${JSON.stringify(this.conf.cellSet)}`), () => {
+
+                let fillColSet = this._fillColSet(this.conf.colSet);
+
+                if (JSON.stringify(this.conf.colSet) !== JSON.stringify(fillColSet)) {
+
+                    this.conf.colSet = fillColSet;
+
+                    return;
+
+                }
+
+                let fillRowSet = this._fillRowSet(this.conf.rowSet);
+
+                if (JSON.stringify(this.conf.rowSet) !== JSON.stringify(fillRowSet)) {
+
+                    this.conf.rowSet = fillRowSet;
+
+                    return;
+
+                }
+
+                let fillCellSet = this._fillCellSet(this.conf.cellSet);
+
+                if (JSON.stringify(this.conf.cellSet) !== JSON.stringify(fillCellSet)) {
+
+                    this.conf.cellSet = fillCellSet;
+
+                    return;
+
+                }
+
+                this._importList(this.conf.list);
+
+                this.Vue.nextTick(() => {
+                    
+                    this._refreshTable();
+
+                });
+
+            }, {
+                deep : true,
+                immediate : true
+            });
 
             this.$watch('data.listDataJson', () => {
 
@@ -715,10 +876,7 @@ export default {
 
         this.Vue.nextTick(() => {
 
-            this._fixedTitleCol();
-            this._setCol();
-            this._setRow();
-            this._setCell();
+            this._refreshTable();
 
         });
 
