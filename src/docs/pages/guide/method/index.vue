@@ -68,7 +68,6 @@
 
     交互和表单组件都支持一些通用的方法:
 
-    - `setConf` : 设置组件配置，详见[配置/设置配置](/guide/config.html)
     - `getConf` : 获取组件配置，详见[配置/获取配置](/guide/config.html)
 
     ### 私有方法
@@ -118,7 +117,6 @@
     - `next` : 下一项
     - `prev` : 上一项
     - `setTotal` : 设置总数
-    - `setList` : 设置列表数据
 
     </script>
     </doc-guide>

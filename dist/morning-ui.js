@@ -649,6 +649,8 @@ var _GlobalEvent2 = _interopRequireDefault(_GlobalEvent);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var moveDelayTime = 200;
+
 var Move = {
     mixins: [_GlobalEvent2.default],
     data: function data() {
@@ -657,7 +659,7 @@ var Move = {
             Move: {
                 can: false,
                 // 延迟多久触发拖拽，为了和click兼容
-                delay: 0,
+                delay: moveDelayTime,
                 target: null,
                 container: null,
                 lastMousedownIndex: -1,
@@ -870,7 +872,7 @@ var Move = {
 
                 if ($container) {
 
-                    $container.removeEventListener('mousedown', _this2._initMoveItem);
+                    $container.removeEventListener('mousedown', _this2._moveMousedown);
                 }
 
                 _this2._globalEventRemove('mousemove', '_moveMousemove');
@@ -1142,217 +1144,60 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
 var _extend = __webpack_require__(1);
 
 var _extend2 = _interopRequireDefault(_extend);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var sizeSet = ['xxl', 'xl', 'l', 'm', 's', 'xs', 'xxs'];
-
-var styleSet = ['theme', 'lightTheme', 'darkTheme', 'success', 'warning', 'danger', 'primary', 'minor', 'info', 'black', 'lightBlack', 'extraLightBlack', 'blue', 'lightBlue', 'extraLightBlue', 'silver', 'lightSilver', 'extraLightSilver', 'gray', 'lightGray', 'white'];
-
-var stateSet = ['normal', 'hover', 'active', 'disabled', 'apparent', 'loading', 'processing'];
-
-var props = {
-    name: String
-};
-
-var _arr = [].concat(sizeSet, styleSet, stateSet);
-
-for (var _i = 0; _i < _arr.length; _i++) {
-    var key = _arr[_i];
-
-    props[key] = {
-        type: Boolean,
-        default: false
-    };
-}
-
 exports.default = function (Vue, morning) {
     return Vue.extend({
-        props: props,
-        watch: {
-            'conf.size': function confSize(val) {
-
-                if (val === null) {
-
-                    this.sizeClass = '';
-                } else {
-
-                    this.sizeClass = 'si-' + val;
+        props: {
+            size: {
+                type: String,
+                default: undefined,
+                validator: function validator(value) {
+                    return ['xxl', 'xl', 'l', 'm', 's', 'xs', 'xxs'].indexOf(value) !== -1;
                 }
             },
-            'conf.style': function confStyle(val) {
-
-                if (val === null) {
-
-                    this.styleClass = '';
-                } else {
-
-                    this.styleClass = 'sy-' + val;
+            color: {
+                type: String,
+                default: undefined,
+                validator: function validator(value) {
+                    return ['theme', 'light-theme', 'dark-theme', 'success', 'warning', 'danger', 'primary', 'minor', 'info', 'black', 'light-black', 'extra-light-black', 'blue', 'light-blue', 'extra-light-blue', 'silver', 'light-silver', 'extra-light-silver', 'gray', 'light-gray', 'white'].indexOf(value) !== -1;
                 }
             },
-            'conf.state': function confState(val) {
-
-                if (val === null) {
-
-                    this.stateClass = '';
-                } else {
-
-                    this.stateClass = 'st-' + val;
+            state: {
+                type: String,
+                default: undefined,
+                validator: function validator(value) {
+                    return ['normal', 'hover', 'active', 'disabled', 'apparent'].indexOf(value) !== -1;
                 }
+
             }
         },
+        computed: {
+            _conf: function _conf() {
+
+                return {};
+            }
+        },
+        data: function data() {
+
+            var data = {};
+
+            data.isUI = true;
+            data.uiid = this.morning._uiid++;
+            data.data = {};
+            data.conf = {};
+
+            data.sizeClass = '';
+            data.colorClass = '';
+            data.stateClass = '';
+
+            return data;
+        },
         methods: {
-            _initSize: function _initSize() {
-
-                var size = null;
-
-                var _iteratorNormalCompletion = true;
-                var _didIteratorError = false;
-                var _iteratorError = undefined;
-
-                try {
-                    for (var _iterator = sizeSet[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                        var _key = _step.value;
-
-
-                        if (this.conf[_key] === true) {
-
-                            size = _key;
-                            break;
-                        }
-                    }
-                } catch (err) {
-                    _didIteratorError = true;
-                    _iteratorError = err;
-                } finally {
-                    try {
-                        if (!_iteratorNormalCompletion && _iterator.return) {
-                            _iterator.return();
-                        }
-                    } finally {
-                        if (_didIteratorError) {
-                            throw _iteratorError;
-                        }
-                    }
-                }
-
-                this.conf.size = size;
-            },
-            _initStyle: function _initStyle() {
-
-                var style = null;
-
-                var _iteratorNormalCompletion2 = true;
-                var _didIteratorError2 = false;
-                var _iteratorError2 = undefined;
-
-                try {
-                    for (var _iterator2 = styleSet[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                        var _key2 = _step2.value;
-
-
-                        if (this.conf[_key2] === true) {
-
-                            style = _key2;
-                            break;
-                        }
-                    }
-                } catch (err) {
-                    _didIteratorError2 = true;
-                    _iteratorError2 = err;
-                } finally {
-                    try {
-                        if (!_iteratorNormalCompletion2 && _iterator2.return) {
-                            _iterator2.return();
-                        }
-                    } finally {
-                        if (_didIteratorError2) {
-                            throw _iteratorError2;
-                        }
-                    }
-                }
-
-                this.conf.style = style;
-            },
-            _initState: function _initState() {
-
-                var state = null;
-
-                var _iteratorNormalCompletion3 = true;
-                var _didIteratorError3 = false;
-                var _iteratorError3 = undefined;
-
-                try {
-                    for (var _iterator3 = stateSet[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-                        var _key3 = _step3.value;
-
-
-                        if (this.conf[_key3] === true) {
-
-                            state = _key3;
-                            break;
-                        }
-                    }
-                } catch (err) {
-                    _didIteratorError3 = true;
-                    _iteratorError3 = err;
-                } finally {
-                    try {
-                        if (!_iteratorNormalCompletion3 && _iterator3.return) {
-                            _iterator3.return();
-                        }
-                    } finally {
-                        if (_didIteratorError3) {
-                            throw _iteratorError3;
-                        }
-                    }
-                }
-
-                this.conf.state = state;
-            },
-            setConf: function setConf(name, value) {
-
-                if ((typeof name === 'undefined' ? 'undefined' : _typeof(name)) === 'object') {
-                    var _iteratorNormalCompletion4 = true;
-                    var _didIteratorError4 = false;
-                    var _iteratorError4 = undefined;
-
-                    try {
-
-                        for (var _iterator4 = Object.keys(name)[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-                            var _key4 = _step4.value;
-
-
-                            var val = name[_key4];
-
-                            this.conf[_key4] = val;
-                        }
-                    } catch (err) {
-                        _didIteratorError4 = true;
-                        _iteratorError4 = err;
-                    } finally {
-                        try {
-                            if (!_iteratorNormalCompletion4 && _iterator4.return) {
-                                _iterator4.return();
-                            }
-                        } finally {
-                            if (_didIteratorError4) {
-                                throw _iteratorError4;
-                            }
-                        }
-                    }
-                } else if (typeof name === 'string') {
-
-                    this.conf[name] = value;
-                }
-
-                return this;
-            },
             getConf: function getConf(name) {
 
                 var conf = (0, _extend2.default)(true, {}, this.conf);
@@ -1365,43 +1210,66 @@ exports.default = function (Vue, morning) {
                 return conf;
             }
         },
-        data: function data() {
-
-            var data = {};
-
-            data.isUI = true;
-            data.uiid = this.morning._uiid++;
-            data.conf = {};
-            data.data = {};
-
-            var _arr2 = [].concat(sizeSet, styleSet, stateSet);
-
-            for (var _i2 = 0; _i2 < _arr2.length; _i2++) {
-                var _key5 = _arr2[_i2];
-
-                data.conf[_key5] = this[_key5];
-            }
-
-            data.conf.size = null;
-            data.conf.style = null;
-            data.conf.state = null;
-
-            data.sizeClass = '';
-            data.styleClass = '';
-            data.stateClass = '';
-
-            return data;
-        },
         beforeCreate: function beforeCreate() {
 
             this.Vue = Vue;
             this.morning = morning;
         },
         created: function created() {
+            var _this = this;
 
-            this._initSize();
-            this._initStyle();
-            this._initState();
+            this.$watch('size', function (val) {
+
+                _this.conf.size = val;
+
+                if (val === undefined) {
+
+                    _this.sizeClass = '';
+                } else {
+
+                    _this.sizeClass = 'si-' + val;
+                }
+            }, {
+                immediate: true
+            });
+
+            this.$watch('color', function (val) {
+
+                _this.conf.color = val;
+
+                if (val === undefined) {
+
+                    _this.colorClass = '';
+                } else {
+
+                    _this.colorClass = 'co-' + val;
+                }
+            }, {
+                immediate: true
+            });
+
+            this.$watch('state', function (val) {
+
+                _this.conf.state = val;
+
+                if (val === undefined) {
+
+                    _this.stateClass = '';
+                } else {
+
+                    _this.stateClass = 'st-' + val;
+                }
+            }, {
+                immediate: true
+            });
+
+            this.$watch('_conf', function (val) {
+
+                _this.conf = Object.assign({}, _this.conf, val);
+            }, {
+                immediate: true,
+                deep: true
+            });
 
             this.$emit('created');
         },
@@ -1491,6 +1359,18 @@ exports.default = function (UI) {
                 default: undefined
             }
         },
+        computed: {
+            _formConf: function _formConf() {
+
+                return {
+                    formName: this.formName,
+                    formKey: this.formKey,
+                    group: this.group,
+                    defaultValue: this.defaultValue,
+                    hideName: this.hideName
+                };
+            }
+        },
         data: function data() {
 
             var groups = [];
@@ -1505,13 +1385,6 @@ exports.default = function (UI) {
 
             return {
                 isForm: true,
-                conf: {
-                    formName: this.formName,
-                    formKey: this.formKey,
-                    group: groups,
-                    defaultValue: this.defaultValue,
-                    hideName: this.hideName
-                },
                 data: {
                     value: undefined
                 }
@@ -1520,36 +1393,28 @@ exports.default = function (UI) {
         methods: {
             _syncGroup: function _syncGroup() {
                 var remove = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+                var changeKey = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+                var changeGroup = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
 
                 var morning = this.morning;
 
-                if (this.conf.group && this.conf.group.length > 0) {
+                if (changeGroup) {
+
+                    changeGroup = [].concat(changeGroup);
+
                     var _iteratorNormalCompletion = true;
                     var _didIteratorError = false;
                     var _iteratorError = undefined;
 
                     try {
-
-                        for (var _iterator = this.conf.group[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                        for (var _iterator = changeGroup[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                             var gname = _step.value;
 
 
-                            if (remove && morning._groupData[gname] && morning._groupData[gname][this.conf.formKey] !== undefined) {
+                            if (morning._groupData[gname] && morning._groupData[gname][this.conf.formKey]) {
 
                                 delete morning._groupData[gname][this.conf.formKey];
-
-                                return;
-                            }
-
-                            if (morning._groupData[gname] === undefined) {
-
-                                morning._groupData[gname] = {};
-                            }
-
-                            if (this.conf.formKey !== undefined) {
-
-                                morning._groupData[gname][this.conf.formKey] = this.get();
                             }
                         }
                     } catch (err) {
@@ -1567,30 +1432,38 @@ exports.default = function (UI) {
                         }
                     }
                 }
-            },
-            _syncGroupVm: function _syncGroupVm(newGroup, oldGroup) {
 
-                if (oldGroup) {
+                if (this.conf.group && this.conf.group.length > 0) {
                     var _iteratorNormalCompletion2 = true;
                     var _didIteratorError2 = false;
                     var _iteratorError2 = undefined;
 
                     try {
 
-                        for (var _iterator2 = oldGroup[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                            var name = _step2.value;
+                        for (var _iterator2 = this.conf.group[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                            var _gname = _step2.value;
 
 
-                            if (this.morning._groupVmMap[name] === undefined) {
+                            if (morning._groupData[_gname] && morning._groupData[_gname][this.conf.formKey] !== undefined && remove === true) {
 
-                                break;
+                                delete morning._groupData[_gname][this.conf.formKey];
+
+                                return;
                             }
 
-                            var index = this.morning._groupVmMap[name].indexOf(this.uiid);
+                            if (changeKey && morning._groupData[_gname] && morning._groupData[_gname][changeKey]) {
 
-                            if (index !== -1) {
+                                delete morning._groupData[_gname][changeKey];
+                            }
 
-                                this.morning._groupVmMap[name].splice(index, 1);
+                            if (morning._groupData[_gname] === undefined) {
+
+                                morning._groupData[_gname] = {};
+                            }
+
+                            if (this.conf.formKey !== undefined) {
+
+                                morning._groupData[_gname][this.conf.formKey] = this.get();
                             }
                         }
                     } catch (err) {
@@ -1608,26 +1481,30 @@ exports.default = function (UI) {
                         }
                     }
                 }
+            },
+            _syncGroupVm: function _syncGroupVm(newGroup, oldGroup) {
 
-                if (newGroup) {
+                if (oldGroup) {
                     var _iteratorNormalCompletion3 = true;
                     var _didIteratorError3 = false;
                     var _iteratorError3 = undefined;
 
                     try {
 
-                        for (var _iterator3 = newGroup[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-                            var _name = _step3.value;
+                        for (var _iterator3 = oldGroup[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                            var name = _step3.value;
 
 
-                            if (this.morning._groupVmMap[_name] === undefined) {
+                            if (this.morning._groupVmMap[name] === undefined) {
 
-                                this.morning._groupVmMap[_name] = [];
+                                break;
                             }
 
-                            if (this.morning._groupVmMap[_name].indexOf(this.uiid) === -1) {
+                            var index = this.morning._groupVmMap[name].indexOf(this.uiid);
 
-                                this.morning._groupVmMap[_name].push(this.uiid);
+                            if (index !== -1) {
+
+                                this.morning._groupVmMap[name].splice(index, 1);
                             }
                         }
                     } catch (err) {
@@ -1641,6 +1518,43 @@ exports.default = function (UI) {
                         } finally {
                             if (_didIteratorError3) {
                                 throw _iteratorError3;
+                            }
+                        }
+                    }
+                }
+
+                if (newGroup) {
+                    var _iteratorNormalCompletion4 = true;
+                    var _didIteratorError4 = false;
+                    var _iteratorError4 = undefined;
+
+                    try {
+
+                        for (var _iterator4 = newGroup[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+                            var _name = _step4.value;
+
+
+                            if (this.morning._groupVmMap[_name] === undefined) {
+
+                                this.morning._groupVmMap[_name] = [];
+                            }
+
+                            if (this.morning._groupVmMap[_name].indexOf(this.uiid) === -1) {
+
+                                this.morning._groupVmMap[_name].push(this.uiid);
+                            }
+                        }
+                    } catch (err) {
+                        _didIteratorError4 = true;
+                        _iteratorError4 = err;
+                    } finally {
+                        try {
+                            if (!_iteratorNormalCompletion4 && _iterator4.return) {
+                                _iterator4.return();
+                            }
+                        } finally {
+                            if (_didIteratorError4) {
+                                throw _iteratorError4;
                             }
                         }
                     }
@@ -1717,19 +1631,19 @@ exports.default = function (UI) {
                 var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
 
 
-                return this.setConf('formName', name);
+                return this.formName = name;
             },
             getName: function getName() {
 
-                return this.getConf('formName');
+                return this.conf.formName;
             },
             setKey: function setKey(key) {
 
-                return this.setConf('formKey', key);
+                return this.formKey = key;
             },
             getKey: function getKey() {
 
-                return this.getConf('formKey');
+                return this.conf.formKey;
             },
             setGroup: function setGroup() {
                 var group = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
@@ -1745,15 +1659,15 @@ exports.default = function (UI) {
                     groups = groups.concat(group);
                 }
 
-                return this.setConf('group', groups);
+                return this.group = groups;
             },
             getGroup: function getGroup() {
 
-                return this.getConf('group');
+                return (0, _extend2.default)(true, [], this.conf.group);
             },
             addGroup: function addGroup(group) {
 
-                var groups = this.getConf('group');
+                var groups = this.getGroup();
 
                 if (typeof group === 'string') {
 
@@ -1761,49 +1675,50 @@ exports.default = function (UI) {
 
                     groups.push(group);
 
-                    var _iteratorNormalCompletion4 = true;
-                    var _didIteratorError4 = false;
-                    var _iteratorError4 = undefined;
+                    var _iteratorNormalCompletion5 = true;
+                    var _didIteratorError5 = false;
+                    var _iteratorError5 = undefined;
 
                     try {
-                        for (var _iterator4 = groups[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-                            var key = _step4.value;
+                        for (var _iterator5 = groups[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+                            var key = _step5.value;
 
 
                             uniqGroups[key] = 0;
                         }
                     } catch (err) {
-                        _didIteratorError4 = true;
-                        _iteratorError4 = err;
+                        _didIteratorError5 = true;
+                        _iteratorError5 = err;
                     } finally {
                         try {
-                            if (!_iteratorNormalCompletion4 && _iterator4.return) {
-                                _iterator4.return();
+                            if (!_iteratorNormalCompletion5 && _iterator5.return) {
+                                _iterator5.return();
                             }
                         } finally {
-                            if (_didIteratorError4) {
-                                throw _iteratorError4;
+                            if (_didIteratorError5) {
+                                throw _iteratorError5;
                             }
                         }
                     }
 
                     uniqGroups = Object.keys(uniqGroups);
 
-                    return this.setConf('group', uniqGroups);
+                    return this.group = uniqGroups;
                 }
 
                 return this;
             },
             removeGroup: function removeGroup(group) {
 
-                var groups = this.getConf('group');
+                var groups = this.getGroup();
 
                 for (var index in groups) {
 
                     if (group === groups[index]) {
 
                         groups.splice(index, 1);
-                        this.setConf('group', groups);
+
+                        this.group = groups;
 
                         break;
                     }
@@ -1814,6 +1729,19 @@ exports.default = function (UI) {
         },
         created: function created() {
             var _this = this;
+
+            this.$watch('_formConf', function (val) {
+
+                if (typeof val.group === 'string') {
+
+                    val.group = [val.group];
+                }
+
+                _this.conf = Object.assign({}, _this.conf, val);
+            }, {
+                immediate: true,
+                deep: true
+            });
 
             this.data.value = this.conf.defaultValue;
             this._syncGroup();
@@ -1841,11 +1769,18 @@ exports.default = function (UI) {
                 immediate: true
             });
 
+            this.$watch('conf.formKey', function (newVal, oldVal) {
+
+                _this._syncGroup(false, oldVal);
+            });
+
             this.$watch('conf.group', function (newVal, oldVal) {
 
+                _this._syncGroup(false, false, oldVal);
                 _this._syncGroupVm(newVal, oldVal);
             }, {
-                immediate: true
+                immediate: true,
+                deep: true
             });
         },
         beforeDestroy: function beforeDestroy() {
@@ -2257,7 +2192,7 @@ module.exports = exports['default'];
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('i-h', {
-    class: [_vm.sizeClass, _vm.styleClass, _vm.stateClass],
+    class: [_vm.sizeClass, _vm.colorClass, _vm.stateClass],
     attrs: {
       "_uiid": _vm.uiid
     }
@@ -2368,7 +2303,7 @@ module.exports = exports['default'];
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('i-lead', {
-    class: [_vm.styleClass, _vm.stateClass],
+    class: [_vm.colorClass, _vm.stateClass],
     attrs: {
       "_uiid": _vm.uiid
     }
@@ -2479,7 +2414,7 @@ module.exports = exports['default'];
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('i-mark', {
-    class: [_vm.styleClass, _vm.stateClass],
+    class: [_vm.colorClass, _vm.stateClass],
     attrs: {
       "_uiid": _vm.uiid
     }
@@ -3812,7 +3747,7 @@ module.exports = exports['default'];
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('i-quote', {
-    class: [_vm.styleClass],
+    class: [_vm.colorClass],
     attrs: {
       "_uiid": _vm.uiid
     }
@@ -4478,7 +4413,7 @@ module.exports = exports['default'];
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('i-textcolor', {
-    class: [_vm.styleClass],
+    class: [_vm.colorClass],
     attrs: {
       "_uiid": _vm.uiid
     }
@@ -4811,7 +4746,7 @@ module.exports = exports['default'];
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('i-card', {
-    class: [_vm.styleClass],
+    class: [_vm.colorClass],
     attrs: {
       "_uiid": _vm.uiid
     }
@@ -5033,7 +4968,7 @@ module.exports = exports['default'];
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('i-block', {
-    class: [_vm.styleClass],
+    class: [_vm.colorClass],
     attrs: {
       "_uiid": _vm.uiid
     }
@@ -5366,7 +5301,7 @@ module.exports = exports['default'];
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('i-header', {
-    class: [_vm.sizeClass, _vm.styleClass, _vm.stateClass],
+    class: [_vm.sizeClass, _vm.colorClass, _vm.stateClass],
     attrs: {
       "_uiid": _vm.uiid
     }
@@ -5477,7 +5412,7 @@ module.exports = exports['default'];
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('i-badge', {
-    class: [_vm.sizeClass, _vm.styleClass, _vm.stateClass],
+    class: [_vm.sizeClass, _vm.colorClass, _vm.stateClass],
     attrs: {
       "_uiid": _vm.uiid
     }
@@ -5588,7 +5523,7 @@ module.exports = exports['default'];
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('i-label', {
-    class: [_vm.sizeClass, _vm.styleClass, _vm.stateClass],
+    class: [_vm.sizeClass, _vm.colorClass, _vm.stateClass],
     attrs: {
       "_uiid": _vm.uiid
     }
@@ -5699,7 +5634,7 @@ module.exports = exports['default'];
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('i-statistic', {
-    class: [_vm.sizeClass, _vm.styleClass, _vm.stateClass],
+    class: [_vm.sizeClass, _vm.colorClass, _vm.stateClass],
     attrs: {
       "_uiid": _vm.uiid
     }
@@ -5810,7 +5745,7 @@ module.exports = exports['default'];
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('i-action', {
-    class: [_vm.sizeClass, _vm.styleClass],
+    class: [_vm.sizeClass, _vm.colorClass],
     attrs: {
       "_uiid": _vm.uiid
     }
@@ -6504,9 +6439,6 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
-//
-//
-//
 
 exports.default = {
     origin: 'UI',
@@ -6529,18 +6461,28 @@ exports.default = {
             default: false
         }
     },
-    data: function data() {
+    computed: {
+        _conf: function _conf() {
 
-        return {
-            conf: {
+            return {
                 link: this.link,
                 js: this.js,
                 locked: this.locked,
                 newTab: this.newTab
-            },
+            };
+        },
+        moreClass: function moreClass() {
+
+            return {
+                loading: this.data.lock
+            };
+        }
+    },
+    data: function data() {
+
+        return {
             data: {
-                lock: false,
-                lastState: null
+                lock: false
             }
         };
     },
@@ -6554,10 +6496,10 @@ exports.default = {
         },
         _emitLock: function _emitLock() {
 
-            if (typeof this.locked === 'number') {
+            if (typeof this.conf.locked === 'number') {
 
-                this.lock(+this.locked);
-            } else if (this.locked === true) {
+                this.lock(+this.conf.locked);
+            } else if (this.conf.locked === true) {
 
                 this.lock();
             }
@@ -6565,20 +6507,13 @@ exports.default = {
         unlock: function unlock() {
 
             this.data.lock = false;
-            this.conf.state = this.data.lastState;
 
             return this;
         },
         lock: function lock(time) {
             var _this = this;
 
-            if (this.data.lock !== true) {
-
-                this.data.lastState = this.conf.state;
-            }
-
             this.data.lock = true;
-            this.conf.state = 'loading';
 
             if (time) {
 
@@ -6596,8 +6531,6 @@ exports.default = {
     },
     mounted: function mounted() {
         var _this2 = this;
-
-        this.data.lastState = this.conf.state;
 
         this._emitLock();
 
@@ -6632,7 +6565,7 @@ module.exports = exports['default'];
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('i-btn', {
-    class: [_vm.sizeClass, _vm.styleClass, _vm.stateClass],
+    class: [_vm.sizeClass, _vm.colorClass, _vm.stateClass, _vm.moreClass],
     attrs: {
       "_uiid": _vm.uiid,
       "link": _vm.link,
@@ -6643,9 +6576,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     on: {
       "click": _vm._onClick
     }
-  }, [(_vm.conf.state === 'loading') ? [_c('i', {
-    staticClass: "morningicon"
-  }, [_vm._v("")]), _vm._v(" "), _c('span', [_vm._t("default")], 2)] : (_vm.conf.state === 'processing') ? [_c('i', {
+  }, [(_vm.data.lock) ? [_c('i', {
     staticClass: "morningicon"
   }, [_vm._v("")]), _vm._v(" "), _c('span', [_vm._t("default")], 2)] : [_vm._t("default")]], 2)
 }
@@ -6756,8 +6687,6 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
-//
-//
 
 exports.default = {
     origin: 'UI',
@@ -6780,18 +6709,28 @@ exports.default = {
             default: false
         }
     },
-    data: function data() {
+    computed: {
+        _conf: function _conf() {
 
-        return {
-            conf: {
+            return {
                 link: this.link,
                 js: this.js,
                 locked: this.locked,
                 newTab: this.newTab
-            },
+            };
+        },
+        moreClass: function moreClass() {
+
+            return {
+                loading: this.data.lock
+            };
+        }
+    },
+    data: function data() {
+
+        return {
             data: {
-                lock: false,
-                lastState: null
+                lock: false
             }
         };
     },
@@ -6805,10 +6744,10 @@ exports.default = {
         },
         _emitLock: function _emitLock() {
 
-            if (typeof this.locked === 'number') {
+            if (typeof this.conf.locked === 'number') {
 
                 this.lock(+this.locked);
-            } else if (this.locked === true) {
+            } else if (this.conf.locked === true) {
 
                 this.lock();
             }
@@ -6816,20 +6755,13 @@ exports.default = {
         unlock: function unlock() {
 
             this.data.lock = false;
-            this.conf.state = this.data.lastState;
 
             return this;
         },
         lock: function lock(time) {
             var _this = this;
 
-            if (this.data.lock !== true) {
-
-                this.data.lastState = this.conf.state;
-            }
-
             this.data.lock = true;
-            this.conf.state = 'loading';
 
             if (time) {
 
@@ -6847,8 +6779,6 @@ exports.default = {
     },
     mounted: function mounted() {
         var _this2 = this;
-
-        this.data.lastState = this.conf.state;
 
         this._emitLock();
 
@@ -6883,19 +6813,18 @@ module.exports = exports['default'];
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('i-link', {
-    class: [_vm.sizeClass, _vm.styleClass, _vm.stateClass],
+    class: [_vm.sizeClass, _vm.colorClass, _vm.stateClass, _vm.moreClass],
     attrs: {
       "_uiid": _vm.uiid,
       "link": _vm.link,
+      "js": _vm.js,
       "locked": _vm.locked,
       "new-tab": _vm.newTab
     },
     on: {
       "click": _vm._onClick
     }
-  }, [(_vm.conf.state === 'loading') ? [_c('i', {
-    staticClass: "morningicon"
-  }, [_vm._v("")]), _vm._v(" "), _c('span', [_vm._t("default")], 2)] : (_vm.conf.state === 'processing') ? [_c('i', {
+  }, [(_vm.data.lock) ? [_c('i', {
     staticClass: "morningicon"
   }, [_vm._v("")]), _vm._v(" "), _c('span', [_vm._t("default")], 2)] : [_vm._t("default")]], 2)
 }
@@ -7018,6 +6947,12 @@ exports.default = {
         }
     },
     computed: {
+        _conf: function _conf() {
+
+            return {
+                autoClose: this.autoClose
+            };
+        },
         showClass: function showClass() {
 
             return {
@@ -7029,9 +6964,6 @@ exports.default = {
     data: function data() {
 
         return {
-            conf: {
-                autoClose: this.autoClose
-            },
             data: {
                 show: false,
                 first: true
@@ -7288,7 +7220,8 @@ exports.default = {
     name: 'tab',
     props: {
         tab: {
-            type: String
+            type: String,
+            default: undefined
         },
         prepend: {
             type: Object,
@@ -7303,14 +7236,19 @@ exports.default = {
             }
         }
     },
-    data: function data() {
+    computed: {
+        _conf: function _conf() {
 
-        return {
-            conf: {
+            return {
                 tab: this.tab,
                 prepend: this.prepend,
                 append: this.append
-            },
+            };
+        }
+    },
+    data: function data() {
+
+        return {
             data: {
                 tabs: [],
                 selectTab: null,
@@ -7449,7 +7387,7 @@ exports.default = {
         var _this = this;
 
         this.$watch(function () {
-            return _this.conf.prepend + _this.conf.append;
+            return JSON.stringify(_this.conf.prepend) + JSON.stringify(_this.conf.append);
         }, this._getNamelist, {
             deep: true,
             immediate: true
@@ -7463,14 +7401,20 @@ exports.default = {
             immediate: true
         });
 
-        if (!this.conf.tab) {
-
-            this.conf.tab = this.data.tabs[0];
-        }
-
         this.Vue.nextTick(function () {
 
-            _this.switch(_this.conf.tab);
+            _this.$watch('conf.tab', function () {
+
+                if (_this.conf.tab) {
+
+                    _this.switch(_this.conf.tab);
+                } else {
+
+                    _this.switch(_this.data.tabs[0]);
+                }
+            }, {
+                immediate: true
+            });
         });
     }
 
@@ -7774,10 +7718,10 @@ exports.default = {
             default: undefined
         }
     },
-    data: function data() {
+    computed: {
+        _conf: function _conf() {
 
-        return {
-            conf: {
+            return {
                 list: this.list,
                 emptyCellValue: this.emptyCellValue,
                 title: this.title,
@@ -7792,17 +7736,8 @@ exports.default = {
                 cellSet: this.cellSet,
                 exportCsv: this.exportCsv,
                 csvName: this.csvName
-            },
-            data: {
-                normalKeys: [],
-                normalRows: [],
-                titleKeys: [],
-                titleRows: [],
-                listDataJson: '[]'
-            }
-        };
-    },
-    computed: {
+            };
+        },
         colSetMap: function colSetMap() {
 
             var map = {};
@@ -7850,73 +7785,56 @@ exports.default = {
             }, classes);
         }
     },
+    data: function data() {
+
+        return {
+            data: {
+                normalKeys: [],
+                normalRows: [],
+                titleKeys: [],
+                titleRows: [],
+                listDataJson: '[]'
+            }
+        };
+    },
     methods: {
-        _setCol: function _setCol() {
+        _refreshTable: function _refreshTable() {
+
+            this._cleanupCell();
+            this._fixedTitleCol();
+            this._setCol();
+            this._setRow();
+            this._setCell();
+        },
+        _cleanupCell: function _cleanupCell() {
+
+            var $cells = this.$el.querySelectorAll('td, th');
+
             var _iteratorNormalCompletion2 = true;
             var _didIteratorError2 = false;
             var _iteratorError2 = undefined;
 
             try {
+                for (var _iterator2 = $cells[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                    var $cell = _step2.value;
 
-                for (var _iterator2 = this.conf.colSet[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                    var set = _step2.value;
 
+                    if ($cell) {
 
-                    var colType = 'normal';
-                    var colIndex = this.data.normalKeys.indexOf(set.col);
-
-                    if (colIndex === -1) {
-
-                        colType = 'title';
-                        colIndex = this.data.titleKeys.indexOf(set.col);
-                    }
-
-                    var $rows = this.$el.querySelector('.' + colType + '-table');
-
-                    if ($rows) {
-
-                        $rows = $rows.querySelectorAll('tbody tr, thead tr');
+                        $cell.style.width = '';
+                        $cell.style.minWidth = '';
+                        $cell.style.maxWidth = '';
 
                         var _iteratorNormalCompletion3 = true;
                         var _didIteratorError3 = false;
                         var _iteratorError3 = undefined;
 
                         try {
-                            for (var _iterator3 = $rows[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-                                var $row = _step3.value;
+                            for (var _iterator3 = $cell.classList.values()[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                                var className = _step3.value;
 
 
-                                var $cell = $row.querySelectorAll('td, th')[colIndex];
-
-                                if ($cell && set.width) {
-
-                                    $cell.style.width = set.width;
-                                }
-
-                                if ($cell && set.minwidth) {
-
-                                    $cell.style.minWidth = set.minwidth;
-                                }
-
-                                if ($cell && set.maxwidth) {
-
-                                    $cell.style.maxWidth = set.maxwidth;
-                                }
-
-                                if ($cell && set.align) {
-
-                                    $cell.classList.add('cell-align-' + set.align);
-                                }
-
-                                if ($cell && set.style) {
-
-                                    $cell.classList.add('cell-sy-' + set.style);
-                                }
-
-                                if ($cell && set.disabled) {
-
-                                    $cell.classList.add('cell-disabled');
-                                }
+                                $cell.classList.remove(className);
                             }
                         } catch (err) {
                             _didIteratorError3 = true;
@@ -7949,40 +7867,72 @@ exports.default = {
                 }
             }
         },
-        _setRow: function _setRow() {
+        _setCol: function _setCol() {
             var _iteratorNormalCompletion4 = true;
             var _didIteratorError4 = false;
             var _iteratorError4 = undefined;
 
             try {
 
-                for (var _iterator4 = this.conf.rowSet[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+                for (var _iterator4 = this.conf.colSet[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
                     var set = _step4.value;
 
 
-                    var rowIndex = +set.row;
-                    var $titleRow = this.$el.querySelectorAll('.title-table tr');
-                    var $normalRow = this.$el.querySelectorAll('.normal-table tr');
+                    var colType = 'normal';
+                    var colIndex = this.data.normalKeys.indexOf(set.col);
 
-                    $titleRow = $titleRow[rowIndex];
-                    $normalRow = $normalRow[rowIndex];
+                    if (colIndex === -1) {
 
-                    if ($titleRow && $normalRow) {
+                        colType = 'title';
+                        colIndex = this.data.titleKeys.indexOf(set.col);
+                    }
 
-                        var $titleCell = $titleRow.querySelectorAll('th, td');
-                        var $normalCell = $normalRow.querySelectorAll('th, td');
-                        var $cells = [];
+                    var $rows = this.$el.querySelector('.' + colType + '-table');
+
+                    if ($rows) {
+
+                        $rows = $rows.querySelectorAll('tbody tr, thead tr');
 
                         var _iteratorNormalCompletion5 = true;
                         var _didIteratorError5 = false;
                         var _iteratorError5 = undefined;
 
                         try {
-                            for (var _iterator5 = $titleCell[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
-                                var $cell = _step5.value;
+                            for (var _iterator5 = $rows[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+                                var $row = _step5.value;
 
 
-                                $cells.push($cell);
+                                var $cell = $row.querySelectorAll('td, th')[colIndex];
+
+                                if ($cell && set.width) {
+
+                                    $cell.style.width = set.width;
+                                }
+
+                                if ($cell && set.minwidth) {
+
+                                    $cell.style.minWidth = set.minwidth;
+                                }
+
+                                if ($cell && set.maxwidth) {
+
+                                    $cell.style.maxWidth = set.maxwidth;
+                                }
+
+                                if ($cell && set.align) {
+
+                                    $cell.classList.add('cell-align-' + set.align);
+                                }
+
+                                if ($cell && set.style) {
+
+                                    $cell.classList.add('cell-co-' + set.style);
+                                }
+
+                                if ($cell && set.disabled) {
+
+                                    $cell.classList.add('cell-disabled');
+                                }
                             }
                         } catch (err) {
                             _didIteratorError5 = true;
@@ -7995,71 +7945,6 @@ exports.default = {
                             } finally {
                                 if (_didIteratorError5) {
                                     throw _iteratorError5;
-                                }
-                            }
-                        }
-
-                        var _iteratorNormalCompletion6 = true;
-                        var _didIteratorError6 = false;
-                        var _iteratorError6 = undefined;
-
-                        try {
-                            for (var _iterator6 = $normalCell[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
-                                var _$cell = _step6.value;
-
-
-                                $cells.push(_$cell);
-                            }
-                        } catch (err) {
-                            _didIteratorError6 = true;
-                            _iteratorError6 = err;
-                        } finally {
-                            try {
-                                if (!_iteratorNormalCompletion6 && _iterator6.return) {
-                                    _iterator6.return();
-                                }
-                            } finally {
-                                if (_didIteratorError6) {
-                                    throw _iteratorError6;
-                                }
-                            }
-                        }
-
-                        var _iteratorNormalCompletion7 = true;
-                        var _didIteratorError7 = false;
-                        var _iteratorError7 = undefined;
-
-                        try {
-                            for (var _iterator7 = $cells[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
-                                var _$cell2 = _step7.value;
-
-
-                                if (set.style) {
-
-                                    _$cell2.classList.add('cell-sy-' + set.style);
-                                }
-
-                                if (set.disabled) {
-
-                                    _$cell2.classList.add('cell-disabled');
-                                }
-
-                                if (set.align) {
-
-                                    _$cell2.classList.add('cell-align-' + set.align);
-                                }
-                            }
-                        } catch (err) {
-                            _didIteratorError7 = true;
-                            _iteratorError7 = err;
-                        } finally {
-                            try {
-                                if (!_iteratorNormalCompletion7 && _iterator7.return) {
-                                    _iterator7.return();
-                                }
-                            } finally {
-                                if (_didIteratorError7) {
-                                    throw _iteratorError7;
                                 }
                             }
                         }
@@ -8080,15 +7965,224 @@ exports.default = {
                 }
             }
         },
-        _setCell: function _setCell() {
-            var _iteratorNormalCompletion8 = true;
-            var _didIteratorError8 = false;
-            var _iteratorError8 = undefined;
+        _fillColSet: function _fillColSet(colset) {
+
+            var result = [];
+
+            var _iteratorNormalCompletion6 = true;
+            var _didIteratorError6 = false;
+            var _iteratorError6 = undefined;
+
+            try {
+                for (var _iterator6 = colset[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
+                    var item = _step6.value;
+
+
+                    result.push((0, _extend2.default)({
+                        col: undefined,
+                        name: undefined,
+                        width: undefined,
+                        minwidth: undefined,
+                        maxwidth: undefined,
+                        style: undefined,
+                        disabled: undefined,
+                        align: undefined
+                    }, item));
+                }
+            } catch (err) {
+                _didIteratorError6 = true;
+                _iteratorError6 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion6 && _iterator6.return) {
+                        _iterator6.return();
+                    }
+                } finally {
+                    if (_didIteratorError6) {
+                        throw _iteratorError6;
+                    }
+                }
+            }
+
+            return result;
+        },
+        _setRow: function _setRow() {
+            var _iteratorNormalCompletion7 = true;
+            var _didIteratorError7 = false;
+            var _iteratorError7 = undefined;
 
             try {
 
-                for (var _iterator8 = this.conf.cellSet[Symbol.iterator](), _step8; !(_iteratorNormalCompletion8 = (_step8 = _iterator8.next()).done); _iteratorNormalCompletion8 = true) {
-                    var set = _step8.value;
+                for (var _iterator7 = this.conf.rowSet[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
+                    var set = _step7.value;
+
+
+                    var rowIndex = +set.row;
+                    var $titleRow = this.$el.querySelectorAll('.title-table tr');
+                    var $normalRow = this.$el.querySelectorAll('.normal-table tr');
+
+                    $titleRow = $titleRow[rowIndex];
+                    $normalRow = $normalRow[rowIndex];
+
+                    if ($titleRow && $normalRow) {
+
+                        var $titleCell = $titleRow.querySelectorAll('th, td');
+                        var $normalCell = $normalRow.querySelectorAll('th, td');
+                        var $cells = [];
+
+                        var _iteratorNormalCompletion8 = true;
+                        var _didIteratorError8 = false;
+                        var _iteratorError8 = undefined;
+
+                        try {
+                            for (var _iterator8 = $titleCell[Symbol.iterator](), _step8; !(_iteratorNormalCompletion8 = (_step8 = _iterator8.next()).done); _iteratorNormalCompletion8 = true) {
+                                var $cell = _step8.value;
+
+
+                                $cells.push($cell);
+                            }
+                        } catch (err) {
+                            _didIteratorError8 = true;
+                            _iteratorError8 = err;
+                        } finally {
+                            try {
+                                if (!_iteratorNormalCompletion8 && _iterator8.return) {
+                                    _iterator8.return();
+                                }
+                            } finally {
+                                if (_didIteratorError8) {
+                                    throw _iteratorError8;
+                                }
+                            }
+                        }
+
+                        var _iteratorNormalCompletion9 = true;
+                        var _didIteratorError9 = false;
+                        var _iteratorError9 = undefined;
+
+                        try {
+                            for (var _iterator9 = $normalCell[Symbol.iterator](), _step9; !(_iteratorNormalCompletion9 = (_step9 = _iterator9.next()).done); _iteratorNormalCompletion9 = true) {
+                                var _$cell = _step9.value;
+
+
+                                $cells.push(_$cell);
+                            }
+                        } catch (err) {
+                            _didIteratorError9 = true;
+                            _iteratorError9 = err;
+                        } finally {
+                            try {
+                                if (!_iteratorNormalCompletion9 && _iterator9.return) {
+                                    _iterator9.return();
+                                }
+                            } finally {
+                                if (_didIteratorError9) {
+                                    throw _iteratorError9;
+                                }
+                            }
+                        }
+
+                        var _iteratorNormalCompletion10 = true;
+                        var _didIteratorError10 = false;
+                        var _iteratorError10 = undefined;
+
+                        try {
+                            for (var _iterator10 = $cells[Symbol.iterator](), _step10; !(_iteratorNormalCompletion10 = (_step10 = _iterator10.next()).done); _iteratorNormalCompletion10 = true) {
+                                var _$cell2 = _step10.value;
+
+
+                                if (set.style) {
+
+                                    _$cell2.classList.add('cell-co-' + set.style);
+                                }
+
+                                if (set.disabled) {
+
+                                    _$cell2.classList.add('cell-disabled');
+                                }
+
+                                if (set.align) {
+
+                                    _$cell2.classList.add('cell-align-' + set.align);
+                                }
+                            }
+                        } catch (err) {
+                            _didIteratorError10 = true;
+                            _iteratorError10 = err;
+                        } finally {
+                            try {
+                                if (!_iteratorNormalCompletion10 && _iterator10.return) {
+                                    _iterator10.return();
+                                }
+                            } finally {
+                                if (_didIteratorError10) {
+                                    throw _iteratorError10;
+                                }
+                            }
+                        }
+                    }
+                }
+            } catch (err) {
+                _didIteratorError7 = true;
+                _iteratorError7 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion7 && _iterator7.return) {
+                        _iterator7.return();
+                    }
+                } finally {
+                    if (_didIteratorError7) {
+                        throw _iteratorError7;
+                    }
+                }
+            }
+        },
+        _fillRowSet: function _fillRowSet(colset) {
+
+            var result = [];
+
+            var _iteratorNormalCompletion11 = true;
+            var _didIteratorError11 = false;
+            var _iteratorError11 = undefined;
+
+            try {
+                for (var _iterator11 = colset[Symbol.iterator](), _step11; !(_iteratorNormalCompletion11 = (_step11 = _iterator11.next()).done); _iteratorNormalCompletion11 = true) {
+                    var item = _step11.value;
+
+
+                    result.push((0, _extend2.default)({
+                        row: undefined,
+                        style: undefined,
+                        disabled: undefined,
+                        align: undefined
+                    }, item));
+                }
+            } catch (err) {
+                _didIteratorError11 = true;
+                _iteratorError11 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion11 && _iterator11.return) {
+                        _iterator11.return();
+                    }
+                } finally {
+                    if (_didIteratorError11) {
+                        throw _iteratorError11;
+                    }
+                }
+            }
+
+            return result;
+        },
+        _setCell: function _setCell() {
+            var _iteratorNormalCompletion12 = true;
+            var _didIteratorError12 = false;
+            var _iteratorError12 = undefined;
+
+            try {
+
+                for (var _iterator12 = this.conf.cellSet[Symbol.iterator](), _step12; !(_iteratorNormalCompletion12 = (_step12 = _iterator12.next()).done); _iteratorNormalCompletion12 = true) {
+                    var set = _step12.value;
 
 
                     var colType = 'normal';
@@ -8120,7 +8214,7 @@ exports.default = {
 
                             if (set.style) {
 
-                                $cell.classList.add('cell-sy-' + set.style);
+                                $cell.classList.add('cell-co-' + set.style);
                             }
 
                             if (set.disabled) {
@@ -8136,19 +8230,57 @@ exports.default = {
                     }
                 }
             } catch (err) {
-                _didIteratorError8 = true;
-                _iteratorError8 = err;
+                _didIteratorError12 = true;
+                _iteratorError12 = err;
             } finally {
                 try {
-                    if (!_iteratorNormalCompletion8 && _iterator8.return) {
-                        _iterator8.return();
+                    if (!_iteratorNormalCompletion12 && _iterator12.return) {
+                        _iterator12.return();
                     }
                 } finally {
-                    if (_didIteratorError8) {
-                        throw _iteratorError8;
+                    if (_didIteratorError12) {
+                        throw _iteratorError12;
                     }
                 }
             }
+        },
+        _fillCellSet: function _fillCellSet(colset) {
+
+            var result = [];
+
+            var _iteratorNormalCompletion13 = true;
+            var _didIteratorError13 = false;
+            var _iteratorError13 = undefined;
+
+            try {
+                for (var _iterator13 = colset[Symbol.iterator](), _step13; !(_iteratorNormalCompletion13 = (_step13 = _iterator13.next()).done); _iteratorNormalCompletion13 = true) {
+                    var item = _step13.value;
+
+
+                    result.push((0, _extend2.default)({
+                        row: undefined,
+                        col: undefined,
+                        style: undefined,
+                        disabled: undefined,
+                        align: undefined
+                    }, item));
+                }
+            } catch (err) {
+                _didIteratorError13 = true;
+                _iteratorError13 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion13 && _iterator13.return) {
+                        _iterator13.return();
+                    }
+                } finally {
+                    if (_didIteratorError13) {
+                        throw _iteratorError13;
+                    }
+                }
+            }
+
+            return result;
         },
         _toggleTitleCol: function _toggleTitleCol() {
 
@@ -8190,13 +8322,30 @@ exports.default = {
         },
         _fixedTitleCol: function _fixedTitleCol() {
 
+            var $titleTable = this.$el.querySelector('.title-table');
+            var $normalTable = this.$el.querySelector('.normal-table');
+
+            $normalTable.parentElement.style.maxWidth = '';
+            $titleTable.parentElement.style.maxWidth = '';
+            $normalTable.parentElement.style.overflowX = '';
+            $titleTable.parentElement.style.overflowX = '';
+            $normalTable.parentElement.style.width = '';
+            $titleTable.parentElement.style.width = '';
+            $normalTable.parentElement.style.position = '';
+            $titleTable.parentElement.style.position = '';
+            $normalTable.parentElement.style.left = '';
+            $titleTable.parentElement.style.left = '';
+            $normalTable.parentElement.style.right = '';
+            $titleTable.parentElement.style.right = '';
+            $normalTable.style.borderLeft = '';
+            $titleTable.style.borderLeft = '';
+            $normalTable.style.borderRight = '';
+            $titleTable.style.borderRight = '';
+
             if (!/fixed/.test(this.conf.fixedTitleCol)) {
 
                 return;
             }
-
-            var $titleTable = this.$el.querySelector('.title-table');
-            var $normalTable = this.$el.querySelector('.normal-table');
             var titleColWidth = $titleTable.clientWidth;
             var elWidth = this.$el.clientWidth;
 
@@ -8240,14 +8389,14 @@ exports.default = {
             }
 
             if (this.conf.showColName) {
-                var _iteratorNormalCompletion9 = true;
-                var _didIteratorError9 = false;
-                var _iteratorError9 = undefined;
+                var _iteratorNormalCompletion14 = true;
+                var _didIteratorError14 = false;
+                var _iteratorError14 = undefined;
 
                 try {
 
-                    for (var _iterator9 = this.data[type + 'Keys'][Symbol.iterator](), _step9; !(_iteratorNormalCompletion9 = (_step9 = _iterator9.next()).done); _iteratorNormalCompletion9 = true) {
-                        var key = _step9.value;
+                    for (var _iterator14 = this.data[type + 'Keys'][Symbol.iterator](), _step14; !(_iteratorNormalCompletion14 = (_step14 = _iterator14.next()).done); _iteratorNormalCompletion14 = true) {
+                        var key = _step14.value;
 
 
                         var set = this.colSetMap[key];
@@ -8261,16 +8410,16 @@ exports.default = {
                         }
                     }
                 } catch (err) {
-                    _didIteratorError9 = true;
-                    _iteratorError9 = err;
+                    _didIteratorError14 = true;
+                    _iteratorError14 = err;
                 } finally {
                     try {
-                        if (!_iteratorNormalCompletion9 && _iterator9.return) {
-                            _iterator9.return();
+                        if (!_iteratorNormalCompletion14 && _iterator14.return) {
+                            _iterator14.return();
                         }
                     } finally {
-                        if (_didIteratorError9) {
-                            throw _iteratorError9;
+                        if (_didIteratorError14) {
+                            throw _iteratorError14;
                         }
                     }
                 }
@@ -8344,21 +8493,21 @@ exports.default = {
 
             list = (0, _extend2.default)(true, [], list);
 
-            var _iteratorNormalCompletion10 = true;
-            var _didIteratorError10 = false;
-            var _iteratorError10 = undefined;
+            var _iteratorNormalCompletion15 = true;
+            var _didIteratorError15 = false;
+            var _iteratorError15 = undefined;
 
             try {
-                for (var _iterator10 = list[Symbol.iterator](), _step10; !(_iteratorNormalCompletion10 = (_step10 = _iterator10.next()).done); _iteratorNormalCompletion10 = true) {
-                    var item = _step10.value;
-                    var _iteratorNormalCompletion12 = true;
-                    var _didIteratorError12 = false;
-                    var _iteratorError12 = undefined;
+                for (var _iterator15 = list[Symbol.iterator](), _step15; !(_iteratorNormalCompletion15 = (_step15 = _iterator15.next()).done); _iteratorNormalCompletion15 = true) {
+                    var item = _step15.value;
+                    var _iteratorNormalCompletion17 = true;
+                    var _didIteratorError17 = false;
+                    var _iteratorError17 = undefined;
 
                     try {
 
-                        for (var _iterator12 = Object.keys(item)[Symbol.iterator](), _step12; !(_iteratorNormalCompletion12 = (_step12 = _iterator12.next()).done); _iteratorNormalCompletion12 = true) {
-                            var key = _step12.value;
+                        for (var _iterator17 = Object.keys(item)[Symbol.iterator](), _step17; !(_iteratorNormalCompletion17 = (_step17 = _iterator17.next()).done); _iteratorNormalCompletion17 = true) {
+                            var key = _step17.value;
 
 
                             var set = this.colSetMap[key];
@@ -8372,31 +8521,31 @@ exports.default = {
                             }
                         }
                     } catch (err) {
-                        _didIteratorError12 = true;
-                        _iteratorError12 = err;
+                        _didIteratorError17 = true;
+                        _iteratorError17 = err;
                     } finally {
                         try {
-                            if (!_iteratorNormalCompletion12 && _iterator12.return) {
-                                _iterator12.return();
+                            if (!_iteratorNormalCompletion17 && _iterator17.return) {
+                                _iterator17.return();
                             }
                         } finally {
-                            if (_didIteratorError12) {
-                                throw _iteratorError12;
+                            if (_didIteratorError17) {
+                                throw _iteratorError17;
                             }
                         }
                     }
                 }
             } catch (err) {
-                _didIteratorError10 = true;
-                _iteratorError10 = err;
+                _didIteratorError15 = true;
+                _iteratorError15 = err;
             } finally {
                 try {
-                    if (!_iteratorNormalCompletion10 && _iterator10.return) {
-                        _iterator10.return();
+                    if (!_iteratorNormalCompletion15 && _iterator15.return) {
+                        _iterator15.return();
                     }
                 } finally {
-                    if (_didIteratorError10) {
-                        throw _iteratorError10;
+                    if (_didIteratorError15) {
+                        throw _iteratorError15;
                     }
                 }
             }
@@ -8404,66 +8553,66 @@ exports.default = {
             titleKeys = (0, _arrayUniq2.default)(titleKeys);
             normalKeys = (0, _arrayUniq2.default)(normalKeys);
 
-            var _iteratorNormalCompletion11 = true;
-            var _didIteratorError11 = false;
-            var _iteratorError11 = undefined;
+            var _iteratorNormalCompletion16 = true;
+            var _didIteratorError16 = false;
+            var _iteratorError16 = undefined;
 
             try {
-                for (var _iterator11 = list[Symbol.iterator](), _step11; !(_iteratorNormalCompletion11 = (_step11 = _iterator11.next()).done); _iteratorNormalCompletion11 = true) {
-                    var _item = _step11.value;
+                for (var _iterator16 = list[Symbol.iterator](), _step16; !(_iteratorNormalCompletion16 = (_step16 = _iterator16.next()).done); _iteratorNormalCompletion16 = true) {
+                    var _item = _step16.value;
 
 
                     var titleCol = [];
                     var normalCol = [];
 
-                    var _iteratorNormalCompletion13 = true;
-                    var _didIteratorError13 = false;
-                    var _iteratorError13 = undefined;
+                    var _iteratorNormalCompletion18 = true;
+                    var _didIteratorError18 = false;
+                    var _iteratorError18 = undefined;
 
                     try {
-                        for (var _iterator13 = titleKeys[Symbol.iterator](), _step13; !(_iteratorNormalCompletion13 = (_step13 = _iterator13.next()).done); _iteratorNormalCompletion13 = true) {
-                            var _key = _step13.value;
+                        for (var _iterator18 = titleKeys[Symbol.iterator](), _step18; !(_iteratorNormalCompletion18 = (_step18 = _iterator18.next()).done); _iteratorNormalCompletion18 = true) {
+                            var _key = _step18.value;
 
 
                             titleCol.push(_item[_key] || this.conf.emptyCellValue);
                         }
                     } catch (err) {
-                        _didIteratorError13 = true;
-                        _iteratorError13 = err;
+                        _didIteratorError18 = true;
+                        _iteratorError18 = err;
                     } finally {
                         try {
-                            if (!_iteratorNormalCompletion13 && _iterator13.return) {
-                                _iterator13.return();
+                            if (!_iteratorNormalCompletion18 && _iterator18.return) {
+                                _iterator18.return();
                             }
                         } finally {
-                            if (_didIteratorError13) {
-                                throw _iteratorError13;
+                            if (_didIteratorError18) {
+                                throw _iteratorError18;
                             }
                         }
                     }
 
-                    var _iteratorNormalCompletion14 = true;
-                    var _didIteratorError14 = false;
-                    var _iteratorError14 = undefined;
+                    var _iteratorNormalCompletion19 = true;
+                    var _didIteratorError19 = false;
+                    var _iteratorError19 = undefined;
 
                     try {
-                        for (var _iterator14 = normalKeys[Symbol.iterator](), _step14; !(_iteratorNormalCompletion14 = (_step14 = _iterator14.next()).done); _iteratorNormalCompletion14 = true) {
-                            var _key2 = _step14.value;
+                        for (var _iterator19 = normalKeys[Symbol.iterator](), _step19; !(_iteratorNormalCompletion19 = (_step19 = _iterator19.next()).done); _iteratorNormalCompletion19 = true) {
+                            var _key2 = _step19.value;
 
 
                             normalCol.push(_item[_key2] || this.conf.emptyCellValue);
                         }
                     } catch (err) {
-                        _didIteratorError14 = true;
-                        _iteratorError14 = err;
+                        _didIteratorError19 = true;
+                        _iteratorError19 = err;
                     } finally {
                         try {
-                            if (!_iteratorNormalCompletion14 && _iterator14.return) {
-                                _iterator14.return();
+                            if (!_iteratorNormalCompletion19 && _iterator19.return) {
+                                _iterator19.return();
                             }
                         } finally {
-                            if (_didIteratorError14) {
-                                throw _iteratorError14;
+                            if (_didIteratorError19) {
+                                throw _iteratorError19;
                             }
                         }
                     }
@@ -8472,16 +8621,16 @@ exports.default = {
                     normalRows.push(normalCol);
                 }
             } catch (err) {
-                _didIteratorError11 = true;
-                _iteratorError11 = err;
+                _didIteratorError16 = true;
+                _iteratorError16 = err;
             } finally {
                 try {
-                    if (!_iteratorNormalCompletion11 && _iterator11.return) {
-                        _iterator11.return();
+                    if (!_iteratorNormalCompletion16 && _iterator16.return) {
+                        _iterator16.return();
                     }
                 } finally {
-                    if (_didIteratorError11) {
-                        throw _iteratorError11;
+                    if (_didIteratorError16) {
+                        throw _iteratorError16;
                     }
                 }
             }
@@ -8491,16 +8640,23 @@ exports.default = {
             this.data.titleRows = titleRows;
             this.data.normalRows = normalRows;
             this.data.listDataJson = JSON.stringify(list);
-        },
-        setList: function setList(list) {
-
-            this._importList(list);
         }
     },
     mounted: function mounted() {
         var _this = this;
 
-        this._importList(this.conf.list);
+        this.$watch('conf.list', function () {
+
+            _this._importList(_this.conf.list);
+        }, {
+            immediate: true,
+            deep: true
+        });
+
+        this.$watch('conf.emptyCellValue', function () {
+
+            _this._importList(_this.conf.list);
+        });
 
         this.Vue.nextTick(function () {
 
@@ -8531,10 +8687,47 @@ exports.default = {
                 deep: true
             });
 
-            _this._fixedTitleCol();
-            _this._setCol();
-            _this._setRow();
-            _this._setCell();
+            _this.$watch(function () {
+                return JSON.stringify(_this.conf.colSet) + '||' + JSON.stringify(_this.conf.rowSet) + '||' + JSON.stringify(_this.conf.cellSet);
+            }, function () {
+
+                var fillColSet = _this._fillColSet(_this.conf.colSet);
+
+                if (JSON.stringify(_this.conf.colSet) !== JSON.stringify(fillColSet)) {
+
+                    _this.conf.colSet = fillColSet;
+
+                    return;
+                }
+
+                var fillRowSet = _this._fillRowSet(_this.conf.rowSet);
+
+                if (JSON.stringify(_this.conf.rowSet) !== JSON.stringify(fillRowSet)) {
+
+                    _this.conf.rowSet = fillRowSet;
+
+                    return;
+                }
+
+                var fillCellSet = _this._fillCellSet(_this.conf.cellSet);
+
+                if (JSON.stringify(_this.conf.cellSet) !== JSON.stringify(fillCellSet)) {
+
+                    _this.conf.cellSet = fillCellSet;
+
+                    return;
+                }
+
+                _this._importList(_this.conf.list);
+
+                _this.Vue.nextTick(function () {
+
+                    _this._refreshTable();
+                });
+            }, {
+                deep: true,
+                immediate: true
+            });
 
             _this.$watch('data.listDataJson', function () {
 
@@ -8547,10 +8740,7 @@ exports.default = {
 
         this.Vue.nextTick(function () {
 
-            _this2._fixedTitleCol();
-            _this2._setCol();
-            _this2._setRow();
-            _this2._setCell();
+            _this2._refreshTable();
         });
     }
 };
@@ -8641,7 +8831,6 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
-//
 
 exports.default = {
     props: ['conf', 'data', 'colSetMap']
@@ -8669,16 +8858,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
         }
       }
     }, [_vm._l((row), function(col, index) {
-      return [(_vm.colSetMap[_vm.data.titleKeys[index]]) ? _c('td', {
-        directives: [{
-          name: "render",
-          rawName: "v-render",
-          value: ({
-            template: col
-          }),
-          expression: "{template : col}"
-        }]
-      }) : _c('td', {
+      return [_c('td', {
         directives: [{
           name: "render",
           rawName: "v-render",
@@ -8855,7 +9035,7 @@ if (false) {
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('i-table', {
-    class: [_vm.styleClass, _vm.moreClass],
+    class: [_vm.colorClass, _vm.moreClass],
     attrs: {
       "_uiid": _vm.uiid,
       "list": _vm.list,
@@ -8877,8 +9057,8 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     staticClass: "action"
   }, [(_vm.conf.exportCsv) ? _c('morning-btn', {
     attrs: {
-      "success": "",
-      "xs": ""
+      "color": "success",
+      "size": "xs"
     },
     on: {
       "emit": _vm._exportCsv
@@ -9107,26 +9287,52 @@ exports.default = {
             default: true
         }
     },
-    data: function data() {
+    computed: {
+        _conf: function _conf() {
 
-        return {
-            conf: {
+            return {
                 total: this.total,
                 list: this.list,
                 pageSize: this.pageSize,
                 page: this.page,
                 maxShow: this.maxShow,
                 jumpPage: this.jumpPage
-            },
+            };
+        }
+    },
+    data: function data() {
+
+        return {
             data: {
                 currentPage: 0,
                 currentItems: [],
                 hideEnd: 0,
-                hideStart: Infinity
+                hideStart: Infinity,
+                total: 0
             }
         };
     },
     methods: {
+        _setTotal: function _setTotal() {
+
+            var total = this.data.total;
+
+            if (this.conf.list) {
+
+                if (this.conf.list instanceof Array) {
+
+                    total = Math.ceil(this.conf.list.length / this.conf.pageSize);
+                } else {
+
+                    total = Math.ceil(Object.keys(this.conf.list).length / this.conf.pageSize);
+                }
+            } else {
+
+                total = this.conf.total;
+            }
+
+            this.data.total = total;
+        },
         _refreshCurrentItems: function _refreshCurrentItems() {
 
             if (this.conf.list) {
@@ -9151,7 +9357,7 @@ exports.default = {
             var end = this.data.currentPage - Math.floor(this.conf.maxShow / 2),
                 start = this.data.currentPage + Math.floor(this.conf.maxShow / 2);
 
-            this.data.hideEnd = end - (start > this.conf.total ? start - this.conf.total - 1 : 0);
+            this.data.hideEnd = end - (start > this.data.total ? start - this.data.total - 1 : 0);
             this.data.hideStart = start + (end < 1 ? -end + 1 : 0);
         },
         getPage: function getPage() {
@@ -9171,12 +9377,12 @@ exports.default = {
 
             if (index < 0) {
 
-                index = this.conf.total + index + 1;
+                index = this.data.total + index + 1;
             }
 
-            if (index > this.conf.total) {
+            if (index > this.data.total) {
 
-                index = this.conf.total;
+                index = this.data.total;
             }
 
             if (index < 1) {
@@ -9219,21 +9425,9 @@ exports.default = {
                 return this;
             }
 
-            num = +num || this.conf.total;
+            num = +num || this.data.total;
 
-            if (num < 1) {
-
-                num = 1;
-            }
-
-            this.conf.total = num;
-
-            this._setMaxshow();
-
-            if (this.data.currentPage > num) {
-
-                this.to(num);
-            }
+            this.data.total = num;
 
             return this;
         }
@@ -9241,16 +9435,29 @@ exports.default = {
     mounted: function mounted() {
         var _this = this;
 
-        if (this.conf.list) {
+        this.$watch('conf.total', function () {
 
-            if (this.conf.list instanceof Array) {
+            _this._setTotal();
+        });
 
-                this.conf.total = Math.ceil(this.conf.list.length / this.conf.pageSize);
-            } else {
+        this.$watch('conf.list', function () {
 
-                this.conf.total = Math.ceil(Object.keys(this.conf.list).length / this.conf.pageSize);
-            }
-        }
+            _this._setTotal();
+            _this._refreshCurrentItems();
+        }, {
+            deep: true
+        });
+
+        this.$watch('conf.pageSize', function () {
+
+            _this._setTotal();
+            _this._refreshCurrentItems();
+        });
+
+        this.$watch('conf.maxShow', function () {
+
+            _this._setMaxshow();
+        });
 
         this.$watch('data.currentPage', function () {
 
@@ -9259,8 +9466,32 @@ exports.default = {
             _this.$emit('emit');
         });
 
+        this.$watch('data.total', function () {
+
+            if (_this.data.total < 1) {
+
+                _this.data.total = 1;
+
+                return;
+            }
+
+            if (_this.data.currentPage > _this.data.total) {
+
+                _this.to(_this.data.total);
+            }
+
+            _this._setMaxshow();
+        });
+
+        this._setTotal();
         this._refreshCurrentItems();
-        this.to(this.conf.page);
+
+        this.$watch('conf.page', function () {
+
+            _this.to(_this.conf.page);
+        }, {
+            immediate: true
+        });
     }
 };
 module.exports = exports['default'];
@@ -9272,7 +9503,7 @@ module.exports = exports['default'];
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('i-pagination', {
-    class: [_vm.sizeClass, _vm.styleClass],
+    class: [_vm.sizeClass, _vm.colorClass],
     attrs: {
       "_uiid": _vm.uiid,
       "total": _vm.total,
@@ -9289,7 +9520,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     items: _vm.data.currentItems
   })], 2), _vm._v(" "), _c('div', {
     staticClass: "pagination"
-  }, [_vm._l((_vm.conf.total), function(index) {
+  }, [_vm._l((_vm.data.total), function(index) {
     return [((_vm.data.hideEnd - 1) === index && _vm.data.hideEnd !== 1) ? [_c('a', {
       staticClass: "prev",
       attrs: {
@@ -9321,7 +9552,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
           _vm.to(index)
         }
       }
-    }, [_vm._v("\n                    " + _vm._s(index) + "\n                ")])] : _vm._e(), _vm._v(" "), ((_vm.data.hideStart + 1) === index && _vm.data.hideStart !== _vm.conf.total) ? [_c('a', {
+    }, [_vm._v("\n                    " + _vm._s(index) + "\n                ")])] : _vm._e(), _vm._v(" "), ((_vm.data.hideStart + 1) === index && _vm.data.hideStart !== _vm.data.total) ? [_c('a', {
       staticClass: "ignore",
       attrs: {
         "href": "javascript:;"
@@ -9339,7 +9570,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     }, [_c('i', {
       staticClass: "morningicon"
     }, [_vm._v("")])])] : _vm._e()]
-  }), _vm._v(" "), (_vm.conf.jumpPage && _vm.conf.total > _vm.conf.maxShow) ? _c('div', {
+  }), _vm._v(" "), (_vm.conf.jumpPage && _vm.data.total > _vm.conf.maxShow) ? _c('div', {
     staticClass: "page-jump"
   }, [_c('morning-textinput', {
     ref: 'ui-select-input-' + _vm.uiid,
@@ -9494,23 +9725,16 @@ exports.default = {
             default: 'top'
         }
     },
-    data: function data() {
+    computed: {
+        _conf: function _conf() {
 
-        return {
-            conf: {
+            return {
                 width: this.width,
                 height: this.height,
                 autoClose: this.autoClose,
                 showType: this.showType
-            },
-            data: {
-                show: false,
-                hasHeader: false,
-                hasFooter: false
-            }
-        };
-    },
-    computed: {
+            };
+        },
         moreClass: function moreClass() {
 
             return {
@@ -9518,9 +9742,20 @@ exports.default = {
                 'has-footer': this.data.hasFooter,
                 'show-top': this.conf.showType === 'top',
                 'show-center': this.conf.showType === 'center',
-                'show-no-animate': this.conf.showType === 'no'
+                'show-no-animate': this.conf.showType === 'no',
+                show: this.data.show
             };
         }
+    },
+    data: function data() {
+
+        return {
+            data: {
+                show: false,
+                hasHeader: false,
+                hasFooter: false
+            }
+        };
     },
     methods: {
         _onClick: function _onClick(evt) {
@@ -9546,9 +9781,9 @@ exports.default = {
                 show = !this.data.show;
             }
 
-            this.data.show = !!show;
+            show = !!show;
 
-            if (this.data.show) {
+            if (show) {
 
                 if (!isShown) {
 
@@ -9556,7 +9791,7 @@ exports.default = {
 
                     setTimeout(function () {
 
-                        _this.$el.classList.add('show');
+                        _this.data.show = show;
                     });
                 }
 
@@ -9566,7 +9801,7 @@ exports.default = {
 
                 if (isShown) {
 
-                    this.$el.classList.remove('show');
+                    this.data.show = show;
 
                     setTimeout(function () {
 
@@ -9604,7 +9839,7 @@ module.exports = exports['default'];
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('i-dialog', {
-    class: [_vm.styleClass, _vm.moreClass],
+    class: [_vm.colorClass, _vm.moreClass],
     attrs: {
       "_uiid": _vm.uiid,
       "width": _vm.width,
@@ -9749,14 +9984,20 @@ exports.default = {
             default: ''
         }
     },
+    computed: {
+        _conf: function _conf() {
+
+            return {
+                time: this.time,
+                note: this.note
+            };
+        }
+    },
     data: function data() {
 
         return {
-            conf: {
-                time: this.time,
-                note: this.note
-            },
             data: {
+                loading: false,
                 loaded: false,
                 fail: false,
                 loadPromise: null,
@@ -9781,6 +10022,12 @@ exports.default = {
         reload: function reload() {
             var _this = this;
 
+            if (this.data.loading) {
+
+                return this;
+            }
+
+            this.data.loading = true;
             this.data.loaded = false;
             this.data.fail = false;
 
@@ -9792,9 +10039,11 @@ exports.default = {
 
             this.loadPromise.then(function () {
 
+                _this.data.loading = false;
                 _this.data.loaded = true;
             }, function () {
 
+                _this.data.loading = false;
                 _this.data.fail = true;
                 _this.data.loaded = true;
             });
@@ -9803,6 +10052,7 @@ exports.default = {
 
                 setTimeout(function () {
 
+                    _this.data.loading = false;
                     _this.data.loaded = true;
                 }, this.conf.time);
             }
@@ -10009,15 +10259,20 @@ exports.default = {
             default: maxHistoryNum
         }
     },
-    data: function data() {
+    computed: {
+        _conf: function _conf() {
 
-        return {
-            conf: {
+            return {
                 rootName: this.rootName,
                 chooseRoot: this.chooseRoot,
                 list: this.list,
                 maxHistory: this.maxHistory
-            },
+            };
+        }
+    },
+    data: function data() {
+
+        return {
             data: {
                 historys: [],
                 lvlist: [],
@@ -10182,31 +10437,26 @@ exports.default = {
             _this.$emit('emit');
         });
 
-        var _iteratorNormalCompletion3 = true;
-        var _didIteratorError3 = false;
-        var _iteratorError3 = undefined;
+        this.$watch('conf.list', function () {
 
-        try {
-            for (var _iterator3 = this.conf.list[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-                var item = _step3.value;
+            _this.setLevel(_this.conf.list);
+        }, {
+            immediate: true,
+            deep: true
+        });
 
+        this.$watch('conf.maxHistory', function () {
 
-                this.data.lvlist.push(item);
-            }
-        } catch (err) {
-            _didIteratorError3 = true;
-            _iteratorError3 = err;
-        } finally {
-            try {
-                if (!_iteratorNormalCompletion3 && _iterator3.return) {
-                    _iterator3.return();
-                }
-            } finally {
-                if (_didIteratorError3) {
-                    throw _iteratorError3;
+            var diff = _this.data.historys.length - _this.conf.maxHistory;
+
+            if (diff > 0) {
+
+                while (diff-- > 0) {
+
+                    _this.data.historys.shift();
                 }
             }
-        }
+        });
 
         this._recordHistory();
     }
@@ -10386,7 +10636,7 @@ exports.default = {
     mixins: [_PopupManager2.default],
     props: {
         target: {
-            type: [String, Object],
+            type: String,
             default: null
         },
         placement: {
@@ -10402,16 +10652,22 @@ exports.default = {
             default: 'hover'
         }
     },
-    data: function data() {
+    computed: {
+        _conf: function _conf() {
 
-        return {
-            conf: {
+            return {
                 target: this.target,
                 placement: this.placement,
                 offset: this.offset,
                 trigger: this.trigger
-            },
+            };
+        }
+    },
+    data: function data() {
+
+        return {
             data: {
+                show: false,
                 title: null,
                 $target: null,
                 activeTrigger: {},
@@ -10438,7 +10694,40 @@ exports.default = {
         };
     },
     methods: {
-        _setListeners: function _setListeners() {
+        _bindTarget: function _bindTarget() {
+
+            var $target = void 0;
+
+            if (this.data.$target) {
+
+                this._unsetListeners(this.data.$target);
+            }
+
+            try {
+
+                $target = document.querySelector(this.conf.target);
+            } catch (e) {}
+
+            if (!$target) {
+
+                return;
+            }
+
+            if ($target.attributes.title) {
+
+                this.data.title = $target.getAttribute('title');
+            }
+
+            this.data.$target = $target;
+
+            this._setListeners(this.data.$target);
+        },
+        _setListeners: function _setListeners($target) {
+
+            if (!$target) {
+
+                return;
+            }
 
             var triggers = this.conf.trigger.split(' ');
 
@@ -10453,15 +10742,15 @@ exports.default = {
 
                     if (trigger === 'click') {
 
-                        this.data.$target.addEventListener('click', this.toggle);
+                        $target.addEventListener('click', this.toggle);
                     } else if (trigger === 'hover') {
 
-                        this.data.$target.addEventListener('mouseenter', this._enter);
-                        this.data.$target.addEventListener('mouseleave', this._leave);
+                        $target.addEventListener('mouseenter', this._enter);
+                        $target.addEventListener('mouseleave', this._leave);
                     } else if (trigger === 'foucs') {
 
-                        this.data.$target.addEventListener('focusin', this._enter);
-                        this.data.$target.addEventListener('focusout', this._leave);
+                        $target.addEventListener('focusin', this._enter);
+                        $target.addEventListener('focusout', this._leave);
                     }
                 }
             } catch (err) {
@@ -10478,6 +10767,19 @@ exports.default = {
                     }
                 }
             }
+        },
+        _unsetListeners: function _unsetListeners($target) {
+
+            if (!$target) {
+
+                return;
+            }
+
+            $target.removeEventListener('click', this.toggle);
+            $target.removeEventListener('mouseenter', this._enter);
+            $target.removeEventListener('mouseleave', this._leave);
+            $target.removeEventListener('focusin', this._enter);
+            $target.removeEventListener('focusout', this._leave);
         },
         _enter: function _enter(evt) {
             var _this = this;
@@ -10561,15 +10863,12 @@ exports.default = {
 
             return !!this.$slots.default[0].text || this.$slots.default[0].children && !!this.$slots.default[0].children.length;
         },
-        _getAttachment: function _getAttachment(placement) {
-
-            return this.data.attachmentMap[placement];
-        },
         _showComplete: function _showComplete() {
 
             var prevHoverState = this.data.hoverState;
 
             this.data.hoverState = null;
+            this.data.show = true;
 
             this.$emit('show');
             this.$emit('emit');
@@ -10581,6 +10880,8 @@ exports.default = {
         },
 
         _hideComplete: function _hideComplete() {
+
+            this.data.show = false;
 
             this.$emit('hide');
             this.$emit('emit');
@@ -10613,7 +10914,7 @@ exports.default = {
                     var cls = _step2.value;
 
 
-                    var reg = new RegExp('^' + this.data.classPrefix + '\\-', 'g');
+                    var reg = new RegExp('^(' + this.data.classPrefix + '|tether)\\-', 'g');
 
                     if (reg.test(cls)) {
 
@@ -10639,6 +10940,34 @@ exports.default = {
 
             return Object.values(this.data.activeTrigger).indexOf(true) !== -1;
         },
+        _setTether: function _setTether() {
+
+            if (!this.data.tether) {
+
+                return;
+            }
+
+            var targetOffset = '0 0',
+                options = {};
+
+            if (this.conf.placement === 'left') {
+
+                targetOffset = '0 -10px';
+            }
+
+            options = {
+                attachment: this.data.attachmentMap[this.conf.placement],
+                element: this.$el,
+                target: this.data.$target,
+                targetOffset: targetOffset,
+                // classes : this.tetherClass,
+                classPrefix: this.data.classPrefix,
+                offset: this.conf.offset
+            };
+
+            this.data.tether.setOptions(options);
+            this.data.tether.position();
+        },
         show: function show() {
 
             if (!this._hasContent()) {
@@ -10648,27 +10977,12 @@ exports.default = {
 
             this._popupShow();
 
-            var attachment = this._getAttachment(this.conf.placement),
-                targetOffset = '0 0',
-                options = {};
-
-            if (this.conf.placement === 'left') {
-
-                targetOffset = '0 -10px';
-            }
-
-            options = {
-                attachment: attachment,
+            this.data.tether = new _tether2.default({
+                attachment: this.data.attachmentMap[this.conf.placement],
                 element: this.$el,
-                target: this.data.$target,
-                targetOffset: targetOffset,
-                // classes : this.tetherClass,
-                classPrefix: this.data.classPrefix,
-                offset: this.conf.offset
-            };
-
-            this.data.tether = new _tether2.default(options);
-            this.data.tether.position();
+                target: this.data.$target
+            });
+            this._setTether();
             // this.data.tether.setOptions(_.extend({}, options, {targetOffset: '0 0'}));
 
             this.$el.classList.add(this.data.classNames.in);
@@ -10708,28 +11022,37 @@ exports.default = {
     mounted: function mounted() {
         var _this3 = this;
 
-        var $target = void 0;
+        this.$watch('conf.target', function () {
+
+            _this3._bindTarget();
+
+            if (_this3.data.show) {
+
+                _this3.hide();
+                _this3.show();
+            }
+        });
+
+        this.$watch('conf.placement', function () {
+
+            _this3._setTether();
+        });
+
+        this.$watch('conf.offset', function () {
+
+            _this3._setTether();
+        });
+
+        this.$watch('conf.trigger', function () {
+
+            _this3.data.activeTrigger = {};
+            _this3._unsetListeners(_this3.data.$target);
+            _this3._setListeners(_this3.data.$target);
+        });
 
         this.Vue.nextTick(function () {
 
-            try {
-
-                $target = document.querySelector(_this3.conf.target);
-            } catch (e) {}
-
-            if (!$target) {
-
-                return;
-            }
-
-            if ($target.attributes.title) {
-
-                _this3.data.title = $target.getAttribute('title');
-            }
-
-            _this3.data.$target = $target;
-
-            _this3._setListeners();
+            _this3._bindTarget();
         });
     },
     beforeDestroy: function beforeDestroy() {
@@ -10737,12 +11060,7 @@ exports.default = {
         clearTimeout(this.data.timeout);
 
         this._cleanupTether();
-
-        this.data.$target.removeEventListener('click', this.toggle);
-        this.data.$target.removeEventListener('mouseenter', this._enter);
-        this.data.$target.removeEventListener('mouseleave', this._leave);
-        this.data.$target.removeEventListener('focusin', this._enter);
-        this.data.$target.removeEventListener('focusout', this._leave);
+        this._unsetListeners(this.data.$target);
     }
 };
 module.exports = exports['default'];
@@ -12575,7 +12893,7 @@ return Tether;
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('i-tip', {
-    class: [_vm.styleClass],
+    class: [_vm.colorClass],
     attrs: {
       "_uiid": _vm.uiid,
       "target": _vm.target,
@@ -12743,18 +13061,15 @@ exports.default = {
             default: undefined
         }
     },
-    data: function data() {
+    computed: {
+        _conf: function _conf() {
 
-        return {
-            conf: {
+            return {
                 hideValue: this.hideValue,
                 prepend: this.prepend,
                 append: this.append
-            },
-            data: {}
-        };
-    },
-    computed: {
+            };
+        },
         inputType: function inputType() {
 
             if (this.conf.hideValue) {
@@ -12785,6 +13100,12 @@ exports.default = {
                 'has-append': !!this.conf.append
             };
         }
+    },
+    data: function data() {
+
+        return {
+            data: {}
+        };
     },
     methods: {
         _valueFilter: function _valueFilter(value) {
@@ -13009,16 +13330,13 @@ exports.default = {
             default: 4
         }
     },
-    data: function data() {
-
-        return {
-            conf: {
-                rows: this.rows
-            },
-            data: {}
-        };
-    },
     computed: {
+        _conf: function _conf() {
+
+            return {
+                rows: this.rows
+            };
+        },
         placeholder: function placeholder() {
 
             if (!this.conf.hideName) {
@@ -13028,6 +13346,12 @@ exports.default = {
 
             return false;
         }
+    },
+    data: function data() {
+
+        return {
+            data: {}
+        };
     },
     methods: {
         _valueFilter: function _valueFilter(value) {
@@ -13242,18 +13566,13 @@ exports.default = {
             default: false
         }
     },
-    data: function data() {
-
-        return {
-            conf: {
-                autoHideName: this.autoHideName
-            },
-            data: {
-                nameIsEmpty: false
-            }
-        };
-    },
     computed: {
+        _conf: function _conf() {
+
+            return {
+                autoHideName: this.autoHideName
+            };
+        },
         moreClass: function moreClass() {
 
             return {
@@ -13262,10 +13581,35 @@ exports.default = {
             };
         }
     },
+    data: function data() {
+
+        return {
+            data: {
+                nameIsEmpty: false
+            }
+        };
+    },
     methods: {
         _valueFilter: function _valueFilter(value) {
 
             return !!value;
+        },
+        _setNameIsEmpty: function _setNameIsEmpty() {
+
+            if (!this.conf.autoHideName) {
+
+                this.data.nameIsEmpty = false;
+
+                return;
+            }
+
+            if (this.conf.formName === '' || this.conf.formName === undefined) {
+
+                this.data.nameIsEmpty = true;
+            } else {
+
+                this.data.nameIsEmpty = false;
+            }
         },
         toggle: function toggle(open) {
 
@@ -13283,22 +13627,16 @@ exports.default = {
     mounted: function mounted() {
         var _this = this;
 
-        this.$watch('conf.formName', function (newVal) {
+        this.$watch('conf.formName', function () {
 
-            if (!_this.conf.autoHideName) {
-
-                return;
-            }
-
-            if (newVal === '' || newVal === undefined) {
-
-                _this.data.nameIsEmpty = true;
-            } else {
-
-                _this.data.nameIsEmpty = false;
-            }
+            _this._setNameIsEmpty();
         }, {
             immediate: true
+        });
+
+        this.$watch('conf.autoHideName', function () {
+
+            _this._setNameIsEmpty();
         });
     }
 };
@@ -13311,7 +13649,7 @@ module.exports = exports['default'];
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('i-switch', {
-    class: [_vm.styleClass, _vm.stateClass, _vm.moreClass],
+    class: [_vm.colorClass, _vm.stateClass, _vm.moreClass],
     attrs: {
       "_uiid": _vm.uiid,
       "form-name": _vm.formName,
@@ -13538,8 +13876,6 @@ var _IndexManager2 = _interopRequireDefault(_IndexManager);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// action="emit:_refreshShowItems"
-
 exports.default = {
     origin: 'Form',
     name: 'select',
@@ -13586,10 +13922,10 @@ exports.default = {
             default: 'top'
         }
     },
-    data: function data() {
+    computed: {
+        _conf: function _conf() {
 
-        return {
-            conf: {
+            return {
                 maxShow: this.maxShow,
                 autoClose: this.autoClose,
                 canSearch: this.canSearch,
@@ -13600,24 +13936,8 @@ exports.default = {
                 inlineImgSize: this.inlineImgSize,
                 itemTip: this.itemTip,
                 itemTipDirect: this.itemTipDirect
-            },
-            data: {
-                showlist: false,
-                selectedContent: null,
-                searching: false,
-                focusSearch: false,
-                mounted: false,
-                isMax: false,
-                multiinputLastValue: [],
-                selectInput: false,
-                itemValueList: [],
-                filterNotExist: false,
-                lastItemHeight: 0
-            },
-            listStyle: {}
-        };
-    },
-    computed: {
+            };
+        },
         moreClass: function moreClass() {
 
             var selectItem = false;
@@ -13631,11 +13951,41 @@ exports.default = {
                 showlist: !!this.data.showlist,
                 searching: !!this.data.searching,
                 'focus-search': !!this.data.focusSearch,
-                'is-max': !!this.data.isMax,
+                'is-max': !!this.isMax,
                 'has-clean-btn': !!this.conf.cleanBtn,
                 'select-item': selectItem
             };
+        },
+        isMax: function isMax() {
+
+            if (this.conf.multiSelect && this.data.value.length === this.conf.max) {
+
+                return true;
+            }
+
+            return false;
         }
+    },
+    data: function data() {
+
+        return {
+            data: {
+                showlist: false,
+                selectedContent: null,
+                searching: false,
+                focusSearch: false,
+                mounted: false,
+                isMax: false,
+                multiinputLastValue: [],
+                selectInput: false,
+                itemValueList: [],
+                filterNotExist: false,
+                lastItemHeight: 0,
+                tipsContent: [],
+                tips: []
+            },
+            listStyle: {}
+        };
     },
     methods: {
         _valueFilter: function _valueFilter(value) {
@@ -13645,10 +13995,7 @@ exports.default = {
                 return [];
             }
 
-            if (this.conf.multiSelect && this.conf.max && this.data.value.length > this.conf.max) {
-
-                return value.slice(0, this.conf.max);
-            }
+            this._maxFilter(value);
 
             if (!this.conf.multiSelect && this.data.value.length > 1) {
 
@@ -13667,6 +14014,15 @@ exports.default = {
                         value.splice(index, 1);
                     }
                 }
+            }
+
+            return value;
+        },
+        _maxFilter: function _maxFilter(value) {
+
+            if (this.conf.multiSelect && this.conf.max && value.length > this.conf.max) {
+
+                return value.slice(0, this.conf.max);
             }
 
             return value;
@@ -13800,14 +14156,6 @@ exports.default = {
             } else {
 
                 $noitem.classList.remove('show');
-            }
-
-            if (this.conf.multiSelect && this.data.value.length === this.conf.max) {
-
-                this.data.isMax = true;
-            } else {
-
-                this.data.isMax = false;
             }
 
             if (!this.conf.multiSelect && (this.data.value.length === 0 || this.data.value === undefined)) {
@@ -13967,7 +14315,44 @@ exports.default = {
         },
         _searchKeyChange: function _searchKeyChange() {
 
-            if (!this.conf.canSearch || !this.data.mounted) {
+            if (!this.data.mounted) {
+
+                return;
+            }
+
+            var $items = this.$el.querySelectorAll('.list>li:not(.noitem):not(.selected)');
+            var $noitem = this.$el.querySelector('.noitem');
+
+            if (!this.conf.canSearch) {
+
+                this.data.searching = false;
+
+                var _iteratorNormalCompletion6 = true;
+                var _didIteratorError6 = false;
+                var _iteratorError6 = undefined;
+
+                try {
+                    for (var _iterator6 = $items.values()[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
+                        var $item = _step6.value;
+
+
+                        $item.classList.remove('hide');
+                        $noitem.classList.remove('show');
+                    }
+                } catch (err) {
+                    _didIteratorError6 = true;
+                    _iteratorError6 = err;
+                } finally {
+                    try {
+                        if (!_iteratorNormalCompletion6 && _iterator6.return) {
+                            _iterator6.return();
+                        }
+                    } finally {
+                        if (_didIteratorError6) {
+                            throw _iteratorError6;
+                        }
+                    }
+                }
 
                 return;
             }
@@ -13988,9 +14373,6 @@ exports.default = {
                 key = searchTextinput.get();
             }
 
-            var $items = this.$el.querySelectorAll('.list>li:not(.noitem):not(.selected)');
-            var $noitem = this.$el.querySelector('.noitem');
-
             if (key !== '' && key !== undefined) {
 
                 this.data.searching = true;
@@ -14001,38 +14383,38 @@ exports.default = {
 
             var foundNum = 0;
 
-            var _iteratorNormalCompletion6 = true;
-            var _didIteratorError6 = false;
-            var _iteratorError6 = undefined;
+            var _iteratorNormalCompletion7 = true;
+            var _didIteratorError7 = false;
+            var _iteratorError7 = undefined;
 
             try {
-                for (var _iterator6 = $items.values()[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
-                    var $item = _step6.value;
+                for (var _iterator7 = $items.values()[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
+                    var _$item2 = _step7.value;
 
 
                     if (!this.data.searching) {
 
-                        $item.classList.remove('hide');
-                    } else if (this.data.showlist && (0, _trim2.default)($item.textContent).search(key) !== -1) {
+                        _$item2.classList.remove('hide');
+                    } else if (this.data.showlist && (0, _trim2.default)(_$item2.textContent).search(key) !== -1) {
 
                         foundNum++;
-                        $item.classList.remove('hide');
+                        _$item2.classList.remove('hide');
                     } else if (this.data.showlist) {
 
-                        $item.classList.add('hide');
+                        _$item2.classList.add('hide');
                     }
                 }
             } catch (err) {
-                _didIteratorError6 = true;
-                _iteratorError6 = err;
+                _didIteratorError7 = true;
+                _iteratorError7 = err;
             } finally {
                 try {
-                    if (!_iteratorNormalCompletion6 && _iterator6.return) {
-                        _iterator6.return();
+                    if (!_iteratorNormalCompletion7 && _iterator7.return) {
+                        _iterator7.return();
                     }
                 } finally {
-                    if (_didIteratorError6) {
-                        throw _iteratorError6;
+                    if (_didIteratorError7) {
+                        throw _iteratorError7;
                     }
                 }
             }
@@ -14061,21 +14443,21 @@ exports.default = {
             var setValue = [];
             var $items = this.$el.querySelectorAll('.list>li:not(.noitem)');
 
-            var _iteratorNormalCompletion7 = true;
-            var _didIteratorError7 = false;
-            var _iteratorError7 = undefined;
+            var _iteratorNormalCompletion8 = true;
+            var _didIteratorError8 = false;
+            var _iteratorError8 = undefined;
 
             try {
-                for (var _iterator7 = values[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
-                    var value = _step7.value;
-                    var _iteratorNormalCompletion8 = true;
-                    var _didIteratorError8 = false;
-                    var _iteratorError8 = undefined;
+                for (var _iterator8 = values[Symbol.iterator](), _step8; !(_iteratorNormalCompletion8 = (_step8 = _iterator8.next()).done); _iteratorNormalCompletion8 = true) {
+                    var value = _step8.value;
+                    var _iteratorNormalCompletion9 = true;
+                    var _didIteratorError9 = false;
+                    var _iteratorError9 = undefined;
 
                     try {
 
-                        for (var _iterator8 = $items.values()[Symbol.iterator](), _step8; !(_iteratorNormalCompletion8 = (_step8 = _iterator8.next()).done); _iteratorNormalCompletion8 = true) {
-                            var $item = _step8.value;
+                        for (var _iterator9 = $items.values()[Symbol.iterator](), _step9; !(_iteratorNormalCompletion9 = (_step9 = _iterator9.next()).done); _iteratorNormalCompletion9 = true) {
+                            var $item = _step9.value;
 
 
                             if ((0, _trim2.default)($item.textContent) === value) {
@@ -14086,31 +14468,31 @@ exports.default = {
                             }
                         }
                     } catch (err) {
-                        _didIteratorError8 = true;
-                        _iteratorError8 = err;
+                        _didIteratorError9 = true;
+                        _iteratorError9 = err;
                     } finally {
                         try {
-                            if (!_iteratorNormalCompletion8 && _iterator8.return) {
-                                _iterator8.return();
+                            if (!_iteratorNormalCompletion9 && _iterator9.return) {
+                                _iterator9.return();
                             }
                         } finally {
-                            if (_didIteratorError8) {
-                                throw _iteratorError8;
+                            if (_didIteratorError9) {
+                                throw _iteratorError9;
                             }
                         }
                     }
                 }
             } catch (err) {
-                _didIteratorError7 = true;
-                _iteratorError7 = err;
+                _didIteratorError8 = true;
+                _iteratorError8 = err;
             } finally {
                 try {
-                    if (!_iteratorNormalCompletion7 && _iterator7.return) {
-                        _iterator7.return();
+                    if (!_iteratorNormalCompletion8 && _iterator8.return) {
+                        _iterator8.return();
                     }
                 } finally {
-                    if (_didIteratorError7) {
-                        throw _iteratorError7;
+                    if (_didIteratorError8) {
+                        throw _iteratorError8;
                     }
                 }
             }
@@ -14127,7 +14509,7 @@ exports.default = {
             var searchMultiinput = this.$el.querySelector('#ui-select-mi-' + this.uiid)._vm;
             var values = searchMultiinput.get();
 
-            if (!this.data.selectInput && this.data.multiinputLastValue.length <= values.length) {
+            if (!searchMultiinput.Move.moving && !this.data.selectInput && this.data.multiinputLastValue.length <= values.length) {
 
                 searchMultiinput._set(this.data.multiinputLastValue, true);
 
@@ -14137,47 +14519,35 @@ exports.default = {
             this.data.selectInput = false;
             this.data.multiinputLastValue = values;
             this._refreshValue(values);
-
-            // if (this.data.value &&
-            //     values &&
-            //     (this.prop.value.length > values.length)) {
-
-            // } else if ( !_.isEqual(this.lastMultiItemSort, values) ) {
-
-            //     this.refreshValue(values);
-            //     this.lastMultiItemSort = values;
-
-            // }
         },
         _refreshShowItems: function _refreshShowItems() {
 
-            if (!this.conf.multiSelect || !this.data.mounted) {
+            if (!this.data.mounted) {
 
                 return;
             }
 
-            var searchMultiinput = this.$el.querySelector('#ui-select-mi-' + this.uiid)._vm;
-            var values = searchMultiinput.get();
+            var values = this.get();
             var $items = this.$el.querySelectorAll('.list>li:not(.noitem)');
 
-            var _iteratorNormalCompletion9 = true;
-            var _didIteratorError9 = false;
-            var _iteratorError9 = undefined;
+            var _iteratorNormalCompletion10 = true;
+            var _didIteratorError10 = false;
+            var _iteratorError10 = undefined;
 
             try {
-                for (var _iterator9 = $items[Symbol.iterator](), _step9; !(_iteratorNormalCompletion9 = (_step9 = _iterator9.next()).done); _iteratorNormalCompletion9 = true) {
-                    var $item = _step9.value;
+                for (var _iterator10 = $items[Symbol.iterator](), _step10; !(_iteratorNormalCompletion10 = (_step10 = _iterator10.next()).done); _iteratorNormalCompletion10 = true) {
+                    var $item = _step10.value;
 
 
                     var selected = false;
 
-                    var _iteratorNormalCompletion10 = true;
-                    var _didIteratorError10 = false;
-                    var _iteratorError10 = undefined;
+                    var _iteratorNormalCompletion11 = true;
+                    var _didIteratorError11 = false;
+                    var _iteratorError11 = undefined;
 
                     try {
-                        for (var _iterator10 = values[Symbol.iterator](), _step10; !(_iteratorNormalCompletion10 = (_step10 = _iterator10.next()).done); _iteratorNormalCompletion10 = true) {
-                            var value = _step10.value;
+                        for (var _iterator11 = values[Symbol.iterator](), _step11; !(_iteratorNormalCompletion11 = (_step11 = _iterator11.next()).done); _iteratorNormalCompletion11 = true) {
+                            var value = _step11.value;
 
 
                             if (value === (0, _trim2.default)($item.textContent)) {
@@ -14188,16 +14558,16 @@ exports.default = {
                             }
                         }
                     } catch (err) {
-                        _didIteratorError10 = true;
-                        _iteratorError10 = err;
+                        _didIteratorError11 = true;
+                        _iteratorError11 = err;
                     } finally {
                         try {
-                            if (!_iteratorNormalCompletion10 && _iterator10.return) {
-                                _iterator10.return();
+                            if (!_iteratorNormalCompletion11 && _iterator11.return) {
+                                _iterator11.return();
                             }
                         } finally {
-                            if (_didIteratorError10) {
-                                throw _iteratorError10;
+                            if (_didIteratorError11) {
+                                throw _iteratorError11;
                             }
                         }
                     }
@@ -14211,16 +14581,16 @@ exports.default = {
                     }
                 }
             } catch (err) {
-                _didIteratorError9 = true;
-                _iteratorError9 = err;
+                _didIteratorError10 = true;
+                _iteratorError10 = err;
             } finally {
                 try {
-                    if (!_iteratorNormalCompletion9 && _iterator9.return) {
-                        _iterator9.return();
+                    if (!_iteratorNormalCompletion10 && _iterator10.return) {
+                        _iterator10.return();
                     }
                 } finally {
-                    if (_didIteratorError9) {
-                        throw _iteratorError9;
+                    if (_didIteratorError10) {
+                        throw _iteratorError10;
                     }
                 }
             }
@@ -14241,79 +14611,17 @@ exports.default = {
 
             var $inlineImgs = this.$el.querySelectorAll('.list>li i-img,.list>li img');
 
-            var _iteratorNormalCompletion11 = true;
-            var _didIteratorError11 = false;
-            var _iteratorError11 = undefined;
-
-            try {
-                for (var _iterator11 = $inlineImgs.values()[Symbol.iterator](), _step11; !(_iteratorNormalCompletion11 = (_step11 = _iterator11.next()).done); _iteratorNormalCompletion11 = true) {
-                    var $img = _step11.value;
-
-
-                    $img.style.width = this.conf.inlineImgSize;
-                    $img.style.height = this.conf.inlineImgSize;
-                }
-            } catch (err) {
-                _didIteratorError11 = true;
-                _iteratorError11 = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion11 && _iterator11.return) {
-                        _iterator11.return();
-                    }
-                } finally {
-                    if (_didIteratorError11) {
-                        throw _iteratorError11;
-                    }
-                }
-            }
-        },
-        _initTips: function _initTips() {
-
-            if (!this.conf.itemTip) {
-
-                return;
-            }
-
-            var $items = this.$el.querySelectorAll('.list>li:not(.noitem)');
-            var $list = this.$el.querySelector('.list');
-
             var _iteratorNormalCompletion12 = true;
             var _didIteratorError12 = false;
             var _iteratorError12 = undefined;
 
             try {
-                for (var _iterator12 = $items.keys()[Symbol.iterator](), _step12; !(_iteratorNormalCompletion12 = (_step12 = _iterator12.next()).done); _iteratorNormalCompletion12 = true) {
-                    var index = _step12.value;
+                for (var _iterator12 = $inlineImgs.values()[Symbol.iterator](), _step12; !(_iteratorNormalCompletion12 = (_step12 = _iterator12.next()).done); _iteratorNormalCompletion12 = true) {
+                    var $img = _step12.value;
 
 
-                    var $item = $items[index];
-                    var $tip = $item.nextElementSibling;
-
-                    if ($tip === null || $tip.classList.value.split(' ').indexOf('item-tip') === -1) {
-
-                        return;
-                    }
-
-                    var random = 1e8;
-
-                    var tipContent = $tip.innerHTML;
-                    var tipId = 'select-tip-' + Math.floor(Math.random() * random);
-                    var $newTip = document.createElement('morning-tip');
-
-                    $newTip.setAttribute(':minor', true);
-                    $newTip.setAttribute('target', '#' + tipId);
-                    $newTip.setAttribute('placement', this.conf.itemTipDirect);
-                    $newTip.innerHTML = tipContent;
-
-                    var tipVm = new this.Vue({
-                        el: $newTip
-                    });
-
-                    $item.setAttribute('id', tipId);
-                    $tip.remove();
-                    tipVm.$mount();
-                    $list.append(tipVm.$el);
+                    $img.style.width = this.conf.inlineImgSize;
+                    $img.style.height = this.conf.inlineImgSize;
                 }
             } catch (err) {
                 _didIteratorError12 = true;
@@ -14326,6 +14634,101 @@ exports.default = {
                 } finally {
                     if (_didIteratorError12) {
                         throw _iteratorError12;
+                    }
+                }
+            }
+        },
+        _refreshTips: function _refreshTips() {
+
+            if (!this.conf.itemTip) {
+                var _iteratorNormalCompletion13 = true;
+                var _didIteratorError13 = false;
+                var _iteratorError13 = undefined;
+
+                try {
+
+                    for (var _iterator13 = this.data.tips[Symbol.iterator](), _step13; !(_iteratorNormalCompletion13 = (_step13 = _iterator13.next()).done); _iteratorNormalCompletion13 = true) {
+                        var tipVm = _step13.value;
+
+
+                        tipVm.$destroy();
+                    }
+                } catch (err) {
+                    _didIteratorError13 = true;
+                    _iteratorError13 = err;
+                } finally {
+                    try {
+                        if (!_iteratorNormalCompletion13 && _iterator13.return) {
+                            _iterator13.return();
+                        }
+                    } finally {
+                        if (_didIteratorError13) {
+                            throw _iteratorError13;
+                        }
+                    }
+                }
+
+                this.data.tips = [];
+
+                return;
+            }
+
+            var $items = this.$el.querySelectorAll('.list>li:not(.noitem)');
+            var $list = this.$el.querySelector('.list');
+
+            var _iteratorNormalCompletion14 = true;
+            var _didIteratorError14 = false;
+            var _iteratorError14 = undefined;
+
+            try {
+                for (var _iterator14 = $items.keys()[Symbol.iterator](), _step14; !(_iteratorNormalCompletion14 = (_step14 = _iterator14.next()).done); _iteratorNormalCompletion14 = true) {
+                    var index = _step14.value;
+
+
+                    var $item = $items[index];
+                    var $tip = $item.nextElementSibling;
+
+                    if (!this.data.tipsContent[index] && ($tip === null || $tip.classList.value.split(' ').indexOf('item-tip') === -1)) {
+
+                        return;
+                    }
+
+                    if (!this.data.tipsContent[index]) {
+
+                        this.data.tipsContent[index] = $tip.innerHTML;
+                        $tip.remove();
+                    }
+
+                    var random = 1e8;
+
+                    var tipId = 'select-tip-' + Math.floor(Math.random() * random);
+                    var $newTip = document.createElement('morning-tip');
+
+                    $newTip.setAttribute(':minor', true);
+                    $newTip.setAttribute('target', '#' + tipId);
+                    $newTip.setAttribute('placement', this.conf.itemTipDirect);
+                    $newTip.innerHTML = this.data.tipsContent[index];
+
+                    var _tipVm = new this.Vue({
+                        el: $newTip
+                    });
+
+                    $item.setAttribute('id', tipId);
+                    _tipVm.$mount();
+                    $list.append(_tipVm.$el);
+                    this.data.tips.push(_tipVm);
+                }
+            } catch (err) {
+                _didIteratorError14 = true;
+                _iteratorError14 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion14 && _iterator14.return) {
+                        _iterator14.return();
+                    }
+                } finally {
+                    if (_didIteratorError14) {
+                        throw _iteratorError14;
                     }
                 }
             }
@@ -14377,14 +14780,14 @@ exports.default = {
 
                     this._refreshShowItems();
                 } else if ($currentItem) {
-                    var _iteratorNormalCompletion13 = true;
-                    var _didIteratorError13 = false;
-                    var _iteratorError13 = undefined;
+                    var _iteratorNormalCompletion15 = true;
+                    var _didIteratorError15 = false;
+                    var _iteratorError15 = undefined;
 
                     try {
 
-                        for (var _iterator13 = $items.keys()[Symbol.iterator](), _step13; !(_iteratorNormalCompletion13 = (_step13 = _iterator13.next()).done); _iteratorNormalCompletion13 = true) {
-                            var index = _step13.value;
+                        for (var _iterator15 = $items.keys()[Symbol.iterator](), _step15; !(_iteratorNormalCompletion15 = (_step15 = _iterator15.next()).done); _iteratorNormalCompletion15 = true) {
+                            var index = _step15.value;
 
 
                             if ($items[index] === $currentItem) {
@@ -14395,16 +14798,16 @@ exports.default = {
                             }
                         }
                     } catch (err) {
-                        _didIteratorError13 = true;
-                        _iteratorError13 = err;
+                        _didIteratorError15 = true;
+                        _iteratorError15 = err;
                     } finally {
                         try {
-                            if (!_iteratorNormalCompletion13 && _iterator13.return) {
-                                _iterator13.return();
+                            if (!_iteratorNormalCompletion15 && _iterator15.return) {
+                                _iterator15.return();
                             }
                         } finally {
-                            if (_didIteratorError13) {
-                                throw _iteratorError13;
+                            if (_didIteratorError15) {
+                                throw _iteratorError15;
                             }
                         }
                     }
@@ -14434,9 +14837,6 @@ exports.default = {
 
         this.data.mounted = true;
 
-        // this._globalEventAdd('click', '_checkArea');
-        this._resizeInlineImg();
-        this._initTips();
         this._updateItemValueList();
         this._onValueChange();
 
@@ -14447,6 +14847,71 @@ exports.default = {
             _this.$watch('conf.maxShow', _this._setListHeight, {
                 immediate: true
             });
+        });
+
+        this.$watch('conf.canSearch', this._searchKeyChange);
+
+        this.$watch('conf.multiSelect', function () {
+
+            var value = _this.get();
+
+            if (!_this.conf.multiSelect && value.length > 1) {
+
+                value = value.slice(0, 1);
+            }
+
+            _this._set(value, true);
+            _this._onValueChange();
+        });
+
+        this.$watch('conf.max', function () {
+
+            _this._set(_this._maxFilter(_this.get()), true);
+        });
+
+        this.$watch('conf.inlineImgSize', function () {
+
+            _this._resizeInlineImg();
+        }, {
+            immediate: true
+        });
+
+        this.$watch('conf.itemTip', function () {
+
+            _this._refreshTips();
+        }, {
+            immediate: true
+        });
+
+        this.$watch('conf.itemTipDirect', function () {
+            var _iteratorNormalCompletion16 = true;
+            var _didIteratorError16 = false;
+            var _iteratorError16 = undefined;
+
+            try {
+
+                for (var _iterator16 = _this.data.tips[Symbol.iterator](), _step16; !(_iteratorNormalCompletion16 = (_step16 = _iterator16.next()).done); _iteratorNormalCompletion16 = true) {
+                    var tipVm = _step16.value;
+
+
+                    tipVm.$el._vm.conf.placement = _this.conf.itemTipDirect;
+                }
+            } catch (err) {
+                _didIteratorError16 = true;
+                _iteratorError16 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion16 && _iterator16.return) {
+                        _iterator16.return();
+                    }
+                } finally {
+                    if (_didIteratorError16) {
+                        throw _iteratorError16;
+                    }
+                }
+            }
+        }, {
+            immediate: true
         });
 
         this.$on('list-show', function () {
@@ -14778,17 +15243,21 @@ exports.default = {
             }
         }
     },
+    computed: {
+        _conf: function _conf() {
+
+            return {
+                acceptHtml: this.acceptHtml,
+                list: this.list
+            };
+        }
+    },
     data: function data() {
 
         return {
-            conf: {
-                acceptHtml: this.acceptHtml,
-                list: this.list
-            },
             data: {}
         };
     },
-    computed: {},
     methods: {
         _valueFilter: function _valueFilter(value) {
 
@@ -14852,7 +15321,7 @@ module.exports = exports['default'];
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('i-checkbox', {
-    class: [_vm.styleClass, _vm.stateClass],
+    class: [_vm.colorClass, _vm.stateClass],
     attrs: {
       "_uiid": _vm.uiid,
       "form-name": _vm.formName,
@@ -15060,17 +15529,21 @@ exports.default = {
             }
         }
     },
+    computed: {
+        _conf: function _conf() {
+
+            return {
+                acceptHtml: this.acceptHtml,
+                list: this.list
+            };
+        }
+    },
     data: function data() {
 
         return {
-            conf: {
-                acceptHtml: this.acceptHtml,
-                list: this.list
-            },
             data: {}
         };
     },
-    computed: {},
     methods: {
         _valueFilter: function _valueFilter(value) {
 
@@ -15109,7 +15582,7 @@ module.exports = exports['default'];
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('i-radio', {
-    class: [_vm.styleClass, _vm.stateClass],
+    class: [_vm.colorClass, _vm.stateClass],
     attrs: {
       "_uiid": _vm.uiid,
       "form-name": _vm.formName,
@@ -15348,27 +15821,30 @@ exports.default = {
             default: false
         }
     },
-    data: function data() {
+    computed: {
+        _conf: function _conf() {
 
-        return {
-            conf: {
+            return {
                 canMove: this.canMove,
                 max: this.max
-            },
-            data: {
-                inputValue: '',
-                inputWidth: '0em',
-                focus: false
-            }
-        };
-    },
-    computed: {
+            };
+        },
         moreClass: function moreClass() {
 
             return {
                 focus: this.data.focus
             };
         }
+    },
+    data: function data() {
+
+        return {
+            data: {
+                inputValue: '',
+                inputWidth: '0em',
+                focus: false
+            }
+        };
     },
     methods: {
         _valueFilter: function _valueFilter(value) {
@@ -15378,7 +15854,13 @@ exports.default = {
                 return [];
             }
 
-            if (this.conf.max && this.data.value.length > this.conf.max) {
+            value = this._maxFilter(value);
+
+            return value;
+        },
+        _maxFilter: function _maxFilter(value) {
+
+            if (this.conf.max && value.length > this.conf.max) {
 
                 return value.slice(0, this.conf.max);
             }
@@ -15552,6 +16034,11 @@ exports.default = {
             _this3.Move.can = !!newVal;
         }, {
             immediate: true
+        });
+
+        this.$watch('conf.max', function () {
+
+            _this3._set(_this3._maxFilter(_this3.get()), true);
         });
 
         this.$on('_moveStarted', function () {
@@ -15967,6 +16454,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
 
 var _arrayUniq = __webpack_require__(2);
 
@@ -16030,6 +16518,20 @@ exports.default = {
         }
     },
     computed: {
+        _conf: function _conf() {
+
+            return {
+                itemName: this.itemName,
+                itemFiller: this.itemFiller,
+                canMove: this.canMove,
+                max: this.max,
+                cleanBtn: this.cleanBtn,
+                inputType: this.inputType,
+                batchReg: this.batchReg,
+                batchFiller: this.batchFiller,
+                batchUniq: this.batchUniq
+            };
+        },
         moreClass: function moreClass() {
 
             return {
@@ -16040,17 +16542,6 @@ exports.default = {
     data: function data() {
 
         return {
-            conf: {
-                itemName: this.itemName,
-                itemFiller: this.itemFiller,
-                canMove: this.canMove,
-                max: this.max,
-                cleanBtn: this.cleanBtn,
-                inputType: this.inputType,
-                batchReg: this.batchReg,
-                batchFiller: this.batchFiller,
-                batchUniq: this.batchUniq
-            },
             data: {
                 modifyIndex: null
             }
@@ -16064,7 +16555,13 @@ exports.default = {
                 return [];
             }
 
-            if (this.conf.max && this.data.value.length > this.conf.max) {
+            value = this._maxFilter(value);
+
+            return value;
+        },
+        _maxFilter: function _maxFilter(value) {
+
+            if (this.conf.max && value.length > this.conf.max) {
 
                 return value.slice(0, this.conf.max);
             }
@@ -16154,7 +16651,10 @@ exports.default = {
             var dialogVm = this.$refs['ui-multiform-dialog-' + this.uiid];
             var forms = [];
 
-            this._findDialogFormOnce(forms, dialogVm);
+            if (dialogVm) {
+
+                this._findDialogFormOnce(forms, dialogVm);
+            }
 
             return forms;
         },
@@ -16415,16 +16915,18 @@ exports.default = {
     mounted: function mounted() {
         var _this2 = this;
 
-        var moveDelayTime = 200;
-
         this.$watch('conf.canMove', function (newVal) {
 
             _this2.Move.target = '.item:not(.add)';
             _this2.Move.container = '.itemwrap';
-            _this2.Move.delay = moveDelayTime;
             _this2.Move.can = !!newVal;
         }, {
             immediate: true
+        });
+
+        this.$watch('conf.max', function () {
+
+            _this2._set(_this2._maxFilter(_this2.get()), true);
         });
 
         var movingReg = /(^| )move-moving($| )/g;
@@ -16565,13 +17067,13 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     }
   }, [_c('span', [_vm._v("添加" + _vm._s(_vm.conf.itemName))]), _vm._v(" "), _c('i', {
     staticClass: "morningicon"
-  }, [_vm._v("")])])]] : _vm._e()], 2)]), _vm._v(" "), _c('morning-dialog', {
+  }, [_vm._v("")])])]] : _vm._e()], 2)]), _vm._v(" "), (_vm.conf.inputType === 'single') ? _c('morning-dialog', {
     ref: 'ui-multiform-dialog-' + _vm.uiid,
     staticClass: "multiform-dialog",
     attrs: {
       "width": "500px",
       "height": "75%",
-      "gray": ""
+      "color": "gray"
     },
     on: {
       "show": _vm._showForm,
@@ -16590,25 +17092,25 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
   }, [_c('div', [_c('morning-link', {
     staticClass: "margin",
     attrs: {
-      "minor": ""
+      "color": "minor"
     },
     on: {
       "emit": _vm._hideDialog
     }
   }, [_vm._v("取消")]), _vm._v(" "), _c('morning-btn', {
     attrs: {
-      "success": ""
+      "color": "success"
     },
     on: {
       "emit": _vm._saveItem
     }
-  }, [_vm._v("确认")])], 1)])], 2), _vm._v(" "), (_vm.conf.inputType !== 'single') ? _c('morning-dialog', {
+  }, [_vm._v("确认")])], 1)])], 2) : _vm._e(), _vm._v(" "), (_vm.conf.inputType !== 'single') ? _c('morning-dialog', {
     ref: 'ui-multiform-batchdialog-' + _vm.uiid,
     staticClass: "multiform-batch-dialog",
     attrs: {
       "width": "500px",
       "height": "240px",
-      "gray": ""
+      "color": "gray"
     }
   }, [_c('header', {
     attrs: {
@@ -16625,7 +17127,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
   }, [_c('div', [_c('morning-link', {
     staticClass: "margin",
     attrs: {
-      "minor": ""
+      "color": "minor"
     },
     on: {
       "emit": _vm._hideBatchDialog
@@ -16633,7 +17135,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
   }, [_vm._v("取消")]), _vm._v(" "), _c('morning-btn', {
     ref: 'ui-multiform-batchsave-' + _vm.uiid,
     attrs: {
-      "success": ""
+      "color": "success"
     },
     on: {
       "emit": _vm._batchInput
@@ -16641,7 +17143,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
   }, [_vm._v("确认")])], 1)])], 1) : _vm._e(), _vm._v(" "), (_vm.conf.cleanBtn) ? _c('ui-link', {
     staticClass: "cleanbtn",
     attrs: {
-      "minor": ""
+      "color": "minor"
     },
     on: {
       "emit": _vm._cleanAllItems

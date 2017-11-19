@@ -35,17 +35,14 @@ export default {
             default : 4
         }
     },
-    data : function () {
-
-        return {
-            conf : {
-                rows : this.rows
-            },
-            data : {}
-        };
-
-    },
     computed : {
+        _conf : function () {
+
+            return {
+                rows : this.rows
+            };
+
+        },
         placeholder : function () {
 
             if (!this.conf.hideName) {
@@ -57,6 +54,13 @@ export default {
             return false;
 
         }
+    },
+    data : function () {
+
+        return {
+            data : {}
+        };
+
     },
     methods : {
         _valueFilter : function (value) {

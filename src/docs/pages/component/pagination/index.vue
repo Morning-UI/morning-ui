@@ -132,7 +132,7 @@
     <ui-pagination :total='16'></ui-pagination>
     :::
 
-    [[[声明]]]
+    [[[形态]]]
 
     #### 支持
 
@@ -142,12 +142,14 @@
     |色彩|全部|`theme`|
     |状态|不支持|-|
 
+    <a href="/guide/status.html">查看形态文档</a>
+
     #### 尺寸
 
     :::repeat/html
     size
     ---
-    <ui-pagination :total='10' {$sizeKey}></ui-pagination> &nbsp;&nbsp; <span>{$&sizeName}</span>
+    <ui-pagination :total='10' size="{$sizeKey}"></ui-pagination> &nbsp;&nbsp; <span>{$&sizeName}</span>
     <br>
     :::
 
@@ -161,7 +163,7 @@
     color:silver
     color:gray
     ---
-    <ui-pagination :total='10' {$colorKey}></ui-pagination> &nbsp;&nbsp; <span>{$&colorName}</span>
+    <ui-pagination :total='10' color="{$colorKey}"></ui-pagination> &nbsp;&nbsp; <span>{$&colorName}</span>
     <br>
     :::
 

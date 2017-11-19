@@ -14,7 +14,7 @@
 
     表单组内包含了各种表单，一般由表单组抬头、各种表单项、行动栏组成。
 
-    你可以用下面的类或元素来声明不同的表单部分：
+    你可以用下面的类或元素来标记不同的表单部分：
 
     - `header` : 表单组头部
     - `header > h5` : 表单组标题
@@ -185,7 +185,7 @@
             <!-- .action : 行动区域 -->
             <div class="action">
                 <ui-btn>提交</ui-btn>&nbsp;
-                <ui-btn minor>取消</ui-btn>
+                <ui-btn color="minor">取消</ui-btn>
             </div>
         </ui-formgroup>
     </div>
@@ -233,7 +233,7 @@
             </div>
             <div class="action">
                 <ui-btn>提交</ui-btn>&nbsp;
-                <ui-btn minor>取消</ui-btn>
+                <ui-btn color="minor">取消</ui-btn>
             </div>
         </ui-formgroup>
     </div>
@@ -444,7 +444,7 @@
             </div>
             <div class="action">
                 <ui-btn>提交</ui-btn>&nbsp;
-                <ui-btn minor>取消</ui-btn>
+                <ui-btn color="minor">取消</ui-btn>
             </div>
         </ui-formgroup>
     </div>
@@ -507,14 +507,14 @@
             </div>
             <div class="action">
                 <ui-btn>提交</ui-btn>&nbsp;
-                <ui-btn minor>取消</ui-btn>
+                <ui-btn color="minor">取消</ui-btn>
             </div>
         </ui-formgroup>
     </div>
     :::
 
 
-    [[[声明]]]
+    [[[形态]]]
 
     #### 支持
 
@@ -523,6 +523,8 @@
     |尺寸|不支持|-|
     |色彩|不支持|-|
     |状态|不支持|-|
+
+    <a href="/guide/status.html">查看形态文档</a>
 
 
     [[[源码]]]

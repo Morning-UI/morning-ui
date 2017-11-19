@@ -590,21 +590,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 exports.default = {
     data: function data() {
@@ -625,7 +610,7 @@ exports.default = {
             var version = response.data.version;
             var $download = _this.$el.querySelector('#download');
 
-            $download._vm.setConf('link', 'https://github.com/Morning-UI/morning-ui/archive/' + version + '.zip');
+            $download._vm.conf.link = 'https://github.com/Morning-UI/morning-ui/archive/' + version + '.zip';
             $download.innerText = '\u4E0B\u8F7Dv' + version;
         }).catch(function (error) {
 
@@ -1735,7 +1720,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "type": "text/markdown"
     }
-  }, [_vm._v("\n# 安装\n\n### 安装Vue\n\n由于MorningUI依赖Vue.js，请先安装`2.5.0`以上的Vue.js。\n\n[了解如何安装Vue.js](https://cn.vuejs.org/v2/guide/installation.html)\n\n### 获取MorningUI\n\nMorning UI的构建版本位于`dist`目录，包含四个文件：\n\n- `morning-ui.js` : 开发版本JS\n- `morning-ui.css` : 开发版本CSS\n- `morning-ui.min.js` : 生产版本JS\n- `morning-ui.min.css` : 生产版本CSS\n\n<ui-quote theme>我们建议在生产环境锁定版本并使用稳定版本的Morning UI，详见：<a href=\"/guide/versionplan.html\">版本计划</a> 及 <a href=\"/guide/logs.html\">更新日志</a></ui-quote>\n\n你可以通过下面的方式获取：\n\n##### 直接下载\n\n<ui-btn m new-tab id=\"download\">下载</ui-btn>\n\n##### NPM安装\n\n推荐使用NPM的方式安装，它能很好地和诸如`Webpack`或`Rollup`模块打包器配合使用。\n\n```shell\n# 最新版\n$ npm install morning-ui\n```\n\n##### CDN\n\n- 最新版Morning UI:\n    - [https://cdn.jsdelivr.net/npm/morning-ui/dist/morning-ui.min.js](https://cdn.jsdelivr.net/npm/morning-ui/dist/morning-ui.min.js) \n    - [https://cdn.jsdelivr.net/npm/morning-ui/dist/morning-ui.min.css](https://cdn.jsdelivr.net/npm/morning-ui/dist/morning-ui.min.css)\n- 历史版本：[https://cdn.jsdelivr.net/npm/morning-ui/](https://cdn.jsdelivr.net/npm/morning-ui/)\n\n### 页面引用\n\n##### 使用标签\n\n分别使用`<script>`及`<style>`标签在页面中引用：\n\n```html\n<!-- 引入Vue.js -->\n<script src=\"path-to-vue/vue.js\">&lt;/script>\n\n<!-- 引入Morning UI -->\n<link href=\"path-to-morning/morning-ui.css\" rel=\"stylesheet\">\n<script src=\"path-to-morning/morning-ui.js\">&lt;/script>\n\n<!-- 初始化Morning UI -->\n<script>\nVue.use(morning);\n\n// ...\n&lt;/script>\n```\n\n这种方式会在全局注册`window.morning`变量。\n\n##### 使用模块打包器\n\n在JS文件中通过`import`引入：\n\n```js\n// 引入Vue.js\nimport Vue from 'vue';\n\n// 引入Morning UI\nimport morning from 'morning-ui';\nimport 'morning-ui/dist/morning-ui.css';\n\n// 初始化Morning UI\nVue.use(morning);\n```\n\n### 更多\n\n#### 更新日志\n\n查看MorningUI的[更新日志](/guide/logs.html)。\n\n#### 自定义组件库\n\n目前MorningUI不支持自定义组件库，此功能将在稍后支持。\n\n")])])
+  }, [_vm._v("\n# 安装\n\n### 安装Vue\n\n由于MorningUI依赖Vue.js，请先安装`2.5.0`以上的Vue.js。\n\n[了解如何安装Vue.js](https://cn.vuejs.org/v2/guide/installation.html)\n\n### 获取MorningUI\n\nMorning UI的构建版本位于`dist`目录，包含四个文件：\n\n- `morning-ui.js` : 开发版本JS\n- `morning-ui.css` : 开发版本CSS\n- `morning-ui.min.js` : 生产版本JS\n- `morning-ui.min.css` : 生产版本CSS\n\n<ui-quote color=\"theme\">我们建议在生产环境锁定版本并使用稳定版本的Morning UI，详见：<a href=\"/guide/versionplan.html\">版本计划</a> 及 <a href=\"/guide/logs.html\">更新日志</a></ui-quote>\n\n你可以通过下面的方式获取：\n\n##### 直接下载\n\n<ui-btn size=\"m\" new-tab id=\"download\">下载</ui-btn>\n\n##### NPM安装\n\n推荐使用NPM的方式安装，它能很好地和诸如`Webpack`或`Rollup`模块打包器配合使用。\n\n```shell\n# 最新版\n$ npm install morning-ui\n```\n\n##### CDN\n\n- 最新版Morning UI:\n    - [https://cdn.jsdelivr.net/npm/morning-ui/dist/morning-ui.min.js](https://cdn.jsdelivr.net/npm/morning-ui/dist/morning-ui.min.js) \n    - [https://cdn.jsdelivr.net/npm/morning-ui/dist/morning-ui.min.css](https://cdn.jsdelivr.net/npm/morning-ui/dist/morning-ui.min.css)\n- 历史版本：[https://cdn.jsdelivr.net/npm/morning-ui/](https://cdn.jsdelivr.net/npm/morning-ui/)\n\n### 页面引用\n\n##### 使用标签\n\n分别使用`<script>`及`<style>`标签在页面中引用：\n\n```html\n<!-- 引入Vue.js -->\n<script src=\"path-to-vue/vue.js\">&lt;/script>\n\n<!-- 引入Morning UI -->\n<link href=\"path-to-morning/morning-ui.css\" rel=\"stylesheet\">\n<script src=\"path-to-morning/morning-ui.js\">&lt;/script>\n\n<!-- 初始化Morning UI -->\n<script>\nVue.use(morning);\n\n// ...\n&lt;/script>\n```\n\n这种方式会在全局注册`window.morning`变量。\n\n##### 使用模块打包器\n\n在JS文件中通过`import`引入：\n\n```js\n// 引入Vue.js\nimport Vue from 'vue';\n\n// 引入Morning UI\nimport morning from 'morning-ui';\nimport 'morning-ui/dist/morning-ui.css';\n\n// 初始化Morning UI\nVue.use(morning);\n```\n\n### 更多\n\n#### 更新日志\n\n查看MorningUI的[更新日志](/guide/logs.html)。\n\n#### 自定义组件库\n\n目前MorningUI不支持自定义组件库，此功能将在稍后支持。\n\n")])])
 }
 var staticRenderFns = []
 render._withStripped = true

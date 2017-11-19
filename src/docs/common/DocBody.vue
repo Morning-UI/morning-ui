@@ -185,15 +185,7 @@ let data = {
         {
             stateKey : 'apparent',
             stateName : '醒目'
-        },
-        {
-            stateKey : 'loading',
-            stateName : '载入中'
-        },
-        {
-            stateKey : 'processing',
-            stateName : '处理中'
-        },
+        }
     ],
     formConfig : {
         formName : '表单名',
@@ -228,7 +220,7 @@ let data = {
             },
             {
                 valueType : 'Array',
-                valueContent : '[]'
+                valueContent : `['Jim', 'Tom']`
             }
         ],
         checkbox : [
@@ -452,7 +444,7 @@ let repeater = {
 };
 
 let presets = {
-    statementColor : `
+    statusColor : `
 :::repeat/html
 color:theme
 color:feature
@@ -461,10 +453,10 @@ color:blue
 color:silver
 color:gray
 ---
-<ui-{%uikey%} {$colorKey}>{$&colorName}</ui-{%uikey%}>
+<ui-{%uikey%} color="{$colorKey}">{$&colorName}</ui-{%uikey%}>
 :::
 `,
-    formStatement : `
+    formStatus : `
 #### 支持
 
 |类型|支持|默认|
@@ -473,18 +465,20 @@ color:gray
 |色彩|不支持|-|
 |状态|\`normal\`<br/>\`disabled\`|\`normal\`|
 
+<a href="/guide/status.html">查看形态文档</a>
+
 #### 状态
 
 :::repeat/html
 state:normal,disabled
 ---
 <div style="width:300px;">
-    <ui-{%uikey%} {$stateKey} :default-value="{%&statementDefaultValue%}" form-name="{$&stateName}" {%&statementMoreAttr%}>{%&statementSlot%}</ui-{%uikey%}>
+    <ui-{%uikey%} state="{$stateKey}" :default-value="{%&statusDefaultValue%}" form-name="{$&stateName}" {%&statusMoreAttr%}>{%&statusSlot%}</ui-{%uikey%}>
 </div>
 <br>
 :::
 `,
-    formStatementWithStyle : `
+    formStatusWithStyle : `
 #### 支持
 
 |类型|支持|默认|
@@ -493,6 +487,7 @@ state:normal,disabled
 |色彩|全部|\`theme\`|
 |状态|\`normal\`<br/>\`disabled\`|\`normal\`|
 
+<a href="/guide/status.html">查看形态文档</a>
 
 #### 色彩
 
@@ -505,7 +500,7 @@ color:silver
 color:gray
 ---
 <div style="width:300px;">
-    <ui-{%uikey%} {$colorKey} :default-value="{%&statementDefaultValue%}" form-name="{$&colorName}" {%&statementMoreAttr%}>{%&statementSlot%}</ui-{%uikey%}>
+    <ui-{%uikey%} color="{$colorKey}" :default-value="{%&statusDefaultValue%}" form-name="{$&colorName}" {%&statusMoreAttr%}>{%&statusSlot%}</ui-{%uikey%}>
 </div>
 <br>
 :::
@@ -516,7 +511,7 @@ color:gray
 state:normal,disabled
 ---
 <div style="width:300px;">
-    <ui-{%uikey%} {$stateKey} :default-value="{%&statementDefaultValue%}" form-name="{$&stateName}" {%&statementMoreAttr%}>{%&statementSlot%}</ui-{%uikey%}>
+    <ui-{%uikey%} state="{$stateKey}" :default-value="{%&statusDefaultValue%}" form-name="{$&stateName}" {%&statusMoreAttr%}>{%&statusSlot%}</ui-{%uikey%}>
 </div>
 <br>
 :::
@@ -595,7 +590,7 @@ formConfig
 |form-name|表单的名称（用于显示）|任意字符串|String|\`undefined\`|
 |form-key|表单的Key（用于逻辑中作为识别标示）|任意字符串(唯一)|String|\`undefined\`|
 |group|表单组，用于将多个表单的数值添加到同一个对象中。一个表单可以同时属于多个组|若是字符串，则将表单添加到单个组<br>若是数组，则将表单添加到多个组|String<br/>Array|\`[]\`|
-|default-value|表单的默认值|任意(接受表单原始数值，也接受JSON序列化后的表单数值，若数值是JSON序列化的会自动转换成原始数值)|Any|\`undefined\`|
+|default-value|表单的默认值(注意：\`default-value\`不支持单向数据流，此配置仅在表单初次创建时生效，修改表单值需要使用\`set()\`方法或使用\`v-model\`指令， 详见：[基础/表单/表单数据双向绑定](/guide/form.html))|任意(接受表单原始数值，也接受JSON序列化后的表单数值，若数值是JSON序列化的会自动转换成原始数值)|Any|\`undefined\`|
 |hide-name|隐藏表单名|\`true\`<br>\`false\`|Boolean|\`false\`|
 {%&content%}
 `,
@@ -1179,7 +1174,7 @@ window.Vue.directive('docmd', {
             md = md.replace(/<p>(\[\[\[(.+)\]\]\])<\/p>/g, '$1');
             md = md.replace(/(\[\[\[)/, '<ui-tab class="block noborder">$1');
             md = md.replace(/\[\[\[开始\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="开始"><div class="content-title">开始</div>$1</div>$3');
-            md = md.replace(/\[\[\[声明\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="声明"><div class="content-title">声明</div>$1</div>$3');
+            md = md.replace(/\[\[\[形态\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="形态"><div class="content-title">形态</div>$1</div>$3');
             md = md.replace(/\[\[\[配置\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="配置"><div class="content-title">配置</div>$1</div>$3');
             md = md.replace(/\[\[\[方法\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="方法"><div class="content-title">方法</div>$1</div>$3');
             md = md.replace(/\[\[\[事件\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="事件"><div class="content-title">事件</div>$1</div>$3');

@@ -18,7 +18,7 @@
     <ui-textcolor>This is ui-textcolor</ui-textcolor>
     :::
 
-    [[[声明]]]
+    [[[形态]]]
 
     #### 支持
 
@@ -28,10 +28,12 @@
     |色彩|全部|`theme`|
     |状态|不支持|-|
 
+    <a href="/guide/status.html">查看形态文档</a>
+
     #### 色彩
 
     :::preset/html
-    statementColor
+    statusColor
     ---
     uikey:textcolor
     :::

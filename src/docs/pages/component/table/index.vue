@@ -171,9 +171,9 @@
         template : '{$template}',
         data : {
             list : [
-                {name : 'Tim Boelaars', age : 20, gender : 'male', action : '<ui-btn success xs>发送</ui-btn> <ui-link minor xs>详情</ui-link>'},
-                {name : 'Andrew Colin Beck', age : 41, gender : 'female', action : '<ui-btn success xs>发送</ui-btn> <ui-link minor xs>详情</ui-link>'},
-                {name : 'Gustavo Zambelli', age : 23, gender : 'male', action : '<ui-btn success xs>发送</ui-btn> <ui-link minor xs>详情</ui-link>'}
+                {name : 'Tim Boelaars', age : 20, gender : 'male', action : '<ui-btn style="success" size="xs">发送</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'},
+                {name : 'Andrew Colin Beck', age : 41, gender : 'female', action : '<ui-btn style="success" size="xs">发送</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'},
+                {name : 'Gustavo Zambelli', age : 23, gender : 'male', action : '<ui-btn style="success" size="xs">发送</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'}
             ]
         }
     });
@@ -183,7 +183,7 @@
 
     但需要注意的是由于在`list`中使用的组件是动态生成的，所以在组件中无法使用父辈Vue实例上的`props`、`data`、`methods`等属性或方法。
 
-    `props`、`data`可以将`list`设为计算属性，再通过JS模板以及表格的`setList`方法来实现：
+    `props`、`data`的处理可以将`list`设为计算属性来实现数据绑定：
 
     :::vue/html
     window.demoVue2 = new Vue({
@@ -192,19 +192,14 @@
         computed : {
             list : function () {
                 return [
-                    {name : 'Tim Boelaars', age : 20, gender : 'male', action : `<ui-btn success xs>${this.btntext}</ui-btn> <ui-link minor xs>详情</ui-link>`},
-                    {name : 'Andrew Colin Beck', age : 41, gender : 'female', action : `<ui-btn success xs>${this.btntext}</ui-btn> <ui-link minor xs>详情</ui-link>`},
-                    {name : 'Gustavo Zambelli', age : 23, gender : 'male', action : `<ui-btn success xs>${this.btntext}</ui-btn> <ui-link minor xs>详情</ui-link>`}
+                    {name : 'Tim Boelaars', age : 20, gender : 'male', action : `<ui-btn style="success" size="xs">${this.btntext}</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>`},
+                    {name : 'Andrew Colin Beck', age : 41, gender : 'female', action : `<ui-btn style="success" size="xs">${this.btntext}</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>`},
+                    {name : 'Gustavo Zambelli', age : 23, gender : 'male', action : `<ui-btn style="success" size="xs">${this.btntext}</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>`}
                 ];
             }
         },
         data : {
             btntext : '发送'
-        },
-        mounted : function () {
-    
-            this.$watch('list', () => window.morning.findVM('demoPropsData').setList(this.list));
-
         }
     });
     ---
@@ -222,9 +217,9 @@
         template : '{$template}',
         data : {
             list : [
-                {name : 'Tim Boelaars', age : 20, gender : 'male', action : '<ui-btn success xs @emit="send(0);">第一个发送</ui-btn> <ui-link minor xs>详情</ui-link>'},
-                {name : 'Andrew Colin Beck', age : 41, gender : 'female', action : '<ui-btn success xs @emit="window.sendProxy(1);">第二个发送</ui-btn> <ui-link minor xs>详情</ui-link>'},
-                {name : 'Gustavo Zambelli', age : 23, gender : 'male', action : '<ui-btn success xs>发送</ui-btn> <ui-link minor xs>详情</ui-link>'}
+                {name : 'Tim Boelaars', age : 20, gender : 'male', action : '<ui-btn style="success" size="xs" @emit="send(0);">第一个发送</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'},
+                {name : 'Andrew Colin Beck', age : 41, gender : 'female', action : '<ui-btn style="success" size="xs" @emit="window.sendProxy(1);">第二个发送</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'},
+                {name : 'Gustavo Zambelli', age : 23, gender : 'male', action : '<ui-btn style="success" size="xs">发送</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'}
             ]
         },
         methods : {
@@ -239,7 +234,7 @@
     <ui-table :list="list"></ui-table>
     :::
 
-    [[[声明]]]
+    [[[形态]]]
 
     #### 支持
 
@@ -248,6 +243,8 @@
     |尺寸|不支持|-|
     |色彩|全部|`light-gray`|
     |状态|不支持|-|
+
+    <a href="/guide/status.html">查看形态文档</a>
 
     #### 色彩
 
@@ -260,7 +257,7 @@
     color:gray
     ---
     <p>{$colorName}</p>
-    <ui-table :list="window.list" {$colorKey}></ui-table>
+    <ui-table :list="window.list" color="{$colorKey}"></ui-table>
     <br>
     :::
 
@@ -277,9 +274,9 @@
     |align|列的对齐方式，这是单个表格的全局设置，可以使用`col-set`来单独设置某一列的对齐方式|`'left'`: 左对齐<br>`'center'`: 居中对齐<br>`'right'`: 右对齐|String|`'center'`|
     |show-col-name|在标题行显示列的名称，需要先在`col-set`中设置每列的名称|`true`<br>`false`|Boolean|`false`|
     |fixed-title-col|标题列的位置，可以设置左侧或右侧。对于列数较多的表格，可以使用固定标题列。|`'left'`: 位于左侧，不固定<br>`'right'`: 位于右侧，不固定<br>`'left-fixed'`: 位于左侧，固定<br>`'right-fixed'`: 位于右侧，固定|String|`'left'`|
-    |col-set|列设置可以用来控制单独的一列。这是一个数组，数组的每项都是一个配置对象。<br><br>配置对象包含：<br>`col`: 需要设置单元格所在列的KEY<br>`name`: 列的名称(String)，如果开启`show-col-name`会显示在标题行<br>`width`: 列的宽度(`px` / `%`)，宽度数组会改变列在宽度分配时的权重，但不一定完全符合设置的宽度值，如果需要控制宽度的绝对值使用`minwidth`或`maxwidth`<br>`minwidth`: 列的最小宽度(`px` / `%`)<br>`maxwidth`: 列的最大宽度(`px` / `%`)<br>`style`: 设置列的色彩样式(String)，支持[声明](/guide/statement.html)中所有的功能色彩<br>`disabled`: 是否展示列的禁用样式(Boolean)<br>`align`: 此列的对齐方式，支持三种：`left`、`center`、`right`，默认使用`align`的设置<br>`title`: 此列是否是标题列(Boolean)，根据`fixed-title-col`的设置所有的标题列会被放到最左或最右<br><br>注意：在设置`width`、`minwidth`、`maxwidth`为0时，需要加上单位，如：`0px`或`0%`。|数组|Array|`[]`|
-    |row-set|单行设置可以用来控制一行。这是一个数组，数组的每项都是一个配置对象，用来设置单行。<br><br>配置对象包含：<br>`row`: 需要设置的行数(从0开始，0表示标题行)<br>`style`: 设置单行的色彩样式(String)，支持[声明](/guide/statement.html)中所有的功能色彩<br>`disabled`: 是否展示单行的禁用样式(Boolean)<br>`align`: 单行的对齐方式，支持三种：`left`、`center`、`right`，默认使用`align`的设置<br><br>注意：在设置`width`、`minwidth`、`maxwidth`为0时，需要加上单位，如：`0px`或`0%`。|数组|Array|`[]`|
-    |cell-set|单元格设置可以用来控制单个单元格。这是一个数组，数组的每项都是一个配置对象，用来设置单个单元格。<br><br>配置对象包含：<br>`row`: 需要设置单元格的行数(从0开始，0表示标题行)<br>`col`: 需要设置单元格所在列的KEY<br>`style`: 设置对应单元格的色彩样式(String)，支持[声明](/guide/statement.html)中所有的功能色彩<br>`disabled`: 是否展示单元格的禁用样式(Boolean)<br>`align`: 单元格的对齐方式，支持三种：`left`、`center`、`right`，默认使用`align`的设置<br><br>注意：在设置`width`、`minwidth`、`maxwidth`为0时，需要加上单位，如：`0px`或`0%`。|数组|Array|`[]`|
+    |col-set|列设置可以用来控制单独的一列。这是一个数组，数组的每项都是一个配置对象。<br><br>配置对象包含：<br>`col`: 需要设置单元格所在列的KEY<br>`name`: 列的名称(String)，如果开启`show-col-name`会显示在标题行<br>`width`: 列的宽度(`px` / `%`)，宽度数组会改变列在宽度分配时的权重，但不一定完全符合设置的宽度值，如果需要控制宽度的绝对值使用`minwidth`或`maxwidth`<br>`minwidth`: 列的最小宽度(`px` / `%`)<br>`maxwidth`: 列的最大宽度(`px` / `%`)<br>`style`: 设置列的色彩样式(String)，支持[形态](/guide/status.html)中所有的功能色彩<br>`disabled`: 是否展示列的禁用样式(Boolean)<br>`align`: 此列的对齐方式，支持三种：`left`、`center`、`right`，默认使用`align`的设置<br>`title`: 此列是否是标题列(Boolean)，根据`fixed-title-col`的设置所有的标题列会被放到最左或最右<br><br>注意：在设置`width`、`minwidth`、`maxwidth`为0时，需要加上单位，如：`0px`或`0%`。|数组|Array|`[]`|
+    |row-set|单行设置可以用来控制一行。这是一个数组，数组的每项都是一个配置对象，用来设置单行。<br><br>配置对象包含：<br>`row`: 需要设置的行数(从0开始，0表示标题行)<br>`style`: 设置单行的色彩样式(String)，支持[形态](/guide/status.html)中所有的功能色彩<br>`disabled`: 是否展示单行的禁用样式(Boolean)<br>`align`: 单行的对齐方式，支持三种：`left`、`center`、`right`，默认使用`align`的设置<br><br>注意：在设置`width`、`minwidth`、`maxwidth`为0时，需要加上单位，如：`0px`或`0%`。|数组|Array|`[]`|
+    |cell-set|单元格设置可以用来控制单个单元格。这是一个数组，数组的每项都是一个配置对象，用来设置单个单元格。<br><br>配置对象包含：<br>`row`: 需要设置单元格的行数(从0开始，0表示标题行)<br>`col`: 需要设置单元格所在列的KEY<br>`style`: 设置对应单元格的色彩样式(String)，支持[形态](/guide/status.html)中所有的功能色彩<br>`disabled`: 是否展示单元格的禁用样式(Boolean)<br>`align`: 单元格的对齐方式，支持三种：`left`、`center`、`right`，默认使用`align`的设置<br><br>注意：在设置`width`、`minwidth`、`maxwidth`为0时，需要加上单位，如：`0px`或`0%`。|数组|Array|`[]`|
     |export-csv|开启将表格导出csv文件的功能|`true`<br>`false`|Boolean|`false`|
     |csv-name|导出csv文件的名称|文件名称(不需要加尾缀)|String|`undefined`|
 
@@ -530,7 +527,7 @@
     <ui-table :list="list" :col-set="colset" :show-col-name="true"></ui-table>
     :::
 
-    设置指定列的样式（仅支持声明中的功能色彩）：
+    设置指定列的样式（仅支持形态中的功能色彩）：
 
     :::vue/html
     new Vue({
@@ -652,7 +649,7 @@
 
     #### row-set
 
-    设置指定行的样式（仅支持声明中的功能色彩）：
+    设置指定行的样式（仅支持形态中的功能色彩）：
 
     :::vue/html
     new Vue({
@@ -720,7 +717,7 @@
 
     #### cell-set
 
-    设置指定单元格的样式（仅支持声明中的功能色彩）：
+    设置指定单元格的样式（仅支持形态中的功能色彩）：
 
     :::vue/html
     new Vue({
@@ -802,46 +799,8 @@
     :::
 
     [[[方法]]]
-
-    #### setList(list)
-
-    重新设置表格的数据(表格的设置不会改变)。
-
-    |KEY|可选|描述|接受值|值类型|默认值|
-    |-|-|-|-|-|-|
-    |list|NO|表格数据，这是一个数组，数组中每个对象是一行。对象的每个键是一列，键名是列的KEY，键值是列的数值。<br><br>表格的列是对象中所有键的合集，若某项缺少键，对应的单元格内会显示为`empty-cell`的内容。|数组|`Array`|`undefined`|
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
-        data : {
-            list : window.list,
-            colset : [
-                {col : 'name', name : 'Name', title : true, minwidth : '80px'},
-                {col : 'age', name : 'Age'},
-                {col : 'gender', name : 'Gender', title : true, minwidth : '40px'},
-                {col : 'job', name : 'Job'},
-                {col : 'country', name : 'Country'},
-                {col : 'height', name : 'Height'},
-                {col : 'weight', name : 'Body weight'}
-            ],
-            cellset : [
-                {row : 0, col : 'age', style : 'success'},
-                {row : 2, col : 'gender', disabled : true},
-                {row : 3, col : 'job', style : 'danger'},
-                {row : 4, col : 'job', align : 'left'}
-            ]
-        }
-    });
-    ---
-    <div>
-        <ui-table ref="demo1" :list="list" :col-set="colset" :cell-set="cellset" :show-col-name="true"></ui-table>
-        <br><br>
-        <ui-link js="morning.findVM('demo1').setList(window.biglist);">设置表格数据1</ui-link>
-        <ui-link js="morning.findVM('demo1').setList(window.list);">设置表格数据2</ui-link>
-    </div>
-    :::
+    
+    无
 
     [[[事件]]]
 
@@ -866,7 +825,7 @@
     <div>
         <ui-table ref="demo2" :list="list" @list-change="echo"></ui-table>
         <br><br>
-        <ui-link js="morning.findVM('demo2').setList(window.biglist);">重新设置表格数据</ui-link>
+        <ui-link js="morning.findVM('demo2').conf.list = window.biglist;">重新设置表格数据</ui-link>
     </div>
     :::
 
