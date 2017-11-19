@@ -171,9 +171,9 @@
         template : '{$template}',
         data : {
             list : [
-                {name : 'Tim Boelaars', age : 20, gender : 'male', action : '<ui-btn success xs>发送</ui-btn> <ui-link minor xs>详情</ui-link>'},
-                {name : 'Andrew Colin Beck', age : 41, gender : 'female', action : '<ui-btn success xs>发送</ui-btn> <ui-link minor xs>详情</ui-link>'},
-                {name : 'Gustavo Zambelli', age : 23, gender : 'male', action : '<ui-btn success xs>发送</ui-btn> <ui-link minor xs>详情</ui-link>'}
+                {name : 'Tim Boelaars', age : 20, gender : 'male', action : '<ui-btn style="success" size="xs">发送</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'},
+                {name : 'Andrew Colin Beck', age : 41, gender : 'female', action : '<ui-btn style="success" size="xs">发送</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'},
+                {name : 'Gustavo Zambelli', age : 23, gender : 'male', action : '<ui-btn style="success" size="xs">发送</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'}
             ]
         }
     });
@@ -183,7 +183,7 @@
 
     但需要注意的是由于在`list`中使用的组件是动态生成的，所以在组件中无法使用父辈Vue实例上的`props`、`data`、`methods`等属性或方法。
 
-    `props`、`data`可以将`list`设为计算属性，再通过JS模板以及表格的`setList`方法来实现：
+    `props`、`data`的处理可以将`list`设为计算属性来实现数据绑定：
 
     :::vue/html
     window.demoVue2 = new Vue({
@@ -192,19 +192,14 @@
         computed : {
             list : function () {
                 return [
-                    {name : 'Tim Boelaars', age : 20, gender : 'male', action : `<ui-btn success xs>${this.btntext}</ui-btn> <ui-link minor xs>详情</ui-link>`},
-                    {name : 'Andrew Colin Beck', age : 41, gender : 'female', action : `<ui-btn success xs>${this.btntext}</ui-btn> <ui-link minor xs>详情</ui-link>`},
-                    {name : 'Gustavo Zambelli', age : 23, gender : 'male', action : `<ui-btn success xs>${this.btntext}</ui-btn> <ui-link minor xs>详情</ui-link>`}
+                    {name : 'Tim Boelaars', age : 20, gender : 'male', action : `<ui-btn style="success" size="xs">${this.btntext}</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>`},
+                    {name : 'Andrew Colin Beck', age : 41, gender : 'female', action : `<ui-btn style="success" size="xs">${this.btntext}</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>`},
+                    {name : 'Gustavo Zambelli', age : 23, gender : 'male', action : `<ui-btn style="success" size="xs">${this.btntext}</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>`}
                 ];
             }
         },
         data : {
             btntext : '发送'
-        },
-        mounted : function () {
-    
-            this.$watch('list', () => window.morning.findVM('demoPropsData').setList(this.list));
-
         }
     });
     ---
@@ -222,9 +217,9 @@
         template : '{$template}',
         data : {
             list : [
-                {name : 'Tim Boelaars', age : 20, gender : 'male', action : '<ui-btn success xs @emit="send(0);">第一个发送</ui-btn> <ui-link minor xs>详情</ui-link>'},
-                {name : 'Andrew Colin Beck', age : 41, gender : 'female', action : '<ui-btn success xs @emit="window.sendProxy(1);">第二个发送</ui-btn> <ui-link minor xs>详情</ui-link>'},
-                {name : 'Gustavo Zambelli', age : 23, gender : 'male', action : '<ui-btn success xs>发送</ui-btn> <ui-link minor xs>详情</ui-link>'}
+                {name : 'Tim Boelaars', age : 20, gender : 'male', action : '<ui-btn style="success" size="xs" @emit="send(0);">第一个发送</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'},
+                {name : 'Andrew Colin Beck', age : 41, gender : 'female', action : '<ui-btn style="success" size="xs" @emit="window.sendProxy(1);">第二个发送</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'},
+                {name : 'Gustavo Zambelli', age : 23, gender : 'male', action : '<ui-btn style="success" size="xs">发送</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'}
             ]
         },
         methods : {
@@ -802,46 +797,8 @@
     :::
 
     [[[方法]]]
-
-    #### setList(list)
-
-    重新设置表格的数据(表格的设置不会改变)。
-
-    |KEY|可选|描述|接受值|值类型|默认值|
-    |-|-|-|-|-|-|
-    |list|NO|表格数据，这是一个数组，数组中每个对象是一行。对象的每个键是一列，键名是列的KEY，键值是列的数值。<br><br>表格的列是对象中所有键的合集，若某项缺少键，对应的单元格内会显示为`empty-cell`的内容。|数组|`Array`|`undefined`|
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
-        data : {
-            list : window.list,
-            colset : [
-                {col : 'name', name : 'Name', title : true, minwidth : '80px'},
-                {col : 'age', name : 'Age'},
-                {col : 'gender', name : 'Gender', title : true, minwidth : '40px'},
-                {col : 'job', name : 'Job'},
-                {col : 'country', name : 'Country'},
-                {col : 'height', name : 'Height'},
-                {col : 'weight', name : 'Body weight'}
-            ],
-            cellset : [
-                {row : 0, col : 'age', style : 'success'},
-                {row : 2, col : 'gender', disabled : true},
-                {row : 3, col : 'job', style : 'danger'},
-                {row : 4, col : 'job', align : 'left'}
-            ]
-        }
-    });
-    ---
-    <div>
-        <ui-table ref="demo1" :list="list" :col-set="colset" :cell-set="cellset" :show-col-name="true"></ui-table>
-        <br><br>
-        <ui-link js="morning.findVM('demo1').setList(window.biglist);">设置表格数据1</ui-link>
-        <ui-link js="morning.findVM('demo1').setList(window.list);">设置表格数据2</ui-link>
-    </div>
-    :::
+    
+    无
 
     [[[事件]]]
 
@@ -866,7 +823,7 @@
     <div>
         <ui-table ref="demo2" :list="list" @list-change="echo"></ui-table>
         <br><br>
-        <ui-link js="morning.findVM('demo2').setList(window.biglist);">重新设置表格数据</ui-link>
+        <ui-link js="morning.findVM('demo2').conf.list = window.biglist;">重新设置表格数据</ui-link>
     </div>
     :::
 

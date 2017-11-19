@@ -117,7 +117,6 @@
     - `next` : 下一项
     - `prev` : 上一项
     - `setTotal` : 设置总数
-    - `setList` : 设置列表数据
 
     </script>
     </doc-guide>

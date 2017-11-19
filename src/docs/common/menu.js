@@ -48,7 +48,7 @@ export default {
         下拉式按钮组 : '/component/dropdown.html',
         // 级联菜单<i class="tag new"></i> : 'b',
         标签页 : '/component/tab.html',
-        '表格<i class="tag update"></i>' : '/component/table.html',
+        表格 : '/component/table.html',
         分页 : '/component/pagination.html',
         模拟盒 : '/component/dialog.html',
         // 消息提示 : 'b',
