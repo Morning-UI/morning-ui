@@ -271,11 +271,6 @@ export default {
 
                         let $cell = $row.querySelectorAll('td, th')[colIndex];
 
-                        // cleanup
-                        if ($cell) {
-
-                        }
-
                         if ($cell && set.width) {
 
                             $cell.style.width = set.width;

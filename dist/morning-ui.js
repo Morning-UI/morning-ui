@@ -649,6 +649,8 @@ var _GlobalEvent2 = _interopRequireDefault(_GlobalEvent);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var moveDelayTime = 200;
+
 var Move = {
     mixins: [_GlobalEvent2.default],
     data: function data() {
@@ -657,7 +659,7 @@ var Move = {
             Move: {
                 can: false,
                 // 延迟多久触发拖拽，为了和click兼容
-                delay: 200,
+                delay: moveDelayTime,
                 target: null,
                 container: null,
                 lastMousedownIndex: -1,
@@ -1142,7 +1144,12 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-// import extend                       from 'extend';
+var _extend = __webpack_require__(1);
+
+var _extend2 = _interopRequireDefault(_extend);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 exports.default = function (Vue, morning) {
     return Vue.extend({
         props: {
@@ -1193,7 +1200,7 @@ exports.default = function (Vue, morning) {
         methods: {
             getConf: function getConf(name) {
 
-                var conf = extend(true, {}, this.conf);
+                var conf = (0, _extend2.default)(true, {}, this.conf);
 
                 if (typeof name === 'string') {
 
@@ -7897,9 +7904,6 @@ exports.default = {
 
                                 var $cell = $row.querySelectorAll('td, th')[colIndex];
 
-                                // cleanup
-                                if ($cell) {}
-
                                 if ($cell && set.width) {
 
                                     $cell.style.width = set.width;
@@ -13957,10 +13961,9 @@ exports.default = {
             if (this.conf.multiSelect && this.data.value.length === this.conf.max) {
 
                 return true;
-            } else {
-
-                return false;
             }
+
+            return false;
         }
     },
     data: function data() {
