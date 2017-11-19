@@ -28,6 +28,8 @@
     |色彩|全部|`black`|
     |状态|`normal`<br/>`apparent`|`normal`|
 
+    <a href="/guide/status.html">查看形态文档</a>
+
     #### 色彩
 
     :::preset/html
