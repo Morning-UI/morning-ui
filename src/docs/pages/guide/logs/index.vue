@@ -27,7 +27,7 @@
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.7" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.7/dist/" target="_blank">CDN</a>
         </ui-small>
-    </ui-textcolor>
+    </ui-textcolor><br><br>
     
     - 新增`ui-table`表格组件
     - `ui-grid`栅格组件列数从16变为24
@@ -45,7 +45,7 @@
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.6" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.6/dist/" target="_blank">CDN</a>
         </ui-small>
-    </ui-textcolor>
+    </ui-textcolor><br><br>
     
     - `ui-multiinput`组件新增`update`方法
     - `ui-multiform`组件新增`item-filler`和`clean-btn`配置
