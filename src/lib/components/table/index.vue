@@ -188,8 +188,6 @@ export default {
         render : {
             inserted : function (el, binding) {
 
-                console.log(el, binding.value);
-            
                 let $vue = new this.Vue({
                     template : `<div>${binding.value}</div>`
                 });
@@ -450,8 +448,6 @@ export default {
                         syncHeight = normalHeight;
 
                     }
-
-                    console.log(syncHeight);
 
                     $normalRows[index].style.height = `${syncHeight}px`;
                     $titleRows[index].style.height = `${syncHeight}px`;
