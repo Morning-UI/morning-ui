@@ -83,6 +83,7 @@
         width="500px"
         height="75%"
         color="gray"
+        v-if="conf.inputType === 'single'"
         :ref="'ui-multiform-dialog-'+uiid"
         @show="_showForm"
         @hide="_hideForm"
@@ -117,7 +118,7 @@
         </footer>
     </morning-dialog>
 
-    <ui-link v-if="conf.cleanBtn" minor @emit="_cleanAllItems" class="cleanbtn">清空全部</ui-link>
+    <ui-link v-if="conf.cleanBtn" color="minor" @emit="_cleanAllItems" class="cleanbtn">清空全部</ui-link>
 
     </i-multiform>
 </template>
@@ -216,8 +217,15 @@ export default {
 
             }
 
+            value = this._maxFilter(value);
+
+            return value;
+
+        },
+        _maxFilter : function (value) {
+
             if (this.conf.max &&
-                this.data.value.length > this.conf.max) {
+                value.length > this.conf.max) {
 
                 return value.slice(0, this.conf.max);
 
@@ -276,7 +284,11 @@ export default {
             let dialogVm = this.$refs[`ui-multiform-dialog-${this.uiid}`];
             let forms = [];
 
-            this._findDialogFormOnce(forms, dialogVm);
+            if (dialogVm) {
+
+                this._findDialogFormOnce(forms, dialogVm);
+            
+            }
 
             return forms;
 
@@ -523,6 +535,12 @@ export default {
 
         }, {
             immediate : true
+        });
+
+        this.$watch('conf.max', () => {
+
+            this._set(this._maxFilter(this.get()), true);
+
         });
 
         let movingReg = /(^| )move-moving($| )/g;

@@ -278,7 +278,7 @@
         }
     });
     ---
-    <div style="width:400px;">
+    <div style="width:300px;">
         <p>点击添加城市，输入城市的拼音缩写(使用逗号分隔)<code>hz,sh,sz</code>，然后查看效果</p>
         <ui-multiform
             form-name="地区"
@@ -348,7 +348,7 @@
         }
     });
     ---
-    <div style="width:400px;">
+    <div style="width:300px;">
         <p>点击添加城市，输入城市的拼音缩写(混入数字)<code>hz1sh23sz45</code>，然后查看效果</p>
         <ui-multiform
             form-name="地区"
@@ -421,7 +421,7 @@
         }
     });
     ---
-    <div style="width:400px;">
+    <div style="width:300px;">
         <p>点击添加城市，输入城市的拼音缩写(使用斜线分隔)<code>hz/sh/sz</code>，然后查看效果</p>
         <ui-multiform
             form-name="地区"
@@ -498,7 +498,7 @@
         }
     });
     ---
-    <div style="width:400px;">
+    <div style="width:300px;">
         <p>点击添加城市，输入城市的拼音缩写(使用逗号分隔)<code>hz,sh,sz</code>，等待3秒查看效果</p>
         <ui-multiform
             form-name="地区"
@@ -568,7 +568,7 @@
         }
     });
     ---
-    <div style="width:400px;">
+    <div style="width:300px;">
         <p>点击添加城市，输入城市的拼音缩写(使用逗号分隔)<code>hz,sh,sz,hz,sh,sz</code>，然后查看效果</p>
         <ui-multiform
             form-name="地区"
