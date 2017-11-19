@@ -7676,10 +7676,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
-//
-//
-//
-//
 
 var _arrayUniq = __webpack_require__(2);
 
@@ -7805,20 +7801,6 @@ exports.default = {
                 listDataJson: '[]'
             }
         };
-    },
-    directives: {
-        render: {
-            inserted: function inserted(el, binding) {
-
-                console.log(el, binding.value);
-
-                var $vue = new this.Vue({
-                    template: '<div>' + binding.value + '</div>'
-                });
-
-                $vue.$mount(el);
-            }
-        }
     },
     computed: {
         colSetMap: function colSetMap() {
@@ -8200,8 +8182,6 @@ exports.default = {
 
                         syncHeight = normalHeight;
                     }
-
-                    console.log(syncHeight);
 
                     $normalRows[index].style.height = syncHeight + 'px';
                     $titleRows[index].style.height = syncHeight + 'px';
@@ -8664,7 +8644,7 @@ Object.defineProperty(exports, "__esModule", {
 //
 
 exports.default = {
-    props: ['conf', 'data', 'colSetMap', 'uiid']
+    props: ['conf', 'data', 'colSetMap']
 };
 module.exports = exports['default'];
 
@@ -8694,20 +8674,18 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
           name: "render",
           rawName: "v-render",
           value: ({
-            template: col,
-            uiid: _vm.uiid
+            template: col
           }),
-          expression: "{template : col, uiid : uiid}"
+          expression: "{template : col}"
         }]
       }) : _c('td', {
         directives: [{
           name: "render",
           rawName: "v-render",
           value: ({
-            template: col,
-            uiid: _vm.uiid
+            template: col
           }),
-          expression: "{template : col, uiid : uiid}"
+          expression: "{template : col}"
         }]
       })]
     })], 2)
@@ -8812,7 +8790,7 @@ Object.defineProperty(exports, "__esModule", {
 //
 
 exports.default = {
-    props: ['conf', 'data', 'colSetMap', 'uiid']
+    props: ['conf', 'data', 'colSetMap']
 };
 module.exports = exports['default'];
 
@@ -8842,20 +8820,18 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
           name: "render",
           rawName: "v-render",
           value: ({
-            template: col,
-            uiid: _vm.uiid
+            template: col
           }),
-          expression: "{template : col, uiid : uiid}"
+          expression: "{template : col}"
         }]
       }) : _c('td', {
         directives: [{
           name: "render",
           rawName: "v-render",
           value: ({
-            template: col,
-            uiid: _vm.uiid
+            template: col
           }),
-          expression: "{template : col, uiid : uiid}"
+          expression: "{template : col}"
         }]
       })]
     })], 2)
@@ -8913,8 +8889,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "conf": _vm.conf,
       "data": _vm.data,
-      "col-set-map": _vm.colSetMap,
-      "uiid": _vm.uiid
+      "col-set-map": _vm.colSetMap
     },
     on: {
       "row-mouseover": _vm._rowOver,
@@ -8924,8 +8899,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "conf": _vm.conf,
       "data": _vm.data,
-      "col-set-map": _vm.colSetMap,
-      "uiid": _vm.uiid
+      "col-set-map": _vm.colSetMap
     },
     on: {
       "row-mouseover": _vm._rowOver,
@@ -8935,8 +8909,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "conf": _vm.conf,
       "data": _vm.data,
-      "col-set-map": _vm.colSetMap,
-      "uiid": _vm.uiid
+      "col-set-map": _vm.colSetMap
     },
     on: {
       "row-mouseover": _vm._rowOver,
@@ -8946,8 +8919,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "conf": _vm.conf,
       "data": _vm.data,
-      "col-set-map": _vm.colSetMap,
-      "uiid": _vm.uiid
+      "col-set-map": _vm.colSetMap
     },
     on: {
       "row-mouseover": _vm._rowOver,

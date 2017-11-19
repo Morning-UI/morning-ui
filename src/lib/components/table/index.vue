@@ -37,7 +37,6 @@
                         :conf="conf"
                         :data="data"
                         :col-set-map="colSetMap"
-                        :uiid="uiid"
                         @row-mouseover="_rowOver"
                         @row-mouseout="_rowOut"
                     ></normal-table>
@@ -47,7 +46,6 @@
                         :conf="conf"
                         :data="data"
                         :col-set-map="colSetMap"
-                        :uiid="uiid"
                         @row-mouseover="_rowOver"
                         @row-mouseout="_rowOut"
                     ></title-table>
@@ -60,7 +58,6 @@
                         :conf="conf"
                         :data="data"
                         :col-set-map="colSetMap"
-                        :uiid="uiid"
                         @row-mouseover="_rowOver"
                         @row-mouseout="_rowOut"
                     ></title-table>
@@ -70,7 +67,6 @@
                         :conf="conf"
                         :data="data"
                         :col-set-map="colSetMap"
-                        :uiid="uiid"
                         @row-mouseover="_rowOver"
                         @row-mouseout="_rowOut"
                     ></normal-table>
@@ -183,19 +179,6 @@ export default {
             }
         };
 
-    },
-    directives : {
-        render : {
-            inserted : function (el, binding) {
-
-                let $vue = new this.Vue({
-                    template : `<div>${binding.value}</div>`
-                });
-
-                $vue.$mount(el);
-
-            }
-        }
     },
     computed : {
         colSetMap : function () {
