@@ -36,7 +36,7 @@
                     <normal-table
                         :conf="conf"
                         :data="data"
-                        :colSetMap="colSetMap"
+                        :col-set-map="colSetMap"
                         @row-mouseover="_rowOver"
                         @row-mouseout="_rowOut"
                     ></normal-table>
@@ -45,7 +45,7 @@
                     <title-table
                         :conf="conf"
                         :data="data"
-                        :colSetMap="colSetMap"
+                        :col-set-map="colSetMap"
                         @row-mouseover="_rowOver"
                         @row-mouseout="_rowOut"
                     ></title-table>
@@ -57,7 +57,7 @@
                     <title-table
                         :conf="conf"
                         :data="data"
-                        :colSetMap="colSetMap"
+                        :col-set-map="colSetMap"
                         @row-mouseover="_rowOver"
                         @row-mouseout="_rowOut"
                     ></title-table>
@@ -66,7 +66,7 @@
                     <normal-table
                         :conf="conf"
                         :data="data"
-                        :colSetMap="colSetMap"
+                        :col-set-map="colSetMap"
                         @row-mouseover="_rowOver"
                         @row-mouseout="_rowOut"
                     ></normal-table>
@@ -80,8 +80,9 @@
  
 <script>
 import arrayUniq                    from 'array-uniq';
+import extend                       from 'extend';
 import titleTable                   from './title-table.vue';
-import normalTable                   from './normal-table.vue';
+import normalTable                  from './normal-table.vue';
 
 export default {
     origin : 'UI',
@@ -598,6 +599,8 @@ export default {
             let titleKeys = [];
             let normalKeys = [];
 
+            list = extend(true, [], list);
+
             for (let item of list) {
 
                 for (let key of Object.keys(item)) {
@@ -663,12 +666,28 @@ export default {
 
         this.Vue.nextTick(() => {
 
-            this.$watch('data.normalRows', this._syncRowHeight, {
+            this.$watch('data.normalRows', () => {
+
+                this.Vue.nextTick(() => {
+
+                    this._syncRowHeight();
+
+                });
+
+            }, {
                 immediate : true,
                 deep : true
             });
 
-            this.$watch('data.titleRows', this._syncRowHeight, {
+            this.$watch('data.titleRows', () => {
+
+                this.Vue.nextTick(() => {
+
+                    this._syncRowHeight();
+
+                });
+
+            }, {
                 immediate : true,
                 deep : true
             });
