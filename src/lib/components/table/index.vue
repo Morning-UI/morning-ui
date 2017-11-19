@@ -451,6 +451,8 @@ export default {
 
                     }
 
+                    console.log(syncHeight);
+
                     $normalRows[index].style.height = `${syncHeight}px`;
                     $titleRows[index].style.height = `${syncHeight}px`;
 
@@ -681,12 +683,28 @@ export default {
 
         this.Vue.nextTick(() => {
 
-            this.$watch('data.normalRows', this._syncRowHeight, {
+            this.$watch('data.normalRows', () => {
+
+                this.Vue.nextTick(() => {
+
+                    this._syncRowHeight();
+
+                });
+
+            }, {
                 immediate : true,
                 deep : true
             });
 
-            this.$watch('data.titleRows', this._syncRowHeight, {
+            this.$watch('data.titleRows', () => {
+
+                this.Vue.nextTick(() => {
+
+                    this._syncRowHeight();
+
+                });
+
+            }, {
                 immediate : true,
                 deep : true
             });
