@@ -52,6 +52,6 @@ test.serial('color', async t => {
     t.plan(2);
 
     t.snapshot(result);
-    t.is(JSON.stringify(result.color.lightBlue), JSON.stringify(result.default));
+    t.is(JSON.stringify(result.color['light-blue']), JSON.stringify(result.default));
 
 });

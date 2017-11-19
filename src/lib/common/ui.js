@@ -1,4 +1,5 @@
-// import extend                       from 'extend';
+import extend                       from 'extend';
+
 export default (Vue, morning) => Vue.extend({
     props : {
         size : {

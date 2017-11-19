@@ -10,8 +10,8 @@ const SIZE = [
 ];
 const COLOR = [
     'theme',
-    'lightTheme',
-    'darkTheme',
+    'light-theme',
+    'dark-theme',
     'success',
     'warning',
     'danger',
@@ -19,16 +19,16 @@ const COLOR = [
     'minor',
     'info',
     'black',
-    'lightBlack',
-    'extraLightBlack',
+    'light-black',
+    'extra-light-black',
     'blue',
-    'lightBlue',
-    'extraLightBlue',
+    'light-blue',
+    'extra-light-blue',
     'silver',
-    'lightSilver',
-    'extraLightSilver',
+    'light-silver',
+    'extra-light-silver',
     'gray',
-    'lightGray',
+    'light-gray',
     'white'
 ];
 const STATE_NA = [
@@ -40,7 +40,7 @@ let e2eStatementFnString = `(ctx, type, attrs, basicDemoSelector) => {
 
     let prefix = {
         size : '.si-',
-        color : '.sy-',
+        color : '.co-',
         state_na : '.st-'
     };
 
@@ -111,7 +111,7 @@ let e2eStatementFnString = `(ctx, type, attrs, basicDemoSelector) => {
 
             if (typeof attr === 'object') {
                 
-                let el = $('[name="声明"] '+prefix[type]+item+' '+attr.child).eq(0);
+                let el = $('[name="形态"] '+prefix[type]+item+' '+attr.child).eq(0);
                 
                 for (let sattr of attr.attrs) {
     
@@ -121,7 +121,7 @@ let e2eStatementFnString = `(ctx, type, attrs, basicDemoSelector) => {
 
             } else {
 
-                data[type][item][attr] = $('[name="声明"] '+prefix[type]+item).eq(0).css(attr);
+                data[type][item][attr] = $('[name="形态"] '+prefix[type]+item).eq(0).css(attr);
 
             }
 
