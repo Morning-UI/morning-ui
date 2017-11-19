@@ -1,7 +1,7 @@
 <template>
     <i-mark
         :_uiid="uiid"
-        :class="[styleClass, stateClass]"
+        :class="[colorClass, stateClass]"
     >
         <slot></slot>
     </i-mark>

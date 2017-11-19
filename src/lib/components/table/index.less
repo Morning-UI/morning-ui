@@ -20,6 +20,7 @@ i-table{
             margin: 0 !important;
             font-size: @fontSize*1.5 !important;
             font-weight: 400 !important;
+            text-align: left;
             padding: @fontSize*0.5 @fontSize !important;
         }
 
@@ -129,14 +130,14 @@ i-table{
         text-align: left;
     }
 
-    &.align-left .title-table,
-    &.align-left .normal-table,
+    &.align-center .title-table,
+    &.align-center .normal-table,
     .cell-align-center{
         text-align: center;
     }
 
-    &.align-left .title-table,
-    &.align-left .normal-table,
+    &.align-right .title-table,
+    &.align-right .normal-table,
     .cell-align-right{
         text-align: right;
     }
@@ -173,7 +174,7 @@ i-table{
         }
     }
 
-    &.sy-theme{
+    &.co-theme{
         border-color: darken(@colorTheme, 20%) !important;
 
         header{
@@ -220,7 +221,7 @@ i-table{
         }
     }
 
-    &.sy-lightTheme{
+    &.co-light-theme{
         border-color: darken(@colorLightTheme, 25%) !important;
 
         header{
@@ -267,7 +268,7 @@ i-table{
         }
     }
 
-    &.sy-darkTheme{
+    &.co-dark-theme{
         border-color: darken(@colorDarkTheme, 20%) !important;
 
         header{
@@ -314,7 +315,7 @@ i-table{
         }
     }
 
-    &.sy-success{
+    &.co-success{
         border-color: darken(@colorSuccess, 25%) !important;
 
         header{
@@ -361,7 +362,7 @@ i-table{
         }
     }
 
-    &.sy-warning{
+    &.co-warning{
         border-color: darken(@colorWarning, 25%) !important;
 
         header{
@@ -408,7 +409,7 @@ i-table{
         }
     }
 
-    &.sy-danger{
+    &.co-danger{
         border-color: darken(@colorDanger, 25%) !important;
 
         header{
@@ -455,7 +456,7 @@ i-table{
         }
     }
 
-    &.sy-primary{
+    &.co-primary{
         border-color: darken(@colorPrimary, 25%) !important;
 
         header{
@@ -502,7 +503,7 @@ i-table{
         }
     }
 
-    &.sy-minor{
+    &.co-minor{
         border-color: darken(@colorMinor, 25%) !important;
 
         header{
@@ -549,7 +550,7 @@ i-table{
         }
     }
 
-    &.sy-info{
+    &.co-info{
         border-color: darken(@colorInfo, 25%) !important;
 
         header{
@@ -596,7 +597,7 @@ i-table{
         }
     }
 
-    &.sy-black{
+    &.co-black{
         border-color: @colorBlack !important;
 
         header{
@@ -643,7 +644,7 @@ i-table{
         }
     }
 
-    &.sy-lightBlack{
+    &.co-light-black{
         border-color: @colorLightBlack !important;
 
         header{
@@ -690,7 +691,7 @@ i-table{
         }
     }
 
-    &.sy-extraLightBlack{
+    &.co-extra-light-black{
         border-color: @colorExtraLightBlack !important;
 
         header{
@@ -737,7 +738,7 @@ i-table{
         }
     }
 
-    &.sy-blue{
+    &.co-blue{
         border-color: darken(@colorBlue, 25%) !important;
 
         header{
@@ -784,7 +785,7 @@ i-table{
         }
     }
 
-    &.sy-lightBlue{
+    &.co-light-blue{
         border-color: darken(@colorLightBlue, 25%) !important;
 
         header{
@@ -831,7 +832,7 @@ i-table{
         }
     }
 
-    &.sy-extraLightBlue{
+    &.co-extra-light-blue{
         border-color: darken(@colorExtraLightBlue, 25%) !important;
 
         header{
@@ -878,7 +879,7 @@ i-table{
         }
     }
 
-    &.sy-silver{
+    &.co-silver{
         border-color: darken(@colorSilver, 10%) !important;
 
         header{
@@ -925,7 +926,7 @@ i-table{
         }
     }
 
-    &.sy-lightSilver{
+    &.co-light-silver{
         border-color: darken(@colorLightSilver, 10%) !important;
 
         header{
@@ -972,7 +973,7 @@ i-table{
         }
     }
 
-    &.sy-extraLightSilver{
+    &.co-extra-light-silver{
         border-color: darken(@colorExtraLightSilver, 10%) !important;
 
         header{
@@ -1019,7 +1020,7 @@ i-table{
         }
     }
 
-    &.sy-gray{
+    &.co-gray{
         border-color: darken(@colorGray, 5%) !important;
 
         header{
@@ -1066,7 +1067,7 @@ i-table{
         }
     }
 
-    &.sy-lightGray{
+    &.co-light-gray{
         border-color: darken(@colorLightGray, 5%) !important;
 
         header{
@@ -1113,7 +1114,7 @@ i-table{
         }
     }
 
-    &.sy-white{
+    &.co-white{
         border-color: darken(@colorWhite, 5%) !important;
 
         header{
@@ -1164,32 +1165,32 @@ i-table{
     .normal-table{
         th,
         td{
-            &.cell-sy-success{
+            &.cell-co-success{
                 background: darken(@colorSuccess, 5%) !important;
                 color: @colorWhite !important;
             }
 
-            &.cell-sy-warning{
+            &.cell-co-warning{
                 background: darken(@colorWarning, 5%) !important;
                 color: @colorWhite !important;
             }
 
-            &.cell-sy-danger{
+            &.cell-co-danger{
                 background: darken(@colorDanger, 5%) !important;
                 color: @colorWhite !important;
             }
 
-            &.cell-sy-primary{
+            &.cell-co-primary{
                 background: darken(@colorPrimary, 5%) !important;
                 color: @colorWhite !important;
             }
 
-            &.cell-sy-minor{
+            &.cell-co-minor{
                 background: darken(@colorMinor, 5%) !important;
                 color: @colorWhite !important;
             }
 
-            &.cell-sy-info{
+            &.cell-co-info{
                 background: darken(@colorInfo, 5%) !important;
                 color: @colorWhite !important;
             }
@@ -1198,27 +1199,27 @@ i-table{
         tr.hover{
             th,
             td{
-                &.cell-sy-success{
+                &.cell-co-success{
                     background: darken(@colorSuccess, 10%) !important;
                 }
 
-                &.cell-sy-warning{
+                &.cell-co-warning{
                     background: darken(@colorWarning, 10%) !important;
                 }
 
-                &.cell-sy-danger{
+                &.cell-co-danger{
                     background: darken(@colorDanger, 10%) !important;
                 }
 
-                &.cell-sy-primary{
+                &.cell-co-primary{
                     background: darken(@colorPrimary, 10%) !important;
                 }
 
-                &.cell-sy-minor{
+                &.cell-co-minor{
                     background: darken(@colorMinor, 10%) !important;
                 }
 
-                &.cell-sy-info{
+                &.cell-co-info{
                     background: darken(@colorInfo, 10%) !important;
                 }
             }
@@ -1234,9 +1235,9 @@ i-table{
         }
     }
 
-    // default statement
+    // default status
     &{
-        .sy-lightGray;
+        .co-light-gray;
     }
 }
 

@@ -12,6 +12,35 @@ i-btn{
         cursor: pointer;
     }
 
+    &.loading{
+        .morningicon{
+            position: absolute;
+            left: ~`'calc( 50% - 0.5em )'`;
+            top: ~`'calc( 50% - 0.5em )'`;
+            line-height: 1em;
+            animation-name: rotation;
+            animation-duration: 1s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+
+        span{
+            opacity: 0;
+        }
+
+        &:hover{
+            cursor: default;
+        }
+    }
+
+    // &.processing{
+    //     .st-loading;
+
+    //     .morningicon{
+    //         animation-name: rotationContrast;
+    //     }
+    // }
+
     &.si-xxl{
         font-size: @fontSize*1.3;
 
@@ -84,7 +113,7 @@ i-btn{
         }
     }
 
-    &.sy-theme{
+    &.co-theme{
         background-color: @colorTheme;
         color: @colorWhite;
 
@@ -104,7 +133,7 @@ i-btn{
         }
     }
 
-    &.sy-lightTheme{
+    &.co-light-theme{
         background-color: @colorLightTheme;
         color: @colorWhite;
 
@@ -124,7 +153,7 @@ i-btn{
         }
     }
 
-    &.sy-darkTheme{
+    &.co-dark-theme{
         background-color: @colorDarkTheme;
         color: @colorWhite;
 
@@ -144,7 +173,7 @@ i-btn{
         }
     }
 
-    &.sy-success{
+    &.co-success{
         background-color: @colorSuccess;
         color: @colorWhite;
 
@@ -164,7 +193,7 @@ i-btn{
         }
     }
 
-    &.sy-warning{
+    &.co-warning{
         background-color: @colorWarning;
         color: @colorWhite;
 
@@ -184,7 +213,7 @@ i-btn{
         }
     }
 
-    &.sy-danger{
+    &.co-danger{
         background-color: @colorDanger;
         color: @colorWhite;
 
@@ -204,7 +233,7 @@ i-btn{
         }
     }
 
-    &.sy-primary{
+    &.co-primary{
         background-color: @colorPrimary;
         color: @colorWhite;
 
@@ -224,7 +253,7 @@ i-btn{
         }
     }
 
-    &.sy-minor{
+    &.co-minor{
         background-color: @colorMinor;
         color: @colorWhite;
 
@@ -244,7 +273,7 @@ i-btn{
         }
     }
 
-    &.sy-info{
+    &.co-info{
         background-color: @colorInfo;
         color: @colorWhite;
 
@@ -264,7 +293,7 @@ i-btn{
         }
     }
 
-    &.sy-black{
+    &.co-black{
         background-color: @colorBlack;
         color: @colorWhite;
 
@@ -284,7 +313,7 @@ i-btn{
         }
     }
 
-    &.sy-lightBlack{
+    &.co-light-black{
         background-color: @colorLightBlack;
         color: @colorWhite;
 
@@ -304,7 +333,7 @@ i-btn{
         }
     }
 
-    &.sy-extraLightBlack{
+    &.co-extra-light-black{
         background-color: @colorExtraLightBlack;
         color: @colorWhite;
 
@@ -324,7 +353,7 @@ i-btn{
         }
     }
 
-    &.sy-blue{
+    &.co-blue{
         background-color: @colorBlue;
         color: @colorWhite;
 
@@ -344,7 +373,7 @@ i-btn{
         }
     }
 
-    &.sy-lightBlue{
+    &.co-light-blue{
         background-color: @colorLightBlue;
         color: @colorWhite;
 
@@ -364,7 +393,7 @@ i-btn{
         }
     }
 
-    &.sy-extraLightBlue{
+    &.co-extra-light-blue{
         background-color: @colorExtraLightBlue;
         color: @colorWhite;
 
@@ -384,7 +413,7 @@ i-btn{
         }
     }
 
-    &.sy-silver{
+    &.co-silver{
         background-color: @colorSilver;
         color: @colorExtraLightBlack;
 
@@ -404,7 +433,7 @@ i-btn{
         }
     }
 
-    &.sy-lightSilver{
+    &.co-light-silver{
         background-color: @colorLightSilver;
         color: @colorExtraLightBlack;
 
@@ -424,7 +453,7 @@ i-btn{
         }
     }
 
-    &.sy-extraLightSilver{
+    &.co-extra-light-silver{
         background-color: @colorExtraLightSilver;
         color: @colorExtraLightBlack;
 
@@ -444,7 +473,7 @@ i-btn{
         }
     }
 
-    &.sy-gray{
+    &.co-gray{
         background-color: @colorGray;
         color: @colorExtraLightBlack;
 
@@ -464,7 +493,7 @@ i-btn{
         }
     }
 
-    &.sy-lightGray{
+    &.co-light-gray{
         background-color: @colorLightGray;
         color: @colorExtraLightBlack;
 
@@ -484,7 +513,7 @@ i-btn{
         }
     }
 
-    &.sy-white{
+    &.co-white{
         background-color: @colorWhite;
         color: @colorExtraLightBlack;
 
@@ -526,39 +555,10 @@ i-btn{
         }
     }
 
-    &.st-loading{
-        .morningicon{
-            position: absolute;
-            left: ~`'calc( 50% - 0.5em )'`;
-            top: ~`'calc( 50% - 0.5em )'`;
-            line-height: 1em;
-            animation-name: rotation;
-            animation-duration: 1s;
-            animation-timing-function: linear;
-            animation-iteration-count: infinite;
-        }
-
-        span{
-            opacity: 0;
-        }
-
-        &:hover{
-            cursor: default;
-        }
-    }
-
-    &.st-processing{
-        .st-loading;
-
-        .morningicon{
-            animation-name: rotationContrast;
-        }
-    }
-
-    // default statement
+    // default status
     &{
         .si-m;
-        .sy-theme;
+        .co-theme;
         .st-normal;
     }
 }

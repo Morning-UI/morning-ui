@@ -40,7 +40,7 @@
     <ui-badge></ui-badge>
     :::
 
-    [[[声明]]]
+    [[[形态]]]
 
     #### 支持
 
@@ -50,24 +50,26 @@
     |色彩|全部|`theme`|
     |状态|`normal`<br/>`apparent`|`normal`|
 
+    <a href="/guide/status.html">查看形态文档</a>
+
     #### 尺寸
     
     :::repeat/html
     size
     ---
-    <ui-badge {$sizeKey}>{$&sizeName}</ui-badge>
+    <ui-badge size="{$sizeKey}">{$&sizeName}</ui-badge>
     :::
     
     :::repeat/html
     size
     ---
-    <ui-badge class="circle" {$sizeKey}>{$&sizeName}</ui-badge>
+    <ui-badge class="circle" size="{$sizeKey}">{$&sizeName}</ui-badge>
     :::
 
     #### 色彩
 
     :::preset/html
-    statementColor
+    statusColor
     ---
     uikey:badge
     :::
@@ -77,7 +79,7 @@
     :::repeat/html
     state:normal,apparent
     ---
-    <ui-badge {$stateKey}>{$&stateName}</ui-badge>
+    <ui-badge state="{$stateKey}">{$&stateName}</ui-badge>
     :::
 
     [[[源码]]]

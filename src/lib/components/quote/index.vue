@@ -1,7 +1,7 @@
 <template>
     <i-quote
         :_uiid="uiid"
-        :class="[styleClass]"
+        :class="[colorClass]"
     >
         <slot></slot>
     </i-quote>

@@ -15,8 +15,8 @@
                 @mouseout="$emit('row-mouseout', line)"
             >
                 <template v-for="(col, index) of row">
-                    <td v-if="colSetMap[data.normalKeys[index]]">{{col}}</td>
-                    <td v-else>{{col}}</td>
+                    <td v-if="colSetMap[data.normalKeys[index]]" v-render="{template : col}"></td>
+                    <td v-else v-render="{template : col}"></td>
                 </template>
             </tr>
         </tbody>
