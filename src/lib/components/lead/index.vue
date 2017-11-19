@@ -1,7 +1,7 @@
 <template>
     <i-lead
         :_uiid="uiid"
-        :class="[styleClass, stateClass]"
+        :class="[colorClass, stateClass]"
     >
         <slot></slot>
     </i-lead>

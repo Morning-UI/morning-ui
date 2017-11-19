@@ -194,7 +194,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "type": "text/markdown"
     }
-  }, [_vm._v("\n# 内联列表 `<ui-il>`\n\n<doc-component-status page=\"il\"></doc-component-status>\n\n[[[开始]]]\n\n定义一个内联列表，不支持嵌套，列表中每一项使用`<li>`标签。\n\n#### 使用\n\n:::democode/html\n<ui-il>\n    <li>This is first</li>\n    <li>This is second</li>\n    <li>This is third</li>\n</ui-il>\n:::\n\n[[[声明]]]\n\n#### 支持\n\n|类型|支持|默认|\n|-|-|-|\n|尺寸|不支持|-|\n|色彩|不支持|-|\n|状态|`normal`<br/>`apparent`|`normal`|\n\n#### 状态    \n\n:::repeat/html\nstate:normal,apparent\n---\n<ui-il {$stateKey}>\n    <li>this is {$&stateName} ui-il</li>\n    <li>this is {$&stateName} ui-il</li>\n</ui-il>\n:::\n\n[[[源码]]]\n\n<iframe src=\"/report/coverage/lib/components/il/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n")])])
+  }, [_vm._v("\n# 内联列表 `<ui-il>`\n\n<doc-component-status page=\"il\"></doc-component-status>\n\n[[[开始]]]\n\n定义一个内联列表，不支持嵌套，列表中每一项使用`<li>`标签。\n\n#### 使用\n\n:::democode/html\n<ui-il>\n    <li>This is first</li>\n    <li>This is second</li>\n    <li>This is third</li>\n</ui-il>\n:::\n\n[[[形态]]]\n\n#### 支持\n\n|类型|支持|默认|\n|-|-|-|\n|尺寸|不支持|-|\n|色彩|不支持|-|\n|状态|`normal`<br/>`apparent`|`normal`|\n\n#### 状态    \n\n:::repeat/html\nstate:normal,apparent\n---\n<ui-il state=\"{$stateKey}\">\n    <li>this is {$&stateName} ui-il</li>\n    <li>this is {$&stateName} ui-il</li>\n</ui-il>\n:::\n\n[[[源码]]]\n\n<iframe src=\"/report/coverage/lib/components/il/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n")])])
 }
 var staticRenderFns = []
 render._withStripped = true

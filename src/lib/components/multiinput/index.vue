@@ -96,22 +96,15 @@ export default {
             default : false
         }
     },
-    data : function () {
+    computed : {
+        _conf : function () {
 
-        return {
-            conf : {
+            return {
                 canMove : this.canMove,
                 max : this.max
-            },
-            data : {
-                inputValue : '',
-                inputWidth : '0em',
-                focus : false
-            }
-        };
+            };
 
-    },
-    computed : {
+        },
         moreClass : function () {
 
             return {
@@ -119,6 +112,17 @@ export default {
             };
 
         }
+    },
+    data : function () {
+
+        return {
+            data : {
+                inputValue : '',
+                inputWidth : '0em',
+                focus : false
+            }
+        };
+
     },
     methods : {
         _valueFilter : function (value) {
@@ -130,8 +134,15 @@ export default {
 
             }
 
+            value = this._maxFilter(value);
+
+            return value;
+
+        },
+        _maxFilter : function (value) {
+
             if (this.conf.max &&
-                this.data.value.length > this.conf.max) {
+                value.length > this.conf.max) {
 
                 return value.slice(0, this.conf.max);
 
@@ -338,6 +349,12 @@ export default {
 
         }, {
             immediate : true
+        });
+
+        this.$watch('conf.max', () => {
+
+            this._set(this._maxFilter(this.get()), true);
+
         });
 
         this.$on('_moveStarted', () => {

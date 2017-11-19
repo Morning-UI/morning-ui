@@ -58,7 +58,7 @@
     </ui-label>
     :::
 
-    [[[声明]]]
+    [[[形态]]]
 
     #### 支持
 
@@ -68,30 +68,32 @@
     |色彩|全部|`theme`|
     |状态|`normal`<br/>`apparent`|`normal`|
 
+    <a href="/guide/status.html">查看形态文档</a>
+
     #### 尺寸
     
     :::repeat/html
     size
     ---
-    <ui-label {$sizeKey}>{$&sizeName}</ui-label>
+    <ui-label size="{$sizeKey}">{$&sizeName}</ui-label>
     :::
     
     :::repeat/html
     size
     ---
-    <ui-label class="icon" {$sizeKey}><i class="iconfont">&#xe6e2;</i> <span>{$&sizeName}</span></ui-label>
+    <ui-label class="icon" size="{$sizeKey}"><i class="iconfont">&#xe6e2;</i> <span>{$&sizeName}</span></ui-label>
     :::
     
     :::repeat/html
     size
     ---
-    <ui-label class="image" {$sizeKey}><img src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"/> <span>{$&sizeName}</span></ui-label>
+    <ui-label class="image" size="{$sizeKey}"><img src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"/> <span>{$&sizeName}</span></ui-label>
     :::
     
     #### 色彩
 
     :::preset/html
-    statementColor
+    statusColor
     ---
     uikey:label
     :::
@@ -101,7 +103,7 @@
     :::repeat/html
     state:normal,apparent
     ---
-    <ui-label {$stateKey}>{$&stateName}</ui-label>
+    <ui-label state="{$stateKey}">{$&stateName}</ui-label>
     :::
 
     [[[源码]]]

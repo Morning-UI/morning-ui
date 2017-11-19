@@ -27,6 +27,13 @@ export default {
         }
     },
     computed : {
+        _conf : function () {
+
+            return {
+                autoClose : this.autoClose
+            };
+
+        },
         showClass : function () {
 
             return {
@@ -39,9 +46,6 @@ export default {
     data : function () {
 
         return {
-            conf : {
-                autoClose : this.autoClose
-            },
             data : {
                 show : false,
                 first : true
