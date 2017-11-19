@@ -1100,6 +1100,31 @@ morning.install = function (Vue, options) {
 
     Vue.config.ignoredElements = this._ignoreElements;
 
+    var vueRender = function vueRender(el, binding) {
+
+        var tagName = el.tagName;
+        var $vue = new Vue({
+            template: '<' + tagName + '>' + binding.value.template + '</' + tagName + '>'
+        });
+
+        $vue.$mount();
+
+        var $childs = $vue.$el.childNodes;
+        var $child = void 0;
+
+        el.innerHTML = '';
+
+        while ($child = $childs[0]) {
+
+            el.appendChild($child);
+        }
+    };
+
+    Vue.directive('render', {
+        inserted: vueRender,
+        update: vueRender
+    });
+
     return this;
 };
 
@@ -7656,6 +7681,10 @@ var _arrayUniq = __webpack_require__(2);
 
 var _arrayUniq2 = _interopRequireDefault(_arrayUniq);
 
+var _extend = __webpack_require__(1);
+
+var _extend2 = _interopRequireDefault(_extend);
+
 var _titleTable = __webpack_require__(184);
 
 var _titleTable2 = _interopRequireDefault(_titleTable);
@@ -8313,6 +8342,8 @@ exports.default = {
             var titleKeys = [];
             var normalKeys = [];
 
+            list = (0, _extend2.default)(true, [], list);
+
             var _iteratorNormalCompletion10 = true;
             var _didIteratorError10 = false;
             var _iteratorError10 = undefined;
@@ -8473,12 +8504,24 @@ exports.default = {
 
         this.Vue.nextTick(function () {
 
-            _this.$watch('data.normalRows', _this._syncRowHeight, {
+            _this.$watch('data.normalRows', function () {
+
+                _this.Vue.nextTick(function () {
+
+                    _this._syncRowHeight();
+                });
+            }, {
                 immediate: true,
                 deep: true
             });
 
-            _this.$watch('data.titleRows', _this._syncRowHeight, {
+            _this.$watch('data.titleRows', function () {
+
+                _this.Vue.nextTick(function () {
+
+                    _this._syncRowHeight();
+                });
+            }, {
                 immediate: true,
                 deep: true
             });
@@ -8626,7 +8669,25 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
         }
       }
     }, [_vm._l((row), function(col, index) {
-      return [(_vm.colSetMap[_vm.data.titleKeys[index]]) ? _c('td', [_vm._v(_vm._s(col))]) : _c('td', [_vm._v(_vm._s(col))])]
+      return [(_vm.colSetMap[_vm.data.titleKeys[index]]) ? _c('td', {
+        directives: [{
+          name: "render",
+          rawName: "v-render",
+          value: ({
+            template: col
+          }),
+          expression: "{template : col}"
+        }]
+      }) : _c('td', {
+        directives: [{
+          name: "render",
+          rawName: "v-render",
+          value: ({
+            template: col
+          }),
+          expression: "{template : col}"
+        }]
+      })]
     })], 2)
   }))])
 }
@@ -8754,7 +8815,25 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
         }
       }
     }, [_vm._l((row), function(col, index) {
-      return [(_vm.colSetMap[_vm.data.normalKeys[index]]) ? _c('td', [_vm._v(_vm._s(col))]) : _c('td', [_vm._v(_vm._s(col))])]
+      return [(_vm.colSetMap[_vm.data.normalKeys[index]]) ? _c('td', {
+        directives: [{
+          name: "render",
+          rawName: "v-render",
+          value: ({
+            template: col
+          }),
+          expression: "{template : col}"
+        }]
+      }) : _c('td', {
+        directives: [{
+          name: "render",
+          rawName: "v-render",
+          value: ({
+            template: col
+          }),
+          expression: "{template : col}"
+        }]
+      })]
     })], 2)
   }))])
 }
@@ -8810,7 +8889,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "conf": _vm.conf,
       "data": _vm.data,
-      "colSetMap": _vm.colSetMap
+      "col-set-map": _vm.colSetMap
     },
     on: {
       "row-mouseover": _vm._rowOver,
@@ -8820,7 +8899,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "conf": _vm.conf,
       "data": _vm.data,
-      "colSetMap": _vm.colSetMap
+      "col-set-map": _vm.colSetMap
     },
     on: {
       "row-mouseover": _vm._rowOver,
@@ -8830,7 +8909,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "conf": _vm.conf,
       "data": _vm.data,
-      "colSetMap": _vm.colSetMap
+      "col-set-map": _vm.colSetMap
     },
     on: {
       "row-mouseover": _vm._rowOver,
@@ -8840,7 +8919,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "conf": _vm.conf,
       "data": _vm.data,
-      "colSetMap": _vm.colSetMap
+      "col-set-map": _vm.colSetMap
     },
     on: {
       "row-mouseover": _vm._rowOver,
