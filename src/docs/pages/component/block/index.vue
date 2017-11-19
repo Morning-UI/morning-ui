@@ -10,7 +10,7 @@
 
     [[[开始]]]
 
-    定义一个区块，区块一般包含标题和正文内容，区块与其他布局组件不同的是可以用来定义一个带风格的区域。
+    定义一个区块，区块一般包含标题和正文内容，区块与其他样式组件不同的是可以用来定义一个带风格的区域。
 
     #### 使用
     
@@ -22,7 +22,7 @@
     
     :::democode/html
     <ui-block>
-        <ui-h white xs>标题内容</ui-h>
+        <ui-h color="white" size="xs">标题内容</ui-h>
         <ui-textcolor white>正文内容</ui-textcolor>
     </ui-block>
     :::
@@ -35,7 +35,7 @@
     <ui-block class="full">无间隙的区块</ui-block>
     :::
 
-    [[[声明]]]
+    [[[形态]]]
 
     #### 支持
 
@@ -45,10 +45,12 @@
     |色彩|全部|`theme`|
     |状态|不支持|-|
 
+    <a href="/guide/status.html">查看形态文档</a>
+
     #### 色彩
 
     :::preset/html
-    statementColor
+    statusColor
     ---
     uikey:block
     :::

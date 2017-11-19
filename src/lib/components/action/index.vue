@@ -1,7 +1,7 @@
 <template>
     <i-action
         :_uiid="uiid"
-        :class="[sizeClass, styleClass]"
+        :class="[sizeClass, colorClass]"
     >
         <slot></slot>
     </i-action>

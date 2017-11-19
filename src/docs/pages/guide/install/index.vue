@@ -3,21 +3,6 @@
         :page="page"
         :hasPadding="true" 
     >
-    <!-- 如果你使用了类似[Webpack](https://webpack.js.org/)或[Browserify](http://browserify.org/)之类的模块打包工具，你可以使用`require`或`import`等方式引用。
-    
-    下面拿[Webpack](https://webpack.js.org/)举例，如果你下载了Morning UI并放在了某个目录，直接从那个目录引入即可：
-
-    ```html
-    import './path-to-morning/morning-ui.js';
-    import './path-to-morning/morning-ui.css';
-    
-    
-    如果你通过NPM安装：
-
-    ```html
-    import 'morning-ui';
-    ```
-    ``` -->
     <script type="text/markdown">
     # 安装
 
@@ -36,13 +21,13 @@
     - `morning-ui.min.js` : 生产版本JS
     - `morning-ui.min.css` : 生产版本CSS
 
-    <ui-quote theme>我们建议在生产环境锁定版本并使用稳定版本的Morning UI，详见：<a href="/guide/versionplan.html">版本计划</a> 及 <a href="/guide/logs.html">更新日志</a></ui-quote>
+    <ui-quote color="theme">我们建议在生产环境锁定版本并使用稳定版本的Morning UI，详见：<a href="/guide/versionplan.html">版本计划</a> 及 <a href="/guide/logs.html">更新日志</a></ui-quote>
 
     你可以通过下面的方式获取：
 
     ##### 直接下载
 
-    <ui-btn m new-tab id="download">下载</ui-btn>
+    <ui-btn size="m" new-tab id="download">下载</ui-btn>
     
     ##### NPM安装
     
@@ -138,9 +123,10 @@ export default {
             let version = response.data.version;
             let $download = this.$el.querySelector('#download');
 
-            $download._vm.setConf('link', `https://github.com/Morning-UI/morning-ui/archive/${version}.zip`);
-            $download.innerText = `下载v${version}`;
 
+            $download._vm.conf.link = `https://github.com/Morning-UI/morning-ui/archive/${version}.zip`;
+            $download.innerText = `下载v${version}`;
+        
         })
         .catch(error => {
 

@@ -20,13 +20,13 @@
     </div>
     :::
 
-    [[[声明]]]
+    [[[形态]]]
 
     :::preset/html
-    formStatementWithStyle
+    formStatusWithStyle
     ---
     uikey:switch
-    statementDefaultValue:true
+    statusDefaultValue:true
     :::
 
     [[[配置]]]

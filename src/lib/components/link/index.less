@@ -10,6 +10,27 @@ i-link{
         padding: 0 0.6em;
     }
 
+    &.loading{
+        .morningicon{
+            position: absolute;
+            left: ~`'calc( 50% - 0.5em )'`;
+            top: ~`'calc( 50% - 0.5em )'`;
+            line-height: 1em;
+            animation-name: rotation;
+            animation-duration: 1s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+
+        span{
+            opacity: 0;
+        }
+
+        &:hover{
+            cursor: default;
+        }
+    }
+
     &.si-xxl{
         font-size: @fontSize*1.3;
 
@@ -73,7 +94,7 @@ i-link{
         }
     }
 
-    &.sy-theme{
+    &.co-theme{
         color: @colorTheme;
 
         &:not(.st-disabled):hover,
@@ -91,7 +112,7 @@ i-link{
         }
     }
 
-    &.sy-lightTheme{
+    &.co-light-theme{
         color: @colorLightTheme;
 
         &:not(.st-disabled):hover,
@@ -109,7 +130,7 @@ i-link{
         }
     }
 
-    &.sy-darkTheme{
+    &.co-dark-theme{
         color: @colorDarkTheme;
 
         &:not(.st-disabled):hover,
@@ -127,7 +148,7 @@ i-link{
         }
     }
 
-    &.sy-success{
+    &.co-success{
         color: @colorSuccess;
 
         &:not(.st-disabled):hover,
@@ -145,7 +166,7 @@ i-link{
         }
     }
 
-    &.sy-warning{
+    &.co-warning{
         color: @colorWarning;
 
         &:not(.st-disabled):hover,
@@ -163,7 +184,7 @@ i-link{
         }
     }
 
-    &.sy-danger{
+    &.co-danger{
         color: @colorDanger;
 
         &:not(.st-disabled):hover,
@@ -181,7 +202,7 @@ i-link{
         }
     }
 
-    &.sy-primary{
+    &.co-primary{
         color: @colorPrimary;
 
         &:not(.st-disabled):hover,
@@ -199,7 +220,7 @@ i-link{
         }
     }
 
-    &.sy-minor{
+    &.co-minor{
         color: @colorMinor;
 
         &:not(.st-disabled):hover,
@@ -217,7 +238,7 @@ i-link{
         }
     }
 
-    &.sy-info{
+    &.co-info{
         color: @colorInfo;
 
         &:not(.st-disabled):hover,
@@ -235,7 +256,7 @@ i-link{
         }
     }
 
-    &.sy-black{
+    &.co-black{
         color: @colorBlack;
 
         &:not(.st-disabled):hover,
@@ -253,7 +274,7 @@ i-link{
         }
     }
 
-    &.sy-lightBlack{
+    &.co-light-black{
         color: @colorLightBlack;
 
         &:not(.st-disabled):hover,
@@ -271,7 +292,7 @@ i-link{
         }
     }
 
-    &.sy-extraLightBlack{
+    &.co-extra-light-black{
         color: @colorExtraLightBlack;
 
         &:not(.st-disabled):hover,
@@ -289,7 +310,7 @@ i-link{
         }
     }
 
-    &.sy-blue{
+    &.co-blue{
         color: @colorBlue;
 
         &:not(.st-disabled):hover,
@@ -307,7 +328,7 @@ i-link{
         }
     }
 
-    &.sy-lightBlue{
+    &.co-light-blue{
         color: @colorLightBlue;
 
         &:not(.st-disabled):hover,
@@ -325,7 +346,7 @@ i-link{
         }
     }
 
-    &.sy-extraLightBlue{
+    &.co-extra-light-blue{
         color: @colorExtraLightBlue;
 
         &:not(.st-disabled):hover,
@@ -343,7 +364,7 @@ i-link{
         }
     }
 
-    &.sy-silver{
+    &.co-silver{
         color: @colorSilver;
 
         &:not(.st-disabled):hover,
@@ -361,7 +382,7 @@ i-link{
         }
     }
 
-    &.sy-lightSilver{
+    &.co-light-silver{
         color: @colorLightSilver;
 
         &:not(.st-disabled):hover,
@@ -379,7 +400,7 @@ i-link{
         }
     }
 
-    &.sy-extraLightSilver{
+    &.co-extra-light-silver{
         color: @colorExtraLightSilver;
 
         &:not(.st-disabled):hover,
@@ -397,7 +418,7 @@ i-link{
         }
     }
 
-    &.sy-gray{
+    &.co-gray{
         color: @colorGray;
 
         &:not(.st-disabled):hover,
@@ -415,7 +436,7 @@ i-link{
         }
     }
 
-    &.sy-lightGray{
+    &.co-light-gray{
         color: @colorLightGray;
 
         &:not(.st-disabled):hover,
@@ -433,7 +454,7 @@ i-link{
         }
     }
 
-    &.sy-white{
+    &.co-white{
         color: @colorWhite;
 
         &:not(.st-disabled):hover,
@@ -474,39 +495,10 @@ i-link{
         }
     }
 
-    &.st-loading{
-        .morningicon{
-            position: absolute;
-            left: ~`'calc( 50% - 0.5em )'`;
-            top: ~`'calc( 50% - 0.5em )'`;
-            line-height: 1em;
-            animation-name: rotation;
-            animation-duration: 1s;
-            animation-timing-function: linear;
-            animation-iteration-count: infinite;
-        }
-
-        span{
-            opacity: 0;
-        }
-
-        &:hover{
-            cursor: default;
-        }
-    }
-
-    &.st-processing{
-        .st-loading;
-
-        .morningicon{
-            animation-name: rotationContrast;
-        }
-    }
-
-    // default statement
+    // default status
     &{
         .si-m;
-        .sy-theme;
+        .co-theme;
         .st-normal;
     }
 

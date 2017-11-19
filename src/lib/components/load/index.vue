@@ -38,14 +38,21 @@ export default {
             default : ''
         }
     },
+    computed : {
+        _conf : function () {
+
+            return {
+                time : this.time,
+                note : this.note
+            };
+
+        }
+    },
     data : function () {
 
         return {
-            conf : {
-                time : this.time,
-                note : this.note
-            },
             data : {
+                loading : false,
                 loaded : false,
                 fail : false,
                 loadPromise : null,
@@ -72,6 +79,13 @@ export default {
         },
         reload : function () {
 
+            if (this.data.loading) {
+
+                return this;
+
+            }
+
+            this.data.loading = true;
             this.data.loaded = false;
             this.data.fail = false;
 
@@ -85,10 +99,12 @@ export default {
             this.loadPromise
                 .then(() => {
 
+                    this.data.loading = false;
                     this.data.loaded = true;
 
                 }, () => {
 
+                    this.data.loading = false;
                     this.data.fail = true;
                     this.data.loaded = true;
 
@@ -98,6 +114,7 @@ export default {
 
                 setTimeout(() => {
 
+                    this.data.loading = false;
                     this.data.loaded = true;
 
                 }, this.conf.time);

@@ -1,7 +1,7 @@
 <template>
     <i-table
         :_uiid="uiid"
-        :class="[styleClass, moreClass]"
+        :class="[colorClass, moreClass]"
 
         :list="list"
         :empty-cell-value="emptyCellValue"
@@ -24,7 +24,7 @@
             <h1 v-if="conf.title">{{conf.title}}</h1>
 
             <div class="action">
-                <morning-btn v-if="conf.exportCsv" success xs @emit="_exportCsv">导出</morning-btn>
+                <morning-btn v-if="conf.exportCsv" color="success" size="xs" @emit="_exportCsv">导出</morning-btn>
             </div>        
         </header>
     </template>
@@ -151,10 +151,10 @@ export default {
             default : undefined
         }
     },
-    data : function () {
+    computed : {
+        _conf : function () {
 
-        return {
-            conf : {
+            return {
                 list : this.list,
                 emptyCellValue : this.emptyCellValue,
                 title : this.title,
@@ -169,18 +169,9 @@ export default {
                 cellSet : this.cellSet,
                 exportCsv : this.exportCsv,
                 csvName : this.csvName
-            },
-            data : {
-                normalKeys : [],
-                normalRows : [],
-                titleKeys : [],
-                titleRows : [],
-                listDataJson : '[]'
-            }
-        };
+            };
 
-    },
-    computed : {
+        },
         colSetMap : function () {
 
             let map = {};
@@ -210,7 +201,52 @@ export default {
 
         }
     },
+    data : function () {
+
+        return {
+            data : {
+                normalKeys : [],
+                normalRows : [],
+                titleKeys : [],
+                titleRows : [],
+                listDataJson : '[]'
+            }
+        };
+
+    },
     methods : {
+        _refreshTable : function () {
+
+            this._cleanupCell();
+            this._fixedTitleCol();
+            this._setCol();
+            this._setRow();
+            this._setCell();
+
+        },
+        _cleanupCell : function () {
+
+            let $cells = this.$el.querySelectorAll('td, th');
+
+            for (let $cell of $cells) {
+
+                if ($cell) {
+
+                    $cell.style.width = '';
+                    $cell.style.minWidth = '';
+                    $cell.style.maxWidth = '';
+                    
+                    for (let className of $cell.classList.values()) {
+
+                        $cell.classList.remove(className);
+
+                    }
+
+                }
+
+            }
+
+        },
         _setCol : function () {
 
             for (let set of this.conf.colSet) {
@@ -261,7 +297,7 @@ export default {
 
                         if ($cell && set.style) {
                         
-                            $cell.classList.add(`cell-sy-${set.style}`);
+                            $cell.classList.add(`cell-co-${set.style}`);
 
                         }
 
@@ -276,6 +312,28 @@ export default {
                 }
 
             }
+
+        },
+        _fillColSet : function (colset) {
+
+            let result = [];
+
+            for (let item of colset) {
+
+                result.push(extend({
+                    col : undefined,
+                    name : undefined,
+                    width : undefined,
+                    minwidth : undefined,
+                    maxwidth : undefined,
+                    style : undefined,
+                    disabled : undefined,
+                    align : undefined
+                }, item));
+
+            }
+
+            return result;
 
         },
         _setRow : function () {
@@ -311,7 +369,7 @@ export default {
 
                         if (set.style) {
                             
-                            $cell.classList.add(`cell-sy-${set.style}`);
+                            $cell.classList.add(`cell-co-${set.style}`);
 
                         }
 
@@ -332,6 +390,24 @@ export default {
                 }
 
             }
+
+        },
+        _fillRowSet : function (colset) {
+
+            let result = [];
+
+            for (let item of colset) {
+
+                result.push(extend({
+                    row : undefined,
+                    style : undefined,
+                    disabled : undefined,
+                    align : undefined
+                }, item));
+
+            }
+
+            return result;
 
         },
         _setCell : function () {
@@ -370,7 +446,7 @@ export default {
 
                         if (set.style) {
                             
-                            $cell.classList.add(`cell-sy-${set.style}`);
+                            $cell.classList.add(`cell-co-${set.style}`);
 
                         }
 
@@ -391,6 +467,25 @@ export default {
                 }
 
             }
+
+        },
+        _fillCellSet : function (colset) {
+
+            let result = [];
+
+            for (let item of colset) {
+
+                result.push(extend({
+                    row : undefined,
+                    col : undefined,
+                    style : undefined,
+                    disabled : undefined,
+                    align : undefined
+                }, item));
+
+            }
+
+            return result;
 
         },
         _toggleTitleCol : function () {
@@ -442,14 +537,31 @@ export default {
         },
         _fixedTitleCol : function () {
 
+            let $titleTable = this.$el.querySelector('.title-table');
+            let $normalTable = this.$el.querySelector('.normal-table');
+
+            $normalTable.parentElement.style.maxWidth = '';
+            $titleTable.parentElement.style.maxWidth = '';
+            $normalTable.parentElement.style.overflowX = '';
+            $titleTable.parentElement.style.overflowX = '';
+            $normalTable.parentElement.style.width = '';
+            $titleTable.parentElement.style.width = '';
+            $normalTable.parentElement.style.position = '';
+            $titleTable.parentElement.style.position = '';
+            $normalTable.parentElement.style.left = '';
+            $titleTable.parentElement.style.left = '';
+            $normalTable.parentElement.style.right = '';
+            $titleTable.parentElement.style.right = '';
+            $normalTable.style.borderLeft = '';
+            $titleTable.style.borderLeft = '';
+            $normalTable.style.borderRight = '';
+            $titleTable.style.borderRight = '';
+
             if (!/fixed/.test(this.conf.fixedTitleCol)) {
 
                 return;
 
             }
-
-            let $titleTable = this.$el.querySelector('.title-table');
-            let $normalTable = this.$el.querySelector('.normal-table');
             let titleColWidth = $titleTable.clientWidth;
             let elWidth = this.$el.clientWidth;
 
@@ -649,16 +761,24 @@ export default {
             this.data.normalRows = normalRows;
             this.data.listDataJson = JSON.stringify(list);
 
-        },
-        setList : function (list) {
-
-            this._importList(list);
-
         }
     },
     mounted : function () {
 
-        this._importList(this.conf.list);
+        this.$watch('conf.list', () => {
+
+            this._importList(this.conf.list);
+
+        }, {
+            immediate : true,
+            deep : true
+        });
+
+        this.$watch('conf.emptyCellValue', () => {
+
+            this._importList(this.conf.list);
+
+        });
 
         this.Vue.nextTick(() => {
 
@@ -693,10 +813,50 @@ export default {
                 deep : true
             });
 
-            this._fixedTitleCol();
-            this._setCol();
-            this._setRow();
-            this._setCell();
+            this.$watch(() => (`${JSON.stringify(this.conf.colSet)}||${JSON.stringify(this.conf.rowSet)}||${JSON.stringify(this.conf.cellSet)}`), () => {
+
+                let fillColSet = this._fillColSet(this.conf.colSet);
+
+                if (JSON.stringify(this.conf.colSet) !== JSON.stringify(fillColSet)) {
+
+                    this.conf.colSet = fillColSet;
+
+                    return;
+
+                }
+
+                let fillRowSet = this._fillRowSet(this.conf.rowSet);
+
+                if (JSON.stringify(this.conf.rowSet) !== JSON.stringify(fillRowSet)) {
+
+                    this.conf.rowSet = fillRowSet;
+
+                    return;
+
+                }
+
+                let fillCellSet = this._fillCellSet(this.conf.cellSet);
+
+                if (JSON.stringify(this.conf.cellSet) !== JSON.stringify(fillCellSet)) {
+
+                    this.conf.cellSet = fillCellSet;
+
+                    return;
+
+                }
+
+                this._importList(this.conf.list);
+
+                this.Vue.nextTick(() => {
+                    
+                    this._refreshTable();
+
+                });
+
+            }, {
+                deep : true,
+                immediate : true
+            });
 
             this.$watch('data.listDataJson', () => {
 
@@ -711,10 +871,7 @@ export default {
 
         this.Vue.nextTick(() => {
 
-            this._fixedTitleCol();
-            this._setCol();
-            this._setRow();
-            this._setCell();
+            this._refreshTable();
 
         });
 
