@@ -1,4 +1,4 @@
-webpackJsonp([76],{
+webpackJsonp([77],{
 
 /***/ 0:
 /***/ (function(module, exports) {
@@ -7,7 +7,7 @@ module.exports = Vue;
 
 /***/ }),
 
-/***/ 691:
+/***/ 696:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17,7 +17,7 @@ var _vue = __webpack_require__(0);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _index = __webpack_require__(692);
+var _index = __webpack_require__(697);
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -32,18 +32,18 @@ new _vue2.default({
 
 /***/ }),
 
-/***/ 692:
+/***/ 697:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(694);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(699);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_47862bc4_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(695);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_47862bc4_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(700);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(693)
+  __webpack_require__(698)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
@@ -88,14 +88,14 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 693:
+/***/ 698:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 694:
+/***/ 699:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -183,12 +183,14 @@ exports.default = {
 //
 //
 //
+//
+//
 
 module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 695:
+/***/ 700:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -202,7 +204,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "type": "text/markdown"
     }
-  }, [_vm._v("\n# 区块 `<ui-block>`\n\n<doc-component-status page=\"block\"></doc-component-status>\n\n[[[开始]]]\n\n定义一个区块，区块一般包含标题和正文内容，区块与其他样式组件不同的是可以用来定义一个带风格的区域。\n\n#### 使用\n\n:::democode/html\n<ui-block>区块</ui-block>\n:::\n\n#### 常用示例\n\n:::democode/html\n<ui-block>\n    <ui-h color=\"white\" size=\"xs\">标题内容</ui-h>\n    <ui-textcolor white>正文内容</ui-textcolor>\n</ui-block>\n:::\n\n#### 无间隙的区块\n\n可以通过添加`full`类来标记一个无间隙的区块。\n\n:::democode/html\n<ui-block class=\"full\">无间隙的区块</ui-block>\n:::\n\n[[[形态]]]\n\n#### 支持\n\n|类型|支持|默认|\n|-|-|-|\n|尺寸|不支持|-|\n|色彩|全部|`theme`|\n|状态|不支持|-|\n\n#### 色彩\n\n:::preset/html\nstatusColor\n---\nuikey:block\n:::\n\n[[[源码]]]\n\n<iframe src=\"/report/coverage/lib/components/block/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n")])])
+  }, [_vm._v("\n# 区块 `<ui-block>`\n\n<doc-component-status page=\"block\"></doc-component-status>\n\n[[[开始]]]\n\n定义一个区块，区块一般包含标题和正文内容，区块与其他样式组件不同的是可以用来定义一个带风格的区域。\n\n#### 使用\n\n:::democode/html\n<ui-block>区块</ui-block>\n:::\n\n#### 常用示例\n\n:::democode/html\n<ui-block>\n    <ui-h color=\"white\" size=\"xs\">标题内容</ui-h>\n    <ui-textcolor white>正文内容</ui-textcolor>\n</ui-block>\n:::\n\n#### 无间隙的区块\n\n可以通过添加`full`类来标记一个无间隙的区块。\n\n:::democode/html\n<ui-block class=\"full\">无间隙的区块</ui-block>\n:::\n\n[[[形态]]]\n\n#### 支持\n\n|类型|支持|默认|\n|-|-|-|\n|尺寸|不支持|-|\n|色彩|全部|`theme`|\n|状态|不支持|-|\n\n<a href=\"/guide/status.html\">查看形态文档</a>\n\n#### 色彩\n\n:::preset/html\nstatusColor\n---\nuikey:block\n:::\n\n[[[源码]]]\n\n<iframe src=\"/report/coverage/lib/components/block/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n")])])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -217,4 +219,4 @@ if (false) {
 
 /***/ })
 
-},[691]);
+},[696]);
