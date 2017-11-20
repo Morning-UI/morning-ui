@@ -1,7 +1,7 @@
 <template>
     <i-pagination
         :_uiid="uiid"
-        :class="[sizeClass, styleClass]"
+        :class="[sizeClass, colorClass]"
 
         :total="total"
         :list="list"
@@ -19,7 +19,7 @@
     </div>
 
     <div class="pagination">
-        <template v-for="index in conf.total">
+        <template v-for="index in data.total">
         
             <template v-if="(data.hideEnd - 1) === index && data.hideEnd !== 1">
                 <a href="javascript:;" class="prev" @click="to(data.currentPage - 1)"><i class="morningicon">&#xe696;</i></a>
@@ -42,7 +42,7 @@
                 </a>
             </template>
 
-            <template v-if="(data.hideStart + 1) === index && data.hideStart !== conf.total">
+            <template v-if="(data.hideStart + 1) === index && data.hideStart !== data.total">
                 <a href="javascript:;" class="ignore">...</a>
                 <a href="javascript:;" class="next" @click="to(data.currentPage + 1)"><i class="morningicon">&#xe695;</i></a>
             </template>
@@ -51,9 +51,9 @@
 
         <div
             class="page-jump"
-            v-if="conf.jumpPage && conf.total > conf.maxShow"
+            v-if="conf.jumpPage && data.total > conf.maxShow"
         >
-            <ui-textinput :ref="'ui-select-input-' + uiid" class="page-num" form-name="页码"></ui-textinput>
+            <morning-textinput :ref="'ui-select-input-' + uiid" class="page-num" form-name="页码"></morning-textinput>
             <i class="morningicon" @click="_jump()">&#xe6c8;</i>
         </div>
     </div>
@@ -65,11 +65,10 @@
 </template>
  
 <script>
-import UI                           from 'Common/ui';
-
 const PAGE_SIZE_DEFAULT = 10;
 
-export default UI.extend({
+export default {
+    origin : 'UI',
     name : 'pagination',
     props : {
         total : {
@@ -97,27 +96,59 @@ export default UI.extend({
             default : true
         }
     },
-    data : function () {
+    computed : {
+        _conf : function () {
 
-        return {
-            conf : {
+            return {
                 total : this.total,
                 list : this.list,
                 pageSize : this.pageSize,
                 page : this.page,
                 maxShow : this.maxShow,
                 jumpPage : this.jumpPage
-            },
+            };
+
+        }
+    },
+    data : function () {
+
+        return {
             data : {
                 currentPage : 0,
                 currentItems : [],
                 hideEnd : 0,
-                hideStart : Infinity
+                hideStart : Infinity,
+                total : 0
             }
         };
 
     },
     methods : {
+        _setTotal : function () {
+
+            let total = this.data.total;
+
+            if (this.conf.list) {
+
+                if (this.conf.list instanceof Array) {
+
+                    total = Math.ceil(this.conf.list.length / this.conf.pageSize);
+                
+                } else {
+
+                    total = Math.ceil(Object.keys(this.conf.list).length / this.conf.pageSize);
+
+                }
+
+            } else {
+
+                total = this.conf.total;
+
+            }
+            
+            this.data.total = total;
+
+        },
         _refreshCurrentItems : function () {
 
             if (this.conf.list) {
@@ -147,7 +178,7 @@ export default UI.extend({
             let end = this.data.currentPage - Math.floor(this.conf.maxShow / 2),
                 start = this.data.currentPage + Math.floor(this.conf.maxShow / 2);
 
-            this.data.hideEnd = end - (start > this.conf.total ? (start - this.conf.total) - 1 : 0);
+            this.data.hideEnd = end - (start > this.data.total ? (start - this.data.total) - 1 : 0);
             this.data.hideStart = start + (end < 1 ? - end + 1 : 0);
 
         },
@@ -170,13 +201,13 @@ export default UI.extend({
 
             if (index < 0) {
             
-                index = this.conf.total + index + 1;
+                index = this.data.total + index + 1;
             
             }
 
-            if (index > this.conf.total) {
+            if (index > this.data.total) {
                 
-                index = this.conf.total;
+                index = this.data.total;
             
             }
 
@@ -223,23 +254,9 @@ export default UI.extend({
             
             }
             
-            num = +num || this.conf.total;
+            num = +num || this.data.total;
             
-            if (num < 1) {
-
-                num = 1;
-
-            }
-            
-            this.conf.total = num;
-
-            this._setMaxshow();
-
-            if (this.data.currentPage > num) {
-
-                this.to(num);
-            
-            }
+            this.data.total = num;
 
             return this;
 
@@ -247,19 +264,33 @@ export default UI.extend({
     },
     mounted : function () {
 
-        if (this.conf.list) {
+        this.$watch('conf.total', () => {
 
-            if (this.conf.list instanceof Array) {
+            this._setTotal();
 
-                this.conf.total = Math.ceil(this.conf.list.length / this.conf.pageSize);
-            
-            } else {
+        });
 
-                this.conf.total = Math.ceil(Object.keys(this.conf.list).length / this.conf.pageSize);
+        this.$watch('conf.list', () => {
 
-            }
+            this._setTotal();
+            this._refreshCurrentItems();
 
-        }
+        }, {
+            deep : true
+        });
+
+        this.$watch('conf.pageSize', () => {
+
+            this._setTotal();
+            this._refreshCurrentItems();
+
+        });
+
+        this.$watch('conf.maxShow', () => {
+
+            this._setMaxshow();
+
+        });
 
         this.$watch('data.currentPage', () => {
             
@@ -269,11 +300,39 @@ export default UI.extend({
 
         });
 
+        this.$watch('data.total', () => {
+            
+            if (this.data.total < 1) {
+
+                this.data.total = 1;
+
+                return;
+
+            }
+
+            if (this.data.currentPage > this.data.total) {
+
+                this.to(this.data.total);
+            
+            }
+
+            this._setMaxshow();
+
+        });
+
+        this._setTotal();
         this._refreshCurrentItems();
-        this.to(this.conf.page);
+
+        this.$watch('conf.page', () => {
+    
+            this.to(this.conf.page);
+    
+        }, {
+            immediate : true
+        });
 
     }
-});
+};
 </script>
 
 <style lang="less" src="./index.less"></style>

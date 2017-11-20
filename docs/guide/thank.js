@@ -1,4 +1,4 @@
-webpackJsonp([6],{
+webpackJsonp([7],{
 
 /***/ 0:
 /***/ (function(module, exports) {
@@ -7,18 +7,43 @@ module.exports = Vue;
 
 /***/ }),
 
-/***/ 107:
+/***/ 326:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _vue = __webpack_require__(0);
+
+var _vue2 = _interopRequireDefault(_vue);
+
+var _index = __webpack_require__(327);
+
+var _index2 = _interopRequireDefault(_index);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+new _vue2.default({
+    el: '#root',
+    render: function render(h) {
+        return h(_index2.default);
+    }
+});
+
+/***/ }),
+
+/***/ 327:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(329);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_6d753f8c_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(671);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_6d753f8c_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(330);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(353)
+  __webpack_require__(328)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
@@ -63,7 +88,14 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 211:
+/***/ 328:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 329:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -139,39 +171,7 @@ module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 290:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _vue = __webpack_require__(0);
-
-var _vue2 = _interopRequireDefault(_vue);
-
-var _index = __webpack_require__(107);
-
-var _index2 = _interopRequireDefault(_index);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-new _vue2.default({
-    el: '#root',
-    render: function render(h) {
-        return h(_index2.default);
-    }
-});
-
-/***/ }),
-
-/***/ 353:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 671:
+/***/ 330:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -185,7 +185,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "type": "text/markdown"
     }
-  }, [_vm._v("\n# 致谢\n\n### 开源项目\n\nMorningUI受到以下开源项目的启发：\n\n- Semantic UI [https://semantic-ui.com/](https://semantic-ui.com/)\n- Bootstrap [http://getbootstrap.com/](http://getbootstrap.com/)\n- Element [http://element.eleme.io/](http://element.eleme.io/)\n\n在此向这些项目致敬。\n\n### Vue.js\n\nMorningUI基于[Vue.js](https://vuejs.org/)开发，在此感谢。\n\n### HmpUI贡献者\n\nMorningUI的诞生离不开HmpUI，在此感谢曾为HmpUI付出贡献的开发者：\n\n- 冯春艳(chunyan.feng@husor.com)\n- 杜金金(jinjin.du@husor.com)\n- 赵朋(peng.zhao@husor.com)\n- 干有银(youyin.gan@husor.com)\n- 张桠鑫(yaxin.zhang@husor.com)\n- 段俊杰(junjie.duan@husor.com)\n- 童颖(ying.tong@husor.com)\n- 朱双龙(shuanglong.zhu@husor.com)\n\n### MorningUI贡献者\n\n- 贺晨超(chenchao.he@husor.com) <ui-textcolor minor><ui-small>Coding/Review</ui-small></ui-textcolor>\n\n如果你感兴趣，欢迎加入我们，查看[如何成为一名贡献者](/guide/becontributor.html)\n\n")])])
+  }, [_vm._v("\n# 致谢\n\n### 开源项目\n\nMorningUI受到以下开源项目的启发：\n\n- Semantic UI [https://semantic-ui.com/](https://semantic-ui.com/)\n- Bootstrap [http://getbootstrap.com/](http://getbootstrap.com/)\n- Element [http://element.eleme.io/](http://element.eleme.io/)\n\n在此向这些项目致敬。\n\n### Vue.js\n\nMorningUI基于[Vue.js](https://vuejs.org/)开发，在此感谢。\n\n### HmpUI贡献者\n\nMorningUI的诞生离不开HmpUI，在此感谢曾为HmpUI付出贡献的开发者：\n\n- 冯春艳(chunyan.feng@husor.com)\n- 杜金金(jinjin.du@husor.com)\n- 赵朋(peng.zhao@husor.com)\n- 干有银(youyin.gan@husor.com)\n- 张桠鑫(yaxin.zhang@husor.com)\n- 段俊杰(junjie.duan@husor.com)\n- 童颖(ying.tong@husor.com)\n- 朱双龙(shuanglong.zhu@husor.com)\n\n### MorningUI贡献者\n\n- 贺晨超(chenchao.he@husor.com) <ui-textcolor color=\"minor\"><ui-small>Coding/Review</ui-small></ui-textcolor>\n\n如果你感兴趣，欢迎加入我们，查看[如何成为一名贡献者](/guide/becontributor.html)\n\n")])])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -200,4 +200,4 @@ if (false) {
 
 /***/ })
 
-},[290]);
+},[326]);

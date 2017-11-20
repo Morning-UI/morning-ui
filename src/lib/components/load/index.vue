@@ -23,11 +23,10 @@
 </template>
  
 <script>
-import UI                           from 'Common/ui';
-
 const defaultTime = 200;
 
-export default UI.extend({
+export default {
+    origin : 'UI',
     name : 'load',
     props : {
         time : {
@@ -39,14 +38,21 @@ export default UI.extend({
             default : ''
         }
     },
+    computed : {
+        _conf : function () {
+
+            return {
+                time : this.time,
+                note : this.note
+            };
+
+        }
+    },
     data : function () {
 
         return {
-            conf : {
-                time : this.time,
-                note : this.note
-            },
             data : {
+                loading : false,
                 loaded : false,
                 fail : false,
                 loadPromise : null,
@@ -73,6 +79,13 @@ export default UI.extend({
         },
         reload : function () {
 
+            if (this.data.loading) {
+
+                return this;
+
+            }
+
+            this.data.loading = true;
             this.data.loaded = false;
             this.data.fail = false;
 
@@ -86,10 +99,12 @@ export default UI.extend({
             this.loadPromise
                 .then(() => {
 
+                    this.data.loading = false;
                     this.data.loaded = true;
 
                 }, () => {
 
+                    this.data.loading = false;
                     this.data.fail = true;
                     this.data.loaded = true;
 
@@ -99,6 +114,7 @@ export default UI.extend({
 
                 setTimeout(() => {
 
+                    this.data.loading = false;
                     this.data.loaded = true;
 
                 }, this.conf.time);
@@ -131,7 +147,7 @@ export default UI.extend({
         this.reload();
 
     }
-});
+};
 </script>
 
 <style lang="less" src="./index.less"></style>

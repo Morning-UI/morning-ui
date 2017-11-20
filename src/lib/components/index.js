@@ -43,6 +43,7 @@ import btn                          from './btn/index.vue';
 import link                         from './link/index.vue';
 import dropdown                     from './dropdown/index.vue';
 import tab                          from './tab/index.vue';
+import table                        from './table/index.vue';
 import pagination                   from './pagination/index.vue';
 import dialog                       from './dialog/index.vue';
 import load                         from './load/index.vue';
@@ -56,6 +57,7 @@ import select                       from './select/index.vue';
 import checkbox                     from './checkbox/index.vue';
 import radio                        from './radio/index.vue';
 import multiinput                   from './multiinput/index.vue';
+import multiform                    from './multiform/index.vue';
 
 export default {
     h,
@@ -100,6 +102,7 @@ export default {
     link,
     dropdown,
     tab,
+    table,
     pagination,
     dialog,
     load,
@@ -111,5 +114,6 @@ export default {
     select,
     checkbox,
     radio,
-    multiinput
+    multiinput,
+    multiform
 };

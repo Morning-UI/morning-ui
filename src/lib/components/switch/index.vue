@@ -1,7 +1,7 @@
 <template>
     <i-switch
         :_uiid="uiid"
-        :class="[styleClass, stateClass, moreClass]"
+        :class="[colorClass, stateClass, moreClass]"
 
         :form-name="formName"
         :form-key="formKey"
@@ -20,9 +20,8 @@
 </template>
  
 <script>
-import Form                         from 'Common/form';
-
-export default Form.extend({
+export default {
+    origin : 'Form',
     name : 'switch',
     props : {
         autoHideName : {
@@ -30,19 +29,14 @@ export default Form.extend({
             default : false
         }
     },
-    data : function () {
-
-        return {
-            conf : {
-                autoHideName : this.autoHideName
-            },
-            data : {
-                nameIsEmpty : false
-            }
-        };
-
-    },
     computed : {
+        _conf : function () {
+
+            return {
+                autoHideName : this.autoHideName
+            };
+
+        },
         moreClass : function () {
 
             return {
@@ -52,10 +46,40 @@ export default Form.extend({
 
         }
     },
+    data : function () {
+
+        return {
+            data : {
+                nameIsEmpty : false
+            }
+        };
+
+    },
     methods : {
         _valueFilter : function (value) {
 
             return !!value;
+
+        },
+        _setNameIsEmpty : function () {
+
+            if (!this.conf.autoHideName) {
+
+                this.data.nameIsEmpty = false;
+
+                return;
+
+            }
+
+            if (this.conf.formName === '' || this.conf.formName === undefined) {
+
+                this.data.nameIsEmpty = true;
+
+            } else {
+
+                this.data.nameIsEmpty = false;
+
+            }
 
         },
         toggle : function (open) {
@@ -75,30 +99,22 @@ export default Form.extend({
     created : function () {},
     mounted : function () {
 
-        this.$watch('conf.formName', newVal => {
+        this.$watch('conf.formName', () => {
 
-            if (!this.conf.autoHideName) {
-
-                return;
-
-            }
-
-            if (newVal === '' || newVal === undefined) {
-
-                this.data.nameIsEmpty = true;
-
-            } else {
-
-                this.data.nameIsEmpty = false;
-
-            }
+            this._setNameIsEmpty();
 
         }, {
             immediate : true
         });
 
+        this.$watch('conf.autoHideName', () => {
+
+            this._setNameIsEmpty();
+
+        });
+
     }
-});
+};
 </script>
 
 <style lang="less" src="./index.less"></style>

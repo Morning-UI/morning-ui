@@ -101,9 +101,31 @@
   padding: 2px;
   margin-bottom: 10px;
 }
+.markdown-body i-table table {
+  margin-top: initial;
+  margin-bottom: initial;
+  display: table;
+  width: initial;
+  overflow: initial;
+}
+.markdown-body i-table table tr {
+  border-top: initial;
+}
+.markdown-body i-table table tr:nth-child(2n) {
+  background-color: #FAFAFA;
+}
+.markdown-body i-table table * {
+  box-sizing: inherit;
+}
+.markdown-body i-table table th,
+.markdown-body i-table table td {
+  padding: initial;
+  border: initial;
+}
 .markdown-body i-img img,
 .markdown-body i-label img,
-.markdown-body i-statistic img {
+.markdown-body i-statistic img,
+.markdown-body i-multiform img {
   border: none !important;
   padding: 0;
   margin-bottom: inherit;
@@ -140,6 +162,15 @@
 .markdown-body > div > h1 {
   line-height: 1.35;
   margin-top: 0;
+}
+.markdown-body i-table h1 {
+  margin-top: inherit;
+  margin-bottom: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  padding-bottom: inherit;
+  border-bottom: inherit;
+  font-size: inherit;
 }
 .markdown-body > div > i-tab > .contents > .item > div {
   margin-top: 30px;
@@ -780,8 +811,8 @@ i-dialog a:hover {
 .markdown-body .language-js::before,
 .markdown-body .lang-html::before,
 .markdown-body .language-html::before,
-.markdown-body .lang-bash::before,
-.markdown-body .language-bash::before,
+.markdown-body .lang-shell::before,
+.markdown-body .language-shell::before,
 .markdown-body .lang-md::before,
 .markdown-body .language-md::before,
 .markdown-body .lang-text::before,
@@ -809,9 +840,9 @@ i-dialog a:hover {
 .markdown-body .language-js::before {
   content: 'JavaScript';
 }
-.markdown-body .lang-bash::before,
-.markdown-body .language-bash::before {
-  content: 'Bash';
+.markdown-body .lang-shell::before,
+.markdown-body .language-shell::before {
+  content: 'Shell';
 }
 .markdown-body .lang-md::before,
 .markdown-body .language-md::before {
@@ -839,6 +870,16 @@ i-dialog a:hover {
 .content.padding {
   padding: 50px;
 }
+.content .content-title {
+  display: none;
+}
+.content .permalink {
+  color: #9F9F9F;
+  transform: scale(0.9);
+  display: inline-block;
+  transform-origin: bottom;
+  margin-right: -0.15em;
+}
 .demo {
   padding: 10px;
   box-sizing: border-box;
@@ -851,28 +892,30 @@ i-dialog a:hover {
   border-radius: 0 0 3px 3px;
 }
 
-header {
+body > div > header {
   width: 100%;
   background: #333;
   height: 80px;
+  position: relative;
+  z-index: 99;
 }
-header .nav {
+body > div > header .nav {
   width: 1000px;
   margin: 0 auto;
   position: relative;
 }
-header .logo {
+body > div > header .logo {
   display: inline-block;
   vertical-align: top;
   opacity: 0.8;
 }
-header .logo img {
-  width: 50px;
+body > div > header .logo img {
+  width: 53px;
   height: 50px;
   margin-top: 15px;
   display: inline-block;
 }
-header .name {
+body > div > header .name {
   display: inline-block;
   vertical-align: top;
   color: #FFF;
@@ -881,7 +924,7 @@ header .name {
   font-size: 26px;
   opacity: 0.8;
 }
-header .menu {
+body > div > header .menu {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -890,13 +933,13 @@ header .menu {
   right: 0;
   top: 0;
 }
-header .menu li {
+body > div > header .menu li {
   display: inline-block;
   vertical-align: top;
   margin: 15px 10px;
   height: 50px;
 }
-header .menu li a {
+body > div > header .menu li a {
   height: 50px;
   line-height: 50px;
   color: #FFF;
@@ -904,29 +947,56 @@ header .menu li a {
   font-size: 13px;
   text-decoration: none;
 }
-header .menu li a:hover {
+body > div > header .menu li a:hover {
   opacity: 0.8;
 }
-header .menu li a.current {
+body > div > header .menu li a.current {
   opacity: 1;
   font-weight: 600;
 }
-header .menu li .githublogo {
+body > div > header .menu li .githublogo {
   vertical-align: text-bottom;
   width: 16px;
 }
-header.index {
+body > div > header.index {
   background: #FFF;
 }
-header.index .logo img {
+body > div > header.index .logo img {
   display: none;
 }
-header.index .name {
+body > div > header.index .name {
   color: #000;
   font-size: 28px;
 }
-header.index .menu li a {
+body > div > header.index .menu li a {
   color: #333;
+}
+body > div > header .doc-search input {
+  height: 30px;
+  font-size: 12px;
+  margin-top: 10px;
+}
+body > div > header .doc-search.dark input {
+  background: #333;
+  border: 1px #555 solid;
+  color: #eee !important;
+}
+body > div > header .doc-search.dark input::placeholder {
+  color: #999;
+}
+body > div > header .doc-search.dark input:hover {
+  border-color: #666;
+}
+body > div > header .doc-search.dark input:focus {
+  border-color: #777;
+}
+body > div > header .ds-dropdown-menu {
+  font-size: 12px;
+  width: 380px;
+  min-width: 380px !important;
+}
+body > div > header .ds-dataset-1 {
+  width: 380px;
 }
 
 footer {

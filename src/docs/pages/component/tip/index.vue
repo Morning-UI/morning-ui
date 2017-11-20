@@ -52,7 +52,7 @@
     <ui-tip target="#demo5"></ui-tip>
     :::
 
-    [[[声明]]]
+    [[[形态]]]
 
     #### 支持
 
@@ -61,6 +61,8 @@
     |尺寸|不支持|-|
     |色彩|全部|`theme`|
     |状态|不支持|-|
+
+    <a href="/guide/status.html">查看形态文档</a>
 
     #### 色彩
 
@@ -72,8 +74,8 @@
     color:silver
     color:gray
     ---
-    <span id="demo{$colorKey}"><ui-textcolor {$colorKey}>{$&colorName}小提示</ui-textcolor></span>
-    <ui-tip {$colorKey} target="#demo{$colorKey}">{$&colorName} 小提示</ui-tip>
+    <span id="demo{$colorKey}"><ui-textcolor color="{$colorKey}">{$&colorName}小提示</ui-textcolor></span>
+    <ui-tip color="{$colorKey}" target="#demo{$colorKey}">{$&colorName} 小提示</ui-tip>
     <br>
     :::
 
@@ -81,10 +83,10 @@
 
     |KEY|描述|接受值|值类型|默认值|
     |-|-|-|-|-|
-    |target|触发提示的目标元素，必填项|元素选择器|String<br>Null|`null`|
+    |target|触发提示的目标元素，必填项。此配置改变后，若小提示处于显示状态，则会触发一次`hide`和`show`事件，以刷新小提示的位置。|元素选择器|String<br>Null|`null`|
     |placement|提示框位置|`top`:上方<br>`bottom`:下方<br>`left`:左侧<br>`right`:右侧|String|`'top'`|
     |offset|偏移量|上下偏移量(单位px/%) 左右偏移量(单位px/%)|String|`'0 0'`|
-    |trigger|触发事件类型(支持多触发器，多个触发器之间用空格分开)|`hover`<br>`click`<br>`focus`|String|`'hover'`|
+    |trigger|触发事件类型(支持多触发器，多个触发器之间用空格分开)。触发事件一旦改变，已有的触发状态都会被重置。|`hover`<br>`click`<br>`focus`|String|`'hover'`|
     
     #### target
 

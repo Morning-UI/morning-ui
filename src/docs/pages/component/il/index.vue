@@ -22,7 +22,7 @@
     </ui-il>
     :::
 
-    [[[声明]]]
+    [[[形态]]]
 
     #### 支持
 
@@ -32,12 +32,14 @@
     |色彩|不支持|-|
     |状态|`normal`<br/>`apparent`|`normal`|
 
+    <a href="/guide/status.html">查看形态文档</a>
+
     #### 状态    
     
     :::repeat/html
     state:normal,apparent
     ---
-    <ui-il {$stateKey}>
+    <ui-il state="{$stateKey}">
         <li>this is {$&stateName} ui-il</li>
         <li>this is {$&stateName} ui-il</li>
     </ui-il>

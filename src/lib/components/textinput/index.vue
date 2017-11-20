@@ -53,9 +53,8 @@
 </template>
  
 <script>
-import Form                         from 'Common/form';
-
-export default Form.extend({
+export default {
+    origin : 'Form',
     name : 'textinput',
     props : {
         hideValue : {
@@ -71,19 +70,16 @@ export default Form.extend({
             default : undefined
         }
     },
-    data : function () {
+    computed : {
+        _conf : function () {
 
-        return {
-            conf : {
+            return {
                 hideValue : this.hideValue,
                 prepend : this.prepend,
                 append : this.append
-            },
-            data : {}
-        };
+            };
 
-    },
-    computed : {
+        },
         inputType : function () {
 
             if (this.conf.hideValue) {
@@ -121,6 +117,13 @@ export default Form.extend({
 
         }
     },
+    data : function () {
+
+        return {
+            data : {}
+        };
+
+    },
     methods : {
         _valueFilter : function (value) {
 
@@ -146,7 +149,7 @@ export default Form.extend({
     },
     created : function () {},
     mounted : function () {}
-});
+};
 </script>
 
 <style lang="less" src="./index.less"></style>

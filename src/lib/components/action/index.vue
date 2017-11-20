@@ -1,18 +1,17 @@
 <template>
     <i-action
         :_uiid="uiid"
-        :class="[sizeClass, styleClass]"
+        :class="[sizeClass, colorClass]"
     >
         <slot></slot>
     </i-action>
 </template>
  
 <script>
-import UI                           from 'Common/ui';
-
-export default UI.extend({
+export default {
+    origin : 'UI',
     name : 'action'
-});
+};
 </script>
 
 <style lang="less" src="./index.less"></style>

@@ -42,14 +42,14 @@
 
     :::democode/html
     <ui-dl class="underline">
-        <dt>Horizon</dt>
-        <dd>this is horizontal ui-dl</dd>
-        <dt>Horizon</dt>
-        <dd>this is horizontal ui-dl</dd>
+        <dt>Underline</dt>
+        <dd>this is underline ui-dl</dd>
+        <dt>Underline</dt>
+        <dd>this is underline ui-dl</dd>
     </ui-dl>
     :::
 
-    [[[声明]]]
+    [[[形态]]]
 
     #### 支持
 
@@ -59,12 +59,14 @@
     |色彩|不支持|-|
     |状态|`normal`<br/>`apparent`|`normal`|
 
+    <a href="/guide/status.html">查看形态文档</a>
+
     #### 状态
     
     :::repeat/html
     state:normal,apparent
     ---
-    <ui-dl {$stateKey}>
+    <ui-dl state="{$stateKey}">
         <dt>{$&stateName}</dt>
         <dd>this is normal ui-dl</dd>
         <dt>{$&stateName}</dt>

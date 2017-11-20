@@ -1,0 +1,1243 @@
+@import '~Common/var.less';
+
+i-table{
+    width: 100%;
+    overflow: auto;
+    display: block;
+    border: 0 none;
+    font-size: @fontSize*0.875;
+    background-color: @colorWhite;
+    border-radius: @borderRadius;
+    border-width: 1px !important;
+    border-style: solid !important;
+    position: relative;
+
+    header{
+        position: relative;
+        height: @fontSize*3.25;
+
+        h1{
+            margin: 0 !important;
+            font-size: @fontSize*1.5 !important;
+            font-weight: 400 !important;
+            text-align: left;
+            padding: @fontSize*0.5 @fontSize !important;
+        }
+
+        .action{
+            position: absolute;
+            top: 13px;
+            right: 13px;
+        }
+    }
+
+    & > .wrap{
+        overflow: hidden !important;
+        width: 100% !important;
+        border-width: 0 !important;
+
+        > tbody > tr > td {
+            .setup-scrollbar();
+        }
+    }
+
+    .title-table,
+    .normal-table{
+        display: table;
+        min-width: 100%;
+        text-align: center;
+        color: #666;
+        font-size: @fontSize*0.875;
+        margin: 0;
+        box-sizing: content-box !important;
+        border-collapse: separate;
+
+        thead{
+            tr{
+                border-bottom-width: 2px;
+                border-bottom-style: solid;
+            }
+        }
+
+        tbody{
+            width: 100%;
+        }
+
+        tr{
+            height: @fontSize*2.5;
+
+            th{
+                font-weight: 400;
+                padding: @fontSize*0.625 !important;
+                line-height: 1.2em;
+                height: @fontSize*1.25;
+                overflow: hidden;
+                white-space: nowrap;
+                border-bottom-width: 2px;
+                border-bottom-style: solid;
+            }
+
+            td{
+                padding: @fontSize*0.625 !important;
+                min-width: @fontSize*3.125;
+                overflow: hidden;
+                word-break: break-all;
+                text-overflow: ellipsis;
+            }
+        }
+    }
+
+    .title-table{
+        border-bottom-left-radius: @borderRadius;
+        border-top-left-radius: @borderRadius;
+    }
+
+    .normal-table{
+        border-radius: @borderRadius;
+    }
+
+    &.title-col-left-fixed,
+    &.title-col-right-fixed{
+        position: relative;
+        overflow: hidden;
+    }
+
+    &.title-col-right .title-table,
+    &.title-col-right-fixed .title-table{
+        border-left-style: solid;
+        border-left-width: 2px;
+    }
+
+    &.title-col-left .title-table,
+    &.title-col-left-fixed .title-table{
+        border-right-style: solid;
+        border-right-width: 2px;
+    }
+
+    &.has-title-col{
+        .normal-table {
+            border-radius: 0 @borderRadius @borderRadius 0;
+        }
+
+        .title-table{
+            display: table;
+        }
+    }
+
+    &.align-left .title-table,
+    &.align-left .normal-table,
+    .cell-align-left{
+        text-align: left;
+    }
+
+    &.align-center .title-table,
+    &.align-center .normal-table,
+    .cell-align-center{
+        text-align: center;
+    }
+
+    &.align-right .title-table,
+    &.align-right .normal-table,
+    .cell-align-right{
+        text-align: right;
+    }
+
+    &.vertical-border{
+        .title-table,
+        .normal-table{
+            th,
+            td{
+                border-left-width: 1px !important;
+                border-left-style: solid !important;
+            }
+
+            th:first-child,
+            td:first-child{
+                border-left: none !important;
+            }
+        }
+    }
+
+    &.horizontal-border{
+        .title-table,
+        .normal-table{
+            th,
+            td{
+                border-top-width: 1px !important;
+                border-top-style: solid !important;
+            }
+
+            tr:first-child th,
+            tr:first-child td{
+                border-top: none !important;
+            }
+        }
+    }
+
+    &.co-theme{
+        border-color: darken(@colorTheme, 20%) !important;
+
+        header{
+            background-color: darken(@colorTheme, 20%);
+            color: @colorWhite;
+        }
+
+        .title-table,
+        .normal-table{
+            border-color: darken(@colorTheme, 20%) !important;
+
+            th,
+            td{
+                color: @colorWhite;
+            }
+
+            th,
+            td,
+            tr,
+            &{
+                border-color: darken(@colorTheme, 20%) !important;
+            }
+
+            tr{
+                background-color: darken(@colorTheme, 15%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table{
+            tr:nth-child(2n) td{
+                background-color: darken(@colorTheme, 10%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table,
+        .title-table,
+        .normal-table{
+            tr:hover td,
+            tr.hover td{
+                background-color: darken(@colorTheme, 20%);
+            }
+        }
+    }
+
+    &.co-light-theme{
+        border-color: darken(@colorLightTheme, 25%) !important;
+
+        header{
+            background-color: darken(@colorLightTheme, 25%);
+            color: @colorWhite;
+        }
+
+        .title-table,
+        .normal-table{
+            border-color: darken(@colorLightTheme, 25%) !important;
+
+            th,
+            td{
+                color: @colorWhite;
+            }
+
+            th,
+            td,
+            tr,
+            &{
+                border-color: darken(@colorLightTheme, 25%) !important;
+            }
+
+            tr{
+                background-color: darken(@colorLightTheme, 15%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table{
+            tr:nth-child(2n) td{
+                background-color: darken(@colorLightTheme, 10%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table,
+        .title-table,
+        .normal-table{
+            tr:hover td,
+            tr.hover td{
+                background-color: darken(@colorLightTheme, 25%);
+            }
+        }
+    }
+
+    &.co-dark-theme{
+        border-color: darken(@colorDarkTheme, 20%) !important;
+
+        header{
+            background-color: darken(@colorDarkTheme, 20%);
+            color: @colorWhite;
+        }
+
+        .title-table,
+        .normal-table{
+            border-color: darken(@colorDarkTheme, 20%) !important;
+
+            th,
+            td{
+                color: @colorWhite;
+            }
+
+            th,
+            td,
+            tr,
+            &{
+                border-color: darken(@colorDarkTheme, 20%) !important;
+            }
+
+            tr{
+                background-color: darken(@colorDarkTheme, 15%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table{
+            tr:nth-child(2n) td{
+                background-color: darken(@colorDarkTheme, 10%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table,
+        .title-table,
+        .normal-table{
+            tr:hover td,
+            tr.hover td{
+                background-color: darken(@colorDarkTheme, 20%);
+            }
+        }
+    }
+
+    &.co-success{
+        border-color: darken(@colorSuccess, 25%) !important;
+
+        header{
+            background-color: darken(@colorSuccess, 25%);
+            color: @colorWhite;
+        }
+
+        .title-table,
+        .normal-table{
+            border-color: darken(@colorSuccess, 25%) !important;
+
+            th,
+            td{
+                color: @colorWhite;
+            }
+
+            th,
+            td,
+            tr,
+            &{
+                border-color: darken(@colorSuccess, 25%) !important;
+            }
+
+            tr{
+                background-color: darken(@colorSuccess, 15%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table{
+            tr:nth-child(2n) td{
+                background-color: darken(@colorSuccess, 10%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table,
+        .title-table,
+        .normal-table{
+            tr:hover td,
+            tr.hover td{
+                background-color: darken(@colorSuccess, 25%);
+            }
+        }
+    }
+
+    &.co-warning{
+        border-color: darken(@colorWarning, 25%) !important;
+
+        header{
+            background-color: darken(@colorWarning, 25%);
+            color: @colorWhite;
+        }
+
+        .title-table,
+        .normal-table{
+            border-color: darken(@colorWarning, 25%) !important;
+
+            th,
+            td{
+                color: @colorWhite;
+            }
+
+            th,
+            td,
+            tr,
+            &{
+                border-color: darken(@colorWarning, 25%) !important;
+            }
+
+            tr{
+                background-color: darken(@colorWarning, 15%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table{
+            tr:nth-child(2n) td{
+                background-color: darken(@colorWarning, 10%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table,
+        .title-table,
+        .normal-table{
+            tr:hover td,
+            tr.hover td{
+                background-color: darken(@colorWarning, 25%);
+            }
+        }
+    }
+
+    &.co-danger{
+        border-color: darken(@colorDanger, 25%) !important;
+
+        header{
+            background-color: darken(@colorDanger, 25%);
+            color: @colorWhite;
+        }
+
+        .title-table,
+        .normal-table{
+            border-color: darken(@colorDanger, 25%) !important;
+
+            th,
+            td{
+                color: @colorWhite;
+            }
+
+            th,
+            td,
+            tr,
+            &{
+                border-color: darken(@colorDanger, 25%) !important;
+            }
+
+            tr{
+                background-color: darken(@colorDanger, 15%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table{
+            tr:nth-child(2n) td{
+                background-color: darken(@colorDanger, 10%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table,
+        .title-table,
+        .normal-table{
+            tr:hover td,
+            tr.hover td{
+                background-color: darken(@colorDanger, 25%);
+            }
+        }
+    }
+
+    &.co-primary{
+        border-color: darken(@colorPrimary, 25%) !important;
+
+        header{
+            background-color: darken(@colorPrimary, 25%);
+            color: @colorWhite;
+        }
+
+        .title-table,
+        .normal-table{
+            border-color: darken(@colorPrimary, 25%) !important;
+
+            th,
+            td{
+                color: @colorWhite;
+            }
+
+            th,
+            td,
+            tr,
+            &{
+                border-color: darken(@colorPrimary, 25%) !important;
+            }
+
+            tr{
+                background-color: darken(@colorPrimary, 15%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table{
+            tr:nth-child(2n) td{
+                background-color: darken(@colorPrimary, 10%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table,
+        .title-table,
+        .normal-table{
+            tr:hover td,
+            tr.hover td{
+                background-color: darken(@colorPrimary, 25%);
+            }
+        }
+    }
+
+    &.co-minor{
+        border-color: darken(@colorMinor, 25%) !important;
+
+        header{
+            background-color: darken(@colorMinor, 25%);
+            color: @colorWhite;
+        }
+
+        .title-table,
+        .normal-table{
+            border-color: darken(@colorMinor, 25%) !important;
+
+            th,
+            td{
+                color: @colorWhite;
+            }
+
+            th,
+            td,
+            tr,
+            &{
+                border-color: darken(@colorMinor, 25%) !important;
+            }
+
+            tr{
+                background-color: darken(@colorMinor, 15%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table{
+            tr:nth-child(2n) td{
+                background-color: darken(@colorMinor, 10%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table,
+        .title-table,
+        .normal-table{
+            tr:hover td,
+            tr.hover td{
+                background-color: darken(@colorMinor, 25%);
+            }
+        }
+    }
+
+    &.co-info{
+        border-color: darken(@colorInfo, 25%) !important;
+
+        header{
+            background-color: darken(@colorInfo, 25%);
+            color: @colorWhite;
+        }
+
+        .title-table,
+        .normal-table{
+            border-color: darken(@colorInfo, 25%) !important;
+
+            th,
+            td{
+                color: @colorWhite;
+            }
+
+            th,
+            td,
+            tr,
+            &{
+                border-color: darken(@colorInfo, 25%) !important;
+            }
+
+            tr{
+                background-color: darken(@colorInfo, 15%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table{
+            tr:nth-child(2n) td{
+                background-color: darken(@colorInfo, 10%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table,
+        .title-table,
+        .normal-table{
+            tr:hover td,
+            tr.hover td{
+                background-color: darken(@colorInfo, 25%);
+            }
+        }
+    }
+
+    &.co-black{
+        border-color: @colorBlack !important;
+
+        header{
+            background-color: @colorBlack;
+            color: @colorWhite;
+        }
+
+        .title-table,
+        .normal-table{
+            border-color: @colorBlack !important;
+
+            th,
+            td{
+                color: @colorWhite;
+            }
+
+            th,
+            td,
+            tr,
+            &{
+                border-color: @colorBlack !important;
+            }
+
+            tr{
+                background-color: darken(@colorBlack, 5%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table{
+            tr:nth-child(2n) td{
+                background-color: darken(@colorBlack, 10%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table,
+        .title-table,
+        .normal-table{
+            tr:hover td,
+            tr.hover td{
+                background-color: @colorBlack;
+            }
+        }
+    }
+
+    &.co-light-black{
+        border-color: @colorLightBlack !important;
+
+        header{
+            background-color: @colorLightBlack;
+            color: @colorWhite;
+        }
+
+        .title-table,
+        .normal-table{
+            border-color: @colorLightBlack !important;
+
+            th,
+            td{
+                color: @colorWhite;
+            }
+
+            th,
+            td,
+            tr,
+            &{
+                border-color: @colorLightBlack !important;
+            }
+
+            tr{
+                background-color: darken(@colorLightBlack, 5%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table{
+            tr:nth-child(2n) td{
+                background-color: darken(@colorLightBlack, 10%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table,
+        .title-table,
+        .normal-table{
+            tr:hover td,
+            tr.hover td{
+                background-color: @colorLightBlack;
+            }
+        }
+    }
+
+    &.co-extra-light-black{
+        border-color: @colorExtraLightBlack !important;
+
+        header{
+            background-color: @colorExtraLightBlack;
+            color: @colorWhite;
+        }
+
+        .title-table,
+        .normal-table{
+            border-color: @colorExtraLightBlack !important;
+
+            th,
+            td{
+                color: @colorWhite;
+            }
+
+            th,
+            td,
+            tr,
+            &{
+                border-color: @colorExtraLightBlack !important;
+            }
+
+            tr{
+                background-color: darken(@colorExtraLightBlack, 5%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table{
+            tr:nth-child(2n) td{
+                background-color: darken(@colorExtraLightBlack, 10%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table,
+        .title-table,
+        .normal-table{
+            tr:hover td,
+            tr.hover td{
+                background-color: @colorExtraLightBlack;
+            }
+        }
+    }
+
+    &.co-blue{
+        border-color: darken(@colorBlue, 25%) !important;
+
+        header{
+            background-color: darken(@colorBlue, 25%);
+            color: @colorWhite;
+        }
+
+        .title-table,
+        .normal-table{
+            border-color: darken(@colorBlue, 25%) !important;
+
+            th,
+            td{
+                color: @colorWhite;
+            }
+
+            th,
+            td,
+            tr,
+            &{
+                border-color: darken(@colorBlue, 25%) !important;
+            }
+
+            tr{
+                background-color: darken(@colorBlue, 10%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table{
+            tr:nth-child(2n) td{
+                background-color: darken(@colorBlue, 15%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table,
+        .title-table,
+        .normal-table{
+            tr:hover td,
+            tr.hover td{
+                background-color: darken(@colorBlue, 25%);
+            }
+        }
+    }
+
+    &.co-light-blue{
+        border-color: darken(@colorLightBlue, 25%) !important;
+
+        header{
+            background-color: darken(@colorLightBlue, 25%);
+            color: @colorWhite;
+        }
+
+        .title-table,
+        .normal-table{
+            border-color: darken(@colorLightBlue, 25%) !important;
+
+            th,
+            td{
+                color: @colorWhite;
+            }
+
+            th,
+            td,
+            tr,
+            &{
+                border-color: darken(@colorLightBlue, 25%) !important;
+            }
+
+            tr{
+                background-color: darken(@colorLightBlue, 10%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table{
+            tr:nth-child(2n) td{
+                background-color: darken(@colorLightBlue, 15%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table,
+        .title-table,
+        .normal-table{
+            tr:hover td,
+            tr.hover td{
+                background-color: darken(@colorLightBlue, 25%);
+            }
+        }
+    }
+
+    &.co-extra-light-blue{
+        border-color: darken(@colorExtraLightBlue, 25%) !important;
+
+        header{
+            background-color: darken(@colorExtraLightBlue, 25%);
+            color: @colorWhite;
+        }
+
+        .title-table,
+        .normal-table{
+            border-color: darken(@colorExtraLightBlue, 25%) !important;
+
+            th,
+            td{
+                color: @colorWhite;
+            }
+
+            th,
+            td,
+            tr,
+            &{
+                border-color: darken(@colorExtraLightBlue, 25%) !important;
+            }
+
+            tr{
+                background-color: darken(@colorExtraLightBlue, 10%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table{
+            tr:nth-child(2n) td{
+                background-color: darken(@colorExtraLightBlue, 15%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table,
+        .title-table,
+        .normal-table{
+            tr:hover td,
+            tr.hover td{
+                background-color: darken(@colorExtraLightBlue, 25%);
+            }
+        }
+    }
+
+    &.co-silver{
+        border-color: darken(@colorSilver, 10%) !important;
+
+        header{
+            background-color: darken(@colorSilver, 10%);
+            color: @colorBlack;
+        }
+
+        .title-table,
+        .normal-table{
+            border-color: darken(@colorSilver, 10%) !important;
+
+            th,
+            td{
+                color: @colorBlack;
+            }
+
+            th,
+            td,
+            tr,
+            &{
+                border-color: darken(@colorSilver, 10%) !important;
+            }
+
+            tr{
+                background-color: darken(@colorSilver, 5%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table{
+            tr:nth-child(2n) td{
+                background-color: @colorSilver;
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table,
+        .title-table,
+        .normal-table{
+            tr:hover td,
+            tr.hover td{
+                background-color: darken(@colorSilver, 10%);
+            }
+        }
+    }
+
+    &.co-light-silver{
+        border-color: darken(@colorLightSilver, 10%) !important;
+
+        header{
+            background-color: @colorLightSilver;
+            color: @colorBlack;
+        }
+
+        .title-table,
+        .normal-table{
+            border-color: darken(@colorLightSilver, 10%) !important;
+
+            th,
+            td{
+                color: @colorBlack;
+            }
+
+            th,
+            td,
+            tr,
+            &{
+                border-color: darken(@colorLightSilver, 10%) !important;
+            }
+
+            tr{
+                background-color: darken(@colorLightSilver, 5%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table{
+            tr:nth-child(2n) td{
+                background-color: @colorLightSilver;
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table,
+        .title-table,
+        .normal-table{
+            tr:hover td,
+            tr.hover td{
+                background-color: darken(@colorLightSilver, 10%);
+            }
+        }
+    }
+
+    &.co-extra-light-silver{
+        border-color: darken(@colorExtraLightSilver, 10%) !important;
+
+        header{
+            background-color: darken(@colorExtraLightSilver, 10%);
+            color: @colorBlack;
+        }
+
+        .title-table,
+        .normal-table{
+            border-color: darken(@colorExtraLightSilver, 10%) !important;
+
+            th,
+            td{
+                color: @colorBlack;
+            }
+
+            th,
+            td,
+            tr,
+            &{
+                border-color: darken(@colorExtraLightSilver, 10%) !important;
+            }
+
+            tr{
+                background-color: darken(@colorExtraLightSilver, 5%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table{
+            tr:nth-child(2n) td{
+                background-color: @colorExtraLightSilver;
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table,
+        .title-table,
+        .normal-table{
+            tr:hover td,
+            tr.hover td{
+                background-color: darken(@colorExtraLightSilver, 10%);
+            }
+        }
+    }
+
+    &.co-gray{
+        border-color: darken(@colorGray, 5%) !important;
+
+        header{
+            background-color: darken(@colorGray, 5%);
+            color: @colorBlack;
+        }
+
+        .title-table,
+        .normal-table{
+            border-color: darken(@colorGray, 5%) !important;
+
+            th,
+            td{
+                color: @colorBlack;
+            }
+
+            th,
+            td,
+            tr,
+            &{
+                border-color: darken(@colorGray, 5%) !important;
+            }
+
+            tr{
+                background-color: lighten(@colorGray, 6%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table{
+            tr:nth-child(2n) td{
+                background-color: @colorGray;
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table,
+        .title-table,
+        .normal-table{
+            tr:hover td,
+            tr.hover td{
+                background-color: darken(@colorGray, 5%);
+            }
+        }
+    }
+
+    &.co-light-gray{
+        border-color: darken(@colorLightGray, 5%) !important;
+
+        header{
+            background-color: darken(@colorLightGray, 5%);
+            color: @colorBlack;
+        }
+
+        .title-table,
+        .normal-table{
+            border-color: darken(@colorLightGray, 5%) !important;
+
+            th,
+            td{
+                color: @colorBlack;
+            }
+
+            th,
+            td,
+            tr,
+            &{
+                border-color: darken(@colorLightGray, 5%) !important;
+            }
+
+            tr{
+                background-color: lighten(@colorLightGray, 4%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table{
+            tr:nth-child(2n) td{
+                background-color: @colorLightGray;
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table,
+        .title-table,
+        .normal-table{
+            tr:hover td,
+            tr.hover td{
+                background-color: darken(@colorLightGray, 5%);
+            }
+        }
+    }
+
+    &.co-white{
+        border-color: darken(@colorWhite, 5%) !important;
+
+        header{
+            background-color: darken(@colorWhite, 5%);
+            color: @colorBlack;
+        }
+
+        .title-table,
+        .normal-table{
+            border-color: darken(@colorWhite, 5%) !important;
+
+            th,
+            td{
+                color: @colorBlack;
+            }
+
+            th,
+            td,
+            tr,
+            &{
+                border-color: darken(@colorWhite, 5%) !important;
+            }
+
+            tr{
+                background-color: @colorWhite;
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table{
+            tr:nth-child(2n) td{
+                background-color: darken(@colorWhite, 2%);
+            }
+        }
+
+        &.zebra-pattern .title-table,
+        &.zebra-pattern .normal-table,
+        .title-table,
+        .normal-table{
+            tr:hover td,
+            tr.hover td{
+                background-color: darken(@colorWhite, 5%);
+            }
+        }
+    }
+
+    .title-table,
+    .normal-table{
+        th,
+        td{
+            &.cell-co-success{
+                background: darken(@colorSuccess, 5%) !important;
+                color: @colorWhite !important;
+            }
+
+            &.cell-co-warning{
+                background: darken(@colorWarning, 5%) !important;
+                color: @colorWhite !important;
+            }
+
+            &.cell-co-danger{
+                background: darken(@colorDanger, 5%) !important;
+                color: @colorWhite !important;
+            }
+
+            &.cell-co-primary{
+                background: darken(@colorPrimary, 5%) !important;
+                color: @colorWhite !important;
+            }
+
+            &.cell-co-minor{
+                background: darken(@colorMinor, 5%) !important;
+                color: @colorWhite !important;
+            }
+
+            &.cell-co-info{
+                background: darken(@colorInfo, 5%) !important;
+                color: @colorWhite !important;
+            }
+        }
+
+        tr.hover{
+            th,
+            td{
+                &.cell-co-success{
+                    background: darken(@colorSuccess, 10%) !important;
+                }
+
+                &.cell-co-warning{
+                    background: darken(@colorWarning, 10%) !important;
+                }
+
+                &.cell-co-danger{
+                    background: darken(@colorDanger, 10%) !important;
+                }
+
+                &.cell-co-primary{
+                    background: darken(@colorPrimary, 10%) !important;
+                }
+
+                &.cell-co-minor{
+                    background: darken(@colorMinor, 10%) !important;
+                }
+
+                &.cell-co-info{
+                    background: darken(@colorInfo, 10%) !important;
+                }
+            }
+        }
+
+        th,
+        td{
+            &.cell-disabled{
+                background: darken(@colorGray, 15%) !important;
+                color: @colorBlack !important;
+                cursor: not-allowed;
+            }
+        }
+    }
+
+    // default status
+    &{
+        .co-light-gray;
+    }
+}
+

@@ -197,7 +197,7 @@
     </div>
     :::
 
-    [[[声明]]]
+    [[[形态]]]
 
     #### 支持
 
@@ -207,13 +207,15 @@
     |色彩|不支持|-|
     |状态|不支持|-|
 
+    <a href="/guide/status.html">查看形态文档</a>
+
     #### 尺寸
     
     :::repeat/html
     size
     ---
     <div style="width:400px">
-    <ui-itemlist {$sizeKey}>
+    <ui-itemlist size="{$sizeKey}">
         <ui-ul>
             <li>
                 <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>

@@ -40,13 +40,13 @@
     </div>
     :::
 
-    [[[声明]]]
+    [[[形态]]]
 
     :::preset/html
-    formStatement
+    formStatus
     ---
     uikey:textinput
-    statementDefaultValue:''
+    statusDefaultValue:''
     :::
     
     [[[配置]]]

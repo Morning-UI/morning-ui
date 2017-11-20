@@ -1,7 +1,7 @@
 <template>
     <i-multiinput
         :_uiid="uiid"
-        :class="[stateClass, moreClass, Move.moveClass]"
+        :class="[stateClass, moreClass, moveClass]"
 
         :form-name="formName"
         :form-key="formKey"
@@ -20,7 +20,8 @@
         <div
             class="item"
             v-for="(value, index) in data.value"
-            @mousedown="_moveItemRecord(index)">
+            @mousedown="_moveItemRecord(index)"
+        >
             <span :title="value">{{value}}</span>
             <i
                 class="morningicon"
@@ -79,10 +80,10 @@
 </template>
  
 <script>
-import Form                         from 'Common/form';
 import Move                         from 'Utils/Move';
 
-export default Form.extend({
+export default {
+    origin : 'Form',
     name : 'multiinput',
     mixins : [Move],
     props : {
@@ -95,22 +96,15 @@ export default Form.extend({
             default : false
         }
     },
-    data : function () {
+    computed : {
+        _conf : function () {
 
-        return {
-            conf : {
+            return {
                 canMove : this.canMove,
                 max : this.max
-            },
-            data : {
-                inputValue : '',
-                inputWidth : '0em',
-                focus : false
-            }
-        };
+            };
 
-    },
-    computed : {
+        },
         moreClass : function () {
 
             return {
@@ -118,6 +112,17 @@ export default Form.extend({
             };
 
         }
+    },
+    data : function () {
+
+        return {
+            data : {
+                inputValue : '',
+                inputWidth : '0em',
+                focus : false
+            }
+        };
+
     },
     methods : {
         _valueFilter : function (value) {
@@ -129,8 +134,15 @@ export default Form.extend({
 
             }
 
+            value = this._maxFilter(value);
+
+            return value;
+
+        },
+        _maxFilter : function (value) {
+
             if (this.conf.max &&
-                this.data.value.length > this.conf.max) {
+                value.length > this.conf.max) {
 
                 return value.slice(0, this.conf.max);
 
@@ -203,6 +215,15 @@ export default Form.extend({
             }
 
         },
+        _updateItem : function (value, index) {
+
+            let list = this.get();
+
+            list.splice(index, 1, value || {});
+            
+            this.set(list);
+
+        },
         _deleteItem : function (index) {
 
             let value = this.get();
@@ -269,6 +290,13 @@ export default Form.extend({
             return this;
 
         },
+        update : function (item, index) {
+
+            this._updateItem(item, index);
+
+            return this;
+
+        },
         move : function (from, to) {
 
             this._moveItem(from, to);
@@ -323,6 +351,12 @@ export default Form.extend({
             immediate : true
         });
 
+        this.$watch('conf.max', () => {
+
+            this._set(this._maxFilter(this.get()), true);
+
+        });
+
         this.$on('_moveStarted', () => {
 
             this._blurInput();
@@ -363,7 +397,7 @@ export default Form.extend({
         });
 
     }
-});
+};
 </script>
 
 <style lang="less" src="./index.less"></style>

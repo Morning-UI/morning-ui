@@ -26,9 +26,8 @@
 </template>
  
 <script>
-import Form                         from 'Common/form';
-
-export default Form.extend({
+export default {
+    origin : 'Form',
     name : 'textarea',
     props : {
         rows : {
@@ -36,17 +35,14 @@ export default Form.extend({
             default : 4
         }
     },
-    data : function () {
-
-        return {
-            conf : {
-                rows : this.rows
-            },
-            data : {}
-        };
-
-    },
     computed : {
+        _conf : function () {
+
+            return {
+                rows : this.rows
+            };
+
+        },
         placeholder : function () {
 
             if (!this.conf.hideName) {
@@ -58,6 +54,13 @@ export default Form.extend({
             return false;
 
         }
+    },
+    data : function () {
+
+        return {
+            data : {}
+        };
+
     },
     methods : {
         _valueFilter : function (value) {
@@ -121,7 +124,7 @@ export default Form.extend({
     },
     created : function () {},
     mounted : function () {}
-});
+};
 </script>
 
 <style lang="less" src="./index.less"></style>

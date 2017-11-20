@@ -1,7 +1,7 @@
 <template>
     <i-dialog
         :_uiid="uiid"
-        :class="[styleClass, moreClass]"
+        :class="[colorClass, moreClass]"
 
         :width="width"
         :height="height"
@@ -25,12 +25,12 @@
 </template>
  
 <script>
-import UI                           from 'Common/ui';
 import PopupManager                 from 'Utils/PopupManager';
 
 const rmIndexTimeout = 120;
 
-export default UI.extend({
+export default {
+    origin : 'UI',
     name : 'dialog',
     mixins : [PopupManager],
     props : {
@@ -51,15 +51,33 @@ export default UI.extend({
             default : 'top'
         }
     },
-    data : function () {
+    computed : {
+        _conf : function () {
 
-        return {
-            conf : {
+            return {
                 width : this.width,
                 height : this.height,
                 autoClose : this.autoClose,
                 showType : this.showType
-            },
+            };
+
+        },
+        moreClass : function () {
+
+            return {
+                'has-header' : this.data.hasHeader,
+                'has-footer' : this.data.hasFooter,
+                'show-top' : (this.conf.showType === 'top'),
+                'show-center' : (this.conf.showType === 'center'),
+                'show-no-animate' : (this.conf.showType === 'no'),
+                show : this.data.show
+            };
+
+        }
+    },
+    data : function () {
+
+        return {
             data : {
                 show : false,
                 hasHeader : false,
@@ -67,19 +85,6 @@ export default UI.extend({
             }
         };
 
-    },
-    computed : {
-        moreClass : function () {
-
-            return {
-                'has-header' : this.data.hasHeader,
-                'has-Footer' : this.data.hasFooter,
-                'show-top' : (this.conf.showType === 'top'),
-                'show-center' : (this.conf.showType === 'center'),
-                'show-no-animate' : (this.conf.showType === 'no')
-            };
-
-        }
     },
     methods : {
         _onClick : function (evt) {
@@ -109,9 +114,9 @@ export default UI.extend({
 
             }
 
-            this.data.show = !!show;
+            show = !!show;
 
-            if (this.data.show) {
+            if (show) {
 
                 if (!isShown) {
 
@@ -119,7 +124,7 @@ export default UI.extend({
 
                     setTimeout(() => {
 
-                        this.$el.classList.add('show');
+                        this.data.show = show;
 
                     });
 
@@ -132,7 +137,7 @@ export default UI.extend({
 
                 if (isShown) {
 
-                    this.$el.classList.remove('show');
+                    this.data.show = show;
 
                     setTimeout(() => {
 
@@ -167,7 +172,7 @@ export default UI.extend({
         }
 
     }
-});
+};
 </script>
 
 <style lang="less" src="./index.less"></style>
