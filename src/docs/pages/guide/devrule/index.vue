@@ -41,7 +41,7 @@
     - 通过ESLint及StyleLint<ui-badge xxs class="circle">AUTO</ui-badge>
     - 在`lib/components/index.js`中导出了组件
     - 确保代码不受压缩的影响
-    - 样式类的命名符合[样式类全局命名规范](/guide/styleclass.html)
+    - 样式类的命名符合[样式类全局命名规范](/guide/styleclass.html#样式类全局命名规范)
     - 组件支持Vue.js的`in-DOM`模板
     - 组件内依赖其它组件，使用`morning-`前缀，比如依赖按钮使用：`morning-btn`
     - 支持形态的情况下，需要添加形态的样式
@@ -54,7 +54,7 @@
 
     #### 交互组件
 
-    - 配置的命名符合[配置全局命名规范](/guide/config.html)
+    - 配置的命名符合[配置全局命名规范](/guide/config.html#配置全局命名规范)
     - 添加`document`或全局级别的事件使用`utils/GlobalEvent.js`
     - 拖拽逻辑使用`utils/Move.js`
     - 弹出逻辑使用`utils/PopupManager.js`
@@ -67,8 +67,8 @@
 
     - 表单组件继承了`Form`类
     - 表单组件的边框/背景颜色需要使用统一的颜色
-    - 方法的命名符合[方法全局命名规范](/guide/method.html)
-    - 事件的命名符合[事件全局命名规范](/guide/event.html)
+    - 方法的命名符合[方法全局命名规范](/guide/method.html#方法全局命名规范)
+    - 事件的命名符合[事件全局命名规范](/guide/event.html#事件全局命名规范)
     - 需要添加`_valueFilter`方法来处理数值过滤
     - 在模板中绑定以下的`props`:`form-name`、`form-key`、`group`、`default-value`、`hide-name`
     - 组件模板中包含显示`form-name`的位置

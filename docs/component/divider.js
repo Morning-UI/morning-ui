@@ -7,7 +7,7 @@ module.exports = Vue;
 
 /***/ }),
 
-/***/ 636:
+/***/ 641:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17,7 +17,7 @@ var _vue = __webpack_require__(0);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _index = __webpack_require__(637);
+var _index = __webpack_require__(642);
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -32,18 +32,18 @@ new _vue2.default({
 
 /***/ }),
 
-/***/ 637:
+/***/ 642:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(639);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(644);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_7d71a42a_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(640);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_7d71a42a_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(645);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(638)
+  __webpack_require__(643)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
@@ -88,14 +88,14 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 638:
+/***/ 643:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 639:
+/***/ 644:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -207,12 +207,14 @@ exports.default = {
 //
 //
 //
+//
+//
 
 module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 640:
+/***/ 645:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -226,7 +228,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "type": "text/markdown"
     }
-  }, [_vm._v("\n# 分频器 `<ui-divider>`\n\n<doc-component-status page=\"divider\"></doc-component-status>\n\n[[[开始]]]\n\n定义一个分频器，分频器用来区分一个区块内的左右或上下两部分。\n\n分频器常配合`ui-grid`使用。\n\n#### 使用\n\n:::democode/html\n<div style=\"width:500px;height:300px;border:1px solid #eee;\">\n    <ui-grid class=\"fill\">\n        <div class=\"c-11\">\n            <ui-center class=\"fill\"><p>LEFT</p></ui-center>\n        </div>\n        <div class=\"c-2\">\n            <ui-divider>OR</ui-divider>\n        </div>\n        <div class=\"c-11\">\n            <ui-center class=\"fill\"><p>RIGHT</p></ui-center>\n        </div>\n    </ui-grid>\n</div>\n:::\n\n#### 竖直的分频器\n\n:::democode/html\n<div style=\"width:500px;height:300px;border:1px solid #eee;\">\n    <div style=\"width:100%;height:140px;\">\n        <ui-center class=\"fill\"><p>TOP</p></ui-center>\n    </div>\n    <div style=\"width:100%;height:20px;\">\n        <ui-divider class=\"vertical\">OR</ui-divider>\n    </div>\n    <div style=\"width:100%;height:140px;\">\n        <ui-center class=\"fill\"><p>BOTTOM</p></ui-center>\n    </div>\n</div>\n:::\n\n#### 无内容的分频器\n\n:::democode/html\n<div style=\"width:500px;height:300px;border:1px solid #eee;\">\n    <ui-grid class=\"fill\">\n        <div class=\"c-11\">\n            <ui-center class=\"fill\"><p>LEFT</p></ui-center>\n        </div>\n        <div class=\"c-2\">\n            <ui-divider></ui-divider>\n        </div>\n        <div class=\"c-11\">\n            <ui-center class=\"fill\"><p>RIGHT</p></ui-center>\n        </div>\n    </ui-grid>\n</div>\n:::\n\n[[[形态]]]\n\n#### 支持\n\n|类型|支持|默认|\n|-|-|-|\n|尺寸|不支持|-|\n|色彩|不支持|-|\n|状态|不支持|-|\n\n\n[[[源码]]]\n\n<iframe src=\"/report/coverage/lib/components/divider/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n")])])
+  }, [_vm._v("\n# 分频器 `<ui-divider>`\n\n<doc-component-status page=\"divider\"></doc-component-status>\n\n[[[开始]]]\n\n定义一个分频器，分频器用来区分一个区块内的左右或上下两部分。\n\n分频器常配合`ui-grid`使用。\n\n#### 使用\n\n:::democode/html\n<div style=\"width:500px;height:300px;border:1px solid #eee;\">\n    <ui-grid class=\"fill\">\n        <div class=\"c-11\">\n            <ui-center class=\"fill\"><p>LEFT</p></ui-center>\n        </div>\n        <div class=\"c-2\">\n            <ui-divider>OR</ui-divider>\n        </div>\n        <div class=\"c-11\">\n            <ui-center class=\"fill\"><p>RIGHT</p></ui-center>\n        </div>\n    </ui-grid>\n</div>\n:::\n\n#### 竖直的分频器\n\n:::democode/html\n<div style=\"width:500px;height:300px;border:1px solid #eee;\">\n    <div style=\"width:100%;height:140px;\">\n        <ui-center class=\"fill\"><p>TOP</p></ui-center>\n    </div>\n    <div style=\"width:100%;height:20px;\">\n        <ui-divider class=\"vertical\">OR</ui-divider>\n    </div>\n    <div style=\"width:100%;height:140px;\">\n        <ui-center class=\"fill\"><p>BOTTOM</p></ui-center>\n    </div>\n</div>\n:::\n\n#### 无内容的分频器\n\n:::democode/html\n<div style=\"width:500px;height:300px;border:1px solid #eee;\">\n    <ui-grid class=\"fill\">\n        <div class=\"c-11\">\n            <ui-center class=\"fill\"><p>LEFT</p></ui-center>\n        </div>\n        <div class=\"c-2\">\n            <ui-divider></ui-divider>\n        </div>\n        <div class=\"c-11\">\n            <ui-center class=\"fill\"><p>RIGHT</p></ui-center>\n        </div>\n    </ui-grid>\n</div>\n:::\n\n[[[形态]]]\n\n#### 支持\n\n|类型|支持|默认|\n|-|-|-|\n|尺寸|不支持|-|\n|色彩|不支持|-|\n|状态|不支持|-|\n\n<a href=\"/guide/status.html\">查看形态文档</a>\n\n\n[[[源码]]]\n\n<iframe src=\"/report/coverage/lib/components/divider/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n")])])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -241,4 +243,4 @@ if (false) {
 
 /***/ })
 
-},[636]);
+},[641]);
