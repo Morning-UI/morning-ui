@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for lib/components/textcenter/index.vue</title>
+    <title>Code coverage report for lib/components/table/normal-table.vue</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../prettify.css" />
     <link rel="stylesheet" href="../../../base.css" />
@@ -16,23 +16,23 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../../../index.html">All files</a> / <a href="index.html">lib/components/textcenter</a> index.vue
+      <a href="../../../index.html">All files</a> / <a href="index.html">lib/components/table</a> normal-table.vue
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">42.86% </span>
+        <span class="strong">25% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>3/7</span>
+        <span class='fraction'>3/12</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">52.94% </span>
+        <span class="strong">36% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>9/17</span>
+        <span class='fraction'>9/25</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/1</span>
+        <span class='fraction'>0/6</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -70,7 +70,13 @@
 25
 26
 27
-28</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+28
+29
+30
+31
+32
+33
+34</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -86,9 +92,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -98,33 +110,39 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
-    &lt;i-textcenter
-        :_uiid="uiid"
-        :class="[]"
-    &gt;
-        &lt;slot&gt;&lt;/slot&gt;
-    &lt;/i-textcenter&gt;
+    &lt;table class="normal-table"&gt;
+        &lt;thead v-if="conf.showColName"&gt;
+            &lt;tr&gt;
+                &lt;template v-for="key of data.normalKeys"&gt;
+                    &lt;th v-if="colSetMap[key] &amp;&amp; colSetMap[key].name"&gt;{{colSetMap[key].name}}&lt;/th&gt;
+                    &lt;th v-else&gt;&lt;/th&gt;
+                &lt;/template&gt;
+            &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+            &lt;tr
+                v-for="(row, line) of data.normalRows"
+                @mouseover="$emit('row-mouseover', line)"
+                @mouseout="$emit('row-mouseout', line)"
+            &gt;
+                &lt;template v-for="(col, index) of row"&gt;
+                    &lt;td v-if="colSetMap[data.normalKeys[index]]" v-render="{template : col}"&gt;&lt;/td&gt;
+                    &lt;td v-else v-render="{template : col}"&gt;&lt;/td&gt;
+                &lt;/template&gt;
+            &lt;/tr&gt;
+        &lt;/tbody&gt;
+    &lt;/table&gt;
 &lt;/template&gt;
- 
+&nbsp;
 &lt;script&gt;
 export default {
-    origin : 'UI',
-    name : 'textcenter'
+    props : [
+        'conf',
+        'data',
+        'colSetMap'
+    ]
 };
-&lt;/script&gt;
-&nbsp;
-&lt;style lang="less"&gt;<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-1 cbranch-no" title="branch not covered" ><span class="branch-2 cbranch-no" title="branch not covered" ></span></span></span></span></span></span></span>
-@import '~Common/var.less';<span class="branch-1 cbranch-no" title="branch not covered" ><span class="branch-2 cbranch-no" title="branch not covered" ></span></span>
-<span class="branch-1 cbranch-no" title="branch not covered" ><span class="branch-2 cbranch-no" title="branch not covered" ></span></span>
-i-textcenter{
-    display: block;
-    text-align: center;
-&nbsp;
-    // default status
-    &amp;{}
-}
-&lt;/style&gt;
-&nbsp;</pre></td></tr>
+&lt;/script&gt;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
