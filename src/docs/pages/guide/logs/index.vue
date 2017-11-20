@@ -18,6 +18,34 @@
     
     ### 更新记录
 
+    ### 0.10.8 <ui-badge class="circle ver-canary" s light-theme>Canary</ui-badge>
+
+    <ui-textcolor light-blue>
+        <ui-small>
+            发布于2017年11月20日，
+            Archive : 
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.8" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.8/dist/" target="_blank">CDN</a>
+        </ui-small>
+    </ui-textcolor>
+    
+    - 组件的配置支持单向数据流(与父组件属性绑定)
+    - `ui-table`支持HTML内容和Vue组件
+    - 增加配色CSS类，为组件外元素提供颜色
+    - 文档章节增加锚点
+    - 修复`ui-table`配置的一些问题
+    - 修复文档的一些错误
+
+    <ui-label primary>Upgrade Precautions</ui-label>
+
+    - `声明`被移除，通过`形态`来替代，使用方法也发生变化，详见`形态`文档
+    - `声明`的`style`现在通过`形态`的`color`替代
+    - `声明`中状态的`loading`和`processing`被移除
+    - `布局组件`更名为`样式组件`
+    - 组件的`配置`及`形态`支持单向绑定
+    - `setConf`方法被移除
+    - `ui-table`的`setList`方法被移除，通过配置`list`替代
+
     ### 0.10.7 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="light-blue">
