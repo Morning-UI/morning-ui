@@ -20,6 +20,7 @@
 
 <script>
 import MarkdownIt                   from 'markdown-it';
+import Anchor                       from 'markdown-it-anchor';
 import extend                       from 'extend';
 import Mustache                     from 'mustache';
 import _                            from 'underscore';
@@ -34,6 +35,15 @@ const randomRangeMax = 9e3;
 
 const markdown = new MarkdownIt({
     html : true
+});
+
+markdown.use(Anchor, {
+    level : [3, 4],
+    slugify : s => (s.replace(/[^a-zA-Z0-9-_\u4e00-\u9fa5]/g, '')),
+    permalink : true,
+    permalinkBefore : true,
+    permalinkClass : 'permalink',
+    permalinkSymbol : '#'
 });
 
 let evals = [];
@@ -590,7 +600,7 @@ formConfig
 |form-name|表单的名称（用于显示）|任意字符串|String|\`undefined\`|
 |form-key|表单的Key（用于逻辑中作为识别标示）|任意字符串(唯一)|String|\`undefined\`|
 |group|表单组，用于将多个表单的数值添加到同一个对象中。一个表单可以同时属于多个组|若是字符串，则将表单添加到单个组<br>若是数组，则将表单添加到多个组|String<br/>Array|\`[]\`|
-|default-value|表单的默认值(注意：\`default-value\`不支持单向数据流，此配置仅在表单初次创建时生效，修改表单值需要使用\`set()\`方法或使用\`v-model\`指令， 详见：[基础/表单/表单数据双向绑定](/guide/form.html))|任意(接受表单原始数值，也接受JSON序列化后的表单数值，若数值是JSON序列化的会自动转换成原始数值)|Any|\`undefined\`|
+|default-value|表单的默认值(注意：\`default-value\`不支持单向数据流，此配置仅在表单初次创建时生效，修改表单值需要使用\`set()\`方法或使用\`v-model\`指令， 详见：[表单数据双向绑定](/guide/form.html#表单数据双向绑定))|任意(接受表单原始数值，也接受JSON序列化后的表单数值，若数值是JSON序列化的会自动转换成原始数值)|Any|\`undefined\`|
 |hide-name|隐藏表单名|\`true\`<br>\`false\`|Boolean|\`false\`|
 {%&content%}
 `,
@@ -1260,6 +1270,14 @@ a{ }
 
     .content-title{
         display: none;
+    }
+
+    .permalink{
+        color: #9F9F9F;
+        transform: scale(0.9);
+        display: inline-block;
+        transform-origin: bottom;
+        margin-right: -0.15em;
     }
 }
 .demo{
