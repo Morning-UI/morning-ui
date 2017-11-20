@@ -1,7 +1,7 @@
 <template>
     <i-checkbox
         :_uiid="uiid"
-        :class="[styleClass, stateClass]"
+        :class="[colorClass, stateClass]"
 
         :form-name="formName"
         :form-key="formKey"
@@ -57,9 +57,9 @@
 <script>
 import extend                       from 'extend';
 import arrayUniq                    from 'array-uniq';
-import Form                         from 'Common/form';
 
-export default Form.extend({
+export default {
+    origin : 'Form',
     name : 'checkbox',
     props : {
         acceptHtml : {
@@ -71,18 +71,23 @@ export default Form.extend({
             default : () => ({})
         }
     },
+    computed : {
+        _conf : function () {
+
+            return {
+                acceptHtml : this.acceptHtml,
+                list : this.list
+            };
+
+        }
+    },
     data : function () {
 
         return {
-            conf : {
-                acceptHtml : this.acceptHtml,
-                list : this.list
-            },
             data : {}
         };
 
     },
-    computed : {},
     methods : {
         _valueFilter : function (value) {
 
@@ -147,7 +152,7 @@ export default Form.extend({
     },
     created : function () {},
     mounted : function () {}
-});
+};
 </script>
 
 <style lang="less" src="./index.less"></style>

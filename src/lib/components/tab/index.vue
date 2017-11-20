@@ -23,13 +23,13 @@
 </template>
  
 <script>
-import UI                           from 'Common/ui';
-
-export default UI.extend({
+export default {
+    origin : 'UI',
     name : 'tab',
     props : {
         tab : {
-            type : String
+            type : String,
+            default : undefined
         },
         prepend : {
             type : Object,
@@ -40,14 +40,20 @@ export default UI.extend({
             default : () => ({})
         }
     },
-    data : function () {
+    computed : {
+        _conf : function () {
 
-        return {
-            conf : {
+            return {
                 tab : this.tab,
                 prepend : this.prepend,
                 append : this.append
-            },
+            };
+
+        }
+    },
+    data : function () {
+
+        return {
             data : {
                 tabs : [],
                 selectTab : null,
@@ -179,7 +185,7 @@ export default UI.extend({
     created : function () {},
     mounted : function () {
 
-        this.$watch(() => (this.conf.prepend + this.conf.append), this._getNamelist, {
+        this.$watch(() => ((JSON.stringify(this.conf.prepend) + JSON.stringify(this.conf.append))), this._getNamelist, {
             deep : true,
             immediate : true
         });
@@ -193,21 +199,29 @@ export default UI.extend({
             immediate : true
         });
 
-        if (!this.conf.tab) {
-    
-            this.conf.tab = this.data.tabs[0];
-    
-        }
-
         this.Vue.nextTick(() => {
 
-            this.switch(this.conf.tab);
+            this.$watch('conf.tab', () => {
+
+                if (this.conf.tab) {
+
+                    this.switch(this.conf.tab);
+
+                } else {
+
+                    this.switch(this.data.tabs[0]);
+
+                }
+
+            }, {
+                immediate : true
+            });
 
         });
 
     }
 
-});
+};
 </script>
 
 <style lang="less" src="./index.less"></style>

@@ -1,6 +1,6 @@
 export default {
     component : {
-        布局组件 : null,
+        样式组件 : null,
         标题 : '/component/h.html',
         中心内容 : '/component/lead.html',
         标记的文本 : '/component/mark.html',
@@ -48,7 +48,7 @@ export default {
         下拉式按钮组 : '/component/dropdown.html',
         // 级联菜单<i class="tag new"></i> : 'b',
         标签页 : '/component/tab.html',
-        // 表格 : 'b',
+        表格 : '/component/table.html',
         分页 : '/component/pagination.html',
         模拟盒 : '/component/dialog.html',
         // 消息提示 : 'b',
@@ -72,9 +72,8 @@ export default {
         复选框组 : '/component/checkbox.html',
         单选框组 : '/component/radio.html',
         多项输入 : '/component/multiinput.html',
-        // 多项表单输入<i class="tag coming"></i> : '/component/multiform.html'
+        多项表单输入 : '/component/multiform.html'
         // 多项文本输入 : 'b',
-        // 批量表单输入 : 'b',
         // 时间输入<i class="tag new"></i> : 'b',
         // 日期输入<i class="tag new"></i> : 'b',
         // 日期时间输入<i class="tag update"></i> : 'b',
@@ -91,7 +90,8 @@ export default {
         基础 : null,
         组件文档 : '/guide/componentdoc.html',
         初始化 : '/guide/init.html',
-        声明 : '/guide/statement.html',
+        形态 : '/guide/status.html',
+        配色 : '/guide/uniformcolor.html',
         样式类 : '/guide/styleclass.html',
         配置 : '/guide/config.html',
         方法 : '/guide/method.html',

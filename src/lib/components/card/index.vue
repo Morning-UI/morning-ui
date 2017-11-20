@@ -1,18 +1,17 @@
 <template>
     <i-card
         :_uiid="uiid"
-        :class="[styleClass]"
+        :class="[colorClass]"
     >
         <slot></slot>
     </i-card>
 </template>
  
 <script>
-import UI                           from 'Common/ui';
-
-export default UI.extend({
+export default {
+    origin : 'UI',
     name : 'card'
-});
+};
 </script>
 
 <style lang="less" src="./index.less"></style>

@@ -3,21 +3,6 @@
         :page="page"
         :hasPadding="true" 
     >
-    <!-- 如果你使用了类似[Webpack](https://webpack.js.org/)或[Browserify](http://browserify.org/)之类的模块打包工具，你可以使用`require`或`import`等方式引用。
-    
-    下面拿[Webpack](https://webpack.js.org/)举例，如果你下载了Morning UI并放在了某个目录，直接从那个目录引入即可：
-
-    ```html
-    import './path-to-morning/morning-ui.js';
-    import './path-to-morning/morning-ui.css';
-    
-    
-    如果你通过NPM安装：
-
-    ```html
-    import 'morning-ui';
-    ```
-    ``` -->
     <script type="text/markdown">
     # 安装
 
@@ -36,38 +21,69 @@
     - `morning-ui.min.js` : 生产版本JS
     - `morning-ui.min.css` : 生产版本CSS
 
+    <ui-quote color="theme">我们建议在生产环境锁定版本并使用稳定版本的Morning UI，详见：<a href="/guide/versionplan.html">版本计划</a> 及 <a href="/guide/logs.html">更新日志</a></ui-quote>
+
     你可以通过下面的方式获取：
 
     ##### 直接下载
 
-    <ui-btn m new-tab id="download">下载</ui-btn>
+    <ui-btn size="m" new-tab id="download">下载</ui-btn>
     
     ##### NPM安装
+    
+    推荐使用NPM的方式安装，它能很好地和诸如`Webpack`或`Rollup`模块打包器配合使用。
 
-    Coming soon.
+    ```shell
+    # 最新版
+    $ npm install morning-ui
+    ```
     
     ##### CDN
 
-    Coming soon.
+    - 最新版Morning UI:
+        - [https://cdn.jsdelivr.net/npm/morning-ui/dist/morning-ui.min.js](https://cdn.jsdelivr.net/npm/morning-ui/dist/morning-ui.min.js) 
+        - [https://cdn.jsdelivr.net/npm/morning-ui/dist/morning-ui.min.css](https://cdn.jsdelivr.net/npm/morning-ui/dist/morning-ui.min.css)
+    - 历史版本：[https://cdn.jsdelivr.net/npm/morning-ui/](https://cdn.jsdelivr.net/npm/morning-ui/)
 
     ### 页面引用
 
     ##### 使用标签
 
-    获取Morning UI后分别使用`<script>`及`<style>`标签在页面中引用：
+    分别使用`<script>`及`<style>`标签在页面中引用：
 
     ```html
+    <!-- 引入Vue.js -->
+    <script src="path-to-vue/vue.js">&lt;/script>
+
+    <!-- 引入Morning UI -->
     <link href="path-to-morning/morning-ui.css" rel="stylesheet">
     <script src="path-to-morning/morning-ui.js">&lt;/script>
+
+    <!-- 初始化Morning UI -->
+    <script>
+    Vue.use(morning);
+
+    // ...
+    &lt;/script>
     ```
 
+    这种方式会在全局注册`window.morning`变量。
+
     ##### 使用模块打包器
-
-    Coming soon.
     
-    ### 全局变量
+    在JS文件中通过`import`引入：
+    
+    ```js
+    // 引入Vue.js
+    import Vue from 'vue';
 
-    无论你采用哪种方式引用Morning UI，都会在全局注册`window.morning`变量。
+    // 引入Morning UI
+    import morning from 'morning-ui';
+    import 'morning-ui/dist/morning-ui.css';
+
+    // 初始化Morning UI
+    Vue.use(morning);
+    ```
 
     ### 更多
 
@@ -79,7 +95,6 @@
     
     目前MorningUI不支持自定义组件库，此功能将在稍后支持。
 
-    
     </script>
     </doc-guide>
 </template>
@@ -108,9 +123,10 @@ export default {
             let version = response.data.version;
             let $download = this.$el.querySelector('#download');
 
-            $download._vm.setConf('link', `https://github.com/Morning-UI/morning-ui/archive/${version}.zip`);
-            $download.innerText = `下载v${version}`;
 
+            $download._vm.conf.link = `https://github.com/Morning-UI/morning-ui/archive/${version}.zip`;
+            $download.innerText = `下载v${version}`;
+        
         })
         .catch(error => {
 

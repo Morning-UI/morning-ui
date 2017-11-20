@@ -18,7 +18,7 @@
     <ui-btn>按钮</ui-btn>
     :::
     
-    [[[声明]]]
+    [[[形态]]]
 
     #### 支持
 
@@ -28,24 +28,26 @@
     |色彩|全部|`theme`|
     |状态|全部|`normal`|
 
+    <a href="/guide/status.html">查看形态文档</a>
+
     #### 尺寸
 
     :::repeat/html
     size
     ---
-    <ui-btn {$sizeKey}>{$&sizeName}</ui-btn>
+    <ui-btn size="{$sizeKey}">{$&sizeName}</ui-btn>
     :::
 
     :::repeat/html
     size
     ---
-    <ui-btn {$sizeKey} loading>{$&sizeName}</ui-btn>
+    <ui-btn size="{$sizeKey}" loading>{$&sizeName}</ui-btn>
     :::
 
     #### 色彩
 
     :::preset/html
-    statementColor
+    statusColor
     ---
     uikey:btn
     :::
@@ -60,7 +62,7 @@
     state|br:2|color:silver
     state|br:2|color:gray
     ---
-    <ui-btn {$stateKey} {$colorKey}>{$&stateName}</ui-btn>
+    <ui-btn state="{$stateKey}" color="{$colorKey}">{$&stateName}</ui-btn>
     :::
 
     [[[配置]]]
@@ -75,7 +77,7 @@
     #### link
 
     :::democode/html
-    <ui-btn :link="'http://www.google.com'">链接</ui-btn>
+    <ui-btn :link="'https://www.google.com'">链接</ui-btn>
     :::
 
     #### js
@@ -98,7 +100,7 @@
     #### new-tab
 
     :::democode/html
-    <ui-btn new-tab :link="'http://www.google.com'">新窗口打开链接</ui-btn>
+    <ui-btn new-tab :link="'https://www.google.com'">新窗口打开链接</ui-btn>
     :::
 
     [[[方法]]]
@@ -125,7 +127,7 @@
 
     :::democode/html
     <ui-btn ref="demo3" locked>按钮</ui-btn>
-    <br><br> 
+    <br><br>
     <ui-link js="morning.findVM('demo3').unlock();">解锁</ui-link>
     :::
 

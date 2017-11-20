@@ -18,7 +18,7 @@
     <div><ui-lowercase>小写的英文文本: tHere is A LEtter</ui-lowercase></div>
     :::
 
-    [[[声明]]]
+    [[[形态]]]
 
     #### 支持
 
@@ -27,6 +27,8 @@
     |尺寸|不支持|-|
     |色彩|不支持|-|
     |状态|不支持|-|
+
+    <a href="/guide/status.html">查看形态文档</a>
 
     [[[源码]]]
 

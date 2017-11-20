@@ -1,6 +1,6 @@
 <template>
     <footer>
-        <img src="http://h0.hucdn.com/open/201734/8f299e45f6693260_200x200.png" alt=""><br>
+        <img src="https://h0.hucdn.com/open/201734/8f299e45f6693260_200x200.png" alt=""><br>
         Under <a href="https://opensource.org/licenses/MIT" target="_blank">MIT Licence</a>
         <br>
         Copyright © 2015-2017 Early He

@@ -1,18 +1,17 @@
 <template>
     <i-lead
         :_uiid="uiid"
-        :class="[styleClass, stateClass]"
+        :class="[colorClass, stateClass]"
     >
         <slot></slot>
     </i-lead>
 </template>
  
 <script>
-import UI                           from 'Common/ui';
-
-export default UI.extend({
+export default {
+    origin : 'UI',
     name : 'lead'
-});
+};
 </script>
 
 <style lang="less" src="./index.less"></style>

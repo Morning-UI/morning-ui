@@ -17,8 +17,8 @@ i-multiinput{
         font-size: 0;
 
         > .item{
-            color: darken(@colorFormText, 10%) !important;
-            background-color: darken(@colorFormBackgroundHover, 2%);
+            color: @colorFormItemColor !important;
+            background-color: @colorFromItemBackground;
             display: inline-block;
             padding: 0.4em 0.7em;
             border-radius: @borderRadius;
@@ -45,12 +45,8 @@ i-multiinput{
 
             &:hover{
                 text-decoration: none;
-                color: darken(@colorFormTextHover, 10%) !important;
-                background: darken(@colorFormBackgroundHover, 5%);
-
-                > i.morningicon{
-                    color: darken(@colorFormTextHover, 10%) !important;
-                }
+                color: @colorFormItemColorHover !important;
+                background: @colorFromItemBackgroundHover;
             }
 
             > i.morningicon{
@@ -70,7 +66,7 @@ i-multiinput{
                 opacity: 0.5;
             }
 
-            &.move-drag-item {
+            &.move-drag-item{
                 opacity: 1;
                 box-shadow: 0 0 2px rgba(0, 0, 0, 0.35);
                 max-width: none;
@@ -78,8 +74,8 @@ i-multiinput{
 
                 &:hover{
                     cursor: move;
-                    color: darken(@colorFormText, 10%) !important;
-                    background-color: darken(@colorFormBackgroundHover, 2%);
+                    color: @colorFormItemColor !important;
+                    background-color: @colorFromItemBackground;
                 }
             }
         }
@@ -123,7 +119,7 @@ i-multiinput{
         }
     }
 
-    &.canmove{
+    &.can-move{
         > .itemlist > .item{
             cursor: move;
         }
@@ -141,14 +137,14 @@ i-multiinput{
 
             > .item{
                 cursor: not-allowed !important;
-                background: darken(@colorFormBackgroundDisable, 6%);
+                background: @colorFromItemBackgroundDisable;
 
                 > span{
                     padding-right: 0;
                 }
 
                 &:hover{
-                    color: darken(@colorFormText, 10%) !important;
+                    color: @colorFormItemColorDisable !important;
                 }
             }
 
@@ -158,7 +154,7 @@ i-multiinput{
         }
     }
 
-    // default statement
+    // default status
     &{
         .st-normal;
     }

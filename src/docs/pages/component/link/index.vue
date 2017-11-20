@@ -18,7 +18,7 @@
     <ui-link>链接</ui-link>
     :::
     
-    [[[声明]]]
+    [[[形态]]]
 
     #### 支持
 
@@ -28,24 +28,20 @@
     |色彩|全部|`theme`|
     |状态|全部|`normal`|
 
+    <a href="/guide/status.html">查看形态文档</a>
+
     #### 尺寸
 
     :::repeat/html
     size
     ---
-    <ui-link {$sizeKey}>{$&sizeName}</ui-link>
-    :::
-
-    :::repeat/html
-    size
-    ---
-    <ui-link {$sizeKey} loading>{$&sizeName}</ui-link>
+    <ui-link size="{$sizeKey}">{$&sizeName}</ui-link>
     :::
 
     #### 色彩
 
     :::preset/html
-    statementColor
+    statusColor
     ---
     uikey:link
     :::
@@ -60,7 +56,7 @@
     state|br:2|color:silver
     state|br:2|color:gray
     ---
-    <ui-link {$stateKey} {$colorKey}>{$&stateName}</ui-link>
+    <ui-link state="{$stateKey}" color="{$colorKey}">{$&stateName}</ui-link>
     :::
 
     [[[配置]]]
@@ -75,7 +71,7 @@
     #### link
 
     :::democode/html
-    <ui-link :link="'http://www.google.com'">链接</ui-link>
+    <ui-link :link="'https://www.google.com'">链接</ui-link>
     :::
 
     #### js
@@ -98,7 +94,7 @@
     #### new-tab
 
     :::democode/html
-    <ui-link new-tab :link="'http://www.google.com'">新窗口打开链接</ui-link>
+    <ui-link new-tab :link="'https://www.google.com'">新窗口打开链接</ui-link>
     :::
 
     [[[方法]]]

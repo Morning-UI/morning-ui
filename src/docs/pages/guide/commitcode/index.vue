@@ -71,7 +71,7 @@
 
     接下来为要处理的Issue新建一个名为`issue-[Issue ID]`的分支，其中`[Issue ID]`替换成Git上的Issue ID，你可以在下面的地方找到：
 
-    <img src="http://h0.hucdn.com/open/201743/9498878cf00b0e68_922x180.png" width="300" alt="">
+    <img src="https://h0.hucdn.com/open/201743/9498878cf00b0e68_922x180.png" width="300" alt="">
 
     注意不需要加上`#`，比如上图中的Issue你需要执行：`git checkout -b issue-1`。
 
@@ -89,23 +89,23 @@
     
     当你完成了所有的编码工作，前往：`https://github.com/Morning-UI/morning-ui/pulls`，点击`New pull request`：
 
-    <img src="http://h0.hucdn.com/open/201743/7e973819a866761f_2010x240.png" alt="" width="700">
+    <img src="https://h0.hucdn.com/open/201743/7e973819a866761f_2010x240.png" alt="" width="700">
 
     然后`base`选择`dev`，`compare`选择你的分支，然后你可以看到：
 
-    <img src="http://h0.hucdn.com/open/201743/5e4e7f5309fbc627_1708x456.png" alt="" width="600">
+    <img src="https://h0.hucdn.com/open/201743/5e4e7f5309fbc627_1708x456.png" alt="" width="600">
 
     > 若显示无法自动合并分支，请先在本地处理完冲突的改动。
 
     点击`Create pull request`：
 
-    <img src="http://h0.hucdn.com/open/201743/7ad9a3006740642f_1988x828.png" alt="" width="600">
+    <img src="https://h0.hucdn.com/open/201743/7ad9a3006740642f_1988x828.png" alt="" width="600">
     
     按照上面的示例，写清楚你改动的内容及注意事项，指定贡献者为你Code Review。或者也可以添加`Request Review`标签让其他贡献者为你Code Review。
 
     若Review中存在问题你们可在`pull request`下面进行讨论，当进行Code Review的贡献者通过后，会增加`Accept Pull Request`的标签，接下来项目管理员会对代码进行合并。
 
-    关于Reviwe详见：[检视代码/指出问题及沟通](/guide/review.html)
+    关于Reviwe详见：[指出问题及沟通](/guide/review.html#指出问题及沟通)
 
     ### 合入主开发分支
     

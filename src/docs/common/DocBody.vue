@@ -20,6 +20,7 @@
 
 <script>
 import MarkdownIt                   from 'markdown-it';
+import Anchor                       from 'markdown-it-anchor';
 import extend                       from 'extend';
 import Mustache                     from 'mustache';
 import _                            from 'underscore';
@@ -34,6 +35,15 @@ const randomRangeMax = 9e3;
 
 const markdown = new MarkdownIt({
     html : true
+});
+
+markdown.use(Anchor, {
+    level : [3, 4],
+    slugify : s => (s.replace(/[^a-zA-Z0-9-_\u4e00-\u9fa5]/g, '')),
+    permalink : true,
+    permalinkBefore : true,
+    permalinkClass : 'permalink',
+    permalinkSymbol : '#'
 });
 
 let evals = [];
@@ -185,15 +195,7 @@ let data = {
         {
             stateKey : 'apparent',
             stateName : '醒目'
-        },
-        {
-            stateKey : 'loading',
-            stateName : '载入中'
-        },
-        {
-            stateKey : 'processing',
-            stateName : '处理中'
-        },
+        }
     ],
     formConfig : {
         formName : '表单名',
@@ -228,7 +230,7 @@ let data = {
             },
             {
                 valueType : 'Array',
-                valueContent : '[]'
+                valueContent : `['Jim', 'Tom']`
             }
         ],
         checkbox : [
@@ -289,6 +291,36 @@ let data = {
             {
                 valueType : 'Array',
                 valueContent : '[\'Tim Boelaars\', \'Andrew Colin Beck\']'
+            }
+        ],
+        multiform : [
+            {
+                valueType : 'String',
+                valueContent : `'Tim Boelaars'`
+            },
+            {
+                valueType : 'Number',
+                valueContent : '5'
+            },
+            {
+                valueType : 'Boolean',
+                valueContent : 'true'
+            },
+            {
+                valueType : 'Null',
+                valueContent : 'null'
+            },
+            {
+                valueType : 'Undefined',
+                valueContent : 'undefined'
+            },
+            {
+                valueType : 'Object',
+                valueContent : '{\'name\':\'Tim Boelaars\'}'
+            },
+            {
+                valueType : 'Array',
+                valueContent : '[{\'name\':\'Tim Boelaars\'}]'
             }
         ]
     }
@@ -422,7 +454,7 @@ let repeater = {
 };
 
 let presets = {
-    statementColor : `
+    statusColor : `
 :::repeat/html
 color:theme
 color:feature
@@ -431,10 +463,10 @@ color:blue
 color:silver
 color:gray
 ---
-<ui-{%uikey%} {$colorKey}>{$&colorName}</ui-{%uikey%}>
+<ui-{%uikey%} color="{$colorKey}">{$&colorName}</ui-{%uikey%}>
 :::
 `,
-    formStatement : `
+    formStatus : `
 #### 支持
 
 |类型|支持|默认|
@@ -443,18 +475,20 @@ color:gray
 |色彩|不支持|-|
 |状态|\`normal\`<br/>\`disabled\`|\`normal\`|
 
+<a href="/guide/status.html">查看形态文档</a>
+
 #### 状态
 
 :::repeat/html
 state:normal,disabled
 ---
 <div style="width:300px;">
-    <ui-{%uikey%} {$stateKey} :default-value="{%&statementDefaultValue%}" form-name="{$&stateName}" {%&statementMoreAttr%}>{%&statementSlot%}</ui-{%uikey%}>
+    <ui-{%uikey%} state="{$stateKey}" :default-value="{%&statusDefaultValue%}" form-name="{$&stateName}" {%&statusMoreAttr%}>{%&statusSlot%}</ui-{%uikey%}>
 </div>
 <br>
 :::
 `,
-    formStatementWithStyle : `
+    formStatusWithStyle : `
 #### 支持
 
 |类型|支持|默认|
@@ -463,6 +497,7 @@ state:normal,disabled
 |色彩|全部|\`theme\`|
 |状态|\`normal\`<br/>\`disabled\`|\`normal\`|
 
+<a href="/guide/status.html">查看形态文档</a>
 
 #### 色彩
 
@@ -475,7 +510,7 @@ color:silver
 color:gray
 ---
 <div style="width:300px;">
-    <ui-{%uikey%} {$colorKey} :default-value="{%&statementDefaultValue%}" form-name="{$&colorName}" {%&statementMoreAttr%}>{%&statementSlot%}</ui-{%uikey%}>
+    <ui-{%uikey%} color="{$colorKey}" :default-value="{%&statusDefaultValue%}" form-name="{$&colorName}" {%&statusMoreAttr%}>{%&statusSlot%}</ui-{%uikey%}>
 </div>
 <br>
 :::
@@ -486,7 +521,7 @@ color:gray
 state:normal,disabled
 ---
 <div style="width:300px;">
-    <ui-{%uikey%} {$stateKey} :default-value="{%&statementDefaultValue%}" form-name="{$&stateName}" {%&statementMoreAttr%}>{%&statementSlot%}</ui-{%uikey%}>
+    <ui-{%uikey%} state="{$stateKey}" :default-value="{%&statusDefaultValue%}" form-name="{$&stateName}" {%&statusMoreAttr%}>{%&statusSlot%}</ui-{%uikey%}>
 </div>
 <br>
 :::
@@ -565,7 +600,7 @@ formConfig
 |form-name|表单的名称（用于显示）|任意字符串|String|\`undefined\`|
 |form-key|表单的Key（用于逻辑中作为识别标示）|任意字符串(唯一)|String|\`undefined\`|
 |group|表单组，用于将多个表单的数值添加到同一个对象中。一个表单可以同时属于多个组|若是字符串，则将表单添加到单个组<br>若是数组，则将表单添加到多个组|String<br/>Array|\`[]\`|
-|default-value|表单的默认值|任意(接受表单原始数值，也接受JSON序列化后的表单数值，若数值是JSON序列化的会自动转换成原始数值)|Any|\`undefined\`|
+|default-value|表单的默认值(注意：\`default-value\`不支持单向数据流，此配置仅在表单初次创建时生效，修改表单值需要使用\`set()\`方法或使用\`v-model\`指令， 详见：[表单数据双向绑定](/guide/form.html#表单数据双向绑定))|任意(接受表单原始数值，也接受JSON序列化后的表单数值，若数值是JSON序列化的会自动转换成原始数值)|Any|\`undefined\`|
 |hide-name|隐藏表单名|\`true\`<br>\`false\`|Boolean|\`false\`|
 {%&content%}
 `,
@@ -595,7 +630,7 @@ formConfig
 <div style="width:300px;">
     <ui-{%uikey%} ref="demoMethodGet" form-name="表单名" :default-value="{%&methodDefaultValue%}" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>
     <br>
-    <ui-link js="alert(window.morning.findVM('demoMethodGet').get())">获取表单原始值</ui-link>
+    <ui-link js="console.log(window.morning.findVM('demoMethodGet').get())">获取表单原始值</ui-link>
 </div>
 :::
 
@@ -607,7 +642,7 @@ formConfig
 <div style="width:300px;">
     <ui-{%uikey%} ref="demoMethodGetJson" form-name="表单名" :default-value="{%&methodDefaultValue%}" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>
     <br>
-    <ui-link js="alert(window.morning.findVM('demoMethodGetJson').getJson())">获取表单值的JSON序列化字符串</ui-link>
+    <ui-link js="console.log(window.morning.findVM('demoMethodGetJson').getJson())">获取表单值的JSON序列化字符串</ui-link>
 </div>
 :::
 
@@ -785,7 +820,7 @@ window.demoEventLifecycle = new Vue({
 <div style="width:300px;">
     <ui-{%uikey%}
         ref="demoEventLifecycle"
-        form-name="表单名123"
+        form-name="表单名"
         v-show="show"
         @created="echo('created')"
         @mounted="echo('mounted')"
@@ -1123,303 +1158,6 @@ markdown.use(demoWithCodePlugin);
 
 window.Vue.component('doc-component-status', DocComponentStatus);
 
-// let parser = (text, el) => {
-
-//     let patt = /````(html|js|css|vue|)((\n[\t ]*[\@a-zA-Z0-9\:\.\,\|]+)*)\n((.|\n)*?)(\n)*([ \t]*)````/g;
-//     let varpatt = /````(html|js|css)\n(\@var\:([a-zA-Z0-9]+))\n((.|\n)+?)\n([ \t]*)````/g;
-//     let presetpatt = /````(preset)((\n[\t ]*[a-zA-Z0-9@'"[\]?<>/\-_{}=:.,|!()\u4e00-\u9fa5 ]+)*)\n((.|\n)*?)(\n)*([ \t]*)````/g;
-//     let result;
-//     let vars = {
-//         js : {},
-//         html : {}
-//     };
-//     let blocks = [];
-//     let vueContext = {};
-
-//     while ((result = presetpatt.exec(text)) !== null) {
-
-//         let rdata = result[2].replace(/^\n/, '').split('\n');
-//         let id = rdata[0].split(':')[1];
-
-//         rdata.shift();
-
-//         for (let item of rdata) {
-
-//             let name = item.split(':')[0].replace(/^@/, '');
-//             let valuelist = item.split(':');
-
-//             valuelist.shift();
-
-//             let value = valuelist.join(':');
-
-//             vueContext[name] = value;
-
-//         }
-
-//         let content = presets[id];
-
-//         text = text.slice(0, result.index - 1) + content + text.slice(result.index + result[0].length, text.length);
-//         presetpatt.lastIndex = 0;
-
-//     }
-
-//     while ((result = varpatt.exec(text)) !== null) {
-
-//         vars[result[1]][result[3]] = result[4];
-//         text = text.slice(0, result.index - 1) + text.slice(result.index + result[0].length, text.length);
-
-//         varpatt.lastIndex = 0;
-
-//     }
-
-//     while ((result = patt.exec(text)) !== null) {
-
-//         let content = result[4];
-//         let helpers = result[2].split('\n');
-
-//         helpers.shift();
-        
-//         let block = {
-//             content,
-//             type : result[1],
-//             result,
-//             context : vueContext,
-//             helpers : []
-//         };
-
-//         for (let name of helpers) {
-
-//             let list = name.split('|');
-//             let group = [];
-
-//             for (let help of list) {
-
-//                 let fn = help.split(':')[0].replace(/^\@/, '');
-//                 let param = help.split(':')[1];
-
-//                 group.push({
-//                     fn,
-//                     param
-//                 });
-
-//             }
-
-//             block.helpers.push(group);
-
-//         }
-
-//         blocks.push(block);
-
-//     }
-
-//     return {
-//         vars,
-//         blocks,
-//         text
-//     };
-
-// };
-
-// let helpers = {
-//     import : opt => {
-
-//         let name = opt.param.split(',');
-
-//         opt.content = window.$(`script#${name[0]}`);
-//         opt.context = {
-//             uiname : name[1]
-//         };
-
-//         return opt;
-
-//     },
-//     origin : opt => {
-
-//         return opt;
-
-//     },
-//     render : opt => {
-
-//         opt.isText = true;
-
-//         return opt;
-
-//     },
-//     use : opt => {
-
-//         let links = opt.param.split(',');
-
-//         opt.content = {};
-
-//         for (let link of links) {
-
-//             let type = link.split('.')[0];
-//             let key = link.split('.')[1];
-
-//             opt.content[type] = `&&&&&{$id}|${opt.vars[type][key]}`;
-
-//         }
-
-//         opt.render = sopt => {
-
-//             let list = {};
-//             let code = '';
-//             let demo = '';
-//             let newData = extend(true, {}, sopt.context);
-//             let lastType;
-
-//             for (let key of Object.keys(newData)) {
-
-//                 let value = newData[key];
-//                 let id = `demo-${_.random(randomRangeMin, randomRangeMax)}`;
-
-//                 if (value instanceof Array) {
-
-//                     for (let svalue of value) {
-
-//                         svalue.id = id;
-//                         svalue.el = `#${id}-el`;
-//                         svalue.template = `#${id}-tmpl`;
-
-//                     }
-
-//                 } else if (typeof value === 'object') {
-
-//                     value.id = id;
-//                     value.el = `#${id}-el`;
-//                     value.template = `#${id}-tmpl`;
-
-//                 }
-
-//             }
-
-//         };
-
-//         return opt;
-
-//     }
-// };
-
-// let make = {
-//     block : block => {
-
-//         return '<div class="demo">\n' + block.content + '</div>\n\n```' + block.type + '\n' + block.content + '\n```\n';
-
-//     },
-//     opt : (opts, block) => {
-
-//         let text = '';
-
-//         for (let opt of opts) {
-
-//             let code,
-//                 demo;
-
-//             opt.context = extend({}, data, opt.context);
-
-//             if (typeof opt.render === 'function') {
-
-//                 let result = opt.render(opt);
-
-//                 code = result.code;
-//                 demo = result.demo;
-
-//             } else {
-
-//                 let template = opt.content;
-
-//                 Mustache.parse(template, ['{$', '}']);
-
-//                 code = Mustache.render(template, opt.context);
-
-//             }
-
-//             if (opt.style.length === 0) {
-
-//                 opt.style = '';
-
-//             } else {
-
-//                 opt.style = opt.style.join(';');
-            
-//             }
-
-//             if (block.type === 'vue') {
-
-//                 block.type = 'html';
-
-//             }
-
-//             if (opt.isText) {
-
-//                 text += code;
-
-//             } else {
-
-//                 text += '<div class="demo" style="' + opt.style + '">\n' + (demo || code) + '</div>\n\n```' + block.type + '\n' + code + '\n```\n';
-
-//             }
-
-//         }
-
-//         return text;
-
-//     }
-// };
-
-// let runner = tree => {
-
-//     for (let block of tree.blocks) {
-
-//         if (block.helpers.length > 0) {
-
-//             let opts = [];
-
-//             for (let group of block.helpers) {
-
-//                 let opt = {
-//                     content : block.content,
-//                     vars : tree.vars,
-//                     helperlist : group,
-//                     context : block.context,
-//                     style : []
-//                 };
-
-//                 for (let helper of group) {
-
-//                     opt.param = helper.param;
-//                     opt = helpers[helper.fn](opt);
-
-//                 }
-
-//                 opts.push(opt);
-
-//             }
-
-//             block._html = make.opt(opts, block);
-
-//         } else {
-
-//             block._html = make.block(block);
-        
-//         }
-
-//     }
-
-//     let text = tree.text;
-//     let patt = /````(html|js|css|vue|)((\n[\t ]*[\@a-zA-Z0-9\:\.\,\|]+)*)\n((.|\n)*?)(\n)*([ \t]*)````/g;
-//     let index = 0;
-//     let result;
-
-//     while ((result = patt.exec(text)) !== null) {
-
-//         text = text.slice(0, result.index - 1) + tree.blocks[index++]._html + text.slice(result.index + result[0].length, text.length);
-
-//     }
-
-//     return text;
-    
-// };
 window.Vue.directive('docmd', {
     bind : el => {
 
@@ -1445,13 +1183,13 @@ window.Vue.directive('docmd', {
             md = md.replace(/\{\*([a-zA-Z0-9_.]+)\*\}/g, '{{"\\{\\{$1\\}\\}"}}');
             md = md.replace(/<p>(\[\[\[(.+)\]\]\])<\/p>/g, '$1');
             md = md.replace(/(\[\[\[)/, '<ui-tab class="block noborder">$1');
-            md = md.replace(/\[\[\[开始\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="开始">$1</div>$3');
-            md = md.replace(/\[\[\[声明\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="声明">$1</div>$3');
-            md = md.replace(/\[\[\[配置\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="配置">$1</div>$3');
-            md = md.replace(/\[\[\[方法\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="方法">$1</div>$3');
-            md = md.replace(/\[\[\[事件\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="事件">$1</div>$3');
-            md = md.replace(/\[\[\[表单值\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="表单值">$1</div>$3');
-            md = md.replace(/\[\[\[源码\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="源码">$1</div>$3');
+            md = md.replace(/\[\[\[开始\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="开始"><div class="content-title">开始</div>$1</div>$3');
+            md = md.replace(/\[\[\[形态\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="形态"><div class="content-title">形态</div>$1</div>$3');
+            md = md.replace(/\[\[\[配置\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="配置"><div class="content-title">配置</div>$1</div>$3');
+            md = md.replace(/\[\[\[方法\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="方法"><div class="content-title">方法</div>$1</div>$3');
+            md = md.replace(/\[\[\[事件\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="事件"><div class="content-title">事件</div>$1</div>$3');
+            md = md.replace(/\[\[\[表单值\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="表单值"><div class="content-title">表单值</div>$1</div>$3');
+            md = md.replace(/\[\[\[源码\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="源码"><div class="content-title">源码</div>$1</div>$3');
             md = md.replace(/(.|\n)$/, '$1</ui-tab>');
 
             md = md.replace(/<p>---demostart---<\/p>/g, '<div class="demo-area"><p class="demo-title">DEMO</p>');
@@ -1528,6 +1266,18 @@ a{ }
 
     &.padding {
         padding: 50px;
+    }
+
+    .content-title{
+        display: none;
+    }
+
+    .permalink{
+        color: #9F9F9F;
+        transform: scale(0.9);
+        display: inline-block;
+        transform-origin: bottom;
+        margin-right: -0.15em;
     }
 }
 .demo{

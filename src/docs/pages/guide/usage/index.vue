@@ -8,22 +8,22 @@
 
     ### 初始化
 
-    在引入Morning UI后需要进行初始化：
+    在引入Morning UI后需要在Vue中进行初始化：
     
     ```js
-    window.morning.init();
+    Vue.use(morninig);
     ```
 
     你也可以在初始化的时候进行配置，比如：
     
     ```js
     // 将组件的标签前缀改为v，比如`v-btn`
-    window.morning.init({
+    Vue.use(morninig, {
         prefix : 'v'
     });
     ```
 
-    更多初始化配置见：[全局方法/init](/guide/morning.html)。
+    更多初始化配置见：[初始化](/guide/init.html)。
 
     ### 使用组件
 
@@ -40,22 +40,22 @@
     </div>
     :::
 
-    ### 添加声明
+    ### 添加形态
 
-    声明是大部分组件都支持的一种通用配置，有三种：
+    形态是大部分组件都支持的一种通用配置，有三种：
 
     - 尺寸
     - 色彩
     - 状态
 
-    声明的值可以直接写在组件的标签上：
+    形态的值可以直接写在组件的标签上：
 
     :::democode/html
     <!-- 使用黑色xl尺寸的按钮 -->
-    <ui-btn xl black>按钮</ui-btn>  
+    <ui-btn size="xl" color="black">按钮</ui-btn>  
     :::
 
-    更多内容见：[声明](/guide/statement.html)。
+    更多内容见：[形态](/guide/status.html)。
 
     ### 添加样式类
 
@@ -101,7 +101,7 @@
     <ui-link js="morning.findVM('demo1').unlock();">解锁</ui-link>
     :::
 
-    组件的方法挂载在组件的Vue实例上，你可以通过`morning.findVM()`来找到组件的实例，详见[全局方法/findVM](/guide/morning.html)。
+    组件的方法挂载在组件的Vue实例上，你可以通过`morning.findVM()`来找到组件的实例，详见[全局方法/findVM](/guide/morning.html#findVMref)。
 
     你可以在组件的文档中找到组件支持的方法。
     

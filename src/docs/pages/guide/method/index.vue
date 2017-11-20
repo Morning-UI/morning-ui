@@ -45,7 +45,7 @@
 
     #### 全局查找调用
 
-    使用前需要在被调用的组件上通过ref指定一个索引ID，然后通过MorningUI提供的全局方法`window.morning.findVM()`查找组件vm：
+    使用前需要在被调用的组件上通过ref指定一个索引ID，然后通过Morning UI提供的全局方法`morning.findVM()`查找组件vm：
 
     :::democode/html
     <div>
@@ -62,14 +62,13 @@
     
     `findVM()`方法本质上也是基于`ref`来实现的，只是提供了一个全局查找的快捷方法。
     
-    [查看findVM()方法详情](/guide/morning.html#findvm-ref-)
+    [查看findVM()方法详情](/guide/morning.html#findVMref)
 
     ### 通用方法
 
     交互和表单组件都支持一些通用的方法:
 
-    - `setConf` : 设置组件配置，详见[配置/设置配置](/guide/config.html)
-    - `getConf` : 获取组件配置，详见[配置/获取配置](/guide/config.html)
+    - `getConf` : 获取组件配置，详见[获取配置](/guide/config.html#获取配置)
 
     ### 私有方法
 
@@ -108,6 +107,7 @@
     - `setRows` : 设置行数
     - `toggle` : 切换状态
     - `add` : 添加项目
+    - `update` : 更新项目
     - `del` : 删除项目
     - `move` : 移动项目
     - `setInput` : 设置输入框值

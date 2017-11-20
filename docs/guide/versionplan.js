@@ -7,18 +7,43 @@ module.exports = Vue;
 
 /***/ }),
 
-/***/ 109:
+/***/ 311:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _vue = __webpack_require__(0);
+
+var _vue2 = _interopRequireDefault(_vue);
+
+var _index = __webpack_require__(312);
+
+var _index2 = _interopRequireDefault(_index);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+new _vue2.default({
+    el: '#root',
+    render: function render(h) {
+        return h(_index2.default);
+    }
+});
+
+/***/ }),
+
+/***/ 312:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(213);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(314);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_15b4a8d1_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(624);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_15b4a8d1_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(315);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(306)
+  __webpack_require__(313)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
@@ -63,7 +88,14 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 213:
+/***/ 313:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 314:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -120,44 +152,16 @@ exports.default = {
 //
 //
 //
+//
+//
+//
+//
 
 module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 292:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _vue = __webpack_require__(0);
-
-var _vue2 = _interopRequireDefault(_vue);
-
-var _index = __webpack_require__(109);
-
-var _index2 = _interopRequireDefault(_index);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-new _vue2.default({
-    el: '#root',
-    render: function render(h) {
-        return h(_index2.default);
-    }
-});
-
-/***/ }),
-
-/***/ 306:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 624:
+/***/ 315:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -171,7 +175,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "type": "text/markdown"
     }
-  }, [_vm._v("\n# 版本计划\n\n### 版本规范\n\nMorning UI采用[语义化版本控制规范](http://semver.org/lang/zh-CN/)。\n\n同时采用以下三种标记标示不同的版本：\n\n|标记|名称|说明|更新<br>频率|生产环境|\n|-|-|-|-|-|\n|<ui-badge class=\"circle ver-stable\" s theme>Stable</ui-badge>|稳定版本|此版本中的各个功能都经过一段时间的测试及使用，非常稳定|month|推荐使用|\n|<ui-badge class=\"circle ver-beta\" s extra-light-black>Beta</ui-badge>|公开测试版本|包含了一些新的特性，并且修复了大部分问题的版本，相对较为稳定|week|可用<br>不推荐|\n|<ui-badge class=\"circle ver-canary\" s>Canary</ui-badge>|金丝雀版本|包含大量新特性的版本，这个版本是实验性的，可能存在较多的问题<br><ui-small><ui-textcolor extra-light-blue>为开发者及早期用户设计的版本</ui-textcolor></ui-small>|~daily|请勿使用|\n\n### ROAD MAP\n\n- `0.10.0` : <ui-badge xxs success>DONE</ui-badge>Morning UI的首个版本\n- `0.11.0` : <ui-badge xxs gray>PLAN</ui-badge>支持构建自定义的组件库\n- `1.0.0` : <ui-badge xxs gray>PLAN</ui-badge>组件补全，当Morning UI同步完HMP UI的所有版本之后发布，计划2018年春季发布\n- `1.10.0` : <ui-badge xxs gray>PLAN</ui-badge>着重优化性能，当所有组件完成性能提升后，发布此版本，计划2018年秋季发布\n\n")])])
+  }, [_vm._v("\n# 版本计划\n\n### 版本规范\n\nMorning UI采用[语义化版本控制规范](http://semver.org/lang/zh-CN/)。\n\n同时采用以下三种标记标示不同的版本：\n\n|标记|名称|说明|更新<br>频率|生产环境|\n|-|-|-|-|-|\n|<ui-badge class=\"circle ver-stable\" size=\"s\" color=\"theme\">Stable</ui-badge>|稳定版本|此版本中的各个功能都经过一段时间的测试及使用，非常稳定|month|推荐使用|\n|<ui-badge class=\"circle ver-beta\" size=\"s\" color=\"extra-light-black\">Beta</ui-badge>|公开测试版本|包含了一些新的特性，并且修复了大部分问题的版本，相对较为稳定|week|可用<br>不推荐|\n|<ui-badge class=\"circle ver-canary\" size=\"s\">Canary</ui-badge>|金丝雀版本|包含大量新特性的版本，这个版本是实验性的，可能存在较多的问题<br><ui-small><ui-textcolor extra-light-blue>为开发者及早期用户设计的版本</ui-textcolor></ui-small>|~daily|请勿使用|\n\n版本发布情况请查看：[更新日志](/guide/logs.html)。\n\n### ROAD MAP\n\n- `0.10.0` : <ui-badge size=\"xxs\" color=\"success\">DONE</ui-badge>Morning UI的首个版本\n- `0.11.0` : <ui-badge size=\"xxs\" color=\"gray\">PLAN</ui-badge>支持构建自定义的组件库\n- `0.12.0` : <ui-badge size=\"xxs\" color=\"gray\">PLAN</ui-badge>组件补全，当Morning UI同步完HMP UI的所有版本之后发布\n- `0.13.0` : <ui-badge size=\"xxs\" color=\"gray\">PLAN</ui-badge>完成所有组件的测试覆盖\n- `1.0.0` : <ui-badge size=\"xxs\" color=\"gray\">PLAN</ui-badge>完成所有HMP UI的组件，并稳定两个月后发布，计划2018年春季发布\n- `1.1.0` : <ui-badge size=\"xxs\" color=\"gray\">PLAN</ui-badge>完成所有组件的性能优化后发布此版本，计划2018年秋季发布\n\n")])])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -186,4 +190,4 @@ if (false) {
 
 /***/ })
 
-},[292]);
+},[311]);

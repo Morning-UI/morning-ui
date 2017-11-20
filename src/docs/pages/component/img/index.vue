@@ -62,7 +62,7 @@
     <ui-img alt="这里是alt" src="https://d13yacurqjgar.cloudfront.net/noimg.jpeg"></ui-img>
     :::
 
-    [[[声明]]]
+    [[[形态]]]
 
     #### 支持
 
@@ -71,6 +71,8 @@
     |尺寸|不支持|-|
     |色彩|不支持|-|
     |状态|不支持|-|
+
+    <a href="/guide/status.html">查看形态文档</a>
 
 
     [[[源码]]]

@@ -1,18 +1,17 @@
 <template>
     <i-statistic
         :_uiid="uiid"
-        :class="[sizeClass, styleClass, stateClass]"
+        :class="[sizeClass, colorClass, stateClass]"
     >
         <slot></slot>
     </i-statistic>
 </template>
  
 <script>
-import UI                           from 'Common/ui';
-
-export default UI.extend({
+export default {
+    origin : 'UI',
     name : 'statistic'
-});
+};
 </script>
 
 <style lang="less" src="./index.less"></style>

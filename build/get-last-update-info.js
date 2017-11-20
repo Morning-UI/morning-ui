@@ -36,109 +36,117 @@ let getUpdateInfo = async () => {
 
     for (let dirName of dirs) {
 
-        let lastUpdate = {};
-        let componentDir = `${COMPONENT_DIR}/${dirName}`;
-        let gitLog = spawn('git', [
-            'log',
-            '-1',
-            '--pretty=format:"%H|||%h|||%an|||%ae|||%ad|||%s|||%ar"',
-            '--date=format:"%Y/%m/%d %H:%M:%S"',
-            componentDir
-        ]);
+        if (dirName !== '.DS_Store') {
 
-        await new Promise(resolve => {
+            let lastUpdate = {};
+            let componentDir = `${COMPONENT_DIR}/${dirName}`;
+            let gitLog = spawn('git', [
+                'log',
+                '-1',
+                '--pretty=format:"%H|||%h|||%an|||%ae|||%ad|||%s|||%ar"',
+                '--date=format:"%Y/%m/%d %H:%M:%S"',
+                componentDir
+            ]);
 
-            gitLog.stdout.on('data', data => {
+            await new Promise(resolve => {
 
-                data = data.toString().replace(/((^")|("$))/g, '');
-                data = data.split('|||');
+                gitLog.stdout.on('data', data => {
 
-                let [
-                    cid,
-                    scid,
-                    author,
-                    mail,
-                    date,
-                    msg,
-                    ar
-                ] = data;
+                    data = data.toString().replace(/((^")|("$))/g, '');
+                    data = data.split('|||');
 
-                lastUpdate = {
-                    cid,
-                    scid,
-                    author,
-                    mail,
-                    date,
-                    msg,
-                    ar
-                };
+                    let [
+                        cid,
+                        scid,
+                        author,
+                        mail,
+                        date,
+                        msg,
+                        ar
+                    ] = data;
 
-            });
-            gitLog.stdout.on('close', resolve);
-
-        });
-
-        await getUserInfo(lastUpdate);
-
-        let gitTag = spawn('git', [
-            'tag',
-            '--contains',
-            lastUpdate.cid
-        ]);
-
-        await new Promise(resolve => {
-
-            gitTag.stdout.on('data', data => {
-
-                data = data.toString().split('\n');
-                data = data[0];
-                lastUpdate.version = data;
-
-            });
-            gitTag.stdout.on('close', resolve);
-
-        });
-
-        let gitContributors = spawn('git', [
-            'log',
-            '--pretty=format:"%an|||%ae"',
-            componentDir
-        ]);
-
-        await new Promise(resolve => {
-
-            gitContributors.stdout.on('data', data => {
-
-                data = data.toString().split('\n');
-                data.shift();
-                lastUpdate.contributors = {};
-
-                for (let contributor of data) {
-                    
-                    let info = contributor.replace(/((^")|("$))/g, '').split('|||');
-
-                    lastUpdate.contributors[info[1]] = {
-                        name : info[0],
-                        mail : info[1]
+                    lastUpdate = {
+                        cid,
+                        scid,
+                        author,
+                        mail,
+                        date,
+                        msg,
+                        ar
                     };
+
+                });
+                gitLog.stdout.on('close', resolve);
+
+            });
+
+            await getUserInfo(lastUpdate);
+
+            let gitTag = spawn('git', [
+                'tag',
+                '--contains',
+                lastUpdate.cid
+            ]);
+
+            await new Promise(resolve => {
+
+                gitTag.stdout.on('data', data => {
+
+                    data = data.toString().split('\n');
+                    data = data[0];
+                    lastUpdate.version = data;
+
+                });
+                gitTag.stdout.on('close', resolve);
+
+            });
+
+            let gitContributors = spawn('git', [
+                'log',
+                '--pretty=format:"%an|||%ae"',
+                componentDir
+            ]);
+
+            await new Promise(resolve => {
+
+                gitContributors.stdout.on('data', data => {
+
+                    data = data.toString().split('\n');
+                    data.shift();
+                    lastUpdate.contributors = {};
+
+                    for (let contributor of data) {
+                        
+                        let info = contributor.replace(/((^")|("$))/g, '').split('|||');
+
+                        lastUpdate.contributors[info[1]] = {
+                            name : info[0],
+                            mail : info[1]
+                        };
+
+                    }
+
+                    lastUpdate.contributors = Object.values(lastUpdate.contributors);
+
+                });
+                
+                gitContributors.stdout.on('close', resolve);
+
+            });
+
+            if (lastUpdate.contributors) {
+
+                for (let user of lastUpdate.contributors) {
+
+                    await getUserInfo(user);
 
                 }
 
-                lastUpdate.contributors = Object.values(lastUpdate.contributors);
+            }
 
-            });
-            
-            gitContributors.stdout.on('close', resolve);
-
-        });
-
-        for (let user of lastUpdate.contributors) {
-
-            await getUserInfo(user);
+            fs.writeFileSync(`${REPORT_DIR}/${dirName}.json`, JSON.stringify(lastUpdate));
 
         }
-
-        fs.writeFileSync(`${REPORT_DIR}/${dirName}.json`, JSON.stringify(lastUpdate));
 
     }
     

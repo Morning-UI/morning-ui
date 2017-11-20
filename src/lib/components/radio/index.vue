@@ -1,7 +1,7 @@
 <template>
     <i-radio
         :_uiid="uiid"
-        :class="[styleClass, stateClass]"
+        :class="[colorClass, stateClass]"
 
         :form-name="formName"
         :form-key="formKey"
@@ -55,9 +55,8 @@
 </template>
  
 <script>
-import Form                         from 'Common/form';
-
-export default Form.extend({
+export default {
+    origin : 'Form',
     name : 'radio',
     props : {
         acceptHtml : {
@@ -69,18 +68,23 @@ export default Form.extend({
             default : () => ({})
         }
     },
+    computed : {
+        _conf : function () {
+
+            return {
+                acceptHtml : this.acceptHtml,
+                list : this.list
+            };
+
+        }
+    },
     data : function () {
 
         return {
-            conf : {
-                acceptHtml : this.acceptHtml,
-                list : this.list
-            },
             data : {}
         };
 
     },
-    computed : {},
     methods : {
         _valueFilter : function (value) {
 
@@ -114,7 +118,7 @@ export default Form.extend({
     },
     created : function () {},
     mounted : function () {}
-});
+};
 </script>
 
 <style lang="less" src="./index.less"></style>

@@ -1,18 +1,17 @@
 <template>
     <i-label
         :_uiid="uiid"
-        :class="[sizeClass, styleClass, stateClass]"
+        :class="[sizeClass, colorClass, stateClass]"
     >
         <slot></slot>
     </i-label>
 </template>
  
 <script>
-import UI                           from 'Common/ui';
-
-export default UI.extend({
+export default {
+    origin : 'UI',
     name : 'label'
-});
+};
 </script>
 
 <style lang="less" src="./index.less"></style>

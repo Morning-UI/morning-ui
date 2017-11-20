@@ -13,11 +13,11 @@
 </template>
  
 <script>
-import UI                           from 'Common/ui';
 import GlobalEvent                  from 'Utils/GlobalEvent';
 import IndexManager                 from 'Utils/IndexManager';
 
-export default UI.extend({
+export default {
+    origin : 'UI',
     name : 'dropdown',
     mixins : [GlobalEvent, IndexManager],
     props : {
@@ -27,6 +27,13 @@ export default UI.extend({
         }
     },
     computed : {
+        _conf : function () {
+
+            return {
+                autoClose : this.autoClose
+            };
+
+        },
         showClass : function () {
 
             return {
@@ -39,9 +46,6 @@ export default UI.extend({
     data : function () {
 
         return {
-            conf : {
-                autoClose : this.autoClose
-            },
             data : {
                 show : false,
                 first : true
@@ -157,7 +161,7 @@ export default UI.extend({
         this._globalEventRemove('click', '_checkArea');
 
     }
-});
+};
 </script>
 
 <style lang="less" src="./index.less"></style>

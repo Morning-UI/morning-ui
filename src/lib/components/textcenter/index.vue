@@ -8,11 +8,10 @@
 </template>
  
 <script>
-import UI                           from 'Common/ui';
-
-export default UI.extend({
+export default {
+    origin : 'UI',
     name : 'textcenter'
-});
+};
 </script>
 
 <style lang="less">
@@ -22,7 +21,7 @@ i-textcenter{
     display: block;
     text-align: center;
 
-    // default statement
+    // default status
     &{}
 }
 </style>

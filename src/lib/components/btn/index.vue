@@ -1,7 +1,7 @@
 <template>
     <i-btn
         :_uiid="uiid"
-        :class="[sizeClass, styleClass, stateClass]"
+        :class="[sizeClass, colorClass, stateClass, moreClass]"
 
         :link="link"
         :js="js"
@@ -11,14 +11,11 @@
         @click="_onClick"
     >
 
-    <template v-if="conf.state === 'loading'">
+    <template v-if="data.lock">
         <i class="morningicon">&#xe703;</i>
         <span><slot></slot></span>
     </template>
-    <template v-else-if="conf.state === 'processing'">
-        <i class="morningicon">&#xe703;</i>
-        <span><slot></slot></span>
-    </template>
+
     <template v-else>
         <slot></slot>
     </template>
@@ -27,9 +24,8 @@
 </template>
  
 <script>
-import UI                           from 'Common/ui';
-
-export default UI.extend({
+export default {
+    origin : 'UI',
     name : 'btn',
     props : {
         link : {
@@ -49,18 +45,30 @@ export default UI.extend({
             default : false
         }
     },
-    data : function () {
+    computed : {
+        _conf : function () {
 
-        return {
-            conf : {
+            return {
                 link : this.link,
                 js : this.js,
                 locked : this.locked,
                 newTab : this.newTab
-            },
+            };
+
+        },
+        moreClass : function () {
+
+            return {
+                loading : this.data.lock
+            };
+
+        }
+    },
+    data : function () {
+
+        return {
             data : {
-                lock : false,
-                lastState : null
+                lock : false
             }
         };
 
@@ -78,11 +86,11 @@ export default UI.extend({
         },
         _emitLock : function () {
 
-            if (typeof this.locked === 'number') {
+            if (typeof this.conf.locked === 'number') {
 
-                this.lock(+this.locked);
+                this.lock(+this.conf.locked);
 
-            } else if (this.locked === true) {
+            } else if (this.conf.locked === true) {
 
                 this.lock();
 
@@ -92,21 +100,13 @@ export default UI.extend({
         unlock : function () {
 
             this.data.lock = false;
-            this.conf.state = this.data.lastState;
 
             return this;
 
         },
         lock : function (time) {
 
-            if (this.data.lock !== true) {
-                
-                this.data.lastState = this.conf.state;
-    
-            }
-
             this.data.lock = true;
-            this.conf.state = 'loading';
 
             if (time) {
 
@@ -127,8 +127,6 @@ export default UI.extend({
         }
     },
     mounted : function () {
-
-        this.data.lastState = this.conf.state;
 
         this._emitLock();
 
@@ -159,7 +157,7 @@ export default UI.extend({
         });
 
     }
-});
+};
 </script>
 
 <style lang="less" src="./index.less"></style>

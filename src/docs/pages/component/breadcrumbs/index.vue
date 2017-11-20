@@ -1,3 +1,4 @@
+<template>
     <doc-component
         :page="page"
         :hasPadding="true"
@@ -29,7 +30,7 @@
     <ui-breadcrumbs :list="list"></ui-breadcrumbs>
     :::
 
-    [[[声明]]]
+    [[[形态]]]
 
     #### 支持
 
@@ -38,6 +39,8 @@
     |尺寸|全部|`m`|
     |色彩|不支持|-|
     |状态|不支持|-|
+
+    <a href="/guide/status.html">查看形态文档</a>
 
     #### 尺寸
     
@@ -55,7 +58,7 @@
     });
     ---
     <div>
-        <ui-breadcrumbs :list="list" xxs root-name="xxs"></ui-breadcrumbs>
+        <ui-breadcrumbs :list="list" size="xxs" root-name="xxs"></ui-breadcrumbs>
     </div>
     :::
     
@@ -73,7 +76,7 @@
     });
     ---
     <div>
-        <ui-breadcrumbs :list="list" xs root-name="xs"></ui-breadcrumbs>
+        <ui-breadcrumbs :list="list" size="xs" root-name="xs"></ui-breadcrumbs>
     </div>
     :::
     
@@ -91,7 +94,7 @@
     });
     ---
     <div>
-        <ui-breadcrumbs :list="list" s root-name="s"></ui-breadcrumbs>
+        <ui-breadcrumbs :list="list" size="s" root-name="s"></ui-breadcrumbs>
     </div>
     :::
     
@@ -109,7 +112,7 @@
     });
     ---
     <div>
-        <ui-breadcrumbs :list="list" m root-name="m"></ui-breadcrumbs>
+        <ui-breadcrumbs :list="list" size="m" root-name="m"></ui-breadcrumbs>
     </div>
     :::
     
@@ -127,7 +130,7 @@
     });
     ---
     <div>
-        <ui-breadcrumbs :list="list" l root-name="l"></ui-breadcrumbs>
+        <ui-breadcrumbs :list="list" size="l" root-name="l"></ui-breadcrumbs>
     </div>
     :::
     
@@ -145,7 +148,7 @@
     });
     ---
     <div>
-        <ui-breadcrumbs :list="list" xl root-name="xl"></ui-breadcrumbs>
+        <ui-breadcrumbs :list="list" size="xl" root-name="xl"></ui-breadcrumbs>
     </div>
     :::
     
@@ -163,7 +166,7 @@
     });
     ---
     <div>
-        <ui-breadcrumbs :list="list" xxl root-name="xxl"></ui-breadcrumbs>
+        <ui-breadcrumbs :list="list" size="xxl" root-name="xxl"></ui-breadcrumbs>
     </div>
     :::
 
