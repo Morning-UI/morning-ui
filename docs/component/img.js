@@ -7,7 +7,7 @@ module.exports = Vue;
 
 /***/ }),
 
-/***/ 591:
+/***/ 596:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17,7 +17,7 @@ var _vue = __webpack_require__(0);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _index = __webpack_require__(592);
+var _index = __webpack_require__(597);
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -32,18 +32,18 @@ new _vue2.default({
 
 /***/ }),
 
-/***/ 592:
+/***/ 597:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(594);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(599);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_4d103158_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(595);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_4d103158_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(600);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(593)
+  __webpack_require__(598)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
@@ -88,14 +88,14 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 593:
+/***/ 598:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 594:
+/***/ 599:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -203,12 +203,14 @@ exports.default = {
 //
 //
 //
+//
+//
 
 module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 595:
+/***/ 600:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -222,7 +224,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "type": "text/markdown"
     }
-  }, [_vm._v("\n# 图片 `<ui-img>`\n\n<doc-component-status page=\"img\"></doc-component-status>\n\n[[[开始]]]\n\n定义图片容器，支持三种不同形状的图片，可为图片添加文字说明。\n\n`ui-img`仅支持下面这些属性：\n\n- src : 图片地址\n- width : 图片宽度\n- height : 图片高度\n- alt : 图片加载失败显示内容\n- title : 图标标题\n\n#### 使用\n\n:::democode/html\n<ui-img src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"></ui-img>\n:::\n\n#### 带文字说明图片\n\n:::democode/html\n<ui-img src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\">说明文字</ui-img>\n:::\n\n#### 不同形状\n\n支持三种：\n\n- `rounded` : 圆角\n- `circle` : 圆形\n- `thumbnail` : 相框\n\n:::democode/html\n<ui-img class=\"rounded\" src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"></ui-img>\n<ui-img class=\"circle\" src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"></ui-img>\n<ui-img class=\"thumbnail\" src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"></ui-img>\n:::\n\n#### 支持的属性\n\n:::democode/html\n<!-- 添加width属性，自动设置图片宽度 -->\n<ui-img width=\"130\" src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"></ui-img>\n\n<!-- 添加height属性，自动设置图片高度 -->\n<ui-img height=\"150\" src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"></ui-img>\n\n<!-- 添加title属性，自动设置图片title -->\n<ui-img title=\"这里是title\" src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"></ui-img>\n\n<!-- 添加alt属性，自动设置图片alt属性，当图片无法显示时候，显示alt内容。 -->\n<ui-img alt=\"这里是alt\" src=\"https://d13yacurqjgar.cloudfront.net/noimg.jpeg\"></ui-img>\n:::\n\n[[[形态]]]\n\n#### 支持\n\n|类型|支持|默认|\n|-|-|-|\n|尺寸|不支持|-|\n|色彩|不支持|-|\n|状态|不支持|-|\n\n\n[[[源码]]]\n\n<iframe src=\"/report/coverage/lib/components/img/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n")])])
+  }, [_vm._v("\n# 图片 `<ui-img>`\n\n<doc-component-status page=\"img\"></doc-component-status>\n\n[[[开始]]]\n\n定义图片容器，支持三种不同形状的图片，可为图片添加文字说明。\n\n`ui-img`仅支持下面这些属性：\n\n- src : 图片地址\n- width : 图片宽度\n- height : 图片高度\n- alt : 图片加载失败显示内容\n- title : 图标标题\n\n#### 使用\n\n:::democode/html\n<ui-img src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"></ui-img>\n:::\n\n#### 带文字说明图片\n\n:::democode/html\n<ui-img src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\">说明文字</ui-img>\n:::\n\n#### 不同形状\n\n支持三种：\n\n- `rounded` : 圆角\n- `circle` : 圆形\n- `thumbnail` : 相框\n\n:::democode/html\n<ui-img class=\"rounded\" src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"></ui-img>\n<ui-img class=\"circle\" src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"></ui-img>\n<ui-img class=\"thumbnail\" src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"></ui-img>\n:::\n\n#### 支持的属性\n\n:::democode/html\n<!-- 添加width属性，自动设置图片宽度 -->\n<ui-img width=\"130\" src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"></ui-img>\n\n<!-- 添加height属性，自动设置图片高度 -->\n<ui-img height=\"150\" src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"></ui-img>\n\n<!-- 添加title属性，自动设置图片title -->\n<ui-img title=\"这里是title\" src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"></ui-img>\n\n<!-- 添加alt属性，自动设置图片alt属性，当图片无法显示时候，显示alt内容。 -->\n<ui-img alt=\"这里是alt\" src=\"https://d13yacurqjgar.cloudfront.net/noimg.jpeg\"></ui-img>\n:::\n\n[[[形态]]]\n\n#### 支持\n\n|类型|支持|默认|\n|-|-|-|\n|尺寸|不支持|-|\n|色彩|不支持|-|\n|状态|不支持|-|\n\n<a href=\"/guide/status.html\">查看形态文档</a>\n\n\n[[[源码]]]\n\n<iframe src=\"/report/coverage/lib/components/img/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n")])])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -237,4 +239,4 @@ if (false) {
 
 /***/ })
 
-},[591]);
+},[596]);

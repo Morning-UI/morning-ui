@@ -23,7 +23,7 @@
     });
     ```
 
-    更多初始化配置见：[基础/初始化](/guide/init.html)。
+    更多初始化配置见：[初始化](/guide/init.html)。
 
     ### 使用组件
 
@@ -101,7 +101,7 @@
     <ui-link js="morning.findVM('demo1').unlock();">解锁</ui-link>
     :::
 
-    组件的方法挂载在组件的Vue实例上，你可以通过`morning.findVM()`来找到组件的实例，详见[全局方法/findVM](/guide/morning.html)。
+    组件的方法挂载在组件的Vue实例上，你可以通过`morning.findVM()`来找到组件的实例，详见[全局方法/findVM](/guide/morning.html#findVMref)。
 
     你可以在组件的文档中找到组件支持的方法。
     

@@ -7,7 +7,7 @@ module.exports = Vue;
 
 /***/ }),
 
-/***/ 696:
+/***/ 701:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17,7 +17,7 @@ var _vue = __webpack_require__(0);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _index = __webpack_require__(697);
+var _index = __webpack_require__(702);
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -32,18 +32,18 @@ new _vue2.default({
 
 /***/ }),
 
-/***/ 697:
+/***/ 702:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(699);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(704);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_ed034498_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(700);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_ed034498_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(705);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(698)
+  __webpack_require__(703)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
@@ -88,14 +88,14 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 698:
+/***/ 703:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 699:
+/***/ 704:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -210,12 +210,14 @@ exports.default = {
 //
 //
 //
+//
+//
 
 module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 700:
+/***/ 705:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -229,7 +231,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "type": "text/markdown"
     }
-  }, [_vm._v("\n# 徽章 `<ui-badge>`\n\n<doc-component-status page=\"badge\"></doc-component-status>\n\n[[[开始]]]\n\n定义一个徽章，徽章一般跟在内容后面，来标记一些特殊的内容(通常是数字)，这是一个内联块元素。\n\n徽章内部只能包含文本内容。\n\n#### 使用\n\n:::democode/html\n<ui-badge>24</ui-badge>\n:::\n\n#### 扁平徽章\n\n:::democode/html\n<ui-badge class=\"flat\">24</ui-badge>\n:::\n\n#### 圆形徽章\n\n:::democode/html\n<ui-badge class=\"circle\">圆形徽章</ui-badge>\n:::\n\n#### 无内容隐藏\n\n当徽章内没有内容时，会自动隐藏。\n\n:::democode/html\n<ui-badge></ui-badge>\n:::\n\n[[[形态]]]\n\n#### 支持\n\n|类型|支持|默认|\n|-|-|-|\n|尺寸|全部|`m`|\n|色彩|全部|`theme`|\n|状态|`normal`<br/>`apparent`|`normal`|\n\n#### 尺寸\n\n:::repeat/html\nsize\n---\n<ui-badge size=\"{$sizeKey}\">{$&sizeName}</ui-badge>\n:::\n\n:::repeat/html\nsize\n---\n<ui-badge class=\"circle\" size=\"{$sizeKey}\">{$&sizeName}</ui-badge>\n:::\n\n#### 色彩\n\n:::preset/html\nstatusColor\n---\nuikey:badge\n:::\n\n#### 状态\n\n:::repeat/html\nstate:normal,apparent\n---\n<ui-badge state=\"{$stateKey}\">{$&stateName}</ui-badge>\n:::\n\n[[[源码]]]\n\n<iframe src=\"/report/coverage/lib/components/badge/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n")])])
+  }, [_vm._v("\n# 徽章 `<ui-badge>`\n\n<doc-component-status page=\"badge\"></doc-component-status>\n\n[[[开始]]]\n\n定义一个徽章，徽章一般跟在内容后面，来标记一些特殊的内容(通常是数字)，这是一个内联块元素。\n\n徽章内部只能包含文本内容。\n\n#### 使用\n\n:::democode/html\n<ui-badge>24</ui-badge>\n:::\n\n#### 扁平徽章\n\n:::democode/html\n<ui-badge class=\"flat\">24</ui-badge>\n:::\n\n#### 圆形徽章\n\n:::democode/html\n<ui-badge class=\"circle\">圆形徽章</ui-badge>\n:::\n\n#### 无内容隐藏\n\n当徽章内没有内容时，会自动隐藏。\n\n:::democode/html\n<ui-badge></ui-badge>\n:::\n\n[[[形态]]]\n\n#### 支持\n\n|类型|支持|默认|\n|-|-|-|\n|尺寸|全部|`m`|\n|色彩|全部|`theme`|\n|状态|`normal`<br/>`apparent`|`normal`|\n\n<a href=\"/guide/status.html\">查看形态文档</a>\n\n#### 尺寸\n\n:::repeat/html\nsize\n---\n<ui-badge size=\"{$sizeKey}\">{$&sizeName}</ui-badge>\n:::\n\n:::repeat/html\nsize\n---\n<ui-badge class=\"circle\" size=\"{$sizeKey}\">{$&sizeName}</ui-badge>\n:::\n\n#### 色彩\n\n:::preset/html\nstatusColor\n---\nuikey:badge\n:::\n\n#### 状态\n\n:::repeat/html\nstate:normal,apparent\n---\n<ui-badge state=\"{$stateKey}\">{$&stateName}</ui-badge>\n:::\n\n[[[源码]]]\n\n<iframe src=\"/report/coverage/lib/components/badge/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n")])])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -244,4 +246,4 @@ if (false) {
 
 /***/ })
 
-},[696]);
+},[701]);

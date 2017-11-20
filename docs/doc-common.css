@@ -873,6 +873,13 @@ i-dialog a:hover {
 .content .content-title {
   display: none;
 }
+.content .permalink {
+  color: #9F9F9F;
+  transform: scale(0.9);
+  display: inline-block;
+  transform-origin: bottom;
+  margin-right: -0.15em;
+}
 .demo {
   padding: 10px;
   box-sizing: border-box;

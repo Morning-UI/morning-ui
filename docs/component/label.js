@@ -7,7 +7,7 @@ module.exports = Vue;
 
 /***/ }),
 
-/***/ 576:
+/***/ 581:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17,7 +17,7 @@ var _vue = __webpack_require__(0);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _index = __webpack_require__(577);
+var _index = __webpack_require__(582);
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -32,18 +32,18 @@ new _vue2.default({
 
 /***/ }),
 
-/***/ 577:
+/***/ 582:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(579);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(584);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_31e80fc5_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(580);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_31e80fc5_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(585);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(578)
+  __webpack_require__(583)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
@@ -88,14 +88,14 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 578:
+/***/ 583:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 579:
+/***/ 584:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -234,12 +234,14 @@ exports.default = {
 //
 //
 //
+//
+//
 
 module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 580:
+/***/ 585:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -253,7 +255,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "type": "text/markdown"
     }
-  }, [_vm._v("\n# 标签 `<ui-label>`\n\n<doc-component-status page=\"label\"></doc-component-status>\n\n[[[开始]]]\n\n定义一个标签，标签和徽章不同在于标签可以插入图片或图标，这是一个内联块元素。\n\n徽章一般单独使用，而标签一般多个一起使用。\n\n#### 使用\n\n:::democode/html\n<ui-label>标签</ui-label>\n:::\n\n#### 使用图片\n\n为`ui-label`加上`image`类，然后在标签内通过`<img>`标签插入图片，此时标签文本请使用`<span>`标签。\n\n> 注意：使用时请确保`<span>`和`<img>`标签之间有空格。\n\n\n:::democode/html\n<ui-label class=\"image\">\n    <img src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"/>\n    <span>标签</span>\n</ui-label>\n\n<ui-label class=\"image\">\n    <span>标签</span>\n    <img src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"/>\n</ui-label>\n:::\n\n#### 使用图标\n\n为`ui-label`加上`icon`类，然后在标签内通过`<i class=\"iconfont\">`标签插入图标，此时标签文本请使用`<span>`标签。\n\n> 注意：使用时请确保`<span>`和`<img>`标签之间有空格。\n\n\n:::democode/html\n<ui-label class=\"icon\">\n    <i class=\"iconfont\">&#xe6e2;</i>\n    <span>标签</span>\n</ui-label>\n\n<ui-label class=\"icon\">\n    <span>标签</span>\n    <i class=\"iconfont\">&#xe6e2;</i>\n</ui-label>\n:::\n\n[[[形态]]]\n\n#### 支持\n\n|类型|支持|默认|\n|-|-|-|\n|尺寸|全部|`m`|\n|色彩|全部|`theme`|\n|状态|`normal`<br/>`apparent`|`normal`|\n\n#### 尺寸\n\n:::repeat/html\nsize\n---\n<ui-label size=\"{$sizeKey}\">{$&sizeName}</ui-label>\n:::\n\n:::repeat/html\nsize\n---\n<ui-label class=\"icon\" size=\"{$sizeKey}\"><i class=\"iconfont\">&#xe6e2;</i> <span>{$&sizeName}</span></ui-label>\n:::\n\n:::repeat/html\nsize\n---\n<ui-label class=\"image\" size=\"{$sizeKey}\"><img src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"/> <span>{$&sizeName}</span></ui-label>\n:::\n\n#### 色彩\n\n:::preset/html\nstatusColor\n---\nuikey:label\n:::\n\n#### 状态\n\n:::repeat/html\nstate:normal,apparent\n---\n<ui-label state=\"{$stateKey}\">{$&stateName}</ui-label>\n:::\n\n[[[源码]]]\n\n<iframe src=\"/report/coverage/lib/components/label/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n")])])
+  }, [_vm._v("\n# 标签 `<ui-label>`\n\n<doc-component-status page=\"label\"></doc-component-status>\n\n[[[开始]]]\n\n定义一个标签，标签和徽章不同在于标签可以插入图片或图标，这是一个内联块元素。\n\n徽章一般单独使用，而标签一般多个一起使用。\n\n#### 使用\n\n:::democode/html\n<ui-label>标签</ui-label>\n:::\n\n#### 使用图片\n\n为`ui-label`加上`image`类，然后在标签内通过`<img>`标签插入图片，此时标签文本请使用`<span>`标签。\n\n> 注意：使用时请确保`<span>`和`<img>`标签之间有空格。\n\n\n:::democode/html\n<ui-label class=\"image\">\n    <img src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"/>\n    <span>标签</span>\n</ui-label>\n\n<ui-label class=\"image\">\n    <span>标签</span>\n    <img src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"/>\n</ui-label>\n:::\n\n#### 使用图标\n\n为`ui-label`加上`icon`类，然后在标签内通过`<i class=\"iconfont\">`标签插入图标，此时标签文本请使用`<span>`标签。\n\n> 注意：使用时请确保`<span>`和`<img>`标签之间有空格。\n\n\n:::democode/html\n<ui-label class=\"icon\">\n    <i class=\"iconfont\">&#xe6e2;</i>\n    <span>标签</span>\n</ui-label>\n\n<ui-label class=\"icon\">\n    <span>标签</span>\n    <i class=\"iconfont\">&#xe6e2;</i>\n</ui-label>\n:::\n\n[[[形态]]]\n\n#### 支持\n\n|类型|支持|默认|\n|-|-|-|\n|尺寸|全部|`m`|\n|色彩|全部|`theme`|\n|状态|`normal`<br/>`apparent`|`normal`|\n\n<a href=\"/guide/status.html\">查看形态文档</a>\n\n#### 尺寸\n\n:::repeat/html\nsize\n---\n<ui-label size=\"{$sizeKey}\">{$&sizeName}</ui-label>\n:::\n\n:::repeat/html\nsize\n---\n<ui-label class=\"icon\" size=\"{$sizeKey}\"><i class=\"iconfont\">&#xe6e2;</i> <span>{$&sizeName}</span></ui-label>\n:::\n\n:::repeat/html\nsize\n---\n<ui-label class=\"image\" size=\"{$sizeKey}\"><img src=\"https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg\"/> <span>{$&sizeName}</span></ui-label>\n:::\n\n#### 色彩\n\n:::preset/html\nstatusColor\n---\nuikey:label\n:::\n\n#### 状态\n\n:::repeat/html\nstate:normal,apparent\n---\n<ui-label state=\"{$stateKey}\">{$&stateName}</ui-label>\n:::\n\n[[[源码]]]\n\n<iframe src=\"/report/coverage/lib/components/label/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n")])])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -268,4 +270,4 @@ if (false) {
 
 /***/ })
 
-},[576]);
+},[581]);
