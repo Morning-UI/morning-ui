@@ -32,7 +32,7 @@
 
     #### getGroup(groupName)
 
-    获取一组表单的数值，详见：[表单](/guide/form.html)中的表单组章节。
+    获取一组表单的数值，详见：[表单组](/guide/form.html#表单组)。
 
     ##### 参数
 
@@ -46,7 +46,7 @@
 
     #### getGroupJson(groupName)
 
-    获取一组表单的数值(JSON)，详见：[表单](/guide/form.html)中的表单组章节。
+    获取一组表单的数值(JSON)，详见：[表单组](/guide/form.html#表单组)。
 
     ##### 参数
 
@@ -60,7 +60,7 @@
 
     #### setGroup(groupName, dataObject)
 
-    设置一组表单的数值(采用JSON)，详见：[表单](/guide/form.html)中的表单组章节。
+    设置一组表单的数值(采用JSON)，详见：[表单组](/guide/form.html#表单组)。
 
     ##### 参数
 
@@ -75,7 +75,7 @@
 
     #### setGroupJson(groupName, dataJson)
 
-    设置一组表单的数值(采用JSON)，详见：[表单](/guide/form.html)中的表单组章节。
+    设置一组表单的数值(采用JSON)，详见：[表单组](/guide/form.html#表单组)。
 
     ##### 参数
 
