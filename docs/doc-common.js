@@ -34,7 +34,7 @@
 /******/
 /******/ 	// objects to store loaded and loading chunks
 /******/ 	var installedChunks = {
-/******/ 		81: 0
+/******/ 		82: 0
 /******/ 	};
 /******/
 /******/ 	// The require function
@@ -4300,6 +4300,7 @@ exports.default = {
         组件文档: '/guide/componentdoc.html',
         初始化: '/guide/init.html',
         形态: '/guide/status.html',
+        配色: '/guide/uniformcolor.html',
         样式类: '/guide/styleclass.html',
         配置: '/guide/config.html',
         方法: '/guide/method.html',
@@ -32619,7 +32620,12 @@ if (false) {
 /* 718 */,
 /* 719 */,
 /* 720 */,
-/* 721 */
+/* 721 */,
+/* 722 */,
+/* 723 */,
+/* 724 */,
+/* 725 */,
+/* 726 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(269)(undefined);
@@ -32633,13 +32639,13 @@ exports.push([module.i, "/*\n * Hopscotch\n * by Jan T. Sott\n * https://github.
 
 
 /***/ }),
-/* 722 */
+/* 727 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "iconfont.woff";
 
 /***/ }),
-/* 723 */
+/* 728 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
