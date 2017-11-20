@@ -24,9 +24,10 @@
 
     - `0.10.0` : <ui-badge size="xxs" color="success">DONE</ui-badge>Morning UI的首个版本
     - `0.11.0` : <ui-badge size="xxs" color="gray">PLAN</ui-badge>支持构建自定义的组件库
-    - `0.12.0` : <ui-badge size="xxs" color="gray">PLAN</ui-badge>完成所有组件的测试覆盖
-    - `1.0.0` : <ui-badge size="xxs" color="gray">PLAN</ui-badge>组件补全，当Morning UI同步完HMP UI的所有版本之后发布，计划2018年春季发布
-    - `1.10.0` : <ui-badge size="xxs" color="gray">PLAN</ui-badge>着重优化性能，当所有组件完成性能提升后，发布此版本，计划2018年秋季发布
+    - `0.12.0` : <ui-badge size="xxs" color="gray">PLAN</ui-badge>组件补全，当Morning UI同步完HMP UI的所有版本之后发布
+    - `0.13.0` : <ui-badge size="xxs" color="gray">PLAN</ui-badge>完成所有组件的测试覆盖
+    - `1.0.0` : <ui-badge size="xxs" color="gray">PLAN</ui-badge>完成所有HMP UI的组件，并稳定两个月后发布，计划2018年春季发布
+    - `1.1.0` : <ui-badge size="xxs" color="gray">PLAN</ui-badge>完成所有组件的性能优化后发布此版本，计划2018年秋季发布
 
     </script>
     </doc-guide>
