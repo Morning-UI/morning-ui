@@ -99,6 +99,195 @@ textarea {
 .move-drag-item {
   position: fixed !important;
 }
+.morning-co-font-theme {
+  color: #F33D5D;
+}
+.morning-co-font-light-theme {
+  color: #F86F88;
+}
+.morning-co-font-dark-theme {
+  color: #D22343;
+}
+.morning-co-font-success {
+  color: #4DBD67;
+}
+.morning-co-font-warning {
+  color: #F0AD4E;
+}
+.morning-co-font-danger {
+  color: #D64431;
+}
+.morning-co-font-primary {
+  color: #2185D0;
+}
+.morning-co-font-minor {
+  color: #A9A9A9;
+}
+.morning-co-font-info {
+  color: #03A6B9;
+}
+.morning-co-font-black {
+  color: #17212D;
+}
+.morning-co-font-light-black {
+  color: #303C4B;
+}
+.morning-co-font-extra-light-black {
+  color: #45505C;
+}
+.morning-co-font-blue {
+  color: #7C8BA0;
+}
+.morning-co-font-light-blue {
+  color: #8E9CAF;
+}
+.morning-co-font-extra-light-blue {
+  color: #A8B3C2;
+}
+.morning-co-font-silver {
+  color: #D6DDE5;
+}
+.morning-co-font-light-silver {
+  color: #E2E8EE;
+}
+.morning-co-font-extra-light-silver {
+  color: #EDF1F5;
+}
+.morning-co-font-gray {
+  color: #E6E6E6;
+}
+.morning-co-font-light-gray {
+  color: #F0F0F0;
+}
+.morning-co-font-white {
+  color: #FFFFFF;
+}
+.morning-co-border-theme {
+  border-color: #F33D5D;
+}
+.morning-co-border-theme {
+  border-color: #F86F88;
+}
+.morning-co-border-theme {
+  border-color: #D22343;
+}
+.morning-co-border-success {
+  border-color: #4DBD67;
+}
+.morning-co-border-warning {
+  border-color: #F0AD4E;
+}
+.morning-co-border-danger {
+  border-color: #D64431;
+}
+.morning-co-border-primary {
+  border-color: #2185D0;
+}
+.morning-co-border-minor {
+  border-color: #A9A9A9;
+}
+.morning-co-border-info {
+  border-color: #03A6B9;
+}
+.morning-co-border-black {
+  border-color: #17212D;
+}
+.morning-co-border-light-black {
+  border-color: #303C4B;
+}
+.morning-co-border-extra-light-black {
+  border-color: #45505C;
+}
+.morning-co-border-blue {
+  border-color: #7C8BA0;
+}
+.morning-co-border-light-blue {
+  border-color: #8E9CAF;
+}
+.morning-co-border-extra-light-blue {
+  border-color: #A8B3C2;
+}
+.morning-co-border-silver {
+  border-color: #D6DDE5;
+}
+.morning-co-border-light-silver {
+  border-color: #E2E8EE;
+}
+.morning-co-border-extra-light-silver {
+  border-color: #EDF1F5;
+}
+.morning-co-border-gray {
+  border-color: #E6E6E6;
+}
+.morning-co-border-light-gray {
+  border-color: #F0F0F0;
+}
+.morning-co-border-white {
+  border-color: #FFFFFF;
+}
+.morning-co-bg-theme {
+  background-color: #F33D5D;
+}
+.morning-co-bg-theme {
+  background-color: #F86F88;
+}
+.morning-co-bg-theme {
+  background-color: #D22343;
+}
+.morning-co-bg-success {
+  background-color: #4DBD67;
+}
+.morning-co-bg-warning {
+  background-color: #F0AD4E;
+}
+.morning-co-bg-danger {
+  background-color: #D64431;
+}
+.morning-co-bg-primary {
+  background-color: #2185D0;
+}
+.morning-co-bg-minor {
+  background-color: #A9A9A9;
+}
+.morning-co-bg-info {
+  background-color: #03A6B9;
+}
+.morning-co-bg-black {
+  background-color: #17212D;
+}
+.morning-co-bg-light-black {
+  background-color: #303C4B;
+}
+.morning-co-bg-extra-light-black {
+  background-color: #45505C;
+}
+.morning-co-bg-blue {
+  background-color: #7C8BA0;
+}
+.morning-co-bg-light-blue {
+  background-color: #8E9CAF;
+}
+.morning-co-bg-extra-light-blue {
+  background-color: #A8B3C2;
+}
+.morning-co-bg-silver {
+  background-color: #D6DDE5;
+}
+.morning-co-bg-light-silver {
+  background-color: #E2E8EE;
+}
+.morning-co-bg-extra-light-silver {
+  background-color: #EDF1F5;
+}
+.morning-co-bg-gray {
+  background-color: #E6E6E6;
+}
+.morning-co-bg-light-gray {
+  background-color: #F0F0F0;
+}
+.morning-co-bg-white {
+  background-color: #FFFFFF;
+}
 
 i-h {
   display: block;
