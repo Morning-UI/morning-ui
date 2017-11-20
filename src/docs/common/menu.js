@@ -91,6 +91,7 @@ export default {
         组件文档 : '/guide/componentdoc.html',
         初始化 : '/guide/init.html',
         形态 : '/guide/status.html',
+        配色 : '/guide/uniformcolor.html',
         样式类 : '/guide/styleclass.html',
         配置 : '/guide/config.html',
         方法 : '/guide/method.html',
