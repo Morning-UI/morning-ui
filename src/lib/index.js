@@ -20,7 +20,7 @@ let morning = {
     _groupData : {},
     _groupVmMap : {},
     isMorning : true,
-    version : '0.10.6',
+    version : '0.10.8',
     map : {}
 };
 
@@ -146,6 +146,33 @@ morning.install = function (Vue, options) {
     }
 
     Vue.config.ignoredElements = this._ignoreElements;
+
+    let vueRender = (el, binding) => {
+
+        let tagName = el.tagName;
+        let $vue = new Vue({
+            template : `<${tagName}>${binding.value.template}</${tagName}>`
+        });
+
+        $vue.$mount();
+
+        let $childs = $vue.$el.childNodes;
+        let $child;
+
+        el.innerHTML = '';
+
+        while (($child = $childs[0])) {
+
+            el.appendChild($child);
+
+        }
+
+    };
+
+    Vue.directive('render', {
+        inserted : vueRender,
+        update : vueRender
+    });
 
     return this;
 

@@ -38,9 +38,12 @@ i-select{
 
         > i-multiinput{
             margin: 0;
-            width: ~'calc( 100% - 30px )';
+            width: ~'calc( 100% - 30px - 2em)';
             background-color: #FFF;
             vertical-align: top;
+            min-height: @formHeight - 2px;
+            left: 0.35em;
+            font-size: @fontSize*0.875;
 
             .itemlist{
                 border: none;
@@ -67,8 +70,8 @@ i-select{
 
             img,
             i-img {
-                height: 2em;
-                width: 2em;
+                height: 2em !important;
+                width: 2em !important;
                 margin-right: 0.5em;
                 vertical-align: middle;
             }
@@ -272,7 +275,7 @@ i-select{
         }
     }
 
-    // default statement
+    // default status
     &{
         .st-normal;
     }

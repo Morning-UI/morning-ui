@@ -6,11 +6,11 @@
     <script type="text/markdown">
     # 配置
 
-    配置可以为组件提供不同的JS逻辑或样式。只有交互和表单组件支持配置，因为布局组件不支持JS逻辑。
+    配置可以为组件提供不同的JS逻辑或样式。只有交互和表单组件支持配置，因为样式组件不支持JS逻辑。
 
-    配置与声明的区别：
+    配置与形态的区别：
 
-    - 声明是一种通用的组件属性，可以区分样式及JS逻辑，有一套全局的规范，大部分组件都支持。
+    - 形态是一种通用的组件属性，可以区分样式及JS逻辑，有一套全局的规范，大部分组件都支持。
     - 不通的组件可以有不同的配置，常用于区分JS逻辑，也可以区分样式，全局仅在命名上有规范，只有交互和表单组件支持。
 
     ### 初始化配置
@@ -67,12 +67,14 @@
     </div>
     :::
 
-    ### 单次初始化
+    ### 单向数据流
 
-    使用`v-bind`初始化配置时，要注意的是虽然采用了`v-bind`语法，但是这里传入的`link`配置仅用于初始化，这意味着：
+    配置是基于Vue的[Prop](https://cn.vuejs.org/v2/guide/components.html#Prop)实现的，所以具有`Prop`的特性。
 
-    - 当组件的配置`link`发生变更时，并不会同步到父VM的`link`中
-    - 当父VM的`link`发生变更时，也不会同步到组件的配置`link`中
+    使用`v-bind`初始化配置时，配置会和父实例的数据发生变化时，将传导给组件的配置，但是反过来不会。在上面的示例中这意味着：
+
+    - 当组件的配置`link`发生变更时，并不会同步到父实例的`link`中
+    - 当父实例的`link`发生变更时，会同步到组件的配置`link`中
 
     :::vue/html
     var demo2 = new Vue({
@@ -83,13 +85,15 @@
         }
     });
 
-    // 通过组件的`setConf`方法改变配置，父VM获取不到变化的配置
-    morning.findVM('demo2').setConf('link', 'https://www.baidu.com');
+    // 组件的配置`link`改变时，父实例获取不到变化的配置
+    morning.findVM('demo2').conf.link = 'https://www.baidu.com';
     console.log('demo2.console1', demo2.link); // `https://www.google.com`
 
-    // 父VM`link`的改变也不会同步到组件的配置中
+    // 父实例的`link`改变会同步到组件的配置中
     demo2.link = 'https://bing.com';
-    console.log('demo2.console2', morning.findVM('demo2').getConf('link')); // `https://www.baidu.com`
+    Vue.nextTick(() => {
+        console.log('demo2.console2', morning.findVM('demo2').getConf().link); // `https://bing.com`
+    });
     ---
     <div>
         <!-- 通过v-bind为ui-btn设置link -->
@@ -97,17 +101,15 @@
     </div>
     :::
 
-    ### 配置生命周期
+    下面有张图可以帮助你更好的理解上面的概念：
 
-    下图是整个组件配置的生命周期，可以帮助你更好的理解上面的概念：
-
-    <img src="https://h0.hucdn.com/open/201736/5c4e0e68a9f4c192_1370x851.png" width="600" alt="">
-
-    `props`在组件`mounted`时会被初始化成`vm.conf`，所以之后无论是`props`或`vm.conf`更改互相之间都不会同步。应该使用`setConf()`/`getConf()`方法来设置和获取配置。
+    <img src="http://h0.hucdn.com/open/201746/cd9651aaab8bcc76_1300x213.png" width="650" alt="">
+    
+    父实例的配置变化时，会引起`Prop`的变化，`Prop`的变化会同步到组件的配置`vm.conf`中。
 
     ### 获取配置
 
-    获取组件的配置应该使用组件上的`getConf()`方法，这是因为组件配置在初始化之后可能会被组件内部的逻辑修改，也可能被`setConf()`方法重新设置。
+    获取组件的配置应该使用组件上的`getConf()`方法，这个方法会对组件的配置进行一次拷贝然后返回，避免对配置的意外修改。
 
     #### getConf([name])
     
@@ -120,36 +122,6 @@
     ##### 返回值
 
     单项配置数值，或包含所有配置的对象，键名是配置的名称，键值是配置的数值。返回的配置内容经过拷贝，所以修改返回值并不会影响组件当前的配置。
-
-    ### 设置配置
-
-    当组件初始化完成后，组件的`Props`变更将不再影响组件配置。这时可以通过组件的`setConf()`方法来再次设置组件的配置。
-
-    #### setConf(nameOrObj, [value])
-    
-    ##### 参数
-
-    |参数|可选|描述|类型|
-    |-|-|-|-|
-    |nameOrObj|NO|若此参数是一个对象，会遍历整个对象的key/value，并以key为配置的名称进行设置。若此参数是字符串，则以此参数作为配置的名称，`value`参数作为配置的数值进行设置。|`object` `string`|
-    |value|YES|当`nameOrObj`为字符串时，此参数作为配置的数值进行设置。|Any|
-
-    ##### 返回值
-
-    不管成功与否都将返回组件的vm对象。
-
-    ##### 示例
-
-    ```js
-    // 设置单个配置
-    vm.setConf('link', 'https://baidu.com');
-
-    // 设置多个配置
-    vm.setConf({
-        link : 'https://baidu.com',
-        newTab : true
-    });
-    ```
 
     ### 配置属性
 
@@ -172,7 +144,10 @@
     配置在全局有一套命名规范，这样是为了防止不同的组件对于某个名词理解不同，导致同一名词在不同组件的不同行为。
 
     在为组件添加配置前应先检查下面的列表，是否有含义相同的配置，若有请使用，若没有请将新的配置添加到下面列表并注明它的含义。
-
+    
+    - `size` : 尺寸
+    - `color` : 颜色
+    - `state` : 状态
     - `link` : 链接
     - `js` : JS代码
     - `locked` : 锁定
@@ -222,6 +197,19 @@
     - `batch-reg` : 批量输入正则表达式
     - `batch-filler` : 批量输入填充
     - `batch-uniq` : 批量输入去重
+    - `empty-cell-value` : 空单元格的数值
+    - `title` : 标题
+    - `zebra-pattern` : 斑马线
+    - `vertical-border` : 竖向边框
+    - `horizontal-border` : 横向边框
+    - `align` : 对齐
+    - `show-col-name` : 显示列名称
+    - `fixed-title-col` : 固定标题列
+    - `col-set` : 列设置
+    - `row-set` : 行设置
+    - `cell-set` : 单元格设置
+    - `export-csv` : 导出CSV文件
+    - `csv-name` : CSV文件的名称
 
     </script>
     </doc-guide>

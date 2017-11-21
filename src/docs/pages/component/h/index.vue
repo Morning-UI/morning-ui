@@ -19,7 +19,7 @@
     <ui-h>标题</ui-h>
     :::
 
-    [[[声明]]]
+    [[[形态]]]
 
     #### 支持
 
@@ -29,18 +29,20 @@
     |色彩|全部|`black`|
     |状态|`normal`<br/>`apparent`|`normal`|
 
+    <a href="/guide/status.html">查看形态文档</a>
+
     #### 尺寸
     
     :::repeat/html
     size
     ---
-    <ui-h {$sizeKey}>{$&sizeName}</ui-h>
+    <ui-h size="{$sizeKey}">{$&sizeName}</ui-h>
     :::
 
     #### 色彩
 
     :::preset/html
-    statementColor
+    statusColor
     ---
     uikey:h
     :::
@@ -50,7 +52,7 @@
     :::repeat/html
     state:normal,apparent
     ---
-    <ui-h {$stateKey}>{$&stateName}</ui-h>
+    <ui-h state="{$stateKey}">{$&stateName}</ui-h>
     :::
 
     [[[源码]]]
@@ -65,6 +67,7 @@ import DocComponent                from 'Docs/common/DocComponent.vue';
 
 export default {
     data : function () {
+
         return {
             page : 'h'
         };
@@ -72,9 +75,6 @@ export default {
     },
     components : {
         'doc-component' : DocComponent
-    },
-    mounted : function () {
-        window.a = this;
     }
 };
 </script>

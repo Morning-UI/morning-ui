@@ -27,13 +27,13 @@
     - 组件生成的HTML，最外层容器使用这样的标签：`<i-[name]>`，其中`name`是组件的名称
     - 每个组件必须包含两个文件：`index.vue`和`index.less`
     - 除了表单组件之外的组件继承了`UI`类，表单组件继承了`Form`类
-    - 在组件根标签的class中正确的绑定了支持的声明，完整示例：`:class="[sizeClass, styleClass, stateClass]"`
-    - CSS中有支持的声明样式
-    - 所有支持的声明，有默认样式，比如：
+    - 在组件根标签的class中正确的绑定了支持的形态，完整示例：`:class="[sizeClass, colorClass, stateClass]"`
+    - CSS中有支持的形态样式
+    - 所有支持的形态，有默认样式，比如：
     ```less
     &{
         .si-m;
-        .sy-theme;
+        .co-theme;
         .st-normal;
     }
     ```
@@ -41,20 +41,20 @@
     - 通过ESLint及StyleLint<ui-badge xxs class="circle">AUTO</ui-badge>
     - 在`lib/components/index.js`中导出了组件
     - 确保代码不受压缩的影响
-    - 样式类的命名符合[样式类全局命名规范](/guide/styleclass.html)
+    - 样式类的命名符合[样式类全局命名规范](/guide/styleclass.html#样式类全局命名规范)
     - 组件支持Vue.js的`in-DOM`模板
     - 组件内依赖其它组件，使用`morning-`前缀，比如依赖按钮使用：`morning-btn`
-    - 支持声明的情况下，需要添加声明的样式
+    - 支持形态的情况下，需要添加形态的样式
     - 组件内所有的色彩以`common/var.less`中`@color`开头的变量为基础，可以修改亮度
     - 组件内的尺寸应尽量使用`common/var.less`中`@fontSize`变量为基础
     - 组件内的尺寸单位首选`em`
-    - LESS中的`id`、`class`、函数命名采用中划线命名(声明的命名除外)<ui-badge xxs class="circle">AUTO</ui-badge>
-    - 声明在LESS中的书写顺序为：尺寸、颜色、状态
+    - LESS中的`id`、`class`、函数命名采用中划线命名<ui-badge xxs class="circle">AUTO</ui-badge>
+    - 形态在LESS中的书写顺序为：尺寸、颜色、状态
     - 组件的公开方法若不需要返回值，则返回当前`vm`实例
 
     #### 交互组件
 
-    - 配置的命名符合[配置全局命名规范](/guide/config.html)
+    - 配置的命名符合[配置全局命名规范](/guide/config.html#配置全局命名规范)
     - 添加`document`或全局级别的事件使用`utils/GlobalEvent.js`
     - 拖拽逻辑使用`utils/Move.js`
     - 弹出逻辑使用`utils/PopupManager.js`
@@ -67,8 +67,8 @@
 
     - 表单组件继承了`Form`类
     - 表单组件的边框/背景颜色需要使用统一的颜色
-    - 方法的命名符合[方法全局命名规范](/guide/method.html)
-    - 事件的命名符合[事件全局命名规范](/guide/event.html)
+    - 方法的命名符合[方法全局命名规范](/guide/method.html#方法全局命名规范)
+    - 事件的命名符合[事件全局命名规范](/guide/event.html#事件全局命名规范)
     - 需要添加`_valueFilter`方法来处理数值过滤
     - 在模板中绑定以下的`props`:`form-name`、`form-key`、`group`、`default-value`、`hide-name`
     - 组件模板中包含显示`form-name`的位置
@@ -76,7 +76,7 @@
     - 表单高度应尽量使用`common/var.less`中`@formHeight`变量为基础
     - 表单边框、背景、文字等色彩以`common/var.less`中`@colorForm`开头的变量为基础，可以修改亮度
     - 表单的值可被JSON序列化
-    - 支持状态声明中的`normal`和`disabled`
+    - 支持状态形态中的`normal`和`disabled`
     - 支持以下这些配置：`form-name`、`form-key`、`group`、`default-value`、`hide-name`
     - 支持以下这些方法：`.set`、`.get`、`.setName`、`.getName`、`.setKey`、`.getKey`、`.setGroup`、`.getGroup`、`.addGroup`、`.removeGroup`
     - 支持`value-change`事件
@@ -85,14 +85,14 @@
 
     #### 通用
 
-    - 文档包含：标题、组件状态栏、开始、声明、源码
+    - 文档包含：标题、组件状态栏、开始、形态、源码
     - 组件标题及HTML标签正确
     - 组件介绍跟在`开始`标签后面，清晰明白。如有必要可以追加详细说明。
     - `开始`中应该包含组件中所有样式类的名称、说明、演示
     - `使用`演示必须是最简单的，如需要可补充说明
-    - `声明`中注明声明的支持情况，若不是全部支持，需要列出支持的项目
-    - `声明`中的演示需要包含支持声明的每一种值示例，且示例遵循最小化原则(不要多种声明混合用，除非演示需要)，如需要可补充示例说明
-    - `声明`中色彩演示部分，主题/功能/杂项色彩应该分区展示
+    - `形态`中注明形态的支持情况，若不是全部支持，需要列出支持的项目
+    - `形态`中的演示需要包含支持形态的每一种值示例，且示例遵循最小化原则(不要多种形态混合用，除非演示需要)，如需要可补充示例说明
+    - `形态`中色彩演示部分，主题/功能/杂项色彩应该分区展示
     - 文档中代码演示部分应该具有较高的可读性，如果代码量较多需要加入适量的空行
     - 新增的样式类、配置、方法、事件命名需要加到全局命名规范中
     - 演示代码与展示源码保持一致，且两个区域是连在一起的
@@ -100,7 +100,7 @@
 
     #### 交互组件
 
-    - 文档包含：标题、组件状态栏、开始、声明、配置、方法、事件、源码
+    - 文档包含：标题、组件状态栏、开始、形态、配置、方法、事件、源码
     - 事件/生命周期事件中名称正确
     - 文档表格中`默认值`需要加反引号，如果是字符串需要再加引号
     - 文档表格中`值类型`一行一个，不需要加反引号
@@ -110,8 +110,8 @@
 
     #### 表单组件
 
-    - 文档包含：标题、组件状态栏、开始、声明、配置、方法、事件、表单值、源码
-    - 具有状态声明中的`normal`和`disabled`的演示
+    - 文档包含：标题、组件状态栏、开始、形态、配置、方法、事件、表单值、源码
+    - 具有状态形态中的`normal`和`disabled`的演示
     - 具有以下这些配置演示：`form-name`、`form-key`、`group`、`default-value`、`hide-name`
     - 具有以下这些方法演示：`.set`、`.get`、`.setName`、`.getName`、`.setKey`、`.getKey`、`.setGroup`、`.getGroup`、`.addGroup`、`.removeGroup`
     - 具有`value-change`事件演示

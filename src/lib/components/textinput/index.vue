@@ -70,19 +70,16 @@ export default {
             default : undefined
         }
     },
-    data : function () {
+    computed : {
+        _conf : function () {
 
-        return {
-            conf : {
+            return {
                 hideValue : this.hideValue,
                 prepend : this.prepend,
                 append : this.append
-            },
-            data : {}
-        };
+            };
 
-    },
-    computed : {
+        },
         inputType : function () {
 
             if (this.conf.hideValue) {
@@ -119,6 +116,13 @@ export default {
             };
 
         }
+    },
+    data : function () {
+
+        return {
+            data : {}
+        };
+
     },
     methods : {
         _valueFilter : function (value) {

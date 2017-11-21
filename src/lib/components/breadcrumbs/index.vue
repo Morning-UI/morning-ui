@@ -63,15 +63,21 @@ export default {
             default : maxHistoryNum
         }
     },
-    data : function () {
+    computed : {
+        _conf : function () {
 
-        return {
-            conf : {
+            return {
                 rootName : this.rootName,
                 chooseRoot : this.chooseRoot,
                 list : this.list,
                 maxHistory : this.maxHistory
-            },
+            };
+
+        }
+    },
+    data : function () {
+
+        return {
             data : {
                 historys : [],
                 lvlist : [],
@@ -213,11 +219,30 @@ export default {
 
         });
 
-        for (let item of this.conf.list) {
+        this.$watch('conf.list', () => {
 
-            this.data.lvlist.push(item);
+            this.setLevel(this.conf.list);
 
-        }
+        }, {
+            immediate : true,
+            deep : true
+        });
+
+        this.$watch('conf.maxHistory', () => {
+
+            let diff = this.data.historys.length - this.conf.maxHistory;
+
+            if (diff > 0) {
+
+                while (diff-- > 0) {
+
+                    this.data.historys.shift();
+
+                }
+
+            }
+
+        });
 
         this._recordHistory();
 

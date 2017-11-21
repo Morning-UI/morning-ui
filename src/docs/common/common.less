@@ -21,6 +21,32 @@
     margin-bottom: 10px;
 }
 
+.markdown-body i-table table{
+    margin-top: initial;
+    margin-bottom: initial;
+    display: table;
+    width: initial;
+    overflow: initial;
+}
+
+.markdown-body i-table table tr{
+    border-top: initial;
+}
+
+.markdown-body i-table table tr:nth-child(2n){
+    background-color: #FAFAFA;
+}
+
+.markdown-body i-table table *{
+    box-sizing: inherit;
+}
+
+.markdown-body i-table table th,
+.markdown-body i-table table td{
+    padding: initial;
+    border: initial;
+}
+
 .markdown-body i-img img,
 .markdown-body i-label img,
 .markdown-body i-statistic img,
@@ -67,6 +93,16 @@
 .markdown-body > div > h1 {
     line-height: 1.35;
     margin-top: 0;
+}
+
+.markdown-body i-table h1{
+    margin-top: inherit;
+    margin-bottom: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    padding-bottom: inherit;
+    border-bottom: inherit;
+    font-size: inherit;
 }
 
 .markdown-body > div > i-tab > .contents > .item > div {
