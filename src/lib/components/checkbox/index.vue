@@ -1,7 +1,7 @@
 <template>
     <i-checkbox
         :_uiid="uiid"
-        :class="[styleClass, stateClass]"
+        :class="[colorClass, stateClass]"
 
         :form-name="formName"
         :form-key="formKey"
@@ -71,18 +71,23 @@ export default {
             default : () => ({})
         }
     },
+    computed : {
+        _conf : function () {
+
+            return {
+                acceptHtml : this.acceptHtml,
+                list : this.list
+            };
+
+        }
+    },
     data : function () {
 
         return {
-            conf : {
-                acceptHtml : this.acceptHtml,
-                list : this.list
-            },
             data : {}
         };
 
     },
-    computed : {},
     methods : {
         _valueFilter : function (value) {
 

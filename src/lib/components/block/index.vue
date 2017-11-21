@@ -1,7 +1,7 @@
 <template>
     <i-block
         :_uiid="uiid"
-        :class="[styleClass]"
+        :class="[colorClass]"
     >
         <slot></slot>
     </i-block>

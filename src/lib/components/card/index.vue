@@ -1,7 +1,7 @@
 <template>
     <i-card
         :_uiid="uiid"
-        :class="[styleClass]"
+        :class="[colorClass]"
     >
         <slot></slot>
     </i-card>

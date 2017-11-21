@@ -1,5 +1,7 @@
 import GlobalEvent                  from './GlobalEvent';
 
+const moveDelayTime = 200;
+
 let Move = {
     mixins : [GlobalEvent],
     data : function () {
@@ -8,7 +10,7 @@ let Move = {
             Move : {
                 can : false,
                 // 延迟多久触发拖拽，为了和click兼容
-                delay : 0,
+                delay : moveDelayTime,
                 target : null,
                 container : null,
                 lastMousedownIndex : -1,
@@ -193,7 +195,7 @@ let Move = {
 
                 if ($container) {
 
-                    $container.removeEventListener('mousedown', this._initMoveItem);
+                    $container.removeEventListener('mousedown', this._moveMousedown);
 
                 }
 

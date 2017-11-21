@@ -21,7 +21,7 @@ i-textcenter{
     display: block;
     text-align: center;
 
-    // default statement
+    // default status
     &{}
 }
 </style>

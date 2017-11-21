@@ -94,7 +94,7 @@
 
     ### 值变更事件
 
-    Coming soom.
+    表单组件的值发生变化时会触发值变更事件：`value-change`。
 
     ### 组件事件
 
@@ -127,6 +127,7 @@
     - `input-value-change` : 输入框值变化
     - `input-focus` : 输入框聚焦
     - `input-blur` : 输入框失焦
+    - `list-change` : 列表数值变化
 
     </script>
     </doc-guide>

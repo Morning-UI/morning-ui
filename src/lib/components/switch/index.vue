@@ -1,7 +1,7 @@
 <template>
     <i-switch
         :_uiid="uiid"
-        :class="[styleClass, stateClass, moreClass]"
+        :class="[colorClass, stateClass, moreClass]"
 
         :form-name="formName"
         :form-key="formKey"
@@ -29,19 +29,14 @@ export default {
             default : false
         }
     },
-    data : function () {
-
-        return {
-            conf : {
-                autoHideName : this.autoHideName
-            },
-            data : {
-                nameIsEmpty : false
-            }
-        };
-
-    },
     computed : {
+        _conf : function () {
+
+            return {
+                autoHideName : this.autoHideName
+            };
+
+        },
         moreClass : function () {
 
             return {
@@ -51,10 +46,40 @@ export default {
 
         }
     },
+    data : function () {
+
+        return {
+            data : {
+                nameIsEmpty : false
+            }
+        };
+
+    },
     methods : {
         _valueFilter : function (value) {
 
             return !!value;
+
+        },
+        _setNameIsEmpty : function () {
+
+            if (!this.conf.autoHideName) {
+
+                this.data.nameIsEmpty = false;
+
+                return;
+
+            }
+
+            if (this.conf.formName === '' || this.conf.formName === undefined) {
+
+                this.data.nameIsEmpty = true;
+
+            } else {
+
+                this.data.nameIsEmpty = false;
+
+            }
 
         },
         toggle : function (open) {
@@ -74,26 +99,18 @@ export default {
     created : function () {},
     mounted : function () {
 
-        this.$watch('conf.formName', newVal => {
+        this.$watch('conf.formName', () => {
 
-            if (!this.conf.autoHideName) {
-
-                return;
-
-            }
-
-            if (newVal === '' || newVal === undefined) {
-
-                this.data.nameIsEmpty = true;
-
-            } else {
-
-                this.data.nameIsEmpty = false;
-
-            }
+            this._setNameIsEmpty();
 
         }, {
             immediate : true
+        });
+
+        this.$watch('conf.autoHideName', () => {
+
+            this._setNameIsEmpty();
+
         });
 
     }

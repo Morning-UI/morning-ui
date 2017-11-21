@@ -1,7 +1,7 @@
 <template>
     <i-dialog
         :_uiid="uiid"
-        :class="[styleClass, moreClass]"
+        :class="[colorClass, moreClass]"
 
         :width="width"
         :height="height"
@@ -51,24 +51,17 @@ export default {
             default : 'top'
         }
     },
-    data : function () {
+    computed : {
+        _conf : function () {
 
-        return {
-            conf : {
+            return {
                 width : this.width,
                 height : this.height,
                 autoClose : this.autoClose,
                 showType : this.showType
-            },
-            data : {
-                show : false,
-                hasHeader : false,
-                hasFooter : false
-            }
-        };
+            };
 
-    },
-    computed : {
+        },
         moreClass : function () {
 
             return {
@@ -76,10 +69,22 @@ export default {
                 'has-footer' : this.data.hasFooter,
                 'show-top' : (this.conf.showType === 'top'),
                 'show-center' : (this.conf.showType === 'center'),
-                'show-no-animate' : (this.conf.showType === 'no')
+                'show-no-animate' : (this.conf.showType === 'no'),
+                show : this.data.show
             };
 
         }
+    },
+    data : function () {
+
+        return {
+            data : {
+                show : false,
+                hasHeader : false,
+                hasFooter : false
+            }
+        };
+
     },
     methods : {
         _onClick : function (evt) {
@@ -109,9 +114,9 @@ export default {
 
             }
 
-            this.data.show = !!show;
+            show = !!show;
 
-            if (this.data.show) {
+            if (show) {
 
                 if (!isShown) {
 
@@ -119,7 +124,7 @@ export default {
 
                     setTimeout(() => {
 
-                        this.$el.classList.add('show');
+                        this.data.show = show;
 
                     });
 
@@ -132,7 +137,7 @@ export default {
 
                 if (isShown) {
 
-                    this.$el.classList.remove('show');
+                    this.data.show = show;
 
                     setTimeout(() => {
 

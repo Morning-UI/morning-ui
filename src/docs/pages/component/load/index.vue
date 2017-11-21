@@ -64,7 +64,7 @@
     </div>
     :::
     
-    [[[声明]]]
+    [[[形态]]]
 
     #### 支持
 
@@ -74,6 +74,8 @@
     |色彩|不支持|-|
     |状态|不支持|-|
 
+    <a href="/guide/status.html">查看形态文档</a>
+
 
     #### 尺寸
 
@@ -81,7 +83,7 @@
     size
     ---
     <div style="width:400px;height:200px;background: #f6f6f6">
-        <ui-load {$sizeKey} :time="false" note="{$sizeName}">加载成功</ui-load>
+        <ui-load size="{$sizeKey}" :time="false" note="{$sizeName}">加载成功</ui-load>
     </div>
     :::
 
@@ -89,7 +91,7 @@
 
     |KEY|描述|接受值|值类型|默认值|
     |-|-|-|-|-|
-    |time|多少时间(ms)后完成加载，若设为false则需要手动完成或拒绝加载|时间值(ms)<br>`false`|Boolean<br>Number|`200`|
+    |time|多少时间(ms)后完成加载，若设为false则需要手动完成或拒绝加载。如果当前正处于加载中，`time`改变后需要下次加载生效。|时间值(ms)<br>`false`|Boolean<br>Number|`200`|
     |note|加载过程中的提示|提示字符串|String|`''`|
 
     #### time
@@ -136,7 +138,7 @@
 
     #### reload()
 
-    重新进入加载状态。
+    重新进入加载状态，若组件仍在加载状态，此方法无效。
 
     :::democode/html
     <div style="width:400px;height:200px;background: #f6f6f6">
@@ -151,7 +153,7 @@
 
     当加载完毕时触发，不管加载是否成功都会触发此事件。
 
-    :::vue
+    :::vue/html
     new Vue({
         el : '{$el}',
         template : '{$template}',
@@ -174,7 +176,7 @@
 
     当加载完毕并成功时触发。
 
-    :::vue
+    :::vue/html
     new Vue({
         el : '{$el}',
         template : '{$template}',
@@ -197,7 +199,7 @@
 
     当加载完毕并成功时触发。
 
-    :::vue
+    :::vue/html
     new Vue({
         el : '{$el}',
         template : '{$template}',

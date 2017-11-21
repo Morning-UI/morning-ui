@@ -48,7 +48,7 @@
     </div>
     :::
 
-    [[[声明]]]
+    [[[形态]]]
 
     #### 支持
 
@@ -57,6 +57,8 @@
     |尺寸|不支持|-|
     |色彩|全部|`theme`|
     |状态|不支持|-|
+
+    <a href="/guide/status.html">查看形态文档</a>
 
     #### 色彩
 
@@ -69,7 +71,7 @@
     color:gray
     ---
     <div style="width:180px;height:240px;display:inline-block;margin:10px;">
-        <ui-card {$colorKey}>
+        <ui-card color="{$colorKey}">
             <header>{$&colorName}</header>
             <div>卡片</div>
         </ui-card>

@@ -82,7 +82,8 @@
         class="multiform-dialog"
         width="500px"
         height="75%"
-        gray
+        color="gray"
+        v-if="conf.inputType === 'single'"
         :ref="'ui-multiform-dialog-'+uiid"
         @show="_showForm"
         @hide="_hideForm"
@@ -92,8 +93,8 @@
         <footer slot="footer">
             <div>
                 <!-- action="emit:toggle" -->
-                <morning-link class="margin" minor @emit="_hideDialog">取消</morning-link>
-                <morning-btn success @emit="_saveItem">确认</morning-btn>
+                <morning-link class="margin" color="minor" @emit="_hideDialog">取消</morning-link>
+                <morning-btn color="success" @emit="_saveItem">确认</morning-btn>
             </div>
         </footer>
     </morning-dialog>
@@ -102,7 +103,7 @@
         class="multiform-batch-dialog"
         width="500px"
         height="240px"
-        gray
+        color="gray"
         v-if="conf.inputType !== 'single'"
         :ref="'ui-multiform-batchdialog-'+uiid"
     >
@@ -111,13 +112,13 @@
         <footer slot="footer">
             <div>
                 <!-- action="emit:toggle" -->
-                <morning-link class="margin" minor @emit="_hideBatchDialog">取消</morning-link>
-                <morning-btn success :ref="'ui-multiform-batchsave-'+uiid" @emit="_batchInput">确认</morning-btn>
+                <morning-link class="margin" color="minor" @emit="_hideBatchDialog">取消</morning-link>
+                <morning-btn color="success" :ref="'ui-multiform-batchsave-'+uiid" @emit="_batchInput">确认</morning-btn>
             </div>
         </footer>
     </morning-dialog>
 
-    <ui-link v-if="conf.cleanBtn" minor @emit="_cleanAllItems" class="cleanbtn">清空全部</ui-link>
+    <ui-link v-if="conf.cleanBtn" color="minor" @emit="_cleanAllItems" class="cleanbtn">清空全部</ui-link>
 
     </i-multiform>
 </template>
@@ -174,6 +175,21 @@ export default {
         }
     },
     computed : {
+        _conf : function () {
+
+            return {
+                itemName : this.itemName,
+                itemFiller : this.itemFiller,
+                canMove : this.canMove,
+                max : this.max,
+                cleanBtn : this.cleanBtn,
+                inputType : this.inputType,
+                batchReg : this.batchReg,
+                batchFiller : this.batchFiller,
+                batchUniq : this.batchUniq
+            };
+
+        },
         moreClass : function () {
 
             return {
@@ -185,17 +201,6 @@ export default {
     data : function () {
 
         return {
-            conf : {
-                itemName : this.itemName,
-                itemFiller : this.itemFiller,
-                canMove : this.canMove,
-                max : this.max,
-                cleanBtn : this.cleanBtn,
-                inputType : this.inputType,
-                batchReg : this.batchReg,
-                batchFiller : this.batchFiller,
-                batchUniq : this.batchUniq
-            },
             data : {
                 modifyIndex : null
             }
@@ -212,8 +217,15 @@ export default {
 
             }
 
+            value = this._maxFilter(value);
+
+            return value;
+
+        },
+        _maxFilter : function (value) {
+
             if (this.conf.max &&
-                this.data.value.length > this.conf.max) {
+                value.length > this.conf.max) {
 
                 return value.slice(0, this.conf.max);
 
@@ -272,7 +284,11 @@ export default {
             let dialogVm = this.$refs[`ui-multiform-dialog-${this.uiid}`];
             let forms = [];
 
-            this._findDialogFormOnce(forms, dialogVm);
+            if (dialogVm) {
+
+                this._findDialogFormOnce(forms, dialogVm);
+            
+            }
 
             return forms;
 
@@ -511,17 +527,20 @@ export default {
     created : function () {},
     mounted : function () {
 
-        const moveDelayTime = 200;
-
         this.$watch('conf.canMove', newVal => {
 
             this.Move.target = '.item:not(.add)';
             this.Move.container = '.itemwrap';
-            this.Move.delay = moveDelayTime;
             this.Move.can = !!newVal;
 
         }, {
             immediate : true
+        });
+
+        this.$watch('conf.max', () => {
+
+            this._set(this._maxFilter(this.get()), true);
+
         });
 
         let movingReg = /(^| )move-moving($| )/g;

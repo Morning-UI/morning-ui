@@ -62,14 +62,13 @@
     
     `findVM()`方法本质上也是基于`ref`来实现的，只是提供了一个全局查找的快捷方法。
     
-    [查看findVM()方法详情](/guide/morning.html#findvm-ref-)
+    [查看findVM()方法详情](/guide/morning.html#findVMref)
 
     ### 通用方法
 
     交互和表单组件都支持一些通用的方法:
 
-    - `setConf` : 设置组件配置，详见[配置/设置配置](/guide/config.html)
-    - `getConf` : 获取组件配置，详见[配置/获取配置](/guide/config.html)
+    - `getConf` : 获取组件配置，详见[获取配置](/guide/config.html#获取配置)
 
     ### 私有方法
 

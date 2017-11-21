@@ -18,7 +18,7 @@
     <ui-quote>引用文本</ui-quote>
     :::
 
-    [[[声明]]]
+    [[[形态]]]
 
     #### 支持
 
@@ -27,6 +27,8 @@
     |尺寸|不支持|-|
     |色彩|全部|`light-blue`|
     |状态|不支持|-|
+
+    <a href="/guide/status.html">查看形态文档</a>
 
     #### 色彩
 
@@ -38,7 +40,7 @@
     color:silver
     color:gray
     ---
-    <ui-quote {$colorKey}>{$&colorName}</ui-quote>
+    <ui-quote color="{$colorKey}">{$&colorName}</ui-quote>
     <br>
     :::
 

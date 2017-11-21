@@ -20,14 +20,14 @@
     </div>
     :::
 
-    [[[声明]]]
+    [[[形态]]]
 
     :::preset/html
-    formStatementWithStyle
+    formStatusWithStyle
     ---
     uikey:checkbox
-    statementDefaultValue:['Tim']
-    statementMoreAttr::list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"
+    statusDefaultValue:['Tim']
+    statusMoreAttr::list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"
     :::
 
     [[[配置]]]
@@ -71,6 +71,14 @@
             accept-html
             :list="list"
         ></ui-checkbox>
+    </div>
+    :::
+
+    #### list
+
+    :::democode/html
+    <div style="width:300px;">
+        <ui-checkbox form-name="姓名" :list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"></ui-checkbox>
     </div>
     :::
    
