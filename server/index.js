@@ -5,12 +5,14 @@ const Koa                           = require('koa');
 const route                         = require('koa-router');
 const etag                          = require('koa-etag');
 const conditional                   = require('koa-conditional-get');
+const body                          = require('koa-body');
 const serve                         = require('koa-static');
 const mount                         = require('koa-mount');
 const logger                        = require('koa-logger');
 const compress                      = require('koa-compress');
 const enforceHttps                  = require('koa-sslify');
 const minimist                      = require('minimist');
+const upyun                         = require('upyun');
 
 const app = new Koa();
 const router = route();
@@ -42,6 +44,42 @@ router
     .get('/favicon.ico', async (ctx, next) => {
         
         ctx.body = fs.readFileSync('./favicon.ico');
+
+        next();
+
+    })
+    .post('/api/uploadfile', body({
+        multipart : true,
+        formidable : {
+            keepExtensions : true
+        }
+    }), async (ctx, next) => {
+        
+        const daytime = 86400000;
+        const randomSize = 1e6;
+
+        let service = new upyun.Service('morning-ui-image', 'morningdoc', 'morningdoc');
+        let client = new upyun.Client(service);
+        let file = ctx.request.body.files.file;
+        let filetype = file.name.split('.').pop();
+        let remotepath = `uploaddemo/${Math.floor(+new Date() / daytime)}/${String(+new Date()) + Math.floor(Math.random() * randomSize)}.${filetype}`;
+
+        await client
+            .putFile(remotepath, fs.readFileSync(file.path), {})
+            .then(resp => {
+
+                ctx.set('Access-Control-Allow-Origin', '*');
+                ctx.body = {
+                    path : `//morning-ui-image.test.upcdn.net/${remotepath}`,
+                    data : {
+                        height : resp.height,
+                        width : resp.width,
+                        frames : resp.frames,
+                        filetype : resp['file-type']
+                    }
+                };
+
+            });
 
         next();
 
