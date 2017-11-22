@@ -73,8 +73,8 @@ i-upload{
             }
 
             .file{
-                color: darken(@colorFormText, 10%) !important;
-                background-color: darken(@colorFormBackgroundHover, 2%);
+                color: @colorFormItemColor !important;
+                background-color: @colorFromItemBackground;
                 display: inline-block;
                 padding: 0.4em 0.7em;
                 // TODO border-radius is not work
@@ -103,14 +103,22 @@ i-upload{
                     box-sizing: border-box;
                 }
 
-                &.add:hover{
-                    cursor: pointer;
-                    text-decoration: none;
-                    color: darken(@colorFormTextHover, 10%) !important;
-                    background: darken(@colorFormBackgroundHover, 5%);
+                &.add{
+                    .morningicon.local{
+                        left: 1em;
+                        font-size: @fontSize;
+                    }
 
-                    i.morningicon{
-                        color: darken(@colorFormTextHover, 10%) !important;
+                    &:hover{
+                        cursor: pointer;
+                        text-decoration: none;
+                        color: @colorFormItemColorHover !important;
+                        background: @colorFromItemBackgroundHover;
+
+                        i.morningicon{
+                            cursor: pointer;
+                            color: @colorFormItemColorHover !important;
+                        }
                     }
                 }
 
@@ -165,7 +173,7 @@ i-upload{
                         cursor: pointer;
 
                         i.morningicon{
-                            color: darken(@colorFormTextHover, 10%) !important;
+                            color: @colorFormItemColorHover !important;
                         }
                     }
 
@@ -177,6 +185,16 @@ i-upload{
                     &.url{
                         margin-left: 1px;
                         border-radius: 0 @maxBorderRadius @maxBorderRadius 0;
+
+                        span{
+                            padding-right: 1em;
+                            padding-left: 0;
+                        }
+
+                        i.morningicon{
+                            left: auto;
+                            right: 1.5em;
+                        }
 
                         .load{
                             vertical-align: 1px;
@@ -232,10 +250,10 @@ i-upload{
                     cursor: pointer;
 
                     &:hover{
-                        color: darken(@colorFormTextHover, 10%) !important;
+                        color: @colorFormTextHover !important;
 
                         .morningicon{
-                            color: darken(@colorFormTextHover, 10%) !important;
+                            color: @colorFormTextHover !important;
                         }
                     }
 
@@ -287,13 +305,8 @@ i-upload{
                 width: 100%;
                 padding: 0.4em 0.7em;
                 text-align: center;
-                display: none;
-
-                &.show{
                     display: block;
-                }
             }
-
         }
 
         > .drag-note{
@@ -323,8 +336,8 @@ i-upload{
                 font-size: @fontSize*0.75;
 
                 .morningicon{
-                    font-size: @fontSize*0.8125;
-                    vertical-align: 1px;
+                    font-size: @fontSize;
+                    vertical-align: -1px;
                 }
             }
         }
@@ -342,6 +355,18 @@ i-upload{
         display: none;
     }
 
+    &.allow-url{
+    
+        > .filelist > .filewrap .file.add{
+            padding: 0.4em 1em 0.4em 1.6em;
+
+            &.url{
+                padding: 0.4em 1.6em 0.4em 1em;
+            }
+        }
+
+    }
+
     &.st-normal{}
 
     &.st-disabled{
@@ -353,13 +378,13 @@ i-upload{
             border-color: @colorFormBorderDisable;
     
             >.name{
-                background-color: darken(@colorFormBackgroundDisable, 6%);
+                background-color: darken(@colorLightGray, 10%);
                 color: @colorBlue;
             }
 
             > .filewrap >.file{
                 cursor: pointer !important;
-                background-color: @colorFormBorderDisable;
+                background-color: @colorFromItemBackgroundDisable;
 
                 .morningicon{
                     display: none !important;
@@ -370,14 +395,14 @@ i-upload{
                 }
 
                 &:hover{
-                    color: darken(@colorFormText, 10%) !important;
+                    color: @colorFormItemColorDisable !important;
                 }
 
                 &.add:hover{
                     cursor: default;
 
                     i.morningicon{
-                        color: darken(@colorFormText, 10%) !important;
+                        color: @colorFormItemColorDisable !important;
                     }
                 }
             }

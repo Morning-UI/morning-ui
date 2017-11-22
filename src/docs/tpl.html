@@ -17,7 +17,41 @@
     <script src="/doc-common.js"></script>
     <script src="/dist/morning-ui.js"></script>
     <script>
-    Vue.use(morning);
+    Vue.use(morning, {
+      uploader : (file) => {
+
+          let formData = new FormData();
+
+          formData.append('file', file.file);
+          formData.append('filename', file.name);
+
+          return new Promise((resolve, reject) => {
+
+            $.ajax({
+              type : 'POST',
+              url : 'http://localhost:8089/api/uploadfile',
+              data : formData,
+              processData : false,
+              contentType : false,
+              dataType : 'json',
+              success : resp => {
+
+                resolve({
+                  status : true,
+                  path : resp.path,
+                  data : resp.data
+                });
+
+              },
+              error : resp => {
+                reject('upload fail.');
+              }
+            })
+
+          });
+
+      }
+    });
     </script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->

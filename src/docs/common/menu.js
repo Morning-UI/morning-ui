@@ -47,6 +47,7 @@ export default {
         链接 : '/component/link.html',
         下拉式按钮组 : '/component/dropdown.html',
         // 级联菜单<i class="tag new"></i> : 'b',
+        // 树形控件 : 'b',
         标签页 : '/component/tab.html',
         表格 : '/component/table.html',
         分页 : '/component/pagination.html',
