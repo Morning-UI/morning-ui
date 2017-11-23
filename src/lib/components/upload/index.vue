@@ -44,6 +44,7 @@
                     target="_blank;"
                     :href="item.path || 'javascript:;'"
                     :index="index"
+                    :key="index"
                     :class="item.classList"
                 >
                     <i class="progress"></i>
