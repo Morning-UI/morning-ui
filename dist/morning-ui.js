@@ -1632,7 +1632,7 @@ var morning = {
     _groupVmMap: {},
     _options: {},
     isMorning: true,
-    version: '0.10.8',
+    version: '0.10.9',
     map: {}
 };
 
@@ -7901,6 +7901,7 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
 
 exports.default = {
     origin: 'UI',
@@ -8121,6 +8122,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     }
   }, [_c('ul', _vm._l((_vm.data.namelist), function(item) {
     return _c('li', {
+      key: item.name,
       attrs: {
         "name": item.name
       },
@@ -8137,6 +8139,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     staticClass: "contents"
   }, [_vm._l((_vm.$slots), function(item, name) {
     return [_c('div', {
+      key: name,
       staticClass: "item",
       attrs: {
         "name": name
@@ -9518,6 +9521,7 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
 
 exports.default = {
     props: ['conf', 'data', 'colSetMap']
@@ -9533,9 +9537,14 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
   return _c('table', {
     staticClass: "title-table"
   }, [(_vm.conf.showColName) ? _c('thead', [_c('tr', [_vm._l((_vm.data.titleKeys), function(key) {
-    return [(_vm.colSetMap[key] && _vm.colSetMap[key].name) ? _c('th', [_vm._v(_vm._s(_vm.colSetMap[key].name))]) : _c('th')]
+    return [(_vm.colSetMap[key] && _vm.colSetMap[key].name) ? _c('th', {
+      key: key
+    }, [_vm._v(_vm._s(_vm.colSetMap[key].name))]) : _c('th', {
+      key: key
+    })]
   })], 2)]) : _vm._e(), _vm._v(" "), _c('tbody', _vm._l((_vm.data.titleRows), function(row, line) {
     return _c('tr', {
+      key: line,
       on: {
         "mouseover": function($event) {
           _vm.$emit('row-mouseover', line)
@@ -9553,7 +9562,8 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
             template: col
           }),
           expression: "{template : col}"
-        }]
+        }],
+        key: index
       })]
     })], 2)
   }))])
@@ -9655,6 +9665,7 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
 
 exports.default = {
     props: ['conf', 'data', 'colSetMap']
@@ -9670,9 +9681,14 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
   return _c('table', {
     staticClass: "normal-table"
   }, [(_vm.conf.showColName) ? _c('thead', [_c('tr', [_vm._l((_vm.data.normalKeys), function(key) {
-    return [(_vm.colSetMap[key] && _vm.colSetMap[key].name) ? _c('th', [_vm._v(_vm._s(_vm.colSetMap[key].name))]) : _c('th')]
+    return [(_vm.colSetMap[key] && _vm.colSetMap[key].name) ? _c('th', {
+      key: key
+    }, [_vm._v(_vm._s(_vm.colSetMap[key].name))]) : _c('th', {
+      key: key
+    })]
   })], 2)]) : _vm._e(), _vm._v(" "), _c('tbody', _vm._l((_vm.data.normalRows), function(row, line) {
     return _c('tr', {
+      key: line,
       on: {
         "mouseover": function($event) {
           _vm.$emit('row-mouseover', line)
@@ -9690,7 +9706,8 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
             template: col
           }),
           expression: "{template : col}"
-        }]
+        }],
+        key: index
       }) : _c('td', {
         directives: [{
           name: "render",
@@ -9699,7 +9716,8 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
             template: col
           }),
           expression: "{template : col}"
-        }]
+        }],
+        key: index
       })]
     })], 2)
   }))])
@@ -10922,6 +10940,7 @@ var maxHistoryNum = 20; //
 //
 //
 //
+//
 
 exports.default = {
     origin: 'UI',
@@ -11180,6 +11199,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
   }, [_vm._v(" / ")])] : _vm._e(), _vm._v(" "), _vm._l((_vm.data.lvlist), function(item, index) {
     return [_vm._l((item), function(name, key) {
       return [(index < (_vm.data.lvlist.length - 1)) ? _c('li', {
+        key: index + key,
         attrs: {
           "value": key
         },
@@ -15920,6 +15940,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
 
 var _extend = __webpack_require__(2);
 
@@ -16041,6 +16063,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     staticClass: "itemlist"
   }, [_vm._l((_vm.conf.list), function(name, key) {
     return [(_vm.data.value.indexOf(key) !== -1) ? [_c('label', {
+      key: key,
       staticClass: "checked",
       attrs: {
         "value": key
@@ -16059,6 +16082,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
         "innerHTML": _vm._s(name)
       }
     })] : [_c('span', [_vm._v(_vm._s(name))])]], 2)] : [_c('label', {
+      key: key,
       attrs: {
         "value": key
       },
@@ -16216,6 +16240,8 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
 
 exports.default = {
     origin: 'Form',
@@ -16302,6 +16328,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     staticClass: "itemlist"
   }, [_vm._l((_vm.conf.list), function(name, key) {
     return [(_vm.data.value === key) ? [_c('label', {
+      key: key,
       staticClass: "checked",
       attrs: {
         "value": key
@@ -16320,6 +16347,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
         "innerHTML": _vm._s(name)
       }
     })] : [_c('span', [_vm._v(_vm._s(name))])]], 2)] : [_c('label', {
+      key: key,
       attrs: {
         "value": key
       },
@@ -16423,6 +16451,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; //
+//
 //
 //
 //
@@ -16832,6 +16861,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     staticClass: "itemlist"
   }, [_vm._l((_vm.data.value), function(value, index) {
     return _c('div', {
+      key: index,
       staticClass: "item",
       on: {
         "mousedown": function($event) {
@@ -17034,6 +17064,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; //
+//
 //
 //
 //
@@ -17724,6 +17755,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     }
   }, [_vm._l((_vm.data.value), function(item, index) {
     return _c('div', {
+      key: index,
       staticClass: "item",
       class: {
         'has-img': (_vm.conf.itemFiller(item) && _vm.conf.itemFiller(item).thumb)
@@ -17937,6 +17969,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; //
+//
 //
 //
 //
@@ -19690,6 +19723,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     }
   }, [_vm._l((_vm.data.files), function(item, index) {
     return (typeof item === 'object') ? [_c('a', {
+      key: index,
       staticClass: "file",
       class: item.classList,
       attrs: {

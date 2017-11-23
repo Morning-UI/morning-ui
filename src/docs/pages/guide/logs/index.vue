@@ -18,6 +18,22 @@
     
     ### 更新记录
 
+    ### 0.10.9 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2017年11月23日，
+            Archive : 
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.9" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.9/dist/" target="_blank">CDN</a>
+        </ui-small>
+    </ui-textcolor>
+    
+    - 新增`ui-upload`文件上传组件
+    - 修复`morning.getGroupJson`方法无法使用的问题
+    - 修复`ui-textinput`和`ui-textarea`设置某些值(对象或数组的JSON字符串)得到的结果不符合预期的问题
+    - 符合Vue风格指南中优先级A的规则
+
     ### 0.10.8 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="light-blue">
