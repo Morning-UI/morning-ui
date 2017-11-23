@@ -21,6 +21,7 @@
                 <label
                     class="checked"
                     :value="key"
+                    :key="key"
                     @click="toggle(key)"
                 >
                     <p class="box"><i class="morningicon">&#xe62d;</i></p>
@@ -36,6 +37,7 @@
             <template v-else>
                 <label 
                     :value="key"
+                    :key="key"
                     @click="toggle(key)"
                 >
                     <p class="box"><i class="morningicon">&#xe62d;</i></p>
