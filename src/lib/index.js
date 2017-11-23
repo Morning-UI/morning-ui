@@ -56,7 +56,7 @@ morning.getGroup = function (groupName) {
 
 morning.getGroupJson = function (groupName) {
 
-    return JSON.stringify(this.getGroupData(groupName));
+    return JSON.stringify(this.getGroup(groupName));
 
 };
 
