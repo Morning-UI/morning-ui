@@ -8,6 +8,7 @@
             <li 
                 v-for="item in data.namelist"
                 :name="item.name"
+                :key="item.name"
                 v-html="item.html"
                 @click="_onClick(item.name)"
             ></li>
@@ -15,7 +16,7 @@
         
         <div class="contents">
             <template v-for="(item, name) in $slots">
-                <div class="item" :name="name"><slot :name="name"></slot></div>
+                <div class="item" :name="name" :key="name"><slot :name="name"></slot></div>
             </template>
         </div>
 
