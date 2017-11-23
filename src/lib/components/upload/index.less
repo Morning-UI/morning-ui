@@ -1,0 +1,416 @@
+@import '~Common/var.less';
+
+@maxBorderRadius: 100px;
+
+i-upload{
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+    vertical-align: middle;
+    -webkit-user-select: none;
+
+    > .filelist{
+        border: 1px @colorFormBorder solid;
+        border-radius: @borderRadius;
+        padding: 3.2px 4.8px;
+        position: relative;
+        overflow: hidden;
+        min-height: @formHeight;
+        font-size: 0;
+        background: @colorFormBackground;
+        box-sizing: border-box;
+
+        > .name{
+            height: 100%;
+            position: absolute;
+            width: 20%;
+            background-color: @colorLightGray;
+            color: @colorBlue;
+            max-width: @fontSize*9.375;
+            margin: 0;
+            font-size: @fontSize*0.8125;
+            display: inline-block;
+            left: 0;
+            top: 0;
+        }
+
+        > .filewrap{
+            position: relative;
+            font-size: 0;
+            display: inline-block;
+            width: 80%;
+            left: 20%;
+            top: 0;
+
+            &.hidename{
+                width: 100%;
+                left: 0;
+            }
+
+            .status{
+                padding: 0.2em;
+                margin: @fontSize*0.15 @fontSize*0.1;
+                vertical-align: top;
+                max-width: 100%;
+                line-height: 1.2em;
+                text-decoration: none;
+                position: relative;
+                cursor: default;
+                font-size: @fontSize*0.75;
+                text-align: center;
+                color: @colorFormTextMisc !important;
+            }
+
+            .pass{
+                color: @colorSuccess !important;
+                display: block;
+            }
+
+            .unpass{
+                color: @colorDanger !important;
+                display: block;
+            }
+
+            .file{
+                color: @colorFormItemColor !important;
+                background-color: @colorFromItemBackground;
+                display: inline-block;
+                padding: 0.4em 0.7em;
+                border-radius: @maxBorderRadius;
+                margin: @fontSize*0.2 @fontSize*0.1;
+                vertical-align: top;
+                max-width: 100%;
+                line-height: 1.2em;
+                text-decoration: none;
+                position: relative;
+                cursor: default;
+                font-size: @fontSize*0.8125;
+                overflow: hidden;
+                box-sizing: border-box;
+
+                span{
+                    max-width: 100%;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    display: inline-block;
+                    padding-right: 1em;
+                    vertical-align: middle;
+                    position: relative;
+                    z-index: 1;
+                    box-sizing: border-box;
+                }
+
+                i.morningicon{
+                    font-size: @fontSize*0.75;
+                    position: absolute;
+                    right: 0.5em;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    cursor: default;
+                    z-index: 2;
+                }
+
+                i.morningicon.reupload{
+                    cursor: pointer;
+                    display: none;
+
+                    &:hover{
+                        color: @colorSuccess !important;
+                    }
+                }
+
+                i.morningicon.remove{
+                    cursor: pointer;
+                    display: none;
+
+                    &:hover{
+                        color: @colorDanger !important;
+                    }
+                }
+
+                > .progress{
+                    background: @colorSuccess;
+                    opacity: 0.2;
+                    width: 0%;
+                    height: 100%;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    border-radius: @maxBorderRadius 0 0 @maxBorderRadius;
+                    transition: width 0.3s;
+                }
+            }
+
+            .add{
+                display: inline-block;
+                padding: 0.4em 1.6em;
+
+                .morningicon.local{
+                    left: 1em;
+                    font-size: @fontSize;
+                }
+
+                &:hover{
+                    cursor: pointer;
+                    text-decoration: none;
+                    color: @colorFormItemColorHover !important;
+                    background: @colorFromItemBackgroundHover;
+
+                    i.morningicon{
+                        cursor: pointer;
+                        color: @colorFormItemColorHover !important;
+                    }
+                }
+
+                span{
+                    padding-right: 0;
+                    padding-left: 1em;
+                }
+
+                i.morningicon{
+                    top: 51%;
+                    left: 1.5em;
+                    right: auto;
+                }
+
+                &:hover{
+                    cursor: pointer;
+
+                    i.morningicon{
+                        color: @colorFormItemColorHover !important;
+                    }
+                }
+
+                &.local{
+                    border-radius: @maxBorderRadius 0 0 @maxBorderRadius;
+                    margin-right: 0;
+                }
+
+                &.url{
+                    margin-left: 1px;
+                    border-radius: 0 @maxBorderRadius @maxBorderRadius 0;
+
+                    span{
+                        padding-right: 1em;
+                        padding-left: 0;
+                    }
+
+                    i.morningicon{
+                        left: auto;
+                        right: 1.5em;
+                    }
+
+                    .load{
+                        vertical-align: 1px;
+                        line-height: 1em;
+                        animation-name: rotation;
+                        animation-duration: 1s;
+                        animation-timing-function: linear;
+                        animation-iteration-count: infinite;
+                        color: darken(@colorFormText, 10%);
+                        display: none;
+                        margin-top: -0.5em;
+                    }
+                }
+
+                &.loading{
+                    cursor: default;
+
+                    .morningicon{
+                        display: none;
+                    }
+
+                    .load{
+                        display: inherit;
+                    }
+                }
+            }
+
+            .wait > .progress{
+                width: 20%;
+            }
+
+            .verification > .progress{
+                width: 40%;
+            }
+
+            .uploading > .progress{
+                width: 60%;
+            }
+
+            .uploaded > .progress{
+                width: 100%;
+            }
+
+            .done{
+                cursor: pointer;
+
+                &:hover{
+                    color: @colorFormTextHover !important;
+
+                    .morningicon{
+                        color: @colorFormTextHover !important;
+                    }
+                }
+
+                .progress{
+                    width: 0%;
+                    transition: width 0s;
+                }
+
+                i.morningicon.uploading,
+                i.morningicon.reupload{
+                    display: none;
+                }
+
+                i.morningicon.remove{
+                    display: block;
+                }
+            }
+
+            .fail{
+                background: lighten(@colorDanger, 42%);
+
+                > span{
+                    padding-right: 2.2em;
+                }
+
+                > .progress{
+                    width: 0%;
+                    transition: width 0s;
+                }
+
+                i.morningicon.uploading{
+                    display: none;
+                }
+
+                i.morningicon.reupload{
+                    display: block;
+                    right: 1.7em;
+                }
+
+                > i.morningicon.remove{
+                    display: block;
+                }
+            }
+
+            .max{
+                font-size: @fontSize*0.75;
+                color: @colorFormTextMisc !important;
+                width: 100%;
+                padding: 0.4em 0.7em;
+                text-align: center;
+                display: block;
+            }
+        }
+
+        > .drag-note{
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: @colorWhite;
+            width: 100%;
+            height: 100%;
+            z-index: 3;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+
+            &.show{
+                opacity: 1;
+            }
+
+            p{
+                width: 100%;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                text-align: center;
+                color: #666;
+                margin: 0;
+                font-size: @fontSize*0.75;
+
+                .morningicon{
+                    font-size: @fontSize;
+                    vertical-align: -1px;
+                }
+            }
+        }
+    }
+
+    &:hover > .filelist{
+        border-color: @colorFormBorderHover;
+    }
+
+    &.focus > .filelist{
+        border-color: @colorFormBorderFocus;
+    }
+
+    .fileinput{
+        display: none;
+    }
+
+    &.allow-url{
+        > .filelist > .filewrap .add{
+            padding: 0.4em 1em 0.4em 1.6em;
+
+            &.url{
+                padding: 0.4em 1.6em 0.4em 1em;
+            }
+        }
+    }
+
+    &.st-normal{}
+
+    &.st-disabled{
+        -webkit-user-select: none;
+        cursor: not-allowed !important;
+        background-color: @colorFormBackgroundDisable;
+
+        > .filelist{
+            border-color: @colorFormBorderDisable;
+
+            > .name{
+                background-color: darken(@colorLightGray, 10%);
+                color: @colorBlue;
+            }
+
+            > .filewrap > .file{
+                cursor: pointer !important;
+                background-color: @colorFromItemBackgroundDisable;
+
+                .morningicon{
+                    display: none !important;
+                }
+
+                span{
+                    padding-right: 0;
+                }
+
+                &:hover{
+                    color: @colorFormItemColorDisable !important;
+                }
+            }
+
+            > .filewrap > .add:hover{
+                cursor: default;
+
+                i.morningicon{
+                    color: @colorFormItemColorDisable !important;
+                }
+            }
+
+            &:hover{
+                border-color: @colorFormBorderDisable;
+            }
+        }
+    }
+
+    // default statement
+    &{
+        .st-normal;
+    }
+}
