@@ -47,6 +47,7 @@ export default {
         链接 : '/component/link.html',
         下拉式按钮组 : '/component/dropdown.html',
         // 级联菜单<i class="tag new"></i> : 'b',
+        // 树形控件 : 'b',
         标签页 : '/component/tab.html',
         表格 : '/component/table.html',
         分页 : '/component/pagination.html',
@@ -72,12 +73,12 @@ export default {
         复选框组 : '/component/checkbox.html',
         单选框组 : '/component/radio.html',
         多项输入 : '/component/multiinput.html',
-        多项表单输入 : '/component/multiform.html'
+        多项表单输入 : '/component/multiform.html',
         // 多项文本输入 : 'b',
         // 时间输入<i class="tag new"></i> : 'b',
         // 日期输入<i class="tag new"></i> : 'b',
         // 日期时间输入<i class="tag update"></i> : 'b',
-        // 文件上传 : 'b',
+        文件上传 : '/component/upload.html',
         // 图片热区输入 : 'b',
         // 颜色选择 : 'b'
     },

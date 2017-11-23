@@ -20,6 +20,7 @@
         <div
             class="item"
             v-for="(value, index) in data.value"
+            :key="index"
             @mousedown="_moveItemRecord(index)"
         >
             <span :title="value">{{value}}</span>
