@@ -78,7 +78,6 @@ i-upload{
                 background-color: @colorFromItemBackground;
                 display: inline-block;
                 padding: 0.4em 0.7em;
-                // TODO border-radius is not work
                 border-radius: @maxBorderRadius;
                 margin: @fontSize*0.2 @fontSize*0.1;
                 vertical-align: top;
@@ -103,29 +102,6 @@ i-upload{
                     z-index: 1;
                     box-sizing: border-box;
                 }
-
-                &.add{
-                    .morningicon.local{
-                        left: 1em;
-                        font-size: @fontSize;
-                    }
-
-                    &:hover{
-                        cursor: pointer;
-                        text-decoration: none;
-                        color: @colorFormItemColorHover !important;
-                        background: @colorFromItemBackgroundHover;
-
-                        i.morningicon{
-                            cursor: pointer;
-                            color: @colorFormItemColorHover !important;
-                        }
-                    }
-                }
-
-                // &.moving{
-                //  opacity: 0.2;
-                // }
 
                 i.morningicon{
                     font-size: @fontSize*0.75;
@@ -155,74 +131,6 @@ i-upload{
                     }
                 }
 
-                &.add{
-                    display: inline-block;
-                    padding: 0.4em 1.6em;
-
-                    span{
-                        padding-right: 0;
-                        padding-left: 1em;
-                    }
-
-                    i.morningicon{
-                        top: 51%;
-                        left: 1.5em;
-                        right: auto;
-                    }
-
-                    &:hover{
-                        cursor: pointer;
-
-                        i.morningicon{
-                            color: @colorFormItemColorHover !important;
-                        }
-                    }
-
-                    &.local{
-                        border-radius: @maxBorderRadius 0 0 @maxBorderRadius;
-                        margin-right: 0;
-                    }
-
-                    &.url{
-                        margin-left: 1px;
-                        border-radius: 0 @maxBorderRadius @maxBorderRadius 0;
-
-                        span{
-                            padding-right: 1em;
-                            padding-left: 0;
-                        }
-
-                        i.morningicon{
-                            left: auto;
-                            right: 1.5em;
-                        }
-
-                        .load{
-                            vertical-align: 1px;
-                            line-height: 1em;
-                            animation-name: rotation;
-                            animation-duration: 1s;
-                            animation-timing-function: linear;
-                            animation-iteration-count: infinite;
-                            color: darken(@colorFormText, 10%);
-                            display: none;
-                            margin-top: -0.5em;
-                        }
-                    }
-
-                    &.loading{
-                        cursor: default;
-
-                        .morningicon{
-                            display: none;
-                        }
-                        
-                        .load{
-                            display: inherit;
-                        }
-                    }
-                }
-
                 > .progress{
                     background: @colorSuccess;
                     opacity: 0.2;
@@ -234,73 +142,158 @@ i-upload{
                     border-radius: @maxBorderRadius 0 0 @maxBorderRadius;
                     transition: width 0.3s;
                 }
+            }
 
-                &.wait > .progress{
-                    width: 20%;
+            .add{
+                display: inline-block;
+                padding: 0.4em 1.6em;
+
+                .morningicon.local{
+                    left: 1em;
+                    font-size: @fontSize;
                 }
 
-                &.verification > .progress{
-                    width: 40%;
+                &:hover{
+                    cursor: pointer;
+                    text-decoration: none;
+                    color: @colorFormItemColorHover !important;
+                    background: @colorFromItemBackgroundHover;
+
+                    i.morningicon{
+                        cursor: pointer;
+                        color: @colorFormItemColorHover !important;
+                    }
                 }
 
-                &.uploading > .progress{
-                    width: 60%;
+                span{
+                    padding-right: 0;
+                    padding-left: 1em;
                 }
 
-                &.uploaded > .progress{
-                    width: 100%;
+                i.morningicon{
+                    top: 51%;
+                    left: 1.5em;
+                    right: auto;
                 }
 
-                &.done{
+                &:hover{
                     cursor: pointer;
 
-                    &:hover{
-                        color: @colorFormTextHover !important;
-
-                        .morningicon{
-                            color: @colorFormTextHover !important;
-                        }
-                    }
-
-                    .progress{
-                        width: 0%;
-                        transition: width 0s;
-                    }
-
-                    i.morningicon.uploading,
-                    i.morningicon.reupload{
-                        display: none;
-                    }
-
-                    i.morningicon.remove{
-                        display: block;
+                    i.morningicon{
+                        color: @colorFormItemColorHover !important;
                     }
                 }
 
-                &.fail{
-                    background: lighten(@colorDanger, 42%);
+                &.local{
+                    border-radius: @maxBorderRadius 0 0 @maxBorderRadius;
+                    margin-right: 0;
+                }
 
-                    > span{
-                        padding-right: 2.2em;
+                &.url{
+                    margin-left: 1px;
+                    border-radius: 0 @maxBorderRadius @maxBorderRadius 0;
+
+                    span{
+                        padding-right: 1em;
+                        padding-left: 0;
                     }
 
-                    > .progress{
-                        width: 0%;
-                        transition: width 0s;
+                    i.morningicon{
+                        left: auto;
+                        right: 1.5em;
                     }
 
-                    i.morningicon.uploading{
+                    .load{
+                        vertical-align: 1px;
+                        line-height: 1em;
+                        animation-name: rotation;
+                        animation-duration: 1s;
+                        animation-timing-function: linear;
+                        animation-iteration-count: infinite;
+                        color: darken(@colorFormText, 10%);
+                        display: none;
+                        margin-top: -0.5em;
+                    }
+                }
+
+                &.loading{
+                    cursor: default;
+
+                    .morningicon{
                         display: none;
                     }
 
-                    i.morningicon.reupload{
-                        display: block;
-                        right: 1.7em;
+                    .load{
+                        display: inherit;
                     }
+                }
+            }
 
-                    >i.morningicon.remove{
-                        display: block;
+            .wait > .progress{
+                width: 20%;
+            }
+
+            .verification > .progress{
+                width: 40%;
+            }
+
+            .uploading > .progress{
+                width: 60%;
+            }
+
+            .uploaded > .progress{
+                width: 100%;
+            }
+
+            .done{
+                cursor: pointer;
+
+                &:hover{
+                    color: @colorFormTextHover !important;
+
+                    .morningicon{
+                        color: @colorFormTextHover !important;
                     }
+                }
+
+                .progress{
+                    width: 0%;
+                    transition: width 0s;
+                }
+
+                i.morningicon.uploading,
+                i.morningicon.reupload{
+                    display: none;
+                }
+
+                i.morningicon.remove{
+                    display: block;
+                }
+            }
+
+            .fail{
+                background: lighten(@colorDanger, 42%);
+
+                > span{
+                    padding-right: 2.2em;
+                }
+
+                > .progress{
+                    width: 0%;
+                    transition: width 0s;
+                }
+
+                i.morningicon.uploading{
+                    display: none;
+                }
+
+                i.morningicon.reupload{
+                    display: block;
+                    right: 1.7em;
+                }
+
+                > i.morningicon.remove{
+                    display: block;
                 }
             }
 
@@ -361,15 +354,13 @@ i-upload{
     }
 
     &.allow-url{
-    
-        > .filelist > .filewrap .file.add{
+        > .filelist > .filewrap .add{
             padding: 0.4em 1em 0.4em 1.6em;
 
             &.url{
                 padding: 0.4em 1.6em 0.4em 1em;
             }
         }
-
     }
 
     &.st-normal{}
@@ -379,15 +370,15 @@ i-upload{
         cursor: not-allowed !important;
         background-color: @colorFormBackgroundDisable;
 
-        >.filelist{
+        > .filelist{
             border-color: @colorFormBorderDisable;
-    
-            >.name{
+
+            > .name{
                 background-color: darken(@colorLightGray, 10%);
                 color: @colorBlue;
             }
 
-            > .filewrap >.file{
+            > .filewrap > .file{
                 cursor: pointer !important;
                 background-color: @colorFromItemBackgroundDisable;
 
@@ -402,13 +393,13 @@ i-upload{
                 &:hover{
                     color: @colorFormItemColorDisable !important;
                 }
+            }
 
-                &.add:hover{
-                    cursor: default;
+            > .filewrap > .add:hover{
+                cursor: default;
 
-                    i.morningicon{
-                        color: @colorFormItemColorDisable !important;
-                    }
+                i.morningicon{
+                    color: @colorFormItemColorDisable !important;
                 }
             }
 
