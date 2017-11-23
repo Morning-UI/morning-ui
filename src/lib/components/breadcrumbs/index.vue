@@ -24,6 +24,7 @@
             <template v-for="(name, key) in item">
                 <li
                     :value="key"
+                    :key="index + key"
                     v-if="index < (data.lvlist.length - 1)"
                     @click="toLevel(index)"
                 >{{name}}</li>

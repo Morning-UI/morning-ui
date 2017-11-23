@@ -34,7 +34,7 @@
 /******/
 /******/ 	// objects to store loaded and loading chunks
 /******/ 	var installedChunks = {
-/******/ 		82: 0
+/******/ 		83: 0
 /******/ 	};
 /******/
 /******/ 	// The require function
@@ -4256,6 +4256,7 @@ exports.default = {
         链接: '/component/link.html',
         下拉式按钮组: '/component/dropdown.html',
         // 级联菜单<i class="tag new"></i> : 'b',
+        // 树形控件 : 'b',
         标签页: '/component/tab.html',
         表格: '/component/table.html',
         分页: '/component/pagination.html',
@@ -4281,12 +4282,12 @@ exports.default = {
         复选框组: '/component/checkbox.html',
         单选框组: '/component/radio.html',
         多项输入: '/component/multiinput.html',
-        多项表单输入: '/component/multiform.html'
+        多项表单输入: '/component/multiform.html',
         // 多项文本输入 : 'b',
         // 时间输入<i class="tag new"></i> : 'b',
         // 日期输入<i class="tag new"></i> : 'b',
         // 日期时间输入<i class="tag update"></i> : 'b',
-        // 文件上传 : 'b',
+        文件上传: '/component/upload.html'
         // 图片热区输入 : 'b',
         // 颜色选择 : 'b'
     },
@@ -29378,6 +29379,28 @@ var data = {
         }, {
             valueType: 'Array',
             valueContent: '[{\'name\':\'Tim Boelaars\'}]'
+        }],
+        upload: [{
+            valueType: 'String',
+            valueContent: '\'//morning-ui-image.test.upcdn.net/uploaddemo/17491/1511259398095810608.png\''
+        }, {
+            valueType: 'Number',
+            valueContent: '5'
+        }, {
+            valueType: 'Boolean',
+            valueContent: 'true'
+        }, {
+            valueType: 'Null',
+            valueContent: 'null'
+        }, {
+            valueType: 'Undefined',
+            valueContent: 'undefined'
+        }, {
+            valueType: 'Object',
+            valueContent: '{path:\'//morning-ui-image.test.upcdn.net/uploaddemo/17491/1511259398095810608.png\',name:\'1511259398095810608.png\'}'
+        }, {
+            valueType: 'Array',
+            valueContent: '[{path:\'//morning-ui-image.test.upcdn.net/uploaddemo/17491/1511259398095810608.png\',name:\'1511259398095810608.png\'}]'
         }]
     }
 };
@@ -31976,7 +31999,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "target": "_blank",
       "href": _vm.lastupdate.github
     }
-  }, [_vm._v(_vm._s(_vm.lastupdate.author))]), _vm._v(" at " + _vm._s(_vm.lastupdate.date) + " (" + _vm._s(_vm.lastupdate.ar) + "), commit id : "), _c('a', {
+  }, [_vm._v(_vm._s(_vm.lastupdate.author))]), _vm._v(" at " + _vm._s(_vm.lastupdate.date) + ", commit id : "), _c('a', {
     attrs: {
       "target": "_blank",
       "href": 'https://github.com/Morning-UI/morning-ui/commit/' + _vm.lastupdate.cid
@@ -32625,7 +32648,12 @@ if (false) {
 /* 723 */,
 /* 724 */,
 /* 725 */,
-/* 726 */
+/* 726 */,
+/* 727 */,
+/* 728 */,
+/* 729 */,
+/* 730 */,
+/* 731 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(269)(undefined);
@@ -32639,13 +32667,13 @@ exports.push([module.i, "/*\n * Hopscotch\n * by Jan T. Sott\n * https://github.
 
 
 /***/ }),
-/* 727 */
+/* 732 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "iconfont.woff";
 
 /***/ }),
-/* 728 */
+/* 733 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*

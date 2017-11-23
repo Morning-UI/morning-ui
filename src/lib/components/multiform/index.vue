@@ -28,8 +28,9 @@
         
             <div
                 class="item"
-                :class="{'has-img' : (conf.itemFiller(item) && conf.itemFiller(item).thumb)}"
                 v-for="(item, index) of data.value"
+                :class="{'has-img' : (conf.itemFiller(item) && conf.itemFiller(item).thumb)}"
+                :key="index"
                 @click="_fillItem(index)"
                 @mousedown="_moveItemRecord(index)"
             >

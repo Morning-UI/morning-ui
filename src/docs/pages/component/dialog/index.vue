@@ -7,7 +7,6 @@
     # 模拟盒 `<ui-dialog>`
     
     <doc-component-status page="dialog"></doc-component-status>
-    
     [[[开始]]]
 
     定义一个模拟盒，标准的模拟盒分为三部分：

@@ -4133,3 +4133,139 @@ i-multiform.st-disabled>.itemlist>.itemwrap>.item.add:hover{cursor:default
 }
 i-multiform.st-disabled>.itemlist:hover{border-color:#a6a6a6
 }
+i-upload{position:relative;z-index:1;display:inline-block;width:100%;box-sizing:border-box;vertical-align:middle;-webkit-user-select:none
+}
+i-upload>.filelist{border:1px #e6e6e6 solid;border-radius:3px;padding:3.2px 4.8px;position:relative;overflow:hidden;min-height:42px;font-size:0;background:#fff;box-sizing:border-box
+}
+i-upload>.filelist>.name{height:100%;position:absolute;width:20%;background-color:#f0f0f0;color:#7c8ba0;max-width:150px;margin:0;font-size:13px;display:inline-block;left:0;top:0
+}
+i-upload>.filelist>.filewrap{position:relative;font-size:0;display:inline-block;width:80%;left:20%;top:0
+}
+i-upload>.filelist>.filewrap.hidename{width:100%;left:0
+}
+i-upload>.filelist>.filewrap .status{padding:.2em;margin:2.4px 1.6px;vertical-align:top;max-width:100%;line-height:1.2em;text-decoration:none;position:relative;cursor:default;font-size:12px;text-align:center;color:silver!important
+}
+i-upload>.filelist>.filewrap .pass{color:#4dbd67!important;display:block
+}
+i-upload>.filelist>.filewrap .unpass{color:#d64431!important;display:block
+}
+i-upload>.filelist>.filewrap .file{color:#9a9a9a!important;background-color:#f0f0f0;display:inline-block;padding:.4em .7em;border-radius:100px;margin:3.2px 1.6px;vertical-align:top;max-width:100%;line-height:1.2em;text-decoration:none;position:relative;cursor:default;font-size:13px;overflow:hidden;box-sizing:border-box
+}
+i-upload>.filelist>.filewrap .file span{max-width:100%;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;display:inline-block;padding-right:1em;vertical-align:middle;position:relative;z-index:1;box-sizing:border-box
+}
+i-upload>.filelist>.filewrap .file i.morningicon{font-size:12px;position:absolute;right:.5em;top:50%;transform:translateY(-50%);cursor:default;z-index:2
+}
+i-upload>.filelist>.filewrap .file i.morningicon.reupload{cursor:pointer;display:none
+}
+i-upload>.filelist>.filewrap .file i.morningicon.reupload:hover{color:#4dbd67!important
+}
+i-upload>.filelist>.filewrap .file i.morningicon.remove{cursor:pointer;display:none
+}
+i-upload>.filelist>.filewrap .file i.morningicon.remove:hover{color:#d64431!important
+}
+i-upload>.filelist>.filewrap .file>.progress{background:#4dbd67;opacity:.2;width:0%;height:100%;position:absolute;top:0;left:0;border-radius:100px 0 0 100px;transition:width .3s
+}
+i-upload>.filelist>.filewrap .add{display:inline-block;padding:.4em 1.6em
+}
+i-upload>.filelist>.filewrap .add .morningicon.local{left:1em;font-size:16px
+}
+i-upload>.filelist>.filewrap .add:hover{cursor:pointer;text-decoration:none;color:grey!important;background:#e8e8e8
+}
+i-upload>.filelist>.filewrap .add:hover i.morningicon{cursor:pointer;color:grey!important
+}
+i-upload>.filelist>.filewrap .add span{padding-right:0;padding-left:1em
+}
+i-upload>.filelist>.filewrap .add i.morningicon{top:51%;left:1.5em;right:auto
+}
+i-upload>.filelist>.filewrap .add:hover{cursor:pointer
+}
+i-upload>.filelist>.filewrap .add:hover i.morningicon{color:grey!important
+}
+i-upload>.filelist>.filewrap .add.local{border-radius:100px 0 0 100px;margin-right:0
+}
+i-upload>.filelist>.filewrap .add.url{margin-left:1px;border-radius:0 100px 100px 0
+}
+i-upload>.filelist>.filewrap .add.url span{padding-right:1em;padding-left:0
+}
+i-upload>.filelist>.filewrap .add.url i.morningicon{left:auto;right:1.5em
+}
+i-upload>.filelist>.filewrap .add.url .load{vertical-align:1px;line-height:1em;animation-name:rotation;animation-duration:1s;animation-timing-function:linear;animation-iteration-count:infinite;color:#9a9a9a;display:none;margin-top:-.5em
+}
+i-upload>.filelist>.filewrap .add.loading{cursor:default
+}
+i-upload>.filelist>.filewrap .add.loading .morningicon{display:none
+}
+i-upload>.filelist>.filewrap .add.loading .load{display:inherit
+}
+i-upload>.filelist>.filewrap .wait>.progress{width:20%
+}
+i-upload>.filelist>.filewrap .verification>.progress{width:40%
+}
+i-upload>.filelist>.filewrap .uploading>.progress{width:60%
+}
+i-upload>.filelist>.filewrap .uploaded>.progress{width:100%
+}
+i-upload>.filelist>.filewrap .done{cursor:pointer
+}
+i-upload>.filelist>.filewrap .done:hover{color:#9a9a9a!important
+}
+i-upload>.filelist>.filewrap .done:hover .morningicon{color:#9a9a9a!important
+}
+i-upload>.filelist>.filewrap .done .progress{width:0%;transition:width 0s
+}
+i-upload>.filelist>.filewrap .done i.morningicon.reupload,i-upload>.filelist>.filewrap .done i.morningicon.uploading{display:none
+}
+i-upload>.filelist>.filewrap .done i.morningicon.remove{display:block
+}
+i-upload>.filelist>.filewrap .fail{background:#fae6e4
+}
+i-upload>.filelist>.filewrap .fail>span{padding-right:2.2em
+}
+i-upload>.filelist>.filewrap .fail>.progress{width:0%;transition:width 0s
+}
+i-upload>.filelist>.filewrap .fail i.morningicon.uploading{display:none
+}
+i-upload>.filelist>.filewrap .fail i.morningicon.reupload{display:block;right:1.7em
+}
+i-upload>.filelist>.filewrap .fail>i.morningicon.remove{display:block
+}
+i-upload>.filelist>.filewrap .max{font-size:12px;color:silver!important;width:100%;padding:.4em .7em;text-align:center;display:block
+}
+i-upload>.filelist>.drag-note{position:absolute;left:0;top:0;background:#fff;width:100%;height:100%;z-index:3;opacity:0;pointer-events:none;transition:opacity .2s
+}
+i-upload>.filelist>.drag-note.show{opacity:1
+}
+i-upload>.filelist>.drag-note p{width:100%;position:absolute;top:50%;transform:translateY(-50%);text-align:center;color:#666;margin:0;font-size:12px
+}
+i-upload>.filelist>.drag-note p .morningicon{font-size:16px;vertical-align:-1px
+}
+i-upload:hover>.filelist{border-color:#d7d7d7
+}
+i-upload.focus>.filelist{border-color:#8e9caf
+}
+i-upload .fileinput{display:none
+}
+i-upload.allow-url>.filelist>.filewrap .add{padding:.4em 1em .4em 1.6em
+}
+i-upload.allow-url>.filelist>.filewrap .add.url{padding:.4em 1.6em .4em 1em
+}
+i-upload.st-disabled{-webkit-user-select:none;cursor:not-allowed!important;background-color:#ebebeb
+}
+i-upload.st-disabled>.filelist{border-color:#a6a6a6
+}
+i-upload.st-disabled>.filelist>.name{background-color:#d7d7d7;color:#7c8ba0
+}
+i-upload.st-disabled>.filelist>.filewrap>.file{cursor:pointer!important;background-color:#d7d7d7
+}
+i-upload.st-disabled>.filelist>.filewrap>.file .morningicon{display:none!important
+}
+i-upload.st-disabled>.filelist>.filewrap>.file span{padding-right:0
+}
+i-upload.st-disabled>.filelist>.filewrap>.file:hover{color:#9a9a9a!important
+}
+i-upload.st-disabled>.filelist>.filewrap>.add:hover{cursor:default
+}
+i-upload.st-disabled>.filelist>.filewrap>.add:hover i.morningicon{color:#9a9a9a!important
+}
+i-upload.st-disabled>.filelist:hover{border-color:#a6a6a6
+}

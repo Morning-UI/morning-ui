@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="last-update" v-if="lastupdate">
-            Last update : <a :href="'https://github.com/Morning-UI/morning-ui/releases/tag/'+lastupdate.version">{{lastupdate.version}}</a> by <img class="avatar" :src="lastupdate.avatar" alt=""> <a target="_blank" :href="lastupdate.github">{{lastupdate.author}}</a> at {{lastupdate.date}} ({{lastupdate.ar}}), commit id : <a target="_blank" :href="'https://github.com/Morning-UI/morning-ui/commit/'+lastupdate.cid">{{lastupdate.scid}}</a>
+            Last update : <a :href="'https://github.com/Morning-UI/morning-ui/releases/tag/'+lastupdate.version">{{lastupdate.version}}</a> by <img class="avatar" :src="lastupdate.avatar" alt=""> <a target="_blank" :href="lastupdate.github">{{lastupdate.author}}</a> at {{lastupdate.date}}, commit id : <a target="_blank" :href="'https://github.com/Morning-UI/morning-ui/commit/'+lastupdate.cid">{{lastupdate.scid}}</a>
             <br>
         </div>
         <div class="contributors" v-if="lastupdate">
