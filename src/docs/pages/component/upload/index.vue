@@ -35,10 +35,12 @@
     formConfigTable
     ---
     |item-name|项目的名称，作为添加按钮标题的后缀。|项目的名称|String|`'文件'`|
+    |accept-type|指导用户上传指定文件扩展名或MIME类型的文件，多个类型之间采用逗号分隔。比如：<br><br>`'image/png'` 或 `'.png'` : 允许上传png文件<br>`'image/png, image/jpeg'` 或 `'.png, .jpg, .jpeg'` : 允许上传png或jpg图片<br>`'image/*'` : 允许所有MIME类型为`image/*`的文件上传。<br><br>需要注意的是此配置并不验证文件的类型，它只指导用户选择正确类型的文件。用户可以在文件选择器中切换类型来上传其他类型的文件。|文件扩展名<br>MIME类型|String|`undefined`|
     |multi|允许同时选择多个文件上传|`true`<br>`false`|Boolean|`false`|
     |max|最多允许上传多少文件|数字|Number|`Infinity`|
     |allow-url|允许从网络地址获取文件并上传|`true`<br>`false`|Boolean|`false`|
-    |allow-drag|允许拖拽文件上传|`true`<br>`false`|Boolean|`false`|
+    |allow-drag|允许拖拽文件或网络地址上传，若拖拽的是网络地址必须开启`allow-url`|`true`<br>`false`|Boolean|`false`|
+    |validate|验证上传的文件，这是一个函数，第一个参数是上传文件的`File`对象。可以通过这个对象来验证文件，返回的数值有两种：<br><br>非字符串：认为验证通过，开始上传文件<br>字符串：验证失败，字符串的内容作为提示信息展现给用户<br><br>如果是异步的验证，也可以返回Promise|`true`<br>`false`|Function|`() => {}`|
     :::
 
     :::preset/html
@@ -55,6 +57,16 @@
     :::democode/html
     <div style="width:300px;">
         <ui-upload form-name="文件" item-name="文件"></ui-upload>
+    </div>
+    :::
+
+    #### accept-type
+    
+    指导用户上传PNG图片：
+
+    :::democode/html
+    <div style="width:300px;">
+        <ui-upload form-name="文件" accept-type="image/png"></ui-upload>
     </div>
     :::
 
@@ -91,6 +103,119 @@
         <ui-upload form-name="文件" :allow-drag="true"></ui-upload>
     </div>
     :::
+
+    开启`allow-url`后，可以拖拽网络地址上传：
+
+    :::democode/html
+    <div style="width:300px;">
+        <ui-upload form-name="文件" :allow-drag="true" :allow-url="true"></ui-upload>
+    </div>
+    :::
+
+    #### validate
+
+    限制上传大小为30kb的图片：
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        methods : {
+            checksize : function (file) {
+
+                console.log(file);
+                    
+                if (file.size > 30000) {
+                    
+                    return '上传文件的大小不能超过30kb';
+
+                }
+
+            }
+        }
+    });
+    ---
+    <div style="width:300px;">
+        <ui-upload form-name="文件" :validate="checksize"></ui-upload>
+    </div>
+    :::
+
+    [[[方法]]]
+
+    :::preset/html
+    formMethod
+    ---
+    uikey:upload
+    methodValue:[{path:'//morning-ui-image.test.upcdn.net/uploaddemo/17491/1511259398095810608.png',name:'1511259398095810608.png'}]
+    methodDefaultValue:[{path:'//morning-ui-image.test.upcdn.net/uploaddemo/17491/1511259398095810608.png',name:'1511259398095810608.png'}]
+    :::
+
+    #### uploadUrl(url)
+
+    上传网络文件，使用此方法需要开启组件的`allow-url`配置。
+    
+    |KEY|可选|描述|接受值|值类型|默认值|
+    |-|-|-|-|-|-|
+    |url|NO|需要上传网络文件的URL地址|URL|`String`|`undefined`|
+
+    :::democode/html
+    <div style="width:300px;">
+        <ui-upload ref="demo1" form-name="网络文件" :allow-url="true"></ui-upload>
+    </div>
+    <br>
+    <ui-link js="javascript:morning.findVM('demo1').uploadUrl('https://cn.vuejs.org/images/logo.png');">上传Vue的logo</ui-link>
+    :::
+
+    [[[事件]]]
+
+    :::preset/html
+    formEvent
+    ---
+    uikey:upload
+    eventValue:[{path:'//morning-ui-image.test.upcdn.net/uploaddemo/17491/1511259398095810608.png',name:'1511259398095810608.png'}]
+    eventDefaultValue:[{path:'//morning-ui-image.test.upcdn.net/uploaddemo/17491/1511259398095810608.png',name:'1511259398095810608.png'}]
+    :::
+
+    [[[表单值]]]
+
+    #### 值类型
+    
+    `Array` : 数组
+
+    #### 值过滤
+
+    - 所有不支持的值类型，都会被尝试转换成空数组([])。
+    - 若启用`max`，最多不会超过max设置的项目数量。
+
+    #### 值格式
+
+    数组由对象组成，对象包含两个属性：
+
+    - `path` : 文件上传之后的路径(必需)
+    - `name` : 文件的名称(非必需)
+
+    #### 默认值
+
+    `[]`
+
+    #### 输入/输出示例
+
+    :::repeat/html
+    formValueType:upload
+    ---
+    <div>
+        <p>{$valueType}类型</p>
+        <div style="width:300px;">
+            <ui-upload ref="demoType{$valueType}" form-name="文件"></ui-upload>
+        </div>
+        <br>
+        <ui-link js="window.morning.findVM('demoType{$valueType}').set({$&valueContent})">设置{$valueType}类型</ui-link>
+        <ui-link js="alert(window.morning.findVM('demoType{$valueType}').getJson())">获取表单JSON值</ui-link>
+    </div>
+    <br>
+    <br>
+    :::
+
 
     [[[源码]]]
 

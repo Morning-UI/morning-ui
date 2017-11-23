@@ -322,6 +322,36 @@ let data = {
                 valueType : 'Array',
                 valueContent : '[{\'name\':\'Tim Boelaars\'}]'
             }
+        ],
+        upload : [
+            {
+                valueType : 'String',
+                valueContent : `'//morning-ui-image.test.upcdn.net/uploaddemo/17491/1511259398095810608.png'`
+            },
+            {
+                valueType : 'Number',
+                valueContent : '5'
+            },
+            {
+                valueType : 'Boolean',
+                valueContent : 'true'
+            },
+            {
+                valueType : 'Null',
+                valueContent : 'null'
+            },
+            {
+                valueType : 'Undefined',
+                valueContent : 'undefined'
+            },
+            {
+                valueType : 'Object',
+                valueContent : '{path:\'//morning-ui-image.test.upcdn.net/uploaddemo/17491/1511259398095810608.png\',name:\'1511259398095810608.png\'}'
+            },
+            {
+                valueType : 'Array',
+                valueContent : '[{path:\'//morning-ui-image.test.upcdn.net/uploaddemo/17491/1511259398095810608.png\',name:\'1511259398095810608.png\'}]'
+            }
         ]
     }
 };

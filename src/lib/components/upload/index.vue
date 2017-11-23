@@ -9,10 +9,12 @@
         :default-value="defaultValue"
         :hide-name="hideName"
         :item-name="itemName"
+        :accept-type="acceptType"
         :multi="multi"
         :max="max"
         :allow-url="allowUrl"
         :allow-drag="allowDrag"
+        :validate="validate"
 
         @dragover.stop.prevent="_dragover"
         @dragleave="_dragleave"
@@ -22,8 +24,10 @@
     <input
         type="file"
         class="fileinput"
-
+    
+        :key="data.inputKey"
         :id="'ui-select-fileinput-' + uiid"
+        :accept="conf.acceptType"
         :multiple="conf.multi"
         @change="_getFiles"
     />
@@ -86,7 +90,7 @@
                 </label>
             </template>
 
-            <!-- <p class="status" v-if="Object.keys(conf.validate).length > 0"></p> -->
+            <p class="status" v-if="data.validateNote">{{data.validateNote}}</p>
             
             <span class="max" v-if="ismax">最多只能上传{{conf.max}}个文件</span>
         </div>
@@ -107,11 +111,11 @@ export default {
     origin : 'Form',
     name : 'upload',
     props : {
-        // validate : {
-        //     type : Object,
-        //     default : () => ({})
-        // },
         itemName : {
+            type : String,
+            default : ''
+        },
+        acceptType : {
             type : String,
             default : ''
         },
@@ -129,7 +133,11 @@ export default {
         },
         allowDrag : {
             type : Boolean,
-            default : true
+            default : false
+        },
+        validate : {
+            type : Function,
+            default : () => ({})
         }
     },
     computed : {
@@ -158,14 +166,16 @@ export default {
 
         return {
             conf : {
-                // validate : this.validate,
                 itemName : this.itemName,
+                acceptType : this.acceptType,
                 multi : this.multi,
                 max : this.max,
                 allowUrl : this.allowUrl,
-                allowDrag : this.allowDrag
+                allowDrag : this.allowDrag,
+                validate : this.validate
             },
             data : {
+                inputKey : 0,
                 files : [],
                 uploadQueue : [],
                 uploading : false,
@@ -185,7 +195,19 @@ export default {
 
             }
 
-            // value = this._maxFilter(value);
+            value = this._maxFilter(value);
+
+            return value;
+
+        },
+        _maxFilter : function (value) {
+
+            if (this.conf.max &&
+                value.length > this.conf.max) {
+
+                return value.slice(0, this.conf.max);
+
+            }
 
             return value;
 
@@ -212,11 +234,29 @@ export default {
             this.data.dragover = false;
 
         },
-        _drop : function () {
+        _drop : function (evt) {
 
             if (!this.conf.allowDrag) {
 
                 return;
+
+            }
+
+            this.data.dragover = false;
+
+            let url = evt.dataTransfer.getData('URL');
+
+            if (url) {
+
+                if (this.conf.allowUrl) {
+
+                    this._fetchRemoteFile(url);
+
+                }
+
+            } else {
+
+                this._getFiles(evt);
 
             }
 
@@ -318,6 +358,13 @@ export default {
             let files = [];
             let values = this.get();
 
+            if (typeof values !== 'object' ||
+                !(values instanceof Array)) {
+
+                return;
+
+            }
+
             this.data.files = [];
 
             for (let value of values) {
@@ -351,7 +398,9 @@ export default {
                     uploading : false,
                     uploaded : false,
                     done : false,
-                    wait : true
+                    wait : true,
+                    verification : false,
+                    validateNote : ''
                 }
             }, options);
 
@@ -393,10 +442,12 @@ export default {
 
             }
 
+            this.data.inputKey++;
+
         },
         _addFile : function (file) {
 
-            let {fileObj, index} = this._createNewFileObj({
+            let {index} = this._createNewFileObj({
                 file,
                 uploadnow : true
             });
@@ -448,44 +499,53 @@ export default {
             }
 
             let index = this.data.uploadQueue.shift(),
-                // $file = this.$el.querySelector(`.file[index="${index}"]`),
                 uploadObj = {};
 
-            this._setStatus(index, 'uploading');
-
-            // if ( ['img', 'file'].indexOf(this.attr.mode) === -1 ) {
-            //     this._setStatus(index, 'fail');
-            //     uploadOne();
-            //     return;
-            // }
-
-            if (this.conf.max && this.ismax) {
-
-                this._setStatus(index, 'fail');
-                this._execUploadOnce();
-
-                return;
-
-            }
-
-            // if ( this.attr.mode === 'img' ) {
-            //     pushObj.image = this.files[index];
-            //     pushObj.quality = +this.attr.lossy;
-            // } else {
-            //     pushObj.content = this.files[index];
-            // }
-            uploadObj.file = this.data.files[index].file;
-            uploadObj.name = this.data.files[index].name;
-
-            if (this.morning._options.uploader === null ||
-                typeof this.morning._options.uploader !== 'function') {
-
-                throw new Error('file uploader must be a function.');
-
-            }
-
             Promise
-                .resolve(this.morning._options.uploader(uploadObj))
+                .resolve()
+                .then(() => {
+
+                    this._setStatus(index, 'verification');
+
+                    if (this.conf.max && this.ismax) {
+
+                        return Promise.reject('upload file num is max.');
+
+                    }
+
+                    uploadObj.file = this.data.files[index].file;
+                    uploadObj.name = this.data.files[index].name;
+
+                    if (typeof this.conf.validate === 'function') {
+
+                        return this.conf.validate(uploadObj.file);
+
+                    }
+
+                    return true;
+
+                })
+                .then(result => {
+
+                    if (typeof result === 'string') {
+
+                        this.data.validateNote = result;
+
+                        return Promise.reject('file not pass validate.');
+
+                    }
+
+                    this._setStatus(index, 'uploading');
+
+                    if (this.morning._options.uploader === null ||
+                        typeof this.morning._options.uploader !== 'function') {
+
+                        return Promise.reject('file uploader must be a function.');
+
+                    }
+
+                })
+                .then(() => (this.morning._options.uploader(uploadObj)))
                 .then(result => {
 
                     if (this.data.uploading === false) {
@@ -538,6 +598,7 @@ export default {
 
             }
 
+            this.data.validateNote = '';
             this.data.uploading = true;
             this._execUploadOnce();
 
@@ -589,6 +650,19 @@ export default {
             this._syncFilesFromValue();
 
             return result;
+
+        },
+        uploadUrl : function (url) {
+            
+            if (!this.conf.allowUrl) {
+
+                return this;
+
+            }
+
+            this._fetchRemoteFile(url);
+
+            return this;
 
         }
     },
