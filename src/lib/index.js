@@ -19,6 +19,7 @@ let morning = {
     _globalEventListener : {},
     _groupData : {},
     _groupVmMap : {},
+    _options : {},
     isMorning : true,
     version : '0.10.8',
     map : {}
@@ -108,8 +109,11 @@ morning.install = function (Vue, options) {
     }
 
     options = extend(true, {
-        prefix : 'ui'
+        prefix : 'ui',
+        uploader : null
     }, options);
+
+    morning._options = options;
 
     Vue.config.ignoredElements = [];
 

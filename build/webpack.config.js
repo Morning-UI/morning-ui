@@ -3,6 +3,7 @@ const extend                        = require('extend');
 const webpack                       = require('webpack');
 const walk                          = require('walk');
 const CleanWebpackPlugin            = require('clean-webpack-plugin');
+const CopyWebpackPlugin             = require('copy-webpack-plugin');
 const ExtractTextPlugin             = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin             = require('html-webpack-plugin');
 const UglifyJsPlugin                = require('uglifyjs-webpack-plugin');
@@ -14,6 +15,7 @@ let pathBuild = path.resolve(pathProjectRoot, 'build');
 let pathDist = path.resolve(pathProjectRoot, 'dist');
 let pathSrc = path.resolve(pathProjectRoot, 'src');
 let pathDocs = path.resolve(pathProjectRoot, 'docs');
+let pathFavicon = path.resolve(pathDocs, 'favicon.ico');
 // let pathDocsCommon = path.resolve(pathDocs, 'common');
 let pathReport = path.resolve(pathProjectRoot, 'report');
 // let pathCoverage = path.resolve(pathReport, 'coverage');
@@ -304,7 +306,13 @@ docsConfig = {
             name : 'doc-common',
             minChunks : Infinity
         }),
-        extractDocsCss
+        extractDocsCss,
+        new CopyWebpackPlugin([
+            {
+                from : path.resolve(pathSrcDocs, 'favicon.ico'),
+                to : path.resolve(pathDocs, 'favicon.ico')
+            }
+        ])
     ],
     resolve : {
         alias : {
@@ -320,7 +328,8 @@ docsConfig = {
             pathDocs,
             pathDist,
             pathReport,
-            pathPackage
+            pathPackage,
+            pathFavicon
         ],
         compress : true,
         hot : false
