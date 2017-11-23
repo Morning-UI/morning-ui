@@ -41,7 +41,7 @@
 
                 $.ajax({
                     type : 'POST',
-                    url : 'http://localhost:8089/api/uploadfile',
+                    url : '/api/uploadfile',
                     data : formData,
                     processData : false,
                     contentType : false,
@@ -117,7 +117,7 @@
     formStatus
     ---
     uikey:upload
-    statusDefaultValue:[{path:'//morning-ui-image.test.upcdn.net/uploaddemo/17491/1511259398095810608.png',name:'1511259398095810608.png'}]
+    statusDefaultValue:[{path:'http://morning-ui-image.test.upcdn.net/uploaddemo/17491/1511259398095810608.png',name:'1511259398095810608.png'}]
     :::
 
     [[[配置]]]
@@ -139,7 +139,7 @@
     formConfigDemo
     ---
     uikey:upload
-    configDefaultValue:[{path:'//morning-ui-image.test.upcdn.net/uploaddemo/17491/1511259398095810608.png',name:'1511259398095810608.png'}]
+    configDefaultValue:[{path:'http://morning-ui-image.test.upcdn.net/uploaddemo/17491/1511259398095810608.png',name:'1511259398095810608.png'}]
     :::
 
     #### item-name
@@ -261,8 +261,8 @@
     formMethod
     ---
     uikey:upload
-    methodValue:[{path:'//morning-ui-image.test.upcdn.net/uploaddemo/17491/1511259398095810608.png',name:'1511259398095810608.png'}]
-    methodDefaultValue:[{path:'//morning-ui-image.test.upcdn.net/uploaddemo/17491/1511259398095810608.png',name:'1511259398095810608.png'}]
+    methodValue:[{path:'http://morning-ui-image.test.upcdn.net/uploaddemo/17491/1511259398095810608.png',name:'1511259398095810608.png'}]
+    methodDefaultValue:[{path:'http://morning-ui-image.test.upcdn.net/uploaddemo/17491/1511259398095810608.png',name:'1511259398095810608.png'}]
     :::
 
     #### uploadUrl(url)
@@ -287,8 +287,8 @@
     formEvent
     ---
     uikey:upload
-    eventValue:[{path:'//morning-ui-image.test.upcdn.net/uploaddemo/17491/1511259398095810608.png',name:'1511259398095810608.png'}]
-    eventDefaultValue:[{path:'//morning-ui-image.test.upcdn.net/uploaddemo/17491/1511259398095810608.png',name:'1511259398095810608.png'}]
+    eventValue:[{path:'http://morning-ui-image.test.upcdn.net/uploaddemo/17491/1511259398095810608.png',name:'1511259398095810608.png'}]
+    eventDefaultValue:[{path:'http://morning-ui-image.test.upcdn.net/uploaddemo/17491/1511259398095810608.png',name:'1511259398095810608.png'}]
     :::
 
     [[[表单值]]]
