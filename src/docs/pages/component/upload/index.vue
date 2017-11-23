@@ -20,6 +20,97 @@
     </div>
     :::
 
+    #### 文件上传适配器
+
+    文件上传适配器用来接收组件上传的文件，并传输到服务端，然后将服务端结果处理后返回给组件：
+
+    <img src="http://h0.hucdn.com/open/201747/13c62e5ed487ec48_359x624.png" width="120" alt="">
+
+    使用文件上传组件之前，需要在初始化Morning UI的时候配置文件上传适配器`uploader`：
+
+    ```js
+    Vue.use(morning, {
+        uploader : (file) => {
+
+            let formData = new FormData();
+
+            formData.append('file', file.file);
+            formData.append('filename', file.name);
+
+            return new Promise((resolve, reject) => {
+
+                $.ajax({
+                    type : 'POST',
+                    url : 'http://localhost:8089/api/uploadfile',
+                    data : formData,
+                    processData : false,
+                    contentType : false,
+                    dataType : 'json',
+                    success : resp => {
+    
+                        if (resp.status) {
+
+                            resolve({
+                                status : true,
+                                path : resp.path
+                            });
+
+                        } else {
+    
+                            resolve({
+                                status : false,
+                                message : resp.message
+                            });
+
+                        }
+
+                    },
+                    error : resp => {
+                        reject('upload fail.');
+                    }
+                })
+
+            });
+
+        }
+    });
+    ```
+    
+    文件上传时会调用`uploader`并将需要上传的文件对象作为参数传入，由`uploader`解析文件对象并调用服务端上传接口。
+
+    当文件上传完毕后，`uploader`需要返回一个对象，包含三个属性：
+
+    - `status` : 文件是否上传成功(必需，Boolean)
+    - `path` : 文件上传后的网络地址(必需，String)
+    - `message` : `message` : 文件上传失败的提示信息(String)，仅在`status`为`false`的时候需要
+
+    接下来的示例中如没有设置组件的`uploader`配置，均采用了上面这个适配器。
+    
+    #### 为单个组件指定文件上传适配器
+
+    你也可以通过组件的`uploader`配置来为组件指定文件上传适配器，下面的示例的通过指定适配器演示了文件上传失败的情况：
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        methods : {
+            uploader : function (file) {
+
+                return {
+                    status : false,
+                    message : '文件上传失败，请重试'
+                };
+
+            }
+        }
+    });
+    ---
+    <div style="width:300px;">
+        <ui-upload form-name="文件" :uploader="uploader"></ui-upload>
+    </div>
+    :::
+
     [[[形态]]]
 
     :::preset/html
@@ -40,7 +131,8 @@
     |max|最多允许上传多少文件|数字|Number|`Infinity`|
     |allow-url|允许从网络地址获取文件并上传|`true`<br>`false`|Boolean|`false`|
     |allow-drag|允许拖拽文件或网络地址上传，若拖拽的是网络地址必须开启`allow-url`|`true`<br>`false`|Boolean|`false`|
-    |validate|验证上传的文件，这是一个函数，第一个参数是上传文件的`File`对象。可以通过这个对象来验证文件，返回的数值有两种：<br><br>非字符串：认为验证通过，开始上传文件<br>字符串：验证失败，字符串的内容作为提示信息展现给用户<br><br>如果是异步的验证，也可以返回Promise|`true`<br>`false`|Function|`() => {}`|
+    |validate|验证上传的文件，这是一个函数，第一个参数是上传文件的`File`对象。可以通过这个对象来验证文件，返回的数值有两种：<br><br>非字符串：认为验证通过，开始上传文件<br>字符串：验证失败，字符串的内容作为提示信息展现给用户<br><br>如果是异步的验证，也可以返回Promise|验证函数|Function|`() => {}`|
+    |uploader|文件上传适配器，默认采用全局设置。`uploader`是一个函数，第一个参数是上传文件的`File`对象，需要返回一个对象：<br><br>`status` : 文件是否上传成功(必需，Boolean)<br>`path` : 文件上传后的网络地址(必需，String)<br>`message` : 文件上传失败的提示信息(String)，仅在`status`为`false`的时候需要|文件上传适配器函数|Function|`undefined`|
     :::
 
     :::preset/html
@@ -122,8 +214,6 @@
         template : '{$template}',
         methods : {
             checksize : function (file) {
-
-                console.log(file);
                     
                 if (file.size > 30000) {
                     
@@ -137,6 +227,31 @@
     ---
     <div style="width:300px;">
         <ui-upload form-name="文件" :validate="checksize"></ui-upload>
+    </div>
+    :::
+
+    #### uploader
+
+    下面的示例的通过指定适配器演示了文件上传失败的情况：
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        methods : {
+            uploader : function (file) {
+
+                return {
+                    status : false,
+                    message : '文件上传失败，请重试'
+                };
+
+            }
+        }
+    });
+    ---
+    <div style="width:300px;">
+        <ui-upload form-name="文件" :uploader="uploader"></ui-upload>
     </div>
     :::
 

@@ -15,6 +15,7 @@
         :allow-url="allowUrl"
         :allow-drag="allowDrag"
         :validate="validate"
+        :uploader="uploader"
 
         @dragover.stop.prevent="_dragover"
         @dragleave="_dragleave"
@@ -90,7 +91,7 @@
                 </label>
             </template>
 
-            <p class="status" v-if="data.validateNote">{{data.validateNote}}</p>
+            <p class="status" v-if="data.failNote">{{data.failNote}}</p>
             
             <span class="max" v-if="ismax">最多只能上传{{conf.max}}个文件</span>
         </div>
@@ -138,6 +139,10 @@ export default {
         validate : {
             type : Function,
             default : () => ({})
+        },
+        uploader : {
+            type : Function,
+            default : undefined
         }
     },
     computed : {
@@ -172,7 +177,8 @@ export default {
                 max : this.max,
                 allowUrl : this.allowUrl,
                 allowDrag : this.allowDrag,
-                validate : this.validate
+                validate : this.validate,
+                uploader : this.uploader
             },
             data : {
                 inputKey : 0,
@@ -400,7 +406,7 @@ export default {
                     done : false,
                     wait : true,
                     verification : false,
-                    validateNote : ''
+                    failNote : ''
                 }
             }, options);
 
@@ -462,19 +468,6 @@ export default {
 
             }
 
-            // else {
-
-                // this._setStatus(index, 'done');
-                // this.$.find('.file[index="'+index+'"]').attr('href', file.path);
-            
-            // }
-
-            // if ( this.attr.max && _.size(this.prop.files) >= +this.attr.max ) {
-            //     this.$.find('.file.add').hide();
-            //     this.$.find('.max').addClass('show');
-            //     return;
-            // }
-
         },
         _removeFile : function (index) {
 
@@ -529,7 +522,7 @@ export default {
 
                     if (typeof result === 'string') {
 
-                        this.data.validateNote = result;
+                        this.data.failNote = result;
 
                         return Promise.reject('file not pass validate.');
 
@@ -537,15 +530,25 @@ export default {
 
                     this._setStatus(index, 'uploading');
 
-                    if (this.morning._options.uploader === null ||
-                        typeof this.morning._options.uploader !== 'function') {
+                    if ((!this.conf.uploader || typeof this.conf.uploader !== 'function') &&
+                        (this.morning._options.uploader === null || typeof this.morning._options.uploader !== 'function')) {
 
                         return Promise.reject('file uploader must be a function.');
 
                     }
 
                 })
-                .then(() => (this.morning._options.uploader(uploadObj)))
+                .then(() => {
+
+                    if (typeof this.conf.uploader === 'function') {
+
+                        return this.conf.uploader(uploadObj);
+
+                    }
+
+                    return this.morning._options.uploader(uploadObj);
+
+                })
                 .then(result => {
 
                     if (this.data.uploading === false) {
@@ -554,10 +557,6 @@ export default {
 
                     }
 
-                    // result.status
-                    // result.width
-                    // result.height
-                    // result.data
                     if (result.status) {
 
                         this.data.files[index].path = result.path;
@@ -570,13 +569,14 @@ export default {
 
                     } else {
 
+                        this.data.failNote = result.message || '上传失败';
                         this._setStatus(index, 'fail');
                         this._execUploadOnce();
 
                     }
 
                 })
-                .catch(e => {
+                .catch(() => {
 
                     if (this.data.uploading === false) {
 
@@ -598,7 +598,7 @@ export default {
 
             }
 
-            this.data.validateNote = '';
+            this.data.failNote = '';
             this.data.uploading = true;
             this._execUploadOnce();
 
@@ -621,23 +621,6 @@ export default {
                 }
 
             }
-
-            /*eslint-disable */
-            // switch(status) {
-            //     case 'done':
-            //     case 'fail':
-            //         let status = _.pluck(_.values(this.prop.files), 'status'),
-            //             dones = _.filter(status, (state) => state === 'done' || state === 'fail');
-
-            //         if (dones.length === _.size(this.prop.files)) {
-            //             this.st.status = 'done';
-            //         }
-            //         break;
-            //     case 'uploading': 
-            //         this.st.status = status;
-            //         break;
-            // }
-            /*eslint-enable */
 
         },
         set : function (value) {

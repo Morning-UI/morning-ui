@@ -35,12 +35,22 @@
               contentType : false,
               dataType : 'json',
               success : resp => {
+    
+                if (resp.status) {
 
-                resolve({
-                  status : true,
-                  path : resp.path,
-                  data : resp.data
-                });
+                  resolve({
+                      status : true,
+                      path : resp.path
+                  });
+
+                } else {
+
+                  resolve({
+                      status : false,
+                      message : resp.message
+                  });
+
+                }
 
               },
               error : resp => {

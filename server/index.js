@@ -61,25 +61,38 @@ router
         let service = new upyun.Service('morning-ui-image', 'morningdoc', 'morningdoc');
         let client = new upyun.Client(service);
         let file = ctx.request.body.files.file;
+        let isfail = ctx.request.body.fail;
         let filetype = file.name.split('.').pop();
         let remotepath = `uploaddemo/${Math.floor(+new Date() / daytime)}/${String(+new Date()) + Math.floor(Math.random() * randomSize)}.${filetype}`;
 
-        await client
-            .putFile(remotepath, fs.readFileSync(file.path), {})
-            .then(resp => {
+        if (isfail) {
 
-                ctx.set('Access-Control-Allow-Origin', '*');
-                ctx.body = {
-                    path : `//morning-ui-image.test.upcdn.net/${remotepath}`,
-                    data : {
-                        height : resp.height,
-                        width : resp.width,
-                        frames : resp.frames,
-                        filetype : resp['file-type']
-                    }
-                };
+            ctx.body = {
+                status : false,
+                message : '图片上传服务器失败'
+            };
 
-            });
+        } else {
+        
+            await client
+                .putFile(remotepath, fs.readFileSync(file.path), {})
+                .then(resp => {
+
+                    ctx.set('Access-Control-Allow-Origin', '*');
+                    ctx.body = {
+                        status : true,
+                        path : `//morning-ui-image.test.upcdn.net/${remotepath}`,
+                        data : {
+                            height : resp.height,
+                            width : resp.width,
+                            frames : resp.frames,
+                            filetype : resp['file-type']
+                        }
+                    };
+
+                });
+
+        }
 
         next();
 
