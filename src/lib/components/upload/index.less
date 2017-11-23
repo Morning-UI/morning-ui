@@ -50,16 +50,17 @@ i-upload{
             }
 
             .status{
-                display: none;
                 padding: 0.2em;
-                margin: @fontSize*0.05 @fontSize*0.1;
+                margin: @fontSize*0.15 @fontSize*0.1;
                 vertical-align: top;
                 max-width: 100%;
                 line-height: 1.2em;
                 text-decoration: none;
                 position: relative;
                 cursor: default;
-                font-size: @fontSize*0.8125;
+                font-size: @fontSize*0.75;
+                text-align: center;
+                color: @colorFormTextMisc !important;
             }
 
             .pass{
@@ -235,11 +236,15 @@ i-upload{
                 }
 
                 &.wait > .progress{
-                    width: 15%;
+                    width: 20%;
+                }
+
+                &.verification > .progress{
+                    width: 40%;
                 }
 
                 &.uploading > .progress{
-                    width: 50%;
+                    width: 60%;
                 }
 
                 &.uploaded > .progress{
@@ -305,7 +310,7 @@ i-upload{
                 width: 100%;
                 padding: 0.4em 0.7em;
                 text-align: center;
-                    display: block;
+                display: block;
             }
         }
 
