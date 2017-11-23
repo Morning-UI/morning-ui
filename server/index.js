@@ -81,7 +81,7 @@ router
                     ctx.set('Access-Control-Allow-Origin', '*');
                     ctx.body = {
                         status : true,
-                        path : `//morning-ui-image.test.upcdn.net/${remotepath}`,
+                        path : `http://morning-ui-image.test.upcdn.net/${remotepath}`,
                         data : {
                             height : resp.height,
                             width : resp.width,
