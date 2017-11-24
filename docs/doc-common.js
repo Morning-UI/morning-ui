@@ -34,7 +34,7 @@
 /******/
 /******/ 	// objects to store loaded and loading chunks
 /******/ 	var installedChunks = {
-/******/ 		83: 0
+/******/ 		84: 0
 /******/ 	};
 /******/
 /******/ 	// The require function
@@ -4268,6 +4268,7 @@ exports.default = {
         // 滚动跟随<i class="tag update"></i> : 'b',
         面包屑: '/component/breadcrumbs.html',
         小提示: '/component/tip.html',
+        消息: '/component/message.html',
         // 视频 : 'b',
         // 音频<i class="tag new"></i> : 'b',
         表单组件: null,
@@ -32653,7 +32654,12 @@ if (false) {
 /* 728 */,
 /* 729 */,
 /* 730 */,
-/* 731 */
+/* 731 */,
+/* 732 */,
+/* 733 */,
+/* 734 */,
+/* 735 */,
+/* 736 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(269)(undefined);
@@ -32667,13 +32673,13 @@ exports.push([module.i, "/*\n * Hopscotch\n * by Jan T. Sott\n * https://github.
 
 
 /***/ }),
-/* 732 */
+/* 737 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "iconfont.woff";
 
 /***/ }),
-/* 733 */
+/* 738 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*

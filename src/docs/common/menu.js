@@ -59,6 +59,7 @@ export default {
         // 滚动跟随<i class="tag update"></i> : 'b',
         面包屑 : '/component/breadcrumbs.html',
         小提示 : '/component/tip.html',
+        消息 : '/component/message.html',
         // 视频 : 'b',
         // 音频<i class="tag new"></i> : 'b',
         表单组件 : null,
