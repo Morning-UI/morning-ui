@@ -78,7 +78,11 @@
     </div>
     :::
     
-    你可以查看[Vue/事件处理](https://vuejs.org/v2/guide/events.html)获取更多细节，但是需要注意Vue中的事件修饰符、键值修饰符、鼠标按钮修饰符等特性在MorningUI中并不支持。
+    你可以查看[Vue/事件处理](https://vuejs.org/v2/guide/events.html)获取更多细节，但是需要注意Vue中的事件修饰符、键值修饰符、鼠标按钮修饰符等特性在MorningUI的组件事件中并不支持，仅支持原生事件。
+
+    #### 原生事件
+
+    可以通过`.native`修饰符来为Morning UI的组件绑定原生事件，详见：［Vue/给组件绑定原生事件](https://cn.vuejs.org/v2/guide/components.html#给组件绑定原生事件)
 
     ### 生命周期事件
 

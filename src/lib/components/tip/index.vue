@@ -37,7 +37,8 @@ export default {
         },
         placement : {
             type : String,
-            default : 'top'
+            default : 'top',
+            validator : (value => ['top', 'bottom', 'left', 'right'].indexOf(value) !== -1)
         },
         offset : {
             type : String,
@@ -45,7 +46,8 @@ export default {
         },
         trigger : {
             type : String,
-            default : 'hover'
+            default : 'hover',
+            validator : (value => ['hover', 'click', 'focus'].indexOf(value) !== -1)
         }
     },
     computed : {
