@@ -19,7 +19,7 @@
                     :key="msg.id"
                 >
                     <h1 class="title">{{msg.title}}</h1>
-                    <div class="body">{{msg.message}}</div>
+                    <div class="body" v-html="msg.message"></div>
                     <i class="morningicon" v-if="conf.closeBtn" @click="close(msg.id)">&#xe62e;</i>
                 </div>
             </transition-group>
@@ -28,14 +28,15 @@
     </i-message>
 </template>
 
-<!-- z-index问题 -->
-
 <script>
+import PopupManager                 from 'Utils/PopupManager';
+
 const defaultCloseTime = 4000;
 
 export default {
     origin : 'UI',
     name : 'message',
+    mixins : [PopupManager],
     props : {
         closeBtn : {
             type : Boolean,
@@ -156,6 +157,8 @@ export default {
 
             }
 
+            this.$emit('push');
+
             return options.id;
 
         },
@@ -167,6 +170,8 @@ export default {
 
                     this.data.list.splice(index, 1);
 
+                    this.$emit('close');
+
                 }
 
             }
@@ -176,6 +181,8 @@ export default {
         }
     },
     mounted : function () {
+
+        this._popupShow();
 
         this.$watch('data.list', () => {
 

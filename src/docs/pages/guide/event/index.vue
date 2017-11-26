@@ -132,6 +132,8 @@
     - `input-focus` : 输入框聚焦
     - `input-blur` : 输入框失焦
     - `list-change` : 列表数值变化
+    - `push` : 推送
+    - `close` : 关闭
 
     </script>
     </doc-guide>

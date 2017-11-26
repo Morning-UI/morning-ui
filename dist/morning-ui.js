@@ -876,6 +876,77 @@ module.exports = exports["default"];
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _IndexManager = __webpack_require__(5);
+
+var _IndexManager2 = _interopRequireDefault(_IndexManager);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var PopupManager = {
+    mixins: [_IndexManager2.default],
+    data: function data() {
+
+        return {
+            Popup: {
+                keepDiv: null,
+                oldIndex: undefined
+            }
+        };
+    },
+    methods: {
+        _popupShow: function _popupShow() {
+
+            if (this.Popup.keepDiv) {
+
+                return;
+            }
+
+            var id = this.morning._popupId++;
+            var keepDiv = document.createElement('div');
+
+            keepDiv.setAttribute('popup-id', id);
+            keepDiv.style.display = 'none';
+            this.$el.before(keepDiv);
+            this.Popup.oldIndex = this.$el.style.zIndex;
+            this.$el.style.zIndex = this._indexGet('Popup') + id;
+            document.body.append(this.$el);
+            this.Popup.keepDiv = keepDiv;
+        },
+        _popupHide: function _popupHide() {
+
+            if (!this.Popup.keepDiv) {
+
+                return;
+            }
+
+            this.$el.style.zIndex = this.Popup.oldIndex;
+            this.Popup.keepDiv.before(this.$el);
+            this.Popup.keepDiv.remove();
+            this.Popup.keepDiv = null;
+        }
+    },
+    created: function created() {
+
+        var popupIndex = 1000;
+
+        this._indexReg('Popup', popupIndex);
+    }
+};
+
+exports.default = PopupManager;
+module.exports = exports['default'];
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
 var utils = __webpack_require__(1);
@@ -970,77 +1041,6 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 module.exports = defaults;
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(263)))
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _IndexManager = __webpack_require__(5);
-
-var _IndexManager2 = _interopRequireDefault(_IndexManager);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var PopupManager = {
-    mixins: [_IndexManager2.default],
-    data: function data() {
-
-        return {
-            Popup: {
-                keepDiv: null,
-                oldIndex: undefined
-            }
-        };
-    },
-    methods: {
-        _popupShow: function _popupShow() {
-
-            if (this.Popup.keepDiv) {
-
-                return;
-            }
-
-            var id = this.morning._popupId++;
-            var keepDiv = document.createElement('div');
-
-            keepDiv.setAttribute('popup-id', id);
-            keepDiv.style.display = 'none';
-            this.$el.before(keepDiv);
-            this.Popup.oldIndex = this.$el.style.zIndex;
-            this.$el.style.zIndex = this._indexGet('Popup') + id;
-            document.body.append(this.$el);
-            this.Popup.keepDiv = keepDiv;
-        },
-        _popupHide: function _popupHide() {
-
-            if (!this.Popup.keepDiv) {
-
-                return;
-            }
-
-            this.$el.style.zIndex = this.Popup.oldIndex;
-            this.Popup.keepDiv.before(this.$el);
-            this.Popup.keepDiv.remove();
-            this.Popup.keepDiv = null;
-        }
-    },
-    created: function created() {
-
-        var popupIndex = 1000;
-
-        this._indexReg('Popup', popupIndex);
-    }
-};
-
-exports.default = PopupManager;
-module.exports = exports['default'];
 
 /***/ }),
 /* 8 */
@@ -10380,7 +10380,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _PopupManager = __webpack_require__(7);
+var _PopupManager = __webpack_require__(6);
 
 var _PopupManager2 = _interopRequireDefault(_PopupManager);
 
@@ -11321,7 +11321,7 @@ var _tether = __webpack_require__(217);
 
 var _tether2 = _interopRequireDefault(_tether);
 
-var _PopupManager = __webpack_require__(7);
+var _PopupManager = __webpack_require__(6);
 
 var _PopupManager2 = _interopRequireDefault(_PopupManager);
 
@@ -13717,44 +13717,48 @@ if (false) {(function () {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
-var defaultCloseTime = 4000;
+var _PopupManager = __webpack_require__(6);
+
+var _PopupManager2 = _interopRequireDefault(_PopupManager);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var defaultCloseTime = 4000; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
     origin: 'UI',
     name: 'message',
+    mixins: [_PopupManager2.default],
     props: {
         closeBtn: {
             type: Boolean,
@@ -13887,6 +13891,8 @@ exports.default = {
                 }, this.conf.closeTime);
             }
 
+            this.$emit('push');
+
             return options.id;
         },
         close: function close(id) {
@@ -13896,6 +13902,8 @@ exports.default = {
                 if (id === this.data.list[index].id) {
 
                     this.data.list.splice(index, 1);
+
+                    this.$emit('close');
                 }
             }
 
@@ -13904,6 +13912,8 @@ exports.default = {
     },
     mounted: function mounted() {
         var _this2 = this;
+
+        this._popupShow();
 
         this.$watch('data.list', function () {
 
@@ -13961,8 +13971,11 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     }, [_c('h1', {
       staticClass: "title"
     }, [_vm._v(_vm._s(msg.title))]), _vm._v(" "), _c('div', {
-      staticClass: "body"
-    }, [_vm._v(_vm._s(msg.message))]), _vm._v(" "), (_vm.conf.closeBtn) ? _c('i', {
+      staticClass: "body",
+      domProps: {
+        "innerHTML": _vm._s(msg.message)
+      }
+    }), _vm._v(" "), (_vm.conf.closeBtn) ? _c('i', {
       staticClass: "morningicon",
       on: {
         "click": function($event) {
@@ -18971,7 +18984,7 @@ module.exports = __webpack_require__(260);
 var utils = __webpack_require__(1);
 var bind = __webpack_require__(9);
 var Axios = __webpack_require__(262);
-var defaults = __webpack_require__(6);
+var defaults = __webpack_require__(7);
 
 /**
  * Create an instance of Axios
@@ -19054,7 +19067,7 @@ function isSlowBuffer (obj) {
 "use strict";
 
 
-var defaults = __webpack_require__(6);
+var defaults = __webpack_require__(7);
 var utils = __webpack_require__(1);
 var InterceptorManager = __webpack_require__(272);
 var dispatchRequest = __webpack_require__(273);
@@ -19776,7 +19789,7 @@ module.exports = InterceptorManager;
 var utils = __webpack_require__(1);
 var transformData = __webpack_require__(274);
 var isCancel = __webpack_require__(12);
-var defaults = __webpack_require__(6);
+var defaults = __webpack_require__(7);
 
 /**
  * Throws a `Cancel` if cancellation has been requested.

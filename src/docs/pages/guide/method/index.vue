@@ -117,6 +117,8 @@
     - `next` : 下一项
     - `prev` : 上一项
     - `setTotal` : 设置总数
+    - `push` : 推送
+    - `close` : 关闭
 
     </script>
     </doc-guide>
