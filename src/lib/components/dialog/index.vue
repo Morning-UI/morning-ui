@@ -7,11 +7,12 @@
         :height="height"
         :auto-close="autoClose"
         :show-type="showType"
+        :show-mask="showMask"
 
         @click="_onClick"
     >
 
-    <div class="mask"></div>
+    <div class="mask" v-if="conf.showMask"></div>
     <div
         class="content"
         :style="{width: conf.width, height: conf.height}"
@@ -48,7 +49,12 @@ export default {
         },
         showType : {
             type : String,
-            default : 'top'
+            default : 'top',
+            validator : (value => ['top', 'center', 'no'].indexOf(value) !== -1)
+        },
+        showMask : {
+            type : Boolean,
+            default : true
         }
     },
     computed : {
@@ -58,7 +64,8 @@ export default {
                 width : this.width,
                 height : this.height,
                 autoClose : this.autoClose,
-                showType : this.showType
+                showType : this.showType,
+                showMask : this.showMask
             };
 
         },

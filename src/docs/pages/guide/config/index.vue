@@ -210,6 +210,8 @@
     - `cell-set` : 单元格设置
     - `export-csv` : 导出CSV文件
     - `csv-name` : CSV文件的名称
+    - `close-btn` : 关闭按钮
+    - `close-time` : 关闭时间
 
     </script>
     </doc-guide>
