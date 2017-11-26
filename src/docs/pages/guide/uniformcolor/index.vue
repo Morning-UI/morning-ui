@@ -8,7 +8,7 @@
 
     在某些场景下组件之外的元素需要和Morning UI保持一致的配色，为此Morning UI提供了CSS类供组件外的元素添加形态中的颜色。
 
-    配色支持[形态/颜色](/guide/status.html)中的所有色彩。
+    配色支持[形态/颜色](/guide/status.html#颜色)中的所有色彩。
 
     ### 文字配色
 
