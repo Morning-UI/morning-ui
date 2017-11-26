@@ -1,5 +1,5 @@
 <template>
-    <i-multiinput
+    <mor-multiinput
         :_uiid="uiid"
         :class="[stateClass, moreClass, moveClass]"
 
@@ -77,7 +77,7 @@
         
     </div>
 
-    </i-multiinput>
+    </mor-multiinput>
 </template>
  
 <script>

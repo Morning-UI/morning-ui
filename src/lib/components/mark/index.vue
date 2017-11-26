@@ -1,10 +1,10 @@
 <template>
-    <i-mark
+    <mor-mark
         :_uiid="uiid"
         :class="[colorClass, stateClass]"
     >
         <slot></slot>
-    </i-mark>
+    </mor-mark>
 </template>
  
 <script>

@@ -1,10 +1,10 @@
 <template>
-    <i-ul
+    <mor-ul
         :_uiid="uiid"
         :class="[stateClass]"
     >
         <slot></slot>
-    </i-ul>
+    </mor-ul>
 </template>
  
 <script>

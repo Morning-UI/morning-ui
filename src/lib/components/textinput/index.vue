@@ -1,5 +1,5 @@
 <template>
-    <i-textinput
+    <mor-textinput
         :_uiid="uiid"
         :class="[stateClass, moreClass]"
 
@@ -49,7 +49,7 @@
         <div class="input-group-addon">{{conf.append}}</div>
     </template>
 
-    </i-textinput>
+    </mor-textinput>
 </template>
  
 <script>

@@ -1,5 +1,5 @@
 <template>
-    <i-dialog
+    <mor-dialog
         :_uiid="uiid"
         :class="[colorClass, moreClass]"
 
@@ -21,7 +21,7 @@
         <slot name="footer"></slot>
     </div>
         
-    </i-dialog>
+    </mor-dialog>
 </template>
  
 <script>

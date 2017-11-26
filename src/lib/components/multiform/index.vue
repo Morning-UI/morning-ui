@@ -1,5 +1,5 @@
 <template>
-    <i-multiform
+    <mor-multiform
         :_uiid="uiid"
         :class="[stateClass, moreClass, moveClass]"
 
@@ -109,7 +109,7 @@
         :ref="'ui-multiform-batchdialog-'+uiid"
     >
         <header slot="header">请输入需要添加的项目</header>
-        <ui-textarea :ref="'ui-multiform-batchinput-'+uiid"></ui-textarea>
+        <morning-textarea :ref="'ui-multiform-batchinput-'+uiid"></morning-textarea>
         <footer slot="footer">
             <div>
                 <!-- action="emit:toggle" -->
@@ -119,9 +119,9 @@
         </footer>
     </morning-dialog>
 
-    <ui-link v-if="conf.cleanBtn" color="minor" @emit="_cleanAllItems" class="cleanbtn">清空全部</ui-link>
+    <morning-link v-if="conf.cleanBtn" color="minor" @emit="_cleanAllItems" class="cleanbtn">清空全部</morning-link>
 
-    </i-multiform>
+    </mor-multiform>
 </template>
  
 <script>

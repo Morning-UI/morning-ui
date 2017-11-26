@@ -1,5 +1,5 @@
 <template>
-    <i-radio
+    <mor-radio
         :_uiid="uiid"
         :class="[colorClass, stateClass]"
 
@@ -53,7 +53,7 @@
         </template>
     </div>
 
-    </i-radio>
+    </mor-radio>
 </template>
  
 <script>
