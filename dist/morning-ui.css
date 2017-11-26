@@ -7300,6 +7300,304 @@ mor-tip.morning-tether-element-attached-right .tip-arrow {
   border-left-color: #F33D5D;
 }
 
+mor-message {
+  display: block;
+  position: fixed;
+  width: 50%;
+  max-width: 400px;
+  min-width: 320px;
+  pointer-events: none;
+}
+mor-message.pos-top {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+mor-message.pos-topleft {
+  top: 0;
+  left: 8px;
+  width: 50%;
+}
+mor-message.pos-topright {
+  top: 0;
+  right: 8px;
+}
+mor-message.pos-bottom {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+mor-message.pos-bottomleft {
+  bottom: 0;
+  left: 8px;
+}
+mor-message.pos-bottomright {
+  bottom: 0;
+  right: 8px;
+}
+mor-message .list {
+  overflow: hidden;
+  box-sizing: content-box;
+  position: relative;
+  height: 1000em;
+  width: 100%;
+}
+mor-message .list > div {
+  position: absolute;
+}
+mor-message .message {
+  border-radius: 3px;
+  padding: 1em 2em 1em 1.5em;
+  position: relative;
+  pointer-events: auto;
+}
+mor-message .message.message-enter-active,
+mor-message .message.message-leave-active {
+  transition: transform 0.2s, opacity 0.2s;
+}
+mor-message .message.message-move {
+  transition: transform 0.2s;
+}
+mor-message .message .morningicon {
+  position: absolute;
+  top: 1em;
+  font-size: 13px;
+  right: 0.6em;
+  vertical-align: middle;
+  color: #FFFFFF;
+  opacity: 0.5;
+}
+mor-message .message .morningicon:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+mor-message.pos-top .message-enter {
+  transform: translateY(-150%);
+}
+mor-message.pos-top .message-enter-to {
+  transform: translateY(0%);
+}
+mor-message.pos-bottom .message-enter {
+  transform: translateY(150%);
+}
+mor-message.pos-bottom .message-enter-to {
+  transform: translateY(0%);
+}
+mor-message.pos-topleft .message-enter,
+mor-message.pos-bottomleft .message-enter {
+  transform: translateX(-150%);
+}
+mor-message.pos-topleft .message-enter-to,
+mor-message.pos-bottomleft .message-enter-to {
+  transform: translateX(0%);
+}
+mor-message.pos-topright .message-enter,
+mor-message.pos-bottomright .message-enter {
+  transform: translateX(150%);
+}
+mor-message.pos-topright .message-enter-to,
+mor-message.pos-bottomright .message-enter-to {
+  transform: translateX(0%);
+}
+mor-message.pos-top .message-leave,
+mor-message.pos-topleft .message-leave,
+mor-message.pos-bottomleft .message-leave,
+mor-message.pos-topright .message-leave,
+mor-message.pos-bottomright .message-leave {
+  opacity: 1;
+}
+mor-message.pos-top .message-leave-to,
+mor-message.pos-topleft .message-leave-to,
+mor-message.pos-bottomleft .message-leave-to,
+mor-message.pos-topright .message-leave-to,
+mor-message.pos-bottomright .message-leave-to {
+  opacity: 0;
+}
+mor-message.pos-top .list .message,
+mor-message.pos-topleft .list .message,
+mor-message.pos-topright .list .message {
+  margin-bottom: 3.2px;
+}
+mor-message.pos-top .list > div,
+mor-message.pos-topleft .list > div,
+mor-message.pos-topright .list > div {
+  width: 100%;
+  top: 8px;
+}
+mor-message.pos-bottom .list .message,
+mor-message.pos-bottomleft .list .message,
+mor-message.pos-bottomright .list .message {
+  margin-top: 3.2px;
+}
+mor-message.pos-bottom .list > div,
+mor-message.pos-bottomleft .list > div,
+mor-message.pos-bottomright .list > div {
+  width: 100%;
+  bottom: 8px;
+}
+mor-message .title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 400;
+  padding-bottom: 0.1em;
+  border: none;
+  opacity: 0.8;
+}
+mor-message .title:empty {
+  display: none;
+}
+mor-message .body {
+  font-size: 13px;
+  padding: 0;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+mor-message .message-co-theme {
+  background-color: #F33D5D;
+}
+mor-message .message-co-theme .body,
+mor-message .message-co-theme .title {
+  color: #FFFFFF;
+}
+mor-message .message-co-light-theme {
+  background-color: #F86F88;
+}
+mor-message .message-co-light-theme .body,
+mor-message .message-co-light-theme .title {
+  color: #FFFFFF;
+}
+mor-message .message-co-dark-theme {
+  background-color: #D22343;
+}
+mor-message .message-co-dark-theme .body,
+mor-message .message-co-dark-theme .title {
+  color: #FFFFFF;
+}
+mor-message .message-co-success {
+  background-color: #4DBD67;
+}
+mor-message .message-co-success .body,
+mor-message .message-co-success .title {
+  color: #FFFFFF;
+}
+mor-message .message-co-warning {
+  background-color: #F0AD4E;
+}
+mor-message .message-co-danger {
+  background-color: #D64431;
+}
+mor-message .message-co-danger .body,
+mor-message .message-co-danger .title {
+  color: #FFFFFF;
+}
+mor-message .message-co-primary {
+  background-color: #2185D0;
+}
+mor-message .message-co-primary .body,
+mor-message .message-co-primary .title {
+  color: #FFFFFF;
+}
+mor-message .message-co-minor {
+  background-color: #A9A9A9;
+}
+mor-message .message-co-minor .body,
+mor-message .message-co-minor .title {
+  color: #FFFFFF;
+}
+mor-message .message-co-info {
+  background-color: #03A6B9;
+}
+mor-message .message-co-info .body,
+mor-message .message-co-info .title {
+  color: #FFFFFF;
+}
+mor-message .message-co-black {
+  background-color: #17212D;
+}
+mor-message .message-co-black .body,
+mor-message .message-co-black .title {
+  color: #FFFFFF;
+}
+mor-message .message-co-light-black {
+  background-color: #303C4B;
+}
+mor-message .message-co-light-black .body,
+mor-message .message-co-light-black .title {
+  color: #FFFFFF;
+}
+mor-message .message-co-extra-light-black {
+  background-color: #45505C;
+}
+mor-message .message-co-extra-light-black .body,
+mor-message .message-co-extra-light-black .title {
+  color: #FFFFFF;
+}
+mor-message .message-co-blue {
+  background-color: #7C8BA0;
+}
+mor-message .message-co-blue .body,
+mor-message .message-co-blue .title {
+  color: #FFFFFF;
+}
+mor-message .message-co-light-blue {
+  background-color: #8E9CAF;
+}
+mor-message .message-co-light-blue .body,
+mor-message .message-co-light-blue .title {
+  color: #FFFFFF;
+}
+mor-message .message-co-extra-light-blue {
+  background-color: #A8B3C2;
+}
+mor-message .message-co-extra-light-blue .body,
+mor-message .message-co-extra-light-blue .title {
+  color: #FFFFFF;
+}
+mor-message .message-co-silver {
+  background-color: #D6DDE5;
+}
+mor-message .message-co-silver .body,
+mor-message .message-co-silver .title {
+  color: #17212D;
+}
+mor-message .message-co-light-silver {
+  background-color: #E2E8EE;
+}
+mor-message .message-co-light-silver .body,
+mor-message .message-co-light-silver .title {
+  color: #17212D;
+}
+mor-message .message-co-extra-light-silver {
+  background-color: #EDF1F5;
+}
+mor-message .message-co-extra-light-silver .body,
+mor-message .message-co-extra-light-silver .title {
+  color: #17212D;
+}
+mor-message .message-co-gray {
+  background-color: #E6E6E6;
+}
+mor-message .message-co-gray .body,
+mor-message .message-co-gray .title {
+  color: #17212D;
+}
+mor-message .message-co-light-gray {
+  background-color: #F0F0F0;
+}
+mor-message .message-co-light-gray .body,
+mor-message .message-co-light-gray .title {
+  color: #17212D;
+}
+mor-message .message-co-white {
+  background-color: #FFFFFF;
+}
+mor-message .message-co-white .body,
+mor-message .message-co-white .title {
+  color: #17212D;
+}
+
 mor-textinput {
   position: relative;
   z-index: 1;
