@@ -20,20 +20,23 @@
     <template v-if="inputType === 'text'">
         <input
             type="text"
+            key="is-text"
+
             :class="inputClass"
-            
             :placeholder="placeholder"
             :disabled="conf.state === 'disabled'"
 
             @focus="_focus()"
             @blur="_blur()"
 
-            v-model="data.value"
+            :value="data.value"
+            @input="$emit('input', $event.target.value)"
         />
     </template>
     <template v-else>
         <input
             type="password"
+            key="is-password"
             
             :placeholder="placeholder"
             :disabled="conf.state === 'disabled'"
@@ -41,7 +44,8 @@
             @focus="_focus()"
             @blur="_blur()"
 
-            v-model="data.value"
+            :value="data.value"
+            @input="$emit('input', $event.target.value)"
         />
     </template>
 
@@ -154,7 +158,15 @@ export default {
         }
     },
     created : function () {},
-    mounted : function () {}
+    mounted : function () {
+
+        this.$on('input', value => {
+
+            this.data.value = value;
+
+        });
+
+    }
 };
 </script>
 

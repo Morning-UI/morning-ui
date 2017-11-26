@@ -60,6 +60,7 @@
                         class="add item"
                         v-if="data.value.length < conf.max"
                         @click="_addItemDialog"
+                        key="set-max"
                     >
                         <span>添加{{conf.itemName}}</span> <i class="morningicon">&#xe698;</i>
                     </a>
@@ -71,6 +72,7 @@
                         href="javascript:;"
                         class="add item"
                         @click="_addItemDialog"
+                        key="unset-max"
                     >
                         <span>添加{{conf.itemName}}</span> <i class="morningicon">&#xe698;</i>
                     </a>

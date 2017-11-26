@@ -19,7 +19,8 @@
         @focus="_focus()"
         @blur="_blur()"
 
-        v-model="data.value"
+        :value="data.value"
+        @input="$emit('input', $event.target.value)"
     ></textarea>
 
     </i-textarea>
@@ -129,7 +130,15 @@ export default {
         }
     },
     created : function () {},
-    mounted : function () {}
+    mounted : function () {
+
+        this.$on('input', value => {
+
+            this.data.value = value;
+
+        });
+
+    }
 };
 </script>
 
