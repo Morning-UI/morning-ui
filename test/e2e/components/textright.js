@@ -9,7 +9,7 @@ const runner = nightmare({
 
 let tagName = 'textright';
 let docUrl = `${common.TEST_HOST}/component/${tagName}.html`;
-let basicDemo = `[name="开始"] i-${tagName}`;
+let basicDemo = `[name="开始"] mor-${tagName}`;
 
 let context = {
     tagName,

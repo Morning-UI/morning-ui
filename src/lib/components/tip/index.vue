@@ -1,5 +1,5 @@
 <template>
-    <i-tip
+    <mor-tip
         :_uiid="uiid"
         :class="[colorClass]"
 
@@ -19,7 +19,7 @@
         </template>
     </div>
         
-    </i-tip>
+    </mor-tip>
 </template>
  
 <script>

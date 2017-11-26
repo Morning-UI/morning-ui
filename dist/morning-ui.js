@@ -1746,6 +1746,11 @@ morning.install = function (Vue, options) {
         throw new Error('can\'t find Vue.js, import Vue.js first please.');
     }
 
+    if (options && options.prefix === 'mor') {
+
+        throw new Error('prefix can\'t be \'mor\'.');
+    }
+
     options = (0, _extend2.default)(true, {
         prefix: 'ui',
         uploader: null
@@ -1778,7 +1783,7 @@ morning.install = function (Vue, options) {
         Vue.component(options.prefix + '-' + component.options.name, component);
         Vue.component('morning-' + component.options.name, component);
         this._components[name] = component;
-        this._ignoreElements.push('i-' + component.options.name);
+        this._ignoreElements.push('mor-' + component.options.name);
         this._ignoreElements.push('morning-' + component.options.name);
     }
 
@@ -2878,7 +2883,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-h', {
+  return _c('mor-h', {
     class: [_vm.sizeClass, _vm.colorClass, _vm.stateClass],
     attrs: {
       "_uiid": _vm.uiid
@@ -2989,7 +2994,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-lead', {
+  return _c('mor-lead', {
     class: [_vm.colorClass, _vm.stateClass],
     attrs: {
       "_uiid": _vm.uiid
@@ -3100,7 +3105,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-mark', {
+  return _c('mor-mark', {
     class: [_vm.colorClass, _vm.stateClass],
     attrs: {
       "_uiid": _vm.uiid
@@ -3211,7 +3216,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-del', {
+  return _c('mor-del', {
     class: [],
     attrs: {
       "_uiid": _vm.uiid
@@ -3323,7 +3328,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-u', {
+  return _c('mor-u', {
     class: [],
     attrs: {
       "_uiid": _vm.uiid
@@ -3434,7 +3439,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-small', {
+  return _c('mor-small', {
     class: [],
     attrs: {
       "_uiid": _vm.uiid
@@ -3545,7 +3550,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-strong', {
+  return _c('mor-strong', {
     class: [],
     attrs: {
       "_uiid": _vm.uiid
@@ -3656,7 +3661,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-em', {
+  return _c('mor-em', {
     class: [],
     attrs: {
       "_uiid": _vm.uiid
@@ -3767,7 +3772,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-textcenter', {
+  return _c('mor-textcenter', {
     class: [],
     attrs: {
       "_uiid": _vm.uiid
@@ -3878,7 +3883,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-textleft', {
+  return _c('mor-textleft', {
     class: [],
     attrs: {
       "_uiid": _vm.uiid
@@ -3989,7 +3994,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-textright', {
+  return _c('mor-textright', {
     class: [],
     attrs: {
       "_uiid": _vm.uiid
@@ -4100,7 +4105,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-lowercase', {
+  return _c('mor-lowercase', {
     class: [],
     attrs: {
       "_uiid": _vm.uiid
@@ -4211,7 +4216,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-uppercase', {
+  return _c('mor-uppercase', {
     class: [],
     attrs: {
       "_uiid": _vm.uiid
@@ -4322,7 +4327,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-capitalize', {
+  return _c('mor-capitalize', {
     class: [],
     attrs: {
       "_uiid": _vm.uiid
@@ -4433,7 +4438,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-quote', {
+  return _c('mor-quote', {
     class: [_vm.colorClass],
     attrs: {
       "_uiid": _vm.uiid
@@ -4544,7 +4549,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-ol', {
+  return _c('mor-ol', {
     class: [_vm.stateClass],
     attrs: {
       "_uiid": _vm.uiid
@@ -4655,7 +4660,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-ul', {
+  return _c('mor-ul', {
     class: [_vm.stateClass],
     attrs: {
       "_uiid": _vm.uiid
@@ -4766,7 +4771,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-il', {
+  return _c('mor-il', {
     class: [_vm.stateClass],
     attrs: {
       "_uiid": _vm.uiid
@@ -4877,7 +4882,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-dl', {
+  return _c('mor-dl', {
     class: [_vm.stateClass],
     attrs: {
       "_uiid": _vm.uiid
@@ -4988,7 +4993,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-itemlist', {
+  return _c('mor-itemlist', {
     class: [_vm.sizeClass],
     attrs: {
       "_uiid": _vm.uiid
@@ -5099,7 +5104,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-textcolor', {
+  return _c('mor-textcolor', {
     class: [_vm.colorClass],
     attrs: {
       "_uiid": _vm.uiid
@@ -5210,7 +5215,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-apparent', {
+  return _c('mor-apparent', {
     class: [_vm.stateClass],
     attrs: {
       "_uiid": _vm.uiid
@@ -5321,7 +5326,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-grid', {
+  return _c('mor-grid', {
     class: [],
     attrs: {
       "_uiid": _vm.uiid
@@ -5432,7 +5437,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-card', {
+  return _c('mor-card', {
     class: [_vm.colorClass],
     attrs: {
       "_uiid": _vm.uiid
@@ -5543,7 +5548,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-box', {
+  return _c('mor-box', {
     class: [],
     attrs: {
       "_uiid": _vm.uiid
@@ -5654,7 +5659,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-block', {
+  return _c('mor-block', {
     class: [_vm.colorClass],
     attrs: {
       "_uiid": _vm.uiid
@@ -5765,7 +5770,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-divider', {
+  return _c('mor-divider', {
     class: [],
     attrs: {
       "_uiid": _vm.uiid
@@ -5876,7 +5881,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-center', {
+  return _c('mor-center', {
     class: [],
     attrs: {
       "_uiid": _vm.uiid
@@ -5987,7 +5992,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-header', {
+  return _c('mor-header', {
     class: [_vm.sizeClass, _vm.colorClass, _vm.stateClass],
     attrs: {
       "_uiid": _vm.uiid
@@ -6098,7 +6103,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-badge', {
+  return _c('mor-badge', {
     class: [_vm.sizeClass, _vm.colorClass, _vm.stateClass],
     attrs: {
       "_uiid": _vm.uiid
@@ -6209,7 +6214,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-label', {
+  return _c('mor-label', {
     class: [_vm.sizeClass, _vm.colorClass, _vm.stateClass],
     attrs: {
       "_uiid": _vm.uiid
@@ -6320,7 +6325,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-statistic', {
+  return _c('mor-statistic', {
     class: [_vm.sizeClass, _vm.colorClass, _vm.stateClass],
     attrs: {
       "_uiid": _vm.uiid
@@ -6431,7 +6436,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-action', {
+  return _c('mor-action', {
     class: [_vm.sizeClass, _vm.colorClass],
     attrs: {
       "_uiid": _vm.uiid
@@ -6542,7 +6547,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-formgroup', {
+  return _c('mor-formgroup', {
     class: [],
     attrs: {
       "_uiid": _vm.uiid
@@ -6653,7 +6658,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-btngroup', {
+  return _c('mor-btngroup', {
     class: [],
     attrs: {
       "_uiid": _vm.uiid
@@ -6764,7 +6769,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-jumbotron', {
+  return _c('mor-jumbotron', {
     class: [],
     attrs: {
       "_uiid": _vm.uiid
@@ -6875,7 +6880,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-article', {
+  return _c('mor-article', {
     class: [],
     attrs: {
       "_uiid": _vm.uiid
@@ -7002,7 +7007,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-img', {
+  return _c('mor-img', {
     class: [],
     attrs: {
       "_uiid": _vm.uiid
@@ -7251,7 +7256,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-btn', {
+  return _c('mor-btn', {
     class: [_vm.sizeClass, _vm.colorClass, _vm.stateClass, _vm.moreClass],
     attrs: {
       "_uiid": _vm.uiid,
@@ -7499,7 +7504,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-link', {
+  return _c('mor-link', {
     class: [_vm.sizeClass, _vm.colorClass, _vm.stateClass, _vm.moreClass],
     attrs: {
       "_uiid": _vm.uiid,
@@ -7785,7 +7790,7 @@ module.exports = g;
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-dropdown', {
+  return _c('mor-dropdown', {
     class: [_vm.showClass],
     attrs: {
       "_uiid": _vm.uiid,
@@ -8115,7 +8120,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-tab', {
+  return _c('mor-tab', {
     class: [],
     attrs: {
       "_uiid": _vm.uiid
@@ -9739,7 +9744,7 @@ if (false) {
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-table', {
+  return _c('mor-table', {
     class: [_vm.colorClass, _vm.moreClass],
     attrs: {
       "_uiid": _vm.uiid,
@@ -10207,7 +10212,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-pagination', {
+  return _c('mor-pagination', {
     class: [_vm.sizeClass, _vm.colorClass],
     attrs: {
       "_uiid": _vm.uiid,
@@ -10543,7 +10548,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-dialog', {
+  return _c('mor-dialog', {
     class: [_vm.colorClass, _vm.moreClass],
     attrs: {
       "_uiid": _vm.uiid,
@@ -10793,7 +10798,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-load', {
+  return _c('mor-load', {
     class: [_vm.sizeClass],
     attrs: {
       "_uiid": _vm.uiid,
@@ -11175,7 +11180,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-breadcrumbs', {
+  return _c('mor-breadcrumbs', {
     class: [_vm.sizeClass],
     attrs: {
       "_uiid": _vm.uiid,
@@ -13599,7 +13604,7 @@ return Tether;
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-tip', {
+  return _c('mor-tip', {
     class: [_vm.colorClass],
     attrs: {
       "_uiid": _vm.uiid,
@@ -13852,7 +13857,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-textinput', {
+  return _c('mor-textinput', {
     class: [_vm.stateClass, _vm.moreClass],
     attrs: {
       "_uiid": _vm.uiid,
@@ -14136,7 +14141,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-textarea', {
+  return _c('mor-textarea', {
     class: [_vm.stateClass],
     attrs: {
       "_uiid": _vm.uiid,
@@ -14371,7 +14376,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-switch', {
+  return _c('mor-switch', {
     class: [_vm.colorClass, _vm.stateClass, _vm.moreClass],
     attrs: {
       "_uiid": _vm.uiid,
@@ -14952,8 +14957,8 @@ exports.default = {
                 return;
             }
 
-            var $searchTextinput = this.$el.querySelector('.wrap i-textinput'),
-                $searchMultiinput = this.$el.querySelector('.wrap i-multiinput'),
+            var $searchTextinput = this.$el.querySelector('.wrap mor-textinput'),
+                $searchMultiinput = this.$el.querySelector('.wrap mor-multiinput'),
                 $cleanBtn = this.$el.querySelector('.wrap .clean'),
                 hasTextinput = evt.path.indexOf($searchTextinput) !== -1,
                 hasMultiinput = evt.path.indexOf($searchMultiinput) !== -1,
@@ -15332,7 +15337,7 @@ exports.default = {
                 return;
             }
 
-            var $inlineImgs = this.$el.querySelectorAll('.list>li i-img,.list>li img');
+            var $inlineImgs = this.$el.querySelectorAll('.list>li mor-img,.list>li img');
 
             var _iteratorNormalCompletion12 = true;
             var _didIteratorError12 = false;
@@ -15696,7 +15701,7 @@ exports.right = function(str){
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-select', {
+  return _c('mor-select', {
     class: [_vm.stateClass, _vm.moreClass],
     attrs: {
       "_uiid": _vm.uiid,
@@ -16045,7 +16050,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-checkbox', {
+  return _c('mor-checkbox', {
     class: [_vm.colorClass, _vm.stateClass],
     attrs: {
       "_uiid": _vm.uiid,
@@ -16310,7 +16315,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-radio', {
+  return _c('mor-radio', {
     class: [_vm.colorClass, _vm.stateClass],
     attrs: {
       "_uiid": _vm.uiid,
@@ -16838,7 +16843,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-multiinput', {
+  return _c('mor-multiinput', {
     class: [_vm.stateClass, _vm.moreClass, _vm.moveClass],
     attrs: {
       "_uiid": _vm.uiid,
@@ -17723,7 +17728,7 @@ module.exports = exports['default'];
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-multiform', {
+  return _c('mor-multiform', {
     class: [_vm.stateClass, _vm.moreClass, _vm.moveClass],
     attrs: {
       "_uiid": _vm.uiid,
@@ -17852,7 +17857,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "slot": "header"
     },
     slot: "header"
-  }, [_vm._v("请输入需要添加的项目")]), _vm._v(" "), _c('ui-textarea', {
+  }, [_vm._v("请输入需要添加的项目")]), _vm._v(" "), _c('morning-textarea', {
     ref: 'ui-multiform-batchinput-' + _vm.uiid
   }), _vm._v(" "), _c('footer', {
     attrs: {
@@ -17875,7 +17880,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     on: {
       "emit": _vm._batchInput
     }
-  }, [_vm._v("确认")])], 1)])], 1) : _vm._e(), _vm._v(" "), (_vm.conf.cleanBtn) ? _c('ui-link', {
+  }, [_vm._v("确认")])], 1)])], 1) : _vm._e(), _vm._v(" "), (_vm.conf.cleanBtn) ? _c('morning-link', {
     staticClass: "cleanbtn",
     attrs: {
       "color": "minor"
@@ -19667,7 +19672,7 @@ module.exports = function spread(callback) {
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('i-upload', {
+  return _c('mor-upload', {
     class: [_vm.stateClass, _vm.moreClass],
     attrs: {
       "_uiid": _vm.uiid,
@@ -19714,7 +19719,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     staticClass: "filelist"
   }, [(!_vm.conf.hideName) ? _c('p', {
     staticClass: "name"
-  }, [_c('ui-center', {
+  }, [_c('morning-center', {
     staticClass: "fill"
   }, [_vm._v(_vm._s(_vm.conf.formName))])], 1) : _vm._e(), _vm._v(" "), _c('div', {
     staticClass: "filewrap",

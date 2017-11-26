@@ -1,6 +1,6 @@
 @import '~Common/var.less';
 
-i-select{
+mor-select{
     position: relative;
     display: inline-block;
     width: 100%;
@@ -18,7 +18,7 @@ i-select{
         background-color: #FFF;
         overflow: hidden;
 
-        > i-textinput{
+        > mor-textinput{
             width: ~'calc( 100% - 30px )';
             height: @formHeight - 2px;
             line-height: @formHeight - 2px;
@@ -36,7 +36,7 @@ i-select{
             }
         }
 
-        > i-multiinput{
+        > mor-multiinput{
             margin: 0;
             width: ~'calc( 100% - 30px - 2em)';
             background-color: #FFF;
@@ -69,14 +69,14 @@ i-select{
             overflow: hidden;
 
             img,
-            i-img {
+            mor-img {
                 height: 2em !important;
                 width: 2em !important;
                 margin-right: 0.5em;
                 vertical-align: middle;
             }
 
-            i-img > img{
+            mor-img > img{
                 vertical-align: top;
             }
         }
@@ -152,14 +152,14 @@ i-select{
             }
 
             img,
-            i-img {
+            mor-img {
                 height: 2em;
                 width: 2em;
                 margin-right: 0.5em;
                 vertical-align: middle;
             }
 
-            i-img > img{
+            mor-img > img{
                 vertical-align: top;
             }
 
@@ -182,8 +182,8 @@ i-select{
 
     &.has-clean-btn{
         > .wrap{
-            > i-textinput,
-            > i-multiinput,
+            > mor-textinput,
+            > mor-multiinput,
             > .selected{
                 width: ~'calc( 100% - 50px )';
             }
@@ -197,7 +197,7 @@ i-select{
             border-radius: @borderRadius @borderRadius 0 0;
             padding-bottom: 1px;
 
-            > i-textinput{
+            > mor-textinput{
                 cursor: initial;
             }
 
@@ -214,7 +214,7 @@ i-select{
 
     &.select-item{
         > .wrap{
-            > i-textinput{
+            > mor-textinput{
                 input{
                     color: @colorFormTextFocus !important;
                 }
@@ -266,11 +266,11 @@ i-select{
             }
         }
 
-        > .wrap > i-multiinput{
+        > .wrap > mor-multiinput{
             background: transparent;
         }
 
-        > .wrap > i-textinput{
+        > .wrap > mor-textinput{
             display: none;
         }
     }

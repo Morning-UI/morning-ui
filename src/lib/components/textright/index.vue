@@ -1,10 +1,10 @@
 <template>
-    <i-textright
+    <mor-textright
         :_uiid="uiid"
         :class="[]"
     >
         <slot></slot>
-    </i-textright>
+    </mor-textright>
 </template>
  
 <script>

@@ -50,10 +50,10 @@ test.serial('import-use-tag', async t => {
 
     const result = await runner
         .goto(`file://${pathHtml}`)
-        .wait('i-link')
+        .wait('mor-link')
         .evaluate(() => ({
             morning : window.morning,
-            style : window.getComputedStyle(document.querySelector('i-link'))
+            style : window.getComputedStyle(document.querySelector('mor-link'))
         }));
 
     // circleci
@@ -152,10 +152,10 @@ test.serial('import-use-webpack', async t => {
 
     const result = await runner
         .goto(`file://${pathHtml}`)
-        .wait('i-link')
+        .wait('mor-link')
         .evaluate(() => ({
             morning : window.morning,
-            style : window.getComputedStyle(document.querySelector('i-link'))
+            style : window.getComputedStyle(document.querySelector('mor-link'))
         }));
 
     // circleci

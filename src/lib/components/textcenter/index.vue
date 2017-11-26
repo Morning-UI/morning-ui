@@ -1,10 +1,10 @@
 <template>
-    <i-textcenter
+    <mor-textcenter
         :_uiid="uiid"
         :class="[]"
     >
         <slot></slot>
-    </i-textcenter>
+    </mor-textcenter>
 </template>
  
 <script>
@@ -17,7 +17,7 @@ export default {
 <style lang="less">
 @import '~Common/var.less';
 
-i-textcenter{
+mor-textcenter{
     display: block;
     text-align: center;
 

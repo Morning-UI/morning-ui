@@ -1,10 +1,10 @@
 <template>
-    <i-textcolor
+    <mor-textcolor
         :_uiid="uiid"
         :class="[colorClass]"
     >
         <slot></slot>
-    </i-textcolor>
+    </mor-textcolor>
 </template>
  
 <script>

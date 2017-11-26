@@ -1,10 +1,10 @@
 <template>
-    <i-header
+    <mor-header
         :_uiid="uiid"
         :class="[sizeClass, colorClass, stateClass]"
     >
         <slot></slot>
-    </i-header>
+    </mor-header>
 </template>
  
 <script>

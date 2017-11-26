@@ -1,5 +1,5 @@
 <template>
-    <i-tab
+    <mor-tab
         :_uiid="uiid"
         :class="[]"
     >
@@ -20,7 +20,7 @@
             </template>
         </div>
 
-    </i-tab>
+    </mor-tab>
 </template>
  
 <script>
