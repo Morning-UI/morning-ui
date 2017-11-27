@@ -643,8 +643,8 @@
         </ui-multiform>
     </div>
     <br>
-    <ui-link js="javascript:morning.findVM('demo2').add({name: 'Sam'});">添加到最后</ui-link>
-    <ui-link js="javascript:morning.findVM('demo2').add({name: 'Gustavo'}, 0);">添加到第0项</ui-link>
+    <ui-link js="morning.findVM('demo2').add({name: 'Sam'});">添加到最后</ui-link>
+    <ui-link js="morning.findVM('demo2').add({name: 'Gustavo'}, 0);">添加到第0项</ui-link>
     :::
 
     #### update(item, index)
@@ -674,7 +674,7 @@
         </ui-multiform>
     </div>
     <br>
-    <ui-link js="javascript:morning.findVM('demo4').update({name: 'Katherine'}, 1);">将第2项的name更新为Katherine</ui-link>
+    <ui-link js="morning.findVM('demo4').update({name: 'Katherine'}, 1);">将第2项的name更新为Katherine</ui-link>
     :::
 
     #### del(index)
@@ -703,7 +703,7 @@
         </ui-multiform>
     </div>
     <br>
-    <ui-link js="javascript:morning.findVM('demo3').del(0);">删除第0项</ui-link>
+    <ui-link js="morning.findVM('demo3').del(0);">删除第0项</ui-link>
     :::
 
     #### move(from, to)
@@ -733,7 +733,7 @@
         </ui-multiform>
     </div>
     <br>
-    <ui-link js="javascript:morning.findVM('demo5').move(2, 0);">将第2项移到第0项</ui-link>
+    <ui-link js="morning.findVM('demo5').move(2, 0);">将第2项移到第0项</ui-link>
     :::
 
     [[[事件]]]
