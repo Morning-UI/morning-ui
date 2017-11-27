@@ -1,10 +1,10 @@
 <template>
-    <i-article
+    <mor-article
         :_uiid="uiid"
         :class="[]"
     >
         <slot></slot>
-    </i-article>
+    </mor-article>
 </template>
  
 <script>

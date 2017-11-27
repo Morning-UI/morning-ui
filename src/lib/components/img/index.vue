@@ -1,5 +1,5 @@
 <template>
-    <i-img
+    <mor-img
         :_uiid="uiid"
         :class="[]"
     >
@@ -13,7 +13,7 @@
     <p class="note">
         <slot></slot>
     </p>
-    </i-img>
+    </mor-img>
 </template>
  
 <script>

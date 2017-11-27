@@ -1,10 +1,10 @@
 <template>
-    <i-del
+    <mor-del
         :_uiid="uiid"
         :class="[]"
     >
         <slot></slot>
-    </i-del>
+    </mor-del>
 </template>
  
 <script>

@@ -1,0 +1,381 @@
+@import '~Common/var.less';
+
+mor-message{
+    display: block;
+    position: fixed;
+    width: 50%;
+    max-width: @fontSize*25;
+    min-width: @fontSize*20;
+    pointer-events: none;
+
+    &.pos-top{
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    &.pos-topleft{
+        top: 0;
+        left: @fontSize*0.5;
+        width: 50%;
+    }
+
+    &.pos-topright{
+        top: 0;
+        right: @fontSize*0.5;
+    }
+
+    &.pos-bottom{
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    &.pos-bottomleft{
+        bottom: 0;
+        left: @fontSize*0.5;
+    }
+
+    &.pos-bottomright{
+        bottom: 0;
+        right: @fontSize*0.5;
+    }
+
+    .list{
+        overflow: hidden;
+        box-sizing: content-box;
+        position: relative;
+        height: 1000em;
+        width: 100%;
+
+        > div{
+            position: absolute;
+        }
+    }
+
+    .message{
+        border-radius: @borderRadius;
+        padding: 1em 2em 1em 1.5em;
+        position: relative;
+        pointer-events: auto;
+
+        &.message-enter-active,
+        &.message-leave-active{
+            transition: transform 0.2s, opacity 0.2s;
+        }
+
+        &.message-move{
+            transition: transform 0.2s;
+        }
+
+        .morningicon{
+            position: absolute;
+            top: 1em;
+            font-size: @fontSize*0.8125;
+            right: 0.6em;
+            vertical-align: middle;
+            color: @colorWhite;
+            opacity: 0.5;
+
+            &:hover{
+                opacity: 1;
+                cursor: pointer;
+            }
+        }
+    }
+
+    &.pos-top{
+        .message-enter{
+            transform: translateY(-150%);
+        }
+
+        .message-enter-to{
+            transform: translateY(0%);
+        }
+    }
+
+    &.pos-bottom{
+        .message-enter{
+            transform: translateY(150%);
+        }
+
+        .message-enter-to{
+            transform: translateY(0%);
+        }
+    }
+
+    &.pos-topleft,
+    &.pos-bottomleft{
+        .message-enter{
+            transform: translateX(-150%);
+        }
+
+        .message-enter-to{
+            transform: translateX(0%);
+        }
+    }
+
+    &.pos-topright,
+    &.pos-bottomright{
+        .message-enter{
+            transform: translateX(150%);
+        }
+
+        .message-enter-to{
+            transform: translateX(0%);
+        }
+    }
+
+    &.pos-top,
+    &.pos-topleft,
+    &.pos-bottomleft,
+    &.pos-topright,
+    &.pos-bottomright{
+        .message-leave{
+            opacity: 1;
+        }
+
+        .message-leave-to{
+            opacity: 0;
+        }
+    }
+
+    &.pos-top,
+    &.pos-topleft,
+    &.pos-topright{
+        .list{
+            .message{
+                margin-bottom: @fontSize*0.2;
+            }
+
+            > div {
+                width: 100%;
+                top: @fontSize*0.5;
+            }
+        }
+    }
+
+    &.pos-bottom,
+    &.pos-bottomleft,
+    &.pos-bottomright{
+        .list{
+            .message{
+                margin-top: @fontSize*0.2;
+            }
+
+            > div {
+                width: 100%;
+                bottom: @fontSize*0.5;
+            }
+        }
+    }
+
+    .title{
+        margin: 0;
+        font-size: @fontSize*1.125;
+        font-weight: 400;
+        padding-bottom: 0.1em;
+        border: none;
+        opacity: 0.8;
+
+        &:empty{
+            display: none;
+        }
+    }
+
+    .body{
+        font-size: @fontSize*0.8125;
+        padding: 0;
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .message-co-theme{
+        background-color: @colorTheme;
+
+        .body,
+        .title{
+            color: @colorWhite;
+        }
+    }
+
+    .message-co-light-theme{
+        background-color: @colorLightTheme;
+
+        .body,
+        .title{
+            color: @colorWhite;
+        }
+    }
+
+    .message-co-dark-theme{
+        background-color: @colorDarkTheme;
+
+        .body,
+        .title{
+            color: @colorWhite;
+        }
+    }
+
+    .message-co-success{
+        background-color: @colorSuccess;
+
+        .body,
+        .title{
+            color: @colorWhite;
+        }
+    }
+
+    .message-co-warning{
+        background-color: @colorWarning;
+    }
+
+    .message-co-danger{
+        background-color: @colorDanger;
+
+        .body,
+        .title{
+            color: @colorWhite;
+        }
+    }
+
+    .message-co-primary{
+        background-color: @colorPrimary;
+
+        .body,
+        .title{
+            color: @colorWhite;
+        }
+    }
+
+    .message-co-minor{
+        background-color: @colorMinor;
+
+        .body,
+        .title{
+            color: @colorWhite;
+        }
+    }
+
+    .message-co-info{
+        background-color: @colorInfo;
+
+        .body,
+        .title{
+            color: @colorWhite;
+        }
+    }
+
+    .message-co-black{
+        background-color: @colorBlack;
+
+        .body,
+        .title{
+            color: @colorWhite;
+        }
+    }
+
+    .message-co-light-black{
+        background-color: @colorLightBlack;
+
+        .body,
+        .title{
+            color: @colorWhite;
+        }
+    }
+
+    .message-co-extra-light-black{
+        background-color: @colorExtraLightBlack;
+
+        .body,
+        .title{
+            color: @colorWhite;
+        }
+    }
+
+    .message-co-blue{
+        background-color: @colorBlue;
+
+        .body,
+        .title{
+            color: @colorWhite;
+        }
+    }
+
+    .message-co-light-blue{
+        background-color: @colorLightBlue;
+
+        .body,
+        .title{
+            color: @colorWhite;
+        }
+    }
+
+    .message-co-extra-light-blue{
+        background-color: @colorExtraLightBlue;
+
+        .body,
+        .title{
+            color: @colorWhite;
+        }
+    }
+
+    .message-co-silver{
+        background-color: @colorSilver;
+
+        .body,
+        .title{
+            color: @colorBlack;
+        }
+    }
+
+    .message-co-light-silver{
+        background-color: @colorLightSilver;
+
+        .body,
+        .title{
+            color: @colorBlack;
+        }
+    }
+
+    .message-co-extra-light-silver{
+        background-color: @colorExtraLightSilver;
+
+        .body,
+        .title{
+            color: @colorBlack;
+        }
+    }
+
+    .message-co-gray{
+        background-color: @colorGray;
+
+        .body,
+        .title{
+            color: @colorBlack;
+        }
+    }
+
+    .message-co-light-gray{
+        background-color: @colorLightGray;
+
+        .body,
+        .title{
+            color: @colorBlack;
+        }
+    }
+
+    .message-co-white{
+        background-color: @colorWhite;
+
+        .body,
+        .title{
+            color: @colorBlack;
+        }
+    }
+
+    // default status
+    &{}
+}

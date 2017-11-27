@@ -1,5 +1,5 @@
 <template>
-    <i-checkbox
+    <mor-checkbox
         :_uiid="uiid"
         :class="[colorClass, stateClass]"
 
@@ -53,7 +53,7 @@
         </template>
     </div>
 
-    </i-checkbox>
+    </mor-checkbox>
 </template>
  
 <script>

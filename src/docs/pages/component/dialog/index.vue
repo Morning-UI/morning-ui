@@ -7,6 +7,7 @@
     # 模拟盒 `<ui-dialog>`
     
     <doc-component-status page="dialog"></doc-component-status>
+    
     [[[开始]]]
 
     定义一个模拟盒，标准的模拟盒分为三部分：
@@ -214,6 +215,7 @@
     |height|模拟盒高度|高度数值（可以是`px`、`em`、`%`等任何css合法单位）|String|`'50%'`|
     |auto-close|点击模拟盒以外的区域自动关闭模拟盒|`true`<br>`false`|Boolean|`true`|
     |show-type|模拟盒打开的方式|`top`:从上往下弹出<br>`center`:从中间弹出<br>`no`:无动画直接出现|String|`'top'`|
+    |show-mask|模拟盒打开后显示背景遮罩|`true`<br>`false`|Boolean|`true`|
 
     #### width
 
@@ -271,6 +273,17 @@
     <!-- 无动画直接出现 -->
     <ui-dialog ref="demo20" show-type="no"></ui-dialog>
     <ui-link js="window.morning.findVM('demo20').toggle(true);">显示模拟盒</ui-link>
+    :::    
+
+    #### show-mask
+
+    不显示背景遮罩：
+
+    :::democode/html
+    <ui-dialog ref="demo25" :show-mask="false">
+        <div style="background-color: #EAEAEA;width: 100%;height: 100%"></div>
+    </ui-dialog>
+    <ui-link js="window.morning.findVM('demo25').toggle(true);">显示模拟盒</ui-link>
     :::
 
     [[[方法]]]

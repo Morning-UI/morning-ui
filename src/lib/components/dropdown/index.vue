@@ -1,5 +1,5 @@
 <template>
-    <i-dropdown
+    <mor-dropdown
         :_uiid="uiid"
         :class="[showClass]"
         
@@ -9,7 +9,7 @@
     <slot name="showbtn"></slot>
     <div class="btnlist"><slot></slot></div>
         
-    </i-dropdown>
+    </mor-dropdown>
 </template>
  
 <script>

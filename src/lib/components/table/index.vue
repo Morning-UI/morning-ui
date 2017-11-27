@@ -1,5 +1,5 @@
 <template>
-    <i-table
+    <mor-table
         :_uiid="uiid"
         :class="[colorClass, moreClass]"
 
@@ -75,7 +75,7 @@
         </tbody>
     </table>
 
-    </i-table>
+    </mor-table>
 </template>
  
 <script>

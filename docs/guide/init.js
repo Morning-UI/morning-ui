@@ -167,6 +167,9 @@ exports.default = {
 //
 //
 //
+//
+//
+//
 
 module.exports = exports['default'];
 
@@ -186,7 +189,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     attrs: {
       "type": "text/markdown"
     }
-  }, [_vm._v("\n# 初始化\n\n在使用Morning UI之前，需要先通过`Vue.use(morning, [options])`方法来初始化。\n\n初始化方法接受一个`options`对象来对Morning UI进行初始化配置，`options`的参数都是可选的，详见下表：\n\n|参数|描述|类型|\n|-|-|-|\n|prefix|组件标签前缀，默认为ui，可在冲突时使用自定义|`string`|\n\n### 更改组件标签前缀\n\n默认情况下Morning UI采用`ui`作为组件标签的前缀，比如使用按钮组件时，需要使用`<ui-btn></ui-btn>`标签。但在某些场景下可能`<ui-*>`这样的标签已经被占用，因此Morning UI允许你在初始化时修改组件标签的前缀：\n\n```js\nVue.use(morning, {\n    prefix : 'v'\n});\n```\n\n比如通过上面的代码初始化后，需要使用`<v-btn><v-btn>`来使用按钮组件。注意`前缀`和`组件名`之间的中划线是固定的无法改变。\n\n### 全局文件上传适配器\n\n你可以设置全局的文件上传适配器，在没有为文件组件指定适配器时，将使用全局的适配器。\n\n```js\nVue.use(morning, {\n    uploader : () => {\n        // 上传文件逻辑...\n    }\n});\n```\n\n详见：[文件上传适配器](/component/upload.html#文件上传适配器)\n\n")])])
+  }, [_vm._v("\n# 初始化\n\n在使用Morning UI之前，需要先通过`Vue.use(morning, [options])`方法来初始化。\n\n初始化方法接受一个`options`对象来对Morning UI进行初始化配置，`options`的参数都是可选的，详见下表：\n\n|参数|描述|类型|\n|-|-|-|\n|prefix|组件标签前缀，默认为ui，可在冲突时使用自定义|`string`|\n|uploader|文件上传组件的适配器，用来将文件上传到服务端|`function`|\n\n### 更改组件标签前缀\n\n默认情况下Morning UI采用`ui`作为组件标签的前缀，比如使用按钮组件时，需要使用`<ui-btn></ui-btn>`标签。但在某些场景下可能`<ui-*>`这样的标签已经被占用，因此Morning UI允许你在初始化时修改组件标签的前缀：\n\n```js\nVue.use(morning, {\n    prefix : 'v'\n});\n```\n\n比如通过上面的代码初始化后，需要使用`<v-btn><v-btn>`来使用按钮组件。注意`前缀`和`组件名`之间的中划线是固定的无法改变。\n\n由于Morning UI最终生成的HTML标签以`mor-`为前缀，所以`prefix`无法设置为`mor`。\n\n### 全局文件上传适配器\n\n你可以设置全局的文件上传适配器，在没有为文件组件指定适配器时，将使用全局的适配器。\n\n```js\nVue.use(morning, {\n    uploader : () => {\n        // 上传文件逻辑...\n    }\n});\n```\n\n详见：[文件上传适配器](/component/upload.html#文件上传适配器)\n\n")])])
 }
 var staticRenderFns = []
 render._withStripped = true
