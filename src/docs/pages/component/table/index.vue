@@ -274,9 +274,9 @@
     |align|列的对齐方式，这是单个表格的全局设置，可以使用`col-set`来单独设置某一列的对齐方式|`'left'`: 左对齐<br>`'center'`: 居中对齐<br>`'right'`: 右对齐|String|`'center'`|
     |show-col-name|在标题行显示列的名称，需要先在`col-set`中设置每列的名称|`true`<br>`false`|Boolean|`false`|
     |fixed-title-col|标题列的位置，可以设置左侧或右侧。对于列数较多的表格，可以使用固定标题列。|`'left'`: 位于左侧，不固定<br>`'right'`: 位于右侧，不固定<br>`'left-fixed'`: 位于左侧，固定<br>`'right-fixed'`: 位于右侧，固定|String|`'left'`|
-    |col-set|列设置可以用来控制单独的一列。这是一个数组，数组的每项都是一个配置对象。<br><br>配置对象包含：<br>`col`: 需要设置单元格所在列的KEY<br>`name`: 列的名称(String)，如果开启`show-col-name`会显示在标题行<br>`width`: 列的宽度(`px` / `%`)，宽度数组会改变列在宽度分配时的权重，但不一定完全符合设置的宽度值，如果需要控制宽度的绝对值使用`minwidth`或`maxwidth`<br>`minwidth`: 列的最小宽度(`px` / `%`)<br>`maxwidth`: 列的最大宽度(`px` / `%`)<br>`style`: 设置列的色彩样式(String)，支持[形态/颜色](/guide/status.html#颜色)中所有的功能颜色<br>`disabled`: 是否展示列的禁用样式(Boolean)<br>`align`: 此列的对齐方式，支持三种：`left`、`center`、`right`，默认使用`align`的设置<br>`title`: 此列是否是标题列(Boolean)，根据`fixed-title-col`的设置所有的标题列会被放到最左或最右<br><br>注意：在设置`width`、`minwidth`、`maxwidth`为0时，需要加上单位，如：`0px`或`0%`。|数组|Array|`[]`|
-    |row-set|单行设置可以用来控制一行。这是一个数组，数组的每项都是一个配置对象，用来设置单行。<br><br>配置对象包含：<br>`row`: 需要设置的行数(从0开始，0表示标题行)<br>`style`: 设置单行的色彩样式(String)，支持[形态/颜色](/guide/status.html#颜色)中所有的功能颜色<br>`disabled`: 是否展示单行的禁用样式(Boolean)<br>`align`: 单行的对齐方式，支持三种：`left`、`center`、`right`，默认使用`align`的设置<br><br>注意：在设置`width`、`minwidth`、`maxwidth`为0时，需要加上单位，如：`0px`或`0%`。|数组|Array|`[]`|
-    |cell-set|单元格设置可以用来控制单个单元格。这是一个数组，数组的每项都是一个配置对象，用来设置单个单元格。<br><br>配置对象包含：<br>`row`: 需要设置单元格的行数(从0开始，0表示标题行)<br>`col`: 需要设置单元格所在列的KEY<br>`style`: 设置对应单元格的色彩样式(String)，支持[形态/颜色](/guide/status.html#颜色)中所有的功能颜色<br>`disabled`: 是否展示单元格的禁用样式(Boolean)<br>`align`: 单元格的对齐方式，支持三种：`left`、`center`、`right`，默认使用`align`的设置<br><br>注意：在设置`width`、`minwidth`、`maxwidth`为0时，需要加上单位，如：`0px`或`0%`。|数组|Array|`[]`|
+    |col-set|列设置可以用来控制单独的一列，具体配置方法见下面的[col-set](#col-set)章节|数组|Array|`[]`|
+    |row-set|单行设置可以用来控制一行，具体配置方法见下面的[row-set](#row-set)章节|数组|Array|`[]`|
+    |cell-set|单元格设置可以用来控制单个单元格，具体配置方法见下面的[cell-set](#cell-set)章节|数组|Array|`[]`|
     |export-csv|开启将表格导出csv文件的功能|`true`<br>`false`|Boolean|`false`|
     |csv-name|导出csv文件的名称|文件名称(不需要加尾缀)|String|`undefined`|
 
@@ -467,6 +467,29 @@
 
     #### col-set
 
+    `col-set`用于列控制，是一个数组，数组的每项都是一个配置对象。
+
+    配置对象包含下面这些属性，其中`col`用来定位需要设置列的位置。
+
+    |KEY|描述|接受值|值类型|默认值|
+    |-|-|-|-|-|
+    |col|需要设置列的KEY|列的KEY(`list`配置中设置)|String|`undefined`|
+    |name|列的名称，如果开启`show-col-name`配置，名称会显示在标题行|名称|String|`undefined`|
+    |width|列的宽度，此配置会改变列在宽度分配时的权重，但不一定完全符合设置的宽度值，如果需要控制宽度的绝对值使用`minwidth`或`maxwidth`|宽度数值(必需包含单位`px`或`%`)|String|`undefined`|
+    |minwidth|列的最小宽度|宽度数值(必需包含单位`px`或`%`)|String|`undefined`|
+    |maxwidth|列的最小宽度|宽度数值(必需包含单位`px`或`%`)|String|`undefined`|
+    |style|设置列的色彩样式|[形态/颜色](/guide/status.html#颜色)中所有的功能颜色值|String|`undefined`|
+    |disabled|是否展示列的禁用样式|`true`<br>`false`|Boolean|`false`|
+    |align|列的对齐方式|`'left'`<br>`'right'`<br>`'align'`|String|`'align'`|
+    |title|此列是否是标题列，根据`fixed-title-col`的设置所有的标题列会被放到最左或最右|`true`<br>`false`|Boolean|`false`|
+    |export|导出`.csv`文件时，是否包含此列，若设为`false`此列不会被导出。一般包含行动区域的列会将此配置设为`false`|`true`<br>`false`|Boolean|`true`|
+
+    注意：在设置`width`、`minwidth`、`maxwidth`为0时，需要加上单位，如：`0px`或`0%`。
+
+    ---
+
+    ##### name
+
     通过`name`及`show-col-name`设置标题行：
 
     :::vue/html
@@ -507,6 +530,8 @@
     <ui-table :list="list" title="表名" :col-set="colset" :show-col-name="true"></ui-table>
     :::
 
+    ##### width、minwidth、maxwidth
+
     设置列的`width` 、 `minwidth` 、 `maxwidth`：
 
     :::vue/html
@@ -526,6 +551,8 @@
     ---
     <ui-table :list="list" :col-set="colset" :show-col-name="true"></ui-table>
     :::
+
+    ##### style
 
     设置指定列的样式（仅支持形态中的功能色彩）：
 
@@ -547,6 +574,8 @@
     <ui-table :list="list" :col-set="colset" :show-col-name="true"></ui-table>
     :::
 
+    ##### disabled
+
     将单元格设置为禁用样式：
 
     :::vue/html
@@ -567,6 +596,8 @@
     <ui-table :list="list" :col-set="colset" :show-col-name="true"></ui-table>
     :::
 
+    ##### align
+
     使用`align`来单独设置某一列的对齐方式：
 
     :::vue/html
@@ -586,6 +617,8 @@
     ---
     <ui-table :list="list" :col-set="colset" :show-col-name="true"></ui-table>
     :::
+
+    ##### title
 
     使用`title`来置标题列，标题列会被放置在最左或最右（通过`fixed-title-col`设置）：
 
@@ -647,7 +680,46 @@
     <ui-table :list="list" :col-set="colset" export-csv></ui-table>
     :::
 
+    ##### export
+
+    不导出`Gender`列：
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            list : window.list,
+            colset : [
+                {col : 'name', name : 'Name'},
+                {col : 'age', name : 'Age'},
+                {col : 'gender', name : 'Gender', export : false},
+                {col : 'job', name : 'Job'}
+            ]
+        }
+    });
+    ---
+    <ui-table :list="list" :col-set="colset" :show-col-name="true" export-csv></ui-table>
+    :::
+
     #### row-set
+
+    `row-set`用于行控制，是一个数组，数组的每项都是一个配置对象，用来设置单行。
+
+    配置对象包含下面这些属性，其中`row`用来定位需要设置行的位置。
+
+    |KEY|描述|接受值|值类型|默认值|
+    |-|-|-|-|-|
+    |row|需要设置的行数(从0开始，0表示标题行)|行数|Number|`undefined`|
+    |style|设置行的色彩样式|[形态/颜色](/guide/status.html#颜色)中所有的功能颜色值|String|`undefined`|
+    |disabled|是否展示行的禁用样式|`true`<br>`false`|Boolean|`false`|
+    |align|行的对齐方式|`'left'`<br>`'right'`<br>`'align'`|String|`'align'`|
+
+    注意：在设置`width`、`minwidth`、`maxwidth`为0时，需要加上单位，如：`0px`或`0%`。
+
+    ---
+
+    ##### style
 
     设置指定行的样式（仅支持形态中的功能色彩）：
 
@@ -673,6 +745,8 @@
     <ui-table :list="list" :col-set="colset" :row-set="rowset" :show-col-name="true"></ui-table>
     :::
 
+    ##### disabled
+
     将单行设置为禁用样式：
 
     :::vue/html
@@ -689,6 +763,8 @@
     ---
     <ui-table :list="list" :row-set="rowset" export-csv></ui-table>
     :::
+
+    ##### align
 
     使用`align`来设置单行的对齐方式：
 
@@ -717,6 +793,24 @@
 
     #### cell-set
 
+    `cell-set`用于单元格控制，是一个数组，数组的每项都是一个配置对象，用来设置单个单元格。
+
+    配置对象包含下面这些属性，其中`row`和`col`用来定位需要设置单元格的位置。
+
+    |KEY|描述|接受值|值类型|默认值|
+    |-|-|-|-|-|
+    |row|需要设置单元格的行数(从0开始，0表示标题行)|行数|Number|`undefined`|
+    |col|需要设置单元格所在列的KEY|列的KEY(`list`配置中设置)|String|`undefined`|
+    |style|设置单元格的色彩样式|[形态/颜色](/guide/status.html#颜色)中所有的功能颜色值|String|`undefined`|
+    |disabled|是否展示单元格的禁用样式|`true`<br>`false`|Boolean|`false`|
+    |align|单元格的对齐方式|`'left'`<br>`'right'`<br>`'align'`|String|`'align'`|
+
+    注意：在设置`width`、`minwidth`、`maxwidth`为0时，需要加上单位，如：`0px`或`0%`。
+
+    ---
+
+    ##### style
+
     设置指定单元格的样式（仅支持形态中的功能色彩）：
 
     :::vue/html
@@ -742,6 +836,8 @@
     <ui-table :list="list" :col-set="colset" :cell-set="cellset" :show-col-name="true"></ui-table>
     :::
 
+    ##### disabled
+
     将单元格设置为禁用样式：
 
     :::vue/html
@@ -758,6 +854,8 @@
     ---
     <ui-table :list="list" :cell-set="cellset" export-csv></ui-table>
     :::
+
+    ##### align
 
     使用`align`来单独设置单元格的对齐方式：
 
