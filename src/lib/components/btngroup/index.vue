@@ -1,10 +1,10 @@
 <template>
-    <i-btngroup
+    <mor-btngroup
         :_uiid="uiid"
         :class="[]"
     >
         <slot></slot>
-    </i-btngroup>
+    </mor-btngroup>
 </template>
  
 <script>

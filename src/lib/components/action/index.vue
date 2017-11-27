@@ -1,10 +1,10 @@
 <template>
-    <i-action
+    <mor-action
         :_uiid="uiid"
         :class="[sizeClass, colorClass]"
     >
         <slot></slot>
-    </i-action>
+    </mor-action>
 </template>
  
 <script>

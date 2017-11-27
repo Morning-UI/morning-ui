@@ -1,10 +1,10 @@
 <template>
-    <i-apparent
+    <mor-apparent
         :_uiid="uiid"
         :class="[stateClass]"
     >
         <slot></slot>
-    </i-apparent>
+    </mor-apparent>
 </template>
  
 <script>

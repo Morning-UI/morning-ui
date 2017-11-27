@@ -1,5 +1,5 @@
 <template>
-    <i-breadcrumbs
+    <mor-breadcrumbs
         :_uiid="uiid"
         :class="[sizeClass]"
 
@@ -35,7 +35,7 @@
         
     </ul>
         
-    </i-breadcrumbs>
+    </mor-breadcrumbs>
 </template>
  
 <script>

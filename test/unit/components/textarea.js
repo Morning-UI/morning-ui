@@ -33,7 +33,7 @@ test('base : component tag name is t-*', async t => {
 
     t.plan(1);
 
-    t.is(vm.$el.tagName, `i-${name}`.toUpperCase());
+    t.is(vm.$el.tagName, `mor-${name}`.toUpperCase());
 
 });
 
