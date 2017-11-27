@@ -1,10 +1,10 @@
 <template>
-    <i-lead
+    <mor-lead
         :_uiid="uiid"
         :class="[colorClass, stateClass]"
     >
         <slot></slot>
-    </i-lead>
+    </mor-lead>
 </template>
  
 <script>

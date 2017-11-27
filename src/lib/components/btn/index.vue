@@ -1,5 +1,5 @@
 <template>
-    <i-btn
+    <mor-btn
         :_uiid="uiid"
         :class="[sizeClass, colorClass, stateClass, moreClass]"
 
@@ -20,7 +20,7 @@
         <slot></slot>
     </template>
         
-    </i-btn>
+    </mor-btn>
 </template>
  
 <script>

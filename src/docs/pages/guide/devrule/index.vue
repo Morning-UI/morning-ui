@@ -15,7 +15,7 @@
 
     #### 通用
         
-    - 组件在Vue模板中的标签以`i-`开头<ui-badge xxs class="circle">AUTO</ui-badge>
+    - 组件在Vue模板中的标签以`mor-`开头<ui-badge xxs class="circle">AUTO</ui-badge>
     - 组件绑定`:_uiid="uiid"`<ui-badge xxs class="circle">AUTO</ui-badge>
     - 组件的`index.vue`，从上至下分别为:`<template>`、`<script>`、`<style>`三个标签
     - `<style>`标签必须有`lang="less"`属性
@@ -24,7 +24,7 @@
     - 组件中的`this.$watch`优先写到`mounted()`生命周期钩子函数中
     - 组件中有关`data.value`和`conf.group`的观察函数`this.$watch`优先写到`created()`生命周期钩子函数中
     - 支持`slot`的组件，在模板代码中加入了`slot`
-    - 组件生成的HTML，最外层容器使用这样的标签：`<i-[name]>`，其中`name`是组件的名称
+    - 组件生成的HTML，最外层容器使用这样的标签：`<mor-[name]>`，其中`name`是组件的名称
     - 每个组件必须包含两个文件：`index.vue`和`index.less`
     - 除了表单组件之外的组件继承了`UI`类，表单组件继承了`Form`类
     - 在组件根标签的class中正确的绑定了支持的形态，完整示例：`:class="[sizeClass, colorClass, stateClass]"`

@@ -1,5 +1,5 @@
 <template>
-    <i-link
+    <mor-link
         :_uiid="uiid"
         :class="[sizeClass, colorClass, stateClass, moreClass]"
 
@@ -20,7 +20,7 @@
         <slot></slot>
     </template>
 
-    </i-link>
+    </mor-link>
 </template>
  
 <script>

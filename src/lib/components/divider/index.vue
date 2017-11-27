@@ -1,10 +1,10 @@
 <template>
-    <i-divider
+    <mor-divider
         :_uiid="uiid"
         :class="[]"
     >
         <slot></slot>
-    </i-divider>
+    </mor-divider>
 </template>
  
 <script>

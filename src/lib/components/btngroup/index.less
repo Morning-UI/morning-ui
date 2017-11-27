@@ -2,20 +2,20 @@
 
 @btnGap: 2px;
 
-i-btngroup{
+mor-btngroup{
     display: inline-block;
     font-size: 0;
     vertical-align: middle;
     position: relative;
 
-    i-btn{
+    mor-btn{
         &:not(:first-child):not(:last-child){
             border-radius: 0;
         }
     }
 
     &.vertical{
-        > i-btn{
+        > mor-btn{
             display: block;
             float: none;
             margin-bottom: 1px;
@@ -35,7 +35,7 @@ i-btngroup{
 
     &:not(.vertical),
     &.horizontal{
-        > i-btn{
+        > mor-btn{
             margin-right: 1px;
         }
 
@@ -65,7 +65,7 @@ i-btngroup{
         // transform: translateX(-50%) translateY(-50%);
     }
 
-    i-btn.si-xxl {
+    mor-btn.si-xxl {
         + span {
             font-size: @fontSize*1.25;
             width: @fontSize*2;
@@ -76,7 +76,7 @@ i-btngroup{
         }
     }
 
-    i-btn.si-xl {
+    mor-btn.si-xl {
         + span {
             font-size: @fontSize*1.125;
             width: @fontSize*1.8;
@@ -87,7 +87,7 @@ i-btngroup{
         }
     }
 
-    i-btn.si-l {
+    mor-btn.si-l {
         + span {
             font-size: @fontSize;
             width: @fontSize*1.6;
@@ -98,8 +98,8 @@ i-btngroup{
         }
     }
 
-    i-btn,
-    i-btn.si-m {
+    mor-btn,
+    mor-btn.si-m {
         + span {
             font-size: @fontSize*0.75;
             width: 2em;
@@ -111,7 +111,7 @@ i-btngroup{
         }
     }
 
-    i-btn.si-s {
+    mor-btn.si-s {
         + span {
             font-size: @fontSize*0.625;
             width: @fontSize*1.2;
@@ -122,7 +122,7 @@ i-btngroup{
         }
     }
 
-    i-btn.si-xs {
+    mor-btn.si-xs {
         + span {
             font-size: @fontSize*0.625;
             width: @fontSize*1;
@@ -133,7 +133,7 @@ i-btngroup{
         }
     }
 
-    i-btn.si-xxs {
+    mor-btn.si-xxs {
         + span {
             font-size: @fontSize*0.625;
             width: @fontSize*1;
@@ -145,7 +145,7 @@ i-btngroup{
     }
 
     &.split {
-        > i-btn{
+        > mor-btn{
             padding-right: 1.5em;
             padding-left: 1.5em;
             margin-right: @btnGap*2;
@@ -153,11 +153,11 @@ i-btngroup{
     }
 
     &.nogap{
-        > i-btn{
+        > mor-btn{
             margin-right: 0;
         }
 
-        &.vertical > i-btn{
+        &.vertical > mor-btn{
             margin-bottom: 0;
         }
     }

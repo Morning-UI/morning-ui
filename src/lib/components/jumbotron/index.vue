@@ -1,10 +1,10 @@
 <template>
-    <i-jumbotron
+    <mor-jumbotron
         :_uiid="uiid"
         :class="[]"
     >
         <slot></slot>
-    </i-jumbotron>
+    </mor-jumbotron>
 </template>
  
 <script>

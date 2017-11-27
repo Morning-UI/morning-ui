@@ -1,5 +1,5 @@
 <template>
-    <i-select
+    <mor-select
         :_uiid="uiid"
         :class="[stateClass, moreClass]"
 
@@ -104,7 +104,7 @@
         <li class="noitem">无项目</li>
     </ul>
 
-    </i-select>
+    </mor-select>
 </template>
  
 <script>
@@ -430,8 +430,8 @@ export default {
 
             }
 
-            let $searchTextinput = this.$el.querySelector('.wrap i-textinput'),
-                $searchMultiinput = this.$el.querySelector('.wrap i-multiinput'),
+            let $searchTextinput = this.$el.querySelector('.wrap mor-textinput'),
+                $searchMultiinput = this.$el.querySelector('.wrap mor-multiinput'),
                 $cleanBtn = this.$el.querySelector('.wrap .clean'),
                 hasTextinput = (evt.path.indexOf($searchTextinput) !== -1),
                 hasMultiinput = (evt.path.indexOf($searchMultiinput) !== -1),
@@ -715,7 +715,7 @@ export default {
 
             }
 
-            let $inlineImgs = this.$el.querySelectorAll('.list>li i-img,.list>li img');
+            let $inlineImgs = this.$el.querySelectorAll('.list>li mor-img,.list>li img');
 
             for (let $img of $inlineImgs.values()) {
 

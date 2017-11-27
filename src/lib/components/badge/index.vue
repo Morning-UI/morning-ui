@@ -1,10 +1,10 @@
 <template>
-    <i-badge
+    <mor-badge
         :_uiid="uiid"
         :class="[sizeClass, colorClass, stateClass]"
     >
         <slot></slot>
-    </i-badge>
+    </mor-badge>
 </template>
  
 <script>

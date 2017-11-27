@@ -35,7 +35,7 @@ test('base : component tag name is t-*', async t => {
 
     t.plan(1);
 
-    t.is(vm.$el.tagName, `i-${name}`.toUpperCase());
+    t.is(vm.$el.tagName, `mor-${name}`.toUpperCase());
 
 });
 
@@ -60,7 +60,7 @@ test('config : default-value : with v-for slot : value exist', async t => {
 
     vm.$mount();
 
-    let uiid = vm.$el.querySelector('i-select').getAttribute('_uiid');
+    let uiid = vm.$el.querySelector('mor-select').getAttribute('_uiid');
 
     t.plan(1);
     t.is(window.morning.map[uiid].get()[0], 'Tim');
@@ -88,7 +88,7 @@ test('config : default-value : with v-for slot : value not exist', async t => {
 
     vm.$mount();
 
-    let uiid = vm.$el.querySelector('i-select').getAttribute('_uiid');
+    let uiid = vm.$el.querySelector('mor-select').getAttribute('_uiid');
 
     t.plan(1);
     t.is(window.morning.map[uiid].get().length, 0);
