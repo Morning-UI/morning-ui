@@ -106,8 +106,8 @@
         <ui-radio ref="demo2" form-name="姓名" :list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"></ui-radio>
     </div>
     <br>
-    <ui-link js="javascript:morning.findVM('demo2').toggle('Tim');">选中Tim</ui-link>
-    <ui-link js="javascript:morning.findVM('demo2').toggle('Andrew');">选中Andrew</ui-link>
+    <ui-link js="morning.findVM('demo2').toggle('Tim');">选中Tim</ui-link>
+    <ui-link js="morning.findVM('demo2').toggle('Andrew');">选中Andrew</ui-link>
     :::
 
     [[[事件]]]

@@ -77,9 +77,9 @@
     <div style="width:300px;">
         <ui-switch ref="demo1" form-name="姓名"></ui-switch>
         <br><br> 
-        <ui-link js="javascript:morning.findVM('demo1').toggle();">切换相反状态</ui-link>
-        <ui-link js="javascript:morning.findVM('demo1').toggle(true);">切换至开启</ui-link>
-        <ui-link js="javascript:morning.findVM('demo1').toggle(false);">切换至关闭</ui-link>
+        <ui-link js="morning.findVM('demo1').toggle();">切换相反状态</ui-link>
+        <ui-link js="morning.findVM('demo1').toggle(true);">切换至开启</ui-link>
+        <ui-link js="morning.findVM('demo1').toggle(false);">切换至关闭</ui-link>
     </div>
     :::
 
