@@ -7358,16 +7358,16 @@ mor-message .message.message-leave-active {
 mor-message .message.message-move {
   transition: transform 0.2s;
 }
-mor-message .message .morningicon {
+mor-message .message .close-btn {
   position: absolute;
-  top: 1em;
+  top: 1.23em;
   font-size: 13px;
   right: 0.6em;
   vertical-align: middle;
   color: #FFFFFF;
   opacity: 0.5;
 }
-mor-message .message .morningicon:hover {
+mor-message .message .close-btn:hover {
   opacity: 1;
   cursor: pointer;
 }

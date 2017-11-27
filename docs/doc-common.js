@@ -4299,7 +4299,7 @@ exports.default = {
         使用: '/guide/usage.html',
         // 定制化 : '/guide/custom.html',
         基础: null,
-        组件文档: '/guide/componentdoc.html',
+        查阅文档: '/guide/componentdoc.html',
         初始化: '/guide/init.html',
         形态: '/guide/status.html',
         配色: '/guide/uniformcolor.html',
