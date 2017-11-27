@@ -278,7 +278,7 @@
         <ui-upload ref="demo1" form-name="网络文件" :allow-url="true"></ui-upload>
     </div>
     <br>
-    <ui-link js="javascript:morning.findVM('demo1').uploadUrl('https://cn.vuejs.org/images/logo.png');">上传Vue的logo</ui-link>
+    <ui-link js="morning.findVM('demo1').uploadUrl('https://cn.vuejs.org/images/logo.png');">上传Vue的logo</ui-link>
     :::
 
     [[[事件]]]

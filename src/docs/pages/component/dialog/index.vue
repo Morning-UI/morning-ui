@@ -161,12 +161,12 @@
     :::democode/html
     <ui-dialog ref="demo10" color="black" width="60%" height="60%">
         <header slot="header">第一级</header>
-        <ui-link js="javascript:window.morning.findVM('demo11').toggle(true);">显示第二级模拟盒</ui-link>
+        <ui-link js="window.morning.findVM('demo11').toggle(true);">显示第二级模拟盒</ui-link>
     </ui-dialog>
 
     <ui-dialog ref="demo11" color="extra-light-black" width="40%" height="40%">
         <header slot="header">第二级</header>
-        <ui-link js="javascript:window.morning.findVM('demo12').toggle(true);">显示第三级模拟盒</ui-link>
+        <ui-link js="window.morning.findVM('demo12').toggle(true);">显示第三级模拟盒</ui-link>
     </ui-dialog>
 
     <ui-dialog ref="demo12" color="light-blue" width="20%" height="20%">
@@ -423,8 +423,8 @@
 
         <br><br>
     
-        <ui-link js="javascript:window.demoEventLifecycle.text='生命周期事件';">触发update</ui-link>
-        <ui-link js="javascript:morning.findVM('demoEventLifecycle').$destroy();">触发destroy</ui-link>
+        <ui-link js="window.demoEventLifecycle.text='生命周期事件';">触发update</ui-link>
+        <ui-link js="morning.findVM('demoEventLifecycle').$destroy();">触发destroy</ui-link>
     </div>
     :::
 

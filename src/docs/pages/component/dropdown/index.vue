@@ -99,9 +99,9 @@
         <ui-btn color="danger">删除</ui-btn>
     </ui-dropdown>
     <br><br> 
-    <ui-link js="javascript:morning.findVM('demo1').toggle();">切换相反状态</ui-link>
-    <ui-link js="javascript:morning.findVM('demo1').toggle(true);">切换至显示</ui-link>
-    <ui-link js="javascript:morning.findVM('demo1').toggle(false);">切换至隐藏</ui-link>
+    <ui-link js="morning.findVM('demo1').toggle();">切换相反状态</ui-link>
+    <ui-link js="morning.findVM('demo1').toggle(true);">切换至显示</ui-link>
+    <ui-link js="morning.findVM('demo1').toggle(false);">切换至隐藏</ui-link>
     :::
 
     [[[事件]]]
@@ -221,8 +221,8 @@
 
         <br><br>
     
-        <ui-link js="javascript:window.demoEventLifecycle.text='生命周期事件';">触发update</ui-link>
-        <ui-link js="javascript:morning.findVM('demoEventLifecycle').$destroy();">触发destroy</ui-link>
+        <ui-link js="window.demoEventLifecycle.text='生命周期事件';">触发update</ui-link>
+        <ui-link js="morning.findVM('demoEventLifecycle').$destroy();">触发destroy</ui-link>
     </div>
     :::
 

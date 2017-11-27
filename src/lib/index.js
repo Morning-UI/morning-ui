@@ -8,7 +8,6 @@ let morning = {
     _components : {},
     _ignoreElements : [],
     _uiid : 1,
-    _findCache : {},
     _popupId : 0,
     _indexMap : {
         regIndex : {},
@@ -27,11 +26,25 @@ let morning = {
 
 morning.findVM = function (ref) {
 
-    if (this._findCache[ref]) {
-            
-        return this._findCache[ref];
+    for (let vm of Object.values(this.map)) {
+
+        if (vm.$vnode &&
+            vm.$vnode.data &&
+            vm.$vnode.data.ref === ref) {
+
+            return vm;
+        
+        }
 
     }
+
+    return undefined;
+
+};
+
+morning.findAllVM = function (ref) {
+
+    let result = [];
 
     for (let vm of Object.values(this.map)) {
 
@@ -39,13 +52,13 @@ morning.findVM = function (ref) {
             vm.$vnode.data &&
             vm.$vnode.data.ref === ref) {
 
-            this._findCache[ref] = vm;
-            
-            return vm;
+            result.push(vm);
         
         }
 
     }
+
+    return result;
 
 };
 
