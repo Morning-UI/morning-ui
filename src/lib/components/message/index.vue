@@ -20,7 +20,7 @@
                 >
                     <h1 class="title">{{msg.title}}</h1>
                     <div class="body" v-html="msg.message"></div>
-                    <i class="morningicon" v-if="conf.closeBtn" @click="close(msg.id)">&#xe62e;</i>
+                    <i class="morningicon close-btn" v-if="conf.closeBtn" @click="close(msg.id)">&#xe62e;</i>
                 </div>
             </transition-group>
             
@@ -43,7 +43,7 @@ export default {
             default : false
         },
         closeTime : {
-            type : Number,
+            type : [Number, Boolean],
             default : defaultCloseTime
         },
         showType : {
@@ -147,7 +147,7 @@ export default {
 
             this.data.list = list;
 
-            if (this.conf.closeTime) {
+            if (this.conf.closeTime !== false) {
 
                 setTimeout(() => {
 
