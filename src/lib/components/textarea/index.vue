@@ -1,5 +1,5 @@
 <template>
-    <i-textarea
+    <mor-textarea
         :_uiid="uiid"
         :class="[stateClass]"
 
@@ -19,10 +19,11 @@
         @focus="_focus()"
         @blur="_blur()"
 
-        v-model="data.value"
+        :value="data.value"
+        @input="$emit('input', $event.target.value)"
     ></textarea>
 
-    </i-textarea>
+    </mor-textarea>
 </template>
  
 <script>
@@ -129,7 +130,15 @@ export default {
         }
     },
     created : function () {},
-    mounted : function () {}
+    mounted : function () {
+
+        this.$on('input', value => {
+
+            this.data.value = value;
+
+        });
+
+    }
 };
 </script>
 

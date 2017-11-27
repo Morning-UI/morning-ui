@@ -18,6 +18,26 @@
     
     ### 更新记录
 
+    ### 0.10.10 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2017年11月27日，
+            Archive : 
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.10" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.10/dist/" target="_blank">CDN</a>
+        </ui-small>
+    </ui-textcolor>
+
+    - 新增`ui-message`消息组件
+    - 组件生成的HTML标签的前缀改为`mor-`
+    - 符合Vue风格指南中优先级D的规则
+    - `ui-dialog`组件新增`show-mask`配置
+
+    <ui-label color="primary">Upgrade Precautions</ui-label>
+
+    - 组件生成的HTML标签前缀由`i-`变为`mor-`，如JS、CSS有使用请修改
+
     ### 0.10.9 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="light-blue">

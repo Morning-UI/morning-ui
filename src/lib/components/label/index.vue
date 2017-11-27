@@ -1,10 +1,10 @@
 <template>
-    <i-label
+    <mor-label
         :_uiid="uiid"
         :class="[sizeClass, colorClass, stateClass]"
     >
         <slot></slot>
-    </i-label>
+    </mor-label>
 </template>
  
 <script>

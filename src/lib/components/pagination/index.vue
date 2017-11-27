@@ -1,5 +1,5 @@
 <template>
-    <i-pagination
+    <mor-pagination
         :_uiid="uiid"
         :class="[sizeClass, colorClass]"
 
@@ -30,14 +30,18 @@
                 <a
                     v-if="data.currentPage === index"
                     href="javascript:;"
-                    class="current">
+                    class="current"
+                    key="current"
+                >
                     {{index}}
                 </a>
                 
                 <a
                     v-else
                     href="javascript:;"
-                    @click="to(index)">
+                    @click="to(index)"
+                    key="nocurrent"
+                >
                     {{index}}
                 </a>
             </template>
@@ -61,7 +65,7 @@
 </div>
 
         
-    </i-pagination>
+    </mor-pagination>
 </template>
  
 <script>

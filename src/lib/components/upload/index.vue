@@ -1,5 +1,5 @@
 <template>
-    <i-upload
+    <mor-upload
         :_uiid="uiid"
         :class="[stateClass, moreClass]"
 
@@ -34,7 +34,7 @@
     />
 
     <div class="filelist">
-        <p class="name" v-if="!conf.hideName"><ui-center class="fill">{{conf.formName}}</ui-center></p>
+        <p class="name" v-if="!conf.hideName"><morning-center class="fill">{{conf.formName}}</morning-center></p>
 
         <div class="filewrap" :class="{hidename:conf.hideName}">
             
@@ -100,7 +100,7 @@
         <div class="drag-note" :class="{show: data.dragover}"><p><i class="morningicon">&#xe629;</i> 松开鼠标上传</p></div>
     </div>
 
-    </i-upload>
+    </mor-upload>
 </template>
  
 <script>

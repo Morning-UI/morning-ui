@@ -1,5 +1,5 @@
 <template>
-    <i-multiinput
+    <mor-multiinput
         :_uiid="uiid"
         :class="[stateClass, moreClass, moveClass]"
 
@@ -41,7 +41,11 @@
                         @blur="_blurInput"
                         :style="{width: data.inputWidth}"
                         :placeholder="conf.formName"
-                        v-model="data.inputValue" />
+                        key="set-max-show-name"
+
+                        :value="data.inputValue"
+                        @input="$emit('input', $event.target.value)"
+                    />
 
                     <input
                         type="text"
@@ -49,7 +53,11 @@
                         @focus="_focusInput"
                         @blur="_blurInput"
                         :style="{width: data.inputWidth}"
-                        v-model="data.inputValue" />
+                        key="set-max-hide-name"
+
+                        :value="data.inputValue"
+                        @input="$emit('input', $event.target.value)"
+                    />
                 </template>
                 <template v-else>
                     <span>最多只能输入{{conf.max}}项</span>
@@ -63,7 +71,11 @@
                         @blur="_blurInput"
                         :style="{width: data.inputWidth}"
                         :placeholder="conf.formName"
-                        v-model="data.inputValue" />
+                        key="unset-max-show-name"
+
+                        :value="data.inputValue"
+                        @input="$emit('input', $event.target.value)"
+                    />
 
                     <input
                         type="text"
@@ -71,13 +83,17 @@
                         @focus="_focusInput"
                         @blur="_blurInput"
                         :style="{width: data.inputWidth}"
-                        v-model="data.inputValue" />
+                        key="unset-max-hide-name"
+
+                        :value="data.inputValue"
+                        @input="$emit('input', $event.target.value)"
+                    />
             </template>
         </template>
         
     </div>
 
-    </i-multiinput>
+    </mor-multiinput>
 </template>
  
 <script>
@@ -341,6 +357,12 @@ export default {
         
     },
     mounted : function () {
+
+        this.$on('input', value => {
+
+            this.data.inputValue = value;
+
+        });
 
         this.$watch('conf.canMove', newVal => {
 

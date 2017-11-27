@@ -1,5 +1,5 @@
 <template>
-    <i-switch
+    <mor-switch
         :_uiid="uiid"
         :class="[colorClass, stateClass, moreClass]"
 
@@ -16,7 +16,7 @@
         <div class="point"></div>
     </div>
 
-    </i-switch>
+    </mor-switch>
 </template>
  
 <script>

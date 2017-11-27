@@ -101,36 +101,36 @@
   padding: 2px;
   margin-bottom: 10px;
 }
-.markdown-body i-table table {
+.markdown-body mor-table table {
   margin-top: initial;
   margin-bottom: initial;
   display: table;
   width: initial;
   overflow: initial;
 }
-.markdown-body i-table table tr {
+.markdown-body mor-table table tr {
   border-top: initial;
 }
-.markdown-body i-table table tr:nth-child(2n) {
+.markdown-body mor-table table tr:nth-child(2n) {
   background-color: #FAFAFA;
 }
-.markdown-body i-table table * {
+.markdown-body mor-table table * {
   box-sizing: inherit;
 }
-.markdown-body i-table table th,
-.markdown-body i-table table td {
+.markdown-body mor-table table th,
+.markdown-body mor-table table td {
   padding: initial;
   border: initial;
 }
-.markdown-body i-img img,
-.markdown-body i-label img,
-.markdown-body i-statistic img,
-.markdown-body i-multiform img {
+.markdown-body mor-img img,
+.markdown-body mor-label img,
+.markdown-body mor-statistic img,
+.markdown-body mor-multiform img {
   border: none !important;
   padding: 0;
   margin-bottom: inherit;
 }
-.markdown-body i-formgroup h6 {
+.markdown-body mor-formgroup h6 {
   margin-top: 0;
 }
 .markdown-body h5 {
@@ -155,7 +155,7 @@
   display: inline-block;
   background: #F0F0F0;
 }
-.markdown-body i-ul h3 {
+.markdown-body mor-ul h3 {
   margin: 0;
   line-height: initial;
 }
@@ -163,7 +163,7 @@
   line-height: 1.35;
   margin-top: 0;
 }
-.markdown-body i-table h1 {
+.markdown-body mor-table h1 {
   margin-top: inherit;
   margin-bottom: inherit;
   font-weight: inherit;
@@ -172,10 +172,10 @@
   border-bottom: inherit;
   font-size: inherit;
 }
-.markdown-body > div > i-tab > .contents > .item > div {
+.markdown-body > div > mor-tab > .contents > .item > div {
   margin-top: 30px;
 }
-.markdown-body > div > h3 > i-badge {
+.markdown-body > div > h3 > mor-badge {
   font-weight: 400;
   vertical-align: 4px;
   transform: scale(0.9);
@@ -184,40 +184,40 @@
 .markdown-body iframe {
   width: 100%;
 }
-.markdown-body i-breadcrumbs li + li {
+.markdown-body mor-breadcrumbs li + li {
   margin-top: 0;
 }
-.markdown-body i-dialog h1 {
+.markdown-body mor-dialog h1 {
   border-bottom: none;
   line-height: inherit;
 }
 .component .markdown-body > div > h1 {
   margin-bottom: 0;
 }
-.markdown-body i-formgroup header {
+.markdown-body mor-formgroup header {
   height: inherit;
 }
-.markdown-body i-formgroup h5 {
+.markdown-body mor-formgroup h5 {
   font-size: 14px;
   font-weight: 600;
   margin-top: 0;
   margin-bottom: 0;
   line-height: 1.6em;
 }
-.markdown-body i-formgroup p {
+.markdown-body mor-formgroup p {
   margin-bottom: 0;
 }
-.markdown-body i-select li + li {
+.markdown-body mor-select li + li {
   margin-top: 0;
 }
-i-dialog .body {
+mor-dialog .body {
   font-size: inherit;
 }
-i-dialog a {
+mor-dialog a {
   color: #0366D6;
   text-decoration: none;
 }
-i-dialog a:hover {
+mor-dialog a:hover {
   text-decoration: underline;
 }
 @font-face {
