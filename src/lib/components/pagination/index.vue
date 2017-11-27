@@ -30,14 +30,18 @@
                 <a
                     v-if="data.currentPage === index"
                     href="javascript:;"
-                    class="current">
+                    class="current"
+                    key="current"
+                >
                     {{index}}
                 </a>
                 
                 <a
                     v-else
                     href="javascript:;"
-                    @click="to(index)">
+                    @click="to(index)"
+                    key="nocurrent"
+                >
                     {{index}}
                 </a>
             </template>
