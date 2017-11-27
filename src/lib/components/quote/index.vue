@@ -1,10 +1,10 @@
 <template>
-    <i-quote
+    <mor-quote
         :_uiid="uiid"
         :class="[colorClass]"
     >
         <slot></slot>
-    </i-quote>
+    </mor-quote>
 </template>
  
 <script>

@@ -1,5 +1,5 @@
 <template>
-    <i-textarea
+    <mor-textarea
         :_uiid="uiid"
         :class="[stateClass]"
 
@@ -23,7 +23,7 @@
         @input="$emit('input', $event.target.value)"
     ></textarea>
 
-    </i-textarea>
+    </mor-textarea>
 </template>
  
 <script>

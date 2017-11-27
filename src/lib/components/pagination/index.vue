@@ -1,5 +1,5 @@
 <template>
-    <i-pagination
+    <mor-pagination
         :_uiid="uiid"
         :class="[sizeClass, colorClass]"
 
@@ -65,7 +65,7 @@
 </div>
 
         
-    </i-pagination>
+    </mor-pagination>
 </template>
  
 <script>

@@ -1,5 +1,5 @@
 <template>
-    <i-message
+    <mor-message
         :_uiid="uiid"
         :class="[moreClass]"
 
@@ -25,7 +25,7 @@
             </transition-group>
             
         </div>
-    </i-message>
+    </mor-message>
 </template>
 
 <script>

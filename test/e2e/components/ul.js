@@ -9,7 +9,7 @@ const runner = nightmare({
 
 let tagName = 'ul';
 let docUrl = `${common.TEST_HOST}/component/${tagName}.html`;
-let basicDemo = `[name="开始"] i-${tagName}`;
+let basicDemo = `[name="开始"] mor-${tagName}`;
 
 let context = {
     tagName,
@@ -61,9 +61,9 @@ test.serial('list style type', async t => {
         .goto(docUrl)
         .wait(basicDemo)
         .evaluate(() => ({
-            lv1 : $('[name="开始"] i-ul').css('list-style-type'),
-            lv2 : $('[name="开始"] i-ul > i-ul').css('list-style-type'),
-            lv3 : $('[name="开始"] i-ul > i-ul > i-ul').css('list-style-type')
+            lv1 : $('[name="开始"] mor-ul').css('list-style-type'),
+            lv2 : $('[name="开始"] mor-ul > mor-ul').css('list-style-type'),
+            lv3 : $('[name="开始"] mor-ul > mor-ul > mor-ul').css('list-style-type')
         }));
 
     t.plan(1);

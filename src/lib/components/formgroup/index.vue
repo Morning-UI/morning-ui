@@ -1,10 +1,10 @@
 <template>
-    <i-formgroup
+    <mor-formgroup
         :_uiid="uiid"
         :class="[]"
     >
         <slot></slot>
-    </i-formgroup>
+    </mor-formgroup>
 </template>
  
 <script>

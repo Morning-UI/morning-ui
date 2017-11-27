@@ -140,7 +140,7 @@ let e2eStatementFnString = `(ctx, type, attrs, basicDemoSelector) => {
 }`;
 
 let e2eBasicFnString = `ctx => ({
-    style : window.getComputedStyle($('[name="开始"] i-'+ctx.tagName)[0])
+    style : window.getComputedStyle($('[name="开始"] mor-'+ctx.tagName)[0])
 })`;
 
 export default {

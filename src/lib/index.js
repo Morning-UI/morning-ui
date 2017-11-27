@@ -108,6 +108,12 @@ morning.install = function (Vue, options) {
 
     }
 
+    if (options && options.prefix === 'mor') {
+
+        throw new Error('prefix can\'t be \'mor\'.');
+
+    }
+
     options = extend(true, {
         prefix : 'ui',
         uploader : null
@@ -143,7 +149,7 @@ morning.install = function (Vue, options) {
         Vue.component(`${options.prefix}-${component.options.name}`, component);
         Vue.component(`morning-${component.options.name}`, component);
         this._components[name] = component;
-        this._ignoreElements.push(`i-${component.options.name}`);
+        this._ignoreElements.push(`mor-${component.options.name}`);
         this._ignoreElements.push(`morning-${component.options.name}`);
 
     }
