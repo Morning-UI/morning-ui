@@ -13776,7 +13776,7 @@ exports.default = {
             default: false
         },
         closeTime: {
-            type: Number,
+            type: [Number, Boolean],
             default: defaultCloseTime
         },
         showType: {
@@ -13894,7 +13894,7 @@ exports.default = {
 
             this.data.list = list;
 
-            if (this.conf.closeTime) {
+            if (this.conf.closeTime !== false) {
 
                 setTimeout(function () {
 
@@ -13987,7 +13987,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
         "innerHTML": _vm._s(msg.message)
       }
     }), _vm._v(" "), (_vm.conf.closeBtn) ? _c('i', {
-      staticClass: "morningicon",
+      staticClass: "morningicon close-btn",
       on: {
         "click": function($event) {
           _vm.close(msg.id)
