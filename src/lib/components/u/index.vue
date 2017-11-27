@@ -1,11 +1,11 @@
 
 <template>
-    <i-u
+    <mor-u
         :_uiid="uiid"
         :class="[]"
     >
         <slot></slot>
-    </i-u>
+    </mor-u>
 </template>
  
 <script>

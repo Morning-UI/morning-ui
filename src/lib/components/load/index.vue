@@ -1,5 +1,5 @@
 <template>
-    <i-load
+    <mor-load
         :_uiid="uiid"
         :class="[sizeClass]"
 
@@ -19,7 +19,7 @@
         <morning-center class="fill"><p class="loading"><i class="morningicon">&#xe703;</i><br/>{{conf.note}}</p></morning-center>
     </template>
         
-    </i-load>
+    </mor-load>
 </template>
  
 <script>

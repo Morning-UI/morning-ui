@@ -1,10 +1,10 @@
 <template>
-    <i-statistic
+    <mor-statistic
         :_uiid="uiid"
         :class="[sizeClass, colorClass, stateClass]"
     >
         <slot></slot>
-    </i-statistic>
+    </mor-statistic>
 </template>
  
 <script>

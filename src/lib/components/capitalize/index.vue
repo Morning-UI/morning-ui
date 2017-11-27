@@ -1,10 +1,10 @@
 <template>
-    <i-capitalize
+    <mor-capitalize
         :_uiid="uiid"
         :class="[]"
     >
         <slot></slot>
-    </i-capitalize>
+    </mor-capitalize>
 </template>
  
 <script>

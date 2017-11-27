@@ -50,10 +50,10 @@ test.serial('import-use-tag', async t => {
 
     const result = await runner
         .goto(`file://${pathHtml}`)
-        .wait('i-link')
+        .wait('mor-link')
         .evaluate(() => ({
             morning : window.morning,
-            style : window.getComputedStyle(document.querySelector('i-link'))
+            style : window.getComputedStyle(document.querySelector('mor-link'))
         }));
 
     // circleci
@@ -140,7 +140,7 @@ test.serial('import-use-webpack', async t => {
 
     await new Promise(resolve => {
 
-        exec(`cd ${pathDir} && npm install morning-ui webpack style-loader css-loader vue --registry=https://registry.npm.taobao.org`, resolve);
+        exec(`cd ${pathDir} && npm install morning-ui webpack style-loader css-loader vue`, resolve);
 
     });
 
@@ -152,10 +152,10 @@ test.serial('import-use-webpack', async t => {
 
     const result = await runner
         .goto(`file://${pathHtml}`)
-        .wait('i-link')
+        .wait('mor-link,i-link')
         .evaluate(() => ({
             morning : window.morning,
-            style : window.getComputedStyle(document.querySelector('i-link'))
+            style : window.getComputedStyle(document.querySelector('mor-link,i-link'))
         }));
 
     // circleci

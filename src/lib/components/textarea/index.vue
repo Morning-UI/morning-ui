@@ -1,5 +1,5 @@
 <template>
-    <i-textarea
+    <mor-textarea
         :_uiid="uiid"
         :class="[stateClass]"
 
@@ -22,7 +22,7 @@
         v-model="data.value"
     ></textarea>
 
-    </i-textarea>
+    </mor-textarea>
 </template>
  
 <script>
