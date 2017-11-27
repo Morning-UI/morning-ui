@@ -1632,7 +1632,7 @@ var morning = {
     _groupVmMap: {},
     _options: {},
     isMorning: true,
-    version: '0.10.9',
+    version: '0.10.10',
     map: {}
 };
 
@@ -9970,6 +9970,10 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
 
 var PAGE_SIZE_DEFAULT = 10;
 
@@ -10254,11 +10258,13 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
         "href": "javascript:;"
       }
     }, [_vm._v("...")])] : _vm._e(), _vm._v(" "), (index >= _vm.data.hideEnd && index <= _vm.data.hideStart) ? [(_vm.data.currentPage === index) ? _c('a', {
+      key: "current",
       staticClass: "current",
       attrs: {
         "href": "javascript:;"
       }
     }, [_vm._v("\n                    " + _vm._s(index) + "\n                ")]) : _c('a', {
+      key: "nocurrent",
       attrs: {
         "href": "javascript:;"
       },
@@ -14129,6 +14135,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
+//
+//
 
 exports.default = {
     origin: 'Form',
@@ -14218,7 +14228,14 @@ exports.default = {
         }
     },
     created: function created() {},
-    mounted: function mounted() {}
+    mounted: function mounted() {
+        var _this = this;
+
+        this.$on('input', function (value) {
+
+            _this.data.value = value;
+        });
+    }
 };
 module.exports = exports['default'];
 
@@ -14244,12 +14261,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
   }, [(_vm.conf.prepend) ? [_c('div', {
     staticClass: "input-group-addon"
   }, [_vm._v(_vm._s(_vm.conf.prepend))])] : _vm._e(), _vm._v(" "), (_vm.inputType === 'text') ? [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.data.value),
-      expression: "data.value"
-    }],
+    key: "is-text",
     class: _vm.inputClass,
     attrs: {
       "type": "text",
@@ -14257,7 +14269,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "disabled": _vm.conf.state === 'disabled'
     },
     domProps: {
-      "value": (_vm.data.value)
+      "value": _vm.data.value
     },
     on: {
       "focus": function($event) {
@@ -14267,24 +14279,18 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
         _vm._blur()
       },
       "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.data, "value", $event.target.value)
+        _vm.$emit('input', $event.target.value)
       }
     }
   })] : [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.data.value),
-      expression: "data.value"
-    }],
+    key: "is-password",
     attrs: {
       "type": "password",
       "placeholder": _vm.placeholder,
       "disabled": _vm.conf.state === 'disabled'
     },
     domProps: {
-      "value": (_vm.data.value)
+      "value": _vm.data.value
     },
     on: {
       "focus": function($event) {
@@ -14294,8 +14300,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
         _vm._blur()
       },
       "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.data, "value", $event.target.value)
+        _vm.$emit('input', $event.target.value)
       }
     }
   })], _vm._v(" "), (_vm.conf.append) ? [_c('div', {
@@ -14414,6 +14419,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
 
 exports.default = {
     origin: 'Form',
@@ -14502,7 +14508,14 @@ exports.default = {
         }
     },
     created: function created() {},
-    mounted: function mounted() {}
+    mounted: function mounted() {
+        var _this = this;
+
+        this.$on('input', function (value) {
+
+            _this.data.value = value;
+        });
+    }
 };
 module.exports = exports['default'];
 
@@ -14524,19 +14537,13 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "rows": _vm.rows
     }
   }, [_c('textarea', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.data.value),
-      expression: "data.value"
-    }],
     attrs: {
       "placeholder": _vm.placeholder,
       "disabled": _vm.conf.state === 'disabled',
       "rows": _vm.conf.rows
     },
     domProps: {
-      "value": (_vm.data.value)
+      "value": _vm.data.value
     },
     on: {
       "focus": function($event) {
@@ -14546,8 +14553,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
         _vm._blur()
       },
       "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.data, "value", $event.target.value)
+        _vm.$emit('input', $event.target.value)
       }
     }
   })])
@@ -14855,6 +14861,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; //
+//
+//
+//
 //
 //
 //
@@ -16098,6 +16107,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "click": _vm._wrapClick
     }
   }, [(_vm.conf.multiSelect) ? [(_vm.conf.canSearch) ? _c('morning-multiinput', {
+    key: "multi-can-search",
     attrs: {
       "id": 'ui-select-mi-' + _vm.uiid,
       "can-move": _vm.conf.canMove,
@@ -16118,6 +16128,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       }
     }
   }) : _c('morning-multiinput', {
+    key: "multi-no-search",
     attrs: {
       "id": 'ui-select-mi-' + _vm.uiid,
       "can-move": _vm.conf.canMove,
@@ -16135,6 +16146,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       }
     }
   })] : [(_vm.conf.canSearch) ? [_c('morning-textinput', {
+    key: "single-can-search",
     attrs: {
       "id": 'ui-select-ti-' + _vm.uiid
     },
@@ -16908,6 +16920,22 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var _Move = __webpack_require__(8);
 
@@ -17135,6 +17163,11 @@ exports.default = {
     mounted: function mounted() {
         var _this3 = this;
 
+        this.$on('input', function (value) {
+
+            _this3.data.inputValue = value;
+        });
+
         this.$watch('conf.canMove', function (newVal) {
 
             _this3.Move.target = '.item';
@@ -17257,12 +17290,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       }
     }, [_vm._v("")]) : _vm._e()])
   }), _vm._v(" "), (_vm.conf.state !== 'disabled') ? [(_vm.conf.max) ? [(_vm.data.value.length < _vm.conf.max) ? [(!_vm.conf.hideName) ? _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.data.inputValue),
-      expression: "data.inputValue"
-    }],
+    key: "set-max-show-name",
     style: ({
       width: _vm.data.inputWidth
     }),
@@ -17271,23 +17299,17 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "placeholder": _vm.conf.formName
     },
     domProps: {
-      "value": (_vm.data.inputValue)
+      "value": _vm.data.inputValue
     },
     on: {
       "focus": _vm._focusInput,
       "blur": _vm._blurInput,
       "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.data, "inputValue", $event.target.value)
+        _vm.$emit('input', $event.target.value)
       }
     }
   }) : _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.data.inputValue),
-      expression: "data.inputValue"
-    }],
+    key: "set-max-hide-name",
     style: ({
       width: _vm.data.inputWidth
     }),
@@ -17295,23 +17317,17 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "type": "text"
     },
     domProps: {
-      "value": (_vm.data.inputValue)
+      "value": _vm.data.inputValue
     },
     on: {
       "focus": _vm._focusInput,
       "blur": _vm._blurInput,
       "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.data, "inputValue", $event.target.value)
+        _vm.$emit('input', $event.target.value)
       }
     }
   })] : [_c('span', [_vm._v("最多只能输入" + _vm._s(_vm.conf.max) + "项")])]] : [(!_vm.conf.hideName) ? _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.data.inputValue),
-      expression: "data.inputValue"
-    }],
+    key: "unset-max-show-name",
     style: ({
       width: _vm.data.inputWidth
     }),
@@ -17320,23 +17336,17 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "placeholder": _vm.conf.formName
     },
     domProps: {
-      "value": (_vm.data.inputValue)
+      "value": _vm.data.inputValue
     },
     on: {
       "focus": _vm._focusInput,
       "blur": _vm._blurInput,
       "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.data, "inputValue", $event.target.value)
+        _vm.$emit('input', $event.target.value)
       }
     }
   }) : _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.data.inputValue),
-      expression: "data.inputValue"
-    }],
+    key: "unset-max-hide-name",
     style: ({
       width: _vm.data.inputWidth
     }),
@@ -17344,14 +17354,13 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "type": "text"
     },
     domProps: {
-      "value": (_vm.data.inputValue)
+      "value": _vm.data.inputValue
     },
     on: {
       "focus": _vm._focusInput,
       "blur": _vm._blurInput,
       "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.data, "inputValue", $event.target.value)
+        _vm.$emit('input', $event.target.value)
       }
     }
   })]] : _vm._e()], 2)])
@@ -17440,6 +17449,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; //
+//
+//
 //
 //
 //
@@ -18159,6 +18170,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       }
     }, [_vm._v("")]) : _vm._e()])
   }), _vm._v(" "), (_vm.conf.state !== 'disabled') ? [(_vm.conf.max) ? [(_vm.data.value.length < _vm.conf.max) ? _c('a', {
+    key: "set-max",
     staticClass: "add item",
     attrs: {
       "href": "javascript:;"
@@ -18169,6 +18181,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
   }, [_c('span', [_vm._v("添加" + _vm._s(_vm.conf.itemName))]), _vm._v(" "), _c('i', {
     staticClass: "morningicon"
   }, [_vm._v("")])]) : _c('span', [_vm._v("最多只能输入" + _vm._s(_vm.conf.max) + "项")])] : [_c('a', {
+    key: "unset-max",
     staticClass: "add item",
     attrs: {
       "href": "javascript:;"
