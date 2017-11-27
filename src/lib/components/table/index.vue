@@ -327,8 +327,10 @@ export default {
                     minwidth : undefined,
                     maxwidth : undefined,
                     style : undefined,
-                    disabled : undefined,
-                    align : undefined
+                    disabled : false,
+                    align : undefined,
+                    title : false,
+                    export : true
                 }, item));
 
             }
@@ -604,6 +606,8 @@ export default {
         },
         _exportRows : function (csv, type) {
 
+            let ignoreColIndex = [];
+
             if (csv[0] === undefined) {
 
                 csv[0] = [];
@@ -616,16 +620,33 @@ export default {
 
                     let set = this.colSetMap[key];
 
-                    if (set &&
-                        set.name) {
+                    if (set.export !== false) {
 
-                        csv[0].push(set.name);
+                        if (set &&
+                            set.name) {
 
-                    } else {
+                            csv[0].push(set.name);
 
-                        csv[0].push('');
+                        } else {
+
+                            csv[0].push('');
+
+                        }
 
                     }
+
+                }
+
+            }
+
+            for (let index in this.data[`${type}Keys`]) {
+
+                let key = this.data[`${type}Keys`][index];
+                let set = this.colSetMap[key];
+
+                if (set && set.export === false) {
+
+                    ignoreColIndex.push(index);
 
                 }
 
@@ -634,6 +655,18 @@ export default {
             for (let index in this.data[`${type}Rows`]) {
 
                 let csvIndex = Number(index) + 1;
+                let originRow = extend([], this.data[`${type}Rows`][index]);
+                let row = [];
+
+                for (let col in originRow) {
+
+                    if (ignoreColIndex.indexOf(col) === -1) {
+
+                        row.push(originRow[col]);
+                    
+                    }
+
+                }
 
                 if (csv[csvIndex] === undefined) {
 
@@ -641,7 +674,7 @@ export default {
 
                 }
 
-                csv[csvIndex] = csv[csvIndex].concat(this.data[`${type}Rows`][index]);
+                csv[csvIndex] = csv[csvIndex].concat(row);
 
             }
 
