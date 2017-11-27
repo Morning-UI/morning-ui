@@ -86,7 +86,6 @@
         width="500px"
         height="75%"
         color="gray"
-        v-if="conf.inputType === 'single'"
         :ref="'ui-multiform-dialog-'+uiid"
         @show="_showForm"
         @hide="_hideForm"
