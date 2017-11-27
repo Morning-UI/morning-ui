@@ -30,6 +30,7 @@
                 :form-name="conf.formName"
                 :hide-name="conf.hideName"
                 :disabled="conf.state === 'disabled'"
+                key="multi-can-search"
 
                 v-if="conf.canSearch"
 
@@ -45,6 +46,7 @@
                 :form-name="conf.formName"
                 :hide-name="conf.hideName"
                 :disabled="conf.state === 'disabled'"
+                key="multi-no-search"
 
                 v-else
 
@@ -60,6 +62,7 @@
                     @value-change="_searchKeyChange()"
                     @focus="_textinputFocus()"
                     @blur="_textinputBlur()"
+                    key="single-can-search"
                 ></morning-textinput>
             </template>
 
