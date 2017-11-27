@@ -152,10 +152,10 @@ test.serial('import-use-webpack', async t => {
 
     const result = await runner
         .goto(`file://${pathHtml}`)
-        .wait('mor-link')
+        .wait('mor-link,i-link')
         .evaluate(() => ({
             morning : window.morning,
-            style : window.getComputedStyle(document.querySelector('mor-link'))
+            style : window.getComputedStyle(document.querySelector('mor-link,i-link'))
         }));
 
     // circleci
