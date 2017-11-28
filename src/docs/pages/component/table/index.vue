@@ -726,6 +726,26 @@
     <ui-table :list="list" :col-set="colset" :show-col-name="true" export-csv></ui-table>
     :::
 
+    标题列也可以使用`sort`：
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            list : window.list,
+            colset : [
+                {col : 'name', name : 'Name', sort : true, title : true},
+                {col : 'age', name : 'Age', sort : true},
+                {col : 'gender', name : 'Gender'},
+                {col : 'job', name : 'Job'}
+            ]
+        }
+    });
+    ---
+    <ui-table :list="list" :col-set="colset" :show-col-name="true" export-csv></ui-table>
+    :::
+
     #### row-set
 
     `row-set`用于行控制，是一个数组，数组的每项都是一个配置对象，用来设置单行。
