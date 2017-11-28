@@ -1030,8 +1030,8 @@
 
         <br><br>
     
-        <ui-link js="javascript:window.demoEventLifecycle.text='生命周期事件';">触发update</ui-link>
-        <ui-link js="javascript:morning.findVM('demoEventLifecycle').$destroy();">触发destroy</ui-link>
+        <ui-link js="window.demoEventLifecycle.text='生命周期事件';">触发update</ui-link>
+        <ui-link js="morning.findVM('demoEventLifecycle').$destroy();">触发destroy</ui-link>
     </div>
     :::
 

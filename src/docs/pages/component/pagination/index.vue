@@ -227,7 +227,7 @@
     :::democode/html
     <ui-pagination ref="demo2" :total="10"></ui-pagination>
     <br><br> 
-    <ui-link js="javascript:alert(morning.findVM('demo2').getPage());">获取当前页码</ui-link>
+    <ui-link js="alert(morning.findVM('demo2').getPage());">获取当前页码</ui-link>
     :::
 
     #### to(num)
@@ -241,11 +241,11 @@
     :::democode/html
     <ui-pagination ref="demo3" :total="10"></ui-pagination>
     <br><br> 
-    <ui-link js="javascript:morning.findVM('demo3').to(5);">跳转到第5页</ui-link><br>
-    <ui-link js="javascript:morning.findVM('demo3').to(20);">跳转到大于最大页数</ui-link><br>
-    <ui-link js="javascript:morning.findVM('demo3').to(-5);">跳转到从后往前第5页</ui-link><br>
-    <ui-link js="javascript:morning.findVM('demo3').to(1);">跳转到第1页(输入1)</ui-link><br>
-    <ui-link js="javascript:morning.findVM('demo3').to(0);">跳转到第1页(输入0)</ui-link>
+    <ui-link js="morning.findVM('demo3').to(5);">跳转到第5页</ui-link><br>
+    <ui-link js="morning.findVM('demo3').to(20);">跳转到大于最大页数</ui-link><br>
+    <ui-link js="morning.findVM('demo3').to(-5);">跳转到从后往前第5页</ui-link><br>
+    <ui-link js="morning.findVM('demo3').to(1);">跳转到第1页(输入1)</ui-link><br>
+    <ui-link js="morning.findVM('demo3').to(0);">跳转到第1页(输入0)</ui-link>
     :::
 
     #### next([offset])
@@ -259,8 +259,8 @@
     :::democode/html
     <ui-pagination ref="demo4" :total="10"></ui-pagination>
     <br><br> 
-    <ui-link js="javascript:morning.findVM('demo4').next();">往后跳转1页</ui-link><br>
-    <ui-link js="javascript:morning.findVM('demo4').next(3);">往后跳转3页</ui-link>
+    <ui-link js="morning.findVM('demo4').next();">往后跳转1页</ui-link><br>
+    <ui-link js="morning.findVM('demo4').next(3);">往后跳转3页</ui-link>
     :::
 
     #### prev([offset])
@@ -274,8 +274,8 @@
     :::democode/html
     <ui-pagination ref="demo5" :total="10" :page="8"></ui-pagination>
     <br><br> 
-    <ui-link js="javascript:morning.findVM('demo5').prev();">往前跳转1页</ui-link><br>
-    <ui-link js="javascript:morning.findVM('demo5').prev(3);">往前跳转3页</ui-link>
+    <ui-link js="morning.findVM('demo5').prev();">往前跳转1页</ui-link><br>
+    <ui-link js="morning.findVM('demo5').prev(3);">往前跳转3页</ui-link>
     :::
 
     #### setTotal(num)
@@ -291,8 +291,8 @@
     :::democode/html
     <ui-pagination ref="demo6" :total="2"></ui-pagination>
     <br><br> 
-    <ui-link js="javascript:morning.findVM('demo6').setTotal(10);">总页数设为10</ui-link><br>
-    <ui-link js="javascript:morning.findVM('demo6').setTotal(3);">总页数设为3</ui-link><br>
+    <ui-link js="morning.findVM('demo6').setTotal(10);">总页数设为10</ui-link><br>
+    <ui-link js="morning.findVM('demo6').setTotal(3);">总页数设为3</ui-link><br>
     :::
     
     [[[事件]]]

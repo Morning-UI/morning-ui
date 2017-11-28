@@ -88,7 +88,7 @@
 
     :::democode/html
     <ui-link ref="demo1" locked>手动解锁</ui-link>
-    <ui-link js="javascript:morning.findVM('demo1').unlock();">解锁</ui-link>
+    <ui-link js="morning.findVM('demo1').unlock();">解锁</ui-link>
     :::
 
     #### new-tab
@@ -110,9 +110,9 @@
     :::democode/html
     <ui-link ref="demo2">按钮</ui-link>
     <br><br> 
-    <ui-link js="javascript:morning.findVM('demo2').lock();">锁定</ui-link>
-    <ui-link js="javascript:morning.findVM('demo2').lock(2000);">锁定2s</ui-link>
-    <ui-link js="javascript:morning.findVM('demo2').unlock();">解锁</ui-link>
+    <ui-link js="morning.findVM('demo2').lock();">锁定</ui-link>
+    <ui-link js="morning.findVM('demo2').lock(2000);">锁定2s</ui-link>
+    <ui-link js="morning.findVM('demo2').unlock();">解锁</ui-link>
     :::
 
     #### unlock()
@@ -122,7 +122,7 @@
     :::democode/html
     <ui-link ref="demo3" locked>按钮</ui-link>
     <br><br> 
-    <ui-link js="javascript:morning.findVM('demo3').unlock();">解锁</ui-link>
+    <ui-link js="morning.findVM('demo3').unlock();">解锁</ui-link>
     :::
 
     [[[事件]]]
