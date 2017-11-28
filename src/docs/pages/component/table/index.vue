@@ -279,6 +279,7 @@
     |cell-set|单元格设置可以用来控制单个单元格，具体配置方法见下面的[cell-set](#cell-set)章节|数组|Array|`[]`|
     |export-csv|开启将表格导出csv文件的功能|`true`<br>`false`|Boolean|`false`|
     |csv-name|导出csv文件的名称|文件名称(不需要加尾缀)|String|`undefined`|
+    |multi-sort|支持多列排序，默认只支持单列排序。多列排序时会根据所选排序列的顺序进行多次排序。使用此配置前需要先通过`col-set`的指定排序列|`true`<br>`false`|Boolean|`false`|
 
     #### list
 
@@ -483,6 +484,7 @@
     |align|列的对齐方式|`'left'`<br>`'right'`<br>`'align'`|String|`'align'`|
     |title|此列是否是标题列，根据`fixed-title-col`的设置所有的标题列会被放到最左或最右|`true`<br>`false`|Boolean|`false`|
     |export|导出`.csv`文件时，是否包含此列，若设为`false`此列不会被导出。一般包含行动区域的列会将此配置设为`false`|`true`<br>`false`|Boolean|`true`|
+    |sort|开启单列排序，必需启用`show-col-name`才有效。多列排序需要启用`multi-sort`配置|`true`<br>`false`|Boolean|`false`|
 
     注意：在设置`width`、`minwidth`、`maxwidth`为0时，需要加上单位，如：`0px`或`0%`。
 
@@ -702,6 +704,28 @@
     <ui-table :list="list" :col-set="colset" :show-col-name="true" export-csv></ui-table>
     :::
 
+    ##### sort
+
+    通过`sort`字段可以开启单列排序(多列排序需要开启`multi-sort`配置)，并且导出的`csv`也是排序之后的顺序：
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            list : window.list,
+            colset : [
+                {col : 'name', name : 'Name', sort : true},
+                {col : 'age', name : 'Age', sort : true},
+                {col : 'gender', name : 'Gender'},
+                {col : 'job', name : 'Job'}
+            ]
+        }
+    });
+    ---
+    <ui-table :list="list" :col-set="colset" :show-col-name="true" export-csv></ui-table>
+    :::
+
     #### row-set
 
     `row-set`用于行控制，是一个数组，数组的每项都是一个配置对象，用来设置单行。
@@ -894,6 +918,28 @@
 
     :::democode/html
     <ui-table :list="list" export-csv csv-name="demo"></ui-table>
+    :::
+
+    #### multi-sort
+
+    使用`multi-sort`后设置多个排序列，当多个列进行排序时会按照先后顺序对表格进行多次排序：
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            list : window.list,
+            colset : [
+                {col : 'name', name : 'Name', sort : true},
+                {col : 'age', name : 'Age', sort : true},
+                {col : 'gender', name : 'Gender', sort : true},
+                {col : 'job', name : 'Job'}
+            ]
+        }
+    });
+    ---
+    <ui-table :list="list" :col-set="colset" show-col-name multi-sort export-csv></ui-table>
     :::
 
     [[[方法]]]
