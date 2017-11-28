@@ -3,8 +3,21 @@
         <thead v-if="conf.showColName">
             <tr>
                 <template v-for="key of data.titleKeys">
-                    <th v-if="colSetMap[key] && colSetMap[key].name" :key="key">{{colSetMap[key].name}}</th>
-                    <th v-else :key="key"></th>
+                    <th v-if="colSetMap[key] && colSetMap[key].name" :key="key">
+                        {{colSetMap[key].name}}
+                        <span class="sort" v-if="colSetMap[key].sort">
+                            <i class="morningicon no">&#xe651;</i>
+                            <i class="morningicon asc">&#xe672;</i>
+                            <i class="morningicon desc">&#xe671;</i>
+                        </span>
+                    </th>
+                    <th v-else :key="key">
+                        <span class="sort" v-if="colSetMap[key] && colSetMap[key].sort">
+                            <i class="morningicon no">&#xe651;</i>
+                            <i class="morningicon asc">&#xe672;</i>
+                            <i class="morningicon desc">&#xe671;</i>
+                        </span>
+                    </th>
                 </template>
             </tr>
         </thead>
@@ -28,7 +41,8 @@ export default {
     props : [
         'conf',
         'data',
-        'colSetMap'
+        'colSetMap',
+        'sortCol'
     ]
 };
 </script>
