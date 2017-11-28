@@ -6,16 +6,16 @@
                     <th v-if="colSetMap[key] && colSetMap[key].name" :key="key">
                         {{colSetMap[key].name}}
                         <span class="sort" v-if="colSetMap[key].sort">
-                            <i class="morningicon no">&#xe651;</i>
-                            <i class="morningicon asc">&#xe672;</i>
-                            <i class="morningicon desc">&#xe671;</i>
+                            <i class="morningicon no" @click="sortCol(key)" v-if="!data.sort[key] || (data.sort[key].type !== 'asc' && data.sort[key].type !== 'desc')">&#xe651;</i>
+                            <i class="morningicon asc" @click="sortCol(key)" v-if="data.sort[key] && data.sort[key].type === 'asc'">&#xe672;</i>
+                            <i class="morningicon desc" @click="sortCol(key)" v-if="data.sort[key] && data.sort[key].type === 'desc'">&#xe671;</i>
                         </span>
                     </th>
                     <th v-else :key="key">
                         <span class="sort" v-if="colSetMap[key] && colSetMap[key].sort">
-                            <i class="morningicon no">&#xe651;</i>
-                            <i class="morningicon asc">&#xe672;</i>
-                            <i class="morningicon desc">&#xe671;</i>
+                            <i class="morningicon no" @click="sortCol(key)" v-if="!data.sort[key] || (data.sort[key].type !== 'asc' && data.sort[key].type !== 'desc')">&#xe651;</i>
+                            <i class="morningicon asc" @click="sortCol(key)" v-if="data.sort[key] && data.sort[key].type === 'asc'">&#xe672;</i>
+                            <i class="morningicon desc" @click="sortCol(key)" v-if="data.sort[key] && data.sort[key].type === 'desc'">&#xe671;</i>
                         </span>
                     </th>
                 </template>

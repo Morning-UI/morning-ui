@@ -300,8 +300,6 @@ export default {
         },
         _sort : function () {
 
-            console.log(this.data.sortCol);
-
             for (let col of this.data.sortCol) {
 
                 let sort = this.data.sort[col];
@@ -339,7 +337,7 @@ export default {
 
                     }
 
-                    for (let row of mainRows) {
+                    for (let row of newMainRows) {
 
                         newSubRows.push(row._sub);
 
