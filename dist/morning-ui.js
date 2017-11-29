@@ -4834,7 +4834,7 @@ var morning = {
     _groupVmMap: {},
     _options: {},
     isMorning: true,
-    version: '0.10.10',
+    version: '0.10.11',
     map: {}
 };
 
@@ -13598,8 +13598,6 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
-//
-//
 
 var PAGE_SIZE_DEFAULT = 10;
 
@@ -13884,13 +13882,11 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
         "href": "javascript:;"
       }
     }, [_vm._v("...")])] : _vm._e(), _vm._v(" "), (index >= _vm.data.hideEnd && index <= _vm.data.hideStart) ? [(_vm.data.currentPage === index) ? _c('a', {
-      key: "current",
       staticClass: "current",
       attrs: {
         "href": "javascript:;"
       }
     }, [_vm._v("\n                    " + _vm._s(index) + "\n                ")]) : _c('a', {
-      key: "nocurrent",
       attrs: {
         "href": "javascript:;"
       },
@@ -14302,10 +14298,6 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _extend = __webpack_require__(3);
-
-var _extend2 = _interopRequireDefault(_extend);
-
 var _arrayUniq = __webpack_require__(4);
 
 var _arrayUniq2 = _interopRequireDefault(_arrayUniq);
@@ -14384,6 +14376,7 @@ var _format2 = _interopRequireDefault(_format);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var yearRange = 12; //
 //
 //
 //
@@ -14463,9 +14456,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-//
-
-var yearRange = 12;
 
 exports.default = {
     origin: 'UI',
