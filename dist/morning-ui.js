@@ -11531,6 +11531,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
+//
+//
 
 var _arrayUniq = __webpack_require__(4);
 
@@ -11882,7 +11886,7 @@ exports.default = {
         },
         _cleanupCell: function _cleanupCell() {
 
-            var $cells = this.$el.querySelectorAll('td, th');
+            var $cells = this.$el.querySelectorAll('td:not(.no-data), th');
 
             var _iteratorNormalCompletion4 = true;
             var _didIteratorError4 = false;
@@ -12062,6 +12066,7 @@ exports.default = {
                         disabled: false,
                         align: undefined,
                         title: false,
+                        hide: false,
                         export: true,
                         sort: false
                     }, item));
@@ -12596,59 +12601,77 @@ exports.default = {
 
             list = (0, _extend2.default)(true, [], list);
 
-            var _iteratorNormalCompletion17 = true;
-            var _didIteratorError17 = false;
-            var _iteratorError17 = undefined;
+            // if list is empty, and has conf.colSet, use colSet generate keys.
+            if (list.length === 0) {
 
-            try {
-                for (var _iterator17 = list[Symbol.iterator](), _step17; !(_iteratorNormalCompletion17 = (_step17 = _iterator17.next()).done); _iteratorNormalCompletion17 = true) {
-                    var item = _step17.value;
-                    var _iteratorNormalCompletion19 = true;
-                    var _didIteratorError19 = false;
-                    var _iteratorError19 = undefined;
+                for (var key in this.colSetMap) {
 
-                    try {
+                    var set = this.colSetMap[key];
 
-                        for (var _iterator19 = Object.keys(item)[Symbol.iterator](), _step19; !(_iteratorNormalCompletion19 = (_step19 = _iterator19.next()).done); _iteratorNormalCompletion19 = true) {
-                            var key = _step19.value;
+                    if (set.title === true) {
 
+                        titleKeys.push(key);
+                    } else {
 
-                            var set = this.colSetMap[key];
-
-                            if (set && set.title === true) {
-
-                                titleKeys.push(key);
-                            } else {
-
-                                normalKeys.push(key);
-                            }
-                        }
-                    } catch (err) {
-                        _didIteratorError19 = true;
-                        _iteratorError19 = err;
-                    } finally {
-                        try {
-                            if (!_iteratorNormalCompletion19 && _iterator19.return) {
-                                _iterator19.return();
-                            }
-                        } finally {
-                            if (_didIteratorError19) {
-                                throw _iteratorError19;
-                            }
-                        }
+                        normalKeys.push(key);
                     }
                 }
-            } catch (err) {
-                _didIteratorError17 = true;
-                _iteratorError17 = err;
-            } finally {
+            } else {
+                var _iteratorNormalCompletion17 = true;
+                var _didIteratorError17 = false;
+                var _iteratorError17 = undefined;
+
                 try {
-                    if (!_iteratorNormalCompletion17 && _iterator17.return) {
-                        _iterator17.return();
+
+                    for (var _iterator17 = list[Symbol.iterator](), _step17; !(_iteratorNormalCompletion17 = (_step17 = _iterator17.next()).done); _iteratorNormalCompletion17 = true) {
+                        var item = _step17.value;
+                        var _iteratorNormalCompletion18 = true;
+                        var _didIteratorError18 = false;
+                        var _iteratorError18 = undefined;
+
+                        try {
+
+                            for (var _iterator18 = Object.keys(item)[Symbol.iterator](), _step18; !(_iteratorNormalCompletion18 = (_step18 = _iterator18.next()).done); _iteratorNormalCompletion18 = true) {
+                                var _key2 = _step18.value;
+
+
+                                var _set2 = this.colSetMap[_key2];
+
+                                if (_set2 && _set2.title === true) {
+
+                                    titleKeys.push(_key2);
+                                } else {
+
+                                    normalKeys.push(_key2);
+                                }
+                            }
+                        } catch (err) {
+                            _didIteratorError18 = true;
+                            _iteratorError18 = err;
+                        } finally {
+                            try {
+                                if (!_iteratorNormalCompletion18 && _iterator18.return) {
+                                    _iterator18.return();
+                                }
+                            } finally {
+                                if (_didIteratorError18) {
+                                    throw _iteratorError18;
+                                }
+                            }
+                        }
                     }
+                } catch (err) {
+                    _didIteratorError17 = true;
+                    _iteratorError17 = err;
                 } finally {
-                    if (_didIteratorError17) {
-                        throw _iteratorError17;
+                    try {
+                        if (!_iteratorNormalCompletion17 && _iterator17.return) {
+                            _iterator17.return();
+                        }
+                    } finally {
+                        if (_didIteratorError17) {
+                            throw _iteratorError17;
+                        }
                     }
                 }
             }
@@ -12656,13 +12679,13 @@ exports.default = {
             titleKeys = (0, _arrayUniq2.default)(titleKeys);
             normalKeys = (0, _arrayUniq2.default)(normalKeys);
 
-            var _iteratorNormalCompletion18 = true;
-            var _didIteratorError18 = false;
-            var _iteratorError18 = undefined;
+            var _iteratorNormalCompletion19 = true;
+            var _didIteratorError19 = false;
+            var _iteratorError19 = undefined;
 
             try {
-                for (var _iterator18 = list[Symbol.iterator](), _step18; !(_iteratorNormalCompletion18 = (_step18 = _iterator18.next()).done); _iteratorNormalCompletion18 = true) {
-                    var _item = _step18.value;
+                for (var _iterator19 = list[Symbol.iterator](), _step19; !(_iteratorNormalCompletion19 = (_step19 = _iterator19.next()).done); _iteratorNormalCompletion19 = true) {
+                    var _item = _step19.value;
 
 
                     var titleCol = [];
@@ -12674,10 +12697,10 @@ exports.default = {
 
                     try {
                         for (var _iterator20 = titleKeys[Symbol.iterator](), _step20; !(_iteratorNormalCompletion20 = (_step20 = _iterator20.next()).done); _iteratorNormalCompletion20 = true) {
-                            var _key2 = _step20.value;
+                            var _key3 = _step20.value;
 
 
-                            titleCol.push(_item[_key2] || this.conf.emptyCellValue);
+                            titleCol.push(_item[_key3] || this.conf.emptyCellValue);
                         }
                     } catch (err) {
                         _didIteratorError20 = true;
@@ -12700,10 +12723,10 @@ exports.default = {
 
                     try {
                         for (var _iterator21 = normalKeys[Symbol.iterator](), _step21; !(_iteratorNormalCompletion21 = (_step21 = _iterator21.next()).done); _iteratorNormalCompletion21 = true) {
-                            var _key3 = _step21.value;
+                            var _key4 = _step21.value;
 
 
-                            normalCol.push(_item[_key3] || this.conf.emptyCellValue);
+                            normalCol.push(_item[_key4] || this.conf.emptyCellValue);
                         }
                     } catch (err) {
                         _didIteratorError21 = true;
@@ -12724,16 +12747,16 @@ exports.default = {
                     normalRows.push(normalCol);
                 }
             } catch (err) {
-                _didIteratorError18 = true;
-                _iteratorError18 = err;
+                _didIteratorError19 = true;
+                _iteratorError19 = err;
             } finally {
                 try {
-                    if (!_iteratorNormalCompletion18 && _iterator18.return) {
-                        _iterator18.return();
+                    if (!_iteratorNormalCompletion19 && _iterator19.return) {
+                        _iterator19.return();
                     }
                 } finally {
-                    if (_didIteratorError18) {
-                        throw _iteratorError18;
+                    if (_didIteratorError19) {
+                        throw _iteratorError19;
                     }
                 }
             }
@@ -12976,6 +12999,18 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
     props: ['conf', 'data', 'colSetMap', 'sortCol']
@@ -12992,6 +13027,12 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     staticClass: "title-table"
   }, [(_vm.conf.showColName) ? _c('thead', [_c('tr', [_vm._l((_vm.data.titleKeys), function(key) {
     return [(_vm.colSetMap[key] && _vm.colSetMap[key].name) ? _c('th', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (!_vm.colSetMap[key] || !_vm.colSetMap[key].hide),
+        expression: "!colSetMap[key] || !colSetMap[key].hide"
+      }],
       key: key
     }, [_vm._v("\n                    " + _vm._s(_vm.colSetMap[key].name) + "\n                    "), (_vm.colSetMap[key].sort) ? _c('span', {
       staticClass: "sort"
@@ -13017,6 +13058,12 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
         }
       }
     }, [_vm._v("")]) : _vm._e()]) : _vm._e()]) : _c('th', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (!_vm.colSetMap[key] || !_vm.colSetMap[key].hide),
+        expression: "!colSetMap[key] || !colSetMap[key].hide"
+      }],
       key: key
     }, [(_vm.colSetMap[key] && _vm.colSetMap[key].sort) ? _c('span', {
       staticClass: "sort"
@@ -13056,6 +13103,11 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     }, [_vm._l((row), function(col, index) {
       return [_c('td', {
         directives: [{
+          name: "show",
+          rawName: "v-show",
+          value: (!_vm.colSetMap[_vm.data.titleKeys[index]] || !_vm.colSetMap[_vm.data.titleKeys[index]].hide),
+          expression: "!colSetMap[data.titleKeys[index]] || !colSetMap[data.titleKeys[index]].hide"
+        }, {
           name: "render",
           rawName: "v-render",
           value: ({
@@ -13179,6 +13231,17 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
     props: ['conf', 'data', 'colSetMap', 'sortCol']
@@ -13195,6 +13258,12 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     staticClass: "normal-table"
   }, [(_vm.conf.showColName) ? _c('thead', [_c('tr', [_vm._l((_vm.data.normalKeys), function(key) {
     return [(_vm.colSetMap[key] && _vm.colSetMap[key].name) ? _c('th', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (!_vm.colSetMap[key] || !_vm.colSetMap[key].hide),
+        expression: "!colSetMap[key] || !colSetMap[key].hide"
+      }],
       key: key
     }, [_vm._v("\n                    " + _vm._s(_vm.colSetMap[key].name) + "\n                    "), (_vm.colSetMap[key].sort) ? _c('span', {
       staticClass: "sort"
@@ -13220,6 +13289,12 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
         }
       }
     }, [_vm._v("")]) : _vm._e()]) : _vm._e()]) : _c('th', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (!_vm.colSetMap[key] || !_vm.colSetMap[key].hide),
+        expression: "!colSetMap[key] || !colSetMap[key].hide"
+      }],
       key: key
     }, [(_vm.colSetMap[key] && _vm.colSetMap[key].sort) ? _c('span', {
       staticClass: "sort"
@@ -13257,18 +13332,13 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
         }
       }
     }, [_vm._l((row), function(col, index) {
-      return [(_vm.colSetMap[_vm.data.normalKeys[index]]) ? _c('td', {
+      return [_c('td', {
         directives: [{
-          name: "render",
-          rawName: "v-render",
-          value: ({
-            template: col
-          }),
-          expression: "{template : col}"
-        }],
-        key: index
-      }) : _c('td', {
-        directives: [{
+          name: "show",
+          rawName: "v-show",
+          value: (!_vm.colSetMap[_vm.data.normalKeys[index]] || !_vm.colSetMap[_vm.data.normalKeys[index]].hide),
+          expression: "!colSetMap[data.normalKeys[index]] || !colSetMap[data.normalKeys[index]].hide"
+        }, {
           name: "render",
           rawName: "v-render",
           value: ({
@@ -13374,7 +13444,9 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       "row-mouseover": _vm._rowOver,
       "row-mouseout": _vm._rowOut
     }
-  })], 1)])])])], 2)
+  })], 1)]), _vm._v(" "), (_vm.data.normalRows.length === 0 && _vm.data.titleRows.length === 0) ? _c('tr', [_c('td', {
+    staticClass: "no-data"
+  }, [_vm._v("无数据")])]) : _vm._e()])])], 2)
 }
 var staticRenderFns = []
 render._withStripped = true

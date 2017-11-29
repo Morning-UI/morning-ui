@@ -96,6 +96,7 @@
     $ npm run test-snapshot                         # 为所有测试进行快照
     $ npm run test-report                           # 生成测试报告
     $ npm run unit                                  # 运行单元测试
+    $ npm run ci-unit                               # 运行单元测试(持续集成时使用，限制了进程数)
     $ npm run unit-watch                            # 当文件变化时执行单元测试
     $ npm run unit-snapshot                         # 为单元测试进行快照
     $ npm run e2e                                   # 运行端点测试
