@@ -234,6 +234,42 @@
     <ui-table :list="list"></ui-table>
     :::
 
+    #### 无数据
+
+    当表格无数据时：
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            list : []
+        }
+    });
+    ---
+    <ui-table :list="list"></ui-table>
+    :::
+
+    如果设置了表头，表头仍然会显示：
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            list : [],
+            colset : [
+                {col : 'name', name : 'Name'},
+                {col : 'age', name : 'Age'},
+                {col : 'gender', name : 'Gender'},
+                {col : 'job', name : 'Job'}
+            ]
+        }
+    });
+    ---
+    <ui-table :list="list" :col-set="colset" :show-col-name="true" export-csv title="无数据演示"></ui-table>
+    :::
+
     [[[形态]]]
 
     #### 支持
