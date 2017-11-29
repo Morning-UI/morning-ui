@@ -77,6 +77,10 @@
                     ></normal-table>
                 </td>
             </tr>
+
+            <tr v-if="data.normalRows.length === 0 && data.titleRows.length === 0">
+                <td class="no-data">无数据</td>
+            </tr>
         </tbody>
     </table>
 
@@ -359,7 +363,7 @@ export default {
         },
         _cleanupCell : function () {
 
-            let $cells = this.$el.querySelectorAll('td, th');
+            let $cells = this.$el.querySelectorAll('td:not(.no-data), th');
 
             for (let $cell of $cells) {
 
@@ -876,20 +880,43 @@ export default {
 
             list = extend(true, [], list);
 
-            for (let item of list) {
+            // if list is empty, and has conf.colSet, use colSet generate keys.
+            if (list.length === 0) {
 
-                for (let key of Object.keys(item)) {
+                for (let key in this.colSetMap) {
 
                     let set = this.colSetMap[key];
 
-                    if (set &&
-                        set.title === true) {
+                    if (set.title === true) {
 
                         titleKeys.push(key);
 
                     } else {
 
                         normalKeys.push(key);
+
+                    }
+
+                }
+
+            } else {
+
+                for (let item of list) {
+
+                    for (let key of Object.keys(item)) {
+
+                        let set = this.colSetMap[key];
+
+                        if (set &&
+                            set.title === true) {
+
+                            titleKeys.push(key);
+
+                        } else {
+
+                            normalKeys.push(key);
+
+                        }
 
                     }
 
