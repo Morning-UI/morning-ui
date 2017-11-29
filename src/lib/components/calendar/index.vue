@@ -79,7 +79,6 @@
 </template>
  
 <script>
-import extend                       from 'extend';
 import arrayUniq                    from 'array-uniq';
 import sortBy                       from 'lodash.sortby';
 import getYear                      from 'date-fns/get_year';

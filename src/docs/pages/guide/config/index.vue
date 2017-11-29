@@ -212,6 +212,10 @@
     - `csv-name` : CSV文件的名称
     - `close-btn` : 关闭按钮
     - `close-time` : 关闭时间
+    - `date` : 日期
+    - `highlight-now` : 高亮当日
+    - `highlight-day` : 高亮日期
+    - `pick-year-month` : 选择年月
 
     </script>
     </doc-guide>
