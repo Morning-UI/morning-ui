@@ -18,6 +18,28 @@
     
     ### 更新记录
 
+    ### 0.10.11 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2017年11月29日，
+            Archive : 
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.11" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.11/dist/" target="_blank">CDN</a>
+        </ui-small>
+    </ui-textcolor>
+
+    - 新增`ui-calendar`日历组件
+    - `ui-table`组件支持单列/多列排序，支持导出`.csv`文件时排除指定列
+    - `ui-table`支持隐藏特定列
+    - `ui-table`在没有数据时会显示"无数据"
+    - 新增`findAllVM`方法用来查找所有匹配`ref`的组件vm
+    - `ui-message`组件的`close-time`配置新增`false`值，设置后消息不会定时关闭
+    - 修复`ui-pagination`可能出现无法跳转页码的问题
+    - 修复`ui-message`组件关闭按钮错误的问题
+    - 修复`ui-multiform`在使用批量输入后，无法点击修改项目内容的问题
+    - 修复文档的一些问题
+
     ### 0.10.10 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="light-blue">

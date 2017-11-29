@@ -31,7 +31,6 @@
                     v-if="data.currentPage === index"
                     href="javascript:;"
                     class="current"
-                    key="current"
                 >
                     {{index}}
                 </a>
@@ -40,7 +39,6 @@
                     v-else
                     href="javascript:;"
                     @click="to(index)"
-                    key="nocurrent"
                 >
                     {{index}}
                 </a>

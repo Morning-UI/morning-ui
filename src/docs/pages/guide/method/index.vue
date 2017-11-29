@@ -38,8 +38,8 @@
         <br><br>
 
         <!-- 在父vm中通过`$refs`找到组件vm并调用挂载的方法 -->
-        <ui-link js="javascript:window.parentVm1.$refs.demo1.lock();">锁定按钮</ui-link>
-        <ui-link js="javascript:window.parentVm1.$refs.demo1.unlock();">解锁按钮</ui-link>
+        <ui-link js="window.parentVm1.$refs.demo1.lock();">锁定按钮</ui-link>
+        <ui-link js="window.parentVm1.$refs.demo1.unlock();">解锁按钮</ui-link>
     </div>
     :::
 
@@ -55,14 +55,30 @@
         <br><br>
 
         <!-- 通过findVM方法全局查找组件vm并调用挂载的方法 -->
-        <ui-link js="javascript:window.morning.findVM('demo2').lock();">锁定按钮</ui-link>
-        <ui-link js="javascript:window.morning.findVM('demo2').unlock();">解锁按钮</ui-link>
+        <ui-link js="window.morning.findVM('demo2').lock();">锁定按钮</ui-link><br>
+        <ui-link js="window.morning.findVM('demo2').unlock();">解锁按钮</ui-link>
     </div>
     :::
     
-    `findVM()`方法本质上也是基于`ref`来实现的，只是提供了一个全局查找的快捷方法。
-    
-    [查看findVM()方法详情](/guide/morning.html#findVMref)
+    `findVM()`方法本质上也是基于`ref`来实现的，只是提供了一个全局查找的快捷方法。[查看findVM()方法详情](/guide/morning.html#findVMref)
+
+    `findVM()`方法只会返回第一个匹配`ref`的组件vm，如果你需要查询所有匹配`ref`的组件vm，可以使用`findAllVM()`方法。这个方法将会返回一个数组：
+
+    :::democode/html
+    <div>
+        <!-- 在组件上添加`ref`，指定索引ID -->
+        <ui-link v-for="n in 5" ref="demo3">(链接)</ui-link>
+
+        <br><br>
+        
+        <!-- 通过findAllVM方法全局查找所有组件vm -->
+        <ui-link js="alert(window.morning.findAllVM('demo3').length);">查看匹配组件的数量</ui-link><br>
+        <ui-link js="window.morning.findAllVM('demo3')[2].lock();">锁定第3个链接</ui-link><br>
+        <ui-link js="window.morning.findAllVM('demo3')[2].unlock();">解锁第3个链接</ui-link>
+    </div>
+    :::
+
+    [查看findAllVM()方法详情](/guide/morning.html#findAllVMref)
 
     ### 通用方法
 
@@ -94,7 +110,7 @@
     - `switch` : 切换
     - `lock` : 锁定
     - `unlock` : 解锁
-    - `set` : 设置表单值
+    - `set` : 设置表单值/设置
     - `get` : 获取表单值
     - `setName` : 设置表单名
     - `getName` : 获取表单名
@@ -106,7 +122,8 @@
     - `removeGroup` : 移除表单组
     - `setRows` : 设置行数
     - `toggle` : 切换状态
-    - `add` : 添加项目
+    - `add` : 添加项目/增加
+    - `sub` : 减少
     - `update` : 更新项目
     - `del` : 删除项目
     - `move` : 移动项目
@@ -119,6 +136,13 @@
     - `setTotal` : 设置总数
     - `push` : 推送
     - `close` : 关闭
+    - `toggleYearPick` : 切换年份选择器
+    - `toggleMonthPick` : 切换月份选择器
+    - `getDate` : 获取日期
+    - `getTime` : 获取时间
+    - `setTime` : 设置时间
+    - `getHighlight` : 获取高亮
+    - `setHighlight` : 设置高亮
 
     </script>
     </doc-guide>

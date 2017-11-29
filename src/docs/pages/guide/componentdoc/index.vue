@@ -4,9 +4,9 @@
         :hasPadding="true" 
     >
     <script type="text/markdown">
-    # 组件文档
+    # 查阅文档
 
-    Morning UI的每个组件都有文档，可以帮助你更好的使用组件。
+    Morning UI的每个组件都有文档，可以帮助你更好的使用组件。下面的内容为你介绍了组件文档的内容结构，可以帮助你更好的阅读文档。
 
     Morning UI中包含三类组件：
 

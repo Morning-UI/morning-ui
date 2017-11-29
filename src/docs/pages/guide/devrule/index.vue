@@ -9,14 +9,14 @@
 
     所有的开发者及代码检视者都必须遵循以下的规范。
 
-    > 若下面的规范后添加了<ui-badge xxs class="circle">AUTO</ui-badge>标记，则表示此条规范会在自动化测试中检测。
+    > 若下面的规范后添加了<ui-badge size="xxs" class="circle">AUTO</ui-badge>标记，则表示此条规范会在自动化测试中检测。
 
     ### 组件规范
 
     #### 通用
         
-    - 组件在Vue模板中的标签以`mor-`开头<ui-badge xxs class="circle">AUTO</ui-badge>
-    - 组件绑定`:_uiid="uiid"`<ui-badge xxs class="circle">AUTO</ui-badge>
+    - 组件在Vue模板中的标签以`mor-`开头<ui-badge size="xxs" class="circle">AUTO</ui-badge>
+    - 组件绑定`:_uiid="uiid"`<ui-badge size="xxs" class="circle">AUTO</ui-badge>
     - 组件的`index.vue`，从上至下分别为:`<template>`、`<script>`、`<style>`三个标签
     - `<style>`标签必须有`lang="less"`属性
     - 引入了`<style lang="less" src="./index.less"></style>`
@@ -38,7 +38,7 @@
     }
     ```
     - 组件的`name`正确
-    - 通过ESLint及StyleLint<ui-badge xxs class="circle">AUTO</ui-badge>
+    - 通过ESLint及StyleLint<ui-badge size="xxs" class="circle">AUTO</ui-badge>
     - 在`lib/components/index.js`中导出了组件
     - 确保代码不受压缩的影响
     - 样式类的命名符合[样式类全局命名规范](/guide/styleclass.html#样式类全局命名规范)
@@ -48,7 +48,7 @@
     - 组件内所有的色彩以`common/var.less`中`@color`开头的变量为基础，可以修改亮度
     - 组件内的尺寸应尽量使用`common/var.less`中`@fontSize`变量为基础
     - 组件内的尺寸单位首选`em`
-    - LESS中的`id`、`class`、函数命名采用中划线命名<ui-badge xxs class="circle">AUTO</ui-badge>
+    - LESS中的`id`、`class`、函数命名采用中划线命名<ui-badge size="xxs" class="circle">AUTO</ui-badge>
     - 形态在LESS中的书写顺序为：尺寸、颜色、状态
     - 组件的公开方法若不需要返回值，则返回当前`vm`实例
 
@@ -62,6 +62,7 @@
     - 配置都需要设置类型及默认值
     - 组件私有的`methods`应该以下划线开头，非下划线开头的`methods`都是组件的公开方法
     - 支持生命周期事件
+    - 配置要响应单向数据流(特殊情况可不响应)
 
     #### 表单组件
 
@@ -107,6 +108,8 @@
     - 文档表格中`接受值`一行一个，如有必要需要加说明，数值用反引号，说明直接写
     - 方法名称中的必填项直接写，可选项使用`[]`包裹，比如：`.set(key, [value])`中`key`是必填项，`value`是可选项
     - 具有生命周期事件演示
+    - 如果配置的内容过多，在配置表单中简单说明并添加跳转锚点，详细内容写到配置的演示区域之上，和演示之间用`---`分割。
+    - 对于不支持单向数据流的配置需要在配置文档中说明
 
     #### 表单组件
 

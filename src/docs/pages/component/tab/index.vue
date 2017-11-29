@@ -184,9 +184,9 @@
         <div slot="第三页">第三页</div>
     </ui-tab>
     <br><br> 
-    <ui-link js="javascript:morning.findVM('demo3').switch('第一页');">切换到第一页</ui-link>
-    <ui-link js="javascript:morning.findVM('demo3').switch('第二页');">切换到第二页</ui-link>
-    <ui-link js="javascript:morning.findVM('demo3').switch('第三页');">切换到第三页</ui-link>
+    <ui-link js="morning.findVM('demo3').switch('第一页');">切换到第一页</ui-link>
+    <ui-link js="morning.findVM('demo3').switch('第二页');">切换到第二页</ui-link>
+    <ui-link js="morning.findVM('demo3').switch('第三页');">切换到第三页</ui-link>
     :::
 
     #### next()
@@ -200,7 +200,7 @@
         <div slot="第三页">第三页</div>
     </ui-tab>
     <br><br> 
-    <ui-link js="javascript:morning.findVM('demo4').next();">切换到下一个标签</ui-link>
+    <ui-link js="morning.findVM('demo4').next();">切换到下一个标签</ui-link>
     :::
 
     #### prev()
@@ -214,7 +214,7 @@
         <div slot="第三页">第三页</div>
     </ui-tab>
     <br><br>
-    <ui-link js="javascript:morning.findVM('demo5').prev();">切换到上一个标签</ui-link>
+    <ui-link js="morning.findVM('demo5').prev();">切换到上一个标签</ui-link>
     :::
    
     [[[事件]]]
@@ -280,8 +280,8 @@
 
         <br><br>
     
-        <ui-link js="javascript:window.demoEventLifecycle.text='生命周期事件';">触发update</ui-link>
-        <ui-link js="javascript:morning.findVM('demoEventLifecycle').$destroy();">触发destroy</ui-link>
+        <ui-link js="window.demoEventLifecycle.text='生命周期事件';">触发update</ui-link>
+        <ui-link js="morning.findVM('demoEventLifecycle').$destroy();">触发destroy</ui-link>
     </div>
     :::
 
