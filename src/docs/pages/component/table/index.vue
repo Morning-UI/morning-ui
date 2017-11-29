@@ -234,6 +234,42 @@
     <ui-table :list="list"></ui-table>
     :::
 
+    #### 无数据
+
+    当表格无数据时：
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            list : []
+        }
+    });
+    ---
+    <ui-table :list="list"></ui-table>
+    :::
+
+    如果设置了表头，表头仍然会显示：
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            list : [],
+            colset : [
+                {col : 'name', name : 'Name'},
+                {col : 'age', name : 'Age'},
+                {col : 'gender', name : 'Gender'},
+                {col : 'job', name : 'Job'}
+            ]
+        }
+    });
+    ---
+    <ui-table :list="list" :col-set="colset" :show-col-name="true" export-csv title="无数据演示"></ui-table>
+    :::
+
     [[[形态]]]
 
     #### 支持
@@ -483,6 +519,7 @@
     |disabled|是否展示列的禁用样式|`true`<br>`false`|Boolean|`false`|
     |align|列的对齐方式|`'left'`<br>`'right'`<br>`'align'`|String|`'align'`|
     |title|此列是否是标题列，根据`fixed-title-col`的设置所有的标题列会被放到最左或最右|`true`<br>`false`|Boolean|`false`|
+    |hide|在表格中隐藏列，用于某些在`list`存在但不需要在展示的数据。列隐藏后在导出`.csv`文件时仍然会存在，如在导出`.csv`文件时也要排除，使用`col-set`配置的`export`属性来控制|`true`<br>`false`|Boolean|`false`|
     |export|导出`.csv`文件时，是否包含此列，若设为`false`此列不会被导出。一般包含行动区域的列会将此配置设为`false`|`true`<br>`false`|Boolean|`true`|
     |sort|开启单列排序，必需启用`show-col-name`才有效。多列排序需要启用`multi-sort`配置|`true`<br>`false`|Boolean|`false`|
 
@@ -680,6 +717,28 @@
     });
     ---
     <ui-table :list="list" :col-set="colset" export-csv></ui-table>
+    :::
+
+    ##### hide
+    
+    在表格中隐藏`Job`和`Gender`列，同时不导出`Gender`列：    
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            list : window.list,
+            colset : [
+                {col : 'name', name : 'Name'},
+                {col : 'age', name : 'Age'},
+                {col : 'gender', name : 'Gender', hide : true, export : false},
+                {col : 'job', name : 'Job', hide : true}
+            ]
+        }
+    });
+    ---
+    <ui-table :list="list" :col-set="colset" :show-col-name="true" export-csv></ui-table>
     :::
 
     ##### export
