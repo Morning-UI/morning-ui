@@ -467,6 +467,7 @@ export default {
                     disabled : false,
                     align : undefined,
                     title : false,
+                    hide : false,
                     export : true,
                     sort : false
                 }, item));
