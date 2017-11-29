@@ -39,6 +39,14 @@ mor-table{
         > tbody > tr > td {
             .setup-scrollbar();
         }
+
+        tr > td.no-data{
+            padding: @fontSize*0.625 !important;
+            min-width: @fontSize*3.125;
+            overflow: hidden;
+            word-break: break-all;
+            text-overflow: ellipsis;
+        }
     }
 
     .title-table,
@@ -75,6 +83,18 @@ mor-table{
                 white-space: nowrap;
                 border-bottom-width: 2px;
                 border-bottom-style: solid;
+
+                .sort{
+                    .morningicon{
+                        font-size: 12px;
+                        opacity: 0.35;
+
+                        &:hover{
+                            cursor: pointer;
+                            opacity: 0.7;
+                        }
+                    }
+                }
             }
 
             td{
@@ -183,7 +203,8 @@ mor-table{
         }
 
         .title-table,
-        .normal-table{
+        .normal-table,
+        .wrap{
             border-color: darken(@colorTheme, 20%) !important;
 
             th,
@@ -204,7 +225,8 @@ mor-table{
         }
 
         &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table{
+        &.zebra-pattern .normal-table,
+        &.zebra-pattern .wrap{
             tr:nth-child(2n) td{
                 background-color: darken(@colorTheme, 10%);
             }
@@ -230,7 +252,8 @@ mor-table{
         }
 
         .title-table,
-        .normal-table{
+        .normal-table,
+        .wrap{
             border-color: darken(@colorLightTheme, 25%) !important;
 
             th,
@@ -251,7 +274,8 @@ mor-table{
         }
 
         &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table{
+        &.zebra-pattern .normal-table,
+        &.zebra-pattern .wrap{
             tr:nth-child(2n) td{
                 background-color: darken(@colorLightTheme, 10%);
             }
@@ -277,7 +301,8 @@ mor-table{
         }
 
         .title-table,
-        .normal-table{
+        .normal-table,
+        .wrap{
             border-color: darken(@colorDarkTheme, 20%) !important;
 
             th,
@@ -298,7 +323,8 @@ mor-table{
         }
 
         &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table{
+        &.zebra-pattern .normal-table,
+        &.zebra-pattern .wrap{
             tr:nth-child(2n) td{
                 background-color: darken(@colorDarkTheme, 10%);
             }
@@ -324,7 +350,8 @@ mor-table{
         }
 
         .title-table,
-        .normal-table{
+        .normal-table,
+        .wrap{
             border-color: darken(@colorSuccess, 25%) !important;
 
             th,
@@ -345,7 +372,8 @@ mor-table{
         }
 
         &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table{
+        &.zebra-pattern .normal-table,
+        &.zebra-pattern .wrap{
             tr:nth-child(2n) td{
                 background-color: darken(@colorSuccess, 10%);
             }
@@ -371,7 +399,8 @@ mor-table{
         }
 
         .title-table,
-        .normal-table{
+        .normal-table,
+        .wrap{
             border-color: darken(@colorWarning, 25%) !important;
 
             th,
@@ -392,7 +421,8 @@ mor-table{
         }
 
         &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table{
+        &.zebra-pattern .normal-table,
+        &.zebra-pattern .wrap{
             tr:nth-child(2n) td{
                 background-color: darken(@colorWarning, 10%);
             }
@@ -418,7 +448,8 @@ mor-table{
         }
 
         .title-table,
-        .normal-table{
+        .normal-table,
+        .wrap{
             border-color: darken(@colorDanger, 25%) !important;
 
             th,
@@ -439,7 +470,8 @@ mor-table{
         }
 
         &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table{
+        &.zebra-pattern .normal-table,
+        &.zebra-pattern .wrap{
             tr:nth-child(2n) td{
                 background-color: darken(@colorDanger, 10%);
             }
@@ -465,7 +497,8 @@ mor-table{
         }
 
         .title-table,
-        .normal-table{
+        .normal-table,
+        .wrap{
             border-color: darken(@colorPrimary, 25%) !important;
 
             th,
@@ -486,7 +519,8 @@ mor-table{
         }
 
         &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table{
+        &.zebra-pattern .normal-table,
+        &.zebra-pattern .wrap{
             tr:nth-child(2n) td{
                 background-color: darken(@colorPrimary, 10%);
             }
@@ -512,7 +546,8 @@ mor-table{
         }
 
         .title-table,
-        .normal-table{
+        .normal-table,
+        .wrap{
             border-color: darken(@colorMinor, 25%) !important;
 
             th,
@@ -533,7 +568,8 @@ mor-table{
         }
 
         &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table{
+        &.zebra-pattern .normal-table,
+        &.zebra-pattern .wrap{
             tr:nth-child(2n) td{
                 background-color: darken(@colorMinor, 10%);
             }
@@ -559,7 +595,8 @@ mor-table{
         }
 
         .title-table,
-        .normal-table{
+        .normal-table,
+        .wrap{
             border-color: darken(@colorInfo, 25%) !important;
 
             th,
@@ -580,7 +617,8 @@ mor-table{
         }
 
         &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table{
+        &.zebra-pattern .normal-table,
+        &.zebra-pattern .wrap{
             tr:nth-child(2n) td{
                 background-color: darken(@colorInfo, 10%);
             }
@@ -606,7 +644,8 @@ mor-table{
         }
 
         .title-table,
-        .normal-table{
+        .normal-table,
+        .wrap{
             border-color: @colorBlack !important;
 
             th,
@@ -627,7 +666,8 @@ mor-table{
         }
 
         &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table{
+        &.zebra-pattern .normal-table,
+        &.zebra-pattern .wrap{
             tr:nth-child(2n) td{
                 background-color: darken(@colorBlack, 10%);
             }
@@ -653,7 +693,8 @@ mor-table{
         }
 
         .title-table,
-        .normal-table{
+        .normal-table,
+        .wrap{
             border-color: @colorLightBlack !important;
 
             th,
@@ -674,7 +715,8 @@ mor-table{
         }
 
         &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table{
+        &.zebra-pattern .normal-table,
+        &.zebra-pattern .wrap{
             tr:nth-child(2n) td{
                 background-color: darken(@colorLightBlack, 10%);
             }
@@ -700,7 +742,8 @@ mor-table{
         }
 
         .title-table,
-        .normal-table{
+        .normal-table,
+        .wrap{
             border-color: @colorExtraLightBlack !important;
 
             th,
@@ -721,7 +764,8 @@ mor-table{
         }
 
         &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table{
+        &.zebra-pattern .normal-table,
+        &.zebra-pattern .wrap{
             tr:nth-child(2n) td{
                 background-color: darken(@colorExtraLightBlack, 10%);
             }
@@ -747,7 +791,8 @@ mor-table{
         }
 
         .title-table,
-        .normal-table{
+        .normal-table,
+        .wrap{
             border-color: darken(@colorBlue, 25%) !important;
 
             th,
@@ -768,7 +813,8 @@ mor-table{
         }
 
         &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table{
+        &.zebra-pattern .normal-table,
+        &.zebra-pattern .wrap{
             tr:nth-child(2n) td{
                 background-color: darken(@colorBlue, 15%);
             }
@@ -794,7 +840,8 @@ mor-table{
         }
 
         .title-table,
-        .normal-table{
+        .normal-table,
+        .wrap{
             border-color: darken(@colorLightBlue, 25%) !important;
 
             th,
@@ -815,7 +862,8 @@ mor-table{
         }
 
         &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table{
+        &.zebra-pattern .normal-table,
+        &.zebra-pattern .wrap{
             tr:nth-child(2n) td{
                 background-color: darken(@colorLightBlue, 15%);
             }
@@ -841,7 +889,8 @@ mor-table{
         }
 
         .title-table,
-        .normal-table{
+        .normal-table,
+        .wrap{
             border-color: darken(@colorExtraLightBlue, 25%) !important;
 
             th,
@@ -862,7 +911,8 @@ mor-table{
         }
 
         &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table{
+        &.zebra-pattern .normal-table,
+        &.zebra-pattern .wrap{
             tr:nth-child(2n) td{
                 background-color: darken(@colorExtraLightBlue, 15%);
             }
@@ -888,7 +938,8 @@ mor-table{
         }
 
         .title-table,
-        .normal-table{
+        .normal-table,
+        .wrap{
             border-color: darken(@colorSilver, 10%) !important;
 
             th,
@@ -909,7 +960,8 @@ mor-table{
         }
 
         &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table{
+        &.zebra-pattern .normal-table,
+        &.zebra-pattern .wrap{
             tr:nth-child(2n) td{
                 background-color: @colorSilver;
             }
@@ -935,7 +987,8 @@ mor-table{
         }
 
         .title-table,
-        .normal-table{
+        .normal-table,
+        .wrap{
             border-color: darken(@colorLightSilver, 10%) !important;
 
             th,
@@ -956,7 +1009,8 @@ mor-table{
         }
 
         &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table{
+        &.zebra-pattern .normal-table,
+        &.zebra-pattern .wrap{
             tr:nth-child(2n) td{
                 background-color: @colorLightSilver;
             }
@@ -982,7 +1036,8 @@ mor-table{
         }
 
         .title-table,
-        .normal-table{
+        .normal-table,
+        .wrap{
             border-color: darken(@colorExtraLightSilver, 10%) !important;
 
             th,
@@ -1003,7 +1058,8 @@ mor-table{
         }
 
         &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table{
+        &.zebra-pattern .normal-table,
+        &.zebra-pattern .wrap{
             tr:nth-child(2n) td{
                 background-color: @colorExtraLightSilver;
             }
@@ -1029,7 +1085,8 @@ mor-table{
         }
 
         .title-table,
-        .normal-table{
+        .normal-table,
+        .wrap{
             border-color: darken(@colorGray, 5%) !important;
 
             th,
@@ -1050,7 +1107,8 @@ mor-table{
         }
 
         &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table{
+        &.zebra-pattern .normal-table,
+        &.zebra-pattern .wrap{
             tr:nth-child(2n) td{
                 background-color: @colorGray;
             }
@@ -1076,7 +1134,8 @@ mor-table{
         }
 
         .title-table,
-        .normal-table{
+        .normal-table,
+        .wrap{
             border-color: darken(@colorLightGray, 5%) !important;
 
             th,
@@ -1097,7 +1156,8 @@ mor-table{
         }
 
         &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table{
+        &.zebra-pattern .normal-table,
+        &.zebra-pattern .wrap{
             tr:nth-child(2n) td{
                 background-color: @colorLightGray;
             }
@@ -1123,7 +1183,8 @@ mor-table{
         }
 
         .title-table,
-        .normal-table{
+        .normal-table,
+        .wrap{
             border-color: darken(@colorWhite, 5%) !important;
 
             th,
@@ -1144,7 +1205,8 @@ mor-table{
         }
 
         &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table{
+        &.zebra-pattern .normal-table,
+        &.zebra-pattern .wrap{
             tr:nth-child(2n) td{
                 background-color: darken(@colorWhite, 2%);
             }

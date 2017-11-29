@@ -1,0 +1,209 @@
+@import '~Common/var.less';
+
+mor-calendar{
+    display: block;
+
+    header{
+        .topbar{
+            width: 100%;
+            padding: 0.5em 0;
+            position: relative;
+
+            .prev,
+            .next{
+                position: absolute;
+                top: 0.5em;
+                font-size: @fontSize*0.875;
+                color: @colorExtraLightBlue;
+
+                &:hover{
+                    cursor: pointer;
+                    color: @colorExtraLightBlack;
+                }
+            }
+
+            .prev{
+                left: 0.5em;
+            }
+
+            .next{
+                right: 0.5em;
+            }
+
+            .yearmonth{
+                text-align: center;
+
+                .year,
+                .month{
+                    color: @colorExtraLightBlue;
+                    display: inline-block;
+
+                    &:hover{
+                        cursor: pointer;
+                        color: @colorExtraLightBlack;
+                    }
+                }
+
+                .year{
+                    margin-right: @fontSize*0.2;
+                }
+            }
+        }
+
+        .titlebar{
+            .weekday,
+            .title{
+                border-top: 1px @colorLightSilver solid;
+                border-bottom: 1px @colorLightSilver solid;
+                padding: @fontSize*0.25 0;
+            }
+
+            .weekday{
+                list-style: none;
+                display: flex;
+                justify-content: space-around;
+                margin: 0;
+
+                li{
+                    display: inline-block;
+                    font-size: @fontSize*0.8125;
+                    margin: 0;
+                    color: @colorBlue;
+                }
+            }
+
+            .title{
+                text-align: center;
+                font-size: @fontSize*0.8125;
+                color: @colorExtraLightBlue;
+            }
+        }
+    }
+
+    .calendar{
+        padding-top: 0.5em;
+
+        .pick-day{
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+
+            .day{
+                width: ~'calc(100% / 7)';
+                text-align: center;
+                color: @colorBlack;
+
+                .select-layer{
+                    display: inline-block;
+                    padding: 0.25em;
+                    width: 100%;
+                    font-size: @fontSize;
+                }
+
+                .inner-layer{
+                    display: inline-block;
+                    width: @fontSize*2;
+                    height: @fontSize*2;
+                    line-height: @fontSize*2;
+                    border-radius: 100em;
+                    padding: 0;
+                    font-size: @fontSize*0.75;
+                }
+
+                &.not-current-month{
+                    color: @colorLightBlue;
+                    background-color: lighten(@colorLightGray, 2%);
+                }
+
+                &.highlight{
+                    margin-bottom: 0;
+
+                    .inner-layer{
+                        background-color: @colorLightTheme;
+                        color: @colorWhite;
+                    }
+                }
+
+                &.middle{
+                    .select-layer{
+                        background-color: lighten(@colorLightTheme, 25%);
+                    }
+                }
+
+                &.start{
+                    text-align: right;
+
+                    .inner-layer{
+                        background-color: @colorLightTheme;
+                        color: @colorWhite;
+                    }
+
+                    .select-layer{
+                        text-align: center;
+                        padding-right: ~'calc(50% - ' @fontSize ~')';
+                        background-color: lighten(@colorLightTheme, 25%);
+                        border-radius: 100em 0 0 100em;
+                        width: auto;
+                    }
+                }
+
+                &.end{
+                    text-align: left;
+
+                    .inner-layer{
+                        background-color: @colorLightTheme;
+                        color: @colorWhite;
+                    }
+
+                    .select-layer{
+                        text-align: center;
+                        padding-left: ~'calc(50% - ' @fontSize ~')';
+                        background-color: lighten(@colorLightTheme, 25%);
+                        border-radius: 0 100em 100em 0;
+                        width: auto;
+                    }
+                }
+            }
+        }
+
+        .pick-month,
+        .pick-year{
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .pick-month .month{
+            width: ~'calc(100% / 3)';
+            padding: 0;
+            height: @fontSize*3.75;
+            line-height: @fontSize*3.75;
+            text-align: center;
+            color: @colorBlue;
+
+            &:hover{
+                color: @colorBlack;
+                background-color: @colorExtraLightSilver;
+                cursor: pointer;
+            }
+        }
+
+        .pick-year .year{
+            width: ~'calc(100% / 5)';
+            padding: 0;
+            height: @fontSize*3;
+            line-height: @fontSize*3;
+            text-align: center;
+            color: @colorBlue;
+
+            &:hover{
+                color: @colorBlack;
+                background-color: @colorExtraLightSilver;
+                cursor: pointer;
+            }
+        }
+    }
+
+    // default status
+    &{}
+}

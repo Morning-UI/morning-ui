@@ -95,8 +95,8 @@
         <ui-multiinput ref="demo2" form-name="输入标签"></ui-multiinput>
     </div>
     <br>
-    <ui-link js="javascript:morning.findVM('demo2').add('value1');">添加到最后</ui-link>
-    <ui-link js="javascript:morning.findVM('demo2').add('value2', 0);">添加到第0项</ui-link>
+    <ui-link js="morning.findVM('demo2').add('value1');">添加到最后</ui-link>
+    <ui-link js="morning.findVM('demo2').add('value2', 0);">添加到第0项</ui-link>
     :::
 
     #### update(item, index)
@@ -113,7 +113,7 @@
         <ui-multiinput ref="demo8" form-name="输入标签" :default-value="['value1', 'value2', 'value3', 'value4']"></ui-multiinput>
     </div>
     <br>
-    <ui-link js="javascript:morning.findVM('demo8').update('newValue', 1);">将第2项的更新为newValue</ui-link>
+    <ui-link js="morning.findVM('demo8').update('newValue', 1);">将第2项的更新为newValue</ui-link>
     :::
 
     #### del(index)
@@ -129,7 +129,7 @@
         <ui-multiinput ref="demo3" form-name="输入标签" :default-value="['value1', 'value2', 'value3', 'value4']"></ui-multiinput>
     </div>
     <br>
-    <ui-link js="javascript:morning.findVM('demo3').del(0);">删除第0项</ui-link>
+    <ui-link js="morning.findVM('demo3').del(0);">删除第0项</ui-link>
     :::
 
     #### move(from, to)
@@ -146,7 +146,7 @@
         <ui-multiinput ref="demo4" form-name="输入标签" :default-value="['value1', 'value2', 'value3', 'value4']"></ui-multiinput>
     </div>
     <br>
-    <ui-link js="javascript:morning.findVM('demo4').move(2, 0);">将第2项移到第0项</ui-link>
+    <ui-link js="morning.findVM('demo4').move(2, 0);">将第2项移到第0项</ui-link>
     :::
 
     #### setInput([value])
@@ -162,8 +162,8 @@
         <ui-multiinput ref="demo10" form-name="输入标签"></ui-multiinput>
     </div>
     <br>
-    <ui-link js="javascript:morning.findVM('demo10').setInput('value1');">设置输入框内容</ui-link>
-    <ui-link js="javascript:morning.findVM('demo10').setInput();">清空输入框内容</ui-link>
+    <ui-link js="morning.findVM('demo10').setInput('value1');">设置输入框内容</ui-link>
+    <ui-link js="morning.findVM('demo10').setInput();">清空输入框内容</ui-link>
     :::
 
     #### getInput()
@@ -175,7 +175,7 @@
         <ui-multiinput ref="demo9" form-name="输入标签"></ui-multiinput>
     </div>
     <br>
-    <ui-link js="javascript:alert(morning.findVM('demo9').getInput());">获取输入框内容</ui-link>
+    <ui-link js="alert(morning.findVM('demo9').getInput());">获取输入框内容</ui-link>
     :::
 
     [[[事件]]]

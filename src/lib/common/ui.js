@@ -196,13 +196,5 @@ export default (Vue, morning) => Vue.extend({
         this.$el.remove();
         delete this.morning.map[this.uiid];
 
-        if (this.$vnode &&
-            this.$vnode.data &&
-            this.$vnode.data.ref) {
-        
-            delete this.morning._findCache[this.$vnode.data.ref];
-        
-        }
-
     }
 });

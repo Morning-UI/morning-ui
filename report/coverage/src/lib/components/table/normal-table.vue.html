@@ -20,19 +20,19 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">25% </span>
+        <span class="strong">16.67% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>3/12</span>
+        <span class='fraction'>3/18</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">36% </span>
+        <span class="strong">14.75% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>9/25</span>
+        <span class='fraction'>9/61</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/6</span>
+        <span class='fraction'>0/12</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -77,7 +77,57 @@
 32
 33
 34
-35</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -116,8 +166,29 @@
         &lt;thead v-if="conf.showColName"&gt;
             &lt;tr&gt;
                 &lt;template v-for="key of data.normalKeys"&gt;
-                    &lt;th v-if="colSetMap[key] &amp;&amp; colSetMap[key].name" :key="key"&gt;{{colSetMap[key].name}}&lt;/th&gt;
-                    &lt;th v-else :key="key"&gt;&lt;/th&gt;
+                    &lt;th
+                        v-if="colSetMap[key] &amp;&amp; colSetMap[key].name"
+                        v-show="!colSetMap[key] || !colSetMap[key].hide"
+                        :key="key"
+                    &gt;
+                        {{colSetMap[key].name}}
+                        &lt;span class="sort" v-if="colSetMap[key].sort"&gt;
+                            &lt;i class="morningicon no" @click="sortCol(key)" v-if="!data.sort[key] || (data.sort[key].type !== 'asc' &amp;&amp; data.sort[key].type !== 'desc')"&gt;&amp;#xe651;&lt;/i&gt;
+                            &lt;i class="morningicon asc" @click="sortCol(key)" v-if="data.sort[key] &amp;&amp; data.sort[key].type === 'asc'"&gt;&amp;#xe672;&lt;/i&gt;
+                            &lt;i class="morningicon desc" @click="sortCol(key)" v-if="data.sort[key] &amp;&amp; data.sort[key].type === 'desc'"&gt;&amp;#xe671;&lt;/i&gt;
+                        &lt;/span&gt;
+                    &lt;/th&gt;
+                    &lt;th
+                        v-else
+                        v-show="!colSetMap[key] || !colSetMap[key].hide"
+                        :key="key"
+                    &gt;
+                        &lt;span class="sort" v-if="colSetMap[key] &amp;&amp; colSetMap[key].sort"&gt;
+                            &lt;i class="morningicon no" @click="sortCol(key)" v-if="!data.sort[key] || (data.sort[key].type !== 'asc' &amp;&amp; data.sort[key].type !== 'desc')"&gt;&amp;#xe651;&lt;/i&gt;
+                            &lt;i class="morningicon asc" @click="sortCol(key)" v-if="data.sort[key] &amp;&amp; data.sort[key].type === 'asc'"&gt;&amp;#xe672;&lt;/i&gt;
+                            &lt;i class="morningicon desc" @click="sortCol(key)" v-if="data.sort[key] &amp;&amp; data.sort[key].type === 'desc'"&gt;&amp;#xe671;&lt;/i&gt;
+                        &lt;/span&gt;
+                    &lt;/th&gt;
                 &lt;/template&gt;
             &lt;/tr&gt;
         &lt;/thead&gt;
@@ -129,8 +200,11 @@
                 @mouseout="$emit('row-mouseout', line)"
             &gt;
                 &lt;template v-for="(col, index) of row"&gt;
-                    &lt;td v-if="colSetMap[data.normalKeys[index]]" :key="index" v-render="{template : col}"&gt;&lt;/td&gt;
-                    &lt;td v-else :key="index" v-render="{template : col}"&gt;&lt;/td&gt;
+                    &lt;td 
+                        v-show="!colSetMap[data.normalKeys[index]] || !colSetMap[data.normalKeys[index]].hide"
+                        :key="index"
+                        v-render="{template : col}"
+                    &gt;&lt;/td&gt;
                 &lt;/template&gt;
             &lt;/tr&gt;
         &lt;/tbody&gt;
@@ -142,7 +216,8 @@ export default {
     props : [
         'conf',
         'data',
-        'colSetMap'
+        'colSetMap',
+        'sortCol'
     ]
 };
 &lt;/script&gt;</pre></td></tr>
@@ -151,7 +226,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Nov 27 2017 10:39:05 GMT+0800 (CST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Nov 29 2017 17:21:51 GMT+0800 (CST)
 </div>
 </div>
 <script src="../../../../prettify.js"></script>

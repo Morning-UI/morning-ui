@@ -17,6 +17,7 @@
         :cell-set="cellSet"
         :export-csv="exportCsv"
         :csv-name="csvName"
+        :multi-sort="multiSort"
     >
 
     <template v-if="conf.title || conf.exportCsv">
@@ -37,6 +38,7 @@
                         :conf="conf"
                         :data="data"
                         :col-set-map="colSetMap"
+                        :sort-col="_sortCol"
                         @row-mouseover="_rowOver"
                         @row-mouseout="_rowOut"
                     ></normal-table>
@@ -46,6 +48,7 @@
                         :conf="conf"
                         :data="data"
                         :col-set-map="colSetMap"
+                        :sort-col="_sortCol"
                         @row-mouseover="_rowOver"
                         @row-mouseout="_rowOut"
                     ></title-table>
@@ -58,6 +61,7 @@
                         :conf="conf"
                         :data="data"
                         :col-set-map="colSetMap"
+                        :sort-col="_sortCol"
                         @row-mouseover="_rowOver"
                         @row-mouseout="_rowOut"
                     ></title-table>
@@ -67,10 +71,15 @@
                         :conf="conf"
                         :data="data"
                         :col-set-map="colSetMap"
+                        :sort-col="_sortCol"
                         @row-mouseover="_rowOver"
                         @row-mouseout="_rowOut"
                     ></normal-table>
                 </td>
+            </tr>
+
+            <tr v-if="data.normalRows.length === 0 && data.titleRows.length === 0">
+                <td class="no-data">无数据</td>
             </tr>
         </tbody>
     </table>
@@ -81,6 +90,7 @@
 <script>
 import arrayUniq                    from 'array-uniq';
 import extend                       from 'extend';
+import sortBy                       from 'lodash.sortby';
 import titleTable                   from './title-table.vue';
 import normalTable                  from './normal-table.vue';
 
@@ -149,6 +159,10 @@ export default {
         csvName : {
             type : String,
             default : undefined
+        },
+        multiSort : {
+            type : Boolean,
+            default : false
         }
     },
     computed : {
@@ -168,7 +182,8 @@ export default {
                 rowSet : this.rowSet,
                 cellSet : this.cellSet,
                 exportCsv : this.exportCsv,
-                csvName : this.csvName
+                csvName : this.csvName,
+                multiSort : this.multiSort
             };
 
         },
@@ -209,7 +224,9 @@ export default {
                 normalRows : [],
                 titleKeys : [],
                 titleRows : [],
-                listDataJson : '[]'
+                listDataJson : '[]',
+                sort : {},
+                sortCol : []
             }
         };
 
@@ -224,9 +241,129 @@ export default {
             this._setCell();
 
         },
+        _sortCol : function (col) {
+
+            let type = 'desc';
+            let sortColIndex;
+
+            if (this.data.sort[col] === undefined) {
+
+                if (this.conf.multiSort === false) {
+                
+                    this.data.sort = {};
+
+                }
+
+                this.data.sort[col] = {
+                    type : 'no',
+                    origin : {}
+                };
+
+            }
+
+            if (this.data.sort[col].type === 'desc') {
+
+                type = 'asc';
+
+            } else if (this.data.sort[col].type === 'asc') {
+
+                type = 'no';
+
+            } else {
+
+                type = 'desc';
+                this.data.sort[col].origin = {
+                    title : extend([], this.data.titleRows),
+                    normal : extend([], this.data.normalRows)
+                };
+
+            }
+
+            if (this.conf.multiSort) {
+
+                sortColIndex = this.data.sortCol.indexOf(col);
+
+                if (sortColIndex !== -1) {
+
+                    this.data.sortCol.splice(sortColIndex, 1);
+                    
+                }
+
+                this.data.sortCol.push(col);
+
+            } else {
+
+                this.data.sortCol = [col];
+
+            }
+
+            this.data.sort[col].type = type;
+
+            this._sort();
+
+        },
+        _sort : function () {
+
+            for (let col of this.data.sortCol) {
+
+                let sort = this.data.sort[col];
+                let mainType = 'normal';
+                let subType = 'title';
+                let colIndex;
+                let mainRows;
+                let newMainRows = [];
+                let newSubRows = [];
+
+                if (sort.type === 'asc' ||
+                    sort.type === 'desc') {
+
+                    if (this.data.titleKeys.indexOf(col) !== -1) {
+
+                        mainType = 'title';
+                        subType = 'normal';
+
+                    }
+
+                    mainRows = extend([], this.data[`${mainType}Rows`]);
+                    colIndex = this.data[`${mainType}Keys`].indexOf(col);
+
+                    for (let index in mainRows) {
+
+                        mainRows[index]._sub = this.data[`${subType}Rows`][index];
+
+                    }
+        
+                    newMainRows = sortBy(mainRows, item => item[colIndex]);
+
+                    if (sort.type === 'desc') {
+
+                        newMainRows.reverse();
+
+                    }
+
+                    for (let row of newMainRows) {
+
+                        newSubRows.push(row._sub);
+
+                    }
+
+                    this.data[`${mainType}Rows`] = newMainRows;
+                    this.data[`${subType}Rows`] = newSubRows;
+
+                } else if (this.data.sortCol.length === 1) {
+
+                    // cause if sortCol length > 1, this sort item not need to calculate
+                    this.data.titleRows = sort.origin.title;
+                    this.data.normalRows = sort.origin.normal;
+
+                }
+
+            }
+
+        },
         _cleanupCell : function () {
 
-            let $cells = this.$el.querySelectorAll('td, th');
+            let $cells = this.$el.querySelectorAll('td:not(.no-data), th');
 
             for (let $cell of $cells) {
 
@@ -327,8 +464,12 @@ export default {
                     minwidth : undefined,
                     maxwidth : undefined,
                     style : undefined,
-                    disabled : undefined,
-                    align : undefined
+                    disabled : false,
+                    align : undefined,
+                    title : false,
+                    hide : false,
+                    export : true,
+                    sort : false
                 }, item));
 
             }
@@ -604,6 +745,8 @@ export default {
         },
         _exportRows : function (csv, type) {
 
+            let ignoreColIndex = [];
+
             if (csv[0] === undefined) {
 
                 csv[0] = [];
@@ -616,16 +759,33 @@ export default {
 
                     let set = this.colSetMap[key];
 
-                    if (set &&
-                        set.name) {
+                    if (set.export !== false) {
 
-                        csv[0].push(set.name);
+                        if (set &&
+                            set.name) {
 
-                    } else {
+                            csv[0].push(set.name);
 
-                        csv[0].push('');
+                        } else {
+
+                            csv[0].push('');
+
+                        }
 
                     }
+
+                }
+
+            }
+
+            for (let index in this.data[`${type}Keys`]) {
+
+                let key = this.data[`${type}Keys`][index];
+                let set = this.colSetMap[key];
+
+                if (set && set.export === false) {
+
+                    ignoreColIndex.push(index);
 
                 }
 
@@ -634,6 +794,18 @@ export default {
             for (let index in this.data[`${type}Rows`]) {
 
                 let csvIndex = Number(index) + 1;
+                let originRow = extend([], this.data[`${type}Rows`][index]);
+                let row = [];
+
+                for (let col in originRow) {
+
+                    if (ignoreColIndex.indexOf(col) === -1) {
+
+                        row.push(originRow[col]);
+                    
+                    }
+
+                }
 
                 if (csv[csvIndex] === undefined) {
 
@@ -641,7 +813,7 @@ export default {
 
                 }
 
-                csv[csvIndex] = csv[csvIndex].concat(this.data[`${type}Rows`][index]);
+                csv[csvIndex] = csv[csvIndex].concat(row);
 
             }
 
@@ -709,20 +881,43 @@ export default {
 
             list = extend(true, [], list);
 
-            for (let item of list) {
+            // if list is empty, and has conf.colSet, use colSet generate keys.
+            if (list.length === 0) {
 
-                for (let key of Object.keys(item)) {
+                for (let key in this.colSetMap) {
 
                     let set = this.colSetMap[key];
 
-                    if (set &&
-                        set.title === true) {
+                    if (set.title === true) {
 
                         titleKeys.push(key);
 
                     } else {
 
                         normalKeys.push(key);
+
+                    }
+
+                }
+
+            } else {
+
+                for (let item of list) {
+
+                    for (let key of Object.keys(item)) {
+
+                        let set = this.colSetMap[key];
+
+                        if (set &&
+                            set.title === true) {
+
+                            titleKeys.push(key);
+
+                        } else {
+
+                            normalKeys.push(key);
+
+                        }
 
                     }
 
