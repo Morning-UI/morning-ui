@@ -56,7 +56,7 @@ jobs:
       - restore_cache:
           keys:
             - v2-build-{{ .Environment.CIRCLE_SHA1 }}
-      - run: npm run unit
+      - run: npm run ci-unit
   test-e2e:
     docker:
       - image: circleci/node:8.7-browsers
