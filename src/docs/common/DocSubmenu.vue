@@ -140,6 +140,22 @@ export default {
                 content: 'CR PASS';
             }
         }
+
+        &.l1{
+            opacity: 1;
+        }
+
+        &.l2{
+            opacity: 0.85;
+        }
+
+        &.l3{
+            opacity: 0.75;
+        }
+
+        &.l4{
+            opacity: 0.6;
+        }
     }
 }
 </style>
