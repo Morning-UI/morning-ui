@@ -6901,6 +6901,174 @@ mor-dialog > .content > header {
   color: #FFFFFF;
 }
 
+mor-calendar {
+  display: block;
+}
+mor-calendar header .topbar {
+  width: 100%;
+  padding: 0.5em 0;
+  position: relative;
+}
+mor-calendar header .topbar .prev,
+mor-calendar header .topbar .next {
+  position: absolute;
+  top: 0.5em;
+  font-size: 14px;
+  color: #A8B3C2;
+}
+mor-calendar header .topbar .prev:hover,
+mor-calendar header .topbar .next:hover {
+  cursor: pointer;
+  color: #45505C;
+}
+mor-calendar header .topbar .prev {
+  left: 0.5em;
+}
+mor-calendar header .topbar .next {
+  right: 0.5em;
+}
+mor-calendar header .topbar .yearmonth {
+  text-align: center;
+}
+mor-calendar header .topbar .yearmonth .year,
+mor-calendar header .topbar .yearmonth .month {
+  color: #A8B3C2;
+  display: inline-block;
+}
+mor-calendar header .topbar .yearmonth .year:hover,
+mor-calendar header .topbar .yearmonth .month:hover {
+  cursor: pointer;
+  color: #45505C;
+}
+mor-calendar header .topbar .yearmonth .year {
+  margin-right: 3.2px;
+}
+mor-calendar header .titlebar .weekday,
+mor-calendar header .titlebar .title {
+  border-top: 1px #E2E8EE solid;
+  border-bottom: 1px #E2E8EE solid;
+  padding: 4px 0;
+}
+mor-calendar header .titlebar .weekday {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  margin: 0;
+}
+mor-calendar header .titlebar .weekday li {
+  display: inline-block;
+  font-size: 13px;
+  margin: 0;
+  color: #7C8BA0;
+}
+mor-calendar header .titlebar .title {
+  text-align: center;
+  font-size: 13px;
+  color: #A8B3C2;
+}
+mor-calendar .calendar {
+  padding-top: 0.5em;
+}
+mor-calendar .calendar .pick-day {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+mor-calendar .calendar .pick-day .day {
+  width: calc(100% / 7);
+  text-align: center;
+  color: #17212D;
+}
+mor-calendar .calendar .pick-day .day .select-layer {
+  display: inline-block;
+  padding: 0.25em;
+  width: 100%;
+  font-size: 16px;
+}
+mor-calendar .calendar .pick-day .day .inner-layer {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  border-radius: 100em;
+  padding: 0;
+  font-size: 12px;
+}
+mor-calendar .calendar .pick-day .day.not-current-month {
+  color: #8E9CAF;
+  background-color: #f5f5f5;
+}
+mor-calendar .calendar .pick-day .day.highlight {
+  margin-bottom: 0;
+}
+mor-calendar .calendar .pick-day .day.highlight .inner-layer {
+  background-color: #F86F88;
+  color: #FFFFFF;
+}
+mor-calendar .calendar .pick-day .day.middle .select-layer {
+  background-color: #fee9ec;
+}
+mor-calendar .calendar .pick-day .day.start {
+  text-align: right;
+}
+mor-calendar .calendar .pick-day .day.start .inner-layer {
+  background-color: #F86F88;
+  color: #FFFFFF;
+}
+mor-calendar .calendar .pick-day .day.start .select-layer {
+  text-align: center;
+  padding-right: calc(50% -  16px );
+  background-color: #fee9ec;
+  border-radius: 100em 0 0 100em;
+  width: auto;
+}
+mor-calendar .calendar .pick-day .day.end {
+  text-align: left;
+}
+mor-calendar .calendar .pick-day .day.end .inner-layer {
+  background-color: #F86F88;
+  color: #FFFFFF;
+}
+mor-calendar .calendar .pick-day .day.end .select-layer {
+  text-align: center;
+  padding-left: calc(50% -  16px );
+  background-color: #fee9ec;
+  border-radius: 0 100em 100em 0;
+  width: auto;
+}
+mor-calendar .calendar .pick-month,
+mor-calendar .calendar .pick-year {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+mor-calendar .calendar .pick-month .month {
+  width: calc(100% / 3);
+  padding: 0;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  color: #7C8BA0;
+}
+mor-calendar .calendar .pick-month .month:hover {
+  color: #17212D;
+  background-color: #EDF1F5;
+  cursor: pointer;
+}
+mor-calendar .calendar .pick-year .year {
+  width: calc(100% / 5);
+  padding: 0;
+  height: 48px;
+  line-height: 48px;
+  text-align: center;
+  color: #7C8BA0;
+}
+mor-calendar .calendar .pick-year .year:hover {
+  color: #17212D;
+  background-color: #EDF1F5;
+  cursor: pointer;
+}
+
 mor-load .loadfail {
   color: #8E9CAF;
 }

@@ -134,6 +134,10 @@
     - `list-change` : 列表数值变化
     - `push` : 推送
     - `close` : 关闭
+    - `change` : 改变
+    - `month-change` : 月份改变
+    - `year-change` : 年份改变
+    - `highlight` : 高亮变化
 
     </script>
     </doc-guide>

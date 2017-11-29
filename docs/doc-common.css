@@ -1093,6 +1093,18 @@ footer a:hover {
 .submenu .tag.review:before {
   content: 'CR PASS';
 }
+.submenu .tag.l1 {
+  opacity: 1;
+}
+.submenu .tag.l2 {
+  opacity: 0.85;
+}
+.submenu .tag.l3 {
+  opacity: 0.75;
+}
+.submenu .tag.l4 {
+  opacity: 0.6;
+}
 
 .doc-status-bar {
   padding: 4px 0;
