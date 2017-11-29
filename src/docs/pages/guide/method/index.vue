@@ -110,7 +110,7 @@
     - `switch` : 切换
     - `lock` : 锁定
     - `unlock` : 解锁
-    - `set` : 设置表单值
+    - `set` : 设置表单值/设置
     - `get` : 获取表单值
     - `setName` : 设置表单名
     - `getName` : 获取表单名
@@ -122,7 +122,8 @@
     - `removeGroup` : 移除表单组
     - `setRows` : 设置行数
     - `toggle` : 切换状态
-    - `add` : 添加项目
+    - `add` : 添加项目/增加
+    - `sub` : 减少
     - `update` : 更新项目
     - `del` : 删除项目
     - `move` : 移动项目
@@ -135,6 +136,13 @@
     - `setTotal` : 设置总数
     - `push` : 推送
     - `close` : 关闭
+    - `toggleYearPick` : 切换年份选择器
+    - `toggleMonthPick` : 切换月份选择器
+    - `getDate` : 获取日期
+    - `getTime` : 获取时间
+    - `setTime` : 设置时间
+    - `getHighlight` : 获取高亮
+    - `setHighlight` : 设置高亮
 
     </script>
     </doc-guide>
