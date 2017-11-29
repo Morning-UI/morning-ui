@@ -3163,7 +3163,7 @@ mor-calendar .calendar .pick-day .day{width:calc(100% / 7);text-align:center;col
 }
 mor-calendar .calendar .pick-day .day .select-layer{display:inline-block;padding:.25em;width:100%;font-size:16px
 }
-mor-calendar .calendar .pick-day .day .inner-layer{display:inline-block;width:30px;height:30px;line-height:30px;border-radius:100em;padding:0;font-size:12px
+mor-calendar .calendar .pick-day .day .inner-layer{display:inline-block;width:32px;height:32px;line-height:32px;border-radius:100em;padding:0;font-size:12px
 }
 mor-calendar .calendar .pick-day .day.not-current-month{color:#8e9caf;background-color:#f5f5f5
 }
@@ -3177,21 +3177,21 @@ mor-calendar .calendar .pick-day .day.start{text-align:right
 }
 mor-calendar .calendar .pick-day .day.start .inner-layer{background-color:#f86f88;color:#fff
 }
-mor-calendar .calendar .pick-day .day.start .select-layer{text-align:center;padding-right:calc(50% - 15px);background-color:#fee9ec;border-radius:100em 0 0 100em;width:auto
+mor-calendar .calendar .pick-day .day.start .select-layer{text-align:center;padding-right:calc(50% - 16px);background-color:#fee9ec;border-radius:100em 0 0 100em;width:auto
 }
 mor-calendar .calendar .pick-day .day.end{text-align:left
 }
 mor-calendar .calendar .pick-day .day.end .inner-layer{background-color:#f86f88;color:#fff
 }
-mor-calendar .calendar .pick-day .day.end .select-layer{text-align:center;padding-left:calc(50% - 15px);background-color:#fee9ec;border-radius:0 100em 100em 0;width:auto
+mor-calendar .calendar .pick-day .day.end .select-layer{text-align:center;padding-left:calc(50% - 16px);background-color:#fee9ec;border-radius:0 100em 100em 0;width:auto
 }
 mor-calendar .calendar .pick-month,mor-calendar .calendar .pick-year{display:flex;justify-content:space-around;flex-wrap:wrap
 }
-mor-calendar .calendar .pick-month .month{width:calc(100% / 3);padding:1.5em 0;text-align:center;color:#7c8ba0
+mor-calendar .calendar .pick-month .month{width:calc(100% / 3);padding:0;height:60px;line-height:60px;text-align:center;color:#7c8ba0
 }
 mor-calendar .calendar .pick-month .month:hover{color:#17212d;background-color:#edf1f5;cursor:pointer
 }
-mor-calendar .calendar .pick-year .year{width:calc(100% / 5);padding:.7em 0;text-align:center;color:#7c8ba0
+mor-calendar .calendar .pick-year .year{width:calc(100% / 5);padding:0;height:48px;line-height:48px;text-align:center;color:#7c8ba0
 }
 mor-calendar .calendar .pick-year .year:hover{color:#17212d;background-color:#edf1f5;cursor:pointer
 }

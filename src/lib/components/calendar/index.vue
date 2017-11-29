@@ -80,10 +80,14 @@
  
 <script>
 import extend                       from 'extend';
+import arrayUniq                    from 'array-uniq';
+import sortBy                       from 'lodash.sortby';
 import getYear                      from 'date-fns/get_year';
 import getMonth                     from 'date-fns/get_month';
 import getDate                      from 'date-fns/get_date';
 import getDay                       from 'date-fns/get_day';
+import startOfDay                   from 'date-fns/start_of_day';
+import endOfDay                     from 'date-fns/end_of_day';
 import startOfMonth                 from 'date-fns/start_of_month';
 import lastDayOfMonth               from 'date-fns/last_day_of_month';
 import eachDay                      from 'date-fns/each_day';
@@ -94,6 +98,7 @@ import addMonths                    from 'date-fns/add_months';
 import addYears                     from 'date-fns/add_years';
 import setMonth                     from 'date-fns/set_month';
 import setYear                      from 'date-fns/set_year';
+import formatDate                   from 'date-fns/format';
 
 const yearRange = 12;
 
@@ -253,22 +258,46 @@ export default {
         return {
             data : {
                 current : new Date(),
+                now : new Date(),
                 monthPick : false,
                 yearPick : false,
                 yearPickOffset : 0,
-                highlightDay : []
+                highlightDay : [],
+                lastMonth : null,
+                lastYear : null,
+                lastHighlight : ''
             }
         };
 
     },
     methods : {
+        _checkHighlightChange : function () {
+
+            let days = this.getHighlight(true);
+            let list = [];
+
+            for (let day of days) {
+
+                list.push(+day);
+
+            }
+
+            list = list.join(',');
+
+            if (this.data.lastHighlight !== list) {
+
+                this.$emit('highlight');
+                this.data.lastHighlight = list;
+
+            }
+
+        },
         _isHighlight : function (date) {
             
             let result = false;
 
-            if (this.conf.highlightNow && isSameDay(date, new Date())) {
+            if (this.conf.highlightNow && isSameDay(date, this.data.now)) {
 
-                console.log('highlightNow', true);
                 result = true;
 
             }
@@ -278,7 +307,7 @@ export default {
                 for (let item of this.data.highlightDay) {
 
                     if (item instanceof Array &&
-                        isWithinRange(date, item[0], item[1])) {
+                        isWithinRange(date, startOfDay(item[0]), endOfDay(item[1]))) {
 
                         result = true;
 
@@ -423,7 +452,7 @@ export default {
             this.data.yearPick = !!show;
             this.data.yearPickOffset = 0;
 
-            if (!!show === false) {
+            if (this.conf.pickYearMonth && !!show === false) {
 
                 this.toggleMonthPick(true);
 
@@ -449,8 +478,16 @@ export default {
             this.data.monthPick = !!show;
 
         },
-        getDate : function (format) {},
-        getTime : function () {},
+        getDate : function (format) {
+
+            return formatDate(this.data.current, format);
+
+        },
+        getTime : function () {
+
+            return +this.data.current;
+
+        },
         setTime : function (timestrap) {
 
             this.data.current = +timestrap;
@@ -527,14 +564,53 @@ export default {
             return this;
 
         },
-        getHighlight : function (includeCurrent = false) {},
-        setHighlight : function (list) {
+        getHighlight : function (includeNow = false) {
+
+            let result = [];
+
+            for (let item of this.data.highlightDay) {
+
+                if (typeof item === 'number' || item instanceof Date) {
+
+                    result.push(+item);
+
+                } else if (item instanceof Array) {
+
+                    for (let day of eachDay(item[0], item[1])) {
+
+                        result.push(+day);
+
+                    }
+
+                }
+
+            }
+
+            if (includeNow) {
+
+                result.push(+this.data.now);
+
+            }
+
+            result = arrayUniq(result);
+            result = sortBy(result, v => v);
+
+            for (let index in result) {
+
+                result[index] = startOfDay(result[index]);
+
+            }
+
+            return result;
+
+        },
+        setHighlight : function (list = []) {
 
             this.data.highlightDay = list;
 
-        },
-        addHighlight : function (list) {},
-        removeHighlight : function (list) {}
+            return this;
+
+        }
     },
     filters : {
         getDate : function (val) {
@@ -560,6 +636,43 @@ export default {
         }, {
             immediate : true,
             deep : true
+        });
+
+        this.$watch('data.current', () => {
+            
+            let lastMonth = formatDate(this.data.current, 'YYYY-MM');
+            let lastYear = formatDate(this.data.current, 'YYYY');
+
+            this.$emit('change');
+
+            if (this.data.lastMonth !== lastMonth) {
+
+                this.$emit('month-change');
+                this.data.lastMonth = lastMonth;
+
+            }
+
+            if (this.data.lastYear !== lastYear) {
+
+                this.$emit('year-change');
+                this.data.lastYear = lastYear;
+                
+            }
+
+        });
+
+        this.$watch('data.highlightDay', () => {
+
+            this._checkHighlightChange();
+
+        }, {
+            deep : true
+        });
+
+        this.$watch('conf.highlightNow', () => {
+
+            this._checkHighlightChange();
+
         });
 
     }
