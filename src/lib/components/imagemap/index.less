@@ -1,0 +1,163 @@
+@import '~Common/var.less';
+
+mor-imagemap{
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+
+    .modify-map{
+        display: block;
+        font-size: @fontSize*0.8125;
+        background: @colorLightGray;
+        color: @colorLightBlue;
+        padding: 0.2em 0;
+        text-align: center;
+        margin-top: -2px;
+        border: 1px @colorFormBorder solid;
+        box-sizing: border-box;
+        z-index: 1;
+        position: relative;
+        border-radius: 0 0 @borderRadius @borderRadius;
+        vertical-align: top;
+
+        .morningicon{
+            font-size: @fontSize*0.8125;
+            vertical-align: top;
+        }
+
+        &:hover{
+            text-decoration: none;
+            color: @colorExtraLightBlack;
+            background: @colorFormBorder;
+        }
+    }
+
+    &.st-normal{}
+
+    &.st-disabled{}
+
+    // default status
+    &{
+        .st-normal;
+    }
+}
+
+.mor-imagemap-dialog-map{
+    .maparea{
+        width: 100%;
+        user-select: none;
+        position: relative;
+
+        img{
+            width: 100%;
+        }
+
+        .setup-scrollbar();
+
+        .zonearea{
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            cursor: crosshair;
+
+            &.over-range{
+                box-shadow: 0 0 6px rgba(0,0,0,0.4) inset;
+            }
+
+            .zone{
+                box-sizing: border-box;
+                border: 1px dashed @colorExtraLightBlack;
+                position: absolute;
+                display: block;
+                background-color: %(~'%d40', @colorExtraLightBlack);
+                cursor: move;
+
+                &:hover{
+                    border: 1px dashed @colorExtraLightBlack;
+                    background-color: %(~'%d25', @colorExtraLightBlack);
+                    border-width: 2px;
+                }
+
+                &.move-moving{
+                    display: none;
+                }
+
+                .top,
+                .bottom{
+                    position: absolute;
+                    left: 0;
+                    width: 100%;
+                    height: 20px;
+                }
+
+                .top{
+                    top: -10px;
+                    cursor: n-resize;
+                }
+
+                .bottom{
+                    bottom: -10px;
+                    cursor: s-resize;
+                }
+
+                .left,
+                .right{
+                    position: absolute;
+                    top: 0;
+                    height: 100%;
+                    width: 20px;
+                }
+
+                .left{
+                    left: -10px;
+                    cursor: w-resize;
+                }
+
+                .right{
+                    right: -10px;
+                    cursor: e-resize;
+                }
+
+                .topleft,
+                .topright,
+                .bottomleft,
+                .bottomright{
+                    position: absolute;
+                    width: 20px;
+                    height: 20px;
+                }
+
+                .topleft{
+                    top: -10px;
+                    left: -10px;
+                    cursor: nw-resize;
+                }
+
+                .topright{
+                    top: -10px;
+                    right: -10px;
+                    cursor: ne-resize;
+                }
+
+                .bottomleft{
+                    bottom: -10px;
+                    left: -10px;
+                    cursor: sw-resize;
+                }
+
+                .bottomright{
+                    bottom: -10px;
+                    right: -10px;
+                    cursor: se-resize;
+                }
+            }
+        }
+    }
+
+    .content > footer{
+        z-index: 2;
+    }
+}

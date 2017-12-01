@@ -157,8 +157,8 @@ export default {
         ismax : function () {
 
             if (this.conf.max &&
-                this.data.value &&
-                this.data.value.length >= this.conf.max) {
+                this.data.files &&
+                this.data.files.length >= this.conf.max) {
 
                 return true;
 
@@ -472,8 +472,8 @@ export default {
         },
         _removeFile : function (index) {
 
-            this._set(this._fetchValueFromFiles(), true);
             this.data.files.splice(index, 1);
+            this._set(this._fetchValueFromFiles(), true);
 
         },
         _upload : function (index) {
@@ -501,7 +501,8 @@ export default {
 
                     this._setStatus(index, 'verification');
 
-                    if (this.conf.max && this.ismax) {
+                    // do not use this.ismax
+                    if (this.conf.max && this.data.value.length >= this.conf.max) {
 
                         return Promise.reject('upload file num is max.');
 
