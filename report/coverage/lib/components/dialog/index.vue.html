@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">12.82% </span>
+        <span class="strong">12.5% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>5/39</span>
+        <span class='fraction'>5/40</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">27.27% </span>
+        <span class="strong">25.71% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>9/33</span>
+        <span class='fraction'>9/35</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/10</span>
+        <span class='fraction'>0/11</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">14.29% </span>
+        <span class="strong">13.89% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>5/35</span>
+        <span class='fraction'>5/36</span>
       </div>
     </div>
   </div>
@@ -221,7 +221,14 @@
 176
 177
 178
-179</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+179
+180
+181
+182
+183
+184
+185
+186</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -248,14 +255,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">83x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">83x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -298,6 +301,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -398,9 +412,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
-    &lt;i-dialog
+<span class="cline-any cline-yes">83x</span>
+<span class="cline-any cline-yes">83x</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
+    &lt;mor-dialog
         :_uiid="uiid"
         :class="[colorClass, moreClass]"
 &nbsp;
@@ -408,11 +422,12 @@
         :height="height"
         :auto-close="autoClose"
         :show-type="showType"
+        :show-mask="showMask"
 &nbsp;
         @click="_onClick"
     &gt;
 &nbsp;
-    &lt;div class="mask"&gt;&lt;/div&gt;
+    &lt;div class="mask" v-if="conf.showMask"&gt;&lt;/div&gt;
     &lt;div
         class="content"
         :style="{width: conf.width, height: conf.height}"
@@ -422,7 +437,7 @@
         &lt;slot name="footer"&gt;&lt;/slot&gt;
     &lt;/div&gt;
         
-    &lt;/i-dialog&gt;
+    &lt;/mor-dialog&gt;
 &lt;/template&gt;
  
 &lt;script&gt;
@@ -449,7 +464,12 @@ export default {
         },
         showType : {
             type : String,
-            default : 'top'
+            default : 'top',
+            validator : (<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >value =&gt; ['top', 'center', 'no'].indexOf(value) !== -1)</span></span>
+        },
+        showMask : {
+            type : Boolean,
+            default : true
         }
     },
     computed : {
@@ -459,7 +479,8 @@ export default {
                 width : this.width,
                 height : this.height,
                 autoClose : this.autoClose,
-                showType : this.showType
+                showType : this.showType,
+                showMask : this.showMask
             };
 &nbsp;
         },
@@ -583,7 +604,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Nov 20 2017 13:38:44 GMT+0800 (CST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Dec 05 2017 22:39:33 GMT+0800 (CST)
 </div>
 </div>
 <script src="../../../prettify.js"></script>

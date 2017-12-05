@@ -1300,10 +1300,10 @@ export default {
 </script>
 
 <style lang="less">
-@import '~Docs/common/common.less';
 @import '~github-markdown-css';
-@import '~Docs/common/markdown.less';
 @import '~Npm/highlight.js/styles/hopscotch.css';
+@import '~Docs/common/common.less';
+@import '~Docs/common/markdown.less';
 @import '~Docs/common/highlight.less';
 
 a{ }
