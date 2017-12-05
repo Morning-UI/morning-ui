@@ -143,6 +143,20 @@
     <ui-btn js="window.morning.setGroup('demo4', {gender:undefined});">清空性别表单</ui-btn>
     :::
 
+    #### 清空一组表单的值
+
+    通过`cleanGroup`方法可以清空一整组表单的值，比如：
+
+    :::democode/html
+    <div style="width:300px;">
+        <ui-textinput group="demo5" form-key="name" form-name="姓名" default-value="Jim"></ui-textinput>
+        <br> 
+        <ui-radio :list="{male:'Male',female:'Female'}" group="demo5" form-key="gender" form-name="性别" default-value="male"></ui-radio>
+    </div>
+    <br><br>
+    <ui-btn js="window.morning.cleanGroup('demo5');">清空整组表单</ui-btn>
+    :::
+
     ### 表单数据双向绑定
     
     大部分情况下表单的值和父视图中的数据是关联的，这时候可以使用`v-model`指令将表单值绑定到父视图中。

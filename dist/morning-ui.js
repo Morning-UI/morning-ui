@@ -174,7 +174,7 @@ module.exports = function normalizeComponent (
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isDate = __webpack_require__(13)
+var isDate = __webpack_require__(14)
 
 var MILLISECONDS_IN_HOUR = 3600000
 var MILLISECONDS_IN_MINUTE = 60000
@@ -967,7 +967,7 @@ if ('Set' in global) {
 	module.exports = uniqNoSet;
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)))
 
 /***/ }),
 /* 5 */
@@ -1335,6 +1335,477 @@ module.exports = startOfISOWeek
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _GlobalEvent = __webpack_require__(5);
+
+var _GlobalEvent2 = _interopRequireDefault(_GlobalEvent);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var moveDelayTime = 200;
+
+var Move = {
+    mixins: [_GlobalEvent2.default],
+    data: function data() {
+
+        return {
+            Move: {
+                can: false,
+                type: 'fixed',
+                // 延迟多久触发拖拽，为了和click兼容
+                $root: null,
+                delay: moveDelayTime,
+                target: null,
+                scrollContainer: null,
+                container: null,
+                lastMousedownIndex: -1,
+                movedIndex: -1,
+                delayTimeout: null,
+                $moveDragItem: null,
+                moving: false,
+                moveMouseFrom: {
+                    x: 0,
+                    y: 0
+                },
+                moveItemXy: {
+                    x: 0,
+                    y: 0
+                },
+                moveItemWh: {
+                    w: 0,
+                    h: 0
+                },
+                moveOffset: {
+                    x: 0,
+                    y: 0
+                },
+                current: {
+                    x: 0,
+                    y: 0
+                },
+                scrollFrom: {
+                    x: 0,
+                    y: 0
+                },
+                scrollOffset: {
+                    x: 0,
+                    y: 0
+                },
+                // windowCalibrate : {
+                //     x : 0,
+                //     y : 0
+                // },
+                range: [false, false, false, false],
+                overRange: [0, 0, 0, 0]
+            }
+        };
+    },
+    computed: {
+        moveClass: function moveClass() {
+
+            return {
+                'can-move': this.Move.can
+            };
+        }
+    },
+    methods: {
+        _moveItemRecord: function _moveItemRecord(index) {
+
+            this.Move.lastMousedownIndex = index;
+        },
+        _moveMousedown: function _moveMousedown(evt) {
+            var _this = this;
+
+            if (evt.button !== 0) {
+
+                return;
+            }
+
+            this.Move.delayTimeout = setTimeout(function () {
+
+                _this._moveStart(evt);
+            }, this.Move.delay);
+        },
+        _moveStart: function _moveStart(evt) {
+
+            var $targets = this.Move.$root.querySelectorAll(this.Move.target);
+            var found = false;
+
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+                for (var _iterator = evt.path[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var $node = _step.value;
+                    var _iteratorNormalCompletion2 = true;
+                    var _didIteratorError2 = false;
+                    var _iteratorError2 = undefined;
+
+                    try {
+
+                        for (var _iterator2 = $targets.values()[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                            var $value = _step2.value;
+
+
+                            if ($value === $node) {
+
+                                found = true;
+
+                                break;
+                            }
+                        }
+                    } catch (err) {
+                        _didIteratorError2 = true;
+                        _iteratorError2 = err;
+                    } finally {
+                        try {
+                            if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                                _iterator2.return();
+                            }
+                        } finally {
+                            if (_didIteratorError2) {
+                                throw _iteratorError2;
+                            }
+                        }
+                    }
+
+                    if (found) {
+
+                        break;
+                    }
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return) {
+                        _iterator.return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
+
+            if (found) {
+
+                var $target = this.Move.$root.querySelectorAll(this.Move.container + ' ' + this.Move.target)[this.Move.lastMousedownIndex];
+                var $container = this.Move.$root.querySelector(this.Move.container);
+
+                var _moveElementXy = this._moveElementXy($target),
+                    x = _moveElementXy.x,
+                    y = _moveElementXy.y;
+
+                var $moveDragItem = $target.cloneNode(true);
+
+                $moveDragItem.classList.add('move-drag-item');
+
+                if (this.Move.type === 'fixed') {
+
+                    $moveDragItem.classList.add('fixed');
+                } else {
+
+                    $moveDragItem.classList.add('absolute');
+                }
+
+                if (this.Move.type === 'absolute' && this.Move.scrollContainer) {
+
+                    var $scrollContainer = this.Move.$root.querySelector(this.Move.scrollContainer);
+
+                    if ($scrollContainer) {
+
+                        $scrollContainer.addEventListener('scroll', this._moveScroll);
+                        this.Move.scrollFrom.x = $scrollContainer.scrollLeft;
+                        this.Move.scrollFrom.y = $scrollContainer.scrollTop;
+                    }
+                }
+
+                $moveDragItem.style.top = y + 'px';
+                $moveDragItem.style.left = x + 'px';
+                $container.append($moveDragItem);
+
+                this.Move.overRange = [0, 0, 0, 0];
+                this.Move.$moveDragItem = $moveDragItem;
+                this.Move.movedIndex = this.Move.lastMousedownIndex;
+                this.Move.moveMouseFrom.x = evt.clientX;
+                this.Move.moveMouseFrom.y = evt.clientY;
+                this.Move.moveOffset.x = evt.clientX;
+                this.Move.moveOffset.y = evt.clientY;
+                this.Move.scrollOffset.x = 0;
+                this.Move.scrollOffset.y = 0;
+                this.Move.moveItemXy.x = x;
+                this.Move.moveItemXy.y = y;
+                this.Move.current.x = x;
+                this.Move.current.y = y;
+                this.Move.moveItemWh.w = $moveDragItem.offsetWidth;
+                this.Move.moveItemWh.h = $moveDragItem.offsetHeight;
+                this.Move.moving = true;
+
+                $target.classList.add('move-moving');
+                this.$emit('_moveStarted');
+            }
+        },
+        _moveCore: function _moveCore() {
+
+            var x = this.Move.moveOffset.x - this.Move.moveMouseFrom.x + this.Move.moveItemXy.x + this.Move.scrollOffset.x;
+            var y = this.Move.moveOffset.y - this.Move.moveMouseFrom.y + this.Move.moveItemXy.y + this.Move.scrollOffset.y;
+            var limit = this._moveRangeLimit(x, y);
+
+            x = limit.x;
+            y = limit.y;
+
+            this.Move.$moveDragItem.style.top = y + 'px';
+            this.Move.$moveDragItem.style.left = x + 'px';
+            this.Move.current.x = x;
+            this.Move.current.y = y;
+
+            this.$emit('_moveChange');
+        },
+        _moveMousemove: function _moveMousemove(evt) {
+
+            if (this.Move.moving === false) {
+
+                return;
+            }
+
+            if (evt.buttons !== 1) {
+
+                this._moveMouseup();
+
+                return;
+            }
+
+            this.Move.moveOffset.x = evt.clientX;
+            this.Move.moveOffset.y = evt.clientY;
+
+            this._moveCore();
+        },
+        _moveScroll: function _moveScroll() {
+
+            if (this.Move.type === 'absolute' && this.Move.scrollContainer) {
+
+                var $scrollContainer = this.Move.$root.querySelector(this.Move.scrollContainer);
+
+                if ($scrollContainer) {
+
+                    this.Move.scrollOffset.x = $scrollContainer.scrollLeft - this.Move.scrollFrom.x;
+                    this.Move.scrollOffset.y = $scrollContainer.scrollTop - this.Move.scrollFrom.y;
+                }
+            }
+
+            this._moveCore();
+        },
+        _moveMouseup: function _moveMouseup(evt) {
+
+            // if has evt, must left button up
+            if (evt && evt.button !== 0) {
+
+                return;
+            }
+
+            clearTimeout(this.Move.delayTimeout);
+
+            if (!this.Move.moving) {
+
+                return;
+            }
+
+            var $target = this.Move.$root.querySelector('.move-moving');
+
+            if ($target) {
+
+                $target.classList.remove('move-moving');
+            }
+
+            if (this.Move.type === 'absolute' && this.Move.scrollContainer) {
+
+                var $scrollContainer = this.Move.$root.querySelector(this.Move.scrollContainer);
+
+                if ($scrollContainer) {
+
+                    $scrollContainer.removeEventListener('scroll', this._moveScroll);
+                }
+            }
+
+            this.Move.movedIndex = -1;
+            // this.Move.lastMousedownIndex = -1;
+            this.Move.$moveDragItem.remove();
+            this.Move.$moveDragItem = null;
+            this.Move.moving = false;
+
+            this.$emit('_moveEnded');
+        },
+        _moveRangeLimit: function _moveRangeLimit(x, y) {
+
+            // x min
+            if (this.Move.range[0] !== false && x < this.Move.range[0]) {
+
+                x = this.Move.range[0];
+                this.Move.overRange[0] = 1;
+                this.$emit('_moveOnXMin');
+            } else if (this.Move.overRange[0]) {
+
+                this.Move.overRange[0] = 0;
+                this.$emit('_moveOffXMin');
+            }
+
+            // x max
+            if (this.Move.range[2] !== false && x + this.Move.moveItemWh.w > this.Move.range[2]) {
+
+                x = this.Move.range[2] - this.Move.moveItemWh.w;
+                this.Move.overRange[2] = 1;
+                this.$emit('_moveOnXMax');
+            } else if (this.Move.overRange[2]) {
+
+                this.Move.overRange[2] = 0;
+                this.$emit('_moveOffXMax');
+            }
+
+            // y min
+            if (this.Move.range[1] !== false && y < this.Move.range[1]) {
+
+                y = this.Move.range[1];
+                this.Move.overRange[1] = 1;
+                this.$emit('_moveOnYMin');
+            } else if (this.Move.overRange[1]) {
+
+                this.Move.overRange[1] = 0;
+                this.$emit('_moveOffXMin');
+            }
+
+            // y max
+            if (this.Move.range[3] !== false && y + this.Move.moveItemWh.h > this.Move.range[3]) {
+
+                y = this.Move.range[3] - this.Move.moveItemWh.h;
+                this.Move.overRange[3] = 1;
+                this.$emit('_moveOnYMax');
+            } else if (this.Move.overRange[3]) {
+
+                this.Move.overRange[3] = 0;
+                this.$emit('_moveOffYMax');
+            }
+
+            return {
+                x: x,
+                y: y
+            };
+        },
+        _moveElementXy: function _moveElementXy($target) {
+
+            var client = $target.getBoundingClientRect();
+            var marginLeft = $target.ownerDocument.defaultView.getComputedStyle($target).marginLeft;
+            var marginTop = $target.ownerDocument.defaultView.getComputedStyle($target).marginTop;
+            var left = $target.ownerDocument.defaultView.getComputedStyle($target).left;
+            var top = $target.ownerDocument.defaultView.getComputedStyle($target).top;
+            var x = void 0;
+            var y = void 0;
+
+            marginLeft = +marginLeft.split('px')[0];
+            marginTop = +marginTop.split('px')[0];
+            left = +left.split('px')[0];
+            top = +top.split('px')[0];
+
+            //  + this.Move.windowCalibrate.x; + this.Move.windowCalibrate.y
+
+            if (this.Move.type === 'fixed') {
+
+                x = client.left - marginLeft;
+                y = client.top - marginTop;
+            } else {
+
+                x = left;
+                y = top;
+            }
+
+            return {
+                x: x,
+                y: y
+            };
+        }
+    },
+    mounted: function mounted() {
+        var _this2 = this;
+
+        // default $root is $el
+        this.Move.$root = this.$el;
+
+        this.$watch('Move.can', function (newVal) {
+
+            var $container = _this2.Move.$root.querySelector(_this2.Move.container);
+
+            if (newVal) {
+
+                $container.addEventListener('mousedown', _this2._moveMousedown);
+                _this2._globalEventAdd('mousemove', '_moveMousemove');
+                _this2._globalEventAdd('mouseup', '_moveMouseup');
+                // this._moveAddGlobalListener();
+            } else {
+
+                if ($container) {
+
+                    $container.removeEventListener('mousedown', _this2._moveMousedown);
+                }
+
+                if (_this2.Move.type === 'absolute' && _this2.Move.scrollContainer) {
+
+                    var $scrollContainer = _this2.Move.$root.querySelector(_this2.Move.scrollContainer);
+
+                    if ($scrollContainer) {
+
+                        $scrollContainer.removeEventListener('scroll', _this2._moveScroll);
+                    }
+                }
+
+                _this2._globalEventRemove('mousemove', '_moveMousemove');
+                _this2._globalEventRemove('mouseup', '_moveMouseup');
+
+                if (_this2.Move.moving) {
+
+                    _this2._moveMouseup();
+                }
+            }
+        }, {
+            immediate: true
+        });
+    },
+    updated: function updated() {
+
+        var $oldTarget = this.Move.$root.querySelector(this.Move.target + '.move-moving');
+        var $newTarget = this.Move.$root.querySelectorAll(this.Move.target + ':not(.move-drag-item)')[this.Move.movedIndex];
+
+        if ($oldTarget) {
+
+            $oldTarget.classList.remove('move-moving');
+        }
+
+        if ($newTarget) {
+
+            $newTarget.classList.add('move-moving');
+        }
+    },
+    beforeDestroy: function beforeDestroy() {
+
+        this._globalEventRemove('mousemove', '_moveMousemove');
+        this._globalEventRemove('mouseup', '_moveMouseup');
+    }
+};
+
+exports.default = Move;
+module.exports = exports['default'];
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
 var utils = __webpack_require__(2);
@@ -1431,7 +1902,7 @@ module.exports = defaults;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(302)))
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports) {
 
 var g;
@@ -1458,7 +1929,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {/**
@@ -4092,10 +4563,10 @@ function property(path) {
 
 module.exports = sortBy;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11), __webpack_require__(199)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12), __webpack_require__(199)(module)))
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports) {
 
 /**
@@ -4121,11 +4592,11 @@ module.exports = isDate
 
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var parse = __webpack_require__(1)
-var getDaysInMonth = __webpack_require__(15)
+var getDaysInMonth = __webpack_require__(16)
 
 /**
  * @category Month Helpers
@@ -4161,7 +4632,7 @@ module.exports = addMonths
 
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var parse = __webpack_require__(1)
@@ -4195,7 +4666,7 @@ module.exports = getDaysInMonth
 
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var parse = __webpack_require__(1)
@@ -4244,281 +4715,6 @@ function getISOYear (dirtyDate) {
 
 module.exports = getISOYear
 
-
-/***/ }),
-/* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _GlobalEvent = __webpack_require__(5);
-
-var _GlobalEvent2 = _interopRequireDefault(_GlobalEvent);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var moveDelayTime = 200;
-
-var Move = {
-    mixins: [_GlobalEvent2.default],
-    data: function data() {
-
-        return {
-            Move: {
-                can: false,
-                // 延迟多久触发拖拽，为了和click兼容
-                delay: moveDelayTime,
-                target: null,
-                container: null,
-                lastMousedownIndex: -1,
-                movedIndex: -1,
-                delayTimeout: null,
-                $moveDragItem: null,
-                moving: false,
-                moveMouseFrom: {
-                    x: 0,
-                    y: 0
-                },
-                moveItemXy: {
-                    x: 0,
-                    y: 0
-                },
-                current: {
-                    x: 0,
-                    y: 0
-                }
-            }
-        };
-    },
-    computed: {
-        moveClass: function moveClass() {
-
-            return {
-                'can-move': this.Move.can
-            };
-        }
-    },
-    methods: {
-        _moveItemRecord: function _moveItemRecord(index) {
-
-            this.Move.lastMousedownIndex = index;
-        },
-        _moveMousedown: function _moveMousedown(evt) {
-            var _this = this;
-
-            this.Move.delayTimeout = setTimeout(function () {
-
-                _this._moveStart(evt);
-            }, this.Move.delay);
-        },
-        _moveStart: function _moveStart(evt) {
-
-            var $targets = this.$el.querySelectorAll(this.Move.target);
-            var found = false;
-
-            var _iteratorNormalCompletion = true;
-            var _didIteratorError = false;
-            var _iteratorError = undefined;
-
-            try {
-                for (var _iterator = evt.path[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                    var $node = _step.value;
-                    var _iteratorNormalCompletion2 = true;
-                    var _didIteratorError2 = false;
-                    var _iteratorError2 = undefined;
-
-                    try {
-
-                        for (var _iterator2 = $targets.values()[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                            var $value = _step2.value;
-
-
-                            if ($value === $node) {
-
-                                found = true;
-
-                                break;
-                            }
-                        }
-                    } catch (err) {
-                        _didIteratorError2 = true;
-                        _iteratorError2 = err;
-                    } finally {
-                        try {
-                            if (!_iteratorNormalCompletion2 && _iterator2.return) {
-                                _iterator2.return();
-                            }
-                        } finally {
-                            if (_didIteratorError2) {
-                                throw _iteratorError2;
-                            }
-                        }
-                    }
-
-                    if (found) {
-
-                        break;
-                    }
-                }
-            } catch (err) {
-                _didIteratorError = true;
-                _iteratorError = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion && _iterator.return) {
-                        _iterator.return();
-                    }
-                } finally {
-                    if (_didIteratorError) {
-                        throw _iteratorError;
-                    }
-                }
-            }
-
-            if (found) {
-
-                var $target = this.$el.querySelectorAll(this.Move.container + ' ' + this.Move.target)[this.Move.lastMousedownIndex];
-                var $container = this.$el.querySelector(this.Move.container);
-
-                $target.classList.add('move-moving');
-
-                var $moveDragItem = $target.cloneNode(true);
-
-                var _moveElementXy = this._moveElementXy($target),
-                    x = _moveElementXy.x,
-                    y = _moveElementXy.y;
-
-                $moveDragItem.classList.add('move-drag-item');
-                $moveDragItem.style.top = y + 'px';
-                $moveDragItem.style.left = x + 'px';
-                $container.append($moveDragItem);
-
-                this.Move.movedIndex = this.Move.lastMousedownIndex;
-                this.Move.moveMouseFrom.x = evt.clientX;
-                this.Move.moveMouseFrom.y = evt.clientY;
-                this.Move.moveItemXy.x = x;
-                this.Move.moveItemXy.y = y;
-                this.Move.$moveDragItem = $moveDragItem;
-                this.Move.moving = true;
-
-                this.$emit('_moveStarted');
-            }
-        },
-        _moveMousemove: function _moveMousemove(evt) {
-
-            if (this.Move.moving === false) {
-
-                return;
-            }
-
-            var x = evt.clientX - this.Move.moveMouseFrom.x + this.Move.moveItemXy.x;
-            var y = evt.clientY - this.Move.moveMouseFrom.y + this.Move.moveItemXy.y;
-
-            this.Move.$moveDragItem.style.top = y + 'px';
-            this.Move.$moveDragItem.style.left = x + 'px';
-            this.Move.current.x = x;
-            this.Move.current.y = y;
-
-            this.$emit('_moveChange');
-        },
-        _moveMouseup: function _moveMouseup() {
-
-            clearTimeout(this.Move.delayTimeout);
-
-            if (!this.Move.moving) {
-
-                return;
-            }
-
-            var $target = this.$el.querySelector('.move-moving');
-
-            if ($target) {
-
-                $target.classList.remove('move-moving');
-            }
-
-            this.Move.movedIndex = -1;
-            this.Move.lastMousedownIndex = -1;
-            this.Move.$moveDragItem.remove();
-            this.Move.$moveDragItem = null;
-            this.Move.moving = false;
-
-            this.$emit('_moveEnded');
-        },
-        _moveElementXy: function _moveElementXy($ele) {
-
-            var client = $ele.getBoundingClientRect();
-            var marginLeft = $ele.ownerDocument.defaultView.getComputedStyle($ele).marginLeft;
-            var marginTop = $ele.ownerDocument.defaultView.getComputedStyle($ele).marginTop;
-
-            marginLeft = +marginLeft.split('px')[0];
-            marginTop = +marginTop.split('px')[0];
-
-            var x = client.left - marginLeft;
-            var y = client.top - marginTop;
-
-            return {
-                x: x,
-                y: y
-            };
-        }
-    },
-    mounted: function mounted() {
-        var _this2 = this;
-
-        this.$watch('Move.can', function (newVal) {
-
-            var $container = _this2.$el.querySelector(_this2.Move.container);
-
-            if (newVal) {
-
-                $container.addEventListener('mousedown', _this2._moveMousedown);
-                _this2._globalEventAdd('mousemove', '_moveMousemove');
-                _this2._globalEventAdd('mouseup', '_moveMouseup');
-                // this._moveAddGlobalListener();
-            } else {
-
-                if ($container) {
-
-                    $container.removeEventListener('mousedown', _this2._moveMousedown);
-                }
-
-                _this2._globalEventRemove('mousemove', '_moveMousemove');
-                _this2._globalEventRemove('mouseup', '_moveMouseup');
-            }
-        }, {
-            immediate: true
-        });
-    },
-    updated: function updated() {
-
-        var $oldTarget = this.$el.querySelector(this.Move.target + '.move-moving:not(.move-drag-item)');
-        var $newTarget = this.$el.querySelectorAll(this.Move.target + ':not(.move-drag-item)')[this.Move.movedIndex];
-
-        if ($oldTarget) {
-
-            $oldTarget.classList.remove('move-moving');
-        }
-
-        if ($newTarget) {
-
-            $newTarget.classList.add('move-moving');
-        }
-    },
-    beforeDestroy: function beforeDestroy() {
-
-        this._globalEventRemove('mousemove', '_moveMousemove');
-        this._globalEventRemove('mouseup', '_moveMouseup');
-    }
-};
-
-exports.default = Move;
-module.exports = exports['default'];
 
 /***/ }),
 /* 18 */
@@ -4918,12 +5114,10 @@ morning.getGroupJson = function (groupName) {
     return JSON.stringify(this.getGroup(groupName));
 };
 
-morning.setGroup = function (groupName, data) {
+morning.cleanGroup = function (groupName) {
 
     var uiids = this._groupVmMap[groupName];
-    var setKeys = Object.keys(data);
-    var key = void 0,
-        vm = void 0;
+    var vm = void 0;
 
     if (uiids) {
         var _iteratorNormalCompletion3 = true;
@@ -4940,12 +5134,7 @@ morning.setGroup = function (groupName, data) {
 
                 if (vm) {
 
-                    key = vm.conf.formKey;
-
-                    if (setKeys.indexOf(key) !== -1) {
-
-                        this.map[uiid].set(data[key]);
-                    }
+                    this.map[uiid].set(undefined);
                 }
             }
         } catch (err) {
@@ -4959,6 +5148,55 @@ morning.setGroup = function (groupName, data) {
             } finally {
                 if (_didIteratorError3) {
                     throw _iteratorError3;
+                }
+            }
+        }
+    }
+
+    return this;
+};
+
+morning.setGroup = function (groupName, data) {
+
+    var uiids = this._groupVmMap[groupName];
+    var setKeys = Object.keys(data);
+    var key = void 0,
+        vm = void 0;
+
+    if (uiids) {
+        var _iteratorNormalCompletion4 = true;
+        var _didIteratorError4 = false;
+        var _iteratorError4 = undefined;
+
+        try {
+
+            for (var _iterator4 = uiids[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+                var uiid = _step4.value;
+
+
+                vm = this.map[uiid];
+
+                if (vm) {
+
+                    key = vm.conf.formKey;
+
+                    if (setKeys.indexOf(key) !== -1) {
+
+                        this.map[uiid].set(data[key]);
+                    }
+                }
+            }
+        } catch (err) {
+            _didIteratorError4 = true;
+            _iteratorError4 = err;
+        } finally {
+            try {
+                if (!_iteratorNormalCompletion4 && _iterator4.return) {
+                    _iterator4.return();
+                }
+            } finally {
+                if (_didIteratorError4) {
+                    throw _iteratorError4;
                 }
             }
         }
@@ -5957,6 +6195,10 @@ var _index117 = __webpack_require__(295);
 
 var _index118 = _interopRequireDefault(_index117);
 
+var _index119 = __webpack_require__(319);
+
+var _index120 = _interopRequireDefault(_index119);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
@@ -6018,7 +6260,8 @@ exports.default = {
     radio: _index112.default,
     multiinput: _index114.default,
     multiform: _index116.default,
-    upload: _index118.default
+    upload: _index118.default,
+    imagemap: _index120.default
 };
 module.exports = exports['default'];
 
@@ -11544,7 +11787,7 @@ var _extend = __webpack_require__(3);
 
 var _extend2 = _interopRequireDefault(_extend);
 
-var _lodash = __webpack_require__(12);
+var _lodash = __webpack_require__(13);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -14302,7 +14545,7 @@ var _arrayUniq = __webpack_require__(4);
 
 var _arrayUniq2 = _interopRequireDefault(_arrayUniq);
 
-var _lodash = __webpack_require__(12);
+var _lodash = __webpack_require__(13);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -14354,7 +14597,7 @@ var _add_days = __webpack_require__(228);
 
 var _add_days2 = _interopRequireDefault(_add_days);
 
-var _add_months = __webpack_require__(14);
+var _add_months = __webpack_require__(15);
 
 var _add_months2 = _interopRequireDefault(_add_months);
 
@@ -15453,7 +15696,7 @@ module.exports = addDays
 /* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var addMonths = __webpack_require__(14)
+var addMonths = __webpack_require__(15)
 
 /**
  * @category Year Helpers
@@ -15484,7 +15727,7 @@ module.exports = addYears
 /***/ (function(module, exports, __webpack_require__) {
 
 var parse = __webpack_require__(1)
-var getDaysInMonth = __webpack_require__(15)
+var getDaysInMonth = __webpack_require__(16)
 
 /**
  * @category Month Helpers
@@ -15559,7 +15802,7 @@ module.exports = setYear
 
 var getDayOfYear = __webpack_require__(233)
 var getISOWeek = __webpack_require__(236)
-var getISOYear = __webpack_require__(16)
+var getISOYear = __webpack_require__(17)
 var parse = __webpack_require__(1)
 var isValid = __webpack_require__(239)
 var enLocale = __webpack_require__(240)
@@ -16088,7 +16331,7 @@ module.exports = startOfWeek
 /* 238 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getISOYear = __webpack_require__(16)
+var getISOYear = __webpack_require__(17)
 var startOfISOWeek = __webpack_require__(9)
 
 /**
@@ -16126,7 +16369,7 @@ module.exports = startOfISOYear
 /* 239 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isDate = __webpack_require__(13)
+var isDate = __webpack_require__(14)
 
 /**
  * @category Common Helpers
@@ -22903,7 +23146,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 
-var _Move = __webpack_require__(17);
+var _Move = __webpack_require__(10);
 
 var _Move2 = _interopRequireDefault(_Move);
 
@@ -23546,7 +23789,7 @@ var _arrayUniq = __webpack_require__(4);
 
 var _arrayUniq2 = _interopRequireDefault(_arrayUniq);
 
-var _Move = __webpack_require__(17);
+var _Move = __webpack_require__(10);
 
 var _Move2 = _interopRequireDefault(_Move);
 
@@ -24438,8 +24681,6 @@ var _axios2 = _interopRequireDefault(_axios);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var uploadWaitTime = 100;
-
 exports.default = {
     origin: 'Form',
     name: 'upload',
@@ -24488,7 +24729,7 @@ exports.default = {
         },
         ismax: function ismax() {
 
-            if (this.conf.max && this.data.value && this.data.value.length >= this.conf.max) {
+            if (this.conf.max && this.data.files && this.data.files.length >= this.conf.max) {
 
                 return true;
             }
@@ -24682,12 +24923,12 @@ exports.default = {
             var files = [];
             var values = this.get();
 
+            this.data.files = [];
+
             if ((typeof values === 'undefined' ? 'undefined' : _typeof(values)) !== 'object' || !(values instanceof Array)) {
 
                 return;
             }
-
-            this.data.files = [];
 
             var _iteratorNormalCompletion2 = true;
             var _didIteratorError2 = false;
@@ -24780,8 +25021,6 @@ exports.default = {
             this.data.inputKey++;
         },
         _addFile: function _addFile(file) {
-            var _this2 = this;
-
             var _createNewFileObj2 = this._createNewFileObj({
                 file: file,
                 uploadnow: true
@@ -24790,16 +25029,14 @@ exports.default = {
 
             if (!/^(http|https|\/\/)/.test(file.path)) {
 
-                setTimeout(function () {
-
-                    _this2._upload(index);
-                }, uploadWaitTime);
+                this._upload(index);
             }
         },
         _removeFile: function _removeFile(index) {
 
-            this._set(this._fetchValueFromFiles(), true);
             this.data.files.splice(index, 1);
+            this.data.failNote = '';
+            this._set(this._fetchValueFromFiles(), true, true);
         },
         _upload: function _upload(index) {
 
@@ -24807,7 +25044,7 @@ exports.default = {
             this._execUploadQueue();
         },
         _execUploadOnce: function _execUploadOnce() {
-            var _this3 = this;
+            var _this2 = this;
 
             if (this.data.uploadQueue.length === 0) {
 
@@ -24821,19 +25058,20 @@ exports.default = {
 
             Promise.resolve().then(function () {
 
-                _this3._setStatus(index, 'verification');
+                _this2._setStatus(index, 'verification');
 
-                if (_this3.conf.max && _this3.ismax) {
+                // do not use this.ismax
+                if (_this2.conf.max && _this2.data.value.length >= _this2.conf.max) {
 
                     return Promise.reject('upload file num is max.');
                 }
 
-                uploadObj.file = _this3.data.files[index].file;
-                uploadObj.name = _this3.data.files[index].name;
+                uploadObj.file = _this2.data.files[index].file;
+                uploadObj.name = _this2.data.files[index].name;
 
-                if (typeof _this3.conf.validate === 'function') {
+                if (typeof _this2.conf.validate === 'function') {
 
-                    return _this3.conf.validate(uploadObj.file);
+                    return _this2.conf.validate(uploadObj.file);
                 }
 
                 return true;
@@ -24841,56 +25079,56 @@ exports.default = {
 
                 if (typeof result === 'string') {
 
-                    _this3.data.failNote = result;
+                    _this2.data.failNote = result;
 
                     return Promise.reject('file not pass validate.');
                 }
 
-                _this3._setStatus(index, 'uploading');
+                _this2._setStatus(index, 'uploading');
 
-                if ((!_this3.conf.uploader || typeof _this3.conf.uploader !== 'function') && (_this3.morning._options.uploader === null || typeof _this3.morning._options.uploader !== 'function')) {
+                if ((!_this2.conf.uploader || typeof _this2.conf.uploader !== 'function') && (_this2.morning._options.uploader === null || typeof _this2.morning._options.uploader !== 'function')) {
 
                     return Promise.reject('file uploader must be a function.');
                 }
             }).then(function () {
 
-                if (typeof _this3.conf.uploader === 'function') {
+                if (typeof _this2.conf.uploader === 'function') {
 
-                    return _this3.conf.uploader(uploadObj);
+                    return _this2.conf.uploader(uploadObj);
                 }
 
-                return _this3.morning._options.uploader(uploadObj);
+                return _this2.morning._options.uploader(uploadObj);
             }).then(function (result) {
 
-                if (_this3.data.uploading === false) {
+                if (_this2.data.uploading === false) {
 
                     return;
                 }
 
                 if (result.status) {
 
-                    _this3.data.files[index].path = result.path;
-                    _this3.data.files[index].name = _this3._getName(result.path);
-                    _this3.data.files[index].data = result.data;
-                    _this3._set(_this3._fetchValueFromFiles(), true);
-                    _this3._setStatus(index, 'uploaded');
-                    _this3._setStatus(index, 'done');
-                    _this3._execUploadOnce();
+                    _this2.data.files[index].path = result.path;
+                    _this2.data.files[index].name = _this2._getName(result.path);
+                    _this2.data.files[index].data = result.data;
+                    _this2._set(_this2._fetchValueFromFiles(), true, true);
+                    _this2._setStatus(index, 'uploaded');
+                    _this2._setStatus(index, 'done');
+                    _this2._execUploadOnce();
                 } else {
 
-                    _this3.data.failNote = result.message || '上传失败';
-                    _this3._setStatus(index, 'fail');
-                    _this3._execUploadOnce();
+                    _this2.data.failNote = result.message || '上传失败';
+                    _this2._setStatus(index, 'fail');
+                    _this2._execUploadOnce();
                 }
             }).catch(function () {
 
-                if (_this3.data.uploading === false) {
+                if (_this2.data.uploading === false) {
 
                     return;
                 }
 
-                _this3._setStatus(index, 'fail');
-                _this3._execUploadOnce();
+                _this2._setStatus(index, 'fail');
+                _this2._execUploadOnce();
             });
         },
         _execUploadQueue: function _execUploadQueue() {
@@ -24920,16 +25158,51 @@ exports.default = {
                 }
             }
         },
-        set: function set(value) {
+        _set: function _set(value) {
+            var ignoreDisable = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+            var origin = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
-            this.data.uploading = false;
-            this.data.uploadQueue = [];
 
-            var result = this._set(value);
+            if (this.conf.state === 'disabled' && !ignoreDisable) {
 
-            this._syncFilesFromValue();
+                this._syncFilesFromValue();
 
-            return result;
+                return this;
+            }
+
+            var val = void 0;
+
+            if (!origin) {
+
+                this.data.uploading = false;
+                this.data.uploadQueue = [];
+            }
+
+            try {
+
+                val = JSON.parse(value);
+            } catch (e) {
+
+                val = value;
+            }
+
+            if ((typeof val === 'undefined' ? 'undefined' : _typeof(val)) === 'object') {
+
+                if (JSON.stringify(val) !== JSON.stringify(this.data.value)) {
+
+                    this.data.value = val;
+                }
+            } else {
+
+                this.data.value = value;
+            }
+
+            if (!origin) {
+
+                this._syncFilesFromValue();
+            }
+
+            return this;
         },
         uploadUrl: function uploadUrl(url) {
 
@@ -24941,6 +25214,10 @@ exports.default = {
             this._fetchRemoteFile(url);
 
             return this;
+        },
+        isUploading: function isUploading() {
+
+            return !!this.data.uploading;
         }
     },
     created: function created() {},
@@ -24967,7 +25244,7 @@ module.exports = __webpack_require__(299);
 var utils = __webpack_require__(2);
 var bind = __webpack_require__(18);
 var Axios = __webpack_require__(301);
-var defaults = __webpack_require__(10);
+var defaults = __webpack_require__(11);
 
 /**
  * Create an instance of Axios
@@ -25050,7 +25327,7 @@ function isSlowBuffer (obj) {
 "use strict";
 
 
-var defaults = __webpack_require__(10);
+var defaults = __webpack_require__(11);
 var utils = __webpack_require__(2);
 var InterceptorManager = __webpack_require__(311);
 var dispatchRequest = __webpack_require__(312);
@@ -25772,7 +26049,7 @@ module.exports = InterceptorManager;
 var utils = __webpack_require__(2);
 var transformData = __webpack_require__(313);
 var isCancel = __webpack_require__(21);
-var defaults = __webpack_require__(10);
+var defaults = __webpack_require__(11);
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -26161,6 +26438,1490 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
      require("vue-hot-reload-api").rerender("data-v-392f52b8", esExports)
+  }
+}
+
+/***/ }),
+/* 319 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(321);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_28c6c8c4_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(322);
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(320)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+
+/* template */
+
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default.a,
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_28c6c8c4_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__["a" /* default */],
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "src/lib/components/imagemap/index.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] index.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-28c6c8c4", Component.options)
+  } else {
+    hotAPI.reload("data-v-28c6c8c4", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
+
+
+/***/ }),
+/* 320 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 321 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+var _extend = __webpack_require__(3);
+
+var _extend2 = _interopRequireDefault(_extend);
+
+var _Move = __webpack_require__(10);
+
+var _Move2 = _interopRequireDefault(_Move);
+
+var _GlobalEvent = __webpack_require__(5);
+
+var _GlobalEvent2 = _interopRequireDefault(_GlobalEvent);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var zoneMinSize = 4;
+
+exports.default = {
+    origin: 'Form',
+    name: 'imagemap',
+    mixins: [_Move2.default, _GlobalEvent2.default],
+    props: {
+        allowUrl: {
+            type: Boolean,
+            default: false
+        },
+        allowDrag: {
+            type: Boolean,
+            default: false
+        },
+        multi: {
+            type: Boolean,
+            default: false
+        },
+        validate: {
+            type: Function,
+            default: function _default() {
+                return {};
+            }
+        },
+        uploader: {
+            type: Function,
+            default: undefined
+        },
+        cleanZone: {
+            type: Boolean,
+            default: true
+        },
+        max: {
+            type: Number,
+            default: 1
+        },
+        forbid: {
+            type: Array,
+            default: function _default() {
+                return [];
+            }
+        }
+    },
+    computed: {
+        _conf: function _conf() {
+
+            return {
+                allowUrl: this.allowUrl,
+                allowDrag: this.allowDrag,
+                multi: this.multi,
+                validate: this.validate,
+                uploader: this.uploader,
+                cleanZone: this.cleanZone,
+                max: this.max,
+                forbid: this.forbid
+            };
+        }
+    },
+    data: function data() {
+
+        return {
+            data: {
+                inited: false,
+                uploadValueSet: false,
+                uploadValueChanging: false,
+                syncing: false,
+                zoneId: 0,
+                images: [],
+                imagesLoading: false,
+                moveZoneId: null,
+                // containerCalibrate : {
+                //     x : 0,
+                //     y : 0
+                // },
+                overRange: false,
+                autoScrollCheck: null,
+                // resizing : false,
+                resizeZoneId: null,
+                resizeZoneEl: null,
+                resizeZoneType: null,
+                resizeZoneLastXY: {
+                    x: 0,
+                    y: 0
+                },
+                zones: [],
+                modifyZoneId: null,
+                modifyZoneBasic: {},
+                modifyZoneData: undefined
+            }
+        };
+    },
+    methods: {
+        _valueFilter: function _valueFilter(value) {
+
+            if ((typeof value === 'undefined' ? 'undefined' : _typeof(value)) !== 'object' || value === null || Object.prototype.toString.call(value) !== '[object Object]' || _typeof(value.images) !== 'object' || _typeof(value.zones) !== 'object' || !(value.images instanceof Array) || !(value.zones instanceof Array) || typeof value.w !== 'number' || typeof value.h !== 'number') {
+
+                value = {
+                    images: [],
+                    zones: [],
+                    w: 0,
+                    h: 0
+                };
+            }
+
+            return value;
+        },
+        _createZone: function _createZone(evt) {
+            var _this = this;
+
+            if (this.conf.state === 'disabled') {
+
+                return;
+            }
+
+            if (evt.srcElement.classList.value.split(' ').indexOf('zonearea') === -1) {
+
+                return;
+            }
+
+            var x = evt.x;
+            var y = evt.y;
+            var $zonearea = this.$refs['ui-imagemap-mapdialog-' + this.uiid].$el.querySelector('.zonearea');
+            var areaX = $zonearea.getBoundingClientRect().x;
+            var areaY = $zonearea.getBoundingClientRect().y;
+            var id = void 0;
+
+            id = this.addZone({
+                x: x - areaX,
+                y: y - areaY
+            });
+
+            this.Vue.nextTick(function () {
+
+                _this._reizeZoneStart(evt, id, 'bottomright');
+            });
+        },
+        _resizeZoneMove: function _resizeZoneMove(evt) {
+
+            var zone = this.data.zones[this.data.resizeZoneId];
+            var $zonearea = this.$refs['ui-imagemap-mapdialog-' + this.uiid].$el.querySelector('.zonearea');
+            var $zone = this.$refs['ui-imagemap-mapdialog-' + this.uiid].$el.querySelector('[zone-id="' + this.data.resizeZoneId + '"]');
+            var x = +zone.x;
+            var y = +zone.y;
+            var w = +zone.w;
+            var h = +zone.h;
+            var ox = void 0,
+                oy = void 0,
+                ow = void 0,
+                oh = void 0;
+
+            this._resizeClean();
+
+            this.data.resizeZoneEl.classList.add('resize-' + this.data.resizeZoneType);
+            this.data.resizeZoneEl.classList.add('resize');
+            $zonearea.classList.add('resize-' + this.data.resizeZoneType);
+
+            if (/right/.test(this.data.resizeZoneType)) {
+
+                ow = w;
+                w += evt.x - this.data.resizeZoneLastXY.x;
+
+                if (w < zoneMinSize) {
+
+                    this._resizeClean();
+
+                    this.data.resizeZoneType = this.data.resizeZoneType.replace('right', 'left');
+                    this.data.resizeZoneEl.classList.add('resize-' + this.data.resizeZoneType);
+                    this.data.resizeZoneEl.classList.add('resize');
+                    $zonearea.classList.add('resize-' + this.data.resizeZoneType);
+
+                    if (w > -zoneMinSize) {
+
+                        zone.w = zoneMinSize;
+                        zone.x -= zone.w;
+                        this.data.resizeZoneLastXY.x = $zone.getBoundingClientRect().x - zone.w;
+                    } else {
+
+                        zone.w = Math.abs(w);
+                        zone.x -= zone.w;
+                        this.data.resizeZoneLastXY.x = $zone.getBoundingClientRect().x - zone.w;
+                    }
+
+                    return;
+                }
+
+                if (w + x > $zonearea.clientWidth) {
+
+                    w = $zonearea.clientWidth - x;
+                    this.data.overRange = true;
+                } else {
+
+                    this.data.overRange = false;
+                }
+            }
+
+            if (/left/.test(this.data.resizeZoneType)) {
+
+                ox = x;
+                ow = w;
+                x += evt.x - this.data.resizeZoneLastXY.x;
+                w -= evt.x - this.data.resizeZoneLastXY.x;
+
+                if (w < zoneMinSize) {
+
+                    this._resizeClean();
+
+                    this.data.resizeZoneType = this.data.resizeZoneType.replace('left', 'right');
+                    this.data.resizeZoneEl.classList.add('resize-' + this.data.resizeZoneType);
+                    this.data.resizeZoneEl.classList.add('resize');
+                    $zonearea.classList.add('resize-' + this.data.resizeZoneType);
+
+                    if (w > -zoneMinSize) {
+
+                        zone.w = zoneMinSize;
+                        zone.x += ow;
+                        this.data.resizeZoneLastXY.x = $zone.getBoundingClientRect().x + ow;
+                    } else {
+
+                        zone.w = Math.abs(w + ow);
+                        zone.x += ow;
+                        this.data.resizeZoneLastXY.x = $zone.getBoundingClientRect().x + ow;
+                    }
+
+                    return;
+                }
+
+                if (x < 0) {
+
+                    x = 0;
+                    w = ow - (x - ox);
+                    this.data.overRange = true;
+                } else {
+
+                    this.data.overRange = false;
+                }
+            }
+
+            if (/bottom/.test(this.data.resizeZoneType)) {
+
+                oh = h;
+                h += evt.y - this.data.resizeZoneLastXY.y;
+
+                if (h < zoneMinSize) {
+
+                    this._resizeClean();
+
+                    this.data.resizeZoneType = this.data.resizeZoneType.replace('bottom', 'top');
+                    this.data.resizeZoneEl.classList.add('resize-' + this.data.resizeZoneType);
+                    this.data.resizeZoneEl.classList.add('resize');
+                    $zonearea.classList.add('resize-' + this.data.resizeZoneType);
+
+                    if (h > -zoneMinSize) {
+
+                        zone.h = zoneMinSize;
+                        zone.y -= zone.h;
+                        this.data.resizeZoneLastXY.y = $zone.getBoundingClientRect().y - zone.h;
+                    } else {
+
+                        zone.h = Math.abs(h);
+                        zone.y -= zone.h;
+                        this.data.resizeZoneLastXY.y = $zone.getBoundingClientRect().y - zone.h;
+                    }
+
+                    return;
+                }
+
+                if (h + y > $zonearea.clientHeight) {
+
+                    h = $zonearea.clientHeight - y;
+                    this.data.overRange = true;
+                } else {
+
+                    this.data.overRange = false;
+                }
+            }
+
+            if (/top/.test(this.data.resizeZoneType)) {
+
+                oy = y;
+                oh = h;
+                y += evt.y - this.data.resizeZoneLastXY.y;
+                h -= evt.y - this.data.resizeZoneLastXY.y;
+
+                if (h < zoneMinSize) {
+
+                    this._resizeClean();
+
+                    this.data.resizeZoneType = this.data.resizeZoneType.replace('top', 'bottom');
+                    this.data.resizeZoneEl.classList.add('resize-' + this.data.resizeZoneType);
+                    this.data.resizeZoneEl.classList.add('resize');
+                    $zonearea.classList.add('resize-' + this.data.resizeZoneType);
+
+                    if (h > -zoneMinSize) {
+
+                        zone.h = zoneMinSize;
+                        zone.y += oh;
+                        this.data.resizeZoneLastXY.y = $zone.getBoundingClientRect().y + oh;
+                    } else {
+
+                        zone.h = Math.abs(h + oh);
+                        zone.y += oh;
+                        this.data.resizeZoneLastXY.y = $zone.getBoundingClientRect().y + oh;
+                    }
+
+                    return;
+                }
+
+                if (y < 0) {
+
+                    y = 0;
+                    h = oh - (y - oy);
+                    this.data.overRange = true;
+                } else {
+
+                    this.data.overRange = false;
+                }
+            }
+
+            this.data.resizeZoneLastXY.x = evt.x;
+            this.data.resizeZoneLastXY.y = evt.y;
+
+            zone.x = x;
+            zone.y = y;
+            zone.h = h;
+            zone.w = w;
+        },
+        _reizeZoneStart: function _reizeZoneStart(evt, id, type) {
+
+            if (this.conf.state === 'disabled') {
+
+                return;
+            }
+
+            var $zone = this.$refs['ui-imagemap-mapdialog-' + this.uiid].$el.querySelector('[zone-id="' + id + '"]');
+
+            this.data.resizeZoneEl = $zone;
+            this.data.resizeZoneId = id;
+            this.data.resizeZoneType = type;
+            this.data.resizeZoneLastXY.x = evt.x;
+            this.data.resizeZoneLastXY.y = evt.y;
+
+            this._globalEventAdd('mousemove', '_resizeZoneMove');
+            this._globalEventAdd('mouseup', '_resizeZoneStop');
+        },
+        _resizeClean: function _resizeClean() {
+
+            var $zonearea = this.$refs['ui-imagemap-mapdialog-' + this.uiid].$el.querySelector('.zonearea');
+
+            this.data.resizeZoneEl.classList.remove('resize-top');
+            this.data.resizeZoneEl.classList.remove('resize-bottom');
+            this.data.resizeZoneEl.classList.remove('resize-left');
+            this.data.resizeZoneEl.classList.remove('resize-right');
+            this.data.resizeZoneEl.classList.remove('resize-topleft');
+            this.data.resizeZoneEl.classList.remove('resize-topright');
+            this.data.resizeZoneEl.classList.remove('resize-bottomleft');
+            this.data.resizeZoneEl.classList.remove('resize-bottomright');
+            this.data.resizeZoneEl.classList.remove('resize');
+
+            $zonearea.classList.remove('resize-top');
+            $zonearea.classList.remove('resize-bottom');
+            $zonearea.classList.remove('resize-left');
+            $zonearea.classList.remove('resize-right');
+            $zonearea.classList.remove('resize-topleft');
+            $zonearea.classList.remove('resize-topright');
+            $zonearea.classList.remove('resize-bottomleft');
+            $zonearea.classList.remove('resize-bottomright');
+        },
+        _resizeZoneStop: function _resizeZoneStop(evt) {
+
+            evt.stopPropagation();
+
+            this._resizeClean();
+
+            this._globalEventRemove('mousemove', '_resizeZoneMove');
+            this._globalEventRemove('mouseup', '_resizeZoneStop');
+
+            this.data.overRange = false;
+        },
+        _zoneRangeFilter: function _zoneRangeFilter(zone) {
+
+            var $zonearea = this.$refs['ui-imagemap-mapdialog-' + this.uiid].$el.querySelector('.zonearea');
+
+            if (zone.x < 0) {
+
+                zone.x = 0;
+            }
+
+            if (zone.x + zone.w > $zonearea.clientWidth) {
+
+                if (zone.w < $zonearea.clientWidth) {
+
+                    zone.x = $zonearea.clientWidth - zone.w;
+                } else if (zone.x < $zonearea.clientWidth) {
+
+                    zone.w = $zonearea.clientWidth - zone.x;
+                } else {
+
+                    zone.x = 0;
+                    zone.w = $zonearea.clientWidth;
+                }
+            }
+
+            if (zone.y < 0) {
+
+                zone.y = 0;
+            }
+
+            if (zone.y + zone.h > $zonearea.clientHeight) {
+
+                if (zone.h < $zonearea.clientHeight) {
+
+                    zone.y = $zonearea.clientHeight - zone.h;
+                } else if (zone.y < $zonearea.clientHeight) {
+
+                    zone.h = $zonearea.clientHeight - zone.y;
+                } else {
+
+                    zone.y = 0;
+                    zone.h = $zonearea.clientHeight;
+                }
+            }
+
+            if (zone.w < zoneMinSize) {
+
+                zone.w = zoneMinSize;
+            }
+
+            if (zone.h < zoneMinSize) {
+
+                zone.h = zoneMinSize;
+            }
+        },
+        _saveZoneModify: function _saveZoneModify() {
+
+            var id = this.data.modifyZoneId;
+
+            this.updateZone(id, {
+                w: +this.data.modifyZoneBasic.w,
+                h: +this.data.modifyZoneBasic.h,
+                x: +this.data.modifyZoneBasic.x,
+                y: +this.data.modifyZoneBasic.y,
+                i: +this.data.modifyZoneBasic.i,
+                data: this.morning.getGroup('ui-imagemap-data-' + this.uiid)
+            });
+
+            this.$refs['ui-imagemap-zonedialog-' + this.uiid].toggle(false);
+        },
+        _removeZone: function _removeZone() {
+
+            this.removeZone(this.data.modifyZoneId);
+            this.$refs['ui-imagemap-zonedialog-' + this.uiid].toggle(false);
+        },
+        _openZoneModify: function _openZoneModify(id) {
+
+            var zone = this.data.zones[id];
+
+            this.data.modifyZoneId = id;
+            this.data.modifyZoneBasic = {
+                w: zone.w,
+                h: zone.h,
+                x: zone.x,
+                y: zone.y,
+                i: zone.i
+            };
+            this.morning.cleanGroup('ui-imagemap-data-' + this.uiid);
+            this.morning.setGroup('ui-imagemap-data-' + this.uiid, zone.data || {});
+            this.$refs['ui-imagemap-zonedialog-' + this.uiid].toggle(true);
+        },
+        _openMap: function _openMap() {
+            var _this2 = this;
+
+            this.$refs['ui-imagemap-mapdialog-' + this.uiid].toggle(true);
+
+            if (this.conf.state === 'disabled') {
+
+                return;
+            }
+
+            setTimeout(function () {
+                var _iteratorNormalCompletion = true;
+                var _didIteratorError = false;
+                var _iteratorError = undefined;
+
+                try {
+
+                    for (var _iterator = _this2.data.zones[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                        var zone = _step.value;
+
+
+                        _this2._zoneRangeFilter(zone);
+                    }
+                } catch (err) {
+                    _didIteratorError = true;
+                    _iteratorError = err;
+                } finally {
+                    try {
+                        if (!_iteratorNormalCompletion && _iterator.return) {
+                            _iterator.return();
+                        }
+                    } finally {
+                        if (_didIteratorError) {
+                            throw _iteratorError;
+                        }
+                    }
+                }
+
+                _this2._updateMoveRange();
+                _this2.Move.target = '.zone';
+                _this2.Move.scrollContainer = '.body';
+                _this2.Move.container = '.zonearea';
+                _this2.Move.$root = _this2.$refs['ui-imagemap-mapdialog-' + _this2.uiid].$el;
+                _this2.Move.delay = 0;
+                _this2.Move.type = 'absolute';
+                _this2.Move.can = true;
+            });
+        },
+        _uploadValueChange: function _uploadValueChange() {
+            var _this3 = this;
+
+            var upload = this.$refs['ui-imagemap-upload-' + this.uiid];
+
+            if (!this.data.inited) {
+
+                return;
+            }
+
+            if (upload.isUploading()) {
+
+                return;
+            }
+
+            var images = upload.get();
+            var loadList = [];
+
+            if (this.conf.cleanZone && !this.data.uploadValueSet) {
+
+                this.cleanZones();
+            }
+
+            this.data.imagesLoading = true;
+
+            var _loop = function _loop(image) {
+
+                var imgEle = new Image();
+
+                imgEle.src = image.path;
+
+                loadList.push(new Promise(function (resolve) {
+
+                    imgEle.addEventListener('load', resolve);
+                }));
+            };
+
+            var _iteratorNormalCompletion2 = true;
+            var _didIteratorError2 = false;
+            var _iteratorError2 = undefined;
+
+            try {
+                for (var _iterator2 = images[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                    var image = _step2.value;
+
+                    _loop(image);
+                }
+            } catch (err) {
+                _didIteratorError2 = true;
+                _iteratorError2 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                        _iterator2.return();
+                    }
+                } finally {
+                    if (_didIteratorError2) {
+                        throw _iteratorError2;
+                    }
+                }
+            }
+
+            Promise.all(loadList).then(function () {
+
+                _this3.data.uploadValueChanging = true;
+                _this3.data.imagesLoading = false;
+                _this3.data.images = images;
+            });
+        },
+        _updateMoveRange: function _updateMoveRange() {
+
+            var $zonearea = this.$refs['ui-imagemap-mapdialog-' + this.uiid].$el.querySelector('.zonearea');
+
+            this.Move.range = [0, 0, $zonearea.clientWidth, $zonearea.clientHeight];
+        },
+        _dropZone: function _dropZone() {},
+        _moveZone: function _moveZone(id, x, y) {
+
+            var zone = this.data.zones[id];
+
+            if (zone) {
+
+                zone.x = x;
+                zone.y = y;
+            }
+        },
+        _syncFromValue: function _syncFromValue() {
+            var _this4 = this;
+
+            var value = this.get();
+
+            this.data.syncing = true;
+
+            if ((typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object' && value !== null) {
+
+                this.data.images = value.images || [];
+                this.data.zones = value.zones || [];
+            } else {
+
+                this.data.images = [];
+                this.data.zones = [];
+            }
+
+            this.Vue.nextTick(function () {
+
+                _this4.data.syncing = false;
+            });
+        },
+        _syncFromZoneImage: function _syncFromZoneImage() {
+
+            if (this.data.syncing) {
+
+                return;
+            }
+
+            var result = {};
+            var $zonearea = this.$refs['ui-imagemap-mapdialog-' + this.uiid].$el.querySelector('.zonearea');
+
+            result.images = this.data.images;
+            result.zones = this.data.zones;
+            result.w = $zonearea.clientWidth;
+            result.h = $zonearea.clientHeight;
+
+            this._set(result, true);
+        },
+        set: function set(value) {
+
+            var result = this._set(value);
+
+            this._syncFromValue();
+
+            return result;
+        },
+        addZone: function addZone(zone) {
+
+            zone = (0, _extend2.default)({
+                w: zoneMinSize,
+                h: zoneMinSize,
+                x: 0,
+                y: 0,
+                i: 0,
+                data: undefined
+            }, zone);
+
+            this._zoneRangeFilter(zone);
+
+            var index = this.data.zones.push(zone);
+
+            return index - 1;
+        },
+        removeZone: function removeZone(index) {
+
+            this.data.zones.splice(index, 1);
+
+            return this;
+        },
+        updateZone: function updateZone(index, zone) {
+
+            zone.w = +zone.w;
+            zone.h = +zone.h;
+            zone.x = +zone.x;
+            zone.y = +zone.y;
+            zone.i = +zone.i || 0;
+
+            (0, _extend2.default)(true, this.data.zones[index], zone);
+
+            this._zoneRangeFilter(this.data.zones[index]);
+
+            if (this.data.zones[index].i < 1) {
+
+                this.data.zones[index].i = 0;
+            }
+
+            if (this.data.zones[index].data === undefined) {
+
+                delete this.data.zones[index].data;
+            }
+
+            return this;
+        },
+        cleanZones: function cleanZones() {
+
+            this.data.zones = [];
+
+            return this;
+        }
+    },
+    created: function created() {},
+    mounted: function mounted() {
+        var _this5 = this;
+
+        this.$watch('data.zones', function () {
+
+            _this5._syncFromZoneImage();
+        }, {
+            deep: true
+        });
+
+        this.$watch('data.images', function () {
+
+            if (_this5.data.uploadValueChanging) {
+
+                _this5.data.uploadValueChanging = false;
+
+                return;
+            }
+
+            _this5._syncFromZoneImage();
+            _this5.data.uploadValueSet = true;
+            _this5.$refs['ui-imagemap-upload-' + _this5.uiid]._set(_this5.data.images, true);
+            _this5.Vue.nextTick(function () {
+
+                _this5.data.uploadValueSet = false;
+            });
+        }, {
+            deep: true
+        });
+
+        this.set(this.data.value);
+
+        this.Vue.nextTick(function () {
+
+            _this5.data.inited = true;
+        });
+
+        this.$on('_moveOnXMin', function () {
+            return _this5.data.overRange = true;
+        });
+        this.$on('_moveOnYMin', function () {
+            return _this5.data.overRange = true;
+        });
+        this.$on('_moveOnXMax', function () {
+            return _this5.data.overRange = true;
+        });
+        this.$on('_moveOnYMax', function () {
+            return _this5.data.overRange = true;
+        });
+        this.$on('_moveOffXMin', function () {
+            return _this5.data.overRange = false;
+        });
+        this.$on('_moveOffYMin', function () {
+            return _this5.data.overRange = false;
+        });
+        this.$on('_moveOffXMax', function () {
+            return _this5.data.overRange = false;
+        });
+        this.$on('_moveOffYMax', function () {
+            return _this5.data.overRange = false;
+        });
+
+        this.$on('_moveStarted', function () {
+
+            _this5.data.moveZoneId = _this5.Move.$moveDragItem.getAttribute('zone-id');
+        });
+
+        this.$on('_moveEnded', function () {
+
+            if (_this5.data.moveZoneId !== null) {
+
+                _this5._moveZone(_this5.data.moveZoneId, _this5.Move.current.x, _this5.Move.current.y);
+            }
+
+            _this5.data.overRange = false;
+        });
+    }
+};
+module.exports = exports['default'];
+
+/***/ }),
+/* 322 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('mor-imagemap', {
+    class: [_vm.stateClass],
+    attrs: {
+      "_uiid": _vm.uiid,
+      "form-name": _vm.formName,
+      "form-key": _vm.formKey,
+      "group": _vm.group,
+      "default-value": _vm.defaultValue,
+      "hide-name": _vm.hideName,
+      "allow-url": _vm.allowUrl,
+      "allow-drag": _vm.allowDrag,
+      "multi": _vm.multi,
+      "validate": _vm.validate,
+      "uploader": _vm.uploader,
+      "clean-zone": _vm.cleanZone,
+      "max": _vm.max,
+      "forbid": _vm.forbid
+    }
+  }, [_c('morning-upload', {
+    ref: 'ui-imagemap-upload-' + _vm.uiid,
+    attrs: {
+      "form-name": _vm.conf.formName,
+      "max": _vm.conf.max,
+      "multi": _vm.conf.multi,
+      "allow-url": _vm.conf.allowUrl,
+      "allow-drag": _vm.conf.allowDrag,
+      "validate": _vm.conf.validate,
+      "uploader": _vm.conf.uploader,
+      "state": _vm.conf.state,
+      "accept-type": "image/*"
+    },
+    on: {
+      "value-change": _vm._uploadValueChange
+    }
+  }), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.data.imagesLoading || _vm.data.images.length > 0),
+      expression: "data.imagesLoading || data.images.length > 0"
+    }],
+    staticClass: "operate",
+    class: {
+      loading: _vm.data.imagesLoading
+    }
+  }, [_c('span', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.data.imagesLoading),
+      expression: "data.imagesLoading"
+    }]
+  }, [_vm._v("获取图片中...")]), _vm._v(" "), _c('span', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (!_vm.data.imagesLoading && _vm.data.images.length > 0),
+      expression: "!data.imagesLoading && data.images.length > 0"
+    }],
+    staticClass: "modify-map",
+    on: {
+      "click": _vm._openMap
+    }
+  }, [(_vm.conf.state === 'disabled') ? [_c('i', {
+    staticClass: "morningicon"
+  }, [_vm._v("")]), _vm._v(" 查看热区\n        ")] : [_c('i', {
+    staticClass: "morningicon"
+  }, [_vm._v("")]), _vm._v(" 绘制热区\n        ")]], 2)]), _vm._v(" "), _c('morning-dialog', {
+    ref: 'ui-imagemap-mapdialog-' + _vm.uiid,
+    staticClass: "mor-imagemap-dialog-map show-no-animate",
+    class: {
+      'imagemap-disabled': _vm.conf.state === 'disabled'
+    },
+    attrs: {
+      "color": "gray",
+      "width": "60%",
+      "height": "90%",
+      "auto-close": false
+    }
+  }, [_c('header', {
+    attrs: {
+      "slot": "header"
+    },
+    slot: "header"
+  }, [(_vm.conf.state === 'disabled') ? [_vm._v("\n            查看热区\n        ")] : [_vm._v("\n            绘制热区\n        ")]], 2), _vm._v(" "), _c('div', {
+    staticClass: "maparea"
+  }, [_c('div', {
+    staticClass: "zonearea",
+    class: {
+      'over-range': _vm.data.overRange
+    },
+    on: {
+      "mousedown": function($event) {
+        if (!('button' in $event) && _vm._k($event.keyCode, "left", 37, $event.key)) { return null; }
+        if ('button' in $event && $event.button !== 0) { return null; }
+        $event.stopPropagation();
+        _vm._createZone($event)
+      }
+    }
+  }, _vm._l((_vm.data.zones), function(zone, index) {
+    return _c('div', {
+      staticClass: "zone",
+      style: ({
+        width: zone.w + 'px',
+        height: zone.h + 'px',
+        top: zone.y + 'px',
+        left: zone.x + 'px',
+        'z-index': (zone.i || (index + 1))
+      }),
+      attrs: {
+        "zone-id": index
+      },
+      on: {
+        "mousedown": function($event) {
+          _vm._moveItemRecord(index)
+        },
+        "drop": function($event) {
+          $event.stopPropagation();
+          $event.preventDefault();
+          _vm._dropZone($event)
+        },
+        "contextmenu": function($event) {
+          $event.preventDefault();
+          $event.stopPropagation();
+          _vm._openZoneModify(index)
+        }
+      }
+    }, [_c('div', {
+      staticClass: "topleft",
+      on: {
+        "mousedown": function($event) {
+          if (!('button' in $event) && _vm._k($event.keyCode, "left", 37, $event.key)) { return null; }
+          if ('button' in $event && $event.button !== 0) { return null; }
+          $event.stopPropagation();
+          _vm._reizeZoneStart($event, index, 'topleft')
+        }
+      }
+    }), _vm._v(" "), _c('div', {
+      staticClass: "top",
+      on: {
+        "mousedown": function($event) {
+          if (!('button' in $event) && _vm._k($event.keyCode, "left", 37, $event.key)) { return null; }
+          if ('button' in $event && $event.button !== 0) { return null; }
+          $event.stopPropagation();
+          _vm._reizeZoneStart($event, index, 'top')
+        }
+      }
+    }), _vm._v(" "), _c('div', {
+      staticClass: "topright",
+      on: {
+        "mousedown": function($event) {
+          if (!('button' in $event) && _vm._k($event.keyCode, "left", 37, $event.key)) { return null; }
+          if ('button' in $event && $event.button !== 0) { return null; }
+          $event.stopPropagation();
+          _vm._reizeZoneStart($event, index, 'topright')
+        }
+      }
+    }), _vm._v(" "), _c('div', {
+      staticClass: "right",
+      on: {
+        "mousedown": function($event) {
+          if (!('button' in $event) && _vm._k($event.keyCode, "left", 37, $event.key)) { return null; }
+          if ('button' in $event && $event.button !== 0) { return null; }
+          $event.stopPropagation();
+          _vm._reizeZoneStart($event, index, 'right')
+        }
+      }
+    }), _vm._v(" "), _c('div', {
+      staticClass: "bottomright",
+      on: {
+        "mousedown": function($event) {
+          if (!('button' in $event) && _vm._k($event.keyCode, "left", 37, $event.key)) { return null; }
+          if ('button' in $event && $event.button !== 0) { return null; }
+          $event.stopPropagation();
+          _vm._reizeZoneStart($event, index, 'bottomright')
+        }
+      }
+    }), _vm._v(" "), _c('div', {
+      staticClass: "bottom",
+      on: {
+        "mousedown": function($event) {
+          if (!('button' in $event) && _vm._k($event.keyCode, "left", 37, $event.key)) { return null; }
+          if ('button' in $event && $event.button !== 0) { return null; }
+          $event.stopPropagation();
+          _vm._reizeZoneStart($event, index, 'bottom')
+        }
+      }
+    }), _vm._v(" "), _c('div', {
+      staticClass: "bottomleft",
+      on: {
+        "mousedown": function($event) {
+          if (!('button' in $event) && _vm._k($event.keyCode, "left", 37, $event.key)) { return null; }
+          if ('button' in $event && $event.button !== 0) { return null; }
+          $event.stopPropagation();
+          _vm._reizeZoneStart($event, index, 'bottomleft')
+        }
+      }
+    }), _vm._v(" "), _c('div', {
+      staticClass: "left",
+      on: {
+        "mousedown": function($event) {
+          if (!('button' in $event) && _vm._k($event.keyCode, "left", 37, $event.key)) { return null; }
+          if ('button' in $event && $event.button !== 0) { return null; }
+          $event.stopPropagation();
+          _vm._reizeZoneStart($event, index, 'left')
+        }
+      }
+    })])
+  })), _vm._v(" "), _vm._l((_vm.data.images), function(image) {
+    return [_c('img', {
+      attrs: {
+        "src": image.path
+      }
+    })]
+  })], 2), _vm._v(" "), _c('footer', {
+    attrs: {
+      "slot": "footer"
+    },
+    slot: "footer"
+  }, [_c('span', [_vm._v("鼠标左键拖拽移动热区/调整尺寸，鼠标右键点击编辑数据")]), _vm._v(" "), _c('div', [_c('ui-btn', {
+    attrs: {
+      "color": "minor"
+    },
+    on: {
+      "emit": function($event) {
+        _vm.morning.findVM('ui-imagemap-mapdialog-' + _vm.uiid).toggle(false)
+      }
+    }
+  }, [_vm._v("关闭")])], 1)])]), _vm._v(" "), _c('morning-dialog', {
+    ref: 'ui-imagemap-zonedialog-' + _vm.uiid,
+    staticClass: "mor-imagemap-dialog-zone",
+    attrs: {
+      "color": "gray",
+      "width": "600px",
+      "height": "90%"
+    }
+  }, [_c('header', {
+    attrs: {
+      "slot": "header"
+    },
+    slot: "header"
+  }, [_vm._v("\n        编辑热区\n    ")]), _vm._v(" "), _c('morning-tab', {
+    staticClass: "block"
+  }, [(_vm.$scopedSlots.default || _vm.$slots.default) ? _c('div', {
+    attrs: {
+      "slot": "数据"
+    },
+    slot: "数据"
+  }, [_vm._t("default", null, {
+    group: 'ui-imagemap-data-' + _vm.uiid
+  })], 2) : _vm._e(), _vm._v(" "), _c('div', {
+    attrs: {
+      "slot": "位置"
+    },
+    slot: "位置"
+  }, [_c('ui-formgroup', [_c('div', {
+    staticClass: "item"
+  }, [_c('h5', {
+    staticClass: "title"
+  }, [_c('ui-center', {
+    staticClass: "fill"
+  }, [_vm._v("Width")])], 1), _vm._v(" "), _c('div', {
+    staticClass: "content"
+  }, [_c('p', [_vm._v("仅支持数字")]), _vm._v(" "), _c('div', {
+    staticClass: "form"
+  }, [_c('ui-textinput', {
+    attrs: {
+      "group": 'ui-imagemap-basicset-' + _vm.uiid,
+      "form-key": "w"
+    },
+    model: {
+      value: (_vm.data.modifyZoneBasic.w),
+      callback: function($$v) {
+        _vm.$set(_vm.data.modifyZoneBasic, "w", $$v)
+      },
+      expression: "data.modifyZoneBasic.w"
+    }
+  })], 1)])]), _vm._v(" "), _c('div', {
+    staticClass: "item"
+  }, [_c('h5', {
+    staticClass: "title"
+  }, [_c('ui-center', {
+    staticClass: "fill"
+  }, [_vm._v("Height")])], 1), _vm._v(" "), _c('div', {
+    staticClass: "content"
+  }, [_c('p', [_vm._v("仅支持数字")]), _vm._v(" "), _c('div', {
+    staticClass: "form"
+  }, [_c('ui-textinput', {
+    attrs: {
+      "group": 'ui-imagemap-basicset-' + _vm.uiid,
+      "form-key": "h"
+    },
+    model: {
+      value: (_vm.data.modifyZoneBasic.h),
+      callback: function($$v) {
+        _vm.$set(_vm.data.modifyZoneBasic, "h", $$v)
+      },
+      expression: "data.modifyZoneBasic.h"
+    }
+  })], 1)])]), _vm._v(" "), _c('div', {
+    staticClass: "item"
+  }, [_c('h5', {
+    staticClass: "title"
+  }, [_c('ui-center', {
+    staticClass: "fill"
+  }, [_vm._v("Left")])], 1), _vm._v(" "), _c('div', {
+    staticClass: "content"
+  }, [_c('p', [_vm._v("仅支持数字")]), _vm._v(" "), _c('div', {
+    staticClass: "form"
+  }, [_c('ui-textinput', {
+    attrs: {
+      "group": 'ui-imagemap-basicset-' + _vm.uiid,
+      "form-key": "x"
+    },
+    model: {
+      value: (_vm.data.modifyZoneBasic.x),
+      callback: function($$v) {
+        _vm.$set(_vm.data.modifyZoneBasic, "x", $$v)
+      },
+      expression: "data.modifyZoneBasic.x"
+    }
+  })], 1)])]), _vm._v(" "), _c('div', {
+    staticClass: "item"
+  }, [_c('h5', {
+    staticClass: "title"
+  }, [_c('ui-center', {
+    staticClass: "fill"
+  }, [_vm._v("Top")])], 1), _vm._v(" "), _c('div', {
+    staticClass: "content"
+  }, [_c('p', [_vm._v("仅支持数字")]), _vm._v(" "), _c('div', {
+    staticClass: "form"
+  }, [_c('ui-textinput', {
+    attrs: {
+      "group": 'ui-imagemap-basicset-' + _vm.uiid,
+      "form-key": "y"
+    },
+    model: {
+      value: (_vm.data.modifyZoneBasic.y),
+      callback: function($$v) {
+        _vm.$set(_vm.data.modifyZoneBasic, "y", $$v)
+      },
+      expression: "data.modifyZoneBasic.y"
+    }
+  })], 1)])]), _vm._v(" "), _c('div', {
+    staticClass: "item"
+  }, [_c('h5', {
+    staticClass: "title"
+  }, [_c('ui-center', {
+    staticClass: "fill"
+  }, [_vm._v("Index(层级)")])], 1), _vm._v(" "), _c('div', {
+    staticClass: "content"
+  }, [_c('p', [_vm._v("仅支持数字，0表示采用默认层级")]), _vm._v(" "), _c('div', {
+    staticClass: "form"
+  }, [_c('ui-textinput', {
+    attrs: {
+      "group": 'ui-imagemap-basicset-' + _vm.uiid,
+      "form-key": "i"
+    },
+    model: {
+      value: (_vm.data.modifyZoneBasic.i),
+      callback: function($$v) {
+        _vm.$set(_vm.data.modifyZoneBasic, "i", $$v)
+      },
+      expression: "data.modifyZoneBasic.i"
+    }
+  })], 1)])])])], 1)]), _vm._v(" "), _c('footer', {
+    attrs: {
+      "slot": "footer"
+    },
+    slot: "footer"
+  }, [_c('div', [_c('ui-link', {
+    attrs: {
+      "color": "minor"
+    },
+    on: {
+      "emit": function($event) {
+        _vm.morning.findVM('ui-imagemap-zonedialog-' + _vm.uiid).toggle(false)
+      }
+    }
+  }, [_vm._v("取消")]), _vm._v(" "), (_vm.conf.state !== 'disabled') ? _c('ui-btn', {
+    attrs: {
+      "color": "danger"
+    },
+    on: {
+      "emit": _vm._removeZone
+    }
+  }, [_vm._v("删除")]) : _vm._e(), _vm._v(" "), (_vm.conf.state !== 'disabled') ? _c('ui-btn', {
+    attrs: {
+      "color": "success"
+    },
+    on: {
+      "emit": _vm._saveZoneModify
+    }
+  }, [_vm._v("保存")]) : _vm._e()], 1)])], 1)], 1)
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-28c6c8c4", esExports)
   }
 }
 

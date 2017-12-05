@@ -18,7 +18,7 @@
 
     :::democode/html
     <div style="width:300px">
-        <ui-calendar :highlight-day="[new Date('2017-11-5'), [new Date('2017-11-9'), new Date('2017-11-11')], [new Date('2017-10-27'), new Date('2017-11-2')], [new Date('2017-12-7'), new Date('2017-12-20')], new Date('2017-12-15')]"></ui-calendar>
+        <ui-calendar></ui-calendar>
     </div>
     :::
     
