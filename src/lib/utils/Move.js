@@ -88,7 +88,6 @@ let Move = {
 
             }, this.Move.delay);
 
-
         },
         _moveStart : function (evt) {
             
@@ -216,7 +215,7 @@ let Move = {
             this._moveCore();
 
         },
-        _moveScroll : function (evt) {
+        _moveScroll : function () {
 
             if (this.Move.type === 'absolute' && this.Move.scrollContainer) {
 

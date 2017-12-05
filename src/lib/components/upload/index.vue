@@ -107,8 +107,6 @@
 import extend                       from 'extend';
 import axios                        from 'axios';
 
-const uploadWaitTime = 100;
-
 export default {
     origin : 'Form',
     name : 'upload',
@@ -461,11 +459,7 @@ export default {
 
             if (!/^(http|https|\/\/)/.test(file.path)) {
 
-                // setTimeout(() => {
-
-                    this._upload(index);
-
-                // }, uploadWaitTime);
+                this._upload(index);
 
             }
 
