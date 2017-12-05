@@ -96,8 +96,11 @@ textarea {
     transform: rotate(0deg);
   }
 }
-.move-drag-item {
+.move-drag-item.fixed {
   position: fixed !important;
+}
+.move-drag-item.absolute {
+  position: absolute !important;
 }
 .morning-co-font-theme {
   color: #F33D5D;
@@ -9605,11 +9608,11 @@ mor-upload > .filelist > .filewrap.hidename {
   left: 0;
 }
 mor-upload > .filelist > .filewrap .status {
-  padding: 0.2em;
-  margin: 2.4px 1.6px;
+  padding: 0.4em 0.7em;
+  line-height: 1.4em;
+  margin: 0;
   vertical-align: top;
   max-width: 100%;
-  line-height: 1.2em;
   text-decoration: none;
   position: relative;
   cursor: default;
@@ -9811,6 +9814,7 @@ mor-upload > .filelist > .filewrap .fail > i.morningicon.remove {
 }
 mor-upload > .filelist > .filewrap .max {
   font-size: 12px;
+  line-height: 1.4em;
   color: #c0c0c0 !important;
   width: 100%;
   padding: 0.4em 0.7em;
@@ -9868,6 +9872,7 @@ mor-upload.st-disabled {
 }
 mor-upload.st-disabled > .filelist {
   border-color: #a6a6a6;
+  background-color: #ebebeb;
 }
 mor-upload.st-disabled > .filelist > .name {
   background-color: #d7d7d7;
@@ -9901,12 +9906,10 @@ mor-imagemap {
   width: 100%;
   box-sizing: border-box;
 }
-mor-imagemap .modify-map {
+mor-imagemap .operate {
   display: block;
-  font-size: 13px;
-  background: #F0F0F0;
   color: #8E9CAF;
-  padding: 0.2em 0;
+  background: #F0F0F0;
   text-align: center;
   margin-top: -2px;
   border: 1px #E6E6E6 solid;
@@ -9915,15 +9918,34 @@ mor-imagemap .modify-map {
   position: relative;
   border-radius: 0 0 3px 3px;
   vertical-align: top;
+  font-size: 13px;
 }
-mor-imagemap .modify-map .morningicon {
+mor-imagemap .operate > span {
+  display: inline-block;
+  padding: 0.2em 0;
+  width: 100%;
+}
+mor-imagemap .operate .morningicon {
   font-size: 13px;
   vertical-align: top;
 }
-mor-imagemap .modify-map:hover {
+mor-imagemap .operate:hover {
   text-decoration: none;
   color: #45505C;
   background: #E6E6E6;
+  cursor: pointer;
+}
+mor-imagemap .operate.loading:hover {
+  cursor: default;
+  color: #8E9CAF;
+  background: #F0F0F0;
+}
+mor-imagemap.st-disabled .operate {
+  border-color: #a6a6a6;
+  background: #ebebeb;
+}
+mor-imagemap.st-disabled .operate:hover {
+  color: #8E9CAF;
 }
 .mor-imagemap-dialog-map .maparea {
   width: 100%;
@@ -9959,19 +9981,163 @@ mor-imagemap .modify-map:hover {
 }
 .mor-imagemap-dialog-map .maparea .zonearea .zone {
   box-sizing: border-box;
-  border: 1px dashed #7C8BA0;
+  border: 1px dashed #45505C;
   position: absolute;
   display: block;
-  background-color: #7C8BA040;
+  background-color: #45505C40;
   cursor: move;
 }
-.mor-imagemap-dialog-map .maparea .zonearea .zone:hover {
+.mor-imagemap-dialog-map .maparea .zonearea .zone.resize-top {
+  border-top-style: solid !important;
+  border-top-color: #b13323 !important;
+}
+.mor-imagemap-dialog-map .maparea .zonearea .zone.resize-bottom {
+  border-bottom-style: solid !important;
+  border-bottom-color: #b13323 !important;
+}
+.mor-imagemap-dialog-map .maparea .zonearea .zone.resize-left {
+  border-left-style: solid !important;
+  border-left-color: #b13323 !important;
+}
+.mor-imagemap-dialog-map .maparea .zonearea .zone.resize-right {
+  border-right-style: solid !important;
+  border-right-color: #b13323 !important;
+}
+.mor-imagemap-dialog-map .maparea .zonearea .zone.resize-topleft {
+  border-top-style: solid !important;
+  border-top-color: #b13323 !important;
+  border-left-style: solid !important;
+  border-left-color: #b13323 !important;
+}
+.mor-imagemap-dialog-map .maparea .zonearea .zone.resize-bottomleft {
+  border-bottom-style: solid !important;
+  border-bottom-color: #b13323 !important;
+  border-left-style: solid !important;
+  border-left-color: #b13323 !important;
+}
+.mor-imagemap-dialog-map .maparea .zonearea .zone.resize-topright {
+  border-top-style: solid !important;
+  border-top-color: #b13323 !important;
+  border-right-style: solid !important;
+  border-right-color: #b13323 !important;
+}
+.mor-imagemap-dialog-map .maparea .zonearea .zone.resize-bottomright {
+  border-bottom-style: solid !important;
+  border-bottom-color: #b13323 !important;
+  border-right-style: solid !important;
+  border-right-color: #b13323 !important;
+}
+.mor-imagemap-dialog-map .maparea .zonearea .zone:hover,
+.mor-imagemap-dialog-map .maparea .zonearea .zone.resize {
   border: 1px dashed #45505C;
-  background-color: #7C8BA025;
+  background-color: #1e77ba30;
+  border-width: 2px;
 }
 .mor-imagemap-dialog-map .maparea .zonearea .zone.move-moving {
   display: none;
 }
+.mor-imagemap-dialog-map .maparea .zonearea .zone .top,
+.mor-imagemap-dialog-map .maparea .zonearea .zone .bottom {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 20px;
+}
+.mor-imagemap-dialog-map .maparea .zonearea .zone .top {
+  top: -10px;
+}
+.mor-imagemap-dialog-map .maparea .zonearea .zone .bottom {
+  bottom: -10px;
+  z-index: 3;
+}
+.mor-imagemap-dialog-map .maparea .zonearea .zone .left,
+.mor-imagemap-dialog-map .maparea .zonearea .zone .right {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 20px;
+}
+.mor-imagemap-dialog-map .maparea .zonearea .zone .left {
+  left: -10px;
+}
+.mor-imagemap-dialog-map .maparea .zonearea .zone .right {
+  right: -10px;
+  z-index: 3;
+}
+.mor-imagemap-dialog-map .maparea .zonearea .zone .topleft,
+.mor-imagemap-dialog-map .maparea .zonearea .zone .topright,
+.mor-imagemap-dialog-map .maparea .zonearea .zone .bottomleft,
+.mor-imagemap-dialog-map .maparea .zonearea .zone .bottomright {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  z-index: 4;
+}
+.mor-imagemap-dialog-map .maparea .zonearea .zone .topleft {
+  top: -10px;
+  left: -10px;
+}
+.mor-imagemap-dialog-map .maparea .zonearea .zone .topright {
+  top: -10px;
+  right: -10px;
+}
+.mor-imagemap-dialog-map .maparea .zonearea .zone .bottomleft {
+  bottom: -10px;
+  left: -10px;
+}
+.mor-imagemap-dialog-map .maparea .zonearea .zone .bottomright {
+  bottom: -10px;
+  right: -10px;
+  z-index: 10;
+}
+.mor-imagemap-dialog-map .maparea .zonearea.resize-top,
+.mor-imagemap-dialog-map .maparea .zonearea .zone .top {
+  cursor: n-resize !important;
+}
+.mor-imagemap-dialog-map .maparea .zonearea.resize-bottom,
+.mor-imagemap-dialog-map .maparea .zonearea .zone .bottom {
+  cursor: s-resize !important;
+}
+.mor-imagemap-dialog-map .maparea .zonearea.resize-left,
+.mor-imagemap-dialog-map .maparea .zonearea .zone .left {
+  cursor: w-resize !important;
+}
+.mor-imagemap-dialog-map .maparea .zonearea.resize-right,
+.mor-imagemap-dialog-map .maparea .zonearea .zone .right {
+  cursor: e-resize !important;
+}
+.mor-imagemap-dialog-map .maparea .zonearea.resize-topleft,
+.mor-imagemap-dialog-map .maparea .zonearea .zone .topleft {
+  cursor: nw-resize !important;
+}
+.mor-imagemap-dialog-map .maparea .zonearea.resize-topright,
+.mor-imagemap-dialog-map .maparea .zonearea .zone .topright {
+  cursor: ne-resize !important;
+}
+.mor-imagemap-dialog-map .maparea .zonearea.resize-bottomleft,
+.mor-imagemap-dialog-map .maparea .zonearea .zone .bottomleft {
+  cursor: sw-resize !important;
+}
+.mor-imagemap-dialog-map .maparea .zonearea.resize-bottomright,
+.mor-imagemap-dialog-map .maparea .zonearea .zone .bottomright {
+  cursor: se-resize !important;
+}
 .mor-imagemap-dialog-map .content > footer {
   z-index: 2;
+}
+.mor-imagemap-dialog-map.imagemap-disabled .zonearea {
+  cursor: default;
+}
+.mor-imagemap-dialog-map.imagemap-disabled .zonearea .zone {
+  cursor: default;
+}
+.mor-imagemap-dialog-map.imagemap-disabled .zonearea .zone .top,
+.mor-imagemap-dialog-map.imagemap-disabled .zonearea .zone .bottom,
+.mor-imagemap-dialog-map.imagemap-disabled .zonearea .zone .left,
+.mor-imagemap-dialog-map.imagemap-disabled .zonearea .zone .right,
+.mor-imagemap-dialog-map.imagemap-disabled .zonearea .zone .topleft,
+.mor-imagemap-dialog-map.imagemap-disabled .zonearea .zone .topright,
+.mor-imagemap-dialog-map.imagemap-disabled .zonearea .zone .bottomleft,
+.mor-imagemap-dialog-map.imagemap-disabled .zonearea .zone .bottomright {
+  cursor: default !important;
 }
