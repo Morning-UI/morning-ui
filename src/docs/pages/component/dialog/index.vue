@@ -145,7 +145,7 @@
                 需要帮助? <ui-link color="info" size="xxs">获取帮助</ui-link>
             </span>
             <div>
-                <ui-link class="margin" color="minor" action="emit:toggle">取消</ui-link>
+                <ui-link class="margin" color="minor" js="window.morning.findVM('demo9').toggle(false);">取消</ui-link>
                 <ui-btn color="success">左边</ui-btn>
                 <ui-btn color="success">右边</ui-btn>
             </div>

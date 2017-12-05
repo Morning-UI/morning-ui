@@ -74,6 +74,33 @@ morning.getGroupJson = function (groupName) {
 
 };
 
+morning.cleanGroup = function (groupName) {
+
+    let uiids = this._groupVmMap[groupName];
+    let key,
+        vm;
+
+    if (uiids) {
+
+        for (let uiid of uiids) {
+
+            vm = this.map[uiid];
+
+            if (vm) {
+
+                key = vm.conf.formKey;
+                this.map[uiid].set(undefined);
+
+            }
+
+        }
+
+    }
+
+    return this;
+
+};
+
 morning.setGroup = function (groupName, data) {
 
     let uiids = this._groupVmMap[groupName];

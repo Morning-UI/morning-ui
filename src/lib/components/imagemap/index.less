@@ -5,12 +5,10 @@ mor-imagemap{
     width: 100%;
     box-sizing: border-box;
 
-    .modify-map{
+    .operate{
         display: block;
-        font-size: @fontSize*0.8125;
-        background: @colorLightGray;
         color: @colorLightBlue;
-        padding: 0.2em 0;
+        background: @colorLightGray;
         text-align: center;
         margin-top: -2px;
         border: 1px @colorFormBorder solid;
@@ -19,6 +17,13 @@ mor-imagemap{
         position: relative;
         border-radius: 0 0 @borderRadius @borderRadius;
         vertical-align: top;
+        font-size: @fontSize*0.8125;
+
+        >span{
+            display: inline-block;
+            padding: 0.2em 0;
+            width: 100%;
+        }
 
         .morningicon{
             font-size: @fontSize*0.8125;
@@ -29,12 +34,28 @@ mor-imagemap{
             text-decoration: none;
             color: @colorExtraLightBlack;
             background: @colorFormBorder;
+            cursor: pointer;
+        }
+
+        &.loading:hover{
+            cursor: default;
+            color: @colorLightBlue;
+            background: @colorLightGray;
         }
     }
 
     &.st-normal{}
 
-    &.st-disabled{}
+    &.st-disabled{
+        .operate{
+            border-color: @colorFormBorderDisable;
+            background: @colorFormBackgroundDisable;
+
+            &:hover{
+                color: @colorLightBlue;
+            }
+        }
+    }
 
     // default status
     &{
@@ -75,9 +96,60 @@ mor-imagemap{
                 background-color: %(~'%d40', @colorExtraLightBlack);
                 cursor: move;
 
-                &:hover{
+                &.resize-top{
+                    border-top-style: solid !important;
+                    border-top-color: darken(@colorDanger, 10%) !important;;
+                }
+
+                &.resize-bottom{
+                    border-bottom-style: solid !important;
+                    border-bottom-color: darken(@colorDanger, 10%) !important;
+                }
+
+                &.resize-left{
+                    border-left-style: solid !important;
+                    border-left-color: darken(@colorDanger, 10%) !important;;
+                }
+
+                &.resize-right{
+                    border-right-style: solid !important;
+                    border-right-color: darken(@colorDanger, 10%) !important;;
+                }
+
+                &.resize-topleft{
+                    border-top-style: solid !important;
+                    border-top-color: darken(@colorDanger, 10%) !important;;
+                    border-left-style: solid !important;
+                    border-left-color: darken(@colorDanger, 10%) !important;;
+                }
+
+                &.resize-bottomleft{
+                    border-bottom-style: solid !important;
+                    border-bottom-color: darken(@colorDanger, 10%) !important;;
+                    border-left-style: solid !important;
+                    border-left-color: darken(@colorDanger, 10%) !important;;
+                }
+
+
+                &.resize-topright{
+                    border-top-style: solid !important;
+                    border-top-color: darken(@colorDanger, 10%) !important;;
+                    border-right-style: solid !important;
+                    border-right-color: darken(@colorDanger, 10%) !important;;
+                }
+
+                &.resize-bottomright{
+                    border-bottom-style: solid !important;
+                    border-bottom-color: darken(@colorDanger, 10%) !important;;
+                    border-right-style: solid !important;
+                    border-right-color: darken(@colorDanger, 10%) !important;;
+                }
+
+
+                &:hover,
+                &.resize{
                     border: 1px dashed @colorExtraLightBlack;
-                    background-color: %(~'%d25', @colorExtraLightBlack);
+                    background-color: %(~'%d30', darken(@colorPrimary, 5%));
                     border-width: 2px;
                 }
 
@@ -95,12 +167,11 @@ mor-imagemap{
 
                 .top{
                     top: -10px;
-                    cursor: n-resize;
                 }
 
                 .bottom{
                     bottom: -10px;
-                    cursor: s-resize;
+                    z-index: 3;
                 }
 
                 .left,
@@ -113,12 +184,11 @@ mor-imagemap{
 
                 .left{
                     left: -10px;
-                    cursor: w-resize;
                 }
 
                 .right{
                     right: -10px;
-                    cursor: e-resize;
+                    z-index: 3;
                 }
 
                 .topleft,
@@ -128,36 +198,95 @@ mor-imagemap{
                     position: absolute;
                     width: 20px;
                     height: 20px;
+                    z-index: 4;
                 }
 
                 .topleft{
                     top: -10px;
                     left: -10px;
-                    cursor: nw-resize;
                 }
 
                 .topright{
                     top: -10px;
                     right: -10px;
-                    cursor: ne-resize;
                 }
 
                 .bottomleft{
                     bottom: -10px;
                     left: -10px;
-                    cursor: sw-resize;
                 }
 
                 .bottomright{
                     bottom: -10px;
                     right: -10px;
-                    cursor: se-resize;
+                    z-index: 10;
                 }
+            }
+
+            &.resize-top,
+            & .zone .top{
+                cursor: n-resize !important;
+            }
+
+            &.resize-bottom,
+            & .zone .bottom{
+                cursor: s-resize !important;
+            }
+
+            &.resize-left,
+            & .zone .left{
+                cursor: w-resize !important;
+            }
+
+            &.resize-right,
+            & .zone .right{
+                cursor: e-resize !important;
+            }
+
+            &.resize-topleft,
+            & .zone .topleft{
+                cursor: nw-resize !important;
+            }
+
+            &.resize-topright,
+            & .zone .topright{
+                cursor: ne-resize !important;
+            }
+
+            &.resize-bottomleft,
+            & .zone .bottomleft{
+                cursor: sw-resize !important;
+            }
+
+            &.resize-bottomright,
+            & .zone .bottomright{
+                cursor: se-resize !important;
             }
         }
     }
 
     .content > footer{
         z-index: 2;
+    }
+
+    &.imagemap-disabled{
+        .maparea .zonearea{
+            cursor: default;
+
+            .zone{
+                cursor: default;
+
+                .top,
+                .bottom,
+                .left,
+                .right,
+                .topleft,
+                .topright,
+                .bottomleft,
+                .bottomright{
+                    cursor: default !important;
+                }
+            }
+        }
     }
 }
