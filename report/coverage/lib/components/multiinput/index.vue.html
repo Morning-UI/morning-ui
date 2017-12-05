@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">3.25% </span>
+        <span class="strong">3.42% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>4/123</span>
+        <span class='fraction'>4/117</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">9.89% </span>
+        <span class="strong">10.84% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>9/91</span>
+        <span class='fraction'>9/83</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/36</span>
+        <span class='fraction'>0/37</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">4.08% </span>
+        <span class="strong">4% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>4/98</span>
+        <span class='fraction'>4/100</span>
       </div>
     </div>
   </div>
@@ -446,7 +446,30 @@
 401
 402
 403
-404</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -528,7 +551,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -546,7 +568,25 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">83x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -788,6 +828,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -848,9 +894,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
-    &lt;i-multiinput
+<span class="cline-any cline-yes">83x</span>
+<span class="cline-any cline-yes">83x</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
+    &lt;mor-multiinput
         :_uiid="uiid"
         :class="[stateClass, moreClass, moveClass]"
 &nbsp;
@@ -871,6 +917,7 @@
         &lt;div
             class="item"
             v-for="(value, index) in data.value"
+            :key="index"
             @mousedown="_moveItemRecord(index)"
         &gt;
             &lt;span :title="value"&gt;{{value}}&lt;/span&gt;
@@ -891,7 +938,11 @@
                         @blur="_blurInput"
                         :style="{width: data.inputWidth}"
                         :placeholder="conf.formName"
-                        v-model="data.inputValue" /&gt;
+                        key="set-max-show-name"
+&nbsp;
+                        :value="data.inputValue"
+                        @input="$emit('input', $event.target.value)"
+                    /&gt;
 &nbsp;
                     &lt;input
                         type="text"
@@ -899,7 +950,11 @@
                         @focus="_focusInput"
                         @blur="_blurInput"
                         :style="{width: data.inputWidth}"
-                        v-model="data.inputValue" /&gt;
+                        key="set-max-hide-name"
+&nbsp;
+                        :value="data.inputValue"
+                        @input="$emit('input', $event.target.value)"
+                    /&gt;
                 &lt;/template&gt;
                 &lt;template v-else&gt;
                     &lt;span&gt;最多只能输入{{conf.max}}项&lt;/span&gt;
@@ -913,7 +968,11 @@
                         @blur="_blurInput"
                         :style="{width: data.inputWidth}"
                         :placeholder="conf.formName"
-                        v-model="data.inputValue" /&gt;
+                        key="unset-max-show-name"
+&nbsp;
+                        :value="data.inputValue"
+                        @input="$emit('input', $event.target.value)"
+                    /&gt;
 &nbsp;
                     &lt;input
                         type="text"
@@ -921,13 +980,17 @@
                         @focus="_focusInput"
                         @blur="_blurInput"
                         :style="{width: data.inputWidth}"
-                        v-model="data.inputValue" /&gt;
+                        key="unset-max-hide-name"
+&nbsp;
+                        :value="data.inputValue"
+                        @input="$emit('input', $event.target.value)"
+                    /&gt;
             &lt;/template&gt;
         &lt;/template&gt;
         
     &lt;/div&gt;
 &nbsp;
-    &lt;/i-multiinput&gt;
+    &lt;/mor-multiinput&gt;
 &lt;/template&gt;
  
 &lt;script&gt;
@@ -1192,6 +1255,12 @@ export default {
     },
     mounted : <span class="fstat-no" title="function not covered" >function () <span class="cstat-no" title="statement not covered" ></span>{</span>
 &nbsp;
+<span class="cstat-no" title="statement not covered" >        this.$on('input', <span class="fstat-no" title="function not covered" >value =&gt; </span>{</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            this.data.inputValue = value;</span>
+&nbsp;
+        });
+&nbsp;
 <span class="cstat-no" title="statement not covered" >        this.$watch('conf.canMove', <span class="fstat-no" title="function not covered" >newVal =&gt; </span>{</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >            this.Move.target = '.item';</span>
@@ -1251,14 +1320,14 @@ export default {
 };
 &lt;/script&gt;
 &nbsp;
-&lt;style lang="less" src="./ind<span class="branch-1 cbranch-no" title="branch not covered" >ex.less"&gt;&lt;/style&gt;<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-2 cbranch-no" title="branch not covered" ></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>
+&lt;style lang="less" src="./ind<span class="branch-1 cbranch-no" title="branch not covered" >ex.less"&gt;&lt;/style&gt;<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-2 cbranch-no" title="branch not covered" ></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>
 <span class="branch-1 cbranch-no" title="branch not covered" ><span class="branch-2 cbranch-no" title="branch not covered" ></span></span></pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Nov 20 2017 13:38:44 GMT+0800 (CST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Dec 05 2017 22:39:33 GMT+0800 (CST)
 </div>
 </div>
 <script src="../../../prettify.js"></script>

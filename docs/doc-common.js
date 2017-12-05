@@ -29402,6 +29402,28 @@ var data = {
         }, {
             valueType: 'Array',
             valueContent: '[{path:\'http://morning-ui-image.test.upcdn.net/uploaddemo/17491/1511259398095810608.png\',name:\'1511259398095810608.png\'}]'
+        }],
+        imagemap: [{
+            valueType: 'String',
+            valueContent: '\'{\\\'images\\\':[{\\\'name\\\':\\\'151244303389249797.png\\\',\\\'path\\\':\\\'http://morning-ui-image.test.upcdn.net/uploaddemo/17505/151244303389249797.png\\\'}],\\\'zones\\\':[{\\\'x\\\':361,\\\'y\\\':117,\\\'h\\\':180,\\\'w\\\':274},{\\\'x\\\':86,\\\'y\\\':310,\\\'h\\\':180,\\\'w\\\':275}],\\\'w\\\':722,\\\'h\\\':725}\''
+        }, {
+            valueType: 'Number',
+            valueContent: '5'
+        }, {
+            valueType: 'Boolean',
+            valueContent: 'true'
+        }, {
+            valueType: 'Null',
+            valueContent: 'null'
+        }, {
+            valueType: 'Undefined',
+            valueContent: 'undefined'
+        }, {
+            valueType: 'Object',
+            valueContent: '{\'images\':[{\'name\':\'151244303389249797.png\',\'path\':\'http://morning-ui-image.test.upcdn.net/uploaddemo/17505/151244303389249797.png\'}],\'zones\':[{\'x\':361,\'y\':117,\'h\':180,\'w\':274},{\'x\':86,\'y\':310,\'h\':180,\'w\':275}],\'w\':722,\'h\':725}'
+        }, {
+            valueType: 'Array',
+            valueContent: '[{\'images\':[{\'name\':\'151244303389249797.png\',\'path\':\'http://morning-ui-image.test.upcdn.net/uploaddemo/17505/151244303389249797.png\'}],\'zones\':[{\'x\':361,\'y\':117,\'h\':180,\'w\':274},{\'x\':86,\'y\':310,\'h\':180,\'w\':275}],\'w\':722,\'h\':725}]'
         }]
     }
 };
