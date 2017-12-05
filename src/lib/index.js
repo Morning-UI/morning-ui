@@ -77,8 +77,7 @@ morning.getGroupJson = function (groupName) {
 morning.cleanGroup = function (groupName) {
 
     let uiids = this._groupVmMap[groupName];
-    let key,
-        vm;
+    let vm;
 
     if (uiids) {
 
@@ -88,7 +87,6 @@ morning.cleanGroup = function (groupName) {
 
             if (vm) {
 
-                key = vm.conf.formKey;
                 this.map[uiid].set(undefined);
 
             }
