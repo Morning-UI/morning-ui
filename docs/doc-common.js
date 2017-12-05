@@ -34,7 +34,7 @@
 /******/
 /******/ 	// objects to store loaded and loading chunks
 /******/ 	var installedChunks = {
-/******/ 		85: 0
+/******/ 		86: 0
 /******/ 	};
 /******/
 /******/ 	// The require function
@@ -4258,17 +4258,17 @@ exports.default = {
         // 级联菜单<i class="tag new"></i> : 'b',
         // 树形控件 : 'b',
         标签页: '/component/tab.html',
-        '表格<i class="tag update l1"></i>': '/component/table.html',
+        '表格<i class="tag update l2"></i>': '/component/table.html',
         分页: '/component/pagination.html',
         模拟盒: '/component/dialog.html',
         // 消息提示 : 'b',
-        '日历<i class="tag new l1"></i>': '/component/calendar.html',
+        '日历<i class="tag new l2"></i>': '/component/calendar.html',
         加载: '/component/load.html',
         // 进度条<i class="tag new"></i> : 'b',
         // 滚动跟随<i class="tag update"></i> : 'b',
         面包屑: '/component/breadcrumbs.html',
         小提示: '/component/tip.html',
-        '消息<i class="tag new l2"></i>': '/component/message.html',
+        '消息<i class="tag new l3"></i>': '/component/message.html',
         // 视频 : 'b',
         // 音频<i class="tag new"></i> : 'b',
         表单组件: null,
@@ -4288,8 +4288,8 @@ exports.default = {
         // 时间输入<i class="tag new"></i> : 'b',
         // 日期输入<i class="tag new"></i> : 'b',
         // 日期时间输入<i class="tag update"></i> : 'b',
-        文件上传: '/component/upload.html'
-        // 图片热区输入 : 'b',
+        文件上传: '/component/upload.html',
+        '图片热区输入<i class="tag new l1"></i>': '/component/imagemap.html'
         // 颜色选择 : 'b'
     },
     guide: {
@@ -32664,7 +32664,12 @@ if (false) {
 /* 738 */,
 /* 739 */,
 /* 740 */,
-/* 741 */
+/* 741 */,
+/* 742 */,
+/* 743 */,
+/* 744 */,
+/* 745 */,
+/* 746 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(269)(undefined);
@@ -32678,13 +32683,13 @@ exports.push([module.i, "/*\n * Hopscotch\n * by Jan T. Sott\n * https://github.
 
 
 /***/ }),
-/* 742 */
+/* 747 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "iconfont.woff";
 
 /***/ }),
-/* 743 */
+/* 748 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*

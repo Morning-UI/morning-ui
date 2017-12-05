@@ -174,7 +174,7 @@ module.exports = function normalizeComponent (
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isDate = __webpack_require__(13)
+var isDate = __webpack_require__(14)
 
 var MILLISECONDS_IN_HOUR = 3600000
 var MILLISECONDS_IN_MINUTE = 60000
@@ -967,7 +967,7 @@ if ('Set' in global) {
 	module.exports = uniqNoSet;
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)))
 
 /***/ }),
 /* 5 */
@@ -1335,6 +1335,351 @@ module.exports = startOfISOWeek
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _GlobalEvent = __webpack_require__(5);
+
+var _GlobalEvent2 = _interopRequireDefault(_GlobalEvent);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var moveDelayTime = 200;
+
+var Move = {
+    mixins: [_GlobalEvent2.default],
+    data: function data() {
+
+        return {
+            Move: {
+                can: false,
+                // 延迟多久触发拖拽，为了和click兼容
+                $root: null,
+                delay: moveDelayTime,
+                target: null,
+                container: null,
+                lastMousedownIndex: -1,
+                movedIndex: -1,
+                delayTimeout: null,
+                $moveDragItem: null,
+                moving: false,
+                moveMouseFrom: {
+                    x: 0,
+                    y: 0
+                },
+                moveItemXy: {
+                    x: 0,
+                    y: 0
+                },
+                moveItemWh: {
+                    w: 0,
+                    h: 0
+                },
+                current: {
+                    x: 0,
+                    y: 0
+                },
+                windowCalibrate: {
+                    x: 0,
+                    y: 0
+                },
+                range: [false, false, false, false],
+                overRange: [0, 0, 0, 0]
+            }
+        };
+    },
+    computed: {
+        moveClass: function moveClass() {
+
+            return {
+                'can-move': this.Move.can
+            };
+        }
+    },
+    methods: {
+        _moveItemRecord: function _moveItemRecord(index) {
+
+            this.Move.lastMousedownIndex = index;
+        },
+        _moveMousedown: function _moveMousedown(evt) {
+            var _this = this;
+
+            this.Move.delayTimeout = setTimeout(function () {
+
+                _this._moveStart(evt);
+            }, this.Move.delay);
+        },
+        _moveStart: function _moveStart(evt) {
+
+            var $targets = this.Move.$root.querySelectorAll(this.Move.target);
+            var found = false;
+
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+                for (var _iterator = evt.path[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var $node = _step.value;
+                    var _iteratorNormalCompletion2 = true;
+                    var _didIteratorError2 = false;
+                    var _iteratorError2 = undefined;
+
+                    try {
+
+                        for (var _iterator2 = $targets.values()[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                            var $value = _step2.value;
+
+
+                            if ($value === $node) {
+
+                                found = true;
+
+                                break;
+                            }
+                        }
+                    } catch (err) {
+                        _didIteratorError2 = true;
+                        _iteratorError2 = err;
+                    } finally {
+                        try {
+                            if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                                _iterator2.return();
+                            }
+                        } finally {
+                            if (_didIteratorError2) {
+                                throw _iteratorError2;
+                            }
+                        }
+                    }
+
+                    if (found) {
+
+                        break;
+                    }
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return) {
+                        _iterator.return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
+
+            if (found) {
+
+                var $target = this.Move.$root.querySelectorAll(this.Move.container + ' ' + this.Move.target)[this.Move.lastMousedownIndex];
+                var $container = this.Move.$root.querySelector(this.Move.container);
+
+                var _moveElementXy = this._moveElementXy($target),
+                    x = _moveElementXy.x,
+                    y = _moveElementXy.y;
+
+                var $moveDragItem = $target.cloneNode(true);
+
+                $moveDragItem.classList.add('move-drag-item');
+                $moveDragItem.style.top = y + 'px';
+                $moveDragItem.style.left = x + 'px';
+                $container.append($moveDragItem);
+
+                this.Move.$moveDragItem = $moveDragItem;
+                this.Move.movedIndex = this.Move.lastMousedownIndex;
+                this.Move.moveMouseFrom.x = evt.clientX;
+                this.Move.moveMouseFrom.y = evt.clientY;
+                this.Move.moveItemXy.x = x;
+                this.Move.moveItemXy.y = y;
+                this.Move.moveItemWh.w = $moveDragItem.offsetWidth;
+                this.Move.moveItemWh.h = $moveDragItem.offsetHeight;
+                this.Move.moving = true;
+
+                $target.classList.add('move-moving');
+                this.$emit('_moveStarted');
+            }
+        },
+        _moveMousemove: function _moveMousemove(evt) {
+
+            if (this.Move.moving === false) {
+
+                return;
+            }
+
+            var x = evt.clientX - this.Move.moveMouseFrom.x + this.Move.moveItemXy.x;
+            var y = evt.clientY - this.Move.moveMouseFrom.y + this.Move.moveItemXy.y;
+
+            // x min
+            if (x < this.Move.range[0]) {
+
+                x = this.Move.range[0];
+                this.Move.overRange[0] = 1;
+                this.$emit('_moveOnXMin');
+            } else if (this.Move.overRange[0]) {
+
+                this.Move.overRange[0] = 0;
+                this.$emit('_moveOffXMin');
+            }
+
+            // x max
+            if (x + this.Move.moveItemWh.w > this.Move.range[2]) {
+
+                x = this.Move.range[2] - this.Move.moveItemWh.w;
+                this.Move.overRange[2] = 1;
+                this.$emit('_moveOnXMax');
+            } else if (this.Move.overRange[2]) {
+
+                this.Move.overRange[2] = 0;
+                this.$emit('_moveOffXMax');
+            }
+
+            // y min
+            if (y < this.Move.range[1]) {
+
+                y = this.Move.range[1];
+                this.Move.overRange[1] = 1;
+                this.$emit('_moveOnYMin');
+            } else if (this.Move.overRange[1]) {
+
+                this.Move.overRange[1] = 0;
+                this.$emit('_moveOffXMin');
+            }
+
+            // y max
+            if (y + this.Move.moveItemWh.h > this.Move.range[3]) {
+
+                y = this.Move.range[3] - this.Move.moveItemWh.h;
+                this.Move.overRange[3] = 1;
+                this.$emit('_moveOnYMax');
+            } else if (this.Move.overRange[3]) {
+
+                this.Move.overRange[3] = 0;
+                this.$emit('_moveOffYMax');
+            }
+
+            this.Move.$moveDragItem.style.top = y + 'px';
+            this.Move.$moveDragItem.style.left = x + 'px';
+            this.Move.current.x = x;
+            this.Move.current.y = y;
+
+            this.$emit('_moveChange');
+        },
+        _moveMouseup: function _moveMouseup() {
+
+            clearTimeout(this.Move.delayTimeout);
+
+            if (!this.Move.moving) {
+
+                return;
+            }
+
+            var $target = this.Move.$root.querySelector('.move-moving');
+
+            if ($target) {
+
+                $target.classList.remove('move-moving');
+            }
+
+            this.Move.movedIndex = -1;
+            this.Move.lastMousedownIndex = -1;
+            this.Move.$moveDragItem.remove();
+            this.Move.$moveDragItem = null;
+            this.Move.moving = false;
+
+            this.$emit('_moveEnded');
+        },
+        _moveElementXy: function _moveElementXy($target) {
+
+            var client = $target.getBoundingClientRect();
+            var marginLeft = $target.ownerDocument.defaultView.getComputedStyle($target).marginLeft;
+            var marginTop = $target.ownerDocument.defaultView.getComputedStyle($target).marginTop;
+            var x = void 0;
+            var y = void 0;
+
+            marginLeft = +marginLeft.split('px')[0];
+            marginTop = +marginTop.split('px')[0];
+
+            x = client.left + this.Move.windowCalibrate.x - marginLeft;
+            y = client.top + this.Move.windowCalibrate.y - marginTop;
+
+            return {
+                x: x,
+                y: y
+            };
+        }
+    },
+    mounted: function mounted() {
+        var _this2 = this;
+
+        // default $root is $el
+        this.Move.$root = this.$el;
+
+        this.$watch('Move.can', function (newVal) {
+
+            var $container = _this2.Move.$root.querySelector(_this2.Move.container);
+
+            if (newVal) {
+
+                $container.addEventListener('mousedown', _this2._moveMousedown);
+                _this2._globalEventAdd('mousemove', '_moveMousemove');
+                _this2._globalEventAdd('mouseup', '_moveMouseup');
+                // this._moveAddGlobalListener();
+            } else {
+
+                if ($container) {
+
+                    $container.removeEventListener('mousedown', _this2._moveMousedown);
+                }
+
+                _this2._globalEventRemove('mousemove', '_moveMousemove');
+                _this2._globalEventRemove('mouseup', '_moveMouseup');
+
+                if (_this2.Move.moving) {
+
+                    _this2._moveMouseup();
+                }
+            }
+        }, {
+            immediate: true
+        });
+    },
+    updated: function updated() {
+
+        var $oldTarget = this.Move.$root.querySelector(this.Move.target + '.move-moving:not(.move-drag-item)');
+        var $newTarget = this.Move.$root.querySelectorAll(this.Move.target + ':not(.move-drag-item)')[this.Move.movedIndex];
+
+        if ($oldTarget) {
+
+            $oldTarget.classList.remove('move-moving');
+        }
+
+        if ($newTarget) {
+
+            $newTarget.classList.add('move-moving');
+        }
+    },
+    beforeDestroy: function beforeDestroy() {
+
+        this._globalEventRemove('mousemove', '_moveMousemove');
+        this._globalEventRemove('mouseup', '_moveMouseup');
+    }
+};
+
+exports.default = Move;
+module.exports = exports['default'];
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
 var utils = __webpack_require__(2);
@@ -1431,7 +1776,7 @@ module.exports = defaults;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(302)))
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports) {
 
 var g;
@@ -1458,7 +1803,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {/**
@@ -4092,10 +4437,10 @@ function property(path) {
 
 module.exports = sortBy;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11), __webpack_require__(199)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12), __webpack_require__(199)(module)))
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports) {
 
 /**
@@ -4121,11 +4466,11 @@ module.exports = isDate
 
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var parse = __webpack_require__(1)
-var getDaysInMonth = __webpack_require__(15)
+var getDaysInMonth = __webpack_require__(16)
 
 /**
  * @category Month Helpers
@@ -4161,7 +4506,7 @@ module.exports = addMonths
 
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var parse = __webpack_require__(1)
@@ -4195,7 +4540,7 @@ module.exports = getDaysInMonth
 
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var parse = __webpack_require__(1)
@@ -4244,281 +4589,6 @@ function getISOYear (dirtyDate) {
 
 module.exports = getISOYear
 
-
-/***/ }),
-/* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _GlobalEvent = __webpack_require__(5);
-
-var _GlobalEvent2 = _interopRequireDefault(_GlobalEvent);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var moveDelayTime = 200;
-
-var Move = {
-    mixins: [_GlobalEvent2.default],
-    data: function data() {
-
-        return {
-            Move: {
-                can: false,
-                // 延迟多久触发拖拽，为了和click兼容
-                delay: moveDelayTime,
-                target: null,
-                container: null,
-                lastMousedownIndex: -1,
-                movedIndex: -1,
-                delayTimeout: null,
-                $moveDragItem: null,
-                moving: false,
-                moveMouseFrom: {
-                    x: 0,
-                    y: 0
-                },
-                moveItemXy: {
-                    x: 0,
-                    y: 0
-                },
-                current: {
-                    x: 0,
-                    y: 0
-                }
-            }
-        };
-    },
-    computed: {
-        moveClass: function moveClass() {
-
-            return {
-                'can-move': this.Move.can
-            };
-        }
-    },
-    methods: {
-        _moveItemRecord: function _moveItemRecord(index) {
-
-            this.Move.lastMousedownIndex = index;
-        },
-        _moveMousedown: function _moveMousedown(evt) {
-            var _this = this;
-
-            this.Move.delayTimeout = setTimeout(function () {
-
-                _this._moveStart(evt);
-            }, this.Move.delay);
-        },
-        _moveStart: function _moveStart(evt) {
-
-            var $targets = this.$el.querySelectorAll(this.Move.target);
-            var found = false;
-
-            var _iteratorNormalCompletion = true;
-            var _didIteratorError = false;
-            var _iteratorError = undefined;
-
-            try {
-                for (var _iterator = evt.path[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                    var $node = _step.value;
-                    var _iteratorNormalCompletion2 = true;
-                    var _didIteratorError2 = false;
-                    var _iteratorError2 = undefined;
-
-                    try {
-
-                        for (var _iterator2 = $targets.values()[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                            var $value = _step2.value;
-
-
-                            if ($value === $node) {
-
-                                found = true;
-
-                                break;
-                            }
-                        }
-                    } catch (err) {
-                        _didIteratorError2 = true;
-                        _iteratorError2 = err;
-                    } finally {
-                        try {
-                            if (!_iteratorNormalCompletion2 && _iterator2.return) {
-                                _iterator2.return();
-                            }
-                        } finally {
-                            if (_didIteratorError2) {
-                                throw _iteratorError2;
-                            }
-                        }
-                    }
-
-                    if (found) {
-
-                        break;
-                    }
-                }
-            } catch (err) {
-                _didIteratorError = true;
-                _iteratorError = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion && _iterator.return) {
-                        _iterator.return();
-                    }
-                } finally {
-                    if (_didIteratorError) {
-                        throw _iteratorError;
-                    }
-                }
-            }
-
-            if (found) {
-
-                var $target = this.$el.querySelectorAll(this.Move.container + ' ' + this.Move.target)[this.Move.lastMousedownIndex];
-                var $container = this.$el.querySelector(this.Move.container);
-
-                $target.classList.add('move-moving');
-
-                var $moveDragItem = $target.cloneNode(true);
-
-                var _moveElementXy = this._moveElementXy($target),
-                    x = _moveElementXy.x,
-                    y = _moveElementXy.y;
-
-                $moveDragItem.classList.add('move-drag-item');
-                $moveDragItem.style.top = y + 'px';
-                $moveDragItem.style.left = x + 'px';
-                $container.append($moveDragItem);
-
-                this.Move.movedIndex = this.Move.lastMousedownIndex;
-                this.Move.moveMouseFrom.x = evt.clientX;
-                this.Move.moveMouseFrom.y = evt.clientY;
-                this.Move.moveItemXy.x = x;
-                this.Move.moveItemXy.y = y;
-                this.Move.$moveDragItem = $moveDragItem;
-                this.Move.moving = true;
-
-                this.$emit('_moveStarted');
-            }
-        },
-        _moveMousemove: function _moveMousemove(evt) {
-
-            if (this.Move.moving === false) {
-
-                return;
-            }
-
-            var x = evt.clientX - this.Move.moveMouseFrom.x + this.Move.moveItemXy.x;
-            var y = evt.clientY - this.Move.moveMouseFrom.y + this.Move.moveItemXy.y;
-
-            this.Move.$moveDragItem.style.top = y + 'px';
-            this.Move.$moveDragItem.style.left = x + 'px';
-            this.Move.current.x = x;
-            this.Move.current.y = y;
-
-            this.$emit('_moveChange');
-        },
-        _moveMouseup: function _moveMouseup() {
-
-            clearTimeout(this.Move.delayTimeout);
-
-            if (!this.Move.moving) {
-
-                return;
-            }
-
-            var $target = this.$el.querySelector('.move-moving');
-
-            if ($target) {
-
-                $target.classList.remove('move-moving');
-            }
-
-            this.Move.movedIndex = -1;
-            this.Move.lastMousedownIndex = -1;
-            this.Move.$moveDragItem.remove();
-            this.Move.$moveDragItem = null;
-            this.Move.moving = false;
-
-            this.$emit('_moveEnded');
-        },
-        _moveElementXy: function _moveElementXy($ele) {
-
-            var client = $ele.getBoundingClientRect();
-            var marginLeft = $ele.ownerDocument.defaultView.getComputedStyle($ele).marginLeft;
-            var marginTop = $ele.ownerDocument.defaultView.getComputedStyle($ele).marginTop;
-
-            marginLeft = +marginLeft.split('px')[0];
-            marginTop = +marginTop.split('px')[0];
-
-            var x = client.left - marginLeft;
-            var y = client.top - marginTop;
-
-            return {
-                x: x,
-                y: y
-            };
-        }
-    },
-    mounted: function mounted() {
-        var _this2 = this;
-
-        this.$watch('Move.can', function (newVal) {
-
-            var $container = _this2.$el.querySelector(_this2.Move.container);
-
-            if (newVal) {
-
-                $container.addEventListener('mousedown', _this2._moveMousedown);
-                _this2._globalEventAdd('mousemove', '_moveMousemove');
-                _this2._globalEventAdd('mouseup', '_moveMouseup');
-                // this._moveAddGlobalListener();
-            } else {
-
-                if ($container) {
-
-                    $container.removeEventListener('mousedown', _this2._moveMousedown);
-                }
-
-                _this2._globalEventRemove('mousemove', '_moveMousemove');
-                _this2._globalEventRemove('mouseup', '_moveMouseup');
-            }
-        }, {
-            immediate: true
-        });
-    },
-    updated: function updated() {
-
-        var $oldTarget = this.$el.querySelector(this.Move.target + '.move-moving:not(.move-drag-item)');
-        var $newTarget = this.$el.querySelectorAll(this.Move.target + ':not(.move-drag-item)')[this.Move.movedIndex];
-
-        if ($oldTarget) {
-
-            $oldTarget.classList.remove('move-moving');
-        }
-
-        if ($newTarget) {
-
-            $newTarget.classList.add('move-moving');
-        }
-    },
-    beforeDestroy: function beforeDestroy() {
-
-        this._globalEventRemove('mousemove', '_moveMousemove');
-        this._globalEventRemove('mouseup', '_moveMouseup');
-    }
-};
-
-exports.default = Move;
-module.exports = exports['default'];
 
 /***/ }),
 /* 18 */
@@ -5957,6 +6027,10 @@ var _index117 = __webpack_require__(295);
 
 var _index118 = _interopRequireDefault(_index117);
 
+var _index119 = __webpack_require__(319);
+
+var _index120 = _interopRequireDefault(_index119);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
@@ -6018,7 +6092,8 @@ exports.default = {
     radio: _index112.default,
     multiinput: _index114.default,
     multiform: _index116.default,
-    upload: _index118.default
+    upload: _index118.default,
+    imagemap: _index120.default
 };
 module.exports = exports['default'];
 
@@ -11544,7 +11619,7 @@ var _extend = __webpack_require__(3);
 
 var _extend2 = _interopRequireDefault(_extend);
 
-var _lodash = __webpack_require__(12);
+var _lodash = __webpack_require__(13);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -14302,7 +14377,7 @@ var _arrayUniq = __webpack_require__(4);
 
 var _arrayUniq2 = _interopRequireDefault(_arrayUniq);
 
-var _lodash = __webpack_require__(12);
+var _lodash = __webpack_require__(13);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -14354,7 +14429,7 @@ var _add_days = __webpack_require__(228);
 
 var _add_days2 = _interopRequireDefault(_add_days);
 
-var _add_months = __webpack_require__(14);
+var _add_months = __webpack_require__(15);
 
 var _add_months2 = _interopRequireDefault(_add_months);
 
@@ -15453,7 +15528,7 @@ module.exports = addDays
 /* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var addMonths = __webpack_require__(14)
+var addMonths = __webpack_require__(15)
 
 /**
  * @category Year Helpers
@@ -15484,7 +15559,7 @@ module.exports = addYears
 /***/ (function(module, exports, __webpack_require__) {
 
 var parse = __webpack_require__(1)
-var getDaysInMonth = __webpack_require__(15)
+var getDaysInMonth = __webpack_require__(16)
 
 /**
  * @category Month Helpers
@@ -15559,7 +15634,7 @@ module.exports = setYear
 
 var getDayOfYear = __webpack_require__(233)
 var getISOWeek = __webpack_require__(236)
-var getISOYear = __webpack_require__(16)
+var getISOYear = __webpack_require__(17)
 var parse = __webpack_require__(1)
 var isValid = __webpack_require__(239)
 var enLocale = __webpack_require__(240)
@@ -16088,7 +16163,7 @@ module.exports = startOfWeek
 /* 238 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getISOYear = __webpack_require__(16)
+var getISOYear = __webpack_require__(17)
 var startOfISOWeek = __webpack_require__(9)
 
 /**
@@ -16126,7 +16201,7 @@ module.exports = startOfISOYear
 /* 239 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isDate = __webpack_require__(13)
+var isDate = __webpack_require__(14)
 
 /**
  * @category Common Helpers
@@ -22903,7 +22978,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 
-var _Move = __webpack_require__(17);
+var _Move = __webpack_require__(10);
 
 var _Move2 = _interopRequireDefault(_Move);
 
@@ -23546,7 +23621,7 @@ var _arrayUniq = __webpack_require__(4);
 
 var _arrayUniq2 = _interopRequireDefault(_arrayUniq);
 
-var _Move = __webpack_require__(17);
+var _Move = __webpack_require__(10);
 
 var _Move2 = _interopRequireDefault(_Move);
 
@@ -24967,7 +25042,7 @@ module.exports = __webpack_require__(299);
 var utils = __webpack_require__(2);
 var bind = __webpack_require__(18);
 var Axios = __webpack_require__(301);
-var defaults = __webpack_require__(10);
+var defaults = __webpack_require__(11);
 
 /**
  * Create an instance of Axios
@@ -25050,7 +25125,7 @@ function isSlowBuffer (obj) {
 "use strict";
 
 
-var defaults = __webpack_require__(10);
+var defaults = __webpack_require__(11);
 var utils = __webpack_require__(2);
 var InterceptorManager = __webpack_require__(311);
 var dispatchRequest = __webpack_require__(312);
@@ -25772,7 +25847,7 @@ module.exports = InterceptorManager;
 var utils = __webpack_require__(2);
 var transformData = __webpack_require__(313);
 var isCancel = __webpack_require__(21);
-var defaults = __webpack_require__(10);
+var defaults = __webpack_require__(11);
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -26161,6 +26236,641 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
      require("vue-hot-reload-api").rerender("data-v-392f52b8", esExports)
+  }
+}
+
+/***/ }),
+/* 319 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(321);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_28c6c8c4_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(322);
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(320)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+
+/* template */
+
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default.a,
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_28c6c8c4_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__["a" /* default */],
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "src/lib/components/imagemap/index.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] index.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-28c6c8c4", Component.options)
+  } else {
+    hotAPI.reload("data-v-28c6c8c4", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
+
+
+/***/ }),
+/* 320 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 321 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _Move = __webpack_require__(10);
+
+var _Move2 = _interopRequireDefault(_Move);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+    origin: 'Form',
+    name: 'imagemap',
+    mixins: [_Move2.default],
+    props: {
+        allowUrl: {
+            type: Boolean,
+            default: false
+        },
+        allowDrag: {
+            type: Boolean,
+            default: false
+        },
+        multi: {
+            type: Boolean,
+            default: false
+        },
+        validate: {
+            type: Function,
+            default: function _default() {
+                return {};
+            }
+        },
+        uploader: {
+            type: Function,
+            default: undefined
+        },
+        cleanZone: {
+            type: Boolean,
+            default: true
+        },
+        max: {
+            type: Number,
+            default: Infinity
+        },
+        forbid: {
+            type: Array,
+            default: function _default() {
+                return [];
+            }
+        }
+    },
+    computed: {
+        _conf: function _conf() {
+
+            return {
+                allowUrl: this.allowUrl,
+                allowDrag: this.allowDrag,
+                multi: this.multi,
+                validate: this.validate,
+                uploader: this.uploader,
+                cleanZone: this.cleanZone,
+                max: this.max,
+                forbid: this.forbid
+            };
+        }
+    },
+    data: function data() {
+
+        return {
+            data: {
+                // zoneId : 0,
+                images: [],
+                moveZoneId: null,
+                containerCalibrate: {
+                    x: 0,
+                    y: 0
+                },
+                overRange: false,
+                autoScrollCheck: null
+            }
+        };
+    },
+    methods: {
+        _valueFilter: function _valueFilter(value) {
+
+            return value;
+        },
+        _openMap: function _openMap() {
+            var _this = this;
+
+            this.$refs['ui-imagemap-mapdialog-' + this.uiid].toggle(true);
+
+            setTimeout(function () {
+
+                var $content = _this.$refs['ui-imagemap-mapdialog-' + _this.uiid].$el.querySelector('.content');
+                var $maparea = _this.$refs['ui-imagemap-mapdialog-' + _this.uiid].$el.querySelector('.maparea');
+                var $body = _this.$refs['ui-imagemap-mapdialog-' + _this.uiid].$el.querySelector('.body');
+
+                var scrollBarWidth = 5;
+                var bodyPadding = 16;
+
+                _this.Move.windowCalibrate.x = -$content.getBoundingClientRect().x;
+                _this.Move.windowCalibrate.y = -$content.getBoundingClientRect().y;
+
+                _this._updateContainerCalibrate();
+                _this.Move.target = '.zone';
+                _this.Move.container = '.zonearea';
+                _this.Move.$root = _this.$refs['ui-imagemap-mapdialog-' + _this.uiid].$el;
+                _this.Move.delay = 0;
+                _this.Move.range = [_this.data.containerCalibrate.x, _this.data.containerCalibrate.y, $body.offsetWidth - _this.data.containerCalibrate.x - scrollBarWidth, $body.offsetHeight - bodyPadding * 2 + _this.data.containerCalibrate.y];
+                _this.Move.can = true;
+            });
+        },
+        _uploadValueChange: function _uploadValueChange() {
+
+            this.data.images = this.$refs['ui-imagemap-upload-' + this.uiid].get();
+        },
+        _updateContainerCalibrate: function _updateContainerCalibrate() {
+
+            var $container = this.$refs['ui-imagemap-mapdialog-' + this.uiid].$el.querySelector('.zonearea');
+            var $content = this.$refs['ui-imagemap-mapdialog-' + this.uiid].$el.querySelector('.content');
+            var $body = this.$refs['ui-imagemap-mapdialog-' + this.uiid].$el.querySelector('.body');
+            var containerXy = $container.getBoundingClientRect();
+            var contentXy = $content.getBoundingClientRect();
+
+            this.data.containerCalibrate = {
+                x: containerXy.x - contentXy.x,
+                y: containerXy.y - contentXy.y + $body.scrollTop
+            };
+        },
+        _dropZone: function _dropZone() {},
+        _autoScroll: function _autoScroll() {
+            var _this2 = this;
+
+            var checkTime = 25;
+
+            if (this.data.autoScrollCheck) {
+
+                clearTimeout(this.data.autoScrollCheck);
+            }
+
+            if (!this.Move.$moveDragItem) {
+
+                return;
+            }
+
+            var padding = 16;
+            var step = 10;
+
+            var $content = this.$refs['ui-imagemap-mapdialog-' + this.uiid].$el.querySelector('.content');
+            var $body = this.$refs['ui-imagemap-mapdialog-' + this.uiid].$el.querySelector('.body');
+            var $header = this.$refs['ui-imagemap-mapdialog-' + this.uiid].$el.querySelector('header');
+            var $footer = this.$refs['ui-imagemap-mapdialog-' + this.uiid].$el.querySelector('footer');
+            var contentHeight = $body.clientHeight;
+            var topLimit = padding;
+            var bottomLimit = contentHeight - padding - this.Move.$moveDragItem.offsetHeight;
+
+            if (this.Move.current.y - $header.clientHeight <= topLimit) {
+
+                $body.scrollTop -= step;
+            }
+
+            if (this.Move.current.y - $header.clientHeight >= bottomLimit) {
+
+                $body.scrollTop += step;
+            }
+
+            if (this.Move.current.y - $header.clientHeight <= topLimit || this.Move.current.y - $header.clientHeight >= bottomLimit) {
+
+                this.data.autoScrollCheck = setTimeout(function () {
+
+                    _this2._autoScroll();
+                }, checkTime);
+            }
+
+            // } else {
+
+            //     this.data.autoScrollCheck = setTimeout(() => {
+
+            //         this._autoScroll();
+
+            //     }, checkTime);
+
+            // }
+        },
+        _stopMove: function _stopMove() {
+
+            // this.Move.can = false;
+
+        },
+        _startMove: function _startMove() {
+
+            // this.Move.can = true;
+
+        },
+        _moveZone: function _moveZone(id, x, y) {
+
+            var $zone = this.$refs['ui-imagemap-mapdialog-' + this.uiid].$el.querySelector('.zone[zone-id="' + id + '"]');
+
+            if ($zone) {
+
+                $zone.style.left = x + 'px';
+                $zone.style.top = y + 'px';
+            }
+        }
+    },
+    created: function created() {},
+    mounted: function mounted() {
+        var _this3 = this;
+
+        this.$on('_moveOnXMin', function () {
+            return _this3.data.overRange = true;
+        });
+        this.$on('_moveOnYMin', function () {
+            return _this3.data.overRange = true;
+        });
+        this.$on('_moveOnXMax', function () {
+            return _this3.data.overRange = true;
+        });
+        this.$on('_moveOnYMax', function () {
+            return _this3.data.overRange = true;
+        });
+        this.$on('_moveOffXMin', function () {
+            return _this3.data.overRange = false;
+        });
+        this.$on('_moveOffYMin', function () {
+            return _this3.data.overRange = false;
+        });
+        this.$on('_moveOffXMax', function () {
+            return _this3.data.overRange = false;
+        });
+        this.$on('_moveOffYMax', function () {
+            return _this3.data.overRange = false;
+        });
+
+        this.$on('_moveChange', function () {
+
+            _this3._autoScroll();
+        });
+
+        this.$on('_moveStarted', function () {
+
+            _this3.data.moveZoneId = _this3.Move.$moveDragItem.getAttribute('zone-id');
+        });
+
+        this.$on('_moveEnded', function () {
+
+            if (_this3.data.moveZoneId !== null) {
+
+                _this3._updateContainerCalibrate();
+
+                var $body = _this3.$refs['ui-imagemap-mapdialog-' + _this3.uiid].$el.querySelector('.body');
+
+                _this3._moveZone(_this3.data.moveZoneId, _this3.Move.current.x - _this3.data.containerCalibrate.x, _this3.Move.current.y - _this3.data.containerCalibrate.y + $body.scrollTop);
+            }
+
+            _this3.data.overRange = false;
+        });
+    }
+}; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+module.exports = exports['default'];
+
+/***/ }),
+/* 322 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('mor-imagemap', {
+    class: [_vm.stateClass],
+    attrs: {
+      "_uiid": _vm.uiid,
+      "form-name": _vm.formName,
+      "form-key": _vm.formKey,
+      "group": _vm.group,
+      "default-value": _vm.defaultValue,
+      "hide-name": _vm.hideName,
+      "allow-url": _vm.allowUrl,
+      "allow-drag": _vm.allowDrag,
+      "multi": _vm.multi,
+      "validate": _vm.validate,
+      "uploader": _vm.uploader,
+      "clean-zone": _vm.cleanZone,
+      "max": _vm.max,
+      "forbid": _vm.forbid
+    }
+  }, [_c('morning-upload', {
+    ref: 'ui-imagemap-upload-' + _vm.uiid,
+    attrs: {
+      "form-name": _vm.conf.formName,
+      "max": 1,
+      "allow-url": _vm.conf.allowUrl,
+      "allow-drag": _vm.conf.allowDrag,
+      "validate": _vm.conf.validate,
+      "uploader": _vm.conf.uploader,
+      "accept-type": "image/*"
+    },
+    on: {
+      "value-change": _vm._uploadValueChange
+    }
+  }), _vm._v(" "), _c('a', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.data.images.length > 0),
+      expression: "data.images.length > 0"
+    }],
+    staticClass: "modify-map",
+    attrs: {
+      "href": "javascript:;"
+    },
+    on: {
+      "click": _vm._openMap
+    }
+  }, [_c('i', {
+    staticClass: "morningicon"
+  }, [_vm._v("")]), _vm._v(" 绘制热区\n")]), _vm._v(" "), _c('morning-dialog', {
+    ref: 'ui-imagemap-mapdialog-' + _vm.uiid,
+    staticClass: "mor-imagemap-dialog-map show-no-animate",
+    attrs: {
+      "color": "gray",
+      "width": "60%",
+      "height": "90%"
+    }
+  }, [_c('header', {
+    attrs: {
+      "slot": "header"
+    },
+    slot: "header"
+  }, [_vm._v("绘制热区")]), _vm._v(" "), _c('div', {
+    staticClass: "maparea",
+    on: {
+      "mouseleave": _vm._stopMove,
+      "mouseenter": _vm._startMove
+    }
+  }, [_c('div', {
+    staticClass: "zonearea",
+    class: {
+      'over-range': _vm.data.overRange
+    }
+  }, [_c('div', {
+    staticClass: "zone",
+    staticStyle: {
+      "width": "160px",
+      "height": "60px",
+      "z-index": "1",
+      "top": "50px",
+      "left": "20px"
+    },
+    attrs: {
+      "zone-id": "0"
+    },
+    on: {
+      "mousedown": function($event) {
+        _vm._moveItemRecord(0)
+      },
+      "drop": function($event) {
+        $event.stopPropagation();
+        $event.preventDefault();
+        _vm._dropZone($event)
+      }
+    }
+  }, [_c('div', {
+    staticClass: "topleft"
+  }), _vm._v(" "), _c('div', {
+    staticClass: "top"
+  }), _vm._v(" "), _c('div', {
+    staticClass: "topright"
+  }), _vm._v(" "), _c('div', {
+    staticClass: "right"
+  }), _vm._v(" "), _c('div', {
+    staticClass: "bottomright"
+  }), _vm._v(" "), _c('div', {
+    staticClass: "bottom"
+  }), _vm._v(" "), _c('div', {
+    staticClass: "bottomleft"
+  }), _vm._v(" "), _c('div', {
+    staticClass: "left"
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "zone",
+    staticStyle: {
+      "width": "100px",
+      "height": "150px",
+      "z-index": "2",
+      "top": "30px",
+      "left": "80px"
+    },
+    attrs: {
+      "zone-id": "1"
+    },
+    on: {
+      "mousedown": function($event) {
+        _vm._moveItemRecord(1)
+      },
+      "drop": function($event) {
+        $event.stopPropagation();
+        $event.preventDefault();
+        _vm._dropZone($event)
+      }
+    }
+  }, [_c('div', {
+    staticClass: "topleft"
+  }), _vm._v(" "), _c('div', {
+    staticClass: "top"
+  }), _vm._v(" "), _c('div', {
+    staticClass: "topright"
+  }), _vm._v(" "), _c('div', {
+    staticClass: "right"
+  }), _vm._v(" "), _c('div', {
+    staticClass: "bottomright"
+  }), _vm._v(" "), _c('div', {
+    staticClass: "bottom"
+  }), _vm._v(" "), _c('div', {
+    staticClass: "bottomleft"
+  }), _vm._v(" "), _c('div', {
+    staticClass: "left"
+  })])]), _vm._v(" "), _vm._l((_vm.data.images), function(image) {
+    return [_c('img', {
+      attrs: {
+        "src": image.path
+      }
+    })]
+  })], 2), _vm._v(" "), _c('footer', {
+    attrs: {
+      "slot": "footer"
+    },
+    slot: "footer"
+  }, [_c('div', [_c('ui-btn', {
+    attrs: {
+      "color": "minor"
+    },
+    on: {
+      "emit": function($event) {
+        _vm.morning.findVM('ui-imagemap-mapdialog-' + _vm.uiid).toggle(false)
+      }
+    }
+  }, [_vm._v("关闭")])], 1)])]), _vm._v(" "), _c('morning-dialog', {
+    ref: 'ui-imagemap-zonedialog-' + _vm.uiid,
+    staticClass: "mor-imagemap-dialog-zone",
+    attrs: {
+      "color": "gray",
+      "width": "50%",
+      "height": "90%"
+    }
+  })], 1)
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-28c6c8c4", esExports)
   }
 }
 
