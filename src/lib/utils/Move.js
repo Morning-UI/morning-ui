@@ -9,10 +9,12 @@ let Move = {
         return {
             Move : {
                 can : false,
+                type : 'fixed',
                 // 延迟多久触发拖拽，为了和click兼容
                 $root : null,
                 delay : moveDelayTime,
                 target : null,
+                scrollContainer : null,
                 container : null,
                 lastMousedownIndex : -1,
                 movedIndex : -1,
@@ -31,14 +33,26 @@ let Move = {
                     w : 0,
                     h : 0
                 },
+                moveOffset : {
+                    x : 0,
+                    y : 0
+                },
                 current : {
                     x : 0,
                     y : 0
                 },
-                windowCalibrate : {
+                scrollFrom : {
                     x : 0,
                     y : 0
                 },
+                scrollOffset : {
+                    x : 0,
+                    y : 0
+                },
+                // windowCalibrate : {
+                //     x : 0,
+                //     y : 0
+                // },
                 range : [false, false, false, false],
                 overRange : [0, 0, 0, 0]
             }
@@ -73,6 +87,7 @@ let Move = {
                 this._moveStart(evt);
 
             }, this.Move.delay);
+
 
         },
         _moveStart : function (evt) {
@@ -110,6 +125,31 @@ let Move = {
                 let $moveDragItem = $target.cloneNode(true);
 
                 $moveDragItem.classList.add('move-drag-item');
+
+                if (this.Move.type === 'fixed') {
+
+                    $moveDragItem.classList.add('fixed');
+
+                } else {
+
+                    $moveDragItem.classList.add('absolute');
+
+                }
+
+                if (this.Move.type === 'absolute' && this.Move.scrollContainer) {
+
+                    let $scrollContainer = this.Move.$root.querySelector(this.Move.scrollContainer);
+
+                    if ($scrollContainer) {
+                    
+                        $scrollContainer.addEventListener('scroll', this._moveScroll);
+                        this.Move.scrollFrom.x = $scrollContainer.scrollLeft;
+                        this.Move.scrollFrom.y = $scrollContainer.scrollTop;
+
+                    }
+
+                }
+
                 $moveDragItem.style.top = `${y}px`;
                 $moveDragItem.style.left = `${x}px`;
                 $container.append($moveDragItem);
@@ -119,8 +159,14 @@ let Move = {
                 this.Move.movedIndex = this.Move.lastMousedownIndex;
                 this.Move.moveMouseFrom.x = evt.clientX;
                 this.Move.moveMouseFrom.y = evt.clientY;
+                this.Move.moveOffset.x = evt.clientX;
+                this.Move.moveOffset.y = evt.clientY;
+                this.Move.scrollOffset.x = 0;
+                this.Move.scrollOffset.y = 0;
                 this.Move.moveItemXy.x = x;
                 this.Move.moveItemXy.y = y;
+                this.Move.current.x = x;
+                this.Move.current.y = y;
                 this.Move.moveItemWh.w = $moveDragItem.offsetWidth;
                 this.Move.moveItemWh.h = $moveDragItem.offsetHeight;
                 this.Move.moving = true;
@@ -129,6 +175,23 @@ let Move = {
                 this.$emit('_moveStarted');
 
             }
+
+        },
+        _moveCore : function () {
+
+            let x = this.Move.moveOffset.x - this.Move.moveMouseFrom.x + this.Move.moveItemXy.x + this.Move.scrollOffset.x;
+            let y = this.Move.moveOffset.y - this.Move.moveMouseFrom.y + this.Move.moveItemXy.y + this.Move.scrollOffset.y;
+            let limit = this._moveRangeLimit(x, y);
+            
+            x = limit.x;
+            y = limit.y;
+
+            this.Move.$moveDragItem.style.top = `${y}px`;
+            this.Move.$moveDragItem.style.left = `${x}px`;
+            this.Move.current.x = x;
+            this.Move.current.y = y;
+
+            this.$emit('_moveChange');
 
         },
         _moveMousemove : function (evt) {
@@ -147,8 +210,77 @@ let Move = {
                 
             }
 
-            let x = evt.clientX - this.Move.moveMouseFrom.x + this.Move.moveItemXy.x;
-            let y = evt.clientY - this.Move.moveMouseFrom.y + this.Move.moveItemXy.y;
+            this.Move.moveOffset.x = evt.clientX;
+            this.Move.moveOffset.y = evt.clientY;
+
+            this._moveCore();
+
+        },
+        _moveScroll : function (evt) {
+
+            if (this.Move.type === 'absolute' && this.Move.scrollContainer) {
+
+                let $scrollContainer = this.Move.$root.querySelector(this.Move.scrollContainer);
+
+                if ($scrollContainer) {
+                    
+                    this.Move.scrollOffset.x = $scrollContainer.scrollLeft - this.Move.scrollFrom.x;
+                    this.Move.scrollOffset.y = $scrollContainer.scrollTop - this.Move.scrollFrom.y;
+
+                }
+
+            }
+
+            this._moveCore();
+
+        },
+        _moveMouseup : function (evt) {
+
+            // if has evt, must left button up
+            if (evt && evt.button !== 0) {
+
+                return;
+
+            }
+
+            clearTimeout(this.Move.delayTimeout);
+
+            if (!this.Move.moving) {
+
+                return;
+
+            }
+
+            let $target = this.Move.$root.querySelector(`.move-moving`);
+
+            if ($target) {
+
+                $target.classList.remove('move-moving');
+
+            }
+
+            if (this.Move.type === 'absolute' && this.Move.scrollContainer) {
+
+                let $scrollContainer = this.Move.$root.querySelector(this.Move.scrollContainer);
+
+                if ($scrollContainer) {
+                
+                    $scrollContainer.removeEventListener('scroll', this._moveScroll);
+
+                }
+
+            }
+
+            this.Move.movedIndex = -1;
+            // this.Move.lastMousedownIndex = -1;
+            this.Move.$moveDragItem.remove();
+            this.Move.$moveDragItem = null;
+            this.Move.moving = false;
+
+            this.$emit('_moveEnded');
+
+        },
+        _moveRangeLimit : function (x, y) {
 
             // x min
             if (this.Move.range[0] !== false &&
@@ -210,46 +342,10 @@ let Move = {
 
             }
 
-            this.Move.$moveDragItem.style.top = `${y}px`;
-            this.Move.$moveDragItem.style.left = `${x}px`;
-            this.Move.current.x = x;
-            this.Move.current.y = y;
-
-            this.$emit('_moveChange');
-
-        },
-        _moveMouseup : function (evt) {
-
-            // if has evt, must left button up
-            if (evt && evt.button !== 0) {
-
-                return;
-
-            }
-
-            clearTimeout(this.Move.delayTimeout);
-
-            if (!this.Move.moving) {
-
-                return;
-
-            }
-
-            let $target = this.Move.$root.querySelector(`.move-moving`);
-
-            if ($target) {
-
-                $target.classList.remove('move-moving');
-
-            }
-
-            this.Move.movedIndex = -1;
-            // this.Move.lastMousedownIndex = -1;
-            this.Move.$moveDragItem.remove();
-            this.Move.$moveDragItem = null;
-            this.Move.moving = false;
-
-            this.$emit('_moveEnded');
+            return {
+                x,
+                y
+            };
 
         },
         _moveElementXy : function ($target) {
@@ -257,14 +353,29 @@ let Move = {
             let client = $target.getBoundingClientRect();
             let marginLeft = $target.ownerDocument.defaultView.getComputedStyle($target).marginLeft;
             let marginTop = $target.ownerDocument.defaultView.getComputedStyle($target).marginTop;
+            let left = $target.ownerDocument.defaultView.getComputedStyle($target).left;
+            let top = $target.ownerDocument.defaultView.getComputedStyle($target).top;
             let x;
             let y;
 
             marginLeft = +marginLeft.split('px')[0];
             marginTop = +marginTop.split('px')[0];
+            left = +left.split('px')[0];
+            top = +top.split('px')[0];
 
-            x = client.left + this.Move.windowCalibrate.x - marginLeft;
-            y = client.top + this.Move.windowCalibrate.y - marginTop;
+            //  + this.Move.windowCalibrate.x; + this.Move.windowCalibrate.y
+
+            if (this.Move.type === 'fixed') {
+
+                x = client.left - marginLeft;
+                y = client.top - marginTop;
+
+            } else {
+
+                x = left;
+                y = top;
+
+            }
 
             return {
                 x,
@@ -294,6 +405,18 @@ let Move = {
                 if ($container) {
 
                     $container.removeEventListener('mousedown', this._moveMousedown);
+
+                }
+
+                if (this.Move.type === 'absolute' && this.Move.scrollContainer) {
+
+                    let $scrollContainer = this.Move.$root.querySelector(this.Move.scrollContainer);
+
+                    if ($scrollContainer) {
+                    
+                        $scrollContainer.removeEventListener('scroll', this._moveScroll);
+
+                    }
 
                 }
 
