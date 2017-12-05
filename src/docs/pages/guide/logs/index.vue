@@ -18,6 +18,23 @@
     
     ### 更新记录
 
+    ### 0.10.12 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2017年12月5日，
+            Archive : 
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.12" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.12/dist/" target="_blank">CDN</a>
+        </ui-small>
+    </ui-textcolor>
+
+    - 新增`ui-imagemap`图片热区组件
+    - 新增`cleanGroup()`方法
+    - `ui-upload`组件新增`isUploading()`方法，用来判断组件是否仍然上传图片
+    - 修复`ui-upload`触发最大上传限制后，删除文件仍然显示无法上传的问题
+    - 修复文档中的一些问题
+
     ### 0.10.11 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="light-blue">

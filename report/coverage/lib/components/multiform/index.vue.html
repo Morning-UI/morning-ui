@@ -25,9 +25,9 @@
         <span class='fraction'>7/153</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">8.11% </span>
+        <span class="strong">8.26% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>9/111</span>
+        <span class='fraction'>9/109</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -626,7 +626,9 @@
 581
 582
 583
-584</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+584
+585
+586</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -752,14 +754,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">83x</span>
+<span class="cline-any cline-yes">83x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">83x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">83x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -787,6 +789,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1208,9 +1212,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
-    &lt;i-multiform
+<span class="cline-any cline-yes">83x</span>
+<span class="cline-any cline-yes">83x</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
+    &lt;mor-multiform
         :_uiid="uiid"
         :class="[stateClass, moreClass, moveClass]"
 &nbsp;
@@ -1239,8 +1243,9 @@
         
             &lt;div
                 class="item"
-                :class="{'has-img' : (conf.itemFiller(item) &amp;&amp; conf.itemFiller(item).thumb)}"
                 v-for="(item, index) of data.value"
+                :class="{'has-img' : (conf.itemFiller(item) &amp;&amp; conf.itemFiller(item).thumb)}"
+                :key="index"
                 @click="_fillItem(index)"
                 @mousedown="_moveItemRecord(index)"
             &gt;
@@ -1270,6 +1275,7 @@
                         class="add item"
                         v-if="data.value.length &lt; conf.max"
                         @click="_addItemDialog"
+                        key="set-max"
                     &gt;
                         &lt;span&gt;添加{{conf.itemName}}&lt;/span&gt; &lt;i class="morningicon"&gt;&amp;#xe698;&lt;/i&gt;
                     &lt;/a&gt;
@@ -1281,6 +1287,7 @@
                         href="javascript:;"
                         class="add item"
                         @click="_addItemDialog"
+                        key="unset-max"
                     &gt;
                         &lt;span&gt;添加{{conf.itemName}}&lt;/span&gt; &lt;i class="morningicon"&gt;&amp;#xe698;&lt;/i&gt;
                     &lt;/a&gt;
@@ -1294,7 +1301,6 @@
         width="500px"
         height="75%"
         color="gray"
-        v-if="conf.inputType === 'single'"
         :ref="'ui-multiform-dialog-'+uiid"
         @show="_showForm"
         @hide="_hideForm"
@@ -1319,7 +1325,7 @@
         :ref="'ui-multiform-batchdialog-'+uiid"
     &gt;
         &lt;header slot="header"&gt;请输入需要添加的项目&lt;/header&gt;
-        &lt;ui-textarea :ref="'ui-multiform-batchinput-'+uiid"&gt;&lt;/ui-textarea&gt;
+        &lt;morning-textarea :ref="'ui-multiform-batchinput-'+uiid"&gt;&lt;/morning-textarea&gt;
         &lt;footer slot="footer"&gt;
             &lt;div&gt;
                 &lt;!-- action="emit:toggle" --&gt;
@@ -1329,9 +1335,9 @@
         &lt;/footer&gt;
     &lt;/morning-dialog&gt;
 &nbsp;
-    &lt;ui-link v-if="conf.cleanBtn" color="minor" @emit="_cleanAllItems" class="cleanbtn"&gt;清空全部&lt;/ui-link&gt;
+    &lt;morning-link v-if="conf.cleanBtn" color="minor" @emit="_cleanAllItems" class="cleanbtn"&gt;清空全部&lt;/morning-link&gt;
 &nbsp;
-    &lt;/i-multiform&gt;
+    &lt;/mor-multiform&gt;
 &lt;/template&gt;
  
 &lt;script&gt;
@@ -1798,7 +1804,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Nov 20 2017 13:38:44 GMT+0800 (CST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Dec 05 2017 22:39:33 GMT+0800 (CST)
 </div>
 </div>
 <script src="../../../prettify.js"></script>

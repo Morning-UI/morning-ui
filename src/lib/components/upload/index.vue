@@ -107,8 +107,6 @@
 import extend                       from 'extend';
 import axios                        from 'axios';
 
-const uploadWaitTime = 100;
-
 export default {
     origin : 'Form',
     name : 'upload',
@@ -157,8 +155,8 @@ export default {
         ismax : function () {
 
             if (this.conf.max &&
-                this.data.value &&
-                this.data.value.length >= this.conf.max) {
+                this.data.files &&
+                this.data.files.length >= this.conf.max) {
 
                 return true;
 
@@ -365,14 +363,14 @@ export default {
             let files = [];
             let values = this.get();
 
+            this.data.files = [];
+
             if (typeof values !== 'object' ||
                 !(values instanceof Array)) {
 
                 return;
 
             }
-
-            this.data.files = [];
 
             for (let value of values) {
 
@@ -461,19 +459,16 @@ export default {
 
             if (!/^(http|https|\/\/)/.test(file.path)) {
 
-                setTimeout(() => {
-
-                    this._upload(index);
-
-                }, uploadWaitTime);
+                this._upload(index);
 
             }
 
         },
         _removeFile : function (index) {
 
-            this._set(this._fetchValueFromFiles(), true);
             this.data.files.splice(index, 1);
+            this.data.failNote = '';
+            this._set(this._fetchValueFromFiles(), true, true);
 
         },
         _upload : function (index) {
@@ -501,7 +496,8 @@ export default {
 
                     this._setStatus(index, 'verification');
 
-                    if (this.conf.max && this.ismax) {
+                    // do not use this.ismax
+                    if (this.conf.max && this.data.value.length >= this.conf.max) {
 
                         return Promise.reject('upload file num is max.');
 
@@ -563,7 +559,7 @@ export default {
                         this.data.files[index].path = result.path;
                         this.data.files[index].name = this._getName(result.path);
                         this.data.files[index].data = result.data;
-                        this._set(this._fetchValueFromFiles(), true);
+                        this._set(this._fetchValueFromFiles(), true, true);
                         this._setStatus(index, 'uploaded');
                         this._setStatus(index, 'done');
                         this._execUploadOnce();
@@ -624,16 +620,56 @@ export default {
             }
 
         },
-        set : function (value) {
+        _set : function (value, ignoreDisable = false, origin = false) {
 
-            this.data.uploading = false;
-            this.data.uploadQueue = [];
+            if (this.conf.state === 'disabled' && !ignoreDisable) {
 
-            let result = this._set(value);
+                this._syncFilesFromValue();
+    
+                return this;
 
-            this._syncFilesFromValue();
+            }
 
-            return result;
+            let val;
+
+            if (!origin) {
+                
+                this.data.uploading = false;
+                this.data.uploadQueue = [];
+
+            }
+
+            try {
+
+                val = JSON.parse(value);
+
+            } catch (e) {
+
+                val = value;
+
+            }
+
+            if (typeof val === 'object') {
+
+                if (JSON.stringify(val) !== JSON.stringify(this.data.value)) {
+
+                    this.data.value = val;
+
+                }
+
+            } else {
+
+                this.data.value = value;
+
+            }
+
+            if (!origin) {
+
+                this._syncFilesFromValue();
+
+            }
+
+            return this;
 
         },
         uploadUrl : function (url) {
@@ -647,6 +683,11 @@ export default {
             this._fetchRemoteFile(url);
 
             return this;
+
+        },
+        isUploading : function () {
+
+            return !!this.data.uploading;
 
         }
     },

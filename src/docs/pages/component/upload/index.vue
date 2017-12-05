@@ -268,7 +268,7 @@
     #### uploadUrl(url)
 
     上传网络文件，使用此方法需要开启组件的`allow-url`配置。
-    
+
     |KEY|可选|描述|接受值|值类型|默认值|
     |-|-|-|-|-|-|
     |url|NO|需要上传网络文件的URL地址|URL|`String`|`undefined`|
@@ -279,6 +279,18 @@
     </div>
     <br>
     <ui-link js="morning.findVM('demo1').uploadUrl('https://cn.vuejs.org/images/logo.png');">上传Vue的logo</ui-link>
+    :::
+
+    #### isUploading()
+
+    组件是否仍在上传文件，返回布尔值。
+
+    :::democode/html
+    <div style="width:300px;">
+        <ui-upload ref="demo2" form-name="文件"></ui-upload>
+    </div>
+    <br>
+    <ui-link js="alert(morning.findVM('demo2').isUploading());">获取上传状态</ui-link>
     :::
 
     [[[事件]]]

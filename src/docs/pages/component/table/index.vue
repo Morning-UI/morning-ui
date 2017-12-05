@@ -171,9 +171,9 @@
         template : '{$template}',
         data : {
             list : [
-                {name : 'Tim Boelaars', age : 20, gender : 'male', action : '<ui-btn style="success" size="xs">发送</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'},
-                {name : 'Andrew Colin Beck', age : 41, gender : 'female', action : '<ui-btn style="success" size="xs">发送</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'},
-                {name : 'Gustavo Zambelli', age : 23, gender : 'male', action : '<ui-btn style="success" size="xs">发送</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'}
+                {name : 'Tim Boelaars', age : 20, gender : 'male', action : '<ui-btn color="success" size="xs">发送</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'},
+                {name : 'Andrew Colin Beck', age : 41, gender : 'female', action : '<ui-btn color="success" size="xs">发送</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'},
+                {name : 'Gustavo Zambelli', age : 23, gender : 'male', action : '<ui-btn color="success" size="xs">发送</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'}
             ]
         }
     });
@@ -192,9 +192,9 @@
         computed : {
             list : function () {
                 return [
-                    {name : 'Tim Boelaars', age : 20, gender : 'male', action : `<ui-btn style="success" size="xs">${this.btntext}</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>`},
-                    {name : 'Andrew Colin Beck', age : 41, gender : 'female', action : `<ui-btn style="success" size="xs">${this.btntext}</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>`},
-                    {name : 'Gustavo Zambelli', age : 23, gender : 'male', action : `<ui-btn style="success" size="xs">${this.btntext}</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>`}
+                    {name : 'Tim Boelaars', age : 20, gender : 'male', action : `<ui-btn color="success" size="xs">${this.btntext}</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>`},
+                    {name : 'Andrew Colin Beck', age : 41, gender : 'female', action : `<ui-btn color="success" size="xs">${this.btntext}</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>`},
+                    {name : 'Gustavo Zambelli', age : 23, gender : 'male', action : `<ui-btn color="success" size="xs">${this.btntext}</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>`}
                 ];
             }
         },
@@ -217,9 +217,9 @@
         template : '{$template}',
         data : {
             list : [
-                {name : 'Tim Boelaars', age : 20, gender : 'male', action : '<ui-btn style="success" size="xs" @emit="send(0);">第一个发送</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'},
-                {name : 'Andrew Colin Beck', age : 41, gender : 'female', action : '<ui-btn style="success" size="xs" @emit="window.sendProxy(1);">第二个发送</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'},
-                {name : 'Gustavo Zambelli', age : 23, gender : 'male', action : '<ui-btn style="success" size="xs">发送</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'}
+                {name : 'Tim Boelaars', age : 20, gender : 'male', action : '<ui-btn color="success" size="xs" @emit="send(0);">第一个发送</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'},
+                {name : 'Andrew Colin Beck', age : 41, gender : 'female', action : '<ui-btn color="success" size="xs" @emit="window.sendProxy(1);">第二个发送</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'},
+                {name : 'Gustavo Zambelli', age : 23, gender : 'male', action : '<ui-btn color="success" size="xs">发送</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'}
             ]
         },
         methods : {

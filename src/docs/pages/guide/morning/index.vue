@@ -104,6 +104,20 @@
 
     Morning对象。
 
+    #### cleanGroup(groupName)
+
+    清空一组表单的数值，详见：[清空一组表单的值](/guide/form.html#清空一组表单的值)。
+
+    ##### 参数
+
+    |参数|可选|描述|类型|
+    |-|-|-|-|
+    |groupName|NO|需要清空数据表单组的名称|`string`|
+
+    ##### 返回值
+
+    Morning对象
+
     </script>
     </doc-guide>
 </template>
