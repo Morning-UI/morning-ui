@@ -171,12 +171,12 @@
 
     |KEY|描述|接受值|值类型|默认值|
     |-|-|-|-|-|
-    |total|设置分页总页数，当设置list时，会根据`page-size`和`list`的长度自动计算total|总页数|Number|`1`|
-    |list|需要分页的数据组，一个数组或对象|数据对象<br>数据数组|Object<br>Array|`undefined`|
-    |page-size|每页多少条记录，只有设置`list`时才有效|每页记录数量|Number|`10`|
-    |page|默认在第几页|页码|Number|`1`|
-    |max-show|分页栏最多显示几页，超过的页码会隐藏|页码数，一般为奇数|Number|`9`|
-    |jump-page|是否允许输入页码跳转|`true`<br>`false`|Boolean|`true`|
+    |[total](#total)|设置分页总页数，当设置list时，会根据`page-size`和`list`的长度自动计算total|总页数|Number|`1`|
+    |[list](#list)|需要分页的数据组，一个数组或对象|数据对象<br>数据数组|Object<br>Array|`undefined`|
+    |[page-size](#page-size)|每页多少条记录，只有设置`list`时才有效|每页记录数量|Number|`10`|
+    |[page](#page)|默认在第几页|页码|Number|`1`|
+    |[max-show](#max-show)|分页栏最多显示几页，超过的页码会隐藏|页码数，一般为奇数|Number|`9`|
+    |[jump-page](#jump-page)|是否允许输入页码跳转|`true`<br>`false`|Boolean|`true`|
 
     #### total
 

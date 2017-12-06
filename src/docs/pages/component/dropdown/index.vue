@@ -66,7 +66,7 @@
 
     |KEY|描述|接受值|值类型|默认值|
     |-|-|-|-|-|
-    |auto-close|点击下拉菜单中按钮后自动隐藏|`true`<br>`false`|Boolean|`true`|
+    |[auto-close](#auto-close)|点击下拉菜单中按钮后自动隐藏|`true`<br>`false`|Boolean|`true`|
 
     #### auto-close
 

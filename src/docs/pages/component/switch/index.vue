@@ -34,7 +34,7 @@
     :::preset/html
     formConfigTable
     ---
-    |auto-hide-name|当表档名为空时自动隐藏表单名部分|`true`<br>`false`|Boolean|`false`|
+    |[auto-hide-name](#auto-hide-name)|当表档名为空时自动隐藏表单名部分|`true`<br>`false`|Boolean|`false`|
     :::
 
     :::preset/html

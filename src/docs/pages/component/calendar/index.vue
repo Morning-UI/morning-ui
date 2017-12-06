@@ -36,10 +36,10 @@
 
     |KEY|描述|接受值|值类型|默认值|
     |-|-|-|-|-|
-    |date|日历所在的日期，日历将会切换到`date`所在的月份|时间戳|Number|`+new Date()`|
-    |highlight-now|高亮今天的日期|`true`<br>`false`|Boolean|`true`|
-    |highlight-day|高亮指定日期，接受一个数组，数组中每一项代表一个或一段日期，所有匹配到的日期都会高亮|数组，数组中支持三种类型的项目：<br><br>`Date`对象 : 高亮指定日期<br>`Number`(时间戳) : 高亮指定时间戳所在的日期<br>`Array` : 数组格式为:`[start, end]`，从`start`开始到`end`的日期都会高亮，`start`和`end`支持`Date`对象及时间戳|Array|`[]`|
-    |pick-year-month|选择年份后继续选择月份。如果关闭选完年份后会关闭年份选择器，如果开启选完年份后会开启月份选择器|`true`<br>`false`|Boolean|`false`|
+    |[date](#date)|日历所在的日期，日历将会切换到`date`所在的月份|时间戳|Number|`+new Date()`|
+    |[highlight-now](#highlight-now)|高亮今天的日期|`true`<br>`false`|Boolean|`true`|
+    |[highlight-day](#highlight-day)|高亮指定日期，接受一个数组，数组中每一项代表一个或一段日期，所有匹配到的日期都会高亮|数组，数组中支持三种类型的项目：<br><br>`Date`对象 : 高亮指定日期<br>`Number`(时间戳) : 高亮指定时间戳所在的日期<br>`Array` : 数组格式为:`[start, end]`，从`start`开始到`end`的日期都会高亮，`start`和`end`支持`Date`对象及时间戳|Array|`[]`|
+    |[pick-year-month](#pick-year-month)|选择年份后继续选择月份。如果关闭选完年份后会关闭年份选择器，如果开启选完年份后会开启月份选择器|`true`<br>`false`|Boolean|`false`|
 
     #### date
 

@@ -216,6 +216,12 @@
     - `highlight-now` : 高亮当日
     - `highlight-day` : 高亮日期
     - `pick-year-month` : 选择年月
+    - `accept-type` : 接受类型
+    - `allow-url` : 允许URL
+    - `allow-drag` : 允许拖拽
+    - `validate` : 验证
+    - `uploader` : 上传适配器
+    - `clean-zone` : 清空区域
 
     </script>
     </doc-guide>
