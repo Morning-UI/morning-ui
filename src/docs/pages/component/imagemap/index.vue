@@ -102,13 +102,13 @@
     :::preset/html
     formConfigTable
     ---
-    |allow-url|允许从网络地址获取文件并上传图片|`true`<br>`false`|Boolean|`false`|
-    |allow-drag|允许拖拽文件或网络地址上传图片，若拖拽的是网络地址必须开启`allow-url`|`true`<br>`false`|Boolean|`false`|
-    |multi|允许同时选择多个图片上传。注意由于`max`默认为1，请先设置`max`，否则选择多个图片最终只能上传1张。|`true`<br>`false`|Boolean|`false`|
-    |validate|验证上传的图片，详见：[文件上传组件的`validate`配置](/component/upload.html)|验证函数|Function|`() => {}`|
-    |uploader|图片上传适配器，详见：[文件上传组件的`uploader`配置](/component/upload.html)|文件上传适配器函数|Function|`undefined`|
-    |clean-zone|当图片更换时，清空所有的热区|`true`<br>`false`|Boolean|`true`|
-    |max|最多允许上传多少图片|数字|Number|`1`|
+    |[allow-url](#allow-url)|允许从网络地址获取文件并上传图片|`true`<br>`false`|Boolean|`false`|
+    |[allow-drag](#allow-drag)|允许拖拽文件或网络地址上传图片，若拖拽的是网络地址必须开启`allow-url`|`true`<br>`false`|Boolean|`false`|
+    |[multi](#multi)|允许同时选择多个图片上传。注意由于`max`默认为1，请先设置`max`，否则选择多个图片最终只能上传1张。|`true`<br>`false`|Boolean|`false`|
+    |[validate](#validate)|验证上传的图片，详见：[文件上传组件的`validate`配置](/component/upload.html)|验证函数|Function|`() => {}`|
+    |[uploader](#uploader)|图片上传适配器，详见：[文件上传组件的`uploader`配置](/component/upload.html)|文件上传适配器函数|Function|`undefined`|
+    |[clean-zone](#clean-zone)|当图片更换时，清空所有的热区|`true`<br>`false`|Boolean|`true`|
+    |[max](#max)|最多允许上传多少图片|数字|Number|`1`|
 
     :::preset/html
     formConfigDemo
@@ -199,6 +199,14 @@
     :::democode/html
     <div style="width:300px;">
         <ui-imagemap form-name="热区" multi :max="10" :clean-zone="false"></ui-imagemap>
+    </div>
+    :::
+
+    #### max
+
+    :::democode/html
+    <div style="width:300px;">
+        <ui-imagemap form-name="热区" :max="3"></ui-imagemap>
     </div>
     :::
 

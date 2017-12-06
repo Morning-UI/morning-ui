@@ -198,16 +198,16 @@
     :::preset/html
     formConfigTable
     ---
-    |max-show|下拉列表最多显示几项(超过出现滚动条)|项目数量|Number|`5`|
-    |auto-close|点击下拉选择框以外的区域自动关闭下拉选择框|`true`<br>`false`|Boolean|`true`|
-    |can-search|允许通过项目内容搜索项目|`true`<br>`false`|Boolean|`false`|
-    |multi-select|允许选择多个项目|`true`<br>`false`|Boolean|`false`|
-    |can-move|项目是否可以移动|`true`<br>`false`|Boolean|`false`|
-    |max|允许多选的最大项数，仅在开启`multi-select`后生效，未开启`multi-select`至多只能选择一项|数字|Number|`Infinity`|
-    |clean-btn|出现清空按钮，允许清空所选值|`true`<br>`false`|Boolean|`false`|
-    |inline-img-size|项目的缩略图大小(这不会影响选中项目的缩略图大小)|px或em为单位的数值字符串|String|'2em'|
-    |item-tip|允许为下拉菜单设置提示|`true`<br>`false`|Boolean|`false`|
-    |item-tip-direct|为下拉菜单设置提示的方向，需要开启`list-tip`才有效|`top`<br>`right`<br>`bottom`<br>`left`|String|`top`|
+    |[max-show](#max-show)|下拉列表最多显示几项(超过出现滚动条)|项目数量|Number|`5`|
+    |[auto-close](#auto-close)|点击下拉选择框以外的区域自动关闭下拉选择框|`true`<br>`false`|Boolean|`true`|
+    |[can-search](#can-search)|允许通过项目内容搜索项目|`true`<br>`false`|Boolean|`false`|
+    |[multi-select](#multi-select)|允许选择多个项目|`true`<br>`false`|Boolean|`false`|
+    |[can-move](#can-move)|项目是否可以移动|`true`<br>`false`|Boolean|`false`|
+    |[max](#max)|允许多选的最大项数，仅在开启`multi-select`后生效，未开启`multi-select`至多只能选择一项|数字|Number|`Infinity`|
+    |[clean-btn](#clean-btn)|出现清空按钮，允许清空所选值|`true`<br>`false`|Boolean|`false`|
+    |[inline-img-size](#inline-img-size)|项目的缩略图大小(这不会影响选中项目的缩略图大小)|px或em为单位的数值字符串|String|'2em'|
+    |[item-tip](#item-tip)|允许为下拉菜单设置提示|`true`<br>`false`|Boolean|`false`|
+    |[item-tip-direct](#item-tip-direct)|为下拉菜单设置提示的方向，需要开启`list-tip`才有效|`top`<br>`right`<br>`bottom`<br>`left`|String|`top`|
     :::
     
     :::preset/html

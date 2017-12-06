@@ -35,8 +35,8 @@
     :::preset/html
     formConfigTable
     ---
-    |accept-html|项目的的名称可以使用HTML|`true`<br>`false`|Boolean|`false`|
-    |list|可选项目列表|可选项目列表的对象，键名是key，键值是name用于显示|Object|`{}`|
+    |[accept-html](#accept-html)|项目的的名称可以使用HTML|`true`<br>`false`|Boolean|`false`|
+    |[list](#list)|可选项目列表|可选项目列表的对象，键名是key，键值是name用于显示|Object|`{}`|
     :::
 
     :::preset/html

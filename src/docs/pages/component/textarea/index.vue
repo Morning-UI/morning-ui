@@ -34,7 +34,7 @@
     :::preset/html
     formConfigTable
     ---
-    |rows|段落输入框的高度对应的行数|大于0的数字|Number|`4`|
+    |[rows](#rows)|段落输入框的高度对应的行数|大于0的数字|Number|`4`|
     :::
 
     :::preset/html

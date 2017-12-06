@@ -125,11 +125,11 @@
 
     |KEY|描述|接受值|值类型|默认值|
     |-|-|-|-|-|
-    |close-btn|是否显示关闭消息的按钮，开启后用户可以主动关闭消息，否则消息会在`close-time`设置的时间后消失|`true`<br>`false`|Boolean|`false`|
-    |close-time|消息在多久之后关闭|数字：时间(毫秒)<br>`false` : 不会定时关闭，需要通过`close-btn`关闭|Number<br>Boolean|`4000`|
-    |show-type|消息出现的位置|`'top'` : 上方<br>`'topleft'` : 左上角<br>`'topright'` : 右上角<br>`'bottom'` : 下方<br>`'bottomleft'` : 左下角<br>`'bottomright'` : 右下角|String|`'top'`|
-    |max-show|同时最多显示几条消息(仅针对当前的消息组件)，当有新的消息时，超出`max-show`的消息会被暂时隐藏。如果新的消息被手动关闭，被暂时隐藏的消息会重新显示，直至超过`close-time`。若设为`false`时则显示全部消息|Number : 最多显示消息的数量<br>`false` : 显示所有|Number<br>Boolean|`2`|
-    
+    |[close-btn](#close-btn)|是否显示关闭消息的按钮，开启后用户可以主动关闭消息，否则消息会在`close-time`设置的时间后消失|`true`<br>`false`|Boolean|`false`|
+    |[close-time](#close-time)|消息在多久之后关闭|数字：时间(毫秒)<br>`false` : 不会定时关闭，需要通过`close-btn`关闭|Number<br>Boolean|`4000`|
+    |[show-type](#show-type)|消息出现的位置|`'top'` : 上方<br>`'topleft'` : 左上角<br>`'topright'` : 右上角<br>`'bottom'` : 下方<br>`'bottomleft'` : 左下角<br>`'bottomright'` : 右下角|String|`'top'`|
+    |[max-show](#max-show)|同时最多显示几条消息(仅针对当前的消息组件)，当有新的消息时，超出`max-show`的消息会被暂时隐藏。如果新的消息被手动关闭，被暂时隐藏的消息会重新显示，直至超过`close-time`。若设为`false`时则显示全部消息|Number : 最多显示消息的数量<br>`false` : 显示所有|Number<br>Boolean|`2`|
+
     #### close-btn
 
     :::democode/html
