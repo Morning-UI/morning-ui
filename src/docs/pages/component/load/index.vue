@@ -91,8 +91,8 @@
 
     |KEY|描述|接受值|值类型|默认值|
     |-|-|-|-|-|
-    |time|多少时间(ms)后完成加载，若设为false则需要手动完成或拒绝加载。如果当前正处于加载中，`time`改变后需要下次加载生效。|时间值(ms)<br>`false`|Boolean<br>Number|`200`|
-    |note|加载过程中的提示|提示字符串|String|`''`|
+    |[time](#time)|多少时间(ms)后完成加载，若设为false则需要手动完成或拒绝加载。如果当前正处于加载中，`time`改变后需要下次加载生效。|时间值(ms)<br>`false`|Boolean<br>Number|`200`|
+    |[note](#note)|加载过程中的提示|提示字符串|String|`''`|
 
     #### time
 

@@ -63,10 +63,10 @@
 
     |KEY|描述|接受值|值类型|默认值|
     |-|-|-|-|-|
-    |link|链接地址，若为空则不跳转|url地址|String|`''`|
-    |js|点击后执行JS逻辑|JS代码|String|`''`|
-    |locked|锁定模式，用来防止组件在短时间内被重复触发。若设置一个时间数值(ms)，该组件在时间内只触发一次。也可设为`true`，触发后需要通过`unlock()`方法来解锁组件。|`true`<br>`false`<br>数值(单位ms)|Number<br>Boolean|`false`|
-    |new-tab|是否在新窗口中打开链接|`true`<br>`false`|Boolean|`false`|
+    |[link](#link)|链接地址，若为空则不跳转|url地址|String|`''`|
+    |[js](#js)|点击后执行JS逻辑|JS代码|String|`''`|
+    |[locked](#locked)|锁定模式，用来防止组件在短时间内被重复触发。若设置一个时间数值(ms)，该组件在时间内只触发一次。也可设为`true`，触发后需要通过`unlock()`方法来解锁组件。|`true`<br>`false`<br>数值(单位ms)|Number<br>Boolean|`false`|
+    |[new-tab](#new-tab)|是否在新窗口中打开链接|`true`<br>`false`|Boolean|`false`|
 
     #### link
 

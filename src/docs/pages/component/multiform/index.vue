@@ -71,15 +71,15 @@
     :::preset/html
     formConfigTable
     ---
-    |item-name|项目的名称，如果没有设置`item-filler`，会作为每项的标题显示。同时会作为添加按钮标题的后缀。|项目的名称|String|`'项目'`|
-    |item-filler|项目内容填充函数，此函数有一个参数：<br>`item`：每一项的数据对象<br><br>此函数通过`item`获取项目的标题及缩略图，然后返回给组件，最终将标题和缩略图显示在项目上。<br><br>返回值是一个对象，包含两个KEY：`title`、`thumb`(缩略图地址)|填充函数|Function|`() => {}`|
-    |can-move|输入项目是否可以移动|`true`<br>`false`|Boolean|`false`|
-    |max|可输入的最大项目数|数字：最大项目数<br>`undefined`：无限制|Number|`undefined`|
-    |clean-btn|显示清空全部项目的按钮|`true`<br>`false`|Boolean|`false`|
-    |input-type|表单的输入模式<br><br>在批量输入模式下会进行下面操作：<br>1. 将用户输入的字符串解析成id数组(按一定的规则)<br>2. 将id数组会输入一个填值函数(用户定义填值函数)<br>3. 填值函数解析id后，返回由多个项目对象组成的数组<br>4. 这些项目会被添加到表单中<br><br>批量输入必需添加：<br>`batch-reg`将字符串解析为id数组的正则表达式<br>`batch-filler`来将输入数组转换成项目对象数组|`'single'`：每次输入一项<br>`'batch-separate'`：批量输入，通过内容分割得到id数组<br>`'batch-pluck'`：批量输入，通过内容匹配选取得到id数组|String|`'single'`|
-    |batch-reg|解析用户输入字符串的正则表达式<br>在`batch-separate`模式下通过这个正则分割字符串得到id数组<br>在`batch-pluck`模式下通过匹配这个正则得到id数组(每匹配到一项添加到数组中)|正则表达式字符串|String|`','`|
-    |batch-filler|批量输入的填值函数，此函数有一个参数：<br>`ids`：用户输入的id数组<br><br>通过解析这些id，此函数返回多个项目对象组成的数组<br><br>如果解析是异步的，此函数也可以返回一个`Promise`对象|填值函数|Function|`value => value`|
-    |batch-uniq|对用户输入解析后的id数组进行去重|`true`<br>`false`|Boolean|`false`|
+    |[item-name](#item-name)|项目的名称，如果没有设置`item-filler`，会作为每项的标题显示。同时会作为添加按钮标题的后缀。|项目的名称|String|`'项目'`|
+    |[item-filler](#item-filler)|项目内容填充函数，此函数有一个参数：<br>`item`：每一项的数据对象<br><br>此函数通过`item`获取项目的标题及缩略图，然后返回给组件，最终将标题和缩略图显示在项目上。<br><br>返回值是一个对象，包含两个KEY：`title`、`thumb`(缩略图地址)|填充函数|Function|`() => {}`|
+    |[can-move](#can-move)|输入项目是否可以移动|`true`<br>`false`|Boolean|`false`|
+    |[max](#max)|可输入的最大项目数|数字：最大项目数<br>`undefined`：无限制|Number|`undefined`|
+    |[clean-btn](#clean-btn)|显示清空全部项目的按钮|`true`<br>`false`|Boolean|`false`|
+    |[input-type](#input-type)|表单的输入模式<br><br>在批量输入模式下会进行下面操作：<br>1. 将用户输入的字符串解析成id数组(按一定的规则)<br>2. 将id数组会输入一个填值函数(用户定义填值函数)<br>3. 填值函数解析id后，返回由多个项目对象组成的数组<br>4. 这些项目会被添加到表单中<br><br>批量输入必需添加：<br>`batch-reg`将字符串解析为id数组的正则表达式<br>`batch-filler`来将输入数组转换成项目对象数组|`'single'`：每次输入一项<br>`'batch-separate'`：批量输入，通过内容分割得到id数组<br>`'batch-pluck'`：批量输入，通过内容匹配选取得到id数组|String|`'single'`|
+    |[batch-reg](#batch-reg)|解析用户输入字符串的正则表达式<br>在`batch-separate`模式下通过这个正则分割字符串得到id数组<br>在`batch-pluck`模式下通过匹配这个正则得到id数组(每匹配到一项添加到数组中)|正则表达式字符串|String|`','`|
+    |[batch-filler](#batch-filler)|批量输入的填值函数，此函数有一个参数：<br>`ids`：用户输入的id数组<br><br>通过解析这些id，此函数返回多个项目对象组成的数组<br><br>如果解析是异步的，此函数也可以返回一个`Promise`对象|填值函数|Function|`value => value`|
+    |[batch-uniq](#batch-uniq)|对用户输入解析后的id数组进行去重|`true`<br>`false`|Boolean|`false`|
     :::
 
     :::preset/html
