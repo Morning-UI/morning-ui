@@ -102,7 +102,7 @@
         <footer slot="footer">
             <span>鼠标左键拖拽移动热区/调整尺寸，鼠标右键点击编辑数据</span>
             <div>
-                <ui-btn color="minor" @emit="morning.findVM('ui-imagemap-mapdialog-'+uiid).toggle(false)">关闭</ui-btn>
+                <morning-btn color="minor" @emit="morning.findVM('ui-imagemap-mapdialog-'+uiid).toggle(false)">关闭</morning-btn>
             </div>
         </footer>
         
@@ -125,71 +125,71 @@
             </div>
 
             <div slot="位置">
-                <ui-formgroup>
+                <morning-formgroup>
                     <div class="item">
                         <h5 class="title">
-                            <ui-center class="fill">Width</ui-center>
+                            <morning-center class="fill">Width</morning-center>
                         </h5>
                         <div class="content">
                             <p>仅支持数字</p>
                             <div class="form">
-                                <ui-textinput :group="'ui-imagemap-basicset-'+uiid" form-key="w" v-model="data.modifyZoneBasic.w"></ui-textinput>
+                                <morning-textinput :group="'ui-imagemap-basicset-'+uiid" form-key="w" v-model="data.modifyZoneBasic.w"></morning-textinput>
                             </div>
                         </div>
                     </div>
                     <div class="item">
                         <h5 class="title">
-                            <ui-center class="fill">Height</ui-center>
+                            <morning-center class="fill">Height</morning-center>
                         </h5>
                         <div class="content">
                             <p>仅支持数字</p>
                             <div class="form">
-                                <ui-textinput :group="'ui-imagemap-basicset-'+uiid" form-key="h" v-model="data.modifyZoneBasic.h"></ui-textinput>
+                                <morning-textinput :group="'ui-imagemap-basicset-'+uiid" form-key="h" v-model="data.modifyZoneBasic.h"></morning-textinput>
                             </div>
                         </div>
                     </div>
                     <div class="item">
                         <h5 class="title">
-                            <ui-center class="fill">Left</ui-center>
+                            <morning-center class="fill">Left</morning-center>
                         </h5>
                         <div class="content">
                             <p>仅支持数字</p>
                             <div class="form">
-                                <ui-textinput :group="'ui-imagemap-basicset-'+uiid" form-key="x" v-model="data.modifyZoneBasic.x"></ui-textinput>
+                                <morning-textinput :group="'ui-imagemap-basicset-'+uiid" form-key="x" v-model="data.modifyZoneBasic.x"></morning-textinput>
                             </div>
                         </div>
                     </div>
                     <div class="item">
                         <h5 class="title">
-                            <ui-center class="fill">Top</ui-center>
+                            <morning-center class="fill">Top</morning-center>
                         </h5>
                         <div class="content">
                             <p>仅支持数字</p>
                             <div class="form">
-                                <ui-textinput :group="'ui-imagemap-basicset-'+uiid" form-key="y" v-model="data.modifyZoneBasic.y"></ui-textinput>
+                                <morning-textinput :group="'ui-imagemap-basicset-'+uiid" form-key="y" v-model="data.modifyZoneBasic.y"></morning-textinput>
                             </div>
                         </div>
                     </div>
                     <div class="item">
                         <h5 class="title">
-                            <ui-center class="fill">Index(层级)</ui-center>
+                            <morning-center class="fill">Index(层级)</morning-center>
                         </h5>
                         <div class="content">
                             <p>仅支持数字，0表示采用默认层级</p>
                             <div class="form">
-                                <ui-textinput :group="'ui-imagemap-basicset-'+uiid" form-key="i" v-model="data.modifyZoneBasic.i"></ui-textinput>
+                                <morning-textinput :group="'ui-imagemap-basicset-'+uiid" form-key="i" v-model="data.modifyZoneBasic.i"></morning-textinput>
                             </div>
                         </div>
                     </div>
-                </ui-formgroup>
+                </morning-formgroup>
             </div>
         </morning-tab>
 
         <footer slot="footer">
             <div>
-                <ui-link color="minor" @emit="morning.findVM('ui-imagemap-zonedialog-'+uiid).toggle(false)">取消</ui-link>
-                <ui-btn color="danger" @emit="_removeZone" v-if="conf.state !== 'disabled'">删除</ui-btn>
-                <ui-btn color="success" @emit="_saveZoneModify" v-if="conf.state !== 'disabled'">保存</ui-btn>
+                <morning-link color="minor" @emit="morning.findVM('ui-imagemap-zonedialog-'+uiid).toggle(false)">取消</morning-link>
+                <morning-btn color="danger" @emit="_removeZone" v-if="conf.state !== 'disabled'">删除</morning-btn>
+                <morning-btn color="success" @emit="_saveZoneModify" v-if="conf.state !== 'disabled'">保存</morning-btn>
             </div>
         </footer>
         
