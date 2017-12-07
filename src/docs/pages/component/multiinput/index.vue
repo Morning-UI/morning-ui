@@ -44,8 +44,8 @@
     :::preset/html
     formConfigTable
     ---
-    |can-move|输入项目是否可以移动|`true`<br>`false`|Boolean|`false`|
-    |max|可输入的最大项数|数字<br>`false`:不限制数量|String<br>Boolean|`false`|
+    |[can-move](#can-move)|输入项目是否可以移动|`true`<br>`false`|Boolean|`false`|
+    |[max](#max)|可输入的最大项数|数字<br>`false`:不限制数量|String<br>Boolean|`false`|
     :::
 
     :::preset/html

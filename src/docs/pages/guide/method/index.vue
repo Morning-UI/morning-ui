@@ -143,6 +143,12 @@
     - `setTime` : 设置时间
     - `getHighlight` : 获取高亮
     - `setHighlight` : 设置高亮
+    - `uploadUrl` : 通过URL上传
+    - `isUploading` : 正在上传
+    - `addZone` : 新增区域
+    - `updateZone` : 更新区域
+    - `removeZone` : 删除区域
+    - `cleanZones` : 删除所有区域
 
     </script>
     </doc-guide>

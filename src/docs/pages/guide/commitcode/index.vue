@@ -15,12 +15,12 @@
 
     - `master` : 正式版本发布的分支。
     - `dev` : 主开发分支，所有开发完毕但未发布的功能都会先合并至此。
-    - `issue_[id]` : Issue开发分支，所有正在开发中的功能代码都会被提交至此分支。
+    - `issue-[id]` : Issue开发分支，所有正在开发中的功能代码都会被提交至此分支。
 
     当你从一个issue开始，开发代码，提交代码到版本发布分为以下几个步骤：
 
     1. 标记Issue : 找到Issue，将Assignees指向你，并添加`in progress`标签，表示你正在开发中。
-    2. 新建分支 : 从`dev`分支切出一个新的分支`issue_[id]`，其中id是issue的编号。
+    2. 新建分支 : 从`dev`分支切出一个新的分支`issue-[id]`，其中id是issue的编号。
     3. 提交代码 : 将开发代码提交到这个分支上。
     4. Pull Request : 当所有开发完成之后，发起一个新的Pull Request来将代码合并到`dev`。
     5. 合入主开发分支 : 当Pull Request完成后，代码会被自动合入主开发分支`dev`。
@@ -30,22 +30,22 @@
 
     ### 标记Issue
 
-    找到你想要处理的Issue，在标记之前请先确保此Issue未处于以下任何一个状态：
+    找到你想要处理的Issue，在标记之前请先确保此Issue**未处于**以下任何一个状态：
 
     - `need repro` : 需要提供更多信息复现内容，以确认问题
     - `pending` : 处于待定的Issue
-    - `wont solve` : 暂时不回解决的Issue
+    - `wont solve` : 暂时不会解决的Issue
     - `in progress` : 已经有人在处理
     - `in review` : 正在Code Review的Issue
     - `launched` : 已解决并发布的Issue
     - `discussion` : 这是一个讨论
 
-    一般你可以选择处于下面这些状态切没有指定Assignees的Issue：
+    一般你可以选择处于下面这些状态，且没有指定Assignees的Issue：
 
+    - `bug report` : BUG 报告，但还未确认是否是BUG
     - `bug confirmed` : 已经确认的Bug
     - `intend to solve` : 计划解决
     - `feature request` : 功能请求
-    - `bug report` : BUG报告
 
     若一个Issue被指定了Assignees，请先和那个人商量到底由谁来处理。
 
@@ -55,11 +55,11 @@
     2. 根据不同的标签做不同的处理：
         - `bug confirmed` : 添加`in progress`
         - `intend to solve` : 添加`in progress`，并移除`intend to solve`
-        - `feature request` : 添加`in progress`/`feature`，并移除`feature request`
+        - `feature request` : 添加`in progress` `feature`，并移除`feature request`
         - `bug report` : 首先先确认BUG是存在的：
             - 复现条件不足：请添加`need repro`标签
             - 确认不是BUG：关闭Issue
-            - 可被复现：添加`bug confirmed`/`in progress`/`fix`，并移除`bug report`。若你只想确认这个BUG不想修复，也可以不添加`in progress`/`fix`。
+            - 可被复现：添加`bug confirmed` `in progress` `fix`，并移除`bug report`。若你只想确认这个BUG不想修复，也可以不添加`in progress` `fix`。
 
     完成上面的操作后，你需要创建一个新的分支来处理Issue。
 

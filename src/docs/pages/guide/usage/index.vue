@@ -11,14 +11,14 @@
     在引入Morning UI后需要在Vue中进行初始化：
     
     ```js
-    Vue.use(morninig);
+    Vue.use(morning);
     ```
 
     你也可以在初始化的时候进行配置，比如：
     
     ```js
     // 将组件的标签前缀改为v，比如`v-btn`
-    Vue.use(morninig, {
+    Vue.use(morning, {
         prefix : 'v'
     });
     ```

@@ -10,6 +10,7 @@
 [![CircleCI branch](https://img.shields.io/circleci/project/github/Morning-UI/morning-ui/master.svg)](https://circleci.com/gh/Morning-UI/morning-ui)
 [![Codecov branch](https://img.shields.io/codecov/c/github/Morning-UI/morning-ui/master.svg)](https://codecov.io/gh/Morning-UI/morning-ui/branch/master)
 [![Codacy branch grade](https://img.shields.io/codacy/grade/91448799c68e4422ba6436a7ecdb08a7/master.svg)](https://www.codacy.com/app/EarlyH/morning-ui?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Morning-UI/morning-ui&amp;utm_campaign=Badge_Grade)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FMorning-UI%2Fmorning-ui.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FMorning-UI%2Fmorning-ui?ref=badge_shield)
 [![npm](https://img.shields.io/npm/l/morning-ui.svg)](https://www.npmjs.com/package/morning-ui)
 [![](https://data.jsdelivr.com/v1/package/npm/morning-ui/badge?style=rounded)](https://www.jsdelivr.com/package/npm/morning-ui)
 
