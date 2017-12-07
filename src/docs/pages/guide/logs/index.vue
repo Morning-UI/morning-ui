@@ -18,6 +18,23 @@
     
     ### 更新记录
 
+    ### 0.10.13 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2017年12月7日，
+            Archive : 
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.13" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.13/dist/" target="_blank">CDN</a>
+        </ui-small>
+    </ui-textcolor><br><br>
+
+    - 配置文档中的key可直接跳转到对应的demo
+    - 增加许可证扫描([fossa](https://fossa.io/))
+    - 修复`ui-imagemap`组件的一些问题
+    - 修复文档的一些问题
+    - 更新全局命名
+
     ### 0.10.12 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="light-blue">
@@ -27,7 +44,7 @@
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.12" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.12/dist/" target="_blank">CDN</a>
         </ui-small>
-    </ui-textcolor>
+    </ui-textcolor><br><br>
 
     - 新增`ui-imagemap`图片热区组件
     - 新增`cleanGroup()`方法
@@ -44,7 +61,7 @@
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.11" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.11/dist/" target="_blank">CDN</a>
         </ui-small>
-    </ui-textcolor>
+    </ui-textcolor><br><br>
 
     - 新增`ui-calendar`日历组件
     - `ui-table`组件支持单列/多列排序，支持导出`.csv`文件时排除指定列
@@ -66,7 +83,7 @@
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.10" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.10/dist/" target="_blank">CDN</a>
         </ui-small>
-    </ui-textcolor>
+    </ui-textcolor><br><br>
 
     - 新增`ui-message`消息组件
     - 组件生成的HTML标签的前缀改为`mor-`
@@ -86,7 +103,7 @@
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.9" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.9/dist/" target="_blank">CDN</a>
         </ui-small>
-    </ui-textcolor>
+    </ui-textcolor><br><br>
     
     - 新增`ui-upload`文件上传组件
     - 修复`morning.getGroupJson`方法无法使用的问题
@@ -102,7 +119,7 @@
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.8" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.8/dist/" target="_blank">CDN</a>
         </ui-small>
-    </ui-textcolor>
+    </ui-textcolor><br><br>
     
     - 组件的配置支持单向数据流(与父组件属性绑定)
     - `ui-table`支持HTML内容和Vue组件

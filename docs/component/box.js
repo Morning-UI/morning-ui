@@ -37,9 +37,9 @@ new _vue2.default({
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(719);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_4675e35c_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(720);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_index_vue__ = __webpack_require__(719);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_index_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_dc164214_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_index_vue__ = __webpack_require__(720);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
@@ -50,6 +50,8 @@ var normalizeComponent = __webpack_require__(1)
 
 /* template */
 
+/* template functional */
+var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
@@ -57,15 +59,15 @@ var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
-  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_4675e35c_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_index_vue___default.a,
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_dc164214_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_index_vue__["a" /* default */],
+  __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
   __vue_module_identifier__
 )
 Component.options.__file = "src/docs/pages/component/box/index.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] index.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -74,10 +76,10 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-4675e35c", Component.options)
+    hotAPI.createRecord("data-v-dc164214", Component.options)
   } else {
-    hotAPI.reload("data-v-4675e35c", Component.options)
-  }
+    hotAPI.reload("data-v-dc164214", Component.options)
+' + '  }
   module.hot.dispose(function (data) {
     disposed = true
   })
@@ -205,17 +207,17 @@ module.exports = exports['default'];
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('doc-component', {
-    attrs: {
-      "page": _vm.page,
-      "hasPadding": true
-    }
-  }, [_c('script', {
-    attrs: {
-      "type": "text/markdown"
-    }
-  }, [_vm._v("\n# 容器 `<ui-box>`\n\n<doc-component-status page=\"box\"></doc-component-status>\n\n[[[开始]]]\n\n定义一个容器，`ui-box`常用来作为最外部的容器，容器是块级元素。\n\n容器默认高度是自适应的。\n\n#### 使用\n\n:::democode/html\n<div style=\"width:400px;height:200px;\">\n    <ui-box style=\"background-color:#e0e0e0\">\n        容器\n    </ui-box>\n</div>\n:::\n\n#### 有边距的容器\n\n:::democode/html\n<div style=\"width:400px;height:200px;\">\n    <ui-box class=\"margin\" style=\"background-color:#e0e0e0\">\n        有边距的容器\n    </ui-box>\n</div>\n:::\n\n#### 填满的容器\n\n填满的容器高度为100%。\n\n:::democode/html\n<div style=\"width:400px;height:200px;\">\n    <ui-box class=\"fill\" style=\"background-color:#e0e0e0\">\n        填满的容器\n    </ui-box>\n</div>\n\n<br>\n\n<div style=\"width:400px;height:200px;\">\n    <ui-box class=\"margin fill\" style=\"background-color:#e0e0e0\">\n        有边距填满的容器\n    </ui-box>\n</div>\n:::\n\n[[[形态]]]\n\n#### 支持\n\n|类型|支持|默认|\n|-|-|-|\n|尺寸|不支持|-|\n|色彩|不支持|-|\n|状态|不支持|-|\n\n<a href=\"/guide/status.html\">查看形态文档</a>\n\n[[[源码]]]\n\n<iframe src=\"/report/coverage/lib/components/box/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n")])])
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("doc-component", { attrs: { page: _vm.page, hasPadding: true } }, [
+    _c("script", { attrs: { type: "text/markdown" } }, [
+      _vm._v(
+        '\n# 容器 `<ui-box>`\n\n<doc-component-status page="box"></doc-component-status>\n\n[[[开始]]]\n\n定义一个容器，`ui-box`常用来作为最外部的容器，容器是块级元素。\n\n容器默认高度是自适应的。\n\n#### 使用\n\n:::democode/html\n<div style="width:400px;height:200px;">\n    <ui-box style="background-color:#e0e0e0">\n        容器\n    </ui-box>\n</div>\n:::\n\n#### 有边距的容器\n\n:::democode/html\n<div style="width:400px;height:200px;">\n    <ui-box class="margin" style="background-color:#e0e0e0">\n        有边距的容器\n    </ui-box>\n</div>\n:::\n\n#### 填满的容器\n\n填满的容器高度为100%。\n\n:::democode/html\n<div style="width:400px;height:200px;">\n    <ui-box class="fill" style="background-color:#e0e0e0">\n        填满的容器\n    </ui-box>\n</div>\n\n<br>\n\n<div style="width:400px;height:200px;">\n    <ui-box class="margin fill" style="background-color:#e0e0e0">\n        有边距填满的容器\n    </ui-box>\n</div>\n:::\n\n[[[形态]]]\n\n#### 支持\n\n|类型|支持|默认|\n|-|-|-|\n|尺寸|不支持|-|\n|色彩|不支持|-|\n|状态|不支持|-|\n\n<a href="/guide/status.html">查看形态文档</a>\n\n[[[源码]]]\n\n<iframe src="/report/coverage/lib/components/box/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>\n'
+      )
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -224,7 +226,7 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-4675e35c", esExports)
+    require("vue-hot-reload-api")      .rerender("data-v-dc164214", esExports)
   }
 }
 
