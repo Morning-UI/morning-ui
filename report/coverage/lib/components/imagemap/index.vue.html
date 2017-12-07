@@ -2195,7 +2195,7 @@
         &lt;footer slot="footer"&gt;
             &lt;span&gt;鼠标左键拖拽移动热区/调整尺寸，鼠标右键点击编辑数据&lt;/span&gt;
             &lt;div&gt;
-                &lt;ui-btn color="minor" @emit="morning.findVM('ui-imagemap-mapdialog-'+uiid).toggle(false)"&gt;关闭&lt;/ui-btn&gt;
+                &lt;morning-btn color="minor" @emit="morning.findVM('ui-imagemap-mapdialog-'+uiid).toggle(false)"&gt;关闭&lt;/morning-btn&gt;
             &lt;/div&gt;
         &lt;/footer&gt;
         
@@ -2218,71 +2218,71 @@
             &lt;/div&gt;
 &nbsp;
             &lt;div slot="位置"&gt;
-                &lt;ui-formgroup&gt;
+                &lt;morning-formgroup&gt;
                     &lt;div class="item"&gt;
                         &lt;h5 class="title"&gt;
-                            &lt;ui-center class="fill"&gt;Width&lt;/ui-center&gt;
+                            &lt;morning-center class="fill"&gt;Width&lt;/morning-center&gt;
                         &lt;/h5&gt;
                         &lt;div class="content"&gt;
                             &lt;p&gt;仅支持数字&lt;/p&gt;
                             &lt;div class="form"&gt;
-                                &lt;ui-textinput :group="'ui-imagemap-basicset-'+uiid" form-key="w" v-model="data.modifyZoneBasic.w"&gt;&lt;/ui-textinput&gt;
+                                &lt;morning-textinput :group="'ui-imagemap-basicset-'+uiid" form-key="w" v-model="data.modifyZoneBasic.w"&gt;&lt;/morning-textinput&gt;
                             &lt;/div&gt;
                         &lt;/div&gt;
                     &lt;/div&gt;
                     &lt;div class="item"&gt;
                         &lt;h5 class="title"&gt;
-                            &lt;ui-center class="fill"&gt;Height&lt;/ui-center&gt;
+                            &lt;morning-center class="fill"&gt;Height&lt;/morning-center&gt;
                         &lt;/h5&gt;
                         &lt;div class="content"&gt;
                             &lt;p&gt;仅支持数字&lt;/p&gt;
                             &lt;div class="form"&gt;
-                                &lt;ui-textinput :group="'ui-imagemap-basicset-'+uiid" form-key="h" v-model="data.modifyZoneBasic.h"&gt;&lt;/ui-textinput&gt;
+                                &lt;morning-textinput :group="'ui-imagemap-basicset-'+uiid" form-key="h" v-model="data.modifyZoneBasic.h"&gt;&lt;/morning-textinput&gt;
                             &lt;/div&gt;
                         &lt;/div&gt;
                     &lt;/div&gt;
                     &lt;div class="item"&gt;
                         &lt;h5 class="title"&gt;
-                            &lt;ui-center class="fill"&gt;Left&lt;/ui-center&gt;
+                            &lt;morning-center class="fill"&gt;Left&lt;/morning-center&gt;
                         &lt;/h5&gt;
                         &lt;div class="content"&gt;
                             &lt;p&gt;仅支持数字&lt;/p&gt;
                             &lt;div class="form"&gt;
-                                &lt;ui-textinput :group="'ui-imagemap-basicset-'+uiid" form-key="x" v-model="data.modifyZoneBasic.x"&gt;&lt;/ui-textinput&gt;
+                                &lt;morning-textinput :group="'ui-imagemap-basicset-'+uiid" form-key="x" v-model="data.modifyZoneBasic.x"&gt;&lt;/morning-textinput&gt;
                             &lt;/div&gt;
                         &lt;/div&gt;
                     &lt;/div&gt;
                     &lt;div class="item"&gt;
                         &lt;h5 class="title"&gt;
-                            &lt;ui-center class="fill"&gt;Top&lt;/ui-center&gt;
+                            &lt;morning-center class="fill"&gt;Top&lt;/morning-center&gt;
                         &lt;/h5&gt;
                         &lt;div class="content"&gt;
                             &lt;p&gt;仅支持数字&lt;/p&gt;
                             &lt;div class="form"&gt;
-                                &lt;ui-textinput :group="'ui-imagemap-basicset-'+uiid" form-key="y" v-model="data.modifyZoneBasic.y"&gt;&lt;/ui-textinput&gt;
+                                &lt;morning-textinput :group="'ui-imagemap-basicset-'+uiid" form-key="y" v-model="data.modifyZoneBasic.y"&gt;&lt;/morning-textinput&gt;
                             &lt;/div&gt;
                         &lt;/div&gt;
                     &lt;/div&gt;
                     &lt;div class="item"&gt;
                         &lt;h5 class="title"&gt;
-                            &lt;ui-center class="fill"&gt;Index(层级)&lt;/ui-center&gt;
+                            &lt;morning-center class="fill"&gt;Index(层级)&lt;/morning-center&gt;
                         &lt;/h5&gt;
                         &lt;div class="content"&gt;
                             &lt;p&gt;仅支持数字，0表示采用默认层级&lt;/p&gt;
                             &lt;div class="form"&gt;
-                                &lt;ui-textinput :group="'ui-imagemap-basicset-'+uiid" form-key="i" v-model="data.modifyZoneBasic.i"&gt;&lt;/ui-textinput&gt;
+                                &lt;morning-textinput :group="'ui-imagemap-basicset-'+uiid" form-key="i" v-model="data.modifyZoneBasic.i"&gt;&lt;/morning-textinput&gt;
                             &lt;/div&gt;
                         &lt;/div&gt;
                     &lt;/div&gt;
-                &lt;/ui-formgroup&gt;
+                &lt;/morning-formgroup&gt;
             &lt;/div&gt;
         &lt;/morning-tab&gt;
 &nbsp;
         &lt;footer slot="footer"&gt;
             &lt;div&gt;
-                &lt;ui-link color="minor" @emit="morning.findVM('ui-imagemap-zonedialog-'+uiid).toggle(false)"&gt;取消&lt;/ui-link&gt;
-                &lt;ui-btn color="danger" @emit="_removeZone" v-if="conf.state !== 'disabled'"&gt;删除&lt;/ui-btn&gt;
-                &lt;ui-btn color="success" @emit="_saveZoneModify" v-if="conf.state !== 'disabled'"&gt;保存&lt;/ui-btn&gt;
+                &lt;morning-link color="minor" @emit="morning.findVM('ui-imagemap-zonedialog-'+uiid).toggle(false)"&gt;取消&lt;/morning-link&gt;
+                &lt;morning-btn color="danger" @emit="_removeZone" v-if="conf.state !== 'disabled'"&gt;删除&lt;/morning-btn&gt;
+                &lt;morning-btn color="success" @emit="_saveZoneModify" v-if="conf.state !== 'disabled'"&gt;保存&lt;/morning-btn&gt;
             &lt;/div&gt;
         &lt;/footer&gt;
         
@@ -3121,7 +3121,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Dec 05 2017 22:39:33 GMT+0800 (CST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Dec 07 2017 11:15:53 GMT+0800 (CST)
 </div>
 </div>
 <script src="../../../prettify.js"></script>

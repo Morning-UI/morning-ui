@@ -174,10 +174,10 @@
 
     |KEY|描述|接受值|值类型|默认值|
     |-|-|-|-|-|
-    |root-name|根层级名称|名称<br>`false`|String<br>Boolean|`false`|
-    |choose-root|可以选择跟层级，选择跟层级将会清空层级列表|`true`<br>`false`|Boolean|`false`|
-    |list|默认面包屑层级|一个数组，数组中每一个对象代表一个层级，对象的键名是层级的值，对象的键值是层级的名称。对象的键名必须唯一。|Array|`[]`|
-    |max-history|面包屑记录历史步骤最大数，每次切换计一次步骤|步骤数|Boolean|`20`|
+    |[root-name](#root-name)|根层级名称|名称<br>`false`|String<br>Boolean|`false`|
+    |[choose-root](#choose-root)|可以选择跟层级，选择跟层级将会清空层级列表|`true`<br>`false`|Boolean|`false`|
+    |[list](#list)|默认面包屑层级|一个数组，数组中每一个对象代表一个层级，对象的键名是层级的值，对象的键值是层级的名称。对象的键名必须唯一。|Array|`[]`|
+    |[max-history](#max-history)|面包屑记录历史步骤最大数，每次切换计一次步骤|步骤数|Boolean|`20`|
 
     #### root-name
 
