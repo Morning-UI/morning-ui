@@ -37,9 +37,9 @@ new _vue2.default({
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__ = __webpack_require__(689);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_f8ca5696_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__ = __webpack_require__(690);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_index_vue__ = __webpack_require__(689);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_index_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_b009674a_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_index_vue__ = __webpack_require__(690);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
@@ -50,6 +50,8 @@ var normalizeComponent = __webpack_require__(1)
 
 /* template */
 
+/* template functional */
+var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
@@ -57,15 +59,15 @@ var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
-  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_index_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_f8ca5696_hasScoped_false_node_modules_vue_loader_lib_selector_type_template_index_0_index_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_index_vue___default.a,
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_b009674a_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_index_vue__["a" /* default */],
+  __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
   __vue_module_identifier__
 )
 Component.options.__file = "src/docs/pages/component/card/index.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] index.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -74,10 +76,10 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-f8ca5696", Component.options)
+    hotAPI.createRecord("data-v-b009674a", Component.options)
   } else {
-    hotAPI.reload("data-v-f8ca5696", Component.options)
-  }
+    hotAPI.reload("data-v-b009674a", Component.options)
+' + '  }
   module.hot.dispose(function (data) {
     disposed = true
   })
@@ -217,17 +219,17 @@ module.exports = exports['default'];
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('doc-component', {
-    attrs: {
-      "page": _vm.page,
-      "hasPadding": true
-    }
-  }, [_c('script', {
-    attrs: {
-      "type": "text/markdown"
-    }
-  }, [_vm._v("\n# 卡片 `<ui-card>`\n\n<doc-component-status page=\"card\"></doc-component-status>\n\n[[[开始]]]\n\n定义一张卡片，卡片包含头部和主体部分。\n\n#### 使用\n\n:::democode/html\n<div style=\"width:180px;height:240px;\">\n    <ui-card>\n        <header>头部</header>\n        <div>卡片</div>\n    </ui-card>\n</div>\n:::\n\n#### 没有头部的卡片\n\n:::democode/html\n<div style=\"width:180px;height:240px;\">\n    <ui-card>卡片</ui-card>\n</div>\n:::\n\n#### 无间隙卡片\n\n卡片内容部分默认具有间隙，可以通过full类来去除间隙。\n\n:::democode/html\n<div style=\"width:180px;height:240px;display:inline-block;margin:10px;vertical-align: top;\">\n    <ui-card class=\"full\">卡片</ui-card>\n</div>\n\n<div style=\"width:180px;height:240px;display:inline-block;margin:10px;vertical-align: top;\">\n    <ui-card class=\"full\">\n        <header>头部</header>\n        <div>卡片</div>\n    </ui-card>\n</div>\n:::\n\n[[[形态]]]\n\n#### 支持\n\n|类型|支持|默认|\n|-|-|-|\n|尺寸|不支持|-|\n|色彩|全部|`theme`|\n|状态|不支持|-|\n\n<a href=\"/guide/status.html\">查看形态文档</a>\n\n#### 色彩\n\n:::repeat/html\ncolor:theme\ncolor:feature\ncolor:black\ncolor:blue\ncolor:silver\ncolor:gray\n---\n<div style=\"width:180px;height:240px;display:inline-block;margin:10px;\">\n    <ui-card color=\"{$colorKey}\">\n        <header>{$&colorName}</header>\n        <div>卡片</div>\n    </ui-card>\n</div>\n:::\n\n[[[源码]]]\n\n<iframe src=\"/report/coverage/lib/components/card/index.vue.html\" name=\"codeFrame\" frameborder=\"0\" onload=\"this.height=codeFrame.document.body.scrollHeight\"></iframe>\n")])])
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("doc-component", { attrs: { page: _vm.page, hasPadding: true } }, [
+    _c("script", { attrs: { type: "text/markdown" } }, [
+      _vm._v(
+        '\n# 卡片 `<ui-card>`\n\n<doc-component-status page="card"></doc-component-status>\n\n[[[开始]]]\n\n定义一张卡片，卡片包含头部和主体部分。\n\n#### 使用\n\n:::democode/html\n<div style="width:180px;height:240px;">\n    <ui-card>\n        <header>头部</header>\n        <div>卡片</div>\n    </ui-card>\n</div>\n:::\n\n#### 没有头部的卡片\n\n:::democode/html\n<div style="width:180px;height:240px;">\n    <ui-card>卡片</ui-card>\n</div>\n:::\n\n#### 无间隙卡片\n\n卡片内容部分默认具有间隙，可以通过full类来去除间隙。\n\n:::democode/html\n<div style="width:180px;height:240px;display:inline-block;margin:10px;vertical-align: top;">\n    <ui-card class="full">卡片</ui-card>\n</div>\n\n<div style="width:180px;height:240px;display:inline-block;margin:10px;vertical-align: top;">\n    <ui-card class="full">\n        <header>头部</header>\n        <div>卡片</div>\n    </ui-card>\n</div>\n:::\n\n[[[形态]]]\n\n#### 支持\n\n|类型|支持|默认|\n|-|-|-|\n|尺寸|不支持|-|\n|色彩|全部|`theme`|\n|状态|不支持|-|\n\n<a href="/guide/status.html">查看形态文档</a>\n\n#### 色彩\n\n:::repeat/html\ncolor:theme\ncolor:feature\ncolor:black\ncolor:blue\ncolor:silver\ncolor:gray\n---\n<div style="width:180px;height:240px;display:inline-block;margin:10px;">\n    <ui-card color="{$colorKey}">\n        <header>{$&colorName}</header>\n        <div>卡片</div>\n    </ui-card>\n</div>\n:::\n\n[[[源码]]]\n\n<iframe src="/report/coverage/lib/components/card/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>\n'
+      )
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -236,7 +238,7 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-f8ca5696", esExports)
+    require("vue-hot-reload-api")      .rerender("data-v-b009674a", esExports)
   }
 }
 
