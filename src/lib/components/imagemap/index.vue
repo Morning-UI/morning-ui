@@ -21,6 +21,7 @@
     <morning-upload
         :form-name="conf.formName"
         :max="conf.max"
+        :hide-name="conf.hideName"
         :multi="conf.multi"
         :allow-url="conf.allowUrl"
         :allow-drag="conf.allowDrag"

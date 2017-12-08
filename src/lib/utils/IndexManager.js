@@ -72,7 +72,7 @@ let IndexManager = {
 
         //         section = this.morning._indexSection[namespace];
 
-        //     } 
+        //     }
 
         //     return ((section.id * sectionLen) + section.append++);
 
