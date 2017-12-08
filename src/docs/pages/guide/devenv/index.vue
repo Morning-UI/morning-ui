@@ -26,7 +26,7 @@
 
     ### 本地安装
 
-    由于MorningUI依赖一些npm包，源码获取后需要安装：
+    由于MorningUI依赖一些npm包，源码获取后需要安装(请保证node版本8.5.0+)：
 
     ```shell
     $ cd morning
