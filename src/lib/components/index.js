@@ -54,14 +54,17 @@ import message                      from './message/index.vue';
 
 import textinput                    from './textinput/index.vue';
 import textarea                     from './textarea/index.vue';
-import _switch                      from './switch/index.vue';
+import aliasSwitch                  from './switch/index.vue';
 import select                       from './select/index.vue';
 import checkbox                     from './checkbox/index.vue';
 import radio                        from './radio/index.vue';
 import multiinput                   from './multiinput/index.vue';
 import multiform                    from './multiform/index.vue';
+import timepicker                   from './timepicker/index.vue';
 import upload                       from './upload/index.vue';
 import imagemap                     from './imagemap/index.vue';
+
+import _timepicker                  from './_timepicker/index.vue';
 
 export default {
     h,
@@ -116,12 +119,14 @@ export default {
     message,
     textinput,
     textarea,
-    switch : _switch,
+    switch : aliasSwitch,
     select,
     checkbox,
     radio,
     multiinput,
     multiform,
+    timepicker,
     upload,
-    imagemap
+    imagemap,
+    _timepicker
 };

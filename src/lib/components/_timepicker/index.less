@@ -1,0 +1,158 @@
+@import '~Common/var.less';
+
+mor-inside-timepicker{
+    display: block;
+    width: 100%;
+    position: relative;
+
+    .time-select{
+        width: @fontSize*10;
+        position: absolute;
+        background: @colorFormBackground;
+        border: 1px @colorFormBorder solid;
+        border-radius: @borderRadius;
+        top: @formHeight + 3;
+        font-size: 0;
+        user-select: none;
+        pointer-events: none;
+        opacity: 0;
+
+        &.align-left{
+            left: 42px;
+        }
+
+        &.align-center{
+            left: 50%;
+            transform: translateX(-50%);
+            margin-left: 21px;
+        }
+
+        &.align-right{
+            right: 0;
+        }
+
+        &.show{
+            pointer-events: auto;
+            opacity: 1;
+        }
+
+        &:hover{
+            border-color: @colorFormBorderHover;
+        }
+
+        .time-box{
+            position: relative;
+
+            > ul{
+                list-style: none;
+                padding: 0;
+                font-size: 0;
+                margin: 0;
+                width: 33.3333%;
+                display: inline-block;
+                vertical-align: top;
+                height: @fontSize*0.75*2.5*6;
+                overflow-y: auto;
+                position: relative;
+                z-index: 1;
+
+                .setup-hover-scrollbar();
+
+                li{
+                    display: block;
+                    font-size: @fontSize*0.75;
+                    padding: 0.5em 0;
+                    text-align: center;
+                    margin: 0;
+                    height: 1.5em;
+                    line-height: 1.5em;
+                    box-sizing: content-box;
+                    color: darken(@colorFormTextHover, 10%);
+
+                    &.current{
+                        color: @colorFormTextFocus;
+                        font-weight: 700;
+                    }
+
+                    &.block{
+                        color: @colorFormTextLight !important;
+                        font-weight: 400 !important;
+                        background-color: @colorFormBackgroundFocus;
+                    }
+
+                    &:first-child{
+                        margin-top: 6.25em;
+                    }
+
+                    &:last-child{
+                        margin-bottom: 6.25em;
+                    }
+
+                    &:hover{
+                        background-color: @colorFormBackgroundHover;
+                        cursor: pointer;
+                    }
+
+                    &.current:hover{
+                        background-color: rgba(0, 0, 0, 0);
+                        cursor: default;
+                    }
+
+                    &.block:hover{
+                        background-color: @colorFormBackgroundFocus;
+                        cursor: not-allowed;
+                    }
+                }
+            }
+
+            .selected{
+                position: absolute;
+                top: 50%;
+                left: 8%;
+                transform: translateY(-50%);
+                border-top: 1px @colorFormBorderHover solid;
+                border-bottom: 1px @colorFormBorderHover solid;
+                padding: 0.5em 0;
+                font-size: @fontSize*0.75;
+                width: 84%;
+                pointer-events: none;
+                height: 2.5em;
+                box-sizing: border-box;
+                line-height: ~`'calc(1.5em - 2px)'`;
+                z-index: 2;
+            }
+        }
+
+        // .time-footer{
+        //     padding: 0.4em 0.5em;
+        //     display: block;
+        //     font-size: @fontSize;
+        //     background: @colorFormAreaBackground;
+        //     text-align: center;
+
+        //     mor-btn{
+        //         margin: 0 0.5em;
+        //     }
+        // }
+    }
+
+    &.has-cleanbtn{
+        padding-bottom: @fontSize*1.25;
+    }
+
+    .cleanbtn{
+        position: absolute;
+        right: 0;
+        font-size: 12px;
+        margin-top: 1px;
+    }
+
+    &.st-normal{}
+
+    &.st-disabled{}
+
+    // default status
+    &{
+        .st-normal;
+    }
+}

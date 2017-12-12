@@ -1,0 +1,49 @@
+@import '~Common/var.less';
+
+mor-timepicker{
+    display: flex;
+
+    .timepicker-input-0,
+    .timepicker-input-1{
+        display: inline-block;
+    }
+
+    .timepicker-input-0{
+        mor-textinput{
+            input{
+                border-radius: 0;
+            }
+        }
+    }
+
+    .timepicker-input-1{
+        mor-textinput{
+            .input-group-addon{
+                display: none;
+            }
+        }
+
+        .time-select{
+            &.align-left{
+                left: 0;
+            }
+
+            &.align-center{
+                margin-left: 0;
+            }
+        }
+    }
+
+    .separator{
+        height: @formHeight;
+        min-width: @formHeight;
+        line-height: @formHeight;
+        padding: 0 0.5em;
+        font-size: @fontSize*0.875;
+        color: @colorBlue;
+        text-align: center;
+        background-color: @colorLightGray;
+        border-top: 1px solid @colorFormBorder;
+        border-bottom: 1px solid @colorFormBorder;
+    }
+}

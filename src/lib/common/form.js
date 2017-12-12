@@ -232,6 +232,10 @@ export default UI => UI.extend({
 
                     result = null;
 
+                } else if (this.data.value instanceof Date){
+
+                    result = new Date(this.data.value);
+
                 } else {
                 
                     result = extend(true, {}, this.data.value);

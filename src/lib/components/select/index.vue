@@ -8,6 +8,9 @@
         :group="group"
         :default-value="defaultValue"
         :hide-name="hideName"
+        :align="align"
+        :clearable="clearable"
+        :prepend="prepend"
         :max-show="maxShow"
         :auto-close="autoClose"
         :can-search="canSearch"
@@ -20,89 +23,98 @@
         :item-tip-direct="itemTipDirect"
     >
 
-    <div class="wrap" @click="_wrapClick">
+    <template v-if="conf.prepend">
+        <div class="input-group-addon" v-html="conf.prepend"></div>
+    </template>
 
-        <template v-if="conf.multiSelect">
-            <morning-multiinput
-                :id="'ui-select-mi-' + uiid"
-                :can-move="conf.canMove"
-                :max="conf.max"
-                :form-name="conf.formName"
-                :hide-name="conf.hideName"
-                :disabled="conf.state === 'disabled'"
-                key="multi-can-search"
+    <div class="select-area">
+        <div class="wrap" @click="_wrapClick">
 
-                v-if="conf.canSearch"
+            <template v-if="conf.multiSelect">
+                <morning-multiinput
+                    :id="'ui-select-mi-' + uiid"
+                    :can-move="conf.canMove"
+                    :max="conf.max"
+                    :form-name="conf.formName"
+                    :hide-name="conf.hideName"
+                    :disabled="conf.state === 'disabled'"
+                    key="multi-can-search"
 
-                @input-focus="_multiinputFocus()"
-                @value-change="_multiinputValueChange()"
-                @input-value-change="_searchKeyChange()"
-            ></morning-multiinput>
+                    v-if="conf.canSearch"
 
-            <morning-multiinput
-                :id="'ui-select-mi-' + uiid"
-                :can-move="conf.canMove"
-                :max="conf.max"
-                :form-name="conf.formName"
-                :hide-name="conf.hideName"
-                :disabled="conf.state === 'disabled'"
-                key="multi-no-search"
+                    @input-focus="_multiinputFocus()"
+                    @value-change="_multiinputValueChange()"
+                    @input-value-change="_searchKeyChange()"
+                ></morning-multiinput>
 
-                v-else
+                <morning-multiinput
+                    :id="'ui-select-mi-' + uiid"
+                    :can-move="conf.canMove"
+                    :max="conf.max"
+                    :form-name="conf.formName"
+                    :hide-name="conf.hideName"
+                    :disabled="conf.state === 'disabled'"
+                    key="multi-no-search"
 
-                @input-focus="_multiinputFocusNoSearch()"
-                @value-change="_multiinputValueChange()"
-            ></morning-multiinput>
-        </template>
+                    v-else
 
-        <template v-else>
-            <template v-if="conf.canSearch">
-                <morning-textinput
-                    :id="'ui-select-ti-' + uiid"
-                    @value-change="_searchKeyChange()"
-                    @focus="_textinputFocus()"
-                    @blur="_textinputBlur()"
-                    key="single-can-search"
-                ></morning-textinput>
+                    @input-focus="_multiinputFocusNoSearch()"
+                    @value-change="_multiinputValueChange()"
+                ></morning-multiinput>
             </template>
 
-            <div
-                class="selected"
-                v-if="!conf.multiSelect && data.value && data.value.length === 1"
-                v-html="data.selectedContent"
-            >
-            </div>
+            <template v-else>
+                <template v-if="conf.canSearch">
+                    <morning-textinput
+                        :id="'ui-select-ti-' + uiid"
+                        :align="conf.align"
+                        @value-change="_searchKeyChange()"
+                        @focus="_textinputFocus()"
+                        @blur="_textinputBlur()"
+                        key="single-can-search"
+                    ></morning-textinput>
+                </template>
 
-            <div 
-                class="selected"
-                v-else-if="!conf.hideName">
-                {{conf.formName}}
-            </div>
+                <div
+                    class="selected"
+                    v-if="!conf.multiSelect && data.value && data.value.length === 1"
+                    v-html="data.selectedContent"
+                >
+                </div>
 
-            <div 
-                class="selected"
-                v-else>
-                &nbsp;
-            </div>
-        </template>
+                <div 
+                    class="selected"
+                    v-else-if="!conf.hideName">
+                    {{conf.formName}}
+                </div>
 
-        <i class="morningicon drop">&#xe6b1;</i>
-        <i
-            class="morningicon clean"
-            v-if="conf.cleanBtn"
-            @click="_set(undefined, true)"
-        >&#xe67c;</i>
+                <div 
+                    class="selected"
+                    v-else>
+                    &nbsp;
+                </div>
+            </template>
 
+            <i class="morningicon drop">&#xe6b1;</i>
+            <i
+                class="morningicon clean"
+                v-if="conf.cleanBtn"
+                @click="_set(undefined, true)"
+            >&#xe67c;</i>
+
+        </div>
+
+        <ul
+            class="list"
+            :style="listStyle"
+            @click="_listClick"
+        >
+            <slot></slot>
+            <li class="noitem">无项目</li>
+        </ul>
     </div>
 
-    <ul
-        class="list"
-        :style="listStyle"
-        @click="_listClick"
-    >
-        <slot></slot>
-        <li class="noitem">无项目</li>
-    </ul>
+    <morning-link v-if="conf.clearable" color="minor" @emit="_set(undefined, true)" class="cleanbtn">清空</morning-link>
 
     </mor-select>
 </template>
@@ -117,6 +129,19 @@ export default {
     name : 'select',
     mixins : [GlobalEvent, IndexManager],
     props : {
+        align : {
+            type : String,
+            default : 'left',
+            validator : (value => ['left', 'center', 'right'].indexOf(value) !== -1)
+        },
+        clearable : {
+            type : Boolean,
+            default : false
+        },
+        prepend : {
+            type : String,
+            default : undefined
+        },
         maxShow : {
             type : Number,
             default : 5
@@ -162,6 +187,9 @@ export default {
         _conf : function () {
 
             return {
+                align : this.align,
+                clearable : this.clearable,
+                prepend : this.prepend,
                 maxShow : this.maxShow,
                 autoClose : this.autoClose,
                 canSearch : this.canSearch,
@@ -192,7 +220,12 @@ export default {
                 'focus-search' : !!this.data.focusSearch,
                 'is-max' : !!this.isMax,
                 'has-clean-btn' : !!this.conf.cleanBtn,
-                'select-item' : selectItem
+                'select-item' : selectItem,
+                'align-left' : (this.conf.align === 'left'),
+                'align-center' : (this.conf.align === 'center'),
+                'align-right' : (this.conf.align === 'right'),
+                'has-cleanbtn' : this.conf.clearable,
+                'input-group' : !!this.conf.prepend
             };
 
         },
@@ -816,6 +849,20 @@ export default {
             };
 
         },
+        _resizeSelectArea : function () {
+
+            if (this.conf.prepend !== undefined) {
+
+                let $inputGroupAddon = this.$el.querySelector('.input-group-addon');
+                let $selectArea = this.$el.querySelector('.select-area');
+                let width = $inputGroupAddon.clientWidth;
+
+                // 1 is left border width
+                $selectArea.style.maxWidth = `calc(100% - ${width + 1}px)`;
+
+            }
+
+        },
         toggle : function (show) {
 
             if (show === undefined) {
@@ -883,6 +930,7 @@ export default {
 
         this._updateItemValueList();
         this._onValueChange();
+        this._resizeSelectArea();
         
         this.$on('value-change', this._onValueChange);
 
@@ -976,6 +1024,7 @@ export default {
         this._setListHeight();
         this._resizeInlineImg();
         this._updateItemValueList();
+        this._resizeSelectArea();
 
     },
     beforeDestroy : function () {

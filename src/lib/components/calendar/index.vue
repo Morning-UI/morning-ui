@@ -81,23 +81,25 @@
 <script>
 import arrayUniq                    from 'array-uniq';
 import sortBy                       from 'lodash.sortby';
-import getYear                      from 'date-fns/get_year';
-import getMonth                     from 'date-fns/get_month';
-import getDate                      from 'date-fns/get_date';
-import getDay                       from 'date-fns/get_day';
-import startOfDay                   from 'date-fns/start_of_day';
-import endOfDay                     from 'date-fns/end_of_day';
-import startOfMonth                 from 'date-fns/start_of_month';
-import lastDayOfMonth               from 'date-fns/last_day_of_month';
-import eachDay                      from 'date-fns/each_day';
-import isSameDay                    from 'date-fns/is_same_day';
-import isWithinRange                from 'date-fns/is_within_range';
-import addDays                      from 'date-fns/add_days';
-import addMonths                    from 'date-fns/add_months';
-import addYears                     from 'date-fns/add_years';
-import setMonth                     from 'date-fns/set_month';
-import setYear                      from 'date-fns/set_year';
-import formatDate                   from 'date-fns/format';
+import {
+    getYear,
+    getMonth,
+    getDate,
+    getDay,
+    startOfDay,
+    endOfDay,
+    startOfMonth,
+    lastDayOfMonth,
+    eachDayOfInterval,
+    isSameDay,
+    isWithinInterval,
+    addDays,
+    addMonths,
+    addYears,
+    setMonth,
+    setYear,
+    format as formatDate
+}                                   from 'date-fns/esm';
 
 const yearRange = 12;
 
@@ -167,8 +169,12 @@ export default {
             let monthStart = startOfMonth(this.data.current);
             let monthEnd = lastDayOfMonth(this.data.current);
             let month = [];
+            let days = eachDayOfInterval({
+                start : monthStart,
+                end : monthEnd
+            });
 
-            for (let date of eachDay(monthStart, monthEnd)) {
+            for (let date of days) {
 
                 month.push({
                     notCurrentMonth : false,
@@ -306,7 +312,7 @@ export default {
                 for (let item of this.data.highlightDay) {
 
                     if (item instanceof Array &&
-                        isWithinRange(date, startOfDay(item[0]), endOfDay(item[1]))) {
+                        isWithinInterval(date, {start: startOfDay(item[0]), end: endOfDay(item[1])})) {
 
                         result = true;
 
@@ -575,7 +581,12 @@ export default {
 
                 } else if (item instanceof Array) {
 
-                    for (let day of eachDay(item[0], item[1])) {
+                    let days = eachDayOfInterval({
+                        start : item[0],
+                        end : item[1]
+                    });
+
+                    for (let day of days) {
 
                         result.push(+day);
 

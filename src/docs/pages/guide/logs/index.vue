@@ -174,7 +174,7 @@
     - 修复`ui-table`配置的一些问题
     - 修复文档的一些错误
 
-    <ui-label primary>Upgrade Precautions</ui-label>
+    <ui-label color="primary">Upgrade Precautions</ui-label>
 
     - `声明`被移除，通过`形态`来替代，使用方法也发生变化，详见`形态`文档
     - `声明`的`style`现在通过`形态`的`color`替代

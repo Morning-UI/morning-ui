@@ -184,11 +184,22 @@ morning.install = function (Vue, options) {
 
         }
 
-        Vue.component(`${options.prefix}-${component.options.name}`, component);
-        Vue.component(`morning-${component.options.name}`, component);
-        this._components[name] = component;
-        this._ignoreElements.push(`mor-${component.options.name}`);
-        this._ignoreElements.push(`morning-${component.options.name}`);
+        if (!creater.inside) {
+
+            Vue.component(`${options.prefix}-${component.options.name}`, component);
+            Vue.component(`morning-${component.options.name}`, component);
+            this._components[name] = component;
+            this._ignoreElements.push(`mor-${component.options.name}`);
+            this._ignoreElements.push(`morning-${component.options.name}`);
+
+        } else {
+
+            Vue.component(`morning-inside-${component.options.name}`, component);
+            this._components[`_${component.options.name}`] = component;
+            this._ignoreElements.push(`mor-inside-${component.options.name}`);
+            this._ignoreElements.push(`morning-inside-${component.options.name}`);
+
+        }
 
     }
 

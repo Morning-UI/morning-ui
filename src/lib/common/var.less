@@ -35,6 +35,8 @@
 @colorFormBackgroundHover : lighten(@colorLightGray, 2%);
 @colorFormBackgroundFocus : lighten(@colorLightGray, 1.2%);
 @colorFormBackgroundDisable : lighten(@colorGray, 2%);
+@colorFormAreaBackground : @colorLightGray;
+@colorFormTextLight : darken(@colorGray, 5%);
 @colorFormText : darken(@colorGray, 20%);
 @colorFormTextNote : @colorLightBlack;
 @colorFormTextMisc : darken(@colorGray, 15%);
@@ -152,5 +154,24 @@
         height: 5px;
         background: rgba(0, 0, 0, 0.1);
         border-radius: 4px;
+    }
+}
+
+.setup-hover-scrollbar() {
+    &::-webkit-scrollbar{
+        width: 5px;
+        height: 5px;
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    &::-webkit-scrollbar-thumb{
+        width: 5px;
+        height: 5px;
+        background: rgba(0, 0, 0, 0.0);
+        border-radius: 4px;
+    }
+
+    &:hover::-webkit-scrollbar-thumb{
+        background: rgba(0, 0, 0, 0.1);
     }
 }
