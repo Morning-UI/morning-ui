@@ -109,13 +109,13 @@ import {
     closestTo,
     areIntervalsOverlapping
 }                                   from 'date-fns/esm';
-
-const standardDate = '2000-1-1';
+import Time                         from 'Utils/Time';
 
 export default {
     origin : 'Form',
     inside : true,
     name : 'timepicker',
+    mixins : [Time],
     props : {
         format : {
             type : String,
@@ -213,13 +213,21 @@ export default {
 
             }
 
+            if (!this._timeIsStandarDate(value)) {
+
+                value = this._timeStandardDate(value);
+
+            }
+
+            console.log('_timepuck value', value);
+
             return value;
 
         },
         _noop : function () {},
         _setDate : function (type, value) {
 
-            let date = this.data.value || this._getZeroTime();
+            let date = this._timeStandardDate(this.data.value) || this._timeGetZero();
 
             if (type === 'hour') {
 
@@ -326,17 +334,6 @@ export default {
             this._scrollToTime();
 
         },
-        _getZeroTime : function () {
-
-            let date = this.data.value || new Date(standardDate);
-
-            date = setHours(date, 0);
-            date = setMinutes(date, 0);
-            date = setSeconds(date, 0);
-
-            return date;
-
-        },
         _inputFocus : function () {
 
             this.data.inputFocus = true;
@@ -356,12 +353,12 @@ export default {
                 let date = parseDate(
                     `00| ${this.data.inputValue}`,
                     `YY| ${this.conf.format}`,
-                    this.data.value || this._getZeroTime()
+                    this.data.value || this._timeGetZero()
                 );
 
                 if (!isValid(date)) {
 
-                    date = this.data.value || this._getZeroTime();
+                    date = this.data.value || this._timeGetZero();
 
                 }
 
@@ -433,7 +430,7 @@ export default {
 
             }
 
-            let checkDateLeft = new Date(standardDate);
+            let checkDateLeft = this._timeGetZero();
             let checkDateRight;
             let selectable = false;
 
@@ -512,8 +509,8 @@ export default {
         },
         _addselectableTime : function (time, selectableTimes) {
 
-            let start = new Date(standardDate);
-            let end = new Date(standardDate);
+            let start = this._timeGetZero();
+            let end = this._timeGetZero();
 
             start = setHours(start, getHours(time[0]));
             start = setMinutes(start, getMinutes(time[0]));

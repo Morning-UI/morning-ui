@@ -99,16 +99,21 @@
 <!-- TODO z-index doc中的问题 -->
 <script>
 import {
+    addHours,
+    addMinutes,
     addSeconds,
     format as formatDate,
     isValid
 }                                   from 'date-fns/esm';
 import arrayUniq                    from 'array-uniq';
 import extend                       from 'extend';
+import sortBy                       from 'lodash.sortby';
+import Time                         from 'Utils/Time';
 
 export default {
     origin : 'Form',
     name : 'timepicker',
+    mixins : [Time],
     props : {
         format : {
             type : String,
@@ -152,12 +157,14 @@ export default {
             default : (() => [])
         },
         listStart : {
-            type : [String, Boolean],
-            default : false
+            type : [Object, Boolean],
+            default : false,
+            validator : (value => (value instanceof Date))
         },
         listEnd : {
-            type : [String, Boolean],
-            default : false
+            type : [Object, Boolean],
+            default : false,
+            validator : (value => (value instanceof Date))
         },
         listStep : {
             type : String,
@@ -194,16 +201,46 @@ export default {
 
             let list = extend(true, [], this.conf.list);
 
+            if (this.conf.listStart && this.conf.listEnd && this.conf.listStep) {
+
+                let start = this.conf.listStart;
+                let end = this.conf.listEnd;
+                let addHour,
+                    addMinute,
+                    addSecond;
+
+                addHour = this.conf.listStep.split(':')[0];
+                addMinute = this.conf.listStep.split(':')[1];
+                addSecond = this.conf.listStep.split(':')[2];
+
+                start = this._timeStandardDate(start);
+                end = this._timeStandardDate(end);
+
+                while (+start <= +end) {
+
+                    list.push(start);
+
+                    start = addHours(start, addHour);
+                    start = addMinutes(start, addMinute);
+                    start = addSeconds(start, addSecond);
+
+                }
+
+            }
+
             for (let i in list) {
 
+                let date = this._timeStandardDate(list[i]);
+
                 list[i] = {
-                    date : +list[i],
-                    name : formatDate(list[i], this.conf.format)
+                    date : +date,
+                    name : formatDate(date, this.conf.format)
                 };
 
             }
 
             list = arrayUniq(list);
+            list = sortBy(list, v => (v.date));
 
             return list;
 
@@ -224,19 +261,43 @@ export default {
 
             }
 
-            if (value[0] !== undefined &&
-                value[0] !== null &&
-                (!(value[0] instanceof Date) || !isValid(value[0]))) {
+            let value0 = new Date(value[0]);
 
-                value[0] = new Date();
+            if (!isValid(value0)) {
+
+                value[0] = this._timeStandardDate(new Date());
 
             }
 
-            if (value[1] !== undefined &&
-                value[1] !== null &&
-                (!(value[1] instanceof Date) || !isValid(value[1]))) {
+            if (this.conf.isRange) {
 
-                value[1] = addSeconds(new Date(), 1);
+                value[1] = new Date(value[1]);
+
+                if (!isValid(value[1])) {
+
+                    value[1] = this._timeStandardDate(new Date());
+
+                }
+
+            }
+
+            if (value &&
+                value.length === 2 &&
+                !this.conf.isRange) {
+
+                value = [value[0]];
+
+            }
+
+            if (value && value[0]) {
+
+                this._timeStandardDate(value[0]);
+
+            }
+
+            if (value && value[1]) {
+
+                this._timeStandardDate(value[1]);
 
             }
 
@@ -261,7 +322,15 @@ export default {
 
                 }
 
-                this._set([start], true);
+                if (start) {
+
+                    this._set([start], true);
+
+                } else if (this.get().length !== 0) {
+
+                    this._set(undefined, true);
+
+                }
 
             } else if (this.conf.isRange && select0 && select1) {
 
@@ -284,15 +353,21 @@ export default {
 
                 let val = [start, end];
 
-                if (val[1] === null) {
+                if (val[1] === undefined) {
 
                     val.splice(1, 1);
 
-                    if (val[0] === null) {
+                    if (val[0] === undefined) {
 
-                        val = [];
+                        val = undefined;
 
                     }
+
+                }
+
+                if (val === undefined && this.get().length === 0) {
+
+                    return;
 
                 }
 
@@ -308,24 +383,32 @@ export default {
 
             if (!this.conf.isRange && input0) {
 
-                this._set([
-                    input0.get()
-                ], true);
+                let value = this._timeStandardDate(input0.get());
+
+                if (value) {
+
+                    this._set([value], true);
+
+                } else if (this.get().length !== 0) {
+
+                    this._set(undefined, true);
+
+                }
 
             } else if (this.conf.isRange && input0 && input1) {
 
                 let val = [
-                    input0.get() || null,
-                    input1.get() || null
+                    this._timeStandardDate(input0.get()),
+                    this._timeStandardDate(input1.get())
                 ];
 
-                if (val[1] === null) {
+                if (val[1] === undefined) {
 
                     val.splice(1, 1);
 
-                    if (val[0] === null) {
+                    if (val[0] === undefined) {
 
-                        val = [];
+                        val = undefined;
 
                     }
 
@@ -336,32 +419,75 @@ export default {
             }
 
         },
-        _syncInputFromValue : function () {
+        _syncFromValue : function () {
 
-            let input0 = this.$refs[`ui-timepicker-input-0-${this.uiid}`];
-            let input1 = this.$refs[`ui-timepicker-input-1-${this.uiid}`];
+            let type = 'input';
+
+            if (this.conf.isList) {
+
+                type = 'select';
+
+            }
+
+            let input0 = this.$refs[`ui-timepicker-${type}-0-${this.uiid}`];
+            let input1 = this.$refs[`ui-timepicker-${type}-1-${this.uiid}`];
             let value = this.get();
-
-            if (value[0] === null) {
-
-                value[0] = undefined;
-
-            }
-
-            if (value[1] === null) {
-
-                value[1] = undefined;
-                
-            }
 
             if (!this.conf.isRange && input0) {
 
-                input0._set(value[0], true);
+                if (type === 'select') {
+
+                    let val = +this._timeStandardDate(value[0]);
+
+                    if (val) {
+
+                        input0._set([val], true);
+
+                    } else {
+
+                        input0._set(undefined, true);
+
+                    }
+
+                } else {
+
+                    input0._set(value[0] || undefined, true);
+
+                }
 
             } else if (this.conf.isRange && input0 && input1) {
 
-                input0._set(value[0], true);
-                input1._set(value[1], true);
+                if (type === 'select') {
+
+                    let val0 = +this._timeStandardDate(value[0]);
+                    let val1 = +this._timeStandardDate(value[1]);
+
+                    if (val0) {
+
+                        input0._set([val0], true);
+
+                    } else {
+
+                        input0._set(undefined, true);
+
+                    }
+
+                    if (val1) {
+
+                        input1._set([val1], true);
+
+                    } else {
+
+                        input1._set(undefined, true);
+
+                    }
+
+                } else {
+
+                    input0._set(value[0], true);
+                    input1._set(value[1], true);
+
+                }
 
             }
 
@@ -372,7 +498,7 @@ export default {
 
         this.$on('value-change', () => {
 
-            this._syncInputFromValue();
+            this._syncFromValue();
 
         });
 

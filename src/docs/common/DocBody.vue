@@ -382,6 +382,36 @@ let data = {
                 valueType : 'Array',
                 valueContent : '[{\'images\':[{\'name\':\'151244303389249797.png\',\'path\':\'http://morning-ui-image.test.upcdn.net/uploaddemo/17505/151244303389249797.png\'}],\'zones\':[{\'x\':361,\'y\':117,\'h\':180,\'w\':274},{\'x\':86,\'y\':310,\'h\':180,\'w\':275}],\'w\':722,\'h\':725}]'
             }
+        ],
+        timepicker : [
+            {
+                valueType : 'String',
+                valueContent : `'[new Date()]'`
+            },
+            {
+                valueType : 'Number',
+                valueContent : '5'
+            },
+            {
+                valueType : 'Boolean',
+                valueContent : 'true'
+            },
+            {
+                valueType : 'Null',
+                valueContent : 'null'
+            },
+            {
+                valueType : 'Undefined',
+                valueContent : 'undefined'
+            },
+            {
+                valueType : 'Object',
+                valueContent : 'new Date()'
+            },
+            {
+                valueType : 'Array',
+                valueContent : '[new Date()]'
+            }
         ]
     }
 };

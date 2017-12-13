@@ -1,3 +1,5 @@
+import max                          from 'lodash.max';
+
 let IndexManager = {
     methods : {
         _indexReg : function (namespace, index = 1) {
@@ -55,56 +57,12 @@ let IndexManager = {
 
             return this._indexFetch(namespace, -1);
 
+        },
+        _indexGetMax : function () {
+
+            return max(Object.values(this.morning._indexMap.useIndex));
+
         }
-        // _indexNew : function (namespace) {
-
-        //     let section = this.morning._indexSection[namespace];
-
-        //     if (section === undefined) {
-
-        //         let sectionId = this.morning._indexSectionId++;
-
-        //         this.morning._indexSection[namespace] = {
-        //             id : sectionId,
-        //             prepend : (sectionLen / 2) - 1,
-        //             append : (sectionLen / 2)
-        //         };
-
-        //         section = this.morning._indexSection[namespace];
-
-        //     } 
-
-        //     return ((section.id * sectionLen) + section.append++);
-
-        // },
-        // _indexSectionAppend : function (namespace) {
-
-        //     if (this.morning._indexSection[sectionId] === undefined) {
-
-        //         return 1;
-
-        //     }
-
-        //     let section = this.morning._indexSection[sectionId];
-        //     let index = section.append++;
-
-        //     return ((section * sectionLen) + index);
-
-        // },
-        // _indexSectionPrepend : function (sectionId) {
-
-        //     if (this.morning._indexSection[sectionId] === undefined) {
-
-        //         return 1;
-
-        //     }
-
-        //     let section = this.morning._indexSection[sectionId];
-        //     let index = section.prepend++;
-
-        //     return ((section * sectionLen) + index);
-
-        // }
     }
 };
 
