@@ -26,7 +26,7 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-timepicker form-name="时间" format="HH时mm分ss秒" :default-value="new Date()"></ui-timepicker>
+        <ui-timepicker form-name="时间" format="HH时mm分ss秒" :default-value="['12:30:24']"></ui-timepicker>
     </div>
     :::
     
@@ -34,7 +34,7 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-timepicker form-name="时间" format="h:m:s aa" :default-value="new Date()"></ui-timepicker>
+        <ui-timepicker form-name="时间" format="h:m:s aa" :default-value="['12:30:24']"></ui-timepicker>
     </div>
     :::
 
@@ -46,7 +46,7 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-timepicker form-name="时间" format="h:m:s" :default-value="new Date()"></ui-timepicker>
+        <ui-timepicker form-name="时间" format="h:m:s" :default-value="['12:30:24']"></ui-timepicker>
     </div>
     :::
 
@@ -54,7 +54,7 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-timepicker form-name="时间" format="h:m:s aa | HH:mm:ss" :default-value="new Date()"></ui-timepicker>
+        <ui-timepicker form-name="时间" format="h:m:s aa | HH:mm:ss" :default-value="['12:30:24']"></ui-timepicker>
     </div>
     :::
 
@@ -65,6 +65,17 @@
     ---
     uikey:timepicker
     statusDefaultValue:new Date()
+    :::
+
+    :::democode/html
+    <div style="width:300px;">
+        <ui-timepicker state="normal" :is-list="true" :default-value="['12:30:24']" form-name="正常" ></ui-timepicker>
+    </div>
+    <br>
+    <div style="width:300px;">
+        <ui-timepicker state="disabled" :is-list="true" :default-value="['12:30:24']" form-name="禁用" ></ui-timepicker>
+    </div>
+    <br>
     :::
     
     [[[配置]]]
@@ -116,7 +127,7 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-timepicker form-name="时间" format="HH | mm | ss" :default-value="new Date()"></ui-timepicker>
+        <ui-timepicker form-name="时间" format="HH | mm | ss" :default-value="['12:30:24']"></ui-timepicker>
     </div>
     :::
 
@@ -124,7 +135,7 @@
 
     :::democode/html
     <div style="width:400px;">
-        <ui-timepicker form-name="时间" format="HH:mm:ss(24小时制), h:m:s(12小时制)" :default-value="new Date()"></ui-timepicker>
+        <ui-timepicker form-name="时间" format="HH:mm:ss(24小时制), h:m:s(12小时制)" :default-value="['12:30:24']"></ui-timepicker>
     </div>
     :::
 
@@ -132,7 +143,7 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-timepicker form-name="时间" :default-value="new Date()" :clearable="true"></ui-timepicker>
+        <ui-timepicker form-name="时间" :default-value="['12:30:24']" :clearable="true"></ui-timepicker>
     </div>
     :::
 
@@ -142,7 +153,7 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-timepicker form-name="时间" :default-value="new Date()" align="center"></ui-timepicker>
+        <ui-timepicker form-name="时间" :default-value="['12:30:24']" align="center"></ui-timepicker>
     </div>
     :::
 
@@ -150,7 +161,7 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-timepicker form-name="时间" :default-value="new Date()" align="right"></ui-timepicker>
+        <ui-timepicker form-name="时间" :default-value="['12:30:24']" align="right"></ui-timepicker>
     </div>
     :::
 

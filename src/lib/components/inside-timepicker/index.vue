@@ -1,7 +1,7 @@
 <template>
     <mor-inside-timepicker
         :_uiid="uiid"
-        :class="[stateClass]"
+        :class="[stateClass, moreClass]"
 
         :form-name="formName"
         :form-key="formKey"
@@ -151,6 +151,13 @@ export default {
 
             return classes;
 
+        },
+        moreClass : function () {
+
+            return {
+                'has-cleanbtn' : this.conf.clearable
+            };
+
         }
     },
     data : function () {
@@ -186,17 +193,17 @@ export default {
 
             }
 
-            if (typeof value !== 'string') {
-
-                return formatDate(0, this.conf.format);
-
-            }
-
             let date = parseDate(
                 `${this._timeGetStandarDateString()} ${value}`,
                 `YYYY-M-D ${this.conf.format}`,
-                0
+                new Date('1-1 00:00:00')
             );
+
+            if (!isValid(date)) {
+
+                date = new Date('1-1 00:00:00');
+
+            }
 
             return formatDate(date, this.conf.format);
 
