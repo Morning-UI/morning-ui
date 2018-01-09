@@ -64,7 +64,7 @@ import timepicker                   from './timepicker/index.vue';
 import upload                       from './upload/index.vue';
 import imagemap                     from './imagemap/index.vue';
 
-import _timepicker                  from './_timepicker/index.vue';
+import insideTimepicker             from './inside-timepicker/index.vue';
 
 export default {
     h,
@@ -128,5 +128,5 @@ export default {
     timepicker,
     upload,
     imagemap,
-    _timepicker
+    insideTimepicker
 };

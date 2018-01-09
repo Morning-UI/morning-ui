@@ -1,7 +1,7 @@
 <template>
     <mor-inside-timepicker
         :_uiid="uiid"
-        :class="[stateClass, moreClass]"
+        :class="[stateClass]"
 
         :form-name="formName"
         :form-key="formKey"
@@ -9,9 +9,9 @@
         :default-value="defaultValue"
         :hide-name="hideName"
         :format="format"
-        :clearable="clearable"
         :align="align"
         :selectable-range="selectableRange"
+        :clearable="clearable"
     >
 
     <morning-textinput
@@ -77,22 +77,18 @@
             </ul>
             <div class="selected">&nbsp;</div>
         </div>
-       <!--  <div class="time-footer">
-            <morning-btn color="success" size="xxs">确认</morning-btn>
-            <morning-link color="minor" size="xxs">取消</morning-link>
-        </div> -->
     </div>
 
     <morning-link v-if="conf.clearable" color="minor" @emit="_set(undefined, true)" class="cleanbtn">清空</morning-link>
-    
+
     </mor-inside-timepicker>
 </template>
-
+ 
 <script>
 import {
     addMilliseconds,
-    getMilliseconds,
-    setMilliseconds,
+    // getMilliseconds,
+    // setMilliseconds,
     setHours,
     setMinutes,
     setSeconds,
@@ -114,16 +110,12 @@ import Time                         from 'Utils/Time';
 export default {
     origin : 'Form',
     inside : true,
-    name : 'timepicker',
+    name : 'inside-timepicker',
     mixins : [Time],
     props : {
         format : {
             type : String,
             default : 'HH:mm:ss'
-        },
-        clearable : {
-            type : Boolean,
-            default : false
         },
         align : {
             type : String,
@@ -133,6 +125,10 @@ export default {
         selectableRange : {
             type : Array,
             default : (() => [])
+        },
+        clearable : {
+            type : Boolean,
+            default : false
         }
     },
     computed : {
@@ -140,16 +136,9 @@ export default {
 
             return {
                 format : this.format,
-                clearable : this.clearable,
                 align : this.align,
-                selectableRange : this.selectableRange
-            };
-
-        },
-        moreClass : function () {
-
-            return {
-                'has-cleanbtn' : this.conf.clearable
+                selectableRange : this.selectableRange,
+                clearable : this.clearable
             };
 
         },
@@ -197,141 +186,35 @@ export default {
 
             }
 
-            if (typeof value === 'string') {
+            if (typeof value !== 'string') {
 
-                value = new Date(value);
-
-            } else if (!(value instanceof Date) || !isValid(value)) {
-
-                value = new Date();
+                return formatDate(0, this.conf.format);
 
             }
 
-            if (getMilliseconds(value) > 0) {
+            let date = parseDate(
+                `${this._timeGetStandarDateString()} ${value}`,
+                `YYYY-M-D ${this.conf.format}`,
+                0
+            );
 
-                value = setMilliseconds(value, 0);
-
-            }
-
-            if (!this._timeIsStandarDate(value)) {
-
-                value = this._timeStandardDate(value);
-
-            }
-
-            console.log('_timepuck value', value);
-
-            return value;
+            return formatDate(date, this.conf.format);
 
         },
         _noop : function () {},
-        _setDate : function (type, value) {
+        _valueToDate : function (value) {
 
-            let date = this._timeStandardDate(this.data.value) || this._timeGetZero();
+            if (value === undefined) {
 
-            if (type === 'hour') {
-
-                date = setHours(date, value);
-
-            } else if (type === 'minute') {
-
-                date = setMinutes(date, value);
-
-            } else if (type === 'second') {
-
-                date = setSeconds(date, value);
+                return value;
 
             }
 
-            this._set(date, true);
-
-        },
-        _scrollToTime : function () {
-
-            let types = ['hour', 'minute', 'second'];
-            let $li = this.$el.querySelector(`ul.hour li`);
-
-            for (let type of types) {
-
-                if (!this.data[`${type}Scrolling`]) {
-
-                    let $ul = this.$el.querySelector(`ul.${type}`);
-                    let num = this.data[type[0]];
-
-                    if ($ul.scrollTop !== (num * $li.clientHeight)) {
-
-                        this.data[`${type}StopScrollHandler`] = true;
-
-                    }
-
-                    $ul.scrollTop = num * $li.clientHeight;
-
-                }
-
-            }
-
-        },
-        _refreshInputValue : function () {
-
-            let timeString;
-
-            if (this.data.value !== undefined) {
-
-                timeString = formatDate(new Date(`1 ${this.data.h}:${this.data.m}:${this.data.s}`), this.conf.format);
-
-            }
-
-            this.$refs[`ui-timepicker-input-${this.uiid}`]._set(timeString, true);
-
-        },
-        _focusType : function (type) {
-
-            let date = this.data.value;
-            let $input = this.$el.querySelector('input');
-
-            if (date !== undefined) {
-
-                let start = 0;
-                let end = 0;
-                let map = {
-                    hour : '(HH|H|h|hh)',
-                    minute : '(mm|m)',
-                    second : '(ss|s)'
-                };
-                let result = this.conf.format.match(map[type]);
-                let leftString = formatDate(date, `${this.conf.format.slice(0, result.index)}`);
-                let selfString = formatDate(date, `${this.conf.format.slice(result.index, result.index + result[0].length)}`);
-
-                if (leftString === ' ' && result.index === 0) {
-
-                    leftString = '';
-
-                }
-
-                start = leftString.length;
-                end = start + selfString.length;
-    
-                $input.selectionDirection = 'forward';
-                $input.selectionEnd = end;
-                $input.selectionStart = start;
-
-            }
-
-            this.data.focusType = type;
-
-            $input.focus();
-
-        },
-        _blurType : function (type) {
-
-            let $input = this.$el.querySelector('input');
-
-            $input.selectionDirection = 'none';
-            $input.selectionEnd = $input.selectionStart;
-
-            this.data[`${type}Scrolling`] = false;
-            this.data.focusType = null;
-            this._scrollToTime();
+            return parseDate(
+                `${this._timeGetStandarDateString()} ${value}`,
+                `YYYY-M-D ${this.conf.format}`,
+                0
+            );
 
         },
         _inputFocus : function () {
@@ -353,14 +236,8 @@ export default {
                 let date = parseDate(
                     `00| ${this.data.inputValue}`,
                     `YY| ${this.conf.format}`,
-                    this.data.value || this._timeGetZero()
+                    this._valueToDate(this.data.value) || this._timeGetZero()
                 );
-
-                if (!isValid(date)) {
-
-                    date = this.data.value || this._timeGetZero();
-
-                }
 
                 if (!this._checkSelectable('all')) {
 
@@ -374,11 +251,98 @@ export default {
 
                 } else {
 
-                    this._set(date, true);
+                    this._set(formatDate(date, this.conf.format), true);
 
                 }
 
             }
+
+        },
+        _getClosestTime : function (date) {
+
+            let list = [];
+
+            for (let time of this.data.selectableTimes) {
+
+                list.push(time[0]);
+                list.push(time[1]);
+
+            }
+
+            date = closestTo(date, list);
+
+            return date;
+
+        },
+        _setDate : function (type, value) {
+
+            let date = this._timeStandardDate(this._valueToDate(this.data.value) || this._timeGetZero());
+
+            if (type === 'hour') {
+
+                date = setHours(date, value);
+
+            } else if (type === 'minute') {
+
+                date = setMinutes(date, value);
+
+            } else if (type === 'second') {
+
+                date = setSeconds(date, value);
+
+            }
+
+            this._set(formatDate(date, this.conf.format), true);
+
+        },
+        _focusType : function (type) {
+
+            let date = this._valueToDate(this.data.value);
+            let $input = this.$el.querySelector('input');
+
+            // if (+date !== 0) {
+
+            let start = 0;
+            let end = 0;
+            let map = {
+                hour : '(HH|H|h|hh)',
+                minute : '(mm|m)',
+                second : '(ss|s)'
+            };
+            let result = this.conf.format.match(map[type]);
+            let leftString = formatDate(date, `${this.conf.format.slice(0, result.index)}`);
+            let selfString = formatDate(date, `${this.conf.format.slice(result.index, result.index + result[0].length)}`);
+
+            if (leftString === ' ' && result.index === 0) {
+
+                leftString = '';
+
+            }
+
+            start = leftString.length;
+            end = start + selfString.length;
+
+            $input.selectionDirection = 'forward';
+            $input.selectionEnd = end;
+            $input.selectionStart = start;
+
+            // }
+
+            this.data.focusType = type;
+
+            $input.focus();
+
+        },
+        _blurType : function (type) {
+
+            let $input = this.$el.querySelector('input');
+
+            $input.selectionDirection = 'none';
+            $input.selectionEnd = $input.selectionStart;
+
+            this.data[`${type}Scrolling`] = false;
+            this.data.focusType = null;
+            this._scrollToTime();
 
         },
         _scrollTime : function (type) {
@@ -419,6 +383,103 @@ export default {
                 }
     
             });
+
+        },
+        _scrollToTime : function () {
+
+            let types = ['hour', 'minute', 'second'];
+            let $li = this.$el.querySelector(`ul.hour li`);
+
+            for (let type of types) {
+
+                if (!this.data[`${type}Scrolling`]) {
+
+                    let $ul = this.$el.querySelector(`ul.${type}`);
+                    let num = this.data[type[0]];
+
+                    if ($ul.scrollTop !== (num * $li.clientHeight)) {
+
+                        this.data[`${type}StopScrollHandler`] = true;
+
+                    }
+
+                    $ul.scrollTop = num * $li.clientHeight;
+
+                }
+
+            }
+
+        },
+        _refreshInputValue : function () {
+
+            let timeString;
+
+            if (this.data.value !== undefined) {
+
+                timeString = formatDate(new Date(`1 ${this.data.h}:${this.data.m}:${this.data.s}`), this.conf.format);
+
+            }
+
+            this.$refs[`ui-timepicker-input-${this.uiid}`]._set(timeString, true);
+
+        },
+        _updateTime : function () {
+
+            let date = this._valueToDate(this.data.value);
+
+            this.data.h = getHours(date);
+            this.data.m = getMinutes(date);
+            this.data.s = getSeconds(date);
+
+            this._scrollToTime();
+            this._refreshInputValue();
+
+        },
+        _addselectableTime : function (time, selectableTimes) {
+
+            let start = this._timeGetZero();
+            let end = this._timeGetZero();
+
+            start = setHours(start, getHours(time[0]));
+            start = setMinutes(start, getMinutes(time[0]));
+            start = setSeconds(start, getSeconds(time[0]));
+            end = setHours(end, getHours(time[1]));
+            end = setMinutes(end, getMinutes(time[1]));
+            end = setSeconds(end, getSeconds(time[1]));
+
+            selectableTimes.push([start, end]);
+
+        },
+        _refreshSelectable : function () {
+
+            let ranges = this.conf.selectableRange;
+            let selectableTimes = [];
+
+            if (ranges instanceof Array &&
+                ranges.length === 2 &&
+                isValid(ranges[0]) &&
+                isValid(ranges[1])) {
+
+                this._addselectableTime(ranges, selectableTimes);
+                
+            } else {
+
+                for (let range of ranges) {
+
+                    if (range instanceof Array &&
+                        range.length === 2 &&
+                        isValid(range[0]) &&
+                        isValid(range[1])) {
+
+                        this._addselectableTime(range, selectableTimes);
+
+                    }
+
+                }
+
+            }
+
+            this.data.selectableTimes = selectableTimes;
 
         },
         _checkSelectable : function (type, num) {
@@ -489,91 +550,6 @@ export default {
             }
 
             return selectable;
-
-        },
-        _getClosestTime : function (date) {
-
-            let list = [];
-
-            for (let time of this.data.selectableTimes) {
-
-                list.push(time[0]);
-                list.push(time[1]);
-
-            }
-
-            date = closestTo(date, list);
-
-            return date;
-
-        },
-        _addselectableTime : function (time, selectableTimes) {
-
-            let start = this._timeGetZero();
-            let end = this._timeGetZero();
-
-            start = setHours(start, getHours(time[0]));
-            start = setMinutes(start, getMinutes(time[0]));
-            start = setSeconds(start, getSeconds(time[0]));
-            end = setHours(end, getHours(time[1]));
-            end = setMinutes(end, getMinutes(time[1]));
-            end = setSeconds(end, getSeconds(time[1]));
-
-            selectableTimes.push([start, end]);
-
-        },
-        _refreshSelectable : function () {
-
-            let ranges = this.conf.selectableRange;
-            let selectableTimes = [];
-
-            if (ranges instanceof Array &&
-                ranges.length === 2 &&
-                isValid(ranges[0]) &&
-                isValid(ranges[1])) {
-
-                this._addselectableTime(ranges, selectableTimes);
-                
-            } else {
-
-                for (let range of ranges) {
-
-                    if (range instanceof Array &&
-                        range.length === 2 &&
-                        isValid(range[0]) &&
-                        isValid(range[1])) {
-
-                        this._addselectableTime(range, selectableTimes);
-
-                    }
-
-                }
-
-            }
-
-            this.data.selectableTimes = selectableTimes;
-
-        },
-        _updateTime : function () {
-
-            let date = this.data.value;
-
-            if (date !== undefined) {
-
-                this.data.h = getHours(date);
-                this.data.m = getMinutes(date);
-                this.data.s = getSeconds(date);
-
-            } else {
-
-                this.data.h = 0;
-                this.data.m = 0;
-                this.data.s = 0;
-
-            }
-
-            this._scrollToTime();
-            this._refreshInputValue();
 
         },
         _to : function (type, value, evt) {

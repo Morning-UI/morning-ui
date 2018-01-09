@@ -57,6 +57,11 @@ let Time = {
 
             return this._timeStandardDate(new Date('1-1 00:00:00'));
 
+        },
+        _timeGetStandarDateString : function () {
+
+            return standardDate;
+
         }
     }
 };

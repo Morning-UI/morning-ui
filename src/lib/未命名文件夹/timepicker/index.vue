@@ -1,7 +1,7 @@
 <template>
     <mor-timepicker
         :_uiid="uiid"
-        :class="[stateClass]"
+        :class="[stateClass, moreClass]"
 
         :form-name="formName"
         :form-key="formKey"
@@ -95,14 +95,14 @@
 
     </mor-timepicker>
 </template>
- 
+
+<!-- TODO z-index doc中的问题 -->
 <script>
 import {
     addHours,
     addMinutes,
     addSeconds,
     format as formatDate,
-    parse as parseDate,
     isValid
 }                                   from 'date-fns/esm';
 import arrayUniq                    from 'array-uniq';
@@ -158,13 +158,13 @@ export default {
         },
         listStart : {
             type : [Object, Boolean],
-            default : false
-            // validator : (value => (value instanceof Date))
+            default : false,
+            validator : (value => (value instanceof Date))
         },
         listEnd : {
             type : [Object, Boolean],
-            default : false
-            // validator : (value => (value instanceof Date))
+            default : false,
+            validator : (value => (value instanceof Date))
         },
         listStep : {
             type : String,
@@ -213,17 +213,8 @@ export default {
                 addMinute = this.conf.listStep.split(':')[1];
                 addSecond = this.conf.listStep.split(':')[2];
 
-                start = parseDate(
-                    `00| ${start}`,
-                    `YY| ${this.conf.format}`,
-                    0
-                );
-
-                end = parseDate(
-                    `00| ${end}`,
-                    `YY| ${this.conf.format}`,
-                    0
-                );
+                start = this._timeStandardDate(start);
+                end = this._timeStandardDate(end);
 
                 while (+start <= +end) {
 
@@ -257,9 +248,7 @@ export default {
     },
     data : function () {
 
-        return {
-            data : {}
-        };
+        return {};
 
     },
     methods : {
@@ -272,55 +261,45 @@ export default {
 
             }
 
-            // if (value[0] instanceof Date) {
+            let value0 = new Date(value[0]);
 
-            //     value[0] = formatDate(value[0], this.conf.format);
+            if (!isValid(value0)) {
 
-            // }
+                value[0] = this._timeStandardDate(new Date());
 
-            // value[0] = parseDate(
-            //     `00| ${value[0]}`,
-            //     `YY| ${this.conf.format}`,
-            //     +new Date()
-            // );
+            }
 
-            // if (this.conf.isRange) {
+            if (this.conf.isRange) {
 
-            //     if (value[1] instanceof Date) {
+                value[1] = new Date(value[1]);
 
-            //         value[1] = formatDate(value[1], this.conf.format);
+                if (!isValid(value[1])) {
 
-            //     }
+                    value[1] = this._timeStandardDate(new Date());
 
-            //     value[1] = parseDate(
-            //         `00| ${value[1]}`,
-            //         `YY| ${this.conf.format}`,
-            //         +new Date()
-            //     );
+                }
 
-            // }
+            }
 
-            // if (value &&
-            //     value.length === 2 &&
-            //     !this.conf.isRange) {
+            if (value &&
+                value.length === 2 &&
+                !this.conf.isRange) {
 
-            //     value = [value[0]];
+                value = [value[0]];
 
-            // }
+            }
 
-            // if (value && value[0]) {
+            if (value && value[0]) {
 
-            //     this._timeStandardDate(value[0]);
+                this._timeStandardDate(value[0]);
 
-            // }
+            }
 
-            // if (value && value[1]) {
+            if (value && value[1]) {
 
-            //     this._timeStandardDate(value[1]);
+                this._timeStandardDate(value[1]);
 
-            // }
-
-            console.log(value);
+            }
 
             return value;
 
@@ -339,7 +318,7 @@ export default {
 
                 if (isValid(date)) {
 
-                    start = formatDate(date, this.conf.format);
+                    start = date;
 
                 }
 
@@ -362,13 +341,13 @@ export default {
 
                 if (isValid(date0)) {
 
-                    start = formatDate(date0, this.conf.format);
+                    start = date0;
 
                 }
 
                 if (isValid(date1)) {
 
-                    end = formatDate(date1, this.conf.format);
+                    end = date1;
 
                 }
 
@@ -404,7 +383,7 @@ export default {
 
             if (!this.conf.isRange && input0) {
 
-                let value = input0.get();
+                let value = this._timeStandardDate(input0.get());
 
                 if (value) {
 
@@ -419,8 +398,8 @@ export default {
             } else if (this.conf.isRange && input0 && input1) {
 
                 let val = [
-                    input0.get(),
-                    input1.get()
+                    this._timeStandardDate(input0.get()),
+                    this._timeStandardDate(input1.get())
                 ];
 
                 if (val[1] === undefined) {
