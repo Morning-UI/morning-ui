@@ -376,7 +376,7 @@ export default {
 
                         if (this.conf.multiSelect) {
 
-                            multiValue.push(trim($item.textContent));
+                            multiValue.push(trim($item.getAttribute('value')));
                         
                         } else {
                             
