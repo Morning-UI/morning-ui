@@ -193,6 +193,7 @@
     - `jump-page` : 跳转页面
     - `item-name` : 项目名称
     - `item-filler` : 项目填充
+    - `item-validator` : 项目验证
     - `input-type` : 输入类型
     - `batch-reg` : 批量输入正则表达式
     - `batch-filler` : 批量输入填充
