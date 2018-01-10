@@ -293,6 +293,43 @@ mor-select{
         margin-top: 1px;
     }
 
+    &.input-group {
+        display: flex;
+        vertical-align: middle;
+
+        .input-group-addon {
+            padding: @fontSize*0.375 @fontSize*0.75;
+            font-size: @fontSize*0.75;
+            color: @colorBlue;
+            text-align: center;
+            background-color: @colorLightGray;
+            border: 1px solid @colorFormBorder;
+            white-space: nowrap;
+            border-top-left-radius: @borderRadius;
+            border-bottom-left-radius: @borderRadius;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-right: 0;
+        }
+
+        .select-area{
+            width: 100%;
+            position: relative;
+        }
+
+        .input-group-addon,
+        .select-area {
+            vertical-align: middle;
+            margin: 0;
+            
+            .wrap{
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+            }
+        }
+    }
+
     &.st-normal{}
 
     &.st-disabled{
