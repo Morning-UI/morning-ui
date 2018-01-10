@@ -9,6 +9,7 @@
         :default-value="defaultValue"
         :hide-name="hideName"
         :align="align"
+        :clearable="clearable"
         :max-show="maxShow"
         :auto-close="autoClose"
         :can-search="canSearch"
@@ -60,6 +61,7 @@
             <template v-if="conf.canSearch">
                 <morning-textinput
                     :id="'ui-select-ti-' + uiid"
+                    :align="conf.align"
                     @value-change="_searchKeyChange()"
                     @focus="_textinputFocus()"
                     @blur="_textinputBlur()"
@@ -105,6 +107,8 @@
         <li class="noitem">无项目</li>
     </ul>
 
+    <morning-link v-if="conf.clearable" color="minor" @emit="_set(undefined, true)" class="cleanbtn">清空</morning-link>
+
     </mor-select>
 </template>
  
@@ -122,6 +126,10 @@ export default {
             type : String,
             default : 'left',
             validator : (value => ['left', 'center', 'right'].indexOf(value) !== -1)
+        },
+        clearable : {
+            type : Boolean,
+            default : false
         },
         maxShow : {
             type : Number,
@@ -169,6 +177,7 @@ export default {
 
             return {
                 align : this.align,
+                clearable : this.clearable,
                 maxShow : this.maxShow,
                 autoClose : this.autoClose,
                 canSearch : this.canSearch,
@@ -202,7 +211,8 @@ export default {
                 'select-item' : selectItem,
                 'align-left' : (this.conf.align === 'left'),
                 'align-center' : (this.conf.align === 'center'),
-                'align-right' : (this.conf.align === 'right')
+                'align-right' : (this.conf.align === 'right'),
+                'has-cleanbtn' : this.conf.clearable
             };
 
         },
