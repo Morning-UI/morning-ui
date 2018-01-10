@@ -10,11 +10,12 @@
         :hide-name="hideName"
         :hide-value="hideValue"
         :prepend="prepend"
-        :append="append" 
+        :append="append"
+        :align="align"
     >
 
     <template v-if="conf.prepend">
-        <div class="input-group-addon">{{conf.prepend}}</div>
+        <div class="input-group-addon" v-html="conf.prepend"></div>
     </template>
     
     <template v-if="inputType === 'text'">
@@ -38,6 +39,7 @@
             type="password"
             key="is-password"
             
+            :class="inputClass"
             :placeholder="placeholder"
             :disabled="conf.state === 'disabled'"
 
@@ -50,7 +52,7 @@
     </template>
 
     <template v-if="conf.append">
-        <div class="input-group-addon">{{conf.append}}</div>
+        <div class="input-group-addon" v-html="conf.append"></div>
     </template>
 
     </mor-textinput>
@@ -72,6 +74,11 @@ export default {
         append : {
             type : String,
             default : undefined
+        },
+        align : {
+            type : String,
+            default : 'left',
+            validator : (value => ['left', 'center', 'right'].indexOf(value) !== -1)
         }
     },
     computed : {
@@ -80,7 +87,8 @@ export default {
             return {
                 hideValue : this.hideValue,
                 prepend : this.prepend,
-                append : this.append
+                append : this.append,
+                align : this.align
             };
 
         },
@@ -116,7 +124,10 @@ export default {
         inputClass : function () {
 
             return {
-                'has-append' : !!this.conf.append
+                'has-append' : !!this.conf.append,
+                'align-left' : (this.conf.align === 'left'),
+                'align-center' : (this.conf.align === 'center'),
+                'align-right' : (this.conf.align === 'right')
             };
 
         }

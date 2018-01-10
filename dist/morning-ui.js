@@ -29138,9 +29138,10 @@ var render = function() {
     [
       _vm.conf.prepend
         ? [
-            _c("div", { staticClass: "input-group-addon" }, [
-              _vm._v(_vm._s(_vm.conf.prepend))
-            ])
+            _c("div", {
+              staticClass: "input-group-addon",
+              domProps: { innerHTML: _vm._s(_vm.conf.prepend) }
+            })
           ]
         : _vm._e(),
       _vm._v(" "),
@@ -29193,9 +29194,10 @@ var render = function() {
       _vm._v(" "),
       _vm.conf.append
         ? [
-            _c("div", { staticClass: "input-group-addon" }, [
-              _vm._v(_vm._s(_vm.conf.append))
-            ])
+            _c("div", {
+              staticClass: "input-group-addon",
+              domProps: { innerHTML: _vm._s(_vm.conf.append) }
+            })
           ]
         : _vm._e()
     ],
