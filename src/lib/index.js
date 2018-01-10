@@ -12,7 +12,8 @@ let morning = {
     _indexMap : {
         regIndex : {},
         vmMap : {},
-        useIndex : {}
+        useIndex : {},
+        maxIndex : 1
     },
     _moveListener : [],
     _globalEventListener : {},
