@@ -14,7 +14,7 @@
     >
 
     <template v-if="conf.prepend">
-        <div class="input-group-addon">{{conf.prepend}}</div>
+        <div class="input-group-addon" v-html="conf.prepend"></div>
     </template>
     
     <template v-if="inputType === 'text'">
@@ -50,7 +50,7 @@
     </template>
 
     <template v-if="conf.append">
-        <div class="input-group-addon">{{conf.append}}</div>
+        <div class="input-group-addon" v-html="conf.append"></div>
     </template>
 
     </mor-textinput>

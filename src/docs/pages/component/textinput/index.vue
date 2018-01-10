@@ -55,8 +55,8 @@
     formConfigTable
     ---
     |[hide-value](#hide-value)|表单的数值不可见，一般用于密码表单|`true`<br>`false`|Boolean|`false`|
-    |[prepend](#prepend)|表单前缀|任意字符串|String|`undefined`|
-    |[append](#append)|表单后缀|任意字符串|String|`undefined`|
+    |[prepend](#prepend)|表单前缀|任意字符串(支持HTML)|String|`undefined`|
+    |[append](#append)|表单后缀|任意字符串(支持HTML)|String|`undefined`|
     :::
 
     :::preset/html
