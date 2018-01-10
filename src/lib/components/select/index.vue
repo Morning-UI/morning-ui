@@ -8,6 +8,7 @@
         :group="group"
         :default-value="defaultValue"
         :hide-name="hideName"
+        :align="align"
         :max-show="maxShow"
         :auto-close="autoClose"
         :can-search="canSearch"
@@ -117,6 +118,11 @@ export default {
     name : 'select',
     mixins : [GlobalEvent, IndexManager],
     props : {
+        align : {
+            type : String,
+            default : 'left',
+            validator : (value => ['left', 'center', 'right'].indexOf(value) !== -1)
+        },
         maxShow : {
             type : Number,
             default : 5
@@ -162,6 +168,7 @@ export default {
         _conf : function () {
 
             return {
+                align : this.align,
                 maxShow : this.maxShow,
                 autoClose : this.autoClose,
                 canSearch : this.canSearch,
@@ -192,7 +199,10 @@ export default {
                 'focus-search' : !!this.data.focusSearch,
                 'is-max' : !!this.isMax,
                 'has-clean-btn' : !!this.conf.cleanBtn,
-                'select-item' : selectItem
+                'select-item' : selectItem,
+                'align-left' : (this.conf.align === 'left'),
+                'align-center' : (this.conf.align === 'center'),
+                'align-right' : (this.conf.align === 'right')
             };
 
         },
