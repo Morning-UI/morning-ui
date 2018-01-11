@@ -30,13 +30,14 @@
 
 <script>
 import PopupManager                 from 'Utils/PopupManager';
+import IndexManager                 from 'Utils/IndexManager';
 
 const defaultCloseTime = 4000;
 
 export default {
     origin : 'UI',
     name : 'message',
-    mixins : [PopupManager],
+    mixins : [PopupManager, IndexManager],
     props : {
         closeBtn : {
             type : Boolean,
@@ -145,6 +146,7 @@ export default {
 
             }
 
+            this.$el.style.zIndex = this._indexMax();
             this.data.list = list;
 
             if (this.conf.closeTime !== false) {
