@@ -28,7 +28,7 @@ let PopupManager = {
             keepDiv.style.display = 'none';
             this.$el.before(keepDiv);
             this.Popup.oldIndex = this.$el.style.zIndex;
-            this.$el.style.zIndex = this._indexGet('Popup') + id;
+            this.$el.style.zIndex = this._indexGet('Popup', id);
             document.body.append(this.$el);
             this.Popup.keepDiv = keepDiv;
 
