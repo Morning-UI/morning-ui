@@ -23,6 +23,18 @@ mor-textinput{
         outline: none;
         -webkit-appearance: none;
 
+        &.align-left{
+            text-align: left;
+        }
+
+        &.align-center{
+            text-align: center;
+        }
+
+        &.align-right{
+            text-align: right;
+        }
+
         &::placeholder{
             color: @colorFormText;
         }
@@ -44,7 +56,7 @@ mor-textinput{
 
         .input-group-addon {
             padding: @fontSize*0.375 @fontSize*0.75;
-            font-size: 0.875em;
+            font-size: @fontSize*0.75;
             color: @colorBlue;
             text-align: center;
             background-color: @colorLightGray;
