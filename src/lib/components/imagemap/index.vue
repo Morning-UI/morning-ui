@@ -266,7 +266,6 @@ export default {
             data : {
                 inited : false,
                 uploadValueSet : false,
-                uploadValueChanging : false,
                 syncing : false,
                 zoneId : 0,
                 images : [],
@@ -804,7 +803,6 @@ export default {
                 .all(loadList)
                 .then(() => {
 
-                    this.data.uploadValueChanging = true;
                     this.data.imagesLoading = false;
                     this.data.images = images;
 
@@ -872,6 +870,14 @@ export default {
             result.zones = this.data.zones;
             result.w = $zonearea.clientWidth;
             result.h = $zonearea.clientHeight;
+
+            // when images is empty.
+            if (!result.images || result.images.length === 0) {
+
+                result.w = 0;
+                result.h = 0;
+
+            }
 
             this._set(result, true);
 
@@ -956,11 +962,9 @@ export default {
             deep : true
         });
 
-        this.$watch('data.images', () => {
+        this.$watch('data.images', (newValue, oldValue) => {
 
-            if (this.data.uploadValueChanging) {
-
-                this.data.uploadValueChanging = false;
+            if (JSON.stringify(newValue) === JSON.stringify(oldValue)) {
 
                 return;
 
