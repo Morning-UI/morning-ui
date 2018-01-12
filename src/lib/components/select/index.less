@@ -8,7 +8,19 @@ mor-select{
     vertical-align: middle;
     min-height: @formHeight;
 
-    > .wrap{
+    &.align-left{
+        text-align: left;
+    }
+
+    &.align-center{
+        text-align: center;
+    }
+
+    &.align-right{
+        text-align: right;
+    }
+
+    .wrap{
         border: 1px solid @colorFormBorder;
         border-radius: @borderRadius;
         position: relative;
@@ -114,7 +126,7 @@ mor-select{
         }
     }
 
-    > .list{
+    .list{
         margin: 0;
         padding: 0;
         list-style: none;
@@ -180,8 +192,30 @@ mor-select{
         }
     }
 
+    &.align-center{
+        .wrap > mor-multiinput{
+            width: ~'calc(100% - 1em)';
+            padding-right: ~'calc(30px + 1em)';
+
+            input{
+                text-align: center;
+            }
+        }
+    }
+
+    &.align-right{
+        .wrap > mor-multiinput{
+            width: ~'calc(100% - 1em)';
+            padding-right: ~'calc(30px + 1em)';
+
+            input{
+                text-align: right;
+            }
+        }
+    }
+
     &.has-clean-btn{
-        > .wrap{
+        .wrap{
             > mor-textinput,
             > mor-multiinput,
             > .selected{
@@ -191,7 +225,7 @@ mor-select{
     }
 
     &.showlist{
-        > .wrap{
+        .wrap{
             border-color: @colorFormBorder;
             border-bottom-width: 0;
             border-radius: @borderRadius @borderRadius 0 0;
@@ -206,14 +240,14 @@ mor-select{
             }
         }
 
-        > .list{
+        .list{
             visibility: visible;
             transform: scaleY(1);
         }
     }
 
     &.select-item{
-        > .wrap{
+        .wrap{
             > mor-textinput{
                 input{
                     color: @colorFormTextFocus !important;
@@ -227,13 +261,13 @@ mor-select{
     }
 
     &.focus-search{
-        > .wrap > .selected{
+        .wrap > .selected{
             opacity: 0.3;
         }
     }
 
     &.searching{
-        > .wrap > .selected{
+        .wrap > .selected{
             visibility: hidden;
         }
     }
@@ -248,10 +282,58 @@ mor-select{
         }
     }
 
+    &.has-cleanbtn{
+        padding-bottom: @fontSize*1.25;
+    }
+
+    .cleanbtn{
+        position: absolute;
+        right: 0;
+        font-size: 12px;
+        margin-top: 1px;
+    }
+
+    &.input-group {
+        display: flex;
+        vertical-align: middle;
+
+        .input-group-addon {
+            padding: @fontSize*0.375 @fontSize*0.75;
+            font-size: @fontSize*0.75;
+            color: @colorBlue;
+            text-align: center;
+            background-color: @colorLightGray;
+            border: 1px solid @colorFormBorder;
+            white-space: nowrap;
+            border-top-left-radius: @borderRadius;
+            border-bottom-left-radius: @borderRadius;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-right: 0;
+        }
+
+        .select-area{
+            width: 100%;
+            position: relative;
+        }
+
+        .input-group-addon,
+        .select-area {
+            vertical-align: middle;
+            margin: 0;
+
+            .wrap{
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+            }
+        }
+    }
+
     &.st-normal{}
 
     &.st-disabled{
-        > .wrap {
+        .wrap {
             background-color: @colorFormBackgroundDisable;
             border-color: @colorFormBorderDisable;
             -webkit-user-select: none;
@@ -266,11 +348,11 @@ mor-select{
             }
         }
 
-        > .wrap > mor-multiinput{
+        .wrap > mor-multiinput{
             background: transparent;
         }
 
-        > .wrap > mor-textinput{
+        .wrap > mor-textinput{
             display: none;
         }
     }
