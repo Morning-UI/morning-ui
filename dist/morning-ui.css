@@ -8007,6 +8007,15 @@ mor-textinput input {
   outline: none;
   -webkit-appearance: none;
 }
+mor-textinput input.align-left {
+  text-align: left;
+}
+mor-textinput input.align-center {
+  text-align: center;
+}
+mor-textinput input.align-right {
+  text-align: right;
+}
 mor-textinput input::-webkit-input-placeholder {
   color: #b3b3b3;
 }
@@ -8027,7 +8036,7 @@ mor-textinput.input-group {
 }
 mor-textinput.input-group .input-group-addon {
   padding: 6px 12px;
-  font-size: 0.875em;
+  font-size: 12px;
   color: #7C8BA0;
   text-align: center;
   background-color: #F0F0F0;
@@ -8515,7 +8524,16 @@ mor-select {
   vertical-align: middle;
   min-height: 42px;
 }
-mor-select > .wrap {
+mor-select.align-left {
+  text-align: left;
+}
+mor-select.align-center {
+  text-align: center;
+}
+mor-select.align-right {
+  text-align: right;
+}
+mor-select .wrap {
   border: 1px solid #E6E6E6;
   border-radius: 3px;
   position: relative;
@@ -8525,7 +8543,7 @@ mor-select > .wrap {
   background-color: #FFF;
   overflow: hidden;
 }
-mor-select > .wrap > mor-textinput {
+mor-select .wrap > mor-textinput {
   width: calc( 100% - 30px );
   height: 40px;
   line-height: 40px;
@@ -8534,14 +8552,14 @@ mor-select > .wrap > mor-textinput {
   margin: 0;
   position: absolute;
 }
-mor-select > .wrap > mor-textinput input {
+mor-select .wrap > mor-textinput input {
   vertical-align: top !important;
   border: none;
   height: 40px;
   line-height: 40px;
   font-size: 14px;
 }
-mor-select > .wrap > mor-multiinput {
+mor-select .wrap > mor-multiinput {
   margin: 0;
   width: calc( 100% - 30px - 2em);
   background-color: #FFF;
@@ -8550,13 +8568,13 @@ mor-select > .wrap > mor-multiinput {
   left: 0.35em;
   font-size: 14px;
 }
-mor-select > .wrap > mor-multiinput .itemlist {
+mor-select .wrap > mor-multiinput .itemlist {
   border: none;
 }
-mor-select > .wrap > mor-multiinput .itemlist > input {
+mor-select .wrap > mor-multiinput .itemlist > input {
   cursor: pointer;
 }
-mor-select > .wrap > .selected {
+mor-select .wrap > .selected {
   color: #b3b3b3;
   width: calc( 100% - 30px );
   height: 40px;
@@ -8570,17 +8588,17 @@ mor-select > .wrap > .selected {
   white-space: nowrap;
   overflow: hidden;
 }
-mor-select > .wrap > .selected img,
-mor-select > .wrap > .selected mor-img {
+mor-select .wrap > .selected img,
+mor-select .wrap > .selected mor-img {
   height: 2em !important;
   width: 2em !important;
   margin-right: 0.5em;
   vertical-align: middle;
 }
-mor-select > .wrap > .selected mor-img > img {
+mor-select .wrap > .selected mor-img > img {
   vertical-align: top;
 }
-mor-select > .wrap > .morningicon {
+mor-select .wrap > .morningicon {
   position: absolute;
   line-height: 40px;
   width: 24px;
@@ -8589,25 +8607,25 @@ mor-select > .wrap > .morningicon {
   z-index: 2;
   color: #b3b3b3;
 }
-mor-select > .wrap > .morningicon.drop {
+mor-select .wrap > .morningicon.drop {
   top: 0;
   right: 0;
   font-size: 30px;
   text-indent: 1px;
 }
-mor-select > .wrap > .morningicon.clean {
+mor-select .wrap > .morningicon.clean {
   top: 0;
   right: 26px;
   width: 18px;
   font-size: 16px;
 }
-mor-select > .wrap > .morningicon.clean:hover {
+mor-select .wrap > .morningicon.clean:hover {
   color: #D64431;
 }
-mor-select > .wrap:hover {
+mor-select .wrap:hover {
   border-color: #d7d7d7;
 }
-mor-select > .list {
+mor-select .list {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -8625,85 +8643,99 @@ mor-select > .list {
   box-sizing: border-box;
   position: absolute;
 }
-mor-select > .list::-webkit-scrollbar {
+mor-select .list::-webkit-scrollbar {
   width: 5px;
   height: 5px;
   background-color: rgba(0, 0, 0, 0.05);
 }
-mor-select > .list::-webkit-scrollbar-thumb {
+mor-select .list::-webkit-scrollbar-thumb {
   width: 5px;
   height: 5px;
   background: rgba(0, 0, 0, 0.1);
   border-radius: 4px;
 }
-mor-select > .list li {
+mor-select .list li {
   padding: 0.5em 1em;
   border-top: 1px #f3f3f3 solid;
   cursor: pointer;
   font-size: 14px;
   color: #8d8d8d;
 }
-mor-select > .list li.noitem {
+mor-select .list li.noitem {
   color: #c0c0c0;
   cursor: default;
   display: none;
 }
-mor-select > .list li.noitem.show {
+mor-select .list li.noitem.show {
   display: list-item;
 }
-mor-select > .list li img,
-mor-select > .list li mor-img {
+mor-select .list li img,
+mor-select .list li mor-img {
   height: 2em;
   width: 2em;
   margin-right: 0.5em;
   vertical-align: middle;
 }
-mor-select > .list li mor-img > img {
+mor-select .list li mor-img > img {
   vertical-align: top;
 }
-mor-select > .list li.current {
+mor-select .list li.current {
   background: #f3f3f3;
   color: #17212D;
 }
-mor-select > .list li.hide,
-mor-select > .list li.selected {
+mor-select .list li.hide,
+mor-select .list li.selected {
   display: none;
 }
-mor-select > .list li:hover {
+mor-select .list li:hover {
   color: #737373;
   background: #f5f5f5;
 }
-mor-select.has-clean-btn > .wrap > mor-textinput,
-mor-select.has-clean-btn > .wrap > mor-multiinput,
-mor-select.has-clean-btn > .wrap > .selected {
+mor-select.align-center .wrap > mor-multiinput {
+  width: calc(100% - 1em);
+  padding-right: calc(30px + 1em);
+}
+mor-select.align-center .wrap > mor-multiinput input {
+  text-align: center;
+}
+mor-select.align-right .wrap > mor-multiinput {
+  width: calc(100% - 1em);
+  padding-right: calc(30px + 1em);
+}
+mor-select.align-right .wrap > mor-multiinput input {
+  text-align: right;
+}
+mor-select.has-clean-btn .wrap > mor-textinput,
+mor-select.has-clean-btn .wrap > mor-multiinput,
+mor-select.has-clean-btn .wrap > .selected {
   width: calc( 100% - 50px );
 }
-mor-select.showlist > .wrap {
+mor-select.showlist .wrap {
   border-color: #E6E6E6;
   border-bottom-width: 0;
   border-radius: 3px 3px 0 0;
   padding-bottom: 1px;
 }
-mor-select.showlist > .wrap > mor-textinput {
+mor-select.showlist .wrap > mor-textinput {
   cursor: initial;
 }
-mor-select.showlist > .wrap > .drop {
+mor-select.showlist .wrap > .drop {
   transform: rotateX(180deg);
 }
-mor-select.showlist > .list {
+mor-select.showlist .list {
   visibility: visible;
   transform: scaleY(1);
 }
-mor-select.select-item > .wrap > mor-textinput input {
+mor-select.select-item .wrap > mor-textinput input {
   color: #17212D !important;
 }
-mor-select.select-item > .wrap > .selected {
+mor-select.select-item .wrap > .selected {
   color: #17212D;
 }
-mor-select.focus-search > .wrap > .selected {
+mor-select.focus-search .wrap > .selected {
   opacity: 0.3;
 }
-mor-select.searching > .wrap > .selected {
+mor-select.searching .wrap > .selected {
   visibility: hidden;
 }
 mor-select.is-max .wrap {
@@ -8712,22 +8744,64 @@ mor-select.is-max .wrap {
 mor-select.is-max .wrap > .drop {
   display: none;
 }
-mor-select.st-disabled > .wrap {
+mor-select.has-cleanbtn {
+  padding-bottom: 20px;
+}
+mor-select .cleanbtn {
+  position: absolute;
+  right: 0;
+  font-size: 12px;
+  margin-top: 1px;
+}
+mor-select.input-group {
+  display: flex;
+  vertical-align: middle;
+}
+mor-select.input-group .input-group-addon {
+  padding: 6px 12px;
+  font-size: 12px;
+  color: #7C8BA0;
+  text-align: center;
+  background-color: #F0F0F0;
+  border: 1px solid #E6E6E6;
+  white-space: nowrap;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 0;
+}
+mor-select.input-group .select-area {
+  width: 100%;
+  position: relative;
+}
+mor-select.input-group .input-group-addon,
+mor-select.input-group .select-area {
+  vertical-align: middle;
+  margin: 0;
+}
+mor-select.input-group .input-group-addon .wrap,
+mor-select.input-group .select-area .wrap {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+mor-select.st-disabled .wrap {
   background-color: #ebebeb;
   border-color: #a6a6a6;
   -webkit-user-select: none;
   cursor: not-allowed !important;
 }
-mor-select.st-disabled > .wrap > .morningicon {
+mor-select.st-disabled .wrap > .morningicon {
   display: none;
 }
-mor-select.st-disabled > .wrap > .selected {
+mor-select.st-disabled .wrap > .selected {
   color: #8d8d8d;
 }
-mor-select.st-disabled > .wrap > mor-multiinput {
+mor-select.st-disabled .wrap > mor-multiinput {
   background: transparent;
 }
-mor-select.st-disabled > .wrap > mor-textinput {
+mor-select.st-disabled .wrap > mor-textinput {
   display: none;
 }
 

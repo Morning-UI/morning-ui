@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">1.74% </span>
+        <span class="strong">1.73% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>7/403</span>
+        <span class='fraction'>7/404</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">4.13% </span>
+        <span class="strong">4.05% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>9/218</span>
+        <span class='fraction'>9/222</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -37,7 +37,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">2.19% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>7/319</span>
+        <span class='fraction'>7/320</span>
       </div>
     </div>
   </div>
@@ -1067,7 +1067,13 @@
 1022
 1023
 1024
-1025</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+1025
+1026
+1027
+1028
+1029
+1030</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1364,7 +1370,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1874,7 +1879,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1936,11 +1940,19 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -2023,8 +2035,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -2114,6 +2124,7 @@
     &lt;morning-upload
         :form-name="conf.formName"
         :max="conf.max"
+        :hide-name="conf.hideName"
         :multi="conf.multi"
         :allow-url="conf.allowUrl"
         :allow-drag="conf.allowDrag"
@@ -2358,7 +2369,6 @@ export default {
             data : {
                 inited : false,
                 uploadValueSet : false,
-                uploadValueChanging : false,
                 syncing : false,
                 zoneId : 0,
                 images : [],
@@ -2896,7 +2906,6 @@ export default {
                 .all(loadList)
                 .then(<span class="fstat-no" title="function not covered" >() =&gt; </span>{
 &nbsp;
-<span class="cstat-no" title="statement not covered" >                    this.data.uploadValueChanging = true;</span>
 <span class="cstat-no" title="statement not covered" >                    this.data.imagesLoading = false;</span>
 <span class="cstat-no" title="statement not covered" >                    this.data.images = images;</span>
 &nbsp;
@@ -2964,6 +2973,14 @@ export default {
 <span class="cstat-no" title="statement not covered" >            result.zones = this.data.zones;</span>
 <span class="cstat-no" title="statement not covered" >            result.w = $zonearea.clientWidth;</span>
 <span class="cstat-no" title="statement not covered" >            result.h = $zonearea.clientHeight;</span>
+&nbsp;
+            // when images is empty.
+<span class="cstat-no" title="statement not covered" >            if (!result.images || result.images.length === 0) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                result.w = 0;</span>
+<span class="cstat-no" title="statement not covered" >                result.h = 0;</span>
+&nbsp;
+            }
 &nbsp;
 <span class="cstat-no" title="statement not covered" >            this._set(result, true);</span>
 &nbsp;
@@ -3048,11 +3065,9 @@ export default {
             deep : true
         });
 &nbsp;
-<span class="cstat-no" title="statement not covered" >        this.$watch('data.images', <span class="fstat-no" title="function not covered" >() =&gt; </span>{</span>
+<span class="cstat-no" title="statement not covered" >        this.$watch('data.images', <span class="fstat-no" title="function not covered" >(</span>newValue, oldValue) =&gt; {</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >            if (this.data.uploadValueChanging) {</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >                this.data.uploadValueChanging = false;</span>
+<span class="cstat-no" title="statement not covered" >            if (JSON.stringify(newValue) === JSON.stringify(oldValue)) {</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >                return;</span>
 &nbsp;
@@ -3121,7 +3136,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Dec 07 2017 11:15:53 GMT+0800 (CST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Jan 15 2018 12:50:29 GMT+0800 (CST)
 </div>
 </div>
 <script src="../../../prettify.js"></script>

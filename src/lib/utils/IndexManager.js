@@ -7,6 +7,7 @@ let IndexManager = {
             if (this.morning._indexMap.regIndex[key] === undefined) {
 
                 this.morning._indexMap.regIndex[key] = index;
+                this.morning._indexMap.maxIndex = index;
 
             }
 
@@ -38,6 +39,12 @@ let IndexManager = {
 
             }
 
+            if (this.morning._indexMap.maxIndex < vmMap[`${this.uiid},${namespace}`]) {
+
+                this.morning._indexMap.maxIndex = vmMap[`${this.uiid},${namespace}`];
+
+            }
+
             return vmMap[`${this.uiid},${namespace}`];
 
         },
@@ -46,65 +53,29 @@ let IndexManager = {
             return this._indexFetch(namespace, 1);
 
         },
-        _indexGet : function (namespace) {
+        _indexGet : function (namespace, addition) {
 
-            return this._indexFetch(namespace, 0);
+            let index = this._indexFetch(namespace, 0) + addition;
+
+            if (this.morning._indexMap.maxIndex < index) {
+
+                this.morning._indexMap.maxIndex = index;
+
+            }
+
+            return index;
 
         },
         _indexDim : function (namespace) {
 
             return this._indexFetch(namespace, -1);
 
+        },
+        _indexMax : function () {
+
+            return ++this.morning._indexMap.maxIndex;
+
         }
-        // _indexNew : function (namespace) {
-
-        //     let section = this.morning._indexSection[namespace];
-
-        //     if (section === undefined) {
-
-        //         let sectionId = this.morning._indexSectionId++;
-
-        //         this.morning._indexSection[namespace] = {
-        //             id : sectionId,
-        //             prepend : (sectionLen / 2) - 1,
-        //             append : (sectionLen / 2)
-        //         };
-
-        //         section = this.morning._indexSection[namespace];
-
-        //     } 
-
-        //     return ((section.id * sectionLen) + section.append++);
-
-        // },
-        // _indexSectionAppend : function (namespace) {
-
-        //     if (this.morning._indexSection[sectionId] === undefined) {
-
-        //         return 1;
-
-        //     }
-
-        //     let section = this.morning._indexSection[sectionId];
-        //     let index = section.append++;
-
-        //     return ((section * sectionLen) + index);
-
-        // },
-        // _indexSectionPrepend : function (sectionId) {
-
-        //     if (this.morning._indexSection[sectionId] === undefined) {
-
-        //         return 1;
-
-        //     }
-
-        //     let section = this.morning._indexSection[sectionId];
-        //     let index = section.prepend++;
-
-        //     return ((section * sectionLen) + index);
-
-        // }
     }
 };
 

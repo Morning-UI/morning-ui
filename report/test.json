@@ -2,104 +2,104 @@
   "tests": [
     {
       "type": "test",
-      "name": "e2e › components › article › basic style",
-      "raw": "# e2e › components › article › basic style",
-      "number": 1
-    },
-    {
-      "type": "test",
-      "name": "e2e › components › article › underline",
-      "raw": "# e2e › components › article › underline",
-      "number": 2
-    },
-    {
-      "type": "test",
       "name": "e2e › components › apparent › basic style",
       "raw": "# e2e › components › apparent › basic style",
-      "number": 3
+      "number": 1
     },
     {
       "type": "test",
       "name": "e2e › components › apparent › inline",
       "raw": "# e2e › components › apparent › inline",
-      "number": 4
+      "number": 2
     },
     {
       "type": "test",
       "name": "e2e › components › apparent › inline block",
       "raw": "# e2e › components › apparent › inline block",
-      "number": 5
-    },
-    {
-      "type": "test",
-      "name": "e2e › components › apparent › block",
-      "raw": "# e2e › components › apparent › block",
-      "number": 6
-    },
-    {
-      "type": "test",
-      "name": "e2e › components › action › basic style",
-      "raw": "# e2e › components › action › basic style",
-      "number": 7
-    },
-    {
-      "type": "test",
-      "name": "e2e › components › action › size",
-      "raw": "# e2e › components › action › size",
-      "number": 8
-    },
-    {
-      "type": "test",
-      "name": "e2e › components › action › color",
-      "raw": "# e2e › components › action › color",
-      "number": 9
-    },
-    {
-      "type": "test",
-      "name": "e2e › components › action › vertical",
-      "raw": "# e2e › components › action › vertical",
-      "number": 10
+      "number": 3
     },
     {
       "type": "test",
       "name": "e2e › components › badge › basic style",
       "raw": "# e2e › components › badge › basic style",
-      "number": 11
+      "number": 4
+    },
+    {
+      "type": "test",
+      "name": "e2e › components › apparent › block",
+      "raw": "# e2e › components › apparent › block",
+      "number": 5
+    },
+    {
+      "type": "test",
+      "name": "e2e › components › article › basic style",
+      "raw": "# e2e › components › article › basic style",
+      "number": 6
     },
     {
       "type": "test",
       "name": "e2e › components › badge › size",
       "raw": "# e2e › components › badge › size",
-      "number": 12
+      "number": 7
     },
     {
       "type": "test",
       "name": "e2e › components › badge › color",
       "raw": "# e2e › components › badge › color",
-      "number": 13
+      "number": 8
     },
     {
       "type": "test",
       "name": "e2e › components › badge › state",
       "raw": "# e2e › components › badge › state",
-      "number": 14
+      "number": 9
     },
     {
       "type": "test",
       "name": "e2e › components › badge › flat",
       "raw": "# e2e › components › badge › flat",
-      "number": 15
+      "number": 10
     },
     {
       "type": "test",
       "name": "e2e › components › badge › circle",
       "raw": "# e2e › components › badge › circle",
-      "number": 16
+      "number": 11
     },
     {
       "type": "test",
       "name": "e2e › components › badge › no content",
       "raw": "# e2e › components › badge › no content",
+      "number": 12
+    },
+    {
+      "type": "test",
+      "name": "e2e › components › article › underline",
+      "raw": "# e2e › components › article › underline",
+      "number": 13
+    },
+    {
+      "type": "test",
+      "name": "e2e › components › action › basic style",
+      "raw": "# e2e › components › action › basic style",
+      "number": 14
+    },
+    {
+      "type": "test",
+      "name": "e2e › components › action › size",
+      "raw": "# e2e › components › action › size",
+      "number": 15
+    },
+    {
+      "type": "test",
+      "name": "e2e › components › action › color",
+      "raw": "# e2e › components › action › color",
+      "number": 16
+    },
+    {
+      "type": "test",
+      "name": "e2e › components › action › vertical",
+      "raw": "# e2e › components › action › vertical",
       "number": 17
     },
     {
@@ -128,38 +128,38 @@
     },
     {
       "type": "test",
-      "name": "unit › components › u › base : component snapshot",
-      "raw": "# unit › components › u › base : component snapshot",
-      "number": 22
-    },
-    {
-      "type": "test",
-      "name": "unit › components › u › base : init component",
-      "raw": "# unit › components › u › base : init component",
-      "number": 23
-    },
-    {
-      "type": "test",
-      "name": "unit › components › u › base : component tag name is t-*",
-      "raw": "# unit › components › u › base : component tag name is t-*",
-      "number": 24
-    },
-    {
-      "type": "test",
       "name": "unit › components › ul › base : component snapshot",
       "raw": "# unit › components › ul › base : component snapshot",
-      "number": 25
+      "number": 22
     },
     {
       "type": "test",
       "name": "unit › components › ul › base : init component",
       "raw": "# unit › components › ul › base : init component",
-      "number": 26
+      "number": 23
     },
     {
       "type": "test",
       "name": "unit › components › ul › base : component tag name is t-*",
       "raw": "# unit › components › ul › base : component tag name is t-*",
+      "number": 24
+    },
+    {
+      "type": "test",
+      "name": "unit › components › u › base : component snapshot",
+      "raw": "# unit › components › u › base : component snapshot",
+      "number": 25
+    },
+    {
+      "type": "test",
+      "name": "unit › components › u › base : init component",
+      "raw": "# unit › components › u › base : init component",
+      "number": 26
+    },
+    {
+      "type": "test",
+      "name": "unit › components › u › base : component tag name is t-*",
+      "raw": "# unit › components › u › base : component tag name is t-*",
       "number": 27
     },
     {
@@ -200,44 +200,44 @@
     },
     {
       "type": "test",
-      "name": "unit › components › textcolor › base : component snapshot",
-      "raw": "# unit › components › textcolor › base : component snapshot",
-      "number": 34
-    },
-    {
-      "type": "test",
-      "name": "unit › components › textcolor › base : init component",
-      "raw": "# unit › components › textcolor › base : init component",
-      "number": 35
-    },
-    {
-      "type": "test",
-      "name": "unit › components › textcolor › base : component tag name is t-*",
-      "raw": "# unit › components › textcolor › base : component tag name is t-*",
-      "number": 36
-    },
-    {
-      "type": "test",
       "name": "unit › components › textinput › base : component snapshot",
       "raw": "# unit › components › textinput › base : component snapshot",
-      "number": 37
+      "number": 34
     },
     {
       "type": "test",
       "name": "unit › components › textinput › base : init component",
       "raw": "# unit › components › textinput › base : init component",
-      "number": 38
+      "number": 35
     },
     {
       "type": "test",
       "name": "unit › components › textinput › base : component tag name is t-*",
       "raw": "# unit › components › textinput › base : component tag name is t-*",
-      "number": 39
+      "number": 36
     },
     {
       "type": "test",
       "name": "unit › components › textinput › set json string value",
       "raw": "# unit › components › textinput › set json string value",
+      "number": 37
+    },
+    {
+      "type": "test",
+      "name": "unit › components › textcolor › base : component snapshot",
+      "raw": "# unit › components › textcolor › base : component snapshot",
+      "number": 38
+    },
+    {
+      "type": "test",
+      "name": "unit › components › textcolor › base : init component",
+      "raw": "# unit › components › textcolor › base : init component",
+      "number": 39
+    },
+    {
+      "type": "test",
+      "name": "unit › components › textcolor › base : component tag name is t-*",
+      "raw": "# unit › components › textcolor › base : component tag name is t-*",
       "number": 40
     },
     {
@@ -338,50 +338,50 @@
     },
     {
       "type": "test",
-      "name": "unit › components › quote › base : component snapshot",
-      "raw": "# unit › components › quote › base : component snapshot",
-      "number": 57
-    },
-    {
-      "type": "test",
-      "name": "unit › components › quote › base : init component",
-      "raw": "# unit › components › quote › base : init component",
-      "number": 58
-    },
-    {
-      "type": "test",
-      "name": "unit › components › quote › base : component tag name is t-*",
-      "raw": "# unit › components › quote › base : component tag name is t-*",
-      "number": 59
-    },
-    {
-      "type": "test",
       "name": "unit › components › select › base : component snapshot",
       "raw": "# unit › components › select › base : component snapshot",
-      "number": 60
+      "number": 57
     },
     {
       "type": "test",
       "name": "unit › components › select › base : init component",
       "raw": "# unit › components › select › base : init component",
-      "number": 61
+      "number": 58
     },
     {
       "type": "test",
       "name": "unit › components › select › base : component tag name is t-*",
       "raw": "# unit › components › select › base : component tag name is t-*",
-      "number": 62
+      "number": 59
     },
     {
       "type": "test",
       "name": "unit › components › select › config : default-value : with v-for slot : value exist",
       "raw": "# unit › components › select › config : default-value : with v-for slot : value exist",
-      "number": 63
+      "number": 60
     },
     {
       "type": "test",
       "name": "unit › components › select › config : default-value : with v-for slot : value not exist",
       "raw": "# unit › components › select › config : default-value : with v-for slot : value not exist",
+      "number": 61
+    },
+    {
+      "type": "test",
+      "name": "unit › components › quote › base : component snapshot",
+      "raw": "# unit › components › quote › base : component snapshot",
+      "number": 62
+    },
+    {
+      "type": "test",
+      "name": "unit › components › quote › base : init component",
+      "raw": "# unit › components › quote › base : init component",
+      "number": 63
+    },
+    {
+      "type": "test",
+      "name": "unit › components › quote › base : component tag name is t-*",
+      "raw": "# unit › components › quote › base : component tag name is t-*",
       "number": 64
     },
     {
@@ -422,20 +422,20 @@
     },
     {
       "type": "test",
-      "name": "unit › components › lowercase › base : component snapshot",
-      "raw": "# unit › components › lowercase › base : component snapshot",
+      "name": "unit › components › label › base : component snapshot",
+      "raw": "# unit › components › label › base : component snapshot",
       "number": 71
     },
     {
       "type": "test",
-      "name": "unit › components › lowercase › base : init component",
-      "raw": "# unit › components › lowercase › base : init component",
+      "name": "unit › components › label › base : init component",
+      "raw": "# unit › components › label › base : init component",
       "number": 72
     },
     {
       "type": "test",
-      "name": "unit › components › lowercase › base : component tag name is t-*",
-      "raw": "# unit › components › lowercase › base : component tag name is t-*",
+      "name": "unit › components › label › base : component tag name is t-*",
+      "raw": "# unit › components › label › base : component tag name is t-*",
       "number": 73
     },
     {
@@ -458,92 +458,92 @@
     },
     {
       "type": "test",
-      "name": "unit › components › label › base : component snapshot",
-      "raw": "# unit › components › label › base : component snapshot",
+      "name": "unit › components › lowercase › base : component snapshot",
+      "raw": "# unit › components › lowercase › base : component snapshot",
       "number": 77
     },
     {
       "type": "test",
-      "name": "unit › components › label › base : init component",
-      "raw": "# unit › components › label › base : init component",
+      "name": "unit › components › lowercase › base : init component",
+      "raw": "# unit › components › lowercase › base : init component",
       "number": 78
     },
     {
       "type": "test",
-      "name": "unit › components › label › base : component tag name is t-*",
-      "raw": "# unit › components › label › base : component tag name is t-*",
+      "name": "unit › components › lowercase › base : component tag name is t-*",
+      "raw": "# unit › components › lowercase › base : component tag name is t-*",
       "number": 79
-    },
-    {
-      "type": "test",
-      "name": "unit › components › jumbotron › base : component snapshot",
-      "raw": "# unit › components › jumbotron › base : component snapshot",
-      "number": 80
-    },
-    {
-      "type": "test",
-      "name": "unit › components › jumbotron › base : init component",
-      "raw": "# unit › components › jumbotron › base : init component",
-      "number": 81
-    },
-    {
-      "type": "test",
-      "name": "unit › components › jumbotron › base : component tag name is t-*",
-      "raw": "# unit › components › jumbotron › base : component tag name is t-*",
-      "number": 82
     },
     {
       "type": "test",
       "name": "unit › components › itemlist › base : component snapshot",
       "raw": "# unit › components › itemlist › base : component snapshot",
-      "number": 83
+      "number": 80
     },
     {
       "type": "test",
       "name": "unit › components › itemlist › base : init component",
       "raw": "# unit › components › itemlist › base : init component",
-      "number": 84
+      "number": 81
     },
     {
       "type": "test",
       "name": "unit › components › itemlist › base : component tag name is t-*",
       "raw": "# unit › components › itemlist › base : component tag name is t-*",
+      "number": 82
+    },
+    {
+      "type": "test",
+      "name": "unit › components › jumbotron › base : component snapshot",
+      "raw": "# unit › components › jumbotron › base : component snapshot",
+      "number": 83
+    },
+    {
+      "type": "test",
+      "name": "unit › components › jumbotron › base : init component",
+      "raw": "# unit › components › jumbotron › base : init component",
+      "number": 84
+    },
+    {
+      "type": "test",
+      "name": "unit › components › jumbotron › base : component tag name is t-*",
+      "raw": "# unit › components › jumbotron › base : component tag name is t-*",
       "number": 85
-    },
-    {
-      "type": "test",
-      "name": "unit › components › img › base : component snapshot",
-      "raw": "# unit › components › img › base : component snapshot",
-      "number": 86
-    },
-    {
-      "type": "test",
-      "name": "unit › components › img › base : init component",
-      "raw": "# unit › components › img › base : init component",
-      "number": 87
-    },
-    {
-      "type": "test",
-      "name": "unit › components › img › base : component tag name is t-*",
-      "raw": "# unit › components › img › base : component tag name is t-*",
-      "number": 88
     },
     {
       "type": "test",
       "name": "unit › components › il › base : component snapshot",
       "raw": "# unit › components › il › base : component snapshot",
-      "number": 89
+      "number": 86
     },
     {
       "type": "test",
       "name": "unit › components › il › base : init component",
       "raw": "# unit › components › il › base : init component",
-      "number": 90
+      "number": 87
     },
     {
       "type": "test",
       "name": "unit › components › il › base : component tag name is t-*",
       "raw": "# unit › components › il › base : component tag name is t-*",
+      "number": 88
+    },
+    {
+      "type": "test",
+      "name": "unit › components › img › base : component snapshot",
+      "raw": "# unit › components › img › base : component snapshot",
+      "number": 89
+    },
+    {
+      "type": "test",
+      "name": "unit › components › img › base : init component",
+      "raw": "# unit › components › img › base : init component",
+      "number": 90
+    },
+    {
+      "type": "test",
+      "name": "unit › components › img › base : component tag name is t-*",
+      "raw": "# unit › components › img › base : component tag name is t-*",
       "number": 91
     },
     {
@@ -620,110 +620,110 @@
     },
     {
       "type": "test",
-      "name": "unit › components › dl › base : component snapshot",
-      "raw": "# unit › components › dl › base : component snapshot",
-      "number": 104
-    },
-    {
-      "type": "test",
-      "name": "unit › components › dl › base : init component",
-      "raw": "# unit › components › dl › base : init component",
-      "number": 105
-    },
-    {
-      "type": "test",
-      "name": "unit › components › dl › base : component tag name is t-*",
-      "raw": "# unit › components › dl › base : component tag name is t-*",
-      "number": 106
-    },
-    {
-      "type": "test",
       "name": "unit › components › em › base : component snapshot",
       "raw": "# unit › components › em › base : component snapshot",
-      "number": 107
+      "number": 104
     },
     {
       "type": "test",
       "name": "unit › components › em › base : init component",
       "raw": "# unit › components › em › base : init component",
-      "number": 108
+      "number": 105
     },
     {
       "type": "test",
       "name": "unit › components › em › base : component tag name is t-*",
       "raw": "# unit › components › em › base : component tag name is t-*",
-      "number": 109
-    },
-    {
-      "type": "test",
-      "name": "unit › components › divider › base : component snapshot",
-      "raw": "# unit › components › divider › base : component snapshot",
-      "number": 110
-    },
-    {
-      "type": "test",
-      "name": "unit › components › divider › base : init component",
-      "raw": "# unit › components › divider › base : init component",
-      "number": 111
-    },
-    {
-      "type": "test",
-      "name": "unit › components › divider › base : component tag name is t-*",
-      "raw": "# unit › components › divider › base : component tag name is t-*",
-      "number": 112
+      "number": 106
     },
     {
       "type": "test",
       "name": "unit › components › del › base : component snapshot",
       "raw": "# unit › components › del › base : component snapshot",
-      "number": 113
+      "number": 107
     },
     {
       "type": "test",
       "name": "unit › components › del › base : init component",
       "raw": "# unit › components › del › base : init component",
-      "number": 114
+      "number": 108
     },
     {
       "type": "test",
       "name": "unit › components › del › base : component tag name is t-*",
       "raw": "# unit › components › del › base : component tag name is t-*",
+      "number": 109
+    },
+    {
+      "type": "test",
+      "name": "unit › components › dl › base : component snapshot",
+      "raw": "# unit › components › dl › base : component snapshot",
+      "number": 110
+    },
+    {
+      "type": "test",
+      "name": "unit › components › dl › base : init component",
+      "raw": "# unit › components › dl › base : init component",
+      "number": 111
+    },
+    {
+      "type": "test",
+      "name": "unit › components › dl › base : component tag name is t-*",
+      "raw": "# unit › components › dl › base : component tag name is t-*",
+      "number": 112
+    },
+    {
+      "type": "test",
+      "name": "unit › components › divider › base : component snapshot",
+      "raw": "# unit › components › divider › base : component snapshot",
+      "number": 113
+    },
+    {
+      "type": "test",
+      "name": "unit › components › divider › base : init component",
+      "raw": "# unit › components › divider › base : init component",
+      "number": 114
+    },
+    {
+      "type": "test",
+      "name": "unit › components › divider › base : component tag name is t-*",
+      "raw": "# unit › components › divider › base : component tag name is t-*",
       "number": 115
-    },
-    {
-      "type": "test",
-      "name": "unit › components › center › base : component snapshot",
-      "raw": "# unit › components › center › base : component snapshot",
-      "number": 116
-    },
-    {
-      "type": "test",
-      "name": "unit › components › center › base : init component",
-      "raw": "# unit › components › center › base : init component",
-      "number": 117
-    },
-    {
-      "type": "test",
-      "name": "unit › components › center › base : component tag name is t-*",
-      "raw": "# unit › components › center › base : component tag name is t-*",
-      "number": 118
     },
     {
       "type": "test",
       "name": "unit › components › card › base : component snapshot",
       "raw": "# unit › components › card › base : component snapshot",
-      "number": 119
+      "number": 116
     },
     {
       "type": "test",
       "name": "unit › components › card › base : init component",
       "raw": "# unit › components › card › base : init component",
-      "number": 120
+      "number": 117
     },
     {
       "type": "test",
       "name": "unit › components › card › base : component tag name is t-*",
       "raw": "# unit › components › card › base : component tag name is t-*",
+      "number": 118
+    },
+    {
+      "type": "test",
+      "name": "unit › components › center › base : component snapshot",
+      "raw": "# unit › components › center › base : component snapshot",
+      "number": 119
+    },
+    {
+      "type": "test",
+      "name": "unit › components › center › base : init component",
+      "raw": "# unit › components › center › base : init component",
+      "number": 120
+    },
+    {
+      "type": "test",
+      "name": "unit › components › center › base : component tag name is t-*",
+      "raw": "# unit › components › center › base : component tag name is t-*",
       "number": 121
     },
     {
@@ -908,44 +908,44 @@
     },
     {
       "type": "test",
+      "name": "e2e › components › uppercase › basic style",
+      "raw": "# e2e › components › uppercase › basic style",
+      "number": 152
+    },
+    {
+      "type": "test",
       "name": "e2e › components › ul › basic style",
       "raw": "# e2e › components › ul › basic style",
-      "number": 152
+      "number": 153
     },
     {
       "type": "test",
       "name": "e2e › components › ul › state",
       "raw": "# e2e › components › ul › state",
-      "number": 153
+      "number": 154
     },
     {
       "type": "test",
       "name": "e2e › components › ul › list style type",
       "raw": "# e2e › components › ul › list style type",
-      "number": 154
-    },
-    {
-      "type": "test",
-      "name": "e2e › components › uppercase › basic style",
-      "raw": "# e2e › components › uppercase › basic style",
       "number": 155
-    },
-    {
-      "type": "test",
-      "name": "e2e › components › u › basic style",
-      "raw": "# e2e › components › u › basic style",
-      "number": 156
     },
     {
       "type": "test",
       "name": "e2e › components › textright › basic style",
       "raw": "# e2e › components › textright › basic style",
-      "number": 157
+      "number": 156
     },
     {
       "type": "test",
       "name": "e2e › components › textleft › basic style",
       "raw": "# e2e › components › textleft › basic style",
+      "number": 157
+    },
+    {
+      "type": "test",
+      "name": "e2e › components › u › basic style",
+      "raw": "# e2e › components › u › basic style",
       "number": 158
     },
     {
@@ -962,14 +962,14 @@
     },
     {
       "type": "test",
-      "name": "e2e › components › textcenter › basic style",
-      "raw": "# e2e › components › textcenter › basic style",
+      "name": "e2e › components › strong › basic style",
+      "raw": "# e2e › components › strong › basic style",
       "number": 161
     },
     {
       "type": "test",
-      "name": "e2e › components › strong › basic style",
-      "raw": "# e2e › components › strong › basic style",
+      "name": "e2e › components › textcenter › basic style",
+      "raw": "# e2e › components › textcenter › basic style",
       "number": 162
     },
     {
@@ -986,86 +986,86 @@
     },
     {
       "type": "test",
-      "name": "e2e › components › quote › basic style",
-      "raw": "# e2e › components › quote › basic style",
-      "number": 165
-    },
-    {
-      "type": "test",
-      "name": "e2e › components › quote › color",
-      "raw": "# e2e › components › quote › color",
-      "number": 166
-    },
-    {
-      "type": "test",
-      "name": "e2e › components › ol › basic style",
-      "raw": "# e2e › components › ol › basic style",
-      "number": 167
-    },
-    {
-      "type": "test",
-      "name": "e2e › components › ol › state",
-      "raw": "# e2e › components › ol › state",
-      "number": 168
-    },
-    {
-      "type": "test",
-      "name": "e2e › components › ol › list style type",
-      "raw": "# e2e › components › ol › list style type",
-      "number": 169
-    },
-    {
-      "type": "test",
       "name": "e2e › components › statistic › basic style",
       "raw": "# e2e › components › statistic › basic style",
-      "number": 170
+      "number": 165
     },
     {
       "type": "test",
       "name": "e2e › components › statistic › size",
       "raw": "# e2e › components › statistic › size",
-      "number": 171
+      "number": 166
     },
     {
       "type": "test",
       "name": "e2e › components › statistic › color",
       "raw": "# e2e › components › statistic › color",
-      "number": 172
+      "number": 167
     },
     {
       "type": "test",
       "name": "e2e › components › statistic › state",
       "raw": "# e2e › components › statistic › state",
-      "number": 173
+      "number": 168
     },
     {
       "type": "test",
       "name": "e2e › components › statistic › image",
       "raw": "# e2e › components › statistic › image",
-      "number": 174
+      "number": 169
     },
     {
       "type": "test",
       "name": "e2e › components › statistic › iconfont",
       "raw": "# e2e › components › statistic › iconfont",
-      "number": 175
+      "number": 170
     },
     {
       "type": "test",
       "name": "e2e › components › statistic › horizontal left",
       "raw": "# e2e › components › statistic › horizontal left",
-      "number": 176
+      "number": 171
     },
     {
       "type": "test",
       "name": "e2e › components › statistic › horizontal right",
       "raw": "# e2e › components › statistic › horizontal right",
-      "number": 177
+      "number": 172
     },
     {
       "type": "test",
       "name": "e2e › components › statistic › top name",
       "raw": "# e2e › components › statistic › top name",
+      "number": 173
+    },
+    {
+      "type": "test",
+      "name": "e2e › components › quote › basic style",
+      "raw": "# e2e › components › quote › basic style",
+      "number": 174
+    },
+    {
+      "type": "test",
+      "name": "e2e › components › quote › color",
+      "raw": "# e2e › components › quote › color",
+      "number": 175
+    },
+    {
+      "type": "test",
+      "name": "e2e › components › ol › basic style",
+      "raw": "# e2e › components › ol › basic style",
+      "number": 176
+    },
+    {
+      "type": "test",
+      "name": "e2e › components › ol › state",
+      "raw": "# e2e › components › ol › state",
+      "number": 177
+    },
+    {
+      "type": "test",
+      "name": "e2e › components › ol › list style type",
+      "raw": "# e2e › components › ol › list style type",
       "number": 178
     },
     {
@@ -1438,138 +1438,138 @@
   "asserts": [
     {
       "type": "assert",
-      "raw": "ok 1 - e2e › components › article › basic style",
+      "raw": "ok 1 - e2e › components › apparent › basic style",
       "ok": true,
       "number": 1,
-      "name": "e2e › components › article › basic style",
+      "name": "e2e › components › apparent › basic style",
       "test": 1
     },
     {
       "type": "assert",
-      "raw": "ok 2 - e2e › components › article › underline",
+      "raw": "ok 2 - e2e › components › apparent › inline",
       "ok": true,
       "number": 2,
-      "name": "e2e › components › article › underline",
+      "name": "e2e › components › apparent › inline",
       "test": 2
     },
     {
       "type": "assert",
-      "raw": "ok 3 - e2e › components › apparent › basic style",
+      "raw": "ok 3 - e2e › components › apparent › inline block",
       "ok": true,
       "number": 3,
-      "name": "e2e › components › apparent › basic style",
+      "name": "e2e › components › apparent › inline block",
       "test": 3
     },
     {
       "type": "assert",
-      "raw": "ok 4 - e2e › components › apparent › inline",
+      "raw": "ok 4 - e2e › components › badge › basic style",
       "ok": true,
       "number": 4,
-      "name": "e2e › components › apparent › inline",
+      "name": "e2e › components › badge › basic style",
       "test": 4
     },
     {
       "type": "assert",
-      "raw": "ok 5 - e2e › components › apparent › inline block",
+      "raw": "ok 5 - e2e › components › apparent › block",
       "ok": true,
       "number": 5,
-      "name": "e2e › components › apparent › inline block",
+      "name": "e2e › components › apparent › block",
       "test": 5
     },
     {
       "type": "assert",
-      "raw": "ok 6 - e2e › components › apparent › block",
+      "raw": "ok 6 - e2e › components › article › basic style",
       "ok": true,
       "number": 6,
-      "name": "e2e › components › apparent › block",
+      "name": "e2e › components › article › basic style",
       "test": 6
     },
     {
       "type": "assert",
-      "raw": "ok 7 - e2e › components › action › basic style",
+      "raw": "ok 7 - e2e › components › badge › size",
       "ok": true,
       "number": 7,
-      "name": "e2e › components › action › basic style",
+      "name": "e2e › components › badge › size",
       "test": 7
     },
     {
       "type": "assert",
-      "raw": "ok 8 - e2e › components › action › size",
+      "raw": "ok 8 - e2e › components › badge › color",
       "ok": true,
       "number": 8,
-      "name": "e2e › components › action › size",
+      "name": "e2e › components › badge › color",
       "test": 8
     },
     {
       "type": "assert",
-      "raw": "ok 9 - e2e › components › action › color",
+      "raw": "ok 9 - e2e › components › badge › state",
       "ok": true,
       "number": 9,
-      "name": "e2e › components › action › color",
+      "name": "e2e › components › badge › state",
       "test": 9
     },
     {
       "type": "assert",
-      "raw": "ok 10 - e2e › components › action › vertical",
+      "raw": "ok 10 - e2e › components › badge › flat",
       "ok": true,
       "number": 10,
-      "name": "e2e › components › action › vertical",
+      "name": "e2e › components › badge › flat",
       "test": 10
     },
     {
       "type": "assert",
-      "raw": "ok 11 - e2e › components › badge › basic style",
+      "raw": "ok 11 - e2e › components › badge › circle",
       "ok": true,
       "number": 11,
-      "name": "e2e › components › badge › basic style",
+      "name": "e2e › components › badge › circle",
       "test": 11
     },
     {
       "type": "assert",
-      "raw": "ok 12 - e2e › components › badge › size",
+      "raw": "ok 12 - e2e › components › badge › no content",
       "ok": true,
       "number": 12,
-      "name": "e2e › components › badge › size",
+      "name": "e2e › components › badge › no content",
       "test": 12
     },
     {
       "type": "assert",
-      "raw": "ok 13 - e2e › components › badge › color",
+      "raw": "ok 13 - e2e › components › article › underline",
       "ok": true,
       "number": 13,
-      "name": "e2e › components › badge › color",
+      "name": "e2e › components › article › underline",
       "test": 13
     },
     {
       "type": "assert",
-      "raw": "ok 14 - e2e › components › badge › state",
+      "raw": "ok 14 - e2e › components › action › basic style",
       "ok": true,
       "number": 14,
-      "name": "e2e › components › badge › state",
+      "name": "e2e › components › action › basic style",
       "test": 14
     },
     {
       "type": "assert",
-      "raw": "ok 15 - e2e › components › badge › flat",
+      "raw": "ok 15 - e2e › components › action › size",
       "ok": true,
       "number": 15,
-      "name": "e2e › components › badge › flat",
+      "name": "e2e › components › action › size",
       "test": 15
     },
     {
       "type": "assert",
-      "raw": "ok 16 - e2e › components › badge › circle",
+      "raw": "ok 16 - e2e › components › action › color",
       "ok": true,
       "number": 16,
-      "name": "e2e › components › badge › circle",
+      "name": "e2e › components › action › color",
       "test": 16
     },
     {
       "type": "assert",
-      "raw": "ok 17 - e2e › components › badge › no content",
+      "raw": "ok 17 - e2e › components › action › vertical",
       "ok": true,
       "number": 17,
-      "name": "e2e › components › badge › no content",
+      "name": "e2e › components › action › vertical",
       "test": 17
     },
     {
@@ -1606,50 +1606,50 @@
     },
     {
       "type": "assert",
-      "raw": "ok 22 - unit › components › u › base : component snapshot",
+      "raw": "ok 22 - unit › components › ul › base : component snapshot",
       "ok": true,
       "number": 22,
-      "name": "unit › components › u › base : component snapshot",
+      "name": "unit › components › ul › base : component snapshot",
       "test": 22
     },
     {
       "type": "assert",
-      "raw": "ok 23 - unit › components › u › base : init component",
+      "raw": "ok 23 - unit › components › ul › base : init component",
       "ok": true,
       "number": 23,
-      "name": "unit › components › u › base : init component",
+      "name": "unit › components › ul › base : init component",
       "test": 23
     },
     {
       "type": "assert",
-      "raw": "ok 24 - unit › components › u › base : component tag name is t-*",
+      "raw": "ok 24 - unit › components › ul › base : component tag name is t-*",
       "ok": true,
       "number": 24,
-      "name": "unit › components › u › base : component tag name is t-*",
+      "name": "unit › components › ul › base : component tag name is t-*",
       "test": 24
     },
     {
       "type": "assert",
-      "raw": "ok 25 - unit › components › ul › base : component snapshot",
+      "raw": "ok 25 - unit › components › u › base : component snapshot",
       "ok": true,
       "number": 25,
-      "name": "unit › components › ul › base : component snapshot",
+      "name": "unit › components › u › base : component snapshot",
       "test": 25
     },
     {
       "type": "assert",
-      "raw": "ok 26 - unit › components › ul › base : init component",
+      "raw": "ok 26 - unit › components › u › base : init component",
       "ok": true,
       "number": 26,
-      "name": "unit › components › ul › base : init component",
+      "name": "unit › components › u › base : init component",
       "test": 26
     },
     {
       "type": "assert",
-      "raw": "ok 27 - unit › components › ul › base : component tag name is t-*",
+      "raw": "ok 27 - unit › components › u › base : component tag name is t-*",
       "ok": true,
       "number": 27,
-      "name": "unit › components › ul › base : component tag name is t-*",
+      "name": "unit › components › u › base : component tag name is t-*",
       "test": 27
     },
     {
@@ -1702,58 +1702,58 @@
     },
     {
       "type": "assert",
-      "raw": "ok 34 - unit › components › textcolor › base : component snapshot",
+      "raw": "ok 34 - unit › components › textinput › base : component snapshot",
       "ok": true,
       "number": 34,
-      "name": "unit › components › textcolor › base : component snapshot",
+      "name": "unit › components › textinput › base : component snapshot",
       "test": 34
     },
     {
       "type": "assert",
-      "raw": "ok 35 - unit › components › textcolor › base : init component",
+      "raw": "ok 35 - unit › components › textinput › base : init component",
       "ok": true,
       "number": 35,
-      "name": "unit › components › textcolor › base : init component",
+      "name": "unit › components › textinput › base : init component",
       "test": 35
     },
     {
       "type": "assert",
-      "raw": "ok 36 - unit › components › textcolor › base : component tag name is t-*",
+      "raw": "ok 36 - unit › components › textinput › base : component tag name is t-*",
       "ok": true,
       "number": 36,
-      "name": "unit › components › textcolor › base : component tag name is t-*",
+      "name": "unit › components › textinput › base : component tag name is t-*",
       "test": 36
     },
     {
       "type": "assert",
-      "raw": "ok 37 - unit › components › textinput › base : component snapshot",
+      "raw": "ok 37 - unit › components › textinput › set json string value",
       "ok": true,
       "number": 37,
-      "name": "unit › components › textinput › base : component snapshot",
+      "name": "unit › components › textinput › set json string value",
       "test": 37
     },
     {
       "type": "assert",
-      "raw": "ok 38 - unit › components › textinput › base : init component",
+      "raw": "ok 38 - unit › components › textcolor › base : component snapshot",
       "ok": true,
       "number": 38,
-      "name": "unit › components › textinput › base : init component",
+      "name": "unit › components › textcolor › base : component snapshot",
       "test": 38
     },
     {
       "type": "assert",
-      "raw": "ok 39 - unit › components › textinput › base : component tag name is t-*",
+      "raw": "ok 39 - unit › components › textcolor › base : init component",
       "ok": true,
       "number": 39,
-      "name": "unit › components › textinput › base : component tag name is t-*",
+      "name": "unit › components › textcolor › base : init component",
       "test": 39
     },
     {
       "type": "assert",
-      "raw": "ok 40 - unit › components › textinput › set json string value",
+      "raw": "ok 40 - unit › components › textcolor › base : component tag name is t-*",
       "ok": true,
       "number": 40,
-      "name": "unit › components › textinput › set json string value",
+      "name": "unit › components › textcolor › base : component tag name is t-*",
       "test": 40
     },
     {
@@ -1886,66 +1886,66 @@
     },
     {
       "type": "assert",
-      "raw": "ok 57 - unit › components › quote › base : component snapshot",
+      "raw": "ok 57 - unit › components › select › base : component snapshot",
       "ok": true,
       "number": 57,
-      "name": "unit › components › quote › base : component snapshot",
+      "name": "unit › components › select › base : component snapshot",
       "test": 57
     },
     {
       "type": "assert",
-      "raw": "ok 58 - unit › components › quote › base : init component",
+      "raw": "ok 58 - unit › components › select › base : init component",
       "ok": true,
       "number": 58,
-      "name": "unit › components › quote › base : init component",
+      "name": "unit › components › select › base : init component",
       "test": 58
     },
     {
       "type": "assert",
-      "raw": "ok 59 - unit › components › quote › base : component tag name is t-*",
+      "raw": "ok 59 - unit › components › select › base : component tag name is t-*",
       "ok": true,
       "number": 59,
-      "name": "unit › components › quote › base : component tag name is t-*",
+      "name": "unit › components › select › base : component tag name is t-*",
       "test": 59
     },
     {
       "type": "assert",
-      "raw": "ok 60 - unit › components › select › base : component snapshot",
+      "raw": "ok 60 - unit › components › select › config : default-value : with v-for slot : value exist",
       "ok": true,
       "number": 60,
-      "name": "unit › components › select › base : component snapshot",
+      "name": "unit › components › select › config : default-value : with v-for slot : value exist",
       "test": 60
     },
     {
       "type": "assert",
-      "raw": "ok 61 - unit › components › select › base : init component",
+      "raw": "ok 61 - unit › components › select › config : default-value : with v-for slot : value not exist",
       "ok": true,
       "number": 61,
-      "name": "unit › components › select › base : init component",
+      "name": "unit › components › select › config : default-value : with v-for slot : value not exist",
       "test": 61
     },
     {
       "type": "assert",
-      "raw": "ok 62 - unit › components › select › base : component tag name is t-*",
+      "raw": "ok 62 - unit › components › quote › base : component snapshot",
       "ok": true,
       "number": 62,
-      "name": "unit › components › select › base : component tag name is t-*",
+      "name": "unit › components › quote › base : component snapshot",
       "test": 62
     },
     {
       "type": "assert",
-      "raw": "ok 63 - unit › components › select › config : default-value : with v-for slot : value exist",
+      "raw": "ok 63 - unit › components › quote › base : init component",
       "ok": true,
       "number": 63,
-      "name": "unit › components › select › config : default-value : with v-for slot : value exist",
+      "name": "unit › components › quote › base : init component",
       "test": 63
     },
     {
       "type": "assert",
-      "raw": "ok 64 - unit › components › select › config : default-value : with v-for slot : value not exist",
+      "raw": "ok 64 - unit › components › quote › base : component tag name is t-*",
       "ok": true,
       "number": 64,
-      "name": "unit › components › select › config : default-value : with v-for slot : value not exist",
+      "name": "unit › components › quote › base : component tag name is t-*",
       "test": 64
     },
     {
@@ -1998,26 +1998,26 @@
     },
     {
       "type": "assert",
-      "raw": "ok 71 - unit › components › lowercase › base : component snapshot",
+      "raw": "ok 71 - unit › components › label › base : component snapshot",
       "ok": true,
       "number": 71,
-      "name": "unit › components › lowercase › base : component snapshot",
+      "name": "unit › components › label › base : component snapshot",
       "test": 71
     },
     {
       "type": "assert",
-      "raw": "ok 72 - unit › components › lowercase › base : init component",
+      "raw": "ok 72 - unit › components › label › base : init component",
       "ok": true,
       "number": 72,
-      "name": "unit › components › lowercase › base : init component",
+      "name": "unit › components › label › base : init component",
       "test": 72
     },
     {
       "type": "assert",
-      "raw": "ok 73 - unit › components › lowercase › base : component tag name is t-*",
+      "raw": "ok 73 - unit › components › label › base : component tag name is t-*",
       "ok": true,
       "number": 73,
-      "name": "unit › components › lowercase › base : component tag name is t-*",
+      "name": "unit › components › label › base : component tag name is t-*",
       "test": 73
     },
     {
@@ -2046,122 +2046,122 @@
     },
     {
       "type": "assert",
-      "raw": "ok 77 - unit › components › label › base : component snapshot",
+      "raw": "ok 77 - unit › components › lowercase › base : component snapshot",
       "ok": true,
       "number": 77,
-      "name": "unit › components › label › base : component snapshot",
+      "name": "unit › components › lowercase › base : component snapshot",
       "test": 77
     },
     {
       "type": "assert",
-      "raw": "ok 78 - unit › components › label › base : init component",
+      "raw": "ok 78 - unit › components › lowercase › base : init component",
       "ok": true,
       "number": 78,
-      "name": "unit › components › label › base : init component",
+      "name": "unit › components › lowercase › base : init component",
       "test": 78
     },
     {
       "type": "assert",
-      "raw": "ok 79 - unit › components › label › base : component tag name is t-*",
+      "raw": "ok 79 - unit › components › lowercase › base : component tag name is t-*",
       "ok": true,
       "number": 79,
-      "name": "unit › components › label › base : component tag name is t-*",
+      "name": "unit › components › lowercase › base : component tag name is t-*",
       "test": 79
     },
     {
       "type": "assert",
-      "raw": "ok 80 - unit › components › jumbotron › base : component snapshot",
+      "raw": "ok 80 - unit › components › itemlist › base : component snapshot",
       "ok": true,
       "number": 80,
-      "name": "unit › components › jumbotron › base : component snapshot",
+      "name": "unit › components › itemlist › base : component snapshot",
       "test": 80
     },
     {
       "type": "assert",
-      "raw": "ok 81 - unit › components › jumbotron › base : init component",
+      "raw": "ok 81 - unit › components › itemlist › base : init component",
       "ok": true,
       "number": 81,
-      "name": "unit › components › jumbotron › base : init component",
+      "name": "unit › components › itemlist › base : init component",
       "test": 81
     },
     {
       "type": "assert",
-      "raw": "ok 82 - unit › components › jumbotron › base : component tag name is t-*",
+      "raw": "ok 82 - unit › components › itemlist › base : component tag name is t-*",
       "ok": true,
       "number": 82,
-      "name": "unit › components › jumbotron › base : component tag name is t-*",
+      "name": "unit › components › itemlist › base : component tag name is t-*",
       "test": 82
     },
     {
       "type": "assert",
-      "raw": "ok 83 - unit › components › itemlist › base : component snapshot",
+      "raw": "ok 83 - unit › components › jumbotron › base : component snapshot",
       "ok": true,
       "number": 83,
-      "name": "unit › components › itemlist › base : component snapshot",
+      "name": "unit › components › jumbotron › base : component snapshot",
       "test": 83
     },
     {
       "type": "assert",
-      "raw": "ok 84 - unit › components › itemlist › base : init component",
+      "raw": "ok 84 - unit › components › jumbotron › base : init component",
       "ok": true,
       "number": 84,
-      "name": "unit › components › itemlist › base : init component",
+      "name": "unit › components › jumbotron › base : init component",
       "test": 84
     },
     {
       "type": "assert",
-      "raw": "ok 85 - unit › components › itemlist › base : component tag name is t-*",
+      "raw": "ok 85 - unit › components › jumbotron › base : component tag name is t-*",
       "ok": true,
       "number": 85,
-      "name": "unit › components › itemlist › base : component tag name is t-*",
+      "name": "unit › components › jumbotron › base : component tag name is t-*",
       "test": 85
     },
     {
       "type": "assert",
-      "raw": "ok 86 - unit › components › img › base : component snapshot",
+      "raw": "ok 86 - unit › components › il › base : component snapshot",
       "ok": true,
       "number": 86,
-      "name": "unit › components › img › base : component snapshot",
+      "name": "unit › components › il › base : component snapshot",
       "test": 86
     },
     {
       "type": "assert",
-      "raw": "ok 87 - unit › components › img › base : init component",
+      "raw": "ok 87 - unit › components › il › base : init component",
       "ok": true,
       "number": 87,
-      "name": "unit › components › img › base : init component",
+      "name": "unit › components › il › base : init component",
       "test": 87
     },
     {
       "type": "assert",
-      "raw": "ok 88 - unit › components › img › base : component tag name is t-*",
+      "raw": "ok 88 - unit › components › il › base : component tag name is t-*",
       "ok": true,
       "number": 88,
-      "name": "unit › components › img › base : component tag name is t-*",
+      "name": "unit › components › il › base : component tag name is t-*",
       "test": 88
     },
     {
       "type": "assert",
-      "raw": "ok 89 - unit › components › il › base : component snapshot",
+      "raw": "ok 89 - unit › components › img › base : component snapshot",
       "ok": true,
       "number": 89,
-      "name": "unit › components › il › base : component snapshot",
+      "name": "unit › components › img › base : component snapshot",
       "test": 89
     },
     {
       "type": "assert",
-      "raw": "ok 90 - unit › components › il › base : init component",
+      "raw": "ok 90 - unit › components › img › base : init component",
       "ok": true,
       "number": 90,
-      "name": "unit › components › il › base : init component",
+      "name": "unit › components › img › base : init component",
       "test": 90
     },
     {
       "type": "assert",
-      "raw": "ok 91 - unit › components › il › base : component tag name is t-*",
+      "raw": "ok 91 - unit › components › img › base : component tag name is t-*",
       "ok": true,
       "number": 91,
-      "name": "unit › components › il › base : component tag name is t-*",
+      "name": "unit › components › img › base : component tag name is t-*",
       "test": 91
     },
     {
@@ -2262,146 +2262,146 @@
     },
     {
       "type": "assert",
-      "raw": "ok 104 - unit › components › dl › base : component snapshot",
+      "raw": "ok 104 - unit › components › em › base : component snapshot",
       "ok": true,
       "number": 104,
-      "name": "unit › components › dl › base : component snapshot",
+      "name": "unit › components › em › base : component snapshot",
       "test": 104
     },
     {
       "type": "assert",
-      "raw": "ok 105 - unit › components › dl › base : init component",
+      "raw": "ok 105 - unit › components › em › base : init component",
       "ok": true,
       "number": 105,
-      "name": "unit › components › dl › base : init component",
+      "name": "unit › components › em › base : init component",
       "test": 105
     },
     {
       "type": "assert",
-      "raw": "ok 106 - unit › components › dl › base : component tag name is t-*",
+      "raw": "ok 106 - unit › components › em › base : component tag name is t-*",
       "ok": true,
       "number": 106,
-      "name": "unit › components › dl › base : component tag name is t-*",
+      "name": "unit › components › em › base : component tag name is t-*",
       "test": 106
     },
     {
       "type": "assert",
-      "raw": "ok 107 - unit › components › em › base : component snapshot",
+      "raw": "ok 107 - unit › components › del › base : component snapshot",
       "ok": true,
       "number": 107,
-      "name": "unit › components › em › base : component snapshot",
+      "name": "unit › components › del › base : component snapshot",
       "test": 107
     },
     {
       "type": "assert",
-      "raw": "ok 108 - unit › components › em › base : init component",
+      "raw": "ok 108 - unit › components › del › base : init component",
       "ok": true,
       "number": 108,
-      "name": "unit › components › em › base : init component",
+      "name": "unit › components › del › base : init component",
       "test": 108
     },
     {
       "type": "assert",
-      "raw": "ok 109 - unit › components › em › base : component tag name is t-*",
+      "raw": "ok 109 - unit › components › del › base : component tag name is t-*",
       "ok": true,
       "number": 109,
-      "name": "unit › components › em › base : component tag name is t-*",
+      "name": "unit › components › del › base : component tag name is t-*",
       "test": 109
     },
     {
       "type": "assert",
-      "raw": "ok 110 - unit › components › divider › base : component snapshot",
+      "raw": "ok 110 - unit › components › dl › base : component snapshot",
       "ok": true,
       "number": 110,
-      "name": "unit › components › divider › base : component snapshot",
+      "name": "unit › components › dl › base : component snapshot",
       "test": 110
     },
     {
       "type": "assert",
-      "raw": "ok 111 - unit › components › divider › base : init component",
+      "raw": "ok 111 - unit › components › dl › base : init component",
       "ok": true,
       "number": 111,
-      "name": "unit › components › divider › base : init component",
+      "name": "unit › components › dl › base : init component",
       "test": 111
     },
     {
       "type": "assert",
-      "raw": "ok 112 - unit › components › divider › base : component tag name is t-*",
+      "raw": "ok 112 - unit › components › dl › base : component tag name is t-*",
       "ok": true,
       "number": 112,
-      "name": "unit › components › divider › base : component tag name is t-*",
+      "name": "unit › components › dl › base : component tag name is t-*",
       "test": 112
     },
     {
       "type": "assert",
-      "raw": "ok 113 - unit › components › del › base : component snapshot",
+      "raw": "ok 113 - unit › components › divider › base : component snapshot",
       "ok": true,
       "number": 113,
-      "name": "unit › components › del › base : component snapshot",
+      "name": "unit › components › divider › base : component snapshot",
       "test": 113
     },
     {
       "type": "assert",
-      "raw": "ok 114 - unit › components › del › base : init component",
+      "raw": "ok 114 - unit › components › divider › base : init component",
       "ok": true,
       "number": 114,
-      "name": "unit › components › del › base : init component",
+      "name": "unit › components › divider › base : init component",
       "test": 114
     },
     {
       "type": "assert",
-      "raw": "ok 115 - unit › components › del › base : component tag name is t-*",
+      "raw": "ok 115 - unit › components › divider › base : component tag name is t-*",
       "ok": true,
       "number": 115,
-      "name": "unit › components › del › base : component tag name is t-*",
+      "name": "unit › components › divider › base : component tag name is t-*",
       "test": 115
     },
     {
       "type": "assert",
-      "raw": "ok 116 - unit › components › center › base : component snapshot",
+      "raw": "ok 116 - unit › components › card › base : component snapshot",
       "ok": true,
       "number": 116,
-      "name": "unit › components › center › base : component snapshot",
+      "name": "unit › components › card › base : component snapshot",
       "test": 116
     },
     {
       "type": "assert",
-      "raw": "ok 117 - unit › components › center › base : init component",
+      "raw": "ok 117 - unit › components › card › base : init component",
       "ok": true,
       "number": 117,
-      "name": "unit › components › center › base : init component",
+      "name": "unit › components › card › base : init component",
       "test": 117
     },
     {
       "type": "assert",
-      "raw": "ok 118 - unit › components › center › base : component tag name is t-*",
+      "raw": "ok 118 - unit › components › card › base : component tag name is t-*",
       "ok": true,
       "number": 118,
-      "name": "unit › components › center › base : component tag name is t-*",
+      "name": "unit › components › card › base : component tag name is t-*",
       "test": 118
     },
     {
       "type": "assert",
-      "raw": "ok 119 - unit › components › card › base : component snapshot",
+      "raw": "ok 119 - unit › components › center › base : component snapshot",
       "ok": true,
       "number": 119,
-      "name": "unit › components › card › base : component snapshot",
+      "name": "unit › components › center › base : component snapshot",
       "test": 119
     },
     {
       "type": "assert",
-      "raw": "ok 120 - unit › components › card › base : init component",
+      "raw": "ok 120 - unit › components › center › base : init component",
       "ok": true,
       "number": 120,
-      "name": "unit › components › card › base : init component",
+      "name": "unit › components › center › base : init component",
       "test": 120
     },
     {
       "type": "assert",
-      "raw": "ok 121 - unit › components › card › base : component tag name is t-*",
+      "raw": "ok 121 - unit › components › center › base : component tag name is t-*",
       "ok": true,
       "number": 121,
-      "name": "unit › components › card › base : component tag name is t-*",
+      "name": "unit › components › center › base : component tag name is t-*",
       "test": 121
     },
     {
@@ -2646,58 +2646,58 @@
     },
     {
       "type": "assert",
-      "raw": "ok 152 - e2e › components › ul › basic style",
+      "raw": "ok 152 - e2e › components › uppercase › basic style",
       "ok": true,
       "number": 152,
-      "name": "e2e › components › ul › basic style",
+      "name": "e2e › components › uppercase › basic style",
       "test": 152
     },
     {
       "type": "assert",
-      "raw": "ok 153 - e2e › components › ul › state",
+      "raw": "ok 153 - e2e › components › ul › basic style",
       "ok": true,
       "number": 153,
-      "name": "e2e › components › ul › state",
+      "name": "e2e › components › ul › basic style",
       "test": 153
     },
     {
       "type": "assert",
-      "raw": "ok 154 - e2e › components › ul › list style type",
+      "raw": "ok 154 - e2e › components › ul › state",
       "ok": true,
       "number": 154,
-      "name": "e2e › components › ul › list style type",
+      "name": "e2e › components › ul › state",
       "test": 154
     },
     {
       "type": "assert",
-      "raw": "ok 155 - e2e › components › uppercase › basic style",
+      "raw": "ok 155 - e2e › components › ul › list style type",
       "ok": true,
       "number": 155,
-      "name": "e2e › components › uppercase › basic style",
+      "name": "e2e › components › ul › list style type",
       "test": 155
     },
     {
       "type": "assert",
-      "raw": "ok 156 - e2e › components › u › basic style",
+      "raw": "ok 156 - e2e › components › textright › basic style",
       "ok": true,
       "number": 156,
-      "name": "e2e › components › u › basic style",
+      "name": "e2e › components › textright › basic style",
       "test": 156
     },
     {
       "type": "assert",
-      "raw": "ok 157 - e2e › components › textright › basic style",
+      "raw": "ok 157 - e2e › components › textleft › basic style",
       "ok": true,
       "number": 157,
-      "name": "e2e › components › textright › basic style",
+      "name": "e2e › components › textleft › basic style",
       "test": 157
     },
     {
       "type": "assert",
-      "raw": "ok 158 - e2e › components › textleft › basic style",
+      "raw": "ok 158 - e2e › components › u › basic style",
       "ok": true,
       "number": 158,
-      "name": "e2e › components › textleft › basic style",
+      "name": "e2e › components › u › basic style",
       "test": 158
     },
     {
@@ -2718,18 +2718,18 @@
     },
     {
       "type": "assert",
-      "raw": "ok 161 - e2e › components › textcenter › basic style",
+      "raw": "ok 161 - e2e › components › strong › basic style",
       "ok": true,
       "number": 161,
-      "name": "e2e › components › textcenter › basic style",
+      "name": "e2e › components › strong › basic style",
       "test": 161
     },
     {
       "type": "assert",
-      "raw": "ok 162 - e2e › components › strong › basic style",
+      "raw": "ok 162 - e2e › components › textcenter › basic style",
       "ok": true,
       "number": 162,
-      "name": "e2e › components › strong › basic style",
+      "name": "e2e › components › textcenter › basic style",
       "test": 162
     },
     {
@@ -2750,114 +2750,114 @@
     },
     {
       "type": "assert",
-      "raw": "ok 165 - e2e › components › quote › basic style",
+      "raw": "ok 165 - e2e › components › statistic › basic style",
       "ok": true,
       "number": 165,
-      "name": "e2e › components › quote › basic style",
+      "name": "e2e › components › statistic › basic style",
       "test": 165
     },
     {
       "type": "assert",
-      "raw": "ok 166 - e2e › components › quote › color",
+      "raw": "ok 166 - e2e › components › statistic › size",
       "ok": true,
       "number": 166,
-      "name": "e2e › components › quote › color",
+      "name": "e2e › components › statistic › size",
       "test": 166
     },
     {
       "type": "assert",
-      "raw": "ok 167 - e2e › components › ol › basic style",
+      "raw": "ok 167 - e2e › components › statistic › color",
       "ok": true,
       "number": 167,
-      "name": "e2e › components › ol › basic style",
+      "name": "e2e › components › statistic › color",
       "test": 167
     },
     {
       "type": "assert",
-      "raw": "ok 168 - e2e › components › ol › state",
+      "raw": "ok 168 - e2e › components › statistic › state",
       "ok": true,
       "number": 168,
-      "name": "e2e › components › ol › state",
+      "name": "e2e › components › statistic › state",
       "test": 168
     },
     {
       "type": "assert",
-      "raw": "ok 169 - e2e › components › ol › list style type",
+      "raw": "ok 169 - e2e › components › statistic › image",
       "ok": true,
       "number": 169,
-      "name": "e2e › components › ol › list style type",
+      "name": "e2e › components › statistic › image",
       "test": 169
     },
     {
       "type": "assert",
-      "raw": "ok 170 - e2e › components › statistic › basic style",
+      "raw": "ok 170 - e2e › components › statistic › iconfont",
       "ok": true,
       "number": 170,
-      "name": "e2e › components › statistic › basic style",
+      "name": "e2e › components › statistic › iconfont",
       "test": 170
     },
     {
       "type": "assert",
-      "raw": "ok 171 - e2e › components › statistic › size",
+      "raw": "ok 171 - e2e › components › statistic › horizontal left",
       "ok": true,
       "number": 171,
-      "name": "e2e › components › statistic › size",
+      "name": "e2e › components › statistic › horizontal left",
       "test": 171
     },
     {
       "type": "assert",
-      "raw": "ok 172 - e2e › components › statistic › color",
+      "raw": "ok 172 - e2e › components › statistic › horizontal right",
       "ok": true,
       "number": 172,
-      "name": "e2e › components › statistic › color",
+      "name": "e2e › components › statistic › horizontal right",
       "test": 172
     },
     {
       "type": "assert",
-      "raw": "ok 173 - e2e › components › statistic › state",
+      "raw": "ok 173 - e2e › components › statistic › top name",
       "ok": true,
       "number": 173,
-      "name": "e2e › components › statistic › state",
+      "name": "e2e › components › statistic › top name",
       "test": 173
     },
     {
       "type": "assert",
-      "raw": "ok 174 - e2e › components › statistic › image",
+      "raw": "ok 174 - e2e › components › quote › basic style",
       "ok": true,
       "number": 174,
-      "name": "e2e › components › statistic › image",
+      "name": "e2e › components › quote › basic style",
       "test": 174
     },
     {
       "type": "assert",
-      "raw": "ok 175 - e2e › components › statistic › iconfont",
+      "raw": "ok 175 - e2e › components › quote › color",
       "ok": true,
       "number": 175,
-      "name": "e2e › components › statistic › iconfont",
+      "name": "e2e › components › quote › color",
       "test": 175
     },
     {
       "type": "assert",
-      "raw": "ok 176 - e2e › components › statistic › horizontal left",
+      "raw": "ok 176 - e2e › components › ol › basic style",
       "ok": true,
       "number": 176,
-      "name": "e2e › components › statistic › horizontal left",
+      "name": "e2e › components › ol › basic style",
       "test": 176
     },
     {
       "type": "assert",
-      "raw": "ok 177 - e2e › components › statistic › horizontal right",
+      "raw": "ok 177 - e2e › components › ol › state",
       "ok": true,
       "number": 177,
-      "name": "e2e › components › statistic › horizontal right",
+      "name": "e2e › components › ol › state",
       "test": 177
     },
     {
       "type": "assert",
-      "raw": "ok 178 - e2e › components › statistic › top name",
+      "raw": "ok 178 - e2e › components › ol › list style type",
       "ok": true,
       "number": 178,
-      "name": "e2e › components › statistic › top name",
+      "name": "e2e › components › ol › list style type",
       "test": 178
     },
     {
@@ -3378,7 +3378,7 @@
   "comments": [
     {
       "type": "comment",
-      "raw": "> morning-ui@0.10.13 test /Users/early/Work/HMP-dev/data/morning-ui",
+      "raw": "> morning-ui@0.10.14 test /Users/early/Work/HMP-dev/data/morning-ui",
       "test": 0
     },
     {
@@ -3398,138 +3398,138 @@
   "pass": [
     {
       "type": "assert",
-      "raw": "ok 1 - e2e › components › article › basic style",
+      "raw": "ok 1 - e2e › components › apparent › basic style",
       "ok": true,
       "number": 1,
-      "name": "e2e › components › article › basic style",
+      "name": "e2e › components › apparent › basic style",
       "test": 1
     },
     {
       "type": "assert",
-      "raw": "ok 2 - e2e › components › article › underline",
+      "raw": "ok 2 - e2e › components › apparent › inline",
       "ok": true,
       "number": 2,
-      "name": "e2e › components › article › underline",
+      "name": "e2e › components › apparent › inline",
       "test": 2
     },
     {
       "type": "assert",
-      "raw": "ok 3 - e2e › components › apparent › basic style",
+      "raw": "ok 3 - e2e › components › apparent › inline block",
       "ok": true,
       "number": 3,
-      "name": "e2e › components › apparent › basic style",
+      "name": "e2e › components › apparent › inline block",
       "test": 3
     },
     {
       "type": "assert",
-      "raw": "ok 4 - e2e › components › apparent › inline",
+      "raw": "ok 4 - e2e › components › badge › basic style",
       "ok": true,
       "number": 4,
-      "name": "e2e › components › apparent › inline",
+      "name": "e2e › components › badge › basic style",
       "test": 4
     },
     {
       "type": "assert",
-      "raw": "ok 5 - e2e › components › apparent › inline block",
+      "raw": "ok 5 - e2e › components › apparent › block",
       "ok": true,
       "number": 5,
-      "name": "e2e › components › apparent › inline block",
+      "name": "e2e › components › apparent › block",
       "test": 5
     },
     {
       "type": "assert",
-      "raw": "ok 6 - e2e › components › apparent › block",
+      "raw": "ok 6 - e2e › components › article › basic style",
       "ok": true,
       "number": 6,
-      "name": "e2e › components › apparent › block",
+      "name": "e2e › components › article › basic style",
       "test": 6
     },
     {
       "type": "assert",
-      "raw": "ok 7 - e2e › components › action › basic style",
+      "raw": "ok 7 - e2e › components › badge › size",
       "ok": true,
       "number": 7,
-      "name": "e2e › components › action › basic style",
+      "name": "e2e › components › badge › size",
       "test": 7
     },
     {
       "type": "assert",
-      "raw": "ok 8 - e2e › components › action › size",
+      "raw": "ok 8 - e2e › components › badge › color",
       "ok": true,
       "number": 8,
-      "name": "e2e › components › action › size",
+      "name": "e2e › components › badge › color",
       "test": 8
     },
     {
       "type": "assert",
-      "raw": "ok 9 - e2e › components › action › color",
+      "raw": "ok 9 - e2e › components › badge › state",
       "ok": true,
       "number": 9,
-      "name": "e2e › components › action › color",
+      "name": "e2e › components › badge › state",
       "test": 9
     },
     {
       "type": "assert",
-      "raw": "ok 10 - e2e › components › action › vertical",
+      "raw": "ok 10 - e2e › components › badge › flat",
       "ok": true,
       "number": 10,
-      "name": "e2e › components › action › vertical",
+      "name": "e2e › components › badge › flat",
       "test": 10
     },
     {
       "type": "assert",
-      "raw": "ok 11 - e2e › components › badge › basic style",
+      "raw": "ok 11 - e2e › components › badge › circle",
       "ok": true,
       "number": 11,
-      "name": "e2e › components › badge › basic style",
+      "name": "e2e › components › badge › circle",
       "test": 11
     },
     {
       "type": "assert",
-      "raw": "ok 12 - e2e › components › badge › size",
+      "raw": "ok 12 - e2e › components › badge › no content",
       "ok": true,
       "number": 12,
-      "name": "e2e › components › badge › size",
+      "name": "e2e › components › badge › no content",
       "test": 12
     },
     {
       "type": "assert",
-      "raw": "ok 13 - e2e › components › badge › color",
+      "raw": "ok 13 - e2e › components › article › underline",
       "ok": true,
       "number": 13,
-      "name": "e2e › components › badge › color",
+      "name": "e2e › components › article › underline",
       "test": 13
     },
     {
       "type": "assert",
-      "raw": "ok 14 - e2e › components › badge › state",
+      "raw": "ok 14 - e2e › components › action › basic style",
       "ok": true,
       "number": 14,
-      "name": "e2e › components › badge › state",
+      "name": "e2e › components › action › basic style",
       "test": 14
     },
     {
       "type": "assert",
-      "raw": "ok 15 - e2e › components › badge › flat",
+      "raw": "ok 15 - e2e › components › action › size",
       "ok": true,
       "number": 15,
-      "name": "e2e › components › badge › flat",
+      "name": "e2e › components › action › size",
       "test": 15
     },
     {
       "type": "assert",
-      "raw": "ok 16 - e2e › components › badge › circle",
+      "raw": "ok 16 - e2e › components › action › color",
       "ok": true,
       "number": 16,
-      "name": "e2e › components › badge › circle",
+      "name": "e2e › components › action › color",
       "test": 16
     },
     {
       "type": "assert",
-      "raw": "ok 17 - e2e › components › badge › no content",
+      "raw": "ok 17 - e2e › components › action › vertical",
       "ok": true,
       "number": 17,
-      "name": "e2e › components › badge › no content",
+      "name": "e2e › components › action › vertical",
       "test": 17
     },
     {
@@ -3566,50 +3566,50 @@
     },
     {
       "type": "assert",
-      "raw": "ok 22 - unit › components › u › base : component snapshot",
+      "raw": "ok 22 - unit › components › ul › base : component snapshot",
       "ok": true,
       "number": 22,
-      "name": "unit › components › u › base : component snapshot",
+      "name": "unit › components › ul › base : component snapshot",
       "test": 22
     },
     {
       "type": "assert",
-      "raw": "ok 23 - unit › components › u › base : init component",
+      "raw": "ok 23 - unit › components › ul › base : init component",
       "ok": true,
       "number": 23,
-      "name": "unit › components › u › base : init component",
+      "name": "unit › components › ul › base : init component",
       "test": 23
     },
     {
       "type": "assert",
-      "raw": "ok 24 - unit › components › u › base : component tag name is t-*",
+      "raw": "ok 24 - unit › components › ul › base : component tag name is t-*",
       "ok": true,
       "number": 24,
-      "name": "unit › components › u › base : component tag name is t-*",
+      "name": "unit › components › ul › base : component tag name is t-*",
       "test": 24
     },
     {
       "type": "assert",
-      "raw": "ok 25 - unit › components › ul › base : component snapshot",
+      "raw": "ok 25 - unit › components › u › base : component snapshot",
       "ok": true,
       "number": 25,
-      "name": "unit › components › ul › base : component snapshot",
+      "name": "unit › components › u › base : component snapshot",
       "test": 25
     },
     {
       "type": "assert",
-      "raw": "ok 26 - unit › components › ul › base : init component",
+      "raw": "ok 26 - unit › components › u › base : init component",
       "ok": true,
       "number": 26,
-      "name": "unit › components › ul › base : init component",
+      "name": "unit › components › u › base : init component",
       "test": 26
     },
     {
       "type": "assert",
-      "raw": "ok 27 - unit › components › ul › base : component tag name is t-*",
+      "raw": "ok 27 - unit › components › u › base : component tag name is t-*",
       "ok": true,
       "number": 27,
-      "name": "unit › components › ul › base : component tag name is t-*",
+      "name": "unit › components › u › base : component tag name is t-*",
       "test": 27
     },
     {
@@ -3662,58 +3662,58 @@
     },
     {
       "type": "assert",
-      "raw": "ok 34 - unit › components › textcolor › base : component snapshot",
+      "raw": "ok 34 - unit › components › textinput › base : component snapshot",
       "ok": true,
       "number": 34,
-      "name": "unit › components › textcolor › base : component snapshot",
+      "name": "unit › components › textinput › base : component snapshot",
       "test": 34
     },
     {
       "type": "assert",
-      "raw": "ok 35 - unit › components › textcolor › base : init component",
+      "raw": "ok 35 - unit › components › textinput › base : init component",
       "ok": true,
       "number": 35,
-      "name": "unit › components › textcolor › base : init component",
+      "name": "unit › components › textinput › base : init component",
       "test": 35
     },
     {
       "type": "assert",
-      "raw": "ok 36 - unit › components › textcolor › base : component tag name is t-*",
+      "raw": "ok 36 - unit › components › textinput › base : component tag name is t-*",
       "ok": true,
       "number": 36,
-      "name": "unit › components › textcolor › base : component tag name is t-*",
+      "name": "unit › components › textinput › base : component tag name is t-*",
       "test": 36
     },
     {
       "type": "assert",
-      "raw": "ok 37 - unit › components › textinput › base : component snapshot",
+      "raw": "ok 37 - unit › components › textinput › set json string value",
       "ok": true,
       "number": 37,
-      "name": "unit › components › textinput › base : component snapshot",
+      "name": "unit › components › textinput › set json string value",
       "test": 37
     },
     {
       "type": "assert",
-      "raw": "ok 38 - unit › components › textinput › base : init component",
+      "raw": "ok 38 - unit › components › textcolor › base : component snapshot",
       "ok": true,
       "number": 38,
-      "name": "unit › components › textinput › base : init component",
+      "name": "unit › components › textcolor › base : component snapshot",
       "test": 38
     },
     {
       "type": "assert",
-      "raw": "ok 39 - unit › components › textinput › base : component tag name is t-*",
+      "raw": "ok 39 - unit › components › textcolor › base : init component",
       "ok": true,
       "number": 39,
-      "name": "unit › components › textinput › base : component tag name is t-*",
+      "name": "unit › components › textcolor › base : init component",
       "test": 39
     },
     {
       "type": "assert",
-      "raw": "ok 40 - unit › components › textinput › set json string value",
+      "raw": "ok 40 - unit › components › textcolor › base : component tag name is t-*",
       "ok": true,
       "number": 40,
-      "name": "unit › components › textinput › set json string value",
+      "name": "unit › components › textcolor › base : component tag name is t-*",
       "test": 40
     },
     {
@@ -3846,66 +3846,66 @@
     },
     {
       "type": "assert",
-      "raw": "ok 57 - unit › components › quote › base : component snapshot",
+      "raw": "ok 57 - unit › components › select › base : component snapshot",
       "ok": true,
       "number": 57,
-      "name": "unit › components › quote › base : component snapshot",
+      "name": "unit › components › select › base : component snapshot",
       "test": 57
     },
     {
       "type": "assert",
-      "raw": "ok 58 - unit › components › quote › base : init component",
+      "raw": "ok 58 - unit › components › select › base : init component",
       "ok": true,
       "number": 58,
-      "name": "unit › components › quote › base : init component",
+      "name": "unit › components › select › base : init component",
       "test": 58
     },
     {
       "type": "assert",
-      "raw": "ok 59 - unit › components › quote › base : component tag name is t-*",
+      "raw": "ok 59 - unit › components › select › base : component tag name is t-*",
       "ok": true,
       "number": 59,
-      "name": "unit › components › quote › base : component tag name is t-*",
+      "name": "unit › components › select › base : component tag name is t-*",
       "test": 59
     },
     {
       "type": "assert",
-      "raw": "ok 60 - unit › components › select › base : component snapshot",
+      "raw": "ok 60 - unit › components › select › config : default-value : with v-for slot : value exist",
       "ok": true,
       "number": 60,
-      "name": "unit › components › select › base : component snapshot",
+      "name": "unit › components › select › config : default-value : with v-for slot : value exist",
       "test": 60
     },
     {
       "type": "assert",
-      "raw": "ok 61 - unit › components › select › base : init component",
+      "raw": "ok 61 - unit › components › select › config : default-value : with v-for slot : value not exist",
       "ok": true,
       "number": 61,
-      "name": "unit › components › select › base : init component",
+      "name": "unit › components › select › config : default-value : with v-for slot : value not exist",
       "test": 61
     },
     {
       "type": "assert",
-      "raw": "ok 62 - unit › components › select › base : component tag name is t-*",
+      "raw": "ok 62 - unit › components › quote › base : component snapshot",
       "ok": true,
       "number": 62,
-      "name": "unit › components › select › base : component tag name is t-*",
+      "name": "unit › components › quote › base : component snapshot",
       "test": 62
     },
     {
       "type": "assert",
-      "raw": "ok 63 - unit › components › select › config : default-value : with v-for slot : value exist",
+      "raw": "ok 63 - unit › components › quote › base : init component",
       "ok": true,
       "number": 63,
-      "name": "unit › components › select › config : default-value : with v-for slot : value exist",
+      "name": "unit › components › quote › base : init component",
       "test": 63
     },
     {
       "type": "assert",
-      "raw": "ok 64 - unit › components › select › config : default-value : with v-for slot : value not exist",
+      "raw": "ok 64 - unit › components › quote › base : component tag name is t-*",
       "ok": true,
       "number": 64,
-      "name": "unit › components › select › config : default-value : with v-for slot : value not exist",
+      "name": "unit › components › quote › base : component tag name is t-*",
       "test": 64
     },
     {
@@ -3958,26 +3958,26 @@
     },
     {
       "type": "assert",
-      "raw": "ok 71 - unit › components › lowercase › base : component snapshot",
+      "raw": "ok 71 - unit › components › label › base : component snapshot",
       "ok": true,
       "number": 71,
-      "name": "unit › components › lowercase › base : component snapshot",
+      "name": "unit › components › label › base : component snapshot",
       "test": 71
     },
     {
       "type": "assert",
-      "raw": "ok 72 - unit › components › lowercase › base : init component",
+      "raw": "ok 72 - unit › components › label › base : init component",
       "ok": true,
       "number": 72,
-      "name": "unit › components › lowercase › base : init component",
+      "name": "unit › components › label › base : init component",
       "test": 72
     },
     {
       "type": "assert",
-      "raw": "ok 73 - unit › components › lowercase › base : component tag name is t-*",
+      "raw": "ok 73 - unit › components › label › base : component tag name is t-*",
       "ok": true,
       "number": 73,
-      "name": "unit › components › lowercase › base : component tag name is t-*",
+      "name": "unit › components › label › base : component tag name is t-*",
       "test": 73
     },
     {
@@ -4006,122 +4006,122 @@
     },
     {
       "type": "assert",
-      "raw": "ok 77 - unit › components › label › base : component snapshot",
+      "raw": "ok 77 - unit › components › lowercase › base : component snapshot",
       "ok": true,
       "number": 77,
-      "name": "unit › components › label › base : component snapshot",
+      "name": "unit › components › lowercase › base : component snapshot",
       "test": 77
     },
     {
       "type": "assert",
-      "raw": "ok 78 - unit › components › label › base : init component",
+      "raw": "ok 78 - unit › components › lowercase › base : init component",
       "ok": true,
       "number": 78,
-      "name": "unit › components › label › base : init component",
+      "name": "unit › components › lowercase › base : init component",
       "test": 78
     },
     {
       "type": "assert",
-      "raw": "ok 79 - unit › components › label › base : component tag name is t-*",
+      "raw": "ok 79 - unit › components › lowercase › base : component tag name is t-*",
       "ok": true,
       "number": 79,
-      "name": "unit › components › label › base : component tag name is t-*",
+      "name": "unit › components › lowercase › base : component tag name is t-*",
       "test": 79
     },
     {
       "type": "assert",
-      "raw": "ok 80 - unit › components › jumbotron › base : component snapshot",
+      "raw": "ok 80 - unit › components › itemlist › base : component snapshot",
       "ok": true,
       "number": 80,
-      "name": "unit › components › jumbotron › base : component snapshot",
+      "name": "unit › components › itemlist › base : component snapshot",
       "test": 80
     },
     {
       "type": "assert",
-      "raw": "ok 81 - unit › components › jumbotron › base : init component",
+      "raw": "ok 81 - unit › components › itemlist › base : init component",
       "ok": true,
       "number": 81,
-      "name": "unit › components › jumbotron › base : init component",
+      "name": "unit › components › itemlist › base : init component",
       "test": 81
     },
     {
       "type": "assert",
-      "raw": "ok 82 - unit › components › jumbotron › base : component tag name is t-*",
+      "raw": "ok 82 - unit › components › itemlist › base : component tag name is t-*",
       "ok": true,
       "number": 82,
-      "name": "unit › components › jumbotron › base : component tag name is t-*",
+      "name": "unit › components › itemlist › base : component tag name is t-*",
       "test": 82
     },
     {
       "type": "assert",
-      "raw": "ok 83 - unit › components › itemlist › base : component snapshot",
+      "raw": "ok 83 - unit › components › jumbotron › base : component snapshot",
       "ok": true,
       "number": 83,
-      "name": "unit › components › itemlist › base : component snapshot",
+      "name": "unit › components › jumbotron › base : component snapshot",
       "test": 83
     },
     {
       "type": "assert",
-      "raw": "ok 84 - unit › components › itemlist › base : init component",
+      "raw": "ok 84 - unit › components › jumbotron › base : init component",
       "ok": true,
       "number": 84,
-      "name": "unit › components › itemlist › base : init component",
+      "name": "unit › components › jumbotron › base : init component",
       "test": 84
     },
     {
       "type": "assert",
-      "raw": "ok 85 - unit › components › itemlist › base : component tag name is t-*",
+      "raw": "ok 85 - unit › components › jumbotron › base : component tag name is t-*",
       "ok": true,
       "number": 85,
-      "name": "unit › components › itemlist › base : component tag name is t-*",
+      "name": "unit › components › jumbotron › base : component tag name is t-*",
       "test": 85
     },
     {
       "type": "assert",
-      "raw": "ok 86 - unit › components › img › base : component snapshot",
+      "raw": "ok 86 - unit › components › il › base : component snapshot",
       "ok": true,
       "number": 86,
-      "name": "unit › components › img › base : component snapshot",
+      "name": "unit › components › il › base : component snapshot",
       "test": 86
     },
     {
       "type": "assert",
-      "raw": "ok 87 - unit › components › img › base : init component",
+      "raw": "ok 87 - unit › components › il › base : init component",
       "ok": true,
       "number": 87,
-      "name": "unit › components › img › base : init component",
+      "name": "unit › components › il › base : init component",
       "test": 87
     },
     {
       "type": "assert",
-      "raw": "ok 88 - unit › components › img › base : component tag name is t-*",
+      "raw": "ok 88 - unit › components › il › base : component tag name is t-*",
       "ok": true,
       "number": 88,
-      "name": "unit › components › img › base : component tag name is t-*",
+      "name": "unit › components › il › base : component tag name is t-*",
       "test": 88
     },
     {
       "type": "assert",
-      "raw": "ok 89 - unit › components › il › base : component snapshot",
+      "raw": "ok 89 - unit › components › img › base : component snapshot",
       "ok": true,
       "number": 89,
-      "name": "unit › components › il › base : component snapshot",
+      "name": "unit › components › img › base : component snapshot",
       "test": 89
     },
     {
       "type": "assert",
-      "raw": "ok 90 - unit › components › il › base : init component",
+      "raw": "ok 90 - unit › components › img › base : init component",
       "ok": true,
       "number": 90,
-      "name": "unit › components › il › base : init component",
+      "name": "unit › components › img › base : init component",
       "test": 90
     },
     {
       "type": "assert",
-      "raw": "ok 91 - unit › components › il › base : component tag name is t-*",
+      "raw": "ok 91 - unit › components › img › base : component tag name is t-*",
       "ok": true,
       "number": 91,
-      "name": "unit › components › il › base : component tag name is t-*",
+      "name": "unit › components › img › base : component tag name is t-*",
       "test": 91
     },
     {
@@ -4222,146 +4222,146 @@
     },
     {
       "type": "assert",
-      "raw": "ok 104 - unit › components › dl › base : component snapshot",
+      "raw": "ok 104 - unit › components › em › base : component snapshot",
       "ok": true,
       "number": 104,
-      "name": "unit › components › dl › base : component snapshot",
+      "name": "unit › components › em › base : component snapshot",
       "test": 104
     },
     {
       "type": "assert",
-      "raw": "ok 105 - unit › components › dl › base : init component",
+      "raw": "ok 105 - unit › components › em › base : init component",
       "ok": true,
       "number": 105,
-      "name": "unit › components › dl › base : init component",
+      "name": "unit › components › em › base : init component",
       "test": 105
     },
     {
       "type": "assert",
-      "raw": "ok 106 - unit › components › dl › base : component tag name is t-*",
+      "raw": "ok 106 - unit › components › em › base : component tag name is t-*",
       "ok": true,
       "number": 106,
-      "name": "unit › components › dl › base : component tag name is t-*",
+      "name": "unit › components › em › base : component tag name is t-*",
       "test": 106
     },
     {
       "type": "assert",
-      "raw": "ok 107 - unit › components › em › base : component snapshot",
+      "raw": "ok 107 - unit › components › del › base : component snapshot",
       "ok": true,
       "number": 107,
-      "name": "unit › components › em › base : component snapshot",
+      "name": "unit › components › del › base : component snapshot",
       "test": 107
     },
     {
       "type": "assert",
-      "raw": "ok 108 - unit › components › em › base : init component",
+      "raw": "ok 108 - unit › components › del › base : init component",
       "ok": true,
       "number": 108,
-      "name": "unit › components › em › base : init component",
+      "name": "unit › components › del › base : init component",
       "test": 108
     },
     {
       "type": "assert",
-      "raw": "ok 109 - unit › components › em › base : component tag name is t-*",
+      "raw": "ok 109 - unit › components › del › base : component tag name is t-*",
       "ok": true,
       "number": 109,
-      "name": "unit › components › em › base : component tag name is t-*",
+      "name": "unit › components › del › base : component tag name is t-*",
       "test": 109
     },
     {
       "type": "assert",
-      "raw": "ok 110 - unit › components › divider › base : component snapshot",
+      "raw": "ok 110 - unit › components › dl › base : component snapshot",
       "ok": true,
       "number": 110,
-      "name": "unit › components › divider › base : component snapshot",
+      "name": "unit › components › dl › base : component snapshot",
       "test": 110
     },
     {
       "type": "assert",
-      "raw": "ok 111 - unit › components › divider › base : init component",
+      "raw": "ok 111 - unit › components › dl › base : init component",
       "ok": true,
       "number": 111,
-      "name": "unit › components › divider › base : init component",
+      "name": "unit › components › dl › base : init component",
       "test": 111
     },
     {
       "type": "assert",
-      "raw": "ok 112 - unit › components › divider › base : component tag name is t-*",
+      "raw": "ok 112 - unit › components › dl › base : component tag name is t-*",
       "ok": true,
       "number": 112,
-      "name": "unit › components › divider › base : component tag name is t-*",
+      "name": "unit › components › dl › base : component tag name is t-*",
       "test": 112
     },
     {
       "type": "assert",
-      "raw": "ok 113 - unit › components › del › base : component snapshot",
+      "raw": "ok 113 - unit › components › divider › base : component snapshot",
       "ok": true,
       "number": 113,
-      "name": "unit › components › del › base : component snapshot",
+      "name": "unit › components › divider › base : component snapshot",
       "test": 113
     },
     {
       "type": "assert",
-      "raw": "ok 114 - unit › components › del › base : init component",
+      "raw": "ok 114 - unit › components › divider › base : init component",
       "ok": true,
       "number": 114,
-      "name": "unit › components › del › base : init component",
+      "name": "unit › components › divider › base : init component",
       "test": 114
     },
     {
       "type": "assert",
-      "raw": "ok 115 - unit › components › del › base : component tag name is t-*",
+      "raw": "ok 115 - unit › components › divider › base : component tag name is t-*",
       "ok": true,
       "number": 115,
-      "name": "unit › components › del › base : component tag name is t-*",
+      "name": "unit › components › divider › base : component tag name is t-*",
       "test": 115
     },
     {
       "type": "assert",
-      "raw": "ok 116 - unit › components › center › base : component snapshot",
+      "raw": "ok 116 - unit › components › card › base : component snapshot",
       "ok": true,
       "number": 116,
-      "name": "unit › components › center › base : component snapshot",
+      "name": "unit › components › card › base : component snapshot",
       "test": 116
     },
     {
       "type": "assert",
-      "raw": "ok 117 - unit › components › center › base : init component",
+      "raw": "ok 117 - unit › components › card › base : init component",
       "ok": true,
       "number": 117,
-      "name": "unit › components › center › base : init component",
+      "name": "unit › components › card › base : init component",
       "test": 117
     },
     {
       "type": "assert",
-      "raw": "ok 118 - unit › components › center › base : component tag name is t-*",
+      "raw": "ok 118 - unit › components › card › base : component tag name is t-*",
       "ok": true,
       "number": 118,
-      "name": "unit › components › center › base : component tag name is t-*",
+      "name": "unit › components › card › base : component tag name is t-*",
       "test": 118
     },
     {
       "type": "assert",
-      "raw": "ok 119 - unit › components › card › base : component snapshot",
+      "raw": "ok 119 - unit › components › center › base : component snapshot",
       "ok": true,
       "number": 119,
-      "name": "unit › components › card › base : component snapshot",
+      "name": "unit › components › center › base : component snapshot",
       "test": 119
     },
     {
       "type": "assert",
-      "raw": "ok 120 - unit › components › card › base : init component",
+      "raw": "ok 120 - unit › components › center › base : init component",
       "ok": true,
       "number": 120,
-      "name": "unit › components › card › base : init component",
+      "name": "unit › components › center › base : init component",
       "test": 120
     },
     {
       "type": "assert",
-      "raw": "ok 121 - unit › components › card › base : component tag name is t-*",
+      "raw": "ok 121 - unit › components › center › base : component tag name is t-*",
       "ok": true,
       "number": 121,
-      "name": "unit › components › card › base : component tag name is t-*",
+      "name": "unit › components › center › base : component tag name is t-*",
       "test": 121
     },
     {
@@ -4606,58 +4606,58 @@
     },
     {
       "type": "assert",
-      "raw": "ok 152 - e2e › components › ul › basic style",
+      "raw": "ok 152 - e2e › components › uppercase › basic style",
       "ok": true,
       "number": 152,
-      "name": "e2e › components › ul › basic style",
+      "name": "e2e › components › uppercase › basic style",
       "test": 152
     },
     {
       "type": "assert",
-      "raw": "ok 153 - e2e › components › ul › state",
+      "raw": "ok 153 - e2e › components › ul › basic style",
       "ok": true,
       "number": 153,
-      "name": "e2e › components › ul › state",
+      "name": "e2e › components › ul › basic style",
       "test": 153
     },
     {
       "type": "assert",
-      "raw": "ok 154 - e2e › components › ul › list style type",
+      "raw": "ok 154 - e2e › components › ul › state",
       "ok": true,
       "number": 154,
-      "name": "e2e › components › ul › list style type",
+      "name": "e2e › components › ul › state",
       "test": 154
     },
     {
       "type": "assert",
-      "raw": "ok 155 - e2e › components › uppercase › basic style",
+      "raw": "ok 155 - e2e › components › ul › list style type",
       "ok": true,
       "number": 155,
-      "name": "e2e › components › uppercase › basic style",
+      "name": "e2e › components › ul › list style type",
       "test": 155
     },
     {
       "type": "assert",
-      "raw": "ok 156 - e2e › components › u › basic style",
+      "raw": "ok 156 - e2e › components › textright › basic style",
       "ok": true,
       "number": 156,
-      "name": "e2e › components › u › basic style",
+      "name": "e2e › components › textright › basic style",
       "test": 156
     },
     {
       "type": "assert",
-      "raw": "ok 157 - e2e › components › textright › basic style",
+      "raw": "ok 157 - e2e › components › textleft › basic style",
       "ok": true,
       "number": 157,
-      "name": "e2e › components › textright › basic style",
+      "name": "e2e › components › textleft › basic style",
       "test": 157
     },
     {
       "type": "assert",
-      "raw": "ok 158 - e2e › components › textleft › basic style",
+      "raw": "ok 158 - e2e › components › u › basic style",
       "ok": true,
       "number": 158,
-      "name": "e2e › components › textleft › basic style",
+      "name": "e2e › components › u › basic style",
       "test": 158
     },
     {
@@ -4678,18 +4678,18 @@
     },
     {
       "type": "assert",
-      "raw": "ok 161 - e2e › components › textcenter › basic style",
+      "raw": "ok 161 - e2e › components › strong › basic style",
       "ok": true,
       "number": 161,
-      "name": "e2e › components › textcenter › basic style",
+      "name": "e2e › components › strong › basic style",
       "test": 161
     },
     {
       "type": "assert",
-      "raw": "ok 162 - e2e › components › strong › basic style",
+      "raw": "ok 162 - e2e › components › textcenter › basic style",
       "ok": true,
       "number": 162,
-      "name": "e2e › components › strong › basic style",
+      "name": "e2e › components › textcenter › basic style",
       "test": 162
     },
     {
@@ -4710,114 +4710,114 @@
     },
     {
       "type": "assert",
-      "raw": "ok 165 - e2e › components › quote › basic style",
+      "raw": "ok 165 - e2e › components › statistic › basic style",
       "ok": true,
       "number": 165,
-      "name": "e2e › components › quote › basic style",
+      "name": "e2e › components › statistic › basic style",
       "test": 165
     },
     {
       "type": "assert",
-      "raw": "ok 166 - e2e › components › quote › color",
+      "raw": "ok 166 - e2e › components › statistic › size",
       "ok": true,
       "number": 166,
-      "name": "e2e › components › quote › color",
+      "name": "e2e › components › statistic › size",
       "test": 166
     },
     {
       "type": "assert",
-      "raw": "ok 167 - e2e › components › ol › basic style",
+      "raw": "ok 167 - e2e › components › statistic › color",
       "ok": true,
       "number": 167,
-      "name": "e2e › components › ol › basic style",
+      "name": "e2e › components › statistic › color",
       "test": 167
     },
     {
       "type": "assert",
-      "raw": "ok 168 - e2e › components › ol › state",
+      "raw": "ok 168 - e2e › components › statistic › state",
       "ok": true,
       "number": 168,
-      "name": "e2e › components › ol › state",
+      "name": "e2e › components › statistic › state",
       "test": 168
     },
     {
       "type": "assert",
-      "raw": "ok 169 - e2e › components › ol › list style type",
+      "raw": "ok 169 - e2e › components › statistic › image",
       "ok": true,
       "number": 169,
-      "name": "e2e › components › ol › list style type",
+      "name": "e2e › components › statistic › image",
       "test": 169
     },
     {
       "type": "assert",
-      "raw": "ok 170 - e2e › components › statistic › basic style",
+      "raw": "ok 170 - e2e › components › statistic › iconfont",
       "ok": true,
       "number": 170,
-      "name": "e2e › components › statistic › basic style",
+      "name": "e2e › components › statistic › iconfont",
       "test": 170
     },
     {
       "type": "assert",
-      "raw": "ok 171 - e2e › components › statistic › size",
+      "raw": "ok 171 - e2e › components › statistic › horizontal left",
       "ok": true,
       "number": 171,
-      "name": "e2e › components › statistic › size",
+      "name": "e2e › components › statistic › horizontal left",
       "test": 171
     },
     {
       "type": "assert",
-      "raw": "ok 172 - e2e › components › statistic › color",
+      "raw": "ok 172 - e2e › components › statistic › horizontal right",
       "ok": true,
       "number": 172,
-      "name": "e2e › components › statistic › color",
+      "name": "e2e › components › statistic › horizontal right",
       "test": 172
     },
     {
       "type": "assert",
-      "raw": "ok 173 - e2e › components › statistic › state",
+      "raw": "ok 173 - e2e › components › statistic › top name",
       "ok": true,
       "number": 173,
-      "name": "e2e › components › statistic › state",
+      "name": "e2e › components › statistic › top name",
       "test": 173
     },
     {
       "type": "assert",
-      "raw": "ok 174 - e2e › components › statistic › image",
+      "raw": "ok 174 - e2e › components › quote › basic style",
       "ok": true,
       "number": 174,
-      "name": "e2e › components › statistic › image",
+      "name": "e2e › components › quote › basic style",
       "test": 174
     },
     {
       "type": "assert",
-      "raw": "ok 175 - e2e › components › statistic › iconfont",
+      "raw": "ok 175 - e2e › components › quote › color",
       "ok": true,
       "number": 175,
-      "name": "e2e › components › statistic › iconfont",
+      "name": "e2e › components › quote › color",
       "test": 175
     },
     {
       "type": "assert",
-      "raw": "ok 176 - e2e › components › statistic › horizontal left",
+      "raw": "ok 176 - e2e › components › ol › basic style",
       "ok": true,
       "number": 176,
-      "name": "e2e › components › statistic › horizontal left",
+      "name": "e2e › components › ol › basic style",
       "test": 176
     },
     {
       "type": "assert",
-      "raw": "ok 177 - e2e › components › statistic › horizontal right",
+      "raw": "ok 177 - e2e › components › ol › state",
       "ok": true,
       "number": 177,
-      "name": "e2e › components › statistic › horizontal right",
+      "name": "e2e › components › ol › state",
       "test": 177
     },
     {
       "type": "assert",
-      "raw": "ok 178 - e2e › components › statistic › top name",
+      "raw": "ok 178 - e2e › components › ol › list style type",
       "ok": true,
       "number": 178,
-      "name": "e2e › components › statistic › top name",
+      "name": "e2e › components › ol › list style type",
       "test": 178
     },
     {

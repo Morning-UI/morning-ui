@@ -10,6 +10,7 @@
         :hide-name="hideName"
         :item-name="itemName"
         :item-filler="itemFiller"
+        :item-validator="itemValidator"
         :can-move="canMove"
         :max="max"
         :clean-btn="cleanBtn"
@@ -146,6 +147,10 @@ export default {
             type : Function,
             default : noopFn
         },
+        itemValidator : {
+            type : Function,
+            default : (value => value)
+        },
         canMove : {
             type : Boolean,
             default : false
@@ -182,6 +187,7 @@ export default {
             return {
                 itemName : this.itemName,
                 itemFiller : this.itemFiller,
+                itemValidator : this.itemValidator,
                 canMove : this.canMove,
                 max : this.max,
                 cleanBtn : this.cleanBtn,
@@ -332,27 +338,38 @@ export default {
 
             let value = {};
             let formVm = this._findDialogForm();
+            let result;
 
             for (let vm of formVm) {
 
                 value[vm.conf.formKey] = vm.get();
 
             }
-            
+
             if (this.data.modifyIndex === null) {
             
-                this._addItem(value);
+                result = this._addItem(value);
             
             } else {
             
-                this._updateItem(value, this.data.modifyIndex);
+                result = this._updateItem(value, this.data.modifyIndex);
             
             }
-            
-            this._hideDialog();
+
+            if (result) {
+
+                this._hideDialog();
+
+            }
 
         },
         _addItem : function (value, index) {
+
+            if (this.conf.itemValidator(value) === false) {
+
+                return false;
+
+            }
 
             let list = this.get();
 
@@ -375,14 +392,24 @@ export default {
 
             this.set(list);
 
+            return true;
+
         },
         _updateItem : function (value, index) {
+
+            if (this.conf.itemValidator(value) === false) {
+
+                return false;
+
+            }
 
             let list = this.get();
 
             list.splice(index, 1, value || {});
             
             this.set(list);
+
+            return true;
 
         },
         _deleteItem : function (index) {
@@ -392,6 +419,8 @@ export default {
             list.splice(index, 1);
             
             this.set(list);
+
+            return true;
 
         },
         _cleanAllItems : function () {
