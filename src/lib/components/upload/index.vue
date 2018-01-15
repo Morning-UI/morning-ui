@@ -1,13 +1,14 @@
 <template>
     <mor-upload
         :_uiid="uiid"
-        :class="[stateClass, moreClass]"
+        :class="[formClass, stateClass, moreClass]"
 
         :form-name="formName"
         :form-key="formKey"
         :group="group"
         :default-value="defaultValue"
         :hide-name="hideName"
+        :clearable="clearable"
         :item-name="itemName"
         :accept-type="acceptType"
         :multi="multi"
@@ -99,6 +100,8 @@
 
         <div class="drag-note" :class="{show: data.dragover}"><p><i class="morningicon">&#xe629;</i> 松开鼠标上传</p></div>
     </div>
+
+    <morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn">清空</morning-link>
 
     </mor-upload>
 </template>

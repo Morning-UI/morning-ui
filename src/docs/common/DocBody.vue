@@ -653,6 +653,17 @@ formConfig
     <ui-{%uikey%} form-name="{$formName}" hide-name {%&configMoreAttr%}>{%&configSlot%}</ui-{%uikey%}>
 </div>
 :::
+
+#### clearable
+
+:::repeat/html
+formConfig
+---
+<div style="width:300px;">
+    <ui-{%uikey%} form-name="{$formName}" :clearable="true" :default-value="{%&configDefaultValue%}" {%&configMoreAttr%}>{%&configSlot%}</ui-{%uikey%}>
+</div>
+:::
+    
     `,
     formConfigTable : `
 |KEY|描述|接受值|值类型|默认值|
@@ -662,6 +673,7 @@ formConfig
 |[group](#group)|表单组，用于将多个表单的数值添加到同一个对象中。一个表单可以同时属于多个组|若是字符串，则将表单添加到单个组<br>若是数组，则将表单添加到多个组|String<br/>Array|\`[]\`|
 |[default-value](#default-value)|表单的默认值(注意：\`default-value\`不支持单向数据流，此配置仅在表单初次创建时生效，修改表单值需要使用\`set()\`方法或使用\`v-model\`指令， 详见：[表单数据双向绑定](/guide/form.html#表单数据双向绑定))|任意(接受表单原始数值，也接受JSON序列化后的表单数值，若数值是JSON序列化的会自动转换成原始数值)|Any|\`undefined\`|
 |[hide-name](#hide-name)|隐藏表单名|\`true\`<br>\`false\`|Boolean|\`false\`|
+|[clearable](#clearable)|显示表单清空按钮|\`true\`<br>\`false\`|\`false\`|
 {%&content%}
 `,
     formMethod : `

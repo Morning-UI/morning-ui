@@ -223,6 +223,7 @@
     - `validate` : 验证
     - `uploader` : 上传适配器
     - `clean-zone` : 清空区域
+    - `clearable` : 清空数值
 
     </script>
     </doc-guide>
