@@ -8,6 +8,13 @@ mor-select{
     vertical-align: middle;
     min-height: @formHeight;
 
+    .setup-form();
+
+    .select-area{
+        position: relative;
+        z-index: 2;
+    }
+
     &.align-left{
         text-align: left;
     }
@@ -109,16 +116,16 @@ mor-select{
                 text-indent: 1px;
             }
 
-            &.clean{
-                top: 0;
-                right: 26px;
-                width: 18px;
-                font-size: 16px;
+            // &.clean{
+            //     top: 0;
+            //     right: 26px;
+            //     width: 18px;
+            //     font-size: 16px;
 
-                &:hover{
-                    color: @colorDanger;
-                }
-            }
+            //     &:hover{
+            //         color: @colorDanger;
+            //     }
+            // }
         }
 
         &:hover{
@@ -214,15 +221,15 @@ mor-select{
         }
     }
 
-    &.has-clean-btn{
-        .wrap{
-            > mor-textinput,
-            > mor-multiinput,
-            > .selected{
-                width: ~'calc( 100% - 50px )';
-            }
-        }
-    }
+    // &.has-clean-btn{
+    //     .wrap{
+    //         > mor-textinput,
+    //         > mor-multiinput,
+    //         > .selected{
+    //             width: ~'calc( 100% - 50px )';
+    //         }
+    //     }
+    // }
 
     &.showlist{
         .wrap{
@@ -280,17 +287,6 @@ mor-select{
                 display: none;
             }
         }
-    }
-
-    &.has-cleanbtn{
-        padding-bottom: @fontSize*1.25;
-    }
-
-    .cleanbtn{
-        position: absolute;
-        right: 0;
-        font-size: 12px;
-        margin-top: 1px;
     }
 
     &.input-group {

@@ -1,13 +1,14 @@
 <template>
     <mor-imagemap
         :_uiid="uiid"
-        :class="[stateClass]"
+        :class="[formClass, stateClass]"
 
         :form-name="formName"
         :form-key="formKey"
         :group="group"
         :default-value="defaultValue"
         :hide-name="hideName"
+        :clearable="clearable"
         :allow-url="allowUrl"
         :allow-drag="allowDrag"
         :multi="multi"
@@ -195,6 +196,8 @@
         </footer>
         
     </morning-dialog>
+
+    <morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn">清空</morning-link>
 
     </mor-imagemap>
 </template>

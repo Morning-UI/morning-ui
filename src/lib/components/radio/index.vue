@@ -1,13 +1,14 @@
 <template>
     <mor-radio
         :_uiid="uiid"
-        :class="[colorClass, stateClass]"
+        :class="[formClass, colorClass, stateClass]"
 
         :form-name="formName"
         :form-key="formKey"
         :group="group"
         :default-value="defaultValue"
         :hide-name="hideName"
+        :clearable="clearable"
         :accept-html="acceptHtml"
         :list="list"
     >
@@ -52,6 +53,8 @@
 
         </template>
     </div>
+
+    <morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn">清空</morning-link>
 
     </mor-radio>
 </template>

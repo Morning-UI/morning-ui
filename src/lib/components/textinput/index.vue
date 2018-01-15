@@ -1,13 +1,14 @@
 <template>
     <mor-textinput
         :_uiid="uiid"
-        :class="[stateClass, moreClass]"
+        :class="[formClass, stateClass, moreClass]"
 
         :form-name="formName"
         :form-key="formKey"
         :group="group"
         :default-value="defaultValue"
         :hide-name="hideName"
+        :clearable="clearable"
         :hide-value="hideValue"
         :prepend="prepend"
         :append="append"
@@ -54,6 +55,8 @@
     <template v-if="conf.append">
         <div class="input-group-addon" v-html="conf.append"></div>
     </template>
+
+    <morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn">清空</morning-link>
 
     </mor-textinput>
 </template>
