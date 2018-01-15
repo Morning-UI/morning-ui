@@ -1,13 +1,14 @@
 <template>
     <mor-switch
         :_uiid="uiid"
-        :class="[colorClass, stateClass, moreClass]"
+        :class="[formClass, colorClass, stateClass, moreClass]"
 
         :form-name="formName"
         :form-key="formKey"
         :group="group"
         :default-value="defaultValue"
         :hide-name="hideName"
+        :clearable="clearable"
         :auto-hide-name="autoHideName"
     >
 
@@ -15,6 +16,8 @@
     <div class="track" @click="toggle()">
         <div class="point"></div>
     </div>
+
+    <morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn">清空</morning-link>
 
     </mor-switch>
 </template>

@@ -27,6 +27,10 @@ export default UI => UI.extend({
         },
         modelValue : {
             default : undefined
+        },
+        clearable : {
+            type : Boolean,
+            default : false
         }
     },
     computed : {
@@ -37,7 +41,15 @@ export default UI => UI.extend({
                 formKey : this.formKey,
                 group : this.group,
                 defaultValue : this.defaultValue,
-                hideName : this.hideName
+                hideName : this.hideName,
+                clearable : this.clearable
+            };
+
+        },
+        formClass : function () {
+    
+            return {
+                'has-cleanbtn' : this.conf.clearable
             };
 
         }
@@ -211,6 +223,11 @@ export default UI => UI.extend({
         _valueFilter : function (value) {
 
             return value;
+
+        },
+        _clean : function () {
+
+            this._set(undefined);
 
         },
         set : function (value) {
