@@ -81,23 +81,25 @@
 <script>
 import arrayUniq                    from 'array-uniq';
 import sortBy                       from 'lodash.sortby';
-import getYear                      from 'date-fns/get_year';
-import getMonth                     from 'date-fns/get_month';
-import getDate                      from 'date-fns/get_date';
-import getDay                       from 'date-fns/get_day';
-import startOfDay                   from 'date-fns/start_of_day';
-import endOfDay                     from 'date-fns/end_of_day';
-import startOfMonth                 from 'date-fns/start_of_month';
-import lastDayOfMonth               from 'date-fns/last_day_of_month';
-import eachDay                      from 'date-fns/each_day';
-import isSameDay                    from 'date-fns/is_same_day';
-import isWithinRange                from 'date-fns/is_within_range';
-import addDays                      from 'date-fns/add_days';
-import addMonths                    from 'date-fns/add_months';
-import addYears                     from 'date-fns/add_years';
-import setMonth                     from 'date-fns/set_month';
-import setYear                      from 'date-fns/set_year';
-import formatDate                   from 'date-fns/format';
+import {
+    getYear,
+    getMonth,
+    getDate,
+    getDay,
+    startOfDay,
+    endOfDay,
+    startOfMonth,
+    lastDayOfMonth,
+    eachDay,
+    isSameDay,
+    isWithinRange,
+    addDays,
+    addMonths,
+    addYears,
+    setMonth,
+    setYear,
+    format as formatDate
+}                                   from 'date-fns';
 
 const yearRange = 12;
 

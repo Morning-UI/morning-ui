@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">66.67% </span>
+        <span class="strong">67.65% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>22/33</span>
+        <span class='fraction'>23/34</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">62.86% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>22/35</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">52.63% </span>
+        <span class="strong">55% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>10/19</span>
+        <span class='fraction'>11/20</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">78.26% </span>
+        <span class="strong">79.17% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>18/23</span>
+        <span class='fraction'>19/24</span>
       </div>
     </div>
   </div>
@@ -216,7 +216,18 @@
 171
 172
 173
-174</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -290,12 +301,20 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -334,6 +353,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -401,11 +423,12 @@
         :hide-name="hideName"
         :hide-value="hideValue"
         :prepend="prepend"
-        :append="append" 
+        :append="append"
+        :align="align"
     &gt;
 &nbsp;
     &lt;template v-if="conf.prepend"&gt;
-        &lt;div class="input-group-addon"&gt;{{conf.prepend}}&lt;/div&gt;
+        &lt;div class="input-group-addon" v-html="conf.prepend"&gt;&lt;/div&gt;
     &lt;/template&gt;
     
     &lt;template v-if="inputType === 'text'"&gt;
@@ -429,6 +452,7 @@
             type="password"
             key="is-password"
             
+            :class="inputClass"
             :placeholder="placeholder"
             :disabled="conf.state === 'disabled'"
 &nbsp;
@@ -441,7 +465,7 @@
     &lt;/template&gt;
 &nbsp;
     &lt;template v-if="conf.append"&gt;
-        &lt;div class="input-group-addon"&gt;{{conf.append}}&lt;/div&gt;
+        &lt;div class="input-group-addon" v-html="conf.append"&gt;&lt;/div&gt;
     &lt;/template&gt;
 &nbsp;
     &lt;/mor-textinput&gt;
@@ -463,6 +487,11 @@ export default {
         append : {
             type : String,
             default : undefined
+        },
+        align : {
+            type : String,
+            default : 'left',
+            validator : (value =&gt; ['left', 'center', 'right'].indexOf(value) !== -1)
         }
     },
     computed : {
@@ -471,7 +500,8 @@ export default {
             return {
                 hideValue : this.hideValue,
                 prepend : this.prepend,
-                append : this.append
+                append : this.append,
+                align : this.align
             };
 &nbsp;
         },
@@ -507,7 +537,10 @@ export default {
         inputClass : function () {
 &nbsp;
             return {
-                'has-append' : !!this.conf.append
+                'has-append' : !!this.conf.append,
+                'align-left' : (this.conf.align === 'left'),
+                'align-center' : (this.conf.align === 'center'),
+                'align-right' : (this.conf.align === 'right')
             };
 &nbsp;
         }
@@ -568,7 +601,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Dec 07 2017 11:15:53 GMT+0800 (CST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Jan 15 2018 12:50:29 GMT+0800 (CST)
 </div>
 </div>
 <script src="../../../prettify.js"></script>

@@ -18,6 +18,28 @@
     
     ### 更新记录
 
+        
+    ### 0.10.14 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2018年1月15日，
+            Archive : 
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.14" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.14/dist/" target="_blank">CDN</a>
+        </ui-small>
+    </ui-textcolor>
+
+    - `ui-multiform`新增`item-validator`配置
+    - `ui-textinput`的`append`和`prepend`配置支持HTML
+    - `ui-textinput`和`ui-select`新增`align`配置
+    - `ui-select`新增`clearable`配置，可以清空表单数据
+    - `ui-select`新增`prepend`配置
+    - 修复`ui-imagemap`组件的`hide-name`配置无效的问题
+    - 修复`ui-select`的一个取值错误问题
+    - 修复`ui-message`的z-index问题
+    - 修复`ui-imagemap`无法删除值的问题
+
     ### 0.10.13 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="light-blue">

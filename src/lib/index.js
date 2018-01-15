@@ -12,7 +12,8 @@ let morning = {
     _indexMap : {
         regIndex : {},
         vmMap : {},
-        useIndex : {}
+        useIndex : {},
+        maxIndex : 1
     },
     _moveListener : [],
     _globalEventListener : {},
@@ -20,7 +21,7 @@ let morning = {
     _groupVmMap : {},
     _options : {},
     isMorning : true,
-    version : '0.10.13',
+    version : '0.10.14',
     map : {}
 };
 
