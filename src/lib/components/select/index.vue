@@ -1,15 +1,15 @@
 <template>
     <mor-select
         :_uiid="uiid"
-        :class="[stateClass, moreClass]"
+        :class="[formClass, stateClass, moreClass]"
 
         :form-name="formName"
         :form-key="formKey"
         :group="group"
         :default-value="defaultValue"
         :hide-name="hideName"
-        :align="align"
         :clearable="clearable"
+        :align="align"
         :prepend="prepend"
         :max-show="maxShow"
         :auto-close="autoClose"
@@ -17,7 +17,6 @@
         :multi-select="multiSelect"
         :can-move="canMove"
         :max="max"
-        :clean-btn="cleanBtn"
         :inline-img-size="inlineImgSize"
         :item-tip="itemTip"
         :item-tip-direct="itemTipDirect"
@@ -96,11 +95,6 @@
             </template>
 
             <i class="morningicon drop">&#xe6b1;</i>
-            <i
-                class="morningicon clean"
-                v-if="conf.cleanBtn"
-                @click="_set(undefined, true)"
-            >&#xe67c;</i>
 
         </div>
 
@@ -114,7 +108,7 @@
         </ul>
     </div>
 
-    <morning-link v-if="conf.clearable" color="minor" @emit="_set(undefined, true)" class="cleanbtn">清空</morning-link>
+    <morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn">清空</morning-link>
 
     </mor-select>
 </template>
@@ -133,10 +127,6 @@ export default {
             type : String,
             default : 'left',
             validator : (value => ['left', 'center', 'right'].indexOf(value) !== -1)
-        },
-        clearable : {
-            type : Boolean,
-            default : false
         },
         prepend : {
             type : String,
@@ -166,10 +156,6 @@ export default {
             type : Number,
             default : Infinity
         },
-        cleanBtn : {
-            type : Boolean,
-            default : false
-        },
         inlineImgSize : {
             type : String,
             default : '2em'
@@ -188,7 +174,6 @@ export default {
 
             return {
                 align : this.align,
-                clearable : this.clearable,
                 prepend : this.prepend,
                 maxShow : this.maxShow,
                 autoClose : this.autoClose,
@@ -196,7 +181,6 @@ export default {
                 multiSelect : this.multiSelect,
                 canMove : this.canMove,
                 max : this.max,
-                cleanBtn : this.cleanBtn,
                 inlineImgSize : this.inlineImgSize,
                 itemTip : this.itemTip,
                 itemTipDirect : this.itemTipDirect
@@ -219,12 +203,10 @@ export default {
                 searching : !!this.data.searching,
                 'focus-search' : !!this.data.focusSearch,
                 'is-max' : !!this.isMax,
-                'has-clean-btn' : !!this.conf.cleanBtn,
                 'select-item' : selectItem,
                 'align-left' : (this.conf.align === 'left'),
                 'align-center' : (this.conf.align === 'center'),
                 'align-right' : (this.conf.align === 'right'),
-                'has-cleanbtn' : this.conf.clearable,
                 'input-group' : !!this.conf.prepend
             };
 
@@ -465,14 +447,10 @@ export default {
 
             let $searchTextinput = this.$el.querySelector('.wrap mor-textinput'),
                 $searchMultiinput = this.$el.querySelector('.wrap mor-multiinput'),
-                $cleanBtn = this.$el.querySelector('.wrap .clean'),
                 hasTextinput = (evt.path.indexOf($searchTextinput) !== -1),
-                hasMultiinput = (evt.path.indexOf($searchMultiinput) !== -1),
-                hasCleanBtn = (evt.path.indexOf($cleanBtn) !== -1);
-                // searchTextinput = ($(ev.target).is($multiInput) || $multiInput.find($(ev.target)).length),
-                // searchMultiinput = $(ev.target).is($searchInput) || $searchInput.has($(ev.target)).length;
+                hasMultiinput = (evt.path.indexOf($searchMultiinput) !== -1);
 
-            if (!hasTextinput && !hasMultiinput && !hasCleanBtn) {
+            if (!hasTextinput && !hasMultiinput) {
 
                 this.toggle();
 

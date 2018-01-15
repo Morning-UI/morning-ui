@@ -1,13 +1,14 @@
 <template>
     <mor-textarea
         :_uiid="uiid"
-        :class="[stateClass]"
+        :class="[formClass, stateClass]"
 
         :form-name="formName"
         :form-key="formKey"
         :group="group"
         :default-value="defaultValue"
         :hide-name="hideName"
+        :clearable="clearable"
         :rows="rows"
     >
 
@@ -22,6 +23,8 @@
         :value="data.value"
         @input="$emit('input', $event.target.value)"
     ></textarea>
+
+    <morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn">清空</morning-link>
 
     </mor-textarea>
 </template>

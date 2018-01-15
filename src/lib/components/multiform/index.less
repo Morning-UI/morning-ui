@@ -11,6 +11,8 @@ mor-multiform{
     vertical-align: middle;
     -webkit-user-select: none;
 
+    .setup-form();
+
     > .itemlist{
         border: 1px @colorFormBorder solid;
         border-radius: @borderRadius;
@@ -163,17 +165,6 @@ mor-multiform{
                 display: block;
             }
         }
-    }
-
-    &.has-cleanbtn{
-        padding-bottom: @fontSize*1.25;
-    }
-
-    .cleanbtn{
-        position: absolute;
-        right: 0;
-        font-size: 12px;
-        margin-top: 1px;
     }
 
     &.focus,
