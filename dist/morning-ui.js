@@ -951,7 +951,7 @@ function cloneObject (dirtyObject) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = startOfISOWeek;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__startOfWeek_index_js__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__startOfWeek_index_js__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__lib_cloneObject_index_js__ = __webpack_require__(4);
 
 
@@ -1531,6 +1531,90 @@ module.exports = exports['default'];
 
 /***/ }),
 /* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var IndexManager = {
+    methods: {
+        _indexReg: function _indexReg(namespace) {
+            var index = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+
+
+            var key = this.$options.name + "." + namespace;
+
+            if (this.morning._indexMap.regIndex[key] === undefined) {
+
+                this.morning._indexMap.regIndex[key] = index;
+                this.morning._indexMap.maxIndex = index;
+            }
+
+            return this;
+        },
+        _indexFetch: function _indexFetch(namespace, step) {
+
+            var vmMap = this.morning._indexMap.vmMap;
+            var useIndex = this.morning._indexMap.useIndex;
+            var regIndex = this.morning._indexMap.regIndex;
+            var key = this.$options.name + "." + namespace;
+
+            if (useIndex[key] === undefined) {
+
+                useIndex[key] = regIndex[key];
+            }
+
+            if (vmMap[this.uiid + "," + namespace] === undefined) {
+
+                vmMap[this.uiid + "," + namespace] = useIndex[key];
+            }
+
+            if (step !== 0 && step !== undefined) {
+
+                useIndex[key] += step;
+            }
+
+            if (this.morning._indexMap.maxIndex < vmMap[this.uiid + "," + namespace]) {
+
+                this.morning._indexMap.maxIndex = vmMap[this.uiid + "," + namespace];
+            }
+
+            return vmMap[this.uiid + "," + namespace];
+        },
+        _indexInc: function _indexInc(namespace) {
+
+            return this._indexFetch(namespace, 1);
+        },
+        _indexGet: function _indexGet(namespace, addition) {
+
+            var index = this._indexFetch(namespace, 0) + addition;
+
+            if (this.morning._indexMap.maxIndex < index) {
+
+                this.morning._indexMap.maxIndex = index;
+            }
+
+            return index;
+        },
+        _indexDim: function _indexDim(namespace) {
+
+            return this._indexFetch(namespace, -1);
+        },
+        _indexMax: function _indexMax() {
+
+            return ++this.morning._indexMap.maxIndex;
+        }
+    }
+};
+
+exports.default = IndexManager;
+module.exports = exports["default"];
+
+/***/ }),
+/* 16 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1594,7 +1678,7 @@ function startOfWeek (dirtyDate, dirtyOptions) {
 
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1645,7 +1729,7 @@ function addMonths (dirtyDate, dirtyAmount, dirtyOptions) {
 
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1690,7 +1774,7 @@ function differenceInMilliseconds (dirtyDateLeft, dirtyDateRight, dirtyOptions) 
 
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1714,122 +1798,6 @@ function startOfUTCISOWeek (dirtyDate, dirtyOptions) {
 
 
 /***/ }),
-/* 19 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-var IndexManager = {
-    methods: {
-        _indexReg: function _indexReg(namespace) {
-            var index = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
-
-
-            var key = this.$options.name + "." + namespace;
-
-            if (this.morning._indexMap.regIndex[key] === undefined) {
-
-                this.morning._indexMap.regIndex[key] = index;
-            }
-
-            return this;
-        },
-        _indexFetch: function _indexFetch(namespace, step) {
-
-            var vmMap = this.morning._indexMap.vmMap;
-            var useIndex = this.morning._indexMap.useIndex;
-            var regIndex = this.morning._indexMap.regIndex;
-            var key = this.$options.name + "." + namespace;
-
-            if (useIndex[key] === undefined) {
-
-                useIndex[key] = regIndex[key];
-            }
-
-            if (vmMap[this.uiid + "," + namespace] === undefined) {
-
-                vmMap[this.uiid + "," + namespace] = useIndex[key];
-            }
-
-            if (step !== 0 && step !== undefined) {
-
-                useIndex[key] += step;
-            }
-
-            return vmMap[this.uiid + "," + namespace];
-        },
-        _indexInc: function _indexInc(namespace) {
-
-            return this._indexFetch(namespace, 1);
-        },
-        _indexGet: function _indexGet(namespace) {
-
-            return this._indexFetch(namespace, 0);
-        },
-        _indexDim: function _indexDim(namespace) {
-
-            return this._indexFetch(namespace, -1);
-        }
-        // _indexNew : function (namespace) {
-
-        //     let section = this.morning._indexSection[namespace];
-
-        //     if (section === undefined) {
-
-        //         let sectionId = this.morning._indexSectionId++;
-
-        //         this.morning._indexSection[namespace] = {
-        //             id : sectionId,
-        //             prepend : (sectionLen / 2) - 1,
-        //             append : (sectionLen / 2)
-        //         };
-
-        //         section = this.morning._indexSection[namespace];
-
-        //     }
-
-        //     return ((section.id * sectionLen) + section.append++);
-
-        // },
-        // _indexSectionAppend : function (namespace) {
-
-        //     if (this.morning._indexSection[sectionId] === undefined) {
-
-        //         return 1;
-
-        //     }
-
-        //     let section = this.morning._indexSection[sectionId];
-        //     let index = section.append++;
-
-        //     return ((section * sectionLen) + index);
-
-        // },
-        // _indexSectionPrepend : function (sectionId) {
-
-        //     if (this.morning._indexSection[sectionId] === undefined) {
-
-        //         return 1;
-
-        //     }
-
-        //     let section = this.morning._indexSection[sectionId];
-        //     let index = section.prepend++;
-
-        //     return ((section * sectionLen) + index);
-
-        // }
-    }
-};
-
-exports.default = IndexManager;
-module.exports = exports["default"];
-
-/***/ }),
 /* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1840,7 +1808,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _IndexManager = __webpack_require__(19);
+var _IndexManager = __webpack_require__(15);
 
 var _IndexManager2 = _interopRequireDefault(_IndexManager);
 
@@ -1872,7 +1840,7 @@ var PopupManager = {
             keepDiv.style.display = 'none';
             this.$el.before(keepDiv);
             this.Popup.oldIndex = this.$el.style.zIndex;
-            this.$el.style.zIndex = this._indexGet('Popup') + id;
+            this.$el.style.zIndex = this._indexGet('Popup', id);
             document.body.append(this.$el);
             this.Popup.keepDiv = keepDiv;
         },
@@ -2088,7 +2056,7 @@ function differenceInMonths (dirtyDateLeft, dirtyDateRight, dirtyOptions) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = differenceInSeconds;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__differenceInMilliseconds_index_js__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__differenceInMilliseconds_index_js__ = __webpack_require__(18);
 
 
 /**
@@ -2133,7 +2101,7 @@ function differenceInSeconds (dirtyDateLeft, dirtyDateRight, dirtyOptions) {
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = startOfUTCISOWeekYear;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getUTCISOWeekYear_index_js__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__startOfUTCISOWeek_index_js__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__startOfUTCISOWeek_index_js__ = __webpack_require__(19);
 
 
 
@@ -5612,7 +5580,7 @@ function addMinutes (dirtyDate, dirtyAmount, dirtyOptions) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = addQuarters;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__addMonths_index_js__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__addMonths_index_js__ = __webpack_require__(17);
 
 
 /**
@@ -5693,7 +5661,7 @@ function addSeconds (dirtyDate, dirtyAmount, dirtyOptions) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = addYears;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__addMonths_index_js__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__addMonths_index_js__ = __webpack_require__(17);
 
 
 /**
@@ -6409,7 +6377,7 @@ function isValid (dirtyDate, dirtyOptions) {
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = getUTCISOWeek;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__toDate_index_js__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__startOfUTCISOWeek_index_js__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__startOfUTCISOWeek_index_js__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__startOfUTCISOWeekYear_index_js__ = __webpack_require__(26);
 
 
@@ -6437,7 +6405,7 @@ function getUTCISOWeek (dirtyDate, dirtyOptions) {
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = getUTCISOWeekYear;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__toDate_index_js__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__startOfUTCISOWeek_index_js__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__startOfUTCISOWeek_index_js__ = __webpack_require__(19);
 
 
 
@@ -6697,7 +6665,7 @@ function startOfHour (dirtyDate, dirtyOptions) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = isSameWeek;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__startOfWeek_index_js__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__startOfWeek_index_js__ = __webpack_require__(16);
 
 
 /**
@@ -7298,7 +7266,8 @@ var morning = {
     _indexMap: {
         regIndex: {},
         vmMap: {},
-        useIndex: {}
+        useIndex: {},
+        maxIndex: 1
     },
     _moveListener: [],
     _globalEventListener: {},
@@ -13596,7 +13565,7 @@ var _GlobalEvent = __webpack_require__(14);
 
 var _GlobalEvent2 = _interopRequireDefault(_GlobalEvent);
 
-var _IndexManager = __webpack_require__(19);
+var _IndexManager = __webpack_require__(15);
 
 var _IndexManager2 = _interopRequireDefault(_IndexManager);
 
@@ -18179,7 +18148,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "addMilliseconds", function() { return __WEBPACK_IMPORTED_MODULE_3__addMilliseconds_index_js__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__addMinutes_index_js__ = __webpack_require__(35);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "addMinutes", function() { return __WEBPACK_IMPORTED_MODULE_4__addMinutes_index_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__addMonths_index_js__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__addMonths_index_js__ = __webpack_require__(17);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "addMonths", function() { return __WEBPACK_IMPORTED_MODULE_5__addMonths_index_js__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__addQuarters_index_js__ = __webpack_require__(36);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "addQuarters", function() { return __WEBPACK_IMPORTED_MODULE_6__addQuarters_index_js__["a"]; });
@@ -18219,7 +18188,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "differenceInHours", function() { return __WEBPACK_IMPORTED_MODULE_23__differenceInHours_index_js__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__differenceInISOYears_index_js__ = __webpack_require__(272);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "differenceInISOYears", function() { return __WEBPACK_IMPORTED_MODULE_24__differenceInISOYears_index_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__differenceInMilliseconds_index_js__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__differenceInMilliseconds_index_js__ = __webpack_require__(18);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "differenceInMilliseconds", function() { return __WEBPACK_IMPORTED_MODULE_25__differenceInMilliseconds_index_js__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__differenceInMinutes_index_js__ = __webpack_require__(273);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "differenceInMinutes", function() { return __WEBPACK_IMPORTED_MODULE_26__differenceInMinutes_index_js__["a"]; });
@@ -18411,7 +18380,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "startOfQuarter", function() { return __WEBPACK_IMPORTED_MODULE_119__startOfQuarter_index_js__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_120__startOfSecond_index_js__ = __webpack_require__(60);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "startOfSecond", function() { return __WEBPACK_IMPORTED_MODULE_120__startOfSecond_index_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_121__startOfWeek_index_js__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_121__startOfWeek_index_js__ = __webpack_require__(16);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "startOfWeek", function() { return __WEBPACK_IMPORTED_MODULE_121__startOfWeek_index_js__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_122__startOfYear_index_js__ = __webpack_require__(52);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "startOfYear", function() { return __WEBPACK_IMPORTED_MODULE_122__startOfYear_index_js__["a"]; });
@@ -18988,7 +18957,7 @@ function differenceInCalendarQuarters (dirtyDateLeft, dirtyDateRight, dirtyOptio
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = differenceInCalendarWeeks;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__startOfWeek_index_js__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__startOfWeek_index_js__ = __webpack_require__(16);
 
 
 var MILLISECONDS_IN_MINUTE = 60000
@@ -19057,7 +19026,7 @@ function differenceInCalendarWeeks (dirtyDateLeft, dirtyDateRight, dirtyOptions)
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = differenceInHours;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__differenceInMilliseconds_index_js__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__differenceInMilliseconds_index_js__ = __webpack_require__(18);
 
 
 var MILLISECONDS_IN_HOUR = 3600000
@@ -19163,7 +19132,7 @@ function differenceInISOYears (dirtyDateLeft, dirtyDateRight, dirtyOptions) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = differenceInMinutes;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__differenceInMilliseconds_index_js__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__differenceInMilliseconds_index_js__ = __webpack_require__(18);
 
 
 var MILLISECONDS_IN_MINUTE = 60000
@@ -23886,7 +23855,7 @@ parsers['a'] = parsers['A']
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__lib_setUTCISODay_index_js__ = __webpack_require__(350);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__lib_setUTCISOWeek_index_js__ = __webpack_require__(351);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__lib_setUTCISOWeekYear_index_js__ = __webpack_require__(352);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__lib_startOfUTCISOWeek_index_js__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__lib_startOfUTCISOWeek_index_js__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__lib_startOfUTCISOWeekYear_index_js__ = __webpack_require__(26);
 
 
@@ -24875,7 +24844,7 @@ function subMilliseconds (dirtyDate, dirtyAmount, dirtyOptions) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = subMonths;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__addMonths_index_js__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__addMonths_index_js__ = __webpack_require__(17);
 
 
 /**
@@ -28575,9 +28544,12 @@ var _PopupManager = __webpack_require__(20);
 
 var _PopupManager2 = _interopRequireDefault(_PopupManager);
 
+var _IndexManager = __webpack_require__(15);
+
+var _IndexManager2 = _interopRequireDefault(_IndexManager);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var defaultCloseTime = 4000; //
 //
 //
 //
@@ -28607,11 +28579,14 @@ var defaultCloseTime = 4000; //
 //
 //
 //
+//
+
+var defaultCloseTime = 4000;
 
 exports.default = {
     origin: 'UI',
     name: 'message',
-    mixins: [_PopupManager2.default],
+    mixins: [_PopupManager2.default, _IndexManager2.default],
     props: {
         closeBtn: {
             type: Boolean,
@@ -28734,6 +28709,7 @@ exports.default = {
                 list.unshift(options);
             }
 
+            this.$el.style.zIndex = this._indexMax();
             this.data.list = list;
 
             if (this.conf.closeTime !== false) {
@@ -29010,6 +28986,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
 
 exports.default = {
     origin: 'Form',
@@ -29026,6 +29004,13 @@ exports.default = {
         append: {
             type: String,
             default: undefined
+        },
+        align: {
+            type: String,
+            default: 'left',
+            validator: function validator(value) {
+                return ['left', 'center', 'right'].indexOf(value) !== -1;
+            }
         }
     },
     computed: {
@@ -29034,7 +29019,8 @@ exports.default = {
             return {
                 hideValue: this.hideValue,
                 prepend: this.prepend,
-                append: this.append
+                append: this.append,
+                align: this.align
             };
         },
         inputType: function inputType() {
@@ -29064,7 +29050,10 @@ exports.default = {
         inputClass: function inputClass() {
 
             return {
-                'has-append': !!this.conf.append
+                'has-append': !!this.conf.append,
+                'align-left': this.conf.align === 'left',
+                'align-center': this.conf.align === 'center',
+                'align-right': this.conf.align === 'right'
             };
         }
     },
@@ -29132,7 +29121,8 @@ var render = function() {
         "hide-name": _vm.hideName,
         "hide-value": _vm.hideValue,
         prepend: _vm.prepend,
-        append: _vm.append
+        append: _vm.append,
+        align: _vm.align
       }
     },
     [
@@ -29172,6 +29162,7 @@ var render = function() {
         : [
             _c("input", {
               key: "is-password",
+              class: _vm.inputClass,
               attrs: {
                 type: "password",
                 placeholder: _vm.placeholder,
@@ -29890,6 +29881,18 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var _trim = __webpack_require__(406);
 
@@ -29899,7 +29902,7 @@ var _GlobalEvent = __webpack_require__(14);
 
 var _GlobalEvent2 = _interopRequireDefault(_GlobalEvent);
 
-var _IndexManager = __webpack_require__(19);
+var _IndexManager = __webpack_require__(15);
 
 var _IndexManager2 = _interopRequireDefault(_IndexManager);
 
@@ -29910,6 +29913,21 @@ exports.default = {
     name: 'select',
     mixins: [_GlobalEvent2.default, _IndexManager2.default],
     props: {
+        align: {
+            type: String,
+            default: 'left',
+            validator: function validator(value) {
+                return ['left', 'center', 'right'].indexOf(value) !== -1;
+            }
+        },
+        clearable: {
+            type: Boolean,
+            default: false
+        },
+        prepend: {
+            type: String,
+            default: undefined
+        },
         maxShow: {
             type: Number,
             default: 5
@@ -29955,6 +29973,9 @@ exports.default = {
         _conf: function _conf() {
 
             return {
+                align: this.align,
+                clearable: this.clearable,
+                prepend: this.prepend,
                 maxShow: this.maxShow,
                 autoClose: this.autoClose,
                 canSearch: this.canSearch,
@@ -29982,7 +30003,12 @@ exports.default = {
                 'focus-search': !!this.data.focusSearch,
                 'is-max': !!this.isMax,
                 'has-clean-btn': !!this.conf.cleanBtn,
-                'select-item': selectItem
+                'select-item': selectItem,
+                'align-left': this.conf.align === 'left',
+                'align-center': this.conf.align === 'center',
+                'align-right': this.conf.align === 'right',
+                'has-cleanbtn': this.conf.clearable,
+                'input-group': !!this.conf.prepend
             };
         },
         isMax: function isMax() {
@@ -30142,7 +30168,7 @@ exports.default = {
 
                                 if (this.conf.multiSelect) {
 
-                                    multiValue.push((0, _trim2.default)(_$item.textContent));
+                                    multiValue.push((0, _trim2.default)(_$item.getAttribute('value')));
                                 } else {
 
                                     this.data.selectedContent = _$item.innerHTML;
@@ -30788,6 +30814,18 @@ exports.default = {
                 maxHeight: maxHeight + 'px'
             };
         },
+        _resizeSelectArea: function _resizeSelectArea() {
+
+            if (this.conf.prepend !== undefined) {
+
+                var $inputGroupAddon = this.$el.querySelector('.input-group-addon');
+                var $selectArea = this.$el.querySelector('.select-area');
+                var width = $inputGroupAddon.clientWidth;
+
+                // 1 is left border width
+                $selectArea.style.maxWidth = 'calc(100% - ' + (width + 1) + 'px)';
+            }
+        },
         toggle: function toggle(show) {
 
             if (show === undefined) {
@@ -30868,6 +30906,7 @@ exports.default = {
 
         this._updateItemValueList();
         this._onValueChange();
+        this._resizeSelectArea();
 
         this.$on('value-change', this._onValueChange);
 
@@ -30968,6 +31007,7 @@ exports.default = {
         this._setListHeight();
         this._resizeInlineImg();
         this._updateItemValueList();
+        this._resizeSelectArea();
     },
     beforeDestroy: function beforeDestroy() {
 
@@ -31016,6 +31056,9 @@ var render = function() {
         group: _vm.group,
         "default-value": _vm.defaultValue,
         "hide-name": _vm.hideName,
+        align: _vm.align,
+        clearable: _vm.clearable,
+        prepend: _vm.prepend,
         "max-show": _vm.maxShow,
         "auto-close": _vm.autoClose,
         "can-search": _vm.canSearch,
@@ -31029,131 +31072,164 @@ var render = function() {
       }
     },
     [
-      _c(
-        "div",
-        { staticClass: "wrap", on: { click: _vm._wrapClick } },
-        [
-          _vm.conf.multiSelect
-            ? [
-                _vm.conf.canSearch
-                  ? _c("morning-multiinput", {
-                      key: "multi-can-search",
-                      attrs: {
-                        id: "ui-select-mi-" + _vm.uiid,
-                        "can-move": _vm.conf.canMove,
-                        max: _vm.conf.max,
-                        "form-name": _vm.conf.formName,
-                        "hide-name": _vm.conf.hideName,
-                        disabled: _vm.conf.state === "disabled"
-                      },
-                      on: {
-                        "input-focus": function($event) {
-                          _vm._multiinputFocus()
+      _vm.conf.prepend
+        ? [
+            _c("div", {
+              staticClass: "input-group-addon",
+              domProps: { innerHTML: _vm._s(_vm.conf.prepend) }
+            })
+          ]
+        : _vm._e(),
+      _vm._v(" "),
+      _c("div", { staticClass: "select-area" }, [
+        _c(
+          "div",
+          { staticClass: "wrap", on: { click: _vm._wrapClick } },
+          [
+            _vm.conf.multiSelect
+              ? [
+                  _vm.conf.canSearch
+                    ? _c("morning-multiinput", {
+                        key: "multi-can-search",
+                        attrs: {
+                          id: "ui-select-mi-" + _vm.uiid,
+                          "can-move": _vm.conf.canMove,
+                          max: _vm.conf.max,
+                          "form-name": _vm.conf.formName,
+                          "hide-name": _vm.conf.hideName,
+                          disabled: _vm.conf.state === "disabled"
                         },
-                        "value-change": function($event) {
-                          _vm._multiinputValueChange()
-                        },
-                        "input-value-change": function($event) {
-                          _vm._searchKeyChange()
-                        }
-                      }
-                    })
-                  : _c("morning-multiinput", {
-                      key: "multi-no-search",
-                      attrs: {
-                        id: "ui-select-mi-" + _vm.uiid,
-                        "can-move": _vm.conf.canMove,
-                        max: _vm.conf.max,
-                        "form-name": _vm.conf.formName,
-                        "hide-name": _vm.conf.hideName,
-                        disabled: _vm.conf.state === "disabled"
-                      },
-                      on: {
-                        "input-focus": function($event) {
-                          _vm._multiinputFocusNoSearch()
-                        },
-                        "value-change": function($event) {
-                          _vm._multiinputValueChange()
-                        }
-                      }
-                    })
-              ]
-            : [
-                _vm.conf.canSearch
-                  ? [
-                      _c("morning-textinput", {
-                        key: "single-can-search",
-                        attrs: { id: "ui-select-ti-" + _vm.uiid },
                         on: {
+                          "input-focus": function($event) {
+                            _vm._multiinputFocus()
+                          },
                           "value-change": function($event) {
+                            _vm._multiinputValueChange()
+                          },
+                          "input-value-change": function($event) {
                             _vm._searchKeyChange()
-                          },
-                          focus: function($event) {
-                            _vm._textinputFocus()
-                          },
-                          blur: function($event) {
-                            _vm._textinputBlur()
                           }
                         }
                       })
-                    ]
-                  : _vm._e(),
-                _vm._v(" "),
-                !_vm.conf.multiSelect &&
-                _vm.data.value &&
-                _vm.data.value.length === 1
-                  ? _c("div", {
-                      staticClass: "selected",
-                      domProps: { innerHTML: _vm._s(_vm.data.selectedContent) }
-                    })
-                  : !_vm.conf.hideName
-                    ? _c("div", { staticClass: "selected" }, [
-                        _vm._v(
-                          "\n            " +
-                            _vm._s(_vm.conf.formName) +
-                            "\n        "
-                        )
-                      ])
-                    : _c("div", { staticClass: "selected" }, [
-                        _vm._v("\n             \n        ")
-                      ])
-              ],
-          _vm._v(" "),
-          _c("i", { staticClass: "morningicon drop" }, [_vm._v("")]),
-          _vm._v(" "),
-          _vm.conf.cleanBtn
-            ? _c(
-                "i",
-                {
-                  staticClass: "morningicon clean",
-                  on: {
-                    click: function($event) {
-                      _vm._set(undefined, true)
+                    : _c("morning-multiinput", {
+                        key: "multi-no-search",
+                        attrs: {
+                          id: "ui-select-mi-" + _vm.uiid,
+                          "can-move": _vm.conf.canMove,
+                          max: _vm.conf.max,
+                          "form-name": _vm.conf.formName,
+                          "hide-name": _vm.conf.hideName,
+                          disabled: _vm.conf.state === "disabled"
+                        },
+                        on: {
+                          "input-focus": function($event) {
+                            _vm._multiinputFocusNoSearch()
+                          },
+                          "value-change": function($event) {
+                            _vm._multiinputValueChange()
+                          }
+                        }
+                      })
+                ]
+              : [
+                  _vm.conf.canSearch
+                    ? [
+                        _c("morning-textinput", {
+                          key: "single-can-search",
+                          attrs: {
+                            id: "ui-select-ti-" + _vm.uiid,
+                            align: _vm.conf.align
+                          },
+                          on: {
+                            "value-change": function($event) {
+                              _vm._searchKeyChange()
+                            },
+                            focus: function($event) {
+                              _vm._textinputFocus()
+                            },
+                            blur: function($event) {
+                              _vm._textinputBlur()
+                            }
+                          }
+                        })
+                      ]
+                    : _vm._e(),
+                  _vm._v(" "),
+                  !_vm.conf.multiSelect &&
+                  _vm.data.value &&
+                  _vm.data.value.length === 1
+                    ? _c("div", {
+                        staticClass: "selected",
+                        domProps: {
+                          innerHTML: _vm._s(_vm.data.selectedContent)
+                        }
+                      })
+                    : !_vm.conf.hideName
+                      ? _c("div", { staticClass: "selected" }, [
+                          _vm._v(
+                            "\n                " +
+                              _vm._s(_vm.conf.formName) +
+                              "\n            "
+                          )
+                        ])
+                      : _c("div", { staticClass: "selected" }, [
+                          _vm._v("\n                 \n            ")
+                        ])
+                ],
+            _vm._v(" "),
+            _c("i", { staticClass: "morningicon drop" }, [_vm._v("")]),
+            _vm._v(" "),
+            _vm.conf.cleanBtn
+              ? _c(
+                  "i",
+                  {
+                    staticClass: "morningicon clean",
+                    on: {
+                      click: function($event) {
+                        _vm._set(undefined, true)
+                      }
                     }
-                  }
-                },
-                [_vm._v("")]
-              )
-            : _vm._e()
-        ],
-        2
-      ),
+                  },
+                  [_vm._v("")]
+                )
+              : _vm._e()
+          ],
+          2
+        ),
+        _vm._v(" "),
+        _c(
+          "ul",
+          {
+            staticClass: "list",
+            style: _vm.listStyle,
+            on: { click: _vm._listClick }
+          },
+          [
+            _vm._t("default"),
+            _vm._v(" "),
+            _c("li", { staticClass: "noitem" }, [_vm._v("无项目")])
+          ],
+          2
+        )
+      ]),
       _vm._v(" "),
-      _c(
-        "ul",
-        {
-          staticClass: "list",
-          style: _vm.listStyle,
-          on: { click: _vm._listClick }
-        },
-        [
-          _vm._t("default"),
-          _vm._v(" "),
-          _c("li", { staticClass: "noitem" }, [_vm._v("无项目")])
-        ],
-        2
-      )
-    ]
+      _vm.conf.clearable
+        ? _c(
+            "morning-link",
+            {
+              staticClass: "cleanbtn",
+              attrs: { color: "minor" },
+              on: {
+                emit: function($event) {
+                  _vm._set(undefined, true)
+                }
+              }
+            },
+            [_vm._v("清空")]
+          )
+        : _vm._e()
+    ],
+    2
   )
 }
 var staticRenderFns = []
@@ -35923,7 +35999,6 @@ exports.default = {
             data: {
                 inited: false,
                 uploadValueSet: false,
-                uploadValueChanging: false,
                 syncing: false,
                 zoneId: 0,
                 images: [],
@@ -36439,7 +36514,6 @@ exports.default = {
 
             Promise.all(loadList).then(function () {
 
-                _this3.data.uploadValueChanging = true;
                 _this3.data.imagesLoading = false;
                 _this3.data.images = images;
             });
@@ -36497,6 +36571,13 @@ exports.default = {
             result.zones = this.data.zones;
             result.w = $zonearea.clientWidth;
             result.h = $zonearea.clientHeight;
+
+            // when images is empty.
+            if (!result.images || result.images.length === 0) {
+
+                result.w = 0;
+                result.h = 0;
+            }
 
             this._set(result, true);
         },
@@ -36573,11 +36654,9 @@ exports.default = {
             deep: true
         });
 
-        this.$watch('data.images', function () {
+        this.$watch('data.images', function (newValue, oldValue) {
 
-            if (_this5.data.uploadValueChanging) {
-
-                _this5.data.uploadValueChanging = false;
+            if (JSON.stringify(newValue) === JSON.stringify(oldValue)) {
 
                 return;
             }
