@@ -227,7 +227,7 @@ export default UI => UI.extend({
         },
         _clean : function () {
 
-            this._set(undefined);
+            this.set(undefined);
 
         },
         set : function (value) {
