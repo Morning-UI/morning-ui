@@ -376,6 +376,13 @@ export default UI => UI.extend({
         });
 
         this.data.value = this.conf.defaultValue;
+
+        if (this.modelValue !== undefined && this.conf.state !== 'disabled') {
+
+            this.data.value = this.modelValue;
+
+        }
+
         this._syncGroup();
 
         this.$watch('modelValue', newValue => {
