@@ -69,3 +69,59 @@ test('set json string value', async t => {
     });
 
 });
+
+test('init component value is right when use v-model', async t => {
+
+    const vm = new Vue({
+        template : `
+            <div style="width:300px;">
+                <ui-textinput v-model="name"></ui-textinput>
+            </div>
+        `,
+        data : {
+            name : 'test 123'
+        },
+        components : {
+            'ui-textinput' : component
+        }
+    });
+
+    vm.$mount();
+
+    t.plan(1);
+
+    Vue.nextTick(() => {
+
+        t.is(vm.$children[0].get(), 'test 123');
+
+    });
+
+});
+
+test('init component value is right when both use v-model and default-value', async t => {
+
+    const vm = new Vue({
+        template : `
+            <div style="width:300px;">
+                <ui-textinput v-model="name" default-value="test 234"></ui-textinput>
+            </div>
+        `,
+        data : {
+            name : 'test 123'
+        },
+        components : {
+            'ui-textinput' : component
+        }
+    });
+
+    vm.$mount();
+
+    t.plan(1);
+
+    Vue.nextTick(() => {
+
+        t.is(vm.$children[0].get(), 'test 123');
+
+    });
+
+});
