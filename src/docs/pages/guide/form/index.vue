@@ -199,9 +199,13 @@
     </div>
     :::
 
-    注意：如果表单处于`disable`状态，父视图中的数值变化将不会同步到表单。
+    注意：如果表单处于`disable`状态，父视图中的数值变化将不会同步到表单(但`default-value`数值可以应用到表单)。
 
     `v-model`指令的用法详见：<a href="https://cn.vuejs.org/v2/guide/forms.html" target="_blank">表单输入绑定</a>
+
+    #### `v-model`和`default-value`一起使用
+
+    当`v-model`和`default-value`一起使用并都有效时，组件会优先同步到`v-model`的数值。
 
     ### 全局扩展
 
