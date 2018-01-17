@@ -7992,6 +7992,15 @@ mor-textinput {
   box-sizing: border-box;
   vertical-align: middle;
 }
+mor-textinput.has-cleanbtn {
+  padding-bottom: 20px;
+}
+mor-textinput .cleanbtn {
+  position: absolute;
+  right: 0;
+  font-size: 12px;
+  margin-top: 1px;
+}
 mor-textinput input {
   box-sizing: border-box;
   z-index: 2;
@@ -8090,6 +8099,15 @@ mor-textarea {
   box-sizing: border-box;
   vertical-align: top;
 }
+mor-textarea.has-cleanbtn {
+  padding-bottom: 20px;
+}
+mor-textarea .cleanbtn {
+  position: absolute;
+  right: 0;
+  font-size: 12px;
+  margin-top: 1px;
+}
 mor-textarea textarea {
   box-sizing: border-box;
   z-index: 2;
@@ -8182,19 +8200,28 @@ mor-switch {
   width: 100%;
   box-sizing: border-box;
 }
+mor-switch.has-cleanbtn {
+  padding-bottom: 20px;
+}
+mor-switch .cleanbtn {
+  position: absolute;
+  right: 0;
+  font-size: 12px;
+  margin-top: 1px;
+}
 mor-switch .note {
   color: #303C4B;
   font-size: 16px;
   height: 42px;
   line-height: 42px;
-  margin-right: 70px;
+  margin-right: 50px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
 mor-switch .track {
   position: absolute;
-  right: 20px;
+  right: 0;
   top: 6px;
   height: 30px;
   width: 50px;
@@ -8524,6 +8551,19 @@ mor-select {
   vertical-align: middle;
   min-height: 42px;
 }
+mor-select.has-cleanbtn {
+  padding-bottom: 20px;
+}
+mor-select .cleanbtn {
+  position: absolute;
+  right: 0;
+  font-size: 12px;
+  margin-top: 1px;
+}
+mor-select .select-area {
+  position: relative;
+  z-index: 2;
+}
 mor-select.align-left {
   text-align: left;
 }
@@ -8613,15 +8653,6 @@ mor-select .wrap > .morningicon.drop {
   font-size: 30px;
   text-indent: 1px;
 }
-mor-select .wrap > .morningicon.clean {
-  top: 0;
-  right: 26px;
-  width: 18px;
-  font-size: 16px;
-}
-mor-select .wrap > .morningicon.clean:hover {
-  color: #D64431;
-}
 mor-select .wrap:hover {
   border-color: #d7d7d7;
 }
@@ -8705,11 +8736,6 @@ mor-select.align-right .wrap > mor-multiinput {
 mor-select.align-right .wrap > mor-multiinput input {
   text-align: right;
 }
-mor-select.has-clean-btn .wrap > mor-textinput,
-mor-select.has-clean-btn .wrap > mor-multiinput,
-mor-select.has-clean-btn .wrap > .selected {
-  width: calc( 100% - 50px );
-}
 mor-select.showlist .wrap {
   border-color: #E6E6E6;
   border-bottom-width: 0;
@@ -8743,15 +8769,6 @@ mor-select.is-max .wrap {
 }
 mor-select.is-max .wrap > .drop {
   display: none;
-}
-mor-select.has-cleanbtn {
-  padding-bottom: 20px;
-}
-mor-select .cleanbtn {
-  position: absolute;
-  right: 0;
-  font-size: 12px;
-  margin-top: 1px;
 }
 mor-select.input-group {
   display: flex;
@@ -8811,6 +8828,15 @@ mor-checkbox {
   display: inline-block;
   z-index: 9;
   -webkit-user-select: none;
+}
+mor-checkbox.has-cleanbtn {
+  padding-bottom: 20px;
+}
+mor-checkbox .cleanbtn {
+  position: absolute;
+  right: 0;
+  font-size: 12px;
+  margin-top: 1px;
 }
 mor-checkbox > .note {
   color: #303C4B;
@@ -9326,6 +9352,15 @@ mor-multiinput {
   vertical-align: middle;
   -webkit-user-select: none;
 }
+mor-multiinput.has-cleanbtn {
+  padding-bottom: 20px;
+}
+mor-multiinput .cleanbtn {
+  position: absolute;
+  right: 0;
+  font-size: 12px;
+  margin-top: 1px;
+}
 mor-multiinput > .itemlist {
   border: 1px #E6E6E6 solid;
   border-radius: 3px;
@@ -9456,6 +9491,15 @@ mor-multiform {
   box-sizing: border-box;
   vertical-align: middle;
   -webkit-user-select: none;
+}
+mor-multiform.has-cleanbtn {
+  padding-bottom: 20px;
+}
+mor-multiform .cleanbtn {
+  position: absolute;
+  right: 0;
+  font-size: 12px;
+  margin-top: 1px;
 }
 mor-multiform > .itemlist {
   border: 1px #E6E6E6 solid;
@@ -9591,15 +9635,6 @@ mor-multiform > .itemlist > .itemwrap > span {
   text-align: center;
   display: block;
 }
-mor-multiform.has-cleanbtn {
-  padding-bottom: 20px;
-}
-mor-multiform .cleanbtn {
-  position: absolute;
-  right: 0;
-  font-size: 12px;
-  margin-top: 1px;
-}
 mor-multiform.focus > .itemlist,
 mor-multiform:hover > .itemlist {
   border-color: #d7d7d7;
@@ -9644,6 +9679,15 @@ mor-upload {
   box-sizing: border-box;
   vertical-align: middle;
   -webkit-user-select: none;
+}
+mor-upload.has-cleanbtn {
+  padding-bottom: 20px;
+}
+mor-upload .cleanbtn {
+  position: absolute;
+  right: 0;
+  font-size: 12px;
+  margin-top: 1px;
 }
 mor-upload > .filelist {
   border: 1px #E6E6E6 solid;
@@ -9979,6 +10023,16 @@ mor-imagemap {
   display: block;
   width: 100%;
   box-sizing: border-box;
+  position: relative;
+}
+mor-imagemap.has-cleanbtn {
+  padding-bottom: 20px;
+}
+mor-imagemap .cleanbtn {
+  position: absolute;
+  right: 0;
+  font-size: 12px;
+  margin-top: 1px;
 }
 mor-imagemap .operate {
   display: block;

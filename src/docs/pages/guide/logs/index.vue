@@ -18,6 +18,20 @@
     
     ### 更新记录
 
+    ### 0.10.15 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2018年1月16日，
+            Archive : 
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.15" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.15/dist/" target="_blank">CDN</a>
+        </ui-small>
+    </ui-textcolor><br/><br/>
+
+    - 标准化组件的clearable行为
+    - 修复使用`v-model`时组件数值初始化不正确的问题
+    - 修复`ui-imagemap`组件无法清空数值
         
     ### 0.10.14 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
@@ -28,7 +42,7 @@
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.14" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.14/dist/" target="_blank">CDN</a>
         </ui-small>
-    </ui-textcolor>
+    </ui-textcolor><br/><br/>
 
     - `ui-multiform`新增`item-validator`配置
     - `ui-textinput`的`append`和`prepend`配置支持HTML

@@ -3687,6 +3687,10 @@ mor-message .message-co-white .body,mor-message .message-co-white .title{color:#
 }
 mor-textinput{position:relative;z-index:1;display:block;width:100%;box-sizing:border-box;vertical-align:middle
 }
+mor-textinput.has-cleanbtn{padding-bottom:20px
+}
+mor-textinput .cleanbtn{position:absolute;right:0;font-size:12px;margin-top:1px
+}
 mor-textinput input{box-sizing:border-box;z-index:2;font-size:14px;padding:0 1em;width:100%;background:#fff;border:1px #e6e6e6 solid;border-radius:3px;height:42px;line-height:42px;color:#b3b3b3!important;outline:0;-webkit-appearance:none
 }
 mor-textinput input.align-left{text-align:left
@@ -3722,6 +3726,10 @@ mor-textinput.input-group .input-group-addon+input.has-append{border-top-right-r
 mor-textinput.st-disabled input[disabled]{border:1px #a6a6a6 solid;background-color:#ebebeb;-webkit-user-select:none;cursor:not-allowed!important;color:#8d8d8d!important
 }
 mor-textarea{position:relative;z-index:1;display:block;width:100%;box-sizing:border-box;vertical-align:top
+}
+mor-textarea.has-cleanbtn{padding-bottom:20px
+}
+mor-textarea .cleanbtn{position:absolute;right:0;font-size:12px;margin-top:1px
 }
 mor-textarea textarea{box-sizing:border-box;z-index:2;font-size:14px;padding:.8em;width:100%;background:#fff;border:1px #e6e6e6 solid;border-radius:3px;line-height:1.4em;color:#b3b3b3!important;outline:0;-webkit-appearance:none;resize:none;transition:height .2s
 }
@@ -3761,9 +3769,13 @@ mor-textarea.st-disabled textarea{border:1px #a6a6a6 solid;background-color:#ebe
 }
 mor-switch{position:relative;z-index:1;display:inline-block;width:100%;box-sizing:border-box
 }
-mor-switch .note{color:#303c4b;font-size:16px;height:42px;line-height:42px;margin-right:70px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis
+mor-switch.has-cleanbtn{padding-bottom:20px
 }
-mor-switch .track{position:absolute;right:20px;top:6px;height:30px;width:50px;background:#fff;box-shadow:0 0 2px #e6e6e6 inset;border:1px #ebebeb solid;border-radius:15px;display:inline-block;cursor:pointer;box-sizing:border-box;-webkit-user-select:none;transition:background .16s,box-shadow .16s,border .16s
+mor-switch .cleanbtn{position:absolute;right:0;font-size:12px;margin-top:1px
+}
+mor-switch .note{color:#303c4b;font-size:16px;height:42px;line-height:42px;margin-right:50px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis
+}
+mor-switch .track{position:absolute;right:0;top:6px;height:30px;width:50px;background:#fff;box-shadow:0 0 2px #e6e6e6 inset;border:1px #ebebeb solid;border-radius:15px;display:inline-block;cursor:pointer;box-sizing:border-box;-webkit-user-select:none;transition:background .16s,box-shadow .16s,border .16s
 }
 mor-switch .track:hover{box-shadow:0 0 3px #d7d7d7 inset;border:1px #d9d9d9 solid
 }
@@ -3919,6 +3931,12 @@ mor-switch.open .track .point{box-shadow:0 0 4px #a60a26
 }
 mor-select{position:relative;display:inline-block;width:100%;box-sizing:border-box;vertical-align:middle;min-height:42px
 }
+mor-select.has-cleanbtn{padding-bottom:20px
+}
+mor-select .cleanbtn{position:absolute;right:0;font-size:12px;margin-top:1px
+}
+mor-select .select-area{position:relative;z-index:2
+}
 mor-select.align-left{text-align:left
 }
 mor-select.align-center{text-align:center
@@ -3946,10 +3964,6 @@ mor-select .wrap>.selected mor-img>img{vertical-align:top
 mor-select .wrap>.morningicon{position:absolute;line-height:40px;width:24px;transform:rotateX(0);transition:transform .2s;z-index:2;color:#b3b3b3
 }
 mor-select .wrap>.morningicon.drop{top:0;right:0;font-size:30px;text-indent:1px
-}
-mor-select .wrap>.morningicon.clean{top:0;right:26px;width:18px;font-size:16px
-}
-mor-select .wrap>.morningicon.clean:hover{color:#d64431
 }
 mor-select .wrap:hover{border-color:#d7d7d7
 }
@@ -3983,8 +3997,6 @@ mor-select.align-right .wrap>mor-multiinput{width:calc(100% - 1em);padding-right
 }
 mor-select.align-right .wrap>mor-multiinput input{text-align:right
 }
-mor-select.has-clean-btn .wrap>.selected,mor-select.has-clean-btn .wrap>mor-multiinput,mor-select.has-clean-btn .wrap>mor-textinput{width:calc(100% - 50px)
-}
 mor-select.showlist .wrap{border-color:#e6e6e6;border-bottom-width:0;border-radius:3px 3px 0 0;padding-bottom:1px
 }
 mor-select.showlist .wrap>mor-textinput{cursor:initial
@@ -4004,10 +4016,6 @@ mor-select.searching .wrap>.selected{visibility:hidden
 mor-select.is-max .wrap{cursor:default
 }
 mor-select.is-max .wrap>.drop{display:none
-}
-mor-select.has-cleanbtn{padding-bottom:20px
-}
-mor-select .cleanbtn{position:absolute;right:0;font-size:12px;margin-top:1px
 }
 mor-select.input-group{display:flex;vertical-align:middle
 }
@@ -4030,6 +4038,10 @@ mor-select.st-disabled .wrap>mor-multiinput{background:0 0
 mor-select.st-disabled .wrap>mor-textinput{display:none
 }
 mor-checkbox{width:100%;position:relative;display:inline-block;z-index:9;-webkit-user-select:none
+}
+mor-checkbox.has-cleanbtn{padding-bottom:20px
+}
+mor-checkbox .cleanbtn{position:absolute;right:0;font-size:12px;margin-top:1px
 }
 mor-checkbox>.note{color:#303c4b;font-size:16px;margin-bottom:.5em;-webkit-user-select:text
 }
@@ -4275,6 +4287,10 @@ mor-radio>.itemlist label.checked .box{background:#f33d5d;border-color:#f33d5d
 }
 mor-multiinput{position:relative;z-index:1;display:inline-block;width:100%;box-sizing:border-box;vertical-align:middle;-webkit-user-select:none
 }
+mor-multiinput.has-cleanbtn{padding-bottom:20px
+}
+mor-multiinput .cleanbtn{position:absolute;right:0;font-size:12px;margin-top:1px
+}
 mor-multiinput>.itemlist{border:1px #e6e6e6 solid;border-radius:3px;padding:3.2px 4.8px;position:relative;font-size:0
 }
 mor-multiinput>.itemlist>.item{color:#9a9a9a!important;background-color:#f0f0f0;display:inline-block;padding:.4em .7em;border-radius:3px;margin:3.2px 1.6px;vertical-align:top;max-width:100%;line-height:1.2em;text-decoration:none;position:relative;cursor:default;font-size:13px;box-sizing:border-box
@@ -4321,6 +4337,10 @@ mor-multiinput.st-disabled>.itemlist:hover{border-color:#a6a6a6
 }
 mor-multiform{position:relative;z-index:1;display:inline-block;width:100%;box-sizing:border-box;vertical-align:middle;-webkit-user-select:none
 }
+mor-multiform.has-cleanbtn{padding-bottom:20px
+}
+mor-multiform .cleanbtn{position:absolute;right:0;font-size:12px;margin-top:1px
+}
 mor-multiform>.itemlist{border:1px #e6e6e6 solid;border-radius:3px;padding:3.2px 4.8px;position:relative;overflow:hidden;font-size:0;min-height:42px;box-sizing:border-box
 }
 mor-multiform>.itemlist>.name{height:100%;position:absolute;width:20%;max-width:150px;margin:0;background-color:#f0f0f0;color:#7c8ba0;font-size:13px;display:inline-block;left:0;top:0
@@ -4361,10 +4381,6 @@ mor-multiform>.itemlist>.itemwrap>.item.has-img .thumb{position:absolute;top:0;l
 }
 mor-multiform>.itemlist>.itemwrap>span{font-size:12px;color:silver!important;width:100%;padding:.4em .7em;text-align:center;display:block
 }
-mor-multiform.has-cleanbtn{padding-bottom:20px
-}
-mor-multiform .cleanbtn{position:absolute;right:0;font-size:12px;margin-top:1px
-}
 mor-multiform.focus>.itemlist,mor-multiform:hover>.itemlist{border-color:#d7d7d7
 }
 mor-multiform.can-move>.itemlist>.itemwrap>.item:not(.add){cursor:move
@@ -4386,6 +4402,10 @@ mor-multiform.st-disabled>.itemlist>.itemwrap>.item.add:hover{cursor:default
 mor-multiform.st-disabled>.itemlist:hover{border-color:#a6a6a6
 }
 mor-upload{position:relative;z-index:1;display:inline-block;width:100%;box-sizing:border-box;vertical-align:middle;-webkit-user-select:none
+}
+mor-upload.has-cleanbtn{padding-bottom:20px
+}
+mor-upload .cleanbtn{position:absolute;right:0;font-size:12px;margin-top:1px
 }
 mor-upload>.filelist{border:1px #e6e6e6 solid;border-radius:3px;padding:3.2px 4.8px;position:relative;overflow:hidden;min-height:42px;font-size:0;background:#fff;box-sizing:border-box
 }
@@ -4521,7 +4541,11 @@ mor-upload.st-disabled>.filelist>.filewrap>.add:hover i.morningicon{color:#9a9a9
 }
 mor-upload.st-disabled>.filelist:hover{border-color:#a6a6a6
 }
-mor-imagemap{display:block;width:100%;box-sizing:border-box
+mor-imagemap{display:block;width:100%;box-sizing:border-box;position:relative
+}
+mor-imagemap.has-cleanbtn{padding-bottom:20px
+}
+mor-imagemap .cleanbtn{position:absolute;right:0;font-size:12px;margin-top:1px
 }
 mor-imagemap .operate{display:block;color:#8e9caf;background:#f0f0f0;text-align:center;margin-top:-2px;border:1px #e6e6e6 solid;box-sizing:border-box;z-index:1;position:relative;border-radius:0 0 3px 3px;vertical-align:top;font-size:13px
 }

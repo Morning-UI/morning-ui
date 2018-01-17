@@ -6996,7 +6996,7 @@ var morning = {
     _groupVmMap: {},
     _options: {},
     isMorning: true,
-    version: '0.10.14',
+    version: '0.10.15',
     map: {}
 };
 
@@ -7476,6 +7476,10 @@ exports.default = function (UI) {
             },
             modelValue: {
                 default: undefined
+            },
+            clearable: {
+                type: Boolean,
+                default: false
             }
         },
         computed: {
@@ -7486,7 +7490,14 @@ exports.default = function (UI) {
                     formKey: this.formKey,
                     group: this.group,
                     defaultValue: this.defaultValue,
-                    hideName: this.hideName
+                    hideName: this.hideName,
+                    clearable: this.clearable
+                };
+            },
+            formClass: function formClass() {
+
+                return {
+                    'has-cleanbtn': this.conf.clearable
                 };
             }
         },
@@ -7715,6 +7726,10 @@ exports.default = function (UI) {
 
                 return value;
             },
+            _clean: function _clean() {
+
+                this.set(undefined);
+            },
             set: function set(value) {
 
                 return this._set(value);
@@ -7863,6 +7878,12 @@ exports.default = function (UI) {
             });
 
             this.data.value = this.conf.defaultValue;
+
+            if (this.modelValue !== undefined && this.conf.state !== 'disabled') {
+
+                this.data.value = this.modelValue;
+            }
+
             this._syncGroup();
 
             this.$watch('modelValue', function (newValue) {
@@ -26019,6 +26040,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
+//
 
 exports.default = {
     origin: 'Form',
@@ -26142,7 +26166,7 @@ var render = function() {
   return _c(
     "mor-textinput",
     {
-      class: [_vm.stateClass, _vm.moreClass],
+      class: [_vm.formClass, _vm.stateClass, _vm.moreClass],
       attrs: {
         _uiid: _vm.uiid,
         "form-name": _vm.formName,
@@ -26150,6 +26174,7 @@ var render = function() {
         group: _vm.group,
         "default-value": _vm.defaultValue,
         "hide-name": _vm.hideName,
+        clearable: _vm.clearable,
         "hide-value": _vm.hideValue,
         prepend: _vm.prepend,
         append: _vm.append,
@@ -26221,6 +26246,18 @@ var render = function() {
               domProps: { innerHTML: _vm._s(_vm.conf.append) }
             })
           ]
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.conf.clearable
+        ? _c(
+            "morning-link",
+            {
+              staticClass: "cleanbtn",
+              attrs: { color: "minor" },
+              on: { emit: _vm._clean }
+            },
+            [_vm._v("清空")]
+          )
         : _vm._e()
     ],
     2
@@ -26313,6 +26350,9 @@ Object.defineProperty(exports, "__esModule", {
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
+//
+//
+//
 //
 //
 //
@@ -26452,7 +26492,7 @@ var render = function() {
   return _c(
     "mor-textarea",
     {
-      class: [_vm.stateClass],
+      class: [_vm.formClass, _vm.stateClass],
       attrs: {
         _uiid: _vm.uiid,
         "form-name": _vm.formName,
@@ -26460,6 +26500,7 @@ var render = function() {
         group: _vm.group,
         "default-value": _vm.defaultValue,
         "hide-name": _vm.hideName,
+        clearable: _vm.clearable,
         rows: _vm.rows
       }
     },
@@ -26482,8 +26523,21 @@ var render = function() {
             _vm.$emit("input", $event.target.value)
           }
         }
-      })
-    ]
+      }),
+      _vm._v(" "),
+      _vm.conf.clearable
+        ? _c(
+            "morning-link",
+            {
+              staticClass: "cleanbtn",
+              attrs: { color: "minor" },
+              on: { emit: _vm._clean }
+            },
+            [_vm._v("清空")]
+          )
+        : _vm._e()
+    ],
+    1
   )
 }
 var staticRenderFns = []
@@ -26570,6 +26624,9 @@ if (false) {(function () {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+//
+//
+//
 //
 //
 //
@@ -26689,7 +26746,7 @@ var render = function() {
   return _c(
     "mor-switch",
     {
-      class: [_vm.colorClass, _vm.stateClass, _vm.moreClass],
+      class: [_vm.formClass, _vm.colorClass, _vm.stateClass, _vm.moreClass],
       attrs: {
         _uiid: _vm.uiid,
         "form-name": _vm.formName,
@@ -26697,6 +26754,7 @@ var render = function() {
         group: _vm.group,
         "default-value": _vm.defaultValue,
         "hide-name": _vm.hideName,
+        clearable: _vm.clearable,
         "auto-hide-name": _vm.autoHideName
       }
     },
@@ -26714,8 +26772,21 @@ var render = function() {
           }
         },
         [_c("div", { staticClass: "point" })]
-      )
-    ]
+      ),
+      _vm._v(" "),
+      _vm.conf.clearable
+        ? _c(
+            "morning-link",
+            {
+              staticClass: "cleanbtn",
+              attrs: { color: "minor" },
+              on: { emit: _vm._clean }
+            },
+            [_vm._v("清空")]
+          )
+        : _vm._e()
+    ],
+    1
   )
 }
 var staticRenderFns = []
@@ -26918,12 +26989,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 var _trim = __webpack_require__(403);
 
@@ -26950,10 +27015,6 @@ exports.default = {
             validator: function validator(value) {
                 return ['left', 'center', 'right'].indexOf(value) !== -1;
             }
-        },
-        clearable: {
-            type: Boolean,
-            default: false
         },
         prepend: {
             type: String,
@@ -26983,10 +27044,6 @@ exports.default = {
             type: Number,
             default: Infinity
         },
-        cleanBtn: {
-            type: Boolean,
-            default: false
-        },
         inlineImgSize: {
             type: String,
             default: '2em'
@@ -27005,7 +27062,6 @@ exports.default = {
 
             return {
                 align: this.align,
-                clearable: this.clearable,
                 prepend: this.prepend,
                 maxShow: this.maxShow,
                 autoClose: this.autoClose,
@@ -27013,7 +27069,6 @@ exports.default = {
                 multiSelect: this.multiSelect,
                 canMove: this.canMove,
                 max: this.max,
-                cleanBtn: this.cleanBtn,
                 inlineImgSize: this.inlineImgSize,
                 itemTip: this.itemTip,
                 itemTipDirect: this.itemTipDirect
@@ -27033,12 +27088,10 @@ exports.default = {
                 searching: !!this.data.searching,
                 'focus-search': !!this.data.focusSearch,
                 'is-max': !!this.isMax,
-                'has-clean-btn': !!this.conf.cleanBtn,
                 'select-item': selectItem,
                 'align-left': this.conf.align === 'left',
                 'align-center': this.conf.align === 'center',
                 'align-right': this.conf.align === 'right',
-                'has-cleanbtn': this.conf.clearable,
                 'input-group': !!this.conf.prepend
             };
         },
@@ -27317,14 +27370,10 @@ exports.default = {
 
             var $searchTextinput = this.$el.querySelector('.wrap mor-textinput'),
                 $searchMultiinput = this.$el.querySelector('.wrap mor-multiinput'),
-                $cleanBtn = this.$el.querySelector('.wrap .clean'),
                 hasTextinput = evt.path.indexOf($searchTextinput) !== -1,
-                hasMultiinput = evt.path.indexOf($searchMultiinput) !== -1,
-                hasCleanBtn = evt.path.indexOf($cleanBtn) !== -1;
-            // searchTextinput = ($(ev.target).is($multiInput) || $multiInput.find($(ev.target)).length),
-            // searchMultiinput = $(ev.target).is($searchInput) || $searchInput.has($(ev.target)).length;
+                hasMultiinput = evt.path.indexOf($searchMultiinput) !== -1;
 
-            if (!hasTextinput && !hasMultiinput && !hasCleanBtn) {
+            if (!hasTextinput && !hasMultiinput) {
 
                 this.toggle();
             } else if ((hasTextinput || hasMultiinput) && this.data.showlist === false) {
@@ -28079,7 +28128,7 @@ var render = function() {
   return _c(
     "mor-select",
     {
-      class: [_vm.stateClass, _vm.moreClass],
+      class: [_vm.formClass, _vm.stateClass, _vm.moreClass],
       attrs: {
         _uiid: _vm.uiid,
         "form-name": _vm.formName,
@@ -28087,8 +28136,8 @@ var render = function() {
         group: _vm.group,
         "default-value": _vm.defaultValue,
         "hide-name": _vm.hideName,
-        align: _vm.align,
         clearable: _vm.clearable,
+        align: _vm.align,
         prepend: _vm.prepend,
         "max-show": _vm.maxShow,
         "auto-close": _vm.autoClose,
@@ -28096,7 +28145,6 @@ var render = function() {
         "multi-select": _vm.multiSelect,
         "can-move": _vm.canMove,
         max: _vm.max,
-        "clean-btn": _vm.cleanBtn,
         "inline-img-size": _vm.inlineImgSize,
         "item-tip": _vm.itemTip,
         "item-tip-direct": _vm.itemTipDirect
@@ -28208,22 +28256,7 @@ var render = function() {
                         ])
                 ],
             _vm._v(" "),
-            _c("i", { staticClass: "morningicon drop" }, [_vm._v("")]),
-            _vm._v(" "),
-            _vm.conf.cleanBtn
-              ? _c(
-                  "i",
-                  {
-                    staticClass: "morningicon clean",
-                    on: {
-                      click: function($event) {
-                        _vm._set(undefined, true)
-                      }
-                    }
-                  },
-                  [_vm._v("")]
-                )
-              : _vm._e()
+            _c("i", { staticClass: "morningicon drop" }, [_vm._v("")])
           ],
           2
         ),
@@ -28250,11 +28283,7 @@ var render = function() {
             {
               staticClass: "cleanbtn",
               attrs: { color: "minor" },
-              on: {
-                emit: function($event) {
-                  _vm._set(undefined, true)
-                }
-              }
+              on: { emit: _vm._clean }
             },
             [_vm._v("清空")]
           )
@@ -28349,6 +28378,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; //
+//
+//
+//
 //
 //
 //
@@ -28515,7 +28547,7 @@ var render = function() {
   return _c(
     "mor-checkbox",
     {
-      class: [_vm.colorClass, _vm.stateClass],
+      class: [_vm.formClass, _vm.colorClass, _vm.stateClass],
       attrs: {
         _uiid: _vm.uiid,
         "form-name": _vm.formName,
@@ -28523,6 +28555,7 @@ var render = function() {
         group: _vm.group,
         "default-value": _vm.defaultValue,
         "hide-name": _vm.hideName,
+        clearable: _vm.clearable,
         "accept-html": _vm.acceptHtml,
         list: _vm.list
       }
@@ -28602,8 +28635,21 @@ var render = function() {
           })
         ],
         2
-      )
-    ]
+      ),
+      _vm._v(" "),
+      _vm.conf.clearable
+        ? _c(
+            "morning-link",
+            {
+              staticClass: "cleanbtn",
+              attrs: { color: "minor" },
+              on: { emit: _vm._clean }
+            },
+            [_vm._v("清空")]
+          )
+        : _vm._e()
+    ],
+    1
   )
 }
 var staticRenderFns = []
@@ -28748,6 +28794,9 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
 
 exports.default = {
     origin: 'Form',
@@ -28822,7 +28871,7 @@ var render = function() {
   return _c(
     "mor-radio",
     {
-      class: [_vm.colorClass, _vm.stateClass],
+      class: [_vm.formClass, _vm.colorClass, _vm.stateClass],
       attrs: {
         _uiid: _vm.uiid,
         "form-name": _vm.formName,
@@ -28830,6 +28879,7 @@ var render = function() {
         group: _vm.group,
         "default-value": _vm.defaultValue,
         "hide-name": _vm.hideName,
+        clearable: _vm.clearable,
         "accept-html": _vm.acceptHtml,
         list: _vm.list
       }
@@ -28909,8 +28959,21 @@ var render = function() {
           })
         ],
         2
-      )
-    ]
+      ),
+      _vm._v(" "),
+      _vm.conf.clearable
+        ? _c(
+            "morning-link",
+            {
+              staticClass: "cleanbtn",
+              attrs: { color: "minor" },
+              on: { emit: _vm._clean }
+            },
+            [_vm._v("清空")]
+          )
+        : _vm._e()
+    ],
+    1
   )
 }
 var staticRenderFns = []
@@ -28999,6 +29062,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; //
+//
+//
+//
 //
 //
 //
@@ -29413,7 +29479,7 @@ var render = function() {
   return _c(
     "mor-multiinput",
     {
-      class: [_vm.stateClass, _vm.moreClass, _vm.moveClass],
+      class: [_vm.formClass, _vm.stateClass, _vm.moreClass, _vm.moveClass],
       attrs: {
         _uiid: _vm.uiid,
         "form-name": _vm.formName,
@@ -29421,6 +29487,7 @@ var render = function() {
         group: _vm.group,
         "default-value": _vm.defaultValue,
         "hide-name": _vm.hideName,
+        clearable: _vm.clearable,
         "can-move": _vm.canMove,
         max: _vm.max
       },
@@ -29558,8 +29625,21 @@ var render = function() {
             : _vm._e()
         ],
         2
-      )
-    ]
+      ),
+      _vm._v(" "),
+      _vm.conf.clearable
+        ? _c(
+            "morning-link",
+            {
+              staticClass: "cleanbtn",
+              attrs: { color: "minor" },
+              on: { emit: _vm._clean }
+            },
+            [_vm._v("清空")]
+          )
+        : _vm._e()
+    ],
+    1
   )
 }
 var staticRenderFns = []
@@ -29819,10 +29899,6 @@ exports.default = {
             type: Number,
             default: undefined
         },
-        cleanBtn: {
-            type: Boolean,
-            default: false
-        },
         inputType: {
             type: String,
             default: 'single',
@@ -29852,17 +29928,10 @@ exports.default = {
                 itemValidator: this.itemValidator,
                 canMove: this.canMove,
                 max: this.max,
-                cleanBtn: this.cleanBtn,
                 inputType: this.inputType,
                 batchReg: this.batchReg,
                 batchFiller: this.batchFiller,
                 batchUniq: this.batchUniq
-            };
-        },
-        moreClass: function moreClass() {
-
-            return {
-                'has-cleanbtn': this.conf.cleanBtn
             };
         }
     },
@@ -30342,7 +30411,7 @@ var render = function() {
   return _c(
     "mor-multiform",
     {
-      class: [_vm.stateClass, _vm.moreClass, _vm.moveClass],
+      class: [_vm.formClass, _vm.stateClass, _vm.moveClass],
       attrs: {
         _uiid: _vm.uiid,
         "form-name": _vm.formName,
@@ -30350,12 +30419,12 @@ var render = function() {
         group: _vm.group,
         "default-value": _vm.defaultValue,
         "hide-name": _vm.hideName,
+        clearable: _vm.clearable,
         "item-name": _vm.itemName,
         "item-filler": _vm.itemFiller,
         "item-validator": _vm.itemValidator,
         "can-move": _vm.canMove,
         max: _vm.max,
-        "clean-btn": _vm.cleanBtn,
         "input-type": _vm.inputType,
         "batch-reg": _vm.batchReg,
         "batch-filler": _vm.batchFiller,
@@ -30593,15 +30662,15 @@ var render = function() {
           )
         : _vm._e(),
       _vm._v(" "),
-      _vm.conf.cleanBtn
+      _vm.conf.clearable
         ? _c(
             "morning-link",
             {
               staticClass: "cleanbtn",
               attrs: { color: "minor" },
-              on: { emit: _vm._cleanAllItems }
+              on: { emit: _vm._clean }
             },
-            [_vm._v("清空全部")]
+            [_vm._v("清空")]
           )
         : _vm._e()
     ],
@@ -30694,6 +30763,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; //
+//
+//
+//
 //
 //
 //
@@ -32432,7 +32504,7 @@ var render = function() {
   return _c(
     "mor-upload",
     {
-      class: [_vm.stateClass, _vm.moreClass],
+      class: [_vm.formClass, _vm.stateClass, _vm.moreClass],
       attrs: {
         _uiid: _vm.uiid,
         "form-name": _vm.formName,
@@ -32440,6 +32512,7 @@ var render = function() {
         group: _vm.group,
         "default-value": _vm.defaultValue,
         "hide-name": _vm.hideName,
+        clearable: _vm.clearable,
         "item-name": _vm.itemName,
         "accept-type": _vm.acceptType,
         multi: _vm.multi,
@@ -32660,8 +32733,21 @@ var render = function() {
             ])
           ]
         )
-      ])
-    ]
+      ]),
+      _vm._v(" "),
+      _vm.conf.clearable
+        ? _c(
+            "morning-link",
+            {
+              staticClass: "cleanbtn",
+              attrs: { color: "minor" },
+              on: { emit: _vm._clean }
+            },
+            [_vm._v("清空")]
+          )
+        : _vm._e()
+    ],
+    1
   )
 }
 var staticRenderFns = []
@@ -32750,6 +32836,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; //
+//
+//
+//
 //
 //
 //
@@ -33765,7 +33854,7 @@ var render = function() {
   return _c(
     "mor-imagemap",
     {
-      class: [_vm.stateClass],
+      class: [_vm.formClass, _vm.stateClass],
       attrs: {
         _uiid: _vm.uiid,
         "form-name": _vm.formName,
@@ -33773,6 +33862,7 @@ var render = function() {
         group: _vm.group,
         "default-value": _vm.defaultValue,
         "hide-name": _vm.hideName,
+        clearable: _vm.clearable,
         "allow-url": _vm.allowUrl,
         "allow-drag": _vm.allowDrag,
         multi: _vm.multi,
@@ -34405,7 +34495,19 @@ var render = function() {
           ])
         ],
         1
-      )
+      ),
+      _vm._v(" "),
+      _vm.conf.clearable
+        ? _c(
+            "morning-link",
+            {
+              staticClass: "cleanbtn",
+              attrs: { color: "minor" },
+              on: { emit: _vm._clean }
+            },
+            [_vm._v("清空")]
+          )
+        : _vm._e()
     ],
     1
   )
