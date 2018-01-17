@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">4.29% </span>
+        <span class="strong">4.32% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>7/163</span>
+        <span class='fraction'>7/162</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">7.83% </span>
@@ -32,12 +32,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/42</span>
+        <span class='fraction'>0/41</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">4.83% </span>
+        <span class="strong">4.86% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>7/145</span>
+        <span class='fraction'>7/144</span>
       </div>
     </div>
   </div>
@@ -645,19 +645,7 @@
 600
 601
 602
-603
-604
-605
-606
-607
-608
-609
-610
-611
-612
-613
-614
-615</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+603</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -821,10 +809,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -852,14 +836,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1274,19 +1250,19 @@
 <span class="cline-any cline-yes">83x</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
     &lt;mor-multiform
         :_uiid="uiid"
-        :class="[stateClass, moreClass, moveClass]"
+        :class="[formClass, stateClass, moveClass]"
 &nbsp;
         :form-name="formName"
         :form-key="formKey"
         :group="group"
         :default-value="defaultValue"
         :hide-name="hideName"
+        :clearable="clearable"
         :item-name="itemName"
         :item-filler="itemFiller"
         :item-validator="itemValidator"
         :can-move="canMove"
         :max="max"
-        :clean-btn="cleanBtn"
         :input-type="inputType"
         :batch-reg="batchReg"
         :batch-filler="batchFiller"
@@ -1394,7 +1370,7 @@
         &lt;/footer&gt;
     &lt;/morning-dialog&gt;
 &nbsp;
-    &lt;morning-link v-if="conf.cleanBtn" color="minor" @emit="_cleanAllItems" class="cleanbtn"&gt;清空全部&lt;/morning-link&gt;
+    &lt;morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn"&gt;清空&lt;/morning-link&gt;
 &nbsp;
     &lt;/mor-multiform&gt;
 &lt;/template&gt;
@@ -1432,10 +1408,6 @@ export default {
             type : Number,
             default : undefined
         },
-        cleanBtn : {
-            type : Boolean,
-            default : false
-        },
         inputType : {
             type : String,
             default : 'single',
@@ -1463,18 +1435,10 @@ export default {
                 itemValidator : this.itemValidator,
                 canMove : this.canMove,
                 max : this.max,
-                cleanBtn : this.cleanBtn,
                 inputType : this.inputType,
                 batchReg : this.batchReg,
                 batchFiller : this.batchFiller,
                 batchUniq : this.batchUniq
-            };
-&nbsp;
-        },
-        moreClass : <span class="fstat-no" title="function not covered" >function () </span>{
-&nbsp;
-<span class="cstat-no" title="statement not covered" >            return {</span>
-                'has-cleanbtn' : this.conf.cleanBtn
             };
 &nbsp;
         }
@@ -1891,7 +1855,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Jan 15 2018 12:50:29 GMT+0800 (CST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Jan 17 2018 18:15:28 GMT+0800 (CST)
 </div>
 </div>
 <script src="../../../prettify.js"></script>

@@ -1,13 +1,14 @@
 <template>
     <mor-multiinput
         :_uiid="uiid"
-        :class="[stateClass, moreClass, moveClass]"
+        :class="[formClass, stateClass, moreClass, moveClass]"
 
         :form-name="formName"
         :form-key="formKey"
         :group="group"
         :default-value="defaultValue"
         :hide-name="hideName"
+        :clearable="clearable"
         :can-move="canMove"
         :max="max"
 
@@ -92,6 +93,8 @@
         </template>
         
     </div>
+
+    <morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn">清空</morning-link>
 
     </mor-multiinput>
 </template>

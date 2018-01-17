@@ -1,19 +1,19 @@
 <template>
     <mor-multiform
         :_uiid="uiid"
-        :class="[stateClass, moreClass, moveClass]"
+        :class="[formClass, stateClass, moveClass]"
 
         :form-name="formName"
         :form-key="formKey"
         :group="group"
         :default-value="defaultValue"
         :hide-name="hideName"
+        :clearable="clearable"
         :item-name="itemName"
         :item-filler="itemFiller"
         :item-validator="itemValidator"
         :can-move="canMove"
         :max="max"
-        :clean-btn="cleanBtn"
         :input-type="inputType"
         :batch-reg="batchReg"
         :batch-filler="batchFiller"
@@ -121,7 +121,7 @@
         </footer>
     </morning-dialog>
 
-    <morning-link v-if="conf.cleanBtn" color="minor" @emit="_cleanAllItems" class="cleanbtn">清空全部</morning-link>
+    <morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn">清空</morning-link>
 
     </mor-multiform>
 </template>
@@ -159,10 +159,6 @@ export default {
             type : Number,
             default : undefined
         },
-        cleanBtn : {
-            type : Boolean,
-            default : false
-        },
         inputType : {
             type : String,
             default : 'single',
@@ -190,18 +186,10 @@ export default {
                 itemValidator : this.itemValidator,
                 canMove : this.canMove,
                 max : this.max,
-                cleanBtn : this.cleanBtn,
                 inputType : this.inputType,
                 batchReg : this.batchReg,
                 batchFiller : this.batchFiller,
                 batchUniq : this.batchUniq
-            };
-
-        },
-        moreClass : function () {
-
-            return {
-                'has-cleanbtn' : this.conf.cleanBtn
             };
 
         }

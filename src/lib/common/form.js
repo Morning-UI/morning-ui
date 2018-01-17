@@ -27,6 +27,10 @@ export default UI => UI.extend({
         },
         modelValue : {
             default : undefined
+        },
+        clearable : {
+            type : Boolean,
+            default : false
         }
     },
     computed : {
@@ -37,7 +41,15 @@ export default UI => UI.extend({
                 formKey : this.formKey,
                 group : this.group,
                 defaultValue : this.defaultValue,
-                hideName : this.hideName
+                hideName : this.hideName,
+                clearable : this.clearable
+            };
+
+        },
+        formClass : function () {
+    
+            return {
+                'has-cleanbtn' : this.conf.clearable
             };
 
         }
@@ -213,6 +225,11 @@ export default UI => UI.extend({
             return value;
 
         },
+        _clean : function () {
+
+            this.set(undefined);
+
+        },
         set : function (value) {
 
             return this._set(value);
@@ -359,6 +376,13 @@ export default UI => UI.extend({
         });
 
         this.data.value = this.conf.defaultValue;
+
+        if (this.modelValue !== undefined && this.conf.state !== 'disabled') {
+
+            this.data.value = this.modelValue;
+
+        }
+
         this._syncGroup();
 
         this.$watch('modelValue', newValue => {

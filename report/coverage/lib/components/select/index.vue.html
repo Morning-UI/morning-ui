@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">39.02% </span>
+        <span class="strong">39.51% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>128/328</span>
+        <span class='fraction'>128/324</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">39.91% </span>
+        <span class="strong">40% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>93/233</span>
+        <span class='fraction'>92/230</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">43.14% </span>
+        <span class="strong">44.9% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>22/51</span>
+        <span class='fraction'>22/49</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">39.8% </span>
+        <span class="strong">40.07% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>117/294</span>
+        <span class='fraction'>117/292</span>
       </div>
     </div>
   </div>
@@ -1059,35 +1059,7 @@
 1014
 1015
 1016
-1017
-1018
-1019
-1020
-1021
-1022
-1023
-1024
-1025
-1026
-1027
-1028
-1029
-1030
-1031
-1032
-1033
-1034
-1035
-1036
-1037
-1038
-1039</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+1017</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1216,14 +1188,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1286,8 +1250,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">7x</span>
@@ -1298,8 +1260,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1550,10 +1510,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -2122,15 +2078,15 @@
 <span class="cline-any cline-yes">83x</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
     &lt;mor-select
         :_uiid="uiid"
-        :class="[stateClass, moreClass]"
+        :class="[formClass, stateClass, moreClass]"
 &nbsp;
         :form-name="formName"
         :form-key="formKey"
         :group="group"
         :default-value="defaultValue"
         :hide-name="hideName"
-        :align="align"
         :clearable="clearable"
+        :align="align"
         :prepend="prepend"
         :max-show="maxShow"
         :auto-close="autoClose"
@@ -2138,7 +2094,6 @@
         :multi-select="multiSelect"
         :can-move="canMove"
         :max="max"
-        :clean-btn="cleanBtn"
         :inline-img-size="inlineImgSize"
         :item-tip="itemTip"
         :item-tip-direct="itemTipDirect"
@@ -2217,11 +2172,6 @@
             &lt;/template&gt;
 &nbsp;
             &lt;i class="morningicon drop"&gt;&amp;#xe6b1;&lt;/i&gt;
-            &lt;i
-                class="morningicon clean"
-                v-if="conf.cleanBtn"
-                @click="_set(undefined, true)"
-            &gt;&amp;#xe67c;&lt;/i&gt;
 &nbsp;
         &lt;/div&gt;
 &nbsp;
@@ -2235,7 +2185,7 @@
         &lt;/ul&gt;
     &lt;/div&gt;
 &nbsp;
-    &lt;morning-link v-if="conf.clearable" color="minor" @emit="_set(undefined, true)" class="cleanbtn"&gt;清空&lt;/morning-link&gt;
+    &lt;morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn"&gt;清空&lt;/morning-link&gt;
 &nbsp;
     &lt;/mor-select&gt;
 &lt;/template&gt;
@@ -2254,10 +2204,6 @@ export default {
             type : String,
             default : 'left',
             validator : (value =&gt; ['left', 'center', 'right'].indexOf(value) !== -1)
-        },
-        clearable : {
-            type : Boolean,
-            default : false
         },
         prepend : {
             type : String,
@@ -2287,10 +2233,6 @@ export default {
             type : Number,
             default : Infinity
         },
-        cleanBtn : {
-            type : Boolean,
-            default : false
-        },
         inlineImgSize : {
             type : String,
             default : '2em'
@@ -2309,7 +2251,6 @@ export default {
 &nbsp;
             return {
                 align : this.align,
-                clearable : this.clearable,
                 prepend : this.prepend,
                 maxShow : this.maxShow,
                 autoClose : this.autoClose,
@@ -2317,7 +2258,6 @@ export default {
                 multiSelect : this.multiSelect,
                 canMove : this.canMove,
                 max : this.max,
-                cleanBtn : this.cleanBtn,
                 inlineImgSize : this.inlineImgSize,
                 itemTip : this.itemTip,
                 itemTipDirect : this.itemTipDirect
@@ -2340,12 +2280,10 @@ export default {
                 searching : !!this.data.searching,
                 'focus-search' : !!this.data.focusSearch,
                 'is-max' : !!this.isMax,
-                'has-clean-btn' : !!this.conf.cleanBtn,
                 'select-item' : selectItem,
                 'align-left' : (this.conf.align === 'left'),
                 'align-center' : (this.conf.align === 'center'),
                 'align-right' : (this.conf.align === 'right'),
-                'has-cleanbtn' : this.conf.clearable,
                 'input-group' : !!this.conf.prepend
             };
 &nbsp;
@@ -2586,14 +2524,10 @@ export default {
 &nbsp;
             let $searchTextinput = <span class="cstat-no" title="statement not covered" >this.$el.querySelector('.wrap mor-textinput'),</span>
                 $searchMultiinput = <span class="cstat-no" title="statement not covered" >this.$el.querySelector('.wrap mor-multiinput'),</span>
-                $cleanBtn = <span class="cstat-no" title="statement not covered" >this.$el.querySelector('.wrap .clean'),</span>
                 hasTextinput = (<span class="cstat-no" title="statement not covered" >evt.path.indexOf($searchTextinput) !== -1),</span>
-                hasMultiinput = (<span class="cstat-no" title="statement not covered" >evt.path.indexOf($searchMultiinput) !== -1),</span>
-                hasCleanBtn = (<span class="cstat-no" title="statement not covered" >evt.path.indexOf($cleanBtn) !== -1);</span>
-                // searchTextinput = ($(ev.target).is($multiInput) || $multiInput.find($(ev.target)).length),
-                // searchMultiinput = $(ev.target).is($searchInput) || $searchInput.has($(ev.target)).length;
+                hasMultiinput = (<span class="cstat-no" title="statement not covered" >evt.path.indexOf($searchMultiinput) !== -1);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >            if (!hasTextinput &amp;&amp; !hasMultiinput &amp;&amp; !hasCleanBtn) {</span>
+<span class="cstat-no" title="statement not covered" >            if (!hasTextinput &amp;&amp; !hasMultiinput) {</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >                this.toggle();</span>
 &nbsp;
@@ -3156,14 +3090,14 @@ export default {
 };
 &lt;/script&gt;
 &nbsp;
-&lt;style lang="less" src="./ind<span class="branch-1 cbranch-no" title="branch not covered" >ex.less"&gt;&lt;/style&gt;<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ><span class="branch-1 cbranch-no" title="branch not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ><span class="branch-1 cbranch-no" title="branch not covered" ><span class="branch-2 cbranch-no" title="branch not covered" ></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>
+&lt;style lang="less" src="./ind<span class="branch-1 cbranch-no" title="branch not covered" >ex.less"&gt;&lt;/style&gt;<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ><span class="branch-1 cbranch-no" title="branch not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ><span class="branch-1 cbranch-no" title="branch not covered" ><span class="branch-2 cbranch-no" title="branch not covered" ></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>
 <span class="branch-1 cbranch-no" title="branch not covered" ><span class="branch-2 cbranch-no" title="branch not covered" ></span></span></pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Jan 15 2018 12:50:29 GMT+0800 (CST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Jan 17 2018 18:15:28 GMT+0800 (CST)
 </div>
 </div>
 <script src="../../../prettify.js"></script>
