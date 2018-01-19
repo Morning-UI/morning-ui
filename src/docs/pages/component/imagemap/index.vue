@@ -109,6 +109,7 @@
     |[uploader](#uploader)|图片上传适配器，详见：[文件上传组件的`uploader`配置](/component/upload.html)|文件上传适配器函数|Function|`undefined`|
     |[clean-zone](#clean-zone)|当图片更换时，清空所有的热区|`true`<br>`false`|Boolean|`true`|
     |[max](#max)|最多允许上传多少图片|数字|Number|`1`|
+    |[max-spot](#max-spot)|最多允许的热区数量|数字|Number|`Infinity`|
 
     :::preset/html
     formConfigDemo
@@ -164,7 +165,7 @@
     ---
     <div style="width:300px;">
         <ui-imagemap form-name="热区" :validate="checksize"></ui-imagemap>
-    </div>
+    </div>｀
     :::
 
     #### uploader
@@ -207,6 +208,24 @@
     :::democode/html
     <div style="width:300px;">
         <ui-imagemap form-name="热区" :max="3"></ui-imagemap>
+    </div>
+    :::
+
+    #### max-spot
+
+    最多只能画三个热区：
+    
+    :::democode/html
+    <div style="width:300px;">
+        <ui-imagemap form-name="热区" :max-spot="3" :default-value="{'images':[{'name':'151244303389249797.png','path':'http://morning-ui-image.test.upcdn.net/uploaddemo/17505/151244303389249797.png'}],'zones':[],'w':722,'h':725}"></ui-imagemap>
+    </div>
+    :::
+
+    如果默认值中的热区数量多于`max-spot`的设置，多于的热区会被丢弃：
+
+    :::democode/html
+    <div style="width:300px;">
+        <ui-imagemap form-name="热区" :max-spot="1" :default-value="{'images':[{'name':'151244303389249797.png','path':'http://morning-ui-image.test.upcdn.net/uploaddemo/17505/151244303389249797.png'}],'zones':[{'x':361,'y':117,'h':180,'w':274},{'x':86,'y':310,'h':180,'w':275}],'w':722,'h':725}"></ui-imagemap>
     </div>
     :::
 
