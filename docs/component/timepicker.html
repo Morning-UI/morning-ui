@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Morning UI</title>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link href="https://cdn.bootcss.com/normalize/7.0.0/normalize.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css" />
+    <link href="/doc-common.css" rel="stylesheet">
+    <link href="/dist/morning-ui.css" rel="stylesheet">
+  <link href="/component/timepicker.css" rel="stylesheet"></head>
+  <body>
+  	<div id="root"></div>
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdn.bootcss.com/zepto/1.2.0/zepto.min.js"></script>
+    <script src="/doc-common.js"></script>
+    <script src="/dist/morning-ui.js"></script>
+    <script>
+    Vue.use(morning, {
+      uploader : (file) => {
+
+          let formData = new FormData();
+
+          formData.append('file', file.file);
+          formData.append('filename', file.name);
+
+          return new Promise((resolve, reject) => {
+
+            $.ajax({
+              type : 'POST',
+              url : '/api/uploadfile',
+              data : formData,
+              processData : false,
+              contentType : false,
+              dataType : 'json',
+              success : resp => {
+    
+                if (resp.status) {
+
+                  resolve({
+                      status : true,
+                      path : resp.path
+                  });
+
+                } else {
+
+                  resolve({
+                      status : false,
+                      message : resp.message
+                  });
+
+                }
+
+              },
+              error : resp => {
+                reject('upload fail.');
+              }
+            })
+
+          });
+
+      }
+    });
+    </script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109263172-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-109263172-1');
+    </script>
+  <script type="text/javascript" src="/component/timepicker.js"></script></body>
+</html>

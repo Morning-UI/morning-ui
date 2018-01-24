@@ -185,8 +185,14 @@ morning.install = function (Vue, options) {
 
         }
 
-        Vue.component(`${options.prefix}-${component.options.name}`, component);
+        if (!component.private) {
+           
+            Vue.component(`${options.prefix}-${component.options.name}`, component);
+
+        }
+
         Vue.component(`morning-${component.options.name}`, component);
+
         this._components[name] = component;
         this._ignoreElements.push(`mor-${component.options.name}`);
         this._ignoreElements.push(`morning-${component.options.name}`);

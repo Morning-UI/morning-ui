@@ -1,4 +1,4 @@
-webpackJsonp([58],{
+webpackJsonp([31],{
 
 /***/ 0:
 /***/ (function(module, exports) {
@@ -7,7 +7,7 @@ module.exports = Vue;
 
 /***/ }),
 
-/***/ 606:
+/***/ 471:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17,7 +17,7 @@ var _vue = __webpack_require__(0);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _index = __webpack_require__(607);
+var _index = __webpack_require__(472);
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -32,18 +32,18 @@ new _vue2.default({
 
 /***/ }),
 
-/***/ 607:
+/***/ 472:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_index_vue__ = __webpack_require__(609);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_index_vue__ = __webpack_require__(474);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_4a63e597_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_index_vue__ = __webpack_require__(610);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_c4d96db4_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_index_vue__ = __webpack_require__(475);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(608)
+  __webpack_require__(473)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
@@ -60,13 +60,13 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_index_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_4a63e597_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_index_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_c4d96db4_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_index_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "src/docs/pages/component/jumbotron/index.vue"
+Component.options.__file = "src/docs/pages/component/timepicker/index.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
@@ -76,9 +76,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-4a63e597", Component.options)
+    hotAPI.createRecord("data-v-c4d96db4", Component.options)
   } else {
-    hotAPI.reload("data-v-4a63e597", Component.options)
+    hotAPI.reload("data-v-c4d96db4", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
@@ -90,14 +90,14 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 608:
+/***/ 473:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 609:
+/***/ 474:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -117,7 +117,7 @@ exports.default = {
     data: function data() {
 
         return {
-            page: 'jumbotron'
+            page: 'timepicker'
         };
     },
     components: {
@@ -153,33 +153,12 @@ exports.default = {
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 610:
+/***/ 475:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -190,7 +169,7 @@ var render = function() {
   return _c("doc-component", { attrs: { page: _vm.page, hasPadding: true } }, [
     _c("script", { attrs: { type: "text/markdown" } }, [
       _vm._v(
-        '\n# 巨幕 `<ui-jumbotron>`\n\n<doc-component-status page="jumbotron"></doc-component-status>\n\n[[[开始]]]\n\n定义一个巨幕，巨幕包含标题、内容和一组按钮或链接，巨幕往往用来定义一个显眼的行动区域。\n\n巨幕可包含：\n\n- 标题 h1\n- 说明 p\n- 行动区域\n\n#### 使用\n\n:::democode/html\n<ui-jumbotron>\n    <h1>标题</h1>\n    <p>这个一个介绍区域，用来放置一些介绍内容。<br>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>\n    <ui-btn size="m">行动</ui-btn> &nbsp;\n    <ui-link color="minor" size="m">查看更多</ui-link>\n</ui-jumbotron>\n:::\n\n[[[形态]]]\n\n#### 支持\n\n|类型|支持|默认|\n|-|-|-|\n|尺寸|不支持|-|\n|色彩|不支持|-|\n|状态|不支持|-|\n\n<a href="/guide/status.html">查看形态文档</a>\n\n\n[[[源码]]]\n\n<iframe src="/report/coverage/lib/components/jumbotron/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>\n'
+        '\n# 时间选择器 `<ui-timepicker>`\n\n<doc-component-status page="timepicker"></doc-component-status>\n\n[[[开始]]]\n\n定义时间选择器。\n\n#### 使用\n\n:::democode/html\n<div style="width:300px;">\n    <morning-private-timepicker form-name="时间" :selectable-range="[[\'12:00:00\', \'15:00:00\'], [\'19:05:30\', \'19:10:10\']]"></morning-private-timepicker>\n</div>\n:::\n\n[[[源码]]]\n\n<iframe src="/report/coverage/lib/components/timepicker/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>\n\n'
       )
     ])
   ])
@@ -202,10 +181,10 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-4a63e597", esExports)
+    require("vue-hot-reload-api")      .rerender("data-v-c4d96db4", esExports)
   }
 }
 
 /***/ })
 
-},[606]);
+},[471]);
