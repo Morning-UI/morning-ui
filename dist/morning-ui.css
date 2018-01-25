@@ -9671,6 +9671,21 @@ mor-multiform.st-disabled > .itemlist:hover {
   border-color: #a6a6a6;
 }
 
+mor-timepicker {
+  display: block;
+  width: 100%;
+  position: relative;
+}
+mor-timepicker.has-cleanbtn {
+  padding-bottom: 20px;
+}
+mor-timepicker .cleanbtn {
+  position: absolute;
+  right: 0;
+  font-size: 12px;
+  margin-top: 1px;
+}
+
 mor-upload {
   position: relative;
   z-index: 1;

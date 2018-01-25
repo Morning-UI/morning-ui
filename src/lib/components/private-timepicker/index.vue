@@ -174,6 +174,12 @@ export default {
 
             let date = this._timeStringToDate(value, this.conf.format);
 
+            if (!isValid(date)) {
+
+                date = this._timeGetStandardDate();
+
+            }
+
             return formatDate(date, this.conf.format);
 
         },
@@ -528,7 +534,12 @@ export default {
     created : function () {},
     mounted : function () {
 
-        this._updateTime();
+        this.$nextTick(() => {
+
+            this._updateTime();
+
+        });
+
         this.$on('value-change', () => {
 
             this._updateTime();

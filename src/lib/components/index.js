@@ -60,6 +60,7 @@ import checkbox                     from './checkbox/index.vue';
 import radio                        from './radio/index.vue';
 import multiinput                   from './multiinput/index.vue';
 import multiform                    from './multiform/index.vue';
+import timepicker                   from './timepicker/index.vue';
 import upload                       from './upload/index.vue';
 import imagemap                     from './imagemap/index.vue';
 
@@ -125,6 +126,7 @@ export default {
     radio,
     multiinput,
     multiform,
+    timepicker,
     upload,
     imagemap
 };
