@@ -2,17 +2,92 @@
 
 mor-timepicker{
     display: block;
-    width: 100%;
     position: relative;
 
     .setup-form();
 
-    &.st-normal{}
+    .wrap{
+        display: flex;
 
-    &.st-disabled{}
+        .input-group-addon{
+            padding: @fontSize*0.375 @fontSize*0.75;
+            font-size: @fontSize*0.75;
+            color: @colorBlue;
+            text-align: center;
+            background-color: @colorLightGray;
+            border-top: 1px solid @colorFormBorder;
+            border-bottom: 1px solid @colorFormBorder;
+            border-left: 1px solid @colorFormBorder;
+            white-space: nowrap;
+            border-top-left-radius: @borderRadius;
+            border-bottom-left-radius: @borderRadius;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-    // default status
-    &{
-        .st-normal;
+        .timepicker-input-0,
+        .timepicker-input-1{
+            display: inline-block;
+            
+            mor-textinput{
+                .input-group-addon{
+                    display: none;
+                }
+            }
+        }
+
+        .timepicker-input-0{
+            mor-textinput{
+                input{
+                    border-radius: 0;
+                }
+            }
+        }
+
+        .timepicker-select-1,
+        .timepicker-select-0{
+            .input-group-addon{
+                display: none;
+            }
+        }
+
+        .timepicker-select-0{
+            .wrap{
+                border-radius: 0;
+            }
+        }
+
+        .timepicker-select-1{
+            .wrap{
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+            }
+        }
+
+        .timepicker-input-1{
+            .time-select{
+                &.align-left{
+                    left: 0;
+                }
+
+                &.align-center{
+                    margin-left: 0;
+                }
+            }
+        }
+
+        .separator{
+            height: @formHeight;
+            min-width: @formHeight;
+            line-height: @formHeight;
+            padding: 0 0.5em;
+            font-size: @fontSize*0.875;
+            color: @colorBlue;
+            text-align: center;
+            background-color: @colorLightGray;
+            border-top: 1px solid @colorFormBorder;
+            border-bottom: 1px solid @colorFormBorder;
+        }
     }
 }

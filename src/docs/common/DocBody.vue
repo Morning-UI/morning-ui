@@ -323,6 +323,36 @@ let data = {
                 valueContent : '[{\'name\':\'Tim Boelaars\'}]'
             }
         ],
+        timepicker : [
+            {
+                valueType : 'String',
+                valueContent : `'10:30:23'`
+            },
+            {
+                valueType : 'Number',
+                valueContent : '5'
+            },
+            {
+                valueType : 'Boolean',
+                valueContent : 'true'
+            },
+            {
+                valueType : 'Null',
+                valueContent : 'null'
+            },
+            {
+                valueType : 'Undefined',
+                valueContent : 'undefined'
+            },
+            {
+                valueType : 'Object',
+                valueContent : '{}'
+            },
+            {
+                valueType : 'Array',
+                valueContent : `['10:30:23', '12:30:23']`
+            }
+        ],
         upload : [
             {
                 valueType : 'String',
