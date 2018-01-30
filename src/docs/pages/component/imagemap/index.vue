@@ -165,7 +165,7 @@
     ---
     <div style="width:300px;">
         <ui-imagemap form-name="热区" :validate="checksize"></ui-imagemap>
-    </div>｀
+    </div>
     :::
 
     #### uploader
