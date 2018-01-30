@@ -16,7 +16,7 @@
         :uploader="uploader"
         :clean-zone="cleanZone"
         :max="max"
-        :forbid="forbid"
+        :max-spot="maxSpot"
     >
 
     <morning-upload
@@ -69,7 +69,7 @@
         </header>
     
         <div class="maparea">
-            <div class="zonearea" :class="{'over-range':data.overRange}" @mousedown.left.stop="_createZone($event)">
+            <div class="zonearea" :class="{'over-range':data.overRange, 'disable-add-spot':data.disableAddSpot}" @mousedown.left.stop="_createZone($event)">
                 <div
                     v-for="(zone, index) in data.zones"
                     class="zone"
@@ -242,9 +242,9 @@ export default {
             type : Number,
             default : 1
         },
-        forbid : {
-            type : Array,
-            default : () => []
+        maxSpot : {
+            type : Number,
+            default : Infinity
         }
     },
     computed : {
@@ -258,7 +258,7 @@ export default {
                 uploader : this.uploader,
                 cleanZone : this.cleanZone,
                 max : this.max,
-                forbid : this.forbid
+                maxSpot : this.maxSpot
             };
 
         }
@@ -291,7 +291,8 @@ export default {
                 zones : [],
                 modifyZoneId : null,
                 modifyZoneBasic : {},
-                modifyZoneData : undefined
+                modifyZoneData : undefined,
+                disableAddSpot : false
             }
         };
 
@@ -318,12 +319,22 @@ export default {
 
             }
 
+            if (this.conf.maxSpot &&
+                value &&
+                value.zones &&
+                value.zones.length > this.conf.maxSpot) {
+
+                value.zones = value.zones.slice(0, this.conf.maxSpot);
+
+            }
+
             return value;
 
         },
         _createZone : function (evt) {
 
-            if (this.conf.state === 'disabled') {
+            if (this.conf.state === 'disabled' ||
+                this.data.disableAddSpot === true) {
 
                 return;
 
@@ -958,6 +969,19 @@ export default {
     mounted : function () {
 
         this.$watch('data.zones', () => {
+
+            if (this.conf.maxSpot &&
+                this.data &&
+                this.data.zones &&
+                this.data.zones.length >= this.conf.maxSpot) {
+
+                this.data.disableAddSpot = true;
+
+            } else {
+
+                this.data.disableAddSpot = false;
+
+            }
 
             this._syncFromZoneImage();
 
