@@ -18,6 +18,20 @@
     
     ### 更新记录
 
+    ### 0.10.16 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2018年1月31日，
+            Archive : 
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.16" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.16/dist/" target="_blank">CDN</a>
+        </ui-small>
+    </ui-textcolor><br/><br/>
+
+    - 新增`ui-timepicker`时间选择器组件
+    - `ui-imagemap`支持`max-spot`配置
+
     ### 0.10.15 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="light-blue">

@@ -21,7 +21,7 @@ let morning = {
     _groupVmMap : {},
     _options : {},
     isMorning : true,
-    version : '0.10.15',
+    version : '0.10.16',
     map : {}
 };
 
