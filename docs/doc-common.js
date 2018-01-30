@@ -29407,6 +29407,28 @@ var data = {
             valueType: 'Array',
             valueContent: '[{\'name\':\'Tim Boelaars\'}]'
         }],
+        timepicker: [{
+            valueType: 'String',
+            valueContent: '\'10:30:23\''
+        }, {
+            valueType: 'Number',
+            valueContent: '5'
+        }, {
+            valueType: 'Boolean',
+            valueContent: 'true'
+        }, {
+            valueType: 'Null',
+            valueContent: 'null'
+        }, {
+            valueType: 'Undefined',
+            valueContent: 'undefined'
+        }, {
+            valueType: 'Object',
+            valueContent: '{}'
+        }, {
+            valueType: 'Array',
+            valueContent: '[\'10:30:23\', \'12:30:23\']'
+        }],
         upload: [{
             valueType: 'String',
             valueContent: '\'http://morning-ui-image.test.upcdn.net/uploaddemo/17491/1511259398095810608.png\''

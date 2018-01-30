@@ -4401,11 +4401,33 @@ mor-multiform.st-disabled>.itemlist>.itemwrap>.item.add:hover{cursor:default
 }
 mor-multiform.st-disabled>.itemlist:hover{border-color:#a6a6a6
 }
-mor-timepicker{display:block;width:100%;position:relative
+mor-timepicker{display:block;position:relative
 }
 mor-timepicker.has-cleanbtn{padding-bottom:20px
 }
 mor-timepicker .cleanbtn{position:absolute;right:0;font-size:12px;margin-top:1px
+}
+mor-timepicker .wrap{display:flex
+}
+mor-timepicker .wrap .input-group-addon{padding:6px 12px;font-size:12px;color:#7c8ba0;text-align:center;background-color:#f0f0f0;border-top:1px solid #e6e6e6;border-bottom:1px solid #e6e6e6;border-left:1px solid #e6e6e6;white-space:nowrap;border-top-left-radius:3px;border-bottom-left-radius:3px;display:flex;align-items:center;justify-content:center
+}
+mor-timepicker .wrap .timepicker-input-0,mor-timepicker .wrap .timepicker-input-1{display:inline-block
+}
+mor-timepicker .wrap .timepicker-input-0 mor-textinput .input-group-addon,mor-timepicker .wrap .timepicker-input-1 mor-textinput .input-group-addon{display:none
+}
+mor-timepicker .wrap .timepicker-input-0 mor-textinput input{border-radius:0
+}
+mor-timepicker .wrap .timepicker-select-0 .input-group-addon,mor-timepicker .wrap .timepicker-select-1 .input-group-addon{display:none
+}
+mor-timepicker .wrap .timepicker-select-0 .wrap{border-radius:0
+}
+mor-timepicker .wrap .timepicker-select-1 .wrap{border-top-left-radius:0;border-bottom-left-radius:0
+}
+mor-timepicker .wrap .timepicker-input-1 .time-select.align-left{left:0
+}
+mor-timepicker .wrap .timepicker-input-1 .time-select.align-center{margin-left:0
+}
+mor-timepicker .wrap .separator{height:42px;min-width:42px;line-height:42px;padding:0 .5em;font-size:14px;color:#7c8ba0;text-align:center;background-color:#f0f0f0;border-top:1px solid #e6e6e6;border-bottom:1px solid #e6e6e6
 }
 mor-upload{position:relative;z-index:1;display:inline-block;width:100%;box-sizing:border-box;vertical-align:middle;-webkit-user-select:none
 }

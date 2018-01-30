@@ -1,15 +1,9 @@
 import {
-//     getYear,
-//     getMonth,
-//     getDate,
     parse as parseDate,
     setHours,
     setMinutes,
-    setSeconds,
-    getHours,
-    getMinutes,
-    getSeconds
-}                                   from 'date-fns/esm';
+    setSeconds
+}                                   from 'date-fns';
 
 const standardYear = '1971';
 const standardMonth = '1';
@@ -23,19 +17,6 @@ let Time = {
 
     },
     methods : {
-        // _timeIsStandarDate : function (date) {
-
-        //     if (+getYear(date) === +standardYear &&
-        //         (+getMonth(date) + 1) === +standardMonth &&
-        //         +getDate(date) === +standardDay) {
-
-        //         return true;
-
-        //     }
-
-        //     return false;
-
-        // },
         _timeStringToDate : function (str, format) {
 
             if (str === null ||
@@ -52,24 +33,6 @@ let Time = {
             );
 
         },
-        // _timeStandardDate : function (date) {
-
-        //     let newDate = this._timeGetStandardDate();
-
-        //     if (date === null ||
-        //         date === undefined) {
-
-        //         return newDate;
-
-        //     }
-
-        //     newDate = setHours(newDate, getHours(date));
-        //     newDate = setMinutes(newDate, getMinutes(date));
-        //     newDate = setSeconds(newDate, getSeconds(date));
-
-        //     return newDate;
-
-        // },
         _timeSet : function (type, value, originDate) {
 
             if (originDate === null ||

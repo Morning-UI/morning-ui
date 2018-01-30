@@ -138,13 +138,18 @@
 </template>
  
 <script>
+// import isValid                      from 'date-fns/isValid';
+// import formatDate                   from 'date-fns/format';
+// import addHours                     from 'date-fns/addHours';
+// import addMinutes                   from 'date-fns/addMinutes';
+// import addSeconds                   from 'date-fns/addSeconds';
 import {
-    format as formatDate,
     isValid,
+    format as formatDate,
     addHours,
     addMinutes,
     addSeconds
-}                                   from 'date-fns/esm';
+}                                   from 'date-fns';
 import arrayUniq                    from 'array-uniq';
 import extend                       from 'extend';
 import sortBy                       from 'lodash.sortby';
@@ -487,21 +492,15 @@ export default {
 
                     }
 
+                } else if (value) {
+
+                    input0._set(value[0], true);
+                    input1._set(value[1], true);
+
                 } else {
 
-                    console.log(this.uiid, value);
-
-                    if (value) {
-
-                        input0._set(value[0], true);
-                        input1._set(value[1], true);
-                    
-                    } else {
-
-                        input0._set(undefined, true);
-                        input1._set(undefined, true);
-
-                    }
+                    input0._set(undefined, true);
+                    input1._set(undefined, true);
 
                 }
 
