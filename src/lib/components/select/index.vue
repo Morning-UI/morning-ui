@@ -483,6 +483,7 @@ export default {
 
                 let value = [$clickItem.getAttribute('value')];
 
+
                 if (this.conf.multiSelect &&
                     this.data.value !== undefined) {
 
@@ -626,7 +627,7 @@ export default {
 
                 for (let $item of $items.values()) {
 
-                    if (trim($item.textContent) === value) {
+                    if (trim($item.getAttribute('value')) === value) {
 
                         setValue.push($item.getAttribute('value'));
 
