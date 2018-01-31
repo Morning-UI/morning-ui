@@ -483,7 +483,6 @@ export default {
 
                 let value = [$clickItem.getAttribute('value')];
 
-
                 if (this.conf.multiSelect &&
                     this.data.value !== undefined) {
 
