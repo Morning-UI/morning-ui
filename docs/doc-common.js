@@ -34,7 +34,7 @@
 /******/
 /******/ 	// objects to store loaded and loading chunks
 /******/ 	var installedChunks = {
-/******/ 		87: 0
+/******/ 		88: 0
 /******/ 	};
 /******/
 /******/ 	// The require function
@@ -4280,17 +4280,17 @@ exports.default = {
         // 级联菜单<i class="tag new"></i> : 'b',
         // 树形控件 : 'b',
         标签页: '/component/tab.html',
-        '表格<i class="tag update l3"></i>': '/component/table.html',
+        '表格<i class="tag update l4"></i>': '/component/table.html',
         分页: '/component/pagination.html',
         模拟盒: '/component/dialog.html',
         // 消息提示 : 'b',
-        '日历<i class="tag new l3"></i>': '/component/calendar.html',
+        '日历<i class="tag new l4"></i>': '/component/calendar.html',
         加载: '/component/load.html',
         // 进度条<i class="tag new"></i> : 'b',
         // 滚动跟随<i class="tag update"></i> : 'b',
         面包屑: '/component/breadcrumbs.html',
         小提示: '/component/tip.html',
-        '消息<i class="tag new l4"></i>': '/component/message.html',
+        消息: '/component/message.html',
         // 视频 : 'b',
         // 音频<i class="tag new"></i> : 'b',
         表单组件: null,
@@ -4307,11 +4307,12 @@ exports.default = {
         多项输入: '/component/multiinput.html',
         多项表单输入: '/component/multiform.html',
         // 多项文本输入 : 'b',
-        '时间选择器<i class="tag new l1"></i>': '/component/timepicker.html',
+        '时间选择器<i class="tag new l2"></i>': '/component/timepicker.html',
+        '日期选择器<i class="tag new l1"></i>': '/component/datepicker.html',
         // 日期输入<i class="tag new"></i> : 'b',
         // 日期时间输入<i class="tag update"></i> : 'b',
         文件上传: '/component/upload.html',
-        '图片热区输入<i class="tag new l2"></i>': '/component/imagemap.html'
+        '图片热区输入<i class="tag new l3"></i>': '/component/imagemap.html'
         // 颜色选择 : 'b'
     },
     guide: {
@@ -32876,7 +32877,12 @@ if (false) {
 /* 748 */,
 /* 749 */,
 /* 750 */,
-/* 751 */
+/* 751 */,
+/* 752 */,
+/* 753 */,
+/* 754 */,
+/* 755 */,
+/* 756 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(269)(undefined);
@@ -32890,13 +32896,13 @@ exports.push([module.i, "/*\n * Hopscotch\n * by Jan T. Sott\n * https://github.
 
 
 /***/ }),
-/* 752 */
+/* 757 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "iconfont.woff";
 
 /***/ }),
-/* 753 */
+/* 758 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*

@@ -8,3 +8,6 @@ plugins:
 globals:
   define: true
   $: true
+rules:
+  max-depth:
+    max: 6

@@ -65,9 +65,11 @@ import upload                       from './upload/index.vue';
 import imagemap                     from './imagemap/index.vue';
 
 import privateTimepicker             from './private-timepicker/index.vue';
+import privateDatepicker             from './private-datepicker/index.vue';
 
 export default {
     privateTimepicker,
+    privateDatepicker,
     h,
     lead,
     mark,

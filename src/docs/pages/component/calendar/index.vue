@@ -38,8 +38,11 @@
     |-|-|-|-|-|
     |[date](#date)|日历所在的日期，日历将会切换到`date`所在的月份|时间戳|Number|`+new Date()`|
     |[highlight-now](#highlight-now)|高亮今天的日期|`true`<br>`false`|Boolean|`true`|
+    |[highlight-hover](#highlight-hover)|高亮鼠标hover状态的日期|`true`<br>`false`|Boolean|`false`|
     |[highlight-day](#highlight-day)|高亮指定日期，接受一个数组，数组中每一项代表一个或一段日期，所有匹配到的日期都会高亮|数组，数组中支持三种类型的项目：<br><br>`Date`对象 : 高亮指定日期<br>`Number`(时间戳) : 高亮指定时间戳所在的日期<br>`Array` : 数组格式为:`[start, end]`，从`start`开始到`end`的日期都会高亮，`start`和`end`支持`Date`对象及时间戳|Array|`[]`|
     |[pick-year-month](#pick-year-month)|选择年份后继续选择月份。如果关闭选完年份后会关闭年份选择器，如果开启选完年份后会开启月份选择器|`true`<br>`false`|Boolean|`false`|
+    |[background-mark](#background-mark)|日期的背景标记，通过改变日期的背景颜色来标记。<br/><br/>数值是一个数组对象，数组中的每一个对象表示一个标记，标记包含属性：<br/>`start` : 标记开始的日期(Date对象)<br/>`end` : 标记结束的日期(Date对象)<br/>`style` : 标记的色彩样式，支持[形态/颜色](/guide/status.html#颜色)中所有的功能及辅助颜色值<br>`disabled` : 禁用样式<br><br>一个标记对象必需完整的包含`start`/`end`，否则不会生效。|标记数组对象|Array|`[]`|
+    |[point-mark](#point-mark)|日期的点标记，一般用于表示该日期上有事件。<br/><br/>数值是一个数组对象，数组中的每一个对象表示一个标记，标记包含属性：<br/>`start` : 标记开始的日期(Date对象)<br/>`end` : 标记结束的日期(Date对象)<br/>`style` : 标记的色彩样式，支持[形态/颜色](/guide/status.html#颜色)中所有的功能及辅助颜色值<br><br>一个标记对象必需完整的包含`start`/`end`，否则不会生效。|标记数组对象|Array|`[]`|
 
     #### date
 
@@ -57,13 +60,21 @@
     </div>
     :::
 
+    #### highlight-hover
+
+    :::democode/html
+    <div style="width:300px">
+        <ui-calendar highlight-hover></ui-calendar>
+    </div>
+    :::
+
     #### highlight-day
 
     高亮指定的日期（若一段日期是连续的则会显示连续的样式），接受`Date`对象和时间戳：
 
     :::democode/html
     <div style="width:300px">
-        <ui-calendar :highlight-day="[new Date('2017-10-31'), +new Date('2017-11-1'), new Date('2017-11-2'), +new Date('2017-11-8')]"></ui-calendar>
+        <ui-calendar :date="+new Date('2017-11-1')" :highlight-day="[new Date('2017-10-31'), +new Date('2017-11-1'), new Date('2017-11-2'), +new Date('2017-11-8')]"></ui-calendar>
     </div>
     :::
 
@@ -71,7 +82,7 @@
 
     :::democode/html
     <div style="width:300px">
-        <ui-calendar :highlight-day="[[new Date('2017-10-27'), new Date('2017-11-3')], [new Date('2017-11-29'), new Date('2017-12-2')], [new Date('2017-12-5'), new Date('2017-12-12')]]"></ui-calendar>
+        <ui-calendar :date="+new Date('2017-11-1')" :highlight-day="[[new Date('2017-10-27'), new Date('2017-11-3')], [new Date('2017-11-29'), new Date('2017-12-2')], [new Date('2017-12-5'), new Date('2017-12-12')]]"></ui-calendar>
     </div>
     :::
 
@@ -82,6 +93,54 @@
     :::democode/html
     <div style="width:300px">
         <ui-calendar pick-year-month></ui-calendar>
+    </div>
+    :::
+
+    #### background-mark
+
+    :::democode/html
+    <div style="width:300px">
+        <ui-calendar :date="+new Date('2017-11-1')" :background-mark="[{start: new Date('2017-11-9'), end: new Date('2017-11-13'), style: 'primary'}, {start: new Date('2017-11-20'), end: new Date('2017-11-20'), style: 'danger'}]"></ui-calendar>
+    </div>
+    :::
+
+    跨月份的标记：
+
+    :::democode/html
+    <div style="width:300px">
+        <ui-calendar :date="+new Date('2017-11-1')" :background-mark="[{start: new Date('2017-10-20'), end: new Date('2017-11-3'), style: 'light-gray'}]"></ui-calendar>
+    </div>
+    :::
+
+    禁用样式配合`highlight-hover`：
+
+    :::democode/html
+    <div style="width:300px">
+        <ui-calendar highlight-hover :date="+new Date('2017-11-1')" :background-mark="[{start: new Date('2017-11-9'), end: new Date('2017-11-13'), disabled: true}]"></ui-calendar>
+    </div>
+    :::
+
+    #### point-mark
+
+    :::democode/html
+    <div style="width:300px">
+        <ui-calendar :date="+new Date('2017-11-1')" :point-mark="[{start: new Date('2017-11-9'), end: new Date('2017-11-13'), style: 'primary'}, {start: new Date('2017-11-20'), end: new Date('2017-11-20'), style: 'danger'}]"></ui-calendar>
+    </div>
+    :::
+
+    跨月份的标记：
+
+    :::democode/html
+    <div style="width:300px">
+        <ui-calendar :date="+new Date('2017-11-1')" :point-mark="[{start: new Date('2017-10-20'), end: new Date('2017-11-3'), style: 'primary'}]"></ui-calendar>
+    </div>
+    :::
+
+    禁用样式配合`highlight-hover`：
+
+    :::democode/html
+    <div style="width:300px">
+        <ui-calendar highlight-hover :date="+new Date('2017-11-1')" :point-mark="[{start: new Date('2017-11-9'), end: new Date('2017-11-13'), disabled: true}]"></ui-calendar>
     </div>
     :::
 
@@ -339,6 +398,33 @@
     <div style="width:300px">
         <ui-calendar ref="demo14" @highlight="echo"></ui-calendar>
         <ui-link js="window.morning.findVM('demo14').setHighlight([new Date('2017-1-1')]);">触发highlight事件</ui-link>
+    </div>
+    :::
+
+    #### date-click
+    
+    某个日期被点击。
+
+    ##### 参数
+
+    |KEY|描述|值类型|
+    |-|-|-|
+    |date|用户点击的日期|`Date`|
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        methods : {
+            echo : function (date) {
+                console.log('demo15.console1', 'click date:' + date);
+            }
+        }
+    });
+    ---
+    <div style="width:300px">
+        <p>点击一个日期来触发</p>
+        <ui-calendar ref="demo15" @date-click="echo"></ui-calendar>
     </div>
     :::
 
