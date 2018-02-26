@@ -9969,6 +9969,70 @@ mor-timepicker .wrap .separator {
   border-bottom: 1px solid #E6E6E6;
 }
 
+mor-datepicker {
+  display: block;
+  position: relative;
+}
+mor-datepicker.has-cleanbtn {
+  padding-bottom: 20px;
+}
+mor-datepicker .cleanbtn {
+  position: absolute;
+  right: 0;
+  font-size: 12px;
+  margin-top: 1px;
+}
+mor-datepicker .wrap {
+  display: flex;
+}
+mor-datepicker .wrap .input-group-addon {
+  padding: 6px 12px;
+  font-size: 12px;
+  color: #7C8BA0;
+  text-align: center;
+  background-color: #F0F0F0;
+  border-top: 1px solid #E6E6E6;
+  border-bottom: 1px solid #E6E6E6;
+  border-left: 1px solid #E6E6E6;
+  white-space: nowrap;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+mor-datepicker .wrap .datepicker-input-0,
+mor-datepicker .wrap .datepicker-input-1 {
+  display: inline-block;
+}
+mor-datepicker .wrap .datepicker-input-0 mor-textinput .input-group-addon,
+mor-datepicker .wrap .datepicker-input-1 mor-textinput .input-group-addon {
+  display: none;
+}
+mor-datepicker .wrap .datepicker-input-0 mor-textinput input {
+  border-radius: 0;
+}
+mor-datepicker .wrap .datepicker-input-1 .date-select.align-left,
+mor-datepicker .wrap .datepicker-input-0 .date-select.align-left {
+  left: 0;
+}
+mor-datepicker .wrap .datepicker-input-1 .date-select.align-center,
+mor-datepicker .wrap .datepicker-input-0 .date-select.align-center {
+  margin-left: 0;
+}
+mor-datepicker .wrap .separator {
+  height: 42px;
+  min-width: 42px;
+  line-height: 42px;
+  padding: 0 0.5em;
+  font-size: 14px;
+  color: #7C8BA0;
+  text-align: center;
+  background-color: #F0F0F0;
+  border-top: 1px solid #E6E6E6;
+  border-bottom: 1px solid #E6E6E6;
+}
+
 mor-upload {
   position: relative;
   z-index: 1;
@@ -10716,6 +10780,7 @@ mor-private-datepicker .cleanbtn {
   margin-top: 1px;
 }
 mor-private-datepicker .date-select {
+  min-width: 270px;
   width: calc(100% - 42px);
   box-sizing: border-box;
   border: 1px #E6E6E6 solid;

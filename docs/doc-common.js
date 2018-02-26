@@ -29430,6 +29430,28 @@ var data = {
             valueType: 'Array',
             valueContent: '[\'10:30:23\', \'12:30:23\']'
         }],
+        datepicker: [{
+            valueType: 'String',
+            valueContent: '\'2018-03-23\''
+        }, {
+            valueType: 'Number',
+            valueContent: '2018'
+        }, {
+            valueType: 'Boolean',
+            valueContent: 'true'
+        }, {
+            valueType: 'Null',
+            valueContent: 'null'
+        }, {
+            valueType: 'Undefined',
+            valueContent: 'undefined'
+        }, {
+            valueType: 'Object',
+            valueContent: '{}'
+        }, {
+            valueType: 'Array',
+            valueContent: '[\'2018-03-10\', \'2018-03-20\']'
+        }],
         upload: [{
             valueType: 'String',
             valueContent: '\'http://morning-ui-image.test.upcdn.net/uploaddemo/17491/1511259398095810608.png\''
@@ -30081,6 +30103,13 @@ exports.default = {
                 }
             }
         }
+
+        var $demos = document.querySelectorAll('.demo');
+
+        $demos.forEach(function ($demo, i) {
+
+            $demo.style.zIndex = 9 + $demos.length - i;
+        });
     }
 };
 module.exports = exports['default'];

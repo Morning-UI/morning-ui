@@ -63,6 +63,7 @@ import {
     subDays,
     addDays
 }                                   from 'date-fns';
+import without                      from 'lodash.without';
 import Dates                        from 'Utils/Dates';
 
 export default {
@@ -79,7 +80,7 @@ export default {
             type : String,
             default : 'day',
             validator : (value => ['day'].indexOf(value) !== -1)
-        }
+        },
         format : {
             type : String,
             default : 'YYYY-MM-DD'
@@ -131,11 +132,15 @@ export default {
 
             for (let range of this.data.disabledRange) {
 
-                marks.push({
-                    start : range.start,
-                    end : range.end,
-                    disabled : true
-                });
+                if (range !== null) {
+
+                    marks.push({
+                        start : range.start,
+                        end : range.end,
+                        disabled : true
+                    });
+
+                }
 
             }
 
@@ -150,6 +155,7 @@ export default {
                 inputFocus : false,
                 inputValue : '',
                 disabledRange : [],
+                selectableDates : [],
                 currentDate : undefined
             }
         };
@@ -158,13 +164,62 @@ export default {
     methods : {
         _valueFilter : function (value) {
 
-            return value;
+            if (value === undefined) {
+
+                return value;
+
+            }
+
+            let date = this._dateStringToDate(value, this.conf.format);
+
+            if (!isValid(date)) {
+
+                date = this._dateGetStandardDate();
+
+            }
+
+            return formatDate(date, this.conf.format);
 
         },
         _noop : function () {},
         _inputBlur : function () {
 
             this.data.inputFocus = false;
+
+            if (this.data.inputValue === undefined ||
+                this.data.inputValue === '') {
+
+                this._set(undefined, true);
+
+            } else {
+
+                let date = this._dateStringToDate(this.data.inputValue, this.conf.format);
+
+                if (!isValid(date)) {
+
+                    this._refreshInputValue();
+
+                    return;
+
+                }
+
+                if (!this._checkSelectable(date)) {
+
+                    date = this._getClosestDate(date);
+
+                }
+
+                if (+date === +this._dateStringToDate(this.data.value, this.conf.format)) {
+
+                    this._refreshInputValue();
+
+                } else {
+
+                    this._set(formatDate(date, this.conf.format), true);
+
+                }
+
+            }
 
         },
         _inputFocus : function () {
@@ -201,14 +256,16 @@ export default {
         },
         _checkSelectable : function (value) {
 
-            if (!this.conf.selectableRange) {
+            let ranges = this.conf.selectableRange;
+
+            if (!(ranges instanceof Array) ||
+                ranges.length === 0) {
 
                 return true;
 
             }
 
             let date = this._dateStringToDate(value, this.conf.format);
-            let ranges = this.conf.selectableRange;
             let found = false;
 
             if (ranges instanceof Array &&
@@ -282,6 +339,7 @@ export default {
             let monthEnd = endOfMonth(calendarVm.getTime());
             let calendarStart = subDays(monthStart, calendarVm.prependDay.length);
             let calendarEnd = addDays(monthEnd, calendarVm.appendDay.length);
+            let selectableDates = [];
 
             if (ranges instanceof Array &&
                 ranges.length === 2 &&
@@ -308,6 +366,8 @@ export default {
                     });
 
                 }
+
+                selectableDates = [start, end];
 
             } else if (ranges instanceof Array) {
 
@@ -353,7 +413,7 @@ export default {
                                 })) {
 
                                     if (+drange.start >= +start &&
-                                        +drange.end < +end) {
+                                        +drange.end > +end) {
 
                                         drange.start = end;
 
@@ -370,17 +430,17 @@ export default {
 
                                     }
 
-                                    if (+drange.start === +start &&
-                                        +drange.end === +end) {
-
-                                        disabledRange[di] = null;
-
-                                    }
-
                                     if (+drange.start < +start &&
                                         +drange.end <= +end) {
 
                                         drange.end = start;
+
+                                    }
+
+                                    if (+drange.start >= +start &&
+                                        +drange.end <= +end) {
+
+                                        disabledRange[di] = null;
 
                                     }
 
@@ -390,13 +450,17 @@ export default {
 
                         }
 
+                        selectableDates.push(start);
+                        selectableDates.push(end);
+
                     }
 
                 }
 
             }
 
-            this.data.disabledRange = disabledRange;
+            this.data.selectableDates = selectableDates;
+            this.data.disabledRange = without(disabledRange, null);
 
         },
         _refreshCurrentDate : function () {
@@ -412,20 +476,37 @@ export default {
 
             this.data.currentDate = +valueDate;
 
+        },
+        _getClosestDate : function (date) {
+
+            date = closestTo(date, this.data.selectableDates);
+
+            return date;
+
+        },
+        _updateDate : function () {
+
+            this._refreshInputValue();
+            this._refreshCurrentDate();
+
         }
     },
     created : function () {},
     mounted : function () {
 
-        this._refreshCurrentDate();
+        this.$nextTick(() => {
 
-        this.$on('value-change', () => {
-
-            this._refreshInputValue();
-            this._refreshCurrentDate();
+            this._updateDate();
 
         });
 
+        this.$on('value-change', () => {
+
+            this._updateDate();
+
+        });
+
+        this.$watch('conf.format', this._refreshInputValue);
         this.$watch('conf.selectableRange', this._refreshSelectable, {
             deep : true,
             immediate : true
