@@ -492,7 +492,7 @@ export default {
 
                 this._initSelectableTime(ranges, selectableTimes);
                 
-            } else {
+            } else if (ranges instanceof Array) {
 
                 for (let range of ranges) {
 

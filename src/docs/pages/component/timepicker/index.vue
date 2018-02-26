@@ -67,16 +67,16 @@
     statusDefaultValue:'12:30:24'
     :::
 
-  <!--   :::democode/html
+    :::democode/html
     <div style="width:300px;">
-        <ui-timepicker state="normal" :is-list="true" :default-value="['12:30:24']" form-name="正常" ></ui-timepicker>
+        <ui-timepicker state="normal" :is-list="true" :list="['09:00:00', '10:00:00', '11:00:00']" :default-value="['10:00:00']" form-name="正常" ></ui-timepicker>
     </div>
     <br>
     <div style="width:300px;">
-        <ui-timepicker state="disabled" :is-list="true" :default-value="['12:30:24']" form-name="禁用" ></ui-timepicker>
+        <ui-timepicker state="disabled" :is-list="true" :list="['09:00:00', '10:00:00', '11:00:00']" :default-value="['10:00:00']" form-name="禁用" ></ui-timepicker>
     </div>
     <br>
-    ::: -->
+    :::
 
     [[[配置]]]
 
@@ -132,7 +132,7 @@
     </div>
     :::
 
-    同时显示多种时间格式：
+    同时显示多种时间格式(显示多个时间时，最后一个优先级最高)：
 
     :::democode/html
     <div style="width:400px;">
@@ -302,7 +302,7 @@
 
     - 若是范围时间选择(开启`isRange`配置)，则数值是一个字符串，则将数值转换成数组，该字符串作为第一项       
     - 若是单一时间选择(未开启`isRange`配置)，且数值是一个数组，则取第一项
-    - 若数值的类型是字符串则检测字符串的时间格式是否符合`format`配置，若不符合尝试转换成符合的格式，若无法转换则转换成`0点0分0秒`的符合`format`的时间字符串。
+    - 若数值的类型是字符串则检测字符串的时间格式是否符合`format`配置，若不符合尝试转换成符合的格式，若无法转换则转换成`00:00:00`的符合`format`的时间字符串。
     - 若数值的类型是一个数组，且数组长度为`0`则转换为`undefined`
     - 若数值的类型是一个数组，且数组长度大于`2`，则过滤多余的项目，只保留两项
     - 若数值的类型是一个数组，且数组长度大于`0`且小于`3`，会过滤数组中所有不是字符串类型的项目，然后按照第三条规则，对所有字符串项目进行过滤

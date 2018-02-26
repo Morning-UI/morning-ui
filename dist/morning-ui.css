@@ -54,7 +54,7 @@ textarea {
 }
 @font-face {
   font-family: 'morningicon';
-  src: url(data:application/font-woff;base64,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) format('woff');
+  src: url(data:application/font-woff;base64,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) format('woff');
 }
 .morningicon {
   font-family: 'morningicon' !important;
@@ -6906,6 +6906,8 @@ mor-dialog > .content > header {
 
 mor-calendar {
   display: block;
+  -webkit-user-select: none;
+  user-select: none;
 }
 mor-calendar header .topbar {
   width: 100%;
@@ -7039,6 +7041,222 @@ mor-calendar .calendar .pick-day .day.end .select-layer {
   border-radius: 0 100em 100em 0;
   width: auto;
 }
+mor-calendar .calendar .pick-day .day.point-mark {
+  position: relative;
+}
+mor-calendar .calendar .pick-day .day.point-mark::after {
+  width: 6px;
+  height: 6px;
+  margin-left: -3px;
+  border-radius: 6px;
+  bottom: 4px;
+  display: block;
+  position: absolute;
+  content: '';
+  left: 50%;
+}
+mor-calendar .calendar .pick-day .day.point-mark-success::after {
+  background: #4DBD67;
+}
+mor-calendar .calendar .pick-day .day.point-mark-warning::after {
+  background: #F0AD4E;
+}
+mor-calendar .calendar .pick-day .day.point-mark-danger::after {
+  background: #D64431;
+}
+mor-calendar .calendar .pick-day .day.point-mark-primary::after {
+  background: #2185D0;
+}
+mor-calendar .calendar .pick-day .day.point-mark-minor::after {
+  background: #A9A9A9;
+}
+mor-calendar .calendar .pick-day .day.point-mark-info::after {
+  background: #03A6B9;
+}
+mor-calendar .calendar .pick-day .day.point-mark-black::after {
+  background: #17212D;
+}
+mor-calendar .calendar .pick-day .day.point-mark-light-black::after {
+  background: #303C4B;
+}
+mor-calendar .calendar .pick-day .day.point-mark-extra-light-black::after {
+  background: #45505C;
+}
+mor-calendar .calendar .pick-day .day.point-mark-blue::after {
+  background: #7C8BA0;
+}
+mor-calendar .calendar .pick-day .day.point-mark-light-blue::after {
+  background: #8E9CAF;
+}
+mor-calendar .calendar .pick-day .day.point-mark-extra-light-blue::after {
+  background: #A8B3C2;
+}
+mor-calendar .calendar .pick-day .day.point-mark-silver::after {
+  background: #D6DDE5;
+}
+mor-calendar .calendar .pick-day .day.point-mark-light-silver::after {
+  background: #E2E8EE;
+}
+mor-calendar .calendar .pick-day .day.point-mark-extra-light-silver::after {
+  background: #EDF1F5;
+}
+mor-calendar .calendar .pick-day .day.point-mark-gray::after {
+  background: #E6E6E6;
+}
+mor-calendar .calendar .pick-day .day.point-mark-light-gray::after {
+  background: #F0F0F0;
+}
+mor-calendar .calendar .pick-day .day.bg-mark-success {
+  background: #4DBD67;
+  color: #FFFFFF;
+}
+mor-calendar .calendar .pick-day .day.bg-mark-success.not-current-month {
+  background: #3da455;
+  color: rgba(255, 255, 255, 0.5);
+}
+mor-calendar .calendar .pick-day .day.bg-mark-warning {
+  background: #F0AD4E;
+  color: #FFFFFF;
+}
+mor-calendar .calendar .pick-day .day.bg-mark-warning.not-current-month {
+  background: #ed9c28;
+  color: rgba(255, 255, 255, 0.5);
+}
+mor-calendar .calendar .pick-day .day.bg-mark-danger {
+  background: #D64431;
+  color: #FFFFFF;
+}
+mor-calendar .calendar .pick-day .day.bg-mark-danger.not-current-month {
+  background: #b93625;
+  color: rgba(255, 255, 255, 0.5);
+}
+mor-calendar .calendar .pick-day .day.bg-mark-primary {
+  background: #2185D0;
+  color: #FFFFFF;
+}
+mor-calendar .calendar .pick-day .day.bg-mark-primary.not-current-month {
+  background: #1b6ead;
+  color: rgba(255, 255, 255, 0.5);
+}
+mor-calendar .calendar .pick-day .day.bg-mark-minor {
+  background: #A9A9A9;
+  color: #FFFFFF;
+}
+mor-calendar .calendar .pick-day .day.bg-mark-minor.not-current-month {
+  background: #959595;
+  color: rgba(255, 255, 255, 0.5);
+}
+mor-calendar .calendar .pick-day .day.bg-mark-info {
+  background: #03A6B9;
+  color: #FFFFFF;
+}
+mor-calendar .calendar .pick-day .day.bg-mark-info.not-current-month {
+  background: #028291;
+  color: rgba(255, 255, 255, 0.5);
+}
+mor-calendar .calendar .pick-day .day.bg-mark-black {
+  background: #17212D;
+  color: #FFFFFF;
+}
+mor-calendar .calendar .pick-day .day.bg-mark-black.not-current-month {
+  background: #253548;
+  color: rgba(255, 255, 255, 0.5);
+}
+mor-calendar .calendar .pick-day .day.bg-mark-light-black {
+  background: #303C4B;
+  color: #FFFFFF;
+}
+mor-calendar .calendar .pick-day .day.bg-mark-light-black.not-current-month {
+  background: #405064;
+  color: rgba(255, 255, 255, 0.5);
+}
+mor-calendar .calendar .pick-day .day.bg-mark-extra-light-black {
+  background: #45505C;
+  color: #FFFFFF;
+}
+mor-calendar .calendar .pick-day .day.bg-mark-extra-light-black.not-current-month {
+  background: #566473;
+  color: rgba(255, 255, 255, 0.5);
+}
+mor-calendar .calendar .pick-day .day.bg-mark-blue {
+  background: #7C8BA0;
+  color: #FFFFFF;
+}
+mor-calendar .calendar .pick-day .day.bg-mark-blue.not-current-month {
+  background: #66768d;
+  color: rgba(255, 255, 255, 0.5);
+}
+mor-calendar .calendar .pick-day .day.bg-mark-light-blue {
+  background: #8E9CAF;
+  color: #FFFFFF;
+}
+mor-calendar .calendar .pick-day .day.bg-mark-light-blue.not-current-month {
+  background: #76879e;
+  color: rgba(255, 255, 255, 0.5);
+}
+mor-calendar .calendar .pick-day .day.bg-mark-extra-light-blue {
+  background: #A8B3C2;
+  color: #FFFFFF;
+}
+mor-calendar .calendar .pick-day .day.bg-mark-extra-light-blue.not-current-month {
+  background: #909eb1;
+  color: rgba(255, 255, 255, 0.5);
+}
+mor-calendar .calendar .pick-day .day.bg-mark-silver {
+  background: #D6DDE5;
+  color: #17212D;
+}
+mor-calendar .calendar .pick-day .day.bg-mark-silver.not-current-month {
+  background: #bdc8d5;
+  color: rgba(23, 33, 45, 0.5);
+}
+mor-calendar .calendar .pick-day .day.bg-mark-light-silver {
+  background: #E2E8EE;
+  color: #17212D;
+}
+mor-calendar .calendar .pick-day .day.bg-mark-light-silver.not-current-month {
+  background: #c8d4df;
+  color: rgba(23, 33, 45, 0.5);
+}
+mor-calendar .calendar .pick-day .day.bg-mark-extra-light-silver {
+  background: #EDF1F5;
+  color: #17212D;
+}
+mor-calendar .calendar .pick-day .day.bg-mark-extra-light-silver.not-current-month {
+  background: #d3dde6;
+  color: rgba(23, 33, 45, 0.5);
+}
+mor-calendar .calendar .pick-day .day.bg-mark-gray {
+  background: #E6E6E6;
+  color: #17212D;
+}
+mor-calendar .calendar .pick-day .day.bg-mark-gray.not-current-month {
+  background: #d2d2d2;
+  color: rgba(23, 33, 45, 0.5);
+}
+mor-calendar .calendar .pick-day .day.bg-mark-light-gray {
+  background: #F0F0F0;
+  color: #17212D;
+}
+mor-calendar .calendar .pick-day .day.bg-mark-light-gray.not-current-month {
+  background: #dcdcdc;
+  color: rgba(23, 33, 45, 0.5);
+}
+mor-calendar .calendar .pick-day .day.bg-mark-disabled {
+  background: #D6DDE5;
+  cursor: default;
+  color: rgba(23, 33, 45, 0.5);
+}
+mor-calendar .calendar .pick-day .day.bg-mark-disabled.not-current-month {
+  background: #bdc8d5;
+  color: rgba(142, 156, 175, 0.4);
+}
+mor-calendar .calendar .pick-day .day.bg-mark-disabled.not-current-month:hover {
+  color: rgba(142, 156, 175, 0.4) !important;
+}
+mor-calendar .calendar .pick-day .day.bg-mark-disabled:hover {
+  color: rgba(23, 33, 45, 0.5) !important;
+}
 mor-calendar .calendar .pick-month,
 mor-calendar .calendar .pick-year {
   display: flex;
@@ -7070,6 +7288,13 @@ mor-calendar .calendar .pick-year .year:hover {
   color: #17212D;
   background-color: #EDF1F5;
   cursor: pointer;
+}
+mor-calendar.highlight-hover .calendar .pick-day .day:hover {
+  color: #F33D5D;
+  font-weight: bold;
+}
+mor-calendar.highlight-hover .calendar .pick-day .day.bg-mark-disabled:hover {
+  font-weight: normal;
 }
 
 mor-load .loadfail {
@@ -9744,6 +9969,70 @@ mor-timepicker .wrap .separator {
   border-bottom: 1px solid #E6E6E6;
 }
 
+mor-datepicker {
+  display: block;
+  position: relative;
+}
+mor-datepicker.has-cleanbtn {
+  padding-bottom: 20px;
+}
+mor-datepicker .cleanbtn {
+  position: absolute;
+  right: 0;
+  font-size: 12px;
+  margin-top: 1px;
+}
+mor-datepicker .wrap {
+  display: flex;
+}
+mor-datepicker .wrap .input-group-addon {
+  padding: 6px 12px;
+  font-size: 12px;
+  color: #7C8BA0;
+  text-align: center;
+  background-color: #F0F0F0;
+  border-top: 1px solid #E6E6E6;
+  border-bottom: 1px solid #E6E6E6;
+  border-left: 1px solid #E6E6E6;
+  white-space: nowrap;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+mor-datepicker .wrap .datepicker-input-0,
+mor-datepicker .wrap .datepicker-input-1 {
+  display: inline-block;
+}
+mor-datepicker .wrap .datepicker-input-0 mor-textinput .input-group-addon,
+mor-datepicker .wrap .datepicker-input-1 mor-textinput .input-group-addon {
+  display: none;
+}
+mor-datepicker .wrap .datepicker-input-0 mor-textinput input {
+  border-radius: 0;
+}
+mor-datepicker .wrap .datepicker-input-1 .date-select.align-left,
+mor-datepicker .wrap .datepicker-input-0 .date-select.align-left {
+  left: 0;
+}
+mor-datepicker .wrap .datepicker-input-1 .date-select.align-center,
+mor-datepicker .wrap .datepicker-input-0 .date-select.align-center {
+  margin-left: 0;
+}
+mor-datepicker .wrap .separator {
+  height: 42px;
+  min-width: 42px;
+  line-height: 42px;
+  padding: 0 0.5em;
+  font-size: 14px;
+  color: #7C8BA0;
+  text-align: center;
+  background-color: #F0F0F0;
+  border-top: 1px solid #E6E6E6;
+  border-bottom: 1px solid #E6E6E6;
+}
+
 mor-upload {
   position: relative;
   z-index: 1;
@@ -10474,4 +10763,55 @@ mor-private-timepicker .time-select .time-box .selected {
   box-sizing: border-box;
   line-height: calc(1.5em - 2px);
   z-index: 2;
+}
+
+mor-private-datepicker {
+  display: block;
+  width: 100%;
+  position: relative;
+}
+mor-private-datepicker.has-cleanbtn {
+  padding-bottom: 20px;
+}
+mor-private-datepicker .cleanbtn {
+  position: absolute;
+  right: 0;
+  font-size: 12px;
+  margin-top: 1px;
+}
+mor-private-datepicker .date-select {
+  min-width: 270px;
+  width: calc(100% - 42px);
+  box-sizing: border-box;
+  border: 1px #E6E6E6 solid;
+  position: absolute;
+  top: 45px;
+  background: #FFFFFF;
+  border-radius: 3px;
+  z-index: 2;
+  -webkit-user-select: none;
+  user-select: none;
+  pointer-events: none;
+  opacity: 0;
+}
+mor-private-datepicker .date-select.align-left {
+  left: 42px;
+}
+mor-private-datepicker .date-select.align-center {
+  left: 50%;
+  transform: translateX(-50%);
+  margin-left: 21px;
+}
+mor-private-datepicker .date-select.align-right {
+  right: 0;
+}
+mor-private-datepicker .date-select:hover {
+  border-color: #d7d7d7;
+}
+mor-private-datepicker .date-select.show {
+  pointer-events: auto;
+  opacity: 1;
+}
+mor-private-datepicker .date-select mor-calendar .day {
+  cursor: pointer;
 }

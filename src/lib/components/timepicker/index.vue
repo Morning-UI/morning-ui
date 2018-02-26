@@ -138,11 +138,6 @@
 </template>
  
 <script>
-// import isValid                      from 'date-fns/isValid';
-// import formatDate                   from 'date-fns/format';
-// import addHours                     from 'date-fns/addHours';
-// import addMinutes                   from 'date-fns/addMinutes';
-// import addSeconds                   from 'date-fns/addSeconds';
 import {
     isValid,
     format as formatDate,

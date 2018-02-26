@@ -60,6 +60,7 @@
     "date-fns": "^2.0.0-alpha.7",
     "extend": "^3.0.1",
     "lodash.sortby": "^4.7.0",
+    "lodash.without": "^4.4.0",
     "tether": "^1.4.0",
     "trim": "0.0.1"
   },

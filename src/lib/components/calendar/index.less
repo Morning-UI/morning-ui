@@ -2,6 +2,7 @@
 
 mor-calendar{
     display: block;
+    user-select: none;
 
     header{
         .topbar{
@@ -163,6 +164,279 @@ mor-calendar{
                         width: auto;
                     }
                 }
+
+                &.point-mark{
+                    position: relative;
+
+                    &::after{
+                        width: 6px;
+                        height: 6px;
+                        margin-left: -3px;
+                        border-radius: 6px;
+                        bottom: 4px;
+                        display: block;
+                        position: absolute;
+                        content: '';
+                        left: 50%;
+                    }
+                }
+
+                &.point-mark-success::after{
+                    background: @colorSuccess;
+                }
+
+                &.point-mark-warning::after{
+                    background: @colorWarning;
+                }
+
+                &.point-mark-danger::after{
+                    background: @colorDanger;
+                }
+
+                &.point-mark-primary::after{
+                    background: @colorPrimary;
+                }
+
+                &.point-mark-minor::after{
+                    background: @colorMinor;
+                }
+
+                &.point-mark-info::after{
+                    background: @colorInfo;
+                }
+
+                &.point-mark-black::after{
+                    background: @colorBlack;
+                }
+
+                &.point-mark-light-black::after{
+                    background: @colorLightBlack;
+                }
+
+                &.point-mark-extra-light-black::after{
+                    background: @colorExtraLightBlack;
+                }
+
+                &.point-mark-blue::after{
+                    background: @colorBlue;
+                }
+
+                &.point-mark-light-blue::after{
+                    background: @colorLightBlue;
+                }
+
+                &.point-mark-extra-light-blue::after{
+                    background: @colorExtraLightBlue;
+                }
+
+                &.point-mark-silver::after{
+                    background: @colorSilver;
+                }
+
+                &.point-mark-light-silver::after{
+                    background: @colorLightSilver;
+                }
+
+                &.point-mark-extra-light-silver::after{
+                    background: @colorExtraLightSilver;
+                }
+
+                &.point-mark-gray::after{
+                    background: @colorGray;
+                }
+
+                &.point-mark-light-gray::after{
+                    background: @colorLightGray;
+                }
+
+                &.bg-mark-success{
+                    background: @colorSuccess;
+                    color: @colorWhite;
+
+                    &.not-current-month{
+                        background: darken(@colorSuccess, 8%);
+                        color: fade(@colorWhite, 50%);
+                    }
+                }
+
+                &.bg-mark-warning{
+                    background: @colorWarning;
+                    color: @colorWhite;
+
+                    &.not-current-month{
+                        background: darken(@colorWarning, 8%);
+                        color: fade(@colorWhite, 50%);
+                    }
+                }
+
+                &.bg-mark-danger{
+                    background: @colorDanger;
+                    color: @colorWhite;
+
+                    &.not-current-month{
+                        background: darken(@colorDanger, 8%);
+                        color: fade(@colorWhite, 50%);
+                    }
+                }
+
+                &.bg-mark-primary{
+                    background: @colorPrimary;
+                    color: @colorWhite;
+
+                    &.not-current-month{
+                        background: darken(@colorPrimary, 8%);
+                        color: fade(@colorWhite, 50%);
+                    }
+                }
+
+                &.bg-mark-minor{
+                    background: @colorMinor;
+                    color: @colorWhite;
+
+                    &.not-current-month{
+                        background: darken(@colorMinor, 8%);
+                        color: fade(@colorWhite, 50%);
+                    }
+                }
+
+                &.bg-mark-info{
+                    background: @colorInfo;
+                    color: @colorWhite;
+
+                    &.not-current-month{
+                        background: darken(@colorInfo, 8%);
+                        color: fade(@colorWhite, 50%);
+                    }
+                }
+
+                &.bg-mark-black{
+                    background: @colorBlack;
+                    color: @colorWhite;
+
+                    &.not-current-month{
+                        background: lighten(@colorBlack, 8%);
+                        color: fade(@colorWhite, 50%);
+                    }
+                }
+
+                &.bg-mark-light-black{
+                    background: @colorLightBlack;
+                    color: @colorWhite;
+
+                    &.not-current-month{
+                        background: lighten(@colorLightBlack, 8%);
+                        color: fade(@colorWhite, 50%);
+                    }
+                }
+
+                &.bg-mark-extra-light-black{
+                    background: @colorExtraLightBlack;
+                    color: @colorWhite;
+
+                    &.not-current-month{
+                        background: lighten(@colorExtraLightBlack, 8%);
+                        color: fade(@colorWhite, 50%);
+                    }
+                }
+
+                &.bg-mark-blue{
+                    background: @colorBlue;
+                    color: @colorWhite;
+
+                    &.not-current-month{
+                        background: darken(@colorBlue, 8%);
+                        color: fade(@colorWhite, 50%);
+                    }
+                }
+
+                &.bg-mark-light-blue{
+                    background: @colorLightBlue;
+                    color: @colorWhite;
+
+                    &.not-current-month{
+                        background: darken(@colorLightBlue, 8%);
+                        color: fade(@colorWhite, 50%);
+                    }
+                }
+
+                &.bg-mark-extra-light-blue{
+                    background: @colorExtraLightBlue;
+                    color: @colorWhite;
+
+                    &.not-current-month{
+                        background: darken(@colorExtraLightBlue, 8%);
+                        color: fade(@colorWhite, 50%);
+                    }
+                }
+
+                &.bg-mark-silver{
+                    background: @colorSilver;
+                    color: @colorBlack;
+
+                    &.not-current-month{
+                        background: darken(@colorSilver, 8%);
+                        color: fade(@colorBlack, 50%);
+                    }
+                }
+
+                &.bg-mark-light-silver{
+                    background: @colorLightSilver;
+                    color: @colorBlack;
+
+                    &.not-current-month{
+                        background: darken(@colorLightSilver, 8%);
+                        color: fade(@colorBlack, 50%);
+                    }
+                }
+
+                &.bg-mark-extra-light-silver{
+                    background: @colorExtraLightSilver;
+                    color: @colorBlack;
+
+                    &.not-current-month{
+                        background: darken(@colorExtraLightSilver, 8%);
+                        color: fade(@colorBlack, 50%);
+                    }
+                }
+
+                &.bg-mark-gray{
+                    background: @colorGray;
+                    color: @colorBlack;
+
+                    &.not-current-month{
+                        background: darken(@colorGray, 8%);
+                        color: fade(@colorBlack, 50%);
+                    }
+                }
+
+                &.bg-mark-light-gray{
+                    background: @colorLightGray;
+                    color: @colorBlack;
+
+                    &.not-current-month{
+                        background: darken(@colorLightGray, 8%);
+                        color: fade(@colorBlack, 50%);
+                    }
+                }
+
+                &.bg-mark-disabled {
+                    background: @colorSilver;
+                    cursor: default;
+                    color: fade(@colorBlack, 50%);
+
+                    &.not-current-month{
+                        background: darken(@colorSilver, 8%);
+                        color: fade(@colorLightBlue, 40%);
+
+                        &:hover{
+                            color: fade(@colorLightBlue, 40%) !important;
+                        }
+                    }
+
+                    &:hover{
+                        color: fade(@colorBlack, 50%) !important;
+                    }
+                }
             }
         }
 
@@ -200,6 +474,21 @@ mor-calendar{
                 color: @colorBlack;
                 background-color: @colorExtraLightSilver;
                 cursor: pointer;
+            }
+        }
+    }
+
+    &.highlight-hover{
+        .calendar {
+            .pick-day .day{
+                &:hover{
+                    color: @colorTheme;
+                    font-weight: 700;
+                }
+
+                &.bg-mark-disabled:hover{
+                    font-weight: 400;
+                }
             }
         }
     }
