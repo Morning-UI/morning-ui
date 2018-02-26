@@ -7291,10 +7291,10 @@ mor-calendar .calendar .pick-year .year:hover {
 }
 mor-calendar.highlight-hover .calendar .pick-day .day:hover {
   color: #F33D5D;
-  font-weight: bold;
+  font-weight: 700;
 }
 mor-calendar.highlight-hover .calendar .pick-day .day.bg-mark-disabled:hover {
-  font-weight: normal;
+  font-weight: 400;
 }
 
 mor-load .loadfail {

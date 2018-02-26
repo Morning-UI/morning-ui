@@ -7814,7 +7814,7 @@ var morning = {
     _groupVmMap: {},
     _options: {},
     isMorning: true,
-    version: '0.10.16',
+    version: '0.10.17',
     map: {}
 };
 
@@ -40452,7 +40452,7 @@ exports.default = {
         },
         _getClosestDate: function _getClosestDate(date) {
 
-            date = closestTo(date, this.data.selectableDates);
+            date = (0, _dateFns.closestTo)(date, this.data.selectableDates);
 
             return date;
         },

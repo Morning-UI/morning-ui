@@ -18,6 +18,21 @@
     
     ### 更新记录
 
+    ### 0.10.17 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2018年2月26日，
+            Archive : 
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.17" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.17/dist/" target="_blank">CDN</a>
+        </ui-small>
+    </ui-textcolor>
+
+    - 新增`ui-datepicker`日期选择器组件
+    - 修复`ui-select`在同时使用`multi-select`配置和`v-for`生成列表时无法选择的问题
+    - `ui-calendar`新增`highlight-hover`/`background-mark`/`point-mark`配置以及`click-date`事件
+
     ### 0.10.16 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="light-blue">
