@@ -69,7 +69,7 @@ test.serial('import-use-tag', async t => {
 
 });
 
-test.serial.only('import-use-webpack', async t => {
+test.serial('import-use-webpack', async t => {
 
     t.plan(2);
 
