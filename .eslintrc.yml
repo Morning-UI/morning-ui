@@ -9,5 +9,7 @@ globals:
   define: true
   $: true
 rules:
-  max-depth:
-    max: 6
+  max-depth: [
+    "error",
+    "max": 7
+  ]

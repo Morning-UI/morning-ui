@@ -55,6 +55,7 @@
 <script>
 import {
     format as formatDate,
+    closestTo,
     isValid,
     isWithinInterval,
     areIntervalsOverlapping,
@@ -288,7 +289,6 @@ export default {
                 }
 
             } else if (ranges instanceof Array) {
-
 
                 for (let range of ranges) {
 

@@ -167,7 +167,7 @@ mor-calendar{
 
                 &.point-mark{
                     position: relative;
-                    
+
                     &::after{
                         width: 6px;
                         height: 6px;
@@ -180,6 +180,7 @@ mor-calendar{
                         left: 50%;
                     }
                 }
+
                 &.point-mark-success::after{
                     background: @colorSuccess;
                 }
@@ -428,7 +429,7 @@ mor-calendar{
                         color: fade(@colorLightBlue, 40%);
 
                         &:hover{
-                           color: fade(@colorLightBlue, 40%) !important;
+                            color: fade(@colorLightBlue, 40%) !important;
                         }
                     }
 
@@ -436,7 +437,6 @@ mor-calendar{
                         color: fade(@colorBlack, 50%) !important;
                     }
                 }
-
             }
         }
 
@@ -483,15 +483,14 @@ mor-calendar{
             .pick-day .day{
                 &:hover{
                     color: @colorTheme;
-                    font-weight: bold;
+                    font-weight: 700;
                 }
 
                 &.bg-mark-disabled:hover{
-                    font-weight: normal;
+                    font-weight: 400;
                 }
             }
         }
-
     }
 
     // default status
