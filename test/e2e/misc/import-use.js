@@ -69,7 +69,7 @@ test.serial('import-use-tag', async t => {
 
 });
 
-test.serial('import-use-webpack', async t => {
+test.serial.only('import-use-webpack', async t => {
 
     t.plan(2);
 
@@ -140,13 +140,13 @@ test.serial('import-use-webpack', async t => {
 
     await new Promise(resolve => {
 
-        exec(`cd ${pathDir} && npm install morning-ui webpack style-loader css-loader vue`, resolve);
+        exec(`cd ${pathDir} && npm install morning-ui webpack webpack-cli style-loader css-loader vue`, resolve);
 
     });
 
     await new Promise(resolve => {
 
-        exec(`cd ${pathDir} && node_modules/.bin/webpack webpack.config.js`, resolve);
+        exec(`cd ${pathDir} && node_modules/.bin/webpack-cli webpack.config.js`, resolve);
 
     });
 
