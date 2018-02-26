@@ -4,11 +4,7 @@ import {
     setMinutes,
     setSeconds
 }                                   from 'date-fns';
-
-const standardYear = '1971';
-const standardMonth = '1';
-const standardDay = '1';
-const standardDate = `${standardYear}-${standardMonth}-${standardDay}`;
+import standardDate                 from './standardDate';
 
 let Time = {
     data : function () {

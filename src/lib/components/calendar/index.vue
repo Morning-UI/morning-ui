@@ -1,12 +1,15 @@
 <template>
     <mor-calendar
         :_uiid="uiid"
-        :class="[]"
+        :class="[moreClass]"
 
         :date="date"
         :highlight-now="highlightNow"
+        :highlight-hover="highlightHover"
         :highlight-day="highlightDay"
         :pick-year-month="pickYearMonth"
+        :background-mark="backgroundMark"
+        :point-mark="pointMark"
     >
 
     <header>
@@ -63,6 +66,8 @@
                         },
                         _highlightClass(item)
                     ]"
+
+                    @click="_dateClick(item.date)"
                 >
                     <div class="select-layer">
                         <div class="inner-layer">
@@ -90,9 +95,10 @@ import {
     endOfDay,
     startOfMonth,
     lastDayOfMonth,
-    eachDay,
+    eachDayOfInterval,
     isSameDay,
-    isWithinRange,
+    isValid,
+    isWithinInterval,
     addDays,
     addMonths,
     addYears,
@@ -115,6 +121,10 @@ export default {
             type : Boolean,
             default : true
         },
+        highlightHover : {
+            type : Boolean,
+            default : false
+        },
         highlightDay : {
             type : Array,
             default : (() => [])
@@ -122,6 +132,14 @@ export default {
         pickYearMonth : {
             type : Boolean,
             default : false
+        },
+        backgroundMark : {
+            type : Array,
+            default : (() => [])
+        },
+        pointMark : {
+            type : Array,
+            default : (() => [])
         }
     },
     computed : {
@@ -130,8 +148,18 @@ export default {
             return {
                 date : this.date,
                 highlightNow : this.highlightNow,
+                highlightHover : this.highlightHover,
                 highlightDay : this.highlightDay,
-                pickYearMonth : this.pickYearMonth
+                pickYearMonth : this.pickYearMonth,
+                backgroundMark : this.backgroundMark,
+                pointMark : this.pointMark
+            };
+
+        },
+        moreClass : function () {
+
+            return {
+                'highlight-hover' : !!this.highlightHover
             };
 
         },
@@ -170,7 +198,10 @@ export default {
             let monthEnd = lastDayOfMonth(this.data.current);
             let month = [];
 
-            for (let date of eachDay(monthStart, monthEnd)) {
+            for (let date of eachDayOfInterval({
+                start : monthStart,
+                end : monthEnd
+            })) {
 
                 month.push({
                     notCurrentMonth : false,
@@ -308,7 +339,10 @@ export default {
                 for (let item of this.data.highlightDay) {
 
                     if (item instanceof Array &&
-                        isWithinRange(date, startOfDay(item[0]), endOfDay(item[1]))) {
+                        isWithinInterval(date, {
+                            start : startOfDay(item[0]),
+                            end : endOfDay(item[1])
+                        })) {
 
                         result = true;
 
@@ -331,7 +365,7 @@ export default {
             return result;
 
         },
-        _highlightClass : function (item) {
+        _selectHighlight : function (item) {
 
             if (item.notCurrentMonth) {
 
@@ -408,6 +442,74 @@ export default {
             return result;
 
         },
+        _backgroundMarkHighlight : function (item) {
+
+            let result = {};
+
+            for (let mark of this.conf.backgroundMark) {
+
+                if (isValid(mark.start) &&
+                    isValid(mark.end) &&
+                    isWithinInterval(item.date, {
+                        start : mark.start,
+                        end : mark.end
+                    })) {
+
+                    if (mark.style) {
+
+                        result[`bg-mark-${mark.style}`] = true;
+
+                    }
+
+                    if (mark.disabled) {
+
+                        result[`bg-mark-disabled`] = true;
+
+                    }
+
+                }
+
+            }
+
+            return result;
+
+        },
+        _pointMarkHighlight : function (item) {
+
+            let result = {};
+
+            for (let mark of this.conf.pointMark) {
+
+                if (isValid(mark.start) &&
+                    isValid(mark.end) &&
+                    isWithinInterval(item.date, {
+                        start : mark.start,
+                        end : mark.end
+                    })) {
+
+                    if (mark.style) {
+
+                        result[`point-mark-${mark.style}`] = true;
+                        result['point-mark'] = true;
+
+                    }
+
+                }
+
+            }
+
+            return result;
+
+        },
+        _highlightClass : function (item) {
+
+            let bgMarkHl = this._backgroundMarkHighlight(item);
+            let pointHl = this._pointMarkHighlight(item);
+            let selectHl = this._selectHighlight(item);
+
+            return Object.assign(bgMarkHl, pointHl, selectHl);
+
+        },
         _prev : function () {
 
             if (this.data.yearPick) {
@@ -432,6 +534,11 @@ export default {
                 this.add();
 
             }
+
+        },
+        _dateClick : function (date) {
+
+            this.$emit('date-click', date);
 
         },
         toggleYearPick : function (show) {
@@ -577,7 +684,10 @@ export default {
 
                 } else if (item instanceof Array) {
 
-                    for (let day of eachDay(item[0], item[1])) {
+                    for (let day of eachDayOfInterval({
+                        start : item[0],
+                        end : item[1]
+                    })) {
 
                         result.push(+day);
 

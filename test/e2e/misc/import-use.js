@@ -140,7 +140,7 @@ test.serial('import-use-webpack', async t => {
 
     await new Promise(resolve => {
 
-        exec(`cd ${pathDir} && npm install morning-ui webpack style-loader css-loader vue`, resolve);
+        exec(`cd ${pathDir} && npm install morning-ui webpack@3.8.1 style-loader css-loader vue`, resolve);
 
     });
 
