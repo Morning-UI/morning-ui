@@ -43,6 +43,7 @@
             @date-click="_clickDate"
             @month-change="_refreshSelectable"
             @year-change="_refreshSelectable"
+            @date-enter="_dateEnter"
         ></morning-calendar>
 
     </div>
@@ -183,6 +184,11 @@ export default {
 
         },
         _noop : function () {},
+        _dateEnter : function (date) {
+
+            this.$emit('date-enter', date);
+
+        },
         _inputBlur : function () {
 
             this.data.inputFocus = false;
@@ -222,10 +228,13 @@ export default {
 
             }
 
+            this.$emit('input-blur');
+
         },
         _inputFocus : function () {
 
             this.data.inputFocus = true;
+            this.$emit('input-focus');
 
         },
         _clickDate : function (date) {
@@ -240,6 +249,7 @@ export default {
             }
 
             this._set(value);
+            this.$emit('date-click', date);
 
         },
         _refreshInputValue : function () {
@@ -461,6 +471,7 @@ export default {
 
             this.data.selectableDates = selectableDates;
             this.data.disabledRange = without(disabledRange, null);
+            this.data.currentDate = calendarVm.getTime();
 
         },
         _refreshCurrentDate : function () {
@@ -500,16 +511,30 @@ export default {
 
         });
 
+
+
         this.$on('value-change', () => {
 
             this._updateDate();
 
         });
 
+        this.$watch('conf.date', () => {
+
+            this.data.currentDate = +this.conf.date;
+
+        }, {
+            immediate : true
+        });
         this.$watch('conf.format', this._refreshInputValue);
         this.$watch('conf.selectableRange', this._refreshSelectable, {
             deep : true,
             immediate : true
+        });
+        this.$watch('data.currentDate', () => {
+
+            this.$emit('date-change', this.data.currentDate);
+
         });
 
     }

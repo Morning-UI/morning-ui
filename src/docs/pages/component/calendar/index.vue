@@ -403,7 +403,7 @@
 
     #### date-click
     
-    某个日期被点击。
+    某个日期被点击时触发。
 
     ##### 参数
 
@@ -425,6 +425,60 @@
     <div style="width:300px">
         <p>点击一个日期来触发</p>
         <ui-calendar ref="demo15" @date-click="echo"></ui-calendar>
+    </div>
+    :::
+
+    #### date-enter
+    
+    鼠标移入某个日期时触发。
+
+    ##### 参数
+
+    |KEY|描述|值类型|
+    |-|-|-|
+    |date|鼠标移入的日期|`Date`|
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        methods : {
+            echo : function (date) {
+                console.log('demo15.console1', 'enter date:' + date);
+            }
+        }
+    });
+    ---
+    <div style="width:300px">
+        <p>鼠标移入日期来触发</p>
+        <ui-calendar ref="demo15" @date-enter="echo"></ui-calendar>
+    </div>
+    :::
+
+    #### date-leave
+    
+    鼠标移出某个日期时触发。
+
+    ##### 参数
+
+    |KEY|描述|值类型|
+    |-|-|-|
+    |date|鼠标移出的日期|`Date`|
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        methods : {
+            echo : function (date) {
+                console.log('demo15.console1', 'leave date:' + date);
+            }
+        }
+    });
+    ---
+    <div style="width:300px">
+        <p>鼠标移出日期来触发</p>
+        <ui-calendar ref="demo15" @date-leave="echo"></ui-calendar>
     </div>
     :::
 

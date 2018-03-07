@@ -32,13 +32,17 @@
 
                 :form-name="(conf.startName === false) ? conf.formName : conf.startName"
                 :hide-name="conf.hideName"
-                :date="date"
+                :date="data.currentDate"
                 :format="conf.format"
                 :align="conf.align"
                 :selectable-range="conf.selectableRange"
 
-                @value-change="_syncValueFromInputToRoot"
-            >    
+                @input-focus="_inputFocus"
+                @input-blur="_inputBlur"
+                @date-click="_syncValueFromInputToRootForClick"
+                @date-enter="_inputDateEnter"
+                @date-change = "_input0DateChange"
+            >
             </morning-private-datepicker>
 
             <div class="separator">{{conf.separator}}</div>
@@ -50,12 +54,16 @@
                 
                 :form-name="(conf.endName === false) ? conf.formName : conf.endName"
                 :hide-name="conf.hideName"
-                :date="date"
+                :date="_addMonths(data.currentDate, 1)"
                 :format="conf.format"
                 :align="conf.align"
                 :selectable-range="conf.selectableRange"
 
-                @value-change="_syncValueFromInputToRoot"
+                @input-focus="_inputFocus"
+                @input-blur="_inputBlur"
+                @date-click="_syncValueFromInputToRootForClick"
+                @date-enter="_inputDateEnter"
+                @date-change = "_input1DateChange"
             >    
             </morning-private-datepicker>
         </template>
@@ -87,8 +95,17 @@
  
 <script>
 import {
-    isValid
+    format as formatDate,
+    isValid,
+    addDays,
+    subDays,
+    addMonths,
+    subMonths,
+    eachDayOfInterval,
+    startOfMonth,
+    endOfMonth
 }                                   from 'date-fns';
+import sortBy                       from 'lodash.sortby';
 import Dates                        from 'Utils/Dates';
 
 export default {
@@ -149,7 +166,9 @@ export default {
     data : function () {
 
         return {
-            data : {}
+            data : {
+                currentDate : undefined
+            }
         };
 
     },
@@ -197,6 +216,165 @@ export default {
             return value;
 
         },
+        _input0DateChange : function (date) {
+
+            this.data.currentDate = date;
+
+        },
+        _input1DateChange : function (date) {
+
+            this.data.currentDate = subMonths(date, 1);
+
+        },
+        // _inputDateEnter : function (date) {
+
+        //     let input0 = this.$refs[`ui-datepicker-input-0-${this.uiid}`];
+        //     let input0Calendar = input0.$refs[`ui-calendar-${input0.uiid}`];
+        //     let value = this.get();
+
+        //     if (value &&
+        //         typeof value[0] === 'string') {
+
+        //         let interval = sortBy([
+        //             +this._dateStringToDate(value[0], this.conf.format),
+        //             +date
+        //         ]);
+        //         let days = eachDayOfInterval({
+        //             start : interval[0],
+        //             end : interval[1]
+        //         });
+
+        //         input0Calendar.conf.highlightDay = days;
+
+        //     }
+
+        // },
+        _inputDateEnter : function (date) {
+
+            let input0 = this.$refs[`ui-datepicker-input-0-${this.uiid}`];
+            let input0Calendar = input0.$refs[`ui-calendar-${input0.uiid}`];
+            let input0CalendarStart = startOfMonth(input0Calendar.getTime());
+            let input0CalendarEnd = endOfMonth(input0Calendar.getTime());
+            let input1 = this.$refs[`ui-datepicker-input-1-${this.uiid}`];
+            let input1Calendar = input1.$refs[`ui-calendar-${input1.uiid}`];
+            let input1CalendarStart = startOfMonth(input1Calendar.getTime());
+            let input1CalendarEnd = endOfMonth(input1Calendar.getTime());
+            let value = this.get();
+
+            if (value &&
+                typeof value[0] === 'string') {
+                
+                let valueStart = this._dateStringToDate(value[0], this.conf.format);
+
+                // 开始日期在选择区域左侧日历中
+                // 并且选择日期在左侧日历中
+                if (valueStart <= input0CalendarEnd &&
+                    valueStart >= input0CalendarStart &&
+                    +date <= input0CalendarEnd &&
+                    +date >= input0CalendarStart) {
+
+                    let interval = sortBy([
+                        +this._dateStringToDate(value[0], this.conf.format),
+                        +date
+                    ]);
+                    let days = eachDayOfInterval({
+                        start : interval[0],
+                        end : interval[1]
+                    });
+
+                    input0Calendar.conf.highlightDay = days;
+                    input1Calendar.conf.highlightDay = [];
+
+                }
+
+                // 开始日期在选择区域左侧日历中
+                // 并且选择日期在右侧日历中
+                if (valueStart <= input0CalendarEnd &&
+                    valueStart >= input0CalendarStart &&
+                    +date >= input1CalendarStart &&
+                    +date <= input1CalendarEnd) {
+
+                    input0Calendar.conf.highlightDay = eachDayOfInterval({
+                        start : +valueStart,
+                        end : addDays(+input0CalendarEnd, 1)
+                    });
+
+                    input1Calendar.conf.highlightDay = eachDayOfInterval({
+                        start : subDays(+input1CalendarStart, 1),
+                        end : +date
+                    });
+
+                }
+
+            }
+
+
+        },
+        _inputFocus : function () {
+
+            if (!this.conf.isRange) {
+
+                return;
+
+            }
+
+            let input0 = this.$refs[`ui-datepicker-input-0-${this.uiid}`];
+            let input1 = this.$refs[`ui-datepicker-input-1-${this.uiid}`];
+            let $input0DateSelect = input0.$el.querySelector('.date-select');
+            let $input1DateSelect = input1.$el.querySelector('.date-select');
+
+            if (!input0.data.inputFocus) {
+
+                input0._inputFocus();
+
+            }
+
+            if (!input1.data.inputFocus) {
+
+                input1._inputFocus();
+
+            }
+
+            if ($input0DateSelect &&
+                $input1DateSelect) {
+
+                $input1DateSelect.style.left = `${$input0DateSelect.offsetWidth}px`;
+
+            }
+
+        },
+        _inputBlur : function () {
+
+            if (!this.conf.isRange) {
+
+                return;
+
+            }
+
+            let input0 = this.$refs[`ui-datepicker-input-0-${this.uiid}`];
+            let input1 = this.$refs[`ui-datepicker-input-1-${this.uiid}`];
+            let $input1DateSelect = input1.$el.querySelector('.date-select');
+
+            if (input0.data.inputFocus) {
+
+                input0._inputBlur();
+
+            }
+
+            if (input1.data.inputFocus) {
+
+                input1._inputBlur();
+
+            }
+
+            if ($input1DateSelect) {
+
+                delete $input1DateSelect.style.left;
+
+            }
+
+
+        },
         _filterDateString : function (value) {
 
             if (value === undefined) {
@@ -216,6 +394,55 @@ export default {
             return value;
 
         },
+        _syncValueFromInputToRootForClick : function (date) {
+
+            let input0 = this.$refs[`ui-datepicker-input-0-${this.uiid}`];
+            let input0Calendar = input0.$refs[`ui-calendar-${input0.uiid}`];
+            let input0CalendarStart = startOfMonth(input0Calendar.getTime());
+            let input0CalendarEnd = endOfMonth(input0Calendar.getTime());
+            let input1 = this.$refs[`ui-datepicker-input-1-${this.uiid}`];
+            let input1Calendar = input1.$refs[`ui-calendar-${input1.uiid}`];
+            let input1CalendarStart = startOfMonth(input1Calendar.getTime());
+            let input1CalendarEnd = endOfMonth(input1Calendar.getTime());
+            let val = this.get() || [];
+
+            if (val[0] === undefined) {
+
+                val[0] = date;
+
+            } else {
+
+                val[1] = date;
+
+            }
+
+            val = sortBy(val);
+
+            if (val[0]) {
+    
+                val[0] = formatDate(val[0], this.conf.format);
+
+            }
+
+            if (val[1]) {
+    
+                val[1] = formatDate(val[1], this.conf.format);
+
+            }
+
+            if (val.length === 0) {
+
+                val = undefined;
+
+            }
+
+            // TODO : 验证各种日期选择情况
+            // TODO : 验证日期重新选择情况
+            // TODO : 同步日期高亮，去掉private-datepicker中本身的input和calender关联(可能要做成配置项)
+
+            this._set(val, true);
+
+        },
         _syncValueFromInputToRoot : function () {
 
             let input0 = this.$refs[`ui-datepicker-input-0-${this.uiid}`];
@@ -227,28 +454,58 @@ export default {
 
                 this._set(value, true);
 
-            } else if (this.conf.isRange && input0 && input1) {
-
-                let val = [
-                    input0.get(),
-                    input1.get()
-                ];
-
-                if (val[1] === undefined) {
-
-                    val.splice(1, 1);
-
-                    if (val[0] === undefined) {
-
-                        val = undefined;
-
-                    }
-
-                }
-
-                this._set(val, true);
-
             }
+            // else if (this.conf.isRange && input0 && input1) {
+
+                // let input0Val = input0.get();
+                // let input1Val = input1.get();
+                // let val = this.get();
+
+                // if (val === undefined ||
+                //     val[0] === undefined) {
+
+                //     if (input0Val) {
+
+                //         val = [input0Val];
+
+                //     }
+
+                //     if (input1Val) {
+
+                //         val = [input1Val];
+                    
+                //     }
+
+                // } else {
+
+
+                //     if (input0Val) {
+
+                //         val[1] = input0Val;
+                    
+                //     } else if (input0Val) {
+
+                //         val[1] = input0Val;
+
+                //     }
+
+                // }
+
+                // if (val[1] === undefined) {
+
+                //     val.splice(1, 1);
+
+                //     if (val[0] === undefined) {
+
+                //         val = undefined;
+
+                //     }
+
+                // }
+
+                // this._set(val, true);
+
+            // }
 
         },
         _syncFromRootToChild : function () {
@@ -277,10 +534,23 @@ export default {
 
             }
 
+        },
+        _addMonths : function (date, amount) {
+
+            return addMonths(date, amount);
+
         }
     },
     created : function () {},
     mounted : function () {
+
+        this.$watch('conf.date', () => {
+
+            this.data.currentDate = +this.conf.date;
+
+        }, {
+            immediate : true
+        });
 
         this.$on('value-change', () => {
 
