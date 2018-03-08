@@ -240,6 +240,7 @@ export default {
         if (this.data.tabs.join(',') !== Object.keys(this.$slots).join(',')) {
 
             this._initTabs();
+
         }
 
     }
