@@ -50,11 +50,6 @@ export default {
                 append : this.append
             };
 
-        },
-        slotKeys : function () {
-
-            return Object.keys(this.$slots);
-
         }
     },
     data : function () {
@@ -159,22 +154,6 @@ export default {
 
                 let conEl = this.$el.children[1].children[old];
                 let tabEl = this.$el.children[0].children[old];
-                // let conClassList = conEl.className.split(' ');
-                // let tabClassList = conEl.className.split(' ');
-                // let conClassIndex = conClassList.indexOf('current');
-                // let tabClassIndex = tabClassList.indexOf('current');
-
-                // if (conClassIndex !== -1) {
-
-                //     conClassList.splice(conClassIndex, 1);
-
-                // }
-
-                // if (tabClassIndex !== -1) {
-
-                //     tabClassList.splice(tabClassIndex, 1);
-
-                // }
 
                 conEl.classList.remove('current');
                 tabEl.classList.remove('current');
@@ -187,9 +166,6 @@ export default {
 
                 let conEl = this.$el.children[1].children[current];
                 let tabEl = this.$el.children[0].children[current];
-
-                // conEl.className += ' current';
-                // tabEl.className += ' current';
 
                 conEl.classList.add('current');
                 tabEl.classList.add('current');

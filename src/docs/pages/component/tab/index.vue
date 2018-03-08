@@ -18,34 +18,6 @@
 
     #### 使用
 
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
-        methods : {},
-        data : {
-            scopes : [{
-                name : 'first'
-            }, {
-                name : 'second'
-            }, {
-                name : 'third'
-            }]
-        }
-    });
-    ---
-    <div>
-        <ui-tab>
-            <div :slot="scope.name" v-for="scope in scopes">
-                CONTENT : {*scope.name*}
-            </div>
-        </ui-tab>
-    </div>
-    :::
-
-
-
     :::democode/html
     <ui-tab>
         <div slot="第一页">第一页</div>
