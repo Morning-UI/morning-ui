@@ -14,6 +14,7 @@
         :format="format"
         :align="align"
         :selectable-range="selectableRange"
+        :auto-refresh-calendar="autoRefreshCalendar"
     >
 
     <morning-textinput
@@ -95,6 +96,10 @@ export default {
         selectableRange : {
             type : Array,
             default : (() => [])
+        },
+        autoRefreshCalendar : {
+            type : Boolean,
+            defualt : true
         }
     },
     computed : {
@@ -105,7 +110,8 @@ export default {
                 type : this.type,
                 format : this.format,
                 align : this.align,
-                selectableRange : this.selectableRange
+                selectableRange : this.selectableRange,
+                autoRefreshCalendar : this.autoRefreshCalendar
             };
 
         },
@@ -215,6 +221,8 @@ export default {
                     date = this._getClosestDate(date);
 
                 }
+
+                console.log('private', date);
 
                 if (+date === +this._dateStringToDate(this.data.value, this.conf.format)) {
 
@@ -498,7 +506,12 @@ export default {
         _updateDate : function () {
 
             this._refreshInputValue();
-            this._refreshCurrentDate();
+
+            if (this.conf.autoRefreshCalendar) {
+    
+                this._refreshCurrentDate();
+
+            }
 
         }
     },

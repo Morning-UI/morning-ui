@@ -36,7 +36,9 @@
                 :format="conf.format"
                 :align="conf.align"
                 :selectable-range="conf.selectableRange"
-
+                :auto-refresh-calendar="false"
+    
+                @value-change="_syncValueFromInputToRoot"
                 @input-focus="_inputFocus"
                 @input-blur="_inputBlur"
                 @date-click="_syncValueFromInputToRootForClick"
@@ -58,7 +60,9 @@
                 :format="conf.format"
                 :align="conf.align"
                 :selectable-range="conf.selectableRange"
-
+                :auto-refresh-calendar="false"
+                
+                @value-change="_syncValueFromInputToRoot"
                 @input-focus="_inputFocus"
                 @input-blur="_inputBlur"
                 @date-click="_syncValueFromInputToRootForClick"
@@ -167,7 +171,8 @@ export default {
 
         return {
             data : {
-                currentDate : undefined
+                currentDate : undefined,
+                selected : false
             }
         };
 
@@ -206,6 +211,22 @@ export default {
                     for (let k in value) {
 
                         value[k] = this._filterDateString(value[k]);
+
+                    }
+
+                    if (value.length > 1) {
+
+                        let start = this._dateStringToDate(value[0], this.conf.format);
+                        let end = this._dateStringToDate(value[1], this.conf.format);
+
+                        if (+start > +end) {
+
+                            let mid = value[0];
+
+                            value[0] = value[1];
+                            value[1] = mid;
+
+                        }
 
                     }
 
@@ -251,63 +272,20 @@ export default {
         // },
         _inputDateEnter : function (date) {
 
-            let input0 = this.$refs[`ui-datepicker-input-0-${this.uiid}`];
-            let input0Calendar = input0.$refs[`ui-calendar-${input0.uiid}`];
-            let input0CalendarStart = startOfMonth(input0Calendar.getTime());
-            let input0CalendarEnd = endOfMonth(input0Calendar.getTime());
-            let input1 = this.$refs[`ui-datepicker-input-1-${this.uiid}`];
-            let input1Calendar = input1.$refs[`ui-calendar-${input1.uiid}`];
-            let input1CalendarStart = startOfMonth(input1Calendar.getTime());
-            let input1CalendarEnd = endOfMonth(input1Calendar.getTime());
+            if (!this.data.selected) {
+
+                return;
+
+            }
+
             let value = this.get();
 
             if (value &&
                 typeof value[0] === 'string') {
-                
-                let valueStart = this._dateStringToDate(value[0], this.conf.format);
 
-                // 开始日期在选择区域左侧日历中
-                // 并且选择日期在左侧日历中
-                if (valueStart <= input0CalendarEnd &&
-                    valueStart >= input0CalendarStart &&
-                    +date <= input0CalendarEnd &&
-                    +date >= input0CalendarStart) {
-
-                    let interval = sortBy([
-                        +this._dateStringToDate(value[0], this.conf.format),
-                        +date
-                    ]);
-                    let days = eachDayOfInterval({
-                        start : interval[0],
-                        end : interval[1]
-                    });
-
-                    input0Calendar.conf.highlightDay = days;
-                    input1Calendar.conf.highlightDay = [];
-
-                }
-
-                // 开始日期在选择区域左侧日历中
-                // 并且选择日期在右侧日历中
-                if (valueStart <= input0CalendarEnd &&
-                    valueStart >= input0CalendarStart &&
-                    +date >= input1CalendarStart &&
-                    +date <= input1CalendarEnd) {
-
-                    input0Calendar.conf.highlightDay = eachDayOfInterval({
-                        start : +valueStart,
-                        end : addDays(+input0CalendarEnd, 1)
-                    });
-
-                    input1Calendar.conf.highlightDay = eachDayOfInterval({
-                        start : subDays(+input1CalendarStart, 1),
-                        end : +date
-                    });
-
-                }
+                this._highlightDate(this._dateStringToDate(value[0], this.conf.format), date);
 
             }
-
 
         },
         _inputFocus : function () {
@@ -355,6 +333,8 @@ export default {
             let input1 = this.$refs[`ui-datepicker-input-1-${this.uiid}`];
             let $input1DateSelect = input1.$el.querySelector('.date-select');
 
+            console.log('_inputBlur');
+
             if (input0.data.inputFocus) {
 
                 input0._inputBlur();
@@ -364,7 +344,7 @@ export default {
             if (input1.data.inputFocus) {
 
                 input1._inputBlur();
-
+                
             }
 
             if ($input1DateSelect) {
@@ -394,7 +374,27 @@ export default {
             return value;
 
         },
-        _syncValueFromInputToRootForClick : function (date) {
+        _highlightDate : function (start, end) {
+
+            console.log('hd', start, end);
+
+            if (end === undefined) {
+
+                end = start;
+
+            }
+
+            start = +start;
+            end = +end;
+
+            if (end < start) {
+
+                let mid = start;
+
+                start = end;
+                end = mid;
+
+            }
 
             let input0 = this.$refs[`ui-datepicker-input-0-${this.uiid}`];
             let input0Calendar = input0.$refs[`ui-calendar-${input0.uiid}`];
@@ -404,7 +404,73 @@ export default {
             let input1Calendar = input1.$refs[`ui-calendar-${input1.uiid}`];
             let input1CalendarStart = startOfMonth(input1Calendar.getTime());
             let input1CalendarEnd = endOfMonth(input1Calendar.getTime());
+
+            // start/end均在左侧日历中
+            if (start <= input0CalendarEnd &&
+                start >= input0CalendarStart &&
+                +end <= input0CalendarEnd &&
+                +end >= input0CalendarStart) {
+
+                input0Calendar.conf.highlightDay = eachDayOfInterval({
+                    start,
+                    end
+                });
+                input1Calendar.conf.highlightDay = [];
+
+            }
+
+            // start在左侧/end在右侧
+            if (start <= input0CalendarEnd &&
+                start >= input0CalendarStart &&
+                end >= input1CalendarStart &&
+                end <= input1CalendarEnd) {
+
+                input0Calendar.conf.highlightDay = eachDayOfInterval({
+                    start,
+                    end : addDays(+input0CalendarEnd, 1)
+                });
+
+                input1Calendar.conf.highlightDay = eachDayOfInterval({
+                    start : subDays(+input1CalendarStart, 1),
+                    end
+                });
+
+            }
+
+            // start/end钧在右侧
+            if (start <= input1CalendarEnd &&
+                start >= input1CalendarStart &&
+                end >= input1CalendarStart &&
+                end <= input1CalendarEnd) {
+
+                input0Calendar.conf.highlightDay = [];
+                input1Calendar.conf.highlightDay = eachDayOfInterval({
+                    start,
+                    end
+                });;
+
+            }
+
+        },
+        _syncValueFromInputToRootForClick : function (date) {
+
             let val = this.get() || [];
+            let input0 = this.$refs[`ui-datepicker-input-0-${this.uiid}`];
+            let input0Calendar = input0.$refs[`ui-calendar-${input0.uiid}`];
+            let input0CalendarStart = startOfMonth(input0Calendar.getTime());
+            let input0CalendarEnd = endOfMonth(input0Calendar.getTime());
+            let input1 = this.$refs[`ui-datepicker-input-1-${this.uiid}`];
+            let input1Calendar = input1.$refs[`ui-calendar-${input1.uiid}`];
+            let input1CalendarStart = startOfMonth(input1Calendar.getTime());
+            let input1CalendarEnd = endOfMonth(input1Calendar.getTime());
+
+            if (!this.data.selected) {
+
+                val = [];
+
+            }
+
+            this.data.selected = !this.data.selected;
 
             if (val[0] === undefined) {
 
@@ -438,7 +504,6 @@ export default {
 
             // TODO : 验证各种日期选择情况
             // TODO : 验证日期重新选择情况
-            // TODO : 同步日期高亮，去掉private-datepicker中本身的input和calender关联(可能要做成配置项)
 
             this._set(val, true);
 
@@ -454,12 +519,49 @@ export default {
 
                 this._set(value, true);
 
-            }
-            // else if (this.conf.isRange && input0 && input1) {
+            } else if (this.conf.isRange && input0 && input1) {
 
-                // let input0Val = input0.get();
-                // let input1Val = input1.get();
-                // let val = this.get();
+                let input0Val = input0.get();
+                let input1Val = input1.get();
+                let val = [];
+                let currentVal = this.get();
+
+                if (currentVal[0] === input0Val &&
+                    currentVal[1] === input1Val) {
+
+                    return;
+
+                }
+
+                if (input0Val !== undefined) {
+
+                    input0Val = this._dateStringToDate(input0Val, this.conf.format);
+
+                }
+
+                if (input1Val !== undefined) {
+
+                    input1Val = this._dateStringToDate(input1Val, this.conf.format);
+
+                }
+
+                // TODO : 第二个日期修改后，弹出框不消失问题
+
+                console.log('sync value', input0Val, input1Val);
+
+                if (input0Val === undefined && input1Val) {
+
+                    val = [formatDate(input1Val, this.conf.format)];
+
+                } else if (input1Val === undefined && input0Val) {
+
+                    val = [formatDate(input0Val, this.conf.format)];
+
+                } else {
+
+                    val = [formatDate(input0Val, this.conf.format), formatDate(input1Val, this.conf.format)];
+
+                }
 
                 // if (val === undefined ||
                 //     val[0] === undefined) {
@@ -477,7 +579,6 @@ export default {
                 //     }
 
                 // } else {
-
 
                 //     if (input0Val) {
 
@@ -503,12 +604,14 @@ export default {
 
                 // }
 
-                // this._set(val, true);
+                this._set(val, true);
 
-            // }
+            }
 
         },
         _syncFromRootToChild : function () {
+
+            console.log('_syncFromRootToChild', this.get());
 
             let input0 = this.$refs[`ui-datepicker-input-0-${this.uiid}`];
             let input1 = this.$refs[`ui-datepicker-input-1-${this.uiid}`];
@@ -522,8 +625,17 @@ export default {
 
                 if (value) {
 
-                    input0._set(value[0], true);
-                    input1._set(value[1], true);
+                    if (value[0] !== input0.get()) {
+
+                        input0._set(value[0], true);
+
+                    }
+
+                    if (value[1] !== input1.get()) {
+                        
+                        input1._set(value[1], true);
+
+                    }
 
                 } else {
 
@@ -554,7 +666,32 @@ export default {
 
         this.$on('value-change', () => {
 
+            let value = this.get();
+
             this._syncFromRootToChild();
+
+            if (value[0] && value[1]) {
+
+                this.$nextTick(() => {
+
+                    this._highlightDate(
+                        this._dateStringToDate(value[0], this.conf.format),
+                        this._dateStringToDate(value[1], this.conf.format)
+                    );
+                
+                });
+
+            } else if (value[0]) {
+
+                this.$nextTick(() => {
+
+                    this._highlightDate(
+                        this._dateStringToDate(value[0], this.conf.format)
+                    );
+                
+                });
+
+            }
 
         });
 
