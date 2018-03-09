@@ -961,7 +961,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "addMilliseconds", function() { return __WEBPACK_IMPORTED_MODULE_3__addMilliseconds_index_js__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__addMinutes_index_js__ = __webpack_require__(36);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "addMinutes", function() { return __WEBPACK_IMPORTED_MODULE_4__addMinutes_index_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__addMonths_index_js__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__addMonths_index_js__ = __webpack_require__(19);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "addMonths", function() { return __WEBPACK_IMPORTED_MODULE_5__addMonths_index_js__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__addQuarters_index_js__ = __webpack_require__(37);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "addQuarters", function() { return __WEBPACK_IMPORTED_MODULE_6__addQuarters_index_js__["a"]; });
@@ -1001,7 +1001,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "differenceInHours", function() { return __WEBPACK_IMPORTED_MODULE_23__differenceInHours_index_js__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__differenceInISOYears_index_js__ = __webpack_require__(275);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "differenceInISOYears", function() { return __WEBPACK_IMPORTED_MODULE_24__differenceInISOYears_index_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__differenceInMilliseconds_index_js__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__differenceInMilliseconds_index_js__ = __webpack_require__(20);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "differenceInMilliseconds", function() { return __WEBPACK_IMPORTED_MODULE_25__differenceInMilliseconds_index_js__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__differenceInMinutes_index_js__ = __webpack_require__(276);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "differenceInMinutes", function() { return __WEBPACK_IMPORTED_MODULE_26__differenceInMinutes_index_js__["a"]; });
@@ -1193,7 +1193,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "startOfQuarter", function() { return __WEBPACK_IMPORTED_MODULE_119__startOfQuarter_index_js__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_120__startOfSecond_index_js__ = __webpack_require__(61);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "startOfSecond", function() { return __WEBPACK_IMPORTED_MODULE_120__startOfSecond_index_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_121__startOfWeek_index_js__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_121__startOfWeek_index_js__ = __webpack_require__(18);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "startOfWeek", function() { return __WEBPACK_IMPORTED_MODULE_121__startOfWeek_index_js__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_122__startOfYear_index_js__ = __webpack_require__(53);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "startOfYear", function() { return __WEBPACK_IMPORTED_MODULE_122__startOfYear_index_js__["a"]; });
@@ -1363,7 +1363,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = startOfISOWeek;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__startOfWeek_index_js__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__startOfWeek_index_js__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__lib_cloneObject_index_js__ = __webpack_require__(4);
 
 
@@ -1538,7 +1538,7 @@ if ('Set' in global) {
 	module.exports = uniqNoSet;
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(21)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(22)))
 
 /***/ }),
 /* 9 */
@@ -2027,217 +2027,6 @@ module.exports = exports["default"];
 
 /***/ }),
 /* 17 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = startOfWeek;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__toDate_index_js__ = __webpack_require__(0);
-
-
-/**
- * @name startOfWeek
- * @category Week Helpers
- * @summary Return the start of a week for the given date.
- *
- * @description
- * Return the start of a week for the given date.
- * The result will be in the local timezone.
- *
- * @param {Date|String|Number} date - the original date
- * @param {Options} [options] - the object with options. See [Options]{@link https://date-fns.org/docs/Options}
- * @param {0|1|2} [options.additionalDigits=2] - passed to `toDate`. See [toDate]{@link https://date-fns.org/docs/toDate}
- * @param {0|1|2|3|4|5|6} [options.weekStartsOn=0] - the index of the first day of the week (0 - Sunday)
- * @param {Locale} [options.locale=defaultLocale] - the locale object. See [Locale]{@link https://date-fns.org/docs/Locale}
- * @returns {Date} the start of a week
- * @throws {TypeError} 1 argument required
- * @throws {RangeError} `options.additionalDigits` must be 0, 1 or 2
- * @throws {RangeError} `options.weekStartsOn` must be between 0 and 6
- *
- * @example
- * // The start of a week for 2 September 2014 11:55:00:
- * var result = startOfWeek(new Date(2014, 8, 2, 11, 55, 0))
- * //=> Sun Aug 31 2014 00:00:00
- *
- * @example
- * // If the week starts on Monday, the start of the week for 2 September 2014 11:55:00:
- * var result = startOfWeek(new Date(2014, 8, 2, 11, 55, 0), {weekStartsOn: 1})
- * //=> Mon Sep 01 2014 00:00:00
- */
-function startOfWeek (dirtyDate, dirtyOptions) {
-  if (arguments.length < 1) {
-    throw new TypeError('1 argument required, but only ' + arguments.length + ' present')
-  }
-
-  var options = dirtyOptions || {}
-  var locale = options.locale
-  var localeWeekStartsOn = locale && locale.options && locale.options.weekStartsOn
-  var defaultWeekStartsOn = localeWeekStartsOn === undefined ? 0 : Number(localeWeekStartsOn)
-  var weekStartsOn = options.weekStartsOn === undefined ? defaultWeekStartsOn : Number(options.weekStartsOn)
-
-  // Test if weekStartsOn is between 0 and 6 _and_ is not NaN
-  if (!(weekStartsOn >= 0 && weekStartsOn <= 6)) {
-    throw new RangeError('weekStartsOn must be between 0 and 6 inclusively')
-  }
-
-  var date = Object(__WEBPACK_IMPORTED_MODULE_0__toDate_index_js__["a" /* default */])(dirtyDate, options)
-  var day = date.getDay()
-  var diff = (day < weekStartsOn ? 7 : 0) + day - weekStartsOn
-
-  date.setDate(date.getDate() - diff)
-  date.setHours(0, 0, 0, 0)
-  return date
-}
-
-
-/***/ }),
-/* 18 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = addMonths;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__toDate_index_js__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getDaysInMonth_index_js__ = __webpack_require__(25);
-
-
-
-/**
- * @name addMonths
- * @category Month Helpers
- * @summary Add the specified number of months to the given date.
- *
- * @description
- * Add the specified number of months to the given date.
- *
- * @param {Date|String|Number} date - the date to be changed
- * @param {Number} amount - the amount of months to be added
- * @param {Options} [options] - the object with options. See [Options]{@link https://date-fns.org/docs/Options}
- * @param {0|1|2} [options.additionalDigits=2] - passed to `toDate`. See [toDate]{@link https://date-fns.org/docs/toDate}
- * @returns {Date} the new date with the months added
- * @throws {TypeError} 2 arguments required
- * @throws {RangeError} `options.additionalDigits` must be 0, 1 or 2
- *
- * @example
- * // Add 5 months to 1 September 2014:
- * var result = addMonths(new Date(2014, 8, 1), 5)
- * //=> Sun Feb 01 2015 00:00:00
- */
-function addMonths (dirtyDate, dirtyAmount, dirtyOptions) {
-  if (arguments.length < 2) {
-    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present')
-  }
-
-  var date = Object(__WEBPACK_IMPORTED_MODULE_0__toDate_index_js__["a" /* default */])(dirtyDate, dirtyOptions)
-  var amount = Number(dirtyAmount)
-  var desiredMonth = date.getMonth() + amount
-  var dateWithDesiredMonth = new Date(0)
-  dateWithDesiredMonth.setFullYear(date.getFullYear(), desiredMonth, 1)
-  dateWithDesiredMonth.setHours(0, 0, 0, 0)
-  var daysInMonth = Object(__WEBPACK_IMPORTED_MODULE_1__getDaysInMonth_index_js__["a" /* default */])(dateWithDesiredMonth, dirtyOptions)
-  // Set the last day of the new month
-  // if the original date was the last day of the longer month
-  date.setMonth(desiredMonth, Math.min(daysInMonth, date.getDate()))
-  return date
-}
-
-
-/***/ }),
-/* 19 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = differenceInMilliseconds;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__toDate_index_js__ = __webpack_require__(0);
-
-
-/**
- * @name differenceInMilliseconds
- * @category Millisecond Helpers
- * @summary Get the number of milliseconds between the given dates.
- *
- * @description
- * Get the number of milliseconds between the given dates.
- *
- * @param {Date|String|Number} dateLeft - the later date
- * @param {Date|String|Number} dateRight - the earlier date
- * @param {Options} [options] - the object with options. See [Options]{@link https://date-fns.org/docs/Options}
- * @param {0|1|2} [options.additionalDigits=2] - passed to `toDate`. See [toDate]{@link https://date-fns.org/docs/toDate}
- * @returns {Number} the number of milliseconds
- * @throws {TypeError} 2 arguments required
- * @throws {RangeError} `options.additionalDigits` must be 0, 1 or 2
- *
- * @example
- * // How many milliseconds are between
- * // 2 July 2014 12:30:20.600 and 2 July 2014 12:30:21.700?
- * var result = differenceInMilliseconds(
- *   new Date(2014, 6, 2, 12, 30, 21, 700),
- *   new Date(2014, 6, 2, 12, 30, 20, 600)
- * )
- * //=> 1100
- */
-function differenceInMilliseconds (dirtyDateLeft, dirtyDateRight, dirtyOptions) {
-  if (arguments.length < 2) {
-    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present')
-  }
-
-  var dateLeft = Object(__WEBPACK_IMPORTED_MODULE_0__toDate_index_js__["a" /* default */])(dirtyDateLeft, dirtyOptions)
-  var dateRight = Object(__WEBPACK_IMPORTED_MODULE_0__toDate_index_js__["a" /* default */])(dirtyDateRight, dirtyOptions)
-  return dateLeft.getTime() - dateRight.getTime()
-}
-
-
-/***/ }),
-/* 20 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = startOfUTCISOWeek;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__toDate_index_js__ = __webpack_require__(0);
-
-
-// This function will be a part of public API when UTC function will be implemented.
-// See issue: https://github.com/date-fns/date-fns/issues/376
-function startOfUTCISOWeek (dirtyDate, dirtyOptions) {
-  var weekStartsOn = 1
-
-  var date = Object(__WEBPACK_IMPORTED_MODULE_0__toDate_index_js__["a" /* default */])(dirtyDate, dirtyOptions)
-  var day = date.getUTCDay()
-  var diff = (day < weekStartsOn ? 7 : 0) + day - weekStartsOn
-
-  date.setUTCDate(date.getUTCDate() - diff)
-  date.setUTCHours(0, 0, 0, 0)
-  return date
-}
-
-
-/***/ }),
-/* 21 */
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1,eval)("this");
-} catch(e) {
-	// This works if the window reference is available
-	if(typeof window === "object")
-		g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {/**
@@ -4871,7 +4660,218 @@ function property(path) {
 
 module.exports = sortBy;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(21), __webpack_require__(248)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(22), __webpack_require__(248)(module)))
+
+/***/ }),
+/* 18 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = startOfWeek;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__toDate_index_js__ = __webpack_require__(0);
+
+
+/**
+ * @name startOfWeek
+ * @category Week Helpers
+ * @summary Return the start of a week for the given date.
+ *
+ * @description
+ * Return the start of a week for the given date.
+ * The result will be in the local timezone.
+ *
+ * @param {Date|String|Number} date - the original date
+ * @param {Options} [options] - the object with options. See [Options]{@link https://date-fns.org/docs/Options}
+ * @param {0|1|2} [options.additionalDigits=2] - passed to `toDate`. See [toDate]{@link https://date-fns.org/docs/toDate}
+ * @param {0|1|2|3|4|5|6} [options.weekStartsOn=0] - the index of the first day of the week (0 - Sunday)
+ * @param {Locale} [options.locale=defaultLocale] - the locale object. See [Locale]{@link https://date-fns.org/docs/Locale}
+ * @returns {Date} the start of a week
+ * @throws {TypeError} 1 argument required
+ * @throws {RangeError} `options.additionalDigits` must be 0, 1 or 2
+ * @throws {RangeError} `options.weekStartsOn` must be between 0 and 6
+ *
+ * @example
+ * // The start of a week for 2 September 2014 11:55:00:
+ * var result = startOfWeek(new Date(2014, 8, 2, 11, 55, 0))
+ * //=> Sun Aug 31 2014 00:00:00
+ *
+ * @example
+ * // If the week starts on Monday, the start of the week for 2 September 2014 11:55:00:
+ * var result = startOfWeek(new Date(2014, 8, 2, 11, 55, 0), {weekStartsOn: 1})
+ * //=> Mon Sep 01 2014 00:00:00
+ */
+function startOfWeek (dirtyDate, dirtyOptions) {
+  if (arguments.length < 1) {
+    throw new TypeError('1 argument required, but only ' + arguments.length + ' present')
+  }
+
+  var options = dirtyOptions || {}
+  var locale = options.locale
+  var localeWeekStartsOn = locale && locale.options && locale.options.weekStartsOn
+  var defaultWeekStartsOn = localeWeekStartsOn === undefined ? 0 : Number(localeWeekStartsOn)
+  var weekStartsOn = options.weekStartsOn === undefined ? defaultWeekStartsOn : Number(options.weekStartsOn)
+
+  // Test if weekStartsOn is between 0 and 6 _and_ is not NaN
+  if (!(weekStartsOn >= 0 && weekStartsOn <= 6)) {
+    throw new RangeError('weekStartsOn must be between 0 and 6 inclusively')
+  }
+
+  var date = Object(__WEBPACK_IMPORTED_MODULE_0__toDate_index_js__["a" /* default */])(dirtyDate, options)
+  var day = date.getDay()
+  var diff = (day < weekStartsOn ? 7 : 0) + day - weekStartsOn
+
+  date.setDate(date.getDate() - diff)
+  date.setHours(0, 0, 0, 0)
+  return date
+}
+
+
+/***/ }),
+/* 19 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = addMonths;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__toDate_index_js__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getDaysInMonth_index_js__ = __webpack_require__(25);
+
+
+
+/**
+ * @name addMonths
+ * @category Month Helpers
+ * @summary Add the specified number of months to the given date.
+ *
+ * @description
+ * Add the specified number of months to the given date.
+ *
+ * @param {Date|String|Number} date - the date to be changed
+ * @param {Number} amount - the amount of months to be added
+ * @param {Options} [options] - the object with options. See [Options]{@link https://date-fns.org/docs/Options}
+ * @param {0|1|2} [options.additionalDigits=2] - passed to `toDate`. See [toDate]{@link https://date-fns.org/docs/toDate}
+ * @returns {Date} the new date with the months added
+ * @throws {TypeError} 2 arguments required
+ * @throws {RangeError} `options.additionalDigits` must be 0, 1 or 2
+ *
+ * @example
+ * // Add 5 months to 1 September 2014:
+ * var result = addMonths(new Date(2014, 8, 1), 5)
+ * //=> Sun Feb 01 2015 00:00:00
+ */
+function addMonths (dirtyDate, dirtyAmount, dirtyOptions) {
+  if (arguments.length < 2) {
+    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present')
+  }
+
+  var date = Object(__WEBPACK_IMPORTED_MODULE_0__toDate_index_js__["a" /* default */])(dirtyDate, dirtyOptions)
+  var amount = Number(dirtyAmount)
+  var desiredMonth = date.getMonth() + amount
+  var dateWithDesiredMonth = new Date(0)
+  dateWithDesiredMonth.setFullYear(date.getFullYear(), desiredMonth, 1)
+  dateWithDesiredMonth.setHours(0, 0, 0, 0)
+  var daysInMonth = Object(__WEBPACK_IMPORTED_MODULE_1__getDaysInMonth_index_js__["a" /* default */])(dateWithDesiredMonth, dirtyOptions)
+  // Set the last day of the new month
+  // if the original date was the last day of the longer month
+  date.setMonth(desiredMonth, Math.min(daysInMonth, date.getDate()))
+  return date
+}
+
+
+/***/ }),
+/* 20 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = differenceInMilliseconds;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__toDate_index_js__ = __webpack_require__(0);
+
+
+/**
+ * @name differenceInMilliseconds
+ * @category Millisecond Helpers
+ * @summary Get the number of milliseconds between the given dates.
+ *
+ * @description
+ * Get the number of milliseconds between the given dates.
+ *
+ * @param {Date|String|Number} dateLeft - the later date
+ * @param {Date|String|Number} dateRight - the earlier date
+ * @param {Options} [options] - the object with options. See [Options]{@link https://date-fns.org/docs/Options}
+ * @param {0|1|2} [options.additionalDigits=2] - passed to `toDate`. See [toDate]{@link https://date-fns.org/docs/toDate}
+ * @returns {Number} the number of milliseconds
+ * @throws {TypeError} 2 arguments required
+ * @throws {RangeError} `options.additionalDigits` must be 0, 1 or 2
+ *
+ * @example
+ * // How many milliseconds are between
+ * // 2 July 2014 12:30:20.600 and 2 July 2014 12:30:21.700?
+ * var result = differenceInMilliseconds(
+ *   new Date(2014, 6, 2, 12, 30, 21, 700),
+ *   new Date(2014, 6, 2, 12, 30, 20, 600)
+ * )
+ * //=> 1100
+ */
+function differenceInMilliseconds (dirtyDateLeft, dirtyDateRight, dirtyOptions) {
+  if (arguments.length < 2) {
+    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present')
+  }
+
+  var dateLeft = Object(__WEBPACK_IMPORTED_MODULE_0__toDate_index_js__["a" /* default */])(dirtyDateLeft, dirtyOptions)
+  var dateRight = Object(__WEBPACK_IMPORTED_MODULE_0__toDate_index_js__["a" /* default */])(dirtyDateRight, dirtyOptions)
+  return dateLeft.getTime() - dateRight.getTime()
+}
+
+
+/***/ }),
+/* 21 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = startOfUTCISOWeek;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__toDate_index_js__ = __webpack_require__(0);
+
+
+// This function will be a part of public API when UTC function will be implemented.
+// See issue: https://github.com/date-fns/date-fns/issues/376
+function startOfUTCISOWeek (dirtyDate, dirtyOptions) {
+  var weekStartsOn = 1
+
+  var date = Object(__WEBPACK_IMPORTED_MODULE_0__toDate_index_js__["a" /* default */])(dirtyDate, dirtyOptions)
+  var day = date.getUTCDay()
+  var diff = (day < weekStartsOn ? 7 : 0) + day - weekStartsOn
+
+  date.setUTCDate(date.getUTCDate() - diff)
+  date.setUTCHours(0, 0, 0, 0)
+  return date
+}
+
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
 
 /***/ }),
 /* 23 */
@@ -5132,7 +5132,7 @@ function differenceInMonths (dirtyDateLeft, dirtyDateRight, dirtyOptions) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = differenceInSeconds;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__differenceInMilliseconds_index_js__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__differenceInMilliseconds_index_js__ = __webpack_require__(20);
 
 
 /**
@@ -5177,7 +5177,7 @@ function differenceInSeconds (dirtyDateLeft, dirtyDateRight, dirtyOptions) {
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = startOfUTCISOWeekYear;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getUTCISOWeekYear_index_js__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__startOfUTCISOWeek_index_js__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__startOfUTCISOWeek_index_js__ = __webpack_require__(21);
 
 
 
@@ -5992,7 +5992,7 @@ function addMinutes (dirtyDate, dirtyAmount, dirtyOptions) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = addQuarters;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__addMonths_index_js__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__addMonths_index_js__ = __webpack_require__(19);
 
 
 /**
@@ -6073,7 +6073,7 @@ function addSeconds (dirtyDate, dirtyAmount, dirtyOptions) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = addYears;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__addMonths_index_js__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__addMonths_index_js__ = __webpack_require__(19);
 
 
 /**
@@ -6789,7 +6789,7 @@ function isValid (dirtyDate, dirtyOptions) {
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = getUTCISOWeek;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__toDate_index_js__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__startOfUTCISOWeek_index_js__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__startOfUTCISOWeek_index_js__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__startOfUTCISOWeekYear_index_js__ = __webpack_require__(29);
 
 
@@ -6817,7 +6817,7 @@ function getUTCISOWeek (dirtyDate, dirtyOptions) {
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = getUTCISOWeekYear;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__toDate_index_js__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__startOfUTCISOWeek_index_js__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__startOfUTCISOWeek_index_js__ = __webpack_require__(21);
 
 
 
@@ -7077,7 +7077,7 @@ function startOfHour (dirtyDate, dirtyOptions) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = isSameWeek;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__startOfWeek_index_js__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__startOfWeek_index_js__ = __webpack_require__(18);
 
 
 /**
@@ -14518,6 +14518,91 @@ exports.default = {
 
             this.data.namelist = list;
         },
+        _initTabs: function _initTabs() {
+
+            this._getNamelist();
+            this.data.tabs = Object.keys(this.$slots);
+            this._initSelectTab();
+        },
+        _initSelectTab: function _initSelectTab() {
+            var _this = this;
+
+            this.Vue.nextTick(function () {
+
+                // clean old status
+                var $currentTabEl = _this.$el.children[0].children;
+                var $currentConEl = _this.$el.children[1].children;
+
+                if ($currentTabEl) {
+                    var _iteratorNormalCompletion2 = true;
+                    var _didIteratorError2 = false;
+                    var _iteratorError2 = undefined;
+
+                    try {
+
+                        for (var _iterator2 = $currentTabEl[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                            var $el = _step2.value;
+
+
+                            $el.classList.remove('current');
+                        }
+                    } catch (err) {
+                        _didIteratorError2 = true;
+                        _iteratorError2 = err;
+                    } finally {
+                        try {
+                            if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                                _iterator2.return();
+                            }
+                        } finally {
+                            if (_didIteratorError2) {
+                                throw _iteratorError2;
+                            }
+                        }
+                    }
+                }
+
+                if ($currentConEl) {
+                    var _iteratorNormalCompletion3 = true;
+                    var _didIteratorError3 = false;
+                    var _iteratorError3 = undefined;
+
+                    try {
+
+                        for (var _iterator3 = $currentConEl[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                            var _$el = _step3.value;
+
+
+                            _$el.classList.remove('current');
+                        }
+                    } catch (err) {
+                        _didIteratorError3 = true;
+                        _iteratorError3 = err;
+                    } finally {
+                        try {
+                            if (!_iteratorNormalCompletion3 && _iterator3.return) {
+                                _iterator3.return();
+                            }
+                        } finally {
+                            if (_didIteratorError3) {
+                                throw _iteratorError3;
+                            }
+                        }
+                    }
+                }
+
+                _this.data.selectTab = null;
+
+                // init new select tab
+                if (_this.conf.tab) {
+
+                    _this.switch(_this.conf.tab);
+                } else {
+
+                    _this.switch(_this.data.tabs[0]);
+                }
+            });
+        },
         switch: function _switch(name) {
 
             if (name === this.data.selectTab) {
@@ -14531,23 +14616,9 @@ exports.default = {
 
                 var conEl = this.$el.children[1].children[old];
                 var tabEl = this.$el.children[0].children[old];
-                var conClassList = conEl.className.split(' ');
-                var tabClassList = conEl.className.split(' ');
-                var conClassIndex = conClassList.indexOf('current');
-                var tabClassIndex = tabClassList.indexOf('current');
 
-                if (conClassIndex !== -1) {
-
-                    conClassList.splice(conClassIndex, 1);
-                }
-
-                if (tabClassIndex !== -1) {
-
-                    tabClassList.splice(tabClassIndex, 1);
-                }
-
-                conEl.className = conClassList.join(' ');
-                tabEl.className = tabClassList.join(' ');
+                conEl.classList.remove('current');
+                tabEl.classList.remove('current');
             }
 
             var current = this.data.tabs.indexOf(name);
@@ -14557,8 +14628,8 @@ exports.default = {
                 var _conEl = this.$el.children[1].children[current];
                 var _tabEl = this.$el.children[0].children[current];
 
-                _conEl.className += ' current';
-                _tabEl.className += ' current';
+                _conEl.classList.add('current');
+                _tabEl.classList.add('current');
             }
 
             this.data.selectTab = name;
@@ -14602,38 +14673,28 @@ exports.default = {
     },
     created: function created() {},
     mounted: function mounted() {
-        var _this = this;
+        var _this2 = this;
 
         this.$watch(function () {
-            return JSON.stringify(_this.conf.prepend) + JSON.stringify(_this.conf.append);
+            return JSON.stringify(_this2.conf.prepend) + JSON.stringify(_this2.conf.append);
         }, this._getNamelist, {
             deep: true,
             immediate: true
         });
 
-        this.$watch('$slots', function () {
+        this._initTabs();
 
-            _this._getNamelist();
-            _this.data.tabs = Object.keys(_this.$slots);
-        }, {
-            immediate: true
+        this.$watch('conf.tab', function () {
+
+            _this2._initSelectTab();
         });
+    },
+    updated: function updated() {
 
-        this.Vue.nextTick(function () {
+        if (this.data.tabs.join(',') !== Object.keys(this.$slots).join(',')) {
 
-            _this.$watch('conf.tab', function () {
-
-                if (_this.conf.tab) {
-
-                    _this.switch(_this.conf.tab);
-                } else {
-
-                    _this.switch(_this.data.tabs[0]);
-                }
-            }, {
-                immediate: true
-            });
-        });
+            this._initTabs();
+        }
     }
 
 };
@@ -14867,7 +14928,7 @@ var _extend = __webpack_require__(3);
 
 var _extend2 = _interopRequireDefault(_extend);
 
-var _lodash = __webpack_require__(22);
+var _lodash = __webpack_require__(17);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -18027,7 +18088,7 @@ var _arrayUniq = __webpack_require__(8);
 
 var _arrayUniq2 = _interopRequireDefault(_arrayUniq);
 
-var _lodash = __webpack_require__(22);
+var _lodash = __webpack_require__(17);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -18036,6 +18097,8 @@ var _dateFns = __webpack_require__(5);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var yearRange = 12; //
+//
+//
 //
 //
 //
@@ -18588,6 +18651,14 @@ exports.default = {
         _dateClick: function _dateClick(date) {
 
             this.$emit('date-click', date);
+        },
+        _dateEnter: function _dateEnter(date) {
+
+            this.$emit('date-enter', date);
+        },
+        _dateLeave: function _dateLeave(date) {
+
+            this.$emit('date-leave', date);
         },
         toggleYearPick: function toggleYearPick(show) {
 
@@ -19269,7 +19340,7 @@ function differenceInCalendarQuarters (dirtyDateLeft, dirtyDateRight, dirtyOptio
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = differenceInCalendarWeeks;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__startOfWeek_index_js__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__startOfWeek_index_js__ = __webpack_require__(18);
 
 
 var MILLISECONDS_IN_MINUTE = 60000
@@ -19338,7 +19409,7 @@ function differenceInCalendarWeeks (dirtyDateLeft, dirtyDateRight, dirtyOptions)
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = differenceInHours;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__differenceInMilliseconds_index_js__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__differenceInMilliseconds_index_js__ = __webpack_require__(20);
 
 
 var MILLISECONDS_IN_HOUR = 3600000
@@ -19444,7 +19515,7 @@ function differenceInISOYears (dirtyDateLeft, dirtyDateRight, dirtyOptions) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = differenceInMinutes;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__differenceInMilliseconds_index_js__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__differenceInMilliseconds_index_js__ = __webpack_require__(20);
 
 
 var MILLISECONDS_IN_MINUTE = 60000
@@ -24167,7 +24238,7 @@ parsers['a'] = parsers['A']
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__lib_setUTCISODay_index_js__ = __webpack_require__(353);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__lib_setUTCISOWeek_index_js__ = __webpack_require__(354);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__lib_setUTCISOWeekYear_index_js__ = __webpack_require__(355);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__lib_startOfUTCISOWeek_index_js__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__lib_startOfUTCISOWeek_index_js__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__lib_startOfUTCISOWeekYear_index_js__ = __webpack_require__(29);
 
 
@@ -25156,7 +25227,7 @@ function subMilliseconds (dirtyDate, dirtyAmount, dirtyOptions) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = subMonths;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__addMonths_index_js__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__addMonths_index_js__ = __webpack_require__(19);
 
 
 /**
@@ -25629,6 +25700,12 @@ var render = function() {
                     on: {
                       click: function($event) {
                         _vm._dateClick(item.date)
+                      },
+                      mouseenter: function($event) {
+                        _vm._dateEnter(item.date)
+                      },
+                      mouseleave: function($event) {
+                        _vm._dateLeave(item.date)
                       }
                     }
                   },
@@ -34180,7 +34257,7 @@ var _extend = __webpack_require__(3);
 
 var _extend2 = _interopRequireDefault(_extend);
 
-var _lodash = __webpack_require__(22);
+var _lodash = __webpack_require__(17);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -34889,8 +34966,24 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var _dateFns = __webpack_require__(5);
+
+var _lodash = __webpack_require__(17);
+
+var _lodash2 = _interopRequireDefault(_lodash);
 
 var _Dates = __webpack_require__(66);
 
@@ -34959,7 +35052,10 @@ exports.default = {
     data: function data() {
 
         return {
-            data: {}
+            data: {
+                currentDate: undefined,
+                selected: false
+            }
         };
     },
     methods: {
@@ -34992,10 +35088,124 @@ exports.default = {
 
                         value[k] = this._filterDateString(value[k]);
                     }
+
+                    if (value.length > 1) {
+
+                        var start = this._dateStringToDate(value[0], this.conf.format);
+                        var end = this._dateStringToDate(value[1], this.conf.format);
+
+                        if (+start > +end) {
+
+                            var mid = value[0];
+
+                            value[0] = value[1];
+                            value[1] = mid;
+                        }
+                    }
                 }
             }
 
             return value;
+        },
+        _input0DateChange: function _input0DateChange(date) {
+
+            this.data.currentDate = date;
+        },
+        _input1DateChange: function _input1DateChange(date) {
+
+            this.data.currentDate = (0, _dateFns.subMonths)(date, 1);
+        },
+        // _inputDateEnter : function (date) {
+
+        //     let input0 = this.$refs[`ui-datepicker-input-0-${this.uiid}`];
+        //     let input0Calendar = input0.$refs[`ui-calendar-${input0.uiid}`];
+        //     let value = this.get();
+
+        //     if (value &&
+        //         typeof value[0] === 'string') {
+
+        //         let interval = sortBy([
+        //             +this._dateStringToDate(value[0], this.conf.format),
+        //             +date
+        //         ]);
+        //         let days = eachDayOfInterval({
+        //             start : interval[0],
+        //             end : interval[1]
+        //         });
+
+        //         input0Calendar.conf.highlightDay = days;
+
+        //     }
+
+        // },
+        _inputDateEnter: function _inputDateEnter(date) {
+
+            if (!this.data.selected) {
+
+                return;
+            }
+
+            var value = this.get();
+
+            if (value && typeof value[0] === 'string') {
+
+                this._highlightDate(this._dateStringToDate(value[0], this.conf.format), date);
+            }
+        },
+        _inputFocus: function _inputFocus() {
+
+            if (!this.conf.isRange) {
+
+                return;
+            }
+
+            var input0 = this.$refs['ui-datepicker-input-0-' + this.uiid];
+            var input1 = this.$refs['ui-datepicker-input-1-' + this.uiid];
+            var $input0DateSelect = input0.$el.querySelector('.date-select');
+            var $input1DateSelect = input1.$el.querySelector('.date-select');
+
+            if (!input0.data.inputFocus) {
+
+                input0._inputFocus();
+            }
+
+            if (!input1.data.inputFocus) {
+
+                input1._inputFocus();
+            }
+
+            if ($input0DateSelect && $input1DateSelect) {
+
+                $input1DateSelect.style.left = $input0DateSelect.offsetWidth + 'px';
+            }
+        },
+        _inputBlur: function _inputBlur() {
+
+            if (!this.conf.isRange) {
+
+                return;
+            }
+
+            var input0 = this.$refs['ui-datepicker-input-0-' + this.uiid];
+            var input1 = this.$refs['ui-datepicker-input-1-' + this.uiid];
+            var $input1DateSelect = input1.$el.querySelector('.date-select');
+
+            console.log('_inputBlur');
+
+            if (input0.data.inputFocus) {
+
+                input0._inputBlur();
+            }
+
+            if (input1.data.inputFocus) {
+
+                input1._inputBlur();
+            }
+
+            if ($input1DateSelect) {
+
+                delete $input1DateSelect.style.left;
+            }
         },
         _filterDateString: function _filterDateString(value) {
 
@@ -35013,6 +35223,118 @@ exports.default = {
 
             return value;
         },
+        _highlightDate: function _highlightDate(start, end) {
+
+            console.log('hd', start, end);
+
+            if (end === undefined) {
+
+                end = start;
+            }
+
+            start = +start;
+            end = +end;
+
+            if (end < start) {
+
+                var mid = start;
+
+                start = end;
+                end = mid;
+            }
+
+            var input0 = this.$refs['ui-datepicker-input-0-' + this.uiid];
+            var input0Calendar = input0.$refs['ui-calendar-' + input0.uiid];
+            var input0CalendarStart = (0, _dateFns.startOfMonth)(input0Calendar.getTime());
+            var input0CalendarEnd = (0, _dateFns.endOfMonth)(input0Calendar.getTime());
+            var input1 = this.$refs['ui-datepicker-input-1-' + this.uiid];
+            var input1Calendar = input1.$refs['ui-calendar-' + input1.uiid];
+            var input1CalendarStart = (0, _dateFns.startOfMonth)(input1Calendar.getTime());
+            var input1CalendarEnd = (0, _dateFns.endOfMonth)(input1Calendar.getTime());
+
+            // start/end均在左侧日历中
+            if (start <= input0CalendarEnd && start >= input0CalendarStart && +end <= input0CalendarEnd && +end >= input0CalendarStart) {
+
+                input0Calendar.conf.highlightDay = (0, _dateFns.eachDayOfInterval)({
+                    start: start,
+                    end: end
+                });
+                input1Calendar.conf.highlightDay = [];
+            }
+
+            // start在左侧/end在右侧
+            if (start <= input0CalendarEnd && start >= input0CalendarStart && end >= input1CalendarStart && end <= input1CalendarEnd) {
+
+                input0Calendar.conf.highlightDay = (0, _dateFns.eachDayOfInterval)({
+                    start: start,
+                    end: (0, _dateFns.addDays)(+input0CalendarEnd, 1)
+                });
+
+                input1Calendar.conf.highlightDay = (0, _dateFns.eachDayOfInterval)({
+                    start: (0, _dateFns.subDays)(+input1CalendarStart, 1),
+                    end: end
+                });
+            }
+
+            // start/end钧在右侧
+            if (start <= input1CalendarEnd && start >= input1CalendarStart && end >= input1CalendarStart && end <= input1CalendarEnd) {
+
+                input0Calendar.conf.highlightDay = [];
+                input1Calendar.conf.highlightDay = (0, _dateFns.eachDayOfInterval)({
+                    start: start,
+                    end: end
+                });;
+            }
+        },
+        _syncValueFromInputToRootForClick: function _syncValueFromInputToRootForClick(date) {
+
+            var val = this.get() || [];
+            var input0 = this.$refs['ui-datepicker-input-0-' + this.uiid];
+            var input0Calendar = input0.$refs['ui-calendar-' + input0.uiid];
+            var input0CalendarStart = (0, _dateFns.startOfMonth)(input0Calendar.getTime());
+            var input0CalendarEnd = (0, _dateFns.endOfMonth)(input0Calendar.getTime());
+            var input1 = this.$refs['ui-datepicker-input-1-' + this.uiid];
+            var input1Calendar = input1.$refs['ui-calendar-' + input1.uiid];
+            var input1CalendarStart = (0, _dateFns.startOfMonth)(input1Calendar.getTime());
+            var input1CalendarEnd = (0, _dateFns.endOfMonth)(input1Calendar.getTime());
+
+            if (!this.data.selected) {
+
+                val = [];
+            }
+
+            this.data.selected = !this.data.selected;
+
+            if (val[0] === undefined) {
+
+                val[0] = date;
+            } else {
+
+                val[1] = date;
+            }
+
+            val = (0, _lodash2.default)(val);
+
+            if (val[0]) {
+
+                val[0] = (0, _dateFns.format)(val[0], this.conf.format);
+            }
+
+            if (val[1]) {
+
+                val[1] = (0, _dateFns.format)(val[1], this.conf.format);
+            }
+
+            if (val.length === 0) {
+
+                val = undefined;
+            }
+
+            // TODO : 验证各种日期选择情况
+            // TODO : 验证日期重新选择情况
+
+            this._set(val, true);
+        },
         _syncValueFromInputToRoot: function _syncValueFromInputToRoot() {
 
             var input0 = this.$refs['ui-datepicker-input-0-' + this.uiid];
@@ -35025,22 +35347,88 @@ exports.default = {
                 this._set(value, true);
             } else if (this.conf.isRange && input0 && input1) {
 
-                var val = [input0.get(), input1.get()];
+                var input0Val = input0.get();
+                var input1Val = input1.get();
+                var val = [];
+                var currentVal = this.get();
 
-                if (val[1] === undefined) {
+                if (currentVal[0] === input0Val && currentVal[1] === input1Val) {
 
-                    val.splice(1, 1);
-
-                    if (val[0] === undefined) {
-
-                        val = undefined;
-                    }
+                    return;
                 }
+
+                if (input0Val !== undefined) {
+
+                    input0Val = this._dateStringToDate(input0Val, this.conf.format);
+                }
+
+                if (input1Val !== undefined) {
+
+                    input1Val = this._dateStringToDate(input1Val, this.conf.format);
+                }
+
+                // TODO : 第二个日期修改后，弹出框不消失问题
+
+                console.log('sync value', input0Val, input1Val);
+
+                if (input0Val === undefined && input1Val) {
+
+                    val = [(0, _dateFns.format)(input1Val, this.conf.format)];
+                } else if (input1Val === undefined && input0Val) {
+
+                    val = [(0, _dateFns.format)(input0Val, this.conf.format)];
+                } else {
+
+                    val = [(0, _dateFns.format)(input0Val, this.conf.format), (0, _dateFns.format)(input1Val, this.conf.format)];
+                }
+
+                // if (val === undefined ||
+                //     val[0] === undefined) {
+
+                //     if (input0Val) {
+
+                //         val = [input0Val];
+
+                //     }
+
+                //     if (input1Val) {
+
+                //         val = [input1Val];
+
+                //     }
+
+                // } else {
+
+                //     if (input0Val) {
+
+                //         val[1] = input0Val;
+
+                //     } else if (input0Val) {
+
+                //         val[1] = input0Val;
+
+                //     }
+
+                // }
+
+                // if (val[1] === undefined) {
+
+                //     val.splice(1, 1);
+
+                //     if (val[0] === undefined) {
+
+                //         val = undefined;
+
+                //     }
+
+                // }
 
                 this._set(val, true);
             }
         },
         _syncFromRootToChild: function _syncFromRootToChild() {
+
+            console.log('_syncFromRootToChild', this.get());
 
             var input0 = this.$refs['ui-datepicker-input-0-' + this.uiid];
             var input1 = this.$refs['ui-datepicker-input-1-' + this.uiid];
@@ -35053,23 +35441,57 @@ exports.default = {
 
                 if (value) {
 
-                    input0._set(value[0], true);
-                    input1._set(value[1], true);
+                    if (value[0] !== input0.get()) {
+
+                        input0._set(value[0], true);
+                    }
+
+                    if (value[1] !== input1.get()) {
+
+                        input1._set(value[1], true);
+                    }
                 } else {
 
                     input0._set(undefined, true);
                     input1._set(undefined, true);
                 }
             }
+        },
+        _addMonths: function _addMonths(date, amount) {
+
+            return (0, _dateFns.addMonths)(date, amount);
         }
     },
     created: function created() {},
     mounted: function mounted() {
         var _this = this;
 
+        this.$watch('conf.date', function () {
+
+            _this.data.currentDate = +_this.conf.date;
+        }, {
+            immediate: true
+        });
+
         this.$on('value-change', function () {
 
+            var value = _this.get();
+
             _this._syncFromRootToChild();
+
+            if (value[0] && value[1]) {
+
+                _this.$nextTick(function () {
+
+                    _this._highlightDate(_this._dateStringToDate(value[0], _this.conf.format), _this._dateStringToDate(value[1], _this.conf.format));
+                });
+            } else if (value[0]) {
+
+                _this.$nextTick(function () {
+
+                    _this._highlightDate(_this._dateStringToDate(value[0], _this.conf.format));
+                });
+            }
         });
 
         this._syncFromRootToChild();
@@ -35131,12 +35553,20 @@ var render = function() {
                         ? _vm.conf.formName
                         : _vm.conf.startName,
                     "hide-name": _vm.conf.hideName,
-                    date: _vm.date,
+                    date: _vm.data.currentDate,
                     format: _vm.conf.format,
                     align: _vm.conf.align,
-                    "selectable-range": _vm.conf.selectableRange
+                    "selectable-range": _vm.conf.selectableRange,
+                    "auto-refresh-calendar": false
                   },
-                  on: { "value-change": _vm._syncValueFromInputToRoot }
+                  on: {
+                    "value-change": _vm._syncValueFromInputToRoot,
+                    "input-focus": _vm._inputFocus,
+                    "input-blur": _vm._inputBlur,
+                    "date-click": _vm._syncValueFromInputToRootForClick,
+                    "date-enter": _vm._inputDateEnter,
+                    "date-change": _vm._input0DateChange
+                  }
                 }),
                 _vm._v(" "),
                 _c("div", { staticClass: "separator" }, [
@@ -35153,12 +35583,20 @@ var render = function() {
                         ? _vm.conf.formName
                         : _vm.conf.endName,
                     "hide-name": _vm.conf.hideName,
-                    date: _vm.date,
+                    date: _vm._addMonths(_vm.data.currentDate, 1),
                     format: _vm.conf.format,
                     align: _vm.conf.align,
-                    "selectable-range": _vm.conf.selectableRange
+                    "selectable-range": _vm.conf.selectableRange,
+                    "auto-refresh-calendar": false
                   },
-                  on: { "value-change": _vm._syncValueFromInputToRoot }
+                  on: {
+                    "value-change": _vm._syncValueFromInputToRoot,
+                    "input-focus": _vm._inputFocus,
+                    "input-blur": _vm._inputBlur,
+                    "date-click": _vm._syncValueFromInputToRootForClick,
+                    "date-enter": _vm._inputDateEnter,
+                    "date-change": _vm._input1DateChange
+                  }
                 })
               ]
             : [
@@ -40076,6 +40514,10 @@ exports.default = {
             default: function _default() {
                 return [];
             }
+        },
+        autoRefreshCalendar: {
+            type: Boolean,
+            defualt: true
         }
     },
     computed: {
@@ -40086,7 +40528,8 @@ exports.default = {
                 type: this.type,
                 format: this.format,
                 align: this.align,
-                selectableRange: this.selectableRange
+                selectableRange: this.selectableRange,
+                autoRefreshCalendar: this.autoRefreshCalendar
             };
         },
         dateSelectClass: function dateSelectClass() {
@@ -40176,6 +40619,10 @@ exports.default = {
             return (0, _dateFns.format)(date, this.conf.format);
         },
         _noop: function _noop() {},
+        _dateEnter: function _dateEnter(date) {
+
+            this.$emit('date-enter', date);
+        },
         _inputBlur: function _inputBlur() {
 
             this.data.inputFocus = false;
@@ -40199,6 +40646,8 @@ exports.default = {
                     date = this._getClosestDate(date);
                 }
 
+                console.log('private', date);
+
                 if (+date === +this._dateStringToDate(this.data.value, this.conf.format)) {
 
                     this._refreshInputValue();
@@ -40207,10 +40656,13 @@ exports.default = {
                     this._set((0, _dateFns.format)(date, this.conf.format), true);
                 }
             }
+
+            this.$emit('input-blur');
         },
         _inputFocus: function _inputFocus() {
 
             this.data.inputFocus = true;
+            this.$emit('input-focus');
         },
         _clickDate: function _clickDate(date) {
 
@@ -40223,6 +40675,7 @@ exports.default = {
             }
 
             this._set(value);
+            this.$emit('date-click', date);
         },
         _refreshInputValue: function _refreshInputValue() {
 
@@ -40437,6 +40890,7 @@ exports.default = {
 
             this.data.selectableDates = selectableDates;
             this.data.disabledRange = (0, _lodash2.default)(disabledRange, null);
+            this.data.currentDate = calendarVm.getTime();
         },
         _refreshCurrentDate: function _refreshCurrentDate() {
 
@@ -40459,7 +40913,11 @@ exports.default = {
         _updateDate: function _updateDate() {
 
             this._refreshInputValue();
-            this._refreshCurrentDate();
+
+            if (this.conf.autoRefreshCalendar) {
+
+                this._refreshCurrentDate();
+            }
         }
     },
     created: function created() {},
@@ -40476,13 +40934,25 @@ exports.default = {
             _this._updateDate();
         });
 
+        this.$watch('conf.date', function () {
+
+            _this.data.currentDate = +_this.conf.date;
+        }, {
+            immediate: true
+        });
         this.$watch('conf.format', this._refreshInputValue);
         this.$watch('conf.selectableRange', this._refreshSelectable, {
             deep: true,
             immediate: true
         });
+        this.$watch('data.currentDate', function () {
+
+            _this.$emit('date-change', _this.data.currentDate);
+        });
     }
 }; //
+//
+//
 //
 //
 //
@@ -41595,7 +42065,7 @@ function isObjectLike(value) {
 
 module.exports = without;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(21)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(22)))
 
 /***/ }),
 /* 471 */
@@ -41622,7 +42092,8 @@ var render = function() {
         type: _vm.type,
         format: _vm.format,
         align: _vm.align,
-        "selectable-range": _vm.selectableRange
+        "selectable-range": _vm.selectableRange,
+        "auto-refresh-calendar": _vm.autoRefreshCalendar
       }
     },
     [
@@ -41671,7 +42142,8 @@ var render = function() {
             on: {
               "date-click": _vm._clickDate,
               "month-change": _vm._refreshSelectable,
-              "year-change": _vm._refreshSelectable
+              "year-change": _vm._refreshSelectable,
+              "date-enter": _vm._dateEnter
             }
           })
         ],

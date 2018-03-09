@@ -57,7 +57,7 @@ test('slot is dynamic', async t => {
             }]
         },
         components : {
-            'ui-teb' : component
+            'ui-tab' : component
         }
     });
 

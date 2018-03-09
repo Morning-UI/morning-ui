@@ -212,25 +212,23 @@ export default {
 
                     this._refreshInputValue();
 
-                    return;
-
-                }
-
-                if (!this._checkSelectable(date)) {
-
-                    date = this._getClosestDate(date);
-
-                }
-
-                console.log('private', date);
-
-                if (+date === +this._dateStringToDate(this.data.value, this.conf.format)) {
-
-                    this._refreshInputValue();
-
                 } else {
+                
+                    if (!this._checkSelectable(date)) {
 
-                    this._set(formatDate(date, this.conf.format), true);
+                        date = this._getClosestDate(date);
+
+                    }
+
+                    if (+date === +this._dateStringToDate(this.data.value, this.conf.format)) {
+
+                        this._refreshInputValue();
+
+                    } else {
+
+                        this._set(formatDate(date, this.conf.format), true);
+
+                    }
 
                 }
 
