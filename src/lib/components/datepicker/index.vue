@@ -249,29 +249,6 @@ export default {
             this.$nextTick(() => this._highlightDateFromValue());
 
         },
-        // _inputDateEnter : function (date) {
-
-        //     let input0 = this.$refs[`ui-datepicker-input-0-${this.uiid}`];
-        //     let input0Calendar = input0.$refs[`ui-calendar-${input0.uiid}`];
-        //     let value = this.get();
-
-        //     if (value &&
-        //         typeof value[0] === 'string') {
-
-        //         let interval = sortBy([
-        //             +this._dateStringToDate(value[0], this.conf.format),
-        //             +date
-        //         ]);
-        //         let days = eachDayOfInterval({
-        //             start : interval[0],
-        //             end : interval[1]
-        //         });
-
-        //         input0Calendar.conf.highlightDay = days;
-
-        //     }
-
-        // },
         _inputDateEnter : function (date) {
 
             if (!this.data.selected) {
@@ -608,9 +585,6 @@ export default {
 
             }
 
-            // TODO : 验证各种日期选择情况
-            // TODO : 验证日期重新选择情况
-
             this._set(val, true);
 
         },
@@ -664,47 +638,6 @@ export default {
                     val = [formatDate(input0Val, this.conf.format), formatDate(input1Val, this.conf.format)];
 
                 }
-
-                // if (val === undefined ||
-                //     val[0] === undefined) {
-
-                //     if (input0Val) {
-
-                //         val = [input0Val];
-
-                //     }
-
-                //     if (input1Val) {
-
-                //         val = [input1Val];
-                    
-                //     }
-
-                // } else {
-
-                //     if (input0Val) {
-
-                //         val[1] = input0Val;
-                    
-                //     } else if (input0Val) {
-
-                //         val[1] = input0Val;
-
-                //     }
-
-                // }
-
-                // if (val[1] === undefined) {
-
-                //     val.splice(1, 1);
-
-                //     if (val[0] === undefined) {
-
-                //         val = undefined;
-
-                //     }
-
-                // }
 
                 this._set(val, true);
 
