@@ -388,6 +388,12 @@ export default {
         },
         _highlightDate : function (start, end) {
 
+            if (!this.conf.isRange) {
+
+                return;
+
+            }
+
             if (end === undefined) {
 
                 end = start;
@@ -407,10 +413,10 @@ export default {
             }
 
             let input0 = this.$refs[`ui-datepicker-input-0-${this.uiid}`];
+            let input1 = this.$refs[`ui-datepicker-input-1-${this.uiid}`];
             let input0Calendar = input0.$refs[`ui-calendar-${input0.uiid}`];
             let input0CalendarStart = startOfMonth(input0Calendar.getTime());
             let input0CalendarEnd = endOfMonth(input0Calendar.getTime());
-            let input1 = this.$refs[`ui-datepicker-input-1-${this.uiid}`];
             let input1Calendar = input1.$refs[`ui-calendar-${input1.uiid}`];
             let input1CalendarStart = startOfMonth(input1Calendar.getTime());
             let input1CalendarEnd = endOfMonth(input1Calendar.getTime());

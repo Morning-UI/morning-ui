@@ -99,7 +99,7 @@ export default {
         },
         autoRefreshCalendar : {
             type : Boolean,
-            defualt : true
+            default : true
         }
     },
     computed : {
