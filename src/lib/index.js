@@ -203,6 +203,13 @@ morning.install = function (Vue, options) {
 
     let vueRender = (el, binding) => {
 
+        if (binding.oldValue &&
+            binding.oldValue.template === binding.value.template) {
+
+            return;
+
+        }
+
         let tagName = el.tagName;
         let $vue = new Vue({
             template : `<${tagName}>${binding.value.template}</${tagName}>`
