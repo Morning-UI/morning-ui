@@ -4577,6 +4577,12 @@ mor-datepicker .wrap .datepicker-input-1 .date-select{border-bottom-left-radius:
 }
 mor-datepicker .wrap .separator{height:42px;min-width:42px;line-height:42px;padding:0 .5em;font-size:14px;color:#7c8ba0;text-align:center;background-color:#f0f0f0;border-top:1px solid #e6e6e6;border-bottom:1px solid #e6e6e6
 }
+mor-datetimepicker{display:block;position:relative
+}
+mor-datetimepicker.has-cleanbtn{padding-bottom:20px
+}
+mor-datetimepicker .cleanbtn{position:absolute;right:0;font-size:12px;margin-top:1px
+}
 mor-upload{position:relative;z-index:1;display:inline-block;width:100%;box-sizing:border-box;vertical-align:middle;-webkit-user-select:none
 }
 mor-upload.has-cleanbtn{padding-bottom:20px

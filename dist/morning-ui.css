@@ -10053,6 +10053,20 @@ mor-datepicker .wrap .separator {
   border-bottom: 1px solid #E6E6E6;
 }
 
+mor-datetimepicker {
+  display: block;
+  position: relative;
+}
+mor-datetimepicker.has-cleanbtn {
+  padding-bottom: 20px;
+}
+mor-datetimepicker .cleanbtn {
+  position: absolute;
+  right: 0;
+  font-size: 12px;
+  margin-top: 1px;
+}
+
 mor-upload {
   position: relative;
   z-index: 1;

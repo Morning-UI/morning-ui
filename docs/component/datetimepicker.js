@@ -1,4 +1,4 @@
-webpackJsonp([76],{
+webpackJsonp([73],{
 
 /***/ 0:
 /***/ (function(module, exports) {
@@ -7,7 +7,7 @@ module.exports = Vue;
 
 /***/ }),
 
-/***/ 696:
+/***/ 681:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17,7 +17,7 @@ var _vue = __webpack_require__(0);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _index = __webpack_require__(697);
+var _index = __webpack_require__(682);
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -32,18 +32,18 @@ new _vue2.default({
 
 /***/ }),
 
-/***/ 697:
+/***/ 682:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_index_vue__ = __webpack_require__(699);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_index_vue__ = __webpack_require__(684);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_37e88140_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_index_vue__ = __webpack_require__(700);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_891a0458_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_index_vue__ = __webpack_require__(685);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(698)
+  __webpack_require__(683)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
@@ -60,13 +60,13 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_index_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_37e88140_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_index_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_891a0458_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_index_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "src/docs/pages/component/center/index.vue"
+Component.options.__file = "src/docs/pages/component/datetimepicker/index.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
@@ -76,9 +76,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-37e88140", Component.options)
+    hotAPI.createRecord("data-v-891a0458", Component.options)
   } else {
-    hotAPI.reload("data-v-37e88140", Component.options)
+    hotAPI.reload("data-v-891a0458", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
@@ -90,14 +90,14 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 698:
+/***/ 683:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 699:
+/***/ 684:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -117,7 +117,7 @@ exports.default = {
     data: function data() {
 
         return {
-            page: 'center'
+            page: 'datetimepicker'
         };
     },
     components: {
@@ -153,41 +153,12 @@ exports.default = {
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 700:
+/***/ 685:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -198,7 +169,7 @@ var render = function() {
   return _c("doc-component", { attrs: { page: _vm.page, hasPadding: true } }, [
     _c("script", { attrs: { type: "text/markdown" } }, [
       _vm._v(
-        '\n# 居中容器 `<ui-center>`\n\n<doc-component-status page="center"></doc-component-status>\n\n[[[开始]]]\n\n定义居中的容器，容器的内容将被居中显示，这是一个块级元素。\n\n#### 使用\n\n:::democode/html\n<div style="width:400px; height:300px;background-color:#EDF1F5">\n    <ui-center>\n        <div style="background-color:#A8B3C2;">居中div</div>\n        居中文字\n    </ui-center>\n</div>\n:::\n\n#### 填满容器的居中\n\n填满的居中容器高度为100%。\n\n\n:::democode/html\n<div style="width:400px; height:300px;background-color:#EDF1F5">\n    <ui-center class="fill">\n        <div style="background-color:#A8B3C2;">充满父容器</div>\n        居中文字\n    </ui-center>\n</div>\n:::\n\n[[[形态]]]\n\n#### 支持\n\n|类型|支持|默认|\n|-|-|-|\n|尺寸|不支持|-|\n|色彩|不支持|-|\n|状态|不支持|-|\n\n<a href="/guide/status.html">查看形态文档</a>\n\n\n[[[源码]]]\n\n<iframe src="/report/coverage/lib/components/center/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>\n'
+        '\n# 日期时间选择器 `<ui-datetimepicker>`\n\n<doc-component-status page="datetimepicker"></doc-component-status>\n\n[[[开始]]]\n\n定义日期选择器。\n\n#### 使用\n\n:::democode/html\n<div style="width:300px;">\n    <morning-datetimepicker form-name="日期时间"></morning-datetimepicker>\n</div>\n:::\n\n[[[源码]]]\n\n<iframe src="/report/coverage/lib/components/datetimepicker/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>\n\n'
       )
     ])
   ])
@@ -210,10 +181,10 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-37e88140", esExports)
+    require("vue-hot-reload-api")      .rerender("data-v-891a0458", esExports)
   }
 }
 
 /***/ })
 
-},[696]);
+},[681]);

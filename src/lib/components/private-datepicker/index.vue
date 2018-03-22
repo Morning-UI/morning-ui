@@ -33,6 +33,12 @@
 
     <div class="date-select" :class="dateSelectClass" @mousedown.stop.prevent="_noop">
 
+        <div style="
+            width: 100%;
+            height: 40px;
+            border-bottom: 1px #eee solid;
+        "></div>
+
         <morning-calendar
             :ref="'ui-calendar-'+uiid"
             :date="data.currentDate"
