@@ -41196,6 +41196,12 @@ exports.default = {
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 module.exports = exports['default'];
 
@@ -42320,6 +42326,14 @@ var render = function() {
           }
         },
         [
+          _c("div", {
+            staticStyle: {
+              width: "100%",
+              height: "40px",
+              "border-bottom": "1px #eee solid"
+            }
+          }),
+          _vm._v(" "),
           _c("morning-calendar", {
             ref: "ui-calendar-" + _vm.uiid,
             attrs: {

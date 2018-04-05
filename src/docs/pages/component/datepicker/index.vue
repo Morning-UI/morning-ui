@@ -40,6 +40,14 @@
 
     更多自定义格式见`format`配置。
 
+    #### 范围日期选择
+
+    :::democode/html
+    <div style="width:360px;">
+        <ui-datepicker form-name="日期" :is-range="true"></ui-datepicker>
+    </div>
+    :::
+
     [[[形态]]]
 
     :::preset/html

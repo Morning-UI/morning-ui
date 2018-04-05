@@ -15,6 +15,7 @@
         :align="align"
         :selectable-range="selectableRange"
         :auto-refresh-calendar="autoRefreshCalendar"
+        :show-timepicker-box="showTimepickerBox"
     >
 
     <morning-textinput
@@ -25,19 +26,16 @@
         :state="conf.state"
         prepend="<i class='morningicon'>&#xe602;</i>"
 
-        @blur="_inputBlur"
         @focus="_inputFocus"
 
         v-model="data.inputValue"
     ></morning-textinput>
 
-    <div class="date-select" :class="dateSelectClass" @mousedown.stop.prevent="_noop">
+    <div class="date-select" :class="dateSelectClass">
 
-        <div style="
-            width: 100%;
-            height: 40px;
-            border-bottom: 1px #eee solid;
-        "></div>
+        <div class="timepicker" v-if="conf.showTimepickerBox">
+            <slot name="timepicker"></slot>
+        </div>
 
         <morning-calendar
             :ref="'ui-calendar-'+uiid"
@@ -106,6 +104,10 @@ export default {
         autoRefreshCalendar : {
             type : Boolean,
             default : true
+        },
+        showTimepickerBox : {
+            type : Boolean,
+            default : false
         }
     },
     computed : {
@@ -117,7 +119,8 @@ export default {
                 format : this.format,
                 align : this.align,
                 selectableRange : this.selectableRange,
-                autoRefreshCalendar : this.autoRefreshCalendar
+                autoRefreshCalendar : this.autoRefreshCalendar,
+                showTimepickerBox : this.showTimepickerBox
             };
 
         },
@@ -195,13 +198,20 @@ export default {
             return formatDate(date, this.conf.format);
 
         },
-        _noop : function () {},
         _dateEnter : function (date) {
 
             this.$emit('date-enter', date);
 
         },
-        _inputBlur : function () {
+        _inputBlur : function (evt) {
+
+            console.log(evt);
+
+            if (evt.path.indexOf(this.$el) !== -1) {
+
+                return;
+
+            }
 
             this.data.inputFocus = false;
 
@@ -281,6 +291,8 @@ export default {
 
             let ranges = this.conf.selectableRange;
 
+            console.log(value, ranges);
+
             if (!(ranges instanceof Array) ||
                 ranges.length === 0) {
 
@@ -301,7 +313,7 @@ export default {
 
                 if (isValid(start) &&
                     isValid(end) &&
-                    !isWithinInterval(date, {
+                    isWithinInterval(date, {
                         start,
                         end
                     })) {
@@ -522,13 +534,13 @@ export default {
     created : function () {},
     mounted : function () {
 
+        document.body.addEventListener('mouseup', this._inputBlur);
+
         this.$nextTick(() => {
 
             this._updateDate();
 
         });
-
-
 
         this.$on('value-change', () => {
 
@@ -553,6 +565,11 @@ export default {
             this.$emit('date-change', this.data.currentDate);
 
         });
+
+    },
+    beforeDestory : function () {
+
+        document.body.removeEventListener('mouseup', this._inputBlur);
 
     }
 };

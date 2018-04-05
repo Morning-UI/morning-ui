@@ -13,6 +13,7 @@
         :format="format"
         :align="align"
         :selectable-range="selectableRange"
+        :show-timepicker-box="showTimepickerBox"
         :is-range="isRange"
         :separator="separator"
         :start-name="startName"
@@ -36,6 +37,7 @@
                 :format="conf.format"
                 :align="conf.align"
                 :selectable-range="conf.selectableRange"
+                :show-timepicker-box="conf.showTimepickerBox"
                 :auto-refresh-calendar="false"
     
                 @value-change="_syncValueFromInputToRoot"
@@ -45,6 +47,7 @@
                 @date-enter="_inputDateEnter"
                 @date-change = "_input0DateChange"
             >
+                <slot name="timepicker" slot="timepicker"></slot>
             </morning-private-datepicker>
 
             <div class="separator">{{conf.separator}}</div>
@@ -60,6 +63,7 @@
                 :format="conf.format"
                 :align="conf.align"
                 :selectable-range="conf.selectableRange"
+                :show-timepicker-box="conf.showTimepickerBox"
                 :auto-refresh-calendar="false"
                 
                 @value-change="_syncValueFromInputToRoot"
@@ -68,7 +72,8 @@
                 @date-click="_syncValueFromInputToRootForClick"
                 @date-enter="_inputDateEnter"
                 @date-change = "_input1DateChange"
-            >    
+            >
+                <slot name="timepicker" slot="timepicker"></slot>
             </morning-private-datepicker>
         </template>
 
@@ -84,9 +89,11 @@
                 :format="conf.format"
                 :align="conf.align"
                 :selectable-range="conf.selectableRange"
+                :show-timepicker-box="conf.showTimepickerBox"
 
                 @value-change="_syncValueFromInputToRoot"
-            >    
+            >
+                <slot name="timepicker" slot="timepicker"></slot>    
             </morning-private-datepicker>
         </template>
 
@@ -134,6 +141,10 @@ export default {
             type : Array,
             default : (() => [])
         },
+        showTimepickerBox : {
+            type : Boolean,
+            defualt : false
+        },
         isRange : {
             type : Boolean,
             default : false
@@ -159,6 +170,7 @@ export default {
                 format : this.format,
                 align : this.align,
                 selectableRange : this.selectableRange,
+                showTimepickerBox : this.showTimepickerBox,
                 isRange : this.isRange,
                 separator : this.separator,
                 startName : this.startName,
@@ -689,6 +701,28 @@ export default {
         _addMonths : function (date, amount) {
 
             return addMonths(date, amount);
+
+        },
+        getDate : function () {
+
+            let value = this.get();
+
+            console.log('date', value);
+
+            if (typeof value === 'string') {
+
+                return this._dateStringToDate(value, this.conf.format);
+
+            } else if (value instanceof Array) {
+
+                return [
+                    this._dateStringToDate(value[0], this.conf.format),
+                    this._dateStringToDate(value[1], this.conf.format)
+                ];
+
+            }
+
+            return value;
 
         }
     },
