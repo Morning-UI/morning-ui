@@ -4583,6 +4583,12 @@ mor-datetimepicker.has-cleanbtn{padding-bottom:20px
 }
 mor-datetimepicker .cleanbtn{position:absolute;right:0;font-size:12px;margin-top:1px
 }
+mor-datetimepicker .timepicker{width:100%;height:40px;position:relative
+}
+mor-datetimepicker .timepicker mor-timepicker{transform:scale(.8);z-index:2;width:150px;position:absolute;right:5px;transform-origin:right
+}
+mor-datetimepicker .timepicker mor-timepicker mor-textinput>input{tabindex:-1
+}
 mor-upload{position:relative;z-index:1;display:inline-block;width:100%;box-sizing:border-box;vertical-align:middle;-webkit-user-select:none
 }
 mor-upload.has-cleanbtn{padding-bottom:20px

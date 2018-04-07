@@ -41,6 +41,8 @@
                 :auto-refresh-calendar="false"
     
                 @value-change="_syncValueFromInputToRoot"
+                @focus="_focus"
+                @blur="_blur"
                 @input-focus="_inputFocus"
                 @input-blur="_inputBlur"
                 @date-click="_syncValueFromInputToRootForClick"
@@ -67,6 +69,8 @@
                 :auto-refresh-calendar="false"
                 
                 @value-change="_syncValueFromInputToRoot"
+                @focus="_focus"
+                @blur="_blur"
                 @input-focus="_inputFocus"
                 @input-blur="_inputBlur"
                 @date-click="_syncValueFromInputToRootForClick"
@@ -92,6 +96,10 @@
                 :show-timepicker-box="conf.showTimepickerBox"
 
                 @value-change="_syncValueFromInputToRoot"
+                @input-focus="_inputFocus"
+                @input-blur="_inputBlur"
+                @focus="_focus"
+                @blur="_blur"
             >
                 <slot name="timepicker" slot="timepicker"></slot>    
             </morning-private-datepicker>
@@ -281,76 +289,85 @@ export default {
         },
         _inputFocus : function () {
 
-            if (!this.conf.isRange) {
-
-                return;
-
-            }
-
-            let input0 = this.$refs[`ui-datepicker-input-0-${this.uiid}`];
-            let input1 = this.$refs[`ui-datepicker-input-1-${this.uiid}`];
-            let $input0DateSelect = input0.$el.querySelector('.date-select');
-            let $input1DateSelect = input1.$el.querySelector('.date-select');
-            let value = this.get();
-
-            if (!input0.data.inputFocus) {
-
-                input0._inputFocus();
-
-            }
-
-            if (!input1.data.inputFocus) {
-
-                input1._inputFocus();
-
-            }
-
-            if ($input0DateSelect &&
-                $input1DateSelect) {
-
-                $input1DateSelect.style.left = `${$input0DateSelect.offsetWidth}px`;
-
-            }
-
-            if (value && value[0]) {
-
-                this.data.currentDate = +this._dateStringToDate(value[0], this.conf.format);
-
-            }
-
-            this.$nextTick(() => this._highlightDateFromValue());
+            this.$emit('input-focus');
 
         },
         _inputBlur : function () {
 
-            if (!this.conf.isRange) {
+            this.$emit('input-blur');
 
-                return;
+        },
+        _focus : function () {
+
+            if (this.conf.isRange) {
+
+                let input0 = this.$refs[`ui-datepicker-input-0-${this.uiid}`];
+                let input1 = this.$refs[`ui-datepicker-input-1-${this.uiid}`];
+                let $input0DateSelect = input0.$el.querySelector('.date-select');
+                let $input1DateSelect = input1.$el.querySelector('.date-select');
+                let value = this.get();
+
+                if (!input0.data.inputFocus) {
+
+                    input0._focus();
+
+                }
+
+                if (!input1.data.inputFocus) {
+
+                    input1._focus();
+
+                }
+
+                if ($input0DateSelect &&
+                    $input1DateSelect) {
+
+                    $input1DateSelect.style.left = `${$input0DateSelect.offsetWidth}px`;
+
+                }
+
+                if (value && value[0]) {
+
+                    this.data.currentDate = +this._dateStringToDate(value[0], this.conf.format);
+
+                }
+
+                this.$nextTick(() => this._highlightDateFromValue());
 
             }
 
-            let input0 = this.$refs[`ui-datepicker-input-0-${this.uiid}`];
-            let input1 = this.$refs[`ui-datepicker-input-1-${this.uiid}`];
-            let $input1DateSelect = input1.$el.querySelector('.date-select');
+            this.$emit('focus');
 
-            if (input0.data.inputFocus) {
+        },
+        _blur : function () {
 
-                input0._inputBlur();
+            if (this.conf.isRange) {
+
+                let input0 = this.$refs[`ui-datepicker-input-0-${this.uiid}`];
+                let input1 = this.$refs[`ui-datepicker-input-1-${this.uiid}`];
+                let $input1DateSelect = input1.$el.querySelector('.date-select');
+
+                if (input0.data.inputFocus) {
+
+                    input0._blur();
+
+                }
+
+                if (input1.data.inputFocus) {
+
+                    input1._blur();
+                    
+                }
+
+                if ($input1DateSelect) {
+
+                    delete $input1DateSelect.style.left;
+
+                }
 
             }
 
-            if (input1.data.inputFocus) {
-
-                input1._inputBlur();
-                
-            }
-
-            if ($input1DateSelect) {
-
-                delete $input1DateSelect.style.left;
-
-            }
-
+            this.$emit('blur');
 
         },
         _filterDateString : function (value) {
@@ -707,8 +724,6 @@ export default {
 
             let value = this.get();
 
-            console.log('date', value);
-
             if (typeof value === 'string') {
 
                 return this._dateStringToDate(value, this.conf.format);
@@ -723,6 +738,23 @@ export default {
             }
 
             return value;
+
+        },
+        getInputValue : function () {
+
+            let input0 = this.$refs[`ui-datepicker-input-0-${this.uiid}`];
+            let input1 = this.$refs[`ui-datepicker-input-1-${this.uiid}`];
+
+            if (!this.conf.isRange) {
+
+                return input0.data.inputValue;
+
+            } else {
+
+                return [input0.data.inputValue, input1.data.inputValue];
+
+            }
+
 
         }
     },

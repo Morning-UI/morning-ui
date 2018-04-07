@@ -81,6 +81,14 @@
     configMoreAttr::date="+new Date('2018-03-23')"
     :::
 
+    #### date
+
+    :::democode/html
+    <div style="width:300px">
+        <ui-datepicker :date="+new Date('2018-03-23')"></ui-datepicker>
+    </div>
+    :::
+
     #### format
         
     `format`允许自定义组件展示的日期格式，支持以下占位符：

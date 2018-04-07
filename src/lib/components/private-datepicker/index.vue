@@ -27,6 +27,7 @@
         prepend="<i class='morningicon'>&#xe602;</i>"
 
         @focus="_inputFocus"
+        @blur="_inputBlur"
 
         v-model="data.inputValue"
     ></morning-textinput>
@@ -203,17 +204,13 @@ export default {
             this.$emit('date-enter', date);
 
         },
-        _inputBlur : function (evt) {
+        _inputFocus : function () {
 
-            console.log(evt);
+            this.$emit('input-focus');
+            this._focus();
 
-            if (evt.path.indexOf(this.$el) !== -1) {
-
-                return;
-
-            }
-
-            this.data.inputFocus = false;
+        },
+        _inputBlur : function () {
 
             if (this.data.inputValue === undefined ||
                 this.data.inputValue === '') {
@@ -253,10 +250,23 @@ export default {
             this.$emit('input-blur');
 
         },
-        _inputFocus : function () {
+        _blur : function (evt) {
+
+            if (evt.path.indexOf(this.$el) !== -1) {
+
+                return;
+
+            }
+
+            this.data.inputFocus = false;
+
+            this.$emit('blur');
+
+        },
+        _focus : function () {
 
             this.data.inputFocus = true;
-            this.$emit('input-focus');
+            this.$emit('focus');
 
         },
         _clickDate : function (date) {
@@ -290,8 +300,6 @@ export default {
         _checkSelectable : function (value) {
 
             let ranges = this.conf.selectableRange;
-
-            console.log(value, ranges);
 
             if (!(ranges instanceof Array) ||
                 ranges.length === 0) {
@@ -534,7 +542,7 @@ export default {
     created : function () {},
     mounted : function () {
 
-        document.body.addEventListener('mouseup', this._inputBlur);
+        document.body.addEventListener('mouseup', this._blur);
 
         this.$nextTick(() => {
 
@@ -569,7 +577,7 @@ export default {
     },
     beforeDestory : function () {
 
-        document.body.removeEventListener('mouseup', this._inputBlur);
+        document.body.removeEventListener('mouseup', this._blur);
 
     }
 };

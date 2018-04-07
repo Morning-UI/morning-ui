@@ -506,8 +506,6 @@ export default {
 
             let value = this.get();
 
-            console.log('time', value);
-
             if (typeof value === 'string') {
 
                 return this._timeStringToDate(value, this.conf.format);
