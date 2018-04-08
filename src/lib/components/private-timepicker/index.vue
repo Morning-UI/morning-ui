@@ -464,16 +464,15 @@ export default {
 
             let start = this._timeGetStandardDate();
             let end = this._timeGetStandardDate();
+            let rangeStart = this._timeStringToDate(range[0], this.conf.format);
+            let rangeEnd = this._timeStringToDate(range[1], this.conf.format);
 
-            range[0] = this._timeStringToDate(range[0], this.conf.format);
-            range[1] = this._timeStringToDate(range[1], this.conf.format);
-
-            start = setHours(start, getHours(range[0]));
-            start = setMinutes(start, getMinutes(range[0]));
-            start = setSeconds(start, getSeconds(range[0]));
-            end = setHours(end, getHours(range[1]));
-            end = setMinutes(end, getMinutes(range[1]));
-            end = setSeconds(end, getSeconds(range[1]));
+            start = setHours(start, getHours(rangeStart));
+            start = setMinutes(start, getMinutes(rangeStart));
+            start = setSeconds(start, getSeconds(rangeStart));
+            end = setHours(end, getHours(rangeEnd));
+            end = setMinutes(end, getMinutes(rangeEnd));
+            end = setSeconds(end, getSeconds(rangeEnd));
 
             selectableTimes.push([start, end]);
 

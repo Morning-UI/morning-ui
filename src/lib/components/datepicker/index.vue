@@ -24,7 +24,7 @@
         <div class="input-group-addon" v-if="conf.isRange">
             <i class='morningicon'>&#xe602;</i>
         </div>
-    
+
         <template v-if="conf.isRange">
             <morning-private-datepicker
                 class="datepicker-input-0"

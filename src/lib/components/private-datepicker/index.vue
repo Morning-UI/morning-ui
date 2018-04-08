@@ -68,6 +68,8 @@ import {
     areIntervalsOverlapping,
     startOfMonth,
     endOfMonth,
+    startOfDay,
+    endOfDay,
     subDays,
     addDays
 }                                   from 'date-fns';
@@ -227,7 +229,7 @@ export default {
 
                 } else {
                 
-                    if (!this._checkSelectable(date)) {
+                    if (!this._checkSelectable(this.data.inputValue)) {
 
                         date = this._getClosestDate(date);
 
@@ -319,6 +321,10 @@ export default {
                 let start = this._dateStringToDate(ranges[0], this.conf.format);
                 let end = this._dateStringToDate(ranges[1], this.conf.format);
 
+                // set to day start and day end
+                start = startOfDay(start);
+                end = endOfDay(end);
+
                 if (isValid(start) &&
                     isValid(end) &&
                     isWithinInterval(date, {
@@ -341,6 +347,10 @@ export default {
 
                         let start = this._dateStringToDate(range[0], this.conf.format);
                         let end = this._dateStringToDate(range[1], this.conf.format);
+
+                        // set to day start and day end
+                        start = startOfDay(start);
+                        end = endOfDay(end);
 
                         if (isValid(start) &&
                             isValid(end) &&
@@ -388,8 +398,8 @@ export default {
                 typeof ranges[0] === 'string' &&
                 typeof ranges[1] === 'string') {
 
-                let start = subDays(this._dateStringToDate(ranges[0], this.conf.format), 1);
-                let end = addDays(this._dateStringToDate(ranges[1], this.conf.format), 1);
+                let start = subDays(startOfDay(this._dateStringToDate(ranges[0], this.conf.format)), 1);
+                let end = addDays(startOfDay(this._dateStringToDate(ranges[1], this.conf.format)), 1);
 
                 if (isValid(start) && start >= calendarStart) {
 
@@ -420,8 +430,8 @@ export default {
                         typeof range[0] === 'string' &&
                         typeof range[1] === 'string') {
 
-                        let start = subDays(this._dateStringToDate(range[0], this.conf.format), 1);
-                        let end = addDays(this._dateStringToDate(range[1], this.conf.format), 1);
+                        let start = subDays(startOfDay(this._dateStringToDate(range[0], this.conf.format)), 1);
+                        let end = addDays(startOfDay(this._dateStringToDate(range[1], this.conf.format)), 1);
 
                         if (disabledRange.length === 0) {
 

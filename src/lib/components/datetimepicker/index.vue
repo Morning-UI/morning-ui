@@ -37,6 +37,7 @@
                 <morning-timepicker
                     :ref="'ui-datetimepicker-time-'+uiid"
                     :align="conf.align"
+                    :selectable-range="timeSelectableRangeAll"
     
                     @value-change="_syncFromInputToRoot(1)"
                 ></morning-timepicker>
@@ -50,7 +51,7 @@
 </template>
  
 <script>
-// TODO : date-selectable-range
+// TODO : date-selectable-range配合time-selectable-range使用
 import {
     format as formatDate,
     getYear,
@@ -66,14 +67,19 @@ import {
     setHours,
     setMinutes,
     setSeconds,
-    setMilliseconds
+    setMilliseconds,
+    isSameDay,
+    closestTo,
+    isValid,
+    isWithinInterval
 }                                   from 'date-fns';
 import Dates                        from 'Utils/Dates';
+import Time                         from 'Utils/Time';
 
 export default {
     origin : 'Form',
     name : 'datetimepicker',
-    mixins : [Dates],
+    mixins : [Dates, Time],
     props : {
         date : {
             type : Number,
@@ -128,12 +134,44 @@ export default {
                 endName : this.endName
             };
 
+        },
+        timeSelectableRangeAll : function () {
+
+            let all = [];
+            let confRange = this.conf.timeSelectableRange;
+            let dateRange = this.data.timeSelectableRange;
+
+            if (confRange[0] > dateRange[0]) {
+
+                all[0] = confRange[0];
+
+            } else {
+
+                all[0] = dateRange[0];
+
+            }
+
+            if (confRange[1] < dateRange[1]) {
+
+                all[1] = confRange[1];
+
+            } else {
+
+                all[1] = dateRange[1];
+
+            }
+
+            return all;
+
         }
     },
     data : function () {
 
         return {
-            data : {}
+            data : {
+                timeSelectableRange : [],
+                selectableDates : []
+            }
         };
 
     },
@@ -148,6 +186,8 @@ export default {
             let $date = this.$refs[`ui-datetimepicker-date-${this.uiid}`];
             let $time = this.$refs[`ui-datetimepicker-time-${this.uiid}`];
             let value = this.get();
+
+            this._refreshTimeSelectable();
 
             if ($date) {
 
@@ -185,6 +225,8 @@ export default {
 
             let $date = this.$refs[`ui-datetimepicker-date-${this.uiid}`];
             let $time = this.$refs[`ui-datetimepicker-time-${this.uiid}`];
+
+            this._refreshTimeSelectable();
 
             if ($date && $time) {
 
@@ -235,6 +277,12 @@ export default {
                 }
 
                 if (isSet) {
+
+                    if (!this._checkSelectable(fulldate)) {
+
+                        fulldate = this._getClosestDate(fulldate);
+
+                    }
                     
                     this._set(formatDate(fulldate, this.conf.format), true);
 
@@ -245,6 +293,240 @@ export default {
                 }
 
             }
+
+        },
+        // _setTimeSelectableRange : function (limitTimeRange) {
+
+        //     let timeRanges = this.conf.timeSelectableRange;
+        //     let $time = this.$refs[`ui-datetimepicker-time-${this.uiid}`];
+
+        //     if ($time) {
+
+        //         return;
+
+        //     }
+
+        //     if (timeRanges &&
+        //         timeRanges instanceof Array &&
+        //         timeRanges.length === 2 &&
+        //         typeof timeRanges[0] === 'string' &&
+        //         typeof timeRanges[1] === 'string') {
+
+        //         let timeRangeStart = this._timeStringToDate(timeRanges[0], $time.conf.format);
+        //         let timeRangeEnd = this._timeStringToDate(timeRanges[1], $time.conf.format);
+        //         let currentStart = limitTimeRange[0];
+        //         let currentEnd = limitTimeRange[1];
+
+        //         if (isValid(timeRangeStart) &&
+        //             +currentStart < +timeRangeStart) {
+
+        //             limitTimeRange[0] = timeRangeStart;
+
+        //         }
+
+        //         if (isValid(timeRangeEnd) &&
+        //             +currentEnd > +timeRangeEnd) {
+
+        //             limitTimeRange[1] = timeRangeEnd;
+
+        //         }
+
+        //     } else if (timeRanges instanceof Array) {
+
+        //         for (let range of timeRanges) {
+
+        //             if (range instanceof Array &&
+        //                 range.length === 2 &&
+        //                 typeof range[0] === 'string' &&
+        //                 typeof range[1] === 'string') {
+
+        //                 let timeRangeStart = this._timeStringToDate(range[0], $time.conf.format);
+        //                 let timeRangeEnd = this._timeStringToDate(range[1], $time.conf.format);
+        //                 let currentStart = limitTimeRange[0];
+        //                 let currentEnd = limitTimeRange[1];
+
+        //                 if (isValid(timeRangeStart) &&
+        //                     +currentStart < +timeRangeStart) {
+
+        //                     limitTimeRange[0] = timeRangeStart;
+
+        //                 }
+
+        //                 if (isValid(timeRangeEnd) &&
+        //                     +currentEnd > +timeRangeEnd) {
+
+        //                     limitTimeRange[1] = timeRangeEnd;
+
+        //                 }
+
+        //             }
+
+        //         }
+
+        //     }
+
+        //     return limitTimeRange;
+
+        // },
+        _refreshTimeSelectable : function () {
+
+            if (!this.conf.dateSelectableRange) {
+
+                return;
+
+            }
+
+            let dateRanges = this.conf.dateSelectableRange;
+            let value = this.get();
+            let valueDate = this._dateStringToDate(value, this.conf.format);
+            let $time = this.$refs[`ui-datetimepicker-time-${this.uiid}`];
+            let selectableDates = [];
+
+            if (!$time) {
+
+                return;
+
+            }
+
+            let limitTimeRange = [
+                this._timeStringToDate('00:00:00', $time.conf.format),
+                this._timeStringToDate('23:59:59', $time.conf.format)
+            ];
+
+            if (dateRanges &&
+                dateRanges instanceof Array &&
+                dateRanges.length === 2 &&
+                typeof dateRanges[0] === 'string' &&
+                typeof dateRanges[1] === 'string') {
+
+                let start = this._dateStringToDate(dateRanges[0], this.conf.format);
+                let end = this._dateStringToDate(dateRanges[1], this.conf.format);
+
+                if (isSameDay(start, valueDate)) {
+
+                    limitTimeRange[0] = start
+
+                }
+
+                if (isSameDay(end, valueDate)) {
+
+                    limitTimeRange[1] = end
+
+                }
+
+                // this._setTimeSelectableRange(limitTimeRange);
+
+            } else if (dateRanges instanceof Array) {
+
+                for (let range of dateRanges) {
+
+                    if (range instanceof Array &&
+                        range.length === 2 &&
+                        typeof range[0] === 'string' &&
+                        typeof range[1] === 'string') {
+
+                        let start = this._dateStringToDate(range[0], this.conf.format);
+                        let end = this._dateStringToDate(range[1], this.conf.format);
+
+                        if (isSameDay(start, valueDate)) {
+
+                            limitTimeRange[0] = start;
+
+                        }
+
+                        if (isSameDay(end, valueDate)) {
+
+                            limitTimeRange[1] = end;
+
+                        }
+
+                        // this._setTimeSelectableRange(limitTimeRange);
+
+                        selectableDates.push(limitTimeRange[0]);
+                        selectableDates.push(limitTimeRange[1]);
+
+                    }
+
+                }
+
+            }
+
+            limitTimeRange[0] = formatDate(limitTimeRange[0], $time.conf.format);
+            limitTimeRange[1] = formatDate(limitTimeRange[1], $time.conf.format);
+
+            this.data.timeSelectableRange = limitTimeRange;
+            this.data.selectableDates = selectableDates;
+
+        },
+        _getClosestDate : function (date) {
+
+            date = closestTo(date, this.data.selectableDates);
+
+            return date;
+
+        },
+        _checkSelectable : function (date) {
+
+            let ranges = this.conf.dateSelectableRange;
+
+            if (!(ranges instanceof Array) ||
+                ranges.length === 0) {
+
+                return true;
+
+            }
+
+            let found = false;
+
+            if (ranges instanceof Array &&
+                ranges.length === 2 &&
+                typeof ranges[0] === 'string' &&
+                typeof ranges[1] === 'string') {
+
+                let start = this._dateStringToDate(ranges[0], this.conf.format);
+                let end = this._dateStringToDate(ranges[1], this.conf.format);
+
+                if (isValid(start) &&
+                    isValid(end) &&
+                    isWithinInterval(date, {
+                        start,
+                        end
+                    })) {
+                    
+                    found = true;
+
+                }
+
+            } else if (ranges instanceof Array) {
+
+                for (let range of ranges) {
+
+                    if (range instanceof Array &&
+                        range.length === 2 &&
+                        typeof range[0] === 'string' &&
+                        typeof range[1] === 'string') {
+
+                        let start = this._dateStringToDate(range[0], this.conf.format);
+                        let end = this._dateStringToDate(range[1], this.conf.format);
+
+                        if (isValid(start) &&
+                            isValid(end) &&
+                            isWithinInterval(date, {
+                                start,
+                                end
+                            })) {
+
+                            found = true;
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+            return found;
 
         }
     },
