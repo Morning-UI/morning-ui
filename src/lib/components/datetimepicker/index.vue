@@ -28,6 +28,7 @@
             :format="conf.format"
             :align="conf.align"
             :selectable-range="conf.dateSelectableRange"
+            :is-range="isRange"
             :show-timepicker-box="true"
 
             @value-change="_syncFromInputToRoot(0)"
@@ -36,9 +37,19 @@
             <div slot="timepicker">
                 <morning-timepicker
                     :ref="'ui-datetimepicker-time-'+uiid"
-                    :align="conf.align"
+                    align="right"
                     :selectable-range="timeSelectableRangeAll"
     
+                    @value-change="_syncFromInputToRoot(1)"
+                ></morning-timepicker>
+            </div>
+
+            <div v-if="conf.isRange" slot="timepicker2">
+                <morning-timepicker
+                    :ref="'ui-datetimepicker-time2-'+uiid"
+                    align="right"
+                    :selectable-range="timeSelectableRangeAll"
+
                     @value-change="_syncFromInputToRoot(1)"
                 ></morning-timepicker>
             </div>
@@ -178,43 +189,290 @@ export default {
     methods : {
         _valueFilter : function (value) {
 
+            if (value === undefined) {
+
+                return value;
+
+            }
+
+            if (this.conf.isRange && typeof value === 'string') {
+
+                value = [value];
+
+            } else if (!this.conf.isRange && typeof value === 'object' && value instanceof Array) {
+
+                value = value[0];
+
+            }
+
+
+            if (typeof value === 'string') {
+
+                value = this._filterDateString(value);
+
+            } else if (typeof value === 'object' && value instanceof Array) {
+
+                if (value.length === 0) {
+
+                    value = undefined;
+
+                } else {
+
+                    if (value.length > 2) {
+
+                        value.splice(0, 2);
+
+                    }
+
+                    for (let k in value) {
+
+                        value[k] = this._filterDateString(value[k]);
+
+                    }
+
+                    if (value.length > 1) {
+
+                        let start = this._dateStringToDate(value[0], this.conf.format);
+                        let end = this._dateStringToDate(value[1], this.conf.format);
+
+                        if (+start > +end) {
+
+                            let mid = value[0];
+
+                            value[0] = value[1];
+                            value[1] = mid;
+
+                        }
+
+                    }
+
+                }
+
+            }            
+
             return value;
+
+        },
+        _filterDateString : function (value) {
+
+            if (value === undefined) {
+
+                return value;
+
+            }
+
+            let date = this._dateStringToDate(value, this.conf.format);
+
+            if (!isValid(date)) {
+
+                value = this._dateGetStandardDate();
+
+            }
+
+            if (!this._checkSelectable(formatDate(date, this.conf.format))) {
+
+                date = this._getClosestTime(date);
+
+            }
+
+            return formatDate(date, this.conf.format);
 
         },
         _syncFromRootToChild : function () {
 
             let $date = this.$refs[`ui-datetimepicker-date-${this.uiid}`];
             let $time = this.$refs[`ui-datetimepicker-time-${this.uiid}`];
+            let $time2 = this.$refs[`ui-datetimepicker-time2-${this.uiid}`];
             let value = this.get();
 
             this._refreshTimeSelectable();
 
-            if ($date) {
+            this.Vue.nextTick(() => {
 
-                $date._set(value, true);
+                if ($date &&
+                    JSON.stringify(value) !== JSON.stringify($date.get())) {
 
-            }
-
-            if ($time && $date) {
-
-                if (value) {
-
-                    let timeDate = this._dateStringToDate(value, $date.conf.format);
-
-                    $time._set(formatDate(timeDate, $time.conf.format), true);
-
-                } else {
-
-                    $time._set(value, true);
+                    $date._set(value, true);
 
                 }
 
-            }
+                if ($time && $date) {
+
+                    if (value) {
+
+                        let timeDate;
+                        let timeDate2;
+
+                        if (this.conf.isRange) {
+
+                            if (value[0]) {
+    
+                                timeDate = this._dateStringToDate(value[0], $date.conf.format);
+
+                                console.log('_syncFromRootToChild : timeDate', timeDate);
+                                $time._set(formatDate(timeDate, $time.conf.format), true);
+    
+                            }
+    
+                            if (value[1]) {
+    
+                                timeDate2 = this._dateStringToDate(value[1], $date.conf.format);
+
+                                console.log('_syncFromRootToChild : timeDate2', timeDate2);
+                                $time2._set(formatDate(timeDate2, $time2.conf.format), true);
+
+                            }
+
+                        } else {
+
+                            timeDate = this._dateStringToDate(value, $date.conf.format);
+                            $time._set(formatDate(timeDate, $time.conf.format), true);
+
+                        }
+
+
+                    } else {
+
+                        if (this.conf.isRange) {
+
+                            $time._set(value, true);
+                            $time2._set(value, true);
+
+                        } else {
+
+                            $time._set(value, true);
+
+                        }
+
+                    }
+
+                }
+
+            });
 
         },
         _syncFromInputToRootIsBlur : function () {
 
             this.Vue.nextTick(() => this._syncFromInputToRoot(2));
+
+        },
+        _getFulldate : function ($date, $time, date, time, type) {
+
+            let fulldate = this._dateGetStandardDate();
+            let now = new Date();
+            let isSet = false;
+            let dateObj;
+            let timeObj;
+
+            fulldate = setYear(fulldate, getYear(now));
+            fulldate = setMonth(fulldate, getMonth(now));
+            fulldate = setDate(fulldate, getDate(now));
+
+            if (date) {
+
+                dateObj = this._dateStringToDate(date, this.conf.format);
+
+            }
+
+            if (time) {
+
+                timeObj = this._timeStringToDate(time, $time.conf.format);
+
+            }
+
+            if (dateObj) {
+
+                isSet = true;
+                fulldate = setYear(fulldate, getYear(dateObj));
+                fulldate = setMonth(fulldate, getMonth(dateObj));
+                fulldate = setDate(fulldate, getDate(dateObj));
+
+            }
+
+            if ($date && $time) {
+
+                if ((type === 2 && dateObj) ||
+                    (type === 0 && dateObj && !time)) {
+
+                    let inputTimeDate = this._dateStringToDate(date, $date.conf.format);
+
+                    isSet = true;
+
+                    if (formatDate(inputTimeDate, $time.conf.format) !== $time.get()) {
+
+                        fulldate = setHours(fulldate, getHours(dateObj));
+                        fulldate = setMinutes(fulldate, getMinutes(dateObj));
+                        fulldate = setSeconds(fulldate, getSeconds(dateObj));
+                        fulldate = setMilliseconds(fulldate, getMilliseconds(dateObj));
+
+                    }
+
+                } else if ((type === 1 && timeObj) ||
+                           (timeObj && dateObj)) {
+
+                    isSet = true;
+                    fulldate = setHours(fulldate, getHours(timeObj));
+                    fulldate = setMinutes(fulldate, getMinutes(timeObj));
+                    fulldate = setSeconds(fulldate, getSeconds(timeObj));
+                    fulldate = setMilliseconds(fulldate, getMilliseconds(timeObj));
+
+                }
+
+            }
+
+            // TODO : time变化
+            console.log('_getFulldate', dateObj, timeObj, time, fulldate);
+
+            if (!this._checkSelectable(fulldate)) {
+
+                fulldate = this._getClosestDate(fulldate);
+
+            }
+
+            return {
+                isSet,
+                date : fulldate
+            };
+
+        },
+        _setValue : function (date, isSet) {
+
+            if (isSet) {
+
+                if (typeof date === 'string') {
+    
+                    this._set(formatDate(date, this.conf.format), true);
+
+                } else if (date instanceof Array) {
+
+                    if (date.length === 1) {
+
+                        this._set(
+                            [
+                                formatDate(date[0], this.conf.format)
+                            ],
+                            true
+                        );
+
+                    } else {
+
+                        this._set(
+                            [
+                                formatDate(date[0], this.conf.format),
+                                formatDate(date[1], this.conf.format)
+                            ],
+                            true
+                        );
+
+                    }
+
+                }
+
+            } else {
+                
+                this._set(undefined, true);
+
+            }
 
         },
         _syncFromInputToRoot : function (type = 0) {
@@ -225,74 +483,96 @@ export default {
 
             let $date = this.$refs[`ui-datetimepicker-date-${this.uiid}`];
             let $time = this.$refs[`ui-datetimepicker-time-${this.uiid}`];
+            let $time2 = this.$refs[`ui-datetimepicker-time2-${this.uiid}`];
+            let fulldate0 = {};
+            let fulldate1 = {};
 
             this._refreshTimeSelectable();
 
-            if ($date && $time) {
+            this.Vue.nextTick(() => {
 
-                let date = $date.getDate();
-                let time = $time.getDate();
-                let fulldate = this._dateGetStandardDate();
-                let now = new Date();
-                let isSet = false;
+                if ($date && $time) {
 
-                fulldate = setYear(fulldate, getYear(now));
-                fulldate = setMonth(fulldate, getMonth(now));
-                fulldate = setDate(fulldate, getDate(now));
+                    let dateValue = $date.get();
+                    let timeValue = $time.get();
+                    let timeValue2;
 
-                if (date) {
+                    if ($time2) {
 
-                    isSet = true;
-                    fulldate = setYear(fulldate, getYear(date));
-                    fulldate = setMonth(fulldate, getMonth(date));
-                    fulldate = setDate(fulldate, getDate(date));
-
-                }
-
-                if ((type === 2 && date) ||
-                    (type === 0 && date && !time)) {
-
-                    let inputTimeDate = this._dateStringToDate(date, $date.conf.format);
-
-                    isSet = true;
-
-                    if (formatDate(inputTimeDate, $time.conf.format) !== $time.get()) {
-
-                        fulldate = setHours(fulldate, getHours(date));
-                        fulldate = setMinutes(fulldate, getMinutes(date));
-                        fulldate = setSeconds(fulldate, getSeconds(date));
-                        fulldate = setMilliseconds(fulldate, getMilliseconds(date));
+                        timeValue2 = $time2.get();
 
                     }
 
-                } else if ((type === 1 && time) ||
-                           (time && date)) {
+                    if (!this.conf.isRange) {
+                    
+                        fulldate0 = this._getFulldate(
+                            $date,
+                            $time,
+                            dateValue,
+                            timeValue,
+                            type
+                        );
 
-                    isSet = true;
-                    fulldate = setHours(fulldate, getHours(time));
-                    fulldate = setMinutes(fulldate, getMinutes(time));
-                    fulldate = setSeconds(fulldate, getSeconds(time));
-                    fulldate = setMilliseconds(fulldate, getMilliseconds(time));
+                        this._setValue(fulldate0.date, fulldate0.isSet);
+                    
+                    } else {
 
-                }
+                        if (dateValue && dateValue.length === 1) {
 
-                if (isSet) {
+                            fulldate0 = this._getFulldate(
+                                $date,
+                                $time,
+                                dateValue[0],
+                                timeValue,
+                                type
+                            );
 
-                    if (!this._checkSelectable(fulldate)) {
+                            this._setValue([
+                               fulldate0.date
+                            ], (
+                                fulldate0.isSet
+                            ));
 
-                        fulldate = this._getClosestDate(fulldate);
+                        } else if (dateValue && dateValue.length === 2) {
+
+                            fulldate0 = this._getFulldate(
+                                $date,
+                                $time,
+                                dateValue[0],
+                                timeValue,
+                                type
+                            );
+
+                            fulldate1 = this._getFulldate(
+                                $date,
+                                $time2,
+                                dateValue[1],
+                                timeValue2,
+                                type
+                            );
+
+                            console.log('_syncFromInputToRoot.2', type, $time2, dateValue[1], timeValue2);
+
+                            console.log('_syncFromInputToRoot', [
+                               fulldate0.date,
+                               fulldate1.date 
+                            ]);
+
+                            this._setValue([
+                               fulldate0.date,
+                               fulldate1.date 
+                            ], (
+                                fulldate0.isSet ||
+                                fulldate1.isSet
+                            ));
+
+                        }
 
                     }
-                    
-                    this._set(formatDate(fulldate, this.conf.format), true);
-
-                } else {
-                    
-                    this._set(undefined, true);
 
                 }
 
-            }
+            });
 
         },
         // _setTimeSelectableRange : function (limitTimeRange) {
@@ -414,6 +694,8 @@ export default {
 
                 }
 
+                selectableDates = [start, end];
+
                 // this._setTimeSelectableRange(limitTimeRange);
 
             } else if (dateRanges instanceof Array) {
@@ -442,8 +724,8 @@ export default {
 
                         // this._setTimeSelectableRange(limitTimeRange);
 
-                        selectableDates.push(limitTimeRange[0]);
-                        selectableDates.push(limitTimeRange[1]);
+                        selectableDates.push(start);
+                        selectableDates.push(end);
 
                     }
 

@@ -16,6 +16,7 @@
         :selectable-range="selectableRange"
         :auto-refresh-calendar="autoRefreshCalendar"
         :show-timepicker-box="showTimepickerBox"
+        :highlight-days="highlightDays"
     >
 
     <morning-textinput
@@ -41,7 +42,7 @@
         <morning-calendar
             :ref="'ui-calendar-'+uiid"
             :date="data.currentDate"
-            :highlight-day="highlightDays"
+            :highlight-day="getHighlightDays"
             :highlight-now="false"
             :highlight-hover="true"
             :background-mark="backgroundMark"
@@ -111,6 +112,10 @@ export default {
         showTimepickerBox : {
             type : Boolean,
             default : false
+        },
+        highlightDays : {
+            type : Array,
+            default : (() => [])
         }
     },
     computed : {
@@ -123,7 +128,8 @@ export default {
                 align : this.align,
                 selectableRange : this.selectableRange,
                 autoRefreshCalendar : this.autoRefreshCalendar,
-                showTimepickerBox : this.showTimepickerBox
+                showTimepickerBox : this.showTimepickerBox,
+                highlightDays : this.highlightDays
             };
 
         },
@@ -137,9 +143,9 @@ export default {
             return classes;
 
         },
-        highlightDays : function () {
+        getHighlightDays : function () {
 
-            let days = [];
+            let days = Object.assign([], this.conf.highlightDays);
 
             days.push(this._dateStringToDate(this.get(), this.conf.format));
 
@@ -176,7 +182,9 @@ export default {
                 inputValue : '',
                 disabledRange : [],
                 selectableDates : [],
-                currentDate : undefined
+                currentDate : undefined,
+                keepInputFocus : false,
+                blurIgnoreElement : undefined
             }
         };
 
@@ -195,6 +203,12 @@ export default {
             if (!isValid(date)) {
 
                 date = this._dateGetStandardDate();
+
+            }
+
+            if (!this._checkSelectable(formatDate(date, this.conf.format))) {
+
+                date = this._getClosestTime(date);
 
             }
 
@@ -254,12 +268,17 @@ export default {
         },
         _blur : function (evt) {
 
-            if (evt.path.indexOf(this.$el) !== -1) {
+            if (evt &&
+                evt.path &&
+                (
+                    evt.path.indexOf(this.$el) !== -1 ||
+                    evt.path.indexOf(this.data.blurIgnoreElement) !== -1
+                )) {
 
                 return;
 
             }
-
+                
             this.data.inputFocus = false;
 
             this.$emit('blur');

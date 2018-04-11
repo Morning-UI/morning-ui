@@ -39,6 +39,7 @@
                 :selectable-range="conf.selectableRange"
                 :show-timepicker-box="conf.showTimepickerBox"
                 :auto-refresh-calendar="false"
+                :highlight-days="data.input0HighlightDays"
     
                 @value-change="_syncValueFromInputToRoot"
                 @focus="_focus"
@@ -67,7 +68,8 @@
                 :selectable-range="conf.selectableRange"
                 :show-timepicker-box="conf.showTimepickerBox"
                 :auto-refresh-calendar="false"
-                
+                :highlight-days="data.input1HighlightDays"
+
                 @value-change="_syncValueFromInputToRoot"
                 @focus="_focus"
                 @blur="_blur"
@@ -77,7 +79,7 @@
                 @date-enter="_inputDateEnter"
                 @date-change = "_input1DateChange"
             >
-                <slot name="timepicker" slot="timepicker"></slot>
+                <slot name="timepicker2" slot="timepicker"></slot>
             </morning-private-datepicker>
         </template>
 
@@ -182,7 +184,7 @@ export default {
                 isRange : this.isRange,
                 separator : this.separator,
                 startName : this.startName,
-                endName : this.endName,
+                endName : this.endName
             };
 
         }
@@ -192,7 +194,9 @@ export default {
         return {
             data : {
                 currentDate : undefined,
-                selected : false
+                selected : false,
+                input0HighlightDays : [],
+                input1HighlightDays : []
             }
         };
 
@@ -307,6 +311,11 @@ export default {
                 let $input1DateSelect = input1.$el.querySelector('.date-select');
                 let value = this.get();
 
+                input0.data.keepInputFocus = true;
+                input1.data.keepInputFocus = true;
+                input0.data.blurIgnoreElement = input1.$el;
+                input1.data.blurIgnoreElement = input0.$el;
+
                 if (!input0.data.inputFocus) {
 
                     input0._focus();
@@ -346,6 +355,11 @@ export default {
                 let input0 = this.$refs[`ui-datepicker-input-0-${this.uiid}`];
                 let input1 = this.$refs[`ui-datepicker-input-1-${this.uiid}`];
                 let $input1DateSelect = input1.$el.querySelector('.date-select');
+                
+                input0.data.keepInputFocus = false;
+                input1.data.keepInputFocus = false;
+                input0.data.blurIgnoreElement = undefined;
+                input1.data.blurIgnoreElement = undefined;
 
                 if (input0.data.inputFocus) {
 
@@ -356,7 +370,7 @@ export default {
                 if (input1.data.inputFocus) {
 
                     input1._blur();
-                    
+
                 }
 
                 if ($input1DateSelect) {
@@ -455,11 +469,11 @@ export default {
                 end >= input0CalendarStart &&
                 end <= input0CalendarEnd) {
 
-                input0Calendar.conf.highlightDay = eachDayOfInterval({
+                this.data.input0HighlightDays = eachDayOfInterval({
                     start : subDays(+input0CalendarStart, 1),
                     end
                 });
-                input1Calendar.conf.highlightDay = [];
+                this.data.input1HighlightDays = [];
 
             }
 
@@ -468,11 +482,11 @@ export default {
                 end >= input1CalendarStart &&
                 end <= input1CalendarEnd) {
 
-                input0Calendar.conf.highlightDay = eachDayOfInterval({
+                this.data.input0HighlightDays = eachDayOfInterval({
                     start : subDays(+input0CalendarStart, 1),
                     end : addDays(+input0CalendarEnd, 1)
                 });
-                input1Calendar.conf.highlightDay = eachDayOfInterval({
+                this.data.input1HighlightDays = eachDayOfInterval({
                     start : subDays(+input1CalendarStart, 1),
                     end
                 });
@@ -484,11 +498,11 @@ export default {
                 start <= input0CalendarEnd &&
                 end >= input1CalendarEnd) {
 
-                input0Calendar.conf.highlightDay = eachDayOfInterval({
+                this.data.input0HighlightDayss = eachDayOfInterval({
                     start,
                     end : addDays(+input0CalendarEnd, 1)
                 });
-                input1Calendar.conf.highlightDay = eachDayOfInterval({
+                this.data.input1HighlightDays = eachDayOfInterval({
                     start : subDays(+input1CalendarStart, 1),
                     end : addDays(+input1CalendarEnd, 1)
                 });
@@ -500,8 +514,8 @@ export default {
                 start <= input1CalendarEnd &&
                 end >= input1CalendarEnd) {
 
-                input0Calendar.conf.highlightDay = [];
-                input1Calendar.conf.highlightDay = eachDayOfInterval({
+                this.data.input0HighlightDays = [];
+                this.data.input1HighlightDays = eachDayOfInterval({
                     start,
                     end : addDays(+input1CalendarEnd, 1)
                 });
@@ -512,11 +526,11 @@ export default {
             if (start <= input0CalendarStart &&
                 end >= input1CalendarEnd) {
 
-                input0Calendar.conf.highlightDay = eachDayOfInterval({
+                this.data.input0HighlightDays = eachDayOfInterval({
                     start : subDays(+input0CalendarStart, 1),
                     end : addDays(+input0CalendarEnd, 1)
                 });
-                input1Calendar.conf.highlightDay = eachDayOfInterval({
+                this.data.input1HighlightDays = eachDayOfInterval({
                     start : subDays(+input1CalendarStart, 1),
                     end : addDays(+input1CalendarEnd, 1)
                 });
@@ -529,11 +543,11 @@ export default {
                 +end <= input0CalendarEnd &&
                 +end >= input0CalendarStart) {
 
-                input0Calendar.conf.highlightDay = eachDayOfInterval({
+                this.data.input0HighlightDays = eachDayOfInterval({
                     start,
                     end
                 });
-                input1Calendar.conf.highlightDay = [];
+                this.data.input1HighlightDays = [];
 
             }
 
@@ -543,12 +557,12 @@ export default {
                 end >= input1CalendarStart &&
                 end <= input1CalendarEnd) {
 
-                input0Calendar.conf.highlightDay = eachDayOfInterval({
+                this.data.input0HighlightDays = eachDayOfInterval({
                     start,
                     end : addDays(+input0CalendarEnd, 1)
                 });
 
-                input1Calendar.conf.highlightDay = eachDayOfInterval({
+                this.data.input1HighlightDays = eachDayOfInterval({
                     start : subDays(+input1CalendarStart, 1),
                     end
                 });
@@ -561,8 +575,8 @@ export default {
                 end >= input1CalendarStart &&
                 end <= input1CalendarEnd) {
 
-                input0Calendar.conf.highlightDay = [];
-                input1Calendar.conf.highlightDay = eachDayOfInterval({
+                this.data.input0HighlightDays = [];
+                this.data.input1HighlightDays = eachDayOfInterval({
                     start,
                     end
                 });;

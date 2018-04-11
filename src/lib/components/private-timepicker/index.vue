@@ -180,6 +180,12 @@ export default {
 
             }
 
+            if (!this._checkSelectable('all')) {
+
+                date = this._getClosestTime(date);
+
+            }
+
             return formatDate(date, this.conf.format);
 
         },

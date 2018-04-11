@@ -186,11 +186,27 @@
     </div>
     :::
 
-    配合`date-selectable-range`使用：
+    配合`date-selectable-range`使用时可选时间需要符合两个条件的限制：
 
     :::democode/html
     <div style="width:300px;">
         <ui-datetimepicker form-name="日期时间" :date="+new Date('2018-03-23')" :date-selectable-range="['2018-03-08 12:30:00', '2018-03-23 20:00:00']" :time-selectable-range="['08:00:00', '18:00:00']"></ui-datetimepicker>
+    </div>
+    :::
+
+    #### is-range
+
+    :::democode/html
+    <div style="width:460px;">
+        <ui-datetimepicker form-name="日期时间" :is-range="true"></ui-datetimepicker>
+    </div>
+    :::
+
+    在开启`is-range`的情况下设置`default-value`:
+
+    :::democode/html
+    <div style="width:460px;">
+        <ui-datetimepicker form-name="日期时间" :date="+new Date('2018-03-23')" :is-range="true" :default-value="['2018-03-10 08:00:00', '2018-03-20 21:30:30']"></ui-datetimepicker>
     </div>
     :::
 
