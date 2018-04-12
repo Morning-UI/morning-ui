@@ -498,7 +498,7 @@ export default {
                 start <= input0CalendarEnd &&
                 end >= input1CalendarEnd) {
 
-                this.data.input0HighlightDayss = eachDayOfInterval({
+                this.data.input0HighlightDays = eachDayOfInterval({
                     start,
                     end : addDays(+input0CalendarEnd, 1)
                 });
@@ -582,6 +582,7 @@ export default {
                 });;
 
             }
+
 
         },
         _syncValueFromInputToRootForClick : function (date) {

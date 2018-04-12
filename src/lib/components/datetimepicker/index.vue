@@ -28,7 +28,10 @@
             :format="conf.format"
             :align="conf.align"
             :selectable-range="conf.dateSelectableRange"
-            :is-range="isRange"
+            :is-range="conf.isRange"
+            :separator="conf.separator"
+            :start-name="conf.startName"
+            :end-name="conf.endName"
             :show-timepicker-box="true"
 
             @value-change="_syncFromInputToRoot(0)"
@@ -37,6 +40,7 @@
             <div slot="timepicker">
                 <morning-timepicker
                     :ref="'ui-datetimepicker-time-'+uiid"
+                    form-name="时间"
                     align="right"
                     :selectable-range="timeSelectableRangeAll"
     
@@ -47,6 +51,7 @@
             <div v-if="conf.isRange" slot="timepicker2">
                 <morning-timepicker
                     :ref="'ui-datetimepicker-time2-'+uiid"
+                    form-name="时间"
                     align="right"
                     :selectable-range="timeSelectableRangeAll"
 
@@ -309,7 +314,6 @@ export default {
     
                                 timeDate = this._dateStringToDate(value[0], $date.conf.format);
 
-                                console.log('_syncFromRootToChild : timeDate', timeDate);
                                 $time._set(formatDate(timeDate, $time.conf.format), true);
     
                             }
@@ -318,7 +322,6 @@ export default {
     
                                 timeDate2 = this._dateStringToDate(value[1], $date.conf.format);
 
-                                console.log('_syncFromRootToChild : timeDate2', timeDate2);
                                 $time2._set(formatDate(timeDate2, $time2.conf.format), true);
 
                             }
@@ -398,14 +401,14 @@ export default {
 
                     isSet = true;
 
-                    if (formatDate(inputTimeDate, $time.conf.format) !== $time.get()) {
+                    // if (formatDate(inputTimeDate, $time.conf.format) !== $time.get()) {
 
                         fulldate = setHours(fulldate, getHours(dateObj));
                         fulldate = setMinutes(fulldate, getMinutes(dateObj));
                         fulldate = setSeconds(fulldate, getSeconds(dateObj));
                         fulldate = setMilliseconds(fulldate, getMilliseconds(dateObj));
 
-                    }
+                    // }
 
                 } else if ((type === 1 && timeObj) ||
                            (timeObj && dateObj)) {
@@ -419,9 +422,6 @@ export default {
                 }
 
             }
-
-            // TODO : time变化
-            console.log('_getFulldate', dateObj, timeObj, time, fulldate);
 
             if (!this._checkSelectable(fulldate)) {
 
@@ -439,7 +439,7 @@ export default {
 
             if (isSet) {
 
-                if (typeof date === 'string') {
+                if (date instanceof Date) {
     
                     this._set(formatDate(date, this.conf.format), true);
 
@@ -550,13 +550,6 @@ export default {
                                 timeValue2,
                                 type
                             );
-
-                            console.log('_syncFromInputToRoot.2', type, $time2, dateValue[1], timeValue2);
-
-                            console.log('_syncFromInputToRoot', [
-                               fulldate0.date,
-                               fulldate1.date 
-                            ]);
 
                             this._setValue([
                                fulldate0.date,
