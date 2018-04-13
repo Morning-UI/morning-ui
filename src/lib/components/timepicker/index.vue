@@ -501,6 +501,26 @@ export default {
 
             }
 
+        },
+        getDate : function () {
+
+            let value = this.get();
+
+            if (typeof value === 'string') {
+
+                return this._timeStringToDate(value, this.conf.format);
+
+            } else if (value instanceof Array) {
+
+                return [
+                    this._timeStringToDate(value[0], this.conf.format),
+                    this._timeStringToDate(value[1], this.conf.format)
+                ];
+
+            }
+
+            return value;
+
         }
     },
     created : function () {},

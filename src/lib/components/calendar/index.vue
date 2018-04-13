@@ -68,6 +68,8 @@
                     ]"
 
                     @click="_dateClick(item.date)"
+                    @mouseenter="_dateEnter(item.date)"
+                    @mouseleave="_dateLeave(item.date)"
                 >
                     <div class="select-layer">
                         <div class="inner-layer">
@@ -539,6 +541,16 @@ export default {
         _dateClick : function (date) {
 
             this.$emit('date-click', date);
+
+        },
+        _dateEnter : function (date) {
+
+            this.$emit('date-enter', date);
+
+        },
+        _dateLeave : function (date) {
+
+            this.$emit('date-leave', date);
 
         },
         toggleYearPick : function (show) {
