@@ -383,6 +383,36 @@ let data = {
                 valueContent : `['2018-03-10', '2018-03-20']`
             }
         ],
+        datetimepicker : [
+            {
+                valueType : 'String',
+                valueContent : `'2018-03-23 12:13:14'`
+            },
+            {
+                valueType : 'Number',
+                valueContent : '2018'
+            },
+            {
+                valueType : 'Boolean',
+                valueContent : 'true'
+            },
+            {
+                valueType : 'Null',
+                valueContent : 'null'
+            },
+            {
+                valueType : 'Undefined',
+                valueContent : 'undefined'
+            },
+            {
+                valueType : 'Object',
+                valueContent : '{}'
+            },
+            {
+                valueType : 'Array',
+                valueContent : `['2018-03-10 12:13:14', '2018-03-20 12:13:14']`
+            }
+        ],
         upload : [
             {
                 valueType : 'String',

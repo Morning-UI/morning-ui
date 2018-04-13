@@ -165,11 +165,11 @@ export default {
         },
         startName : {
             type : String,
-            default : '开始时间'
+            default : '开始日期'
         },
         endName : {
             type : String,
-            default : '结束时间'
+            default : '结束日期'
         }
     },
     computed : {
@@ -579,23 +579,14 @@ export default {
                 this.data.input1HighlightDays = eachDayOfInterval({
                     start,
                     end
-                });;
+                });
 
             }
-
 
         },
         _syncValueFromInputToRootForClick : function (date) {
 
             let val = this.get() || [];
-            let input0 = this.$refs[`ui-datepicker-input-0-${this.uiid}`];
-            let input0Calendar = input0.$refs[`ui-calendar-${input0.uiid}`];
-            let input0CalendarStart = startOfMonth(input0Calendar.getTime());
-            let input0CalendarEnd = endOfMonth(input0Calendar.getTime());
-            let input1 = this.$refs[`ui-datepicker-input-1-${this.uiid}`];
-            let input1Calendar = input1.$refs[`ui-calendar-${input1.uiid}`];
-            let input1CalendarStart = startOfMonth(input1Calendar.getTime());
-            let input1CalendarEnd = endOfMonth(input1Calendar.getTime());
 
             if (!this.data.selected) {
 
@@ -764,12 +755,9 @@ export default {
 
                 return input0.data.inputValue;
 
-            } else {
-
-                return [input0.data.inputValue, input1.data.inputValue];
-
             }
 
+            return [input0.data.inputValue, input1.data.inputValue];
 
         }
     },

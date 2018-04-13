@@ -9,7 +9,12 @@ globals:
   define: true
   $: true
 rules:
-  max-depth: [
-    "error",
-    "max": 7
-  ]
+  max-depth:
+    - "error"
+    -
+      "max": 7
+  id-length:
+    - "error"
+    -
+      "max": 34
+      "min": 1

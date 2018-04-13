@@ -22,7 +22,7 @@
 
     #### 自定义日期时间格式
 
-    日期时间选择器允许用户自定日期格式，使用中文时间：
+    日期时间选择器允许用户自定日期时间格式，使用中文时间：
         
     :::democode/html
     <div style="width:300px;">
@@ -60,10 +60,10 @@
     |[align](#align)|日期时间对齐方式|`'left'` : 左对齐<br>`'center'` : 居中对齐<br>`'right'` : 右对齐|String|`'left'`|
     |[date-selectable-range](#date-selectable-range)|可选日期时间范围，是一个连续的时间段，可以限制到的时分秒，若不设置则不限。这是一个数组，支持以下格式：<br><br>`[开始日期, 结束日期]`: 指定单个可选范围<br>`[[开始日期1, 结束日期1], [开始日期2, 结束日期2]]`: 指定多个可选范围<br><br>可选日期将大于等于`开始日期`，小于等于`结束日期`。<br><br>`开始日期`和`结束日期`均为日期字符串需要符合`format`配置的日期格式。|日期范围数组|Array|`undefined`|
     |[time-selectable-range](#time-selectable-range)|可选时间范围，若不设置则不限。这是一个数组，支持以下格式：<br><br>`[开始时间, 结束时间]`: 指定单个可选范围<br><br>可选时间将大于等于`开始时间`，小于等于`结束时间`。<br><br>`开始时间`和`结束时间`均为时间字符串需要符合`format`配置的时间格式。<br><br>此配置用于限制每天可选的时间范围(仅支持一个范围)，若需要限制一个时间段请使用`date-selectable-range`配置。<br><br>如同时配置了`date-selectable-range`则取可选范围的交集。|时间范围数组|Array|`undefined`|
-    |[is-range](#is-range)|选择日期区间，开启后可以选在一个日期段|`true`<br>`false`|Boolean|`false`|
-    |[separator](#separator)|日期区间选择时中间的分隔内容，只有开启`is-range`才有效|分隔字符串|String|`'至'`|
-    |[start-name](#start-name)|日期区间选择时`开始日期`表单显示的名称，若设为`false`则显示`form-name`，只有开启`is-range`才有效|任意字符串<br>`false`:显示`form-name`|String<br>Boolean|`'开始日期'`|
-    |[end-name](#end-name)|日期区间选择时`结束日期`表单显示的名称，若设为`false`则显示`form-name`，只有开启`is-range`才有效。若设置了`hide-name`则不会显示|任意字符串`false`:显示`form-name`|String<br>Boolean|`'结束日期'`|
+    |[is-range](#is-range)|选择日期时间区间，开启后可以选在一个日期时间段|`true`<br>`false`|Boolean|`false`|
+    |[separator](#separator)|日期时间区间选择时中间的分隔内容，只有开启`is-range`才有效|分隔字符串|String|`'至'`|
+    |[start-name](#start-name)|日期时间区间选择时`开始日期时间`表单显示的名称，若设为`false`则显示`form-name`，只有开启`is-range`才有效|任意字符串<br>`false`:显示`form-name`|String<br>Boolean|`'开始日期时间'`|
+    |[end-name](#end-name)|日期时间区间选择时`结束日期时间`表单显示的名称，若设为`false`则显示`form-name`，只有开启`is-range`才有效。若设置了`hide-name`则不会显示|任意字符串`false`:显示`form-name`|String<br>Boolean|`'结束日期时间'`|
     :::
 
     :::preset/html
@@ -84,7 +84,7 @@
 
     #### format
         
-    `format`允许自定义组件展示的日期格式，支持以下占位符：
+    `format`允许自定义组件展示的日期时间格式，支持以下占位符：
 
     |单位|占位符|示例|
     |-|-|-|
@@ -120,7 +120,7 @@
     |秒|ss|00, 01, ... 59|
     ||s|0, 1, ... 59|
 
-    采用`|`分隔日期：
+    采用`|`分隔日期时间：
 
     :::democode/html
     <div style="width:300px;">
@@ -128,7 +128,7 @@
     </div>
     :::
 
-    同时显示多种日期格式(显示多个日期时，最后一个优先级最高)：
+    同时显示多种日期时间格式(显示多个日期时，最后一个优先级最高)：
 
     :::democode/html
     <div style="width:400px;">
@@ -262,6 +262,60 @@
     uikey:datetimepicker
     methodValue:'2018-03-23 12:13:14'
     methodDefaultValue:'2018-03-23 12:13:14'
+    :::
+
+    [[[事件]]]
+
+    :::preset/html
+    formEvent
+    ---
+    uikey:datetimepicker
+    eventValue:'2018-03-23 12:13:14'
+    :::
+
+    [[[表单值]]]
+
+    #### 值类型
+    
+    - `Array` : 数组
+    - `String` : 字符串(按`format`配置格式化)
+
+    #### 值过滤
+
+    - 若是范围日期时间选择(开启`isRange`配置)，则数值是一个字符串，则将数值转换成数组，该字符串作为第一项       
+    - 若是单一日期时间选择(未开启`isRange`配置)，且数值是一个数组，则取第一项
+    - 若数值的类型是字符串则检测字符串的日期时间格式是否符合`format`配置，若不符合尝试转换成符合的格式，若无法转换则转换成`1971-01-01 00:00:00`的符合`format`的日期时间
+    - 若使用了`date-selectable-range`或`time-selectable-range`配置，且数值对应的日期时间不在范围内，则会转换成最近的范围内日期时间
+    - 若数值的类型是一个数组，且数组长度为`0`则转换为`undefined`
+    - 若数值的类型是一个数组，且数组长度大于`2`，则过滤多余的项目，只保留两项
+    - 若数值的类型是一个数组，且数组长度大于`0`且小于`3`，会过滤数组中所有不是字符串类型的项目，然后按照第三条规则，对所有字符串项目进行过滤
+    - 若数值的类型是一个数组，且第二项代表的日期时间大于第一项，则对换数组的两项
+    
+    #### 值格式
+
+    若是单一日期时间选择，则是日期时间字时间符串(符合`format`的格式化规则)
+    若是范围日期时间选择，则是长度为2的数组，数组中第一项是开始日期时间的日期时间字符串(符合`format`的格式化规则)，数组中第二项是结束日期时间的日期时间字符串(符合`format`的格式化规则)。
+
+    #### 默认值
+
+    `undefined`
+
+    #### 输入/输出示例
+
+    :::repeat/html
+    formValueType:datetimepicker
+    ---
+    <div>
+        <p>{$valueType}类型</p>
+        <div style="width:300px;">
+            <ui-datetimepicker ref="demoType{$valueType}"></ui-datetimepicker>
+        </div>
+        <br>
+        <ui-link js="window.morning.findVM('demoType{$valueType}').set({$&valueContent})">设置{$valueType}类型</ui-link>
+        <ui-link js="alert(window.morning.findVM('demoType{$valueType}').getJson())">获取表单JSON值</ui-link>
+    </div>
+    <br>
+    <br>
     :::
 
     [[[源码]]]

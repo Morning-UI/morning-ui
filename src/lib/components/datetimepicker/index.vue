@@ -67,7 +67,6 @@
 </template>
  
 <script>
-// TODO : date-selectable-range配合time-selectable-range使用
 import {
     format as formatDate,
     getYear,
@@ -128,11 +127,11 @@ export default {
         },
         startName : {
             type : String,
-            default : '开始时间'
+            default : '开始日期时间'
         },
         endName : {
             type : String,
-            default : '结束时间'
+            default : '结束日期时间'
         }
     },
     computed : {
@@ -210,7 +209,6 @@ export default {
 
             }
 
-
             if (typeof value === 'string') {
 
                 value = this._filterDateString(value);
@@ -253,7 +251,7 @@ export default {
 
                 }
 
-            }            
+            }
 
             return value;
 
@@ -270,7 +268,7 @@ export default {
 
             if (!isValid(date)) {
 
-                value = this._dateGetStandardDate();
+                date = this._dateGetStandardDate();
 
             }
 
@@ -333,19 +331,14 @@ export default {
 
                         }
 
+                    } else if (this.conf.isRange) {
+
+                        $time._set(value, true);
+                        $time2._set(value, true);
 
                     } else {
 
-                        if (this.conf.isRange) {
-
-                            $time._set(value, true);
-                            $time2._set(value, true);
-
-                        } else {
-
-                            $time._set(value, true);
-
-                        }
+                        $time._set(value, true);
 
                     }
 
@@ -359,7 +352,13 @@ export default {
             this.Vue.nextTick(() => this._syncFromInputToRoot(2));
 
         },
-        _getFulldate : function ($date, $time, date, time, type) {
+        _getFulldate : function ({
+            $date,
+            $time,
+            date,
+            time,
+            type
+        }) {
 
             let fulldate = this._dateGetStandardDate();
             let now = new Date();
@@ -397,18 +396,11 @@ export default {
                 if ((type === 2 && dateObj) ||
                     (type === 0 && dateObj && !time)) {
 
-                    let inputTimeDate = this._dateStringToDate(date, $date.conf.format);
-
                     isSet = true;
-
-                    // if (formatDate(inputTimeDate, $time.conf.format) !== $time.get()) {
-
-                        fulldate = setHours(fulldate, getHours(dateObj));
-                        fulldate = setMinutes(fulldate, getMinutes(dateObj));
-                        fulldate = setSeconds(fulldate, getSeconds(dateObj));
-                        fulldate = setMilliseconds(fulldate, getMilliseconds(dateObj));
-
-                    // }
+                    fulldate = setHours(fulldate, getHours(dateObj));
+                    fulldate = setMinutes(fulldate, getMinutes(dateObj));
+                    fulldate = setSeconds(fulldate, getSeconds(dateObj));
+                    fulldate = setMilliseconds(fulldate, getMilliseconds(dateObj));
 
                 } else if ((type === 1 && timeObj) ||
                            (timeObj && dateObj)) {
@@ -505,61 +497,61 @@ export default {
 
                     if (!this.conf.isRange) {
                     
-                        fulldate0 = this._getFulldate(
+                        fulldate0 = this._getFulldate({
                             $date,
                             $time,
-                            dateValue,
-                            timeValue,
+                            date : dateValue,
+                            time : timeValue,
                             type
-                        );
+                        });
 
                         this._setValue(fulldate0.date, fulldate0.isSet);
                     
-                    } else {
+                    } else if (dateValue && dateValue.length === 1) {
 
-                        if (dateValue && dateValue.length === 1) {
+                        fulldate0 = this._getFulldate({
+                            $date,
+                            $time,
+                            date : dateValue[0],
+                            time : timeValue,
+                            type
+                        });
 
-                            fulldate0 = this._getFulldate(
-                                $date,
-                                $time,
-                                dateValue[0],
-                                timeValue,
-                                type
-                            );
+                        this._setValue(
+                            [
+                                fulldate0.date
+                            ],
+                            fulldate0.isSet
+                        );
 
-                            this._setValue([
-                               fulldate0.date
-                            ], (
-                                fulldate0.isSet
-                            ));
+                    } else if (dateValue && dateValue.length === 2) {
 
-                        } else if (dateValue && dateValue.length === 2) {
+                        fulldate0 = this._getFulldate({
+                            $date,
+                            $time,
+                            date : dateValue[0],
+                            time : timeValue,
+                            type
+                        });
 
-                            fulldate0 = this._getFulldate(
-                                $date,
-                                $time,
-                                dateValue[0],
-                                timeValue,
-                                type
-                            );
+                        fulldate1 = this._getFulldate({
+                            $date,
+                            $time2,
+                            date : dateValue[1],
+                            time : timeValue2,
+                            type
+                        });
 
-                            fulldate1 = this._getFulldate(
-                                $date,
-                                $time2,
-                                dateValue[1],
-                                timeValue2,
-                                type
-                            );
-
-                            this._setValue([
-                               fulldate0.date,
-                               fulldate1.date 
-                            ], (
+                        this._setValue(
+                            [
+                                fulldate0.date,
+                                fulldate1.date
+                            ],
+                            (
                                 fulldate0.isSet ||
                                 fulldate1.isSet
-                            ));
-
-                        }
+                            )
+                        );
 
                     }
 
@@ -568,79 +560,6 @@ export default {
             });
 
         },
-        // _setTimeSelectableRange : function (limitTimeRange) {
-
-        //     let timeRanges = this.conf.timeSelectableRange;
-        //     let $time = this.$refs[`ui-datetimepicker-time-${this.uiid}`];
-
-        //     if ($time) {
-
-        //         return;
-
-        //     }
-
-        //     if (timeRanges &&
-        //         timeRanges instanceof Array &&
-        //         timeRanges.length === 2 &&
-        //         typeof timeRanges[0] === 'string' &&
-        //         typeof timeRanges[1] === 'string') {
-
-        //         let timeRangeStart = this._timeStringToDate(timeRanges[0], $time.conf.format);
-        //         let timeRangeEnd = this._timeStringToDate(timeRanges[1], $time.conf.format);
-        //         let currentStart = limitTimeRange[0];
-        //         let currentEnd = limitTimeRange[1];
-
-        //         if (isValid(timeRangeStart) &&
-        //             +currentStart < +timeRangeStart) {
-
-        //             limitTimeRange[0] = timeRangeStart;
-
-        //         }
-
-        //         if (isValid(timeRangeEnd) &&
-        //             +currentEnd > +timeRangeEnd) {
-
-        //             limitTimeRange[1] = timeRangeEnd;
-
-        //         }
-
-        //     } else if (timeRanges instanceof Array) {
-
-        //         for (let range of timeRanges) {
-
-        //             if (range instanceof Array &&
-        //                 range.length === 2 &&
-        //                 typeof range[0] === 'string' &&
-        //                 typeof range[1] === 'string') {
-
-        //                 let timeRangeStart = this._timeStringToDate(range[0], $time.conf.format);
-        //                 let timeRangeEnd = this._timeStringToDate(range[1], $time.conf.format);
-        //                 let currentStart = limitTimeRange[0];
-        //                 let currentEnd = limitTimeRange[1];
-
-        //                 if (isValid(timeRangeStart) &&
-        //                     +currentStart < +timeRangeStart) {
-
-        //                     limitTimeRange[0] = timeRangeStart;
-
-        //                 }
-
-        //                 if (isValid(timeRangeEnd) &&
-        //                     +currentEnd > +timeRangeEnd) {
-
-        //                     limitTimeRange[1] = timeRangeEnd;
-
-        //                 }
-
-        //             }
-
-        //         }
-
-        //     }
-
-        //     return limitTimeRange;
-
-        // },
         _refreshTimeSelectable : function () {
 
             if (!this.conf.dateSelectableRange) {
@@ -677,13 +596,13 @@ export default {
 
                 if (isSameDay(start, valueDate)) {
 
-                    limitTimeRange[0] = start
+                    limitTimeRange[0] = start;
 
                 }
 
                 if (isSameDay(end, valueDate)) {
 
-                    limitTimeRange[1] = end
+                    limitTimeRange[1] = end;
 
                 }
 

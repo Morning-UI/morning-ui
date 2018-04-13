@@ -16,7 +16,7 @@
 
     :::democode/html
     <div style="width:300px;">
-        <morning-datepicker form-name="日期"></morning-datepicker>
+        <ui-datepicker form-name="日期"></ui-datepicker>
     </div>
     :::
 
@@ -258,6 +258,7 @@
     - 若数值的类型是一个数组，且数组长度为`0`则转换为`undefined`
     - 若数值的类型是一个数组，且数组长度大于`2`，则过滤多余的项目，只保留两项
     - 若数值的类型是一个数组，且数组长度大于`0`且小于`3`，会过滤数组中所有不是字符串类型的项目，然后按照第三条规则，对所有字符串项目进行过滤
+    - 若数值的类型是一个数组，且第二项代表的日期时间大于第一项，则对换数组的两项
     
     #### 值格式
 
