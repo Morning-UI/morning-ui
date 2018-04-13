@@ -4557,17 +4557,35 @@ mor-datepicker .wrap{display:flex
 }
 mor-datepicker .wrap .input-group-addon{padding:6px 12px;font-size:12px;color:#7c8ba0;text-align:center;background-color:#f0f0f0;border-top:1px solid #e6e6e6;border-bottom:1px solid #e6e6e6;border-left:1px solid #e6e6e6;white-space:nowrap;border-top-left-radius:3px;border-bottom-left-radius:3px;display:flex;align-items:center;justify-content:center
 }
-mor-datepicker .wrap .datepicker-input-0,mor-datepicker .wrap .datepicker-input-1{display:inline-block
+mor-datepicker .wrap .datepicker-input-0,mor-datepicker .wrap .datepicker-input-1{display:inline-block;position:static
 }
-mor-datepicker .wrap .datepicker-input-0 mor-textinput .input-group-addon,mor-datepicker .wrap .datepicker-input-1 mor-textinput .input-group-addon{display:none
+mor-datepicker .wrap .datepicker-input-0>mor-textinput .input-group-addon,mor-datepicker .wrap .datepicker-input-1>mor-textinput .input-group-addon{display:none
 }
-mor-datepicker .wrap .datepicker-input-0 mor-textinput input{border-radius:0
+mor-datepicker .wrap .datepicker-input-0 .date-select,mor-datepicker .wrap .datepicker-input-1 .date-select{position:absolute;width:50%;min-width:270px
 }
 mor-datepicker .wrap .datepicker-input-0 .date-select.align-left,mor-datepicker .wrap .datepicker-input-1 .date-select.align-left{left:0
 }
 mor-datepicker .wrap .datepicker-input-0 .date-select.align-center,mor-datepicker .wrap .datepicker-input-1 .date-select.align-center{margin-left:0
 }
+mor-datepicker .wrap .datepicker-input-0 .date-select:hover,mor-datepicker .wrap .datepicker-input-1 .date-select:hover{border-color:#e6e6e6
+}
+mor-datepicker .wrap .datepicker-input-0 mor-textinput input{border-radius:0
+}
+mor-datepicker .wrap .datepicker-input-0 .date-select{border-bottom-right-radius:0;border-top-right-radius:0;border-right:none
+}
+mor-datepicker .wrap .datepicker-input-1 .date-select{border-bottom-left-radius:0;border-top-left-radius:0
+}
 mor-datepicker .wrap .separator{height:42px;min-width:42px;line-height:42px;padding:0 .5em;font-size:14px;color:#7c8ba0;text-align:center;background-color:#f0f0f0;border-top:1px solid #e6e6e6;border-bottom:1px solid #e6e6e6
+}
+mor-datetimepicker{display:block;position:relative
+}
+mor-datetimepicker.has-cleanbtn{padding-bottom:20px
+}
+mor-datetimepicker .cleanbtn{position:absolute;right:0;font-size:12px;margin-top:1px
+}
+mor-datetimepicker .timepicker{width:100%;height:40px;position:relative
+}
+mor-datetimepicker .timepicker mor-timepicker{transform:scale(.8);z-index:2;width:150px;position:absolute;right:5px;transform-origin:right
 }
 mor-upload{position:relative;z-index:1;display:inline-block;width:100%;box-sizing:border-box;vertical-align:middle;-webkit-user-select:none
 }
@@ -4817,7 +4835,7 @@ mor-private-timepicker.has-cleanbtn{padding-bottom:20px
 }
 mor-private-timepicker .cleanbtn{position:absolute;right:0;font-size:12px;margin-top:1px
 }
-mor-private-timepicker .time-select{width:160px;position:absolute;background:#fff;border:1px #e6e6e6 solid;border-radius:3px;top:45px;font-size:0;-webkit-user-select:none;user-select:none;pointer-events:none;opacity:0
+mor-private-timepicker .time-select{width:160px;position:absolute;background:#fff;border:1px #e6e6e6 solid;border-radius:3px;top:45px;font-size:0;-webkit-user-select:none;user-select:none;pointer-events:none;opacity:0;z-index:1
 }
 mor-private-timepicker .time-select.align-left{left:42px
 }

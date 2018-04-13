@@ -89,6 +89,57 @@ export default {
             this.data.namelist = list;
 
         },
+        _initTabs : function () {
+
+            this._getNamelist();
+            this.data.tabs = Object.keys(this.$slots);
+            this._initSelectTab();
+
+        },
+        _initSelectTab : function () {
+
+            this.Vue.nextTick(() => {
+
+                // clean old status
+                let $currentTabEl = this.$el.children[0].children;
+                let $currentConEl = this.$el.children[1].children;
+
+                if ($currentTabEl) {
+
+                    for (let $el of $currentTabEl) {
+
+                        $el.classList.remove('current');
+
+                    }
+
+                }
+
+                if ($currentConEl) {
+
+                    for (let $el of $currentConEl) {
+
+                        $el.classList.remove('current');
+
+                    }
+
+                }
+
+                this.data.selectTab = null;
+
+                // init new select tab
+                if (this.conf.tab) {
+
+                    this.switch(this.conf.tab);
+
+                } else {
+
+                    this.switch(this.data.tabs[0]);
+
+                }
+
+            });
+
+        },
         switch : function (name) {
 
             if (name === this.data.selectTab) {
@@ -103,25 +154,9 @@ export default {
 
                 let conEl = this.$el.children[1].children[old];
                 let tabEl = this.$el.children[0].children[old];
-                let conClassList = conEl.className.split(' ');
-                let tabClassList = conEl.className.split(' ');
-                let conClassIndex = conClassList.indexOf('current');
-                let tabClassIndex = tabClassList.indexOf('current');
 
-                if (conClassIndex !== -1) {
-
-                    conClassList.splice(conClassIndex, 1);
-
-                }
-
-                if (tabClassIndex !== -1) {
-
-                    tabClassList.splice(tabClassIndex, 1);
-
-                }
-
-                conEl.className = conClassList.join(' ');
-                tabEl.className = tabClassList.join(' ');
+                conEl.classList.remove('current');
+                tabEl.classList.remove('current');
 
             }
 
@@ -132,8 +167,8 @@ export default {
                 let conEl = this.$el.children[1].children[current];
                 let tabEl = this.$el.children[0].children[current];
 
-                conEl.className += ' current';
-                tabEl.className += ' current';
+                conEl.classList.add('current');
+                tabEl.classList.add('current');
 
             }
 
@@ -191,34 +226,22 @@ export default {
             immediate : true
         });
 
-        this.$watch('$slots', () => {
+        this._initTabs();
 
-            this._getNamelist();
-            this.data.tabs = Object.keys(this.$slots);
+        this.$watch('conf.tab', () => {
 
-        }, {
-            immediate : true
-        });
-
-        this.Vue.nextTick(() => {
-
-            this.$watch('conf.tab', () => {
-
-                if (this.conf.tab) {
-
-                    this.switch(this.conf.tab);
-
-                } else {
-
-                    this.switch(this.data.tabs[0]);
-
-                }
-
-            }, {
-                immediate : true
-            });
+            this._initSelectTab();
 
         });
+
+    },
+    updated : function () {
+
+        if (this.data.tabs.join(',') !== Object.keys(this.$slots).join(',')) {
+
+            this._initTabs();
+
+        }
 
     }
 

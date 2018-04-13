@@ -31,7 +31,6 @@ let Dates = {
             return new Date(standardDate);
 
         }
-
     }
 };
 

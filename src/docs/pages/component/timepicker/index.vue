@@ -282,6 +282,18 @@
     methodDefaultValue:'12:30:24'
     :::
 
+    #### getDate()
+
+    获取当前选中时间的日期对象。
+    
+    :::democode/html
+    <div style="width:300px;">
+        <ui-timepicker ref="demo1" form-name="时间"></ui-timepicker>
+        <br><br> 
+        <ui-link js="morning.findVM('demo1').getDate();">获取当前选中时间的日期对象</ui-link>
+    </div>
+    :::
+
     [[[事件]]]
 
     :::preset/html

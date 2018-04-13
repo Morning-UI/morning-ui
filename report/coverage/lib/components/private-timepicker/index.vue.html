@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">2.45% </span>
+        <span class="strong">2.43% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>5/204</span>
+        <span class='fraction'>5/206</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">8.49% </span>
+        <span class="strong">8.33% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>9/106</span>
+        <span class='fraction'>9/108</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>0/44</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">2.92% </span>
+        <span class="strong">2.89% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>5/171</span>
+        <span class='fraction'>5/173</span>
       </div>
     </div>
   </div>
@@ -601,7 +601,12 @@
 556
 557
 558
-559</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+559
+560
+561
+562
+563
+564</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -688,7 +693,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">83x</span>
+<span class="cline-any cline-yes">84x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -705,7 +710,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">83x</span>
+<span class="cline-any cline-yes">84x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -785,10 +790,16 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -1067,7 +1078,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1158,8 +1168,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">83x</span>
-<span class="cline-any cline-yes">83x</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
+<span class="cline-any cline-yes">84x</span>
+<span class="cline-any cline-yes">84x</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
     &lt;mor-private-timepicker
         :_uiid="uiid"
         :class="[formClass, stateClass]"
@@ -1338,6 +1348,12 @@ export default {
 <span class="cstat-no" title="statement not covered" >            if (!isValid(date)) {</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >                date = this._timeGetStandardDate();</span>
+&nbsp;
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (!this._checkSelectable('all')) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                date = this._getClosestTime(date);</span>
 &nbsp;
             }
 &nbsp;
@@ -1625,16 +1641,15 @@ export default {
 &nbsp;
             let start = <span class="cstat-no" title="statement not covered" >this._timeGetStandardDate();</span>
             let end = <span class="cstat-no" title="statement not covered" >this._timeGetStandardDate();</span>
+            let rangeStart = <span class="cstat-no" title="statement not covered" >this._timeStringToDate(range[0], this.conf.format);</span>
+            let rangeEnd = <span class="cstat-no" title="statement not covered" >this._timeStringToDate(range[1], this.conf.format);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >            range[0] = this._timeStringToDate(range[0], this.conf.format);</span>
-<span class="cstat-no" title="statement not covered" >            range[1] = this._timeStringToDate(range[1], this.conf.format);</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >            start = setHours(start, getHours(range[0]));</span>
-<span class="cstat-no" title="statement not covered" >            start = setMinutes(start, getMinutes(range[0]));</span>
-<span class="cstat-no" title="statement not covered" >            start = setSeconds(start, getSeconds(range[0]));</span>
-<span class="cstat-no" title="statement not covered" >            end = setHours(end, getHours(range[1]));</span>
-<span class="cstat-no" title="statement not covered" >            end = setMinutes(end, getMinutes(range[1]));</span>
-<span class="cstat-no" title="statement not covered" >            end = setSeconds(end, getSeconds(range[1]));</span>
+<span class="cstat-no" title="statement not covered" >            start = setHours(start, getHours(rangeStart));</span>
+<span class="cstat-no" title="statement not covered" >            start = setMinutes(start, getMinutes(rangeStart));</span>
+<span class="cstat-no" title="statement not covered" >            start = setSeconds(start, getSeconds(rangeStart));</span>
+<span class="cstat-no" title="statement not covered" >            end = setHours(end, getHours(rangeEnd));</span>
+<span class="cstat-no" title="statement not covered" >            end = setMinutes(end, getMinutes(rangeEnd));</span>
+<span class="cstat-no" title="statement not covered" >            end = setSeconds(end, getSeconds(rangeEnd));</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >            selectableTimes.push([start, end]);</span>
 &nbsp;
@@ -1723,7 +1738,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Feb 26 2018 19:55:35 GMT+0800 (CST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Apr 13 2018 16:34:30 GMT+0800 (CST)
 </div>
 </div>
 <script src="../../../prettify.js"></script>

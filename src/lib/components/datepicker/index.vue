@@ -13,6 +13,7 @@
         :format="format"
         :align="align"
         :selectable-range="selectableRange"
+        :show-timepicker-box="showTimepickerBox"
         :is-range="isRange"
         :separator="separator"
         :start-name="startName"
@@ -23,7 +24,7 @@
         <div class="input-group-addon" v-if="conf.isRange">
             <i class='morningicon'>&#xe602;</i>
         </div>
-    
+
         <template v-if="conf.isRange">
             <morning-private-datepicker
                 class="datepicker-input-0"
@@ -32,13 +33,24 @@
 
                 :form-name="(conf.startName === false) ? conf.formName : conf.startName"
                 :hide-name="conf.hideName"
-                :date="date"
+                :date="data.currentDate"
                 :format="conf.format"
                 :align="conf.align"
                 :selectable-range="conf.selectableRange"
-
+                :show-timepicker-box="conf.showTimepickerBox"
+                :auto-refresh-calendar="false"
+                :highlight-days="data.input0HighlightDays"
+    
                 @value-change="_syncValueFromInputToRoot"
-            >    
+                @focus="_focus"
+                @blur="_blur"
+                @input-focus="_inputFocus"
+                @input-blur="_inputBlur"
+                @date-click="_syncValueFromInputToRootForClick"
+                @date-enter="_inputDateEnter"
+                @date-change = "_input0DateChange"
+            >
+                <slot name="timepicker" slot="timepicker"></slot>
             </morning-private-datepicker>
 
             <div class="separator">{{conf.separator}}</div>
@@ -50,13 +62,24 @@
                 
                 :form-name="(conf.endName === false) ? conf.formName : conf.endName"
                 :hide-name="conf.hideName"
-                :date="date"
+                :date="_addMonths(data.currentDate, 1)"
                 :format="conf.format"
                 :align="conf.align"
                 :selectable-range="conf.selectableRange"
+                :show-timepicker-box="conf.showTimepickerBox"
+                :auto-refresh-calendar="false"
+                :highlight-days="data.input1HighlightDays"
 
                 @value-change="_syncValueFromInputToRoot"
-            >    
+                @focus="_focus"
+                @blur="_blur"
+                @input-focus="_inputFocus"
+                @input-blur="_inputBlur"
+                @date-click="_syncValueFromInputToRootForClick"
+                @date-enter="_inputDateEnter"
+                @date-change = "_input1DateChange"
+            >
+                <slot name="timepicker2" slot="timepicker"></slot>
             </morning-private-datepicker>
         </template>
 
@@ -72,9 +95,15 @@
                 :format="conf.format"
                 :align="conf.align"
                 :selectable-range="conf.selectableRange"
+                :show-timepicker-box="conf.showTimepickerBox"
 
                 @value-change="_syncValueFromInputToRoot"
-            >    
+                @input-focus="_inputFocus"
+                @input-blur="_inputBlur"
+                @focus="_focus"
+                @blur="_blur"
+            >
+                <slot name="timepicker" slot="timepicker"></slot>    
             </morning-private-datepicker>
         </template>
 
@@ -87,8 +116,17 @@
  
 <script>
 import {
-    isValid
+    format as formatDate,
+    isValid,
+    addDays,
+    subDays,
+    addMonths,
+    subMonths,
+    eachDayOfInterval,
+    startOfMonth,
+    endOfMonth
 }                                   from 'date-fns';
+import sortBy                       from 'lodash.sortby';
 import Dates                        from 'Utils/Dates';
 
 export default {
@@ -113,6 +151,11 @@ export default {
             type : Array,
             default : (() => [])
         },
+        // WARN : 此配置项不对使用者开放，仅用于datetimepicker
+        showTimepickerBox : {
+            type : Boolean,
+            defualt : false
+        },
         isRange : {
             type : Boolean,
             default : false
@@ -123,11 +166,11 @@ export default {
         },
         startName : {
             type : String,
-            default : '开始时间'
+            default : '开始日期'
         },
         endName : {
             type : String,
-            default : '结束时间'
+            default : '结束日期'
         }
     },
     computed : {
@@ -138,10 +181,11 @@ export default {
                 format : this.format,
                 align : this.align,
                 selectableRange : this.selectableRange,
+                showTimepickerBox : this.showTimepickerBox,
                 isRange : this.isRange,
                 separator : this.separator,
                 startName : this.startName,
-                endName : this.endName,
+                endName : this.endName
             };
 
         }
@@ -149,7 +193,12 @@ export default {
     data : function () {
 
         return {
-            data : {}
+            data : {
+                currentDate : undefined,
+                selected : false,
+                input0HighlightDays : [],
+                input1HighlightDays : []
+            }
         };
 
     },
@@ -190,11 +239,150 @@ export default {
 
                     }
 
+                    if (value.length > 1) {
+
+                        let start = this._dateStringToDate(value[0], this.conf.format);
+                        let end = this._dateStringToDate(value[1], this.conf.format);
+
+                        if (+start > +end) {
+
+                            let mid = value[0];
+
+                            value[0] = value[1];
+                            value[1] = mid;
+
+                        }
+
+                    }
+
                 }
 
             }
 
             return value;
+
+        },
+        _input0DateChange : function (date) {
+
+            this.data.currentDate = date;
+            this.$nextTick(() => this._highlightDateFromValue());
+
+        },
+        _input1DateChange : function (date) {
+
+            this.data.currentDate = subMonths(date, 1);
+            this.$nextTick(() => this._highlightDateFromValue());
+
+        },
+        _inputDateEnter : function (date) {
+
+            if (!this.data.selected) {
+
+                return;
+
+            }
+
+            let value = this.get();
+
+            if (value &&
+                typeof value[0] === 'string') {
+
+                this._highlightDate(this._dateStringToDate(value[0], this.conf.format), date);
+
+            }
+
+        },
+        _inputFocus : function () {
+
+            this.$emit('input-focus');
+
+        },
+        _inputBlur : function () {
+
+            this.$emit('input-blur');
+
+        },
+        _focus : function () {
+
+            if (this.conf.isRange) {
+
+                let input0 = this.$refs[`ui-datepicker-input-0-${this.uiid}`];
+                let input1 = this.$refs[`ui-datepicker-input-1-${this.uiid}`];
+                let $input0DateSelect = input0.$el.querySelector('.date-select');
+                let $input1DateSelect = input1.$el.querySelector('.date-select');
+                let value = this.get();
+
+                input0.data.keepInputFocus = true;
+                input1.data.keepInputFocus = true;
+                input0.data.blurIgnoreElement = input1.$el;
+                input1.data.blurIgnoreElement = input0.$el;
+
+                if (!input0.data.inputFocus) {
+
+                    input0._focus();
+
+                }
+
+                if (!input1.data.inputFocus) {
+
+                    input1._focus();
+
+                }
+
+                if ($input0DateSelect &&
+                    $input1DateSelect) {
+
+                    $input1DateSelect.style.left = `${$input0DateSelect.offsetWidth}px`;
+
+                }
+
+                if (value && value[0]) {
+
+                    this.data.currentDate = +this._dateStringToDate(value[0], this.conf.format);
+
+                }
+
+                this.$nextTick(() => this._highlightDateFromValue());
+
+            }
+
+            this.$emit('focus');
+
+        },
+        _blur : function () {
+
+            if (this.conf.isRange) {
+
+                let input0 = this.$refs[`ui-datepicker-input-0-${this.uiid}`];
+                let input1 = this.$refs[`ui-datepicker-input-1-${this.uiid}`];
+                let $input1DateSelect = input1.$el.querySelector('.date-select');
+                
+                input0.data.keepInputFocus = false;
+                input1.data.keepInputFocus = false;
+                input0.data.blurIgnoreElement = undefined;
+                input1.data.blurIgnoreElement = undefined;
+
+                if (input0.data.inputFocus) {
+
+                    input0._blur();
+
+                }
+
+                if (input1.data.inputFocus) {
+
+                    input1._blur();
+
+                }
+
+                if ($input1DateSelect) {
+
+                    delete $input1DateSelect.style.left;
+
+                }
+
+            }
+
+            this.$emit('blur');
 
         },
         _filterDateString : function (value) {
@@ -216,6 +404,232 @@ export default {
             return value;
 
         },
+        _highlightDateFromValue : function () {
+
+            let value = this.get();
+
+            if (!value) {
+
+                return;
+
+            }
+
+            if (value[0] && value[1]) {
+
+                this._highlightDate(
+                    this._dateStringToDate(value[0], this.conf.format),
+                    this._dateStringToDate(value[1], this.conf.format)
+                );
+                
+            } else if (value[0]) {
+
+                this._highlightDate(
+                    this._dateStringToDate(value[0], this.conf.format)
+                );
+
+            }
+
+        },
+        _highlightDate : function (start, end) {
+
+            if (!this.conf.isRange) {
+
+                return;
+
+            }
+
+            if (end === undefined) {
+
+                end = start;
+
+            }
+
+            start = +start;
+            end = +end;
+
+            if (end < start) {
+
+                let mid = start;
+
+                start = end;
+                end = mid;
+
+            }
+
+            let input0 = this.$refs[`ui-datepicker-input-0-${this.uiid}`];
+            let input1 = this.$refs[`ui-datepicker-input-1-${this.uiid}`];
+            let input0Calendar = input0.$refs[`ui-calendar-${input0.uiid}`];
+            let input0CalendarStart = startOfMonth(input0Calendar.getTime());
+            let input0CalendarEnd = endOfMonth(input0Calendar.getTime());
+            let input1Calendar = input1.$refs[`ui-calendar-${input1.uiid}`];
+            let input1CalendarStart = startOfMonth(input1Calendar.getTime());
+            let input1CalendarEnd = endOfMonth(input1Calendar.getTime());
+
+            // start超过左侧日历/end在左侧日历
+            if (start <= input0CalendarStart &&
+                end >= input0CalendarStart &&
+                end <= input0CalendarEnd) {
+
+                this.data.input0HighlightDays = eachDayOfInterval({
+                    start : subDays(+input0CalendarStart, 1),
+                    end
+                });
+                this.data.input1HighlightDays = [];
+
+            }
+
+            // start超过左侧日历/end在右侧日历
+            if (start <= input0CalendarStart &&
+                end >= input1CalendarStart &&
+                end <= input1CalendarEnd) {
+
+                this.data.input0HighlightDays = eachDayOfInterval({
+                    start : subDays(+input0CalendarStart, 1),
+                    end : addDays(+input0CalendarEnd, 1)
+                });
+                this.data.input1HighlightDays = eachDayOfInterval({
+                    start : subDays(+input1CalendarStart, 1),
+                    end
+                });
+
+            }
+
+            // start在左侧日历/end超过右侧日历
+            if (start >= input0CalendarStart &&
+                start <= input0CalendarEnd &&
+                end >= input1CalendarEnd) {
+
+                this.data.input0HighlightDays = eachDayOfInterval({
+                    start,
+                    end : addDays(+input0CalendarEnd, 1)
+                });
+                this.data.input1HighlightDays = eachDayOfInterval({
+                    start : subDays(+input1CalendarStart, 1),
+                    end : addDays(+input1CalendarEnd, 1)
+                });
+
+            }
+
+            // start在右侧日历/end超过右侧日历
+            if (start >= input1CalendarStart &&
+                start <= input1CalendarEnd &&
+                end >= input1CalendarEnd) {
+
+                this.data.input0HighlightDays = [];
+                this.data.input1HighlightDays = eachDayOfInterval({
+                    start,
+                    end : addDays(+input1CalendarEnd, 1)
+                });
+
+            }
+
+            // start超过左侧日历/end超过右侧日历
+            if (start <= input0CalendarStart &&
+                end >= input1CalendarEnd) {
+
+                this.data.input0HighlightDays = eachDayOfInterval({
+                    start : subDays(+input0CalendarStart, 1),
+                    end : addDays(+input0CalendarEnd, 1)
+                });
+                this.data.input1HighlightDays = eachDayOfInterval({
+                    start : subDays(+input1CalendarStart, 1),
+                    end : addDays(+input1CalendarEnd, 1)
+                });
+
+            }
+
+            // start/end均在左侧日历中
+            if (start <= input0CalendarEnd &&
+                start >= input0CalendarStart &&
+                +end <= input0CalendarEnd &&
+                +end >= input0CalendarStart) {
+
+                this.data.input0HighlightDays = eachDayOfInterval({
+                    start,
+                    end
+                });
+                this.data.input1HighlightDays = [];
+
+            }
+
+            // start在左侧/end在右侧
+            if (start <= input0CalendarEnd &&
+                start >= input0CalendarStart &&
+                end >= input1CalendarStart &&
+                end <= input1CalendarEnd) {
+
+                this.data.input0HighlightDays = eachDayOfInterval({
+                    start,
+                    end : addDays(+input0CalendarEnd, 1)
+                });
+
+                this.data.input1HighlightDays = eachDayOfInterval({
+                    start : subDays(+input1CalendarStart, 1),
+                    end
+                });
+
+            }
+
+            // start/end钧在右侧
+            if (start <= input1CalendarEnd &&
+                start >= input1CalendarStart &&
+                end >= input1CalendarStart &&
+                end <= input1CalendarEnd) {
+
+                this.data.input0HighlightDays = [];
+                this.data.input1HighlightDays = eachDayOfInterval({
+                    start,
+                    end
+                });
+
+            }
+
+        },
+        _syncValueFromInputToRootForClick : function (date) {
+
+            let val = this.get() || [];
+
+            if (!this.data.selected) {
+
+                val = [];
+
+            }
+
+            this.data.selected = !this.data.selected;
+
+            if (val[0] === undefined) {
+
+                val[0] = date;
+
+            } else {
+
+                val[1] = date;
+
+            }
+
+            val = sortBy(val);
+
+            if (val[0]) {
+    
+                val[0] = formatDate(val[0], this.conf.format);
+
+            }
+
+            if (val[1]) {
+    
+                val[1] = formatDate(val[1], this.conf.format);
+
+            }
+
+            if (val.length === 0) {
+
+                val = undefined;
+
+            }
+
+            this._set(val, true);
+
+        },
         _syncValueFromInputToRoot : function () {
 
             let input0 = this.$refs[`ui-datepicker-input-0-${this.uiid}`];
@@ -229,20 +643,41 @@ export default {
 
             } else if (this.conf.isRange && input0 && input1) {
 
-                let val = [
-                    input0.get(),
-                    input1.get()
-                ];
+                let input0Val = input0.get();
+                let input1Val = input1.get();
+                let val = [];
+                let currentVal = this.get();
 
-                if (val[1] === undefined) {
+                if (currentVal[0] === input0Val &&
+                    currentVal[1] === input1Val) {
 
-                    val.splice(1, 1);
+                    return;
 
-                    if (val[0] === undefined) {
+                }
 
-                        val = undefined;
+                if (input0Val !== undefined) {
 
-                    }
+                    input0Val = this._dateStringToDate(input0Val, this.conf.format);
+
+                }
+
+                if (input1Val !== undefined) {
+
+                    input1Val = this._dateStringToDate(input1Val, this.conf.format);
+
+                }
+
+                if (input0Val === undefined && input1Val) {
+
+                    val = [formatDate(input1Val, this.conf.format)];
+
+                } else if (input1Val === undefined && input0Val) {
+
+                    val = [formatDate(input0Val, this.conf.format)];
+
+                } else {
+
+                    val = [formatDate(input0Val, this.conf.format), formatDate(input1Val, this.conf.format)];
 
                 }
 
@@ -265,8 +700,17 @@ export default {
 
                 if (value) {
 
-                    input0._set(value[0], true);
-                    input1._set(value[1], true);
+                    if (value[0] !== input0.get()) {
+
+                        input0._set(value[0], true);
+
+                    }
+
+                    if (value[1] !== input1.get()) {
+                        
+                        input1._set(value[1], true);
+
+                    }
 
                 } else {
 
@@ -277,15 +721,63 @@ export default {
 
             }
 
+        },
+        _addMonths : function (date, amount) {
+
+            return addMonths(date, amount);
+
+        },
+        getDate : function () {
+
+            let value = this.get();
+
+            if (typeof value === 'string') {
+
+                return this._dateStringToDate(value, this.conf.format);
+
+            } else if (value instanceof Array) {
+
+                return [
+                    this._dateStringToDate(value[0], this.conf.format),
+                    this._dateStringToDate(value[1], this.conf.format)
+                ];
+
+            }
+
+            return value;
+
+        },
+        getInputValue : function () {
+
+            let input0 = this.$refs[`ui-datepicker-input-0-${this.uiid}`];
+            let input1 = this.$refs[`ui-datepicker-input-1-${this.uiid}`];
+
+            if (!this.conf.isRange) {
+
+                return input0.data.inputValue;
+
+            }
+
+            return [input0.data.inputValue, input1.data.inputValue];
+
         }
     },
     created : function () {},
     mounted : function () {
 
+        this.$watch('conf.date', () => {
+
+            this.data.currentDate = +this.conf.date;
+
+        }, {
+            immediate : true
+        });
+
         this.$on('value-change', () => {
 
             this._syncFromRootToChild();
-
+            this.$nextTick(() => this._highlightDateFromValue());
+            
         });
 
         this._syncFromRootToChild();

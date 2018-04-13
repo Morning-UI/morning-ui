@@ -18,6 +18,26 @@
     
     ### 更新记录
 
+    ### 0.10.18 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2018年4月13日，
+            Archive : 
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.18" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.18/dist/" target="_blank">CDN</a>
+        </ui-small>
+    </ui-textcolor>
+
+    - 新增`ui-datetimepicker`日期时间选择器
+    - 优化`ui-datepicker`的区间选择功能
+    - `ui-calendar`新增`date-enter`和`date-leave`事件
+    - `ui-datepicker`新增`input-focus`、`input-blur`、`focus`、`blur`事件
+    - `ui-timepicker`新增`getDate`方法
+    - 修复`ui-tab`的标签页不能动态修改的问题
+    - 修复在Vue版本2.5.14之后`ui-table`会导致内存溢出的问题
+    - 适配Vue版本至2.5.16
+
     ### 0.10.17 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="light-blue">
@@ -239,7 +259,7 @@
     - 修复`ui-table`配置的一些问题
     - 修复文档的一些错误
 
-    <ui-label primary>Upgrade Precautions</ui-label>
+    <ui-label color="primary">Upgrade Precautions</ui-label>
 
     - `声明`被移除，通过`形态`来替代，使用方法也发生变化，详见`形态`文档
     - `声明`的`style`现在通过`形态`的`color`替代

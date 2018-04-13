@@ -29,10 +29,29 @@ mor-datepicker{
         .datepicker-input-0,
         .datepicker-input-1{
             display: inline-block;
+            position: static;
 
-            mor-textinput{
+            > mor-textinput{
                 .input-group-addon{
                     display: none;
+                }
+            }
+
+            .date-select{
+                position: absolute;
+                width: 50%;
+                min-width: 270px;
+
+                &.align-left{
+                    left: 0;
+                }
+
+                &.align-center{
+                    margin-left: 0;
+                }
+
+                &:hover{
+                    border-color: @colorFormBorder;
                 }
             }
         }
@@ -43,18 +62,18 @@ mor-datepicker{
                     border-radius: 0;
                 }
             }
+
+            .date-select{
+                border-bottom-right-radius: 0;
+                border-top-right-radius: 0;
+                border-right: none;
+            }
         }
 
-        .datepicker-input-1,
-        .datepicker-input-0{
+        .datepicker-input-1{
             .date-select{
-                &.align-left{
-                    left: 0;
-                }
-
-                &.align-center{
-                    margin-left: 0;
-                }
+                border-bottom-left-radius: 0;
+                border-top-left-radius: 0;
             }
         }
 
@@ -70,5 +89,14 @@ mor-datepicker{
             border-top: 1px solid @colorFormBorder;
             border-bottom: 1px solid @colorFormBorder;
         }
+    }
+
+    &.st-normal{}
+
+    &.st-disabled{}
+
+    // default status
+    &{
+        .st-normal;
     }
 }

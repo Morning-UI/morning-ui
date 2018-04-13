@@ -16,7 +16,7 @@
 
     :::democode/html
     <div style="width:300px;">
-        <morning-datepicker form-name="日期"></morning-datepicker>
+        <ui-datepicker form-name="日期"></ui-datepicker>
     </div>
     :::
 
@@ -39,6 +39,14 @@
     :::
 
     更多自定义格式见`format`配置。
+
+    #### 范围日期选择
+
+    :::democode/html
+    <div style="width:360px;">
+        <ui-datepicker form-name="日期" :is-range="true"></ui-datepicker>
+    </div>
+    :::
 
     [[[形态]]]
 
@@ -71,6 +79,14 @@
     uikey:datepicker
     configDefaultValue:'2018-03-23'
     configMoreAttr::date="+new Date('2018-03-23')"
+    :::
+
+    #### date
+
+    :::democode/html
+    <div style="width:300px">
+        <ui-datepicker :date="+new Date('2018-03-23')"></ui-datepicker>
+    </div>
     :::
 
     #### format
@@ -163,7 +179,7 @@
     在开启`is-range`的情况下设置`default-value`:
 
     :::democode/html
-    <div style="width:300px;">
+    <div style="width:360px;">
         <ui-datepicker form-name="日期" :date="+new Date('2018-03-23')" :is-range="true" :default-value="['2018-03-10', '2018-03-20']"></ui-datepicker>
     </div>
     :::
@@ -171,7 +187,7 @@
     #### separator
 
     :::democode/html
-    <div style="width:300px;">
+    <div style="width:360px;">
         <ui-datepicker form-name="日期" :is-range="true" separator="~"></ui-datepicker>
     </div>
     :::
@@ -179,7 +195,7 @@
     #### start-name
 
     :::democode/html
-    <div style="width:300px;">
+    <div style="width:360px;">
         <ui-datepicker form-name="日期" :is-range="true" start-name="发车日期"></ui-datepicker>
     </div>
     :::
@@ -187,7 +203,7 @@
     若设为`false`则显示`form-name`：
 
     :::democode/html
-    <div style="width:300px;">
+    <div style="width:360px;">
         <ui-datepicker form-name="日期" :is-range="true" :start-name="false"></ui-datepicker>
     </div>
     :::
@@ -195,7 +211,7 @@
     #### end-name
 
     :::democode/html
-    <div style="width:300px;">
+    <div style="width:360px;">
         <ui-datepicker form-name="日期" :is-range="true" end-name="到达日期"></ui-datepicker>
     </div>
     :::
@@ -203,7 +219,7 @@
     若设为`false`则显示`form-name`：
 
     :::democode/html
-    <div style="width:300px;">
+    <div style="width:360px;">
         <ui-datepicker form-name="日期" :is-range="true" :end-name="false"></ui-datepicker>
     </div>
     :::
@@ -226,6 +242,94 @@
     uikey:datepicker
     eventValue:'2018-03-23'
     :::
+        
+    #### input-focus
+
+    当日期选择器的输入框聚焦时触发。
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        methods : {
+            echo : function () {
+                console.log('demo1.console1', 'input-focus event!');
+            }
+        }
+    });
+    ---
+    <div>
+        <div style="width:300px;">
+            <ui-datepicker ref="demo1" @input-focus="echo"></ui-datepicker>
+        </div>
+    </div>
+    :::
+        
+    #### input-blur
+
+    当日期选择器的输入框失焦时触发。
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        methods : {
+            echo : function () {
+                console.log('demo2.console1', 'input-blur event!');
+            }
+        }
+    });
+    ---
+    <div>
+        <div style="width:300px;">
+            <ui-datepicker ref="demo2" @input-blur="echo"></ui-datepicker>
+        </div>
+    </div>
+    :::
+        
+    #### focus
+
+    当日期选择器聚焦时触发。
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        methods : {
+            echo : function () {
+                console.log('demo3.console1', 'focus event!');
+            }
+        }
+    });
+    ---
+    <div>
+        <div style="width:300px;">
+            <ui-datepicker ref="demo3" @focus="echo"></ui-datepicker>
+        </div>
+    </div>
+    :::
+        
+    #### blur
+
+    当日期选择器失焦时触发。
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        methods : {
+            echo : function () {
+                console.log('demo4.console1', 'blur event!');
+            }
+        }
+    });
+    ---
+    <div>
+        <div style="width:300px;">
+            <ui-datepicker ref="demo4" @blur="echo"></ui-datepicker>
+        </div>
+    </div>
+    :::
 
     [[[表单值]]]
 
@@ -242,6 +346,7 @@
     - 若数值的类型是一个数组，且数组长度为`0`则转换为`undefined`
     - 若数值的类型是一个数组，且数组长度大于`2`，则过滤多余的项目，只保留两项
     - 若数值的类型是一个数组，且数组长度大于`0`且小于`3`，会过滤数组中所有不是字符串类型的项目，然后按照第三条规则，对所有字符串项目进行过滤
+    - 若数值的类型是一个数组，且第二项代表的日期时间大于第一项，则对换数组的两项
     
     #### 值格式
 

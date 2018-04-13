@@ -21,7 +21,7 @@ let morning = {
     _groupVmMap : {},
     _options : {},
     isMorning : true,
-    version : '0.10.17',
+    version : '0.10.18',
     map : {}
 };
 
@@ -202,6 +202,13 @@ morning.install = function (Vue, options) {
     Vue.config.ignoredElements = this._ignoreElements;
 
     let vueRender = (el, binding) => {
+
+        if (binding.oldValue &&
+            binding.oldValue.template === binding.value.template) {
+
+            return;
+
+        }
 
         let tagName = el.tagName;
         let $vue = new Vue({
