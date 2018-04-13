@@ -280,6 +280,7 @@ export default {
             }
                 
             this.data.inputFocus = false;
+            document.body.removeEventListener('mouseup', this._blur);
 
             this.$emit('blur');
 
@@ -287,6 +288,7 @@ export default {
         _focus : function () {
 
             this.data.inputFocus = true;
+            document.body.addEventListener('mouseup', this._blur);
             this.$emit('focus');
 
         },
@@ -570,8 +572,6 @@ export default {
     },
     created : function () {},
     mounted : function () {
-
-        document.body.addEventListener('mouseup', this._blur);
 
         this.$nextTick(() => {
 

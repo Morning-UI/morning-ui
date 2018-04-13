@@ -224,6 +224,18 @@
     - `uploader` : 上传适配器
     - `clean-zone` : 清空区域
     - `clearable` : 清空数值
+    - `format` : 格式
+    - `selectable-range` : 可选范围
+    - `date-selectable-range` : 日期可选范围
+    - `time-selectable-range` : 时间可选范围
+    - `is-range` : 区间选择
+    - `is-list` : 列表选择
+    - `list-start` : 列表开始
+    - `list-end` : 列表结束
+    - `list-step` : 列表步长
+    - `separator` : 分隔符
+    - `start-name` : 开始名称
+    - `end-name` : 结束名称
 
     </script>
     </doc-guide>

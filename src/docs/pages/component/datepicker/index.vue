@@ -179,7 +179,7 @@
     在开启`is-range`的情况下设置`default-value`:
 
     :::democode/html
-    <div style="width:300px;">
+    <div style="width:360px;">
         <ui-datepicker form-name="日期" :date="+new Date('2018-03-23')" :is-range="true" :default-value="['2018-03-10', '2018-03-20']"></ui-datepicker>
     </div>
     :::
@@ -187,7 +187,7 @@
     #### separator
 
     :::democode/html
-    <div style="width:300px;">
+    <div style="width:360px;">
         <ui-datepicker form-name="日期" :is-range="true" separator="~"></ui-datepicker>
     </div>
     :::
@@ -195,7 +195,7 @@
     #### start-name
 
     :::democode/html
-    <div style="width:300px;">
+    <div style="width:360px;">
         <ui-datepicker form-name="日期" :is-range="true" start-name="发车日期"></ui-datepicker>
     </div>
     :::
@@ -203,7 +203,7 @@
     若设为`false`则显示`form-name`：
 
     :::democode/html
-    <div style="width:300px;">
+    <div style="width:360px;">
         <ui-datepicker form-name="日期" :is-range="true" :start-name="false"></ui-datepicker>
     </div>
     :::
@@ -211,7 +211,7 @@
     #### end-name
 
     :::democode/html
-    <div style="width:300px;">
+    <div style="width:360px;">
         <ui-datepicker form-name="日期" :is-range="true" end-name="到达日期"></ui-datepicker>
     </div>
     :::
@@ -219,7 +219,7 @@
     若设为`false`则显示`form-name`：
 
     :::democode/html
-    <div style="width:300px;">
+    <div style="width:360px;">
         <ui-datepicker form-name="日期" :is-range="true" :end-name="false"></ui-datepicker>
     </div>
     :::
@@ -241,6 +241,94 @@
     ---
     uikey:datepicker
     eventValue:'2018-03-23'
+    :::
+        
+    #### input-focus
+
+    当日期选择器的输入框聚焦时触发。
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        methods : {
+            echo : function () {
+                console.log('demo1.console1', 'input-focus event!');
+            }
+        }
+    });
+    ---
+    <div>
+        <div style="width:300px;">
+            <ui-datepicker ref="demo1" @input-focus="echo"></ui-datepicker>
+        </div>
+    </div>
+    :::
+        
+    #### input-blur
+
+    当日期选择器的输入框失焦时触发。
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        methods : {
+            echo : function () {
+                console.log('demo2.console1', 'input-blur event!');
+            }
+        }
+    });
+    ---
+    <div>
+        <div style="width:300px;">
+            <ui-datepicker ref="demo2" @input-blur="echo"></ui-datepicker>
+        </div>
+    </div>
+    :::
+        
+    #### focus
+
+    当日期选择器聚焦时触发。
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        methods : {
+            echo : function () {
+                console.log('demo3.console1', 'focus event!');
+            }
+        }
+    });
+    ---
+    <div>
+        <div style="width:300px;">
+            <ui-datepicker ref="demo3" @focus="echo"></ui-datepicker>
+        </div>
+    </div>
+    :::
+        
+    #### blur
+
+    当日期选择器失焦时触发。
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        methods : {
+            echo : function () {
+                console.log('demo4.console1', 'blur event!');
+            }
+        }
+    });
+    ---
+    <div>
+        <div style="width:300px;">
+            <ui-datepicker ref="demo4" @blur="echo"></ui-datepicker>
+        </div>
+    </div>
     :::
 
     [[[表单值]]]

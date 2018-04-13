@@ -536,7 +536,7 @@ export default {
 
                         fulldate1 = this._getFulldate({
                             $date,
-                            $time2,
+                            $time : $time2,
                             date : dateValue[1],
                             time : timeValue2,
                             type

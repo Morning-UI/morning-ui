@@ -151,6 +151,7 @@ export default {
             type : Array,
             default : (() => [])
         },
+        // WARN : 此配置项不对使用者开放，仅用于datetimepicker
         showTimepickerBox : {
             type : Boolean,
             defualt : false
