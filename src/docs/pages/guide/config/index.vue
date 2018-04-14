@@ -235,6 +235,8 @@
     - `separator` : 分隔符
     - `start-name` : 开始名称
     - `end-name` : 结束名称
+    - `auto-reset-search` : 重置搜索
+    - `hide-selected` : 隐藏选中
 
     </script>
     </doc-guide>
