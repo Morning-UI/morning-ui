@@ -18,6 +18,7 @@
         :can-move="canMove"
         :max="max"
         :auto-reset-search="autoResetSearch"
+        :hide-selected="hideSelected"
         :inline-img-size="inlineImgSize"
         :item-tip="itemTip"
         :item-tip-direct="itemTipDirect"
@@ -161,6 +162,10 @@ export default {
             type : Boolean,
             default : false
         },
+        hideSelected : {
+            type : Boolean,
+            default : true
+        },
         inlineImgSize : {
             type : String,
             default : '2em'
@@ -187,6 +192,7 @@ export default {
                 canMove : this.canMove,
                 max : this.max,
                 autoResetSearch : this.autoResetSearch,
+                hideSelected : this.hideSelected,
                 inlineImgSize : this.inlineImgSize,
                 itemTip : this.itemTip,
                 itemTipDirect : this.itemTipDirect
@@ -213,7 +219,8 @@ export default {
                 'align-left' : (this.conf.align === 'left'),
                 'align-center' : (this.conf.align === 'center'),
                 'align-right' : (this.conf.align === 'right'),
-                'input-group' : !!this.conf.prepend
+                'input-group' : !!this.conf.prepend,
+                'hide-selected' : this.conf.hideSelected
             };
 
         },
@@ -497,7 +504,19 @@ export default {
                     this.data.value !== undefined) {
 
                     value = this.get();
-                    value.push($clickItem.getAttribute('value'));
+
+                    let clickValue = $clickItem.getAttribute('value');
+                    let index = value.indexOf(clickValue);
+
+                    if (index !== -1) {
+
+                        value.splice(index, 1);
+
+                    } else {
+
+                        value.push(clickValue);
+
+                    }
                
                 }
 

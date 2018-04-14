@@ -159,6 +159,7 @@ mor-select{
             cursor: pointer;
             font-size: 14px;
             color: darken(@colorFormText, 15%);
+            position: relative;
 
             &.noitem{
                 color: @colorFormTextMisc;
@@ -187,8 +188,12 @@ mor-select{
                 color: @colorFormTextFocus;
             }
 
-            &.hide,
             &.selected{
+                background: @colorFormBackgroundHover;
+                border-left: 3px @colorSuccess solid;
+            }
+
+            &.hide{
                 display: none;
             }
 
@@ -197,6 +202,10 @@ mor-select{
                 background: @colorFormBackgroundHover;
             }
         }
+    }
+
+    &.hide-selected .list li.selected{
+        display: none;
     }
 
     &.align-center{

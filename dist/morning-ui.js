@@ -30343,6 +30343,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
 
 var _trim = __webpack_require__(409);
 
@@ -30398,6 +30399,10 @@ exports.default = {
             type: Number,
             default: Infinity
         },
+        autoResetSearch: {
+            type: Boolean,
+            default: false
+        },
         inlineImgSize: {
             type: String,
             default: '2em'
@@ -30423,6 +30428,7 @@ exports.default = {
                 multiSelect: this.multiSelect,
                 canMove: this.canMove,
                 max: this.max,
+                autoResetSearch: this.autoResetSearch,
                 inlineImgSize: this.inlineImgSize,
                 itemTip: this.itemTip,
                 itemTipDirect: this.itemTipDirect
@@ -30663,10 +30669,13 @@ exports.default = {
                 this.data.selectInput = true;
                 searchMultiinput._set(multiNames, true);
 
-                this.Vue.nextTick(function () {
+                if (!this.conf.autoResetSearch) {
 
-                    searchMultiinput.setInput(inputValue);
-                });
+                    this.Vue.nextTick(function () {
+
+                        searchMultiinput.setInput(inputValue);
+                    });
+                }
             }
 
             this._refreshShowItems();
@@ -31499,6 +31508,7 @@ var render = function() {
         "multi-select": _vm.multiSelect,
         "can-move": _vm.canMove,
         max: _vm.max,
+        "auto-reset-search": _vm.autoResetSearch,
         "inline-img-size": _vm.inlineImgSize,
         "item-tip": _vm.itemTip,
         "item-tip-direct": _vm.itemTipDirect
