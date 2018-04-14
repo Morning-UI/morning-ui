@@ -1,4 +1,4 @@
-webpackJsonp([42],{
+webpackJsonp([1],{
 
 /***/ 0:
 /***/ (function(module, exports) {
@@ -7,7 +7,7 @@ module.exports = Vue;
 
 /***/ }),
 
-/***/ 526:
+/***/ 296:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17,7 +17,7 @@ var _vue = __webpack_require__(0);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _index = __webpack_require__(527);
+var _index = __webpack_require__(297);
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -32,18 +32,18 @@ new _vue2.default({
 
 /***/ }),
 
-/***/ 527:
+/***/ 297:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_index_vue__ = __webpack_require__(529);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_index_vue__ = __webpack_require__(299);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_015001bc_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_index_vue__ = __webpack_require__(530);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_27daef6c_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_index_vue__ = __webpack_require__(300);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(528)
+  __webpack_require__(298)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
@@ -60,13 +60,13 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_index_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_015001bc_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_index_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_27daef6c_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_index_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "src/docs/pages/component/strong/index.vue"
+Component.options.__file = "src/docs/pages/lab/index.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
@@ -76,9 +76,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-015001bc", Component.options)
+    hotAPI.createRecord("data-v-27daef6c", Component.options)
   } else {
-    hotAPI.reload("data-v-015001bc", Component.options)
+    hotAPI.reload("data-v-27daef6c", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
@@ -90,14 +90,14 @@ if (false) {(function () {
 
 /***/ }),
 
-/***/ 528:
+/***/ 298:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 529:
+/***/ 299:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -107,68 +107,54 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _DocComponent = __webpack_require__(2);
+var _DocHeader = __webpack_require__(6);
 
-var _DocComponent2 = _interopRequireDefault(_DocComponent);
+var _DocHeader2 = _interopRequireDefault(_DocHeader);
+
+var _DocFooter = __webpack_require__(7);
+
+var _DocFooter2 = _interopRequireDefault(_DocFooter);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
     data: function data() {
 
         return {
-            page: 'strong'
+            category: 'lab',
+            users: [{ _id: 1, name: 'Boelaars' }, { _id: 2, name: 'Beck' }, { _id: 3, name: 'Zambelli' }, { _id: 4, name: 'Andrew' }, { _id: 5, name: 'Katherine' }, { _id: 6, name: 'Moynihan' }]
         };
     },
     components: {
-        'doc-component': _DocComponent2.default
-    }
-}; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
+        'doc-header': _DocHeader2.default,
+        'doc-footer': _DocFooter2.default
+    },
+    mounted: function mounted() {}
+};
 module.exports = exports['default'];
 
 /***/ }),
 
-/***/ 530:
+/***/ 300:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -176,25 +162,64 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("doc-component", { attrs: { page: _vm.page, hasPadding: true } }, [
-    _c("script", { attrs: { type: "text/markdown" } }, [
-      _vm._v(
-        '\n# 着重文本 `<ui-strong>`\n\n<doc-component-status page="strong"></doc-component-status>\n\n[[[开始]]]\n\n标记一段着重内容，这是一个内联元素。\n\n#### 使用\n\n:::democode/html\n<ui-strong>着重文本</ui-strong>\n:::\n\n[[[形态]]]\n\n#### 支持\n\n|类型|支持|默认|\n|-|-|-|\n|尺寸|不支持|-|\n|色彩|不支持|-|\n|状态|不支持|-|\n\n<a href="/guide/status.html">查看形态文档</a>\n\n\n[[[源码]]]\n\n<iframe src="/report/coverage/lib/components/strong/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>\n'
-      )
-    ])
-  ])
+  return _c(
+    "div",
+    [
+      _c("doc-header", { attrs: { category: _vm.category } }),
+      _vm._v(" "),
+      _c("div", { staticClass: "lab" }, [
+        _vm._m(0, false, false),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "area" },
+          [
+            _c(
+              "ui-select",
+              {
+                attrs: {
+                  "form-name": "Select designer",
+                  "multi-select": "",
+                  "can-search": ""
+                }
+              },
+              _vm._l(_vm.users, function(user) {
+                return _c("li", { attrs: { value: user._id } }, [
+                  _vm._v(_vm._s(user.name))
+                ])
+              })
+            )
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c("doc-footer")
+    ],
+    1
+  )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h1", [
+      _c("i", { staticClass: "iconfont" }, [_vm._v("")]),
+      _vm._v("Morning Laboratory")
+    ])
+  }
+]
 render._withStripped = true
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ __webpack_exports__["a"] = (esExports);
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-015001bc", esExports)
+    require("vue-hot-reload-api")      .rerender("data-v-27daef6c", esExports)
   }
 }
 
 /***/ })
 
-},[526]);
+},[296]);
