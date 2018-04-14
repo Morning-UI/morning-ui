@@ -17,6 +17,7 @@
         :multi-select="multiSelect"
         :can-move="canMove"
         :max="max"
+        :auto-reset-search="autoResetSearch"
         :inline-img-size="inlineImgSize"
         :item-tip="itemTip"
         :item-tip-direct="itemTipDirect"
@@ -156,6 +157,10 @@ export default {
             type : Number,
             default : Infinity
         },
+        autoResetSearch : {
+            type : Boolean,
+            default : false
+        },
         inlineImgSize : {
             type : String,
             default : '2em'
@@ -181,6 +186,7 @@ export default {
                 multiSelect : this.multiSelect,
                 canMove : this.canMove,
                 max : this.max,
+                autoResetSearch : this.autoResetSearch,
                 inlineImgSize : this.inlineImgSize,
                 itemTip : this.itemTip,
                 itemTipDirect : this.itemTipDirect
@@ -397,12 +403,16 @@ export default {
 
                 this.data.selectInput = true;
                 searchMultiinput._set(multiNames, true);
-
-                this.Vue.nextTick(() => {
                     
-                    searchMultiinput.setInput(inputValue);
+                if (!this.conf.autoResetSearch) {
+                    
+                    this.Vue.nextTick(() => {
 
-                });
+                        searchMultiinput.setInput(inputValue);
+
+                    });
+        
+                }
             
             }
 
