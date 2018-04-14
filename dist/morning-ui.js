@@ -30529,7 +30529,7 @@ exports.default = {
             // let $selected = this.$el.querySelector('.selected');
             var searchTextinput = void 0;
             var searchMultiinput = void 0;
-            var multiValue = [];
+            var multiNames = [];
 
             var _iteratorNormalCompletion = true;
             var _didIteratorError = false;
@@ -30606,10 +30606,10 @@ exports.default = {
 
                                 if (this.conf.multiSelect) {
 
-                                    multiValue.push((0, _trim2.default)(_$item.getAttribute('value')));
+                                    multiNames.push((0, _trim2.default)(_$item.textContent));
                                 } else {
 
-                                    this.data.selectedContent = _$item.innerHTML;
+                                    this.data.selectedContent = _$item.textContent;
                                 }
                             }
                         }
@@ -30656,12 +30656,12 @@ exports.default = {
                 this.data.selectedContent = this.conf.formName || '';
             }
 
-            if (searchMultiinput && searchMultiinput.getJson() !== JSON.stringify(multiValue)) {
+            if (searchMultiinput && searchMultiinput.getJson() !== JSON.stringify(multiNames)) {
 
                 var inputValue = searchMultiinput.getInput();
 
                 this.data.selectInput = true;
-                searchMultiinput._set(multiValue, true);
+                searchMultiinput._set(multiNames, true);
 
                 this.Vue.nextTick(function () {
 
@@ -30949,7 +30949,7 @@ exports.default = {
                             var $item = _step9.value;
 
 
-                            if ((0, _trim2.default)($item.getAttribute('value')) === value) {
+                            if ((0, _trim2.default)($item.textContent) === value) {
 
                                 setValue.push($item.getAttribute('value'));
 
@@ -31039,7 +31039,7 @@ exports.default = {
                             var value = _step11.value;
 
 
-                            if (value === (0, _trim2.default)($item.textContent)) {
+                            if (value === $item.getAttribute('value')) {
 
                                 selected = true;
 

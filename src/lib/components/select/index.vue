@@ -307,7 +307,7 @@ export default {
             // let $selected = this.$el.querySelector('.selected');
             let searchTextinput;
             let searchMultiinput;
-            let multiValue = [];
+            let multiNames = [];
 
             for (let $item of $currentItems.values()) {
 
@@ -358,11 +358,11 @@ export default {
 
                         if (this.conf.multiSelect) {
 
-                            multiValue.push(trim($item.getAttribute('value')));
+                            multiNames.push(trim($item.textContent));
                         
                         } else {
                             
-                            this.data.selectedContent = $item.innerHTML;
+                            this.data.selectedContent = $item.textContent;
 
                         }
                     
@@ -391,12 +391,12 @@ export default {
             }
 
             if (searchMultiinput &&
-                searchMultiinput.getJson() !== JSON.stringify(multiValue)) {
+                searchMultiinput.getJson() !== JSON.stringify(multiNames)) {
 
                 let inputValue = searchMultiinput.getInput();
 
                 this.data.selectInput = true;
-                searchMultiinput._set(multiValue, true);
+                searchMultiinput._set(multiNames, true);
 
                 this.Vue.nextTick(() => {
                     
@@ -626,7 +626,7 @@ export default {
 
                 for (let $item of $items.values()) {
 
-                    if (trim($item.getAttribute('value')) === value) {
+                    if (trim($item.textContent) === value) {
 
                         setValue.push($item.getAttribute('value'));
 
@@ -684,7 +684,7 @@ export default {
 
                 for (let value of values) {
 
-                    if (value === trim($item.textContent)) {
+                    if (value === $item.getAttribute('value')) {
 
                         selected = true;
 

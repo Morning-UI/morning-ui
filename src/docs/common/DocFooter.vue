@@ -4,6 +4,7 @@
         Under <a href="https://opensource.org/licenses/MIT" target="_blank">MIT Licence</a>
         <br>
         Copyright © 2015-2017 Early He
+        <a class="tolab" href="/lab.html">Laboratory</a>
     </footer>
 </template>
 
@@ -18,6 +19,7 @@ footer{
     padding: 30px 0;
     text-align: center;
     background: #333;
+    position: relative;
     line-height: 1.4em;
 
     img {
@@ -30,6 +32,15 @@ footer{
     a:hover {
         color: #aaa;
         text-decoration: none;
+    }
+
+    .tolab{
+        position: absolute;
+        bottom: 3px;
+        left: 50%;
+        color: #fff;
+        opacity: 0.02;
+        transform: translateX(-50%);
     }
 }
 </style>
