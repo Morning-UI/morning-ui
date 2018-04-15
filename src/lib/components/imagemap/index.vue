@@ -15,6 +15,7 @@
         :validate="validate"
         :uploader="uploader"
         :clean-zone="cleanZone"
+        :clean-allzone-btn="cleanAllzoneBtn"
         :max="max"
         :max-spot="maxSpot"
     >
@@ -104,6 +105,7 @@
         <footer slot="footer">
             <span>鼠标左键拖拽移动热区/调整尺寸，鼠标右键点击编辑数据</span>
             <div>
+                <morning-link color="danger clean-allzone-btn" v-if="conf.cleanAllzoneBtn && (conf.state !== 'disabled')" @emit="_cleanAllzone">清除所有热区</morning-link>
                 <morning-btn color="minor" @emit="morning.findVM('ui-imagemap-mapdialog-'+uiid).toggle(false)">关闭</morning-btn>
             </div>
         </footer>
@@ -238,6 +240,10 @@ export default {
             type : Boolean,
             default : true
         },
+        cleanAllzoneBtn : {
+            type : Boolean,
+            default : true
+        },
         max : {
             type : Number,
             default : 1
@@ -257,6 +263,7 @@ export default {
                 validate : this.validate,
                 uploader : this.uploader,
                 cleanZone : this.cleanZone,
+                cleanAllzoneBtn : this.cleanAllzoneBtn,
                 max : this.max,
                 maxSpot : this.maxSpot
             };
@@ -894,6 +901,17 @@ export default {
             }
 
             this._set(result, true);
+
+        },
+        _cleanAllzone : function () {
+
+            let result = window.confirm('确认清除所有热区？');
+
+            if (result) {
+
+                this.cleanZones();
+
+            }
 
         },
         set : function (value) {
