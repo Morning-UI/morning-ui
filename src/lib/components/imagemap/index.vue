@@ -905,7 +905,9 @@ export default {
         },
         _cleanAllzone : function () {
 
+            /* eslint-disable no-alert */
             let result = window.confirm('确认清除所有热区？');
+            /* eslint-enable no-alert */
 
             if (result) {
 
