@@ -18,6 +18,25 @@
     
     ### 更新记录
 
+    ### 0.10.19 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2018年4月15日，
+            Archive : 
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.19" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.19/dist/" target="_blank">CDN</a>
+        </ui-small>
+    </ui-textcolor><br/><br/>
+
+    - `ui-select`组件新增`auto-reset-search`配置，开启后在多选模式下选中项目后会重置搜索内容
+    - `ui-select`组件新增`hide-selected`配置，关闭后选中的项目不会消失
+    - 修复`ui-select`组件在多选时，项目值和名称不一致的问题
+
+    <ui-label color="primary">Upgrade Precautions</ui-label>
+
+    - `ui-select`移除`clean-btn`配置，采用`clearable`配置代替
+
     ### 0.10.18 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="light-blue">
@@ -27,7 +46,7 @@
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.18" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.18/dist/" target="_blank">CDN</a>
         </ui-small>
-    </ui-textcolor>
+    </ui-textcolor><br/><br/>
 
     - 新增`ui-datetimepicker`日期时间选择器
     - 优化`ui-datepicker`的区间选择功能
@@ -47,7 +66,7 @@
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.17" target="_blank">Package</a>
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.17/dist/" target="_blank">CDN</a>
         </ui-small>
-    </ui-textcolor>
+    </ui-textcolor><br/><br/>
 
     - 新增`ui-datepicker`日期选择器组件
     - 修复`ui-select`在同时使用`multi-select`配置和`v-for`生成列表时无法选择的问题

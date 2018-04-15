@@ -4091,7 +4091,7 @@ mor-select .list::-webkit-scrollbar{width:5px;height:5px;background-color:rgba(0
 }
 mor-select .list::-webkit-scrollbar-thumb{width:5px;height:5px;background:rgba(0,0,0,.1);border-radius:4px
 }
-mor-select .list li{padding:.5em 1em;border-top:1px #f3f3f3 solid;cursor:pointer;font-size:14px;color:#8d8d8d
+mor-select .list li{padding:.5em 1em;border-top:1px #f3f3f3 solid;cursor:pointer;font-size:14px;color:#8d8d8d;position:relative
 }
 mor-select .list li.noitem{color:silver;cursor:default;display:none
 }
@@ -4103,9 +4103,13 @@ mor-select .list li mor-img>img{vertical-align:top
 }
 mor-select .list li.current{background:#f3f3f3;color:#17212d
 }
-mor-select .list li.hide,mor-select .list li.selected{display:none
+mor-select .list li.selected{background:#f5f5f5;border-left:3px #4dbd67 solid
+}
+mor-select .list li.hide{display:none
 }
 mor-select .list li:hover{color:#737373;background:#f5f5f5
+}
+mor-select.hide-selected .list li.selected{display:none
 }
 mor-select.align-center .wrap>mor-multiinput{width:calc(100% - 1em);padding-right:calc(30px + 1em)
 }

@@ -17,6 +17,8 @@
         :multi-select="multiSelect"
         :can-move="canMove"
         :max="max"
+        :auto-reset-search="autoResetSearch"
+        :hide-selected="hideSelected"
         :inline-img-size="inlineImgSize"
         :item-tip="itemTip"
         :item-tip-direct="itemTipDirect"
@@ -156,6 +158,14 @@ export default {
             type : Number,
             default : Infinity
         },
+        autoResetSearch : {
+            type : Boolean,
+            default : false
+        },
+        hideSelected : {
+            type : Boolean,
+            default : true
+        },
         inlineImgSize : {
             type : String,
             default : '2em'
@@ -181,6 +191,8 @@ export default {
                 multiSelect : this.multiSelect,
                 canMove : this.canMove,
                 max : this.max,
+                autoResetSearch : this.autoResetSearch,
+                hideSelected : this.hideSelected,
                 inlineImgSize : this.inlineImgSize,
                 itemTip : this.itemTip,
                 itemTipDirect : this.itemTipDirect
@@ -207,7 +219,8 @@ export default {
                 'align-left' : (this.conf.align === 'left'),
                 'align-center' : (this.conf.align === 'center'),
                 'align-right' : (this.conf.align === 'right'),
-                'input-group' : !!this.conf.prepend
+                'input-group' : !!this.conf.prepend,
+                'hide-selected' : this.conf.hideSelected
             };
 
         },
@@ -307,7 +320,7 @@ export default {
             // let $selected = this.$el.querySelector('.selected');
             let searchTextinput;
             let searchMultiinput;
-            let multiValue = [];
+            let multiNames = [];
 
             for (let $item of $currentItems.values()) {
 
@@ -358,11 +371,11 @@ export default {
 
                         if (this.conf.multiSelect) {
 
-                            multiValue.push(trim($item.getAttribute('value')));
+                            multiNames.push(trim($item.textContent));
                         
                         } else {
                             
-                            this.data.selectedContent = $item.innerHTML;
+                            this.data.selectedContent = $item.textContent;
 
                         }
                     
@@ -391,18 +404,22 @@ export default {
             }
 
             if (searchMultiinput &&
-                searchMultiinput.getJson() !== JSON.stringify(multiValue)) {
+                searchMultiinput.getJson() !== JSON.stringify(multiNames)) {
 
                 let inputValue = searchMultiinput.getInput();
 
                 this.data.selectInput = true;
-                searchMultiinput._set(multiValue, true);
-
-                this.Vue.nextTick(() => {
+                searchMultiinput._set(multiNames, true);
                     
-                    searchMultiinput.setInput(inputValue);
+                if (!this.conf.autoResetSearch) {
+                    
+                    this.Vue.nextTick(() => {
 
-                });
+                        searchMultiinput.setInput(inputValue);
+
+                    });
+        
+                }
             
             }
 
@@ -487,7 +504,19 @@ export default {
                     this.data.value !== undefined) {
 
                     value = this.get();
-                    value.push($clickItem.getAttribute('value'));
+
+                    let clickValue = $clickItem.getAttribute('value');
+                    let index = value.indexOf(clickValue);
+
+                    if (index !== -1) {
+
+                        value.splice(index, 1);
+
+                    } else {
+
+                        value.push(clickValue);
+
+                    }
                
                 }
 
@@ -626,7 +655,7 @@ export default {
 
                 for (let $item of $items.values()) {
 
-                    if (trim($item.getAttribute('value')) === value) {
+                    if (trim($item.textContent) === value) {
 
                         setValue.push($item.getAttribute('value'));
 
@@ -684,7 +713,7 @@ export default {
 
                 for (let value of values) {
 
-                    if (value === trim($item.textContent)) {
+                    if (value === $item.getAttribute('value')) {
 
                         selected = true;
 

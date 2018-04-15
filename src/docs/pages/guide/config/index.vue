@@ -181,7 +181,6 @@
     - `can-search` : 可搜索
     - `multi-select` : 多选
     - `max` : 最大可输入项目
-    - `clean-btn` : 清空按钮
     - `inline-img-size` : 内联图片尺寸
     - `item-tip` : 项目提示
     - `item-tip-direct` : 项目提示方向
@@ -236,6 +235,8 @@
     - `separator` : 分隔符
     - `start-name` : 开始名称
     - `end-name` : 结束名称
+    - `auto-reset-search` : 重置搜索
+    - `hide-selected` : 隐藏选中
 
     </script>
     </doc-guide>

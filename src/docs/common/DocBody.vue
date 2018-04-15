@@ -266,7 +266,7 @@ let data = {
         select : [
             {
                 valueType : 'String',
-                valueContent : `'Tim Boelaars'`
+                valueContent : `'tim'`
             },
             {
                 valueType : 'Number',
@@ -286,11 +286,11 @@ let data = {
             },
             {
                 valueType : 'Object',
-                valueContent : '{\'Tim\':\'Tim\'}'
+                valueContent : '{\'tim\':\'tim\'}'
             },
             {
                 valueType : 'Array',
-                valueContent : '[\'Tim Boelaars\', \'Andrew Colin Beck\']'
+                valueContent : '[\'tim\', \'andrew\']'
             }
         ],
         multiform : [

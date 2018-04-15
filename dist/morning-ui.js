@@ -7813,7 +7813,7 @@ var morning = {
     _groupVmMap: {},
     _options: {},
     isMorning: true,
-    version: '0.10.18',
+    version: '0.10.19',
     map: {}
 };
 
@@ -30343,6 +30343,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
 
 var _trim = __webpack_require__(409);
 
@@ -30398,6 +30400,14 @@ exports.default = {
             type: Number,
             default: Infinity
         },
+        autoResetSearch: {
+            type: Boolean,
+            default: false
+        },
+        hideSelected: {
+            type: Boolean,
+            default: true
+        },
         inlineImgSize: {
             type: String,
             default: '2em'
@@ -30423,6 +30433,8 @@ exports.default = {
                 multiSelect: this.multiSelect,
                 canMove: this.canMove,
                 max: this.max,
+                autoResetSearch: this.autoResetSearch,
+                hideSelected: this.hideSelected,
                 inlineImgSize: this.inlineImgSize,
                 itemTip: this.itemTip,
                 itemTipDirect: this.itemTipDirect
@@ -30446,7 +30458,8 @@ exports.default = {
                 'align-left': this.conf.align === 'left',
                 'align-center': this.conf.align === 'center',
                 'align-right': this.conf.align === 'right',
-                'input-group': !!this.conf.prepend
+                'input-group': !!this.conf.prepend,
+                'hide-selected': this.conf.hideSelected
             };
         },
         isMax: function isMax() {
@@ -30529,7 +30542,7 @@ exports.default = {
             // let $selected = this.$el.querySelector('.selected');
             var searchTextinput = void 0;
             var searchMultiinput = void 0;
-            var multiValue = [];
+            var multiNames = [];
 
             var _iteratorNormalCompletion = true;
             var _didIteratorError = false;
@@ -30606,10 +30619,10 @@ exports.default = {
 
                                 if (this.conf.multiSelect) {
 
-                                    multiValue.push((0, _trim2.default)(_$item.getAttribute('value')));
+                                    multiNames.push((0, _trim2.default)(_$item.textContent));
                                 } else {
 
-                                    this.data.selectedContent = _$item.innerHTML;
+                                    this.data.selectedContent = _$item.textContent;
                                 }
                             }
                         }
@@ -30656,17 +30669,20 @@ exports.default = {
                 this.data.selectedContent = this.conf.formName || '';
             }
 
-            if (searchMultiinput && searchMultiinput.getJson() !== JSON.stringify(multiValue)) {
+            if (searchMultiinput && searchMultiinput.getJson() !== JSON.stringify(multiNames)) {
 
                 var inputValue = searchMultiinput.getInput();
 
                 this.data.selectInput = true;
-                searchMultiinput._set(multiValue, true);
+                searchMultiinput._set(multiNames, true);
 
-                this.Vue.nextTick(function () {
+                if (!this.conf.autoResetSearch) {
 
-                    searchMultiinput.setInput(inputValue);
-                });
+                    this.Vue.nextTick(function () {
+
+                        searchMultiinput.setInput(inputValue);
+                    });
+                }
             }
 
             this._refreshShowItems();
@@ -30779,7 +30795,17 @@ exports.default = {
                 if (this.conf.multiSelect && this.data.value !== undefined) {
 
                     value = this.get();
-                    value.push($clickItem.getAttribute('value'));
+
+                    var clickValue = $clickItem.getAttribute('value');
+                    var index = value.indexOf(clickValue);
+
+                    if (index !== -1) {
+
+                        value.splice(index, 1);
+                    } else {
+
+                        value.push(clickValue);
+                    }
                 }
 
                 this.set(value);
@@ -30949,7 +30975,7 @@ exports.default = {
                             var $item = _step9.value;
 
 
-                            if ((0, _trim2.default)($item.getAttribute('value')) === value) {
+                            if ((0, _trim2.default)($item.textContent) === value) {
 
                                 setValue.push($item.getAttribute('value'));
 
@@ -31039,7 +31065,7 @@ exports.default = {
                             var value = _step11.value;
 
 
-                            if (value === (0, _trim2.default)($item.textContent)) {
+                            if (value === $item.getAttribute('value')) {
 
                                 selected = true;
 
@@ -31499,6 +31525,8 @@ var render = function() {
         "multi-select": _vm.multiSelect,
         "can-move": _vm.canMove,
         max: _vm.max,
+        "auto-reset-search": _vm.autoResetSearch,
+        "hide-selected": _vm.hideSelected,
         "inline-img-size": _vm.inlineImgSize,
         "item-tip": _vm.itemTip,
         "item-tip-direct": _vm.itemTipDirect
