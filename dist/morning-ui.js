@@ -7813,7 +7813,7 @@ var morning = {
     _groupVmMap: {},
     _options: {},
     isMorning: true,
-    version: '0.10.18',
+    version: '0.10.19',
     map: {}
 };
 
@@ -30344,6 +30344,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
 
 var _trim = __webpack_require__(409);
 
@@ -30403,6 +30404,10 @@ exports.default = {
             type: Boolean,
             default: false
         },
+        hideSelected: {
+            type: Boolean,
+            default: true
+        },
         inlineImgSize: {
             type: String,
             default: '2em'
@@ -30429,6 +30434,7 @@ exports.default = {
                 canMove: this.canMove,
                 max: this.max,
                 autoResetSearch: this.autoResetSearch,
+                hideSelected: this.hideSelected,
                 inlineImgSize: this.inlineImgSize,
                 itemTip: this.itemTip,
                 itemTipDirect: this.itemTipDirect
@@ -30452,7 +30458,8 @@ exports.default = {
                 'align-left': this.conf.align === 'left',
                 'align-center': this.conf.align === 'center',
                 'align-right': this.conf.align === 'right',
-                'input-group': !!this.conf.prepend
+                'input-group': !!this.conf.prepend,
+                'hide-selected': this.conf.hideSelected
             };
         },
         isMax: function isMax() {
@@ -30788,7 +30795,17 @@ exports.default = {
                 if (this.conf.multiSelect && this.data.value !== undefined) {
 
                     value = this.get();
-                    value.push($clickItem.getAttribute('value'));
+
+                    var clickValue = $clickItem.getAttribute('value');
+                    var index = value.indexOf(clickValue);
+
+                    if (index !== -1) {
+
+                        value.splice(index, 1);
+                    } else {
+
+                        value.push(clickValue);
+                    }
                 }
 
                 this.set(value);
@@ -31509,6 +31526,7 @@ var render = function() {
         "can-move": _vm.canMove,
         max: _vm.max,
         "auto-reset-search": _vm.autoResetSearch,
+        "hide-selected": _vm.hideSelected,
         "inline-img-size": _vm.inlineImgSize,
         "item-tip": _vm.itemTip,
         "item-tip-direct": _vm.itemTipDirect

@@ -8916,6 +8916,7 @@ mor-select .list li {
   cursor: pointer;
   font-size: 14px;
   color: #8d8d8d;
+  position: relative;
 }
 mor-select .list li.noitem {
   color: #c0c0c0;
@@ -8939,13 +8940,19 @@ mor-select .list li.current {
   background: #f3f3f3;
   color: #17212D;
 }
-mor-select .list li.hide,
 mor-select .list li.selected {
+  background: #f5f5f5;
+  border-left: 3px #4DBD67 solid;
+}
+mor-select .list li.hide {
   display: none;
 }
 mor-select .list li:hover {
   color: #737373;
   background: #f5f5f5;
+}
+mor-select.hide-selected .list li.selected {
+  display: none;
 }
 mor-select.align-center .wrap > mor-multiinput {
   width: calc(100% - 1em);
