@@ -108,6 +108,7 @@
     |[validate](#validate)|验证上传的图片，详见：[文件上传组件的`validate`配置](/component/upload.html)|验证函数|Function|`() => {}`|
     |[uploader](#uploader)|图片上传适配器，详见：[文件上传组件的`uploader`配置](/component/upload.html)|文件上传适配器函数|Function|`undefined`|
     |[clean-zone](#clean-zone)|当图片更换时，清空所有的热区|`true`<br>`false`|Boolean|`true`|
+    |[clean-allzone-btn](#clean-allzone-btn)|显示清除所有热区的按钮|`true`<br>`false`|Boolean|`true`|
     |[max](#max)|最多允许上传多少图片|数字|Number|`1`|
     |[max-spot](#max-spot)|最多允许的热区数量|数字|Number|`Infinity`|
 
@@ -200,6 +201,16 @@
     :::democode/html
     <div style="width:300px;">
         <ui-imagemap form-name="热区" multi :max="10" :clean-zone="false"></ui-imagemap>
+    </div>
+    :::
+
+    #### clean-allzone-btn
+
+    不显示清空所有热区的按钮：
+
+    :::democode/html
+    <div style="width:300px;">
+        <ui-imagemap form-name="热区" multi :max="10" :default-value="{'images':[{'name':'151244303389249797.png','path':'http://morning-ui-image.test.upcdn.net/uploaddemo/17505/151244303389249797.png'}],'zones':[],'w':722,'h':725}" :clean-allzone-btn="false"></ui-imagemap>
     </div>
     :::
 
