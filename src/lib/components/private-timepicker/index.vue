@@ -180,9 +180,21 @@ export default {
 
             }
 
-            if (!this._checkSelectable('all')) {
+            if (date) {
 
-                date = this._getClosestTime(date);
+                let h = getHours(date);
+                let m = getMinutes(date);
+                let s = getSeconds(date);
+
+                if (!this.data.inputFocus && (
+                    !this._checkSelectable('hour', h) ||
+                    !this._checkSelectable('minute', m) ||
+                    !this._checkSelectable('second', s)
+                )) {
+
+                    date = this._getClosestTime(date);
+
+                }
 
             }
 
@@ -415,7 +427,7 @@ export default {
             };
 
             for (let time of this.data.selectableTimes) {
-
+                
                 let timeInterval = {
                     start : time[0],
                     end : time[1]
