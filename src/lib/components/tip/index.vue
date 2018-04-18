@@ -147,6 +147,8 @@ export default {
 
                     $target.addEventListener('mouseenter', this._enter);
                     $target.addEventListener('mouseleave', this._leave);
+                    this.$el.addEventListener('mouseenter', this._enter);
+                    this.$el.addEventListener('mouseleave', this._leave);
 
                 } else if (trigger === 'foucs') {
 
@@ -169,6 +171,8 @@ export default {
             $target.removeEventListener('click', this.toggle);
             $target.removeEventListener('mouseenter', this._enter);
             $target.removeEventListener('mouseleave', this._leave);
+            this.$el.removeEventListener('mouseenter', this._enter);
+            this.$el.removeEventListener('mouseleave', this._leave);
             $target.removeEventListener('focusin', this._enter);
             $target.removeEventListener('focusout', this._leave);
 
