@@ -40,7 +40,6 @@ mor-datepicker{
             .date-select{
                 position: absolute;
                 width: 50%;
-                min-width: 270px;
 
                 &.align-left{
                     left: 0;
@@ -64,6 +63,7 @@ mor-datepicker{
             }
 
             .date-select{
+                min-width: ~'calc(280px + 1px)';
                 border-bottom-right-radius: 0;
                 border-top-right-radius: 0;
                 border-right: none;
@@ -72,6 +72,7 @@ mor-datepicker{
 
         .datepicker-input-1{
             .date-select{
+                min-width: ~'calc(280px + 2px)';
                 border-bottom-left-radius: 0;
                 border-top-left-radius: 0;
             }

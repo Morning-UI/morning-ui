@@ -168,6 +168,14 @@
     </div>
     :::
 
+    在使用`selectable-range`的同时开启`is-range`：
+
+    :::democode/html
+    <div style="width:300px;">
+        <ui-datepicker form-name="日期" :date="+new Date('2018-03-23')" :selectable-range="['2018-03-08', '2018-03-23']" is-range></ui-datepicker>
+    </div>
+    :::
+
     #### is-range
 
     :::democode/html

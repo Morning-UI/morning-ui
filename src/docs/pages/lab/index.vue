@@ -10,6 +10,10 @@
                     <li v-for="user in users" :value="user._id">{{user.name}}</li>
                 </ui-select>
 
+                <div style="width:300px;">
+                    <ui-timepicker form-name="时间" :selectable-range="['08:30:00', '12:00:00']"></ui-timepicker>
+                </div>
+
             </div>
         </div>
         <doc-footer></doc-footer>

@@ -42,7 +42,7 @@
         "value-no-vendor-prefix" : true,
         "declaration-block-single-line-max-declarations" : 1,
         "selector-max-attribute" : 2,
-        "selector-max-class" : 5,
+        "selector-max-class" : 6,
         "selector-max-combinators" : 5,
         "selector-max-compound-selectors" : 6,
         "selector-max-empty-lines" : 0,

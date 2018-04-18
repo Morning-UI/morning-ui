@@ -237,6 +237,7 @@
     - `end-name` : 结束名称
     - `auto-reset-search` : 重置搜索
     - `hide-selected` : 隐藏选中
+    - `clean-allzone-btn` : 清空所有区域按钮
 
     </script>
     </doc-guide>

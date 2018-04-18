@@ -4289,7 +4289,7 @@ exports.default = {
         // 进度条<i class="tag new"></i> : 'b',
         // 滚动跟随<i class="tag update"></i> : 'b',
         面包屑: '/component/breadcrumbs.html',
-        小提示: '/component/tip.html',
+        '小提示<i class="tag update l1"></i>': '/component/tip.html',
         消息: '/component/message.html',
         // 视频 : 'b',
         // 音频<i class="tag new"></i> : 'b',
@@ -4307,13 +4307,13 @@ exports.default = {
         多项输入: '/component/multiinput.html',
         多项表单输入: '/component/multiform.html',
         // 多项文本输入 : 'b',
-        '时间选择器<i class="tag new l3"></i>': '/component/timepicker.html',
-        '日期选择器<i class="tag new l2"></i>': '/component/datepicker.html',
-        '日期时间选择器<i class="tag new l1"></i>': '/component/datetimepicker.html',
+        '时间选择器<i class="tag new l4"></i>': '/component/timepicker.html',
+        '日期选择器<i class="tag new l3"></i>': '/component/datepicker.html',
+        '日期时间选择器<i class="tag new l2"></i>': '/component/datetimepicker.html',
         // 日期输入<i class="tag new"></i> : 'b',
         // 日期时间输入<i class="tag update"></i> : 'b',
         文件上传: '/component/upload.html',
-        '图片热区输入<i class="tag new l4"></i>': '/component/imagemap.html'
+        '图片热区输入<i class="tag update l1"></i>': '/component/imagemap.html'
         // 颜色选择 : 'b'
     },
     guide: {

@@ -483,11 +483,11 @@ var staticRenderFns = [
             _c("i", { staticClass: "iconfont" }, [_vm._v("")])
           ]),
           _vm._v(" "),
-          _c("h3", [_vm._v("50+组件")]),
+          _c("h3", [_vm._v("60+组件")]),
           _vm._v(" "),
           _c("p", { staticClass: "desc" }, [
             _vm._v(
-              "Morning UI有超过50个组件，丰富的组件为你构建的应用提供了有力的支持。"
+              "Morning UI有超过60个组件，丰富的组件为你构建的应用提供了有力的支持。"
             )
           ])
         ]),
