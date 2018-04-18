@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">1.72% </span>
+        <span class="strong">1.7% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>7/408</span>
+        <span class='fraction'>7/411</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">3.78% </span>
+        <span class="strong">3.69% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>9/238</span>
+        <span class='fraction'>9/244</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/69</span>
+        <span class='fraction'>0/70</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">2.16% </span>
+        <span class="strong">2.14% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>7/324</span>
+        <span class='fraction'>7/327</span>
       </div>
     </div>
   </div>
@@ -1099,7 +1099,29 @@
 1054
 1055
 1056
-1057</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+1057
+1058
+1059
+1060
+1061
+1062
+1063
+1064
+1065
+1066
+1067
+1068
+1069
+1070
+1071
+1072
+1073
+1074
+1075
+1076
+1077</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1351,6 +1373,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1366,6 +1392,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1985,16 +2012,29 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -2172,6 +2212,7 @@
         :validate="validate"
         :uploader="uploader"
         :clean-zone="cleanZone"
+        :clean-allzone-btn="cleanAllzoneBtn"
         :max="max"
         :max-spot="maxSpot"
     &gt;
@@ -2261,6 +2302,7 @@
         &lt;footer slot="footer"&gt;
             &lt;span&gt;鼠标左键拖拽移动热区/调整尺寸，鼠标右键点击编辑数据&lt;/span&gt;
             &lt;div&gt;
+                &lt;morning-link color="danger clean-allzone-btn" v-if="conf.cleanAllzoneBtn &amp;&amp; (conf.state !== 'disabled')" @emit="_cleanAllzone"&gt;清除所有热区&lt;/morning-link&gt;
                 &lt;morning-btn color="minor" @emit="morning.findVM('ui-imagemap-mapdialog-'+uiid).toggle(false)"&gt;关闭&lt;/morning-btn&gt;
             &lt;/div&gt;
         &lt;/footer&gt;
@@ -2395,6 +2437,10 @@ export default {
             type : Boolean,
             default : true
         },
+        cleanAllzoneBtn : {
+            type : Boolean,
+            default : true
+        },
         max : {
             type : Number,
             default : 1
@@ -2414,6 +2460,7 @@ export default {
                 validate : this.validate,
                 uploader : this.uploader,
                 cleanZone : this.cleanZone,
+                cleanAllzoneBtn : this.cleanAllzoneBtn,
                 max : this.max,
                 maxSpot : this.maxSpot
             };
@@ -3053,6 +3100,19 @@ export default {
 <span class="cstat-no" title="statement not covered" >            this._set(result, true);</span>
 &nbsp;
         },
+        _cleanAllzone : <span class="fstat-no" title="function not covered" >function () </span>{
+&nbsp;
+            /* eslint-disable no-alert */
+            let result = <span class="cstat-no" title="statement not covered" >window.confirm('确认清除所有热区？');</span>
+            /* eslint-enable no-alert */
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (result) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                this.cleanZones();</span>
+&nbsp;
+            }
+&nbsp;
+        },
         set : <span class="fstat-no" title="function not covered" >function (</span>value) {
 &nbsp;
             let result = <span class="cstat-no" title="statement not covered" >this._set(value);</span>
@@ -3217,7 +3277,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Apr 15 2018 10:22:18 GMT+0800 (CST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Apr 18 2018 17:08:20 GMT+0800 (CST)
 </div>
 </div>
 <script src="../../../prettify.js"></script>

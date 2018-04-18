@@ -7813,7 +7813,7 @@ var morning = {
     _groupVmMap: {},
     _options: {},
     isMorning: true,
-    version: '0.10.19',
+    version: '0.10.20',
     map: {}
 };
 
@@ -26683,6 +26683,8 @@ exports.default = {
 
                         $target.addEventListener('mouseenter', this._enter);
                         $target.addEventListener('mouseleave', this._leave);
+                        this.$el.addEventListener('mouseenter', this._enter);
+                        this.$el.addEventListener('mouseleave', this._leave);
                     } else if (trigger === 'foucs') {
 
                         $target.addEventListener('focusin', this._enter);
@@ -26714,6 +26716,8 @@ exports.default = {
             $target.removeEventListener('click', this.toggle);
             $target.removeEventListener('mouseenter', this._enter);
             $target.removeEventListener('mouseleave', this._leave);
+            this.$el.removeEventListener('mouseenter', this._enter);
+            this.$el.removeEventListener('mouseleave', this._leave);
             $target.removeEventListener('focusin', this._enter);
             $target.removeEventListener('focusout', this._leave);
         },
@@ -26885,11 +26889,6 @@ exports.default = {
 
             var targetOffset = '0 0',
                 options = {};
-
-            if (this.conf.placement === 'left') {
-
-                targetOffset = '0 -10px';
-            }
 
             options = {
                 attachment: this.data.attachmentMap[this.conf.placement],
@@ -35359,25 +35358,27 @@ exports.default = {
             var input1Calendar = input1.$refs['ui-calendar-' + input1.uiid];
             var input1CalendarStart = (0, _dateFns.startOfMonth)(input1Calendar.getTime());
             var input1CalendarEnd = (0, _dateFns.endOfMonth)(input1Calendar.getTime());
+            var input0HighlightDays = void 0;
+            var input1HighlightDays = void 0;
 
             // start超过左侧日历/end在左侧日历
             if (start <= input0CalendarStart && end >= input0CalendarStart && end <= input0CalendarEnd) {
 
-                this.data.input0HighlightDays = (0, _dateFns.eachDayOfInterval)({
+                input0HighlightDays = (0, _dateFns.eachDayOfInterval)({
                     start: (0, _dateFns.subDays)(+input0CalendarStart, 1),
                     end: end
                 });
-                this.data.input1HighlightDays = [];
+                input1HighlightDays = [];
             }
 
             // start超过左侧日历/end在右侧日历
             if (start <= input0CalendarStart && end >= input1CalendarStart && end <= input1CalendarEnd) {
 
-                this.data.input0HighlightDays = (0, _dateFns.eachDayOfInterval)({
+                input0HighlightDays = (0, _dateFns.eachDayOfInterval)({
                     start: (0, _dateFns.subDays)(+input0CalendarStart, 1),
                     end: (0, _dateFns.addDays)(+input0CalendarEnd, 1)
                 });
-                this.data.input1HighlightDays = (0, _dateFns.eachDayOfInterval)({
+                input1HighlightDays = (0, _dateFns.eachDayOfInterval)({
                     start: (0, _dateFns.subDays)(+input1CalendarStart, 1),
                     end: end
                 });
@@ -35386,11 +35387,11 @@ exports.default = {
             // start在左侧日历/end超过右侧日历
             if (start >= input0CalendarStart && start <= input0CalendarEnd && end >= input1CalendarEnd) {
 
-                this.data.input0HighlightDays = (0, _dateFns.eachDayOfInterval)({
+                input0HighlightDays = (0, _dateFns.eachDayOfInterval)({
                     start: start,
                     end: (0, _dateFns.addDays)(+input0CalendarEnd, 1)
                 });
-                this.data.input1HighlightDays = (0, _dateFns.eachDayOfInterval)({
+                input1HighlightDays = (0, _dateFns.eachDayOfInterval)({
                     start: (0, _dateFns.subDays)(+input1CalendarStart, 1),
                     end: (0, _dateFns.addDays)(+input1CalendarEnd, 1)
                 });
@@ -35399,8 +35400,8 @@ exports.default = {
             // start在右侧日历/end超过右侧日历
             if (start >= input1CalendarStart && start <= input1CalendarEnd && end >= input1CalendarEnd) {
 
-                this.data.input0HighlightDays = [];
-                this.data.input1HighlightDays = (0, _dateFns.eachDayOfInterval)({
+                input0HighlightDays = [];
+                input1HighlightDays = (0, _dateFns.eachDayOfInterval)({
                     start: start,
                     end: (0, _dateFns.addDays)(+input1CalendarEnd, 1)
                 });
@@ -35409,11 +35410,11 @@ exports.default = {
             // start超过左侧日历/end超过右侧日历
             if (start <= input0CalendarStart && end >= input1CalendarEnd) {
 
-                this.data.input0HighlightDays = (0, _dateFns.eachDayOfInterval)({
+                input0HighlightDays = (0, _dateFns.eachDayOfInterval)({
                     start: (0, _dateFns.subDays)(+input0CalendarStart, 1),
                     end: (0, _dateFns.addDays)(+input0CalendarEnd, 1)
                 });
-                this.data.input1HighlightDays = (0, _dateFns.eachDayOfInterval)({
+                input1HighlightDays = (0, _dateFns.eachDayOfInterval)({
                     start: (0, _dateFns.subDays)(+input1CalendarStart, 1),
                     end: (0, _dateFns.addDays)(+input1CalendarEnd, 1)
                 });
@@ -35422,22 +35423,22 @@ exports.default = {
             // start/end均在左侧日历中
             if (start <= input0CalendarEnd && start >= input0CalendarStart && +end <= input0CalendarEnd && +end >= input0CalendarStart) {
 
-                this.data.input0HighlightDays = (0, _dateFns.eachDayOfInterval)({
+                input0HighlightDays = (0, _dateFns.eachDayOfInterval)({
                     start: start,
                     end: end
                 });
-                this.data.input1HighlightDays = [];
+                input1HighlightDays = [];
             }
 
             // start在左侧/end在右侧
             if (start <= input0CalendarEnd && start >= input0CalendarStart && end >= input1CalendarStart && end <= input1CalendarEnd) {
 
-                this.data.input0HighlightDays = (0, _dateFns.eachDayOfInterval)({
+                input0HighlightDays = (0, _dateFns.eachDayOfInterval)({
                     start: start,
                     end: (0, _dateFns.addDays)(+input0CalendarEnd, 1)
                 });
 
-                this.data.input1HighlightDays = (0, _dateFns.eachDayOfInterval)({
+                input1HighlightDays = (0, _dateFns.eachDayOfInterval)({
                     start: (0, _dateFns.subDays)(+input1CalendarStart, 1),
                     end: end
                 });
@@ -35446,12 +35447,15 @@ exports.default = {
             // start/end钧在右侧
             if (start <= input1CalendarEnd && start >= input1CalendarStart && end >= input1CalendarStart && end <= input1CalendarEnd) {
 
-                this.data.input0HighlightDays = [];
-                this.data.input1HighlightDays = (0, _dateFns.eachDayOfInterval)({
+                input0HighlightDays = [];
+                input1HighlightDays = (0, _dateFns.eachDayOfInterval)({
                     start: start,
                     end: end
                 });
             }
+
+            this.data.input0HighlightDays = input0HighlightDays;
+            this.data.input1HighlightDays = input1HighlightDays;
         },
         _syncValueFromInputToRootForClick: function _syncValueFromInputToRootForClick(date) {
 
@@ -39017,6 +39021,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
 
 var _extend = __webpack_require__(3);
 
@@ -39065,6 +39071,10 @@ exports.default = {
             type: Boolean,
             default: true
         },
+        cleanAllzoneBtn: {
+            type: Boolean,
+            default: true
+        },
         max: {
             type: Number,
             default: 1
@@ -39084,6 +39094,7 @@ exports.default = {
                 validate: this.validate,
                 uploader: this.uploader,
                 cleanZone: this.cleanZone,
+                cleanAllzoneBtn: this.cleanAllzoneBtn,
                 max: this.max,
                 maxSpot: this.maxSpot
             };
@@ -39683,6 +39694,17 @@ exports.default = {
 
             this._set(result, true);
         },
+        _cleanAllzone: function _cleanAllzone() {
+
+            /* eslint-disable no-alert */
+            var result = window.confirm('确认清除所有热区？');
+            /* eslint-enable no-alert */
+
+            if (result) {
+
+                this.cleanZones();
+            }
+        },
         set: function set(value) {
 
             var result = this._set(value);
@@ -39859,6 +39881,7 @@ var render = function() {
         validate: _vm.validate,
         uploader: _vm.uploader,
         "clean-zone": _vm.cleanZone,
+        "clean-allzone-btn": _vm.cleanAllzoneBtn,
         max: _vm.max,
         "max-spot": _vm.maxSpot
       }
@@ -40195,6 +40218,17 @@ var render = function() {
             _c(
               "div",
               [
+                _vm.conf.cleanAllzoneBtn && _vm.conf.state !== "disabled"
+                  ? _c(
+                      "morning-link",
+                      {
+                        attrs: { color: "danger clean-allzone-btn" },
+                        on: { emit: _vm._cleanAllzone }
+                      },
+                      [_vm._v("清除所有热区")]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
                 _c(
                   "morning-btn",
                   {
@@ -40760,9 +40794,16 @@ exports.default = {
                 date = this._timeGetStandardDate();
             }
 
-            if (!this._checkSelectable('all')) {
+            if (date) {
 
-                date = this._getClosestTime(date);
+                var h = (0, _dateFns.getHours)(date);
+                var m = (0, _dateFns.getMinutes)(date);
+                var s = (0, _dateFns.getSeconds)(date);
+
+                if (!this.data.inputFocus && (!this._checkSelectable('hour', h) || !this._checkSelectable('minute', m) || !this._checkSelectable('second', s))) {
+
+                    date = this._getClosestTime(date);
+                }
             }
 
             return (0, _dateFns.format)(date, this.conf.format);

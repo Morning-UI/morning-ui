@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">2.83% </span>
+        <span class="strong">2.78% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>6/212</span>
+        <span class='fraction'>6/216</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">4.5% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>0/30</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">2.94% </span>
+        <span class="strong">2.88% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>6/204</span>
+        <span class='fraction'>6/208</span>
       </div>
     </div>
   </div>
@@ -832,7 +832,12 @@
 787
 788
 789
-790</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+790
+791
+792
+793
+794
+795</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1298,6 +1303,8 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -1417,6 +1424,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -2087,17 +2097,19 @@ export default {
             let input1Calendar = <span class="cstat-no" title="statement not covered" >input1.$refs[`ui-calendar-${input1.uiid}`];</span>
             let input1CalendarStart = <span class="cstat-no" title="statement not covered" >startOfMonth(input1Calendar.getTime());</span>
             let input1CalendarEnd = <span class="cstat-no" title="statement not covered" >endOfMonth(input1Calendar.getTime());</span>
+            let <span class="cstat-no" title="statement not covered" >input0HighlightDays;</span>
+            let <span class="cstat-no" title="statement not covered" >input1HighlightDays;</span>
 &nbsp;
             // start超过左侧日历/end在左侧日历
 <span class="cstat-no" title="statement not covered" >            if (start &lt;= input0CalendarStart &amp;&amp;</span>
                 end &gt;= input0CalendarStart &amp;&amp;
                 end &lt;= input0CalendarEnd) {
 &nbsp;
-<span class="cstat-no" title="statement not covered" >                this.data.input0HighlightDays = eachDayOfInterval({</span>
+<span class="cstat-no" title="statement not covered" >                input0HighlightDays = eachDayOfInterval({</span>
                     start : subDays(+input0CalendarStart, 1),
                     end
                 });
-<span class="cstat-no" title="statement not covered" >                this.data.input1HighlightDays = [];</span>
+<span class="cstat-no" title="statement not covered" >                input1HighlightDays = [];</span>
 &nbsp;
             }
 &nbsp;
@@ -2106,11 +2118,11 @@ export default {
                 end &gt;= input1CalendarStart &amp;&amp;
                 end &lt;= input1CalendarEnd) {
 &nbsp;
-<span class="cstat-no" title="statement not covered" >                this.data.input0HighlightDays = eachDayOfInterval({</span>
+<span class="cstat-no" title="statement not covered" >                input0HighlightDays = eachDayOfInterval({</span>
                     start : subDays(+input0CalendarStart, 1),
                     end : addDays(+input0CalendarEnd, 1)
                 });
-<span class="cstat-no" title="statement not covered" >                this.data.input1HighlightDays = eachDayOfInterval({</span>
+<span class="cstat-no" title="statement not covered" >                input1HighlightDays = eachDayOfInterval({</span>
                     start : subDays(+input1CalendarStart, 1),
                     end
                 });
@@ -2122,11 +2134,11 @@ export default {
                 start &lt;= input0CalendarEnd &amp;&amp;
                 end &gt;= input1CalendarEnd) {
 &nbsp;
-<span class="cstat-no" title="statement not covered" >                this.data.input0HighlightDays = eachDayOfInterval({</span>
+<span class="cstat-no" title="statement not covered" >                input0HighlightDays = eachDayOfInterval({</span>
                     start,
                     end : addDays(+input0CalendarEnd, 1)
                 });
-<span class="cstat-no" title="statement not covered" >                this.data.input1HighlightDays = eachDayOfInterval({</span>
+<span class="cstat-no" title="statement not covered" >                input1HighlightDays = eachDayOfInterval({</span>
                     start : subDays(+input1CalendarStart, 1),
                     end : addDays(+input1CalendarEnd, 1)
                 });
@@ -2138,8 +2150,8 @@ export default {
                 start &lt;= input1CalendarEnd &amp;&amp;
                 end &gt;= input1CalendarEnd) {
 &nbsp;
-<span class="cstat-no" title="statement not covered" >                this.data.input0HighlightDays = [];</span>
-<span class="cstat-no" title="statement not covered" >                this.data.input1HighlightDays = eachDayOfInterval({</span>
+<span class="cstat-no" title="statement not covered" >                input0HighlightDays = [];</span>
+<span class="cstat-no" title="statement not covered" >                input1HighlightDays = eachDayOfInterval({</span>
                     start,
                     end : addDays(+input1CalendarEnd, 1)
                 });
@@ -2150,11 +2162,11 @@ export default {
 <span class="cstat-no" title="statement not covered" >            if (start &lt;= input0CalendarStart &amp;&amp;</span>
                 end &gt;= input1CalendarEnd) {
 &nbsp;
-<span class="cstat-no" title="statement not covered" >                this.data.input0HighlightDays = eachDayOfInterval({</span>
+<span class="cstat-no" title="statement not covered" >                input0HighlightDays = eachDayOfInterval({</span>
                     start : subDays(+input0CalendarStart, 1),
                     end : addDays(+input0CalendarEnd, 1)
                 });
-<span class="cstat-no" title="statement not covered" >                this.data.input1HighlightDays = eachDayOfInterval({</span>
+<span class="cstat-no" title="statement not covered" >                input1HighlightDays = eachDayOfInterval({</span>
                     start : subDays(+input1CalendarStart, 1),
                     end : addDays(+input1CalendarEnd, 1)
                 });
@@ -2167,11 +2179,11 @@ export default {
                 +end &lt;= input0CalendarEnd &amp;&amp;
                 +end &gt;= input0CalendarStart) {
 &nbsp;
-<span class="cstat-no" title="statement not covered" >                this.data.input0HighlightDays = eachDayOfInterval({</span>
+<span class="cstat-no" title="statement not covered" >                input0HighlightDays = eachDayOfInterval({</span>
                     start,
                     end
                 });
-<span class="cstat-no" title="statement not covered" >                this.data.input1HighlightDays = [];</span>
+<span class="cstat-no" title="statement not covered" >                input1HighlightDays = [];</span>
 &nbsp;
             }
 &nbsp;
@@ -2181,12 +2193,12 @@ export default {
                 end &gt;= input1CalendarStart &amp;&amp;
                 end &lt;= input1CalendarEnd) {
 &nbsp;
-<span class="cstat-no" title="statement not covered" >                this.data.input0HighlightDays = eachDayOfInterval({</span>
+<span class="cstat-no" title="statement not covered" >                input0HighlightDays = eachDayOfInterval({</span>
                     start,
                     end : addDays(+input0CalendarEnd, 1)
                 });
 &nbsp;
-<span class="cstat-no" title="statement not covered" >                this.data.input1HighlightDays = eachDayOfInterval({</span>
+<span class="cstat-no" title="statement not covered" >                input1HighlightDays = eachDayOfInterval({</span>
                     start : subDays(+input1CalendarStart, 1),
                     end
                 });
@@ -2199,13 +2211,16 @@ export default {
                 end &gt;= input1CalendarStart &amp;&amp;
                 end &lt;= input1CalendarEnd) {
 &nbsp;
-<span class="cstat-no" title="statement not covered" >                this.data.input0HighlightDays = [];</span>
-<span class="cstat-no" title="statement not covered" >                this.data.input1HighlightDays = eachDayOfInterval({</span>
+<span class="cstat-no" title="statement not covered" >                input0HighlightDays = [];</span>
+<span class="cstat-no" title="statement not covered" >                input1HighlightDays = eachDayOfInterval({</span>
                     start,
                     end
                 });
 &nbsp;
             }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            this.data.input0HighlightDays = input0HighlightDays;</span>
+<span class="cstat-no" title="statement not covered" >            this.data.input1HighlightDays = input1HighlightDays;</span>
 &nbsp;
         },
         _syncValueFromInputToRootForClick : <span class="fstat-no" title="function not covered" >function (</span>date) {
@@ -2416,7 +2431,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Apr 15 2018 10:22:18 GMT+0800 (CST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Apr 18 2018 17:08:20 GMT+0800 (CST)
 </div>
 </div>
 <script src="../../../prettify.js"></script>

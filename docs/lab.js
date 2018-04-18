@@ -135,6 +135,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
+//
+//
 
 exports.default = {
     data: function data() {
@@ -188,6 +192,20 @@ var render = function() {
                   _vm._v(_vm._s(user.name))
                 ])
               })
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticStyle: { width: "300px" } },
+              [
+                _c("ui-timepicker", {
+                  attrs: {
+                    "form-name": "时间",
+                    "selectable-range": ["08:30:00", "12:00:00"]
+                  }
+                })
+              ],
+              1
             )
           ],
           1
