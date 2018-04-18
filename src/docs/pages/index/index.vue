@@ -90,8 +90,8 @@ Vue.use(morning);
                     <p class="icon">
                         <i class="iconfont">&#xe641;</i>
                     </p>
-                    <h3>50+组件</h3>
-                    <p class="desc">Morning UI有超过50个组件，丰富的组件为你构建的应用提供了有力的支持。</p>
+                    <h3>60+组件</h3>
+                    <p class="desc">Morning UI有超过60个组件，丰富的组件为你构建的应用提供了有力的支持。</p>
                 </div>
                 <div class="c31 center">
                     <p class="icon">
