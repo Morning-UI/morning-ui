@@ -50,7 +50,6 @@ mor-tip{
 
     &.morning-tether-element-attached-bottom {
         padding: @tip-arrowWidth 0;
-        margin-top: @fontSize*-0.1875;
 
         .tip-arrow {
             bottom: 0;
@@ -62,12 +61,11 @@ mor-tip{
     }
 
     &.morning-tether-element-attached-left {
-        padding: 0 @tip-arrowWidth;
-        margin-left: @fontSize*0.1875;
+        padding: 0 @tip-arrowWidth 0 @tip-arrowWidth*2;
 
         .tip-arrow {
             top: 50%;
-            left: 0;
+            left: @tip-arrowWidth;
             margin-top: -@tip-arrowWidth;
             border-width: @tip-arrowWidth @tip-arrowWidth @tip-arrowWidth 0;
             // border-right-color: @tip-arrowColor;
@@ -76,7 +74,6 @@ mor-tip{
 
     &.morning-tether-element-attached-top {
         padding: @tip-arrowWidth 0;
-        margin-top: @fontSize*0.1875;
 
         .tip-arrow {
             top: 0;
@@ -88,12 +85,11 @@ mor-tip{
     }
 
     &.morning-tether-element-attached-right {
-        padding: 0 @tip-arrowWidth;
-        margin-left: @fontSize*-0.1875;
+        padding: 0 @tip-arrowWidth*2 0 @tip-arrowWidth;
 
         .tip-arrow {
             top: 50%;
-            right: 0;
+            right: @tip-arrowWidth;
             margin-top: -@tip-arrowWidth;
             border-width: @tip-arrowWidth 0 @tip-arrowWidth @tip-arrowWidth;
             // border-left-color: @tip-arrowColor;

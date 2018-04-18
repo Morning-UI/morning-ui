@@ -83,6 +83,7 @@ mor-calendar{
 
     .calendar{
         padding-top: 0.5em;
+        min-width: 280px;
 
         .pick-day{
             display: flex;
@@ -129,6 +130,12 @@ mor-calendar{
                     .select-layer{
                         background-color: lighten(@colorLightTheme, 25%);
                     }
+
+                    &.bg-mark-disabled{
+                        .select-layer{
+                            background-color: @colorExtraLightBlue;
+                        }
+                    }
                 }
 
                 &.start{
@@ -162,6 +169,17 @@ mor-calendar{
                         background-color: lighten(@colorLightTheme, 25%);
                         border-radius: 0 100em 100em 0;
                         width: auto;
+                    }
+                }
+
+                &.start.bg-mark-disabled,
+                &.end.bg-mark-disabled{
+                    .inner-layer{
+                        background-color: @colorExtraLightBlack;
+                    }
+
+                    .select-layer{
+                        background-color: @colorExtraLightBlue;
                     }
                 }
 
