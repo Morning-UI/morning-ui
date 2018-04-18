@@ -350,12 +350,6 @@ export default {
             let targetOffset = '0 0',
                 options = {};
 
-            if (this.conf.placement === 'left') {
-
-                targetOffset = '0 -10px';
-
-            }
-
             options = {
                 attachment : this.data.attachmentMap[this.conf.placement],
                 element : this.$el,
