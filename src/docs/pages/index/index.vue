@@ -12,6 +12,13 @@
                 </div>
             </div>
         </section>
+        <section class="s1 versioninfo">
+            <p>全新Morning UI : </p>
+            <a href="/guide/install.html">
+                <ui-label color="silver" size="xs">0.10.20</ui-label>
+            </a>
+            <p>发布于2018年4月18日</p>
+        </section>
         <section class="s1 gray">
             <h1>起步</h1>
             <div class="w900">
@@ -148,6 +155,18 @@ export default {
 }
 .s1{
     padding: 50px 0;
+
+    &.versioninfo{
+        padding: 5px 0;
+        text-align: center;
+        border-top: 1px #eee solid;
+        font-size: 13px;
+        color: #999;
+
+        p{
+            display: inline-block;
+        }
+    }
 
     .mainLogo {
         width: 260px;
