@@ -19,12 +19,15 @@
 </template>
 
 <script>
-import MarkdownIt                   from 'markdown-it';
+// 优化webpack打包加载
+import MarkdownIt                   from 'Npm/markdown-it/dist/markdown-it.min.js';
+import hljs                         from 'Npm/highlight.js/lib/highlight.js';
+import _                            from 'Npm/underscore/underscore-min.js';
+import Mustache                     from 'Npm/mustache/mustache.min.js';
+
+// 正常加载
 import Anchor                       from 'markdown-it-anchor';
 import extend                       from 'extend';
-import Mustache                     from 'mustache';
-import _                            from 'underscore';
-import hljs                         from 'highlight.js';
 import DocHeader                    from 'Docs/common/DocHeader.vue';
 import DocFooter                    from 'Docs/common/DocFooter.vue';
 import DocSubmenu                   from 'Docs/common/DocSubmenu.vue';
@@ -36,6 +39,19 @@ const randomRangeMax = 9e3;
 const markdown = new MarkdownIt({
     html : true
 });
+
+hljs.registerLanguage('accesslog',      require('highlight.js/lib/languages/accesslog'));
+hljs.registerLanguage('xml',            require('highlight.js/lib/languages/xml'));
+hljs.registerLanguage('bash',           require('highlight.js/lib/languages/bash'));
+hljs.registerLanguage('markdown',       require('highlight.js/lib/languages/markdown'));
+hljs.registerLanguage('diff',           require('highlight.js/lib/languages/diff'));
+hljs.registerLanguage('handlebars',     require('highlight.js/lib/languages/handlebars'));
+hljs.registerLanguage('http',           require('highlight.js/lib/languages/http'));
+hljs.registerLanguage('javascript',     require('highlight.js/lib/languages/javascript'));
+hljs.registerLanguage('json',           require('highlight.js/lib/languages/json'));
+hljs.registerLanguage('less',           require('highlight.js/lib/languages/less'));
+hljs.registerLanguage('makefile',       require('highlight.js/lib/languages/makefile'));
+hljs.registerLanguage('shell',          require('highlight.js/lib/languages/shell'));
 
 markdown.use(Anchor, {
     level : [3, 4],

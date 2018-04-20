@@ -85,7 +85,8 @@ commonConfig = {
     resolve : {
         alias : {
             Common : pathLibCommon,
-            Utils : pathLibUtils
+            Utils : pathLibUtils,
+            Npm : pathNpm
         }
     },
     externals : {
@@ -282,21 +283,21 @@ prodVerConfig = extend(
 
 docsConfig = {
     entry : {
-        'doc-common' : [
-            'underscore',
-            'highlight.js',
-            'markdown-it',
-            'mustache',
-            'extend',
-            'Docs/common/menu.js',
-            'Docs/common/DocBody.vue',
-            'Docs/common/DocComponent.vue',
-            'Docs/common/DocComponentStatus.vue',
-            'Docs/common/DocFooter.vue',
-            'Docs/common/DocGuide.vue',
-            'Docs/common/DocHeader.vue',
-            'Docs/common/DocSubmenu.vue'
-        ]
+        // 'doc-common' : [
+        //     'underscore',
+        //     'highlight.js',
+        //     'markdown-it',
+        //     'mustache',
+        //     'extend',
+        //     'Docs/common/menu.js',
+        //     'Docs/common/DocBody.vue',
+        //     'Docs/common/DocComponent.vue',
+        //     'Docs/common/DocComponentStatus.vue',
+        //     'Docs/common/DocFooter.vue',
+        //     'Docs/common/DocGuide.vue',
+        //     'Docs/common/DocHeader.vue',
+        //     'Docs/common/DocSubmenu.vue'
+        // ]
     },
     plugins : [
         new CleanWebpackPlugin([pathDocs], {
@@ -377,7 +378,7 @@ docsConfig = {
                 commons: {
                     name: "doc-common",
                     chunks: "initial",
-                    minChunks: Infinity
+                    minChunks: 2
                 }
             }
         }

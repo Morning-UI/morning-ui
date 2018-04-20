@@ -7,6 +7,7 @@
   "scripts": {
     "build": "./node_modules/.bin/webpack --config ./build/webpack.config.js --mode production",
     "dev": "./node_modules/.bin/webpack-dev-server --config ./build/webpack.config.js --mode development",
+    "build-profile": "./node_modules/.bin/webpack --config ./build/webpack.config.js --mode production --profile --json > webpack-profile.json",
     "lint": "npm run js-lint && npm run css-lint",
     "js-lint": "node_modules/.bin/eslint --ext js,vue src/ build/ test/ bin/ server/",
     "js-lint-fix": "npm run lint -- --fix",
