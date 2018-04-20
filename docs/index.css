@@ -1,3 +1,138 @@
+
+body > div > header {
+  width: 100%;
+  background: #333;
+  height: 80px;
+  position: relative;
+  z-index: 99;
+}
+body > div > header .nav {
+  width: 1000px;
+  margin: 0 auto;
+  position: relative;
+}
+body > div > header .logo {
+  display: inline-block;
+  vertical-align: top;
+  opacity: 0.8;
+}
+body > div > header .logo img {
+  width: 53px;
+  height: 50px;
+  margin-top: 15px;
+  display: inline-block;
+}
+body > div > header .name {
+  display: inline-block;
+  vertical-align: top;
+  color: #FFF;
+  line-height: 80px;
+  margin-left: 0;
+  font-size: 26px;
+  opacity: 0.8;
+}
+body > div > header .menu {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+body > div > header .menu li {
+  display: inline-block;
+  vertical-align: top;
+  margin: 15px 10px;
+  height: 50px;
+}
+body > div > header .menu li a {
+  height: 50px;
+  line-height: 50px;
+  color: #FFF;
+  opacity: 0.7;
+  font-size: 13px;
+  text-decoration: none;
+}
+body > div > header .menu li a:hover {
+  opacity: 0.8;
+}
+body > div > header .menu li a.current {
+  opacity: 1;
+  font-weight: 600;
+}
+body > div > header .menu li .githublogo {
+  vertical-align: text-bottom;
+  width: 16px;
+}
+body > div > header.index {
+  background: #FFF;
+}
+body > div > header.index .logo img {
+  display: none;
+}
+body > div > header.index .name {
+  color: #000;
+  font-size: 28px;
+}
+body > div > header.index .menu li a {
+  color: #333;
+}
+body > div > header .doc-search input {
+  height: 30px;
+  font-size: 12px;
+  margin-top: 10px;
+}
+body > div > header .doc-search.dark input {
+  background: #333;
+  border: 1px #555 solid;
+  color: #eee !important;
+}
+body > div > header .doc-search.dark input::placeholder {
+  color: #999;
+}
+body > div > header .doc-search.dark input:hover {
+  border-color: #666;
+}
+body > div > header .doc-search.dark input:focus {
+  border-color: #777;
+}
+body > div > header .ds-dropdown-menu {
+  font-size: 12px;
+  width: 380px;
+  min-width: 380px !important;
+}
+body > div > header .ds-dataset-1 {
+  width: 380px;
+}
+
+footer {
+  font-size: 12px;
+  color: #aaa;
+  padding: 30px 0;
+  text-align: center;
+  background: #333;
+  position: relative;
+  line-height: 1.4em;
+}
+footer img {
+  width: 43px;
+  height: 40px;
+  opacity: 0.8;
+}
+footer a,
+footer a:hover {
+  color: #aaa;
+  text-decoration: none;
+}
+footer .tolab {
+  position: absolute;
+  bottom: 3px;
+  left: 50%;
+  color: #fff;
+  opacity: 0.02;
+  transform: translateX(-50%);
+}
 /*
  * Hopscotch
  * by Jan T. Sott
@@ -228,6 +363,16 @@ mor-dialog a:hover {
 }
 .s1 {
   padding: 50px 0;
+}
+.s1.versioninfo {
+  padding: 5px 0;
+  text-align: center;
+  border-top: 1px #eee solid;
+  font-size: 13px;
+  color: #999;
+}
+.s1.versioninfo p {
+  display: inline-block;
 }
 .s1 .mainLogo {
   width: 260px;

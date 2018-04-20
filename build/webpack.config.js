@@ -6,7 +6,7 @@ const CleanWebpackPlugin            = require('clean-webpack-plugin');
 const CopyWebpackPlugin             = require('copy-webpack-plugin');
 const ExtractTextPlugin             = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin             = require('html-webpack-plugin');
-const UglifyJsPlugin                = require('uglifyjs-webpack-plugin');
+// const UglifyJsPlugin                = require('uglifyjs-webpack-plugin');
 
 let pathProjectRoot = path.resolve(__dirname, '../');
 let pathPackage = path.resolve(pathProjectRoot, 'package.json');
@@ -181,6 +181,9 @@ devVerConfig = extend(
         output : {
             filename : 'morning-ui.js',
             publicPath : '/dist'
+        },
+        optimization : {
+            minimize : false
         }
     }
 );
@@ -197,7 +200,7 @@ prodVerConfig = extend(
             new webpack.DefinePlugin({
                 'process.env.NODE_ENV' : process.env.NODE_ENV
             }),
-            new UglifyJsPlugin(),
+            // new UglifyJsPlugin(),
             extractProdCss
         ],
         module : {
@@ -205,6 +208,7 @@ prodVerConfig = extend(
                 {
                     test : /\.less$/,
                     use : extractProdCss.extract({
+                        fallback : 'vue-style-loader',
                         use : [{
                             loader : 'css-loader',
                             options : {
@@ -221,8 +225,7 @@ prodVerConfig = extend(
                                     path : path.resolve(pathBuild, 'postcss.config.js')
                                 }
                             }
-                        }],
-                        fallback : 'style-loader'
+                        }]
                     })
                 },
                 {
@@ -302,10 +305,10 @@ docsConfig = {
         new webpack.DefinePlugin({
             'process.env.NODE_ENV' : process.env.NODE_ENV
         }),
-        new webpack.optimize.CommonsChunkPlugin({
-            name : 'doc-common',
-            minChunks : Infinity
-        }),
+        // new webpack.optimize.CommonsChunkPlugin({
+        //     name : 'doc-common',
+        //     minChunks : Infinity
+        // }),
         extractDocsCss,
         new CopyWebpackPlugin([
             {
@@ -367,6 +370,17 @@ docsConfig = {
                 }
             }
         ]
+    },
+    optimization : {
+        splitChunks : {
+            cacheGroups: {
+                commons: {
+                    name: "doc-common",
+                    chunks: "initial",
+                    minChunks: Infinity
+                }
+            }
+        }
     },
     output : {
         path : pathDocs,
