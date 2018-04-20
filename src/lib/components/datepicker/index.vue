@@ -126,6 +126,7 @@ import {
     startOfMonth,
     endOfMonth
 }                                   from 'date-fns';
+
 import sortBy                       from 'lodash.sortby';
 import Dates                        from 'Utils/Dates';
 

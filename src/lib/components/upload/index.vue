@@ -107,8 +107,8 @@
 </template>
  
 <script>
-import extend                       from 'extend';
-import axios                        from 'axios';
+import axios                       from 'Npm/axios/dist/axios.min.js';
+import extend                      from 'extend';
 
 export default {
     origin : 'Form',

@@ -6,3 +6,4 @@
 .npmrc
 npm-debug.log
 coverage.lcov
+webpack-profile.json

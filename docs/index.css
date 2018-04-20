@@ -229,6 +229,16 @@ mor-dialog a:hover {
 .s1 {
   padding: 50px 0;
 }
+.s1.versioninfo {
+  padding: 5px 0;
+  text-align: center;
+  border-top: 1px #eee solid;
+  font-size: 13px;
+  color: #999;
+}
+.s1.versioninfo p {
+  display: inline-block;
+}
 .s1 .mainLogo {
   width: 260px;
   height: 260px;

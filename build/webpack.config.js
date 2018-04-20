@@ -6,7 +6,7 @@ const CleanWebpackPlugin            = require('clean-webpack-plugin');
 const CopyWebpackPlugin             = require('copy-webpack-plugin');
 const ExtractTextPlugin             = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin             = require('html-webpack-plugin');
-const UglifyJsPlugin                = require('uglifyjs-webpack-plugin');
+// const UglifyJsPlugin                = require('uglifyjs-webpack-plugin');
 
 let pathProjectRoot = path.resolve(__dirname, '../');
 let pathPackage = path.resolve(pathProjectRoot, 'package.json');
@@ -85,7 +85,8 @@ commonConfig = {
     resolve : {
         alias : {
             Common : pathLibCommon,
-            Utils : pathLibUtils
+            Utils : pathLibUtils,
+            Npm : pathNpm
         }
     },
     externals : {
@@ -181,6 +182,9 @@ devVerConfig = extend(
         output : {
             filename : 'morning-ui.js',
             publicPath : '/dist'
+        },
+        optimization : {
+            minimize : false
         }
     }
 );
@@ -197,7 +201,7 @@ prodVerConfig = extend(
             new webpack.DefinePlugin({
                 'process.env.NODE_ENV' : process.env.NODE_ENV
             }),
-            new UglifyJsPlugin(),
+            // new UglifyJsPlugin(),
             extractProdCss
         ],
         module : {
@@ -205,6 +209,7 @@ prodVerConfig = extend(
                 {
                     test : /\.less$/,
                     use : extractProdCss.extract({
+                        fallback : 'vue-style-loader',
                         use : [{
                             loader : 'css-loader',
                             options : {
@@ -221,8 +226,7 @@ prodVerConfig = extend(
                                     path : path.resolve(pathBuild, 'postcss.config.js')
                                 }
                             }
-                        }],
-                        fallback : 'style-loader'
+                        }]
                     })
                 },
                 {
@@ -278,23 +282,7 @@ prodVerConfig = extend(
 );
 
 docsConfig = {
-    entry : {
-        'doc-common' : [
-            'underscore',
-            'highlight.js',
-            'markdown-it',
-            'mustache',
-            'extend',
-            'Docs/common/menu.js',
-            'Docs/common/DocBody.vue',
-            'Docs/common/DocComponent.vue',
-            'Docs/common/DocComponentStatus.vue',
-            'Docs/common/DocFooter.vue',
-            'Docs/common/DocGuide.vue',
-            'Docs/common/DocHeader.vue',
-            'Docs/common/DocSubmenu.vue'
-        ]
-    },
+    entry : {},
     plugins : [
         new CleanWebpackPlugin([pathDocs], {
             root : pathProjectRoot
@@ -302,10 +290,10 @@ docsConfig = {
         new webpack.DefinePlugin({
             'process.env.NODE_ENV' : process.env.NODE_ENV
         }),
-        new webpack.optimize.CommonsChunkPlugin({
-            name : 'doc-common',
-            minChunks : Infinity
-        }),
+        // new webpack.optimize.CommonsChunkPlugin({
+        //     name : 'doc-common',
+        //     minChunks : Infinity
+        // }),
         extractDocsCss,
         new CopyWebpackPlugin([
             {
@@ -367,6 +355,17 @@ docsConfig = {
                 }
             }
         ]
+    },
+    optimization : {
+        splitChunks : {
+            cacheGroups : {
+                commons : {
+                    name : 'doc-common',
+                    chunks : 'initial',
+                    minChunks : 2
+                }
+            }
+        }
     },
     output : {
         path : pathDocs,

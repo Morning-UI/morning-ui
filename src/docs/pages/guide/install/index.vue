@@ -100,7 +100,7 @@
 </template>
  
 <script>
-import axios                       from 'axios';
+import axios                       from 'Npm/axios/dist/axios.min.js';
 import DocGuide                    from 'Docs/common/DocGuide.vue';
 
 export default {
