@@ -282,23 +282,7 @@ prodVerConfig = extend(
 );
 
 docsConfig = {
-    entry : {
-        // 'doc-common' : [
-        //     'underscore',
-        //     'highlight.js',
-        //     'markdown-it',
-        //     'mustache',
-        //     'extend',
-        //     'Docs/common/menu.js',
-        //     'Docs/common/DocBody.vue',
-        //     'Docs/common/DocComponent.vue',
-        //     'Docs/common/DocComponentStatus.vue',
-        //     'Docs/common/DocFooter.vue',
-        //     'Docs/common/DocGuide.vue',
-        //     'Docs/common/DocHeader.vue',
-        //     'Docs/common/DocSubmenu.vue'
-        // ]
-    },
+    entry : {},
     plugins : [
         new CleanWebpackPlugin([pathDocs], {
             root : pathProjectRoot
@@ -374,11 +358,11 @@ docsConfig = {
     },
     optimization : {
         splitChunks : {
-            cacheGroups: {
-                commons: {
-                    name: "doc-common",
-                    chunks: "initial",
-                    minChunks: 2
+            cacheGroups : {
+                commons : {
+                    name : 'doc-common',
+                    chunks : 'initial',
+                    minChunks : 2
                 }
             }
         }
