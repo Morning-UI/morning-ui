@@ -3,7 +3,7 @@ import {
     setHours,
     setMinutes,
     setSeconds
-}                                   from 'date-fns';
+}                                   from 'date-fns/esm';
 import standardDate                 from './standardDate';
 
 let Time = {

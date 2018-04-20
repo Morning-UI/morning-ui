@@ -73,7 +73,7 @@ import {
     endOfDay,
     subDays,
     addDays
-}                                   from 'date-fns';
+}                                   from 'date-fns/esm';
 import without                      from 'lodash.without';
 import Dates                        from 'Utils/Dates';
 

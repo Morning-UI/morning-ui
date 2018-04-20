@@ -115,15 +115,17 @@
 </template>
  
 <script>
-const formatDate                    from 'date-fns/format';
-const isValid                       from 'date-fns/isValid';
-const addDays                       from 'date-fns/addDays';
-const subDays                       from 'date-fns/subDays';
-const addMonths                     from 'date-fns/addMonths';
-const subMonths                     from 'date-fns/subMonths';
-const eachDayOfInterval             from 'date-fns/eachDayOfInterval';
-const startOfMonth                  from 'date-fns/startOfMonth';
-const endOfMonth                    from 'date-fns/endOfMonth';
+import {
+    format as formatDate,
+    isValid,
+    addDays,
+    subDays,
+    addMonths,
+    subMonths,
+    eachDayOfInterval,
+    startOfMonth,
+    endOfMonth
+}                                   from 'date-fns/esm';
 
 import sortBy                       from 'lodash.sortby';
 import Dates                        from 'Utils/Dates';

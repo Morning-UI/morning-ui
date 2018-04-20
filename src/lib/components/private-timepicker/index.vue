@@ -104,7 +104,7 @@ import {
     closestTo,
     addMilliseconds,
     areIntervalsOverlapping
-}                                   from 'date-fns';
+}                                   from 'date-fns/esm';
 import Time                         from 'Utils/Time';
 
 export default {

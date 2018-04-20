@@ -23,7 +23,7 @@
 </template>
  
 <script>
-import Tether                       from 'tether';
+import Tether                       from 'Npm/tether/dist/js/tether.min.js';
 import PopupManager                 from 'Utils/PopupManager';
 
 export default {

@@ -87,7 +87,7 @@ import {
     closestTo,
     isValid,
     isWithinInterval
-}                                   from 'date-fns';
+}                                   from 'date-fns/esm';
 import Dates                        from 'Utils/Dates';
 import Time                         from 'Utils/Time';
 

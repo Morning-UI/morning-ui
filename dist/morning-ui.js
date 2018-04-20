@@ -11584,7 +11584,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _dateFns = __webpack_require__(2);
+var _esm = __webpack_require__(2);
 
 var _lodash = __webpack_require__(147);
 
@@ -11740,17 +11740,17 @@ exports.default = {
 
             var date = this._dateStringToDate(value, this.conf.format);
 
-            if (!(0, _dateFns.isValid)(date)) {
+            if (!(0, _esm.isValid)(date)) {
 
                 date = this._dateGetStandardDate();
             }
 
-            if (!this._checkSelectable((0, _dateFns.format)(date, this.conf.format))) {
+            if (!this._checkSelectable((0, _esm.format)(date, this.conf.format))) {
 
                 date = this._getClosestTime(date);
             }
 
-            return (0, _dateFns.format)(date, this.conf.format);
+            return (0, _esm.format)(date, this.conf.format);
         },
         _dateEnter: function _dateEnter(date) {
 
@@ -11770,7 +11770,7 @@ exports.default = {
 
                 var date = this._dateStringToDate(this.data.inputValue, this.conf.format);
 
-                if (!(0, _dateFns.isValid)(date)) {
+                if (!(0, _esm.isValid)(date)) {
 
                     this._refreshInputValue();
                 } else {
@@ -11785,7 +11785,7 @@ exports.default = {
                         this._refreshInputValue();
                     } else {
 
-                        this._set((0, _dateFns.format)(date, this.conf.format), true);
+                        this._set((0, _esm.format)(date, this.conf.format), true);
                     }
                 }
             }
@@ -11812,7 +11812,7 @@ exports.default = {
         },
         _clickDate: function _clickDate(date) {
 
-            var value = (0, _dateFns.format)(date, this.conf.format);
+            var value = (0, _esm.format)(date, this.conf.format);
             var selectable = this._checkSelectable(value);
 
             if (!selectable) {
@@ -11829,7 +11829,7 @@ exports.default = {
 
             if (this.data.value !== undefined) {
 
-                dateString = (0, _dateFns.format)(this._dateStringToDate(this.data.value, this.conf.format), this.conf.format);
+                dateString = (0, _esm.format)(this._dateStringToDate(this.data.value, this.conf.format), this.conf.format);
             }
 
             this.$refs['ui-private-datepicker-input-' + this.uiid]._set(dateString, true);
@@ -11852,10 +11852,10 @@ exports.default = {
                 var end = this._dateStringToDate(ranges[1], this.conf.format);
 
                 // set to day start and day end
-                start = (0, _dateFns.startOfDay)(start);
-                end = (0, _dateFns.endOfDay)(end);
+                start = (0, _esm.startOfDay)(start);
+                end = (0, _esm.endOfDay)(end);
 
-                if ((0, _dateFns.isValid)(start) && (0, _dateFns.isValid)(end) && (0, _dateFns.isWithinInterval)(date, {
+                if ((0, _esm.isValid)(start) && (0, _esm.isValid)(end) && (0, _esm.isWithinInterval)(date, {
                     start: start,
                     end: end
                 })) {
@@ -11879,10 +11879,10 @@ exports.default = {
                             var _end = this._dateStringToDate(range[1], this.conf.format);
 
                             // set to day start and day end
-                            _start = (0, _dateFns.startOfDay)(_start);
-                            _end = (0, _dateFns.endOfDay)(_end);
+                            _start = (0, _esm.startOfDay)(_start);
+                            _end = (0, _esm.endOfDay)(_end);
 
-                            if ((0, _dateFns.isValid)(_start) && (0, _dateFns.isValid)(_end) && (0, _dateFns.isWithinInterval)(date, {
+                            if ((0, _esm.isValid)(_start) && (0, _esm.isValid)(_end) && (0, _esm.isWithinInterval)(date, {
                                 start: _start,
                                 end: _end
                             })) {
@@ -11923,18 +11923,18 @@ exports.default = {
             var ranges = this.conf.selectableRange;
             var disabledRange = [];
             var calendarVm = this.$refs['ui-calendar-' + this.uiid];
-            var monthStart = (0, _dateFns.startOfMonth)(calendarVm.getTime());
-            var monthEnd = (0, _dateFns.endOfMonth)(calendarVm.getTime());
-            var calendarStart = (0, _dateFns.subDays)(monthStart, calendarVm.prependDay.length);
-            var calendarEnd = (0, _dateFns.addDays)(monthEnd, calendarVm.appendDay.length);
+            var monthStart = (0, _esm.startOfMonth)(calendarVm.getTime());
+            var monthEnd = (0, _esm.endOfMonth)(calendarVm.getTime());
+            var calendarStart = (0, _esm.subDays)(monthStart, calendarVm.prependDay.length);
+            var calendarEnd = (0, _esm.addDays)(monthEnd, calendarVm.appendDay.length);
             var selectableDates = [];
 
             if (ranges instanceof Array && ranges.length === 2 && typeof ranges[0] === 'string' && typeof ranges[1] === 'string') {
 
-                var start = (0, _dateFns.subDays)((0, _dateFns.startOfDay)(this._dateStringToDate(ranges[0], this.conf.format)), 1);
-                var end = (0, _dateFns.addDays)((0, _dateFns.startOfDay)(this._dateStringToDate(ranges[1], this.conf.format)), 1);
+                var start = (0, _esm.subDays)((0, _esm.startOfDay)(this._dateStringToDate(ranges[0], this.conf.format)), 1);
+                var end = (0, _esm.addDays)((0, _esm.startOfDay)(this._dateStringToDate(ranges[1], this.conf.format)), 1);
 
-                if ((0, _dateFns.isValid)(start) && start >= calendarStart) {
+                if ((0, _esm.isValid)(start) && start >= calendarStart) {
 
                     disabledRange.push({
                         start: calendarStart,
@@ -11942,7 +11942,7 @@ exports.default = {
                     });
                 }
 
-                if ((0, _dateFns.isValid)(end) && end <= calendarEnd) {
+                if ((0, _esm.isValid)(end) && end <= calendarEnd) {
 
                     disabledRange.push({
                         start: end,
@@ -11964,12 +11964,12 @@ exports.default = {
 
                         if (range instanceof Array && range.length === 2 && typeof range[0] === 'string' && typeof range[1] === 'string') {
 
-                            var _start2 = (0, _dateFns.subDays)((0, _dateFns.startOfDay)(this._dateStringToDate(range[0], this.conf.format)), 1);
-                            var _end2 = (0, _dateFns.addDays)((0, _dateFns.startOfDay)(this._dateStringToDate(range[1], this.conf.format)), 1);
+                            var _start2 = (0, _esm.subDays)((0, _esm.startOfDay)(this._dateStringToDate(range[0], this.conf.format)), 1);
+                            var _end2 = (0, _esm.addDays)((0, _esm.startOfDay)(this._dateStringToDate(range[1], this.conf.format)), 1);
 
                             if (disabledRange.length === 0) {
 
-                                if ((0, _dateFns.isValid)(_start2) && _start2 >= calendarStart) {
+                                if ((0, _esm.isValid)(_start2) && _start2 >= calendarStart) {
 
                                     disabledRange.push({
                                         start: calendarStart,
@@ -11977,7 +11977,7 @@ exports.default = {
                                     });
                                 }
 
-                                if ((0, _dateFns.isValid)(_end2) && _end2 <= calendarEnd) {
+                                if ((0, _esm.isValid)(_end2) && _end2 <= calendarEnd) {
 
                                     disabledRange.push({
                                         start: _end2,
@@ -11990,7 +11990,7 @@ exports.default = {
 
                                     var drange = disabledRange[di];
 
-                                    if (drange && (0, _dateFns.areIntervalsOverlapping)(drange, {
+                                    if (drange && (0, _esm.areIntervalsOverlapping)(drange, {
                                         start: _start2,
                                         end: _end2
                                     })) {
@@ -12060,7 +12060,7 @@ exports.default = {
         },
         _getClosestDate: function _getClosestDate(date) {
 
-            date = (0, _dateFns.closestTo)(date, this.data.selectableDates);
+            date = (0, _esm.closestTo)(date, this.data.selectableDates);
 
             return date;
         },
@@ -12184,7 +12184,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _dateFns = __webpack_require__(2);
+var _esm = __webpack_require__(2);
 
 var _Time = __webpack_require__(75);
 
@@ -12352,16 +12352,16 @@ exports.default = {
 
             var date = this._timeStringToDate(value, this.conf.format);
 
-            if (!(0, _dateFns.isValid)(date)) {
+            if (!(0, _esm.isValid)(date)) {
 
                 date = this._timeGetStandardDate();
             }
 
             if (date) {
 
-                var h = (0, _dateFns.getHours)(date);
-                var m = (0, _dateFns.getMinutes)(date);
-                var s = (0, _dateFns.getSeconds)(date);
+                var h = (0, _esm.getHours)(date);
+                var m = (0, _esm.getMinutes)(date);
+                var s = (0, _esm.getSeconds)(date);
 
                 if (!this.data.inputFocus && (!this._checkSelectable('hour', h) || !this._checkSelectable('minute', m) || !this._checkSelectable('second', s))) {
 
@@ -12369,7 +12369,7 @@ exports.default = {
                 }
             }
 
-            return (0, _dateFns.format)(date, this.conf.format);
+            return (0, _esm.format)(date, this.conf.format);
         },
         _noop: function _noop() {},
         _inputBlur: function _inputBlur() {
@@ -12393,7 +12393,7 @@ exports.default = {
                     this._refreshInputValue();
                 } else {
 
-                    this._set((0, _dateFns.format)(date, this.conf.format), true);
+                    this._set((0, _esm.format)(date, this.conf.format), true);
                 }
             }
         },
@@ -12413,8 +12413,8 @@ exports.default = {
                 second: '(ss|s)'
             };
             var result = this.conf.format.match(map[type]);
-            var leftString = (0, _dateFns.format)(date, '' + this.conf.format.slice(0, result.index));
-            var selfString = (0, _dateFns.format)(date, '' + this.conf.format.slice(result.index, result.index + result[0].length));
+            var leftString = (0, _esm.format)(date, '' + this.conf.format.slice(0, result.index));
+            var selfString = (0, _esm.format)(date, '' + this.conf.format.slice(result.index, result.index + result[0].length));
 
             if (leftString === ' ' && result.index === 0) {
 
@@ -12471,7 +12471,7 @@ exports.default = {
 
             var time = this._timeSet(type, i, this._timeStringToDate(this.data.value, this.conf.format));
 
-            this._set((0, _dateFns.format)(time, this.conf.format), true);
+            this._set((0, _esm.format)(time, this.conf.format), true);
 
             this.Vue.nextTick(function () {
 
@@ -12485,9 +12485,9 @@ exports.default = {
 
             var date = this._timeStringToDate(this.data.value, this.conf.format);
 
-            this.data.h = (0, _dateFns.getHours)(date);
-            this.data.m = (0, _dateFns.getMinutes)(date);
-            this.data.s = (0, _dateFns.getSeconds)(date);
+            this.data.h = (0, _esm.getHours)(date);
+            this.data.m = (0, _esm.getMinutes)(date);
+            this.data.s = (0, _esm.getSeconds)(date);
 
             this._scrollToTime();
             this._refreshInputValue();
@@ -12540,7 +12540,7 @@ exports.default = {
 
             if (this.data.value !== undefined) {
 
-                timeString = (0, _dateFns.format)(this._timeStringToDate(this.data.value, this.conf.format), this.conf.format);
+                timeString = (0, _esm.format)(this._timeStringToDate(this.data.value, this.conf.format), this.conf.format);
             }
 
             this.$refs['ui-private-timepicker-input-' + this.uiid]._set(timeString, true);
@@ -12558,31 +12558,31 @@ exports.default = {
 
             if (type === 'hour') {
 
-                checkDateLeft = (0, _dateFns.setHours)(checkDateLeft, num);
-                checkDateLeft = (0, _dateFns.startOfHour)(checkDateLeft);
-                checkDateRight = (0, _dateFns.endOfHour)(checkDateLeft);
+                checkDateLeft = (0, _esm.setHours)(checkDateLeft, num);
+                checkDateLeft = (0, _esm.startOfHour)(checkDateLeft);
+                checkDateRight = (0, _esm.endOfHour)(checkDateLeft);
             } else if (type === 'minute') {
 
-                checkDateLeft = (0, _dateFns.setHours)(checkDateLeft, this.data.h);
-                checkDateLeft = (0, _dateFns.setMinutes)(checkDateLeft, num);
-                checkDateLeft = (0, _dateFns.startOfMinute)(checkDateLeft);
-                checkDateRight = (0, _dateFns.endOfMinute)(checkDateLeft);
+                checkDateLeft = (0, _esm.setHours)(checkDateLeft, this.data.h);
+                checkDateLeft = (0, _esm.setMinutes)(checkDateLeft, num);
+                checkDateLeft = (0, _esm.startOfMinute)(checkDateLeft);
+                checkDateRight = (0, _esm.endOfMinute)(checkDateLeft);
             } else if (type === 'second') {
 
-                checkDateLeft = (0, _dateFns.setHours)(checkDateLeft, this.data.h);
-                checkDateLeft = (0, _dateFns.setMinutes)(checkDateLeft, this.data.m);
-                checkDateLeft = (0, _dateFns.setSeconds)(checkDateLeft, num);
+                checkDateLeft = (0, _esm.setHours)(checkDateLeft, this.data.h);
+                checkDateLeft = (0, _esm.setMinutes)(checkDateLeft, this.data.m);
+                checkDateLeft = (0, _esm.setSeconds)(checkDateLeft, num);
                 checkDateRight = checkDateLeft;
             } else if (type === 'all') {
 
-                checkDateLeft = (0, _dateFns.setHours)(checkDateLeft, this.data.h);
-                checkDateLeft = (0, _dateFns.setMinutes)(checkDateLeft, this.data.m);
-                checkDateLeft = (0, _dateFns.setSeconds)(checkDateLeft, this.data.s);
+                checkDateLeft = (0, _esm.setHours)(checkDateLeft, this.data.h);
+                checkDateLeft = (0, _esm.setMinutes)(checkDateLeft, this.data.m);
+                checkDateLeft = (0, _esm.setSeconds)(checkDateLeft, this.data.s);
                 checkDateRight = checkDateLeft;
             }
 
-            checkDateLeft = (0, _dateFns.addMilliseconds)(checkDateLeft, -1);
-            checkDateRight = (0, _dateFns.addMilliseconds)(checkDateRight, 1);
+            checkDateLeft = (0, _esm.addMilliseconds)(checkDateLeft, -1);
+            checkDateRight = (0, _esm.addMilliseconds)(checkDateRight, 1);
 
             var checkInterval = {
                 start: checkDateLeft,
@@ -12603,7 +12603,7 @@ exports.default = {
                         end: time[1]
                     };
 
-                    if ((0, _dateFns.areIntervalsOverlapping)(checkInterval, timeInterval)) {
+                    if ((0, _esm.areIntervalsOverlapping)(checkInterval, timeInterval)) {
 
                         selectable = true;
 
@@ -12651,7 +12651,7 @@ exports.default = {
 
             var time = this._timeSet(type, +value, this._timeStringToDate(this.data.value, this.conf.format));
 
-            this._set((0, _dateFns.format)(time, this.conf.format), true);
+            this._set((0, _esm.format)(time, this.conf.format), true);
 
             return this;
         },
@@ -12662,12 +12662,12 @@ exports.default = {
             var rangeStart = this._timeStringToDate(range[0], this.conf.format);
             var rangeEnd = this._timeStringToDate(range[1], this.conf.format);
 
-            start = (0, _dateFns.setHours)(start, (0, _dateFns.getHours)(rangeStart));
-            start = (0, _dateFns.setMinutes)(start, (0, _dateFns.getMinutes)(rangeStart));
-            start = (0, _dateFns.setSeconds)(start, (0, _dateFns.getSeconds)(rangeStart));
-            end = (0, _dateFns.setHours)(end, (0, _dateFns.getHours)(rangeEnd));
-            end = (0, _dateFns.setMinutes)(end, (0, _dateFns.getMinutes)(rangeEnd));
-            end = (0, _dateFns.setSeconds)(end, (0, _dateFns.getSeconds)(rangeEnd));
+            start = (0, _esm.setHours)(start, (0, _esm.getHours)(rangeStart));
+            start = (0, _esm.setMinutes)(start, (0, _esm.getMinutes)(rangeStart));
+            start = (0, _esm.setSeconds)(start, (0, _esm.getSeconds)(rangeStart));
+            end = (0, _esm.setHours)(end, (0, _esm.getHours)(rangeEnd));
+            end = (0, _esm.setMinutes)(end, (0, _esm.getMinutes)(rangeEnd));
+            end = (0, _esm.setSeconds)(end, (0, _esm.getSeconds)(rangeEnd));
 
             selectableTimes.push([start, end]);
         },
@@ -12676,7 +12676,7 @@ exports.default = {
             var ranges = this.conf.selectableRange;
             var selectableTimes = [];
 
-            if (ranges instanceof Array && ranges.length === 2 && typeof ranges[0] === 'string' && typeof ranges[1] === 'string' && (0, _dateFns.isValid)(this._timeStringToDate(ranges[0], this.conf.format)) && (0, _dateFns.isValid)(this._timeStringToDate(ranges[1], this.conf.format))) {
+            if (ranges instanceof Array && ranges.length === 2 && typeof ranges[0] === 'string' && typeof ranges[1] === 'string' && (0, _esm.isValid)(this._timeStringToDate(ranges[0], this.conf.format)) && (0, _esm.isValid)(this._timeStringToDate(ranges[1], this.conf.format))) {
 
                 this._initSelectableTime(ranges, selectableTimes);
             } else if (ranges instanceof Array) {
@@ -12690,7 +12690,7 @@ exports.default = {
                         var range = _step3.value;
 
 
-                        if (range instanceof Array && range.length === 2 && typeof range[0] === 'string' && typeof range[1] === 'string' && (0, _dateFns.isValid)(this._timeStringToDate(range[0], this.conf.format)) && (0, _dateFns.isValid)(this._timeStringToDate(range[1], this.conf.format))) {
+                        if (range instanceof Array && range.length === 2 && typeof range[0] === 'string' && typeof range[1] === 'string' && (0, _esm.isValid)(this._timeStringToDate(range[0], this.conf.format)) && (0, _esm.isValid)(this._timeStringToDate(range[1], this.conf.format))) {
 
                             this._initSelectableTime(range, selectableTimes);
                         }
@@ -12744,7 +12744,7 @@ exports.default = {
                 }
             }
 
-            date = (0, _dateFns.closestTo)(date, list);
+            date = (0, _esm.closestTo)(date, list);
 
             return date;
         },
@@ -14595,7 +14595,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 
-var _dateFns = __webpack_require__(2);
+var _esm = __webpack_require__(2);
 
 var _Dates = __webpack_require__(74);
 
@@ -14768,17 +14768,17 @@ exports.default = {
 
             var date = this._dateStringToDate(value, this.conf.format);
 
-            if (!(0, _dateFns.isValid)(date)) {
+            if (!(0, _esm.isValid)(date)) {
 
                 date = this._dateGetStandardDate();
             }
 
-            if (!this._checkSelectable((0, _dateFns.format)(date, this.conf.format))) {
+            if (!this._checkSelectable((0, _esm.format)(date, this.conf.format))) {
 
                 date = this._getClosestTime(date);
             }
 
-            return (0, _dateFns.format)(date, this.conf.format);
+            return (0, _esm.format)(date, this.conf.format);
         },
         _syncFromRootToChild: function _syncFromRootToChild() {
             var _this = this;
@@ -14810,19 +14810,19 @@ exports.default = {
 
                                 timeDate = _this._dateStringToDate(value[0], $date.conf.format);
 
-                                $time._set((0, _dateFns.format)(timeDate, $time.conf.format), true);
+                                $time._set((0, _esm.format)(timeDate, $time.conf.format), true);
                             }
 
                             if (value[1]) {
 
                                 timeDate2 = _this._dateStringToDate(value[1], $date.conf.format);
 
-                                $time2._set((0, _dateFns.format)(timeDate2, $time2.conf.format), true);
+                                $time2._set((0, _esm.format)(timeDate2, $time2.conf.format), true);
                             }
                         } else {
 
                             timeDate = _this._dateStringToDate(value, $date.conf.format);
-                            $time._set((0, _dateFns.format)(timeDate, $time.conf.format), true);
+                            $time._set((0, _esm.format)(timeDate, $time.conf.format), true);
                         }
                     } else if (_this.conf.isRange) {
 
@@ -14856,9 +14856,9 @@ exports.default = {
             var dateObj = void 0;
             var timeObj = void 0;
 
-            fulldate = (0, _dateFns.setYear)(fulldate, (0, _dateFns.getYear)(now));
-            fulldate = (0, _dateFns.setMonth)(fulldate, (0, _dateFns.getMonth)(now));
-            fulldate = (0, _dateFns.setDate)(fulldate, (0, _dateFns.getDate)(now));
+            fulldate = (0, _esm.setYear)(fulldate, (0, _esm.getYear)(now));
+            fulldate = (0, _esm.setMonth)(fulldate, (0, _esm.getMonth)(now));
+            fulldate = (0, _esm.setDate)(fulldate, (0, _esm.getDate)(now));
 
             if (date) {
 
@@ -14873,9 +14873,9 @@ exports.default = {
             if (dateObj) {
 
                 isSet = true;
-                fulldate = (0, _dateFns.setYear)(fulldate, (0, _dateFns.getYear)(dateObj));
-                fulldate = (0, _dateFns.setMonth)(fulldate, (0, _dateFns.getMonth)(dateObj));
-                fulldate = (0, _dateFns.setDate)(fulldate, (0, _dateFns.getDate)(dateObj));
+                fulldate = (0, _esm.setYear)(fulldate, (0, _esm.getYear)(dateObj));
+                fulldate = (0, _esm.setMonth)(fulldate, (0, _esm.getMonth)(dateObj));
+                fulldate = (0, _esm.setDate)(fulldate, (0, _esm.getDate)(dateObj));
             }
 
             if ($date && $time) {
@@ -14883,17 +14883,17 @@ exports.default = {
                 if (type === 2 && dateObj || type === 0 && dateObj && !time) {
 
                     isSet = true;
-                    fulldate = (0, _dateFns.setHours)(fulldate, (0, _dateFns.getHours)(dateObj));
-                    fulldate = (0, _dateFns.setMinutes)(fulldate, (0, _dateFns.getMinutes)(dateObj));
-                    fulldate = (0, _dateFns.setSeconds)(fulldate, (0, _dateFns.getSeconds)(dateObj));
-                    fulldate = (0, _dateFns.setMilliseconds)(fulldate, (0, _dateFns.getMilliseconds)(dateObj));
+                    fulldate = (0, _esm.setHours)(fulldate, (0, _esm.getHours)(dateObj));
+                    fulldate = (0, _esm.setMinutes)(fulldate, (0, _esm.getMinutes)(dateObj));
+                    fulldate = (0, _esm.setSeconds)(fulldate, (0, _esm.getSeconds)(dateObj));
+                    fulldate = (0, _esm.setMilliseconds)(fulldate, (0, _esm.getMilliseconds)(dateObj));
                 } else if (type === 1 && timeObj || timeObj && dateObj) {
 
                     isSet = true;
-                    fulldate = (0, _dateFns.setHours)(fulldate, (0, _dateFns.getHours)(timeObj));
-                    fulldate = (0, _dateFns.setMinutes)(fulldate, (0, _dateFns.getMinutes)(timeObj));
-                    fulldate = (0, _dateFns.setSeconds)(fulldate, (0, _dateFns.getSeconds)(timeObj));
-                    fulldate = (0, _dateFns.setMilliseconds)(fulldate, (0, _dateFns.getMilliseconds)(timeObj));
+                    fulldate = (0, _esm.setHours)(fulldate, (0, _esm.getHours)(timeObj));
+                    fulldate = (0, _esm.setMinutes)(fulldate, (0, _esm.getMinutes)(timeObj));
+                    fulldate = (0, _esm.setSeconds)(fulldate, (0, _esm.getSeconds)(timeObj));
+                    fulldate = (0, _esm.setMilliseconds)(fulldate, (0, _esm.getMilliseconds)(timeObj));
                 }
             }
 
@@ -14913,15 +14913,15 @@ exports.default = {
 
                 if (date instanceof Date) {
 
-                    this._set((0, _dateFns.format)(date, this.conf.format), true);
+                    this._set((0, _esm.format)(date, this.conf.format), true);
                 } else if (date instanceof Array) {
 
                     if (date.length === 1) {
 
-                        this._set([(0, _dateFns.format)(date[0], this.conf.format)], true);
+                        this._set([(0, _esm.format)(date[0], this.conf.format)], true);
                     } else {
 
-                        this._set([(0, _dateFns.format)(date[0], this.conf.format), (0, _dateFns.format)(date[1], this.conf.format)], true);
+                        this._set([(0, _esm.format)(date[0], this.conf.format), (0, _esm.format)(date[1], this.conf.format)], true);
                     }
                 }
             } else {
@@ -15030,12 +15030,12 @@ exports.default = {
                 var start = this._dateStringToDate(dateRanges[0], this.conf.format);
                 var end = this._dateStringToDate(dateRanges[1], this.conf.format);
 
-                if ((0, _dateFns.isSameDay)(start, valueDate)) {
+                if ((0, _esm.isSameDay)(start, valueDate)) {
 
                     limitTimeRange[0] = start;
                 }
 
-                if ((0, _dateFns.isSameDay)(end, valueDate)) {
+                if ((0, _esm.isSameDay)(end, valueDate)) {
 
                     limitTimeRange[1] = end;
                 }
@@ -15059,12 +15059,12 @@ exports.default = {
                             var _start = this._dateStringToDate(range[0], this.conf.format);
                             var _end = this._dateStringToDate(range[1], this.conf.format);
 
-                            if ((0, _dateFns.isSameDay)(_start, valueDate)) {
+                            if ((0, _esm.isSameDay)(_start, valueDate)) {
 
                                 limitTimeRange[0] = _start;
                             }
 
-                            if ((0, _dateFns.isSameDay)(_end, valueDate)) {
+                            if ((0, _esm.isSameDay)(_end, valueDate)) {
 
                                 limitTimeRange[1] = _end;
                             }
@@ -15091,15 +15091,15 @@ exports.default = {
                 }
             }
 
-            limitTimeRange[0] = (0, _dateFns.format)(limitTimeRange[0], $time.conf.format);
-            limitTimeRange[1] = (0, _dateFns.format)(limitTimeRange[1], $time.conf.format);
+            limitTimeRange[0] = (0, _esm.format)(limitTimeRange[0], $time.conf.format);
+            limitTimeRange[1] = (0, _esm.format)(limitTimeRange[1], $time.conf.format);
 
             this.data.timeSelectableRange = limitTimeRange;
             this.data.selectableDates = selectableDates;
         },
         _getClosestDate: function _getClosestDate(date) {
 
-            date = (0, _dateFns.closestTo)(date, this.data.selectableDates);
+            date = (0, _esm.closestTo)(date, this.data.selectableDates);
 
             return date;
         },
@@ -15119,7 +15119,7 @@ exports.default = {
                 var start = this._dateStringToDate(ranges[0], this.conf.format);
                 var end = this._dateStringToDate(ranges[1], this.conf.format);
 
-                if ((0, _dateFns.isValid)(start) && (0, _dateFns.isValid)(end) && (0, _dateFns.isWithinInterval)(date, {
+                if ((0, _esm.isValid)(start) && (0, _esm.isValid)(end) && (0, _esm.isWithinInterval)(date, {
                     start: start,
                     end: end
                 })) {
@@ -15142,7 +15142,7 @@ exports.default = {
                             var _start2 = this._dateStringToDate(range[0], this.conf.format);
                             var _end2 = this._dateStringToDate(range[1], this.conf.format);
 
-                            if ((0, _dateFns.isValid)(_start2) && (0, _dateFns.isValid)(_end2) && (0, _dateFns.isWithinInterval)(date, {
+                            if ((0, _esm.isValid)(_start2) && (0, _esm.isValid)(_end2) && (0, _esm.isWithinInterval)(date, {
                                 start: _start2,
                                 end: _end2
                             })) {
@@ -15312,7 +15312,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 
-var _dateFns = __webpack_require__(2);
+var _esm = __webpack_require__(2);
 
 var _lodash = __webpack_require__(4);
 
@@ -15459,7 +15459,7 @@ exports.default = {
         _input1DateChange: function _input1DateChange(date) {
             var _this2 = this;
 
-            this.data.currentDate = (0, _dateFns.subMonths)(date, 1);
+            this.data.currentDate = (0, _esm.subMonths)(date, 1);
             this.$nextTick(function () {
                 return _this2._highlightDateFromValue();
             });
@@ -15569,7 +15569,7 @@ exports.default = {
 
             var date = this._dateStringToDate(value, this.conf.format);
 
-            if (!(0, _dateFns.isValid)(date)) {
+            if (!(0, _esm.isValid)(date)) {
 
                 value = this._dateGetStandardDate();
             }
@@ -15619,19 +15619,19 @@ exports.default = {
             var input0 = this.$refs['ui-datepicker-input-0-' + this.uiid];
             var input1 = this.$refs['ui-datepicker-input-1-' + this.uiid];
             var input0Calendar = input0.$refs['ui-calendar-' + input0.uiid];
-            var input0CalendarStart = (0, _dateFns.startOfMonth)(input0Calendar.getTime());
-            var input0CalendarEnd = (0, _dateFns.endOfMonth)(input0Calendar.getTime());
+            var input0CalendarStart = (0, _esm.startOfMonth)(input0Calendar.getTime());
+            var input0CalendarEnd = (0, _esm.endOfMonth)(input0Calendar.getTime());
             var input1Calendar = input1.$refs['ui-calendar-' + input1.uiid];
-            var input1CalendarStart = (0, _dateFns.startOfMonth)(input1Calendar.getTime());
-            var input1CalendarEnd = (0, _dateFns.endOfMonth)(input1Calendar.getTime());
+            var input1CalendarStart = (0, _esm.startOfMonth)(input1Calendar.getTime());
+            var input1CalendarEnd = (0, _esm.endOfMonth)(input1Calendar.getTime());
             var input0HighlightDays = void 0;
             var input1HighlightDays = void 0;
 
             // start超过左侧日历/end在左侧日历
             if (start <= input0CalendarStart && end >= input0CalendarStart && end <= input0CalendarEnd) {
 
-                input0HighlightDays = (0, _dateFns.eachDayOfInterval)({
-                    start: (0, _dateFns.subDays)(+input0CalendarStart, 1),
+                input0HighlightDays = (0, _esm.eachDayOfInterval)({
+                    start: (0, _esm.subDays)(+input0CalendarStart, 1),
                     end: end
                 });
                 input1HighlightDays = [];
@@ -15640,12 +15640,12 @@ exports.default = {
             // start超过左侧日历/end在右侧日历
             if (start <= input0CalendarStart && end >= input1CalendarStart && end <= input1CalendarEnd) {
 
-                input0HighlightDays = (0, _dateFns.eachDayOfInterval)({
-                    start: (0, _dateFns.subDays)(+input0CalendarStart, 1),
-                    end: (0, _dateFns.addDays)(+input0CalendarEnd, 1)
+                input0HighlightDays = (0, _esm.eachDayOfInterval)({
+                    start: (0, _esm.subDays)(+input0CalendarStart, 1),
+                    end: (0, _esm.addDays)(+input0CalendarEnd, 1)
                 });
-                input1HighlightDays = (0, _dateFns.eachDayOfInterval)({
-                    start: (0, _dateFns.subDays)(+input1CalendarStart, 1),
+                input1HighlightDays = (0, _esm.eachDayOfInterval)({
+                    start: (0, _esm.subDays)(+input1CalendarStart, 1),
                     end: end
                 });
             }
@@ -15653,13 +15653,13 @@ exports.default = {
             // start在左侧日历/end超过右侧日历
             if (start >= input0CalendarStart && start <= input0CalendarEnd && end >= input1CalendarEnd) {
 
-                input0HighlightDays = (0, _dateFns.eachDayOfInterval)({
+                input0HighlightDays = (0, _esm.eachDayOfInterval)({
                     start: start,
-                    end: (0, _dateFns.addDays)(+input0CalendarEnd, 1)
+                    end: (0, _esm.addDays)(+input0CalendarEnd, 1)
                 });
-                input1HighlightDays = (0, _dateFns.eachDayOfInterval)({
-                    start: (0, _dateFns.subDays)(+input1CalendarStart, 1),
-                    end: (0, _dateFns.addDays)(+input1CalendarEnd, 1)
+                input1HighlightDays = (0, _esm.eachDayOfInterval)({
+                    start: (0, _esm.subDays)(+input1CalendarStart, 1),
+                    end: (0, _esm.addDays)(+input1CalendarEnd, 1)
                 });
             }
 
@@ -15667,29 +15667,29 @@ exports.default = {
             if (start >= input1CalendarStart && start <= input1CalendarEnd && end >= input1CalendarEnd) {
 
                 input0HighlightDays = [];
-                input1HighlightDays = (0, _dateFns.eachDayOfInterval)({
+                input1HighlightDays = (0, _esm.eachDayOfInterval)({
                     start: start,
-                    end: (0, _dateFns.addDays)(+input1CalendarEnd, 1)
+                    end: (0, _esm.addDays)(+input1CalendarEnd, 1)
                 });
             }
 
             // start超过左侧日历/end超过右侧日历
             if (start <= input0CalendarStart && end >= input1CalendarEnd) {
 
-                input0HighlightDays = (0, _dateFns.eachDayOfInterval)({
-                    start: (0, _dateFns.subDays)(+input0CalendarStart, 1),
-                    end: (0, _dateFns.addDays)(+input0CalendarEnd, 1)
+                input0HighlightDays = (0, _esm.eachDayOfInterval)({
+                    start: (0, _esm.subDays)(+input0CalendarStart, 1),
+                    end: (0, _esm.addDays)(+input0CalendarEnd, 1)
                 });
-                input1HighlightDays = (0, _dateFns.eachDayOfInterval)({
-                    start: (0, _dateFns.subDays)(+input1CalendarStart, 1),
-                    end: (0, _dateFns.addDays)(+input1CalendarEnd, 1)
+                input1HighlightDays = (0, _esm.eachDayOfInterval)({
+                    start: (0, _esm.subDays)(+input1CalendarStart, 1),
+                    end: (0, _esm.addDays)(+input1CalendarEnd, 1)
                 });
             }
 
             // start/end均在左侧日历中
             if (start <= input0CalendarEnd && start >= input0CalendarStart && +end <= input0CalendarEnd && +end >= input0CalendarStart) {
 
-                input0HighlightDays = (0, _dateFns.eachDayOfInterval)({
+                input0HighlightDays = (0, _esm.eachDayOfInterval)({
                     start: start,
                     end: end
                 });
@@ -15699,13 +15699,13 @@ exports.default = {
             // start在左侧/end在右侧
             if (start <= input0CalendarEnd && start >= input0CalendarStart && end >= input1CalendarStart && end <= input1CalendarEnd) {
 
-                input0HighlightDays = (0, _dateFns.eachDayOfInterval)({
+                input0HighlightDays = (0, _esm.eachDayOfInterval)({
                     start: start,
-                    end: (0, _dateFns.addDays)(+input0CalendarEnd, 1)
+                    end: (0, _esm.addDays)(+input0CalendarEnd, 1)
                 });
 
-                input1HighlightDays = (0, _dateFns.eachDayOfInterval)({
-                    start: (0, _dateFns.subDays)(+input1CalendarStart, 1),
+                input1HighlightDays = (0, _esm.eachDayOfInterval)({
+                    start: (0, _esm.subDays)(+input1CalendarStart, 1),
                     end: end
                 });
             }
@@ -15714,7 +15714,7 @@ exports.default = {
             if (start <= input1CalendarEnd && start >= input1CalendarStart && end >= input1CalendarStart && end <= input1CalendarEnd) {
 
                 input0HighlightDays = [];
-                input1HighlightDays = (0, _dateFns.eachDayOfInterval)({
+                input1HighlightDays = (0, _esm.eachDayOfInterval)({
                     start: start,
                     end: end
                 });
@@ -15746,12 +15746,12 @@ exports.default = {
 
             if (val[0]) {
 
-                val[0] = (0, _dateFns.format)(val[0], this.conf.format);
+                val[0] = (0, _esm.format)(val[0], this.conf.format);
             }
 
             if (val[1]) {
 
-                val[1] = (0, _dateFns.format)(val[1], this.conf.format);
+                val[1] = (0, _esm.format)(val[1], this.conf.format);
             }
 
             if (val.length === 0) {
@@ -15795,13 +15795,13 @@ exports.default = {
 
                 if (input0Val === undefined && input1Val) {
 
-                    val = [(0, _dateFns.format)(input1Val, this.conf.format)];
+                    val = [(0, _esm.format)(input1Val, this.conf.format)];
                 } else if (input1Val === undefined && input0Val) {
 
-                    val = [(0, _dateFns.format)(input0Val, this.conf.format)];
+                    val = [(0, _esm.format)(input0Val, this.conf.format)];
                 } else {
 
-                    val = [(0, _dateFns.format)(input0Val, this.conf.format), (0, _dateFns.format)(input1Val, this.conf.format)];
+                    val = [(0, _esm.format)(input0Val, this.conf.format), (0, _esm.format)(input1Val, this.conf.format)];
                 }
 
                 this._set(val, true);
@@ -15838,7 +15838,7 @@ exports.default = {
         },
         _addMonths: function _addMonths(date, amount) {
 
-            return (0, _dateFns.addMonths)(date, amount);
+            return (0, _esm.addMonths)(date, amount);
         },
         getDate: function getDate() {
 
@@ -16042,7 +16042,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 
-var _dateFns = __webpack_require__(2);
+var _esm = __webpack_require__(2);
 
 var _arrayUniq = __webpack_require__(3);
 
@@ -16167,11 +16167,11 @@ exports.default = {
 
                 while (+start <= +end) {
 
-                    list.push((0, _dateFns.format)(start, this.conf.format));
+                    list.push((0, _esm.format)(start, this.conf.format));
 
-                    start = (0, _dateFns.addHours)(start, addHour);
-                    start = (0, _dateFns.addMinutes)(start, addMinute);
-                    start = (0, _dateFns.addSeconds)(start, addSecond);
+                    start = (0, _esm.addHours)(start, addHour);
+                    start = (0, _esm.addMinutes)(start, addMinute);
+                    start = (0, _esm.addSeconds)(start, addSecond);
                 }
             }
 
@@ -16181,9 +16181,9 @@ exports.default = {
 
                     var date = this._timeStringToDate(list[i], this.conf.format);
 
-                    if ((0, _dateFns.isValid)(date)) {
+                    if ((0, _esm.isValid)(date)) {
 
-                        list[i] = (0, _dateFns.format)(date, this.conf.format);
+                        list[i] = (0, _esm.format)(date, this.conf.format);
                     }
                 }
             }
@@ -16246,7 +16246,7 @@ exports.default = {
 
             var date = this._timeStringToDate(value, this.conf.format);
 
-            if (!(0, _dateFns.isValid)(date)) {
+            if (!(0, _esm.isValid)(date)) {
 
                 value = this._timeGetStandardDate();
             }
@@ -19768,9 +19768,9 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _tether = __webpack_require__(183);
+var _tetherMin = __webpack_require__(183);
 
-var _tether2 = _interopRequireDefault(_tether);
+var _tetherMin2 = _interopRequireDefault(_tetherMin);
 
 var _PopupManager = __webpack_require__(77);
 
@@ -20155,7 +20155,7 @@ exports.default = {
 
             this._popupShow();
 
-            this.data.tether = new _tether2.default({
+            this.data.tether = new _tetherMin2.default({
                 attachment: this.data.attachmentMap[this.conf.placement],
                 element: this.$el,
                 target: this.data.$target
@@ -20695,7 +20695,7 @@ var _lodash = __webpack_require__(4);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
-var _dateFns = __webpack_require__(2);
+var _esm = __webpack_require__(2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -20849,15 +20849,15 @@ exports.default = {
 
             return {
                 time: +this.data.current,
-                year: (0, _dateFns.getYear)(this.data.current),
-                month: (0, _dateFns.getMonth)(this.data.current),
-                date: (0, _dateFns.getDate)(this.data.current)
+                year: (0, _esm.getYear)(this.data.current),
+                month: (0, _esm.getMonth)(this.data.current),
+                date: (0, _esm.getDate)(this.data.current)
             };
         },
         prependDay: function prependDay() {
 
-            var monthStart = (0, _dateFns.startOfMonth)(this.data.current);
-            var weekday = (0, _dateFns.getDay)(monthStart);
+            var monthStart = (0, _esm.startOfMonth)(this.data.current);
+            var weekday = (0, _esm.getDay)(monthStart);
             var prependDay = weekday;
             var prepend = [];
 
@@ -20865,7 +20865,7 @@ exports.default = {
 
                 prepend.push({
                     notCurrentMonth: true,
-                    date: (0, _dateFns.addDays)(monthStart, -(prependDay + 1))
+                    date: (0, _esm.addDays)(monthStart, -(prependDay + 1))
                 });
             }
 
@@ -20873,8 +20873,8 @@ exports.default = {
         },
         monthDay: function monthDay() {
 
-            var monthStart = (0, _dateFns.startOfMonth)(this.data.current);
-            var monthEnd = (0, _dateFns.lastDayOfMonth)(this.data.current);
+            var monthStart = (0, _esm.startOfMonth)(this.data.current);
+            var monthEnd = (0, _esm.lastDayOfMonth)(this.data.current);
             var month = [];
 
             var _iteratorNormalCompletion = true;
@@ -20882,7 +20882,7 @@ exports.default = {
             var _iteratorError = undefined;
 
             try {
-                for (var _iterator = (0, _dateFns.eachDayOfInterval)({
+                for (var _iterator = (0, _esm.eachDayOfInterval)({
                     start: monthStart,
                     end: monthEnd
                 })[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
@@ -20913,8 +20913,8 @@ exports.default = {
         },
         appendDay: function appendDay() {
 
-            var monthEnd = (0, _dateFns.lastDayOfMonth)(this.data.current);
-            var weekday = (0, _dateFns.getDay)(monthEnd);
+            var monthEnd = (0, _esm.lastDayOfMonth)(this.data.current);
+            var weekday = (0, _esm.getDay)(monthEnd);
             var appendDay = 6 - weekday;
             var append = [];
 
@@ -20929,7 +20929,7 @@ exports.default = {
 
                 append.unshift({
                     notCurrentMonth: true,
-                    date: (0, _dateFns.addDays)(monthEnd, appendDay + 1)
+                    date: (0, _esm.addDays)(monthEnd, appendDay + 1)
                 });
             }
 
@@ -20956,7 +20956,7 @@ exports.default = {
         },
         pickyears: function pickyears() {
 
-            var year = (0, _dateFns.getYear)(this.data.current) + this.data.yearPickOffset;
+            var year = (0, _esm.getYear)(this.data.current) + this.data.yearPickOffset;
             var start = year - yearRange;
             var end = year + yearRange;
             var years = [];
@@ -21034,7 +21034,7 @@ exports.default = {
 
             var result = false;
 
-            if (this.conf.highlightNow && (0, _dateFns.isSameDay)(date, this.data.now)) {
+            if (this.conf.highlightNow && (0, _esm.isSameDay)(date, this.data.now)) {
 
                 result = true;
             }
@@ -21050,13 +21050,13 @@ exports.default = {
                         var item = _step3.value;
 
 
-                        if (item instanceof Array && (0, _dateFns.isWithinInterval)(date, {
-                            start: (0, _dateFns.startOfDay)(item[0]),
-                            end: (0, _dateFns.endOfDay)(item[1])
+                        if (item instanceof Array && (0, _esm.isWithinInterval)(date, {
+                            start: (0, _esm.startOfDay)(item[0]),
+                            end: (0, _esm.endOfDay)(item[1])
                         })) {
 
                             result = true;
-                        } else if ((0, _dateFns.isSameDay)(date, item)) {
+                        } else if ((0, _esm.isSameDay)(date, item)) {
 
                             result = true;
                         }
@@ -21107,7 +21107,7 @@ exports.default = {
                 nextHighlight = this._isHighlight(nextDate);
             } else {
 
-                nextHighlight = this._isHighlight((0, _dateFns.addDays)(currentDate, 1));
+                nextHighlight = this._isHighlight((0, _esm.addDays)(currentDate, 1));
             }
 
             if (item.prev) {
@@ -21116,7 +21116,7 @@ exports.default = {
                 prevHighlight = this._isHighlight(prevDate);
             } else {
 
-                prevHighlight = this._isHighlight((0, _dateFns.addDays)(currentDate, -1));
+                prevHighlight = this._isHighlight((0, _esm.addDays)(currentDate, -1));
             }
 
             if (currentHighlight && prevHighlight && nextHighlight) {
@@ -21148,7 +21148,7 @@ exports.default = {
                     var mark = _step4.value;
 
 
-                    if ((0, _dateFns.isValid)(mark.start) && (0, _dateFns.isValid)(mark.end) && (0, _dateFns.isWithinInterval)(item.date, {
+                    if ((0, _esm.isValid)(mark.start) && (0, _esm.isValid)(mark.end) && (0, _esm.isWithinInterval)(item.date, {
                         start: mark.start,
                         end: mark.end
                     })) {
@@ -21194,7 +21194,7 @@ exports.default = {
                     var mark = _step5.value;
 
 
-                    if ((0, _dateFns.isValid)(mark.start) && (0, _dateFns.isValid)(mark.end) && (0, _dateFns.isWithinInterval)(item.date, {
+                    if ((0, _esm.isValid)(mark.start) && (0, _esm.isValid)(mark.end) && (0, _esm.isWithinInterval)(item.date, {
                         start: mark.start,
                         end: mark.end
                     })) {
@@ -21303,7 +21303,7 @@ exports.default = {
         },
         getDate: function getDate(format) {
 
-            return (0, _dateFns.format)(this.data.current, format);
+            return (0, _esm.format)(this.data.current, format);
         },
         getTime: function getTime() {
 
@@ -21327,12 +21327,12 @@ exports.default = {
             switch (unit) {
 
                 case 'month':
-                    this.data.current = (0, _dateFns.setMonth)(this.data.current, value);
+                    this.data.current = (0, _esm.setMonth)(this.data.current, value);
 
                     break;
 
                 case 'year':
-                    this.data.current = (0, _dateFns.setYear)(this.data.current, value);
+                    this.data.current = (0, _esm.setYear)(this.data.current, value);
 
                     break;
 
@@ -21353,17 +21353,17 @@ exports.default = {
             switch (unit) {
 
                 case 'day':
-                    this.data.current = (0, _dateFns.addDays)(this.data.current, amount);
+                    this.data.current = (0, _esm.addDays)(this.data.current, amount);
 
                     break;
 
                 case 'month':
-                    this.data.current = (0, _dateFns.addMonths)(this.data.current, amount);
+                    this.data.current = (0, _esm.addMonths)(this.data.current, amount);
 
                     break;
 
                 case 'year':
-                    this.data.current = (0, _dateFns.addYears)(this.data.current, amount);
+                    this.data.current = (0, _esm.addYears)(this.data.current, amount);
 
                     break;
 
@@ -21405,7 +21405,7 @@ exports.default = {
 
                         try {
 
-                            for (var _iterator7 = (0, _dateFns.eachDayOfInterval)({
+                            for (var _iterator7 = (0, _esm.eachDayOfInterval)({
                                 start: item[0],
                                 end: item[1]
                             })[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
@@ -21457,7 +21457,7 @@ exports.default = {
 
             for (var index in result) {
 
-                result[index] = (0, _dateFns.startOfDay)(result[index]);
+                result[index] = (0, _esm.startOfDay)(result[index]);
             }
 
             return result;
@@ -21474,7 +21474,7 @@ exports.default = {
     filters: {
         getDate: function getDate(val) {
 
-            return (0, _dateFns.getDate)(val);
+            return (0, _esm.getDate)(val);
         }
     },
     mounted: function mounted() {
@@ -21497,8 +21497,8 @@ exports.default = {
 
         this.$watch('data.current', function () {
 
-            var lastMonth = (0, _dateFns.format)(_this.data.current, 'YYYY-MM');
-            var lastYear = (0, _dateFns.format)(_this.data.current, 'YYYY');
+            var lastMonth = (0, _esm.format)(_this.data.current, 'YYYY-MM');
+            var lastYear = (0, _esm.format)(_this.data.current, 'YYYY');
 
             _this.$emit('change');
 
@@ -25392,7 +25392,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _dateFns = __webpack_require__(2);
+var _esm = __webpack_require__(2);
 
 var _standardDate = __webpack_require__(146);
 
@@ -25413,7 +25413,7 @@ var Dates = {
                 return this._dateGetStandardDate();
             }
 
-            return (0, _dateFns.parse)(_standardDate2.default + ' ' + str, 'YYYY-M-D ' + format, this._dateGetStandardDate());
+            return (0, _esm.parse)(_standardDate2.default + ' ' + str, 'YYYY-M-D ' + format, this._dateGetStandardDate());
         },
         _dateGetStandardDate: function _dateGetStandardDate() {
 
@@ -25436,7 +25436,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _dateFns = __webpack_require__(2);
+var _esm = __webpack_require__(2);
 
 var _standardDate = __webpack_require__(146);
 
@@ -25457,7 +25457,7 @@ var Time = {
                 return this._timeGetStandardDate();
             }
 
-            return (0, _dateFns.parse)(_standardDate2.default + ' ' + str, 'YYYY-M-D ' + format, this._timeGetStandardDate());
+            return (0, _esm.parse)(_standardDate2.default + ' ' + str, 'YYYY-M-D ' + format, this._timeGetStandardDate());
         },
         _timeSet: function _timeSet(type, value, originDate) {
 
@@ -25468,13 +25468,13 @@ var Time = {
 
             if (type === 'hour') {
 
-                originDate = (0, _dateFns.setHours)(originDate, value);
+                originDate = (0, _esm.setHours)(originDate, value);
             } else if (type === 'minute') {
 
-                originDate = (0, _dateFns.setMinutes)(originDate, value);
+                originDate = (0, _esm.setMinutes)(originDate, value);
             } else if (type === 'second') {
 
-                originDate = (0, _dateFns.setSeconds)(originDate, value);
+                originDate = (0, _esm.setSeconds)(originDate, value);
             }
 
             return originDate;
@@ -33686,1820 +33686,11 @@ if (false) {}
 /* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! tether 1.4.3 */
-
-(function(root, factory) {
-  if (true) {
-    !(__WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;!function(t,e){ true?!(__WEBPACK_AMD_DEFINE_FACTORY__ = (e),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
 				__WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-  } else {}
-}(this, function(require, exports, module) {
-
-'use strict';
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-var TetherBase = undefined;
-if (typeof TetherBase === 'undefined') {
-  TetherBase = { modules: [] };
-}
-
-var zeroElement = null;
-
-// Same as native getBoundingClientRect, except it takes into account parent <frame> offsets
-// if the element lies within a nested document (<frame> or <iframe>-like).
-function getActualBoundingClientRect(node) {
-  var boundingRect = node.getBoundingClientRect();
-
-  // The original object returned by getBoundingClientRect is immutable, so we clone it
-  // We can't use extend because the properties are not considered part of the object by hasOwnProperty in IE9
-  var rect = {};
-  for (var k in boundingRect) {
-    rect[k] = boundingRect[k];
-  }
-
-  if (node.ownerDocument !== document) {
-    var _frameElement = node.ownerDocument.defaultView.frameElement;
-    if (_frameElement) {
-      var frameRect = getActualBoundingClientRect(_frameElement);
-      rect.top += frameRect.top;
-      rect.bottom += frameRect.top;
-      rect.left += frameRect.left;
-      rect.right += frameRect.left;
-    }
-  }
-
-  return rect;
-}
-
-function getScrollParents(el) {
-  // In firefox if the el is inside an iframe with display: none; window.getComputedStyle() will return null;
-  // https://bugzilla.mozilla.org/show_bug.cgi?id=548397
-  var computedStyle = getComputedStyle(el) || {};
-  var position = computedStyle.position;
-  var parents = [];
-
-  if (position === 'fixed') {
-    return [el];
-  }
-
-  var parent = el;
-  while ((parent = parent.parentNode) && parent && parent.nodeType === 1) {
-    var style = undefined;
-    try {
-      style = getComputedStyle(parent);
-    } catch (err) {}
-
-    if (typeof style === 'undefined' || style === null) {
-      parents.push(parent);
-      return parents;
-    }
-
-    var _style = style;
-    var overflow = _style.overflow;
-    var overflowX = _style.overflowX;
-    var overflowY = _style.overflowY;
-
-    if (/(auto|scroll|overlay)/.test(overflow + overflowY + overflowX)) {
-      if (position !== 'absolute' || ['relative', 'absolute', 'fixed'].indexOf(style.position) >= 0) {
-        parents.push(parent);
-      }
-    }
-  }
-
-  parents.push(el.ownerDocument.body);
-
-  // If the node is within a frame, account for the parent window scroll
-  if (el.ownerDocument !== document) {
-    parents.push(el.ownerDocument.defaultView);
-  }
-
-  return parents;
-}
-
-var uniqueId = (function () {
-  var id = 0;
-  return function () {
-    return ++id;
-  };
-})();
-
-var zeroPosCache = {};
-var getOrigin = function getOrigin() {
-  // getBoundingClientRect is unfortunately too accurate.  It introduces a pixel or two of
-  // jitter as the user scrolls that messes with our ability to detect if two positions
-  // are equivilant or not.  We place an element at the top left of the page that will
-  // get the same jitter, so we can cancel the two out.
-  var node = zeroElement;
-  if (!node || !document.body.contains(node)) {
-    node = document.createElement('div');
-    node.setAttribute('data-tether-id', uniqueId());
-    extend(node.style, {
-      top: 0,
-      left: 0,
-      position: 'absolute'
-    });
-
-    document.body.appendChild(node);
-
-    zeroElement = node;
-  }
-
-  var id = node.getAttribute('data-tether-id');
-  if (typeof zeroPosCache[id] === 'undefined') {
-    zeroPosCache[id] = getActualBoundingClientRect(node);
-
-    // Clear the cache when this position call is done
-    defer(function () {
-      delete zeroPosCache[id];
-    });
-  }
-
-  return zeroPosCache[id];
-};
-
-function removeUtilElements() {
-  if (zeroElement) {
-    document.body.removeChild(zeroElement);
-  }
-  zeroElement = null;
-};
-
-function getBounds(el) {
-  var doc = undefined;
-  if (el === document) {
-    doc = document;
-    el = document.documentElement;
-  } else {
-    doc = el.ownerDocument;
-  }
-
-  var docEl = doc.documentElement;
-
-  var box = getActualBoundingClientRect(el);
-
-  var origin = getOrigin();
-
-  box.top -= origin.top;
-  box.left -= origin.left;
-
-  if (typeof box.width === 'undefined') {
-    box.width = document.body.scrollWidth - box.left - box.right;
-  }
-  if (typeof box.height === 'undefined') {
-    box.height = document.body.scrollHeight - box.top - box.bottom;
-  }
-
-  box.top = box.top - docEl.clientTop;
-  box.left = box.left - docEl.clientLeft;
-  box.right = doc.body.clientWidth - box.width - box.left;
-  box.bottom = doc.body.clientHeight - box.height - box.top;
-
-  return box;
-}
-
-function getOffsetParent(el) {
-  return el.offsetParent || document.documentElement;
-}
-
-var _scrollBarSize = null;
-function getScrollBarSize() {
-  if (_scrollBarSize) {
-    return _scrollBarSize;
-  }
-  var inner = document.createElement('div');
-  inner.style.width = '100%';
-  inner.style.height = '200px';
-
-  var outer = document.createElement('div');
-  extend(outer.style, {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    pointerEvents: 'none',
-    visibility: 'hidden',
-    width: '200px',
-    height: '150px',
-    overflow: 'hidden'
-  });
-
-  outer.appendChild(inner);
-
-  document.body.appendChild(outer);
-
-  var widthContained = inner.offsetWidth;
-  outer.style.overflow = 'scroll';
-  var widthScroll = inner.offsetWidth;
-
-  if (widthContained === widthScroll) {
-    widthScroll = outer.clientWidth;
-  }
-
-  document.body.removeChild(outer);
-
-  var width = widthContained - widthScroll;
-
-  _scrollBarSize = { width: width, height: width };
-  return _scrollBarSize;
-}
-
-function extend() {
-  var out = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-
-  var args = [];
-
-  Array.prototype.push.apply(args, arguments);
-
-  args.slice(1).forEach(function (obj) {
-    if (obj) {
-      for (var key in obj) {
-        if (({}).hasOwnProperty.call(obj, key)) {
-          out[key] = obj[key];
-        }
-      }
-    }
-  });
-
-  return out;
-}
-
-function removeClass(el, name) {
-  if (typeof el.classList !== 'undefined') {
-    name.split(' ').forEach(function (cls) {
-      if (cls.trim()) {
-        el.classList.remove(cls);
-      }
-    });
-  } else {
-    var regex = new RegExp('(^| )' + name.split(' ').join('|') + '( |$)', 'gi');
-    var className = getClassName(el).replace(regex, ' ');
-    setClassName(el, className);
-  }
-}
-
-function addClass(el, name) {
-  if (typeof el.classList !== 'undefined') {
-    name.split(' ').forEach(function (cls) {
-      if (cls.trim()) {
-        el.classList.add(cls);
-      }
-    });
-  } else {
-    removeClass(el, name);
-    var cls = getClassName(el) + (' ' + name);
-    setClassName(el, cls);
-  }
-}
-
-function hasClass(el, name) {
-  if (typeof el.classList !== 'undefined') {
-    return el.classList.contains(name);
-  }
-  var className = getClassName(el);
-  return new RegExp('(^| )' + name + '( |$)', 'gi').test(className);
-}
-
-function getClassName(el) {
-  // Can't use just SVGAnimatedString here since nodes within a Frame in IE have
-  // completely separately SVGAnimatedString base classes
-  if (el.className instanceof el.ownerDocument.defaultView.SVGAnimatedString) {
-    return el.className.baseVal;
-  }
-  return el.className;
-}
-
-function setClassName(el, className) {
-  el.setAttribute('class', className);
-}
-
-function updateClasses(el, add, all) {
-  // Of the set of 'all' classes, we need the 'add' classes, and only the
-  // 'add' classes to be set.
-  all.forEach(function (cls) {
-    if (add.indexOf(cls) === -1 && hasClass(el, cls)) {
-      removeClass(el, cls);
-    }
-  });
-
-  add.forEach(function (cls) {
-    if (!hasClass(el, cls)) {
-      addClass(el, cls);
-    }
-  });
-}
-
-var deferred = [];
-
-var defer = function defer(fn) {
-  deferred.push(fn);
-};
-
-var flush = function flush() {
-  var fn = undefined;
-  while (fn = deferred.pop()) {
-    fn();
-  }
-};
-
-var Evented = (function () {
-  function Evented() {
-    _classCallCheck(this, Evented);
-  }
-
-  _createClass(Evented, [{
-    key: 'on',
-    value: function on(event, handler, ctx) {
-      var once = arguments.length <= 3 || arguments[3] === undefined ? false : arguments[3];
-
-      if (typeof this.bindings === 'undefined') {
-        this.bindings = {};
-      }
-      if (typeof this.bindings[event] === 'undefined') {
-        this.bindings[event] = [];
-      }
-      this.bindings[event].push({ handler: handler, ctx: ctx, once: once });
-    }
-  }, {
-    key: 'once',
-    value: function once(event, handler, ctx) {
-      this.on(event, handler, ctx, true);
-    }
-  }, {
-    key: 'off',
-    value: function off(event, handler) {
-      if (typeof this.bindings === 'undefined' || typeof this.bindings[event] === 'undefined') {
-        return;
-      }
-
-      if (typeof handler === 'undefined') {
-        delete this.bindings[event];
-      } else {
-        var i = 0;
-        while (i < this.bindings[event].length) {
-          if (this.bindings[event][i].handler === handler) {
-            this.bindings[event].splice(i, 1);
-          } else {
-            ++i;
-          }
-        }
-      }
-    }
-  }, {
-    key: 'trigger',
-    value: function trigger(event) {
-      if (typeof this.bindings !== 'undefined' && this.bindings[event]) {
-        var i = 0;
-
-        for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-          args[_key - 1] = arguments[_key];
-        }
-
-        while (i < this.bindings[event].length) {
-          var _bindings$event$i = this.bindings[event][i];
-          var handler = _bindings$event$i.handler;
-          var ctx = _bindings$event$i.ctx;
-          var once = _bindings$event$i.once;
-
-          var context = ctx;
-          if (typeof context === 'undefined') {
-            context = this;
-          }
-
-          handler.apply(context, args);
-
-          if (once) {
-            this.bindings[event].splice(i, 1);
-          } else {
-            ++i;
-          }
-        }
-      }
-    }
-  }]);
-
-  return Evented;
-})();
-
-TetherBase.Utils = {
-  getActualBoundingClientRect: getActualBoundingClientRect,
-  getScrollParents: getScrollParents,
-  getBounds: getBounds,
-  getOffsetParent: getOffsetParent,
-  extend: extend,
-  addClass: addClass,
-  removeClass: removeClass,
-  hasClass: hasClass,
-  updateClasses: updateClasses,
-  defer: defer,
-  flush: flush,
-  uniqueId: uniqueId,
-  Evented: Evented,
-  getScrollBarSize: getScrollBarSize,
-  removeUtilElements: removeUtilElements
-};
-/* globals TetherBase, performance */
-
-'use strict';
-
-var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i['return']) _i['return'](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError('Invalid attempt to destructure non-iterable instance'); } }; })();
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-var _get = function get(_x6, _x7, _x8) { var _again = true; _function: while (_again) { var object = _x6, property = _x7, receiver = _x8; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x6 = parent; _x7 = property; _x8 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-if (typeof TetherBase === 'undefined') {
-  throw new Error('You must include the utils.js file before tether.js');
-}
-
-var _TetherBase$Utils = TetherBase.Utils;
-var getScrollParents = _TetherBase$Utils.getScrollParents;
-var getBounds = _TetherBase$Utils.getBounds;
-var getOffsetParent = _TetherBase$Utils.getOffsetParent;
-var extend = _TetherBase$Utils.extend;
-var addClass = _TetherBase$Utils.addClass;
-var removeClass = _TetherBase$Utils.removeClass;
-var updateClasses = _TetherBase$Utils.updateClasses;
-var defer = _TetherBase$Utils.defer;
-var flush = _TetherBase$Utils.flush;
-var getScrollBarSize = _TetherBase$Utils.getScrollBarSize;
-var removeUtilElements = _TetherBase$Utils.removeUtilElements;
-
-function within(a, b) {
-  var diff = arguments.length <= 2 || arguments[2] === undefined ? 1 : arguments[2];
-
-  return a + diff >= b && b >= a - diff;
-}
-
-var transformKey = (function () {
-  if (typeof document === 'undefined') {
-    return '';
-  }
-  var el = document.createElement('div');
-
-  var transforms = ['transform', 'WebkitTransform', 'OTransform', 'MozTransform', 'msTransform'];
-  for (var i = 0; i < transforms.length; ++i) {
-    var key = transforms[i];
-    if (el.style[key] !== undefined) {
-      return key;
-    }
-  }
-})();
-
-var tethers = [];
-
-var position = function position() {
-  tethers.forEach(function (tether) {
-    tether.position(false);
-  });
-  flush();
-};
-
-function now() {
-  if (typeof performance === 'object' && typeof performance.now === 'function') {
-    return performance.now();
-  }
-  return +new Date();
-}
-
-(function () {
-  var lastCall = null;
-  var lastDuration = null;
-  var pendingTimeout = null;
-
-  var tick = function tick() {
-    if (typeof lastDuration !== 'undefined' && lastDuration > 16) {
-      // We voluntarily throttle ourselves if we can't manage 60fps
-      lastDuration = Math.min(lastDuration - 16, 250);
-
-      // Just in case this is the last event, remember to position just once more
-      pendingTimeout = setTimeout(tick, 250);
-      return;
-    }
-
-    if (typeof lastCall !== 'undefined' && now() - lastCall < 10) {
-      // Some browsers call events a little too frequently, refuse to run more than is reasonable
-      return;
-    }
-
-    if (pendingTimeout != null) {
-      clearTimeout(pendingTimeout);
-      pendingTimeout = null;
-    }
-
-    lastCall = now();
-    position();
-    lastDuration = now() - lastCall;
-  };
-
-  if (typeof window !== 'undefined' && typeof window.addEventListener !== 'undefined') {
-    ['resize', 'scroll', 'touchmove'].forEach(function (event) {
-      window.addEventListener(event, tick);
-    });
-  }
-})();
-
-var MIRROR_LR = {
-  center: 'center',
-  left: 'right',
-  right: 'left'
-};
-
-var MIRROR_TB = {
-  middle: 'middle',
-  top: 'bottom',
-  bottom: 'top'
-};
-
-var OFFSET_MAP = {
-  top: 0,
-  left: 0,
-  middle: '50%',
-  center: '50%',
-  bottom: '100%',
-  right: '100%'
-};
-
-var autoToFixedAttachment = function autoToFixedAttachment(attachment, relativeToAttachment) {
-  var left = attachment.left;
-  var top = attachment.top;
-
-  if (left === 'auto') {
-    left = MIRROR_LR[relativeToAttachment.left];
-  }
-
-  if (top === 'auto') {
-    top = MIRROR_TB[relativeToAttachment.top];
-  }
-
-  return { left: left, top: top };
-};
-
-var attachmentToOffset = function attachmentToOffset(attachment) {
-  var left = attachment.left;
-  var top = attachment.top;
-
-  if (typeof OFFSET_MAP[attachment.left] !== 'undefined') {
-    left = OFFSET_MAP[attachment.left];
-  }
-
-  if (typeof OFFSET_MAP[attachment.top] !== 'undefined') {
-    top = OFFSET_MAP[attachment.top];
-  }
-
-  return { left: left, top: top };
-};
-
-function addOffset() {
-  var out = { top: 0, left: 0 };
-
-  for (var _len = arguments.length, offsets = Array(_len), _key = 0; _key < _len; _key++) {
-    offsets[_key] = arguments[_key];
-  }
-
-  offsets.forEach(function (_ref) {
-    var top = _ref.top;
-    var left = _ref.left;
-
-    if (typeof top === 'string') {
-      top = parseFloat(top, 10);
-    }
-    if (typeof left === 'string') {
-      left = parseFloat(left, 10);
-    }
-
-    out.top += top;
-    out.left += left;
-  });
-
-  return out;
-}
-
-function offsetToPx(offset, size) {
-  if (typeof offset.left === 'string' && offset.left.indexOf('%') !== -1) {
-    offset.left = parseFloat(offset.left, 10) / 100 * size.width;
-  }
-  if (typeof offset.top === 'string' && offset.top.indexOf('%') !== -1) {
-    offset.top = parseFloat(offset.top, 10) / 100 * size.height;
-  }
-
-  return offset;
-}
-
-var parseOffset = function parseOffset(value) {
-  var _value$split = value.split(' ');
-
-  var _value$split2 = _slicedToArray(_value$split, 2);
-
-  var top = _value$split2[0];
-  var left = _value$split2[1];
-
-  return { top: top, left: left };
-};
-var parseAttachment = parseOffset;
-
-var TetherClass = (function (_Evented) {
-  _inherits(TetherClass, _Evented);
-
-  function TetherClass(options) {
-    var _this = this;
-
-    _classCallCheck(this, TetherClass);
-
-    _get(Object.getPrototypeOf(TetherClass.prototype), 'constructor', this).call(this);
-    this.position = this.position.bind(this);
-
-    tethers.push(this);
-
-    this.history = [];
-
-    this.setOptions(options, false);
-
-    TetherBase.modules.forEach(function (module) {
-      if (typeof module.initialize !== 'undefined') {
-        module.initialize.call(_this);
-      }
-    });
-
-    this.position();
-  }
-
-  _createClass(TetherClass, [{
-    key: 'getClass',
-    value: function getClass() {
-      var key = arguments.length <= 0 || arguments[0] === undefined ? '' : arguments[0];
-      var classes = this.options.classes;
-
-      if (typeof classes !== 'undefined' && classes[key]) {
-        return this.options.classes[key];
-      } else if (this.options.classPrefix) {
-        return this.options.classPrefix + '-' + key;
-      } else {
-        return key;
-      }
-    }
-  }, {
-    key: 'setOptions',
-    value: function setOptions(options) {
-      var _this2 = this;
-
-      var pos = arguments.length <= 1 || arguments[1] === undefined ? true : arguments[1];
-
-      var defaults = {
-        offset: '0 0',
-        targetOffset: '0 0',
-        targetAttachment: 'auto auto',
-        classPrefix: 'tether'
-      };
-
-      this.options = extend(defaults, options);
-
-      var _options = this.options;
-      var element = _options.element;
-      var target = _options.target;
-      var targetModifier = _options.targetModifier;
-
-      this.element = element;
-      this.target = target;
-      this.targetModifier = targetModifier;
-
-      if (this.target === 'viewport') {
-        this.target = document.body;
-        this.targetModifier = 'visible';
-      } else if (this.target === 'scroll-handle') {
-        this.target = document.body;
-        this.targetModifier = 'scroll-handle';
-      }
-
-      ['element', 'target'].forEach(function (key) {
-        if (typeof _this2[key] === 'undefined') {
-          throw new Error('Tether Error: Both element and target must be defined');
-        }
-
-        if (typeof _this2[key].jquery !== 'undefined') {
-          _this2[key] = _this2[key][0];
-        } else if (typeof _this2[key] === 'string') {
-          _this2[key] = document.querySelector(_this2[key]);
-        }
-      });
-
-      addClass(this.element, this.getClass('element'));
-      if (!(this.options.addTargetClasses === false)) {
-        addClass(this.target, this.getClass('target'));
-      }
-
-      if (!this.options.attachment) {
-        throw new Error('Tether Error: You must provide an attachment');
-      }
-
-      this.targetAttachment = parseAttachment(this.options.targetAttachment);
-      this.attachment = parseAttachment(this.options.attachment);
-      this.offset = parseOffset(this.options.offset);
-      this.targetOffset = parseOffset(this.options.targetOffset);
-
-      if (typeof this.scrollParents !== 'undefined') {
-        this.disable();
-      }
-
-      if (this.targetModifier === 'scroll-handle') {
-        this.scrollParents = [this.target];
-      } else {
-        this.scrollParents = getScrollParents(this.target);
-      }
-
-      if (!(this.options.enabled === false)) {
-        this.enable(pos);
-      }
-    }
-  }, {
-    key: 'getTargetBounds',
-    value: function getTargetBounds() {
-      if (typeof this.targetModifier !== 'undefined') {
-        if (this.targetModifier === 'visible') {
-          if (this.target === document.body) {
-            return { top: pageYOffset, left: pageXOffset, height: innerHeight, width: innerWidth };
-          } else {
-            var bounds = getBounds(this.target);
-
-            var out = {
-              height: bounds.height,
-              width: bounds.width,
-              top: bounds.top,
-              left: bounds.left
-            };
-
-            out.height = Math.min(out.height, bounds.height - (pageYOffset - bounds.top));
-            out.height = Math.min(out.height, bounds.height - (bounds.top + bounds.height - (pageYOffset + innerHeight)));
-            out.height = Math.min(innerHeight, out.height);
-            out.height -= 2;
-
-            out.width = Math.min(out.width, bounds.width - (pageXOffset - bounds.left));
-            out.width = Math.min(out.width, bounds.width - (bounds.left + bounds.width - (pageXOffset + innerWidth)));
-            out.width = Math.min(innerWidth, out.width);
-            out.width -= 2;
-
-            if (out.top < pageYOffset) {
-              out.top = pageYOffset;
-            }
-            if (out.left < pageXOffset) {
-              out.left = pageXOffset;
-            }
-
-            return out;
-          }
-        } else if (this.targetModifier === 'scroll-handle') {
-          var bounds = undefined;
-          var target = this.target;
-          if (target === document.body) {
-            target = document.documentElement;
-
-            bounds = {
-              left: pageXOffset,
-              top: pageYOffset,
-              height: innerHeight,
-              width: innerWidth
-            };
-          } else {
-            bounds = getBounds(target);
-          }
-
-          var style = getComputedStyle(target);
-
-          var hasBottomScroll = target.scrollWidth > target.clientWidth || [style.overflow, style.overflowX].indexOf('scroll') >= 0 || this.target !== document.body;
-
-          var scrollBottom = 0;
-          if (hasBottomScroll) {
-            scrollBottom = 15;
-          }
-
-          var height = bounds.height - parseFloat(style.borderTopWidth) - parseFloat(style.borderBottomWidth) - scrollBottom;
-
-          var out = {
-            width: 15,
-            height: height * 0.975 * (height / target.scrollHeight),
-            left: bounds.left + bounds.width - parseFloat(style.borderLeftWidth) - 15
-          };
-
-          var fitAdj = 0;
-          if (height < 408 && this.target === document.body) {
-            fitAdj = -0.00011 * Math.pow(height, 2) - 0.00727 * height + 22.58;
-          }
-
-          if (this.target !== document.body) {
-            out.height = Math.max(out.height, 24);
-          }
-
-          var scrollPercentage = this.target.scrollTop / (target.scrollHeight - height);
-          out.top = scrollPercentage * (height - out.height - fitAdj) + bounds.top + parseFloat(style.borderTopWidth);
-
-          if (this.target === document.body) {
-            out.height = Math.max(out.height, 24);
-          }
-
-          return out;
-        }
-      } else {
-        return getBounds(this.target);
-      }
-    }
-  }, {
-    key: 'clearCache',
-    value: function clearCache() {
-      this._cache = {};
-    }
-  }, {
-    key: 'cache',
-    value: function cache(k, getter) {
-      // More than one module will often need the same DOM info, so
-      // we keep a cache which is cleared on each position call
-      if (typeof this._cache === 'undefined') {
-        this._cache = {};
-      }
-
-      if (typeof this._cache[k] === 'undefined') {
-        this._cache[k] = getter.call(this);
-      }
-
-      return this._cache[k];
-    }
-  }, {
-    key: 'enable',
-    value: function enable() {
-      var _this3 = this;
-
-      var pos = arguments.length <= 0 || arguments[0] === undefined ? true : arguments[0];
-
-      if (!(this.options.addTargetClasses === false)) {
-        addClass(this.target, this.getClass('enabled'));
-      }
-      addClass(this.element, this.getClass('enabled'));
-      this.enabled = true;
-
-      this.scrollParents.forEach(function (parent) {
-        if (parent !== _this3.target.ownerDocument) {
-          parent.addEventListener('scroll', _this3.position);
-        }
-      });
-
-      if (pos) {
-        this.position();
-      }
-    }
-  }, {
-    key: 'disable',
-    value: function disable() {
-      var _this4 = this;
-
-      removeClass(this.target, this.getClass('enabled'));
-      removeClass(this.element, this.getClass('enabled'));
-      this.enabled = false;
-
-      if (typeof this.scrollParents !== 'undefined') {
-        this.scrollParents.forEach(function (parent) {
-          parent.removeEventListener('scroll', _this4.position);
-        });
-      }
-    }
-  }, {
-    key: 'destroy',
-    value: function destroy() {
-      var _this5 = this;
-
-      this.disable();
-
-      tethers.forEach(function (tether, i) {
-        if (tether === _this5) {
-          tethers.splice(i, 1);
-        }
-      });
-
-      // Remove any elements we were using for convenience from the DOM
-      if (tethers.length === 0) {
-        removeUtilElements();
-      }
-    }
-  }, {
-    key: 'updateAttachClasses',
-    value: function updateAttachClasses(elementAttach, targetAttach) {
-      var _this6 = this;
-
-      elementAttach = elementAttach || this.attachment;
-      targetAttach = targetAttach || this.targetAttachment;
-      var sides = ['left', 'top', 'bottom', 'right', 'middle', 'center'];
-
-      if (typeof this._addAttachClasses !== 'undefined' && this._addAttachClasses.length) {
-        // updateAttachClasses can be called more than once in a position call, so
-        // we need to clean up after ourselves such that when the last defer gets
-        // ran it doesn't add any extra classes from previous calls.
-        this._addAttachClasses.splice(0, this._addAttachClasses.length);
-      }
-
-      if (typeof this._addAttachClasses === 'undefined') {
-        this._addAttachClasses = [];
-      }
-      var add = this._addAttachClasses;
-
-      if (elementAttach.top) {
-        add.push(this.getClass('element-attached') + '-' + elementAttach.top);
-      }
-      if (elementAttach.left) {
-        add.push(this.getClass('element-attached') + '-' + elementAttach.left);
-      }
-      if (targetAttach.top) {
-        add.push(this.getClass('target-attached') + '-' + targetAttach.top);
-      }
-      if (targetAttach.left) {
-        add.push(this.getClass('target-attached') + '-' + targetAttach.left);
-      }
-
-      var all = [];
-      sides.forEach(function (side) {
-        all.push(_this6.getClass('element-attached') + '-' + side);
-        all.push(_this6.getClass('target-attached') + '-' + side);
-      });
-
-      defer(function () {
-        if (!(typeof _this6._addAttachClasses !== 'undefined')) {
-          return;
-        }
-
-        updateClasses(_this6.element, _this6._addAttachClasses, all);
-        if (!(_this6.options.addTargetClasses === false)) {
-          updateClasses(_this6.target, _this6._addAttachClasses, all);
-        }
-
-        delete _this6._addAttachClasses;
-      });
-    }
-  }, {
-    key: 'position',
-    value: function position() {
-      var _this7 = this;
-
-      var flushChanges = arguments.length <= 0 || arguments[0] === undefined ? true : arguments[0];
-
-      // flushChanges commits the changes immediately, leave true unless you are positioning multiple
-      // tethers (in which case call Tether.Utils.flush yourself when you're done)
-
-      if (!this.enabled) {
-        return;
-      }
-
-      this.clearCache();
-
-      // Turn 'auto' attachments into the appropriate corner or edge
-      var targetAttachment = autoToFixedAttachment(this.targetAttachment, this.attachment);
-
-      this.updateAttachClasses(this.attachment, targetAttachment);
-
-      var elementPos = this.cache('element-bounds', function () {
-        return getBounds(_this7.element);
-      });
-
-      var width = elementPos.width;
-      var height = elementPos.height;
-
-      if (width === 0 && height === 0 && typeof this.lastSize !== 'undefined') {
-        var _lastSize = this.lastSize;
-
-        // We cache the height and width to make it possible to position elements that are
-        // getting hidden.
-        width = _lastSize.width;
-        height = _lastSize.height;
-      } else {
-        this.lastSize = { width: width, height: height };
-      }
-
-      var targetPos = this.cache('target-bounds', function () {
-        return _this7.getTargetBounds();
-      });
-      var targetSize = targetPos;
-
-      // Get an actual px offset from the attachment
-      var offset = offsetToPx(attachmentToOffset(this.attachment), { width: width, height: height });
-      var targetOffset = offsetToPx(attachmentToOffset(targetAttachment), targetSize);
-
-      var manualOffset = offsetToPx(this.offset, { width: width, height: height });
-      var manualTargetOffset = offsetToPx(this.targetOffset, targetSize);
-
-      // Add the manually provided offset
-      offset = addOffset(offset, manualOffset);
-      targetOffset = addOffset(targetOffset, manualTargetOffset);
-
-      // It's now our goal to make (element position + offset) == (target position + target offset)
-      var left = targetPos.left + targetOffset.left - offset.left;
-      var top = targetPos.top + targetOffset.top - offset.top;
-
-      for (var i = 0; i < TetherBase.modules.length; ++i) {
-        var _module2 = TetherBase.modules[i];
-        var ret = _module2.position.call(this, {
-          left: left,
-          top: top,
-          targetAttachment: targetAttachment,
-          targetPos: targetPos,
-          elementPos: elementPos,
-          offset: offset,
-          targetOffset: targetOffset,
-          manualOffset: manualOffset,
-          manualTargetOffset: manualTargetOffset,
-          scrollbarSize: scrollbarSize,
-          attachment: this.attachment
-        });
-
-        if (ret === false) {
-          return false;
-        } else if (typeof ret === 'undefined' || typeof ret !== 'object') {
-          continue;
-        } else {
-          top = ret.top;
-          left = ret.left;
-        }
-      }
-
-      // We describe the position three different ways to give the optimizer
-      // a chance to decide the best possible way to position the element
-      // with the fewest repaints.
-      var next = {
-        // It's position relative to the page (absolute positioning when
-        // the element is a child of the body)
-        page: {
-          top: top,
-          left: left
-        },
-
-        // It's position relative to the viewport (fixed positioning)
-        viewport: {
-          top: top - pageYOffset,
-          bottom: pageYOffset - top - height + innerHeight,
-          left: left - pageXOffset,
-          right: pageXOffset - left - width + innerWidth
-        }
-      };
-
-      var doc = this.target.ownerDocument;
-      var win = doc.defaultView;
-
-      var scrollbarSize = undefined;
-      if (win.innerHeight > doc.documentElement.clientHeight) {
-        scrollbarSize = this.cache('scrollbar-size', getScrollBarSize);
-        next.viewport.bottom -= scrollbarSize.height;
-      }
-
-      if (win.innerWidth > doc.documentElement.clientWidth) {
-        scrollbarSize = this.cache('scrollbar-size', getScrollBarSize);
-        next.viewport.right -= scrollbarSize.width;
-      }
-
-      if (['', 'static'].indexOf(doc.body.style.position) === -1 || ['', 'static'].indexOf(doc.body.parentElement.style.position) === -1) {
-        // Absolute positioning in the body will be relative to the page, not the 'initial containing block'
-        next.page.bottom = doc.body.scrollHeight - top - height;
-        next.page.right = doc.body.scrollWidth - left - width;
-      }
-
-      if (typeof this.options.optimizations !== 'undefined' && this.options.optimizations.moveElement !== false && !(typeof this.targetModifier !== 'undefined')) {
-        (function () {
-          var offsetParent = _this7.cache('target-offsetparent', function () {
-            return getOffsetParent(_this7.target);
-          });
-          var offsetPosition = _this7.cache('target-offsetparent-bounds', function () {
-            return getBounds(offsetParent);
-          });
-          var offsetParentStyle = getComputedStyle(offsetParent);
-          var offsetParentSize = offsetPosition;
-
-          var offsetBorder = {};
-          ['Top', 'Left', 'Bottom', 'Right'].forEach(function (side) {
-            offsetBorder[side.toLowerCase()] = parseFloat(offsetParentStyle['border' + side + 'Width']);
-          });
-
-          offsetPosition.right = doc.body.scrollWidth - offsetPosition.left - offsetParentSize.width + offsetBorder.right;
-          offsetPosition.bottom = doc.body.scrollHeight - offsetPosition.top - offsetParentSize.height + offsetBorder.bottom;
-
-          if (next.page.top >= offsetPosition.top + offsetBorder.top && next.page.bottom >= offsetPosition.bottom) {
-            if (next.page.left >= offsetPosition.left + offsetBorder.left && next.page.right >= offsetPosition.right) {
-              // We're within the visible part of the target's scroll parent
-              var scrollTop = offsetParent.scrollTop;
-              var scrollLeft = offsetParent.scrollLeft;
-
-              // It's position relative to the target's offset parent (absolute positioning when
-              // the element is moved to be a child of the target's offset parent).
-              next.offset = {
-                top: next.page.top - offsetPosition.top + scrollTop - offsetBorder.top,
-                left: next.page.left - offsetPosition.left + scrollLeft - offsetBorder.left
-              };
-            }
-          }
-        })();
-      }
-
-      // We could also travel up the DOM and try each containing context, rather than only
-      // looking at the body, but we're gonna get diminishing returns.
-
-      this.move(next);
-
-      this.history.unshift(next);
-
-      if (this.history.length > 3) {
-        this.history.pop();
-      }
-
-      if (flushChanges) {
-        flush();
-      }
-
-      return true;
-    }
-
-    // THE ISSUE
-  }, {
-    key: 'move',
-    value: function move(pos) {
-      var _this8 = this;
-
-      if (!(typeof this.element.parentNode !== 'undefined')) {
-        return;
-      }
-
-      var same = {};
-
-      for (var type in pos) {
-        same[type] = {};
-
-        for (var key in pos[type]) {
-          var found = false;
-
-          for (var i = 0; i < this.history.length; ++i) {
-            var point = this.history[i];
-            if (typeof point[type] !== 'undefined' && !within(point[type][key], pos[type][key])) {
-              found = true;
-              break;
-            }
-          }
-
-          if (!found) {
-            same[type][key] = true;
-          }
-        }
-      }
-
-      var css = { top: '', left: '', right: '', bottom: '' };
-
-      var transcribe = function transcribe(_same, _pos) {
-        var hasOptimizations = typeof _this8.options.optimizations !== 'undefined';
-        var gpu = hasOptimizations ? _this8.options.optimizations.gpu : null;
-        if (gpu !== false) {
-          var yPos = undefined,
-              xPos = undefined;
-          if (_same.top) {
-            css.top = 0;
-            yPos = _pos.top;
-          } else {
-            css.bottom = 0;
-            yPos = -_pos.bottom;
-          }
-
-          if (_same.left) {
-            css.left = 0;
-            xPos = _pos.left;
-          } else {
-            css.right = 0;
-            xPos = -_pos.right;
-          }
-
-          if (window.matchMedia) {
-            // HubSpot/tether#207
-            var retina = window.matchMedia('only screen and (min-resolution: 1.3dppx)').matches || window.matchMedia('only screen and (-webkit-min-device-pixel-ratio: 1.3)').matches;
-            if (!retina) {
-              xPos = Math.round(xPos);
-              yPos = Math.round(yPos);
-            }
-          }
-
-          css[transformKey] = 'translateX(' + xPos + 'px) translateY(' + yPos + 'px)';
-
-          if (transformKey !== 'msTransform') {
-            // The Z transform will keep this in the GPU (faster, and prevents artifacts),
-            // but IE9 doesn't support 3d transforms and will choke.
-            css[transformKey] += " translateZ(0)";
-          }
-        } else {
-          if (_same.top) {
-            css.top = _pos.top + 'px';
-          } else {
-            css.bottom = _pos.bottom + 'px';
-          }
-
-          if (_same.left) {
-            css.left = _pos.left + 'px';
-          } else {
-            css.right = _pos.right + 'px';
-          }
-        }
-      };
-
-      var moved = false;
-      if ((same.page.top || same.page.bottom) && (same.page.left || same.page.right)) {
-        css.position = 'absolute';
-        transcribe(same.page, pos.page);
-      } else if ((same.viewport.top || same.viewport.bottom) && (same.viewport.left || same.viewport.right)) {
-        css.position = 'fixed';
-        transcribe(same.viewport, pos.viewport);
-      } else if (typeof same.offset !== 'undefined' && same.offset.top && same.offset.left) {
-        (function () {
-          css.position = 'absolute';
-          var offsetParent = _this8.cache('target-offsetparent', function () {
-            return getOffsetParent(_this8.target);
-          });
-
-          if (getOffsetParent(_this8.element) !== offsetParent) {
-            defer(function () {
-              _this8.element.parentNode.removeChild(_this8.element);
-              offsetParent.appendChild(_this8.element);
-            });
-          }
-
-          transcribe(same.offset, pos.offset);
-          moved = true;
-        })();
-      } else {
-        css.position = 'absolute';
-        transcribe({ top: true, left: true }, pos.page);
-      }
-
-      if (!moved) {
-        if (this.options.bodyElement) {
-          if (this.element.parentNode !== this.options.bodyElement) {
-            this.options.bodyElement.appendChild(this.element);
-          }
-        } else {
-          var offsetParentIsBody = true;
-          var currentNode = this.element.parentNode;
-          while (currentNode && currentNode.nodeType === 1 && currentNode.tagName !== 'BODY') {
-            if (getComputedStyle(currentNode).position !== 'static') {
-              offsetParentIsBody = false;
-              break;
-            }
-
-            currentNode = currentNode.parentNode;
-          }
-
-          if (!offsetParentIsBody) {
-            this.element.parentNode.removeChild(this.element);
-            this.element.ownerDocument.body.appendChild(this.element);
-          }
-        }
-      }
-
-      // Any css change will trigger a repaint, so let's avoid one if nothing changed
-      var writeCSS = {};
-      var write = false;
-      for (var key in css) {
-        var val = css[key];
-        var elVal = this.element.style[key];
-
-        if (elVal !== val) {
-          write = true;
-          writeCSS[key] = val;
-        }
-      }
-
-      if (write) {
-        defer(function () {
-          extend(_this8.element.style, writeCSS);
-          _this8.trigger('repositioned');
-        });
-      }
-    }
-  }]);
-
-  return TetherClass;
-})(Evented);
-
-TetherClass.modules = [];
-
-TetherBase.position = position;
-
-var Tether = extend(TetherClass, TetherBase);
-/* globals TetherBase */
-
-'use strict';
-
-var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i['return']) _i['return'](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError('Invalid attempt to destructure non-iterable instance'); } }; })();
-
-var _TetherBase$Utils = TetherBase.Utils;
-var getBounds = _TetherBase$Utils.getBounds;
-var extend = _TetherBase$Utils.extend;
-var updateClasses = _TetherBase$Utils.updateClasses;
-var defer = _TetherBase$Utils.defer;
-
-var BOUNDS_FORMAT = ['left', 'top', 'right', 'bottom'];
-
-function getBoundingRect(tether, to) {
-  if (to === 'scrollParent') {
-    to = tether.scrollParents[0];
-  } else if (to === 'window') {
-    to = [pageXOffset, pageYOffset, innerWidth + pageXOffset, innerHeight + pageYOffset];
-  }
-
-  if (to === document) {
-    to = to.documentElement;
-  }
-
-  if (typeof to.nodeType !== 'undefined') {
-    (function () {
-      var node = to;
-      var size = getBounds(to);
-      var pos = size;
-      var style = getComputedStyle(to);
-
-      to = [pos.left, pos.top, size.width + pos.left, size.height + pos.top];
-
-      // Account any parent Frames scroll offset
-      if (node.ownerDocument !== document) {
-        var win = node.ownerDocument.defaultView;
-        to[0] += win.pageXOffset;
-        to[1] += win.pageYOffset;
-        to[2] += win.pageXOffset;
-        to[3] += win.pageYOffset;
-      }
-
-      BOUNDS_FORMAT.forEach(function (side, i) {
-        side = side[0].toUpperCase() + side.substr(1);
-        if (side === 'Top' || side === 'Left') {
-          to[i] += parseFloat(style['border' + side + 'Width']);
-        } else {
-          to[i] -= parseFloat(style['border' + side + 'Width']);
-        }
-      });
-    })();
-  }
-
-  return to;
-}
-
-TetherBase.modules.push({
-  position: function position(_ref) {
-    var _this = this;
-
-    var top = _ref.top;
-    var left = _ref.left;
-    var targetAttachment = _ref.targetAttachment;
-
-    if (!this.options.constraints) {
-      return true;
-    }
-
-    var _cache = this.cache('element-bounds', function () {
-      return getBounds(_this.element);
-    });
-
-    var height = _cache.height;
-    var width = _cache.width;
-
-    if (width === 0 && height === 0 && typeof this.lastSize !== 'undefined') {
-      var _lastSize = this.lastSize;
-
-      // Handle the item getting hidden as a result of our positioning without glitching
-      // the classes in and out
-      width = _lastSize.width;
-      height = _lastSize.height;
-    }
-
-    var targetSize = this.cache('target-bounds', function () {
-      return _this.getTargetBounds();
-    });
-
-    var targetHeight = targetSize.height;
-    var targetWidth = targetSize.width;
-
-    var allClasses = [this.getClass('pinned'), this.getClass('out-of-bounds')];
-
-    this.options.constraints.forEach(function (constraint) {
-      var outOfBoundsClass = constraint.outOfBoundsClass;
-      var pinnedClass = constraint.pinnedClass;
-
-      if (outOfBoundsClass) {
-        allClasses.push(outOfBoundsClass);
-      }
-      if (pinnedClass) {
-        allClasses.push(pinnedClass);
-      }
-    });
-
-    allClasses.forEach(function (cls) {
-      ['left', 'top', 'right', 'bottom'].forEach(function (side) {
-        allClasses.push(cls + '-' + side);
-      });
-    });
-
-    var addClasses = [];
-
-    var tAttachment = extend({}, targetAttachment);
-    var eAttachment = extend({}, this.attachment);
-
-    this.options.constraints.forEach(function (constraint) {
-      var to = constraint.to;
-      var attachment = constraint.attachment;
-      var pin = constraint.pin;
-
-      if (typeof attachment === 'undefined') {
-        attachment = '';
-      }
-
-      var changeAttachX = undefined,
-          changeAttachY = undefined;
-      if (attachment.indexOf(' ') >= 0) {
-        var _attachment$split = attachment.split(' ');
-
-        var _attachment$split2 = _slicedToArray(_attachment$split, 2);
-
-        changeAttachY = _attachment$split2[0];
-        changeAttachX = _attachment$split2[1];
-      } else {
-        changeAttachX = changeAttachY = attachment;
-      }
-
-      var bounds = getBoundingRect(_this, to);
-
-      if (changeAttachY === 'target' || changeAttachY === 'both') {
-        if (top < bounds[1] && tAttachment.top === 'top') {
-          top += targetHeight;
-          tAttachment.top = 'bottom';
-        }
-
-        if (top + height > bounds[3] && tAttachment.top === 'bottom') {
-          top -= targetHeight;
-          tAttachment.top = 'top';
-        }
-      }
-
-      if (changeAttachY === 'together') {
-        if (tAttachment.top === 'top') {
-          if (eAttachment.top === 'bottom' && top < bounds[1]) {
-            top += targetHeight;
-            tAttachment.top = 'bottom';
-
-            top += height;
-            eAttachment.top = 'top';
-          } else if (eAttachment.top === 'top' && top + height > bounds[3] && top - (height - targetHeight) >= bounds[1]) {
-            top -= height - targetHeight;
-            tAttachment.top = 'bottom';
-
-            eAttachment.top = 'bottom';
-          }
-        }
-
-        if (tAttachment.top === 'bottom') {
-          if (eAttachment.top === 'top' && top + height > bounds[3]) {
-            top -= targetHeight;
-            tAttachment.top = 'top';
-
-            top -= height;
-            eAttachment.top = 'bottom';
-          } else if (eAttachment.top === 'bottom' && top < bounds[1] && top + (height * 2 - targetHeight) <= bounds[3]) {
-            top += height - targetHeight;
-            tAttachment.top = 'top';
-
-            eAttachment.top = 'top';
-          }
-        }
-
-        if (tAttachment.top === 'middle') {
-          if (top + height > bounds[3] && eAttachment.top === 'top') {
-            top -= height;
-            eAttachment.top = 'bottom';
-          } else if (top < bounds[1] && eAttachment.top === 'bottom') {
-            top += height;
-            eAttachment.top = 'top';
-          }
-        }
-      }
-
-      if (changeAttachX === 'target' || changeAttachX === 'both') {
-        if (left < bounds[0] && tAttachment.left === 'left') {
-          left += targetWidth;
-          tAttachment.left = 'right';
-        }
-
-        if (left + width > bounds[2] && tAttachment.left === 'right') {
-          left -= targetWidth;
-          tAttachment.left = 'left';
-        }
-      }
-
-      if (changeAttachX === 'together') {
-        if (left < bounds[0] && tAttachment.left === 'left') {
-          if (eAttachment.left === 'right') {
-            left += targetWidth;
-            tAttachment.left = 'right';
-
-            left += width;
-            eAttachment.left = 'left';
-          } else if (eAttachment.left === 'left') {
-            left += targetWidth;
-            tAttachment.left = 'right';
-
-            left -= width;
-            eAttachment.left = 'right';
-          }
-        } else if (left + width > bounds[2] && tAttachment.left === 'right') {
-          if (eAttachment.left === 'left') {
-            left -= targetWidth;
-            tAttachment.left = 'left';
-
-            left -= width;
-            eAttachment.left = 'right';
-          } else if (eAttachment.left === 'right') {
-            left -= targetWidth;
-            tAttachment.left = 'left';
-
-            left += width;
-            eAttachment.left = 'left';
-          }
-        } else if (tAttachment.left === 'center') {
-          if (left + width > bounds[2] && eAttachment.left === 'left') {
-            left -= width;
-            eAttachment.left = 'right';
-          } else if (left < bounds[0] && eAttachment.left === 'right') {
-            left += width;
-            eAttachment.left = 'left';
-          }
-        }
-      }
-
-      if (changeAttachY === 'element' || changeAttachY === 'both') {
-        if (top < bounds[1] && eAttachment.top === 'bottom') {
-          top += height;
-          eAttachment.top = 'top';
-        }
-
-        if (top + height > bounds[3] && eAttachment.top === 'top') {
-          top -= height;
-          eAttachment.top = 'bottom';
-        }
-      }
-
-      if (changeAttachX === 'element' || changeAttachX === 'both') {
-        if (left < bounds[0]) {
-          if (eAttachment.left === 'right') {
-            left += width;
-            eAttachment.left = 'left';
-          } else if (eAttachment.left === 'center') {
-            left += width / 2;
-            eAttachment.left = 'left';
-          }
-        }
-
-        if (left + width > bounds[2]) {
-          if (eAttachment.left === 'left') {
-            left -= width;
-            eAttachment.left = 'right';
-          } else if (eAttachment.left === 'center') {
-            left -= width / 2;
-            eAttachment.left = 'right';
-          }
-        }
-      }
-
-      if (typeof pin === 'string') {
-        pin = pin.split(',').map(function (p) {
-          return p.trim();
-        });
-      } else if (pin === true) {
-        pin = ['top', 'left', 'right', 'bottom'];
-      }
-
-      pin = pin || [];
-
-      var pinned = [];
-      var oob = [];
-
-      if (top < bounds[1]) {
-        if (pin.indexOf('top') >= 0) {
-          top = bounds[1];
-          pinned.push('top');
-        } else {
-          oob.push('top');
-        }
-      }
-
-      if (top + height > bounds[3]) {
-        if (pin.indexOf('bottom') >= 0) {
-          top = bounds[3] - height;
-          pinned.push('bottom');
-        } else {
-          oob.push('bottom');
-        }
-      }
-
-      if (left < bounds[0]) {
-        if (pin.indexOf('left') >= 0) {
-          left = bounds[0];
-          pinned.push('left');
-        } else {
-          oob.push('left');
-        }
-      }
-
-      if (left + width > bounds[2]) {
-        if (pin.indexOf('right') >= 0) {
-          left = bounds[2] - width;
-          pinned.push('right');
-        } else {
-          oob.push('right');
-        }
-      }
-
-      if (pinned.length) {
-        (function () {
-          var pinnedClass = undefined;
-          if (typeof _this.options.pinnedClass !== 'undefined') {
-            pinnedClass = _this.options.pinnedClass;
-          } else {
-            pinnedClass = _this.getClass('pinned');
-          }
-
-          addClasses.push(pinnedClass);
-          pinned.forEach(function (side) {
-            addClasses.push(pinnedClass + '-' + side);
-          });
-        })();
-      }
-
-      if (oob.length) {
-        (function () {
-          var oobClass = undefined;
-          if (typeof _this.options.outOfBoundsClass !== 'undefined') {
-            oobClass = _this.options.outOfBoundsClass;
-          } else {
-            oobClass = _this.getClass('out-of-bounds');
-          }
-
-          addClasses.push(oobClass);
-          oob.forEach(function (side) {
-            addClasses.push(oobClass + '-' + side);
-          });
-        })();
-      }
-
-      if (pinned.indexOf('left') >= 0 || pinned.indexOf('right') >= 0) {
-        eAttachment.left = tAttachment.left = false;
-      }
-      if (pinned.indexOf('top') >= 0 || pinned.indexOf('bottom') >= 0) {
-        eAttachment.top = tAttachment.top = false;
-      }
-
-      if (tAttachment.top !== targetAttachment.top || tAttachment.left !== targetAttachment.left || eAttachment.top !== _this.attachment.top || eAttachment.left !== _this.attachment.left) {
-        _this.updateAttachClasses(eAttachment, tAttachment);
-        _this.trigger('update', {
-          attachment: eAttachment,
-          targetAttachment: tAttachment
-        });
-      }
-    });
-
-    defer(function () {
-      if (!(_this.options.addTargetClasses === false)) {
-        updateClasses(_this.target, addClasses, allClasses);
-      }
-      updateClasses(_this.element, addClasses, allClasses);
-    });
-
-    return { top: top, left: left };
-  }
-});
-/* globals TetherBase */
-
-'use strict';
-
-var _TetherBase$Utils = TetherBase.Utils;
-var getBounds = _TetherBase$Utils.getBounds;
-var updateClasses = _TetherBase$Utils.updateClasses;
-var defer = _TetherBase$Utils.defer;
-
-TetherBase.modules.push({
-  position: function position(_ref) {
-    var _this = this;
-
-    var top = _ref.top;
-    var left = _ref.left;
-
-    var _cache = this.cache('element-bounds', function () {
-      return getBounds(_this.element);
-    });
-
-    var height = _cache.height;
-    var width = _cache.width;
-
-    var targetPos = this.getTargetBounds();
-
-    var bottom = top + height;
-    var right = left + width;
-
-    var abutted = [];
-    if (top <= targetPos.bottom && bottom >= targetPos.top) {
-      ['left', 'right'].forEach(function (side) {
-        var targetPosSide = targetPos[side];
-        if (targetPosSide === left || targetPosSide === right) {
-          abutted.push(side);
-        }
-      });
-    }
-
-    if (left <= targetPos.right && right >= targetPos.left) {
-      ['top', 'bottom'].forEach(function (side) {
-        var targetPosSide = targetPos[side];
-        if (targetPosSide === top || targetPosSide === bottom) {
-          abutted.push(side);
-        }
-      });
-    }
-
-    var allClasses = [];
-    var addClasses = [];
-
-    var sides = ['left', 'top', 'right', 'bottom'];
-    allClasses.push(this.getClass('abutted'));
-    sides.forEach(function (side) {
-      allClasses.push(_this.getClass('abutted') + '-' + side);
-    });
-
-    if (abutted.length) {
-      addClasses.push(this.getClass('abutted'));
-    }
-
-    abutted.forEach(function (side) {
-      addClasses.push(_this.getClass('abutted') + '-' + side);
-    });
-
-    defer(function () {
-      if (!(_this.options.addTargetClasses === false)) {
-        updateClasses(_this.target, addClasses, allClasses);
-      }
-      updateClasses(_this.element, addClasses, allClasses);
-    });
-
-    return true;
-  }
-});
-/* globals TetherBase */
-
-'use strict';
-
-var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i['return']) _i['return'](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError('Invalid attempt to destructure non-iterable instance'); } }; })();
-
-TetherBase.modules.push({
-  position: function position(_ref) {
-    var top = _ref.top;
-    var left = _ref.left;
-
-    if (!this.options.shift) {
-      return;
-    }
-
-    var shift = this.options.shift;
-    if (typeof this.options.shift === 'function') {
-      shift = this.options.shift.call(this, { top: top, left: left });
-    }
-
-    var shiftTop = undefined,
-        shiftLeft = undefined;
-    if (typeof shift === 'string') {
-      shift = shift.split(' ');
-      shift[1] = shift[1] || shift[0];
-
-      var _shift = shift;
-
-      var _shift2 = _slicedToArray(_shift, 2);
-
-      shiftTop = _shift2[0];
-      shiftLeft = _shift2[1];
-
-      shiftTop = parseFloat(shiftTop, 10);
-      shiftLeft = parseFloat(shiftLeft, 10);
-    } else {
-      shiftTop = shift.top;
-      shiftLeft = shift.left;
-    }
-
-    top += shiftTop;
-    left += shiftLeft;
-
-    return { top: top, left: left };
-  }
-});
-return Tether;
-
-}));
-
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)):undefined}(this,function(t,e,o){"use strict";function i(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}function n(t){var e=t.getBoundingClientRect(),o={};for(var i in e)o[i]=e[i];if(t.ownerDocument!==document){var r=t.ownerDocument.defaultView.frameElement;if(r){var s=n(r);o.top+=s.top,o.bottom+=s.top,o.left+=s.left,o.right+=s.left}}return o}function r(t){var e=getComputedStyle(t)||{},o=e.position,i=[];if("fixed"===o)return[t];for(var n=t;(n=n.parentNode)&&n&&1===n.nodeType;){var r=void 0;try{r=getComputedStyle(n)}catch(s){}if("undefined"==typeof r||null===r)return i.push(n),i;var a=r,f=a.overflow,l=a.overflowX,h=a.overflowY;/(auto|scroll|overlay)/.test(f+h+l)&&("absolute"!==o||["relative","absolute","fixed"].indexOf(r.position)>=0)&&i.push(n)}return i.push(t.ownerDocument.body),t.ownerDocument!==document&&i.push(t.ownerDocument.defaultView),i}function s(){A&&document.body.removeChild(A),A=null}function a(t){var e=void 0;t===document?(e=document,t=document.documentElement):e=t.ownerDocument;var o=e.documentElement,i=n(t),r=P();return i.top-=r.top,i.left-=r.left,"undefined"==typeof i.width&&(i.width=document.body.scrollWidth-i.left-i.right),"undefined"==typeof i.height&&(i.height=document.body.scrollHeight-i.top-i.bottom),i.top=i.top-o.clientTop,i.left=i.left-o.clientLeft,i.right=e.body.clientWidth-i.width-i.left,i.bottom=e.body.clientHeight-i.height-i.top,i}function f(t){return t.offsetParent||document.documentElement}function l(){if(M)return M;var t=document.createElement("div");t.style.width="100%",t.style.height="200px";var e=document.createElement("div");h(e.style,{position:"absolute",top:0,left:0,pointerEvents:"none",visibility:"hidden",width:"200px",height:"150px",overflow:"hidden"}),e.appendChild(t),document.body.appendChild(e);var o=t.offsetWidth;e.style.overflow="scroll";var i=t.offsetWidth;o===i&&(i=e.clientWidth),document.body.removeChild(e);var n=o-i;return M={width:n,height:n}}function h(){var t=arguments.length<=0||void 0===arguments[0]?{}:arguments[0],e=[];return Array.prototype.push.apply(e,arguments),e.slice(1).forEach(function(e){if(e)for(var o in e)({}).hasOwnProperty.call(e,o)&&(t[o]=e[o])}),t}function d(t,e){if("undefined"!=typeof t.classList)e.split(" ").forEach(function(e){e.trim()&&t.classList.remove(e)});else{var o=new RegExp("(^| )"+e.split(" ").join("|")+"( |$)","gi"),i=c(t).replace(o," ");g(t,i)}}function p(t,e){if("undefined"!=typeof t.classList)e.split(" ").forEach(function(e){e.trim()&&t.classList.add(e)});else{d(t,e);var o=c(t)+(" "+e);g(t,o)}}function u(t,e){if("undefined"!=typeof t.classList)return t.classList.contains(e);var o=c(t);return new RegExp("(^| )"+e+"( |$)","gi").test(o)}function c(t){return t.className instanceof t.ownerDocument.defaultView.SVGAnimatedString?t.className.baseVal:t.className}function g(t,e){t.setAttribute("class",e)}function m(t,e,o){o.forEach(function(o){e.indexOf(o)===-1&&u(t,o)&&d(t,o)}),e.forEach(function(e){u(t,e)||p(t,e)})}function i(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}function v(t,e){if("function"!=typeof e&&null!==e)throw new TypeError("Super expression must either be null or a function, not "+typeof e);t.prototype=Object.create(e&&e.prototype,{constructor:{value:t,enumerable:!1,writable:!0,configurable:!0}}),e&&(Object.setPrototypeOf?Object.setPrototypeOf(t,e):t.__proto__=e)}function y(t,e){var o=arguments.length<=2||void 0===arguments[2]?1:arguments[2];return t+o>=e&&e>=t-o}function b(){return"object"==typeof performance&&"function"==typeof performance.now?performance.now():+new Date}function w(){for(var t={top:0,left:0},e=arguments.length,o=Array(e),i=0;i<e;i++)o[i]=arguments[i];return o.forEach(function(e){var o=e.top,i=e.left;"string"==typeof o&&(o=parseFloat(o,10)),"string"==typeof i&&(i=parseFloat(i,10)),t.top+=o,t.left+=i}),t}function C(t,e){return"string"==typeof t.left&&t.left.indexOf("%")!==-1&&(t.left=parseFloat(t.left,10)/100*e.width),"string"==typeof t.top&&t.top.indexOf("%")!==-1&&(t.top=parseFloat(t.top,10)/100*e.height),t}function O(t,e){return"scrollParent"===e?e=t.scrollParents[0]:"window"===e&&(e=[pageXOffset,pageYOffset,innerWidth+pageXOffset,innerHeight+pageYOffset]),e===document&&(e=e.documentElement),"undefined"!=typeof e.nodeType&&!function(){var t=e,o=a(e),i=o,n=getComputedStyle(e);if(e=[i.left,i.top,o.width+i.left,o.height+i.top],t.ownerDocument!==document){var r=t.ownerDocument.defaultView;e[0]+=r.pageXOffset,e[1]+=r.pageYOffset,e[2]+=r.pageXOffset,e[3]+=r.pageYOffset}G.forEach(function(t,o){t=t[0].toUpperCase()+t.substr(1),"Top"===t||"Left"===t?e[o]+=parseFloat(n["border"+t+"Width"]):e[o]-=parseFloat(n["border"+t+"Width"])})}(),e}var E=function(){function t(t,e){for(var o=0;o<e.length;o++){var i=e[o];i.enumerable=i.enumerable||!1,i.configurable=!0,"value"in i&&(i.writable=!0),Object.defineProperty(t,i.key,i)}}return function(e,o,i){return o&&t(e.prototype,o),i&&t(e,i),e}}(),x=void 0;"undefined"==typeof x&&(x={modules:[]});var A=null,T=function(){var t=0;return function(){return++t}}(),S={},P=function(){var t=A;t&&document.body.contains(t)||(t=document.createElement("div"),t.setAttribute("data-tether-id",T()),h(t.style,{top:0,left:0,position:"absolute"}),document.body.appendChild(t),A=t);var e=t.getAttribute("data-tether-id");return"undefined"==typeof S[e]&&(S[e]=n(t),k(function(){delete S[e]})),S[e]},M=null,W=[],k=function(t){W.push(t)},_=function(){for(var t=void 0;t=W.pop();)t()},B=function(){function t(){i(this,t)}return E(t,[{key:"on",value:function(t,e,o){var i=!(arguments.length<=3||void 0===arguments[3])&&arguments[3];"undefined"==typeof this.bindings&&(this.bindings={}),"undefined"==typeof this.bindings[t]&&(this.bindings[t]=[]),this.bindings[t].push({handler:e,ctx:o,once:i})}},{key:"once",value:function(t,e,o){this.on(t,e,o,!0)}},{key:"off",value:function(t,e){if("undefined"!=typeof this.bindings&&"undefined"!=typeof this.bindings[t])if("undefined"==typeof e)delete this.bindings[t];else for(var o=0;o<this.bindings[t].length;)this.bindings[t][o].handler===e?this.bindings[t].splice(o,1):++o}},{key:"trigger",value:function(t){if("undefined"!=typeof this.bindings&&this.bindings[t]){for(var e=0,o=arguments.length,i=Array(o>1?o-1:0),n=1;n<o;n++)i[n-1]=arguments[n];for(;e<this.bindings[t].length;){var r=this.bindings[t][e],s=r.handler,a=r.ctx,f=r.once,l=a;"undefined"==typeof l&&(l=this),s.apply(l,i),f?this.bindings[t].splice(e,1):++e}}}}]),t}();x.Utils={getActualBoundingClientRect:n,getScrollParents:r,getBounds:a,getOffsetParent:f,extend:h,addClass:p,removeClass:d,hasClass:u,updateClasses:m,defer:k,flush:_,uniqueId:T,Evented:B,getScrollBarSize:l,removeUtilElements:s};var j=function(){function t(t,e){var o=[],i=!0,n=!1,r=void 0;try{for(var s,a=t[Symbol.iterator]();!(i=(s=a.next()).done)&&(o.push(s.value),!e||o.length!==e);i=!0);}catch(f){n=!0,r=f}finally{try{!i&&a["return"]&&a["return"]()}finally{if(n)throw r}}return o}return function(e,o){if(Array.isArray(e))return e;if(Symbol.iterator in Object(e))return t(e,o);throw new TypeError("Invalid attempt to destructure non-iterable instance")}}(),E=function(){function t(t,e){for(var o=0;o<e.length;o++){var i=e[o];i.enumerable=i.enumerable||!1,i.configurable=!0,"value"in i&&(i.writable=!0),Object.defineProperty(t,i.key,i)}}return function(e,o,i){return o&&t(e.prototype,o),i&&t(e,i),e}}(),z=function(t,e,o){for(var i=!0;i;){var n=t,r=e,s=o;i=!1,null===n&&(n=Function.prototype);var a=Object.getOwnPropertyDescriptor(n,r);if(void 0!==a){if("value"in a)return a.value;var f=a.get;if(void 0===f)return;return f.call(s)}var l=Object.getPrototypeOf(n);if(null===l)return;t=l,e=r,o=s,i=!0,a=l=void 0}};if("undefined"==typeof x)throw new Error("You must include the utils.js file before tether.js");var Y=x.Utils,r=Y.getScrollParents,a=Y.getBounds,f=Y.getOffsetParent,h=Y.extend,p=Y.addClass,d=Y.removeClass,m=Y.updateClasses,k=Y.defer,_=Y.flush,l=Y.getScrollBarSize,s=Y.removeUtilElements,L=function(){if("undefined"==typeof document)return"";for(var t=document.createElement("div"),e=["transform","WebkitTransform","OTransform","MozTransform","msTransform"],o=0;o<e.length;++o){var i=e[o];if(void 0!==t.style[i])return i}}(),D=[],X=function(){D.forEach(function(t){t.position(!1)}),_()};!function(){var t=null,e=null,o=null,i=function n(){return"undefined"!=typeof e&&e>16?(e=Math.min(e-16,250),void(o=setTimeout(n,250))):void("undefined"!=typeof t&&b()-t<10||(null!=o&&(clearTimeout(o),o=null),t=b(),X(),e=b()-t))};"undefined"!=typeof window&&"undefined"!=typeof window.addEventListener&&["resize","scroll","touchmove"].forEach(function(t){window.addEventListener(t,i)})}();var F={center:"center",left:"right",right:"left"},H={middle:"middle",top:"bottom",bottom:"top"},N={top:0,left:0,middle:"50%",center:"50%",bottom:"100%",right:"100%"},U=function(t,e){var o=t.left,i=t.top;return"auto"===o&&(o=F[e.left]),"auto"===i&&(i=H[e.top]),{left:o,top:i}},V=function(t){var e=t.left,o=t.top;return"undefined"!=typeof N[t.left]&&(e=N[t.left]),"undefined"!=typeof N[t.top]&&(o=N[t.top]),{left:e,top:o}},R=function(t){var e=t.split(" "),o=j(e,2),i=o[0],n=o[1];return{top:i,left:n}},q=R,I=function(t){function e(t){var o=this;i(this,e),z(Object.getPrototypeOf(e.prototype),"constructor",this).call(this),this.position=this.position.bind(this),D.push(this),this.history=[],this.setOptions(t,!1),x.modules.forEach(function(t){"undefined"!=typeof t.initialize&&t.initialize.call(o)}),this.position()}return v(e,t),E(e,[{key:"getClass",value:function(){var t=arguments.length<=0||void 0===arguments[0]?"":arguments[0],e=this.options.classes;return"undefined"!=typeof e&&e[t]?this.options.classes[t]:this.options.classPrefix?this.options.classPrefix+"-"+t:t}},{key:"setOptions",value:function(t){var e=this,o=arguments.length<=1||void 0===arguments[1]||arguments[1],i={offset:"0 0",targetOffset:"0 0",targetAttachment:"auto auto",classPrefix:"tether"};this.options=h(i,t);var n=this.options,s=n.element,a=n.target,f=n.targetModifier;if(this.element=s,this.target=a,this.targetModifier=f,"viewport"===this.target?(this.target=document.body,this.targetModifier="visible"):"scroll-handle"===this.target&&(this.target=document.body,this.targetModifier="scroll-handle"),["element","target"].forEach(function(t){if("undefined"==typeof e[t])throw new Error("Tether Error: Both element and target must be defined");"undefined"!=typeof e[t].jquery?e[t]=e[t][0]:"string"==typeof e[t]&&(e[t]=document.querySelector(e[t]))}),p(this.element,this.getClass("element")),this.options.addTargetClasses!==!1&&p(this.target,this.getClass("target")),!this.options.attachment)throw new Error("Tether Error: You must provide an attachment");this.targetAttachment=q(this.options.targetAttachment),this.attachment=q(this.options.attachment),this.offset=R(this.options.offset),this.targetOffset=R(this.options.targetOffset),"undefined"!=typeof this.scrollParents&&this.disable(),"scroll-handle"===this.targetModifier?this.scrollParents=[this.target]:this.scrollParents=r(this.target),this.options.enabled!==!1&&this.enable(o)}},{key:"getTargetBounds",value:function(){if("undefined"==typeof this.targetModifier)return a(this.target);if("visible"===this.targetModifier){if(this.target===document.body)return{top:pageYOffset,left:pageXOffset,height:innerHeight,width:innerWidth};var t=a(this.target),e={height:t.height,width:t.width,top:t.top,left:t.left};return e.height=Math.min(e.height,t.height-(pageYOffset-t.top)),e.height=Math.min(e.height,t.height-(t.top+t.height-(pageYOffset+innerHeight))),e.height=Math.min(innerHeight,e.height),e.height-=2,e.width=Math.min(e.width,t.width-(pageXOffset-t.left)),e.width=Math.min(e.width,t.width-(t.left+t.width-(pageXOffset+innerWidth))),e.width=Math.min(innerWidth,e.width),e.width-=2,e.top<pageYOffset&&(e.top=pageYOffset),e.left<pageXOffset&&(e.left=pageXOffset),e}if("scroll-handle"===this.targetModifier){var t=void 0,o=this.target;o===document.body?(o=document.documentElement,t={left:pageXOffset,top:pageYOffset,height:innerHeight,width:innerWidth}):t=a(o);var i=getComputedStyle(o),n=o.scrollWidth>o.clientWidth||[i.overflow,i.overflowX].indexOf("scroll")>=0||this.target!==document.body,r=0;n&&(r=15);var s=t.height-parseFloat(i.borderTopWidth)-parseFloat(i.borderBottomWidth)-r,e={width:15,height:.975*s*(s/o.scrollHeight),left:t.left+t.width-parseFloat(i.borderLeftWidth)-15},f=0;s<408&&this.target===document.body&&(f=-11e-5*Math.pow(s,2)-.00727*s+22.58),this.target!==document.body&&(e.height=Math.max(e.height,24));var l=this.target.scrollTop/(o.scrollHeight-s);return e.top=l*(s-e.height-f)+t.top+parseFloat(i.borderTopWidth),this.target===document.body&&(e.height=Math.max(e.height,24)),e}}},{key:"clearCache",value:function(){this._cache={}}},{key:"cache",value:function(t,e){return"undefined"==typeof this._cache&&(this._cache={}),"undefined"==typeof this._cache[t]&&(this._cache[t]=e.call(this)),this._cache[t]}},{key:"enable",value:function(){var t=this,e=arguments.length<=0||void 0===arguments[0]||arguments[0];this.options.addTargetClasses!==!1&&p(this.target,this.getClass("enabled")),p(this.element,this.getClass("enabled")),this.enabled=!0,this.scrollParents.forEach(function(e){e!==t.target.ownerDocument&&e.addEventListener("scroll",t.position)}),e&&this.position()}},{key:"disable",value:function(){var t=this;d(this.target,this.getClass("enabled")),d(this.element,this.getClass("enabled")),this.enabled=!1,"undefined"!=typeof this.scrollParents&&this.scrollParents.forEach(function(e){e.removeEventListener("scroll",t.position)})}},{key:"destroy",value:function(){var t=this;this.disable(),D.forEach(function(e,o){e===t&&D.splice(o,1)}),0===D.length&&s()}},{key:"updateAttachClasses",value:function(t,e){var o=this;t=t||this.attachment,e=e||this.targetAttachment;var i=["left","top","bottom","right","middle","center"];"undefined"!=typeof this._addAttachClasses&&this._addAttachClasses.length&&this._addAttachClasses.splice(0,this._addAttachClasses.length),"undefined"==typeof this._addAttachClasses&&(this._addAttachClasses=[]);var n=this._addAttachClasses;t.top&&n.push(this.getClass("element-attached")+"-"+t.top),t.left&&n.push(this.getClass("element-attached")+"-"+t.left),e.top&&n.push(this.getClass("target-attached")+"-"+e.top),e.left&&n.push(this.getClass("target-attached")+"-"+e.left);var r=[];i.forEach(function(t){r.push(o.getClass("element-attached")+"-"+t),r.push(o.getClass("target-attached")+"-"+t)}),k(function(){"undefined"!=typeof o._addAttachClasses&&(m(o.element,o._addAttachClasses,r),o.options.addTargetClasses!==!1&&m(o.target,o._addAttachClasses,r),delete o._addAttachClasses)})}},{key:"position",value:function(){var t=this,e=arguments.length<=0||void 0===arguments[0]||arguments[0];if(this.enabled){this.clearCache();var o=U(this.targetAttachment,this.attachment);this.updateAttachClasses(this.attachment,o);var i=this.cache("element-bounds",function(){return a(t.element)}),n=i.width,r=i.height;if(0===n&&0===r&&"undefined"!=typeof this.lastSize){var s=this.lastSize;n=s.width,r=s.height}else this.lastSize={width:n,height:r};var h=this.cache("target-bounds",function(){return t.getTargetBounds()}),d=h,p=C(V(this.attachment),{width:n,height:r}),u=C(V(o),d),c=C(this.offset,{width:n,height:r}),g=C(this.targetOffset,d);p=w(p,c),u=w(u,g);for(var m=h.left+u.left-p.left,v=h.top+u.top-p.top,y=0;y<x.modules.length;++y){var b=x.modules[y],O=b.position.call(this,{left:m,top:v,targetAttachment:o,targetPos:h,elementPos:i,offset:p,targetOffset:u,manualOffset:c,manualTargetOffset:g,scrollbarSize:S,attachment:this.attachment});if(O===!1)return!1;"undefined"!=typeof O&&"object"==typeof O&&(v=O.top,m=O.left)}var E={page:{top:v,left:m},viewport:{top:v-pageYOffset,bottom:pageYOffset-v-r+innerHeight,left:m-pageXOffset,right:pageXOffset-m-n+innerWidth}},A=this.target.ownerDocument,T=A.defaultView,S=void 0;return T.innerHeight>A.documentElement.clientHeight&&(S=this.cache("scrollbar-size",l),E.viewport.bottom-=S.height),T.innerWidth>A.documentElement.clientWidth&&(S=this.cache("scrollbar-size",l),E.viewport.right-=S.width),["","static"].indexOf(A.body.style.position)!==-1&&["","static"].indexOf(A.body.parentElement.style.position)!==-1||(E.page.bottom=A.body.scrollHeight-v-r,E.page.right=A.body.scrollWidth-m-n),"undefined"!=typeof this.options.optimizations&&this.options.optimizations.moveElement!==!1&&"undefined"==typeof this.targetModifier&&!function(){var e=t.cache("target-offsetparent",function(){return f(t.target)}),o=t.cache("target-offsetparent-bounds",function(){return a(e)}),i=getComputedStyle(e),n=o,r={};if(["Top","Left","Bottom","Right"].forEach(function(t){r[t.toLowerCase()]=parseFloat(i["border"+t+"Width"])}),o.right=A.body.scrollWidth-o.left-n.width+r.right,o.bottom=A.body.scrollHeight-o.top-n.height+r.bottom,E.page.top>=o.top+r.top&&E.page.bottom>=o.bottom&&E.page.left>=o.left+r.left&&E.page.right>=o.right){var s=e.scrollTop,l=e.scrollLeft;E.offset={top:E.page.top-o.top+s-r.top,left:E.page.left-o.left+l-r.left}}}(),this.move(E),this.history.unshift(E),this.history.length>3&&this.history.pop(),e&&_(),!0}}},{key:"move",value:function(t){var e=this;if("undefined"!=typeof this.element.parentNode){var o={};for(var i in t){o[i]={};for(var n in t[i]){for(var r=!1,s=0;s<this.history.length;++s){var a=this.history[s];if("undefined"!=typeof a[i]&&!y(a[i][n],t[i][n])){r=!0;break}}r||(o[i][n]=!0)}}var l={top:"",left:"",right:"",bottom:""},d=function(t,o){var i="undefined"!=typeof e.options.optimizations,n=i?e.options.optimizations.gpu:null;if(n!==!1){var r=void 0,s=void 0;if(t.top?(l.top=0,r=o.top):(l.bottom=0,r=-o.bottom),t.left?(l.left=0,s=o.left):(l.right=0,s=-o.right),window.matchMedia){var a=window.matchMedia("only screen and (min-resolution: 1.3dppx)").matches||window.matchMedia("only screen and (-webkit-min-device-pixel-ratio: 1.3)").matches;a||(s=Math.round(s),r=Math.round(r))}l[L]="translateX("+s+"px) translateY("+r+"px)","msTransform"!==L&&(l[L]+=" translateZ(0)")}else t.top?l.top=o.top+"px":l.bottom=o.bottom+"px",t.left?l.left=o.left+"px":l.right=o.right+"px"},p=!1;if((o.page.top||o.page.bottom)&&(o.page.left||o.page.right)?(l.position="absolute",d(o.page,t.page)):(o.viewport.top||o.viewport.bottom)&&(o.viewport.left||o.viewport.right)?(l.position="fixed",d(o.viewport,t.viewport)):"undefined"!=typeof o.offset&&o.offset.top&&o.offset.left?!function(){l.position="absolute";var i=e.cache("target-offsetparent",function(){return f(e.target)});f(e.element)!==i&&k(function(){e.element.parentNode.removeChild(e.element),i.appendChild(e.element)}),d(o.offset,t.offset),p=!0}():(l.position="absolute",d({top:!0,left:!0},t.page)),!p)if(this.options.bodyElement)this.element.parentNode!==this.options.bodyElement&&this.options.bodyElement.appendChild(this.element);else{for(var u=!0,c=this.element.parentNode;c&&1===c.nodeType&&"BODY"!==c.tagName;){if("static"!==getComputedStyle(c).position){u=!1;break}c=c.parentNode}u||(this.element.parentNode.removeChild(this.element),this.element.ownerDocument.body.appendChild(this.element))}var g={},m=!1;for(var n in l){var v=l[n],b=this.element.style[n];b!==v&&(m=!0,g[n]=v)}m&&k(function(){h(e.element.style,g),e.trigger("repositioned")})}}}]),e}(B);I.modules=[],x.position=X;var $=h(I,x),j=function(){function t(t,e){var o=[],i=!0,n=!1,r=void 0;try{for(var s,a=t[Symbol.iterator]();!(i=(s=a.next()).done)&&(o.push(s.value),!e||o.length!==e);i=!0);}catch(f){n=!0,r=f}finally{try{!i&&a["return"]&&a["return"]()}finally{if(n)throw r}}return o}return function(e,o){if(Array.isArray(e))return e;if(Symbol.iterator in Object(e))return t(e,o);throw new TypeError("Invalid attempt to destructure non-iterable instance")}}(),Y=x.Utils,a=Y.getBounds,h=Y.extend,m=Y.updateClasses,k=Y.defer,G=["left","top","right","bottom"];x.modules.push({position:function(t){var e=this,o=t.top,i=t.left,n=t.targetAttachment;if(!this.options.constraints)return!0;var r=this.cache("element-bounds",function(){return a(e.element)}),s=r.height,f=r.width;if(0===f&&0===s&&"undefined"!=typeof this.lastSize){var l=this.lastSize;f=l.width,s=l.height}var d=this.cache("target-bounds",function(){return e.getTargetBounds()}),p=d.height,u=d.width,c=[this.getClass("pinned"),this.getClass("out-of-bounds")];this.options.constraints.forEach(function(t){var e=t.outOfBoundsClass,o=t.pinnedClass;e&&c.push(e),o&&c.push(o)}),c.forEach(function(t){["left","top","right","bottom"].forEach(function(e){c.push(t+"-"+e)})});var g=[],v=h({},n),y=h({},this.attachment);return this.options.constraints.forEach(function(t){var r=t.to,a=t.attachment,l=t.pin;"undefined"==typeof a&&(a="");var h=void 0,d=void 0;if(a.indexOf(" ")>=0){var c=a.split(" "),m=j(c,2);d=m[0],h=m[1]}else h=d=a;var b=O(e,r);"target"!==d&&"both"!==d||(o<b[1]&&"top"===v.top&&(o+=p,v.top="bottom"),o+s>b[3]&&"bottom"===v.top&&(o-=p,v.top="top")),"together"===d&&("top"===v.top&&("bottom"===y.top&&o<b[1]?(o+=p,v.top="bottom",o+=s,y.top="top"):"top"===y.top&&o+s>b[3]&&o-(s-p)>=b[1]&&(o-=s-p,v.top="bottom",y.top="bottom")),"bottom"===v.top&&("top"===y.top&&o+s>b[3]?(o-=p,v.top="top",o-=s,y.top="bottom"):"bottom"===y.top&&o<b[1]&&o+(2*s-p)<=b[3]&&(o+=s-p,v.top="top",y.top="top")),"middle"===v.top&&(o+s>b[3]&&"top"===y.top?(o-=s,y.top="bottom"):o<b[1]&&"bottom"===y.top&&(o+=s,y.top="top"))),"target"!==h&&"both"!==h||(i<b[0]&&"left"===v.left&&(i+=u,v.left="right"),i+f>b[2]&&"right"===v.left&&(i-=u,v.left="left")),"together"===h&&(i<b[0]&&"left"===v.left?"right"===y.left?(i+=u,v.left="right",i+=f,y.left="left"):"left"===y.left&&(i+=u,v.left="right",i-=f,y.left="right"):i+f>b[2]&&"right"===v.left?"left"===y.left?(i-=u,v.left="left",i-=f,y.left="right"):"right"===y.left&&(i-=u,v.left="left",i+=f,y.left="left"):"center"===v.left&&(i+f>b[2]&&"left"===y.left?(i-=f,y.left="right"):i<b[0]&&"right"===y.left&&(i+=f,y.left="left"))),"element"!==d&&"both"!==d||(o<b[1]&&"bottom"===y.top&&(o+=s,y.top="top"),o+s>b[3]&&"top"===y.top&&(o-=s,y.top="bottom")),"element"!==h&&"both"!==h||(i<b[0]&&("right"===y.left?(i+=f,y.left="left"):"center"===y.left&&(i+=f/2,y.left="left")),i+f>b[2]&&("left"===y.left?(i-=f,y.left="right"):"center"===y.left&&(i-=f/2,y.left="right"))),"string"==typeof l?l=l.split(",").map(function(t){return t.trim()}):l===!0&&(l=["top","left","right","bottom"]),l=l||[];var w=[],C=[];o<b[1]&&(l.indexOf("top")>=0?(o=b[1],w.push("top")):C.push("top")),o+s>b[3]&&(l.indexOf("bottom")>=0?(o=b[3]-s,w.push("bottom")):C.push("bottom")),i<b[0]&&(l.indexOf("left")>=0?(i=b[0],w.push("left")):C.push("left")),i+f>b[2]&&(l.indexOf("right")>=0?(i=b[2]-f,w.push("right")):C.push("right")),w.length&&!function(){var t=void 0;t="undefined"!=typeof e.options.pinnedClass?e.options.pinnedClass:e.getClass("pinned"),g.push(t),w.forEach(function(e){g.push(t+"-"+e)})}(),C.length&&!function(){var t=void 0;t="undefined"!=typeof e.options.outOfBoundsClass?e.options.outOfBoundsClass:e.getClass("out-of-bounds"),g.push(t),C.forEach(function(e){g.push(t+"-"+e)})}(),(w.indexOf("left")>=0||w.indexOf("right")>=0)&&(y.left=v.left=!1),(w.indexOf("top")>=0||w.indexOf("bottom")>=0)&&(y.top=v.top=!1),v.top===n.top&&v.left===n.left&&y.top===e.attachment.top&&y.left===e.attachment.left||(e.updateAttachClasses(y,v),e.trigger("update",{attachment:y,targetAttachment:v}))}),k(function(){e.options.addTargetClasses!==!1&&m(e.target,g,c),m(e.element,g,c)}),{top:o,left:i}}});var Y=x.Utils,a=Y.getBounds,m=Y.updateClasses,k=Y.defer;x.modules.push({position:function(t){var e=this,o=t.top,i=t.left,n=this.cache("element-bounds",function(){return a(e.element)}),r=n.height,s=n.width,f=this.getTargetBounds(),l=o+r,h=i+s,d=[];o<=f.bottom&&l>=f.top&&["left","right"].forEach(function(t){var e=f[t];e!==i&&e!==h||d.push(t)}),i<=f.right&&h>=f.left&&["top","bottom"].forEach(function(t){var e=f[t];e!==o&&e!==l||d.push(t)});var p=[],u=[],c=["left","top","right","bottom"];return p.push(this.getClass("abutted")),c.forEach(function(t){p.push(e.getClass("abutted")+"-"+t)}),d.length&&u.push(this.getClass("abutted")),d.forEach(function(t){u.push(e.getClass("abutted")+"-"+t)}),k(function(){e.options.addTargetClasses!==!1&&m(e.target,u,p),m(e.element,u,p)}),!0}});var j=function(){function t(t,e){var o=[],i=!0,n=!1,r=void 0;try{for(var s,a=t[Symbol.iterator]();!(i=(s=a.next()).done)&&(o.push(s.value),!e||o.length!==e);i=!0);}catch(f){n=!0,r=f}finally{try{!i&&a["return"]&&a["return"]()}finally{if(n)throw r}}return o}return function(e,o){if(Array.isArray(e))return e;if(Symbol.iterator in Object(e))return t(e,o);throw new TypeError("Invalid attempt to destructure non-iterable instance")}}();return x.modules.push({position:function(t){var e=t.top,o=t.left;if(this.options.shift){var i=this.options.shift;"function"==typeof this.options.shift&&(i=this.options.shift.call(this,{top:e,left:o}));var n=void 0,r=void 0;if("string"==typeof i){i=i.split(" "),i[1]=i[1]||i[0];var s=i,a=j(s,2);n=a[0],r=a[1],n=parseFloat(n,10),r=parseFloat(r,10)}else n=i.top,r=i.left;return e+=n,o+=r,{top:e,left:o}}}}),$});
 
 /***/ }),
 /* 184 */
