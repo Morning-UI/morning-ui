@@ -144,7 +144,7 @@ import {
     addHours,
     addMinutes,
     addSeconds
-}                                   from 'date-fns/esm';
+}                                   from 'date-fns';
 import arrayUniq                    from 'array-uniq';
 import extend                       from 'extend';
 import sortBy                       from 'lodash.sortby';

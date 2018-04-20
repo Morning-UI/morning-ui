@@ -107,7 +107,7 @@ import {
     setMonth,
     setYear,
     format as formatDate
-}                                   from 'date-fns/esm';
+}                                   from 'date-fns';
 
 const yearRange = 12;
 

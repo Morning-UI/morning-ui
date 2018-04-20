@@ -125,7 +125,7 @@ import {
     eachDayOfInterval,
     startOfMonth,
     endOfMonth
-}                                   from 'date-fns/esm';
+}                                   from 'date-fns';
 
 import sortBy                       from 'lodash.sortby';
 import Dates                        from 'Utils/Dates';
