@@ -179,6 +179,14 @@
         <ui-datetimepicker form-name="日期时间" :date="+new Date('2018-03-23')" :date-selectable-range="[['2018-02-10 00:00:00', '2018-02-20 00:00:00'], ['2018-02-23 00:00:00', '2018-03-02 00:00:00'], ['2018-03-15 12:30:00', '2018-03-25 20:00:00'], ['2018-03-20 00:00:00', '2018-03-28 18:00:00'], ['2018-04-02 00:00:00', '2018-04-05 00:00:00']]"></ui-datetimepicker>
     </div>
     :::
+
+    在使用`selectable-range`的同时开启`is-range`：
+
+    :::democode/html
+    <div style="width:460px;">
+        <ui-datetimepicker form-name="日期时间" :date="+new Date('2018-03-23')" :date-selectable-range="['2018-03-08 00:00:00', '2018-03-23 00:00:00']" is-range></ui-datetimepicker>
+    </div>
+    :::
     
     #### time-selectable-range
 

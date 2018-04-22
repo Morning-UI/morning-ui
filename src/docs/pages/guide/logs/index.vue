@@ -18,6 +18,38 @@
     
     ### 更新记录
 
+    ### 0.10.21 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2018年4月22日，
+            Archive : 
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.21" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.21/dist/" target="_blank">CDN</a>
+        </ui-small>
+    </ui-textcolor><br/><br/>
+
+    - webpack升级至4.6.0
+    - 优化工程构建性能
+    - 优化图片热区组件并增加编辑区缩放功能
+    - 修复`ui-timepicker`内部滚动会引起外部滚动的问题
+
+    ### 0.10.20 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2018年4月18日，
+            Archive : 
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.20" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.20/dist/" target="_blank">CDN</a>
+        </ui-small>
+    </ui-textcolor><br/><br/>
+
+    - `ui-imagemap`新增`clean-allzone-btn`配置，开启后显示清空所有热区按钮
+    - 修复`ui-timepicker`在选择时间时，如果禁用了某段时间会有闪烁的问题
+    - 修复`ui-tip`鼠标无法移动到内容区域的问题
+    - 修复`ui-datepicker`中`is-range`和`selectable-range`无法同时使用的问题
+
     ### 0.10.19 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="light-blue">

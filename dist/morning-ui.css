@@ -6973,6 +6973,7 @@ mor-calendar header .titlebar .title {
 }
 mor-calendar .calendar {
   padding-top: 0.5em;
+  min-width: 280px;
 }
 mor-calendar .calendar .pick-day {
   display: flex;
@@ -7013,6 +7014,9 @@ mor-calendar .calendar .pick-day .day.highlight .inner-layer {
 mor-calendar .calendar .pick-day .day.middle .select-layer {
   background-color: #fee9ec;
 }
+mor-calendar .calendar .pick-day .day.middle.bg-mark-disabled .select-layer {
+  background-color: #A8B3C2;
+}
 mor-calendar .calendar .pick-day .day.start {
   text-align: right;
 }
@@ -7040,6 +7044,14 @@ mor-calendar .calendar .pick-day .day.end .select-layer {
   background-color: #fee9ec;
   border-radius: 0 100em 100em 0;
   width: auto;
+}
+mor-calendar .calendar .pick-day .day.start.bg-mark-disabled .inner-layer,
+mor-calendar .calendar .pick-day .day.end.bg-mark-disabled .inner-layer {
+  background-color: #45505C;
+}
+mor-calendar .calendar .pick-day .day.start.bg-mark-disabled .select-layer,
+mor-calendar .calendar .pick-day .day.end.bg-mark-disabled .select-layer {
+  background-color: #A8B3C2;
 }
 mor-calendar .calendar .pick-day .day.point-mark {
   position: relative;
@@ -7507,7 +7519,6 @@ mor-tip.in {
 }
 mor-tip.morning-tether-element-attached-bottom {
   padding: 5px 0;
-  margin-top: -3px;
 }
 mor-tip.morning-tether-element-attached-bottom .tip-arrow {
   bottom: 0;
@@ -7516,18 +7527,16 @@ mor-tip.morning-tether-element-attached-bottom .tip-arrow {
   border-width: 5px 5px 0;
 }
 mor-tip.morning-tether-element-attached-left {
-  padding: 0 5px;
-  margin-left: 3px;
+  padding: 0 5px 0 10px;
 }
 mor-tip.morning-tether-element-attached-left .tip-arrow {
   top: 50%;
-  left: 0;
+  left: 5px;
   margin-top: -5px;
   border-width: 5px 5px 5px 0;
 }
 mor-tip.morning-tether-element-attached-top {
   padding: 5px 0;
-  margin-top: 3px;
 }
 mor-tip.morning-tether-element-attached-top .tip-arrow {
   top: 0;
@@ -7536,12 +7545,11 @@ mor-tip.morning-tether-element-attached-top .tip-arrow {
   border-width: 0 5px 5px;
 }
 mor-tip.morning-tether-element-attached-right {
-  padding: 0 5px;
-  margin-left: -3px;
+  padding: 0 10px 0 5px;
 }
 mor-tip.morning-tether-element-attached-right .tip-arrow {
   top: 50%;
-  right: 0;
+  right: 5px;
   margin-top: -5px;
   border-width: 5px 0 5px 5px;
 }
@@ -10021,7 +10029,6 @@ mor-datepicker .wrap .datepicker-input-0 .date-select,
 mor-datepicker .wrap .datepicker-input-1 .date-select {
   position: absolute;
   width: 50%;
-  min-width: 270px;
 }
 mor-datepicker .wrap .datepicker-input-0 .date-select.align-left,
 mor-datepicker .wrap .datepicker-input-1 .date-select.align-left {
@@ -10039,11 +10046,13 @@ mor-datepicker .wrap .datepicker-input-0 mor-textinput input {
   border-radius: 0;
 }
 mor-datepicker .wrap .datepicker-input-0 .date-select {
+  min-width: calc(280px + 1px);
   border-bottom-right-radius: 0;
   border-top-right-radius: 0;
   border-right: none;
 }
 mor-datepicker .wrap .datepicker-input-1 .date-select {
+  min-width: calc(280px + 2px);
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
 }
@@ -10496,6 +10505,8 @@ mor-imagemap.st-disabled .operate:hover {
   -webkit-user-select: none;
   user-select: none;
   position: relative;
+  font-size: 0;
+  margin: 0 auto;
 }
 .mor-imagemap-dialog-map .maparea img {
   width: 100%;
@@ -10519,12 +10530,16 @@ mor-imagemap.st-disabled .operate:hover {
   top: 0;
   left: 0;
   cursor: crosshair;
+  font-size: 14px;
+  border: 1px #EDF1F5 solid;
+  box-sizing: content-box;
 }
 .mor-imagemap-dialog-map .maparea .zonearea.disable-add-spot {
   cursor: default;
 }
 .mor-imagemap-dialog-map .maparea .zonearea.over-range {
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.4) inset;
+  box-shadow: 0 0 6px rgba(214, 68, 49, 0.55) inset;
+  border-color: #D64431;
 }
 .mor-imagemap-dialog-map .maparea .zonearea .zone {
   box-sizing: border-box;
@@ -10671,6 +10686,17 @@ mor-imagemap.st-disabled .operate:hover {
 }
 .mor-imagemap-dialog-map .content > footer {
   z-index: 2;
+}
+.mor-imagemap-dialog-map .content > footer .clean-allzone-btn {
+  margin-right: 6px;
+}
+.mor-imagemap-dialog-map .content > footer .note {
+  font-size: 12px;
+  line-height: 1.2em;
+  display: block;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
 }
 .mor-imagemap-dialog-map.imagemap-disabled .zonearea {
   cursor: default;

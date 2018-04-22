@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">3.31% </span>
+        <span class="strong">3.27% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>5/151</span>
+        <span class='fraction'>5/153</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">9.89% </span>
+        <span class="strong">10.11% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>9/91</span>
+        <span class='fraction'>9/89</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>0/30</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">3.45% </span>
+        <span class="strong">3.4% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>5/145</span>
+        <span class='fraction'>5/147</span>
       </div>
     </div>
   </div>
@@ -525,9 +525,7 @@
 480
 481
 482
-483
-484
-485</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+483</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -676,6 +674,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -700,6 +700,8 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -873,17 +875,11 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1036,7 +1032,7 @@
 &lt;/template&gt;
  
 &lt;script&gt;
-import Tether                       from 'tether';
+import Tether                       from 'Npm/tether/dist/js/tether.min.js';
 import PopupManager                 from 'Utils/PopupManager';
 &nbsp;
 export default {
@@ -1160,6 +1156,8 @@ export default {
 &nbsp;
 <span class="cstat-no" title="statement not covered" >                    $target.addEventListener('mouseenter', this._enter);</span>
 <span class="cstat-no" title="statement not covered" >                    $target.addEventListener('mouseleave', this._leave);</span>
+<span class="cstat-no" title="statement not covered" >                    this.$el.addEventListener('mouseenter', this._enter);</span>
+<span class="cstat-no" title="statement not covered" >                    this.$el.addEventListener('mouseleave', this._leave);</span>
 &nbsp;
                 } else <span class="cstat-no" title="statement not covered" >if (trigger === 'foucs') {</span>
 &nbsp;
@@ -1182,6 +1180,8 @@ export default {
 <span class="cstat-no" title="statement not covered" >            $target.removeEventListener('click', this.toggle);</span>
 <span class="cstat-no" title="statement not covered" >            $target.removeEventListener('mouseenter', this._enter);</span>
 <span class="cstat-no" title="statement not covered" >            $target.removeEventListener('mouseleave', this._leave);</span>
+<span class="cstat-no" title="statement not covered" >            this.$el.removeEventListener('mouseenter', this._enter);</span>
+<span class="cstat-no" title="statement not covered" >            this.$el.removeEventListener('mouseleave', this._leave);</span>
 <span class="cstat-no" title="statement not covered" >            $target.removeEventListener('focusin', this._enter);</span>
 <span class="cstat-no" title="statement not covered" >            $target.removeEventListener('focusout', this._leave);</span>
 &nbsp;
@@ -1363,12 +1363,6 @@ export default {
             let targetOffset = <span class="cstat-no" title="statement not covered" >'0 0',</span>
                 options = <span class="cstat-no" title="statement not covered" >{};</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >            if (this.conf.placement === 'left') {</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >                targetOffset = '0 -10px';</span>
-&nbsp;
-            }
-&nbsp;
 <span class="cstat-no" title="statement not covered" >            options = {</span>
                 attachment : this.data.attachmentMap[this.conf.placement],
                 element : this.$el,
@@ -1501,7 +1495,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Apr 15 2018 10:22:18 GMT+0800 (CST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Apr 22 2018 13:10:35 GMT+0800 (CST)
 </div>
 </div>
 <script src="../../../prettify.js"></script>

@@ -1,3 +1,297 @@
+
+body > div > header {
+  width: 100%;
+  background: #333;
+  height: 80px;
+  position: relative;
+  z-index: 99;
+}
+body > div > header .nav {
+  width: 1000px;
+  margin: 0 auto;
+  position: relative;
+}
+body > div > header .logo {
+  display: inline-block;
+  vertical-align: top;
+  opacity: 0.8;
+}
+body > div > header .logo img {
+  width: 53px;
+  height: 50px;
+  margin-top: 15px;
+  display: inline-block;
+}
+body > div > header .name {
+  display: inline-block;
+  vertical-align: top;
+  color: #FFF;
+  line-height: 80px;
+  margin-left: 0;
+  font-size: 26px;
+  opacity: 0.8;
+}
+body > div > header .menu {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+body > div > header .menu li {
+  display: inline-block;
+  vertical-align: top;
+  margin: 15px 10px;
+  height: 50px;
+}
+body > div > header .menu li a {
+  height: 50px;
+  line-height: 50px;
+  color: #FFF;
+  opacity: 0.7;
+  font-size: 13px;
+  text-decoration: none;
+}
+body > div > header .menu li a:hover {
+  opacity: 0.8;
+}
+body > div > header .menu li a.current {
+  opacity: 1;
+  font-weight: 600;
+}
+body > div > header .menu li .githublogo {
+  vertical-align: text-bottom;
+  width: 16px;
+}
+body > div > header.index {
+  background: #FFF;
+}
+body > div > header.index .logo img {
+  display: none;
+}
+body > div > header.index .name {
+  color: #000;
+  font-size: 28px;
+}
+body > div > header.index .menu li a {
+  color: #333;
+}
+body > div > header .doc-search input {
+  height: 30px;
+  font-size: 12px;
+  margin-top: 10px;
+}
+body > div > header .doc-search.dark input {
+  background: #333;
+  border: 1px #555 solid;
+  color: #eee !important;
+}
+body > div > header .doc-search.dark input::placeholder {
+  color: #999;
+}
+body > div > header .doc-search.dark input:hover {
+  border-color: #666;
+}
+body > div > header .doc-search.dark input:focus {
+  border-color: #777;
+}
+body > div > header .ds-dropdown-menu {
+  font-size: 12px;
+  width: 380px;
+  min-width: 380px !important;
+}
+body > div > header .ds-dataset-1 {
+  width: 380px;
+}
+
+footer {
+  font-size: 12px;
+  color: #aaa;
+  padding: 30px 0;
+  text-align: center;
+  background: #333;
+  position: relative;
+  line-height: 1.4em;
+}
+footer img {
+  width: 43px;
+  height: 40px;
+  opacity: 0.8;
+}
+footer a,
+footer a:hover {
+  color: #aaa;
+  text-decoration: none;
+}
+footer .tolab {
+  position: absolute;
+  bottom: 3px;
+  left: 50%;
+  color: #fff;
+  opacity: 0.02;
+  transform: translateX(-50%);
+}
+
+.submenu {
+  width: 200px;
+  display: inline-block;
+  vertical-align: top;
+  border-right: 1px #EEE solid;
+  box-sizing: border-box;
+  padding: 20px 10px;
+  margin: 0;
+  list-style: none;
+}
+.submenu li a {
+  font-size: 13px;
+  color: #999;
+  text-decoration: none;
+  text-indent: 8px;
+  display: inline-block;
+  margin: 3px 0;
+}
+.submenu li a:hover {
+  color: #666;
+}
+.submenu li a.current {
+  color: #333;
+  font-weight: 700;
+}
+.submenu li .title {
+  font-size: 14px;
+  color: #333;
+  margin: 20px 0 5px;
+}
+.submenu .tag {
+  color: #FFF;
+  padding: 2px 5px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-style: normal;
+  transform: scale(0.7);
+  transform-origin: left center;
+  display: inline-block;
+  margin: 0 0 0 3px;
+  text-indent: 0;
+  vertical-align: 1px;
+  text-align: center;
+  text-transform: uppercase;
+}
+.submenu .tag.new {
+  background: #F34562;
+}
+.submenu .tag.new:before {
+  content: 'new';
+}
+.submenu .tag.update {
+  background: #41B4D2;
+}
+.submenu .tag.update:before {
+  content: 'update';
+}
+.submenu .tag.done {
+  background: #46C235;
+}
+.submenu .tag.done:before {
+  content: 'done';
+}
+.submenu .tag.coming {
+  background: #666;
+}
+.submenu .tag.coming:before {
+  content: 'coming';
+}
+.submenu .tag.review {
+  background: #119100;
+}
+.submenu .tag.review:before {
+  content: 'CR PASS';
+}
+.submenu .tag.l1 {
+  opacity: 1;
+}
+.submenu .tag.l2 {
+  opacity: 0.85;
+}
+.submenu .tag.l3 {
+  opacity: 0.75;
+}
+.submenu .tag.l4 {
+  opacity: 0.6;
+}
+
+.doc-status-bar {
+  padding: 4px 0;
+  height: 35px;
+  transform: scale(0.8);
+  transform-origin: left;
+}
+.doc-status-bar .item {
+  display: inline-block;
+  font-size: 0;
+  margin-right: 10px;
+  vertical-align: top;
+}
+.doc-status-bar .item .name {
+  font-size: 12px;
+  display: inline-block;
+  padding: 2px 8px 2px 12px;
+  border-radius: 15px 0 0 15px;
+  vertical-align: top;
+  background: #F0F0F0;
+}
+.doc-status-bar .item .value {
+  font-size: 12px;
+  display: inline-block;
+  padding: 2px 12px 2px 8px;
+  border-radius: 0 15px 15px 0;
+  background: #45505C;
+  color: #FFF;
+  vertical-align: top;
+  text-transform: uppercase;
+}
+.doc-status-bar .item.pass .value {
+  background: #15BC5C;
+  color: #FFF;
+}
+.doc-status-bar .item.low .value,
+.doc-status-bar .item.fail .value {
+  background: #DA3939;
+  color: #FFF;
+}
+.doc-status-bar .item.medium .value {
+  background: #DFAE19;
+  color: #FFF;
+}
+.doc-status-bar .item.pass .value,
+.doc-status-bar .item.high .value {
+  background: #15BC5C;
+  color: #FFF;
+}
+.last-update,
+.contributors {
+  font-size: 12px;
+  color: #999;
+  transform: scale(0.85);
+  transform-origin: left;
+  padding-left: 3px;
+  height: 1.25em;
+}
+.last-update .avatar,
+.contributors .avatar {
+  width: 16px;
+  height: 16px;
+  border-radius: 100%;
+  vertical-align: top;
+  border: 1px #e6e6e6 solid !important;
+  padding: 0;
+  background: #f0f0f0;
+}
+.contributors {
+  margin: 5px 0 20px 0;
+}
 /*
  * Hopscotch
  * by Jan T. Sott
@@ -906,298 +1200,4 @@ mor-dialog a:hover {
 }
 .demo + pre {
   border-radius: 0 0 3px 3px;
-}
-
-body > div > header {
-  width: 100%;
-  background: #333;
-  height: 80px;
-  position: relative;
-  z-index: 99;
-}
-body > div > header .nav {
-  width: 1000px;
-  margin: 0 auto;
-  position: relative;
-}
-body > div > header .logo {
-  display: inline-block;
-  vertical-align: top;
-  opacity: 0.8;
-}
-body > div > header .logo img {
-  width: 53px;
-  height: 50px;
-  margin-top: 15px;
-  display: inline-block;
-}
-body > div > header .name {
-  display: inline-block;
-  vertical-align: top;
-  color: #FFF;
-  line-height: 80px;
-  margin-left: 0;
-  font-size: 26px;
-  opacity: 0.8;
-}
-body > div > header .menu {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: inline-block;
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-body > div > header .menu li {
-  display: inline-block;
-  vertical-align: top;
-  margin: 15px 10px;
-  height: 50px;
-}
-body > div > header .menu li a {
-  height: 50px;
-  line-height: 50px;
-  color: #FFF;
-  opacity: 0.7;
-  font-size: 13px;
-  text-decoration: none;
-}
-body > div > header .menu li a:hover {
-  opacity: 0.8;
-}
-body > div > header .menu li a.current {
-  opacity: 1;
-  font-weight: 600;
-}
-body > div > header .menu li .githublogo {
-  vertical-align: text-bottom;
-  width: 16px;
-}
-body > div > header.index {
-  background: #FFF;
-}
-body > div > header.index .logo img {
-  display: none;
-}
-body > div > header.index .name {
-  color: #000;
-  font-size: 28px;
-}
-body > div > header.index .menu li a {
-  color: #333;
-}
-body > div > header .doc-search input {
-  height: 30px;
-  font-size: 12px;
-  margin-top: 10px;
-}
-body > div > header .doc-search.dark input {
-  background: #333;
-  border: 1px #555 solid;
-  color: #eee !important;
-}
-body > div > header .doc-search.dark input::placeholder {
-  color: #999;
-}
-body > div > header .doc-search.dark input:hover {
-  border-color: #666;
-}
-body > div > header .doc-search.dark input:focus {
-  border-color: #777;
-}
-body > div > header .ds-dropdown-menu {
-  font-size: 12px;
-  width: 380px;
-  min-width: 380px !important;
-}
-body > div > header .ds-dataset-1 {
-  width: 380px;
-}
-
-footer {
-  font-size: 12px;
-  color: #aaa;
-  padding: 30px 0;
-  text-align: center;
-  background: #333;
-  position: relative;
-  line-height: 1.4em;
-}
-footer img {
-  width: 43px;
-  height: 40px;
-  opacity: 0.8;
-}
-footer a,
-footer a:hover {
-  color: #aaa;
-  text-decoration: none;
-}
-footer .tolab {
-  position: absolute;
-  bottom: 3px;
-  left: 50%;
-  color: #fff;
-  opacity: 0.02;
-  transform: translateX(-50%);
-}
-
-.submenu {
-  width: 200px;
-  display: inline-block;
-  vertical-align: top;
-  border-right: 1px #EEE solid;
-  box-sizing: border-box;
-  padding: 20px 10px;
-  margin: 0;
-  list-style: none;
-}
-.submenu li a {
-  font-size: 13px;
-  color: #999;
-  text-decoration: none;
-  text-indent: 8px;
-  display: inline-block;
-  margin: 3px 0;
-}
-.submenu li a:hover {
-  color: #666;
-}
-.submenu li a.current {
-  color: #333;
-  font-weight: 700;
-}
-.submenu li .title {
-  font-size: 14px;
-  color: #333;
-  margin: 20px 0 5px;
-}
-.submenu .tag {
-  color: #FFF;
-  padding: 2px 5px;
-  border-radius: 15px;
-  font-size: 12px;
-  font-style: normal;
-  transform: scale(0.7);
-  transform-origin: left center;
-  display: inline-block;
-  margin: 0 0 0 3px;
-  text-indent: 0;
-  vertical-align: 1px;
-  text-align: center;
-  text-transform: uppercase;
-}
-.submenu .tag.new {
-  background: #F34562;
-}
-.submenu .tag.new:before {
-  content: 'new';
-}
-.submenu .tag.update {
-  background: #41B4D2;
-}
-.submenu .tag.update:before {
-  content: 'update';
-}
-.submenu .tag.done {
-  background: #46C235;
-}
-.submenu .tag.done:before {
-  content: 'done';
-}
-.submenu .tag.coming {
-  background: #666;
-}
-.submenu .tag.coming:before {
-  content: 'coming';
-}
-.submenu .tag.review {
-  background: #119100;
-}
-.submenu .tag.review:before {
-  content: 'CR PASS';
-}
-.submenu .tag.l1 {
-  opacity: 1;
-}
-.submenu .tag.l2 {
-  opacity: 0.85;
-}
-.submenu .tag.l3 {
-  opacity: 0.75;
-}
-.submenu .tag.l4 {
-  opacity: 0.6;
-}
-
-.doc-status-bar {
-  padding: 4px 0;
-  height: 35px;
-  transform: scale(0.8);
-  transform-origin: left;
-}
-.doc-status-bar .item {
-  display: inline-block;
-  font-size: 0;
-  margin-right: 10px;
-  vertical-align: top;
-}
-.doc-status-bar .item .name {
-  font-size: 12px;
-  display: inline-block;
-  padding: 2px 8px 2px 12px;
-  border-radius: 15px 0 0 15px;
-  vertical-align: top;
-  background: #F0F0F0;
-}
-.doc-status-bar .item .value {
-  font-size: 12px;
-  display: inline-block;
-  padding: 2px 12px 2px 8px;
-  border-radius: 0 15px 15px 0;
-  background: #45505C;
-  color: #FFF;
-  vertical-align: top;
-  text-transform: uppercase;
-}
-.doc-status-bar .item.pass .value {
-  background: #15BC5C;
-  color: #FFF;
-}
-.doc-status-bar .item.low .value,
-.doc-status-bar .item.fail .value {
-  background: #DA3939;
-  color: #FFF;
-}
-.doc-status-bar .item.medium .value {
-  background: #DFAE19;
-  color: #FFF;
-}
-.doc-status-bar .item.pass .value,
-.doc-status-bar .item.high .value {
-  background: #15BC5C;
-  color: #FFF;
-}
-.last-update,
-.contributors {
-  font-size: 12px;
-  color: #999;
-  transform: scale(0.85);
-  transform-origin: left;
-  padding-left: 3px;
-  height: 1.25em;
-}
-.last-update .avatar,
-.contributors .avatar {
-  width: 16px;
-  height: 16px;
-  border-radius: 100%;
-  vertical-align: top;
-  border: 1px #e6e6e6 solid !important;
-  padding: 0;
-  background: #f0f0f0;
-}
-.contributors {
-  margin: 5px 0 20px 0;
 }

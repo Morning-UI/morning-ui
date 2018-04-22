@@ -31,7 +31,7 @@
 
     #### 目标元素有title属性
 
-    如果目标元素具有`title`属性，切`ui-tip`没有设置内容，则会自动显示`title`内容。
+    如果目标元素具有`title`属性，且`ui-tip`没有设置内容，则会自动显示`title`内容。
 
     :::democode/html
     <span id="demo3" title="This is title">只有title属性, 显示title</span>

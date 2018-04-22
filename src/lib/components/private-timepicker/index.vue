@@ -34,6 +34,7 @@
                 class="hour"
                 @mouseenter="_focusType('hour')"
                 @mouseleave="_blurType('hour')"
+                @mousewheel="_mousewheel($event, 'hour')"
                 @scroll.stop.prevent="_scrollTime('hour')"
             >
                 <li v-for="i in 24" :class="{current : (i - 1) === data.h, block : !_checkSelectable('hour', i - 1)}" @click="_to('hour', i - 1, $event)">
@@ -49,6 +50,7 @@
                 class="minute"
                 @mouseenter="_focusType('minute')"
                 @mouseleave="_blurType('minute')"
+                @mousewheel="_mousewheel($event, 'minute')"
                 @scroll.prevent="_scrollTime('minute')"
             >
                 <li v-for="i in 60" :class="{current : (i - 1) === data.m, block : !_checkSelectable('minute', i - 1)}" @click="_to('minute', i - 1, $event)">
@@ -64,6 +66,7 @@
                 class="second"
                 @mouseenter="_focusType('second')"
                 @mouseleave="_blurType('second')"
+                @mousewheel="_mousewheel($event, 'second')"
                 @scroll.stop.prevent="_scrollTime('second')"
             >
                 <li v-for="i in 60" :class="{current : (i - 1) === data.s, block : !_checkSelectable('second', i - 1)}" @click="_to('second', i - 1, $event)">
@@ -180,9 +183,21 @@ export default {
 
             }
 
-            if (!this._checkSelectable('all')) {
+            if (date) {
 
-                date = this._getClosestTime(date);
+                let h = getHours(date);
+                let m = getMinutes(date);
+                let s = getSeconds(date);
+
+                if (!this.data.inputFocus && (
+                    !this._checkSelectable('hour', h) ||
+                    !this._checkSelectable('minute', m) ||
+                    !this._checkSelectable('second', s)
+                )) {
+
+                    date = this._getClosestTime(date);
+
+                }
 
             }
 
@@ -415,7 +430,7 @@ export default {
             };
 
             for (let time of this.data.selectableTimes) {
-
+                
                 let timeInterval = {
                     start : time[0],
                     end : time[1]
@@ -533,6 +548,30 @@ export default {
             date = closestTo(date, list);
 
             return date;
+
+        },
+        _mousewheel : function (evt, type) {
+
+            let $ul = this.$el.querySelector(`.time-box .${type}`);
+
+            if (!$ul || evt.type !== 'mousewheel') {
+
+                return;
+
+            }
+
+            if (evt.wheelDeltaY < 0 &&
+                ($ul.scrollTop + $ul.clientHeight) >= $ul.scrollHeight) {
+
+                evt.preventDefault();
+
+            }
+
+            if (evt.wheelDeltaY > 0 && $ul.scrollTop <= 0) {
+
+                evt.preventDefault();
+
+            }
 
         }
     },

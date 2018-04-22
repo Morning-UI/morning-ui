@@ -126,6 +126,7 @@ import {
     startOfMonth,
     endOfMonth
 }                                   from 'date-fns';
+
 import sortBy                       from 'lodash.sortby';
 import Dates                        from 'Utils/Dates';
 
@@ -464,17 +465,19 @@ export default {
             let input1Calendar = input1.$refs[`ui-calendar-${input1.uiid}`];
             let input1CalendarStart = startOfMonth(input1Calendar.getTime());
             let input1CalendarEnd = endOfMonth(input1Calendar.getTime());
+            let input0HighlightDays;
+            let input1HighlightDays;
 
             // start超过左侧日历/end在左侧日历
             if (start <= input0CalendarStart &&
                 end >= input0CalendarStart &&
                 end <= input0CalendarEnd) {
 
-                this.data.input0HighlightDays = eachDayOfInterval({
+                input0HighlightDays = eachDayOfInterval({
                     start : subDays(+input0CalendarStart, 1),
                     end
                 });
-                this.data.input1HighlightDays = [];
+                input1HighlightDays = [];
 
             }
 
@@ -483,11 +486,11 @@ export default {
                 end >= input1CalendarStart &&
                 end <= input1CalendarEnd) {
 
-                this.data.input0HighlightDays = eachDayOfInterval({
+                input0HighlightDays = eachDayOfInterval({
                     start : subDays(+input0CalendarStart, 1),
                     end : addDays(+input0CalendarEnd, 1)
                 });
-                this.data.input1HighlightDays = eachDayOfInterval({
+                input1HighlightDays = eachDayOfInterval({
                     start : subDays(+input1CalendarStart, 1),
                     end
                 });
@@ -499,11 +502,11 @@ export default {
                 start <= input0CalendarEnd &&
                 end >= input1CalendarEnd) {
 
-                this.data.input0HighlightDays = eachDayOfInterval({
+                input0HighlightDays = eachDayOfInterval({
                     start,
                     end : addDays(+input0CalendarEnd, 1)
                 });
-                this.data.input1HighlightDays = eachDayOfInterval({
+                input1HighlightDays = eachDayOfInterval({
                     start : subDays(+input1CalendarStart, 1),
                     end : addDays(+input1CalendarEnd, 1)
                 });
@@ -515,8 +518,8 @@ export default {
                 start <= input1CalendarEnd &&
                 end >= input1CalendarEnd) {
 
-                this.data.input0HighlightDays = [];
-                this.data.input1HighlightDays = eachDayOfInterval({
+                input0HighlightDays = [];
+                input1HighlightDays = eachDayOfInterval({
                     start,
                     end : addDays(+input1CalendarEnd, 1)
                 });
@@ -527,11 +530,11 @@ export default {
             if (start <= input0CalendarStart &&
                 end >= input1CalendarEnd) {
 
-                this.data.input0HighlightDays = eachDayOfInterval({
+                input0HighlightDays = eachDayOfInterval({
                     start : subDays(+input0CalendarStart, 1),
                     end : addDays(+input0CalendarEnd, 1)
                 });
-                this.data.input1HighlightDays = eachDayOfInterval({
+                input1HighlightDays = eachDayOfInterval({
                     start : subDays(+input1CalendarStart, 1),
                     end : addDays(+input1CalendarEnd, 1)
                 });
@@ -544,11 +547,11 @@ export default {
                 +end <= input0CalendarEnd &&
                 +end >= input0CalendarStart) {
 
-                this.data.input0HighlightDays = eachDayOfInterval({
+                input0HighlightDays = eachDayOfInterval({
                     start,
                     end
                 });
-                this.data.input1HighlightDays = [];
+                input1HighlightDays = [];
 
             }
 
@@ -558,12 +561,12 @@ export default {
                 end >= input1CalendarStart &&
                 end <= input1CalendarEnd) {
 
-                this.data.input0HighlightDays = eachDayOfInterval({
+                input0HighlightDays = eachDayOfInterval({
                     start,
                     end : addDays(+input0CalendarEnd, 1)
                 });
 
-                this.data.input1HighlightDays = eachDayOfInterval({
+                input1HighlightDays = eachDayOfInterval({
                     start : subDays(+input1CalendarStart, 1),
                     end
                 });
@@ -576,13 +579,16 @@ export default {
                 end >= input1CalendarStart &&
                 end <= input1CalendarEnd) {
 
-                this.data.input0HighlightDays = [];
-                this.data.input1HighlightDays = eachDayOfInterval({
+                input0HighlightDays = [];
+                input1HighlightDays = eachDayOfInterval({
                     start,
                     end
                 });
 
             }
+
+            this.data.input0HighlightDays = input0HighlightDays;
+            this.data.input1HighlightDays = input1HighlightDays;
 
         },
         _syncValueFromInputToRootForClick : function (date) {

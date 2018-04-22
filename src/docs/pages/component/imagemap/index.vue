@@ -88,6 +88,30 @@
     2. 数据表单的`form-key`必需设置，若未设置最终数据不会存入热区的`data`中
     3. 数据表单的`group`通过`slot-scope="{group}"`解构获取(Vue.js的[作用域插槽](https://cn.vuejs.org/v2/guide/components.html#作用域插槽))，并且需要绑定到所有表单上，若未绑定到表单，最终数据不会存入热区的`data`中
 
+    #### 热区编辑区缩放
+
+    若热区的尺寸太大或太小，超出了屏幕的适合展示尺寸，组件会自动缩放将热区编辑区调整大适合的大小。放缩的比例会显示在热区编辑区的左下角，缩放仅针对编辑区域，不会影响表单值中热区的真实尺寸和位置。
+
+    组件使用热区容器参考宽度来作为判断尺寸的依据。
+
+    比如下面的热区太小(361x362.5)，组件会将它放大：
+
+    :::democode/html
+    <div style="width:300px;">
+        <ui-imagemap form-name="热区" :default-value="{'images':[{'name':'151244303389249797.png','path':'http://morning-ui-image.test.upcdn.net/uploaddemo/17505/151244303389249797.png'}],'zones':[{'x':180.5,'y':58.5,'h':90,'w':137},{'x':43,'y':155,'h':90,'w':137.5}],'w':361,'h':362.5}"></ui-imagemap>
+    </div>
+    :::
+
+    比如下面的热区太大(1444*1450)，组件会将它缩小：
+
+    :::democode/html
+    <div style="width:300px;">
+        <ui-imagemap form-name="热区" :default-value="{'images':[{'name':'151244303389249797.png','path':'http://morning-ui-image.test.upcdn.net/uploaddemo/17505/151244303389249797.png'}],'zones':[{'x':722,'y':234,'h':360,'w':548},{'x':172,'y':620,'h':360,'w':550}],'w':1444,'h':1450}"></ui-imagemap>
+    </div>
+    :::
+
+    热区编辑区的缩放比例也可以在编辑区的左下角调整。
+
     [[[形态]]]
 
     :::preset/html
@@ -108,6 +132,7 @@
     |[validate](#validate)|验证上传的图片，详见：[文件上传组件的`validate`配置](/component/upload.html)|验证函数|Function|`() => {}`|
     |[uploader](#uploader)|图片上传适配器，详见：[文件上传组件的`uploader`配置](/component/upload.html)|文件上传适配器函数|Function|`undefined`|
     |[clean-zone](#clean-zone)|当图片更换时，清空所有的热区|`true`<br>`false`|Boolean|`true`|
+    |[clean-allzone-btn](#clean-allzone-btn)|显示清除所有热区的按钮|`true`<br>`false`|Boolean|`true`|
     |[max](#max)|最多允许上传多少图片|数字|Number|`1`|
     |[max-spot](#max-spot)|最多允许的热区数量|数字|Number|`Infinity`|
 
@@ -203,6 +228,16 @@
     </div>
     :::
 
+    #### clean-allzone-btn
+
+    不显示清空所有热区的按钮：
+
+    :::democode/html
+    <div style="width:300px;">
+        <ui-imagemap form-name="热区" multi :max="10" :default-value="{'images':[{'name':'151244303389249797.png','path':'http://morning-ui-image.test.upcdn.net/uploaddemo/17505/151244303389249797.png'}],'zones':[],'w':722,'h':725}" :clean-allzone-btn="false"></ui-imagemap>
+    </div>
+    :::
+
     #### max
 
     :::democode/html
@@ -237,6 +272,18 @@
     uikey:imagemap
     methodValue:{'images':[{'name':'151244303389249797.png','path':'http://morning-ui-image.test.upcdn.net/uploaddemo/17505/151244303389249797.png'}],'zones':[{'x':361,'y':117,'h':180,'w':274},{'x':86,'y':310,'h':180,'w':275}],'w':722,'h':725}
     methodDefaultValue:{'images':[{'name':'151244303389249797.png','path':'http://morning-ui-image.test.upcdn.net/uploaddemo/17505/151244303389249797.png'}],'zones':[{'x':361,'y':117,'h':180,'w':274},{'x':86,'y':310,'h':180,'w':275}],'w':722,'h':725}
+    :::
+
+    #### getScale()
+
+    获取热区编辑区域的缩放比例(0-1)，1表示100%。
+
+    :::democode/html
+    <div style="width:300px;">
+        <ui-imagemap ref="demo6" form-name="热区" :default-value="{'images':[{'name':'151244303389249797.png','path':'http://morning-ui-image.test.upcdn.net/uploaddemo/17505/151244303389249797.png'}],'zones':[{'x':722,'y':234,'h':360,'w':548},{'x':172,'y':620,'h':360,'w':550}],'w':1444,'h':1450}"></ui-imagemap>
+        <br>
+        <ui-link js="alert(morning.findVM('demo6').getScale())">获取缩放比</ui-link>
+    </div>
     :::
 
     #### addZone([zone])

@@ -12,6 +12,13 @@
                 </div>
             </div>
         </section>
+        <section class="s1 versioninfo">
+            <p>全新Morning UI : </p>
+            <a href="/guide/install.html">
+                <ui-label color="silver" size="xs">0.10.21</ui-label>
+            </a>
+            <p>发布于2018年4月18日</p>
+        </section>
         <section class="s1 gray">
             <h1>起步</h1>
             <div class="w900">
@@ -90,8 +97,8 @@ Vue.use(morning);
                     <p class="icon">
                         <i class="iconfont">&#xe641;</i>
                     </p>
-                    <h3>50+组件</h3>
-                    <p class="desc">Morning UI有超过50个组件，丰富的组件为你构建的应用提供了有力的支持。</p>
+                    <h3>60+组件</h3>
+                    <p class="desc">Morning UI有超过60个组件，丰富的组件为你构建的应用提供了有力的支持。</p>
                 </div>
                 <div class="c31 center">
                     <p class="icon">
@@ -148,6 +155,18 @@ export default {
 }
 .s1{
     padding: 50px 0;
+
+    &.versioninfo{
+        padding: 5px 0;
+        text-align: center;
+        border-top: 1px #eee solid;
+        font-size: 13px;
+        color: #999;
+
+        p{
+            display: inline-block;
+        }
+    }
 
     .mainLogo {
         width: 260px;
