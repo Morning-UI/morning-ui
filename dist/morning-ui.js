@@ -11584,7 +11584,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _esm = __webpack_require__(2);
+var _dateFns = __webpack_require__(2);
 
 var _lodash = __webpack_require__(147);
 
@@ -11740,17 +11740,17 @@ exports.default = {
 
             var date = this._dateStringToDate(value, this.conf.format);
 
-            if (!(0, _esm.isValid)(date)) {
+            if (!(0, _dateFns.isValid)(date)) {
 
                 date = this._dateGetStandardDate();
             }
 
-            if (!this._checkSelectable((0, _esm.format)(date, this.conf.format))) {
+            if (!this._checkSelectable((0, _dateFns.format)(date, this.conf.format))) {
 
                 date = this._getClosestTime(date);
             }
 
-            return (0, _esm.format)(date, this.conf.format);
+            return (0, _dateFns.format)(date, this.conf.format);
         },
         _dateEnter: function _dateEnter(date) {
 
@@ -11770,7 +11770,7 @@ exports.default = {
 
                 var date = this._dateStringToDate(this.data.inputValue, this.conf.format);
 
-                if (!(0, _esm.isValid)(date)) {
+                if (!(0, _dateFns.isValid)(date)) {
 
                     this._refreshInputValue();
                 } else {
@@ -11785,7 +11785,7 @@ exports.default = {
                         this._refreshInputValue();
                     } else {
 
-                        this._set((0, _esm.format)(date, this.conf.format), true);
+                        this._set((0, _dateFns.format)(date, this.conf.format), true);
                     }
                 }
             }
@@ -11812,7 +11812,7 @@ exports.default = {
         },
         _clickDate: function _clickDate(date) {
 
-            var value = (0, _esm.format)(date, this.conf.format);
+            var value = (0, _dateFns.format)(date, this.conf.format);
             var selectable = this._checkSelectable(value);
 
             if (!selectable) {
@@ -11829,7 +11829,7 @@ exports.default = {
 
             if (this.data.value !== undefined) {
 
-                dateString = (0, _esm.format)(this._dateStringToDate(this.data.value, this.conf.format), this.conf.format);
+                dateString = (0, _dateFns.format)(this._dateStringToDate(this.data.value, this.conf.format), this.conf.format);
             }
 
             this.$refs['ui-private-datepicker-input-' + this.uiid]._set(dateString, true);
@@ -11852,10 +11852,10 @@ exports.default = {
                 var end = this._dateStringToDate(ranges[1], this.conf.format);
 
                 // set to day start and day end
-                start = (0, _esm.startOfDay)(start);
-                end = (0, _esm.endOfDay)(end);
+                start = (0, _dateFns.startOfDay)(start);
+                end = (0, _dateFns.endOfDay)(end);
 
-                if ((0, _esm.isValid)(start) && (0, _esm.isValid)(end) && (0, _esm.isWithinInterval)(date, {
+                if ((0, _dateFns.isValid)(start) && (0, _dateFns.isValid)(end) && (0, _dateFns.isWithinInterval)(date, {
                     start: start,
                     end: end
                 })) {
@@ -11879,10 +11879,10 @@ exports.default = {
                             var _end = this._dateStringToDate(range[1], this.conf.format);
 
                             // set to day start and day end
-                            _start = (0, _esm.startOfDay)(_start);
-                            _end = (0, _esm.endOfDay)(_end);
+                            _start = (0, _dateFns.startOfDay)(_start);
+                            _end = (0, _dateFns.endOfDay)(_end);
 
-                            if ((0, _esm.isValid)(_start) && (0, _esm.isValid)(_end) && (0, _esm.isWithinInterval)(date, {
+                            if ((0, _dateFns.isValid)(_start) && (0, _dateFns.isValid)(_end) && (0, _dateFns.isWithinInterval)(date, {
                                 start: _start,
                                 end: _end
                             })) {
@@ -11923,18 +11923,18 @@ exports.default = {
             var ranges = this.conf.selectableRange;
             var disabledRange = [];
             var calendarVm = this.$refs['ui-calendar-' + this.uiid];
-            var monthStart = (0, _esm.startOfMonth)(calendarVm.getTime());
-            var monthEnd = (0, _esm.endOfMonth)(calendarVm.getTime());
-            var calendarStart = (0, _esm.subDays)(monthStart, calendarVm.prependDay.length);
-            var calendarEnd = (0, _esm.addDays)(monthEnd, calendarVm.appendDay.length);
+            var monthStart = (0, _dateFns.startOfMonth)(calendarVm.getTime());
+            var monthEnd = (0, _dateFns.endOfMonth)(calendarVm.getTime());
+            var calendarStart = (0, _dateFns.subDays)(monthStart, calendarVm.prependDay.length);
+            var calendarEnd = (0, _dateFns.addDays)(monthEnd, calendarVm.appendDay.length);
             var selectableDates = [];
 
             if (ranges instanceof Array && ranges.length === 2 && typeof ranges[0] === 'string' && typeof ranges[1] === 'string') {
 
-                var start = (0, _esm.subDays)((0, _esm.startOfDay)(this._dateStringToDate(ranges[0], this.conf.format)), 1);
-                var end = (0, _esm.addDays)((0, _esm.startOfDay)(this._dateStringToDate(ranges[1], this.conf.format)), 1);
+                var start = (0, _dateFns.subDays)((0, _dateFns.startOfDay)(this._dateStringToDate(ranges[0], this.conf.format)), 1);
+                var end = (0, _dateFns.addDays)((0, _dateFns.startOfDay)(this._dateStringToDate(ranges[1], this.conf.format)), 1);
 
-                if ((0, _esm.isValid)(start) && start >= calendarStart) {
+                if ((0, _dateFns.isValid)(start) && start >= calendarStart) {
 
                     disabledRange.push({
                         start: calendarStart,
@@ -11942,7 +11942,7 @@ exports.default = {
                     });
                 }
 
-                if ((0, _esm.isValid)(end) && end <= calendarEnd) {
+                if ((0, _dateFns.isValid)(end) && end <= calendarEnd) {
 
                     disabledRange.push({
                         start: end,
@@ -11964,12 +11964,12 @@ exports.default = {
 
                         if (range instanceof Array && range.length === 2 && typeof range[0] === 'string' && typeof range[1] === 'string') {
 
-                            var _start2 = (0, _esm.subDays)((0, _esm.startOfDay)(this._dateStringToDate(range[0], this.conf.format)), 1);
-                            var _end2 = (0, _esm.addDays)((0, _esm.startOfDay)(this._dateStringToDate(range[1], this.conf.format)), 1);
+                            var _start2 = (0, _dateFns.subDays)((0, _dateFns.startOfDay)(this._dateStringToDate(range[0], this.conf.format)), 1);
+                            var _end2 = (0, _dateFns.addDays)((0, _dateFns.startOfDay)(this._dateStringToDate(range[1], this.conf.format)), 1);
 
                             if (disabledRange.length === 0) {
 
-                                if ((0, _esm.isValid)(_start2) && _start2 >= calendarStart) {
+                                if ((0, _dateFns.isValid)(_start2) && _start2 >= calendarStart) {
 
                                     disabledRange.push({
                                         start: calendarStart,
@@ -11977,7 +11977,7 @@ exports.default = {
                                     });
                                 }
 
-                                if ((0, _esm.isValid)(_end2) && _end2 <= calendarEnd) {
+                                if ((0, _dateFns.isValid)(_end2) && _end2 <= calendarEnd) {
 
                                     disabledRange.push({
                                         start: _end2,
@@ -11990,7 +11990,7 @@ exports.default = {
 
                                     var drange = disabledRange[di];
 
-                                    if (drange && (0, _esm.areIntervalsOverlapping)(drange, {
+                                    if (drange && (0, _dateFns.areIntervalsOverlapping)(drange, {
                                         start: _start2,
                                         end: _end2
                                     })) {
@@ -12060,7 +12060,7 @@ exports.default = {
         },
         _getClosestDate: function _getClosestDate(date) {
 
-            date = (0, _esm.closestTo)(date, this.data.selectableDates);
+            date = (0, _dateFns.closestTo)(date, this.data.selectableDates);
 
             return date;
         },
@@ -12184,7 +12184,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _esm = __webpack_require__(2);
+var _dateFns = __webpack_require__(2);
 
 var _Time = __webpack_require__(75);
 
@@ -12352,16 +12352,16 @@ exports.default = {
 
             var date = this._timeStringToDate(value, this.conf.format);
 
-            if (!(0, _esm.isValid)(date)) {
+            if (!(0, _dateFns.isValid)(date)) {
 
                 date = this._timeGetStandardDate();
             }
 
             if (date) {
 
-                var h = (0, _esm.getHours)(date);
-                var m = (0, _esm.getMinutes)(date);
-                var s = (0, _esm.getSeconds)(date);
+                var h = (0, _dateFns.getHours)(date);
+                var m = (0, _dateFns.getMinutes)(date);
+                var s = (0, _dateFns.getSeconds)(date);
 
                 if (!this.data.inputFocus && (!this._checkSelectable('hour', h) || !this._checkSelectable('minute', m) || !this._checkSelectable('second', s))) {
 
@@ -12369,7 +12369,7 @@ exports.default = {
                 }
             }
 
-            return (0, _esm.format)(date, this.conf.format);
+            return (0, _dateFns.format)(date, this.conf.format);
         },
         _noop: function _noop() {},
         _inputBlur: function _inputBlur() {
@@ -12393,7 +12393,7 @@ exports.default = {
                     this._refreshInputValue();
                 } else {
 
-                    this._set((0, _esm.format)(date, this.conf.format), true);
+                    this._set((0, _dateFns.format)(date, this.conf.format), true);
                 }
             }
         },
@@ -12413,8 +12413,8 @@ exports.default = {
                 second: '(ss|s)'
             };
             var result = this.conf.format.match(map[type]);
-            var leftString = (0, _esm.format)(date, '' + this.conf.format.slice(0, result.index));
-            var selfString = (0, _esm.format)(date, '' + this.conf.format.slice(result.index, result.index + result[0].length));
+            var leftString = (0, _dateFns.format)(date, '' + this.conf.format.slice(0, result.index));
+            var selfString = (0, _dateFns.format)(date, '' + this.conf.format.slice(result.index, result.index + result[0].length));
 
             if (leftString === ' ' && result.index === 0) {
 
@@ -12471,7 +12471,7 @@ exports.default = {
 
             var time = this._timeSet(type, i, this._timeStringToDate(this.data.value, this.conf.format));
 
-            this._set((0, _esm.format)(time, this.conf.format), true);
+            this._set((0, _dateFns.format)(time, this.conf.format), true);
 
             this.Vue.nextTick(function () {
 
@@ -12485,9 +12485,9 @@ exports.default = {
 
             var date = this._timeStringToDate(this.data.value, this.conf.format);
 
-            this.data.h = (0, _esm.getHours)(date);
-            this.data.m = (0, _esm.getMinutes)(date);
-            this.data.s = (0, _esm.getSeconds)(date);
+            this.data.h = (0, _dateFns.getHours)(date);
+            this.data.m = (0, _dateFns.getMinutes)(date);
+            this.data.s = (0, _dateFns.getSeconds)(date);
 
             this._scrollToTime();
             this._refreshInputValue();
@@ -12540,7 +12540,7 @@ exports.default = {
 
             if (this.data.value !== undefined) {
 
-                timeString = (0, _esm.format)(this._timeStringToDate(this.data.value, this.conf.format), this.conf.format);
+                timeString = (0, _dateFns.format)(this._timeStringToDate(this.data.value, this.conf.format), this.conf.format);
             }
 
             this.$refs['ui-private-timepicker-input-' + this.uiid]._set(timeString, true);
@@ -12558,31 +12558,31 @@ exports.default = {
 
             if (type === 'hour') {
 
-                checkDateLeft = (0, _esm.setHours)(checkDateLeft, num);
-                checkDateLeft = (0, _esm.startOfHour)(checkDateLeft);
-                checkDateRight = (0, _esm.endOfHour)(checkDateLeft);
+                checkDateLeft = (0, _dateFns.setHours)(checkDateLeft, num);
+                checkDateLeft = (0, _dateFns.startOfHour)(checkDateLeft);
+                checkDateRight = (0, _dateFns.endOfHour)(checkDateLeft);
             } else if (type === 'minute') {
 
-                checkDateLeft = (0, _esm.setHours)(checkDateLeft, this.data.h);
-                checkDateLeft = (0, _esm.setMinutes)(checkDateLeft, num);
-                checkDateLeft = (0, _esm.startOfMinute)(checkDateLeft);
-                checkDateRight = (0, _esm.endOfMinute)(checkDateLeft);
+                checkDateLeft = (0, _dateFns.setHours)(checkDateLeft, this.data.h);
+                checkDateLeft = (0, _dateFns.setMinutes)(checkDateLeft, num);
+                checkDateLeft = (0, _dateFns.startOfMinute)(checkDateLeft);
+                checkDateRight = (0, _dateFns.endOfMinute)(checkDateLeft);
             } else if (type === 'second') {
 
-                checkDateLeft = (0, _esm.setHours)(checkDateLeft, this.data.h);
-                checkDateLeft = (0, _esm.setMinutes)(checkDateLeft, this.data.m);
-                checkDateLeft = (0, _esm.setSeconds)(checkDateLeft, num);
+                checkDateLeft = (0, _dateFns.setHours)(checkDateLeft, this.data.h);
+                checkDateLeft = (0, _dateFns.setMinutes)(checkDateLeft, this.data.m);
+                checkDateLeft = (0, _dateFns.setSeconds)(checkDateLeft, num);
                 checkDateRight = checkDateLeft;
             } else if (type === 'all') {
 
-                checkDateLeft = (0, _esm.setHours)(checkDateLeft, this.data.h);
-                checkDateLeft = (0, _esm.setMinutes)(checkDateLeft, this.data.m);
-                checkDateLeft = (0, _esm.setSeconds)(checkDateLeft, this.data.s);
+                checkDateLeft = (0, _dateFns.setHours)(checkDateLeft, this.data.h);
+                checkDateLeft = (0, _dateFns.setMinutes)(checkDateLeft, this.data.m);
+                checkDateLeft = (0, _dateFns.setSeconds)(checkDateLeft, this.data.s);
                 checkDateRight = checkDateLeft;
             }
 
-            checkDateLeft = (0, _esm.addMilliseconds)(checkDateLeft, -1);
-            checkDateRight = (0, _esm.addMilliseconds)(checkDateRight, 1);
+            checkDateLeft = (0, _dateFns.addMilliseconds)(checkDateLeft, -1);
+            checkDateRight = (0, _dateFns.addMilliseconds)(checkDateRight, 1);
 
             var checkInterval = {
                 start: checkDateLeft,
@@ -12603,7 +12603,7 @@ exports.default = {
                         end: time[1]
                     };
 
-                    if ((0, _esm.areIntervalsOverlapping)(checkInterval, timeInterval)) {
+                    if ((0, _dateFns.areIntervalsOverlapping)(checkInterval, timeInterval)) {
 
                         selectable = true;
 
@@ -12651,7 +12651,7 @@ exports.default = {
 
             var time = this._timeSet(type, +value, this._timeStringToDate(this.data.value, this.conf.format));
 
-            this._set((0, _esm.format)(time, this.conf.format), true);
+            this._set((0, _dateFns.format)(time, this.conf.format), true);
 
             return this;
         },
@@ -12662,12 +12662,12 @@ exports.default = {
             var rangeStart = this._timeStringToDate(range[0], this.conf.format);
             var rangeEnd = this._timeStringToDate(range[1], this.conf.format);
 
-            start = (0, _esm.setHours)(start, (0, _esm.getHours)(rangeStart));
-            start = (0, _esm.setMinutes)(start, (0, _esm.getMinutes)(rangeStart));
-            start = (0, _esm.setSeconds)(start, (0, _esm.getSeconds)(rangeStart));
-            end = (0, _esm.setHours)(end, (0, _esm.getHours)(rangeEnd));
-            end = (0, _esm.setMinutes)(end, (0, _esm.getMinutes)(rangeEnd));
-            end = (0, _esm.setSeconds)(end, (0, _esm.getSeconds)(rangeEnd));
+            start = (0, _dateFns.setHours)(start, (0, _dateFns.getHours)(rangeStart));
+            start = (0, _dateFns.setMinutes)(start, (0, _dateFns.getMinutes)(rangeStart));
+            start = (0, _dateFns.setSeconds)(start, (0, _dateFns.getSeconds)(rangeStart));
+            end = (0, _dateFns.setHours)(end, (0, _dateFns.getHours)(rangeEnd));
+            end = (0, _dateFns.setMinutes)(end, (0, _dateFns.getMinutes)(rangeEnd));
+            end = (0, _dateFns.setSeconds)(end, (0, _dateFns.getSeconds)(rangeEnd));
 
             selectableTimes.push([start, end]);
         },
@@ -12676,7 +12676,7 @@ exports.default = {
             var ranges = this.conf.selectableRange;
             var selectableTimes = [];
 
-            if (ranges instanceof Array && ranges.length === 2 && typeof ranges[0] === 'string' && typeof ranges[1] === 'string' && (0, _esm.isValid)(this._timeStringToDate(ranges[0], this.conf.format)) && (0, _esm.isValid)(this._timeStringToDate(ranges[1], this.conf.format))) {
+            if (ranges instanceof Array && ranges.length === 2 && typeof ranges[0] === 'string' && typeof ranges[1] === 'string' && (0, _dateFns.isValid)(this._timeStringToDate(ranges[0], this.conf.format)) && (0, _dateFns.isValid)(this._timeStringToDate(ranges[1], this.conf.format))) {
 
                 this._initSelectableTime(ranges, selectableTimes);
             } else if (ranges instanceof Array) {
@@ -12690,7 +12690,7 @@ exports.default = {
                         var range = _step3.value;
 
 
-                        if (range instanceof Array && range.length === 2 && typeof range[0] === 'string' && typeof range[1] === 'string' && (0, _esm.isValid)(this._timeStringToDate(range[0], this.conf.format)) && (0, _esm.isValid)(this._timeStringToDate(range[1], this.conf.format))) {
+                        if (range instanceof Array && range.length === 2 && typeof range[0] === 'string' && typeof range[1] === 'string' && (0, _dateFns.isValid)(this._timeStringToDate(range[0], this.conf.format)) && (0, _dateFns.isValid)(this._timeStringToDate(range[1], this.conf.format))) {
 
                             this._initSelectableTime(range, selectableTimes);
                         }
@@ -12744,7 +12744,7 @@ exports.default = {
                 }
             }
 
-            date = (0, _esm.closestTo)(date, list);
+            date = (0, _dateFns.closestTo)(date, list);
 
             return date;
         },
@@ -12802,6 +12802,51 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -13082,6 +13127,17 @@ exports.default = {
                 max: this.max,
                 maxSpot: this.maxSpot
             };
+        },
+        mapareaWidth: function mapareaWidth() {
+
+            if (isNaN(+this.data.setScale) || +this.data.setScale === 100) {
+
+                return '100%';
+            }
+
+            var value = this.get();
+
+            return value.w * this.data.setScale / 100 + 'px';
         }
     },
     data: function data() {
@@ -13113,7 +13169,9 @@ exports.default = {
                 modifyZoneId: null,
                 modifyZoneBasic: {},
                 modifyZoneData: undefined,
-                disableAddSpot: false
+                disableAddSpot: false,
+                scale: 1,
+                setScale: 100
             }
         };
     },
@@ -13158,8 +13216,8 @@ exports.default = {
             var id = void 0;
 
             id = this.addZone({
-                x: x - areaX,
-                y: y - areaY
+                x: this._getRealValue(x - areaX),
+                y: this._getRealValue(y - areaY)
             });
 
             this.Vue.nextTick(function () {
@@ -13176,6 +13234,8 @@ exports.default = {
             var y = +zone.y;
             var w = +zone.w;
             var h = +zone.h;
+            var evtx = this._getRealValue(evt.x);
+            var evty = this._getRealValue(evt.y);
             var ox = void 0,
                 oy = void 0,
                 ow = void 0,
@@ -13190,7 +13250,7 @@ exports.default = {
             if (/right/.test(this.data.resizeZoneType)) {
 
                 ow = w;
-                w += evt.x - this.data.resizeZoneLastXY.x;
+                w += evtx - this.data.resizeZoneLastXY.x;
 
                 if (w < zoneMinSize) {
 
@@ -13205,20 +13265,20 @@ exports.default = {
 
                         zone.w = zoneMinSize;
                         zone.x -= zone.w;
-                        this.data.resizeZoneLastXY.x = $zone.getBoundingClientRect().x - zone.w;
+                        this.data.resizeZoneLastXY.x = this._getRealValue($zone.getBoundingClientRect().x) - zone.w;
                     } else {
 
                         zone.w = Math.abs(w);
                         zone.x -= zone.w;
-                        this.data.resizeZoneLastXY.x = $zone.getBoundingClientRect().x - zone.w;
+                        this.data.resizeZoneLastXY.x = this._getRealValue($zone.getBoundingClientRect().x) - zone.w;
                     }
 
                     return;
                 }
 
-                if (w + x > $zonearea.clientWidth) {
+                if (w + x > this._getRealValue($zonearea.clientWidth)) {
 
-                    w = $zonearea.clientWidth - x;
+                    w = this._getRealValue($zonearea.clientWidth) - x;
                     this.data.overRange = true;
                 } else {
 
@@ -13230,8 +13290,8 @@ exports.default = {
 
                 ox = x;
                 ow = w;
-                x += evt.x - this.data.resizeZoneLastXY.x;
-                w -= evt.x - this.data.resizeZoneLastXY.x;
+                x += evtx - this.data.resizeZoneLastXY.x;
+                w -= evtx - this.data.resizeZoneLastXY.x;
 
                 if (w < zoneMinSize) {
 
@@ -13246,12 +13306,12 @@ exports.default = {
 
                         zone.w = zoneMinSize;
                         zone.x += ow;
-                        this.data.resizeZoneLastXY.x = $zone.getBoundingClientRect().x + ow;
+                        this.data.resizeZoneLastXY.x = this._getRealValue($zone.getBoundingClientRect().x) + ow;
                     } else {
 
                         zone.w = Math.abs(w + ow);
                         zone.x += ow;
-                        this.data.resizeZoneLastXY.x = $zone.getBoundingClientRect().x + ow;
+                        this.data.resizeZoneLastXY.x = this._getRealValue($zone.getBoundingClientRect().x) + ow;
                     }
 
                     return;
@@ -13271,7 +13331,7 @@ exports.default = {
             if (/bottom/.test(this.data.resizeZoneType)) {
 
                 oh = h;
-                h += evt.y - this.data.resizeZoneLastXY.y;
+                h += evty - this.data.resizeZoneLastXY.y;
 
                 if (h < zoneMinSize) {
 
@@ -13286,20 +13346,20 @@ exports.default = {
 
                         zone.h = zoneMinSize;
                         zone.y -= zone.h;
-                        this.data.resizeZoneLastXY.y = $zone.getBoundingClientRect().y - zone.h;
+                        this.data.resizeZoneLastXY.y = this._getRealValue($zone.getBoundingClientRect().y) - zone.h;
                     } else {
 
                         zone.h = Math.abs(h);
                         zone.y -= zone.h;
-                        this.data.resizeZoneLastXY.y = $zone.getBoundingClientRect().y - zone.h;
+                        this.data.resizeZoneLastXY.y = this._getRealValue($zone.getBoundingClientRect().y) - zone.h;
                     }
 
                     return;
                 }
 
-                if (h + y > $zonearea.clientHeight) {
+                if (h + y > this._getRealValue($zonearea.clientHeight)) {
 
-                    h = $zonearea.clientHeight - y;
+                    h = this._getRealValue($zonearea.clientHeight) - y;
                     this.data.overRange = true;
                 } else {
 
@@ -13311,8 +13371,8 @@ exports.default = {
 
                 oy = y;
                 oh = h;
-                y += evt.y - this.data.resizeZoneLastXY.y;
-                h -= evt.y - this.data.resizeZoneLastXY.y;
+                y += evty - this.data.resizeZoneLastXY.y;
+                h -= evty - this.data.resizeZoneLastXY.y;
 
                 if (h < zoneMinSize) {
 
@@ -13327,12 +13387,12 @@ exports.default = {
 
                         zone.h = zoneMinSize;
                         zone.y += oh;
-                        this.data.resizeZoneLastXY.y = $zone.getBoundingClientRect().y + oh;
+                        this.data.resizeZoneLastXY.y = this._getRealValue($zone.getBoundingClientRect().y) + oh;
                     } else {
 
                         zone.h = Math.abs(h + oh);
                         zone.y += oh;
-                        this.data.resizeZoneLastXY.y = $zone.getBoundingClientRect().y + oh;
+                        this.data.resizeZoneLastXY.y = this._getRealValue($zone.getBoundingClientRect().y) + oh;
                     }
 
                     return;
@@ -13349,8 +13409,8 @@ exports.default = {
                 }
             }
 
-            this.data.resizeZoneLastXY.x = evt.x;
-            this.data.resizeZoneLastXY.y = evt.y;
+            this.data.resizeZoneLastXY.x = evtx;
+            this.data.resizeZoneLastXY.y = evty;
 
             zone.x = x;
             zone.y = y;
@@ -13365,12 +13425,14 @@ exports.default = {
             }
 
             var $zone = this.$refs['ui-imagemap-mapdialog-' + this.uiid].$el.querySelector('[zone-id="' + id + '"]');
+            var evtx = this._getRealValue(evt.x);
+            var evty = this._getRealValue(evt.y);
 
             this.data.resizeZoneEl = $zone;
             this.data.resizeZoneId = id;
             this.data.resizeZoneType = type;
-            this.data.resizeZoneLastXY.x = evt.x;
-            this.data.resizeZoneLastXY.y = evt.y;
+            this.data.resizeZoneLastXY.x = evtx;
+            this.data.resizeZoneLastXY.y = evty;
 
             this._globalEventAdd('mousemove', '_resizeZoneMove');
             this._globalEventAdd('mouseup', '_resizeZoneStop');
@@ -13412,24 +13474,26 @@ exports.default = {
         _zoneRangeFilter: function _zoneRangeFilter(zone) {
 
             var $zonearea = this.$refs['ui-imagemap-mapdialog-' + this.uiid].$el.querySelector('.zonearea');
+            var clientWidth = this._getRealValue($zonearea.clientWidth);
+            var clientHeight = this._getRealValue($zonearea.clientHeight);
 
             if (zone.x < 0) {
 
                 zone.x = 0;
             }
 
-            if (zone.x + zone.w > $zonearea.clientWidth) {
+            if (zone.x + zone.w > clientWidth) {
 
-                if (zone.w < $zonearea.clientWidth) {
+                if (zone.w < clientWidth) {
 
-                    zone.x = $zonearea.clientWidth - zone.w;
-                } else if (zone.x < $zonearea.clientWidth) {
+                    zone.x = clientWidth - zone.w;
+                } else if (zone.x < clientWidth) {
 
-                    zone.w = $zonearea.clientWidth - zone.x;
+                    zone.w = clientWidth - zone.x;
                 } else {
 
                     zone.x = 0;
-                    zone.w = $zonearea.clientWidth;
+                    zone.w = clientWidth;
                 }
             }
 
@@ -13438,18 +13502,18 @@ exports.default = {
                 zone.y = 0;
             }
 
-            if (zone.y + zone.h > $zonearea.clientHeight) {
+            if (zone.y + zone.h > clientHeight) {
 
-                if (zone.h < $zonearea.clientHeight) {
+                if (zone.h < clientHeight) {
 
-                    zone.y = $zonearea.clientHeight - zone.h;
-                } else if (zone.y < $zonearea.clientHeight) {
+                    zone.y = clientHeight - zone.h;
+                } else if (zone.y < clientHeight) {
 
-                    zone.h = $zonearea.clientHeight - zone.y;
+                    zone.h = clientHeight - zone.y;
                 } else {
 
                     zone.y = 0;
-                    zone.h = $zonearea.clientHeight;
+                    zone.h = clientHeight;
                 }
             }
 
@@ -13537,7 +13601,6 @@ exports.default = {
                     }
                 }
 
-                _this2._updateMoveRange();
                 _this2.Move.target = '.zone';
                 _this2.Move.scrollContainer = '.body';
                 _this2.Move.container = '.zonearea';
@@ -13666,8 +13729,8 @@ exports.default = {
 
             result.images = this.data.images;
             result.zones = this.data.zones;
-            result.w = $zonearea.clientWidth;
-            result.h = $zonearea.clientHeight;
+            result.w = this._getRealValue($zonearea.clientWidth);
+            result.h = this._getRealValue($zonearea.clientHeight);
 
             // when images is empty.
             if (!result.images || result.images.length === 0) {
@@ -13688,6 +13751,27 @@ exports.default = {
 
                 this.cleanZones();
             }
+        },
+        _refreshScale: function _refreshScale() {
+
+            var $zonearea = this.$refs['ui-imagemap-mapdialog-' + this.uiid].$el.querySelector('.zonearea');
+            var value = this.get();
+
+            if (value && value.w) {
+
+                this.data.scale = $zonearea.clientWidth / value.w;
+            } else {
+
+                this.data.scale = 1;
+            }
+
+            this._updateMoveRange();
+
+            console.log('_refreshScale', this.data.scale);
+        },
+        _getRealValue: function _getRealValue(val) {
+
+            return val / this.data.scale;
         },
         set: function set(value) {
 
@@ -13754,6 +13838,11 @@ exports.default = {
     created: function created() {},
     mounted: function mounted() {
         var _this5 = this;
+
+        this.$watch('data.setScale', function () {
+
+            _this5._refreshScale();
+        });
 
         this.$watch('data.zones', function () {
 
@@ -13829,7 +13918,7 @@ exports.default = {
 
             if (_this5.data.moveZoneId !== null) {
 
-                _this5._moveZone(_this5.data.moveZoneId, _this5.Move.current.x, _this5.Move.current.y);
+                _this5._moveZone(_this5.data.moveZoneId, _this5._getRealValue(_this5.Move.current.x), _this5._getRealValue(_this5.Move.current.y));
             }
 
             _this5.data.overRange = false;
@@ -14595,7 +14684,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 
-var _esm = __webpack_require__(2);
+var _dateFns = __webpack_require__(2);
 
 var _Dates = __webpack_require__(74);
 
@@ -14768,17 +14857,17 @@ exports.default = {
 
             var date = this._dateStringToDate(value, this.conf.format);
 
-            if (!(0, _esm.isValid)(date)) {
+            if (!(0, _dateFns.isValid)(date)) {
 
                 date = this._dateGetStandardDate();
             }
 
-            if (!this._checkSelectable((0, _esm.format)(date, this.conf.format))) {
+            if (!this._checkSelectable((0, _dateFns.format)(date, this.conf.format))) {
 
                 date = this._getClosestTime(date);
             }
 
-            return (0, _esm.format)(date, this.conf.format);
+            return (0, _dateFns.format)(date, this.conf.format);
         },
         _syncFromRootToChild: function _syncFromRootToChild() {
             var _this = this;
@@ -14810,19 +14899,19 @@ exports.default = {
 
                                 timeDate = _this._dateStringToDate(value[0], $date.conf.format);
 
-                                $time._set((0, _esm.format)(timeDate, $time.conf.format), true);
+                                $time._set((0, _dateFns.format)(timeDate, $time.conf.format), true);
                             }
 
                             if (value[1]) {
 
                                 timeDate2 = _this._dateStringToDate(value[1], $date.conf.format);
 
-                                $time2._set((0, _esm.format)(timeDate2, $time2.conf.format), true);
+                                $time2._set((0, _dateFns.format)(timeDate2, $time2.conf.format), true);
                             }
                         } else {
 
                             timeDate = _this._dateStringToDate(value, $date.conf.format);
-                            $time._set((0, _esm.format)(timeDate, $time.conf.format), true);
+                            $time._set((0, _dateFns.format)(timeDate, $time.conf.format), true);
                         }
                     } else if (_this.conf.isRange) {
 
@@ -14856,9 +14945,9 @@ exports.default = {
             var dateObj = void 0;
             var timeObj = void 0;
 
-            fulldate = (0, _esm.setYear)(fulldate, (0, _esm.getYear)(now));
-            fulldate = (0, _esm.setMonth)(fulldate, (0, _esm.getMonth)(now));
-            fulldate = (0, _esm.setDate)(fulldate, (0, _esm.getDate)(now));
+            fulldate = (0, _dateFns.setYear)(fulldate, (0, _dateFns.getYear)(now));
+            fulldate = (0, _dateFns.setMonth)(fulldate, (0, _dateFns.getMonth)(now));
+            fulldate = (0, _dateFns.setDate)(fulldate, (0, _dateFns.getDate)(now));
 
             if (date) {
 
@@ -14873,9 +14962,9 @@ exports.default = {
             if (dateObj) {
 
                 isSet = true;
-                fulldate = (0, _esm.setYear)(fulldate, (0, _esm.getYear)(dateObj));
-                fulldate = (0, _esm.setMonth)(fulldate, (0, _esm.getMonth)(dateObj));
-                fulldate = (0, _esm.setDate)(fulldate, (0, _esm.getDate)(dateObj));
+                fulldate = (0, _dateFns.setYear)(fulldate, (0, _dateFns.getYear)(dateObj));
+                fulldate = (0, _dateFns.setMonth)(fulldate, (0, _dateFns.getMonth)(dateObj));
+                fulldate = (0, _dateFns.setDate)(fulldate, (0, _dateFns.getDate)(dateObj));
             }
 
             if ($date && $time) {
@@ -14883,17 +14972,17 @@ exports.default = {
                 if (type === 2 && dateObj || type === 0 && dateObj && !time) {
 
                     isSet = true;
-                    fulldate = (0, _esm.setHours)(fulldate, (0, _esm.getHours)(dateObj));
-                    fulldate = (0, _esm.setMinutes)(fulldate, (0, _esm.getMinutes)(dateObj));
-                    fulldate = (0, _esm.setSeconds)(fulldate, (0, _esm.getSeconds)(dateObj));
-                    fulldate = (0, _esm.setMilliseconds)(fulldate, (0, _esm.getMilliseconds)(dateObj));
+                    fulldate = (0, _dateFns.setHours)(fulldate, (0, _dateFns.getHours)(dateObj));
+                    fulldate = (0, _dateFns.setMinutes)(fulldate, (0, _dateFns.getMinutes)(dateObj));
+                    fulldate = (0, _dateFns.setSeconds)(fulldate, (0, _dateFns.getSeconds)(dateObj));
+                    fulldate = (0, _dateFns.setMilliseconds)(fulldate, (0, _dateFns.getMilliseconds)(dateObj));
                 } else if (type === 1 && timeObj || timeObj && dateObj) {
 
                     isSet = true;
-                    fulldate = (0, _esm.setHours)(fulldate, (0, _esm.getHours)(timeObj));
-                    fulldate = (0, _esm.setMinutes)(fulldate, (0, _esm.getMinutes)(timeObj));
-                    fulldate = (0, _esm.setSeconds)(fulldate, (0, _esm.getSeconds)(timeObj));
-                    fulldate = (0, _esm.setMilliseconds)(fulldate, (0, _esm.getMilliseconds)(timeObj));
+                    fulldate = (0, _dateFns.setHours)(fulldate, (0, _dateFns.getHours)(timeObj));
+                    fulldate = (0, _dateFns.setMinutes)(fulldate, (0, _dateFns.getMinutes)(timeObj));
+                    fulldate = (0, _dateFns.setSeconds)(fulldate, (0, _dateFns.getSeconds)(timeObj));
+                    fulldate = (0, _dateFns.setMilliseconds)(fulldate, (0, _dateFns.getMilliseconds)(timeObj));
                 }
             }
 
@@ -14913,15 +15002,15 @@ exports.default = {
 
                 if (date instanceof Date) {
 
-                    this._set((0, _esm.format)(date, this.conf.format), true);
+                    this._set((0, _dateFns.format)(date, this.conf.format), true);
                 } else if (date instanceof Array) {
 
                     if (date.length === 1) {
 
-                        this._set([(0, _esm.format)(date[0], this.conf.format)], true);
+                        this._set([(0, _dateFns.format)(date[0], this.conf.format)], true);
                     } else {
 
-                        this._set([(0, _esm.format)(date[0], this.conf.format), (0, _esm.format)(date[1], this.conf.format)], true);
+                        this._set([(0, _dateFns.format)(date[0], this.conf.format), (0, _dateFns.format)(date[1], this.conf.format)], true);
                     }
                 }
             } else {
@@ -15030,12 +15119,12 @@ exports.default = {
                 var start = this._dateStringToDate(dateRanges[0], this.conf.format);
                 var end = this._dateStringToDate(dateRanges[1], this.conf.format);
 
-                if ((0, _esm.isSameDay)(start, valueDate)) {
+                if ((0, _dateFns.isSameDay)(start, valueDate)) {
 
                     limitTimeRange[0] = start;
                 }
 
-                if ((0, _esm.isSameDay)(end, valueDate)) {
+                if ((0, _dateFns.isSameDay)(end, valueDate)) {
 
                     limitTimeRange[1] = end;
                 }
@@ -15059,12 +15148,12 @@ exports.default = {
                             var _start = this._dateStringToDate(range[0], this.conf.format);
                             var _end = this._dateStringToDate(range[1], this.conf.format);
 
-                            if ((0, _esm.isSameDay)(_start, valueDate)) {
+                            if ((0, _dateFns.isSameDay)(_start, valueDate)) {
 
                                 limitTimeRange[0] = _start;
                             }
 
-                            if ((0, _esm.isSameDay)(_end, valueDate)) {
+                            if ((0, _dateFns.isSameDay)(_end, valueDate)) {
 
                                 limitTimeRange[1] = _end;
                             }
@@ -15091,15 +15180,15 @@ exports.default = {
                 }
             }
 
-            limitTimeRange[0] = (0, _esm.format)(limitTimeRange[0], $time.conf.format);
-            limitTimeRange[1] = (0, _esm.format)(limitTimeRange[1], $time.conf.format);
+            limitTimeRange[0] = (0, _dateFns.format)(limitTimeRange[0], $time.conf.format);
+            limitTimeRange[1] = (0, _dateFns.format)(limitTimeRange[1], $time.conf.format);
 
             this.data.timeSelectableRange = limitTimeRange;
             this.data.selectableDates = selectableDates;
         },
         _getClosestDate: function _getClosestDate(date) {
 
-            date = (0, _esm.closestTo)(date, this.data.selectableDates);
+            date = (0, _dateFns.closestTo)(date, this.data.selectableDates);
 
             return date;
         },
@@ -15119,7 +15208,7 @@ exports.default = {
                 var start = this._dateStringToDate(ranges[0], this.conf.format);
                 var end = this._dateStringToDate(ranges[1], this.conf.format);
 
-                if ((0, _esm.isValid)(start) && (0, _esm.isValid)(end) && (0, _esm.isWithinInterval)(date, {
+                if ((0, _dateFns.isValid)(start) && (0, _dateFns.isValid)(end) && (0, _dateFns.isWithinInterval)(date, {
                     start: start,
                     end: end
                 })) {
@@ -15142,7 +15231,7 @@ exports.default = {
                             var _start2 = this._dateStringToDate(range[0], this.conf.format);
                             var _end2 = this._dateStringToDate(range[1], this.conf.format);
 
-                            if ((0, _esm.isValid)(_start2) && (0, _esm.isValid)(_end2) && (0, _esm.isWithinInterval)(date, {
+                            if ((0, _dateFns.isValid)(_start2) && (0, _dateFns.isValid)(_end2) && (0, _dateFns.isWithinInterval)(date, {
                                 start: _start2,
                                 end: _end2
                             })) {
@@ -15312,7 +15401,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 
-var _esm = __webpack_require__(2);
+var _dateFns = __webpack_require__(2);
 
 var _lodash = __webpack_require__(4);
 
@@ -15459,7 +15548,7 @@ exports.default = {
         _input1DateChange: function _input1DateChange(date) {
             var _this2 = this;
 
-            this.data.currentDate = (0, _esm.subMonths)(date, 1);
+            this.data.currentDate = (0, _dateFns.subMonths)(date, 1);
             this.$nextTick(function () {
                 return _this2._highlightDateFromValue();
             });
@@ -15569,7 +15658,7 @@ exports.default = {
 
             var date = this._dateStringToDate(value, this.conf.format);
 
-            if (!(0, _esm.isValid)(date)) {
+            if (!(0, _dateFns.isValid)(date)) {
 
                 value = this._dateGetStandardDate();
             }
@@ -15619,19 +15708,19 @@ exports.default = {
             var input0 = this.$refs['ui-datepicker-input-0-' + this.uiid];
             var input1 = this.$refs['ui-datepicker-input-1-' + this.uiid];
             var input0Calendar = input0.$refs['ui-calendar-' + input0.uiid];
-            var input0CalendarStart = (0, _esm.startOfMonth)(input0Calendar.getTime());
-            var input0CalendarEnd = (0, _esm.endOfMonth)(input0Calendar.getTime());
+            var input0CalendarStart = (0, _dateFns.startOfMonth)(input0Calendar.getTime());
+            var input0CalendarEnd = (0, _dateFns.endOfMonth)(input0Calendar.getTime());
             var input1Calendar = input1.$refs['ui-calendar-' + input1.uiid];
-            var input1CalendarStart = (0, _esm.startOfMonth)(input1Calendar.getTime());
-            var input1CalendarEnd = (0, _esm.endOfMonth)(input1Calendar.getTime());
+            var input1CalendarStart = (0, _dateFns.startOfMonth)(input1Calendar.getTime());
+            var input1CalendarEnd = (0, _dateFns.endOfMonth)(input1Calendar.getTime());
             var input0HighlightDays = void 0;
             var input1HighlightDays = void 0;
 
             // start超过左侧日历/end在左侧日历
             if (start <= input0CalendarStart && end >= input0CalendarStart && end <= input0CalendarEnd) {
 
-                input0HighlightDays = (0, _esm.eachDayOfInterval)({
-                    start: (0, _esm.subDays)(+input0CalendarStart, 1),
+                input0HighlightDays = (0, _dateFns.eachDayOfInterval)({
+                    start: (0, _dateFns.subDays)(+input0CalendarStart, 1),
                     end: end
                 });
                 input1HighlightDays = [];
@@ -15640,12 +15729,12 @@ exports.default = {
             // start超过左侧日历/end在右侧日历
             if (start <= input0CalendarStart && end >= input1CalendarStart && end <= input1CalendarEnd) {
 
-                input0HighlightDays = (0, _esm.eachDayOfInterval)({
-                    start: (0, _esm.subDays)(+input0CalendarStart, 1),
-                    end: (0, _esm.addDays)(+input0CalendarEnd, 1)
+                input0HighlightDays = (0, _dateFns.eachDayOfInterval)({
+                    start: (0, _dateFns.subDays)(+input0CalendarStart, 1),
+                    end: (0, _dateFns.addDays)(+input0CalendarEnd, 1)
                 });
-                input1HighlightDays = (0, _esm.eachDayOfInterval)({
-                    start: (0, _esm.subDays)(+input1CalendarStart, 1),
+                input1HighlightDays = (0, _dateFns.eachDayOfInterval)({
+                    start: (0, _dateFns.subDays)(+input1CalendarStart, 1),
                     end: end
                 });
             }
@@ -15653,13 +15742,13 @@ exports.default = {
             // start在左侧日历/end超过右侧日历
             if (start >= input0CalendarStart && start <= input0CalendarEnd && end >= input1CalendarEnd) {
 
-                input0HighlightDays = (0, _esm.eachDayOfInterval)({
+                input0HighlightDays = (0, _dateFns.eachDayOfInterval)({
                     start: start,
-                    end: (0, _esm.addDays)(+input0CalendarEnd, 1)
+                    end: (0, _dateFns.addDays)(+input0CalendarEnd, 1)
                 });
-                input1HighlightDays = (0, _esm.eachDayOfInterval)({
-                    start: (0, _esm.subDays)(+input1CalendarStart, 1),
-                    end: (0, _esm.addDays)(+input1CalendarEnd, 1)
+                input1HighlightDays = (0, _dateFns.eachDayOfInterval)({
+                    start: (0, _dateFns.subDays)(+input1CalendarStart, 1),
+                    end: (0, _dateFns.addDays)(+input1CalendarEnd, 1)
                 });
             }
 
@@ -15667,29 +15756,29 @@ exports.default = {
             if (start >= input1CalendarStart && start <= input1CalendarEnd && end >= input1CalendarEnd) {
 
                 input0HighlightDays = [];
-                input1HighlightDays = (0, _esm.eachDayOfInterval)({
+                input1HighlightDays = (0, _dateFns.eachDayOfInterval)({
                     start: start,
-                    end: (0, _esm.addDays)(+input1CalendarEnd, 1)
+                    end: (0, _dateFns.addDays)(+input1CalendarEnd, 1)
                 });
             }
 
             // start超过左侧日历/end超过右侧日历
             if (start <= input0CalendarStart && end >= input1CalendarEnd) {
 
-                input0HighlightDays = (0, _esm.eachDayOfInterval)({
-                    start: (0, _esm.subDays)(+input0CalendarStart, 1),
-                    end: (0, _esm.addDays)(+input0CalendarEnd, 1)
+                input0HighlightDays = (0, _dateFns.eachDayOfInterval)({
+                    start: (0, _dateFns.subDays)(+input0CalendarStart, 1),
+                    end: (0, _dateFns.addDays)(+input0CalendarEnd, 1)
                 });
-                input1HighlightDays = (0, _esm.eachDayOfInterval)({
-                    start: (0, _esm.subDays)(+input1CalendarStart, 1),
-                    end: (0, _esm.addDays)(+input1CalendarEnd, 1)
+                input1HighlightDays = (0, _dateFns.eachDayOfInterval)({
+                    start: (0, _dateFns.subDays)(+input1CalendarStart, 1),
+                    end: (0, _dateFns.addDays)(+input1CalendarEnd, 1)
                 });
             }
 
             // start/end均在左侧日历中
             if (start <= input0CalendarEnd && start >= input0CalendarStart && +end <= input0CalendarEnd && +end >= input0CalendarStart) {
 
-                input0HighlightDays = (0, _esm.eachDayOfInterval)({
+                input0HighlightDays = (0, _dateFns.eachDayOfInterval)({
                     start: start,
                     end: end
                 });
@@ -15699,13 +15788,13 @@ exports.default = {
             // start在左侧/end在右侧
             if (start <= input0CalendarEnd && start >= input0CalendarStart && end >= input1CalendarStart && end <= input1CalendarEnd) {
 
-                input0HighlightDays = (0, _esm.eachDayOfInterval)({
+                input0HighlightDays = (0, _dateFns.eachDayOfInterval)({
                     start: start,
-                    end: (0, _esm.addDays)(+input0CalendarEnd, 1)
+                    end: (0, _dateFns.addDays)(+input0CalendarEnd, 1)
                 });
 
-                input1HighlightDays = (0, _esm.eachDayOfInterval)({
-                    start: (0, _esm.subDays)(+input1CalendarStart, 1),
+                input1HighlightDays = (0, _dateFns.eachDayOfInterval)({
+                    start: (0, _dateFns.subDays)(+input1CalendarStart, 1),
                     end: end
                 });
             }
@@ -15714,7 +15803,7 @@ exports.default = {
             if (start <= input1CalendarEnd && start >= input1CalendarStart && end >= input1CalendarStart && end <= input1CalendarEnd) {
 
                 input0HighlightDays = [];
-                input1HighlightDays = (0, _esm.eachDayOfInterval)({
+                input1HighlightDays = (0, _dateFns.eachDayOfInterval)({
                     start: start,
                     end: end
                 });
@@ -15746,12 +15835,12 @@ exports.default = {
 
             if (val[0]) {
 
-                val[0] = (0, _esm.format)(val[0], this.conf.format);
+                val[0] = (0, _dateFns.format)(val[0], this.conf.format);
             }
 
             if (val[1]) {
 
-                val[1] = (0, _esm.format)(val[1], this.conf.format);
+                val[1] = (0, _dateFns.format)(val[1], this.conf.format);
             }
 
             if (val.length === 0) {
@@ -15795,13 +15884,13 @@ exports.default = {
 
                 if (input0Val === undefined && input1Val) {
 
-                    val = [(0, _esm.format)(input1Val, this.conf.format)];
+                    val = [(0, _dateFns.format)(input1Val, this.conf.format)];
                 } else if (input1Val === undefined && input0Val) {
 
-                    val = [(0, _esm.format)(input0Val, this.conf.format)];
+                    val = [(0, _dateFns.format)(input0Val, this.conf.format)];
                 } else {
 
-                    val = [(0, _esm.format)(input0Val, this.conf.format), (0, _esm.format)(input1Val, this.conf.format)];
+                    val = [(0, _dateFns.format)(input0Val, this.conf.format), (0, _dateFns.format)(input1Val, this.conf.format)];
                 }
 
                 this._set(val, true);
@@ -15838,7 +15927,7 @@ exports.default = {
         },
         _addMonths: function _addMonths(date, amount) {
 
-            return (0, _esm.addMonths)(date, amount);
+            return (0, _dateFns.addMonths)(date, amount);
         },
         getDate: function getDate() {
 
@@ -16042,7 +16131,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 
-var _esm = __webpack_require__(2);
+var _dateFns = __webpack_require__(2);
 
 var _arrayUniq = __webpack_require__(3);
 
@@ -16167,11 +16256,11 @@ exports.default = {
 
                 while (+start <= +end) {
 
-                    list.push((0, _esm.format)(start, this.conf.format));
+                    list.push((0, _dateFns.format)(start, this.conf.format));
 
-                    start = (0, _esm.addHours)(start, addHour);
-                    start = (0, _esm.addMinutes)(start, addMinute);
-                    start = (0, _esm.addSeconds)(start, addSecond);
+                    start = (0, _dateFns.addHours)(start, addHour);
+                    start = (0, _dateFns.addMinutes)(start, addMinute);
+                    start = (0, _dateFns.addSeconds)(start, addSecond);
                 }
             }
 
@@ -16181,9 +16270,9 @@ exports.default = {
 
                     var date = this._timeStringToDate(list[i], this.conf.format);
 
-                    if ((0, _esm.isValid)(date)) {
+                    if ((0, _dateFns.isValid)(date)) {
 
-                        list[i] = (0, _esm.format)(date, this.conf.format);
+                        list[i] = (0, _dateFns.format)(date, this.conf.format);
                     }
                 }
             }
@@ -16246,7 +16335,7 @@ exports.default = {
 
             var date = this._timeStringToDate(value, this.conf.format);
 
-            if (!(0, _esm.isValid)(date)) {
+            if (!(0, _dateFns.isValid)(date)) {
 
                 value = this._timeGetStandardDate();
             }
@@ -20695,7 +20784,7 @@ var _lodash = __webpack_require__(4);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
-var _esm = __webpack_require__(2);
+var _dateFns = __webpack_require__(2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -20849,15 +20938,15 @@ exports.default = {
 
             return {
                 time: +this.data.current,
-                year: (0, _esm.getYear)(this.data.current),
-                month: (0, _esm.getMonth)(this.data.current),
-                date: (0, _esm.getDate)(this.data.current)
+                year: (0, _dateFns.getYear)(this.data.current),
+                month: (0, _dateFns.getMonth)(this.data.current),
+                date: (0, _dateFns.getDate)(this.data.current)
             };
         },
         prependDay: function prependDay() {
 
-            var monthStart = (0, _esm.startOfMonth)(this.data.current);
-            var weekday = (0, _esm.getDay)(monthStart);
+            var monthStart = (0, _dateFns.startOfMonth)(this.data.current);
+            var weekday = (0, _dateFns.getDay)(monthStart);
             var prependDay = weekday;
             var prepend = [];
 
@@ -20865,7 +20954,7 @@ exports.default = {
 
                 prepend.push({
                     notCurrentMonth: true,
-                    date: (0, _esm.addDays)(monthStart, -(prependDay + 1))
+                    date: (0, _dateFns.addDays)(monthStart, -(prependDay + 1))
                 });
             }
 
@@ -20873,8 +20962,8 @@ exports.default = {
         },
         monthDay: function monthDay() {
 
-            var monthStart = (0, _esm.startOfMonth)(this.data.current);
-            var monthEnd = (0, _esm.lastDayOfMonth)(this.data.current);
+            var monthStart = (0, _dateFns.startOfMonth)(this.data.current);
+            var monthEnd = (0, _dateFns.lastDayOfMonth)(this.data.current);
             var month = [];
 
             var _iteratorNormalCompletion = true;
@@ -20882,7 +20971,7 @@ exports.default = {
             var _iteratorError = undefined;
 
             try {
-                for (var _iterator = (0, _esm.eachDayOfInterval)({
+                for (var _iterator = (0, _dateFns.eachDayOfInterval)({
                     start: monthStart,
                     end: monthEnd
                 })[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
@@ -20913,8 +21002,8 @@ exports.default = {
         },
         appendDay: function appendDay() {
 
-            var monthEnd = (0, _esm.lastDayOfMonth)(this.data.current);
-            var weekday = (0, _esm.getDay)(monthEnd);
+            var monthEnd = (0, _dateFns.lastDayOfMonth)(this.data.current);
+            var weekday = (0, _dateFns.getDay)(monthEnd);
             var appendDay = 6 - weekday;
             var append = [];
 
@@ -20929,7 +21018,7 @@ exports.default = {
 
                 append.unshift({
                     notCurrentMonth: true,
-                    date: (0, _esm.addDays)(monthEnd, appendDay + 1)
+                    date: (0, _dateFns.addDays)(monthEnd, appendDay + 1)
                 });
             }
 
@@ -20956,7 +21045,7 @@ exports.default = {
         },
         pickyears: function pickyears() {
 
-            var year = (0, _esm.getYear)(this.data.current) + this.data.yearPickOffset;
+            var year = (0, _dateFns.getYear)(this.data.current) + this.data.yearPickOffset;
             var start = year - yearRange;
             var end = year + yearRange;
             var years = [];
@@ -21034,7 +21123,7 @@ exports.default = {
 
             var result = false;
 
-            if (this.conf.highlightNow && (0, _esm.isSameDay)(date, this.data.now)) {
+            if (this.conf.highlightNow && (0, _dateFns.isSameDay)(date, this.data.now)) {
 
                 result = true;
             }
@@ -21050,13 +21139,13 @@ exports.default = {
                         var item = _step3.value;
 
 
-                        if (item instanceof Array && (0, _esm.isWithinInterval)(date, {
-                            start: (0, _esm.startOfDay)(item[0]),
-                            end: (0, _esm.endOfDay)(item[1])
+                        if (item instanceof Array && (0, _dateFns.isWithinInterval)(date, {
+                            start: (0, _dateFns.startOfDay)(item[0]),
+                            end: (0, _dateFns.endOfDay)(item[1])
                         })) {
 
                             result = true;
-                        } else if ((0, _esm.isSameDay)(date, item)) {
+                        } else if ((0, _dateFns.isSameDay)(date, item)) {
 
                             result = true;
                         }
@@ -21107,7 +21196,7 @@ exports.default = {
                 nextHighlight = this._isHighlight(nextDate);
             } else {
 
-                nextHighlight = this._isHighlight((0, _esm.addDays)(currentDate, 1));
+                nextHighlight = this._isHighlight((0, _dateFns.addDays)(currentDate, 1));
             }
 
             if (item.prev) {
@@ -21116,7 +21205,7 @@ exports.default = {
                 prevHighlight = this._isHighlight(prevDate);
             } else {
 
-                prevHighlight = this._isHighlight((0, _esm.addDays)(currentDate, -1));
+                prevHighlight = this._isHighlight((0, _dateFns.addDays)(currentDate, -1));
             }
 
             if (currentHighlight && prevHighlight && nextHighlight) {
@@ -21148,7 +21237,7 @@ exports.default = {
                     var mark = _step4.value;
 
 
-                    if ((0, _esm.isValid)(mark.start) && (0, _esm.isValid)(mark.end) && (0, _esm.isWithinInterval)(item.date, {
+                    if ((0, _dateFns.isValid)(mark.start) && (0, _dateFns.isValid)(mark.end) && (0, _dateFns.isWithinInterval)(item.date, {
                         start: mark.start,
                         end: mark.end
                     })) {
@@ -21194,7 +21283,7 @@ exports.default = {
                     var mark = _step5.value;
 
 
-                    if ((0, _esm.isValid)(mark.start) && (0, _esm.isValid)(mark.end) && (0, _esm.isWithinInterval)(item.date, {
+                    if ((0, _dateFns.isValid)(mark.start) && (0, _dateFns.isValid)(mark.end) && (0, _dateFns.isWithinInterval)(item.date, {
                         start: mark.start,
                         end: mark.end
                     })) {
@@ -21303,7 +21392,7 @@ exports.default = {
         },
         getDate: function getDate(format) {
 
-            return (0, _esm.format)(this.data.current, format);
+            return (0, _dateFns.format)(this.data.current, format);
         },
         getTime: function getTime() {
 
@@ -21327,12 +21416,12 @@ exports.default = {
             switch (unit) {
 
                 case 'month':
-                    this.data.current = (0, _esm.setMonth)(this.data.current, value);
+                    this.data.current = (0, _dateFns.setMonth)(this.data.current, value);
 
                     break;
 
                 case 'year':
-                    this.data.current = (0, _esm.setYear)(this.data.current, value);
+                    this.data.current = (0, _dateFns.setYear)(this.data.current, value);
 
                     break;
 
@@ -21353,17 +21442,17 @@ exports.default = {
             switch (unit) {
 
                 case 'day':
-                    this.data.current = (0, _esm.addDays)(this.data.current, amount);
+                    this.data.current = (0, _dateFns.addDays)(this.data.current, amount);
 
                     break;
 
                 case 'month':
-                    this.data.current = (0, _esm.addMonths)(this.data.current, amount);
+                    this.data.current = (0, _dateFns.addMonths)(this.data.current, amount);
 
                     break;
 
                 case 'year':
-                    this.data.current = (0, _esm.addYears)(this.data.current, amount);
+                    this.data.current = (0, _dateFns.addYears)(this.data.current, amount);
 
                     break;
 
@@ -21405,7 +21494,7 @@ exports.default = {
 
                         try {
 
-                            for (var _iterator7 = (0, _esm.eachDayOfInterval)({
+                            for (var _iterator7 = (0, _dateFns.eachDayOfInterval)({
                                 start: item[0],
                                 end: item[1]
                             })[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
@@ -21457,7 +21546,7 @@ exports.default = {
 
             for (var index in result) {
 
-                result[index] = (0, _esm.startOfDay)(result[index]);
+                result[index] = (0, _dateFns.startOfDay)(result[index]);
             }
 
             return result;
@@ -21474,7 +21563,7 @@ exports.default = {
     filters: {
         getDate: function getDate(val) {
 
-            return (0, _esm.getDate)(val);
+            return (0, _dateFns.getDate)(val);
         }
     },
     mounted: function mounted() {
@@ -21497,8 +21586,8 @@ exports.default = {
 
         this.$watch('data.current', function () {
 
-            var lastMonth = (0, _esm.format)(_this.data.current, 'YYYY-MM');
-            var lastYear = (0, _esm.format)(_this.data.current, 'YYYY');
+            var lastMonth = (0, _dateFns.format)(_this.data.current, 'YYYY-MM');
+            var lastYear = (0, _dateFns.format)(_this.data.current, 'YYYY');
 
             _this.$emit('change');
 
@@ -25392,7 +25481,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _esm = __webpack_require__(2);
+var _dateFns = __webpack_require__(2);
 
 var _standardDate = __webpack_require__(146);
 
@@ -25413,7 +25502,7 @@ var Dates = {
                 return this._dateGetStandardDate();
             }
 
-            return (0, _esm.parse)(_standardDate2.default + ' ' + str, 'YYYY-M-D ' + format, this._dateGetStandardDate());
+            return (0, _dateFns.parse)(_standardDate2.default + ' ' + str, 'YYYY-M-D ' + format, this._dateGetStandardDate());
         },
         _dateGetStandardDate: function _dateGetStandardDate() {
 
@@ -25436,7 +25525,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _esm = __webpack_require__(2);
+var _dateFns = __webpack_require__(2);
 
 var _standardDate = __webpack_require__(146);
 
@@ -25457,7 +25546,7 @@ var Time = {
                 return this._timeGetStandardDate();
             }
 
-            return (0, _esm.parse)(_standardDate2.default + ' ' + str, 'YYYY-M-D ' + format, this._timeGetStandardDate());
+            return (0, _dateFns.parse)(_standardDate2.default + ' ' + str, 'YYYY-M-D ' + format, this._timeGetStandardDate());
         },
         _timeSet: function _timeSet(type, value, originDate) {
 
@@ -25468,13 +25557,13 @@ var Time = {
 
             if (type === 'hour') {
 
-                originDate = (0, _esm.setHours)(originDate, value);
+                originDate = (0, _dateFns.setHours)(originDate, value);
             } else if (type === 'minute') {
 
-                originDate = (0, _esm.setMinutes)(originDate, value);
+                originDate = (0, _dateFns.setMinutes)(originDate, value);
             } else if (type === 'second') {
 
-                originDate = (0, _esm.setSeconds)(originDate, value);
+                originDate = (0, _dateFns.setSeconds)(originDate, value);
             }
 
             return originDate;
@@ -26544,7 +26633,8 @@ var render = function() {
             width: "60%",
             height: "90%",
             "auto-close": false
-          }
+          },
+          on: { show: _vm._refreshScale }
         },
         [
           _c(
@@ -26560,7 +26650,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "maparea" },
+            { staticClass: "maparea", style: { width: _vm.mapareaWidth } },
             [
               _c(
                 "div",
@@ -26595,10 +26685,10 @@ var render = function() {
                     {
                       staticClass: "zone",
                       style: {
-                        width: zone.w + "px",
-                        height: zone.h + "px",
-                        top: zone.y + "px",
-                        left: zone.x + "px",
+                        width: zone.w * _vm.data.scale + "px",
+                        height: zone.h * _vm.data.scale + "px",
+                        top: zone.y * _vm.data.scale + "px",
+                        left: zone.x * _vm.data.scale + "px",
                         "z-index": zone.i || index + 1
                       },
                       attrs: { "zone-id": index },
@@ -26807,9 +26897,36 @@ var render = function() {
           ),
           _vm._v(" "),
           _c("footer", { attrs: { slot: "footer" }, slot: "footer" }, [
-            _c("span", [
-              _vm._v("鼠标左键拖拽移动热区/调整尺寸，鼠标右键点击编辑数据")
-            ]),
+            _c(
+              "span",
+              { staticClass: "note" },
+              [
+                _vm._v(
+                  "\n            鼠标左键拖拽移动热区/调整尺寸，鼠标右键点击编辑数据\n            "
+                ),
+                _c("br"),
+                _vm._v(
+                  "\n            当前缩放：" +
+                    _vm._s(Math.round(this.data.scale * 100)) +
+                    "%\n            "
+                ),
+                _c(
+                  "morning-link",
+                  {
+                    attrs: { color: "info", size: "s" },
+                    on: {
+                      emit: function($event) {
+                        _vm.morning
+                          .findVM("ui-imagemap-scaledialog-" + _vm.uiid)
+                          .toggle(true)
+                      }
+                    }
+                  },
+                  [_vm._v("设置")]
+                )
+              ],
+              1
+            ),
             _vm._v(" "),
             _c(
               "div",
@@ -27112,6 +27229,84 @@ var render = function() {
                       [_vm._v("保存")]
                     )
                   : _vm._e()
+              ],
+              1
+            )
+          ])
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "morning-dialog",
+        {
+          ref: "ui-imagemap-scaledialog-" + _vm.uiid,
+          staticClass: "mor-imagemap-dialog-scale",
+          attrs: { color: "gray", width: "500px", height: "300px" }
+        },
+        [
+          _c("header", { attrs: { slot: "header" }, slot: "header" }, [
+            _vm._v("\n        设置编辑区域缩放\n    ")
+          ]),
+          _vm._v(" "),
+          _c("morning-formgroup", [
+            _c("div", { staticClass: "item" }, [
+              _c(
+                "h5",
+                { staticClass: "title" },
+                [
+                  _c("morning-center", { staticClass: "fill" }, [
+                    _vm._v("编辑区域缩放")
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "content" }, [
+                _c("p", [
+                  _vm._v(
+                    "编辑区域缩放百分比，此设置仅修改编辑区域视觉尺寸，不影响热区真实尺寸"
+                  )
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "form" },
+                  [
+                    _c("morning-textinput", {
+                      model: {
+                        value: _vm.data.setScale,
+                        callback: function($$v) {
+                          _vm.$set(_vm.data, "setScale", $$v)
+                        },
+                        expression: "data.setScale"
+                      }
+                    })
+                  ],
+                  1
+                )
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("footer", { attrs: { slot: "footer" }, slot: "footer" }, [
+            _c(
+              "div",
+              [
+                _c(
+                  "morning-link",
+                  {
+                    attrs: { color: "minor" },
+                    on: {
+                      emit: function($event) {
+                        _vm.morning
+                          .findVM("ui-imagemap-scaledialog-" + _vm.uiid)
+                          .toggle(false)
+                      }
+                    }
+                  },
+                  [_vm._v("关闭")]
+                )
               ],
               1
             )

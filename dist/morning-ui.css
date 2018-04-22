@@ -10505,6 +10505,8 @@ mor-imagemap.st-disabled .operate:hover {
   -webkit-user-select: none;
   user-select: none;
   position: relative;
+  font-size: 0;
+  margin: 0 auto;
 }
 .mor-imagemap-dialog-map .maparea img {
   width: 100%;
@@ -10528,12 +10530,17 @@ mor-imagemap.st-disabled .operate:hover {
   top: 0;
   left: 0;
   cursor: crosshair;
+  font-size: 14px;
+  border: 1px #EDF1F5 solid;
+  box-sizing: content-box;
 }
 .mor-imagemap-dialog-map .maparea .zonearea.disable-add-spot {
   cursor: default;
 }
 .mor-imagemap-dialog-map .maparea .zonearea.over-range {
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.4) inset;
+  box-shadow: 0 0 6px rgba(214, 68, 49, 0.55) inset;
+  border-color: #D64431;
+  border-width: 2px;
 }
 .mor-imagemap-dialog-map .maparea .zonearea .zone {
   box-sizing: border-box;
@@ -10683,6 +10690,14 @@ mor-imagemap.st-disabled .operate:hover {
 }
 .mor-imagemap-dialog-map .content > footer .clean-allzone-btn {
   margin-right: 6px;
+}
+.mor-imagemap-dialog-map .content > footer .note {
+  font-size: 12px;
+  line-height: 1.2em;
+  display: block;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
 }
 .mor-imagemap-dialog-map.imagemap-disabled .zonearea {
   cursor: default;
