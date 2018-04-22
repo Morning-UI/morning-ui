@@ -10540,7 +10540,6 @@ mor-imagemap.st-disabled .operate:hover {
 .mor-imagemap-dialog-map .maparea .zonearea.over-range {
   box-shadow: 0 0 6px rgba(214, 68, 49, 0.55) inset;
   border-color: #D64431;
-  border-width: 2px;
 }
 .mor-imagemap-dialog-map .maparea .zonearea .zone {
   box-sizing: border-box;

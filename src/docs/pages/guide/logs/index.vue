@@ -18,6 +18,22 @@
     
     ### 更新记录
 
+    ### 0.10.21 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2018年4月22日，
+            Archive : 
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.21" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.21/dist/" target="_blank">CDN</a>
+        </ui-small>
+    </ui-textcolor><br/><br/>
+
+    - webpack升级至4.6.0
+    - 优化工程构建性能
+    - 优化图片热区组件并增加编辑区缩放功能
+    - 修复`ui-timepicker`内部滚动会引起外部滚动的问题
+
     ### 0.10.20 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="light-blue">
