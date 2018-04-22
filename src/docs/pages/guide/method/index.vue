@@ -149,6 +149,7 @@
     - `updateZone` : 更新区域
     - `removeZone` : 删除区域
     - `cleanZones` : 删除所有区域
+    - `getScale` : 获取缩放比
 
     </script>
     </doc-guide>

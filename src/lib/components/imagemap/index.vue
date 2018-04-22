@@ -254,8 +254,6 @@ import extend                       from 'extend';
 import Move                         from 'Utils/Move';
 import GlobalEvent                  from 'Utils/GlobalEvent';
 
-const zoneMinSize = 4;
-
 export default {
     origin : 'Form',
     name : 'imagemap',
@@ -316,8 +314,7 @@ export default {
         },
         mapareaWidth : function () {
 
-            if (isNaN(+this.data.setScale) ||
-                +this.data.setScale === 100) {
+            if (isNaN(+this.data.setScale)) {
 
                 return '100%';
 
@@ -326,6 +323,11 @@ export default {
             let value = this.get();
 
             return `${value.w * this.data.setScale / 100}px`;
+
+        },
+        zoneMinSize : function () {
+
+            return 4 * this.data.scale;
 
         }
     },
@@ -360,7 +362,7 @@ export default {
                 modifyZoneData : undefined,
                 disableAddSpot : false,
                 scale : 1,
-                setScale : 100
+                setScale : null
             }
         };
 
@@ -460,7 +462,7 @@ export default {
                 ow = w;
                 w += (evtx - this.data.resizeZoneLastXY.x);
 
-                if (w < zoneMinSize) {
+                if (w < this.zoneMinSize) {
 
                     this._resizeClean();
 
@@ -469,9 +471,9 @@ export default {
                     this.data.resizeZoneEl.classList.add('resize');
                     $zonearea.classList.add(`resize-${this.data.resizeZoneType}`);
 
-                    if (w > -zoneMinSize) {
+                    if (w > -this.zoneMinSize) {
 
-                        zone.w = zoneMinSize;
+                        zone.w = this.zoneMinSize;
                         zone.x -= zone.w;
                         this.data.resizeZoneLastXY.x = this._getRealValue($zone.getBoundingClientRect().x) - zone.w;
 
@@ -487,7 +489,8 @@ export default {
                 
                 }
 
-                if ((w + x) > this._getRealValue($zonearea.clientWidth)) {
+
+                if ((w + x) >= this._getRealValue($zonearea.clientWidth)) {
 
                     w = this._getRealValue($zonearea.clientWidth) - x;
                     this.data.overRange = true;
@@ -507,7 +510,7 @@ export default {
                 x += (evtx - this.data.resizeZoneLastXY.x);
                 w -= (evtx - this.data.resizeZoneLastXY.x);
 
-                if (w < zoneMinSize) {
+                if (w < this.zoneMinSize) {
 
                     this._resizeClean();
 
@@ -516,9 +519,9 @@ export default {
                     this.data.resizeZoneEl.classList.add('resize');
                     $zonearea.classList.add(`resize-${this.data.resizeZoneType}`);
 
-                    if (w > -zoneMinSize) {
+                    if (w > -this.zoneMinSize) {
 
-                        zone.w = zoneMinSize;
+                        zone.w = this.zoneMinSize;
                         zone.x += ow;
                         this.data.resizeZoneLastXY.x = this._getRealValue($zone.getBoundingClientRect().x) + ow;
 
@@ -534,7 +537,7 @@ export default {
                 
                 }
 
-                if (x < 0) {
+                if (x <= 0) {
 
                     x = 0;
                     w = ow - (x - ox);
@@ -553,7 +556,7 @@ export default {
                 oh = h;
                 h += (evty - this.data.resizeZoneLastXY.y);
 
-                if (h < zoneMinSize) {
+                if (h < this.zoneMinSize) {
 
                     this._resizeClean();
 
@@ -562,9 +565,9 @@ export default {
                     this.data.resizeZoneEl.classList.add('resize');
                     $zonearea.classList.add(`resize-${this.data.resizeZoneType}`);
 
-                    if (h > -zoneMinSize) {
+                    if (h > -this.zoneMinSize) {
 
-                        zone.h = zoneMinSize;
+                        zone.h = this.zoneMinSize;
                         zone.y -= zone.h;
                         this.data.resizeZoneLastXY.y = this._getRealValue($zone.getBoundingClientRect().y) - zone.h;
 
@@ -580,7 +583,7 @@ export default {
                 
                 }
 
-                if ((h + y) > this._getRealValue($zonearea.clientHeight)) {
+                if ((h + y) >= this._getRealValue($zonearea.clientHeight)) {
 
                     h = this._getRealValue($zonearea.clientHeight) - y;
                     this.data.overRange = true;
@@ -600,7 +603,7 @@ export default {
                 y += (evty - this.data.resizeZoneLastXY.y);
                 h -= (evty - this.data.resizeZoneLastXY.y);
 
-                if (h < zoneMinSize) {
+                if (h < this.zoneMinSize) {
 
                     this._resizeClean();
 
@@ -609,9 +612,9 @@ export default {
                     this.data.resizeZoneEl.classList.add('resize');
                     $zonearea.classList.add(`resize-${this.data.resizeZoneType}`);
 
-                    if (h > -zoneMinSize) {
+                    if (h > -this.zoneMinSize) {
 
-                        zone.h = zoneMinSize;
+                        zone.h = this.zoneMinSize;
                         zone.y += oh;
                         this.data.resizeZoneLastXY.y = this._getRealValue($zone.getBoundingClientRect().y) + oh;
 
@@ -627,7 +630,7 @@ export default {
                 
                 }
 
-                if (y < 0) {
+                if (y <= 0) {
 
                     y = 0;
                     h = oh - (y - oy);
@@ -764,15 +767,15 @@ export default {
 
             }
 
-            if (zone.w < zoneMinSize) {
+            if (zone.w < this.zoneMinSize) {
 
-                zone.w = zoneMinSize;
+                zone.w = this.zoneMinSize;
 
             }
 
-            if (zone.h < zoneMinSize) {
+            if (zone.h < this.zoneMinSize) {
 
-                zone.h = zoneMinSize;
+                zone.h = this.zoneMinSize;
 
             }
 
@@ -989,7 +992,7 @@ export default {
 
             if (value &&
                 value.w) {
-                
+
                 this.data.scale = $zonearea.clientWidth / value.w;
 
             } else {
@@ -1000,7 +1003,11 @@ export default {
 
             this._updateMoveRange();
 
-            console.log('_refreshScale', this.data.scale);
+            if (String(this.data.setScale) === 'null') {
+
+                this.data.setScale = Math.round(this.data.scale * 100);
+
+            }
 
         },
         _getRealValue : function (val) {
@@ -1020,8 +1027,8 @@ export default {
         addZone : function (zone) {
 
             zone = extend({
-                w : zoneMinSize,
-                h : zoneMinSize,
+                w : this.zoneMinSize,
+                h : this.zoneMinSize,
                 x : 0,
                 y : 0,
                 i : 0,
@@ -1074,6 +1081,11 @@ export default {
             this.data.zones = [];
 
             return this;
+
+        },
+        getScale : function () {
+
+            return this.data.scale;
 
         }
     },
