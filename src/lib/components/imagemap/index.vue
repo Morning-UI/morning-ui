@@ -254,6 +254,8 @@ import extend                       from 'extend';
 import Move                         from 'Utils/Move';
 import GlobalEvent                  from 'Utils/GlobalEvent';
 
+const num100 = 100;
+
 export default {
     origin : 'Form',
     name : 'imagemap',
@@ -316,13 +318,13 @@ export default {
 
             if (isNaN(+this.data.setScale)) {
 
-                return '100%';
+                return `${num100}%`;
 
             }
 
             let value = this.get();
 
-            return `${value.w * this.data.setScale / 100}px`;
+            return `${value.w * this.data.setScale / num100}px`;
 
         },
         zoneMinSize : function () {
@@ -488,7 +490,6 @@ export default {
                     return;
                 
                 }
-
 
                 if ((w + x) >= this._getRealValue($zonearea.clientWidth)) {
 
@@ -1005,7 +1006,7 @@ export default {
 
             if (String(this.data.setScale) === 'null') {
 
-                this.data.setScale = Math.round(this.data.scale * 100);
+                this.data.setScale = Math.round(this.data.scale * num100);
 
             }
 
