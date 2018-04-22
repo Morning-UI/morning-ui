@@ -24,7 +24,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td rowspan="5" valign="top" align="center">基本<br>信息</td>
+                    <td rowspan="5" valign="top" align="center">信息</td>
                     <td class="item">介绍</td>
                     <td class="mark">HMP平台的组件库。</td>
                     <td class="mark">A revolutionary workflow to optimise your design and development.</td>
@@ -81,7 +81,7 @@
                     <td class="mark">MIT License</td>
                 </tr>
                 <tr>
-                    <td rowspan="7" valign="top">基础</td>
+                    <td rowspan="7" valign="top">总览</td>
                     <td class="item">设计语言</td>
                     <td class="mark">
                         <i class="iconfont no">&#xe62e;</i>
