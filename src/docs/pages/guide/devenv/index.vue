@@ -87,6 +87,7 @@
     ```shell
     $ npm run build                                 # 构建项目(库文件及文档)
     $ npm run dev                                   # 运行开发环境(运行后通过http://localhost:8080/访问)
+    $ npm run build-profile                         # 输出webpack构建性能统计文件
     $ npm run lint                                  # 通过ESLint及StyleLint检查代码
     $ npm run js-lint                               # 通过ESLint检查代码
     $ npm run js-lint-fix                           # 通过ESLint自动修复代码中的问题

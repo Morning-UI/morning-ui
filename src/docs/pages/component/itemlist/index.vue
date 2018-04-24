@@ -27,21 +27,21 @@
     <ui-itemlist>
         <ui-ul>
             <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
                 <h3 class="title">Header</h3>
                 <p class="desc">Description</p>
                 <div class="body">Body</div>
                 <div class="additional">Additional Details</div> 
             </li>
             <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
                 <h3 class="title">Header</h3>
                 <p class="desc">Description</p>
                 <div class="body">Body</div>
                 <div class="additional">Additional Details</div> 
             </li>
             <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
                 <h3 class="title">Header</h3>
                 <p class="desc">Description</p>
                 <div class="body">Body</div>
@@ -59,21 +59,21 @@
     <ui-itemlist class="underline">
         <ui-ul>
             <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
                 <h3 class="title">Header</h3>
                 <p class="desc">Description</p>
                 <div class="body">Body</div>
                 <div class="additional">Additional Details</div> 
             </li>
             <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
                 <h3 class="title">Header</h3>
                 <p class="desc">Description</p>
                 <div class="body">Body</div>
                 <div class="additional">Additional Details</div> 
             </li>
             <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
                 <h3 class="title">Header</h3>
                 <p class="desc">Description</p>
                 <div class="body">Body</div>
@@ -91,15 +91,15 @@
     <ui-itemlist xs>
         <ui-ul>
             <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
                 <h3 class="title">Header</h3>
             </li>
             <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
                 <h3 class="title">Header</h3>
             </li>
             <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
                 <h3 class="title">Header</h3>
             </li>
         </ui-ul>
@@ -114,15 +114,15 @@
     <ui-itemlist xs>
         <ui-ul>
             <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
                 <div class="body">Body</div>
             </li>
             <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
                 <div class="body">Body</div>
             </li>
             <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
                 <div class="body">Body</div>
             </li>
         </ui-ul>
@@ -166,7 +166,7 @@
     <ui-itemlist>
         <ui-ul>
             <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
                 <h3 class="title">Header</h3>
                 <p class="desc">Description</p>
                 <div class="body">Body</div>
@@ -175,7 +175,7 @@
                 </div> 
             </li>
             <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
                 <h3 class="title">Header</h3>
                 <p class="desc">Description</p>
                 <div class="body">Body</div>
@@ -184,7 +184,7 @@
                 </div> 
             </li>
             <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
                 <h3 class="title">Header</h3>
                 <p class="desc">Description</p>
                 <div class="body">Body</div>
@@ -218,21 +218,21 @@
     <ui-itemlist size="{$sizeKey}">
         <ui-ul>
             <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
                 <h3 class="title">{$&sizeName}</h3>
                 <p class="desc">Description</p>
                 <div class="body">Body</div>
                 <div class="additional">Additional Details</div> 
             </li>
             <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
                 <h3 class="title">{$&sizeName}</h3>
                 <p class="desc">Description</p>
                 <div class="body">Body</div>
                 <div class="additional">Additional Details</div> 
             </li>
             <li>
-                <ui-img class="img" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
                 <h3 class="title">{$&sizeName}</h3>
                 <p class="desc">Description</p>
                 <div class="body">Body</div>

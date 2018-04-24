@@ -25,7 +25,7 @@
     <span id="demo2">鼠标悬浮显示小提示</span>
     <ui-tip target="#demo2">
         <p>标题</p>
-        <img width='160px' height='160px' src='https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg'>
+        <img width='160px' height='160px' src='http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg'>
     </ui-tip>
     :::
 

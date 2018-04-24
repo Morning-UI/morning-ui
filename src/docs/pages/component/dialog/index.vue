@@ -131,13 +131,13 @@
         <header slot="header">选择一张图片</header>
         <ui-grid class="fill">
             <div class="c-11">
-                <ui-center class="fill"><ui-img class="rounded" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img></ui-center>
+                <ui-center class="fill"><ui-img class="rounded" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img></ui-center>
             </div>
             <div class="c-2">
                 <ui-divider>OR</ui-divider>
             </div>
             <div class="c-11">
-                <ui-center class="fill"><ui-img class="rounded" src="https://d13yacurqjgara.cloudfront.net/users/1333/avatars/normal/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img></ui-center>
+                <ui-center class="fill"><ui-img class="rounded" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img></ui-center>
             </div>
         </ui-grid>
         <footer slot="footer">
