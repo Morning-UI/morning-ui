@@ -39,6 +39,8 @@
             <slot name="timepicker"></slot>
         </div>
 
+        <slot name="quickpick"></slot>
+
         <morning-calendar
             :ref="'ui-calendar-'+uiid"
             :date="data.currentDate"

@@ -66,6 +66,7 @@
     |[date](#date)|日历所在的日期，日历将会切换到`date`所在的月份|时间戳|Number|`+new Date()`|
     |[format](#format)|格式化展示的日期|日期格式化字符串(支持日期占位符见下方的演示)|String|`'YYYY-MM-DD'`|
     |[align](#align)|日期对齐方式|`'left'` : 左对齐<br>`'center'` : 居中对齐<br>`'right'` : 右对齐|String|`'left'`|
+    |[quick-pick](#quick-pick)|||Array|`[]`|
     |[selectable-range](#selectable-range)|可选日期范围，若不设置则不限。这是一个数组，支持以下格式：<br><br>`[开始日期, 结束日期]`: 指定单个可选范围<br>`[[开始日期1, 结束日期1], [开始日期2, 结束日期2]]`: 指定多个可选范围<br><br>可选日期将大于等于`开始日期`，小于等于`结束日期`。<br><br>`开始日期`和`结束日期`均为日期字符串需要符合`format`配置的日期格式。|日期范围数组|Array|`undefined`|
     |[is-range](#is-range)|选择日期区间，开启后可以选在一个日期段|`true`<br>`false`|Boolean|`false`|
     |[separator](#separator)|日期区间选择时中间的分隔内容，只有开启`is-range`才有效|分隔字符串|String|`'至'`|
@@ -149,6 +150,42 @@
         <ui-datepicker form-name="日期" :date="+new Date('2018-03-23')" default-value="2018-03-23" align="right"></ui-datepicker>
     </div>
     :::
+
+    #### quick-pick
+        
+    你可以通过预设的关键词来设置日期快速选择项：
+
+    :::democode/html
+    <div style="width:300px;">
+        <ui-datepicker form-name="日期" :quick-pick="['今天', '昨天', '2 天前', '3 天前', '1 周前', '2 周前', '3 周前', '1 月前', '2 月前', '3 月前', '6 月前', '1 年前', '2 年前', '3 年前']"></ui-datepicker>
+    </div>
+    :::
+
+    未来的时间也可以设置：
+
+    :::democode/html
+    <div style="width:300px;">
+        <ui-datepicker form-name="日期" :quick-pick="['明天', '3 天后', '3 周后', '3 月后', '1 年后']"></ui-datepicker>
+    </div>
+    :::
+
+    也可以通过选中日期相对与当天的天数(正数为未来，负数为过去)来设置：
+    
+    :::democode/html
+    <div style="width:300px;">
+        <ui-datepicker form-name="日期" :quick-pick="[{name: '今天', pick: 0}, {name: '昨天', pick: -1}, {name: '明天', pick: 1}]"></ui-datepicker>
+    </div>
+    :::
+
+    也可以通过选中日期的绝对值来设置：
+
+    :::democode/html
+    <div style="width:300px;">
+        <ui-datepicker form-name="日期" :quick-pick="[{name: '劳动节', pick: new Date('2018-5-1')}, {name: '国庆节', pick: new Date('2018-10-1')}]"></ui-datepicker>
+    </div>
+    :::
+
+
 
     #### selectable-range
 
