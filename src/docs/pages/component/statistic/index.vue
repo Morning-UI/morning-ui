@@ -30,7 +30,7 @@
 
     :::democode/html
     <ui-statistic>
-        <div class="value"><img src="https://h0.hucdn.com/open/201734/d693b26dc14f52a0_800x800.png"/><span>5,550</span></div>
+        <div class="value"><img src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"/><span>5,550</span></div>
         <div class="label">downloads</div>
     </ui-statistic>
     :::
