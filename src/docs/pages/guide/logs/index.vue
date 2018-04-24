@@ -25,7 +25,8 @@
             发布于2018年4月22日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.21" target="_blank">Package</a>
-            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.21/dist/" target="_blank">CDN</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.21/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.10.21/dist/" target="_blank">unpkg(CDN)</a>
         </ui-small>
     </ui-textcolor><br/><br/>
 
@@ -41,7 +42,8 @@
             发布于2018年4月18日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.20" target="_blank">Package</a>
-            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.20/dist/" target="_blank">CDN</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.20/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.10.20/dist/" target="_blank">unpkg(CDN)</a>
         </ui-small>
     </ui-textcolor><br/><br/>
 
@@ -57,7 +59,8 @@
             发布于2018年4月15日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.19" target="_blank">Package</a>
-            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.19/dist/" target="_blank">CDN</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.19/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.10.19/dist/" target="_blank">unpkg(CDN)</a>
         </ui-small>
     </ui-textcolor><br/><br/>
 
@@ -76,7 +79,8 @@
             发布于2018年4月13日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.18" target="_blank">Package</a>
-            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.18/dist/" target="_blank">CDN</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.18/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.10.18/dist/" target="_blank">unpkg(CDN)</a>
         </ui-small>
     </ui-textcolor><br/><br/>
 
@@ -96,7 +100,8 @@
             发布于2018年2月26日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.17" target="_blank">Package</a>
-            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.17/dist/" target="_blank">CDN</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.17/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.10.17/dist/" target="_blank">unpkg(CDN)</a>
         </ui-small>
     </ui-textcolor><br/><br/>
 
@@ -111,7 +116,8 @@
             发布于2018年1月31日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.16" target="_blank">Package</a>
-            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.16/dist/" target="_blank">CDN</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.16/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.10.16/dist/" target="_blank">unpkg(CDN)</a>
         </ui-small>
     </ui-textcolor><br/><br/>
 
@@ -125,7 +131,8 @@
             发布于2018年1月16日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.15" target="_blank">Package</a>
-            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.15/dist/" target="_blank">CDN</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.15/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.10.15/dist/" target="_blank">unpkg(CDN)</a>
         </ui-small>
     </ui-textcolor><br/><br/>
 
@@ -140,7 +147,8 @@
             发布于2018年1月15日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.14" target="_blank">Package</a>
-            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.14/dist/" target="_blank">CDN</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.14/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.10.14/dist/" target="_blank">unpkg(CDN)</a>
         </ui-small>
     </ui-textcolor><br/><br/>
 
@@ -161,7 +169,8 @@
             发布于2017年12月7日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.13" target="_blank">Package</a>
-            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.13/dist/" target="_blank">CDN</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.13/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.10.13/dist/" target="_blank">unpkg(CDN)</a>
         </ui-small>
     </ui-textcolor><br><br>
 
@@ -178,7 +187,8 @@
             发布于2017年12月5日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.12" target="_blank">Package</a>
-            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.12/dist/" target="_blank">CDN</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.12/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.10.12/dist/" target="_blank">unpkg(CDN)</a>
         </ui-small>
     </ui-textcolor><br><br>
 
@@ -195,7 +205,8 @@
             发布于2017年11月29日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.11" target="_blank">Package</a>
-            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.11/dist/" target="_blank">CDN</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.11/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.10.11/dist/" target="_blank">unpkg(CDN)</a>
         </ui-small>
     </ui-textcolor><br><br>
 
@@ -217,7 +228,8 @@
             发布于2017年11月27日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.10" target="_blank">Package</a>
-            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.10/dist/" target="_blank">CDN</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.10/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.10.10/dist/" target="_blank">unpkg(CDN)</a>
         </ui-small>
     </ui-textcolor><br><br>
 
@@ -237,7 +249,8 @@
             发布于2017年11月23日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.9" target="_blank">Package</a>
-            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.9/dist/" target="_blank">CDN</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.9/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.10.9/dist/" target="_blank">unpkg(CDN)</a>
         </ui-small>
     </ui-textcolor><br><br>
     
@@ -253,7 +266,8 @@
             发布于2017年11月20日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.8" target="_blank">Package</a>
-            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.8/dist/" target="_blank">CDN</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.8/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.10.8/dist/" target="_blank">unpkg(CDN)</a>
         </ui-small>
     </ui-textcolor><br><br>
     
@@ -281,7 +295,8 @@
             发布于2017年11月13日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.7" target="_blank">Package</a>
-            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.7/dist/" target="_blank">CDN</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.7/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.10.7/dist/" target="_blank">unpkg(CDN)</a>
         </ui-small>
     </ui-textcolor><br><br>
     
@@ -299,7 +314,8 @@
             发布于2017年11月20日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.8" target="_blank">Package</a>
-            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.8/dist/" target="_blank">CDN</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.8/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.10.8/dist/" target="_blank">unpkg(CDN)</a>
         </ui-small>
     </ui-textcolor>
     
@@ -327,7 +343,8 @@
             发布于2017年11月13日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.7" target="_blank">Package</a>
-            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.7/dist/" target="_blank">CDN</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.7/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.10.7/dist/" target="_blank">unpkg(CDN)</a>
         </ui-small>
     </ui-textcolor><br><br>
     
@@ -345,7 +362,8 @@
             发布于2017年11月10日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.6" target="_blank">Package</a>
-            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.6/dist/" target="_blank">CDN</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.6/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.10.6/dist/" target="_blank">unpkg(CDN)</a>
         </ui-small>
     </ui-textcolor><br><br>
     
@@ -365,7 +383,8 @@
             发布于2017年11月6日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.5" target="_blank">Package</a>
-            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.5/dist/" target="_blank">CDN</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.5/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.10.5/dist/" target="_blank">unpkg(CDN)</a>
         </ui-small>
     </ui-textcolor><br><br>
 
@@ -380,7 +399,8 @@
         发布于2017年11月5日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.4" target="_blank">Package</a>
-            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.4/dist/" target="_blank">CDN</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.4/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.10.4/dist/" target="_blank">unpkg(CDN)</a>
         </ui-small>
     </ui-textcolor><br><br>
     
@@ -401,7 +421,8 @@
         发布于2017年11月2日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.3" target="_blank">Package</a>
-            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.3/dist/" target="_blank">CDN</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.3/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.10.3/dist/" target="_blank">unpkg(CDN)</a>
         </ui-small>
     </ui-textcolor><br><br>
 
@@ -427,7 +448,8 @@
         发布于2017年11月1日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.2" target="_blank">Package</a>
-            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.2/dist/" target="_blank">CDN</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.2/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.10.2/dist/" target="_blank">unpkg(CDN)</a>
         </ui-small>
     </ui-textcolor><br><br>
     
@@ -443,7 +465,8 @@
         发布于2017年10月31日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.1" target="_blank">Package</a>
-            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.1/dist/" target="_blank">CDN</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.1/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.10.1/dist/" target="_blank">unpkg(CDN)</a>
         </ui-small>
     </ui-textcolor><br><br>
 
@@ -462,7 +485,8 @@
         发布于2017年10月31日，
             Archive : 
             <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.0" target="_blank">Package</a>
-            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.0/dist/" target="_blank">CDN</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.0/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.10.0/dist/" target="_blank">unpkg(CDN)</a>
         </ui-small>
     </ui-textcolor><br><br>
 
