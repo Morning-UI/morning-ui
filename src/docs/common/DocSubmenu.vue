@@ -12,9 +12,15 @@
             </template>
             <template v-else>
                 <a
-                    v-if="typeof link === 'string'"
+                    v-if="typeof link === 'string' && link !== ''"
                     :href="link"
                     v-html="name"
+                ></a>
+                <a
+                    v-else-if="typeof link === 'string' && link === ''"
+                    href="javascript:;"
+                    v-html="name"
+                    class="unavailable"
                 ></a>
                 <p class="title" v-else v-html="name"></p>
             </template>
@@ -76,6 +82,15 @@ export default {
             &.current {
                 color: #333;
                 font-weight: 700;
+            }
+
+            &.unavailable{
+                cursor: default;
+                color: #a0a0a0;
+
+                &:hover{
+                    color: #a0a0a0;
+                }
             }
         }
 
