@@ -159,6 +159,13 @@ footer .tolab {
   color: #333;
   font-weight: 700;
 }
+.submenu li a.unavailable {
+  cursor: default;
+  color: #a0a0a0;
+}
+.submenu li a.unavailable:hover {
+  color: #a0a0a0;
+}
 .submenu li .title {
   font-size: 14px;
   color: #333;
