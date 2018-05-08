@@ -1073,100 +1073,6 @@ mor-center{display:flex;align-items:center;justify-content:center
 }
 mor-center.fill{width:100%;height:100%
 }
-mor-badge{display:inline-block;color:#fff;margin:2px;text-align:center;vertical-align:middle;height:auto;line-height:1.6em;font-size:12.8px;padding:0 10.4px;background-color:#f33d5d
-}
-mor-badge:empty{display:none
-}
-mor-badge.si-xxl{font-size:22.4px;padding:0 16px;margin:8px
-}
-mor-badge.si-xxl,mor-badge.si-xxl.flat{border-radius:4.8px
-}
-mor-badge.si-xxl.circle{border-radius:25.6px
-}
-mor-badge.si-xl{font-size:19.2px;padding:0 12.8px;margin:4.8px
-}
-mor-badge.si-xl,mor-badge.si-xl.flat{border-radius:4.2px
-}
-mor-badge.si-xl.circle{border-radius:22.4px
-}
-mor-badge.si-l{font-size:16px;padding:0 12px;margin:1.6px
-}
-mor-badge.si-l,mor-badge.si-l.flat{border-radius:3.6px
-}
-mor-badge.si-l.circle{border-radius:19.2px
-}
-mor-badge.si-m{font-size:12.8px;padding:0 10.4px
-}
-mor-badge.si-m,mor-badge.si-m.flat{border-radius:3px
-}
-mor-badge.si-m.circle{border-radius:16px
-}
-mor-badge.si-s{font-size:12px;padding:0 8.8px
-}
-mor-badge.si-s,mor-badge.si-s.flat{border-radius:2.4px
-}
-mor-badge.si-s.circle{border-radius:12.8px
-}
-mor-badge.si-xs{font-size:12px;padding:0 4.8px
-}
-mor-badge.si-xs,mor-badge.si-xs.flat{border-radius:2.25px
-}
-mor-badge.si-xs.circle{border-radius:12px
-}
-mor-badge.si-xxs{font-size:12px;padding:0 5px;transform:scale(.8)
-}
-mor-badge.si-xxs,mor-badge.si-xxs.flat{border-radius:1.875px
-}
-mor-badge.si-xxs.circle{border-radius:10px
-}
-mor-badge.co-theme{background-color:#f33d5d
-}
-mor-badge.co-light-theme{background-color:#f86f88
-}
-mor-badge.co-dark-theme{background-color:#d22343
-}
-mor-badge.co-success{background-color:#4dbd67
-}
-mor-badge.co-warning{background-color:#f0ad4e
-}
-mor-badge.co-danger{background-color:#d64431
-}
-mor-badge.co-primary{background-color:#2185d0
-}
-mor-badge.co-minor{background-color:#a9a9a9
-}
-mor-badge.co-info{background-color:#03a6b9
-}
-mor-badge.co-black{background-color:#17212d
-}
-mor-badge.co-light-black{background-color:#303c4b
-}
-mor-badge.co-extra-light-black{background-color:#45505c
-}
-mor-badge.co-blue{background-color:#7c8ba0
-}
-mor-badge.co-light-blue{background-color:#8e9caf
-}
-mor-badge.co-extra-light-blue{background-color:#a8b3c2
-}
-mor-badge.co-silver{background-color:#d6dde5;color:#303c4b
-}
-mor-badge.co-light-silver{background-color:#e2e8ee;color:#303c4b
-}
-mor-badge.co-extra-light-silver{background-color:#edf1f5;color:#303c4b
-}
-mor-badge.co-gray{background-color:#e6e6e6;color:#303c4b
-}
-mor-badge.co-light-gray{background-color:#f0f0f0;color:#303c4b
-}
-mor-badge.co-white{background-color:#fff;color:#303c4b
-}
-mor-badge.st-apparent{animation-name:apparent;animation-duration:1s;animation-timing-function:linear;animation-iteration-count:infinite
-}
-mor-badge,mor-badge.flat{border-radius:3px
-}
-mor-badge.circle{border-radius:16px
-}
 mor-header{display:block;margin:.6em 0;vertical-align:middle;font-size:28.8px;padding-left:16px;border-left-width:8px;color:#17212d
 }
 mor-header small{vertical-align:baseline!important
@@ -1378,6 +1284,100 @@ mor-header.mark{border-left-color:#17212d
 mor-header.underline{border-bottom-color:#17212d
 }
 mor-header small{color:#5378a3
+}
+mor-badge{display:inline-block;color:#fff;margin:2px;text-align:center;vertical-align:middle;height:auto;line-height:1.6em;font-size:12.8px;padding:0 10.4px;background-color:#f33d5d
+}
+mor-badge:empty{display:none
+}
+mor-badge.si-xxl{font-size:22.4px;padding:0 16px;margin:8px
+}
+mor-badge.si-xxl,mor-badge.si-xxl.flat{border-radius:4.8px
+}
+mor-badge.si-xxl.circle{border-radius:25.6px
+}
+mor-badge.si-xl{font-size:19.2px;padding:0 12.8px;margin:4.8px
+}
+mor-badge.si-xl,mor-badge.si-xl.flat{border-radius:4.2px
+}
+mor-badge.si-xl.circle{border-radius:22.4px
+}
+mor-badge.si-l{font-size:16px;padding:0 12px;margin:1.6px
+}
+mor-badge.si-l,mor-badge.si-l.flat{border-radius:3.6px
+}
+mor-badge.si-l.circle{border-radius:19.2px
+}
+mor-badge.si-m{font-size:12.8px;padding:0 10.4px
+}
+mor-badge.si-m,mor-badge.si-m.flat{border-radius:3px
+}
+mor-badge.si-m.circle{border-radius:16px
+}
+mor-badge.si-s{font-size:12px;padding:0 8.8px
+}
+mor-badge.si-s,mor-badge.si-s.flat{border-radius:2.4px
+}
+mor-badge.si-s.circle{border-radius:12.8px
+}
+mor-badge.si-xs{font-size:12px;padding:0 4.8px
+}
+mor-badge.si-xs,mor-badge.si-xs.flat{border-radius:2.25px
+}
+mor-badge.si-xs.circle{border-radius:12px
+}
+mor-badge.si-xxs{font-size:12px;padding:0 5px;transform:scale(.8)
+}
+mor-badge.si-xxs,mor-badge.si-xxs.flat{border-radius:1.875px
+}
+mor-badge.si-xxs.circle{border-radius:10px
+}
+mor-badge.co-theme{background-color:#f33d5d
+}
+mor-badge.co-light-theme{background-color:#f86f88
+}
+mor-badge.co-dark-theme{background-color:#d22343
+}
+mor-badge.co-success{background-color:#4dbd67
+}
+mor-badge.co-warning{background-color:#f0ad4e
+}
+mor-badge.co-danger{background-color:#d64431
+}
+mor-badge.co-primary{background-color:#2185d0
+}
+mor-badge.co-minor{background-color:#a9a9a9
+}
+mor-badge.co-info{background-color:#03a6b9
+}
+mor-badge.co-black{background-color:#17212d
+}
+mor-badge.co-light-black{background-color:#303c4b
+}
+mor-badge.co-extra-light-black{background-color:#45505c
+}
+mor-badge.co-blue{background-color:#7c8ba0
+}
+mor-badge.co-light-blue{background-color:#8e9caf
+}
+mor-badge.co-extra-light-blue{background-color:#a8b3c2
+}
+mor-badge.co-silver{background-color:#d6dde5;color:#303c4b
+}
+mor-badge.co-light-silver{background-color:#e2e8ee;color:#303c4b
+}
+mor-badge.co-extra-light-silver{background-color:#edf1f5;color:#303c4b
+}
+mor-badge.co-gray{background-color:#e6e6e6;color:#303c4b
+}
+mor-badge.co-light-gray{background-color:#f0f0f0;color:#303c4b
+}
+mor-badge.co-white{background-color:#fff;color:#303c4b
+}
+mor-badge.st-apparent{animation-name:apparent;animation-duration:1s;animation-timing-function:linear;animation-iteration-count:infinite
+}
+mor-badge,mor-badge.flat{border-radius:3px
+}
+mor-badge.circle{border-radius:16px
 }
 mor-label{display:inline-block;white-space:nowrap;vertical-align:middle;height:1.8em;margin:0 2px;overflow:hidden;font-size:0;border-radius:3px;background-color:#f33d5d;color:#fff
 }
@@ -4587,21 +4587,21 @@ mor-datepicker .wrap .datepicker-input-1 .date-select{min-width:calc(280px + 2px
 }
 mor-datepicker .wrap .separator{height:42px;min-width:42px;line-height:42px;padding:0 .5em;font-size:14px;color:#7c8ba0;text-align:center;background-color:#f0f0f0;border-top:1px solid #e6e6e6;border-bottom:1px solid #e6e6e6
 }
-mor-datepicker.has-quick-pick .date-select{font-size:0;min-width:calc(382px)
+mor-datepicker.has-quick-pick .datepicker-input-first .date-select{font-size:0;min-width:calc(382px)
 }
-mor-datepicker.has-quick-pick .date-select .quickpick{display:inline-block;width:100px;font-size:14px;vertical-align:top;position:absolute;height:100%;overflow-y:scroll
+mor-datepicker.has-quick-pick .datepicker-input-first .date-select .quickpick{display:inline-block;width:100px;font-size:14px;vertical-align:top;position:absolute;top:0;height:100%;overflow-y:scroll;border-right:1px #e6e6e6 solid
 }
-mor-datepicker.has-quick-pick .date-select .quickpick::-webkit-scrollbar{width:5px;height:5px;background-color:rgba(0,0,0,.05)
+mor-datepicker.has-quick-pick .datepicker-input-first .date-select .quickpick::-webkit-scrollbar{width:5px;height:5px;background-color:rgba(0,0,0,.05)
 }
-mor-datepicker.has-quick-pick .date-select .quickpick::-webkit-scrollbar-thumb{width:5px;height:5px;background:rgba(0,0,0,.1);border-radius:4px
+mor-datepicker.has-quick-pick .datepicker-input-first .date-select .quickpick::-webkit-scrollbar-thumb{width:5px;height:5px;background:rgba(0,0,0,.1);border-radius:4px
 }
-mor-datepicker.has-quick-pick .date-select .quickpick ul{margin:0;padding:10px 0;list-style:none
+mor-datepicker.has-quick-pick .datepicker-input-first .date-select .quickpick ul{margin:0;padding:10px 0;list-style:none
 }
-mor-datepicker.has-quick-pick .date-select .quickpick ul li{padding:2px 10px;margin:0;cursor:pointer;font-size:13px;color:#a8b3c2
+mor-datepicker.has-quick-pick .datepicker-input-first .date-select .quickpick ul li{padding:2px 10px;margin:0;cursor:pointer;font-size:13px;color:#a8b3c2
 }
-mor-datepicker.has-quick-pick .date-select .quickpick ul li:hover{color:#17212d
+mor-datepicker.has-quick-pick .datepicker-input-first .date-select .quickpick ul li:hover{color:#17212d
 }
-mor-datepicker.has-quick-pick .date-select mor-calendar{display:inline-block;width:280px;font-size:14px;box-sizing:border-box;border-left:1px #e6e6e6 solid;margin-left:100px
+mor-datepicker.has-quick-pick .datepicker-input-first .date-select mor-calendar{display:inline-block;width:280px;font-size:14px;box-sizing:border-box;margin-left:100px
 }
 mor-datetimepicker{display:block;position:relative
 }

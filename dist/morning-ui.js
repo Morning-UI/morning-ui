@@ -14696,6 +14696,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
 
 var _dateFns = __webpack_require__(2);
 
@@ -14727,6 +14729,12 @@ exports.default = {
             default: 'left',
             validator: function validator(value) {
                 return ['left', 'center', 'right'].indexOf(value) !== -1;
+            }
+        },
+        quickPick: {
+            type: Array,
+            default: function _default() {
+                return [];
             }
         },
         dateSelectableRange: {
@@ -14765,6 +14773,7 @@ exports.default = {
                 date: this.date,
                 format: this.format,
                 align: this.align,
+                quickPick: this.quickPick,
                 dateSelectableRange: this.dateSelectableRange,
                 timeSelectableRange: this.timeSelectableRange,
                 isRange: this.isRange,
@@ -15298,6 +15307,54 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -16032,11 +16089,40 @@ exports.default = {
 
             return _dateFns.addYears.apply(this, arguments);
         },
+        _startOfWeek: function _startOfWeek() {
+
+            return _dateFns.startOfWeek.apply(this, arguments);
+        },
+        _endOfWeek: function _endOfWeek() {
+
+            return _dateFns.endOfWeek.apply(this, arguments);
+        },
+        _startOfMonth: function _startOfMonth() {
+
+            return _dateFns.startOfMonth.apply(this, arguments);
+        },
+        _endOfMonth: function _endOfMonth() {
+
+            return _dateFns.endOfMonth.apply(this, arguments);
+        },
+        _startOfYear: function _startOfYear() {
+
+            return _dateFns.startOfYear.apply(this, arguments);
+        },
+        _endOfYear: function _endOfYear() {
+
+            return _dateFns.endOfYear.apply(this, arguments);
+        },
         pickDate: function pickDate(date) {
 
             if (date instanceof Date && !this.conf.isRange) {
 
                 this._set((0, _dateFns.format)(date, this.conf.format));
+            }
+
+            if (date instanceof Array && date[0] instanceof Date && date[1] instanceof Date && this.conf.isRange) {
+
+                this._set([(0, _dateFns.format)(date[0], this.conf.format), (0, _dateFns.format)(date[1], this.conf.format)]);
             }
         },
         getDate: function getDate() {
@@ -27738,6 +27824,7 @@ var render = function() {
         date: _vm.date,
         format: _vm.format,
         align: _vm.align,
+        "quick-pick": _vm.quickPick,
         "date-selectable-range": _vm.dateSelectableRange,
         "time-selectable-range": _vm.timeSelectableRange,
         "is-range": _vm.isRange,
@@ -27760,6 +27847,7 @@ var render = function() {
                 date: _vm.conf.date,
                 format: _vm.conf.format,
                 align: _vm.conf.align,
+                "quick-pick": _vm.conf.quickPick,
                 "selectable-range": _vm.conf.dateSelectableRange,
                 "is-range": _vm.conf.isRange,
                 separator: _vm.conf.separator,
@@ -27896,7 +27984,7 @@ var render = function() {
                   "morning-private-datepicker",
                   {
                     ref: "ui-datepicker-input-0-" + _vm.uiid,
-                    staticClass: "datepicker-input-0",
+                    staticClass: "datepicker-input-0 datepicker-input-first",
                     attrs: {
                       state: _vm.conf.state,
                       "form-name":
@@ -27923,7 +28011,242 @@ var render = function() {
                       "date-change": _vm._input0DateChange
                     }
                   },
-                  [_vm._t("timepicker", null, { slot: "timepicker" })],
+                  [
+                    _vm._t("timepicker", null, { slot: "timepicker" }),
+                    _vm._v(" "),
+                    _vm.conf.quickPick.length > 0
+                      ? _c(
+                          "div",
+                          {
+                            staticClass: "quickpick",
+                            attrs: { slot: "quickpick" },
+                            slot: "quickpick"
+                          },
+                          [
+                            _c(
+                              "ul",
+                              [
+                                _vm._l(_vm.conf.quickPick, function(
+                                  pick,
+                                  name
+                                ) {
+                                  return [
+                                    pick === "本周"
+                                      ? _c(
+                                          "li",
+                                          {
+                                            on: {
+                                              click: function($event) {
+                                                _vm.pickDate([
+                                                  _vm._startOfWeek(new Date()),
+                                                  _vm._endOfWeek(new Date())
+                                                ])
+                                              }
+                                            }
+                                          },
+                                          [_vm._v(_vm._s(pick))]
+                                        )
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    pick === "本月"
+                                      ? _c(
+                                          "li",
+                                          {
+                                            on: {
+                                              click: function($event) {
+                                                _vm.pickDate([
+                                                  _vm._startOfMonth(new Date()),
+                                                  _vm._endOfMonth(new Date())
+                                                ])
+                                              }
+                                            }
+                                          },
+                                          [_vm._v(_vm._s(pick))]
+                                        )
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    pick === "今年"
+                                      ? _c(
+                                          "li",
+                                          {
+                                            on: {
+                                              click: function($event) {
+                                                _vm.pickDate([
+                                                  _vm._startOfYear(new Date()),
+                                                  _vm._endOfYear(new Date())
+                                                ])
+                                              }
+                                            }
+                                          },
+                                          [_vm._v(_vm._s(pick))]
+                                        )
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    /^最近 \d 周$/.test(pick)
+                                      ? _c(
+                                          "li",
+                                          {
+                                            on: {
+                                              click: function($event) {
+                                                _vm.pickDate([
+                                                  _vm._addWeeks(
+                                                    new Date(),
+                                                    -pick.replace(
+                                                      /(最近 | 周)/g,
+                                                      ""
+                                                    )
+                                                  ),
+                                                  new Date()
+                                                ])
+                                              }
+                                            }
+                                          },
+                                          [_vm._v(_vm._s(pick))]
+                                        )
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    /^最近 \d 月$/.test(pick)
+                                      ? _c(
+                                          "li",
+                                          {
+                                            on: {
+                                              click: function($event) {
+                                                _vm.pickDate([
+                                                  _vm._addMonths(
+                                                    new Date(),
+                                                    -pick.replace(
+                                                      /(最近 | 月)/g,
+                                                      ""
+                                                    )
+                                                  ),
+                                                  new Date()
+                                                ])
+                                              }
+                                            }
+                                          },
+                                          [_vm._v(_vm._s(pick))]
+                                        )
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    /^最近 \d 年$/.test(pick)
+                                      ? _c(
+                                          "li",
+                                          {
+                                            on: {
+                                              click: function($event) {
+                                                _vm.pickDate([
+                                                  _vm._addYears(
+                                                    new Date(),
+                                                    -pick.replace(
+                                                      /(最近 | 年)/g,
+                                                      ""
+                                                    )
+                                                  ),
+                                                  new Date()
+                                                ])
+                                              }
+                                            }
+                                          },
+                                          [_vm._v(_vm._s(pick))]
+                                        )
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    /^未来 \d 周$/.test(pick)
+                                      ? _c(
+                                          "li",
+                                          {
+                                            on: {
+                                              click: function($event) {
+                                                _vm.pickDate([
+                                                  new Date(),
+                                                  _vm._addWeeks(
+                                                    new Date(),
+                                                    pick.replace(
+                                                      /(未来 | 周)/g,
+                                                      ""
+                                                    )
+                                                  )
+                                                ])
+                                              }
+                                            }
+                                          },
+                                          [_vm._v(_vm._s(pick))]
+                                        )
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    /^未来 \d 月$/.test(pick)
+                                      ? _c(
+                                          "li",
+                                          {
+                                            on: {
+                                              click: function($event) {
+                                                _vm.pickDate([
+                                                  new Date(),
+                                                  _vm._addMonths(
+                                                    new Date(),
+                                                    pick.replace(
+                                                      /(未来 | 月)/g,
+                                                      ""
+                                                    )
+                                                  )
+                                                ])
+                                              }
+                                            }
+                                          },
+                                          [_vm._v(_vm._s(pick))]
+                                        )
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    /^未来 \d 年$/.test(pick)
+                                      ? _c(
+                                          "li",
+                                          {
+                                            on: {
+                                              click: function($event) {
+                                                _vm.pickDate([
+                                                  new Date(),
+                                                  _vm._addYears(
+                                                    new Date(),
+                                                    pick.replace(
+                                                      /(未来 | 年)/g,
+                                                      ""
+                                                    )
+                                                  )
+                                                ])
+                                              }
+                                            }
+                                          },
+                                          [_vm._v(_vm._s(pick))]
+                                        )
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    typeof pick === "object" &&
+                                    pick.start instanceof Date &&
+                                    pick.end instanceof Date
+                                      ? _c(
+                                          "li",
+                                          {
+                                            on: {
+                                              click: function($event) {
+                                                _vm.pickDate([
+                                                  pick.start,
+                                                  pick.end
+                                                ])
+                                              }
+                                            }
+                                          },
+                                          [_vm._v(_vm._s(pick.name))]
+                                        )
+                                      : _vm._e()
+                                  ]
+                                })
+                              ],
+                              2
+                            )
+                          ]
+                        )
+                      : _vm._e()
+                  ],
                   2
                 ),
                 _vm._v(" "),
@@ -27971,6 +28294,7 @@ var render = function() {
                   "morning-private-datepicker",
                   {
                     ref: "ui-datepicker-input-0-" + _vm.uiid,
+                    staticClass: "datepicker-input-first",
                     attrs: {
                       state: _vm.conf.state,
                       "form-name": _vm.conf.formName,

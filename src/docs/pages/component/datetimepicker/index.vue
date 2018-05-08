@@ -160,7 +160,39 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-datetimepicker form-name="日期时间" :quick-pick="['今天', '昨天', '2 天前', '3 天前', '1 周前', '2 周前', '3 周前', '1 月前', '2 月前', '3 月前', '6 月前', '1 年前', '2 年前', '3 年前']"></ui-datetimepicker>
+        <ui-datetimepicker form-name="日期时间" :quick-pick="['30 秒前', '5 分钟前', '1 小时前', '今天', '昨天', '2 天前', '3 天前', '1 周前', '1 月前', '1 年前']"></ui-datetimepicker>
+    </div>
+    :::
+
+    未来的时间也可以设置：
+
+    :::democode/html
+    <div style="width:300px;">
+        <ui-datetimepicker form-name="日期时间" :quick-pick="['30 秒后', '5 分钟后', '1 小时后', '明天', '3 天后', '3 周后', '3 月后', '1 年后']"></ui-datetimepicker>
+    </div>
+    :::
+
+    也可以通过选中日期时间相对与现在的秒数(正数为未来，负数为过去)来设置：
+    
+    :::democode/html
+    <div style="width:300px;">
+        <ui-datetimepicker form-name="日期时间" :quick-pick="[{name: '一分钟后', pick: 60}, {name: '半小时前', pick: -1800}, {name: '今天', pick: 0}, {name: '明天', pick: 86400}]"></ui-datetimepicker>
+    </div>
+    :::
+
+    也可以通过选中日期的绝对值来设置：
+
+    :::democode/html
+    <div style="width:300px;">
+        <ui-datetimepicker form-name="日期时间" :quick-pick="[{name: '生日派对', pick: new Date('2018-3-23 19:00:00')}]"></ui-datetimepicker>
+    </div>
+    :::
+    
+    配合`is-range`使用时：
+
+    :::democode/html
+    <div style="width:460px;">
+        <ui-datetimepicker form-name="日期" :quick-pick="['本周', '本月', '今年', '最近 30 秒', '最近 10 分钟', '未来 5 分钟', '最近 1 小时', '最近 7 天', '未来 7 天', '最近 1 周', '最近 2 月', '未来 3 年', {name: '2015-2017', start: new Date('2015-01-01'), end: new Date('2017-01-01')}]" is-range></ui-datetimepicker>
     </div>
     :::
 
