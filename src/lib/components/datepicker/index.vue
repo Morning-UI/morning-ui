@@ -28,7 +28,7 @@
 
         <template v-if="conf.isRange">
             <morning-private-datepicker
-                class="datepicker-input-0"
+                class="datepicker-input-0 datepicker-input-first"
                 :ref="'ui-datepicker-input-0-'+uiid"
                 :state="conf.state"
 
@@ -52,6 +52,53 @@
                 @date-change = "_input0DateChange"
             >
                 <slot name="timepicker" slot="timepicker"></slot>
+
+                <div class="quickpick" slot="quickpick" v-if="conf.quickPick.length > 0">
+                    <ul>
+                        <template v-for="(pick, name) in conf.quickPick">
+                            <li
+                                v-if="pick === '本周'"
+                                @click="pickDate([_startOfWeek(new Date()), _endOfWeek(new Date())])"
+                            >{{pick}}</li>
+                            <li
+                                v-if="pick === '本月'"
+                                @click="pickDate([_startOfMonth(new Date()), _endOfMonth(new Date())])"
+                            >{{pick}}</li>
+                            <li
+                                v-if="pick === '今年'"
+                                @click="pickDate([_startOfYear(new Date()), _endOfYear(new Date())])"
+                            >{{pick}}</li>
+                            <li
+                                v-if="/^最近 \d 周$/.test(pick)"
+                                @click="pickDate([_addWeeks(new Date(), -pick.replace(/(最近 | 周)/g, '')), new Date()])"
+                            >{{pick}}</li>
+                            <li
+                                v-if="/^最近 \d 月$/.test(pick)"
+                                @click="pickDate([_addMonths(new Date(), -pick.replace(/(最近 | 月)/g, '')), new Date()])"
+                            >{{pick}}</li>
+                            <li
+                                v-if="/^最近 \d 年$/.test(pick)"
+                                @click="pickDate([_addYears(new Date(), -pick.replace(/(最近 | 年)/g, '')), new Date()])"
+                            >{{pick}}</li>
+                            <li
+                                v-if="/^未来 \d 周$/.test(pick)"
+                                @click="pickDate([new Date(), _addWeeks(new Date(), pick.replace(/(未来 | 周)/g, ''))])"
+                            >{{pick}}</li>
+                            <li
+                                v-if="/^未来 \d 月$/.test(pick)"
+                                @click="pickDate([new Date(), _addMonths(new Date(), pick.replace(/(未来 | 月)/g, ''))])"
+                            >{{pick}}</li>
+                            <li
+                                v-if="/^未来 \d 年$/.test(pick)"
+                                @click="pickDate([new Date(), _addYears(new Date(), pick.replace(/(未来 | 年)/g, ''))])"
+                            >{{pick}}</li>
+                            <li
+                                v-if="typeof pick === 'object' && pick.start instanceof Date && pick.end instanceof Date"
+                                @click="pickDate([pick.start, pick.end])"
+                            >{{pick.name}}</li>
+                        </template>
+                    </ul>
+                </div>
             </morning-private-datepicker>
 
             <div class="separator">{{conf.separator}}</div>
@@ -86,6 +133,7 @@
 
         <template v-else>
             <morning-private-datepicker
+                class="datepicker-input-first"
                 :ref="'ui-datepicker-input-0-'+uiid"
                 :state="conf.state"
 
@@ -104,7 +152,7 @@
                 @focus="_focus"
                 @blur="_blur"
             >
-                <slot name="timepicker" slot="timepicker"></slot>   
+                <slot name="timepicker" slot="timepicker"></slot>
 
                 <div class="quickpick" slot="quickpick" v-if="conf.quickPick.length > 0">
                     <ul>
@@ -191,7 +239,11 @@ import {
     startOfMonth,
     endOfMonth,
     addWeeks,
-    addYears
+    startOfWeek,
+    endOfWeek,
+    addYears,
+    startOfYear,
+    endOfYear
 }                                   from 'date-fns';
 
 import sortBy                       from 'lodash.sortby';
@@ -827,12 +879,54 @@ export default {
             return addYears.apply(this, arguments);
 
         },
+        _startOfWeek : function () {
+
+            return startOfWeek.apply(this, arguments);
+
+        },
+        _endOfWeek : function () {
+
+            return endOfWeek.apply(this, arguments);
+
+        },
+        _startOfMonth : function () {
+
+            return startOfMonth.apply(this, arguments);
+
+        },
+        _endOfMonth : function () {
+
+            return endOfMonth.apply(this, arguments);
+
+        },
+        _startOfYear : function () {
+
+            return startOfYear.apply(this, arguments);
+
+        },
+        _endOfYear : function () {
+
+            return endOfYear.apply(this, arguments);
+
+        },
         pickDate : function (date) {
 
             if (date instanceof Date &&
                 !this.conf.isRange) {
 
                 this._set(formatDate(date, this.conf.format));
+
+            }
+
+            if (date instanceof Array &&
+                date[0] instanceof Date &&
+                date[1] instanceof Date &&
+                this.conf.isRange) {
+
+                this._set([
+                    formatDate(date[0], this.conf.format),
+                    formatDate(date[1], this.conf.format)
+                ]);
 
             }
 

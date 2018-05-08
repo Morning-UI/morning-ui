@@ -153,7 +153,17 @@
         <ui-datetimepicker form-name="日期时间" :date="+new Date('2018-03-23')" default-value="2018-03-23 18:10:18" align="right"></ui-datetimepicker>
     </div>
     :::
-    
+
+    #### quick-pick
+        
+    你可以通过预设的关键词来设置日期快速选择项：
+
+    :::democode/html
+    <div style="width:300px;">
+        <ui-datetimepicker form-name="日期时间" :quick-pick="['今天', '昨天', '2 天前', '3 天前', '1 周前', '2 周前', '3 周前', '1 月前', '2 月前', '3 月前', '6 月前', '1 年前', '2 年前', '3 年前']"></ui-datetimepicker>
+    </div>
+    :::
+
     #### date-selectable-range
 
     设置单个可选范围(2018-03-08至2018-03-23)：

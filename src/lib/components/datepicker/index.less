@@ -95,7 +95,7 @@ mor-datepicker{
     }
 
     &.has-quick-pick{
-        .date-select{
+        .datepicker-input-first .date-select{
             font-size: 0;
             min-width: calc(280px + 2px + @quickPickWidth);
             
@@ -105,8 +105,10 @@ mor-datepicker{
                 font-size: @fontSize*0.875;
                 vertical-align: top;
                 position: absolute;
+                top: 0;
                 height: 100%;
                 overflow-y: scroll;
+                border-right: 1px @colorFormBorder solid;
 
                 .setup-scrollbar();
 
@@ -134,7 +136,6 @@ mor-datepicker{
                 width: 280px;
                 font-size: @fontSize*0.875;
                 box-sizing: border-box;
-                border-left: 1px @colorFormBorder solid;
                 margin-left: @quickPickWidth;
             }
         }
