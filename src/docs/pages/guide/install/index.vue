@@ -28,6 +28,8 @@
     ##### 直接下载
 
     <ui-btn size="m" new-tab id="download">下载</ui-btn>
+
+    <a href="/guide/logs.html">下载历史版本(Package)</a>
     
     ##### NPM安装
     
@@ -40,10 +42,24 @@
     
     ##### CDN
 
-    - 最新版Morning UI:
-        - [https://cdn.jsdelivr.net/npm/morning-ui/dist/morning-ui.min.js](https://cdn.jsdelivr.net/npm/morning-ui/dist/morning-ui.min.js) 
-        - [https://cdn.jsdelivr.net/npm/morning-ui/dist/morning-ui.min.css](https://cdn.jsdelivr.net/npm/morning-ui/dist/morning-ui.min.css)
+    - 最新版Morning UI：
+        - jsdelivr
+            - [https://cdn.jsdelivr.net/npm/morning-ui/dist/morning-ui.js](https://cdn.jsdelivr.net/npm/morning-ui/dist/morning-ui.js) 
+            - [https://cdn.jsdelivr.net/npm/morning-ui/dist/morning-ui.css](https://cdn.jsdelivr.net/npm/morning-ui/dist/morning-ui.css)
+            - [https://cdn.jsdelivr.net/npm/morning-ui/dist/morning-ui.min.js](https://cdn.jsdelivr.net/npm/morning-ui/dist/morning-ui.min.js) 
+            - [https://cdn.jsdelivr.net/npm/morning-ui/dist/morning-ui.min.css](https://cdn.jsdelivr.net/npm/morning-ui/dist/morning-ui.min.css)
+        - unpkg
+            - [https://unpkg.com/morning-ui/dist/morning-ui.js](https://unpkg.com/morning-ui/dist/morning-ui.js) 
+            - [https://unpkg.com/morning-ui/dist/morning-ui.css](https://unpkg.com/morning-ui/dist/morning-ui.css)
+            - [https://unpkg.com/morning-ui/dist/morning-ui.min.js](https://unpkg.com/morning-ui/dist/morning-ui.min.js) 
+            - [https://unpkg.com/morning-ui/dist/morning-ui.min.css](https://unpkg.com/morning-ui/dist/morning-ui.min.css)
+
     - 历史版本：[https://cdn.jsdelivr.net/npm/morning-ui/](https://cdn.jsdelivr.net/npm/morning-ui/)
+
+    我们建议在生产环境锁定版本并使用稳定版本的Morning UI，以免Mroning UI升级时受到兼容性影响。锁定方法是增加`@[锁定的版本号]`关键词，例如锁定在`0.10.21`版本：
+
+    - jsdelivr : https://cdn.jsdelivr.net/npm/morning-ui@0.10.21/dist/morning-ui.js
+    - unpkg : https://unpkg.com/morning-ui@0.10.21/dist/morning-ui.js
 
     ### 页面引用
 

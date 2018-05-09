@@ -12,6 +12,7 @@
         :date="date"
         :format="format"
         :align="align"
+        :quick-pick="quickPick"
         :date-selectable-range="dateSelectableRange"
         :time-selectable-range="timeSelectableRange"
         :is-range="isRange"
@@ -27,6 +28,8 @@
             :date="conf.date"
             :format="conf.format"
             :align="conf.align"
+            :quick-pick="conf.quickPick"
+            :quick-pick-unit="1000"
             :selectable-range="conf.dateSelectableRange"
             :is-range="conf.isRange"
             :separator="conf.separator"
@@ -109,6 +112,10 @@ export default {
             default : 'left',
             validator : (value => ['left', 'center', 'right'].indexOf(value) !== -1)
         },
+        quickPick : {
+            type : Array,
+            default : (() => [])
+        },
         dateSelectableRange : {
             type : Array,
             default : (() => [])
@@ -141,6 +148,7 @@ export default {
                 date : this.date,
                 format : this.format,
                 align : this.align,
+                quickPick : this.quickPick,
                 dateSelectableRange : this.dateSelectableRange,
                 timeSelectableRange : this.timeSelectableRange,
                 isRange : this.isRange,
