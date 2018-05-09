@@ -26,7 +26,8 @@
                 /^tip/,
                 /^grid/,
                 /^form/,
-                /^import\-normalize/
+                /^import\-normalize/,
+                /^quickPickWidth$/
             ]
         }],
         "comment-no-empty" : true,

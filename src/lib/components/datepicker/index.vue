@@ -303,8 +303,6 @@ import {
     startOfYear,
     endOfYear,
     addHours,
-    startOfHour,
-    endOfHour,
     addMinutes,
     addSeconds,
     addMilliseconds
@@ -312,6 +310,9 @@ import {
 
 import sortBy                       from 'lodash.sortby';
 import Dates                        from 'Utils/Dates';
+
+const NUM_60 = 60;
+const NUM_1K = 1000;
 
 export default {
     origin : 'Form',
@@ -337,7 +338,7 @@ export default {
         },
         quickPickUnit : {
             type : Number,
-            default : (60 * 60 * 1000)
+            default : (NUM_60 * NUM_60 * NUM_1K)
         },
         selectableRange : {
             type : Array,
@@ -928,74 +929,74 @@ export default {
             }
 
         },
-        _addMonths : function () {
+        _addMonths : function (...arg) {
 
-            return addMonths.apply(this, arguments);
-
-        },
-        _addDays : function () {
-
-            return addDays.apply(this, arguments);
+            return addMonths.apply(this, arg);
 
         },
-        _addWeeks : function () {
+        _addDays : function (...arg) {
 
-            return addWeeks.apply(this, arguments);
-
-        },
-        _addYears : function () {
-
-            return addYears.apply(this, arguments);
+            return addDays.apply(this, arg);
 
         },
-        _addHours : function () {
+        _addWeeks : function (...arg) {
 
-            return addHours.apply(this, arguments);
-
-        },
-        _addMinutes : function () {
-
-            return addMinutes.apply(this, arguments);
+            return addWeeks.apply(this, arg);
 
         },
-        _addSeconds : function () {
+        _addYears : function (...arg) {
 
-            return addSeconds.apply(this, arguments);
-
-        },
-        _addMilliseconds : function () {
-
-            return addMilliseconds.apply(this, arguments);
+            return addYears.apply(this, arg);
 
         },
-        _startOfWeek : function () {
+        _addHours : function (...arg) {
 
-            return startOfWeek.apply(this, arguments);
-
-        },
-        _endOfWeek : function () {
-
-            return endOfWeek.apply(this, arguments);
+            return addHours.apply(this, arg);
 
         },
-        _startOfMonth : function () {
+        _addMinutes : function (...arg) {
 
-            return startOfMonth.apply(this, arguments);
-
-        },
-        _endOfMonth : function () {
-
-            return endOfMonth.apply(this, arguments);
+            return addMinutes.apply(this, arg);
 
         },
-        _startOfYear : function () {
+        _addSeconds : function (...arg) {
 
-            return startOfYear.apply(this, arguments);
+            return addSeconds.apply(this, arg);
 
         },
-        _endOfYear : function () {
+        _addMilliseconds : function (...arg) {
 
-            return endOfYear.apply(this, arguments);
+            return addMilliseconds.apply(this, arg);
+
+        },
+        _startOfWeek : function (...arg) {
+
+            return startOfWeek.apply(this, arg);
+
+        },
+        _endOfWeek : function (...arg) {
+
+            return endOfWeek.apply(this, arg);
+
+        },
+        _startOfMonth : function (...arg) {
+
+            return startOfMonth.apply(this, arg);
+
+        },
+        _endOfMonth : function (...arg) {
+
+            return endOfMonth.apply(this, arg);
+
+        },
+        _startOfYear : function (...arg) {
+
+            return startOfYear.apply(this, arg);
+
+        },
+        _endOfYear : function (...arg) {
+
+            return endOfYear.apply(this, arg);
 
         },
         _pickDate : function (date) {
