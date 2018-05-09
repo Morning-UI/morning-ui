@@ -3,7 +3,7 @@
         :page="page"
         :hasPadding="true" 
     >
-    
+
         <h1>对比</h1>
 
         <p>现在市面上的UI库非常多，当你选择时一定会有点不知所措。所以我们将主流的UI库都列在了下面，并且整理了一份全面的对比，供你参考。</p>
@@ -1786,16 +1786,7 @@ export default {
     data : function () {
 
         return {
-            page : 'comparison'
-        };
-
-    },
-    components : {
-        'doc-guide' : DocGuide
-    },
-    data : function () {
-
-        return {
+            page : 'comparison',
             hmpuiNum : 0,
             atuiNum : 0,
             eleNum : 0,
@@ -1803,6 +1794,9 @@ export default {
             morningNum : 0
         };
 
+    },
+    components : {
+        'doc-guide' : DocGuide
     },
     mounted : function () {
 
@@ -1813,6 +1807,7 @@ export default {
         this.eleNum = this.$el.querySelectorAll('tbody > .components > .mark:nth-last-child(3)>.has').length;
         this.antdNum = this.$el.querySelectorAll('tbody > .components > .mark:nth-last-child(2)>.has').length;
         this.morningNum = this.$el.querySelectorAll('tbody > .components > .mark:nth-last-child(1)>.has').length;
+
     }
 };
 </script>

@@ -238,6 +238,7 @@
     - `auto-reset-search` : 重置搜索
     - `hide-selected` : 隐藏选中
     - `clean-allzone-btn` : 清空所有区域按钮
+    - `quick-pick` : 快速选择
 
     </script>
     </doc-guide>

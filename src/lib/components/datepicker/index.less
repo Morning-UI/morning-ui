@@ -1,5 +1,7 @@
 @import '~Common/var.less';
 
+@quickPickWidth : 100px;
+
 mor-datepicker{
     display: block;
     position: relative;
@@ -89,6 +91,53 @@ mor-datepicker{
             background-color: @colorLightGray;
             border-top: 1px solid @colorFormBorder;
             border-bottom: 1px solid @colorFormBorder;
+        }
+    }
+
+    &.has-quick-pick{
+        .datepicker-input-first .date-select{
+            font-size: 0;
+            min-width: calc(280px + 2px + @quickPickWidth);
+
+            .quickpick{
+                display: inline-block;
+                width: @quickPickWidth;
+                font-size: @fontSize*0.875;
+                vertical-align: top;
+                position: absolute;
+                top: 0;
+                height: 100%;
+                overflow-y: scroll;
+                border-right: 1px @colorFormBorder solid;
+
+                .setup-scrollbar();
+
+                ul{
+                    margin: 0;
+                    padding: 10px 0;
+                    list-style: none;
+
+                    li{
+                        padding: 2px 10px;
+                        margin: 0;
+                        cursor: pointer;
+                        font-size: @fontSize*0.8125;
+                        color: @colorExtraLightBlue;
+
+                        &:hover{
+                            color: @colorBlack;
+                        }
+                    }
+                }
+            }
+
+            mor-calendar{
+                display: inline-block;
+                width: 280px;
+                font-size: @fontSize*0.875;
+                box-sizing: border-box;
+                margin-left: @quickPickWidth;
+            }
         }
     }
 
