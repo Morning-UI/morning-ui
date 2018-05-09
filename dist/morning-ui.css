@@ -10142,6 +10142,7 @@ mor-datetimepicker .timepicker mor-timepicker {
   position: absolute;
   right: 5px;
   transform-origin: right;
+  font-size: 14px;
 }
 
 mor-upload {
