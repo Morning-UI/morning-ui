@@ -40,13 +40,20 @@ mor-dropdown{
         }
     }
 
+    // default status
+    &{}
+}
+
+.ui-dropdown-wrap{
+    position: absolute;
+    min-width: 80px;
+    top: 110%;
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+
     .btnlist{
+        width: 100%;
         font-size: 0;
-        position: absolute;
-        top: 110%;
-        min-width: 80px;
-        left: 50%;
-        transform: translateX(-50%) scale(0);
         transform-origin: top center;
         border-radius: @borderRadius;
         box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
@@ -80,7 +87,4 @@ mor-dropdown{
         animation-duration: 0.18s;
         animation-fill-mode: forwards;
     }
-
-    // default status
-    &{}
 }

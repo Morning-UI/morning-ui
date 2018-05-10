@@ -25,7 +25,7 @@
                 {name : 'Gustavo Zambelli', age : 23, gender : 'male', job : 'teacher'},
                 {name : 'Victor Erixon', age : 15, gender : 'female', job : 'doctors'},
                 {name : 'Shaun Moynihan', age : 27, gender : 'female', job : 'driver'},
-                {name : 'Emir Ayouni', age : 21, gender : 'male', job : 'gardener'}
+                {name : 'Emir Ayouni', age : 21, gender : 'male', job : '<ui-dropdown><ui-btn slot="showbtn" emitbtn>更多 <i class="morningicon">&#xe6b1;</i></ui-btn><ui-btn color="white">收藏</ui-btn><ui-btn color="white">修改</ui-btn><ui-btn color="danger">删除</ui-btn></ui-dropdown>'}
             ]
         }
     });
