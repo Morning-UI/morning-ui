@@ -1227,62 +1227,166 @@ mor-table{
     .normal-table{
         th,
         td{
+            &.cell-co-theme{
+                background: darken(@colorTheme, 5%) !important;
+                color: @colorWhite !important;
+            }
+            &.cell-co-light-theme{
+                background: darken(@colorLightTheme, 5%) !important;
+                color: @colorWhite !important;
+            }
+            &.cell-co-dark-theme{
+                background: darken(@colorDarkTheme, 5%) !important;
+                color: @colorWhite !important;
+            }
+
             &.cell-co-success{
                 background: darken(@colorSuccess, 5%) !important;
                 color: @colorWhite !important;
             }
-
             &.cell-co-warning{
                 background: darken(@colorWarning, 5%) !important;
                 color: @colorWhite !important;
             }
-
             &.cell-co-danger{
                 background: darken(@colorDanger, 5%) !important;
                 color: @colorWhite !important;
             }
-
             &.cell-co-primary{
                 background: darken(@colorPrimary, 5%) !important;
                 color: @colorWhite !important;
             }
-
             &.cell-co-minor{
                 background: darken(@colorMinor, 5%) !important;
                 color: @colorWhite !important;
             }
-
             &.cell-co-info{
                 background: darken(@colorInfo, 5%) !important;
                 color: @colorWhite !important;
+            }
+
+            &.cell-co-black{
+                background: darken(@colorBlack, 5%) !important;
+                color: @colorWhite !important;
+            }
+            &.cell-co-light-black{
+                background: darken(@colorLightBlack, 5%) !important;
+                color: @colorWhite !important;
+            }
+            &.cell-co-extra-light-black{
+                background: darken(@colorExtraLightBlack, 5%) !important;
+                color: @colorWhite !important;
+            }
+            &.cell-co-blue{
+                background: darken(@colorBlue, 5%) !important;
+                color: @colorWhite !important;
+            }
+            &.cell-co-light-blue{
+                background: darken(@colorLightBlue, 5%) !important;
+                color: @colorWhite !important;
+            }
+            &.cell-co-extra-light-blue{
+                background: darken(@colorExtraLightBlue, 5%) !important;
+                color: @colorWhite !important;
+            }
+            &.cell-co-silver{
+                background: darken(@colorSilver, 5%) !important;
+                color: @colorBlack !important;
+            }
+            &.cell-co-light-silver{
+                background: darken(@colorLightSilver, 5%) !important;
+                color: @colorBlack !important;
+            }
+            &.cell-co-extra-light-silver{
+                background: darken(@colorExtraLightSilver, 5%) !important;
+                color: @colorBlack !important;
+            }
+            &.cell-co-gray{
+                background: darken(@colorGray, 5%) !important;
+                color: @colorBlack !important;
+            }
+            &.cell-co-light-gray{
+                background: darken(@colorLightGray, 5%) !important;
+                color: @colorBlack !important;
+            }
+            &.cell-co-white{
+                background: @colorWhite !important;
+                color: @colorBlack !important;
             }
         }
 
         tr.hover{
             th,
             td{
+                &.cell-co-theme{
+                    background: darken(@colorTheme, 15%) !important;
+                }
+                &.cell-co-light-theme{
+                    background: darken(@colorLightTheme, 15%) !important;
+                }
+                &.cell-co-dark-theme{
+                    background: darken(@colorDarkTheme, 13%) !important;
+                }
+
                 &.cell-co-success{
-                    background: darken(@colorSuccess, 10%) !important;
+                    background: darken(@colorSuccess, 13%) !important;
                 }
 
                 &.cell-co-warning{
-                    background: darken(@colorWarning, 10%) !important;
+                    background: darken(@colorWarning, 15%) !important;
                 }
 
                 &.cell-co-danger{
-                    background: darken(@colorDanger, 10%) !important;
+                    background: darken(@colorDanger, 13%) !important;
                 }
 
                 &.cell-co-primary{
-                    background: darken(@colorPrimary, 10%) !important;
+                    background: darken(@colorPrimary, 15%) !important;
                 }
 
                 &.cell-co-minor{
-                    background: darken(@colorMinor, 10%) !important;
+                    background: darken(@colorMinor, 15%) !important;
                 }
 
                 &.cell-co-info{
                     background: darken(@colorInfo, 10%) !important;
+                }
+
+                &.cell-co-black{
+                    background: lighten(@colorBlack, 5%) !important;
+                }
+                &.cell-co-light-black{
+                    background: lighten(@colorLightBlack, 5%) !important;
+                }
+                &.cell-co-extra-light-black{
+                    background: lighten(@colorExtraLightBlack, 5%) !important;
+                }
+                &.cell-co-blue{
+                    background: darken(@colorBlue, 15%) !important;
+                }
+                &.cell-co-light-blue{
+                    background: darken(@colorLightBlue, 15%) !important;
+                }
+                &.cell-co-extra-light-blue{
+                    background: darken(@colorExtraLightBlue, 15%) !important;
+                }
+                &.cell-co-silver{
+                    background: darken(@colorSilver, 13%) !important;
+                }
+                &.cell-co-light-silver{
+                    background: darken(@colorLightSilver, 13%) !important;
+                }
+                &.cell-co-extra-light-silver{
+                    background: darken(@colorExtraLightSilver, 13%) !important;
+                }
+                &.cell-co-gray{
+                    background: darken(@colorGray, 15%) !important;
+                }
+                &.cell-co-light-gray{
+                    background: darken(@colorLightGray, 15%) !important;
+                }
+                &.cell-co-white{
+                    background: darken(@colorWhite, 8%) !important;
                 }
             }
         }
