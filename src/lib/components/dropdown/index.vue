@@ -19,12 +19,12 @@
 <script>
 import Tether                       from 'Npm/tether/dist/js/tether.min.js';
 import GlobalEvent                  from 'Utils/GlobalEvent';
-import IndexManager                 from 'Utils/IndexManager';
+import TipManager                   from 'Utils/TipManager';
 
 export default {
     origin : 'UI',
     name : 'dropdown',
-    mixins : [GlobalEvent, IndexManager],
+    mixins : [GlobalEvent, TipManager],
     props : {
         autoClose : {
             type : Boolean,
@@ -54,15 +54,7 @@ export default {
             data : {
                 show : false,
                 first : true,
-                classPrefix : 'morning-tether',
-                $element : null,
-                attachmentMap : {
-                    top : 'bottom center',
-                    right : 'middle left',
-                    bottom : 'top center',
-                    left : 'middle right'
-                },
-                tether : null
+                $warp : null
             }
         };
 
@@ -75,7 +67,7 @@ export default {
             let $emitbtn = this.$el.querySelector('[emitbtn]');
 
             if ((this.conf.autoClose && (evt.path.indexOf($emitbtn) === notFound)) ||
-                (!this.conf.autoClose && (evt.path.indexOf(this.$el) === notFound))) {
+                (!this.conf.autoClose && (evt.path.indexOf(this.data.$warp) === notFound))) {
 
                 this.toggle();
 
@@ -87,64 +79,9 @@ export default {
             this.toggle();
 
         },
-        _setTether : function () {
-
-            if (!this.data.tether) {
-
-                return;
-
-            }
-
-            let targetOffset = '0 0',
-                options = {};
-
-            options = {
-                attachment : this.data.attachmentMap.bottom,
-                element : this.data.$element,
-                target : this.$el,
-                targetOffset,
-                // classes : this.tetherClass,
-                classPrefix : this.data.classPrefix,
-                offset : '0 0'
-            };
-
-            this.data.tether.setOptions(options);
-            this.data.tether.position();
-
-        },
-        _cleanupTether : function () {
-
-            if (this.data.tether) {
-
-                this.data.tether.destroy();
-                this.data.tether = null;
-
-                this.$el.removeAttribute('style');
-
-                this._removeTetherClasses(this.$el);
-                this._removeTetherClasses(this.data.$element);
-
-            }
-
-        },
-        _removeTetherClasses : function (ele) {
-
-            let classes = ele.classList.value.split(' ');
-
-            for (let cls of classes) {
-
-                let reg = new RegExp(`^(${this.data.classPrefix}|tether)\\-`, 'g');
-
-                if (reg.test(cls)) {
-
-                    ele.classList.remove(cls);
-
-                }
-
-            }
-
-        },
         toggle : function (show) {
+
+            const timeout = 200;
 
             if (show === undefined) {
 
@@ -164,17 +101,18 @@ export default {
 
             if (this.data.show) {
 
-                this.data.tether = new Tether({
-                    attachment : this.data.attachmentMap.bottom,
-                    element : this.data.$element,
-                    target : this.$el
+                this._tipCreate({
+                    placement : 'bottom',
+                    element : this.data.$warp,
+                    target : this.$el,
+                    offset : '-5px 0'
                 });
-                this._setTether();
 
                 this.$emit('show');
 
             } else {
 
+                this._tipDestroy();
                 this.$emit('hide');
 
             }
@@ -184,15 +122,7 @@ export default {
         }
         
     },
-    created : function () {
-
-        this._indexReg('list.show', 2);
-        this._indexReg('list.hide', 1);
-
-    },
     mounted : function () {
-
-        const timeout = 200;
 
         let $emitbtn = this.$el.querySelector(`[emitbtn]`);
         
@@ -202,13 +132,12 @@ export default {
 
         }
 
-        this.data.$element = this.$el.querySelector('.ui-dropdown-wrap');
+        this.data.$warp = this.$el.querySelector('.ui-dropdown-wrap');
 
         this.$on('show', () => {
 
             this.data.first = false;
             this.data.show = true;
-            this.$el.style.zIndex = this._indexGet('list.show');
 
             setTimeout(() => {
 
@@ -227,18 +156,13 @@ export default {
             this._globalEventRemove('click', '_checkArea');
             this.$emit('emit');
 
-            setTimeout(() => {
-
-                this.$el.style.zIndex = this._indexGet('list.hide');
-
-            }, timeout);
-
         });
 
     },
     beforeDestroy : function () {
 
         this._globalEventRemove('click', '_checkArea');
+        this._tipDestroy();
 
     }
 };

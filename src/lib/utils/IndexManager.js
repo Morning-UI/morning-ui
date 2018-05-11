@@ -53,7 +53,7 @@ let IndexManager = {
             return this._indexFetch(namespace, 1);
 
         },
-        _indexGet : function (namespace, addition) {
+        _indexGet : function (namespace, addition = 0) {
 
             let index = this._indexFetch(namespace, 0) + addition;
 
