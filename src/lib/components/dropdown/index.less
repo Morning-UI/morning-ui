@@ -2,28 +2,28 @@
 
 @keyframes dropdown_popup{
     from {
-        transform: translateX(-50%) scale(0);
+        transform: scale(0);
     }
 
     52%{
-        transform: translateX(-50%) scale(1);
+        transform: scale(1);
     }
 
     76%{
-        transform: translateX(-50%) scale(1.12);
+        transform: scale(1.12);
     }
 
     to {
-        transform: translateX(-50%) scale(1);
+        transform: scale(1);
     }
 }
 @keyframes dropdown_popin{
     from {
-        transform: translateX(-50%) scale(1);
+        transform: scale(1);
     }
 
     to {
-        transform: translateX(-50%) scale(0);
+        transform: scale(0);
     }
 }
 
@@ -40,16 +40,24 @@ mor-dropdown{
         }
     }
 
+    // default status
+    &{}
+}
+
+.ui-dropdown-wrap{
+    position: absolute;
+    min-width: 80px;
+    top: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+
     .btnlist{
+        width: 100%;
         font-size: 0;
-        position: absolute;
-        top: 110%;
-        min-width: 80px;
-        left: 50%;
-        transform: translateX(-50%) scale(0);
         transform-origin: top center;
         border-radius: @borderRadius;
         box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+        transform: scale(0);
 
         mor-btn{
             white-space: nowrap;
@@ -80,7 +88,4 @@ mor-dropdown{
         animation-duration: 0.18s;
         animation-fill-mode: forwards;
     }
-
-    // default status
-    &{}
 }

@@ -4725,24 +4725,24 @@ mor-link:hover {
 
 @keyframes dropdown_popup {
 from {
-    transform: translateX(-50%) scale(0);
+    transform: scale(0);
 }
 52% {
-    transform: translateX(-50%) scale(1);
+    transform: scale(1);
 }
 76% {
-    transform: translateX(-50%) scale(1.12);
+    transform: scale(1.12);
 }
 to {
-    transform: translateX(-50%) scale(1);
+    transform: scale(1);
 }
 }
 @keyframes dropdown_popin {
 from {
-    transform: translateX(-50%) scale(1);
+    transform: scale(1);
 }
 to {
-    transform: translateX(-50%) scale(0);
+    transform: scale(0);
 }
 }
 mor-dropdown {
@@ -4755,37 +4755,41 @@ mor-dropdown mor-btn .morningicon {
   display: inline-block;
   vertical-align: top;
 }
-mor-dropdown .btnlist {
-  font-size: 0;
+.ui-dropdown-wrap {
   position: absolute;
-  top: 110%;
   min-width: 80px;
+  top: 110%;
   left: 50%;
-  transform: translateX(-50%) scale(0);
+  transform: translateX(-50%);
+}
+.ui-dropdown-wrap .btnlist {
+  width: 100%;
+  font-size: 0;
   transform-origin: top center;
   border-radius: 3px;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+  transform: scale(0);
 }
-mor-dropdown .btnlist mor-btn {
+.ui-dropdown-wrap .btnlist mor-btn {
   white-space: nowrap;
   display: block;
   margin: 0;
   text-align: center;
 }
-mor-dropdown .btnlist mor-btn:not(:first-child) {
+.ui-dropdown-wrap .btnlist mor-btn:not(:first-child) {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-mor-dropdown .btnlist mor-btn:not(:last-child) {
+.ui-dropdown-wrap .btnlist mor-btn:not(:last-child) {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
-mor-dropdown.show .btnlist {
+.ui-dropdown-wrap.show .btnlist {
   animation-name: dropdown_popup;
   animation-duration: 0.2s;
   animation-fill-mode: forwards;
 }
-mor-dropdown.hide .btnlist {
+.ui-dropdown-wrap.hide .btnlist {
   animation-name: dropdown_popin;
   animation-duration: 0.18s;
   animation-fill-mode: forwards;

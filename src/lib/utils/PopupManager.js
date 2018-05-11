@@ -6,6 +6,7 @@ let PopupManager = {
 
         return {
             Popup : {
+                $target : null,
                 keepDiv : null,
                 oldIndex : undefined
             }
@@ -26,10 +27,10 @@ let PopupManager = {
 
             keepDiv.setAttribute('popup-id', id);
             keepDiv.style.display = 'none';
-            this.$el.before(keepDiv);
-            this.Popup.oldIndex = this.$el.style.zIndex;
-            this.$el.style.zIndex = this._indexGet('Popup', id);
-            document.body.append(this.$el);
+            this.Popup.$target.before(keepDiv);
+            this.Popup.oldIndex = this.Popup.$target.style.zIndex;
+            this.Popup.$target.style.zIndex = this._indexGet('Popup', id);
+            document.body.append(this.Popup.$target);
             this.Popup.keepDiv = keepDiv;
 
         },
@@ -41,8 +42,8 @@ let PopupManager = {
 
             }
 
-            this.$el.style.zIndex = this.Popup.oldIndex;
-            this.Popup.keepDiv.before(this.$el);
+            this.Popup.$target.style.zIndex = this.Popup.oldIndex;
+            this.Popup.keepDiv.before(this.Popup.$target);
             this.Popup.keepDiv.remove();
             this.Popup.keepDiv = null;
 
@@ -53,6 +54,11 @@ let PopupManager = {
         const popupIndex = 1000;
 
         this._indexReg('Popup', popupIndex);
+
+    },
+    mounted : function () {
+
+        this.Popup.$target = this.$el;
 
     }
 };

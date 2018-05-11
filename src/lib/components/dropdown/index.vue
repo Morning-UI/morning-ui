@@ -1,25 +1,29 @@
 <template>
     <mor-dropdown
         :_uiid="uiid"
-        :class="[showClass]"
-        
         :auto-close="autoClose"
     >
     
     <slot name="showbtn"></slot>
-    <div class="btnlist"><slot></slot></div>
+
+    <div 
+        class="ui-dropdown-wrap"
+        :class="[showClass]"
+    >
+        <div class="btnlist" ><slot></slot></div>
+    </div>
         
     </mor-dropdown>
 </template>
  
 <script>
 import GlobalEvent                  from 'Utils/GlobalEvent';
-import IndexManager                 from 'Utils/IndexManager';
+import TipManager                   from 'Utils/TipManager';
 
 export default {
     origin : 'UI',
     name : 'dropdown',
-    mixins : [GlobalEvent, IndexManager],
+    mixins : [GlobalEvent, TipManager],
     props : {
         autoClose : {
             type : Boolean,
@@ -48,7 +52,8 @@ export default {
         return {
             data : {
                 show : false,
-                first : true
+                first : true,
+                $warp : null
             }
         };
 
@@ -61,7 +66,7 @@ export default {
             let $emitbtn = this.$el.querySelector('[emitbtn]');
 
             if ((this.conf.autoClose && (evt.path.indexOf($emitbtn) === notFound)) ||
-                (!this.conf.autoClose && (evt.path.indexOf(this.$el) === notFound))) {
+                (!this.conf.autoClose && (evt.path.indexOf(this.data.$warp) === notFound))) {
 
                 this.toggle();
 
@@ -93,10 +98,18 @@ export default {
 
             if (this.data.show) {
 
+                this._tipCreate({
+                    placement : 'bottom',
+                    element : this.data.$warp,
+                    target : this.$el,
+                    offset : '-5px 0'
+                });
+
                 this.$emit('show');
 
             } else {
 
+                this._tipDestroy();
                 this.$emit('hide');
 
             }
@@ -106,15 +119,7 @@ export default {
         }
         
     },
-    created : function () {
-
-        this._indexReg('list.show', 2);
-        this._indexReg('list.hide', 1);
-
-    },
     mounted : function () {
-
-        const timeout = 200;
 
         let $emitbtn = this.$el.querySelector(`[emitbtn]`);
         
@@ -124,11 +129,12 @@ export default {
 
         }
 
+        this.data.$warp = this.$el.querySelector('.ui-dropdown-wrap');
+
         this.$on('show', () => {
 
             this.data.first = false;
             this.data.show = true;
-            this.$el.style.zIndex = this._indexGet('list.show');
 
             setTimeout(() => {
 
@@ -147,18 +153,13 @@ export default {
             this._globalEventRemove('click', '_checkArea');
             this.$emit('emit');
 
-            setTimeout(() => {
-
-                this.$el.style.zIndex = this._indexGet('list.hide');
-
-            }, timeout);
-
         });
 
     },
     beforeDestroy : function () {
 
         this._globalEventRemove('click', '_checkArea');
+        this._tipDestroy();
 
     }
 };

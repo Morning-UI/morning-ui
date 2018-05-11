@@ -23,13 +23,12 @@
 </template>
  
 <script>
-import Tether                       from 'Npm/tether/dist/js/tether.min.js';
-import PopupManager                 from 'Utils/PopupManager';
+import TipManager                   from 'Utils/TipManager';
 
 export default {
     origin : 'UI',
     name : 'tip',
-    mixins : [PopupManager],
+    mixins : [TipManager],
     props : {
         target : {
             type : String,
@@ -80,15 +79,7 @@ export default {
                     in : 'in'
                 },
                 timeout : null,
-                // isEnabled : true,
-                classPrefix : 'morning-tether',
-                attachmentMap : {
-                    top : 'bottom center',
-                    right : 'middle left',
-                    bottom : 'top center',
-                    left : 'middle right'
-                },
-                tether : null
+                // isEnabled : true
             }
         };
 
@@ -306,66 +297,9 @@ export default {
             this.data.hoverState = '';
 
         },
-        _cleanupTether : function () {
-
-            if (this.data.tether) {
-
-                this.data.tether.destroy();
-                this.data.tether = null;
-
-                this.$el.removeAttribute('style');
-
-                this._removeTetherClasses(this.$el);
-                this._removeTetherClasses(this.data.$target);
-
-            }
-
-        },
-        _removeTetherClasses : function (ele) {
-
-            let classes = ele.classList.value.split(' ');
-
-            for (let cls of classes) {
-
-                let reg = new RegExp(`^(${this.data.classPrefix}|tether)\\-`, 'g');
-
-                if (reg.test(cls)) {
-
-                    ele.classList.remove(cls);
-
-                }
-
-            }
-
-        },
         _isWithActiveTrigger : function () {
 
             return Object.values(this.data.activeTrigger).indexOf(true) !== -1;
-
-        },
-        _setTether : function () {
-
-            if (!this.data.tether) {
-
-                return;
-
-            }
-
-            let targetOffset = '0 0',
-                options = {};
-
-            options = {
-                attachment : this.data.attachmentMap[this.conf.placement],
-                element : this.$el,
-                target : this.data.$target,
-                targetOffset,
-                // classes : this.tetherClass,
-                classPrefix : this.data.classPrefix,
-                offset : this.conf.offset
-            };
-
-            this.data.tether.setOptions(options);
-            this.data.tether.position();
 
         },
         show : function () {
@@ -376,15 +310,12 @@ export default {
 
             }
 
-            this._popupShow();
-            
-            this.data.tether = new Tether({
-                attachment : this.data.attachmentMap[this.conf.placement],
+            this._tipCreate({
+                placement : this.conf.placement,
                 element : this.$el,
-                target : this.data.$target
+                target : this.data.$target,
+                offset : this.conf.offset
             });
-            this._setTether();
-            // this.data.tether.setOptions(_.extend({}, options, {targetOffset: '0 0'}));
 
             this.$el.classList.add(this.data.classNames.in);
             this._showComplete();
@@ -401,8 +332,7 @@ export default {
             }
 
             this.$el.classList.remove(this.data.classNames.in);
-            this._popupHide();
-            this._cleanupTether();
+            this._tipDestroy();
             this._hideComplete();
 
             return this;
@@ -443,13 +373,17 @@ export default {
 
         this.$watch('conf.placement', () => {
 
-            this._setTether();
+            this._tipUpdate({
+                placement : this.conf.placement
+            });
 
         });
 
         this.$watch('conf.offset', () => {
 
-            this._setTether();
+            this._tipUpdate({
+                offset : this.conf.offset
+            });
 
         });
 
@@ -472,7 +406,7 @@ export default {
 
         clearTimeout(this.data.timeout);
 
-        this._cleanupTether();
+        this._tipDestroy();
         this._unsetListeners(this.data.$target);
 
     }
