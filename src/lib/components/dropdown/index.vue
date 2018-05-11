@@ -17,7 +17,6 @@
 </template>
  
 <script>
-import Tether                       from 'Npm/tether/dist/js/tether.min.js';
 import GlobalEvent                  from 'Utils/GlobalEvent';
 import TipManager                   from 'Utils/TipManager';
 
@@ -80,8 +79,6 @@ export default {
 
         },
         toggle : function (show) {
-
-            const timeout = 200;
 
             if (show === undefined) {
 
