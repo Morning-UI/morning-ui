@@ -24,11 +24,21 @@
 </p>
 <br>
 
-## 安装
+## Introduction
+
+Morning UI是一套桌面Web端的UI库，基于[Vue.js](https://github.com/vuejs/vue)。
+
+## Why Morning UI？
+
+- 基于Vue.js，开箱即用，简单易学
+- 超过60个组件
+- 强大的表单组件，可用于生成复杂数据结构
+
+## Install
 
 > npm install morning-ui --save
 
-## 快速开始
+## Usage
 
     // 引入Vue.js
     import Vue from 'vue';
@@ -42,15 +52,15 @@
 
 接下来即可像使用原生HTML一样使用Morning UI提供的组件，更多信息查看：[使用文档](https://morning-ui.com/guide/usage.html)。
 
-## 文档
+## Document
 
 你可以在Morning UI的网站上查看详细[使用指南](https://morning-ui.com/guide/introduction.html)或[组件文档](https://morning-ui.com/component/h.html)。
 
-## 贡献
+## Contribution
 
 我们欢迎所有的贡献者，请查看[贡献者文档](https://morning-ui.com/guide/becontributor.html)获取更多信息。
 
-## 许可
+## License
 
 [MIT](http://opensource.org/licenses/MIT)
 
