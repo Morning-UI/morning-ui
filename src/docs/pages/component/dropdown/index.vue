@@ -91,7 +91,7 @@
     |KEY|描述|接受值|值类型|默认值|
     |-|-|-|-|-|
     |[auto-close](#auto-close)|点击下拉菜单中按钮后自动隐藏|`true`<br>`false`|Boolean|`true`|
-    |[trigger](#trigger)|触发事件类型。触发事件一旦改变，已有的触发状态都会被重置。|`hover`<br>`click`|String|`click`|
+    |[trigger](#trigger)|触发下拉菜单方式。触发方式一旦改变，已有的触发状态都会被重置。|`hover`<br>`click`|String|`click`|
 
     #### auto-close
 
