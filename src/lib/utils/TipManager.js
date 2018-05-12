@@ -96,6 +96,11 @@ let TipManager = {
             }
 
         }
+    },
+    beforeDestroy : function () {
+
+        this._tipDestroy();
+
     }
 };
 

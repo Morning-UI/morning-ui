@@ -26,17 +26,60 @@
         transform: scale(0);
     }
 }
+@keyframes dropdown_popup_arrow{
+    from {
+        transform: rotateX(0deg);
+    }
+
+    to {
+        transform: rotateX(180deg);
+    }
+}
+@keyframes dropdown_popin_arrow{
+    from {
+        transform: rotateX(180deg);
+    }
+
+    to {
+        transform: rotateX(0deg);
+    }
+}
 
 mor-dropdown{
     display: inline-block;
     position: relative;
 
-    mor-btn{
+    mor-btn,
+    mor-link{
         .morningicon{
-            font-size: 30px;
+            font-size: @fontSize*1.875 !important;
             width: 10px;
             display: inline-block;
             vertical-align: top;
+            transform-origin: center center !important;
+            user-select: none;
+        }
+    }
+
+    &.show{
+        mor-btn,
+        mor-link{
+            .morningicon{
+                animation-name: dropdown_popup_arrow;
+                animation-duration: 0.2s;
+                animation-fill-mode: forwards;
+            }
+        }
+    }
+
+    &.hide{
+        mor-btn,
+        mor-link{
+            .morningicon{
+                animation-name: dropdown_popin_arrow;
+                animation-duration: 0.2s;
+                animation-fill-mode: forwards;
+            }
         }
     }
 
@@ -46,7 +89,6 @@ mor-dropdown{
 
 .ui-dropdown-wrap{
     position: absolute;
-    min-width: 80px;
     top: 110%;
     left: 50%;
     transform: translateX(-50%);
@@ -75,6 +117,10 @@ mor-dropdown{
                 border-bottom-right-radius: 0;
             }
         }
+    }
+
+    &.hide{
+        pointer-events: none;
     }
 
     &.show .btnlist{
