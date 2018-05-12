@@ -1,5 +1,4 @@
 <h1 align="center">
-    <br>
     <img src="http://h0.hucdn.com/open/201643/b11d51da34591932_1200x1200.jpg" width="400" alt="Morning UI">
 </h1>
 
@@ -23,8 +22,6 @@
         <img src="https://data.jsdelivr.com/v1/package/npm/morning-ui/badge?style=rounded" alt="jsdelivr">
     </a>
 </p>
-
-<br>
 <br>
 
 ## 安装
