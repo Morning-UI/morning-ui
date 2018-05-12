@@ -4745,19 +4745,50 @@ to {
     transform: scale(0);
 }
 }
+@keyframes dropdown_popup_arrow {
+from {
+    transform: rotateX(0deg);
+}
+to {
+    transform: rotateX(180deg);
+}
+}
+@keyframes dropdown_popin_arrow {
+from {
+    transform: rotateX(180deg);
+}
+to {
+    transform: rotateX(0deg);
+}
+}
 mor-dropdown {
   display: inline-block;
   position: relative;
 }
-mor-dropdown mor-btn .morningicon {
-  font-size: 30px;
+mor-dropdown mor-btn .morningicon,
+mor-dropdown mor-link .morningicon {
+  font-size: 30px !important;
   width: 10px;
   display: inline-block;
   vertical-align: top;
+  transform-origin: center center !important;
+  -webkit-user-select: none;
+  user-select: none;
+}
+mor-dropdown.show mor-btn .morningicon,
+mor-dropdown.show mor-link .morningicon {
+  animation-name: dropdown_popup_arrow;
+  animation-duration: 0.2s;
+  animation-fill-mode: forwards;
+}
+mor-dropdown.hide mor-btn .morningicon,
+mor-dropdown.hide mor-link .morningicon {
+  animation-name: dropdown_popin_arrow;
+  animation-duration: 0.2s;
+  animation-fill-mode: forwards;
 }
 .ui-dropdown-wrap {
   position: absolute;
-  min-width: 80px;
   top: 110%;
   left: 50%;
   transform: translateX(-50%);
@@ -4783,6 +4814,9 @@ mor-dropdown mor-btn .morningicon {
 .ui-dropdown-wrap .btnlist mor-btn:not(:last-child) {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
+}
+.ui-dropdown-wrap.hide {
+  pointer-events: none;
 }
 .ui-dropdown-wrap.show .btnlist {
   animation-name: dropdown_popup;
@@ -4836,12 +4870,13 @@ mor-tab .contents {
 }
 mor-tab .contents > .item {
   /*opacity: 0;*/
-  /*pointer-events: none;*/
+  pointer-events: none;
   height: 0;
   overflow: hidden;
 }
 mor-tab .contents > .item.current {
   /*display: block;*/
+  pointer-events: auto;
   height: auto;
   overflow: visible;
 }
