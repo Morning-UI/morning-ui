@@ -15,9 +15,9 @@
         <section class="s1 versioninfo">
             <p>全新Morning UI : </p>
             <a href="/guide/install.html">
-                <ui-label color="silver" size="xs">0.10.22</ui-label>
+                <ui-label color="silver" size="xs">0.10.23</ui-label>
             </a>
-            <p>发布于2018年5月9日</p>
+            <p>发布于2018年5月12日</p>
         </section>
         <section class="s1 gray">
             <h1>起步</h1>

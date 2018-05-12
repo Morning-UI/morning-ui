@@ -4725,67 +4725,105 @@ mor-link:hover {
 
 @keyframes dropdown_popup {
 from {
-    transform: translateX(-50%) scale(0);
+    transform: scale(0);
 }
 52% {
-    transform: translateX(-50%) scale(1);
+    transform: scale(1);
 }
 76% {
-    transform: translateX(-50%) scale(1.12);
+    transform: scale(1.12);
 }
 to {
-    transform: translateX(-50%) scale(1);
+    transform: scale(1);
 }
 }
 @keyframes dropdown_popin {
 from {
-    transform: translateX(-50%) scale(1);
+    transform: scale(1);
 }
 to {
-    transform: translateX(-50%) scale(0);
+    transform: scale(0);
+}
+}
+@keyframes dropdown_popup_arrow {
+from {
+    transform: rotateX(0deg);
+}
+to {
+    transform: rotateX(180deg);
+}
+}
+@keyframes dropdown_popin_arrow {
+from {
+    transform: rotateX(180deg);
+}
+to {
+    transform: rotateX(0deg);
 }
 }
 mor-dropdown {
   display: inline-block;
   position: relative;
 }
-mor-dropdown mor-btn .morningicon {
-  font-size: 30px;
+mor-dropdown mor-btn .morningicon,
+mor-dropdown mor-link .morningicon {
+  font-size: 30px !important;
   width: 10px;
   display: inline-block;
   vertical-align: top;
+  transform-origin: center center !important;
+  -webkit-user-select: none;
+  user-select: none;
 }
-mor-dropdown .btnlist {
-  font-size: 0;
+mor-dropdown.show mor-btn .morningicon,
+mor-dropdown.show mor-link .morningicon {
+  animation-name: dropdown_popup_arrow;
+  animation-duration: 0.2s;
+  animation-fill-mode: forwards;
+}
+mor-dropdown.hide mor-btn .morningicon,
+mor-dropdown.hide mor-link .morningicon {
+  animation-name: dropdown_popin_arrow;
+  animation-duration: 0.2s;
+  animation-fill-mode: forwards;
+}
+.ui-dropdown-wrap {
   position: absolute;
   top: 110%;
-  min-width: 80px;
   left: 50%;
-  transform: translateX(-50%) scale(0);
+  transform: translateX(-50%);
+}
+.ui-dropdown-wrap .btnlist {
+  width: 100%;
+  font-size: 0;
   transform-origin: top center;
   border-radius: 3px;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+  transform: scale(0);
 }
-mor-dropdown .btnlist mor-btn {
+.ui-dropdown-wrap .btnlist mor-btn {
   white-space: nowrap;
   display: block;
   margin: 0;
   text-align: center;
 }
-mor-dropdown .btnlist mor-btn:not(:first-child) {
+.ui-dropdown-wrap .btnlist mor-btn:not(:first-child) {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-mor-dropdown .btnlist mor-btn:not(:last-child) {
+.ui-dropdown-wrap .btnlist mor-btn:not(:last-child) {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
-mor-dropdown.show .btnlist {
+.ui-dropdown-wrap.hide {
+  pointer-events: none;
+}
+.ui-dropdown-wrap.show .btnlist {
   animation-name: dropdown_popup;
   animation-duration: 0.2s;
   animation-fill-mode: forwards;
 }
-mor-dropdown.hide .btnlist {
+.ui-dropdown-wrap.hide .btnlist {
   animation-name: dropdown_popin;
   animation-duration: 0.18s;
   animation-fill-mode: forwards;
@@ -4832,12 +4870,13 @@ mor-tab .contents {
 }
 mor-tab .contents > .item {
   /*opacity: 0;*/
-  /*pointer-events: none;*/
+  pointer-events: none;
   height: 0;
   overflow: hidden;
 }
 mor-tab .contents > .item.current {
   /*display: block;*/
+  pointer-events: auto;
   height: auto;
   overflow: visible;
 }
@@ -6208,6 +6247,27 @@ mor-table.co-white .title-table tr.hover td,
 mor-table.co-white .normal-table tr.hover td {
   background-color: #f2f2f2;
 }
+mor-table .title-table th.cell-co-theme,
+mor-table .normal-table th.cell-co-theme,
+mor-table .title-table td.cell-co-theme,
+mor-table .normal-table td.cell-co-theme {
+  background: #f22549 !important;
+  color: #FFFFFF !important;
+}
+mor-table .title-table th.cell-co-light-theme,
+mor-table .normal-table th.cell-co-light-theme,
+mor-table .title-table td.cell-co-light-theme,
+mor-table .normal-table td.cell-co-light-theme {
+  background: #f75774 !important;
+  color: #FFFFFF !important;
+}
+mor-table .title-table th.cell-co-dark-theme,
+mor-table .normal-table th.cell-co-dark-theme,
+mor-table .title-table td.cell-co-dark-theme,
+mor-table .normal-table td.cell-co-dark-theme {
+  background: #bc1f3c !important;
+  color: #FFFFFF !important;
+}
 mor-table .title-table th.cell-co-success,
 mor-table .normal-table th.cell-co-success,
 mor-table .title-table td.cell-co-success,
@@ -6250,41 +6310,215 @@ mor-table .normal-table td.cell-co-info {
   background: #038fa0 !important;
   color: #FFFFFF !important;
 }
+mor-table .title-table th.cell-co-black,
+mor-table .normal-table th.cell-co-black,
+mor-table .title-table td.cell-co-black,
+mor-table .normal-table td.cell-co-black {
+  background: #0e151c !important;
+  color: #FFFFFF !important;
+}
+mor-table .title-table th.cell-co-light-black,
+mor-table .normal-table th.cell-co-light-black,
+mor-table .title-table td.cell-co-light-black,
+mor-table .normal-table td.cell-co-light-black {
+  background: #26303b !important;
+  color: #FFFFFF !important;
+}
+mor-table .title-table th.cell-co-extra-light-black,
+mor-table .normal-table th.cell-co-extra-light-black,
+mor-table .title-table td.cell-co-extra-light-black,
+mor-table .normal-table td.cell-co-extra-light-black {
+  background: #3a434d !important;
+  color: #FFFFFF !important;
+}
+mor-table .title-table th.cell-co-blue,
+mor-table .normal-table th.cell-co-blue,
+mor-table .title-table td.cell-co-blue,
+mor-table .normal-table td.cell-co-blue {
+  background: #6d7e95 !important;
+  color: #FFFFFF !important;
+}
+mor-table .title-table th.cell-co-light-blue,
+mor-table .normal-table th.cell-co-light-blue,
+mor-table .title-table td.cell-co-light-blue,
+mor-table .normal-table td.cell-co-light-blue {
+  background: #7f8fa4 !important;
+  color: #FFFFFF !important;
+}
+mor-table .title-table th.cell-co-extra-light-blue,
+mor-table .normal-table th.cell-co-extra-light-blue,
+mor-table .title-table td.cell-co-extra-light-blue,
+mor-table .normal-table td.cell-co-extra-light-blue {
+  background: #99a6b7 !important;
+  color: #FFFFFF !important;
+}
+mor-table .title-table th.cell-co-silver,
+mor-table .normal-table th.cell-co-silver,
+mor-table .title-table td.cell-co-silver,
+mor-table .normal-table td.cell-co-silver {
+  background: #c6d0db !important;
+  color: #17212D !important;
+}
+mor-table .title-table th.cell-co-light-silver,
+mor-table .normal-table th.cell-co-light-silver,
+mor-table .title-table td.cell-co-light-silver,
+mor-table .normal-table td.cell-co-light-silver {
+  background: #d2dbe5 !important;
+  color: #17212D !important;
+}
+mor-table .title-table th.cell-co-extra-light-silver,
+mor-table .normal-table th.cell-co-extra-light-silver,
+mor-table .title-table td.cell-co-extra-light-silver,
+mor-table .normal-table td.cell-co-extra-light-silver {
+  background: #dde4ec !important;
+  color: #17212D !important;
+}
+mor-table .title-table th.cell-co-gray,
+mor-table .normal-table th.cell-co-gray,
+mor-table .title-table td.cell-co-gray,
+mor-table .normal-table td.cell-co-gray {
+  background: #d9d9d9 !important;
+  color: #17212D !important;
+}
+mor-table .title-table th.cell-co-light-gray,
+mor-table .normal-table th.cell-co-light-gray,
+mor-table .title-table td.cell-co-light-gray,
+mor-table .normal-table td.cell-co-light-gray {
+  background: #e3e3e3 !important;
+  color: #17212D !important;
+}
+mor-table .title-table th.cell-co-white,
+mor-table .normal-table th.cell-co-white,
+mor-table .title-table td.cell-co-white,
+mor-table .normal-table td.cell-co-white {
+  background: #FFFFFF !important;
+  color: #17212D !important;
+}
+mor-table .title-table tr.hover th.cell-co-theme,
+mor-table .normal-table tr.hover th.cell-co-theme,
+mor-table .title-table tr.hover td.cell-co-theme,
+mor-table .normal-table tr.hover td.cell-co-theme {
+  background: #d60d31 !important;
+}
+mor-table .title-table tr.hover th.cell-co-light-theme,
+mor-table .normal-table tr.hover th.cell-co-light-theme,
+mor-table .title-table tr.hover td.cell-co-light-theme,
+mor-table .normal-table tr.hover td.cell-co-light-theme {
+  background: #f4264c !important;
+}
+mor-table .title-table tr.hover th.cell-co-dark-theme,
+mor-table .normal-table tr.hover th.cell-co-dark-theme,
+mor-table .title-table tr.hover td.cell-co-dark-theme,
+mor-table .normal-table tr.hover td.cell-co-dark-theme {
+  background: #991a31 !important;
+}
 mor-table .title-table tr.hover th.cell-co-success,
 mor-table .normal-table tr.hover th.cell-co-success,
 mor-table .title-table tr.hover td.cell-co-success,
 mor-table .normal-table tr.hover td.cell-co-success {
-  background: #3a9d51 !important;
+  background: #36924b !important;
 }
 mor-table .title-table tr.hover th.cell-co-warning,
 mor-table .normal-table tr.hover th.cell-co-warning,
 mor-table .title-table tr.hover td.cell-co-warning,
 mor-table .normal-table tr.hover td.cell-co-warning {
-  background: #ec971f !important;
+  background: #df8a13 !important;
 }
 mor-table .title-table tr.hover th.cell-co-danger,
 mor-table .normal-table tr.hover th.cell-co-danger,
 mor-table .title-table tr.hover td.cell-co-danger,
 mor-table .normal-table tr.hover td.cell-co-danger {
-  background: #b13323 !important;
+  background: #a43021 !important;
 }
 mor-table .title-table tr.hover th.cell-co-primary,
 mor-table .normal-table tr.hover th.cell-co-primary,
 mor-table .title-table tr.hover td.cell-co-primary,
 mor-table .normal-table tr.hover td.cell-co-primary {
-  background: #1a69a4 !important;
+  background: #175b8e !important;
 }
 mor-table .title-table tr.hover th.cell-co-minor,
 mor-table .normal-table tr.hover th.cell-co-minor,
 mor-table .title-table tr.hover td.cell-co-minor,
 mor-table .normal-table tr.hover td.cell-co-minor {
-  background: #909090 !important;
+  background: #838383 !important;
 }
 mor-table .title-table tr.hover th.cell-co-info,
 mor-table .normal-table tr.hover th.cell-co-info,
 mor-table .title-table tr.hover td.cell-co-info,
 mor-table .normal-table tr.hover td.cell-co-info {
   background: #027987 !important;
+}
+mor-table .title-table tr.hover th.cell-co-black,
+mor-table .normal-table tr.hover th.cell-co-black,
+mor-table .title-table tr.hover td.cell-co-black,
+mor-table .normal-table tr.hover td.cell-co-black {
+  background: #202d3e !important;
+}
+mor-table .title-table tr.hover th.cell-co-light-black,
+mor-table .normal-table tr.hover th.cell-co-light-black,
+mor-table .title-table tr.hover td.cell-co-light-black,
+mor-table .normal-table tr.hover td.cell-co-light-black {
+  background: #3a485b !important;
+}
+mor-table .title-table tr.hover th.cell-co-extra-light-black,
+mor-table .normal-table tr.hover th.cell-co-extra-light-black,
+mor-table .title-table tr.hover td.cell-co-extra-light-black,
+mor-table .normal-table tr.hover td.cell-co-extra-light-black {
+  background: #505d6b !important;
+}
+mor-table .title-table tr.hover th.cell-co-blue,
+mor-table .normal-table tr.hover th.cell-co-blue,
+mor-table .title-table tr.hover td.cell-co-blue,
+mor-table .normal-table tr.hover td.cell-co-blue {
+  background: #576578 !important;
+}
+mor-table .title-table tr.hover th.cell-co-light-blue,
+mor-table .normal-table tr.hover th.cell-co-light-blue,
+mor-table .title-table tr.hover td.cell-co-light-blue,
+mor-table .normal-table tr.hover td.cell-co-light-blue {
+  background: #64758d !important;
+}
+mor-table .title-table tr.hover th.cell-co-extra-light-blue,
+mor-table .normal-table tr.hover th.cell-co-extra-light-blue,
+mor-table .title-table tr.hover td.cell-co-extra-light-blue,
+mor-table .normal-table tr.hover td.cell-co-extra-light-blue {
+  background: #7b8ca2 !important;
+}
+mor-table .title-table tr.hover th.cell-co-silver,
+mor-table .normal-table tr.hover th.cell-co-silver,
+mor-table .title-table tr.hover td.cell-co-silver,
+mor-table .normal-table tr.hover td.cell-co-silver {
+  background: #adbbcb !important;
+}
+mor-table .title-table tr.hover th.cell-co-light-silver,
+mor-table .normal-table tr.hover th.cell-co-light-silver,
+mor-table .title-table tr.hover td.cell-co-light-silver,
+mor-table .normal-table tr.hover td.cell-co-light-silver {
+  background: #b8c7d5 !important;
+}
+mor-table .title-table tr.hover th.cell-co-extra-light-silver,
+mor-table .normal-table tr.hover th.cell-co-extra-light-silver,
+mor-table .title-table tr.hover td.cell-co-extra-light-silver,
+mor-table .normal-table tr.hover td.cell-co-extra-light-silver {
+  background: #c2d0dd !important;
+}
+mor-table .title-table tr.hover th.cell-co-gray,
+mor-table .normal-table tr.hover th.cell-co-gray,
+mor-table .title-table tr.hover td.cell-co-gray,
+mor-table .normal-table tr.hover td.cell-co-gray {
+  background: #c0c0c0 !important;
+}
+mor-table .title-table tr.hover th.cell-co-light-gray,
+mor-table .normal-table tr.hover th.cell-co-light-gray,
+mor-table .title-table tr.hover td.cell-co-light-gray,
+mor-table .normal-table tr.hover td.cell-co-light-gray {
+  background: #cacaca !important;
+}
+mor-table .title-table tr.hover th.cell-co-white,
+mor-table .normal-table tr.hover th.cell-co-white,
+mor-table .title-table tr.hover td.cell-co-white,
+mor-table .normal-table tr.hover td.cell-co-white {
+  background: #ebebeb !important;
 }
 mor-table .title-table th.cell-disabled,
 mor-table .normal-table th.cell-disabled,

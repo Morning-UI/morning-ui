@@ -2,28 +2,46 @@
 
 @keyframes dropdown_popup{
     from {
-        transform: translateX(-50%) scale(0);
+        transform: scale(0);
     }
 
     52%{
-        transform: translateX(-50%) scale(1);
+        transform: scale(1);
     }
 
     76%{
-        transform: translateX(-50%) scale(1.12);
+        transform: scale(1.12);
     }
 
     to {
-        transform: translateX(-50%) scale(1);
+        transform: scale(1);
     }
 }
 @keyframes dropdown_popin{
     from {
-        transform: translateX(-50%) scale(1);
+        transform: scale(1);
     }
 
     to {
-        transform: translateX(-50%) scale(0);
+        transform: scale(0);
+    }
+}
+@keyframes dropdown_popup_arrow{
+    from {
+        transform: rotateX(0deg);
+    }
+
+    to {
+        transform: rotateX(180deg);
+    }
+}
+@keyframes dropdown_popin_arrow{
+    from {
+        transform: rotateX(180deg);
+    }
+
+    to {
+        transform: rotateX(0deg);
     }
 }
 
@@ -31,25 +49,57 @@ mor-dropdown{
     display: inline-block;
     position: relative;
 
-    mor-btn{
+    mor-btn,
+    mor-link{
         .morningicon{
-            font-size: 30px;
+            font-size: @fontSize*1.875 !important;
             width: 10px;
             display: inline-block;
             vertical-align: top;
+            transform-origin: center center !important;
+            user-select: none;
         }
     }
 
+    &.show{
+        mor-btn,
+        mor-link{
+            .morningicon{
+                animation-name: dropdown_popup_arrow;
+                animation-duration: 0.2s;
+                animation-fill-mode: forwards;
+            }
+        }
+    }
+
+    &.hide{
+        mor-btn,
+        mor-link{
+            .morningicon{
+                animation-name: dropdown_popin_arrow;
+                animation-duration: 0.2s;
+                animation-fill-mode: forwards;
+            }
+        }
+    }
+
+    // default status
+    &{}
+}
+
+.ui-dropdown-wrap{
+    position: absolute;
+    top: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+
     .btnlist{
+        width: 100%;
         font-size: 0;
-        position: absolute;
-        top: 110%;
-        min-width: 80px;
-        left: 50%;
-        transform: translateX(-50%) scale(0);
         transform-origin: top center;
         border-radius: @borderRadius;
         box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+        transform: scale(0);
 
         mor-btn{
             white-space: nowrap;
@@ -69,6 +119,10 @@ mor-dropdown{
         }
     }
 
+    &.hide{
+        pointer-events: none;
+    }
+
     &.show .btnlist{
         animation-name: dropdown_popup;
         animation-duration: 0.2s;
@@ -80,7 +134,4 @@ mor-dropdown{
         animation-duration: 0.18s;
         animation-fill-mode: forwards;
     }
-
-    // default status
-    &{}
 }

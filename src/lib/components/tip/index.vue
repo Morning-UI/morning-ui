@@ -23,13 +23,13 @@
 </template>
  
 <script>
-import Tether                       from 'Npm/tether/dist/js/tether.min.js';
-import PopupManager                 from 'Utils/PopupManager';
+import TipManager                   from 'Utils/TipManager';
+import TriggerManager               from 'Utils/TriggerManager';
 
 export default {
     origin : 'UI',
     name : 'tip',
-    mixins : [PopupManager],
+    mixins : [TipManager, TriggerManager],
     props : {
         target : {
             type : String,
@@ -80,15 +80,6 @@ export default {
                     in : 'in'
                 },
                 timeout : null,
-                // isEnabled : true,
-                classPrefix : 'morning-tether',
-                attachmentMap : {
-                    top : 'bottom center',
-                    right : 'middle left',
-                    bottom : 'top center',
-                    left : 'middle right'
-                },
-                tether : null
             }
         };
 
@@ -97,12 +88,6 @@ export default {
         _bindTarget : function () {
             
             let $target;
-
-            if (this.data.$target) {
-
-                this._unsetListeners(this.data.$target);
-
-            }
 
             try {
 
@@ -123,58 +108,9 @@ export default {
             }
 
             this.data.$target = $target;
-
-            this._setListeners(this.data.$target);
-
-        },
-        _setListeners : function ($target) {
-
-            if (!$target) {
-
-                return;
-
-            }
-
-            let triggers = this.conf.trigger.split(' ');
-
-            for (let trigger of triggers) {
-
-                if (trigger === 'click') {
-
-                    $target.addEventListener('click', this.toggle);
-
-                } else if (trigger === 'hover') {
-
-                    $target.addEventListener('mouseenter', this._enter);
-                    $target.addEventListener('mouseleave', this._leave);
-                    this.$el.addEventListener('mouseenter', this._enter);
-                    this.$el.addEventListener('mouseleave', this._leave);
-
-                } else if (trigger === 'foucs') {
-
-                    $target.addEventListener('focusin', this._enter);
-                    $target.addEventListener('focusout', this._leave);
-
-                }
-
-            }
-
-        },
-        _unsetListeners : function ($target) {
-
-            if (!$target) {
-
-                return;
-
-            }
-
-            $target.removeEventListener('click', this.toggle);
-            $target.removeEventListener('mouseenter', this._enter);
-            $target.removeEventListener('mouseleave', this._leave);
-            this.$el.removeEventListener('mouseenter', this._enter);
-            this.$el.removeEventListener('mouseleave', this._leave);
-            $target.removeEventListener('focusin', this._enter);
-            $target.removeEventListener('focusout', this._leave);
+            this._triggerUnsetListeners();
+            this.Trigger.$targets = [$target];
+            this._triggerSetListeners();
 
         },
         _enter : function (evt) {
@@ -306,66 +242,9 @@ export default {
             this.data.hoverState = '';
 
         },
-        _cleanupTether : function () {
-
-            if (this.data.tether) {
-
-                this.data.tether.destroy();
-                this.data.tether = null;
-
-                this.$el.removeAttribute('style');
-
-                this._removeTetherClasses(this.$el);
-                this._removeTetherClasses(this.data.$target);
-
-            }
-
-        },
-        _removeTetherClasses : function (ele) {
-
-            let classes = ele.classList.value.split(' ');
-
-            for (let cls of classes) {
-
-                let reg = new RegExp(`^(${this.data.classPrefix}|tether)\\-`, 'g');
-
-                if (reg.test(cls)) {
-
-                    ele.classList.remove(cls);
-
-                }
-
-            }
-
-        },
         _isWithActiveTrigger : function () {
 
             return Object.values(this.data.activeTrigger).indexOf(true) !== -1;
-
-        },
-        _setTether : function () {
-
-            if (!this.data.tether) {
-
-                return;
-
-            }
-
-            let targetOffset = '0 0',
-                options = {};
-
-            options = {
-                attachment : this.data.attachmentMap[this.conf.placement],
-                element : this.$el,
-                target : this.data.$target,
-                targetOffset,
-                // classes : this.tetherClass,
-                classPrefix : this.data.classPrefix,
-                offset : this.conf.offset
-            };
-
-            this.data.tether.setOptions(options);
-            this.data.tether.position();
 
         },
         show : function () {
@@ -376,15 +255,12 @@ export default {
 
             }
 
-            this._popupShow();
-            
-            this.data.tether = new Tether({
-                attachment : this.data.attachmentMap[this.conf.placement],
+            this._tipCreate({
+                placement : this.conf.placement,
                 element : this.$el,
-                target : this.data.$target
+                target : this.data.$target,
+                offset : this.conf.offset
             });
-            this._setTether();
-            // this.data.tether.setOptions(_.extend({}, options, {targetOffset: '0 0'}));
 
             this.$el.classList.add(this.data.classNames.in);
             this._showComplete();
@@ -401,8 +277,7 @@ export default {
             }
 
             this.$el.classList.remove(this.data.classNames.in);
-            this._popupHide();
-            this._cleanupTether();
+            this._tipDestroy();
             this._hideComplete();
 
             return this;
@@ -428,6 +303,19 @@ export default {
     },
     mounted : function () {
 
+        this.Trigger.handleMap = {
+            click : [this.toggle],
+            hover : {
+                mouseenter : [this._enter],
+                mouseleave : [this._leave]
+            },
+            focus : {
+                focusin : [this._enter],
+                focusout : [this._leave]
+            }
+        };
+        this.Trigger.triggers = this.conf.trigger;
+
         this.$watch('conf.target', () => {
 
             this._bindTarget();
@@ -441,23 +329,28 @@ export default {
 
         });
 
+        this.$watch('conf.trigger', () => {
+
+            this.data.activeTrigger = {};
+            this._triggerUnsetListeners();
+            this.Trigger.triggers = this.conf.trigger;
+            this._triggerSetListeners();
+
+        });
+
         this.$watch('conf.placement', () => {
 
-            this._setTether();
+            this._tipUpdate({
+                placement : this.conf.placement
+            });
 
         });
 
         this.$watch('conf.offset', () => {
 
-            this._setTether();
-
-        });
-
-        this.$watch('conf.trigger', () => {
-
-            this.data.activeTrigger = {};
-            this._unsetListeners(this.data.$target);
-            this._setListeners(this.data.$target);
+            this._tipUpdate({
+                offset : this.conf.offset
+            });
 
         });
         
@@ -471,9 +364,6 @@ export default {
     beforeDestroy : function () {
 
         clearTimeout(this.data.timeout);
-
-        this._cleanupTether();
-        this._unsetListeners(this.data.$target);
 
     }
 };

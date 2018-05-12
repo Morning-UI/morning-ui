@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">9.09% </span>
+        <span class="strong">8.7% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>2/22</span>
+        <span class='fraction'>2/23</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -32,12 +32,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/4</span>
+        <span class='fraction'>0/5</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">9.09% </span>
+        <span class="strong">8.7% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>2/22</span>
+        <span class='fraction'>2/23</span>
       </div>
     </div>
   </div>
@@ -103,7 +103,13 @@
 58
 59
 60
-61</td><td class="line-coverage quiet"><span class="cline-any cline-yes">84x</span>
+61
+62
+63
+64
+65
+66
+67</td><td class="line-coverage quiet"><span class="cline-any cline-yes">84x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">84x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -120,25 +126,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -148,6 +135,26 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -156,6 +163,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -171,6 +183,7 @@ let PopupManager = {
 &nbsp;
 <span class="cstat-no" title="statement not covered" >        return {</span>
             Popup : {
+                $target : null,
                 keepDiv : null,
                 oldIndex : undefined
             }
@@ -191,10 +204,10 @@ let PopupManager = {
 &nbsp;
 <span class="cstat-no" title="statement not covered" >            keepDiv.setAttribute('popup-id', id);</span>
 <span class="cstat-no" title="statement not covered" >            keepDiv.style.display = 'none';</span>
-<span class="cstat-no" title="statement not covered" >            this.$el.before(keepDiv);</span>
-<span class="cstat-no" title="statement not covered" >            this.Popup.oldIndex = this.$el.style.zIndex;</span>
-<span class="cstat-no" title="statement not covered" >            this.$el.style.zIndex = this._indexGet('Popup', id);</span>
-<span class="cstat-no" title="statement not covered" >            document.body.append(this.$el);</span>
+<span class="cstat-no" title="statement not covered" >            this.Popup.$target.before(keepDiv);</span>
+<span class="cstat-no" title="statement not covered" >            this.Popup.oldIndex = this.Popup.$target.style.zIndex;</span>
+<span class="cstat-no" title="statement not covered" >            this.Popup.$target.style.zIndex = this._indexGet('Popup', id);</span>
+<span class="cstat-no" title="statement not covered" >            document.body.append(this.Popup.$target);</span>
 <span class="cstat-no" title="statement not covered" >            this.Popup.keepDiv = keepDiv;</span>
 &nbsp;
         },
@@ -206,8 +219,8 @@ let PopupManager = {
 &nbsp;
             }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >            this.$el.style.zIndex = this.Popup.oldIndex;</span>
-<span class="cstat-no" title="statement not covered" >            this.Popup.keepDiv.before(this.$el);</span>
+<span class="cstat-no" title="statement not covered" >            this.Popup.$target.style.zIndex = this.Popup.oldIndex;</span>
+<span class="cstat-no" title="statement not covered" >            this.Popup.keepDiv.before(this.Popup.$target);</span>
 <span class="cstat-no" title="statement not covered" >            this.Popup.keepDiv.remove();</span>
 <span class="cstat-no" title="statement not covered" >            this.Popup.keepDiv = null;</span>
 &nbsp;
@@ -219,6 +232,11 @@ let PopupManager = {
 &nbsp;
 <span class="cstat-no" title="statement not covered" >        this._indexReg('Popup', popupIndex);</span>
 &nbsp;
+    },
+    mounted : <span class="fstat-no" title="function not covered" >function () </span>{
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        this.Popup.$target = this.$el;</span>
+&nbsp;
     }
 };
 &nbsp;
@@ -229,7 +247,7 @@ export default PopupManager;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed May 09 2018 22:24:46 GMT+0800 (CST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat May 12 2018 22:21:19 GMT+0800 (CST)
 </div>
 </div>
 <script src="../../prettify.js"></script>

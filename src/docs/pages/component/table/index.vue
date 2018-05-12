@@ -535,7 +535,7 @@
     |width|列的宽度，此配置会改变列在宽度分配时的权重，但不一定完全符合设置的宽度值，如果需要控制宽度的绝对值使用`minwidth`或`maxwidth`|宽度数值(必需包含单位`px`或`%`)|String|`undefined`|
     |minwidth|列的最小宽度|宽度数值(必需包含单位`px`或`%`)|String|`undefined`|
     |maxwidth|列的最小宽度|宽度数值(必需包含单位`px`或`%`)|String|`undefined`|
-    |style|设置列的色彩样式|[形态/颜色](/guide/status.html#颜色)中所有的功能颜色值|String|`undefined`|
+    |style|设置列的色彩样式|[形态/颜色](/guide/status.html#颜色)中所有的颜色值|String|`undefined`|
     |disabled|是否展示列的禁用样式|`true`<br>`false`|Boolean|`false`|
     |align|列的对齐方式|`'left'`<br>`'right'`<br>`'align'`|String|`'align'`|
     |title|此列是否是标题列，根据`fixed-title-col`的设置所有的标题列会被放到最左或最右|`true`<br>`false`|Boolean|`false`|
@@ -613,7 +613,7 @@
 
     ##### style
 
-    设置指定列的样式（仅支持形态中的功能色彩）：
+    设置指定列的样式（仅支持形态中的色彩）：
 
     :::vue/html
     new Vue({
@@ -834,7 +834,7 @@
     |KEY|描述|接受值|值类型|默认值|
     |-|-|-|-|-|
     |row|需要设置的行数(从0开始，0表示标题行)|行数|Number|`undefined`|
-    |style|设置行的色彩样式|[形态/颜色](/guide/status.html#颜色)中所有的功能颜色值|String|`undefined`|
+    |style|设置行的色彩样式|[形态/颜色](/guide/status.html#颜色)中所有的颜色值|String|`undefined`|
     |disabled|是否展示行的禁用样式|`true`<br>`false`|Boolean|`false`|
     |align|行的对齐方式|`'left'`<br>`'right'`<br>`'align'`|String|`'align'`|
 
@@ -844,7 +844,7 @@
 
     ##### style
 
-    设置指定行的样式（仅支持形态中的功能色彩）：
+    设置指定行的样式（仅支持形态中的色彩）：
 
     :::vue/html
     new Vue({
@@ -924,7 +924,7 @@
     |-|-|-|-|-|
     |row|需要设置单元格的行数(从0开始，0表示标题行)|行数|Number|`undefined`|
     |col|需要设置单元格所在列的KEY|列的KEY(`list`配置中设置)|String|`undefined`|
-    |style|设置单元格的色彩样式|[形态/颜色](/guide/status.html#颜色)中所有的功能颜色值|String|`undefined`|
+    |style|设置单元格的色彩样式|[形态/颜色](/guide/status.html#颜色)中所有的颜色值|String|`undefined`|
     |disabled|是否展示单元格的禁用样式|`true`<br>`false`|Boolean|`false`|
     |align|单元格的对齐方式|`'left'`<br>`'right'`<br>`'align'`|String|`'align'`|
 
@@ -934,7 +934,7 @@
 
     ##### style
 
-    设置指定单元格的样式（仅支持形态中的功能色彩）：
+    设置指定单元格的样式（仅支持形态中的色彩）：
 
     :::vue/html
     new Vue({

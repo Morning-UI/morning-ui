@@ -18,6 +18,23 @@
     
     ### 更新记录
 
+    ### 0.10.23 <ui-badge class="circle ver-beta" size="s" color="extra-light-black">Beta</ui-badge>
+    
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2018年5月12日，
+            Archive : 
+            <a href="https://github.com/Morning-UI/morning-u`i/releases/tag/0.10.23" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.23/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.10.23/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor><br/><br/>
+
+    - `ui-table`的`col-set`、`row-set`、`cell-set`支持更多的颜色
+    - `ui-dropdown`支持配合链接使用，并新增`trigger`配置
+    - 修复`ui-dropdown`下拉弹框可能被遮挡的问题
+    - 更新README
+
     ### 0.10.22 <ui-badge class="circle ver-beta" size="s" color="extra-light-black">Beta</ui-badge>
 
     <ui-textcolor color="light-blue">
