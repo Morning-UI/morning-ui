@@ -1,16 +1,31 @@
 <h1 align="center">
     <br>
     <img src="http://h0.hucdn.com/open/201643/b11d51da34591932_1200x1200.jpg" width="400" alt="Morning UI">
-    <br>
-    <br>
 </h1>
 
-[![CircleCI branch](https://img.shields.io/circleci/project/github/Morning-UI/morning-ui/master.svg)](https://circleci.com/gh/Morning-UI/morning-ui)
-[![Codecov branch](https://img.shields.io/codecov/c/github/Morning-UI/morning-ui/master.svg)](https://codecov.io/gh/Morning-UI/morning-ui/branch/master)
-[![Codacy branch grade](https://img.shields.io/codacy/grade/91448799c68e4422ba6436a7ecdb08a7/master.svg)](https://www.codacy.com/app/EarlyH/morning-ui?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Morning-UI/morning-ui&amp;utm_campaign=Badge_Grade)
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FMorning-UI%2Fmorning-ui.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FMorning-UI%2Fmorning-ui?ref=badge_shield)
-[![npm](https://img.shields.io/npm/l/morning-ui.svg)](https://www.npmjs.com/package/morning-ui)
-[![](https://data.jsdelivr.com/v1/package/npm/morning-ui/badge?style=rounded)](https://www.jsdelivr.com/package/npm/morning-ui)
+<p align="center">
+    <a href="https://circleci.com/gh/Morning-UI/morning-ui">
+        <img src="https://img.shields.io/circleci/project/github/Morning-UI/morning-ui/master.svg" alt="CircleCI branch">
+    </a>
+    <a href="https://codecov.io/gh/Morning-UI/morning-ui/branch/master">
+        <img src="https://img.shields.io/codecov/c/github/Morning-UI/morning-ui/master.svg" alt="Codecov branch">
+    </a>
+    <a href="https://www.codacy.com/app/EarlyH/morning-ui?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Morning-UI/morning-ui&amp;utm_campaign=Badge_Grade">
+        <img src="https://img.shields.io/codacy/grade/91448799c68e4422ba6436a7ecdb08a7/master.svg" alt="Codacy branch grade">
+    </a>
+    <a href="https://app.fossa.io/projects/git%2Bgithub.com%2FMorning-UI%2Fmorning-ui?ref=badge_shield">
+        <img src="https://app.fossa.io/api/projects/git%2Bgithub.com%2FMorning-UI%2Fmorning-ui.svg?type=shield" alt="FOSSA Status">
+    </a>
+    <a href="https://www.npmjs.com/package/morning-ui">
+        <img src="https://img.shields.io/npm/l/morning-ui.svg" alt="npm">
+    </a>
+    <a href="https://www.jsdelivr.com/package/npm/morning-ui">
+        <img src="https://data.jsdelivr.com/v1/package/npm/morning-ui/badge?style=rounded" alt="jsdelivr">
+    </a>
+</p>
+
+<br>
+<br>
 
 ## 安装
 
@@ -37,3 +52,9 @@
 ## 贡献
 
 我们欢迎所有的贡献者，请查看[贡献者文档](https://morning-ui.com/guide/becontributor.html)获取更多信息。
+
+## 许可
+
+[MIT](http://opensource.org/licenses/MIT)
+
+Copyright (c) 2015-2017, Early He
