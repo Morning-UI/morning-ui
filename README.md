@@ -1,6 +1,6 @@
-<h1 align="center">
+<p align="center">
     <img src="http://h0.hucdn.com/open/201643/b11d51da34591932_1200x1200.jpg" width="400" alt="Morning UI">
-</h1>
+</p>
 
 <p align="center">
     <a href="https://circleci.com/gh/Morning-UI/morning-ui">
@@ -24,21 +24,21 @@
 </p>
 <br>
 
-## Introduction
+## 简介
 
 Morning UI是一套桌面Web端的UI库，基于[Vue.js](https://github.com/vuejs/vue)。
 
-## Why Morning UI？
+## 为什么要用 Morning UI？
 
 - 基于Vue.js，开箱即用，简单易学
 - 超过60个组件
 - 强大的表单组件，可用于生成复杂数据结构
 
-## Install
+## 安装
 
 > npm install morning-ui --save
 
-## Usage
+## 使用
 
     // 引入Vue.js
     import Vue from 'vue';
@@ -52,15 +52,15 @@ Morning UI是一套桌面Web端的UI库，基于[Vue.js](https://github.com/vuej
 
 接下来即可像使用原生HTML一样使用Morning UI提供的组件，更多信息查看：[使用文档](https://morning-ui.com/guide/usage.html)。
 
-## Document
+## 文档
 
 你可以在Morning UI的网站上查看详细[使用指南](https://morning-ui.com/guide/introduction.html)或[组件文档](https://morning-ui.com/component/h.html)。
 
-## Contribution
+## 贡献
 
 我们欢迎所有的贡献者，请查看[贡献者文档](https://morning-ui.com/guide/becontributor.html)获取更多信息。
 
-## License
+## 许可
 
 [MIT](http://opensource.org/licenses/MIT)
 
