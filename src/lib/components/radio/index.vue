@@ -23,7 +23,7 @@
                     class="checked"
                     :value="key"
                     :key="key"
-                    @click="toggle(key)"
+                    @click="conf.state !== 'readonly' && toggle(key)"
                 >
                     <p class="box"><i class="morningicon">&#xe62d;</i></p>
                     <template v-if="conf.acceptHtml">
@@ -39,7 +39,7 @@
                 <label 
                     :value="key"
                     :key="key"
-                    @click="toggle(key)"
+                    @click="conf.state !== 'readonly' && toggle(key)"
                 >
                     <p class="box"><i class="morningicon">&#xe62d;</i></p>
                     <template v-if="conf.acceptHtml">

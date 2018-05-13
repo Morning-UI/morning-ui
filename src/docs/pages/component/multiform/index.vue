@@ -91,7 +91,6 @@
     configSlot:<ui-formgroup><div class="item"><h5 class="title"><ui-center class="fill">名称</ui-center></h5><div class="content"><div class="form"><ui-textinput form-key="name"></ui-textinput></div></div></div></ui-formgroup>
     :::
 
-
     #### item-name
     
     项目名称可以告知使用者输入项目的含义。建议和`item-filler`一起使用。

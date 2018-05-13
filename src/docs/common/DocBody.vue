@@ -209,6 +209,10 @@ let data = {
             stateName : '禁用'
         },
         {
+            stateKey : 'readonly',
+            stateName : '只读'
+        },
+        {
             stateKey : 'apparent',
             stateName : '醒目'
         }
@@ -639,14 +643,14 @@ color:gray
 |-|-|-|
 |尺寸|不支持|-|
 |色彩|不支持|-|
-|状态|\`normal\`<br/>\`disabled\`|\`normal\`|
+|状态|\`normal\`<br/>\`disabled\`<br>\`readonly\`|\`normal\`|
 
 <a href="/guide/status.html">查看形态文档</a>
 
 #### 状态
 
 :::repeat/html
-state:normal,disabled
+state:normal,disabled,readonly
 ---
 <div style="width:300px;">
     <ui-{%uikey%} state="{$stateKey}" :default-value="{%&statusDefaultValue%}" form-name="{$&stateName}" {%&statusMoreAttr%}>{%&statusSlot%}</ui-{%uikey%}>
@@ -661,7 +665,7 @@ state:normal,disabled
 |-|-|-|
 |尺寸|不支持|-|
 |色彩|全部|\`theme\`|
-|状态|\`normal\`<br/>\`disabled\`|\`normal\`|
+|状态|\`normal\`<br/>\`disabled\`<br>\`readonly\`|\`normal\`|
 
 <a href="/guide/status.html">查看形态文档</a>
 
@@ -684,7 +688,7 @@ color:gray
 #### 状态
 
 :::repeat/html
-state:normal,disabled
+state:normal,disabled,readonly
 ---
 <div style="width:300px;">
     <ui-{%uikey%} state="{$stateKey}" :default-value="{%&statusDefaultValue%}" form-name="{$&stateName}" {%&statusMoreAttr%}>{%&statusSlot%}</ui-{%uikey%}>

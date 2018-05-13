@@ -63,7 +63,7 @@
             <template v-if="conf.allowUrl">
                 <label
                     class="add file local"
-                    v-if="conf.state !== 'disabled' && !ismax"
+                    v-if="conf.state !== 'disabled' && conf.state !== 'readonly' && !ismax"
                     :for="'ui-select-fileinput-' + uiid"
                 >
                     <span>本地上传{{conf.itemName}}</span>
@@ -73,7 +73,7 @@
                 <label
                     class="add file url"
                     :class="{loading: data.fetchRemoteFile}"
-                    v-if="conf.state !== 'disabled' && !ismax"
+                    v-if="conf.state !== 'disabled' && conf.state !== 'readonly' && !ismax"
                     @click="_uploadRemoteFile()"
                 >
                     <span>URL上传{{conf.itemName}}</span>
@@ -85,7 +85,7 @@
             <template v-else>
                 <label
                     class="add file"
-                    v-if="conf.state !== 'disabled' && !ismax"
+                    v-if="conf.state !== 'disabled' && conf.state !== 'readonly' && !ismax"
                     :for="'ui-select-fileinput-' + uiid"
                 >
                     <span>上传{{conf.itemName}}</span>

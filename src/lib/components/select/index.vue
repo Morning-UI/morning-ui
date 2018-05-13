@@ -38,7 +38,7 @@
                     :max="conf.max"
                     :form-name="conf.formName"
                     :hide-name="conf.hideName"
-                    :disabled="conf.state === 'disabled'"
+                    :state="conf.state"
                     key="multi-can-search"
 
                     v-if="conf.canSearch"
@@ -54,7 +54,7 @@
                     :max="conf.max"
                     :form-name="conf.formName"
                     :hide-name="conf.hideName"
-                    :disabled="conf.state === 'disabled'"
+                    :state="conf.state"
                     key="multi-no-search"
 
                     v-else
@@ -449,7 +449,7 @@ export default {
         },
         _wrapClick : function (evt) {
 
-            if (this.conf.state === 'disabled') {
+            if (this.conf.state === 'disabled' || this.conf.state === 'readonly') {
 
                 return;
                 

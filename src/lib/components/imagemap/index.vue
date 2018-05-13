@@ -41,7 +41,7 @@
         <span v-show="data.imagesLoading">获取图片中...</span>
 
         <span class="modify-map" v-show="!data.imagesLoading && data.images.length > 0" @click="_openMap">
-            <template v-if="conf.state === 'disabled'">
+            <template v-if="conf.state === 'disabled' || conf.state === 'readonly'">
                 <i class="morningicon">&#xe6a9;</i> 查看热区
             </template>
             <template v-else>
@@ -53,7 +53,7 @@
 
     <morning-dialog
         class="mor-imagemap-dialog-map show-no-animate"
-        :class="{'imagemap-disabled' : conf.state === 'disabled'}"
+        :class="{'imagemap-disabled' : (conf.state === 'disabled' || conf.state === 'readonly')}"
         color="gray"
         width="60%"
         height="90%"
@@ -63,7 +63,7 @@
         @show="_refreshScale"
     >
         <header slot="header">
-            <template v-if="conf.state === 'disabled'">
+            <template v-if="conf.state === 'disabled' || conf.state === 'readonly'">
                 查看热区
             </template>
             <template v-else>
@@ -76,7 +76,7 @@
             :style="{width : mapareaWidth}">
             <div
                 class="zonearea"
-                :class="{'over-range':data.overRange, 'disable-add-spot':data.disableAddSpot}" @mousedown.left.stop="_createZone($event)"
+                :class="{'over-range':data.overRange, 'disable-add-spot':data.disableAddSpot}" @mousedown.left.stop="conf.state !== 'readonly' && _createZone($event)"
             >
                 <div
                     v-for="(zone, index) in data.zones"
@@ -117,7 +117,7 @@
                 <morning-link color="info" size="s" @emit="morning.findVM('ui-imagemap-scaledialog-'+uiid).toggle(true)">设置</morning-link>
             </span>
             <div>
-                <morning-link color="danger clean-allzone-btn" v-if="conf.cleanAllzoneBtn && (conf.state !== 'disabled')" @emit="_cleanAllzone">清除所有热区</morning-link>
+                <morning-link color="danger clean-allzone-btn" v-if="conf.cleanAllzoneBtn && (conf.state !== 'disabled' && conf.state !== 'readonly')" @emit="_cleanAllzone">清除所有热区</morning-link>
                 <morning-btn color="minor" @emit="morning.findVM('ui-imagemap-mapdialog-'+uiid).toggle(false)">关闭</morning-btn>
             </div>
         </footer>
@@ -204,8 +204,8 @@
         <footer slot="footer">
             <div>
                 <morning-link color="minor" @emit="morning.findVM('ui-imagemap-zonedialog-'+uiid).toggle(false)">取消</morning-link>
-                <morning-btn color="danger" @emit="_removeZone" v-if="conf.state !== 'disabled'">删除</morning-btn>
-                <morning-btn color="success" @emit="_saveZoneModify" v-if="conf.state !== 'disabled'">保存</morning-btn>
+                <morning-btn color="danger" @emit="_removeZone" v-if="conf.state !== 'disabled' && conf.state !== 'readonly'">删除</morning-btn>
+                <morning-btn color="success" @emit="_saveZoneModify" v-if="conf.state !== 'disabled' && conf.state !== 'readonly'">保存</morning-btn>
             </div>
         </footer>
         
@@ -656,7 +656,8 @@ export default {
         },
         _reizeZoneStart : function (evt, id, type) {
 
-            if (this.conf.state === 'disabled') {
+            if (this.conf.state === 'disabled' ||
+                this.conf.state === 'readonly') {
 
                 return;
 
@@ -824,7 +825,8 @@ export default {
 
             this.$refs[`ui-imagemap-mapdialog-${this.uiid}`].toggle(true);
 
-            if (this.conf.state === 'disabled') {
+            if (this.conf.state === 'disabled' ||
+                this.conf.state === 'readonly') {
 
                 return;
 
