@@ -18,7 +18,7 @@
     <template v-if="conf.prepend">
         <div class="input-group-addon" v-html="conf.prepend"></div>
     </template>
-    
+
     <template v-if="inputType === 'text'">
         <input
             type="text"
@@ -26,7 +26,7 @@
 
             :class="inputClass"
             :placeholder="placeholder"
-            :disabled="conf.state === 'disabled'"
+            :disabled="conf.state === 'disabled' || conf.state === 'readonly'"
 
             @focus="_focus()"
             @blur="_blur()"
@@ -42,7 +42,7 @@
             
             :class="inputClass"
             :placeholder="placeholder"
-            :disabled="conf.state === 'disabled'"
+            :disabled="conf.state === 'disabled' || conf.state === 'readonly'"
 
             @focus="_focus()"
             @blur="_blur()"

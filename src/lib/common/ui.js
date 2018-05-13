@@ -50,6 +50,7 @@ export default (Vue, morning) => Vue.extend({
                 'hover',
                 'active',
                 'disabled',
+                'readonly',
                 'apparent'
             ].indexOf(value) !== -1)
 

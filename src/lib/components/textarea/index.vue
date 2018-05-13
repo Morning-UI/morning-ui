@@ -14,7 +14,7 @@
 
     <textarea
         :placeholder="placeholder"
-        :disabled="conf.state === 'disabled'"
+        :disabled="conf.state === 'disabled' || conf.state === 'readonly'"
         :rows="conf.rows"
 
         @focus="_focus()"

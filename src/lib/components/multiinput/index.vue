@@ -27,12 +27,12 @@
             <span :title="value">{{value}}</span>
             <i
                 class="morningicon"
-                v-if="conf.state !== 'disabled'"
+                v-if="conf.state !== 'disabled' && conf.state !== 'readonly'"
                 @click="_deleteItem(index)"
             >&#xe62e;</i>
         </div>
 
-        <template v-if="conf.state !== 'disabled'">
+        <template v-if="conf.state !== 'disabled' && conf.state !== 'readonly'">
             <template v-if="conf.max">
                 <template v-if="data.value.length < conf.max">
                     <input

@@ -13,7 +13,8 @@
     >
 
     <div class="note">{{conf.formName}}</div>
-    <div class="track" @click="toggle()">
+    
+    <div class="track" @click="conf.state !== 'readonly' && toggle()">
         <div class="point"></div>
     </div>
 
