@@ -295,28 +295,6 @@ mor-il li{display:inline-block;margin:0 .4em;line-height:1.4em
 }
 mor-il.st-apparent{animation-name:apparent;animation-duration:1s;animation-timing-function:linear;animation-iteration-count:infinite
 }
-mor-dl{display:block
-}
-mor-dl dt{color:#17212d;font-weight:700
-}
-mor-dl dd{margin-bottom:.7em;color:#7c8ba0;margin-left:0
-}
-mor-dl dd:last-child{margin-bottom:0
-}
-mor-dl.horizontal{overflow:hidden
-}
-mor-dl.horizontal dt{width:15%;display:inline-block;margin-bottom:.7em
-}
-mor-dl.horizontal dd{width:80%;display:inline-block;vertical-align:top
-}
-mor-dl.underline dt{border-top:1px solid #e6e6e6;margin-top:1em;padding-top:1em
-}
-mor-dl.underline dt:first-child{border-top:0 none;margin-top:0;padding-top:0
-}
-mor-dl.underline dd{margin-bottom:0
-}
-mor-dl.st-apparent{animation-name:apparent;animation-duration:1s;animation-timing-function:linear;animation-iteration-count:infinite
-}
 mor-itemlist{display:block;vertical-align:middle
 }
 mor-itemlist>mor-ul{list-style:none
@@ -502,6 +480,28 @@ mor-itemlist>mor-ul>li>mor-img+.body{height:96px;font-size:38.4px;padding:0 6%
 mor-itemlist>mor-ul>li>mor-img+.title:last-child{display:flex;margin:0!important;align-items:center
 }
 mor-itemlist>mor-ul>li>mor-img+.body{display:flex;margin:0!important;align-items:center
+}
+mor-dl{display:block
+}
+mor-dl dt{color:#17212d;font-weight:700
+}
+mor-dl dd{margin-bottom:.7em;color:#7c8ba0;margin-left:0
+}
+mor-dl dd:last-child{margin-bottom:0
+}
+mor-dl.horizontal{overflow:hidden
+}
+mor-dl.horizontal dt{width:15%;display:inline-block;margin-bottom:.7em
+}
+mor-dl.horizontal dd{width:80%;display:inline-block;vertical-align:top
+}
+mor-dl.underline dt{border-top:1px solid #e6e6e6;margin-top:1em;padding-top:1em
+}
+mor-dl.underline dt:first-child{border-top:0 none;margin-top:0;padding-top:0
+}
+mor-dl.underline dd{margin-bottom:0
+}
+mor-dl.st-apparent{animation-name:apparent;animation-duration:1s;animation-timing-function:linear;animation-iteration-count:infinite
 }
 mor-textcolor{display:inline;color:#f33d5d
 }
@@ -3927,7 +3927,7 @@ mor-textinput.input-group input+.input-group-addon{border-top-left-radius:0;bord
 }
 mor-textinput.input-group .input-group-addon+input.has-append{border-top-right-radius:0;border-bottom-right-radius:0
 }
-mor-textinput.st-disabled input[disabled]{border:1px #a6a6a6 solid;background-color:#ebebeb;-webkit-user-select:none;cursor:not-allowed!important;color:#8d8d8d!important
+mor-textinput.st-disabled input[disabled],mor-textinput.st-readonly input[disabled]{border:1px #a6a6a6 solid;background-color:#ebebeb;-webkit-user-select:none;cursor:not-allowed!important;color:#8d8d8d!important
 }
 mor-textarea{position:relative;z-index:1;display:block;width:100%;box-sizing:border-box;vertical-align:top
 }
