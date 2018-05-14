@@ -16,7 +16,8 @@ let TipManager = {
                 },
                 tether : null,
                 placement : 'top',
-                options : {}
+                options : {},
+                autoReverse : true
             }
         };
 
@@ -24,7 +25,7 @@ let TipManager = {
     methods : {
         _tipOptionsHandler : function (options) {
 
-            this.Tip.options = extend({
+            options = extend({
                 placement : this.Tip.placement,
                 element : null,
                 target : null,
@@ -33,9 +34,10 @@ let TipManager = {
                 offset : '0 0'
             }, this.Tip.options, options);
 
-            this.Tip.options.attachment = this.Tip.attachmentMap[this.Tip.options.placement];
+            options.attachment = this.Tip.attachmentMap[options.placement];
+            this.Tip.options = options;
 
-            return this.Tip.options;
+            return options;
 
         },
         _tipCreate : function (options) {
@@ -45,8 +47,90 @@ let TipManager = {
 
             this._popupShow();
             this.Tip.tether = new Tether(options);
-
             this._tipUpdate();
+
+            const blank = 5;
+
+            let rect = options.element.getBoundingClientRect();
+            let offset = options.offset;
+            let placement = options.placement;
+
+            if (placement === 'bottom' ||
+                placement === 'top') {
+
+                // overleft
+                if ((rect.x - blank) < 0) {
+
+                    offset = offset.split(' ');
+                    offset[1] = (+offset[1]) + rect.x - blank;
+                    offset = offset.join(' ');
+
+                }
+
+                // overright
+                if ((rect.x + rect.width + blank) > document.documentElement.clientWidth) {
+
+                    offset = offset.split(' ');
+                    offset[1] = (+offset[1]) + (rect.x + rect.width + blank - document.documentElement.clientWidth);
+                    offset = offset.join(' ');
+                       
+                }
+
+                // overtop
+                if (this.Tip.autoReverse && (rect.y - blank) < 0) {
+
+                    placement = 'bottom';
+
+                }
+
+                // overbottom
+                if (this.Tip.autoReverse && (rect.y + rect.height + blank) > document.documentElement.clientHeight) {
+
+                    placement = 'top';
+
+                }
+
+            } else if (placement === 'left' ||
+                       placement === 'right') {
+
+                // overleft
+                if (this.Tip.autoReverse && (rect.x - blank) < 0) {
+
+                    placement = 'right';
+
+                }
+
+                // overright
+                if (this.Tip.autoReverse && (rect.x + rect.width + blank) > document.documentElement.clientWidth) {
+
+                    placement = 'left';
+                       
+                }
+
+                // overtop
+                if ((rect.y - blank) < 0) {
+
+                    offset = offset.split(' ');
+                    offset[0] = (+offset[0]) + rect.y - blank;
+                    offset = offset.join(' ');
+
+                }
+
+                // overbottom
+                if ((rect.y + rect.height + blank) > document.documentElement.clientHeight) {
+
+                    offset = offset.split(' ');
+                    offset[0] = (+offset[0]) + (rect.y + rect.height + blank - document.documentElement.clientHeight);
+                    offset = offset.join(' ');
+
+                }
+
+            }
+            
+            this._tipUpdate({
+                offset,
+                placement
+            });
 
         },
         _tipUpdate : function (options) {
