@@ -49,12 +49,12 @@
 
                 <i
                     class="morningicon"
-                    v-if="conf.state !== 'disabled'"
+                    v-if="conf.state !== 'disabled' && conf.state !== 'readonly'"
                     @click.stop="_deleteItem(index)"
                 >&#xe62e;</i>
             </div>
             
-            <template v-if="conf.state !== 'disabled'">
+            <template v-if="conf.state !== 'disabled' && conf.state !== 'readonly'">
                 <template v-if="conf.max">
                     <a
                         href="javascript:;"
@@ -418,7 +418,7 @@ export default {
         },
         _fillItem : function (index) {
 
-            if (this.conf.state === 'disabled') {
+            if (this.conf.state === 'disabled' || this.conf.state === 'readonly') {
 
                 return;
 

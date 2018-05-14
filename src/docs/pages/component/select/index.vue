@@ -181,7 +181,7 @@
     :::democode/html
     <!-- 可搜索情况下disabled -->
     <div style="width:300px;">
-        <ui-select disabled :default-value="['tim']" can-search form-name="禁用" >
+        <ui-select state="disabled" :default-value="['tim']" can-search form-name="禁用" >
             <li value="tim"><ui-img class="circle" src="https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894"></ui-img>Tim Boelaars</li>
             <li value="andrew"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444"></ui-img>Andrew Colin Beck</li>
             <li value="gustavo"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442"></ui-img>Gustavo Zambelli</li>
@@ -200,7 +200,49 @@
 
     <!-- 多选情况下disabled -->
     <div style="width:300px;">
-        <ui-select disabled :default-value="['Tim Boelaars', 'Andrew Colin Beck']" multi-select form-name="禁用" >
+        <ui-select state="disabled" :default-value="['tim', 'andrew']" multi-select form-name="禁用" >
+            <li value="tim"><ui-img class="circle" src="https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894"></ui-img>Tim Boelaars</li>
+            <li value="andrew"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444"></ui-img>Andrew Colin Beck</li>
+            <li value="gustavo"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442"></ui-img>Gustavo Zambelli</li>
+            <li value="victor"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/96387/avatars/normal/debda2342580bda98269c0165054464c.jpg?1435151464"></ui-img>Victor Erixon</li>
+            <li value="shaun"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/2944/avatars/normal/e08c0e446862572facf0e48316d91c8f.png?1429207992"></ui-img>Shaun Moynihan</li>
+            <li value="emir"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934"></ui-img>Emir Ayouni</li>
+            <li value="katherine"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/460187/avatars/normal/eb8e273c036ae93b134b10358c5f19f5.jpg?1418705072"></ui-img>Katherine Rainey</li>
+            <li value="jax"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/119911/avatars/normal/531fd12e5775ed5ac6a07aea7b492151.jpg?1427986143"></ui-img>Jax Berndt</li>
+            <li value="elizabeth"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/857412/avatars/normal/8f5f9fbdd66cc70f22304f2ed3be4fa1.png?1440078204"></ui-img>Elizabeth Chiu</li>
+            <li value="sara"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/162566/avatars/normal/1012292_10104881398564961_565325188_n.jpg?1403561573"></ui-img>Sara Nicely</li>
+            <li value="anna"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/243797/avatars/normal/657a04cfaeca8f6f5bb7ecf64267bc67.jpg?1416007045"></ui-img>Anna Broussard</li>
+        </ui-select>
+    </div>
+    :::
+
+    #### 更多`readonly`状态
+
+    多选及可搜索情况下`readonly`。
+
+    :::democode/html
+    <!-- 可搜索情况下disabled -->
+    <div style="width:300px;">
+        <ui-select state="readonly" :default-value="['tim']" can-search form-name="只读" >
+            <li value="tim"><ui-img class="circle" src="https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894"></ui-img>Tim Boelaars</li>
+            <li value="andrew"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444"></ui-img>Andrew Colin Beck</li>
+            <li value="gustavo"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442"></ui-img>Gustavo Zambelli</li>
+            <li value="victor"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/96387/avatars/normal/debda2342580bda98269c0165054464c.jpg?1435151464"></ui-img>Victor Erixon</li>
+            <li value="shaun"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/2944/avatars/normal/e08c0e446862572facf0e48316d91c8f.png?1429207992"></ui-img>Shaun Moynihan</li>
+            <li value="emir"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934"></ui-img>Emir Ayouni</li>
+            <li value="katherine"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/460187/avatars/normal/eb8e273c036ae93b134b10358c5f19f5.jpg?1418705072"></ui-img>Katherine Rainey</li>
+            <li value="jax"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/119911/avatars/normal/531fd12e5775ed5ac6a07aea7b492151.jpg?1427986143"></ui-img>Jax Berndt</li>
+            <li value="elizabeth"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/857412/avatars/normal/8f5f9fbdd66cc70f22304f2ed3be4fa1.png?1440078204"></ui-img>Elizabeth Chiu</li>
+            <li value="sara"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/162566/avatars/normal/1012292_10104881398564961_565325188_n.jpg?1403561573"></ui-img>Sara Nicely</li>
+            <li value="anna"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/243797/avatars/normal/657a04cfaeca8f6f5bb7ecf64267bc67.jpg?1416007045"></ui-img>Anna Broussard</li>
+        </ui-select>
+    </div>
+
+    <br><br>
+
+    <!-- 多选情况下disabled -->
+    <div style="width:300px;">
+        <ui-select state="readonly" :default-value="['tim', 'andrew']" multi-select form-name="只读" >
             <li value="tim"><ui-img class="circle" src="https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894"></ui-img>Tim Boelaars</li>
             <li value="andrew"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444"></ui-img>Andrew Colin Beck</li>
             <li value="gustavo"><ui-img class="circle" src="https://d13yacurqjgara.cloudfront.net/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442"></ui-img>Gustavo Zambelli</li>

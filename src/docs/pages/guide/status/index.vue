@@ -193,9 +193,14 @@
     - `hover` : Hover状态
     - `active` : 激活状态
     - `disabled` : 禁用状态
+    - `readonly` : 只读状态
     - `apparent` : 醒目状态
-    
+
     组件会根据实际情况支持其中的部分状态(至少支持一种)，大部分组件的默认状态都是`normal`。
+
+    #### `disabled`和`readonly`的区别
+    
+    组件`disabled`后无法在UI层面修改表单值，也无法通过`set`方法设置表单值。但`readonly`仅在UI层面修改表单值，仍可以通过`set`或组件其他方法设置表单值。
 
     </script>
     </doc-guide>
