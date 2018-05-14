@@ -68,10 +68,10 @@ let TipManager = {
                 }
 
                 // overright
-                if ((rect.x + rect.width + blank) > document.body.clientWidth) {
+                if ((rect.x + rect.width + blank) > document.documentElement.clientWidth) {
 
                     offset = offset.split(' ');
-                    offset[1] = (+offset[1]) + (rect.x + rect.width + blank - document.body.clientWidth);
+                    offset[1] = (+offset[1]) + (rect.x + rect.width + blank - document.documentElement.clientWidth);
                     offset = offset.join(' ');
                        
                 }
@@ -84,7 +84,7 @@ let TipManager = {
                 }
 
                 // overbottom
-                if (this.Tip.autoReverse && (rect.y + rect.height + window.pageYOffset + blank) > document.body.clientHeight) {
+                if (this.Tip.autoReverse && (rect.y + rect.height + blank) > document.documentElement.clientHeight) {
 
                     placement = 'top';
 
@@ -101,7 +101,7 @@ let TipManager = {
                 }
 
                 // overright
-                if (this.Tip.autoReverse && (rect.x + rect.width + blank) > document.body.clientWidth) {
+                if (this.Tip.autoReverse && (rect.x + rect.width + blank) > document.documentElement.clientWidth) {
 
                     placement = 'left';
                        
@@ -117,10 +117,10 @@ let TipManager = {
                 }
 
                 // overbottom
-                if ((rect.y + rect.height + window.pageYOffset + blank) > document.body.clientHeight) {
+                if ((rect.y + rect.height + blank) > document.documentElement.clientHeight) {
 
                     offset = offset.split(' ');
-                    offset[0] = (+offset[0]) + (rect.y + rect.height + window.pageYOffset + blank - document.body.clientHeight);
+                    offset[0] = (+offset[0]) + (rect.y + rect.height + blank - document.documentElement.clientHeight);
                     offset = offset.join(' ');
 
                 }

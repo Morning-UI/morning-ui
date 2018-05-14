@@ -62,7 +62,8 @@ export default {
                 target : this.target,
                 placement : this.placement,
                 offset : this.offset,
-                trigger : this.trigger
+                trigger : this.trigger,
+                autoReverse : this.autoReverse
             };
 
         }
@@ -343,7 +344,7 @@ export default {
     mounted : function () {
 
         this.Trigger.triggers = this.conf.trigger;
-        this.Trigger.autoReverse = this.conf.autoReverse;
+        this.Tip.autoReverse = this.conf.autoReverse;
 
         this.$watch('conf.target', () => {
 
@@ -377,7 +378,7 @@ export default {
 
         this.$watch('conf.autoReverse', () => {
 
-            this.Trigger.autoReverse = this.conf.autoReverse;
+            this.Tip.autoReverse = this.conf.autoReverse;
 
         });
 

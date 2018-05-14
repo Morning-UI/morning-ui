@@ -87,6 +87,7 @@
     |[placement](#placement)|提示框位置|`top`:上方<br>`bottom`:下方<br>`left`:左侧<br>`right`:右侧|String|`'top'`|
     |[offset](#offset)|偏移量|上下偏移量(单位px/%) 左右偏移量(单位px/%)|String|`'0 0'`|
     |[trigger](#trigger)|触发方式(支持多触发方式，多个触发器之间用空格分开)。触发方式一旦改变，已有的触发状态都会被重置。|`hover`<br>`click`<br>`focus`|String|`'hover'`|
+    |[auto-reverse](#auto-reverse)|当小提示超出窗口时，自动反转小提示的方向，使其可以显示。|`true`<br>`false`|Boolean|`true`|
     
     #### target
 
@@ -136,6 +137,22 @@
 
     <span id="demo13">鼠标悬浮或点击显示小提示</span>
     <ui-tip target="#demo13" trigger="click hover">提示内容</ui-tip>
+    :::
+
+    #### auto-reverse
+
+    滚动页面的位置，使得下面的demo靠近窗口底部，当关闭`auto-reverse`后，小提示不会反转方向：
+
+    :::democode/html
+    <span id="demo20">鼠标悬浮显示小提示</span>
+    <ui-tip target="#demo20" placement="bottom" :auto-reverse="false">这是一段非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常长的提示内容</ui-tip>
+    :::
+
+    开启`auto-reverse`后，小提示会反转方向：
+
+    :::democode/html
+    <span id="demo21">鼠标悬浮显示小提示</span>
+    <ui-tip target="#demo21" placement="bottom" :auto-reverse="true">这是一段非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常长的提示内容</ui-tip>
     :::
 
     [[[方法]]]
