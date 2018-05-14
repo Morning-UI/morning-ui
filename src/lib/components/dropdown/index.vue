@@ -35,7 +35,7 @@ export default {
         trigger : {
             type : String,
             default : 'click',
-            validator : (value => ['hover', 'click'].indexOf(value) !== -1)
+            validator : (value => ['hover', 'click', 'rclick'].indexOf(value) !== -1)
         }
     },
     computed : {
@@ -153,6 +153,18 @@ export default {
         }
         
     },
+    created : function () {
+
+        this.Trigger.handlerMap = {
+            click : [this._click],
+            rclick : [this._click],
+            hover : {
+                in : [this._show],
+                out : [this._hide]
+            },
+        };
+
+    },
     mounted : function () {
 
         let $emitbtn = this.$el.querySelector(`[emitbtn]`);
@@ -160,13 +172,6 @@ export default {
         this.data.$wrap = this.$el.querySelector('.ui-dropdown-wrap');
         this.data.$arrow = this.$el.querySelector('mor-btn>.morningicon, mor-link>.morningicon');
 
-        this.Trigger.handleMap = {
-            click : [this._click],
-            hover : {
-                mouseenter : [this._show],
-                mouseleave : [this._hide]
-            }
-        };
         this.Trigger.$targets = [$emitbtn, this.data.$wrap];
         this.Trigger.triggers = this.conf.trigger;
         this._triggerSetListeners();

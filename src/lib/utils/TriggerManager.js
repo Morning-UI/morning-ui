@@ -1,4 +1,5 @@
 import arrayUniq                    from 'array-uniq';
+import extend                       from 'extend';
 
 let TriggerManager = {
     data : function () {
@@ -7,26 +8,71 @@ let TriggerManager = {
             Trigger : {
                 $targets : null,
                 triggers : '',
-                handleMap : {},
+                handlerMap : {},
+                handlerInvoke : {},
+                triggerEvtMap : {
+                    click : ['click'],
+                    rclick : ['mousedown'],
+                    hover : ['mouseenter', 'mouseleave'],
+                    foucs : ['focusin', 'focusout']
+                },
                 using : []
             }
         };
 
     },
     methods : {
-        _triggerChangeListeners : function ($targets, evt, handleMap = [], isAdd = true) {
+        _triggerBlockContextmenu : function (evt) {
 
-            for (let handle of handleMap) {
+            evt.preventDefault();
+
+        },
+        _triggerCreateHandler : function (handler, trigger) {
+
+            return (evt) => {
+
+                if (trigger === 'rclick') {
+
+                    if (+evt.button !== 2) {
+
+                        return;
+
+                    }
+
+                    evt.target.addEventListener('contextmenu', this._triggerBlockContextmenu);
+
+                    setTimeout(() => {
+
+                        evt.target.removeEventListener('contextmenu', this._triggerBlockContextmenu);
+                    
+                    });
+
+                }
+
+                handler.call(this, evt);
+
+
+            };
+
+        },
+        _triggerChangeListeners : function ({
+            $targets,
+            evt,
+            handlerInvoke = [],
+            isAdd = true
+        }) {
+
+            for (let handler of handlerInvoke) {
 
                 for (let $target of $targets) {
 
                     if (isAdd) {
                         
-                        $target.addEventListener(evt, handle);
+                        $target.addEventListener(evt, handler);
 
                     } else {
 
-                        $target.removeEventListener(evt, handle);
+                        $target.removeEventListener(evt, handler);
 
                     }
 
@@ -37,60 +83,72 @@ let TriggerManager = {
         },
         _triggerHandleListeners : function ($targets, triggers, isAdd = true) {
 
-            let handleMap = this.Trigger.handleMap;
+            let handlerInvoke = this.Trigger.handlerInvoke;
 
             for (let trigger of triggers) {
 
-                if (trigger === 'click' &&
-                    handleMap.click instanceof Array &&
-                    handleMap.click.length > 0) {
+                if (trigger === 'click' ||
+                    trigger === 'rclick') {
 
-                    this._triggerChangeListeners($targets, 'click', handleMap.click, isAdd);
+                    if (handlerInvoke[trigger] instanceof Array &&
+                        handlerInvoke[trigger].length > 0) {
 
-                } else if (trigger === 'hover' && handleMap.hover) {
+                        this._triggerChangeListeners({
+                            $targets,
+                            evt : this.Trigger.triggerEvtMap[trigger][0],
+                            handlerInvoke : handlerInvoke[trigger],
+                            isAdd
+                        });
 
-                    if (handleMap.hover.mouseenter instanceof Array &&
-                        handleMap.hover.mouseenter.length > 0) {
+                        if (isAdd) {
 
-                        this._triggerChangeListeners($targets, 'mouseenter', handleMap.hover.mouseenter, isAdd);
-
-                    }
-
-                    if (handleMap.hover.mouseleave instanceof Array &&
-                        handleMap.hover.mouseleave.length > 0) {
-
-                        this._triggerChangeListeners($targets, 'mouseleave', handleMap.hover.mouseleave, isAdd);
-
-                    }
-
-                } else if (trigger === 'foucs' && handleMap.foucs) {
-
-                    if (handleMap.foucs.focusin instanceof Array &&
-                        handleMap.foucs.focusin.length > 0) {
-
-                        this._triggerChangeListeners($targets, 'focusin', handleMap.foucs.focusin, isAdd);
+                            this.Trigger.using.push(trigger);
+                        
+                        }
 
                     }
 
-                    if (handleMap.foucs.focusout instanceof Array &&
-                        handleMap.foucs.focusout.length > 0) {
+                } else if (trigger === 'hover' ||
+                           trigger === 'foucs') {
 
-                        this._triggerChangeListeners($targets, 'focusout', handleMap.foucs.focusout, isAdd);
+                    if (handlerInvoke[trigger].in instanceof Array &&
+                        handlerInvoke[trigger].in.length > 0) {
+
+                        this._triggerChangeListeners({
+                            $targets,
+                            evt : this.Trigger.triggerEvtMap[trigger][0],
+                            handlerInvoke : handlerInvoke[trigger].in,
+                            isAdd
+                        });
+
+                        if (isAdd) {
+
+                            this.Trigger.using.push(trigger);
+                        
+                        }
+
+                    }
+
+                    if (handlerInvoke[trigger].out instanceof Array &&
+                        handlerInvoke[trigger].out.length > 0) {
+
+                        this._triggerChangeListeners({
+                            $targets,
+                            evt : this.Trigger.triggerEvtMap[trigger][1],
+                            handlerInvoke : handlerInvoke[trigger].out,
+                            isAdd
+                        });
+
+                        if (isAdd) {
+
+                            this.Trigger.using.push(trigger);
+                        
+                        }
 
                     }
 
                 }
-
-                if (isAdd) {
-
-                    this.Trigger.using.push(trigger);
-
-                } else if (this.Trigger.using.indexOf(trigger) > -1) {
-
-                    this.Trigger.using.splice(this.Trigger.using.indexOf(trigger), 1);
-
-                }
-
+             
             }
 
             this.Trigger.using = arrayUniq(this.Trigger.using);
@@ -124,6 +182,63 @@ let TriggerManager = {
             this._triggerHandleListeners($targets, triggers, false);
 
         }
+    },
+    mounted : function () {
+
+        this.$watch('Trigger.handlerMap', () => {
+
+            let handlerInvoke = extend(true, {}, this.Trigger.handlerMap);
+            let transformer = (obj, trigger) => {
+
+                for (let key in obj) {
+
+                    let val = obj[key];
+
+                    if (typeof val === 'object' && val instanceof Array) {
+
+                        for (let index in val) {
+
+                            let handler = val[index];
+
+                            if (trigger === true) {
+
+                                obj[key][index] = this._triggerCreateHandler(handler, key);
+
+                            } else {
+                                
+                                obj[key][index] = this._triggerCreateHandler(handler, trigger);
+
+                            }
+
+                        }
+
+                    } else {
+
+                        if (trigger === true) {
+                        
+                            transformer(val, key);
+
+                        } else {
+
+                            transformer(val, trigger);
+
+                        }
+
+                    }
+
+                }
+
+            };
+
+            transformer(handlerInvoke, true);
+
+            this.Trigger.handlerInvoke = handlerInvoke;
+
+        }, {
+            deep : true,
+            immediate : true
+        });
+
     },
     beforeDestroy : function () {
 

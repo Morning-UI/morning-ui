@@ -301,19 +301,23 @@ export default {
 
         }
     },
-    mounted : function () {
+    created : function () {
 
-        this.Trigger.handleMap = {
+        this.Trigger.handlerMap = {
             click : [this.toggle],
             hover : {
-                mouseenter : [this._enter],
-                mouseleave : [this._leave]
+                in : [this._enter],
+                out : [this._leave]
             },
             focus : {
-                focusin : [this._enter],
-                focusout : [this._leave]
+                in : [this._enter],
+                out : [this._leave]
             }
         };
+
+    },
+    mounted : function () {
+
         this.Trigger.triggers = this.conf.trigger;
 
         this.$watch('conf.target', () => {
