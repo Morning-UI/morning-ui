@@ -174,6 +174,7 @@ export default {
 
         this.Trigger.$targets = [$emitbtn, this.data.$wrap];
         this.Trigger.triggers = this.conf.trigger;
+        this.Tip.autoReverse = false;
         this._triggerSetListeners();
 
         this.$watch('conf.trigger', () => {

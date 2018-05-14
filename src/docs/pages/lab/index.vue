@@ -5,14 +5,21 @@
         <div class="lab">
             <h1><i class="iconfont">&#xe615;</i>Morning Laboratory</h1>
             <div class="area">
-                
-                <ui-select form-name="Select designer" multi-select can-search>
-                    <li v-for="user in users" :value="user._id">{{user.name}}</li>
-                </ui-select>
 
-                <div style="width:300px;">
-                    <ui-timepicker form-name="时间" :selectable-range="['08:30:00', '12:00:00']"></ui-timepicker>
-                </div>
+            <span id="demo1" style="position: absolute;bottom: -585px;left: 20px;z-index: 9999;" >鼠标悬浮显示小提示</span>
+            <ui-tip target="#demo1" placement='left'>鼠标悬浮显示小提示鼠标悬浮显示小提示鼠标悬浮显示小提示鼠标悬浮显示小提示</ui-tip>
+                
+                <ui-dropdown >
+                    <ui-btngroup slot="showbtn">
+                        <ui-btn color="success">立即购买</ui-btn>
+                        <!-- 这里的morningicon组件附带，可直接使用 -->
+                        <ui-btn color="minor" emitbtn><i class="morningicon">&#xe6b1;</i></ui-btn>
+                    </ui-btngroup>
+                    <ui-btn color="info">加入购物车加入购物车加入购物车加入购物车</ui-btn>
+                    <!-- 这里的iconfont组件不附带 -->
+                    <ui-btn color="white"><i class="iconfont">&#xe6e2;</i> 收藏</ui-btn>
+                    <ui-btn color="white"><i class="iconfont">&#xe70a;</i> 分享</ui-btn>
+                </ui-dropdown>
 
             </div>
         </div>
@@ -27,17 +34,7 @@ import DocFooter                    from 'Docs/common/DocFooter.vue';
 export default {
     data : function () {
 
-        return {
-            category : 'lab',
-            users : [
-                {_id : 1, name : 'Boelaars'},
-                {_id : 2, name : 'Beck'},
-                {_id : 3, name : 'Zambelli'},
-                {_id : 4, name : 'Andrew'},
-                {_id : 5, name : 'Katherine'},
-                {_id : 6, name : 'Moynihan'},
-            ]
-        };
+        return {};
 
     },
     components : {
