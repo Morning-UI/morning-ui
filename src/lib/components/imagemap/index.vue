@@ -316,13 +316,15 @@ export default {
         },
         mapareaWidth : function () {
 
-            if (isNaN(+this.data.setScale)) {
+            let value = this.get();
+
+            if (isNaN(+this.data.setScale) ||
+                (value && value.w === 0) ||
+                value === undefined) {
 
                 return `${num100}%`;
 
             }
-
-            let value = this.get();
 
             return `${value.w * this.data.setScale / num100}px`;
 

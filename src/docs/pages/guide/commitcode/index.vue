@@ -99,9 +99,9 @@
 
     点击`Create pull request`：
 
-    <img src="https://h0.hucdn.com/open/201743/7ad9a3006740642f_1988x828.png" alt="" width="600">
+    <img src="http://h0.hucdn.com/open/201820/c91dd55364d641f0_2016x1428.png" alt="" width="600">
     
-    按照上面的示例，写清楚你改动的内容及注意事项，指定贡献者为你Code Review。或者也可以添加`Request Review`标签让其他贡献者为你Code Review。
+    按照上面的示例，写清楚你改动的内容及注意事项，勾选检查清单，指定贡献者为你Code Review。或者也可以添加`Request Review`标签让其他贡献者为你Code Review。
 
     若Review中存在问题你们可在`pull request`下面进行讨论，当进行Code Review的贡献者通过后，会增加`Accept Pull Request`的标签，接下来项目管理员会对代码进行合并。
 
