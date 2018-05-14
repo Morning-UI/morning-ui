@@ -18,6 +18,27 @@
     
     ### 更新记录
 
+    ### 0.10.24 <ui-badge class="circle ver-stable" size="s" color="light-theme">Beta</ui-badge>
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2018年5月14日，
+            Archive : 
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.24" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.24/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.10.24/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor><br/><br/>
+
+    - 表单组件新增`readonly`状态
+    - 新增CHANGELOG
+    - 为GitHub新增Issue templates及Pull request template
+    - `ui-dropdown`支持右键触发
+    - `ui-dropdown`和`ui-tip`的弹出框遇到边界会自动调整位置，使内容在窗口内
+    - `ui-tip`新增`auto-reverse`配置，当小提示超出窗口时允许反转方向
+    - 修复`ui-select`在禁用状态下开启`multi-select`配置后仍可输入的问题 
+    - 修复`ui-select`文档中形态部分的错误
+    - 修复`ui-imagemap`上传图片后高宽计算错误
+
     ### 0.10.23 <ui-badge class="circle ver-beta" size="s" color="extra-light-black">Beta</ui-badge>
     
     <ui-textcolor color="light-blue">

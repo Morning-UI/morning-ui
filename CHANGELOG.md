@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## 0.10.24
+
+`2018年5月14日`
+
+- 表单组件新增`readonly`状态
+- 新增CHANGELOG
+- 为GitHub新增Issue templates及Pull request template
+- `ui-dropdown`支持右键触发
+- `ui-dropdown`和`ui-tip`的弹出框遇到边界会自动调整位置，使内容在窗口内
+- `ui-tip`新增`auto-reverse`配置，当小提示超出窗口时允许反转方向
+- 修复`ui-select`在禁用状态下开启`multi-select`配置后仍可输入的问题 
+- 修复`ui-select`文档中形态部分的错误
+- 修复`ui-imagemap`上传图片后高宽计算错误
+
 ## 0.10.23
 
 `2018年5月12日`

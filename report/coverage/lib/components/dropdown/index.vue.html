@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">9.84% </span>
+        <span class="strong">9.68% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>6/61</span>
+        <span class='fraction'>6/62</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">23.68% </span>
@@ -32,12 +32,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/16</span>
+        <span class='fraction'>0/17</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">10.53% </span>
+        <span class="strong">10.34% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>6/57</span>
+        <span class='fraction'>6/58</span>
       </div>
     </div>
   </div>
@@ -258,7 +258,13 @@
 213
 214
 215
-216</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+216
+217
+218
+219
+220
+221
+222</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -413,12 +419,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -427,6 +428,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -510,7 +522,7 @@ export default {
         trigger : {
             type : String,
             default : 'click',
-            validator : (<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >value =&gt; ['hover', 'click'].indexOf(value) !== -1)</span></span>
+            validator : (<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >value =&gt; ['hover', 'click', 'rclick'].indexOf(value) !== -1)</span></span>
         }
     },
     computed : {
@@ -628,6 +640,18 @@ export default {
         }
         
     },
+    created : <span class="fstat-no" title="function not covered" >function () </span>{
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        this.Trigger.handlerMap = {</span>
+            click : [this._click],
+            rclick : [this._click],
+            hover : {
+                in : [this._show],
+                out : [this._hide]
+            },
+        };
+&nbsp;
+    },
     mounted : <span class="fstat-no" title="function not covered" >function () <span class="cstat-no" title="statement not covered" ></span>{</span>
 &nbsp;
         let $emitbtn = <span class="cstat-no" title="statement not covered" >this.$el.querySelector(`[emitbtn]`);</span>
@@ -635,15 +659,9 @@ export default {
 <span class="cstat-no" title="statement not covered" >        this.data.$wrap = this.$el.querySelector('.ui-dropdown-wrap');</span>
 <span class="cstat-no" title="statement not covered" >        this.data.$arrow = this.$el.querySelector('mor-btn&gt;.morningicon, mor-link&gt;.morningicon');</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >        this.Trigger.handleMap = {</span>
-            click : [this._click],
-            hover : {
-                mouseenter : [this._show],
-                mouseleave : [this._hide]
-            }
-        };
 <span class="cstat-no" title="statement not covered" >        this.Trigger.$targets = [$emitbtn, this.data.$wrap];</span>
 <span class="cstat-no" title="statement not covered" >        this.Trigger.triggers = this.conf.trigger;</span>
+<span class="cstat-no" title="statement not covered" >        this.Tip.autoReverse = false;</span>
 <span class="cstat-no" title="statement not covered" >        this._triggerSetListeners();</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >        this.$watch('conf.trigger', <span class="fstat-no" title="function not covered" >() =&gt; </span>{</span>
@@ -694,7 +712,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat May 12 2018 22:21:19 GMT+0800 (CST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon May 14 2018 23:56:33 GMT+0800 (CST)
 </div>
 </div>
 <script src="../../../prettify.js"></script>

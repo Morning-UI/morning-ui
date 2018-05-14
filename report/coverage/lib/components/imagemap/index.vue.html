@@ -25,9 +25,9 @@
         <span class='fraction'>7/436</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">3.57% </span>
+        <span class="strong">3.3% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>9/252</span>
+        <span class='fraction'>9/273</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -1230,7 +1230,11 @@
 1185
 1186
 1187
-1188</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+1188
+1189
+1190
+1191
+1192</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1556,6 +1560,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1890,6 +1896,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -2057,6 +2064,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -2460,7 +2468,7 @@
         &lt;span v-show="data.imagesLoading"&gt;获取图片中...&lt;/span&gt;
 &nbsp;
         &lt;span class="modify-map" v-show="!data.imagesLoading &amp;&amp; data.images.length &gt; 0" @click="_openMap"&gt;
-            &lt;template v-if="conf.state === 'disabled'"&gt;
+            &lt;template v-if="conf.state === 'disabled' || conf.state === 'readonly'"&gt;
                 &lt;i class="morningicon"&gt;&amp;#xe6a9;&lt;/i&gt; 查看热区
             &lt;/template&gt;
             &lt;template v-else&gt;
@@ -2472,7 +2480,7 @@
 &nbsp;
     &lt;morning-dialog
         class="mor-imagemap-dialog-map show-no-animate"
-        :class="{'imagemap-disabled' : conf.state === 'disabled'}"
+        :class="{'imagemap-disabled' : (conf.state === 'disabled' || conf.state === 'readonly')}"
         color="gray"
         width="60%"
         height="90%"
@@ -2482,7 +2490,7 @@
         @show="_refreshScale"
     &gt;
         &lt;header slot="header"&gt;
-            &lt;template v-if="conf.state === 'disabled'"&gt;
+            &lt;template v-if="conf.state === 'disabled' || conf.state === 'readonly'"&gt;
                 查看热区
             &lt;/template&gt;
             &lt;template v-else&gt;
@@ -2495,7 +2503,7 @@
             :style="{width : mapareaWidth}"&gt;
             &lt;div
                 class="zonearea"
-                :class="{'over-range':data.overRange, 'disable-add-spot':data.disableAddSpot}" @mousedown.left.stop="_createZone($event)"
+                :class="{'over-range':data.overRange, 'disable-add-spot':data.disableAddSpot}" @mousedown.left.stop="conf.state !== 'readonly' &amp;&amp; _createZone($event)"
             &gt;
                 &lt;div
                     v-for="(zone, index) in data.zones"
@@ -2536,7 +2544,7 @@
                 &lt;morning-link color="info" size="s" @emit="morning.findVM('ui-imagemap-scaledialog-'+uiid).toggle(true)"&gt;设置&lt;/morning-link&gt;
             &lt;/span&gt;
             &lt;div&gt;
-                &lt;morning-link color="danger clean-allzone-btn" v-if="conf.cleanAllzoneBtn &amp;&amp; (conf.state !== 'disabled')" @emit="_cleanAllzone"&gt;清除所有热区&lt;/morning-link&gt;
+                &lt;morning-link color="danger clean-allzone-btn" v-if="conf.cleanAllzoneBtn &amp;&amp; (conf.state !== 'disabled' &amp;&amp; conf.state !== 'readonly')" @emit="_cleanAllzone"&gt;清除所有热区&lt;/morning-link&gt;
                 &lt;morning-btn color="minor" @emit="morning.findVM('ui-imagemap-mapdialog-'+uiid).toggle(false)"&gt;关闭&lt;/morning-btn&gt;
             &lt;/div&gt;
         &lt;/footer&gt;
@@ -2623,8 +2631,8 @@
         &lt;footer slot="footer"&gt;
             &lt;div&gt;
                 &lt;morning-link color="minor" @emit="morning.findVM('ui-imagemap-zonedialog-'+uiid).toggle(false)"&gt;取消&lt;/morning-link&gt;
-                &lt;morning-btn color="danger" @emit="_removeZone" v-if="conf.state !== 'disabled'"&gt;删除&lt;/morning-btn&gt;
-                &lt;morning-btn color="success" @emit="_saveZoneModify" v-if="conf.state !== 'disabled'"&gt;保存&lt;/morning-btn&gt;
+                &lt;morning-btn color="danger" @emit="_removeZone" v-if="conf.state !== 'disabled' &amp;&amp; conf.state !== 'readonly'"&gt;删除&lt;/morning-btn&gt;
+                &lt;morning-btn color="success" @emit="_saveZoneModify" v-if="conf.state !== 'disabled' &amp;&amp; conf.state !== 'readonly'"&gt;保存&lt;/morning-btn&gt;
             &lt;/div&gt;
         &lt;/footer&gt;
         
@@ -2735,13 +2743,15 @@ export default {
         },
         mapareaWidth : <span class="fstat-no" title="function not covered" >function () </span>{
 &nbsp;
-<span class="cstat-no" title="statement not covered" >            if (isNaN(+this.data.setScale)) {</span>
+            let value = <span class="cstat-no" title="statement not covered" >this.get();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (isNaN(+this.data.setScale) ||</span>
+                (value &amp;&amp; value.w === 0) ||
+                value === undefined) {
 &nbsp;
 <span class="cstat-no" title="statement not covered" >                return `${num100}%`;</span>
 &nbsp;
             }
-&nbsp;
-            let value = <span class="cstat-no" title="statement not covered" >this.get();</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >            return `${value.w * this.data.setScale / num100}px`;</span>
 &nbsp;
@@ -3075,7 +3085,8 @@ export default {
         },
         _reizeZoneStart : <span class="fstat-no" title="function not covered" >function (</span>evt, id, type) {
 &nbsp;
-<span class="cstat-no" title="statement not covered" >            if (this.conf.state === 'disabled') {</span>
+<span class="cstat-no" title="statement not covered" >            if (this.conf.state === 'disabled' ||</span>
+                this.conf.state === 'readonly') {
 &nbsp;
 <span class="cstat-no" title="statement not covered" >                return;</span>
 &nbsp;
@@ -3243,7 +3254,8 @@ export default {
 &nbsp;
 <span class="cstat-no" title="statement not covered" >            this.$refs[`ui-imagemap-mapdialog-${this.uiid}`].toggle(true);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >            if (this.conf.state === 'disabled') {</span>
+<span class="cstat-no" title="statement not covered" >            if (this.conf.state === 'disabled' ||</span>
+                this.conf.state === 'readonly') {
 &nbsp;
 <span class="cstat-no" title="statement not covered" >                return;</span>
 &nbsp;
@@ -3610,7 +3622,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat May 12 2018 22:21:19 GMT+0800 (CST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon May 14 2018 23:56:33 GMT+0800 (CST)
 </div>
 </div>
 <script src="../../../prettify.js"></script>
