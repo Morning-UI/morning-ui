@@ -91,7 +91,7 @@
     |KEY|描述|接受值|值类型|默认值|
     |-|-|-|-|-|
     |[auto-close](#auto-close)|点击下拉菜单中按钮后自动隐藏|`true`<br>`false`|Boolean|`true`|
-    |[trigger](#trigger)|触发下拉菜单方式。触发方式一旦改变，已有的触发状态都会被重置。|`hover`<br>`click`|String|`click`|
+    |[trigger](#trigger)|触发下拉菜单方式。触发方式一旦改变，已有的触发状态都会被重置。|`hover`<br>`click`<br>`rclick`|String|`click`|
 
     #### auto-close
 
@@ -107,6 +107,17 @@
     :::
 
     #### trigger
+    
+    采用鼠标右键触发：
+
+    :::democode/html
+    <ui-dropdown trigger="rclick">
+        <ui-link slot="showbtn" emitbtn>右键点击查看更多</ui-link>
+        <ui-btn color="white">收藏</ui-btn>
+        <ui-btn color="white">修改</ui-btn>
+        <ui-btn color="danger">删除</ui-btn>
+    </ui-dropdown>
+    :::
 
     采用hover方式触发：
 

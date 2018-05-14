@@ -7,6 +7,7 @@
         :placement="placement"
         :offset="offset"
         :trigger="trigger"
+        :auto-reverse="autoReverse"
     >
     
     <div class="tip-arrow"></div>
@@ -48,6 +49,10 @@ export default {
             type : String,
             default : 'hover',
             validator : (value => ['hover', 'click', 'focus'].indexOf(value) !== -1)
+        },
+        autoReverse : {
+            type : Boolean,
+            default : true
         }
     },
     computed : {
@@ -57,7 +62,8 @@ export default {
                 target : this.target,
                 placement : this.placement,
                 offset : this.offset,
-                trigger : this.trigger
+                trigger : this.trigger,
+                autoReverse : this.autoReverse
             };
 
         }
@@ -110,7 +116,26 @@ export default {
             this.data.$target = $target;
             this._triggerUnsetListeners();
             this.Trigger.$targets = [$target];
+            this._setListeners();
+
+        },
+        _setListeners : function () {
+
+            if (this.conf.trigger.indexOf('hover') !== -1) {
+
+                this.$el.addEventListener('mouseenter', this._enter);
+                this.$el.addEventListener('mouseleave', this._leave);
+
+            }
+
             this._triggerSetListeners();
+
+        },
+        _unsetListeners : function () {
+
+            this.$el.removeEventListener('mouseenter', this._enter);
+            this.$el.removeEventListener('mouseleave', this._leave);
+            this._triggerUnsetListeners();
 
         },
         _enter : function (evt) {
@@ -301,20 +326,25 @@ export default {
 
         }
     },
-    mounted : function () {
+    created : function () {
 
-        this.Trigger.handleMap = {
+        this.Trigger.handlerMap = {
             click : [this.toggle],
             hover : {
-                mouseenter : [this._enter],
-                mouseleave : [this._leave]
+                in : [this._enter],
+                out : [this._leave]
             },
             focus : {
-                focusin : [this._enter],
-                focusout : [this._leave]
+                in : [this._enter],
+                out : [this._leave]
             }
         };
+
+    },
+    mounted : function () {
+
         this.Trigger.triggers = this.conf.trigger;
+        this.Tip.autoReverse = this.conf.autoReverse;
 
         this.$watch('conf.target', () => {
 
@@ -334,7 +364,7 @@ export default {
             this.data.activeTrigger = {};
             this._triggerUnsetListeners();
             this.Trigger.triggers = this.conf.trigger;
-            this._triggerSetListeners();
+            this._setListeners();
 
         });
 
@@ -343,6 +373,12 @@ export default {
             this._tipUpdate({
                 placement : this.conf.placement
             });
+
+        });
+
+        this.$watch('conf.autoReverse', () => {
+
+            this.Tip.autoReverse = this.conf.autoReverse;
 
         });
 
