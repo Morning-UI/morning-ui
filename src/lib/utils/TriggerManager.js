@@ -29,7 +29,7 @@ let TriggerManager = {
         },
         _triggerCreateHandler : function (handler, trigger) {
 
-            return (evt) => {
+            return evt => {
 
                 if (trigger === 'rclick') {
 
@@ -50,7 +50,6 @@ let TriggerManager = {
                 }
 
                 handler.call(this, evt);
-
 
             };
 
@@ -212,17 +211,13 @@ let TriggerManager = {
 
                         }
 
+                    } else if (trigger === true) {
+                    
+                        transformer(val, key);
+
                     } else {
 
-                        if (trigger === true) {
-                        
-                            transformer(val, key);
-
-                        } else {
-
-                            transformer(val, trigger);
-
-                        }
+                        transformer(val, trigger);
 
                     }
 

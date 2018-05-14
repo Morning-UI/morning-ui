@@ -279,7 +279,6 @@ export default {
 
             }
 
-            console.log(this.conf.placement);
             this._tipCreate({
                 placement : this.conf.placement,
                 element : this.$el,

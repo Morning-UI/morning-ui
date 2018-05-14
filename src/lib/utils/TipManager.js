@@ -119,7 +119,6 @@ let TipManager = {
                 // overbottom
                 if ((rect.y + rect.height + window.pageYOffset + blank) > document.body.clientHeight) {
 
-
                     offset = offset.split(' ');
                     offset[0] = (+offset[0]) + (rect.y + rect.height + window.pageYOffset + blank - document.body.clientHeight);
                     offset = offset.join(' ');
