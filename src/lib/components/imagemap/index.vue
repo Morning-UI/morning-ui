@@ -117,7 +117,7 @@
                 <morning-link color="info" size="s" @emit="morning.findVM('ui-imagemap-scaledialog-'+uiid).toggle(true)">设置</morning-link>
             </span>
             <div>
-                <morning-link color="danger clean-allzone-btn" v-if="conf.cleanAllzoneBtn && (conf.state !== 'disabled' && conf.state !== 'readonly')" @emit="_cleanAllzone">清除所有热区</morning-link>
+                <morning-link color="danger" class="clean-allzone-btn" v-if="conf.cleanAllzoneBtn && (conf.state !== 'disabled' && conf.state !== 'readonly')" @emit="_cleanAllzone">清除所有热区</morning-link>
                 <morning-btn color="minor" @emit="morning.findVM('ui-imagemap-mapdialog-'+uiid).toggle(false)">关闭</morning-btn>
             </div>
         </footer>
