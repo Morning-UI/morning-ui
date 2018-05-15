@@ -30,7 +30,7 @@
         </header>
     </template>
 
-    <table class="wrap">
+    <table class="wrap co-style">
         <tbody>
             <tr v-if="conf.fixedTitleCol[0] === 'r'">
                 <td>

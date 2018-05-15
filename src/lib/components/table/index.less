@@ -49,8 +49,7 @@ mor-table{
         }
     }
 
-    .title-table,
-    .normal-table{
+    .morning-table{
         display: table;
         min-width: 100%;
         text-align: center;
@@ -83,18 +82,6 @@ mor-table{
                 white-space: nowrap;
                 border-bottom-width: 2px;
                 border-bottom-style: solid;
-
-                .sort{
-                    .morningicon{
-                        font-size: 12px;
-                        opacity: 0.35;
-
-                        &:hover{
-                            cursor: pointer;
-                            opacity: 0.7;
-                        }
-                    }
-                }
             }
 
             td{
@@ -103,6 +90,18 @@ mor-table{
                 overflow: hidden;
                 word-break: break-all;
                 text-overflow: ellipsis;
+            }
+        }
+
+        .th-sort{
+            .morningicon{
+                font-size: 12px;
+                opacity: 0.35;
+
+                &:hover{
+                    cursor: pointer;
+                    opacity: 0.7;
+                }
             }
         }
     }
@@ -144,27 +143,23 @@ mor-table{
         }
     }
 
-    &.align-left .title-table,
-    &.align-left .normal-table,
+    &.align-left .morning-table,
     .cell-align-left{
         text-align: left;
     }
 
-    &.align-center .title-table,
-    &.align-center .normal-table,
+    &.align-center .morning-table,
     .cell-align-center{
         text-align: center;
     }
 
-    &.align-right .title-table,
-    &.align-right .normal-table,
+    &.align-right .morning-table,
     .cell-align-right{
         text-align: right;
     }
 
     &.vertical-border{
-        .title-table,
-        .normal-table{
+        .morning-table{
             th,
             td{
                 border-left-width: 1px !important;
@@ -179,8 +174,7 @@ mor-table{
     }
 
     &.horizontal-border{
-        .title-table,
-        .normal-table{
+        .morning-table{
             th,
             td{
                 border-top-width: 1px !important;
@@ -202,9 +196,7 @@ mor-table{
             color: @colorWhite;
         }
 
-        .title-table,
-        .normal-table,
-        .wrap{
+        .co-style{
             border-color: darken(@colorTheme, 20%) !important;
 
             th,
@@ -224,18 +216,14 @@ mor-table{
             }
         }
 
-        &.ts-zp .title-table,
-        &.ts-zp .normal-table,
-        &.ts-zp .wrap{
+        &.ts-zp .co-style{
             tr:nth-child(2n) td{
                 background-color: darken(@colorTheme, 10%);
             }
         }
 
-        &.ts-zp .title-table,
-        &.ts-zp .normal-table,
-        .title-table,
-        .normal-table{
+        &.ts-zp .morning-table,
+        .morning-table{
             tr:hover td,
             tr.hover td{
                 background-color: darken(@colorTheme, 20%);
@@ -251,9 +239,7 @@ mor-table{
             color: @colorWhite;
         }
 
-        .title-table,
-        .normal-table,
-        .wrap{
+        .co-style{
             border-color: darken(@colorLightTheme, 25%) !important;
 
             th,
@@ -273,18 +259,14 @@ mor-table{
             }
         }
 
-        &.ts-zp .title-table,
-        &.ts-zp .normal-table,
-        &.ts-zp .wrap{
+        &.ts-zp .co-style{
             tr:nth-child(2n) td{
                 background-color: darken(@colorLightTheme, 10%);
             }
         }
 
-        &.ts-zp .title-table,
-        &.ts-zp .normal-table,
-        .title-table,
-        .normal-table{
+        &.ts-zp .morning-table,
+        .morning-table{
             tr:hover td,
             tr.hover td{
                 background-color: darken(@colorLightTheme, 25%);
@@ -300,9 +282,7 @@ mor-table{
             color: @colorWhite;
         }
 
-        .title-table,
-        .normal-table,
-        .wrap{
+        .co-style{
             border-color: darken(@colorDarkTheme, 20%) !important;
 
             th,
@@ -322,18 +302,14 @@ mor-table{
             }
         }
 
-        &.ts-zp .title-table,
-        &.ts-zp .normal-table,
-        &.ts-zp .wrap{
+        &.ts-zp .co-style{
             tr:nth-child(2n) td{
                 background-color: darken(@colorDarkTheme, 10%);
             }
         }
 
-        &.ts-zp .title-table,
-        &.ts-zp .normal-table,
-        .title-table,
-        .normal-table{
+        &.ts-zp .morning-table,
+        .morning-table{
             tr:hover td,
             tr.hover td{
                 background-color: darken(@colorDarkTheme, 20%);
@@ -349,9 +325,7 @@ mor-table{
             color: @colorWhite;
         }
 
-        .title-table,
-        .normal-table,
-        .wrap{
+        .co-style{
             border-color: darken(@colorSuccess, 25%) !important;
 
             th,
@@ -371,18 +345,14 @@ mor-table{
             }
         }
 
-        &.ts-zp .title-table,
-        &.ts-zp .normal-table,
-        &.ts-zp .wrap{
+        &.ts-zp .co-style{
             tr:nth-child(2n) td{
                 background-color: darken(@colorSuccess, 10%);
             }
         }
 
-        &.ts-zp .title-table,
-        &.ts-zp .normal-table,
-        .title-table,
-        .normal-table{
+        &.ts-zp .morning-table,
+        .morning-table{
             tr:hover td,
             tr.hover td{
                 background-color: darken(@colorSuccess, 25%);
@@ -398,9 +368,7 @@ mor-table{
             color: @colorWhite;
         }
 
-        .title-table,
-        .normal-table,
-        .wrap{
+        .co-style{
             border-color: darken(@colorWarning, 25%) !important;
 
             th,
@@ -420,18 +388,14 @@ mor-table{
             }
         }
 
-        &.ts-zp .title-table,
-        &.ts-zp .normal-table,
-        &.ts-zp .wrap{
+        &.ts-zp .co-style{
             tr:nth-child(2n) td{
                 background-color: darken(@colorWarning, 10%);
             }
         }
 
-        &.ts-zp .title-table,
-        &.ts-zp .normal-table,
-        .title-table,
-        .normal-table{
+        &.ts-zp .morning-table,
+        .morning-table{
             tr:hover td,
             tr.hover td{
                 background-color: darken(@colorWarning, 25%);
@@ -447,9 +411,7 @@ mor-table{
             color: @colorWhite;
         }
 
-        .title-table,
-        .normal-table,
-        .wrap{
+        .co-style{
             border-color: darken(@colorDanger, 25%) !important;
 
             th,
@@ -469,18 +431,14 @@ mor-table{
             }
         }
 
-        &.ts-zp .title-table,
-        &.ts-zp .normal-table,
-        &.ts-zp .wrap{
+        &.ts-zp .co-style{
             tr:nth-child(2n) td{
                 background-color: darken(@colorDanger, 10%);
             }
         }
 
-        &.ts-zp .title-table,
-        &.ts-zp .normal-table,
-        .title-table,
-        .normal-table{
+        &.ts-zp .morning-table,
+        .morning-table{
             tr:hover td,
             tr.hover td{
                 background-color: darken(@colorDanger, 25%);
@@ -496,9 +454,7 @@ mor-table{
             color: @colorWhite;
         }
 
-        .title-table,
-        .normal-table,
-        .wrap{
+        .co-style{
             border-color: darken(@colorPrimary, 25%) !important;
 
             th,
@@ -518,18 +474,14 @@ mor-table{
             }
         }
 
-        &.ts-zp .title-table,
-        &.ts-zp .normal-table,
-        &.ts-zp .wrap{
+        &.ts-zp .co-style{
             tr:nth-child(2n) td{
                 background-color: darken(@colorPrimary, 10%);
             }
         }
 
-        &.ts-zp .title-table,
-        &.ts-zp .normal-table,
-        .title-table,
-        .normal-table{
+        &.ts-zp .morning-table,
+        .morning-table{
             tr:hover td,
             tr.hover td{
                 background-color: darken(@colorPrimary, 25%);
@@ -545,9 +497,7 @@ mor-table{
             color: @colorWhite;
         }
 
-        .title-table,
-        .normal-table,
-        .wrap{
+        .co-style{
             border-color: darken(@colorMinor, 25%) !important;
 
             th,
@@ -567,18 +517,14 @@ mor-table{
             }
         }
 
-        &.ts-zp .title-table,
-        &.ts-zp .normal-table,
-        &.ts-zp .wrap{
+        &.ts-zp .co-style{
             tr:nth-child(2n) td{
                 background-color: darken(@colorMinor, 10%);
             }
         }
 
-        &.ts-zp .title-table,
-        &.ts-zp .normal-table,
-        .title-table,
-        .normal-table{
+        &.ts-zp .morning-table,
+        .morning-table{
             tr:hover td,
             tr.hover td{
                 background-color: darken(@colorMinor, 25%);
@@ -594,9 +540,7 @@ mor-table{
             color: @colorWhite;
         }
 
-        .title-table,
-        .normal-table,
-        .wrap{
+        .co-style{
             border-color: darken(@colorInfo, 25%) !important;
 
             th,
@@ -616,18 +560,14 @@ mor-table{
             }
         }
 
-        &.ts-zp .title-table,
-        &.ts-zp .normal-table,
-        &.ts-zp .wrap{
+        &.ts-zp .co-style{
             tr:nth-child(2n) td{
                 background-color: darken(@colorInfo, 10%);
             }
         }
 
-        &.ts-zp .title-table,
-        &.ts-zp .normal-table,
-        .title-table,
-        .normal-table{
+        &.ts-zp .morning-table,
+        .morning-table{
             tr:hover td,
             tr.hover td{
                 background-color: darken(@colorInfo, 25%);
@@ -643,9 +583,7 @@ mor-table{
             color: @colorWhite;
         }
 
-        .title-table,
-        .normal-table,
-        .wrap{
+        .co-style{
             border-color: @colorBlack !important;
 
             th,
@@ -665,18 +603,14 @@ mor-table{
             }
         }
 
-        &.ts-zp .title-table,
-        &.ts-zp .normal-table,
-        &.ts-zp .wrap{
+        &.ts-zp .co-style{
             tr:nth-child(2n) td{
                 background-color: darken(@colorBlack, 10%);
             }
         }
 
-        &.ts-zp .title-table,
-        &.ts-zp .normal-table,
-        .title-table,
-        .normal-table{
+        &.ts-zp .morning-table,
+        .morning-table{
             tr:hover td,
             tr.hover td{
                 background-color: @colorBlack;
@@ -692,9 +626,7 @@ mor-table{
             color: @colorWhite;
         }
 
-        .title-table,
-        .normal-table,
-        .wrap{
+        .co-style{
             border-color: @colorLightBlack !important;
 
             th,
@@ -714,18 +646,14 @@ mor-table{
             }
         }
 
-        &.ts-zp .title-table,
-        &.ts-zp .normal-table,
-        &.ts-zp .wrap{
+        &.ts-zp .co-style{
             tr:nth-child(2n) td{
                 background-color: darken(@colorLightBlack, 10%);
             }
         }
 
-        &.ts-zp .title-table,
-        &.ts-zp .normal-table,
-        .title-table,
-        .normal-table{
+        &.ts-zp .morning-table,
+        .morning-table{
             tr:hover td,
             tr.hover td{
                 background-color: @colorLightBlack;
@@ -741,9 +669,7 @@ mor-table{
             color: @colorWhite;
         }
 
-        .title-table,
-        .normal-table,
-        .wrap{
+        .co-style{
             border-color: @colorExtraLightBlack !important;
 
             th,
@@ -763,18 +689,14 @@ mor-table{
             }
         }
 
-        &.ts-zp .title-table,
-        &.ts-zp .normal-table,
-        &.ts-zp .wrap{
+        &.ts-zp .co-style{
             tr:nth-child(2n) td{
                 background-color: darken(@colorExtraLightBlack, 10%);
             }
         }
 
-        &.ts-zp .title-table,
-        &.ts-zp .normal-table,
-        .title-table,
-        .normal-table{
+        &.ts-zp .morning-table,
+        .morning-table{
             tr:hover td,
             tr.hover td{
                 background-color: @colorExtraLightBlack;
@@ -790,9 +712,7 @@ mor-table{
             color: @colorWhite;
         }
 
-        .title-table,
-        .normal-table,
-        .wrap{
+        .co-style{
             border-color: darken(@colorBlue, 25%) !important;
 
             th,
@@ -812,18 +732,14 @@ mor-table{
             }
         }
 
-        &.ts-zp .title-table,
-        &.ts-zp .normal-table,
-        &.ts-zp .wrap{
+        &.ts-zp .co-style{
             tr:nth-child(2n) td{
                 background-color: darken(@colorBlue, 15%);
             }
         }
 
-        &.ts-zp .title-table,
-        &.ts-zp .normal-table,
-        .title-table,
-        .normal-table{
+        &.ts-zp .morning-table,
+        .morning-table{
             tr:hover td,
             tr.hover td{
                 background-color: darken(@colorBlue, 25%);
@@ -839,9 +755,7 @@ mor-table{
             color: @colorWhite;
         }
 
-        .title-table,
-        .normal-table,
-        .wrap{
+        .co-style{
             border-color: darken(@colorLightBlue, 25%) !important;
 
             th,
@@ -861,18 +775,14 @@ mor-table{
             }
         }
 
-        &.ts-zp .title-table,
-        &.ts-zp .normal-table,
-        &.ts-zp .wrap{
+        &.ts-zp .co-style{
             tr:nth-child(2n) td{
                 background-color: darken(@colorLightBlue, 15%);
             }
         }
 
-        &.ts-zp .title-table,
-        &.ts-zp .normal-table,
-        .title-table,
-        .normal-table{
+        &.ts-zp .morning-table,
+        .morning-table{
             tr:hover td,
             tr.hover td{
                 background-color: darken(@colorLightBlue, 25%);
@@ -888,9 +798,7 @@ mor-table{
             color: @colorWhite;
         }
 
-        .title-table,
-        .normal-table,
-        .wrap{
+        .co-style{
             border-color: darken(@colorExtraLightBlue, 25%) !important;
 
             th,
@@ -910,18 +818,14 @@ mor-table{
             }
         }
 
-        &.ts-zp .title-table,
-        &.ts-zp .normal-table,
-        &.ts-zp .wrap{
+        &.ts-zp .co-style{
             tr:nth-child(2n) td{
                 background-color: darken(@colorExtraLightBlue, 15%);
             }
         }
 
-        &.ts-zp .title-table,
-        &.ts-zp .normal-table,
-        .title-table,
-        .normal-table{
+        &.ts-zp .morning-table,
+        .morning-table{
             tr:hover td,
             tr.hover td{
                 background-color: darken(@colorExtraLightBlue, 25%);
@@ -937,9 +841,7 @@ mor-table{
             color: @colorBlack;
         }
 
-        .title-table,
-        .normal-table,
-        .wrap{
+        .co-style{
             border-color: darken(@colorSilver, 10%) !important;
 
             th,
@@ -959,18 +861,14 @@ mor-table{
             }
         }
 
-        &.ts-zp .title-table,
-        &.ts-zp .normal-table,
-        &.ts-zp .wrap{
+        &.ts-zp .co-style{
             tr:nth-child(2n) td{
                 background-color: @colorSilver;
             }
         }
 
-        &.ts-zp .title-table,
-        &.ts-zp .normal-table,
-        .title-table,
-        .normal-table{
+        &.ts-zp .morning-table,
+        .morning-table{
             tr:hover td,
             tr.hover td{
                 background-color: darken(@colorSilver, 10%);
@@ -986,9 +884,7 @@ mor-table{
             color: @colorBlack;
         }
 
-        .title-table,
-        .normal-table,
-        .wrap{
+        .co-style{
             border-color: darken(@colorLightSilver, 10%) !important;
 
             th,
@@ -1008,18 +904,14 @@ mor-table{
             }
         }
 
-        &.ts-zp .title-table,
-        &.ts-zp .normal-table,
-        &.ts-zp .wrap{
+        &.ts-zp .co-style{
             tr:nth-child(2n) td{
                 background-color: @colorLightSilver;
             }
         }
 
-        &.ts-zp .title-table,
-        &.ts-zp .normal-table,
-        .title-table,
-        .normal-table{
+        &.ts-zp .morning-table,
+        .morning-table{
             tr:hover td,
             tr.hover td{
                 background-color: darken(@colorLightSilver, 10%);
@@ -1035,9 +927,7 @@ mor-table{
             color: @colorBlack;
         }
 
-        .title-table,
-        .normal-table,
-        .wrap{
+        .co-style{
             border-color: darken(@colorExtraLightSilver, 10%) !important;
 
             th,
@@ -1057,18 +947,14 @@ mor-table{
             }
         }
 
-        &.ts-zp .title-table,
-        &.ts-zp .normal-table,
-        &.ts-zp .wrap{
+        &.ts-zp .co-style{
             tr:nth-child(2n) td{
                 background-color: @colorExtraLightSilver;
             }
         }
 
-        &.ts-zp .title-table,
-        &.ts-zp .normal-table,
-        .title-table,
-        .normal-table{
+        &.ts-zp .morning-table,
+        .morning-table{
             tr:hover td,
             tr.hover td{
                 background-color: darken(@colorExtraLightSilver, 10%);
@@ -1084,9 +970,7 @@ mor-table{
             color: @colorBlack;
         }
 
-        .title-table,
-        .normal-table,
-        .wrap{
+        .co-style{
             border-color: darken(@colorGray, 5%) !important;
 
             th,
@@ -1106,18 +990,14 @@ mor-table{
             }
         }
 
-        &.ts-zp .title-table,
-        &.ts-zp .normal-table,
-        &.ts-zp .wrap{
+        &.ts-zp .co-style{
             tr:nth-child(2n) td{
                 background-color: @colorGray;
             }
         }
 
-        &.ts-zp .title-table,
-        &.ts-zp .normal-table,
-        .title-table,
-        .normal-table{
+        &.ts-zp .morning-table,
+        .morning-table{
             tr:hover td,
             tr.hover td{
                 background-color: darken(@colorGray, 5%);
@@ -1133,9 +1013,7 @@ mor-table{
             color: @colorBlack;
         }
 
-        .title-table,
-        .normal-table,
-        .wrap{
+        .co-style{
             border-color: darken(@colorLightGray, 5%) !important;
 
             th,
@@ -1155,18 +1033,14 @@ mor-table{
             }
         }
 
-        &.ts-zp .title-table,
-        &.ts-zp .normal-table,
-        &.ts-zp .wrap{
+        &.ts-zp .co-style{
             tr:nth-child(2n) td{
                 background-color: @colorLightGray;
             }
         }
 
-        &.ts-zp .title-table,
-        &.ts-zp .normal-table,
-        .title-table,
-        .normal-table{
+        &.ts-zp .morning-table,
+        .morning-table{
             tr:hover td,
             tr.hover td{
                 background-color: darken(@colorLightGray, 5%);
@@ -1182,9 +1056,7 @@ mor-table{
             color: @colorBlack;
         }
 
-        .title-table,
-        .normal-table,
-        .wrap{
+        .co-style{
             border-color: darken(@colorWhite, 5%) !important;
 
             th,
@@ -1204,18 +1076,14 @@ mor-table{
             }
         }
 
-        &.ts-zp .title-table,
-        &.ts-zp .normal-table,
-        &.ts-zp .wrap{
+        &.ts-zp .co-style{
             tr:nth-child(2n) td{
                 background-color: darken(@colorWhite, 2%);
             }
         }
 
-        &.ts-zp .title-table,
-        &.ts-zp .normal-table,
-        .title-table,
-        .normal-table{
+        &.ts-zp .morning-table,
+        .morning-table{
             tr:hover td,
             tr.hover td{
                 background-color: darken(@colorWhite, 5%);
@@ -1223,8 +1091,7 @@ mor-table{
         }
     }
 
-    .title-table,
-    .normal-table{
+    .morning-table{
         th,
         td{
             &.cco-t{
