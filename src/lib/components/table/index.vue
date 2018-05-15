@@ -30,7 +30,7 @@
         </header>
     </template>
 
-    <table class="wrap">
+    <table class="wrap co-style">
         <tbody>
             <tr v-if="conf.fixedTitleCol[0] === 'r'">
                 <td>
@@ -208,7 +208,7 @@ export default {
             classes[`title-col-${this.conf.fixedTitleCol}`] = true;
 
             return Object.assign({
-                'zebra-pattern' : this.conf.zebraPattern,
+                'ts-zp' : this.conf.zebraPattern,
                 'vertical-border' : this.conf.verticalBorder,
                 'horizontal-border' : this.conf.horizontalBorder,
                 'has-title-col' : (this.data.titleKeys.length > 0)
@@ -434,7 +434,7 @@ export default {
 
                         if ($cell && set.style) {
                         
-                            $cell.classList.add(`cell-co-${set.style}`);
+                            $cell.classList.add(`cco-${this._getColorShortName(set.style)}`);
 
                         }
 
@@ -510,7 +510,7 @@ export default {
 
                         if (set.style) {
                             
-                            $cell.classList.add(`cell-co-${set.style}`);
+                            $cell.classList.add(`cco-${this._getColorShortName(set.style)}`);
 
                         }
 
@@ -587,7 +587,7 @@ export default {
 
                         if (set.style) {
                             
-                            $cell.classList.add(`cell-co-${set.style}`);
+                            $cell.classList.add(`cco-${this._getColorShortName(set.style)}`);
 
                         }
 

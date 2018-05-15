@@ -112,6 +112,7 @@
     $ npm run report                                # 生成所有测试报告
     $ npm run commit                                # 提交处理，包含：构建项目、生成测试报告
     $ npm run doc                                   # 启动文档服务，可通过`--port`参数设置服务监听端口
+    $ npm run css-analysis                          # 执行CSS分析，分析各个组件占用的CSS大小，此工具可以帮助你优化CSS
     ```
     
     </script>

@@ -18,7 +18,7 @@
         ></slot>
     </div>
 
-    <div class="pagination">
+    <div class="list">
         <template v-for="index in data.total">
         
             <template v-if="(data.hideEnd - 1) === index && data.hideEnd !== 1">

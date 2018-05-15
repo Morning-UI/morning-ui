@@ -157,7 +157,7 @@
                     </td>
                     <td class="mark">
                         <p>JS: 349kb</p>
-                        <p>CSS: 224kb</p>
+                        <p>CSS: 186kb</p>
                     </td>
                 </tr>
                 <tr>

@@ -92,6 +92,11 @@ export default (Vue, morning) => Vue.extend({
     
             return conf;
 
+        },
+        _getColorShortName : function (name) {
+
+            return morning._colorShortName[name];
+
         }
     },
     beforeCreate : function () {
@@ -130,7 +135,7 @@ export default (Vue, morning) => Vue.extend({
             
             } else {
                 
-                this.colorClass = `co-${val}`;
+                this.colorClass = `co-${this._getColorShortName(val)}`;
 
             }
 

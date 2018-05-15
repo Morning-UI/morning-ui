@@ -23,9 +23,9 @@
 @borderRadius : 3px;
 @gridColumnNumber : 24;
 @gridGutterWidth : 1%;
-@gridColumnWidth : (100% - (@gridColumnNumber - 1)*@gridGutterWidth)/@gridColumnNumber;
-@gridColumnWidthGapAverage : (100% - (@gridColumnNumber + 1)*@gridGutterWidth)/@gridColumnNumber;
-@gridColumnWidthWithoutGap : 100%/@gridColumnNumber;
+@gridColumnWidth : round((100% - (@gridColumnNumber - 1)*@gridGutterWidth)/@gridColumnNumber, 3);
+@gridColumnWidthGapAverage : round((100% - (@gridColumnNumber + 1)*@gridGutterWidth)/@gridColumnNumber, 3);
+@gridColumnWidthWithoutGap : round(100%/@gridColumnNumber, 3);
 @formHeight : 42px;
 @colorFormBorder : @colorGray;
 @colorFormBorderHover : darken(@colorGray, 6%);
@@ -52,91 +52,91 @@
 // ---
 
 .setup-font-color-theme() {
-    &.co-theme{
+    &.co-t{
         color: @colorTheme;
     }
 
-    &.co-light-theme{
+    &.co-lt{
         color: @colorLightTheme;
     }
 
-    &.co-dark-theme{
+    &.co-dt{
         color: @colorDarkTheme;
     }
 }
 
 .setup-font-color-feature() {
-    &.co-success{
+    &.co-s{
         color: @colorSuccess;
     }
 
-    &.co-warning{
+    &.co-w{
         color: @colorWarning;
     }
 
-    &.co-danger{
+    &.co-d{
         color: @colorDanger;
     }
 
-    &.co-primary{
+    &.co-p{
         color: @colorPrimary;
     }
 
-    &.co-minor{
+    &.co-m{
         color: @colorMinor;
     }
 
-    &.co-info{
+    &.co-i{
         color: @colorInfo;
     }
 }
 
 .setup-font-color-misc() {
-    &.co-black{
+    &.co-bk{
         color: @colorBlack;
     }
 
-    &.co-light-black{
+    &.co-lbk{
         color: @colorLightBlack;
     }
 
-    &.co-extra-light-black{
+    &.co-elbk{
         color: @colorExtraLightBlack;
     }
 
-    &.co-blue{
+    &.co-bu{
         color: @colorBlue;
     }
 
-    &.co-light-blue{
+    &.co-lbu{
         color: @colorLightBlue;
     }
 
-    &.co-extra-light-blue{
+    &.co-elbu{
         color: @colorExtraLightBlue;
     }
 
-    &.co-silver{
+    &.co-si{
         color: @colorSilver;
     }
 
-    &.co-light-silver{
+    &.co-lsi{
         color: @colorLightSilver;
     }
 
-    &.co-extra-light-silver{
+    &.co-elsi{
         color: @colorExtraLightSilver;
     }
 
-    &.co-gray{
+    &.co-g{
         color: @colorGray;
     }
 
-    &.co-light-gray{
+    &.co-lg{
         color: @colorLightGray;
     }
 
-    &.co-white{
+    &.co-wh{
         color: @colorWhite;
     }
 }

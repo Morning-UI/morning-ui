@@ -8,6 +8,29 @@ const SIZE = [
     'xs',
     'xxs'
 ];
+const COLOR_SHORT_MAP = {
+    theme : 't',
+    'light-theme' : 'lt',
+    'dark-theme' : 'dt',
+    success : 's',
+    warning : 'w',
+    danger : 'd',
+    primary : 'p',
+    minor : 'm',
+    info : 'i',
+    black : 'bk',
+    'light-black' : 'lbk',
+    'extra-light-black' : 'elbk',
+    blue : 'bu',
+    'light-blue' : 'lbu',
+    'extra-light-blue' : 'elbu',
+    silver : 'si',
+    'light-silver' : 'lsi',
+    'extra-light-silver' : 'elsi',
+    gray : 'g',
+    'light-gray' : 'lg',
+    white : 'wh'
+};
 const COLOR = [
     'theme',
     'light-theme',
@@ -110,8 +133,18 @@ let e2eStatementFnString = `(ctx, type, attrs, basicDemoSelector) => {
             }
 
             if (typeof attr === 'object') {
+
+                let el;
                 
-                let el = $('[name="形态"] '+prefix[type]+item+' '+attr.child).eq(0);
+                if (type === 'color') {
+
+                    el = $('[name="形态"] '+prefix[type]+ctx.common.COLOR_SHORT_MAP[item]+' '+attr.child).eq(0);
+
+                } else {
+            
+                    el = $('[name="形态"] '+prefix[type]+item+' '+attr.child).eq(0);
+
+                }
                 
                 for (let sattr of attr.attrs) {
     
@@ -120,8 +153,16 @@ let e2eStatementFnString = `(ctx, type, attrs, basicDemoSelector) => {
                 }
 
             } else {
+                
+                if (type === 'color') {
 
-                data[type][item][attr] = $('[name="形态"] '+prefix[type]+item).eq(0).css(attr);
+                    data[type][item][attr] = $('[name="形态"] '+prefix[type]+ctx.common.COLOR_SHORT_MAP[item]).eq(0).css(attr);
+
+                } else {
+
+                    data[type][item][attr] = $('[name="形态"] '+prefix[type]+item).eq(0).css(attr);
+
+                }
 
             }
 
@@ -147,6 +188,7 @@ export default {
     TEST_HOST,
     SIZE,
     COLOR,
+    COLOR_SHORT_MAP,
     STATE_NA,
     e2eStatementFnString,
     e2eBasicFnString

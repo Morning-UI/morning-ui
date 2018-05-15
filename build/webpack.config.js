@@ -213,7 +213,8 @@ prodVerConfig = extend(
                         use : [{
                             loader : 'css-loader',
                             options : {
-                                importLoaders : 3
+                                importLoaders : 3,
+                                minimize : true
                             }
                         }, {
                             loader : 'clean-css-loader'
@@ -247,7 +248,8 @@ prodVerConfig = extend(
                                 use : [{
                                     loader : 'css-loader',
                                     options : {
-                                        importLoaders : 3
+                                        importLoaders : 3,
+                                        minimize : true
                                     }
                                 }, {
                                     loader : 'clean-css-loader'

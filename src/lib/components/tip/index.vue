@@ -10,8 +10,8 @@
         :auto-reverse="autoReverse"
     >
     
-    <div class="tip-arrow"></div>
-    <div class="tip-content">
+    <div class="arrow"></div>
+    <div class="con">
         <template v-if="!$slots.default">
             {{data.title}}
         </template>
