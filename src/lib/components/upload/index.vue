@@ -34,8 +34,8 @@
         @change="_getFiles"
     />
 
-    <div class="filelist">
-        <p class="name" v-if="!conf.hideName"><morning-center class="fill">{{conf.formName}}</morning-center></p>
+    <div class="fl">
+        <p class="fl-name" v-if="!conf.hideName"><morning-center class="fill">{{conf.formName}}</morning-center></p>
 
         <div class="filewrap" :class="{hidename:conf.hideName}">
             

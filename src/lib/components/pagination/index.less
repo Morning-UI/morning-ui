@@ -7,7 +7,7 @@ mor-pagination{
         margin-bottom: 1em;
     }
 
-    > .pagination{
+    > .list{
         font-size: 0;
         vertical-align: top !important;
         text-align: center;
@@ -27,6 +27,10 @@ mor-pagination{
                 cursor: default;
                 line-height: 1.8em;
                 padding: 0 0.2em;
+            }
+
+            &.current{
+                color: @colorWhite !important;
             }
 
             .morningicon{
@@ -117,7 +121,7 @@ mor-pagination{
     }
 
     &.si-xxl{
-        .pagination{
+        .list{
             > a{
                 font-size: @fontSize*1.3;
             }
@@ -136,7 +140,7 @@ mor-pagination{
     }
 
     &.si-xl{
-        .pagination{
+        .list{
             > a{
                 font-size: @fontSize*1.2;
             }
@@ -155,7 +159,7 @@ mor-pagination{
     }
 
     &.si-l{
-        .pagination{
+        .list{
             > a{
                 font-size: @fontSize*1.1;
             }
@@ -174,7 +178,7 @@ mor-pagination{
     }
 
     &.si-m{
-        .pagination{
+        .list{
             > a{
                 font-size: @fontSize*1;
             }
@@ -193,7 +197,7 @@ mor-pagination{
     }
 
     &.si-s{
-        .pagination{
+        .list{
             > a{
                 font-size: @fontSize*0.875;
             }
@@ -212,7 +216,7 @@ mor-pagination{
     }
 
     &.si-xs{
-        .pagination{
+        .list{
             > a{
                 font-size: @fontSize*0.75;
                 padding: 0 0.6em;
@@ -242,7 +246,7 @@ mor-pagination{
     }
 
     &.si-xxs{
-        .pagination{
+        .list{
             > a{
                 font-size: @fontSize*0.75;
                 padding: 0 0.4em;
@@ -272,142 +276,127 @@ mor-pagination{
     }
 
     &.co-t{
-        .pagination > a{
+        .list > a{
             &.current{
                 background-color: @colorTheme !important;
-                color: @colorWhite !important;
             }
         }
     }
 
     &.co-lt{
-        .pagination > a{
+        .list > a{
             &.current{
                 background-color: @colorLightTheme !important;
-                color: @colorWhite !important;
             }
         }
     }
 
     &.co-dt{
-        .pagination > a{
+        .list > a{
             &.current{
                 background-color: @colorDarkTheme !important;
-                color: @colorWhite !important;
             }
         }
     }
 
     &.co-s{
-        .pagination > a{
+        .list > a{
             &.current{
                 background-color: @colorSuccess !important;
-                color: @colorWhite !important;
             }
         }
     }
 
     &.co-w{
-        .pagination > a{
+        .list > a{
             &.current{
                 background-color: @colorWarning !important;
-                color: @colorWhite !important;
             }
         }
     }
 
     &.co-d{
-        .pagination > a{
+        .list > a{
             &.current{
                 background-color: @colorDanger !important;
-                color: @colorWhite !important;
             }
         }
     }
 
     &.co-p{
-        .pagination > a{
+        .list > a{
             &.current{
                 background-color: @colorPrimary !important;
-                color: @colorWhite !important;
             }
         }
     }
 
     &.co-m{
-        .pagination > a{
+        .list > a{
             &.current{
                 background-color: @colorMinor !important;
-                color: @colorWhite !important;
             }
         }
     }
 
     &.co-i{
-        .pagination > a{
+        .list > a{
             &.current{
                 background-color: @colorInfo !important;
-                color: @colorWhite !important;
             }
         }
     }
 
     &.co-bk{
-        .pagination > a{
+        .list > a{
             &.current{
                 background-color: @colorBlack !important;
-                color: @colorWhite !important;
             }
         }
     }
 
     &.co-lbk{
-        .pagination > a{
+        .list > a{
             &.current{
                 background-color: @colorLightBlack !important;
-                color: @colorWhite !important;
             }
         }
     }
 
     &.co-elbk{
-        .pagination > a{
+        .list > a{
             &.current{
                 background-color: @colorExtraLightBlack !important;
-                color: @colorWhite !important;
             }
         }
     }
 
     &.co-bu{
-        .pagination > a{
+        .list > a{
             &.current{
                 background-color: @colorBlue !important;
-                color: @colorWhite !important;
             }
         }
     }
 
     &.co-lbu{
-        .pagination > a{
+        .list > a{
             &.current{
                 background-color: @colorLightBlue !important;
-                color: @colorWhite !important;
             }
         }
     }
 
     &.co-elbu{
-        .pagination > a{
+        .list > a{
             &.current{
                 background-color: @colorExtraLightBlue !important;
-                color: @colorWhite !important;
             }
         }
     }
 
     &.co-si{
-        .pagination > a{
+        .list > a{
             background-color: @colorExtraLightBlack !important;
             color: @colorWhite !important;
 
@@ -419,7 +408,7 @@ mor-pagination{
     }
 
     &.co-lsi{
-        .pagination > a{
+        .list > a{
             background-color: @colorExtraLightBlack !important;
             color: @colorWhite !important;
 
@@ -431,7 +420,7 @@ mor-pagination{
     }
 
     &.co-elsi{
-        .pagination > a{
+        .list > a{
             background-color: @colorExtraLightBlack !important;
             color: @colorWhite !important;
 
@@ -443,7 +432,7 @@ mor-pagination{
     }
 
     &.co-g{
-        .pagination > a{
+        .list > a{
             background-color: @colorBlack !important;
             color: @colorWhite !important;
 
@@ -455,7 +444,7 @@ mor-pagination{
     }
 
     &.co-lg{
-        .pagination > a{
+        .list > a{
             background-color: @colorBlack !important;
             color: @colorWhite !important;
 
@@ -467,7 +456,7 @@ mor-pagination{
     }
 
     &.co-wh{
-        .pagination > a{
+        .list > a{
             background-color: @colorBlack !important;
             color: @colorWhite !important;
 

@@ -1,5 +1,5 @@
 <template>
-    <table class="normal-table morning-table co-style">
+    <table class="normal-table table co-style">
         <thead v-if="conf.showColName">
             <tr>
                 <template v-for="key of data.normalKeys">

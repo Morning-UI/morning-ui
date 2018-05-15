@@ -15,7 +15,7 @@
 
     <div class="note" v-if="!conf.hideName">{{conf.formName}}</div>
 
-    <div class="itemlist">
+    <div class="il">
         <template v-for="(name, key) in conf.list">
 
             <template v-if="data.value.indexOf(key) !== -1">

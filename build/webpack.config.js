@@ -380,7 +380,7 @@ getDocsEntry(docsConfig);
 getDocsHtmlPlugin(docsConfig);
 
 module.exports = [
-    // devVerConfig,
+    devVerConfig,
     prodVerConfig,
-    // docsConfig
+    docsConfig
 ];

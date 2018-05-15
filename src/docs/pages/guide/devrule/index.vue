@@ -51,6 +51,8 @@
     - LESS中的`id`、`class`、函数命名采用中划线命名<ui-badge size="xxs" class="circle">AUTO</ui-badge>
     - 形态在LESS中的书写顺序为：尺寸、颜色、状态
     - 组件的公开方法若不需要返回值，则返回当前`vm`实例
+    - 编写CSS类名时应该仅可能简短
+    - 编写CSS选择器时尽可能减少嵌套
 
     #### 交互组件
 

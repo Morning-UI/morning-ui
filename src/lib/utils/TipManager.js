@@ -30,8 +30,11 @@ let TipManager = {
                 element : null,
                 target : null,
                 targetOffset : '0 0',
-                classPrefix : 'morning-tether',
-                offset : '0 0'
+                classPrefix : 'mor-tet',
+                offset : '0 0',
+                classes : {
+                    'element-attached' : 'tet-ea'
+                }
             }, this.Tip.options, options);
 
             options.attachment = this.Tip.attachmentMap[options.placement];
@@ -169,7 +172,7 @@ let TipManager = {
 
             for (let cls of classes) {
 
-                let reg = new RegExp(`^(${this.Tip.options.classPrefix}|tether)\\-`, 'g');
+                let reg = new RegExp(`^(${this.Tip.options.classPrefix}|tether|tet)\\-`, 'g');
 
                 if (reg.test(cls)) {
 

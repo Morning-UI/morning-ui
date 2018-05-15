@@ -14,7 +14,7 @@ mor-radio{
         -webkit-user-select: text;
     }
 
-    > .itemlist{
+    > .il{
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
@@ -83,112 +83,112 @@ mor-radio{
     }
 
     &.co-t{
-        > .itemlist label.checked .box{
+        > .il label.checked .box{
             background: @colorTheme;
             border-color: @colorTheme;
         }
     }
 
     &.co-lt{
-        > .itemlist label.checked .box{
+        > .il label.checked .box{
             background: @colorLightTheme;
             border-color: @colorLightTheme;
         }
     }
 
     &.co-dt{
-        > .itemlist label.checked .box{
+        > .il label.checked .box{
             background: @colorDarkTheme;
             border-color: @colorDarkTheme;
         }
     }
 
     &.co-s{
-        > .itemlist label.checked .box{
+        > .il label.checked .box{
             background: @colorSuccess;
             border-color: @colorSuccess;
         }
     }
 
     &.co-w{
-        > .itemlist label.checked .box{
+        > .il label.checked .box{
             background: @colorWarning;
             border-color: @colorWarning;
         }
     }
 
     &.co-d{
-        > .itemlist label.checked .box{
+        > .il label.checked .box{
             background: @colorDanger;
             border-color: @colorDanger;
         }
     }
 
     &.co-p{
-        > .itemlist label.checked .box{
+        > .il label.checked .box{
             background: @colorPrimary;
             border-color: @colorPrimary;
         }
     }
 
     &.co-m{
-        > .itemlist label.checked .box{
+        > .il label.checked .box{
             background: @colorMinor;
             border-color: @colorMinor;
         }
     }
 
     &.co-i{
-        > .itemlist label.checked .box{
+        > .il label.checked .box{
             background: @colorInfo;
             border-color: @colorInfo;
         }
     }
 
     &.co-bk{
-        > .itemlist label.checked .box{
+        > .il label.checked .box{
             background: @colorBlack;
             border-color: @colorBlack;
         }
     }
 
     &.co-lbk{
-        > .itemlist label.checked .box{
+        > .il label.checked .box{
             background: @colorLightBlack;
             border-color: @colorLightBlack;
         }
     }
 
     &.co-elbk{
-        > .itemlist label.checked .box{
+        > .il label.checked .box{
             background: @colorExtraLightBlack;
             border-color: @colorExtraLightBlack;
         }
     }
 
     &.co-bu{
-        > .itemlist label.checked .box{
+        > .il label.checked .box{
             background: @colorBlue;
             border-color: @colorBlue;
         }
     }
 
     &.co-lbu{
-        > .itemlist label.checked .box{
+        > .il label.checked .box{
             background: @colorLightBlue;
             border-color: @colorLightBlue;
         }
     }
 
     &.co-elbu{
-        > .itemlist label.checked .box{
+        > .il label.checked .box{
             background: @colorExtraLightBlue;
             border-color: @colorExtraLightBlue;
         }
     }
 
     &.co-si{
-        > .itemlist label{
+        > .il label{
             span{
                 color: @colorExtraLightBlue;
             }
@@ -219,7 +219,7 @@ mor-radio{
     }
 
     &.co-lsi{
-        > .itemlist label{
+        > .il label{
             span{
                 color: @colorExtraLightBlue;
             }
@@ -250,7 +250,7 @@ mor-radio{
     }
 
     &.co-elsi{
-        > .itemlist label{
+        > .il label{
             span{
                 color: @colorExtraLightBlue;
             }
@@ -281,7 +281,7 @@ mor-radio{
     }
 
     &.co-g{
-        > .itemlist label{
+        > .il label{
             span{
                 color: @colorGray;
             }
@@ -312,7 +312,7 @@ mor-radio{
     }
 
     &.co-lg{
-        > .itemlist label{
+        > .il label{
             span{
                 color: @colorGray;
             }
@@ -343,7 +343,7 @@ mor-radio{
     }
 
     &.co-wh{
-        > .itemlist label{
+        > .il label{
             span{
                 color: @colorGray;
             }
@@ -377,7 +377,7 @@ mor-radio{
 
     &.st-disabled,
     &.st-readonly{
-        > .itemlist{
+        > .il{
             > label{
                 border-color: darken(@colorFormBackgroundDisable, 5%);
                 -webkit-user-select: none;

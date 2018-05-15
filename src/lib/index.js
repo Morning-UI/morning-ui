@@ -25,7 +25,7 @@ let morning = {
         'light-theme' : 'lt',
         'dark-theme' : 'dt',
         success : 's',
-        warning : 'w', 
+        warning : 'w',
         danger : 'd',
         primary : 'p',
         minor : 'm',

@@ -125,7 +125,6 @@ mor-btn{
         &:not(.st-disabled):active,
         &.st-active{
             background-color: darken(@colorTheme, 10%);
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.25) inset;
         }
 
         &.st-disabled{
@@ -145,7 +144,6 @@ mor-btn{
         &:not(.st-disabled):active,
         &.st-active{
             background-color: darken(@colorLightTheme, 10%);
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.25) inset;
         }
 
         &.st-disabled{
@@ -165,7 +163,6 @@ mor-btn{
         &:not(.st-disabled):active,
         &.st-active{
             background-color: darken(@colorDarkTheme, 10%);
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.25) inset;
         }
 
         &.st-disabled{
@@ -185,7 +182,6 @@ mor-btn{
         &:not(.st-disabled):active,
         &.st-active{
             background-color: darken(@colorSuccess, 10%);
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.25) inset;
         }
 
         &.st-disabled{
@@ -205,7 +201,6 @@ mor-btn{
         &:not(.st-disabled):active,
         &.st-active{
             background-color: darken(@colorWarning, 10%);
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.25) inset;
         }
 
         &.st-disabled{
@@ -225,7 +220,6 @@ mor-btn{
         &:not(.st-disabled):active,
         &.st-active{
             background-color: darken(@colorDanger, 10%);
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.25) inset;
         }
 
         &.st-disabled{
@@ -245,7 +239,6 @@ mor-btn{
         &:not(.st-disabled):active,
         &.st-active{
             background-color: darken(@colorPrimary, 10%);
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.25) inset;
         }
 
         &.st-disabled{
@@ -265,7 +258,6 @@ mor-btn{
         &:not(.st-disabled):active,
         &.st-active{
             background-color: darken(@colorMinor, 10%);
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.25) inset;
         }
 
         &.st-disabled{
@@ -285,7 +277,6 @@ mor-btn{
         &:not(.st-disabled):active,
         &.st-active{
             background-color: darken(@colorInfo, 10%);
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.25) inset;
         }
 
         &.st-disabled{
@@ -365,7 +356,6 @@ mor-btn{
         &:not(.st-disabled):active,
         &.st-active{
             background-color: darken(@colorBlue, 10%);
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.25) inset;
         }
 
         &.st-disabled{
@@ -385,7 +375,6 @@ mor-btn{
         &:not(.st-disabled):active,
         &.st-active{
             background-color: darken(@colorLightBlue, 10%);
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.25) inset;
         }
 
         &.st-disabled{
@@ -405,7 +394,6 @@ mor-btn{
         &:not(.st-disabled):active,
         &.st-active{
             background-color: darken(@colorExtraLightBlue, 10%);
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.25) inset;
         }
 
         &.st-disabled{
@@ -425,7 +413,6 @@ mor-btn{
         &:not(.st-disabled):active,
         &.st-active{
             background-color: darken(@colorSilver, 6%);
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.25) inset;
         }
 
         &.st-disabled{
@@ -445,7 +432,6 @@ mor-btn{
         &:not(.st-disabled):active,
         &.st-active{
             background-color: darken(@colorLightSilver, 6%);
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.25) inset;
         }
 
         &.st-disabled{
@@ -465,7 +451,6 @@ mor-btn{
         &:not(.st-disabled):active,
         &.st-active{
             background-color: darken(@colorExtraLightSilver, 6%);
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.25) inset;
         }
 
         &.st-disabled{
@@ -485,7 +470,6 @@ mor-btn{
         &:not(.st-disabled):active,
         &.st-active{
             background-color: darken(@colorGray, 6%);
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.25) inset;
         }
 
         &.st-disabled{
@@ -505,7 +489,6 @@ mor-btn{
         &:not(.st-disabled):active,
         &.st-active{
             background-color: darken(@colorLightGray, 6%);
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.25) inset;
         }
 
         &.st-disabled{
@@ -525,7 +508,6 @@ mor-btn{
         &:not(.st-disabled):active,
         &.st-active{
             background-color: darken(@colorWhite, 6%);
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.25) inset;
         }
 
         &.st-disabled{
@@ -537,7 +519,13 @@ mor-btn{
 
     &.st-hover{}
 
-    &.st-active{}
+    &.st-active{
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.25) inset;
+    }
+
+    &:not(.st-disabled):active{
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.25) inset;
+    }
 
     &.st-disabled{
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.6) inset;

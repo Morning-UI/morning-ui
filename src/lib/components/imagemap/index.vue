@@ -52,7 +52,7 @@
     </div>
 
     <morning-dialog
-        class="mor-imagemap-dialog-map show-no-animate"
+        class="mor-imagemap-map show-no-animate"
         :class="{'imagemap-disabled' : (conf.state === 'disabled' || conf.state === 'readonly')}"
         color="gray"
         width="60%"
