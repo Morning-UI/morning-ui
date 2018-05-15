@@ -18,7 +18,7 @@
     
     ### 更新记录
 
-    ### 0.10.24 <ui-badge class="circle ver-stable" size="s" color="light-theme">Beta</ui-badge>
+    ### 0.10.24 <ui-badge class="circle ver-beta" size="s" color="extra-light-black">Beta</ui-badge>
     <ui-textcolor color="light-blue">
         <ui-small>
             发布于2018年5月14日，
