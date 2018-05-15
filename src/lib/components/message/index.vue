@@ -15,7 +15,7 @@
                     v-for="msg in data.list"
 
                     class="message"
-                    :class="'message-co-' + msg.color"
+                    :class="'message-co-' + _getColorShortName(msg.color)"
                     :key="msg.id"
                 >
                     <h1 class="title">{{msg.title}}</h1>

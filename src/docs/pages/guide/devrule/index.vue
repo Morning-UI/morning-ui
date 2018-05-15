@@ -33,7 +33,7 @@
     ```less
     &{
         .si-m;
-        .co-theme;
+        .co-t;
         .st-normal;
     }
     ```
