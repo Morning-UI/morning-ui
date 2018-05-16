@@ -1006,7 +1006,8 @@ export default {
 
                 this._set(formatDate(date, this.conf.format));
 
-                if (this.$slots.timepicker[0] &&
+                if (this.$slots.timepicker &&
+                    this.$slots.timepicker[0] &&
                     this.$slots.timepicker[0].children &&
                     this.$slots.timepicker[0].children[0]) {
 
@@ -1028,7 +1029,8 @@ export default {
                     formatDate(date[1], this.conf.format)
                 ]);
 
-                if (this.$slots.timepicker[0] &&
+                if (this.$slots.timepicker &&
+                    this.$slots.timepicker[0] &&
                     this.$slots.timepicker[0].children &&
                     this.$slots.timepicker[0].children[0]) {
 
@@ -1038,7 +1040,8 @@ export default {
 
                 }
 
-                if (this.$slots.timepicker2[0] &&
+                if (this.$slots.timepicker2 &&
+                    this.$slots.timepicker2[0] &&
                     this.$slots.timepicker2[0].children &&
                     this.$slots.timepicker2[0].children[0]) {
 
