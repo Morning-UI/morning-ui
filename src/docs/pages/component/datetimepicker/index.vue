@@ -235,7 +235,7 @@
 
     :::democode/html
     <div style="width:460px;">
-        <ui-datetimepicker form-name="日期时间" :date="+new Date('2018-03-23')" :date-selectable-range="['2018-03-08 00:00:00', '2018-03-23 00:00:00']" :default-value="['2018-03-06 12:00:00', '2018-03-09 12:00:00']" is-range></ui-datetimepicker>
+        <ui-datetimepicker form-name="日期时间" :date="+new Date('2018-03-23')" :date-selectable-range="['2018-03-08 00:00:00', '2018-03-23 00:00:00']" :default-value="['2018-03-04 12:00:00', '2018-03-29 12:00:00']" is-range></ui-datetimepicker>
     </div>
     :::
     

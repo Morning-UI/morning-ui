@@ -662,7 +662,7 @@ export default {
         },
         _getClosestDate : function (date) {
 
-            date = closestTo(date, this.data.selectableDates);
+            date = closestTo(date, this.data.selectableDates) || date;
 
             return date;
 

@@ -442,7 +442,7 @@ export default {
 
                 }
 
-                selectableDates = [start, end];
+                selectableDates = [addDays(start, 1), subDays(end, 1)];
 
             } else if (ranges instanceof Array) {
 
@@ -525,8 +525,8 @@ export default {
 
                         }
 
-                        selectableDates.push(start);
-                        selectableDates.push(end);
+                        selectableDates.push(addDays(start, 1));
+                        selectableDates.push(subDays(end, 1));
 
                     }
 
@@ -555,7 +555,8 @@ export default {
         },
         _getClosestDate : function (date) {
 
-            date = closestTo(date, this.data.selectableDates);
+
+            date = closestTo(date, this.data.selectableDates) || date;
 
             return date;
 
