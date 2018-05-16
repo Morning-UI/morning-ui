@@ -99,15 +99,23 @@
             <i class="morningicon drop">&#xe6b1;</i>
 
         </div>
-
-        <ul
-            class="list"
-            :style="listStyle"
-            @click="_listClick"
+    
+        <div
+            class="mor-select-list" 
+            :class="{
+                showlist: !!data.showlist,
+                'hide-selected' : conf.hideSelected
+            }"
         >
-            <slot></slot>
-            <li class="noitem">无项目</li>
-        </ul>
+            <ul
+                class="list"
+                :style="listStyle"
+                @click="_listClick"
+            >
+                <slot></slot>
+                <li class="noitem">无项目</li>
+            </ul>
+        </div>
     </div>
 
     <morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn">清空</morning-link>
@@ -118,12 +126,12 @@
 <script>
 import trim                         from 'trim';
 import GlobalEvent                  from 'Utils/GlobalEvent';
-import IndexManager                 from 'Utils/IndexManager';
+import TipManager                   from 'Utils/TipManager';
 
 export default {
     origin : 'Form',
     name : 'select',
-    mixins : [GlobalEvent, IndexManager],
+    mixins : [GlobalEvent, TipManager],
     props : {
         align : {
             type : String,
@@ -219,8 +227,7 @@ export default {
                 'align-left' : (this.conf.align === 'left'),
                 'align-center' : (this.conf.align === 'center'),
                 'align-right' : (this.conf.align === 'right'),
-                'input-group' : !!this.conf.prepend,
-                'hide-selected' : this.conf.hideSelected
+                'input-group' : !!this.conf.prepend
             };
 
         },
@@ -244,6 +251,7 @@ export default {
                 showlist : false,
                 selectedContent : null,
                 searching : false,
+                searchKey : null,
                 focusSearch : false,
                 mounted : false,
                 isMax : false,
@@ -253,7 +261,9 @@ export default {
                 filterNotExist : false,
                 lastItemHeight : 0,
                 tipsContent : [],
-                tips : []
+                tips : [],
+                $listWrap : null,
+                $list : null
             },
             listStyle : {}
         };
@@ -314,9 +324,9 @@ export default {
         _onValueChange : function () {
 
             let newVal = this.get();
-            let $items = this.$el.querySelectorAll('.list>li:not(.noitem)');
-            let $currentItems = this.$el.querySelectorAll('.list>li.current');
-            let $noitem = this.$el.querySelector('.noitem');
+            let $items = this.data.$list.querySelectorAll('li:not(.noitem)');
+            let $currentItems = this.data.$list.querySelectorAll('li.current');
+            let $noitem = this.data.$list.querySelector('.noitem');
             // let $selected = this.$el.querySelector('.selected');
             let searchTextinput;
             let searchMultiinput;
@@ -374,7 +384,7 @@ export default {
                             multiNames.push(trim($item.textContent));
                         
                         } else {
-                            
+
                             this.data.selectedContent = $item.textContent;
 
                         }
@@ -428,7 +438,7 @@ export default {
         },
         _updateItemValueList : function () {
 
-            let $items = this.$el.querySelectorAll('.list>li:not(.noitem)');
+            let $items = this.data.$list.querySelectorAll('li:not(.noitem)');
             let list = [];
 
             for (let $item of $items.values()) {
@@ -482,7 +492,7 @@ export default {
         },
         _listClick : function (evt) {
 
-            let $items = this.$el.querySelectorAll('.list>li:not(.noitem)');
+            let $items = this.data.$list.querySelectorAll('li:not(.noitem)');
             let $clickItem = false;
 
             for (let $item of $items.values()) {
@@ -535,6 +545,8 @@ export default {
 
             }
 
+            this._tipUpdate();
+
         },
         _textinputFocus : function () {
 
@@ -554,12 +566,13 @@ export default {
 
             }
 
-            let $items = this.$el.querySelectorAll('.list>li:not(.noitem):not(.selected)');
-            let $noitem = this.$el.querySelector('.noitem');
+            let $items = this.data.$list.querySelectorAll('li:not(.noitem)');
+            let $noitem = this.data.$list.querySelector('.noitem');
 
             if (!this.conf.canSearch) {
 
                 this.data.searching = false;
+                this.data.searchKey = null;
 
                 for (let $item of $items.values()) {
 
@@ -593,44 +606,21 @@ export default {
             if (key !== '' && key !== undefined) {
 
                 this.data.searching = true;
+                this.data.searchKey = key;
             
             } else {
 
                 this.data.searching = false;
+                this.data.searchKey = null;
 
             }
 
-            let foundNum = 0;
+            this._refreshShowItemsWithSearch();
+            this.Vue.nextTick(() => {
 
-            for (let $item of $items.values()) {
-
-                if (!this.data.searching) {
-
-                    $item.classList.remove('hide');
-
-                } else if (this.data.showlist && trim($item.textContent).search(key) !== -1) {
-
-                    foundNum++;
-                    $item.classList.remove('hide');
-
-                } else if (this.data.showlist) {
-
-                    $item.classList.add('hide');
-
-                }
-
-            }
-            
-            if (this.data.searching &&
-                foundNum === 0) {
+                this._tipUpdate();
                 
-                $noitem.classList.add('show');
-
-            } else {
-                
-                $noitem.classList.remove('show');
-
-            }
+            });
 
         },
         _multiinputFocusNoSearch : function () {
@@ -649,7 +639,7 @@ export default {
         _refreshValue : function (values) {
 
             let setValue = [];
-            let $items = this.$el.querySelectorAll('.list>li:not(.noitem)');
+            let $items = this.data.$list.querySelectorAll('li:not(.noitem)');
 
             for (let value of values) {
 
@@ -681,6 +671,12 @@ export default {
             let searchMultiinput = this.$el.querySelector(`#ui-select-mi-${this.uiid}`)._vm;
             let values = searchMultiinput.get();
 
+            this.Vue.nextTick(() => {
+
+                this._tipUpdate();
+
+            });
+
             if (!searchMultiinput.Move.moving &&
                 !this.data.selectInput &&
                 this.data.multiinputLastValue.length <= values.length) {
@@ -696,6 +692,53 @@ export default {
             this._refreshValue(values);
 
         },
+        _refreshShowItemsWithSearch : function () {
+
+            let foundNum = 0;
+            let $noitem = this.data.$list.querySelector('.noitem');
+            let $items;
+
+            if (this.conf.hideSelected) {
+
+                $items = this.data.$list.querySelectorAll('li:not(.noitem):not(.selected)');
+
+            } else {
+
+                $items = this.data.$list.querySelectorAll('li:not(.noitem)');
+
+            }
+
+            for (let $item of $items.values()) {
+
+                if (!this.data.searching) {
+
+                    $item.classList.remove('hide');
+
+                } else if (this.data.showlist && trim($item.textContent).search(this.data.searchKey) !== -1) {
+
+                    foundNum++;
+                    $item.classList.remove('hide');
+
+                } else if (this.data.showlist) {
+
+                    $item.classList.add('hide');
+
+                }
+
+            }
+
+            if (this.data.searching &&
+                foundNum === 0) {
+
+                $noitem.classList.add('show');
+
+            } else {
+                
+                $noitem.classList.remove('show');
+
+            }
+
+        },
         _refreshShowItems : function () {
 
             if (!this.data.mounted) {
@@ -705,7 +748,7 @@ export default {
             }
            
             let values = this.get();
-            let $items = this.$el.querySelectorAll('.list>li:not(.noitem)');
+            let $items = this.data.$list.querySelectorAll('li:not(.noitem)');
 
             for (let $item of $items) {
 
@@ -735,6 +778,8 @@ export default {
 
             }
 
+            this._refreshShowItemsWithSearch();
+
         },
         _checkArea : function (evt) {
 
@@ -755,7 +800,7 @@ export default {
 
             }
 
-            let $inlineImgs = this.$el.querySelectorAll('.list>li mor-img,.list>li img');
+            let $inlineImgs = this.data.$list.querySelectorAll('li mor-img,li img');
 
             for (let $img of $inlineImgs.values()) {
 
@@ -781,8 +826,7 @@ export default {
 
             }
 
-            let $items = this.$el.querySelectorAll('.list>li:not(.noitem)');
-            let $list = this.$el.querySelector('.list');
+            let $items = this.data.$list.querySelectorAll('li:not(.noitem)');
 
             for (let index of $items.keys()) {
 
@@ -820,7 +864,7 @@ export default {
 
                 $item.setAttribute('id', tipId);
                 tipVm.$mount();
-                $list.append(tipVm.$el);
+                this.data.$list.append(tipVm.$el);
                 this.data.tips.push(tipVm);
 
             }
@@ -828,7 +872,7 @@ export default {
         },
         _setListHeight : function () {
 
-            let $item = this.$el.querySelector('.list>li:not(.noitem):not(.current):not(.selected)');
+            let $item = this.data.$list.querySelector('li:not(.noitem):not(.current):not(.selected)');
 
             if (!$item) {
 
@@ -879,15 +923,27 @@ export default {
             }
 
             show = !!show;
+           
+            let $wrap = this.$el.querySelector('.wrap');
 
             if (show) {
 
                 // this.$items.hide().not('.noresult,.selected').show();
 
-                let $items = this.$el.querySelectorAll('.list>li');
-                let $currentItem = this.$el.querySelector('.list>li.current');
-                let $list = this.$el.querySelector('.list');
+                let $items = this.data.$list.querySelectorAll('li');
+                let $currentItem = this.data.$list.querySelector('li.current');
                 
+                // this._searchKeyChange();
+                this.data.showlist = true;
+                this.data.$listWrap.style.width = `${$wrap.offsetWidth}px`;
+
+                this._tipCreate({
+                    placement : 'bottom',
+                    element : this.data.$listWrap,
+                    target : $wrap,
+                    offset : '0 -0.5px'
+                });
+
                 if (this.conf.multiSelect) {
                 
                     this._refreshShowItems();
@@ -898,7 +954,7 @@ export default {
 
                         if ($items[index] === $currentItem) {
 
-                            $list.scrollTop = index * $currentItem.offsetHeight;
+                            this.data.$list.scrollTop = index * $currentItem.offsetHeight;
 
                             break;
 
@@ -907,12 +963,13 @@ export default {
                     }
                 
                 }
-                
-                // this._searchKeyChange();
-                this.data.showlist = true;
+
                 this.$emit('list-show');
 
             } else {
+
+                this._tipDestroy();
+                this.data.$listWrap.style.width = `${$wrap.offsetWidth}px`;
 
                 this.data.showlist = false;
                 this.$emit('list-hide');
@@ -923,17 +980,12 @@ export default {
 
         }
     },
-    created : function () {
-
-        this._indexReg('list.show', 2);
-        this._indexReg('list.hide', 1);
-
-    },
     mounted : function () {
 
-        const timeout = 200;
-
         this.data.mounted = true;
+        this.data.$listWrap = this.$el.querySelector('.mor-select-list');
+        this.data.$list = this.$el.querySelector('.mor-select-list>.list');
+        this.Tip.autoReverse = false;
 
         this._updateItemValueList();
         this._onValueChange();
@@ -1003,8 +1055,6 @@ export default {
 
         this.$on('list-show', () => {
 
-            this.$el.style.zIndex = this._indexGet('list.show');
-
             setTimeout(() => {
 
                 this._globalEventAdd('click', '_checkArea');
@@ -1016,12 +1066,6 @@ export default {
         this.$on('list-hide', () => {
 
             this._globalEventRemove('click', '_checkArea');
-
-            setTimeout(() => {
-
-                this.$el.style.zIndex = this._indexGet('list.hide');
-
-            }, timeout);
 
         });
 

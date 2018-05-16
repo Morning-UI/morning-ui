@@ -9634,6 +9634,7 @@ mor-datepicker .wrap .input-group-addon {
   display: flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
 }
 mor-datepicker .wrap .datepicker-input-0,
 mor-datepicker .wrap .datepicker-input-1 {
@@ -9686,6 +9687,7 @@ mor-datepicker .wrap .separator {
   background-color: #F0F0F0;
   border-top: 1px solid #E6E6E6;
   border-bottom: 1px solid #E6E6E6;
+  box-sizing: border-box;
 }
 mor-datepicker.has-quick-pick .datepicker-input-first .date-select {
   font-size: 0;

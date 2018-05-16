@@ -140,7 +140,7 @@
                     </h5>
                     <div class="content">
                         <div class="form">
-                            <ui-textinput form-key="img" default-value="https://d13yacurqjgara.cloudfront.net/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934"></ui-textinput>
+                            <ui-textinput form-key="img" default-value="https://cdn.dribbble.com/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934"></ui-textinput>
                         </div>
                     </div>
                 </div>

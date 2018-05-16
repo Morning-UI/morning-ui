@@ -17,7 +17,8 @@ let TipManager = {
                 tether : null,
                 placement : 'top',
                 options : {},
-                autoReverse : true
+                autoReverse : true,
+                autoOffset : true
             }
         };
 
@@ -45,6 +46,12 @@ let TipManager = {
         },
         _tipCreate : function (options) {
 
+            if (this.Tip.tether) {
+
+                return;
+
+            }
+
             options = this._tipOptionsHandler(options);
             this.Popup.$target = options.element;
 
@@ -62,7 +69,7 @@ let TipManager = {
                 placement === 'top') {
 
                 // overleft
-                if ((rect.x - blank) < 0) {
+                if (this.Tip.autoOffset && (rect.x - blank) < 0) {
 
                     offset = offset.split(' ');
                     offset[1] = (+offset[1]) + rect.x - blank;
@@ -71,7 +78,7 @@ let TipManager = {
                 }
 
                 // overright
-                if ((rect.x + rect.width + blank) > document.documentElement.clientWidth) {
+                if (this.Tip.autoOffset && (rect.x + rect.width + blank) > document.documentElement.clientWidth) {
 
                     offset = offset.split(' ');
                     offset[1] = (+offset[1]) + (rect.x + rect.width + blank - document.documentElement.clientWidth);
@@ -111,7 +118,7 @@ let TipManager = {
                 }
 
                 // overtop
-                if ((rect.y - blank) < 0) {
+                if (this.Tip.autoOffset && (rect.y - blank) < 0) {
 
                     offset = offset.split(' ');
                     offset[0] = (+offset[0]) + rect.y - blank;
@@ -120,7 +127,7 @@ let TipManager = {
                 }
 
                 // overbottom
-                if ((rect.y + rect.height + blank) > document.documentElement.clientHeight) {
+                if (this.Tip.autoOffset && (rect.y + rect.height + blank) > document.documentElement.clientHeight) {
 
                     offset = offset.split(' ');
                     offset[0] = (+offset[0]) + (rect.y + rect.height + blank - document.documentElement.clientHeight);
