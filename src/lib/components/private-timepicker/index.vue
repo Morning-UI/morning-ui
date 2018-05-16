@@ -545,7 +545,7 @@ export default {
 
             }
 
-            date = closestTo(date, list);
+            date = closestTo(date, list) || date;
 
             return date;
 

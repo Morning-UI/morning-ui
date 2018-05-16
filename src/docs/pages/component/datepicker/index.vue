@@ -219,6 +219,14 @@
     </div>
     :::
 
+    如果`default-value`超过`selectable-range`范围：
+
+    :::democode/html
+    <div style="width:460px;">
+        <ui-datepicker form-name="日期" :date="+new Date('2018-03-23')" :selectable-range="['2018-03-08', '2018-03-23']" :default-value="['2018-03-03', '2018-03-26']" is-range></ui-datepicker>
+    </div>
+    :::
+
     #### is-range
 
     :::democode/html
