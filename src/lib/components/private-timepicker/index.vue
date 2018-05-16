@@ -27,58 +27,60 @@
 
         v-model="data.inputValue"
     ></morning-textinput>
-
-    <div class="time-select" :class="timeSelectClass" @mousedown.stop.prevent="_noop">
-        <div class="time-box">
-            <ul
-                class="hour"
-                @mouseenter="_focusType('hour')"
-                @mouseleave="_blurType('hour')"
-                @mousewheel="_mousewheel($event, 'hour')"
-                @scroll.stop.prevent="_scrollTime('hour')"
-            >
-                <li v-for="i in 24" :class="{current : (i - 1) === data.h, block : !_checkSelectable('hour', i - 1)}" @click="_to('hour', i - 1, $event)">
-                    <template v-if="i < 11">
-                        {{`0${i - 1}`}}
-                    </template>
-                    <template v-else>
-                        {{i - 1}}
-                    </template>
-                </li>
-            </ul>
-            <ul
-                class="minute"
-                @mouseenter="_focusType('minute')"
-                @mouseleave="_blurType('minute')"
-                @mousewheel="_mousewheel($event, 'minute')"
-                @scroll.prevent="_scrollTime('minute')"
-            >
-                <li v-for="i in 60" :class="{current : (i - 1) === data.m, block : !_checkSelectable('minute', i - 1)}" @click="_to('minute', i - 1, $event)">
-                    <template v-if="i < 11">
-                        {{`0${i - 1}`}}
-                    </template>
-                    <template v-else>
-                        {{i - 1}}
-                    </template>
-                </li>
-            </ul>
-            <ul
-                class="second"
-                @mouseenter="_focusType('second')"
-                @mouseleave="_blurType('second')"
-                @mousewheel="_mousewheel($event, 'second')"
-                @scroll.stop.prevent="_scrollTime('second')"
-            >
-                <li v-for="i in 60" :class="{current : (i - 1) === data.s, block : !_checkSelectable('second', i - 1)}" @click="_to('second', i - 1, $event)">
-                    <template v-if="i < 11">
-                        {{`0${i - 1}`}}
-                    </template>
-                    <template v-else>
-                        {{i - 1}}
-                    </template>
-                </li>
-            </ul>
-            <div class="selected">&nbsp;</div>
+    
+    <div class="mor-time-wrap" :class="timeSelectClass">
+        <div class="select" @mousedown.stop.prevent="_noop">
+            <div class="time-box">
+                <ul
+                    class="hour"
+                    @mouseenter="_focusType('hour')"
+                    @mouseleave="_blurType('hour')"
+                    @mousewheel="_mousewheel($event, 'hour')"
+                    @scroll.stop.prevent="_scrollTime('hour')"
+                >
+                    <li v-for="i in 24" :class="{current : (i - 1) === data.h, block : !_checkSelectable('hour', i - 1)}" @click="_to('hour', i - 1, $event)">
+                        <template v-if="i < 11">
+                            {{`0${i - 1}`}}
+                        </template>
+                        <template v-else>
+                            {{i - 1}}
+                        </template>
+                    </li>
+                </ul>
+                <ul
+                    class="minute"
+                    @mouseenter="_focusType('minute')"
+                    @mouseleave="_blurType('minute')"
+                    @mousewheel="_mousewheel($event, 'minute')"
+                    @scroll.prevent="_scrollTime('minute')"
+                >
+                    <li v-for="i in 60" :class="{current : (i - 1) === data.m, block : !_checkSelectable('minute', i - 1)}" @click="_to('minute', i - 1, $event)">
+                        <template v-if="i < 11">
+                            {{`0${i - 1}`}}
+                        </template>
+                        <template v-else>
+                            {{i - 1}}
+                        </template>
+                    </li>
+                </ul>
+                <ul
+                    class="second"
+                    @mouseenter="_focusType('second')"
+                    @mouseleave="_blurType('second')"
+                    @mousewheel="_mousewheel($event, 'second')"
+                    @scroll.stop.prevent="_scrollTime('second')"
+                >
+                    <li v-for="i in 60" :class="{current : (i - 1) === data.s, block : !_checkSelectable('second', i - 1)}" @click="_to('second', i - 1, $event)">
+                        <template v-if="i < 11">
+                            {{`0${i - 1}`}}
+                        </template>
+                        <template v-else>
+                            {{i - 1}}
+                        </template>
+                    </li>
+                </ul>
+                <div class="selected">&nbsp;</div>
+            </div>
         </div>
     </div>
 
@@ -106,12 +108,13 @@ import {
     areIntervalsOverlapping
 }                                   from 'date-fns';
 import Time                         from 'Utils/Time';
+import TipManager                   from 'Utils/TipManager';
 
 export default {
     origin : 'Form',
     private : true,
     name : 'private-timepicker',
-    mixins : [Time],
+    mixins : [Time, TipManager],
     props : {
         format : {
             type : String,
@@ -142,7 +145,6 @@ export default {
             let classes = {};
 
             classes.show = (this.data.inputFocus && (this.data.state !== 'disabled'));
-            classes[`align-${this.conf.align}`] = true;
 
             return classes;
 
@@ -162,6 +164,7 @@ export default {
                 scrolling : {},
                 selectableTimes : [],
                 focusType : null,
+                $timeWrap : null
             }
         };
 
@@ -205,6 +208,24 @@ export default {
 
         },
         _noop : function () {},
+        _toggleSelector : function () {
+
+            if (this.data.inputFocus && (this.data.state !== 'disabled')) {
+
+                this._tipCreate({
+                    placement : 'bottom',
+                    element : this.data.$timeWrap,
+                    target : this.$refs[`ui-private-timepicker-input-${this.uiid}`].$el,
+                    offset : '0 0'
+                });
+
+            } else {
+
+                this._tipDestroy();
+
+            }
+
+        },
         _inputBlur : function () {
 
             this.data.inputFocus = false;
@@ -297,8 +318,8 @@ export default {
 
             }
 
-            let $ul = this.$el.querySelector(`ul.${type}`);
-            let $li = this.$el.querySelector(`ul.${type} li`);
+            let $ul = this.data.$timeWrap.querySelector(`ul.${type}`);
+            let $li = this.data.$timeWrap.querySelector(`ul.${type} li`);
             let ih = $li.clientHeight;
             let ust = $ul.scrollTop;
             let i = Math.round(ust / ih);
@@ -344,13 +365,13 @@ export default {
         _scrollToTime : function () {
 
             let types = ['hour', 'minute', 'second'];
-            let $li = this.$el.querySelector(`ul.hour li`);
+            let $li = this.data.$timeWrap.querySelector(`ul.hour li`);
 
             for (let type of types) {
 
                 if (!this.data.scrolling[type]) {
 
-                    let $ul = this.$el.querySelector(`ul.${type}`);
+                    let $ul = this.data.$timeWrap.querySelector(`ul.${type}`);
                     let num = this.data[type[0]];
 
                     if ($ul.scrollTop !== (num * $li.clientHeight)) {
@@ -552,7 +573,7 @@ export default {
         },
         _mousewheel : function (evt, type) {
 
-            let $ul = this.$el.querySelector(`.time-box .${type}`);
+            let $ul = this.data.$timeWrap.querySelector(`.time-box .${type}`);
 
             if (!$ul || evt.type !== 'mousewheel') {
 
@@ -578,6 +599,10 @@ export default {
     created : function () {},
     mounted : function () {
 
+        this.data.$timeWrap = this.$el.querySelector('.mor-time-wrap');
+        this.Tip.autoReverse = false;
+        this.Tip.autoOffset = false;
+
         this.$nextTick(() => {
 
             this._updateTime();
@@ -591,6 +616,14 @@ export default {
         });
         this.$watch('conf.format', this._refreshInputValue);
         this.$watch('conf.selectableRange', this._refreshSelectable, {
+            deep : true,
+            immediate : true
+        });
+        this.$watch('data.state', this._toggleSelector, {
+            deep : true,
+            immediate : true
+        });
+        this.$watch('data.inputFocus', this._toggleSelector, {
             deep : true,
             immediate : true
         });

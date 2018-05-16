@@ -986,6 +986,7 @@ export default {
         this.data.$listWrap = this.$el.querySelector('.mor-select-list');
         this.data.$list = this.$el.querySelector('.mor-select-list>.list');
         this.Tip.autoReverse = false;
+        this.Tip.autoOffset = false;
 
         this._updateItemValueList();
         this._onValueChange();
