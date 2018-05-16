@@ -210,7 +210,7 @@ export default {
 
             if (!this._checkSelectable(formatDate(date, this.conf.format))) {
 
-                date = this._getClosestTime(date);
+                date = this._getClosestDate(date);
 
             }
 
