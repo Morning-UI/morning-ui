@@ -18,6 +18,7 @@
         :show-timepicker-box="showTimepickerBox"
         :highlight-days="highlightDays"
         :date-select-add-class="dateSelectAddClass"
+        :has-quick-pick="hasQuickPick"
     >
 
     <morning-textinput
@@ -34,7 +35,7 @@
         v-model="data.inputValue"
     ></morning-textinput>
 
-    <div class="mor-date-wrap" :class="dateSelectClass">
+    <div class="mor-date-wrap" :class="[dateSelectClass, conf.dateSelectAddClass]">
         <div class="date-select" :class="conf.dateSelectAddClass">
 
             <div class="timepicker" v-if="conf.showTimepickerBox">
@@ -126,6 +127,10 @@ export default {
         dateSelectAddClass : {
             type : String,
             default : ''
+        },
+        hasQuickPick : {
+            type : Boolean,
+            default : false
         }
     },
     computed : {
@@ -140,7 +145,8 @@ export default {
                 autoRefreshCalendar : this.autoRefreshCalendar,
                 showTimepickerBox : this.showTimepickerBox,
                 highlightDays : this.highlightDays,
-                dateSelectAddClass : this.dateSelectAddClass
+                dateSelectAddClass : this.dateSelectAddClass,
+                hasQuickPick : this.hasQuickPick
             };
 
         },
@@ -150,6 +156,7 @@ export default {
 
             classes.show = (this.data.inputFocus && (this.data.state !== 'disabled'));
             classes[`align-${this.conf.align}`] = true;
+            classes['has-quick-pick'] = this.conf.hasQuickPick;
 
             return classes;
 

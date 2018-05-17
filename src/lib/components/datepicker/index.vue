@@ -43,6 +43,7 @@
                 :auto-refresh-calendar="false"
                 :highlight-days="data.input0HighlightDays"
                 date-select-add-class="date-select-0"
+                :has-quick-pick="(this.conf.quickPick.length > 0)"
 
                 @value-change="_syncValueFromInputToRoot"
                 @focus="_focus"
@@ -55,7 +56,11 @@
             >
                 <slot name="timepicker" slot="timepicker"></slot>
 
-                <div class="quickpick" slot="quickpick" v-if="conf.quickPick.length > 0">
+                <div
+                    class="quickpick"
+                    slot="quickpick"
+                    v-if="conf.quickPick.length > 0"
+                >
                     <ul>
                         <template v-for="(pick, name) in conf.quickPick">
                             <li
@@ -181,6 +186,7 @@
                 :align="conf.align"
                 :selectable-range="conf.selectableRange"
                 :show-timepicker-box="conf.showTimepickerBox"
+                :has-quick-pick="(this.conf.quickPick.length > 0)"
 
                 @value-change="_syncValueFromInputToRoot"
                 @input-focus="_inputFocus"
@@ -190,7 +196,11 @@
             >
                 <slot name="timepicker" slot="timepicker"></slot>
 
-                <div class="quickpick" slot="quickpick" v-if="conf.quickPick.length > 0">
+                <div
+                    class="quickpick"
+                    slot="quickpick"
+                    v-if="conf.quickPick.length > 0"
+                >
                     <ul>
                         <template v-for="(pick, name) in conf.quickPick">
                             <li
