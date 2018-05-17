@@ -39805,7 +39805,14 @@ morning.install = function (Vue, options) {
 
     if (typeof Vue === 'undefined') {
 
-        throw new Error('can\'t find Vue.js, import Vue.js first please.');
+        throw new Error('Can\'t find Vue, import Vue first please.');
+    }
+
+    var version = Vue.version.split('-')[0].split('.');
+
+    if (+version[0] < 2 || +version[1] < 5 || version[1] === 5 && +version[2] < 3) {
+
+        throw new Error('Vue version mismatch(>2.5.3), please update Vue.');
     }
 
     if (options && options.prefix === 'mor') {

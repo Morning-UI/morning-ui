@@ -19,6 +19,7 @@
     ### 更新记录
 
     ### 0.10.25 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+    
     <ui-textcolor color="light-blue">
         <ui-small>
             发布于2018年5月17日，
@@ -48,6 +49,7 @@
     - `ui-timepicker`、`ui-datepicker`的`align`配置不再对弹出的时间选择框位置生效，选择框位置仅会居中
 
     ### 0.10.24 <ui-badge class="circle ver-stable" size="s" color="light-theme">Beta</ui-badge>
+
     <ui-textcolor color="light-blue">
         <ui-small>
             发布于2018年5月14日，
