@@ -176,7 +176,7 @@ morning.install = function (Vue, options) {
         +version[1] < 5 ||
         (version[1] === 5 && +version[2] < 3)) {
 
-        throw new Error('Vue version mismatch(>2.5.3), please update Vue.');
+        throw new Error('Vue version mismatch(version must > 2.5.2), please update Vue.');
 
     }
 
