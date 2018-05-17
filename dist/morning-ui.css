@@ -8586,6 +8586,7 @@ mor-select.st-readonly .wrap > mor-textinput {
   pointer-events: none;
   visibility: hidden;
   position: absolute;
+  height: 0;
 }
 .mor-select-list .list {
   margin: 0;

@@ -26,7 +26,7 @@
 
 ## 简介
 
-Morning UI是一套桌面Web端的UI库，基于[Vue.js](https://github.com/vuejs/vue)。
+Morning UI是一套桌面端UI组件库，基于[Vue.js](https://github.com/vuejs/vue)。
 
 ## 为什么要用 Morning UI？
 
