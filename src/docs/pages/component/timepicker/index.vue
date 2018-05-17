@@ -179,7 +179,7 @@
     如果`default-value`超过`selectable-range`范围：
 
     :::democode/html
-    <div style="width:460px;">
+    <div style="width:300px;">
         <ui-timepicker form-name="时间" :selectable-range="['08:00:00', '12:30:00']" :default-value="['06:30:00', '13:45:30']" is-range></ui-timepicker>
     </div>
     :::

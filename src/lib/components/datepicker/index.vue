@@ -549,8 +549,6 @@ export default {
                 if ($input0DateSelect &&
                     $input1DateSelect) {
 
-                  
-
                     this.Vue.nextTick(() => {
 
                         let input0x = $input0DateSelect.getBoundingClientRect().x;
@@ -563,29 +561,37 @@ export default {
 
                         }
 
-                        console.log(input0x, input1x, $input0DateSelect.offsetWidth, offset);
-
                         offset = Math.round(offset * 1000) / 1000;
             
                         this.Vue.nextTick(() => {
-                            input0._tipUpdate({
-                                offset : `0 ${offset}px`
-                            });
 
-                            input1._tipUpdate({
-                                offset : `0 ${-offset}px`
-                            });
+                            if (input1.Tip.overranger[1]) {
+
+                                input0._tipUpdate({
+                                    offset : `0 ${2*offset}px`
+                                });
+
+                            } else if (input0.Tip.overranger[3]) {
+
+                                input1._tipUpdate({
+                                    offset : `0 ${-2*offset}px`
+                                });
+
+                            } else {
+
+                                input0._tipUpdate({
+                                    offset : `0 ${offset}px`
+                                });
+
+                                input1._tipUpdate({
+                                    offset : `0 ${-offset}px`
+                                });
+
+                            }
                         });
                     });
 
                 }
-
-                // if ($input0DateSelect &&
-                //     $input1DateSelect) {
-
-                //     $input1DateSelect.style.left = `${$input0DateSelect.offsetWidth}px`;
-
-                // }
 
                 if (value && value[0]) {
 

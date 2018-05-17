@@ -254,7 +254,7 @@ export default {
 
                 setTimeout(() => {
 
-                    // this._tipDestroy();
+                    this._tipDestroy();
 
                 });
 
@@ -625,7 +625,7 @@ export default {
 
         this.data.$dateWrap = this.$el.querySelector('.mor-date-wrap');
         this.Tip.autoReverse = false;
-        this.Tip.autoOffset = false;
+        this.Tip.autoOffset = true;
 
         this.$nextTick(() => {
 
