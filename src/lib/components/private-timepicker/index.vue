@@ -221,7 +221,7 @@ export default {
 
             } else {
 
-                this._tipDestroy();
+                // this._tipDestroy();
 
             }
 
@@ -620,11 +620,9 @@ export default {
             immediate : true
         });
         this.$watch('data.state', this._toggleSelector, {
-            deep : true,
             immediate : true
         });
         this.$watch('data.inputFocus', this._toggleSelector, {
-            deep : true,
             immediate : true
         });
 
