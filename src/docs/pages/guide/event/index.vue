@@ -82,7 +82,7 @@
 
     #### 原生事件
 
-    可以通过`.native`修饰符来为Morning UI的组件绑定原生事件，详见：［Vue/给组件绑定原生事件](https://cn.vuejs.org/v2/guide/components.html#给组件绑定原生事件)
+    可以通过`.native`修饰符来为Morning UI的组件绑定原生事件，详见：［Vue/将原生事件绑定到组件](https://cn.vuejs.org/v2/guide/components-custom-events.html#%E5%B0%86%E5%8E%9F%E7%94%9F%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A%E5%88%B0%E7%BB%84%E4%BB%B6)
 
     ### 生命周期事件
 

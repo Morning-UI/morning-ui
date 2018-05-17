@@ -15,7 +15,7 @@
 - 修复`ui-timepicker`、`ui-datepicker`、`ui-datetimepicker`中获取相近日期及时间的一个问题
 - 修复`ui-select`选中项后，搜索功能显示错误的问题
 - 修复`ui-tip`在某些情况下会闪烁的问题
-- 新增Morning UI CSS Analysis工具帮助开发者分析各个组件的CSS大小(npm run css-analysis) // TODO ： 文档
+- 新增Morning UI CSS Analysis工具帮助开发者分析各个组件的CSS大小(npm run css-analysis)
 
 __Upgrade Precautions__
 
