@@ -17,6 +17,7 @@
         :time-selectable-range="timeSelectableRange"
         :is-range="isRange"
         :separator="separator"
+        :separator-type="separatorType"
         :start-name="startName"
         :end-name="endName"
     >
@@ -33,6 +34,7 @@
             :selectable-range="conf.dateSelectableRange"
             :is-range="conf.isRange"
             :separator="conf.separator"
+            :separator-type="conf.separatorType"
             :start-name="conf.startName"
             :end-name="conf.endName"
             :show-timepicker-box="true"
@@ -132,6 +134,11 @@ export default {
             type : String,
             default : '至'
         },
+        separatorType : {
+            type : String,
+            default : 'block',
+            validator : (value => ['block', 'inline'].indexOf(value) !== -1)
+        },
         startName : {
             type : String,
             default : '开始日期时间'
@@ -153,6 +160,7 @@ export default {
                 timeSelectableRange : this.timeSelectableRange,
                 isRange : this.isRange,
                 separator : this.separator,
+                separatorType : this.separatorType,
                 startName : this.startName,
                 endName : this.endName
             };

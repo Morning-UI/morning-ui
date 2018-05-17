@@ -67,15 +67,41 @@ mor-timepicker{
 
         .separator{
             height: @formHeight;
-            min-width: @formHeight;
             line-height: @formHeight;
-            padding: 0 0.5em;
             font-size: @fontSize*0.875;
             color: @colorBlue;
             text-align: center;
-            background-color: @colorLightGray;
+            box-sizing: border-box;
             border-top: 1px solid @colorFormBorder;
             border-bottom: 1px solid @colorFormBorder;
+
+            &.block{
+                background-color: @colorLightGray;
+                padding: 0 0.5em;
+                min-width: @formHeight;
+            }
+
+            &.inline{
+                padding: 0;
+            }
+        }
+    }
+
+    &.inline-separator .wrap{
+        .timepicker-input-0{
+            mor-textinput{
+                input{
+                    border-right: 0;
+                }
+            }
+        }
+
+        .timepicker-input-1{
+            mor-textinput{
+                input{
+                    border-left: 0;
+                }
+            }
         }
     }
 
