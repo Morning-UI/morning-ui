@@ -35,7 +35,7 @@
 
     关联列表时，把内容模板放到`ui-pagination`标签内，当页码切换时，会根据页面选取`list`中指定的项目作为上下文渲染内容。
 
-    这里用到了Vue.js的[作用域插槽](https://cn.vuejs.org/v2/guide/components.html#作用域插槽)。
+    这里用到了Vue.js的[作用域插槽](https://cn.vuejs.org/v2/guide/components-slots.html#%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%8F%92%E6%A7%BD)。
 
     通过`slot-scope`解构可以在内容模板中获取到的变量：
 
