@@ -30085,7 +30085,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "itemlist" },
+        { staticClass: "il" },
         [
           _vm._l(_vm.conf.list, function(name, key) {
             return [

@@ -10,7 +10,7 @@
 
     ### 成为一名Code Reviewer
 
-    请发送邮件至`chenchao.he@husor.com`。
+    请发送邮件至`earlyhe0@gmail.com`。
 
     ### 请求Review
 
