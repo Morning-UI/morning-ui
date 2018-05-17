@@ -42,7 +42,9 @@
                 :show-timepicker-box="conf.showTimepickerBox"
                 :auto-refresh-calendar="false"
                 :highlight-days="data.input0HighlightDays"
-    
+                date-select-add-class="date-select-0"
+                :has-quick-pick="(this.conf.quickPick.length > 0)"
+
                 @value-change="_syncValueFromInputToRoot"
                 @focus="_focus"
                 @blur="_blur"
@@ -54,7 +56,11 @@
             >
                 <slot name="timepicker" slot="timepicker"></slot>
 
-                <div class="quickpick" slot="quickpick" v-if="conf.quickPick.length > 0">
+                <div
+                    class="quickpick"
+                    slot="quickpick"
+                    v-if="conf.quickPick.length > 0"
+                >
                     <ul>
                         <template v-for="(pick, name) in conf.quickPick">
                             <li
@@ -151,6 +157,7 @@
                 :show-timepicker-box="conf.showTimepickerBox"
                 :auto-refresh-calendar="false"
                 :highlight-days="data.input1HighlightDays"
+                date-select-add-class="date-select-1"
 
                 @value-change="_syncValueFromInputToRoot"
                 @focus="_focus"
@@ -179,6 +186,7 @@
                 :align="conf.align"
                 :selectable-range="conf.selectableRange"
                 :show-timepicker-box="conf.showTimepickerBox"
+                :has-quick-pick="(this.conf.quickPick.length > 0)"
 
                 @value-change="_syncValueFromInputToRoot"
                 @input-focus="_inputFocus"
@@ -188,7 +196,11 @@
             >
                 <slot name="timepicker" slot="timepicker"></slot>
 
-                <div class="quickpick" slot="quickpick" v-if="conf.quickPick.length > 0">
+                <div
+                    class="quickpick"
+                    slot="quickpick"
+                    v-if="conf.quickPick.length > 0"
+                >
                     <ul>
                         <template v-for="(pick, name) in conf.quickPick">
                             <li
@@ -510,14 +522,16 @@ export default {
 
                 let input0 = this.$refs[`ui-datepicker-input-0-${this.uiid}`];
                 let input1 = this.$refs[`ui-datepicker-input-1-${this.uiid}`];
-                let $input0DateSelect = input0.$el.querySelector('.date-select');
-                let $input1DateSelect = input1.$el.querySelector('.date-select');
+                let $input0DateSelect = input0.data.$dateWrap;
+                let $input1DateSelect = input1.data.$dateWrap;
                 let value = this.get();
 
                 input0.data.keepInputFocus = true;
                 input1.data.keepInputFocus = true;
-                input0.data.blurIgnoreElement = input1.$el;
-                input1.data.blurIgnoreElement = input0.$el;
+                input0.data.blurIgnoreElement1 = input1.$el;
+                input0.data.blurIgnoreElement2 = $input1DateSelect;
+                input1.data.blurIgnoreElement1 = input0.$el;
+                input1.data.blurIgnoreElement2 = $input0DateSelect;
 
                 if (!input0.data.inputFocus) {
 
@@ -534,7 +548,49 @@ export default {
                 if ($input0DateSelect &&
                     $input1DateSelect) {
 
-                    $input1DateSelect.style.left = `${$input0DateSelect.offsetWidth}px`;
+                    this.Vue.nextTick(() => {
+
+                        let input0x = $input0DateSelect.getBoundingClientRect().x;
+                        let input1x = $input1DateSelect.getBoundingClientRect().x;
+                        let offset = ($input0DateSelect.offsetWidth - (input1x - input0x)) / 2;
+
+                        if (offset === 0) {
+
+                            return;
+
+                        }
+
+                        offset = Math.round(offset * NUM_1K) / NUM_1K;
+
+                        this.Vue.nextTick(() => {
+
+                            if (input1.Tip.overranger[1]) {
+
+                                input0._tipUpdate({
+                                    offset : `0 ${2 * offset}px`
+                                });
+
+                            } else if (input0.Tip.overranger[3]) {
+
+                                input1._tipUpdate({
+                                    offset : `0 ${-2 * offset}px`
+                                });
+
+                            } else {
+
+                                input0._tipUpdate({
+                                    offset : `0 ${offset}px`
+                                });
+
+                                input1._tipUpdate({
+                                    offset : `0 ${-offset}px`
+                                });
+
+                            }
+
+                        });
+
+                    });
 
                 }
 
@@ -557,7 +613,7 @@ export default {
 
                 let input0 = this.$refs[`ui-datepicker-input-0-${this.uiid}`];
                 let input1 = this.$refs[`ui-datepicker-input-1-${this.uiid}`];
-                let $input1DateSelect = input1.$el.querySelector('.date-select');
+                let $input1DateSelect = input1.data.$dateWrap.querySelector('.date-select');
                 
                 input0.data.keepInputFocus = false;
                 input1.data.keepInputFocus = false;

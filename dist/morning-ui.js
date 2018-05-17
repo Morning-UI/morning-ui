@@ -11663,7 +11663,7 @@ exports.default = {
 
             if (!this._checkSelectable((0, _dateFns.format)(date, this.conf.format))) {
 
-                date = this._getClosestTime(date);
+                date = this._getClosestDate(date);
             }
 
             return (0, _dateFns.format)(date, this.conf.format);
@@ -11866,7 +11866,7 @@ exports.default = {
                     });
                 }
 
-                selectableDates = [start, end];
+                selectableDates = [(0, _dateFns.addDays)(start, 1), (0, _dateFns.subDays)(end, 1)];
             } else if (ranges instanceof Array) {
                 var _iteratorNormalCompletion3 = true;
                 var _didIteratorError3 = false;
@@ -11938,8 +11938,8 @@ exports.default = {
                                 }
                             }
 
-                            selectableDates.push(_start2);
-                            selectableDates.push(_end2);
+                            selectableDates.push((0, _dateFns.addDays)(_start2, 1));
+                            selectableDates.push((0, _dateFns.subDays)(_end2, 1));
                         }
                     }
                 } catch (err) {
@@ -11976,7 +11976,7 @@ exports.default = {
         },
         _getClosestDate: function _getClosestDate(date) {
 
-            date = (0, _dateFns.closestTo)(date, this.data.selectableDates);
+            date = (0, _dateFns.closestTo)(date, this.data.selectableDates) || date;
 
             return date;
         },
@@ -12662,7 +12662,7 @@ exports.default = {
                 }
             }
 
-            date = (0, _dateFns.closestTo)(date, list);
+            date = (0, _dateFns.closestTo)(date, list) || date;
 
             return date;
         },
@@ -14803,7 +14803,7 @@ exports.default = {
 
             if (!this._checkSelectable((0, _dateFns.format)(date, this.conf.format))) {
 
-                date = this._getClosestTime(date);
+                date = this._getClosestDate(date);
             }
 
             return (0, _dateFns.format)(date, this.conf.format);
@@ -15127,7 +15127,7 @@ exports.default = {
         },
         _getClosestDate: function _getClosestDate(date) {
 
-            date = (0, _dateFns.closestTo)(date, this.data.selectableDates);
+            date = (0, _dateFns.closestTo)(date, this.data.selectableDates) || date;
 
             return date;
         },
@@ -16160,7 +16160,7 @@ exports.default = {
 
                 this._set((0, _dateFns.format)(date, this.conf.format));
 
-                if (this.$slots.timepicker[0] && this.$slots.timepicker[0].children && this.$slots.timepicker[0].children[0]) {
+                if (this.$slots.timepicker && this.$slots.timepicker[0] && this.$slots.timepicker[0].children && this.$slots.timepicker[0].children[0]) {
 
                     var $timepicker = this.$slots.timepicker[0].children[0].componentInstance;
 
@@ -16172,14 +16172,14 @@ exports.default = {
 
                 this._set([(0, _dateFns.format)(date[0], this.conf.format), (0, _dateFns.format)(date[1], this.conf.format)]);
 
-                if (this.$slots.timepicker[0] && this.$slots.timepicker[0].children && this.$slots.timepicker[0].children[0]) {
+                if (this.$slots.timepicker && this.$slots.timepicker[0] && this.$slots.timepicker[0].children && this.$slots.timepicker[0].children[0]) {
 
                     var _$timepicker = this.$slots.timepicker[0].children[0].componentInstance;
 
                     _$timepicker._set((0, _dateFns.format)(date[0], _$timepicker.conf.format));
                 }
 
-                if (this.$slots.timepicker2[0] && this.$slots.timepicker2[0].children && this.$slots.timepicker2[0].children[0]) {
+                if (this.$slots.timepicker2 && this.$slots.timepicker2[0] && this.$slots.timepicker2[0].children && this.$slots.timepicker2[0].children[0]) {
 
                     var _$timepicker2 = this.$slots.timepicker2[0].children[0].componentInstance;
 
@@ -28115,7 +28115,7 @@ var render = function() {
                           ? _vm.conf.formName
                           : _vm.conf.startName,
                       "hide-name": _vm.conf.hideName,
-                      date: _vm.data.currentDate,
+                      date: +_vm.data.currentDate,
                       format: _vm.conf.format,
                       align: _vm.conf.align,
                       "selectable-range": _vm.conf.selectableRange,
@@ -28573,7 +28573,7 @@ var render = function() {
                           ? _vm.conf.formName
                           : _vm.conf.endName,
                       "hide-name": _vm.conf.hideName,
-                      date: _vm._addMonths(_vm.data.currentDate, 1),
+                      date: +_vm._addMonths(_vm.data.currentDate, 1),
                       format: _vm.conf.format,
                       align: _vm.conf.align,
                       "selectable-range": _vm.conf.selectableRange,
@@ -28607,7 +28607,7 @@ var render = function() {
                       "form-name": _vm.conf.formName,
                       "default-value": _vm.conf.defaultValue,
                       "hide-name": _vm.conf.hideName,
-                      date: _vm.date,
+                      date: +_vm.date,
                       format: _vm.conf.format,
                       align: _vm.conf.align,
                       "selectable-range": _vm.conf.selectableRange,

@@ -214,7 +214,7 @@
     在使用`selectable-range`的同时开启`is-range`：
 
     :::democode/html
-    <div style="width:300px;">
+    <div style="width:360px;">
         <ui-datepicker form-name="日期" :date="+new Date('2018-03-23')" :selectable-range="['2018-03-08', '2018-03-23']" is-range></ui-datepicker>
     </div>
     :::
@@ -222,7 +222,7 @@
     如果`default-value`超过`selectable-range`范围：
 
     :::democode/html
-    <div style="width:460px;">
+    <div style="width:360px;">
         <ui-datepicker form-name="日期" :date="+new Date('2018-03-23')" :selectable-range="['2018-03-08', '2018-03-23']" :default-value="['2018-03-03', '2018-03-26']" is-range></ui-datepicker>
     </div>
     :::
