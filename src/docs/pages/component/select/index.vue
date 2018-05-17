@@ -582,6 +582,51 @@
     </div>
     :::
 
+    使用`v-for`输出tip：
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            list : [{
+                key : 'tip',
+                name : 'Tim Boelaars',
+                age : 16
+            },{
+                key : 'andrew',
+                name : 'Andrew Colin Beck',
+                age : 34
+            },{
+                key : 'gustavo',
+                name : 'Gustavo Zambelli',
+                age : 28
+            },{
+                key : 'victor',
+                name : 'Victor Erixon',
+                age : 45
+            },{
+                key : 'shaun',
+                name : 'Shaun Moynihan',
+                age : 32
+            },{
+                key : 'emir',
+                name : 'Emir Ayouni',
+                age : 18
+            }]
+        }
+    });
+    ---
+    <div style="width:300px;">
+        <ui-select ref="demo4" can-search :hide-selected="false" form-name="Select designer" item-tip item-tip-direct="right">
+            <template v-for="item in list">
+                <li :value="item.key">{*item.name*}</li>
+                <div class="item-tip"><p>Name : {*item.name*}, Age :{*item.age*}</p></div>
+            </template>
+        </ui-select>
+    </div>
+    :::
+
     #### item-tip-direct
 
     :::democode/html
