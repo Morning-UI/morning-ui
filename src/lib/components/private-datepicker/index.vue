@@ -17,6 +17,8 @@
         :auto-refresh-calendar="autoRefreshCalendar"
         :show-timepicker-box="showTimepickerBox"
         :highlight-days="highlightDays"
+        :date-select-add-class="dateSelectAddClass"
+        :has-quick-pick="hasQuickPick"
     >
 
     <morning-textinput
@@ -33,28 +35,30 @@
         v-model="data.inputValue"
     ></morning-textinput>
 
-    <div class="date-select" :class="dateSelectClass">
+    <div class="mor-date-wrap" :class="[dateSelectClass, conf.dateSelectAddClass]">
+        <div class="date-select" :class="conf.dateSelectAddClass">
 
-        <div class="timepicker" v-if="conf.showTimepickerBox">
-            <slot name="timepicker"></slot>
+            <div class="timepicker" v-if="conf.showTimepickerBox">
+                <slot name="timepicker"></slot>
+            </div>
+
+            <slot name="quickpick"></slot>
+
+            <morning-calendar
+                :ref="'ui-calendar-'+uiid"
+                :date="data.currentDate"
+                :highlight-day="getHighlightDays"
+                :highlight-now="false"
+                :highlight-hover="true"
+                :background-mark="backgroundMark"
+
+                @date-click="_clickDate"
+                @month-change="_refreshSelectable"
+                @year-change="_refreshSelectable"
+                @date-enter="_dateEnter"
+            ></morning-calendar>
+
         </div>
-
-        <slot name="quickpick"></slot>
-
-        <morning-calendar
-            :ref="'ui-calendar-'+uiid"
-            :date="data.currentDate"
-            :highlight-day="getHighlightDays"
-            :highlight-now="false"
-            :highlight-hover="true"
-            :background-mark="backgroundMark"
-
-            @date-click="_clickDate"
-            @month-change="_refreshSelectable"
-            @year-change="_refreshSelectable"
-            @date-enter="_dateEnter"
-        ></morning-calendar>
-
     </div>
 
     <morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn">清空</morning-link>
@@ -78,12 +82,13 @@ import {
 }                                   from 'date-fns';
 import without                      from 'lodash.without';
 import Dates                        from 'Utils/Dates';
+import TipManager                   from 'Utils/TipManager';
 
 export default {
     origin : 'Form',
     private : true,
     name : 'private-datepicker',
-    mixins : [Dates],
+    mixins : [Dates, TipManager],
     props : {
         date : {
             type : Number,
@@ -118,6 +123,14 @@ export default {
         highlightDays : {
             type : Array,
             default : (() => [])
+        },
+        dateSelectAddClass : {
+            type : String,
+            default : ''
+        },
+        hasQuickPick : {
+            type : Boolean,
+            default : false
         }
     },
     computed : {
@@ -131,7 +144,9 @@ export default {
                 selectableRange : this.selectableRange,
                 autoRefreshCalendar : this.autoRefreshCalendar,
                 showTimepickerBox : this.showTimepickerBox,
-                highlightDays : this.highlightDays
+                highlightDays : this.highlightDays,
+                dateSelectAddClass : this.dateSelectAddClass,
+                hasQuickPick : this.hasQuickPick
             };
 
         },
@@ -141,6 +156,7 @@ export default {
 
             classes.show = (this.data.inputFocus && (this.data.state !== 'disabled'));
             classes[`align-${this.conf.align}`] = true;
+            classes['has-quick-pick'] = this.conf.hasQuickPick;
 
             return classes;
 
@@ -186,7 +202,9 @@ export default {
                 selectableDates : [],
                 currentDate : undefined,
                 keepInputFocus : false,
-                blurIgnoreElement : undefined
+                blurIgnoreElement1 : undefined,
+                blurIgnoreElement2 : undefined,
+                $dateWrap : null
             }
         };
 
@@ -210,11 +228,37 @@ export default {
 
             if (!this._checkSelectable(formatDate(date, this.conf.format))) {
 
-                date = this._getClosestTime(date);
+                date = this._getClosestDate(date);
 
             }
 
             return formatDate(date, this.conf.format);
+
+        },
+        _toggleSelector : function () {
+
+            if (this.data.inputFocus && (this.data.state !== 'disabled')) {
+
+                let $input = this.$refs[`ui-private-datepicker-input-${this.uiid}`].$el;
+
+                this.data.$dateWrap.style.width = `${$input.offsetWidth}px`;
+
+                this._tipCreate({
+                    placement : 'bottom',
+                    element : this.data.$dateWrap,
+                    target : $input,
+                    offset : '0 0'
+                });
+
+            } else {
+
+                setTimeout(() => {
+
+                    this._tipDestroy();
+
+                });
+
+            }
 
         },
         _dateEnter : function (date) {
@@ -274,7 +318,9 @@ export default {
                 evt.path &&
                 (
                     evt.path.indexOf(this.$el) !== -1 ||
-                    evt.path.indexOf(this.data.blurIgnoreElement) !== -1
+                    evt.path.indexOf(this.data.$dateWrap) !== -1 ||
+                    evt.path.indexOf(this.data.blurIgnoreElement1) !== -1 ||
+                    evt.path.indexOf(this.data.blurIgnoreElement2) !== -1
                 )) {
 
                 return;
@@ -442,7 +488,7 @@ export default {
 
                 }
 
-                selectableDates = [start, end];
+                selectableDates = [addDays(start, 1), subDays(end, 1)];
 
             } else if (ranges instanceof Array) {
 
@@ -525,8 +571,8 @@ export default {
 
                         }
 
-                        selectableDates.push(start);
-                        selectableDates.push(end);
+                        selectableDates.push(addDays(start, 1));
+                        selectableDates.push(subDays(end, 1));
 
                     }
 
@@ -555,7 +601,7 @@ export default {
         },
         _getClosestDate : function (date) {
 
-            date = closestTo(date, this.data.selectableDates);
+            date = closestTo(date, this.data.selectableDates) || date;
 
             return date;
 
@@ -574,6 +620,10 @@ export default {
     },
     created : function () {},
     mounted : function () {
+
+        this.data.$dateWrap = this.$el.querySelector('.mor-date-wrap');
+        this.Tip.autoReverse = false;
+        this.Tip.autoOffset = true;
 
         this.$nextTick(() => {
 
@@ -603,6 +653,12 @@ export default {
 
             this.$emit('date-change', this.data.currentDate);
 
+        });
+        this.$watch('data.state', this._toggleSelector, {
+            immediate : true
+        });
+        this.$watch('data.inputFocus', this._toggleSelector, {
+            immediate : true
         });
 
     },

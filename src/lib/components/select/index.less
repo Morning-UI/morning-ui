@@ -133,81 +133,6 @@ mor-select{
         }
     }
 
-    .list{
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        border: 1px @colorFormBorder solid;
-        border-top-width: 0;
-        border-radius: 0 0 @borderRadius @borderRadius;
-        overflow-x: hidden;
-        overflow-y: auto;
-        visibility: hidden;
-        transform: scaleY(0);
-        transition: transform 0.2s, visibility 0.2s, border 0.2s;
-        transform-origin: 50% 0%;
-        width: 100%;
-        background-color: #FFF;
-        box-sizing: border-box;
-        position: absolute;
-
-        .setup-scrollbar();
-
-        li{
-            padding: 0.5em 1em;
-            border-top: 1px lighten(@colorFormBorder, 5%) solid;
-            cursor: pointer;
-            font-size: 14px;
-            color: darken(@colorFormText, 15%);
-            position: relative;
-
-            &.noitem{
-                color: @colorFormTextMisc;
-                cursor: default;
-                display: none;
-
-                &.show{
-                    display: list-item;
-                }
-            }
-
-            img,
-            mor-img {
-                height: 2em;
-                width: 2em;
-                margin-right: 0.5em;
-                vertical-align: middle;
-            }
-
-            mor-img > img{
-                vertical-align: top;
-            }
-
-            &.current{
-                background: @colorFormBackgroundFocus;
-                color: @colorFormTextFocus;
-            }
-
-            &.selected{
-                background: @colorFormBackgroundHover;
-                border-left: 3px @colorSuccess solid;
-            }
-
-            &.hide{
-                display: none;
-            }
-
-            &:hover{
-                color: darken(@colorFormTextHover, 15%);
-                background: @colorFormBackgroundHover;
-            }
-        }
-    }
-
-    &.hide-selected .list li.selected{
-        display: none;
-    }
-
     &.align-center{
         .wrap > mor-multiinput{
             width: ~'calc(100% - 1em)';
@@ -244,11 +169,6 @@ mor-select{
             > .drop{
                 transform: rotateX(180deg);
             }
-        }
-
-        .list{
-            visibility: visible;
-            transform: scaleY(1);
         }
     }
 
@@ -356,5 +276,94 @@ mor-select{
     // default status
     &{
         .st-normal;
+    }
+}
+
+.mor-select-list{
+    pointer-events: none;
+    visibility: hidden;
+    position: absolute;
+    height: 0;
+
+    .list{
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        border: 1px @colorFormBorder solid;
+        border-top-width: 0;
+        border-radius: 0 0 @borderRadius @borderRadius;
+        overflow-x: hidden;
+        overflow-y: auto;
+        background-color: #FFF;
+        box-sizing: border-box;
+        transform: scaleY(0);
+        transition: transform 0.2s, visibility 0.2s, border 0.2s;
+        transform-origin: 50% 0%;
+        width: 100%;
+
+        .setup-scrollbar();
+    }
+
+    li{
+        padding: 0.5em 1em;
+        border-top: 1px lighten(@colorFormBorder, 5%) solid;
+        cursor: pointer;
+        font-size: 14px;
+        color: darken(@colorFormText, 15%);
+        position: relative;
+
+        &.noitem{
+            color: @colorFormTextMisc;
+            cursor: default;
+            display: none;
+
+            &.show{
+                display: list-item;
+            }
+        }
+
+        img,
+        mor-img {
+            height: 2em;
+            width: 2em;
+            margin-right: 0.5em;
+            vertical-align: middle;
+        }
+
+        mor-img > img{
+            vertical-align: top;
+        }
+
+        &.current{
+            background: @colorFormBackgroundFocus;
+            color: @colorFormTextFocus;
+        }
+
+        &.selected{
+            background: @colorFormBackgroundHover;
+            border-left: 3px @colorSuccess solid;
+        }
+
+        &.hide{
+            display: none;
+        }
+
+        &:hover{
+            color: darken(@colorFormTextHover, 15%);
+            background: @colorFormBackgroundHover;
+        }
+    }
+
+    &.hide-selected li.selected{
+        display: none;
+    }
+
+    &.showlist{
+        pointer-events: auto;
+        visibility: visible;
+
+        .list{
+            transform: scaleY(1);
+        }
     }
 }

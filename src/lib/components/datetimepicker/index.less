@@ -6,6 +6,17 @@ mor-datetimepicker{
 
     .setup-form();
 
+    &.st-normal{}
+
+    &.st-disabled{}
+
+    // default status
+    &{
+        .st-normal;
+    }
+}
+
+.mor-date-wrap{
     .timepicker{
         width: 100%;
         height: 40px;
@@ -20,14 +31,5 @@ mor-datetimepicker{
             transform-origin: right;
             font-size: @fontSize*0.875;
         }
-    }
-
-    &.st-normal{}
-
-    &.st-disabled{}
-
-    // default status
-    &{
-        .st-normal;
     }
 }

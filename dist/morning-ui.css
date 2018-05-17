@@ -6592,6 +6592,7 @@ mor-calendar .select-layer {
   padding: 0.25em;
   width: 100%;
   font-size: 16px;
+  box-sizing: border-box;
 }
 mor-calendar .inner-layer {
   display: inline-block;
@@ -8481,79 +8482,6 @@ mor-select .wrap > .morningicon.drop {
 mor-select .wrap:hover {
   border-color: #d7d7d7;
 }
-mor-select .list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  border: 1px #E6E6E6 solid;
-  border-top-width: 0;
-  border-radius: 0 0 3px 3px;
-  overflow-x: hidden;
-  overflow-y: auto;
-  visibility: hidden;
-  transform: scaleY(0);
-  transition: transform 0.2s, visibility 0.2s, border 0.2s;
-  transform-origin: 50% 0%;
-  width: 100%;
-  background-color: #FFF;
-  box-sizing: border-box;
-  position: absolute;
-}
-mor-select .list::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
-  background-color: rgba(0, 0, 0, 0.05);
-}
-mor-select .list::-webkit-scrollbar-thumb {
-  width: 5px;
-  height: 5px;
-  background: rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
-}
-mor-select .list li {
-  padding: 0.5em 1em;
-  border-top: 1px #f3f3f3 solid;
-  cursor: pointer;
-  font-size: 14px;
-  color: #8d8d8d;
-  position: relative;
-}
-mor-select .list li.noitem {
-  color: #c0c0c0;
-  cursor: default;
-  display: none;
-}
-mor-select .list li.noitem.show {
-  display: list-item;
-}
-mor-select .list li img,
-mor-select .list li mor-img {
-  height: 2em;
-  width: 2em;
-  margin-right: 0.5em;
-  vertical-align: middle;
-}
-mor-select .list li mor-img > img {
-  vertical-align: top;
-}
-mor-select .list li.current {
-  background: #f3f3f3;
-  color: #17212D;
-}
-mor-select .list li.selected {
-  background: #f5f5f5;
-  border-left: 3px #4DBD67 solid;
-}
-mor-select .list li.hide {
-  display: none;
-}
-mor-select .list li:hover {
-  color: #737373;
-  background: #f5f5f5;
-}
-mor-select.hide-selected .list li.selected {
-  display: none;
-}
 mor-select.align-center .wrap > mor-multiinput {
   width: calc(100% - 1em);
   padding-right: calc(30px + 1em);
@@ -8579,10 +8507,6 @@ mor-select.showlist .wrap > mor-textinput {
 }
 mor-select.showlist .wrap > .drop {
   transform: rotateX(180deg);
-}
-mor-select.showlist .list {
-  visibility: visible;
-  transform: scaleY(1);
 }
 mor-select.select-item .wrap > mor-textinput input {
   color: #17212D !important;
@@ -8657,6 +8581,89 @@ mor-select.st-readonly .wrap > mor-multiinput {
 mor-select.st-disabled .wrap > mor-textinput,
 mor-select.st-readonly .wrap > mor-textinput {
   display: none;
+}
+.mor-select-list {
+  pointer-events: none;
+  visibility: hidden;
+  position: absolute;
+}
+.mor-select-list .list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: 1px #E6E6E6 solid;
+  border-top-width: 0;
+  border-radius: 0 0 3px 3px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: #FFF;
+  box-sizing: border-box;
+  transform: scaleY(0);
+  transition: transform 0.2s, visibility 0.2s, border 0.2s;
+  transform-origin: 50% 0%;
+  width: 100%;
+}
+.mor-select-list .list::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.mor-select-list .list::-webkit-scrollbar-thumb {
+  width: 5px;
+  height: 5px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+.mor-select-list li {
+  padding: 0.5em 1em;
+  border-top: 1px #f3f3f3 solid;
+  cursor: pointer;
+  font-size: 14px;
+  color: #8d8d8d;
+  position: relative;
+}
+.mor-select-list li.noitem {
+  color: #c0c0c0;
+  cursor: default;
+  display: none;
+}
+.mor-select-list li.noitem.show {
+  display: list-item;
+}
+.mor-select-list li img,
+.mor-select-list li mor-img {
+  height: 2em;
+  width: 2em;
+  margin-right: 0.5em;
+  vertical-align: middle;
+}
+.mor-select-list li mor-img > img {
+  vertical-align: top;
+}
+.mor-select-list li.current {
+  background: #f3f3f3;
+  color: #17212D;
+}
+.mor-select-list li.selected {
+  background: #f5f5f5;
+  border-left: 3px #4DBD67 solid;
+}
+.mor-select-list li.hide {
+  display: none;
+}
+.mor-select-list li:hover {
+  color: #737373;
+  background: #f5f5f5;
+}
+.mor-select-list.hide-selected li.selected {
+  display: none;
+}
+.mor-select-list.showlist {
+  pointer-events: auto;
+  visibility: visible;
+}
+.mor-select-list.showlist .list {
+  transform: scaleY(1);
 }
 
 mor-checkbox {
@@ -9584,12 +9591,6 @@ mor-timepicker .wrap .timepicker-select-1 .wrap {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
-mor-timepicker .wrap .timepicker-input-1 .time-select.align-left {
-  left: 0;
-}
-mor-timepicker .wrap .timepicker-input-1 .time-select.align-center {
-  margin-left: 0;
-}
 mor-timepicker .wrap .separator {
   height: 42px;
   min-width: 42px;
@@ -9634,6 +9635,7 @@ mor-datepicker .wrap .input-group-addon {
   display: flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
 }
 mor-datepicker .wrap .datepicker-input-0,
 mor-datepicker .wrap .datepicker-input-1 {
@@ -9644,36 +9646,8 @@ mor-datepicker .wrap .datepicker-input-0 > mor-textinput .input-group-addon,
 mor-datepicker .wrap .datepicker-input-1 > mor-textinput .input-group-addon {
   display: none;
 }
-mor-datepicker .wrap .datepicker-input-0 .date-select,
-mor-datepicker .wrap .datepicker-input-1 .date-select {
-  position: absolute;
-  width: 50%;
-}
-mor-datepicker .wrap .datepicker-input-0 .date-select.align-left,
-mor-datepicker .wrap .datepicker-input-1 .date-select.align-left {
-  left: 0;
-}
-mor-datepicker .wrap .datepicker-input-0 .date-select.align-center,
-mor-datepicker .wrap .datepicker-input-1 .date-select.align-center {
-  margin-left: 0;
-}
-mor-datepicker .wrap .datepicker-input-0 .date-select:hover,
-mor-datepicker .wrap .datepicker-input-1 .date-select:hover {
-  border-color: #E6E6E6;
-}
 mor-datepicker .wrap .datepicker-input-0 mor-textinput input {
   border-radius: 0;
-}
-mor-datepicker .wrap .datepicker-input-0 .date-select {
-  min-width: calc(280px + 1px);
-  border-bottom-right-radius: 0;
-  border-top-right-radius: 0;
-  border-right: none;
-}
-mor-datepicker .wrap .datepicker-input-1 .date-select {
-  min-width: calc(280px + 2px);
-  border-bottom-left-radius: 0;
-  border-top-left-radius: 0;
 }
 mor-datepicker .wrap .separator {
   height: 42px;
@@ -9686,12 +9660,37 @@ mor-datepicker .wrap .separator {
   background-color: #F0F0F0;
   border-top: 1px solid #E6E6E6;
   border-bottom: 1px solid #E6E6E6;
+  box-sizing: border-box;
 }
-mor-datepicker.has-quick-pick .datepicker-input-first .date-select {
-  font-size: 0;
-  min-width: calc(382px);
+.mor-date-wrap {
+  min-width: 282px;
+  max-width: 282px;
 }
-mor-datepicker.has-quick-pick .datepicker-input-first .date-select .quickpick {
+.mor-date-wrap .date-select:hover {
+  border-color: #E6E6E6;
+}
+.mor-date-wrap.date-select-0 {
+  min-width: 281px;
+  max-width: 281px;
+}
+.mor-date-wrap .date-select.date-select-0 {
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+  border-right: none;
+}
+.mor-date-wrap .date-select.date-select-1 {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+.mor-date-wrap.has-quick-pick {
+  max-width: 382px;
+  min-width: 382px;
+}
+.mor-date-wrap.has-quick-pick.date-select-0 {
+  min-width: 381px;
+  max-width: 381px;
+}
+.mor-date-wrap.has-quick-pick .quickpick {
   display: inline-block;
   width: 100px;
   font-size: 14px;
@@ -9702,33 +9701,33 @@ mor-datepicker.has-quick-pick .datepicker-input-first .date-select .quickpick {
   overflow-y: scroll;
   border-right: 1px #E6E6E6 solid;
 }
-mor-datepicker.has-quick-pick .datepicker-input-first .date-select .quickpick::-webkit-scrollbar {
+.mor-date-wrap.has-quick-pick .quickpick::-webkit-scrollbar {
   width: 5px;
   height: 5px;
   background-color: rgba(0, 0, 0, 0.05);
 }
-mor-datepicker.has-quick-pick .datepicker-input-first .date-select .quickpick::-webkit-scrollbar-thumb {
+.mor-date-wrap.has-quick-pick .quickpick::-webkit-scrollbar-thumb {
   width: 5px;
   height: 5px;
   background: rgba(0, 0, 0, 0.1);
   border-radius: 4px;
 }
-mor-datepicker.has-quick-pick .datepicker-input-first .date-select .quickpick ul {
+.mor-date-wrap.has-quick-pick .quickpick ul {
   margin: 0;
   padding: 10px 0;
   list-style: none;
 }
-mor-datepicker.has-quick-pick .datepicker-input-first .date-select .quickpick ul li {
-  padding: 2px 10px;
+.mor-date-wrap.has-quick-pick .quickpick ul li {
+  padding: 4px 10px;
   margin: 0;
   cursor: pointer;
   font-size: 13px;
   color: #A8B3C2;
 }
-mor-datepicker.has-quick-pick .datepicker-input-first .date-select .quickpick ul li:hover {
+.mor-date-wrap.has-quick-pick .quickpick ul li:hover {
   color: #17212D;
 }
-mor-datepicker.has-quick-pick .datepicker-input-first .date-select mor-calendar {
+.mor-date-wrap.has-quick-pick mor-calendar {
   display: inline-block;
   width: 280px;
   font-size: 14px;
@@ -9749,12 +9748,12 @@ mor-datetimepicker .cleanbtn {
   font-size: 12px;
   margin-top: 1px;
 }
-mor-datetimepicker .timepicker {
+.mor-date-wrap .timepicker {
   width: 100%;
   height: 40px;
   position: relative;
 }
-mor-datetimepicker .timepicker mor-timepicker {
+.mor-date-wrap .timepicker mor-timepicker {
   transform: scale(0.8);
   z-index: 2;
   width: 150px;
@@ -10409,42 +10408,35 @@ mor-private-timepicker .cleanbtn {
   font-size: 12px;
   margin-top: 1px;
 }
-mor-private-timepicker .time-select {
+.mor-time-wrap {
   width: 160px;
   position: absolute;
-  background: #FFFFFF;
-  border: 1px #E6E6E6 solid;
-  border-radius: 3px;
   top: 45px;
-  font-size: 0;
-  -webkit-user-select: none;
-  user-select: none;
   pointer-events: none;
   opacity: 0;
-  z-index: 1;
+  box-sizing: border-box;
 }
-mor-private-timepicker .time-select.align-left {
-  left: 42px;
-}
-mor-private-timepicker .time-select.align-center {
-  left: 50%;
-  transform: translateX(-50%);
-  margin-left: 21px;
-}
-mor-private-timepicker .time-select.align-right {
-  right: 0;
-}
-mor-private-timepicker .time-select.show {
+.mor-time-wrap.show {
   pointer-events: auto;
   opacity: 1;
 }
-mor-private-timepicker .time-select:hover {
+.mor-time-wrap .select {
+  width: 100%;
+  background: #FFFFFF;
+  border: 1px #E6E6E6 solid;
+  border-radius: 3px;
+  font-size: 0;
+  -webkit-user-select: none;
+  user-select: none;
+  z-index: 1;
+}
+.mor-time-wrap .select:hover {
   border-color: #d7d7d7;
 }
-mor-private-timepicker .time-select .time-box {
+.mor-time-wrap .select .time-box {
   position: relative;
 }
-mor-private-timepicker .time-select .time-box > ul {
+.mor-time-wrap .select .time-box > ul {
   list-style: none;
   padding: 0;
   font-size: 0;
@@ -10457,21 +10449,21 @@ mor-private-timepicker .time-select .time-box > ul {
   position: relative;
   z-index: 1;
 }
-mor-private-timepicker .time-select .time-box > ul::-webkit-scrollbar {
+.mor-time-wrap .select .time-box > ul::-webkit-scrollbar {
   width: 5px;
   height: 5px;
   background-color: rgba(0, 0, 0, 0);
 }
-mor-private-timepicker .time-select .time-box > ul::-webkit-scrollbar-thumb {
+.mor-time-wrap .select .time-box > ul::-webkit-scrollbar-thumb {
   width: 5px;
   height: 5px;
   background: rgba(0, 0, 0, 0);
   border-radius: 4px;
 }
-mor-private-timepicker .time-select .time-box > ul:hover::-webkit-scrollbar-thumb {
+.mor-time-wrap .select .time-box > ul:hover::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.1);
 }
-mor-private-timepicker .time-select .time-box > ul li {
+.mor-time-wrap .select .time-box > ul li {
   display: block;
   font-size: 12px;
   padding: 0.5em 0;
@@ -10482,34 +10474,34 @@ mor-private-timepicker .time-select .time-box > ul li {
   box-sizing: content-box;
   color: #808080;
 }
-mor-private-timepicker .time-select .time-box > ul li.current {
+.mor-time-wrap .select .time-box > ul li.current {
   color: #17212D;
   font-weight: 700;
 }
-mor-private-timepicker .time-select .time-box > ul li.block {
+.mor-time-wrap .select .time-box > ul li.block {
   color: #d9d9d9 !important;
   font-weight: 400 !important;
   background-color: #f3f3f3;
 }
-mor-private-timepicker .time-select .time-box > ul li:first-child {
+.mor-time-wrap .select .time-box > ul li:first-child {
   margin-top: 6.25em;
 }
-mor-private-timepicker .time-select .time-box > ul li:last-child {
+.mor-time-wrap .select .time-box > ul li:last-child {
   margin-bottom: 6.25em;
 }
-mor-private-timepicker .time-select .time-box > ul li:hover {
+.mor-time-wrap .select .time-box > ul li:hover {
   background-color: #f5f5f5;
   cursor: pointer;
 }
-mor-private-timepicker .time-select .time-box > ul li.current:hover {
+.mor-time-wrap .select .time-box > ul li.current:hover {
   background-color: rgba(0, 0, 0, 0);
   cursor: default;
 }
-mor-private-timepicker .time-select .time-box > ul li.block:hover {
+.mor-time-wrap .select .time-box > ul li.block:hover {
   background-color: #f3f3f3;
   cursor: not-allowed;
 }
-mor-private-timepicker .time-select .time-box .selected {
+.mor-time-wrap .select .time-box .selected {
   position: absolute;
   top: 50%;
   left: 8%;
@@ -10540,39 +10532,31 @@ mor-private-datepicker .cleanbtn {
   font-size: 12px;
   margin-top: 1px;
 }
-mor-private-datepicker .date-select {
+.mor-date-wrap {
   min-width: calc(280px + 2px);
-  width: calc(100% - 42px);
-  box-sizing: border-box;
-  border: 1px #E6E6E6 solid;
   position: absolute;
   top: 45px;
+  pointer-events: none;
+  opacity: 0;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+.mor-date-wrap.show {
+  pointer-events: auto;
+  opacity: 1;
+}
+.mor-date-wrap .date-select {
+  box-sizing: border-box;
+  border: 1px #E6E6E6 solid;
   background: #FFFFFF;
   border-radius: 3px;
   z-index: 2;
   -webkit-user-select: none;
   user-select: none;
-  pointer-events: none;
-  opacity: 0;
 }
-mor-private-datepicker .date-select.align-left {
-  left: 42px;
-}
-mor-private-datepicker .date-select.align-center {
-  left: 50%;
-  transform: translateX(-50%);
-  margin-left: 21px;
-}
-mor-private-datepicker .date-select.align-right {
-  right: 0;
-}
-mor-private-datepicker .date-select:hover {
+.mor-date-wrap .date-select:hover {
   border-color: #d7d7d7;
 }
-mor-private-datepicker .date-select.show {
-  pointer-events: auto;
-  opacity: 1;
-}
-mor-private-datepicker .date-select mor-calendar .day {
+.mor-date-wrap .date-select mor-calendar .day {
   cursor: pointer;
 }

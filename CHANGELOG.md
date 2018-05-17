@@ -1,5 +1,27 @@
 # CHANGELOG
 
+## 0.10.25
+
+`2018年5月17日`
+
+- 优化`ui-select`、`ui-timepicker`、`ui-datepicker`、`ui-datetimepicker`组件的弹框，若超出窗口位置会自动调整位置
+- 优化CSS大小(从 240.57kb 减少至 186.257kb)
+- 修复日期组件文档中`quick-pick`配置中的一个错误
+- 修复`ui-imagemap`的一个问题(`custom validator check failed for prop “color”`)
+- 修复`ui-datepicker`中的一个样式问题
+- 修复`ui-datepicker`中一个数值类型错误的问题
+- 修复`ui-datepicker`中启用`quick-pick`会报错(Uncaught TypeError: Cannot read property '0' of undefined)的问题
+- 修复`ui-datepicker`及`ui-datetimepicker`在开启`is-range`的配置时`default-value`超过可选范围时报错的问题
+- 修复`ui-timepicker`、`ui-datepicker`、`ui-datetimepicker`中获取相近日期及时间的一个问题
+- 修复`ui-select`选中项后，搜索功能显示错误的问题
+- 修复`ui-tip`在某些情况下会闪烁的问题
+- 新增Morning UI CSS Analysis工具帮助开发者分析各个组件的CSS大小(npm run css-analysis)
+
+__Upgrade Precautions__
+
+- `ui-grid`的`averagegap`被废弃，采用`avggap`替代
+- `ui-timepicker`、`ui-datepicker`的`align`配置不再对弹出的时间选择框位置生效，选择框位置仅会居中
+
 ## 0.10.24
 
 `2018年5月14日`
@@ -58,7 +80,7 @@
 - `ui-select`组件新增`hide-selected`配置，关闭后选中的项目不会消失
 - 修复`ui-select`组件在多选时，项目值和名称不一致的问题
 
-__Upgrade Precaution__
+__Upgrade Precautions__
 
 - `ui-select`移除`clean-btn`配置，采用`clearable`配置代替
 
@@ -156,7 +178,7 @@ __Upgrade Precaution__
 - 符合Vue风格指南中优先级D的规则
 - `ui-dialog`组件新增`show-mask`配置
 
-__Upgrade Precaution__
+__Upgrade Precautions__
 
 - 组件生成的HTML标签前缀由`i-`变为`mor-`，如JS、CSS有使用请修改
 
@@ -180,7 +202,7 @@ __Upgrade Precaution__
 - 修复`ui-table`配置的一些问题
 - 修复文档的一些错误
 
-__Upgrade Precaution__
+__Upgrade Precautions__
 
 - `声明`被移除，通过`形态`来替代，使用方法也发生变化，详见`形态`文档
 - `声明`的`style`现在通过`形态`的`color`替代
@@ -197,7 +219,7 @@ __Upgrade Precaution__
 - 新增`ui-table`表格组件
 - `ui-grid`栅格组件列数从16变为24
 
-__Upgrade Precaution__
+__Upgrade Precautions__
 
 - `ui-grid`栅格组件一行列数更新至24列
 
@@ -212,7 +234,7 @@ __Upgrade Precaution__
 - 修复`ui-table`配置的一些问题
 - 修复文档的一些错误
 
-__Upgrade Precaution__
+__Upgrade Precautions__
 
 - `声明`被移除，通过`形态`来替代，使用方法也发生变化，详见`形态`文档
 - `声明`的`style`现在通过`形态`的`color`替代
@@ -229,7 +251,7 @@ __Upgrade Precaution__
 - 新增`ui-table`表格组件
 - `ui-grid`栅格组件列数从16变为24
 
-__Upgrade Precaution__
+__Upgrade Precautions__
 
 - `ui-grid`栅格组件一行列数更新至24列
 
@@ -242,7 +264,7 @@ __Upgrade Precaution__
 - 完善样式组件的端点(E2E)测试
 - 项目构建工具升级至Webpack3
 
-__Upgrade Precaution__
+__Upgrade Precautions__
 
 - `ui-multiform`的`item-title-key`配置被移除，使用`item-filler`替代
 
@@ -263,7 +285,7 @@ __Upgrade Precaution__
 - 支持使用模块管理器(Webpack/Rollup等)
 - 支持CDN引用(cdn.jsdelivr.net)
 
-__Upgrade Precaution__
+__Upgrade Precautions__
 
 - 通过模块方式引入，不会在全局注册window.morning变量
 - 初始化方法从`morning.init([options])`变为`Vue.use(morning, [options])`
@@ -280,7 +302,7 @@ __Upgrade Precaution__
 - 优化文档构建方式，减小文档体积
 - 修复`ui-select`在搜索模式下不会出现`无项目`提示的问题
 
-__Upgrade Precaution__
+__Upgrade Precautions__
 
 - 表单组件的`.get()`方法变更，请查询最新文档
 - 组件样式中以驼峰法命名的`class`现在换成了中划线法命名
