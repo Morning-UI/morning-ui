@@ -18,6 +18,35 @@
     
     ### 更新记录
 
+    ### 0.10.25 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2018年5月17日，
+            Archive : 
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.25" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.25/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.10.25/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor><br/><br/>
+
+    - 优化`ui-select`、`ui-timepicker`、`ui-datepicker`、`ui-datetimepicker`组件的弹框，若超出窗口位置会自动调整位置
+    - 优化CSS大小(从 240.57kb 减少至 186.257kb)
+    - 修复日期组件文档中`quick-pick`配置中的一个错误
+    - 修复`ui-imagemap`的一个问题(`custom validator check failed for prop “color”`)
+    - 修复`ui-datepicker`中的一个样式问题
+    - 修复`ui-datepicker`中一个数值类型错误的问题
+    - 修复`ui-datepicker`中启用`quick-pick`会报错(Uncaught TypeError: Cannot read property '0' of undefined)的问题
+    - 修复`ui-datepicker`及`ui-datetimepicker`在开启`is-range`的配置时`default-value`超过可选范围时报错的问题
+    - 修复`ui-timepicker`、`ui-datepicker`、`ui-datetimepicker`中获取相近日期及时间的一个问题
+    - 修复`ui-select`选中项后，搜索功能显示错误的问题
+    - 修复`ui-tip`在某些情况下会闪烁的问题
+    - 新增Morning UI CSS Analysis工具帮助开发者分析各个组件的CSS大小(npm run css-analysis)
+
+    <ui-label color="primary">Upgrade Precautions</ui-label>
+
+    - `ui-grid`的`averagegap`被废弃，采用`avggap`替代
+    - `ui-timepicker`、`ui-datepicker`的`align`配置不再对弹出的时间选择框位置生效，选择框位置仅会居中
+
     ### 0.10.24 <ui-badge class="circle ver-stable" size="s" color="light-theme">Beta</ui-badge>
     <ui-textcolor color="light-blue">
         <ui-small>

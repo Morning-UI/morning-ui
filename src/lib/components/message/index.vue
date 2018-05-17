@@ -10,16 +10,16 @@
     >
         <div class="list">
 
-            <transition-group name="message" tag="div">
+            <transition-group name="msg" tag="div">
                 <div
                     v-for="msg in data.list"
 
-                    class="message"
-                    :class="'message-co-' + msg.color"
+                    class="msg"
+                    :class="'msg-co-' + _getColorShortName(msg.color)"
                     :key="msg.id"
                 >
-                    <h1 class="title">{{msg.title}}</h1>
-                    <div class="body" v-html="msg.message"></div>
+                    <h1 class="title bo-ti">{{msg.title}}</h1>
+                    <div class="body bo-ti" v-html="msg.message"></div>
                     <i class="morningicon close-btn" v-if="conf.closeBtn" @click="close(msg.id)">&#xe62e;</i>
                 </div>
             </transition-group>
@@ -72,7 +72,7 @@ export default {
 
             let classes = {};
 
-            classes[`pos-${this.conf.showType}`] = true;
+            classes[`pos-${this.data.shortType[this.conf.showType]}`] = true;
 
             return classes;
 
@@ -83,7 +83,15 @@ export default {
         return {
             data : {
                 messageId : 0,
-                list : []
+                list : [],
+                shortType : {
+                    top : 't',
+                    topleft : 'tl',
+                    topright : 'tr',
+                    bottom : 'b',
+                    bottomleft : 'bl',
+                    bottomright : 'br'
+                }
             }
         };
 
@@ -95,7 +103,7 @@ export default {
                 this.data.list.length > +this.conf.maxShow) {
 
                 let height = 0;
-                let $messages = this.$el.querySelectorAll('.list .message');
+                let $messages = this.$el.querySelectorAll('.list .msg');
 
                 const messageMarginBottom = 3.2;
                 const messageListOffset = 8;
