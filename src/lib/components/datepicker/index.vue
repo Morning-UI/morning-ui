@@ -18,6 +18,7 @@
         :show-timepicker-box="showTimepickerBox"
         :is-range="isRange"
         :separator="separator"
+        :separator-type="separatorType"
         :start-name="startName"
         :end-name="endName"
     >
@@ -141,7 +142,7 @@
                 </div>
             </morning-private-datepicker>
 
-            <div class="separator">{{conf.separator}}</div>
+            <div class="separator" :class="conf.separatorType">{{conf.separator}}</div>
 
             <morning-private-datepicker
                 class="datepicker-input-1"
@@ -369,6 +370,11 @@ export default {
             type : String,
             default : '至'
         },
+        separatorType : {
+            type : String,
+            default : 'block',
+            validator : (value => ['block', 'inline'].indexOf(value) !== -1)
+        },
         startName : {
             type : String,
             default : '开始日期'
@@ -391,6 +397,7 @@ export default {
                 showTimepickerBox : this.showTimepickerBox,
                 isRange : this.isRange,
                 separator : this.separator,
+                separatorType : this.separatorType,
                 startName : this.startName,
                 endName : this.endName
             };
@@ -399,7 +406,8 @@ export default {
         moreClass : function () {
 
             return {
-                'has-quick-pick' : (this.conf.quickPick.length > 0)
+                'has-quick-pick' : (this.conf.quickPick.length > 0),
+                'inline-separator' : (this.conf.separatorType === 'inline')
             };
 
         }
