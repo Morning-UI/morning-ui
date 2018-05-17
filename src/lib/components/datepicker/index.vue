@@ -545,7 +545,6 @@ export default {
 
                 }
 
-
                 if ($input0DateSelect &&
                     $input1DateSelect) {
 
@@ -555,26 +554,26 @@ export default {
                         let input1x = $input1DateSelect.getBoundingClientRect().x;
                         let offset = ($input0DateSelect.offsetWidth - (input1x - input0x)) / 2;
 
-                        if (offset === 0 ) {
+                        if (offset === 0) {
 
                             return;
 
                         }
 
-                        offset = Math.round(offset * 1000) / 1000;
-            
+                        offset = Math.round(offset * NUM_1K) / NUM_1K;
+
                         this.Vue.nextTick(() => {
 
                             if (input1.Tip.overranger[1]) {
 
                                 input0._tipUpdate({
-                                    offset : `0 ${2*offset}px`
+                                    offset : `0 ${2 * offset}px`
                                 });
 
                             } else if (input0.Tip.overranger[3]) {
 
                                 input1._tipUpdate({
-                                    offset : `0 ${-2*offset}px`
+                                    offset : `0 ${-2 * offset}px`
                                 });
 
                             } else {
@@ -588,7 +587,9 @@ export default {
                                 });
 
                             }
+
                         });
+
                     });
 
                 }

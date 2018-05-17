@@ -342,8 +342,6 @@ export default {
         },
         _clickDate : function (date) {
 
-            console.log(date);
-
             let value = formatDate(date, this.conf.format);
             let selectable = this._checkSelectable(value);
 

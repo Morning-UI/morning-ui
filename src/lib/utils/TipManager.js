@@ -85,7 +85,7 @@ let TipManager = {
                 if (this.Tip.autoOffset && (rect.x + rect.width + blank) > document.documentElement.clientWidth) {
 
                     this.Tip.autoFixOffset[1] = rect.x + rect.width + blank - document.documentElement.clientWidth;
-                    this.Tip.overranger[1] = true;                       
+                    this.Tip.overranger[1] = true;
 
                 }
 
@@ -172,11 +172,6 @@ let TipManager = {
                 attachment = this.Tip.attachmentMap[this.Tip.autoFixPlacement];
             
             }
-
-            console.log(extend({}, options, {
-                attachment,
-                offset
-            }).offset);
 
             this.Tip.tether.setOptions(extend({}, options, {
                 attachment,
