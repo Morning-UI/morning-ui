@@ -47,26 +47,11 @@ let TipManager = {
             return options;
 
         },
-        _tipCreate : function (options) {
-
-            if (this.Tip.tether) {
-
-                return;
-
-            }
-
-            options = this._tipOptionsHandler(options);
-            this.Popup.$target = options.element;
-
-            this._popupShow();
-            this.Tip.tether = new Tether(options);
-            this.Tip.autoFixOffset = [0, 0];
-            this.Tip.autoFixPlacement = null;
-            this.Tip.overranger = [false, false, false, false];
-            this._tipUpdate();
+        _tipAutoPos : function () {
 
             const blank = 5;
 
+            let options = this.Tip.options;
             let rect = options.element.getBoundingClientRect();
             let placement = options.placement;
 
@@ -142,6 +127,32 @@ let TipManager = {
 
             }
             
+        },
+        _tipCreate : function (options) {
+
+            if (this.Tip.tether) {
+
+                this._tipShow();
+
+                return;
+
+            }
+
+            options = this._tipOptionsHandler(options);
+            this.Popup.$target = options.element;
+
+            this._popupShow();
+            this.Tip.tether = new Tether(options);
+            this._tipShow();
+
+        },
+        _tipShow : function () {
+
+            this.Tip.autoFixOffset = [0, 0];
+            this.Tip.autoFixPlacement = null;
+            this.Tip.overranger = [false, false, false, false];
+            this._tipUpdate();
+            this._tipAutoPos();
             this._tipUpdate();
 
         },
