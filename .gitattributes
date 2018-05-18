@@ -1,0 +1,3 @@
+docs/**/* linguist-documentation
+dist/* linguist-generated
+report/**/* linguist-generated
