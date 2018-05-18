@@ -204,6 +204,8 @@ morning.install = function (Vue, options) {
         let creater = components[name];
         let component;
 
+        creater.name = `morning-${creater.name}`;
+
         if (creater.origin === 'UI') {
 
             component = this._origin.UI.extend(creater);
@@ -219,16 +221,16 @@ morning.install = function (Vue, options) {
         }
 
         if (!component.private) {
-           
-            Vue.component(`${options.prefix}-${component.options.name}`, component);
+
+            Vue.component(`${options.prefix}-${name}`, component);
 
         }
 
-        Vue.component(`morning-${component.options.name}`, component);
+        Vue.component(component.options.name, component);
 
         this._components[name] = component;
-        this._ignoreElements.push(`mor-${component.options.name}`);
-        this._ignoreElements.push(`morning-${component.options.name}`);
+        this._ignoreElements.push(`mor-${name}`);
+        this._ignoreElements.push(component.options.name);
 
     }
 

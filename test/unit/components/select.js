@@ -25,7 +25,7 @@ test('base : init component', async t => {
     t.plan(2);
 
     t.is(vm.uiid, 2);
-    t.is(component.options.name, name);
+    t.is(component.options.name, `morning-${name}`);
 
 });
 
