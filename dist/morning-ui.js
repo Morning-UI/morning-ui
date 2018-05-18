@@ -39817,7 +39817,7 @@ morning.install = function (Vue, options) {
 
     var version = Vue.version.split('-')[0].split('.');
 
-    if (+version[0] < 2 || +version[1] < 5 || version[1] === 5 && +version[2] < 3) {
+    if (+version[0] < 2 || +version[1] < 5 || +version[1] === 5 && +version[2] < 3) {
 
         throw new Error('Vue version mismatch(version must > 2.5.2), please update Vue.');
     }
