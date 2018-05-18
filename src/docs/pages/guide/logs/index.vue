@@ -18,6 +18,26 @@
     
     ### 更新记录
 
+    ### 0.10.26 <ui-badge class="circle ver-stable" size="s" color="extra-light-black">Beta</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2018年5月18日，
+            Archive : 
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.26" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.26/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.10.26/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor><br/><br/>
+
+    - 新增Vue版本检测并要求大于`2.5.2`
+    - `ui-timepicker`、`ui-datepicker`、`ui-datetimepicker`新增`separator-type`配置
+    - 修复`ui-dropdown`和`ui-select`等有弹框的组件导致父容器出现竖向滚动条
+    - 修复`ui-select`导致父容器出现横向滚动条
+    - 修复`ui-radio`样式错乱的问题
+    - 更新Vue文档链接
+    - 为GitHub增加Contributing Guidelines和Code of conduct
+
     ### 0.10.25 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
     <ui-textcolor color="light-blue">

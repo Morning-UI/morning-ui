@@ -8808,25 +8808,11 @@ var TipManager = {
 
             return options;
         },
-        _tipCreate: function _tipCreate(options) {
-
-            if (this.Tip.tether) {
-
-                return;
-            }
-
-            options = this._tipOptionsHandler(options);
-            this.Popup.$target = options.element;
-
-            this._popupShow();
-            this.Tip.tether = new _tetherMin2.default(options);
-            this.Tip.autoFixOffset = [0, 0];
-            this.Tip.autoFixPlacement = null;
-            this.Tip.overranger = [false, false, false, false];
-            this._tipUpdate();
+        _tipAutoPos: function _tipAutoPos() {
 
             var blank = 5;
 
+            var options = this.Tip.options;
             var rect = options.element.getBoundingClientRect();
             var placement = options.placement;
 
@@ -8889,7 +8875,30 @@ var TipManager = {
                     this.Tip.overranger[2] = true;
                 }
             }
+        },
+        _tipCreate: function _tipCreate(options) {
 
+            if (this.Tip.tether) {
+
+                this._tipShow();
+
+                return;
+            }
+
+            options = this._tipOptionsHandler(options);
+            this.Popup.$target = options.element;
+
+            this._popupShow();
+            this.Tip.tether = new _tetherMin2.default(options);
+            this._tipShow();
+        },
+        _tipShow: function _tipShow() {
+
+            this.Tip.autoFixOffset = [0, 0];
+            this.Tip.autoFixPlacement = null;
+            this.Tip.overranger = [false, false, false, false];
+            this._tipUpdate();
+            this._tipAutoPos();
             this._tipUpdate();
         },
         _tipUpdate: function _tipUpdate(options) {
@@ -19747,7 +19756,6 @@ exports.default = {
                 this.$emit('list-show');
             } else {
 
-                this._tipDestroy();
                 this.data.$listWrap.style.width = $wrap.offsetWidth + 'px';
 
                 this.data.showlist = false;
@@ -24728,7 +24736,7 @@ exports.default = {
 
             if (this.data.show) {
 
-                if (this.data.$arrow) {
+                if (!this.Tip.tether && this.data.$arrow) {
 
                     this.data.$wrap.style.minWidth = this.data.$wrap.offsetWidth + this.data.$arrow.offsetWidth + 'px';
                 }
@@ -24743,7 +24751,6 @@ exports.default = {
                 this.$emit('show');
             } else {
 
-                this._tipDestroy();
                 this.$emit('hide');
             }
 
@@ -24767,7 +24774,7 @@ exports.default = {
 
         var $emitbtn = this.$el.querySelector('[emitbtn]');
 
-        this.data.$wrap = this.$el.querySelector('.ui-dropdown-wrap');
+        this.data.$wrap = this.$el.querySelector('.mor-dropdown-wrap');
         this.data.$arrow = this.$el.querySelector('mor-btn>.morningicon, mor-link>.morningicon');
 
         this.Trigger.$targets = [$emitbtn, this.data.$wrap];
@@ -32283,7 +32290,7 @@ var render = function() {
     [
       _vm._t("showbtn"),
       _vm._v(" "),
-      _c("div", { staticClass: "ui-dropdown-wrap", class: [_vm.showClass] }, [
+      _c("div", { staticClass: "mor-dropdown-wrap", class: [_vm.showClass] }, [
         _c("div", { staticClass: "btnlist" }, [_vm._t("default")], 2)
       ])
     ],
@@ -39621,7 +39628,7 @@ var morning = {
         white: 'wh'
     },
     isMorning: true,
-    version: '0.10.25',
+    version: '0.10.26',
     map: {}
 };
 
@@ -39812,7 +39819,7 @@ morning.install = function (Vue, options) {
 
     if (+version[0] < 2 || +version[1] < 5 || version[1] === 5 && +version[2] < 3) {
 
-        throw new Error('Vue version mismatch(>2.5.3), please update Vue.');
+        throw new Error('Vue version mismatch(version must > 2.5.2), please update Vue.');
     }
 
     if (options && options.prefix === 'mor') {
