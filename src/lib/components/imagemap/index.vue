@@ -787,6 +787,7 @@ export default {
         _saveZoneModify : function () {
 
             let id = this.data.modifyZoneId;
+            let data = this.morning.getGroup(`ui-imagemap-data-${this.uiid}`);
 
             this.updateZone(id, {
                 w : +this.data.modifyZoneBasic.w,
@@ -794,7 +795,7 @@ export default {
                 x : +this.data.modifyZoneBasic.x,
                 y : +this.data.modifyZoneBasic.y,
                 i : +this.data.modifyZoneBasic.i,
-                data : this.morning.getGroup(`ui-imagemap-data-${this.uiid}`)
+                data : (Object.keys(data).length === 0) ? undefined : data
             });
 
             this.$refs[`ui-imagemap-zonedialog-${this.uiid}`].toggle(false);
@@ -1031,13 +1032,15 @@ export default {
         },
         addZone : function (zone) {
 
+            let data = this.morning.getGroup(`ui-imagemap-data-${this.uiid}`);
+
             zone = extend({
                 w : this.zoneMinSize,
                 h : this.zoneMinSize,
                 x : 0,
                 y : 0,
                 i : 0,
-                data : undefined
+                data : (Object.keys(data).length === 0) ? undefined : data
             }, zone);
 
             this._zoneRangeFilter(zone);
