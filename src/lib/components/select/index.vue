@@ -812,15 +812,15 @@ export default {
         },
         _refreshTips : function () {
 
+            for (let tipVm of this.data.tips) {
+
+                tipVm.$destroy();
+
+            }
+
+            this.data.tips = [];
+
             if (!this.conf.itemTip) {
-
-                for (let tipVm of this.data.tips) {
-
-                    tipVm.$destroy();
-
-                }
-
-                this.data.tips = [];
 
                 return;
 
@@ -971,6 +971,17 @@ export default {
                 this.data.$listWrap.style.width = `${$wrap.offsetWidth}px`;
 
                 this.data.showlist = false;
+
+                for (let tipVm of this.data.tips) {
+
+                    if (tipVm.$el._vm.data.show) {
+
+                        tipVm.$el._vm.hide();
+
+                    }
+
+                }
+
                 this.$emit('list-hide');
 
             }
@@ -1051,6 +1062,16 @@ export default {
 
         }, {
             immediate : true
+        });
+
+        this.$watch('data.itemValueList', (newVal, oldVal) => {
+
+            if (JSON.stringify(newVal) !== JSON.stringify(oldVal)) {
+
+                this._refreshTips();
+
+            }
+
         });
 
         this.$on('list-show', () => {
