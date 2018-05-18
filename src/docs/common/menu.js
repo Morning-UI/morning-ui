@@ -119,6 +119,7 @@ export default {
         更多 : null,
         致谢 : '/guide/thank.html',
         反馈问题 : '/guide/report.html',
-        更新日志 : '/guide/logs.html'
+        更新日志 : '/guide/logs.html',
+        参与者公约 : '/guide/codeofconduct.html'
     }
 };

@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">6.33% </span>
+        <span class="strong">6.02% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>5/79</span>
+        <span class='fraction'>5/83</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>0/54</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">14.29% </span>
+        <span class="strong">11.11% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>1/7</span>
+        <span class='fraction'>1/9</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">6.41% </span>
+        <span class="strong">6.1% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>5/78</span>
+        <span class='fraction'>5/82</span>
       </div>
     </div>
   </div>
@@ -268,7 +268,18 @@
 223
 224
 225
-226</td><td class="line-coverage quiet"><span class="cline-any cline-yes">84x</span>
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237</td><td class="line-coverage quiet"><span class="cline-any cline-yes">84x</span>
 <span class="cline-any cline-yes">84x</span>
 <span class="cline-any cline-yes">84x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -322,21 +333,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -412,6 +408,32 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -542,26 +564,11 @@ let TipManager = {
 <span class="cstat-no" title="statement not covered" >            return options;</span>
 &nbsp;
         },
-        _tipCreate : <span class="fstat-no" title="function not covered" >function (</span>options) {
-&nbsp;
-<span class="cstat-no" title="statement not covered" >            if (this.Tip.tether) {</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >                return;</span>
-&nbsp;
-            }
-&nbsp;
-<span class="cstat-no" title="statement not covered" >            options = this._tipOptionsHandler(options);</span>
-<span class="cstat-no" title="statement not covered" >            this.Popup.$target = options.element;</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >            this._popupShow();</span>
-<span class="cstat-no" title="statement not covered" >            this.Tip.tether = new Tether(options);</span>
-<span class="cstat-no" title="statement not covered" >            this.Tip.autoFixOffset = [0, 0];</span>
-<span class="cstat-no" title="statement not covered" >            this.Tip.autoFixPlacement = null;</span>
-<span class="cstat-no" title="statement not covered" >            this.Tip.overranger = [false, false, false, false];</span>
-<span class="cstat-no" title="statement not covered" >            this._tipUpdate();</span>
+        _tipAutoPos : <span class="fstat-no" title="function not covered" >function () </span>{
 &nbsp;
             const blank = <span class="cstat-no" title="statement not covered" >5;</span>
 &nbsp;
+            let options = <span class="cstat-no" title="statement not covered" >this.Tip.options;</span>
             let rect = <span class="cstat-no" title="statement not covered" >options.element.getBoundingClientRect();</span>
             let placement = <span class="cstat-no" title="statement not covered" >options.placement;</span>
 &nbsp;
@@ -637,6 +644,32 @@ let TipManager = {
 &nbsp;
             }
             
+        },
+        _tipCreate : <span class="fstat-no" title="function not covered" >function (</span>options) {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (this.Tip.tether) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                this._tipShow();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                return;</span>
+&nbsp;
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            options = this._tipOptionsHandler(options);</span>
+<span class="cstat-no" title="statement not covered" >            this.Popup.$target = options.element;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            this._popupShow();</span>
+<span class="cstat-no" title="statement not covered" >            this.Tip.tether = new Tether(options);</span>
+<span class="cstat-no" title="statement not covered" >            this._tipShow();</span>
+&nbsp;
+        },
+        _tipShow : <span class="fstat-no" title="function not covered" >function () </span>{
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            this.Tip.autoFixOffset = [0, 0];</span>
+<span class="cstat-no" title="statement not covered" >            this.Tip.autoFixPlacement = null;</span>
+<span class="cstat-no" title="statement not covered" >            this.Tip.overranger = [false, false, false, false];</span>
+<span class="cstat-no" title="statement not covered" >            this._tipUpdate();</span>
+<span class="cstat-no" title="statement not covered" >            this._tipAutoPos();</span>
 <span class="cstat-no" title="statement not covered" >            this._tipUpdate();</span>
 &nbsp;
         },
@@ -724,7 +757,7 @@ export default TipManager;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu May 17 2018 13:42:15 GMT+0800 (CST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri May 18 2018 09:28:17 GMT+0800 (CST)
 </div>
 </div>
 <script src="../../prettify.js"></script>

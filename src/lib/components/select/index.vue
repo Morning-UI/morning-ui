@@ -968,7 +968,6 @@ export default {
 
             } else {
 
-                this._tipDestroy();
                 this.data.$listWrap.style.width = `${$wrap.offsetWidth}px`;
 
                 this.data.showlist = false;

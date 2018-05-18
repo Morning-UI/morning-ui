@@ -1,7 +1,7 @@
 <template>
     <mor-timepicker
         :_uiid="uiid"
-        :class="[formClass, stateClass]"
+        :class="[formClass, stateClass, moreClass]"
 
         :form-name="formName"
         :form-key="formKey"
@@ -14,6 +14,7 @@
         :selectable-range="selectableRange"
         :is-range="isRange"
         :separator="separator"
+        :separator-type="separatorType"
         :start-name="startName"
         :end-name="endName"
         :is-list="isList"
@@ -44,7 +45,7 @@
                     <li v-for="item in timeList" :value="item">{{item}}</li>            
                 </morning-select>
 
-                <div class="separator">{{conf.separator}}</div>
+                <div class="separator" :class="conf.separatorType">{{conf.separator}}</div>
 
                 <morning-select
                     class="timepicker-select-1"
@@ -95,7 +96,7 @@
                 >    
                 </morning-private-timepicker>
 
-                <div class="separator">{{conf.separator}}</div>
+                <div class="separator" :class="conf.separatorType">{{conf.separator}}</div>
 
                 <morning-private-timepicker
                     class="timepicker-input-1"
@@ -176,6 +177,11 @@ export default {
             type : String,
             default : '至'
         },
+        separatorType : {
+            type : String,
+            default : 'block',
+            validator : (value => ['block', 'inline'].indexOf(value) !== -1)
+        },
         startName : {
             type : String,
             default : '开始时间'
@@ -214,6 +220,7 @@ export default {
                 selectableRange : this.selectableRange,
                 isRange : this.isRange,
                 separator : this.separator,
+                separatorType : this.separatorType,
                 startName : this.startName,
                 endName : this.endName,
                 isList : this.isList,
@@ -221,6 +228,13 @@ export default {
                 listStart : this.listStart,
                 listEnd : this.listEnd,
                 listStep : this.listStep
+            };
+
+        },
+        moreClass : function () {
+
+            return {
+                'inline-separator' : (this.conf.separatorType === 'inline')
             };
 
         },

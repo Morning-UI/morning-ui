@@ -4762,13 +4762,14 @@ mor-dropdown.hide mor-link .morningicon {
   animation-duration: 0.2s;
   animation-fill-mode: forwards;
 }
-.ui-dropdown-wrap {
+.mor-dropdown-wrap {
   position: absolute;
   top: 110%;
   left: 50%;
   transform: translateX(-50%);
+  height: 0;
 }
-.ui-dropdown-wrap .btnlist {
+.mor-dropdown-wrap .btnlist {
   width: 100%;
   font-size: 0;
   transform-origin: top center;
@@ -4776,29 +4777,29 @@ mor-dropdown.hide mor-link .morningicon {
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
   transform: scale(0);
 }
-.ui-dropdown-wrap .btnlist mor-btn {
+.mor-dropdown-wrap .btnlist mor-btn {
   white-space: nowrap;
   display: block;
   margin: 0;
   text-align: center;
 }
-.ui-dropdown-wrap .btnlist mor-btn:not(:first-child) {
+.mor-dropdown-wrap .btnlist mor-btn:not(:first-child) {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-.ui-dropdown-wrap .btnlist mor-btn:not(:last-child) {
+.mor-dropdown-wrap .btnlist mor-btn:not(:last-child) {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
-.ui-dropdown-wrap.hide {
+.mor-dropdown-wrap.hide {
   pointer-events: none;
 }
-.ui-dropdown-wrap.show .btnlist {
+.mor-dropdown-wrap.show .btnlist {
   animation-name: dropdown_popup;
   animation-duration: 0.2s;
   animation-fill-mode: forwards;
 }
-.ui-dropdown-wrap.hide .btnlist {
+.mor-dropdown-wrap.hide .btnlist {
   animation-name: dropdown_popin;
   animation-duration: 0.18s;
   animation-fill-mode: forwards;
@@ -8586,6 +8587,7 @@ mor-select.st-readonly .wrap > mor-textinput {
   pointer-events: none;
   visibility: hidden;
   position: absolute;
+  height: 0;
 }
 .mor-select-list .list {
   margin: 0;
@@ -9593,15 +9595,27 @@ mor-timepicker .wrap .timepicker-select-1 .wrap {
 }
 mor-timepicker .wrap .separator {
   height: 42px;
-  min-width: 42px;
   line-height: 42px;
-  padding: 0 0.5em;
   font-size: 14px;
   color: #7C8BA0;
   text-align: center;
-  background-color: #F0F0F0;
+  box-sizing: border-box;
   border-top: 1px solid #E6E6E6;
   border-bottom: 1px solid #E6E6E6;
+}
+mor-timepicker .wrap .separator.block {
+  background-color: #F0F0F0;
+  padding: 0 0.5em;
+  min-width: 42px;
+}
+mor-timepicker .wrap .separator.inline {
+  padding: 0;
+}
+mor-timepicker.inline-separator .wrap .timepicker-input-0 mor-textinput input {
+  border-right: 0;
+}
+mor-timepicker.inline-separator .wrap .timepicker-input-1 mor-textinput input {
+  border-left: 0;
 }
 
 mor-datepicker {
@@ -9651,16 +9665,27 @@ mor-datepicker .wrap .datepicker-input-0 mor-textinput input {
 }
 mor-datepicker .wrap .separator {
   height: 42px;
-  min-width: 42px;
   line-height: 42px;
-  padding: 0 0.5em;
   font-size: 14px;
   color: #7C8BA0;
   text-align: center;
-  background-color: #F0F0F0;
+  box-sizing: border-box;
   border-top: 1px solid #E6E6E6;
   border-bottom: 1px solid #E6E6E6;
-  box-sizing: border-box;
+}
+mor-datepicker .wrap .separator.block {
+  background-color: #F0F0F0;
+  padding: 0 0.5em;
+  min-width: 42px;
+}
+mor-datepicker .wrap .separator.inline {
+  padding: 0;
+}
+mor-datepicker.inline-separator .wrap .datepicker-input-0 mor-textinput input {
+  border-right: 0;
+}
+mor-datepicker.inline-separator .wrap .datepicker-input-1 mor-textinput input {
+  border-left: 0;
 }
 .mor-date-wrap {
   min-width: 282px;
@@ -10414,7 +10439,9 @@ mor-private-timepicker .cleanbtn {
   top: 45px;
   pointer-events: none;
   opacity: 0;
+  height: 0;
   box-sizing: border-box;
+  transform: scale(0);
 }
 .mor-time-wrap.show {
   pointer-events: auto;
@@ -10538,6 +10565,8 @@ mor-private-datepicker .cleanbtn {
   top: 45px;
   pointer-events: none;
   opacity: 0;
+  height: 0;
+  transform: scale(0);
   box-sizing: border-box;
   font-size: 14px;
 }

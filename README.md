@@ -18,6 +18,10 @@
     <a href="https://www.npmjs.com/package/morning-ui">
         <img src="https://img.shields.io/npm/l/morning-ui.svg" alt="npm">
     </a>
+    <br>
+    <a href="https://www.npmjs.com/package/morning-ui">
+        <img src="https://img.shields.io/npm/dt/morning-ui.svg" alt="npm downloads">
+    </a>
     <a href="https://www.jsdelivr.com/package/npm/morning-ui">
         <img src="https://data.jsdelivr.com/v1/package/npm/morning-ui/badge?style=rounded" alt="jsdelivr">
     </a>
@@ -26,7 +30,7 @@
 
 ## 简介
 
-Morning UI是一套桌面Web端的UI库，基于[Vue.js](https://github.com/vuejs/vue)。
+Morning UI是一套桌面端UI组件库，基于[Vue.js](https://github.com/vuejs/vue)。
 
 ## 为什么要用 Morning UI？
 

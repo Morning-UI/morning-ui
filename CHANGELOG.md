@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## 0.10.26
+
+`2018年5月18日`
+
+- 新增Vue版本检测并要求大于`2.5.2`
+- `ui-timepicker`、`ui-datepicker`、`ui-datetimepicker`新增`separator-type`配置
+- 修复`ui-dropdown`和`ui-select`等有弹框的组件导致父容器出现竖向滚动条
+- 修复`ui-select`导致父容器出现横向滚动条
+- 修复`ui-radio`样式错乱的问题
+- 更新Vue文档链接
+- 为GitHub增加Contributing Guidelines和Code of conduct
+
 ## 0.10.25
 
 `2018年5月17日`
@@ -15,7 +27,7 @@
 - 修复`ui-timepicker`、`ui-datepicker`、`ui-datetimepicker`中获取相近日期及时间的一个问题
 - 修复`ui-select`选中项后，搜索功能显示错误的问题
 - 修复`ui-tip`在某些情况下会闪烁的问题
-- 新增Morning UI CSS Analysis工具帮助开发者分析各个组件的CSS大小(npm run css-analysis) // TODO ： 文档
+- 新增Morning UI CSS Analysis工具帮助开发者分析各个组件的CSS大小(npm run css-analysis)
 
 __Upgrade Precautions__
 

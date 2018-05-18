@@ -9,7 +9,7 @@
     <slot name="showbtn"></slot>
 
     <div 
-        class="ui-dropdown-wrap"
+        class="mor-dropdown-wrap"
         :class="[showClass]"
     >
         <div class="btnlist" ><slot></slot></div>
@@ -126,7 +126,8 @@ export default {
 
             if (this.data.show) {
 
-                if (this.data.$arrow) {
+                if (!this.Tip.tether &&
+                    this.data.$arrow) {
 
                     this.data.$wrap.style.minWidth = `${this.data.$wrap.offsetWidth + this.data.$arrow.offsetWidth}px`;
 
@@ -143,7 +144,6 @@ export default {
 
             } else {
 
-                this._tipDestroy();
                 this.$emit('hide');
 
             }
@@ -169,7 +169,7 @@ export default {
 
         let $emitbtn = this.$el.querySelector(`[emitbtn]`);
 
-        this.data.$wrap = this.$el.querySelector('.ui-dropdown-wrap');
+        this.data.$wrap = this.$el.querySelector('.mor-dropdown-wrap');
         this.data.$arrow = this.$el.querySelector('mor-btn>.morningicon, mor-link>.morningicon');
 
         this.Trigger.$targets = [$emitbtn, this.data.$wrap];
