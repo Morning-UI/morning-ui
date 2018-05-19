@@ -6,13 +6,24 @@ import calendar                     from '../../../src/lib/components/calendar/i
 const name = 'calendar';
 const component = window.morning._origin.UI.extend(calendar);
 
-test('base : component snapshot', async t => {
+test.serial('base : component snapshot', async t => {
     
     const vm = new Vue(component);
 
     // fixed date
     vm.date = +new Date('2018-03-23');
-    vm.$mount();
+    
+    await new Promise(resolve => {
+
+        vm.Vue.nextTick(() => {
+        
+            vm.$mount();
+        
+        });
+        
+        resolve();
+
+    });
 
     t.plan(1);
 
@@ -20,7 +31,7 @@ test('base : component snapshot', async t => {
 
 });
 
-test('base : init component', async t => {
+test.serial('base : init component', async t => {
 
     const vm = new Vue(component).$mount();
 
@@ -31,7 +42,7 @@ test('base : init component', async t => {
 
 });
 
-test('base : component tag name is t-*', async t => {
+test.serial('base : component tag name is t-*', async t => {
 
     const vm = new Vue(component).$mount();
 

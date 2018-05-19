@@ -6,7 +6,7 @@ import textarea                    from '../../../src/lib/components/textarea/in
 const name = 'textarea';
 const component = window.morning._origin.Form.extend(textarea);
 
-test('base : component snapshot', async t => {
+test.serial('base : component snapshot', async t => {
 
     const vm = new Vue(component).$mount();
 
@@ -16,7 +16,7 @@ test('base : component snapshot', async t => {
 
 });
 
-test('base : init component', async t => {
+test.serial('base : init component', async t => {
 
     const vm = new Vue(component).$mount();
 
@@ -27,7 +27,7 @@ test('base : init component', async t => {
 
 });
 
-test('base : component tag name is t-*', async t => {
+test.serial('base : component tag name is t-*', async t => {
 
     const vm = new Vue(component).$mount();
 
@@ -37,7 +37,7 @@ test('base : component tag name is t-*', async t => {
 
 });
 
-test('form base : init component value is right when use v-model', async t => {
+test.serial('form base : init component value is right when use v-model', async t => {
 
     const vm = new Vue({
         template : `
@@ -65,7 +65,7 @@ test('form base : init component value is right when use v-model', async t => {
 
 });
 
-test('form base : init component value is right when both use v-model and default-value', async t => {
+test.serial('form base : init component value is right when both use v-model and default-value', async t => {
 
     const vm = new Vue({
         template : `
@@ -94,7 +94,7 @@ test('form base : init component value is right when both use v-model and defaul
 
 });
 
-test('set json string value', async t => {
+test.serial('set json string value', async t => {
 
     const vm = new Vue({
         template : `<ui-${name} v-model="value"></ui-${name}>`,

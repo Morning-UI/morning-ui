@@ -6,7 +6,7 @@ import tab                          from '../../../src/lib/components/tab/index.
 const name = 'tab';
 const component = window.morning._origin.UI.extend(tab);
 
-test('base : component snapshot', async t => {
+test.serial('base : component snapshot', async t => {
 
     const vm = new Vue(component).$mount();
 
@@ -16,7 +16,7 @@ test('base : component snapshot', async t => {
 
 });
 
-test('base : init component', async t => {
+test.serial('base : init component', async t => {
 
     const vm = new Vue(component).$mount();
 
@@ -27,7 +27,7 @@ test('base : init component', async t => {
 
 });
 
-test('base : component tag name is t-*', async t => {
+test.serial('base : component tag name is t-*', async t => {
 
     const vm = new Vue(component).$mount();
 
@@ -37,7 +37,7 @@ test('base : component tag name is t-*', async t => {
 
 });
 
-test('slot is dynamic', async t => {
+test.serial('slot is dynamic', async t => {
 
     let vm = new Vue({
         template : `
