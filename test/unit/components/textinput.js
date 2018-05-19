@@ -37,15 +37,72 @@ test('base : component tag name is t-*', async t => {
 
 });
 
+test('form base : init component value is right when use v-model', async t => {
+
+    const vm = new Vue({
+        template : `
+            <div style="width:300px;">
+                <ui-${name} v-model="value1"></ui-${name}>
+            </div>
+        `,
+        data : {
+            value1 : 'test 123'
+        },
+        components : {
+            [`ui-${name}`] : component
+        }
+    });
+
+    vm.$mount();
+
+    t.plan(1);
+
+    Vue.nextTick(() => {
+
+        t.is(vm.$children[0].get(), 'test 123');
+
+    });
+
+});
+
+test('form base : init component value is right when both use v-model and default-value', async t => {
+
+    const vm = new Vue({
+        template : `
+            <div style="width:300px;">
+                <ui-${name} v-model="value1" :default-value="value2"></ui-${name}>
+            </div>
+        `,
+        data : {
+            value1 : 'test 123',
+            value2 : 'test 234'
+        },
+        components : {
+            [`ui-${name}`] : component
+        }
+    });
+
+    vm.$mount();
+
+    t.plan(1);
+
+    Vue.nextTick(() => {
+
+        t.is(vm.$children[0].get(), 'test 123');
+
+    });
+
+});
+
 test('set json string value', async t => {
 
     const vm = new Vue({
-        template : '<ui-textinput v-model="value"></ui-textinput>',
+        template : `<ui-${name} v-model="value"></ui-${name}>`,
         data : {
             value : ''
         },
         components : {
-            'ui-textinput' : component
+            [`ui-${name}`] : component
         }
     });
 
@@ -65,62 +122,6 @@ test('set json string value', async t => {
             t.is(vm.$children[0].get(), '[1,2]');
 
         });
-
-    });
-
-});
-
-test('init component value is right when use v-model', async t => {
-
-    const vm = new Vue({
-        template : `
-            <div style="width:300px;">
-                <ui-textinput v-model="name"></ui-textinput>
-            </div>
-        `,
-        data : {
-            name : 'test 123'
-        },
-        components : {
-            'ui-textinput' : component
-        }
-    });
-
-    vm.$mount();
-
-    t.plan(1);
-
-    Vue.nextTick(() => {
-
-        t.is(vm.$children[0].get(), 'test 123');
-
-    });
-
-});
-
-test('init component value is right when both use v-model and default-value', async t => {
-
-    const vm = new Vue({
-        template : `
-            <div style="width:300px;">
-                <ui-textinput v-model="name" default-value="test 234"></ui-textinput>
-            </div>
-        `,
-        data : {
-            name : 'test 123'
-        },
-        components : {
-            'ui-textinput' : component
-        }
-    });
-
-    vm.$mount();
-
-    t.plan(1);
-
-    Vue.nextTick(() => {
-
-        t.is(vm.$children[0].get(), 'test 123');
 
     });
 

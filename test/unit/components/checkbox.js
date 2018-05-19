@@ -1,10 +1,10 @@
 import test                         from 'ava';
 import snapshot                     from '../../helpers/snapshot';
 import Vue                          from 'vue/dist/vue.common.js';
-import textarea                    from '../../../src/lib/components/textarea/index.vue';
+import checkbox                     from '../../../src/lib/components/checkbox/index.vue';
 
-const name = 'textarea';
-const component = window.morning._origin.Form.extend(textarea);
+const name = 'checkbox';
+const component = window.morning._origin.Form.extend(checkbox);
 
 test('base : component snapshot', async t => {
 
@@ -42,11 +42,11 @@ test('form base : init component value is right when use v-model', async t => {
     const vm = new Vue({
         template : `
             <div style="width:300px;">
-                <ui-${name} v-model="value1"></ui-${name}>
+                <ui-${name} v-model="value1" :list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"></ui-${name}>
             </div>
         `,
         data : {
-            value1 : 'test 123'
+            value1 : ["Tim"]
         },
         components : {
             [`ui-${name}`] : component
@@ -59,7 +59,7 @@ test('form base : init component value is right when use v-model', async t => {
 
     Vue.nextTick(() => {
 
-        t.is(vm.$children[0].get(), 'test 123');
+        t.is(vm.$children[0].get()[0], 'Tim');
 
     });
 
@@ -70,12 +70,12 @@ test('form base : init component value is right when both use v-model and defaul
     const vm = new Vue({
         template : `
             <div style="width:300px;">
-                <ui-${name} v-model="value1" :default-value="value2"></ui-${name}>
+                <ui-${name} v-model="value1" :default-value="value2" :list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"></ui-${name}>
             </div>
         `,
         data : {
-            value1 : 'test 123',
-            value2 : 'test 234'
+            value1 : ["Tim"],
+            value2 : ["Andrew"]
         },
         components : {
             [`ui-${name}`] : component
@@ -88,40 +88,7 @@ test('form base : init component value is right when both use v-model and defaul
 
     Vue.nextTick(() => {
 
-        t.is(vm.$children[0].get(), 'test 123');
-
-    });
-
-});
-
-test('set json string value', async t => {
-
-    const vm = new Vue({
-        template : `<ui-${name} v-model="value"></ui-${name}>`,
-        data : {
-            value : ''
-        },
-        components : {
-            [`ui-${name}`] : component
-        }
-    });
-
-    vm.$mount();
-    vm.value = '{"a":"a"}';
-
-    t.plan(2);
-
-    Vue.nextTick(() => {
-
-        t.is(vm.$children[0].get(), '{"a":"a"}');
-
-        vm.value = '[1, 2]';
-
-        Vue.nextTick(() => {
-
-            t.is(vm.$children[0].get(), '[1,2]');
-
-        });
+        t.is(vm.$children[0].get()[0], 'Tim');
 
     });
 
