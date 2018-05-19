@@ -2,6 +2,11 @@
     <mor-tab
         :_uiid="uiid"
         :class="[]"
+
+        :tab="tab"
+        :prepend="prepend"
+        :append="append"
+        :anchor-target="anchorTarget"
     >
 
         <ul>
@@ -16,7 +21,7 @@
         
         <div class="contents">
             <template v-for="(item, name) in $slots">
-                <div class="item" :name="name" :key="name"><slot :name="name"></slot></div>
+                <div class="item mor-tab-item" :name="name" :key="name"><slot :name="name"></slot></div>
             </template>
         </div>
 
@@ -39,6 +44,10 @@ export default {
         append : {
             type : Object,
             default : () => ({})
+        },
+        anchorTarget : {
+            type : Boolean,
+            default : false
         }
     },
     computed : {
@@ -47,7 +56,8 @@ export default {
             return {
                 tab : this.tab,
                 prepend : this.prepend,
-                append : this.append
+                append : this.append,
+                anchorTarget : this.anchorTarget
             };
 
         }
@@ -140,6 +150,65 @@ export default {
             });
 
         },
+        _findParentTab : function ($el, $originEl) {
+
+            let $closestTabItem = $el.closest('.mor-tab-item');
+
+            if ($closestTabItem) {
+
+                let $closestTab = $closestTabItem.closest('mor-tab');
+
+                if ($closestTab) {
+
+                    let name = $closestTabItem.getAttribute('name');
+
+                    if ($closestTab._vm.conf.anchorTarget) {
+
+                        $closestTab._vm.switch(name);
+
+                    }
+    
+                    this._findParentTab($closestTab, $originEl);
+
+                }
+
+            } else {
+
+                this.Vue.nextTick(() => {
+
+                    $originEl.scrollIntoView();
+
+                });
+
+            }
+
+        },
+        _targetAnchorPoint : function () {
+
+            let anchor = window.location.hash.replace(/^#/, '');
+            let $targetEl;
+
+            anchor = decodeURI(anchor);
+
+            if (anchor) {
+
+                $targetEl = this.$el.querySelector(`#${anchor}`);
+                
+                if (!$targetEl) {
+
+                    $targetEl = this.$el.querySelector(`a[name="${anchor}"]`);
+
+                }
+
+                if ($targetEl) {
+
+                    this._findParentTab($targetEl, $targetEl);
+
+                }
+
+            }
+
+        },
         switch : function (name) {
 
             if (name === this.data.selectTab) {
@@ -228,6 +297,13 @@ export default {
 
         this._initTabs();
 
+        this.Vue.nextTick(() => {
+
+            this._targetAnchorPoint();
+            window.addEventListener('hashchange', this._targetAnchorPoint);
+
+        });
+
         this.$watch('conf.tab', () => {
 
             this._initSelectTab();
@@ -243,8 +319,12 @@ export default {
 
         }
 
-    }
+    },
+    destroyed : function () {
 
+        window.removeEventListener('hashchange', this._targetAnchorPoint);
+
+    }
 };
 </script>
 
