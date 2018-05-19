@@ -3339,6 +3339,7 @@ mor-action {
   display: block;
   margin-top: 16px;
   vertical-align: middle;
+  font-size: 0;
   margin-top: 14.4px;
 }
 mor-action:first-child {

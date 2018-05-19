@@ -184,6 +184,8 @@ let e2eBasicFnString = `ctx => ({
     style : window.getComputedStyle($('[name="开始"] mor-'+ctx.tagName)[0])
 })`;
 
+let getE2eDocUrl = (tagName) => (`${TEST_HOST}/component/${tagName}.html?istest`);
+
 export default {
     TEST_HOST,
     SIZE,
@@ -191,5 +193,6 @@ export default {
     COLOR_SHORT_MAP,
     STATE_NA,
     e2eStatementFnString,
-    e2eBasicFnString
+    e2eBasicFnString,
+    getE2eDocUrl
 };
