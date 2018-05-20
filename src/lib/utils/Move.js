@@ -357,7 +357,9 @@ let Move = {
             let top = $target.ownerDocument.defaultView.getComputedStyle($target).top;
             let x;
             let y;
-            let $tetParent = $target.closest('body > div'); // body > div if has transform, is tether
+            
+            // body > div if has transform, is tether
+            let $tetParent = $target.closest('body > div');
             let transformX = 0;
             let transformY = 0;
 

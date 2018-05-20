@@ -470,7 +470,7 @@ export default {
             }
 
         },
-        _emitClick : function (evt) {
+        _emitClick : function () {
 
             if (!this.conf.separateEmit) {
 
@@ -977,6 +977,7 @@ export default {
             } else {
 
                 $target = this.data.$selectArea.querySelector('.wrap');
+
             }
 
             this.data.$selectArea.style.display = 'block';
@@ -1035,7 +1036,6 @@ export default {
 
                 }
 
-
                 this.data.showlist = false;
 
                 for (let tipVm of this.data.tips) {
@@ -1068,17 +1068,6 @@ export default {
         this._updateItemValueList();
         this._onValueChange();
         this._resizeSelectArea();
-
-        this.Vue.nextTick(() => {
-
-            if (this.conf.separateEmit) {
-
-            } else {
-
-
-            }
-           
-        });
         
         this.$on('value-change', this._onValueChange);
 
@@ -1087,7 +1076,7 @@ export default {
             this.$watch('conf.maxShow', this._setListHeight, {
                 immediate : true
             });
-        
+
         });
 
         this.$watch('conf.separateEmit', (newVal, oldVal) => {
