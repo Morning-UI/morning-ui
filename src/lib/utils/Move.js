@@ -149,9 +149,10 @@ let Move = {
 
                 }
 
+                $container.append($moveDragItem);
+
                 $moveDragItem.style.top = `${y}px`;
                 $moveDragItem.style.left = `${x}px`;
-                $container.append($moveDragItem);
 
                 this.Move.overRange = [0, 0, 0, 0];
                 this.Move.$moveDragItem = $moveDragItem;
@@ -356,18 +357,37 @@ let Move = {
             let top = $target.ownerDocument.defaultView.getComputedStyle($target).top;
             let x;
             let y;
+            
+            // body > div if has transform, is tether
+            let $tetParent = $target.closest('body > div');
+            let transformX = 0;
+            let transformY = 0;
+
+            // if parent has transformX/Y
+            if ($tetParent) {
+
+                let transform = $tetParent.ownerDocument.defaultView.getComputedStyle($tetParent).transform;
+
+                if (/matrix/.test(transform)) {
+
+                    let matrix = new DOMMatrix(JSON.parse(`[${transform.replace(/(^matrix\(|\)$)/g, '')}]`));
+
+                    transformX = matrix.m41 - window.scrollX;
+                    transformY = matrix.m42 - window.scrollY;
+
+                }
+
+            }
 
             marginLeft = +marginLeft.split('px')[0];
             marginTop = +marginTop.split('px')[0];
             left = +left.split('px')[0];
             top = +top.split('px')[0];
 
-            //  + this.Move.windowCalibrate.x; + this.Move.windowCalibrate.y
-
             if (this.Move.type === 'fixed') {
 
-                x = client.left - marginLeft;
-                y = client.top - marginTop;
+                x = client.left - marginLeft - transformX;
+                y = client.top - marginTop - transformY;
 
             } else {
 

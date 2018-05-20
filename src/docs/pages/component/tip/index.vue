@@ -83,7 +83,7 @@
 
     |KEY|描述|接受值|值类型|默认值|
     |-|-|-|-|-|
-    |[target](#target)|触发提示的目标元素，必填项。此配置改变后，若小提示处于显示状态，则会触发一次`hide`和`show`事件，以刷新小提示的位置。|元素选择器|String<br>Null|`null`|
+    |[target](#target)|触发提示的目标元素，必填项。此配置改变后，若小提示处于显示状态，则会触发一次`hide`和`show`事件，以刷新小提示的位置。|元素选择器([MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/Document_Object_Model/Locating_DOM_elements_using_selectors)|String<br>Null|`null`|
     |[placement](#placement)|提示框位置|`top`:上方<br>`bottom`:下方<br>`left`:左侧<br>`right`:右侧|String|`'top'`|
     |[offset](#offset)|偏移量|上下偏移量(单位px/%) 左右偏移量(单位px/%)|String|`'0 0'`|
     |[trigger](#trigger)|触发方式(支持多触发方式，多个触发器之间用空格分开)。触发方式一旦改变，已有的触发状态都会被重置。|`hover`<br>`click`<br>`focus`|String|`'hover'`|
