@@ -63,7 +63,6 @@
     "extend": "^3.0.1",
     "lodash.sortby": "^4.7.0",
     "lodash.without": "^4.4.0",
-    "nightmare": "^3.0.1",
     "tether": "^1.4.0",
     "trim": "0.0.1"
   },
@@ -113,6 +112,7 @@
     "markdown-it-anchor": "^4.0.0",
     "minimist": "^1.2.0",
     "mustache": "^2.3.0",
+    "nightmare": "^3.0.1",
     "nyc": "^11.2.1",
     "postcss-less": "^1.1.0",
     "postcss-loader": "^2.1.4",
