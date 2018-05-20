@@ -36,7 +36,7 @@
 
                 :form-name="(conf.startName === false) ? conf.formName : conf.startName"
                 :hide-name="conf.hideName"
-                :date="+data.currentDate"
+                :date="+data.currentDate || undefined"
                 :format="conf.format"
                 :align="conf.align"
                 :selectable-range="conf.selectableRange"
@@ -151,7 +151,7 @@
                 
                 :form-name="(conf.endName === false) ? conf.formName : conf.endName"
                 :hide-name="conf.hideName"
-                :date="+_addMonths(data.currentDate, 1)"
+                :date="+_addMonths(data.currentDate, 1) || undefined"
                 :format="conf.format"
                 :align="conf.align"
                 :selectable-range="conf.selectableRange"

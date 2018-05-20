@@ -762,7 +762,7 @@ export default {
         });
 
         this.$watch('data.current', () => {
-            
+
             let lastMonth = formatDate(this.data.current, 'YYYY-MM');
             let lastYear = formatDate(this.data.current, 'YYYY');
 
