@@ -8,7 +8,7 @@ const runner = nightmare({
 });
 
 let tagName = 'action';
-let docUrl = `${common.TEST_HOST}/component/${tagName}.html`;
+let docUrl = common.getE2eDocUrl(tagName);
 let basicDemo = `[name="开始"] mor-${tagName}`;
 
 let context = {

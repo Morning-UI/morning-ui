@@ -239,6 +239,8 @@
     - `hide-selected` : 隐藏选中
     - `clean-allzone-btn` : 清空所有区域按钮
     - `quick-pick` : 快速选择
+    - `anchor-target` : 锚点定位
+    - `separate-emi` : 外部触发(触发分离)
 
     </script>
     </doc-guide>

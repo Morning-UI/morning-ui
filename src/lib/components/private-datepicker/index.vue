@@ -46,7 +46,7 @@
 
             <morning-calendar
                 :ref="'ui-calendar-'+uiid"
-                :date="data.currentDate"
+                :date="data.currentDate || conf.date"
                 :highlight-day="getHighlightDays"
                 :highlight-now="false"
                 :highlight-hover="true"

@@ -41,7 +41,7 @@
     :::repeat/html
     size
     ---
-    <ui-btn size="{$sizeKey}" loading>{$&sizeName}</ui-btn>
+    <ui-btn size="{$sizeKey}" state="loading">{$&sizeName}</ui-btn>
     :::
 
     #### 色彩

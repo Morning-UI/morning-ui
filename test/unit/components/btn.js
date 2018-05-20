@@ -6,7 +6,7 @@ import btn                          from '../../../src/lib/components/btn/index.
 const name = 'btn';
 const component = window.morning._origin.UI.extend(btn);
 
-test('base : component snapshot', async t => {
+test.serial('base : component snapshot', async t => {
 
     const vm = new Vue(component).$mount();
 
@@ -16,18 +16,18 @@ test('base : component snapshot', async t => {
 
 });
 
-test('base : init component', async t => {
+test.serial('base : init component', async t => {
 
     const vm = new Vue(component).$mount();
 
     t.plan(2);
 
     t.is(vm.uiid, 2);
-    t.is(component.options.name, name);
+    t.is(component.options.name, `morning-${name}`);
 
 });
 
-test('base : component tag name is t-*', async t => {
+test.serial('base : component tag name is t-*', async t => {
 
     const vm = new Vue(component).$mount();
 
@@ -37,7 +37,7 @@ test('base : component tag name is t-*', async t => {
 
 });
 
-test('config : link', async t => {
+test.serial('config : link', async t => {
 
     const vm = new Vue({
         template : '<ui-btn :link="link">按钮</ui-btn>',

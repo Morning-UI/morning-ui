@@ -9,6 +9,7 @@
         :default-value="defaultValue"
         :hide-name="hideName"
         :clearable="clearable"
+        :separate-emit="separateEmit"
         :align="align"
         :prepend="prepend"
         :max-show="maxShow"
@@ -28,8 +29,28 @@
         <div class="input-group-addon" v-html="conf.prepend"></div>
     </template>
 
-    <div class="select-area">
-        <div class="wrap" @click="_wrapClick">
+    <div
+        class="select-area"
+        :class="[{
+            'mor-select-wrap' : conf.separateEmit,
+            'focus-search' : !!data.focusSearch,
+            searching : !!data.searching,
+            'align-left' : (conf.align === 'left'),
+            'align-center' : (conf.align === 'center'),
+            'align-right' : (conf.align === 'right'),
+            'select-item' : (data.value && data.value.length > 0),
+            'is-max' : !!isMax,
+            showlist : !!data.showlist,
+            'input-group' : !!conf.prepend
+        }, stateClass]"
+    >
+        <div
+            class="wrap"
+            :class="{
+                'showwrap' : (conf.separateEmit && !!data.showlist)
+            }"
+            @click="_wrapClick"
+        >
 
             <template v-if="conf.multiSelect">
                 <morning-multiinput
@@ -101,11 +122,12 @@
         </div>
     
         <div
-            class="mor-select-list" 
-            :class="{
-                showlist: !!data.showlist,
-                'hide-selected' : conf.hideSelected
-            }"
+            class="select-list"
+            :class="[{
+                showlist : !!data.showlist,
+                'hide-selected' : conf.hideSelected,
+                'mor-select-wrap' : !conf.separateEmit
+            }, stateClass]"
         >
             <ul
                 class="list"
@@ -133,6 +155,10 @@ export default {
     name : 'select',
     mixins : [GlobalEvent, TipManager],
     props : {
+        separateEmit : {
+            type : String,
+            default : ''
+        },
         align : {
             type : String,
             default : 'left',
@@ -191,6 +217,7 @@ export default {
         _conf : function () {
 
             return {
+                separateEmit : this.separateEmit,
                 align : this.align,
                 prepend : this.prepend,
                 maxShow : this.maxShow,
@@ -209,24 +236,8 @@ export default {
         },
         moreClass : function () {
 
-            let selectItem = false;
-
-            if (this.data.value &&
-                this.data.value.length > 0) {
-
-                selectItem = true;
-
-            }
-
             return {
-                showlist : !!this.data.showlist,
-                searching : !!this.data.searching,
-                'focus-search' : !!this.data.focusSearch,
-                'is-max' : !!this.isMax,
-                'select-item' : selectItem,
-                'align-left' : (this.conf.align === 'left'),
-                'align-center' : (this.conf.align === 'center'),
-                'align-right' : (this.conf.align === 'right'),
+                separate : !!this.conf.separateEmit,
                 'input-group' : !!this.conf.prepend
             };
 
@@ -263,7 +274,10 @@ export default {
                 tipsContent : [],
                 tips : [],
                 $listWrap : null,
-                $list : null
+                $list : null,
+                $emitTarget : null,
+                $selectArea : null,
+                $selectList : null
             },
             listStyle : {}
         };
@@ -327,7 +341,6 @@ export default {
             let $items = this.data.$list.querySelectorAll('li:not(.noitem)');
             let $currentItems = this.data.$list.querySelectorAll('li.current');
             let $noitem = this.data.$list.querySelector('.noitem');
-            // let $selected = this.$el.querySelector('.selected');
             let searchTextinput;
             let searchMultiinput;
             let multiNames = [];
@@ -341,7 +354,7 @@ export default {
             if (this.conf.canSearch &&
                 !this.conf.multiSelect) {
 
-                searchTextinput = this.$el.querySelector(`#ui-select-ti-${this.uiid}`);
+                searchTextinput = this.data.$selectArea.querySelector(`#ui-select-ti-${this.uiid}`);
 
                 if (searchTextinput) {
 
@@ -351,7 +364,7 @@ export default {
 
             } else if (this.conf.multiSelect) {
 
-                searchMultiinput = this.$el.querySelector(`#ui-select-mi-${this.uiid}`);
+                searchMultiinput = this.data.$selectArea.querySelector(`#ui-select-mi-${this.uiid}`);
 
                 if (searchMultiinput) {
 
@@ -457,23 +470,40 @@ export default {
             }
 
         },
+        _emitClick : function () {
+
+            if (!this.conf.separateEmit) {
+
+                return;
+
+            }
+
+            this.toggle();
+
+        },
         _wrapClick : function (evt) {
 
-            if (this.conf.state === 'disabled' || this.conf.state === 'readonly') {
+            if (this.conf.separateEmit) {
 
                 return;
+
+            }
+
+            // if (this.conf.state === 'disabled' || this.conf.state === 'readonly') {
+
+            //     return;
                 
-            }
+            // }
 
-            if (this.conf.multiSelect &&
-                this.data.value.length === this.conf.max) {
+            // if (this.conf.multiSelect &&
+            //     this.data.value.length === this.conf.max) {
 
-                return;
+            //     return;
 
-            }
+            // }
 
-            let $searchTextinput = this.$el.querySelector('.wrap mor-textinput'),
-                $searchMultiinput = this.$el.querySelector('.wrap mor-multiinput'),
+            let $searchTextinput = this.data.$selectArea.querySelector('.wrap mor-textinput'),
+                $searchMultiinput = this.data.$selectArea.querySelector('.wrap mor-multiinput'),
                 hasTextinput = (evt.path.indexOf($searchTextinput) !== -1),
                 hasMultiinput = (evt.path.indexOf($searchMultiinput) !== -1);
 
@@ -487,10 +517,21 @@ export default {
 
             }
 
-            // this.toggle();
-
         },
         _listClick : function (evt) {
+
+            if (this.conf.state === 'disabled' || this.conf.state === 'readonly') {
+
+                return;
+                
+            }
+
+            if (this.conf.multiSelect &&
+                this.data.value.length === this.conf.max) {
+
+                return;
+
+            }
 
             let $items = this.data.$list.querySelectorAll('li:not(.noitem)');
             let $clickItem = false;
@@ -589,14 +630,14 @@ export default {
 
             if (this.conf.multiSelect) {
 
-                let searchMultiinput = this.$el.querySelector(`#ui-select-mi-${this.uiid}`);
+                let searchMultiinput = this.data.$selectArea.querySelector(`#ui-select-mi-${this.uiid}`);
 
                 searchMultiinput = searchMultiinput._vm;
                 key = searchMultiinput.getInput();
 
             } else {
 
-                let searchTextinput = this.$el.querySelector(`#ui-select-ti-${this.uiid}`);
+                let searchTextinput = this.data.$selectArea.querySelector(`#ui-select-ti-${this.uiid}`);
 
                 searchTextinput = searchTextinput._vm;
                 key = searchTextinput.get();
@@ -625,7 +666,7 @@ export default {
         },
         _multiinputFocusNoSearch : function () {
 
-            let searchMultiinput = this.$el.querySelector(`#ui-select-mi-${this.uiid}`)._vm;
+            let searchMultiinput = this.data.$selectArea.querySelector(`#ui-select-mi-${this.uiid}`)._vm;
 
             searchMultiinput._blurInput();
             this._multiinputFocus();
@@ -668,7 +709,7 @@ export default {
 
             }
 
-            let searchMultiinput = this.$el.querySelector(`#ui-select-mi-${this.uiid}`)._vm;
+            let searchMultiinput = this.data.$selectArea.querySelector(`#ui-select-mi-${this.uiid}`)._vm;
             let values = searchMultiinput.get();
 
             this.Vue.nextTick(() => {
@@ -783,9 +824,12 @@ export default {
         },
         _checkArea : function (evt) {
 
+            let $wrap = this.data.$selectArea.querySelector('.wrap');
+
             if (this.data.showlist &&
                 this.conf.autoClose &&
-                evt.path.indexOf(this.$el) === -1) {
+                evt.path.indexOf(this.$el) === -1 &&
+                evt.path.indexOf($wrap) === -1) {
                 
                 this.toggle(false);
             
@@ -812,15 +856,15 @@ export default {
         },
         _refreshTips : function () {
 
+            for (let tipVm of this.data.tips) {
+
+                tipVm.$destroy();
+
+            }
+
+            this.data.tips = [];
+
             if (!this.conf.itemTip) {
-
-                for (let tipVm of this.data.tips) {
-
-                    tipVm.$destroy();
-
-                }
-
-                this.data.tips = [];
 
                 return;
 
@@ -905,7 +949,7 @@ export default {
             if (this.conf.prepend !== undefined) {
 
                 let $inputGroupAddon = this.$el.querySelector('.input-group-addon');
-                let $selectArea = this.$el.querySelector('.select-area');
+                let $selectArea = this.data.$selectArea;
                 let width = $inputGroupAddon.clientWidth;
 
                 // 1 is left border width
@@ -924,23 +968,41 @@ export default {
 
             show = !!show;
            
-            let $wrap = this.$el.querySelector('.wrap');
+            let $target;
+
+            if (this.conf.separateEmit) {
+
+                $target = this.data.$emitTarget;
+
+            } else {
+
+                $target = this.data.$selectArea.querySelector('.wrap');
+
+            }
+
+            this.data.$selectArea.style.display = 'block';
 
             if (show) {
-
-                // this.$items.hide().not('.noresult,.selected').show();
 
                 let $items = this.data.$list.querySelectorAll('li');
                 let $currentItem = this.data.$list.querySelector('li.current');
                 
-                // this._searchKeyChange();
                 this.data.showlist = true;
-                this.data.$listWrap.style.width = `${$wrap.offsetWidth}px`;
+
+                if (!this.conf.separateEmit) {
+
+                    this.data.$listWrap.style.width = `${$target.offsetWidth}px`;
+
+                } else {
+
+                    this.data.$listWrap.style.width = `${this.$el.offsetWidth || this.data.$listWrap.offsetWidth}px`;
+
+                }
 
                 this._tipCreate({
                     placement : 'bottom',
                     element : this.data.$listWrap,
-                    target : $wrap,
+                    target : $target,
                     offset : '0 -0.5px'
                 });
 
@@ -968,9 +1030,24 @@ export default {
 
             } else {
 
-                this.data.$listWrap.style.width = `${$wrap.offsetWidth}px`;
+                if (!this.conf.separateEmit) {
+
+                    this.data.$listWrap.style.width = `${$target.offsetWidth}px`;
+
+                }
 
                 this.data.showlist = false;
+
+                for (let tipVm of this.data.tips) {
+
+                    if (tipVm.$el._vm.data.show) {
+
+                        tipVm.$el._vm.hide();
+
+                    }
+
+                }
+
                 this.$emit('list-hide');
 
             }
@@ -982,8 +1059,9 @@ export default {
     mounted : function () {
 
         this.data.mounted = true;
-        this.data.$listWrap = this.$el.querySelector('.mor-select-list');
-        this.data.$list = this.$el.querySelector('.mor-select-list>.list');
+        this.data.$list = this.$el.querySelector('.select-list>.list');
+        this.data.$selectList = this.$el.querySelector('.select-list');
+        this.data.$selectArea = this.$el.querySelector('.select-area');
         this.Tip.autoReverse = false;
         this.Tip.autoOffset = false;
 
@@ -998,7 +1076,36 @@ export default {
             this.$watch('conf.maxShow', this._setListHeight, {
                 immediate : true
             });
-        
+
+        });
+
+        this.$watch('conf.separateEmit', (newVal, oldVal) => {
+
+            if (oldVal) {
+                
+                document.querySelector(oldVal).removeEventListener('click', this._emitClick);
+
+            }
+
+            if (newVal) {
+
+                this.data.$listWrap = this.data.$selectArea;
+
+                this.Vue.nextTick(() => {
+
+                    this.data.$emitTarget = document.querySelector(newVal);
+                    document.querySelector(newVal).addEventListener('click', this._emitClick);
+
+                });
+
+            } else {
+
+                this.data.$listWrap = this.data.$selectList;
+
+            }
+
+        }, {
+            immediate : true
         });
 
         this.$watch('conf.canSearch', this._searchKeyChange);
@@ -1051,6 +1158,16 @@ export default {
 
         }, {
             immediate : true
+        });
+
+        this.$watch('data.itemValueList', (newVal, oldVal) => {
+
+            if (JSON.stringify(newVal) !== JSON.stringify(oldVal)) {
+
+                this._refreshTips();
+
+            }
+
         });
 
         this.$on('list-show', () => {
