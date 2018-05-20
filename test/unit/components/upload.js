@@ -23,6 +23,10 @@ test.serial('base : init component', async t => {
     t.plan(2);
 
     t.is(vm.uiid, 3);
+
+    // cause :npm run test and npm run cover has different result, so not diff vm.$el for now.
+    delete vm.$el;
+
     t.is(component.options.name, `morning-${name}`);
 
 });
