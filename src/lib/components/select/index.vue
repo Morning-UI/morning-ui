@@ -276,7 +276,8 @@ export default {
                 $listWrap : null,
                 $list : null,
                 $emitTarget : null,
-                $selectArea : null
+                $selectArea : null,
+                $selectList : null
             },
             listStyle : {}
         };
@@ -1059,6 +1060,7 @@ export default {
 
         this.data.mounted = true;
         this.data.$list = this.$el.querySelector('.select-list>.list');
+        this.data.$selectList = this.$el.querySelector('.select-list');
         this.data.$selectArea = this.$el.querySelector('.select-area');
         this.Tip.autoReverse = false;
         this.Tip.autoOffset = false;
@@ -1071,13 +1073,8 @@ export default {
 
             if (this.conf.separateEmit) {
 
-                this.data.$listWrap = this.$el.querySelector('.select-area');
-                this.data.$emitTarget = document.querySelector(this.conf.separateEmit);
-                document.querySelector(this.conf.separateEmit).addEventListener('click', this._emitClick);
-
             } else {
 
-                this.data.$listWrap = this.$el.querySelector('.select-list');
 
             }
            
@@ -1091,6 +1088,35 @@ export default {
                 immediate : true
             });
         
+        });
+
+        this.$watch('conf.separateEmit', (newVal, oldVal) => {
+
+            if (oldVal) {
+                
+                document.querySelector(oldVal).removeEventListener('click', this._emitClick);
+
+            }
+
+            if (newVal) {
+
+                this.data.$listWrap = this.data.$selectArea;
+
+                this.Vue.nextTick(() => {
+
+                    this.data.$emitTarget = document.querySelector(newVal);
+                    document.querySelector(newVal).addEventListener('click', this._emitClick);
+
+                });
+
+            } else {
+
+                this.data.$listWrap = this.data.$selectList;
+
+            }
+
+        }, {
+            immediate : true
         });
 
         this.$watch('conf.canSearch', this._searchKeyChange);
