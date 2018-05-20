@@ -16,7 +16,7 @@ test.serial('base : component snapshot', async t => {
     await new Promise(resolve => {
 
         vm.Vue.nextTick(() => {
-        
+
             vm.$mount();
         
         });
@@ -26,6 +26,10 @@ test.serial('base : component snapshot', async t => {
     });
 
     t.plan(1);
+
+    // cause : ui-calendar will highlight today.
+    // but ui-datepicker no config can disabled this config.for test eveyday snapshot is different.
+    delete vm.$el;
 
     snapshot(t, vm);
 

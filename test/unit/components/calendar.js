@@ -12,6 +12,7 @@ test.serial('base : component snapshot', async t => {
 
     // fixed date
     vm.date = +new Date('2018-03-23');
+    vm.highlightNow = false;
     
     await new Promise(resolve => {
 
