@@ -4,31 +4,31 @@
 
 .tip-style(@background; @color; @style) {
     &.co-@{style} {
-        .tip-content {
+        .con {
             color: @color;
             background-color: @background;
         }
 
-        &.morning-tether-element-attached-bottom {
-            .tip-arrow {
+        &.tet-ea-bottom {
+            .arrow {
                 border-top-color: @background;
             }
         }
 
-        &.morning-tether-element-attached-top {
-            .tip-arrow {
+        &.tet-ea-top {
+            .arrow {
                 border-bottom-color: @background;
             }
         }
 
-        &.morning-tether-element-attached-left {
-            .tip-arrow {
+        &.tet-ea-left {
+            .arrow {
                 border-right-color: @background;
             }
         }
 
-        &.morning-tether-element-attached-right {
-            .tip-arrow {
+        &.tet-ea-right {
+            .arrow {
                 border-left-color: @background;
             }
         }
@@ -36,9 +36,7 @@
 }
 
 mor-tip{
-    // cursor: pointer;
     position: fixed;
-    // z-index: @tipIndex;
     display: block;
     font-size: @fontSize*0.75;
     opacity: 0;
@@ -48,22 +46,21 @@ mor-tip{
         opacity: 1;
     }
 
-    &.morning-tether-element-attached-bottom {
+    &.tet-ea-bottom {
         padding: @tip-arrowWidth 0;
 
-        .tip-arrow {
+        .arrow {
             bottom: 0;
             left: 50%;
             margin-left: -@tip-arrowWidth;
             border-width: @tip-arrowWidth @tip-arrowWidth 0;
-            // border-top-color: @tip-arrowColor;
         }
     }
 
-    &.morning-tether-element-attached-left {
+    &.tet-ea-left {
         padding: 0 @tip-arrowWidth 0 @tip-arrowWidth*2;
 
-        .tip-arrow {
+        .arrow {
             top: 50%;
             left: @tip-arrowWidth;
             margin-top: -@tip-arrowWidth;
@@ -72,10 +69,10 @@ mor-tip{
         }
     }
 
-    &.morning-tether-element-attached-top {
+    &.tet-ea-top {
         padding: @tip-arrowWidth 0;
 
-        .tip-arrow {
+        .arrow {
             top: 0;
             left: 50%;
             margin-left: -@tip-arrowWidth;
@@ -84,10 +81,10 @@ mor-tip{
         }
     }
 
-    &.morning-tether-element-attached-right {
+    &.tet-ea-right {
         padding: 0 @tip-arrowWidth*2 0 @tip-arrowWidth;
 
-        .tip-arrow {
+        .arrow {
             top: 50%;
             right: @tip-arrowWidth;
             margin-top: -@tip-arrowWidth;
@@ -96,16 +93,17 @@ mor-tip{
         }
     }
 
-    .tip-content {
+    .con {
         max-width: @fontSize*12.5;
         padding: @fontSize*0.1875 @fontSize*0.5;
         // color: @colorWhite;
         text-align: center;
         // background-color: @tipBg;
         border-radius: @borderRadius;
+        word-break: break-all;
     }
 
-    .tip-arrow {
+    .arrow {
         position: absolute;
         width: 0;
         height: 0;
@@ -113,32 +111,32 @@ mor-tip{
         border-style: solid;
     }
 
-    .tip-style(@colorTheme, @colorWhite, theme);
-    .tip-style(@colorLightTheme, @colorWhite, light-theme);
-    .tip-style(@colorDarkTheme, @colorWhite, dark-theme);
+    .tip-style(@colorTheme, @colorWhite, t);
+    .tip-style(@colorLightTheme, @colorWhite, lt);
+    .tip-style(@colorDarkTheme, @colorWhite, dt);
 
-    .tip-style(@colorSuccess, @colorWhite, success);
-    .tip-style(@colorWarning, @colorWhite, warning);
-    .tip-style(@colorDanger, @colorWhite, danger);
-    .tip-style(@colorPrimary, @colorWhite, primary);
-    .tip-style(@colorMinor, @colorWhite, minor);
-    .tip-style(@colorInfo, @colorWhite, info);
+    .tip-style(@colorSuccess, @colorWhite, s);
+    .tip-style(@colorWarning, @colorWhite, w);
+    .tip-style(@colorDanger, @colorWhite, d);
+    .tip-style(@colorPrimary, @colorWhite, p);
+    .tip-style(@colorMinor, @colorWhite, m);
+    .tip-style(@colorInfo, @colorWhite, i);
 
-    .tip-style(@colorBlack, @colorWhite, black);
-    .tip-style(@colorLightBlack, @colorWhite, light-black);
-    .tip-style(@colorExtraLightBlack, @colorWhite, extra-light-black);
-    .tip-style(@colorBlue, @colorWhite, blue);
-    .tip-style(@colorLightBlue, @colorWhite, light-blue);
-    .tip-style(@colorExtraLightBlue, @colorWhite, extra-light-blue);
-    .tip-style(@colorSilver, @colorLightBlack, silver);
-    .tip-style(@colorLightSilver, @colorLightBlack, light-silver);
-    .tip-style(@colorExtraLightSilver, @colorLightBlack, extra-light-silver);
-    .tip-style(@colorGray, @colorLightBlack, gray);
-    .tip-style(@colorLightGray, @colorLightBlack, light-gray);
-    .tip-style(@colorWhite, @colorLightBlack, white);
+    .tip-style(@colorBlack, @colorWhite, bk);
+    .tip-style(@colorLightBlack, @colorWhite, lbk);
+    .tip-style(@colorExtraLightBlack, @colorWhite, elbk);
+    .tip-style(@colorBlue, @colorWhite, bu);
+    .tip-style(@colorLightBlue, @colorWhite, lbu);
+    .tip-style(@colorExtraLightBlue, @colorWhite, elbu);
+    .tip-style(@colorSilver, @colorLightBlack, si);
+    .tip-style(@colorLightSilver, @colorLightBlack, lsi);
+    .tip-style(@colorExtraLightSilver, @colorLightBlack, elsi);
+    .tip-style(@colorGray, @colorLightBlack, g);
+    .tip-style(@colorLightGray, @colorLightBlack, lg);
+    .tip-style(@colorWhite, @colorLightBlack, wh);
 
     // default status
     &{
-        .co-theme;
+        .co-t;
     }
 }

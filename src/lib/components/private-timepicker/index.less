@@ -7,37 +7,39 @@ mor-private-timepicker{
 
     .setup-form();
 
-    .time-select{
-        width: @fontSize*10;
-        position: absolute;
+    &.st-normal{}
+
+    &.st-disabled{}
+
+    // default status
+    &{
+        .st-normal;
+    }
+}
+
+.mor-time-wrap{
+    width: @fontSize*10;
+    position: absolute;
+    top: @formHeight + 3;
+    pointer-events: none;
+    opacity: 0;
+    height: 0;
+    box-sizing: border-box;
+    transform: scale(0);
+
+    &.show{
+        pointer-events: auto;
+        opacity: 1;
+    }
+
+    .select{
+        width: 100%;
         background: @colorFormBackground;
         border: 1px @colorFormBorder solid;
         border-radius: @borderRadius;
-        top: @formHeight + 3;
         font-size: 0;
         user-select: none;
-        pointer-events: none;
-        opacity: 0;
         z-index: 1;
-
-        &.align-left{
-            left: 42px;
-        }
-
-        &.align-center{
-            left: 50%;
-            transform: translateX(-50%);
-            margin-left: 21px;
-        }
-
-        &.align-right{
-            right: 0;
-        }
-
-        &.show{
-            pointer-events: auto;
-            opacity: 1;
-        }
 
         &:hover{
             border-color: @colorFormBorderHover;
@@ -125,14 +127,5 @@ mor-private-timepicker{
                 z-index: 2;
             }
         }
-    }
-
-    &.st-normal{}
-
-    &.st-disabled{}
-
-    // default status
-    &{
-        .st-normal;
     }
 }

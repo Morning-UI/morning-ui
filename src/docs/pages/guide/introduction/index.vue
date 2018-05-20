@@ -9,11 +9,13 @@
 
     ### Morning UI是什么？
 
-    Morning UI是一套桌面Web端的UI库，基于[Vue.js](https://vuejs.org/)。
+    Morning UI是一套桌面端UI组件库，基于[Vue.js](https://vuejs.org/)。
 
     ### 快速开始
 
     首先确保你的页面采用了Vue.js，然后只需简单三步即可使用Morning UI:
+
+    > 注意：请使用`2.5.3`版本以上的Vue.js
 
     1. 首先[获取Morning UI](/guide/install.html)，并在页面中引用Vue.js以及Morning UI的JS和CSS：
         - `<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue">&lt;/script>`

@@ -86,7 +86,7 @@
 
     1. 最终数据会存入热区对象的`data`属性中
     2. 数据表单的`form-key`必需设置，若未设置最终数据不会存入热区的`data`中
-    3. 数据表单的`group`通过`slot-scope="{group}"`解构获取(Vue.js的[作用域插槽](https://cn.vuejs.org/v2/guide/components.html#作用域插槽))，并且需要绑定到所有表单上，若未绑定到表单，最终数据不会存入热区的`data`中
+    3. 数据表单的`group`通过`slot-scope="{group}"`解构获取(Vue.js的[作用域插槽](https://cn.vuejs.org/v2/guide/components-slots.html#%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%8F%92%E6%A7%BD))，并且需要绑定到所有表单上，若未绑定到表单，最终数据不会存入热区的`data`中
 
     #### 热区编辑区缩放
 

@@ -1,6 +1,6 @@
 {
   "name": "morning-ui",
-  "version": "0.10.22",
+  "version": "0.10.27",
   "description": "modern efficient user interface, using human-friendly HTML",
   "main": "dist/morning-ui.js",
   "style": "dist/morning-ui.css",
@@ -31,7 +31,8 @@
     "update-log-report": "node ./build/get-last-update-info.js",
     "report": "npm run update-log-report && npm run test-report && npm run cover-report",
     "commit": "npm run build && npm run report",
-    "doc": "node ./server/index.js"
+    "doc": "node ./server/index.js",
+    "css-analysis": "node ./bin/css-analysis.js"
   },
   "repository": {
     "type": "git",
@@ -78,6 +79,7 @@
     "babel-preset-env": "^1.6.0",
     "babel-register": "^6.26.0",
     "browser-env": "^3.2.0",
+    "clean-css": "^4.1.11",
     "clean-css-loader": "^0.1.4",
     "clean-webpack-plugin": "^0.1.19",
     "copy-webpack-plugin": "^4.5.1",
@@ -110,7 +112,7 @@
     "markdown-it-anchor": "^4.0.0",
     "minimist": "^1.2.0",
     "mustache": "^2.3.0",
-    "nightmare": "^2.10.0",
+    "nightmare": "^3.0.1",
     "nyc": "^11.2.1",
     "postcss-less": "^1.1.0",
     "postcss-loader": "^2.1.4",

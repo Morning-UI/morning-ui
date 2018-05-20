@@ -45,11 +45,11 @@ export default {
         交互组件 : null,
         按钮 : '/component/btn.html',
         链接 : '/component/link.html',
-        下拉式按钮组 : '/component/dropdown.html',
+        '下拉菜单<i class="tag update l1"></i>' : '/component/dropdown.html',
         // 级联菜单<i class="tag new"></i> : 'b',
         // 树形控件 : 'b',
         标签页 : '/component/tab.html',
-        '表格<i class="tag update l1"></i>' : '/component/table.html',
+        表格 : '/component/table.html',
         分页 : '/component/pagination.html',
         模拟盒 : '/component/dialog.html',
         // 消息提示 : 'b',
@@ -119,6 +119,7 @@ export default {
         更多 : null,
         致谢 : '/guide/thank.html',
         反馈问题 : '/guide/report.html',
-        更新日志 : '/guide/logs.html'
+        更新日志 : '/guide/logs.html',
+        参与者公约 : '/guide/codeofconduct.html'
     }
 };

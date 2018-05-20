@@ -4,13 +4,13 @@
         :hasPadding="true"
     >
     <script type="text/markdown">
-    # 下拉式按钮组 `<ui-dropdown>`
+    # 下拉菜单 `<ui-dropdown>`
     
     <doc-component-status page="dropdown"></doc-component-status>
     
     [[[开始]]]
 
-    定义下拉式按钮组，这是一个内联块元素。
+    定义下拉菜单，这是一个内联块元素。
 
     `ui-dropdown`内包含一组`ui-btn`或`ui-btngroup`，可以标记两个特定的按钮:
 
@@ -48,6 +48,30 @@
     </ui-dropdown>
     :::
 
+    #### 配合链接使用
+
+    :::democode/html
+    <ui-dropdown>
+        <ui-link slot="showbtn" emitbtn>更多 <i class="morningicon">&#xe6b1;</i></ui-link>
+        <ui-btn color="white">收藏</ui-btn>
+        <ui-btn color="white">修改</ui-btn>
+        <ui-btn color="danger">删除</ui-btn>
+    </ui-dropdown>
+    :::
+
+    #### 不同的尺寸及颜色
+    
+    通过设置按钮或链接本身的尺寸和颜色来修改。
+
+    :::democode/html
+    <ui-dropdown>
+        <ui-btn slot="showbtn" emitbtn size="xs">更多 <i class="morningicon">&#xe6b1;</i></ui-btn>
+        <ui-btn color="white" size="xs">打开</ui-btn>
+        <ui-btn color="white" size="xs">关闭</ui-btn>
+        <ui-btn color="danger" size="xs">删除</ui-btn>
+    </ui-dropdown>
+    :::
+
     [[[形态]]]
 
     #### 支持
@@ -60,13 +84,14 @@
 
     <a href="/guide/status.html">查看形态文档</a>
 
-    下拉式按钮组不支持形态，但可通过`ui-btn` / `ui-btngroup`自身的形态来控制。
+    下拉菜单不支持形态，但可通过`ui-btn` / `ui-btngroup`自身的形态来控制。
 
     [[[配置]]]
 
     |KEY|描述|接受值|值类型|默认值|
     |-|-|-|-|-|
     |[auto-close](#auto-close)|点击下拉菜单中按钮后自动隐藏|`true`<br>`false`|Boolean|`true`|
+    |[trigger](#trigger)|触发下拉菜单方式。触发方式一旦改变，已有的触发状态都会被重置。|`hover`<br>`click`<br>`rclick`|String|`click`|
 
     #### auto-close
 
@@ -74,6 +99,41 @@
 
     :::democode/html
     <ui-dropdown :auto-close="false">
+        <ui-btn slot="showbtn" emitbtn>更多</ui-btn>
+        <ui-btn color="white">收藏</ui-btn>
+        <ui-btn color="white">修改</ui-btn>
+        <ui-btn color="danger">删除</ui-btn>
+    </ui-dropdown>
+    :::
+
+    #### trigger
+    
+    采用鼠标右键触发：
+
+    :::democode/html
+    <ui-dropdown trigger="rclick">
+        <ui-link slot="showbtn" emitbtn>右键点击查看更多</ui-link>
+        <ui-btn color="white">收藏</ui-btn>
+        <ui-btn color="white">修改</ui-btn>
+        <ui-btn color="danger">删除</ui-btn>
+    </ui-dropdown>
+    :::
+
+    采用hover方式触发：
+
+    :::democode/html
+    <ui-dropdown trigger="hover">
+        <ui-btn slot="showbtn" emitbtn>更多</ui-btn>
+        <ui-btn color="white">收藏</ui-btn>
+        <ui-btn color="white">修改</ui-btn>
+        <ui-btn color="danger">删除</ui-btn>
+    </ui-dropdown>
+    :::
+
+    `trigger`和`auto-close`配合使用：
+
+    :::democode/html
+    <ui-dropdown :auto-close="false" trigger="hover">
         <ui-btn slot="showbtn" emitbtn>更多</ui-btn>
         <ui-btn color="white">收藏</ui-btn>
         <ui-btn color="white">修改</ui-btn>
@@ -189,7 +249,7 @@
         template : '{$template}',
         data : function () {
             return {
-               text : '下拉式按钮组',
+               text : '下拉菜单',
                show : true
             };
         },

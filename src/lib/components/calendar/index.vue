@@ -62,7 +62,7 @@
                     class="day"
                     :class="[
                         {
-                            'not-current-month' : item.notCurrentMonth
+                            'no-curt-m' : item.notCurrentMonth
                         },
                         _highlightClass(item)
                     ]"
@@ -459,7 +459,7 @@ export default {
 
                     if (mark.style) {
 
-                        result[`bg-mark-${mark.style}`] = true;
+                        result[`bg-mark-${this._getColorShortName(mark.style)}`] = true;
 
                     }
 
@@ -491,8 +491,8 @@ export default {
 
                     if (mark.style) {
 
-                        result[`point-mark-${mark.style}`] = true;
-                        result['point-mark'] = true;
+                        result[`p-mark-${this._getColorShortName(mark.style)}`] = true;
+                        result['p-mark'] = true;
 
                     }
 
@@ -762,7 +762,7 @@ export default {
         });
 
         this.$watch('data.current', () => {
-            
+
             let lastMonth = formatDate(this.data.current, 'YYYY-MM');
             let lastYear = formatDate(this.data.current, 'YYYY');
 

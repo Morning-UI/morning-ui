@@ -49,7 +49,8 @@ mor-imagemap{
 
     &.st-normal{}
 
-    &.st-disabled{
+    &.st-disabled,
+    &.st-readonly{
         .operate{
             border-color: @colorFormBorderDisable;
             background: @colorFormBackgroundDisable;
@@ -66,7 +67,7 @@ mor-imagemap{
     }
 }
 
-.mor-imagemap-dialog-map{
+.mor-imagemap-map{
     .maparea{
         width: 100%;
         user-select: none;
@@ -79,200 +80,200 @@ mor-imagemap{
         }
 
         .setup-scrollbar();
+    }
 
-        .zonearea{
-            display: block;
+    .zonearea{
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        cursor: crosshair;
+        font-size: @fontSize*0.875;
+        border: 1px @colorExtraLightSilver solid;
+        box-sizing: content-box;
+
+        &.disable-add-spot{
+            cursor: default;
+        }
+
+        &.over-range{
+            box-shadow: 0 0 6px rgba(214, 68, 49, 0.55) inset;
+            border-color: @colorDanger;
+        }
+
+        &.resize-top,
+        & .zone .top{
+            cursor: n-resize !important;
+        }
+
+        &.resize-bottom,
+        & .zone .bottom{
+            cursor: s-resize !important;
+        }
+
+        &.resize-left,
+        & .zone .left{
+            cursor: w-resize !important;
+        }
+
+        &.resize-right,
+        & .zone .right{
+            cursor: e-resize !important;
+        }
+
+        &.resize-topleft,
+        & .zone .topleft{
+            cursor: nw-resize !important;
+        }
+
+        &.resize-topright,
+        & .zone .topright{
+            cursor: ne-resize !important;
+        }
+
+        &.resize-bottomleft,
+        & .zone .bottomleft{
+            cursor: sw-resize !important;
+        }
+
+        &.resize-bottomright,
+        & .zone .bottomright{
+            cursor: se-resize !important;
+        }
+    }
+
+    .zone{
+        box-sizing: border-box;
+        border: 1px dashed @colorExtraLightBlack;
+        position: absolute;
+        display: block;
+        background-color: %(~'%d40', @colorExtraLightBlack);
+        cursor: move;
+
+        &.resize-top{
+            border-top-style: solid !important;
+            border-top-color: darken(@colorDanger, 10%) !important;
+        }
+
+        &.resize-bottom{
+            border-bottom-style: solid !important;
+            border-bottom-color: darken(@colorDanger, 10%) !important;
+        }
+
+        &.resize-left{
+            border-left-style: solid !important;
+            border-left-color: darken(@colorDanger, 10%) !important;
+        }
+
+        &.resize-right{
+            border-right-style: solid !important;
+            border-right-color: darken(@colorDanger, 10%) !important;
+        }
+
+        &.resize-topleft{
+            border-top-style: solid !important;
+            border-top-color: darken(@colorDanger, 10%) !important;
+            border-left-style: solid !important;
+            border-left-color: darken(@colorDanger, 10%) !important;
+        }
+
+        &.resize-bottomleft{
+            border-bottom-style: solid !important;
+            border-bottom-color: darken(@colorDanger, 10%) !important;
+            border-left-style: solid !important;
+            border-left-color: darken(@colorDanger, 10%) !important;
+        }
+
+        &.resize-topright{
+            border-top-style: solid !important;
+            border-top-color: darken(@colorDanger, 10%) !important;
+            border-right-style: solid !important;
+            border-right-color: darken(@colorDanger, 10%) !important;
+        }
+
+        &.resize-bottomright{
+            border-bottom-style: solid !important;
+            border-bottom-color: darken(@colorDanger, 10%) !important;
+            border-right-style: solid !important;
+            border-right-color: darken(@colorDanger, 10%) !important;
+        }
+
+        &:hover,
+        &.resize{
+            border: 1px dashed @colorExtraLightBlack;
+            background-color: %(~'%d30', darken(@colorPrimary, 5%));
+            border-width: 2px;
+        }
+
+        &.move-moving{
+            display: none;
+        }
+
+        .top,
+        .bottom{
             position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
             left: 0;
-            cursor: crosshair;
-            font-size: @fontSize*0.875;
-            border: 1px @colorExtraLightSilver solid;
-            box-sizing: content-box;
+            width: 100%;
+            height: 20px;
+        }
 
-            &.disable-add-spot{
-                cursor: default;
-            }
+        .top{
+            top: -10px;
+        }
 
-            &.over-range{
-                box-shadow: 0 0 6px rgba(214, 68, 49, 0.55) inset;
-                border-color: @colorDanger;
-            }
+        .bottom{
+            bottom: -10px;
+            z-index: 3;
+        }
 
-            .zone{
-                box-sizing: border-box;
-                border: 1px dashed @colorExtraLightBlack;
-                position: absolute;
-                display: block;
-                background-color: %(~'%d40', @colorExtraLightBlack);
-                cursor: move;
+        .left,
+        .right{
+            position: absolute;
+            top: 0;
+            height: 100%;
+            width: 20px;
+        }
 
-                &.resize-top{
-                    border-top-style: solid !important;
-                    border-top-color: darken(@colorDanger, 10%) !important;
-                }
+        .left{
+            left: -10px;
+        }
 
-                &.resize-bottom{
-                    border-bottom-style: solid !important;
-                    border-bottom-color: darken(@colorDanger, 10%) !important;
-                }
+        .right{
+            right: -10px;
+            z-index: 3;
+        }
 
-                &.resize-left{
-                    border-left-style: solid !important;
-                    border-left-color: darken(@colorDanger, 10%) !important;
-                }
+        .topleft,
+        .topright,
+        .bottomleft,
+        .bottomright{
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            z-index: 4;
+        }
 
-                &.resize-right{
-                    border-right-style: solid !important;
-                    border-right-color: darken(@colorDanger, 10%) !important;
-                }
+        .topleft{
+            top: -10px;
+            left: -10px;
+        }
 
-                &.resize-topleft{
-                    border-top-style: solid !important;
-                    border-top-color: darken(@colorDanger, 10%) !important;
-                    border-left-style: solid !important;
-                    border-left-color: darken(@colorDanger, 10%) !important;
-                }
+        .topright{
+            top: -10px;
+            right: -10px;
+        }
 
-                &.resize-bottomleft{
-                    border-bottom-style: solid !important;
-                    border-bottom-color: darken(@colorDanger, 10%) !important;
-                    border-left-style: solid !important;
-                    border-left-color: darken(@colorDanger, 10%) !important;
-                }
+        .bottomleft{
+            bottom: -10px;
+            left: -10px;
+        }
 
-                &.resize-topright{
-                    border-top-style: solid !important;
-                    border-top-color: darken(@colorDanger, 10%) !important;
-                    border-right-style: solid !important;
-                    border-right-color: darken(@colorDanger, 10%) !important;
-                }
-
-                &.resize-bottomright{
-                    border-bottom-style: solid !important;
-                    border-bottom-color: darken(@colorDanger, 10%) !important;
-                    border-right-style: solid !important;
-                    border-right-color: darken(@colorDanger, 10%) !important;
-                }
-
-                &:hover,
-                &.resize{
-                    border: 1px dashed @colorExtraLightBlack;
-                    background-color: %(~'%d30', darken(@colorPrimary, 5%));
-                    border-width: 2px;
-                }
-
-                &.move-moving{
-                    display: none;
-                }
-
-                .top,
-                .bottom{
-                    position: absolute;
-                    left: 0;
-                    width: 100%;
-                    height: 20px;
-                }
-
-                .top{
-                    top: -10px;
-                }
-
-                .bottom{
-                    bottom: -10px;
-                    z-index: 3;
-                }
-
-                .left,
-                .right{
-                    position: absolute;
-                    top: 0;
-                    height: 100%;
-                    width: 20px;
-                }
-
-                .left{
-                    left: -10px;
-                }
-
-                .right{
-                    right: -10px;
-                    z-index: 3;
-                }
-
-                .topleft,
-                .topright,
-                .bottomleft,
-                .bottomright{
-                    position: absolute;
-                    width: 20px;
-                    height: 20px;
-                    z-index: 4;
-                }
-
-                .topleft{
-                    top: -10px;
-                    left: -10px;
-                }
-
-                .topright{
-                    top: -10px;
-                    right: -10px;
-                }
-
-                .bottomleft{
-                    bottom: -10px;
-                    left: -10px;
-                }
-
-                .bottomright{
-                    bottom: -10px;
-                    right: -10px;
-                    z-index: 10;
-                }
-            }
-
-            &.resize-top,
-            & .zone .top{
-                cursor: n-resize !important;
-            }
-
-            &.resize-bottom,
-            & .zone .bottom{
-                cursor: s-resize !important;
-            }
-
-            &.resize-left,
-            & .zone .left{
-                cursor: w-resize !important;
-            }
-
-            &.resize-right,
-            & .zone .right{
-                cursor: e-resize !important;
-            }
-
-            &.resize-topleft,
-            & .zone .topleft{
-                cursor: nw-resize !important;
-            }
-
-            &.resize-topright,
-            & .zone .topright{
-                cursor: ne-resize !important;
-            }
-
-            &.resize-bottomleft,
-            & .zone .bottomleft{
-                cursor: sw-resize !important;
-            }
-
-            &.resize-bottomright,
-            & .zone .bottomright{
-                cursor: se-resize !important;
-            }
+        .bottomright{
+            bottom: -10px;
+            right: -10px;
+            z-index: 10;
         }
     }
 

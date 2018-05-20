@@ -8,7 +8,7 @@ const runner = nightmare({
 });
 
 let tagName = 'h';
-let docUrl = `${common.TEST_HOST}/component/${tagName}.html`;
+let docUrl = common.getE2eDocUrl(tagName);
 let basicDemo = `[name="开始"] mor-${tagName}`;
 
 let context = {
@@ -72,6 +72,7 @@ test.serial('color', async t => {
     t.plan(2);
 
     t.snapshot(result);
+
     t.is(JSON.stringify(result.color.black), JSON.stringify(result.default));
 
 });

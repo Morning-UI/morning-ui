@@ -122,7 +122,7 @@ mor-switch{
         }
     }
 
-    &.co-theme{
+    &.co-t{
         &.open .track{
             background: @colorTheme;
             box-shadow: 0 0 3px darken(@colorTheme, 20%) inset;
@@ -134,7 +134,7 @@ mor-switch{
         }
     }
 
-    &.co-light-theme{
+    &.co-lt{
         &.open .track{
             background: @colorLightTheme;
             box-shadow: 0 0 3px darken(@colorLightTheme, 8%) inset;
@@ -146,7 +146,7 @@ mor-switch{
         }
     }
 
-    &.co-dark-theme{
+    &.co-dt{
         &.open .track{
             background: @colorDarkTheme;
             box-shadow: 0 0 3px darken(@colorDarkTheme, 13%) inset;
@@ -158,7 +158,7 @@ mor-switch{
         }
     }
 
-    &.co-success{
+    &.co-s{
         &.open .track{
             background: @colorSuccess;
             box-shadow: 0 0 3px darken(@colorSuccess, 13%) inset;
@@ -170,7 +170,7 @@ mor-switch{
         }
     }
 
-    &.co-warning{
+    &.co-w{
         &.open .track{
             background: @colorWarning;
             box-shadow: 0 0 3px darken(@colorWarning, 13%) inset;
@@ -182,7 +182,7 @@ mor-switch{
         }
     }
 
-    &.co-danger{
+    &.co-d{
         &.open .track{
             background: @colorDanger;
             box-shadow: 0 0 3px darken(@colorDanger, 9%) inset;
@@ -194,7 +194,7 @@ mor-switch{
         }
     }
 
-    &.co-primary{
+    &.co-p{
         &.open .track{
             background: @colorPrimary;
             box-shadow: 0 0 3px darken(@colorPrimary, 13%) inset;
@@ -206,7 +206,7 @@ mor-switch{
         }
     }
 
-    &.co-minor{
+    &.co-m{
         &.open .track{
             background: @colorMinor;
             box-shadow: 0 0 3px darken(@colorMinor, 13%) inset;
@@ -218,7 +218,7 @@ mor-switch{
         }
     }
 
-    &.co-info{
+    &.co-i{
         &.open .track{
             background: @colorInfo;
             box-shadow: 0 0 3px darken(@colorInfo, 13%) inset;
@@ -230,7 +230,7 @@ mor-switch{
         }
     }
 
-    &.co-black{
+    &.co-bk{
         &.open .track{
             background: @colorBlack;
             box-shadow: 0 0 3px darken(@colorBlack, 30%) inset;
@@ -242,7 +242,7 @@ mor-switch{
         }
     }
 
-    &.co-light-black{
+    &.co-lbk{
         &.open .track{
             background: @colorLightBlack;
             box-shadow: 0 0 3px darken(@colorLightBlack, 13%) inset;
@@ -254,7 +254,7 @@ mor-switch{
         }
     }
 
-    &.co-extra-light-black{
+    &.co-elbk{
         &.open .track{
             background: @colorExtraLightBlack;
             box-shadow: 0 0 3px darken(@colorExtraLightBlack, 13%) inset;
@@ -266,7 +266,7 @@ mor-switch{
         }
     }
 
-    &.co-blue{
+    &.co-bu{
         &.open .track{
             background: @colorBlue;
             box-shadow: 0 0 3px darken(@colorBlue, 13%) inset;
@@ -278,7 +278,7 @@ mor-switch{
         }
     }
 
-    &.co-light-blue{
+    &.co-lbu{
         &.open .track{
             background: @colorLightBlue;
             box-shadow: 0 0 3px darken(@colorLightBlue, 13%) inset;
@@ -290,7 +290,7 @@ mor-switch{
         }
     }
 
-    &.co-extra-light-blue{
+    &.co-elbu{
         &.open .track{
             background: @colorExtraLightBlue;
             box-shadow: 0 0 3px darken(@colorExtraLightBlue, 13%) inset;
@@ -302,7 +302,7 @@ mor-switch{
         }
     }
 
-    &.co-silver{
+    &.co-si{
         .note{
             color: @colorSilver;
         }
@@ -333,7 +333,7 @@ mor-switch{
         }
     }
 
-    &.co-light-silver{
+    &.co-lsi{
         .note{
             color: @colorSilver;
         }
@@ -364,7 +364,7 @@ mor-switch{
         }
     }
 
-    &.co-extra-light-silver{
+    &.co-elsi{
         .note{
             color: @colorSilver;
         }
@@ -395,7 +395,7 @@ mor-switch{
         }
     }
 
-    &.co-gray{
+    &.co-g{
         .note{
             color: @colorGray;
         }
@@ -426,7 +426,7 @@ mor-switch{
         }
     }
 
-    &.co-light-gray{
+    &.co-lg{
         .note{
             color: @colorGray;
         }
@@ -457,7 +457,7 @@ mor-switch{
         }
     }
 
-    &.co-white{
+    &.co-wh{
         .note{
             color: @colorGray;
         }
@@ -490,7 +490,8 @@ mor-switch{
 
     &.st-normal{}
 
-    &.st-disabled{
+    &.st-disabled,
+    &.st-readonly{
         .point{
             transform: scale(0.85);
         }
@@ -507,7 +508,7 @@ mor-switch{
 
     // default status
     &{
-        .co-theme;
+        .co-t;
         .st-normal;
     }
 }

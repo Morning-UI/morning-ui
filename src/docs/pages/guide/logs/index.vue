@@ -18,6 +18,116 @@
     
     ### 更新记录
 
+    ### 0.10.27 <ui-badge class="circle ver-stable" size="s" color="extra-light-black">Beta</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2018年5月20日，
+            Archive : 
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.27" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.27/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.10.27/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor><br/><br/>
+
+    - `ui-tab`新增`anchor-target`配置，支持锚点定位
+    - `ui-select`新增`separate-emit`配置
+    - 完善组件的基础单元和端点测试
+    - 修复`ui-imagemap`新增的热区自定义数据为`undefined`
+    - 修复动态更新`ui-select`可选项时导致选项的Tip错乱的问题
+    - 修复`ui-tip`和`ui-select`组件文本溢出的一个问题
+    - 修复Vue警告(Do not use built-in or reserved HTML elements as component id)
+    - 修复文档中的一些错误
+
+    ### 0.10.26 <ui-badge class="circle ver-stable" size="s" color="extra-light-black">Beta</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2018年5月18日，
+            Archive : 
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.26" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.26/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.10.26/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor><br/><br/>
+
+    - 新增Vue版本检测并要求大于`2.5.2`
+    - `ui-timepicker`、`ui-datepicker`、`ui-datetimepicker`新增`separator-type`配置
+    - 修复`ui-dropdown`和`ui-select`等有弹框的组件导致父容器出现竖向滚动条
+    - 修复`ui-select`导致父容器出现横向滚动条
+    - 修复`ui-radio`样式错乱的问题
+    - 更新Vue文档链接
+    - 为GitHub增加Contributing Guidelines和Code of conduct
+
+    ### 0.10.25 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+    
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2018年5月17日，
+            Archive : 
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.25" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.25/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.10.25/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor><br/><br/>
+
+    - 优化`ui-select`、`ui-timepicker`、`ui-datepicker`、`ui-datetimepicker`组件的弹框，若超出窗口位置会自动调整位置
+    - 优化CSS大小(从 240.57kb 减少至 186.257kb)
+    - 修复日期组件文档中`quick-pick`配置中的一个错误
+    - 修复`ui-imagemap`的一个问题(`custom validator check failed for prop “color”`)
+    - 修复`ui-datepicker`中的一个样式问题
+    - 修复`ui-datepicker`中一个数值类型错误的问题
+    - 修复`ui-datepicker`中启用`quick-pick`会报错(Uncaught TypeError: Cannot read property '0' of undefined)的问题
+    - 修复`ui-datepicker`及`ui-datetimepicker`在开启`is-range`的配置时`default-value`超过可选范围时报错的问题
+    - 修复`ui-timepicker`、`ui-datepicker`、`ui-datetimepicker`中获取相近日期及时间的一个问题
+    - 修复`ui-select`选中项后，搜索功能显示错误的问题
+    - 修复`ui-tip`在某些情况下会闪烁的问题
+    - 新增Morning UI CSS Analysis工具帮助开发者分析各个组件的CSS大小(npm run css-analysis)
+
+    <ui-label color="primary">Upgrade Precautions</ui-label>
+
+    - `ui-grid`的`averagegap`被废弃，采用`avggap`替代
+    - `ui-timepicker`、`ui-datepicker`的`align`配置不再对弹出的时间选择框位置生效，选择框位置仅会居中
+
+    ### 0.10.24 <ui-badge class="circle ver-stable" size="s" color="light-theme">Beta</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2018年5月14日，
+            Archive : 
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.24" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.24/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.10.24/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor><br/><br/>
+
+    - 表单组件新增`readonly`状态
+    - 新增CHANGELOG
+    - 为GitHub新增Issue templates及Pull request template
+    - `ui-dropdown`支持右键触发
+    - `ui-dropdown`和`ui-tip`的弹出框遇到边界会自动调整位置，使内容在窗口内
+    - `ui-tip`新增`auto-reverse`配置，当小提示超出窗口时允许反转方向
+    - 修复`ui-select`在禁用状态下开启`multi-select`配置后仍可输入的问题 
+    - 修复`ui-select`文档中形态部分的错误
+    - 修复`ui-imagemap`上传图片后高宽计算错误
+
+    ### 0.10.23 <ui-badge class="circle ver-beta" size="s" color="extra-light-black">Beta</ui-badge>
+    
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2018年5月12日，
+            Archive : 
+            <a href="https://github.com/Morning-UI/morning-u`i/releases/tag/0.10.23" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.23/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.10.23/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor><br/><br/>
+
+    - `ui-table`的`col-set`、`row-set`、`cell-set`支持更多的颜色
+    - `ui-dropdown`支持配合链接使用，并新增`trigger`配置
+    - 修复`ui-dropdown`下拉弹框可能被遮挡的问题
+    - 更新README
+
     ### 0.10.22 <ui-badge class="circle ver-beta" size="s" color="extra-light-black">Beta</ui-badge>
 
     <ui-textcolor color="light-blue">

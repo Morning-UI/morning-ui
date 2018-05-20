@@ -84,415 +84,416 @@ mor-calendar{
     .calendar{
         padding-top: 0.5em;
         min-width: 280px;
+    }
 
-        .pick-day{
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
+    .pick-day{
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
 
-            .day{
-                width: ~'calc(100% / 7)';
-                text-align: center;
-                color: @colorBlack;
+    .select-layer{
+        display: inline-block;
+        padding: 0.25em;
+        width: 100%;
+        font-size: @fontSize;
+        box-sizing: border-box;
+    }
 
+    .inner-layer{
+        display: inline-block;
+        width: @fontSize*2;
+        height: @fontSize*2;
+        line-height: @fontSize*2;
+        border-radius: 100em;
+        padding: 0;
+        font-size: @fontSize*0.75;
+    }
+
+    .day{
+        width: ~'calc(100% / 7)';
+        text-align: center;
+        color: @colorBlack;
+
+        &.no-curt-m{
+            color: @colorLightBlue;
+            background-color: lighten(@colorLightGray, 2%);
+        }
+
+        &.highlight{
+            margin-bottom: 0;
+
+            .inner-layer{
+                background-color: @colorLightTheme;
+                color: @colorWhite;
+            }
+        }
+
+        &.middle{
+            .select-layer{
+                background-color: lighten(@colorLightTheme, 25%);
+            }
+
+            &.bg-mark-disabled{
                 .select-layer{
-                    display: inline-block;
-                    padding: 0.25em;
-                    width: 100%;
-                    font-size: @fontSize;
-                }
-
-                .inner-layer{
-                    display: inline-block;
-                    width: @fontSize*2;
-                    height: @fontSize*2;
-                    line-height: @fontSize*2;
-                    border-radius: 100em;
-                    padding: 0;
-                    font-size: @fontSize*0.75;
-                }
-
-                &.not-current-month{
-                    color: @colorLightBlue;
-                    background-color: lighten(@colorLightGray, 2%);
-                }
-
-                &.highlight{
-                    margin-bottom: 0;
-
-                    .inner-layer{
-                        background-color: @colorLightTheme;
-                        color: @colorWhite;
-                    }
-                }
-
-                &.middle{
-                    .select-layer{
-                        background-color: lighten(@colorLightTheme, 25%);
-                    }
-
-                    &.bg-mark-disabled{
-                        .select-layer{
-                            background-color: @colorExtraLightBlue;
-                        }
-                    }
-                }
-
-                &.start{
-                    text-align: right;
-
-                    .inner-layer{
-                        background-color: @colorLightTheme;
-                        color: @colorWhite;
-                    }
-
-                    .select-layer{
-                        text-align: center;
-                        padding-right: ~'calc(50% - ' @fontSize ~')';
-                        background-color: lighten(@colorLightTheme, 25%);
-                        border-radius: 100em 0 0 100em;
-                        width: auto;
-                    }
-                }
-
-                &.end{
-                    text-align: left;
-
-                    .inner-layer{
-                        background-color: @colorLightTheme;
-                        color: @colorWhite;
-                    }
-
-                    .select-layer{
-                        text-align: center;
-                        padding-left: ~'calc(50% - ' @fontSize ~')';
-                        background-color: lighten(@colorLightTheme, 25%);
-                        border-radius: 0 100em 100em 0;
-                        width: auto;
-                    }
-                }
-
-                &.start.bg-mark-disabled,
-                &.end.bg-mark-disabled{
-                    .inner-layer{
-                        background-color: @colorExtraLightBlack;
-                    }
-
-                    .select-layer{
-                        background-color: @colorExtraLightBlue;
-                    }
-                }
-
-                &.point-mark{
-                    position: relative;
-
-                    &::after{
-                        width: 6px;
-                        height: 6px;
-                        margin-left: -3px;
-                        border-radius: 6px;
-                        bottom: 4px;
-                        display: block;
-                        position: absolute;
-                        content: '';
-                        left: 50%;
-                    }
-                }
-
-                &.point-mark-success::after{
-                    background: @colorSuccess;
-                }
-
-                &.point-mark-warning::after{
-                    background: @colorWarning;
-                }
-
-                &.point-mark-danger::after{
-                    background: @colorDanger;
-                }
-
-                &.point-mark-primary::after{
-                    background: @colorPrimary;
-                }
-
-                &.point-mark-minor::after{
-                    background: @colorMinor;
-                }
-
-                &.point-mark-info::after{
-                    background: @colorInfo;
-                }
-
-                &.point-mark-black::after{
-                    background: @colorBlack;
-                }
-
-                &.point-mark-light-black::after{
-                    background: @colorLightBlack;
-                }
-
-                &.point-mark-extra-light-black::after{
-                    background: @colorExtraLightBlack;
-                }
-
-                &.point-mark-blue::after{
-                    background: @colorBlue;
-                }
-
-                &.point-mark-light-blue::after{
-                    background: @colorLightBlue;
-                }
-
-                &.point-mark-extra-light-blue::after{
-                    background: @colorExtraLightBlue;
-                }
-
-                &.point-mark-silver::after{
-                    background: @colorSilver;
-                }
-
-                &.point-mark-light-silver::after{
-                    background: @colorLightSilver;
-                }
-
-                &.point-mark-extra-light-silver::after{
-                    background: @colorExtraLightSilver;
-                }
-
-                &.point-mark-gray::after{
-                    background: @colorGray;
-                }
-
-                &.point-mark-light-gray::after{
-                    background: @colorLightGray;
-                }
-
-                &.bg-mark-success{
-                    background: @colorSuccess;
-                    color: @colorWhite;
-
-                    &.not-current-month{
-                        background: darken(@colorSuccess, 8%);
-                        color: fade(@colorWhite, 50%);
-                    }
-                }
-
-                &.bg-mark-warning{
-                    background: @colorWarning;
-                    color: @colorWhite;
-
-                    &.not-current-month{
-                        background: darken(@colorWarning, 8%);
-                        color: fade(@colorWhite, 50%);
-                    }
-                }
-
-                &.bg-mark-danger{
-                    background: @colorDanger;
-                    color: @colorWhite;
-
-                    &.not-current-month{
-                        background: darken(@colorDanger, 8%);
-                        color: fade(@colorWhite, 50%);
-                    }
-                }
-
-                &.bg-mark-primary{
-                    background: @colorPrimary;
-                    color: @colorWhite;
-
-                    &.not-current-month{
-                        background: darken(@colorPrimary, 8%);
-                        color: fade(@colorWhite, 50%);
-                    }
-                }
-
-                &.bg-mark-minor{
-                    background: @colorMinor;
-                    color: @colorWhite;
-
-                    &.not-current-month{
-                        background: darken(@colorMinor, 8%);
-                        color: fade(@colorWhite, 50%);
-                    }
-                }
-
-                &.bg-mark-info{
-                    background: @colorInfo;
-                    color: @colorWhite;
-
-                    &.not-current-month{
-                        background: darken(@colorInfo, 8%);
-                        color: fade(@colorWhite, 50%);
-                    }
-                }
-
-                &.bg-mark-black{
-                    background: @colorBlack;
-                    color: @colorWhite;
-
-                    &.not-current-month{
-                        background: lighten(@colorBlack, 8%);
-                        color: fade(@colorWhite, 50%);
-                    }
-                }
-
-                &.bg-mark-light-black{
-                    background: @colorLightBlack;
-                    color: @colorWhite;
-
-                    &.not-current-month{
-                        background: lighten(@colorLightBlack, 8%);
-                        color: fade(@colorWhite, 50%);
-                    }
-                }
-
-                &.bg-mark-extra-light-black{
-                    background: @colorExtraLightBlack;
-                    color: @colorWhite;
-
-                    &.not-current-month{
-                        background: lighten(@colorExtraLightBlack, 8%);
-                        color: fade(@colorWhite, 50%);
-                    }
-                }
-
-                &.bg-mark-blue{
-                    background: @colorBlue;
-                    color: @colorWhite;
-
-                    &.not-current-month{
-                        background: darken(@colorBlue, 8%);
-                        color: fade(@colorWhite, 50%);
-                    }
-                }
-
-                &.bg-mark-light-blue{
-                    background: @colorLightBlue;
-                    color: @colorWhite;
-
-                    &.not-current-month{
-                        background: darken(@colorLightBlue, 8%);
-                        color: fade(@colorWhite, 50%);
-                    }
-                }
-
-                &.bg-mark-extra-light-blue{
-                    background: @colorExtraLightBlue;
-                    color: @colorWhite;
-
-                    &.not-current-month{
-                        background: darken(@colorExtraLightBlue, 8%);
-                        color: fade(@colorWhite, 50%);
-                    }
-                }
-
-                &.bg-mark-silver{
-                    background: @colorSilver;
-                    color: @colorBlack;
-
-                    &.not-current-month{
-                        background: darken(@colorSilver, 8%);
-                        color: fade(@colorBlack, 50%);
-                    }
-                }
-
-                &.bg-mark-light-silver{
-                    background: @colorLightSilver;
-                    color: @colorBlack;
-
-                    &.not-current-month{
-                        background: darken(@colorLightSilver, 8%);
-                        color: fade(@colorBlack, 50%);
-                    }
-                }
-
-                &.bg-mark-extra-light-silver{
-                    background: @colorExtraLightSilver;
-                    color: @colorBlack;
-
-                    &.not-current-month{
-                        background: darken(@colorExtraLightSilver, 8%);
-                        color: fade(@colorBlack, 50%);
-                    }
-                }
-
-                &.bg-mark-gray{
-                    background: @colorGray;
-                    color: @colorBlack;
-
-                    &.not-current-month{
-                        background: darken(@colorGray, 8%);
-                        color: fade(@colorBlack, 50%);
-                    }
-                }
-
-                &.bg-mark-light-gray{
-                    background: @colorLightGray;
-                    color: @colorBlack;
-
-                    &.not-current-month{
-                        background: darken(@colorLightGray, 8%);
-                        color: fade(@colorBlack, 50%);
-                    }
-                }
-
-                &.bg-mark-disabled {
-                    background: @colorSilver;
-                    cursor: default;
-                    color: fade(@colorBlack, 50%);
-
-                    &.not-current-month{
-                        background: darken(@colorSilver, 8%);
-                        color: fade(@colorLightBlue, 40%);
-
-                        &:hover{
-                            color: fade(@colorLightBlue, 40%) !important;
-                        }
-                    }
-
-                    &:hover{
-                        color: fade(@colorBlack, 50%) !important;
-                    }
+                    background-color: @colorExtraLightBlue;
                 }
             }
         }
 
-        .pick-month,
-        .pick-year{
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
+        &.start{
+            text-align: right;
+
+            .inner-layer{
+                background-color: @colorLightTheme;
+                color: @colorWhite;
+            }
+
+            .select-layer{
+                text-align: center;
+                padding-right: ~'calc(50% - ' @fontSize ~')';
+                background-color: lighten(@colorLightTheme, 25%);
+                border-radius: 100em 0 0 100em;
+                width: auto;
+            }
         }
 
-        .pick-month .month{
-            width: ~'calc(100% / 3)';
-            padding: 0;
-            height: @fontSize*3.75;
-            line-height: @fontSize*3.75;
-            text-align: center;
-            color: @colorBlue;
+        &.end{
+            text-align: left;
+
+            .inner-layer{
+                background-color: @colorLightTheme;
+                color: @colorWhite;
+            }
+
+            .select-layer{
+                text-align: center;
+                padding-left: ~'calc(50% - ' @fontSize ~')';
+                background-color: lighten(@colorLightTheme, 25%);
+                border-radius: 0 100em 100em 0;
+                width: auto;
+            }
+        }
+
+        &.start.bg-mark-disabled,
+        &.end.bg-mark-disabled{
+            .inner-layer{
+                background-color: @colorExtraLightBlack;
+            }
+
+            .select-layer{
+                background-color: @colorExtraLightBlue;
+            }
+        }
+
+        &.p-mark{
+            position: relative;
+
+            &::after{
+                width: 6px;
+                height: 6px;
+                margin-left: -3px;
+                border-radius: 6px;
+                bottom: 4px;
+                display: block;
+                position: absolute;
+                content: '';
+                left: 50%;
+            }
+        }
+
+        &.bg-mark-s{
+            background: @colorSuccess;
+            color: @colorWhite;
+
+            &.no-curt-m{
+                background: darken(@colorSuccess, 8%);
+                color: fade(@colorWhite, 50%);
+            }
+        }
+
+        &.bg-mark-w{
+            background: @colorWarning;
+            color: @colorWhite;
+
+            &.no-curt-m{
+                background: darken(@colorWarning, 8%);
+                color: fade(@colorWhite, 50%);
+            }
+        }
+
+        &.bg-mark-d{
+            background: @colorDanger;
+            color: @colorWhite;
+
+            &.no-curt-m{
+                background: darken(@colorDanger, 8%);
+                color: fade(@colorWhite, 50%);
+            }
+        }
+
+        &.bg-mark-p{
+            background: @colorPrimary;
+            color: @colorWhite;
+
+            &.no-curt-m{
+                background: darken(@colorPrimary, 8%);
+                color: fade(@colorWhite, 50%);
+            }
+        }
+
+        &.bg-mark-m{
+            background: @colorMinor;
+            color: @colorWhite;
+
+            &.no-curt-m{
+                background: darken(@colorMinor, 8%);
+                color: fade(@colorWhite, 50%);
+            }
+        }
+
+        &.bg-mark-i{
+            background: @colorInfo;
+            color: @colorWhite;
+
+            &.no-curt-m{
+                background: darken(@colorInfo, 8%);
+                color: fade(@colorWhite, 50%);
+            }
+        }
+
+        &.bg-mark-bk{
+            background: @colorBlack;
+            color: @colorWhite;
+
+            &.no-curt-m{
+                background: lighten(@colorBlack, 8%);
+                color: fade(@colorWhite, 50%);
+            }
+        }
+
+        &.bg-mark-lbk{
+            background: @colorLightBlack;
+            color: @colorWhite;
+
+            &.no-curt-m{
+                background: lighten(@colorLightBlack, 8%);
+                color: fade(@colorWhite, 50%);
+            }
+        }
+
+        &.bg-mark-elbk{
+            background: @colorExtraLightBlack;
+            color: @colorWhite;
+
+            &.no-curt-m{
+                background: lighten(@colorExtraLightBlack, 8%);
+                color: fade(@colorWhite, 50%);
+            }
+        }
+
+        &.bg-mark-bu{
+            background: @colorBlue;
+            color: @colorWhite;
+
+            &.no-curt-m{
+                background: darken(@colorBlue, 8%);
+                color: fade(@colorWhite, 50%);
+            }
+        }
+
+        &.bg-mark-lbu{
+            background: @colorLightBlue;
+            color: @colorWhite;
+
+            &.no-curt-m{
+                background: darken(@colorLightBlue, 8%);
+                color: fade(@colorWhite, 50%);
+            }
+        }
+
+        &.bg-mark-elbu{
+            background: @colorExtraLightBlue;
+            color: @colorWhite;
+
+            &.no-curt-m{
+                background: darken(@colorExtraLightBlue, 8%);
+                color: fade(@colorWhite, 50%);
+            }
+        }
+
+        &.bg-mark-si{
+            background: @colorSilver;
+            color: @colorBlack;
+
+            &.no-curt-m{
+                background: darken(@colorSilver, 8%);
+                color: fade(@colorBlack, 50%);
+            }
+        }
+
+        &.bg-mark-lsi{
+            background: @colorLightSilver;
+            color: @colorBlack;
+
+            &.no-curt-m{
+                background: darken(@colorLightSilver, 8%);
+                color: fade(@colorBlack, 50%);
+            }
+        }
+
+        &.bg-mark-elsi{
+            background: @colorExtraLightSilver;
+            color: @colorBlack;
+
+            &.no-curt-m{
+                background: darken(@colorExtraLightSilver, 8%);
+                color: fade(@colorBlack, 50%);
+            }
+        }
+
+        &.bg-mark-g{
+            background: @colorGray;
+            color: @colorBlack;
+
+            &.no-curt-m{
+                background: darken(@colorGray, 8%);
+                color: fade(@colorBlack, 50%);
+            }
+        }
+
+        &.bg-mark-lg{
+            background: @colorLightGray;
+            color: @colorBlack;
+
+            &.no-curt-m{
+                background: darken(@colorLightGray, 8%);
+                color: fade(@colorBlack, 50%);
+            }
+        }
+
+        &.bg-mark-disabled {
+            background: @colorSilver;
+            cursor: default;
+            color: fade(@colorBlack, 50%);
+
+            &.no-curt-m{
+                background: darken(@colorSilver, 8%);
+                color: fade(@colorLightBlue, 40%);
+
+                &:hover{
+                    color: fade(@colorLightBlue, 40%) !important;
+                }
+            }
 
             &:hover{
-                color: @colorBlack;
-                background-color: @colorExtraLightSilver;
-                cursor: pointer;
+                color: fade(@colorBlack, 50%) !important;
             }
         }
+    }
 
-        .pick-year .year{
-            width: ~'calc(100% / 5)';
-            padding: 0;
-            height: @fontSize*3;
-            line-height: @fontSize*3;
-            text-align: center;
-            color: @colorBlue;
+    .p-mark-s::after{
+        background: @colorSuccess;
+    }
 
-            &:hover{
-                color: @colorBlack;
-                background-color: @colorExtraLightSilver;
-                cursor: pointer;
-            }
+    .p-mark-w::after{
+        background: @colorWarning;
+    }
+
+    .p-mark-d::after{
+        background: @colorDanger;
+    }
+
+    .p-mark-p::after{
+        background: @colorPrimary;
+    }
+
+    .p-mark-m::after{
+        background: @colorMinor;
+    }
+
+    .p-mark-i::after{
+        background: @colorInfo;
+    }
+
+    .p-mark-bk::after{
+        background: @colorBlack;
+    }
+
+    .p-mark-lbk::after{
+        background: @colorLightBlack;
+    }
+
+    .p-mark-elbk::after{
+        background: @colorExtraLightBlack;
+    }
+
+    .p-mark-bu::after{
+        background: @colorBlue;
+    }
+
+    .p-mark-lbu::after{
+        background: @colorLightBlue;
+    }
+
+    .p-mark-elbu::after{
+        background: @colorExtraLightBlue;
+    }
+
+    .p-mark-si::after{
+        background: @colorSilver;
+    }
+
+    .p-mark-lsi::after{
+        background: @colorLightSilver;
+    }
+
+    .p-mark-elsi::after{
+        background: @colorExtraLightSilver;
+    }
+
+    .p-mark-g::after{
+        background: @colorGray;
+    }
+
+    .p-mark-lg::after{
+        background: @colorLightGray;
+    }
+
+    .pick-month,
+    .pick-year{
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+
+    .pick-month .month{
+        width: ~'calc(100% / 3)';
+        padding: 0;
+        height: @fontSize*3.75;
+        line-height: @fontSize*3.75;
+        text-align: center;
+        color: @colorBlue;
+
+        &:hover{
+            color: @colorBlack;
+            background-color: @colorExtraLightSilver;
+            cursor: pointer;
+        }
+    }
+
+    .pick-year .year{
+        width: ~'calc(100% / 5)';
+        padding: 0;
+        height: @fontSize*3;
+        line-height: @fontSize*3;
+        text-align: center;
+        color: @colorBlue;
+
+        &:hover{
+            color: @colorBlack;
+            background-color: @colorExtraLightSilver;
+            cursor: pointer;
         }
     }
 

@@ -49,8 +49,7 @@ mor-table{
         }
     }
 
-    .title-table,
-    .normal-table{
+    .table{
         display: table;
         min-width: 100%;
         text-align: center;
@@ -83,18 +82,6 @@ mor-table{
                 white-space: nowrap;
                 border-bottom-width: 2px;
                 border-bottom-style: solid;
-
-                .sort{
-                    .morningicon{
-                        font-size: 12px;
-                        opacity: 0.35;
-
-                        &:hover{
-                            cursor: pointer;
-                            opacity: 0.7;
-                        }
-                    }
-                }
             }
 
             td{
@@ -103,6 +90,18 @@ mor-table{
                 overflow: hidden;
                 word-break: break-all;
                 text-overflow: ellipsis;
+            }
+        }
+
+        .th-sort{
+            .morningicon{
+                font-size: 12px;
+                opacity: 0.35;
+
+                &:hover{
+                    cursor: pointer;
+                    opacity: 0.7;
+                }
             }
         }
     }
@@ -144,27 +143,23 @@ mor-table{
         }
     }
 
-    &.align-left .title-table,
-    &.align-left .normal-table,
+    &.align-left .table,
     .cell-align-left{
         text-align: left;
     }
 
-    &.align-center .title-table,
-    &.align-center .normal-table,
+    &.align-center .table,
     .cell-align-center{
         text-align: center;
     }
 
-    &.align-right .title-table,
-    &.align-right .normal-table,
+    &.align-right .table,
     .cell-align-right{
         text-align: right;
     }
 
     &.vertical-border{
-        .title-table,
-        .normal-table{
+        .table{
             th,
             td{
                 border-left-width: 1px !important;
@@ -179,8 +174,7 @@ mor-table{
     }
 
     &.horizontal-border{
-        .title-table,
-        .normal-table{
+        .table{
             th,
             td{
                 border-top-width: 1px !important;
@@ -194,7 +188,7 @@ mor-table{
         }
     }
 
-    &.co-theme{
+    &.co-t{
         border-color: darken(@colorTheme, 20%) !important;
 
         header{
@@ -202,9 +196,7 @@ mor-table{
             color: @colorWhite;
         }
 
-        .title-table,
-        .normal-table,
-        .wrap{
+        .co-style{
             border-color: darken(@colorTheme, 20%) !important;
 
             th,
@@ -224,18 +216,14 @@ mor-table{
             }
         }
 
-        &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table,
-        &.zebra-pattern .wrap{
+        &.ts-zp .co-style{
             tr:nth-child(2n) td{
                 background-color: darken(@colorTheme, 10%);
             }
         }
 
-        &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table,
-        .title-table,
-        .normal-table{
+        &.ts-zp .table,
+        .table{
             tr:hover td,
             tr.hover td{
                 background-color: darken(@colorTheme, 20%);
@@ -243,7 +231,7 @@ mor-table{
         }
     }
 
-    &.co-light-theme{
+    &.co-lt{
         border-color: darken(@colorLightTheme, 25%) !important;
 
         header{
@@ -251,9 +239,7 @@ mor-table{
             color: @colorWhite;
         }
 
-        .title-table,
-        .normal-table,
-        .wrap{
+        .co-style{
             border-color: darken(@colorLightTheme, 25%) !important;
 
             th,
@@ -273,18 +259,14 @@ mor-table{
             }
         }
 
-        &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table,
-        &.zebra-pattern .wrap{
+        &.ts-zp .co-style{
             tr:nth-child(2n) td{
                 background-color: darken(@colorLightTheme, 10%);
             }
         }
 
-        &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table,
-        .title-table,
-        .normal-table{
+        &.ts-zp .table,
+        .table{
             tr:hover td,
             tr.hover td{
                 background-color: darken(@colorLightTheme, 25%);
@@ -292,7 +274,7 @@ mor-table{
         }
     }
 
-    &.co-dark-theme{
+    &.co-dt{
         border-color: darken(@colorDarkTheme, 20%) !important;
 
         header{
@@ -300,9 +282,7 @@ mor-table{
             color: @colorWhite;
         }
 
-        .title-table,
-        .normal-table,
-        .wrap{
+        .co-style{
             border-color: darken(@colorDarkTheme, 20%) !important;
 
             th,
@@ -322,18 +302,14 @@ mor-table{
             }
         }
 
-        &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table,
-        &.zebra-pattern .wrap{
+        &.ts-zp .co-style{
             tr:nth-child(2n) td{
                 background-color: darken(@colorDarkTheme, 10%);
             }
         }
 
-        &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table,
-        .title-table,
-        .normal-table{
+        &.ts-zp .table,
+        .table{
             tr:hover td,
             tr.hover td{
                 background-color: darken(@colorDarkTheme, 20%);
@@ -341,7 +317,7 @@ mor-table{
         }
     }
 
-    &.co-success{
+    &.co-s{
         border-color: darken(@colorSuccess, 25%) !important;
 
         header{
@@ -349,9 +325,7 @@ mor-table{
             color: @colorWhite;
         }
 
-        .title-table,
-        .normal-table,
-        .wrap{
+        .co-style{
             border-color: darken(@colorSuccess, 25%) !important;
 
             th,
@@ -371,18 +345,14 @@ mor-table{
             }
         }
 
-        &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table,
-        &.zebra-pattern .wrap{
+        &.ts-zp .co-style{
             tr:nth-child(2n) td{
                 background-color: darken(@colorSuccess, 10%);
             }
         }
 
-        &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table,
-        .title-table,
-        .normal-table{
+        &.ts-zp .table,
+        .table{
             tr:hover td,
             tr.hover td{
                 background-color: darken(@colorSuccess, 25%);
@@ -390,7 +360,7 @@ mor-table{
         }
     }
 
-    &.co-warning{
+    &.co-w{
         border-color: darken(@colorWarning, 25%) !important;
 
         header{
@@ -398,9 +368,7 @@ mor-table{
             color: @colorWhite;
         }
 
-        .title-table,
-        .normal-table,
-        .wrap{
+        .co-style{
             border-color: darken(@colorWarning, 25%) !important;
 
             th,
@@ -420,18 +388,14 @@ mor-table{
             }
         }
 
-        &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table,
-        &.zebra-pattern .wrap{
+        &.ts-zp .co-style{
             tr:nth-child(2n) td{
                 background-color: darken(@colorWarning, 10%);
             }
         }
 
-        &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table,
-        .title-table,
-        .normal-table{
+        &.ts-zp .table,
+        .table{
             tr:hover td,
             tr.hover td{
                 background-color: darken(@colorWarning, 25%);
@@ -439,7 +403,7 @@ mor-table{
         }
     }
 
-    &.co-danger{
+    &.co-d{
         border-color: darken(@colorDanger, 25%) !important;
 
         header{
@@ -447,9 +411,7 @@ mor-table{
             color: @colorWhite;
         }
 
-        .title-table,
-        .normal-table,
-        .wrap{
+        .co-style{
             border-color: darken(@colorDanger, 25%) !important;
 
             th,
@@ -469,18 +431,14 @@ mor-table{
             }
         }
 
-        &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table,
-        &.zebra-pattern .wrap{
+        &.ts-zp .co-style{
             tr:nth-child(2n) td{
                 background-color: darken(@colorDanger, 10%);
             }
         }
 
-        &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table,
-        .title-table,
-        .normal-table{
+        &.ts-zp .table,
+        .table{
             tr:hover td,
             tr.hover td{
                 background-color: darken(@colorDanger, 25%);
@@ -488,7 +446,7 @@ mor-table{
         }
     }
 
-    &.co-primary{
+    &.co-p{
         border-color: darken(@colorPrimary, 25%) !important;
 
         header{
@@ -496,9 +454,7 @@ mor-table{
             color: @colorWhite;
         }
 
-        .title-table,
-        .normal-table,
-        .wrap{
+        .co-style{
             border-color: darken(@colorPrimary, 25%) !important;
 
             th,
@@ -518,18 +474,14 @@ mor-table{
             }
         }
 
-        &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table,
-        &.zebra-pattern .wrap{
+        &.ts-zp .co-style{
             tr:nth-child(2n) td{
                 background-color: darken(@colorPrimary, 10%);
             }
         }
 
-        &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table,
-        .title-table,
-        .normal-table{
+        &.ts-zp .table,
+        .table{
             tr:hover td,
             tr.hover td{
                 background-color: darken(@colorPrimary, 25%);
@@ -537,7 +489,7 @@ mor-table{
         }
     }
 
-    &.co-minor{
+    &.co-m{
         border-color: darken(@colorMinor, 25%) !important;
 
         header{
@@ -545,9 +497,7 @@ mor-table{
             color: @colorWhite;
         }
 
-        .title-table,
-        .normal-table,
-        .wrap{
+        .co-style{
             border-color: darken(@colorMinor, 25%) !important;
 
             th,
@@ -567,18 +517,14 @@ mor-table{
             }
         }
 
-        &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table,
-        &.zebra-pattern .wrap{
+        &.ts-zp .co-style{
             tr:nth-child(2n) td{
                 background-color: darken(@colorMinor, 10%);
             }
         }
 
-        &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table,
-        .title-table,
-        .normal-table{
+        &.ts-zp .table,
+        .table{
             tr:hover td,
             tr.hover td{
                 background-color: darken(@colorMinor, 25%);
@@ -586,7 +532,7 @@ mor-table{
         }
     }
 
-    &.co-info{
+    &.co-i{
         border-color: darken(@colorInfo, 25%) !important;
 
         header{
@@ -594,9 +540,7 @@ mor-table{
             color: @colorWhite;
         }
 
-        .title-table,
-        .normal-table,
-        .wrap{
+        .co-style{
             border-color: darken(@colorInfo, 25%) !important;
 
             th,
@@ -616,18 +560,14 @@ mor-table{
             }
         }
 
-        &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table,
-        &.zebra-pattern .wrap{
+        &.ts-zp .co-style{
             tr:nth-child(2n) td{
                 background-color: darken(@colorInfo, 10%);
             }
         }
 
-        &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table,
-        .title-table,
-        .normal-table{
+        &.ts-zp .table,
+        .table{
             tr:hover td,
             tr.hover td{
                 background-color: darken(@colorInfo, 25%);
@@ -635,7 +575,7 @@ mor-table{
         }
     }
 
-    &.co-black{
+    &.co-bk{
         border-color: @colorBlack !important;
 
         header{
@@ -643,9 +583,7 @@ mor-table{
             color: @colorWhite;
         }
 
-        .title-table,
-        .normal-table,
-        .wrap{
+        .co-style{
             border-color: @colorBlack !important;
 
             th,
@@ -665,18 +603,14 @@ mor-table{
             }
         }
 
-        &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table,
-        &.zebra-pattern .wrap{
+        &.ts-zp .co-style{
             tr:nth-child(2n) td{
                 background-color: darken(@colorBlack, 10%);
             }
         }
 
-        &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table,
-        .title-table,
-        .normal-table{
+        &.ts-zp .table,
+        .table{
             tr:hover td,
             tr.hover td{
                 background-color: @colorBlack;
@@ -684,7 +618,7 @@ mor-table{
         }
     }
 
-    &.co-light-black{
+    &.co-lbk{
         border-color: @colorLightBlack !important;
 
         header{
@@ -692,9 +626,7 @@ mor-table{
             color: @colorWhite;
         }
 
-        .title-table,
-        .normal-table,
-        .wrap{
+        .co-style{
             border-color: @colorLightBlack !important;
 
             th,
@@ -714,18 +646,14 @@ mor-table{
             }
         }
 
-        &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table,
-        &.zebra-pattern .wrap{
+        &.ts-zp .co-style{
             tr:nth-child(2n) td{
                 background-color: darken(@colorLightBlack, 10%);
             }
         }
 
-        &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table,
-        .title-table,
-        .normal-table{
+        &.ts-zp .table,
+        .table{
             tr:hover td,
             tr.hover td{
                 background-color: @colorLightBlack;
@@ -733,7 +661,7 @@ mor-table{
         }
     }
 
-    &.co-extra-light-black{
+    &.co-elbk{
         border-color: @colorExtraLightBlack !important;
 
         header{
@@ -741,9 +669,7 @@ mor-table{
             color: @colorWhite;
         }
 
-        .title-table,
-        .normal-table,
-        .wrap{
+        .co-style{
             border-color: @colorExtraLightBlack !important;
 
             th,
@@ -763,18 +689,14 @@ mor-table{
             }
         }
 
-        &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table,
-        &.zebra-pattern .wrap{
+        &.ts-zp .co-style{
             tr:nth-child(2n) td{
                 background-color: darken(@colorExtraLightBlack, 10%);
             }
         }
 
-        &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table,
-        .title-table,
-        .normal-table{
+        &.ts-zp .table,
+        .table{
             tr:hover td,
             tr.hover td{
                 background-color: @colorExtraLightBlack;
@@ -782,7 +704,7 @@ mor-table{
         }
     }
 
-    &.co-blue{
+    &.co-bu{
         border-color: darken(@colorBlue, 25%) !important;
 
         header{
@@ -790,9 +712,7 @@ mor-table{
             color: @colorWhite;
         }
 
-        .title-table,
-        .normal-table,
-        .wrap{
+        .co-style{
             border-color: darken(@colorBlue, 25%) !important;
 
             th,
@@ -812,18 +732,14 @@ mor-table{
             }
         }
 
-        &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table,
-        &.zebra-pattern .wrap{
+        &.ts-zp .co-style{
             tr:nth-child(2n) td{
                 background-color: darken(@colorBlue, 15%);
             }
         }
 
-        &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table,
-        .title-table,
-        .normal-table{
+        &.ts-zp .table,
+        .table{
             tr:hover td,
             tr.hover td{
                 background-color: darken(@colorBlue, 25%);
@@ -831,7 +747,7 @@ mor-table{
         }
     }
 
-    &.co-light-blue{
+    &.co-lbu{
         border-color: darken(@colorLightBlue, 25%) !important;
 
         header{
@@ -839,9 +755,7 @@ mor-table{
             color: @colorWhite;
         }
 
-        .title-table,
-        .normal-table,
-        .wrap{
+        .co-style{
             border-color: darken(@colorLightBlue, 25%) !important;
 
             th,
@@ -861,18 +775,14 @@ mor-table{
             }
         }
 
-        &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table,
-        &.zebra-pattern .wrap{
+        &.ts-zp .co-style{
             tr:nth-child(2n) td{
                 background-color: darken(@colorLightBlue, 15%);
             }
         }
 
-        &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table,
-        .title-table,
-        .normal-table{
+        &.ts-zp .table,
+        .table{
             tr:hover td,
             tr.hover td{
                 background-color: darken(@colorLightBlue, 25%);
@@ -880,7 +790,7 @@ mor-table{
         }
     }
 
-    &.co-extra-light-blue{
+    &.co-elbu{
         border-color: darken(@colorExtraLightBlue, 25%) !important;
 
         header{
@@ -888,9 +798,7 @@ mor-table{
             color: @colorWhite;
         }
 
-        .title-table,
-        .normal-table,
-        .wrap{
+        .co-style{
             border-color: darken(@colorExtraLightBlue, 25%) !important;
 
             th,
@@ -910,18 +818,14 @@ mor-table{
             }
         }
 
-        &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table,
-        &.zebra-pattern .wrap{
+        &.ts-zp .co-style{
             tr:nth-child(2n) td{
                 background-color: darken(@colorExtraLightBlue, 15%);
             }
         }
 
-        &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table,
-        .title-table,
-        .normal-table{
+        &.ts-zp .table,
+        .table{
             tr:hover td,
             tr.hover td{
                 background-color: darken(@colorExtraLightBlue, 25%);
@@ -929,7 +833,7 @@ mor-table{
         }
     }
 
-    &.co-silver{
+    &.co-si{
         border-color: darken(@colorSilver, 10%) !important;
 
         header{
@@ -937,9 +841,7 @@ mor-table{
             color: @colorBlack;
         }
 
-        .title-table,
-        .normal-table,
-        .wrap{
+        .co-style{
             border-color: darken(@colorSilver, 10%) !important;
 
             th,
@@ -959,18 +861,14 @@ mor-table{
             }
         }
 
-        &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table,
-        &.zebra-pattern .wrap{
+        &.ts-zp .co-style{
             tr:nth-child(2n) td{
                 background-color: @colorSilver;
             }
         }
 
-        &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table,
-        .title-table,
-        .normal-table{
+        &.ts-zp .table,
+        .table{
             tr:hover td,
             tr.hover td{
                 background-color: darken(@colorSilver, 10%);
@@ -978,7 +876,7 @@ mor-table{
         }
     }
 
-    &.co-light-silver{
+    &.co-lsi{
         border-color: darken(@colorLightSilver, 10%) !important;
 
         header{
@@ -986,9 +884,7 @@ mor-table{
             color: @colorBlack;
         }
 
-        .title-table,
-        .normal-table,
-        .wrap{
+        .co-style{
             border-color: darken(@colorLightSilver, 10%) !important;
 
             th,
@@ -1008,18 +904,14 @@ mor-table{
             }
         }
 
-        &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table,
-        &.zebra-pattern .wrap{
+        &.ts-zp .co-style{
             tr:nth-child(2n) td{
                 background-color: @colorLightSilver;
             }
         }
 
-        &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table,
-        .title-table,
-        .normal-table{
+        &.ts-zp .table,
+        .table{
             tr:hover td,
             tr.hover td{
                 background-color: darken(@colorLightSilver, 10%);
@@ -1027,7 +919,7 @@ mor-table{
         }
     }
 
-    &.co-extra-light-silver{
+    &.co-elsi{
         border-color: darken(@colorExtraLightSilver, 10%) !important;
 
         header{
@@ -1035,9 +927,7 @@ mor-table{
             color: @colorBlack;
         }
 
-        .title-table,
-        .normal-table,
-        .wrap{
+        .co-style{
             border-color: darken(@colorExtraLightSilver, 10%) !important;
 
             th,
@@ -1057,18 +947,14 @@ mor-table{
             }
         }
 
-        &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table,
-        &.zebra-pattern .wrap{
+        &.ts-zp .co-style{
             tr:nth-child(2n) td{
                 background-color: @colorExtraLightSilver;
             }
         }
 
-        &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table,
-        .title-table,
-        .normal-table{
+        &.ts-zp .table,
+        .table{
             tr:hover td,
             tr.hover td{
                 background-color: darken(@colorExtraLightSilver, 10%);
@@ -1076,7 +962,7 @@ mor-table{
         }
     }
 
-    &.co-gray{
+    &.co-g{
         border-color: darken(@colorGray, 5%) !important;
 
         header{
@@ -1084,9 +970,7 @@ mor-table{
             color: @colorBlack;
         }
 
-        .title-table,
-        .normal-table,
-        .wrap{
+        .co-style{
             border-color: darken(@colorGray, 5%) !important;
 
             th,
@@ -1106,18 +990,14 @@ mor-table{
             }
         }
 
-        &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table,
-        &.zebra-pattern .wrap{
+        &.ts-zp .co-style{
             tr:nth-child(2n) td{
                 background-color: @colorGray;
             }
         }
 
-        &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table,
-        .title-table,
-        .normal-table{
+        &.ts-zp .table,
+        .table{
             tr:hover td,
             tr.hover td{
                 background-color: darken(@colorGray, 5%);
@@ -1125,7 +1005,7 @@ mor-table{
         }
     }
 
-    &.co-light-gray{
+    &.co-lg{
         border-color: darken(@colorLightGray, 5%) !important;
 
         header{
@@ -1133,9 +1013,7 @@ mor-table{
             color: @colorBlack;
         }
 
-        .title-table,
-        .normal-table,
-        .wrap{
+        .co-style{
             border-color: darken(@colorLightGray, 5%) !important;
 
             th,
@@ -1155,18 +1033,14 @@ mor-table{
             }
         }
 
-        &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table,
-        &.zebra-pattern .wrap{
+        &.ts-zp .co-style{
             tr:nth-child(2n) td{
                 background-color: @colorLightGray;
             }
         }
 
-        &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table,
-        .title-table,
-        .normal-table{
+        &.ts-zp .table,
+        .table{
             tr:hover td,
             tr.hover td{
                 background-color: darken(@colorLightGray, 5%);
@@ -1174,7 +1048,7 @@ mor-table{
         }
     }
 
-    &.co-white{
+    &.co-wh{
         border-color: darken(@colorWhite, 5%) !important;
 
         header{
@@ -1182,9 +1056,7 @@ mor-table{
             color: @colorBlack;
         }
 
-        .title-table,
-        .normal-table,
-        .wrap{
+        .co-style{
             border-color: darken(@colorWhite, 5%) !important;
 
             th,
@@ -1204,18 +1076,14 @@ mor-table{
             }
         }
 
-        &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table,
-        &.zebra-pattern .wrap{
+        &.ts-zp .co-style{
             tr:nth-child(2n) td{
                 background-color: darken(@colorWhite, 2%);
             }
         }
 
-        &.zebra-pattern .title-table,
-        &.zebra-pattern .normal-table,
-        .title-table,
-        .normal-table{
+        &.ts-zp .table,
+        .table{
             tr:hover td,
             tr.hover td{
                 background-color: darken(@colorWhite, 5%);
@@ -1223,111 +1091,110 @@ mor-table{
         }
     }
 
-    .title-table,
-    .normal-table{
+    .table{
         th,
         td{
-            &.cell-co-theme{
+            &.cco-t{
                 background: darken(@colorTheme, 5%) !important;
                 color: @colorWhite !important;
             }
 
-            &.cell-co-light-theme{
+            &.cco-lt{
                 background: darken(@colorLightTheme, 5%) !important;
                 color: @colorWhite !important;
             }
 
-            &.cell-co-dark-theme{
+            &.cco-dt{
                 background: darken(@colorDarkTheme, 5%) !important;
                 color: @colorWhite !important;
             }
 
-            &.cell-co-success{
+            &.cco-s{
                 background: darken(@colorSuccess, 5%) !important;
                 color: @colorWhite !important;
             }
 
-            &.cell-co-warning{
+            &.cco-w{
                 background: darken(@colorWarning, 5%) !important;
                 color: @colorWhite !important;
             }
 
-            &.cell-co-danger{
+            &.cco-d{
                 background: darken(@colorDanger, 5%) !important;
                 color: @colorWhite !important;
             }
 
-            &.cell-co-primary{
+            &.cco-p{
                 background: darken(@colorPrimary, 5%) !important;
                 color: @colorWhite !important;
             }
 
-            &.cell-co-minor{
+            &.cco-m{
                 background: darken(@colorMinor, 5%) !important;
                 color: @colorWhite !important;
             }
 
-            &.cell-co-info{
+            &.cco-i{
                 background: darken(@colorInfo, 5%) !important;
                 color: @colorWhite !important;
             }
 
-            &.cell-co-black{
+            &.cco-bk{
                 background: darken(@colorBlack, 5%) !important;
                 color: @colorWhite !important;
             }
 
-            &.cell-co-light-black{
+            &.cco-lbk{
                 background: darken(@colorLightBlack, 5%) !important;
                 color: @colorWhite !important;
             }
 
-            &.cell-co-extra-light-black{
+            &.cco-elbk{
                 background: darken(@colorExtraLightBlack, 5%) !important;
                 color: @colorWhite !important;
             }
 
-            &.cell-co-blue{
+            &.cco-bu{
                 background: darken(@colorBlue, 5%) !important;
                 color: @colorWhite !important;
             }
 
-            &.cell-co-light-blue{
+            &.cco-bu{
                 background: darken(@colorLightBlue, 5%) !important;
                 color: @colorWhite !important;
             }
 
-            &.cell-co-extra-light-blue{
+            &.cco-elbu{
                 background: darken(@colorExtraLightBlue, 5%) !important;
                 color: @colorWhite !important;
             }
 
-            &.cell-co-silver{
+            &.cco-si{
                 background: darken(@colorSilver, 5%) !important;
                 color: @colorBlack !important;
             }
 
-            &.cell-co-light-silver{
+            &.cco-lsi{
                 background: darken(@colorLightSilver, 5%) !important;
                 color: @colorBlack !important;
             }
 
-            &.cell-co-extra-light-silver{
+            &.cco-elsi{
                 background: darken(@colorExtraLightSilver, 5%) !important;
                 color: @colorBlack !important;
             }
 
-            &.cell-co-gray{
+            &.cco-g{
                 background: darken(@colorGray, 5%) !important;
                 color: @colorBlack !important;
             }
 
-            &.cell-co-light-gray{
+            &.cco-lg{
                 background: darken(@colorLightGray, 5%) !important;
                 color: @colorBlack !important;
             }
 
-            &.cell-co-white{
+            &.cco-wh{
                 background: @colorWhite !important;
                 color: @colorBlack !important;
             }
@@ -1336,87 +1203,87 @@ mor-table{
         tr.hover{
             th,
             td{
-                &.cell-co-theme{
+                &.cco-t{
                     background: darken(@colorTheme, 15%) !important;
                 }
 
-                &.cell-co-light-theme{
+                &.cco-lt{
                     background: darken(@colorLightTheme, 15%) !important;
                 }
 
-                &.cell-co-dark-theme{
+                &.cco-dt{
                     background: darken(@colorDarkTheme, 13%) !important;
                 }
 
-                &.cell-co-success{
+                &.cco-s{
                     background: darken(@colorSuccess, 13%) !important;
                 }
 
-                &.cell-co-warning{
+                &.cco-w{
                     background: darken(@colorWarning, 15%) !important;
                 }
 
-                &.cell-co-danger{
+                &.cco-d{
                     background: darken(@colorDanger, 13%) !important;
                 }
 
-                &.cell-co-primary{
+                &.cco-p{
                     background: darken(@colorPrimary, 15%) !important;
                 }
 
-                &.cell-co-minor{
+                &.cco-m{
                     background: darken(@colorMinor, 15%) !important;
                 }
 
-                &.cell-co-info{
+                &.cco-i{
                     background: darken(@colorInfo, 10%) !important;
                 }
 
-                &.cell-co-black{
+                &.cco-bk{
                     background: lighten(@colorBlack, 5%) !important;
                 }
 
-                &.cell-co-light-black{
+                &.cco-lbk{
                     background: lighten(@colorLightBlack, 5%) !important;
                 }
 
-                &.cell-co-extra-light-black{
+                &.cco-elbk{
                     background: lighten(@colorExtraLightBlack, 5%) !important;
                 }
 
-                &.cell-co-blue{
+                &.cco-bu{
                     background: darken(@colorBlue, 15%) !important;
                 }
 
-                &.cell-co-light-blue{
+                &.cco-lbu{
                     background: darken(@colorLightBlue, 15%) !important;
                 }
 
-                &.cell-co-extra-light-blue{
+                &.cco-elbu{
                     background: darken(@colorExtraLightBlue, 15%) !important;
                 }
 
-                &.cell-co-silver{
+                &.cco-si{
                     background: darken(@colorSilver, 13%) !important;
                 }
 
-                &.cell-co-light-silver{
+                &.cco-lsi{
                     background: darken(@colorLightSilver, 13%) !important;
                 }
 
-                &.cell-co-extra-light-silver{
+                &.cco-elsi{
                     background: darken(@colorExtraLightSilver, 13%) !important;
                 }
 
-                &.cell-co-gray{
+                &.cco-g{
                     background: darken(@colorGray, 15%) !important;
                 }
 
-                &.cell-co-light-gray{
+                &.cco-lg{
                     background: darken(@colorLightGray, 15%) !important;
                 }
 
-                &.cell-co-white{
+                &.cco-wh{
                     background: darken(@colorWhite, 8%) !important;
                 }
             }
@@ -1434,7 +1301,7 @@ mor-table{
 
     // default status
     &{
-        .co-light-gray;
+        .co-lg;
     }
 }
 

@@ -157,7 +157,7 @@
                     </td>
                     <td class="mark">
                         <p>JS: 349kb</p>
-                        <p>CSS: 224kb</p>
+                        <p>CSS: 186kb</p>
                     </td>
                 </tr>
                 <tr>
@@ -928,7 +928,7 @@
                     </td>
                 </tr>
                 <tr class="components">
-                    <td class="item">下拉式按钮组(下拉菜单)</td>
+                    <td class="item">下拉菜单</td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
                     </td>

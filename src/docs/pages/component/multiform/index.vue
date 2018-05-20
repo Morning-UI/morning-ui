@@ -91,7 +91,6 @@
     configSlot:<ui-formgroup><div class="item"><h5 class="title"><ui-center class="fill">名称</ui-center></h5><div class="content"><div class="form"><ui-textinput form-key="name"></ui-textinput></div></div></div></ui-formgroup>
     :::
 
-
     #### item-name
     
     项目名称可以告知使用者输入项目的含义。建议和`item-filler`一起使用。
@@ -141,7 +140,7 @@
                     </h5>
                     <div class="content">
                         <div class="form">
-                            <ui-textinput form-key="img" default-value="https://d13yacurqjgara.cloudfront.net/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934"></ui-textinput>
+                            <ui-textinput form-key="img" default-value="https://cdn.dribbble.com/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934"></ui-textinput>
                         </div>
                     </div>
                 </div>

@@ -26,6 +26,7 @@ mor-datepicker{
             display: flex;
             align-items: center;
             justify-content: center;
+            box-sizing: border-box;
         }
 
         .datepicker-input-0,
@@ -38,23 +39,6 @@ mor-datepicker{
                     display: none;
                 }
             }
-
-            .date-select{
-                position: absolute;
-                width: 50%;
-
-                &.align-left{
-                    left: 0;
-                }
-
-                &.align-center{
-                    margin-left: 0;
-                }
-
-                &:hover{
-                    border-color: @colorFormBorder;
-                }
-            }
         }
 
         .datepicker-input-0{
@@ -63,80 +47,44 @@ mor-datepicker{
                     border-radius: 0;
                 }
             }
-
-            .date-select{
-                min-width: ~'calc(280px + 1px)';
-                border-bottom-right-radius: 0;
-                border-top-right-radius: 0;
-                border-right: none;
-            }
-        }
-
-        .datepicker-input-1{
-            .date-select{
-                min-width: ~'calc(280px + 2px)';
-                border-bottom-left-radius: 0;
-                border-top-left-radius: 0;
-            }
         }
 
         .separator{
             height: @formHeight;
-            min-width: @formHeight;
             line-height: @formHeight;
-            padding: 0 0.5em;
             font-size: @fontSize*0.875;
             color: @colorBlue;
             text-align: center;
-            background-color: @colorLightGray;
+            box-sizing: border-box;
             border-top: 1px solid @colorFormBorder;
             border-bottom: 1px solid @colorFormBorder;
+
+            &.block{
+                background-color: @colorLightGray;
+                padding: 0 0.5em;
+                min-width: @formHeight;
+            }
+
+            &.inline{
+                padding: 0;
+            }
         }
     }
 
-    &.has-quick-pick{
-        .datepicker-input-first .date-select{
-            font-size: 0;
-            min-width: calc(280px + 2px + @quickPickWidth);
-
-            .quickpick{
-                display: inline-block;
-                width: @quickPickWidth;
-                font-size: @fontSize*0.875;
-                vertical-align: top;
-                position: absolute;
-                top: 0;
-                height: 100%;
-                overflow-y: scroll;
-                border-right: 1px @colorFormBorder solid;
-
-                .setup-scrollbar();
-
-                ul{
-                    margin: 0;
-                    padding: 10px 0;
-                    list-style: none;
-
-                    li{
-                        padding: 2px 10px;
-                        margin: 0;
-                        cursor: pointer;
-                        font-size: @fontSize*0.8125;
-                        color: @colorExtraLightBlue;
-
-                        &:hover{
-                            color: @colorBlack;
-                        }
-                    }
+    &.inline-separator .wrap{
+        .datepicker-input-0{
+            mor-textinput{
+                input{
+                    border-right: 0;
                 }
             }
+        }
 
-            mor-calendar{
-                display: inline-block;
-                width: 280px;
-                font-size: @fontSize*0.875;
-                box-sizing: border-box;
-                margin-left: @quickPickWidth;
+        .datepicker-input-1{
+            mor-textinput{
+                input{
+                    border-left: 0;
+                }
             }
         }
     }
@@ -148,5 +96,82 @@ mor-datepicker{
     // default status
     &{
         .st-normal;
+    }
+}
+
+.mor-date-wrap{
+    min-width: 280px + 2px;
+    max-width: 280px + 2px;
+
+    .date-select{
+        &:hover{
+            border-color: @colorFormBorder;
+        }
+    }
+
+    &.date-select-0{
+        min-width: 280px + 1px;
+        max-width: 280px + 1px;
+    }
+
+    .date-select.date-select-0{
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
+        border-right: none;
+    }
+
+    .date-select.date-select-1{
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+    }
+
+    &.has-quick-pick{
+        max-width: @quickPickWidth + 280px + 2px;
+        min-width: @quickPickWidth + 280px + 2px;
+
+        &.date-select-0{
+            min-width: @quickPickWidth + 280px + 1px;
+            max-width: @quickPickWidth + 280px + 1px;
+        }
+
+        .quickpick{
+            display: inline-block;
+            width: @quickPickWidth;
+            font-size: @fontSize*0.875;
+            vertical-align: top;
+            position: absolute;
+            top: 0;
+            height: 100%;
+            overflow-y: scroll;
+            border-right: 1px @colorFormBorder solid;
+
+            .setup-scrollbar();
+
+            ul{
+                margin: 0;
+                padding: 10px 0;
+                list-style: none;
+
+                li{
+                    padding: 4px 10px;
+                    margin: 0;
+                    cursor: pointer;
+                    font-size: @fontSize*0.8125;
+                    color: @colorExtraLightBlue;
+
+                    &:hover{
+                        color: @colorBlack;
+                    }
+                }
+            }
+        }
+
+        mor-calendar{
+            display: inline-block;
+            width: 280px;
+            font-size: @fontSize*0.875;
+            box-sizing: border-box;
+            margin-left: @quickPickWidth;
+        }
     }
 }

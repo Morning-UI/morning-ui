@@ -8,7 +8,7 @@ const component = window.morning._origin.Form.extend(select);
 
 Vue.component(`ui-${name}`, component);
 
-test('base : component snapshot', async t => {
+test.serial('base : component snapshot', async t => {
 
     const vm = new Vue(component).$mount();
 
@@ -18,18 +18,18 @@ test('base : component snapshot', async t => {
 
 });
 
-test('base : init component', async t => {
+test.serial('base : init component', async t => {
 
     const vm = new Vue(component).$mount();
 
     t.plan(2);
 
     t.is(vm.uiid, 2);
-    t.is(component.options.name, name);
+    t.is(component.options.name, `morning-${name}`);
 
 });
 
-test('base : component tag name is t-*', async t => {
+test.serial('base : component tag name is t-*', async t => {
 
     const vm = new Vue(component).$mount();
 
@@ -39,7 +39,7 @@ test('base : component tag name is t-*', async t => {
 
 });
 
-test('config : default-value : with v-for slot : value exist', async t => {
+test.serial('config : default-value : with v-for slot : value exist', async t => {
 
     const vm = new Vue({
         template : `
@@ -67,7 +67,7 @@ test('config : default-value : with v-for slot : value exist', async t => {
 
 });
 
-test('config : default-value : with v-for slot : value not exist', async t => {
+test.serial('config : default-value : with v-for slot : value not exist', async t => {
 
     const vm = new Vue({
         template : `

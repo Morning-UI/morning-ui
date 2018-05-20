@@ -7,10 +7,11 @@
         :placement="placement"
         :offset="offset"
         :trigger="trigger"
+        :auto-reverse="autoReverse"
     >
     
-    <div class="tip-arrow"></div>
-    <div class="tip-content">
+    <div class="arrow"></div>
+    <div class="con">
         <template v-if="!$slots.default">
             {{data.title}}
         </template>
@@ -24,11 +25,12 @@
  
 <script>
 import TipManager                   from 'Utils/TipManager';
+import TriggerManager               from 'Utils/TriggerManager';
 
 export default {
     origin : 'UI',
     name : 'tip',
-    mixins : [TipManager],
+    mixins : [TipManager, TriggerManager],
     props : {
         target : {
             type : String,
@@ -47,6 +49,10 @@ export default {
             type : String,
             default : 'hover',
             validator : (value => ['hover', 'click', 'focus'].indexOf(value) !== -1)
+        },
+        autoReverse : {
+            type : Boolean,
+            default : true
         }
     },
     computed : {
@@ -56,7 +62,8 @@ export default {
                 target : this.target,
                 placement : this.placement,
                 offset : this.offset,
-                trigger : this.trigger
+                trigger : this.trigger,
+                autoReverse : this.autoReverse
             };
 
         }
@@ -79,7 +86,6 @@ export default {
                     in : 'in'
                 },
                 timeout : null,
-                // isEnabled : true
             }
         };
 
@@ -88,12 +94,6 @@ export default {
         _bindTarget : function () {
             
             let $target;
-
-            if (this.data.$target) {
-
-                this._unsetListeners(this.data.$target);
-
-            }
 
             try {
 
@@ -114,58 +114,28 @@ export default {
             }
 
             this.data.$target = $target;
-
-            this._setListeners(this.data.$target);
-
-        },
-        _setListeners : function ($target) {
-
-            if (!$target) {
-
-                return;
-
-            }
-
-            let triggers = this.conf.trigger.split(' ');
-
-            for (let trigger of triggers) {
-
-                if (trigger === 'click') {
-
-                    $target.addEventListener('click', this.toggle);
-
-                } else if (trigger === 'hover') {
-
-                    $target.addEventListener('mouseenter', this._enter);
-                    $target.addEventListener('mouseleave', this._leave);
-                    this.$el.addEventListener('mouseenter', this._enter);
-                    this.$el.addEventListener('mouseleave', this._leave);
-
-                } else if (trigger === 'foucs') {
-
-                    $target.addEventListener('focusin', this._enter);
-                    $target.addEventListener('focusout', this._leave);
-
-                }
-
-            }
+            this._triggerUnsetListeners();
+            this.Trigger.$targets = [$target];
+            this._setListeners();
 
         },
-        _unsetListeners : function ($target) {
+        _setListeners : function () {
 
-            if (!$target) {
+            if (this.conf.trigger.indexOf('hover') !== -1) {
 
-                return;
+                this.$el.addEventListener('mouseenter', this._enter);
+                this.$el.addEventListener('mouseleave', this._leave);
 
             }
 
-            $target.removeEventListener('click', this.toggle);
-            $target.removeEventListener('mouseenter', this._enter);
-            $target.removeEventListener('mouseleave', this._leave);
+            this._triggerSetListeners();
+
+        },
+        _unsetListeners : function () {
+
             this.$el.removeEventListener('mouseenter', this._enter);
             this.$el.removeEventListener('mouseleave', this._leave);
-            $target.removeEventListener('focusin', this._enter);
-            $target.removeEventListener('focusout', this._leave);
+            this._triggerUnsetListeners();
 
         },
         _enter : function (evt) {
@@ -356,7 +326,25 @@ export default {
 
         }
     },
+    created : function () {
+
+        this.Trigger.handlerMap = {
+            click : [this.toggle],
+            hover : {
+                in : [this._enter],
+                out : [this._leave]
+            },
+            focus : {
+                in : [this._enter],
+                out : [this._leave]
+            }
+        };
+
+    },
     mounted : function () {
+
+        this.Trigger.triggers = this.conf.trigger;
+        this.Tip.autoReverse = this.conf.autoReverse;
 
         this.$watch('conf.target', () => {
 
@@ -371,6 +359,15 @@ export default {
 
         });
 
+        this.$watch('conf.trigger', () => {
+
+            this.data.activeTrigger = {};
+            this._triggerUnsetListeners();
+            this.Trigger.triggers = this.conf.trigger;
+            this._setListeners();
+
+        });
+
         this.$watch('conf.placement', () => {
 
             this._tipUpdate({
@@ -379,19 +376,17 @@ export default {
 
         });
 
+        this.$watch('conf.autoReverse', () => {
+
+            this.Tip.autoReverse = this.conf.autoReverse;
+
+        });
+
         this.$watch('conf.offset', () => {
 
             this._tipUpdate({
                 offset : this.conf.offset
             });
-
-        });
-
-        this.$watch('conf.trigger', () => {
-
-            this.data.activeTrigger = {};
-            this._unsetListeners(this.data.$target);
-            this._setListeners(this.data.$target);
 
         });
         
@@ -405,9 +400,6 @@ export default {
     beforeDestroy : function () {
 
         clearTimeout(this.data.timeout);
-
-        this._tipDestroy();
-        this._unsetListeners(this.data.$target);
 
     }
 };

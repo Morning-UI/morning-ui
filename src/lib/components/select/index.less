@@ -1,18 +1,60 @@
 @import '~Common/var.less';
 
-mor-select{
-    position: relative;
-    display: inline-block;
-    width: 100%;
-    box-sizing: border-box;
-    vertical-align: middle;
-    min-height: @formHeight;
+.setup-select-area(){
+    &.focus-search{
+        .wrap > .selected{
+            opacity: 0.3;
+        }
+    }
 
-    .setup-form();
+    &.searching{
+        .wrap > .selected{
+            visibility: hidden;
+        }
+    }
 
-    .select-area{
-        position: relative;
-        z-index: 2;
+    &.showlist{
+        .wrap{
+            border-color: @colorFormBorder;
+            border-radius: @borderRadius @borderRadius 0 0;
+            padding-bottom: 1px;
+
+            > mor-textinput{
+                cursor: initial;
+            }
+
+            > .drop{
+                transform: rotateX(180deg);
+            }
+        }
+    }
+
+    &.is-max{
+        .wrap{
+            cursor: default;
+
+            > .drop{
+                display: none;
+            }
+        }
+
+        li{
+            cursor: default;
+        }
+    }
+
+    &.select-item{
+        .wrap{
+            > mor-textinput{
+                input{
+                    color: @colorFormTextFocus !important;
+                }
+            }
+
+            > .selected{
+                color: @colorFormTextFocus;
+            }
+        }
     }
 
     &.align-left{
@@ -25,187 +67,6 @@ mor-select{
 
     &.align-right{
         text-align: right;
-    }
-
-    .wrap{
-        border: 1px solid @colorFormBorder;
-        border-radius: @borderRadius;
-        position: relative;
-        cursor: pointer;
-        transition: border-radius 0.2s, border 0.2s;
-        -webkit-user-select: none;
-        background-color: #FFF;
-        overflow: hidden;
-
-        > mor-textinput{
-            width: ~'calc( 100% - 30px )';
-            height: @formHeight - 2px;
-            line-height: @formHeight - 2px;
-            padding: 0;
-            cursor: pointer;
-            margin: 0;
-            position: absolute;
-
-            input{
-                vertical-align: top !important;
-                border: none;
-                height: @formHeight - 2px;
-                line-height: @formHeight - 2px;
-                font-size: @fontSize*0.875;
-            }
-        }
-
-        > mor-multiinput{
-            margin: 0;
-            width: ~'calc( 100% - 30px - 2em)';
-            background-color: #FFF;
-            vertical-align: top;
-            min-height: @formHeight - 2px;
-            left: 0.35em;
-            font-size: @fontSize*0.875;
-
-            .itemlist{
-                border: none;
-
-                > input{
-                    cursor: pointer;
-                }
-            }
-        }
-
-        > .selected{
-            color: @colorFormText;
-            width: ~'calc( 100% - 30px )';
-            height: @formHeight - 2px;
-            line-height: @formHeight - 2px;
-            padding: 0 1em;
-            position: relative;
-            pointer-events: none;
-            z-index: 1;
-            font-size: @fontSize*0.875;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            overflow: hidden;
-
-            img,
-            mor-img {
-                height: 2em !important;
-                width: 2em !important;
-                margin-right: 0.5em;
-                vertical-align: middle;
-            }
-
-            mor-img > img{
-                vertical-align: top;
-            }
-        }
-
-        > .morningicon{
-            position: absolute;
-            line-height: @formHeight - 2px;
-            width: 24px;
-            transform: rotateX(0deg);
-            transition: transform 0.2s;
-            z-index: 2;
-            color: @colorFormText;
-
-            &.drop{
-                top: 0;
-                right: 0;
-                font-size: 30px;
-                text-indent: 1px;
-            }
-
-            // &.clean{
-            //     top: 0;
-            //     right: 26px;
-            //     width: 18px;
-            //     font-size: 16px;
-
-            //     &:hover{
-            //         color: @colorDanger;
-            //     }
-            // }
-        }
-
-        &:hover{
-            border-color: @colorFormBorderHover;
-        }
-    }
-
-    .list{
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        border: 1px @colorFormBorder solid;
-        border-top-width: 0;
-        border-radius: 0 0 @borderRadius @borderRadius;
-        overflow-x: hidden;
-        overflow-y: auto;
-        visibility: hidden;
-        transform: scaleY(0);
-        transition: transform 0.2s, visibility 0.2s, border 0.2s;
-        transform-origin: 50% 0%;
-        width: 100%;
-        background-color: #FFF;
-        box-sizing: border-box;
-        position: absolute;
-
-        .setup-scrollbar();
-
-        li{
-            padding: 0.5em 1em;
-            border-top: 1px lighten(@colorFormBorder, 5%) solid;
-            cursor: pointer;
-            font-size: 14px;
-            color: darken(@colorFormText, 15%);
-            position: relative;
-
-            &.noitem{
-                color: @colorFormTextMisc;
-                cursor: default;
-                display: none;
-
-                &.show{
-                    display: list-item;
-                }
-            }
-
-            img,
-            mor-img {
-                height: 2em;
-                width: 2em;
-                margin-right: 0.5em;
-                vertical-align: middle;
-            }
-
-            mor-img > img{
-                vertical-align: top;
-            }
-
-            &.current{
-                background: @colorFormBackgroundFocus;
-                color: @colorFormTextFocus;
-            }
-
-            &.selected{
-                background: @colorFormBackgroundHover;
-                border-left: 3px @colorSuccess solid;
-            }
-
-            &.hide{
-                display: none;
-            }
-
-            &:hover{
-                color: darken(@colorFormTextHover, 15%);
-                background: @colorFormBackgroundHover;
-            }
-        }
-    }
-
-    &.hide-selected .list li.selected{
-        display: none;
     }
 
     &.align-center{
@@ -230,62 +91,189 @@ mor-select{
         }
     }
 
-    &.showlist{
+    &.input-group{
         .wrap{
-            border-color: @colorFormBorder;
-            border-bottom-width: 0;
-            border-radius: @borderRadius @borderRadius 0 0;
-            padding-bottom: 1px;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+    }
 
-            > mor-textinput{
-                cursor: initial;
-            }
+    &.st-disabled,
+    &.st-readonly{
+        .wrap {
+            background-color: @colorFormBackgroundDisable;
+            border-color: @colorFormBorderDisable;
+            -webkit-user-select: none;
+            cursor: not-allowed !important;
 
-            > .drop{
-                transform: rotateX(180deg);
+            > .selected{
+                color: @colorFormTextDisable;
             }
+        }
+
+        .wrap > mor-multiinput{
+            background: transparent;
+        }
+
+        .wrap > mor-textinput{
+            display: none;
         }
 
         .list{
-            visibility: visible;
-            transform: scaleY(1);
-        }
-    }
+            border-color: @colorFormBorderDisable;
+            background-color: @colorFormBackgroundDisable;
+            -webkit-user-select: none;
+            cursor: not-allowed !important;
 
-    &.select-item{
-        .wrap{
-            > mor-textinput{
-                input{
-                    color: @colorFormTextFocus !important;
-                }
-            }
-
-            > .selected{
-                color: @colorFormTextFocus;
+            li{
+                -webkit-user-select: none;
+                cursor: not-allowed !important;
             }
         }
     }
+}
+.setup-wrap(){
+    border: 1px solid @colorFormBorder;
+    border-radius: @borderRadius;
+    position: relative;
+    cursor: pointer;
+    transition: border-radius 0.2s, border 0.2s;
+    -webkit-user-select: none;
+    background-color: #FFF;
+    overflow: hidden;
 
-    &.focus-search{
-        .wrap > .selected{
-            opacity: 0.3;
+    > mor-textinput{
+        width: ~'calc( 100% - 30px )';
+        height: @formHeight - 2px;
+        line-height: @formHeight - 2px;
+        padding: 0;
+        cursor: pointer;
+        margin: 0;
+        position: absolute;
+
+        input{
+            vertical-align: top !important;
+            border: none;
+            height: @formHeight - 2px;
+            line-height: @formHeight - 2px;
+            font-size: @fontSize*0.875;
         }
     }
 
-    &.searching{
-        .wrap > .selected{
-            visibility: hidden;
-        }
-    }
+    > mor-multiinput{
+        margin: 0;
+        width: ~'calc( 100% - 2em)';
+        background-color: #FFF;
+        vertical-align: top;
+        min-height: @formHeight - 2px;
+        left: 0.35em;
+        font-size: @fontSize*0.875;
 
-    &.is-max{
-        .wrap{
-            cursor: default;
+        .itemlist{
+            border: none;
 
-            > .drop{
-                display: none;
+            > input{
+                cursor: pointer;
             }
         }
+    }
+
+    > .selected{
+        color: @colorFormText;
+        width: ~'calc( 100% - 2em )';
+        height: @formHeight - 2px;
+        line-height: @formHeight - 2px;
+        padding: 0 1em;
+        position: relative;
+        pointer-events: none;
+        z-index: 1;
+        font-size: @fontSize*0.875;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        box-sizing: border-box;
+
+        img,
+        mor-img {
+            height: 2em !important;
+            width: 2em !important;
+            margin-right: 0.5em;
+            vertical-align: middle;
+        }
+
+        mor-img > img{
+            vertical-align: top;
+        }
+    }
+
+    > .morningicon{
+        position: absolute;
+        line-height: @formHeight - 2px;
+        width: 24px;
+        transform: rotateX(0deg);
+        transition: transform 0.2s;
+        z-index: 2;
+        color: @colorFormText;
+
+        &.drop{
+            top: 0;
+            right: 0;
+            font-size: 30px;
+            text-indent: 1px;
+        }
+
+        // &.clean{
+        //     top: 0;
+        //     right: 26px;
+        //     width: 18px;
+        //     font-size: 16px;
+
+        //     &:hover{
+        //         color: @colorDanger;
+        //     }
+        // }
+    }
+
+    &:hover{
+        border-color: @colorFormBorderHover;
+    }
+}
+.setup-select-list(){
+    pointer-events: none;
+    visibility: hidden;
+    position: absolute;
+    height: 0;
+}
+
+mor-select{
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+    vertical-align: middle;
+    min-height: @formHeight;
+
+    .setup-form();
+
+    .select-area{
+        position: relative;
+        z-index: 2;
+
+        .setup-select-area();
+    }
+
+    .wrap{
+        .setup-wrap();
+    }
+
+    .select-list{
+        .setup-select-list();
+    }
+
+    &.separate{
+        height: 0;
+        min-height: 0;
+        width: auto;
     }
 
     &.input-group {
@@ -317,43 +305,137 @@ mor-select{
         .select-area {
             vertical-align: middle;
             margin: 0;
-
-            .wrap{
-                border-top-left-radius: 0;
-                border-bottom-left-radius: 0;
-            }
         }
     }
 
     &.st-normal{}
 
-    &.st-disabled{
-        .wrap {
-            background-color: @colorFormBackgroundDisable;
-            border-color: @colorFormBorderDisable;
-            -webkit-user-select: none;
-            cursor: not-allowed !important;
-
-            > .morningicon{
-                display: none;
-            }
-
-            > .selected{
-                color: @colorFormTextDisable;
-            }
-        }
-
-        .wrap > mor-multiinput{
-            background: transparent;
-        }
-
-        .wrap > mor-textinput{
-            display: none;
-        }
-    }
+    &.st-disabled,
+    &.st-readonly{}
 
     // default status
     &{
         .st-normal;
+    }
+}
+
+.mor-select-wrap{
+    &.select-area{
+        display: none;
+    }
+
+    &.select-list{
+        .setup-select-list();
+    }
+
+    .list{
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        border: 1px @colorFormBorder solid;
+        border-top-width: 0;
+        border-radius: 0 0 @borderRadius @borderRadius;
+        overflow-x: hidden;
+        overflow-y: auto;
+        background-color: #FFF;
+        box-sizing: border-box;
+        transform: scaleY(0);
+        transition: transform 0.2s, visibility 0.2s, border 0.2s;
+        transform-origin: 50% 0%;
+        width: 100%;
+
+        .setup-scrollbar();
+    }
+
+    li{
+        padding: 0.5em 1em;
+        border-top: 1px lighten(@colorFormBorder, 5%) solid;
+        cursor: pointer;
+        font-size: 14px;
+        color: darken(@colorFormText, 15%);
+        position: relative;
+        word-break: break-all;
+
+        &.noitem{
+            color: @colorFormTextMisc;
+            cursor: default;
+            display: none;
+
+            &.show{
+                display: list-item;
+            }
+        }
+
+        img,
+        mor-img {
+            height: 2em;
+            width: 2em;
+            margin-right: 0.5em;
+            vertical-align: middle;
+        }
+
+        mor-img > img{
+            vertical-align: top;
+        }
+
+        &.current{
+            background: @colorFormBackgroundFocus;
+            color: @colorFormTextFocus;
+        }
+
+        &.selected{
+            background: @colorFormBackgroundHover;
+            border-left: 3px @colorSuccess solid;
+        }
+
+        &.hide{
+            display: none;
+        }
+
+        &:hover{
+            color: darken(@colorFormTextHover, 15%);
+            background: @colorFormBackgroundHover;
+        }
+    }
+
+    .wrap{
+        .setup-wrap();
+        pointer-events: none;
+        visibility: hidden;
+        height: 0;
+        border-radius: @borderRadius @borderRadius 0 0;
+
+        &.showwrap{
+            pointer-events: auto;
+            visibility: visible;
+            height: auto;
+        }
+
+        > .selected{
+            width: 100%;
+        }
+
+        > .morningicon{
+            display: none;
+        }
+    }
+
+    &{
+        .setup-select-area();
+    }
+
+    &.hide-selected li.selected,
+    .hide-selected li.selected{
+        display: none;
+    }
+
+    &.showlist,
+    .showlist{
+        pointer-events: auto;
+        visibility: visible;
+
+        .list{
+            transform: scaleY(1);
+        }
     }
 }

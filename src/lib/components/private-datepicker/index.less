@@ -7,50 +7,6 @@ mor-private-datepicker{
 
     .setup-form();
 
-    .date-select{
-        min-width: ~'calc(280px + 2px)';
-        width: ~'calc(100% - 42px)';
-        box-sizing: border-box;
-        border: 1px @colorFormBorder solid;
-        position: absolute;
-        top: @formHeight + 3;
-        background: @colorFormBackground;
-        border-radius: @borderRadius;
-        z-index: 2;
-        user-select: none;
-        pointer-events: none;
-        opacity: 0;
-
-        &.align-left{
-            left: 42px;
-        }
-
-        &.align-center{
-            left: 50%;
-            transform: translateX(-50%);
-            margin-left: 21px;
-        }
-
-        &.align-right{
-            right: 0;
-        }
-
-        &:hover{
-            border-color: @colorFormBorderHover;
-        }
-
-        &.show{
-            pointer-events: auto;
-            opacity: 1;
-        }
-
-        mor-calendar{
-            .day{
-                cursor: pointer;
-            }
-        }
-    }
-
     &.st-normal{}
 
     &.st-disabled{}
@@ -58,5 +14,41 @@ mor-private-datepicker{
     // default status
     &{
         .st-normal;
+    }
+}
+
+.mor-date-wrap{
+    min-width: ~'calc(280px + 2px)';
+    position: absolute;
+    top: @formHeight + 3;
+    pointer-events: none;
+    opacity: 0;
+    height: 0;
+    transform: scale(0);
+    box-sizing: border-box;
+    font-size: @fontSize*0.875;
+
+    &.show{
+        pointer-events: auto;
+        opacity: 1;
+    }
+
+    .date-select{
+        box-sizing: border-box;
+        border: 1px @colorFormBorder solid;
+        background: @colorFormBackground;
+        border-radius: @borderRadius;
+        z-index: 2;
+        user-select: none;
+
+        &:hover{
+            border-color: @colorFormBorderHover;
+        }
+
+        mor-calendar{
+            .day{
+                cursor: pointer;
+            }
+        }
     }
 }

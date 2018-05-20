@@ -20,8 +20,31 @@ let morning = {
     _groupData : {},
     _groupVmMap : {},
     _options : {},
+    _colorShortName : {
+        theme : 't',
+        'light-theme' : 'lt',
+        'dark-theme' : 'dt',
+        success : 's',
+        warning : 'w',
+        danger : 'd',
+        primary : 'p',
+        minor : 'm',
+        info : 'i',
+        black : 'bk',
+        'light-black' : 'lbk',
+        'extra-light-black' : 'elbk',
+        blue : 'bu',
+        'light-blue' : 'lbu',
+        'extra-light-blue' : 'elbu',
+        silver : 'si',
+        'light-silver' : 'lsi',
+        'extra-light-silver' : 'elsi',
+        gray : 'g',
+        'light-gray' : 'lg',
+        white : 'wh'
+    },
     isMorning : true,
-    version : '0.10.22',
+    version : '0.10.27',
     map : {}
 };
 
@@ -143,7 +166,17 @@ morning.install = function (Vue, options) {
 
     if (typeof Vue === 'undefined') {
 
-        throw new Error('can\'t find Vue.js, import Vue.js first please.');
+        throw new Error('Can\'t find Vue, import Vue first please.');
+
+    }
+
+    let version = Vue.version.split('-')[0].split('.');
+
+    if (+version[0] < 2 ||
+        +version[1] < 5 ||
+        (+version[1] === 5 && +version[2] < 3)) {
+
+        throw new Error('Vue version mismatch(version must > 2.5.2), please update Vue.');
 
     }
 
@@ -171,6 +204,8 @@ morning.install = function (Vue, options) {
         let creater = components[name];
         let component;
 
+        creater.name = `morning-${creater.name}`;
+
         if (creater.origin === 'UI') {
 
             component = this._origin.UI.extend(creater);
@@ -186,16 +221,16 @@ morning.install = function (Vue, options) {
         }
 
         if (!component.private) {
-           
-            Vue.component(`${options.prefix}-${component.options.name}`, component);
+
+            Vue.component(`${options.prefix}-${name}`, component);
 
         }
 
-        Vue.component(`morning-${component.options.name}`, component);
+        Vue.component(component.options.name, component);
 
         this._components[name] = component;
-        this._ignoreElements.push(`mor-${component.options.name}`);
-        this._ignoreElements.push(`morning-${component.options.name}`);
+        this._ignoreElements.push(`mor-${name}`);
+        this._ignoreElements.push(component.options.name);
 
     }
 

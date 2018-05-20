@@ -14,7 +14,7 @@ mor-radio{
         -webkit-user-select: text;
     }
 
-    > .itemlist{
+    > .il{
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
@@ -82,113 +82,113 @@ mor-radio{
         }
     }
 
-    &.co-theme{
-        > .itemlist label.checked .box{
+    &.co-t{
+        > .il label.checked .box{
             background: @colorTheme;
             border-color: @colorTheme;
         }
     }
 
-    &.co-light-theme{
-        > .itemlist label.checked .box{
+    &.co-lt{
+        > .il label.checked .box{
             background: @colorLightTheme;
             border-color: @colorLightTheme;
         }
     }
 
-    &.co-dark-theme{
-        > .itemlist label.checked .box{
+    &.co-dt{
+        > .il label.checked .box{
             background: @colorDarkTheme;
             border-color: @colorDarkTheme;
         }
     }
 
-    &.co-success{
-        > .itemlist label.checked .box{
+    &.co-s{
+        > .il label.checked .box{
             background: @colorSuccess;
             border-color: @colorSuccess;
         }
     }
 
-    &.co-warning{
-        > .itemlist label.checked .box{
+    &.co-w{
+        > .il label.checked .box{
             background: @colorWarning;
             border-color: @colorWarning;
         }
     }
 
-    &.co-danger{
-        > .itemlist label.checked .box{
+    &.co-d{
+        > .il label.checked .box{
             background: @colorDanger;
             border-color: @colorDanger;
         }
     }
 
-    &.co-primary{
-        > .itemlist label.checked .box{
+    &.co-p{
+        > .il label.checked .box{
             background: @colorPrimary;
             border-color: @colorPrimary;
         }
     }
 
-    &.co-minor{
-        > .itemlist label.checked .box{
+    &.co-m{
+        > .il label.checked .box{
             background: @colorMinor;
             border-color: @colorMinor;
         }
     }
 
-    &.co-info{
-        > .itemlist label.checked .box{
+    &.co-i{
+        > .il label.checked .box{
             background: @colorInfo;
             border-color: @colorInfo;
         }
     }
 
-    &.co-black{
-        > .itemlist label.checked .box{
+    &.co-bk{
+        > .il label.checked .box{
             background: @colorBlack;
             border-color: @colorBlack;
         }
     }
 
-    &.co-light-black{
-        > .itemlist label.checked .box{
+    &.co-lbk{
+        > .il label.checked .box{
             background: @colorLightBlack;
             border-color: @colorLightBlack;
         }
     }
 
-    &.co-extra-light-black{
-        > .itemlist label.checked .box{
+    &.co-elbk{
+        > .il label.checked .box{
             background: @colorExtraLightBlack;
             border-color: @colorExtraLightBlack;
         }
     }
 
-    &.co-blue{
-        > .itemlist label.checked .box{
+    &.co-bu{
+        > .il label.checked .box{
             background: @colorBlue;
             border-color: @colorBlue;
         }
     }
 
-    &.co-light-blue{
-        > .itemlist label.checked .box{
+    &.co-lbu{
+        > .il label.checked .box{
             background: @colorLightBlue;
             border-color: @colorLightBlue;
         }
     }
 
-    &.co-extra-light-blue{
-        > .itemlist label.checked .box{
+    &.co-elbu{
+        > .il label.checked .box{
             background: @colorExtraLightBlue;
             border-color: @colorExtraLightBlue;
         }
     }
 
-    &.co-silver{
-        > .itemlist label{
+    &.co-si{
+        > .il label{
             span{
                 color: @colorExtraLightBlue;
             }
@@ -218,8 +218,8 @@ mor-radio{
         }
     }
 
-    &.co-light-silver{
-        > .itemlist label{
+    &.co-lsi{
+        > .il label{
             span{
                 color: @colorExtraLightBlue;
             }
@@ -249,8 +249,8 @@ mor-radio{
         }
     }
 
-    &.co-extra-light-silver{
-        > .itemlist label{
+    &.co-elsi{
+        > .il label{
             span{
                 color: @colorExtraLightBlue;
             }
@@ -280,8 +280,8 @@ mor-radio{
         }
     }
 
-    &.co-gray{
-        > .itemlist label{
+    &.co-g{
+        > .il label{
             span{
                 color: @colorGray;
             }
@@ -311,8 +311,8 @@ mor-radio{
         }
     }
 
-    &.co-light-gray{
-        > .itemlist label{
+    &.co-lg{
+        > .il label{
             span{
                 color: @colorGray;
             }
@@ -342,8 +342,8 @@ mor-radio{
         }
     }
 
-    &.co-white{
-        > .itemlist label{
+    &.co-wh{
+        > .il label{
             span{
                 color: @colorGray;
             }
@@ -375,8 +375,9 @@ mor-radio{
 
     &.st-normal{}
 
-    &.st-disabled{
-        > .itemlist{
+    &.st-disabled,
+    &.st-readonly{
+        > .il{
             > label{
                 border-color: darken(@colorFormBackgroundDisable, 5%);
                 -webkit-user-select: none;
@@ -402,7 +403,7 @@ mor-radio{
 
     // default status
     &{
-        .co-theme;
+        .co-t;
         .st-normal;
     }
 }

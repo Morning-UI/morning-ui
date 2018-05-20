@@ -19,7 +19,7 @@
     列之间默认具有间隙，两端无间隙，可以通过两个类来调整间隙：
 
     - `nogap` : 生成不具有间隙的栅格
-    - `averagegap` : 生成两端包含间隙的栅格
+    - `avggap` : 生成两端包含间隙的栅格
 
     #### 使用
 
@@ -167,10 +167,10 @@
 
     #### 两端包含间隙栅格
 
-    添加`averagegap`的样式类可以使栅格两端也有间隙。
+    添加`avggap`的样式类可以使栅格两端也有间隙。
 
     :::democode/html
-    <ui-grid class="averagegap">
+    <ui-grid class="avggap">
         <div class="c-6" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-6</div>
         <div class="c-6" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-6</div>
         <div class="c-6" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-6</div>
@@ -179,14 +179,14 @@
 
     <br>
     
-    <ui-grid class="averagegap">
+    <ui-grid class="avggap">
         <div class="c-9" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-9</div>
         <div class="c-15" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-15</div>
     </ui-grid>
 
     <br>
 
-    <ui-grid class="averagegap">
+    <ui-grid class="avggap">
         <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
         <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
         <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
@@ -203,7 +203,7 @@
 
     <br>
 
-    <ui-grid class="averagegap">
+    <ui-grid class="avggap">
         <div class="c-4 offset-4" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-4 offset-4</div>
         <div class="c-4 offset-4" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-4 offset-4</div>
     </ui-grid>

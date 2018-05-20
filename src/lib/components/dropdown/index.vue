@@ -1,13 +1,15 @@
 <template>
     <mor-dropdown
         :_uiid="uiid"
+        :class="[showClass]"
         :auto-close="autoClose"
+        :trigger="trigger"
     >
     
     <slot name="showbtn"></slot>
 
     <div 
-        class="ui-dropdown-wrap"
+        class="mor-dropdown-wrap"
         :class="[showClass]"
     >
         <div class="btnlist" ><slot></slot></div>
@@ -19,22 +21,29 @@
 <script>
 import GlobalEvent                  from 'Utils/GlobalEvent';
 import TipManager                   from 'Utils/TipManager';
+import TriggerManager               from 'Utils/TriggerManager';
 
 export default {
     origin : 'UI',
     name : 'dropdown',
-    mixins : [GlobalEvent, TipManager],
+    mixins : [GlobalEvent, TipManager, TriggerManager],
     props : {
         autoClose : {
             type : Boolean,
             default : true
+        },
+        trigger : {
+            type : String,
+            default : 'click',
+            validator : (value => ['hover', 'click', 'rclick'].indexOf(value) !== -1)
         }
     },
     computed : {
         _conf : function () {
 
             return {
-                autoClose : this.autoClose
+                autoClose : this.autoClose,
+                trigger : this.trigger
             };
 
         },
@@ -53,7 +62,8 @@ export default {
             data : {
                 show : false,
                 first : true,
-                $warp : null
+                $wrap : null,
+                $arrow : null
             }
         };
 
@@ -66,14 +76,32 @@ export default {
             let $emitbtn = this.$el.querySelector('[emitbtn]');
 
             if ((this.conf.autoClose && (evt.path.indexOf($emitbtn) === notFound)) ||
-                (!this.conf.autoClose && (evt.path.indexOf(this.data.$warp) === notFound))) {
+                (!this.conf.autoClose && (evt.path.indexOf(this.data.$wrap) === notFound))) {
 
                 this.toggle();
 
             }
 
         },
-        _toggle : function () {
+        _show : function () {
+
+            this.toggle(true);
+
+        },
+        _hide : function (evt) {
+
+            if (evt.type === 'mouseleave' &&
+                (this.data.$wrap.contains(evt.toElement) ||
+                this.$el.contains(evt.toElement))) {
+
+                return;
+
+            }
+
+            this.toggle(false);
+
+        },
+        _click : function () {
 
             this.toggle();
 
@@ -98,18 +126,24 @@ export default {
 
             if (this.data.show) {
 
+                if (!this.Tip.tether &&
+                    this.data.$arrow) {
+
+                    this.data.$wrap.style.minWidth = `${this.data.$wrap.offsetWidth + this.data.$arrow.offsetWidth}px`;
+
+                }
+
                 this._tipCreate({
                     placement : 'bottom',
-                    element : this.data.$warp,
+                    element : this.data.$wrap,
                     target : this.$el,
-                    offset : '-5px 0'
+                    offset : '0 0'
                 });
 
                 this.$emit('show');
 
             } else {
 
-                this._tipDestroy();
                 this.$emit('hide');
 
             }
@@ -119,17 +153,37 @@ export default {
         }
         
     },
+    created : function () {
+
+        this.Trigger.handlerMap = {
+            click : [this._click],
+            rclick : [this._click],
+            hover : {
+                in : [this._show],
+                out : [this._hide]
+            },
+        };
+
+    },
     mounted : function () {
 
         let $emitbtn = this.$el.querySelector(`[emitbtn]`);
-        
-        if ($emitbtn) {
 
-            $emitbtn.addEventListener('click', this._toggle);
+        this.data.$wrap = this.$el.querySelector('.mor-dropdown-wrap');
+        this.data.$arrow = this.$el.querySelector('mor-btn>.morningicon, mor-link>.morningicon');
 
-        }
+        this.Trigger.$targets = [$emitbtn, this.data.$wrap];
+        this.Trigger.triggers = this.conf.trigger;
+        this.Tip.autoReverse = false;
+        this._triggerSetListeners();
 
-        this.data.$warp = this.$el.querySelector('.ui-dropdown-wrap');
+        this.$watch('conf.trigger', () => {
+
+            this._triggerUnsetListeners();
+            this.Trigger.triggers = this.conf.trigger;
+            this._triggerSetListeners();
+
+        });
 
         this.$on('show', () => {
 
@@ -159,7 +213,6 @@ export default {
     beforeDestroy : function () {
 
         this._globalEventRemove('click', '_checkArea');
-        this._tipDestroy();
 
     }
 };

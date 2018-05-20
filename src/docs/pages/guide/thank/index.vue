@@ -36,7 +36,7 @@
 
     ### MorningUI贡献者
 
-    - 贺晨超(chenchao.he@husor.com) <ui-textcolor color="minor"><ui-small>Coding/Review</ui-small></ui-textcolor>
+    - Early(earlyhe0@gmail.com) <ui-textcolor color="minor"><ui-small>Coding/Review</ui-small></ui-textcolor>
 
     如果你感兴趣，欢迎加入我们，查看[如何成为一名贡献者](/guide/becontributor.html)
 

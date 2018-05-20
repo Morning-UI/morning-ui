@@ -8,35 +8,35 @@ mor-message{
     min-width: @fontSize*20;
     pointer-events: none;
 
-    &.pos-top{
+    &.pos-t{
         top: 0;
         left: 50%;
         transform: translateX(-50%);
     }
 
-    &.pos-topleft{
+    &.pos-tf{
         top: 0;
         left: @fontSize*0.5;
         width: 50%;
     }
 
-    &.pos-topright{
+    &.pos-tr{
         top: 0;
         right: @fontSize*0.5;
     }
 
-    &.pos-bottom{
+    &.pos-b{
         bottom: 0;
         left: 50%;
         transform: translateX(-50%);
     }
 
-    &.pos-bottomleft{
+    &.pos-bl{
         bottom: 0;
         left: @fontSize*0.5;
     }
 
-    &.pos-bottomright{
+    &.pos-br{
         bottom: 0;
         right: @fontSize*0.5;
     }
@@ -53,18 +53,18 @@ mor-message{
         }
     }
 
-    .message{
+    .msg{
         border-radius: @borderRadius;
         padding: 1em 2em 1em 1.5em;
         position: relative;
         pointer-events: auto;
 
-        &.message-enter-active,
-        &.message-leave-active{
+        &.msg-enter-active,
+        &.msg-leave-active{
             transition: transform 0.2s, opacity 0.2s;
         }
 
-        &.message-move{
+        &.msg-move{
             transition: transform 0.2s;
         }
 
@@ -84,67 +84,67 @@ mor-message{
         }
     }
 
-    &.pos-top{
-        .message-enter{
+    &.pos-t{
+        .msg-enter{
             transform: translateY(-150%);
         }
 
-        .message-enter-to{
+        .msg-enter-to{
             transform: translateY(0%);
         }
     }
 
-    &.pos-bottom{
-        .message-enter{
+    &.pos-b{
+        .msg-enter{
             transform: translateY(150%);
         }
 
-        .message-enter-to{
+        .msg-enter-to{
             transform: translateY(0%);
         }
     }
 
-    &.pos-topleft,
-    &.pos-bottomleft{
-        .message-enter{
+    &.pos-tl,
+    &.pos-bl{
+        .msg-enter{
             transform: translateX(-150%);
         }
 
-        .message-enter-to{
+        .msg-enter-to{
             transform: translateX(0%);
         }
     }
 
-    &.pos-topright,
-    &.pos-bottomright{
-        .message-enter{
+    &.pos-tr,
+    &.pos-br{
+        .msg-enter{
             transform: translateX(150%);
         }
 
-        .message-enter-to{
+        .msg-enter-to{
             transform: translateX(0%);
         }
     }
 
-    &.pos-top,
-    &.pos-topleft,
-    &.pos-bottomleft,
-    &.pos-topright,
-    &.pos-bottomright{
-        .message-leave{
+    &.pos-t,
+    &.pos-tl,
+    &.pos-bl,
+    &.pos-tr,
+    &.pos-br{
+        .msg-leave{
             opacity: 1;
         }
 
-        .message-leave-to{
+        .msg-leave-to{
             opacity: 0;
         }
     }
 
-    &.pos-top,
-    &.pos-topleft,
-    &.pos-topright{
+    &.pos-t,
+    &.pos-tl,
+    &.pos-tr{
         .list{
-            .message{
+            .msg{
                 margin-bottom: @fontSize*0.2;
             }
 
@@ -155,11 +155,11 @@ mor-message{
         }
     }
 
-    &.pos-bottom,
-    &.pos-bottomleft,
-    &.pos-bottomright{
+    &.pos-b,
+    &.pos-bl,
+    &.pos-br{
         .list{
-            .message{
+            .msg{
                 margin-top: @fontSize*0.2;
             }
 
@@ -192,186 +192,166 @@ mor-message{
         text-overflow: ellipsis;
     }
 
-    .message-co-theme{
+    .msg-co-t{
         background-color: @colorTheme;
 
-        .body,
-        .title{
+        .bo-ti{
             color: @colorWhite;
         }
     }
 
-    .message-co-light-theme{
+    .msg-co-lt{
         background-color: @colorLightTheme;
 
-        .body,
-        .title{
+        .bo-ti{
             color: @colorWhite;
         }
     }
 
-    .message-co-dark-theme{
+    .msg-co-dt{
         background-color: @colorDarkTheme;
 
-        .body,
-        .title{
+        .bo-ti{
             color: @colorWhite;
         }
     }
 
-    .message-co-success{
+    .msg-co-s{
         background-color: @colorSuccess;
 
-        .body,
-        .title{
+        .bo-ti{
             color: @colorWhite;
         }
     }
 
-    .message-co-warning{
+    .msg-co-w{
         background-color: @colorWarning;
     }
 
-    .message-co-danger{
+    .msg-co-d{
         background-color: @colorDanger;
 
-        .body,
-        .title{
+        .bo-ti{
             color: @colorWhite;
         }
     }
 
-    .message-co-primary{
+    .msg-co-p{
         background-color: @colorPrimary;
 
-        .body,
-        .title{
+        .bo-ti{
             color: @colorWhite;
         }
     }
 
-    .message-co-minor{
+    .msg-co-m{
         background-color: @colorMinor;
 
-        .body,
-        .title{
+        .bo-ti{
             color: @colorWhite;
         }
     }
 
-    .message-co-info{
+    .msg-co-i{
         background-color: @colorInfo;
 
-        .body,
-        .title{
+        .bo-ti{
             color: @colorWhite;
         }
     }
 
-    .message-co-black{
+    .msg-co-bk{
         background-color: @colorBlack;
 
-        .body,
-        .title{
+        .bo-ti{
             color: @colorWhite;
         }
     }
 
-    .message-co-light-black{
+    .msg-co-lbk{
         background-color: @colorLightBlack;
 
-        .body,
-        .title{
+        .bo-ti{
             color: @colorWhite;
         }
     }
 
-    .message-co-extra-light-black{
+    .msg-co-elbk{
         background-color: @colorExtraLightBlack;
 
-        .body,
-        .title{
+        .bo-ti{
             color: @colorWhite;
         }
     }
 
-    .message-co-blue{
+    .msg-co-bu{
         background-color: @colorBlue;
 
-        .body,
-        .title{
+        .bo-ti{
             color: @colorWhite;
         }
     }
 
-    .message-co-light-blue{
+    .msg-co-lbu{
         background-color: @colorLightBlue;
 
-        .body,
-        .title{
+        .bo-ti{
             color: @colorWhite;
         }
     }
 
-    .message-co-extra-light-blue{
+    .msg-co-elbu{
         background-color: @colorExtraLightBlue;
 
-        .body,
-        .title{
+        .bo-ti{
             color: @colorWhite;
         }
     }
 
-    .message-co-silver{
+    .msg-co-si{
         background-color: @colorSilver;
 
-        .body,
-        .title{
+        .bo-ti{
             color: @colorBlack;
         }
     }
 
-    .message-co-light-silver{
+    .msg-co-lsi{
         background-color: @colorLightSilver;
 
-        .body,
-        .title{
+        .bo-ti{
             color: @colorBlack;
         }
     }
 
-    .message-co-extra-light-silver{
+    .msg-co-elsi{
         background-color: @colorExtraLightSilver;
 
-        .body,
-        .title{
+        .bo-ti{
             color: @colorBlack;
         }
     }
 
-    .message-co-gray{
+    .msg-co-g{
         background-color: @colorGray;
 
-        .body,
-        .title{
+        .bo-ti{
             color: @colorBlack;
         }
     }
 
-    .message-co-light-gray{
+    .msg-co-lg{
         background-color: @colorLightGray;
 
-        .body,
-        .title{
+        .bo-ti{
             color: @colorBlack;
         }
     }
 
-    .message-co-white{
+    .msg-co-wh{
         background-color: @colorWhite;
 
-        .body,
-        .title{
+        .bo-ti{
             color: @colorBlack;
         }
     }

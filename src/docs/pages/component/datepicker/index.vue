@@ -66,10 +66,11 @@
     |[date](#date)|日历所在的日期，日历将会切换到`date`所在的月份|时间戳|Number|`+new Date()`|
     |[format](#format)|格式化展示的日期|日期格式化字符串(支持日期占位符见下方的演示)|String|`'YYYY-MM-DD'`|
     |[align](#align)|日期对齐方式|`'left'` : 左对齐<br>`'center'` : 居中对齐<br>`'right'` : 右对齐|String|`'left'`|
-    |[quick-pick](#quick-pick)|显示快速选择项，这个配置是一个数组，数组中的每一项都是一个快速选择项目。<br><br>数组项支持两种类型：<br><br>__关键词__ ：支持字符串格式的快速选择关键词。<br><br>未开启`is-range`情况下包括：`今天`、`昨天`、`明天`、`n 天前`、`n 周前`、`n 月前`、`n 年前`、`n 天后`、`n 周后`、`n 月后`、`n 年后`(需要注意`n`后面有空格)，例如：`2 天前`、`3 周前`。<br><br>开启`is-range`情况下包括：`本周`、`本月`、`今年`、`最近 n 周`、`最近 n 月`、`最近 n 年`、`未来 n 周`、`未来 n 月`、`未来 n 年`(需要注意`n`前后有空格)，例如：`未来 2 周`、`最近 3 月`。<br><br>__时间设置__：是一个对象。<br><br>未开启`is-range`情况下包含`name`和`pick`两个属性。<br>`name`是快速选择项展现的名称。<br>`pick`支持`数字`或`日期对象`。若`pick`是`数字`则代表相对天数，会选中当前日期和`pick`相加后的日期，所以`pick`是负数代表过去的日期，正数则代表未来的日期。若`pick`是`日期对象`则会选中`pick`所表示的日期。<br><br>开启`is-range`情况下包含`name`、`start`、`end`三个属性。<br>`name`是快速选择项展现的名称。<br>`start`和`end`是`日期对象`分别表示选择日期段的开始和结束。<br><br>你可以混合使用多种类型的快速选择项(详见[下面的示例](#quick-pick))。|字符串(关键词)<br>对象(时间设置)|Array|`[]`|
+    |[quick-pick](#quick-pick)|显示快速选择项，这个配置是一个数组，数组中的每一项都是一个快速选择项目。<br><br>数组项支持两种类型：<br><br>__关键词__ ：支持字符串格式的快速选择关键词。<br><br>未开启`is-range`情况下包括：`今天`、`昨天`、`明天`、`n 天前`、`n 周前`、`n 月前`、`n 年前`、`n 天后`、`n 周后`、`n 月后`、`n 年后`(需要注意`n`后面有空格)，例如：`2 天前`、`3 周前`。<br><br>开启`is-range`情况下包括：`本周`、`本月`、`今年`、`最近 n 天`、`最近 n 周`、`最近 n 月`、`最近 n 年`、`未来 n 天`、`未来 n 周`、`未来 n 月`、`未来 n 年`(需要注意`n`前后有空格)，例如：`未来 2 周`、`最近 3 月`。<br><br>__时间设置__：是一个对象。<br><br>未开启`is-range`情况下包含`name`和`pick`两个属性。<br>`name`是快速选择项展现的名称。<br>`pick`支持`数字`或`日期对象`。若`pick`是`数字`则代表相对天数，会选中当前日期和`pick`相加后的日期，所以`pick`是负数代表过去的日期，正数则代表未来的日期。若`pick`是`日期对象`则会选中`pick`所表示的日期。<br><br>开启`is-range`情况下包含`name`、`start`、`end`三个属性。<br>`name`是快速选择项展现的名称。<br>`start`和`end`是`日期对象`分别表示选择日期段的开始和结束。<br><br>你可以混合使用多种类型的快速选择项(详见[下面的示例](#quick-pick))。|字符串(关键词)<br>对象(时间设置)|Array|`[]`|
     |[selectable-range](#selectable-range)|可选日期范围，若不设置则不限。这是一个数组，支持以下格式：<br><br>`[开始日期, 结束日期]`: 指定单个可选范围<br>`[[开始日期1, 结束日期1], [开始日期2, 结束日期2]]`: 指定多个可选范围<br><br>可选日期将大于等于`开始日期`，小于等于`结束日期`。<br><br>`开始日期`和`结束日期`均为日期字符串需要符合`format`配置的日期格式。|日期范围数组|Array|`undefined`|
     |[is-range](#is-range)|选择日期区间，开启后可以选在一个日期段|`true`<br>`false`|Boolean|`false`|
-    |[separator](#separator)|日期区间选择时中间的分隔内容，只有开启`is-range`才有效|分隔字符串|String|`'至'`|
+    |[separator](#separator)|日期区间选择时中间的分隔内容，只有开启`is-range`才有效。|分隔字符串|String|`'至'`|
+    |[separator-type](#separator-type)|日期区间选择时中间的分隔内容的展现类型|`'block'`：块状<br>`'inline'`：行内|String|`'block'`|
     |[start-name](#start-name)|日期区间选择时`开始日期`表单显示的名称，若设为`false`则显示`form-name`，只有开启`is-range`才有效|任意字符串<br>`false`:显示`form-name`|String<br>Boolean|`'开始日期'`|
     |[end-name](#end-name)|日期区间选择时`结束日期`表单显示的名称，若设为`false`则显示`form-name`，只有开启`is-range`才有效。若设置了`hide-name`则不会显示|任意字符串`false`:显示`form-name`|String<br>Boolean|`'结束日期'`|
     :::
@@ -214,8 +215,16 @@
     在使用`selectable-range`的同时开启`is-range`：
 
     :::democode/html
-    <div style="width:300px;">
+    <div style="width:360px;">
         <ui-datepicker form-name="日期" :date="+new Date('2018-03-23')" :selectable-range="['2018-03-08', '2018-03-23']" is-range></ui-datepicker>
+    </div>
+    :::
+
+    如果`default-value`超过`selectable-range`范围：
+
+    :::democode/html
+    <div style="width:360px;">
+        <ui-datepicker form-name="日期" :date="+new Date('2018-03-23')" :selectable-range="['2018-03-08', '2018-03-23']" :default-value="['2018-03-03', '2018-03-26']" is-range></ui-datepicker>
     </div>
     :::
 
@@ -240,6 +249,16 @@
     :::democode/html
     <div style="width:360px;">
         <ui-datepicker form-name="日期" :is-range="true" separator="~"></ui-datepicker>
+    </div>
+    :::
+
+    #### separator-type
+
+    `inline`的分隔(一般配合`align`居中一起使用)：
+
+    :::democode/html
+    <div style="width:300px;">
+        <ui-datepicker form-name="日期" :is-range="true" separator="~" separator-type="inline" align="center"></ui-datepicker>
     </div>
     :::
 
