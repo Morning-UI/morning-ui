@@ -32,10 +32,10 @@ test.serial('basic style', async t => {
     cleanstyle(result.style);
 
     // cause : circleci use other webkit.
-    delete style.blockSize;
-    delete style.height;
-    delete style.perspectiveOrigin;
-    delete style.webkitLogicalHeight;
+    delete result.style.blockSize;
+    delete result.style.height;
+    delete result.style.perspectiveOrigin;
+    delete result.style.webkitLogicalHeight;
 
     t.snapshot(result);
 
