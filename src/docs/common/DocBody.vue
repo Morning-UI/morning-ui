@@ -1371,7 +1371,9 @@ window.Vue.directive('docmd', {
             md = md.replace(/\[\[\[方法\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="方法"><div class="content-title">方法</div>$1</div>$3');
             md = md.replace(/\[\[\[事件\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="事件"><div class="content-title">事件</div>$1</div>$3');
             md = md.replace(/\[\[\[表单值\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="表单值"><div class="content-title">表单值</div>$1</div>$3');
-            md = md.replace(/\[\[\[源码\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="源码"><div class="content-title">源码</div>$1</div>$3');
+            // window.location.search !== \'?istest\'
+            // cause: e2e test use chrome 59, if both has vue and iframe, get a bug.(when version update may remove this code)
+            md = md.replace(/\[\[\[源码\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="源码"><div class="content-title">源码</div><div v-if="window.location.search !== \'?istest\'">$1</div></div>$3');
             md = md.replace(/(.|\n)$/, '$1</ui-tab>');
 
             md = md.replace(/<p>---demostart---<\/p>/g, '<div class="demo-area"><p class="demo-title">DEMO</p>');

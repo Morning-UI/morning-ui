@@ -65,6 +65,12 @@ let TriggerManager = {
 
                 for (let $target of $targets) {
 
+                    if (!$target) {
+
+                        return;
+
+                    }
+
                     if (isAdd) {
                         
                         $target.addEventListener(evt, handler);

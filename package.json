@@ -112,7 +112,7 @@
     "markdown-it-anchor": "^4.0.0",
     "minimist": "^1.2.0",
     "mustache": "^2.3.0",
-    "nightmare": "^2.10.0",
+    "nightmare": "^3.0.1",
     "nyc": "^11.2.1",
     "postcss-less": "^1.1.0",
     "postcss-loader": "^2.1.4",

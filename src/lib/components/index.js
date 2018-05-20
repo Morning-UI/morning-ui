@@ -70,8 +70,8 @@ import privateTimepicker             from './private-timepicker/index.vue';
 import privateDatepicker             from './private-datepicker/index.vue';
 
 export default {
-    privateTimepicker,
-    privateDatepicker,
+    'private-timepicker' : privateTimepicker,
+    'private-datepicker' : privateDatepicker,
     h,
     lead,
     mark,

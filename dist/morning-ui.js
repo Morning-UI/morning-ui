@@ -18716,6 +18716,28 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var _trim = __webpack_require__(174);
 
@@ -18736,6 +18758,10 @@ exports.default = {
     name: 'select',
     mixins: [_GlobalEvent2.default, _TipManager2.default],
     props: {
+        separateEmit: {
+            type: String,
+            default: ''
+        },
         align: {
             type: String,
             default: 'left',
@@ -18796,6 +18822,7 @@ exports.default = {
         _conf: function _conf() {
 
             return {
+                separateEmit: this.separateEmit,
                 align: this.align,
                 prepend: this.prepend,
                 maxShow: this.maxShow,
@@ -18813,22 +18840,8 @@ exports.default = {
         },
         moreClass: function moreClass() {
 
-            var selectItem = false;
-
-            if (this.data.value && this.data.value.length > 0) {
-
-                selectItem = true;
-            }
-
             return {
-                showlist: !!this.data.showlist,
-                searching: !!this.data.searching,
-                'focus-search': !!this.data.focusSearch,
-                'is-max': !!this.isMax,
-                'select-item': selectItem,
-                'align-left': this.conf.align === 'left',
-                'align-center': this.conf.align === 'center',
-                'align-right': this.conf.align === 'right',
+                separate: !!this.conf.separateEmit,
                 'input-group': !!this.conf.prepend
             };
         },
@@ -18861,7 +18874,10 @@ exports.default = {
                 tipsContent: [],
                 tips: [],
                 $listWrap: null,
-                $list: null
+                $list: null,
+                $emitTarget: null,
+                $selectArea: null,
+                $selectList: null
             },
             listStyle: {}
         };
@@ -18912,7 +18928,6 @@ exports.default = {
             var $items = this.data.$list.querySelectorAll('li:not(.noitem)');
             var $currentItems = this.data.$list.querySelectorAll('li.current');
             var $noitem = this.data.$list.querySelector('.noitem');
-            // let $selected = this.$el.querySelector('.selected');
             var searchTextinput = void 0;
             var searchMultiinput = void 0;
             var multiNames = [];
@@ -18945,7 +18960,7 @@ exports.default = {
 
             if (this.conf.canSearch && !this.conf.multiSelect) {
 
-                searchTextinput = this.$el.querySelector('#ui-select-ti-' + this.uiid);
+                searchTextinput = this.data.$selectArea.querySelector('#ui-select-ti-' + this.uiid);
 
                 if (searchTextinput) {
 
@@ -18953,7 +18968,7 @@ exports.default = {
                 }
             } else if (this.conf.multiSelect) {
 
-                searchMultiinput = this.$el.querySelector('#ui-select-mi-' + this.uiid);
+                searchMultiinput = this.data.$selectArea.querySelector('#ui-select-mi-' + this.uiid);
 
                 if (searchMultiinput) {
 
@@ -19099,20 +19114,37 @@ exports.default = {
                 this.set(this._valueFilter(this.get()));
             }
         },
+        _emitClick: function _emitClick(evt) {
+
+            if (!this.conf.separateEmit) {
+
+                return;
+            }
+
+            this.toggle();
+        },
         _wrapClick: function _wrapClick(evt) {
 
-            if (this.conf.state === 'disabled' || this.conf.state === 'readonly') {
+            if (this.conf.separateEmit) {
 
                 return;
             }
 
-            if (this.conf.multiSelect && this.data.value.length === this.conf.max) {
+            // if (this.conf.state === 'disabled' || this.conf.state === 'readonly') {
 
-                return;
-            }
+            //     return;
 
-            var $searchTextinput = this.$el.querySelector('.wrap mor-textinput'),
-                $searchMultiinput = this.$el.querySelector('.wrap mor-multiinput'),
+            // }
+
+            // if (this.conf.multiSelect &&
+            //     this.data.value.length === this.conf.max) {
+
+            //     return;
+
+            // }
+
+            var $searchTextinput = this.data.$selectArea.querySelector('.wrap mor-textinput'),
+                $searchMultiinput = this.data.$selectArea.querySelector('.wrap mor-multiinput'),
                 hasTextinput = evt.path.indexOf($searchTextinput) !== -1,
                 hasMultiinput = evt.path.indexOf($searchMultiinput) !== -1;
 
@@ -19123,10 +19155,18 @@ exports.default = {
 
                 this.toggle();
             }
-
-            // this.toggle();
         },
         _listClick: function _listClick(evt) {
+
+            if (this.conf.state === 'disabled' || this.conf.state === 'readonly') {
+
+                return;
+            }
+
+            if (this.conf.multiSelect && this.data.value.length === this.conf.max) {
+
+                return;
+            }
 
             var $items = this.data.$list.querySelectorAll('li:not(.noitem)');
             var $clickItem = false;
@@ -19253,13 +19293,13 @@ exports.default = {
 
             if (this.conf.multiSelect) {
 
-                var searchMultiinput = this.$el.querySelector('#ui-select-mi-' + this.uiid);
+                var searchMultiinput = this.data.$selectArea.querySelector('#ui-select-mi-' + this.uiid);
 
                 searchMultiinput = searchMultiinput._vm;
                 key = searchMultiinput.getInput();
             } else {
 
-                var searchTextinput = this.$el.querySelector('#ui-select-ti-' + this.uiid);
+                var searchTextinput = this.data.$selectArea.querySelector('#ui-select-ti-' + this.uiid);
 
                 searchTextinput = searchTextinput._vm;
                 key = searchTextinput.get();
@@ -19283,7 +19323,7 @@ exports.default = {
         },
         _multiinputFocusNoSearch: function _multiinputFocusNoSearch() {
 
-            var searchMultiinput = this.$el.querySelector('#ui-select-mi-' + this.uiid)._vm;
+            var searchMultiinput = this.data.$selectArea.querySelector('#ui-select-mi-' + this.uiid)._vm;
 
             searchMultiinput._blurInput();
             this._multiinputFocus();
@@ -19361,7 +19401,7 @@ exports.default = {
                 return;
             }
 
-            var searchMultiinput = this.$el.querySelector('#ui-select-mi-' + this.uiid)._vm;
+            var searchMultiinput = this.data.$selectArea.querySelector('#ui-select-mi-' + this.uiid)._vm;
             var values = searchMultiinput.get();
 
             this.Vue.nextTick(function () {
@@ -19517,7 +19557,9 @@ exports.default = {
         },
         _checkArea: function _checkArea(evt) {
 
-            if (this.data.showlist && this.conf.autoClose && evt.path.indexOf(this.$el) === -1) {
+            var $wrap = this.data.$selectArea.querySelector('.wrap');
+
+            if (this.data.showlist && this.conf.autoClose && evt.path.indexOf(this.$el) === -1 && evt.path.indexOf($wrap) === -1) {
 
                 this.toggle(false);
             }
@@ -19683,7 +19725,7 @@ exports.default = {
             if (this.conf.prepend !== undefined) {
 
                 var $inputGroupAddon = this.$el.querySelector('.input-group-addon');
-                var $selectArea = this.$el.querySelector('.select-area');
+                var $selectArea = this.data.$selectArea;
                 var width = $inputGroupAddon.clientWidth;
 
                 // 1 is left border width
@@ -19699,23 +19741,37 @@ exports.default = {
 
             show = !!show;
 
-            var $wrap = this.$el.querySelector('.wrap');
+            var $target = void 0;
+
+            if (this.conf.separateEmit) {
+
+                $target = this.data.$emitTarget;
+            } else {
+
+                $target = this.data.$selectArea.querySelector('.wrap');
+            }
+
+            this.data.$selectArea.style.display = 'block';
 
             if (show) {
-
-                // this.$items.hide().not('.noresult,.selected').show();
 
                 var $items = this.data.$list.querySelectorAll('li');
                 var $currentItem = this.data.$list.querySelector('li.current');
 
-                // this._searchKeyChange();
                 this.data.showlist = true;
-                this.data.$listWrap.style.width = $wrap.offsetWidth + 'px';
+
+                if (!this.conf.separateEmit) {
+
+                    this.data.$listWrap.style.width = $target.offsetWidth + 'px';
+                } else {
+
+                    this.data.$listWrap.style.width = (this.$el.offsetWidth || this.data.$listWrap.offsetWidth) + 'px';
+                }
 
                 this._tipCreate({
                     placement: 'bottom',
                     element: this.data.$listWrap,
-                    target: $wrap,
+                    target: $target,
                     offset: '0 -0.5px'
                 });
 
@@ -19759,7 +19815,10 @@ exports.default = {
                 this.$emit('list-show');
             } else {
 
-                this.data.$listWrap.style.width = $wrap.offsetWidth + 'px';
+                if (!this.conf.separateEmit) {
+
+                    this.data.$listWrap.style.width = $target.offsetWidth + 'px';
+                }
 
                 this.data.showlist = false;
 
@@ -19802,14 +19861,20 @@ exports.default = {
         var _this3 = this;
 
         this.data.mounted = true;
-        this.data.$listWrap = this.$el.querySelector('.mor-select-list');
-        this.data.$list = this.$el.querySelector('.mor-select-list>.list');
+        this.data.$list = this.$el.querySelector('.select-list>.list');
+        this.data.$selectList = this.$el.querySelector('.select-list');
+        this.data.$selectArea = this.$el.querySelector('.select-area');
         this.Tip.autoReverse = false;
         this.Tip.autoOffset = false;
 
         this._updateItemValueList();
         this._onValueChange();
         this._resizeSelectArea();
+
+        this.Vue.nextTick(function () {
+
+            if (_this3.conf.separateEmit) {} else {}
+        });
 
         this.$on('value-change', this._onValueChange);
 
@@ -19818,6 +19883,30 @@ exports.default = {
             _this3.$watch('conf.maxShow', _this3._setListHeight, {
                 immediate: true
             });
+        });
+
+        this.$watch('conf.separateEmit', function (newVal, oldVal) {
+
+            if (oldVal) {
+
+                document.querySelector(oldVal).removeEventListener('click', _this3._emitClick);
+            }
+
+            if (newVal) {
+
+                _this3.data.$listWrap = _this3.data.$selectArea;
+
+                _this3.Vue.nextTick(function () {
+
+                    _this3.data.$emitTarget = document.querySelector(newVal);
+                    document.querySelector(newVal).addEventListener('click', _this3._emitClick);
+                });
+            } else {
+
+                _this3.data.$listWrap = _this3.data.$selectList;
+            }
+        }, {
+            immediate: true
         });
 
         this.$watch('conf.canSearch', this._searchKeyChange);
@@ -26565,9 +26654,10 @@ var Move = {
                     }
                 }
 
+                $container.append($moveDragItem);
+
                 $moveDragItem.style.top = y + 'px';
                 $moveDragItem.style.left = x + 'px';
-                $container.append($moveDragItem);
 
                 this.Move.overRange = [0, 0, 0, 0];
                 this.Move.$moveDragItem = $moveDragItem;
@@ -26744,18 +26834,33 @@ var Move = {
             var top = $target.ownerDocument.defaultView.getComputedStyle($target).top;
             var x = void 0;
             var y = void 0;
+            var $tetParent = $target.closest('body > div'); // body > div if has transform, is tether
+            var transformX = 0;
+            var transformY = 0;
+
+            // if parent has transformX/Y
+            if ($tetParent) {
+
+                var transform = $tetParent.ownerDocument.defaultView.getComputedStyle($tetParent).transform;
+
+                if (/matrix/.test(transform)) {
+
+                    var matrix = new DOMMatrix(JSON.parse('[' + transform.replace(/(^matrix\(|\)$)/g, '') + ']'));
+
+                    transformX = matrix.m41 - window.scrollX;
+                    transformY = matrix.m42 - window.scrollY;
+                }
+            }
 
             marginLeft = +marginLeft.split('px')[0];
             marginTop = +marginTop.split('px')[0];
             left = +left.split('px')[0];
             top = +top.split('px')[0];
 
-            //  + this.Move.windowCalibrate.x; + this.Move.windowCalibrate.y
-
             if (this.Move.type === 'fixed') {
 
-                x = client.left - marginLeft;
-                y = client.top - marginTop;
+                x = client.left - marginLeft - transformX;
+                y = client.top - marginTop - transformY;
             } else {
 
                 x = left;
@@ -27020,7 +27125,7 @@ var render = function() {
               _c("morning-calendar", {
                 ref: "ui-calendar-" + _vm.uiid,
                 attrs: {
-                  date: _vm.data.currentDate,
+                  date: _vm.data.currentDate || _vm.conf.date,
                   "highlight-day": _vm.getHighlightDays,
                   "highlight-now": false,
                   "highlight-hover": true,
@@ -28618,7 +28723,7 @@ var render = function() {
                           ? _vm.conf.formName
                           : _vm.conf.startName,
                       "hide-name": _vm.conf.hideName,
-                      date: +_vm.data.currentDate,
+                      date: +_vm.data.currentDate || undefined,
                       format: _vm.conf.format,
                       align: _vm.conf.align,
                       "selectable-range": _vm.conf.selectableRange,
@@ -29080,7 +29185,8 @@ var render = function() {
                           ? _vm.conf.formName
                           : _vm.conf.endName,
                       "hide-name": _vm.conf.hideName,
-                      date: +_vm._addMonths(_vm.data.currentDate, 1),
+                      date:
+                        +_vm._addMonths(_vm.data.currentDate, 1) || undefined,
                       format: _vm.conf.format,
                       align: _vm.conf.align,
                       "selectable-range": _vm.conf.selectableRange,
@@ -30487,6 +30593,7 @@ var render = function() {
         "default-value": _vm.defaultValue,
         "hide-name": _vm.hideName,
         clearable: _vm.clearable,
+        "separate-emit": _vm.separateEmit,
         align: _vm.align,
         prepend: _vm.prepend,
         "max-show": _vm.maxShow,
@@ -30512,134 +30619,165 @@ var render = function() {
           ]
         : _vm._e(),
       _vm._v(" "),
-      _c("div", { staticClass: "select-area" }, [
-        _c(
-          "div",
-          { staticClass: "wrap", on: { click: _vm._wrapClick } },
-          [
-            _vm.conf.multiSelect
-              ? [
-                  _vm.conf.canSearch
-                    ? _c("morning-multiinput", {
-                        key: "multi-can-search",
-                        attrs: {
-                          id: "ui-select-mi-" + _vm.uiid,
-                          "can-move": _vm.conf.canMove,
-                          max: _vm.conf.max,
-                          "form-name": _vm.conf.formName,
-                          "hide-name": _vm.conf.hideName,
-                          state: _vm.conf.state
-                        },
-                        on: {
-                          "input-focus": function($event) {
-                            _vm._multiinputFocus()
-                          },
-                          "value-change": function($event) {
-                            _vm._multiinputValueChange()
-                          },
-                          "input-value-change": function($event) {
-                            _vm._searchKeyChange()
-                          }
-                        }
-                      })
-                    : _c("morning-multiinput", {
-                        key: "multi-no-search",
-                        attrs: {
-                          id: "ui-select-mi-" + _vm.uiid,
-                          "can-move": _vm.conf.canMove,
-                          max: _vm.conf.max,
-                          "form-name": _vm.conf.formName,
-                          "hide-name": _vm.conf.hideName,
-                          state: _vm.conf.state
-                        },
-                        on: {
-                          "input-focus": function($event) {
-                            _vm._multiinputFocusNoSearch()
-                          },
-                          "value-change": function($event) {
-                            _vm._multiinputValueChange()
-                          }
-                        }
-                      })
-                ]
-              : [
-                  _vm.conf.canSearch
-                    ? [
-                        _c("morning-textinput", {
-                          key: "single-can-search",
+      _c(
+        "div",
+        {
+          staticClass: "select-area",
+          class: [
+            {
+              "mor-select-wrap": _vm.conf.separateEmit,
+              "focus-search": !!_vm.data.focusSearch,
+              searching: !!_vm.data.searching,
+              "align-left": _vm.conf.align === "left",
+              "align-center": _vm.conf.align === "center",
+              "align-right": _vm.conf.align === "right",
+              "select-item": _vm.data.value && _vm.data.value.length > 0,
+              "is-max": !!_vm.isMax,
+              showlist: !!_vm.data.showlist,
+              "input-group": !!_vm.conf.prepend
+            },
+            _vm.stateClass
+          ]
+        },
+        [
+          _c(
+            "div",
+            {
+              staticClass: "wrap",
+              class: {
+                showwrap: _vm.conf.separateEmit && !!_vm.data.showlist
+              },
+              on: { click: _vm._wrapClick }
+            },
+            [
+              _vm.conf.multiSelect
+                ? [
+                    _vm.conf.canSearch
+                      ? _c("morning-multiinput", {
+                          key: "multi-can-search",
                           attrs: {
-                            id: "ui-select-ti-" + _vm.uiid,
-                            align: _vm.conf.align
+                            id: "ui-select-mi-" + _vm.uiid,
+                            "can-move": _vm.conf.canMove,
+                            max: _vm.conf.max,
+                            "form-name": _vm.conf.formName,
+                            "hide-name": _vm.conf.hideName,
+                            state: _vm.conf.state
                           },
                           on: {
+                            "input-focus": function($event) {
+                              _vm._multiinputFocus()
+                            },
                             "value-change": function($event) {
+                              _vm._multiinputValueChange()
+                            },
+                            "input-value-change": function($event) {
                               _vm._searchKeyChange()
-                            },
-                            focus: function($event) {
-                              _vm._textinputFocus()
-                            },
-                            blur: function($event) {
-                              _vm._textinputBlur()
                             }
                           }
                         })
-                      ]
-                    : _vm._e(),
+                      : _c("morning-multiinput", {
+                          key: "multi-no-search",
+                          attrs: {
+                            id: "ui-select-mi-" + _vm.uiid,
+                            "can-move": _vm.conf.canMove,
+                            max: _vm.conf.max,
+                            "form-name": _vm.conf.formName,
+                            "hide-name": _vm.conf.hideName,
+                            state: _vm.conf.state
+                          },
+                          on: {
+                            "input-focus": function($event) {
+                              _vm._multiinputFocusNoSearch()
+                            },
+                            "value-change": function($event) {
+                              _vm._multiinputValueChange()
+                            }
+                          }
+                        })
+                  ]
+                : [
+                    _vm.conf.canSearch
+                      ? [
+                          _c("morning-textinput", {
+                            key: "single-can-search",
+                            attrs: {
+                              id: "ui-select-ti-" + _vm.uiid,
+                              align: _vm.conf.align
+                            },
+                            on: {
+                              "value-change": function($event) {
+                                _vm._searchKeyChange()
+                              },
+                              focus: function($event) {
+                                _vm._textinputFocus()
+                              },
+                              blur: function($event) {
+                                _vm._textinputBlur()
+                              }
+                            }
+                          })
+                        ]
+                      : _vm._e(),
+                    _vm._v(" "),
+                    !_vm.conf.multiSelect &&
+                    _vm.data.value &&
+                    _vm.data.value.length === 1
+                      ? _c("div", {
+                          staticClass: "selected",
+                          domProps: {
+                            innerHTML: _vm._s(_vm.data.selectedContent)
+                          }
+                        })
+                      : !_vm.conf.hideName
+                        ? _c("div", { staticClass: "selected" }, [
+                            _vm._v(
+                              "\n                " +
+                                _vm._s(_vm.conf.formName) +
+                                "\n            "
+                            )
+                          ])
+                        : _c("div", { staticClass: "selected" }, [
+                            _vm._v("\n                 \n            ")
+                          ])
+                  ],
+              _vm._v(" "),
+              _c("i", { staticClass: "morningicon drop" }, [_vm._v("")])
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "select-list",
+              class: [
+                {
+                  showlist: !!_vm.data.showlist,
+                  "hide-selected": _vm.conf.hideSelected,
+                  "mor-select-wrap": !_vm.conf.separateEmit
+                },
+                _vm.stateClass
+              ]
+            },
+            [
+              _c(
+                "ul",
+                {
+                  staticClass: "list",
+                  style: _vm.listStyle,
+                  on: { click: _vm._listClick }
+                },
+                [
+                  _vm._t("default"),
                   _vm._v(" "),
-                  !_vm.conf.multiSelect &&
-                  _vm.data.value &&
-                  _vm.data.value.length === 1
-                    ? _c("div", {
-                        staticClass: "selected",
-                        domProps: {
-                          innerHTML: _vm._s(_vm.data.selectedContent)
-                        }
-                      })
-                    : !_vm.conf.hideName
-                      ? _c("div", { staticClass: "selected" }, [
-                          _vm._v(
-                            "\n                " +
-                              _vm._s(_vm.conf.formName) +
-                              "\n            "
-                          )
-                        ])
-                      : _c("div", { staticClass: "selected" }, [
-                          _vm._v("\n                 \n            ")
-                        ])
+                  _c("li", { staticClass: "noitem" }, [_vm._v("无项目")])
                 ],
-            _vm._v(" "),
-            _c("i", { staticClass: "morningicon drop" }, [_vm._v("")])
-          ],
-          2
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "mor-select-list",
-            class: {
-              showlist: !!_vm.data.showlist,
-              "hide-selected": _vm.conf.hideSelected
-            }
-          },
-          [
-            _c(
-              "ul",
-              {
-                staticClass: "list",
-                style: _vm.listStyle,
-                on: { click: _vm._listClick }
-              },
-              [
-                _vm._t("default"),
-                _vm._v(" "),
-                _c("li", { staticClass: "noitem" }, [_vm._v("无项目")])
-              ],
-              2
-            )
-          ]
-        )
-      ]),
+                2
+              )
+            ]
+          )
+        ]
+      ),
       _vm._v(" "),
       _vm.conf.clearable
         ? _c(
@@ -33518,6 +33656,11 @@ var TriggerManager = {
                         for (var _iterator2 = $targets[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
                             var $target = _step2.value;
 
+
+                            if (!$target) {
+
+                                return;
+                            }
 
                             if (isAdd) {
 
@@ -38936,8 +39079,8 @@ var _index130 = _interopRequireDefault(_index129);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
-    privateTimepicker: _index128.default,
-    privateDatepicker: _index130.default,
+    'private-timepicker': _index128.default,
+    'private-datepicker': _index130.default,
     h: _index2.default,
     lead: _index4.default,
     mark: _index6.default,
