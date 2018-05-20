@@ -18,6 +18,27 @@
     
     ### 更新记录
 
+    ### 0.10.27 <ui-badge class="circle ver-stable" size="s" color="extra-light-black">Beta</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2018年5月20日，
+            Archive : 
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.27" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.27/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.10.27/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor><br/><br/>
+
+    - `ui-tab`新增`anchor-target`配置，支持锚点定位
+    - `ui-select`新增`separate-emit`配置
+    - 完善组件的基础单元和端点测试
+    - 修复`ui-imagemap`新增的热区自定义数据为`undefined`
+    - 修复动态更新`ui-select`可选项时导致选项的Tip错乱的问题
+    - 修复`ui-tip`和`ui-select`组件文本溢出的一个问题
+    - 修复Vue警告(Do not use built-in or reserved HTML elements as component id)
+    - 修复文档中的一些错误
+
     ### 0.10.26 <ui-badge class="circle ver-stable" size="s" color="extra-light-black">Beta</ui-badge>
 
     <ui-textcolor color="light-blue">

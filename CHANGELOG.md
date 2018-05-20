@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## 0.10.27
+
+`2018年5月20日`
+
+- `ui-tab`新增`anchor-target`配置，支持锚点定位
+- `ui-select`新增`separate-emit`配置
+- 完善组件的基础单元和端点测试
+- 修复`ui-imagemap`新增的热区自定义数据为`undefined`
+- 修复动态更新`ui-select`可选项时导致选项的Tip错乱的问题
+- 修复`ui-tip`和`ui-select`组件文本溢出的一个问题
+- 修复Vue警告(Do not use built-in or reserved HTML elements as component id)
+- 修复文档中的一些错误
+
 ## 0.10.26
 
 `2018年5月18日`
