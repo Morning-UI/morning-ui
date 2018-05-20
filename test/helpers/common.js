@@ -58,13 +58,28 @@ const STATE_NA = [
     'normal',
     'apparent'
 ];
+const STATE_NDR = [
+    'normal',
+    'disabled',
+    'readonly'
+];
+const STATE_ALL = [
+    'normal',
+    'hover',
+    'active',
+    'disabled',
+    'readonly',
+    'apparent'
+];
 
 let e2eStatementFnString = `(ctx, type, attrs, basicDemoSelector) => {
 
     let prefix = {
         size : '.si-',
         color : '.co-',
-        state_na : '.st-'
+        state_na : '.st-',
+        state_all : '.st-',
+        state_ndr : '.st-'
     };
 
     let data = {
@@ -80,27 +95,31 @@ let e2eStatementFnString = `(ctx, type, attrs, basicDemoSelector) => {
 
             if (typeof basicDemoSelector === 'string') {
     
-                $basicDemo = $(basicDemoSelector).eq(0);
+                $basicDemo = $(basicDemoSelector);
 
             } else {
     
-                $basicDemo = $(ctx.basicDemo).eq(0);
+                $basicDemo = $(ctx.basicDemo);
 
             }
 
             if (attr.child) {
     
-                $el = $basicDemo.find(attr.child);
+                $el = $basicDemo.eq(0).find(attr.child);
+
+            } else if (attr.self) {
+    
+                $el = $basicDemo.filter(attr.self);
 
             } else {
-    
-                $el = $basicDemo;
+                
+                $el = $basicDemo.eq(0);
 
             }
             
             for (let sattr of attr.attrs) {
 
-                data.default[attr.child+'|'+sattr] = $el.css(sattr);
+                data.default[attr.child+'|'+attr.self+'|'+sattr] = $el.css(sattr);
 
             }
 
@@ -108,15 +127,15 @@ let e2eStatementFnString = `(ctx, type, attrs, basicDemoSelector) => {
 
             if (typeof basicDemoSelector === 'string') {
     
-                $basicDemo = $(basicDemoSelector).eq(0);
+                $basicDemo = $(basicDemoSelector);
 
             } else {
     
-                $basicDemo = $(ctx.basicDemo).eq(0);
+                $basicDemo = $(ctx.basicDemo);
 
             }
 
-            data.default[attr] = $basicDemo.css(attr);
+            data.default[attr] = $basicDemo.eq(0).css(attr);
 
         }
 
@@ -138,17 +157,41 @@ let e2eStatementFnString = `(ctx, type, attrs, basicDemoSelector) => {
                 
                 if (type === 'color') {
 
-                    el = $('[name="形态"] '+prefix[type]+ctx.common.COLOR_SHORT_MAP[item]+' '+attr.child).eq(0);
+                    if (attr.child) {
+
+                        el = $('[name="形态"] '+prefix[type]+ctx.common.COLOR_SHORT_MAP[item]+' '+attr.child).eq(0);
+
+                    } else if (attr.self){
+
+                        el = $('[name="形态"] '+prefix[type]+ctx.common.COLOR_SHORT_MAP[item]+attr.self).eq(0);
+
+                    } else {
+
+                        el = $('[name="形态"] '+prefix[type]+ctx.common.COLOR_SHORT_MAP[item]).eq(0);
+
+                    }
 
                 } else {
-            
-                    el = $('[name="形态"] '+prefix[type]+item+' '+attr.child).eq(0);
 
+                    if (attr.child) {
+
+                        el = $('[name="形态"] '+prefix[type]+item+' '+attr.child).eq(0);
+
+                    } else if (attr.self){
+
+                        el = $('[name="形态"] '+prefix[type]+item+attr.self).eq(0);
+
+                    } else {
+
+                        el = $('[name="形态"] '+prefix[type]+item).eq(0);
+
+                    }
+            
                 }
-                
+
                 for (let sattr of attr.attrs) {
     
-                    data[type][item][attr.child+'|'+sattr] = el.css(sattr);
+                    data[type][item][attr.child+'|'+attr.self+'|'+sattr] = el.css(sattr);
 
                 }
 
@@ -156,11 +199,39 @@ let e2eStatementFnString = `(ctx, type, attrs, basicDemoSelector) => {
                 
                 if (type === 'color') {
 
-                    data[type][item][attr] = $('[name="形态"] '+prefix[type]+ctx.common.COLOR_SHORT_MAP[item]).eq(0).css(attr);
+                    if (attr.child) {
+
+                        data[type][item][attr] = $('[name="形态"] '+prefix[type]+ctx.common.COLOR_SHORT_MAP[item]+' '+attr.child).eq(0).css(attr);
+
+                    } else if (attr.self){
+
+                        data[type][item][attr] = $('[name="形态"] '+prefix[type]+ctx.common.COLOR_SHORT_MAP[item]+attr.self).eq(0).css(attr);
+
+
+                    } else {
+
+                        data[type][item][attr] = $('[name="形态"] '+prefix[type]+ctx.common.COLOR_SHORT_MAP[item]).eq(0).css(attr);
+
+
+                    }
 
                 } else {
 
-                    data[type][item][attr] = $('[name="形态"] '+prefix[type]+item).eq(0).css(attr);
+                    if (attr.child) {
+
+                        data[type][item][attr] = $('[name="形态"] '+prefix[type]+item+' '+attr.child).eq(0).css(attr);
+
+                    } else if (attr.self){
+
+                        data[type][item][attr] = $('[name="形态"] '+prefix[type]+item+attr.self).eq(0).css(attr);
+
+
+                    } else {
+
+                        data[type][item][attr] = $('[name="形态"] '+prefix[type]+item).eq(0).css(attr);
+
+
+                    }
 
                 }
 
@@ -181,7 +252,7 @@ let e2eStatementFnString = `(ctx, type, attrs, basicDemoSelector) => {
 }`;
 
 let e2eBasicFnString = `ctx => ({
-    style : window.getComputedStyle($('[name="开始"] mor-'+ctx.tagName)[0])
+    style : window.getComputedStyle($(ctx.basicDemo)[0])
 })`;
 
 let getE2eDocUrl = (tagName) => (`${TEST_HOST}/component/${tagName}.html?istest`);
@@ -192,6 +263,8 @@ export default {
     COLOR,
     COLOR_SHORT_MAP,
     STATE_NA,
+    STATE_ALL,
+    STATE_NDR,
     e2eStatementFnString,
     e2eBasicFnString,
     getE2eDocUrl
