@@ -46,7 +46,10 @@ test.serial('form base : init component value is right when use v-model', async 
             </div>
         `,
         data : {
-            value1 : [{path:'http://morning-ui-image.test.upcdn.net/uploaddemo/17491/1511259398095810608.png',name:'1511259398095810608.png'}]
+            value1 : [{
+                path : 'http://morning-ui-image.test.upcdn.net/uploaddemo/17491/1511259398095810608.png',
+                name : '1511259398095810608.png'
+            }]
         },
         components : {
             [`ui-${name}`] : component
@@ -75,8 +78,14 @@ test.serial('form base : init component value is right when both use v-model and
             </div>
         `,
         data : {
-            value1 : [{path:'http://morning-ui-image.test.upcdn.net/uploaddemo/17491/1511259398095810608.png',name:'1511259398095810608.png'}],
-            value2 : [{path:'http://morning-ui-image.test.upcdn.net/uploaddemo/17492/1511259398095810606.png',name:'1511259398095810606.png'}]
+            value1 : [{
+                path : 'http://morning-ui-image.test.upcdn.net/uploaddemo/17491/1511259398095810608.png',
+                name : '1511259398095810608.png'
+            }],
+            value2 : [{
+                path : 'http://morning-ui-image.test.upcdn.net/uploaddemo/17492/1511259398095810606.png',
+                name : '1511259398095810606.png'
+            }]
         },
         components : {
             [`ui-${name}`] : component

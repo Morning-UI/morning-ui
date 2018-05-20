@@ -255,7 +255,7 @@ let e2eBasicFnString = `ctx => ({
     style : window.getComputedStyle($(ctx.basicDemo)[0])
 })`;
 
-let getE2eDocUrl = (tagName) => (`${TEST_HOST}/component/${tagName}.html?istest`);
+let getE2eDocUrl = tagName => (`${TEST_HOST}/component/${tagName}.html?istest`);
 
 export default {
     TEST_HOST,

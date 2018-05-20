@@ -34,10 +34,11 @@ test.serial('base : component snapshot', async t => {
 test.serial('base : init component', async t => {
 
     const vm = new Vue(component).$mount();
+    const num10 = 10;
 
     t.plan(2);
 
-    t.is(vm.uiid, 10);
+    t.is(vm.uiid, num10);
     t.is(component.options.name, `morning-${name}`);
 
 });
@@ -61,7 +62,7 @@ test.serial('form base : init component value is right when use v-model', async 
             </div>
         `,
         data : {
-            value1 : "2018-03-23 12:15:30"
+            value1 : '2018-03-23 12:15:30'
         },
         components : {
             [`ui-${name}`] : component
@@ -89,8 +90,8 @@ test.serial('form base : init component value is right when both use v-model and
             </div>
         `,
         data : {
-            value1 : "2018-03-23 12:15:30",
-            value2 : "2017-02-12 15:12:20"
+            value1 : '2018-03-23 12:15:30',
+            value2 : '2017-02-12 15:12:20'
         },
         components : {
             [`ui-${name}`] : component

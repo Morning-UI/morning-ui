@@ -60,6 +60,7 @@ let TriggerManager = {
             handlerInvoke = [],
             isAdd = true
         }) {
+
             for (let handler of handlerInvoke) {
 
                 for (let $target of $targets) {

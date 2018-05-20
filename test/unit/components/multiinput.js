@@ -46,7 +46,7 @@ test.serial('form base : init component value is right when use v-model', async 
             </div>
         `,
         data : {
-            value1 : ["value1", "value2"]
+            value1 : ['value1', 'value2']
         },
         components : {
             [`ui-${name}`] : component
@@ -74,8 +74,8 @@ test.serial('form base : init component value is right when both use v-model and
             </div>
         `,
         data : {
-            value1 : ["value1", "value2"],
-            value2 : ["value3", "value4"]
+            value1 : ['value1', 'value2'],
+            value2 : ['value3', 'value4']
         },
         components : {
             [`ui-${name}`] : component
