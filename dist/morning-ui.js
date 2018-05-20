@@ -13790,6 +13790,7 @@ exports.default = {
         _saveZoneModify: function _saveZoneModify() {
 
             var id = this.data.modifyZoneId;
+            var data = this.morning.getGroup('ui-imagemap-data-' + this.uiid);
 
             this.updateZone(id, {
                 w: +this.data.modifyZoneBasic.w,
@@ -13797,7 +13798,7 @@ exports.default = {
                 x: +this.data.modifyZoneBasic.x,
                 y: +this.data.modifyZoneBasic.y,
                 i: +this.data.modifyZoneBasic.i,
-                data: this.morning.getGroup('ui-imagemap-data-' + this.uiid)
+                data: Object.keys(data).length === 0 ? undefined : data
             });
 
             this.$refs['ui-imagemap-zonedialog-' + this.uiid].toggle(false);
@@ -14046,13 +14047,15 @@ exports.default = {
         },
         addZone: function addZone(zone) {
 
+            var data = this.morning.getGroup('ui-imagemap-data-' + this.uiid);
+
             zone = (0, _extend2.default)({
                 w: this.zoneMinSize,
                 h: this.zoneMinSize,
                 x: 0,
                 y: 0,
                 i: 0,
-                data: undefined
+                data: Object.keys(data).length === 0 ? undefined : data
             }, zone);
 
             this._zoneRangeFilter(zone);
@@ -19556,36 +19559,36 @@ exports.default = {
             }
         },
         _refreshTips: function _refreshTips() {
+            var _iteratorNormalCompletion13 = true;
+            var _didIteratorError13 = false;
+            var _iteratorError13 = undefined;
 
-            if (!this.conf.itemTip) {
-                var _iteratorNormalCompletion13 = true;
-                var _didIteratorError13 = false;
-                var _iteratorError13 = undefined;
+            try {
 
+                for (var _iterator13 = this.data.tips[Symbol.iterator](), _step13; !(_iteratorNormalCompletion13 = (_step13 = _iterator13.next()).done); _iteratorNormalCompletion13 = true) {
+                    var tipVm = _step13.value;
+
+
+                    tipVm.$destroy();
+                }
+            } catch (err) {
+                _didIteratorError13 = true;
+                _iteratorError13 = err;
+            } finally {
                 try {
-
-                    for (var _iterator13 = this.data.tips[Symbol.iterator](), _step13; !(_iteratorNormalCompletion13 = (_step13 = _iterator13.next()).done); _iteratorNormalCompletion13 = true) {
-                        var tipVm = _step13.value;
-
-
-                        tipVm.$destroy();
+                    if (!_iteratorNormalCompletion13 && _iterator13.return) {
+                        _iterator13.return();
                     }
-                } catch (err) {
-                    _didIteratorError13 = true;
-                    _iteratorError13 = err;
                 } finally {
-                    try {
-                        if (!_iteratorNormalCompletion13 && _iterator13.return) {
-                            _iterator13.return();
-                        }
-                    } finally {
-                        if (_didIteratorError13) {
-                            throw _iteratorError13;
-                        }
+                    if (_didIteratorError13) {
+                        throw _iteratorError13;
                     }
                 }
+            }
 
-                this.data.tips = [];
+            this.data.tips = [];
+
+            if (!this.conf.itemTip) {
 
                 return;
             }
@@ -19759,6 +19762,36 @@ exports.default = {
                 this.data.$listWrap.style.width = $wrap.offsetWidth + 'px';
 
                 this.data.showlist = false;
+
+                var _iteratorNormalCompletion16 = true;
+                var _didIteratorError16 = false;
+                var _iteratorError16 = undefined;
+
+                try {
+                    for (var _iterator16 = this.data.tips[Symbol.iterator](), _step16; !(_iteratorNormalCompletion16 = (_step16 = _iterator16.next()).done); _iteratorNormalCompletion16 = true) {
+                        var tipVm = _step16.value;
+
+
+                        if (tipVm.$el._vm.data.show) {
+
+                            tipVm.$el._vm.hide();
+                        }
+                    }
+                } catch (err) {
+                    _didIteratorError16 = true;
+                    _iteratorError16 = err;
+                } finally {
+                    try {
+                        if (!_iteratorNormalCompletion16 && _iterator16.return) {
+                            _iterator16.return();
+                        }
+                    } finally {
+                        if (_didIteratorError16) {
+                            throw _iteratorError16;
+                        }
+                    }
+                }
+
                 this.$emit('list-hide');
             }
 
@@ -19822,34 +19855,42 @@ exports.default = {
         });
 
         this.$watch('conf.itemTipDirect', function () {
-            var _iteratorNormalCompletion16 = true;
-            var _didIteratorError16 = false;
-            var _iteratorError16 = undefined;
+            var _iteratorNormalCompletion17 = true;
+            var _didIteratorError17 = false;
+            var _iteratorError17 = undefined;
 
             try {
 
-                for (var _iterator16 = _this3.data.tips[Symbol.iterator](), _step16; !(_iteratorNormalCompletion16 = (_step16 = _iterator16.next()).done); _iteratorNormalCompletion16 = true) {
-                    var tipVm = _step16.value;
+                for (var _iterator17 = _this3.data.tips[Symbol.iterator](), _step17; !(_iteratorNormalCompletion17 = (_step17 = _iterator17.next()).done); _iteratorNormalCompletion17 = true) {
+                    var tipVm = _step17.value;
 
 
                     tipVm.$el._vm.conf.placement = _this3.conf.itemTipDirect;
                 }
             } catch (err) {
-                _didIteratorError16 = true;
-                _iteratorError16 = err;
+                _didIteratorError17 = true;
+                _iteratorError17 = err;
             } finally {
                 try {
-                    if (!_iteratorNormalCompletion16 && _iterator16.return) {
-                        _iterator16.return();
+                    if (!_iteratorNormalCompletion17 && _iterator17.return) {
+                        _iterator17.return();
                     }
                 } finally {
-                    if (_didIteratorError16) {
-                        throw _iteratorError16;
+                    if (_didIteratorError17) {
+                        throw _iteratorError17;
                     }
                 }
             }
         }, {
             immediate: true
+        });
+
+        this.$watch('data.itemValueList', function (newVal, oldVal) {
+
+            if (JSON.stringify(newVal) !== JSON.stringify(oldVal)) {
+
+                _this3._refreshTips();
+            }
         });
 
         this.$on('list-show', function () {
@@ -24352,6 +24393,11 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
 
 exports.default = {
     origin: 'UI',
@@ -24372,6 +24418,10 @@ exports.default = {
             default: function _default() {
                 return {};
             }
+        },
+        anchorTarget: {
+            type: Boolean,
+            default: false
         }
     },
     computed: {
@@ -24380,7 +24430,8 @@ exports.default = {
             return {
                 tab: this.tab,
                 prepend: this.prepend,
-                append: this.append
+                append: this.append,
+                anchorTarget: this.anchorTarget
             };
         }
     },
@@ -24523,6 +24574,55 @@ exports.default = {
                 }
             });
         },
+        _findParentTab: function _findParentTab($el, $originEl) {
+
+            var $closestTabItem = $el.closest('.mor-tab-item');
+
+            if ($closestTabItem) {
+
+                var $closestTab = $closestTabItem.closest('mor-tab');
+
+                if ($closestTab) {
+
+                    var name = $closestTabItem.getAttribute('name');
+
+                    if ($closestTab._vm.conf.anchorTarget) {
+
+                        $closestTab._vm.switch(name);
+                    }
+
+                    this._findParentTab($closestTab, $originEl);
+                }
+            } else {
+
+                this.Vue.nextTick(function () {
+
+                    $originEl.scrollIntoView();
+                });
+            }
+        },
+        _targetAnchorPoint: function _targetAnchorPoint() {
+
+            var anchor = window.location.hash.replace(/^#/, '');
+            var $targetEl = void 0;
+
+            anchor = decodeURI(anchor);
+
+            if (anchor) {
+
+                $targetEl = this.$el.querySelector('#' + anchor);
+
+                if (!$targetEl) {
+
+                    $targetEl = this.$el.querySelector('a[name="' + anchor + '"]');
+                }
+
+                if ($targetEl) {
+
+                    this._findParentTab($targetEl, $targetEl);
+                }
+            }
+        },
         switch: function _switch(name) {
 
             if (name === this.data.selectTab) {
@@ -24604,6 +24704,12 @@ exports.default = {
 
         this._initTabs();
 
+        this.Vue.nextTick(function () {
+
+            _this2._targetAnchorPoint();
+            window.addEventListener('hashchange', _this2._targetAnchorPoint);
+        });
+
         this.$watch('conf.tab', function () {
 
             _this2._initSelectTab();
@@ -24615,8 +24721,11 @@ exports.default = {
 
             this._initTabs();
         }
-    }
+    },
+    destroyed: function destroyed() {
 
+        window.removeEventListener('hashchange', this._targetAnchorPoint);
+    }
 };
 module.exports = exports['default'];
 
@@ -32225,41 +32334,58 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("mor-tab", { class: [], attrs: { _uiid: _vm.uiid } }, [
-    _c(
-      "ul",
-      _vm._l(_vm.data.namelist, function(item) {
-        return _c("li", {
-          key: item.name,
-          attrs: { name: item.name },
-          domProps: { innerHTML: _vm._s(item.html) },
-          on: {
-            click: function($event) {
-              _vm._onClick(item.name)
+  return _c(
+    "mor-tab",
+    {
+      class: [],
+      attrs: {
+        _uiid: _vm.uiid,
+        tab: _vm.tab,
+        prepend: _vm.prepend,
+        append: _vm.append,
+        "anchor-target": _vm.anchorTarget
+      }
+    },
+    [
+      _c(
+        "ul",
+        _vm._l(_vm.data.namelist, function(item) {
+          return _c("li", {
+            key: item.name,
+            attrs: { name: item.name },
+            domProps: { innerHTML: _vm._s(item.html) },
+            on: {
+              click: function($event) {
+                _vm._onClick(item.name)
+              }
             }
-          }
+          })
         })
-      })
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "contents" },
-      [
-        _vm._l(_vm.$slots, function(item, name) {
-          return [
-            _c(
-              "div",
-              { key: name, staticClass: "item", attrs: { name: name } },
-              [_vm._t(name)],
-              2
-            )
-          ]
-        })
-      ],
-      2
-    )
-  ])
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "contents" },
+        [
+          _vm._l(_vm.$slots, function(item, name) {
+            return [
+              _c(
+                "div",
+                {
+                  key: name,
+                  staticClass: "item mor-tab-item",
+                  attrs: { name: name }
+                },
+                [_vm._t(name)],
+                2
+              )
+            ]
+          })
+        ],
+        2
+      )
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -39845,6 +39971,8 @@ morning.install = function (Vue, options) {
         var creater = _components2.default[name];
         var component = void 0;
 
+        creater.name = 'morning-' + creater.name;
+
         if (creater.origin === 'UI') {
 
             component = this._origin.UI.extend(creater);
@@ -39858,14 +39986,14 @@ morning.install = function (Vue, options) {
 
         if (!component.private) {
 
-            Vue.component(options.prefix + '-' + component.options.name, component);
+            Vue.component(options.prefix + '-' + name, component);
         }
 
-        Vue.component('morning-' + component.options.name, component);
+        Vue.component(component.options.name, component);
 
         this._components[name] = component;
-        this._ignoreElements.push('mor-' + component.options.name);
-        this._ignoreElements.push('morning-' + component.options.name);
+        this._ignoreElements.push('mor-' + name);
+        this._ignoreElements.push(component.options.name);
     }
 
     Vue.config.ignoredElements = this._ignoreElements;
