@@ -18738,6 +18738,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
 
 var _trim = __webpack_require__(174);
 
@@ -18877,7 +18879,8 @@ exports.default = {
                 $list: null,
                 $emitTarget: null,
                 $selectArea: null,
-                $selectList: null
+                $selectList: null,
+                highPerfMode: false
             },
             listStyle: {}
         };
@@ -19091,6 +19094,9 @@ exports.default = {
 
                     list.push($item.getAttribute('value'));
                 }
+
+                // 高性能模式，当列表项目大于200后开启
+                // 去除了不必要的动画、调整CSS、减少计算频率
             } catch (err) {
                 _didIteratorError4 = true;
                 _iteratorError4 = err;
@@ -19104,6 +19110,14 @@ exports.default = {
                         throw _iteratorError4;
                     }
                 }
+            }
+
+            if (list.length > 200) {
+
+                this.data.highPerfMode = true;
+            } else {
+
+                this.data.highPerfMode = false;
             }
 
             this.data.itemValueList = list;
@@ -19695,6 +19709,7 @@ exports.default = {
             }
         },
         _setListHeight: function _setListHeight() {
+            var _this3 = this;
 
             var $item = this.data.$list.querySelector('li:not(.noitem):not(.current):not(.selected)');
 
@@ -19703,22 +19718,32 @@ exports.default = {
                 return;
             }
 
-            var itemHeight = $item.offsetHeight || this.data.lastItemHeight;
-            var maxHeight = itemHeight * this.conf.maxShow;
+            var itemHeight = void 0;
+            var maxHeight = void 0;
 
-            if (itemHeight) {
+            // 因为性能原因this.data.$list采用display:none隐藏，所以需要通过shownow，获取正确高度
+            this.data.$list.classList.add('shownow');
 
-                this.data.lastItemHeight = itemHeight;
-            }
+            this.Vue.nextTick(function () {
 
-            if (this.listStyle.maxHeight === maxHeight + 'px') {
+                itemHeight = $item.offsetHeight || _this3.data.lastItemHeight;
+                _this3.data.$list.classList.remove('shownow');
+                maxHeight = itemHeight * _this3.conf.maxShow;
 
-                return;
-            }
+                if (itemHeight) {
 
-            this.listStyle = {
-                maxHeight: maxHeight + 'px'
-            };
+                    _this3.data.lastItemHeight = itemHeight;
+                }
+
+                if (_this3.listStyle.maxHeight === maxHeight + 'px') {
+
+                    return;
+                }
+
+                _this3.listStyle = {
+                    maxHeight: maxHeight + 'px'
+                };
+            });
         },
         _resizeSelectArea: function _resizeSelectArea() {
 
@@ -19858,7 +19883,7 @@ exports.default = {
         }
     },
     mounted: function mounted() {
-        var _this3 = this;
+        var _this4 = this;
 
         this.data.mounted = true;
         this.data.$list = this.$el.querySelector('.select-list>.list');
@@ -19875,7 +19900,7 @@ exports.default = {
 
         setTimeout(function () {
 
-            _this3.$watch('conf.maxShow', _this3._setListHeight, {
+            _this4.$watch('conf.maxShow', _this4._setListHeight, {
                 immediate: true
             });
         });
@@ -19884,21 +19909,21 @@ exports.default = {
 
             if (oldVal) {
 
-                document.querySelector(oldVal).removeEventListener('click', _this3._emitClick);
+                document.querySelector(oldVal).removeEventListener('click', _this4._emitClick);
             }
 
             if (newVal) {
 
-                _this3.data.$listWrap = _this3.data.$selectArea;
+                _this4.data.$listWrap = _this4.data.$selectArea;
 
-                _this3.Vue.nextTick(function () {
+                _this4.Vue.nextTick(function () {
 
-                    _this3.data.$emitTarget = document.querySelector(newVal);
-                    document.querySelector(newVal).addEventListener('click', _this3._emitClick);
+                    _this4.data.$emitTarget = document.querySelector(newVal);
+                    document.querySelector(newVal).addEventListener('click', _this4._emitClick);
                 });
             } else {
 
-                _this3.data.$listWrap = _this3.data.$selectList;
+                _this4.data.$listWrap = _this4.data.$selectList;
             }
         }, {
             immediate: true
@@ -19908,32 +19933,32 @@ exports.default = {
 
         this.$watch('conf.multiSelect', function () {
 
-            var value = _this3.get();
+            var value = _this4.get();
 
-            if (!_this3.conf.multiSelect && value.length > 1) {
+            if (!_this4.conf.multiSelect && value.length > 1) {
 
                 value = value.slice(0, 1);
             }
 
-            _this3._set(value, true);
-            _this3._onValueChange();
+            _this4._set(value, true);
+            _this4._onValueChange();
         });
 
         this.$watch('conf.max', function () {
 
-            _this3._set(_this3._maxFilter(_this3.get()), true);
+            _this4._set(_this4._maxFilter(_this4.get()), true);
         });
 
         this.$watch('conf.inlineImgSize', function () {
 
-            _this3._resizeInlineImg();
+            _this4._resizeInlineImg();
         }, {
             immediate: true
         });
 
         this.$watch('conf.itemTip', function () {
 
-            _this3._refreshTips();
+            _this4._refreshTips();
         }, {
             immediate: true
         });
@@ -19945,11 +19970,11 @@ exports.default = {
 
             try {
 
-                for (var _iterator17 = _this3.data.tips[Symbol.iterator](), _step17; !(_iteratorNormalCompletion17 = (_step17 = _iterator17.next()).done); _iteratorNormalCompletion17 = true) {
+                for (var _iterator17 = _this4.data.tips[Symbol.iterator](), _step17; !(_iteratorNormalCompletion17 = (_step17 = _iterator17.next()).done); _iteratorNormalCompletion17 = true) {
                     var tipVm = _step17.value;
 
 
-                    tipVm.$el._vm.conf.placement = _this3.conf.itemTipDirect;
+                    tipVm.$el._vm.conf.placement = _this4.conf.itemTipDirect;
                 }
             } catch (err) {
                 _didIteratorError17 = true;
@@ -19973,7 +19998,7 @@ exports.default = {
 
             if (JSON.stringify(newVal) !== JSON.stringify(oldVal)) {
 
-                _this3._refreshTips();
+                _this4._refreshTips();
             }
         });
 
@@ -19981,20 +20006,25 @@ exports.default = {
 
             setTimeout(function () {
 
-                _this3._globalEventAdd('click', '_checkArea');
+                _this4._globalEventAdd('click', '_checkArea');
             });
         });
 
         this.$on('list-hide', function () {
 
-            _this3._globalEventRemove('click', '_checkArea');
+            _this4._globalEventRemove('click', '_checkArea');
         });
     },
     updated: function updated() {
 
-        this._setListHeight();
-        this._resizeInlineImg();
         this._updateItemValueList();
+
+        if (!this.data.highPerfMode) {
+
+            this._setListHeight();
+        }
+
+        this._resizeInlineImg();
         this._resizeSelectArea();
     },
     beforeDestroy: function beforeDestroy() {
@@ -30631,6 +30661,7 @@ var render = function() {
               "select-item": _vm.data.value && _vm.data.value.length > 0,
               "is-max": !!_vm.isMax,
               showlist: !!_vm.data.showlist,
+              "no-animation": !!_vm.data.highPerfMode,
               "input-group": !!_vm.conf.prepend
             },
             _vm.stateClass
@@ -30738,7 +30769,14 @@ var render = function() {
                           ])
                   ],
               _vm._v(" "),
-              _c("i", { staticClass: "morningicon drop" }, [_vm._v("")])
+              _c(
+                "i",
+                {
+                  staticClass: "morningicon drop",
+                  class: { "no-animation": !!_vm.data.highPerfMode }
+                },
+                [_vm._v("")]
+              )
             ],
             2
           ),
@@ -30750,6 +30788,7 @@ var render = function() {
               class: [
                 {
                   showlist: !!_vm.data.showlist,
+                  "no-animation": !!_vm.data.highPerfMode,
                   "hide-selected": _vm.conf.hideSelected,
                   "mor-select-wrap": !_vm.conf.separateEmit
                 },
