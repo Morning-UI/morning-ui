@@ -4846,16 +4846,18 @@ mor-tab .contents {
   position: relative;
 }
 mor-tab .contents > .item {
-  /*opacity: 0;*/
   pointer-events: none;
   height: 0;
   overflow: hidden;
 }
 mor-tab .contents > .item.current {
-  /*display: block;*/
+  padding: 16px;
   pointer-events: auto;
   height: auto;
   overflow: visible;
+}
+mor-tab.no-padding .contents > .item.current {
+  padding: 0;
 }
 mor-tab.block > ul {
   display: flex;
@@ -8650,7 +8652,6 @@ mor-select.input-group .select-area {
 .mor-select-wrap.no-animation .list {
   transform: none;
   transition: none;
-  /*opacity: 0;*/
   display: none;
 }
 .mor-select-wrap.no-animation .list.shownow {
@@ -8905,7 +8906,6 @@ mor-select.input-group .select-area {
 }
 .mor-select-wrap.no-animation.showlist .list,
 .mor-select-wrap.no-animation .showlist .list {
-  /*opacity: 1;*/
   display: block;
   transform: none;
 }
@@ -9932,6 +9932,9 @@ mor-datepicker.inline-separator .wrap .datepicker-input-1 mor-textinput input {
 .mor-date-wrap {
   min-width: 282px;
   max-width: 282px;
+}
+.mor-date-wrap .date-select {
+  position: relative;
 }
 .mor-date-wrap .date-select:hover {
   border-color: #E6E6E6;
