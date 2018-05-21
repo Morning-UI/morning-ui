@@ -8566,6 +8566,9 @@ mor-select .wrap > .morningicon.drop {
   font-size: 30px;
   text-indent: 1px;
 }
+mor-select .wrap > .morningicon.no-animation {
+  transition: none;
+}
 mor-select .wrap:hover {
   border-color: #d7d7d7;
 }
@@ -8643,6 +8646,15 @@ mor-select.input-group .select-area {
   height: 5px;
   background: rgba(0, 0, 0, 0.1);
   border-radius: 4px;
+}
+.mor-select-wrap.no-animation .list {
+  transform: none;
+  transition: none;
+  /*opacity: 0;*/
+  display: none;
+}
+.mor-select-wrap.no-animation .list.shownow {
+  display: block;
 }
 .mor-select-wrap li {
   padding: 0.5em 1em;
@@ -8771,6 +8783,9 @@ mor-select.input-group .select-area {
   font-size: 30px;
   text-indent: 1px;
 }
+.mor-select-wrap .wrap > .morningicon.no-animation {
+  transition: none;
+}
 .mor-select-wrap .wrap:hover {
   border-color: #d7d7d7;
 }
@@ -8887,6 +8902,12 @@ mor-select.input-group .select-area {
 .mor-select-wrap.showlist .list,
 .mor-select-wrap .showlist .list {
   transform: scaleY(1);
+}
+.mor-select-wrap.no-animation.showlist .list,
+.mor-select-wrap.no-animation .showlist .list {
+  /*opacity: 1;*/
+  display: block;
+  transform: none;
 }
 
 mor-checkbox {

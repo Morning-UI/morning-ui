@@ -333,7 +333,7 @@
     </div>
     :::
 
-    你可以通过设置``的`width`来调整宽度：
+    你可以通过设置`ui-select`的`width`来调整宽度：
 
     :::democode/html
     <div style="width:300px;">
