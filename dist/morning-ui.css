@@ -4846,16 +4846,18 @@ mor-tab .contents {
   position: relative;
 }
 mor-tab .contents > .item {
-  /*opacity: 0;*/
   pointer-events: none;
   height: 0;
   overflow: hidden;
 }
 mor-tab .contents > .item.current {
-  /*display: block;*/
+  padding: 16px;
   pointer-events: auto;
   height: auto;
   overflow: visible;
+}
+mor-tab.no-padding .contents > .item.current {
+  padding: 0;
 }
 mor-tab.block > ul {
   display: flex;
