@@ -4846,16 +4846,18 @@ mor-tab .contents {
   position: relative;
 }
 mor-tab .contents > .item {
-  /*opacity: 0;*/
   pointer-events: none;
   height: 0;
   overflow: hidden;
 }
 mor-tab .contents > .item.current {
-  /*display: block;*/
+  padding: 16px;
   pointer-events: auto;
   height: auto;
   overflow: visible;
+}
+mor-tab.no-padding .contents > .item.current {
+  padding: 0;
 }
 mor-tab.block > ul {
   display: flex;
@@ -8566,6 +8568,9 @@ mor-select .wrap > .morningicon.drop {
   font-size: 30px;
   text-indent: 1px;
 }
+mor-select .wrap > .morningicon.no-animation {
+  transition: none;
+}
 mor-select .wrap:hover {
   border-color: #d7d7d7;
 }
@@ -8643,6 +8648,14 @@ mor-select.input-group .select-area {
   height: 5px;
   background: rgba(0, 0, 0, 0.1);
   border-radius: 4px;
+}
+.mor-select-wrap.no-animation .list {
+  transform: none;
+  transition: none;
+  display: none;
+}
+.mor-select-wrap.no-animation .list.shownow {
+  display: block;
 }
 .mor-select-wrap li {
   padding: 0.5em 1em;
@@ -8771,6 +8784,9 @@ mor-select.input-group .select-area {
   font-size: 30px;
   text-indent: 1px;
 }
+.mor-select-wrap .wrap > .morningicon.no-animation {
+  transition: none;
+}
 .mor-select-wrap .wrap:hover {
   border-color: #d7d7d7;
 }
@@ -8887,6 +8903,11 @@ mor-select.input-group .select-area {
 .mor-select-wrap.showlist .list,
 .mor-select-wrap .showlist .list {
   transform: scaleY(1);
+}
+.mor-select-wrap.no-animation.showlist .list,
+.mor-select-wrap.no-animation .showlist .list {
+  display: block;
+  transform: none;
 }
 
 mor-checkbox {
@@ -9911,6 +9932,9 @@ mor-datepicker.inline-separator .wrap .datepicker-input-1 mor-textinput input {
 .mor-date-wrap {
   min-width: 282px;
   max-width: 282px;
+}
+.mor-date-wrap .date-select {
+  position: relative;
 }
 .mor-date-wrap .date-select:hover {
   border-color: #E6E6E6;

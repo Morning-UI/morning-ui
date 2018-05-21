@@ -26,7 +26,21 @@
     </ui-tab>
     :::
 
+    #### 无内边距
+
+    标签页默认有一定内边距，通过`no-padding`样式类为标签页内容取消内边距：
+
+    :::democode/html
+    <ui-tab class="no-padding">
+        <div slot="第一页">第一页</div>
+        <div slot="第二页">第二页</div>
+        <div slot="第三页">第三页</div>
+    </ui-tab>
+    :::
+
     #### 区块标签页
+
+    通过`block`样式类定义区块风格的标签页：
 
     :::democode/html
     <ui-tab class="block">
@@ -38,6 +52,8 @@
 
     #### 下划线标签页
 
+    通过`underline`样式类定义下划线风格的标签页：
+
     :::democode/html
     <ui-tab class="underline">
         <div slot="第一页">第一页</div>
@@ -48,7 +64,7 @@
     
     #### 无边框标签页
 
-    无边框标签页一般配合下划线使用。
+    通过`noborder`样式类定义无边框标签页，一般配合下划线使用。
 
     :::democode/html
     <ui-tab class="underline noborder">

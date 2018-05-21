@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## 0.10.28
+
+`2018年5月22日`
+
+- `ui-tab`新增`no-padding`样式类
+- 优化`ui-select`在渲染大列表时的性能
+- 修复`ui-datepick`、`ui-datetimepick`中的快速选择区域消失的问题
+
+__Upgrade Precautions__
+
+- 现在`ui-tab`默认具有内边距，可以通过`no-padding`样式类来取消内边距
+
 ## 0.10.27
 
 `2018年5月20日`

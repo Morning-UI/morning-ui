@@ -222,6 +222,10 @@
             text-indent: 1px;
         }
 
+        &.no-animation{
+            transition: none;
+        }
+
         // &.clean{
         //     top: 0;
         //     right: 26px;
@@ -347,6 +351,18 @@ mor-select{
         .setup-scrollbar();
     }
 
+    &.no-animation{
+        .list{
+            transform: none;
+            transition: none;
+            display: none;
+
+            &.shownow{
+                display: block;
+            }
+        }
+    }
+
     li{
         padding: 0.5em 1em;
         border-top: 1px lighten(@colorFormBorder, 5%) solid;
@@ -436,6 +452,14 @@ mor-select{
 
         .list{
             transform: scaleY(1);
+        }
+    }
+
+    &.no-animation.showlist,
+    &.no-animation .showlist{
+        .list{
+            display: block;
+            transform: none;
         }
     }
 }

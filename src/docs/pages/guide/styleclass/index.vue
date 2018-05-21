@@ -41,6 +41,7 @@
     - `fill` : 高度填满父元素
     - `full` : 元素没有内边距
     - `margin` : 元素有外边距
+    - `no-padding` : 元素无内边距
     - `inline` : 内联
     - `inline-block` : 内联块
     - `block` : 块级 / 区块

@@ -41,6 +41,7 @@
             'select-item' : (data.value && data.value.length > 0),
             'is-max' : !!isMax,
             showlist : !!data.showlist,
+            'no-animation' : !!data.highPerfMode,
             'input-group' : !!conf.prepend
         }, stateClass]"
     >
@@ -117,7 +118,7 @@
                 </div>
             </template>
 
-            <i class="morningicon drop">&#xe6b1;</i>
+            <i class="morningicon drop" :class="{'no-animation' : !!data.highPerfMode}">&#xe6b1;</i>
 
         </div>
     
@@ -125,6 +126,7 @@
             class="select-list"
             :class="[{
                 showlist : !!data.showlist,
+                'no-animation' : !!data.highPerfMode,
                 'hide-selected' : conf.hideSelected,
                 'mor-select-wrap' : !conf.separateEmit
             }, stateClass]"
@@ -277,7 +279,8 @@ export default {
                 $list : null,
                 $emitTarget : null,
                 $selectArea : null,
-                $selectList : null
+                $selectList : null,
+                highPerfMode : false
             },
             listStyle : {}
         };
@@ -451,12 +454,26 @@ export default {
         },
         _updateItemValueList : function () {
 
+            const useHighPrefModeMinItems = 200;
+
             let $items = this.data.$list.querySelectorAll('li:not(.noitem)');
             let list = [];
 
             for (let $item of $items.values()) {
 
                 list.push($item.getAttribute('value'));
+
+            }
+
+            // 高性能模式，当列表项目大于200后开启
+            // 去除了不必要的动画、调整CSS、减少计算频率
+            if (list.length > useHighPrefModeMinItems) {
+
+                this.data.highPerfMode = true;
+
+            } else {
+
+                this.data.highPerfMode = false;
 
             }
 
@@ -924,24 +941,35 @@ export default {
 
             }
 
-            let itemHeight = $item.offsetHeight || this.data.lastItemHeight;
-            let maxHeight = itemHeight * this.conf.maxShow;
+            let itemHeight;
+            let maxHeight;
 
-            if (itemHeight) {
+            // 因为性能原因this.data.$list采用display:none隐藏，所以需要通过shownow，获取正确高度
+            this.data.$list.classList.add('shownow');
 
-                this.data.lastItemHeight = itemHeight;
+            this.Vue.nextTick(() => {
 
-            }
+                itemHeight = $item.offsetHeight || this.data.lastItemHeight;
+                this.data.$list.classList.remove('shownow');
+                maxHeight = itemHeight * this.conf.maxShow;
 
-            if (this.listStyle.maxHeight === `${maxHeight}px`) {
+                if (itemHeight) {
 
-                return;
+                    this.data.lastItemHeight = itemHeight;
 
-            }
+                }
 
-            this.listStyle = {
-                maxHeight : `${maxHeight}px`,
-            };
+                if (this.listStyle.maxHeight === `${maxHeight}px`) {
+
+                    return;
+
+                }
+
+                this.listStyle = {
+                    maxHeight : `${maxHeight}px`,
+                };
+
+            });
 
         },
         _resizeSelectArea : function () {
@@ -1188,10 +1216,16 @@ export default {
 
     },
     updated : function () {
-
-        this._setListHeight();
-        this._resizeInlineImg();
+        
         this._updateItemValueList();
+
+        if (!this.data.highPerfMode) {
+
+            this._setListHeight();
+
+        }
+
+        this._resizeInlineImg();
         this._resizeSelectArea();
 
     },

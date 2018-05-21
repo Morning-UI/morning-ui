@@ -18,6 +18,26 @@
     
     ### 更新记录
 
+    ### 0.10.28 <ui-badge class="circle ver-stable" size="s" color="light-theme">Stable</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2018年5月22日，
+            Archive : 
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.28" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.28/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.10.28/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor><br/><br/>
+
+    - `ui-tab`新增`no-padding`样式类
+    - 优化`ui-select`在渲染大列表时的性能
+    - 修复`ui-datepick`、`ui-datetimepick`中的快速选择区域消失的问题
+
+    <ui-label color="primary">Upgrade Precautions</ui-label>
+
+    - 现在`ui-tab`默认具有内边距，可以通过`no-padding`样式类来取消内边距
+
     ### 0.10.27 <ui-badge class="circle ver-stable" size="s" color="extra-light-black">Beta</ui-badge>
 
     <ui-textcolor color="light-blue">
