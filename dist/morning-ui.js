@@ -19080,6 +19080,8 @@ exports.default = {
         },
         _updateItemValueList: function _updateItemValueList() {
 
+            var useHighPrefModeMinItems = 200;
+
             var $items = this.data.$list.querySelectorAll('li:not(.noitem)');
             var list = [];
 
@@ -19112,7 +19114,7 @@ exports.default = {
                 }
             }
 
-            if (list.length > 200) {
+            if (list.length > useHighPrefModeMinItems) {
 
                 this.data.highPerfMode = true;
             } else {

@@ -46,18 +46,23 @@ mor-tab{
         position: relative;
 
         > .item{
-
-            /*opacity: 0;*/
             pointer-events: none;
             height: 0;
             overflow: hidden;
 
             &.current{
-
-                /*display: block;*/
+                padding: @fontSize;
                 pointer-events: auto;
                 height: auto;
                 overflow: visible;
+            }
+        }
+    }
+
+    &.no-padding{
+        .contents{
+            > .item.current{
+                padding: 0;
             }
         }
     }
