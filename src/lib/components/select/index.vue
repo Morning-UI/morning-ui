@@ -454,6 +454,8 @@ export default {
         },
         _updateItemValueList : function () {
 
+            const useHighPrefModeMinItems = 200;
+
             let $items = this.data.$list.querySelectorAll('li:not(.noitem)');
             let list = [];
 
@@ -465,7 +467,7 @@ export default {
 
             // 高性能模式，当列表项目大于200后开启
             // 去除了不必要的动画、调整CSS、减少计算频率
-            if (list.length > 200) {
+            if (list.length > useHighPrefModeMinItems) {
 
                 this.data.highPerfMode = true;
 
