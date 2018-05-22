@@ -334,12 +334,12 @@
     </div>
     :::
 
-    你可以通过设置`ui-select`的`width`来调整宽度：
+    你可以通过设置`list-width`配置来调整宽度：
 
     :::democode/html
     <div style="width:300px;">
         <ui-btn class="demo11">点击选择</ui-btn>
-        <ui-select form-name="Select designer" separate-emit=".demo11" style="width:180px;">
+        <ui-select form-name="Select designer" separate-emit=".demo11" list-width="180">
             <li value="tim">Tim Boelaars</li>
             <li value="andrew">Andrew Colin Beck</li>
             <li value="gustavo">Gustavo Zambelli</li>

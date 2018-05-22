@@ -241,6 +241,7 @@
     - `quick-pick` : 快速选择
     - `anchor-target` : 锚点定位
     - `separate-emi` : 外部触发(触发分离)
+    - `list-width` : 列表宽度
 
     </script>
     </doc-guide>
