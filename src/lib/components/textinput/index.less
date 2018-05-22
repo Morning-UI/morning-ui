@@ -102,6 +102,34 @@ mor-textinput{
         }
     }
 
+    &.inline-append{
+        .input-group-addon{
+            background: none;
+
+            &:first-child{
+                padding-right: 0;
+            }
+
+            &:nth-child(3) {
+                padding-left: 0;
+            }
+        }
+
+        .input-group-addon + input{
+            border-left: 0;
+        }
+
+        input.has-append {
+            border-right: 0;
+        }
+
+        &.input-focus{
+            .input-group-addon{
+                border-color: @colorFormBorderFocus;
+            }
+        }
+    }
+
     &.st-normal{}
 
     &.st-disabled,

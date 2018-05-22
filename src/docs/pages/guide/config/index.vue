@@ -240,7 +240,9 @@
     - `clean-allzone-btn` : 清空所有区域按钮
     - `quick-pick` : 快速选择
     - `anchor-target` : 锚点定位
-    - `separate-emi` : 外部触发(触发分离)
+    - `separate-emit` : 外部触发(触发分离)
+    - `separator-type` : 分隔内容类型
+    - `append-type` : 附加内容类型
 
     </script>
     </doc-guide>
