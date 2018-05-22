@@ -17,6 +17,21 @@
     <!-- ### 0.11.0 <ui-badge class="circle" s light-blue>Beta</ui-badge> -->
     
     ### 更新记录
+    
+    ### 0.10.29 <ui-badge class="circle ver-stable" size="s" color="light-theme">Stable</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2018年5月22日，
+            Archive : 
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.29" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.29/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.10.29/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor><br/><br/>
+
+    - `ui-select`新增`list-width`配置用来设置下拉列表的宽度
+    - 修复`ui-select`组件使用`separate-emit`配置后下拉选项不可见的问题
 
     ### 0.10.28 <ui-badge class="circle ver-stable" size="s" color="light-theme">Stable</ui-badge>
 

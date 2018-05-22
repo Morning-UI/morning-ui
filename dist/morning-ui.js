@@ -18740,6 +18740,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
 
 var _trim = __webpack_require__(174);
 
@@ -18818,6 +18819,10 @@ exports.default = {
         itemTipDirect: {
             type: String,
             default: 'top'
+        },
+        listWidth: {
+            type: [Boolean, Number],
+            default: false
         }
     },
     computed: {
@@ -18837,7 +18842,8 @@ exports.default = {
                 hideSelected: this.hideSelected,
                 inlineImgSize: this.inlineImgSize,
                 itemTip: this.itemTip,
-                itemTipDirect: this.itemTipDirect
+                itemTipDirect: this.itemTipDirect,
+                listWidth: this.listWidth
             };
         },
         moreClass: function moreClass() {
@@ -19725,11 +19731,13 @@ exports.default = {
 
             // 因为性能原因this.data.$list采用display:none隐藏，所以需要通过shownow，获取正确高度
             this.data.$list.classList.add('shownow');
+            this.data.$selectArea.classList.add('shownow');
 
             this.Vue.nextTick(function () {
 
                 itemHeight = $item.offsetHeight || _this3.data.lastItemHeight;
                 _this3.data.$list.classList.remove('shownow');
+                _this3.data.$selectArea.classList.remove('shownow');
                 maxHeight = itemHeight * _this3.conf.maxShow;
 
                 if (itemHeight) {
@@ -19790,6 +19798,9 @@ exports.default = {
                 if (!this.conf.separateEmit) {
 
                     this.data.$listWrap.style.width = $target.offsetWidth + 'px';
+                } else if (typeof this.conf.listWidth === 'number') {
+
+                    this.data.$listWrap.style.width = this.conf.listWidth + 'px';
                 } else {
 
                     this.data.$listWrap.style.width = (this.$el.offsetWidth || this.data.$listWrap.offsetWidth) + 'px';
@@ -19799,7 +19810,7 @@ exports.default = {
                     placement: 'bottom',
                     element: this.data.$listWrap,
                     target: $target,
-                    offset: '0 -0.5px'
+                    offset: '0 0'
                 });
 
                 if (this.conf.multiSelect) {
@@ -30635,7 +30646,8 @@ var render = function() {
         "hide-selected": _vm.hideSelected,
         "inline-img-size": _vm.inlineImgSize,
         "item-tip": _vm.itemTip,
-        "item-tip-direct": _vm.itemTipDirect
+        "item-tip-direct": _vm.itemTipDirect,
+        "list-width": _vm.listWidth
       }
     },
     [
@@ -39935,7 +39947,7 @@ var morning = {
         white: 'wh'
     },
     isMorning: true,
-    version: '0.10.28',
+    version: '0.10.29',
     map: {}
 };
 
