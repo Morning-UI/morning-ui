@@ -57,6 +57,7 @@
     |[hide-value](#hide-value)|表单的数值不可见，一般用于密码表单|`true`<br>`false`|Boolean|`false`|
     |[prepend](#prepend)|表单前缀|任意字符串(支持HTML)|String|`undefined`|
     |[append](#append)|表单后缀|任意字符串(支持HTML)|String|`undefined`|
+    |[append-type](#append-type)|表单前后缀内容的展现类型|`'block'`：块状<br>`'inline'`：行内|String|`'block'`|
     |[align](#align)|内容对齐方式|`'left'` : 左对齐<br>`'center'` : 居中对齐<br>`'right'` : 右对齐|String|`'left'`|
     :::
 
@@ -90,6 +91,16 @@
     :::democode/html
     <div style="width:300px;">
         <ui-textinput form-name="百分比" append="%"></ui-textinput>
+    </div>
+    :::
+
+    #### append-type
+
+    行内类型的前后缀：
+
+    :::democode/html
+    <div style="width:180px;">
+        <ui-textinput form-name="当天消费" prepend="支出"  append="人名币" append-type="inline"></ui-textinput>
     </div>
     :::
 
