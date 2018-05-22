@@ -243,6 +243,7 @@
     - `separate-emit` : 外部触发(触发分离)
     - `separator-type` : 分隔内容类型
     - `append-type` : 附加内容类型
+    - `list-width` : 列表宽度
 
     </script>
     </doc-guide>

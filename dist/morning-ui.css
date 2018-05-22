@@ -8616,6 +8616,9 @@ mor-select.input-group .select-area {
 .mor-select-wrap.select-area {
   display: none;
 }
+.mor-select-wrap.select-area.shownow {
+  display: block;
+}
 .mor-select-wrap.select-list {
   pointer-events: none;
   visibility: hidden;

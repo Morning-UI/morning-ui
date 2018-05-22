@@ -300,6 +300,7 @@
     |[inline-img-size](#inline-img-size)|项目的缩略图大小(这不会影响选中项目的缩略图大小)|px或em为单位的数值字符串|String|'2em'|
     |[item-tip](#item-tip)|允许为下拉菜单设置提示|`true`<br>`false`|Boolean|`false`|
     |[item-tip-direct](#item-tip-direct)|为下拉菜单设置提示的方向，需要开启`list-tip`才有效|`top`<br>`right`<br>`bottom`<br>`left`|String|`top`|
+    |[list-width](#list-width)|在开启`separate-emit`的情况下，下拉列表的宽度(单位px)，如果设为`false`则下拉列表会自动调整宽度。<br>若未开启`separate-emit`此配置不会生效，下拉列表的宽度等于组件本身的宽度。|`false`：自动调整宽度<br>数字：下拉列表的宽度(单位px)|Boolean<br>Number|`false`|
     :::
     
     :::preset/html
@@ -333,12 +334,12 @@
     </div>
     :::
 
-    你可以通过设置`ui-select`的`width`来调整宽度：
+    你可以通过设置`list-width`配置来调整宽度：
 
     :::democode/html
     <div style="width:300px;">
         <ui-btn class="demo11">点击选择</ui-btn>
-        <ui-select form-name="Select designer" separate-emit=".demo11" style="width:180px;">
+        <ui-select form-name="Select designer" separate-emit=".demo11" list-width="180">
             <li value="tim">Tim Boelaars</li>
             <li value="andrew">Andrew Colin Beck</li>
             <li value="gustavo">Gustavo Zambelli</li>
@@ -909,6 +910,29 @@
             <div class="item-tip"><p>Sara Nicely</p><img src="https://cdn.dribbble.com/users/162566/avatars/normal/1012292_10104881398564961_565325188_n.jpg?1403561573"></div>
             <li value="anna"><ui-img class="circle" src="https://cdn.dribbble.com/users/243797/avatars/normal/657a04cfaeca8f6f5bb7ecf64267bc67.jpg?1416007045"></ui-img>Anna Broussard</li>
             <div class="item-tip"><p>Anna Broussard</p><img src="https://cdn.dribbble.com/users/243797/avatars/normal/657a04cfaeca8f6f5bb7ecf64267bc67.jpg?1416007045"></div>
+        </ui-select>
+    </div>
+    :::
+
+    #### list-width
+
+    设置下拉列表的宽度为280px：
+
+    :::democode/html
+    <div style="width:300px;">
+        <ui-btn class="demo14">点击选择</ui-btn>
+        <ui-select form-name="Select designer" separate-emit=".demo14" :list-width="280">
+            <li value="tim">Tim Boelaars</li>
+            <li value="andrew">Andrew Colin Beck</li>
+            <li value="gustavo">Gustavo Zambelli</li>
+            <li value="victor">Victor Erixon</li>
+            <li value="shaun">Shaun Moynihan</li>
+            <li value="emir">Emir Ayouni</li>
+            <li value="katherine">Katherine Rainey</li>
+            <li value="jax">Jax Berndt</li>
+            <li value="elizabeth">Elizabeth Chiu</li>
+            <li value="sara">Sara Nicely</li>
+            <li value="anna">Anna Broussard</li>
         </ui-select>
     </div>
     :::
