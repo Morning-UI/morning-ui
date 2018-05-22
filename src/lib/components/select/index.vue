@@ -23,6 +23,7 @@
         :inline-img-size="inlineImgSize"
         :item-tip="itemTip"
         :item-tip-direct="itemTipDirect"
+        :list-width="listWidth"
     >
 
     <template v-if="conf.prepend">
@@ -213,6 +214,10 @@ export default {
         itemTipDirect : {
             type : String,
             default : 'top'
+        },
+        listWidth : {
+            type : [Boolean, Number],
+            default : false
         }
     },
     computed : {
@@ -232,7 +237,8 @@ export default {
                 hideSelected : this.hideSelected,
                 inlineImgSize : this.inlineImgSize,
                 itemTip : this.itemTip,
-                itemTipDirect : this.itemTipDirect
+                itemTipDirect : this.itemTipDirect,
+                listWidth : this.listWidth
             };
 
         },
@@ -1022,6 +1028,10 @@ export default {
                 if (!this.conf.separateEmit) {
 
                     this.data.$listWrap.style.width = `${$target.offsetWidth}px`;
+
+                } else if (typeof this.conf.listWidth === 'number') {
+
+                    this.data.$listWrap.style.width = `${this.conf.listWidth}px`;
 
                 } else {
 
