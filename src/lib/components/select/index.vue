@@ -946,11 +946,12 @@ export default {
 
             // 因为性能原因this.data.$list采用display:none隐藏，所以需要通过shownow，获取正确高度
             this.data.$list.classList.add('shownow');
+            this.data.$selectArea.classList.add('shownow');
 
             this.Vue.nextTick(() => {
 
-                itemHeight = $item.offsetHeight || this.data.lastItemHeight;
                 this.data.$list.classList.remove('shownow');
+                this.data.$selectArea.classList.remove('shownow');
                 maxHeight = itemHeight * this.conf.maxShow;
 
                 if (itemHeight) {
@@ -1031,7 +1032,7 @@ export default {
                     placement : 'bottom',
                     element : this.data.$listWrap,
                     target : $target,
-                    offset : '0 -0.5px'
+                    offset : '0 0'
                 });
 
                 if (this.conf.multiSelect) {
@@ -1096,7 +1097,7 @@ export default {
         this._updateItemValueList();
         this._onValueChange();
         this._resizeSelectArea();
-        
+
         this.$on('value-change', this._onValueChange);
 
         setTimeout(() => {

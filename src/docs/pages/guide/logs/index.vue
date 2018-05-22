@@ -109,7 +109,7 @@
     - `ui-grid`的`averagegap`被废弃，采用`avggap`替代
     - `ui-timepicker`、`ui-datepicker`的`align`配置不再对弹出的时间选择框位置生效，选择框位置仅会居中
 
-    ### 0.10.24 <ui-badge class="circle ver-stable" size="s" color="light-theme">Beta</ui-badge>
+    ### 0.10.24 <ui-badge class="circle ver-stable" size="s" color="extra-light-black">Beta</ui-badge>
 
     <ui-textcolor color="light-blue">
         <ui-small>
