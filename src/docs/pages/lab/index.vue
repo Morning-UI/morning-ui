@@ -10,10 +10,16 @@
 
                 <div style="width: 400px">
                 
-                <template v-for="n in 40">
+                <template v-for="n in 1">
+                    <ui-btn class="demo5">点击选择</ui-btn>
+
                     <ui-select
-                        can-search
-                        :hide-selected="false">
+                        form-name="test"
+                        :hide-selected="false"
+                        separate-emit=".demo5"
+                        style="width: 300px"
+                    >
+
                         <li v-for="name in list" :value="name">{{name}}</li>
                     </ui-select>
                 </template>
