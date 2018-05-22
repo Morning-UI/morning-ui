@@ -950,6 +950,7 @@ export default {
 
             this.Vue.nextTick(() => {
 
+                itemHeight = $item.offsetHeight || this.data.lastItemHeight;
                 this.data.$list.classList.remove('shownow');
                 this.data.$selectArea.classList.remove('shownow');
                 maxHeight = itemHeight * this.conf.maxShow;
