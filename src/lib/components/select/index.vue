@@ -23,6 +23,7 @@
         :inline-img-size="inlineImgSize"
         :item-tip="itemTip"
         :item-tip-direct="itemTipDirect"
+        :list-width="listWidth"
     >
 
     <template v-if="conf.prepend">
@@ -213,6 +214,10 @@ export default {
         itemTipDirect : {
             type : String,
             default : 'top'
+        },
+        listWidth : {
+            type : [Boolean, Number],
+            default : false
         }
     },
     computed : {
@@ -232,7 +237,8 @@ export default {
                 hideSelected : this.hideSelected,
                 inlineImgSize : this.inlineImgSize,
                 itemTip : this.itemTip,
-                itemTipDirect : this.itemTipDirect
+                itemTipDirect : this.itemTipDirect,
+                listWidth : this.listWidth
             };
 
         },
@@ -946,11 +952,13 @@ export default {
 
             // 因为性能原因this.data.$list采用display:none隐藏，所以需要通过shownow，获取正确高度
             this.data.$list.classList.add('shownow');
+            this.data.$selectArea.classList.add('shownow');
 
             this.Vue.nextTick(() => {
 
                 itemHeight = $item.offsetHeight || this.data.lastItemHeight;
                 this.data.$list.classList.remove('shownow');
+                this.data.$selectArea.classList.remove('shownow');
                 maxHeight = itemHeight * this.conf.maxShow;
 
                 if (itemHeight) {
@@ -1021,6 +1029,10 @@ export default {
 
                     this.data.$listWrap.style.width = `${$target.offsetWidth}px`;
 
+                } else if (typeof this.conf.listWidth === 'number') {
+
+                    this.data.$listWrap.style.width = `${this.conf.listWidth}px`;
+
                 } else {
 
                     this.data.$listWrap.style.width = `${this.$el.offsetWidth || this.data.$listWrap.offsetWidth}px`;
@@ -1031,7 +1043,7 @@ export default {
                     placement : 'bottom',
                     element : this.data.$listWrap,
                     target : $target,
-                    offset : '0 -0.5px'
+                    offset : '0 0'
                 });
 
                 if (this.conf.multiSelect) {
@@ -1096,7 +1108,7 @@ export default {
         this._updateItemValueList();
         this._onValueChange();
         this._resizeSelectArea();
-        
+
         this.$on('value-change', this._onValueChange);
 
         setTimeout(() => {
