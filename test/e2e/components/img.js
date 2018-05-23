@@ -50,18 +50,18 @@ test.serial('hastext', async t => {
 
 });
 
-test.serial('rounded', async t => {
+test.serial('round', async t => {
 
     const result = await runner
         .goto(docUrl)
         .wait(basicDemo)
         .evaluate(() => ({
-            rounded : window.getComputedStyle($('[name="开始"] .rounded')[0])
+            round : window.getComputedStyle($('[name="开始"] .round')[0])
         }));
 
     t.plan(1);
 
-    cleanstyle(result.rounded);
+    cleanstyle(result.round);
     t.snapshot(result);
 
 });

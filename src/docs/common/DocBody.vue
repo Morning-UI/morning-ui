@@ -1483,5 +1483,9 @@ a{ }
     &+pre{
         border-radius: 0 0 3px 3px;
     }
+
+    mor-btn{
+        vertical-align: top; 
+    }
 }
 </style>

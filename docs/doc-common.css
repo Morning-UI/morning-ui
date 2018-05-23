@@ -1208,3 +1208,6 @@ mor-dialog a:hover {
 .demo + pre {
   border-radius: 0 0 3px 3px;
 }
+.demo mor-btn {
+  vertical-align: top;
+}
