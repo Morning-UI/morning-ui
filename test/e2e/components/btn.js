@@ -57,12 +57,6 @@ test.serial('size', async t => {
                     'line-height',
                     'padding'
                 ]
-            }, {
-                child : ' .morningicon',
-                attrs : [
-                    'font-size',
-                    'transform-origin'
-                ]
             }]
         );
 
