@@ -159,54 +159,19 @@ export default {
         },
         _setRows : function (rows) {
 
-            if (rows > this.conf.maxRows) {
-
-                rows = this.conf.maxRows;
-
-            } else if (rows < this.conf.rows) {
+            if (rows < this.conf.rows) {
 
                 rows = this.conf.rows;
 
             }
 
+            if (rows > this.conf.maxRows) {
+
+                rows = this.conf.maxRows;
+
+            }
+
             this.data.rows = rows;
-
-        },
-        setRows : function (num) {
-
-            let row = this.conf.rows;
-
-            if (typeof num === 'number') {
-                
-                row = num;
-
-            } else if (typeof num === 'string') {
-
-                if (/^\+/.test(num)) {
-
-                    row += +num.replace(/^\+/, '');
-
-                } else if (/^-/.test(num)) {
-
-                    row -= +num.replace(/^-/, '');
-
-                }
-
-            }
-
-            if (row) {
-
-                if (row < 1) {
-                
-                    row = 1;
-                
-                }
-                
-                this.conf.rows = row;
-
-            }
-
-            return this;
 
         }
     },
@@ -214,7 +179,6 @@ export default {
     mounted : function () {
 
         this.data.$textarea = this.$el.querySelector('textarea');
-
 
         this.$watch('conf.maxRows', () => {
 
@@ -226,15 +190,21 @@ export default {
 
         this.$watch('conf.rows', () => {
 
-            let rows = this.conf.rows;
-
             if (this.conf.autoSize) {
 
-                rows = this.data.rows;
+                this._setRows(this.conf.rows);
+
+                this.Vue.nextTick(() => {
+
+                    this._resizeArea();
+
+                });
+
+            } else {
+
+                this._setRows(this.conf.rows);
 
             }
-
-            this._setRows(rows);
 
         }, {
             immediate : true
