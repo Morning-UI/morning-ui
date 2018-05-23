@@ -17,6 +17,52 @@
     :::democode/html
     <ui-btn>按钮</ui-btn>
     :::
+
+    #### 按钮的多种样式
+
+    按钮支持以下样式类：
+
+    - `plain` : 朴素的按钮
+    - `round` : 圆角按钮
+    - `circle` : 圆形按钮
+
+    :::democode/html
+    <ui-btn class="plain">朴素的按钮</ui-btn>
+    <br><br>
+    <ui-btn class="round">圆角按钮</ui-btn>
+    <br><br>
+    <ui-btn class="circle">
+        <i class="iconfont">&#xe6e2;</i>
+    </ui-btn>
+    :::
+
+    其中`plain`可以和`round`或`circle`进行组合：
+
+    :::democode/html
+    <ui-btn class="round plain">朴素的圆角按钮</ui-btn>
+    <br><br>
+    <ui-btn class="circle plain">
+        <i class="iconfont">&#xe6e2;</i>
+    </ui-btn>
+    :::
+
+    #### 图片按钮
+
+    `circle`配合`ui-img`一起使用可实现图片按钮的效果：
+
+    :::democode/html
+    <ui-btn class="circle">
+        <ui-img src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+    </ui-btn>
+    :::
+
+    在上面的基础上增加`plain`可为图片按钮增加边框：
+
+    :::democode/html
+    <ui-btn class="circle plain" color="danger">
+        <ui-img src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+    </ui-btn>
+    :::
     
     [[[形态]]]
 
@@ -41,15 +87,36 @@
     :::repeat/html
     size
     ---
-    <ui-btn size="{$sizeKey}" state="loading">{$&sizeName}</ui-btn>
+    <ui-btn size="{$sizeKey}" locked>{$&sizeName}</ui-btn>
+    :::
+
+    :::repeat/html
+    size
+    ---
+    <ui-btn size="{$sizeKey}" class="circle">
+        <i class="iconfont">&#xe6e2;</i>
+    </ui-btn>
+    :::
+
+    :::repeat/html
+    size
+    ---
+    <ui-btn size="{$sizeKey}" locked>{$&sizeName}</ui-btn>
     :::
 
     #### 色彩
 
-    :::preset/html
-    statusColor
+    :::repeat/html
+    color:theme
+    color:feature
+    color:black
+    color:blue
+    color:silver
+    color:gray
     ---
-    uikey:btn
+    <ui-btn color="{$colorKey}">{$&colorName}</ui-btn>
+    <ui-btn color="{$colorKey}" class="plain">{$&colorName}</ui-btn>
+    <br><br> 
     :::
     
     #### 状态
