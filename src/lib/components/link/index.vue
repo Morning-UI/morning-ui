@@ -12,7 +12,7 @@
     >
 
     <template v-if="data.lock">
-        <i class="morningicon">&#xe703;</i>
+        <i class="mo-icon mo-icon-loading"></i>
         <span><slot></slot></span>
     </template>
 

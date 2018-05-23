@@ -26,10 +26,10 @@
         >
             <span :title="value">{{value}}</span>
             <i
-                class="morningicon"
+                class="mo-icon mo-icon-error-cf"
                 v-if="conf.state !== 'disabled' && conf.state !== 'readonly'"
                 @click="_deleteItem(index)"
-            >&#xe62e;</i>
+            ></i>
         </div>
 
         <template v-if="conf.state !== 'disabled' && conf.state !== 'readonly'">

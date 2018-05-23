@@ -58,7 +58,7 @@ test.serial('size', async t => {
                     'padding'
                 ]
             }, {
-                child : ' .morningicon',
+                child : ' .mo-icon',
                 attrs : [
                     'font-size',
                     'transform-origin'

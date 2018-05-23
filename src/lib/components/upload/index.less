@@ -107,7 +107,7 @@ mor-upload{
             box-sizing: border-box;
         }
 
-        i.morningicon{
+        i.mo-icon{
             font-size: @fontSize*0.75;
             position: absolute;
             right: 0.5em;
@@ -117,7 +117,7 @@ mor-upload{
             z-index: 2;
         }
 
-        i.morningicon.reupload{
+        i.mo-icon.reupload{
             cursor: pointer;
             display: none;
 
@@ -126,7 +126,7 @@ mor-upload{
             }
         }
 
-        i.morningicon.remove{
+        i.mo-icon.remove{
             cursor: pointer;
             display: none;
 
@@ -152,7 +152,7 @@ mor-upload{
         display: inline-block;
         padding: 0.4em 1.6em;
 
-        .morningicon.local{
+        .mo-icon.local{
             left: 1em;
             font-size: @fontSize;
         }
@@ -163,7 +163,7 @@ mor-upload{
             color: @colorFormItemColorHover !important;
             background: @colorFromItemBackgroundHover;
 
-            i.morningicon{
+            i.mo-icon{
                 cursor: pointer;
                 color: @colorFormItemColorHover !important;
             }
@@ -174,7 +174,7 @@ mor-upload{
             padding-left: 1em;
         }
 
-        i.morningicon{
+        i.mo-icon{
             top: 51%;
             left: 1.5em;
             right: auto;
@@ -183,7 +183,7 @@ mor-upload{
         &:hover{
             cursor: pointer;
 
-            i.morningicon{
+            i.mo-icon{
                 color: @colorFormItemColorHover !important;
             }
         }
@@ -202,7 +202,7 @@ mor-upload{
                 padding-left: 0;
             }
 
-            i.morningicon{
+            i.mo-icon{
                 left: auto;
                 right: 1.5em;
             }
@@ -223,7 +223,7 @@ mor-upload{
         &.loading{
             cursor: default;
 
-            .morningicon{
+            .mo-icon{
                 display: none;
             }
 
@@ -255,7 +255,7 @@ mor-upload{
         &:hover{
             color: @colorFormTextHover !important;
 
-            .morningicon{
+            .mo-icon{
                 color: @colorFormTextHover !important;
             }
         }
@@ -265,12 +265,12 @@ mor-upload{
             transition: width 0s;
         }
 
-        i.morningicon.uploading,
-        i.morningicon.reupload{
+        i.mo-icon.uploading,
+        i.mo-icon.reupload{
             display: none;
         }
 
-        i.morningicon.remove{
+        i.mo-icon.remove{
             display: block;
         }
     }
@@ -287,16 +287,16 @@ mor-upload{
             transition: width 0s;
         }
 
-        i.morningicon.uploading{
+        i.mo-icon.uploading{
             display: none;
         }
 
-        i.morningicon.reupload{
+        i.mo-icon.reupload{
             display: block;
             right: 1.7em;
         }
 
-        > i.morningicon.remove{
+        > i.mo-icon.remove{
             display: block;
         }
     }
@@ -337,7 +337,7 @@ mor-upload{
             margin: 0;
             font-size: @fontSize*0.75;
 
-            .morningicon{
+            .mo-icon{
                 font-size: @fontSize;
                 vertical-align: -1px;
             }
@@ -387,7 +387,7 @@ mor-upload{
             cursor: pointer !important;
             background-color: @colorFromItemBackgroundDisable;
 
-            .morningicon{
+            .mo-icon{
                 display: none !important;
             }
 
@@ -403,7 +403,7 @@ mor-upload{
         .filewrap > .add:hover{
             cursor: default;
 
-            i.morningicon{
+            i.mo-icon{
                 color: @colorFormItemColorDisable !important;
             }
         }

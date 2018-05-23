@@ -1,5 +1,8 @@
 export default {
     component : {
+        基础 : null,
+        配色 : '/component/uniformcolor.html',
+        图标 : '/component/iconfont.html',
         样式组件 : null,
         标题 : '/component/h.html',
         中心内容 : '/component/lead.html',
@@ -97,7 +100,6 @@ export default {
         查阅文档 : '/guide/componentdoc.html',
         初始化 : '/guide/init.html',
         形态 : '/guide/status.html',
-        配色 : '/guide/uniformcolor.html',
         样式类 : '/guide/styleclass.html',
         配置 : '/guide/config.html',
         方法 : '/guide/method.html',

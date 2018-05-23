@@ -14,12 +14,12 @@
 
     <header>
         <div class="topbar">
-            <i class="morningicon prev" v-show="!data.monthPick" @click="_prev()">&#xe696;</i>
+            <i class="mo-icon mo-icon-left prev" v-show="!data.monthPick" @click="_prev()"></i>
             <div class="yearmonth">
                 <span class="year" @click="toggleYearPick()">{{current.year}}年</span>
                 <span class="month" @click="toggleMonthPick()">{{current.month + 1}}月</span>
             </div>
-            <i class="morningicon next" v-show="!data.monthPick" @click="_next()">&#xe695;</i>
+            <i class="mo-icon mo-icon-right next" v-show="!data.monthPick" @click="_next()"></i>
         </div>
         <div class="titlebar">
             <ul class="weekday" v-show="!data.monthPick && !data.yearPick">

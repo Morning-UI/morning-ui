@@ -42,10 +42,10 @@
 
         <span class="modify-map" v-show="!data.imagesLoading && data.images.length > 0" @click="_openMap">
             <template v-if="conf.state === 'disabled' || conf.state === 'readonly'">
-                <i class="morningicon">&#xe6a9;</i> 查看热区
+                <i class="mo-icon mo-icon-imagemap"></i> 查看热区
             </template>
             <template v-else>
-                <i class="morningicon">&#xe6a9;</i> 绘制热区
+                <i class="mo-icon mo-icon-imagemap"></i> 绘制热区
             </template>
         </span>
 

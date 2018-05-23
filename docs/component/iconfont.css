@@ -1,0 +1,23 @@
+
+.iconlist {
+  font-size: 0;
+  padding: 30px 0;
+}
+.iconlist > div {
+  width: 20%;
+  height: 90px;
+  display: inline-block;
+  vertical-align: top;
+}
+.iconlist > div > i {
+  font-size: 30px;
+  display: block;
+  text-align: center;
+  color: #333;
+}
+.iconlist > div > span {
+  display: block;
+  font-size: 13px;
+  color: #555;
+  text-align: center;
+}

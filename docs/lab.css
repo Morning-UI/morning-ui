@@ -104,7 +104,7 @@
   line-height: inherit;
 }
 .component .markdown-body > div > h1 {
-  margin-bottom: 0;
+  margin-bottom: 20px;
 }
 .markdown-body mor-formgroup header {
   height: inherit;

@@ -26,7 +26,7 @@
 
     <div class="wrap">
         <div class="input-group-addon" v-if="conf.isRange">
-            <i class='morningicon'>&#xe607;</i>
+            <i class='mo-icon mo-icon-time-co'></i>
         </div>
 
         <template v-if="conf.isList">

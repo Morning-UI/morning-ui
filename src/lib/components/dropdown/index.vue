@@ -170,7 +170,7 @@ export default {
         let $emitbtn = this.$el.querySelector(`[emitbtn]`);
 
         this.data.$wrap = this.$el.querySelector('.mor-dropdown-wrap');
-        this.data.$arrow = this.$el.querySelector('mor-btn>.morningicon, mor-link>.morningicon');
+        this.data.$arrow = this.$el.querySelector('mor-btn>.mo-icon, mor-link>.mo-icon');
 
         this.Trigger.$targets = [$emitbtn, this.data.$wrap];
         this.Trigger.triggers = this.conf.trigger;
