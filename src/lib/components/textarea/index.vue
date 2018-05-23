@@ -10,12 +10,19 @@
         :hide-name="hideName"
         :clearable="clearable"
         :rows="rows"
+        :auto-size="autoSize"
+        :max-rows="maxRows"
     >
 
     <textarea
+        :class="{
+            'auto-sizing' : this.conf.autoSize,
+            'is-max' : isMaxRows
+        }"
+
         :placeholder="placeholder"
         :disabled="conf.state === 'disabled' || conf.state === 'readonly'"
-        :rows="conf.rows"
+        :rows="data.rows"
 
         @focus="_focus()"
         @blur="_blur()"
@@ -37,13 +44,23 @@ export default {
         rows : {
             type : Number,
             default : 4
+        },
+        autoSize : {
+            type : Boolean,
+            default : false
+        },
+        maxRows : {
+            type : Number,
+            default : Infinity
         }
     },
     computed : {
         _conf : function () {
 
             return {
-                rows : this.rows
+                rows : this.rows,
+                autoSize : this.autoSize,
+                maxRows : this.maxRows
             };
 
         },
@@ -57,12 +74,19 @@ export default {
 
             return false;
 
+        },
+        isMaxRows : function () {
+
+            return (this.data.rows >= this.conf.maxRows);
+
         }
     },
     data : function () {
 
         return {
-            data : {}
+            data : {
+                rows : 0
+            }
         };
 
     },
@@ -92,6 +116,60 @@ export default {
         _blur : function () {
 
             this.$emit('blur');
+
+        },
+        _resizeArea : function () {
+
+            if (!this.conf.autoSize) {
+
+                return;
+
+            }
+
+            let $textarea = this.data.$textarea;
+            let $text = $textarea.cloneNode(true);
+            let computedStyle = $textarea.ownerDocument.defaultView.getComputedStyle($textarea, null);
+            let textHeight;
+            let lineHeight = +computedStyle['line-height'].replace(/px$/, '');
+            let rows = this.data.rows;
+
+            $text.removeAttribute('rows');
+            $text.style.cssText = computedStyle.cssText;
+            $text.style.height = 'auto';
+            $text.style.overflow = 'auto';
+
+            document.body.append($text);
+            textHeight = $text.scrollHeight;
+            $text.remove();
+
+            if (textHeight > $textarea.clientHeight &&
+                this.data.rows < this.conf.maxRows) {
+
+                rows += Math.ceil((textHeight - $textarea.clientHeight) / lineHeight);
+
+            } else if (textHeight < $textarea.clientHeight &&
+                this.data.rows > this.conf.rows) {
+
+                rows -= Math.ceil(($textarea.clientHeight - textHeight) / lineHeight);
+
+            }
+
+            this._setRows(rows);
+
+        },
+        _setRows : function (rows) {
+
+            if (rows > this.conf.maxRows) {
+
+                rows = this.conf.maxRows;
+
+            } else if (rows < this.conf.rows) {
+
+                rows = this.conf.rows;
+
+            }
+
+            this.data.rows = rows;
 
         },
         setRows : function (num) {
@@ -135,9 +213,37 @@ export default {
     created : function () {},
     mounted : function () {
 
+        this.data.$textarea = this.$el.querySelector('textarea');
+
+
+        this.$watch('conf.maxRows', () => {
+
+            this._setRows(this.data.rows);
+
+        }, {
+            immediate : true
+        });
+
+        this.$watch('conf.rows', () => {
+
+            let rows = this.conf.rows;
+
+            if (this.conf.autoSize) {
+
+                rows = this.data.rows;
+
+            }
+
+            this._setRows(rows);
+
+        }, {
+            immediate : true
+        });
+
         this.$on('input', value => {
 
             this.data.value = value;
+            this._resizeArea();
 
         });
 

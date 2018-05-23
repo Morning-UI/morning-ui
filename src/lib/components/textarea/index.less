@@ -26,6 +26,14 @@ mor-textarea{
         resize: none;
         transition: height 0.2s;
 
+        &.auto-sizing{
+            overflow: hidden;
+        }
+
+        &.is-max{
+            overflow: auto;
+        }
+
         &::placeholder{
             color: @colorFormText;
         }

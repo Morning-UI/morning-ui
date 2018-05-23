@@ -34,7 +34,9 @@
     :::preset/html
     formConfigTable
     ---
-    |[rows](#rows)|段落输入框的高度对应的行数|大于0的数字|Number|`4`|
+    |[rows](#rows)|段落输入框的默认高度对应的行数，若设置了`max-rows`则此数值不会超过`max-rows`。|大于0的数字|Number|`4`|
+    |[auto-size](#auto-size)|段落内容超过输入框并将出现滚动条时，自动增加输入框的高度。当内容减少时，自动减少输入框高度。最小高度将维持在`rows`配置设置的高度，最大高度不超过`max-rows`。|`true`<br>`false`|Boolean|`false`|
+    |[max-rows](#max-rows)|段落内容的最大高度对应的行数。若同时设置了`auto-size`配置，则超过`max-rows`后会出现滚动条。|大于0的数字|Number|`Infinity`|
     :::
 
     :::preset/html
@@ -49,6 +51,34 @@
     :::democode/html
     <div style="width:300px;">
         <ui-textarea :rows="8"></ui-textarea>
+    </div>
+    :::
+
+    #### auto-size
+
+    尝试输入5行内容，段落输入框会自动增加高度：
+
+    :::democode/html
+    <div style="width:300px;">
+        <ui-textarea auto-size></ui-textarea>
+    </div>
+    :::
+
+    #### max-rows
+
+    超过8行后会出现滚动条：
+
+    :::democode/html
+    <div style="width:300px;">
+        <ui-textarea auto-size :max-rows="8"></ui-textarea>
+    </div>
+    :::
+
+    同时设置最小2行，最大6行：
+
+    :::democode/html
+    <div style="width:300px;">
+        <ui-textarea auto-size :rows="2" :max-rows="6"></ui-textarea>
     </div>
     :::
 
