@@ -48,10 +48,10 @@
                 </span>
 
                 <i
-                    class="morningicon"
+                    class="mo-icon mo-icon-error-cf"
                     v-if="conf.state !== 'disabled' && conf.state !== 'readonly'"
                     @click.stop="_deleteItem(index)"
-                >&#xe62e;</i>
+                ></i>
             </div>
             
             <template v-if="conf.state !== 'disabled' && conf.state !== 'readonly'">
@@ -63,7 +63,7 @@
                         @click="_addItemDialog"
                         key="set-max"
                     >
-                        <span>添加{{conf.itemName}}</span> <i class="morningicon">&#xe698;</i>
+                        <span>添加{{conf.itemName}}</span> <i class="mo-icon mo-icon-plus-cf"></i>
                     </a>
                     <span v-else>最多只能输入{{conf.max}}项</span>
                 </template>
@@ -75,7 +75,7 @@
                         @click="_addItemDialog"
                         key="unset-max"
                     >
-                        <span>添加{{conf.itemName}}</span> <i class="morningicon">&#xe698;</i>
+                        <span>添加{{conf.itemName}}</span> <i class="mo-icon mo-icon-plus-cf"></i>
                     </a>
                 </template>
             </template>

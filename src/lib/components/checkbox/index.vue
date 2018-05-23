@@ -25,7 +25,7 @@
                     :key="key"
                     @click="conf.state !== 'readonly' && toggle(key)"
                 >
-                    <p class="box"><i class="morningicon">&#xe62d;</i></p>
+                    <p class="box"><i class="mo-icon mo-icon-check"></i></p>
                     <template v-if="conf.acceptHtml">
                         <span v-html="name"></span>
                     </template>
@@ -41,7 +41,7 @@
                     :key="key"
                     @click="conf.state !== 'readonly' && toggle(key)"
                 >
-                    <p class="box"><i class="morningicon">&#xe62d;</i></p>
+                    <p class="box"><i class="mo-icon mo-icon-check"></i></p>
                     <template v-if="conf.acceptHtml">
                         <span v-html="name"></span>
                     </template>

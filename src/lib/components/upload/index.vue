@@ -52,9 +52,9 @@
                     <span>
                         {{item.name}}
                     </span>
-                    <i class="morningicon remove" @click.prevent="_removeFile(index)">&#xe62e;</i>
-                    <i class="morningicon uploading" title="上传中">&#xe672;</i>
-                    <i class="morningicon reupload" title="重新上传" @click.prevent="_upload(index)">&#xe68c;</i>
+                    <i class="mo-icon mo-icon-close remove" @click.prevent="_removeFile(index)"></i>
+                    <i class="mo-icon mo-icon-arrow-up uploading" title="上传中"></i>
+                    <i class="mo-icon mo-icon-refresh reupload" title="重新上传" @click.prevent="_upload(index)"></i>
                 </a>
             </template>
 
@@ -67,7 +67,7 @@
                     :for="'ui-select-fileinput-' + uiid"
                 >
                     <span>本地上传{{conf.itemName}}</span>
-                    <i class="morningicon local">&#xe629;</i>
+                    <i class="mo-icon mo-icon-upload local"></i>
                 </label>
                 
                 <label
@@ -77,8 +77,8 @@
                     @click="_uploadRemoteFile()"
                 >
                     <span>URL上传{{conf.itemName}}</span>
-                    <i class="morningicon">&#xe704;</i>
-                    <i class="morningicon load">&#xe703;</i>
+                    <i class="mo-icon mo-icon-link"></i>
+                    <i class="mo-icon mo-icon-loading load"></i>
                 </label>
             </template>
 
@@ -89,7 +89,7 @@
                     :for="'ui-select-fileinput-' + uiid"
                 >
                     <span>上传{{conf.itemName}}</span>
-                    <i class="morningicon local">&#xe629;</i>
+                    <i class="mo-icon mo-icon-upload local"></i>
                 </label>
             </template>
 
@@ -98,7 +98,7 @@
             <span class="max" v-if="ismax">最多只能上传{{conf.max}}个文件</span>
         </div>
 
-        <div class="drag-note" :class="{show: data.dragover}"><p><i class="morningicon">&#xe629;</i> 松开鼠标上传</p></div>
+        <div class="drag-note" :class="{show: data.dragover}"><p><i class="mo-icon mo-icon-upload"></i> 松开鼠标上传</p></div>
     </div>
 
     <morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn">清空</morning-link>

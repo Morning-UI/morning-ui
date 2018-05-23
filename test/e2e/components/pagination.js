@@ -73,7 +73,7 @@ test.serial('size', async t => {
                     'height'
                 ]
             }, {
-                child : ' .list .page-jump .morningicon',
+                child : ' .list .page-jump .mo-icon',
                 attrs : [
                     'font-size',
                     'line-height'

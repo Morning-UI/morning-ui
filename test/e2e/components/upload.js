@@ -61,7 +61,7 @@ test.serial('state', async t => {
                     'background-color'
                 ]
             }, {
-                child : '.filewrap > .file .morningicon',
+                child : '.filewrap > .file .mo-icon',
                 attrs : [
                     'display'
                 ]

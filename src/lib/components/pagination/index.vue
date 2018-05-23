@@ -22,7 +22,7 @@
         <template v-for="index in data.total">
         
             <template v-if="(data.hideEnd - 1) === index && data.hideEnd !== 1">
-                <a href="javascript:;" class="prev" @click="to(data.currentPage - 1)"><i class="morningicon">&#xe696;</i></a>
+                <a href="javascript:;" class="prev" @click="to(data.currentPage - 1)"><i class="mo-icon mo-icon-left"></i></a>
                 <a href="javascript:;" class="ignore">...</a>
             </template>
             
@@ -46,7 +46,7 @@
 
             <template v-if="(data.hideStart + 1) === index && data.hideStart !== data.total">
                 <a href="javascript:;" class="ignore">...</a>
-                <a href="javascript:;" class="next" @click="to(data.currentPage + 1)"><i class="morningicon">&#xe695;</i></a>
+                <a href="javascript:;" class="next" @click="to(data.currentPage + 1)"><i class="mo-icon mo-icon-right"></i></a>
             </template>
 
         </template>
@@ -56,7 +56,7 @@
             v-if="conf.jumpPage && data.total > conf.maxShow"
         >
             <morning-textinput :ref="'ui-select-input-' + uiid" class="page-num" form-name="页码"></morning-textinput>
-            <i class="morningicon" @click="_jump()">&#xe6c8;</i>
+            <i class="mo-icon mo-icon-arrow-right" @click="_jump()"></i>
         </div>
     </div>
 

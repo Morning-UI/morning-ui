@@ -119,7 +119,7 @@
                 </div>
             </template>
 
-            <i class="morningicon drop" :class="{'no-animation' : !!data.highPerfMode}">&#xe6b1;</i>
+            <i class="mo-icon mo-icon-dropdown drop" :class="{'no-animation' : !!data.highPerfMode}"></i>
 
         </div>
     

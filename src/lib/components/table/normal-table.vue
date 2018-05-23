@@ -10,9 +10,9 @@
                     >
                         {{colSetMap[key].name}}
                         <span class="th-sort" v-if="colSetMap[key].sort">
-                            <i class="morningicon no" @click="sortCol(key)" v-if="!data.sort[key] || (data.sort[key].type !== 'asc' && data.sort[key].type !== 'desc')">&#xe651;</i>
-                            <i class="morningicon asc" @click="sortCol(key)" v-if="data.sort[key] && data.sort[key].type === 'asc'">&#xe672;</i>
-                            <i class="morningicon desc" @click="sortCol(key)" v-if="data.sort[key] && data.sort[key].type === 'desc'">&#xe671;</i>
+                            <i class="mo-icon mo-icon-sort no" @click="sortCol(key)" v-if="!data.sort[key] || (data.sort[key].type !== 'asc' && data.sort[key].type !== 'desc')"></i>
+                            <i class="mo-icon mo-icon-arrow-up asc" @click="sortCol(key)" v-if="data.sort[key] && data.sort[key].type === 'asc'"></i>
+                            <i class="mo-icon mo-icon-arrow-down desc" @click="sortCol(key)" v-if="data.sort[key] && data.sort[key].type === 'desc'"></i>
                         </span>
                     </th>
                     <th
@@ -21,9 +21,9 @@
                         :key="key"
                     >
                         <span class="th-sort" v-if="colSetMap[key] && colSetMap[key].sort">
-                            <i class="morningicon no" @click="sortCol(key)" v-if="!data.sort[key] || (data.sort[key].type !== 'asc' && data.sort[key].type !== 'desc')">&#xe651;</i>
-                            <i class="morningicon asc" @click="sortCol(key)" v-if="data.sort[key] && data.sort[key].type === 'asc'">&#xe672;</i>
-                            <i class="morningicon desc" @click="sortCol(key)" v-if="data.sort[key] && data.sort[key].type === 'desc'">&#xe671;</i>
+                            <i class="mo-icon mo-icon-sort no" @click="sortCol(key)" v-if="!data.sort[key] || (data.sort[key].type !== 'asc' && data.sort[key].type !== 'desc')"></i>
+                            <i class="mo-icon mo-icon-arrow-up asc" @click="sortCol(key)" v-if="data.sort[key] && data.sort[key].type === 'asc'"></i>
+                            <i class="mo-icon mo-icon-arrow-down desc" @click="sortCol(key)" v-if="data.sort[key] && data.sort[key].type === 'desc'"></i>
                         </span>
                     </th>
                 </template>

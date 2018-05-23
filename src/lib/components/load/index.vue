@@ -9,14 +9,14 @@
 
     <template v-if="data.loaded">
         <template v-if="data.fail">
-            <morning-center class="fill loadfail"><i class="morningicon">&#xe6ac; </i>&nbsp;加载失败</morning-center>
+            <morning-center class="fill loadfail"><i class="mo-icon mo-icon-warn-o"> </i>&nbsp;加载失败</morning-center>
         </template>
         <template v-else>
             <slot></slot>
         </template>
     </template>
     <template v-else>
-        <morning-center class="fill"><p class="loading"><i class="morningicon">&#xe703;</i><br/>{{conf.note}}</p></morning-center>
+        <morning-center class="fill"><p class="loading"><i class="mo-icon mo-icon-loading"></i><br/>{{conf.note}}</p></morning-center>
     </template>
         
     </mor-load>
