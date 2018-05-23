@@ -244,6 +244,8 @@
     - `separator-type` : 分隔内容类型
     - `append-type` : 附加内容类型
     - `list-width` : 列表宽度
+    - `max-rows` : 最大行数
+    - `auto-size` : 自动调整尺寸
 
     </script>
     </doc-guide>

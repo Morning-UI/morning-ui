@@ -120,7 +120,6 @@
     - `getGroup` : 获取表单组
     - `addGroup` : 添加表单组
     - `removeGroup` : 移除表单组
-    - `setRows` : 设置行数
     - `toggle` : 切换状态
     - `add` : 添加项目/增加
     - `sub` : 减少
