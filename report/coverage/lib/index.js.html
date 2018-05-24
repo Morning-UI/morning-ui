@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">42.55% </span>
+        <span class="strong">40.82% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>40/94</span>
+        <span class='fraction'>40/98</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">24% </span>
+        <span class="strong">21.43% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>12/50</span>
+        <span class='fraction'>12/56</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">11.11% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>1/9</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">46.51% </span>
+        <span class="strong">44.44% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>40/86</span>
+        <span class='fraction'>40/90</span>
       </div>
     </div>
   </div>
@@ -320,7 +320,17 @@
 275
 276
 277
-278</td><td class="line-coverage quiet"><span class="cline-any cline-yes">129x</span>
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288</td><td class="line-coverage quiet"><span class="cline-any cline-yes">129x</span>
 <span class="cline-any cline-yes">129x</span>
 <span class="cline-any cline-yes">129x</span>
 <span class="cline-any cline-yes">129x</span>
@@ -450,6 +460,16 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -643,7 +663,7 @@ let morning = {
         white : 'wh'
     },
     isMorning : true,
-    version : '0.10.28',
+    version : '0.10.30',
     map : {}
 };
 &nbsp;
@@ -725,9 +745,15 @@ morning.cleanGroup = <span class="fstat-no" title="function not covered" >functi
 morning.setGroup = <span class="fstat-no" title="function not covered" >function (</span>groupName, data) {
 &nbsp;
     let uiids = <span class="cstat-no" title="statement not covered" >this._groupVmMap[groupName];</span>
-    let setKeys = <span class="cstat-no" title="statement not covered" >Object.keys(data);</span>
+    let <span class="cstat-no" title="statement not covered" >setKeys;</span>
     let <span class="cstat-no" title="statement not covered" >key,</span>
 <span class="cstat-no" title="statement not covered" >        vm;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (data !== undefined) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        setKeys = Object.keys(data);</span>
+&nbsp;
+    }
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    if (uiids) <span class="cstat-no" title="statement not covered" >{</span></span>
 &nbsp;
@@ -739,9 +765,13 @@ morning.setGroup = <span class="fstat-no" title="function not covered" >function
 &nbsp;
 <span class="cstat-no" title="statement not covered" >                key = vm.conf.formKey;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >                if (setKeys.indexOf(key) !== -1) {</span>
+<span class="cstat-no" title="statement not covered" >                if (setKeys &amp;&amp; setKeys.indexOf(key) !== -1) {</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >                    this.map[uiid].set(data[key]);</span>
+&nbsp;
+                } else <span class="cstat-no" title="statement not covered" >if (data === undefined) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    this.map[uiid].set(undefined);</span>
 &nbsp;
                 }
 &nbsp;
@@ -757,7 +787,7 @@ morning.setGroup = <span class="fstat-no" title="function not covered" >function
 &nbsp;
 morning.setGroupJson = <span class="fstat-no" title="function not covered" >function (</span>groupName, data) {
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    return this.setGroup(groupName, JSON.parse(data));</span>
+<span class="cstat-no" title="statement not covered" >    return this.setGroup(groupName, JSON.parse(String(data)));</span>
 &nbsp;
 };
 &nbsp;
@@ -880,7 +910,7 @@ export default morning;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue May 22 2018 00:49:04 GMT+0800 (CST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu May 24 2018 22:52:38 GMT+0800 (CST)
 </div>
 </div>
 <script src="../prettify.js"></script>

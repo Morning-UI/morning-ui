@@ -950,15 +950,9 @@ export default {
             let itemHeight;
             let maxHeight;
 
-            // 因为性能原因this.data.$list采用display:none隐藏，所以需要通过shownow，获取正确高度
-            this.data.$list.classList.add('shownow');
-            this.data.$selectArea.classList.add('shownow');
-
             this.Vue.nextTick(() => {
 
                 itemHeight = $item.offsetHeight || this.data.lastItemHeight;
-                this.data.$list.classList.remove('shownow');
-                this.data.$selectArea.classList.remove('shownow');
                 maxHeight = itemHeight * this.conf.maxShow;
 
                 if (itemHeight) {
