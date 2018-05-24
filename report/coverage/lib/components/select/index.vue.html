@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">40.63% </span>
+        <span class="strong">40.1% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>156/384</span>
+        <span class='fraction'>154/384</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">38.78% </span>
+        <span class="strong">38.49% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>102/263</span>
+        <span class='fraction'>102/265</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">45.45% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>25/55</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">41.08% </span>
+        <span class="strong">40.51% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>145/353</span>
+        <span class='fraction'>143/353</span>
       </div>
     </div>
   </div>
@@ -1283,7 +1283,14 @@
 1238
 1239
 1240
-1241</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+1241
+1242
+1243
+1244
+1245
+1246
+1247</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1503,7 +1510,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -2229,12 +2241,8 @@
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -2298,6 +2306,10 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -2548,6 +2560,7 @@
         :inline-img-size="inlineImgSize"
         :item-tip="itemTip"
         :item-tip-direct="itemTipDirect"
+        :list-width="listWidth"
     &gt;
 &nbsp;
     &lt;template v-if="conf.prepend"&gt;
@@ -2738,6 +2751,10 @@ export default {
         itemTipDirect : {
             type : String,
             default : 'top'
+        },
+        listWidth : {
+            type : [Boolean, Number],
+            default : false
         }
     },
     computed : {
@@ -2757,7 +2774,8 @@ export default {
                 hideSelected : this.hideSelected,
                 inlineImgSize : this.inlineImgSize,
                 itemTip : this.itemTip,
-                itemTipDirect : this.itemTipDirect
+                itemTipDirect : this.itemTipDirect,
+                listWidth : this.listWidth
             };
 &nbsp;
         },
@@ -3469,13 +3487,9 @@ export default {
             let itemHeight;
             let maxHeight;
 &nbsp;
-            // 因为性能原因this.data.$list采用display:none隐藏，所以需要通过shownow，获取正确高度
-            this.data.$list.classList.add('shownow');
-&nbsp;
             this.Vue.nextTick(() =&gt; {
 &nbsp;
                 itemHeight = $item.offsetHeight || this.data.lastItemHeight;
-                this.data.$list.classList.remove('shownow');
                 maxHeight = itemHeight * this.conf.maxShow;
 &nbsp;
                 <span class="missing-if-branch" title="if path not taken" >I</span>if (itemHeight) {
@@ -3546,6 +3560,10 @@ export default {
 &nbsp;
 <span class="cstat-no" title="statement not covered" >                    this.data.$listWrap.style.width = `${$target.offsetWidth}px`;</span>
 &nbsp;
+                } else <span class="cstat-no" title="statement not covered" >if (typeof this.conf.listWidth === 'number') {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    this.data.$listWrap.style.width = `${this.conf.listWidth}px`;</span>
+&nbsp;
                 } else {
 &nbsp;
 <span class="cstat-no" title="statement not covered" >                    this.data.$listWrap.style.width = `${this.$el.offsetWidth || this.data.$listWrap.offsetWidth}px`;</span>
@@ -3556,7 +3574,7 @@ export default {
                     placement : 'bottom',
                     element : this.data.$listWrap,
                     target : $target,
-                    offset : '0 -0.5px'
+                    offset : '0 0'
                 });
 &nbsp;
 <span class="cstat-no" title="statement not covered" >                if (this.conf.multiSelect) {</span>
@@ -3621,7 +3639,7 @@ export default {
         this._updateItemValueList();
         this._onValueChange();
         this._resizeSelectArea();
-        
+&nbsp;
         this.$on('value-change', this._onValueChange);
 &nbsp;
         setTimeout(() =&gt; {
@@ -3769,7 +3787,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue May 22 2018 00:49:04 GMT+0800 (CST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu May 24 2018 22:52:38 GMT+0800 (CST)
 </div>
 </div>
 <script src="../../../prettify.js"></script>

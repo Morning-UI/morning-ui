@@ -8584,6 +8584,7 @@ mor-select.separate {
   height: 0;
   min-height: 0;
   width: auto;
+  position: absolute;
 }
 mor-select.input-group {
   display: flex;
@@ -8614,10 +8615,9 @@ mor-select.input-group .select-area {
   margin: 0;
 }
 .mor-select-wrap.select-area {
-  display: none;
-}
-.mor-select-wrap.select-area.shownow {
-  display: block;
+  pointer-events: none;
+  visibility: hidden;
+  height: 0;
 }
 .mor-select-wrap.select-list {
   pointer-events: none;
@@ -8655,10 +8655,6 @@ mor-select.input-group .select-area {
 .mor-select-wrap.no-animation .list {
   transform: none;
   transition: none;
-  display: none;
-}
-.mor-select-wrap.no-animation .list.shownow {
-  display: block;
 }
 .mor-select-wrap li {
   padding: 0.5em 1em;
@@ -8909,7 +8905,6 @@ mor-select.input-group .select-area {
 }
 .mor-select-wrap.no-animation.showlist .list,
 .mor-select-wrap.no-animation .showlist .list {
-  display: block;
   transform: none;
 }
 
