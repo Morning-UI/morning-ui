@@ -36,6 +36,22 @@
 
                 </div>
 
+
+                <div>
+                    <ui-dialog ref="demo2">
+                        <header slot="header">This is title</header>
+                        <ui-select
+                            form-name="test"
+                            :hide-selected="false"
+                            style="width: 300px"
+                        >
+
+                            <li v-for="name in list" :value="name">{{name}}</li>
+                        </ui-select>
+                    </ui-dialog>
+                    <ui-link js="window.morning.findVM('demo2').toggle(true);">显示模拟盒</ui-link>
+                </div>
+
             </div>
         </div>
         <doc-footer></doc-footer>
