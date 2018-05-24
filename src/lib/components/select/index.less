@@ -278,6 +278,7 @@ mor-select{
         height: 0;
         min-height: 0;
         width: auto;
+        position: absolute;
     }
 
     &.input-group {
@@ -325,11 +326,9 @@ mor-select{
 
 .mor-select-wrap{
     &.select-area{
-        display: none;
-
-        &.shownow{
-            display: block;
-        }
+        pointer-events: none;
+        visibility: hidden;
+        height: 0;
     }
 
     &.select-list{
@@ -359,11 +358,6 @@ mor-select{
         .list{
             transform: none;
             transition: none;
-            display: none;
-
-            &.shownow{
-                display: block;
-            }
         }
     }
 
@@ -462,7 +456,6 @@ mor-select{
     &.no-animation.showlist,
     &.no-animation .showlist{
         .list{
-            display: block;
             transform: none;
         }
     }

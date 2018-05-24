@@ -11,15 +11,25 @@
                 <div style="width: 400px">
                 
                 <template v-for="n in 1">
-                    <ui-btn class="demo5">点击选择</ui-btn>
+                    <div style="width: 600px;">
+                        <ui-btn class="demo5">点击选择</ui-btn>
+                        <ui-select
+                            form-name="test"
+                            :hide-selected="false"
+                            separate-emit=".demo5"
+                            style="width: 300px"
+                        >
+
+                            <li v-for="name in list" :value="name">{{name}}</li>
+                        </ui-select>
+                        <span>123</span>
+                    </div>
 
                     <ui-select
                         form-name="test"
                         :hide-selected="false"
-                        separate-emit=".demo5"
                         style="width: 300px"
                     >
-
                         <li v-for="name in list" :value="name">{{name}}</li>
                     </ui-select>
                 </template>
