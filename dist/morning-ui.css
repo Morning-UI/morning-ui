@@ -8390,6 +8390,14 @@ mor-message .msg-co-wh .bo-ti {
   color: #17212D;
 }
 
+mor-audio {
+  display: block;
+}
+
+mor-video {
+  display: block;
+}
+
 mor-textinput {
   position: relative;
   z-index: 1;

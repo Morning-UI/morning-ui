@@ -63,7 +63,7 @@ export default {
         面包屑 : '/component/breadcrumbs.html',
         '小提示<i class="tag update l4"></i>' : '/component/tip.html',
         消息 : '/component/message.html',
-        '视频<i class="tag coming"></i>' : '',
+        '视频<i class="tag coming"></i>' : '/component/audio.html',
         '音频<i class="tag coming"></i>' : '',
         表单组件 : null,
         文本输入 : '/component/textinput.html',
