@@ -1,9 +1,10 @@
 import extend                       from 'extend';
 import Tether                       from 'Npm/tether/dist/js/tether.min.js';
 import PopupManager                 from 'Utils/PopupManager';
+import IndexManager                 from 'Utils/IndexManager';
 
 let TipManager = {
-    mixins : [PopupManager],
+    mixins : [PopupManager, IndexManager],
     data : function () {
 
         return {
@@ -151,6 +152,7 @@ let TipManager = {
             this.Tip.autoFixOffset = [0, 0];
             this.Tip.autoFixPlacement = null;
             this.Tip.overranger = [false, false, false, false];
+            this.Tip.options.element.style.zIndex = this._indexMax();
             this._tipUpdate();
             this._tipAutoPos();
             this._tipUpdate();

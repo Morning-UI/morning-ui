@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">19.18% </span>
+        <span class="strong">19.05% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>84/438</span>
+        <span class='fraction'>84/441</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">29.96% </span>
+        <span class="strong">29.75% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>83/277</span>
+        <span class='fraction'>83/279</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">34.18% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>27/79</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">20.8% </span>
+        <span class="strong">20.62% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>73/351</span>
+        <span class='fraction'>73/354</span>
       </div>
     </div>
   </div>
@@ -1237,7 +1237,17 @@
 1192
 1193
 1194
-1195</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+1195
+1196
+1197
+1198
+1199
+1200
+1201
+1202
+1203
+1204
+1205</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -2058,6 +2068,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -2273,9 +2284,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -2303,6 +2311,18 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -3252,6 +3272,7 @@ export default {
                 y : zone.y,
                 i : zone.i
             };
+&nbsp;
 <span class="cstat-no" title="statement not covered" >            this.morning.cleanGroup(`ui-imagemap-data-${this.uiid}`);</span>
 <span class="cstat-no" title="statement not covered" >            this.morning.setGroup(`ui-imagemap-data-${this.uiid}`, zone.data || {});</span>
 <span class="cstat-no" title="statement not covered" >            this.$refs[`ui-imagemap-zonedialog-${this.uiid}`].toggle(true);</span>
@@ -3395,8 +3416,8 @@ export default {
             let result = <span class="cstat-no" title="statement not covered" >{};</span>
             let $zonearea = <span class="cstat-no" title="statement not covered" >this.$refs[`ui-imagemap-mapdialog-${this.uiid}`].$el.querySelector('.zonearea');</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >            result.images = this.data.images;</span>
-<span class="cstat-no" title="statement not covered" >            result.zones = this.data.zones;</span>
+<span class="cstat-no" title="statement not covered" >            result.images = extend(true, [], this.data.images);</span>
+<span class="cstat-no" title="statement not covered" >            result.zones = extend(true, [], this.data.zones);</span>
 <span class="cstat-no" title="statement not covered" >            result.w = this._getRealValue($zonearea.clientWidth);</span>
 <span class="cstat-no" title="statement not covered" >            result.h = this._getRealValue($zonearea.clientHeight);</span>
 &nbsp;
@@ -3465,15 +3486,12 @@ export default {
         },
         addZone : <span class="fstat-no" title="function not covered" >function (</span>zone) {
 &nbsp;
-            let data = <span class="cstat-no" title="statement not covered" >this.morning.getGroup(`ui-imagemap-data-${this.uiid}`);</span>
-&nbsp;
 <span class="cstat-no" title="statement not covered" >            zone = extend({</span>
                 w : this.zoneMinSize,
                 h : this.zoneMinSize,
                 x : 0,
                 y : 0,
-                i : 0,
-                data : (Object.keys(data).length === 0) ? undefined : data
+                i : 0
             }, zone);
 &nbsp;
 <span class="cstat-no" title="statement not covered" >            this._zoneRangeFilter(zone);</span>
@@ -3497,6 +3515,18 @@ export default {
 <span class="cstat-no" title="statement not covered" >            zone.x = +zone.x;</span>
 <span class="cstat-no" title="statement not covered" >            zone.y = +zone.y;</span>
 <span class="cstat-no" title="statement not covered" >            zone.i = +zone.i || 0;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (JSON.stringify(this.data.zones[index].data) !== JSON.stringify(zone.data)) {</span>
+                
+<span class="cstat-no" title="statement not covered" >                if (this.data.zones[index].data === undefined) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    this.$set(this.data.zones[index], 'data', {});</span>
+&nbsp;
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                this.data.zones[index].data = zone.data;</span>
+ 
+            }
 &nbsp;
 <span class="cstat-no" title="statement not covered" >            extend(true, this.data.zones[index], zone);</span>
 &nbsp;
@@ -3631,7 +3661,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue May 22 2018 00:49:04 GMT+0800 (CST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu May 24 2018 22:52:38 GMT+0800 (CST)
 </div>
 </div>
 <script src="../../../prettify.js"></script>

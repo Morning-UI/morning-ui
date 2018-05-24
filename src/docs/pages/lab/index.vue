@@ -5,25 +5,84 @@
         <div class="lab">
             <h1><i class="iconfont">&#xe615;</i>Morning Laboratory</h1>
             <div class="area">
+
+            <div style="width:300px;">
+                <ui-imagemap group="test" form-key="test" state="normal" :default-value="{'images':[{'name':'151244303389249797.png','path':'http://morning-ui-image.test.upcdn.net/uploaddemo/17505/151244303389249797.png'}],'zones':[],'w':722,'h':725}" form-name="正常" >
+                    
+                    <ui-formgroup slot-scope="{group}">
+                        <div class="item">
+                            <h5 class="title">
+                                <ui-center class="fill">自定义数据1</ui-center>
+                            </h5>
+                            <div class="content">
+                                <div class="form">
+
+                                    <ui-select
+                                        form-name="test"
+                                        :hide-selected="false"
+                                        style="width: 300px"
+                                        :group="group"
+                                        form-key="customdata2"
+                                    >
+
+                                        <li v-for="name in list" :value="name">{{name}}</li>
+                                    </ui-select>
+
+
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </ui-formgroup>
+
+
+                </ui-imagemap>
+            </div>
     
                 <h1>大列表渲染</h1>
 
                 <div style="width: 400px">
                 
                 <template v-for="n in 1">
-                    <ui-btn class="demo5">点击选择</ui-btn>
+                    <div style="width: 600px;">
+                        <ui-btn class="demo5">点击选择</ui-btn>
+                        <ui-select
+                            form-name="test"
+                            :hide-selected="false"
+                            separate-emit=".demo5"
+                            style="width: 300px"
+                        >
+
+                            <li v-for="name in list" :value="name">{{name}}</li>
+                        </ui-select>
+                        <span>123</span>
+                    </div>
 
                     <ui-select
                         form-name="test"
                         :hide-selected="false"
-                        separate-emit=".demo5"
                         style="width: 300px"
                     >
-
                         <li v-for="name in list" :value="name">{{name}}</li>
                     </ui-select>
                 </template>
 
+                </div>
+
+
+                <div>
+                    <ui-dialog ref="demo2">
+                        <header slot="header">This is title</header>
+                        <ui-select
+                            form-name="test"
+                            :hide-selected="false"
+                            style="width: 300px"
+                        >
+
+                            <li v-for="name in list" :value="name">{{name}}</li>
+                        </ui-select>
+                    </ui-dialog>
+                    <ui-link js="window.morning.findVM('demo2').toggle(true);">显示模拟盒</ui-link>
                 </div>
 
             </div>

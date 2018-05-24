@@ -131,7 +131,7 @@
     |[max](#max)|最多允许上传多少文件|数字|Number|`Infinity`|
     |[allow-url](#allow-url)|允许从网络地址获取文件并上传|`true`<br>`false`|Boolean|`false`|
     |[allow-drag](#allow-drag)|允许拖拽文件或网络地址上传，若拖拽的是网络地址必须开启`allow-url`|`true`<br>`false`|Boolean|`false`|
-    |[validate](#validate)|验证上传的文件，这是一个函数，第一个参数是上传文件的`File`对象。可以通过这个对象来验证文件，返回的数值有两种：<br><br>非字符串：认为验证通过，开始上传文件<br>字符串：验证失败，字符串的内容作为提示信息展现给用户<br><br>如果是异步的验证，也可以返回Promise|验证函数|Function|`() => {}`|
+    |[validate](#validate)|验证上传的文件，这是一个函数。函数包含两个入参：<br><br>第一个参数是上传文件的原始`File`对象<br>第二个参数是一个扩展对象，包含了以下这些信息：<br>&nbsp; &nbsp; `size` : 文件的大小<br>&nbsp; &nbsp; `width` : 图片的宽度(仅文件是图片时有效)<br>&nbsp; &nbsp; `height` : 图片的高度(仅文件是图片时有效)<br><br>通过这两个参数来验证文件。<br><br>此函数的返回值为验证结果，有两种：<br><br>非字符串：认为验证通过，开始上传文件<br>字符串：验证失败，字符串的内容作为提示信息展现给用户<br><br>如果是异步的验证，也可以返回Promise|验证函数|Function|`() => {}`|
     |[uploader](#uploader)|文件上传适配器，默认采用全局设置。`uploader`是一个函数，第一个参数是上传文件的`File`对象，需要返回一个对象：<br><br>`status` : 文件是否上传成功(必需，Boolean)<br>`path` : 文件上传后的网络地址(必需，String)<br>`message` : 文件上传失败的提示信息(String)，仅在`status`为`false`的时候需要|文件上传适配器函数|Function|`undefined`|
     :::
 
@@ -206,7 +206,7 @@
 
     #### validate
 
-    限制上传大小为30kb的图片：
+    限制上传大小为30kb的文件：
 
     :::vue/html
     new Vue({
@@ -218,6 +218,36 @@
                 if (file.size > 30000) {
                     
                     return '上传文件的大小不能超过30kb';
+
+                }
+
+            }
+        }
+    });
+    ---
+    <div style="width:300px;">
+        <ui-upload form-name="文件" :validate="checksize"></ui-upload>
+    </div>
+    :::
+
+    限制上传宽度和高度小于100px的图片：
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        methods : {
+            checksize : function (file, ext) {
+                    
+                if (ext.width > 100) {
+                    
+                    return '上传图片的宽度不能超过100px';
+
+                }
+                    
+                if (ext.height > 100) {
+                    
+                    return '上传图片的高度不能超过100px';
 
                 }
 

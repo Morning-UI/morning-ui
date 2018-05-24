@@ -98,7 +98,7 @@
     |参数|可选|描述|类型|
     |-|-|-|-|
     |groupName|NO|需要设置数据表单组的名称|`string`|
-    |dataJson|NO|一组键值对的JSON字符串，键名为表单的KEY，键值是需要设置的表单值。可以只设置部分KEY。如果显示的设置键值为`undefined`则会清空对应的表单。|`object`|
+    |dataJson|NO|一组键值对的JSON字符串，键名为表单的KEY，键值是需要设置的表单值。可以只设置部分KEY。如果显示的设置键值为`'undefined'`则会清空对应的表单。|`object`|
 
     ##### 返回值
 

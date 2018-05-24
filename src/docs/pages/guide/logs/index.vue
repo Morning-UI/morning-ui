@@ -17,6 +17,24 @@
     <!-- ### 0.11.0 <ui-badge class="circle" s light-blue>Beta</ui-badge> -->
     
     ### 更新记录
+
+    ### 0.10.30 <ui-badge class="circle ver-stable" size="s" color="light-theme">Stable</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2018年5月24日，
+            Archive : 
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.30" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.30/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.10.30/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor><br/><br/>
+
+    - `ui-upload`的`validate`配置新增参数，可用于获取图片的高度和宽度
+    - 优化 `ui-select`切换下拉列表的性能
+    - 修复`ui-select`的`z-index`计算错误导致部分场景无法展示的问题
+    - 修复`ui-imagemap`的值用`getGroup`方式取值时可能出现错误的问题
+
     
     ### 0.10.29 <ui-badge class="circle ver-stable" size="s" color="light-theme">Stable</ui-badge>
 
