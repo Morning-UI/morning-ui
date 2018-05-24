@@ -366,8 +366,7 @@ export default {
                 modifyZoneData : undefined,
                 disableAddSpot : false,
                 scale : 1,
-                setScale : null,
-                zonesUpdateCount : 0
+                setScale : null
             }
         };
 
@@ -1023,24 +1022,6 @@ export default {
             return val / this.data.scale;
 
         },
-        _zonesUpdated : function () {
-
-            if (this.conf.maxSpot &&
-                this.data &&
-                this.data.zones &&
-                this.data.zones.length >= this.conf.maxSpot) {
-
-                this.data.disableAddSpot = true;
-
-            } else {
-
-                this.data.disableAddSpot = false;
-
-            }
-
-            this._syncFromZoneImage();
-
-        },
         set : function (value) {
 
             let result = this._set(value);
@@ -1082,7 +1063,17 @@ export default {
             zone.y = +zone.y;
             zone.i = +zone.i || 0;
 
-            let oldZones = JSON.stringify(this.data.zones[index]);
+            if (JSON.stringify(this.data.zones[index].data) !== JSON.stringify(zone.data)) {
+                
+                if (this.data.zones[index].data === undefined) {
+
+                    this.$set(this.data.zones[index], 'data', {});
+
+                }
+
+                this.data.zones[index].data = zone.data;
+ 
+            }
 
             extend(true, this.data.zones[index], zone);
 
@@ -1097,12 +1088,6 @@ export default {
             if (this.data.zones[index].data === undefined) {
 
                 delete this.data.zones[index].data;
-
-            }
-
-            if (JSON.stringify(this.data.zones[index]) !== oldZones) {
-
-                this.data.zonesUpdateCount++;
 
             }
 
@@ -1131,9 +1116,24 @@ export default {
 
         });
 
-        this.$watch('data.zonesUpdateCount', this._zonesUpdated);
+        this.$watch('data.zones', () => {
 
-        this.$watch('data.zones', this._zonesUpdated, {
+            if (this.conf.maxSpot &&
+                this.data &&
+                this.data.zones &&
+                this.data.zones.length >= this.conf.maxSpot) {
+
+                this.data.disableAddSpot = true;
+
+            } else {
+
+                this.data.disableAddSpot = false;
+
+            }
+
+            this._syncFromZoneImage();
+
+        }, {
             deep : true
         });
 
