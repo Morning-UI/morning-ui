@@ -480,6 +480,38 @@ export default {
             this._execUploadQueue();
 
         },
+        _getImageWh : function (file) {
+
+            return new Promise(resolve => {
+
+                let reader = new FileReader();
+
+                reader.onload = result => {
+                    
+                    let image = new Image();
+
+                    if (result) {
+                        
+                        image.onload = () => {
+
+                            resolve({
+                                width : image.width,
+                                height : image.height
+                            });
+
+                        };
+                        
+                        image.src = result.target.result;
+
+                    }
+
+                };
+
+                reader.readAsDataURL(file);
+
+            });
+
+        },
         _execUploadOnce : function () {
 
             if (this.data.uploadQueue.length === 0) {
@@ -511,7 +543,21 @@ export default {
 
                     if (typeof this.conf.validate === 'function') {
 
-                        return this.conf.validate(uploadObj.file);
+                        if (/^image/.test(uploadObj.file.type)) {
+                            
+                            return this
+                                ._getImageWh(uploadObj.file)
+                                .then(image => (this.conf.validate(uploadObj.file, {
+                                    width : image.width,
+                                    height : image.height,
+                                    size : uploadObj.file.size
+                                })));
+
+                        }
+
+                        return this.conf.validate(uploadObj.file, {
+                            size : uploadObj.file.size
+                        });
 
                     }
 
