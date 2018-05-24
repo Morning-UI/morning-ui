@@ -7,6 +7,7 @@
         :choose-root="chooseRoot"
         :list="list"
         :max-history="maxHistory"
+        :separator="separator"
     >
 
     <ul>
@@ -30,7 +31,7 @@
                 >{{name}}</li>
                 <li class="last" :value="key" v-else>{{name}}</li>
             </template>
-            <li class="separator" v-if="index < (data.lvlist.length - 1)"> / </li>
+            <li class="separator" v-if="index < (data.lvlist.length - 1)" v-html="separatorHtml"></li>
         </template>
         
     </ul>
@@ -62,6 +63,10 @@ export default {
         maxHistory : {
             type : Number,
             default : maxHistoryNum
+        },
+        separator : {
+            type : String,
+            default : '/'
         }
     },
     computed : {
@@ -71,8 +76,14 @@ export default {
                 rootName : this.rootName,
                 chooseRoot : this.chooseRoot,
                 list : this.list,
-                maxHistory : this.maxHistory
+                maxHistory : this.maxHistory,
+                separator : this.separator
             };
+
+        },
+        separatorHtml : function () {
+
+            return ` ${this.conf.separator} `;
 
         }
     },
