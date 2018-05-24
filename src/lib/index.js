@@ -126,9 +126,15 @@ morning.cleanGroup = function (groupName) {
 morning.setGroup = function (groupName, data) {
 
     let uiids = this._groupVmMap[groupName];
-    let setKeys = Object.keys(data);
+    let setKeys;
     let key,
         vm;
+
+    if (data !== undefined) {
+
+        setKeys = Object.keys(data);
+
+    }
 
     if (uiids) {
 
@@ -140,9 +146,13 @@ morning.setGroup = function (groupName, data) {
 
                 key = vm.conf.formKey;
 
-                if (setKeys.indexOf(key) !== -1) {
+                if (setKeys && setKeys.indexOf(key) !== -1) {
 
                     this.map[uiid].set(data[key]);
+
+                } else if (data === undefined) {
+
+                    this.map[uiid].set(undefined);
 
                 }
 
@@ -158,7 +168,7 @@ morning.setGroup = function (groupName, data) {
 
 morning.setGroupJson = function (groupName, data) {
 
-    return this.setGroup(groupName, JSON.parse(data));
+    return this.setGroup(groupName, JSON.parse(String(data)));
 
 };
 
