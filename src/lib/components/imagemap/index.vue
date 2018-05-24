@@ -819,6 +819,7 @@ export default {
                 y : zone.y,
                 i : zone.i
             };
+
             this.morning.cleanGroup(`ui-imagemap-data-${this.uiid}`);
             this.morning.setGroup(`ui-imagemap-data-${this.uiid}`, zone.data || {});
             this.$refs[`ui-imagemap-zonedialog-${this.uiid}`].toggle(true);
@@ -1032,15 +1033,12 @@ export default {
         },
         addZone : function (zone) {
 
-            let data = this.morning.getGroup(`ui-imagemap-data-${this.uiid}`);
-
             zone = extend({
                 w : this.zoneMinSize,
                 h : this.zoneMinSize,
                 x : 0,
                 y : 0,
-                i : 0,
-                data : (Object.keys(data).length === 0) ? undefined : data
+                i : 0
             }, zone);
 
             this._zoneRangeFilter(zone);
@@ -1064,6 +1062,13 @@ export default {
             zone.x = +zone.x;
             zone.y = +zone.y;
             zone.i = +zone.i || 0;
+
+            // 改变data触发watch
+            if (JSON.stringify(this.data.zones[index].data) !== JSON.stringify(zone.data)) {
+
+                this.data.zones[index].data = zone.data;
+
+            }
 
             extend(true, this.data.zones[index], zone);
 
