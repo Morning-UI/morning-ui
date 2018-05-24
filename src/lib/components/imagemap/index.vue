@@ -366,7 +366,8 @@ export default {
                 modifyZoneData : undefined,
                 disableAddSpot : false,
                 scale : 1,
-                setScale : null
+                setScale : null,
+                zonesUpdateCount : 0
             }
         };
 
@@ -963,8 +964,8 @@ export default {
             let result = {};
             let $zonearea = this.$refs[`ui-imagemap-mapdialog-${this.uiid}`].$el.querySelector('.zonearea');
 
-            result.images = this.data.images;
-            result.zones = this.data.zones;
+            result.images = extend(true, [], this.data.images);
+            result.zones = extend(true, [], this.data.zones);
             result.w = this._getRealValue($zonearea.clientWidth);
             result.h = this._getRealValue($zonearea.clientHeight);
 
@@ -1022,6 +1023,24 @@ export default {
             return val / this.data.scale;
 
         },
+        _zonesUpdated : function () {
+
+            if (this.conf.maxSpot &&
+                this.data &&
+                this.data.zones &&
+                this.data.zones.length >= this.conf.maxSpot) {
+
+                this.data.disableAddSpot = true;
+
+            } else {
+
+                this.data.disableAddSpot = false;
+
+            }
+
+            this._syncFromZoneImage();
+
+        },
         set : function (value) {
 
             let result = this._set(value);
@@ -1063,12 +1082,7 @@ export default {
             zone.y = +zone.y;
             zone.i = +zone.i || 0;
 
-            // 改变data触发watch
-            if (JSON.stringify(this.data.zones[index].data) !== JSON.stringify(zone.data)) {
-
-                this.data.zones[index].data = zone.data;
-
-            }
+            let oldZones = JSON.stringify(this.data.zones[index]);
 
             extend(true, this.data.zones[index], zone);
 
@@ -1083,6 +1097,12 @@ export default {
             if (this.data.zones[index].data === undefined) {
 
                 delete this.data.zones[index].data;
+
+            }
+
+            if (JSON.stringify(this.data.zones[index]) !== oldZones) {
+
+                this.data.zonesUpdateCount++;
 
             }
 
@@ -1111,24 +1131,9 @@ export default {
 
         });
 
-        this.$watch('data.zones', () => {
+        this.$watch('data.zonesUpdateCount', this._zonesUpdated);
 
-            if (this.conf.maxSpot &&
-                this.data &&
-                this.data.zones &&
-                this.data.zones.length >= this.conf.maxSpot) {
-
-                this.data.disableAddSpot = true;
-
-            } else {
-
-                this.data.disableAddSpot = false;
-
-            }
-
-            this._syncFromZoneImage();
-
-        }, {
+        this.$watch('data.zones', this._zonesUpdated, {
             deep : true
         });
 
