@@ -1,0 +1,54 @@
+@import '~Common/var.less';
+
+mor-slider{
+    display: inline-block;
+    width: 100%;
+
+    .wrap{
+        width: 100%;
+        padding: 0 20px;
+        box-sizing: border-box;
+        user-select: none;
+    }
+
+    .track{
+        width: 100%;
+        height: 8px;
+        background: @colorLightSilver;
+        border-radius: 10em;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .selected-line{
+        height: 8px;
+        position: absolute;
+        left: 0;
+        background: @colorTheme;
+        border-radius: 10em;
+        pointer-events: none;
+    }
+
+    .main-slider{
+        width: 18px;
+        height: 18px;
+        position: absolute;
+        top: -5px;
+        left: 0;
+        background: @colorWhite;
+        border-radius: 9px;
+        border: 2px @colorTheme solid;
+        cursor: pointer;
+        margin-left: -9px;
+    }
+
+    &.st-normal{}
+
+    &.st-disabled,
+    &.st-readonly{}
+
+    // default status
+    &{
+        .st-normal;
+    }
+}

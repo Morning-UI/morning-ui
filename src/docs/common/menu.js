@@ -79,6 +79,7 @@ export default {
         单选框组 : '/component/radio.html',
         多项输入 : '/component/multiinput.html',
         多项表单输入 : '/component/multiform.html',
+        '滑块输入<i class="tag new l1"></i>' : '/component/slider.html',
         // 多项文本输入 : 'b',
         时间选择器 : '/component/timepicker.html',
         '日期选择器<i class="tag update l2"></i>' : '/component/datepicker.html',
