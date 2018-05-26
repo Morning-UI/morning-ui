@@ -3,12 +3,41 @@
 mor-slider{
     display: inline-block;
     width: 100%;
+    padding-bottom: 4px;
+    position: relative;
+
+    &.has-cleanbtn{
+        padding-bottom: 20px;
+    }
+
+    > .note{
+        color: @colorFormTextNote;
+        font-size: @fontSize;
+        margin-bottom: 0.5em;
+        -webkit-user-select: text;
+        padding: 0 10px;
+    }
 
     .wrap{
         width: 100%;
-        padding: 0 20px;
         box-sizing: border-box;
         user-select: none;
+        padding: 6px 20px;
+
+        &:hover,
+        &.droping{
+            .track{
+                background:  darken(@colorLightSilver, 3%);
+            }
+
+            .selected-line{
+                background: @colorTheme;
+            }
+
+            .main-slider{
+                border-color: @colorTheme;
+            }
+        }
     }
 
     .track{
@@ -24,7 +53,7 @@ mor-slider{
         height: 8px;
         position: absolute;
         left: 0;
-        background: @colorTheme;
+        background: @colorLightTheme;
         border-radius: 10em;
         pointer-events: none;
     }
@@ -37,15 +66,38 @@ mor-slider{
         left: 0;
         background: @colorWhite;
         border-radius: 9px;
-        border: 2px @colorTheme solid;
+        border: 2px @colorLightTheme solid;
         cursor: pointer;
         margin-left: -9px;
     }
-
+    
+    .cleanbtn{
+        position: absolute;
+        right: 20px;
+    }
+    
     &.st-normal{}
 
     &.st-disabled,
-    &.st-readonly{}
+    &.st-readonly{
+        .wrap{
+            cursor: not-allowed;
+
+            .track{
+                cursor: not-allowed;
+                background: darken(@colorSilver, 4%);
+            }
+
+            .selected-line{
+                background: darken(@colorSilver, 28%);
+            }
+
+            .main-slider{
+                cursor: not-allowed;
+                border-color: darken(@colorSilver, 28%);
+            }
+        }
+    }
 
     // default status
     &{

@@ -9,10 +9,23 @@
         :default-value="defaultValue"
         :hide-name="hideName"
         :clearable="clearable"
+        :max="max"
+        :min="min"
+        :step="step"
+        :show-tip="showTip"
+        :is-range="isRange"
+        :show-input="showInput"
+        :start-end-text="startEndText"
+        :tip-formatter="tipFormatter"
+        :show-point="showPoint"
+        :marks="marks"
+        :vertical="vertical"
     >
 
     <!-- <div class="left-point"></div> -->
-    <div class="wrap">
+    <div class="note" v-if="!conf.hideName">{{conf.formName}}</div>
+    
+    <div class="wrap" :class="{'droping' : data.droping}">
         <div
             class="track"
 
@@ -60,7 +73,7 @@ export default {
     props : {
         max : {
             type : Number,
-            default : 3
+            default : 100
         },
         min : {
             type : Number,
@@ -176,6 +189,13 @@ export default {
         },
         _trackClick : function (evt) {
 
+            if (this.conf.state === 'disabled' ||
+                this.conf.state === 'readonly') {
+
+                return;
+
+            }
+
             if (this.data.droping) {
 
                 return;
@@ -189,6 +209,13 @@ export default {
 
         },
         _sliderMousedown : function (main, evt) {
+
+            if (this.conf.state === 'disabled' ||
+                this.conf.state === 'readonly') {
+
+                return;
+
+            }
 
             if (this.data.droping) {
 
@@ -258,6 +285,19 @@ export default {
 
         this.data.per = ((this.data.end - this.data.start) / this.conf.max);
         this.data.$track = this.$el.querySelector('.track');
+        this._setPer((this.get() || 0) / this.conf.max);
+
+        this.$watch('data.end', () => {
+
+            this._set(this.data.end);
+
+        });
+
+        this.$on('value-change', () => {
+
+            this._setPer((this.get() || 0) / this.conf.max);
+
+        });
 
 
     }
