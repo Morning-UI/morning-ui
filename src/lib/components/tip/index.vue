@@ -48,7 +48,7 @@ export default {
         trigger : {
             type : String,
             default : 'hover',
-            validator : (value => ['hover', 'click', 'focus'].indexOf(value) !== -1)
+            validator : (value => ['hover', 'click', 'focus', 'method'].indexOf(value) !== -1)
         },
         autoReverse : {
             type : Boolean,
@@ -322,6 +322,13 @@ export default {
 
             }
             
+            return this;
+
+        },
+        position : function () {
+
+            this._tipUpdate();
+
             return this;
 
         }

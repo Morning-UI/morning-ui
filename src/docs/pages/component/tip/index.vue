@@ -86,7 +86,7 @@
     |[target](#target)|触发提示的目标元素，必填项。此配置改变后，若小提示处于显示状态，则会触发一次`hide`和`show`事件，以刷新小提示的位置。|元素选择器([MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/Document_Object_Model/Locating_DOM_elements_using_selectors)|String<br>Null|`null`|
     |[placement](#placement)|提示框位置|`top`:上方<br>`bottom`:下方<br>`left`:左侧<br>`right`:右侧|String|`'top'`|
     |[offset](#offset)|偏移量|上下偏移量(单位px/%) 左右偏移量(单位px/%)|String|`'0 0'`|
-    |[trigger](#trigger)|触发方式(支持多触发方式，多个触发器之间用空格分开)。触发方式一旦改变，已有的触发状态都会被重置。|`hover`<br>`click`<br>`focus`|String|`'hover'`|
+    |[trigger](#trigger)|触发方式(支持多触发方式，多个触发器之间用空格分开)。触发方式一旦改变，已有的触发状态都会被重置。|`hover`：鼠标移入目标元素<br>`click`：鼠标点击目标元素<br>`focus`：目标元素处于焦点状态<br>`method`：通过组件方法触发|String|`'hover'`|
     |[auto-reverse](#auto-reverse)|当小提示超出窗口时，自动反转小提示的方向，使其可以显示。|`true`<br>`false`|Boolean|`true`|
     
     #### target
@@ -139,6 +139,18 @@
     <ui-tip target="#demo13" trigger="click hover">提示内容</ui-tip>
     :::
 
+    `trigger`也可以设置为`method`，这样只能通过组件方法来触发：
+
+    :::democode/html
+    <span id="demo22">目标文字</span>
+    <ui-tip target="#demo22" ref="demo22" trigger="click">提示内容</ui-tip>
+    
+    <br><br>
+
+    <ui-link js="morning.findVM('demo22').show();">通过组件方法显示提示</ui-link><br>
+    <ui-link js="morning.findVM('demo22').hide();">通过组件方法显示隐藏</ui-link>
+    :::
+
     #### auto-reverse
 
     滚动页面的位置，使得下面的demo靠近窗口底部，当关闭`auto-reverse`后，小提示不会反转方向：
@@ -188,6 +200,20 @@
     <ui-tip target="#demo16" ref="demo16">提示内容</ui-tip>
     
     <ui-link js="morning.findVM('demo16').toggle();">切换小提示</ui-link>
+    :::
+
+    #### position()
+
+    根据目标元素重新定位小提示的位置。
+
+    :::democode/html
+    <span id="demo23" style="position: relative;">目标文字</span>
+    <ui-tip target="#demo23" ref="demo23">提示内容</ui-tip>
+
+    <br><br>
+    
+    <ui-link js="morning.findVM('demo23').show();document.querySelector('#demo23').style.left='100px';">显示小提示，然后移动目标元素位置</ui-link><br>
+    <ui-link js="morning.findVM('demo23').position();">重新定位小提示</ui-link>
     :::
     
     [[[事件]]]

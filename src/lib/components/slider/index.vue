@@ -1,7 +1,7 @@
 <template>
     <mor-slider
         :_uiid="uiid"
-        :class="[formClass, stateClass]"
+        :class="[formClass, stateClass, moreClass]"
 
         :form-name="formName"
         :form-key="formKey"
@@ -13,17 +13,19 @@
         :min="min"
         :step="step"
         :show-tip="showTip"
-        :is-range="isRange"
-        :show-input="showInput"
-        :start-end-text="startEndText"
         :tip-formatter="tipFormatter"
+        :prepend="prepend"
+        :append="append"
         :show-point="showPoint"
         :marks="marks"
+        :is-range="isRange"
         :vertical="vertical"
     >
 
     <!-- <div class="left-point"></div> -->
     <div class="note" v-if="!conf.hideName">{{conf.formName}}</div>
+
+    <div class="prepend" v-if="hasPrepend" v-html="conf.prepend"></div>
     
     <div class="wrap" :class="{'droping' : data.droping}">
         <div
@@ -38,16 +40,24 @@
                     'width' : `${startEndReal.end - startEndReal.start}px`
                 }"
             >
-                
+
             </div>
             <div
                 class="main-slider"
+                :id="'ui-slider-tip-'+this.uiid"
                 :style="{
                     'left' : `${startEndReal.end}px`
                 }"
 
                 @mousedown="_sliderMousedown(true, $event)"
             ></div>
+            <ui-tip
+                :target="'#ui-slider-tip-'+this.uiid"
+                :ref="'ui-slider-tip-'+this.uiid"
+                color="extra-light-blue"
+                trigger="method"
+                offset="3px 0"
+            >{{conf.tipFormatter(data.end)}}</ui-tip>
             <!-- <div class="sub-slider"></div> -->
         </div>
 
@@ -58,6 +68,8 @@
     <!-- <div class="right-point"></div> -->
     </div>
 
+    <div class="append" v-if="hasAppend" v-html="conf.append"></div>
+
     <morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn">清空</morning-link>
 
     </mor-slider>
@@ -65,6 +77,8 @@
  
 <script>
 import GlobalEvent                  from 'Utils/GlobalEvent';
+
+const clickTipHideTime = 1000;
 
 export default {
     origin : 'Form',
@@ -81,7 +95,24 @@ export default {
         },
         step : {
             type : Number,
-            default : 1
+            default : 1,
+            validator : (value => (value > 0))
+        },
+        showTip : {
+            type : Boolean,
+            default : true
+        },
+        tipFormatter : {
+            type : Function,
+            default : (value => value)
+        },
+        prepend : {
+            type : String,
+            default : ''
+        },
+        append : {
+            type : String,
+            default : ''
         }
     },
     computed : {
@@ -90,8 +121,35 @@ export default {
             return {
                 max : this.max,
                 min : this.min,
-                step : this.step
+                step : this.step,
+                showTip : this.showTip,
+                tipFormatter : this.tipFormatter,
+                prepend : this.prepend,
+                append : this.append
             };
+
+        },
+        hasPrepend : function () {
+
+            return (this.conf.prepend.length > 0);
+
+        },
+        hasAppend : function () {
+
+            return (this.conf.append.length > 0);
+
+        },
+        moreClass : function () {
+
+            return {
+                'has-prepend' : this.hasPrepend,
+                'has-append' : this.hasAppend
+            };
+
+        },
+        range : function () {
+
+            return this.conf.max - this.conf.min;
 
         },
         startEndReal : function () {
@@ -105,11 +163,11 @@ export default {
 
             }
             
-            let fullval = this.data.$track.clientWidth;
+            let fullwidth = this.data.$track.clientWidth;
 
             return {
-                start : (this.data.start / this.conf.max) * fullval,
-                end : (this.data.end / this.conf.max) * fullval
+                start : ((this.data.start - this.conf.min) / this.range) * fullwidth,
+                end : ((this.data.end - this.conf.min) / this.range) * fullwidth
             };
 
         }
@@ -126,7 +184,9 @@ export default {
                 lastDropX : 0,
                 overMaxX : -1,
                 overMinX : -1,
-                $track : null
+                clickTipHideTimeout : null,
+                $track : null,
+                $tip : null
             }
         };
 
@@ -159,10 +219,10 @@ export default {
 
             }
 
-            let rval = ((this.conf.max - this.conf.min) * this.data.per);
+            let rval = (this.range * this.data.per) + this.conf.min;
             let rleft = rval % this.conf.step;
 
-            this.data.start = 0;
+            this.data.start = this.conf.min;
 
             if (rleft < (this.conf.step / 2)) {
             
@@ -203,9 +263,28 @@ export default {
             }
 
             let curval = evt.layerX;
-            let fullval = this.data.$track.clientWidth;
+            let fullwidth = this.data.$track.clientWidth;
 
-            this._setPer(curval / fullval);
+            this._setPer(curval / fullwidth);
+
+            if (this.conf.showTip) {
+                
+                this.data.$tip.show();
+
+                this.Vue.nextTick(() => {
+
+                    this.data.$tip.position();
+    
+                });
+
+                clearTimeout(this.data.clickTipHideTimeout);
+                this.data.clickTipHideTimeout = setTimeout(() => {
+
+                    this.data.$tip.hide();
+
+                }, clickTipHideTime);
+
+            }
 
         },
         _sliderMousedown : function (main, evt) {
@@ -223,6 +302,12 @@ export default {
 
             }
 
+            if (this.conf.showTip) {
+                
+                this.data.$tip.show();
+
+            }
+
             this.data.droping = true;
             this.data.dropMain = main;
             this.data.lastDropX = evt.pageX;
@@ -233,8 +318,8 @@ export default {
         _sliderMousemove : function (evt) {
 
             let moveX = evt.pageX - this.data.lastDropX;
-            let fullval = this.data.$track.clientWidth;
-            let offset = moveX / fullval;
+            let fullwidth = this.data.$track.clientWidth;
+            let offset = moveX / fullwidth;
 
             if (this.data.overMaxX > -1 && evt.pageX > this.data.overMaxX) {
 
@@ -272,6 +357,12 @@ export default {
             this._globalEventRemove('mousemove', '_sliderMousemove');
             this._globalEventRemove('mouseup', '_sliderMouseup');
 
+            if (this.conf.showTip) {
+                
+                this.data.$tip.hide();
+
+            }
+
             setTimeout(() => {
     
                 this.data.droping = false;
@@ -283,9 +374,28 @@ export default {
     created : function () {},
     mounted : function () {
 
-        this.data.per = ((this.data.end - this.data.start) / this.conf.max);
+        this.$watch('conf.min', () => {
+
+            if (this.data.start < this.conf.min) {
+
+                this.data.start = this.conf.min;
+
+            }
+
+            if (this.data.end < this.conf.min) {
+
+                this.data.end = this.conf.min;
+
+            }
+
+        }, {
+            immediate : true
+        });
+
+        this.data.$tip = this.$refs['ui-slider-tip-'+this.uiid];
+        this.data.per = ((this.data.end - this.data.start) / this.range);
         this.data.$track = this.$el.querySelector('.track');
-        this._setPer((this.get() || 0) / this.conf.max);
+        this._setPer(((this.get() || this.conf.min) - this.conf.min) / this.range);
 
         this.$watch('data.end', () => {
 
@@ -295,7 +405,17 @@ export default {
 
         this.$on('value-change', () => {
 
-            this._setPer((this.get() || 0) / this.conf.max);
+            if (this.data.droping && this.conf.showTip) {
+
+                this.data.$tip.position();
+
+            }
+
+            if (!this.data.droping) {
+    
+                this._setPer(((this.get() || this.conf.min) - this.conf.min) / this.range);
+
+            }
 
         });
 

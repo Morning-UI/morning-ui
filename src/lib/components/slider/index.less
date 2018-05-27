@@ -5,6 +5,7 @@ mor-slider{
     width: 100%;
     padding-bottom: 4px;
     position: relative;
+    font-size: 0;
 
     &.has-cleanbtn{
         padding-bottom: 20px;
@@ -23,6 +24,7 @@ mor-slider{
         box-sizing: border-box;
         user-select: none;
         padding: 6px 20px;
+        display: inline-block;
 
         &:hover,
         &.droping{
@@ -47,6 +49,7 @@ mor-slider{
         border-radius: 10em;
         position: relative;
         cursor: pointer;
+        font-size: @fontSize;
     }
 
     .selected-line{
@@ -56,6 +59,7 @@ mor-slider{
         background: @colorLightTheme;
         border-radius: 10em;
         pointer-events: none;
+        font-size: @fontSize;
     }
 
     .main-slider{
@@ -74,6 +78,37 @@ mor-slider{
     .cleanbtn{
         position: absolute;
         right: 20px;
+    }
+
+    .prepend,
+    .append{
+        display: inline-block;
+        width: 15%;
+        height: 20px;
+        font-size: @fontSize*0.875;
+        text-align: center;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+
+        > i{
+            position: relative;
+            top: -2px;
+        }
+    }
+
+    &.has-prepend,
+    &.has-append{
+        .wrap{
+            width: 85%;    
+            vertical-align: top;
+        } 
+    }
+
+    &.has-prepend.has-append{
+        .wrap{
+            width: 70%;
+        }
     }
     
     &.st-normal{}
