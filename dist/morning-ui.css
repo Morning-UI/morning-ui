@@ -6618,6 +6618,15 @@ mor-calendar .day.no-curt-m {
   color: #8E9CAF;
   background-color: #f5f5f5;
 }
+mor-calendar .day.now {
+  margin-bottom: 0;
+}
+mor-calendar .day.now .inner-layer {
+  color: #F33D5D;
+  border: 2px #F33D5D solid;
+  line-height: calc( 32px  - 4px);
+  box-sizing: border-box;
+}
 mor-calendar .day.highlight {
   margin-bottom: 0;
 }

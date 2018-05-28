@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">65% </span>
+        <span class="strong">65.29% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>156/240</span>
+        <span class='fraction'>158/242</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">43.9% </span>
+        <span class="strong">43.29% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>72/164</span>
+        <span class='fraction'>71/164</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">59.26% </span>
+        <span class="strong">60% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>32/54</span>
+        <span class='fraction'>33/55</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">66.82% </span>
+        <span class="strong">67.13% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>143/214</span>
+        <span class='fraction'>145/216</span>
       </div>
     </div>
   </div>
@@ -848,7 +848,15 @@
 803
 804
 805
-806</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+806
+807
+808
+809
+810
+811
+812
+813
+814</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1178,17 +1186,24 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3720x</span>
+<span class="cline-any cline-yes">1680x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1656x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3720x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">26040x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">25956x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3708x</span>
+<span class="cline-any cline-yes">3720x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2232x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1271,9 +1286,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1228x</span>
+<span class="cline-any cline-yes">1232x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1281,7 +1296,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1228x</span>
+<span class="cline-any cline-yes">1232x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1355,6 +1370,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1680x</span>
 <span class="cline-any cline-yes">1680x</span>
 <span class="cline-any cline-yes">1680x</span>
 <span class="cline-any cline-yes">1680x</span>
@@ -1981,17 +1997,24 @@ export default {
             }
 &nbsp;
         },
+        _isNow : function (item) {
+&nbsp;
+            if (this.conf.highlightNow &amp;&amp; isSameDay(item.date, this.data.now)) {
+&nbsp;
+                return {
+                    now : true
+                };
+&nbsp;
+            }
+&nbsp;
+            return {};
+&nbsp;
+        },
         _isHighlight : function (date) {
             
             let result = false;
 &nbsp;
-            if (this.conf.highlightNow &amp;&amp; isSameDay(date, this.data.now)) {
-&nbsp;
-                result = true;
-&nbsp;
-            }
-&nbsp;
-            if (result === false) {
+            <span class="missing-if-branch" title="else path not taken" >E</span>if (result === false) {
 &nbsp;
                 for (let item of this.data.highlightDay) {
 &nbsp;
@@ -2163,8 +2186,9 @@ export default {
             let bgMarkHl = this._backgroundMarkHighlight(item);
             let pointHl = this._pointMarkHighlight(item);
             let selectHl = this._selectHighlight(item);
+            let nowHl = this._isNow(item);
 &nbsp;
-            return Object.assign(bgMarkHl, pointHl, selectHl);
+            return Object.assign(bgMarkHl, pointHl, selectHl, nowHl);
 &nbsp;
         },
         _prev : <span class="fstat-no" title="function not covered" >function () </span>{
@@ -2464,7 +2488,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu May 24 2018 22:52:38 GMT+0800 (CST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon May 28 2018 23:56:13 GMT+0800 (CST)
 </div>
 </div>
 <script src="../../../prettify.js"></script>
