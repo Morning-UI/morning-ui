@@ -7168,8 +7168,8 @@ mor-tip.tet-ea-right .arrow {
   border-width: 5px 0 5px 5px;
 }
 mor-tip .con {
+  padding: 8px;
   max-width: 200px;
-  padding: 3px 8px;
   text-align: center;
   border-radius: 3px;
   word-break: break-all;
@@ -7180,6 +7180,9 @@ mor-tip .arrow {
   height: 0;
   border-color: transparent;
   border-style: solid;
+}
+mor-tip.only-has-text .con {
+  padding: 3px 8px;
 }
 mor-tip.co-t .con {
   color: #FFFFFF;
