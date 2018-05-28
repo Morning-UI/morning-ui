@@ -21587,6 +21587,16 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var defaultTime = 200;
 
@@ -31543,11 +31553,33 @@ var render = function() {
           ]
         : [
             _c("morning-center", { staticClass: "fill" }, [
-              _c("p", { staticClass: "loading" }, [
-                _c("i", { staticClass: "mo-icon mo-icon-loading" }),
-                _c("br"),
-                _vm._v(_vm._s(_vm.conf.note))
-              ])
+              _c("p", { staticClass: "loading" }),
+              _c("div", { staticClass: "mo-loader" }, [
+                _c(
+                  "svg",
+                  {
+                    staticClass: "mo-loader-circular",
+                    attrs: { viewBox: "25 25 50 50" }
+                  },
+                  [
+                    _c("circle", {
+                      staticClass: "mo-loader-path",
+                      attrs: {
+                        cx: "50",
+                        cy: "50",
+                        r: "20",
+                        fill: "none",
+                        "stroke-width": "4",
+                        "stroke-miterlimit": "10"
+                      }
+                    })
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(_vm._s(_vm.conf.note) + "\n        "),
+              _c("p")
             ])
           ]
     ],
