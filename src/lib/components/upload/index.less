@@ -107,7 +107,8 @@ mor-upload{
             box-sizing: border-box;
         }
 
-        i.mo-icon{
+        i.mo-icon,
+        .mo-loader{
             font-size: @fontSize*0.75;
             position: absolute;
             right: 0.5em;
@@ -115,6 +116,15 @@ mor-upload{
             transform: translateY(-50%);
             cursor: default;
             z-index: 2;
+        }
+
+        .mo-loader{
+            width: @fontSize*0.75;
+            right: 1.5em;
+
+            .mo-loader-path{
+                stroke: @colorFormItemColor;
+            }
         }
 
         i.mo-icon.reupload{
@@ -208,15 +218,7 @@ mor-upload{
             }
 
             .load{
-                vertical-align: 1px;
-                line-height: 1em;
-                animation-name: rotation;
-                animation-duration: 1s;
-                animation-timing-function: linear;
-                animation-iteration-count: infinite;
-                color: darken(@colorFormText, 10%);
                 display: none;
-                margin-top: -0.5em;
             }
         }
 

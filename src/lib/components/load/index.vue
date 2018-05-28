@@ -16,7 +16,19 @@
         </template>
     </template>
     <template v-else>
-        <morning-center class="fill"><p class="loading"><i class="mo-icon mo-icon-loading"></i><br/>{{conf.note}}</p></morning-center>
+
+        <morning-center class="fill">
+            <div class="loading">
+                <div class="mo-loader">
+                    <svg class="mo-loader-circular" viewBox="25 25 50 50">
+                        <circle class="mo-loader-path" cx="50" cy="50" r="20" fill="none" stroke-width="4" stroke-miterlimit="10"/>
+                    </svg>
+                </div>
+                <p>
+                    {{conf.note}}
+                </p>
+            </div>
+        </morning-center>
     </template>
         
     </mor-load>
