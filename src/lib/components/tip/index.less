@@ -94,11 +94,9 @@ mor-tip{
     }
 
     .con {
+        padding: @fontSize*0.5;
         max-width: @fontSize*12.5;
-        padding: @fontSize*0.1875 @fontSize*0.5;
-        // color: @colorWhite;
         text-align: center;
-        // background-color: @tipBg;
         border-radius: @borderRadius;
         word-break: break-all;
     }
@@ -109,6 +107,12 @@ mor-tip{
         height: 0;
         border-color: transparent;
         border-style: solid;
+    }
+
+    &.only-has-text{
+        .con{
+            padding: @fontSize*0.1875 @fontSize*0.5;
+        }
     }
 
     .tip-style(@colorTheme, @colorWhite, t);
