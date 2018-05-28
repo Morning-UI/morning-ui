@@ -120,6 +120,17 @@ mor-calendar{
             background-color: lighten(@colorLightGray, 2%);
         }
 
+        &.now{
+            margin-bottom: 0;
+
+            .inner-layer{
+                color: @colorTheme;
+                border: 2px @colorTheme solid;
+                line-height: ~'calc(' @fontSize*2 ~' - 4px)';
+                box-sizing: border-box;
+            }
+        }
+
         &.highlight{
             margin-bottom: 0;
 
