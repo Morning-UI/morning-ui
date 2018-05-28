@@ -70,7 +70,7 @@ export default {
         moreClass : function () {
 
             return {
-                'has-html' : this.data.hasHtml,
+                'only-has-text' : this.data.onlyHasText,
                 in : this.data.in
             };
 
@@ -94,7 +94,7 @@ export default {
                     in : 'in'
                 },
                 timeout : null,
-                hasHtml : false,
+                onlyHasText : false,
                 in : false
             }
         };
@@ -230,6 +230,29 @@ export default {
             return evt && /Event\]$/.test(evt.toString());
 
         },
+        _checkOnlyHasText : function () {
+
+            if (
+                (
+                    !this.$slots.default &&
+                    this.data.title
+                ) || (
+                    this.$slots.default &&
+                    this.$slots.default.length === 1 &&
+                    this.$slots.default[0].tag === undefined &&
+                    this.$slots.default[0].text
+                )
+            ) {
+
+                this.data.onlyHasText = true;
+
+            } else {
+
+                this.data.onlyHasText = false;
+
+            }
+
+        },
         _hasContent : function () {
 
             if (this.data.title) {
@@ -246,19 +269,11 @@ export default {
 
             }
 
-            let hasContent = !!this.$slots.default[0].tag ||
-                (this.$slots.default[0].tag === undefined &&
-                !!this.$slots.default[0].text);
-
-            if (hasContent && !this.$slots.default[0].text) {
-
-                this.data.hasHtml = true;
-
-            } else {
-
-                this.data.hasHtml = false;
-
-            }
+            let hasContent = !(
+                this.$slots.default.length === 1 &&
+                this.$slots.default[0].tag === undefined &&
+                !this.$slots.default[0].text
+            );
 
             return hasContent;
 
@@ -302,6 +317,8 @@ export default {
                 return this;
 
             }
+
+            this._checkOnlyHasText();
 
             this._tipCreate({
                 placement : this.conf.placement,
