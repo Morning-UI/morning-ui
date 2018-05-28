@@ -1,7 +1,7 @@
 <template>
     <mor-tip
         :_uiid="uiid"
-        :class="[colorClass]"
+        :class="[colorClass, moreClass]"
 
         :target="target"
         :placement="placement"
@@ -66,6 +66,14 @@ export default {
                 autoReverse : this.autoReverse
             };
 
+        },
+        moreClass : function () {
+
+            return {
+                'has-html' : this.data.hasHtml,
+                in : this.data.in
+            };
+
         }
     },
     data : function () {
@@ -86,6 +94,8 @@ export default {
                     in : 'in'
                 },
                 timeout : null,
+                hasHtml : false,
+                in : false
             }
         };
 
@@ -170,7 +180,7 @@ export default {
             this.data.timeout = setTimeout(() => {
 
                 if (this.data.hoverState === this.data.hoverStates.in) {
-                    
+
                     this.show();
 
                 }
@@ -236,8 +246,21 @@ export default {
 
             }
 
-            return !!this.$slots.default[0].text ||
-                (this.$slots.default[0].children && !!this.$slots.default[0].children.length);
+            let hasContent = !!this.$slots.default[0].tag ||
+                (this.$slots.default[0].tag === undefined &&
+                !!this.$slots.default[0].text);
+
+            if (hasContent && !this.$slots.default[0].text) {
+
+                this.data.hasHtml = true;
+
+            } else {
+
+                this.data.hasHtml = false;
+
+            }
+
+            return hasContent;
 
         },
         _showComplete () {
@@ -287,8 +310,14 @@ export default {
                 offset : this.conf.offset
             });
 
-            this.$el.classList.add(this.data.classNames.in);
+            this.data.in = true;
             this._showComplete();
+
+            this.Vue.nextTick(() => {
+
+                this._tipUpdate();
+    
+            });
 
             return this;
 
@@ -301,7 +330,7 @@ export default {
 
             }
 
-            this.$el.classList.remove(this.data.classNames.in);
+            this.data.in = false;
             this._tipDestroy();
             this._hideComplete();
 
