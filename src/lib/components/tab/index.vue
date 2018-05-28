@@ -192,13 +192,18 @@ export default {
 
             if (anchor) {
 
-                $targetEl = this.$el.querySelector(`#${anchor}`);
-                
-                if (!$targetEl) {
+                // 使用try/catch因为anchor可能不是一个合法的选择器
+                try {
 
-                    $targetEl = this.$el.querySelector(`a[name="${anchor}"]`);
+                    $targetEl = this.$el.querySelector(`#${anchor}`);
+                    
+                    if (!$targetEl) {
 
-                }
+                        $targetEl = this.$el.querySelector(`a[name="${anchor}"]`);
+
+                    }
+
+                } catch (e) {}
 
                 if ($targetEl) {
 
