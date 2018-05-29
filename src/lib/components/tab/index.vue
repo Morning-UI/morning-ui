@@ -1,12 +1,13 @@
 <template>
     <mor-tab
         :_uiid="uiid"
-        :class="[]"
+        :class="[moreClass]"
 
         :tab="tab"
         :prepend="prepend"
         :append="append"
         :anchor-target="anchorTarget"
+        :position="position"
     >
 
         <ul>
@@ -19,7 +20,13 @@
             ></li>
         </ul>
         
-        <div class="contents">
+        <div
+            class="contents"
+            :style="{
+                width : data.contentWidth,
+                'min-height' : data.contentMinHeight 
+            }"
+        >
             <template v-for="(item, name) in $slots">
                 <div class="item mor-tab-item" :name="name" :key="name"><slot :name="name"></slot></div>
             </template>
@@ -48,6 +55,14 @@ export default {
         anchorTarget : {
             type : Boolean,
             default : false
+        },
+        position : {
+            type : String,
+            default : 'top',
+            validator : value => ([
+                'top',
+                'left'
+            ].indexOf(value) !== -1)
         }
     },
     computed : {
@@ -57,7 +72,16 @@ export default {
                 tab : this.tab,
                 prepend : this.prepend,
                 append : this.append,
-                anchorTarget : this.anchorTarget
+                anchorTarget : this.anchorTarget,
+                position : this.position
+            };
+
+        },
+        moreClass : function () {
+
+            return {
+                'position-top' : (this.conf.position === 'top'),
+                'position-left' : (this.conf.position === 'left')
             };
 
         }
@@ -68,7 +92,9 @@ export default {
             data : {
                 tabs : [],
                 selectTab : null,
-                namelist : []
+                namelist : [],
+                contentWidth : '100%',
+                contentMinHeight : '0'
             }
         };
 
@@ -179,6 +205,38 @@ export default {
                     $originEl.scrollIntoView();
 
                 });
+
+            }
+
+        },
+        _setContentWidth : function () {
+
+            if (this.conf.position === 'top') {
+
+                this.data.contentWidth = '100%';
+
+            } else {
+
+                this.data.contentWidth = `calc(100% - ${this.$el.children[0].clientWidth}px)`;
+
+                if (this.$el.classList.value.split(' ').indexOf('btn') !== -1) {
+
+                    this.data.contentWidth = `calc(100% - ${this.$el.children[0].clientWidth + 8}px)`;
+
+                }
+
+            }
+
+        },
+        _setContentMinHeight : function () {
+
+            if (this.conf.position === 'top') {
+
+                this.data.contentMinHeight = '0';
+
+            } else {
+
+                this.data.contentMinHeight = `${this.$el.children[0].clientHeight}px`;
 
             }
 
@@ -313,6 +371,26 @@ export default {
 
             this._initSelectTab();
 
+            this.Vue.nextTick(() => {
+    
+                this._setContentWidth();
+                this._setContentMinHeight();
+
+            });
+
+        });
+
+        this.$watch('conf.position', () => {
+
+            this.Vue.nextTick(() => {
+    
+                this._setContentWidth();
+                this._setContentMinHeight();
+
+            });
+
+        }, {
+            immediate : true
         });
 
     },

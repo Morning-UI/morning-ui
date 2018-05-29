@@ -5545,33 +5545,40 @@ mor-tab > ul {
 mor-tab > ul > li {
   display: inline-block;
   font-size: 14px;
-  border: 1px rgba(0, 0, 0, 0) solid;
-  border-bottom: none;
   padding: 0.5em 1em;
-  margin: 0 0.3em;
+  margin: 0 0.1em;
   border-radius: 3px 3px 0 0;
   color: #A8B3C2;
   position: relative;
-  background-color: #FFF;
+  background-color: #f4f6f9;
   top: 1px;
   cursor: pointer;
+  border: 1px #e8edf2 solid;
+  border-bottom-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+mor-tab > ul > li > i,
+mor-tab > ul > li > i.iconfont {
+  font-size: 12px;
 }
 mor-tab > ul > li:first-child {
   margin-left: 0;
 }
 mor-tab > ul > li:hover {
+  background-color: #EDF1F5;
   color: #45505C;
 }
 mor-tab > ul > li.current {
-  border: 1px #E6E6E6 solid;
-  border-bottom: none;
+  background-color: #FFFFFF;
   color: #17212D;
+  border-color: #dfe5ec;
   z-index: 5;
   cursor: default;
-  top: 2px;
 }
 mor-tab .contents {
-  border: 1px #E6E6E6 solid;
+  border: 1px #dfe5ec solid;
   position: relative;
 }
 mor-tab .contents > .item {
@@ -5585,6 +5592,34 @@ mor-tab .contents > .item.current {
   height: auto;
   overflow: visible;
 }
+mor-tab.position-left {
+  font-size: 0;
+}
+mor-tab.position-left > ul {
+  width: 20%;
+  max-width: 160px;
+  display: inline-block;
+}
+mor-tab.position-left > ul > li {
+  border-radius: 3px 0 0 3px;
+  width: 100%;
+  border-bottom-width: 1px;
+  border-right-width: 0;
+  margin: 0.1em 0;
+  left: 1px;
+  top: 0;
+}
+mor-tab.position-left > ul > li:first-child {
+  margin-top: 0;
+}
+mor-tab.position-left > ul > li:last-child {
+  margin-bottom: 0;
+}
+mor-tab.position-left .contents {
+  font-size: 14px;
+  display: inline-block;
+  vertical-align: top;
+}
 mor-tab.no-padding .contents > .item.current {
   padding: 0;
 }
@@ -5594,59 +5629,172 @@ mor-tab.block > ul {
 mor-tab.block > ul > li {
   margin: 0;
   display: block;
-  border: 1px #E6E6E6 solid;
-  background: #F0F0F0;
+  border: 1px #dfe5ec solid;
+  background-color: #f4f6f9;
   padding: 1em 0;
   text-align: center;
   flex: 1;
   border-radius: 0;
 }
 mor-tab.block > ul > li:hover {
-  background: #EDF1F5;
+  background-color: #EDF1F5;
+  color: #45505C;
 }
 mor-tab.block > ul > li:not(:last-child) {
-  border-right: none;
+  border-right-width: 0;
 }
 mor-tab.block > ul > li.current {
+  border-color: #dfe5ec;
   border-top: 1px #F33D5D solid;
   box-shadow: inset 0 3px 0 #F33D5D;
-  border-bottom: none;
-  background: #FFF;
+  border-bottom-width: 0;
+  background: #FFFFFF;
   color: #17212D;
-  top: 1px;
 }
-mor-tab.underline > ul::before {
+mor-tab.block.position-left ul {
+  display: inline-block;
+}
+mor-tab.block.position-left ul > li:not(:last-child) {
+  border-bottom-width: 0;
+}
+mor-tab.block.position-left ul > li.current {
+  border-top: 1px #dfe5ec solid;
+  border-left: 1px #F33D5D solid;
+  box-shadow: inset 3px 0 0 #F33D5D;
+  border-right-width: 0;
+}
+mor-tab.block.position-left ul > li.current:last-child {
+  border-bottom-width: 1px;
+}
+mor-tab.line > ul::before {
   content: ' ';
   width: 100%;
   height: 2px;
   position: absolute;
-  background: #E6E6E6;
+  background: #e8edf2;
   left: 0;
   bottom: 0;
 }
-mor-tab.underline > ul > li {
+mor-tab.line > ul > li {
   border: none;
-  border-bottom: 2px #EDF1F5 solid;
+  border-bottom: 2px #dfe5ec solid;
   margin: 0;
   padding: 0.5em 1.3em;
   top: 0;
   background: transparent;
 }
-mor-tab.underline > ul > li:hover {
+mor-tab.line > ul > li:hover {
   color: #45505C;
-  border-bottom-color: #D6DDE5;
+  border-bottom-color: #c8d4df;
 }
-mor-tab.underline > ul > li.current {
+mor-tab.line > ul > li.current {
   border-bottom-color: #F33D5D;
   color: #17212D;
 }
-mor-tab.underline > .contents {
-  border-top: none;
+mor-tab.line > .contents {
+  border-top-width: 0;
+}
+mor-tab.line.position-left > ul::before {
+  height: 100%;
+  width: 2px;
+  top: 0;
+  left: auto;
+  right: 0;
+}
+mor-tab.line.position-left > ul > li {
+  border-bottom-width: 0;
+  border-right: 2px #dfe5ec solid;
+  left: 0;
+}
+mor-tab.line.position-left > ul > li:hover {
+  border-bottom-color: #e8edf2;
+  border-right-color: #c8d4df;
+}
+mor-tab.line.position-left > ul > li.current {
+  border-right-color: #F33D5D;
+}
+mor-tab.line.position-left > .contents {
+  border-left-width: 0;
+  border-top-width: 1px;
+}
+mor-tab.btn > ul > li {
+  border: 1px #e8edf2 solid;
+  border-right-width: 0;
+  border-radius: 0;
+  margin: 0;
+  padding: 0.5em 1.3em;
+  top: 0;
+  background: #FFFFFF;
+}
+mor-tab.btn > ul > li:first-child {
+  border-radius: 3px 0 0 3px;
+}
+mor-tab.btn > ul > li:last-child {
+  border-right: 1px #e8edf2 solid;
+  border-radius: 0 3px 3px 0;
+}
+mor-tab.btn > ul > li:hover {
+  color: #45505C;
+  border-color: #c8d4df;
+  border-right: 1px #c8d4df solid;
+}
+mor-tab.btn > ul > li:hover + li {
+  border-left-width: 0;
+}
+mor-tab.btn > ul > li.current {
+  color: #17212D;
+  border-color: #c8d4df;
+  border-right: 1px #c8d4df solid;
+  background-color: #dfe5ec;
+}
+mor-tab.btn > ul > li.current + li {
+  border-left-width: 0;
+}
+mor-tab.btn > .contents {
+  margin-top: 8px;
+}
+mor-tab.btn.position-left > ul {
+  width: calc(20% - 8px );
+}
+mor-tab.btn.position-left > ul > li {
+  border-right-width: 1px;
+  border-bottom-width: 0;
+  padding: 0.5em;
+  left: 0;
+}
+mor-tab.btn.position-left > ul > li:first-child {
+  border-radius: 3px 3px 0 0;
+}
+mor-tab.btn.position-left > ul > li:last-child {
+  border-bottom: 1px #e8edf2 solid;
+  border-radius: 0 0 3px 3px;
+}
+mor-tab.btn.position-left > ul > li:hover {
+  border-bottom: 1px #c8d4df solid;
+}
+mor-tab.btn.position-left > ul > li:hover + li {
+  border-left-width: 1px;
+  border-top-width: 0;
+}
+mor-tab.btn.position-left > ul > li.current {
+  border-bottom: 1px #c8d4df solid;
+}
+mor-tab.btn.position-left > ul > li.current + li {
+  border-left-width: 1px;
+  border-top-width: 0;
+}
+mor-tab.btn.position-left > .contents {
+  margin-left: 8px;
+  margin-top: 0;
 }
 mor-tab.noborder > .contents {
-  border-bottom: none;
-  border-left: none;
-  border-right: none;
+  border-bottom-width: 0;
+  border-left-width: 0;
+  border-right-width: 0;
+}
+mor-tab.noborder.position-left > .contents {
+  border-top-width: 0;
+  border-left-width: 1px;
 }
 
 mor-table {

@@ -21,8 +21,6 @@ mor-tab{
         > li{
             display: inline-block;
             font-size: @fontSize*0.875;
-            border: 1px rgba(0, 0, 0, 0) solid;
-            border-bottom: none;
             padding: 0.5em 1em;
             margin: 0 0.1em;
             border-radius: @borderRadius @borderRadius 0 0;
@@ -32,7 +30,10 @@ mor-tab{
             top: 1px;
             cursor: pointer;
             border: 1px @tabBorderColor solid;
-            border-bottom: none;
+            border-bottom-width: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
 
             > i,
             > i.iconfont{
@@ -54,7 +55,6 @@ mor-tab{
                 border-color: @tabBorderCurrentColor;
                 z-index: 5;
                 cursor: default;
-                top: 1px;
             }
         }
     }
@@ -74,6 +74,40 @@ mor-tab{
                 height: auto;
                 overflow: visible;
             }
+        }
+    }
+
+    &.position-left{
+        font-size: 0;
+
+        > ul{
+            width: 20%;
+            max-width: @fontSize*10;
+            display: inline-block;
+
+            > li{
+                border-radius: @borderRadius 0 0 @borderRadius;
+                width: 100%;
+                border-bottom-width: 1px;
+                border-right-width: 0;
+                margin: 0.1em 0;
+                left: 1px;
+                top: 0;
+
+                &:first-child{
+                    margin-top: 0;
+                }
+
+                &:last-child{
+                    margin-bottom: 0;
+                }
+            }
+        }
+
+        .contents{
+            font-size: @fontSize*0.875;
+            display: inline-block;
+            vertical-align: top;
         }
     }
 
@@ -105,23 +139,45 @@ mor-tab{
                 }
 
                 &:not(:last-child){
-                    border-right: none;
+                    border-right-width: 0;
                 }
 
                 &.current{
                     border-color: @tabBorderCurrentColor;
                     border-top: 1px @colorTheme solid;
                     box-shadow: inset 0 3px 0 @colorTheme;
-                    border-bottom: none;
+                    border-bottom-width: 0;
                     background: @tabBgCurrentColor;
                     color: @tabFontCurrentColor;
-                    top: 1px;
+                }
+            }
+        }
+
+        &.position-left{
+            ul{
+                display: inline-block;
+
+                > li{
+                    &:not(:last-child){
+                        border-bottom-width: 0;
+                    }
+
+                    &.current{
+                        border-top: 1px @tabBorderCurrentColor solid;
+                        border-left: 1px @colorTheme solid;
+                        box-shadow: inset 3px 0 0 @colorTheme;
+                        border-right-width: 0;
+
+                        &:last-child{
+                            border-bottom-width: 1px;
+                        }
+                    }
                 }
             }
         }
     }
 
-    &.underline{
+    &.line{
         > ul::before{
             content: ' ';
             width: 100%;
@@ -152,14 +208,44 @@ mor-tab{
         }
 
         > .contents{
-            border-top: none;
+            border-top-width: 0;
+        }
+
+        &.position-left{
+            > ul::before{
+                height: 100%;
+                width: 2px;
+                top: 0;
+                left: auto;
+                right: 0;
+            }
+
+            > ul > li{
+                border-bottom-width: 0;
+                border-right: 2px @tabBorderCurrentColor solid;
+                left: 0;
+
+                &:hover{
+                    border-bottom-color: @tabBorderColor;
+                    border-right-color: @tabBorderHoverColor;
+                }
+
+                &.current{
+                    border-right-color: @colorTheme;
+                }
+            }
+
+            > .contents{
+                border-left-width: 0;
+                border-top-width: 1px;
+            }
         }
     }
 
     &.btn{
         > ul > li{
             border: 1px @tabBorderColor solid;
-            border-right: none;
+            border-right-width: 0;
             border-radius: 0;
             margin: 0;
             padding: 0.5em 1.3em;
@@ -181,7 +267,7 @@ mor-tab{
                 border-right: 1px @tabBorderHoverColor solid;
 
                 + li{
-                    border-left: none;
+                    border-left-width: 0;
                 }
             }
 
@@ -192,7 +278,7 @@ mor-tab{
                 background-color: @tabBorderCurrentColor;
 
                 + li{
-                    border-left: none;
+                    border-left-width: 0;
                 }
             }
         }
@@ -200,13 +286,65 @@ mor-tab{
         > .contents{
             margin-top: @fontSize/2;
         }
+
+        &.position-left{
+            > ul{
+                width: ~'calc(20% -' @fontSize/2 ~')';
+            }
+
+            > ul > li{
+                border-right-width: 1px;
+                border-bottom-width: 0;
+                padding: 0.5em;
+                left: 0;
+
+                &:first-child{
+                    border-radius: @borderRadius @borderRadius 0 0;
+                }
+
+                &:last-child{
+                    border-bottom: 1px @tabBorderColor solid;
+                    border-radius: 0 0 @borderRadius @borderRadius;
+                }
+
+                &:hover{
+                    border-bottom: 1px @tabBorderHoverColor solid;
+
+                    + li{
+                        border-left-width: 1px;
+                        border-top-width: 0;
+                    }
+                }
+
+                &.current{
+                    border-bottom: 1px @tabBorderHoverColor solid;
+
+                    + li{
+                        border-left-width: 1px;
+                        border-top-width: 0;
+                    }
+                }
+            }
+
+            > .contents{
+                margin-left: @fontSize/2;
+                margin-top: 0;
+            }
+        }
     }
 
     &.noborder{
         > .contents{
-            border-bottom: none;
-            border-left: none;
-            border-right: none;
+            border-bottom-width: 0;
+            border-left-width: 0;
+            border-right-width: 0;
+        }
+
+        &.position-left{
+            > .contents{
+                border-top-width: 0;
+                border-left-width: 1px;
+            }
         }
     }
 
