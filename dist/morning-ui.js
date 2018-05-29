@@ -24717,6 +24717,13 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
     origin: 'UI',
@@ -24741,6 +24748,13 @@ exports.default = {
         anchorTarget: {
             type: Boolean,
             default: false
+        },
+        position: {
+            type: String,
+            default: 'top',
+            validator: function validator(value) {
+                return ['top', 'left'].indexOf(value) !== -1;
+            }
         }
     },
     computed: {
@@ -24750,7 +24764,15 @@ exports.default = {
                 tab: this.tab,
                 prepend: this.prepend,
                 append: this.append,
-                anchorTarget: this.anchorTarget
+                anchorTarget: this.anchorTarget,
+                position: this.position
+            };
+        },
+        moreClass: function moreClass() {
+
+            return {
+                'position-top': this.conf.position === 'top',
+                'position-left': this.conf.position === 'left'
             };
         }
     },
@@ -24760,7 +24782,9 @@ exports.default = {
             data: {
                 tabs: [],
                 selectTab: null,
-                namelist: []
+                namelist: [],
+                contentWidth: '100%',
+                contentMinHeight: '0'
             }
         };
     },
@@ -24920,6 +24944,31 @@ exports.default = {
                 });
             }
         },
+        _setContentWidth: function _setContentWidth() {
+
+            if (this.conf.position === 'top') {
+
+                this.data.contentWidth = '100%';
+            } else {
+
+                this.data.contentWidth = 'calc(100% - ' + this.$el.children[0].clientWidth + 'px)';
+
+                if (this.$el.classList.value.split(' ').indexOf('btn') !== -1) {
+
+                    this.data.contentWidth = 'calc(100% - ' + (this.$el.children[0].clientWidth + 8) + 'px)';
+                }
+            }
+        },
+        _setContentMinHeight: function _setContentMinHeight() {
+
+            if (this.conf.position === 'top') {
+
+                this.data.contentMinHeight = '0';
+            } else {
+
+                this.data.contentMinHeight = this.$el.children[0].clientHeight + 'px';
+            }
+        },
         _targetAnchorPoint: function _targetAnchorPoint() {
 
             var anchor = window.location.hash.replace(/^#/, '');
@@ -25036,6 +25085,23 @@ exports.default = {
         this.$watch('conf.tab', function () {
 
             _this2._initSelectTab();
+
+            _this2.Vue.nextTick(function () {
+
+                _this2._setContentWidth();
+                _this2._setContentMinHeight();
+            });
+        });
+
+        this.$watch('conf.position', function () {
+
+            _this2.Vue.nextTick(function () {
+
+                _this2._setContentWidth();
+                _this2._setContentMinHeight();
+            });
+        }, {
+            immediate: true
         });
     },
     updated: function updated() {
@@ -32788,13 +32854,14 @@ var render = function() {
   return _c(
     "mor-tab",
     {
-      class: [],
+      class: [_vm.moreClass],
       attrs: {
         _uiid: _vm.uiid,
         tab: _vm.tab,
         prepend: _vm.prepend,
         append: _vm.append,
-        "anchor-target": _vm.anchorTarget
+        "anchor-target": _vm.anchorTarget,
+        position: _vm.position
       }
     },
     [
@@ -32816,7 +32883,13 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "contents" },
+        {
+          staticClass: "contents",
+          style: {
+            width: _vm.data.contentWidth,
+            "min-height": _vm.data.contentMinHeight
+          }
+        },
         [
           _vm._l(_vm.$slots, function(item, name) {
             return [
