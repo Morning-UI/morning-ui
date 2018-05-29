@@ -1,6 +1,7 @@
 @import '~Common/var.less';
 
 @tabBorderColor: lighten(@colorLightSilver, 2%);
+@tabBorderHoverColor: darken(@colorLightSilver, 8%);
 @tabBorderCurrentColor: darken(@colorLightSilver, 1%);
 @tabBgColor: lighten(@colorExtraLightSilver, 2%);
 @tabBgHoverColor: @colorExtraLightSilver;
@@ -141,7 +142,7 @@ mor-tab{
 
             &:hover{
                 color: @tabFontHoverColor;
-                border-bottom-color: darken(@tabBorderCurrentColor, 8%);
+                border-bottom-color: @tabBorderHoverColor;
             }
 
             &.current{
@@ -152,6 +153,52 @@ mor-tab{
 
         > .contents{
             border-top: none;
+        }
+    }
+
+    &.btn{
+        > ul > li{
+            border: 1px @tabBorderColor solid;
+            border-right: none;
+            border-radius: 0;
+            margin: 0;
+            padding: 0.5em 1.3em;
+            top: 0;
+            background: @colorWhite;
+
+            &:first-child{
+                border-radius: @borderRadius 0 0 @borderRadius;
+            }
+
+            &:last-child{
+                border-right: 1px @tabBorderColor solid;
+                border-radius: 0 @borderRadius @borderRadius 0;
+            }
+
+            &:hover{
+                color: @tabFontHoverColor;
+                border-color: @tabBorderHoverColor;
+                border-right: 1px @tabBorderHoverColor solid;
+
+                + li{
+                    border-left: none;
+                }
+            }
+
+            &.current{
+                color: @tabFontCurrentColor;
+                border-color: @tabBorderHoverColor;
+                border-right: 1px @tabBorderHoverColor solid;
+                background-color: @tabBorderCurrentColor;
+
+                + li{
+                    border-left: none;
+                }
+            }
+        }
+
+        > .contents{
+            margin-top: @fontSize/2;
         }
     }
 

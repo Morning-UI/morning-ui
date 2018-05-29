@@ -61,6 +61,16 @@
         <div slot="第三页">第三页</div>
     </ui-tab>
     :::
+
+    #### 按钮式标签页
+
+    :::democode/html
+    <ui-tab class="btn">
+        <div slot="第一页">第一页</div>
+        <div slot="第二页">第二页</div>
+        <div slot="第三页">第三页</div>
+    </ui-tab>
+    :::
     
     #### 无边框标签页
 
