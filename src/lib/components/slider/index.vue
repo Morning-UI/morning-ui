@@ -17,9 +17,6 @@
         :prepend="prepend"
         :append="append"
         :show-point="showPoint"
-        :marks="marks"
-        :is-range="isRange"
-        :vertical="vertical"
     >
 
     <!-- <div class="left-point"></div> -->
@@ -33,6 +30,12 @@
 
             @click="_trackClick($event)"
         >
+            <ul class="points">
+                <li
+                    v-for="i in data.pointNum"
+                    :style="{'left' : `${i * data.pointWidth}px`}"
+                ></li>
+            </ul>
             <div
                 class="selected-line"
                 :style="{
@@ -79,6 +82,7 @@
 import GlobalEvent                  from 'Utils/GlobalEvent';
 
 const clickTipHideTime = 1000;
+const minPointSpacing = 20;
 
 export default {
     origin : 'Form',
@@ -113,6 +117,10 @@ export default {
         append : {
             type : String,
             default : ''
+        },
+        showPoint : {
+            type : Boolean,
+            default : false
         }
     },
     computed : {
@@ -125,7 +133,8 @@ export default {
                 showTip : this.showTip,
                 tipFormatter : this.tipFormatter,
                 prepend : this.prepend,
-                append : this.append
+                append : this.append,
+                showPoint : this.showPoint
             };
 
         },
@@ -185,6 +194,8 @@ export default {
                 overMaxX : -1,
                 overMinX : -1,
                 clickTipHideTimeout : null,
+                pointNum : 0,
+                pointWidth : 0,
                 $track : null,
                 $tip : null
             }
@@ -195,6 +206,36 @@ export default {
         _valueFilter : function (value) {
 
             return value;
+
+        },
+        _refreshPoints : function () {
+
+            if (!this.conf.showPoint) {
+
+                this.data.pointNum = 0;
+                this.data.pointWidth = 0;
+
+                return;
+
+            }
+
+            let points = [];
+            let fullwidth = this.data.$track.clientWidth;
+            let pointNum = this.range / this.conf.step;
+            let pointWidth = fullwidth / pointNum;
+
+            // TODO ： 求最大公约数 https://www.npmjs.com/package/lodash-math
+            // TODO ： 如果隐藏了部分点会变暗 
+            if (pointWidth < minPointSpacing) {
+
+                pointWidth = Math.ceil(minPointSpacing / pointWidth) * pointWidth;
+
+            }
+
+            console.log(pointWidth);
+
+            this.data.pointWidth = pointWidth;
+            this.data.pointNum = fullwidth / pointWidth;
 
         },
         _setPer : function (per, offset = false) {
@@ -401,6 +442,18 @@ export default {
 
             this._set(this.data.end);
 
+        });
+
+        this.$watch('conf.showPoint', () => {
+
+            this.Vue.nextTick(() => {
+
+                this._refreshPoints();
+
+            });
+
+        }, {
+            immediate : true
         });
 
         this.$on('value-change', () => {

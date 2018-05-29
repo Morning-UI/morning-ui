@@ -9001,6 +9001,118 @@ module.exports = exports['default'];
 /* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _arrayUniq = __webpack_require__(3);
+
+var _arrayUniq2 = _interopRequireDefault(_arrayUniq);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var globalHandler = function globalHandler() {
+    var _iteratorNormalCompletion = true;
+    var _didIteratorError = false;
+    var _iteratorError = undefined;
+
+    try {
+
+        for (var _iterator = this.vms[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+            var vm = _step.value;
+
+
+            vm[this.method].apply(vm, arguments);
+        }
+    } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+    } finally {
+        try {
+            if (!_iteratorNormalCompletion && _iterator.return) {
+                _iterator.return();
+            }
+        } finally {
+            if (_didIteratorError) {
+                throw _iteratorError;
+            }
+        }
+    }
+};
+
+var GlobalEvent = {
+    data: function data() {
+
+        return {};
+    },
+    methods: {
+        _globalEventAdd: function _globalEventAdd(evtName, methodName) {
+
+            var morning = this.morning;
+
+            if (morning._globalEventListener[evtName] === undefined) {
+
+                morning._globalEventListener[evtName] = {};
+            }
+
+            if (morning._globalEventListener[evtName][this.$options.name + '.' + methodName] === undefined) {
+
+                morning._globalEventListener[evtName][this.$options.name + '.' + methodName] = {
+                    vms: [],
+                    method: methodName,
+                    handler: null
+                };
+            }
+
+            var evtNamespace = morning._globalEventListener[evtName][this.$options.name + '.' + methodName];
+
+            evtNamespace.vms.push(this);
+            evtNamespace.vms = (0, _arrayUniq2.default)(evtNamespace.vms);
+
+            if (evtNamespace.handler === null) {
+
+                evtNamespace.handler = globalHandler.bind(evtNamespace);
+                document.addEventListener(evtName, evtNamespace.handler);
+            }
+
+            return this;
+        },
+        _globalEventRemove: function _globalEventRemove(evtName, methodName) {
+
+            var morning = this.morning;
+
+            if (!morning._globalEventListener[evtName] || !morning._globalEventListener[evtName][this.$options.name + '.' + methodName]) {
+
+                return this;
+            }
+
+            var evtNamespace = morning._globalEventListener[evtName][this.$options.name + '.' + methodName];
+            var index = evtNamespace.vms.indexOf(this);
+
+            if (index !== -1) {
+
+                evtNamespace.vms.splice(index, 1);
+            }
+
+            if (evtNamespace.vms.length === 0) {
+
+                document.removeEventListener(evtName, evtNamespace.handler);
+                delete morning._globalEventListener[evtName];
+            }
+        }
+    }
+};
+
+exports.default = GlobalEvent;
+module.exports = exports['default'];
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
 /* WEBPACK VAR INJECTION */(function(global, module) {/**
  * lodash (Custom Build) <https://lodash.com/>
  * Build: `lodash modularize exports="npm" -o ./`
@@ -11635,118 +11747,6 @@ module.exports = sortBy;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(80), __webpack_require__(203)(module)))
 
 /***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _arrayUniq = __webpack_require__(3);
-
-var _arrayUniq2 = _interopRequireDefault(_arrayUniq);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var globalHandler = function globalHandler() {
-    var _iteratorNormalCompletion = true;
-    var _didIteratorError = false;
-    var _iteratorError = undefined;
-
-    try {
-
-        for (var _iterator = this.vms[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-            var vm = _step.value;
-
-
-            vm[this.method].apply(vm, arguments);
-        }
-    } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
-    } finally {
-        try {
-            if (!_iteratorNormalCompletion && _iterator.return) {
-                _iterator.return();
-            }
-        } finally {
-            if (_didIteratorError) {
-                throw _iteratorError;
-            }
-        }
-    }
-};
-
-var GlobalEvent = {
-    data: function data() {
-
-        return {};
-    },
-    methods: {
-        _globalEventAdd: function _globalEventAdd(evtName, methodName) {
-
-            var morning = this.morning;
-
-            if (morning._globalEventListener[evtName] === undefined) {
-
-                morning._globalEventListener[evtName] = {};
-            }
-
-            if (morning._globalEventListener[evtName][this.$options.name + '.' + methodName] === undefined) {
-
-                morning._globalEventListener[evtName][this.$options.name + '.' + methodName] = {
-                    vms: [],
-                    method: methodName,
-                    handler: null
-                };
-            }
-
-            var evtNamespace = morning._globalEventListener[evtName][this.$options.name + '.' + methodName];
-
-            evtNamespace.vms.push(this);
-            evtNamespace.vms = (0, _arrayUniq2.default)(evtNamespace.vms);
-
-            if (evtNamespace.handler === null) {
-
-                evtNamespace.handler = globalHandler.bind(evtNamespace);
-                document.addEventListener(evtName, evtNamespace.handler);
-            }
-
-            return this;
-        },
-        _globalEventRemove: function _globalEventRemove(evtName, methodName) {
-
-            var morning = this.morning;
-
-            if (!morning._globalEventListener[evtName] || !morning._globalEventListener[evtName][this.$options.name + '.' + methodName]) {
-
-                return this;
-            }
-
-            var evtNamespace = morning._globalEventListener[evtName][this.$options.name + '.' + methodName];
-            var index = evtNamespace.vms.indexOf(this);
-
-            if (index !== -1) {
-
-                evtNamespace.vms.splice(index, 1);
-            }
-
-            if (evtNamespace.vms.length === 0) {
-
-                document.removeEventListener(evtName, evtNamespace.handler);
-                delete morning._globalEventListener[evtName];
-            }
-        }
-    }
-};
-
-exports.default = GlobalEvent;
-module.exports = exports['default'];
-
-/***/ }),
 /* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13322,7 +13322,7 @@ var _Move = __webpack_require__(77);
 
 var _Move2 = _interopRequireDefault(_Move);
 
-var _GlobalEvent = __webpack_require__(6);
+var _GlobalEvent = __webpack_require__(5);
 
 var _GlobalEvent2 = _interopRequireDefault(_GlobalEvent);
 
@@ -15930,7 +15930,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var _dateFns = __webpack_require__(2);
 
-var _lodash = __webpack_require__(5);
+var _lodash = __webpack_require__(6);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -16864,7 +16864,7 @@ var _extend = __webpack_require__(1);
 
 var _extend2 = _interopRequireDefault(_extend);
 
-var _lodash = __webpack_require__(5);
+var _lodash = __webpack_require__(6);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -17241,6 +17241,58 @@ module.exports = exports['default'];
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+
+var _GlobalEvent = __webpack_require__(5);
+
+var _GlobalEvent2 = _interopRequireDefault(_GlobalEvent);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var clickTipHideTime = 1000; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -17277,27 +17329,305 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = {
     origin: 'Form',
     name: 'slider',
-    props: {},
+    mixins: [_GlobalEvent2.default],
+    props: {
+        max: {
+            type: Number,
+            default: 100
+        },
+        min: {
+            type: Number,
+            default: 0
+        },
+        step: {
+            type: Number,
+            default: 1,
+            validator: function validator(value) {
+                return value > 0;
+            }
+        },
+        showTip: {
+            type: Boolean,
+            default: true
+        },
+        tipFormatter: {
+            type: Function,
+            default: function _default(value) {
+                return value;
+            }
+        },
+        prepend: {
+            type: String,
+            default: ''
+        },
+        append: {
+            type: String,
+            default: ''
+        }
+    },
     computed: {
         _conf: function _conf() {
 
-            return {};
+            return {
+                max: this.max,
+                min: this.min,
+                step: this.step,
+                showTip: this.showTip,
+                tipFormatter: this.tipFormatter,
+                prepend: this.prepend,
+                append: this.append
+            };
+        },
+        hasPrepend: function hasPrepend() {
+
+            return this.conf.prepend.length > 0;
+        },
+        hasAppend: function hasAppend() {
+
+            return this.conf.append.length > 0;
+        },
+        moreClass: function moreClass() {
+
+            return {
+                'has-prepend': this.hasPrepend,
+                'has-append': this.hasAppend
+            };
+        },
+        range: function range() {
+
+            return this.conf.max - this.conf.min;
+        },
+        startEndReal: function startEndReal() {
+
+            if (!this.data.$track) {
+
+                return {
+                    start: 0,
+                    end: 0
+                };
+            }
+
+            var fullwidth = this.data.$track.clientWidth;
+
+            return {
+                start: (this.data.start - this.conf.min) / this.range * fullwidth,
+                end: (this.data.end - this.conf.min) / this.range * fullwidth
+            };
         }
     },
     data: function data() {
 
         return {
-            data: {}
+            data: {
+                start: 0,
+                end: 0,
+                per: 0,
+                droping: false,
+                dropMain: false,
+                lastDropX: 0,
+                overMaxX: -1,
+                overMinX: -1,
+                clickTipHideTimeout: null,
+                $track: null,
+                $tip: null
+            }
         };
     },
     methods: {
         _valueFilter: function _valueFilter(value) {
 
             return value;
+        },
+        _setPer: function _setPer(per) {
+            var offset = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+
+            if (offset) {
+
+                this.data.per += per;
+            } else {
+
+                this.data.per = per;
+            }
+
+            if (this.data.per > 1) {
+
+                this.data.per = 1;
+            } else if (this.data.per < 0) {
+
+                this.data.per = 0;
+            }
+
+            var rval = this.range * this.data.per + this.conf.min;
+            var rleft = rval % this.conf.step;
+
+            this.data.start = this.conf.min;
+
+            if (rleft < this.conf.step / 2) {
+
+                rval = rval - rval % this.conf.step;
+            } else {
+
+                rval = rval + (this.conf.step - rval % this.conf.step);
+            }
+
+            if (rval > this.conf.max) {
+
+                rval = this.conf.max;
+            } else if (rval < this.conf.min) {
+
+                rval = this.conf.min;
+            }
+
+            this.data.end = rval;
+        },
+        _trackClick: function _trackClick(evt) {
+            var _this = this;
+
+            if (this.conf.state === 'disabled' || this.conf.state === 'readonly') {
+
+                return;
+            }
+
+            if (this.data.droping) {
+
+                return;
+            }
+
+            var curval = evt.layerX;
+            var fullwidth = this.data.$track.clientWidth;
+
+            this._setPer(curval / fullwidth);
+
+            if (this.conf.showTip) {
+
+                this.data.$tip.show();
+
+                this.Vue.nextTick(function () {
+
+                    _this.data.$tip.position();
+                });
+
+                clearTimeout(this.data.clickTipHideTimeout);
+                this.data.clickTipHideTimeout = setTimeout(function () {
+
+                    _this.data.$tip.hide();
+                }, clickTipHideTime);
+            }
+        },
+        _sliderMousedown: function _sliderMousedown(main, evt) {
+
+            if (this.conf.state === 'disabled' || this.conf.state === 'readonly') {
+
+                return;
+            }
+
+            if (this.data.droping) {
+
+                return;
+            }
+
+            if (this.conf.showTip) {
+
+                this.data.$tip.show();
+            }
+
+            this.data.droping = true;
+            this.data.dropMain = main;
+            this.data.lastDropX = evt.pageX;
+            this._globalEventAdd('mousemove', '_sliderMousemove');
+            this._globalEventAdd('mouseup', '_sliderMouseup');
+        },
+        _sliderMousemove: function _sliderMousemove(evt) {
+
+            var moveX = evt.pageX - this.data.lastDropX;
+            var fullwidth = this.data.$track.clientWidth;
+            var offset = moveX / fullwidth;
+
+            if (this.data.overMaxX > -1 && evt.pageX > this.data.overMaxX) {
+
+                return;
+            }
+
+            if (this.data.overMinX > -1 && evt.pageX < this.data.overMinX) {
+
+                return;
+            }
+
+            this.data.lastDropX = evt.pageX;
+            this._setPer(offset, true);
+
+            if (this.data.per === 1) {
+
+                this.data.overMaxX = evt.pageX;
+            } else if (this.data.per === 0) {
+
+                this.data.overMinX = evt.pageX;
+            } else {
+
+                this.data.overMaxX = -1;
+                this.data.overMinX = -1;
+            }
+        },
+        _sliderMouseup: function _sliderMouseup(evt) {
+            var _this2 = this;
+
+            this._globalEventRemove('mousemove', '_sliderMousemove');
+            this._globalEventRemove('mouseup', '_sliderMouseup');
+
+            if (this.conf.showTip) {
+
+                this.data.$tip.hide();
+            }
+
+            setTimeout(function () {
+
+                _this2.data.droping = false;
+            });
         }
     },
     created: function created() {},
-    mounted: function mounted() {}
+    mounted: function mounted() {
+        var _this3 = this;
+
+        this.$watch('conf.min', function () {
+
+            if (_this3.data.start < _this3.conf.min) {
+
+                _this3.data.start = _this3.conf.min;
+            }
+
+            if (_this3.data.end < _this3.conf.min) {
+
+                _this3.data.end = _this3.conf.min;
+            }
+        }, {
+            immediate: true
+        });
+
+        this.data.$tip = this.$refs['ui-slider-tip-' + this.uiid];
+        this.data.per = (this.data.end - this.data.start) / this.range;
+        this.data.$track = this.$el.querySelector('.track');
+        this._setPer(((this.get() || this.conf.min) - this.conf.min) / this.range);
+
+        this.$watch('data.end', function () {
+
+            _this3._set(_this3.data.end);
+        });
+
+        this.$on('value-change', function () {
+
+            if (_this3.data.droping && _this3.conf.showTip) {
+
+                _this3.data.$tip.position();
+            }
+
+            if (!_this3.data.droping) {
+
+                _this3._setPer(((_this3.get() || _this3.conf.min) - _this3.conf.min) / _this3.range);
+            }
+        });
+    }
 };
 module.exports = exports['default'];
 
@@ -18869,7 +19199,7 @@ var _trim = __webpack_require__(178);
 
 var _trim2 = _interopRequireDefault(_trim);
 
-var _GlobalEvent = __webpack_require__(6);
+var _GlobalEvent = __webpack_require__(5);
 
 var _GlobalEvent2 = _interopRequireDefault(_GlobalEvent);
 
@@ -21018,7 +21348,7 @@ exports.default = {
             type: String,
             default: 'hover',
             validator: function validator(value) {
-                return ['hover', 'click', 'focus'].indexOf(value) !== -1;
+                return ['hover', 'click', 'focus', 'method'].indexOf(value) !== -1;
             }
         },
         autoReverse: {
@@ -21254,6 +21584,12 @@ exports.default = {
 
                 this._leave();
             }
+
+            return this;
+        },
+        position: function position() {
+
+            this._tipUpdate();
 
             return this;
         }
@@ -21786,7 +22122,7 @@ var _arrayUniq = __webpack_require__(3);
 
 var _arrayUniq2 = _interopRequireDefault(_arrayUniq);
 
-var _lodash = __webpack_require__(5);
+var _lodash = __webpack_require__(6);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -23367,7 +23703,7 @@ var _extend = __webpack_require__(1);
 
 var _extend2 = _interopRequireDefault(_extend);
 
-var _lodash = __webpack_require__(5);
+var _lodash = __webpack_require__(6);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -25077,7 +25413,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _GlobalEvent = __webpack_require__(6);
+var _GlobalEvent = __webpack_require__(5);
 
 var _GlobalEvent2 = _interopRequireDefault(_GlobalEvent);
 
@@ -26715,7 +27051,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _GlobalEvent = __webpack_require__(6);
+var _GlobalEvent = __webpack_require__(5);
 
 var _GlobalEvent2 = _interopRequireDefault(_GlobalEvent);
 
@@ -30191,7 +30527,7 @@ var render = function() {
   return _c(
     "mor-slider",
     {
-      class: [_vm.formClass, _vm.stateClass],
+      class: [_vm.formClass, _vm.stateClass, _vm.moreClass],
       attrs: {
         _uiid: _vm.uiid,
         "form-name": _vm.formName,
@@ -30199,15 +30535,91 @@ var render = function() {
         group: _vm.group,
         "default-value": _vm.defaultValue,
         "hide-name": _vm.hideName,
-        clearable: _vm.clearable
+        clearable: _vm.clearable,
+        max: _vm.max,
+        min: _vm.min,
+        step: _vm.step,
+        "show-tip": _vm.showTip,
+        "tip-formatter": _vm.tipFormatter,
+        prepend: _vm.prepend,
+        append: _vm.append,
+        "show-point": _vm.showPoint,
+        marks: _vm.marks,
+        "is-range": _vm.isRange,
+        vertical: _vm.vertical
       }
     },
     [
-      _c("div", { staticClass: "track" }, [
-        _c("div", { staticClass: "selected-line" }),
-        _vm._v(" "),
-        _c("div", { staticClass: "main-slider" })
+      !_vm.conf.hideName
+        ? _c("div", { staticClass: "note" }, [
+            _vm._v(_vm._s(_vm.conf.formName))
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.hasPrepend
+        ? _c("div", {
+            staticClass: "prepend",
+            domProps: { innerHTML: _vm._s(_vm.conf.prepend) }
+          })
+        : _vm._e(),
+      _vm._v(" "),
+      _c("div", { staticClass: "wrap", class: { droping: _vm.data.droping } }, [
+        _c(
+          "div",
+          {
+            staticClass: "track",
+            on: {
+              click: function($event) {
+                _vm._trackClick($event)
+              }
+            }
+          },
+          [
+            _c("div", {
+              staticClass: "selected-line",
+              style: {
+                left: _vm.startEndReal.start + "px",
+                width: _vm.startEndReal.end - _vm.startEndReal.start + "px"
+              }
+            }),
+            _vm._v(" "),
+            _c("div", {
+              staticClass: "main-slider",
+              style: {
+                left: _vm.startEndReal.end + "px"
+              },
+              attrs: { id: "ui-slider-tip-" + this.uiid },
+              on: {
+                mousedown: function($event) {
+                  _vm._sliderMousedown(true, $event)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "ui-tip",
+              {
+                ref: "ui-slider-tip-" + this.uiid,
+                attrs: {
+                  target: "#ui-slider-tip-" + this.uiid,
+                  color: "extra-light-blue",
+                  trigger: "method",
+                  offset: "3px 0"
+                }
+              },
+              [_vm._v(_vm._s(_vm.conf.tipFormatter(_vm.data.end)))]
+            )
+          ],
+          1
+        )
       ]),
+      _vm._v(" "),
+      _vm.hasAppend
+        ? _c("div", {
+            staticClass: "append",
+            domProps: { innerHTML: _vm._s(_vm.conf.append) }
+          })
+        : _vm._e(),
       _vm._v(" "),
       _vm.conf.clearable
         ? _c(

@@ -41,6 +41,7 @@
     |[tip-formatter](#tip-formatter)|格式化滑块显示的数值。<br/>接受一个函数，函数的第一个参数是滑块的数值(数字)。<br/>如果开启了`is-range`则是一个数组，数组包含两个数字，分别是开始和结束两个滑块的数值。<br/><br/>此函数必须返回数字或字符串内容，将会显示在滑块上方。|格式化函数|Function|`value => value`|
     |[prepend](#prepend)|滑块前部显示内容（太长的内容会被隐藏）|内容字符串(可使用HTML)|String|`''`|
     |[append](#append)|滑块后部显示内容（太长的内容会被隐藏）|内容字符串(可使用HTML)|String|`''`|
+    |[show-point](#show-point)|显示步长的间断点(按`step`配置)。若间断点过于密集，组件会自动调整隐藏部分间断点。|`true`<br/>`false`|Boolean|`true`|
 
     :::
 
@@ -159,9 +160,21 @@
     </div>
     :::
     
+    #### show-point
 
+    :::democode/html
+    <div style="width:300px;">
+        <ui-slider :step="10" show-point></ui-slider>
+    </div>
+    :::
+    
+    如果间断点过于密集，会自动隐藏部分间断点：
 
-
+    :::democode/html
+    <div style="width:300px;">
+        <ui-slider show-point></ui-slider>
+    </div>
+    :::
 
     [[[源码]]]
 
