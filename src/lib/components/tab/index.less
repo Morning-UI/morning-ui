@@ -1,5 +1,14 @@
 @import '~Common/var.less';
 
+@tabBorderColor: lighten(@colorLightSilver, 2%);
+@tabBorderCurrentColor: darken(@colorLightSilver, 1%);
+@tabBgColor: lighten(@colorExtraLightSilver, 2%);
+@tabBgHoverColor: @colorExtraLightSilver;
+@tabBgCurrentColor: @colorWhite;
+@tabFontColor: @colorExtraLightBlue;
+@tabFontHoverColor: @colorExtraLightBlack;
+@tabFontCurrentColor: @colorBlack;
+
 mor-tab{
     > ul{
         list-style: none;
@@ -10,39 +19,47 @@ mor-tab{
 
         > li{
             display: inline-block;
-            font-size: 14px;
+            font-size: @fontSize*0.875;
             border: 1px rgba(0, 0, 0, 0) solid;
             border-bottom: none;
             padding: 0.5em 1em;
-            margin: 0 0.3em;
+            margin: 0 0.1em;
             border-radius: @borderRadius @borderRadius 0 0;
-            color: @colorExtraLightBlue;
+            color: @tabFontColor;
             position: relative;
-            background-color: #FFF;
+            background-color: @tabBgColor;
             top: 1px;
             cursor: pointer;
+            border: 1px @tabBorderColor solid;
+            border-bottom: none;
+
+            > i,
+            > i.iconfont{
+                font-size: @fontSize*0.75;
+            }
 
             &:first-child{
                 margin-left: 0;
             }
 
             &:hover{
-                color: @colorExtraLightBlack;
+                background-color: @tabBgHoverColor;
+                color: @tabFontHoverColor;
             }
 
             &.current{
-                border: 1px @colorGray solid;
-                border-bottom: none;
-                color: @colorBlack;
+                background-color: @tabBgCurrentColor;
+                color: @tabFontCurrentColor;
+                border-color: @tabBorderCurrentColor;
                 z-index: 5;
                 cursor: default;
-                top: 2px;
+                top: 1px;
             }
         }
     }
 
     .contents{
-        border: 1px @colorGray solid;
+        border: 1px @tabBorderCurrentColor solid;
         position: relative;
 
         > .item{
@@ -74,15 +91,16 @@ mor-tab{
             > li{
                 margin: 0;
                 display: block;
-                border: 1px @colorGray solid;
-                background: @colorLightGray;
+                border: 1px @tabBorderCurrentColor solid;
+                background-color: @tabBgColor;
                 padding: 1em 0;
                 text-align: center;
                 flex: 1;
                 border-radius: 0;
 
                 &:hover{
-                    background: @colorExtraLightSilver;
+                    background-color: @tabBgHoverColor;
+                    color: @tabFontHoverColor;
                 }
 
                 &:not(:last-child){
@@ -90,11 +108,12 @@ mor-tab{
                 }
 
                 &.current{
+                    border-color: @tabBorderCurrentColor;
                     border-top: 1px @colorTheme solid;
                     box-shadow: inset 0 3px 0 @colorTheme;
                     border-bottom: none;
-                    background: #FFF;
-                    color: @colorBlack;
+                    background: @tabBgCurrentColor;
+                    color: @tabFontCurrentColor;
                     top: 1px;
                 }
             }
@@ -107,27 +126,27 @@ mor-tab{
             width: 100%;
             height: 2px;
             position: absolute;
-            background: @colorGray;
+            background: @tabBorderColor;
             left: 0;
             bottom: 0;
         }
 
         > ul > li{
             border: none;
-            border-bottom: 2px @colorExtraLightSilver solid;
+            border-bottom: 2px @tabBorderCurrentColor solid;
             margin: 0;
             padding: 0.5em 1.3em;
             top: 0;
             background: transparent;
 
             &:hover{
-                color: @colorExtraLightBlack;
-                border-bottom-color: @colorSilver;
+                color: @tabFontHoverColor;
+                border-bottom-color: darken(@tabBorderCurrentColor, 8%);
             }
 
             &.current{
                 border-bottom-color: @colorTheme;
-                color: @colorBlack;
+                color: @tabFontCurrentColor;
             }
         }
 
