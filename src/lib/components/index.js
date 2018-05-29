@@ -64,6 +64,7 @@ import timepicker                   from './timepicker/index.vue';
 import datepicker                   from './datepicker/index.vue';
 import datetimepicker               from './datetimepicker/index.vue';
 import upload                       from './upload/index.vue';
+import colorpicker                  from './colorpicker/index.vue';
 import imagemap                     from './imagemap/index.vue';
 
 import privateTimepicker             from './private-timepicker/index.vue';
@@ -134,5 +135,6 @@ export default {
     datepicker,
     datetimepicker,
     upload,
+    colorpicker,
     imagemap
 };

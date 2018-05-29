@@ -1,0 +1,66 @@
+@import '~Common/var.less';
+
+mor-colorpicker{
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+
+    .preview{
+        width: @fontSize*2;
+        height: @fontSize*2;
+        box-sizing: border-box;
+        border: 1px @colorFormBorder solid;
+        border-radius: @borderRadius;
+        cursor: pointer;
+    }
+
+    .color{
+        width: 100%;
+        height: 100%;
+        display: none;
+    }
+
+    &.st-normal{}
+
+    &.st-disabled,
+    &.st-readonly{}
+
+    // default status
+    &{
+        .st-normal;
+    }
+}
+
+.mo-colorpicker-wrap{
+    width: @fontSize*16;
+    height: @fontSize*10;
+    pointer-events: none;
+    position: absolute;
+
+    .picker{
+        height: 100%;
+        width: 100%;
+        box-sizing: border-box;
+        border-radius: @borderRadius;
+        background: @colorWhite;
+        box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+        transform-origin: top center;
+        transform: scale(0);
+    }
+
+    &.show{
+        pointer-events: auto;
+    }
+
+    &.show .picker{
+        animation-name: popup;
+        animation-duration: 0.2s;
+        animation-fill-mode: forwards;
+    }
+
+    &.hide .picker{
+        animation-name: popin;
+        animation-duration: 0.18s;
+        animation-fill-mode: forwards;
+    }
+}

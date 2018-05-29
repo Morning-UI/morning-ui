@@ -17,7 +17,7 @@ let GlobalEvent = {
 
     },
     methods : {
-        _globalEventAdd : function (evtName, methodName) {
+        _globalEventAdd : function (evtName, methodName, useCapture) {
 
             let morning = this.morning;
 
@@ -45,7 +45,7 @@ let GlobalEvent = {
             if (evtNamespace.handler === null) {
 
                 evtNamespace.handler = globalHandler.bind(evtNamespace);
-                document.addEventListener(evtName, evtNamespace.handler);
+                document.addEventListener(evtName, evtNamespace.handler, useCapture);
 
             }
 

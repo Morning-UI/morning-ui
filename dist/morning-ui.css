@@ -11167,6 +11167,10 @@ mor-upload.st-readonly .fl-name {
   color: #7C8BA0;
 }
 
+mor-colorpicker {
+  display: block;
+}
+
 mor-imagemap {
   display: block;
   width: 100%;
