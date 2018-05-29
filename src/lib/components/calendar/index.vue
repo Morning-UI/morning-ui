@@ -326,15 +326,22 @@ export default {
             }
 
         },
+        _isNow : function (item) {
+
+            if (this.conf.highlightNow && isSameDay(item.date, this.data.now)) {
+
+                return {
+                    now : true
+                };
+
+            }
+
+            return {};
+
+        },
         _isHighlight : function (date) {
             
             let result = false;
-
-            if (this.conf.highlightNow && isSameDay(date, this.data.now)) {
-
-                result = true;
-
-            }
 
             if (result === false) {
 
@@ -508,8 +515,9 @@ export default {
             let bgMarkHl = this._backgroundMarkHighlight(item);
             let pointHl = this._pointMarkHighlight(item);
             let selectHl = this._selectHighlight(item);
+            let nowHl = this._isNow(item);
 
-            return Object.assign(bgMarkHl, pointHl, selectHl);
+            return Object.assign(bgMarkHl, pointHl, selectHl, nowHl);
 
         },
         _prev : function () {
