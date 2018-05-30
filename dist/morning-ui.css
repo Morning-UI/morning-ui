@@ -10135,7 +10135,7 @@ mor-radio > .il label span {
 }
 mor-radio > .il label .box {
   vertical-align: middle;
-  background: #FFF;
+  background: #FFFFFF;
   width: 20px;
   height: 20px;
   border-radius: 50%;
@@ -10171,69 +10171,143 @@ mor-radio > .il label.checked .mo-icon {
   opacity: 1;
   transform: scale(0.9);
 }
+mor-radio > .il label.disabled {
+  border-color: #dedede;
+  -webkit-user-select: none;
+  cursor: not-allowed !important;
+}
+mor-radio > .il label.disabled > .box {
+  background-color: #dedede;
+  border-color: #dedede;
+}
+mor-radio > .il label.disabled:hover span {
+  color: #b3b3b3;
+}
+mor-radio > .il label.disabled.checked .mo-icon {
+  opacity: 0.7;
+}
+mor-radio.border > .il label {
+  padding: 0.4em 0.6em;
+  margin: 0 0.5em 0.5em 0;
+  border: 1px #E6E6E6 solid;
+  border-radius: 3px;
+}
+mor-radio.border > .il label:hover {
+  border-color: #bdbdbd;
+}
+mor-radio.vertical > .il label {
+  margin: 0 0 0.6em;
+  width: 100%;
+}
 mor-radio.co-t > .il label.checked .box {
   background: #F33D5D;
+  border-color: #F33D5D;
+}
+mor-radio.co-t.border > .il label.checked {
   border-color: #F33D5D;
 }
 mor-radio.co-lt > .il label.checked .box {
   background: #F86F88;
   border-color: #F86F88;
 }
+mor-radio.co-lt.border > .il label.checked {
+  border-color: #F86F88;
+}
 mor-radio.co-dt > .il label.checked .box {
   background: #D22343;
+  border-color: #D22343;
+}
+mor-radio.co-dt.border > .il label.checked {
   border-color: #D22343;
 }
 mor-radio.co-s > .il label.checked .box {
   background: #4DBD67;
   border-color: #4DBD67;
 }
+mor-radio.co-s.border > .il label.checked {
+  border-color: #4DBD67;
+}
 mor-radio.co-w > .il label.checked .box {
   background: #F0AD4E;
+  border-color: #F0AD4E;
+}
+mor-radio.co-w.border > .il label.checked {
   border-color: #F0AD4E;
 }
 mor-radio.co-d > .il label.checked .box {
   background: #D64431;
   border-color: #D64431;
 }
+mor-radio.co-d.border > .il label.checked {
+  border-color: #D64431;
+}
 mor-radio.co-p > .il label.checked .box {
   background: #2185D0;
+  border-color: #2185D0;
+}
+mor-radio.co-p.border > .il label.checked {
   border-color: #2185D0;
 }
 mor-radio.co-m > .il label.checked .box {
   background: #A9A9A9;
   border-color: #A9A9A9;
 }
+mor-radio.co-m.border > .il label.checked {
+  border-color: #A9A9A9;
+}
 mor-radio.co-i > .il label.checked .box {
   background: #03A6B9;
+  border-color: #03A6B9;
+}
+mor-radio.co-i.border > .il label.checked {
   border-color: #03A6B9;
 }
 mor-radio.co-bk > .il label.checked .box {
   background: #17212D;
   border-color: #17212D;
 }
+mor-radio.co-bk.border > .il label.checked {
+  border-color: #17212D;
+}
 mor-radio.co-lbk > .il label.checked .box {
   background: #303C4B;
+  border-color: #303C4B;
+}
+mor-radio.co-lbk.border > .il label.checked {
   border-color: #303C4B;
 }
 mor-radio.co-elbk > .il label.checked .box {
   background: #45505C;
   border-color: #45505C;
 }
+mor-radio.co-elbk.border > .il label.checked {
+  border-color: #45505C;
+}
 mor-radio.co-bu > .il label.checked .box {
   background: #7C8BA0;
+  border-color: #7C8BA0;
+}
+mor-radio.co-bu.border > .il label.checked {
   border-color: #7C8BA0;
 }
 mor-radio.co-lbu > .il label.checked .box {
   background: #8E9CAF;
   border-color: #8E9CAF;
 }
+mor-radio.co-lbu.border > .il label.checked {
+  border-color: #8E9CAF;
+}
 mor-radio.co-elbu > .il label.checked .box {
   background: #A8B3C2;
+  border-color: #A8B3C2;
+}
+mor-radio.co-elbu.border > .il label.checked {
   border-color: #A8B3C2;
 }
 mor-radio.co-si > .il label span {
   color: #A8B3C2;
 }
+mor-radio.co-si > .il label,
 mor-radio.co-si > .il label .box {
   border: 1px #FFFFFF solid;
 }
@@ -10249,9 +10323,13 @@ mor-radio.co-si > .il label.checked .box {
 mor-radio.co-si > .il label.checked .mo-icon {
   color: #45505C;
 }
+mor-radio.co-si.border > .il label.checked {
+  border-color: #E2E8EE;
+}
 mor-radio.co-lsi > .il label span {
   color: #A8B3C2;
 }
+mor-radio.co-lsi > .il label,
 mor-radio.co-lsi > .il label .box {
   border: 1px #FFFFFF solid;
 }
@@ -10267,9 +10345,13 @@ mor-radio.co-lsi > .il label.checked .box {
 mor-radio.co-lsi > .il label.checked .mo-icon {
   color: #45505C;
 }
+mor-radio.co-lsi.border > .il label.checked {
+  border-color: #E2E8EE;
+}
 mor-radio.co-elsi > .il label span {
   color: #A8B3C2;
 }
+mor-radio.co-elsi > .il label,
 mor-radio.co-elsi > .il label .box {
   border: 1px #FFFFFF solid;
 }
@@ -10285,9 +10367,13 @@ mor-radio.co-elsi > .il label.checked .box {
 mor-radio.co-elsi > .il label.checked .mo-icon {
   color: #45505C;
 }
+mor-radio.co-elsi.border > .il label.checked {
+  border-color: #EDF1F5;
+}
 mor-radio.co-g > .il label span {
   color: #E6E6E6;
 }
+mor-radio.co-g > .il label,
 mor-radio.co-g > .il label .box {
   border: 1px #FFFFFF solid;
 }
@@ -10303,9 +10389,13 @@ mor-radio.co-g > .il label.checked .box {
 mor-radio.co-g > .il label.checked .mo-icon {
   color: #17212D;
 }
+mor-radio.co-g.border > .il label.checked {
+  border-color: #E6E6E6;
+}
 mor-radio.co-lg > .il label span {
   color: #E6E6E6;
 }
+mor-radio.co-lg > .il label,
 mor-radio.co-lg > .il label .box {
   border: 1px #FFFFFF solid;
 }
@@ -10321,9 +10411,13 @@ mor-radio.co-lg > .il label.checked .box {
 mor-radio.co-lg > .il label.checked .mo-icon {
   color: #17212D;
 }
+mor-radio.co-lg.border > .il label.checked {
+  border-color: #F0F0F0;
+}
 mor-radio.co-wh > .il label span {
   color: #E6E6E6;
 }
+mor-radio.co-wh > .il label,
 mor-radio.co-wh > .il label .box {
   border: 1px #FFFFFF solid;
 }
@@ -10338,6 +10432,9 @@ mor-radio.co-wh > .il label.checked .box {
 }
 mor-radio.co-wh > .il label.checked .mo-icon {
   color: #17212D;
+}
+mor-radio.co-wh.border > .il label.checked {
+  border-color: #FFFFFF;
 }
 mor-radio.st-disabled > .il > label,
 mor-radio.st-readonly > .il > label {
@@ -10360,6 +10457,9 @@ mor-radio.st-readonly > .il > label.checked .mo-icon {
 }
 mor-radio > .il label.checked .box {
   background: #F33D5D;
+  border-color: #F33D5D;
+}
+mor-radio.border > .il label.checked {
   border-color: #F33D5D;
 }
 

@@ -18406,6 +18406,13 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
     origin: 'Form',
@@ -18420,6 +18427,12 @@ exports.default = {
             default: function _default() {
                 return {};
             }
+        },
+        disabledOptions: {
+            type: Array,
+            default: function _default() {
+                return [];
+            }
         }
     },
     computed: {
@@ -18427,14 +18440,17 @@ exports.default = {
 
             return {
                 acceptHtml: this.acceptHtml,
-                list: this.list
+                list: this.list,
+                disabledOptions: this.disabledOptions
             };
         }
     },
     data: function data() {
 
         return {
-            data: {}
+            data: {
+                disabledOptions: {}
+            }
         };
     },
     methods: {
@@ -18448,7 +18464,49 @@ exports.default = {
 
             return String(value);
         },
+        _refreshDisabledOptions: function _refreshDisabledOptions() {
+
+            var list = {};
+
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+                for (var _iterator = this.conf.disabledOptions[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var key = _step.value;
+
+
+                    list[key] = true;
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return) {
+                        _iterator.return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
+
+            this.data.disabledOptions = list;
+
+            if (this.data.disabledOptions[this.get()]) {
+
+                this.set(undefined);
+            }
+        },
         toggle: function toggle(key) {
+
+            if (this.data.disabledOptions[key]) {
+
+                return this;
+            }
 
             var keys = Object.keys(this.conf.list);
 
@@ -18464,7 +18522,17 @@ exports.default = {
         }
     },
     created: function created() {},
-    mounted: function mounted() {}
+    mounted: function mounted() {
+        var _this = this;
+
+        this.$watch('conf.disabledOptions', function () {
+
+            _this._refreshDisabledOptions();
+        }, {
+            deep: true,
+            immediate: true
+        });
+    }
 };
 module.exports = exports['default'];
 
@@ -30737,7 +30805,8 @@ var render = function() {
         "hide-name": _vm.hideName,
         clearable: _vm.clearable,
         "accept-html": _vm.acceptHtml,
-        list: _vm.list
+        list: _vm.list,
+        "disabled-options": _vm.disabledOptions
       }
     },
     [
@@ -30760,6 +30829,9 @@ var render = function() {
                       {
                         key: key,
                         staticClass: "checked",
+                        class: {
+                          disabled: _vm.data.disabledOptions[key]
+                        },
                         attrs: { value: key },
                         on: {
                           click: function($event) {
@@ -30788,6 +30860,9 @@ var render = function() {
                       "label",
                       {
                         key: key,
+                        class: {
+                          disabled: _vm.data.disabledOptions[key]
+                        },
                         attrs: { value: key },
                         on: {
                           click: function($event) {
