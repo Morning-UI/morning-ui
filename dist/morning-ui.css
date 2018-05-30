@@ -10805,6 +10805,145 @@ mor-multiform.st-readonly > .itemlist:hover {
   border-color: #a6a6a6;
 }
 
+mor-slider {
+  display: inline-block;
+  width: 100%;
+  padding-bottom: 4px;
+  position: relative;
+  font-size: 0;
+}
+mor-slider.has-cleanbtn {
+  padding-bottom: 20px;
+}
+mor-slider > .note {
+  color: #303C4B;
+  font-size: 16px;
+  margin-bottom: 0.5em;
+  -webkit-user-select: text;
+  padding: 0 10px;
+}
+mor-slider .wrap {
+  width: 100%;
+  box-sizing: border-box;
+  -webkit-user-select: none;
+  user-select: none;
+  padding: 6px 20px;
+  display: inline-block;
+}
+mor-slider .wrap:hover .track,
+mor-slider .wrap.droping .track {
+  background: #d8e0e8;
+}
+mor-slider .wrap:hover .selected-line,
+mor-slider .wrap.droping .selected-line {
+  background: #F33D5D;
+}
+mor-slider .wrap:hover .main-slider,
+mor-slider .wrap.droping .main-slider {
+  border-color: #F33D5D;
+}
+mor-slider .points {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-size: 0;
+  position: relative;
+  pointer-events: none;
+}
+mor-slider .points li {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  font-size: 16px;
+  border-radius: 10em;
+  background: #FFFFFF;
+  vertical-align: top;
+  position: absolute;
+  margin: 0;
+  top: 1px;
+  transform: translateX(-50%);
+}
+mor-slider.hide-part-points .points li {
+  background: #f4f6f9;
+}
+mor-slider .track {
+  width: 100%;
+  height: 8px;
+  background: #E2E8EE;
+  border-radius: 10em;
+  position: relative;
+  cursor: pointer;
+  font-size: 16px;
+}
+mor-slider .selected-line {
+  height: 8px;
+  position: absolute;
+  left: 0;
+  background: #F86F88;
+  border-radius: 10em;
+  pointer-events: none;
+  font-size: 16px;
+}
+mor-slider .main-slider {
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  top: -5px;
+  left: 0;
+  background: #FFFFFF;
+  border-radius: 9px;
+  border: 2px #F86F88 solid;
+  cursor: pointer;
+  margin-left: -9px;
+}
+mor-slider .cleanbtn {
+  position: absolute;
+  right: 20px;
+  bottom: 0;
+}
+mor-slider .prepend,
+mor-slider .append {
+  display: inline-block;
+  width: 15%;
+  height: 20px;
+  font-size: 14px;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+mor-slider .prepend > i,
+mor-slider .append > i {
+  position: relative;
+  top: -2px;
+}
+mor-slider.has-prepend .wrap,
+mor-slider.has-append .wrap {
+  width: 85%;
+  vertical-align: top;
+}
+mor-slider.has-prepend.has-append .wrap {
+  width: 70%;
+}
+mor-slider.st-disabled .wrap,
+mor-slider.st-readonly .wrap {
+  cursor: not-allowed;
+}
+mor-slider.st-disabled .wrap .track,
+mor-slider.st-readonly .wrap .track {
+  cursor: not-allowed;
+  background: #cad3dd;
+}
+mor-slider.st-disabled .wrap .selected-line,
+mor-slider.st-readonly .wrap .selected-line {
+  background: #7f95ae;
+}
+mor-slider.st-disabled .wrap .main-slider,
+mor-slider.st-readonly .wrap .main-slider {
+  cursor: not-allowed;
+  border-color: #7f95ae;
+}
+
 mor-timepicker {
   display: block;
   position: relative;

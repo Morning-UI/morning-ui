@@ -463,6 +463,36 @@ let data = {
                 valueContent : '[{path:\'http://morning-ui-image.test.upcdn.net/uploaddemo/17491/1511259398095810608.png\',name:\'1511259398095810608.png\'}]'
             }
         ],
+        slider : [
+            {
+                valueType : 'String',
+                valueContent : `'40'`
+            },
+            {
+                valueType : 'Number',
+                valueContent : '40'
+            },
+            {
+                valueType : 'Boolean',
+                valueContent : 'true'
+            },
+            {
+                valueType : 'Null',
+                valueContent : 'null'
+            },
+            {
+                valueType : 'Undefined',
+                valueContent : 'undefined'
+            },
+            {
+                valueType : 'Object',
+                valueContent : '{}'
+            },
+            {
+                valueType : 'Array',
+                valueContent : `[40]`
+            }
+        ],
         imagemap : [
             {
                 valueType : 'String',
