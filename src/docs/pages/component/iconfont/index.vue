@@ -147,10 +147,6 @@
             <span>mo-icon-love-o</span>
         </div>
         <div>
-            <i class="mo-icon-loading"></i>
-            <span>mo-icon-loading</span>
-        </div>
-        <div>
             <i class="mo-icon-error-cf"></i>
             <span>mo-icon-error-cf</span>
         </div>

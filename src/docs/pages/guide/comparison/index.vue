@@ -198,7 +198,7 @@
                     </td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
-                        <p>56个</p>
+                        <p>55个</p>
                     </td>
                 </tr>
                 <tr>

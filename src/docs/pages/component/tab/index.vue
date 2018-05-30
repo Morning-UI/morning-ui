@@ -50,12 +50,22 @@
     </ui-tab>
     :::
 
-    #### 下划线标签页
+    #### 线条标签页
 
-    通过`underline`样式类定义下划线风格的标签页：
+    通过`line`样式类定义线条风格的标签页：
 
     :::democode/html
-    <ui-tab class="underline">
+    <ui-tab class="line">
+        <div slot="第一页">第一页</div>
+        <div slot="第二页">第二页</div>
+        <div slot="第三页">第三页</div>
+    </ui-tab>
+    :::
+
+    #### 按钮式标签页
+
+    :::democode/html
+    <ui-tab class="btn">
         <div slot="第一页">第一页</div>
         <div slot="第二页">第二页</div>
         <div slot="第三页">第三页</div>
@@ -64,10 +74,10 @@
     
     #### 无边框标签页
 
-    通过`noborder`样式类定义无边框标签页，一般配合下划线使用。
+    通过`noborder`样式类定义无边框标签页，一般配合线条使用。
 
     :::democode/html
-    <ui-tab class="underline noborder">
+    <ui-tab class="line noborder">
         <div slot="第一页">第一页</div>
         <div slot="第二页">第二页</div>
         <div slot="第三页">第三页</div>
@@ -79,7 +89,7 @@
     :::democode/html
     <ui-tab class="block noborder">
         <div slot="A">
-            <ui-tab class="underline noborder">
+            <ui-tab class="line noborder">
                 <div slot="A1">
                     <ui-tab>
                         <div slot="A11">A11</div>
@@ -95,6 +105,20 @@
         <div slot="C">C</div>
     </ui-tab>
     :::
+
+    #### 位于左侧的标签页
+
+    通过标签页的`position`配置你可以调整标签页的位置：
+
+    :::democode/html
+    <ui-tab position="left">
+        <div slot="第一页">第一页</div>
+        <div slot="第二页">第二页</div>
+        <div slot="第三页">第三页</div>
+    </ui-tab>
+    :::
+
+    更多用法详见：[position配置](/component/tab.html#position)
 
     #### 锚点定位
     
@@ -155,10 +179,11 @@
 
     |KEY|描述|接受值|值类型|默认值|
     |-|-|-|-|-|
-    |[tab](#tab)|需要展示的tab|`slot`(标签名)|String|第一个标签名|
+    |[tab](#tab)|需要展示的标签页|`slot`(标签名)|String|第一个标签名|
     |[prepend](#prepend)|在对应标签名之前插入内容(可以是HTML，一般用于插入icon)。若标签名在此对象中未找到则什么都不插入。|需要插入内容的hash(键名对应标签名，键值是需要插入的内容)|Object|`{}`|
     |[append](#append)|在对应标签名之后插入内容(可以是HTML，一般用于插入icon)。若标签名在此对象中未找到则什么都不插入。|需要插入内容的hash(键名对应标签名，键值是需要插入的内容)|Object|`{}`|
     |[anchor-target](#anchor-target)|是否启用锚点定位。启用后URL中锚点匹配到的元素所在的标签页，会切换标签并滚动到此元素。<br>多层嵌套的标签页进行切换时，如层级中某个标签页组件未开启此配置，则这个标签页不会进行切换。但不影响其他标签页切换。|`true`<br>`false`|Boolean|`false`|
+    |[position](#position)|标签页的位置|`'top'`：上方<br>`'left'`：左侧|String|`'top'`|
 
     #### tab
 
@@ -269,7 +294,69 @@
         </div>
     </ui-tab>
     :::
-   
+    
+    #### position
+    
+    标签页在上方：
+
+    :::democode/html
+    <ui-tab>
+        <div slot="第一页">第一页</div>
+        <div slot="第二页">第二页</div>
+        <div slot="第三页">第三页</div>
+    </ui-tab>
+    :::
+    
+    标签页在左侧：
+
+    :::democode/html
+    <ui-tab position="left">
+        <div slot="第一页">第一页</div>
+        <div slot="第二页">第二页</div>
+        <div slot="第三页">第三页</div>
+    </ui-tab>
+    :::
+    
+    配合无边框：
+
+    :::democode/html
+    <ui-tab position="left" class="noborder">
+        <div slot="第一页">第一页</div>
+        <div slot="第二页">第二页</div>
+        <div slot="第三页">第三页</div>
+    </ui-tab>
+    :::
+
+    配合区块标签页：
+
+    :::democode/html
+    <ui-tab position="left" class="block">
+        <div slot="第一页">第一页</div>
+        <div slot="第二页">第二页</div>
+        <div slot="第三页">第三页</div>
+    </ui-tab>
+    :::
+
+    配合线条标签页：
+
+    :::democode/html
+    <ui-tab position="left" class="line">
+        <div slot="第一页">第一页</div>
+        <div slot="第二页">第二页</div>
+        <div slot="第三页">第三页</div>
+    </ui-tab>
+    :::
+
+    配合按钮式标签页：
+
+    :::democode/html
+    <ui-tab position="left" class="btn">
+        <div slot="第一页">第一页</div>
+        <div slot="第二页">第二页</div>
+        <div slot="第三页">第三页</div>
+    </ui-tab>
+    :::
+
     [[[方法]]]
 
     #### switch(name)

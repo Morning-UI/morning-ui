@@ -1,7 +1,7 @@
 <template>
     <mor-tip
         :_uiid="uiid"
-        :class="[colorClass]"
+        :class="[colorClass, moreClass]"
 
         :target="target"
         :placement="placement"
@@ -66,6 +66,14 @@ export default {
                 autoReverse : this.autoReverse
             };
 
+        },
+        moreClass : function () {
+
+            return {
+                'only-has-text' : this.data.onlyHasText,
+                in : this.data.in
+            };
+
         }
     },
     data : function () {
@@ -86,6 +94,8 @@ export default {
                     in : 'in'
                 },
                 timeout : null,
+                onlyHasText : false,
+                in : false
             }
         };
 
@@ -170,7 +180,7 @@ export default {
             this.data.timeout = setTimeout(() => {
 
                 if (this.data.hoverState === this.data.hoverStates.in) {
-                    
+
                     this.show();
 
                 }
@@ -220,6 +230,29 @@ export default {
             return evt && /Event\]$/.test(evt.toString());
 
         },
+        _checkOnlyHasText : function () {
+
+            if (
+                (
+                    !this.$slots.default &&
+                    this.data.title
+                ) || (
+                    this.$slots.default &&
+                    this.$slots.default.length === 1 &&
+                    this.$slots.default[0].tag === undefined &&
+                    this.$slots.default[0].text
+                )
+            ) {
+
+                this.data.onlyHasText = true;
+
+            } else {
+
+                this.data.onlyHasText = false;
+
+            }
+
+        },
         _hasContent : function () {
 
             if (this.data.title) {
@@ -236,8 +269,13 @@ export default {
 
             }
 
-            return !!this.$slots.default[0].text ||
-                (this.$slots.default[0].children && !!this.$slots.default[0].children.length);
+            let hasContent = !(
+                this.$slots.default.length === 1 &&
+                this.$slots.default[0].tag === undefined &&
+                !this.$slots.default[0].text
+            );
+
+            return hasContent;
 
         },
         _showComplete () {
@@ -280,6 +318,8 @@ export default {
 
             }
 
+            this._checkOnlyHasText();
+
             this._tipCreate({
                 placement : this.conf.placement,
                 element : this.$el,
@@ -287,8 +327,14 @@ export default {
                 offset : this.conf.offset
             });
 
-            this.$el.classList.add(this.data.classNames.in);
+            this.data.in = true;
             this._showComplete();
+
+            this.Vue.nextTick(() => {
+
+                this._tipUpdate();
+    
+            });
 
             return this;
 
@@ -301,7 +347,7 @@ export default {
 
             }
 
-            this.$el.classList.remove(this.data.classNames.in);
+            this.data.in = false;
             this._tipDestroy();
             this._hideComplete();
 

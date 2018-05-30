@@ -12,7 +12,11 @@
     >
 
     <template v-if="data.lock">
-        <i class="mo-icon mo-icon-loading"></i>
+        <div class="mo-loader">
+            <svg class="mo-loader-circular" viewBox="25 25 50 50">
+                <circle class="mo-loader-path" cx="50" cy="50" r="20" fill="none" stroke-width="4" stroke-miterlimit="10"/>
+            </svg>
+        </div>
         <span><slot></slot></span>
     </template>
 

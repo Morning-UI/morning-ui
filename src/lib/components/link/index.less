@@ -11,15 +11,12 @@ mor-link{
     }
 
     &.loading{
-        .mo-icon{
+        .mo-loader{
             position: absolute;
-            left: ~`'calc( 50% - 0.5em )'`;
-            top: ~`'calc( 50% - 0.5em )'`;
-            line-height: 1em;
-            animation-name: rotation;
-            animation-duration: 1s;
-            animation-timing-function: linear;
-            animation-iteration-count: infinite;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 1em;
         }
 
         span{
@@ -33,69 +30,40 @@ mor-link{
 
     &.si-xxl{
         font-size: @fontSize*1.3;
-
-        .mo-icon{
-            font-size: @fontSize*1.6;
-            transform-origin: @fontSize*0.8 @fontSize*0.78125;
-        }
     }
 
     &.si-xl{
         font-size: @fontSize*1.1;
-
-        .mo-icon{
-            font-size: @fontSize*1.4;
-            transform-origin: @fontSize*0.69375 @fontSize*0.6875;
-        }
     }
 
     &.si-l{
         font-size: @fontSize*1;
-
-        .mo-icon{
-            font-size: @fontSize*1.3;
-            transform-origin: @fontSize*0.65 @fontSize*0.625;
-        }
     }
 
     &.si-m{
         font-size: @fontSize*0.8125;
-
-        .mo-icon{
-            font-size: @fontSize*1.15;
-            transform-origin: @fontSize*0.575 @fontSize*0.5625;
-        }
     }
 
     &.si-s{
         font-size: @fontSize*0.75;
-
-        .mo-icon{
-            font-size: @fontSize*0.9;
-            transform-origin: @fontSize*0.45 @fontSize*0.4375;
-        }
     }
 
     &.si-xs{
         font-size: @fontSize*0.75;
-
-        .mo-icon{
-            font-size: @fontSize*0.85;
-            transform-origin: @fontSize*0.425 @fontSize*0.40625;
-        }
     }
 
     &.si-xxs{
         font-size: @fontSize*0.75;
-
-        .mo-icon{
-            font-size: @fontSize*0.75;
-            transform-origin: @fontSize*0.375 @fontSize*0.375;
-        }
     }
 
     &.co-t{
         color: @colorTheme;
+
+        .mo-loader{
+            .mo-loader-path{
+                stroke: @colorTheme;
+            }
+        }
 
         &:not(.st-disabled):hover,
         &.st-hover{
@@ -115,6 +83,12 @@ mor-link{
     &.co-lt{
         color: @colorLightTheme;
 
+        .mo-loader{
+            .mo-loader-path{
+                stroke: @colorLightTheme;
+            }
+        }
+
         &:not(.st-disabled):hover,
         &.st-hover{
             color: darken(@colorLightTheme, 25%);
@@ -132,6 +106,12 @@ mor-link{
 
     &.co-dt{
         color: @colorDarkTheme;
+
+        .mo-loader{
+            .mo-loader-path{
+                stroke: @colorDarkTheme;
+            }
+        }
 
         &:not(.st-disabled):hover,
         &.st-hover{
@@ -151,6 +131,12 @@ mor-link{
     &.co-s{
         color: @colorSuccess;
 
+        .mo-loader{
+            .mo-loader-path{
+                stroke: @colorSuccess;
+            }
+        }
+
         &:not(.st-disabled):hover,
         &.st-hover{
             color: darken(@colorSuccess, 10%);
@@ -168,6 +154,12 @@ mor-link{
 
     &.co-w{
         color: @colorWarning;
+
+        .mo-loader{
+            .mo-loader-path{
+                stroke: @colorWarning;
+            }
+        }
 
         &:not(.st-disabled):hover,
         &.st-hover{
@@ -187,6 +179,12 @@ mor-link{
     &.co-d{
         color: @colorDanger;
 
+        .mo-loader{
+            .mo-loader-path{
+                stroke: @colorDanger;
+            }
+        }
+
         &:not(.st-disabled):hover,
         &.st-hover{
             color: darken(@colorDanger, 5%);
@@ -204,6 +202,12 @@ mor-link{
 
     &.co-p{
         color: @colorPrimary;
+
+        .mo-loader{
+            .mo-loader-path{
+                stroke: @colorPrimary;
+            }
+        }
 
         &:not(.st-disabled):hover,
         &.st-hover{
@@ -223,6 +227,12 @@ mor-link{
     &.co-m{
         color: @colorMinor;
 
+        .mo-loader{
+            .mo-loader-path{
+                stroke: @colorMinor;
+            }
+        }
+
         &:not(.st-disabled):hover,
         &.st-hover{
             color: darken(@colorMinor, 10%);
@@ -240,6 +250,12 @@ mor-link{
 
     &.co-i{
         color: @colorInfo;
+
+        .mo-loader{
+            .mo-loader-path{
+                stroke: @colorInfo;
+            }
+        }
 
         &:not(.st-disabled):hover,
         &.st-hover{
@@ -259,6 +275,12 @@ mor-link{
     &.co-bk{
         color: @colorBlack;
 
+        .mo-loader{
+            .mo-loader-path{
+                stroke: @colorBlack;
+            }
+        }
+
         &:not(.st-disabled):hover,
         &.st-hover{
             color: lighten(@colorBlack, 15%);
@@ -276,6 +298,12 @@ mor-link{
 
     &.co-lbk{
         color: @colorLightBlack;
+
+        .mo-loader{
+            .mo-loader-path{
+                stroke: @colorLightBlack;
+            }
+        }
 
         &:not(.st-disabled):hover,
         &.st-hover{
@@ -295,6 +323,12 @@ mor-link{
     &.co-elbk{
         color: @colorExtraLightBlack;
 
+        .mo-loader{
+            .mo-loader-path{
+                stroke: @colorExtraLightBlack;
+            }
+        }
+
         &:not(.st-disabled):hover,
         &.st-hover{
             color: lighten(@colorExtraLightBlack, 10%);
@@ -312,6 +346,12 @@ mor-link{
 
     &.co-bu{
         color: @colorBlue;
+
+        .mo-loader{
+            .mo-loader-path{
+                stroke: @colorBlue;
+            }
+        }
 
         &:not(.st-disabled):hover,
         &.st-hover{
@@ -331,6 +371,12 @@ mor-link{
     &.co-lbu{
         color: @colorLightBlue;
 
+        .mo-loader{
+            .mo-loader-path{
+                stroke: @colorLightBlue;
+            }
+        }
+
         &:not(.st-disabled):hover,
         &.st-hover{
             color: darken(@colorLightBlue, 15%);
@@ -348,6 +394,12 @@ mor-link{
 
     &.co-elbu{
         color: @colorExtraLightBlue;
+
+        .mo-loader{
+            .mo-loader-path{
+                stroke: @colorExtraLightBlue;
+            }
+        }
 
         &:not(.st-disabled):hover,
         &.st-hover{
@@ -367,6 +419,12 @@ mor-link{
     &.co-si{
         color: @colorSilver;
 
+        .mo-loader{
+            .mo-loader-path{
+                stroke: @colorSilver;
+            }
+        }
+
         &:not(.st-disabled):hover,
         &.st-hover{
             color: darken(@colorSilver, 8%);
@@ -384,6 +442,12 @@ mor-link{
 
     &.co-lsi{
         color: @colorLightSilver;
+
+        .mo-loader{
+            .mo-loader-path{
+                stroke: @colorLightSilver;
+            }
+        }
 
         &:not(.st-disabled):hover,
         &.st-hover{
@@ -403,6 +467,12 @@ mor-link{
     &.co-elsi{
         color: @colorExtraLightSilver;
 
+        .mo-loader{
+            .mo-loader-path{
+                stroke: @colorExtraLightSilver;
+            }
+        }
+
         &:not(.st-disabled):hover,
         &.st-hover{
             color: darken(@colorExtraLightSilver, 8%);
@@ -420,6 +490,12 @@ mor-link{
 
     &.co-g{
         color: @colorGray;
+
+        .mo-loader{
+            .mo-loader-path{
+                stroke: @colorGray;
+            }
+        }
 
         &:not(.st-disabled):hover,
         &.st-hover{
@@ -439,6 +515,12 @@ mor-link{
     &.co-lg{
         color: @colorLightGray;
 
+        .mo-loader{
+            .mo-loader-path{
+                stroke: @colorLightGray;
+            }
+        }
+
         &:not(.st-disabled):hover,
         &.st-hover{
             color: darken(@colorLightGray, 8%);
@@ -456,6 +538,12 @@ mor-link{
 
     &.co-wh{
         color: @colorWhite;
+
+        .mo-loader{
+            .mo-loader-path{
+                stroke: @colorWhite;
+            }
+        }
 
         &:not(.st-disabled):hover,
         &.st-hover{

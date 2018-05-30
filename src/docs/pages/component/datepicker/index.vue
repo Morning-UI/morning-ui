@@ -38,7 +38,7 @@
     </div>
     :::
 
-    更多自定义格式见`format`配置。
+    更多自定义格式见：[format配置](/component/datepicker.html#format)。
 
     #### 范围日期选择
 

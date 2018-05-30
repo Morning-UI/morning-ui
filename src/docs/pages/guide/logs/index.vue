@@ -18,6 +18,23 @@
     
     ### 更新记录
 
+    ### 0.10.31 <ui-badge class="circle ver-stable" size="s" color="light-theme">Stable</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2018年5月28日，
+            Archive : 
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.31" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.31/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.10.31/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor><br/><br/>
+
+    - `ui-calendar`组件区分高亮当天和高亮日期的样式
+    - `ui-datepicker`和`ui-datetimepicker`现在会高亮当前日期
+    - 修复`ui-tip`判断内容是否为空的一个逻辑错误
+    - 修复`ui-tab`再锚点错误的情况下会报错的问题
+
     ### 0.10.30 <ui-badge class="circle ver-stable" size="s" color="light-theme">Stable</ui-badge>
 
     <ui-textcolor color="light-blue">
