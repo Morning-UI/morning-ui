@@ -208,6 +208,26 @@ export default {
     methods : {
         _valueFilter : function (value) {
 
+            value = Number(value);
+
+            if (isNaN(value)) {
+
+                value = this.conf.min;
+
+            }
+
+            if (value < this.conf.min) {
+
+                value = this.conf.min;
+
+            }
+
+            if (value > this.conf.max) {
+
+                value = this.conf.max;
+
+            }
+
             return value;
 
         },

@@ -176,6 +176,64 @@
     </div>
     :::
 
+    [[[方法]]]
+
+    :::preset/html
+    formMethod
+    ---
+    uikey:slider
+    methodValue:40
+    methodDefaultValue:40
+    :::
+
+    [[[事件]]]
+
+    :::preset/html
+    formEvent
+    ---
+    uikey:slider
+    eventValue:40
+    :::
+
+    [[[表单值]]]
+
+    #### 值类型
+    
+    `Number` : 数字
+
+    #### 值过滤
+    
+    - 如果数值的类型不是数字，会被转换成数字(通过`Number(n)`)
+    - 如果数字是NaN，则取`min`配置的最小值
+    - 如果数字小于`min`配置，则取`min`配置的最小值
+    - 如果数字大于`max`配置，则取`max`配置的最大值
+
+    #### 值格式
+
+    取值的数字。
+
+    #### 默认值
+
+    `0`(`min`配置的最小值)
+
+    #### 输入/输出示例
+
+    :::repeat/html
+    formValueType:slider
+    ---
+    <div>
+        <p>{$valueType}类型</p>
+        <div style="width:300px;">
+            <ui-slider ref="demoType{$valueType}"></ui-slider>
+        </div>
+        <br>
+        <ui-link js="window.morning.findVM('demoType{$valueType}').set({$&valueContent})">设置{$valueType}类型</ui-link>
+        <ui-link js="alert(window.morning.findVM('demoType{$valueType}').getJson())">获取表单JSON值</ui-link>
+    </div>
+    <br>
+    <br>
+    :::
+
     [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/slider/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>

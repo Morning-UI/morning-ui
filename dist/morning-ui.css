@@ -10418,6 +10418,30 @@ mor-slider .wrap:hover .main-slider,
 mor-slider .wrap.droping .main-slider {
   border-color: #F33D5D;
 }
+mor-slider .points {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-size: 0;
+  position: relative;
+  pointer-events: none;
+}
+mor-slider .points li {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  font-size: 16px;
+  border-radius: 10em;
+  background: #FFFFFF;
+  vertical-align: top;
+  position: absolute;
+  margin: 0;
+  top: 1px;
+  transform: translateX(-50%);
+}
+mor-slider.hide-part-points .points li {
+  background: #f4f6f9;
+}
 mor-slider .track {
   width: 100%;
   height: 8px;
@@ -10451,6 +10475,7 @@ mor-slider .main-slider {
 mor-slider .cleanbtn {
   position: absolute;
   right: 20px;
+  bottom: 0;
 }
 mor-slider .prepend,
 mor-slider .append {
