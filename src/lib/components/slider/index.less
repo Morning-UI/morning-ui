@@ -48,6 +48,7 @@ mor-slider{
         list-style: none;
         font-size: 0;
         position: relative;
+        pointer-events: none;
 
         li{
             display: inline-block;
@@ -60,7 +61,16 @@ mor-slider{
             position: absolute;
             margin: 0;
             top: 1px;
+            transform: translateX(-50%);
         }
+    }
+
+    &.hide-part-points{
+        .points{
+            li{
+                background: lighten(@colorExtraLightSilver, 2%);
+            }
+        }        
     }
 
     .track{

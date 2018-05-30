@@ -79,6 +79,7 @@
 </template>
  
 <script>
+import getDivisors                  from 'get-divisors/dist/getDivisors.js';
 import GlobalEvent                  from 'Utils/GlobalEvent';
 
 const clickTipHideTime = 1000;
@@ -152,7 +153,8 @@ export default {
 
             return {
                 'has-prepend' : this.hasPrepend,
-                'has-append' : this.hasAppend
+                'has-append' : this.hasAppend,
+                'hide-part-points' : this.data.hidePartPoints
             };
 
         },
@@ -196,6 +198,7 @@ export default {
                 clickTipHideTimeout : null,
                 pointNum : 0,
                 pointWidth : 0,
+                hidePartPoints : false,
                 $track : null,
                 $tip : null
             }
@@ -223,19 +226,41 @@ export default {
             let fullwidth = this.data.$track.clientWidth;
             let pointNum = this.range / this.conf.step;
             let pointWidth = fullwidth / pointNum;
+            let maxPoints = Math.floor(this.data.$track.clientWidth / minPointSpacing);
 
-            // TODO ： 求最大公约数 https://www.npmjs.com/package/lodash-math
-            // TODO ： 如果隐藏了部分点会变暗 
-            if (pointWidth < minPointSpacing) {
+            if (pointNum > maxPoints) {
 
-                pointWidth = Math.ceil(minPointSpacing / pointWidth) * pointWidth;
+                pointNum = getDivisors(pointNum);
+
+                while(pointNum[pointNum.length - 1] > maxPoints) {
+
+                    pointNum.pop();
+
+                }
+
+                pointNum = pointNum.pop();
+
+                this.data.hidePartPoints = true;
+
+            } else {
+
+                this.data.hidePartPoints = false;
 
             }
 
-            console.log(pointWidth);
+            // 若pointNum为1不显示
+            if (this.data.hidePartPoints &&
+                pointNum < 1) {
 
-            this.data.pointWidth = pointWidth;
-            this.data.pointNum = fullwidth / pointWidth;
+                this.data.pointWidth = 0;
+                this.data.pointNum = 0;
+
+                return;
+
+            }
+
+            this.data.pointWidth = fullwidth / pointNum;
+            this.data.pointNum = pointNum - 1;
 
         },
         _setPer : function (per, offset = false) {
@@ -260,7 +285,7 @@ export default {
 
             }
 
-            let rval = (this.range * this.data.per) + this.conf.min;
+            let rval = (this.range * this.data.per) + (+this.conf.min);
             let rleft = rval % this.conf.step;
 
             this.data.start = this.conf.min;

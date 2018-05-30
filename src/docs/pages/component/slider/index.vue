@@ -172,7 +172,7 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-slider show-point></ui-slider>
+        <ui-slider show-point :min="30" :max="260" :step="2"></ui-slider>
     </div>
     :::
 
