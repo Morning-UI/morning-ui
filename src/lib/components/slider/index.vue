@@ -242,17 +242,15 @@ export default {
 
             }
 
-            let points = [];
             let fullwidth = this.data.$track.clientWidth;
             let pointNum = this.range / this.conf.step;
-            let pointWidth = fullwidth / pointNum;
             let maxPoints = Math.floor(this.data.$track.clientWidth / minPointSpacing);
 
             if (pointNum > maxPoints) {
 
                 pointNum = getDivisors(pointNum);
 
-                while(pointNum[pointNum.length - 1] > maxPoints) {
+                while (pointNum[pointNum.length - 1] > maxPoints) {
 
                     pointNum.pop();
 
@@ -311,12 +309,12 @@ export default {
             this.data.start = this.conf.min;
 
             if (rleft < (this.conf.step / 2)) {
-            
-                rval = rval - rval % this.conf.step;
+
+                rval -= (rval % this.conf.step);
 
             } else {
 
-                rval = rval + (this.conf.step - rval % this.conf.step);
+                rval += (this.conf.step - (rval % this.conf.step));
 
             }
 
@@ -438,7 +436,7 @@ export default {
             }
 
         },
-        _sliderMouseup : function (evt) {
+        _sliderMouseup : function () {
 
             this._globalEventRemove('mousemove', '_sliderMousemove');
             this._globalEventRemove('mouseup', '_sliderMouseup');
@@ -478,7 +476,7 @@ export default {
             immediate : true
         });
 
-        this.data.$tip = this.$refs['ui-slider-tip-'+this.uiid];
+        this.data.$tip = this.$refs[`ui-slider-tip-${this.uiid}`];
         this.data.per = ((this.data.end - this.data.start) / this.range);
         this.data.$track = this.$el.querySelector('.track');
         this._setPer(((this.get() || this.conf.min) - this.conf.min) / this.range);
@@ -516,7 +514,6 @@ export default {
             }
 
         });
-
 
     }
 };

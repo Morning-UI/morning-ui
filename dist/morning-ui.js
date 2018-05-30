@@ -17455,6 +17455,23 @@ exports.default = {
     methods: {
         _valueFilter: function _valueFilter(value) {
 
+            value = Number(value);
+
+            if (isNaN(value)) {
+
+                value = this.conf.min;
+            }
+
+            if (value < this.conf.min) {
+
+                value = this.conf.min;
+            }
+
+            if (value > this.conf.max) {
+
+                value = this.conf.max;
+            }
+
             return value;
         },
         _refreshPoints: function _refreshPoints() {
@@ -17467,10 +17484,8 @@ exports.default = {
                 return;
             }
 
-            var points = [];
             var fullwidth = this.data.$track.clientWidth;
             var pointNum = this.range / this.conf.step;
-            var pointWidth = fullwidth / pointNum;
             var maxPoints = Math.floor(this.data.$track.clientWidth / minPointSpacing);
 
             if (pointNum > maxPoints) {
@@ -17529,10 +17544,10 @@ exports.default = {
 
             if (rleft < this.conf.step / 2) {
 
-                rval = rval - rval % this.conf.step;
+                rval -= rval % this.conf.step;
             } else {
 
-                rval = rval + (this.conf.step - rval % this.conf.step);
+                rval += this.conf.step - rval % this.conf.step;
             }
 
             if (rval > this.conf.max) {
@@ -17633,7 +17648,7 @@ exports.default = {
                 this.data.overMinX = -1;
             }
         },
-        _sliderMouseup: function _sliderMouseup(evt) {
+        _sliderMouseup: function _sliderMouseup() {
             var _this2 = this;
 
             this._globalEventRemove('mousemove', '_sliderMousemove');
