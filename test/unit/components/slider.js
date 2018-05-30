@@ -5,6 +5,7 @@ import slider                       from '../../../src/lib/components/slider/ind
 
 const name = 'slider';
 const component = window.morning._origin.Form.extend(slider);
+const num40 = 40;
 
 test.serial('base : component snapshot', async t => {
 
@@ -46,7 +47,7 @@ test.serial('form base : init component value is right when use v-model', async 
             </div>
         `,
         data : {
-            value1 : 40
+            value1 : num40
         },
         components : {
             [`ui-${name}`] : component
@@ -59,7 +60,7 @@ test.serial('form base : init component value is right when use v-model', async 
 
     Vue.nextTick(() => {
 
-        t.is(vm.$children[0].get(), 40);
+        t.is(vm.$children[0].get(), num40);
 
     });
 
@@ -74,7 +75,7 @@ test.serial('form base : init component value is right when both use v-model and
             </div>
         `,
         data : {
-            value1 : 40,
+            value1 : num40,
             value2 : 60
         },
         components : {
@@ -88,7 +89,7 @@ test.serial('form base : init component value is right when both use v-model and
 
     Vue.nextTick(() => {
 
-        t.is(vm.$children[0].get(), 40);
+        t.is(vm.$children[0].get(), num40);
 
     });
 

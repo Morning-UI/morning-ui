@@ -48,18 +48,18 @@ test.serial('state', async t => {
                 attrs : [
                     'cursor'
                 ]
-            },{
+            }, {
                 child : '.wrap .track',
                 attrs : [
                     'cursor',
                     'background'
                 ]
-            },{
+            }, {
                 child : '.selected-line',
                 attrs : [
                     'background'
                 ]
-            },{
+            }, {
                 child : '.main-slider',
                 attrs : [
                     'cursor',
