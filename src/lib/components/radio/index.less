@@ -1,13 +1,13 @@
 @import '~Common/var.less';
 
 .set-label-disabled() {
-    border-color: darken(@colorFormBackgroundDisable, 5%);
+    border-color: darken(@colorFormBackgroundDisable, 10%);
     -webkit-user-select: none;
     cursor: not-allowed !important;
 
     > .box{
-        background-color: darken(@colorFormBackgroundDisable, 5%);
-        border-color: darken(@colorFormBackgroundDisable, 5%);
+        background-color: darken(@colorFormBackgroundDisable, 10%);
+        border-color: darken(@colorFormBackgroundDisable, 10%);
     }
 
     &:hover span{
@@ -16,7 +16,7 @@
 
     &.checked{
         .mo-icon{
-            opacity: 0.7;
+            opacity: 0.6;
         }
     }
 }
