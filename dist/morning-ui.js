@@ -19097,6 +19097,14 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 var _extend = __webpack_require__(1);
 
@@ -19121,6 +19129,16 @@ exports.default = {
             default: function _default() {
                 return {};
             }
+        },
+        disabledOptions: {
+            type: Array,
+            default: function _default() {
+                return [];
+            }
+        },
+        max: {
+            type: Number,
+            default: Infinity
         }
     },
     computed: {
@@ -19128,14 +19146,33 @@ exports.default = {
 
             return {
                 acceptHtml: this.acceptHtml,
-                list: this.list
+                list: this.list,
+                disabledOptions: this.disabledOptions,
+                max: this.max
             };
+        },
+        moreClass: function moreClass() {
+
+            return {
+                'is-max': this.isMax
+            };
+        },
+        isMax: function isMax() {
+
+            if (this.data.value.length >= this.conf.max) {
+
+                return true;
+            }
+
+            return false;
         }
     },
     data: function data() {
 
         return {
-            data: {}
+            data: {
+                disabledOptions: {}
+            }
         };
     },
     methods: {
@@ -19157,12 +19194,53 @@ exports.default = {
                 }
             }
 
+            while (value.length > this.conf.max) {
+
+                value.pop();
+            }
+
             return value;
+        },
+        _refreshDisabledOptions: function _refreshDisabledOptions() {
+
+            var list = {};
+
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+                for (var _iterator = this.conf.disabledOptions[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var key = _step.value;
+
+
+                    list[key] = true;
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return) {
+                        _iterator.return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
+
+            this.data.disabledOptions = list;
         },
         toggle: function toggle(key, checked) {
 
-            var list = (0, _extend2.default)(true, [], this.data.value);
+            if (this.data.disabledOptions[key]) {
 
+                return this;
+            }
+
+            var list = (0, _extend2.default)(true, [], this.data.value);
             if (checked === undefined) {
 
                 if (list.indexOf(key) !== -1) {
@@ -19175,6 +19253,11 @@ exports.default = {
             }
 
             checked = !!checked;
+
+            if (list.length === this.conf.max && checked) {
+
+                return this;
+            }
 
             if (checked) {
 
@@ -19190,7 +19273,17 @@ exports.default = {
         }
     },
     created: function created() {},
-    mounted: function mounted() {}
+    mounted: function mounted() {
+        var _this = this;
+
+        this.$watch('conf.disabledOptions', function () {
+
+            _this._refreshDisabledOptions();
+        }, {
+            deep: true,
+            immediate: true
+        });
+    }
 };
 module.exports = exports['default'];
 
@@ -31556,7 +31649,7 @@ var render = function() {
   return _c(
     "mor-checkbox",
     {
-      class: [_vm.formClass, _vm.colorClass, _vm.stateClass],
+      class: [_vm.formClass, _vm.colorClass, _vm.stateClass, _vm.moreClass],
       attrs: {
         _uiid: _vm.uiid,
         "form-name": _vm.formName,
@@ -31566,7 +31659,9 @@ var render = function() {
         "hide-name": _vm.hideName,
         clearable: _vm.clearable,
         "accept-html": _vm.acceptHtml,
-        list: _vm.list
+        list: _vm.list,
+        "disabled-options": _vm.disabledOptions,
+        max: _vm.max
       }
     },
     [
@@ -31589,6 +31684,9 @@ var render = function() {
                       {
                         key: key,
                         staticClass: "checked",
+                        class: {
+                          disabled: _vm.data.disabledOptions[key]
+                        },
                         attrs: { value: key },
                         on: {
                           click: function($event) {
@@ -31617,6 +31715,9 @@ var render = function() {
                       "label",
                       {
                         key: key,
+                        class: {
+                          disabled: _vm.data.disabledOptions[key]
+                        },
                         attrs: { value: key },
                         on: {
                           click: function($event) {

@@ -1,7 +1,7 @@
 <template>
     <mor-checkbox
         :_uiid="uiid"
-        :class="[formClass, colorClass, stateClass]"
+        :class="[formClass, colorClass, stateClass, moreClass]"
 
         :form-name="formName"
         :form-key="formKey"
@@ -11,6 +11,8 @@
         :clearable="clearable"
         :accept-html="acceptHtml"
         :list="list"
+        :disabled-options="disabledOptions"
+        :max="max"
     >
 
     <div class="note" v-if="!conf.hideName">{{conf.formName}}</div>
@@ -21,6 +23,9 @@
             <template v-if="data.value.indexOf(key) !== -1">
                 <label
                     class="checked"
+                    :class="{
+                        disabled : data.disabledOptions[key]
+                    }"
                     :value="key"
                     :key="key"
                     @click="conf.state !== 'readonly' && toggle(key)"
@@ -37,6 +42,9 @@
 
             <template v-else>
                 <label 
+                    :class="{
+                        disabled : data.disabledOptions[key]
+                    }"
                     :value="key"
                     :key="key"
                     @click="conf.state !== 'readonly' && toggle(key)"
@@ -74,6 +82,14 @@ export default {
         list : {
             type : Object,
             default : () => ({})
+        },
+        disabledOptions : {
+            type : Array,
+            default : () => ([])
+        },
+        max : {
+            type : Number,
+            default : Infinity
         }
     },
     computed : {
@@ -81,15 +97,37 @@ export default {
 
             return {
                 acceptHtml : this.acceptHtml,
-                list : this.list
+                list : this.list,
+                disabledOptions : this.disabledOptions,
+                max : this.max
             };
+
+        },
+        moreClass : function () {
+
+            return {
+                'is-max' : this.isMax
+            };
+
+        },
+        isMax : function () {
+
+            if (this.data.value.length >= this.conf.max) {
+
+                return true;
+
+            }
+
+            return false;
 
         }
     },
     data : function () {
 
         return {
-            data : {}
+            data : {
+                disabledOptions : {}
+            }
         };
 
     },
@@ -116,10 +154,35 @@ export default {
 
             }
 
+            while (value.length > this.conf.max) {
+
+                value.pop();
+
+            }
+
             return value;
 
         },
+        _refreshDisabledOptions : function () {
+
+            let list = {};
+
+            for (let key of this.conf.disabledOptions) {
+
+                list[key] = true;
+
+            }
+
+            this.data.disabledOptions = list;
+
+        },
         toggle : function (key, checked) {
+
+            if (this.data.disabledOptions[key]) {
+
+                return this;
+
+            }
 
             let list = extend(true, [], this.data.value);
 
@@ -139,6 +202,12 @@ export default {
 
             checked = !!checked;
 
+            if (list.length === this.conf.max && checked) {
+
+                return this;
+
+            }
+
             if (checked) {
 
                 list.push(key);
@@ -156,7 +225,18 @@ export default {
         }
     },
     created : function () {},
-    mounted : function () {}
+    mounted : function () {
+
+        this.$watch('conf.disabledOptions', () => {
+
+            this._refreshDisabledOptions();
+
+        }, {
+            deep : true,
+            immediate : true
+        });
+
+    }
 };
 </script>
 
