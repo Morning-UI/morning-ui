@@ -9911,69 +9911,158 @@ mor-checkbox > .il label.checked .mo-icon {
   opacity: 1;
   transform: scale(0.9);
 }
+mor-checkbox > .il label.disabled {
+  border-color: #d2d2d2;
+  -webkit-user-select: none;
+  cursor: not-allowed !important;
+}
+mor-checkbox > .il label.disabled > .box {
+  background-color: #d2d2d2;
+  border-color: #d2d2d2;
+}
+mor-checkbox > .il label.disabled:hover span {
+  color: #b3b3b3;
+}
+mor-checkbox > .il label.disabled.checked .mo-icon {
+  opacity: 0.6;
+}
+mor-checkbox.is-max > .il label:not(.checked) {
+  border-color: #d2d2d2;
+  -webkit-user-select: none;
+  cursor: not-allowed !important;
+}
+mor-checkbox.is-max > .il label:not(.checked) > .box {
+  background-color: #d2d2d2;
+  border-color: #d2d2d2;
+}
+mor-checkbox.is-max > .il label:not(.checked):hover span {
+  color: #b3b3b3;
+}
+mor-checkbox.is-max > .il label:not(.checked).checked .mo-icon {
+  opacity: 0.6;
+}
+mor-checkbox.border > .il label {
+  padding: 0.4em 0.6em;
+  margin: 0 0.5em 0.5em 0;
+  border: 1px #E6E6E6 solid;
+  border-radius: 3px;
+}
+mor-checkbox.border > .il label:hover {
+  border-color: #bdbdbd;
+}
+mor-checkbox.vertical > .il label {
+  margin: 0 0 0.6em;
+  width: 100%;
+}
 mor-checkbox.co-t > .il label.checked .box {
   background: #F33D5D;
+  border-color: #F33D5D;
+}
+mor-checkbox.co-t.border > .il label.checked {
   border-color: #F33D5D;
 }
 mor-checkbox.co-lt > .il label.checked .box {
   background: #F86F88;
   border-color: #F86F88;
 }
+mor-checkbox.co-lt.border > .il label.checked {
+  border-color: #F86F88;
+}
 mor-checkbox.co-dt > .il label.checked .box {
   background: #D22343;
+  border-color: #D22343;
+}
+mor-checkbox.co-dt.border > .il label.checked {
   border-color: #D22343;
 }
 mor-checkbox.co-s > .il label.checked .box {
   background: #4DBD67;
   border-color: #4DBD67;
 }
+mor-checkbox.co-s.border > .il label.checked {
+  border-color: #4DBD67;
+}
 mor-checkbox.co-w > .il label.checked .box {
   background: #F0AD4E;
+  border-color: #F0AD4E;
+}
+mor-checkbox.co-w.border > .il label.checked {
   border-color: #F0AD4E;
 }
 mor-checkbox.co-d > .il label.checked .box {
   background: #D64431;
   border-color: #D64431;
 }
+mor-checkbox.co-d.border > .il label.checked {
+  border-color: #D64431;
+}
 mor-checkbox.co-p > .il label.checked .box {
   background: #2185D0;
+  border-color: #2185D0;
+}
+mor-checkbox.co-p.border > .il label.checked {
   border-color: #2185D0;
 }
 mor-checkbox.co-m > .il label.checked .box {
   background: #A9A9A9;
   border-color: #A9A9A9;
 }
+mor-checkbox.co-m.border > .il label.checked {
+  border-color: #A9A9A9;
+}
 mor-checkbox.co-i > .il label.checked .box {
   background: #03A6B9;
+  border-color: #03A6B9;
+}
+mor-checkbox.co-i.border > .il label.checked {
   border-color: #03A6B9;
 }
 mor-checkbox.co-bk > .il label.checked .box {
   background: #17212D;
   border-color: #17212D;
 }
+mor-checkbox.co-bk.border > .il label.checked {
+  border-color: #17212D;
+}
 mor-checkbox.co-lbk > .il label.checked .box {
   background: #303C4B;
+  border-color: #303C4B;
+}
+mor-checkbox.co-lbk.border > .il label.checked {
   border-color: #303C4B;
 }
 mor-checkbox.co-elbk > .il label.checked .box {
   background: #45505C;
   border-color: #45505C;
 }
+mor-checkbox.co-elbk.border > .il label.checked {
+  border-color: #45505C;
+}
 mor-checkbox.co-bu > .il label.checked .box {
   background: #7C8BA0;
+  border-color: #7C8BA0;
+}
+mor-checkbox.co-bu.border > .il label.checked {
   border-color: #7C8BA0;
 }
 mor-checkbox.co-lbu > .il label.checked .box {
   background: #8E9CAF;
   border-color: #8E9CAF;
 }
+mor-checkbox.co-lbu.border > .il label.checked {
+  border-color: #8E9CAF;
+}
 mor-checkbox.co-elbu > .il label.checked .box {
   background: #A8B3C2;
+  border-color: #A8B3C2;
+}
+mor-checkbox.co-elbu.border > .il label.checked {
   border-color: #A8B3C2;
 }
 mor-checkbox.co-si > .il label span {
   color: #A8B3C2;
 }
+mor-checkbox.co-si > .il label,
 mor-checkbox.co-si > .il label .box {
   border: 1px #FFFFFF solid;
 }
@@ -9989,9 +10078,13 @@ mor-checkbox.co-si > .il label.checked .box {
 mor-checkbox.co-si > .il label.checked .mo-icon {
   color: #45505C;
 }
+mor-checkbox.co-si.border > .il label.checked {
+  border-color: #D6DDE5;
+}
 mor-checkbox.co-lsi > .il label span {
   color: #A8B3C2;
 }
+mor-checkbox.co-lsi > .il label,
 mor-checkbox.co-lsi > .il label .box {
   border: 1px #FFFFFF solid;
 }
@@ -10007,9 +10100,13 @@ mor-checkbox.co-lsi > .il label.checked .box {
 mor-checkbox.co-lsi > .il label.checked .mo-icon {
   color: #45505C;
 }
+mor-checkbox.co-lsi.border > .il label.checked {
+  border-color: #E2E8EE;
+}
 mor-checkbox.co-elsi > .il label span {
   color: #A8B3C2;
 }
+mor-checkbox.co-elsi > .il label,
 mor-checkbox.co-elsi > .il label .box {
   border: 1px #FFFFFF solid;
 }
@@ -10025,9 +10122,13 @@ mor-checkbox.co-elsi > .il label.checked .box {
 mor-checkbox.co-elsi > .il label.checked .mo-icon {
   color: #45505C;
 }
+mor-checkbox.co-elsi.border > .il label.checked {
+  border-color: #EDF1F5;
+}
 mor-checkbox.co-g > .il label span {
   color: #E6E6E6;
 }
+mor-checkbox.co-g > .il label,
 mor-checkbox.co-g > .il label .box {
   border: 1px #FFFFFF solid;
 }
@@ -10043,9 +10144,13 @@ mor-checkbox.co-g > .il label.checked .box {
 mor-checkbox.co-g > .il label.checked .mo-icon {
   color: #17212D;
 }
+mor-checkbox.co-g.border > .il label.checked {
+  border-color: #E6E6E6;
+}
 mor-checkbox.co-lg > .il label span {
   color: #E6E6E6;
 }
+mor-checkbox.co-lg > .il label,
 mor-checkbox.co-lg > .il label .box {
   border: 1px #FFFFFF solid;
 }
@@ -10061,9 +10166,13 @@ mor-checkbox.co-lg > .il label.checked .box {
 mor-checkbox.co-lg > .il label.checked .mo-icon {
   color: #17212D;
 }
+mor-checkbox.co-lg.border > .il label.checked {
+  border-color: #F0F0F0;
+}
 mor-checkbox.co-wh > .il label span {
   color: #E6E6E6;
 }
+mor-checkbox.co-wh > .il label,
 mor-checkbox.co-wh > .il label .box {
   border: 1px #FFFFFF solid;
 }
@@ -10079,16 +10188,19 @@ mor-checkbox.co-wh > .il label.checked .box {
 mor-checkbox.co-wh > .il label.checked .mo-icon {
   color: #17212D;
 }
+mor-checkbox.co-wh.border > .il label.checked {
+  border-color: #FFFFFF;
+}
 mor-checkbox.st-disabled > .il > label,
 mor-checkbox.st-readonly > .il > label {
-  border-color: #dedede;
+  border-color: #d2d2d2;
   -webkit-user-select: none;
   cursor: not-allowed !important;
 }
 mor-checkbox.st-disabled > .il > label > .box,
 mor-checkbox.st-readonly > .il > label > .box {
-  background-color: #dedede;
-  border-color: #dedede;
+  background-color: #d2d2d2;
+  border-color: #d2d2d2;
 }
 mor-checkbox.st-disabled > .il > label:hover span,
 mor-checkbox.st-readonly > .il > label:hover span {
@@ -10096,10 +10208,13 @@ mor-checkbox.st-readonly > .il > label:hover span {
 }
 mor-checkbox.st-disabled > .il > label.checked .mo-icon,
 mor-checkbox.st-readonly > .il > label.checked .mo-icon {
-  opacity: 0.7;
+  opacity: 0.6;
 }
 mor-checkbox > .il label.checked .box {
   background: #F33D5D;
+  border-color: #F33D5D;
+}
+mor-checkbox.border > .il label.checked {
   border-color: #F33D5D;
 }
 
@@ -10172,19 +10287,19 @@ mor-radio > .il label.checked .mo-icon {
   transform: scale(0.9);
 }
 mor-radio > .il label.disabled {
-  border-color: #dedede;
+  border-color: #d2d2d2;
   -webkit-user-select: none;
   cursor: not-allowed !important;
 }
 mor-radio > .il label.disabled > .box {
-  background-color: #dedede;
-  border-color: #dedede;
+  background-color: #d2d2d2;
+  border-color: #d2d2d2;
 }
 mor-radio > .il label.disabled:hover span {
   color: #b3b3b3;
 }
 mor-radio > .il label.disabled.checked .mo-icon {
-  opacity: 0.7;
+  opacity: 0.6;
 }
 mor-radio.border > .il label {
   padding: 0.4em 0.6em;
@@ -10438,14 +10553,14 @@ mor-radio.co-wh.border > .il label.checked {
 }
 mor-radio.st-disabled > .il > label,
 mor-radio.st-readonly > .il > label {
-  border-color: #dedede;
+  border-color: #d2d2d2;
   -webkit-user-select: none;
   cursor: not-allowed !important;
 }
 mor-radio.st-disabled > .il > label > .box,
 mor-radio.st-readonly > .il > label > .box {
-  background-color: #dedede;
-  border-color: #dedede;
+  background-color: #d2d2d2;
+  border-color: #d2d2d2;
 }
 mor-radio.st-disabled > .il > label:hover span,
 mor-radio.st-readonly > .il > label:hover span {
@@ -10453,7 +10568,7 @@ mor-radio.st-readonly > .il > label:hover span {
 }
 mor-radio.st-disabled > .il > label.checked .mo-icon,
 mor-radio.st-readonly > .il > label.checked .mo-icon {
-  opacity: 0.7;
+  opacity: 0.6;
 }
 mor-radio > .il label.checked .box {
   background: #F33D5D;
