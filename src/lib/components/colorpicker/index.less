@@ -1,23 +1,59 @@
 @import '~Common/var.less';
 
+.setup-alpha-bg() {
+    .alpha-bg-1,
+    .alpha-bg-2,
+    .alpha-bg-3,
+    .alpha-bg-4{
+        background-size: 16px;
+        height: 8px;
+        background-color: #ddd;
+    }
+
+    .alpha-bg-1,
+    .alpha-bg-3{
+        background-image: ~"-webkit-gradient(linear, 0 0,100% 0, color-stop(0.5, #0000), color-stop(0.5, #fff), to(#fff))";
+    }
+
+    .alpha-bg-2,
+    .alpha-bg-4{
+        background-image: ~"-webkit-gradient(linear, 0 0,100% 0, color-stop(0.5, #fff), color-stop(0.5, #0000), to(#0000))";
+    }
+}
+
+.setup-color() {
+    .color{
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        box-shadow: 0 0 4px inset rgba(0, 0, 0, 0.25);
+    }
+}
+
 mor-colorpicker{
     display: inline-block;
     position: relative;
     vertical-align: top;
+    border: 1px @colorFormBorder solid;
+    border-radius: @borderRadius;
+    box-sizing: border-box;
+    padding: 3px;
+    user-select: none;
+
+    .setup-alpha-bg();
+    .setup-color();
 
     .preview{
         width: @fontSize*2;
         height: @fontSize*2;
         box-sizing: border-box;
-        border: 1px @colorFormBorder solid;
         border-radius: @borderRadius;
         cursor: pointer;
-    }
-
-    .color{
-        width: 100%;
-        height: 100%;
-        display: none;
+        overflow: hidden;
+        position: relative;
     }
 
     &.st-normal{}
@@ -33,19 +69,240 @@ mor-colorpicker{
 
 .mo-colorpicker-wrap{
     width: @fontSize*16;
-    height: @fontSize*10;
-    pointer-events: none;
     position: absolute;
+    user-select: none;
 
     .picker{
         height: 100%;
         width: 100%;
         box-sizing: border-box;
         border-radius: @borderRadius;
+        overflow: hidden;
         background: @colorWhite;
         box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
         transform-origin: top center;
         transform: scale(0);
+    }
+
+    .panel{
+        position: relative;
+        height: @fontSize*8;
+        cursor: crosshair;
+        overflow: hidden;
+
+        .mask-white{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            background: ~"-webkit-linear-gradient(left, #FFF, #FFF0)";
+        }
+
+        .mask-black{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: ~"-webkit-linear-gradient(#0000, #000)";
+            z-index: 2;
+        }
+
+        .straw{
+            position: absolute;
+            left: 100px;
+            top: 30px;
+            width: 14px;
+            height: 14px;
+            box-sizing: border-box;
+            border-radius: 5em;
+            border: 1px solid @colorWhite;
+            box-shadow: 0px 0px 1px #000;
+            z-index: 3;
+        }
+    }
+
+    .tools{
+        height: @fontSize*4;
+        font-size: 0;
+
+        .color-copy{
+            height: @fontSize*2;
+            width: @fontSize*2;
+            margin: @fontSize;
+            display: inline-block;
+            border-radius: 10em;
+            font-size: @fontSize;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .setup-alpha-bg();
+        .setup-color();
+
+        .slider-tool{
+            display: inline-block;
+            width: ~"calc(100% -" @fontSize*4 ~")";
+            vertical-align: top;
+            height: 100%;
+    
+            .hsb{
+                padding-top: 8px;
+            }
+
+            .alpha{
+                padding-bottom: 8px;
+            }
+
+            .hsb,
+            .alpha{
+                height: 50%;
+                box-sizing: border-box;
+
+                mor-slider{
+                    .note{
+                        display: none;
+                    }
+
+                    .wrap{
+                        padding: 6px 12px;
+                    }
+
+                    .track{
+                        background: -webkit-linear-gradient(left, #f00, #f0f, #00f, #0ff, #0f0, #ff0, #f00);
+                        height: 10px;
+                    }
+
+                    .selected-line{
+                        display: none;
+                    }
+
+                    .main-slider{
+                        top: -4px;
+                        border-color: @colorWhite;
+                        border-width: 0;
+                        box-shadow: 0 0 3px rgba(0,0,0,0.5);
+                    }
+                }
+            }
+
+            .alpha{
+                mor-slider{
+                    .track{
+                        &:before{
+                            background-image: ~"-webkit-gradient(linear, 0 0,100% 0, color-stop(0.5, #0000), color-stop(0.5, #fff), to(#fff))";
+                            background-color: #DDD;
+                            content: ' ';
+                            display: block;
+                            width: 100%;
+                            height: 10px;
+                            position: absolute;
+                            z-index: -1;
+                            top: 0;
+                            left: 0;
+                            border-radius: 10em;
+                            background-size: 10px;
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+
+    .values{
+        height: @fontSize*4;
+        font-size: 0;
+        border-top: 1px @colorExtraLightSilver solid;
+
+        .input{
+            width: 90%;
+            height: 100%;
+            display: inline-block;
+            padding: @fontSize*0.5 0;
+            box-sizing: border-box;
+
+            .rgba,
+            .hex,
+            .hsla{
+                mor-textinput{
+                    display: inline-block;
+                    box-sizing: border-box;
+
+                    input{
+                        height: @fontSize*2;
+                        text-align: center;
+                        padding: 0 0.5em;
+                    }
+                }
+
+                .name{
+                    height: 40%;
+                    font-size: @fontSize*0.75;
+                    text-align: center;
+                    padding-top: 0.3em;
+                }
+            }
+
+            .rgba,
+            .hsla{
+                width: 100%;
+                height: 60%;
+
+                mor-textinput{
+                    width: 22.5%;
+                    margin-right: 2%;
+
+                    &:first-child{
+                        margin-left: 2%;
+                    }
+                }
+
+                .name{
+                    width: 22.5%;
+                    margin-right: 2%;
+                    display: inline-block;
+
+                    &:nth-child(5){
+                        margin-left: 2%;
+                    }
+                }
+            }
+
+            .hex{
+                width: 100%;
+                height: 60%;
+
+                mor-textinput{
+                    width: 88%;
+                    margin: 0 6%;
+                }
+
+                .name{
+                    width: 100%;
+                }
+            }
+        }
+
+        .toggle-type{
+            width: 8%;
+            display: inline-block;
+            vertical-align: top;
+            line-height: @fontSize*2;
+            height: @fontSize*2;
+            margin: @fontSize 0;
+            text-align: center;
+            color: @colorExtraLightBlue;
+            cursor: pointer;
+            border-radius: @borderRadius;
+
+            &:hover{
+                color: @colorBlue;
+                background: @colorExtraLightSilver;
+            }
+        }
     }
 
     &.show{

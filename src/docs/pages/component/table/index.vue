@@ -45,7 +45,7 @@
     - 对齐方式
     - 是否是标题列(标题列将被聚合在一起)
 
-    更多单列控制见`col-set`配置。
+    更多单列控制见：[col-set配置](/component/table.html#col-set)。
     
     下面是一个简单的示例：
 
@@ -75,7 +75,7 @@
     - 禁用状态
     - 对齐方式
 
-    更多单元格控制见`row-set`配置。
+    更多单元格控制见：[row-set配置](/component/table.html#row-set)。
     
     下面是一个简单的示例：
 
@@ -110,7 +110,7 @@
     - 禁用状态
     - 对齐方式
 
-    更多单元格控制见`cell-set`配置。
+    更多单元格控制见：[cell-set配置](/component/table.html#cell-set)。
     
     下面是一个简单的示例：
 

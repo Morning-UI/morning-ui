@@ -90,7 +90,7 @@ let Move = {
 
         },
         _moveStart : function (evt) {
-            
+
             let $targets = this.Move.$root.querySelectorAll(this.Move.target);
             let found = false;
 
@@ -116,7 +116,7 @@ let Move = {
 
             }
 
-            if (found) {
+            if (found || evt._mor_move_ignore_path) {
 
                 let $target = this.Move.$root.querySelectorAll(`${this.Move.container} ${this.Move.target}`)[this.Move.lastMousedownIndex];
                 let $container = this.Move.$root.querySelector(this.Move.container);
@@ -357,7 +357,7 @@ let Move = {
             let top = $target.ownerDocument.defaultView.getComputedStyle($target).top;
             let x;
             let y;
-            
+
             // body > div if has transform, is tether
             let $tetParent = $target.closest('body > div');
             let transformX = 0;
