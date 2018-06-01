@@ -147,10 +147,6 @@
             <span>mo-icon-love-o</span>
         </div>
         <div>
-            <i class="mo-icon-loading"></i>
-            <span>mo-icon-loading</span>
-        </div>
-        <div>
             <i class="mo-icon-error-cf"></i>
             <span>mo-icon-error-cf</span>
         </div>
@@ -211,12 +207,8 @@
             <span>mo-icon-date</span>
         </div>
         <div>
-            <i class="mo-icon-play-cf"></i>
-            <span>mo-icon-play-cf</span>
-        </div>
-        <div>
-            <i class="mo-icon-play-co"></i>
-            <span>mo-icon-play-co</span>
+            <i class="mo-icon-play"></i>
+            <span>mo-icon-play</span>
         </div>
         <div>
             <i class="mo-icon-imagemap"></i>
@@ -233,14 +225,6 @@
         <div>
             <i class="mo-icon-forward"></i>
             <span>mo-icon-forward</span>
-        </div>
-        <div>
-            <i class="mo-icon-pause-co"></i>
-            <span>mo-icon-pause-co</span>
-        </div>
-        <div>
-            <i class="mo-icon-pause-cf"></i>
-            <span>mo-icon-pause-cf</span>
         </div>
         <div>
             <i class="mo-icon-pause"></i>

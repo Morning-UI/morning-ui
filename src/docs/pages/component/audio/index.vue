@@ -15,7 +15,9 @@
     #### 使用
 
     :::democode/html
-    <ui-audio></ui-audio>
+    <div style="width: 300px">
+        <ui-audio src="http://morning-ui-media.test.upcdn.net/audio/The%20xx%20-%20VCR.mp3"></ui-audio>
+    </div>
     :::
 
     [[[源码]]]

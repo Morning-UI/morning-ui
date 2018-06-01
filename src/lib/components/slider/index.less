@@ -1,0 +1,173 @@
+@import '~Common/var.less';
+
+mor-slider{
+    display: inline-block;
+    width: 100%;
+    padding-bottom: 4px;
+    position: relative;
+    font-size: 0;
+
+    &.has-cleanbtn{
+        padding-bottom: 20px;
+    }
+
+    > .note{
+        color: @colorFormTextNote;
+        font-size: @fontSize;
+        margin-bottom: 0.5em;
+        -webkit-user-select: text;
+        padding: 0 10px;
+    }
+
+    .wrap{
+        width: 100%;
+        box-sizing: border-box;
+        user-select: none;
+        padding: 6px 20px;
+        display: inline-block;
+
+        &:hover,
+        &.droping{
+            .track{
+                background: darken(@colorLightSilver, 3%);
+            }
+
+            .selected-line{
+                background: @colorTheme;
+            }
+
+            .main-slider{
+                border-color: @colorTheme;
+            }
+        }
+    }
+
+    .points{
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        font-size: 0;
+        position: relative;
+        pointer-events: none;
+
+        li{
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            font-size: @fontSize;
+            border-radius: 10em;
+            background: @colorWhite;
+            vertical-align: top;
+            position: absolute;
+            margin: 0;
+            top: 1px;
+            transform: translateX(-50%);
+        }
+    }
+
+    &.hide-part-points{
+        .points{
+            li{
+                background: lighten(@colorExtraLightSilver, 2%);
+            }
+        }
+    }
+
+    .track{
+        width: 100%;
+        height: 8px;
+        background: @colorLightSilver;
+        border-radius: 10em;
+        position: relative;
+        cursor: pointer;
+        font-size: @fontSize;
+    }
+
+    .selected-line{
+        height: 8px;
+        position: absolute;
+        left: 0;
+        background: @colorLightTheme;
+        border-radius: 10em;
+        pointer-events: none;
+        font-size: @fontSize;
+    }
+
+    .main-slider{
+        width: 18px;
+        height: 18px;
+        position: absolute;
+        top: -5px;
+        left: 0;
+        background: @colorWhite;
+        border-radius: 9px;
+        border: 2px @colorLightTheme solid;
+        cursor: pointer;
+        margin-left: -9px;
+    }
+
+    .cleanbtn{
+        position: absolute;
+        right: 20px;
+        bottom: 0;
+    }
+
+    .prepend,
+    .append{
+        display: inline-block;
+        width: 15%;
+        height: 20px;
+        font-size: @fontSize*0.875;
+        text-align: center;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+
+        > i{
+            position: relative;
+            top: -2px;
+        }
+    }
+
+    &.has-prepend,
+    &.has-append{
+        .wrap{
+            width: 85%;
+            vertical-align: top;
+        }
+    }
+
+    &.has-prepend.has-append{
+        .wrap{
+            width: 70%;
+        }
+    }
+
+    &.st-normal{}
+
+    &.st-disabled,
+    &.st-readonly{
+        .wrap{
+            cursor: not-allowed;
+
+            .track{
+                cursor: not-allowed;
+                background: darken(@colorSilver, 4%);
+            }
+
+            .selected-line{
+                background: darken(@colorSilver, 28%);
+            }
+
+            .main-slider{
+                cursor: not-allowed;
+                border-color: darken(@colorSilver, 28%);
+            }
+        }
+    }
+
+    // default status
+    &{
+        .st-normal;
+    }
+}

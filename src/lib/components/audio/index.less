@@ -2,6 +2,60 @@
 
 mor-audio{
     display: inline-block;
+    user-select: none;
+
+    > audio{
+        display: none;
+    }
+
+    .audio-box{
+        font-size: 0;
+        height: @fontSize*2;
+        min-width: 300px;
+        display: flex;
+    }
+
+    .play{
+        display: inline-block;
+        line-height: @fontSize*2;
+        height: @fontSize*2;
+        padding: 0 0 0 0.5em;
+        font-size: @fontSize;
+        color: @colorExtraLightBlack;
+        white-space: nowrap;
+
+        .mo-icon{
+            cursor: pointer;
+        }
+
+        &.no-audio{
+            .mo-icon{
+                cursor: default;
+            }
+        }
+    }
+    
+    .progress{
+        display: inline-block;
+        vertical-align: top;
+        width: 100%;
+        position: relative;
+        top: -2px;
+    }
+
+    .time{
+        font-size: @fontSize*0.75;
+        line-height: @fontSize*2;
+        height: @fontSize*2;
+        display: inline-block;
+        color: @colorExtraLightBlack;
+        white-space: nowrap;
+
+        > span{
+            text-align: center;
+            display: inline-block;
+        }
+    }
 
     &.st-normal{}
 

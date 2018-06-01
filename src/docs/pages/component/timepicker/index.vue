@@ -38,7 +38,7 @@
     </div>
     :::
 
-    更多自定义格式见`format`配置。
+    更多自定义格式见：[format配置](/component/timepicker.html#format)。
 
     #### 高亮当前修改时间单位
 

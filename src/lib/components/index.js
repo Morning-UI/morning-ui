@@ -62,6 +62,7 @@ import checkbox                     from './checkbox/index.vue';
 import radio                        from './radio/index.vue';
 import multiinput                   from './multiinput/index.vue';
 import multiform                    from './multiform/index.vue';
+import slider                       from './slider/index.vue';
 import timepicker                   from './timepicker/index.vue';
 import datepicker                   from './datepicker/index.vue';
 import datetimepicker               from './datetimepicker/index.vue';
@@ -134,6 +135,7 @@ export default {
     radio,
     multiinput,
     multiform,
+    slider,
     timepicker,
     datepicker,
     datetimepicker,
