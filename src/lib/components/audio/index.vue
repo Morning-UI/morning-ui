@@ -65,9 +65,9 @@
  
 <script>
 // TODO : 加载进度
-// TODO : 音量(config/tool)
-// TODO : 下载(more/tool)
-// TODO : 循环播放(more/tool)
+// TODO : 音量(tool)
+// TODO : 下载(tool)
+// TODO : 循环播放(tool)
 // TODO : autoplay(config)
 // TODO : 不显示time(config)
 // TODO : 不显示process(config)
