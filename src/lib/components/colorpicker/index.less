@@ -137,6 +137,26 @@ mor-colorpicker{
             font-size: @fontSize;
             position: relative;
             overflow: hidden;
+
+            .copy-mask{
+                position: absolute;
+                display: none;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                font-size: @fontSize;
+                z-index: 2;
+                color: #fff;
+                text-shadow: 0 0 4px rgba(0,0,0,0.5);
+            }
+
+            &:hover{
+                cursor: pointer;
+
+                .copy-mask{
+                    display: block;
+                }
+            }
         }
 
         .setup-alpha-bg();

@@ -59,6 +59,9 @@
             <div class="tools">
                 <div
                     class="color-copy"
+                     :id="'mor-colorpicker-copy-'+uiid"
+
+                    @click="_colorCopy"
                 >
                     <div class="alpha-bg-1"></div>
                     <div class="alpha-bg-2"></div>
@@ -70,7 +73,13 @@
                             'background-color' : '#' + colorWithAlpha
                         }"
                     ></div>
+                    <div class="copy-mask">
+                        <i class="mo-icon mo-icon-copy"></i>
+                    </div>
                 </div>
+                <morning-tip :target="'#mor-colorpicker-copy-'+uiid" color="light-blue" offset="3px 0">
+                    {{colorString}}
+                </morning-tip>
                 <div class="slider-tool">
                     <div class="hsb">
                         <morning-slider 
@@ -94,24 +103,24 @@
             <div class="values">
                 <div class="input">
                     <div class="rgba" v-if="data.showValueType === 'rgba'">
-                        <morning-textinput v-model="colorValues.r"></morning-textinput>
-                        <morning-textinput v-model="colorValues.g"></morning-textinput>
-                        <morning-textinput v-model="colorValues.b"></morning-textinput>
-                        <morning-textinput v-model="colorValues.a"></morning-textinput>
+                        <morning-textinput v-model="colorValue.r"></morning-textinput>
+                        <morning-textinput v-model="colorValue.g"></morning-textinput>
+                        <morning-textinput v-model="colorValue.b"></morning-textinput>
+                        <morning-textinput v-model="colorValue.a"></morning-textinput>
                         <div class="name">R</div>
                         <div class="name">G</div>
                         <div class="name">B</div>
                         <div class="name">A</div>
                     </div>
                     <div class="hex" v-if="data.showValueType === 'hex'">
-                        <morning-textinput v-model="colorValues"></morning-textinput>
+                        <morning-textinput v-model="colorValue"></morning-textinput>
                         <div class="name">HEX</div>
                     </div>
                     <div class="hsla" v-if="data.showValueType === 'hsla'">
-                        <morning-textinput v-model="colorValues.h"></morning-textinput>
-                        <morning-textinput v-model="colorValues.s"></morning-textinput>
-                        <morning-textinput v-model="colorValues.l"></morning-textinput>
-                        <morning-textinput v-model="colorValues.a"></morning-textinput>
+                        <morning-textinput v-model="colorValue.h"></morning-textinput>
+                        <morning-textinput v-model="colorValue.s"></morning-textinput>
+                        <morning-textinput v-model="colorValue.l"></morning-textinput>
+                        <morning-textinput v-model="colorValue.a"></morning-textinput>
                         <div class="name">H</div>
                         <div class="name">S</div>
                         <div class="name">L</div>
@@ -138,6 +147,7 @@
 <script>
 import Color                        from 'color';
 import leftPad                      from 'left-pad';
+import copy                         from 'clipboard-copy';
 import GlobalEvent                  from 'Utils/GlobalEvent';
 import TipManager                   from 'Utils/TipManager';
 import Move                         from 'Utils/Move';
@@ -148,7 +158,7 @@ const valueTypes = [
     'hsla'
 ];
 
-// TODO : copy 色彩
+// TODO : input改数值
 // TODO : valueType 输出
 // TODO : allowAlpha
 
@@ -176,39 +186,14 @@ export default {
             return Color(`#${this.colorWithAlpha}`);
 
         },
-        colorValues : function () {
+        colorString : function () {
 
-            if (this.data.showValueType === 'hex') {
+            return this._getColorString(this.data.showValueType, this.data.alpha, this.colorObj);
 
-                if (this.data.alpha === 1) {
+        },
+        colorValue : function () {
 
-                    return `#${leftPad(this.colorObj.rgbNumber().toString(16), 6, '0')}`;
-
-                } else {
-
-                    return `#${leftPad(this.colorObj.rgbNumber().toString(16), 6, '0')}${leftPad(Math.round(255*this.data.alpha).toString(16), 2, '0')}`;
-
-                }
-
-            } else if (this.data.showValueType === 'rgba') {
-
-                return {
-                    r : this.colorObj.red(),
-                    g : this.colorObj.green(),
-                    b : this.colorObj.blue(),
-                    a : Math.round(255 * this.colorObj.alpha())
-                }
-
-            } else if (this.data.showValueType === 'hsla') {
-
-                return {
-                    h : Math.round(this.colorObj.hsl().object().h),
-                    s : `${Math.round(this.colorObj.hsl().object().s)}%`,
-                    l : `${Math.round(this.colorObj.hsl().object().l)}%`,
-                    a : Math.round(255 * this.colorObj.hsl().alpha())
-                }
-
-            }
+            return this._getColorValue(this.data.showValueType, this.data.alpha, this.colorObj);
 
         },
         colorH : function () {
@@ -414,6 +399,88 @@ export default {
             }
 
             this.data.showValueType = valueTypes[index];
+
+        },
+        _getColorValue : function (type, alpha, color) {
+
+            if (type === 'hex') {
+
+                if (alpha === 1) {
+
+                    return `#${leftPad(color.rgbNumber().toString(16), 6, '0')}`;
+
+                } else {
+
+                    return `#${leftPad(color.rgbNumber().toString(16), 6, '0')}${leftPad(Math.round(255*alpha).toString(16), 2, '0')}`;
+
+                }
+
+            } else if (type === 'rgba') {
+
+                return {
+                    r : color.red(),
+                    g : color.green(),
+                    b : color.blue(),
+                    a : Math.round(alpha * 100) / 100
+                }
+
+            } else if (type === 'hsla') {
+
+                return {
+                    h : Math.round(color.hsl().object().h),
+                    s : `${Math.round(color.hsl().object().s)}%`,
+                    l : `${Math.round(color.hsl().object().l)}%`,
+                    a : Math.round(alpha * 100) / 100
+                }
+
+            }
+
+        },
+        _getColorString : function (type, alpha, color) {
+
+            if (type === 'hex') {
+
+                if (alpha === 1) {
+
+                    return `#${leftPad(color.rgbNumber().toString(16), 6, '0')}`;
+
+                } else {
+
+                    return `#${leftPad(color.rgbNumber().toString(16), 6, '0')}${leftPad(Math.round(255 * alpha).toString(16), 2, '0')}`;
+
+                }
+
+            } else if (type === 'rgba') {
+
+                if (alpha === 1) {
+
+                    return `rgb(${color.red()}, ${color.green()}, ${color.blue()})`;
+
+                } else {
+
+                    return `rgba(${color.red()}, ${color.green()}, ${color.blue()}, ${Math.round(alpha * 100) / 100})`
+
+                }
+
+            } else if (type === 'hsla') {
+
+                if (alpha === 1) {
+
+                    return `hsl(${Math.round(color.hsl().object().h)}, ${Math.round(color.hsl().object().s)}%, ${Math.round(color.hsl().object().l)}%)`;
+
+                } else {
+
+                    return `hsla(${Math.round(color.hsl().object().h)}, ${Math.round(color.hsl().object().s)}%, ${Math.round(color.hsl().object().l)}%, ${Math.round(alpha * 100) / 100})`;
+
+                }
+
+            }
+
+
+        },
+        _colorCopy : function () {
+
+            copy(this.colorString);
 
         },
         togglePicker : function (show) {
