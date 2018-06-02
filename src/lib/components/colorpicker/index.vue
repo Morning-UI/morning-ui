@@ -12,35 +12,40 @@
         :value-type="valueType"
         :allow-alpha="allowAlpha"
     >
-
-    <div
-        class="preview"
-        @click="togglePicker"
-    >
-        <div class="alpha-bg-1"></div>
-        <div class="alpha-bg-2"></div>
-        <div class="alpha-bg-3"></div>
-        <div class="alpha-bg-4"></div>
+    
+    <div class="note" v-if="!conf.hideName">{{conf.formName}}</div>
+    
+    <div class="preview-wrap">
         <div
-            class="color"
-            :style="{
-                'background-color' : '#' + colorWithAlpha
-            }"
-        ></div>
+            class="preview"
+            @click="togglePicker(undefined)"
+        >
+            <div class="alpha-bg-1"></div>
+            <div class="alpha-bg-2"></div>
+            <div class="alpha-bg-3"></div>
+            <div class="alpha-bg-4"></div>
+            <div
+                class="color"
+                :style="{
+                    'background-color' : colorHexWithAlpha
+                }"
+            ></div>
+        </div>
     </div>
 
     <div
         class="mo-colorpicker-wrap"
         :class="{
             show : data.showPicker,
-            hide : !data.showPicker && !data.first
+            hide : !data.showPicker && !data.first,
+            'not-allow' : inputIsReadonly
         }"
     >
         <div class="picker">
             <div
                 class="panel"
                 :style="{
-                    'background-color' : '#' + colorH
+                    'background-color' : colorH
                 }"
                 @mousedown="_pickColor"
             >
@@ -70,7 +75,7 @@
                     <div
                         class="color"
                         :style="{
-                            'background-color' : '#' + colorWithAlpha
+                            'background-color' : colorHexWithAlpha
                         }"
                     ></div>
                     <div class="copy-mask">
@@ -85,17 +90,24 @@
                         <morning-slider 
                             :show-tip="false" 
                             :max="360"
+                            :state="inputIsReadonly ? 'readonly' : 'normal'"
 
-                            @value-change="_hslaChangeH"
+                            v-model="hslHReversal"
+                            
+                            @keydown.native="_hslHSync(true)"
+                            @keyup.native="_hslHSync(false)"
+                            @value-change="_hslaChangeHBar"
                         ></morning-slider>
                     </div>
                     <div class="alpha">
                         <morning-slider
-                            :default-value="100"
                             :show-tip="false"
-                            :max="100"
+                            :max="255"
+                            :state="(inputIsReadonly || !conf.allowAlpha) ? 'readonly' : 'normal'"
 
-                            @value-change="_hslaChangeA"
+                            v-model="data.alpha"
+
+                            @value-change="_alphaChange"
                         ></morning-slider>
                     </div>
                 </div>
@@ -103,24 +115,24 @@
             <div class="values">
                 <div class="input">
                     <div class="rgba" v-if="data.showValueType === 'rgba'">
-                        <morning-textinput v-model="colorValue.r"></morning-textinput>
-                        <morning-textinput v-model="colorValue.g"></morning-textinput>
-                        <morning-textinput v-model="colorValue.b"></morning-textinput>
-                        <morning-textinput v-model="colorValue.a"></morning-textinput>
+                        <morning-textinput v-model="colorValue.r" :state="inputIsReadonly ? 'readonly' : 'normal'" @value-change="_rgbaChangeR"></morning-textinput>
+                        <morning-textinput v-model="colorValue.g" :state="inputIsReadonly ? 'readonly' : 'normal'" @value-change="_rgbaChangeG"></morning-textinput>
+                        <morning-textinput v-model="colorValue.b" :state="inputIsReadonly ? 'readonly' : 'normal'" @value-change="_rgbaChangeB"></morning-textinput>
+                        <morning-textinput v-model="colorValue.a" :state="(inputIsReadonly || !conf.allowAlpha) ? 'readonly' : 'normal'" @value-change="_alphaChangePer"></morning-textinput>
                         <div class="name">R</div>
                         <div class="name">G</div>
                         <div class="name">B</div>
                         <div class="name">A</div>
                     </div>
                     <div class="hex" v-if="data.showValueType === 'hex'">
-                        <morning-textinput v-model="colorValue"></morning-textinput>
+                        <morning-textinput v-model="colorValue" :state="inputIsReadonly ? 'readonly' : 'normal'" @value-change="_hexChange"></morning-textinput>
                         <div class="name">HEX</div>
                     </div>
                     <div class="hsla" v-if="data.showValueType === 'hsla'">
-                        <morning-textinput v-model="colorValue.h"></morning-textinput>
-                        <morning-textinput v-model="colorValue.s"></morning-textinput>
-                        <morning-textinput v-model="colorValue.l"></morning-textinput>
-                        <morning-textinput v-model="colorValue.a"></morning-textinput>
+                        <morning-textinput v-model="colorValue.h" :state="inputIsReadonly ? 'readonly' : 'normal'" @value-change="_hslChangeH"></morning-textinput>
+                        <morning-textinput v-model="colorValue.s" :state="inputIsReadonly ? 'readonly' : 'normal'" @value-change="_hslChangeS"></morning-textinput>
+                        <morning-textinput v-model="colorValue.l" :state="inputIsReadonly ? 'readonly' : 'normal'" @value-change="_hslChangeL"></morning-textinput>
+                        <morning-textinput v-model="colorValue.a" :state="(inputIsReadonly || !conf.allowAlpha) ? 'readonly' : 'normal'" @value-change="_alphaChangePer"></morning-textinput>
                         <div class="name">H</div>
                         <div class="name">S</div>
                         <div class="name">L</div>
@@ -152,13 +164,13 @@ import GlobalEvent                  from 'Utils/GlobalEvent';
 import TipManager                   from 'Utils/TipManager';
 import Move                         from 'Utils/Move';
 
+const defaultColor = '#000000';
 const valueTypes = [
     'hex',
     'rgba',
     'hsla'
 ];
 
-// TODO : input改数值
 // TODO : valueType 输出
 // TODO : allowAlpha
 
@@ -170,73 +182,77 @@ export default {
         valueType : {
             type : String,
             default : 'hex',
-            validator : (value => ['hex', 'rgba'].indexOf(value) !== -1)
+            validator : (value => valueTypes.indexOf(value) !== -1)
+        },
+        allowAlpha : {
+            type : Boolean,
+            default : true
         }
     },
     computed : {
         _conf : function () {
 
             return {
-                valueType : this.valueType
+                valueType : this.valueType,
+                allowAlpha : this.allowAlpha
             };
+
+        },
+        inputIsReadonly : function () {
+
+            return (this.conf.state === 'disabled' || this.conf.state === 'readonly');
 
         },
         colorObj : function () {
 
-            return Color(`#${this.colorWithAlpha}`);
+            return Color({
+                h : this.data.hslH,
+                s : this.data.hslS,
+                l : this.data.hslL
+            })
+            .alpha(this.data.alpha / 255);
 
         },
         colorString : function () {
 
-            return this._getColorString(this.data.showValueType, this.data.alpha, this.colorObj);
+            return this._getColorString();
 
         },
         colorValue : function () {
 
-            return this._getColorValue(this.data.showValueType, this.data.alpha, this.colorObj);
+            return this._getColorValue();
+
+        },
+        hslHReversal : function () {
+
+            return 360 - Math.floor(this.data.hslH);
 
         },
         colorH : function () {
 
-            let s = this.data.hsvS;
-            let v = this.data.hsvV;
-
-            if (s === -1) {
-
-                s = 100;
-
-            }
-
-            let hsl = Color({
-                h : this.data.hslH,
-                s : this.data.hsvS,
-                v : this.data.hsvV
-            }).hsl().object();
+            let hsl = this.colorObj.hsl().object();
 
             hsl.s = 100;
             hsl.l = 50;
 
-            return leftPad(Color(hsl).rgbNumber().toString(16), 6, '0');
+            return Color(hsl).alpha(1).string();
 
         },
-        color : function () {
+        colorHex : function () {
 
-            let color = Color({
-                h: this.data.hslH,
-                s: this.data.hslS,
-                l: this.data.hslL
-            });
-            let rgb = color.rgbNumber();
-            let rgbString = leftPad(rgb.toString(16), 6, '0');
-
-            return rgbString;
+            return this.colorObj.hex();
 
         },
-        colorWithAlpha : function () {
+        colorHexWithAlpha : function () {
 
-            let alpha = Math.round(255 * this.data.alpha);
+            let alpha = Math.round(this.data.alpha);
 
-            return `${this.color}${leftPad(alpha.toString(16), 2, '0')}`;
+            return `${this.colorHex}${leftPad(alpha.toString(16), 2, '0')}`;
+
+        },
+        alphaPer : function () {
+
+            return Math.round(this.data.alpha / 255 * 100) / 100;
 
         }
     },
@@ -247,13 +263,14 @@ export default {
                 showValueType : valueTypes[0],
                 showPicker : false,
                 first : true,
-                alpha : 1,
+                hslHSync : false,
+                alpha : 255,
                 hslH : 0,
-                hslS : 100,
-                hslL : 50,
-                picking : false,
+                hslS : 0,
+                hslL : 0,
                 hsvS : -1,
                 hsvV : 0,
+                picking : false,
                 panel : {
                     w : 0,
                     h : 0
@@ -273,6 +290,22 @@ export default {
     methods : {
         _valueFilter : function (value) {
 
+            let color;
+
+            value = String(value);
+
+            try{
+
+                color = Color(value);
+
+            } catch(e) {}
+
+            if (color === undefined) {
+
+                return this._getColorString(this.conf.valueType, Color(defaultColor));
+
+            }
+            
             return value;
 
         },
@@ -282,9 +315,11 @@ export default {
 
             if (evt.path.indexOf(this.data.$picker) === notFound) {
 
-                this.togglePicker();
+                this.togglePicker(false);
 
             }
+
+            return evt;
 
         },
         _showPicker : function () {
@@ -305,7 +340,157 @@ export default {
             this.$emit('hide-picker');
 
         },
-        _hslaChangeH : function (value) {
+        _hexChange : function (value) {
+
+            try{
+
+                let hsl = Color(value).hsl().object();
+
+                this.data.hslH = hsl.h;
+                this.data.hslS = hsl.s;
+                this.data.hslL = hsl.l;
+
+                if (this.conf.allowAlpha) {
+                    
+                    this.data.alpha = Math.round(hsl.alpha * 255) || 255;
+
+                }
+
+            } catch(e) {}
+
+        },
+        _rgbaChangeR : function (value) {
+
+            try{
+
+                let color = this.colorObj.red(value).hsl();
+               
+                this.data.hslH = color.object().h;
+                this.data.hslS = color.object().s;
+                this.data.hslL = color.object().l;
+
+            } catch(e) {}
+
+        },
+        _rgbaChangeG : function (value) {
+
+            try{
+
+                let color = this.colorObj.green(value).hsl();
+               
+                this.data.hslH = color.object().h;
+                this.data.hslS = color.object().s;
+                this.data.hslL = color.object().l;
+
+            } catch(e) {}
+
+        },
+        _rgbaChangeB : function (value) {
+
+            try{
+
+                let color = this.colorObj.blue(value).hsl();
+               
+                this.data.hslH = color.object().h;
+                this.data.hslS = color.object().s;
+                this.data.hslL = color.object().l;
+
+            } catch(e) {}
+
+        },
+        _hslChangeH : function (value) {
+
+            try{
+
+                let color = this.colorObj.hsl().object();
+
+                color.h = value;
+               
+                this.data.hslH = Color(color).hsl().object().h;
+
+            } catch(e) {}
+
+        },
+        _hslChangeS : function (value) {
+
+            try{
+
+                let color = this.colorObj.hsl().object();
+
+                color.s = +value.replace('%', '');
+               
+                this.data.hslS = Color(color).hsl().object().s;
+
+            } catch(e) {}
+
+        },
+        _hslChangeL : function (value) {
+
+            try{
+
+                let color = this.colorObj.hsl().object();
+
+                color.l = +value.replace('%', '');
+               
+                this.data.hslL = Color(color).hsl().object().l;
+
+            } catch(e) {}
+
+        },
+        _alphaChange : function (value) {
+
+            if (isNaN(+value) ||
+                !this.conf.allowAlpha) {
+
+                return;
+
+            }
+
+            if (value > 255) {
+
+                value = 255;
+
+            }
+
+            if (value < 0) {
+
+                value = 0;
+
+            }
+
+            this.data.alpha = value;
+
+        },
+        _alphaChangePer : function (per) {
+
+            if (!this.conf.allowAlpha) {
+
+                return;
+
+            }
+
+            if (per > 1) {
+
+                per = 1;
+
+            }
+
+            if (per < 0) {
+
+                per = 0;
+
+            }
+
+            this.data.alpha = Math.round(per * 255);
+
+        },
+        _hslaChangeHBar : function (value) {
+
+            if (!this.data.hslHSync) {
+
+                return;
+
+            }
 
             value = 360 - value;
 
@@ -318,22 +503,16 @@ export default {
             this.data.hslH = value;
 
         },
-        _hslaChangeA : function (value) {
-
-            this.data.alpha = value / 100;
-
-        },
         _hsvChangeSV : function (s, v) {
 
             this.data.hsvS = s;
             this.data.hsvV = v;
 
-            let color = Color({
+            let hsl = Color({
                 h : this.data.hslH,
-                s : Math.round(s),
-                v : 100 - Math.round(v)
-            });
-            let hsl = color.hsl().object();
+                s : s,
+                v : 100 - v
+            }).hsl().object();
 
             this.data.hslS = hsl.s;
             this.data.hslL = hsl.l;
@@ -359,7 +538,9 @@ export default {
         },
         _pickColor : function (evt) {
 
-            if (this.data.dontPickColor) {
+            if (this.data.dontPickColor ||
+                this.conf.state === 'disabled' ||
+                this.conf.state === 'readonly') {
 
                 return;
 
@@ -401,82 +582,110 @@ export default {
             this.data.showValueType = valueTypes[index];
 
         },
-        _getColorValue : function (type, alpha, color) {
+        _hslHSync : function (sync) {
+
+            this.data.hslHSync = sync;
+
+        },
+        _getColorValue : function () {
+
+            let color = this.colorObj;
+            let type = this.data.showValueType;
+            let alpha = this.data.alpha;
 
             if (type === 'hex') {
 
-                if (alpha === 1) {
+                if (alpha === 255) {
 
-                    return `#${leftPad(color.rgbNumber().toString(16), 6, '0')}`;
+                    return this.colorHex;
 
                 } else {
 
-                    return `#${leftPad(color.rgbNumber().toString(16), 6, '0')}${leftPad(Math.round(255*alpha).toString(16), 2, '0')}`;
+                    return this.colorHexWithAlpha;
 
                 }
 
             } else if (type === 'rgba') {
 
                 return {
-                    r : color.red(),
-                    g : color.green(),
-                    b : color.blue(),
-                    a : Math.round(alpha * 100) / 100
+                    r : Math.round(color.red()),
+                    g : Math.round(color.green()),
+                    b : Math.round(color.blue()),
+                    a : this.alphaPer || 1
                 }
 
             } else if (type === 'hsla') {
 
+                let hsl = color.hsl().object();
+
                 return {
-                    h : Math.round(color.hsl().object().h),
-                    s : `${Math.round(color.hsl().object().s)}%`,
-                    l : `${Math.round(color.hsl().object().l)}%`,
-                    a : Math.round(alpha * 100) / 100
+                    h : Math.round(hsl.h),
+                    s : `${Math.round(hsl.s)}%`,
+                    l : `${Math.round(hsl.l)}%`,
+                    a : this.alphaPer || 1
                 }
 
             }
 
         },
-        _getColorString : function (type, alpha, color) {
+        _getColorString : function (type = this.data.showValueType, color = this.colorObj) {
+
+            let alpha = this.data.alpha;
 
             if (type === 'hex') {
 
-                if (alpha === 1) {
+                if (alpha === 255) {
 
-                    return `#${leftPad(color.rgbNumber().toString(16), 6, '0')}`;
+                    return this.colorHex;
 
                 } else {
 
-                    return `#${leftPad(color.rgbNumber().toString(16), 6, '0')}${leftPad(Math.round(255 * alpha).toString(16), 2, '0')}`;
+                    return this.colorHexWithAlpha;
 
                 }
 
             } else if (type === 'rgba') {
 
-                if (alpha === 1) {
+                if (alpha === 255) {
 
-                    return `rgb(${color.red()}, ${color.green()}, ${color.blue()})`;
+                    return `rgb(${Math.round(color.red())}, ${Math.round(color.green())}, ${Math.round(color.blue())})`;
 
                 } else {
 
-                    return `rgba(${color.red()}, ${color.green()}, ${color.blue()}, ${Math.round(alpha * 100) / 100})`
+                    return `rgba(${Math.round(color.red())}, ${Math.round(color.green())}, ${Math.round(color.blue())}, ${this.alphaPer || 1})`
 
                 }
 
             } else if (type === 'hsla') {
 
-                if (alpha === 1) {
+                let hsl = color.hsl().object();
 
-                    return `hsl(${Math.round(color.hsl().object().h)}, ${Math.round(color.hsl().object().s)}%, ${Math.round(color.hsl().object().l)}%)`;
+                if (alpha === 255) {
+
+                    return `hsl(${Math.round(hsl.h)}, ${Math.round(hsl.s)}%, ${Math.round(hsl.l)}%)`;
 
                 } else {
 
-                    return `hsla(${Math.round(color.hsl().object().h)}, ${Math.round(color.hsl().object().s)}%, ${Math.round(color.hsl().object().l)}%, ${Math.round(alpha * 100) / 100})`;
+                    return `hsla(${Math.round(hsl.h)}, ${Math.round(hsl.s)}%, ${Math.round(hsl.l)}%, ${this.alphaPer || 1})`;
 
                 }
 
             }
 
+        },
+        _syncColorFromValue : function () {
 
+            let hsl = Color(this.get() || defaultColor).hsl();
+
+            this.data.hslH = hsl.object().h;
+            this.data.hslS = hsl.object().s;
+            this.data.hslL = hsl.object().l;
+
+            if (this.conf.allowAlpha) {
+
+                this.data.alpha = Math.round(hsl.alpha() * 255);
+
+            }
         },
         _colorCopy : function () {
 
@@ -517,7 +726,8 @@ export default {
         this.Move.$root = this.data.$picker;
         this.Move.target = '.straw';
         this.Move.container = '.panel';
-        this.Move.can = true;
+
+        this._syncColorFromValue();
 
         this.Vue.nextTick(() => {
 
@@ -533,15 +743,25 @@ export default {
 
         });
 
-        this.$watch('color', () => {
+        this.$watch('inputIsReadonly', () => {
 
-            let color = Color({
-                h: this.data.hslH,
-                s: this.data.hslS,
-                l: this.data.hslL
-            });
-            let rgb = color.rgbNumber();
-            let rgbString = leftPad(rgb.toString(16), 6, '0');
+            if (this.inputIsReadonly) {
+
+                this.Move.can = false;
+
+            } else {
+
+                this.Move.can = true;
+
+            }
+
+        }, {
+            immediate : true
+        });
+
+        this.$watch('colorHex', () => {
+
+            let color = this.colorObj;
             let hsv = color.hsv().object();
 
             if (this.data.$picker) {
@@ -550,7 +770,7 @@ export default {
 
                 if ($track) {
                     
-                    $track.style.backgroundImage = `-webkit-linear-gradient(left, #fff0, #${rgbString})`;
+                    $track.style.backgroundImage = `-webkit-linear-gradient(left, #fff0, ${color.hex()})`;
 
                 }
 
@@ -561,8 +781,8 @@ export default {
 
             if (s === -1) {
 
-                s = Math.round(hsv.s);
-                v = 100 - Math.round(hsv.v);
+                s = hsv.s;
+                v = 100 - hsv.v;
 
             }
 
@@ -570,6 +790,21 @@ export default {
 
         }, {
             immediate : true
+        });
+
+        this.$watch('colorObj', () => {
+
+            this._set(this._getColorString(this.conf.valueType)); 
+
+        }, {
+            deep : true,
+            immediate : true
+        });
+
+        this.$on('value-change', () => {
+
+            this._syncColorFromValue();
+
         });
 
         this.$on('show-picker', () => {

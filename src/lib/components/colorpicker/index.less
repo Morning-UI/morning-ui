@@ -37,14 +37,32 @@ mor-colorpicker{
     display: inline-block;
     position: relative;
     vertical-align: top;
-    border: 1px @colorFormBorder solid;
-    border-radius: @borderRadius;
     box-sizing: border-box;
-    padding: 3px;
     user-select: none;
 
+    .setup-form();
     .setup-alpha-bg();
     .setup-color();
+
+    .cleanbtn{
+        left: 0;
+    }
+
+    > .note{
+        color: @colorFormTextNote;
+        font-size: @fontSize;
+        margin-bottom: 0.5em;
+        -webkit-user-select: text;
+    }
+
+    .preview-wrap{
+        width: @fontSize*2 + 8px;
+        border: 1px @colorFormBorder solid;
+        border-radius: @borderRadius;
+        padding: 3px;
+        box-sizing: border-box;
+        margin-bottom: 5px;
+    }
 
     .preview{
         width: @fontSize*2;
@@ -59,7 +77,18 @@ mor-colorpicker{
     &.st-normal{}
 
     &.st-disabled,
-    &.st-readonly{}
+    &.st-readonly{
+        .preview-wrap{
+            border-color: @colorExtraLightBlue;
+        }
+       
+        .preview{
+            .color{
+                box-shadow: 0 0 6px inset #000;
+                cursor: default;
+            }
+        }
+    }
 
     // default status
     &{
@@ -233,7 +262,7 @@ mor-colorpicker{
     }
 
     .values{
-        height: @fontSize*4;
+        height: @fontSize*3.5;
         font-size: 0;
         border-top: 1px @colorExtraLightSilver solid;
 
@@ -247,14 +276,17 @@ mor-colorpicker{
             .rgba,
             .hex,
             .hsla{
+                width: 100%;
+
                 mor-textinput{
                     display: inline-block;
                     box-sizing: border-box;
 
                     input{
-                        height: @fontSize*2;
+                        height: @fontSize*1.5;
                         text-align: center;
                         padding: 0 0.5em;
+                        font-size: @fontSize*0.75;
                     }
                 }
 
@@ -268,15 +300,12 @@ mor-colorpicker{
 
             .rgba,
             .hsla{
-                width: 100%;
-                height: 60%;
-
                 mor-textinput{
-                    width: 22.5%;
-                    margin-right: 2%;
+                    width: 20%;
+                    margin-right: 4%;
 
                     &:first-child{
-                        margin-left: 2%;
+                        margin-left: 4%;
                     }
                 }
 
@@ -292,12 +321,9 @@ mor-colorpicker{
             }
 
             .hex{
-                width: 100%;
-                height: 60%;
-
                 mor-textinput{
-                    width: 88%;
-                    margin: 0 6%;
+                    width: 80%;
+                    margin: 0 10%;
                 }
 
                 .name{
@@ -312,7 +338,7 @@ mor-colorpicker{
             vertical-align: top;
             line-height: @fontSize*2;
             height: @fontSize*2;
-            margin: @fontSize 0;
+            margin: @fontSize*0.75 0;
             text-align: center;
             color: @colorExtraLightBlue;
             cursor: pointer;
@@ -335,9 +361,19 @@ mor-colorpicker{
         animation-fill-mode: forwards;
     }
 
+    &.hide{
+        pointer-events: none;
+    }
+
     &.hide .picker{
         animation-name: popin;
         animation-duration: 0.18s;
         animation-fill-mode: forwards;
+    }
+
+    &.not-allow{
+        .panel{
+            cursor: not-allowed;
+        }
     }
 }
