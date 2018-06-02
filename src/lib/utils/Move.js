@@ -116,7 +116,7 @@ let Move = {
 
             }
 
-            if (found || evt._mor_move_ignore_path) {
+            if (found || evt.__morMoveIgnorePath) {
 
                 let $target = this.Move.$root.querySelectorAll(`${this.Move.container} ${this.Move.target}`)[this.Move.lastMousedownIndex];
                 let $container = this.Move.$root.querySelector(this.Move.container);

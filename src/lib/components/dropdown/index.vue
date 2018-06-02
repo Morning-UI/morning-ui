@@ -220,11 +220,7 @@ export default {
             this.data.first = false;
             this.data.show = false;
 
-            // setTimeout(() => {
-                
             this._globalEventRemove('click', '_checkArea');
-
-            // });
 
             this.$emit('emit');
 

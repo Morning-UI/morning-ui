@@ -47,7 +47,9 @@
                 :style="{
                     'background-color' : colorH
                 }"
-                @mousedown="_pickColor"
+
+                @mouseup="_hslHSync(true)"
+                @mousedown="_pickColor($event);_hslHSync(false)"
             >
                 <div class="mask-white"></div>
                 <div class="mask-black"></div>
@@ -94,8 +96,6 @@
 
                             v-model="hslHReversal"
                             
-                            @keydown.native="_hslHSync(true)"
-                            @keyup.native="_hslHSync(false)"
                             @value-change="_hslaChangeHBar"
                         ></morning-slider>
                     </div>
@@ -107,6 +107,8 @@
 
                             v-model="data.alpha"
 
+                            @mouseup="_hslHSync(true)"
+                            @mousedown="_hslHSync(false)"
                             @value-change="_alphaChange"
                         ></morning-slider>
                     </div>
@@ -125,7 +127,11 @@
                         <div class="name">A</div>
                     </div>
                     <div class="hex" v-if="data.showValueType === 'hex'">
-                        <morning-textinput v-model="colorValue" :state="inputIsReadonly ? 'readonly' : 'normal'" @value-change="_hexChange"></morning-textinput>
+                        <morning-textinput
+                            v-model="colorValue"
+                            :state="inputIsReadonly ? 'readonly' : 'normal'"
+                            @value-change="_hexChange"
+                        ></morning-textinput>
                         <div class="name">HEX</div>
                     </div>
                     <div class="hsla" v-if="data.showValueType === 'hsla'">
@@ -157,22 +163,23 @@
 </template>
  
 <script>
-import Color                        from 'color';
+import color                        from 'color';
 import leftPad                      from 'left-pad';
 import copy                         from 'clipboard-copy';
 import GlobalEvent                  from 'Utils/GlobalEvent';
 import TipManager                   from 'Utils/TipManager';
 import Move                         from 'Utils/Move';
 
+const num16 = 16;
+const num100 = 100;
+const num360 = 360;
+const maxAlpha = 255;
 const defaultColor = '#000000';
 const valueTypes = [
     'hex',
     'rgba',
     'hsla'
 ];
-
-// TODO : valueType 输出
-// TODO : allowAlpha
 
 export default {
     origin : 'Form',
@@ -205,12 +212,11 @@ export default {
         },
         colorObj : function () {
 
-            return Color({
+            return color({
                 h : this.data.hslH,
                 s : this.data.hslS,
                 l : this.data.hslL
-            })
-            .alpha(this.data.alpha / 255);
+            }).alpha(this.data.alpha / maxAlpha);
 
         },
         colorString : function () {
@@ -225,17 +231,19 @@ export default {
         },
         hslHReversal : function () {
 
-            return 360 - Math.floor(this.data.hslH);
+            return Math.floor(this.data.hslH);
 
         },
         colorH : function () {
 
             let hsl = this.colorObj.hsl().object();
 
-            hsl.s = 100;
+            hsl.s = num100;
             hsl.l = 50;
 
-            return Color(hsl).alpha(1).string();
+            return color(hsl)
+                .alpha(1)
+                .string();
 
         },
         colorHex : function () {
@@ -247,12 +255,12 @@ export default {
 
             let alpha = Math.round(this.data.alpha);
 
-            return `${this.colorHex}${leftPad(alpha.toString(16), 2, '0')}`;
+            return `${this.colorHex}${leftPad(alpha.toString(num16), 2, '0')}`;
 
         },
         alphaPer : function () {
 
-            return Math.round(this.data.alpha / 255 * 100) / 100;
+            return Math.round(this.data.alpha / maxAlpha * num100) / num100;
 
         }
     },
@@ -264,7 +272,7 @@ export default {
                 showPicker : false,
                 first : true,
                 hslHSync : false,
-                alpha : 255,
+                alpha : maxAlpha,
                 hslH : 0,
                 hslS : 0,
                 hslL : 0,
@@ -290,19 +298,19 @@ export default {
     methods : {
         _valueFilter : function (value) {
 
-            let color;
+            let colorObj;
 
             value = String(value);
 
-            try{
+            try {
 
-                color = Color(value);
+                colorObj = color(value);
 
-            } catch(e) {}
+            } catch (e) {}
 
-            if (color === undefined) {
+            if (colorObj === undefined) {
 
-                return this._getColorString(this.conf.valueType, Color(defaultColor));
+                return this._getColorString(this.conf.valueType, color(defaultColor));
 
             }
             
@@ -329,7 +337,7 @@ export default {
                 element : this.data.$picker,
                 target : this.data.$preview,
                 offset : '0 0'
-            })
+            });
             this.data.showPicker = true;
             this.$emit('show-picker');
 
@@ -342,99 +350,155 @@ export default {
         },
         _hexChange : function (value) {
 
-            try{
+            if (value.length !== 7 &&
+                value.length !== 9) {
 
-                let hsl = Color(value).hsl().object();
+                return;
 
-                this.data.hslH = hsl.h;
+            }
+
+            try {
+
+                let hsl = color(value)
+                    .hsl()
+                    .object();
+
+                if (this.data.hslHSync) {
+
+                    this.data.hslH = hsl.h;
+
+                }
+                
                 this.data.hslS = hsl.s;
                 this.data.hslL = hsl.l;
 
                 if (this.conf.allowAlpha) {
                     
-                    this.data.alpha = Math.round(hsl.alpha * 255) || 255;
+                    this.data.alpha = Math.round(hsl.alpha * maxAlpha) || maxAlpha;
 
                 }
 
-            } catch(e) {}
+            } catch (e) {}
 
         },
         _rgbaChangeR : function (value) {
 
-            try{
+            try {
 
-                let color = this.colorObj.red(value).hsl();
-               
-                this.data.hslH = color.object().h;
-                this.data.hslS = color.object().s;
-                this.data.hslL = color.object().l;
+                let hsl = this.colorObj
+                    .red(value)
+                    .hsl();
 
-            } catch(e) {}
+                if (this.data.hslHSync) {
+                    
+                    this.data.hslH = hsl.object().h;
+
+                }
+
+                this.data.hslS = hsl.object().s;
+                this.data.hslL = hsl.object().l;
+
+            } catch (e) {}
 
         },
         _rgbaChangeG : function (value) {
 
-            try{
+            try {
 
-                let color = this.colorObj.green(value).hsl();
-               
-                this.data.hslH = color.object().h;
-                this.data.hslS = color.object().s;
-                this.data.hslL = color.object().l;
+                let hsl = this.colorObj
+                    .green(value)
+                    .hsl();
 
-            } catch(e) {}
+                if (this.data.hslHSync) {
+                    
+                    this.data.hslH = hsl.object().h;
+
+                }
+
+                this.data.hslS = hsl.object().s;
+                this.data.hslL = hsl.object().l;
+
+            } catch (e) {}
 
         },
         _rgbaChangeB : function (value) {
 
-            try{
+            try {
 
-                let color = this.colorObj.blue(value).hsl();
-               
-                this.data.hslH = color.object().h;
-                this.data.hslS = color.object().s;
-                this.data.hslL = color.object().l;
+                let hsl = this.colorObj
+                    .blue(value)
+                    .hsl();
 
-            } catch(e) {}
+                if (this.data.hslHSync) {
+                    
+                    this.data.hslH = hsl.object().h;
+
+                }
+
+                this.data.hslS = hsl.object().s;
+                this.data.hslL = hsl.object().l;
+
+            } catch (e) {}
 
         },
         _hslChangeH : function (value) {
 
-            try{
+            if (!this.data.hslHSync) {
 
-                let color = this.colorObj.hsl().object();
+                return;
 
-                color.h = value;
+            }
+
+            try {
+
+                let hslObj = this.colorObj
+                    .hsl()
+                    .object();
+
+                hslObj.h = value;
                
-                this.data.hslH = Color(color).hsl().object().h;
+                this.data.hslH = color(hslObj)
+                    .hsl()
+                    .object()
+                    .h;
 
-            } catch(e) {}
+            } catch (e) {}
 
         },
         _hslChangeS : function (value) {
 
-            try{
+            try {
 
-                let color = this.colorObj.hsl().object();
+                let hslObj = this.colorObj
+                    .hsl()
+                    .object();
 
-                color.s = +value.replace('%', '');
+                hslObj.s = +value.replace('%', '');
                
-                this.data.hslS = Color(color).hsl().object().s;
+                this.data.hslS = color(hslObj)
+                    .hsl()
+                    .object()
+                    .s;
 
-            } catch(e) {}
+            } catch (e) {}
 
         },
         _hslChangeL : function (value) {
 
-            try{
+            try {
 
-                let color = this.colorObj.hsl().object();
+                let hslObj = this.colorObj
+                    .hsl()
+                    .object();
 
-                color.l = +value.replace('%', '');
+                hslObj.l = +value.replace('%', '');
                
-                this.data.hslL = Color(color).hsl().object().l;
+                this.data.hslL = color(hslObj)
+                    .hsl()
+                    .object()
+                    .l;
 
-            } catch(e) {}
+            } catch (e) {}
 
         },
         _alphaChange : function (value) {
@@ -446,9 +510,9 @@ export default {
 
             }
 
-            if (value > 255) {
+            if (value > maxAlpha) {
 
-                value = 255;
+                value = maxAlpha;
 
             }
 
@@ -481,20 +545,12 @@ export default {
 
             }
 
-            this.data.alpha = Math.round(per * 255);
+            this.data.alpha = Math.round(per * maxAlpha);
 
         },
         _hslaChangeHBar : function (value) {
 
-            if (!this.data.hslHSync) {
-
-                return;
-
-            }
-
-            value = 360 - value;
-
-            if (value === 360) {
+            if (value === num360) {
 
                 value = 0;
 
@@ -508,11 +564,13 @@ export default {
             this.data.hsvS = s;
             this.data.hsvV = v;
 
-            let hsl = Color({
+            let hsl = color({
                 h : this.data.hslH,
                 s : s,
-                v : 100 - v
-            }).hsl().object();
+                v : num100 - v
+            })
+                .hsl()
+                .object();
 
             this.data.hslS = hsl.s;
             this.data.hslL = hsl.l;
@@ -529,8 +587,8 @@ export default {
             this.Vue.nextTick(() => {
 
                 this.data.straw = {
-                    x : (s / 100 * this.data.panel.w) - (this.data.strawSize / 2),
-                    y : (v / 100 * this.data.panel.h) - (this.data.strawSize / 2)
+                    x : (s / num100 * this.data.panel.w) - (this.data.strawSize / 2),
+                    y : (v / num100 * this.data.panel.h) - (this.data.strawSize / 2)
                 };
 
             });
@@ -544,7 +602,7 @@ export default {
 
                 return;
 
-            } 
+            }
 
             let x = evt.offsetX - (this.data.strawSize / 2);
             let y = evt.offsetY - (this.data.strawSize / 2);
@@ -554,15 +612,15 @@ export default {
                 y : y
             };
             this._hsvChangeSV(
-                (((+x) + (this.data.strawSize / 2)) / this.data.panel.w) * 100,
-                (((+y) + (this.data.strawSize / 2)) / this.data.panel.h) * 100
+                (((+x) + (this.data.strawSize / 2)) / this.data.panel.w) * num100,
+                (((+y) + (this.data.strawSize / 2)) / this.data.panel.h) * num100
             );
 
             this.Vue.nextTick(() => {
                 
                 let newEvt = new MouseEvent(evt.type, evt);
 
-                newEvt._mor_move_ignore_path = true;
+                newEvt.__morMoveIgnorePath = true;
                 this._moveStraw();
                 this._moveMousedown(newEvt);
 
@@ -589,103 +647,114 @@ export default {
         },
         _getColorValue : function () {
 
-            let color = this.colorObj;
+            let colorObj = this.colorObj;
             let type = this.data.showValueType;
             let alpha = this.data.alpha;
 
             if (type === 'hex') {
 
-                if (alpha === 255) {
+                if (alpha === maxAlpha) {
 
                     return this.colorHex;
 
-                } else {
-
-                    return this.colorHexWithAlpha;
-
                 }
+
+                return this.colorHexWithAlpha;
 
             } else if (type === 'rgba') {
 
                 return {
-                    r : Math.round(color.red()),
-                    g : Math.round(color.green()),
-                    b : Math.round(color.blue()),
+                    r : Math.round(colorObj.red()),
+                    g : Math.round(colorObj.green()),
+                    b : Math.round(colorObj.blue()),
                     a : this.alphaPer || 1
-                }
+                };
 
             } else if (type === 'hsla') {
 
-                let hsl = color.hsl().object();
+                let hsl = colorObj.hsl().object();
 
                 return {
                     h : Math.round(hsl.h),
                     s : `${Math.round(hsl.s)}%`,
                     l : `${Math.round(hsl.l)}%`,
                     a : this.alphaPer || 1
-                }
+                };
 
             }
 
+            let hslObj = color(defaultColor)
+                .hsl()
+                .object();
+
+            return {
+                h : hslObj.h,
+                s : hslObj.s,
+                l : hslObj.l,
+                a : 1
+            };
+
         },
-        _getColorString : function (type = this.data.showValueType, color = this.colorObj) {
+        _getColorString : function (type = this.data.showValueType, colorObj = this.colorObj) {
 
             let alpha = this.data.alpha;
 
             if (type === 'hex') {
 
-                if (alpha === 255) {
+                if (alpha === maxAlpha) {
 
                     return this.colorHex;
 
-                } else {
-
-                    return this.colorHexWithAlpha;
-
                 }
+
+                return this.colorHexWithAlpha;
 
             } else if (type === 'rgba') {
 
-                if (alpha === 255) {
+                if (alpha === maxAlpha) {
 
-                    return `rgb(${Math.round(color.red())}, ${Math.round(color.green())}, ${Math.round(color.blue())})`;
-
-                } else {
-
-                    return `rgba(${Math.round(color.red())}, ${Math.round(color.green())}, ${Math.round(color.blue())}, ${this.alphaPer || 1})`
+                    return `rgb(${Math.round(colorObj.red())}, ${Math.round(colorObj.green())}, ${Math.round(colorObj.blue())})`;
 
                 }
+
+                return `rgba(${Math.round(colorObj.red())}, ${Math.round(colorObj.green())}, ${Math.round(colorObj.blue())}, ${this.alphaPer || 1})`;
 
             } else if (type === 'hsla') {
 
-                let hsl = color.hsl().object();
+                let hslObj = colorObj.hsl().object();
 
-                if (alpha === 255) {
+                if (alpha === maxAlpha) {
 
-                    return `hsl(${Math.round(hsl.h)}, ${Math.round(hsl.s)}%, ${Math.round(hsl.l)}%)`;
-
-                } else {
-
-                    return `hsla(${Math.round(hsl.h)}, ${Math.round(hsl.s)}%, ${Math.round(hsl.l)}%, ${this.alphaPer || 1})`;
+                    return `hsl(${Math.round(hslObj.h)}, ${Math.round(hslObj.s)}%, ${Math.round(hslObj.l)}%)`;
 
                 }
 
+                return `hsla(${Math.round(hslObj.h)}, ${Math.round(hslObj.s)}%, ${Math.round(hslObj.l)}%, ${this.alphaPer || 1})`;
+
             }
+
+            return defaultColor;
 
         },
         _syncColorFromValue : function () {
 
-            let hsl = Color(this.get() || defaultColor).hsl();
+            let hsl = color(this.get() || defaultColor).hsl();
 
-            this.data.hslH = hsl.object().h;
+            if (this.data.hslHSync) {
+    
+                this.data.hslH = hsl.object().h;
+
+            }
+
             this.data.hslS = hsl.object().s;
             this.data.hslL = hsl.object().l;
 
             if (this.conf.allowAlpha) {
 
-                this.data.alpha = Math.round(hsl.alpha() * 255);
+                this.data.alpha = Math.round(hsl.alpha() * maxAlpha);
 
             }
+
         },
         _colorCopy : function () {
 
@@ -761,8 +830,8 @@ export default {
 
         this.$watch('colorHex', () => {
 
-            let color = this.colorObj;
-            let hsv = color.hsv().object();
+            let colorObj = this.colorObj;
+            let hsv = colorObj.hsv().object();
 
             if (this.data.$picker) {
 
@@ -770,7 +839,7 @@ export default {
 
                 if ($track) {
                     
-                    $track.style.backgroundImage = `-webkit-linear-gradient(left, #fff0, ${color.hex()})`;
+                    $track.style.backgroundImage = `-webkit-linear-gradient(left, #fff0, ${colorObj.hex()})`;
 
                 }
 
@@ -782,7 +851,7 @@ export default {
             if (s === -1) {
 
                 s = hsv.s;
-                v = 100 - hsv.v;
+                v = num100 - hsv.v;
 
             }
 
@@ -794,7 +863,7 @@ export default {
 
         this.$watch('colorObj', () => {
 
-            this._set(this._getColorString(this.conf.valueType)); 
+            this._set(this._getColorString(this.conf.valueType));
 
         }, {
             deep : true,
@@ -838,8 +907,8 @@ export default {
             this.data.picking = false;
             this.data.dontPickColor = false;
             this._hsvChangeSV(
-                (((+this.Move.current.x) + (this.data.strawSize / 2)) / this.data.panel.w) * 100,
-                (((+this.Move.current.y) + (this.data.strawSize / 2)) / this.data.panel.h) * 100
+                (((+this.Move.current.x) + (this.data.strawSize / 2)) / this.data.panel.w) * num100,
+                (((+this.Move.current.y) + (this.data.strawSize / 2)) / this.data.panel.h) * num100
             );
 
         });
@@ -847,8 +916,8 @@ export default {
         this.$on('_moveChange', () => {
 
             this._hsvChangeSV(
-                (((+this.Move.current.x) + (this.data.strawSize / 2)) / this.data.panel.w) * 100,
-                (((+this.Move.current.y) + (this.data.strawSize / 2)) / this.data.panel.h) * 100
+                (((+this.Move.current.x) + (this.data.strawSize / 2)) / this.data.panel.w) * num100,
+                (((+this.Move.current.y) + (this.data.strawSize / 2)) / this.data.panel.h) * num100
             );
 
         });
