@@ -9,6 +9,8 @@
         <p>现在市面上的UI库非常多，当你选择时一定会有点不知所措。所以我们将主流的UI库都列在了下面，并且整理了一份全面的对比，供你参考。</p>
 
         <p>希望对你的挑选有所帮助。</p>
+
+        <p>此对比截止：2018年6月3日。</p>
         
         <table class="components">
             <thead>
@@ -269,7 +271,7 @@
                     </td>
                 </tr>
                 <tr class="components">
-                    <td rowspan="86" valign="top">组件</td>
+                    <td rowspan="89" valign="top">组件</td>
                     <td class="item">标题</td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
