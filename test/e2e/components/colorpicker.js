@@ -29,6 +29,11 @@ test.serial('basic style', async t => {
 
     t.plan(1);
 
+    delete result.style.inlineSize;
+    delete result.style.perspectiveOrigin;
+    delete result.style.webkitLogicalWidth;
+    delete result.style.width;
+
     cleanstyle(result.style);
     t.snapshot(result);
 
