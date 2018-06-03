@@ -17,7 +17,7 @@ let GlobalEvent = {
 
     },
     methods : {
-        _globalEventAdd : function (evtName, methodName) {
+        _globalEventAdd : function (evtName, methodName, useCapture) {
 
             let morning = this.morning;
 
@@ -48,11 +48,11 @@ let GlobalEvent = {
 
                 if (evtName === 'hashchange') {
 
-                    window.addEventListener(evtName, evtNamespace.handler);
+                    window.addEventListener(evtName, evtNamespace.handler, useCapture);
 
                 } else {
 
-                    document.addEventListener(evtName, evtNamespace.handler);
+                    document.addEventListener(evtName, evtNamespace.handler, useCapture);
 
                 }
 

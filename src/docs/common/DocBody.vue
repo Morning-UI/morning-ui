@@ -253,6 +253,36 @@ let data = {
                 valueContent : `['Jim', 'Tom']`
             }
         ],
+        colorpicker : [
+            {
+                valueType : 'String',
+                valueContent : `'#ff0000'`
+            },
+            {
+                valueType : 'Number',
+                valueContent : '0'
+            },
+            {
+                valueType : 'Boolean',
+                valueContent : 'true'
+            },
+            {
+                valueType : 'Null',
+                valueContent : 'null'
+            },
+            {
+                valueType : 'Undefined',
+                valueContent : 'undefined'
+            },
+            {
+                valueType : 'Object',
+                valueContent : '{\'#ff0000\':\'#ff0000\'}'
+            },
+            {
+                valueType : 'Array',
+                valueContent : '[\'#ff0000\']'
+            }
+        ],
         checkbox : [
             {
                 valueType : 'String',
