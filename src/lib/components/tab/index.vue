@@ -36,9 +36,12 @@
 </template>
  
 <script>
+import GlobalEvent                  from 'Utils/GlobalEvent';
+
 export default {
     origin : 'UI',
     name : 'tab',
+    mixins : [GlobalEvent],
     props : {
         tab : {
             type : String,
@@ -243,6 +246,12 @@ export default {
         },
         _targetAnchorPoint : function () {
 
+            if (!this.conf.anchorTarget) {
+
+                return;
+
+            }
+
             let anchor = window.location.hash.replace(/^#/, '');
             let $targetEl;
 
@@ -363,7 +372,7 @@ export default {
         this.Vue.nextTick(() => {
 
             this._targetAnchorPoint();
-            window.addEventListener('hashchange', this._targetAnchorPoint);
+            this._globalEventAdd('hashchange', '_targetAnchorPoint');
 
         });
 
@@ -403,9 +412,9 @@ export default {
         }
 
     },
-    destroyed : function () {
+    beforeDestroy : function () {
 
-        window.removeEventListener('hashchange', this._targetAnchorPoint);
+        this._globalEventRemove('hashchange', '_targetAnchorPoint');
 
     }
 };
