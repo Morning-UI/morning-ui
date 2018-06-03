@@ -87,6 +87,10 @@
             <span>mo-icon-list</span>
         </div>
         <div>
+            <i class="mo-icon-copy"></i>
+            <span>mo-icon-copy</span>
+        </div>
+        <div>
             <i class="mo-icon-share-f"></i>
             <span>mo-icon-share-f</span>
         </div>
