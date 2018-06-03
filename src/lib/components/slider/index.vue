@@ -346,7 +346,7 @@ export default {
 
             }
 
-            let curval = evt.layerX;
+            let curval = evt.offsetX;
             let fullwidth = this.data.$track.clientWidth;
 
             this._setPer(curval / fullwidth);

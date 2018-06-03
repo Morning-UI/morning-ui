@@ -7,9 +7,7 @@ mor-slider{
     position: relative;
     font-size: 0;
 
-    &.has-cleanbtn{
-        padding-bottom: 20px;
-    }
+    .setup-form();
 
     > .note{
         color: @colorFormTextNote;
@@ -104,10 +102,10 @@ mor-slider{
         border: 2px @colorLightTheme solid;
         cursor: pointer;
         margin-left: -9px;
+        box-sizing: border-box;
     }
 
     .cleanbtn{
-        position: absolute;
         right: 20px;
         bottom: 0;
     }

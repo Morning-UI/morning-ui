@@ -87,8 +87,8 @@ export default {
         // 日期输入<i class="tag new"></i> : 'b',
         // 日期时间输入<i class="tag update"></i> : 'b',
         文件上传 : '/component/upload.html',
-        图片热区输入 : '/component/imagemap.html',
-        '颜色选择器<i class="tag coming"></i>' : ''
+        '颜色选择器<i class="tag new"></i>' : '/component/colorpicker.html',
+        图片热区输入 : '/component/imagemap.html'
     },
     guide : {
         开始使用 : null,
