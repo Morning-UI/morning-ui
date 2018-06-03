@@ -18,19 +18,30 @@
                     <td class="mark">HMP UI</td>
                     <td class="mark">ATUI</td>
                     <td class="mark">Element UI</td>
+                    <td class="mark">iView</td>
                     <td class="mark">Ant Design</td>
                     <td class="mark">Morning UI</td>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td rowspan="5" valign="top" align="center">信息</td>
+                    <td rowspan="6" valign="top" align="center">信息</td>
                     <td class="item">介绍</td>
                     <td class="mark">HMP平台的组件库。</td>
                     <td class="mark">A revolutionary workflow to optimise your design and development.</td>
                     <td class="mark">一套为开发者、设计师和产品经理准备的基于 Vue 2.0 的桌面端组件库。</td>
+                    <td class="mark">一套基于 Vue.js 的高质量 UI 组件库</td>
                     <td class="mark">一套企业级的 UI 设计语言和 React 实现。</td>
                     <td class="mark">一套桌面Web端的UI库，基于Vue.js。</td>
+                </tr>
+                <tr>
+                    <td class="item">对比版本</td>
+                    <td class="mark">最新</td>
+                    <td class="mark">0.1.32</td>
+                    <td class="mark">2.4.0</td>
+                    <td class="mark">2.14.1</td>
+                    <td class="mark">3.6.1</td>
+                    <td class="mark">0.11.0</td>
                 </tr>
                 <tr>
                     <td class="item">官网</td>
@@ -40,6 +51,9 @@
                     </td>
                     <td class="mark">
                         <a href="http://element.eleme.io/" target="_blank">http://element.eleme.io/</a>
+                    </td>
+                    <td class="mark">
+                        <a href="https://www.iviewui.com/" target="_blank">https://www.iviewui.com/</a>
                     </td>
                     <td class="mark">
                         <a href="https://ant.design/" target="_blank">https://ant.design/</a>
@@ -58,6 +72,9 @@
                         <a href="https://github.com/ElemeFE/element" target="_blank">https://github.com/ElemeFE/element</a>
                     </td>
                     <td class="mark">
+                        <a href="https://github.com/iview/iview" target="_blank">https://github.com/iview/iview</a>
+                    </td>
+                    <td class="mark">
                         <a href="https://github.com/ant-design/ant-design/" target="_blank">https://github.com/ant-design/ant-design/</a>
                     </td>
                     <td class="mark">
@@ -68,13 +85,15 @@
                     <td class="item">Stars on GitHub</td>
                     <td class="mark">-</td>
                     <td class="mark">~600</td>
-                    <td class="mark">~25k</td>
                     <td class="mark">~27k</td>
-                    <td class="mark">~15</td>
+                    <td class="mark">~15k</td>
+                    <td class="mark">~29k</td>
+                    <td class="mark">~50</td>
                 </tr>
                 <tr>
                     <td class="item">License</td>
                     <td class="mark">Private<br>Project</td>
+                    <td class="mark">MIT License</td>
                     <td class="mark">MIT License</td>
                     <td class="mark">MIT License</td>
                     <td class="mark">MIT License</td>
@@ -88,6 +107,10 @@
                     </td>
                     <td class="mark">
                         <i class="iconfont no">&#xe62e;</i>
+                    </td>
+                    <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
+                        <p>原则</p>
                     </td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
@@ -113,6 +136,9 @@
                         <p>Vue<br>React<br>Angular</p>
                     </td>
                     <td class="mark">
+                        <p>Vue</p>
+                    </td>
+                    <td class="mark">
                         <p>React</p>
                     </td>
                     <td class="mark">
@@ -131,6 +157,9 @@
                         <p>{{eleNum}}</p>
                     </td>
                     <td class="mark">
+                        <p>{{iviewNum}}</p>
+                    </td>
+                    <td class="mark">
                         <p>{{antdNum}}</p>
                     </td>
                     <td class="mark">
@@ -144,12 +173,16 @@
                         <p>CSS: -</p>
                     </td>
                     <td class="mark">
-                        <p>JS: 303kb</p>
-                        <p>CSS: 118kb</p>
+                        <p>JS: 309kb</p>
+                        <p>CSS: 121kb</p>
                     </td>
                     <td class="mark">
-                        <p>JS: 523kb</p>
-                        <p>CSS: 118kb</p>
+                        <p>JS: 538kb</p>
+                        <p>CSS: 196kb</p>
+                    </td>
+                    <td class="mark">
+                        <p>JS: 537kb</p>
+                        <p>CSS: 267kb</p>
                     </td>
                     <td class="mark">
                         <p>JS: 1060kb</p>
@@ -167,6 +200,9 @@
                     </td>
                     <td class="mark">
                         <i class="iconfont no">&#xe62e;</i>
+                    </td>
+                    <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
                     </td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
@@ -194,6 +230,10 @@
                     </td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
+                        <p>737个</p>
+                    </td>
+                    <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
                         <p>271个</p>
                     </td>
                     <td class="mark">
@@ -217,6 +257,10 @@
                     </td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
+                        <p>模板、设计规则</p>
+                    </td>
+                    <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
                         <p>栅格、模板、设计规则</p>
                     </td>
                     <td class="mark">
@@ -229,6 +273,9 @@
                     <td class="item">标题</td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
+                    </td>
+                    <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
                     </td>
                     <td class="mark">
                         <i class="iconfont no">&#xe62e;</i>
@@ -258,6 +305,9 @@
                         <i class="iconfont no">&#xe62e;</i>
                     </td>
                     <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
+                    </td>
+                    <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
                 </tr>
@@ -265,6 +315,9 @@
                     <td class="item">标记的文本</td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
+                    </td>
+                    <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
                     </td>
                     <td class="mark">
                         <i class="iconfont no">&#xe62e;</i>
@@ -294,6 +347,9 @@
                         <i class="iconfont no">&#xe62e;</i>
                     </td>
                     <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
+                    </td>
+                    <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
                 </tr>
@@ -301,6 +357,9 @@
                     <td class="item">带下划线的文本</td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
+                    </td>
+                    <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
                     </td>
                     <td class="mark">
                         <i class="iconfont no">&#xe62e;</i>
@@ -330,6 +389,9 @@
                         <i class="iconfont no">&#xe62e;</i>
                     </td>
                     <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
+                    </td>
+                    <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
                 </tr>
@@ -337,6 +399,9 @@
                     <td class="item">着重文本</td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
+                    </td>
+                    <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
                     </td>
                     <td class="mark">
                         <i class="iconfont no">&#xe62e;</i>
@@ -366,6 +431,9 @@
                         <i class="iconfont no">&#xe62e;</i>
                     </td>
                     <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
+                    </td>
+                    <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
                 </tr>
@@ -373,6 +441,9 @@
                     <td class="item">左/居中/右对齐文本</td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
+                    </td>
+                    <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
                     </td>
                     <td class="mark">
                         <i class="iconfont no">&#xe62e;</i>
@@ -402,6 +473,9 @@
                         <i class="iconfont no">&#xe62e;</i>
                     </td>
                     <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
+                    </td>
+                    <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
                 </tr>
@@ -409,6 +483,9 @@
                     <td class="item">引用</td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
+                    </td>
+                    <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
                     </td>
                     <td class="mark">
                         <i class="iconfont no">&#xe62e;</i>
@@ -435,6 +512,9 @@
                         <i class="iconfont no">&#xe62e;</i>
                     </td>
                     <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
+                    </td>
+                    <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
                     <td class="mark">
@@ -445,6 +525,9 @@
                     <td class="item">无序列表</td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
+                    </td>
+                    <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
                     </td>
                     <td class="mark">
                         <i class="iconfont no">&#xe62e;</i>
@@ -474,6 +557,9 @@
                         <i class="iconfont no">&#xe62e;</i>
                     </td>
                     <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
+                    </td>
+                    <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
                 </tr>
@@ -481,6 +567,9 @@
                     <td class="item">描述列表</td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
+                    </td>
+                    <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
                     </td>
                     <td class="mark">
                         <i class="iconfont no">&#xe62e;</i>
@@ -507,6 +596,9 @@
                         <i class="iconfont no">&#xe62e;</i>
                     </td>
                     <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
+                    </td>
+                    <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
                     <td class="mark">
@@ -523,6 +615,9 @@
                     </td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
+                    </td>
+                    <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
                     </td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
@@ -546,11 +641,17 @@
                         <i class="iconfont no">&#xe62e;</i>
                     </td>
                     <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
+                    </td>
+                    <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
                 </tr>
                 <tr class="components">
                     <td class="item">栅格</td>
+                    <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
+                    </td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
@@ -584,6 +685,9 @@
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
+                    <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
+                    </td>
                 </tr>
                 <tr class="components">
                     <td class="item">容器</td>
@@ -595,6 +699,9 @@
                     </td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
+                    </td>
+                    <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
                     </td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
@@ -618,6 +725,9 @@
                         <i class="iconfont no">&#xe62e;</i>
                     </td>
                     <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
+                    </td>
+                    <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
                 </tr>
@@ -625,6 +735,9 @@
                     <td class="item">分频器</td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
+                    </td>
+                    <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
                     </td>
                     <td class="mark">
                         <i class="iconfont no">&#xe62e;</i>
@@ -654,6 +767,9 @@
                         <i class="iconfont no">&#xe62e;</i>
                     </td>
                     <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
+                    </td>
+                    <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
                 </tr>
@@ -672,11 +788,17 @@
                         <i class="iconfont no">&#xe62e;</i>
                     </td>
                     <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
+                    </td>
+                    <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
                 </tr>
                 <tr class="components">
                     <td class="item">徽章</td>
+                    <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
+                    </td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
@@ -710,11 +832,17 @@
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
+                    <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
+                    </td>
                 </tr>
                 <tr class="components">
                     <td class="item">统计</td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
+                    </td>
+                    <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
                     </td>
                     <td class="mark">
                         <i class="iconfont no">&#xe62e;</i>
@@ -741,6 +869,9 @@
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
                     <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
+                    </td>
+                    <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
                     <td class="mark">
@@ -749,6 +880,9 @@
                 </tr>
                 <tr class="components">
                     <td class="item">表单组</td>
+                    <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
+                    </td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
@@ -782,11 +916,17 @@
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
+                    <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
+                    </td>
                 </tr>
                 <tr class="components">
                     <td class="item">巨幕</td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
+                    </td>
+                    <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
                     </td>
                     <td class="mark">
                         <i class="iconfont no">&#xe62e;</i>
@@ -816,11 +956,17 @@
                         <i class="iconfont no">&#xe62e;</i>
                     </td>
                     <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
+                    </td>
+                    <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
                 </tr>
                 <tr class="components">
                     <td class="item">导航菜单</td>
+                    <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
+                    </td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
@@ -852,7 +998,31 @@
                         <i class="iconfont no">&#xe62e;</i>
                     </td>
                     <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
+                    </td>
+                    <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
+                    </td>
+                </tr>
+                <tr class="components">
+                    <td class="item">头像</td>
+                    <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
+                    </td>
+                    <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
+                    </td>
+                    <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
+                    </td>
+                    <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
+                    </td>
+                    <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
+                    </td>
+                    <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
                     </td>
                 </tr>
                 <tr class="components">
@@ -862,6 +1032,9 @@
                     </td>
                     <td class="mark">
                         <i class="iconfont no">&#xe62e;</i>
+                    </td>
+                    <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
                     </td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
@@ -888,11 +1061,17 @@
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
                     <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
+                    </td>
+                    <td class="mark">
                         <i class="iconfont no">&#xe62e;</i>
                     </td>
                 </tr>
                 <tr class="components">
                     <td class="item">按钮</td>
+                    <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
+                    </td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
@@ -924,11 +1103,17 @@
                         <i class="iconfont no">&#xe62e;</i>
                     </td>
                     <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
+                    </td>
+                    <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
                 </tr>
                 <tr class="components">
                     <td class="item">下拉菜单</td>
+                    <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
+                    </td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
@@ -962,9 +1147,15 @@
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
+                    <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
+                    </td>
                 </tr>
                 <tr class="components">
                     <td class="item">表格</td>
+                    <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
+                    </td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
@@ -998,9 +1189,15 @@
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
+                    <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
+                    </td>
                 </tr>
                 <tr class="components">
                     <td class="item">模拟盒(对话框)</td>
+                    <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
+                    </td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
@@ -1029,6 +1226,9 @@
                         <i class="iconfont no">&#xe62e;</i>
                     </td>
                     <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
+                    </td>
+                    <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
                     <td class="mark">
@@ -1037,6 +1237,9 @@
                 </tr>
                 <tr class="components">
                     <td class="item">加载</td>
+                    <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
+                    </td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
@@ -1070,9 +1273,15 @@
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
+                    <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
+                    </td>
                 </tr>
                 <tr class="components">
                     <td class="item">小提示(文字提示)</td>
+                    <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
+                    </td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
@@ -1106,11 +1315,17 @@
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
+                    <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
+                    </td>
                 </tr>
                 <tr class="components">
                     <td class="item">轮播</td>
                     <td class="mark">
                         <i class="iconfont no">&#xe62e;</i>
+                    </td>
+                    <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
                     </td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
@@ -1140,6 +1355,9 @@
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
                     <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
+                    </td>
+                    <td class="mark">
                         <i class="iconfont no">&#xe62e;</i>
                     </td>
                 </tr>
@@ -1147,6 +1365,9 @@
                     <td class="item">树形控件</td>
                     <td class="mark">
                         <i class="iconfont no">&#xe62e;</i>
+                    </td>
+                    <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
                     </td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
@@ -1176,6 +1397,9 @@
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
                     <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
+                    </td>
+                    <td class="mark">
                         <i class="iconfont no">&#xe62e;</i>
                     </td>
                 </tr>
@@ -1189,6 +1413,9 @@
                     </td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
+                    </td>
+                    <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
                     </td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
@@ -1212,6 +1439,9 @@
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
                     <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
+                    </td>
+                    <td class="mark">
                         <i class="iconfont no">&#xe62e;</i>
                     </td>
                 </tr>
@@ -1219,6 +1449,9 @@
                     <td class="item">步骤条</td>
                     <td class="mark">
                         <i class="iconfont no">&#xe62e;</i>
+                    </td>
+                    <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
                     </td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
@@ -1248,6 +1481,30 @@
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
                     <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
+                    </td>
+                    <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
+                    </td>
+                </tr>
+                <tr class="components">
+                    <td class="item">进度环</td>
+                    <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
+                    </td>
+                    <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
+                    </td>
+                    <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
+                    </td>
+                    <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
+                    </td>
+                    <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
+                    </td>
+                    <td class="mark">
                         <i class="iconfont no">&#xe62e;</i>
                     </td>
                 </tr>
@@ -1258,6 +1515,9 @@
                     </td>
                     <td class="mark">
                         <i class="iconfont no">&#xe62e;</i>
+                    </td>
+                    <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
                     </td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
@@ -1284,11 +1544,17 @@
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
                     <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
+                    </td>
+                    <td class="mark">
                         <i class="iconfont no">&#xe62e;</i>
                     </td>
                 </tr>
                 <tr class="components">
                     <td class="item">锚点</td>
+                    <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
+                    </td>
                     <td class="mark">
                         <i class="iconfont no">&#xe62e;</i>
                     </td>
@@ -1320,11 +1586,17 @@
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
                     <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
+                    </td>
+                    <td class="mark">
                         <i class="iconfont no">&#xe62e;</i>
                     </td>
                 </tr>
                 <tr class="components">
                     <td class="item">音频</td>
+                    <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
+                    </td>
                     <td class="mark">
                         <i class="iconfont no">&#xe62e;</i>
                     </td>
@@ -1358,6 +1630,30 @@
                     <td class="mark">
                         <i class="iconfont no">&#xe62e;</i>
                     </td>
+                    <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
+                    </td>
+                </tr>
+                <tr class="components">
+                    <td class="item">瀑布流</td>
+                    <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
+                    </td>
+                    <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
+                    </td>
+                    <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
+                    </td>
+                    <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
+                    </td>
+                    <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
+                    </td>
+                    <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
+                    </td>
                 </tr>
                 <tr class="components">
                     <td class="item">多级联动</td>
@@ -1376,9 +1672,15 @@
                     <td class="mark">
                         <i class="iconfont no">&#xe62e;</i>
                     </td>
+                    <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
+                    </td>
                 </tr>
                 <tr class="components">
                     <td class="item">文本输入</td>
+                    <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
+                    </td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
@@ -1412,9 +1714,15 @@
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
+                    <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
+                    </td>
                 </tr>
                 <tr class="components">
                     <td class="item">开关</td>
+                    <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
+                    </td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
@@ -1448,6 +1756,9 @@
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
+                    <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
+                    </td>
                 </tr>
                 <tr class="components">
                     <td class="item">复选框组</td>
@@ -1459,6 +1770,9 @@
                     </td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
+                    </td>
+                    <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
                     </td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
@@ -1484,6 +1798,9 @@
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
+                    <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
+                    </td>
                 </tr>
                 <tr class="components">
                     <td class="item">多项输入</td>
@@ -1497,6 +1814,9 @@
                         <i class="iconfont no">&#xe62e;</i>
                     </td>
                     <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
+                    </td>
+                    <td class="mark">
                         <i class="iconfont no">&#xe62e;</i>
                     </td>
                     <td class="mark">
@@ -1507,6 +1827,9 @@
                     <td class="item">多项表单输入</td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
+                    </td>
+                    <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
                     </td>
                     <td class="mark">
                         <i class="iconfont no">&#xe62e;</i>
@@ -1538,11 +1861,17 @@
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
+                    <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
+                    </td>
                 </tr>
                 <tr class="components">
                     <td class="item">日期选择</td>
                     <td class="mark">
                         <i class="iconfont no">&#xe62e;</i>
+                    </td>
+                    <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
                     </td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
@@ -1569,6 +1898,9 @@
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
                     <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
+                    </td>
+                    <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
                     <td class="mark">
@@ -1577,6 +1909,9 @@
                 </tr>
                 <tr class="components">
                     <td class="item">上传</td>
+                    <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
+                    </td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
@@ -1608,6 +1943,9 @@
                         <i class="iconfont no">&#xe62e;</i>
                     </td>
                     <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
+                    </td>
+                    <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
                 </tr>
@@ -1615,6 +1953,9 @@
                     <td class="item">级联选择器</td>
                     <td class="mark">
                         <i class="iconfont no">&#xe62e;</i>
+                    </td>
+                    <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
                     </td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
@@ -1644,7 +1985,10 @@
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
                     <td class="mark">
-                        <i class="iconfont no">&#xe62e;</i>
+                        <i class="iconfont has">&#xe62d;</i>
+                    </td>
+                    <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
                     </td>
                 </tr>
                 <tr class="components">
@@ -1654,6 +1998,9 @@
                     </td>
                     <td class="mark">
                         <i class="iconfont no">&#xe62e;</i>
+                    </td>
+                    <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
                     </td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
@@ -1680,6 +2027,9 @@
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
                     <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
+                    </td>
+                    <td class="mark">
                         <i class="iconfont no">&#xe62e;</i>
                     </td>
                 </tr>
@@ -1695,10 +2045,13 @@
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
                     <td class="mark">
-                        <i class="iconfont no">&#xe62e;</i>
+                        <i class="iconfont has">&#xe62d;</i>
                     </td>
                     <td class="mark">
                         <i class="iconfont no">&#xe62e;</i>
+                    </td>
+                    <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
                     </td>
                 </tr>
                 <tr class="components">
@@ -1716,11 +2069,17 @@
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
                     <td class="mark">
+                        <i class="iconfont has">&#xe62d;</i>
+                    </td>
+                    <td class="mark">
                         <i class="iconfont no">&#xe62e;</i>
                     </td>
                 </tr>
                 <tr class="components">
                     <td class="item">提及</td>
+                    <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
+                    </td>
                     <td class="mark">
                         <i class="iconfont no">&#xe62e;</i>
                     </td>
@@ -1749,6 +2108,9 @@
                         <i class="iconfont no">&#xe62e;</i>
                     </td>
                     <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
+                    </td>
+                    <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
                     <td class="mark">
@@ -1759,6 +2121,9 @@
                     <td class="item">富文本输入框</td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
+                    </td>
+                    <td class="mark">
+                        <i class="iconfont no">&#xe62e;</i>
                     </td>
                     <td class="mark">
                         <i class="iconfont no">&#xe62e;</i>
@@ -1802,9 +2167,10 @@ export default {
 
         let allitems = this.$el.querySelectorAll('tbody > .components');
 
-        this.hmpuiNum = this.$el.querySelectorAll('tbody > .components > .mark:nth-last-child(5)>.has').length;
-        this.atuiNum = this.$el.querySelectorAll('tbody > .components > .mark:nth-last-child(4)>.has').length;
-        this.eleNum = this.$el.querySelectorAll('tbody > .components > .mark:nth-last-child(3)>.has').length;
+        this.hmpuiNum = this.$el.querySelectorAll('tbody > .components > .mark:nth-last-child(6)>.has').length;
+        this.atuiNum = this.$el.querySelectorAll('tbody > .components > .mark:nth-last-child(5)>.has').length;
+        this.eleNum = this.$el.querySelectorAll('tbody > .components > .mark:nth-last-child(4)>.has').length;
+        this.iviewNum = this.$el.querySelectorAll('tbody > .components > .mark:nth-last-child(3)>.has').length;
         this.antdNum = this.$el.querySelectorAll('tbody > .components > .mark:nth-last-child(2)>.has').length;
         this.morningNum = this.$el.querySelectorAll('tbody > .components > .mark:nth-last-child(1)>.has').length;
 
