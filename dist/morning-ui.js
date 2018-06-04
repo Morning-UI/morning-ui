@@ -24396,7 +24396,13 @@ exports.default = {
                             var _key3 = _step20.value;
 
 
-                            titleCol.push(_item[_key3] || this.conf.emptyCellValue);
+                            if (_item[_key3] === undefined) {
+
+                                titleCol.push(this.conf.emptyCellValue);
+                            } else {
+
+                                titleCol.push(_item[_key3]);
+                            }
                         }
                     } catch (err) {
                         _didIteratorError20 = true;
@@ -24422,7 +24428,13 @@ exports.default = {
                             var _key4 = _step21.value;
 
 
-                            normalCol.push(_item[_key4] || this.conf.emptyCellValue);
+                            if (_item[_key4] === undefined) {
+
+                                normalCol.push(this.conf.emptyCellValue);
+                            } else {
+
+                                normalCol.push(_item[_key4]);
+                            }
                         }
                     } catch (err) {
                         _didIteratorError21 = true;
