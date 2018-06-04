@@ -42,6 +42,7 @@
     |[prepend](#prepend)|滑块前部显示内容（太长的内容会被隐藏）|内容字符串(可使用HTML)|String|`''`|
     |[append](#append)|滑块后部显示内容（太长的内容会被隐藏）|内容字符串(可使用HTML)|String|`''`|
     |[show-point](#show-point)|显示步长的间断点(按`step`配置)。若间断点过于密集，组件会自动调整隐藏部分间断点。|`true`<br/>`false`|Boolean|`true`|
+    |[mark-range](#mark-range)|标记滑动条的某部分。这是一个数组每项都是一个标记段，标记段是一个长度为2的数组，分别表示开始和结束。<br>比如：`[[10, 20], [30, 40]]`会标记两段，第一段从数值10开始到20结束，第二段从数值30开始到40结束。|数组|Array|`[]`|
 
     :::
 
@@ -173,6 +174,14 @@
     :::democode/html
     <div style="width:300px;">
         <ui-slider show-point :min="30" :max="260" :step="2"></ui-slider>
+    </div>
+    :::
+    
+    #### mark-range
+
+    :::democode/html
+    <div style="width:300px;">
+        <ui-slider :mark-range="[[0, 20], [50, 70]]"></ui-slider>
     </div>
     :::
 

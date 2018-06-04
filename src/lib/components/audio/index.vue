@@ -52,8 +52,12 @@
                 width : _timeFormat(data.totalTime).length+'ch'
             }">{{_timeFormat(data.totalTime)}}</span>
         </div>
-        <div class="show-tools"></div>
-        <div class="more-tools"></div>
+        <div class="show-tools">
+            <!-- <i class="mo-icon mo-icon-more"></i> -->
+        </div>
+        <div class="more-tools">
+            <i class="mo-icon mo-icon-more"></i>
+        </div>
     </div>
 
     <audio>
