@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 0.10.32
+
+`2018年6月5日`
+
+- `ui-upload`组件新增`keep-origin-name`配置，可以保留文件原始名
+- 修复`ui-table`组件的`empty-cell-value`配置判断问题
+- 修复`ui-table`的一些样式问题
+- 修复`ui-table`行高计算错误的问题
+
 ## 0.10.31
 
 `2018年5月28日`
