@@ -438,7 +438,6 @@ export default {
                 
                 }
 
-
             }
 
             this._setStatus(index, fileObj.status);
