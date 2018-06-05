@@ -133,6 +133,7 @@
     |[allow-drag](#allow-drag)|允许拖拽文件或网络地址上传，若拖拽的是网络地址必须开启`allow-url`|`true`<br>`false`|Boolean|`false`|
     |[validate](#validate)|验证上传的文件，这是一个函数。函数包含两个入参：<br><br>第一个参数是上传文件的原始`File`对象<br>第二个参数是一个扩展对象，包含了以下这些信息：<br>&nbsp; &nbsp; `size` : 文件的大小<br>&nbsp; &nbsp; `width` : 图片的宽度(仅文件是图片时有效)<br>&nbsp; &nbsp; `height` : 图片的高度(仅文件是图片时有效)<br><br>通过这两个参数来验证文件。<br><br>此函数的返回值为验证结果，有两种：<br><br>非字符串：认为验证通过，开始上传文件<br>字符串：验证失败，字符串的内容作为提示信息展现给用户<br><br>如果是异步的验证，也可以返回Promise|验证函数|Function|`() => {}`|
     |[uploader](#uploader)|文件上传适配器，默认采用全局设置。`uploader`是一个函数，第一个参数是上传文件的`File`对象，需要返回一个对象：<br><br>`status` : 文件是否上传成功(必需，Boolean)<br>`path` : 文件上传后的网络地址(必需，String)<br>`message` : 文件上传失败的提示信息(String)，仅在`status`为`false`的时候需要|文件上传适配器函数|Function|`undefined`|
+    |[keep-origin-name](#keep-origin-name)|文件上传后显示的文件名会变为文件URL中的名字。开启此选项后组件将会保留文件原始的名字。<br>若无法获取文件原始的名字则仍然会从文件URL中获取名字。|`true`<br>`false`|Boolean|`false`|
     :::
 
     :::preset/html
@@ -282,6 +283,16 @@
     ---
     <div style="width:300px;">
         <ui-upload form-name="文件" :uploader="uploader"></ui-upload>
+    </div>
+    :::
+
+    #### keep-origin-name
+
+    显示的文件名将会是文件原始的名字：
+
+    :::democode/html
+    <div style="width:300px;">
+        <ui-upload form-name="文件" :keep-origin-name="true"></ui-upload>
     </div>
     :::
 
