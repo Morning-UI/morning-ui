@@ -14329,6 +14329,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
 
 var _axiosMin = __webpack_require__(157);
 
@@ -14377,6 +14378,10 @@ exports.default = {
         uploader: {
             type: Function,
             default: undefined
+        },
+        keepOriginName: {
+            type: Boolean,
+            default: false
         }
     },
     computed: {
@@ -14407,7 +14412,8 @@ exports.default = {
                 allowUrl: this.allowUrl,
                 allowDrag: this.allowDrag,
                 validate: this.validate,
-                uploader: this.uploader
+                uploader: this.uploader,
+                keepOriginName: this.keepOriginName
             },
             data: {
                 inputKey: 0,
@@ -14602,6 +14608,7 @@ exports.default = {
 
                         this._createNewFileObj({
                             path: value.path,
+                            name: value.name,
                             status: 'done'
                         });
                     }
@@ -14652,7 +14659,13 @@ exports.default = {
                 fileObj.name = fileObj.file.name;
             } else if (fileObj.path) {
 
-                fileObj.name = this._getName(fileObj.path);
+                if (this.conf.keepOriginName) {
+
+                    fileObj.name = options.name || this._getName(fileObj.path);
+                } else {
+
+                    fileObj.name = this._getName(fileObj.path);
+                }
             }
 
             this._setStatus(index, fileObj.status);
@@ -14806,8 +14819,12 @@ exports.default = {
 
                 if (result.status) {
 
+                    if (!_this2.conf.keepOriginName) {
+
+                        _this2.data.files[index].name = _this2._getName(result.path);
+                    }
+
                     _this2.data.files[index].path = result.path;
-                    _this2.data.files[index].name = _this2._getName(result.path);
                     _this2.data.files[index].data = result.data;
                     _this2._set(_this2._fetchValueFromFiles(), true, true);
                     _this2._setStatus(index, 'uploaded');
@@ -24081,6 +24098,10 @@ exports.default = {
 
                 if (_typeof($titleRows[index]) === 'object' && _typeof($normalRows[index]) === 'object') {
 
+                    // reset row height, then get row real height
+                    $normalRows[index].style.height = 'auto';
+                    $titleRows[index].style.height = 'auto';
+
                     var normalHeight = $normalRows[index].clientHeight;
                     var titleHeight = $titleRows[index].clientHeight;
                     var syncHeight = void 0;
@@ -24396,7 +24417,13 @@ exports.default = {
                             var _key3 = _step20.value;
 
 
-                            titleCol.push(_item[_key3] || this.conf.emptyCellValue);
+                            if (_item[_key3] === undefined) {
+
+                                titleCol.push(this.conf.emptyCellValue);
+                            } else {
+
+                                titleCol.push(_item[_key3]);
+                            }
                         }
                     } catch (err) {
                         _didIteratorError20 = true;
@@ -24422,7 +24449,13 @@ exports.default = {
                             var _key4 = _step21.value;
 
 
-                            normalCol.push(_item[_key4] || this.conf.emptyCellValue);
+                            if (_item[_key4] === undefined) {
+
+                                normalCol.push(this.conf.emptyCellValue);
+                            } else {
+
+                                normalCol.push(_item[_key4]);
+                            }
                         }
                     } catch (err) {
                         _didIteratorError21 = true;
@@ -28496,7 +28529,8 @@ var render = function() {
         "allow-url": _vm.allowUrl,
         "allow-drag": _vm.allowDrag,
         validate: _vm.validate,
-        uploader: _vm.uploader
+        uploader: _vm.uploader,
+        "keep-origin-name": _vm.keepOriginName
       },
       on: {
         dragover: function($event) {
@@ -40034,7 +40068,7 @@ var morning = {
         white: 'wh'
     },
     isMorning: true,
-    version: '0.10.31',
+    version: '0.10.32',
     map: {}
 };
 

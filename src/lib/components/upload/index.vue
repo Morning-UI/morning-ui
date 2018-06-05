@@ -17,6 +17,7 @@
         :allow-drag="allowDrag"
         :validate="validate"
         :uploader="uploader"
+        :keep-origin-name="keepOriginName"
 
         @dragover.stop.prevent="_dragover"
         @dragleave="_dragleave"
@@ -145,6 +146,10 @@ export default {
         uploader : {
             type : Function,
             default : undefined
+        },
+        keepOriginName : {
+            type : Boolean,
+            default : false
         }
     },
     computed : {
@@ -180,7 +185,8 @@ export default {
                 allowUrl : this.allowUrl,
                 allowDrag : this.allowDrag,
                 validate : this.validate,
-                uploader : this.uploader
+                uploader : this.uploader,
+                keepOriginName : this.keepOriginName
             },
             data : {
                 inputKey : 0,
@@ -381,6 +387,7 @@ export default {
 
                     this._createNewFileObj({
                         path : value.path,
+                        name : value.name,
                         status : 'done'
                     });
 
@@ -421,7 +428,15 @@ export default {
 
             } else if (fileObj.path) {
 
-                fileObj.name = this._getName(fileObj.path);
+                if (this.conf.keepOriginName) {
+
+                    fileObj.name = options.name || this._getName(fileObj.path);
+
+                } else {
+
+                    fileObj.name = this._getName(fileObj.path);
+                
+                }
 
             }
 
@@ -604,9 +619,14 @@ export default {
                     }
 
                     if (result.status) {
+                        
+                        if (!this.conf.keepOriginName) {
+
+                            this.data.files[index].name = this._getName(result.path);
+
+                        }
 
                         this.data.files[index].path = result.path;
-                        this.data.files[index].name = this._getName(result.path);
                         this.data.files[index].data = result.data;
                         this._set(this._fetchValueFromFiles(), true, true);
                         this._setStatus(index, 'uploaded');

@@ -18,6 +18,23 @@
     
     ### 更新记录
 
+    ### 0.10.32 <ui-badge class="circle ver-stable" size="s" color="light-theme">Stable</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2018年6月5日，
+            Archive : 
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.10.32" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.10.32/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.10.32/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor><br/><br/>
+
+    - `ui-upload`组件新增`keep-origin-name`配置，可以保留文件原始名
+    - 修复`ui-table`组件的`empty-cell-value`配置判断问题
+    - 修复`ui-table`的一些样式问题
+    - 修复`ui-table`行高计算错误的问题
+
     ### 0.10.31 <ui-badge class="circle ver-stable" size="s" color="light-theme">Stable</ui-badge>
 
     <ui-textcolor color="light-blue">

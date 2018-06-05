@@ -242,6 +242,7 @@
     - `anchor-target` : 锚点定位
     - `separate-emi` : 外部触发(触发分离)
     - `list-width` : 列表宽度
+    - `keep-origin-name` : 保留原始名
 
     </script>
     </doc-guide>

@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">35.12% </span>
+        <span class="strong">34.56% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>131/373</span>
+        <span class='fraction'>131/379</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">23.12% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>35/45</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">36.26% </span>
+        <span class="strong">35.63% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>124/342</span>
+        <span class='fraction'>124/348</span>
       </div>
     </div>
   </div>
@@ -1120,7 +1120,27 @@
 1075
 1076
 1077
-1078</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+1078
+1079
+1080
+1081
+1082
+1083
+1084
+1085
+1086
+1087
+1088
+1089
+1090
+1091
+1092
+1093
+1094
+1095
+1096
+1097
+1098</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1776,6 +1796,10 @@
 <span class="cline-any cline-yes">72x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -2059,11 +2083,27 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -2853,6 +2893,10 @@ export default {
                 <span class="missing-if-branch" title="if path not taken" >I</span>if (typeof $titleRows[index] === 'object' &amp;&amp;
 <span class="branch-1 cbranch-no" title="branch not covered" >                    typeof $normalRows[index] === 'object') {</span>
 &nbsp;
+                    // reset row height, then get row real height
+<span class="cstat-no" title="statement not covered" >                    $normalRows[index].style.height = 'auto';</span>
+<span class="cstat-no" title="statement not covered" >                    $titleRows[index].style.height = 'auto';</span>
+&nbsp;
                     let normalHeight = <span class="cstat-no" title="statement not covered" >$normalRows[index].clientHeight;</span>
                     let titleHeight = <span class="cstat-no" title="statement not covered" >$titleRows[index].clientHeight;</span>
                     let <span class="cstat-no" title="statement not covered" >syncHeight;</span>
@@ -3134,13 +3178,29 @@ export default {
 &nbsp;
 <span class="cstat-no" title="statement not covered" >                for (let key of titleKeys) <span class="cstat-no" title="statement not covered" >{</span></span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >                    titleCol.push(item[key] || this.conf.emptyCellValue);</span>
+<span class="cstat-no" title="statement not covered" >                    if (item[key] === undefined) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                        titleCol.push(this.conf.emptyCellValue);</span>
+&nbsp;
+                    } else {
+                        
+<span class="cstat-no" title="statement not covered" >                        titleCol.push(item[key]);</span>
+&nbsp;
+                    }
 &nbsp;
                 }
 &nbsp;
 <span class="cstat-no" title="statement not covered" >                for (let key of normalKeys) <span class="cstat-no" title="statement not covered" >{</span></span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >                    normalCol.push(item[key] || this.conf.emptyCellValue);</span>
+<span class="cstat-no" title="statement not covered" >                    if (item[key] === undefined) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                        normalCol.push(this.conf.emptyCellValue);</span>
+&nbsp;
+                    } else {
+                        
+<span class="cstat-no" title="statement not covered" >                        normalCol.push(item[key]);</span>
+&nbsp;
+                    }
 &nbsp;
                 }
 &nbsp;
@@ -3280,7 +3340,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon May 28 2018 23:56:13 GMT+0800 (CST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Jun 05 2018 14:32:00 GMT+0800 (CST)
 </div>
 </div>
 <script src="../../../prettify.js"></script>
