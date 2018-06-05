@@ -654,6 +654,10 @@ export default {
                 if (typeof $titleRows[index] === 'object' &&
                     typeof $normalRows[index] === 'object') {
 
+                    // reset row height, then get row real height
+                    $normalRows[index].style.height = 'auto';
+                    $titleRows[index].style.height = 'auto';
+
                     let normalHeight = $normalRows[index].clientHeight;
                     let titleHeight = $titleRows[index].clientHeight;
                     let syncHeight;
