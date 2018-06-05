@@ -935,13 +935,29 @@ export default {
 
                 for (let key of titleKeys) {
 
-                    titleCol.push(item[key] || this.conf.emptyCellValue);
+                    if (item[key] === undefined) {
+
+                        titleCol.push(this.conf.emptyCellValue);
+
+                    } else {
+                        
+                        titleCol.push(item[key]);
+
+                    }
 
                 }
 
                 for (let key of normalKeys) {
 
-                    normalCol.push(item[key] || this.conf.emptyCellValue);
+                    if (item[key] === undefined) {
+
+                        normalCol.push(this.conf.emptyCellValue);
+
+                    } else {
+                        
+                        normalCol.push(item[key]);
+
+                    }
 
                 }
 
