@@ -4931,7 +4931,15 @@ mor-table {
   border-width: 1px !important;
   border-style: solid !important;
   position: relative;
+  box-sizing: border-box;
   border-color: #e3e3e3 !important;
+}
+mor-table table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+mor-table table td {
+  padding: initial;
 }
 mor-table header {
   position: relative;
