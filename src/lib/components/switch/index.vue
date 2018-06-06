@@ -10,12 +10,22 @@
         :hide-name="hideName"
         :clearable="clearable"
         :auto-hide-name="autoHideName"
+        :open-note="openNote"
+        :close-note="closeNote"
+        :open-mark="openMark"
+        :close-mark="closeMark"
     >
 
     <div class="note">{{conf.formName}}</div>
     
-    <div class="track" @click="conf.state !== 'readonly' && toggle()">
-        <div class="point"></div>
+    <div class="wrap">
+        <div class="close-note" v-if="conf.closeNote" v-html="conf.closeNote"></div>
+        <div class="track" @click="conf.state !== 'readonly' && toggle()">
+            <div class="open-mark" v-if="conf.openMark" v-html="conf.openMark"></div>
+            <div class="point"></div>
+            <div class="close-mark" v-if="conf.closeMark" v-html="conf.closeMark"></div>
+        </div>
+        <div class="open-note" v-if="conf.openNote" v-html="conf.openNote"></div>
     </div>
 
     <morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn">清空</morning-link>
@@ -31,13 +41,33 @@ export default {
         autoHideName : {
             type : Boolean,
             default : false
+        },
+        openNote : {
+            type : String,
+            default : ''
+        },
+        closeNote : {
+            type : String,
+            default : ''
+        },
+        openMark : {
+            type : String,
+            default : ''
+        },
+        closeMark : {
+            type : String,
+            default : ''
         }
     },
     computed : {
         _conf : function () {
 
             return {
-                autoHideName : this.autoHideName
+                autoHideName : this.autoHideName,
+                openNote : this.openNote,
+                closeNote : this.closeNote,
+                openMark : this.openMark,
+                closeMark : this.closeMark
             };
 
         },
