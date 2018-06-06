@@ -8957,7 +8957,6 @@ mor-switch {
   position: relative;
   z-index: 1;
   display: inline-block;
-  width: 100%;
   box-sizing: border-box;
 }
 mor-switch.has-cleanbtn {
@@ -8969,23 +8968,80 @@ mor-switch .cleanbtn {
   font-size: 12px;
   margin-top: 1px;
 }
-mor-switch .note {
+mor-switch > .note {
   color: #303C4B;
   font-size: 16px;
-  height: 42px;
-  line-height: 42px;
-  margin-right: 50px;
-  overflow: hidden;
+  margin-bottom: 0.5em;
+  -webkit-user-select: text;
+}
+mor-switch.mor-switch.has-cleanbtn {
+  padding-bottom: 26px;
+}
+mor-switch > .cleanbtn {
+  left: 0;
+  bottom: 0;
+}
+mor-switch .wrap {
+  font-size: 0;
+  position: relative;
+}
+mor-switch .open-note,
+mor-switch .close-note {
+  font-size: 13px;
+  max-width: 60px;
+  display: inline-block;
+  vertical-align: top;
+  line-height: 30px;
+  color: #A8B3C2;
   white-space: nowrap;
+  overflow: hidden;
   text-overflow: ellipsis;
 }
-mor-switch .track {
+mor-switch .open-note {
+  padding-left: 6px;
+}
+mor-switch .close-note {
+  padding-right: 6px;
+  font-weight: 700;
+}
+mor-switch .open-mark,
+mor-switch .close-mark {
+  font-size: 12px;
   position: absolute;
+  top: 5px;
+  width: 15px;
+  text-align: center;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: none;
+}
+mor-switch .open-mark > i,
+mor-switch .close-mark > i {
+  font-size: 12px;
+}
+mor-switch .open-mark {
+  left: 5px;
+  color: #FFFFFF;
+}
+mor-switch .close-mark {
+  right: 5px;
+  color: #A8B3C2;
+}
+mor-switch.open .open-note {
+  font-weight: 700;
+}
+mor-switch.open .close-note {
+  font-weight: 400;
+}
+mor-switch .track {
+  vertical-align: top;
+  position: relative;
   right: 0;
-  top: 6px;
   height: 30px;
   width: 50px;
-  background: #FFF;
+  background: #FFFFFF;
   box-shadow: 0 0 2px #E6E6E6 inset;
   border: 1px #ebebeb solid;
   border-radius: 15px;
@@ -9000,6 +9056,8 @@ mor-switch .track:hover {
   border: 1px #d9d9d9 solid;
 }
 mor-switch .track .point {
+  z-index: 2;
+  position: relative;
   border-radius: 12px;
   height: 24px;
   width: 24px;
@@ -9026,6 +9084,18 @@ mor-switch.hide-name .track {
   left: 0;
   right: auto;
 }
+mor-switch.co-t .open-note {
+  color: #8E9CAF;
+}
+mor-switch.co-t .close-note {
+  color: #F33D5D;
+}
+mor-switch.co-t.open .open-note {
+  color: #F33D5D;
+}
+mor-switch.co-t.open .close-note {
+  color: #8E9CAF;
+}
 mor-switch.co-t.open .track {
   background: #F33D5D;
   box-shadow: 0 0 3px #be0c2b inset;
@@ -9033,6 +9103,18 @@ mor-switch.co-t.open .track {
 }
 mor-switch.co-t.open .track .point {
   box-shadow: 0 0 4px #a60a26;
+}
+mor-switch.co-lt .open-note {
+  color: #8E9CAF;
+}
+mor-switch.co-lt .close-note {
+  color: #F86F88;
+}
+mor-switch.co-lt.open .open-note {
+  color: #F86F88;
+}
+mor-switch.co-lt.open .close-note {
+  color: #8E9CAF;
 }
 mor-switch.co-lt.open .track {
   background: #F86F88;
@@ -9042,6 +9124,18 @@ mor-switch.co-lt.open .track {
 mor-switch.co-lt.open .track .point {
   box-shadow: 0 0 4px #f4264c;
 }
+mor-switch.co-dt .open-note {
+  color: #8E9CAF;
+}
+mor-switch.co-dt .close-note {
+  color: #D22343;
+}
+mor-switch.co-dt.open .open-note {
+  color: #D22343;
+}
+mor-switch.co-dt.open .close-note {
+  color: #8E9CAF;
+}
 mor-switch.co-dt.open .track {
   background: #D22343;
   box-shadow: 0 0 3px #991a31 inset;
@@ -9049,6 +9143,18 @@ mor-switch.co-dt.open .track {
 }
 mor-switch.co-dt.open .track .point {
   box-shadow: 0 0 4px #7b1427;
+}
+mor-switch.co-s .open-note {
+  color: #8E9CAF;
+}
+mor-switch.co-s .close-note {
+  color: #4DBD67;
+}
+mor-switch.co-s.open .open-note {
+  color: #4DBD67;
+}
+mor-switch.co-s.open .close-note {
+  color: #8E9CAF;
 }
 mor-switch.co-s.open .track {
   background: #4DBD67;
@@ -9058,6 +9164,18 @@ mor-switch.co-s.open .track {
 mor-switch.co-s.open .track .point {
   box-shadow: 0 0 4px #256534;
 }
+mor-switch.co-w .open-note {
+  color: #8E9CAF;
+}
+mor-switch.co-w .close-note {
+  color: #F0AD4E;
+}
+mor-switch.co-w.open .open-note {
+  color: #F0AD4E;
+}
+mor-switch.co-w.open .close-note {
+  color: #8E9CAF;
+}
 mor-switch.co-w.open .track {
   background: #F0AD4E;
   box-shadow: 0 0 3px #e89014 inset;
@@ -9065,6 +9183,18 @@ mor-switch.co-w.open .track {
 }
 mor-switch.co-w.open .track .point {
   box-shadow: 0 0 4px #b06d0f;
+}
+mor-switch.co-d .open-note {
+  color: #8E9CAF;
+}
+mor-switch.co-d .close-note {
+  color: #D64431;
+}
+mor-switch.co-d.open .open-note {
+  color: #D64431;
+}
+mor-switch.co-d.open .close-note {
+  color: #8E9CAF;
 }
 mor-switch.co-d.open .track {
   background: #D64431;
@@ -9074,6 +9204,18 @@ mor-switch.co-d.open .track {
 mor-switch.co-d.open .track .point {
   box-shadow: 0 0 4px #86271b;
 }
+mor-switch.co-p .open-note {
+  color: #8E9CAF;
+}
+mor-switch.co-p .close-note {
+  color: #2185D0;
+}
+mor-switch.co-p.open .open-note {
+  color: #2185D0;
+}
+mor-switch.co-p.open .close-note {
+  color: #8E9CAF;
+}
 mor-switch.co-p.open .track {
   background: #2185D0;
   box-shadow: 0 0 3px #186097 inset;
@@ -9081,6 +9223,18 @@ mor-switch.co-p.open .track {
 }
 mor-switch.co-p.open .track .point {
   box-shadow: 0 0 4px #103f62;
+}
+mor-switch.co-m .open-note {
+  color: #8E9CAF;
+}
+mor-switch.co-m .close-note {
+  color: #A9A9A9;
+}
+mor-switch.co-m.open .open-note {
+  color: #A9A9A9;
+}
+mor-switch.co-m.open .close-note {
+  color: #8E9CAF;
 }
 mor-switch.co-m.open .track {
   background: #A9A9A9;
@@ -9090,6 +9244,18 @@ mor-switch.co-m.open .track {
 mor-switch.co-m.open .track .point {
   box-shadow: 0 0 4px #696969;
 }
+mor-switch.co-i .open-note {
+  color: #8E9CAF;
+}
+mor-switch.co-i .close-note {
+  color: #03A6B9;
+}
+mor-switch.co-i.open .open-note {
+  color: #03A6B9;
+}
+mor-switch.co-i.open .close-note {
+  color: #8E9CAF;
+}
 mor-switch.co-i.open .track {
   background: #03A6B9;
   box-shadow: 0 0 3px #026b78 inset;
@@ -9097,6 +9263,18 @@ mor-switch.co-i.open .track {
 }
 mor-switch.co-i.open .track .point {
   box-shadow: 0 0 4px #01353c;
+}
+mor-switch.co-bk .open-note {
+  color: #8E9CAF;
+}
+mor-switch.co-bk .close-note {
+  color: #17212D;
+}
+mor-switch.co-bk.open .open-note {
+  color: #17212D;
+}
+mor-switch.co-bk.open .close-note {
+  color: #8E9CAF;
 }
 mor-switch.co-bk.open .track {
   background: #17212D;
@@ -9106,6 +9284,18 @@ mor-switch.co-bk.open .track {
 mor-switch.co-bk.open .track .point {
   box-shadow: 0 0 4px #000000;
 }
+mor-switch.co-lbk .open-note {
+  color: #8E9CAF;
+}
+mor-switch.co-lbk .close-note {
+  color: #303C4B;
+}
+mor-switch.co-lbk.open .open-note {
+  color: #303C4B;
+}
+mor-switch.co-lbk.open .close-note {
+  color: #8E9CAF;
+}
 mor-switch.co-lbk.open .track {
   background: #303C4B;
   box-shadow: 0 0 3px #161c23 inset;
@@ -9113,6 +9303,18 @@ mor-switch.co-lbk.open .track {
 }
 mor-switch.co-lbk.open .track .point {
   box-shadow: 0 0 4px #000000;
+}
+mor-switch.co-elbk .open-note {
+  color: #8E9CAF;
+}
+mor-switch.co-elbk .close-note {
+  color: #45505C;
+}
+mor-switch.co-elbk.open .open-note {
+  color: #45505C;
+}
+mor-switch.co-elbk.open .close-note {
+  color: #8E9CAF;
 }
 mor-switch.co-elbk.open .track {
   background: #45505C;
@@ -9122,6 +9324,18 @@ mor-switch.co-elbk.open .track {
 mor-switch.co-elbk.open .track .point {
   box-shadow: 0 0 4px #0e1113;
 }
+mor-switch.co-bu .open-note {
+  color: #A8B3C2;
+}
+mor-switch.co-bu .close-note {
+  color: #7C8BA0;
+}
+mor-switch.co-bu.open .open-note {
+  color: #7C8BA0;
+}
+mor-switch.co-bu.open .close-note {
+  color: #A8B3C2;
+}
 mor-switch.co-bu.open .track {
   background: #7C8BA0;
   box-shadow: 0 0 3px #5c6a7e inset;
@@ -9130,6 +9344,18 @@ mor-switch.co-bu.open .track {
 mor-switch.co-bu.open .track .point {
   box-shadow: 0 0 4px #424c5b;
 }
+mor-switch.co-lbu .open-note {
+  color: #A8B3C2;
+}
+mor-switch.co-lbu .close-note {
+  color: #8E9CAF;
+}
+mor-switch.co-lbu.open .open-note {
+  color: #8E9CAF;
+}
+mor-switch.co-lbu.open .close-note {
+  color: #A8B3C2;
+}
 mor-switch.co-lbu.open .track {
   background: #8E9CAF;
   box-shadow: 0 0 3px #687a93 inset;
@@ -9137,6 +9363,18 @@ mor-switch.co-lbu.open .track {
 }
 mor-switch.co-lbu.open .track .point {
   box-shadow: 0 0 4px #4f5c6f;
+}
+mor-switch.co-elbu .open-note {
+  color: #A8B3C2;
+}
+mor-switch.co-elbu .close-note {
+  color: #A8B3C2;
+}
+mor-switch.co-elbu.open .open-note {
+  color: #A8B3C2;
+}
+mor-switch.co-elbu.open .close-note {
+  color: #A8B3C2;
 }
 mor-switch.co-elbu.open .track {
   background: #A8B3C2;
@@ -9161,6 +9399,24 @@ mor-switch.co-si .track:hover {
 mor-switch.co-si .track .point {
   box-shadow: 0 0 4px #5d7692;
 }
+mor-switch.co-si .open-note {
+  color: #D6DDE5;
+}
+mor-switch.co-si .close-note {
+  color: #D6DDE5;
+}
+mor-switch.co-si .close-mark {
+  color: #FFFFFF;
+}
+mor-switch.co-si .open-mark {
+  color: #303C4B;
+}
+mor-switch.co-si.open .open-note {
+  color: #D6DDE5;
+}
+mor-switch.co-si.open .close-note {
+  color: #D6DDE5;
+}
 mor-switch.co-si.open .track {
   background: #D6DDE5;
   box-shadow: 0 0 3px #c3cdd9 inset;
@@ -9183,6 +9439,24 @@ mor-switch.co-lsi .track:hover {
 }
 mor-switch.co-lsi .track .point {
   box-shadow: 0 0 4px #6182a3;
+}
+mor-switch.co-lsi .open-note {
+  color: #D6DDE5;
+}
+mor-switch.co-lsi .close-note {
+  color: #E2E8EE;
+}
+mor-switch.co-lsi .close-mark {
+  color: #FFFFFF;
+}
+mor-switch.co-lsi .open-mark {
+  color: #303C4B;
+}
+mor-switch.co-lsi.open .open-note {
+  color: #E2E8EE;
+}
+mor-switch.co-lsi.open .close-note {
+  color: #D6DDE5;
 }
 mor-switch.co-lsi.open .track {
   background: #E2E8EE;
@@ -9207,6 +9481,24 @@ mor-switch.co-elsi .track:hover {
 mor-switch.co-elsi .track .point {
   box-shadow: 0 0 4px #6a8bac;
 }
+mor-switch.co-elsi .open-note {
+  color: #D6DDE5;
+}
+mor-switch.co-elsi .close-note {
+  color: #EDF1F5;
+}
+mor-switch.co-elsi .close-mark {
+  color: #FFFFFF;
+}
+mor-switch.co-elsi .open-mark {
+  color: #303C4B;
+}
+mor-switch.co-elsi.open .open-note {
+  color: #EDF1F5;
+}
+mor-switch.co-elsi.open .close-note {
+  color: #D6DDE5;
+}
 mor-switch.co-elsi.open .track {
   background: #EDF1F5;
   box-shadow: 0 0 3px #d9e2ea inset;
@@ -9229,6 +9521,24 @@ mor-switch.co-g .track:hover {
 }
 mor-switch.co-g .track .point {
   box-shadow: 0 0 4px #808080;
+}
+mor-switch.co-g .open-note {
+  color: #D6DDE5;
+}
+mor-switch.co-g .close-note {
+  color: #E6E6E6;
+}
+mor-switch.co-g .close-mark {
+  color: #FFFFFF;
+}
+mor-switch.co-g .open-mark {
+  color: #303C4B;
+}
+mor-switch.co-g.open .open-note {
+  color: #E6E6E6;
+}
+mor-switch.co-g.open .close-note {
+  color: #D6DDE5;
 }
 mor-switch.co-g.open .track {
   background: #E6E6E6;
@@ -9253,6 +9563,24 @@ mor-switch.co-lg .track:hover {
 mor-switch.co-lg .track .point {
   box-shadow: 0 0 4px #8a8a8a;
 }
+mor-switch.co-lg .open-note {
+  color: #D6DDE5;
+}
+mor-switch.co-lg .close-note {
+  color: #F0F0F0;
+}
+mor-switch.co-lg .close-mark {
+  color: #FFFFFF;
+}
+mor-switch.co-lg .open-mark {
+  color: #303C4B;
+}
+mor-switch.co-lg.open .open-note {
+  color: #F0F0F0;
+}
+mor-switch.co-lg.open .close-note {
+  color: #D6DDE5;
+}
 mor-switch.co-lg.open .track {
   background: #F0F0F0;
   box-shadow: 0 0 3px #e1e1e1 inset;
@@ -9276,6 +9604,24 @@ mor-switch.co-wh .track:hover {
 mor-switch.co-wh .track .point {
   box-shadow: 0 0 4px #000000;
 }
+mor-switch.co-wh .open-note {
+  color: #D6DDE5;
+}
+mor-switch.co-wh .close-note {
+  color: #FFFFFF;
+}
+mor-switch.co-wh .close-mark {
+  color: #FFFFFF;
+}
+mor-switch.co-wh .open-mark {
+  color: #303C4B;
+}
+mor-switch.co-wh.open .open-note {
+  color: #FFFFFF;
+}
+mor-switch.co-wh.open .close-note {
+  color: #D6DDE5;
+}
 mor-switch.co-wh.open .track {
   background: #F0F0F0;
   box-shadow: 0 0 3px #e1e1e1 inset;
@@ -9296,6 +9642,18 @@ mor-switch.st-readonly .track {
 mor-switch.st-disabled .track .point,
 mor-switch.st-readonly .track .point {
   background: #cdcdcd;
+}
+mor-switch .open-note {
+  color: #8E9CAF;
+}
+mor-switch .close-note {
+  color: #F33D5D;
+}
+mor-switch.open .open-note {
+  color: #F33D5D;
+}
+mor-switch.open .close-note {
+  color: #8E9CAF;
 }
 mor-switch.open .track {
   background: #F33D5D;
@@ -11023,7 +11381,6 @@ mor-slider .main-slider {
   box-sizing: border-box;
 }
 mor-slider .cleanbtn {
-  position: absolute;
   right: 20px;
   bottom: 0;
 }
@@ -11703,15 +12060,15 @@ mor-colorpicker .alpha-bg-3,
 mor-colorpicker .alpha-bg-4 {
   background-size: 16px;
   height: 8px;
-  background-color: #ddd;
+  background-color: #DDD;
 }
 mor-colorpicker .alpha-bg-1,
 mor-colorpicker .alpha-bg-3 {
-  background-image: -webkit-gradient(linear, 0 0,100% 0, color-stop(0.5, #0000), color-stop(0.5, #fff), to(#fff));
+  background-image: -webkit-gradient(linear, 0 0, 100% 0, color-stop(0.5, #0000), color-stop(0.5, #fff), to(#fff));
 }
 mor-colorpicker .alpha-bg-2,
 mor-colorpicker .alpha-bg-4 {
-  background-image: -webkit-gradient(linear, 0 0,100% 0, color-stop(0.5, #fff), color-stop(0.5, #0000), to(#0000));
+  background-image: -webkit-gradient(linear,  0 0, 100% 0, color-stop(0.5, #fff), color-stop(0.5, #0000), to(#0000));
 }
 mor-colorpicker .color {
   position: absolute;
@@ -11807,7 +12164,7 @@ mor-colorpicker.st-readonly .preview .color {
   box-sizing: border-box;
   border-radius: 5em;
   border: 1px solid #FFFFFF;
-  box-shadow: 0px 0px 1px #000;
+  box-shadow: 0 0 1px #000;
   z-index: 3;
 }
 .mo-colorpicker-wrap .tools {
@@ -11832,7 +12189,7 @@ mor-colorpicker.st-readonly .preview .color {
   transform: translate(-50%, -50%);
   font-size: 16px;
   z-index: 2;
-  color: #fff;
+  color: #FFF;
   text-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
 }
 .mo-colorpicker-wrap .tools .color-copy:hover {
@@ -11847,15 +12204,15 @@ mor-colorpicker.st-readonly .preview .color {
 .mo-colorpicker-wrap .tools .alpha-bg-4 {
   background-size: 16px;
   height: 8px;
-  background-color: #ddd;
+  background-color: #DDD;
 }
 .mo-colorpicker-wrap .tools .alpha-bg-1,
 .mo-colorpicker-wrap .tools .alpha-bg-3 {
-  background-image: -webkit-gradient(linear, 0 0,100% 0, color-stop(0.5, #0000), color-stop(0.5, #fff), to(#fff));
+  background-image: -webkit-gradient(linear, 0 0, 100% 0, color-stop(0.5, #0000), color-stop(0.5, #fff), to(#fff));
 }
 .mo-colorpicker-wrap .tools .alpha-bg-2,
 .mo-colorpicker-wrap .tools .alpha-bg-4 {
-  background-image: -webkit-gradient(linear, 0 0,100% 0, color-stop(0.5, #fff), color-stop(0.5, #0000), to(#0000));
+  background-image: -webkit-gradient(linear,  0 0, 100% 0, color-stop(0.5, #fff), color-stop(0.5, #0000), to(#0000));
 }
 .mo-colorpicker-wrap .tools .color {
   position: absolute;
@@ -11893,7 +12250,7 @@ mor-colorpicker.st-readonly .preview .color {
 }
 .mo-colorpicker-wrap .tools .slider-tool .hsb mor-slider .track,
 .mo-colorpicker-wrap .tools .slider-tool .alpha mor-slider .track {
-  background: -webkit-linear-gradient(left, #f00, #f0f, #00f, #0ff, #0f0, #ff0, #f00);
+  background: linear-gradient(to left, #F00, #F0F, #00F, #0FF, #0F0, #FF0, #F00);
   height: 10px;
 }
 .mo-colorpicker-wrap .tools .slider-tool .hsb mor-slider .selected-line,
@@ -11907,8 +12264,8 @@ mor-colorpicker.st-readonly .preview .color {
   border-width: 0;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
 }
-.mo-colorpicker-wrap .tools .slider-tool .alpha mor-slider .track:before {
-  background-image: -webkit-gradient(linear, 0 0,100% 0, color-stop(0.5, #0000), color-stop(0.5, #fff), to(#fff));
+.mo-colorpicker-wrap .tools .slider-tool .alpha mor-slider .track::before {
+  background-image: -webkit-gradient(linear, 0 0, 100% 0, color-stop(0.5, #0000), color-stop(0.5, #fff), to(#fff));
   background-color: #DDD;
   content: ' ';
   display: block;
