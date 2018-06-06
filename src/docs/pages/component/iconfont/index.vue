@@ -250,6 +250,22 @@
             <i class="mo-icon-fast-forward"></i>
             <span>mo-icon-fast-forward</span>
         </div>
+        <div>
+            <i class="mo-icon-volume-off"></i>
+            <span>mo-icon-volume-off</span>
+        </div>
+        <div>
+            <i class="mo-icon-volume-1"></i>
+            <span>mo-icon-volume-1</span>
+        </div>
+        <div>
+            <i class="mo-icon-volume-2"></i>
+            <span>mo-icon-volume-2</span>
+        </div>
+        <div>
+            <i class="mo-icon-volume-3"></i>
+            <span>mo-icon-volume-3</span>
+        </div>
     </div>
     
     ### 图标托管

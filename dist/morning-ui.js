@@ -18648,6 +18648,24 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var clickTipHideTime = 1000;
 var minPointSpacing = 20;
@@ -18693,6 +18711,12 @@ exports.default = {
         showPoint: {
             type: Boolean,
             default: false
+        },
+        markRange: {
+            type: Array,
+            default: function _default() {
+                return [];
+            }
         }
     },
     computed: {
@@ -18706,7 +18730,8 @@ exports.default = {
                 tipFormatter: this.tipFormatter,
                 prepend: this.prepend,
                 append: this.append,
-                showPoint: this.showPoint
+                showPoint: this.showPoint,
+                markRange: this.markRange
             };
         },
         hasPrepend: function hasPrepend() {
@@ -22710,15 +22735,31 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
-
-// TODO : 加载进度
-// TODO : 音量(tool)
-// TODO : 下载(tool)
-// TODO : 循环播放(tool)
-// TODO : autoplay(config)
-// TODO : 不显示time(config)
-// TODO : 不显示process(config)
-// TODO : 主工具(config)
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var oneHour = 3600;
 var oneMinute = 60;
@@ -22730,13 +22771,28 @@ exports.default = {
         src: {
             type: String,
             default: ''
+        },
+        hideTime: {
+            type: Boolean,
+            defualt: false
+        },
+        hideProgress: {
+            type: Boolean,
+            defualt: false
+        },
+        autoplay: {
+            type: Boolean,
+            default: true
         }
     },
     computed: {
         _conf: function _conf() {
 
             return {
-                src: this.src
+                src: this.src,
+                hideTime: this.hideTime,
+                hideProgress: this.hideProgress,
+                autoplay: this.autoplay
             };
         }
     },
@@ -22747,8 +22803,10 @@ exports.default = {
                 $audio: null,
                 playing: false,
                 totalTime: 1,
-                loadedTime: 0,
+                loadedTimes: [],
                 currentTime: 0,
+                volume: 100,
+                muted: false,
                 dontSyncCurrentTime: false
             }
         };
@@ -22772,12 +22830,32 @@ exports.default = {
         },
         _syncLoadedTime: function _syncLoadedTime() {
 
-            if (this.data.$audio.buffered.length > 0) {
+            var i = 0;
+            var loadedTimes = [];
 
-                this.data.loadedTime = Math.floor(this.data.$audio.buffered.end(0));
+            console.log(this.data.$audio.buffered.length);
+
+            while (i < this.data.$audio.buffered.length) {
+
+                loadedTimes.push([Math.ceil(this.data.$audio.buffered.start(i)), Math.floor(this.data.$audio.buffered.end(i))]);
+
+                i++;
             }
 
-            this.data.loadedTime = 0;
+            this.data.loadedTimes = loadedTimes;
+        },
+        _syncVolume: function _syncVolume() {
+
+            this.data.volume = Math.floor(this.data.$audio.volume * 100);
+            this.data.muted = this.data.$audio.muted;
+        },
+        _syncPlay: function _syncPlay() {
+
+            this.data.playing = !this.data.$audio.paused;
+        },
+        _volumeFormat: function _volumeFormat(value) {
+
+            return value + '%';
         },
         _timeFormat: function _timeFormat(value) {
 
@@ -22834,6 +22912,17 @@ exports.default = {
                 src: this.conf.src
             };
         },
+        mute: function mute(toggle) {
+
+            console.log(toggle, this.data.muted);
+
+            if (toggle === undefined) {
+
+                toggle = !this.data.muted;
+            }
+
+            this.data.muted = toggle;
+        },
         to: function to(time) {
 
             if (time === undefined) {
@@ -22873,6 +22962,26 @@ exports.default = {
         this.data.$audio.addEventListener('durationchange', this._syncTotalTime);
         this.data.$audio.addEventListener('timeupdate', this._syncCurrentTime);
         this.data.$audio.addEventListener('progress', this._syncLoadedTime);
+        this.data.$audio.addEventListener('loadeddata', this._syncLoadedTime);
+        this.data.$audio.addEventListener('volumechange', this._syncVolume);
+        this.data.$audio.addEventListener('play', this._syncPlay);
+
+        this.$watch('conf.autoplay', function () {
+
+            _this2.data.$audio.autoplay = _this2.conf.autoplay;
+        }, {
+            immediate: true
+        });
+
+        this.$watch('data.muted', function () {
+
+            _this2.data.$audio.muted = _this2.data.muted;
+        });
+
+        this.$watch('data.volume', function () {
+
+            _this2.data.$audio.volume = _this2.data.volume / 100;
+        });
 
         this.$watch('conf.src', function () {
 
@@ -32530,7 +32639,8 @@ var render = function() {
         "tip-formatter": _vm.tipFormatter,
         prepend: _vm.prepend,
         append: _vm.append,
-        "show-point": _vm.showPoint
+        "show-point": _vm.showPoint,
+        "mark-range": _vm.markRange
       }
     },
     [
@@ -32566,6 +32676,34 @@ var render = function() {
                 return _c("li", {
                   style: { left: i * _vm.data.pointWidth + "px" }
                 })
+              })
+            ),
+            _vm._v(" "),
+            _c(
+              "ul",
+              { staticClass: "marks" },
+              _vm._l(_vm.conf.markRange, function(mark) {
+                return mark instanceof Array &&
+                  mark.length === 2 &&
+                  typeof mark[0] === "number" &&
+                  typeof mark[1] === "number" &&
+                  mark[1] > mark[0] &&
+                  _vm.data.$track
+                  ? _c("li", {
+                      style: {
+                        left:
+                          (mark[0] - _vm.conf.min) /
+                            _vm.range *
+                            _vm.data.$track.clientWidth +
+                          "px",
+                        width:
+                          (mark[1] - mark[0]) /
+                            _vm.range *
+                            _vm.data.$track.clientWidth +
+                          "px"
+                      }
+                    })
+                  : _vm._e()
               })
             ),
             _vm._v(" "),
@@ -33885,98 +34023,190 @@ var render = function() {
         "loop-play": _vm.loopPlay,
         "hide-time": _vm.hideTime,
         "hide-progress": _vm.hideProgress,
-        "show-tools": _vm.mainTools,
-        "more-tools": _vm.moreTools
+        autoplay: _vm.autoplay
       }
     },
     [
-      _c("div", { staticClass: "audio-box" }, [
-        _c(
-          "div",
-          {
-            staticClass: "play",
-            class: { "no-audio": !_vm.conf.src },
-            on: {
-              click: function($event) {
-                _vm.toggle()
-              }
-            }
-          },
-          [
-            !_vm.data.playing
-              ? _c("i", {
-                  staticClass: "mo-icon mo-icon-play",
-                  attrs: { id: "mor-audio-play-" + _vm.uiid }
-                })
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.data.playing
-              ? _c("i", { staticClass: "mo-icon mo-icon-pause" })
-              : _vm._e(),
-            _vm._v(" "),
-            !_vm.conf.src
-              ? _c(
-                  "morning-tip",
-                  {
-                    attrs: {
-                      target: "#mor-audio-play-" + _vm.uiid,
-                      color: "extra-light-black"
-                    }
-                  },
-                  [_vm._v("\n            无音频\n        ")]
-                )
-              : _vm._e()
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "progress" },
-          [
-            _c("morning-slider", {
-              ref: "mor-audio-slider-" + _vm.uiid,
-              attrs: {
-                state: _vm.conf.src ? "normal" : "readonly",
-                min: 0,
-                max: _vm.data.totalTime || 1,
-                step: 1,
-                tipFormatter: _vm._timeFormat
-              },
-              on: { "value-change": _vm.to }
-            })
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "time" }, [
+      _c(
+        "div",
+        { staticClass: "audio-box" },
+        [
           _c(
-            "span",
+            "div",
             {
-              style: {
-                width: _vm._timeFormat(_vm.data.currentTime).length + "ch"
+              staticClass: "play",
+              class: { "no-audio": !_vm.conf.src },
+              on: {
+                click: function($event) {
+                  _vm.toggle()
+                }
               }
             },
-            [_vm._v(_vm._s(_vm._timeFormat(_vm.data.currentTime)))]
+            [
+              !_vm.data.playing
+                ? _c("i", {
+                    staticClass: "mo-icon mo-icon-play",
+                    attrs: { id: "mor-audio-play-" + _vm.uiid }
+                  })
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.data.playing
+                ? _c("i", { staticClass: "mo-icon mo-icon-pause" })
+                : _vm._e(),
+              _vm._v(" "),
+              !_vm.conf.src
+                ? _c(
+                    "morning-tip",
+                    {
+                      attrs: {
+                        target: "#mor-audio-play-" + _vm.uiid,
+                        color: "extra-light-black"
+                      }
+                    },
+                    [_vm._v("\n            无音频\n        ")]
+                  )
+                : _vm._e()
+            ],
+            1
           ),
           _vm._v(" "),
-          _c("span", [_vm._v("/")]),
+          _c(
+            "div",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: !_vm.conf.hideProgress,
+                  expression: "!conf.hideProgress"
+                }
+              ],
+              staticClass: "progress"
+            },
+            [
+              _c("morning-slider", {
+                ref: "mor-audio-slider-" + _vm.uiid,
+                attrs: {
+                  state: _vm.conf.src ? "normal" : "readonly",
+                  min: 0,
+                  max: _vm.data.totalTime || 1,
+                  step: 1,
+                  "mark-range": _vm.data.loadedTimes,
+                  tipFormatter: _vm._timeFormat
+                },
+                on: { "value-change": _vm.to }
+              })
+            ],
+            1
+          ),
           _vm._v(" "),
           _c(
-            "span",
+            "div",
             {
-              style: {
-                width: _vm._timeFormat(_vm.data.totalTime).length + "ch"
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: !_vm.conf.hideProgress,
+                  expression: "!conf.hideProgress"
+                }
+              ],
+              staticClass: "time"
+            },
+            [
+              _c(
+                "span",
+                {
+                  style: {
+                    width: _vm._timeFormat(_vm.data.currentTime).length + "ch"
+                  }
+                },
+                [_vm._v(_vm._s(_vm._timeFormat(_vm.data.currentTime)))]
+              ),
+              _vm._v(" "),
+              _c("span", [_vm._v("/")]),
+              _vm._v(" "),
+              _c(
+                "span",
+                {
+                  style: {
+                    width: _vm._timeFormat(_vm.data.totalTime).length + "ch"
+                  }
+                },
+                [_vm._v(_vm._s(_vm._timeFormat(_vm.data.totalTime)))]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "volume",
+              attrs: { id: "mor-audio-volume-" + _vm.uiid },
+              on: {
+                click: function($event) {
+                  _vm.mute(undefined)
+                }
               }
             },
-            [_vm._v(_vm._s(_vm._timeFormat(_vm.data.totalTime)))]
+            [
+              _vm.data.volume === 0 || _vm.data.muted
+                ? _c("i", { staticClass: "mo-icon mo-icon-volume-off" })
+                : _vm._e(),
+              _vm._v(" "),
+              !_vm.data.muted && _vm.data.volume > 0 && _vm.data.volume < 50
+                ? _c("i", { staticClass: "mo-icon mo-icon-volume-1" })
+                : _vm._e(),
+              _vm._v(" "),
+              !_vm.data.muted && _vm.data.volume >= 50 && _vm.data.volume < 100
+                ? _c("i", { staticClass: "mo-icon mo-icon-volume-2" })
+                : _vm._e(),
+              _vm._v(" "),
+              !_vm.data.muted && _vm.data.volume === 100
+                ? _c("i", { staticClass: "mo-icon mo-icon-volume-3" })
+                : _vm._e()
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "morning-tip",
+            {
+              ref: "mor-audio-volumetip-" + _vm.uiid,
+              staticClass: "mor-audio-volume",
+              attrs: { target: "#mor-audio-volume-" + _vm.uiid },
+              on: { hide: _vm._volumeTipHide }
+            },
+            [
+              _c(
+                "div",
+                { staticClass: "slider" },
+                [
+                  _c("morning-slider", {
+                    ref: "mor-audio-volume-slider-" + _vm.uiid,
+                    attrs: {
+                      state:
+                        _vm.conf.src && !_vm.data.muted ? "normal" : "readonly",
+                      min: 0,
+                      max: 100,
+                      step: 1,
+                      tipFormatter: _vm._volumeFormat
+                    },
+                    model: {
+                      value: _vm.data.volume,
+                      callback: function($$v) {
+                        _vm.$set(_vm.data, "volume", $$v)
+                      },
+                      expression: "data.volume"
+                    }
+                  })
+                ],
+                1
+              )
+            ]
           )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "show-tools" }),
-        _vm._v(" "),
-        _c("div", { staticClass: "more-tools" })
-      ]),
+        ],
+        1
+      ),
       _vm._v(" "),
       _c("audio", [_c("source", { attrs: { src: _vm.conf.src } })])
     ]

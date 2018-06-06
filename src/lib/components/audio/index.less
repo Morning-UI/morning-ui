@@ -11,7 +11,6 @@ mor-audio{
     .audio-box{
         font-size: 0;
         height: @fontSize*2;
-        min-width: 300px;
         display: flex;
     }
 
@@ -41,6 +40,7 @@ mor-audio{
         width: 100%;
         position: relative;
         top: -2px;
+        min-width: 160px;
     }
 
     .time{
@@ -50,11 +50,19 @@ mor-audio{
         display: inline-block;
         color: @colorExtraLightBlack;
         white-space: nowrap;
+        padding: 0 0.5em 0 0;
 
         > span{
             text-align: center;
             display: inline-block;
         }
+    }
+
+    .volume{
+        line-height: @fontSize*2;
+        padding: 0 0.5em 0 0;
+        font-size: @fontSize;
+        cursor: pointer;
     }
 
     .more-tools{
@@ -68,5 +76,47 @@ mor-audio{
     // default status
     &{
         .st-normal;
+    }
+}
+
+.mor-audio-volume{
+    &.tet-ea-bottom .arrow{
+        border-top-color: @colorFormBorder;
+    }
+
+    .con{
+        padding: 6px 0 4px 0;
+        width: 100px;
+        background-color: @colorWhite ;
+        border: 1px @colorFormBorder solid;
+    }
+
+    .slider{
+        width: 100px;
+
+        mor-slider{
+            padding-bottom: 0;
+
+            .wrap{
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+
+            .track,
+            .selected-line{
+                height: 5px;
+            }
+
+            .main-slider{
+                width: 12px;
+                height: 12px;
+                top: -4px;
+                margin-left: -6px;
+            }
+        }
+
+        .note{
+            display: none;
+        }
     }
 }
