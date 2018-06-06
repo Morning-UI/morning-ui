@@ -830,13 +830,35 @@ export default {
 
                 }
 
+                console.log(23, selected);
+
                 if (selected) {
+
+                    let $icon = $item.querySelector('.mo-select-selected-icon');
+
+                    if (!$icon) {
+                       
+                        $icon = document.createElement('i');
+                        $icon.classList.add('mo-icon');
+                        $icon.classList.add('mo-icon-check');
+                        $icon.classList.add('mo-select-selected-icon');
+                        $item.append($icon);
+
+                    }
 
                     $item.classList.add('selected');
 
                 } else {
 
+                    let $icon = $item.querySelector('.mo-select-selected-icon');
+
                     $item.classList.remove('selected');
+                    
+                    if ($icon) {
+
+                        $icon.remove();
+
+                    }
 
                 }
 
@@ -1224,6 +1246,7 @@ export default {
     updated : function () {
         
         this._updateItemValueList();
+        this._refreshShowItems();
 
         if (!this.data.highPerfMode) {
 

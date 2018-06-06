@@ -392,6 +392,18 @@ mor-select{
             vertical-align: top;
         }
 
+        > .mo-select-selected-icon{
+            font-size: @fontSize*0.75;
+            position: absolute;
+            right: 5px;
+            display: inline-block;
+            width: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            box-sizing: border-box;
+            color: @colorTheme;
+        }
+
         &.current{
             background: @colorFormBackgroundFocus;
             color: @colorFormTextFocus;
@@ -399,7 +411,7 @@ mor-select{
 
         &.selected{
             background: @colorFormBackgroundHover;
-            border-left: 3px @colorSuccess solid;
+            border-left: 3px @colorTheme solid;
         }
 
         &.hide{
