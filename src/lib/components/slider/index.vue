@@ -17,6 +17,7 @@
         :prepend="prepend"
         :append="append"
         :show-point="showPoint"
+        :mark-range="markRange"
     >
 
     <!-- <div class="left-point"></div> -->
@@ -33,7 +34,24 @@
             <ul class="points">
                 <li
                     v-for="i in data.pointNum"
-                    :style="{'left' : `${i * data.pointWidth}px`}"
+                    :style="{left : `${i * data.pointWidth}px`}"
+                ></li>
+            </ul>
+            <ul class="marks">
+                <li
+                    v-for="mark in conf.markRange"
+                    v-if="
+                        mark instanceof Array &&
+                        mark.length === 2 &&
+                        typeof mark[0] === 'number' &&
+                        typeof mark[1] === 'number' &&
+                        mark[1] > mark[0] &&
+                        data.$track
+                    "
+                    :style="{
+                        left : `${(mark[0] - conf.min) / range * data.$track.clientWidth}px`,
+                        width : `${(mark[1] - mark[0]) / range * data.$track.clientWidth}px`
+                    }"
                 ></li>
             </ul>
             <div
@@ -54,13 +72,13 @@
 
                 @mousedown="_sliderMousedown(true, $event)"
             ></div>
-            <ui-tip
+            <morning-tip
                 :target="'#ui-slider-tip-'+this.uiid"
                 :ref="'ui-slider-tip-'+this.uiid"
                 color="extra-light-blue"
                 trigger="method"
                 offset="3px 0"
-            >{{conf.tipFormatter(data.end)}}</ui-tip>
+            >{{conf.tipFormatter(data.end)}}</morning-tip>
             <!-- <div class="sub-slider"></div> -->
         </div>
 
@@ -122,6 +140,10 @@ export default {
         showPoint : {
             type : Boolean,
             default : false
+        },
+        markRange : {
+            type : Array,
+            default : (() => [])
         }
     },
     computed : {
@@ -135,7 +157,8 @@ export default {
                 tipFormatter : this.tipFormatter,
                 prepend : this.prepend,
                 append : this.append,
-                showPoint : this.showPoint
+                showPoint : this.showPoint,
+                markRange : this.markRange
             };
 
         },
@@ -508,7 +531,7 @@ export default {
             }
 
             if (!this.data.droping) {
-    
+        
                 this._setPer(((this.get() || this.conf.min) - this.conf.min) / this.range);
 
             }
