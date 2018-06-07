@@ -45,7 +45,16 @@ let GlobalEvent = {
             if (evtNamespace.handler === null) {
 
                 evtNamespace.handler = globalHandler.bind(evtNamespace);
-                document.addEventListener(evtName, evtNamespace.handler, useCapture);
+
+                if (evtName === 'hashchange') {
+
+                    window.addEventListener(evtName, evtNamespace.handler, useCapture);
+
+                } else {
+
+                    document.addEventListener(evtName, evtNamespace.handler, useCapture);
+
+                }
 
             }
 
@@ -74,7 +83,16 @@ let GlobalEvent = {
 
             if (evtNamespace.vms.length === 0) {
 
-                document.removeEventListener(evtName, evtNamespace.handler);
+                if (evtName === 'hashchange') {
+
+                    window.removeEventListener(evtName, evtNamespace.handler);
+
+                } else {
+
+                    document.removeEventListener(evtName, evtNamespace.handler);
+
+                }
+
                 delete morning._globalEventListener[evtName];
             
             }
