@@ -10,7 +10,7 @@
     
     [[[开始]]]
 
-    定义一个音频播放，这是一个内联块元素。
+    定义一个音频播放，这是一个块元素。
 
     #### 使用
 
@@ -205,7 +205,7 @@
     ---
     <div style="width:300px">
         <ui-audio ref="demo6" src="http://morning-ui-media.test.upcdn.net/audio/The%20xx%20-%20VCR.mp3" @pause="echo"></ui-audio>
-        <ui-link js="window.morning.findVM('demo6').play(true);window.morning.findVM('demo6').play(false);">点击触发pause事件</ui-link>
+        <ui-link js="window.morning.findVM('demo6').play(true);setTimeout(()=>window.morning.findVM('demo6').play(false))">点击触发pause事件</ui-link>
     </div>
     :::
 
@@ -291,17 +291,18 @@
         }
     });
     ---
-    <div>
-        <ui-btn
+    <div style="width:300px">
+        <ui-audio
             ref="demoEventLifecycle"
             v-show="show"
+            src="http://morning-ui-media.test.upcdn.net/audio/The%20xx%20-%20VCR.mp3"
             @created="echo('created')"
             @mounted="echo('mounted')"
             @before-update="echo('before-update')"
             @updated="echo('updated')"
             @before-destroy="echo('before-destroy')"
             @destroyed="echo('destroyed')"
-        >{*text*}</ui-btn>
+        >{*text*}</ui-audio>
 
         <br><br>
 
