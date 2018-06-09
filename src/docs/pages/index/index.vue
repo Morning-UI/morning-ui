@@ -4,82 +4,49 @@
         <!-- darg icon https://h0.hucdn.com/open/201734/175363ad9c01a51b_200x200.png -->
         <section class="s1">
             <div class="w1k center">
-                <img class="mainLogo" src="https://h0.hucdn.com/open/201734/d693b26dc14f52a0_800x800.png" alt="morning-ui">
-                <div class="keywork">
-                    <span>Efficiency</span>
-                    <span>Modern</span>
-                    <span>Friendly</span>
+                <img class="mainLogo" src="http://morning-ui-image.test.upcdn.net/logo.png" alt="morning-ui">
+                <div class="libdesc">
+                    现代、高效、友善的桌面组件库
+                </div>
+                <div class="quick">
+                    <a href="" class="start">起步</a>
+                    <a href="https://github.com/Morning-UI/morning-ui">GitHub</a>
                 </div>
             </div>
         </section>
         <section class="s1 versioninfo">
             <p>全新Morning UI : </p>
             <a href="/guide/install.html">
-                <ui-label color="silver" size="xs">0.10.31</ui-label>
+                <ui-label color="silver" size="xs">0.11.0</ui-label>
             </a>
-            <p>发布于2018年5月28日</p>
+            <p>发布于2018年6月18日</p>
+        </section>
+        <section class="s1 silver">
+            <div class="w1k center">
+                <div class="title">
+                    应有尽有
+                    <div class="sub">
+                        超过60款组件，几乎包含了构建WEB应用的所有需要。
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="s1">
+            <div class="w1k center">
+                <div class="title">
+                    即刻开始
+                    <div class="sub">
+                        只需三行代码，即可立即使用。
+                    </div>
+                </div>
+            </div>
         </section>
         <section class="s1 gray">
-            <h1>起步</h1>
-            <div class="w900">
-                <div class="lrBox">
-                    <div class="left">
-                        <h3>引入Vue.js及Morning UI</h3>
-                        <p>首先获取<a href="https://cn.vuejs.org/v2/guide/installation.html#直接-lt-script-gt-引入" target="_blank">Vue.js</a>及<a href="/guide/install.html" target="_blank">Morning UI</a>，然后通过<code>&lt;script></code>将它们引入到页面中。</p>
-                        <p>你也可以通过其它方式引入，详见：<a href="/guide/install.html">开始使用/安装</a></p>
-                    </div>
-                    <div class="right">
-                        <pre>
-                        <code class="language-html hljs xml">
-&lt;script src="https://cdn.jsdelivr.net/npm/vue">&lt;/script>
-
-&lt;link href="path-to-morning/morning-ui.css" rel="stylesheet">
-&lt;script src="path-to-morning/morning-ui.js">&lt;/script>
-                        </code>
-                        </pre>
-                    </div>
-                </div>
-                <div class="lrBox">
-                    <div class="left">
-                        <h3>初始化</h3>
-                        <p>在使用组件之前需要先初始化Morning UI，可以在初始化时进行配置。</p>
-                    </div>
-                    <div class="right">
-                        <pre>
-                        <code class="language-js hljs">
-Vue.use(morning);
-                        </code>
-                        </pre>
-                    </div>
-                </div>
-                <div class="lrBox">
-                    <div class="left">
-                        <h3>使用组件</h3>
-                        <p>Morning UI基于Vue.js的Components，所以你可以像使用原生DOM元素一样使用。</p>
-                    </div>
-                    <div class="right">
-                        <pre>
-                        <code class="language-html hljs xml">
-&lt;ui-textinput form-name="E-Mail">&lt;/ui-textinput>
-&lt;br>
-&lt;ui-btn success>提交&lt;/ui-btn> &lt;ui-btn minor>取消&lt;/ui-btn>
-                        </code>
-                        </pre>
-                    </div>
-                </div>
-                <div class="lrBox">
-                    <div class="left">
-                        <h3>完成！</h3>
-                        <p>使用Morning UI只需简单三步。</p>
-                        <p>接下来：
-                            <br><a href="/guide/usage.html">了解Morning UI的更多用法</a>
-                            <br><a href="/guide/becontributor.html">成为Morning UI的贡献者</a>
-                        </p>
-                    </div>
-                    <div class="right">
-                        <ui-textinput form-name="E-Mail"></ui-textinput>
-                        <br>
-                        <ui-btn success>提交</ui-btn> <ui-btn minor>取消</ui-btn>
+            <div class="w1k center">
+                <div class="title">
+                    轻松完成
+                    <div class="sub">
+                        寻找、复制、粘贴，就好了。
                     </div>
                 </div>
             </div>
@@ -88,24 +55,42 @@ Vue.use(morning);
             <div class="w1k col">
                 <div class="c31 center">
                     <p class="icon">
-                        <i class="iconfont">&#xe603;</i>
+                        <i class="iconfont">&#xe617;</i>
                     </p>
-                    <h3>源于HMP UI</h3>
-                    <p class="desc">HMP UI是面向桌面Web的UI库，在过去两年中被用在了各种场景。Morning UI起源于此。</p>
+                    <h3>贡献者</h3>
+                    <p class="desc">感谢以下贡献者：<br><br>
+                        <a href="https://github.com/EarlyH">Early He</a><br>
+                        <a href="https://github.com/echoZQ">echoZQ</a><br>
+                        <a href="https://github.com/CFDylan">CFDylan</a><br>
+                    </p>
                 </div>
                 <div class="c31 center">
                     <p class="icon">
-                        <i class="iconfont">&#xe641;</i>
+                        <i class="iconfont">&#xe609;</i>
                     </p>
-                    <h3>60+组件</h3>
-                    <p class="desc">Morning UI有超过60个组件，丰富的组件为你构建的应用提供了有力的支持。</p>
+                    <h3>灵感来源</h3>
+                    <p class="desc">
+                        Morning UI受到以下项目的启发：
+                        <br>
+                        <a href="https://getbootstrap.com/" target="_blank">Bootstrap</a>、
+                        <a href="https://semantic-ui.com/" target="_blank">Semantic UI</a>、
+                        <a href="https://ant.design/" target="_blank">Ant Design</a>、
+                        <a href="http://element.eleme.io/" target="_blank">Element UI</a>、
+                        <a href="https://materializecss.com/" target="_blank">Materialize</a>、
+                        <a href="https://www.iviewui.com/" target="_blank">iView</a>、
+                        <a href="https://material.angular.io/" target="_blank">Angular Material</a>、
+                        <a href="https://getuikit.com/" target="_blank">UIKit</a>
+                        <br>
+                        在此感谢。
+                    </p>
                 </div>
                 <div class="c31 center">
                     <p class="icon">
                         <i class="iconfont">&#xe602;</i>
                     </p>
-                    <h3>开源社区</h3>
-                    <p class="desc">Morning UI基于MIT协议开源，你可以免费使用它。我们欢迎开发者加入到Morning UI的社区中。</p>
+                    <h3>一起创造</h3>
+                    <p class="desc">Morning UI基于<a href="https://opensource.org/licenses/MIT">MIT协议</a>开源。<br>如果你同样感兴趣，欢迎加入到我们的社区中。<br>与我一起创造它！<br><br><a href="/guide/becontributor.html">贡献者指南</a></p>
+
                 </div>
             </div>
         </section>
@@ -184,6 +169,7 @@ export default {
         padding: 20px 0;
         border-right: 1px #eee solid;
         box-sizing: border-box;
+        vertical-align: top;
 
         >.icon{
             >.iconfont{
@@ -201,7 +187,12 @@ export default {
             padding: 0 40px;
             text-align: center;
             line-height: 1.4em;
-            color: #999;
+            color: #888;
+
+            a{
+                color: #888;
+                text-decoration: underline;
+            }
         }
 
         &:last-child{
@@ -211,6 +202,18 @@ export default {
 
     &.gray{
         background: #EEE;
+
+        .title{
+            color: #312e2e;
+
+            .sub{
+                color: #7f7c7c;
+            }
+        }
+    }
+
+    &.silver{
+        background: #E2E8EE;
     }
 
     h1 {
@@ -219,20 +222,51 @@ export default {
         font-size: 54px;
     }
 }
-.keywork{
-    width: 900px;
-    font-size: 0;
-    padding: 0 100px;
-    margin: 50px 0 0;
+.title{
+    color: #303C4B;
+    font-size: 48px;
+    padding: 20px 0;
 
-    span {
+    .sub{
+        font-size: 16px;
+        color: #7C8BA0;
+        padding: 15px 0;
+    }
+}
+.libdesc{
+    padding: 35px 0 22px 0;
+    width: 100%;
+    font-size: 30px;
+}
+.quick{
+    width: 100%;
+    text-align: center;
+    padding: 0 0 20px 0;
+
+    > a{
+        font-size: 16px;
+        text-decoration: none;
+        color: #45505C;
+        padding: 10px 25px;
+        border-radius: 5em;
+        border: 1px #45505C solid;
+        margin: 0 0.3em;
         display: inline-block;
-        font-size: 36px;
-        vertical-align: top;
-        width: 30%;
-        margin: 0 1.25%;
-        color: #000;
-        text-align: center;
+
+        &:hover{
+            color: #17212D;
+            border-color: #17212D;
+        }
+    }
+
+    .start{
+        color: #fff;
+        background: #45505C;
+
+        &:hover{
+            color: #fff;
+            background: #303C4B;
+        }
     }
 }
 .lrBox{

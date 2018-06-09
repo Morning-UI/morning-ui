@@ -110,7 +110,7 @@ export default {
         // 进阶 : null,
         // 设计思想 : 'a',
         // 生命周期 : 'b',
-        贡献代码 : null,
+        贡献者指南 : null,
         成为贡献者 : '/guide/becontributor.html',
         开发环境 : '/guide/devenv.html',
         开发规范 : '/guide/devrule.html',

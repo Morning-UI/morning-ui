@@ -24,3 +24,4 @@ window.morning = require('../../src/lib/index').default;
 
 VueCommon.use(window.morning);
 VueCommon.config.ignoredElements = window.morning._ignoreElements;
+

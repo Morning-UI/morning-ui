@@ -253,6 +253,7 @@ mor-dialog a:hover {
   padding: 20px 0;
   border-right: 1px #eee solid;
   box-sizing: border-box;
+  vertical-align: top;
 }
 .s1 .c31 > .icon > .iconfont {
   font-size: 60px;
@@ -266,7 +267,11 @@ mor-dialog a:hover {
   padding: 0 40px;
   text-align: center;
   line-height: 1.4em;
-  color: #999;
+  color: #888;
+}
+.s1 .c31 > .desc a {
+  color: #888;
+  text-decoration: underline;
 }
 .s1 .c31:last-child {
   border-right: none;
@@ -274,25 +279,61 @@ mor-dialog a:hover {
 .s1.gray {
   background: #EEE;
 }
+.s1.gray .title {
+  color: #312e2e;
+}
+.s1.gray .title .sub {
+  color: #7f7c7c;
+}
+.s1.silver {
+  background: #E2E8EE;
+}
 .s1 h1 {
   text-align: center;
   font-weight: 400;
   font-size: 54px;
 }
-.keywork {
-  width: 900px;
-  font-size: 0;
-  padding: 0 100px;
-  margin: 50px 0 0;
+.title {
+  color: #303C4B;
+  font-size: 48px;
+  padding: 20px 0;
 }
-.keywork span {
-  display: inline-block;
-  font-size: 36px;
-  vertical-align: top;
-  width: 30%;
-  margin: 0 1.25%;
-  color: #000;
+.title .sub {
+  font-size: 16px;
+  color: #7C8BA0;
+  padding: 15px 0;
+}
+.libdesc {
+  padding: 35px 0 22px 0;
+  width: 100%;
+  font-size: 30px;
+}
+.quick {
+  width: 100%;
   text-align: center;
+  padding: 0 0 20px 0;
+}
+.quick > a {
+  font-size: 16px;
+  text-decoration: none;
+  color: #45505C;
+  padding: 10px 25px;
+  border-radius: 5em;
+  border: 1px #45505C solid;
+  margin: 0 0.3em;
+  display: inline-block;
+}
+.quick > a:hover {
+  color: #17212D;
+  border-color: #17212D;
+}
+.quick .start {
+  color: #fff;
+  background: #45505C;
+}
+.quick .start:hover {
+  color: #fff;
+  background: #303C4B;
 }
 .lrBox {
   font-size: 0;
