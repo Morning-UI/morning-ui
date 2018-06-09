@@ -266,6 +266,10 @@
             <i class="mo-icon-volume-3"></i>
             <span>mo-icon-volume-3</span>
         </div>
+        <div>
+            <i class="mo-icon-fullscreen"></i>
+            <span>mo-icon-fullscreen</span>
+        </div>
     </div>
     
     ### 图标托管

@@ -64,7 +64,7 @@ export default {
         '小提示<i class="tag update l1"></i>' : '/component/tip.html',
         消息 : '/component/message.html',
         '音频<i class="tag new l1"></i>' : '/component/audio.html',
-        '视频<i class="tag coming"></i>' : '',
+        '视频<i class="tag new l1"></i>' : '/component/video.html',
         表单组件 : null,
         '文本输入<i class="tag update l1"></i>' : '/component/textinput.html',
         '段落输入<i class="tag update l1"></i>' : '/component/textarea.html',
