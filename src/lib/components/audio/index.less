@@ -1,74 +1,12 @@
 @import '~Common/var.less';
 
 mor-audio{
-    display: inline-block;
+    display: block;
     user-select: none;
+    width: 100%;
 
     > audio{
         display: none;
-    }
-
-    .audio-box{
-        font-size: 0;
-        height: @fontSize*2;
-        display: flex;
-    }
-
-    .play{
-        display: inline-block;
-        line-height: @fontSize*2;
-        height: @fontSize*2;
-        padding: 0 0 0 0.5em;
-        font-size: @fontSize;
-        color: @colorExtraLightBlack;
-        white-space: nowrap;
-
-        .mo-icon{
-            cursor: pointer;
-        }
-
-        &.no-audio{
-            .mo-icon{
-                cursor: default;
-            }
-        }
-    }
-
-    .progress{
-        display: inline-block;
-        vertical-align: top;
-        width: 100%;
-        position: relative;
-        top: -2px;
-        min-width: 160px;
-    }
-
-    .time{
-        font-size: @fontSize*0.75;
-        line-height: @fontSize*2;
-        height: @fontSize*2;
-        display: inline-block;
-        color: @colorExtraLightBlack;
-        white-space: nowrap;
-        padding: 0 0.5em 0 0;
-
-        > span{
-            text-align: center;
-            display: inline-block;
-        }
-    }
-
-    .volume{
-        line-height: @fontSize*2;
-        padding: 0 0.5em 0 0;
-        font-size: @fontSize;
-        cursor: pointer;
-    }
-
-    .more-tools{
-        line-height: @fontSize*2;
-        padding: 0 0 0 0.5em;
-        font-size: @fontSize;
     }
 
     &.st-normal{}
@@ -79,44 +17,3 @@ mor-audio{
     }
 }
 
-.mor-audio-volume{
-    &.tet-ea-bottom .arrow{
-        border-top-color: @colorFormBorder;
-    }
-
-    .con{
-        padding: 6px 0 4px;
-        width: 100px;
-        background-color: @colorWhite;
-        border: 1px @colorFormBorder solid;
-    }
-
-    .slider{
-        width: 100px;
-
-        mor-slider{
-            padding-bottom: 0;
-
-            .wrap{
-                padding-left: 12px;
-                padding-right: 12px;
-            }
-
-            .track,
-            .selected-line{
-                height: 5px;
-            }
-
-            .main-slider{
-                width: 12px;
-                height: 12px;
-                top: -4px;
-                margin-left: -6px;
-            }
-        }
-
-        .note{
-            display: none;
-        }
-    }
-}
