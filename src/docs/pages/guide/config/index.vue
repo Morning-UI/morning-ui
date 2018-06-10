@@ -246,6 +246,7 @@
     - `list-width` : 列表宽度
     - `max-rows` : 最大行数
     - `auto-size` : 自动调整尺寸
+    - `keep-origin-name` : 保留原始名
 
     </script>
     </doc-guide>
