@@ -230,6 +230,16 @@ morning.install = function (Vue, options) {
 
         }
 
+        component = component.extend({
+            data : function () {
+
+                return {
+                    uiname : name
+                };
+
+            }
+        });
+
         if (!component.private) {
 
             Vue.component(`${options.prefix}-${name}`, component);

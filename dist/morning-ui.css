@@ -607,7 +607,7 @@ textarea {
   display: inline-block;
   line-height: 32px;
   height: 32px;
-  padding: 0 0.3em 0 0.3em;
+  padding: 0 0.3em;
   font-size: 16px;
   color: #45505C;
   white-space: nowrap;
@@ -637,7 +637,7 @@ textarea {
   display: inline-block;
   color: #45505C;
   white-space: nowrap;
-  padding: 0 0.3em 0 0.3em;
+  padding: 0 0.3em;
 }
 .mo-media-control .time > span {
   text-align: center;
@@ -645,7 +645,7 @@ textarea {
 }
 .mo-media-control .tools {
   line-height: 32px;
-  padding: 0 0.3em 0 0.3em;
+  padding: 0 0.3em;
   font-size: 16px;
   cursor: pointer;
   color: #45505C;
@@ -10369,12 +10369,13 @@ mor-checkbox > .il label .box {
   transition: 0.2s;
   margin: 0 0.375em 0 0;
   box-sizing: border-box;
+  position: relative;
 }
 mor-checkbox > .il label .mo-icon {
   color: #FFF;
   opacity: 0;
   transform: scale(0);
-  transition: 0.2s;
+  transition: transform 0.2s;
   font-size: 12px;
   width: 100%;
   display: block;
@@ -10389,12 +10390,24 @@ mor-checkbox > .il label:hover span {
 mor-checkbox > .il label:hover .box {
   border-color: #bdbdbd;
 }
-mor-checkbox > .il label.checked span {
+mor-checkbox > .il label.checked span,
+mor-checkbox > .il label.part-checked span {
   color: #17212D;
 }
-mor-checkbox > .il label.checked .mo-icon {
+mor-checkbox > .il label.checked .mo-icon,
+mor-checkbox > .il label.part-checked .mo-icon {
   opacity: 1;
   transform: scale(0.9);
+}
+mor-checkbox > .il label.part-checked .part-checked-icon {
+  width: 60%;
+  height: 3px;
+  background: #FFFFFF;
+  display: inline-block;
+  border-radius: 10em;
+  position: absolute;
+  top: 7px;
+  left: 20%;
 }
 mor-checkbox > .il label.disabled {
   border-color: #d2d2d2;
@@ -10439,109 +10452,139 @@ mor-checkbox.vertical > .il label {
   margin: 0 0 0.6em;
   width: 100%;
 }
-mor-checkbox.co-t > .il label.checked .box {
+mor-checkbox.co-t > .il label.checked .box,
+mor-checkbox.co-t > .il label.part-checked .box {
   background: #F33D5D;
   border-color: #F33D5D;
 }
-mor-checkbox.co-t.border > .il label.checked {
+mor-checkbox.co-t.border > .il label.checked,
+mor-checkbox.co-t.border > .il label.part-checked {
   border-color: #F33D5D;
 }
-mor-checkbox.co-lt > .il label.checked .box {
+mor-checkbox.co-lt > .il label.checked .box,
+mor-checkbox.co-lt > .il label.part-checked .box {
   background: #F86F88;
   border-color: #F86F88;
 }
-mor-checkbox.co-lt.border > .il label.checked {
+mor-checkbox.co-lt.border > .il label.checked,
+mor-checkbox.co-lt.border > .il label.part-checked {
   border-color: #F86F88;
 }
-mor-checkbox.co-dt > .il label.checked .box {
+mor-checkbox.co-dt > .il label.checked .box,
+mor-checkbox.co-dt > .il label.part-checked .box {
   background: #D22343;
   border-color: #D22343;
 }
-mor-checkbox.co-dt.border > .il label.checked {
+mor-checkbox.co-dt.border > .il label.checked,
+mor-checkbox.co-dt.border > .il label.part-checked {
   border-color: #D22343;
 }
-mor-checkbox.co-s > .il label.checked .box {
+mor-checkbox.co-s > .il label.checked .box,
+mor-checkbox.co-s > .il label.part-checked .box {
   background: #4DBD67;
   border-color: #4DBD67;
 }
-mor-checkbox.co-s.border > .il label.checked {
+mor-checkbox.co-s.border > .il label.checked,
+mor-checkbox.co-s.border > .il label.part-checked {
   border-color: #4DBD67;
 }
-mor-checkbox.co-w > .il label.checked .box {
+mor-checkbox.co-w > .il label.checked .box,
+mor-checkbox.co-w > .il label.part-checked .box {
   background: #F0AD4E;
   border-color: #F0AD4E;
 }
-mor-checkbox.co-w.border > .il label.checked {
+mor-checkbox.co-w.border > .il label.checked,
+mor-checkbox.co-w.border > .il label.part-checked {
   border-color: #F0AD4E;
 }
-mor-checkbox.co-d > .il label.checked .box {
+mor-checkbox.co-d > .il label.checked .box,
+mor-checkbox.co-d > .il label.part-checked .box {
   background: #D64431;
   border-color: #D64431;
 }
-mor-checkbox.co-d.border > .il label.checked {
+mor-checkbox.co-d.border > .il label.checked,
+mor-checkbox.co-d.border > .il label.part-checked {
   border-color: #D64431;
 }
-mor-checkbox.co-p > .il label.checked .box {
+mor-checkbox.co-p > .il label.checked .box,
+mor-checkbox.co-p > .il label.part-checked .box {
   background: #2185D0;
   border-color: #2185D0;
 }
-mor-checkbox.co-p.border > .il label.checked {
+mor-checkbox.co-p.border > .il label.checked,
+mor-checkbox.co-p.border > .il label.part-checked {
   border-color: #2185D0;
 }
-mor-checkbox.co-m > .il label.checked .box {
+mor-checkbox.co-m > .il label.checked .box,
+mor-checkbox.co-m > .il label.part-checked .box {
   background: #A9A9A9;
   border-color: #A9A9A9;
 }
-mor-checkbox.co-m.border > .il label.checked {
+mor-checkbox.co-m.border > .il label.checked,
+mor-checkbox.co-m.border > .il label.part-checked {
   border-color: #A9A9A9;
 }
-mor-checkbox.co-i > .il label.checked .box {
+mor-checkbox.co-i > .il label.checked .box,
+mor-checkbox.co-i > .il label.part-checked .box {
   background: #03A6B9;
   border-color: #03A6B9;
 }
-mor-checkbox.co-i.border > .il label.checked {
+mor-checkbox.co-i.border > .il label.checked,
+mor-checkbox.co-i.border > .il label.part-checked {
   border-color: #03A6B9;
 }
-mor-checkbox.co-bk > .il label.checked .box {
+mor-checkbox.co-bk > .il label.checked .box,
+mor-checkbox.co-bk > .il label.part-checked .box {
   background: #17212D;
   border-color: #17212D;
 }
-mor-checkbox.co-bk.border > .il label.checked {
+mor-checkbox.co-bk.border > .il label.checked,
+mor-checkbox.co-bk.border > .il label.part-checked {
   border-color: #17212D;
 }
-mor-checkbox.co-lbk > .il label.checked .box {
+mor-checkbox.co-lbk > .il label.checked .box,
+mor-checkbox.co-lbk > .il label.part-checked .box {
   background: #303C4B;
   border-color: #303C4B;
 }
-mor-checkbox.co-lbk.border > .il label.checked {
+mor-checkbox.co-lbk.border > .il label.checked,
+mor-checkbox.co-lbk.border > .il label.part-checked {
   border-color: #303C4B;
 }
-mor-checkbox.co-elbk > .il label.checked .box {
+mor-checkbox.co-elbk > .il label.checked .box,
+mor-checkbox.co-elbk > .il label.part-checked .box {
   background: #45505C;
   border-color: #45505C;
 }
-mor-checkbox.co-elbk.border > .il label.checked {
+mor-checkbox.co-elbk.border > .il label.checked,
+mor-checkbox.co-elbk.border > .il label.part-checked {
   border-color: #45505C;
 }
-mor-checkbox.co-bu > .il label.checked .box {
+mor-checkbox.co-bu > .il label.checked .box,
+mor-checkbox.co-bu > .il label.part-checked .box {
   background: #7C8BA0;
   border-color: #7C8BA0;
 }
-mor-checkbox.co-bu.border > .il label.checked {
+mor-checkbox.co-bu.border > .il label.checked,
+mor-checkbox.co-bu.border > .il label.part-checked {
   border-color: #7C8BA0;
 }
-mor-checkbox.co-lbu > .il label.checked .box {
+mor-checkbox.co-lbu > .il label.checked .box,
+mor-checkbox.co-lbu > .il label.part-checked .box {
   background: #8E9CAF;
   border-color: #8E9CAF;
 }
-mor-checkbox.co-lbu.border > .il label.checked {
+mor-checkbox.co-lbu.border > .il label.checked,
+mor-checkbox.co-lbu.border > .il label.part-checked {
   border-color: #8E9CAF;
 }
-mor-checkbox.co-elbu > .il label.checked .box {
+mor-checkbox.co-elbu > .il label.checked .box,
+mor-checkbox.co-elbu > .il label.part-checked .box {
   background: #A8B3C2;
   border-color: #A8B3C2;
 }
-mor-checkbox.co-elbu.border > .il label.checked {
+mor-checkbox.co-elbu.border > .il label.checked,
+mor-checkbox.co-elbu.border > .il label.part-checked {
   border-color: #A8B3C2;
 }
 mor-checkbox.co-si > .il label span {
@@ -10555,15 +10598,18 @@ mor-checkbox.co-si > .il label:hover span,
 mor-checkbox.co-si > .il label.checked span {
   color: #E2E8EE;
 }
-mor-checkbox.co-si > .il label.checked .box {
+mor-checkbox.co-si > .il label.checked .box,
+mor-checkbox.co-si > .il label.part-checked .box {
   background: #D6DDE5;
   border-color: #D6DDE5;
   color: #D6DDE5;
 }
-mor-checkbox.co-si > .il label.checked .mo-icon {
+mor-checkbox.co-si > .il label.checked .mo-icon,
+mor-checkbox.co-si > .il label.part-checked .mo-icon {
   color: #45505C;
 }
-mor-checkbox.co-si.border > .il label.checked {
+mor-checkbox.co-si.border > .il label.checked,
+mor-checkbox.co-si.border > .il label.part-checked {
   border-color: #D6DDE5;
 }
 mor-checkbox.co-lsi > .il label span {
@@ -10577,15 +10623,18 @@ mor-checkbox.co-lsi > .il label:hover span,
 mor-checkbox.co-lsi > .il label.checked span {
   color: #E2E8EE;
 }
-mor-checkbox.co-lsi > .il label.checked .box {
+mor-checkbox.co-lsi > .il label.checked .box,
+mor-checkbox.co-lsi > .il label.part-checked .box {
   background: #E2E8EE;
   border-color: #E2E8EE;
   color: #E2E8EE;
 }
-mor-checkbox.co-lsi > .il label.checked .mo-icon {
+mor-checkbox.co-lsi > .il label.checked .mo-icon,
+mor-checkbox.co-lsi > .il label.part-checked .mo-icon {
   color: #45505C;
 }
-mor-checkbox.co-lsi.border > .il label.checked {
+mor-checkbox.co-lsi.border > .il label.checked,
+mor-checkbox.co-lsi.border > .il label.part-checked {
   border-color: #E2E8EE;
 }
 mor-checkbox.co-elsi > .il label span {
@@ -10599,15 +10648,18 @@ mor-checkbox.co-elsi > .il label:hover span,
 mor-checkbox.co-elsi > .il label.checked span {
   color: #E2E8EE;
 }
-mor-checkbox.co-elsi > .il label.checked .box {
+mor-checkbox.co-elsi > .il label.checked .box,
+mor-checkbox.co-elsi > .il label.part-checked .box {
   background: #EDF1F5;
   border-color: #EDF1F5;
   color: #EDF1F5;
 }
-mor-checkbox.co-elsi > .il label.checked .mo-icon {
+mor-checkbox.co-elsi > .il label.checked .mo-icon,
+mor-checkbox.co-elsi > .il label.part-checked .mo-icon {
   color: #45505C;
 }
-mor-checkbox.co-elsi.border > .il label.checked {
+mor-checkbox.co-elsi.border > .il label.checked,
+mor-checkbox.co-elsi.border > .il label.part-checked {
   border-color: #EDF1F5;
 }
 mor-checkbox.co-g > .il label span {
@@ -10621,15 +10673,18 @@ mor-checkbox.co-g > .il label:hover span,
 mor-checkbox.co-g > .il label.checked span {
   color: #FFFFFF;
 }
-mor-checkbox.co-g > .il label.checked .box {
+mor-checkbox.co-g > .il label.checked .box,
+mor-checkbox.co-g > .il label.part-checked .box {
   background: #E6E6E6;
   border-color: #E6E6E6;
   color: #E6E6E6;
 }
-mor-checkbox.co-g > .il label.checked .mo-icon {
+mor-checkbox.co-g > .il label.checked .mo-icon,
+mor-checkbox.co-g > .il label.part-checked .mo-icon {
   color: #17212D;
 }
-mor-checkbox.co-g.border > .il label.checked {
+mor-checkbox.co-g.border > .il label.checked,
+mor-checkbox.co-g.border > .il label.part-checked {
   border-color: #E6E6E6;
 }
 mor-checkbox.co-lg > .il label span {
@@ -10643,15 +10698,18 @@ mor-checkbox.co-lg > .il label:hover span,
 mor-checkbox.co-lg > .il label.checked span {
   color: #FFFFFF;
 }
-mor-checkbox.co-lg > .il label.checked .box {
+mor-checkbox.co-lg > .il label.checked .box,
+mor-checkbox.co-lg > .il label.part-checked .box {
   background: #F0F0F0;
   border-color: #F0F0F0;
   color: #F0F0F0;
 }
-mor-checkbox.co-lg > .il label.checked .mo-icon {
+mor-checkbox.co-lg > .il label.checked .mo-icon,
+mor-checkbox.co-lg > .il label.part-checked .mo-icon {
   color: #17212D;
 }
-mor-checkbox.co-lg.border > .il label.checked {
+mor-checkbox.co-lg.border > .il label.checked,
+mor-checkbox.co-lg.border > .il label.part-checked {
   border-color: #F0F0F0;
 }
 mor-checkbox.co-wh > .il label span {
@@ -10665,15 +10723,18 @@ mor-checkbox.co-wh > .il label:hover span,
 mor-checkbox.co-wh > .il label.checked span {
   color: #FFFFFF;
 }
-mor-checkbox.co-wh > .il label.checked .box {
+mor-checkbox.co-wh > .il label.checked .box,
+mor-checkbox.co-wh > .il label.part-checked .box {
   background: #FFFFFF;
   border-color: #FFFFFF;
   color: #FFFFFF;
 }
-mor-checkbox.co-wh > .il label.checked .mo-icon {
+mor-checkbox.co-wh > .il label.checked .mo-icon,
+mor-checkbox.co-wh > .il label.part-checked .mo-icon {
   color: #17212D;
 }
-mor-checkbox.co-wh.border > .il label.checked {
+mor-checkbox.co-wh.border > .il label.checked,
+mor-checkbox.co-wh.border > .il label.part-checked {
   border-color: #FFFFFF;
 }
 mor-checkbox.st-disabled > .il > label,
@@ -10695,11 +10756,13 @@ mor-checkbox.st-disabled > .il > label.checked .mo-icon,
 mor-checkbox.st-readonly > .il > label.checked .mo-icon {
   opacity: 0.6;
 }
-mor-checkbox > .il label.checked .box {
+mor-checkbox > .il label.checked .box,
+mor-checkbox > .il label.part-checked .box {
   background: #F33D5D;
   border-color: #F33D5D;
 }
-mor-checkbox.border > .il label.checked {
+mor-checkbox.border > .il label.checked,
+mor-checkbox.border > .il label.part-checked {
   border-color: #F33D5D;
 }
 
