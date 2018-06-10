@@ -377,15 +377,6 @@ export default {
             immediate : true
         });
 
-        this.$watch('data.linkedVm', () => {
-
-            // this._syncLinkedChild();
-
-        }, {
-            deep : true,
-            immediate : true
-        });
-
         this.$watch('conf.disabledOptions', () => {
 
             this._refreshDisabledOptions();
