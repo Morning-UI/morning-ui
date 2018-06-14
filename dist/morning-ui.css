@@ -10102,13 +10102,20 @@ mor-select.input-group .select-area {
 .mor-select-wrap li mor-img > img {
   vertical-align: top;
 }
-.mor-select-wrap li.current {
-  background: #f3f3f3;
-  color: #17212D;
+.mor-select-wrap li > .mo-select-selected-icon {
+  font-size: 12px;
+  position: absolute;
+  right: 5px;
+  display: inline-block;
+  width: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  box-sizing: border-box;
+  color: #F33D5D;
 }
 .mor-select-wrap li.selected {
   background: #f5f5f5;
-  border-left: 3px #4DBD67 solid;
+  border-left: 3px #F33D5D solid;
 }
 .mor-select-wrap li.hide {
   display: none;
