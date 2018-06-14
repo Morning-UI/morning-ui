@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">30.46% </span>
+        <span class="strong">30.5% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>60/197</span>
+        <span class='fraction'>61/200</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">38.18% </span>
+        <span class="strong">37.43% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>63/165</span>
+        <span class='fraction'>64/171</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">30.43% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>14/46</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">30.17% </span>
+        <span class="strong">30.22% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>54/179</span>
+        <span class='fraction'>55/182</span>
       </div>
     </div>
   </div>
@@ -795,7 +795,28 @@
 750
 751
 752
-753</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+753
+754
+755
+756
+757
+758
+759
+760
+761
+762
+763
+764
+765
+766
+767
+768
+769
+770
+771
+772
+773</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -947,6 +968,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -969,6 +994,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1185,6 +1211,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1220,6 +1247,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
@@ -1403,6 +1438,11 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -1566,6 +1606,7 @@
         :allow-drag="allowDrag"
         :validate="validate"
         :uploader="uploader"
+        :keep-origin-name="keepOriginName"
 &nbsp;
         @dragover.stop.prevent="_dragover"
         @dragleave="_dragleave"
@@ -1694,6 +1735,10 @@ export default {
         uploader : {
             type : Function,
             default : undefined
+        },
+        keepOriginName : {
+            type : Boolean,
+            default : false
         }
     },
     computed : {
@@ -1729,7 +1774,8 @@ export default {
                 allowUrl : this.allowUrl,
                 allowDrag : this.allowDrag,
                 validate : this.validate,
-                uploader : this.uploader
+                uploader : this.uploader,
+                keepOriginName : this.keepOriginName
             },
             data : {
                 inputKey : 0,
@@ -1930,6 +1976,7 @@ export default {
 &nbsp;
                     this._createNewFileObj({
                         path : value.path,
+                        name : value.name,
                         status : 'done'
                     });
 &nbsp;
@@ -1970,7 +2017,15 @@ export default {
 &nbsp;
             } else <span class="missing-if-branch" title="else path not taken" >E</span>if (fileObj.path) {
 &nbsp;
-                fileObj.name = this._getName(fileObj.path);
+                <span class="missing-if-branch" title="if path not taken" >I</span>if (this.conf.keepOriginName) {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    fileObj.name = options.name || this._getName(fileObj.path);</span>
+&nbsp;
+                } else {
+&nbsp;
+                    fileObj.name = this._getName(fileObj.path);
+                
+                }
 &nbsp;
             }
 &nbsp;
@@ -2153,9 +2208,14 @@ export default {
                     }
 &nbsp;
 <span class="cstat-no" title="statement not covered" >                    if (result.status) {</span>
+                        
+<span class="cstat-no" title="statement not covered" >                        if (!this.conf.keepOriginName) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                            this.data.files[index].name = this._getName(result.path);</span>
+&nbsp;
+                        }
 &nbsp;
 <span class="cstat-no" title="statement not covered" >                        this.data.files[index].path = result.path;</span>
-<span class="cstat-no" title="statement not covered" >                        this.data.files[index].name = this._getName(result.path);</span>
 <span class="cstat-no" title="statement not covered" >                        this.data.files[index].data = result.data;</span>
 <span class="cstat-no" title="statement not covered" >                        this._set(this._fetchValueFromFiles(), true, true);</span>
 <span class="cstat-no" title="statement not covered" >                        this._setStatus(index, 'uploaded');</span>
@@ -2305,7 +2365,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon May 28 2018 23:56:13 GMT+0800 (CST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Jun 05 2018 14:32:00 GMT+0800 (CST)
 </div>
 </div>
 <script src="../../../prettify.js"></script>

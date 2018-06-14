@@ -41,9 +41,11 @@ mor-tip{
     font-size: @fontSize*0.75;
     opacity: 0;
     z-index: -1;
+    pointer-events: none;
 
     &.in {
         opacity: 1;
+        pointer-events: auto;
     }
 
     &.tet-ea-bottom {

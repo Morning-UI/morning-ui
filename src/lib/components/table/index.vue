@@ -654,6 +654,10 @@ export default {
                 if (typeof $titleRows[index] === 'object' &&
                     typeof $normalRows[index] === 'object') {
 
+                    // reset row height, then get row real height
+                    $normalRows[index].style.height = 'auto';
+                    $titleRows[index].style.height = 'auto';
+
                     let normalHeight = $normalRows[index].clientHeight;
                     let titleHeight = $titleRows[index].clientHeight;
                     let syncHeight;
@@ -935,13 +939,29 @@ export default {
 
                 for (let key of titleKeys) {
 
-                    titleCol.push(item[key] || this.conf.emptyCellValue);
+                    if (item[key] === undefined) {
+
+                        titleCol.push(this.conf.emptyCellValue);
+
+                    } else {
+                        
+                        titleCol.push(item[key]);
+
+                    }
 
                 }
 
                 for (let key of normalKeys) {
 
-                    normalCol.push(item[key] || this.conf.emptyCellValue);
+                    if (item[key] === undefined) {
+
+                        normalCol.push(this.conf.emptyCellValue);
+
+                    } else {
+                        
+                        normalCol.push(item[key]);
+
+                    }
 
                 }
 

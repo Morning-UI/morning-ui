@@ -674,31 +674,6 @@
 
     #### hide-selected
 
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
-        data : {
-            list : {
-                tim : 'Tim Boelaars',
-                andrew : 'Andrew Colin Beck',
-                gustavo : 'Gustavo Zambelli',
-                victor : 'Victor Erixon',
-                shaun : 'Shaun Moynihan',
-                emir : 'Emir Ayouni'
-            }
-        }
-    });
-    ---
-    <div style="width:300px;">
-        <ui-select form-name="Select designer" multi-select :hide-selected="false">
-            <li :value="key" v-for="(name, key) in list">{*name*}</li>
-        </ui-select>
-    </div>
-    :::
-
-
-
     显示选中项：
     
     :::democode/html
