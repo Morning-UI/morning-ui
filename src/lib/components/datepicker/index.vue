@@ -21,6 +21,7 @@
         :separator-type="separatorType"
         :start-name="startName"
         :end-name="endName"
+        :done-hidden="doneHidden"
     >
 
     <div class="wrap">
@@ -194,6 +195,7 @@
                 @input-blur="_inputBlur"
                 @focus="_focus"
                 @blur="_blur"
+                @date-click="_dateClick"
             >
                 <slot name="timepicker" slot="timepicker"></slot>
 
@@ -382,6 +384,10 @@ export default {
         endName : {
             type : String,
             default : '结束日期'
+        },
+        doneHidden : {
+            type : Boolean,
+            default : false
         }
     },
     computed : {
@@ -399,7 +405,8 @@ export default {
                 separator : this.separator,
                 separatorType : this.separatorType,
                 startName : this.startName,
-                endName : this.endName
+                endName : this.endName,
+                doneHidden : this.doneHidden
             };
 
         },
@@ -900,6 +907,12 @@ export default {
 
             this._set(val, true);
 
+            this.Vue.nextTick(() => {
+
+                this._dateClick();
+
+            });
+
         },
         _syncValueFromInputToRoot : function () {
 
@@ -989,6 +1002,23 @@ export default {
                     input1._set(undefined, true);
 
                 }
+
+            }
+
+        },
+        _dateClick : function () {
+
+            let input0 = this.$refs[`ui-datepicker-input-0-${this.uiid}`];
+
+            if (this.conf.isRange &&
+                this.get().length === 2 &&
+                this.conf.doneHidden) {
+
+                input0._blur();
+
+            } else if (!this.conf.isRange && this.conf.doneHidden) {
+
+                input0._blur();
 
             }
 

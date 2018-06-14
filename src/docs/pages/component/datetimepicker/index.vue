@@ -66,6 +66,7 @@
     |[separator-type](#separator-type)|日期时间区间选择时中间的分隔内容的展现类型|`'block'`：块状<br>`'inline'`：行内|String|`'block'`|
     |[start-name](#start-name)|日期时间区间选择时`开始日期时间`表单显示的名称，若设为`false`则显示`form-name`，只有开启`is-range`才有效|任意字符串<br>`false`:显示`form-name`|String<br>Boolean|`'开始日期时间'`|
     |[end-name](#end-name)|日期时间区间选择时`结束日期时间`表单显示的名称，若设为`false`则显示`form-name`，只有开启`is-range`才有效。若设置了`hide-name`则不会显示|任意字符串`false`:显示`form-name`|String<br>Boolean|`'结束日期时间'`|
+    |[done-hidden](#done-hidden)|开启此配置后当完成日期选择后选择器会被隐藏|`true`<br>`false`|Boolean|`false`|
     :::
 
     :::preset/html
@@ -321,6 +322,32 @@
     :::democode/html
     <div style="width:460px;">
         <ui-datetimepicker form-name="日期时间" :is-range="true" :end-name="false"></ui-datetimepicker>
+    </div>
+    :::
+
+    #### done-hidden
+
+    选择完日期后不隐藏选择器：
+
+    :::democode/html
+    <div style="width:300px;">
+        <ui-datetimepicker form-name="日期时间" :done-hidden="false"></ui-datetimepicker>
+    </div>
+    :::
+
+    选择完日期后隐藏选择器：
+
+    :::democode/html
+    <div style="width:300px;">
+        <ui-datetimepicker form-name="日期时间" done-hidden></ui-datetimepicker>
+    </div>
+    :::
+
+    `done-hidden`和`is-range`一起使用：
+
+    :::democode/html
+    <div style="width:460px;">
+        <ui-datetimepicker form-name="日期时间" done-hidden is-range></ui-datetimepicker>
     </div>
     :::
 
