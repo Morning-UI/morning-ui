@@ -9036,6 +9036,7 @@ mor-switch.open .close-note {
   font-weight: 400;
 }
 mor-switch .track {
+  display: inline-block;
   vertical-align: top;
   position: relative;
   right: 0;
@@ -9045,7 +9046,6 @@ mor-switch .track {
   box-shadow: 0 0 2px #E6E6E6 inset;
   border: 1px #ebebeb solid;
   border-radius: 15px;
-  display: inline-block;
   cursor: pointer;
   box-sizing: border-box;
   -webkit-user-select: none;
@@ -9057,7 +9057,6 @@ mor-switch .track:hover {
 }
 mor-switch .track .point {
   z-index: 2;
-  position: relative;
   border-radius: 12px;
   height: 24px;
   width: 24px;
@@ -9971,13 +9970,24 @@ mor-select.input-group .select-area {
 .mor-select-wrap li mor-img > img {
   vertical-align: top;
 }
+.mor-select-wrap li > .mo-select-selected-icon {
+  font-size: 12px;
+  position: absolute;
+  right: 5px;
+  display: inline-block;
+  width: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  box-sizing: border-box;
+  color: #F33D5D;
+}
 .mor-select-wrap li.current {
   background: #f3f3f3;
   color: #17212D;
 }
 .mor-select-wrap li.selected {
   background: #f5f5f5;
-  border-left: 3px #4DBD67 solid;
+  border-left: 3px #F33D5D solid;
 }
 .mor-select-wrap li.hide {
   display: none;

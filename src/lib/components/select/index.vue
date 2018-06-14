@@ -348,17 +348,10 @@ export default {
 
             let newVal = this.get();
             let $items = this.data.$list.querySelectorAll('li:not(.noitem)');
-            let $currentItems = this.data.$list.querySelectorAll('li.current');
             let $noitem = this.data.$list.querySelector('.noitem');
             let searchTextinput;
             let searchMultiinput;
             let multiNames = [];
-
-            for (let $item of $currentItems.values()) {
-
-                $item.classList.remove('current');
-
-            }
 
             if (this.conf.canSearch &&
                 !this.conf.multiSelect) {
@@ -388,8 +381,6 @@ export default {
                 for (let $item of $items.values()) {
 
                     if ($item.getAttribute('value') === val) {
-
-                        $item.classList.add('current');
 
                         if (this.conf.canSearch) {
 
@@ -830,8 +821,6 @@ export default {
 
                 }
 
-                console.log(23, selected);
-
                 if (selected) {
 
                     let $icon = $item.querySelector('.mo-select-selected-icon');
@@ -961,7 +950,7 @@ export default {
         },
         _setListHeight : function () {
 
-            let $item = this.data.$list.querySelector('li:not(.noitem):not(.current):not(.selected)');
+            let $item = this.data.$list.querySelector('li:not(.noitem):not(.selected)');
 
             if (!$item) {
 
@@ -1037,7 +1026,7 @@ export default {
             if (show) {
 
                 let $items = this.data.$list.querySelectorAll('li');
-                let $currentItem = this.data.$list.querySelector('li.current');
+                let $selectedItem = this.data.$list.querySelector('li.selected');
                 
                 this.data.showlist = true;
 
@@ -1066,13 +1055,13 @@ export default {
                 
                     this._refreshShowItems();
                 
-                } else if ($currentItem) {
+                } else if ($selectedItem) {
 
                     for (let index of $items.keys()) {
 
-                        if ($items[index] === $currentItem) {
+                        if ($items[index] === $selectedItem) {
 
-                            this.data.$list.scrollTop = index * $currentItem.offsetHeight;
+                            this.data.$list.scrollTop = index * $selectedItem.offsetHeight;
 
                             break;
 
