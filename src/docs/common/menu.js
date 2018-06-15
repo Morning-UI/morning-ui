@@ -49,6 +49,7 @@ export default {
         按钮 : '/component/btn.html',
         链接 : '/component/link.html',
         下拉菜单 : '/component/dropdown.html',
+        '导航菜单<i class="tag new l1"></i>' : '/component/nav.html',
         // 级联菜单<i class="tag new"></i> : 'b',
         // 树形控件 : 'b',
         '标签页<i class="tag update l1"></i>' : '/component/tab.html',

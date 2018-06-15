@@ -33,7 +33,7 @@ import DocFooter                    from 'Docs/common/DocFooter.vue';
 import DocSubmenu                   from 'Docs/common/DocSubmenu.vue';
 import DocComponentStatus           from 'Docs/common/DocComponentStatus.vue';
 
-const randomRangeMin = 1e3;
+const randomRangeMin = 1e4;
 const randomRangeMax = 9e3;
 
 const markdown = new MarkdownIt({

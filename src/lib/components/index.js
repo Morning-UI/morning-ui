@@ -42,6 +42,7 @@ import img                          from './img/index.vue';
 import btn                          from './btn/index.vue';
 import link                         from './link/index.vue';
 import dropdown                     from './dropdown/index.vue';
+import nav                          from './nav/index.vue';
 import tab                          from './tab/index.vue';
 import table                        from './table/index.vue';
 import pagination                   from './pagination/index.vue';
@@ -117,6 +118,7 @@ export default {
     btn,
     link,
     dropdown,
+    nav,
     tab,
     table,
     pagination,

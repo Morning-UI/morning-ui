@@ -5640,6 +5640,11 @@ mor-dropdown.hide mor-link .mo-icon {
   animation-fill-mode: forwards;
 }
 
+mor-nav {
+  display: block;
+  width: 100%;
+}
+
 mor-tab > ul {
   list-style: none;
   padding: 0 !important;
