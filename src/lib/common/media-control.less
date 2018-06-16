@@ -1,0 +1,117 @@
+.mo-media-control{
+    font-size: 0;
+    height: @fontSize*2;
+    display: flex;
+    justify-content: center;
+
+    .play{
+        display: inline-block;
+        line-height: @fontSize*2;
+        height: @fontSize*2;
+        padding: 0 0.3em;
+        font-size: @fontSize;
+        color: @colorExtraLightBlack;
+        white-space: nowrap;
+
+        .mo-icon{
+            cursor: pointer;
+        }
+
+        &.no-media{
+            .mo-icon{
+                cursor: default;
+            }
+        }
+    }
+
+    .progress{
+        display: inline-block;
+        vertical-align: top;
+        width: 100%;
+        position: relative;
+        top: -2px;
+        min-width: 160px;
+
+        mor-slider{
+            .wrap{
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+        }
+    }
+
+    .time{
+        font-size: @fontSize*0.75;
+        line-height: @fontSize*2;
+        height: @fontSize*2;
+        display: inline-block;
+        color: @colorExtraLightBlack;
+        white-space: nowrap;
+        padding: 0 0.3em;
+
+        > span{
+            text-align: center;
+            display: inline-block;
+        }
+    }
+
+    .tools{
+        line-height: @fontSize*2;
+        padding: 0 0.3em;
+        font-size: @fontSize;
+        cursor: pointer;
+        color: @colorExtraLightBlack;
+
+        &:hover{
+            color: @colorLightBlack;
+        }
+    }
+
+    .more-tools{
+        line-height: @fontSize*2;
+        padding: 0 0 0 0.5em;
+        font-size: @fontSize;
+    }
+}
+
+.mor-media-volume{
+    &.tet-ea-bottom .arrow{
+        border-top-color: @colorFormBorder;
+    }
+
+    .con{
+        padding: 6px 0 4px;
+        width: 100px;
+        background-color: @colorWhite;
+        border: 1px @colorFormBorder solid;
+    }
+
+    .slider{
+        width: 100px;
+
+        mor-slider{
+            padding-bottom: 0;
+
+            .wrap{
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+
+            .track,
+            .selected-line{
+                height: 5px;
+            }
+
+            .main-slider{
+                width: 12px;
+                height: 12px;
+                top: -4px;
+                margin-left: -6px;
+            }
+        }
+
+        .note{
+            display: none;
+        }
+    }
+}
