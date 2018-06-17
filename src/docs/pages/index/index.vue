@@ -36,7 +36,67 @@
                 <div class="title">
                     即刻开始
                     <div class="sub">
-                        只需三行代码，即可立即使用。
+                        只需四行代码，即可立即使用。
+                    </div>
+                </div>
+                <div class="lrBox">
+                    <div class="left">
+                        <h3>引入</h3>
+                        <p>在页面中引入Vue.js及Morning UI<br>你也可以通过其它方式引入，详见：<a href="/guide/install.html">开始使用/安装</a></p>
+                    </div>
+                    <div class="right">
+                        <pre>
+                        <code class="language-html hljs xml">
+&lt;script src="https://cdn.jsdelivr.net/npm/vue">&lt;/script>
+
+&lt;link href="https://cdn.jsdelivr.net/npm/morning-ui/dist/morning-ui.min.css" rel="stylesheet">
+&lt;script src="https://cdn.jsdelivr.net/npm/morning-ui/dist/morning-ui.min.js">&lt;/script>
+                        </code>
+                        </pre>
+                    </div>
+                </div>
+                <div class="lrBox">
+                    <div class="left">
+                        <h3>初始化</h3>
+                        <p>在使用组件之前需要先初始化Morning UI<br>在初始化时可以进行配置，详见：<a href="/guide/init.html">基础/初始化</a></p>
+                    </div>
+                    <div class="right">
+                        <pre>
+                        <code class="language-js hljs">
+Vue.use(morning);
+                        </code>
+                        </pre>
+                    </div>
+                </div>
+                <div class="lrBox">
+                    <div class="left">
+                        <h3>使用</h3>
+                        <p>Morning UI基于Vue.js的Components，所以你可以像使用原生DOM元素一样使用。</p>
+                    </div>
+                    <div class="right">
+                        <pre>
+                        <code class="language-html hljs xml">
+&lt;div style="width: 320px;text-align:center;margin: 0 auto;">
+    &lt;ui-textinput form-name="E-Mail">&lt;/ui-textinput>
+    &lt;br>
+    &lt;ui-btn color="success">提交&lt;/ui-btn> &lt;ui-btn color="minor">取消&lt;/ui-btn>
+&lt;/div>
+                        </code>
+                        </pre>
+                    </div>
+                </div>
+                <div class="lrBox">
+                    <div class="left">
+                        <h3>完成！</h3>
+                        <p>完成上述步骤后即可看到如同右侧的组件。<br><br>接下来：<br><a href="/guide/usage.html">了解Morning UI的更多用法</a>
+                            <br><a href="/guide/becontributor.html">成为Morning UI的贡献者</a></p>
+                    </div>
+                    <div class="right">
+                        <div style="width: 320px;text-align:center;margin: 0 auto;">
+                            <ui-textinput form-name="E-Mail"></ui-textinput>
+                            <br>
+                            <ui-btn color="success">提交</ui-btn> <ui-btn color="minor">取消</ui-btn>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -46,9 +106,24 @@
                 <div class="title">
                     轻松完成
                     <div class="sub">
-                        寻找、复制、粘贴，就好了。
+                        寻找、复制、微调，就好了。
                     </div>
                 </div>
+                <div class="img-slider">
+                    <div class="imgs">
+                        <img src="http://morning-ui-image.test.upcdn.net/5.png" :class="{show: (index === 0)}">
+                        <img src="http://morning-ui-image.test.upcdn.net/2.png" :class="{show: (index === 1)}">
+                        <img src="http://morning-ui-image.test.upcdn.net/4.png" :class="{show: (index === 2)}">
+                    </div>
+                    <div class="switch">
+                        <i :class="{current : (index === 0)}" @click="next"></i>
+                        <i :class="{current : (index === 1)}" @click="next"></i>
+                        <i :class="{current : (index === 2)}" @click="next"></i>
+                    </div>
+                </div>
+                <p class="img-note">
+                    Morning UI的文档中包含了大量的示例，找到你想要的，复制到你的项目中，稍作微调，就可以用了！
+                </p>
             </div>
         </section>
         <section class="s1">
@@ -107,7 +182,9 @@ export default {
     data : function () {
 
         return {
-            category : 'home'
+            category : 'home',
+            index : 0,
+            sliderTimer : null
         };
 
     },
@@ -115,9 +192,37 @@ export default {
         'doc-header' : DocHeader,
         'doc-footer' : DocFooter
     },
-    mounted : () => {
+    methods : {
+        next : function () {
+
+            let index = this.index + 1;
+
+            if (index > 2) {
+
+                index = 0;
+
+            }
+
+            this.index = index;
+
+            clearTimeout(this.sliderTimer);
+            this.sliderTimer = setTimeout(() => {
+
+                this.next();
+
+            }, 3600);
+
+        }
+    },
+    mounted : function () {
 
         hljs.initHighlightingOnLoad();
+
+        this.sliderTimer = setTimeout(() => {
+
+            this.next();
+
+        }, 3600);
 
     }
 };
@@ -272,15 +377,22 @@ export default {
 .lrBox{
     font-size: 0;
     border-bottom: 1px #e0e0e0 solid;
-    padding-bottom: 20px;
+    padding: 50px 20px;
+    text-align: left;
+    position: relative;
 
     &:last-child{
         border-bottom: none;
     }
 
+    .right{
+        position: relative;
+        left: 40%;
+    }
+
     .left,
     .right{
-        width: 50%;
+        width: 60%;
         display: inline-block;
         padding: 20px;
         box-sizing: border-box;
@@ -288,13 +400,17 @@ export default {
         vertical-align: middle;
 
         h3{
-            font-size: 28px;
+            font-size: 32px;
             font-weight: 400;
         }
 
         p{
-            font-size: 15px;
             line-height: 1.4em;
+            color: #888;
+            margin: 20px 0 0 0;
+            text-align: center;
+            font-size: 13px;
+            padding: 0 20px;
         }
 
         a{
@@ -304,7 +420,83 @@ export default {
 
         pre{
             font-size: 13px;
+            margin: 0;
+            padding: 0;
+            vertical-align: top;
+            font-size: 0;
+
+            code{
+                font-size: 13px;
+            }
         }
     }
+
+    .left{
+        width: 40%;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+
+        h3{
+            margin: 0;
+            text-align: center;
+        }
+    }
+}
+.img-slider{
+    .switch{
+        padding: 20px 0;
+        text-align: center;
+
+        i{
+            position: relative;
+            display: inline-block;
+            background: #cdd3da;
+            height: 10px;
+            width: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+            
+
+            &:hover{
+                background: #A8B3C2;
+            }
+        }
+
+        i.current{
+            width: 20px;
+            background: #f14865;
+        }
+    }
+}
+.imgs{
+    padding: 2px;
+    width: 640px;
+    background: #fff;
+    margin: 0 auto;
+    border: 1px #eee solid;
+    border-radius: 5px;
+    height: 580px;
+    position: relative;
+
+    img{
+        position: absolute;
+        width: 640px;
+        left: 2px;
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 0;
+        transition: 0.2s;
+
+        &.show{
+            opacity: 1;
+        }
+    }
+}
+.img-note{
+    font-size: 18px;
+    margin: 0;
+    padding: 50px 100px 50px 100px;
 }
 </style>
