@@ -59,7 +59,7 @@ export default {
         日历 : '/component/calendar.html',
         加载 : '/component/load.html',
         // 进度条<i class="tag new"></i> : 'b',
-        '滚动跟随<i class="tag coming"></i>' : '',
+        '吸附<i class="tag new l1"></i>' : '/component/sticky.html',
         '面包屑<i class="tag update l1"></i>' : '/component/breadcrumbs.html',
         '小提示<i class="tag update l1"></i>' : '/component/tip.html',
         消息 : '/component/message.html',

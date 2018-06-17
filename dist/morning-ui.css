@@ -4002,7 +4002,6 @@ mor-formgroup .item > .content > p {
   margin-bottom: 0.375em;
   line-height: 1em;
   transform-origin: 0;
-  transform: scale(0.8);
 }
 mor-formgroup .item > .content > h6 + p {
   margin: -0.15em 0 0.375em 0;
@@ -8011,6 +8010,19 @@ mor-load .mo-loader {
 mor-load .loadfail,
 mor-load .loading > p {
   font-size: 14px;
+}
+
+mor-sticky {
+  display: inline-block;
+}
+mor-sticky.mo-in-tab-hidden {
+  opacity: 0;
+}
+mor-sticky.sticky {
+  position: sticky;
+}
+mor-sticky .sticky-box.fixed {
+  position: fixed;
 }
 
 mor-breadcrumbs {

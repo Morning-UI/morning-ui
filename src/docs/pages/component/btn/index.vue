@@ -204,26 +204,6 @@
 
     [[[事件]]]
 
-    #### emit
-
-    当按钮被点击时触发。
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
-        methods : {
-            echo : function () {
-                console.log('demo3.console1', 'emit event!');
-            }
-        }
-    });
-    ---
-    <div>
-        <ui-btn @emit="echo">点击触发emit事件</ui-btn>
-    </div>
-    :::
-
     #### 生命周期事件
 
     :::vue/html
