@@ -348,17 +348,10 @@ export default {
 
             let newVal = this.get();
             let $items = this.data.$list.querySelectorAll('li:not(.noitem)');
-            let $currentItems = this.data.$list.querySelectorAll('li.current');
             let $noitem = this.data.$list.querySelector('.noitem');
             let searchTextinput;
             let searchMultiinput;
             let multiNames = [];
-
-            for (let $item of $currentItems.values()) {
-
-                $item.classList.remove('current');
-
-            }
 
             if (this.conf.canSearch &&
                 !this.conf.multiSelect) {
@@ -388,8 +381,6 @@ export default {
                 for (let $item of $items.values()) {
 
                     if ($item.getAttribute('value') === val) {
-
-                        $item.classList.add('current');
 
                         if (this.conf.canSearch) {
 
@@ -832,11 +823,31 @@ export default {
 
                 if (selected) {
 
+                    let $icon = $item.querySelector('.mo-select-selected-icon');
+
+                    if (!$icon) {
+                       
+                        $icon = document.createElement('i');
+                        $icon.classList.add('mo-icon');
+                        $icon.classList.add('mo-icon-check');
+                        $icon.classList.add('mo-select-selected-icon');
+                        $item.append($icon);
+
+                    }
+
                     $item.classList.add('selected');
 
                 } else {
 
+                    let $icon = $item.querySelector('.mo-select-selected-icon');
+
                     $item.classList.remove('selected');
+                    
+                    if ($icon) {
+
+                        $icon.remove();
+
+                    }
 
                 }
 
@@ -939,7 +950,7 @@ export default {
         },
         _setListHeight : function () {
 
-            let $item = this.data.$list.querySelector('li:not(.noitem):not(.current):not(.selected)');
+            let $item = this.data.$list.querySelector('li:not(.noitem):not(.selected)');
 
             if (!$item) {
 
@@ -1015,7 +1026,7 @@ export default {
             if (show) {
 
                 let $items = this.data.$list.querySelectorAll('li');
-                let $currentItem = this.data.$list.querySelector('li.current');
+                let $selectedItem = this.data.$list.querySelector('li.selected');
                 
                 this.data.showlist = true;
 
@@ -1044,13 +1055,13 @@ export default {
                 
                     this._refreshShowItems();
                 
-                } else if ($currentItem) {
+                } else if ($selectedItem) {
 
                     for (let index of $items.keys()) {
 
-                        if ($items[index] === $currentItem) {
+                        if ($items[index] === $selectedItem) {
 
-                            this.data.$list.scrollTop = index * $currentItem.offsetHeight;
+                            this.data.$list.scrollTop = index * $selectedItem.offsetHeight;
 
                             break;
 
@@ -1224,6 +1235,7 @@ export default {
     updated : function () {
         
         this._updateItemValueList();
+        this._refreshShowItems();
 
         if (!this.data.highPerfMode) {
 

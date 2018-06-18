@@ -36,9 +36,12 @@
 </template>
  
 <script>
+import GlobalEvent                  from 'Utils/GlobalEvent';
+
 export default {
     origin : 'UI',
     name : 'tab',
+    mixins : [GlobalEvent],
     props : {
         tab : {
             type : String,
@@ -125,6 +128,26 @@ export default {
             this.data.namelist = list;
 
         },
+        _setSticky : function ($con, show) {
+
+            // hidden ui-sticky in tab
+            let $stickys = $con.querySelectorAll('mor-sticky');
+
+            for (let $sticky of $stickys) {
+
+                if (!show) {
+    
+                    $sticky.classList.add('mo-in-tab-hidden');
+
+                } else {
+
+                    $sticky.classList.remove('mo-in-tab-hidden');
+
+                }
+
+            }
+
+        },
         _initTabs : function () {
 
             this._getNamelist();
@@ -155,6 +178,7 @@ export default {
                     for (let $el of $currentConEl) {
 
                         $el.classList.remove('current');
+                        this._setSticky($el, false);
 
                     }
 
@@ -243,6 +267,12 @@ export default {
         },
         _targetAnchorPoint : function () {
 
+            if (!this.conf.anchorTarget) {
+
+                return;
+
+            }
+
             let anchor = window.location.hash.replace(/^#/, '');
             let $targetEl;
 
@@ -290,6 +320,9 @@ export default {
                 conEl.classList.remove('current');
                 tabEl.classList.remove('current');
 
+                // hidden ui-sticky in tab
+                this._setSticky(conEl, false);
+
             }
 
             let current = this.data.tabs.indexOf(name);
@@ -301,6 +334,9 @@ export default {
 
                 conEl.classList.add('current');
                 tabEl.classList.add('current');
+
+                // show ui-sticky in tab
+                this._setSticky(conEl, true);
 
             }
 
@@ -363,7 +399,7 @@ export default {
         this.Vue.nextTick(() => {
 
             this._targetAnchorPoint();
-            window.addEventListener('hashchange', this._targetAnchorPoint);
+            this._globalEventAdd('hashchange', '_targetAnchorPoint');
 
         });
 
@@ -403,9 +439,9 @@ export default {
         }
 
     },
-    destroyed : function () {
+    beforeDestroy : function () {
 
-        window.removeEventListener('hashchange', this._targetAnchorPoint);
+        this._globalEventRemove('hashchange', '_targetAnchorPoint');
 
     }
 };
