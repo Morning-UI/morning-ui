@@ -67,6 +67,7 @@
     "left-pad": "^1.3.0",
     "lodash.sortby": "^4.7.0",
     "lodash.without": "^4.4.0",
+    "stickyfilljs": "^2.0.5",
     "tether": "^1.4.0",
     "trim": "0.0.1"
   },

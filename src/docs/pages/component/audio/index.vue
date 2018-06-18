@@ -280,7 +280,7 @@
         template : '{$template}',
         data : function () {
             return {
-               text : '按钮',
+               text : '音频',
                show : true
             };
         },
