@@ -1,4 +1,5 @@
 import                              'Common/common.less';
+import                              'Npm/quill/dist/quill.snow.css';
 
 import h                            from './h/index.vue';
 import lead                         from './lead/index.vue';
@@ -57,6 +58,7 @@ import video                        from './video/index.vue';
 
 import textinput                    from './textinput/index.vue';
 import textarea                     from './textarea/index.vue';
+import texteditor                   from './texteditor/index.vue';
 import _switch                      from './switch/index.vue';
 import select                       from './select/index.vue';
 import checkbox                     from './checkbox/index.vue';
@@ -132,6 +134,7 @@ export default {
     video,
     textinput,
     textarea,
+    texteditor,
     switch : _switch,
     select,
     checkbox,

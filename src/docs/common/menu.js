@@ -68,7 +68,7 @@ export default {
         表单组件 : null,
         '文本输入<i class="tag update l1"></i>' : '/component/textinput.html',
         '段落输入<i class="tag update l1"></i>' : '/component/textarea.html',
-        '富文本输入<i class="tag coming"></i>' : '',
+        '富文本输入<i class="tag new l1"></i>' : '/component/texteditor.html',
         // 富文本输入 : 'b',
         开关 : '/component/switch.html',
         // 计数器<i class="tag new"></i> : 'b',
