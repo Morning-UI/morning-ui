@@ -10068,13 +10068,13 @@ mor-texteditor .ql-snow .ql-picker.ql-size {
   width: 68px;
 }
 mor-texteditor .ql-snow .ql-tooltip[data-mode=link]::before {
-  content: "\94FE\63A5\5730\5740\FF1A";
+  content: '\94FE\63A5\5730\5740\FF1A';
 }
 mor-texteditor .ql-snow .ql-tooltip::before {
-  content: "\94FE\63A5\5730\5740:";
+  content: '\94FE\63A5\5730\5740\FF1A';
 }
 mor-texteditor .ql-snow .ql-tooltip.ql-editing a.ql-action::after {
-  content: "\4FDD\5B58";
+  content: '\4FDD\5B58';
 }
 mor-texteditor .ql-snow .ql-tooltip a.ql-action::after {
   content: '\4FEE\6539';
@@ -10084,7 +10084,7 @@ mor-texteditor .ql-snow .ql-tooltip a.ql-remove::before {
 }
 mor-texteditor.st-disabled .ql-container,
 mor-texteditor.st-readonly .ql-container {
-  background: #efefef;
+  background: #EFEFEF;
 }
 
 @keyframes switchOpen {
