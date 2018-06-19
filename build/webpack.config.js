@@ -197,11 +197,11 @@ devVerConfig = extend(
                     }
                 },
                 {
-                    test: /\.svg$/,
-                    use: {
-                        loader: 'html-loader',
-                        options: {
-                            minimize: true
+                    test : /\.svg$/,
+                    use : {
+                        loader : 'html-loader',
+                        options : {
+                            minimize : true
                         }
                     }
                 }
@@ -325,11 +325,11 @@ prodVerConfig = extend(
                     }
                 },
                 {
-                    test: /\.svg$/,
-                    use: {
-                        loader: 'html-loader',
-                        options: {
-                            minimize: true
+                    test : /\.svg$/,
+                    use : {
+                        loader : 'html-loader',
+                        options : {
+                            minimize : true
                         }
                     }
                 }

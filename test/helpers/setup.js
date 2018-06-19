@@ -16,9 +16,19 @@ hooks('vue')
     .plugin('vue')
     .push();
 
-hooks(['vue', 'js'])
-    .plugin('babel')
+hooks(['js', 'vue'])
+    .plugin('babel', {
+        exclude : [
+            /coverage/,
+            /node_modules\/(?!quill)/
+        ]
+    })
     .push();
+
+hooks(['svg'])
+    .push(function ({content}) {
+        return `return \`${content}\`;`;
+    });
 
 window.morning = require('../../src/lib/index').default;
 

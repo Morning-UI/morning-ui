@@ -105,7 +105,7 @@
     |link|链接|无|
     |clean|清除样式|无|
 
-    使用__无值__的工具：
+    使用<b>无值</b>的工具：
 
     :::democode/html
     <div style="width:100%;height:240px;">
@@ -113,7 +113,7 @@
     </div>
     :::
 
-    使用__值为数组__的工具：
+    使用<b>值为数组</b>的工具：
 
     :::democode/html
     <div style="width:100%;height:240px;">
@@ -121,7 +121,7 @@
     </div>
     :::
 
-    使用__值为选项__的工具：
+    使用<b>值为选项</b>的工具：
 
     :::democode/html
     <div style="width:100%;height:240px;">
@@ -136,7 +136,6 @@
         <ui-texteditor form-name="文章编辑" :tools="[[{header: [false, 1, 2, 3, 4, 5, 6]}], ['bold', 'italic'], [{list: 'ordered'}, {list: 'bullet'}, {indent: '-1'}, {indent: '+1'}]]"></ui-texteditor>
     </div>
     :::
-    
 
     #### placeholder
 
@@ -144,6 +143,72 @@
     <div style="width:100%;height:240px;">
         <ui-texteditor form-name="文章编辑" placeholder="编写文章..."></ui-texteditor>
     </div>
+    :::
+    
+    [[[事件]]]
+
+    #### selection-change
+
+    当用户选择编辑文字发生变化后触发。
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        methods : {
+            echo : function () {
+                console.log('demo2.console1', 'selection-change event!');
+            }
+        }
+    });
+    ---
+    <div style="width:100%;height:240px;">
+        <ui-texteditor @selection-change="echo" ref="demo2"></ui-texteditor>
+    </div>
+    :::
+
+    :::preset/html
+    formEvent
+    ---
+    uikey:texteditor
+    eventValue:'<p>编辑你的文章...</p>'
+    eventDivStyle:width:100%;height:260px;padding-bottom:80px;
+    :::
+
+    [[[表单值]]]
+
+    #### 值类型
+    
+    `String` : 字符串
+
+    #### 值过滤
+    
+    - 如果数值类型为非字符串(`undefined`除外)，会转换成字符串
+
+    #### 值格式
+
+    内容值字符串(HTML)。
+
+    #### 默认值
+
+    `undefined`
+
+    #### 输入/输出示例
+
+    :::repeat/html
+    formValueType:texteditor
+    ---
+    <div>
+        <p>{$valueType}类型</p>
+        <div style="width:100%;height: 240px;">
+            <ui-texteditor ref="demoType{$valueType}"></ui-texteditor>
+        </div>
+        <br>
+        <ui-link js="window.morning.findVM('demoType{$valueType}').set({$&valueContent})">设置{$valueType}类型</ui-link>
+        <ui-link js="alert(window.morning.findVM('demoType{$valueType}').getJson())">获取表单JSON值</ui-link>
+    </div>
+    <br>
+    <br>
     :::
 
     [[[源码]]]

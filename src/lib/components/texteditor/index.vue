@@ -168,17 +168,8 @@
 import Quill                        from 'quill/core';
 import Toolbar                      from 'quill/modules/toolbar';
 import Syntax                       from 'quill/modules/syntax';
-import BubbleTheme                  from 'quill/themes/bubble';
 import SnowTheme                    from 'quill/themes/snow';
 import Icons                        from 'quill/ui/icons';
-// import Picker                       from 'quill/ui/picker';
-// import ColorPicker                  from 'quill/ui/color-picker';
-// import QuillToolbar                 from 'quill/modules/toolbar';
-// import QuillSnow                    from 'quill/themes/snow';
-// import QuillBold                    from 'quill/formats/bold';
-// import QuillItalic                  from 'quill/formats/italic';
-// import QuillHeader                  from 'quill/formats/header';
-
 import {AlignStyle}                 from 'quill/formats/align';
 import {BackgroundStyle}            from 'quill/formats/background';
 import {ColorStyle}                 from 'quill/formats/color';
@@ -197,43 +188,38 @@ import Underline                    from 'quill/formats/underline';
 
 Icons.undo = require('quill/assets/icons/undo.svg');
 Icons.redo = require('quill/assets/icons/redo.svg');
-SizeStyle.whitelist = ['12px', '13px', '14px', '16px', '20px', '28px']
+SizeStyle.whitelist = ['12px', '13px', '14px', '16px', '20px', '28px'];
 
 Quill.register({
-    'formats/align': AlignStyle,
-    'formats/indent': IndentClass,
-
-    'formats/background': BackgroundStyle,
-    'formats/color': ColorStyle,
-    'formats/size': SizeStyle,
-
-    'formats/blockquote': Blockquote,
-    'formats/code-block': CodeBlock,
-    'formats/header': Header,
-    'formats/list': List,
-
-    'formats/bold': Bold,
-    'formats/code': Code,
-    'formats/italic': Italic,
-    'formats/link': Link,
-    'formats/script': Script,
-    'formats/strike': Strike,
-    'formats/underline': Underline,
+    'formats/align' : AlignStyle,
+    'formats/indent' : IndentClass,
+    'formats/background' : BackgroundStyle,
+    'formats/color' : ColorStyle,
+    'formats/size' : SizeStyle,
+    'formats/blockquote' : Blockquote,
+    'formats/code-block' : CodeBlock,
+    'formats/header' : Header,
+    'formats/list' : List,
+    'formats/bold' : Bold,
+    'formats/code' : Code,
+    'formats/italic' : Italic,
+    'formats/link' : Link,
+    'formats/script' : Script,
+    'formats/strike' : Strike,
+    'formats/underline' : Underline,
 
     // 'formats/image': Image,
     // 'formats/video': Video,
-
-    'formats/list/item': ListItem,
+    'formats/list/item' : ListItem,
 
     // 'modules/formula': Formula,
     // 'modules/history': History,
-    'modules/toolbar': Toolbar,
-    'modules/syntax': Syntax,
+    'modules/toolbar' : Toolbar,
+    'modules/syntax' : Syntax,
 
     // 'themes/bubble': BubbleTheme,
-    'themes/snow': SnowTheme,
-
-    'ui/icons': Icons
+    'themes/snow' : SnowTheme,
+    'ui/icons' : Icons
     // 'ui/picker': Picker,
     // 'ui/icon-picker': IconPicker,
     // 'ui/color-picker': ColorPicker
@@ -525,12 +511,51 @@ export default {
         tools : {
             type : Array,
             default : (() => [
-                [{'header': [false, 1, 2, 3, 4, 5, 6]}, {'size': [false, '12px', '13px', '14px', '16px', '20px', '28px']}],
+                [
+                    {
+                        header : [false, 1, 2, 3, 4, 5, 6]
+                    },
+                    {
+                        size : [false, '12px', '13px', '14px', '16px', '20px', '28px']
+                    }
+                ],
                 ['undo', 'redo'],
                 ['bold', 'italic', 'underline', 'strike'],
-                [{'color': []}, {'background': []}],
-                [{'align': []}, {'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
-                [{'script': 'sub'}, {'script': 'super'}, 'blockquote', 'code-block'],
+                [
+                    {
+                        color : []
+                    },
+                    {
+                        background : []
+                    }
+                ],
+                [
+                    {
+                        align : []
+                    },
+                    {
+                        list : 'ordered'
+                    },
+                    {
+                        list : 'bullet'
+                    },
+                    {
+                        indent : '-1'
+                    },
+                    {
+                        indent : '+1'
+                    }
+                ],
+                [
+                    {
+                        script : 'sub'
+                    },
+                    {
+                        script : 'super'
+                    },
+                    'blockquote',
+                    'code-block'
+                ],
                 ['link'],
                 ['clean']
             ])
@@ -591,7 +616,7 @@ export default {
 
             let html = this.$el.querySelector('.ql-editor').innerHTML;
 
-            html = `<style class="mo-texteditor-style">${inlineStyle.replace(/(\n|  )/g, '')}</style><div class="mo-texteditor">${html}</div>`;
+            html = `<style class="mo-texteditor-style">${inlineStyle.replace(/(\n|[ ]{2})/g, '')}</style><div class="mo-texteditor">${html}</div>`;
 
             return html;
 
@@ -624,11 +649,11 @@ export default {
                 if ($texteditor) {
 
                     html = $texteditor.innerHTML;
+
                 }
 
             }
 
-            console.log(html);
             this.data.quill.clipboard.dangerouslyPasteHTML(html);
 
             return this;
@@ -639,11 +664,11 @@ export default {
     mounted : function () {
 
         this.data.quill = new Quill(this.$el.querySelector('.quill'), {
-            theme: 'snow',
-            placeholder: this.conf.placeholder,
-            modules: {
-                toolbar: {
-                    container: this.$el.querySelector('.toolbar'),
+            theme : 'snow',
+            placeholder : this.conf.placeholder,
+            modules : {
+                toolbar : {
+                    container : this.$el.querySelector('.toolbar'),
                     handlers : {
                         undo : () => {
 
@@ -681,8 +706,6 @@ export default {
 
         this.$watch('conf.state', () => {
 
-            console.log(this.conf.state);
-
             if (this.conf.state === 'disabled' ||
                 this.conf.state === 'readonly') {
 
@@ -700,7 +723,7 @@ export default {
 
         this.$on('value-change', () => {
 
-           this.setHtml(this.get());
+            this.setHtml(this.get());
 
         });
 
@@ -708,7 +731,7 @@ export default {
 
             this.setHtml(this.get(), true);
 
-        })
+        });
 
     },
     updated : function () {

@@ -10009,6 +10009,7 @@ mor-textarea.st-readonly textarea {
 mor-texteditor {
   display: block;
   height: 100%;
+  position: relative;
 }
 mor-texteditor.has-cleanbtn {
   padding-bottom: 20px;
@@ -10018,6 +10019,31 @@ mor-texteditor .cleanbtn {
   right: 0;
   font-size: 12px;
   margin-top: 1px;
+}
+mor-texteditor > .note {
+  color: #303C4B;
+  font-size: 16px;
+  margin-bottom: 0.5em;
+  -webkit-user-select: text;
+}
+mor-texteditor.has-cleanbtn {
+  padding-bottom: 26px;
+}
+mor-texteditor > .cleanbtn {
+  right: 0;
+  bottom: 0;
+}
+mor-texteditor .editor-wrap {
+  height: calc(100% - 32px);
+}
+mor-texteditor > .note:empty + .editor-wrap {
+  height: 100%;
+}
+mor-texteditor.hide-name .note {
+  display: none;
+}
+mor-texteditor.hide-name .editor-wrap {
+  height: 100%;
 }
 mor-texteditor .toolbar {
   width: 100%;
@@ -10055,6 +10081,10 @@ mor-texteditor .ql-snow .ql-tooltip a.ql-action::after {
 }
 mor-texteditor .ql-snow .ql-tooltip a.ql-remove::before {
   content: '\79FB\9664';
+}
+mor-texteditor.st-disabled .ql-container,
+mor-texteditor.st-readonly .ql-container {
+  background: #efefef;
 }
 
 @keyframes switchOpen {
