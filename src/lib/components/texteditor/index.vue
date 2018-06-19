@@ -24,13 +24,13 @@
                             <template v-if="typeof tool === 'object' && Object.keys(tool)[0] === 'header'">
                                 <select class="ql-header" :id="'mor-te-tool-header-'+uiid">
                                     <template v-for="header in tool.header">
+                                        <option value="" v-if="header === false">正常</option>
                                         <option value="1" v-if="header === 1">标题1</option>
                                         <option value="2" v-if="header === 2">标题2</option>
                                         <option value="3" v-if="header === 3">标题3</option>
                                         <option value="4" v-if="header === 4">标题4</option>
                                         <option value="5" v-if="header === 5">标题5</option>
                                         <option value="6" v-if="header === 6">标题6</option>
-                                        <option value="" v-if="header === false">正常</option>
                                     </template>
                                 </select>
                                 <morning-tip :target="'#mor-te-tool-header-'+uiid" color="extra-light-black">设置标题</morning-tip>
@@ -525,7 +525,7 @@ export default {
         tools : {
             type : Array,
             default : (() => [
-                [{'header': [1, 2, 3, 4, 5, 6, false]}, {'size': [false, '12px', '13px', '14px', '16px', '20px', '28px']}],
+                [{'header': [false, 1, 2, 3, 4, 5, 6]}, {'size': [false, '12px', '13px', '14px', '16px', '20px', '28px']}],
                 ['undo', 'redo'],
                 ['bold', 'italic', 'underline', 'strike'],
                 [{'color': []}, {'background': []}],
