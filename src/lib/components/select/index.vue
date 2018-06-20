@@ -9,6 +9,7 @@
         :default-value="defaultValue"
         :hide-name="hideName"
         :clearable="clearable"
+        :list="list"
         :separate-emit="separateEmit"
         :align="align"
         :prepend="prepend"
@@ -137,7 +138,10 @@
                 :style="listStyle"
                 @click="_listClick"
             >
-                <slot></slot>
+                <li v-for="(item, index) in data.itemValueList" :index="index">
+                    {{item.name}}
+                    <i class="mo-select-selected-icon mo-icon mo-icon-check" v-if="item._selected"></i>
+                </li>
                 <li class="noitem">无项目</li>
             </ul>
         </div>
@@ -149,6 +153,7 @@
 </template>
  
 <script>
+import extend                       from 'extend';
 import trim                         from 'trim';
 import GlobalEvent                  from 'Utils/GlobalEvent';
 import TipManager                   from 'Utils/TipManager';
@@ -158,6 +163,10 @@ export default {
     name : 'select',
     mixins : [GlobalEvent, TipManager],
     props : {
+        list : {
+            type : [Array, Object],
+            default : (() => [])
+        },
         separateEmit : {
             type : String,
             default : ''
@@ -224,6 +233,7 @@ export default {
         _conf : function () {
 
             return {
+                list : this.list,
                 separateEmit : this.separateEmit,
                 align : this.align,
                 prepend : this.prepend,
@@ -311,22 +321,23 @@ export default {
 
             }
 
+            // TODO : check can move.
             // filter not exist value.
-            if (this.data.filterNotExist) {
+            // if (this.data.filterNotExist) {
 
-                for (let index in value) {
+            //     for (let index in value) {
 
-                    let val = value[index];
+            //         let val = value[index];
 
-                    if (this.data.itemValueList.indexOf(String(val)) === -1) {
+            //         if (this.data.itemValueList.indexOf(String(val)) === -1) {
 
-                        value.splice(index, 1);
+            //             value.splice(index, 1);
 
-                    }
+            //         }
 
-                }
+            //     }
 
-            }
+            // }
 
             return value;
 
@@ -453,18 +464,59 @@ export default {
 
             const useHighPrefModeMinItems = 200;
 
-            let $items = this.data.$list.querySelectorAll('li:not(.noitem)');
             let list = [];
 
-            for (let $item of $items.values()) {
+            if (this.conf.list instanceof Array) {
 
-                list.push($item.getAttribute('value'));
+                list = extend(true, [], list);
+
+            } else if (this.conf.list instanceof Object) {
+
+                for (let key in this.conf.list) {
+
+                    list.push({
+                        val : key,
+                        name : this.conf.list[key]
+                    });
+
+                }
+
+            }
+
+            for (let item of this.data.itemValueList) {
+
+                for (let key in list) {
+
+                    if (list[key].val === item.val) {
+
+                        // extend old status
+                        list[key] = extend(item, list[key]);
+
+                    }
+
+                }
+
+            }
+
+            // uniq same val
+            let valList = [];
+            let uniqList = [];
+
+            for (let key in list) {
+
+                if (valList.indexOf(list[key].val) === -1) {
+
+                    uniqList.push(list[key]);
+
+                }
+
+                valList.push(list[key].val);
 
             }
 
             // 高性能模式，当列表项目大于200后开启
             // 去除了不必要的动画、调整CSS、减少计算频率
-            if (list.length > useHighPrefModeMinItems) {
+            if (uniqList.length > useHighPrefModeMinItems) {
 
                 this.data.highPerfMode = true;
 
@@ -474,7 +526,8 @@ export default {
 
             }
 
-            this.data.itemValueList = list;
+            console.log(uniqList);
+            this.data.itemValueList = uniqList;
 
             if (this.data.filterNotExist === false) {
 
@@ -484,17 +537,17 @@ export default {
             }
 
         },
-        _emitClick : function () {
+        // _emitClick : function () {
 
-            if (!this.conf.separateEmit) {
+        //     if (!this.conf.separateEmit) {
 
-                return;
+        //         return;
 
-            }
+        //     }
 
-            this.toggle();
+        //     this.toggle();
 
-        },
+        // },
         _wrapClick : function (evt) {
 
             if (this.conf.separateEmit) {
@@ -563,19 +616,20 @@ export default {
 
             if ($clickItem) {
 
-                let value = [$clickItem.getAttribute('value')];
+                let index = $clickItem.getAttribute('index');
+                let value = [this.data.itemValueList[index].val];
 
                 if (this.conf.multiSelect &&
                     this.data.value !== undefined) {
 
                     value = this.get();
 
-                    let clickValue = $clickItem.getAttribute('value');
-                    let index = value.indexOf(clickValue);
+                    let clickValue = this.data.itemValueList[index].val;
+                    let valIndex = value.indexOf(clickValue);
 
-                    if (index !== -1) {
+                    if (valIndex !== -1) {
 
-                        value.splice(index, 1);
+                        value.splice(valIndex, 1);
 
                     } else {
 
@@ -603,16 +657,16 @@ export default {
             this._tipUpdate();
 
         },
-        _textinputFocus : function () {
+        // _textinputFocus : function () {
 
-            this.data.focusSearch = true;
+        //     this.data.focusSearch = true;
 
-        },
-        _textinputBlur : function () {
+        // },
+        // _textinputBlur : function () {
 
-            this.data.focusSearch = false;
+        //     this.data.focusSearch = false;
 
-        },
+        // },
         _searchKeyChange : function () {
 
             if (!this.data.mounted) {
@@ -678,43 +732,44 @@ export default {
             });
 
         },
-        _multiinputFocusNoSearch : function () {
+        // _multiinputFocusNoSearch : function () {
 
-            let searchMultiinput = this.data.$selectArea.querySelector(`#ui-select-mi-${this.uiid}`)._vm;
+        //     let searchMultiinput = this.data.$selectArea.querySelector(`#ui-select-mi-${this.uiid}`)._vm;
 
-            searchMultiinput._blurInput();
-            this._multiinputFocus();
+        //     searchMultiinput._blurInput();
+        //     this._multiinputFocus();
 
-        },
-        _multiinputFocus : function () {
+        // },
+        // _multiinputFocus : function () {
 
-            this.toggle(true);
+        //     this.toggle(true);
 
-        },
-        _refreshValue : function (values) {
+        // },
 
-            let setValue = [];
-            let $items = this.data.$list.querySelectorAll('li:not(.noitem)');
+        // _refreshValue : function (values) {
+        //     // TODO : check delete.
+        //     let setValue = [];
+        //     let $items = this.data.$list.querySelectorAll('li:not(.noitem)');
 
-            for (let value of values) {
+        //     for (let value of values) {
 
-                for (let $item of $items.values()) {
+        //         for (let $item of $items.values()) {
 
-                    if (trim($item.textContent) === value) {
+        //             if (trim($item.textContent) === value) {
 
-                        setValue.push($item.getAttribute('value'));
+        //                 setValue.push($item.getAttribute('value'));
 
-                        break;
+        //                 break;
 
-                    }
+        //             }
 
-                }
+        //         }
 
-            }
+        //     }
 
-            this.set(setValue);
+        //     this.set(setValue);
 
-        },
+        // },
         _multiinputValueChange : function () {
 
             if (!this.data.mounted) {
@@ -744,7 +799,10 @@ export default {
             
             this.data.selectInput = false;
             this.data.multiinputLastValue = values;
-            this._refreshValue(values);
+
+            // TODO : check delete, need check value in list.
+            // this._refreshValue(values);
+            this._set(values, true);
 
         },
         _refreshShowItemsWithSearch : function () {
@@ -808,10 +866,13 @@ export default {
             for (let $item of $items) {
 
                 let selected = false;
+                let itemValue = this.data.itemValueList[$item.getAttribute('index')];
 
                 for (let value of values) {
 
-                    if (value === $item.getAttribute('value')) {
+
+                    if (itemValue && 
+                        value === itemValue.val) {
 
                         selected = true;
 
@@ -821,55 +882,27 @@ export default {
 
                 }
 
-                if (selected) {
-
-                    let $icon = $item.querySelector('.mo-select-selected-icon');
-
-                    if (!$icon) {
-                       
-                        $icon = document.createElement('i');
-                        $icon.classList.add('mo-icon');
-                        $icon.classList.add('mo-icon-check');
-                        $icon.classList.add('mo-select-selected-icon');
-                        $item.append($icon);
-
-                    }
-
-                    $item.classList.add('selected');
-
-                } else {
-
-                    let $icon = $item.querySelector('.mo-select-selected-icon');
-
-                    $item.classList.remove('selected');
-                    
-                    if ($icon) {
-
-                        $icon.remove();
-
-                    }
-
-                }
+                itemValue._selected = selected;
 
             }
 
             this._refreshShowItemsWithSearch();
 
         },
-        _checkArea : function (evt) {
+        // _checkArea : function (evt) {
 
-            let $wrap = this.data.$selectArea.querySelector('.wrap');
+        //     let $wrap = this.data.$selectArea.querySelector('.wrap');
 
-            if (this.data.showlist &&
-                this.conf.autoClose &&
-                evt.path.indexOf(this.$el) === -1 &&
-                evt.path.indexOf($wrap) === -1) {
+        //     if (this.data.showlist &&
+        //         this.conf.autoClose &&
+        //         evt.path.indexOf(this.$el) === -1 &&
+        //         evt.path.indexOf($wrap) === -1) {
                 
-                this.toggle(false);
+        //         this.toggle(false);
             
-            }
+        //     }
 
-        },
+        // },
         _resizeInlineImg : function () {
 
             if (!this.conf.inlineImgSize) {
@@ -1110,7 +1143,6 @@ export default {
         this.Tip.autoReverse = false;
         this.Tip.autoOffset = false;
 
-        this._updateItemValueList();
         this._onValueChange();
         this._resizeSelectArea();
 
@@ -1122,6 +1154,15 @@ export default {
                 immediate : true
             });
 
+        });
+
+        this.$watch('conf.list', () => {
+
+            this._updateItemValueList();
+
+        }, {
+            immediate : true,
+            deep : true
         });
 
         this.$watch('conf.separateEmit', (newVal, oldVal) => {
@@ -1234,7 +1275,6 @@ export default {
     },
     updated : function () {
         
-        this._updateItemValueList();
         this._refreshShowItems();
 
         if (!this.data.highPerfMode) {
