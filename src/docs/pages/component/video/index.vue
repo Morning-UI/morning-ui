@@ -319,7 +319,7 @@
         template : '{$template}',
         data : function () {
             return {
-               text : '按钮',
+               text : '视频',
                show : true
             };
         },

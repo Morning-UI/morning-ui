@@ -1,0 +1,108 @@
+@import '~Common/var.less';
+
+mor-texteditor{
+    display: block;
+    height: 100%;
+    position: relative;
+
+    .setup-form();
+
+    > .note{
+        color: @colorFormTextNote;
+        font-size: @fontSize;
+        margin-bottom: 0.5em;
+        -webkit-user-select: text;
+    }
+
+    &.has-cleanbtn{
+        padding-bottom: 26px;
+    }
+
+    > .cleanbtn{
+        right: 0;
+        bottom: 0;
+    }
+
+    .editor-wrap{
+        height: ~'calc(100% - 32px)';
+    }
+
+    > .note:empty + .editor-wrap{
+        height: 100%;
+    }
+
+    &.hide-name{
+        .note{
+            display: none;
+        }
+
+        .editor-wrap{
+            height: 100%;
+        }
+    }
+
+    .toolbar{
+        width: 100%;
+    }
+
+    .quill{
+        width: 100%;
+    }
+
+    .ql-toolbar{
+        border-radius: @borderRadius @borderRadius 0 0;
+    }
+
+    .ql-container{
+        border-radius: 0 0 @borderRadius @borderRadius;
+    }
+
+    .ql-formats{
+        > button{
+            outline: none;
+        }
+    }
+
+    .ql-picker-label{
+        outline: none;
+    }
+
+    .ql-snow .ql-picker.ql-header,
+    .ql-snow .ql-picker.ql-size{
+        width: 68px;
+    }
+
+    .ql-snow .ql-tooltip[data-mode=link]::before{
+        content: '链接地址：';
+    }
+
+    .ql-snow .ql-tooltip::before{
+        content: '链接地址：';
+    }
+
+    .ql-snow .ql-tooltip.ql-editing a.ql-action::after{
+        content: '保存';
+    }
+
+    .ql-snow .ql-tooltip a.ql-action::after{
+        content: '修改';
+    }
+
+    .ql-snow .ql-tooltip a.ql-remove::before{
+        content: '移除';
+    }
+
+    &.st-normal{}
+
+    &.st-disabled,
+    &.st-readonly{
+        .ql-container{
+            background: #EFEFEF;
+        }
+    }
+
+    // default status
+    &{
+        .st-normal;
+    }
+}
