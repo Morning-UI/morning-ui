@@ -347,16 +347,6 @@ export default {
         }, {
             immediate : true
         });
-
-        this.$on('value-change', () => {
-
-            if (!this.Move.moving) {
-
-                this.data.inputValue = '';
-            
-            }
-
-        });
         
     },
     mounted : function () {

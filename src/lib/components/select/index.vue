@@ -138,11 +138,29 @@
                 :style="listStyle"
                 @click="_listClick"
             >
-                <li v-for="(item, index) in data.itemValueList" :index="index">
-                    {{item.name}}
-                    <i class="mo-select-selected-icon mo-icon mo-icon-check" v-if="item._selected"></i>
-                </li>
-                <li class="noitem">无项目</li>
+                <template v-for="(item, index) in data.itemValueList">
+                    <li
+                        :index="index"
+                        :class="{
+                            hide : item._nomatch,
+                            selected : item._selected
+                        }"
+                        v-if="item._selected"
+                        v-render="{template : item.name+'<i class=\'mo-select-selected-icon mo-icon mo-icon-check\'></i>'}"
+                    >
+                    </li>
+                    <li
+                        :index="index"
+                        :class="{
+                            hide : item._nomatch,
+                            selected : item._selected
+                        }"
+                        v-else
+                        v-render="{template : item.name}"
+                    >
+                    </li>
+                </template>
+                <li class="noitem" :class="{show : data.noMatch}">无项目</li>
             </ul>
         </div>
     </div>
@@ -164,8 +182,8 @@ export default {
     mixins : [GlobalEvent, TipManager],
     props : {
         list : {
-            type : [Array, Object],
-            default : (() => [])
+            type : Object,
+            default : (() => {})
         },
         separateEmit : {
             type : String,
@@ -289,14 +307,14 @@ export default {
                 itemValueList : [],
                 filterNotExist : false,
                 lastItemHeight : 0,
-                tipsContent : [],
                 tips : [],
                 $listWrap : null,
                 $list : null,
                 $emitTarget : null,
                 $selectArea : null,
                 $selectList : null,
-                highPerfMode : false
+                highPerfMode : false,
+                noMatch : false
             },
             listStyle : {}
         };
@@ -389,30 +407,20 @@ export default {
 
             for (let val of newVal) {
 
-                for (let $item of $items.values()) {
+                for (let key in this.data.itemValueList) {
 
-                    if ($item.getAttribute('value') === val) {
-
-                        if (this.conf.canSearch) {
-
-                            if (searchTextinput) {
-
-                                searchTextinput._set(undefined, true);
-
-                            }
-
-                        }
+                    if (this.data.itemValueList[key].val === val) {
 
                         if (this.conf.multiSelect) {
 
-                            multiNames.push(trim($item.textContent));
-                        
+                            multiNames.push(this.data.itemValueList[key].name);
+
                         } else {
 
-                            this.data.selectedContent = $item.textContent;
+                            this.data.selectedContent = this.data.itemValueList[key].name;
 
                         }
-                    
+
                     }
 
                 }
@@ -422,11 +430,11 @@ export default {
             if (this.conf.multiSelect &&
                 this.data.value.length === $items.length) {
 
-                $noitem.classList.add('show');
+                this.data.noMatch = true;
 
             } else {
-                
-                $noitem.classList.remove('show');
+
+                this.data.noMatch = false;
 
             }
 
@@ -434,7 +442,14 @@ export default {
                 (this.data.value.length === 0 || this.data.value === undefined)) {
 
                 this.data.selectedContent = this.conf.formName || '';
-            
+
+            }
+
+            if (this.conf.canSearch &&
+                searchTextinput) {
+
+                searchTextinput._set(undefined, true);
+
             }
 
             if (searchMultiinput &&
@@ -444,7 +459,7 @@ export default {
 
                 this.data.selectInput = true;
                 searchMultiinput._set(multiNames, true);
-                    
+
                 if (!this.conf.autoResetSearch) {
                     
                     this.Vue.nextTick(() => {
@@ -466,13 +481,9 @@ export default {
 
             let list = [];
 
-            if (this.conf.list instanceof Array) {
+            if (this.conf.list instanceof Object) {
 
-                list = extend(true, [], list);
-
-            } else if (this.conf.list instanceof Object) {
-
-                for (let key in this.conf.list) {
+                for (let key of Object.keys(this.conf.list)) {
 
                     list.push({
                         val : key,
@@ -526,7 +537,6 @@ export default {
 
             }
 
-            console.log(uniqList);
             this.data.itemValueList = uniqList;
 
             if (this.data.filterNotExist === false) {
@@ -537,17 +547,17 @@ export default {
             }
 
         },
-        // _emitClick : function () {
+        _emitClick : function () {
 
-        //     if (!this.conf.separateEmit) {
+            if (!this.conf.separateEmit) {
 
-        //         return;
+                return;
 
-        //     }
+            }
 
-        //     this.toggle();
+            this.toggle();
 
-        // },
+        },
         _wrapClick : function (evt) {
 
             if (this.conf.separateEmit) {
@@ -555,19 +565,6 @@ export default {
                 return;
 
             }
-
-            // if (this.conf.state === 'disabled' || this.conf.state === 'readonly') {
-
-            //     return;
-                
-            // }
-
-            // if (this.conf.multiSelect &&
-            //     this.data.value.length === this.conf.max) {
-
-            //     return;
-
-            // }
 
             let $searchTextinput = this.data.$selectArea.querySelector('.wrap mor-textinput'),
                 $searchMultiinput = this.data.$selectArea.querySelector('.wrap mor-multiinput'),
@@ -647,7 +644,6 @@ export default {
                 
                 } else if (value.length >= this.conf.max) {
 
-                    // $(ev.currentTarget).hide();
                     this.toggle();
                 
                 }
@@ -657,16 +653,16 @@ export default {
             this._tipUpdate();
 
         },
-        // _textinputFocus : function () {
+        _textinputFocus : function () {
 
-        //     this.data.focusSearch = true;
+            this.data.focusSearch = true;
 
-        // },
-        // _textinputBlur : function () {
+        },
+        _textinputBlur : function () {
 
-        //     this.data.focusSearch = false;
+            this.data.focusSearch = false;
 
-        // },
+        },
         _searchKeyChange : function () {
 
             if (!this.data.mounted) {
@@ -682,14 +678,14 @@ export default {
 
                 this.data.searching = false;
                 this.data.searchKey = null;
+                this.data.noMatch = false;
 
-                for (let $item of $items.values()) {
+                for (let item of this.data.itemValueList) {
 
-                    $item.classList.remove('hide');
-                    $noitem.classList.remove('show');
+                    delete item._nomatch;
 
                 }
-
+            
                 return;
 
             }
@@ -732,20 +728,19 @@ export default {
             });
 
         },
-        // _multiinputFocusNoSearch : function () {
+        _multiinputFocusNoSearch : function () {
 
-        //     let searchMultiinput = this.data.$selectArea.querySelector(`#ui-select-mi-${this.uiid}`)._vm;
+            let searchMultiinput = this.data.$selectArea.querySelector(`#ui-select-mi-${this.uiid}`)._vm;
 
-        //     searchMultiinput._blurInput();
-        //     this._multiinputFocus();
+            searchMultiinput._blurInput();
+            this._multiinputFocus();
 
-        // },
-        // _multiinputFocus : function () {
+        },
+        _multiinputFocus : function () {
 
-        //     this.toggle(true);
+            this.toggle(true);
 
-        // },
-
+        },
         // _refreshValue : function (values) {
         //     // TODO : check delete.
         //     let setValue = [];
@@ -779,7 +774,22 @@ export default {
             }
 
             let searchMultiinput = this.data.$selectArea.querySelector(`#ui-select-mi-${this.uiid}`)._vm;
-            let values = searchMultiinput.get();
+            let names = searchMultiinput.get();
+            let values = [];
+
+            for (let name of names) {
+
+                for (let item of this.data.itemValueList) {
+
+                    if (item.name === name) {
+
+                        values.push(item.val);
+
+                    }
+
+                }
+
+            }
 
             this.Vue.nextTick(() => {
 
@@ -808,6 +818,7 @@ export default {
         _refreshShowItemsWithSearch : function () {
 
             let foundNum = 0;
+            let founeNumWithoutSelected = 0;
             let $noitem = this.data.$list.querySelector('.noitem');
             let $items;
 
@@ -821,33 +832,40 @@ export default {
 
             }
 
-            for (let $item of $items.values()) {
+            for (let item of this.data.itemValueList) {
 
                 if (!this.data.searching) {
 
-                    $item.classList.remove('hide');
+                    delete item._nomatch;
 
-                } else if (this.data.showlist && trim($item.textContent).search(this.data.searchKey) !== -1) {
+                } else if (item.name.search(this.data.searchKey) !== -1) {
+
+                    if (!item._selected) {
+
+                        founeNumWithoutSelected++;
+
+                    }
 
                     foundNum++;
-                    $item.classList.remove('hide');
+                    delete item._nomatch;
 
-                } else if (this.data.showlist) {
+                } else {
 
-                    $item.classList.add('hide');
+                    item._nomatch = true;
 
                 }
 
             }
 
             if (this.data.searching &&
-                foundNum === 0) {
+                ((this.conf.hideSelected && founeNumWithoutSelected === 0) ||
+                (!this.conf.hideSelected && foundNum === 0))) {
 
-                $noitem.classList.add('show');
+                this.data.noMatch = true;
 
-            } else {
+            } else if (this.data.searching) {
                 
-                $noitem.classList.remove('show');
+                this.data.noMatch = false;
 
             }
 
@@ -861,18 +879,14 @@ export default {
             }
            
             let values = this.get();
-            let $items = this.data.$list.querySelectorAll('li:not(.noitem)');
 
-            for (let $item of $items) {
+            for (let key in this.data.itemValueList) {
 
                 let selected = false;
-                let itemValue = this.data.itemValueList[$item.getAttribute('index')];
 
                 for (let value of values) {
 
-
-                    if (itemValue && 
-                        value === itemValue.val) {
+                    if (value === this.data.itemValueList[key].val) {
 
                         selected = true;
 
@@ -882,27 +896,27 @@ export default {
 
                 }
 
-                itemValue._selected = selected;
+                this.data.itemValueList[key]._selected = selected;
 
             }
 
             this._refreshShowItemsWithSearch();
 
         },
-        // _checkArea : function (evt) {
+        _checkArea : function (evt) {
 
-        //     let $wrap = this.data.$selectArea.querySelector('.wrap');
+            let $wrap = this.data.$selectArea.querySelector('.wrap');
 
-        //     if (this.data.showlist &&
-        //         this.conf.autoClose &&
-        //         evt.path.indexOf(this.$el) === -1 &&
-        //         evt.path.indexOf($wrap) === -1) {
+            if (this.data.showlist &&
+                this.conf.autoClose &&
+                evt.path.indexOf(this.$el) === -1 &&
+                evt.path.indexOf($wrap) === -1) {
                 
-        //         this.toggle(false);
+                this.toggle(false);
             
-        //     }
+            }
 
-        // },
+        },
         _resizeInlineImg : function () {
 
             if (!this.conf.inlineImgSize) {
@@ -937,25 +951,18 @@ export default {
 
             }
 
-            let $items = this.data.$list.querySelectorAll('li:not(.noitem)');
+            // let $items = this.data.$list.querySelectorAll('li:not(.noitem)');
+
 
             for (let index of $items.keys()) {
 
                 let $item = $items[index];
-                let $tip = $item.nextElementSibling;
+                // let $tip = $item.nextElementSibling;
+                let tip = this.data.itemValueList[$item.getAttribute('index')].tip;
 
-                if (!this.data.tipsContent[index] &&
-                    ($tip === null ||
-                    $tip.classList.value.split(' ').indexOf('item-tip') === -1)) {
+                if (!tip) {
 
                     return;
-
-                }
-
-                if (!this.data.tipsContent[index]) {
-                
-                    this.data.tipsContent[index] = $tip.innerHTML;
-                    $tip.remove();
 
                 }
 
@@ -967,7 +974,7 @@ export default {
                 $newTip.setAttribute(':minor', true);
                 $newTip.setAttribute('target', `#${tipId}`);
                 $newTip.setAttribute('placement', this.conf.itemTipDirect);
-                $newTip.innerHTML = this.data.tipsContent[index];
+                $newTip.innerHTML = tip;
 
                 let tipVm = new this.Vue({
                     el : $newTip
@@ -1143,6 +1150,15 @@ export default {
         this.Tip.autoReverse = false;
         this.Tip.autoOffset = false;
 
+        this.$watch('conf.list', () => {
+
+            this._updateItemValueList();
+
+        }, {
+            immediate : true,
+            deep : true
+        });
+
         this._onValueChange();
         this._resizeSelectArea();
 
@@ -1154,15 +1170,6 @@ export default {
                 immediate : true
             });
 
-        });
-
-        this.$watch('conf.list', () => {
-
-            this._updateItemValueList();
-
-        }, {
-            immediate : true,
-            deep : true
         });
 
         this.$watch('conf.separateEmit', (newVal, oldVal) => {
