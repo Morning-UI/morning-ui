@@ -182,7 +182,6 @@
 <script>
 import extend                       from 'extend';
 import map                          from 'lodash.map';
-import trim                         from 'trim';
 import GlobalEvent                  from 'Utils/GlobalEvent';
 import TipManager                   from 'Utils/TipManager';
 
@@ -458,7 +457,6 @@ export default {
 
             let newVal = this.get();
             let $items = this.data.$list.querySelectorAll('li:not(.infoitem)');
-            let $noitem = this.data.$list.querySelector('.noitem');
             let searchTextinput;
             let searchMultiinput;
             let multiNames = [];
@@ -495,7 +493,7 @@ export default {
                         if (this.conf.multiSelect) {
 
                             multiNames.push(this.data.itemValueList[key].name);
-                            this.data.multiinputNameValMap[this.data.itemValueList[key].name] = this.data.itemValueList[key].val; 
+                            this.data.multiinputNameValMap[this.data.itemValueList[key].name] = this.data.itemValueList[key].val;
 
                         } else {
 
@@ -584,7 +582,7 @@ export default {
 
                 }
 
-            } else if (typeof this.conf.list === 'object'){
+            } else if (typeof this.conf.list === 'object') {
 
                 for (let key of Object.keys(this.conf.list)) {
 
@@ -800,9 +798,6 @@ export default {
 
             }
 
-            let $items = this.data.$list.querySelectorAll('li:not(.infoitem)');
-            let $noitem = this.data.$list.querySelector('.noitem');
-
             if (!this.conf.canSearch) {
 
                 this.data.searching = false;
@@ -920,18 +915,6 @@ export default {
         _refreshShowItemsWithSearch : function () {
 
             let foundNum = 0;
-            let $noitem = this.data.$list.querySelector('.noitem');
-            let $items;
-
-            if (this.conf.hideSelected) {
-
-                $items = this.data.$list.querySelectorAll('li:not(.infoitem):not(.selected)');
-
-            } else {
-
-                $items = this.data.$list.querySelectorAll('li:not(.infoitem)');
-
-            }
 
             for (let item of this.data.itemValueList) {
 

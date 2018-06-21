@@ -311,7 +311,8 @@
     |[separate-emit](#separate-emit)|通过其他的元素来触发下拉选择框|元素选择器([MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/Document_Object_Model/Locating_DOM_elements_using_selectors))|String|`''`|
     |[align](#align)|内容对齐方式|`'left'` : 左对齐<br>`'center'` : 居中对齐<br>`'right'` : 右对齐|String|`'left'`|
     |[prepend](#prepend)|表单前缀|任意字符串(支持HTML)|String|`undefined`|
-    |[max-show-height](#max-show-height)|下拉列表最多显示几项(超过出现滚动条)|项目数量|Number|`5`|
+    |[max-show](#max-show)|下拉列表最多显示几项，超出的项目会被隐藏并提示通过搜索查看(必须启用`can-search`配置才会生效)。|项目数量|Number|`Infinity`|
+    |[max-show-height](#max-show-height)|下拉列表最高显示几项(超过出现滚动条)的高度|项目数量|Number|`5`|
     |[auto-close](#auto-close)|点击下拉选择框以外的区域自动关闭下拉选择框|`true`<br>`false`|Boolean|`true`|
     |[can-search](#can-search)|允许通过项目内容搜索项目|`true`<br>`false`|Boolean|`false`|
     |[multi-select](#multi-select)|允许选择多个项目|`true`<br>`false`|Boolean|`false`|
@@ -867,6 +868,10 @@
     :::
 
     #### max-show
+    
+    当可选项目过多时应该启用此配置和`can-search`，因为用户面对过多的选项不会逐项查找，一般通过搜索来查找。若所有选项都进行渲染DOM会过多，从而对性能产生影响。
+
+    最多显示4项：
 
     :::democode/html
     <div style="width:300px;">
