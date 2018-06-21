@@ -10,10 +10,13 @@
         :hide-name="hideName"
         :clearable="clearable"
         :list="list"
+        :dynamic-list="dynamicList"
+        :validate="validate"
         :separate-emit="separateEmit"
         :align="align"
         :prepend="prepend"
         :max-show="maxShow"
+        :max-show-height="maxShowHeight"
         :auto-close="autoClose"
         :can-search="canSearch"
         :multi-select="multiSelect"
@@ -138,7 +141,7 @@
                 :style="listStyle"
                 @click="_listClick"
             >
-                <template v-for="(item, index) in data.itemValueList">
+                <template v-for="(item, index) in showItemList">
                     <li
                         :index="index"
                         :class="{
@@ -160,7 +163,13 @@
                     >
                     </li>
                 </template>
-                <li class="noitem" :class="{show : data.noMatch}">无项目</li>
+                <li class="noitem infoitem" :class="{show : data.noMatch || Object.keys(showItemList || {}).length === 0}">
+                    <span v-if="conf.dynamicList && conf.canSearch">无匹配项目</span>
+                    <span v-else>无项目</span>
+                </li>
+                <li class="maxshow infoitem" :class="{show : conf.canSearch && (matchList.length > conf.maxShow)}">
+                    <span>请搜索以显示更多</span>
+                </li>
             </ul>
         </div>
     </div>
@@ -172,6 +181,7 @@
  
 <script>
 import extend                       from 'extend';
+import map                          from 'lodash.map';
 import trim                         from 'trim';
 import GlobalEvent                  from 'Utils/GlobalEvent';
 import TipManager                   from 'Utils/TipManager';
@@ -182,8 +192,16 @@ export default {
     mixins : [GlobalEvent, TipManager],
     props : {
         list : {
-            type : Object,
+            type : [Object, Array],
             default : (() => {})
+        },
+        dynamicList : {
+            type : Boolean,
+            default : false
+        },
+        validate : {
+            type : Function,
+            default : () => ({})
         },
         separateEmit : {
             type : String,
@@ -199,6 +217,10 @@ export default {
             default : undefined
         },
         maxShow : {
+            type : Number,
+            default : Infinity
+        },
+        maxShowHeight : {
             type : Number,
             default : 5
         },
@@ -252,10 +274,13 @@ export default {
 
             return {
                 list : this.list,
+                dynamicList : this.dynamicList,
+                validate : this.validate,
                 separateEmit : this.separateEmit,
                 align : this.align,
                 prepend : this.prepend,
                 maxShow : this.maxShow,
+                maxShowHeight : this.maxShowHeight,
                 autoClose : this.autoClose,
                 canSearch : this.canSearch,
                 multiSelect : this.multiSelect,
@@ -289,6 +314,40 @@ export default {
 
             return false;
 
+        },
+        matchList : function () {
+
+            let matchList = [];
+
+            if (this.data.recomputeMatchList) {
+
+                this.data.recomputeMatchList--;
+
+            }
+
+            for (let item of this.data.itemValueList) {
+
+                if (!item._nomatch) {
+
+                    matchList.push(item);
+
+                }
+
+            }
+
+            return matchList;
+
+        },
+        showItemList : function () {
+
+            if (this.conf.canSearch) {
+
+                return this.matchList.slice(0, this.conf.maxShow);
+
+            }
+
+            return this.data.itemValueList;
+
         }
     },
     data : function () {
@@ -314,7 +373,9 @@ export default {
                 $selectArea : null,
                 $selectList : null,
                 highPerfMode : false,
-                noMatch : false
+                noMatch : false,
+                multiinputNameValMap : {},
+                recomputeMatchList : 0
             },
             listStyle : {}
         };
@@ -330,7 +391,24 @@ export default {
 
             }
 
-            this._maxFilter(value);
+            value = this._customFilter(value);
+
+            // filter not exist value.
+            if (this.conf.dynamicList && this.data.filterNotExist) {
+
+                for (let index in value) {
+
+                    let val = value[index];
+
+                    if (map(this.data.itemValueList, 'val').indexOf(String(val)) === -1) {
+
+                        value.splice(index, 1);
+
+                    }
+
+                }
+
+            }
 
             if (!this.conf.multiSelect &&
                 this.data.value.length > 1) {
@@ -338,24 +416,8 @@ export default {
                 return value.slice(0, 1);
 
             }
-
-            // TODO : check can move.
-            // filter not exist value.
-            // if (this.data.filterNotExist) {
-
-            //     for (let index in value) {
-
-            //         let val = value[index];
-
-            //         if (this.data.itemValueList.indexOf(String(val)) === -1) {
-
-            //             value.splice(index, 1);
-
-            //         }
-
-            //     }
-
-            // }
+            
+            this._maxFilter(value);
 
             return value;
 
@@ -373,10 +435,29 @@ export default {
             return value;
 
         },
+        _customFilter : function (value) {
+
+            if (this.conf.dynamicList && this.conf.validate) {
+
+                for (let index in value) {
+
+                    if (this.conf.validate(value[index]) === false) {
+
+                        value.splice(index, 1);
+
+                    }
+
+                }
+
+            }
+
+            return value;
+
+        },
         _onValueChange : function () {
 
             let newVal = this.get();
-            let $items = this.data.$list.querySelectorAll('li:not(.noitem)');
+            let $items = this.data.$list.querySelectorAll('li:not(.infoitem)');
             let $noitem = this.data.$list.querySelector('.noitem');
             let searchTextinput;
             let searchMultiinput;
@@ -414,6 +495,7 @@ export default {
                         if (this.conf.multiSelect) {
 
                             multiNames.push(this.data.itemValueList[key].name);
+                            this.data.multiinputNameValMap[this.data.itemValueList[key].name] = this.data.itemValueList[key].val; 
 
                         } else {
 
@@ -428,7 +510,8 @@ export default {
             }
 
             if (this.conf.multiSelect &&
-                this.data.value.length === $items.length) {
+                this.data.value.length === $items.length &&
+                this.conf.hideSelected) {
 
                 this.data.noMatch = true;
 
@@ -468,6 +551,14 @@ export default {
 
                     });
         
+                } else {
+                    
+                    this.Vue.nextTick(() => {
+
+                        searchMultiinput.setInput(undefined);
+
+                    });
+
                 }
             
             }
@@ -481,14 +572,38 @@ export default {
 
             let list = [];
 
-            if (this.conf.list instanceof Object) {
+            if (this.conf.list instanceof Array) {
+
+                for (let item of this.conf.list) {
+
+                    list.push({
+                        val : item.key,
+                        name : item.name,
+                        tip : item.tip
+                    });
+
+                }
+
+            } else if (typeof this.conf.list === 'object'){
 
                 for (let key of Object.keys(this.conf.list)) {
 
-                    list.push({
-                        val : key,
-                        name : this.conf.list[key]
-                    });
+                    let item = {
+                        val : key
+                    };
+
+                    if (typeof this.conf.list[key] === 'string') {
+
+                        item.name = this.conf.list[key];
+
+                    } else if (typeof this.conf.list[key] === 'object') {
+
+                        item.name = this.conf.list[key].name;
+                        item.tip = this.conf.list[key].tip;
+
+                    }
+
+                    list.push(item);
 
                 }
 
@@ -597,7 +712,17 @@ export default {
 
             }
 
-            let $items = this.data.$list.querySelectorAll('li:not(.noitem)');
+            let $noitem = this.data.$list.querySelector('.noitem');
+            let $maxshow = this.data.$list.querySelector('.maxshow');
+
+            if (evt.path.indexOf($noitem) !== -1 ||
+                evt.path.indexOf($maxshow) !== -1) {
+
+                return;
+
+            }
+
+            let $items = this.data.$list.querySelectorAll('li:not(.infoitem)');
             let $clickItem = false;
 
             for (let $item of $items.values()) {
@@ -648,9 +773,13 @@ export default {
                 
                 }
 
+            } else {
+
+                this._tipUpdate();
+
             }
 
-            this._tipUpdate();
+            this._refreshShowItems();
 
         },
         _textinputFocus : function () {
@@ -671,7 +800,7 @@ export default {
 
             }
 
-            let $items = this.data.$list.querySelectorAll('li:not(.noitem)');
+            let $items = this.data.$list.querySelectorAll('li:not(.infoitem)');
             let $noitem = this.data.$list.querySelector('.noitem');
 
             if (!this.conf.canSearch) {
@@ -721,11 +850,14 @@ export default {
             }
 
             this._refreshShowItemsWithSearch();
+            this.data.recomputeMatchList++;
             this.Vue.nextTick(() => {
 
                 this._tipUpdate();
                 
             });
+
+            this.$emit('search', this.data.searchKey);
 
         },
         _multiinputFocusNoSearch : function () {
@@ -741,30 +873,6 @@ export default {
             this.toggle(true);
 
         },
-        // _refreshValue : function (values) {
-        //     // TODO : check delete.
-        //     let setValue = [];
-        //     let $items = this.data.$list.querySelectorAll('li:not(.noitem)');
-
-        //     for (let value of values) {
-
-        //         for (let $item of $items.values()) {
-
-        //             if (trim($item.textContent) === value) {
-
-        //                 setValue.push($item.getAttribute('value'));
-
-        //                 break;
-
-        //             }
-
-        //         }
-
-        //     }
-
-        //     this.set(setValue);
-
-        // },
         _multiinputValueChange : function () {
 
             if (!this.data.mounted) {
@@ -779,13 +887,9 @@ export default {
 
             for (let name of names) {
 
-                for (let item of this.data.itemValueList) {
+                if (this.data.multiinputNameValMap) {
 
-                    if (item.name === name) {
-
-                        values.push(item.val);
-
-                    }
+                    values.push(this.data.multiinputNameValMap[name]);
 
                 }
 
@@ -810,25 +914,22 @@ export default {
             this.data.selectInput = false;
             this.data.multiinputLastValue = values;
 
-            // TODO : check delete, need check value in list.
-            // this._refreshValue(values);
             this._set(values, true);
 
         },
         _refreshShowItemsWithSearch : function () {
 
             let foundNum = 0;
-            let founeNumWithoutSelected = 0;
             let $noitem = this.data.$list.querySelector('.noitem');
             let $items;
 
             if (this.conf.hideSelected) {
 
-                $items = this.data.$list.querySelectorAll('li:not(.noitem):not(.selected)');
+                $items = this.data.$list.querySelectorAll('li:not(.infoitem):not(.selected)');
 
             } else {
 
-                $items = this.data.$list.querySelectorAll('li:not(.noitem)');
+                $items = this.data.$list.querySelectorAll('li:not(.infoitem)');
 
             }
 
@@ -842,11 +943,10 @@ export default {
 
                     if (!item._selected) {
 
-                        founeNumWithoutSelected++;
+                        foundNum++;
 
                     }
 
-                    foundNum++;
                     delete item._nomatch;
 
                 } else {
@@ -858,13 +958,16 @@ export default {
             }
 
             if (this.data.searching &&
-                ((this.conf.hideSelected && founeNumWithoutSelected === 0) ||
-                (!this.conf.hideSelected && foundNum === 0))) {
+                this.conf.hideSelected && foundNum === 0) {
 
                 this.data.noMatch = true;
 
-            } else if (this.data.searching) {
+            } else if (this.data.searching && this.conf.hideSelected) {
                 
+                this.data.noMatch = false;
+
+            } else if (this.data.searching && !this.conf.hideSelected) {
+
                 this.data.noMatch = false;
 
             }
@@ -951,13 +1054,11 @@ export default {
 
             }
 
-            // let $items = this.data.$list.querySelectorAll('li:not(.noitem)');
-
+            let $items = this.data.$list.querySelectorAll('li:not(.infoitem)');
 
             for (let index of $items.keys()) {
 
                 let $item = $items[index];
-                // let $tip = $item.nextElementSibling;
                 let tip = this.data.itemValueList[$item.getAttribute('index')].tip;
 
                 if (!tip) {
@@ -990,7 +1091,7 @@ export default {
         },
         _setListHeight : function () {
 
-            let $item = this.data.$list.querySelector('li:not(.noitem):not(.selected)');
+            let $item = this.data.$list.querySelector('li:not(.infoitem):not(.selected)');
 
             if (!$item) {
 
@@ -1004,7 +1105,7 @@ export default {
             this.Vue.nextTick(() => {
 
                 itemHeight = $item.offsetHeight || this.data.lastItemHeight;
-                maxHeight = itemHeight * this.conf.maxShow;
+                maxHeight = itemHeight * this.conf.maxShowHeight;
 
                 if (itemHeight) {
 
@@ -1166,7 +1267,7 @@ export default {
 
         setTimeout(() => {
 
-            this.$watch('conf.maxShow', this._setListHeight, {
+            this.$watch('conf.maxShowHeight', this._setListHeight, {
                 immediate : true
             });
 
@@ -1235,7 +1336,11 @@ export default {
 
         this.$watch('conf.itemTip', () => {
 
-            this._refreshTips();
+            this.Vue.nextTick(() => {
+                
+                this._refreshTips();
+
+            });
 
         }, {
             immediate : true
@@ -1261,6 +1366,8 @@ export default {
 
             }
 
+        }, {
+            deep : true
         });
 
         this.$on('list-show', () => {
@@ -1282,7 +1389,7 @@ export default {
     },
     updated : function () {
         
-        this._refreshShowItems();
+        // this._refreshShowItems();
 
         if (!this.data.highPerfMode) {
 

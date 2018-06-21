@@ -391,7 +391,7 @@ export default UI => UI.extend({
 
         });
 
-        this.$watch('data.value', newValue => {
+        this.$watch('data.value', (newValue) => {
 
             let filteredValue = this._valueFilter(newValue);
 
