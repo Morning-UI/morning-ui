@@ -29,6 +29,133 @@
                         超过60款组件，几乎包含了构建WEB应用的所有需要。
                     </div>
                 </div>
+                <div class="vs">
+                    <div class="logo">
+                        <img src="http://morning-ui-image.test.upcdn.net/bootstrap-stack.png" width="300" alt="">
+                    </div>
+                    <h2 class="vsname">
+                        对比Bootstrap
+                    </h2>
+                    <div class="bars">
+                        <div class="bar">
+                            <h3>Morning UI</h3>
+                            <div class="bar-box">
+                                <div class="bar-same" style="width:calc(350 / 65 * 35px)"></div>
+                                <div class="bar-more morning" style="width:calc(350 / 65 * 30px)"></div>
+                            </div>
+                        </div>
+                        <div class="bar">
+                            <h3>Bootstrap</h3>
+                            <div class="bar-box">
+                                <div class="bar-same" style="width:calc(350 / 65 * 35px)"></div>
+                                <div class="bar-more bootstrap" style="width:calc(350 / 65 * 14px)"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="vs">
+                    <div class="logo">
+                        <img src="http://morning-ui-image.test.upcdn.net/semantic-ui-logo-png-transparent.png" width="240" alt="">
+                    </div>
+                    <h2 class="vsname">
+                        对比Semantic UI
+                    </h2>
+                    <div class="bars">
+                        <div class="bar">
+                            <h3>Morning UI</h3>
+                            <div class="bar-box">
+                                <div class="bar-same"></div>
+                                <div class="bar-more morning"></div>
+                            </div>
+                        </div>
+                        <div class="bar">
+                            <h3>Semantic UI</h3>
+                            <div class="bar-box">
+                                <div class="bar-same"></div>
+                                <div class="bar-more semantic"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="vs">
+                    <div class="logo">
+                        <img src="http://morning-ui-image.test.upcdn.net/antd.svg" width="260" alt="">
+                    </div>
+                    <h2 class="vsname">
+                        对比Ant Design
+                    </h2>
+                    <div class="bars">
+                        <div class="bar">
+                            <h3>Morning UI</h3>
+                            <div class="bar-box">
+                                <div class="bar-same" style="width:calc(350 / 65 * 37px)"></div>
+                                <div class="bar-more morning" style="width:calc(350 / 65 * 28px)"></div>
+                            </div>
+                        </div>
+                        <div class="bar">
+                            <h3>Ant Design</h3>
+                            <div class="bar-box">
+                                <div class="bar-same" style="width:calc(350 / 65 * 37px)"></div>
+                                <div class="bar-more antd" style="width:calc(350 / 65 * 21px)"></div>
+                            </div>
+                        </div>
+                        <div class="label">
+                            <p>
+                                <i class="same"></i>
+                                <span>均有组件</span>
+                            </p>
+                            <p>
+                                <i class="morning"></i>
+                                <span>Morning专有组件</span>
+                            </p>
+                            <p>
+                                <i class="antd"></i>
+                                <span>Ant Design专有组件</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="vs">
+                    <div class="logo">
+                        <img src="http://morning-ui-image.test.upcdn.net/element.png" width="300" alt="">
+                    </div>
+                    <h2 class="vsname">
+                        对比Element UI
+                    </h2>
+                    <div class="bars">
+                        <div class="bar">
+                            <h3>Morning UI</h3>
+                            <div class="bar-box">
+                                <div class="bar-same" style="width:calc(350 / 65 * 32px)"></div>
+                                <div class="bar-more morning" style="width:calc(350 / 65 * 33px)"></div>
+                            </div>
+                        </div>
+                        <div class="bar">
+                            <h3>Element UI</h3>
+                            <div class="bar-box">
+                                <div class="bar-same" style="width:calc(350 / 65 * 32px)"></div>
+                                <div class="bar-more element" style="width:calc(350 / 65 * 14px)"></div>
+                            </div>
+                        </div>
+                        <div class="label">
+                            <p>
+                                <i class="same"></i>
+                                <span>均有组件</span>
+                            </p>
+                            <p>
+                                <i class="morning"></i>
+                                <span>Morning专有组件</span>
+                            </p>
+                            <p>
+                                <i class="element"></i>
+                                <span>Element UI专有组件</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
         <section class="s1">
@@ -223,6 +350,27 @@ export default {
             this.next();
 
         }, 3600);
+
+        let $bars = document.querySelectorAll('.bars');
+
+        window.addEventListener('scroll', () => {
+
+            for (let $bar of $bars.values()) {
+
+                if ($bar.className.indexOf('show') === -1 &&
+                    $bar.getBoundingClientRect().top < (window.innerHeight)) {
+
+                    setTimeout(() => {
+                        
+                        $bar.classList.add('show');
+
+                    }, 400);
+
+                }
+
+            }
+
+        });
 
     }
 };
@@ -498,5 +646,162 @@ export default {
     font-size: 18px;
     margin: 0;
     padding: 50px 100px 50px 100px;
+}
+.vs{
+    width: 100%;
+    height: 440px;
+    position: relative;
+
+    &:nth-child(2){
+        margin: 100px 0 0 0;
+    }
+
+    .logo{    
+        position: absolute;
+        top: 40px;
+        left: 110px;
+        width: 300px;
+        text-align: center;
+    }
+
+    .vsname,
+    .bars{
+        right: 40px;
+    }
+
+    .vsname{    
+        position: absolute;
+        top: 50px;
+        width: 570px;
+        font-weight: 400;
+        font-size: 40px;
+        text-align: left;
+        margin: 0;
+        padding: 0 0 10px 0;
+        border-bottom: 1px #333 solid;
+    }
+
+    .bars{
+        position: absolute;
+        top: 170px;
+        width: 600px;
+        text-align: left;
+
+        .bar{
+            width: 100%;
+            padding: 10px 0;
+            font-size: 0;
+
+            h3{
+                display: inline-block;
+                width: 120px;
+                font-size: 16px;
+                font-weight: 400;
+                text-align: right;
+                margin: 0;
+            }
+
+            .bar-box{
+                height: 20px;
+                display: inline-block;
+                left: 150px;
+                width: 30px;
+                vertical-align: top;
+                padding-left: 30px;
+                box-sizing: border-box;
+                white-space: nowrap;
+                transition: 0.65s;
+                overflow: hidden;
+                transition-timing-function: cubic-bezier(0.19, 0.54, 0.21, 0.99);
+
+                .bar-same{
+                    background: #c1cdd8;
+                    height: 100%;
+                    width: 50%;
+                    display: inline-block;
+                }
+
+                .bar-more{
+                    height: 100%;
+                    width: 50%;
+                    display: inline-block;
+
+                    &.morning{
+                        background: #f14865;
+                    }
+
+                    &.bootstrap{
+                        background: #844fd1;
+                    }
+
+                    &.antd{
+                        background: #1286ff;
+                    }
+
+                    &.semantic{
+                        background: #34bdb2;
+                    }
+
+                    &.element{
+                        background: #20a0ff;
+                    }
+                }
+            }
+        }
+
+        &.show{
+            .bar-box{
+                width: 380px;
+            }
+        }
+    }
+
+    .label{
+        font-size: 0;
+        margin-top: 40px;
+        text-align: center;
+
+        p{    
+            margin: 0 10px;
+            font-size: 0;
+            display: inline-block;
+            vertical-align: top;
+
+            i{
+                width: 24px;
+                height: 10px;
+                background: #c1cdd8;
+                display: inline-block;
+                vertical-align: top;
+                margin: 2px 6px 0 2px;
+
+                &.morning{
+                    background: #f14865;
+                }
+
+                &.bootstrap{
+                    background: #844fd1;
+                }
+
+                &.antd{
+                    background: #1286ff;
+                }
+
+                &.semantic{
+                    background: #34bdb2;
+                }
+
+                &.element{
+                    background: #20a0ff;
+                }
+            }
+
+            span{
+                font-size: 12px;
+                color: #333;
+                display: inline-block;
+            }
+        }
+    }
 }
 </style>
