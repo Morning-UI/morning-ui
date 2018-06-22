@@ -16,7 +16,14 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-radio form-name="姓名" :list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"></ui-radio>
+        <ui-radio
+            form-name="姓名"
+            :list="{
+                Tim : 'Tim Boelaars',
+                Andrew : 'Andrew Colin Beck',
+                Victor : 'Victor Erixon'
+            }"
+        ></ui-radio>
     </div>
     :::
 
@@ -26,7 +33,14 @@
 
     :::democode/html
     <div style="width:320px;">
-        <ui-radio form-name="姓名" class="border" :list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"></ui-radio>
+        <ui-radio
+            form-name="姓名"
+            class="border"
+            :list="{
+                Tim : 'Tim Boelaars',
+                Andrew : 'Andrew Colin Beck',
+                Victor : 'Victor Erixon'
+            }"></ui-radio>
     </div>
     :::
 
@@ -34,7 +48,15 @@
 
     :::democode/html
     <div style="width:320px;">
-        <ui-radio form-name="姓名" class="vertical" :list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"></ui-radio>
+        <ui-radio
+            form-name="姓名"
+            class="vertical"
+            :list="{
+                Tim:'Tim Boelaars',
+                Andrew:'Andrew Colin Beck',
+                Victor:'Victor Erixon'
+            }"
+        ></ui-radio>
     </div>
     :::
 
@@ -97,7 +119,14 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-radio form-name="姓名" :list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"></ui-radio>
+        <ui-radio
+            form-name="姓名"
+            :list="{
+                Tim : 'Tim Boelaars',
+                Andrew : 'Andrew Colin Beck',
+                Victor : 'Victor Erixon'
+            }"
+        ></ui-radio>
     </div>
     :::
 
@@ -107,7 +136,17 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-radio form-name="姓名" :list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon',Shaun:'Shaun Moynihan',Emir:'Emir Ayouni'}" :disabled-options="['Tim', 'Victor']"></ui-radio>
+        <ui-radio
+            form-name="姓名"
+            :list="{
+                Tim:'Tim Boelaars',
+                Andrew:'Andrew Colin Beck',
+                Victor:'Victor Erixon',
+                Shaun:'Shaun Moynihan',
+                Emir:'Emir Ayouni'
+            }"
+            :disabled-options="['Tim', 'Victor']"
+        ></ui-radio>
     </div>
     :::
 
@@ -115,7 +154,18 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-radio form-name="姓名" :list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon',Shaun:'Shaun Moynihan',Emir:'Emir Ayouni'}" :disabled-options="['Tim', 'Victor']" default-value="Tim"></ui-radio>
+        <ui-radio
+            form-name="姓名"
+            :list="{
+                Tim : 'Tim Boelaars',
+                Andrew : 'Andrew Colin Beck',
+                Victor : 'Victor Erixon',
+                Shaun : 'Shaun Moynihan',
+                Emir : 'Emir Ayouni'
+            }"
+            :disabled-options="['Tim', 'Victor']"
+            default-value="Tim"
+        ></ui-radio>
     </div>
     :::
 
@@ -140,7 +190,15 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-radio ref="demo2" form-name="姓名" :list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"></ui-radio>
+        <ui-radio
+            ref="demo2"
+            form-name="姓名"
+            :list="{
+                Tim : 'Tim Boelaars',
+                Andrew : 'Andrew Colin Beck',
+                Victor : 'Victor Erixon'
+            }"
+        ></ui-radio>
     </div>
     <br>
     <ui-link js="morning.findVM('demo2').toggle('Tim');">选中Tim</ui-link>

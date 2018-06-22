@@ -109,7 +109,12 @@
 
     :::democode/html
     <div style="width:100%;height:240px;">
-        <ui-texteditor form-name="文章编辑" :tools="[['bold', 'italic']]"></ui-texteditor>
+        <ui-texteditor
+            form-name="文章编辑"
+            :tools="[
+                ['bold', 'italic']
+            ]"
+        ></ui-texteditor>
     </div>
     :::
 
@@ -117,7 +122,12 @@
 
     :::democode/html
     <div style="width:100%;height:240px;">
-        <ui-texteditor form-name="文章编辑" :tools="[[{list: 'ordered'}, {list: 'bullet'}, {indent: '-1'}, {indent: '+1'}]]"></ui-texteditor>
+        <ui-texteditor
+            form-name="文章编辑"
+            :tools="[
+                [{list: 'ordered'}, {list: 'bullet'}, {indent: '-1'}, {indent: '+1'}]
+            ]"
+        ></ui-texteditor>
     </div>
     :::
 
@@ -125,7 +135,12 @@
 
     :::democode/html
     <div style="width:100%;height:240px;">
-        <ui-texteditor form-name="文章编辑" :tools="[[{header: [false, 1, 2, 3, 4, 5, 6]}]]"></ui-texteditor>
+        <ui-texteditor 
+            form-name="文章编辑" 
+            :tools="[
+                [{header: [false, 1, 2, 3, 4, 5, 6]}]
+            ]"
+        ></ui-texteditor>
     </div>
     :::
 
@@ -133,7 +148,14 @@
 
     :::democode/html
     <div style="width:100%;height:240px;">
-        <ui-texteditor form-name="文章编辑" :tools="[[{header: [false, 1, 2, 3, 4, 5, 6]}], ['bold', 'italic'], [{list: 'ordered'}, {list: 'bullet'}, {indent: '-1'}, {indent: '+1'}]]"></ui-texteditor>
+        <ui-texteditor
+            form-name="文章编辑"
+            :tools="[
+                [{header: [false, 1, 2, 3, 4, 5, 6]}],
+                ['bold', 'italic'],
+                [{list: 'ordered'}, {list: 'bullet'}, {indent: '-1'}, {indent: '+1'}]
+            ]"
+        ></ui-texteditor>
     </div>
     :::
 

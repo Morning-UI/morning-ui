@@ -9,7 +9,7 @@
                     现代、高效、友善的桌面组件库
                 </div>
                 <div class="quick">
-                    <a href="" class="start">起步</a>
+                    <a href="/guide/introduction.html" class="start">起步</a>
                     <a href="https://github.com/Morning-UI/morning-ui">GitHub</a>
                 </div>
             </div>
@@ -36,6 +36,9 @@
                     <h2 class="vsname">
                         对比Bootstrap
                     </h2>
+                    <p class="vsdesc">
+                        内置丰富的交互组件，搭建应用时无需挑选额外的扩展。<br>使应用更一致，组件之间协作更顺畅。
+                    </p>
                     <div class="bars">
                         <div class="bar">
                             <h3>Morning UI</h3>
@@ -75,6 +78,9 @@
                     <h2 class="vsname">
                         对比Semantic UI
                     </h2>
+                    <p class="vsdesc">
+                        更完善的表单组件，支持输入数组、对象等结构化数据，以及富文本、色彩等特殊数值。
+                    </p>
                     <div class="bars">
                         <div class="bar">
                             <h3>Morning UI</h3>
@@ -114,6 +120,9 @@
                     <h2 class="vsname">
                         对比Ant Design
                     </h2>
+                    <p class="vsdesc">
+                        包含众多的纯样式的布局组件，快速搭建页面原型。
+                    </p>
                     <div class="bars">
                         <div class="bar">
                             <h3>Morning UI</h3>
@@ -146,6 +155,7 @@
                     </div>
                 </div>
 
+                <a href="/guide/comparison.html" class="comparison">查看更多对比</a>
                <!--  <div class="vs">
                     <div class="logo">
                         <img src="http://morning-ui-image.test.upcdn.net/element.png" width="300" alt="">
@@ -243,8 +253,7 @@ Vue.use(morning);
                 <div class="lrBox">
                     <div class="left">
                         <h3>完成！</h3>
-                        <p>完成上述步骤后即可看到如同右侧的组件。<br><br>接下来：<br><a href="/guide/usage.html">了解Morning UI的更多用法</a>
-                            <br><a href="/guide/becontributor.html">成为Morning UI的贡献者</a></p>
+                        <!-- <p>完成上述步骤后即可看到如同右侧的组件。</p> -->
                     </div>
                     <div class="right">
                         <div style="width: 320px;text-align:center;margin: 0 auto;">
@@ -253,6 +262,10 @@ Vue.use(morning);
                             <ui-btn color="success">提交</ui-btn> <ui-btn color="minor">取消</ui-btn>
                         </div>
                     </div>
+                </div>
+                <div class="more">
+                    <a href="/guide/usage.html" class="usage">了解更多用法</a><br>
+                    <a href="/guide/becontributor.html" class="becontributor">成为贡献者</a>
                 </div>
             </div>
         </section>
@@ -279,6 +292,8 @@ Vue.use(morning);
                 <p class="img-note">
                     Morning UI的文档中包含了大量的示例，找到你想要的，复制到你的项目中，稍作微调，就可以用了！
                 </p>
+
+                <a href="/component/index.html" class="component">查看组件文档</a>
             </div>
         </section>
         <section class="s1">
@@ -709,9 +724,21 @@ export default {
         border-bottom: 1px #333 solid;
     }
 
+    .vsdesc{
+        position: absolute;
+        top: 110px;
+        width: 610px;
+        right: 0;
+        padding-right: 50px;
+        text-align: left;
+        font-size: 14px;
+        box-sizing: border-box;
+        line-height: 1.6em;
+    }
+
     .bars{
         position: absolute;
-        top: 170px;
+        top: 200px;
         width: 600px;
         text-align: left;
 
@@ -831,6 +858,51 @@ export default {
                 display: inline-block;
             }
         }
+    }
+}
+
+.more{
+    padding: 80px 0 30px 0;
+    width: 100%;
+}
+
+.comparison,
+.component,
+.usage{
+    font-size: 16px;
+    text-decoration: none;
+    color: #45505C;
+    padding: 10px 25px;
+    border-radius: 5em;
+    border: 1px #45505C solid;
+    margin: 0 0.3em;
+    display: inline-block;
+
+    &:hover{
+        color: #17212D;
+        border-color: #17212D;
+    }
+}
+
+.usage{
+    color: #fff;
+    background: #45505C;
+
+    &:hover{
+        color: #fff;
+        background: #303C4B;
+    }
+}
+
+.becontributor{
+    font-size: 13px;
+    text-decoration: none;
+    color: #45505C;
+    margin: 0.5em 0 0 0;
+    display: inline-block;
+
+    &:hover{
+        color: #17212D;
     }
 }
 </style>

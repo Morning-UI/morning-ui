@@ -362,23 +362,13 @@ mor-select{
     }
 
     li{
-        padding: 0.5em 1em;
+        padding: 0.5em 2em 0.5em 1em;
         border-top: 1px lighten(@colorFormBorder, 5%) solid;
         cursor: pointer;
         font-size: 14px;
         color: darken(@colorFormText, 15%);
         position: relative;
         word-break: break-all;
-
-        &.noitem{
-            color: @colorFormTextMisc;
-            cursor: default;
-            display: none;
-
-            &.show{
-                display: list-item;
-            }
-        }
 
         img,
         mor-img {
@@ -417,6 +407,27 @@ mor-select{
             color: darken(@colorFormTextHover, 15%);
             background: @colorFormBackgroundHover;
         }
+
+        &.infoitem{
+            color: @colorFormTextMisc;
+            cursor: default;
+            display: none;
+
+            &.show{
+                display: list-item;
+            }
+
+            &:hover{
+                color: @colorFormTextMisc;
+                background: @colorWhite;
+            }
+        }
+
+        &.maxshow{
+            font-size: 12px;
+            text-align: center;
+            padding: 7.5px 0;
+        }
     }
 
     .wrap{
@@ -443,6 +454,10 @@ mor-select{
 
     &{
         .setup-select-area();
+    }
+
+    &.hide-selected li{
+        padding: 0.5em 1em;
     }
 
     &.hide-selected li.selected,

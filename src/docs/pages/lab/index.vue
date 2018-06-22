@@ -5,14 +5,15 @@
         <div class="lab">
             <h1><i class="iconfont">&#xe615;</i>Morning Laboratory</h1>
             <div class="area">
-                <ui-pagination
+                <ui-select
+                    ref="demo1"
+                    group="demo"
+                    form-key="demo"
+                    :hide-selected="false"
                     :list="list"
-                    :page-size="pageSize"
-                >
-                    <template slot-scope="{page, items}">
-                        <ui-table :list="items" empty-cell-value="false"></ui-table>
-                    </template>
-                </ui-pagination>
+                    can-search
+                    item-t
+                ></ui-select>
             </div>
         </div>
         <doc-footer></doc-footer>
@@ -28,144 +29,7 @@ export default {
     
         return {
             pageSize : 30,
-            list : [
-                {name : 'Tim Boelaars', age : 20, gender : 'male', job : 'driver'},
-                {name : 'Andrew Colin Beck', age : 41, gender : 'female', job : 'engineer'},
-                {name : 'Gustavo Zambelli', age : 23, gender : 'male', job : 'teacher'},
-                {name : 'Victor Erixon', age : 15, gender : 'female', job : 'doctors'},
-                {name : 'Shaun Moynihan', age : 27, gender : 'female', job : 'driver'},
-                {name : 'Tim Boelaars', age : 20, gender : 'male', job : 'driver'},
-                {name : 'Andrew Colin Beck', age : 41, gender : 'female', job : 'engineer'},
-                {name : 'Gustavo Zambelli', age : 23, gender : 'male', job : 'teacher'},
-                {name : 'Victor Erixon', age : 15, gender : 'female', job : 'doctors'},
-                {name : 'Shaun Moynihan', age : 27, gender : 'female', job : 'driver'},
-                {name : 'Tim Boelaars', age : 20, gender : 'male', job : 'driver'},
-                {name : 'Andrew Colin Beck', age : 41, gender : 'female', job : 'engineer'},
-                {name : 'Gustavo Zambelli', age : 23, gender : 'male', job : 'teacher'},
-                {name : 'Victor Erixon', age : 15, gender : 'female', job : 'doctors'},
-                {name : 'Shaun Moynihan', age : 27, gender : 'female', job : 'driver'},
-                {name : 'Tim Boelaars', age : 20, gender : 'male', job : 'driver'},
-                {name : 'Andrew Colin Beck', age : 41, gender : 'female', job : 'engineer'},
-                {name : 'Gustavo Zambelli', age : 23, gender : 'male', job : 'teacher'},
-                {name : 'Victor Erixon', age : 15, gender : 'female', job : 'doctors'},
-                {name : 'Shaun Moynihan', age : 27, gender : 'female', job : 'driver'},
-                {name : 'Tim Boelaars', age : 20, gender : 'male', job : 'driver'},
-                {name : 'Andrew Colin Beck', age : 41, gender : 'female', job : 'engineer'},
-                {name : 'Gustavo Zambelli', age : 23, gender : 'male', job : 'teacher'},
-                {name : 'Victor Erixon', age : 15, gender : 'female', job : 'doctors'},
-                {name : 'Shaun Moynihan', age : 27, gender : 'female', job : 'driver'},
-                {name : 'Tim Boelaars', age : 20, gender : 'male', job : 'driver'},
-                {name : 'Andrew Colin Beck', age : 41, gender : 'female', job : 'engineer'},
-                {name : 'Gustavo Zambelli', age : 23, gender : 'male', job : 'teacher'},
-                {name : 'Victor Erixon', age : 15, gender : 'female', job : 'doctors'},
-                {name : 'Shaun Moynihan', age : 27, gender : 'female', job : 'driver'},
-                {name : 'Tim Boelaars', age : 20, gender : 'male', job : 'driver'},
-                {name : 'Andrew Colin Beck', age : 41, gender : 'female', job : 'engineer'},
-                {name : 'Gustavo Zambelli', age : 23, gender : 'male', job : 'teacher'},
-                {name : 'Victor Erixon', age : 15, gender : 'female', job : 'doctors'},
-                {name : 'Shaun Moynihan', age : 27, gender : 'female', job : 'driver'},
-                {name : 'Tim Boelaars', age : 20, gender : 'male', job : 'driver'},
-                {name : 'Andrew Colin Beck', age : 41, gender : 'female', job : 'engineer'},
-                {name : 'Gustavo Zambelli', age : 23, gender : 'male', job : 'teacher'},
-                {name : 'Victor Erixon', age : 15, gender : 'female', job : 'doctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctorsdoctors'},
-                {name : 'Shaun Moynihan', age : 27, gender : 'female', job : 'driver'},
-                {name : 'Tim Boelaars', age : 20, gender : 'male', job : 'driver'},
-                {name : 'Andrew Colin Beck', age : 41, gender : 'female', job : 'engineer'},
-                {name : 'Gustavo Zambelli', age : 23, gender : 'male', job : 'teacher'},
-                {name : 'Victor Erixon', age : 15, gender : 'female', job : 'doctors'},
-                {name : 'Shaun Moynihan', age : 27, gender : 'female', job : 'driver'},
-                {name : 'Tim Boelaars', age : 20, gender : 'male', job : 'driver'},
-                {name : 'Andrew Colin Beck', age : 41, gender : 'female', job : 'engineer'},
-                {name : 'Gustavo Zambelli', age : 23, gender : 'male', job : 'teacher'},
-                {name : 'Victor Erixon', age : 15, gender : 'female', job : 'doctors'},
-                {name : 'Shaun Moynihan', age : 27, gender : 'female', job : 'driver'},
-                {name : 'Tim Boelaars', age : 20, gender : 'male', job : 'driver'},
-                {name : 'Andrew Colin Beck', age : 41, gender : 'female', job : 'engineer'},
-                {name : 'Gustavo Zambelli', age : 23, gender : 'male', job : 'teacher'},
-                {name : 'Victor Erixon', age : 15, gender : 'female', job : 'doctors'},
-                {name : 'Shaun Moynihan', age : 27, gender : 'female', job : 'driver'},
-                {name : 'Tim Boelaars', age : 20, gender : 'male', job : 'driver'},
-                {name : 'Andrew Colin Beck', age : 41, gender : 'female', job : 'engineer'},
-                {name : 'Gustavo Zambelli', age : 23, gender : 'male', job : 'teacher'},
-                {name : 'Victor Erixon', age : 15, gender : 'female', job : 'doctors'},
-                {name : 'Shaun Moynihan', age : 27, gender : 'female', job : 'driver'},
-                {name : 'Tim Boelaars', age : 20, gender : 'male', job : 'driver'},
-                {name : 'Andrew Colin Beck', age : 41, gender : 'female', job : 'engineer'},
-                {name : 'Gustavo Zambelli', age : 23, gender : 'male', job : 'teacher'},
-                {name : 'Victor Erixon', age : 15, gender : 'female', job : 'doctors'},
-                {name : 'Shaun Moynihan', age : 27, gender : 'female', job : 'driver'},
-                {name : 'Tim Boelaars', age : 20, gender : 'male', job : 'driver'},
-                {name : 'Andrew Colin Beck', age : 41, gender : 'female', job : 'engineer'},
-                {name : 'Gustavo Zambelli', age : 23, gender : 'male', job : 'teacher'},
-                {name : 'Victor Erixon', age : 15, gender : 'female', job : 'doctors'},
-                {name : 'Shaun Moynihan', age : 27, gender : 'female', job : 'driver'},
-                {name : 'Tim Boelaars', age : 20, gender : 'male', job : 'driver'},
-                {name : 'Andrew Colin Beck', age : 41, gender : 'female', job : 'engineer'},
-                {name : 'Gustavo Zambelli', age : 23, gender : 'male', job : 'teacher'},
-                {name : 'Victor Erixon', age : 15, gender : 'female', job : 'doctors'},
-                {name : 'Shaun Moynihan', age : 27, gender : 'female', job : 'driver'},
-                {name : 'Tim Boelaars', age : 20, gender : 'male', job : 'driver'},
-                {name : 'Andrew Colin Beck', age : 41, gender : 'female', job : 'engineer'},
-                {name : 'Gustavo Zambelli', age : 23, gender : 'male', job : 'teacher'},
-                {name : 'Victor Erixon', age : 15, gender : 'female', job : 'doctors'},
-                {name : 'Shaun Moynihan', age : 27, gender : 'female', job : 'driver'},
-                {name : 'Tim Boelaars', age : 20, gender : 'male', job : 'driver'},
-                {name : 'Andrew Colin Beck', age : 41, gender : 'female', job : 'engineer'},
-                {name : 'Gustavo Zambelli', age : 23, gender : 'male', job : 'teacher'},
-                {name : 'Victor Erixon', age : 15, gender : 'female', job : 'doctors'},
-                {name : 'Shaun Moynihan', age : 27, gender : 'female', job : 'driver'},
-                {name : 'Tim Boelaars', age : 20, gender : 'male', job : 'driver'},
-                {name : 'Andrew Colin Beck', age : 41, gender : 'female', job : 'engineer'},
-                {name : 'Gustavo Zambelli', age : 23, gender : 'male', job : 'teacher'},
-                {name : 'Victor Erixon', age : 15, gender : 'female', job : 'doctors'},
-                {name : 'Shaun Moynihan', age : 27, gender : 'female', job : 'driver'},
-                {name : 'Tim Boelaars', age : 20, gender : 'male', job : 'driver'},
-                {name : 'Andrew Colin Beck', age : 41, gender : 'female', job : 'engineer'},
-                {name : 'Gustavo Zambelli', age : 23, gender : 'male', job : 'teacher'},
-                {name : 'Victor Erixon', age : 15, gender : 'female', job : 'doctors'},
-                {name : 'Shaun Moynihan', age : 27, gender : 'female', job : 'driver'},
-                {name : 'Tim Boelaars', age : 20, gender : 'male', job : 'driver'},
-                {name : 'Andrew Colin Beck', age : 41, gender : 'female', job : 'engineer'},
-                {name : 'Gustavo Zambelli', age : 23, gender : 'male', job : 'teacher'},
-                {name : 'Victor Erixon', age : 15, gender : 'female', job : 'doctors'},
-                {name : 'Shaun Moynihan', age : 27, gender : 'female', job : 'driver'},
-                {name : 'Tim Boelaars', age : 20, gender : 'male', job : 'driver'},
-                {name : 'Andrew Colin Beck', age : 41, gender : 'female', job : 'engineer'},
-                {name : 'Gustavo Zambelli', age : 23, gender : 'male', job : 'teacher'},
-                {name : 'Victor Erixon', age : 15, gender : 'female', job : 'doctors'},
-                {name : 'Shaun Moynihan', age : 27, gender : 'female', job : 'driver'},
-                {name : 'Tim Boelaars', age : 20, gender : 'male', job : 'driver'},
-                {name : 'Andrew Colin Beck', age : 41, gender : 'female', job : 'engineer'},
-                {name : 'Gustavo Zambelli', age : 23, gender : 'male', job : 'teacher'},
-                {name : 'Victor Erixon', age : 15, gender : 'female', job : 'doctors'},
-                {name : 'Shaun Moynihan', age : 27, gender : 'female', job : 'driver'},
-                {name : 'Tim Boelaars', age : 20, gender : 'male', job : 'driver'},
-                {name : 'Andrew Colin Beck', age : 41, gender : 'female', job : 'engineer'},
-                {name : 'Gustavo Zambelli', age : 23, gender : 'male', job : 'teacher'},
-                {name : 'Victor Erixon', age : 15, gender : 'female', job : 'doctors'},
-                {name : 'Shaun Moynihan', age : 27, gender : 'female', job : 'driver'},
-                {name : 'Tim Boelaars', age : 20, gender : 'male', job : 'driver'},
-                {name : 'Andrew Colin Beck', age : 41, gender : 'female', job : 'engineer'},
-                {name : 'Gustavo Zambelli', age : 23, gender : 'male', job : 'teacher'},
-                {name : 'Victor Erixon', age : 15, gender : 'female', job : 'doctors'},
-                {name : 'Shaun Moynihan', age : 27, gender : 'female', job : 'driver'},
-                {name : 'Tim Boelaars', age : 20, gender : 'male', job : 'driver'},
-                {name : 'Andrew Colin Beck', age : 41, gender : 'female', job : 'engineer'},
-                {name : 'Gustavo Zambelli', age : 23, gender : 'male', job : 'teacher'},
-                {name : 'Victor Erixon', age : 15, gender : 'female', job : 'doctors'},
-                {name : 'Shaun Moynihan', age : 27, gender : 'female', job : 'driver'},
-                {name : 'Tim Boelaars', age : 20, gender : 'male', job : 'driver'},
-                {name : 'Andrew Colin Beck', age : 41, gender : 'female', job : 'engineer'},
-                {name : 'Gustavo Zambelli', age : 23, gender : 'male', job : 'teacher'},
-                {name : 'Victor Erixon', age : 15, gender : 'female', job : 'doctors'},
-                {name : 'Shaun Moynihan', age : 27, gender : 'female', job : 'driver'},
-                {name : 'Tim Boelaars', age : 20, gender : 'male', job : 'driver'},
-                {name : 'Andrew Colin Beck', age : 41, gender : 'female', job : 'engineer'},
-                {name : 'Gustavo Zambelli', age : 23, gender : 'male', job : 'teacher'},
-                {name : 'Victor Erixon', age : 15, gender : 'female', job : 'doctors'},
-                {name : 'Shaun Moynihan', age : 27, gender : 'female', job : 'driver'},
-                {name : 'Emir Ayouni', age : 21, gender : 'male', job : 'gardener'}
-            ]
+            list : []
         };
 
     },
@@ -173,7 +37,19 @@ export default {
         'doc-header' : DocHeader,
         'doc-footer' : DocFooter
     },
-    mounted : function () {}
+    mounted : function () {
+
+        setTimeout(() => {
+
+            this.list = {"all":{"name":"全部","tip":"全部"},"http://m.beibei.com/weex/1yuan_tuan.js":{"name":"http://m.beibei.com/weex/1yuan_tuan.js","tip":"http://m.beibei.com/weex/1yuan_tuan.js"},"http://m.beibei.com/weex/bb_activity.js":{"name":"http://m.beibei.com/weex/bb_activity.js","tip":"http://m.beibei.com/weex/bb_activity.js"},"http://m.beibei.com/weex/new_product_2.js":{"name":"http://m.beibei.com/weex/new_product_2.js","tip":"http://m.beibei.com/weex/new_product_2.js"},"http://m.beibei.com/weex/s_vip/invite_input_code.js":{"name":"http://m.beibei.com/weex/s_vip/invite_input_code.js","tip":"http://m.beibei.com/weex/s_vip/invite_input_code.js"},"http://m.beibei.com/weex/vip.js":{"name":"http://m.beibei.com/weex/vip.js","tip":"http://m.beibei.com/weex/vip.js"},"http://m.beibei.com/weex/weekly_explosions.js":{"name":"http://m.beibei.com/weex/weekly_explosions.js","tip":"http://m.beibei.com/weex/weekly_explosions.js"}};
+
+
+            morning.setGroup('demo', {
+                demo : ['http://m.beibei.com/weex/1yuan_tuan.js']
+            })
+
+        }, 1000);
+    }
 };
 </script>
 

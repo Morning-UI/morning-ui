@@ -72,7 +72,7 @@ export default {
         '富文本输入<i class="tag new l1"></i>' : '/component/texteditor.html',
         开关 : '/component/switch.html',
         // 计数器<i class="tag new"></i> : 'b',
-        下拉选择 : '/component/select.html',
+        '下拉选择<i class="tag update l1"></i>' : '/component/select.html',
         // 级联选择<i class="tag update"></i> : 'b',
         '复选框组<i class="tag update l1"></i>' : '/component/checkbox.html',
         '单选框组<i class="tag update l1"></i>' : '/component/radio.html',

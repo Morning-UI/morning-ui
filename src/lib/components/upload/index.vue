@@ -115,6 +115,8 @@
 import axios                       from 'Npm/axios/dist/axios.min.js';
 import extend                      from 'extend';
 
+let noopFn = () => {};
+
 export default {
     origin : 'Form',
     name : 'upload',
@@ -145,7 +147,7 @@ export default {
         },
         validate : {
             type : Function,
-            default : () => ({})
+            default : noopFn
         },
         uploader : {
             type : Function,

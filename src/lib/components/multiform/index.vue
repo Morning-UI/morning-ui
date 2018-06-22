@@ -125,7 +125,7 @@
 
     </mor-multiform>
 </template>
- 
+
 <script>
 import arrayUniq                    from 'array-uniq';
 import Move                         from 'Utils/Move';
@@ -149,7 +149,7 @@ export default {
         },
         itemValidator : {
             type : Function,
-            default : (value => value)
+            default : returnValueFn
         },
         canMove : {
             type : Boolean,

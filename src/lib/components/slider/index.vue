@@ -102,6 +102,7 @@ import GlobalEvent                  from 'Utils/GlobalEvent';
 
 const clickTipHideTime = 1000;
 const minPointSpacing = 20;
+const returnValueFn = value => value;
 
 export default {
     origin : 'Form',
@@ -127,7 +128,7 @@ export default {
         },
         tipFormatter : {
             type : Function,
-            default : (value => value)
+            default : returnValueFn
         },
         prepend : {
             type : String,

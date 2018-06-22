@@ -256,6 +256,8 @@ import GlobalEvent                  from 'Utils/GlobalEvent';
 
 const num100 = 100;
 
+let noopFn = () => {};
+
 export default {
     origin : 'Form',
     name : 'imagemap',
@@ -275,7 +277,7 @@ export default {
         },
         validate : {
             type : Function,
-            default : () => ({})
+            default : noopFn
         },
         uploader : {
             type : Function,
