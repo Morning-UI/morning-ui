@@ -51,12 +51,26 @@
                                 <div class="bar-more bootstrap" style="width:calc(350 / 65 * 14px)"></div>
                             </div>
                         </div>
+                        <div class="label">
+                            <p>
+                                <i class="same"></i>
+                                <span>均有组件</span>
+                            </p>
+                            <p>
+                                <i class="morning"></i>
+                                <span>Morning专有组件</span>
+                            </p>
+                            <p>
+                                <i class="bootstrap"></i>
+                                <span>Bootstrap专有组件</span>
+                            </p>
+                        </div>
                     </div>
                 </div>
 
                 <div class="vs">
                     <div class="logo">
-                        <img src="http://morning-ui-image.test.upcdn.net/semantic-ui-logo-png-transparent.png" width="240" alt="">
+                        <img src="http://morning-ui-image.test.upcdn.net/semantic-ui-logo-png-transparent.png" width="230" alt="">
                     </div>
                     <h2 class="vsname">
                         对比Semantic UI
@@ -65,23 +79,37 @@
                         <div class="bar">
                             <h3>Morning UI</h3>
                             <div class="bar-box">
-                                <div class="bar-same"></div>
-                                <div class="bar-more morning"></div>
+                                <div class="bar-same" style="width:calc(350 / 65 * 26px)"></div>
+                                <div class="bar-more morning" style="width:calc(350 / 65 * 39px)"></div>
                             </div>
                         </div>
                         <div class="bar">
                             <h3>Semantic UI</h3>
                             <div class="bar-box">
-                                <div class="bar-same"></div>
-                                <div class="bar-more semantic"></div>
+                                <div class="bar-same" style="width:calc(350 / 65 * 26px)"></div>
+                                <div class="bar-more semantic" style="width:calc(350 / 65 * 17px)"></div>
                             </div>
+                        </div>
+                        <div class="label">
+                            <p>
+                                <i class="same"></i>
+                                <span>均有组件</span>
+                            </p>
+                            <p>
+                                <i class="morning"></i>
+                                <span>Morning专有组件</span>
+                            </p>
+                            <p>
+                                <i class="semantic"></i>
+                                <span>Semantic UI专有组件</span>
+                            </p>
                         </div>
                     </div>
                 </div>
 
                 <div class="vs">
                     <div class="logo">
-                        <img src="http://morning-ui-image.test.upcdn.net/antd.svg" width="260" alt="">
+                        <img src="http://morning-ui-image.test.upcdn.net/antd.svg" width="250" alt="">
                     </div>
                     <h2 class="vsname">
                         对比Ant Design
@@ -118,7 +146,7 @@
                     </div>
                 </div>
 
-                <div class="vs">
+               <!--  <div class="vs">
                     <div class="logo">
                         <img src="http://morning-ui-image.test.upcdn.net/element.png" width="300" alt="">
                     </div>
@@ -155,7 +183,7 @@
                             </p>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </section>
         <section class="s1">
@@ -702,7 +730,7 @@ export default {
             }
 
             .bar-box{
-                height: 20px;
+                height: 16px;
                 display: inline-block;
                 left: 150px;
                 width: 30px;
@@ -712,7 +740,8 @@ export default {
                 white-space: nowrap;
                 transition: 0.65s;
                 overflow: hidden;
-                transition-timing-function: cubic-bezier(0.19, 0.54, 0.21, 0.99);
+                margin: 1px 0;
+                transition-timing-function: cubic-bezier(0.36, 0.02, 0, 1.04);
 
                 .bar-same{
                     background: #c1cdd8;
