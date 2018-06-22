@@ -9,10 +9,11 @@
                     ref="demo1"
                     group="demo"
                     form-key="demo"
-                    :hide-selected="false"
-                    :list="list"
-                    can-search
-                    item-t
+                    :list="{
+                        '中文1' : '中文1',
+                        '中文2' : '中文2',
+                        '中文3' : '中文3'
+                    }"
                 ></ui-select>
             </div>
         </div>
@@ -41,7 +42,11 @@ export default {
 
         setTimeout(() => {
 
-            this.list = {"all":{"name":"全部","tip":"全部"},"http://m.beibei.com/weex/1yuan_tuan.js":{"name":"http://m.beibei.com/weex/1yuan_tuan.js","tip":"http://m.beibei.com/weex/1yuan_tuan.js"},"http://m.beibei.com/weex/bb_activity.js":{"name":"http://m.beibei.com/weex/bb_activity.js","tip":"http://m.beibei.com/weex/bb_activity.js"},"http://m.beibei.com/weex/new_product_2.js":{"name":"http://m.beibei.com/weex/new_product_2.js","tip":"http://m.beibei.com/weex/new_product_2.js"},"http://m.beibei.com/weex/s_vip/invite_input_code.js":{"name":"http://m.beibei.com/weex/s_vip/invite_input_code.js","tip":"http://m.beibei.com/weex/s_vip/invite_input_code.js"},"http://m.beibei.com/weex/vip.js":{"name":"http://m.beibei.com/weex/vip.js","tip":"http://m.beibei.com/weex/vip.js"},"http://m.beibei.com/weex/weekly_explosions.js":{"name":"http://m.beibei.com/weex/weekly_explosions.js","tip":"http://m.beibei.com/weex/weekly_explosions.js"}};
+            this.list = {
+                "中文1" : "中文1",
+                "中文2" : "中文2",
+                "中文3" : "中文3"
+            };
 
 
             morning.setGroup('demo', {

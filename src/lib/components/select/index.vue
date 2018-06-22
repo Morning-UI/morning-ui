@@ -143,7 +143,7 @@
             >
                 <template v-for="(item, index) in showItemList">
                     <li
-                        :index="item._index"
+                        :index="item._index || index"
                         :class="{
                             hide : item._nomatch,
                             selected : item._selected
@@ -153,7 +153,7 @@
                     >
                     </li>
                     <li
-                        :index="item._index"
+                        :index="item._index || index"
                         :class="{
                             hide : item._nomatch,
                             selected : item._selected
@@ -494,13 +494,6 @@ export default {
 
                 for (let key in this.data.itemValueList) {
 
-                    if (this.conf.canSearch &&
-                        searchTextinput) {
-
-                        searchTextinput._set(undefined, true);
-
-                    }
-
                     if (this.data.itemValueList[key].val === val) {
 
                         if (this.conf.multiSelect) {
@@ -536,6 +529,13 @@ export default {
                 (this.data.value.length === 0 || this.data.value === undefined)) {
 
                 this.data.selectedContent = this.conf.formName || '';
+
+            }
+
+            if (this.conf.canSearch &&
+                searchTextinput) {
+
+                searchTextinput._set(undefined, true);
 
             }
 
