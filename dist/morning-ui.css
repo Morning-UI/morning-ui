@@ -11114,7 +11114,7 @@ mor-select.input-group .select-area {
   transition: none;
 }
 .mor-select-wrap li {
-  padding: 0.5em 1em;
+  padding: 0.5em 2em 0.5em 1em;
   border-top: 1px #f3f3f3 solid;
   cursor: pointer;
   font-size: 14px;
@@ -11362,6 +11362,9 @@ mor-select.input-group .select-area {
 .mor-select-wrap.st-readonly .list li {
   -webkit-user-select: none;
   cursor: not-allowed !important;
+}
+.mor-select-wrap.hide-selected li {
+  padding: 0.5em 1em;
 }
 .mor-select-wrap.hide-selected li.selected,
 .mor-select-wrap .hide-selected li.selected {

@@ -143,7 +143,7 @@
             >
                 <template v-for="(item, index) in showItemList">
                     <li
-                        :index="index"
+                        :index="item._index || index"
                         :class="{
                             hide : item._nomatch,
                             selected : item._selected
@@ -153,7 +153,7 @@
                     >
                     </li>
                     <li
-                        :index="index"
+                        :index="item._index || index"
                         :class="{
                             hide : item._nomatch,
                             selected : item._selected
@@ -185,6 +185,8 @@ import map                          from 'lodash.map';
 import GlobalEvent                  from 'Utils/GlobalEvent';
 import TipManager                   from 'Utils/TipManager';
 
+let noopFn = () => {};
+
 export default {
     origin : 'Form',
     name : 'select',
@@ -200,7 +202,7 @@ export default {
         },
         validate : {
             type : Function,
-            default : () => ({})
+            default : noopFn
         },
         separateEmit : {
             type : String,
@@ -324,7 +326,11 @@ export default {
 
             }
 
-            for (let item of this.data.itemValueList) {
+            for (let index in this.data.itemValueList) {
+
+                let item = this.data.itemValueList[index];
+
+                item._index = index;
 
                 if (!item._nomatch) {
 
@@ -1237,6 +1243,7 @@ export default {
         this.$watch('conf.list', () => {
 
             this._updateItemValueList();
+            this._onValueChange();
 
         }, {
             immediate : true,

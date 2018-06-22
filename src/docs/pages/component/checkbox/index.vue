@@ -16,7 +16,14 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-checkbox form-name="姓名" :list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"></ui-checkbox>
+        <ui-checkbox
+            form-name="姓名"
+            :list="{
+                Tim : 'Tim Boelaars',
+                Andrew : 'Andrew Colin Beck',
+                Victor : 'Victor Erixon'
+            }"
+        ></ui-checkbox>
     </div>
     :::
 
@@ -26,7 +33,15 @@
 
     :::democode/html
     <div style="width:320px;">
-        <ui-checkbox form-name="姓名" class="border" :list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"></ui-checkbox>
+        <ui-checkbox
+            form-name="姓名"
+            class="border"
+            :list="{
+                Tim : 'Tim Boelaars',
+                Andrew : 'Andrew Colin Beck',
+                Victor : 'Victor Erixon'
+            }"
+        ></ui-checkbox>
     </div>
     :::
 
@@ -34,7 +49,15 @@
 
     :::democode/html
     <div style="width:320px;">
-        <ui-checkbox form-name="姓名" class="vertical" :list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"></ui-checkbox>
+        <ui-checkbox
+            form-name="姓名"
+            class="vertical"
+            :list="{
+                Tim : 'Tim Boelaars',
+                Andrew : 'Andrew Colin Beck',
+                Victor : 'Victor Erixon'
+            }"
+        ></ui-checkbox>
     </div>
     :::
 
@@ -99,7 +122,14 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-checkbox form-name="姓名" :list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"></ui-checkbox>
+        <ui-checkbox
+            form-name="姓名"
+            :list="{
+                Tim : 'Tim Boelaars',
+                Andrew : 'Andrew Colin Beck',
+                Victor : 'Victor Erixon'
+            }"
+        ></ui-checkbox>
     </div>
     :::
 
@@ -109,7 +139,17 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-checkbox form-name="姓名" :list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon',Shaun:'Shaun Moynihan',Emir:'Emir Ayouni'}" :disabled-options="['Tim', 'Victor']"></ui-checkbox>
+        <ui-checkbox 
+            form-name="姓名" 
+            :list="{
+                Tim : 'Tim Boelaars',
+                Andrew : 'Andrew Colin Beck',
+                Victor : 'Victor Erixon',
+                Shaun : 'Shaun Moynihan',
+                Emir : 'Emir Ayouni'
+            }" 
+            :disabled-options="['Tim', 'Victor']"
+        ></ui-checkbox>
     </div>
     :::
 
@@ -117,7 +157,18 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-checkbox form-name="姓名" :list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon',Shaun:'Shaun Moynihan',Emir:'Emir Ayouni'}" :disabled-options="['Tim', 'Victor']" :default-value="['Tim', 'Emir']"></ui-checkbox>
+        <ui-checkbox 
+            form-name="姓名" 
+            :list="{
+                Tim : 'Tim Boelaars',
+                Andrew : 'Andrew Colin Beck',
+                Victor : 'Victor Erixon',
+                Shaun : 'Shaun Moynihan',
+                Emir : 'Emir Ayouni'
+            }" 
+            :disabled-options="['Tim', 'Victor']" 
+            :default-value="['Tim', 'Emir']"
+        ></ui-checkbox>
     </div>
     :::
 
@@ -125,7 +176,17 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-checkbox form-name="姓名" :list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon',Shaun:'Shaun Moynihan',Emir:'Emir Ayouni'}" :max="3"></ui-checkbox>
+        <ui-checkbox
+            form-name="姓名"
+            :list="{
+                Tim : 'Tim Boelaars',
+                Andrew : 'Andrew Colin Beck',
+                Victor : 'Victor Erixon',
+                Shaun : 'Shaun Moynihan',
+                Emir : 'Emir Ayouni'
+            }"
+            :max="3"
+        ></ui-checkbox>
     </div>
     :::
 
@@ -133,11 +194,54 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-checkbox form-name="Continents" id="continents" :list="{asia:'Asia',na:'North America',europe:'Europe',africa:'Africa'}"></ui-checkbox>
-        <ui-checkbox form-name="Asia" parent="#continents:asia" :list="{beijing:'Beijing',hk:'Hong Kong',singapore:'Singapore',tokyo:'Tokyo'}"></ui-checkbox>
-        <ui-checkbox form-name="North America" parent="#continents:na" :list="{ny:'New York',toronto:'Toronto',la:'Los Angeles'}"></ui-checkbox>
-        <ui-checkbox form-name="Europe" parent="#continents:europe" :list="{london:'London',paris:'Paris',berlin:'Berlin',rome:'Rome',copenhagen:'Copenhagen',madrid:'Madrid'}"></ui-checkbox>
-        <ui-checkbox form-name="Africa" parent="#continents:africa" :list="{cairo:'Cairo',cuba:'Cuba'}"></ui-checkbox>
+        <ui-checkbox
+            form-name="Continents"
+            id="continents"
+            :list="{
+                asia : 'Asia',
+                na : 'North America',
+                europe : 'Europe',
+                africa : 'Africa'
+            }"></ui-checkbox>
+        <ui-checkbox
+            form-name="Asia"
+            parent="#continents:asia"
+            :list="{
+                beijing : 'Beijing',
+                hk : 'Hong Kong',
+                singapore : 'Singapore',
+                tokyo : 'Tokyo'
+            }"
+        ></ui-checkbox>
+        <ui-checkbox
+            form-name="North America"
+            parent="#continents:na"
+            :list="{
+                ny : 'New York',
+                toronto : 'Toronto',
+                la : 'Los Angeles'
+            }"
+        ></ui-checkbox>
+        <ui-checkbox
+            form-name="Europe"
+            parent="#continents:europe"
+            :list="{
+                london : 'London',
+                paris : 'Paris',
+                berlin : 'Berlin',
+                rome : 'Rome',
+                copenhagen : 'Copenhagen',
+                madrid : 'Madrid'
+            }"
+        ></ui-checkbox>
+        <ui-checkbox
+            form-name="Africa"
+            parent="#continents:africa"
+            :list="{
+                cairo : 'Cairo',
+                cuba : 'Cuba'
+            }"
+        ></ui-checkbox>
     </div>
     :::
 
@@ -145,11 +249,58 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-checkbox form-name="Continents" id="continents2" :default-value="['europe']" :list="{asia:'Asia',na:'North America',europe:'Europe',africa:'Africa'}"></ui-checkbox>
-        <ui-checkbox form-name="Asia" parent="#continents2:asia" :list="{beijing:'Beijing',hk:'Hong Kong',singapore:'Singapore',tokyo:'Tokyo'}"></ui-checkbox>
-        <ui-checkbox form-name="North America" parent="#continents2:na" :default-value="['ny']" :list="{ny:'New York',toronto:'Toronto',la:'Los Angeles'}"></ui-checkbox>
-        <ui-checkbox form-name="Europe" parent="#continents2:europe" :list="{london:'London',paris:'Paris',berlin:'Berlin',rome:'Rome',copenhagen:'Copenhagen',madrid:'Madrid'}"></ui-checkbox>
-        <ui-checkbox form-name="Africa" parent="#continents2:africa" :default-value="['cairo', 'cuba']" :list="{cairo:'Cairo',cuba:'Cuba'}"></ui-checkbox>
+        <ui-checkbox
+            form-name="Continents"
+            id="continents2"
+            :default-value="['europe']"
+            :list="{
+                asia : 'Asia',
+                na : 'North America',
+                europe : 'Europe',
+                africa : 'Africa'
+            }"
+        ></ui-checkbox>
+        <ui-checkbox
+            form-name="Asia"
+            parent="#continents2:asia"
+            :list="{
+                beijing : 'Beijing',
+                hk : 'Hong Kong',
+                singapore : 'Singapore',
+                tokyo : 'Tokyo'
+            }"
+        ></ui-checkbox>
+        <ui-checkbox
+            form-name="North America"
+            parent="#continents2:na"
+            :default-value="['ny']"
+            :list="{
+                ny : 'New York',
+                toronto : 'Toronto',
+                la : 'Los Angeles'
+            }"
+        ></ui-checkbox>
+        <ui-checkbox
+            form-name="Europe"
+            parent="#continents2:europe"
+            :list="{
+                london : 'London',
+                paris : 'Paris',
+                berlin : 'Berlin',
+                rome : 'Rome',
+                copenhagen : 'Copenhagen',
+                madrid : 'Madrid'
+            }"
+        ></ui-checkbox>
+        <ui-checkbox
+            form-name="Africa"
+            parent="#continents2:africa"
+            :default-value="['cairo', 'cuba']"
+            :list="{
+                cairo : 'Cairo',
+                cuba : 'Cuba'
+            }"
+        ></ui-checkbox>
     </div>
     :::
     
@@ -157,8 +308,22 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-checkbox form-name="Continents" id="continents3" :list="{asia:'Asia'}"></ui-checkbox>
-        <ui-checkbox form-name="Asia" parent="#continents3:asia" :disabled-options="['beijing', 'hk']" :list="{beijing:'Beijing',hk:'Hong Kong',singapore:'Singapore',tokyo:'Tokyo'}"></ui-checkbox>
+        <ui-checkbox
+            form-name="Continents"
+            id="continents3"
+            :list="{asia:'Asia'}"
+        ></ui-checkbox>
+        <ui-checkbox
+            form-name="Asia"
+            parent="#continents3:asia"
+            :disabled-options="['beijing', 'hk']"
+            :list="{
+                beijing : 'Beijing',
+                hk : 'Hong Kong',
+                singapore : 'Singapore',
+                tokyo : 'Tokyo'
+            }"
+        ></ui-checkbox>
     </div>
     :::
 
@@ -166,8 +331,22 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-checkbox form-name="Continents" id="continents4" :list="{asia:'Asia'}"></ui-checkbox>
-        <ui-checkbox form-name="Asia" parent="#continents4:asia" :max="2" :list="{beijing:'Beijing',hk:'Hong Kong',singapore:'Singapore',tokyo:'Tokyo'}"></ui-checkbox>
+        <ui-checkbox 
+            form-name="Continents" 
+            id="continents4" 
+            :list="{asia:'Asia'}"
+        ></ui-checkbox>
+        <ui-checkbox 
+            form-name="Asia" 
+            parent="#continents4:asia" 
+            :max="2" 
+            :list="{
+                beijing : 'Beijing',
+                hk : 'Hong Kong',
+                singapore : 'Singapore',
+                tokyo : 'Tokyo'
+            }"
+        ></ui-checkbox>
     </div>
     :::
    
@@ -193,7 +372,15 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-checkbox ref="demo2" form-name="姓名" :list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"></ui-checkbox>
+        <ui-checkbox
+            ref="demo2"
+            form-name="姓名"
+            :list="{
+                Tim : 'Tim Boelaars',
+                Andrew : 'Andrew Colin Beck',
+                Victor : 'Victor Erixon'
+            }"
+        ></ui-checkbox>
     </div>
     <br>
     <ui-link js="morning.findVM('demo2').toggle('Tim');">切换Tim至相反状态</ui-link>
@@ -239,7 +426,14 @@
     <div>
         <p>{$valueType}类型</p>
         <div style="width:300px;">
-            <ui-checkbox ref="demoType{$valueType}" :list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"></ui-checkbox>
+            <ui-checkbox
+                ref="demoType{$valueType}"
+                :list="{
+                    Tim : 'Tim Boelaars',
+                    Andrew : 'Andrew Colin Beck',
+                    Victor : 'Victor Erixon'
+                }"
+            ></ui-checkbox>
         </div>
         <br>
         <ui-link js="window.morning.findVM('demoType{$valueType}').set({$&valueContent})">设置{$valueType}类型</ui-link>

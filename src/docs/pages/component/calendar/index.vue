@@ -74,7 +74,15 @@
 
     :::democode/html
     <div style="width:300px">
-        <ui-calendar :date="+new Date('2017-11-1')" :highlight-day="[new Date('2017-10-31'), +new Date('2017-11-1'), new Date('2017-11-2'), +new Date('2017-11-8')]"></ui-calendar>
+        <ui-calendar
+            :date="+new Date('2017-11-1')"
+            :highlight-day="[
+                new Date('2017-10-31'),
+                +new Date('2017-11-1'),
+                new Date('2017-11-2'),
+                +new Date('2017-11-8')
+            ]"
+        ></ui-calendar>
     </div>
     :::
 
@@ -82,7 +90,14 @@
 
     :::democode/html
     <div style="width:300px">
-        <ui-calendar :date="+new Date('2017-11-1')" :highlight-day="[[new Date('2017-10-27'), new Date('2017-11-3')], [new Date('2017-11-29'), new Date('2017-12-2')], [new Date('2017-12-5'), new Date('2017-12-12')]]"></ui-calendar>
+        <ui-calendar
+            :date="+new Date('2017-11-1')"
+            :highlight-day="[
+                [new Date('2017-10-27'), new Date('2017-11-3')],
+                [new Date('2017-11-29'), new Date('2017-12-2')],
+                [new Date('2017-12-5'), new Date('2017-12-12')]
+            ]"
+        ></ui-calendar>
     </div>
     :::
 
@@ -100,7 +115,21 @@
 
     :::democode/html
     <div style="width:300px">
-        <ui-calendar :date="+new Date('2017-11-1')" :background-mark="[{start: new Date('2017-11-9'), end: new Date('2017-11-13'), style: 'primary'}, {start: new Date('2017-11-20'), end: new Date('2017-11-20'), style: 'danger'}]"></ui-calendar>
+        <ui-calendar 
+            :date="+new Date('2017-11-1')"
+            :background-mark="[
+                {
+                    start: new Date('2017-11-9'),
+                    end: new Date('2017-11-13'),
+                    style: 'primary'
+                },
+                {
+                    start: new Date('2017-11-20'),
+                    end: new Date('2017-11-20'),
+                    style: 'danger'
+                }
+            ]"
+        ></ui-calendar>
     </div>
     :::
 
@@ -108,7 +137,16 @@
 
     :::democode/html
     <div style="width:300px">
-        <ui-calendar :date="+new Date('2017-11-1')" :background-mark="[{start: new Date('2017-10-20'), end: new Date('2017-11-3'), style: 'light-gray'}]"></ui-calendar>
+        <ui-calendar
+            :date="+new Date('2017-11-1')"
+            :background-mark="[
+                {
+                    start: new Date('2017-10-20'), 
+                    end: new Date('2017-11-3'), 
+                    style: 'light-gray'
+                }
+            ]"
+        ></ui-calendar>
     </div>
     :::
 
@@ -116,7 +154,17 @@
 
     :::democode/html
     <div style="width:300px">
-        <ui-calendar highlight-hover :date="+new Date('2017-11-1')" :background-mark="[{start: new Date('2017-11-9'), end: new Date('2017-11-13'), disabled: true}]"></ui-calendar>
+        <ui-calendar
+            highlight-hover
+            :date="+new Date('2017-11-1')"
+            :background-mark="[
+                {
+                    start: new Date('2017-11-9'),
+                    end: new Date('2017-11-13'),
+                    disabled: true
+                }
+            ]"
+        ></ui-calendar>
     </div>
     :::
 
@@ -124,7 +172,21 @@
 
     :::democode/html
     <div style="width:300px">
-        <ui-calendar :date="+new Date('2017-11-1')" :point-mark="[{start: new Date('2017-11-9'), end: new Date('2017-11-13'), style: 'primary'}, {start: new Date('2017-11-20'), end: new Date('2017-11-20'), style: 'danger'}]"></ui-calendar>
+        <ui-calendar
+            :date="+new Date('2017-11-1')"
+            :point-mark="[
+                {   
+                    start: new Date('2017-11-9'),
+                    end: new Date('2017-11-13'),
+                    style: 'primary'
+                },
+                {
+                    start: new Date('2017-11-20'),
+                    end: new Date('2017-11-20'),
+                    style: 'danger'
+                }
+            ]"
+        ></ui-calendar>
     </div>
     :::
 
@@ -132,7 +194,16 @@
 
     :::democode/html
     <div style="width:300px">
-        <ui-calendar :date="+new Date('2017-11-1')" :point-mark="[{start: new Date('2017-10-20'), end: new Date('2017-11-3'), style: 'primary'}]"></ui-calendar>
+        <ui-calendar
+            :date="+new Date('2017-11-1')"
+            :point-mark="[
+                {
+                    start: new Date('2017-10-20'),
+                    end: new Date('2017-11-3'),
+                    style: 'primary'
+                }
+            ]"
+        ></ui-calendar>
     </div>
     :::
 
@@ -140,7 +211,17 @@
 
     :::democode/html
     <div style="width:300px">
-        <ui-calendar highlight-hover :date="+new Date('2017-11-1')" :point-mark="[{start: new Date('2017-11-9'), end: new Date('2017-11-13'), disabled: true}]"></ui-calendar>
+        <ui-calendar
+            highlight-hover
+            :date="+new Date('2017-11-1')"
+            :point-mark="[
+                {
+                    start: new Date('2017-11-9'), 
+                    end: new Date('2017-11-13'), 
+                    disabled: true
+                }
+            ]"
+        ></ui-calendar>
     </div>
     :::
 
@@ -292,7 +373,16 @@
 
     :::democode/html
     <div style="width:300px">
-        <ui-calendar ref="demo9" :highlight-day="[new Date('2017-11-5 13:00:00'), [new Date('2017-11-3'), new Date('2017-11-11')], [new Date('2017-10-27'), new Date('2017-11-2')], [new Date('2017-12-7 21:30:23'), new Date('2017-12-20')], new Date('2017-12-15')]"></ui-calendar>
+        <ui-calendar
+            ref="demo9"
+            :highlight-day="[
+                new Date('2017-11-5 13:00:00'),
+                [new Date('2017-11-3'), new Date('2017-11-11')],
+                [new Date('2017-10-27'), new Date('2017-11-2')],
+                [new Date('2017-12-7 21:30:23'), new Date('2017-12-20')],
+                new Date('2017-12-15')
+            ]"
+        ></ui-calendar>
     </div>
     <br>
     <ui-link js="console.log('demo9.console1', window.morning.findVM('demo9').getHighlight())">获取所有高亮的日期</ui-link>

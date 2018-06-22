@@ -159,7 +159,25 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-datepicker form-name="日期" :quick-pick="['今天', '昨天', '2 天前', '3 天前', '1 周前', '2 周前', '3 周前', '1 月前', '2 月前', '3 月前', '6 月前', '1 年前', '2 年前', '3 年前']"></ui-datepicker>
+        <ui-datepicker
+            form-name="日期"
+            :quick-pick="[
+                '今天',
+                '昨天',
+                '2 天前',
+                '3 天前',
+                '1 周前',
+                '2 周前',
+                '3 周前',
+                '1 月前',
+                '2 月前',
+                '3 月前',
+                '6 月前',
+                '1 年前',
+                '2 年前',
+                '3 年前'
+            ]"
+        ></ui-datepicker>
     </div>
     :::
 
@@ -167,7 +185,16 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-datepicker form-name="日期" :quick-pick="['明天', '3 天后', '3 周后', '3 月后', '1 年后']"></ui-datepicker>
+        <ui-datepicker
+            form-name="日期"
+            :quick-pick="[
+                '明天',
+                '3 天后',
+                '3 周后',
+                '3 月后',
+                '1 年后'
+            ]"
+        ></ui-datepicker>
     </div>
     :::
 
@@ -175,7 +202,14 @@
     
     :::democode/html
     <div style="width:300px;">
-        <ui-datepicker form-name="日期" :quick-pick="[{name: '今天', pick: 0}, {name: '昨天', pick: -1}, {name: '明天', pick: 1}]"></ui-datepicker>
+        <ui-datepicker
+            form-name="日期"
+            :quick-pick="[
+                {name: '今天', pick: 0},
+                {name: '昨天', pick: -1},
+                {name: '明天', pick: 1}
+            ]"
+        ></ui-datepicker>
     </div>
     :::
 
@@ -183,7 +217,13 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-datepicker form-name="日期" :quick-pick="[{name: '劳动节', pick: new Date('2018-5-1')}, {name: '国庆节', pick: new Date('2018-10-1')}]"></ui-datepicker>
+        <ui-datepicker 
+            form-name="日期"
+            :quick-pick="[
+                {name: '劳动节', pick: new Date('2018-5-1')},
+                {name: '国庆节', pick: new Date('2018-10-1')}
+            ]"
+        ></ui-datepicker>
     </div>
     :::
     
@@ -191,7 +231,26 @@
 
     :::democode/html
     <div style="width:360px;">
-        <ui-datepicker form-name="日期" :quick-pick="['本周', '本月', '今年', '最近 1 周', '最近 2 月', '最近 3 年', '未来 1 周', '未来 2 月', '未来 3 年', {name: '2015-2017年', start: new Date('2015-01-01'), end: new Date('2017-01-01')}]" is-range></ui-datepicker>
+        <ui-datepicker
+            form-name="日期"
+            :quick-pick="[
+                '本周',
+                '本月',
+                '今年',
+                '最近 1 周',
+                '最近 2 月',
+                '最近 3 年',
+                '未来 1 周',
+                '未来 2 月',
+                '未来 3 年',
+                {
+                    name: '2015-2017年',
+                    start: new Date('2015-01-01'),
+                    end: new Date('2017-01-01')
+                }
+            ]"
+            is-range
+        ></ui-datepicker>
     </div>
     :::
 
@@ -209,7 +268,17 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-datepicker form-name="日期" :date="+new Date('2018-03-23')" :selectable-range="[['2018-02-10', '2018-02-20'], ['2018-02-23', '2018-03-02'], ['2018-03-15', '2018-03-25'], ['2018-03-20', '2018-03-28'], ['2018-04-02', '2018-04-05']]"></ui-datepicker>
+        <ui-datepicker
+            form-name="日期"
+            :date="+new Date('2018-03-23')"
+            :selectable-range="[
+                ['2018-02-10', '2018-02-20'],
+                ['2018-02-23', '2018-03-02'],
+                ['2018-03-15', '2018-03-25'],
+                ['2018-03-20', '2018-03-28'],
+                ['2018-04-02', '2018-04-05']
+            ]"
+        ></ui-datepicker>
     </div>
     :::
 

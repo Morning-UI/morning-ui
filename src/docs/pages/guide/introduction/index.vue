@@ -20,7 +20,7 @@
     1. 首先[获取Morning UI](/guide/install.html)，并在页面中引用Vue.js以及Morning UI的JS和CSS：
         - `<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue">&lt;/script>`
         - `<script type="text/javascript" src="path-to-morning/morning-ui.js">&lt;/script>`
-        - `<style rel="stylesheet" link="path-to-morning/morning-ui.css">&lt;/style>`
+        - `<style rel="stylesheet" link="path-to-morning/morning-ui.css"></style>`
     2. 在Vue的模板中使用组件： `<ui-btn>Hello Mroning.</ui-btn>`
     3. 初始化Morning UI及Vue模板：
 

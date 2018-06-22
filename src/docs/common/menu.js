@@ -1,6 +1,7 @@
 export default {
     component : {
         基础 : null,
+        组件导览 : '/component/index.html',
         配色 : '/component/uniformcolor.html',
         图标 : '/component/iconfont.html',
         样式组件 : null,
@@ -69,12 +70,10 @@ export default {
         '文本输入<i class="tag update l1"></i>' : '/component/textinput.html',
         '段落输入<i class="tag update l1"></i>' : '/component/textarea.html',
         '富文本输入<i class="tag new l1"></i>' : '/component/texteditor.html',
-        // 富文本输入 : 'b',
         开关 : '/component/switch.html',
         // 计数器<i class="tag new"></i> : 'b',
         '下拉选择<i class="tag update l1"></i>' : '/component/select.html',
         // 级联选择<i class="tag update"></i> : 'b',
-        // 滑块输入<i class="tag new"></i> : 'b',
         '复选框组<i class="tag update l1"></i>' : '/component/checkbox.html',
         '单选框组<i class="tag update l1"></i>' : '/component/radio.html',
         多项输入 : '/component/multiinput.html',
@@ -84,8 +83,6 @@ export default {
         时间选择器 : '/component/timepicker.html',
         '日期选择器<i class="tag update l1"></i>' : '/component/datepicker.html',
         '日期时间选择器<i class="tag update l1"></i>' : '/component/datetimepicker.html',
-        // 日期输入<i class="tag new"></i> : 'b',
-        // 日期时间输入<i class="tag update"></i> : 'b',
         文件上传 : '/component/upload.html',
         '颜色选择器<i class="tag new"></i>' : '/component/colorpicker.html',
         图片热区输入 : '/component/imagemap.html'
@@ -110,7 +107,7 @@ export default {
         // 进阶 : null,
         // 设计思想 : 'a',
         // 生命周期 : 'b',
-        贡献代码 : null,
+        贡献者指南 : null,
         成为贡献者 : '/guide/becontributor.html',
         开发环境 : '/guide/devenv.html',
         开发规范 : '/guide/devrule.html',

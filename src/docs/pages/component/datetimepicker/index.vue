@@ -163,7 +163,21 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-datetimepicker form-name="日期时间" :quick-pick="['30 秒前', '5 分钟前', '1 小时前', '今天', '昨天', '2 天前', '3 天前', '1 周前', '1 月前', '1 年前']"></ui-datetimepicker>
+        <ui-datetimepicker
+            form-name="日期时间"
+            :quick-pick="[
+                '30 秒前',
+                '5 分钟前',
+                '1 小时前',
+                '今天',
+                '昨天',
+                '2 天前',
+                '3 天前',
+                '1 周前',
+                '1 月前',
+                '1 年前'
+            ]"
+        ></ui-datetimepicker>
     </div>
     :::
 
@@ -171,7 +185,19 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-datetimepicker form-name="日期时间" :quick-pick="['30 秒后', '5 分钟后', '1 小时后', '明天', '3 天后', '3 周后', '3 月后', '1 年后']"></ui-datetimepicker>
+        <ui-datetimepicker
+            form-name="日期时间"
+            :quick-pick="[
+                '30 秒后',
+                '5 分钟后',
+                '1 小时后',
+                '明天',
+                '3 天后',
+                '3 周后',
+                '3 月后',
+                '1 年后'
+            ]"
+        ></ui-datetimepicker>
     </div>
     :::
 
@@ -179,7 +205,15 @@
     
     :::democode/html
     <div style="width:300px;">
-        <ui-datetimepicker form-name="日期时间" :quick-pick="[{name: '一分钟后', pick: 60}, {name: '半小时前', pick: -1800}, {name: '今天', pick: 0}, {name: '明天', pick: 86400}]"></ui-datetimepicker>
+        <ui-datetimepicker
+            form-name="日期时间"
+            :quick-pick="[
+                {name: '一分钟后', pick: 60},
+                {name: '半小时前', pick: -1800},
+                {name: '今天', pick: 0},
+                {name: '明天', pick: 86400}
+            ]"
+        ></ui-datetimepicker>
     </div>
     :::
 
@@ -195,7 +229,29 @@
 
     :::democode/html
     <div style="width:460px;">
-        <ui-datetimepicker form-name="日期" :quick-pick="['本周', '本月', '今年', '最近 30 秒', '最近 10 分钟', '未来 5 分钟', '最近 1 小时', '最近 7 天', '未来 7 天', '最近 1 周', '最近 2 月', '未来 3 年', {name: '2015-2017', start: new Date('2015-01-01 00:00:00'), end: new Date('2017-12-31 23:59:59')}]" is-range></ui-datetimepicker>
+        <ui-datetimepicker
+            form-name="日期"
+            :quick-pick="[
+                '本周',
+                '本月',
+                '今年',
+                '最近 30 秒',
+                '最近 10 分钟',
+                '未来 5 分钟',
+                '最近 1 小时',
+                '最近 7 天',
+                '未来 7 天',
+                '最近 1 周',
+                '最近 2 月',
+                '未来 3 年',
+                {
+                    name: '2015-2017',
+                    start: new Date('2015-01-01 00:00:00'),
+                    end: new Date('2017-12-31 23:59:59')
+                }
+            ]"
+            is-range
+        ></ui-datetimepicker>
     </div>
     :::
 
@@ -221,7 +277,17 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-datetimepicker form-name="日期时间" :date="+new Date('2018-03-23')" :date-selectable-range="[['2018-02-10 00:00:00', '2018-02-20 00:00:00'], ['2018-02-23 00:00:00', '2018-03-02 00:00:00'], ['2018-03-15 12:30:00', '2018-03-25 20:00:00'], ['2018-03-20 00:00:00', '2018-03-28 18:00:00'], ['2018-04-02 00:00:00', '2018-04-05 00:00:00']]"></ui-datetimepicker>
+        <ui-datetimepicker
+            form-name="日期时间"
+            :date="+new Date('2018-03-23')"
+            :date-selectable-range="[
+                ['2018-02-10 00:00:00', '2018-02-20 00:00:00'],
+                ['2018-02-23 00:00:00', '2018-03-02 00:00:00'],
+                ['2018-03-15 12:30:00', '2018-03-25 20:00:00'],
+                ['2018-03-20 00:00:00', '2018-03-28 18:00:00'],
+                ['2018-04-02 00:00:00', '2018-04-05 00:00:00']
+            ]"
+        ></ui-datetimepicker>
     </div>
     :::
 
