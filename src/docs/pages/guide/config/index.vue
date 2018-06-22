@@ -178,9 +178,10 @@
     - `rows` : 行数
     - `auto-hide-name` : 自动隐藏表单名
     - `max-show` : 最大显示项目
+    - `max-show-height` : 最大显示高度
     - `can-search` : 可搜索
     - `multi-select` : 多选
-    - `max` : 最大可输入项目
+    - `max` : 最大
     - `inline-img-size` : 内联图片尺寸
     - `item-tip` : 项目提示
     - `item-tip-direct` : 项目提示方向
@@ -247,6 +248,34 @@
     - `max-rows` : 最大行数
     - `auto-size` : 自动调整尺寸
     - `keep-origin-name` : 保留原始名
+    - `dynamic-list` : 动态列表
+    - `position` : 位置
+    - `disabled-options` : 禁用选项
+    - `parent` : 父级
+    - `method` : 方式
+    - `open-note` : 开启备注
+    - `close-note` : 关闭备注
+    - `open-mark` : 开启标记
+    - `close-mark` : 关闭标记
+    - `done-hidden` : 完成后隐藏
+    - `top` : 距离顶部
+    - `bottom` : 距离底部
+    - `src` :  源
+    - `hide-time` : 隐藏时间
+    - `hide-progress` : 隐藏进度条
+    - `autoplay` : 自动播放
+    - `poster` : 视频预览图
+    - `allow-fullscreen` : 允许全屏
+    - `tools` : 工具
+    - `placeholder` : 占位符
+    - `min` : 最小
+    - `step` : 步长
+    - `show-tip` : 显示提示
+    - `tip-formatter` : 提示格式化
+    - `show-point` : 显示点
+    - `mark-range` : 标记范围
+    - `value-type` : 值类型
+    - `allow-alpha` : 允许透明
 
     </script>
     </doc-guide>

@@ -149,6 +149,10 @@
     - `removeZone` : 删除区域
     - `cleanZones` : 删除所有区域
     - `getScale` : 获取缩放比
+    - `play` : 播放
+    - `mute` : 静音
+    - `volume` : 音量
+    - `getInfo` : 获取信息
 
     </script>
     </doc-guide>

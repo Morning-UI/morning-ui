@@ -781,6 +781,8 @@ export default {
 
             }
 
+            return this;
+
         }
     },
     created : function () {},

@@ -216,7 +216,7 @@
                         <p>CSS: 303kb</p>
                     </td>
                     <td class="mark">
-                        <p>JS: 640kb</p>
+                        <p>JS: 715kb</p>
                         <p>CSS: 258kb</p>
                     </td>
                 </tr>
@@ -272,7 +272,7 @@
                     </td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
-                        <p>55个</p>
+                        <p>59个</p>
                     </td>
                 </tr>
                 <tr>

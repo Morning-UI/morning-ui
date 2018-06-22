@@ -23,7 +23,7 @@
         </div>
 
     </mor-sticky>
-</template>x
+</template>
  
 <script>
 import Stickyfill                   from 'stickyfilljs/dist/stickyfill.min.js';
