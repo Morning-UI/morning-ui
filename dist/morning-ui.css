@@ -11122,14 +11122,6 @@ mor-select.input-group .select-area {
   position: relative;
   word-break: break-all;
 }
-.mor-select-wrap li.noitem {
-  color: #c0c0c0;
-  cursor: default;
-  display: none;
-}
-.mor-select-wrap li.noitem.show {
-  display: list-item;
-}
 .mor-select-wrap li img,
 .mor-select-wrap li mor-img {
   height: 2em;
@@ -11161,6 +11153,23 @@ mor-select.input-group .select-area {
 .mor-select-wrap li:hover {
   color: #737373;
   background: #f5f5f5;
+}
+.mor-select-wrap li.infoitem {
+  color: #c0c0c0;
+  cursor: default;
+  display: none;
+}
+.mor-select-wrap li.infoitem.show {
+  display: list-item;
+}
+.mor-select-wrap li.infoitem:hover {
+  color: #c0c0c0;
+  background: #FFFFFF;
+}
+.mor-select-wrap li.maxshow {
+  font-size: 12px;
+  text-align: center;
+  padding: 7.5px 0;
 }
 .mor-select-wrap .wrap {
   border: 1px solid #E6E6E6;

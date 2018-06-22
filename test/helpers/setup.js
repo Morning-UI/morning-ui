@@ -26,9 +26,7 @@ hooks(['js', 'vue'])
     .push();
 
 hooks(['svg'])
-    .push(function ({content}) {
-        return `return \`${content}\`;`;
-    });
+    .push(({content}) => `return \`${content}\`;`);
 
 window.morning = require('../../src/lib/index').default;
 

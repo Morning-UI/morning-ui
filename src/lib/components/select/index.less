@@ -370,16 +370,6 @@ mor-select{
         position: relative;
         word-break: break-all;
 
-        &.noitem{
-            color: @colorFormTextMisc;
-            cursor: default;
-            display: none;
-
-            &.show{
-                display: list-item;
-            }
-        }
-
         img,
         mor-img {
             height: 2em;
@@ -416,6 +406,27 @@ mor-select{
         &:hover{
             color: darken(@colorFormTextHover, 15%);
             background: @colorFormBackgroundHover;
+        }
+
+        &.infoitem{
+            color: @colorFormTextMisc;
+            cursor: default;
+            display: none;
+
+            &.show{
+                display: list-item;
+            }
+
+            &:hover{
+                color: @colorFormTextMisc;
+                background: @colorWhite;
+            }
+        }
+
+        &.maxshow{
+            font-size: 12px;
+            text-align: center;
+            padding: 7.5px 0;
         }
     }
 

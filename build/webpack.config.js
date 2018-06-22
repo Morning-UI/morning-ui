@@ -191,7 +191,7 @@ devVerConfig = extend(
                 },
                 {
                     test : /\.js$/,
-                    exclude : /node_modules/,
+                    exclude : /node_modules\/(?!quill)/,
                     use : {
                         loader : 'babel-loader'
                     }
@@ -319,7 +319,7 @@ prodVerConfig = extend(
                 },
                 {
                     test : /\.js$/,
-                    exclude : /node_modules/,
+                    exclude : /node_modules\/(?!quill)/,
                     use : {
                         loader : 'babel-loader'
                     }
