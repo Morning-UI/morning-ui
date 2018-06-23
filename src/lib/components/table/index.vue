@@ -12,6 +12,7 @@
         :align="align"
         :show-col-name="showColName"
         :fixed-title-col="fixedTitleCol"
+        :title-col-width="titleColWidth"
         :col-set="colSet"
         :row-set="rowSet"
         :cell-set="cellSet"
@@ -140,6 +141,10 @@ export default {
             default : 'left',
             validator : (value => ['left', 'right', 'left-fixed', 'right-fixed'].indexOf(value) !== -1)
         },
+        titleColWidth : {
+            type : Number,
+            default : 0
+        },
         colSet : {
             type : Array,
             default : (() => [])
@@ -178,6 +183,7 @@ export default {
                 align : this.align,
                 showColName : this.showColName,
                 fixedTitleCol : this.fixedTitleCol,
+                titleColWidth : this.titleColWidth,
                 colSet : this.colSet,
                 rowSet : this.rowSet,
                 cellSet : this.cellSet,
@@ -701,30 +707,53 @@ export default {
             $titleTable.style.borderLeft = '';
             $normalTable.style.borderRight = '';
             $titleTable.style.borderRight = '';
-
-            if (!/fixed/.test(this.conf.fixedTitleCol)) {
-
-                return;
-
-            }
+            
             let titleColWidth = $titleTable.clientWidth;
             let elWidth = this.$el.clientWidth;
 
-            $normalTable.parentElement.style.maxWidth = `${elWidth - titleColWidth}px`;
-            $normalTable.parentElement.style.overflowX = 'auto';
-            
-            $titleTable.parentElement.style.width = `${titleColWidth}px`;
-            $titleTable.parentElement.style.position = 'absolute';
+            if (/fixed/.test(this.conf.fixedTitleCol)) {
 
-            if (this.conf.fixedTitleCol === 'left-fixed') {
+                $normalTable.parentElement.style.maxWidth = `${elWidth - titleColWidth}px`;
+                $normalTable.parentElement.style.overflowX = 'auto';
+                
+                $titleTable.parentElement.style.width = `${titleColWidth}px`;
+                $titleTable.parentElement.style.position = 'absolute';
 
-                $normalTable.style.borderLeft = `${titleColWidth}px rgba(0,0,0,0) solid`;
-                $titleTable.parentElement.style.left = 0;
+                if (this.conf.fixedTitleCol === 'left-fixed') {
+
+                    $normalTable.style.borderLeft = `${titleColWidth}px rgba(0,0,0,0) solid`;
+                    $titleTable.parentElement.style.left = 0;
+
+                } else {
+
+                    $normalTable.style.borderRight = `${titleColWidth}px rgba(0,0,0,0) solid`;
+                    $titleTable.parentElement.style.right = 0;
+
+                }
+
+            }
+
+            if (this.conf.titleColWidth) {
+
+                $titleTable.parentElement.style.width = `${this.conf.titleColWidth}px`;
+                $normalTable.parentElement.style.maxWidth = `${elWidth - this.conf.titleColWidth}px`;
+                $titleTable.style.tableLayout = 'fixed';
+                $titleTable.style.width = `${this.conf.titleColWidth}px`;
+
+                if (this.conf.fixedTitleCol === 'left-fixed') {
+
+                    $normalTable.style.borderLeft = `${this.conf.titleColWidth}px rgba(0,0,0,0) solid`;
+
+                } else if (this.conf.fixedTitleCol === 'right-fixed') {
+
+                    $normalTable.style.borderRight = `${this.conf.titleColWidth}px rgba(0,0,0,0) solid`;
+
+                }
 
             } else {
 
-                $normalTable.style.borderRight = `${titleColWidth}px rgba(0,0,0,0) solid`;
-                $titleTable.parentElement.style.right = 0;
+                $titleTable.style.tableLayout = 'auto';
+                $titleTable.style.width = 'auto';
 
             }
 
