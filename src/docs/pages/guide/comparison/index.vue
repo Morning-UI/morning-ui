@@ -2804,7 +2804,7 @@
                     </td>
                 </tr>
                 <tr class="components">
-                    <td class="item">富文本输入框</td>
+                    <td class="item">富文本编辑器</td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
                     </td>

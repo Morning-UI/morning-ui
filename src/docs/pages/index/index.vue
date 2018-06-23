@@ -155,7 +155,7 @@
                     </div>
                 </div>
 
-                <a href="/guide/comparison.html" class="comparison">查看更多对比</a>
+                <a href="/guide/comparison.html" class="comparison">查看完整对比</a>
                <!--  <div class="vs">
                     <div class="logo">
                         <img src="http://morning-ui-image.test.upcdn.net/element.png" width="300" alt="">

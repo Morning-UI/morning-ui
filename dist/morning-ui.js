@@ -18876,7 +18876,15 @@ exports.default = {
 
                 if (this.conf.allowAlpha) {
 
-                    this.data.alpha = Math.round(hsl.alpha * maxAlpha) || maxAlpha;
+                    var alpha = Math.round(hsl.alpha * maxAlpha);
+
+                    if (isNaN(alpha)) {
+
+                        this.data.alpha = maxAlpha;
+                    } else {
+
+                        this.data.alpha = alpha;
+                    }
                 }
             } catch (e) {}
         },
