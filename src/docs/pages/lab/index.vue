@@ -5,16 +5,11 @@
         <div class="lab">
             <h1><i class="iconfont">&#xe615;</i>Morning Laboratory</h1>
             <div class="area">
-                <ui-select
-                    ref="demo1"
-                    group="demo"
-                    form-key="demo"
-                    :list="{
-                        '中文1' : '中文1',
-                        '中文2' : '中文2',
-                        '中文3' : '中文3'
-                    }"
-                ></ui-select>
+                <div style="width:500px;">
+                    <div style="width:460px;">
+                        <ui-datetimepicker form-name="日期时间" :is-range="true"></ui-datetimepicker>
+                    </div>
+                </div>
             </div>
         </div>
         <doc-footer></doc-footer>
