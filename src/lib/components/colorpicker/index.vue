@@ -373,8 +373,18 @@ export default {
                 this.data.hslL = hsl.l;
 
                 if (this.conf.allowAlpha) {
-                    
-                    this.data.alpha = Math.round(hsl.alpha * maxAlpha) || maxAlpha;
+                        
+                    let alpha = Math.round(hsl.alpha * maxAlpha);
+
+                    if (isNaN(alpha)) {
+
+                        this.data.alpha = maxAlpha;
+
+                    } else {
+
+                        this.data.alpha = alpha;
+
+                    }
 
                 }
 

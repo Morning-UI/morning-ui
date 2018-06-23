@@ -166,7 +166,18 @@
         <ui-texteditor form-name="文章编辑" placeholder="编写文章..."></ui-texteditor>
     </div>
     :::
-    
+
+    [[[方法]]]
+
+    :::preset/html
+    formMethod
+    ---
+    uikey:texteditor
+    methodValue:'<p>编辑你的文章...</p>'
+    methodDefaultValue:'<p>编辑你的文章...</p>'
+    methodDivStyle:width:100%;height:260px;padding-bottom:80px;
+    :::
+
     [[[事件]]]
 
     #### selection-change
