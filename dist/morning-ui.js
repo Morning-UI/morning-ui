@@ -19198,6 +19198,8 @@ exports.default = {
 
                 this._hidePicker();
             }
+
+            return this;
         }
     },
     created: function created() {},
@@ -63212,7 +63214,7 @@ var morning = {
         white: 'wh'
     },
     isMorning: true,
-    version: '0.10.32',
+    version: '0.11.0',
     map: {}
 };
 

@@ -18,6 +18,86 @@
     
     ### 更新记录
 
+    ### 0.11.0 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2018年6月23日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.11.0" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.11.0/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.11.0/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor><br><br>
+
+    #### 新特性
+
+    - 新增字体图标库
+    - 新增`ui-sticky`吸附组件
+    - 新增`ui-audio`音频组件
+    - 新增`ui-video`视频组件
+    - 新增`ui-slider`滑块输入组件
+    - 新增`ui-colorpicker`颜色选择器组件
+    - `ui-select`新增`list`配置，用来设置可选项目
+    - `ui-select`新增`dynamic-list`和`validate`配置，开启后支持动态调整可选项目及过滤项目
+    - `ui-select`新增`max-show-height`配置，用来替代原有的`max-show`，原有的`max-show`配置现在用来控制最多显示项目
+    - `ui-select`新增`search`事件
+    - `ui-select`选中项标识更明显
+    - `ui-textinput`新增`append-type`配置，前置和附加内容支持行内样式
+    - `ui-textarea`新增`auto-size`配置，可设置段落输入框自动调整高度
+    - `ui-textarea`新增`max-rows`配置，可设置最大高度
+    - `ui-btn`新增`plain`、`round`、`circle`样式类，以及可配合`ui-img`实现图片按钮
+    - `ui-breadcrumbs`新增`separator`配置，可修改层级分隔符
+    - `ui-tab`新增`position`配置，可调整标签页位置
+    - `ui-tab`新增`btn`样式类，可设置按钮式标签页
+    - `ui-checkbox`新增`disabled-options`配置，可禁用部分选项
+    - `ui-checkbox`新增`max`配置，可设置对多可选项目数
+    - `ui-checkbox`新增`parent`配置，支持多个`ui-checkbox`选择联动
+    - `ui-checkbox`新增`border`和`vertical`样式类，为组件增加带边框和垂直样式布局
+    - `ui-radio`新增`disabled-options`配置，可禁用部分选项
+    - `ui-radio`新增`border`和`vertical`样式类，为组件增加带边框和垂直样式布局
+    - `ui-tip`新增`position`方法，配置`trigger`新增`method`选项
+    - `ui-switch`新增`open-note`和`close-note`配置，可为开关添加备注
+    - `ui-switch`新增`open-mark`和`close-mark`配置，可为开关添加内部标记
+    - `ui-datepicker`和`ui-datetimepicker`新增`done-hidden`配置
+
+    #### 改进
+
+    - 新的文档
+    - 优化加载动画效果
+    - 全局事件管理支持`hashchange`事件
+    - `ui-tab`组件样式优化
+    - `morning-co-font-*`、`morning-co-border-*`、`morning-co-bg-*`配色类缩短为`mo-co-font-*`、`mo-co-border-*`、`mo-co-bg-*`
+    - `ui-tip`的`underline`样式类改名为`line`
+    - `ui-img`的`rounded`样式类改名为`round`
+    - `ui-switch`组件样式优化
+    - 优化`ui-formgroup`中的部分字体大小，使其更具可读性
+    - `ui-multiinput`在删除项目时不会清空输入框已输入的内容
+
+    #### 修复
+
+    - 修复`ui-dropdown`组件`auto-close`的一个问题
+
+    #### 废弃
+
+    - `ui-textarea`的`setRows(num)`方法被废弃
+
+    #### 更多
+
+    - 新的更新日志规范
+    - 更新对比文档，新增与iView的对比
+
+    <ui-label color="primary">升级注意事项</ui-label>
+
+    - `ui-select`的选项定义方式改变，现在需要使用`list`配置来定义选项
+    - `ui-select`的`max-show`配置改名为`max-show-height`
+    - `ui-multiinput`在删除项目时不会清空输入框已输入的内容
+    - `ui-textarea`的`setRows(num)`方法被废弃，采用`rows`配置来替代
+    - `ui-tab`的`underline`样式类改名为`line`
+    - `ui-img`的`rounded`样式类改名为`round`
+    - `ui-downdrop`组件的内置icon从`<i class="morningicon">&#xe6b1;</i>`变为`<i class="mo-icon mo-icon-dropdown"></i>`
+    - `morning-co-font-*`、`morning-co-border-*`、`morning-co-bg-*`配色类缩短为`mo-co-font-*`、`mo-co-border-*`、`mo-co-bg-*`
+
     ### 0.10.32 <ui-badge class="circle ver-stable" size="s" color="light-theme">Stable</ui-badge>
 
     <ui-textcolor color="light-blue">

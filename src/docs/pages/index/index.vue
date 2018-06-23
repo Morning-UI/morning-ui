@@ -19,7 +19,7 @@
             <a href="/guide/install.html">
                 <ui-label color="silver" size="xs">0.11.0</ui-label>
             </a>
-            <p>发布于2018年6月18日</p>
+            <p>发布于2018年6月23日</p>
         </section>
         <section class="s1 silver">
             <div class="w1k center">
