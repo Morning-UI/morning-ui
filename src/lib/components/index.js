@@ -1,4 +1,5 @@
 import                              'Common/common.less';
+import                              'Npm/quill/dist/quill.snow.css';
 
 import h                            from './h/index.vue';
 import lead                         from './lead/index.vue';
@@ -48,22 +49,28 @@ import pagination                   from './pagination/index.vue';
 import dialog                       from './dialog/index.vue';
 import calendar                     from './calendar/index.vue';
 import load                         from './load/index.vue';
+import sticky                       from './sticky/index.vue';
 import breadcrumbs                  from './breadcrumbs/index.vue';
 import tip                          from './tip/index.vue';
 import message                      from './message/index.vue';
+import audio                        from './audio/index.vue';
+import video                        from './video/index.vue';
 
 import textinput                    from './textinput/index.vue';
 import textarea                     from './textarea/index.vue';
+import texteditor                   from './texteditor/index.vue';
 import _switch                      from './switch/index.vue';
 import select                       from './select/index.vue';
 import checkbox                     from './checkbox/index.vue';
 import radio                        from './radio/index.vue';
 import multiinput                   from './multiinput/index.vue';
 import multiform                    from './multiform/index.vue';
+import slider                       from './slider/index.vue';
 import timepicker                   from './timepicker/index.vue';
 import datepicker                   from './datepicker/index.vue';
 import datetimepicker               from './datetimepicker/index.vue';
 import upload                       from './upload/index.vue';
+import colorpicker                  from './colorpicker/index.vue';
 import imagemap                     from './imagemap/index.vue';
 
 import privateTimepicker             from './private-timepicker/index.vue';
@@ -119,20 +126,26 @@ export default {
     dialog,
     calendar,
     load,
+    sticky,
     breadcrumbs,
     tip,
     message,
+    audio,
+    video,
     textinput,
     textarea,
+    texteditor,
     switch : _switch,
     select,
     checkbox,
     radio,
     multiinput,
     multiform,
+    slider,
     timepicker,
     datepicker,
     datetimepicker,
     upload,
+    colorpicker,
     imagemap
 };

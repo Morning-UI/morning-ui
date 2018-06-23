@@ -137,6 +137,25 @@ devVerConfig = extend(
                     })
                 },
                 {
+                    test : /\.css$/,
+                    use : extractDevCss.extract({
+                        fallback : 'vue-style-loader',
+                        use : [{
+                            loader : 'css-loader',
+                            options : {
+                                importLoaders : 1
+                            }
+                        }, {
+                            loader : 'postcss-loader',
+                            options : {
+                                config : {
+                                    path : path.resolve(pathBuild, 'postcss.config.js')
+                                }
+                            }
+                        }]
+                    })
+                },
+                {
                     test : /\.woff$/,
                     exclude : /node_modules/,
                     use : [{
@@ -172,9 +191,18 @@ devVerConfig = extend(
                 },
                 {
                     test : /\.js$/,
-                    exclude : /node_modules/,
+                    exclude : /node_modules\/(?!quill)/,
                     use : {
                         loader : 'babel-loader'
+                    }
+                },
+                {
+                    test : /\.svg$/,
+                    use : {
+                        loader : 'html-loader',
+                        options : {
+                            minimize : true
+                        }
                     }
                 }
             ]
@@ -231,6 +259,28 @@ prodVerConfig = extend(
                     })
                 },
                 {
+                    test : /\.css$/,
+                    use : extractProdCss.extract({
+                        fallback : 'vue-style-loader',
+                        use : [{
+                            loader : 'css-loader',
+                            options : {
+                                importLoaders : 2,
+                                minimize : true
+                            }
+                        }, {
+                            loader : 'clean-css-loader'
+                        }, {
+                            loader : 'postcss-loader',
+                            options : {
+                                config : {
+                                    path : path.resolve(pathBuild, 'postcss.config.js')
+                                }
+                            }
+                        }]
+                    })
+                },
+                {
                     test : /\.woff/,
                     exclude : /node_modules/,
                     use : [{
@@ -269,9 +319,18 @@ prodVerConfig = extend(
                 },
                 {
                     test : /\.js$/,
-                    exclude : /node_modules/,
+                    exclude : /node_modules\/(?!quill)/,
                     use : {
                         loader : 'babel-loader'
+                    }
+                },
+                {
+                    test : /\.svg$/,
+                    use : {
+                        loader : 'html-loader',
+                        options : {
+                            minimize : true
+                        }
                     }
                 }
             ]

@@ -1,5 +1,26 @@
 @import '~Common/var.less';
 
+.set-label-disabled() {
+    border-color: darken(@colorFormBackgroundDisable, 10%);
+    -webkit-user-select: none;
+    cursor: not-allowed !important;
+
+    > .box{
+        background-color: darken(@colorFormBackgroundDisable, 10%);
+        border-color: darken(@colorFormBackgroundDisable, 10%);
+    }
+
+    &:hover span{
+        color: @colorFormText;
+    }
+
+    &.checked{
+        .mo-icon{
+            opacity: 0.6;
+        }
+    }
+}
+
 mor-radio{
     width: 100%;
     position: relative;
@@ -34,7 +55,7 @@ mor-radio{
 
             .box{
                 vertical-align: middle;
-                background: #FFF;
+                background: @colorWhite;
                 width: @fontSize*1.25;
                 height: @fontSize*1.25;
                 border-radius: 50%;
@@ -45,7 +66,7 @@ mor-radio{
                 box-sizing: border-box;
             }
 
-            .morningicon{
+            .mo-icon{
                 color: #FFF;
                 opacity: 0;
                 transform: scale(0);
@@ -74,17 +95,47 @@ mor-radio{
                     color: @colorFormTextFocus;
                 }
 
-                .morningicon{
+                .mo-icon{
                     opacity: 1;
                     transform: scale(0.9);
                 }
             }
+
+            &.disabled{
+                .set-label-disabled();
+            }
+        }
+    }
+
+    &.border{
+        > .il{
+            label{
+                padding: 0.4em 0.6em;
+                margin: 0 0.5em 0.5em 0;
+                border: 1px @colorFormBorder solid;
+                border-radius: @borderRadius;
+
+                &:hover{
+                    border-color: darken(@colorFormBorderHover, 10%);
+                }
+            }
+        }
+    }
+
+    &.vertical{
+        > .il label{
+            margin: 0 0 0.6em;
+            width: 100%;
         }
     }
 
     &.co-t{
         > .il label.checked .box{
             background: @colorTheme;
+            border-color: @colorTheme;
+        }
+
+        &.border > .il label.checked{
             border-color: @colorTheme;
         }
     }
@@ -94,11 +145,19 @@ mor-radio{
             background: @colorLightTheme;
             border-color: @colorLightTheme;
         }
+
+        &.border > .il label.checked{
+            border-color: @colorLightTheme;
+        }
     }
 
     &.co-dt{
         > .il label.checked .box{
             background: @colorDarkTheme;
+            border-color: @colorDarkTheme;
+        }
+
+        &.border > .il label.checked{
             border-color: @colorDarkTheme;
         }
     }
@@ -108,11 +167,19 @@ mor-radio{
             background: @colorSuccess;
             border-color: @colorSuccess;
         }
+
+        &.border > .il label.checked{
+            border-color: @colorSuccess;
+        }
     }
 
     &.co-w{
         > .il label.checked .box{
             background: @colorWarning;
+            border-color: @colorWarning;
+        }
+
+        &.border > .il label.checked{
             border-color: @colorWarning;
         }
     }
@@ -122,11 +189,19 @@ mor-radio{
             background: @colorDanger;
             border-color: @colorDanger;
         }
+
+        &.border > .il label.checked{
+            border-color: @colorDanger;
+        }
     }
 
     &.co-p{
         > .il label.checked .box{
             background: @colorPrimary;
+            border-color: @colorPrimary;
+        }
+
+        &.border > .il label.checked{
             border-color: @colorPrimary;
         }
     }
@@ -136,11 +211,19 @@ mor-radio{
             background: @colorMinor;
             border-color: @colorMinor;
         }
+
+        &.border > .il label.checked{
+            border-color: @colorMinor;
+        }
     }
 
     &.co-i{
         > .il label.checked .box{
             background: @colorInfo;
+            border-color: @colorInfo;
+        }
+
+        &.border > .il label.checked{
             border-color: @colorInfo;
         }
     }
@@ -150,11 +233,19 @@ mor-radio{
             background: @colorBlack;
             border-color: @colorBlack;
         }
+
+        &.border > .il label.checked{
+            border-color: @colorBlack;
+        }
     }
 
     &.co-lbk{
         > .il label.checked .box{
             background: @colorLightBlack;
+            border-color: @colorLightBlack;
+        }
+
+        &.border > .il label.checked{
             border-color: @colorLightBlack;
         }
     }
@@ -164,11 +255,19 @@ mor-radio{
             background: @colorExtraLightBlack;
             border-color: @colorExtraLightBlack;
         }
+
+        &.border > .il label.checked{
+            border-color: @colorExtraLightBlack;
+        }
     }
 
     &.co-bu{
         > .il label.checked .box{
             background: @colorBlue;
+            border-color: @colorBlue;
+        }
+
+        &.border > .il label.checked{
             border-color: @colorBlue;
         }
     }
@@ -178,11 +277,19 @@ mor-radio{
             background: @colorLightBlue;
             border-color: @colorLightBlue;
         }
+
+        &.border > .il label.checked{
+            border-color: @colorLightBlue;
+        }
     }
 
     &.co-elbu{
         > .il label.checked .box{
             background: @colorExtraLightBlue;
+            border-color: @colorExtraLightBlue;
+        }
+
+        &.border > .il label.checked{
             border-color: @colorExtraLightBlue;
         }
     }
@@ -193,6 +300,7 @@ mor-radio{
                 color: @colorExtraLightBlue;
             }
 
+            &,
             .box{
                 border: 1px @colorWhite solid;
             }
@@ -211,10 +319,14 @@ mor-radio{
                     color: @colorSilver;
                 }
 
-                .morningicon{
+                .mo-icon{
                     color: @colorExtraLightBlack;
                 }
             }
+        }
+
+        &.border > .il label.checked{
+            border-color: @colorLightSilver;
         }
     }
 
@@ -224,6 +336,7 @@ mor-radio{
                 color: @colorExtraLightBlue;
             }
 
+            &,
             .box{
                 border: 1px @colorWhite solid;
             }
@@ -242,10 +355,14 @@ mor-radio{
                     color: @colorLightSilver;
                 }
 
-                .morningicon{
+                .mo-icon{
                     color: @colorExtraLightBlack;
                 }
             }
+        }
+
+        &.border > .il label.checked{
+            border-color: @colorLightSilver;
         }
     }
 
@@ -255,6 +372,7 @@ mor-radio{
                 color: @colorExtraLightBlue;
             }
 
+            &,
             .box{
                 border: 1px @colorWhite solid;
             }
@@ -273,10 +391,14 @@ mor-radio{
                     color: @colorExtraLightSilver;
                 }
 
-                .morningicon{
+                .mo-icon{
                     color: @colorExtraLightBlack;
                 }
             }
+        }
+
+        &.border > .il label.checked{
+            border-color: @colorExtraLightSilver;
         }
     }
 
@@ -286,6 +408,7 @@ mor-radio{
                 color: @colorGray;
             }
 
+            &,
             .box{
                 border: 1px @colorWhite solid;
             }
@@ -304,10 +427,14 @@ mor-radio{
                     color: @colorGray;
                 }
 
-                .morningicon{
+                .mo-icon{
                     color: @colorBlack;
                 }
             }
+        }
+
+        &.border > .il label.checked{
+            border-color: @colorGray;
         }
     }
 
@@ -317,6 +444,7 @@ mor-radio{
                 color: @colorGray;
             }
 
+            &,
             .box{
                 border: 1px @colorWhite solid;
             }
@@ -335,10 +463,14 @@ mor-radio{
                     color: @colorLightGray;
                 }
 
-                .morningicon{
+                .mo-icon{
                     color: @colorBlack;
                 }
             }
+        }
+
+        &.border > .il label.checked{
+            border-color: @colorLightGray;
         }
     }
 
@@ -348,6 +480,7 @@ mor-radio{
                 color: @colorGray;
             }
 
+            &,
             .box{
                 border: 1px @colorWhite solid;
             }
@@ -366,10 +499,14 @@ mor-radio{
                     color: @colorWhite;
                 }
 
-                .morningicon{
+                .mo-icon{
                     color: @colorBlack;
                 }
             }
+        }
+
+        &.border > .il label.checked{
+            border-color: @colorWhite;
         }
     }
 
@@ -379,24 +516,7 @@ mor-radio{
     &.st-readonly{
         > .il{
             > label{
-                border-color: darken(@colorFormBackgroundDisable, 5%);
-                -webkit-user-select: none;
-                cursor: not-allowed !important;
-
-                > .box{
-                    background-color: darken(@colorFormBackgroundDisable, 5%);
-                    border-color: darken(@colorFormBackgroundDisable, 5%);
-                }
-
-                &:hover span{
-                    color: @colorFormText;
-                }
-
-                &.checked{
-                    .morningicon{
-                        opacity: 0.7;
-                    }
-                }
+                .set-label-disabled();
             }
         }
     }

@@ -146,7 +146,7 @@
         "max-empty-lines" : [1, {
             ignore : ["comments"]
         }],
-        "max-line-length" : 110,
+        "max-line-length" : 150,
         "no-eol-whitespace" : true,
         "no-missing-end-of-source-newline" : true
     }

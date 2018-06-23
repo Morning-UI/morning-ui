@@ -38,7 +38,7 @@
     </div>
     :::
 
-    更多自定义格式见`format`配置。
+    更多自定义格式见：[format配置](/component/datepicker.html#format)。
 
     #### 范围日期选择
 
@@ -73,6 +73,7 @@
     |[separator-type](#separator-type)|日期区间选择时中间的分隔内容的展现类型|`'block'`：块状<br>`'inline'`：行内|String|`'block'`|
     |[start-name](#start-name)|日期区间选择时`开始日期`表单显示的名称，若设为`false`则显示`form-name`，只有开启`is-range`才有效|任意字符串<br>`false`:显示`form-name`|String<br>Boolean|`'开始日期'`|
     |[end-name](#end-name)|日期区间选择时`结束日期`表单显示的名称，若设为`false`则显示`form-name`，只有开启`is-range`才有效。若设置了`hide-name`则不会显示|任意字符串`false`:显示`form-name`|String<br>Boolean|`'结束日期'`|
+    |[done-hidden](#done-hidden)|开启此配置后当完成日期选择后选择器会被隐藏|`true`<br>`false`|Boolean|`false`|
     :::
 
     :::preset/html
@@ -158,7 +159,25 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-datepicker form-name="日期" :quick-pick="['今天', '昨天', '2 天前', '3 天前', '1 周前', '2 周前', '3 周前', '1 月前', '2 月前', '3 月前', '6 月前', '1 年前', '2 年前', '3 年前']"></ui-datepicker>
+        <ui-datepicker
+            form-name="日期"
+            :quick-pick="[
+                '今天',
+                '昨天',
+                '2 天前',
+                '3 天前',
+                '1 周前',
+                '2 周前',
+                '3 周前',
+                '1 月前',
+                '2 月前',
+                '3 月前',
+                '6 月前',
+                '1 年前',
+                '2 年前',
+                '3 年前'
+            ]"
+        ></ui-datepicker>
     </div>
     :::
 
@@ -166,7 +185,16 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-datepicker form-name="日期" :quick-pick="['明天', '3 天后', '3 周后', '3 月后', '1 年后']"></ui-datepicker>
+        <ui-datepicker
+            form-name="日期"
+            :quick-pick="[
+                '明天',
+                '3 天后',
+                '3 周后',
+                '3 月后',
+                '1 年后'
+            ]"
+        ></ui-datepicker>
     </div>
     :::
 
@@ -174,7 +202,14 @@
     
     :::democode/html
     <div style="width:300px;">
-        <ui-datepicker form-name="日期" :quick-pick="[{name: '今天', pick: 0}, {name: '昨天', pick: -1}, {name: '明天', pick: 1}]"></ui-datepicker>
+        <ui-datepicker
+            form-name="日期"
+            :quick-pick="[
+                {name: '今天', pick: 0},
+                {name: '昨天', pick: -1},
+                {name: '明天', pick: 1}
+            ]"
+        ></ui-datepicker>
     </div>
     :::
 
@@ -182,7 +217,13 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-datepicker form-name="日期" :quick-pick="[{name: '劳动节', pick: new Date('2018-5-1')}, {name: '国庆节', pick: new Date('2018-10-1')}]"></ui-datepicker>
+        <ui-datepicker 
+            form-name="日期"
+            :quick-pick="[
+                {name: '劳动节', pick: new Date('2018-5-1')},
+                {name: '国庆节', pick: new Date('2018-10-1')}
+            ]"
+        ></ui-datepicker>
     </div>
     :::
     
@@ -190,7 +231,26 @@
 
     :::democode/html
     <div style="width:360px;">
-        <ui-datepicker form-name="日期" :quick-pick="['本周', '本月', '今年', '最近 1 周', '最近 2 月', '最近 3 年', '未来 1 周', '未来 2 月', '未来 3 年', {name: '2015-2017年', start: new Date('2015-01-01'), end: new Date('2017-01-01')}]" is-range></ui-datepicker>
+        <ui-datepicker
+            form-name="日期"
+            :quick-pick="[
+                '本周',
+                '本月',
+                '今年',
+                '最近 1 周',
+                '最近 2 月',
+                '最近 3 年',
+                '未来 1 周',
+                '未来 2 月',
+                '未来 3 年',
+                {
+                    name: '2015-2017年',
+                    start: new Date('2015-01-01'),
+                    end: new Date('2017-01-01')
+                }
+            ]"
+            is-range
+        ></ui-datepicker>
     </div>
     :::
 
@@ -208,7 +268,17 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-datepicker form-name="日期" :date="+new Date('2018-03-23')" :selectable-range="[['2018-02-10', '2018-02-20'], ['2018-02-23', '2018-03-02'], ['2018-03-15', '2018-03-25'], ['2018-03-20', '2018-03-28'], ['2018-04-02', '2018-04-05']]"></ui-datepicker>
+        <ui-datepicker
+            form-name="日期"
+            :date="+new Date('2018-03-23')"
+            :selectable-range="[
+                ['2018-02-10', '2018-02-20'],
+                ['2018-02-23', '2018-03-02'],
+                ['2018-03-15', '2018-03-25'],
+                ['2018-03-20', '2018-03-28'],
+                ['2018-04-02', '2018-04-05']
+            ]"
+        ></ui-datepicker>
     </div>
     :::
 
@@ -291,6 +361,32 @@
     :::democode/html
     <div style="width:360px;">
         <ui-datepicker form-name="日期" :is-range="true" :end-name="false"></ui-datepicker>
+    </div>
+    :::
+
+    #### done-hidden
+
+    选择完日期后不隐藏选择器：
+
+    :::democode/html
+    <div style="width:300px;">
+        <ui-datepicker form-name="日期" :done-hidden="false"></ui-datepicker>
+    </div>
+    :::
+
+    选择完日期后隐藏选择器：
+
+    :::democode/html
+    <div style="width:300px;">
+        <ui-datepicker form-name="日期" done-hidden></ui-datepicker>
+    </div>
+    :::
+
+    `done-hidden`和`is-range`一起使用：
+
+    :::democode/html
+    <div style="width:360px;">
+        <ui-datepicker form-name="日期" done-hidden is-range></ui-datepicker>
     </div>
     :::
 

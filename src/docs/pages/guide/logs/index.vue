@@ -10,13 +10,93 @@
 
     Morning UI采用[语义化版本控制规范](http://semver.org/lang/zh-CN/)，同时采用`Stable`、`Beta`、`Canary`三种标记分别来标记版本。详见：[版本计划](/guide/versionplan.html)
 
-    如果更新对使用方法有影响，会在更新记录的`Upgrade Precautions`说明。
+    如果更新对使用方法有影响，会在更新记录的`Upgrade Precautions`/`升级注意事项`中说明。
 
     <!-- ### 1.0.0 <ui-badge class="circle" s light-black>Stable</ui-badge> -->
 
     <!-- ### 0.11.0 <ui-badge class="circle" s light-blue>Beta</ui-badge> -->
     
     ### 更新记录
+
+    ### 0.11.0 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2018年6月23日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.11.0" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.11.0/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.11.0/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor><br><br>
+
+    #### 新特性
+
+    - 新增字体图标库
+    - 新增`ui-sticky`吸附组件
+    - 新增`ui-audio`音频组件
+    - 新增`ui-video`视频组件
+    - 新增`ui-slider`滑块输入组件
+    - 新增`ui-colorpicker`颜色选择器组件
+    - `ui-select`新增`list`配置，用来设置可选项目
+    - `ui-select`新增`dynamic-list`和`validate`配置，开启后支持动态调整可选项目及过滤项目
+    - `ui-select`新增`max-show-height`配置，用来替代原有的`max-show`，原有的`max-show`配置现在用来控制最多显示项目
+    - `ui-select`新增`search`事件
+    - `ui-select`选中项标识更明显
+    - `ui-textinput`新增`append-type`配置，前置和附加内容支持行内样式
+    - `ui-textarea`新增`auto-size`配置，可设置段落输入框自动调整高度
+    - `ui-textarea`新增`max-rows`配置，可设置最大高度
+    - `ui-btn`新增`plain`、`round`、`circle`样式类，以及可配合`ui-img`实现图片按钮
+    - `ui-breadcrumbs`新增`separator`配置，可修改层级分隔符
+    - `ui-tab`新增`position`配置，可调整标签页位置
+    - `ui-tab`新增`btn`样式类，可设置按钮式标签页
+    - `ui-checkbox`新增`disabled-options`配置，可禁用部分选项
+    - `ui-checkbox`新增`max`配置，可设置对多可选项目数
+    - `ui-checkbox`新增`parent`配置，支持多个`ui-checkbox`选择联动
+    - `ui-checkbox`新增`border`和`vertical`样式类，为组件增加带边框和垂直样式布局
+    - `ui-radio`新增`disabled-options`配置，可禁用部分选项
+    - `ui-radio`新增`border`和`vertical`样式类，为组件增加带边框和垂直样式布局
+    - `ui-tip`新增`position`方法，配置`trigger`新增`method`选项
+    - `ui-switch`新增`open-note`和`close-note`配置，可为开关添加备注
+    - `ui-switch`新增`open-mark`和`close-mark`配置，可为开关添加内部标记
+    - `ui-datepicker`和`ui-datetimepicker`新增`done-hidden`配置
+
+    #### 改进
+
+    - 新的文档
+    - 优化加载动画效果
+    - 全局事件管理支持`hashchange`事件
+    - `ui-tab`组件样式优化
+    - `morning-co-font-*`、`morning-co-border-*`、`morning-co-bg-*`配色类缩短为`mo-co-font-*`、`mo-co-border-*`、`mo-co-bg-*`
+    - `ui-tip`的`underline`样式类改名为`line`
+    - `ui-img`的`rounded`样式类改名为`round`
+    - `ui-switch`组件样式优化
+    - 优化`ui-formgroup`中的部分字体大小，使其更具可读性
+    - `ui-multiinput`在删除项目时不会清空输入框已输入的内容
+
+    #### 修复
+
+    - 修复`ui-dropdown`组件`auto-close`的一个问题
+
+    #### 废弃
+
+    - `ui-textarea`的`setRows(num)`方法被废弃
+
+    #### 更多
+
+    - 新的更新日志规范
+    - 更新对比文档，新增与iView的对比
+
+    <ui-label color="primary">升级注意事项</ui-label>
+
+    - `ui-select`的选项定义方式改变，现在需要使用`list`配置来定义选项
+    - `ui-select`的`max-show`配置改名为`max-show-height`
+    - `ui-multiinput`在删除项目时不会清空输入框已输入的内容
+    - `ui-textarea`的`setRows(num)`方法被废弃，采用`rows`配置来替代
+    - `ui-tab`的`underline`样式类改名为`line`
+    - `ui-img`的`rounded`样式类改名为`round`
+    - `ui-downdrop`组件的内置icon从`<i class="morningicon">&#xe6b1;</i>`变为`<i class="mo-icon mo-icon-dropdown"></i>`
+    - `morning-co-font-*`、`morning-co-border-*`、`morning-co-bg-*`配色类缩短为`mo-co-font-*`、`mo-co-border-*`、`mo-co-bg-*`
 
     ### 0.10.32 <ui-badge class="circle ver-stable" size="s" color="light-theme">Stable</ui-badge>
 
@@ -52,6 +132,8 @@
     - 修复`ui-tip`判断内容是否为空的一个逻辑错误
     - 修复`ui-tab`再锚点错误的情况下会报错的问题
 
+    ---
+
     ### 0.10.30 <ui-badge class="circle ver-stable" size="s" color="light-theme">Stable</ui-badge>
 
     <ui-textcolor color="light-blue">
@@ -69,7 +151,8 @@
     - 修复`ui-select`的`z-index`计算错误导致部分场景无法展示的问题
     - 修复`ui-imagemap`的值用`getGroup`方式取值时可能出现错误的问题
 
-    
+    ---
+
     ### 0.10.29 <ui-badge class="circle ver-stable" size="s" color="light-theme">Stable</ui-badge>
 
     <ui-textcolor color="light-blue">
@@ -84,6 +167,8 @@
 
     - `ui-select`新增`list-width`配置用来设置下拉列表的宽度
     - 修复`ui-select`组件使用`separate-emit`配置后下拉选项不可见的问题
+
+    ---
 
     ### 0.10.28 <ui-badge class="circle ver-stable" size="s" color="light-theme">Stable</ui-badge>
 
@@ -104,6 +189,8 @@
     <ui-label color="primary">Upgrade Precautions</ui-label>
 
     - 现在`ui-tab`默认具有内边距，可以通过`no-padding`样式类来取消内边距
+
+    ---
 
     ### 0.10.27 <ui-badge class="circle ver-stable" size="s" color="extra-light-black">Beta</ui-badge>
 
@@ -126,6 +213,8 @@
     - 修复Vue警告(Do not use built-in or reserved HTML elements as component id)
     - 修复文档中的一些错误
 
+    ---
+
     ### 0.10.26 <ui-badge class="circle ver-stable" size="s" color="extra-light-black">Beta</ui-badge>
 
     <ui-textcolor color="light-blue">
@@ -145,6 +234,8 @@
     - 修复`ui-radio`样式错乱的问题
     - 更新Vue文档链接
     - 为GitHub增加Contributing Guidelines和Code of conduct
+
+    ---
 
     ### 0.10.25 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
     
@@ -176,6 +267,8 @@
     - `ui-grid`的`averagegap`被废弃，采用`avggap`替代
     - `ui-timepicker`、`ui-datepicker`的`align`配置不再对弹出的时间选择框位置生效，选择框位置仅会居中
 
+    ---
+
     ### 0.10.24 <ui-badge class="circle ver-stable" size="s" color="extra-light-black">Beta</ui-badge>
 
     <ui-textcolor color="light-blue">
@@ -198,6 +291,8 @@
     - 修复`ui-select`文档中形态部分的错误
     - 修复`ui-imagemap`上传图片后高宽计算错误
 
+    ---
+
     ### 0.10.23 <ui-badge class="circle ver-beta" size="s" color="extra-light-black">Beta</ui-badge>
     
     <ui-textcolor color="light-blue">
@@ -214,6 +309,8 @@
     - `ui-dropdown`支持配合链接使用，并新增`trigger`配置
     - 修复`ui-dropdown`下拉弹框可能被遮挡的问题
     - 更新README
+
+    ---
 
     ### 0.10.22 <ui-badge class="circle ver-beta" size="s" color="extra-light-black">Beta</ui-badge>
 
@@ -232,6 +329,8 @@
     - 修复项目首次运行测试无法通过的问题
     - CDN增加unpkg.com
 
+    ---
+
     ### 0.10.21 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="light-blue">
@@ -249,6 +348,8 @@
     - 优化图片热区组件并增加编辑区缩放功能
     - 修复`ui-timepicker`内部滚动会引起外部滚动的问题
 
+    ---
+
     ### 0.10.20 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="light-blue">
@@ -265,6 +366,8 @@
     - 修复`ui-timepicker`在选择时间时，如果禁用了某段时间会有闪烁的问题
     - 修复`ui-tip`鼠标无法移动到内容区域的问题
     - 修复`ui-datepicker`中`is-range`和`selectable-range`无法同时使用的问题
+
+    ---
 
     ### 0.10.19 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
@@ -285,6 +388,8 @@
     <ui-label color="primary">Upgrade Precautions</ui-label>
 
     - `ui-select`移除`clean-btn`配置，采用`clearable`配置代替
+
+    ---
 
     ### 0.10.18 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
@@ -307,6 +412,8 @@
     - 修复在Vue版本2.5.14之后`ui-table`会导致内存溢出的问题
     - 适配Vue版本至2.5.16
 
+    ---
+
     ### 0.10.17 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="light-blue">
@@ -323,6 +430,8 @@
     - 修复`ui-select`在同时使用`multi-select`配置和`v-for`生成列表时无法选择的问题
     - `ui-calendar`新增`highlight-hover`/`background-mark`/`point-mark`配置以及`click-date`事件
 
+    ---
+
     ### 0.10.16 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="light-blue">
@@ -337,6 +446,8 @@
 
     - 新增`ui-timepicker`时间选择器组件
     - `ui-imagemap`支持`max-spot`配置
+
+    ---
 
     ### 0.10.15 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
@@ -353,6 +464,8 @@
     - 标准化组件的clearable行为
     - 修复使用`v-model`时组件数值初始化不正确的问题
     - 修复`ui-imagemap`组件无法清空数值
+
+    ---
         
     ### 0.10.14 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
@@ -376,6 +489,8 @@
     - 修复`ui-message`的z-index问题
     - 修复`ui-imagemap`无法删除值的问题
 
+    ---
+
     ### 0.10.13 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="light-blue">
@@ -394,6 +509,8 @@
     - 修复文档的一些问题
     - 更新全局命名
 
+    ---
+
     ### 0.10.12 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="light-blue">
@@ -411,6 +528,8 @@
     - `ui-upload`组件新增`isUploading()`方法，用来判断组件是否仍然上传图片
     - 修复`ui-upload`触发最大上传限制后，删除文件仍然显示无法上传的问题
     - 修复文档中的一些问题
+
+    ---
 
     ### 0.10.11 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
@@ -435,6 +554,8 @@
     - 修复`ui-multiform`在使用批量输入后，无法点击修改项目内容的问题
     - 修复文档的一些问题
 
+    ---
+
     ### 0.10.10 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="light-blue">
@@ -456,6 +577,8 @@
 
     - 组件生成的HTML标签前缀由`i-`变为`mor-`，如JS、CSS有使用请修改
 
+    ---
+
     ### 0.10.9 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="light-blue">
@@ -472,6 +595,8 @@
     - 修复`morning.getGroupJson`方法无法使用的问题
     - 修复`ui-textinput`和`ui-textarea`设置某些值(对象或数组的JSON字符串)得到的结果不符合预期的问题
     - 符合Vue风格指南中优先级A的规则
+
+    ---
 
     ### 0.10.8 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
@@ -502,6 +627,8 @@
     - `setConf`方法被移除
     - `ui-table`的`setList`方法被移除，通过配置`list`替代
 
+    ---
+
     ### 0.10.7 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="light-blue">
@@ -520,6 +647,8 @@
     <ui-label color="primary">Upgrade Precautions</ui-label>
 
     - `ui-grid`栅格组件一行列数更新至24列
+
+    ---
 
     ### 0.10.6 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
@@ -550,6 +679,8 @@
     - `setConf`方法被移除
     - `ui-table`的`setList`方法被移除，通过配置`list`替代
 
+    ---
+
     ### 0.10.7 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="light-blue">
@@ -568,6 +699,8 @@
     <ui-label color="primary">Upgrade Precautions</ui-label>
 
     - `ui-grid`栅格组件一行列数更新至24列
+
+    ---
 
     ### 0.10.6 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
@@ -590,6 +723,8 @@
 
     - `ui-multiform`的`item-title-key`配置被移除，使用`item-filler`替代
 
+    ---
+
     ### 0.10.5 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="light-blue">
@@ -605,6 +740,8 @@
     - `ui-multiform`组件支持批量输入
     - 表单组件数据支持通过`v-model`指令双向绑定
     - 网站支持HTTPS，增加Google Analytics
+
+    ---
 
     ### 0.10.4 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
@@ -627,6 +764,8 @@
 
     - 通过模块方式引入，不会在全局注册window.morning变量
     - 初始化方法从`morning.init([options])`变为`Vue.use(morning, [options])`
+
+    ---
 
     ### 0.10.3 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
@@ -655,6 +794,8 @@
     - 所有之前返回`undeifned`的组件方法，现在都会返回组件的Vue实例(取值方法除外)
     - `ui-tab`的`switchNext()`和`switchPrev()`方法换成了`next()`和`prev()`方法
 
+    ---
+
     ### 0.10.2 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="light-blue">
@@ -671,6 +812,8 @@
     - 增加codecov.io统计测试覆盖率
     - 更新文档
     - 修复`ui-select`组件的`list`通过模板渲染，会导致默认值被过滤的问题
+
+    ---
 
     ### 0.10.1 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
@@ -691,6 +834,8 @@
     - 移除`.npmignore`
     - 修复ESLint和StyleLint检测到的问题
     - 修复表单组的中表单销毁了，但值还可以通过`getGroup`取到的问题
+
+    ---
 
     ### 0.10.0 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 

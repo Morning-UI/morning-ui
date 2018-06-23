@@ -9,11 +9,11 @@ const component = window.morning._origin.Form.extend(upload);
 test.serial('base : component snapshot', async t => {
 
     const vm = new Vue(component).$mount();
+   
+    // cause : validate is a function, when run coverage test, the function always different.
+    delete vm.$el;
 
     t.plan(1);
-
-    // cause :npm run test and npm run cover has different result, so not diff vm.$el for now.
-    delete vm.$el;
 
     snapshot(t, vm);
 

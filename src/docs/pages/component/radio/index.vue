@@ -16,7 +16,47 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-radio form-name="姓名" :list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"></ui-radio>
+        <ui-radio
+            form-name="姓名"
+            :list="{
+                Tim : 'Tim Boelaars',
+                Andrew : 'Andrew Colin Beck',
+                Victor : 'Victor Erixon'
+            }"
+        ></ui-radio>
+    </div>
+    :::
+
+    #### 带边框的单选框组
+
+    通过`border`样式类指定单选框组以带边框的样式显示：
+
+    :::democode/html
+    <div style="width:320px;">
+        <ui-radio
+            form-name="姓名"
+            class="border"
+            :list="{
+                Tim : 'Tim Boelaars',
+                Andrew : 'Andrew Colin Beck',
+                Victor : 'Victor Erixon'
+            }"></ui-radio>
+    </div>
+    :::
+
+    #### 垂直布局的单选框组
+
+    :::democode/html
+    <div style="width:320px;">
+        <ui-radio
+            form-name="姓名"
+            class="vertical"
+            :list="{
+                Tim:'Tim Boelaars',
+                Andrew:'Andrew Colin Beck',
+                Victor:'Victor Erixon'
+            }"
+        ></ui-radio>
     </div>
     :::
 
@@ -37,6 +77,7 @@
     ---
     |[accept-html](#accept-html)|项目的的名称可以使用HTML|`true`<br>`false`|Boolean|`false`|
     |[list](#list)|可选项目列表|可选项目列表的对象，键名是key，键值是name用于显示|Object|`{}`|
+    |[disabled-options](#disabled-options)|禁止选中的项目（`set()`方法仍然可以选中禁止的项目，但`toggle()`方法无法选中禁止的项目）。|由禁止修改项目键名(key)组成的数组|Array|`[]`|
     :::
 
     :::preset/html
@@ -78,7 +119,53 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-radio form-name="姓名" :list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"></ui-radio>
+        <ui-radio
+            form-name="姓名"
+            :list="{
+                Tim : 'Tim Boelaars',
+                Andrew : 'Andrew Colin Beck',
+                Victor : 'Victor Erixon'
+            }"
+        ></ui-radio>
+    </div>
+    :::
+
+    #### disabled-options
+
+    被禁止的项目将无法选中：
+
+    :::democode/html
+    <div style="width:300px;">
+        <ui-radio
+            form-name="姓名"
+            :list="{
+                Tim:'Tim Boelaars',
+                Andrew:'Andrew Colin Beck',
+                Victor:'Victor Erixon',
+                Shaun:'Shaun Moynihan',
+                Emir:'Emir Ayouni'
+            }"
+            :disabled-options="['Tim', 'Victor']"
+        ></ui-radio>
+    </div>
+    :::
+
+    若禁止的项目已经被选中，则组件会清空：
+
+    :::democode/html
+    <div style="width:300px;">
+        <ui-radio
+            form-name="姓名"
+            :list="{
+                Tim : 'Tim Boelaars',
+                Andrew : 'Andrew Colin Beck',
+                Victor : 'Victor Erixon',
+                Shaun : 'Shaun Moynihan',
+                Emir : 'Emir Ayouni'
+            }"
+            :disabled-options="['Tim', 'Victor']"
+            default-value="Tim"
+        ></ui-radio>
     </div>
     :::
 
@@ -103,7 +190,15 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-radio ref="demo2" form-name="姓名" :list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"></ui-radio>
+        <ui-radio
+            ref="demo2"
+            form-name="姓名"
+            :list="{
+                Tim : 'Tim Boelaars',
+                Andrew : 'Andrew Colin Beck',
+                Victor : 'Victor Erixon'
+            }"
+        ></ui-radio>
     </div>
     <br>
     <ui-link js="morning.findVM('demo2').toggle('Tim');">选中Tim</ui-link>

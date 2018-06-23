@@ -44,7 +44,7 @@ let morning = {
         white : 'wh'
     },
     isMorning : true,
-    version : '0.10.32',
+    version : '0.11.0',
     map : {}
 };
 
@@ -229,6 +229,16 @@ morning.install = function (Vue, options) {
             return;
 
         }
+
+        component = component.extend({
+            data : function () {
+
+                return {
+                    uiname : name
+                };
+
+            }
+        });
 
         if (!component.private) {
 

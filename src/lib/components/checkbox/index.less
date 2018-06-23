@@ -1,5 +1,26 @@
 @import '~Common/var.less';
 
+.set-label-disabled() {
+    border-color: darken(@colorFormBackgroundDisable, 10%);
+    -webkit-user-select: none;
+    cursor: not-allowed !important;
+
+    > .box{
+        background-color: darken(@colorFormBackgroundDisable, 10%);
+        border-color: darken(@colorFormBackgroundDisable, 10%);
+    }
+
+    &:hover span{
+        color: @colorFormText;
+    }
+
+    &.checked{
+        .mo-icon{
+            opacity: 0.6;
+        }
+    }
+}
+
 mor-checkbox{
     width: 100%;
     position: relative;
@@ -45,13 +66,14 @@ mor-checkbox{
                 transition: 0.2s;
                 margin: 0 0.375em 0 0;
                 box-sizing: border-box;
+                position: relative;
             }
 
-            .morningicon{
+            .mo-icon{
                 color: #FFF;
                 opacity: 0;
                 transform: scale(0);
-                transition: 0.2s;
+                transition: transform 0.2s;
                 font-size: @fontSize*0.75;
                 width: 100%;
                 display: block;
@@ -71,120 +93,256 @@ mor-checkbox{
                 }
             }
 
-            &.checked{
+            &.checked,
+            &.part-checked{
                 span{
                     color: @colorFormTextFocus;
                 }
 
-                .morningicon{
+                .mo-icon{
                     opacity: 1;
                     transform: scale(0.9);
+                }
+            }
+
+            &.part-checked{
+                .part-checked-icon{
+                    width: 60%;
+                    height: 3px;
+                    background: @colorWhite;
+                    display: inline-block;
+                    border-radius: 10em;
+                    position: absolute;
+                    top: 7px;
+                    left: 20%;
+                }
+            }
+
+            &.disabled{
+                .set-label-disabled();
+            }
+        }
+    }
+
+    &.is-max{
+        > .il label:not(.checked){
+            .set-label-disabled();
+        }
+    }
+
+    &.border{
+        > .il{
+            label{
+                padding: 0.4em 0.6em;
+                margin: 0 0.5em 0.5em 0;
+                border: 1px @colorFormBorder solid;
+                border-radius: @borderRadius;
+
+                &:hover{
+                    border-color: darken(@colorFormBorderHover, 10%);
                 }
             }
         }
     }
 
+    &.vertical{
+        > .il label{
+            margin: 0 0 0.6em;
+            width: 100%;
+        }
+    }
+
     &.co-t{
-        > .il label.checked .box{
+        > .il label.checked .box,
+        > .il label.part-checked .box{
             background: @colorTheme;
+            border-color: @colorTheme;
+        }
+
+        &.border > .il label.checked,
+        &.border > .il label.part-checked{
             border-color: @colorTheme;
         }
     }
 
     &.co-lt{
-        > .il label.checked .box{
+        > .il label.checked .box,
+        > .il label.part-checked .box{
             background: @colorLightTheme;
+            border-color: @colorLightTheme;
+        }
+
+        &.border > .il label.checked,
+        &.border > .il label.part-checked{
             border-color: @colorLightTheme;
         }
     }
 
     &.co-dt{
-        > .il label.checked .box{
+        > .il label.checked .box,
+        > .il label.part-checked .box{
             background: @colorDarkTheme;
+            border-color: @colorDarkTheme;
+        }
+
+        &.border > .il label.checked,
+        &.border > .il label.part-checked{
             border-color: @colorDarkTheme;
         }
     }
 
     &.co-s{
-        > .il label.checked .box{
+        > .il label.checked .box,
+        > .il label.part-checked .box{
             background: @colorSuccess;
+            border-color: @colorSuccess;
+        }
+
+        &.border > .il label.checked,
+        &.border > .il label.part-checked{
             border-color: @colorSuccess;
         }
     }
 
     &.co-w{
-        > .il label.checked .box{
+        > .il label.checked .box,
+        > .il label.part-checked .box{
             background: @colorWarning;
+            border-color: @colorWarning;
+        }
+
+        &.border > .il label.checked,
+        &.border > .il label.part-checked{
             border-color: @colorWarning;
         }
     }
 
     &.co-d{
-        > .il label.checked .box{
+        > .il label.checked .box,
+        > .il label.part-checked .box{
             background: @colorDanger;
+            border-color: @colorDanger;
+        }
+
+        &.border > .il label.checked,
+        &.border > .il label.part-checked{
             border-color: @colorDanger;
         }
     }
 
     &.co-p{
-        > .il label.checked .box{
+        > .il label.checked .box,
+        > .il label.part-checked .box{
             background: @colorPrimary;
+            border-color: @colorPrimary;
+        }
+
+        &.border > .il label.checked,
+        &.border > .il label.part-checked{
             border-color: @colorPrimary;
         }
     }
 
     &.co-m{
-        > .il label.checked .box{
+        > .il label.checked .box,
+        > .il label.part-checked .box{
             background: @colorMinor;
+            border-color: @colorMinor;
+        }
+
+        &.border > .il label.checked,
+        &.border > .il label.part-checked{
             border-color: @colorMinor;
         }
     }
 
     &.co-i{
-        > .il label.checked .box{
+        > .il label.checked .box,
+        > .il label.part-checked .box{
             background: @colorInfo;
+            border-color: @colorInfo;
+        }
+
+        &.border > .il label.checked,
+        &.border > .il label.part-checked{
             border-color: @colorInfo;
         }
     }
 
     &.co-bk{
-        > .il label.checked .box{
+        > .il label.checked .box,
+        > .il label.part-checked .box{
             background: @colorBlack;
+            border-color: @colorBlack;
+        }
+
+        &.border > .il label.checked,
+        &.border > .il label.part-checked{
             border-color: @colorBlack;
         }
     }
 
     &.co-lbk{
-        > .il label.checked .box{
+        > .il label.checked .box,
+        > .il label.part-checked .box{
             background: @colorLightBlack;
+            border-color: @colorLightBlack;
+        }
+
+        &.border > .il label.checked,
+        &.border > .il label.part-checked{
             border-color: @colorLightBlack;
         }
     }
 
     &.co-elbk{
-        > .il label.checked .box{
+        > .il label.checked .box,
+        > .il label.part-checked .box{
             background: @colorExtraLightBlack;
+            border-color: @colorExtraLightBlack;
+        }
+
+        &.border > .il label.checked,
+        &.border > .il label.part-checked{
             border-color: @colorExtraLightBlack;
         }
     }
 
     &.co-bu{
-        > .il label.checked .box{
+        > .il label.checked .box,
+        > .il label.part-checked .box{
             background: @colorBlue;
+            border-color: @colorBlue;
+        }
+
+        &.border > .il label.checked,
+        &.border > .il label.part-checked{
             border-color: @colorBlue;
         }
     }
 
     &.co-lbu{
-        > .il label.checked .box{
+        > .il label.checked .box,
+        > .il label.part-checked .box{
             background: @colorLightBlue;
+            border-color: @colorLightBlue;
+        }
+
+        &.border > .il label.checked,
+        &.border > .il label.part-checked{
             border-color: @colorLightBlue;
         }
     }
 
     &.co-elbu{
-        > .il label.checked .box{
+        > .il label.checked .box,
+        > .il label.part-checked .box{
             background: @colorExtraLightBlue;
+            border-color: @colorExtraLightBlue;
+        }
+
+        &.border > .il label.checked,
+        &.border > .il label.part-checked{
             border-color: @colorExtraLightBlue;
         }
     }
@@ -195,6 +353,7 @@ mor-checkbox{
                 color: @colorExtraLightBlue;
             }
 
+            &,
             .box{
                 border: 1px @colorWhite solid;
             }
@@ -206,17 +365,23 @@ mor-checkbox{
                 }
             }
 
-            &.checked{
+            &.checked,
+            &.part-checked{
                 .box{
                     background: @colorSilver;
                     border-color: @colorSilver;
                     color: @colorSilver;
                 }
 
-                .morningicon{
+                .mo-icon{
                     color: @colorExtraLightBlack;
                 }
             }
+        }
+
+        &.border > .il label.checked,
+        &.border > .il label.part-checked{
+            border-color: @colorSilver;
         }
     }
 
@@ -226,6 +391,7 @@ mor-checkbox{
                 color: @colorExtraLightBlue;
             }
 
+            &,
             .box{
                 border: 1px @colorWhite solid;
             }
@@ -237,17 +403,23 @@ mor-checkbox{
                 }
             }
 
-            &.checked{
+            &.checked,
+            &.part-checked{
                 .box{
                     background: @colorLightSilver;
                     border-color: @colorLightSilver;
                     color: @colorLightSilver;
                 }
 
-                .morningicon{
+                .mo-icon{
                     color: @colorExtraLightBlack;
                 }
             }
+        }
+
+        &.border > .il label.checked,
+        &.border > .il label.part-checked{
+            border-color: @colorLightSilver;
         }
     }
 
@@ -257,6 +429,7 @@ mor-checkbox{
                 color: @colorExtraLightBlue;
             }
 
+            &,
             .box{
                 border: 1px @colorWhite solid;
             }
@@ -268,17 +441,23 @@ mor-checkbox{
                 }
             }
 
-            &.checked{
+            &.checked,
+            &.part-checked{
                 .box{
                     background: @colorExtraLightSilver;
                     border-color: @colorExtraLightSilver;
                     color: @colorExtraLightSilver;
                 }
 
-                .morningicon{
+                .mo-icon{
                     color: @colorExtraLightBlack;
                 }
             }
+        }
+
+        &.border > .il label.checked,
+        &.border > .il label.part-checked{
+            border-color: @colorExtraLightSilver;
         }
     }
 
@@ -288,6 +467,7 @@ mor-checkbox{
                 color: @colorGray;
             }
 
+            &,
             .box{
                 border: 1px @colorWhite solid;
             }
@@ -299,17 +479,23 @@ mor-checkbox{
                 }
             }
 
-            &.checked{
+            &.checked,
+            &.part-checked{
                 .box{
                     background: @colorGray;
                     border-color: @colorGray;
                     color: @colorGray;
                 }
 
-                .morningicon{
+                .mo-icon{
                     color: @colorBlack;
                 }
             }
+        }
+
+        &.border > .il label.checked,
+        &.border > .il label.part-checked{
+            border-color: @colorGray;
         }
     }
 
@@ -319,6 +505,7 @@ mor-checkbox{
                 color: @colorGray;
             }
 
+            &,
             .box{
                 border: 1px @colorWhite solid;
             }
@@ -330,17 +517,23 @@ mor-checkbox{
                 }
             }
 
-            &.checked{
+            &.checked,
+            &.part-checked{
                 .box{
                     background: @colorLightGray;
                     border-color: @colorLightGray;
                     color: @colorLightGray;
                 }
 
-                .morningicon{
+                .mo-icon{
                     color: @colorBlack;
                 }
             }
+        }
+
+        &.border > .il label.checked,
+        &.border > .il label.part-checked{
+            border-color: @colorLightGray;
         }
     }
 
@@ -350,6 +543,7 @@ mor-checkbox{
                 color: @colorGray;
             }
 
+            &,
             .box{
                 border: 1px @colorWhite solid;
             }
@@ -361,17 +555,23 @@ mor-checkbox{
                 }
             }
 
-            &.checked{
+            &.checked,
+            &.part-checked{
                 .box{
                     background: @colorWhite;
                     border-color: @colorWhite;
                     color: @colorWhite;
                 }
 
-                .morningicon{
+                .mo-icon{
                     color: @colorBlack;
                 }
             }
+        }
+
+        &.border > .il label.checked,
+        &.border > .il label.part-checked{
+            border-color: @colorWhite;
         }
     }
 
@@ -381,24 +581,7 @@ mor-checkbox{
     &.st-readonly{
         > .il{
             > label{
-                border-color: darken(@colorFormBackgroundDisable, 5%);
-                -webkit-user-select: none;
-                cursor: not-allowed !important;
-
-                > .box{
-                    background-color: darken(@colorFormBackgroundDisable, 5%);
-                    border-color: darken(@colorFormBackgroundDisable, 5%);
-                }
-
-                &:hover span{
-                    color: @colorFormText;
-                }
-
-                &.checked{
-                    .morningicon{
-                        opacity: 0.7;
-                    }
-                }
+                .set-label-disabled();
             }
         }
     }

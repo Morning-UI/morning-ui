@@ -206,7 +206,7 @@
         }
     }
 
-    > .morningicon{
+    > .mo-icon{
         position: absolute;
         line-height: @formHeight - 2px;
         width: 24px;
@@ -362,23 +362,13 @@ mor-select{
     }
 
     li{
-        padding: 0.5em 1em;
+        padding: 0.5em 2em 0.5em 1em;
         border-top: 1px lighten(@colorFormBorder, 5%) solid;
         cursor: pointer;
         font-size: 14px;
         color: darken(@colorFormText, 15%);
         position: relative;
         word-break: break-all;
-
-        &.noitem{
-            color: @colorFormTextMisc;
-            cursor: default;
-            display: none;
-
-            &.show{
-                display: list-item;
-            }
-        }
 
         img,
         mor-img {
@@ -392,14 +382,21 @@ mor-select{
             vertical-align: top;
         }
 
-        &.current{
-            background: @colorFormBackgroundFocus;
-            color: @colorFormTextFocus;
+        > .mo-select-selected-icon{
+            font-size: @fontSize*0.75;
+            position: absolute;
+            right: 5px;
+            display: inline-block;
+            width: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            box-sizing: border-box;
+            color: @colorTheme;
         }
 
         &.selected{
             background: @colorFormBackgroundHover;
-            border-left: 3px @colorSuccess solid;
+            border-left: 3px @colorTheme solid;
         }
 
         &.hide{
@@ -409,6 +406,27 @@ mor-select{
         &:hover{
             color: darken(@colorFormTextHover, 15%);
             background: @colorFormBackgroundHover;
+        }
+
+        &.infoitem{
+            color: @colorFormTextMisc;
+            cursor: default;
+            display: none;
+
+            &.show{
+                display: list-item;
+            }
+
+            &:hover{
+                color: @colorFormTextMisc;
+                background: @colorWhite;
+            }
+        }
+
+        &.maxshow{
+            font-size: 12px;
+            text-align: center;
+            padding: 7.5px 0;
         }
     }
 
@@ -429,13 +447,17 @@ mor-select{
             width: 100%;
         }
 
-        > .morningicon{
+        > .mo-icon{
             display: none;
         }
     }
 
     &{
         .setup-select-area();
+    }
+
+    &.hide-selected li{
+        padding: 0.5em 1em;
     }
 
     &.hide-selected li.selected,

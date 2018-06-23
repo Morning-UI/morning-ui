@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">30.5% </span>
+        <span class="strong">31% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>61/200</span>
+        <span class='fraction'>62/200</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">37.43% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>14/46</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">30.22% </span>
+        <span class="strong">30.77% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>55/182</span>
+        <span class='fraction'>56/182</span>
       </div>
     </div>
   </div>
@@ -815,7 +815,13 @@
 770
 771
 772
-773</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+773
+774
+775
+776
+777
+778
+779</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -925,13 +931,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">129x</span>
-<span class="cline-any cline-yes">129x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">133x</span>
+<span class="cline-any cline-yes">133x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">133x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -958,7 +965,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1586,8 +1598,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">129x</span>
-<span class="cline-any cline-yes">129x</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
+<span class="cline-any cline-yes">133x</span>
+<span class="cline-any cline-yes">133x</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
     &lt;mor-upload
         :_uiid="uiid"
         :class="[formClass, stateClass, moreClass]"
@@ -1642,9 +1654,9 @@
                     &lt;span&gt;
                         {{item.name}}
                     &lt;/span&gt;
-                    &lt;i class="morningicon remove" @click.prevent="_removeFile(index)"&gt;&amp;#xe62e;&lt;/i&gt;
-                    &lt;i class="morningicon uploading" title="上传中"&gt;&amp;#xe672;&lt;/i&gt;
-                    &lt;i class="morningicon reupload" title="重新上传" @click.prevent="_upload(index)"&gt;&amp;#xe68c;&lt;/i&gt;
+                    &lt;i class="mo-icon mo-icon-close remove" @click.prevent="_removeFile(index)"&gt;&lt;/i&gt;
+                    &lt;i class="mo-icon mo-icon-arrow-up uploading" title="上传中"&gt;&lt;/i&gt;
+                    &lt;i class="mo-icon mo-icon-refresh reupload" title="重新上传" @click.prevent="_upload(index)"&gt;&lt;/i&gt;
                 &lt;/a&gt;
             &lt;/template&gt;
 &nbsp;
@@ -1657,7 +1669,7 @@
                     :for="'ui-select-fileinput-' + uiid"
                 &gt;
                     &lt;span&gt;本地上传{{conf.itemName}}&lt;/span&gt;
-                    &lt;i class="morningicon local"&gt;&amp;#xe629;&lt;/i&gt;
+                    &lt;i class="mo-icon mo-icon-upload local"&gt;&lt;/i&gt;
                 &lt;/label&gt;
                 
                 &lt;label
@@ -1667,8 +1679,12 @@
                     @click="_uploadRemoteFile()"
                 &gt;
                     &lt;span&gt;URL上传{{conf.itemName}}&lt;/span&gt;
-                    &lt;i class="morningicon"&gt;&amp;#xe704;&lt;/i&gt;
-                    &lt;i class="morningicon load"&gt;&amp;#xe703;&lt;/i&gt;
+                    &lt;i class="mo-icon mo-icon-link"&gt;&lt;/i&gt;
+                    &lt;div class="mo-loader load"&gt;
+                        &lt;svg class="mo-loader-circular" viewBox="25 25 50 50"&gt;
+                            &lt;circle class="mo-loader-path" cx="50" cy="50" r="20" fill="none" stroke-width="4" stroke-miterlimit="10"/&gt;
+                        &lt;/svg&gt;
+                    &lt;/div&gt;
                 &lt;/label&gt;
             &lt;/template&gt;
 &nbsp;
@@ -1679,7 +1695,7 @@
                     :for="'ui-select-fileinput-' + uiid"
                 &gt;
                     &lt;span&gt;上传{{conf.itemName}}&lt;/span&gt;
-                    &lt;i class="morningicon local"&gt;&amp;#xe629;&lt;/i&gt;
+                    &lt;i class="mo-icon mo-icon-upload local"&gt;&lt;/i&gt;
                 &lt;/label&gt;
             &lt;/template&gt;
 &nbsp;
@@ -1688,7 +1704,7 @@
             &lt;span class="max" v-if="ismax"&gt;最多只能上传{{conf.max}}个文件&lt;/span&gt;
         &lt;/div&gt;
 &nbsp;
-        &lt;div class="drag-note" :class="{show: data.dragover}"&gt;&lt;p&gt;&lt;i class="morningicon"&gt;&amp;#xe629;&lt;/i&gt; 松开鼠标上传&lt;/p&gt;&lt;/div&gt;
+        &lt;div class="drag-note" :class="{show: data.dragover}"&gt;&lt;p&gt;&lt;i class="mo-icon mo-icon-upload"&gt;&lt;/i&gt; 松开鼠标上传&lt;/p&gt;&lt;/div&gt;
     &lt;/div&gt;
 &nbsp;
     &lt;morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn"&gt;清空&lt;/morning-link&gt;
@@ -1699,6 +1715,8 @@
 &lt;script&gt;
 import axios                       from 'Npm/axios/dist/axios.min.js';
 import extend                      from 'extend';
+&nbsp;
+let <span class="fstat-no" title="function not covered" >noopFn = (</span>) =&gt; {};
 &nbsp;
 export default {
     origin : 'Form',
@@ -1730,7 +1748,7 @@ export default {
         },
         validate : {
             type : Function,
-            default : <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >() =&gt; ({})</span></span>
+            default : noopFn
         },
         uploader : {
             type : Function,
@@ -2365,7 +2383,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Jun 05 2018 14:32:00 GMT+0800 (CST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Jun 23 2018 12:01:07 GMT+0800 (CST)
 </div>
 </div>
 <script src="../../../prettify.js"></script>

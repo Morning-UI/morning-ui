@@ -1,31 +1,5 @@
 @import '~Common/var.less';
 
-@keyframes dropdown_popup{
-    from {
-        transform: scale(0);
-    }
-
-    52%{
-        transform: scale(1);
-    }
-
-    76%{
-        transform: scale(1.12);
-    }
-
-    to {
-        transform: scale(1);
-    }
-}
-@keyframes dropdown_popin{
-    from {
-        transform: scale(1);
-    }
-
-    to {
-        transform: scale(0);
-    }
-}
 @keyframes dropdown_popup_arrow{
     from {
         transform: rotateX(0deg);
@@ -53,7 +27,7 @@ mor-dropdown{
     mor-link{
         user-select: none;
 
-        .morningicon{
+        .mo-icon{
             font-size: @fontSize*1.875 !important;
             width: 10px;
             display: inline-block;
@@ -65,7 +39,7 @@ mor-dropdown{
     &.show{
         mor-btn,
         mor-link{
-            .morningicon{
+            .mo-icon{
                 animation-name: dropdown_popup_arrow;
                 animation-duration: 0.2s;
                 animation-fill-mode: forwards;
@@ -76,7 +50,7 @@ mor-dropdown{
     &.hide{
         mor-btn,
         mor-link{
-            .morningicon{
+            .mo-icon{
                 animation-name: dropdown_popin_arrow;
                 animation-duration: 0.2s;
                 animation-fill-mode: forwards;
@@ -126,13 +100,13 @@ mor-dropdown{
     }
 
     &.show .btnlist{
-        animation-name: dropdown_popup;
+        animation-name: popup;
         animation-duration: 0.2s;
         animation-fill-mode: forwards;
     }
 
     &.hide .btnlist{
-        animation-name: dropdown_popin;
+        animation-name: popin;
         animation-duration: 0.18s;
         animation-fill-mode: forwards;
     }

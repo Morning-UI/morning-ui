@@ -11,7 +11,7 @@
                 </li>
                 <li><a :class="{current:isIndex}" href="/index.html">HOME</a></li>
                 <li><a :class="{current:isGuide}" href="/guide/introduction.html">GUIDE</a></li>
-                <li><a :class="{current:isComponent}" href="/component/h.html">COMPONENT</a></li>
+                <li><a :class="{current:isComponent}" href="/component/index.html">COMPONENT</a></li>
                 <li><a target="_blank" href="https://github.com/Morning-UI/morning-ui">
                     <img v-if="isIndex" src="https://h0.hucdn.com/open/201744/f87561b8bb354ef8_32x32.png" class="githublogo" alt="GitHub">
                     <img v-else src="https://h0.hucdn.com/open/201744/d56df49a807a9fd0_32x32.png" class="githublogo" alt="GitHub">

@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">17.9% </span>
+        <span class="strong">18.01% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>29/162</span>
+        <span class='fraction'>29/161</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">27.27% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>33/121</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">26.83% </span>
+        <span class="strong">27.5% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>11/41</span>
+        <span class='fraction'>11/40</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">16.67% </span>
+        <span class="strong">16.78% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>24/144</span>
+        <span class='fraction'>24/143</span>
       </div>
     </div>
   </div>
@@ -774,14 +774,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">129x</span>
-<span class="cline-any cline-yes">129x</span>
+<span class="cline-any cline-yes">133x</span>
+<span class="cline-any cline-yes">133x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">129x</span>
+<span class="cline-any cline-yes">133x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">129x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">133x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -796,7 +794,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1246,8 +1246,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">129x</span>
-<span class="cline-any cline-yes">129x</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
+<span class="cline-any cline-yes">133x</span>
+<span class="cline-any cline-yes">133x</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
     &lt;mor-multiform
         :_uiid="uiid"
         :class="[formClass, stateClass, moveClass]"
@@ -1297,10 +1297,10 @@
                 &lt;/span&gt;
 &nbsp;
                 &lt;i
-                    class="morningicon"
+                    class="mo-icon mo-icon-error-cf"
                     v-if="conf.state !== 'disabled' &amp;&amp; conf.state !== 'readonly'"
                     @click.stop="_deleteItem(index)"
-                &gt;&amp;#xe62e;&lt;/i&gt;
+                &gt;&lt;/i&gt;
             &lt;/div&gt;
             
             &lt;template v-if="conf.state !== 'disabled' &amp;&amp; conf.state !== 'readonly'"&gt;
@@ -1312,7 +1312,7 @@
                         @click="_addItemDialog"
                         key="set-max"
                     &gt;
-                        &lt;span&gt;添加{{conf.itemName}}&lt;/span&gt; &lt;i class="morningicon"&gt;&amp;#xe698;&lt;/i&gt;
+                        &lt;span&gt;添加{{conf.itemName}}&lt;/span&gt; &lt;i class="mo-icon mo-icon-plus-cf"&gt;&lt;/i&gt;
                     &lt;/a&gt;
                     &lt;span v-else&gt;最多只能输入{{conf.max}}项&lt;/span&gt;
                 &lt;/template&gt;
@@ -1324,7 +1324,7 @@
                         @click="_addItemDialog"
                         key="unset-max"
                     &gt;
-                        &lt;span&gt;添加{{conf.itemName}}&lt;/span&gt; &lt;i class="morningicon"&gt;&amp;#xe698;&lt;/i&gt;
+                        &lt;span&gt;添加{{conf.itemName}}&lt;/span&gt; &lt;i class="mo-icon mo-icon-plus-cf"&gt;&lt;/i&gt;
                     &lt;/a&gt;
                 &lt;/template&gt;
             &lt;/template&gt;
@@ -1374,7 +1374,7 @@
 &nbsp;
     &lt;/mor-multiform&gt;
 &lt;/template&gt;
- 
+&nbsp;
 &lt;script&gt;
 import arrayUniq                    from 'array-uniq';
 import Move                         from 'Utils/Move';
@@ -1398,7 +1398,7 @@ export default {
         },
         itemValidator : {
             type : Function,
-            default : (<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >value =&gt; value)</span></span>
+            default : returnValueFn
         },
         canMove : {
             type : Boolean,
@@ -1855,7 +1855,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Jun 05 2018 14:32:00 GMT+0800 (CST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Jun 23 2018 12:01:07 GMT+0800 (CST)
 </div>
 </div>
 <script src="../../../prettify.js"></script>

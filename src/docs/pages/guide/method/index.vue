@@ -120,7 +120,6 @@
     - `getGroup` : 获取表单组
     - `addGroup` : 添加表单组
     - `removeGroup` : 移除表单组
-    - `setRows` : 设置行数
     - `toggle` : 切换状态
     - `add` : 添加项目/增加
     - `sub` : 减少
@@ -150,6 +149,10 @@
     - `removeZone` : 删除区域
     - `cleanZones` : 删除所有区域
     - `getScale` : 获取缩放比
+    - `play` : 播放
+    - `mute` : 静音
+    - `volume` : 音量
+    - `getInfo` : 获取信息
 
     </script>
     </doc-guide>
