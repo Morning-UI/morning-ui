@@ -59,6 +59,7 @@
   },
   "dependencies": {
     "array-uniq": "^1.0.3",
+    "browser-env": "^3.2.5",
     "clipboard-copy": "^2.0.0",
     "color": "^3.0.0",
     "date-fns": "^2.0.0-alpha.7",
@@ -85,7 +86,6 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.0",
     "babel-register": "^6.26.0",
-    "browser-env": "^3.2.0",
     "clean-css": "^4.1.11",
     "clean-css-loader": "^0.1.4",
     "clean-webpack-plugin": "^0.1.19",
