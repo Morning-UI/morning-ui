@@ -16,11 +16,20 @@ hooks('vue')
     .plugin('vue')
     .push();
 
-hooks(['vue', 'js'])
-    .plugin('babel')
+hooks(['js', 'vue'])
+    .plugin('babel', {
+        exclude : [
+            /coverage/,
+            /node_modules\/(?!quill)/
+        ]
+    })
     .push();
+
+hooks(['svg'])
+    .push(({content}) => `return \`${content}\`;`);
 
 window.morning = require('../../src/lib/index').default;
 
 VueCommon.use(window.morning);
 VueCommon.config.ignoredElements = window.morning._ignoreElements;
+

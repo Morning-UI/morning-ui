@@ -11,6 +11,7 @@
         :clearable="clearable"
         :accept-html="acceptHtml"
         :list="list"
+        :disabled-options="disabledOptions"
     >
 
     <div class="note" v-if="!conf.hideName">{{conf.formName}}</div>
@@ -21,11 +22,14 @@
             <template v-if="data.value === key">
                 <label
                     class="checked"
+                    :class="{
+                        disabled : data.disabledOptions[key]
+                    }"
                     :value="key"
                     :key="key"
                     @click="conf.state !== 'readonly' && toggle(key)"
                 >
-                    <p class="box"><i class="morningicon">&#xe62d;</i></p>
+                    <p class="box"><i class="mo-icon mo-icon-check"></i></p>
                     <template v-if="conf.acceptHtml">
                         <span v-html="name"></span>
                     </template>
@@ -36,12 +40,15 @@
             </template>
 
             <template v-else>
-                <label 
+                <label
+                    :class="{
+                        disabled : data.disabledOptions[key]
+                    }"
                     :value="key"
                     :key="key"
                     @click="conf.state !== 'readonly' && toggle(key)"
                 >
-                    <p class="box"><i class="morningicon">&#xe62d;</i></p>
+                    <p class="box"><i class="mo-icon mo-icon-check"></i></p>
                     <template v-if="conf.acceptHtml">
                         <span v-html="name"></span>
                     </template>
@@ -71,6 +78,10 @@ export default {
         list : {
             type : Object,
             default : () => ({})
+        },
+        disabledOptions : {
+            type : Array,
+            default : () => ([])
         }
     },
     computed : {
@@ -78,7 +89,8 @@ export default {
 
             return {
                 acceptHtml : this.acceptHtml,
-                list : this.list
+                list : this.list,
+                disabledOptions : this.disabledOptions
             };
 
         }
@@ -86,7 +98,9 @@ export default {
     data : function () {
 
         return {
-            data : {}
+            data : {
+                disabledOptions : {}
+            }
         };
 
     },
@@ -103,7 +117,32 @@ export default {
             return String(value);
 
         },
+        _refreshDisabledOptions : function () {
+
+            let list = {};
+
+            for (let key of this.conf.disabledOptions) {
+
+                list[key] = true;
+
+            }
+
+            this.data.disabledOptions = list;
+
+            if (this.data.disabledOptions[this.get()]) {
+
+                this.set(undefined);
+
+            }
+
+        },
         toggle : function (key) {
+
+            if (this.data.disabledOptions[key]) {
+
+                return this;
+
+            }
 
             let keys = Object.keys(this.conf.list);
 
@@ -122,7 +161,18 @@ export default {
         }
     },
     created : function () {},
-    mounted : function () {}
+    mounted : function () {
+
+        this.$watch('conf.disabledOptions', () => {
+
+            this._refreshDisabledOptions();
+
+        }, {
+            deep : true,
+            immediate : true
+        });
+
+    }
 };
 </script>
 

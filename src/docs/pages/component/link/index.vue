@@ -37,13 +37,26 @@
     ---
     <ui-link size="{$sizeKey}">{$&sizeName}</ui-link>
     :::
+    
+    :::repeat/html
+    size
+    ---
+    <ui-link size="{$sizeKey}" locked>{$&sizeName}</ui-link>
+    :::
 
     #### 色彩
 
-    :::preset/html
-    statusColor
+    :::repeat/html
+    color:theme
+    color:feature
+    color:black
+    color:blue
+    color:silver
+    color:gray
     ---
-    uikey:link
+    <ui-link color="{$colorKey}">{$&colorName}</ui-link>
+    <ui-link color="{$colorKey}" locked>{$&colorName}</ui-link>
+    <br><br>
     :::
     
     #### 状态

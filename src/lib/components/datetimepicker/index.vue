@@ -20,6 +20,7 @@
         :separator-type="separatorType"
         :start-name="startName"
         :end-name="endName"
+        :done-hidden="doneHidden"
     >
 
     <div class="wrap">
@@ -38,6 +39,7 @@
             :start-name="conf.startName"
             :end-name="conf.endName"
             :show-timepicker-box="true"
+            :done-hidden="conf.doneHidden"
 
             @value-change="_syncFromInputToRoot(0)"
             @input-blur="_syncFromInputToRootIsBlur"
@@ -146,6 +148,10 @@ export default {
         endName : {
             type : String,
             default : '结束日期时间'
+        },
+        doneHidden : {
+            type : Boolean,
+            default : false
         }
     },
     computed : {
@@ -162,7 +168,8 @@ export default {
                 separator : this.separator,
                 separatorType : this.separatorType,
                 startName : this.startName,
-                endName : this.endName
+                endName : this.endName,
+                doneHidden : this.doneHidden
             };
 
         },

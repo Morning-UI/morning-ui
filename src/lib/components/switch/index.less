@@ -47,33 +47,102 @@ mor-switch{
     position: relative;
     z-index: 1;
     display: inline-block;
-    width: 100%;
     box-sizing: border-box;
 
     .setup-form();
 
-    .note{
+    > .note{
         color: @colorFormTextNote;
         font-size: @fontSize;
-        height: @formHeight;
-        line-height: @formHeight;
-        margin-right: 50px;
-        overflow: hidden;
+        margin-bottom: 0.5em;
+        -webkit-user-select: text;
+    }
+
+    &.mor-switch.has-cleanbtn{
+        padding-bottom: 26px;
+    }
+
+    > .cleanbtn{
+        left: 0;
+        bottom: 0;
+    }
+
+    .wrap{
+        font-size: 0;
+        position: relative;
+    }
+
+    .open-note,
+    .close-note{
+        font-size: @fontSize*0.8125;
+        max-width: 60px;
+        display: inline-block;
+        vertical-align: top;
+        line-height: 30px;
+        color: @colorExtraLightBlue;
         white-space: nowrap;
+        overflow: hidden;
         text-overflow: ellipsis;
     }
 
-    .track{
+    .open-note{
+        padding-left: 6px;
+    }
+
+    .close-note{
+        padding-right: 6px;
+        font-weight: 700;
+    }
+
+    .open-mark,
+    .close-mark{
+        font-size: @fontSize*0.75;
         position: absolute;
+        top: 5px;
+        width: 15px;
+        text-align: center;
+        display: inline-block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        transition: none;
+
+        > i{
+            font-size: 12px;
+        }
+    }
+
+    .open-mark{
+        left: 5px;
+        color: @colorWhite;
+    }
+
+    .close-mark{
+        right: 5px;
+        color: @colorExtraLightBlue;
+    }
+
+    &.open{
+        .open-note{
+            font-weight: 700;
+        }
+
+        .close-note{
+            font-weight: 400;
+        }
+    }
+
+    .track{
+        display: inline-block;
+        vertical-align: top;
+        position: relative;
         right: 0;
-        top: (@formHeight - 30px)/2;
         height: 30px;
         width: 50px;
-        background: #FFF;
+        background: @colorWhite;
         box-shadow: 0 0 2px @colorFormBorder inset;
         border: 1px lighten(@colorFormBorder, 2%) solid;
         border-radius: 15px;
-        display: inline-block;
         cursor: pointer;
         box-sizing: border-box;
         -webkit-user-select: none;
@@ -85,6 +154,7 @@ mor-switch{
         }
 
         .point{
+            z-index: 2;
             border-radius: 12px;
             height: 24px;
             width: 24px;
@@ -123,181 +193,451 @@ mor-switch{
     }
 
     &.co-t{
-        &.open .track{
-            background: @colorTheme;
-            box-shadow: 0 0 3px darken(@colorTheme, 20%) inset;
-            border: 1px darken(@colorTheme, 15%) solid;
+        .open-note{
+            color: @colorLightBlue;
+        }
 
-            .point{
-                box-shadow: 0 0 4px darken(@colorTheme, 25%);
+        .close-note{
+            color: @colorTheme;
+        }
+
+        &.open {
+            .open-note{
+                color: @colorTheme;
+            }
+
+            .close-note{
+                color: @colorLightBlue;
+            }
+
+            .track{
+                background: @colorTheme;
+                box-shadow: 0 0 3px darken(@colorTheme, 20%) inset;
+                border: 1px darken(@colorTheme, 15%) solid;
+
+                .point{
+                    box-shadow: 0 0 4px darken(@colorTheme, 25%);
+                }
             }
         }
     }
 
     &.co-lt{
-        &.open .track{
-            background: @colorLightTheme;
-            box-shadow: 0 0 3px darken(@colorLightTheme, 8%) inset;
-            border: 1px darken(@colorLightTheme, 6%) solid;
+        .open-note{
+            color: @colorLightBlue;
+        }
 
-            .point{
-                box-shadow: 0 0 4px darken(@colorLightTheme, 15%);
+        .close-note{
+            color: @colorLightTheme;
+        }
+
+        &.open{
+            .open-note{
+                color: @colorLightTheme;
+            }
+
+            .close-note{
+                color: @colorLightBlue;
+            }
+
+            .track{
+                background: @colorLightTheme;
+                box-shadow: 0 0 3px darken(@colorLightTheme, 8%) inset;
+                border: 1px darken(@colorLightTheme, 6%) solid;
+
+                .point{
+                    box-shadow: 0 0 4px darken(@colorLightTheme, 15%);
+                }
             }
         }
     }
 
     &.co-dt{
-        &.open .track{
-            background: @colorDarkTheme;
-            box-shadow: 0 0 3px darken(@colorDarkTheme, 13%) inset;
-            border: 1px darken(@colorDarkTheme, 10%) solid;
+        .open-note{
+            color: @colorLightBlue;
+        }
 
-            .point{
-                box-shadow: 0 0 4px darken(@colorDarkTheme, 20%);
+        .close-note{
+            color: @colorDarkTheme;
+        }
+
+        &.open{
+            .open-note{
+                color: @colorDarkTheme;
+            }
+
+            .close-note{
+                color: @colorLightBlue;
+            }
+
+            .track{
+                background: @colorDarkTheme;
+                box-shadow: 0 0 3px darken(@colorDarkTheme, 13%) inset;
+                border: 1px darken(@colorDarkTheme, 10%) solid;
+
+                .point{
+                    box-shadow: 0 0 4px darken(@colorDarkTheme, 20%);
+                }
             }
         }
     }
 
     &.co-s{
-        &.open .track{
-            background: @colorSuccess;
-            box-shadow: 0 0 3px darken(@colorSuccess, 13%) inset;
-            border: 1px darken(@colorSuccess, 10%) solid;
+        .open-note{
+            color: @colorLightBlue;
+        }
 
-            .point{
-                box-shadow: 0 0 4px darken(@colorSuccess, 25%);
+        .close-note{
+            color: @colorSuccess;
+        }
+
+        &.open{
+            .open-note{
+                color: @colorSuccess;
+            }
+
+            .close-note{
+                color: @colorLightBlue;
+            }
+
+            .track{
+                background: @colorSuccess;
+                box-shadow: 0 0 3px darken(@colorSuccess, 13%) inset;
+                border: 1px darken(@colorSuccess, 10%) solid;
+
+                .point{
+                    box-shadow: 0 0 4px darken(@colorSuccess, 25%);
+                }
             }
         }
     }
 
     &.co-w{
-        &.open .track{
-            background: @colorWarning;
-            box-shadow: 0 0 3px darken(@colorWarning, 13%) inset;
-            border: 1px darken(@colorWarning, 10%) solid;
+        .open-note{
+            color: @colorLightBlue;
+        }
 
-            .point{
-                box-shadow: 0 0 4px darken(@colorWarning, 25%);
+        .close-note{
+            color: @colorWarning;
+        }
+
+        &.open{
+            .open-note{
+                color: @colorWarning;
+            }
+
+            .close-note{
+                color: @colorLightBlue;
+            }
+
+            .track{
+                background: @colorWarning;
+                box-shadow: 0 0 3px darken(@colorWarning, 13%) inset;
+                border: 1px darken(@colorWarning, 10%) solid;
+
+                .point{
+                    box-shadow: 0 0 4px darken(@colorWarning, 25%);
+                }
             }
         }
     }
 
     &.co-d{
-        &.open .track{
-            background: @colorDanger;
-            box-shadow: 0 0 3px darken(@colorDanger, 9%) inset;
-            border: 1px darken(@colorDanger, 4%) solid;
+        .open-note{
+            color: @colorLightBlue;
+        }
 
-            .point{
-                box-shadow: 0 0 4px darken(@colorDanger, 20%);
+        .close-note{
+            color: @colorDanger;
+        }
+
+        &.open{
+            .open-note{
+                color: @colorDanger;
+            }
+
+            .close-note{
+                color: @colorLightBlue;
+            }
+
+            .track{
+                background: @colorDanger;
+                box-shadow: 0 0 3px darken(@colorDanger, 9%) inset;
+                border: 1px darken(@colorDanger, 4%) solid;
+
+                .point{
+                    box-shadow: 0 0 4px darken(@colorDanger, 20%);
+                }
             }
         }
     }
 
     &.co-p{
-        &.open .track{
-            background: @colorPrimary;
-            box-shadow: 0 0 3px darken(@colorPrimary, 13%) inset;
-            border: 1px darken(@colorPrimary, 10%) solid;
+        .open-note{
+            color: @colorLightBlue;
+        }
 
-            .point{
-                box-shadow: 0 0 4px darken(@colorPrimary, 25%);
+        .close-note{
+            color: @colorPrimary;
+        }
+
+        &.open{
+            .open-note{
+                color: @colorPrimary;
+            }
+
+            .close-note{
+                color: @colorLightBlue;
+            }
+
+            .track{
+                background: @colorPrimary;
+                box-shadow: 0 0 3px darken(@colorPrimary, 13%) inset;
+                border: 1px darken(@colorPrimary, 10%) solid;
+
+                .point{
+                    box-shadow: 0 0 4px darken(@colorPrimary, 25%);
+                }
             }
         }
     }
 
     &.co-m{
-        &.open .track{
-            background: @colorMinor;
-            box-shadow: 0 0 3px darken(@colorMinor, 13%) inset;
-            border: 1px darken(@colorMinor, 10%) solid;
+        .open-note{
+            color: @colorLightBlue;
+        }
 
-            .point{
-                box-shadow: 0 0 4px darken(@colorMinor, 25%);
+        .close-note{
+            color: @colorMinor;
+        }
+
+        &.open{
+            .open-note{
+                color: @colorMinor;
+            }
+
+            .close-note{
+                color: @colorLightBlue;
+            }
+
+            .track{
+                background: @colorMinor;
+                box-shadow: 0 0 3px darken(@colorMinor, 13%) inset;
+                border: 1px darken(@colorMinor, 10%) solid;
+
+                .point{
+                    box-shadow: 0 0 4px darken(@colorMinor, 25%);
+                }
             }
         }
     }
 
     &.co-i{
-        &.open .track{
-            background: @colorInfo;
-            box-shadow: 0 0 3px darken(@colorInfo, 13%) inset;
-            border: 1px darken(@colorInfo, 10%) solid;
+        .open-note{
+            color: @colorLightBlue;
+        }
 
-            .point{
-                box-shadow: 0 0 4px darken(@colorInfo, 25%);
+        .close-note{
+            color: @colorInfo;
+        }
+
+        &.open{
+            .open-note{
+                color: @colorInfo;
+            }
+
+            .close-note{
+                color: @colorLightBlue;
+            }
+
+            .track{
+                background: @colorInfo;
+                box-shadow: 0 0 3px darken(@colorInfo, 13%) inset;
+                border: 1px darken(@colorInfo, 10%) solid;
+
+                .point{
+                    box-shadow: 0 0 4px darken(@colorInfo, 25%);
+                }
             }
         }
     }
 
     &.co-bk{
-        &.open .track{
-            background: @colorBlack;
-            box-shadow: 0 0 3px darken(@colorBlack, 30%) inset;
-            border: 1px darken(@colorBlack, 20%) solid;
+        .open-note{
+            color: @colorLightBlue;
+        }
 
-            .point{
-                box-shadow: 0 0 4px darken(@colorBlack, 30%);
+        .close-note{
+            color: @colorBlack;
+        }
+
+        &.open{
+            .open-note{
+                color: @colorBlack;
+            }
+
+            .close-note{
+                color: @colorLightBlue;
+            }
+
+            .track{
+                background: @colorBlack;
+                box-shadow: 0 0 3px darken(@colorBlack, 30%) inset;
+                border: 1px darken(@colorBlack, 20%) solid;
+
+                .point{
+                    box-shadow: 0 0 4px darken(@colorBlack, 30%);
+                }
             }
         }
     }
 
     &.co-lbk{
-        &.open .track{
-            background: @colorLightBlack;
-            box-shadow: 0 0 3px darken(@colorLightBlack, 13%) inset;
-            border: 1px darken(@colorLightBlack, 10%) solid;
+        .open-note{
+            color: @colorLightBlue;
+        }
 
-            .point{
-                box-shadow: 0 0 4px darken(@colorLightBlack, 25%);
+        .close-note{
+            color: @colorLightBlack;
+        }
+
+        &.open{
+            .open-note{
+                color: @colorLightBlack;
+            }
+
+            .close-note{
+                color: @colorLightBlue;
+            }
+
+            .track{
+                background: @colorLightBlack;
+                box-shadow: 0 0 3px darken(@colorLightBlack, 13%) inset;
+                border: 1px darken(@colorLightBlack, 10%) solid;
+
+                .point{
+                    box-shadow: 0 0 4px darken(@colorLightBlack, 25%);
+                }
             }
         }
     }
 
     &.co-elbk{
-        &.open .track{
-            background: @colorExtraLightBlack;
-            box-shadow: 0 0 3px darken(@colorExtraLightBlack, 13%) inset;
-            border: 1px darken(@colorExtraLightBlack, 10%) solid;
+        .open-note{
+            color: @colorLightBlue;
+        }
 
-            .point{
-                box-shadow: 0 0 4px darken(@colorExtraLightBlack, 25%);
+        .close-note{
+            color: @colorExtraLightBlack;
+        }
+
+        &.open{
+            .open-note{
+                color: @colorExtraLightBlack;
+            }
+
+            .close-note{
+                color: @colorLightBlue;
+            }
+
+            .track{
+                background: @colorExtraLightBlack;
+                box-shadow: 0 0 3px darken(@colorExtraLightBlack, 13%) inset;
+                border: 1px darken(@colorExtraLightBlack, 10%) solid;
+
+                .point{
+                    box-shadow: 0 0 4px darken(@colorExtraLightBlack, 25%);
+                }
             }
         }
     }
 
     &.co-bu{
-        &.open .track{
-            background: @colorBlue;
-            box-shadow: 0 0 3px darken(@colorBlue, 13%) inset;
-            border: 1px darken(@colorBlue, 10%) solid;
+        .open-note{
+            color: @colorExtraLightBlue;
+        }
 
-            .point{
-                box-shadow: 0 0 4px darken(@colorBlue, 25%);
+        .close-note{
+            color: @colorBlue;
+        }
+
+        &.open{
+            .open-note{
+                color: @colorBlue;
+            }
+
+            .close-note{
+                color: @colorExtraLightBlue;
+            }
+
+            .track{
+                background: @colorBlue;
+                box-shadow: 0 0 3px darken(@colorBlue, 13%) inset;
+                border: 1px darken(@colorBlue, 10%) solid;
+
+                .point{
+                    box-shadow: 0 0 4px darken(@colorBlue, 25%);
+                }
             }
         }
     }
 
     &.co-lbu{
-        &.open .track{
-            background: @colorLightBlue;
-            box-shadow: 0 0 3px darken(@colorLightBlue, 13%) inset;
-            border: 1px darken(@colorLightBlue, 10%) solid;
+        .open-note{
+            color: @colorExtraLightBlue;
+        }
 
-            .point{
-                box-shadow: 0 0 4px darken(@colorLightBlue, 25%);
+        .close-note{
+            color: @colorLightBlue;
+        }
+
+        &.open{
+            .open-note{
+                color: @colorLightBlue;
+            }
+
+            .close-note{
+                color: @colorExtraLightBlue;
+            }
+
+            .track{
+                background: @colorLightBlue;
+                box-shadow: 0 0 3px darken(@colorLightBlue, 13%) inset;
+                border: 1px darken(@colorLightBlue, 10%) solid;
+
+                .point{
+                    box-shadow: 0 0 4px darken(@colorLightBlue, 25%);
+                }
             }
         }
     }
 
     &.co-elbu{
-        &.open .track{
-            background: @colorExtraLightBlue;
-            box-shadow: 0 0 3px darken(@colorExtraLightBlue, 13%) inset;
-            border: 1px darken(@colorExtraLightBlue, 10%) solid;
+        .open-note{
+            color: @colorExtraLightBlue;
+        }
 
-            .point{
-                box-shadow: 0 0 4px darken(@colorExtraLightBlue, 25%);
+        .close-note{
+            color: @colorExtraLightBlue;
+        }
+
+        &.open{
+            .open-note{
+                color: @colorExtraLightBlue;
+            }
+
+            .close-note{
+                color: @colorExtraLightBlue;
+            }
+
+            .track{
+                background: @colorExtraLightBlue;
+                box-shadow: 0 0 3px darken(@colorExtraLightBlue, 13%) inset;
+                border: 1px darken(@colorExtraLightBlue, 10%) solid;
+
+                .point{
+                    box-shadow: 0 0 4px darken(@colorExtraLightBlue, 25%);
+                }
             }
         }
     }
@@ -322,13 +662,39 @@ mor-switch{
             }
         }
 
-        &.open .track{
-            background: @colorSilver;
-            box-shadow: 0 0 3px darken(@colorSilver, 6%) inset;
-            border: 1px darken(@colorSilver, 4%) solid;
+        .open-note{
+            color: @colorSilver;
+        }
 
-            .point{
-                box-shadow: 0 0 4px darken(@colorSilver, 10%);
+        .close-note{
+            color: @colorSilver;
+        }
+
+        .close-mark{
+            color: @colorWhite;
+        }
+
+        .open-mark{
+            color: @colorLightBlack;
+        }
+
+        &.open{
+            .open-note{
+                color: @colorSilver;
+            }
+
+            .close-note{
+                color: @colorSilver;
+            }
+
+            .track{
+                background: @colorSilver;
+                box-shadow: 0 0 3px darken(@colorSilver, 6%) inset;
+                border: 1px darken(@colorSilver, 4%) solid;
+
+                .point{
+                    box-shadow: 0 0 4px darken(@colorSilver, 10%);
+                }
             }
         }
     }
@@ -353,13 +719,39 @@ mor-switch{
             }
         }
 
-        &.open .track{
-            background: @colorLightSilver;
-            box-shadow: 0 0 3px darken(@colorLightSilver, 6%) inset;
-            border: 1px darken(@colorLightSilver, 4%) solid;
+        .open-note{
+            color: @colorSilver;
+        }
 
-            .point{
-                box-shadow: 0 0 4px darken(@colorLightSilver, 10%);
+        .close-note{
+            color: @colorLightSilver;
+        }
+
+        .close-mark{
+            color: @colorWhite;
+        }
+
+        .open-mark{
+            color: @colorLightBlack;
+        }
+
+        &.open{
+            .open-note{
+                color: @colorLightSilver;
+            }
+
+            .close-note{
+                color: @colorSilver;
+            }
+
+            .track{
+                background: @colorLightSilver;
+                box-shadow: 0 0 3px darken(@colorLightSilver, 6%) inset;
+                border: 1px darken(@colorLightSilver, 4%) solid;
+
+                .point{
+                    box-shadow: 0 0 4px darken(@colorLightSilver, 10%);
+                }
             }
         }
     }
@@ -384,13 +776,39 @@ mor-switch{
             }
         }
 
-        &.open .track{
-            background: @colorExtraLightSilver;
-            box-shadow: 0 0 3px darken(@colorExtraLightSilver, 6%) inset;
-            border: 1px darken(@colorExtraLightSilver, 4%) solid;
+        .open-note{
+            color: @colorSilver;
+        }
 
-            .point{
-                box-shadow: 0 0 4px darken(@colorExtraLightSilver, 10%);
+        .close-note{
+            color: @colorExtraLightSilver;
+        }
+
+        .close-mark{
+            color: @colorWhite;
+        }
+
+        .open-mark{
+            color: @colorLightBlack;
+        }
+
+        &.open{
+            .open-note{
+                color: @colorExtraLightSilver;
+            }
+
+            .close-note{
+                color: @colorSilver;
+            }
+
+            .track{
+                background: @colorExtraLightSilver;
+                box-shadow: 0 0 3px darken(@colorExtraLightSilver, 6%) inset;
+                border: 1px darken(@colorExtraLightSilver, 4%) solid;
+
+                .point{
+                    box-shadow: 0 0 4px darken(@colorExtraLightSilver, 10%);
+                }
             }
         }
     }
@@ -415,13 +833,39 @@ mor-switch{
             }
         }
 
-        &.open .track{
-            background: @colorGray;
-            box-shadow: 0 0 3px darken(@colorGray, 6%) inset;
-            border: 1px darken(@colorGray, 4%) solid;
+        .open-note{
+            color: @colorSilver;
+        }
 
-            .point{
-                box-shadow: 0 0 4px darken(@colorGray, 10%);
+        .close-note{
+            color: @colorGray;
+        }
+
+        .close-mark{
+            color: @colorWhite;
+        }
+
+        .open-mark{
+            color: @colorLightBlack;
+        }
+
+        &.open{
+            .open-note{
+                color: @colorGray;
+            }
+
+            .close-note{
+                color: @colorSilver;
+            }
+
+            .track{
+                background: @colorGray;
+                box-shadow: 0 0 3px darken(@colorGray, 6%) inset;
+                border: 1px darken(@colorGray, 4%) solid;
+
+                .point{
+                    box-shadow: 0 0 4px darken(@colorGray, 10%);
+                }
             }
         }
     }
@@ -446,13 +890,39 @@ mor-switch{
             }
         }
 
-        &.open .track{
-            background: @colorLightGray;
-            box-shadow: 0 0 3px darken(@colorLightGray, 6%) inset;
-            border: 1px darken(@colorLightGray, 4%) solid;
+        .open-note{
+            color: @colorSilver;
+        }
 
-            .point{
-                box-shadow: 0 0 4px darken(@colorLightGray, 10%);
+        .close-note{
+            color: @colorLightGray;
+        }
+
+        .close-mark{
+            color: @colorWhite;
+        }
+
+        .open-mark{
+            color: @colorLightBlack;
+        }
+
+        &.open{
+            .open-note{
+                color: @colorLightGray;
+            }
+
+            .close-note{
+                color: @colorSilver;
+            }
+
+            .track{
+                background: @colorLightGray;
+                box-shadow: 0 0 3px darken(@colorLightGray, 6%) inset;
+                border: 1px darken(@colorLightGray, 4%) solid;
+
+                .point{
+                    box-shadow: 0 0 4px darken(@colorLightGray, 10%);
+                }
             }
         }
     }
@@ -477,13 +947,39 @@ mor-switch{
             }
         }
 
-        &.open .track{
-            background: @colorLightGray;
-            box-shadow: 0 0 3px darken(@colorLightGray, 6%) inset;
-            border: 1px darken(@colorLightGray, 4%) solid;
+        .open-note{
+            color: @colorSilver;
+        }
 
-            .point{
-                box-shadow: 0 0 4px darken(@colorLightGray, 10%);
+        .close-note{
+            color: @colorWhite;
+        }
+
+        .close-mark{
+            color: @colorWhite;
+        }
+
+        .open-mark{
+            color: @colorLightBlack;
+        }
+
+        &.open{
+            .open-note{
+                color: @colorWhite;
+            }
+
+            .close-note{
+                color: @colorSilver;
+            }
+
+            .track{
+                background: @colorLightGray;
+                box-shadow: 0 0 3px darken(@colorLightGray, 6%) inset;
+                border: 1px darken(@colorLightGray, 4%) solid;
+
+                .point{
+                    box-shadow: 0 0 4px darken(@colorLightGray, 10%);
+                }
             }
         }
     }

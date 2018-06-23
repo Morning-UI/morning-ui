@@ -253,6 +253,36 @@ let data = {
                 valueContent : `['Jim', 'Tom']`
             }
         ],
+        colorpicker : [
+            {
+                valueType : 'String',
+                valueContent : `'#ff0000'`
+            },
+            {
+                valueType : 'Number',
+                valueContent : '0'
+            },
+            {
+                valueType : 'Boolean',
+                valueContent : 'true'
+            },
+            {
+                valueType : 'Null',
+                valueContent : 'null'
+            },
+            {
+                valueType : 'Undefined',
+                valueContent : 'undefined'
+            },
+            {
+                valueType : 'Object',
+                valueContent : '{\'#ff0000\':\'#ff0000\'}'
+            },
+            {
+                valueType : 'Array',
+                valueContent : '[\'#ff0000\']'
+            }
+        ],
         checkbox : [
             {
                 valueType : 'String',
@@ -463,6 +493,66 @@ let data = {
                 valueContent : '[{path:\'http://morning-ui-image.test.upcdn.net/uploaddemo/17491/1511259398095810608.png\',name:\'1511259398095810608.png\'}]'
             }
         ],
+        slider : [
+            {
+                valueType : 'String',
+                valueContent : `'40'`
+            },
+            {
+                valueType : 'Number',
+                valueContent : '40'
+            },
+            {
+                valueType : 'Boolean',
+                valueContent : 'true'
+            },
+            {
+                valueType : 'Null',
+                valueContent : 'null'
+            },
+            {
+                valueType : 'Undefined',
+                valueContent : 'undefined'
+            },
+            {
+                valueType : 'Object',
+                valueContent : '{}'
+            },
+            {
+                valueType : 'Array',
+                valueContent : `[40]`
+            }
+        ],
+        texteditor : [
+            {
+                valueType : 'String',
+                valueContent : `'文章内容...'`
+            },
+            {
+                valueType : 'Number',
+                valueContent : '40'
+            },
+            {
+                valueType : 'Boolean',
+                valueContent : 'true'
+            },
+            {
+                valueType : 'Null',
+                valueContent : 'null'
+            },
+            {
+                valueType : 'Undefined',
+                valueContent : 'undefined'
+            },
+            {
+                valueType : 'Object',
+                valueContent : `{a:'文章内容...'}`
+            },
+            {
+                valueType : 'Array',
+                valueContent : `['文章内容...']`
+            }
+        ],
         imagemap : [
             {
                 valueType : 'String',
@@ -652,7 +742,7 @@ color:gray
 :::repeat/html
 state:normal,disabled,readonly
 ---
-<div style="width:300px;">
+<div style="width:300px;{%statusDivStyle%}">
     <ui-{%uikey%} state="{$stateKey}" :default-value="{%&statusDefaultValue%}" form-name="{$&stateName}" {%&statusMoreAttr%}>{%&statusSlot%}</ui-{%uikey%}>
 </div>
 <br>
@@ -679,7 +769,7 @@ color:blue
 color:silver
 color:gray
 ---
-<div style="width:300px;">
+<div style="width:300px;{%statusDivStyle%}">
     <ui-{%uikey%} color="{$colorKey}" :default-value="{%&statusDefaultValue%}" form-name="{$&colorName}" {%&statusMoreAttr%}>{%&statusSlot%}</ui-{%uikey%}>
 </div>
 <br>
@@ -702,7 +792,7 @@ state:normal,disabled,readonly
 :::repeat/html
 formConfig
 ---
-<div style="width:300px;">
+<div style="width:300px;{%configDivStyle%}">
     <ui-{%uikey%} form-name="{$formName}" {%&configMoreAttr%}>{%&configSlot%}</ui-{%uikey%}>
 </div>
 :::
@@ -712,7 +802,7 @@ formConfig
 :::repeat/html
 formConfig
 ---
-<div style="width:300px;">
+<div style="width:300px;{%configDivStyle%}">
     <ui-{%uikey%} form-name="{$formName}" form-key="{$formKey}" {%&configMoreAttr%}>{%&configSlot%}</ui-{%uikey%}>
 </div>
 :::
@@ -724,7 +814,7 @@ formConfig
 :::repeat/html
 formConfig
 ---
-<div style="width:300px;">
+<div style="width:300px;{%configDivStyle%}">
     <!-- 设置单个组 -->
     <ui-{%uikey%} form-name="{$formName}" form-key="{$formKey}" group="{$formGroupOne}" {%&configMoreAttr%}>{%&configSlot%}</ui-{%uikey%}>
 </div>
@@ -735,7 +825,7 @@ formConfig
 :::repeat/html
 formConfig
 ---
-<div style="width:300px;">
+<div style="width:300px;{%configDivStyle%}">
     <!-- 设置多个组 -->
     <ui-{%uikey%} form-name="{$formName}" form-key="{$formKey}" :group="['group1', 'group2', 'group3']" {%&configMoreAttr%}>{%&configSlot%}</ui-{%uikey%}>
 </div>
@@ -746,7 +836,7 @@ formConfig
 :::repeat/html
 formConfig
 ---
-<div style="width:300px;">
+<div style="width:300px;{%configDivStyle%}">
     <ui-{%uikey%} form-name="{$formName}" :default-value="{%&configDefaultValue%}" {%&configMoreAttr%}>{%&configSlot%}</ui-{%uikey%}>
 </div>
 :::
@@ -758,7 +848,7 @@ formConfig
 :::repeat/html
 formConfig
 ---
-<div style="width:300px;">
+<div style="width:300px;{%configDivStyle%}">
     <p>{$formName}</p>
     <ui-{%uikey%} form-name="{$formName}" hide-name {%&configMoreAttr%}>{%&configSlot%}</ui-{%uikey%}>
 </div>
@@ -769,7 +859,7 @@ formConfig
 :::repeat/html
 formConfig
 ---
-<div style="width:300px;">
+<div style="width:300px;{%configDivStyle%}">
     <ui-{%uikey%} form-name="{$formName}" :clearable="true" :default-value="{%&configDefaultValue%}" {%&configMoreAttr%}>{%&configSlot%}</ui-{%uikey%}>
 </div>
 :::
@@ -796,7 +886,7 @@ formConfig
 |value|YES|需要设置表单的值，如果需要清空表单的值，可以不传此参数。|接受任何数值。<br/>\`undefined\`:清空表单的值<br>原始值:表单的原始值，根据表单不同可以是字符串、对象、数组等<br>JSON数值:表单原始值JSON序列化后的值，传入后表单会自动解析并还原原始值。|Any|\`undefined\`|
 
 :::democode/html
-<div style="width:300px;">
+<div style="width:300px;{%methodDivStyle%}">
     <ui-{%uikey%} ref="demoMethodSet" form-name="表单名" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>
     <br>
     <ui-link js="window.morning.findVM('demoMethodSet').set({%&methodValue%})">设置值</ui-link>
@@ -809,7 +899,7 @@ formConfig
 获取表单的原始值。
 
 :::democode/html
-<div style="width:300px;">
+<div style="width:300px;{%methodDivStyle%}">
     <ui-{%uikey%} ref="demoMethodGet" form-name="表单名" :default-value="{%&methodDefaultValue%}" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>
     <br>
     <ui-link js="console.log(window.morning.findVM('demoMethodGet').get())">获取表单原始值</ui-link>
@@ -821,7 +911,7 @@ formConfig
 获取表单值的JSON序列化字符串。若你需要和其他程序进行数据交互，使用JSON是一种较好的方法。
 
 :::democode/html
-<div style="width:300px;">
+<div style="width:300px;{%methodDivStyle%}">
     <ui-{%uikey%} ref="demoMethodGetJson" form-name="表单名" :default-value="{%&methodDefaultValue%}" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>
     <br>
     <ui-link js="console.log(window.morning.findVM('demoMethodGetJson').getJson())">获取表单值的JSON序列化字符串</ui-link>
@@ -837,7 +927,7 @@ formConfig
 |name|YES|需要设置表单的名称，如果需要清空表单的名称，可以不传此参数。|任意字符串|String|\`undefined\`|
 
 :::democode/html
-<div style="width:300px;">
+<div style="width:300px;{%methodDivStyle%}">
     <ui-{%uikey%} ref="demoMethodSetName" form-name="姓名" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>
     <br>
     <ui-link js="alert(window.morning.findVM('demoMethodSetName').getName())">获取表单名称</ui-link>
@@ -851,7 +941,7 @@ formConfig
 获取表单的名称。
 
 :::democode/html
-<div style="width:300px;">
+<div style="width:300px;{%methodDivStyle%}">
     <ui-{%uikey%} ref="demoMethodGetName" form-name="姓名" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>
     <br>
     <ui-link js="alert(window.morning.findVM('demoMethodGetName').getName())">获取表单名称</ui-link>
@@ -867,7 +957,7 @@ formConfig
 |key|YES|需要设置表单的KEY，如果需要清空表单的KEY，可以不传此参数。|任意字符串|String|\`undefined\`|
 
 :::democode/html
-<div style="width:300px;">
+<div style="width:300px;{%methodDivStyle%}">
     <ui-{%uikey%} ref="demoMethodSetKey" form-name="表单名" form-key="name" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>
     <br>
     <ui-link js="alert(window.morning.findVM('demoMethodSetKey').getKey())">获取表单KEY</ui-link>
@@ -881,7 +971,7 @@ formConfig
 获取表单的KEY。
 
 :::democode/html
-<div style="width:300px;">
+<div style="width:300px;{%methodDivStyle%}">
     <ui-{%uikey%} ref="demoMethodGetKey" form-name="表单名" form-key="name" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>
     <br>
     <ui-link js="alert(window.morning.findVM('demoMethodGetKey').getKey())">获取表单KEY</ui-link>
@@ -897,7 +987,7 @@ formConfig
 |groups|YES|需要设置的表单组。如果需要清空所有表单组，可以不传此参数。|\`undefined\`:清空所有表单组<br>String:设置一个表单组<br>Array:设置多个表单组。|String<br>Array<br>Undefined|\`undefined\`|
 
 :::democode/html
-<div style="width:300px;">
+<div style="width:300px;{%methodDivStyle%}">
     <!-- 设置多个组 -->
     <ui-{%uikey%} ref="demoMethodSetGroup" form-name="表单名" form-key="name" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>
     <br>
@@ -913,7 +1003,7 @@ formConfig
 获取表单所属的表单组。
 
 :::democode/html
-<div style="width:300px;">
+<div style="width:300px;{%methodDivStyle%}">
     <!-- 设置多个组 -->
     <ui-{%uikey%} ref="demoMethodGetGroup" form-name="表单名" form-key="name" group="group1" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>
     <br>
@@ -930,7 +1020,7 @@ formConfig
 |group|NO|添加表单组的KEY|表单组的KEY|String|\`undefined\`|
 
 :::democode/html
-<div style="width:300px;">
+<div style="width:300px;{%methodDivStyle%}">
     <!-- 设置多个组 -->
     <ui-{%uikey%} ref="demoMethodAddGroup" form-name="表单名" form-key="name" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>
     <br>
@@ -948,7 +1038,7 @@ formConfig
 |group|NO|移除表单组的KEY|表单组的KEY|String|\`undefined\`|
 
 :::democode/html
-<div style="width:300px;">
+<div style="width:300px;{%methodDivStyle%}">
     <!-- 设置多个组 -->
     <ui-{%uikey%} ref="demoMethodRemoveGroup" form-name="表单名" form-key="name" group="group1" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>
     <br>
@@ -973,7 +1063,7 @@ new Vue({
     }
 });
 ---
-<div style="width:300px;">
+<div style="width:300px;{%eventDivStyle%}">
     <ui-{%uikey%} ref="demoValueChange" form-name="表单名" @value-change="echo" {%&eventMoreAttr%}>{%&eventSlot%}</ui-{%uikey%}>
     <br>
     <ui-link js="window.morning.findVM('demoValueChange').set({%&eventValue%})">触发value-change事件</ui-link>
@@ -999,7 +1089,7 @@ window.demoEventLifecycle = new Vue({
     }
 });
 ---
-<div style="width:300px;">
+<div style="width:300px;{%eventDivStyle%}">
     <ui-{%uikey%}
         ref="demoEventLifecycle"
         form-name="表单名"
@@ -1482,6 +1572,10 @@ a{ }
 
     &+pre{
         border-radius: 0 0 3px 3px;
+    }
+
+    mor-btn{
+        vertical-align: top; 
     }
 }
 </style>

@@ -6,22 +6,86 @@ mor-btn{
     border-radius: 0.3em;
     position: relative;
     height: 2.8em;
-    line-height: 2.8em;
+    line-height: ~`'calc(2.8em - 2px)'`;
+    box-sizing: border-box;
 
     &:hover{
         cursor: pointer;
     }
 
-    &.loading{
-        .morningicon{
+    &.plain{
+        border: 1px #FFF solid;
+    }
+
+    &.round{
+        border-radius: 100em;
+    }
+
+    &.circle{
+        width: 2.8em;
+        overflow: hidden;
+        border-radius: 100em;
+        padding: 0;
+        text-align: center;
+        position: relative;
+
+        > i{
             position: absolute;
-            left: ~`'calc( 50% - 0.5em )'`;
-            top: ~`'calc( 50% - 0.5em )'`;
-            line-height: 1em;
-            animation-name: rotation;
-            animation-duration: 1s;
-            animation-timing-function: linear;
-            animation-iteration-count: infinite;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        > mor-img{
+            width: 100%;
+            height: 100%;
+
+            > img{
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        &:not(.st-disabled):hover,
+        &.st-hover{
+            > mor-img::after{
+                content: ' ';
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.15);
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+        }
+
+        &:not(.st-disabled):active,
+        &.st-active{
+            > mor-img::after{
+                content: ' ';
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.25);
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+        }
+    }
+
+    &.loading{
+        .mo-loader{
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+
+            .mo-loader-path{
+                stroke: @colorWhite;
+                opacity: 0.85;
+            }
         }
 
         span{
@@ -33,47 +97,51 @@ mor-btn{
         }
     }
 
-    // &.processing{
-    //     .st-loading;
-
-    //     .morningicon{
-    //         animation-name: rotationContrast;
-    //     }
-    // }
-
     &.si-xxl{
         font-size: @fontSize*1.3;
 
-        .morningicon{
-            font-size: @fontSize*1.6;
-            transform-origin: @fontSize*0.8 @fontSize*0.78125;
+        > i{
+            font-size: @fontSize*2.2;
+        }
+
+        .mo-loader{
+            width: 1.6em;
         }
     }
 
     &.si-xl{
         font-size: @fontSize*1.1;
 
-        .morningicon{
-            font-size: @fontSize*1.4;
-            transform-origin: @fontSize*0.69375 @fontSize*0.6875;
+        > i{
+            font-size: @fontSize*1.8;
+        }
+
+        .mo-loader{
+            width: 1.4em;
         }
     }
 
     &.si-l{
         font-size: @fontSize*1;
 
-        .morningicon{
-            font-size: @fontSize*1.3;
-            transform-origin: @fontSize*0.65 @fontSize*0.625;
+        > i{
+            font-size: @fontSize*1.6;
+        }
+
+        .mo-loader{
+            width: 1.3em;
         }
     }
 
     &.si-m{
         font-size: @fontSize*0.8125;
 
-        .morningicon{
-            font-size: @fontSize*1.15;
-            transform-origin: @fontSize*0.575 @fontSize*0.5625;
+        > i{
+            font-size: @fontSize*1.4;
+        }
+
+        .mo-loader{
+            width: 1.2em;
         }
     }
 
@@ -83,9 +151,16 @@ mor-btn{
         line-height: 2.6em;
         padding: 0 0.8em;
 
-        .morningicon{
-            font-size: @fontSize*0.9;
-            transform-origin: @fontSize*0.45 @fontSize*0.4375;
+        > i{
+            font-size: @fontSize*1.2;
+        }
+
+        &.circle{
+            width: 2.6em;
+        }
+
+        .mo-loader{
+            width: 1.2em;
         }
     }
 
@@ -95,9 +170,16 @@ mor-btn{
         line-height: 2.2em;
         padding: 0 0.6em;
 
-        .morningicon{
-            font-size: @fontSize*0.85;
-            transform-origin: @fontSize*0.425 @fontSize*0.40625;
+        > i{
+            font-size: @fontSize*1;
+        }
+
+        &.circle{
+            width: 2.2em;
+        }
+
+        .mo-loader{
+            width: 1.2em;
         }
     }
 
@@ -107,9 +189,16 @@ mor-btn{
         line-height: 1.8em;
         padding: 0 0.4em;
 
-        .morningicon{
+        > i{
             font-size: @fontSize*0.75;
-            transform-origin: @fontSize*0.375 @fontSize*0.375;
+        }
+
+        &.circle{
+            width: 1.8em;
+        }
+
+        .mo-loader{
+            width: 1em;
         }
     }
 
@@ -117,9 +206,25 @@ mor-btn{
         background-color: @colorTheme;
         color: @colorWhite;
 
+        &.plain{
+            background-color: lighten(@colorTheme, 35%);
+            border-color: darken(@colorTheme, 5%);
+            color: @colorTheme;
+
+            .mo-loader{
+                .mo-loader-path{
+                    stroke: @colorTheme;
+                }
+            }
+        }
+
         &:not(.st-disabled):hover,
         &.st-hover{
             background-color: darken(@colorTheme, 5%);
+
+            &.plain{
+                color: @colorWhite;
+            }
         }
 
         &:not(.st-disabled):active,
@@ -127,7 +232,10 @@ mor-btn{
             background-color: darken(@colorTheme, 10%);
         }
 
-        &.st-disabled{
+        &.st-disabled,
+        &.st-disabled.plain{
+            border: none;
+            background-color: @colorTheme;
             color: lighten(@colorTheme, 25%);
         }
     }
@@ -136,9 +244,25 @@ mor-btn{
         background-color: @colorLightTheme;
         color: @colorWhite;
 
+        &.plain{
+            background-color: lighten(@colorLightTheme, 25%);
+            border-color: darken(@colorLightTheme, 5%);
+            color: @colorLightTheme;
+
+            .mo-loader{
+                .mo-loader-path{
+                    stroke: @colorLightTheme;
+                }
+            }
+        }
+
         &:not(.st-disabled):hover,
         &.st-hover{
             background-color: darken(@colorLightTheme, 5%);
+
+            &.plain{
+                color: @colorWhite;
+            }
         }
 
         &:not(.st-disabled):active,
@@ -146,7 +270,10 @@ mor-btn{
             background-color: darken(@colorLightTheme, 10%);
         }
 
-        &.st-disabled{
+        &.st-disabled,
+        &.st-disabled.plain{
+            border: none;
+            background-color: @colorLightTheme;
             color: lighten(@colorLightTheme, 20%);
         }
     }
@@ -155,9 +282,25 @@ mor-btn{
         background-color: @colorDarkTheme;
         color: @colorWhite;
 
+        &.plain{
+            background-color: lighten(@colorDarkTheme, 35%);
+            border-color: darken(@colorDarkTheme, 5%);
+            color: @colorDarkTheme;
+
+            .mo-loader{
+                .mo-loader-path{
+                    stroke: @colorDarkTheme;
+                }
+            }
+        }
+
         &:not(.st-disabled):hover,
         &.st-hover{
             background-color: darken(@colorDarkTheme, 5%);
+
+            &.plain{
+                color: @colorWhite;
+            }
         }
 
         &:not(.st-disabled):active,
@@ -165,7 +308,10 @@ mor-btn{
             background-color: darken(@colorDarkTheme, 10%);
         }
 
-        &.st-disabled{
+        &.st-disabled,
+        &.st-disabled.plain{
+            border: none;
+            background-color: @colorDarkTheme;
             color: lighten(@colorDarkTheme, 25%);
         }
     }
@@ -174,9 +320,25 @@ mor-btn{
         background-color: @colorSuccess;
         color: @colorWhite;
 
+        &.plain{
+            background-color: lighten(@colorSuccess, 38%);
+            border-color: darken(@colorSuccess, 5%);
+            color: @colorSuccess;
+
+            .mo-loader{
+                .mo-loader-path{
+                    stroke: @colorSuccess;
+                }
+            }
+        }
+
         &:not(.st-disabled):hover,
         &.st-hover{
             background-color: darken(@colorSuccess, 5%);
+
+            &.plain{
+                color: @colorWhite;
+            }
         }
 
         &:not(.st-disabled):active,
@@ -184,7 +346,10 @@ mor-btn{
             background-color: darken(@colorSuccess, 10%);
         }
 
-        &.st-disabled{
+        &.st-disabled,
+        &.st-disabled.plain{
+            border: none;
+            background-color: @colorSuccess;
             color: lighten(@colorSuccess, 35%);
         }
     }
@@ -193,9 +358,25 @@ mor-btn{
         background-color: @colorWarning;
         color: @colorWhite;
 
+        &.plain{
+            background-color: lighten(@colorWarning, 32%);
+            border-color: darken(@colorWarning, 5%);
+            color: @colorWarning;
+
+            .mo-loader{
+                .mo-loader-path{
+                    stroke: @colorWarning;
+                }
+            }
+        }
+
         &:not(.st-disabled):hover,
         &.st-hover{
             background-color: darken(@colorWarning, 5%);
+
+            &.plain{
+                color: @colorWhite;
+            }
         }
 
         &:not(.st-disabled):active,
@@ -203,7 +384,10 @@ mor-btn{
             background-color: darken(@colorWarning, 10%);
         }
 
-        &.st-disabled{
+        &.st-disabled,
+        &.st-disabled.plain{
+            border: none;
+            background-color: @colorWarning;
             color: lighten(@colorWarning, 35%);
         }
     }
@@ -212,9 +396,25 @@ mor-btn{
         background-color: @colorDanger;
         color: @colorWhite;
 
+        &.plain{
+            background-color: lighten(@colorDanger, 38%);
+            border-color: darken(@colorDanger, 5%);
+            color: @colorDanger;
+
+            .mo-loader{
+                .mo-loader-path{
+                    stroke: @colorDanger;
+                }
+            }
+        }
+
         &:not(.st-disabled):hover,
         &.st-hover{
             background-color: darken(@colorDanger, 5%);
+
+            &.plain{
+                color: @colorWhite;
+            }
         }
 
         &:not(.st-disabled):active,
@@ -222,7 +422,10 @@ mor-btn{
             background-color: darken(@colorDanger, 10%);
         }
 
-        &.st-disabled{
+        &.st-disabled,
+        &.st-disabled.plain{
+            border: none;
+            background-color: @colorDanger;
             color: lighten(@colorDanger, 35%);
         }
     }
@@ -231,9 +434,25 @@ mor-btn{
         background-color: @colorPrimary;
         color: @colorWhite;
 
+        &.plain{
+            background-color: lighten(@colorPrimary, 42%);
+            border-color: darken(@colorPrimary, 5%);
+            color: @colorPrimary;
+
+            .mo-loader{
+                .mo-loader-path{
+                    stroke: @colorPrimary;
+                }
+            }
+        }
+
         &:not(.st-disabled):hover,
         &.st-hover{
             background-color: darken(@colorPrimary, 5%);
+
+            &.plain{
+                color: @colorWhite;
+            }
         }
 
         &:not(.st-disabled):active,
@@ -241,7 +460,10 @@ mor-btn{
             background-color: darken(@colorPrimary, 10%);
         }
 
-        &.st-disabled{
+        &.st-disabled,
+        &.st-disabled.plain{
+            border: none;
+            background-color: @colorPrimary;
             color: lighten(@colorPrimary, 35%);
         }
     }
@@ -250,9 +472,25 @@ mor-btn{
         background-color: @colorMinor;
         color: @colorWhite;
 
+        &.plain{
+            background-color: lighten(@colorMinor, 26%);
+            border-color: darken(@colorMinor, 5%);
+            color: @colorMinor;
+
+            .mo-loader{
+                .mo-loader-path{
+                    stroke: @colorMinor;
+                }
+            }
+        }
+
         &:not(.st-disabled):hover,
         &.st-hover{
             background-color: darken(@colorMinor, 5%);
+
+            &.plain{
+                color: @colorWhite;
+            }
         }
 
         &:not(.st-disabled):active,
@@ -260,7 +498,10 @@ mor-btn{
             background-color: darken(@colorMinor, 10%);
         }
 
-        &.st-disabled{
+        &.st-disabled,
+        &.st-disabled.plain{
+            border: none;
+            background-color: @colorMinor;
             color: lighten(@colorMinor, 25%);
         }
     }
@@ -269,17 +510,37 @@ mor-btn{
         background-color: @colorInfo;
         color: @colorWhite;
 
+        &.plain{
+            background-color: lighten(@colorInfo, 60%);
+            border-color: darken(@colorInfo, 5%);
+            color: @colorInfo;
+
+            .mo-loader{
+                .mo-loader-path{
+                    stroke: @colorInfo;
+                }
+            }
+        }
+
         &:not(.st-disabled):hover,
         &.st-hover{
             background-color: darken(@colorInfo, 5%);
+
+            &.plain{
+                color: @colorWhite;
+            }
         }
 
         &:not(.st-disabled):active,
-        &.st-active{
+        &.st-active,
+        &.st-disabled.plain{
             background-color: darken(@colorInfo, 10%);
         }
 
-        &.st-disabled{
+        &.st-disabled,
+        &.st-disabled.plain{
+            border: none;
+            background-color: @colorInfo;
             color: lighten(@colorInfo, 20%);
         }
     }
@@ -288,9 +549,25 @@ mor-btn{
         background-color: @colorBlack;
         color: @colorWhite;
 
+        &.plain{
+            background-color: lighten(@colorBlack, 55%);
+            border-color: @colorBlack;
+            color: @colorBlack;
+
+            .mo-loader{
+                .mo-loader-path{
+                    stroke: @colorBlack;
+                }
+            }
+        }
+
         &:not(.st-disabled):hover,
         &.st-hover{
             background-color: lighten(@colorBlack, 5%);
+
+            &.plain{
+                color: @colorWhite;
+            }
         }
 
         &:not(.st-disabled):active,
@@ -299,7 +576,10 @@ mor-btn{
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.4) inset;
         }
 
-        &.st-disabled{
+        &.st-disabled,
+        &.st-disabled.plain{
+            border: none;
+            background-color: @colorBlack;
             color: lighten(@colorBlack, 40%);
         }
     }
@@ -308,9 +588,25 @@ mor-btn{
         background-color: @colorLightBlack;
         color: @colorWhite;
 
+        &.plain{
+            background-color: lighten(@colorLightBlack, 50%);
+            border-color: @colorLightBlack;
+            color: @colorLightBlack;
+
+            .mo-loader{
+                .mo-loader-path{
+                    stroke: @colorLightBlack;
+                }
+            }
+        }
+
         &:not(.st-disabled):hover,
         &.st-hover{
             background-color: lighten(@colorLightBlack, 5%);
+
+            &.plain{
+                color: @colorWhite;
+            }
         }
 
         &:not(.st-disabled):active,
@@ -319,7 +615,10 @@ mor-btn{
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.4) inset;
         }
 
-        &.st-disabled{
+        &.st-disabled,
+        &.st-disabled.plain{
+            border: none;
+            background-color: @colorLightBlack;
             color: lighten(@colorLightBlack, 40%);
         }
     }
@@ -328,18 +627,38 @@ mor-btn{
         background-color: @colorExtraLightBlack;
         color: @colorWhite;
 
+        &.plain{
+            background-color: lighten(@colorExtraLightBlack, 45%);
+            border-color: @colorExtraLightBlack;
+            color: @colorExtraLightBlack;
+
+            .mo-loader{
+                .mo-loader-path{
+                    stroke: @colorExtraLightBlack;
+                }
+            }
+        }
+
         &:not(.st-disabled):hover,
         &.st-hover{
             background-color: lighten(@colorExtraLightBlack, 5%);
+
+            &.plain{
+                color: @colorWhite;
+            }
         }
 
         &:not(.st-disabled):active,
         &.st-active{
+            border: none;
             background-color: lighten(@colorExtraLightBlack, 10%);
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.4) inset;
         }
 
-        &.st-disabled{
+        &.st-disabled,
+        &.st-disabled.plain{
+            border: none;
+            background-color: @colorExtraLightBlack;
             color: lighten(@colorExtraLightBlack, 40%);
         }
     }
@@ -348,9 +667,25 @@ mor-btn{
         background-color: @colorBlue;
         color: @colorWhite;
 
+        &.plain{
+            background-color: lighten(@colorBlue, 35%);
+            border-color: darken(@colorBlue, 5%);
+            color: @colorBlue;
+
+            .mo-loader{
+                .mo-loader-path{
+                    stroke: @colorBlue;
+                }
+            }
+        }
+
         &:not(.st-disabled):hover,
         &.st-hover{
             background-color: darken(@colorBlue, 5%);
+
+            &.plain{
+                color: @colorWhite;
+            }
         }
 
         &:not(.st-disabled):active,
@@ -358,7 +693,10 @@ mor-btn{
             background-color: darken(@colorBlue, 10%);
         }
 
-        &.st-disabled{
+        &.st-disabled,
+        &.st-disabled.plain{
+            border: none;
+            background-color: @colorBlue;
             color: lighten(@colorBlue, 30%);
         }
     }
@@ -367,9 +705,25 @@ mor-btn{
         background-color: @colorLightBlue;
         color: @colorWhite;
 
+        &.plain{
+            background-color: lighten(@colorLightBlue, 32%);
+            border-color: darken(@colorLightBlue, 5%);
+            color: @colorLightBlue;
+
+            .mo-loader{
+                .mo-loader-path{
+                    stroke: @colorLightBlue;
+                }
+            }
+        }
+
         &:not(.st-disabled):hover,
         &.st-hover{
             background-color: darken(@colorLightBlue, 5%);
+
+            &.plain{
+                color: @colorWhite;
+            }
         }
 
         &:not(.st-disabled):active,
@@ -377,7 +731,10 @@ mor-btn{
             background-color: darken(@colorLightBlue, 10%);
         }
 
-        &.st-disabled{
+        &.st-disabled,
+        &.st-disabled.plain{
+            border: none;
+            background-color: @colorLightBlue;
             color: lighten(@colorLightBlue, 30%);
         }
     }
@@ -386,9 +743,25 @@ mor-btn{
         background-color: @colorExtraLightBlue;
         color: @colorWhite;
 
+        &.plain{
+            background-color: lighten(@colorExtraLightBlue, 28%);
+            border-color: darken(@colorExtraLightBlue, 5%);
+            color: @colorExtraLightBlue;
+
+            .mo-loader{
+                .mo-loader-path{
+                    stroke: @colorExtraLightBlue;
+                }
+            }
+        }
+
         &:not(.st-disabled):hover,
         &.st-hover{
             background-color: darken(@colorExtraLightBlue, 5%);
+
+            &.plain{
+                color: @colorWhite;
+            }
         }
 
         &:not(.st-disabled):active,
@@ -396,7 +769,10 @@ mor-btn{
             background-color: darken(@colorExtraLightBlue, 10%);
         }
 
-        &.st-disabled{
+        &.st-disabled,
+        &.st-disabled.plain{
+            border: none;
+            background-color: @colorExtraLightBlue;
             color: lighten(@colorExtraLightBlue, 20%);
         }
     }
@@ -405,9 +781,31 @@ mor-btn{
         background-color: @colorSilver;
         color: @colorExtraLightBlack;
 
+        .mo-loader{
+            .mo-loader-path{
+                stroke: @colorExtraLightBlack;
+            }
+        }
+
+        &.plain{
+            background-color: transparent;
+            border-color: darken(@colorSilver, 3%);
+            color: @colorSilver;
+
+            .mo-loader{
+                .mo-loader-path{
+                    stroke: @colorSilver;
+                }
+            }
+        }
+
         &:not(.st-disabled):hover,
         &.st-hover{
             background-color: darken(@colorSilver, 3%);
+
+            &.plain{
+                color: @colorExtraLightBlack;
+            }
         }
 
         &:not(.st-disabled):active,
@@ -415,7 +813,10 @@ mor-btn{
             background-color: darken(@colorSilver, 6%);
         }
 
-        &.st-disabled{
+        &.st-disabled,
+        &.st-disabled.plain{
+            border: none;
+            background-color: @colorSilver;
             color: darken(@colorSilver, 30%);
         }
     }
@@ -424,9 +825,31 @@ mor-btn{
         background-color: @colorLightSilver;
         color: @colorExtraLightBlack;
 
+        .mo-loader{
+            .mo-loader-path{
+                stroke: @colorExtraLightBlack;
+            }
+        }
+
+        &.plain{
+            background-color: transparent;
+            border-color: darken(@colorLightSilver, 3%);
+            color: @colorLightSilver;
+
+            .mo-loader{
+                .mo-loader-path{
+                    stroke: @colorLightSilver;
+                }
+            }
+        }
+
         &:not(.st-disabled):hover,
         &.st-hover{
             background-color: darken(@colorLightSilver, 3%);
+
+            &.plain{
+                color: @colorExtraLightBlack;
+            }
         }
 
         &:not(.st-disabled):active,
@@ -434,7 +857,10 @@ mor-btn{
             background-color: darken(@colorLightSilver, 6%);
         }
 
-        &.st-disabled{
+        &.st-disabled,
+        &.st-disabled.plain{
+            border: none;
+            background-color: @colorLightSilver;
             color: darken(@colorLightSilver, 30%);
         }
     }
@@ -443,9 +869,31 @@ mor-btn{
         background-color: @colorExtraLightSilver;
         color: @colorExtraLightBlack;
 
+        .mo-loader{
+            .mo-loader-path{
+                stroke: @colorExtraLightBlack;
+            }
+        }
+
+        &.plain{
+            background-color: transparent;
+            border-color: darken(@colorExtraLightSilver, 3%);
+            color: @colorExtraLightSilver;
+
+            .mo-loader{
+                .mo-loader-path{
+                    stroke: @colorExtraLightSilver;
+                }
+            }
+        }
+
         &:not(.st-disabled):hover,
         &.st-hover{
             background-color: darken(@colorExtraLightSilver, 3%);
+
+            &.plain{
+                color: @colorExtraLightBlack;
+            }
         }
 
         &:not(.st-disabled):active,
@@ -453,7 +901,10 @@ mor-btn{
             background-color: darken(@colorExtraLightSilver, 6%);
         }
 
-        &.st-disabled{
+        &.st-disabled,
+        &.st-disabled.plain{
+            border: none;
+            background-color: @colorExtraLightSilver;
             color: darken(@colorExtraLightSilver, 30%);
         }
     }
@@ -462,9 +913,31 @@ mor-btn{
         background-color: @colorGray;
         color: @colorExtraLightBlack;
 
+        .mo-loader{
+            .mo-loader-path{
+                stroke: @colorExtraLightBlack;
+            }
+        }
+
+        &.plain{
+            background-color: transparent;
+            border-color: darken(@colorGray, 3%);
+            color: @colorGray;
+
+            .mo-loader{
+                .mo-loader-path{
+                    stroke: @colorGray;
+                }
+            }
+        }
+
         &:not(.st-disabled):hover,
         &.st-hover{
             background-color: darken(@colorGray, 3%);
+
+            &.plain{
+                color: @colorExtraLightBlack;
+            }
         }
 
         &:not(.st-disabled):active,
@@ -472,7 +945,10 @@ mor-btn{
             background-color: darken(@colorGray, 6%);
         }
 
-        &.st-disabled{
+        &.st-disabled,
+        &.st-disabled.plain{
+            border: none;
+            background-color: @colorGray;
             color: darken(@colorGray, 30%);
         }
     }
@@ -481,9 +957,31 @@ mor-btn{
         background-color: @colorLightGray;
         color: @colorExtraLightBlack;
 
+        .mo-loader{
+            .mo-loader-path{
+                stroke: @colorExtraLightBlack;
+            }
+        }
+
+        &.plain{
+            background-color: transparent;
+            border-color: darken(@colorLightGray, 3%);
+            color: @colorLightGray;
+
+            .mo-loader{
+                .mo-loader-path{
+                    stroke: @colorLightGray;
+                }
+            }
+        }
+
         &:not(.st-disabled):hover,
         &.st-hover{
             background-color: darken(@colorLightGray, 3%);
+
+            &.plain{
+                color: @colorExtraLightBlack;
+            }
         }
 
         &:not(.st-disabled):active,
@@ -491,7 +989,10 @@ mor-btn{
             background-color: darken(@colorLightGray, 6%);
         }
 
-        &.st-disabled{
+        &.st-disabled,
+        &.st-disabled.plain{
+            border: none;
+            background-color: @colorLightGray;
             color: darken(@colorLightGray, 30%);
         }
     }
@@ -500,9 +1001,31 @@ mor-btn{
         background-color: @colorWhite;
         color: @colorExtraLightBlack;
 
+        .mo-loader{
+            .mo-loader-path{
+                stroke: @colorExtraLightBlack;
+            }
+        }
+
+        &.plain{
+            background-color: transparent;
+            border-color: darken(@colorWhite, 3%);
+            color: @colorWhite;
+
+            .mo-loader{
+                .mo-loader-path{
+                    stroke: @colorWhite;
+                }
+            }
+        }
+
         &:not(.st-disabled):hover,
         &.st-hover{
             background-color: darken(@colorWhite, 3%);
+
+            &.plain{
+                color: @colorExtraLightBlack;
+            }
         }
 
         &:not(.st-disabled):active,
@@ -510,7 +1033,10 @@ mor-btn{
             background-color: darken(@colorWhite, 6%);
         }
 
-        &.st-disabled{
+        &.st-disabled,
+        &.st-disabled.plain{
+            border: none;
+            background-color: @colorWhite;
             color: darken(@colorWhite, 30%);
         }
     }

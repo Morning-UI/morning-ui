@@ -20,7 +20,7 @@
                 >
                     <h1 class="title bo-ti">{{msg.title}}</h1>
                     <div class="body bo-ti" v-html="msg.message"></div>
-                    <i class="morningicon close-btn" v-if="conf.closeBtn" @click="close(msg.id)">&#xe62e;</i>
+                    <i class="mo-icon mo-icon-close close-btn" v-if="conf.closeBtn" @click="close(msg.id)"></i>
                 </div>
             </transition-group>
             

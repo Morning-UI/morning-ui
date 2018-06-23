@@ -178,6 +178,7 @@
     |[choose-root](#choose-root)|可以选择跟层级，选择跟层级将会清空层级列表|`true`<br>`false`|Boolean|`false`|
     |[list](#list)|默认面包屑层级|一个数组，数组中每一个对象代表一个层级，对象的键名是层级的值，对象的键值是层级的名称。对象的键名必须唯一。|Array|`[]`|
     |[max-history](#max-history)|面包屑记录历史步骤最大数，每次切换计一次步骤|步骤数|Boolean|`20`|
+    |[separator](#separator)|指定分隔的文字及图标。如果是图标需要使用`<i>`标签，支持所有[图标](/component/iconfont.html)。|文字<br>`<i>`图标|String|`'/'`|
 
     #### root-name
 
@@ -264,6 +265,44 @@
         <ui-breadcrumbs ref="demo6" :list="list" :max-history="2"></ui-breadcrumbs>
         <ui-link js="morning.findVM('demo6').backLast();">回退一步</ui-link>
     </div>
+    :::
+
+    #### separator
+
+    使用`>`来分隔：
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            list : [
+                {'level1' : '第一级'},
+                {'level2' : '第二级'},
+                {'level3' : '第三级'}
+            ]
+        }
+    });
+    ---
+    <ui-breadcrumbs :list="list" separator=">"></ui-breadcrumbs>
+    :::
+
+    使用图标来分隔：
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            list : [
+                {'level1' : '第一级'},
+                {'level2' : '第二级'},
+                {'level3' : '第三级'}
+            ]
+        }
+    });
+    ---
+    <ui-breadcrumbs :list="list" separator="<i class='mo-icon-arrow-right'></i>"></ui-breadcrumbs>
     :::
 
     [[[方法]]]

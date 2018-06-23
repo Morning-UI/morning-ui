@@ -17,13 +17,13 @@
     - `slot="showbtn"` : 标记默认显示的按钮
     - `emitbtn` : 标记触发按钮组的按钮。
 
-    组件内支持一个向下箭头图标，可以通过`<i class="morningicon">&#xe6b1;</i>`使用。
+    组件内支持一个向下箭头图标，可以通过`<i class="mo-icon mo-icon-dropdown"></i>`使用。
 
     #### 使用
 
     :::democode/html
     <ui-dropdown>
-        <ui-btn slot="showbtn" emitbtn>更多 <i class="morningicon">&#xe6b1;</i></ui-btn>
+        <ui-btn slot="showbtn" emitbtn>更多 <i class="mo-icon mo-icon-dropdown"></i></ui-btn>
         <ui-btn color="white">收藏</ui-btn>
         <ui-btn color="white">修改</ui-btn>
         <ui-btn color="danger">删除</ui-btn>
@@ -38,13 +38,12 @@
     <ui-dropdown>
         <ui-btngroup slot="showbtn">
             <ui-btn color="success">立即购买</ui-btn>
-            <!-- 这里的morningicon组件附带，可直接使用 -->
-            <ui-btn color="minor" emitbtn><i class="morningicon">&#xe6b1;</i></ui-btn>
+            <!-- 这里的mo-icon组件附带，可直接使用 -->
+            <ui-btn color="minor" emitbtn><i class="mo-icon mo-icon-dropdown"></i></ui-btn>
         </ui-btngroup>
         <ui-btn color="info">加入购物车</ui-btn>
-        <!-- 这里的iconfont组件不附带 -->
-        <ui-btn color="white"><i class="iconfont">&#xe6e2;</i> 收藏</ui-btn>
-        <ui-btn color="white"><i class="iconfont">&#xe70a;</i> 分享</ui-btn>
+        <ui-btn color="white"><i class="mo-icon mo-icon-star-f"></i> 收藏</ui-btn>
+        <ui-btn color="white"><i class="mo-icon mo-icon-share-f"></i> 分享</ui-btn>
     </ui-dropdown>
     :::
 
@@ -52,7 +51,7 @@
 
     :::democode/html
     <ui-dropdown>
-        <ui-link slot="showbtn" emitbtn>更多 <i class="morningicon">&#xe6b1;</i></ui-link>
+        <ui-link slot="showbtn" emitbtn>更多 <i class="mo-icon mo-icon-dropdown"></i></ui-link>
         <ui-btn color="white">收藏</ui-btn>
         <ui-btn color="white">修改</ui-btn>
         <ui-btn color="danger">删除</ui-btn>
@@ -65,7 +64,7 @@
 
     :::democode/html
     <ui-dropdown>
-        <ui-btn slot="showbtn" emitbtn size="xs">更多 <i class="morningicon">&#xe6b1;</i></ui-btn>
+        <ui-btn slot="showbtn" emitbtn size="xs">更多 <i class="mo-icon mo-icon-dropdown"></i></ui-btn>
         <ui-btn color="white" size="xs">打开</ui-btn>
         <ui-btn color="white" size="xs">关闭</ui-btn>
         <ui-btn color="danger" size="xs">删除</ui-btn>
@@ -153,7 +152,7 @@
 
     :::democode/html
     <ui-dropdown ref="demo1">
-        <ui-btn slot="showbtn" emitbtn>更多 <i class="morningicon">&#xe6b1;</i></ui-btn>
+        <ui-btn slot="showbtn" emitbtn>更多 <i class="mo-icon  mo-icon-dropdown"></i></ui-btn>
         <ui-btn color="white">收藏</ui-btn>
         <ui-btn color="white">修改</ui-btn>
         <ui-btn color="danger">删除</ui-btn>
@@ -183,7 +182,7 @@
     ---
     <div>
         <ui-dropdown @emit="echo">
-            <ui-btn slot="showbtn" emitbtn>emit事件 <i class="morningicon">&#xe6b1;</i></ui-btn>
+            <ui-btn slot="showbtn" emitbtn>emit事件 <i class="mo-icon mo-icon-dropdown"></i></ui-btn>
             <ui-btn color="white">收藏</ui-btn>
             <ui-btn color="white">修改</ui-btn>
             <ui-btn color="danger">删除</ui-btn>
@@ -208,7 +207,7 @@
     ---
     <div>
         <ui-dropdown @show="echo">
-            <ui-btn slot="showbtn" emitbtn>show事件 <i class="morningicon">&#xe6b1;</i></ui-btn>
+            <ui-btn slot="showbtn" emitbtn>show事件 <i class="mo-icon mo-icon-dropdown"></i></ui-btn>
             <ui-btn color="white">收藏</ui-btn>
             <ui-btn color="white">修改</ui-btn>
             <ui-btn color="danger">删除</ui-btn>
@@ -233,7 +232,7 @@
     ---
     <div>
         <ui-dropdown @hide="echo">
-            <ui-btn slot="showbtn" emitbtn>hide事件 <i class="morningicon">&#xe6b1;</i></ui-btn>
+            <ui-btn slot="showbtn" emitbtn>hide事件 <i class="mo-icon mo-icon-dropdown"></i></ui-btn>
             <ui-btn color="white">收藏</ui-btn>
             <ui-btn color="white">修改</ui-btn>
             <ui-btn color="danger">删除</ui-btn>
@@ -272,7 +271,7 @@
             @destroyed="echo('destroyed')"
         >
 
-            <ui-btn slot="showbtn" emitbtn>{*text*} <i class="morningicon">&#xe6b1;</i></ui-btn>
+            <ui-btn slot="showbtn" emitbtn>{*text*} <i class="mo-icon mo-icon-dropdown"></i></ui-btn>
             <ui-btn color="white">收藏</ui-btn>
             <ui-btn color="white">修改</ui-btn>
             <ui-btn color="danger">删除</ui-btn>

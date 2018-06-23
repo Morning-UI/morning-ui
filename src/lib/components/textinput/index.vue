@@ -12,6 +12,7 @@
         :hide-value="hideValue"
         :prepend="prepend"
         :append="append"
+        :append-type="appendType"
         :align="align"
     >
 
@@ -78,6 +79,11 @@ export default {
             type : String,
             default : undefined
         },
+        appendType : {
+            type : String,
+            default : 'block',
+            validator : (value => ['block', 'inline'].indexOf(value) !== -1)
+        },
         align : {
             type : String,
             default : 'left',
@@ -91,6 +97,7 @@ export default {
                 hideValue : this.hideValue,
                 prepend : this.prepend,
                 append : this.append,
+                appendType : this.appendType,
                 align : this.align
             };
 
@@ -120,7 +127,9 @@ export default {
         moreClass : function () {
 
             return {
-                'input-group' : !!(this.conf.prepend || this.conf.append)
+                'input-group' : !!(this.conf.prepend || this.conf.append),
+                'inline-append' : (this.conf.appendType === 'inline'),
+                'input-focus' : this.data.inputFocus
             };
 
         },
@@ -138,7 +147,9 @@ export default {
     data : function () {
 
         return {
-            data : {}
+            data : {
+                inputFocus : false
+            }
         };
 
     },
@@ -162,11 +173,13 @@ export default {
         },
         _focus : function () {
 
+            this.data.inputFocus = true;
             this.$emit('focus');
 
         },
         _blur : function () {
 
+            this.data.inputFocus = false;
             this.$emit('blur');
 
         }

@@ -53,9 +53,12 @@
     - `image` : 使用图片
     - `icon` : 使用图标
     - `split` : 分隔
-    - `rounded` : 圆角
+    - `round` : 圆角
     - `circle` : 圆形
     - `thumbnail` : 相框
+    - `plain` : 朴素
+    - `btn` : 按钮式
+    - `border` : 边框
 
     </script>
     </doc-guide>

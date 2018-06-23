@@ -98,7 +98,23 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-imagemap form-name="热区" :default-value="{'images':[{'name':'151244303389249797.png','path':'http://morning-ui-image.test.upcdn.net/uploaddemo/17505/151244303389249797.png'}],'zones':[{'x':180.5,'y':58.5,'h':90,'w':137},{'x':43,'y':155,'h':90,'w':137.5}],'w':361,'h':362.5}"></ui-imagemap>
+        <ui-imagemap
+            form-name="热区"
+            :default-value="{
+                'images' : [
+                    {
+                        'name' : '151244303389249797.png',
+                        'path' : 'http://morning-ui-image.test.upcdn.net/uploaddemo/17505/151244303389249797.png'
+                    }
+                ],
+                'zones' : [
+                    {'x' : 180.5, 'y' : 58.5, 'h' : 90, 'w' : 137},
+                    {'x' : 43, 'y' : 155, 'h' : 90, 'w' : 137.5}
+                ],
+                'w' : 361,
+                'h' : 362.5
+            }"
+        ></ui-imagemap>
     </div>
     :::
 
@@ -106,7 +122,23 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-imagemap form-name="热区" :default-value="{'images':[{'name':'151244303389249797.png','path':'http://morning-ui-image.test.upcdn.net/uploaddemo/17505/151244303389249797.png'}],'zones':[{'x':722,'y':234,'h':360,'w':548},{'x':172,'y':620,'h':360,'w':550}],'w':1444,'h':1450}"></ui-imagemap>
+        <ui-imagemap
+            form-name="热区"
+            :default-value="{
+                'images' : [
+                    {
+                        'name' : '151244303389249797.png',
+                        'path' : 'http://morning-ui-image.test.upcdn.net/uploaddemo/17505/151244303389249797.png'
+                    }
+                ],
+                'zones' : [
+                    {'x' : 722, 'y' : 234, 'h' : 360, 'w' : 548},
+                    {'x' : 172, 'y' : 620, 'h' : 360, 'w' : 550}
+                ],
+                'w' : 1444,
+                'h' : 1450
+            }"
+        ></ui-imagemap>
     </div>
     :::
 
@@ -234,7 +266,23 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-imagemap form-name="热区" multi :max="10" :default-value="{'images':[{'name':'151244303389249797.png','path':'http://morning-ui-image.test.upcdn.net/uploaddemo/17505/151244303389249797.png'}],'zones':[],'w':722,'h':725}" :clean-allzone-btn="false"></ui-imagemap>
+        <ui-imagemap
+            form-name="热区"
+            multi
+            :max="10"
+            :default-value="{
+                'images' : [
+                    {
+                        'name' : '151244303389249797.png',
+                        'path' : 'http://morning-ui-image.test.upcdn.net/uploaddemo/17505/151244303389249797.png'
+                    }
+                ],
+                'zones' : [],
+                'w' : 722,
+                'h' : 725
+            }"
+            :clean-allzone-btn="false"
+        ></ui-imagemap>
     </div>
     :::
 
@@ -252,7 +300,21 @@
     
     :::democode/html
     <div style="width:300px;">
-        <ui-imagemap form-name="热区" :max-spot="3" :default-value="{'images':[{'name':'151244303389249797.png','path':'http://morning-ui-image.test.upcdn.net/uploaddemo/17505/151244303389249797.png'}],'zones':[],'w':722,'h':725}"></ui-imagemap>
+        <ui-imagemap
+            form-name="热区"
+            :max-spot="3"
+            :default-value="{
+                'images' : [
+                    {
+                        'name' : '151244303389249797.png',
+                        'path' : 'http://morning-ui-image.test.upcdn.net/uploaddemo/17505/151244303389249797.png'
+                    }
+                ],
+                'zones' : [],
+                'w' : 722,
+                'h' : 725
+            }"
+        ></ui-imagemap>
     </div>
     :::
 
@@ -260,7 +322,24 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-imagemap form-name="热区" :max-spot="1" :default-value="{'images':[{'name':'151244303389249797.png','path':'http://morning-ui-image.test.upcdn.net/uploaddemo/17505/151244303389249797.png'}],'zones':[{'x':361,'y':117,'h':180,'w':274},{'x':86,'y':310,'h':180,'w':275}],'w':722,'h':725}"></ui-imagemap>
+        <ui-imagemap
+            form-name="热区"
+            :max-spot="1"
+            :default-value="{
+                'images' : [
+                    {
+                        'name' : '151244303389249797.png',
+                        'path' : 'http://morning-ui-image.test.upcdn.net/uploaddemo/17505/151244303389249797.png'
+                    }
+                ],
+                'zones' : [
+                    {'x' : 361, 'y' : 117, 'h' : 180, 'w' : 274},
+                    {'x' : 86, 'y' : 310, 'h' : 180, 'w' : 275}
+                ],
+                'w' : 722,
+                'h' : 725
+            }"
+        ></ui-imagemap>
     </div>
     :::
 
@@ -280,7 +359,24 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-imagemap ref="demo6" form-name="热区" :default-value="{'images':[{'name':'151244303389249797.png','path':'http://morning-ui-image.test.upcdn.net/uploaddemo/17505/151244303389249797.png'}],'zones':[{'x':722,'y':234,'h':360,'w':548},{'x':172,'y':620,'h':360,'w':550}],'w':1444,'h':1450}"></ui-imagemap>
+        <ui-imagemap
+            ref="demo6"
+            form-name="热区"
+            :default-value="{
+                'images' : [
+                    {
+                        'name' : '151244303389249797.png',
+                        'path' : 'http://morning-ui-image.test.upcdn.net/uploaddemo/17505/151244303389249797.png'
+                    }
+                ],
+                'zones' : [
+                    {'x' : 722, 'y' : 234, 'h' : 360, 'w' : 548},
+                    {'x' : 172, 'y' : 620, 'h' : 360, 'w' : 550}
+                ],
+                'w' : 1444,
+                'h' : 1450
+            }"
+        ></ui-imagemap>
         <br>
         <ui-link js="alert(morning.findVM('demo6').getScale())">获取缩放比</ui-link>
     </div>
@@ -296,7 +392,24 @@
     
     :::democode/html
     <div style="width:300px;">
-        <ui-imagemap ref="demo3" form-name="热区" :default-value="{'images':[{'name':'151244303389249797.png','path':'http://morning-ui-image.test.upcdn.net/uploaddemo/17505/151244303389249797.png'}],'zones':[{'x':361,'y':117,'h':180,'w':274},{'x':86,'y':310,'h':180,'w':275}],'w':722,'h':725}"></ui-imagemap>
+        <ui-imagemap
+            ref="demo3"
+            form-name="热区"
+            :default-value="{
+                'images' : [
+                    {
+                        'name' : '151244303389249797.png',
+                        'path' : 'http://morning-ui-image.test.upcdn.net/uploaddemo/17505/151244303389249797.png'
+                    }
+                ],
+                'zones' : [
+                    {'x' : 361, 'y' : 117, 'h' : 180, 'w' : 274},
+                    {'x' : 86, 'y' : 310, 'h' : 180, 'w' : 275}
+                ],
+                'w' : 722,
+                'h' : 725
+            }"
+        ></ui-imagemap>
         <br>
         <ui-link js="morning.findVM('demo3').addZone()">新增一个默认热区</ui-link><br>
         <ui-link js="morning.findVM('demo3').addZone({x:20, y: 20, w: 50, h: 50})">新增一个热区</ui-link>
@@ -313,7 +426,24 @@
     
     :::democode/html
     <div style="width:300px;">
-        <ui-imagemap ref="demo4" form-name="热区" :default-value="{'images':[{'name':'151244303389249797.png','path':'http://morning-ui-image.test.upcdn.net/uploaddemo/17505/151244303389249797.png'}],'zones':[{'x':361,'y':117,'h':180,'w':274},{'x':86,'y':310,'h':180,'w':275}],'w':722,'h':725}"></ui-imagemap>
+        <ui-imagemap
+            ref="demo4"
+            form-name="热区"
+            :default-value="{
+                'images' : [
+                    {
+                        'name' : '151244303389249797.png',
+                        'path' : 'http://morning-ui-image.test.upcdn.net/uploaddemo/17505/151244303389249797.png'
+                    }
+                ],
+                'zones' : [
+                    {'x' : 361, 'y' : 117, 'h' : 180, 'w' : 274},
+                    {'x' : 86, 'y' : 310, 'h' : 180, 'w':275}
+                ],
+                'w' : 722,
+                'h' : 725
+            }"
+        ></ui-imagemap>
         <br>
         <ui-link js="morning.findVM('demo4').removeZone(0)">删除第一个热区</ui-link>
     </div>
@@ -330,7 +460,24 @@
     
     :::democode/html
     <div style="width:300px;">
-        <ui-imagemap ref="demo5" form-name="热区" :default-value="{'images':[{'name':'151244303389249797.png','path':'http://morning-ui-image.test.upcdn.net/uploaddemo/17505/151244303389249797.png'}],'zones':[{'x':361,'y':117,'h':180,'w':274},{'x':86,'y':310,'h':180,'w':275}],'w':722,'h':725}"></ui-imagemap>
+        <ui-imagemap 
+            ref="demo5"
+            form-name="热区"
+            :default-value="{
+                'images' : [
+                    {
+                        'name' : '151244303389249797.png',
+                        'path' : 'http://morning-ui-image.test.upcdn.net/uploaddemo/17505/151244303389249797.png'
+                    }
+                ],
+                'zones' : [
+                    {'x' : 361, 'y' : 117, 'h' : 180, 'w' : 274},
+                    {'x' : 86, 'y' : 310, 'h' : 180, 'w' : 275}
+                ],
+                'w' : 722,
+                'h' : 725
+            }"
+        ></ui-imagemap>
         <br>
         <ui-link js="morning.findVM('demo5').updateZone(0, {x: 10, y: 10, w: 50, h: 50})">更新第一个热区</ui-link>
     </div>
@@ -342,7 +489,24 @@
     
     :::democode/html
     <div style="width:300px;">
-        <ui-imagemap ref="demo2" form-name="热区" :default-value="{'images':[{'name':'151244303389249797.png','path':'http://morning-ui-image.test.upcdn.net/uploaddemo/17505/151244303389249797.png'}],'zones':[{'x':361,'y':117,'h':180,'w':274},{'x':86,'y':310,'h':180,'w':275}],'w':722,'h':725}"></ui-imagemap>
+        <ui-imagemap
+            ref="demo2"
+            form-name="热区"
+            :default-value="{
+                'images' : [
+                    {
+                        'name' : '151244303389249797.png',
+                        'path' : 'http://morning-ui-image.test.upcdn.net/uploaddemo/17505/151244303389249797.png'
+                    }
+                ],
+                'zones' : [
+                    {'x' : 361, 'y' : 117, 'h' : 180, 'w' : 274},
+                    {'x' : 86, 'y' : 310, 'h' : 180, 'w' : 275}
+                ],
+                'w' : 722,
+                'h' : 725
+            }"
+        ></ui-imagemap>
         <br>
         <ui-link js="morning.findVM('demo2').cleanZones()">清除所有热区</ui-link>
     </div>

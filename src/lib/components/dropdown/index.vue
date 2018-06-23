@@ -62,6 +62,7 @@ export default {
             data : {
                 show : false,
                 first : true,
+                isCheckArea : false,
                 $wrap : null,
                 $arrow : null
             }
@@ -73,6 +74,8 @@ export default {
 
             const notFound = -1;
 
+            this.data.isCheckArea = true;
+
             let $emitbtn = this.$el.querySelector('[emitbtn]');
 
             if ((this.conf.autoClose && (evt.path.indexOf($emitbtn) === notFound)) ||
@@ -81,6 +84,12 @@ export default {
                 this.toggle();
 
             }
+
+            setTimeout(() => {
+        
+                this.data.isCheckArea = false;
+
+            });
 
         },
         _show : function () {
@@ -102,6 +111,12 @@ export default {
 
         },
         _click : function () {
+
+            if (this.data.isCheckArea) {
+
+                return;
+
+            }
 
             this.toggle();
 
@@ -170,7 +185,7 @@ export default {
         let $emitbtn = this.$el.querySelector(`[emitbtn]`);
 
         this.data.$wrap = this.$el.querySelector('.mor-dropdown-wrap');
-        this.data.$arrow = this.$el.querySelector('mor-btn>.morningicon, mor-link>.morningicon');
+        this.data.$arrow = this.$el.querySelector('mor-btn>.mo-icon, mor-link>.mo-icon');
 
         this.Trigger.$targets = [$emitbtn, this.data.$wrap];
         this.Trigger.triggers = this.conf.trigger;
@@ -192,7 +207,7 @@ export default {
 
             setTimeout(() => {
 
-                this._globalEventAdd('click', '_checkArea');
+                this._globalEventAdd('click', '_checkArea', true);
 
             });
             
@@ -204,7 +219,9 @@ export default {
 
             this.data.first = false;
             this.data.show = false;
+
             this._globalEventRemove('click', '_checkArea');
+
             this.$emit('emit');
 
         });

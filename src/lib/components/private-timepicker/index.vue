@@ -20,7 +20,7 @@
         :hide-name="conf.hideName"
         :align="conf.align"
         :state="conf.state"
-        prepend="<i class='morningicon'>&#xe607;</i>"
+        prepend="<i class='mo-icon mo-icon-time-co'></i>"
 
         @blur="_inputBlur"
         @focus="_inputFocus"

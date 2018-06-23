@@ -9,14 +9,26 @@
 
     <template v-if="data.loaded">
         <template v-if="data.fail">
-            <morning-center class="fill loadfail"><i class="morningicon">&#xe6ac; </i>&nbsp;加载失败</morning-center>
+            <morning-center class="fill loadfail"><i class="mo-icon mo-icon-warn-o"> </i>&nbsp;加载失败</morning-center>
         </template>
         <template v-else>
             <slot></slot>
         </template>
     </template>
     <template v-else>
-        <morning-center class="fill"><p class="loading"><i class="morningicon">&#xe703;</i><br/>{{conf.note}}</p></morning-center>
+
+        <morning-center class="fill">
+            <div class="loading">
+                <div class="mo-loader">
+                    <svg class="mo-loader-circular" viewBox="25 25 50 50">
+                        <circle class="mo-loader-path" cx="50" cy="50" r="20" fill="none" stroke-width="4" stroke-miterlimit="10"/>
+                    </svg>
+                </div>
+                <p>
+                    {{conf.note}}
+                </p>
+            </div>
+        </morning-center>
     </template>
         
     </mor-load>

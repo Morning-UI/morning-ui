@@ -1,12 +1,13 @@
 <template>
     <mor-tab
         :_uiid="uiid"
-        :class="[]"
+        :class="[moreClass]"
 
         :tab="tab"
         :prepend="prepend"
         :append="append"
         :anchor-target="anchorTarget"
+        :position="position"
     >
 
         <ul>
@@ -19,7 +20,13 @@
             ></li>
         </ul>
         
-        <div class="contents">
+        <div
+            class="contents"
+            :style="{
+                width : data.contentWidth,
+                'min-height' : data.contentMinHeight 
+            }"
+        >
             <template v-for="(item, name) in $slots">
                 <div class="item mor-tab-item" :name="name" :key="name"><slot :name="name"></slot></div>
             </template>
@@ -29,9 +36,12 @@
 </template>
  
 <script>
+import GlobalEvent                  from 'Utils/GlobalEvent';
+
 export default {
     origin : 'UI',
     name : 'tab',
+    mixins : [GlobalEvent],
     props : {
         tab : {
             type : String,
@@ -48,6 +58,14 @@ export default {
         anchorTarget : {
             type : Boolean,
             default : false
+        },
+        position : {
+            type : String,
+            default : 'top',
+            validator : value => ([
+                'top',
+                'left'
+            ].indexOf(value) !== -1)
         }
     },
     computed : {
@@ -57,7 +75,16 @@ export default {
                 tab : this.tab,
                 prepend : this.prepend,
                 append : this.append,
-                anchorTarget : this.anchorTarget
+                anchorTarget : this.anchorTarget,
+                position : this.position
+            };
+
+        },
+        moreClass : function () {
+
+            return {
+                'position-top' : (this.conf.position === 'top'),
+                'position-left' : (this.conf.position === 'left')
             };
 
         }
@@ -68,7 +95,9 @@ export default {
             data : {
                 tabs : [],
                 selectTab : null,
-                namelist : []
+                namelist : [],
+                contentWidth : '100%',
+                contentMinHeight : '0'
             }
         };
 
@@ -97,6 +126,26 @@ export default {
             }
 
             this.data.namelist = list;
+
+        },
+        _setSticky : function ($con, show) {
+
+            // hidden ui-sticky in tab
+            let $stickys = $con.querySelectorAll('mor-sticky');
+
+            for (let $sticky of $stickys) {
+
+                if (!show) {
+    
+                    $sticky.classList.add('mo-in-tab-hidden');
+
+                } else {
+
+                    $sticky.classList.remove('mo-in-tab-hidden');
+
+                }
+
+            }
 
         },
         _initTabs : function () {
@@ -129,6 +178,7 @@ export default {
                     for (let $el of $currentConEl) {
 
                         $el.classList.remove('current');
+                        this._setSticky($el, false);
 
                     }
 
@@ -183,7 +233,45 @@ export default {
             }
 
         },
+        _setContentWidth : function () {
+
+            if (this.conf.position === 'top') {
+
+                this.data.contentWidth = '100%';
+
+            } else {
+
+                this.data.contentWidth = `calc(100% - ${this.$el.children[0].clientWidth}px)`;
+
+                if (this.$el.classList.value.split(' ').indexOf('btn') !== -1) {
+
+                    this.data.contentWidth = `calc(100% - ${this.$el.children[0].clientWidth + 8}px)`;
+
+                }
+
+            }
+
+        },
+        _setContentMinHeight : function () {
+
+            if (this.conf.position === 'top') {
+
+                this.data.contentMinHeight = '0';
+
+            } else {
+
+                this.data.contentMinHeight = `${this.$el.children[0].clientHeight}px`;
+
+            }
+
+        },
         _targetAnchorPoint : function () {
+
+            if (!this.conf.anchorTarget) {
+
+                return;
+
+            }
 
             let anchor = window.location.hash.replace(/^#/, '');
             let $targetEl;
@@ -232,6 +320,9 @@ export default {
                 conEl.classList.remove('current');
                 tabEl.classList.remove('current');
 
+                // hidden ui-sticky in tab
+                this._setSticky(conEl, false);
+
             }
 
             let current = this.data.tabs.indexOf(name);
@@ -243,6 +334,9 @@ export default {
 
                 conEl.classList.add('current');
                 tabEl.classList.add('current');
+
+                // show ui-sticky in tab
+                this._setSticky(conEl, true);
 
             }
 
@@ -305,7 +399,7 @@ export default {
         this.Vue.nextTick(() => {
 
             this._targetAnchorPoint();
-            window.addEventListener('hashchange', this._targetAnchorPoint);
+            this._globalEventAdd('hashchange', '_targetAnchorPoint');
 
         });
 
@@ -313,6 +407,26 @@ export default {
 
             this._initSelectTab();
 
+            this.Vue.nextTick(() => {
+    
+                this._setContentWidth();
+                this._setContentMinHeight();
+
+            });
+
+        });
+
+        this.$watch('conf.position', () => {
+
+            this.Vue.nextTick(() => {
+    
+                this._setContentWidth();
+                this._setContentMinHeight();
+
+            });
+
+        }, {
+            immediate : true
         });
 
     },
@@ -325,9 +439,9 @@ export default {
         }
 
     },
-    destroyed : function () {
+    beforeDestroy : function () {
 
-        window.removeEventListener('hashchange', this._targetAnchorPoint);
+        this._globalEventRemove('hashchange', '_targetAnchorPoint');
 
     }
 };
