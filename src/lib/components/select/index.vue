@@ -1265,9 +1265,11 @@ export default {
 
         this.$watch('conf.separateEmit', (newVal, oldVal) => {
 
-            if (oldVal) {
+            let $oldEmitTarget = document.querySelector(oldVal);
+
+            if (oldVal && $oldEmitTarget) {
                 
-                document.querySelector(oldVal).removeEventListener('click', this._emitClick);
+                $oldEmitTarget.removeEventListener('click', this._emitClick);
 
             }
 
