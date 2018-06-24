@@ -368,8 +368,8 @@ export default {
                 isMax : false,
                 multiinputLastValue : [],
                 selectInput : false,
+                dontSetSearchMultiinput : false,
                 itemValueList : [],
-                filterNotExist : false,
                 lastItemHeight : 0,
                 tips : [],
                 $listWrap : null,
@@ -399,7 +399,7 @@ export default {
             value = this._customFilter(value);
 
             // filter not exist value.
-            if (this.conf.dynamicList && this.data.filterNotExist) {
+            if (!this.conf.dynamicList) {
 
                 for (let index in value) {
 
@@ -545,7 +545,12 @@ export default {
                 let inputValue = searchMultiinput.getInput();
 
                 this.data.selectInput = true;
-                searchMultiinput._set(multiNames, true);
+                
+                if (!this.data.dontSetSearchMultiinput) {
+                    
+                    searchMultiinput._set(multiNames, true);
+
+                }
 
                 if (!this.conf.autoResetSearch) {
                     
@@ -658,13 +663,6 @@ export default {
 
             this.data.itemValueList = uniqList;
 
-            if (this.data.filterNotExist === false) {
-
-                this.data.filterNotExist = true;
-                this.set(this._valueFilter(this.get()));
-            
-            }
-
         },
         _emitClick : function () {
 
@@ -744,7 +742,7 @@ export default {
 
                 let index = $clickItem.getAttribute('index');
                 let value = [this.data.itemValueList[index].val];
-
+                
                 if (this.conf.multiSelect &&
                     this.data.value !== undefined) {
 
@@ -913,9 +911,16 @@ export default {
             }
             
             this.data.selectInput = false;
+            this.data.dontSetSearchMultiinput = true;
             this.data.multiinputLastValue = values;
 
             this._set(values, true);
+
+            this.Vue.nextTick(() => {
+
+                this.data.dontSetSearchMultiinput = false;
+
+            });
 
         },
         _refreshShowItemsWithSearch : function () {
@@ -947,16 +952,13 @@ export default {
             }
 
             if (this.data.searching &&
-                this.conf.hideSelected && foundNum === 0) {
+                this.conf.hideSelected &&
+                foundNum === 0) {
 
                 this.data.noMatch = true;
 
-            } else if (this.data.searching && this.conf.hideSelected) {
+            } else {
                 
-                this.data.noMatch = false;
-
-            } else if (this.data.searching && !this.conf.hideSelected) {
-
                 this.data.noMatch = false;
 
             }
@@ -1240,10 +1242,15 @@ export default {
         this.Tip.autoReverse = false;
         this.Tip.autoOffset = false;
 
-        this.$watch('conf.list', () => {
+        this.$watch('conf.list', (newVal, oldVal) => {
 
-            this._updateItemValueList();
-            this._onValueChange();
+            if (JSON.stringify(newVal) !== JSON.stringify(oldVal)) {
+
+                this._updateItemValueList();
+                this._refreshShowItems();
+
+            }
+
 
         }, {
             immediate : true,
