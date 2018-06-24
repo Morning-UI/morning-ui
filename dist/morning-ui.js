@@ -21323,12 +21323,12 @@ exports.default = {
                         var input1x = $input1DateSelect.getBoundingClientRect().x;
                         var offset = ($input0DateSelect.offsetWidth - (input1x - input0x)) / 2;
 
+                        offset = Math.round(offset * NUM_1K) / NUM_1K;
+
                         if (offset === 0) {
 
                             return;
                         }
-
-                        offset = Math.round(offset * NUM_1K) / NUM_1K;
 
                         _this3.Vue.nextTick(function () {
 
@@ -21623,7 +21623,7 @@ exports.default = {
                 var val = [];
                 var currentVal = this.get();
 
-                if (currentVal[0] === input0Val && currentVal[1] === input1Val) {
+                if (currentVal && currentVal[0] === input0Val && currentVal[1] === input1Val) {
 
                     return;
                 }
@@ -23058,6 +23058,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
+//
 
 var _arrayUniq = __webpack_require__(8);
 
@@ -23118,6 +23121,13 @@ exports.default = {
         batchUniq: {
             type: Boolean,
             default: false
+        },
+        showType: {
+            type: String,
+            default: 'top',
+            validator: function validator(value) {
+                return ['top', 'center', 'no'].indexOf(value) !== -1;
+            }
         }
     },
     computed: {
@@ -23132,7 +23142,8 @@ exports.default = {
                 inputType: this.inputType,
                 batchReg: this.batchReg,
                 batchFiller: this.batchFiller,
-                batchUniq: this.batchUniq
+                batchUniq: this.batchUniq,
+                showType: this.showType
             };
         }
     },
@@ -39045,7 +39056,8 @@ var render = function() {
         "input-type": _vm.inputType,
         "batch-reg": _vm.batchReg,
         "batch-filler": _vm.batchFiller,
-        "batch-uniq": _vm.batchUniq
+        "batch-uniq": _vm.batchUniq,
+        "show-type": _vm.showType
       }
     },
     [
@@ -39187,7 +39199,12 @@ var render = function() {
         {
           ref: "ui-multiform-dialog-" + _vm.uiid,
           staticClass: "multiform-dialog",
-          attrs: { width: "500px", height: "75%", color: "gray" },
+          attrs: {
+            width: "500px",
+            height: "75%",
+            color: "gray",
+            showType: _vm.conf.showType
+          },
           on: { show: _vm._showForm, hide: _vm._hideForm }
         },
         [
@@ -39230,7 +39247,12 @@ var render = function() {
             {
               ref: "ui-multiform-batchdialog-" + _vm.uiid,
               staticClass: "multiform-batch-dialog",
-              attrs: { width: "500px", height: "240px", color: "gray" }
+              attrs: {
+                width: "500px",
+                height: "240px",
+                color: "gray",
+                showType: _vm.conf.showType
+              }
             },
             [
               _c("header", { attrs: { slot: "header" }, slot: "header" }, [
