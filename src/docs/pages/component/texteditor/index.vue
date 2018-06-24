@@ -94,6 +94,7 @@
     |italic|斜体|无|
     |underline|下划线|无|
     |strike|删除线|无|
+    |divider|横划线|无|
     |color|文本颜色|数组，可选颜色列表，如`['#00000', '#999999']`，也可设为空数组则使用默认颜色组|
     |background|背景颜色|数组，可选颜色列表，如`['#00000', '#999999']`，也可设为空数组则使用默认颜色组|
     |align|对齐方式|仅支持空数组：`[]`|
@@ -167,25 +168,53 @@
             form-name="文章编辑"
             :tools="[
                 [
-                    {header : [false, 1, 2, 3, 4, 5, 6]},
-                    {size : [false, '12px', '13px', '14px', '16px', '20px', '28px']}
+                    {
+                        header : [false, 1, 2, 3, 4, 5, 6]
+                    },
+                    {
+                        size : [false, '12px', '13px', '14px', '16px', '20px', '28px']
+                    }
                 ],
                 ['undo', 'redo'],
-                ['bold', 'italic', 'underline', 'strike'],
                 [
-                    {color : []},
-                    {background : []}
+                    'bold',
+                    'italic',
+                    'underline',
+                    'strike',
+                    {
+                        align : []
+                    },
+                    {
+                        indent : '-1'
+                    },
+                    {
+                        indent : '+1'
+                    }
                 ],
                 [
-                    {align : []},
-                    {list : 'ordered'},
-                    {list : 'bullet'},
-                    {indent : '-1'},
-                    {indent : '+1'}
+                    {
+                        color : []
+                    },
+                    {
+                        background : []
+                    }
                 ],
                 [
-                    {script : 'sub'},
-                    {script : 'super'},
+                    {
+                        list : 'ordered'
+                    },
+                    {
+                        list : 'bullet'
+                    },
+                    'divider'
+                ],
+                [
+                    {
+                        script : 'sub'
+                    },
+                    {
+                        script : 'super'
+                    },
                     'blockquote',
                     'code-block'
                 ],

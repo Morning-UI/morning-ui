@@ -75,6 +75,11 @@
                                 <morning-tip :target="'#mor-te-tool-strike-'+uiid" color="extra-light-black">删除线</morning-tip>
                             </template>
 
+                            <template v-if="tool === 'divider'">
+                                <button class="ql-divider" :id="'mor-te-tool-divider-'+uiid"></button>
+                                <morning-tip :target="'#mor-te-tool-divider-'+uiid" color="extra-light-black">横划线</morning-tip>
+                            </template>
+
                             <template v-if="typeof tool === 'object' && Object.keys(tool)[0] === 'color'">
                                 <select class="ql-color" :id="'mor-te-tool-color-'+uiid">
                                     <template v-for="color in tool.color">
@@ -188,7 +193,16 @@ import Underline                    from 'quill/formats/underline';
 
 Icons.undo = require('quill/assets/icons/undo.svg');
 Icons.redo = require('quill/assets/icons/redo.svg');
+Icons.divider = require('quill/assets/icons/horizontal-rule.svg');
 SizeStyle.whitelist = ['12px', '13px', '14px', '16px', '20px', '28px'];
+
+// extend tools : divider
+let BlockEmbed = Quill.import('blots/block/embed');
+
+class Divider extends BlockEmbed { }
+
+Divider.blotName = 'divider';
+Divider.tagName = 'HR';
 
 Quill.register({
     'formats/align' : AlignStyle,
@@ -207,6 +221,7 @@ Quill.register({
     'formats/script' : Script,
     'formats/strike' : Strike,
     'formats/underline' : Underline,
+    'formats/divider' : Divider,
 
     // 'formats/image': Image,
     // 'formats/video': Video,
@@ -520,7 +535,21 @@ export default {
                     }
                 ],
                 ['undo', 'redo'],
-                ['bold', 'italic', 'underline', 'strike'],
+                [
+                    'bold',
+                    'italic',
+                    'underline',
+                    'strike',
+                    {
+                        align : []
+                    },
+                    {
+                        indent : '-1'
+                    },
+                    {
+                        indent : '+1'
+                    }
+                ],
                 [
                     {
                         color : []
@@ -531,20 +560,12 @@ export default {
                 ],
                 [
                     {
-                        align : []
-                    },
-                    {
                         list : 'ordered'
                     },
                     {
                         list : 'bullet'
                     },
-                    {
-                        indent : '-1'
-                    },
-                    {
-                        indent : '+1'
-                    }
+                    'divider'
                 ],
                 [
                     {
@@ -678,6 +699,15 @@ export default {
                         redo : () => {
 
                             this.data.quill.history.redo();
+
+                        },
+                        divider : () => {
+
+                            let range = this.data.quill.getSelection(true);
+
+                            this.data.quill.insertText(range.index, '\n', Quill.sources.USER);
+                            this.data.quill.insertEmbed(range.index + 1, 'divider', true, Quill.sources.USER);
+                            this.data.quill.setSelection(range.index + 2, Quill.sources.SILENT);
 
                         }
                     }
