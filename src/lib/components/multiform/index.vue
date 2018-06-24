@@ -18,6 +18,7 @@
         :batch-reg="batchReg"
         :batch-filler="batchFiller"
         :batch-uniq="batchUniq"
+        :show-type="showType"
     >
 
     <div class="itemlist">
@@ -87,6 +88,7 @@
         width="500px"
         height="75%"
         color="gray"
+        :showType="conf.showType"
         :ref="'ui-multiform-dialog-'+uiid"
         @show="_showForm"
         @hide="_hideForm"
@@ -107,6 +109,7 @@
         width="500px"
         height="240px"
         color="gray"
+        :showType="conf.showType"
         v-if="conf.inputType !== 'single'"
         :ref="'ui-multiform-batchdialog-'+uiid"
     >
@@ -175,6 +178,11 @@ export default {
         batchUniq : {
             type : Boolean,
             default : false
+        },
+        showType : {
+            type : String,
+            default : 'top',
+            validator : (value => ['top', 'center', 'no'].indexOf(value) !== -1)
         }
     },
     computed : {
@@ -189,7 +197,8 @@ export default {
                 inputType : this.inputType,
                 batchReg : this.batchReg,
                 batchFiller : this.batchFiller,
-                batchUniq : this.batchUniq
+                batchUniq : this.batchUniq,
+                showType : this.showType
             };
 
         }

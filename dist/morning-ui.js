@@ -23058,6 +23058,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
+//
 
 var _arrayUniq = __webpack_require__(8);
 
@@ -23118,6 +23121,13 @@ exports.default = {
         batchUniq: {
             type: Boolean,
             default: false
+        },
+        showType: {
+            type: String,
+            default: 'top',
+            validator: function validator(value) {
+                return ['top', 'center', 'no'].indexOf(value) !== -1;
+            }
         }
     },
     computed: {
@@ -23132,7 +23142,8 @@ exports.default = {
                 inputType: this.inputType,
                 batchReg: this.batchReg,
                 batchFiller: this.batchFiller,
-                batchUniq: this.batchUniq
+                batchUniq: this.batchUniq,
+                showType: this.showType
             };
         }
     },
@@ -30445,6 +30456,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; //
+//
 //
 //
 //
@@ -39045,7 +39057,8 @@ var render = function() {
         "input-type": _vm.inputType,
         "batch-reg": _vm.batchReg,
         "batch-filler": _vm.batchFiller,
-        "batch-uniq": _vm.batchUniq
+        "batch-uniq": _vm.batchUniq,
+        "show-type": _vm.showType
       }
     },
     [
@@ -39187,7 +39200,12 @@ var render = function() {
         {
           ref: "ui-multiform-dialog-" + _vm.uiid,
           staticClass: "multiform-dialog",
-          attrs: { width: "500px", height: "75%", color: "gray" },
+          attrs: {
+            width: "500px",
+            height: "75%",
+            color: "gray",
+            showType: _vm.conf.showType
+          },
           on: { show: _vm._showForm, hide: _vm._hideForm }
         },
         [
@@ -39230,7 +39248,12 @@ var render = function() {
             {
               ref: "ui-multiform-batchdialog-" + _vm.uiid,
               staticClass: "multiform-batch-dialog",
-              attrs: { width: "500px", height: "240px", color: "gray" }
+              attrs: {
+                width: "500px",
+                height: "240px",
+                color: "gray",
+                showType: _vm.conf.showType
+              }
             },
             [
               _c("header", { attrs: { slot: "header" }, slot: "header" }, [
@@ -42511,7 +42534,13 @@ var render = function() {
           _vm._v(" "),
           _vm.data.normalRows.length === 0 && _vm.data.titleRows.length === 0
             ? _c("tr", [
-                _c("td", { staticClass: "no-data" }, [_vm._v("无数据")])
+                _vm.data.titleKeys.length > 0
+                  ? _c(
+                      "td",
+                      { staticClass: "no-data", attrs: { colspan: "2" } },
+                      [_vm._v("无数据")]
+                    )
+                  : _c("td", { staticClass: "no-data" }, [_vm._v("无数据")])
               ])
             : _vm._e()
         ])
