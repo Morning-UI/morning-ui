@@ -333,7 +333,7 @@ export default {
         },
         zoneMinSize : function () {
 
-            return 4;// * this.data.scale;
+            return 4;
 
         }
     },
