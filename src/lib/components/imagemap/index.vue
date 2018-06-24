@@ -333,7 +333,7 @@ export default {
         },
         zoneMinSize : function () {
 
-            return 4;
+            return 4 * this.data.scale;
 
         }
     },
@@ -436,7 +436,7 @@ export default {
 
             this.Vue.nextTick(() => {
 
-                this._reizeZoneStart(evt, id, 'topleft');
+                this._reizeZoneStart(evt, id, 'bottomright');
 
             });
 
