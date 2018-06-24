@@ -18,7 +18,7 @@
                   {col: 'tacticsText', name: '默认策略', sort: true},
                   {col: 'typeText', name: '类型', sort: true}, 
                   {col: 'id', name: 'ID', sort: true}
-             ]" show-col-name fixed-title-col="left"></ui-table>
+             ]" show-col-name fixed-title-col="right-fixed"></ui-table>
             </div>
         </div>
         <doc-footer></doc-footer>
@@ -34,17 +34,18 @@ export default {
     
         return {
             pageSize : 30,
-            list : [
-                {app : 'Tim Boelaars', type : 20, tactics : 'male', tags : 'driver', appName: 'appName', key: 'key', desc: 'desc', operate: 'operate', tagsText: 'tagsText', tacticsText: 'tacticsText', typeText: 'typeText', id: 'id'},
-                {app : 'Tim Boelaars', type : 20, tactics : 'male', tags : 'driver', appName: 'appName', key: 'key', desc: 'desc', operate: 'operate', tagsText: 'tagsText', tacticsText: 'tacticsText', typeText: 'typeText', id: 'id'},
-                {app : 'Tim Boelaars', type : 20, tactics : 'male', tags : 'driver', appName: 'appName', key: 'key', desc: 'desc', operate: 'operate', tagsText: 'tagsText', tacticsText: 'tacticsText', typeText: 'typeText', id: 'id'},
-                {app : 'Tim Boelaars', type : 20, tactics : 'male', tags : 'driver', appName: 'appName', key: 'key', desc: 'desc', operate: 'operate', tagsText: 'tagsText', tacticsText: 'tacticsText', typeText: 'typeText', id: 'id'},
-                {app : 'Tim Boelaars', type : 20, tactics : 'male', tags : 'driver', appName: 'appName', key: 'key', desc: 'desc', operate: 'operate', tagsText: 'tagsText', tacticsText: 'tacticsText', typeText: 'typeText', id: 'id'},
-                {app : 'Tim Boelaars', type : 20, tactics : 'male', tags : 'driver', appName: 'appName', key: 'key', desc: 'desc', operate: 'operate', tagsText: 'tagsText', tacticsText: 'tacticsText', typeText: 'typeText', id: 'id'},
-                {app : 'Tim Boelaars', type : 20, tactics : 'male', tags : 'driver', appName: 'appName', key: 'key', desc: 'desc', operate: 'operate', tagsText: 'tagsText', tacticsText: 'tacticsText', typeText: 'typeText', id: 'id'},
-                {app : 'Tim Boelaars', type : 20, tactics : 'male', tags : 'driver', appName: 'appName', key: 'key', desc: 'desc', operate: 'operate', tagsText: 'tagsText', tacticsText: 'tacticsText', typeText: 'typeText', id: 'id'},
-                {app : 'Tim Boelaars', type : 20, tactics : 'male', tags : 'driver', appName: 'appName', key: 'key', desc: 'desc', operate: 'operate', tagsText: 'tagsText', tacticsText: 'tacticsText', typeText: 'typeText', id: 'id'}
-            ]
+            list : []
+            // list : [
+            //     {app : 'Tim Boelaars', type : 20, tactics : 'male', tags : 'driver', appName: 'appName', key: 'key', desc: 'desc', operate: 'operate', tagsText: 'tagsText', tacticsText: 'tacticsText', typeText: 'typeText', id: 'id'},
+            //     {app : 'Tim Boelaars', type : 20, tactics : 'male', tags : 'driver', appName: 'appName', key: 'key', desc: 'desc', operate: 'operate', tagsText: 'tagsText', tacticsText: 'tacticsText', typeText: 'typeText', id: 'id'},
+            //     {app : 'Tim Boelaars', type : 20, tactics : 'male', tags : 'driver', appName: 'appName', key: 'key', desc: 'desc', operate: 'operate', tagsText: 'tagsText', tacticsText: 'tacticsText', typeText: 'typeText', id: 'id'},
+            //     {app : 'Tim Boelaars', type : 20, tactics : 'male', tags : 'driver', appName: 'appName', key: 'key', desc: 'desc', operate: 'operate', tagsText: 'tagsText', tacticsText: 'tacticsText', typeText: 'typeText', id: 'id'},
+            //     {app : 'Tim Boelaars', type : 20, tactics : 'male', tags : 'driver', appName: 'appName', key: 'key', desc: 'desc', operate: 'operate', tagsText: 'tagsText', tacticsText: 'tacticsText', typeText: 'typeText', id: 'id'},
+            //     {app : 'Tim Boelaars', type : 20, tactics : 'male', tags : 'driver', appName: 'appName', key: 'key', desc: 'desc', operate: 'operate', tagsText: 'tagsText', tacticsText: 'tacticsText', typeText: 'typeText', id: 'id'},
+            //     {app : 'Tim Boelaars', type : 20, tactics : 'male', tags : 'driver', appName: 'appName', key: 'key', desc: 'desc', operate: 'operate', tagsText: 'tagsText', tacticsText: 'tacticsText', typeText: 'typeText', id: 'id'},
+            //     {app : 'Tim Boelaars', type : 20, tactics : 'male', tags : 'driver', appName: 'appName', key: 'key', desc: 'desc', operate: 'operate', tagsText: 'tagsText', tacticsText: 'tacticsText', typeText: 'typeText', id: 'id'},
+            //     {app : 'Tim Boelaars', type : 20, tactics : 'male', tags : 'driver', appName: 'appName', key: 'key', desc: 'desc', operate: 'operate', tagsText: 'tagsText', tacticsText: 'tacticsText', typeText: 'typeText', id: 'id'}
+            // ]
         };
 
     },
