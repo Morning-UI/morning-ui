@@ -5,11 +5,20 @@
         <div class="lab">
             <h1><i class="iconfont">&#xe615;</i>Morning Laboratory</h1>
             <div class="area">
-                <div style="width:500px;">
-                    <div style="width:460px;">
-                        <ui-datetimepicker form-name="日期时间" :is-range="true"></ui-datetimepicker>
-                    </div>
-                </div>
+                <ui-table :list="list" :col-set="[
+                  {col: 'app', name: 'appId', hide: true},
+                  {col: 'type', name: '类型', hide: true},
+                  {col: 'tactics', name: '默认策略', hide: true},
+                  {col: 'tags', name: '标签', hide: true},
+                  {col: 'appName', name: '应用', sort: true, title: true, width: '20px', maxwidth: '60px'},
+                  {col: 'key', name: 'KEY', sort: true, title: true, width: '50px'},
+                  {col: 'desc', name: '描述', sort: true, title: true, width: '50px'},
+                  {col: 'operate', name: '操作', title : true, width: '50px'},
+                  {col: 'tagsText', name: '标签'},
+                  {col: 'tacticsText', name: '默认策略', sort: true},
+                  {col: 'typeText', name: '类型', sort: true}, 
+                  {col: 'id', name: 'ID', sort: true}
+             ]" show-col-name fixed-title-col="left"></ui-table>
             </div>
         </div>
         <doc-footer></doc-footer>
@@ -25,7 +34,17 @@ export default {
     
         return {
             pageSize : 30,
-            list : []
+            list : [
+                {app : 'Tim Boelaars', type : 20, tactics : 'male', tags : 'driver', appName: 'appName', key: 'key', desc: 'desc', operate: 'operate', tagsText: 'tagsText', tacticsText: 'tacticsText', typeText: 'typeText', id: 'id'},
+                {app : 'Tim Boelaars', type : 20, tactics : 'male', tags : 'driver', appName: 'appName', key: 'key', desc: 'desc', operate: 'operate', tagsText: 'tagsText', tacticsText: 'tacticsText', typeText: 'typeText', id: 'id'},
+                {app : 'Tim Boelaars', type : 20, tactics : 'male', tags : 'driver', appName: 'appName', key: 'key', desc: 'desc', operate: 'operate', tagsText: 'tagsText', tacticsText: 'tacticsText', typeText: 'typeText', id: 'id'},
+                {app : 'Tim Boelaars', type : 20, tactics : 'male', tags : 'driver', appName: 'appName', key: 'key', desc: 'desc', operate: 'operate', tagsText: 'tagsText', tacticsText: 'tacticsText', typeText: 'typeText', id: 'id'},
+                {app : 'Tim Boelaars', type : 20, tactics : 'male', tags : 'driver', appName: 'appName', key: 'key', desc: 'desc', operate: 'operate', tagsText: 'tagsText', tacticsText: 'tacticsText', typeText: 'typeText', id: 'id'},
+                {app : 'Tim Boelaars', type : 20, tactics : 'male', tags : 'driver', appName: 'appName', key: 'key', desc: 'desc', operate: 'operate', tagsText: 'tagsText', tacticsText: 'tacticsText', typeText: 'typeText', id: 'id'},
+                {app : 'Tim Boelaars', type : 20, tactics : 'male', tags : 'driver', appName: 'appName', key: 'key', desc: 'desc', operate: 'operate', tagsText: 'tagsText', tacticsText: 'tacticsText', typeText: 'typeText', id: 'id'},
+                {app : 'Tim Boelaars', type : 20, tactics : 'male', tags : 'driver', appName: 'appName', key: 'key', desc: 'desc', operate: 'operate', tagsText: 'tagsText', tacticsText: 'tacticsText', typeText: 'typeText', id: 'id'},
+                {app : 'Tim Boelaars', type : 20, tactics : 'male', tags : 'driver', appName: 'appName', key: 'key', desc: 'desc', operate: 'operate', tagsText: 'tagsText', tacticsText: 'tacticsText', typeText: 'typeText', id: 'id'}
+            ]
         };
 
     },
@@ -35,20 +54,6 @@ export default {
     },
     mounted : function () {
 
-        setTimeout(() => {
-
-            this.list = {
-                "中文1" : "中文1",
-                "中文2" : "中文2",
-                "中文3" : "中文3"
-            };
-
-
-            morning.setGroup('demo', {
-                demo : ['http://m.beibei.com/weex/1yuan_tuan.js']
-            })
-
-        }, 1000);
     }
 };
 </script>
