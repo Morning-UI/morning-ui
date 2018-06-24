@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## 0.11.1
+
+`2018年6月24日`
+
+#### 新特性
+
+- `ui-table`新增title-col-width`配置，可以设置标题列的绝对宽度
+
+#### 修复
+
+- 修复`ui-colorpicker`透明度不能拖动调整的问题
+- 修复`ui-select`使用`separate-emit`配置时可能报错的问题(`'removeEventListener' of null`)
+- 修复`ui-datetimepicker`和`ui-datepicker`开启`is-range`配置后弹窗错位的问题
+
+#### 更多
+
+- 文档新增富文本编辑器`tools`配置的演示
+
 ## 0.11.0
 
 `2018年6月23日`

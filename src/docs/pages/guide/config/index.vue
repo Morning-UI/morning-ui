@@ -276,6 +276,7 @@
     - `mark-range` : 标记范围
     - `value-type` : 值类型
     - `allow-alpha` : 允许透明
+    - `title-col-width` : 标题列宽度
 
     </script>
     </doc-guide>

@@ -14,9 +14,13 @@
 
     #### 表单形态
 
-    表单组件支持两种形态：`normal`和`disabled`。
+    表单组件支持三种形态：`normal`、`readonly`、`disabled`。
+
+    `readonly`状态下的表单用户无法修改表单值，但可通过JS可以修改，一般用于展示。
 
     `disabled`状态下的表单无法修改表单值，一般用于展示。
+
+    详见：[disabled和readonly的区别](/guide/status.html#disabled和readonly的区别)。
 
     #### 表单配置
 

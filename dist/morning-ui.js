@@ -30545,6 +30545,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
 
 var _arrayUniq = __webpack_require__(8);
 
@@ -42533,7 +42534,13 @@ var render = function() {
           _vm._v(" "),
           _vm.data.normalRows.length === 0 && _vm.data.titleRows.length === 0
             ? _c("tr", [
-                _c("td", { staticClass: "no-data" }, [_vm._v("无数据")])
+                _vm.data.titleKeys.length > 0
+                  ? _c(
+                      "td",
+                      { staticClass: "no-data", attrs: { colspan: "2" } },
+                      [_vm._v("无数据")]
+                    )
+                  : _c("td", { staticClass: "no-data" }, [_vm._v("无数据")])
               ])
             : _vm._e()
         ])
@@ -63272,7 +63279,7 @@ var morning = {
         white: 'wh'
     },
     isMorning: true,
-    version: '0.11.0',
+    version: '0.11.1',
     map: {}
 };
 
