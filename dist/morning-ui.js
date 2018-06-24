@@ -21323,12 +21323,12 @@ exports.default = {
                         var input1x = $input1DateSelect.getBoundingClientRect().x;
                         var offset = ($input0DateSelect.offsetWidth - (input1x - input0x)) / 2;
 
+                        offset = Math.round(offset * NUM_1K) / NUM_1K;
+
                         if (offset === 0) {
 
                             return;
                         }
-
-                        offset = Math.round(offset * NUM_1K) / NUM_1K;
 
                         _this3.Vue.nextTick(function () {
 
@@ -21623,7 +21623,7 @@ exports.default = {
                 var val = [];
                 var currentVal = this.get();
 
-                if (currentVal[0] === input0Val && currentVal[1] === input1Val) {
+                if (currentVal && currentVal[0] === input0Val && currentVal[1] === input1Val) {
 
                     return;
                 }
@@ -63250,7 +63250,7 @@ var morning = {
         white: 'wh'
     },
     isMorning: true,
-    version: '0.11.0',
+    version: '0.11.1',
     map: {}
 };
 
