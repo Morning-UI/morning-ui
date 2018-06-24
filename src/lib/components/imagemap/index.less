@@ -104,43 +104,83 @@ mor-imagemap{
         }
 
         &.resize-top,
-        & .zone .top{
+        &.resize-top .zone,
+        &.resize-top .zone > div{
             cursor: n-resize !important;
         }
 
+        & .zone .top{
+            cursor: n-resize;
+        }
+
         &.resize-bottom,
-        & .zone .bottom{
+        &.resize-bottom .zone,
+        &.resize-bottom .zone > div{
             cursor: s-resize !important;
         }
 
+        & .zone .bottom{
+            cursor: s-resize;
+        }
+
         &.resize-left,
-        & .zone .left{
+        &.resize-left .zone,
+        &.resize-left .zone > div{
             cursor: w-resize !important;
         }
 
+        & .zone .left{
+            cursor: w-resize;
+        }
+
         &.resize-right,
-        & .zone .right{
+        &.resize-right .zone,
+        &.resize-right .zone > div{
             cursor: e-resize !important;
         }
 
+        & .zone .right{
+            cursor: e-resize;
+        }
+
         &.resize-topleft,
-        & .zone .topleft{
+        &.resize-topleft .zone,
+        &.resize-topleft .zone > div{
             cursor: nw-resize !important;
         }
 
+        & .zone .topleft{
+            cursor: nw-resize;
+        }
+
         &.resize-topright,
-        & .zone .topright{
+        &.resize-topright .zone,
+        &.resize-topright .zone > div{
             cursor: ne-resize !important;
         }
 
+        & .zone .topright{
+            cursor: ne-resize;
+        }
+
         &.resize-bottomleft,
-        & .zone .bottomleft{
+        &.resize-bottomleft .zone,
+        &.resize-bottomleft .zone > div{
             cursor: sw-resize !important;
         }
 
+        & .zone .bottomleft{
+            cursor: sw-resize;
+        }
+
         &.resize-bottomright,
-        & .zone .bottomright{
+        &.resize-bottomright .zone,
+        &.resize-bottomright .zone > div{
             cursor: se-resize !important;
+        }
+
+        & .zone .bottomright{
+            cursor: se-resize;
         }
     }
 
