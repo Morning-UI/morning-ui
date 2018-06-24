@@ -25,9 +25,9 @@
         <span class='fraction'>54/337</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">12.43% </span>
+        <span class="strong">12.39% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>42/338</span>
+        <span class='fraction'>42/339</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">21.11% </span>
@@ -1253,7 +1253,8 @@
 1208
 1209
 1210
-1211</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+1211
+1212</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1556,7 +1557,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">133x</span>
+<span class="cline-any cline-yes">140x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1578,11 +1579,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">133x</span>
-<span class="cline-any cline-yes">133x</span>
+<span class="cline-any cline-yes">140x</span>
+<span class="cline-any cline-yes">140x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">133x</span>
-<span class="cline-any cline-yes">133x</span>
+<span class="cline-any cline-yes">140x</span>
+<span class="cline-any cline-yes">140x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1828,9 +1829,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -2190,6 +2191,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -2462,8 +2464,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">133x</span>
-<span class="cline-any cline-yes">133x</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
+<span class="cline-any cline-yes">140x</span>
+<span class="cline-any cline-yes">140x</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
     &lt;mor-datepicker
         :_uiid="uiid"
         :class="[formClass, stateClass, moreClass]"
@@ -3034,13 +3036,13 @@ export default {
                         let input1x = <span class="cstat-no" title="statement not covered" >$input1DateSelect.getBoundingClientRect().x;</span>
                         let offset = <span class="cstat-no" title="statement not covered" >($input0DateSelect.offsetWidth - (input1x - input0x)) / 2;</span>
 &nbsp;
+<span class="cstat-no" title="statement not covered" >                        offset = Math.round(offset * NUM_1K) / NUM_1K;</span>
+&nbsp;
 <span class="cstat-no" title="statement not covered" >                        if (offset === 0) {</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >                            return;</span>
 &nbsp;
                         }
-&nbsp;
-<span class="cstat-no" title="statement not covered" >                        offset = Math.round(offset * NUM_1K) / NUM_1K;</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >                        this.Vue.nextTick(<span class="fstat-no" title="function not covered" >() =&gt; </span>{</span>
 &nbsp;
@@ -3397,7 +3399,8 @@ export default {
                 let val = <span class="cstat-no" title="statement not covered" >[];</span>
                 let currentVal = <span class="cstat-no" title="statement not covered" >this.get();</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >                if (currentVal[0] === input0Val &amp;&amp;</span>
+<span class="cstat-no" title="statement not covered" >                if (currentVal &amp;&amp;</span>
+                    currentVal[0] === input0Val &amp;&amp;
                     currentVal[1] === input1Val) {
 &nbsp;
 <span class="cstat-no" title="statement not covered" >                    return;</span>
@@ -3679,7 +3682,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Jun 23 2018 12:01:07 GMT+0800 (CST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Jun 24 2018 13:17:21 GMT+0800 (CST)
 </div>
 </div>
 <script src="../../../prettify.js"></script>

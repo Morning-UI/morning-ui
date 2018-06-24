@@ -126,7 +126,7 @@
             <ul>
                 <li><a href="/component/textinput.html">文本输入<p>&lt;textinput></p></a></li>
                 <li><a href="/component/textarea.html">段落输入<p>&lt;textarea></p></a></li>
-                <li><a href="/component/texteditor.html">富文本输入<p>&lt;texteditor></p></a></li>
+                <li><a href="/component/texteditor.html">富文本编辑器<p>&lt;texteditor></p></a></li>
             </ul>
         </div>
         <div class="sub-group">

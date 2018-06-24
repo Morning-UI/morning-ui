@@ -17,9 +17,9 @@
         <section class="s1 versioninfo">
             <p>全新Morning UI : </p>
             <a href="/guide/install.html">
-                <ui-label color="silver" size="xs">0.11.0</ui-label>
+                <ui-label color="silver" size="xs">0.11.1</ui-label>
             </a>
-            <p>发布于2018年6月23日</p>
+            <p>发布于2018年6月24日</p>
         </section>
         <section class="s1 silver">
             <div class="w1k center">
@@ -155,7 +155,7 @@
                     </div>
                 </div>
 
-                <a href="/guide/comparison.html" class="comparison">查看更多对比</a>
+                <a href="/guide/comparison.html" class="comparison">查看完整对比</a>
                <!--  <div class="vs">
                     <div class="logo">
                         <img src="http://morning-ui-image.test.upcdn.net/element.png" width="300" alt="">

@@ -18,6 +18,34 @@
     
     ### 更新记录
 
+    ### 0.11.1 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2018年6月24日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.11.1" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.11.1/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.11.1/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 新特性
+
+    - `ui-table`新增title-col-width`配置，可以设置标题列的绝对宽度
+
+    #### 修复
+
+    - 修复`ui-colorpicker`透明度不能拖动调整的问题
+    - 修复`ui-select`使用`separate-emit`配置时可能报错的问题(`'removeEventListener' of null`)
+    - 修复`ui-datetimepicker`和`ui-datepicker`开启`is-range`配置后弹窗错位的问题
+
+    #### 更多
+
+    - 文档新增富文本编辑器`tools`配置的演示
+
+    ---
+
     ### 0.11.0 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="light-blue">
@@ -28,7 +56,7 @@
             <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.11.0/dist/" target="_blank">jsdelivr(CDN)</a>
             <a href="https://unpkg.com/morning-ui@0.11.0/dist/" target="_blank">unpkg(CDN)</a>
         </ui-small>
-    </ui-textcolor><br><br>
+    </ui-textcolor>
 
     #### 新特性
 
@@ -38,6 +66,7 @@
     - 新增`ui-video`视频组件
     - 新增`ui-slider`滑块输入组件
     - 新增`ui-colorpicker`颜色选择器组件
+    - 新增`ui-texteditor`富文本编辑器组件
     - `ui-select`新增`list`配置，用来设置可选项目
     - `ui-select`新增`dynamic-list`和`validate`配置，开启后支持动态调整可选项目及过滤项目
     - `ui-select`新增`max-show-height`配置，用来替代原有的`max-show`，原有的`max-show`配置现在用来控制最多显示项目
@@ -85,7 +114,7 @@
     #### 更多
 
     - 新的更新日志规范
-    - 更新对比文档，新增与iView的对比
+    - 更新对比文档，新增与iView、、Bootstrap、   Semantic UI的对比
 
     <ui-label color="primary">升级注意事项</ui-label>
 
@@ -97,6 +126,8 @@
     - `ui-img`的`rounded`样式类改名为`round`
     - `ui-downdrop`组件的内置icon从`<i class="morningicon">&#xe6b1;</i>`变为`<i class="mo-icon mo-icon-dropdown"></i>`
     - `morning-co-font-*`、`morning-co-border-*`、`morning-co-bg-*`配色类缩短为`mo-co-font-*`、`mo-co-border-*`、`mo-co-bg-*`
+
+    ---
 
     ### 0.10.32 <ui-badge class="circle ver-stable" size="s" color="light-theme">Stable</ui-badge>
 
@@ -114,6 +145,8 @@
     - 修复`ui-table`组件的`empty-cell-value`配置判断问题
     - 修复`ui-table`的一些样式问题
     - 修复`ui-table`行高计算错误的问题
+
+    ---
 
     ### 0.10.31 <ui-badge class="circle ver-stable" size="s" color="light-theme">Stable</ui-badge>
 

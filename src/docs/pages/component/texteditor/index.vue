@@ -159,6 +159,43 @@
     </div>
     :::
 
+    完整的`tools`配置如下：
+
+    :::democode/html
+    <div style="width:100%;height:240px;">
+        <ui-texteditor
+            form-name="文章编辑"
+            :tools="[
+                [
+                    {header : [false, 1, 2, 3, 4, 5, 6]},
+                    {size : [false, '12px', '13px', '14px', '16px', '20px', '28px']}
+                ],
+                ['undo', 'redo'],
+                ['bold', 'italic', 'underline', 'strike'],
+                [
+                    {color : []},
+                    {background : []}
+                ],
+                [
+                    {align : []},
+                    {list : 'ordered'},
+                    {list : 'bullet'},
+                    {indent : '-1'},
+                    {indent : '+1'}
+                ],
+                [
+                    {script : 'sub'},
+                    {script : 'super'},
+                    'blockquote',
+                    'code-block'
+                ],
+                ['link'],
+                ['clean']
+            ]"
+        ></ui-texteditor>
+    </div>
+    :::
+
     #### placeholder
 
     :::democode/html
@@ -166,7 +203,18 @@
         <ui-texteditor form-name="文章编辑" placeholder="编写文章..."></ui-texteditor>
     </div>
     :::
-    
+
+    [[[方法]]]
+
+    :::preset/html
+    formMethod
+    ---
+    uikey:texteditor
+    methodValue:'<p>编辑你的文章...</p>'
+    methodDefaultValue:'<p>编辑你的文章...</p>'
+    methodDivStyle:width:100%;height:260px;padding-bottom:80px;
+    :::
+
     [[[事件]]]
 
     #### selection-change

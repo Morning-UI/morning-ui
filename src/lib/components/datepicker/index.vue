@@ -569,13 +569,13 @@ export default {
                         let input1x = $input1DateSelect.getBoundingClientRect().x;
                         let offset = ($input0DateSelect.offsetWidth - (input1x - input0x)) / 2;
 
+                        offset = Math.round(offset * NUM_1K) / NUM_1K;
+
                         if (offset === 0) {
 
                             return;
 
                         }
-
-                        offset = Math.round(offset * NUM_1K) / NUM_1K;
 
                         this.Vue.nextTick(() => {
 
@@ -932,7 +932,8 @@ export default {
                 let val = [];
                 let currentVal = this.get();
 
-                if (currentVal[0] === input0Val &&
+                if (currentVal &&
+                    currentVal[0] === input0Val &&
                     currentVal[1] === input1Val) {
 
                     return;
