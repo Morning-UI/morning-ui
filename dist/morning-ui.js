@@ -24854,7 +24854,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
-//
 
 var _extend = __webpack_require__(2);
 
@@ -25011,15 +25010,11 @@ exports.default = {
                 this.data.recomputeMatchList--;
             }
 
-            for (var index in this.data.itemValueList) {
+            for (var index in this.data.itemValMap) {
 
-                var item = this.data.itemValueList[index];
+                if (!this.data.itemSelectedMap[index]) {
 
-                item._index = index;
-
-                if (!item._nomatch) {
-
-                    matchList.push(item);
+                    matchList.push(index);
                 }
             }
 
@@ -25032,7 +25027,7 @@ exports.default = {
                 return this.matchList.slice(0, this.conf.maxShow);
             }
 
-            return this.data.itemValueList;
+            return Object.keys(this.data.itemValMap || []);
         }
     },
     data: function data() {
@@ -25049,7 +25044,12 @@ exports.default = {
                 multiinputLastValue: [],
                 selectInput: false,
                 dontSetSearchMultiinput: false,
-                itemValueList: [],
+                // itemValueList : [],
+                itemValMap: [],
+                itemNameMap: [],
+                itemTipMap: [],
+                itemSelectedMap: [],
+                itemNomathMap: [],
                 lastItemHeight: 0,
                 tips: [],
                 $listWrap: null,
@@ -25083,7 +25083,7 @@ exports.default = {
 
                     var val = value[index];
 
-                    if ((0, _lodash2.default)(this.data.itemValueList, 'val').indexOf(String(val)) === -1) {
+                    if (this.data.itemValMap.indexOf(String(val)) === -1) {
 
                         value.splice(index, 1);
                     }
@@ -25158,17 +25158,17 @@ exports.default = {
                     var val = _step.value;
 
 
-                    for (var key in this.data.itemValueList) {
+                    for (var index in this.data.itemValMap) {
 
-                        if (this.data.itemValueList[key].val === val) {
+                        if (this.data.itemValMap[index] === val) {
 
                             if (this.conf.multiSelect) {
 
-                                multiNames.push(this.data.itemValueList[key].name);
-                                this.data.multiinputNameValMap[this.data.itemValueList[key].name] = this.data.itemValueList[key].val;
+                                multiNames.push(this.data.itemNameMap[index]);
+                                this.data.multiinputNameValMap[this.data.itemNameMap[index]] = this.data.itemValMap[index];
                             } else {
 
-                                this.data.selectedContent = this.data.itemValueList[key].name;
+                                this.data.selectedContent = this.data.itemNameMap[index];
                             }
                         }
                     }
@@ -25248,13 +25248,13 @@ exports.default = {
                 try {
 
                     for (var _iterator2 = this.conf.list[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                        var item = _step2.value;
+                        var _item = _step2.value;
 
 
                         list.push({
-                            val: item.key,
-                            name: item.name,
-                            tip: item.tip
+                            val: String(_item.key),
+                            name: _item.name,
+                            tip: _item.tip
                         });
                     }
                 } catch (err) {
@@ -25282,20 +25282,20 @@ exports.default = {
                         var key = _step3.value;
 
 
-                        var _item = {
-                            val: key
+                        var _item2 = {
+                            val: String(key)
                         };
 
                         if (typeof this.conf.list[key] === 'string') {
 
-                            _item.name = this.conf.list[key];
+                            _item2.name = this.conf.list[key];
                         } else if (_typeof(this.conf.list[key]) === 'object') {
 
-                            _item.name = this.conf.list[key].name;
-                            _item.tip = this.conf.list[key].tip;
+                            _item2.name = this.conf.list[key].name;
+                            _item2.tip = this.conf.list[key].tip;
                         }
 
-                        list.push(_item);
+                        list.push(_item2);
                     }
                 } catch (err) {
                     _didIteratorError3 = true;
@@ -25313,52 +25313,36 @@ exports.default = {
                 }
             }
 
-            var _iteratorNormalCompletion4 = true;
-            var _didIteratorError4 = false;
-            var _iteratorError4 = undefined;
+            for (var index in this.data.itemValMap) {
 
-            try {
-                for (var _iterator4 = this.data.itemValueList[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-                    var _item2 = _step4.value;
+                for (var _key in list) {
 
+                    if (String(list[_key].val) === String(this.data.itemValMap[index])) {
 
-                    for (var _key2 in list) {
-
-                        if (list[_key2].val === _item2.val) {
-
-                            // extend old status
-                            list[_key2] = (0, _extend2.default)(_item2, list[_key2]);
-                        }
-                    }
-                }
-
-                // uniq same val
-            } catch (err) {
-                _didIteratorError4 = true;
-                _iteratorError4 = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion4 && _iterator4.return) {
-                        _iterator4.return();
-                    }
-                } finally {
-                    if (_didIteratorError4) {
-                        throw _iteratorError4;
+                        // extend old status
+                        list[_key] = (0, _extend2.default)(item, {
+                            val: String(this.data.itemValMap[index]),
+                            name: this.data.itemNameMap[index],
+                            tip: this.data.itemTipMap[index],
+                            _selected: this.data.itemSelectedMap[index] || 0,
+                            _nomatch: this.data.itemNomathMap[index] || 0
+                        });
                     }
                 }
             }
 
+            // uniq same val
             var valList = [];
             var uniqList = [];
 
-            for (var _key in list) {
+            for (var _key2 in list) {
 
-                if (valList.indexOf(list[_key].val) === -1) {
+                if (valList.indexOf(list[_key2].val) === -1) {
 
-                    uniqList.push(list[_key]);
+                    uniqList.push(list[_key2]);
                 }
 
-                valList.push(list[_key].val);
+                valList.push(list[_key2].val);
             }
 
             // 高性能模式，当列表项目大于200后开启
@@ -25371,7 +25355,11 @@ exports.default = {
                 this.data.highPerfMode = false;
             }
 
-            this.data.itemValueList = uniqList;
+            this.data.itemValMap = (0, _lodash2.default)(uniqList, 'val');
+            this.data.itemNameMap = (0, _lodash2.default)(uniqList, 'name');
+            this.data.itemTipMap = (0, _lodash2.default)(uniqList, 'tip');
+            this.data.itemSelectedMap = (0, _lodash2.default)(uniqList, '_selected');
+            this.data.itemNomathMap = (0, _lodash2.default)(uniqList, '_nomatch');
 
             if (!this.data.itemValueListInit) {
 
@@ -25431,13 +25419,13 @@ exports.default = {
             var $items = this.data.$list.querySelectorAll('li:not(.infoitem)');
             var $clickItem = false;
 
-            var _iteratorNormalCompletion5 = true;
-            var _didIteratorError5 = false;
-            var _iteratorError5 = undefined;
+            var _iteratorNormalCompletion4 = true;
+            var _didIteratorError4 = false;
+            var _iteratorError4 = undefined;
 
             try {
-                for (var _iterator5 = $items.values()[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
-                    var $item = _step5.value;
+                for (var _iterator4 = $items.values()[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+                    var $item = _step4.value;
 
 
                     if (evt.path.indexOf($item) !== -1) {
@@ -25447,16 +25435,16 @@ exports.default = {
                     }
                 }
             } catch (err) {
-                _didIteratorError5 = true;
-                _iteratorError5 = err;
+                _didIteratorError4 = true;
+                _iteratorError4 = err;
             } finally {
                 try {
-                    if (!_iteratorNormalCompletion5 && _iterator5.return) {
-                        _iterator5.return();
+                    if (!_iteratorNormalCompletion4 && _iterator4.return) {
+                        _iterator4.return();
                     }
                 } finally {
-                    if (_didIteratorError5) {
-                        throw _iteratorError5;
+                    if (_didIteratorError4) {
+                        throw _iteratorError4;
                     }
                 }
             }
@@ -25464,13 +25452,13 @@ exports.default = {
             if ($clickItem) {
 
                 var index = $clickItem.getAttribute('index');
-                var value = [this.data.itemValueList[index].val];
+                var value = [this.data.itemValMap[index]];
 
                 if (this.conf.multiSelect && this.data.value !== undefined) {
 
                     value = this.get();
 
-                    var clickValue = this.data.itemValueList[index].val;
+                    var clickValue = this.data.itemValMap[index];
                     var valIndex = value.indexOf(clickValue);
 
                     if (valIndex !== -1) {
@@ -25520,30 +25508,9 @@ exports.default = {
                 this.data.searchKey = null;
                 this.data.noMatch = false;
 
-                var _iteratorNormalCompletion6 = true;
-                var _didIteratorError6 = false;
-                var _iteratorError6 = undefined;
+                for (var index in this.data.itemNomathMap) {
 
-                try {
-                    for (var _iterator6 = this.data.itemValueList[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
-                        var item = _step6.value;
-
-
-                        delete item._nomatch;
-                    }
-                } catch (err) {
-                    _didIteratorError6 = true;
-                    _iteratorError6 = err;
-                } finally {
-                    try {
-                        if (!_iteratorNormalCompletion6 && _iterator6.return) {
-                            _iterator6.return();
-                        }
-                    } finally {
-                        if (_didIteratorError6) {
-                            throw _iteratorError6;
-                        }
-                    }
+                    this.data.itemNomathMap[index] = 0;
                 }
 
                 return;
@@ -25607,13 +25574,13 @@ exports.default = {
             var names = searchMultiinput.get();
             var values = [];
 
-            var _iteratorNormalCompletion7 = true;
-            var _didIteratorError7 = false;
-            var _iteratorError7 = undefined;
+            var _iteratorNormalCompletion5 = true;
+            var _didIteratorError5 = false;
+            var _iteratorError5 = undefined;
 
             try {
-                for (var _iterator7 = names[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
-                    var name = _step7.value;
+                for (var _iterator5 = names[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+                    var name = _step5.value;
 
 
                     if (this.data.multiinputNameValMap) {
@@ -25622,16 +25589,16 @@ exports.default = {
                     }
                 }
             } catch (err) {
-                _didIteratorError7 = true;
-                _iteratorError7 = err;
+                _didIteratorError5 = true;
+                _iteratorError5 = err;
             } finally {
                 try {
-                    if (!_iteratorNormalCompletion7 && _iterator7.return) {
-                        _iterator7.return();
+                    if (!_iteratorNormalCompletion5 && _iterator5.return) {
+                        _iterator5.return();
                     }
                 } finally {
-                    if (_didIteratorError7) {
-                        throw _iteratorError7;
+                    if (_didIteratorError5) {
+                        throw _iteratorError5;
                     }
                 }
             }
@@ -25663,43 +25630,22 @@ exports.default = {
 
             var foundNum = 0;
 
-            var _iteratorNormalCompletion8 = true;
-            var _didIteratorError8 = false;
-            var _iteratorError8 = undefined;
+            for (var index in this.data.itemValMap) {
 
-            try {
-                for (var _iterator8 = this.data.itemValueList[Symbol.iterator](), _step8; !(_iteratorNormalCompletion8 = (_step8 = _iterator8.next()).done); _iteratorNormalCompletion8 = true) {
-                    var item = _step8.value;
+                if (!this.data.searching) {
 
+                    this.data.itemNomathMap[index] = 0;
+                } else if (this.data.itemNameMap[index].search(this.data.searchKey) !== -1) {
 
-                    if (!this.data.searching) {
+                    if (!this.data.itemSelectedMap[index]) {
 
-                        delete item._nomatch;
-                    } else if (item.name.search(this.data.searchKey) !== -1) {
-
-                        if (!item._selected) {
-
-                            foundNum++;
-                        }
-
-                        delete item._nomatch;
-                    } else {
-
-                        item._nomatch = true;
+                        foundNum++;
                     }
-                }
-            } catch (err) {
-                _didIteratorError8 = true;
-                _iteratorError8 = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion8 && _iterator8.return) {
-                        _iterator8.return();
-                    }
-                } finally {
-                    if (_didIteratorError8) {
-                        throw _iteratorError8;
-                    }
+
+                    this.data.itemNomathMap[index] = 0;
+                } else {
+
+                    this.data.itemNomathMap[index] = 1;
                 }
             }
 
@@ -25720,20 +25666,20 @@ exports.default = {
 
             var values = this.get();
 
-            for (var key in this.data.itemValueList) {
+            for (var index in this.data.itemValMap) {
 
                 var selected = false;
 
-                var _iteratorNormalCompletion9 = true;
-                var _didIteratorError9 = false;
-                var _iteratorError9 = undefined;
+                var _iteratorNormalCompletion6 = true;
+                var _didIteratorError6 = false;
+                var _iteratorError6 = undefined;
 
                 try {
-                    for (var _iterator9 = values[Symbol.iterator](), _step9; !(_iteratorNormalCompletion9 = (_step9 = _iterator9.next()).done); _iteratorNormalCompletion9 = true) {
-                        var value = _step9.value;
+                    for (var _iterator6 = values[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
+                        var value = _step6.value;
 
 
-                        if (value === this.data.itemValueList[key].val) {
+                        if (value === this.data.itemValMap[index]) {
 
                             selected = true;
 
@@ -25741,21 +25687,21 @@ exports.default = {
                         }
                     }
                 } catch (err) {
-                    _didIteratorError9 = true;
-                    _iteratorError9 = err;
+                    _didIteratorError6 = true;
+                    _iteratorError6 = err;
                 } finally {
                     try {
-                        if (!_iteratorNormalCompletion9 && _iterator9.return) {
-                            _iterator9.return();
+                        if (!_iteratorNormalCompletion6 && _iterator6.return) {
+                            _iterator6.return();
                         }
                     } finally {
-                        if (_didIteratorError9) {
-                            throw _iteratorError9;
+                        if (_didIteratorError6) {
+                            throw _iteratorError6;
                         }
                     }
                 }
 
-                this.data.itemValueList[key]._selected = selected;
+                this.data.itemSelectedMap[index] = selected ? 1 : 0;
             }
 
             this._refreshShowItemsWithSearch();
@@ -25778,57 +25724,57 @@ exports.default = {
 
             var $inlineImgs = this.data.$list.querySelectorAll('li mor-img,li img');
 
-            var _iteratorNormalCompletion10 = true;
-            var _didIteratorError10 = false;
-            var _iteratorError10 = undefined;
+            var _iteratorNormalCompletion7 = true;
+            var _didIteratorError7 = false;
+            var _iteratorError7 = undefined;
 
             try {
-                for (var _iterator10 = $inlineImgs.values()[Symbol.iterator](), _step10; !(_iteratorNormalCompletion10 = (_step10 = _iterator10.next()).done); _iteratorNormalCompletion10 = true) {
-                    var $img = _step10.value;
+                for (var _iterator7 = $inlineImgs.values()[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
+                    var $img = _step7.value;
 
 
                     $img.style.width = this.conf.inlineImgSize;
                     $img.style.height = this.conf.inlineImgSize;
                 }
             } catch (err) {
-                _didIteratorError10 = true;
-                _iteratorError10 = err;
+                _didIteratorError7 = true;
+                _iteratorError7 = err;
             } finally {
                 try {
-                    if (!_iteratorNormalCompletion10 && _iterator10.return) {
-                        _iterator10.return();
+                    if (!_iteratorNormalCompletion7 && _iterator7.return) {
+                        _iterator7.return();
                     }
                 } finally {
-                    if (_didIteratorError10) {
-                        throw _iteratorError10;
+                    if (_didIteratorError7) {
+                        throw _iteratorError7;
                     }
                 }
             }
         },
         _refreshTips: function _refreshTips() {
-            var _iteratorNormalCompletion11 = true;
-            var _didIteratorError11 = false;
-            var _iteratorError11 = undefined;
+            var _iteratorNormalCompletion8 = true;
+            var _didIteratorError8 = false;
+            var _iteratorError8 = undefined;
 
             try {
 
-                for (var _iterator11 = this.data.tips[Symbol.iterator](), _step11; !(_iteratorNormalCompletion11 = (_step11 = _iterator11.next()).done); _iteratorNormalCompletion11 = true) {
-                    var tipVm = _step11.value;
+                for (var _iterator8 = this.data.tips[Symbol.iterator](), _step8; !(_iteratorNormalCompletion8 = (_step8 = _iterator8.next()).done); _iteratorNormalCompletion8 = true) {
+                    var tipVm = _step8.value;
 
 
                     tipVm.$destroy();
                 }
             } catch (err) {
-                _didIteratorError11 = true;
-                _iteratorError11 = err;
+                _didIteratorError8 = true;
+                _iteratorError8 = err;
             } finally {
                 try {
-                    if (!_iteratorNormalCompletion11 && _iterator11.return) {
-                        _iterator11.return();
+                    if (!_iteratorNormalCompletion8 && _iterator8.return) {
+                        _iterator8.return();
                     }
                 } finally {
-                    if (_didIteratorError11) {
-                        throw _iteratorError11;
+                    if (_didIteratorError8) {
+                        throw _iteratorError8;
                     }
                 }
             }
@@ -25842,17 +25788,17 @@ exports.default = {
 
             var $items = this.data.$list.querySelectorAll('li:not(.infoitem)');
 
-            var _iteratorNormalCompletion12 = true;
-            var _didIteratorError12 = false;
-            var _iteratorError12 = undefined;
+            var _iteratorNormalCompletion9 = true;
+            var _didIteratorError9 = false;
+            var _iteratorError9 = undefined;
 
             try {
-                for (var _iterator12 = $items.keys()[Symbol.iterator](), _step12; !(_iteratorNormalCompletion12 = (_step12 = _iterator12.next()).done); _iteratorNormalCompletion12 = true) {
-                    var index = _step12.value;
+                for (var _iterator9 = $items.keys()[Symbol.iterator](), _step9; !(_iteratorNormalCompletion9 = (_step9 = _iterator9.next()).done); _iteratorNormalCompletion9 = true) {
+                    var index = _step9.value;
 
 
                     var $item = $items[index];
-                    var tip = this.data.itemValueList[$item.getAttribute('index')].tip;
+                    var tip = this.data.itemTipMap[$item.getAttribute('index')].tip;
 
                     if (!tip) {
 
@@ -25879,16 +25825,16 @@ exports.default = {
                     this.data.tips.push(_tipVm);
                 }
             } catch (err) {
-                _didIteratorError12 = true;
-                _iteratorError12 = err;
+                _didIteratorError9 = true;
+                _iteratorError9 = err;
             } finally {
                 try {
-                    if (!_iteratorNormalCompletion12 && _iterator12.return) {
-                        _iterator12.return();
+                    if (!_iteratorNormalCompletion9 && _iterator9.return) {
+                        _iterator9.return();
                     }
                 } finally {
-                    if (_didIteratorError12) {
-                        throw _iteratorError12;
+                    if (_didIteratorError9) {
+                        throw _iteratorError9;
                     }
                 }
             }
@@ -25936,6 +25882,13 @@ exports.default = {
 
                 // 1 is left border width
                 $selectArea.style.maxWidth = 'calc(100% - ' + (width + 1) + 'px)';
+            }
+        },
+        _itemChanged: function _itemChanged() {
+
+            if (JSON.stringify(newVal) !== JSON.stringify(oldVal)) {
+
+                this._refreshTips();
             }
         },
         toggle: function toggle(show) {
@@ -25988,14 +25941,14 @@ exports.default = {
 
                     this._refreshShowItems();
                 } else if ($selectedItem) {
-                    var _iteratorNormalCompletion13 = true;
-                    var _didIteratorError13 = false;
-                    var _iteratorError13 = undefined;
+                    var _iteratorNormalCompletion10 = true;
+                    var _didIteratorError10 = false;
+                    var _iteratorError10 = undefined;
 
                     try {
 
-                        for (var _iterator13 = $items.keys()[Symbol.iterator](), _step13; !(_iteratorNormalCompletion13 = (_step13 = _iterator13.next()).done); _iteratorNormalCompletion13 = true) {
-                            var index = _step13.value;
+                        for (var _iterator10 = $items.keys()[Symbol.iterator](), _step10; !(_iteratorNormalCompletion10 = (_step10 = _iterator10.next()).done); _iteratorNormalCompletion10 = true) {
+                            var index = _step10.value;
 
 
                             if ($items[index] === $selectedItem) {
@@ -26006,16 +25959,16 @@ exports.default = {
                             }
                         }
                     } catch (err) {
-                        _didIteratorError13 = true;
-                        _iteratorError13 = err;
+                        _didIteratorError10 = true;
+                        _iteratorError10 = err;
                     } finally {
                         try {
-                            if (!_iteratorNormalCompletion13 && _iterator13.return) {
-                                _iterator13.return();
+                            if (!_iteratorNormalCompletion10 && _iterator10.return) {
+                                _iterator10.return();
                             }
                         } finally {
-                            if (_didIteratorError13) {
-                                throw _iteratorError13;
+                            if (_didIteratorError10) {
+                                throw _iteratorError10;
                             }
                         }
                     }
@@ -26031,13 +25984,13 @@ exports.default = {
 
                 this.data.showlist = false;
 
-                var _iteratorNormalCompletion14 = true;
-                var _didIteratorError14 = false;
-                var _iteratorError14 = undefined;
+                var _iteratorNormalCompletion11 = true;
+                var _didIteratorError11 = false;
+                var _iteratorError11 = undefined;
 
                 try {
-                    for (var _iterator14 = this.data.tips[Symbol.iterator](), _step14; !(_iteratorNormalCompletion14 = (_step14 = _iterator14.next()).done); _iteratorNormalCompletion14 = true) {
-                        var tipVm = _step14.value;
+                    for (var _iterator11 = this.data.tips[Symbol.iterator](), _step11; !(_iteratorNormalCompletion11 = (_step11 = _iterator11.next()).done); _iteratorNormalCompletion11 = true) {
+                        var tipVm = _step11.value;
 
 
                         if (tipVm.$el._vm.data.show) {
@@ -26046,16 +25999,16 @@ exports.default = {
                         }
                     }
                 } catch (err) {
-                    _didIteratorError14 = true;
-                    _iteratorError14 = err;
+                    _didIteratorError11 = true;
+                    _iteratorError11 = err;
                 } finally {
                     try {
-                        if (!_iteratorNormalCompletion14 && _iterator14.return) {
-                            _iterator14.return();
+                        if (!_iteratorNormalCompletion11 && _iterator11.return) {
+                            _iterator11.return();
                         }
                     } finally {
-                        if (_didIteratorError14) {
-                            throw _iteratorError14;
+                        if (_didIteratorError11) {
+                            throw _iteratorError11;
                         }
                     }
                 }
@@ -26164,29 +26117,29 @@ exports.default = {
         });
 
         this.$watch('conf.itemTipDirect', function () {
-            var _iteratorNormalCompletion15 = true;
-            var _didIteratorError15 = false;
-            var _iteratorError15 = undefined;
+            var _iteratorNormalCompletion12 = true;
+            var _didIteratorError12 = false;
+            var _iteratorError12 = undefined;
 
             try {
 
-                for (var _iterator15 = _this4.data.tips[Symbol.iterator](), _step15; !(_iteratorNormalCompletion15 = (_step15 = _iterator15.next()).done); _iteratorNormalCompletion15 = true) {
-                    var tipVm = _step15.value;
+                for (var _iterator12 = _this4.data.tips[Symbol.iterator](), _step12; !(_iteratorNormalCompletion12 = (_step12 = _iterator12.next()).done); _iteratorNormalCompletion12 = true) {
+                    var tipVm = _step12.value;
 
 
                     tipVm.$el._vm.conf.placement = _this4.conf.itemTipDirect;
                 }
             } catch (err) {
-                _didIteratorError15 = true;
-                _iteratorError15 = err;
+                _didIteratorError12 = true;
+                _iteratorError12 = err;
             } finally {
                 try {
-                    if (!_iteratorNormalCompletion15 && _iterator15.return) {
-                        _iterator15.return();
+                    if (!_iteratorNormalCompletion12 && _iterator12.return) {
+                        _iterator12.return();
                     }
                 } finally {
-                    if (_didIteratorError15) {
-                        throw _iteratorError15;
+                    if (_didIteratorError12) {
+                        throw _iteratorError12;
                     }
                 }
             }
@@ -26194,15 +26147,11 @@ exports.default = {
             immediate: true
         });
 
-        this.$watch('data.itemValueList', function (newVal, oldVal) {
-
-            if (JSON.stringify(newVal) !== JSON.stringify(oldVal)) {
-
-                _this4._refreshTips();
-            }
-        }, {
-            deep: true
-        });
+        this.$watch('data.itemValMap', this._itemChanged);
+        this.$watch('data.itemNameMap', this._itemChanged);
+        this.$watch('data.itemTipMap', this._itemChanged);
+        this.$watch('data.itemSelectedMap', this._itemChanged);
+        this.$watch('data.itemNomathMap', this._itemChanged);
 
         this.$on('list-show', function () {
 
@@ -40052,9 +40001,9 @@ var render = function() {
                   on: { click: _vm._listClick }
                 },
                 [
-                  _vm._l(_vm.showItemList, function(item, index) {
+                  _vm._l(_vm.showItemList, function(index) {
                     return [
-                      item._selected
+                      _vm.data.itemSelectedMap[index]
                         ? _c("li", {
                             directives: [
                               {
@@ -40062,33 +40011,35 @@ var render = function() {
                                 rawName: "v-render",
                                 value: {
                                   template:
-                                    item.name +
+                                    _vm.data.itemNameMap[index] +
                                     "<i class='mo-select-selected-icon mo-icon mo-icon-check'></i>"
                                 },
                                 expression:
-                                  "{template : item.name+'<i class=\\'mo-select-selected-icon mo-icon mo-icon-check\\'></i>'}"
+                                  "{template : data.itemNameMap[index]+'<i class=\\'mo-select-selected-icon mo-icon mo-icon-check\\'></i>'}"
                               }
                             ],
+                            staticClass: "selected",
                             class: {
-                              hide: item._nomatch,
-                              selected: item._selected
+                              hide: _vm.data.itemNomathMap[index]
                             },
-                            attrs: { index: item._index || index }
+                            attrs: { index: index }
                           })
                         : _c("li", {
                             directives: [
                               {
                                 name: "render",
                                 rawName: "v-render",
-                                value: { template: item.name },
-                                expression: "{template : item.name}"
+                                value: {
+                                  template: _vm.data.itemNameMap[index]
+                                },
+                                expression:
+                                  "{template : data.itemNameMap[index]}"
                               }
                             ],
                             class: {
-                              hide: item._nomatch,
-                              selected: item._selected
+                              hide: _vm.data.itemNomathMap[index]
                             },
-                            attrs: { index: item._index || index }
+                            attrs: { index: index }
                           })
                     ]
                   }),
@@ -40098,9 +40049,7 @@ var render = function() {
                     {
                       staticClass: "noitem infoitem",
                       class: {
-                        show:
-                          _vm.data.noMatch ||
-                          Object.keys(_vm.showItemList || {}).length === 0
+                        show: _vm.data.noMatch || _vm.showItemList.length === 0
                       }
                     },
                     [

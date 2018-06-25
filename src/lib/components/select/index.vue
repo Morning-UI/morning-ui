@@ -141,29 +141,28 @@
                 :style="listStyle"
                 @click="_listClick"
             >
-                <template v-for="(item, index) in showItemList">
+                <template v-for="index in showItemList">
                     <li
-                        :index="item._index || index"
+                        :index="index"
                         :class="{
-                            hide : item._nomatch,
-                            selected : item._selected
+                            hide : data.itemNomathMap[index]
                         }"
-                        v-if="item._selected"
-                        v-render="{template : item.name+'<i class=\'mo-select-selected-icon mo-icon mo-icon-check\'></i>'}"
+                        class="selected"
+                        v-if="data.itemSelectedMap[index]"
+                        v-render="{template : data.itemNameMap[index]+'<i class=\'mo-select-selected-icon mo-icon mo-icon-check\'></i>'}"
                     >
                     </li>
                     <li
-                        :index="item._index || index"
+                        :index="index"
                         :class="{
-                            hide : item._nomatch,
-                            selected : item._selected
+                            hide : data.itemNomathMap[index]
                         }"
                         v-else
-                        v-render="{template : item.name}"
+                        v-render="{template : data.itemNameMap[index]}"
                     >
                     </li>
                 </template>
-                <li class="noitem infoitem" :class="{show : data.noMatch || Object.keys(showItemList || {}).length === 0}">
+                <li class="noitem infoitem" :class="{show : data.noMatch || showItemList.length === 0}">
                     <span v-if="conf.dynamicList && conf.canSearch">无匹配项目</span>
                     <span v-else>无项目</span>
                 </li>
@@ -326,15 +325,11 @@ export default {
 
             }
 
-            for (let index in this.data.itemValueList) {
+            for (let index in this.data.itemValMap) {
 
-                let item = this.data.itemValueList[index];
+                if (!this.data.itemSelectedMap[index]) {
 
-                item._index = index;
-
-                if (!item._nomatch) {
-
-                    matchList.push(item);
+                    matchList.push(index);
 
                 }
 
@@ -351,7 +346,7 @@ export default {
 
             }
 
-            return this.data.itemValueList;
+            return Object.keys(this.data.itemValMap || []);
 
         }
     },
@@ -369,7 +364,11 @@ export default {
                 multiinputLastValue : [],
                 selectInput : false,
                 dontSetSearchMultiinput : false,
-                itemValueList : [],
+                itemValMap : [],
+                itemNameMap : [],
+                itemTipMap : [],
+                itemSelectedMap : [],
+                itemNomathMap : [],
                 lastItemHeight : 0,
                 tips : [],
                 $listWrap : null,
@@ -406,7 +405,7 @@ export default {
 
                     let val = value[index];
 
-                    if (map(this.data.itemValueList, 'val').indexOf(String(val)) === -1) {
+                    if (this.data.itemValMap.indexOf(String(val)) === -1) {
 
                         value.splice(index, 1);
 
@@ -493,18 +492,18 @@ export default {
 
             for (let val of newVal) {
 
-                for (let key in this.data.itemValueList) {
+                for (let index in this.data.itemValMap) {
 
-                    if (this.data.itemValueList[key].val === val) {
+                    if (this.data.itemValMap[index] === val) {
 
                         if (this.conf.multiSelect) {
 
-                            multiNames.push(this.data.itemValueList[key].name);
-                            this.data.multiinputNameValMap[this.data.itemValueList[key].name] = this.data.itemValueList[key].val;
+                            multiNames.push(this.data.itemNameMap[index]);
+                            this.data.multiinputNameValMap[this.data.itemNameMap[index]] = this.data.itemValMap[index];
 
                         } else {
 
-                            this.data.selectedContent = this.data.itemValueList[key].name;
+                            this.data.selectedContent = this.data.itemNameMap[index];
 
                         }
 
@@ -587,7 +586,7 @@ export default {
                 for (let item of this.conf.list) {
 
                     list.push({
-                        val : item.key,
+                        val : String(item.key),
                         name : item.name,
                         tip : item.tip
                     });
@@ -599,7 +598,7 @@ export default {
                 for (let key of Object.keys(this.conf.list)) {
 
                     let item = {
-                        val : key
+                        val : String(key)
                     };
 
                     if (typeof this.conf.list[key] === 'string') {
@@ -619,14 +618,20 @@ export default {
 
             }
 
-            for (let item of this.data.itemValueList) {
+            for (let index in this.data.itemValMap) {
 
                 for (let key in list) {
 
-                    if (list[key].val === item.val) {
+                    if (String(list[key].val) === String(this.data.itemValMap[index])) {
 
                         // extend old status
-                        list[key] = extend(item, list[key]);
+                        list[key] = extend(item, {
+                            val : String(this.data.itemValMap[index]),
+                            name : this.data.itemNameMap[index],
+                            tip : this.data.itemTipMap[index],
+                            _selected : this.data.itemSelectedMap[index] || 0,
+                            _nomatch : this.data.itemNomathMap[index] || 0
+                        });
 
                     }
 
@@ -662,7 +667,11 @@ export default {
 
             }
 
-            this.data.itemValueList = uniqList;
+            this.data.itemValMap = map(uniqList, 'val');
+            this.data.itemNameMap = map(uniqList, 'name');
+            this.data.itemTipMap = map(uniqList, 'tip');
+            this.data.itemSelectedMap = map(uniqList, '_selected');
+            this.data.itemNomathMap = map(uniqList, '_nomatch');
 
             if (!this.data.itemValueListInit) {
 
@@ -749,14 +758,14 @@ export default {
             if ($clickItem) {
 
                 let index = $clickItem.getAttribute('index');
-                let value = [this.data.itemValueList[index].val];
-                
+                let value = [this.data.itemValMap[index]];
+
                 if (this.conf.multiSelect &&
                     this.data.value !== undefined) {
 
                     value = this.get();
 
-                    let clickValue = this.data.itemValueList[index].val;
+                    let clickValue = this.data.itemValMap[index];
                     let valIndex = value.indexOf(clickValue);
 
                     if (valIndex !== -1) {
@@ -816,9 +825,9 @@ export default {
                 this.data.searchKey = null;
                 this.data.noMatch = false;
 
-                for (let item of this.data.itemValueList) {
+                for (let index in this.data.itemNomathMap) {
 
-                    delete item._nomatch;
+                    this.data.itemNomathMap[index] = 0;
 
                 }
             
@@ -935,25 +944,25 @@ export default {
 
             let foundNum = 0;
 
-            for (let item of this.data.itemValueList) {
+            for (let index in this.data.itemValMap) {
 
                 if (!this.data.searching) {
 
-                    delete item._nomatch;
+                    this.data.itemNomathMap[index] = 0;
 
-                } else if (item.name.search(this.data.searchKey) !== -1) {
+                } else if (this.data.itemNameMap[index].search(this.data.searchKey) !== -1) {
 
-                    if (!item._selected) {
+                    if (!this.data.itemSelectedMap[index]) {
 
                         foundNum++;
 
                     }
 
-                    delete item._nomatch;
+                    this.data.itemNomathMap[index] = 0;
 
                 } else {
 
-                    item._nomatch = true;
+                    this.data.itemNomathMap[index] = 1;
 
                 }
 
@@ -982,13 +991,13 @@ export default {
            
             let values = this.get();
 
-            for (let key in this.data.itemValueList) {
+            for (let index in this.data.itemValMap) {
 
                 let selected = false;
 
                 for (let value of values) {
 
-                    if (value === this.data.itemValueList[key].val) {
+                    if (value === this.data.itemValMap[index]) {
 
                         selected = true;
 
@@ -998,7 +1007,7 @@ export default {
 
                 }
 
-                this.data.itemValueList[key]._selected = selected;
+                this.data.itemSelectedMap[index] = (selected ? 1 : 0);
 
             }
 
@@ -1058,7 +1067,7 @@ export default {
             for (let index of $items.keys()) {
 
                 let $item = $items[index];
-                let tip = this.data.itemValueList[$item.getAttribute('index')].tip;
+                let tip = this.data.itemTipMap[$item.getAttribute('index')].tip;
 
                 if (!tip) {
 
@@ -1135,6 +1144,15 @@ export default {
 
                 // 1 is left border width
                 $selectArea.style.maxWidth = `calc(100% - ${width + 1}px)`;
+
+            }
+
+        },
+        _itemChanged : function () {
+
+            if (JSON.stringify(newVal) !== JSON.stringify(oldVal)) {
+
+                this._refreshTips();
 
             }
 
@@ -1364,17 +1382,11 @@ export default {
             immediate : true
         });
 
-        this.$watch('data.itemValueList', (newVal, oldVal) => {
-
-            if (JSON.stringify(newVal) !== JSON.stringify(oldVal)) {
-
-                this._refreshTips();
-
-            }
-
-        }, {
-            deep : true
-        });
+        this.$watch('data.itemValMap', this._itemChanged);
+        this.$watch('data.itemNameMap', this._itemChanged);
+        this.$watch('data.itemTipMap', this._itemChanged);
+        this.$watch('data.itemSelectedMap', this._itemChanged);
+        this.$watch('data.itemNomathMap', this._itemChanged);
 
         this.$on('list-show', () => {
 

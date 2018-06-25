@@ -11,7 +11,7 @@
                         form-name="Select designer"
                         :list="list"
                         :max-show="100"
-                        v-for="i in 20"
+                        v-for="i in 10"
                         can-search
                     >
                     </ui-select>
