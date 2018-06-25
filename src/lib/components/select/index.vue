@@ -380,7 +380,8 @@ export default {
                 highPerfMode : false,
                 noMatch : false,
                 multiinputNameValMap : {},
-                recomputeMatchList : 0
+                recomputeMatchList : 0,
+                itemValueListInit : false
             },
             listStyle : {}
         };
@@ -399,7 +400,7 @@ export default {
             value = this._customFilter(value);
 
             // filter not exist value.
-            if (!this.conf.dynamicList) {
+            if (!this.conf.dynamicList && this.data.itemValueListInit) {
 
                 for (let index in value) {
 
@@ -662,6 +663,13 @@ export default {
             }
 
             this.data.itemValueList = uniqList;
+
+            if (!this.data.itemValueListInit) {
+
+                this.data.itemValueListInit = true;
+                this._set(this._valueFilter(this.get()), true);
+
+            }
 
         },
         _emitClick : function () {
