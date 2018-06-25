@@ -952,7 +952,11 @@ export default {
 
                 }
 
-                if (input0Val === undefined && input1Val) {
+                if (input0Val === undefined && input1Val === undefined) {
+
+                    val = undefined;
+
+                } else if (input0Val === undefined && input1Val) {
 
                     val = [formatDate(input1Val, this.conf.format)];
 

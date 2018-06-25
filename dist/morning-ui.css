@@ -13752,36 +13752,68 @@ mor-imagemap.st-readonly .operate:hover {
   border-color: #D64431;
 }
 .mor-imagemap-map .zonearea.resize-top,
-.mor-imagemap-map .zonearea .zone .top {
+.mor-imagemap-map .zonearea.resize-top .zone,
+.mor-imagemap-map .zonearea.resize-top .zone > div {
   cursor: n-resize !important;
 }
+.mor-imagemap-map .zonearea .zone .top {
+  cursor: n-resize;
+}
 .mor-imagemap-map .zonearea.resize-bottom,
-.mor-imagemap-map .zonearea .zone .bottom {
+.mor-imagemap-map .zonearea.resize-bottom .zone,
+.mor-imagemap-map .zonearea.resize-bottom .zone > div {
   cursor: s-resize !important;
 }
+.mor-imagemap-map .zonearea .zone .bottom {
+  cursor: s-resize;
+}
 .mor-imagemap-map .zonearea.resize-left,
-.mor-imagemap-map .zonearea .zone .left {
+.mor-imagemap-map .zonearea.resize-left .zone,
+.mor-imagemap-map .zonearea.resize-left .zone > div {
   cursor: w-resize !important;
 }
+.mor-imagemap-map .zonearea .zone .left {
+  cursor: w-resize;
+}
 .mor-imagemap-map .zonearea.resize-right,
-.mor-imagemap-map .zonearea .zone .right {
+.mor-imagemap-map .zonearea.resize-right .zone,
+.mor-imagemap-map .zonearea.resize-right .zone > div {
   cursor: e-resize !important;
 }
+.mor-imagemap-map .zonearea .zone .right {
+  cursor: e-resize;
+}
 .mor-imagemap-map .zonearea.resize-topleft,
-.mor-imagemap-map .zonearea .zone .topleft {
+.mor-imagemap-map .zonearea.resize-topleft .zone,
+.mor-imagemap-map .zonearea.resize-topleft .zone > div {
   cursor: nw-resize !important;
 }
+.mor-imagemap-map .zonearea .zone .topleft {
+  cursor: nw-resize;
+}
 .mor-imagemap-map .zonearea.resize-topright,
-.mor-imagemap-map .zonearea .zone .topright {
+.mor-imagemap-map .zonearea.resize-topright .zone,
+.mor-imagemap-map .zonearea.resize-topright .zone > div {
   cursor: ne-resize !important;
 }
+.mor-imagemap-map .zonearea .zone .topright {
+  cursor: ne-resize;
+}
 .mor-imagemap-map .zonearea.resize-bottomleft,
-.mor-imagemap-map .zonearea .zone .bottomleft {
+.mor-imagemap-map .zonearea.resize-bottomleft .zone,
+.mor-imagemap-map .zonearea.resize-bottomleft .zone > div {
   cursor: sw-resize !important;
 }
+.mor-imagemap-map .zonearea .zone .bottomleft {
+  cursor: sw-resize;
+}
 .mor-imagemap-map .zonearea.resize-bottomright,
-.mor-imagemap-map .zonearea .zone .bottomright {
+.mor-imagemap-map .zonearea.resize-bottomright .zone,
+.mor-imagemap-map .zonearea.resize-bottomright .zone > div {
   cursor: se-resize !important;
+}
+.mor-imagemap-map .zonearea .zone .bottomright {
+  cursor: se-resize;
 }
 .mor-imagemap-map .zone {
   box-sizing: border-box;
