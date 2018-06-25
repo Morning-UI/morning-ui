@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## 0.11.2
+
+`2018年6月25日`
+
+#### 新特性
+
+- `ui-multiform`组件新增`show-type`配置
+- `ui-texteditor`组件`tools`工具配置新增`divider`(横划线)
+
+#### 修复
+
+- 修复`ui-table`在设置标题列并且数据为空时的样式错误
+- 修复`ui-imagemap`缩放时光标状态可能与缩放状态不一致的情况
+- 修复 `ui-imagemap`在缩放放大模式下新建区域最小高宽错误的问题
+- 修复`ui-select`使用`dynamic-list`配置后的一些问题
+- 修复`ui-datetimepicker`和`ui-datepicker`在开启`is-range`配置后无法删除选中日期的问题
+
 ## 0.11.1
 
 `2018年6月24日`

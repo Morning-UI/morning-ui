@@ -305,7 +305,7 @@
     :::preset/html
     formConfigTable
     ---
-    |[list](#list)|通过此配置来设置可选项目。<br><br>这是一个对象：<br>键名是选项的值<br>键值若为字符串，则为选项的名称。<br>若为对象，则可包含以下几个属性：<br>`name` : 选项的名称。<br>`tip` : 选项的提示信息(需要启用`item-tip`配置才会显示)|对象|Object|`{}`|
+    |[list](#list)|通过此配置来设置可选项目，这是一个对象或数组。<br><br>若为对象：<br>键名是选项的值<br>键值若为字符串，则为选项的名称<br>若为对象，则可包含以下几个属性：<br>`name` : 选项的名称。<br>`tip` : 选项的提示信息(需要启用`item-tip`配置才会显示)<br><br>若为数组：<br>数组中每一项是一个对象，这个对象包含以下几个属性：<br>`key` : 选项的值<br>`name` : 选项的名称<br>`tip` : 选项的提示信息(需要启用`item-tip`配置才会显示)|对象<br>数组|Object<br>Array|`{}`|
     |[dynamic-list](#dynamic-list)|动态可选项目，开启此配置后允许动态的改变`list`且不校验选中项目是否在`list`配置中。<br>因为开启此配置后`list`中的选项是不完整的，所以如果需要校验选项是否存在，可以通过`validate`配置来实现。|`true`<br>`false`|Boolean|`false`|
     |[validate](#validate)|验证选项是否可用，若选项不可用将会直接过滤。只有在开启`dynamic-list`配置时生效。<br>函数包含一个入参：<br><br>参数是需要验证的值<br><br>通过这这个参数来验证有效性。<br><br>此函数的返回值为验证结果，是布尔值：<br><br>非`false`：验证通过<br>`false`：验证失败，直接过滤此值<br><br>需要注意是的验证不支持异步，如果需要异步校验数据应该写到组件取值之后。|验证函数(同步)|Function|`() => {}`|
     |[separate-emit](#separate-emit)|通过其他的元素来触发下拉选择框|元素选择器([MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/Document_Object_Model/Locating_DOM_elements_using_selectors))|String|`''`|
@@ -1634,7 +1634,7 @@
     #### 值过滤
 
     - 所有不支持的值类型，都会被尝试转换成空数组(`[]`)。
-    - 若开启`dynamic-list`配置切配置了`validate`，则会通过此配置过滤
+    - 若开启`dynamic-list`配置且设置了`validate`，则会通过此配置过滤，若未设置`validate`则不会过滤。
     - 若未开启`dynamic-list`配置，则数组中的键值不在可选列表内，会被过滤。
     - 数组项目数过滤：
         - 若未开启`multi-select`，此数组最多只会有一项。
