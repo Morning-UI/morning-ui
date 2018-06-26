@@ -168,6 +168,7 @@
                         <morning-tip
                             :target="'#ui-select-tip-'+uiid+'-'+index"
                             :placement="conf.itemTipDirect"
+                            class="tips"
                             color="blue"
                         >{{data.itemTipMap[index]}}</morning-tip>
                     </template>
@@ -357,7 +358,7 @@ export default {
                 itemSelectedMap : [],
                 itemNomathMap : [],
                 lastItemHeight : 0,
-                tips : [],
+                // tips : [],
                 $listWrap : null,
                 $list : null,
                 $emitTarget : null,
@@ -454,6 +455,7 @@ export default {
             let searchTextinput;
             let searchMultiinput;
             let multiNames = [];
+            let valMapVals = Object.values(this.data.itemValMap);
 
             if (this.conf.canSearch &&
                 !this.conf.multiSelect) {
@@ -480,14 +482,14 @@ export default {
 
             for (let val of newVal) {
 
-                for (let index in this.data.itemValMap) {
+                for (let index in valMapVals) {
 
-                    if (this.data.itemValMap[index] === val) {
+                    if (valMapVals[index] === val) {
 
                         if (this.conf.multiSelect) {
 
                             multiNames.push(this.data.itemNameMap[index]);
-                            this.data.multiinputNameValMap[this.data.itemNameMap[index]] = this.data.itemValMap[index];
+                            this.data.multiinputNameValMap[this.data.itemNameMap[index]] = valMapVals[index];
 
                         } else {
 
@@ -566,8 +568,9 @@ export default {
         _refreshMatchList : function () {
 
             let matchList = [];
+            let valMapValues = Object.values(this.data.itemValMap);
 
-            for (let index in this.data.itemValMap) {
+            for (let index in valMapValues) {
 
                 if (!this.data.itemNomathMap[index]) {
 
@@ -585,6 +588,7 @@ export default {
             const useHighPrefModeMinItems = 200;
 
             let confList = this.conf.list;
+            let valMapVals = this.data.itemValMap;
             let list = [];
 
             if (confList instanceof Array) {
@@ -624,15 +628,15 @@ export default {
 
             }
 
-            for (let index in this.data.itemValMap) {
+            for (let index in valMapVals) {
 
                 for (let key in list) {
 
-                    if (list[key].val === this.data.itemValMap[index]) {
+                    if (list[key].val === valMapVals[index]) {
 
                         // extend old status
                         list[key] = {
-                            val : list[key].val || this.data.itemValMap[index],
+                            val : list[key].val || valMapVals[index],
                             name : list[key].name || this.data.itemNameMap[index],
                             tip : list[key].tip || this.data.itemTipMap[index],
                             _selected : list[key]._selected || this.data.itemSelectedMap[index] || 0,
@@ -831,11 +835,15 @@ export default {
                 this.data.searchKey = null;
                 this.data.noMatch = false;
 
-                for (let index in this.data.itemNomathMap) {
+                let itemNomathMap = [];
 
-                    this.data.itemNomathMap[index] = 0;
+                for (let index of Object.keys(this.data.itemNomathMap)) {
+
+                    itemNomathMap[index] = 0;
 
                 }
+
+                this.data.itemNomathMap = itemNomathMap;
             
                 return;
 
@@ -948,12 +956,14 @@ export default {
         _refreshShowItemsWithSearch : function () {
 
             let foundNum = 0;
+            let itemNomathMap = [];
+            let valMapVals = Object.values(this.data.itemValMap);
 
-            for (let index in this.data.itemValMap) {
+            for (let index in valMapVals) {
 
                 if (!this.data.searching) {
 
-                    this.data.itemNomathMap[index] = 0;
+                    itemNomathMap[index] = 0;
 
                 } else if (this.data.itemNameMap[index].search(this.data.searchKey) !== -1) {
 
@@ -963,15 +973,17 @@ export default {
 
                     }
 
-                    this.data.itemNomathMap[index] = 0;
+                    itemNomathMap[index] = 0;
 
                 } else {
 
-                    this.data.itemNomathMap[index] = 1;
+                    itemNomathMap[index] = 1;
 
                 }
 
             }
+
+            this.data.itemNomathMap = itemNomathMap;
 
             if (this.data.searching &&
                 this.conf.hideSelected &&
@@ -993,26 +1005,30 @@ export default {
                 return;
 
             }
-           
+
+            let st = Date.now();
             let values = this.get();
+            let itemSelectedMap = [];
+            let valMapVals = Object.values(this.data.itemValMap);
 
-            for (let index in this.data.itemValMap) {
+            for (let index in valMapVals) {
 
-                if (values.indexOf(this.data.itemValMap[index]) !== -1) {
+                if (values.indexOf(valMapVals[index]) !== -1) {
 
-                    this.data.itemSelectedMap[index] = 1;
+                    itemSelectedMap[index] = 1;
 
                 } else {
 
-                    this.data.itemSelectedMap[index] = 0;
+                    itemSelectedMap[index] = 0;
 
                 }
 
             }
 
+            this.data.itemSelectedMap = itemSelectedMap;
             this.data.selectedAll = true;
 
-            for (let selected of this.data.itemSelectedMap) {
+            for (let selected of itemSelectedMap) {
 
                 if (!selected) {
 
@@ -1194,11 +1210,17 @@ export default {
 
                 this.data.showlist = false;
 
-                for (let tipVm of this.data.tips) {
+                let $tips = this.data.$list.querySelectorAll('.tips');
 
-                    if (tipVm.$el._vm.data.show) {
+                for (let $tip of $tips.values()) {
 
-                        tipVm.$el._vm.hide();
+                    if ($tip._vm) {
+
+                        if ($tip._vm.data.show) {
+
+                            $tip._vm.hide();
+
+                        }
 
                     }
 
@@ -1224,11 +1246,16 @@ export default {
         this.$watch(() => JSON.stringify(this.conf.list), () => {
 
             this._updateItemValueList();
-            this._refreshShowItems();
 
         }, {
-            immediate : true,
-            deep : true
+            immediate : true
+        });
+
+        // this._refreshShowItems don't need immediate, cause _onValueChange() will exec it.
+        this.$watch(() => JSON.stringify(this.conf.list), () => {
+
+            this._refreshShowItems();
+
         });
 
         this._onValueChange();
@@ -1308,17 +1335,17 @@ export default {
             immediate : true
         });
 
-        this.$watch('conf.itemTipDirect', () => {
+        // this.$watch('conf.itemTipDirect', () => {
 
-            for (let tipVm of this.data.tips) {
+        //     for (let tipVm of this.data.tips) {
 
-                tipVm.$el._vm.conf.placement = this.conf.itemTipDirect;
+        //         tipVm.$el._vm.conf.placement = this.conf.itemTipDirect;
 
-            }
+        //     }
 
-        }, {
-            immediate : true
-        });
+        // }, {
+        //     immediate : true
+        // });
 
         this.$watch('data.itemValMap', (newVal, oldVal) => {
 
