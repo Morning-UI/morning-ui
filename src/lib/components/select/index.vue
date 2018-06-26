@@ -147,6 +147,7 @@
                         :class="{
                             hide : data.itemNomathMap[index]
                         }"
+                        :id="'ui-select-tip-'+uiid+'-'+index"
                         class="selected"
                         v-if="data.itemSelectedMap[index]"
                         v-render="{template : data.itemNameMap[index]+'<i class=\'mo-select-selected-icon mo-icon mo-icon-check\'></i>'}"
@@ -157,10 +158,19 @@
                         :class="{
                             hide : data.itemNomathMap[index]
                         }"
+                        :id="'ui-select-tip-'+uiid+'-'+index"
                         v-else
                         v-render="{template : data.itemNameMap[index]}"
                     >
                     </li>
+
+                    <template v-if="conf.itemTip">
+                        <morning-tip
+                            :target="'#ui-select-tip-'+uiid+'-'+index"
+                            :placement="conf.itemTipDirect"
+                            color="blue"
+                        >{{data.itemTipMap[index]}}</morning-tip>
+                    </template>
                 </template>
                 <li class="noitem infoitem" :class="{show : data.noMatch || showItemList.length === 0 || data.selectedAll}">
                     <span v-if="conf.dynamicList && conf.canSearch">无匹配项目</span>
@@ -574,11 +584,12 @@ export default {
 
             const useHighPrefModeMinItems = 200;
 
+            let confList = this.conf.list;
             let list = [];
 
-            if (this.conf.list instanceof Array) {
+            if (confList instanceof Array) {
 
-                for (let item of this.conf.list) {
+                for (let item of confList) {
 
                     list.push({
                         val : String(item.key),
@@ -588,22 +599,22 @@ export default {
 
                 }
 
-            } else if (typeof this.conf.list === 'object') {
+            } else if (typeof confList === 'object') {
 
-                for (let key of Object.keys(this.conf.list)) {
+                for (let key of Object.keys(confList)) {
 
                     let item = {
                         val : String(key)
                     };
 
-                    if (typeof this.conf.list[key] === 'string') {
+                    if (typeof confList[key] === 'string') {
 
-                        item.name = this.conf.list[key];
+                        item.name = confList[key];
 
-                    } else if (typeof this.conf.list[key] === 'object') {
+                    } else if (typeof confList[key] === 'object') {
 
-                        item.name = this.conf.list[key].name;
-                        item.tip = this.conf.list[key].tip;
+                        item.name = confList[key].name;
+                        item.tip = confList[key].tip;
 
                     }
 
@@ -620,13 +631,13 @@ export default {
                     if (String(list[key].val) === String(this.data.itemValMap[index])) {
 
                         // extend old status
-                        list[key] = extend({
-                            val : String(this.data.itemValMap[index]),
-                            name : this.data.itemNameMap[index],
-                            tip : this.data.itemTipMap[index],
-                            _selected : this.data.itemSelectedMap[index] || 0,
-                            _nomatch : this.data.itemNomathMap[index] || 0
-                        }, list[key]);
+                        list[key] = {
+                            val : list[key].val || String(this.data.itemValMap[index]),
+                            name : list[key].name || this.data.itemNameMap[index],
+                            tip : list[key].tip || this.data.itemTipMap[index],
+                            _selected : list[key]._selected || this.data.itemSelectedMap[index] || 0,
+                            _nomatch : list[key]._nomatch || this.data.itemNomathMap[index] || 0
+                        };
 
                     }
 
@@ -635,18 +646,18 @@ export default {
             }
 
             // uniq same val
-            let valList = [];
+            let keyList = {};
             let uniqList = [];
 
             for (let key in list) {
 
-                if (valList.indexOf(list[key].val) === -1) {
+                if (!keyList[key]) {
 
                     uniqList.push(list[key]);
 
                 }
 
-                valList.push(list[key].val);
+                keyList[key] = 1;
 
             }
 
@@ -861,7 +872,6 @@ export default {
             }
 
             this._refreshShowItemsWithSearch();
-            this._refreshMatchList();
             this.Vue.nextTick(() => {
 
                 this._tipUpdate();
@@ -986,7 +996,7 @@ export default {
            
             let values = this.get();
 
-            for (let index in this.data.itemValMap) {
+            for (let index of Object.keys(this.data.itemValMap)) {
 
                 if (values.indexOf(this.data.itemValMap[index]) !== -1) {
 
@@ -1049,57 +1059,6 @@ export default {
             }
 
         },
-        _refreshTips : function () {
-
-            for (let tipVm of this.data.tips) {
-
-                tipVm.$destroy();
-
-            }
-
-            this.data.tips = [];
-
-            if (!this.conf.itemTip) {
-
-                return;
-
-            }
-
-            let $items = this.data.$list.querySelectorAll('li:not(.infoitem)');
-
-            for (let index of $items.keys()) {
-
-                let $item = $items[index];
-                let tip = this.data.itemTipMap[$item.getAttribute('index')].tip;
-
-                if (!tip) {
-
-                    return;
-
-                }
-
-                const random = 1e8;
-
-                let tipId = `select-tip-${Math.floor(Math.random() * random)}`;
-                let $newTip = document.createElement('morning-tip');
-
-                $newTip.setAttribute(':minor', true);
-                $newTip.setAttribute('target', `#${tipId}`);
-                $newTip.setAttribute('placement', this.conf.itemTipDirect);
-                $newTip.innerHTML = tip;
-
-                let tipVm = new this.Vue({
-                    el : $newTip
-                });
-
-                $item.setAttribute('id', tipId);
-                tipVm.$mount();
-                this.data.$list.append(tipVm.$el);
-                this.data.tips.push(tipVm);
-
-            }
-
-        },
         _setListHeight : function () {
 
             let $item = this.data.$list.querySelector('li:not(.infoitem):not(.selected)');
@@ -1147,15 +1106,6 @@ export default {
 
                 // 1 is left border width
                 $selectArea.style.maxWidth = `calc(100% - ${width + 1}px)`;
-
-            }
-
-        },
-        _itemChanged : function (newVal, oldVal) {
-
-            if (JSON.stringify(newVal) !== JSON.stringify(oldVal)) {
-
-                this._refreshTips();
 
             }
 
@@ -1271,14 +1221,10 @@ export default {
         this.Tip.autoReverse = false;
         this.Tip.autoOffset = false;
 
-        this.$watch('conf.list', (newVal, oldVal) => {
+        this.$watch(() => JSON.stringify(this.conf.list), () => {
 
-            if (JSON.stringify(newVal) !== JSON.stringify(oldVal)) {
-
-                this._updateItemValueList();
-                this._refreshShowItems();
-
-            }
+            this._updateItemValueList();
+            this._refreshShowItems();
 
         }, {
             immediate : true,
@@ -1362,18 +1308,6 @@ export default {
             immediate : true
         });
 
-        this.$watch('conf.itemTip', () => {
-
-            this.Vue.nextTick(() => {
-                
-                this._refreshTips();
-
-            });
-
-        }, {
-            immediate : true
-        });
-
         this.$watch('conf.itemTipDirect', () => {
 
             for (let tipVm of this.data.tips) {
@@ -1388,19 +1322,15 @@ export default {
 
         this.$watch('data.itemValMap', (newVal, oldVal) => {
 
-            this._itemChanged(newVal, oldVal);
             this._refreshMatchList();
 
         });
-        this.$watch('data.itemNameMap', this._itemChanged);
-        this.$watch('data.itemTipMap', this._itemChanged);
-        this.$watch('data.itemSelectedMap', (newVal, oldVal) => {
 
-            this._itemChanged(newVal, oldVal);
+        this.$watch('data.itemNomathMap', (newVal, oldVal) => {
+
             this._refreshMatchList();
 
         });
-        this.$watch('data.itemNomathMap', this._itemChanged);
 
         this.$on('list-show', () => {
 
@@ -1421,8 +1351,6 @@ export default {
     },
     updated : function () {
         
-        // this._refreshShowItems();
-
         if (!this.data.highPerfMode) {
 
             this._setListHeight();
