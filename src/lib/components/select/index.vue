@@ -162,11 +162,11 @@
                     >
                     </li>
                 </template>
-                <li class="noitem infoitem" :class="{show : data.noMatch || showItemList.length === 0}">
+                <li class="noitem infoitem" :class="{show : data.noMatch || showItemList.length === 0 || data.selectedAll}">
                     <span v-if="conf.dynamicList && conf.canSearch">无匹配项目</span>
                     <span v-else>无项目</span>
                 </li>
-                <li class="maxshow infoitem" :class="{show : conf.canSearch && (matchList.length > conf.maxShow)}">
+                <li class="maxshow infoitem" :class="{show : conf.canSearch && (data.matchList.length > conf.maxShow)}">
                     <span>请搜索以显示更多</span>
                 </li>
             </ul>
@@ -315,34 +315,11 @@ export default {
             return false;
 
         },
-        matchList : function () {
-
-            let matchList = [];
-
-            if (this.data.recomputeMatchList) {
-
-                this.data.recomputeMatchList--;
-
-            }
-
-            for (let index in this.data.itemValMap) {
-
-                if (!this.data.itemSelectedMap[index]) {
-
-                    matchList.push(index);
-
-                }
-
-            }
-
-            return matchList;
-
-        },
         showItemList : function () {
 
             if (this.conf.canSearch) {
 
-                return this.matchList.slice(0, this.conf.maxShow);
+                return this.data.matchList.slice(0, this.conf.maxShow);
 
             }
 
@@ -379,8 +356,9 @@ export default {
                 highPerfMode : false,
                 noMatch : false,
                 multiinputNameValMap : {},
-                recomputeMatchList : 0,
-                itemValueListInit : false
+                itemValueListInit : false,
+                matchList : [],
+                selectedAll : false
             },
             listStyle : {}
         };
@@ -426,7 +404,7 @@ export default {
 
             return value;
 
-        },
+        },        
         _maxFilter : function (value) {
 
             if (this.conf.multiSelect &&
@@ -575,6 +553,23 @@ export default {
             this._refreshShowItems();
 
         },
+        _refreshMatchList : function () {
+
+            let matchList = [];
+
+            for (let index in this.data.itemValMap) {
+
+                if (!this.data.itemNomathMap[index]) {
+
+                    matchList.push(index);
+
+                }
+
+            }
+
+            this.data.matchList = matchList;
+
+        },
         _updateItemValueList : function () {
 
             const useHighPrefModeMinItems = 200;
@@ -625,13 +620,13 @@ export default {
                     if (String(list[key].val) === String(this.data.itemValMap[index])) {
 
                         // extend old status
-                        list[key] = extend(item, {
+                        list[key] = extend({
                             val : String(this.data.itemValMap[index]),
                             name : this.data.itemNameMap[index],
                             tip : this.data.itemTipMap[index],
                             _selected : this.data.itemSelectedMap[index] || 0,
                             _nomatch : this.data.itemNomathMap[index] || 0
-                        });
+                        }, list[key]);
 
                     }
 
@@ -866,7 +861,7 @@ export default {
             }
 
             this._refreshShowItemsWithSearch();
-            this.data.recomputeMatchList++;
+            this._refreshMatchList();
             this.Vue.nextTick(() => {
 
                 this._tipUpdate();
@@ -1011,6 +1006,20 @@ export default {
 
             }
 
+            this.data.selectedAll = true;
+
+            for (let selected of this.data.itemSelectedMap) {
+
+                if (!selected) {
+
+                    this.data.selectedAll = false;
+
+                    break;
+
+                }
+
+            }
+
             this._refreshShowItemsWithSearch();
 
         },
@@ -1148,7 +1157,7 @@ export default {
             }
 
         },
-        _itemChanged : function () {
+        _itemChanged : function (newVal, oldVal) {
 
             if (JSON.stringify(newVal) !== JSON.stringify(oldVal)) {
 
@@ -1382,10 +1391,20 @@ export default {
             immediate : true
         });
 
-        this.$watch('data.itemValMap', this._itemChanged);
+        this.$watch('data.itemValMap', (newVal, oldVal) => {
+
+            this._itemChanged(newVal, oldVal);
+            this._refreshMatchList();
+
+        });
         this.$watch('data.itemNameMap', this._itemChanged);
         this.$watch('data.itemTipMap', this._itemChanged);
-        this.$watch('data.itemSelectedMap', this._itemChanged);
+        this.$watch('data.itemSelectedMap', (newVal, oldVal) => {
+
+            this._itemChanged(newVal, oldVal);
+            this._refreshMatchList();
+
+        });
         this.$watch('data.itemNomathMap', this._itemChanged);
 
         this.$on('list-show', () => {
