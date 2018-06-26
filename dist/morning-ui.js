@@ -24854,6 +24854,16 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var _extend = __webpack_require__(2);
 
@@ -25040,7 +25050,7 @@ exports.default = {
                 highPerfMode: false,
                 noMatch: false,
                 multiinputNameValMap: {},
-                itemValueListInit: false,
+                itemValMapInit: false,
                 matchList: [],
                 selectedAll: false
             },
@@ -25058,13 +25068,13 @@ exports.default = {
             value = this._customFilter(value);
 
             // filter not exist value.
-            if (!this.conf.dynamicList && this.data.itemValueListInit) {
+            if (!this.conf.dynamicList && this.data.itemValMapInit) {
 
                 for (var index in value) {
 
                     var val = value[index];
 
-                    if (this.data.itemValMap.indexOf(String(val)) === -1) {
+                    if (this.data.itemValMap.indexOf(val) === -1) {
 
                         value.splice(index, 1);
                     }
@@ -25233,21 +25243,22 @@ exports.default = {
 
             var useHighPrefModeMinItems = 200;
 
+            var confList = this.conf.list;
             var list = [];
 
-            if (this.conf.list instanceof Array) {
+            if (confList instanceof Array) {
                 var _iteratorNormalCompletion2 = true;
                 var _didIteratorError2 = false;
                 var _iteratorError2 = undefined;
 
                 try {
 
-                    for (var _iterator2 = this.conf.list[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                    for (var _iterator2 = confList[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
                         var item = _step2.value;
 
 
                         list.push({
-                            val: String(item.key),
+                            val: item.key,
                             name: item.name,
                             tip: item.tip
                         });
@@ -25266,28 +25277,28 @@ exports.default = {
                         }
                     }
                 }
-            } else if (_typeof(this.conf.list) === 'object') {
+            } else if ((typeof confList === 'undefined' ? 'undefined' : _typeof(confList)) === 'object') {
                 var _iteratorNormalCompletion3 = true;
                 var _didIteratorError3 = false;
                 var _iteratorError3 = undefined;
 
                 try {
 
-                    for (var _iterator3 = Object.keys(this.conf.list)[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                    for (var _iterator3 = Object.keys(confList)[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
                         var key = _step3.value;
 
 
                         var _item = {
-                            val: String(key)
+                            val: key
                         };
 
-                        if (typeof this.conf.list[key] === 'string') {
+                        if (typeof confList[key] === 'string') {
 
-                            _item.name = this.conf.list[key];
-                        } else if (_typeof(this.conf.list[key]) === 'object') {
+                            _item.name = confList[key];
+                        } else if (_typeof(confList[key]) === 'object') {
 
-                            _item.name = this.conf.list[key].name;
-                            _item.tip = this.conf.list[key].tip;
+                            _item.name = confList[key].name;
+                            _item.tip = confList[key].tip;
                         }
 
                         list.push(_item);
@@ -25312,32 +25323,32 @@ exports.default = {
 
                 for (var _key in list) {
 
-                    if (String(list[_key].val) === String(this.data.itemValMap[index])) {
+                    if (list[_key].val === this.data.itemValMap[index]) {
 
                         // extend old status
-                        list[_key] = (0, _extend2.default)({
-                            val: String(this.data.itemValMap[index]),
-                            name: this.data.itemNameMap[index],
-                            tip: this.data.itemTipMap[index],
-                            _selected: this.data.itemSelectedMap[index] || 0,
-                            _nomatch: this.data.itemNomathMap[index] || 0
-                        }, list[_key]);
+                        list[_key] = {
+                            val: list[_key].val || this.data.itemValMap[index],
+                            name: list[_key].name || this.data.itemNameMap[index],
+                            tip: list[_key].tip || this.data.itemTipMap[index],
+                            _selected: list[_key]._selected || this.data.itemSelectedMap[index] || 0,
+                            _nomatch: list[_key]._nomatch || this.data.itemNomathMap[index] || 0
+                        };
                     }
                 }
             }
 
             // uniq same val
-            var valList = [];
+            var keyList = {};
             var uniqList = [];
 
             for (var _key2 in list) {
 
-                if (valList.indexOf(list[_key2].val) === -1) {
+                if (!keyList[_key2]) {
 
                     uniqList.push(list[_key2]);
                 }
 
-                valList.push(list[_key2].val);
+                keyList[_key2] = 1;
             }
 
             // 高性能模式，当列表项目大于200后开启
@@ -25356,9 +25367,9 @@ exports.default = {
             this.data.itemSelectedMap = (0, _lodash2.default)(uniqList, '_selected');
             this.data.itemNomathMap = (0, _lodash2.default)(uniqList, '_nomatch');
 
-            if (!this.data.itemValueListInit) {
+            if (!this.data.itemValMapInit) {
 
-                this.data.itemValueListInit = true;
+                this.data.itemValMapInit = true;
                 this._set(this._valueFilter(this.get()), true);
             }
         },
@@ -25538,7 +25549,6 @@ exports.default = {
             }
 
             this._refreshShowItemsWithSearch();
-            this._refreshMatchList();
             this.Vue.nextTick(function () {
 
                 _this._tipUpdate();
@@ -25752,94 +25762,6 @@ exports.default = {
                 }
             }
         },
-        _refreshTips: function _refreshTips() {
-            var _iteratorNormalCompletion8 = true;
-            var _didIteratorError8 = false;
-            var _iteratorError8 = undefined;
-
-            try {
-
-                for (var _iterator8 = this.data.tips[Symbol.iterator](), _step8; !(_iteratorNormalCompletion8 = (_step8 = _iterator8.next()).done); _iteratorNormalCompletion8 = true) {
-                    var tipVm = _step8.value;
-
-
-                    tipVm.$destroy();
-                }
-            } catch (err) {
-                _didIteratorError8 = true;
-                _iteratorError8 = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion8 && _iterator8.return) {
-                        _iterator8.return();
-                    }
-                } finally {
-                    if (_didIteratorError8) {
-                        throw _iteratorError8;
-                    }
-                }
-            }
-
-            this.data.tips = [];
-
-            if (!this.conf.itemTip) {
-
-                return;
-            }
-
-            var $items = this.data.$list.querySelectorAll('li:not(.infoitem)');
-
-            var _iteratorNormalCompletion9 = true;
-            var _didIteratorError9 = false;
-            var _iteratorError9 = undefined;
-
-            try {
-                for (var _iterator9 = $items.keys()[Symbol.iterator](), _step9; !(_iteratorNormalCompletion9 = (_step9 = _iterator9.next()).done); _iteratorNormalCompletion9 = true) {
-                    var index = _step9.value;
-
-
-                    var $item = $items[index];
-                    var tip = this.data.itemTipMap[$item.getAttribute('index')].tip;
-
-                    if (!tip) {
-
-                        return;
-                    }
-
-                    var random = 1e8;
-
-                    var tipId = 'select-tip-' + Math.floor(Math.random() * random);
-                    var $newTip = document.createElement('morning-tip');
-
-                    $newTip.setAttribute(':minor', true);
-                    $newTip.setAttribute('target', '#' + tipId);
-                    $newTip.setAttribute('placement', this.conf.itemTipDirect);
-                    $newTip.innerHTML = tip;
-
-                    var _tipVm = new this.Vue({
-                        el: $newTip
-                    });
-
-                    $item.setAttribute('id', tipId);
-                    _tipVm.$mount();
-                    this.data.$list.append(_tipVm.$el);
-                    this.data.tips.push(_tipVm);
-                }
-            } catch (err) {
-                _didIteratorError9 = true;
-                _iteratorError9 = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion9 && _iterator9.return) {
-                        _iterator9.return();
-                    }
-                } finally {
-                    if (_didIteratorError9) {
-                        throw _iteratorError9;
-                    }
-                }
-            }
-        },
         _setListHeight: function _setListHeight() {
             var _this3 = this;
 
@@ -25883,13 +25805,6 @@ exports.default = {
 
                 // 1 is left border width
                 $selectArea.style.maxWidth = 'calc(100% - ' + (width + 1) + 'px)';
-            }
-        },
-        _itemChanged: function _itemChanged(newVal, oldVal) {
-
-            if (JSON.stringify(newVal) !== JSON.stringify(oldVal)) {
-
-                this._refreshTips();
             }
         },
         toggle: function toggle(show) {
@@ -25942,14 +25857,14 @@ exports.default = {
 
                     this._refreshShowItems();
                 } else if ($selectedItem) {
-                    var _iteratorNormalCompletion10 = true;
-                    var _didIteratorError10 = false;
-                    var _iteratorError10 = undefined;
+                    var _iteratorNormalCompletion8 = true;
+                    var _didIteratorError8 = false;
+                    var _iteratorError8 = undefined;
 
                     try {
 
-                        for (var _iterator10 = $items.keys()[Symbol.iterator](), _step10; !(_iteratorNormalCompletion10 = (_step10 = _iterator10.next()).done); _iteratorNormalCompletion10 = true) {
-                            var index = _step10.value;
+                        for (var _iterator8 = $items.keys()[Symbol.iterator](), _step8; !(_iteratorNormalCompletion8 = (_step8 = _iterator8.next()).done); _iteratorNormalCompletion8 = true) {
+                            var index = _step8.value;
 
 
                             if ($items[index] === $selectedItem) {
@@ -25960,16 +25875,16 @@ exports.default = {
                             }
                         }
                     } catch (err) {
-                        _didIteratorError10 = true;
-                        _iteratorError10 = err;
+                        _didIteratorError8 = true;
+                        _iteratorError8 = err;
                     } finally {
                         try {
-                            if (!_iteratorNormalCompletion10 && _iterator10.return) {
-                                _iterator10.return();
+                            if (!_iteratorNormalCompletion8 && _iterator8.return) {
+                                _iterator8.return();
                             }
                         } finally {
-                            if (_didIteratorError10) {
-                                throw _iteratorError10;
+                            if (_didIteratorError8) {
+                                throw _iteratorError8;
                             }
                         }
                     }
@@ -25985,13 +25900,13 @@ exports.default = {
 
                 this.data.showlist = false;
 
-                var _iteratorNormalCompletion11 = true;
-                var _didIteratorError11 = false;
-                var _iteratorError11 = undefined;
+                var _iteratorNormalCompletion9 = true;
+                var _didIteratorError9 = false;
+                var _iteratorError9 = undefined;
 
                 try {
-                    for (var _iterator11 = this.data.tips[Symbol.iterator](), _step11; !(_iteratorNormalCompletion11 = (_step11 = _iterator11.next()).done); _iteratorNormalCompletion11 = true) {
-                        var tipVm = _step11.value;
+                    for (var _iterator9 = this.data.tips[Symbol.iterator](), _step9; !(_iteratorNormalCompletion9 = (_step9 = _iterator9.next()).done); _iteratorNormalCompletion9 = true) {
+                        var tipVm = _step9.value;
 
 
                         if (tipVm.$el._vm.data.show) {
@@ -26000,16 +25915,16 @@ exports.default = {
                         }
                     }
                 } catch (err) {
-                    _didIteratorError11 = true;
-                    _iteratorError11 = err;
+                    _didIteratorError9 = true;
+                    _iteratorError9 = err;
                 } finally {
                     try {
-                        if (!_iteratorNormalCompletion11 && _iterator11.return) {
-                            _iterator11.return();
+                        if (!_iteratorNormalCompletion9 && _iterator9.return) {
+                            _iterator9.return();
                         }
                     } finally {
-                        if (_didIteratorError11) {
-                            throw _iteratorError11;
+                        if (_didIteratorError9) {
+                            throw _iteratorError9;
                         }
                     }
                 }
@@ -26030,13 +25945,12 @@ exports.default = {
         this.Tip.autoReverse = false;
         this.Tip.autoOffset = false;
 
-        this.$watch('conf.list', function (newVal, oldVal) {
+        this.$watch(function () {
+            return JSON.stringify(_this4.conf.list);
+        }, function () {
 
-            if (JSON.stringify(newVal) !== JSON.stringify(oldVal)) {
-
-                _this4._updateItemValueList();
-                _this4._refreshShowItems();
-            }
+            _this4._updateItemValueList();
+            _this4._refreshShowItems();
         }, {
             immediate: true,
             deep: true
@@ -26044,6 +25958,7 @@ exports.default = {
 
         this._onValueChange();
         this._resizeSelectArea();
+        this._refreshMatchList();
 
         this.$on('value-change', this._onValueChange);
 
@@ -26107,40 +26022,30 @@ exports.default = {
             immediate: true
         });
 
-        this.$watch('conf.itemTip', function () {
-
-            _this4.Vue.nextTick(function () {
-
-                _this4._refreshTips();
-            });
-        }, {
-            immediate: true
-        });
-
         this.$watch('conf.itemTipDirect', function () {
-            var _iteratorNormalCompletion12 = true;
-            var _didIteratorError12 = false;
-            var _iteratorError12 = undefined;
+            var _iteratorNormalCompletion10 = true;
+            var _didIteratorError10 = false;
+            var _iteratorError10 = undefined;
 
             try {
 
-                for (var _iterator12 = _this4.data.tips[Symbol.iterator](), _step12; !(_iteratorNormalCompletion12 = (_step12 = _iterator12.next()).done); _iteratorNormalCompletion12 = true) {
-                    var tipVm = _step12.value;
+                for (var _iterator10 = _this4.data.tips[Symbol.iterator](), _step10; !(_iteratorNormalCompletion10 = (_step10 = _iterator10.next()).done); _iteratorNormalCompletion10 = true) {
+                    var tipVm = _step10.value;
 
 
                     tipVm.$el._vm.conf.placement = _this4.conf.itemTipDirect;
                 }
             } catch (err) {
-                _didIteratorError12 = true;
-                _iteratorError12 = err;
+                _didIteratorError10 = true;
+                _iteratorError10 = err;
             } finally {
                 try {
-                    if (!_iteratorNormalCompletion12 && _iterator12.return) {
-                        _iterator12.return();
+                    if (!_iteratorNormalCompletion10 && _iterator10.return) {
+                        _iterator10.return();
                     }
                 } finally {
-                    if (_didIteratorError12) {
-                        throw _iteratorError12;
+                    if (_didIteratorError10) {
+                        throw _iteratorError10;
                     }
                 }
             }
@@ -26150,17 +26055,13 @@ exports.default = {
 
         this.$watch('data.itemValMap', function (newVal, oldVal) {
 
-            _this4._itemChanged(newVal, oldVal);
             _this4._refreshMatchList();
         });
-        this.$watch('data.itemNameMap', this._itemChanged);
-        this.$watch('data.itemTipMap', this._itemChanged);
-        this.$watch('data.itemSelectedMap', function (newVal, oldVal) {
 
-            _this4._itemChanged(newVal, oldVal);
+        this.$watch('data.itemNomathMap', function (newVal, oldVal) {
+
             _this4._refreshMatchList();
         });
-        this.$watch('data.itemNomathMap', this._itemChanged);
 
         this.$on('list-show', function () {
 
@@ -26176,8 +26077,6 @@ exports.default = {
         });
     },
     updated: function updated() {
-
-        // this._refreshShowItems();
 
         if (!this.data.highPerfMode) {
 
@@ -40031,7 +39930,10 @@ var render = function() {
                             class: {
                               hide: _vm.data.itemNomathMap[index]
                             },
-                            attrs: { index: index }
+                            attrs: {
+                              index: index,
+                              id: "ui-select-tip-" + _vm.uiid + "-" + index
+                            }
                           })
                         : _c("li", {
                             directives: [
@@ -40048,8 +39950,28 @@ var render = function() {
                             class: {
                               hide: _vm.data.itemNomathMap[index]
                             },
-                            attrs: { index: index }
-                          })
+                            attrs: {
+                              index: index,
+                              id: "ui-select-tip-" + _vm.uiid + "-" + index
+                            }
+                          }),
+                      _vm._v(" "),
+                      _vm.conf.itemTip
+                        ? [
+                            _c(
+                              "morning-tip",
+                              {
+                                attrs: {
+                                  target:
+                                    "#ui-select-tip-" + _vm.uiid + "-" + index,
+                                  placement: _vm.conf.itemTipDirect,
+                                  color: "blue"
+                                }
+                              },
+                              [_vm._v(_vm._s(_vm.data.itemTipMap[index]))]
+                            )
+                          ]
+                        : _vm._e()
                     ]
                   }),
                   _vm._v(" "),

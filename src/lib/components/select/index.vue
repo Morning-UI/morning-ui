@@ -366,7 +366,7 @@ export default {
                 highPerfMode : false,
                 noMatch : false,
                 multiinputNameValMap : {},
-                itemValueListInit : false,
+                itemValMapInit : false,
                 matchList : [],
                 selectedAll : false
             },
@@ -387,13 +387,13 @@ export default {
             value = this._customFilter(value);
 
             // filter not exist value.
-            if (!this.conf.dynamicList && this.data.itemValueListInit) {
+            if (!this.conf.dynamicList && this.data.itemValMapInit) {
 
                 for (let index in value) {
 
                     let val = value[index];
 
-                    if (this.data.itemValMap.indexOf(String(val)) === -1) {
+                    if (this.data.itemValMap.indexOf(val) === -1) {
 
                         value.splice(index, 1);
 
@@ -414,7 +414,7 @@ export default {
 
             return value;
 
-        },        
+        },
         _maxFilter : function (value) {
 
             if (this.conf.multiSelect &&
@@ -592,7 +592,7 @@ export default {
                 for (let item of confList) {
 
                     list.push({
-                        val : String(item.key),
+                        val : item.key,
                         name : item.name,
                         tip : item.tip
                     });
@@ -604,7 +604,7 @@ export default {
                 for (let key of Object.keys(confList)) {
 
                     let item = {
-                        val : String(key)
+                        val : key
                     };
 
                     if (typeof confList[key] === 'string') {
@@ -628,11 +628,11 @@ export default {
 
                 for (let key in list) {
 
-                    if (String(list[key].val) === String(this.data.itemValMap[index])) {
+                    if (list[key].val === this.data.itemValMap[index]) {
 
                         // extend old status
                         list[key] = {
-                            val : list[key].val || String(this.data.itemValMap[index]),
+                            val : list[key].val || this.data.itemValMap[index],
                             name : list[key].name || this.data.itemNameMap[index],
                             tip : list[key].tip || this.data.itemTipMap[index],
                             _selected : list[key]._selected || this.data.itemSelectedMap[index] || 0,
@@ -679,9 +679,9 @@ export default {
             this.data.itemSelectedMap = map(uniqList, '_selected');
             this.data.itemNomathMap = map(uniqList, '_nomatch');
 
-            if (!this.data.itemValueListInit) {
+            if (!this.data.itemValMapInit) {
 
-                this.data.itemValueListInit = true;
+                this.data.itemValMapInit = true;
                 this._set(this._valueFilter(this.get()), true);
 
             }
@@ -727,7 +727,7 @@ export default {
             if (this.conf.state === 'disabled' || this.conf.state === 'readonly') {
 
                 return;
-                
+
             }
 
             if (this.conf.multiSelect &&
@@ -996,7 +996,7 @@ export default {
            
             let values = this.get();
 
-            for (let index of Object.keys(this.data.itemValMap)) {
+            for (let index in this.data.itemValMap) {
 
                 if (values.indexOf(this.data.itemValMap[index]) !== -1) {
 
