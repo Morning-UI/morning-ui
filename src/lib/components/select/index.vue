@@ -145,9 +145,9 @@
                     <li
                         :index="item._index || index"
                         :class="{
-                            hide : item._nomatch,
-                            selected : item._selected
+                            hide : item._nomatch
                         }"
+                        class="selected"
                         v-if="item._selected"
                         v-render="{template : item.name+'<i class=\'mo-select-selected-icon mo-icon mo-icon-check\'></i>'}"
                     >
@@ -155,15 +155,14 @@
                     <li
                         :index="item._index || index"
                         :class="{
-                            hide : item._nomatch,
-                            selected : item._selected
+                            hide : item._nomatch
                         }"
                         v-else
                         v-render="{template : item.name}"
                     >
                     </li>
                 </template>
-                <li class="noitem infoitem" :class="{show : data.noMatch || Object.keys(showItemList || {}).length === 0}">
+                <li class="noitem infoitem" :class="{show : data.noMatch || Object.keys(showItemList || {}).length === 0  || data.selectedAll}">
                     <span v-if="conf.dynamicList && conf.canSearch">无匹配项目</span>
                     <span v-else>无项目</span>
                 </li>
@@ -380,7 +379,9 @@ export default {
                 highPerfMode : false,
                 noMatch : false,
                 multiinputNameValMap : {},
-                recomputeMatchList : 0
+                recomputeMatchList : 0,
+                selectedAll : false,
+                itemValueListInit : false
             },
             listStyle : {}
         };
@@ -399,13 +400,13 @@ export default {
             value = this._customFilter(value);
 
             // filter not exist value.
-            if (!this.conf.dynamicList) {
+            if (!this.conf.dynamicList && this.data.itemValueListInit) {
 
                 for (let index in value) {
 
                     let val = value[index];
 
-                    if (map(this.data.itemValueList, 'val').indexOf(String(val)) === -1) {
+                    if (map(this.data.itemValueList, 'val').indexOf(val) === -1) {
 
                         value.splice(index, 1);
 
@@ -662,6 +663,13 @@ export default {
             }
 
             this.data.itemValueList = uniqList;
+
+            if (!this.data.itemValueListInit) {
+
+                this.data.itemValueListInit = true;
+                this._set(this._valueFilter(this.get()), true);
+
+            }
 
         },
         _emitClick : function () {
@@ -993,6 +1001,20 @@ export default {
                 this.data.itemValueList[key]._selected = selected;
 
             }
+
+            this.data.selectedAll = true;
+
+            for (let selected of map(this.data.itemValueList, '_selected')) {
+
+                if (!selected) {
+
+                    this.data.selectedAll = false;
+
+                    break;
+
+                }
+            
+            }     
 
             this._refreshShowItemsWithSearch();
 

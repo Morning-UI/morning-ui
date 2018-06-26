@@ -24854,7 +24854,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
-//
 
 var _extend = __webpack_require__(2);
 
@@ -25060,7 +25059,9 @@ exports.default = {
                 highPerfMode: false,
                 noMatch: false,
                 multiinputNameValMap: {},
-                recomputeMatchList: 0
+                recomputeMatchList: 0,
+                selectedAll: false,
+                itemValueListInit: false
             },
             listStyle: {}
         };
@@ -25076,13 +25077,13 @@ exports.default = {
             value = this._customFilter(value);
 
             // filter not exist value.
-            if (!this.conf.dynamicList) {
+            if (!this.conf.dynamicList && this.data.itemValueListInit) {
 
                 for (var index in value) {
 
                     var val = value[index];
 
-                    if ((0, _lodash2.default)(this.data.itemValueList, 'val').indexOf(String(val)) === -1) {
+                    if ((0, _lodash2.default)(this.data.itemValueList, 'val').indexOf(val) === -1) {
 
                         value.splice(index, 1);
                     }
@@ -25371,6 +25372,12 @@ exports.default = {
             }
 
             this.data.itemValueList = uniqList;
+
+            if (!this.data.itemValueListInit) {
+
+                this.data.itemValueListInit = true;
+                this._set(this._valueFilter(this.get()), true);
+            }
         },
         _emitClick: function _emitClick() {
 
@@ -25751,6 +25758,39 @@ exports.default = {
                 this.data.itemValueList[key]._selected = selected;
             }
 
+            this.data.selectedAll = true;
+
+            var _iteratorNormalCompletion10 = true;
+            var _didIteratorError10 = false;
+            var _iteratorError10 = undefined;
+
+            try {
+                for (var _iterator10 = (0, _lodash2.default)(this.data.itemValueList, '_selected')[Symbol.iterator](), _step10; !(_iteratorNormalCompletion10 = (_step10 = _iterator10.next()).done); _iteratorNormalCompletion10 = true) {
+                    var _selected = _step10.value;
+
+
+                    if (!_selected) {
+
+                        this.data.selectedAll = false;
+
+                        break;
+                    }
+                }
+            } catch (err) {
+                _didIteratorError10 = true;
+                _iteratorError10 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion10 && _iterator10.return) {
+                        _iterator10.return();
+                    }
+                } finally {
+                    if (_didIteratorError10) {
+                        throw _iteratorError10;
+                    }
+                }
+            }
+
             this._refreshShowItemsWithSearch();
         },
         _checkArea: function _checkArea(evt) {
@@ -25771,45 +25811,17 @@ exports.default = {
 
             var $inlineImgs = this.data.$list.querySelectorAll('li mor-img,li img');
 
-            var _iteratorNormalCompletion10 = true;
-            var _didIteratorError10 = false;
-            var _iteratorError10 = undefined;
-
-            try {
-                for (var _iterator10 = $inlineImgs.values()[Symbol.iterator](), _step10; !(_iteratorNormalCompletion10 = (_step10 = _iterator10.next()).done); _iteratorNormalCompletion10 = true) {
-                    var $img = _step10.value;
-
-
-                    $img.style.width = this.conf.inlineImgSize;
-                    $img.style.height = this.conf.inlineImgSize;
-                }
-            } catch (err) {
-                _didIteratorError10 = true;
-                _iteratorError10 = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion10 && _iterator10.return) {
-                        _iterator10.return();
-                    }
-                } finally {
-                    if (_didIteratorError10) {
-                        throw _iteratorError10;
-                    }
-                }
-            }
-        },
-        _refreshTips: function _refreshTips() {
             var _iteratorNormalCompletion11 = true;
             var _didIteratorError11 = false;
             var _iteratorError11 = undefined;
 
             try {
+                for (var _iterator11 = $inlineImgs.values()[Symbol.iterator](), _step11; !(_iteratorNormalCompletion11 = (_step11 = _iterator11.next()).done); _iteratorNormalCompletion11 = true) {
+                    var $img = _step11.value;
 
-                for (var _iterator11 = this.data.tips[Symbol.iterator](), _step11; !(_iteratorNormalCompletion11 = (_step11 = _iterator11.next()).done); _iteratorNormalCompletion11 = true) {
-                    var tipVm = _step11.value;
 
-
-                    tipVm.$destroy();
+                    $img.style.width = this.conf.inlineImgSize;
+                    $img.style.height = this.conf.inlineImgSize;
                 }
             } catch (err) {
                 _didIteratorError11 = true;
@@ -25825,6 +25837,34 @@ exports.default = {
                     }
                 }
             }
+        },
+        _refreshTips: function _refreshTips() {
+            var _iteratorNormalCompletion12 = true;
+            var _didIteratorError12 = false;
+            var _iteratorError12 = undefined;
+
+            try {
+
+                for (var _iterator12 = this.data.tips[Symbol.iterator](), _step12; !(_iteratorNormalCompletion12 = (_step12 = _iterator12.next()).done); _iteratorNormalCompletion12 = true) {
+                    var tipVm = _step12.value;
+
+
+                    tipVm.$destroy();
+                }
+            } catch (err) {
+                _didIteratorError12 = true;
+                _iteratorError12 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion12 && _iterator12.return) {
+                        _iterator12.return();
+                    }
+                } finally {
+                    if (_didIteratorError12) {
+                        throw _iteratorError12;
+                    }
+                }
+            }
 
             this.data.tips = [];
 
@@ -25835,13 +25875,13 @@ exports.default = {
 
             var $items = this.data.$list.querySelectorAll('li:not(.infoitem)');
 
-            var _iteratorNormalCompletion12 = true;
-            var _didIteratorError12 = false;
-            var _iteratorError12 = undefined;
+            var _iteratorNormalCompletion13 = true;
+            var _didIteratorError13 = false;
+            var _iteratorError13 = undefined;
 
             try {
-                for (var _iterator12 = $items.keys()[Symbol.iterator](), _step12; !(_iteratorNormalCompletion12 = (_step12 = _iterator12.next()).done); _iteratorNormalCompletion12 = true) {
-                    var index = _step12.value;
+                for (var _iterator13 = $items.keys()[Symbol.iterator](), _step13; !(_iteratorNormalCompletion13 = (_step13 = _iterator13.next()).done); _iteratorNormalCompletion13 = true) {
+                    var index = _step13.value;
 
 
                     var $item = $items[index];
@@ -25872,16 +25912,16 @@ exports.default = {
                     this.data.tips.push(_tipVm);
                 }
             } catch (err) {
-                _didIteratorError12 = true;
-                _iteratorError12 = err;
+                _didIteratorError13 = true;
+                _iteratorError13 = err;
             } finally {
                 try {
-                    if (!_iteratorNormalCompletion12 && _iterator12.return) {
-                        _iterator12.return();
+                    if (!_iteratorNormalCompletion13 && _iterator13.return) {
+                        _iterator13.return();
                     }
                 } finally {
-                    if (_didIteratorError12) {
-                        throw _iteratorError12;
+                    if (_didIteratorError13) {
+                        throw _iteratorError13;
                     }
                 }
             }
@@ -25981,14 +26021,14 @@ exports.default = {
 
                     this._refreshShowItems();
                 } else if ($selectedItem) {
-                    var _iteratorNormalCompletion13 = true;
-                    var _didIteratorError13 = false;
-                    var _iteratorError13 = undefined;
+                    var _iteratorNormalCompletion14 = true;
+                    var _didIteratorError14 = false;
+                    var _iteratorError14 = undefined;
 
                     try {
 
-                        for (var _iterator13 = $items.keys()[Symbol.iterator](), _step13; !(_iteratorNormalCompletion13 = (_step13 = _iterator13.next()).done); _iteratorNormalCompletion13 = true) {
-                            var index = _step13.value;
+                        for (var _iterator14 = $items.keys()[Symbol.iterator](), _step14; !(_iteratorNormalCompletion14 = (_step14 = _iterator14.next()).done); _iteratorNormalCompletion14 = true) {
+                            var index = _step14.value;
 
 
                             if ($items[index] === $selectedItem) {
@@ -25999,16 +26039,16 @@ exports.default = {
                             }
                         }
                     } catch (err) {
-                        _didIteratorError13 = true;
-                        _iteratorError13 = err;
+                        _didIteratorError14 = true;
+                        _iteratorError14 = err;
                     } finally {
                         try {
-                            if (!_iteratorNormalCompletion13 && _iterator13.return) {
-                                _iterator13.return();
+                            if (!_iteratorNormalCompletion14 && _iterator14.return) {
+                                _iterator14.return();
                             }
                         } finally {
-                            if (_didIteratorError13) {
-                                throw _iteratorError13;
+                            if (_didIteratorError14) {
+                                throw _iteratorError14;
                             }
                         }
                     }
@@ -26024,13 +26064,13 @@ exports.default = {
 
                 this.data.showlist = false;
 
-                var _iteratorNormalCompletion14 = true;
-                var _didIteratorError14 = false;
-                var _iteratorError14 = undefined;
+                var _iteratorNormalCompletion15 = true;
+                var _didIteratorError15 = false;
+                var _iteratorError15 = undefined;
 
                 try {
-                    for (var _iterator14 = this.data.tips[Symbol.iterator](), _step14; !(_iteratorNormalCompletion14 = (_step14 = _iterator14.next()).done); _iteratorNormalCompletion14 = true) {
-                        var tipVm = _step14.value;
+                    for (var _iterator15 = this.data.tips[Symbol.iterator](), _step15; !(_iteratorNormalCompletion15 = (_step15 = _iterator15.next()).done); _iteratorNormalCompletion15 = true) {
+                        var tipVm = _step15.value;
 
 
                         if (tipVm.$el._vm.data.show) {
@@ -26039,16 +26079,16 @@ exports.default = {
                         }
                     }
                 } catch (err) {
-                    _didIteratorError14 = true;
-                    _iteratorError14 = err;
+                    _didIteratorError15 = true;
+                    _iteratorError15 = err;
                 } finally {
                     try {
-                        if (!_iteratorNormalCompletion14 && _iterator14.return) {
-                            _iterator14.return();
+                        if (!_iteratorNormalCompletion15 && _iterator15.return) {
+                            _iterator15.return();
                         }
                     } finally {
-                        if (_didIteratorError14) {
-                            throw _iteratorError14;
+                        if (_didIteratorError15) {
+                            throw _iteratorError15;
                         }
                     }
                 }
@@ -26157,29 +26197,29 @@ exports.default = {
         });
 
         this.$watch('conf.itemTipDirect', function () {
-            var _iteratorNormalCompletion15 = true;
-            var _didIteratorError15 = false;
-            var _iteratorError15 = undefined;
+            var _iteratorNormalCompletion16 = true;
+            var _didIteratorError16 = false;
+            var _iteratorError16 = undefined;
 
             try {
 
-                for (var _iterator15 = _this4.data.tips[Symbol.iterator](), _step15; !(_iteratorNormalCompletion15 = (_step15 = _iterator15.next()).done); _iteratorNormalCompletion15 = true) {
-                    var tipVm = _step15.value;
+                for (var _iterator16 = _this4.data.tips[Symbol.iterator](), _step16; !(_iteratorNormalCompletion16 = (_step16 = _iterator16.next()).done); _iteratorNormalCompletion16 = true) {
+                    var tipVm = _step16.value;
 
 
                     tipVm.$el._vm.conf.placement = _this4.conf.itemTipDirect;
                 }
             } catch (err) {
-                _didIteratorError15 = true;
-                _iteratorError15 = err;
+                _didIteratorError16 = true;
+                _iteratorError16 = err;
             } finally {
                 try {
-                    if (!_iteratorNormalCompletion15 && _iterator15.return) {
-                        _iterator15.return();
+                    if (!_iteratorNormalCompletion16 && _iterator16.return) {
+                        _iterator16.return();
                     }
                 } finally {
-                    if (_didIteratorError15) {
-                        throw _iteratorError15;
+                    if (_didIteratorError16) {
+                        throw _iteratorError16;
                     }
                 }
             }
@@ -40062,9 +40102,9 @@ var render = function() {
                                   "{template : item.name+'<i class=\\'mo-select-selected-icon mo-icon mo-icon-check\\'></i>'}"
                               }
                             ],
+                            staticClass: "selected",
                             class: {
-                              hide: item._nomatch,
-                              selected: item._selected
+                              hide: item._nomatch
                             },
                             attrs: { index: item._index || index }
                           })
@@ -40078,8 +40118,7 @@ var render = function() {
                               }
                             ],
                             class: {
-                              hide: item._nomatch,
-                              selected: item._selected
+                              hide: item._nomatch
                             },
                             attrs: { index: item._index || index }
                           })
@@ -40093,7 +40132,8 @@ var render = function() {
                       class: {
                         show:
                           _vm.data.noMatch ||
-                          Object.keys(_vm.showItemList || {}).length === 0
+                          Object.keys(_vm.showItemList || {}).length === 0 ||
+                          _vm.data.selectedAll
                       }
                     },
                     [
