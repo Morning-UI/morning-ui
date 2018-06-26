@@ -440,6 +440,6 @@ getDocsHtmlPlugin(docsConfig);
 
 module.exports = [
     devVerConfig,
-    prodVerConfig,
-    docsConfig
+    // prodVerConfig,
+    // docsConfig
 ];

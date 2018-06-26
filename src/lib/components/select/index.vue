@@ -988,21 +988,15 @@ export default {
 
             for (let index in this.data.itemValMap) {
 
-                let selected = false;
+                if (values.indexOf(this.data.itemValMap[index]) !== -1) {
 
-                for (let value of values) {
+                    this.data.itemSelectedMap[index] = 1;
 
-                    if (value === this.data.itemValMap[index]) {
+                } else {
 
-                        selected = true;
-
-                        break;
-
-                    }
+                    this.data.itemSelectedMap[index] = 0;
 
                 }
-
-                this.data.itemSelectedMap[index] = (selected ? 1 : 0);
 
             }
 
@@ -1293,6 +1287,7 @@ export default {
 
         this._onValueChange();
         this._resizeSelectArea();
+        this._refreshMatchList();
 
         this.$on('value-change', this._onValueChange);
 
