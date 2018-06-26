@@ -10051,11 +10051,16 @@ mor-texteditor .toolbar {
 mor-texteditor .quill {
   width: 100%;
 }
+mor-texteditor .ql-editor {
+  overflow: visible;
+}
 mor-texteditor .ql-toolbar {
   border-radius: 3px 3px 0 0;
 }
 mor-texteditor .ql-container {
   border-radius: 0 0 3px 3px;
+  height: 100%;
+  overflow-y: auto;
 }
 mor-texteditor .ql-formats > button {
   outline: none;
@@ -10085,6 +10090,12 @@ mor-texteditor .ql-snow .ql-tooltip a.ql-remove::before {
 mor-texteditor.st-disabled .ql-container,
 mor-texteditor.st-readonly .ql-container {
   background: #EFEFEF;
+}
+.mo-texteditor-dialog header .mo-icon {
+  color: #8E9CAF;
+}
+.mo-texteditor-dialog header .mo-icon:hover {
+  color: #7C8BA0;
 }
 
 @keyframes switchOpen {

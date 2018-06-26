@@ -11,6 +11,7 @@
         :clearable="clearable"
         :tools="tools"
         :placeholder="placeholder"
+        :uploader="uploader"
     >
 
         <div class="note">{{conf.formName}}</div>
@@ -154,7 +155,12 @@
 
                             <template v-if="tool === 'link'">
                                 <button class="ql-link" :id="'mor-te-tool-link-'+uiid"></button>
-                                <morning-tip :target="'#mor-te-tool-link-'+uiid" color="extra-light-black">添加链接</morning-tip>
+                                <morning-tip :target="'#mor-te-tool-link-'+uiid" color="extra-light-black">链接</morning-tip>
+                            </template>
+
+                            <template v-if="tool === 'image'">
+                                <button class="ql-image" :id="'mor-te-tool-image-'+uiid"></button>
+                                <morning-tip :target="'#mor-te-tool-image-'+uiid" color="extra-light-black">图片</morning-tip>
                             </template>
                         </template>
                     </div>
@@ -163,6 +169,35 @@
             <div class="quill"></div>
             
         </div>
+
+        <morning-dialog
+            :ref="'ui-select-dialog-'+this.uiid"
+            class="mo-texteditor-dialog"
+            color="light-silver"
+            width="300px"
+            height="160px"
+            show-type="center"
+        >
+            <header slot="header">
+                <h1>插入图片</h1>
+                <ui-link color="dark-theme" js="morning.findVM('ui-select-dialog-'+uiid).toggle(false)"><i class="mo-icon mo-icon-close"></i></ui-link>
+            </header>
+            <div>
+                <ui-upload
+                    :ref="'ui-select-uploader-'+this.uiid"
+                    form-name="插入图片"
+                    hide-name
+                    accept-type="image/*"
+                    allow-url
+                    allow-drag
+                    uploader="conf.uploader"
+
+                    @value-change="_insertImage"
+                >
+                    
+                </ui-upload>
+            </div>
+        </morning-dialog>
 
         <morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn">清空</morning-link>
 
@@ -190,19 +225,52 @@ import Link                         from 'quill/formats/link';
 import Script                       from 'quill/formats/script';
 import Strike                       from 'quill/formats/strike';
 import Underline                    from 'quill/formats/underline';
+import ImageResize                  from 'quill-image-resize-module';
+import ImageDrop                    from 'quill-image-drop-module';
+
+console.log(ImageResize);
 
 Icons.undo = require('quill/assets/icons/undo.svg');
 Icons.redo = require('quill/assets/icons/redo.svg');
 Icons.divider = require('quill/assets/icons/horizontal-rule.svg');
+Icons.image = require('quill/assets/icons/image.svg');
 SizeStyle.whitelist = ['12px', '13px', '14px', '16px', '20px', '28px'];
 
 // extend tools : divider
 let BlockEmbed = Quill.import('blots/block/embed');
 
-class Divider extends BlockEmbed { }
+class Divider extends BlockEmbed {}
 
 Divider.blotName = 'divider';
 Divider.tagName = 'HR';
+
+// extend tools : image
+class Image extends BlockEmbed {
+    
+    static create(value) {
+
+        let node = super.create();
+
+        node.setAttribute('alt', value.alt);
+        node.setAttribute('src', value.url);
+
+        return node;
+  
+    }
+
+    static value(node) {
+        
+        return {
+            alt: node.getAttribute('alt'),
+            url: node.getAttribute('src')
+        };
+
+    }
+
+}
+
+Image.blotName = 'image';
+Image.tagName = 'IMG';
 
 Quill.register({
     'formats/align' : AlignStyle,
@@ -223,7 +291,7 @@ Quill.register({
     'formats/underline' : Underline,
     'formats/divider' : Divider,
 
-    // 'formats/image': Image,
+    'formats/image': Image,
     // 'formats/video': Video,
     'formats/list/item' : ListItem,
 
@@ -231,6 +299,8 @@ Quill.register({
     // 'modules/history': History,
     'modules/toolbar' : Toolbar,
     'modules/syntax' : Syntax,
+    'modules/imageResize' : ImageResize,
+    'modules/imageDrop' : ImageDrop,
 
     // 'themes/bubble': BubbleTheme,
     'themes/snow' : SnowTheme,
@@ -577,13 +647,17 @@ export default {
                     'blockquote',
                     'code-block'
                 ],
-                ['link'],
+                ['link', 'image'],
                 ['clean']
             ])
         },
         placeholder : {
             type : String,
             default : ''
+        },
+        uploader : {
+            type : Function,
+            default : undefined
         }
     },
     computed : {
@@ -591,7 +665,8 @@ export default {
 
             return {
                 tools : this.tools,
-                placeholder : this.placeholder
+                placeholder : this.placeholder,
+                uploader : this.uploader
             };
 
         },
@@ -630,7 +705,30 @@ export default {
             let $quill = this.$el.querySelector('.quill');
             let $toolbar = this.$el.querySelector('.toolbar');
 
-            $quill.style.height = `calc(100% - ${$toolbar.clientHeight}px)`;
+            $quill.style.maxHeight = `calc(100% - ${$toolbar.clientHeight}px)`;
+
+        },
+        _insertImage : function () {
+
+            let $uploader = this.$refs[`ui-select-uploader-${this.uiid}`];
+            let image = $uploader.get();
+
+            if (image && image.length > 0) {
+                
+                $uploader.set(undefined);
+
+                let range = this.data.quill.getSelection(true);
+
+                this.data.quill.insertText(range.index, '\n', Quill.sources.USER);
+                this.data.quill.insertEmbed(range.index + 1, 'image', {
+                    alt : '123',
+                    url : image[0].path
+                }, Quill.sources.USER);
+                this.data.quill.setSelection(range.index + 2, Quill.sources.SILENT);
+
+            }
+
+            this.$refs[`ui-select-dialog-${this.uiid}`].toggle(false);
 
         },
         getHtml : function () {
@@ -709,9 +807,18 @@ export default {
                             this.data.quill.insertEmbed(range.index + 1, 'divider', true, Quill.sources.USER);
                             this.data.quill.setSelection(range.index + 2, Quill.sources.SILENT);
 
+                        },
+                        image : () => {
+
+                            this.$refs[`ui-select-dialog-${this.uiid}`].toggle(true);
+
+                            return false;
+
                         }
                     }
-                }
+                },
+                imageResize : {},
+                imageDrop : true
             }
         });
 

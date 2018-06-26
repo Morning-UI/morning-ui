@@ -111,6 +111,9 @@ devVerConfig = extend(
             new webpack.DefinePlugin({
                 'process.env.NODE_ENV' : process.env.NODE_ENV
             }),
+            new webpack.ProvidePlugin({
+                'window.Quill': 'quill'
+            }),
             extractDevCss
         ],
         module : {
@@ -191,7 +194,7 @@ devVerConfig = extend(
                 },
                 {
                     test : /\.js$/,
-                    exclude : /node_modules\/(?!quill)/,
+                    exclude : /node_modules\/(?!(quill|quill-image-resize-module))/,
                     use : {
                         loader : 'babel-loader'
                     }

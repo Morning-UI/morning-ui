@@ -47,7 +47,7 @@
         </div>
         <br>
         <h3>预览</h3>
-        <div class="demo1-preview" style="width:100%;height:320px;border:1px #e0e0e0 solid;padding:15px">
+        <div class="demo1-preview" style="width:100%;height:320px;border:1px #e0e0e0 solid;padding:15px;overflow-x: scroll;">
             
         </div>
     </div>

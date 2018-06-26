@@ -49,12 +49,18 @@ mor-texteditor{
         width: 100%;
     }
 
+    .ql-editor{
+        overflow: visible;
+    }
+
     .ql-toolbar{
         border-radius: @borderRadius @borderRadius 0 0;
     }
 
     .ql-container{
         border-radius: 0 0 @borderRadius @borderRadius;
+        height: 100%;
+        overflow-y: auto;
     }
 
     .ql-formats{
@@ -104,5 +110,17 @@ mor-texteditor{
     // default status
     &{
         .st-normal;
+    }
+}
+
+.mo-texteditor-dialog{
+    header{
+        .mo-icon{
+            color: @colorLightBlue;
+
+            &:hover{
+                color: @colorBlue;
+            }
+        }
     }
 }
