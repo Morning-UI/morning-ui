@@ -127,7 +127,7 @@
     下面是一个完整的模拟盒内容推荐布局。
 
     :::democode/html
-    <ui-dialog ref="demo9" light-gray>
+    <ui-dialog ref="demo9" color="light-gray">
         <header slot="header">选择一张图片</header>
         <ui-grid class="fill">
             <div class="c-11">
