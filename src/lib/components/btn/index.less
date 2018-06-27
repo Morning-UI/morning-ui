@@ -2,15 +2,24 @@
 
 mor-btn{
     display: inline-block;
-    padding: 0 1.1em;
     border-radius: 0.3em;
     position: relative;
-    height: 2.8em;
-    line-height: ~`'calc(2.8em - 2px)'`;
     box-sizing: border-box;
+    height: 2.8em;
 
-    &:hover{
-        cursor: pointer;
+    a{
+        display: inline-block;
+        box-sizing: border-box;
+        border-radius: 0.3em;
+        padding: 0 1.1em;
+        height: 100%;
+        color: inherit;
+        line-height: ~`'calc(2.8em - 2px)'`;
+
+        &:hover{
+            text-decoration: none;
+            cursor: pointer;
+        }
     }
 
     &.plain{
@@ -19,58 +28,70 @@ mor-btn{
 
     &.round{
         border-radius: 100em;
+
+        a{
+            border-radius: 100em;
+        }
     }
 
     &.circle{
-        width: 2.8em;
         overflow: hidden;
-        border-radius: 100em;
-        padding: 0;
         text-align: center;
         position: relative;
+        border-radius: 100em;
 
-        > i{
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-        }
+        a{
+            width: 2.8em;
+            padding: 0;
+            border-radius: 100em;
 
-        > mor-img{
-            width: 100%;
-            height: 100%;
-
-            > img{
+            > i{
                 position: absolute;
-                top: 50%;
                 left: 50%;
+                top: 50%;
                 transform: translate(-50%, -50%);
+            }
+
+            > mor-img{
+                width: 100%;
+                height: 100%;
+
+                > img{
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                }
             }
         }
 
         &:not(.st-disabled):hover,
         &.st-hover{
-            > mor-img::after{
-                content: ' ';
-                width: 100%;
-                height: 100%;
-                background: rgba(0, 0, 0, 0.15);
-                position: absolute;
-                left: 0;
-                top: 0;
+            a{
+                > mor-img::after{
+                    content: ' ';
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.15);
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                }
             }
         }
 
         &:not(.st-disabled):active,
         &.st-active{
-            > mor-img::after{
-                content: ' ';
-                width: 100%;
-                height: 100%;
-                background: rgba(0, 0, 0, 0.25);
-                position: absolute;
-                left: 0;
-                top: 0;
+            a{
+                > mor-img::after{
+                    content: ' ';
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.25);
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                }
             }
         }
     }
@@ -92,7 +113,8 @@ mor-btn{
             opacity: 0;
         }
 
-        &:hover{
+        a,
+        a:hover{
             cursor: default;
         }
     }
@@ -100,7 +122,7 @@ mor-btn{
     &.si-xxl{
         font-size: @fontSize*1.3;
 
-        > i{
+        a > i{
             font-size: @fontSize*2.2;
         }
 
@@ -112,7 +134,7 @@ mor-btn{
     &.si-xl{
         font-size: @fontSize*1.1;
 
-        > i{
+        a > i{
             font-size: @fontSize*1.8;
         }
 
@@ -124,7 +146,7 @@ mor-btn{
     &.si-l{
         font-size: @fontSize*1;
 
-        > i{
+        a > i{
             font-size: @fontSize*1.6;
         }
 
@@ -136,7 +158,7 @@ mor-btn{
     &.si-m{
         font-size: @fontSize*0.8125;
 
-        > i{
+        a > i{
             font-size: @fontSize*1.4;
         }
 
@@ -148,10 +170,14 @@ mor-btn{
     &.si-s{
         font-size: @fontSize*0.75;
         height: 2.6em;
-        line-height: 2.6em;
-        padding: 0 0.8em;
 
-        > i{
+        a{
+            padding: 0 0.8em;
+            line-height: 2.6em;
+            height: 2.6em;
+        }
+
+        a > i{
             font-size: @fontSize*1.2;
         }
 
@@ -167,10 +193,14 @@ mor-btn{
     &.si-xs{
         font-size: @fontSize*0.75;
         height: 2.2em;
-        line-height: 2.2em;
-        padding: 0 0.6em;
 
-        > i{
+        a{
+            height: 2.2em;
+            line-height: 2.2em;
+            padding: 0 0.6em;
+        }
+
+        a > i{
             font-size: @fontSize*1;
         }
 
@@ -186,10 +216,14 @@ mor-btn{
     &.si-xxs{
         font-size: @fontSize*0.75;
         height: 1.8em;
-        line-height: 1.8em;
-        padding: 0 0.4em;
 
-        > i{
+        a{
+            height: 1.8em;
+            line-height: 1.8em;
+            padding: 0 0.4em;
+        }
+
+        a > i{
             font-size: @fontSize*0.75;
         }
 

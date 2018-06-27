@@ -1121,6 +1121,14 @@ mor-dialog a:hover {
   padding: 2px;
   margin-bottom: 10px;
 }
+.markdown-body mor-btn a,
+.markdown-body mor-link a {
+  color: inherit;
+}
+.markdown-body mor-btn a:hover,
+.markdown-body mor-link a:hover {
+  text-decoration: none;
+}
 .markdown-body pre {
   position: relative;
 }
