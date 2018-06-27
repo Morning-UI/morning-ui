@@ -194,7 +194,7 @@ devVerConfig = extend(
                 },
                 {
                     test : /\.js$/,
-                    exclude : /node_modules\/(?!(quill|quill-image-resize-module|quill-image-drop-module))/,
+                    exclude : /node_modules\/(?!(quill|quill-image-resize-module))/,
                     use : {
                         loader : 'babel-loader'
                     }
@@ -322,7 +322,7 @@ prodVerConfig = extend(
                 },
                 {
                     test : /\.js$/,
-                    exclude : /node_modules\/(?!(quill|quill-image-resize-module|quill-image-drop-module))/,
+                    exclude : /node_modules\/(?!(quill|quill-image-resize-module))/,
                     use : {
                         loader : 'babel-loader'
                     }
