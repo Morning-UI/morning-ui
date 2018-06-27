@@ -190,7 +190,6 @@
 </template>
  
 <script>
-import extend                       from 'extend';
 import map                          from 'lodash.map';
 import GlobalEvent                  from 'Utils/GlobalEvent';
 import TipManager                   from 'Utils/TipManager';
@@ -358,7 +357,6 @@ export default {
                 itemSelectedMap : [],
                 itemNomathMap : [],
                 lastItemHeight : 0,
-                // tips : [],
                 $listWrap : null,
                 $list : null,
                 $emitTarget : null,
@@ -1006,7 +1004,6 @@ export default {
 
             }
 
-            let st = Date.now();
             let values = this.get();
             let itemSelectedMap = [];
             let valMapVals = Object.values(this.data.itemValMap);
@@ -1335,25 +1332,13 @@ export default {
             immediate : true
         });
 
-        // this.$watch('conf.itemTipDirect', () => {
-
-        //     for (let tipVm of this.data.tips) {
-
-        //         tipVm.$el._vm.conf.placement = this.conf.itemTipDirect;
-
-        //     }
-
-        // }, {
-        //     immediate : true
-        // });
-
-        this.$watch('data.itemValMap', (newVal, oldVal) => {
+        this.$watch('data.itemValMap', () => {
 
             this._refreshMatchList();
 
         });
 
-        this.$watch('data.itemNomathMap', (newVal, oldVal) => {
+        this.$watch('data.itemNomathMap', () => {
 
             this._refreshMatchList();
 
