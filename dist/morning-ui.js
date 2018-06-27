@@ -36168,6 +36168,10 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
 
 exports.default = {
     origin: 'UI',
@@ -36205,6 +36209,15 @@ exports.default = {
             return {
                 loading: this.data.lock
             };
+        },
+        href: function href() {
+
+            if (this.conf.link) {
+
+                return this.conf.link;
+            }
+
+            return 'javascript:;';
         }
     },
     data: function data() {
@@ -36271,17 +36284,6 @@ exports.default = {
 
                 eval(_this2.conf.js);
             }
-
-            if (_this2.conf.link) {
-
-                if (_this2.conf.newTab) {
-
-                    window.open(_this2.conf.link);
-                } else {
-
-                    window.location.href = _this2.conf.link;
-                }
-            }
         });
     }
 };
@@ -36297,6 +36299,8 @@ module.exports = exports['default'];
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+//
+//
 //
 //
 //
@@ -36363,6 +36367,15 @@ exports.default = {
             return {
                 loading: this.data.lock
             };
+        },
+        href: function href() {
+
+            if (this.conf.link) {
+
+                return this.conf.link;
+            }
+
+            return 'javascript:;';
         }
     },
     data: function data() {
@@ -36428,17 +36441,6 @@ exports.default = {
             if (_this2.conf.js) {
 
                 eval(_this2.conf.js);
-            }
-
-            if (_this2.conf.link) {
-
-                if (_this2.conf.newTab) {
-
-                    window.open(_this2.conf.link);
-                } else {
-
-                    window.location.href = _this2.conf.link;
-                }
             }
         });
     }
@@ -47272,36 +47274,47 @@ var render = function() {
       on: { click: _vm._onClick }
     },
     [
-      _vm.data.lock
-        ? [
-            _c("div", { staticClass: "mo-loader" }, [
-              _c(
-                "svg",
-                {
-                  staticClass: "mo-loader-circular",
-                  attrs: { viewBox: "25 25 50 50" }
-                },
-                [
-                  _c("circle", {
-                    staticClass: "mo-loader-path",
-                    attrs: {
-                      cx: "50",
-                      cy: "50",
-                      r: "20",
-                      fill: "none",
-                      "stroke-width": "4",
-                      "stroke-miterlimit": "10"
-                    }
-                  })
-                ]
-              )
-            ]),
-            _vm._v(" "),
-            _c("span", [_vm._t("default")], 2)
-          ]
-        : [_vm._t("default")]
-    ],
-    2
+      _c(
+        "a",
+        {
+          attrs: {
+            href: _vm.href,
+            target: _vm.conf.newTab ? "_blank" : "_self"
+          }
+        },
+        [
+          _vm.data.lock
+            ? [
+                _c("div", { staticClass: "mo-loader" }, [
+                  _c(
+                    "svg",
+                    {
+                      staticClass: "mo-loader-circular",
+                      attrs: { viewBox: "25 25 50 50" }
+                    },
+                    [
+                      _c("circle", {
+                        staticClass: "mo-loader-path",
+                        attrs: {
+                          cx: "50",
+                          cy: "50",
+                          r: "20",
+                          fill: "none",
+                          "stroke-width": "4",
+                          "stroke-miterlimit": "10"
+                        }
+                      })
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("span", [_vm._t("default")], 2)
+              ]
+            : [_vm._t("default")]
+        ],
+        2
+      )
+    ]
   )
 }
 var staticRenderFns = []
@@ -47334,36 +47347,47 @@ var render = function() {
       on: { click: _vm._onClick }
     },
     [
-      _vm.data.lock
-        ? [
-            _c("div", { staticClass: "mo-loader" }, [
-              _c(
-                "svg",
-                {
-                  staticClass: "mo-loader-circular",
-                  attrs: { viewBox: "25 25 50 50" }
-                },
-                [
-                  _c("circle", {
-                    staticClass: "mo-loader-path",
-                    attrs: {
-                      cx: "50",
-                      cy: "50",
-                      r: "20",
-                      fill: "none",
-                      "stroke-width": "4",
-                      "stroke-miterlimit": "10"
-                    }
-                  })
-                ]
-              )
-            ]),
-            _vm._v(" "),
-            _c("span", [_vm._t("default")], 2)
-          ]
-        : [_vm._t("default")]
-    ],
-    2
+      _c(
+        "a",
+        {
+          attrs: {
+            href: _vm.href,
+            target: _vm.conf.newTab ? "_blank" : "_self"
+          }
+        },
+        [
+          _vm.data.lock
+            ? [
+                _c("div", { staticClass: "mo-loader" }, [
+                  _c(
+                    "svg",
+                    {
+                      staticClass: "mo-loader-circular",
+                      attrs: { viewBox: "25 25 50 50" }
+                    },
+                    [
+                      _c("circle", {
+                        staticClass: "mo-loader-path",
+                        attrs: {
+                          cx: "50",
+                          cy: "50",
+                          r: "20",
+                          fill: "none",
+                          "stroke-width": "4",
+                          "stroke-miterlimit": "10"
+                        }
+                      })
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("span", [_vm._t("default")], 2)
+              ]
+            : [_vm._t("default")]
+        ],
+        2
+      )
+    ]
   )
 }
 var staticRenderFns = []
