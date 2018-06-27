@@ -12651,6 +12651,7 @@ mor-slider .selected-line {
   height: 8px;
   position: absolute;
   left: 0;
+  top: 0;
   background: #F86F88;
   border-radius: 10em;
   pointer-events: none;
