@@ -1,0 +1,164 @@
+
+* {
+  font-family: PingFangSC-Thin, sans-serif;
+}
+@font-face {
+  font-family: 'iconfont';
+  src: url(/iconfont.woff) format('woff');
+}
+.iconfont {
+  font-family: 'iconfont' !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.markdown-body mor-table table {
+  margin-top: initial;
+  margin-bottom: initial;
+  display: table;
+  width: initial;
+  overflow: initial;
+}
+.markdown-body mor-table table tr {
+  border-top: initial;
+}
+.markdown-body mor-table table tr:nth-child(2n) {
+  background-color: #FAFAFA;
+}
+.markdown-body mor-table table * {
+  box-sizing: inherit;
+}
+.markdown-body mor-table table th,
+.markdown-body mor-table table td {
+  padding: initial;
+  border: initial;
+}
+.markdown-body mor-img img,
+.markdown-body mor-label img,
+.markdown-body mor-statistic img,
+.markdown-body mor-multiform img {
+  border: none !important;
+  padding: 0;
+  margin-bottom: inherit;
+}
+.markdown-body mor-formgroup h6 {
+  margin-top: 0;
+}
+.markdown-body h5 {
+  font-size: 1em !important;
+}
+.markdown-body .demo-area {
+  border: 3px #E6E6E6 dashed;
+  padding: 40px 10px 10px;
+  position: relative;
+  margin-bottom: 16px;
+}
+.markdown-body .demo-title {
+  position: absolute;
+  padding: 0 20px;
+  right: 0;
+  top: 0;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  font-size: 20px;
+  margin: 0;
+  display: inline-block;
+  background: #F0F0F0;
+}
+.markdown-body mor-ul h3 {
+  margin: 0;
+  line-height: initial;
+}
+.markdown-body > div > h1 {
+  line-height: 1.35;
+  margin-top: 0;
+}
+.markdown-body mor-table h1 {
+  margin-top: inherit;
+  margin-bottom: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  padding-bottom: inherit;
+  border-bottom: inherit;
+  font-size: inherit;
+}
+.markdown-body > div > mor-tab > .contents > .item > div {
+  margin-top: 30px;
+}
+.markdown-body > div > h3 > mor-badge {
+  font-weight: 400;
+  vertical-align: 4px;
+  transform: scale(0.9);
+  transform-origin: left center;
+}
+.markdown-body iframe {
+  width: 100%;
+}
+.markdown-body mor-breadcrumbs li + li {
+  margin-top: 0;
+}
+.markdown-body mor-dialog h1 {
+  border-bottom: none;
+  line-height: inherit;
+}
+.component .markdown-body > div > h1 {
+  margin-bottom: 20px;
+}
+.markdown-body mor-formgroup header {
+  height: inherit;
+}
+.markdown-body mor-formgroup h5 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 1.6em;
+}
+.markdown-body mor-formgroup p {
+  margin-bottom: 0;
+}
+.markdown-body mor-select li + li {
+  margin-top: 0;
+}
+mor-dialog .body {
+  font-size: inherit;
+}
+mor-dialog a {
+  color: #0366D6;
+  text-decoration: none;
+}
+mor-dialog a:hover {
+  text-decoration: underline;
+}
+.lab {
+  width: 1000px;
+  padding: 20px;
+  margin: 0 auto;
+  border-left: 1px #eee solid;
+  border-right: 1px #eee solid;
+}
+.lab .area {
+  display: block;
+  padding-top: 20px;
+  min-height: 800px;
+}
+.lab > h1 {
+  margin: 0;
+  background: #efefef;
+  font-weight: 400;
+  vertical-align: middle;
+  font-size: 14px;
+  display: inline-block;
+  padding-right: 10px;
+}
+.lab > h1 .iconfont {
+  font-size: 30px;
+  vertical-align: middle;
+  display: inline-block;
+  background: #f24b64;
+  color: #fff;
+  padding: 2px 5px;
+  margin-right: 10px;
+}
