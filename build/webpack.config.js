@@ -112,7 +112,7 @@ devVerConfig = extend(
                 'process.env.NODE_ENV' : process.env.NODE_ENV
             }),
             new webpack.ProvidePlugin({
-                'window.Quill': 'quill'
+                'window.Quill' : 'quill/core'
             }),
             extractDevCss
         ],
@@ -194,7 +194,7 @@ devVerConfig = extend(
                 },
                 {
                     test : /\.js$/,
-                    exclude : /node_modules\/(?!(quill|quill-image-resize-module))/,
+                    exclude : /node_modules\/(?!(quill|quill-image-resize-module|quill-image-drop-module))/,
                     use : {
                         loader : 'babel-loader'
                     }
@@ -322,7 +322,7 @@ prodVerConfig = extend(
                 },
                 {
                     test : /\.js$/,
-                    exclude : /node_modules\/(?!quill)/,
+                    exclude : /node_modules\/(?!(quill|quill-image-resize-module|quill-image-drop-module))/,
                     use : {
                         loader : 'babel-loader'
                     }

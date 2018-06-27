@@ -226,15 +226,18 @@ import Script                       from 'quill/formats/script';
 import Strike                       from 'quill/formats/strike';
 import Underline                    from 'quill/formats/underline';
 import ImageResize                  from 'quill-image-resize-module';
-import ImageDrop                    from 'quill-image-drop-module';
-
-console.log(ImageResize);
 
 Icons.undo = require('quill/assets/icons/undo.svg');
 Icons.redo = require('quill/assets/icons/redo.svg');
 Icons.divider = require('quill/assets/icons/horizontal-rule.svg');
 Icons.image = require('quill/assets/icons/image.svg');
 SizeStyle.whitelist = ['12px', '13px', '14px', '16px', '20px', '28px'];
+
+const quillImgAttributes = [
+    'alt',
+    'height',
+    'width'
+];
 
 // extend tools : divider
 let BlockEmbed = Quill.import('blots/block/embed');
@@ -247,24 +250,58 @@ Divider.tagName = 'HR';
 // extend tools : image
 class Image extends BlockEmbed {
     
-    static create(value) {
+    static create (value) {
 
         let node = super.create();
 
-        node.setAttribute('alt', value.alt);
-        node.setAttribute('src', value.url);
+        node.setAttribute('src', value);
 
         return node;
   
     }
-
-    static value(node) {
+  
+    static formats (domNode) {
         
-        return {
-            alt: node.getAttribute('alt'),
-            url: node.getAttribute('src')
-        };
+        return quillImgAttributes.reduce((formats, attribute) => {
+        
+            if (domNode.hasAttribute(attribute)) {
 
+                formats[attribute] = domNode.getAttribute(attribute);
+
+            }
+            
+            return formats;
+    
+        }, {});
+
+    }
+
+    static value (node) {
+
+        return node.getAttribute('src');
+
+    }
+
+    format (name, value) {
+        
+        if (quillImgAttributes.indexOf(name) > -1) {
+            
+            if (value) {
+
+                this.domNode.setAttribute(name, value);
+    
+            } else {
+            
+                this.domNode.removeAttribute(name);
+            
+            }
+        
+        } else {
+          
+            super.format(name, value);
+        
+        }
+      
     }
 
 }
@@ -291,7 +328,7 @@ Quill.register({
     'formats/underline' : Underline,
     'formats/divider' : Divider,
 
-    'formats/image': Image,
+    'formats/image' : Image,
     // 'formats/video': Video,
     'formats/list/item' : ListItem,
 
@@ -300,7 +337,6 @@ Quill.register({
     'modules/toolbar' : Toolbar,
     'modules/syntax' : Syntax,
     'modules/imageResize' : ImageResize,
-    'modules/imageDrop' : ImageDrop,
 
     // 'themes/bubble': BubbleTheme,
     'themes/snow' : SnowTheme,
@@ -583,6 +619,9 @@ const inlineStyle = `
     }
     .mo-texteditor img {
       max-width: 100%;
+      margin: 0;
+      padding: 0;
+      border: none;
     }
     .mo-texteditor a {
       color: #06c;
@@ -720,10 +759,7 @@ export default {
                 let range = this.data.quill.getSelection(true);
 
                 this.data.quill.insertText(range.index, '\n', Quill.sources.USER);
-                this.data.quill.insertEmbed(range.index + 1, 'image', {
-                    alt : '123',
-                    url : image[0].path
-                }, Quill.sources.USER);
+                this.data.quill.insertEmbed(range.index + 1, 'image', image[0].path, Quill.sources.USER);
                 this.data.quill.setSelection(range.index + 2, Quill.sources.SILENT);
 
             }
@@ -817,8 +853,7 @@ export default {
                         }
                     }
                 },
-                imageResize : {},
-                imageDrop : true
+                imageResize : {}
             }
         });
 
