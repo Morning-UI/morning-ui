@@ -67,76 +67,76 @@
                         <template v-for="(pick, name) in conf.quickPick">
                             <li
                                 v-if="pick === '本周'"
-                                @click="_pickDate([_startOfWeek(new Date()), _endOfWeek(new Date())])"
+                                @click="_quickPickDate([_startOfWeek(new Date()), _endOfWeek(new Date())])"
                             >{{pick}}</li>
                             <li
                                 v-if="pick === '本月'"
-                                @click="_pickDate([_startOfMonth(new Date()), _endOfMonth(new Date())])"
+                                @click="_quickPickDate([_startOfMonth(new Date()), _endOfMonth(new Date())])"
                             >{{pick}}</li>
                             <li
                                 v-if="pick === '今年'"
-                                @click="_pickDate([_startOfYear(new Date()), _endOfYear(new Date())])"
+                                @click="_quickPickDate([_startOfYear(new Date()), _endOfYear(new Date())])"
                             >{{pick}}</li>
                             <li
                                 v-if="/^最近 \d+ 秒$/.test(pick)"
-                                @click="_pickDate([_addSeconds(new Date(), -pick.replace(/(最近 | 秒)/g, '')), new Date()])"
+                                @click="_quickPickDate([_addSeconds(new Date(), -pick.replace(/(最近 | 秒)/g, '')), new Date()])"
                             >{{pick}}</li>
                             <li
                                 v-if="/^最近 \d+ 分钟$/.test(pick)"
-                                @click="_pickDate([_addMinutes(new Date(), -pick.replace(/(最近 | 分钟)/g, '')), new Date()])"
+                                @click="_quickPickDate([_addMinutes(new Date(), -pick.replace(/(最近 | 分钟)/g, '')), new Date()])"
                             >{{pick}}</li>
                             <li
                                 v-if="/^最近 \d+ 小时$/.test(pick)"
-                                @click="_pickDate([_addHours(new Date(), -pick.replace(/(最近 | 小时)/g, '')), new Date()])"
+                                @click="_quickPickDate([_addHours(new Date(), -pick.replace(/(最近 | 小时)/g, '')), new Date()])"
                             >{{pick}}</li>
                             <li
                                 v-if="/^最近 \d+ 天$/.test(pick)"
-                                @click="_pickDate([_addDays(new Date(), -pick.replace(/(最近 | 天)/g, '')), new Date()])"
+                                @click="_quickPickDate([_addDays(new Date(), -pick.replace(/(最近 | 天)/g, '')), new Date()])"
                             >{{pick}}</li>
                             <li
                                 v-if="/^最近 \d+ 周$/.test(pick)"
-                                @click="_pickDate([_addWeeks(new Date(), -pick.replace(/(最近 | 周)/g, '')), new Date()])"
+                                @click="_quickPickDate([_addWeeks(new Date(), -pick.replace(/(最近 | 周)/g, '')), new Date()])"
                             >{{pick}}</li>
                             <li
                                 v-if="/^最近 \d+ 月$/.test(pick)"
-                                @click="_pickDate([_addMonths(new Date(), -pick.replace(/(最近 | 月)/g, '')), new Date()])"
+                                @click="_quickPickDate([_addMonths(new Date(), -pick.replace(/(最近 | 月)/g, '')), new Date()])"
                             >{{pick}}</li>
                             <li
                                 v-if="/^最近 \d+ 年$/.test(pick)"
-                                @click="_pickDate([_addYears(new Date(), -pick.replace(/(最近 | 年)/g, '')), new Date()])"
+                                @click="_quickPickDate([_addYears(new Date(), -pick.replace(/(最近 | 年)/g, '')), new Date()])"
                             >{{pick}}</li>
 
                             <li
                                 v-if="/^未来 \d+ 秒$/.test(pick)"
-                                @click="_pickDate([new Date(), _addSeconds(new Date(), pick.replace(/(未来 | 秒)/g, ''))])"
+                                @click="_quickPickDate([new Date(), _addSeconds(new Date(), pick.replace(/(未来 | 秒)/g, ''))])"
                             >{{pick}}</li>
                             <li
                                 v-if="/^未来 \d+ 分钟$/.test(pick)"
-                                @click="_pickDate([new Date(), _addMinutes(new Date(), pick.replace(/(未来 | 分钟)/g, ''))])"
+                                @click="_quickPickDate([new Date(), _addMinutes(new Date(), pick.replace(/(未来 | 分钟)/g, ''))])"
                             >{{pick}}</li>
                             <li
                                 v-if="/^未来 \d+ 小时$/.test(pick)"
-                                @click="_pickDate([new Date(), _addHours(new Date(), pick.replace(/(未来 | 小时)/g, ''))])"
+                                @click="_quickPickDate([new Date(), _addHours(new Date(), pick.replace(/(未来 | 小时)/g, ''))])"
                             >{{pick}}</li>
                             <li
                                 v-if="/^未来 \d+ 天$/.test(pick)"
-                                @click="_pickDate([new Date(), _addDays(new Date(), pick.replace(/(未来 | 天)/g, ''))])"
+                                @click="_quickPickDate([new Date(), _addDays(new Date(), pick.replace(/(未来 | 天)/g, ''))])"
                             >{{pick}}</li>
                             <li
                                 v-if="/^未来 \d+ 周$/.test(pick)"
-                                @click="_pickDate([new Date(), _addWeeks(new Date(), pick.replace(/(未来 | 周)/g, ''))])"
+                                @click="_quickPickDate([new Date(), _addWeeks(new Date(), pick.replace(/(未来 | 周)/g, ''))])"
                             >{{pick}}</li>
                             <li
                                 v-if="/^未来 \d+ 月$/.test(pick)"
-                                @click="_pickDate([new Date(), _addMonths(new Date(), pick.replace(/(未来 | 月)/g, ''))])"
+                                @click="_quickPickDate([new Date(), _addMonths(new Date(), pick.replace(/(未来 | 月)/g, ''))])"
                             >{{pick}}</li>
                             <li
                                 v-if="/^未来 \d+ 年$/.test(pick)"
-                                @click="_pickDate([new Date(), _addYears(new Date(), pick.replace(/(未来 | 年)/g, ''))])"
+                                @click="_quickPickDate([new Date(), _addYears(new Date(), pick.replace(/(未来 | 年)/g, ''))])"
                             >{{pick}}</li>
                             <li
                                 v-if="typeof pick === 'object' && pick.start instanceof Date && pick.end instanceof Date"
-                                @click="_pickDate([pick.start, pick.end])"
+                                @click="_quickPickDate([pick.start, pick.end])"
                             >{{pick.name}}</li>
                         </template>
                     </ul>
@@ -208,83 +208,83 @@
                         <template v-for="(pick, name) in conf.quickPick">
                             <li
                                 v-if="pick === '今天'"
-                                @click="_pickDate(new Date())"
+                                @click="_quickPickDate(new Date())"
                             >{{pick}}</li>
                             <li
                                 v-if="pick === '昨天'"
-                                @click="_pickDate(_addDays(new Date(), -1))"
+                                @click="_quickPickDate(_addDays(new Date(), -1))"
                             >{{pick}}</li>
                             <li
                                 v-if="pick === '明天'"
-                                @click="_pickDate(_addDays(new Date(), 1))"
+                                @click="_quickPickDate(_addDays(new Date(), 1))"
                             >{{pick}}</li>
                             
                             <li
                                 v-if="/^\d+ 秒前$/.test(pick)"
-                                @click="_pickDate(_addSeconds(new Date(), -pick.replace(' 秒前', '')))"
+                                @click="_quickPickDate(_addSeconds(new Date(), -pick.replace(' 秒前', '')))"
                             >{{pick}}</li>
                             <li
                                 v-if="/^\d+ 分钟前$/.test(pick)"
-                                @click="_pickDate(_addMinutes(new Date(), -pick.replace(' 分钟前', '')))"
+                                @click="_quickPickDate(_addMinutes(new Date(), -pick.replace(' 分钟前', '')))"
                             >{{pick}}</li>
                             <li
                                 v-if="/^\d+ 小时前$/.test(pick)"
-                                @click="_pickDate(_addHours(new Date(), -pick.replace(' 小时前', '')))"
+                                @click="_quickPickDate(_addHours(new Date(), -pick.replace(' 小时前', '')))"
                             >{{pick}}</li>
                             <li
                                 v-if="/^\d+ 天前$/.test(pick)"
-                                @click="_pickDate(_addDays(new Date(), -pick.replace(' 天前', '')))"
+                                @click="_quickPickDate(_addDays(new Date(), -pick.replace(' 天前', '')))"
                             >{{pick}}</li>
                             <li
                                 v-if="/^\d+ 周前$/.test(pick)"
-                                @click="_pickDate(_addWeeks(new Date(), -pick.replace(' 周前', '')))"
+                                @click="_quickPickDate(_addWeeks(new Date(), -pick.replace(' 周前', '')))"
                             >{{pick}}</li>
                             <li
                                 v-if="/^\d+ 月前$/.test(pick)"
-                                @click="_pickDate(_addMonths(new Date(), -pick.replace(' 月前', '')))"
+                                @click="_quickPickDate(_addMonths(new Date(), -pick.replace(' 月前', '')))"
                             >{{pick}}</li>
                             <li
                                 v-if="/^\d+ 年前$/.test(pick)"
-                                @click="_pickDate(_addYears(new Date(), -pick.replace(' 年前', '')))"
+                                @click="_quickPickDate(_addYears(new Date(), -pick.replace(' 年前', '')))"
                             >{{pick}}</li>
 
                             <li
                                 v-if="/^\d+ 秒后$/.test(pick)"
-                                @click="_pickDate(_addSeconds(new Date(), pick.replace(' 秒后', '')))"
+                                @click="_quickPickDate(_addSeconds(new Date(), pick.replace(' 秒后', '')))"
                             >{{pick}}</li>
                             <li
                                 v-if="/^\d+ 分钟后$/.test(pick)"
-                                @click="_pickDate(_addMinutes(new Date(), pick.replace(' 分钟后', '')))"
+                                @click="_quickPickDate(_addMinutes(new Date(), pick.replace(' 分钟后', '')))"
                             >{{pick}}</li>
                             <li
                                 v-if="/^\d+ 小时后$/.test(pick)"
-                                @click="_pickDate(_addHours(new Date(), pick.replace(' 小时后', '')))"
+                                @click="_quickPickDate(_addHours(new Date(), pick.replace(' 小时后', '')))"
                             >{{pick}}</li>
                             <li
                                 v-if="/^\d+ 天后$/.test(pick)"
-                                @click="_pickDate(_addDays(new Date(), pick.replace(' 天后', '')))"
+                                @click="_quickPickDate(_addDays(new Date(), pick.replace(' 天后', '')))"
                             >{{pick}}</li>
                             <li
                                 v-if="/^\d+ 周后$/.test(pick)"
-                                @click="_pickDate(_addWeeks(new Date(), pick.replace(' 周后', '')))"
+                                @click="_quickPickDate(_addWeeks(new Date(), pick.replace(' 周后', '')))"
                             >{{pick}}</li>
                             <li
                                 v-if="/^\d+ 月后$/.test(pick)"
-                                @click="_pickDate(_addMonths(new Date(), pick.replace(' 月后', '')))"
+                                @click="_quickPickDate(_addMonths(new Date(), pick.replace(' 月后', '')))"
                             >{{pick}}</li>
                             <li
                                 v-if="/^\d+ 年后$/.test(pick)"
-                                @click="_pickDate(_addYears(new Date(), pick.replace(' 年后', '')))"
+                                @click="_quickPickDate(_addYears(new Date(), pick.replace(' 年后', '')))"
                             >{{pick}}</li>
 
                             <li
                                 v-if="typeof pick === 'object' && typeof pick.pick === 'number'"
-                                @click="_pickDate(_addMilliseconds(new Date(), pick.pick * conf.quickPickUnit))"
+                                @click="_quickPickDate(_addMilliseconds(new Date(), pick.pick * conf.quickPickUnit))"
                             >{{pick.name}}</li>
 
                             <li
                                 v-if="typeof pick === 'object' && pick.pick instanceof Date"
-                                @click="_pickDate(pick.pick)"
+                                @click="_quickPickDate(pick.pick)"
                             >{{pick.name}}</li>
                         </template>
                     </ul>
@@ -1098,7 +1098,7 @@ export default {
             return endOfYear.apply(this, arg);
 
         },
-        _pickDate : function (date) {
+        _quickPickDate : function (date) {
 
             if (date instanceof Date &&
                 !this.conf.isRange) {
@@ -1149,6 +1149,14 @@ export default {
                     $timepicker._set(formatDate(date[1], $timepicker.conf.format));
 
                 }
+
+            }
+
+            if (this.conf.doneHidden) {
+
+                let input0 = this.$refs[`ui-datepicker-input-0-${this.uiid}`];
+
+                input0._blur();
 
             }
 
