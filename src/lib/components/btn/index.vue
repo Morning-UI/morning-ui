@@ -11,18 +11,20 @@
         @click="_onClick"
     >
 
-    <template v-if="data.lock">
-        <div class="mo-loader">
-            <svg class="mo-loader-circular" viewBox="25 25 50 50">
-                <circle class="mo-loader-path" cx="50" cy="50" r="20" fill="none" stroke-width="4" stroke-miterlimit="10"/>
-            </svg>
-        </div>
-        <span><slot></slot></span>
-    </template>
+    <a :href="href" :target="conf.newTab ? '_blank' : '_self'">
+        <template v-if="data.lock">
+            <div class="mo-loader">
+                <svg class="mo-loader-circular" viewBox="25 25 50 50">
+                    <circle class="mo-loader-path" cx="50" cy="50" r="20" fill="none" stroke-width="4" stroke-miterlimit="10"/>
+                </svg>
+            </div>
+            <span><slot></slot></span>
+        </template>
 
-    <template v-else>
-        <slot></slot>
-    </template>
+        <template v-else>
+            <slot></slot>
+        </template>
+    </a>
         
     </mor-btn>
 </template>
@@ -65,6 +67,17 @@ export default {
             return {
                 loading : this.data.lock
             };
+
+        },
+        href : function () {
+
+            if (this.conf.link) {
+
+                return this.conf.link;
+
+            }
+
+            return 'javascript:;';
 
         }
     },
@@ -141,20 +154,6 @@ export default {
             if (this.conf.js) {
 
                 eval(this.conf.js);
-
-            }
-
-            if (this.conf.link) {
-
-                if (this.conf.newTab) {
-
-                    window.open(this.conf.link);
-
-                } else {
-
-                    window.location.href = this.conf.link;
-
-                }
 
             }
 
