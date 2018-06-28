@@ -139,7 +139,7 @@
 
                     $.ajax({
                         type : 'POST',
-                        url : 'http://localhost:8089/api/uploadfile',
+                        url : '/api/uploadfile',
                         data : formData,
                         processData : false,
                         contentType : false,
