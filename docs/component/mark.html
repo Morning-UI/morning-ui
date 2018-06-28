@@ -41,20 +41,11 @@
 
             $.ajax({
               type : 'POST',
-              url : '/api/uploadfile',
+              url : 'http://localhost:8089/api/uploadfile',
               data : formData,
               processData : false,
               contentType : false,
               dataType : 'json',
-              beforeSend : jqXHR => {
-
-                jqXHR.upload.addEventListener('progress', (event) => {
-
-                  file.progress = event.loaded / event.total;
-
-                }, false);
-
-              },
               success : resp => {
     
                 if (resp.status) {
