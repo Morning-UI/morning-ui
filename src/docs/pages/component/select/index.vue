@@ -171,8 +171,8 @@
     若下拉选择存在大量选项时，我们推荐以下方法进行优化：
 
     - 小于`200`项：不需要特殊优化
-    - `200`至`5000`项：采用[max-show](#max-show)配置优化，可减少DOM数量
-    - 大于`5000`项：采用[dynamic-list](#dynamic-list)配置优化，可减少`list`中的数据及DOM数量，同时也可采用远程查询。
+    - `200`至`2000`项：采用[max-show](#max-show)配置优化，可减少DOM数量
+    - 大于`2000`项：采用[dynamic-list](#dynamic-list)配置优化，可减少`list`中的数据及DOM数量，同时也可采用远程查询。
 
     #### 高性能模式
 
@@ -683,7 +683,6 @@
         <ui-select
             form-name="Select designer"
             separate-emit=".demo8"
-            can-search
             multi-select
             :max="5"
             :list="{

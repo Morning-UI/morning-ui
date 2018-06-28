@@ -5196,17 +5196,26 @@ mor-img.thumbnail {
 
 mor-btn {
   display: inline-block;
-  padding: 0 1.1em;
   border-radius: 0.3em;
   position: relative;
-  height: 2.8em;
-  line-height: calc(2.8em - 2px);
   box-sizing: border-box;
+  height: 2.8em;
   font-size: 13px;
   background-color: #F33D5D;
   color: #FFFFFF;
 }
-mor-btn:hover {
+mor-btn a {
+  display: inline-block;
+  box-sizing: border-box;
+  border-radius: 0.3em;
+  padding: 0 1.1em;
+  height: 100%;
+  color: inherit;
+  line-height: calc(2.8em - 2px);
+  text-decoration: none;
+}
+mor-btn a:hover {
+  text-decoration: none;
   cursor: pointer;
 }
 mor-btn.plain {
@@ -5215,32 +5224,38 @@ mor-btn.plain {
 mor-btn.round {
   border-radius: 100em;
 }
-mor-btn.circle {
-  width: 2.8em;
-  overflow: hidden;
+mor-btn.round a {
   border-radius: 100em;
-  padding: 0;
+}
+mor-btn.circle {
+  overflow: hidden;
   text-align: center;
   position: relative;
+  border-radius: 100em;
 }
-mor-btn.circle > i {
+mor-btn.circle a {
+  width: 2.8em;
+  padding: 0;
+  border-radius: 100em;
+}
+mor-btn.circle a > i {
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
 }
-mor-btn.circle > mor-img {
+mor-btn.circle a > mor-img {
   width: 100%;
   height: 100%;
 }
-mor-btn.circle > mor-img > img {
+mor-btn.circle a > mor-img > img {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-mor-btn.circle:not(.st-disabled):hover > mor-img::after,
-mor-btn.circle.st-hover > mor-img::after {
+mor-btn.circle:not(.st-disabled):hover a > mor-img::after,
+mor-btn.circle.st-hover a > mor-img::after {
   content: ' ';
   width: 100%;
   height: 100%;
@@ -5249,8 +5264,8 @@ mor-btn.circle.st-hover > mor-img::after {
   left: 0;
   top: 0;
 }
-mor-btn.circle:not(.st-disabled):active > mor-img::after,
-mor-btn.circle.st-active > mor-img::after {
+mor-btn.circle:not(.st-disabled):active a > mor-img::after,
+mor-btn.circle.st-active a > mor-img::after {
   content: ' ';
   width: 100%;
   height: 100%;
@@ -5272,13 +5287,14 @@ mor-btn.loading .mo-loader .mo-loader-path {
 mor-btn.loading span {
   opacity: 0;
 }
-mor-btn.loading:hover {
+mor-btn.loading a,
+mor-btn.loading a:hover {
   cursor: default;
 }
 mor-btn.si-xxl {
   font-size: 20.8px;
 }
-mor-btn.si-xxl > i {
+mor-btn.si-xxl a > i {
   font-size: 35.2px;
 }
 mor-btn.si-xxl .mo-loader {
@@ -5287,7 +5303,7 @@ mor-btn.si-xxl .mo-loader {
 mor-btn.si-xl {
   font-size: 17.6px;
 }
-mor-btn.si-xl > i {
+mor-btn.si-xl a > i {
   font-size: 28.8px;
 }
 mor-btn.si-xl .mo-loader {
@@ -5296,7 +5312,7 @@ mor-btn.si-xl .mo-loader {
 mor-btn.si-l {
   font-size: 16px;
 }
-mor-btn.si-l > i {
+mor-btn.si-l a > i {
   font-size: 25.6px;
 }
 mor-btn.si-l .mo-loader {
@@ -5305,7 +5321,7 @@ mor-btn.si-l .mo-loader {
 mor-btn.si-m {
   font-size: 13px;
 }
-mor-btn.si-m > i {
+mor-btn.si-m a > i {
   font-size: 22.4px;
 }
 mor-btn.si-m .mo-loader {
@@ -5314,10 +5330,13 @@ mor-btn.si-m .mo-loader {
 mor-btn.si-s {
   font-size: 12px;
   height: 2.6em;
-  line-height: 2.6em;
-  padding: 0 0.8em;
 }
-mor-btn.si-s > i {
+mor-btn.si-s a {
+  padding: 0 0.8em;
+  line-height: 2.6em;
+  height: 2.6em;
+}
+mor-btn.si-s a > i {
   font-size: 19.2px;
 }
 mor-btn.si-s.circle {
@@ -5329,10 +5348,13 @@ mor-btn.si-s .mo-loader {
 mor-btn.si-xs {
   font-size: 12px;
   height: 2.2em;
+}
+mor-btn.si-xs a {
+  height: 2.2em;
   line-height: 2.2em;
   padding: 0 0.6em;
 }
-mor-btn.si-xs > i {
+mor-btn.si-xs a > i {
   font-size: 16px;
 }
 mor-btn.si-xs.circle {
@@ -5344,10 +5366,13 @@ mor-btn.si-xs .mo-loader {
 mor-btn.si-xxs {
   font-size: 12px;
   height: 1.8em;
+}
+mor-btn.si-xxs a {
+  height: 1.8em;
   line-height: 1.8em;
   padding: 0 0.4em;
 }
-mor-btn.si-xxs > i {
+mor-btn.si-xxs a > i {
   font-size: 12px;
 }
 mor-btn.si-xxs.circle {
@@ -6028,7 +6053,7 @@ mor-btn.st-apparent {
 mor-btn.st-apparent:hover {
   animation-name: none;
 }
-mor-btn > i {
+mor-btn a > i {
   font-size: 22.4px;
 }
 mor-btn .mo-loader {
@@ -6064,12 +6089,22 @@ mor-btn.st-disabled.plain {
 mor-link {
   display: inline-block;
   position: relative;
-  line-height: 1.4em;
   height: 1.4em;
   font-size: 13px;
   color: #F33D5D;
 }
-mor-link.margin {
+mor-link > a {
+  display: inline-block;
+  line-height: 1.4em;
+  height: 1.4em;
+  color: inherit;
+  text-decoration: none;
+}
+mor-link > a:hover {
+  text-decoration: none;
+  cursor: pointer;
+}
+mor-link.margin > a {
   padding: 0 0.6em;
 }
 mor-link.loading .mo-loader {
@@ -6082,7 +6117,8 @@ mor-link.loading .mo-loader {
 mor-link.loading span {
   opacity: 0;
 }
-mor-link.loading:hover {
+mor-link.loading > a,
+mor-link.loading > a:hover {
   cursor: default;
 }
 mor-link.si-xxl {
@@ -9805,6 +9841,7 @@ mor-video {
 mor-video > video {
   width: 100%;
   background: #000;
+  display: flex;
 }
 
 mor-textinput {
@@ -10051,11 +10088,21 @@ mor-texteditor .toolbar {
 mor-texteditor .quill {
   width: 100%;
 }
+mor-texteditor .ql-editor {
+  overflow: visible;
+}
+mor-texteditor .ql-editor img {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
 mor-texteditor .ql-toolbar {
   border-radius: 3px 3px 0 0;
 }
 mor-texteditor .ql-container {
   border-radius: 0 0 3px 3px;
+  height: 100%;
+  overflow-y: auto;
 }
 mor-texteditor .ql-formats > button {
   outline: none;
@@ -10085,6 +10132,12 @@ mor-texteditor .ql-snow .ql-tooltip a.ql-remove::before {
 mor-texteditor.st-disabled .ql-container,
 mor-texteditor.st-readonly .ql-container {
   background: #EFEFEF;
+}
+.mo-texteditor-dialog header .mo-icon {
+  color: #8E9CAF;
+}
+.mo-texteditor-dialog header .mo-icon:hover {
+  color: #7C8BA0;
 }
 
 @keyframes switchOpen {
@@ -12635,6 +12688,7 @@ mor-slider .selected-line {
   height: 8px;
   position: absolute;
   left: 0;
+  top: 0;
   background: #F86F88;
   border-radius: 10em;
   pointer-events: none;

@@ -3,10 +3,22 @@
 mor-link{
     display: inline-block;
     position: relative;
-    line-height: 1.4em;
     height: 1.4em;
 
-    &.margin{
+    > a{
+        display: inline-block;
+        line-height: 1.4em;
+        height: 1.4em;
+        color: inherit;
+        text-decoration: none;
+
+        &:hover{
+            text-decoration: none;
+            cursor: pointer;
+        }
+    }
+
+    &.margin > a{
         padding: 0 0.6em;
     }
 
@@ -23,7 +35,8 @@ mor-link{
             opacity: 0;
         }
 
-        &:hover{
+        > a,
+        > a:hover{
             cursor: default;
         }
     }

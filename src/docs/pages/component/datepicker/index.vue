@@ -390,6 +390,24 @@
     </div>
     :::
 
+    `done-hidden`和`quick-pick`一起使用：
+
+    :::democode/html
+    <div style="width:300px;">
+        <ui-datepicker
+            form-name="日期"
+            done-hidden
+            :quick-pick="[
+                '今天',
+                '昨天',
+                '1 周前',
+                '1 月前',
+                '1 年前'
+            ]"
+        ></ui-datepicker>
+    </div>
+    :::
+
     [[[方法]]]
 
     :::preset/html
