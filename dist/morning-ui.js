@@ -25082,7 +25082,7 @@ exports.default = {
 
             return _dateFns.endOfYear.apply(this, arg);
         },
-        _pickDate: function _pickDate(date) {
+        _quickPickDate: function _quickPickDate(date) {
 
             if (date instanceof Date && !this.conf.isRange) {
 
@@ -25113,6 +25113,13 @@ exports.default = {
 
                     _$timepicker2._set((0, _dateFns.format)(date[1], _$timepicker2.conf.format));
                 }
+            }
+
+            if (this.conf.doneHidden) {
+
+                var input0 = this.$refs['ui-datepicker-input-0-' + this.uiid];
+
+                input0._blur();
             }
         },
         getDate: function getDate() {
@@ -28143,6 +28150,16 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var _extend = __webpack_require__(3);
 
@@ -28290,37 +28307,14 @@ exports.default = {
 
             return false;
         },
-        matchList: function matchList() {
-
-            var matchList = [];
-
-            if (this.data.recomputeMatchList) {
-
-                this.data.recomputeMatchList--;
-            }
-
-            for (var index in this.data.itemValueList) {
-
-                var item = this.data.itemValueList[index];
-
-                item._index = index;
-
-                if (!item._nomatch) {
-
-                    matchList.push(item);
-                }
-            }
-
-            return matchList;
-        },
         showItemList: function showItemList() {
 
             if (this.conf.canSearch) {
 
-                return this.matchList.slice(0, this.conf.maxShow);
+                return this.data.matchList.slice(0, this.conf.maxShow);
             }
 
-            return this.data.itemValueList;
+            return Object.keys(this.data.itemValMap || []);
         }
     },
     data: function data() {
@@ -28337,9 +28331,13 @@ exports.default = {
                 multiinputLastValue: [],
                 selectInput: false,
                 dontSetSearchMultiinput: false,
-                itemValueList: [],
+                itemValMap: [],
+                itemNameMap: [],
+                itemTipMap: [],
+                itemSelectedMap: [],
+                itemNomathMap: [],
                 lastItemHeight: 0,
-                tips: [],
+                // tips : [],
                 $listWrap: null,
                 $list: null,
                 $emitTarget: null,
@@ -28348,7 +28346,9 @@ exports.default = {
                 highPerfMode: false,
                 noMatch: false,
                 multiinputNameValMap: {},
-                recomputeMatchList: 0
+                itemValMapInit: false,
+                matchList: [],
+                selectedAll: false
             },
             listStyle: {}
         };
@@ -28364,13 +28364,13 @@ exports.default = {
             value = this._customFilter(value);
 
             // filter not exist value.
-            if (!this.conf.dynamicList) {
+            if (!this.conf.dynamicList && this.data.itemValMapInit) {
 
                 for (var index in value) {
 
                     var val = value[index];
 
-                    if ((0, _lodash2.default)(this.data.itemValueList, 'val').indexOf(String(val)) === -1) {
+                    if (this.data.itemValMap.indexOf(val) === -1) {
 
                         value.splice(index, 1);
                     }
@@ -28417,6 +28417,7 @@ exports.default = {
             var searchTextinput = void 0;
             var searchMultiinput = void 0;
             var multiNames = [];
+            var valMapVals = Object.values(this.data.itemValMap);
 
             if (this.conf.canSearch && !this.conf.multiSelect) {
 
@@ -28445,17 +28446,17 @@ exports.default = {
                     var val = _step.value;
 
 
-                    for (var key in this.data.itemValueList) {
+                    for (var index in valMapVals) {
 
-                        if (this.data.itemValueList[key].val === val) {
+                        if (valMapVals[index] === val) {
 
                             if (this.conf.multiSelect) {
 
-                                multiNames.push(this.data.itemValueList[key].name);
-                                this.data.multiinputNameValMap[this.data.itemValueList[key].name] = this.data.itemValueList[key].val;
+                                multiNames.push(this.data.itemNameMap[index]);
+                                this.data.multiinputNameValMap[this.data.itemNameMap[index]] = valMapVals[index];
                             } else {
 
-                                this.data.selectedContent = this.data.itemValueList[key].name;
+                                this.data.selectedContent = this.data.itemNameMap[index];
                             }
                         }
                     }
@@ -28521,20 +28522,37 @@ exports.default = {
 
             this._refreshShowItems();
         },
+        _refreshMatchList: function _refreshMatchList() {
+
+            var matchList = [];
+            var valMapValues = Object.values(this.data.itemValMap);
+
+            for (var index in valMapValues) {
+
+                if (!this.data.itemNomathMap[index]) {
+
+                    matchList.push(index);
+                }
+            }
+
+            this.data.matchList = matchList;
+        },
         _updateItemValueList: function _updateItemValueList() {
 
             var useHighPrefModeMinItems = 200;
 
+            var confList = this.conf.list;
+            var valMapVals = this.data.itemValMap;
             var list = [];
 
-            if (this.conf.list instanceof Array) {
+            if (confList instanceof Array) {
                 var _iteratorNormalCompletion2 = true;
                 var _didIteratorError2 = false;
                 var _iteratorError2 = undefined;
 
                 try {
 
-                    for (var _iterator2 = this.conf.list[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                    for (var _iterator2 = confList[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
                         var item = _step2.value;
 
 
@@ -28558,14 +28576,14 @@ exports.default = {
                         }
                     }
                 }
-            } else if (_typeof(this.conf.list) === 'object') {
+            } else if ((typeof confList === 'undefined' ? 'undefined' : _typeof(confList)) === 'object') {
                 var _iteratorNormalCompletion3 = true;
                 var _didIteratorError3 = false;
                 var _iteratorError3 = undefined;
 
                 try {
 
-                    for (var _iterator3 = Object.keys(this.conf.list)[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                    for (var _iterator3 = Object.keys(confList)[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
                         var key = _step3.value;
 
 
@@ -28573,13 +28591,13 @@ exports.default = {
                             val: key
                         };
 
-                        if (typeof this.conf.list[key] === 'string') {
+                        if (typeof confList[key] === 'string') {
 
-                            _item.name = this.conf.list[key];
-                        } else if (_typeof(this.conf.list[key]) === 'object') {
+                            _item.name = confList[key];
+                        } else if (_typeof(confList[key]) === 'object') {
 
-                            _item.name = this.conf.list[key].name;
-                            _item.tip = this.conf.list[key].tip;
+                            _item.name = confList[key].name;
+                            _item.tip = confList[key].tip;
                         }
 
                         list.push(_item);
@@ -28600,52 +28618,36 @@ exports.default = {
                 }
             }
 
-            var _iteratorNormalCompletion4 = true;
-            var _didIteratorError4 = false;
-            var _iteratorError4 = undefined;
+            for (var index in valMapVals) {
 
-            try {
-                for (var _iterator4 = this.data.itemValueList[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-                    var _item2 = _step4.value;
+                for (var _key in list) {
 
+                    if (list[_key].val === valMapVals[index]) {
 
-                    for (var _key2 in list) {
-
-                        if (list[_key2].val === _item2.val) {
-
-                            // extend old status
-                            list[_key2] = (0, _extend2.default)(_item2, list[_key2]);
-                        }
-                    }
-                }
-
-                // uniq same val
-            } catch (err) {
-                _didIteratorError4 = true;
-                _iteratorError4 = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion4 && _iterator4.return) {
-                        _iterator4.return();
-                    }
-                } finally {
-                    if (_didIteratorError4) {
-                        throw _iteratorError4;
+                        // extend old status
+                        list[_key] = {
+                            val: list[_key].val || valMapVals[index],
+                            name: list[_key].name || this.data.itemNameMap[index],
+                            tip: list[_key].tip || this.data.itemTipMap[index],
+                            _selected: list[_key]._selected || this.data.itemSelectedMap[index] || 0,
+                            _nomatch: list[_key]._nomatch || this.data.itemNomathMap[index] || 0
+                        };
                     }
                 }
             }
 
-            var valList = [];
+            // uniq same val
+            var keyList = {};
             var uniqList = [];
 
-            for (var _key in list) {
+            for (var _key2 in list) {
 
-                if (valList.indexOf(list[_key].val) === -1) {
+                if (!keyList[_key2]) {
 
-                    uniqList.push(list[_key]);
+                    uniqList.push(list[_key2]);
                 }
 
-                valList.push(list[_key].val);
+                keyList[_key2] = 1;
             }
 
             // 高性能模式，当列表项目大于200后开启
@@ -28658,7 +28660,17 @@ exports.default = {
                 this.data.highPerfMode = false;
             }
 
-            this.data.itemValueList = uniqList;
+            this.data.itemValMap = (0, _lodash2.default)(uniqList, 'val');
+            this.data.itemNameMap = (0, _lodash2.default)(uniqList, 'name');
+            this.data.itemTipMap = (0, _lodash2.default)(uniqList, 'tip');
+            this.data.itemSelectedMap = (0, _lodash2.default)(uniqList, '_selected');
+            this.data.itemNomathMap = (0, _lodash2.default)(uniqList, '_nomatch');
+
+            if (!this.data.itemValMapInit) {
+
+                this.data.itemValMapInit = true;
+                this._set(this._valueFilter(this.get()), true);
+            }
         },
         _emitClick: function _emitClick() {
 
@@ -28712,13 +28724,13 @@ exports.default = {
             var $items = this.data.$list.querySelectorAll('li:not(.infoitem)');
             var $clickItem = false;
 
-            var _iteratorNormalCompletion5 = true;
-            var _didIteratorError5 = false;
-            var _iteratorError5 = undefined;
+            var _iteratorNormalCompletion4 = true;
+            var _didIteratorError4 = false;
+            var _iteratorError4 = undefined;
 
             try {
-                for (var _iterator5 = $items.values()[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
-                    var $item = _step5.value;
+                for (var _iterator4 = $items.values()[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+                    var $item = _step4.value;
 
 
                     if (evt.path.indexOf($item) !== -1) {
@@ -28728,16 +28740,16 @@ exports.default = {
                     }
                 }
             } catch (err) {
-                _didIteratorError5 = true;
-                _iteratorError5 = err;
+                _didIteratorError4 = true;
+                _iteratorError4 = err;
             } finally {
                 try {
-                    if (!_iteratorNormalCompletion5 && _iterator5.return) {
-                        _iterator5.return();
+                    if (!_iteratorNormalCompletion4 && _iterator4.return) {
+                        _iterator4.return();
                     }
                 } finally {
-                    if (_didIteratorError5) {
-                        throw _iteratorError5;
+                    if (_didIteratorError4) {
+                        throw _iteratorError4;
                     }
                 }
             }
@@ -28745,13 +28757,13 @@ exports.default = {
             if ($clickItem) {
 
                 var index = $clickItem.getAttribute('index');
-                var value = [this.data.itemValueList[index].val];
+                var value = [this.data.itemValMap[index]];
 
                 if (this.conf.multiSelect && this.data.value !== undefined) {
 
                     value = this.get();
 
-                    var clickValue = this.data.itemValueList[index].val;
+                    var clickValue = this.data.itemValMap[index];
                     var valIndex = value.indexOf(clickValue);
 
                     if (valIndex !== -1) {
@@ -28801,31 +28813,35 @@ exports.default = {
                 this.data.searchKey = null;
                 this.data.noMatch = false;
 
-                var _iteratorNormalCompletion6 = true;
-                var _didIteratorError6 = false;
-                var _iteratorError6 = undefined;
+                var itemNomathMap = [];
+
+                var _iteratorNormalCompletion5 = true;
+                var _didIteratorError5 = false;
+                var _iteratorError5 = undefined;
 
                 try {
-                    for (var _iterator6 = this.data.itemValueList[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
-                        var item = _step6.value;
+                    for (var _iterator5 = Object.keys(this.data.itemNomathMap)[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+                        var index = _step5.value;
 
 
-                        delete item._nomatch;
+                        itemNomathMap[index] = 0;
                     }
                 } catch (err) {
-                    _didIteratorError6 = true;
-                    _iteratorError6 = err;
+                    _didIteratorError5 = true;
+                    _iteratorError5 = err;
                 } finally {
                     try {
-                        if (!_iteratorNormalCompletion6 && _iterator6.return) {
-                            _iterator6.return();
+                        if (!_iteratorNormalCompletion5 && _iterator5.return) {
+                            _iterator5.return();
                         }
                     } finally {
-                        if (_didIteratorError6) {
-                            throw _iteratorError6;
+                        if (_didIteratorError5) {
+                            throw _iteratorError5;
                         }
                     }
                 }
+
+                this.data.itemNomathMap = itemNomathMap;
 
                 return;
             }
@@ -28857,7 +28873,6 @@ exports.default = {
             }
 
             this._refreshShowItemsWithSearch();
-            this.data.recomputeMatchList++;
             this.Vue.nextTick(function () {
 
                 _this._tipUpdate();
@@ -28888,13 +28903,13 @@ exports.default = {
             var names = searchMultiinput.get();
             var values = [];
 
-            var _iteratorNormalCompletion7 = true;
-            var _didIteratorError7 = false;
-            var _iteratorError7 = undefined;
+            var _iteratorNormalCompletion6 = true;
+            var _didIteratorError6 = false;
+            var _iteratorError6 = undefined;
 
             try {
-                for (var _iterator7 = names[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
-                    var name = _step7.value;
+                for (var _iterator6 = names[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
+                    var name = _step6.value;
 
 
                     if (this.data.multiinputNameValMap) {
@@ -28903,16 +28918,16 @@ exports.default = {
                     }
                 }
             } catch (err) {
-                _didIteratorError7 = true;
-                _iteratorError7 = err;
+                _didIteratorError6 = true;
+                _iteratorError6 = err;
             } finally {
                 try {
-                    if (!_iteratorNormalCompletion7 && _iterator7.return) {
-                        _iterator7.return();
+                    if (!_iteratorNormalCompletion6 && _iterator6.return) {
+                        _iterator6.return();
                     }
                 } finally {
-                    if (_didIteratorError7) {
-                        throw _iteratorError7;
+                    if (_didIteratorError6) {
+                        throw _iteratorError6;
                     }
                 }
             }
@@ -28943,46 +28958,29 @@ exports.default = {
         _refreshShowItemsWithSearch: function _refreshShowItemsWithSearch() {
 
             var foundNum = 0;
+            var itemNomathMap = [];
+            var valMapVals = Object.values(this.data.itemValMap);
 
-            var _iteratorNormalCompletion8 = true;
-            var _didIteratorError8 = false;
-            var _iteratorError8 = undefined;
+            for (var index in valMapVals) {
 
-            try {
-                for (var _iterator8 = this.data.itemValueList[Symbol.iterator](), _step8; !(_iteratorNormalCompletion8 = (_step8 = _iterator8.next()).done); _iteratorNormalCompletion8 = true) {
-                    var item = _step8.value;
+                if (!this.data.searching) {
 
+                    itemNomathMap[index] = 0;
+                } else if (this.data.itemNameMap[index].search(this.data.searchKey) !== -1) {
 
-                    if (!this.data.searching) {
+                    if (!this.data.itemSelectedMap[index]) {
 
-                        delete item._nomatch;
-                    } else if (item.name.search(this.data.searchKey) !== -1) {
-
-                        if (!item._selected) {
-
-                            foundNum++;
-                        }
-
-                        delete item._nomatch;
-                    } else {
-
-                        item._nomatch = true;
+                        foundNum++;
                     }
-                }
-            } catch (err) {
-                _didIteratorError8 = true;
-                _iteratorError8 = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion8 && _iterator8.return) {
-                        _iterator8.return();
-                    }
-                } finally {
-                    if (_didIteratorError8) {
-                        throw _iteratorError8;
-                    }
+
+                    itemNomathMap[index] = 0;
+                } else {
+
+                    itemNomathMap[index] = 1;
                 }
             }
+
+            this.data.itemNomathMap = itemNomathMap;
 
             if (this.data.searching && this.conf.hideSelected && foundNum === 0) {
 
@@ -28999,44 +28997,54 @@ exports.default = {
                 return;
             }
 
+            var st = Date.now();
             var values = this.get();
+            var itemSelectedMap = [];
+            var valMapVals = Object.values(this.data.itemValMap);
 
-            for (var key in this.data.itemValueList) {
+            for (var index in valMapVals) {
 
-                var selected = false;
+                if (values.indexOf(valMapVals[index]) !== -1) {
 
-                var _iteratorNormalCompletion9 = true;
-                var _didIteratorError9 = false;
-                var _iteratorError9 = undefined;
+                    itemSelectedMap[index] = 1;
+                } else {
 
-                try {
-                    for (var _iterator9 = values[Symbol.iterator](), _step9; !(_iteratorNormalCompletion9 = (_step9 = _iterator9.next()).done); _iteratorNormalCompletion9 = true) {
-                        var value = _step9.value;
+                    itemSelectedMap[index] = 0;
+                }
+            }
+
+            this.data.itemSelectedMap = itemSelectedMap;
+            this.data.selectedAll = true;
+
+            var _iteratorNormalCompletion7 = true;
+            var _didIteratorError7 = false;
+            var _iteratorError7 = undefined;
+
+            try {
+                for (var _iterator7 = itemSelectedMap[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
+                    var selected = _step7.value;
 
 
-                        if (value === this.data.itemValueList[key].val) {
+                    if (!selected) {
 
-                            selected = true;
+                        this.data.selectedAll = false;
 
-                            break;
-                        }
-                    }
-                } catch (err) {
-                    _didIteratorError9 = true;
-                    _iteratorError9 = err;
-                } finally {
-                    try {
-                        if (!_iteratorNormalCompletion9 && _iterator9.return) {
-                            _iterator9.return();
-                        }
-                    } finally {
-                        if (_didIteratorError9) {
-                            throw _iteratorError9;
-                        }
+                        break;
                     }
                 }
-
-                this.data.itemValueList[key]._selected = selected;
+            } catch (err) {
+                _didIteratorError7 = true;
+                _iteratorError7 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion7 && _iterator7.return) {
+                        _iterator7.return();
+                    }
+                } finally {
+                    if (_didIteratorError7) {
+                        throw _iteratorError7;
+                    }
+                }
             }
 
             this._refreshShowItemsWithSearch();
@@ -29059,117 +29067,29 @@ exports.default = {
 
             var $inlineImgs = this.data.$list.querySelectorAll('li mor-img,li img');
 
-            var _iteratorNormalCompletion10 = true;
-            var _didIteratorError10 = false;
-            var _iteratorError10 = undefined;
+            var _iteratorNormalCompletion8 = true;
+            var _didIteratorError8 = false;
+            var _iteratorError8 = undefined;
 
             try {
-                for (var _iterator10 = $inlineImgs.values()[Symbol.iterator](), _step10; !(_iteratorNormalCompletion10 = (_step10 = _iterator10.next()).done); _iteratorNormalCompletion10 = true) {
-                    var $img = _step10.value;
+                for (var _iterator8 = $inlineImgs.values()[Symbol.iterator](), _step8; !(_iteratorNormalCompletion8 = (_step8 = _iterator8.next()).done); _iteratorNormalCompletion8 = true) {
+                    var $img = _step8.value;
 
 
                     $img.style.width = this.conf.inlineImgSize;
                     $img.style.height = this.conf.inlineImgSize;
                 }
             } catch (err) {
-                _didIteratorError10 = true;
-                _iteratorError10 = err;
+                _didIteratorError8 = true;
+                _iteratorError8 = err;
             } finally {
                 try {
-                    if (!_iteratorNormalCompletion10 && _iterator10.return) {
-                        _iterator10.return();
+                    if (!_iteratorNormalCompletion8 && _iterator8.return) {
+                        _iterator8.return();
                     }
                 } finally {
-                    if (_didIteratorError10) {
-                        throw _iteratorError10;
-                    }
-                }
-            }
-        },
-        _refreshTips: function _refreshTips() {
-            var _iteratorNormalCompletion11 = true;
-            var _didIteratorError11 = false;
-            var _iteratorError11 = undefined;
-
-            try {
-
-                for (var _iterator11 = this.data.tips[Symbol.iterator](), _step11; !(_iteratorNormalCompletion11 = (_step11 = _iterator11.next()).done); _iteratorNormalCompletion11 = true) {
-                    var tipVm = _step11.value;
-
-
-                    tipVm.$destroy();
-                }
-            } catch (err) {
-                _didIteratorError11 = true;
-                _iteratorError11 = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion11 && _iterator11.return) {
-                        _iterator11.return();
-                    }
-                } finally {
-                    if (_didIteratorError11) {
-                        throw _iteratorError11;
-                    }
-                }
-            }
-
-            this.data.tips = [];
-
-            if (!this.conf.itemTip) {
-
-                return;
-            }
-
-            var $items = this.data.$list.querySelectorAll('li:not(.infoitem)');
-
-            var _iteratorNormalCompletion12 = true;
-            var _didIteratorError12 = false;
-            var _iteratorError12 = undefined;
-
-            try {
-                for (var _iterator12 = $items.keys()[Symbol.iterator](), _step12; !(_iteratorNormalCompletion12 = (_step12 = _iterator12.next()).done); _iteratorNormalCompletion12 = true) {
-                    var index = _step12.value;
-
-
-                    var $item = $items[index];
-                    var tip = this.data.itemValueList[$item.getAttribute('index')].tip;
-
-                    if (!tip) {
-
-                        return;
-                    }
-
-                    var random = 1e8;
-
-                    var tipId = 'select-tip-' + Math.floor(Math.random() * random);
-                    var $newTip = document.createElement('morning-tip');
-
-                    $newTip.setAttribute(':minor', true);
-                    $newTip.setAttribute('target', '#' + tipId);
-                    $newTip.setAttribute('placement', this.conf.itemTipDirect);
-                    $newTip.innerHTML = tip;
-
-                    var _tipVm = new this.Vue({
-                        el: $newTip
-                    });
-
-                    $item.setAttribute('id', tipId);
-                    _tipVm.$mount();
-                    this.data.$list.append(_tipVm.$el);
-                    this.data.tips.push(_tipVm);
-                }
-            } catch (err) {
-                _didIteratorError12 = true;
-                _iteratorError12 = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion12 && _iterator12.return) {
-                        _iterator12.return();
-                    }
-                } finally {
-                    if (_didIteratorError12) {
-                        throw _iteratorError12;
+                    if (_didIteratorError8) {
+                        throw _iteratorError8;
                     }
                 }
             }
@@ -29269,14 +29189,14 @@ exports.default = {
 
                     this._refreshShowItems();
                 } else if ($selectedItem) {
-                    var _iteratorNormalCompletion13 = true;
-                    var _didIteratorError13 = false;
-                    var _iteratorError13 = undefined;
+                    var _iteratorNormalCompletion9 = true;
+                    var _didIteratorError9 = false;
+                    var _iteratorError9 = undefined;
 
                     try {
 
-                        for (var _iterator13 = $items.keys()[Symbol.iterator](), _step13; !(_iteratorNormalCompletion13 = (_step13 = _iterator13.next()).done); _iteratorNormalCompletion13 = true) {
-                            var index = _step13.value;
+                        for (var _iterator9 = $items.keys()[Symbol.iterator](), _step9; !(_iteratorNormalCompletion9 = (_step9 = _iterator9.next()).done); _iteratorNormalCompletion9 = true) {
+                            var index = _step9.value;
 
 
                             if ($items[index] === $selectedItem) {
@@ -29287,16 +29207,16 @@ exports.default = {
                             }
                         }
                     } catch (err) {
-                        _didIteratorError13 = true;
-                        _iteratorError13 = err;
+                        _didIteratorError9 = true;
+                        _iteratorError9 = err;
                     } finally {
                         try {
-                            if (!_iteratorNormalCompletion13 && _iterator13.return) {
-                                _iterator13.return();
+                            if (!_iteratorNormalCompletion9 && _iterator9.return) {
+                                _iterator9.return();
                             }
                         } finally {
-                            if (_didIteratorError13) {
-                                throw _iteratorError13;
+                            if (_didIteratorError9) {
+                                throw _iteratorError9;
                             }
                         }
                     }
@@ -29312,31 +29232,36 @@ exports.default = {
 
                 this.data.showlist = false;
 
-                var _iteratorNormalCompletion14 = true;
-                var _didIteratorError14 = false;
-                var _iteratorError14 = undefined;
+                var $tips = this.data.$list.querySelectorAll('.tips');
+
+                var _iteratorNormalCompletion10 = true;
+                var _didIteratorError10 = false;
+                var _iteratorError10 = undefined;
 
                 try {
-                    for (var _iterator14 = this.data.tips[Symbol.iterator](), _step14; !(_iteratorNormalCompletion14 = (_step14 = _iterator14.next()).done); _iteratorNormalCompletion14 = true) {
-                        var tipVm = _step14.value;
+                    for (var _iterator10 = $tips.values()[Symbol.iterator](), _step10; !(_iteratorNormalCompletion10 = (_step10 = _iterator10.next()).done); _iteratorNormalCompletion10 = true) {
+                        var $tip = _step10.value;
 
 
-                        if (tipVm.$el._vm.data.show) {
+                        if ($tip._vm) {
 
-                            tipVm.$el._vm.hide();
+                            if ($tip._vm.data.show) {
+
+                                $tip._vm.hide();
+                            }
                         }
                     }
                 } catch (err) {
-                    _didIteratorError14 = true;
-                    _iteratorError14 = err;
+                    _didIteratorError10 = true;
+                    _iteratorError10 = err;
                 } finally {
                     try {
-                        if (!_iteratorNormalCompletion14 && _iterator14.return) {
-                            _iterator14.return();
+                        if (!_iteratorNormalCompletion10 && _iterator10.return) {
+                            _iterator10.return();
                         }
                     } finally {
-                        if (_didIteratorError14) {
-                            throw _iteratorError14;
+                        if (_didIteratorError10) {
+                            throw _iteratorError10;
                         }
                     }
                 }
@@ -29357,20 +29282,26 @@ exports.default = {
         this.Tip.autoReverse = false;
         this.Tip.autoOffset = false;
 
-        this.$watch('conf.list', function (newVal, oldVal) {
+        this.$watch(function () {
+            return JSON.stringify(_this4.conf.list);
+        }, function () {
 
-            if (JSON.stringify(newVal) !== JSON.stringify(oldVal)) {
-
-                _this4._updateItemValueList();
-                _this4._refreshShowItems();
-            }
+            _this4._updateItemValueList();
         }, {
-            immediate: true,
-            deep: true
+            immediate: true
+        });
+
+        // this._refreshShowItems don't need immediate, cause _onValueChange() will exec it.
+        this.$watch(function () {
+            return JSON.stringify(_this4.conf.list);
+        }, function () {
+
+            _this4._refreshShowItems();
         });
 
         this._onValueChange();
         this._resizeSelectArea();
+        this._refreshMatchList();
 
         this.$on('value-change', this._onValueChange);
 
@@ -29434,55 +29365,26 @@ exports.default = {
             immediate: true
         });
 
-        this.$watch('conf.itemTip', function () {
+        // this.$watch('conf.itemTipDirect', () => {
 
-            _this4.Vue.nextTick(function () {
+        //     for (let tipVm of this.data.tips) {
 
-                _this4._refreshTips();
-            });
-        }, {
-            immediate: true
+        //         tipVm.$el._vm.conf.placement = this.conf.itemTipDirect;
+
+        //     }
+
+        // }, {
+        //     immediate : true
+        // });
+
+        this.$watch('data.itemValMap', function (newVal, oldVal) {
+
+            _this4._refreshMatchList();
         });
 
-        this.$watch('conf.itemTipDirect', function () {
-            var _iteratorNormalCompletion15 = true;
-            var _didIteratorError15 = false;
-            var _iteratorError15 = undefined;
+        this.$watch('data.itemNomathMap', function (newVal, oldVal) {
 
-            try {
-
-                for (var _iterator15 = _this4.data.tips[Symbol.iterator](), _step15; !(_iteratorNormalCompletion15 = (_step15 = _iterator15.next()).done); _iteratorNormalCompletion15 = true) {
-                    var tipVm = _step15.value;
-
-
-                    tipVm.$el._vm.conf.placement = _this4.conf.itemTipDirect;
-                }
-            } catch (err) {
-                _didIteratorError15 = true;
-                _iteratorError15 = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion15 && _iterator15.return) {
-                        _iterator15.return();
-                    }
-                } finally {
-                    if (_didIteratorError15) {
-                        throw _iteratorError15;
-                    }
-                }
-            }
-        }, {
-            immediate: true
-        });
-
-        this.$watch('data.itemValueList', function (newVal, oldVal) {
-
-            if (JSON.stringify(newVal) !== JSON.stringify(oldVal)) {
-
-                _this4._refreshTips();
-            }
-        }, {
-            deep: true
+            _this4._refreshMatchList();
         });
 
         this.$on('list-show', function () {
@@ -29499,8 +29401,6 @@ exports.default = {
         });
     },
     updated: function updated() {
-
-        // this._refreshShowItems();
 
         if (!this.data.highPerfMode) {
 
@@ -41852,7 +41752,7 @@ var render = function() {
                                           {
                                             on: {
                                               click: function($event) {
-                                                _vm._pickDate([
+                                                _vm._quickPickDate([
                                                   _vm._startOfWeek(new Date()),
                                                   _vm._endOfWeek(new Date())
                                                 ])
@@ -41869,7 +41769,7 @@ var render = function() {
                                           {
                                             on: {
                                               click: function($event) {
-                                                _vm._pickDate([
+                                                _vm._quickPickDate([
                                                   _vm._startOfMonth(new Date()),
                                                   _vm._endOfMonth(new Date())
                                                 ])
@@ -41886,7 +41786,7 @@ var render = function() {
                                           {
                                             on: {
                                               click: function($event) {
-                                                _vm._pickDate([
+                                                _vm._quickPickDate([
                                                   _vm._startOfYear(new Date()),
                                                   _vm._endOfYear(new Date())
                                                 ])
@@ -41903,7 +41803,7 @@ var render = function() {
                                           {
                                             on: {
                                               click: function($event) {
-                                                _vm._pickDate([
+                                                _vm._quickPickDate([
                                                   _vm._addSeconds(
                                                     new Date(),
                                                     -pick.replace(
@@ -41926,7 +41826,7 @@ var render = function() {
                                           {
                                             on: {
                                               click: function($event) {
-                                                _vm._pickDate([
+                                                _vm._quickPickDate([
                                                   _vm._addMinutes(
                                                     new Date(),
                                                     -pick.replace(
@@ -41949,7 +41849,7 @@ var render = function() {
                                           {
                                             on: {
                                               click: function($event) {
-                                                _vm._pickDate([
+                                                _vm._quickPickDate([
                                                   _vm._addHours(
                                                     new Date(),
                                                     -pick.replace(
@@ -41972,7 +41872,7 @@ var render = function() {
                                           {
                                             on: {
                                               click: function($event) {
-                                                _vm._pickDate([
+                                                _vm._quickPickDate([
                                                   _vm._addDays(
                                                     new Date(),
                                                     -pick.replace(
@@ -41995,7 +41895,7 @@ var render = function() {
                                           {
                                             on: {
                                               click: function($event) {
-                                                _vm._pickDate([
+                                                _vm._quickPickDate([
                                                   _vm._addWeeks(
                                                     new Date(),
                                                     -pick.replace(
@@ -42018,7 +41918,7 @@ var render = function() {
                                           {
                                             on: {
                                               click: function($event) {
-                                                _vm._pickDate([
+                                                _vm._quickPickDate([
                                                   _vm._addMonths(
                                                     new Date(),
                                                     -pick.replace(
@@ -42041,7 +41941,7 @@ var render = function() {
                                           {
                                             on: {
                                               click: function($event) {
-                                                _vm._pickDate([
+                                                _vm._quickPickDate([
                                                   _vm._addYears(
                                                     new Date(),
                                                     -pick.replace(
@@ -42064,7 +41964,7 @@ var render = function() {
                                           {
                                             on: {
                                               click: function($event) {
-                                                _vm._pickDate([
+                                                _vm._quickPickDate([
                                                   new Date(),
                                                   _vm._addSeconds(
                                                     new Date(),
@@ -42087,7 +41987,7 @@ var render = function() {
                                           {
                                             on: {
                                               click: function($event) {
-                                                _vm._pickDate([
+                                                _vm._quickPickDate([
                                                   new Date(),
                                                   _vm._addMinutes(
                                                     new Date(),
@@ -42110,7 +42010,7 @@ var render = function() {
                                           {
                                             on: {
                                               click: function($event) {
-                                                _vm._pickDate([
+                                                _vm._quickPickDate([
                                                   new Date(),
                                                   _vm._addHours(
                                                     new Date(),
@@ -42133,7 +42033,7 @@ var render = function() {
                                           {
                                             on: {
                                               click: function($event) {
-                                                _vm._pickDate([
+                                                _vm._quickPickDate([
                                                   new Date(),
                                                   _vm._addDays(
                                                     new Date(),
@@ -42156,7 +42056,7 @@ var render = function() {
                                           {
                                             on: {
                                               click: function($event) {
-                                                _vm._pickDate([
+                                                _vm._quickPickDate([
                                                   new Date(),
                                                   _vm._addWeeks(
                                                     new Date(),
@@ -42179,7 +42079,7 @@ var render = function() {
                                           {
                                             on: {
                                               click: function($event) {
-                                                _vm._pickDate([
+                                                _vm._quickPickDate([
                                                   new Date(),
                                                   _vm._addMonths(
                                                     new Date(),
@@ -42202,7 +42102,7 @@ var render = function() {
                                           {
                                             on: {
                                               click: function($event) {
-                                                _vm._pickDate([
+                                                _vm._quickPickDate([
                                                   new Date(),
                                                   _vm._addYears(
                                                     new Date(),
@@ -42227,7 +42127,7 @@ var render = function() {
                                           {
                                             on: {
                                               click: function($event) {
-                                                _vm._pickDate([
+                                                _vm._quickPickDate([
                                                   pick.start,
                                                   pick.end
                                                 ])
@@ -42345,7 +42245,7 @@ var render = function() {
                                           {
                                             on: {
                                               click: function($event) {
-                                                _vm._pickDate(new Date())
+                                                _vm._quickPickDate(new Date())
                                               }
                                             }
                                           },
@@ -42359,7 +42259,7 @@ var render = function() {
                                           {
                                             on: {
                                               click: function($event) {
-                                                _vm._pickDate(
+                                                _vm._quickPickDate(
                                                   _vm._addDays(new Date(), -1)
                                                 )
                                               }
@@ -42375,7 +42275,7 @@ var render = function() {
                                           {
                                             on: {
                                               click: function($event) {
-                                                _vm._pickDate(
+                                                _vm._quickPickDate(
                                                   _vm._addDays(new Date(), 1)
                                                 )
                                               }
@@ -42391,7 +42291,7 @@ var render = function() {
                                           {
                                             on: {
                                               click: function($event) {
-                                                _vm._pickDate(
+                                                _vm._quickPickDate(
                                                   _vm._addSeconds(
                                                     new Date(),
                                                     -pick.replace(" 秒前", "")
@@ -42410,7 +42310,7 @@ var render = function() {
                                           {
                                             on: {
                                               click: function($event) {
-                                                _vm._pickDate(
+                                                _vm._quickPickDate(
                                                   _vm._addMinutes(
                                                     new Date(),
                                                     -pick.replace(" 分钟前", "")
@@ -42429,7 +42329,7 @@ var render = function() {
                                           {
                                             on: {
                                               click: function($event) {
-                                                _vm._pickDate(
+                                                _vm._quickPickDate(
                                                   _vm._addHours(
                                                     new Date(),
                                                     -pick.replace(" 小时前", "")
@@ -42448,7 +42348,7 @@ var render = function() {
                                           {
                                             on: {
                                               click: function($event) {
-                                                _vm._pickDate(
+                                                _vm._quickPickDate(
                                                   _vm._addDays(
                                                     new Date(),
                                                     -pick.replace(" 天前", "")
@@ -42467,7 +42367,7 @@ var render = function() {
                                           {
                                             on: {
                                               click: function($event) {
-                                                _vm._pickDate(
+                                                _vm._quickPickDate(
                                                   _vm._addWeeks(
                                                     new Date(),
                                                     -pick.replace(" 周前", "")
@@ -42486,7 +42386,7 @@ var render = function() {
                                           {
                                             on: {
                                               click: function($event) {
-                                                _vm._pickDate(
+                                                _vm._quickPickDate(
                                                   _vm._addMonths(
                                                     new Date(),
                                                     -pick.replace(" 月前", "")
@@ -42505,7 +42405,7 @@ var render = function() {
                                           {
                                             on: {
                                               click: function($event) {
-                                                _vm._pickDate(
+                                                _vm._quickPickDate(
                                                   _vm._addYears(
                                                     new Date(),
                                                     -pick.replace(" 年前", "")
@@ -42524,7 +42424,7 @@ var render = function() {
                                           {
                                             on: {
                                               click: function($event) {
-                                                _vm._pickDate(
+                                                _vm._quickPickDate(
                                                   _vm._addSeconds(
                                                     new Date(),
                                                     pick.replace(" 秒后", "")
@@ -42543,7 +42443,7 @@ var render = function() {
                                           {
                                             on: {
                                               click: function($event) {
-                                                _vm._pickDate(
+                                                _vm._quickPickDate(
                                                   _vm._addMinutes(
                                                     new Date(),
                                                     pick.replace(" 分钟后", "")
@@ -42562,7 +42462,7 @@ var render = function() {
                                           {
                                             on: {
                                               click: function($event) {
-                                                _vm._pickDate(
+                                                _vm._quickPickDate(
                                                   _vm._addHours(
                                                     new Date(),
                                                     pick.replace(" 小时后", "")
@@ -42581,7 +42481,7 @@ var render = function() {
                                           {
                                             on: {
                                               click: function($event) {
-                                                _vm._pickDate(
+                                                _vm._quickPickDate(
                                                   _vm._addDays(
                                                     new Date(),
                                                     pick.replace(" 天后", "")
@@ -42600,7 +42500,7 @@ var render = function() {
                                           {
                                             on: {
                                               click: function($event) {
-                                                _vm._pickDate(
+                                                _vm._quickPickDate(
                                                   _vm._addWeeks(
                                                     new Date(),
                                                     pick.replace(" 周后", "")
@@ -42619,7 +42519,7 @@ var render = function() {
                                           {
                                             on: {
                                               click: function($event) {
-                                                _vm._pickDate(
+                                                _vm._quickPickDate(
                                                   _vm._addMonths(
                                                     new Date(),
                                                     pick.replace(" 月后", "")
@@ -42638,7 +42538,7 @@ var render = function() {
                                           {
                                             on: {
                                               click: function($event) {
-                                                _vm._pickDate(
+                                                _vm._quickPickDate(
                                                   _vm._addYears(
                                                     new Date(),
                                                     pick.replace(" 年后", "")
@@ -42658,7 +42558,7 @@ var render = function() {
                                           {
                                             on: {
                                               click: function($event) {
-                                                _vm._pickDate(
+                                                _vm._quickPickDate(
                                                   _vm._addMilliseconds(
                                                     new Date(),
                                                     pick.pick *
@@ -42679,7 +42579,7 @@ var render = function() {
                                           {
                                             on: {
                                               click: function($event) {
-                                                _vm._pickDate(pick.pick)
+                                                _vm._quickPickDate(pick.pick)
                                               }
                                             }
                                           },
@@ -44077,9 +43977,9 @@ var render = function() {
                   on: { click: _vm._listClick }
                 },
                 [
-                  _vm._l(_vm.showItemList, function(item, index) {
+                  _vm._l(_vm.showItemList, function(index) {
                     return [
-                      item._selected
+                      _vm.data.itemSelectedMap[index]
                         ? _c("li", {
                             directives: [
                               {
@@ -44087,34 +43987,60 @@ var render = function() {
                                 rawName: "v-render",
                                 value: {
                                   template:
-                                    item.name +
+                                    _vm.data.itemNameMap[index] +
                                     "<i class='mo-select-selected-icon mo-icon mo-icon-check'></i>"
                                 },
                                 expression:
-                                  "{template : item.name+'<i class=\\'mo-select-selected-icon mo-icon mo-icon-check\\'></i>'}"
+                                  "{template : data.itemNameMap[index]+'<i class=\\'mo-select-selected-icon mo-icon mo-icon-check\\'></i>'}"
                               }
                             ],
+                            staticClass: "selected",
                             class: {
-                              hide: item._nomatch,
-                              selected: item._selected
+                              hide: _vm.data.itemNomathMap[index]
                             },
-                            attrs: { index: item._index || index }
+                            attrs: {
+                              index: index,
+                              id: "ui-select-tip-" + _vm.uiid + "-" + index
+                            }
                           })
                         : _c("li", {
                             directives: [
                               {
                                 name: "render",
                                 rawName: "v-render",
-                                value: { template: item.name },
-                                expression: "{template : item.name}"
+                                value: {
+                                  template: _vm.data.itemNameMap[index]
+                                },
+                                expression:
+                                  "{template : data.itemNameMap[index]}"
                               }
                             ],
                             class: {
-                              hide: item._nomatch,
-                              selected: item._selected
+                              hide: _vm.data.itemNomathMap[index]
                             },
-                            attrs: { index: item._index || index }
-                          })
+                            attrs: {
+                              index: index,
+                              id: "ui-select-tip-" + _vm.uiid + "-" + index
+                            }
+                          }),
+                      _vm._v(" "),
+                      _vm.conf.itemTip
+                        ? [
+                            _c(
+                              "morning-tip",
+                              {
+                                staticClass: "tips",
+                                attrs: {
+                                  target:
+                                    "#ui-select-tip-" + _vm.uiid + "-" + index,
+                                  placement: _vm.conf.itemTipDirect,
+                                  color: "blue"
+                                }
+                              },
+                              [_vm._v(_vm._s(_vm.data.itemTipMap[index]))]
+                            )
+                          ]
+                        : _vm._e()
                     ]
                   }),
                   _vm._v(" "),
@@ -44125,7 +44051,8 @@ var render = function() {
                       class: {
                         show:
                           _vm.data.noMatch ||
-                          Object.keys(_vm.showItemList || {}).length === 0
+                          _vm.showItemList.length === 0 ||
+                          _vm.data.selectedAll
                       }
                     },
                     [
@@ -44142,7 +44069,7 @@ var render = function() {
                       class: {
                         show:
                           _vm.conf.canSearch &&
-                          _vm.matchList.length > _vm.conf.maxShow
+                          _vm.data.matchList.length > _vm.conf.maxShow
                       }
                     },
                     [_c("span", [_vm._v("请搜索以显示更多")])]

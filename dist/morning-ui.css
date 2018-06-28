@@ -9839,6 +9839,7 @@ mor-video {
 mor-video > video {
   width: 100%;
   background: #000;
+  display: flex;
 }
 
 mor-textinput {
