@@ -28161,10 +28161,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 
-var _extend = __webpack_require__(3);
-
-var _extend2 = _interopRequireDefault(_extend);
-
 var _lodash = __webpack_require__(252);
 
 var _lodash2 = _interopRequireDefault(_lodash);
@@ -28337,7 +28333,6 @@ exports.default = {
                 itemSelectedMap: [],
                 itemNomathMap: [],
                 lastItemHeight: 0,
-                // tips : [],
                 $listWrap: null,
                 $list: null,
                 $emitTarget: null,
@@ -28997,7 +28992,6 @@ exports.default = {
                 return;
             }
 
-            var st = Date.now();
             var values = this.get();
             var itemSelectedMap = [];
             var valMapVals = Object.values(this.data.itemValMap);
@@ -29365,24 +29359,12 @@ exports.default = {
             immediate: true
         });
 
-        // this.$watch('conf.itemTipDirect', () => {
-
-        //     for (let tipVm of this.data.tips) {
-
-        //         tipVm.$el._vm.conf.placement = this.conf.itemTipDirect;
-
-        //     }
-
-        // }, {
-        //     immediate : true
-        // });
-
-        this.$watch('data.itemValMap', function (newVal, oldVal) {
+        this.$watch('data.itemValMap', function () {
 
             _this4._refreshMatchList();
         });
 
-        this.$watch('data.itemNomathMap', function (newVal, oldVal) {
+        this.$watch('data.itemNomathMap', function () {
 
             _this4._refreshMatchList();
         });
@@ -72267,7 +72249,7 @@ var morning = {
         white: 'wh'
     },
     isMorning: true,
-    version: '0.11.2',
+    version: '0.11.3',
     map: {}
 };
 

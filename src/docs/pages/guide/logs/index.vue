@@ -18,6 +18,34 @@
     
     ### 更新记录
 
+    ### 0.11.3 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2018年6月28日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.11.3" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.11.3/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.11.3/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 新特性
+
+    - `ui-texteditor`组件新增图片工具，同时支持图片定位及缩放
+
+    #### 改进
+
+    -  优化`ui-select`在处理大量可选项时的性能
+    - `ui-btn`和`ui-link`采用`<a>`标签实现，可支持浏览器中链接的功能
+
+    #### 修复
+
+    - 修复`ui-video`组件的一个样式问题
+    - 修复`ui-datepicker`和`ui-datetimepicker`的`done-hidden`配置在开启`quick-pick`时不生效的问题
+
+    ---
+
     ### 0.11.2 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="light-blue">

@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## 0.11.3
+
+`2018年6月28日`
+
+#### 新特性
+
+- `ui-texteditor`组件新增图片工具，同时支持图片定位及缩放
+
+#### 改进
+
+-  优化`ui-select`在处理大量可选项时的性能
+- `ui-btn`和`ui-link`采用`<a>`标签实现，可支持浏览器中链接的功能
+
+#### 修复
+
+- 修复`ui-video`组件的一个样式问题
+- 修复`ui-datepicker`和`ui-datetimepicker`的`done-hidden`配置在开启`quick-pick`时不生效的问题
+
 ## 0.11.2
 
 `2018年6月25日`
