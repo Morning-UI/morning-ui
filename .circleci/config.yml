@@ -32,6 +32,7 @@ jobs:
   build:
     docker:
       - image: circleci/node:8.7-browsers
+    parallelism: 4
     working_directory: ~/repo
     steps:
       - checkout
@@ -47,6 +48,7 @@ jobs:
   test-unit:
     docker:
       - image: circleci/node:8.7-browsers
+    parallelism: 4
     working_directory: ~/repo
     steps:
       - checkout
@@ -60,6 +62,7 @@ jobs:
   test-e2e:
     docker:
       - image: circleci/node:8.7-browsers
+    parallelism: 4
     working_directory: ~/repo
     steps:
       - checkout
@@ -73,6 +76,7 @@ jobs:
   coverage:
     docker:
       - image: circleci/node:8.7-browsers
+    parallelism: 4
     working_directory: ~/repo
     steps:
       - checkout
