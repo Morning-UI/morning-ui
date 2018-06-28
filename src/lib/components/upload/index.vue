@@ -551,13 +551,25 @@ export default {
             }
 
             let index = this.data.uploadQueue.shift(),
-                uploadObj = new this.Vue({
-                    data : {
-                        progress : 0,
-                        file : null,
-                        name : null
-                    }
-                });
+                uploadObj = {
+                    onUploadProgress : xhr => {
+
+                        if (xhr &&
+                            xhr.upload &&
+                            typeof xhr.upload.addEventListener === 'function') {
+
+                            xhr.upload.addEventListener('progress', evt => {
+
+                                this.data.files[index].progress = +(evt.loaded / evt.total) || 0;
+
+                            }, false);
+
+                        }
+
+                    },
+                    file : null,
+                    name : null
+                };
 
             Promise
                 .resolve()
@@ -619,12 +631,6 @@ export default {
 
                 })
                 .then(() => {
-
-                    uploadObj.$watch('progress', (newVal) => {
-
-                        this.data.files[index].progress = +newVal || 0;
-
-                    });
 
                     if (typeof this.conf.uploader === 'function') {
 
