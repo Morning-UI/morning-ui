@@ -49,7 +49,13 @@
                     :key="index"
                     :class="item.classList"
                 >
-                    <i class="progress"></i>
+                    <i
+                        class="progress"
+                        :class="item.classList"
+                        :style="{
+                            width : (item.classList.uploading) ? ((30 + (+item.progress) * 60) + '%') : 'auto'
+                        }"
+                    ></i>
                     <span>
                         {{item.name}}
                     </span>
@@ -414,6 +420,7 @@ export default {
                 size : 0,
                 data : undefined,
                 path : undefined,
+                progress : 0,
                 classList : {
                     fail : false,
                     uploading : false,
@@ -544,7 +551,13 @@ export default {
             }
 
             let index = this.data.uploadQueue.shift(),
-                uploadObj = {};
+                uploadObj = new this.Vue({
+                    data : {
+                        progress : 0,
+                        file : null,
+                        name : null
+                    }
+                });
 
             Promise
                 .resolve()
@@ -606,6 +619,12 @@ export default {
 
                 })
                 .then(() => {
+
+                    uploadObj.$watch('progress', (newVal) => {
+
+                        this.data.files[index].progress = +newVal || 0;
+
+                    });
 
                     if (typeof this.conf.uploader === 'function') {
 
