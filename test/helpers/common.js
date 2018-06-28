@@ -103,7 +103,11 @@ let e2eStatementFnString = `(ctx, type, attrs, basicDemoSelector) => {
 
             }
 
-            if (attr.child) {
+            if (attr.child && attr.self) {
+    
+                $el = $basicDemo.filter(attr.self).eq(0).find(attr.child);
+
+            }else if (attr.child) {
     
                 $el = $basicDemo.eq(0).find(attr.child);
 

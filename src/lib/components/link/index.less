@@ -9,8 +9,9 @@ mor-link{
         display: inline-block;
         line-height: 1.4em;
         height: 1.4em;
-        color: inherit;
         text-decoration: none;
+        width: 100%;
+        vertical-align: top;
 
         &:hover{
             text-decoration: none;
@@ -70,7 +71,9 @@ mor-link{
     }
 
     &.co-t{
-        color: @colorTheme;
+        > a{
+            color: @colorTheme;
+        }
 
         .mo-loader{
             .mo-loader-path{
@@ -78,23 +81,25 @@ mor-link{
             }
         }
 
-        &:not(.st-disabled):hover,
-        &.st-hover{
+        &:not(.st-disabled,.st-readonly):hover > a,
+        &.st-hover > a{
             color: darken(@colorTheme, 15%);
         }
 
-        &:not(.st-disabled):active,
-        &.st-active{
+        &:not(.st-disabled,.st-readonly):active > a,
+        &.st-active > a{
             color: darken(@colorTheme, 25%);
         }
 
-        &.st-disabled{
+        &.st-disabled > a{
             color: lighten(@colorTheme, 25%);
         }
     }
 
     &.co-lt{
-        color: @colorLightTheme;
+        > a{
+            color: @colorLightTheme;
+        }
 
         .mo-loader{
             .mo-loader-path{
@@ -102,23 +107,25 @@ mor-link{
             }
         }
 
-        &:not(.st-disabled):hover,
-        &.st-hover{
+        &:not(.st-disabled,.st-readonly):hover > a,
+        &.st-hover > a{
             color: darken(@colorLightTheme, 25%);
         }
 
-        &:not(.st-disabled):active,
-        &.st-active{
+        &:not(.st-disabled,.st-readonly):active > a,
+        &.st-active > a{
             color: darken(@colorLightTheme, 35%);
         }
 
-        &.st-disabled{
+        &.st-disabled > a{
             color: lighten(@colorLightTheme, 20%);
         }
     }
 
     &.co-dt{
-        color: @colorDarkTheme;
+        > a{
+            color: @colorDarkTheme;
+        }
 
         .mo-loader{
             .mo-loader-path{
@@ -126,23 +133,25 @@ mor-link{
             }
         }
 
-        &:not(.st-disabled):hover,
-        &.st-hover{
+        &:not(.st-disabled,.st-readonly):hover > a,
+        &.st-hover > a{
             color: darken(@colorDarkTheme, 10%);
         }
 
-        &:not(.st-disabled):active,
-        &.st-active{
+        &:not(.st-disabled,.st-readonly):active > a,
+        &.st-active > a{
             color: darken(@colorDarkTheme, 20%);
         }
 
-        &.st-disabled{
+        &.st-disabled > a{
             color: lighten(@colorDarkTheme, 25%);
         }
     }
 
     &.co-s{
-        color: @colorSuccess;
+        > a{
+            color: @colorSuccess;
+        }
 
         .mo-loader{
             .mo-loader-path{
@@ -150,23 +159,25 @@ mor-link{
             }
         }
 
-        &:not(.st-disabled):hover,
-        &.st-hover{
+        &:not(.st-disabled,.st-readonly):hover > a,
+        &.st-hover > a{
             color: darken(@colorSuccess, 10%);
         }
 
-        &:not(.st-disabled):active,
-        &.st-active{
+        &:not(.st-disabled,.st-readonly):active > a,
+        &.st-active > a{
             color: darken(@colorSuccess, 15%);
         }
 
-        &.st-disabled{
+        &.st-disabled > a{
             color: darken(@colorSuccess, 25%);
         }
     }
 
     &.co-w{
-        color: @colorWarning;
+        > a{
+            color: @colorWarning;
+        }
 
         .mo-loader{
             .mo-loader-path{
@@ -174,23 +185,25 @@ mor-link{
             }
         }
 
-        &:not(.st-disabled):hover,
-        &.st-hover{
+        &:not(.st-disabled,.st-readonly):hover > a,
+        &.st-hover > a{
             color: darken(@colorWarning, 10%);
         }
 
-        &:not(.st-disabled):active,
-        &.st-active{
+        &:not(.st-disabled,.st-readonly):active > a,
+        &.st-active > a{
             color: darken(@colorWarning, 15%);
         }
 
-        &.st-disabled{
+        &.st-disabled > a{
             color: lighten(@colorWarning, 15%);
         }
     }
 
     &.co-d{
-        color: @colorDanger;
+        > a{
+            color: @colorDanger;
+        }
 
         .mo-loader{
             .mo-loader-path{
@@ -198,23 +211,25 @@ mor-link{
             }
         }
 
-        &:not(.st-disabled):hover,
-        &.st-hover{
+        &:not(.st-disabled,.st-readonly):hover > a,
+        &.st-hover > a{
             color: darken(@colorDanger, 5%);
         }
 
-        &:not(.st-disabled):active,
-        &.st-active{
+        &:not(.st-disabled,.st-readonly):active > a,
+        &.st-active > a{
             color: darken(@colorDanger, 10%);
         }
 
-        &.st-disabled{
+        &.st-disabled > a{
             color: lighten(@colorDanger, 25%);
         }
     }
 
     &.co-p{
-        color: @colorPrimary;
+        > a{
+            color: @colorPrimary;
+        }
 
         .mo-loader{
             .mo-loader-path{
@@ -222,23 +237,25 @@ mor-link{
             }
         }
 
-        &:not(.st-disabled):hover,
-        &.st-hover{
+        &:not(.st-disabled,.st-readonly):hover > a,
+        &.st-hover > a{
             color: darken(@colorPrimary, 10%);
         }
 
-        &:not(.st-disabled):active,
-        &.st-active{
+        &:not(.st-disabled,.st-readonly):active > a,
+        &.st-active > a{
             color: darken(@colorPrimary, 15%);
         }
 
-        &.st-disabled{
+        &.st-disabled > a{
             color: lighten(@colorPrimary, 25%);
         }
     }
 
     &.co-m{
-        color: @colorMinor;
+        > a{
+            color: @colorMinor;
+        }
 
         .mo-loader{
             .mo-loader-path{
@@ -246,23 +263,25 @@ mor-link{
             }
         }
 
-        &:not(.st-disabled):hover,
-        &.st-hover{
+        &:not(.st-disabled,.st-readonly):hover > a,
+        &.st-hover > a{
             color: darken(@colorMinor, 10%);
         }
 
-        &:not(.st-disabled):active,
-        &.st-active{
+        &:not(.st-disabled,.st-readonly):active > a,
+        &.st-active > a{
             color: darken(@colorMinor, 15%);
         }
 
-        &.st-disabled{
+        &.st-disabled > a{
             color: lighten(@colorMinor, 15%);
         }
     }
 
     &.co-i{
-        color: @colorInfo;
+        > a{
+            color: @colorInfo;
+        }
 
         .mo-loader{
             .mo-loader-path{
@@ -270,23 +289,25 @@ mor-link{
             }
         }
 
-        &:not(.st-disabled):hover,
-        &.st-hover{
+        &:not(.st-disabled,.st-readonly):hover > a,
+        &.st-hover > a{
             color: darken(@colorInfo, 10%);
         }
 
-        &:not(.st-disabled):active,
-        &.st-active{
+        &:not(.st-disabled,.st-readonly):active > a,
+        &.st-active > a{
             color: darken(@colorInfo, 15%);
         }
 
-        &.st-disabled{
+        &.st-disabled > a{
             color: darken(@colorInfo, 25%);
         }
     }
 
     &.co-bk{
-        color: @colorBlack;
+        > a{
+            color: @colorBlack;
+        }
 
         .mo-loader{
             .mo-loader-path{
@@ -294,23 +315,25 @@ mor-link{
             }
         }
 
-        &:not(.st-disabled):hover,
-        &.st-hover{
+        &:not(.st-disabled,.st-readonly):hover > a,
+        &.st-hover > a{
             color: lighten(@colorBlack, 15%);
         }
 
-        &:not(.st-disabled):active,
-        &.st-active{
+        &:not(.st-disabled,.st-readonly):active > a,
+        &.st-active > a{
             color: lighten(@colorBlack, 30%);
         }
 
-        &.st-disabled{
+        &.st-disabled > a{
             color: lighten(@colorBlack, 40%);
         }
     }
 
     &.co-lbk{
-        color: @colorLightBlack;
+        > a{
+            color: @colorLightBlack;
+        }
 
         .mo-loader{
             .mo-loader-path{
@@ -318,23 +341,25 @@ mor-link{
             }
         }
 
-        &:not(.st-disabled):hover,
-        &.st-hover{
+        &:not(.st-disabled,.st-readonly):hover > a,
+        &.st-hover > a{
             color: lighten(@colorLightBlack, 15%);
         }
 
-        &:not(.st-disabled):active,
-        &.st-active{
+        &:not(.st-disabled,.st-readonly):active > a,
+        &.st-active > a{
             color: lighten(@colorLightBlack, 25%);
         }
 
-        &.st-disabled{
+        &.st-disabled > a{
             color: lighten(@colorLightBlack, 40%);
         }
     }
 
     &.co-elbk{
-        color: @colorExtraLightBlack;
+        > a{
+            color: @colorExtraLightBlack;
+        }
 
         .mo-loader{
             .mo-loader-path{
@@ -342,23 +367,25 @@ mor-link{
             }
         }
 
-        &:not(.st-disabled):hover,
-        &.st-hover{
+        &:not(.st-disabled,.st-readonly):hover > a,
+        &.st-hover > a{
             color: lighten(@colorExtraLightBlack, 10%);
         }
 
-        &:not(.st-disabled):active,
-        &.st-active{
+        &:not(.st-disabled,.st-readonly):active > a,
+        &.st-active > a{
             color: lighten(@colorExtraLightBlack, 20%);
         }
 
-        &.st-disabled{
+        &.st-disabled > a{
             color: lighten(@colorExtraLightBlack, 40%);
         }
     }
 
     &.co-bu{
-        color: @colorBlue;
+        a{
+            color: @colorBlue;
+        }
 
         .mo-loader{
             .mo-loader-path{
@@ -366,23 +393,25 @@ mor-link{
             }
         }
 
-        &:not(.st-disabled):hover,
-        &.st-hover{
+        &:not(.st-disabled,.st-readonly):hover > a,
+        &.st-hover > a{
             color: darken(@colorBlue, 15%);
         }
 
-        &:not(.st-disabled):active,
-        &.st-active{
+        &:not(.st-disabled,.st-readonly):active > a,
+        &.st-active > a{
             color: darken(@colorBlue, 20%);
         }
 
-        &.st-disabled{
+        &.st-disabled > a{
             color: lighten(@colorBlue, 20%);
         }
     }
 
     &.co-lbu{
-        color: @colorLightBlue;
+        > a{
+            color: @colorLightBlue;
+        }
 
         .mo-loader{
             .mo-loader-path{
@@ -390,23 +419,25 @@ mor-link{
             }
         }
 
-        &:not(.st-disabled):hover,
-        &.st-hover{
+        &:not(.st-disabled,.st-readonly):hover > a,
+        &.st-hover > a{
             color: darken(@colorLightBlue, 15%);
         }
 
-        &:not(.st-disabled):active,
-        &.st-active{
+        &:not(.st-disabled,.st-readonly):active > a,
+        &.st-active > a{
             color: darken(@colorLightBlue, 20%);
         }
 
-        &.st-disabled{
+        &.st-disabled > a{
             color: lighten(@colorLightBlue, 20%);
         }
     }
 
     &.co-elbu{
-        color: @colorExtraLightBlue;
+        > a{
+            color: @colorExtraLightBlue;
+        }
 
         .mo-loader{
             .mo-loader-path{
@@ -414,23 +445,25 @@ mor-link{
             }
         }
 
-        &:not(.st-disabled):hover,
-        &.st-hover{
+        &:not(.st-disabled,.st-readonly):hover > a,
+        &.st-hover > a{
             color: darken(@colorExtraLightBlue, 15%);
         }
 
-        &:not(.st-disabled):active,
-        &.st-active{
+        &:not(.st-disabled,.st-readonly):active > a,
+        &.st-active > a{
             color: darken(@colorExtraLightBlue, 20%);
         }
 
-        &.st-disabled{
+        &.st-disabled > a{
             color: lighten(@colorExtraLightBlue, 10%);
         }
     }
 
     &.co-si{
-        color: @colorSilver;
+        > a{
+            color: @colorSilver;
+        }
 
         .mo-loader{
             .mo-loader-path{
@@ -438,23 +471,25 @@ mor-link{
             }
         }
 
-        &:not(.st-disabled):hover,
-        &.st-hover{
+        &:not(.st-disabled,.st-readonly):hover > a,
+        &.st-hover > a{
             color: darken(@colorSilver, 8%);
         }
 
-        &:not(.st-disabled):active,
-        &.st-active{
+        &:not(.st-disabled,.st-readonly):active > a,
+        &.st-active > a{
             color: darken(@colorSilver, 12%);
         }
 
-        &.st-disabled{
+        &.st-disabled > a{
             color: darken(@colorSilver, 30%);
         }
     }
 
     &.co-lsi{
-        color: @colorLightSilver;
+        > a{
+            color: @colorLightSilver;
+        }
 
         .mo-loader{
             .mo-loader-path{
@@ -462,23 +497,25 @@ mor-link{
             }
         }
 
-        &:not(.st-disabled):hover,
-        &.st-hover{
+        &:not(.st-disabled,.st-readonly):hover > a,
+        &.st-hover > a{
             color: darken(@colorLightSilver, 8%);
         }
 
-        &:not(.st-disabled):active,
-        &.st-active{
+        &:not(.st-disabled,.st-readonly):active > a,
+        &.st-active > a{
             color: darken(@colorLightSilver, 12%);
         }
 
-        &.st-disabled{
+        &.st-disabled > a{
             color: darken(@colorLightSilver, 30%);
         }
     }
 
     &.co-elsi{
-        color: @colorExtraLightSilver;
+        > a{
+            color: @colorExtraLightSilver;
+        }
 
         .mo-loader{
             .mo-loader-path{
@@ -486,23 +523,25 @@ mor-link{
             }
         }
 
-        &:not(.st-disabled):hover,
-        &.st-hover{
+        &:not(.st-disabled,.st-readonly):hover > a,
+        &.st-hover > a{
             color: darken(@colorExtraLightSilver, 8%);
         }
 
-        &:not(.st-disabled):active,
-        &.st-active{
+        &:not(.st-disabled,.st-readonly):active > a,
+        &.st-active > a{
             color: darken(@colorExtraLightSilver, 12%);
         }
 
-        &.st-disabled{
+        &.st-disabled > a{
             color: darken(@colorExtraLightSilver, 30%);
         }
     }
 
     &.co-g{
-        color: @colorGray;
+        > a{
+            color: @colorGray;
+        }
 
         .mo-loader{
             .mo-loader-path{
@@ -510,23 +549,25 @@ mor-link{
             }
         }
 
-        &:not(.st-disabled):hover,
-        &.st-hover{
+        &:not(.st-disabled,.st-readonly):hover > a,
+        &.st-hover > a{
             color: darken(@colorGray, 8%);
         }
 
-        &:not(.st-disabled):active,
-        &.st-active{
+        &:not(.st-disabled,.st-readonly):active > a,
+        &.st-active > a{
             color: darken(@colorGray, 12%);
         }
 
-        &.st-disabled{
+        &.st-disabled > a{
             color: darken(@colorGray, 30%);
         }
     }
 
     &.co-lg{
-        color: @colorLightGray;
+        > a{
+            color: @colorLightGray;
+        }
 
         .mo-loader{
             .mo-loader-path{
@@ -534,23 +575,25 @@ mor-link{
             }
         }
 
-        &:not(.st-disabled):hover,
-        &.st-hover{
+        &:not(.st-disabled,.st-readonly):hover > a,
+        &.st-hover > a{
             color: darken(@colorLightGray, 8%);
         }
 
-        &:not(.st-disabled):active,
-        &.st-active{
+        &:not(.st-disabled,.st-readonly):active > a,
+        &.st-active > a{
             color: darken(@colorLightGray, 12%);
         }
 
-        &.st-disabled{
+        &.st-disabled > a{
             color: darken(@colorLightGray, 30%);
         }
     }
 
     &.co-wh{
-        color: @colorWhite;
+        > a{
+            color: @colorWhite;
+        }
 
         .mo-loader{
             .mo-loader-path{
@@ -558,17 +601,17 @@ mor-link{
             }
         }
 
-        &:not(.st-disabled):hover,
-        &.st-hover{
+        &:not(.st-disabled,.st-readonly):hover > a,
+        &.st-hover > a{
             color: darken(@colorWhite, 8%);
         }
 
-        &:not(.st-disabled):active,
-        &.st-active{
+        &:not(.st-disabled,.st-readonly):active > a,
+        &.st-active > a{
             color: darken(@colorWhite, 12%);
         }
 
-        &.st-disabled{
+        &.st-disabled > a{
             color: darken(@colorWhite, 30%);
         }
     }
@@ -582,7 +625,15 @@ mor-link{
     &.st-active{}
 
     &.st-disabled{
-        cursor: not-allowed !important;
+        > a{
+            cursor: not-allowed !important;
+        }
+    }
+
+    &.st-readonly{
+        > a{
+            cursor: default !important;
+        }
     }
 
     &.st-apparent{
