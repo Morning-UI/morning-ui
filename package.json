@@ -21,7 +21,7 @@
     "unit-watch": "npm run unit -- --watch",
     "unit-snapshot": "echo 'unit snapshot update must be one by one.'",
     "e2e": "node_modules/.bin/cross-env NODE_ENV=test node_modules/.bin/ava test/e2e",
-    "ci-e2e": "node_modules/.bin/cross-env NODE_ENV=test node_modules/.bin/ava test/e2e -c 2",
+    "ci-e2e": "node_modules/.bin/cross-env NODE_ENV=test node_modules/.bin/ava",
     "e2e-watch": "npm run e2e -- --watch",
     "e2e-snapshot": "echo 'e2e snapshot update must be one by one.'",
     "cover": "node_modules/.bin/cross-env NODE_ENV=test node_modules/.bin/nyc npm run test",
