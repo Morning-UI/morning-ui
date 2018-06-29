@@ -5,8 +5,11 @@ import path                         from 'path';
 import test                         from 'ava';
 import nightmare                    from 'nightmare';
 
+const minute3 = 180000;
+
 const runner = nightmare({
-    show : false
+    show : false,
+    waitTimeout : minute3
 });
 
 test.serial('import-use-tag', async t => {
