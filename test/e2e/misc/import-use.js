@@ -8,10 +8,6 @@ import nightmare                    from 'nightmare';
 const runnerForTag = nightmare({
     show : false
 });
-const runnerForWebpack = nightmare({
-    show : true,
-    waitTimeout : 60 * 1000
-});
 
 test.serial('import-use-tag', async t => {
 
@@ -159,8 +155,14 @@ test.serial('import-use-webpack', async t => {
 
     });
 
-    console.log('c', pathHtml);
+    console.log('c', pathHtml, fs.readdirSync(pathDist).forEach(file => {
+        console.log(file);
+    }));
 
+    const runnerForWebpack = nightmare({
+        show : true,
+        waitTimeout : 60 * 1000
+    });
     const result = await runnerForWebpack
         .goto(`file://${pathHtml}`)
         .wait('mor-link')
