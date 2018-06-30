@@ -73,7 +73,7 @@ test.serial('import-use-webpack', async t => {
 
     t.plan(2);
 
-    const maxBuffer = 512000;
+    const maxBuffer = 1024000;
 
     let pathProjectRoot = path.resolve(__dirname, '../../../');
     let pathTmp = path.resolve(pathProjectRoot, '.tmp');
@@ -151,6 +151,8 @@ test.serial('import-use-webpack', async t => {
 
                 if (error) {
 
+                    console.log(error);
+
                     throw error;
 
                 }
@@ -164,17 +166,25 @@ test.serial('import-use-webpack', async t => {
 
     await new Promise(resolve => {
 
-        exec(`cd ${pathDir} && node_modules/.bin/webpack webpack.config.js`, (error, stdout) => {
+        exec(
+            `cd ${pathDir} && node_modules/.bin/webpack webpack.config.js`,
+            {
+                maxBuffer : maxBuffer
+            },
+            (error, stdout) => {
 
-            if (error) {
+                if (error) {
 
-                throw error;
+                    console.log(error);
+
+                    throw error;
+
+                }
+
+                resolve();
 
             }
-
-            resolve();
-
-        });
+        );
 
     });
 
