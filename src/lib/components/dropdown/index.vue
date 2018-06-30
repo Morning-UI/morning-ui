@@ -78,8 +78,11 @@ export default {
 
             let $emitbtn = this.$el.querySelector('[emitbtn]');
 
-            if ((this.conf.autoClose && (evt.path.indexOf($emitbtn) === notFound)) ||
-                (!this.conf.autoClose && (evt.path.indexOf(this.data.$wrap) === notFound))) {
+            if (
+                (evt.path.indexOf($emitbtn) === notFound && evt.path.indexOf(this.data.$wrap) === notFound) ||
+                (evt.path.indexOf($emitbtn) !== notFound) ||
+                (this.conf.autoClose && evt.path.indexOf($emitbtn) === notFound && evt.path.indexOf(this.data.$wrap) !== notFound)
+            ) {
 
                 this.toggle();
 
@@ -111,6 +114,8 @@ export default {
 
         },
         _click : function () {
+
+            console.log('click', this.data.isCheckArea);
 
             if (this.data.isCheckArea) {
 

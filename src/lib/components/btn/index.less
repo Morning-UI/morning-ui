@@ -66,7 +66,7 @@ mor-btn{
             }
         }
 
-        &:not(.st-disabled,.st-readonly):hover,
+        &:not(.st-disabled):not(.st-readonly):hover,
         &.st-hover{
             a{
                 > mor-img::after{
@@ -81,7 +81,7 @@ mor-btn{
             }
         }
 
-        &:not(.st-disabled,.st-readonly):active,
+        &:not(.st-disabled):not(.st-readonly):active,
         &.st-active{
             a{
                 > mor-img::after{
@@ -259,7 +259,7 @@ mor-btn{
             }
         }
 
-        &:not(.st-disabled,.st-readonly):hover,
+        &:not(.st-disabled):not(.st-readonly):hover,
         &.st-hover{
             background-color: darken(@colorTheme, 5%);
 
@@ -268,7 +268,7 @@ mor-btn{
             }
         }
 
-        &:not(.st-disabled,.st-readonly):active,
+        &:not(.st-disabled):not(.st-readonly):active,
         &.st-active{
             background-color: darken(@colorTheme, 10%);
         }
@@ -306,7 +306,7 @@ mor-btn{
             }
         }
 
-        &:not(.st-disabled,.st-readonly):hover,
+        &:not(.st-disabled):not(.st-readonly):hover,
         &.st-hover{
             background-color: darken(@colorLightTheme, 5%);
 
@@ -315,7 +315,7 @@ mor-btn{
             }
         }
 
-        &:not(.st-disabled,.st-readonly):active,
+        &:not(.st-disabled):not(.st-readonly):active,
         &.st-active{
             background-color: darken(@colorLightTheme, 10%);
         }
@@ -353,7 +353,7 @@ mor-btn{
             }
         }
 
-        &:not(.st-disabled,.st-readonly):hover,
+        &:not(.st-disabled):not(.st-readonly):hover,
         &.st-hover{
             background-color: darken(@colorDarkTheme, 5%);
 
@@ -362,7 +362,7 @@ mor-btn{
             }
         }
 
-        &:not(.st-disabled,.st-readonly):active,
+        &:not(.st-disabled):not(.st-readonly):active,
         &.st-active{
             background-color: darken(@colorDarkTheme, 10%);
         }
@@ -400,7 +400,7 @@ mor-btn{
             }
         }
 
-        &:not(.st-disabled,.st-readonly):hover,
+        &:not(.st-disabled):not(.st-readonly):hover,
         &.st-hover{
             background-color: darken(@colorSuccess, 5%);
 
@@ -409,7 +409,7 @@ mor-btn{
             }
         }
 
-        &:not(.st-disabled,.st-readonly):active,
+        &:not(.st-disabled):not(.st-readonly):active,
         &.st-active{
             background-color: darken(@colorSuccess, 10%);
         }
@@ -447,7 +447,7 @@ mor-btn{
             }
         }
 
-        &:not(.st-disabled,.st-readonly):hover,
+        &:not(.st-disabled):not(.st-readonly):hover,
         &.st-hover{
             background-color: darken(@colorWarning, 5%);
 
@@ -456,7 +456,7 @@ mor-btn{
             }
         }
 
-        &:not(.st-disabled,.st-readonly):active,
+        &:not(.st-disabled):not(.st-readonly):active,
         &.st-active{
             background-color: darken(@colorWarning, 10%);
         }
@@ -494,7 +494,7 @@ mor-btn{
             }
         }
 
-        &:not(.st-disabled,.st-readonly):hover,
+        &:not(.st-disabled):not(.st-readonly):hover,
         &.st-hover{
             background-color: darken(@colorDanger, 5%);
 
@@ -503,7 +503,7 @@ mor-btn{
             }
         }
 
-        &:not(.st-disabled,.st-readonly):active,
+        &:not(.st-disabled):not(.st-readonly):active,
         &.st-active{
             background-color: darken(@colorDanger, 10%);
         }
@@ -541,7 +541,7 @@ mor-btn{
             }
         }
 
-        &:not(.st-disabled,.st-readonly):hover,
+        &:not(.st-disabled):not(.st-readonly):hover,
         &.st-hover{
             background-color: darken(@colorPrimary, 5%);
 
@@ -550,7 +550,7 @@ mor-btn{
             }
         }
 
-        &:not(.st-disabled,.st-readonly):active,
+        &:not(.st-disabled):not(.st-readonly):active,
         &.st-active{
             background-color: darken(@colorPrimary, 10%);
         }
@@ -588,7 +588,7 @@ mor-btn{
             }
         }
 
-        &:not(.st-disabled,.st-readonly):hover,
+        &:not(.st-disabled):not(.st-readonly):hover,
         &.st-hover{
             background-color: darken(@colorMinor, 5%);
 
@@ -597,7 +597,7 @@ mor-btn{
             }
         }
 
-        &:not(.st-disabled,.st-readonly):active,
+        &:not(.st-disabled):not(.st-readonly):active,
         &.st-active{
             background-color: darken(@colorMinor, 10%);
         }
@@ -635,7 +635,7 @@ mor-btn{
             }
         }
 
-        &:not(.st-disabled,.st-readonly):hover,
+        &:not(.st-disabled):not(.st-readonly):hover,
         &.st-hover{
             background-color: darken(@colorInfo, 5%);
 
@@ -644,7 +644,7 @@ mor-btn{
             }
         }
 
-        &:not(.st-disabled,.st-readonly):active,
+        &:not(.st-disabled):not(.st-readonly):active,
         &.st-active,
         &.st-disabled.plain{
             background-color: darken(@colorInfo, 10%);
@@ -683,7 +683,7 @@ mor-btn{
             }
         }
 
-        &:not(.st-disabled,.st-readonly):hover,
+        &:not(.st-disabled):not(.st-readonly):hover,
         &.st-hover{
             background-color: lighten(@colorBlack, 5%);
 
@@ -692,7 +692,7 @@ mor-btn{
             }
         }
 
-        &:not(.st-disabled,.st-readonly):active,
+        &:not(.st-disabled):not(.st-readonly):active,
         &.st-active{
             background-color: lighten(@colorBlack, 10%);
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.4) inset;
@@ -731,7 +731,7 @@ mor-btn{
             }
         }
 
-        &:not(.st-disabled,.st-readonly):hover,
+        &:not(.st-disabled):not(.st-readonly):hover,
         &.st-hover{
             background-color: lighten(@colorLightBlack, 5%);
 
@@ -740,7 +740,7 @@ mor-btn{
             }
         }
 
-        &:not(.st-disabled,.st-readonly):active,
+        &:not(.st-disabled):not(.st-readonly):active,
         &.st-active{
             background-color: lighten(@colorLightBlack, 10%);
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.4) inset;
@@ -779,7 +779,7 @@ mor-btn{
             }
         }
 
-        &:not(.st-disabled,.st-readonly):hover,
+        &:not(.st-disabled):not(.st-readonly):hover,
         &.st-hover{
             background-color: lighten(@colorExtraLightBlack, 5%);
 
@@ -788,7 +788,7 @@ mor-btn{
             }
         }
 
-        &:not(.st-disabled,.st-readonly):active,
+        &:not(.st-disabled):not(.st-readonly):active,
         &.st-active{
             border: none;
             background-color: lighten(@colorExtraLightBlack, 10%);
@@ -828,7 +828,7 @@ mor-btn{
             }
         }
 
-        &:not(.st-disabled,.st-readonly):hover,
+        &:not(.st-disabled):not(.st-readonly):hover,
         &.st-hover{
             background-color: darken(@colorBlue, 5%);
 
@@ -837,7 +837,7 @@ mor-btn{
             }
         }
 
-        &:not(.st-disabled,.st-readonly):active,
+        &:not(.st-disabled):not(.st-readonly):active,
         &.st-active{
             background-color: darken(@colorBlue, 10%);
         }
@@ -875,7 +875,7 @@ mor-btn{
             }
         }
 
-        &:not(.st-disabled,.st-readonly):hover,
+        &:not(.st-disabled):not(.st-readonly):hover,
         &.st-hover{
             background-color: darken(@colorLightBlue, 5%);
 
@@ -884,7 +884,7 @@ mor-btn{
             }
         }
 
-        &:not(.st-disabled,.st-readonly):active,
+        &:not(.st-disabled):not(.st-readonly):active,
         &.st-active{
             background-color: darken(@colorLightBlue, 10%);
         }
@@ -922,7 +922,7 @@ mor-btn{
             }
         }
 
-        &:not(.st-disabled,.st-readonly):hover,
+        &:not(.st-disabled):not(.st-readonly):hover,
         &.st-hover{
             background-color: darken(@colorExtraLightBlue, 5%);
 
@@ -931,7 +931,7 @@ mor-btn{
             }
         }
 
-        &:not(.st-disabled,.st-readonly):active,
+        &:not(.st-disabled):not(.st-readonly):active,
         &.st-active{
             background-color: darken(@colorExtraLightBlue, 10%);
         }
@@ -975,7 +975,7 @@ mor-btn{
             }
         }
 
-        &:not(.st-disabled,.st-readonly):hover,
+        &:not(.st-disabled):not(.st-readonly):hover,
         &.st-hover{
             background-color: darken(@colorSilver, 3%);
 
@@ -984,7 +984,7 @@ mor-btn{
             }
         }
 
-        &:not(.st-disabled,.st-readonly):active,
+        &:not(.st-disabled):not(.st-readonly):active,
         &.st-active{
             background-color: darken(@colorSilver, 6%);
         }
@@ -1028,7 +1028,7 @@ mor-btn{
             }
         }
 
-        &:not(.st-disabled,.st-readonly):hover,
+        &:not(.st-disabled):not(.st-readonly):hover,
         &.st-hover{
             background-color: darken(@colorLightSilver, 3%);
 
@@ -1037,7 +1037,7 @@ mor-btn{
             }
         }
 
-        &:not(.st-disabled,.st-readonly):active,
+        &:not(.st-disabled):not(.st-readonly):active,
         &.st-active{
             background-color: darken(@colorLightSilver, 6%);
         }
@@ -1081,7 +1081,7 @@ mor-btn{
             }
         }
 
-        &:not(.st-disabled,.st-readonly):hover,
+        &:not(.st-disabled):not(.st-readonly):hover,
         &.st-hover{
             background-color: darken(@colorExtraLightSilver, 3%);
 
@@ -1090,7 +1090,7 @@ mor-btn{
             }
         }
 
-        &:not(.st-disabled,.st-readonly):active,
+        &:not(.st-disabled):not(.st-readonly):active,
         &.st-active{
             background-color: darken(@colorExtraLightSilver, 6%);
         }
@@ -1134,7 +1134,7 @@ mor-btn{
             }
         }
 
-        &:not(.st-disabled,.st-readonly):hover,
+        &:not(.st-disabled):not(.st-readonly):hover,
         &.st-hover{
             background-color: darken(@colorGray, 3%);
 
@@ -1143,7 +1143,7 @@ mor-btn{
             }
         }
 
-        &:not(.st-disabled,.st-readonly):active,
+        &:not(.st-disabled):not(.st-readonly):active,
         &.st-active{
             background-color: darken(@colorGray, 6%);
         }
@@ -1187,7 +1187,7 @@ mor-btn{
             }
         }
 
-        &:not(.st-disabled,.st-readonly):hover,
+        &:not(.st-disabled):not(.st-readonly):hover,
         &.st-hover{
             background-color: darken(@colorLightGray, 3%);
 
@@ -1196,7 +1196,7 @@ mor-btn{
             }
         }
 
-        &:not(.st-disabled,.st-readonly):active,
+        &:not(.st-disabled):not(.st-readonly):active,
         &.st-active{
             background-color: darken(@colorLightGray, 6%);
         }
@@ -1240,7 +1240,7 @@ mor-btn{
             }
         }
 
-        &:not(.st-disabled,.st-readonly):hover,
+        &:not(.st-disabled):not(.st-readonly):hover,
         &.st-hover{
             background-color: darken(@colorWhite, 3%);
 
@@ -1249,7 +1249,7 @@ mor-btn{
             }
         }
 
-        &:not(.st-disabled,.st-readonly):active,
+        &:not(.st-disabled):not(.st-readonly):active,
         &.st-active{
             background-color: darken(@colorWhite, 6%);
         }
@@ -1273,7 +1273,7 @@ mor-btn{
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.25) inset;
     }
 
-    &:not(.st-disabled,.st-readonly):active{
+    &:not(.st-disabled):not(.st-readonly):active{
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.25) inset;
     }
 
