@@ -6,7 +6,8 @@ import test                         from 'ava';
 import nightmare                    from 'nightmare';
 
 const runner = nightmare({
-    show : false
+    show : false,
+    waitTimeout : 60000
 });
 
 test.serial('import-use-tag', async t => {
@@ -149,9 +150,9 @@ test.serial('import-use-webpack', async t => {
             },
             (error, stdout) => {
 
-                if (error) {
+                    console.log(70, error);
 
-                    console.log(error);
+                if (error) {
 
                     reject(error);
 
@@ -173,9 +174,9 @@ test.serial('import-use-webpack', async t => {
             },
             (error, stdout) => {
 
-                if (error) {
+                    console.log(71, error);
 
-                    console.log(error);
+                if (error) {
 
                     reject(error);
 
@@ -188,6 +189,10 @@ test.serial('import-use-webpack', async t => {
 
     });
 
+    console.log('c', pathHtml, fs.readdirSync(pathDist).forEach(file => {
+        console.log(90, file);
+    }));
+
     const result = await runner
         .goto(`file://${pathHtml}`)
         .wait('mor-link')
@@ -195,6 +200,8 @@ test.serial('import-use-webpack', async t => {
             morning : window.morning,
             style : window.getComputedStyle(document.querySelector('mor-link'))
         }));
+
+    console.log(1919);
 
     // circleci
     delete result.style.inlineSize;

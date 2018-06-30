@@ -162,6 +162,7 @@
       ".js",
       ".vue"
     ],
+    "cache": true,
     "report-dir": "./report/coverage"
   }
 }
