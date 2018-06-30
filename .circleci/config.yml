@@ -71,7 +71,7 @@ jobs:
       - restore_cache:
           keys:
             - v2-build-{{ .Environment.CIRCLE_SHA1 }}
-      - run: npm run doc -- --port 8089 & (circleci tests glob "test/e2e/**/*.js" "test/e2e/*.js" | circleci tests split | xargs npm run ci-e2e -- -c 2)
+      - run: npm run doc -- --port 8089 & (circleci tests glob "test/e2e/**/*.js" "test/e2e/*.js" | circleci tests split | xargs npm run ci-e2e --)
   coverage:
     docker:
       - image: circleci/node:8.7-browsers

@@ -9,65 +9,65 @@ const runner = nightmare({
     show : false
 });
 
-// test.serial('import-use-tag', async t => {
+test.serial('import-use-tag', async t => {
 
-//     t.plan(2);
+    t.plan(2);
 
-//     let pathProjectRoot = path.resolve(__dirname, '../../../');
-//     let pathMroningJs = path.resolve(pathProjectRoot, 'dist/morning-ui.js');
-//     let pathMroningCss = path.resolve(pathProjectRoot, 'dist/morning-ui.css');
-//     let pathTmp = path.resolve(pathProjectRoot, '.tmp');
-//     let pathDir = path.resolve(pathTmp, 'import-use-tag/');
-//     let pathHtml = path.resolve(pathDir, 'index.html');
-//     let pathJs = path.resolve(pathDir, 'morning-ui.js');
-//     let pathCss = path.resolve(pathDir, 'morning-ui.css');
+    let pathProjectRoot = path.resolve(__dirname, '../../../');
+    let pathMroningJs = path.resolve(pathProjectRoot, 'dist/morning-ui.js');
+    let pathMroningCss = path.resolve(pathProjectRoot, 'dist/morning-ui.css');
+    let pathTmp = path.resolve(pathProjectRoot, '.tmp');
+    let pathDir = path.resolve(pathTmp, 'import-use-tag/');
+    let pathHtml = path.resolve(pathDir, 'index.html');
+    let pathJs = path.resolve(pathDir, 'morning-ui.js');
+    let pathCss = path.resolve(pathDir, 'morning-ui.css');
 
-//     fse.emptyDirSync(pathTmp);
-//     fse.emptyDirSync(pathDir);
+    fse.emptyDirSync(pathTmp);
+    fse.emptyDirSync(pathDir);
 
-//     fs.writeFileSync(pathHtml, `
-//     <html>
-//         <head>
-//             <title>e2e test : import-use-tag</title>
-//             <link rel="stylesheet" href="./morning-ui.css" />
-//         </head>
-//         <body>
-//             <div id="vue"></div>
-//         <script src="https://cdn.bootcss.com/vue/2.5.3/vue.js"></script>
-//         <script src="./morning-ui.js"></script>
-//         <script>
-//         Vue.use(morning);
-//         new Vue({
-//             el : '#vue',
-//             template : '<ui-link>link</ui-link>'
-//         });
-//         </script>
-//         </body>
-//     </html>
-//     `);
-//     fse.copySync(pathMroningJs, pathJs);
-//     fse.copySync(pathMroningCss, pathCss);
+    fs.writeFileSync(pathHtml, `
+    <html>
+        <head>
+            <title>e2e test : import-use-tag</title>
+            <link rel="stylesheet" href="./morning-ui.css" />
+        </head>
+        <body>
+            <div id="vue"></div>
+        <script src="https://cdn.bootcss.com/vue/2.5.3/vue.js"></script>
+        <script src="./morning-ui.js"></script>
+        <script>
+        Vue.use(morning);
+        new Vue({
+            el : '#vue',
+            template : '<ui-link>link</ui-link>'
+        });
+        </script>
+        </body>
+    </html>
+    `);
+    fse.copySync(pathMroningJs, pathJs);
+    fse.copySync(pathMroningCss, pathCss);
 
-//     const result = await runner
-//         .goto(`file://${pathHtml}`)
-//         .wait('mor-link')
-//         .evaluate(() => ({
-//             morning : window.morning,
-//             style : window.getComputedStyle(document.querySelector('mor-link'))
-//         }));
+    const result = await runner
+        .goto(`file://${pathHtml}`)
+        .wait('mor-link')
+        .evaluate(() => ({
+            morning : window.morning,
+            style : window.getComputedStyle(document.querySelector('mor-link'))
+        }));
 
-//     // circleci
-//     delete result.style.inlineSize;
-//     delete result.style.perspectiveOrigin;
-//     delete result.style.transformOrigin;
-//     delete result.style.webkitLogicalWidth;
-//     delete result.style.webkitTapHighlightColor;
-//     delete result.style.width;
+    // circleci
+    delete result.style.inlineSize;
+    delete result.style.perspectiveOrigin;
+    delete result.style.transformOrigin;
+    delete result.style.webkitLogicalWidth;
+    delete result.style.webkitTapHighlightColor;
+    delete result.style.width;
 
-//     t.is(result.morning.isMorning, true);
-//     t.snapshot(result.style);
+    t.is(result.morning.isMorning, true);
+    t.snapshot(result.style);
 
-// });
+});
 
 test.serial('import-use-webpack', async t => {
 
@@ -185,15 +185,6 @@ test.serial('import-use-webpack', async t => {
 
     });
 
-    console.log('c', pathHtml);
-    fs.readdirSync(pathDist).forEach(file => {
-        console.log(90, file);
-    })
-
-    // const runner = nightmare({
-    //     show : true,
-    //     waitTimeout : 60000
-    // });
     const result = await runner
         .goto(`file://${pathHtml}`)
         .wait('mor-link')
@@ -201,8 +192,6 @@ test.serial('import-use-webpack', async t => {
             morning : window.morning,
             style : window.getComputedStyle(document.querySelector('mor-link'))
         }));
-
-    console.log(1919);
 
     // circleci
     delete result.style.inlineSize;
