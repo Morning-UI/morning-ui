@@ -5,11 +5,8 @@ import path                         from 'path';
 import test                         from 'ava';
 import nightmare                    from 'nightmare';
 
-const minute3 = 720000;
-
 const runner = nightmare({
-    show : false,
-    waitTimeout : minute3
+    show : false
 });
 
 test.serial('import-use-tag', async t => {
@@ -74,6 +71,7 @@ test.serial('import-use-tag', async t => {
 
 test.serial('import-use-webpack', async t => {
 
+    /* eslint-disable no-alert, no-console */
     t.plan(2);
 
     let pathProjectRoot = path.resolve(__dirname, '../../../');
@@ -141,17 +139,23 @@ test.serial('import-use-webpack', async t => {
     </html>
     `);
 
+    console.log('a');
+
     await new Promise(resolve => {
 
         exec(`cd ${pathDir} && npm install morning-ui webpack@3.8.1 style-loader css-loader vue`, resolve);
 
     });
 
+    console.log('b');
+
     await new Promise(resolve => {
 
         exec(`cd ${pathDir} && node_modules/.bin/webpack webpack.config.js`, resolve);
 
     });
+
+    console.log('c');
 
     const result = await runner
         .goto(`file://${pathHtml}`)
@@ -161,6 +165,8 @@ test.serial('import-use-webpack', async t => {
             style : window.getComputedStyle(document.querySelector('mor-link'))
         }));
 
+    console.log('d');
+
     // circleci
     delete result.style.inlineSize;
     delete result.style.perspectiveOrigin;
@@ -169,7 +175,10 @@ test.serial('import-use-webpack', async t => {
     delete result.style.webkitTapHighlightColor;
     delete result.style.width;
 
+    console.log(result);
+
     t.is(result.morning.isMorning, true);
     t.snapshot(result.style);
+    /* eslint-enable no-alert, no-console */
 
 });
