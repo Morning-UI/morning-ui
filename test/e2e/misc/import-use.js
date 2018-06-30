@@ -5,7 +5,10 @@ import path                         from 'path';
 import test                         from 'ava';
 import nightmare                    from 'nightmare';
 
-const runner = nightmare({
+const runnerForTag = nightmare({
+    show : false
+});
+const runnerForWebpack = nightmare({
     show : false
 });
 
@@ -48,7 +51,7 @@ test.serial('import-use-tag', async t => {
     fse.copySync(pathMroningJs, pathJs);
     fse.copySync(pathMroningCss, pathCss);
 
-    const result = await runner
+    const result = await runnerForTag
         .goto(`file://${pathHtml}`)
         .wait('mor-link')
         .evaluate(() => ({
@@ -157,7 +160,7 @@ test.serial('import-use-webpack', async t => {
 
     console.log('c', pathHtml);
 
-    const result = await runner
+    const result = await runnerForWebpack
         .goto(`file://${pathHtml}`)
         .wait(5000)
         .evaluate(() => ({
