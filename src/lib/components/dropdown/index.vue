@@ -115,8 +115,6 @@ export default {
         },
         _click : function () {
 
-            console.log('click', this.data.isCheckArea);
-
             if (this.data.isCheckArea) {
 
                 return;
