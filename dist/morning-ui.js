@@ -22742,6 +22742,12 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 var _axiosMin = __webpack_require__(232);
 
@@ -23052,6 +23058,7 @@ exports.default = {
                 size: 0,
                 data: undefined,
                 path: undefined,
+                progress: 0,
                 classList: {
                     fail: false,
                     uploading: false,
@@ -23165,7 +23172,20 @@ exports.default = {
             }
 
             var index = this.data.uploadQueue.shift(),
-                uploadObj = {};
+                uploadObj = {
+                onUploadProgress: function onUploadProgress(xhr) {
+
+                    if (xhr && xhr.upload && typeof xhr.upload.addEventListener === 'function') {
+
+                        xhr.upload.addEventListener('progress', function (evt) {
+
+                            _this2.data.files[index].progress = +(evt.loaded / evt.total) || 0;
+                        }, false);
+                    }
+                },
+                file: null,
+                name: null
+            };
 
             Promise.resolve().then(function () {
 
@@ -41302,7 +41322,15 @@ var render = function() {
                         }
                       },
                       [
-                        _c("i", { staticClass: "progress" }),
+                        _c("i", {
+                          staticClass: "progress",
+                          class: item.classList,
+                          style: {
+                            width: item.classList.uploading
+                              ? 30 + +item.progress * 60 + "%"
+                              : "auto"
+                          }
+                        }),
                         _vm._v(" "),
                         _c("span", [
                           _vm._v(

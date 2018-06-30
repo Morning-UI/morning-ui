@@ -13152,6 +13152,18 @@ mor-upload .progress {
   border-radius: 100px 0 0 100px;
   transition: width 0.3s;
 }
+mor-upload .progress.wait {
+  width: 10% !important;
+}
+mor-upload .progress.verification {
+  width: 20% !important;
+}
+mor-upload .progress.uploading {
+  width: 30%;
+}
+mor-upload .progress.uploaded {
+  width: 100% !important;
+}
 mor-upload .add {
   display: inline-block;
   padding: 0.4em 1.6em;
@@ -13212,18 +13224,6 @@ mor-upload .add.loading .mo-icon {
 }
 mor-upload .add.loading .load {
   display: inherit;
-}
-mor-upload .wait > .progress {
-  width: 20%;
-}
-mor-upload .verification > .progress {
-  width: 40%;
-}
-mor-upload .uploading > .progress {
-  width: 60%;
-}
-mor-upload .uploaded > .progress {
-  width: 100%;
 }
 mor-upload .done {
   cursor: pointer;
