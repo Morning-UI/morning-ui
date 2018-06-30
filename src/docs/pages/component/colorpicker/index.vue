@@ -85,6 +85,24 @@
 
     [[[方法]]]
 
+    #### togglePicker([toggle])
+
+    显示/隐藏颜色选择器的下拉框。
+    
+    |KEY|可选|描述|接受值|值类型|默认值|
+    |-|-|-|-|-|-|
+    |show|YES|颜色选择器的下拉框切换到隐藏或显示，若不设置则切换到相反的状态。|`undefined`<br>`true`<br>`false`|`Undefined`<br>`Boolean`|`undefined`|
+
+    :::democode/html
+    <div style="width:300px">
+        <ui-colorpicker ref="demo5"></ui-colorpicker>
+    </div>
+    <br>
+    <ui-link js="window.morning.findVM('demo5').togglePicker();">切换相反状态</ui-link>
+    <ui-link js="window.morning.findVM('demo5').togglePicker(true);">切换至显示</ui-link>
+    <ui-link js="window.morning.findVM('demo5').togglePicker(false);">切换至隐藏</ui-link>
+    :::
+
     :::preset/html
     formMethod
     ---
@@ -94,6 +112,116 @@
     :::
 
     [[[事件]]]
+
+    #### show-picker
+
+    当颜色选择器的下拉框显示时触发。
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        methods : {
+            echo : function () {
+                console.log('demo4.show-picker', 'emit event!');
+            }
+        }
+    });
+    ---
+    <div style="width:300px">
+        <ui-colorpicker ref="demo4" @show-picker="echo"></ui-colorpicker>
+        <br> 
+        <ui-link js="window.morning.findVM('demo4').togglePicker(true);">点击触发show-picker事件</ui-link>
+    </div>
+    :::
+
+    #### hide-picker
+
+    当颜色选择器的下拉框隐藏时触发。
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        methods : {
+            echo : function () {
+                console.log('demo6.hide-picker', 'emit event!');
+            }
+        }
+    });
+    ---
+    <div style="width:300px">
+        <ui-colorpicker ref="demo6" @hide-picker="echo"></ui-colorpicker>
+        <br> 
+        <ui-link js="window.morning.findVM('demo4').togglePicker(true);setTimeout(()=>(window.morning.findVM('demo6').togglePicker(false)));">点击触发hide-picker事件</ui-link>
+    </div>
+    :::
+
+    #### hue-slider-change
+
+    当颜色选择器的HUE滑块移动时触发。
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        methods : {
+            echo : function () {
+                console.log('demo7.hue-slider-change', 'emit event!');
+            }
+        }
+    });
+    ---
+    <div style="width:300px">
+        <ui-colorpicker ref="demo7" @hue-slider-change="echo"></ui-colorpicker>
+        <br> 
+        <p>拖动HUE滑块来触发此事件</p>
+    </div>
+    :::
+
+    #### alpha-slider-change
+
+    当颜色选择器的透明度滑块移动时触发。
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        methods : {
+            echo : function () {
+                console.log('demo8.alpha-slider-change', 'emit event!');
+            }
+        }
+    });
+    ---
+    <div style="width:300px">
+        <ui-colorpicker ref="demo8" @alpha-slider-change="echo"></ui-colorpicker>
+        <br> 
+        <p>拖动透明度滑块来触发此事件</p>
+    </div>
+    :::
+
+    #### input-type-change
+
+    当颜色选择器的色值输入类型变化时触发。
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        methods : {
+            echo : function () {
+                console.log('demo9.input-type-change', 'emit event!');
+            }
+        }
+    });
+    ---
+    <div style="width:300px">
+        <ui-colorpicker ref="demo9" @input-type-change="echo"></ui-colorpicker>
+        <br> 
+        <p>切换颜色输入类型来触发此事件</p>
+    </div>
+    :::
 
     :::preset/html
     formEvent
