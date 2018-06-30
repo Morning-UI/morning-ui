@@ -155,11 +155,10 @@ test.serial('import-use-webpack', async t => {
 
     });
 
-    console.log('c');
+    console.log('c', pathHtml);
 
     const result = await runner
         .goto(`file://${pathHtml}`)
-        .wait('mor-link')
         .evaluate(() => ({
             morning : window.morning,
             style : window.getComputedStyle(document.querySelector('mor-link'))
