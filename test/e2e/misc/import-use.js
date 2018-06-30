@@ -5,7 +5,7 @@ import path                         from 'path';
 import test                         from 'ava';
 import nightmare                    from 'nightmare';
 
-const runnerForTag = nightmare({
+const runner = nightmare({
     show : false
 });
 
@@ -48,7 +48,7 @@ test.serial('import-use-tag', async t => {
     fse.copySync(pathMroningJs, pathJs);
     fse.copySync(pathMroningCss, pathCss);
 
-    const result = await runnerForTag
+    const result = await runner
         .goto(`file://${pathHtml}`)
         .wait('mor-link')
         .evaluate(() => ({
@@ -143,7 +143,7 @@ test.serial('import-use-webpack', async t => {
 
     await new Promise(resolve => {
 
-        exec(`cd ${pathDir} && npm install morning-ui webpack@3.8.1 style-loader css-loader vue`, , (error, stdout) => {
+        exec(`cd ${pathDir} && npm install morning-ui webpack@3.8.1 style-loader css-loader vue`, (error, stdout) => {
             console.log(98, error, stdout);
             resolve();
         });
@@ -165,11 +165,7 @@ test.serial('import-use-webpack', async t => {
         console.log(file);
     }));
 
-    const runnerForWebpack = nightmare({
-        show : true,
-        waitTimeout : 60 * 1000
-    });
-    const result = await runnerForWebpack
+    const result = await runner
         .goto(`file://${pathHtml}`)
         .wait('mor-link')
         .evaluate(() => ({
