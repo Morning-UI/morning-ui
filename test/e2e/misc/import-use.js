@@ -5,7 +5,7 @@ import path                         from 'path';
 import test                         from 'ava';
 import nightmare                    from 'nightmare';
 
-const minute3 = 180000;
+const minute3 = 360000;
 
 const runner = nightmare({
     show : false,
