@@ -156,6 +156,22 @@ mor-upload{
         left: 0;
         border-radius: @maxBorderRadius 0 0 @maxBorderRadius;
         transition: width 0.3s;
+
+        &.wait{
+            width: 10% !important;
+        }
+
+        &.verification{
+            width: 20% !important;
+        }
+
+        &.uploading{
+            width: 30%;
+        }
+
+        &.uploaded{
+            width: 100% !important;
+        }
     }
 
     .add{
@@ -233,22 +249,6 @@ mor-upload{
                 display: inherit;
             }
         }
-    }
-
-    .wait > .progress{
-        width: 20%;
-    }
-
-    .verification > .progress{
-        width: 40%;
-    }
-
-    .uploading > .progress{
-        width: 60%;
-    }
-
-    .uploaded > .progress{
-        width: 100%;
     }
 
     .done{

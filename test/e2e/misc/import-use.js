@@ -73,6 +73,8 @@ test.serial('import-use-webpack', async t => {
 
     t.plan(2);
 
+    const maxBuffer = 1024000;
+
     let pathProjectRoot = path.resolve(__dirname, '../../../');
     let pathTmp = path.resolve(pathProjectRoot, '.tmp');
     let pathDir = path.resolve(pathTmp, 'import-use-webpack/');
@@ -99,6 +101,7 @@ test.serial('import-use-webpack', async t => {
             filename: 'bundle.js',
             path: '${pathDist}'
         },
+        mode : 'production',
         module: {
             rules: [
                 {
@@ -117,7 +120,7 @@ test.serial('import-use-webpack', async t => {
     import Vue from 'vue/dist/vue.esm.js';
     import morning from 'morning-ui';
     import 'morning-ui/dist/morning-ui.css';
-    
+
     window.morning = morning;
     Vue.use(morning);
     new Vue({
@@ -138,15 +141,47 @@ test.serial('import-use-webpack', async t => {
     </html>
     `);
 
-    await new Promise(resolve => {
+    await new Promise((resolve, reject) => {
 
-        exec(`cd ${pathDir} && npm install morning-ui webpack@3.8.1 style-loader css-loader vue`, resolve);
+        exec(
+            `cd ${pathDir} && npm install morning-ui webpack@4.6.0 style-loader css-loader vue`,
+            {
+                maxBuffer : maxBuffer
+            },
+            error => {
+
+                if (error) {
+
+                    reject(error);
+
+                }
+
+                resolve();
+
+            }
+        );
 
     });
 
-    await new Promise(resolve => {
+    await new Promise((resolve, reject) => {
 
-        exec(`cd ${pathDir} && node_modules/.bin/webpack webpack.config.js`, resolve);
+        exec(
+            `cd ${pathDir} && node_modules/.bin/webpack --config webpack.config.js`,
+            {
+                maxBuffer : maxBuffer
+            },
+            error => {
+
+                if (error) {
+
+                    reject(error);
+
+                }
+
+                resolve();
+
+            }
+        );
 
     });
 

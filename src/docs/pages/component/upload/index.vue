@@ -76,7 +76,13 @@
     });
     ```
     
-    文件上传时会调用`uploader`并将需要上传的文件对象作为参数传入，由`uploader`解析文件对象并调用服务端上传接口。
+    文件上传时会调用`uploader`并将需要上传的文件对象作为参数传入，文件对象`file`，包含下面几个属性：
+
+    - `name` : 上传文件的原始名称
+    - `file` : 上传的文件的原始对象([FileObject](https://developer.mozilla.org/en-US/docs/Web/API/File))
+    - `onUploadProgress()` : 监听上传进度的函数，具体使用方法见：[监听真实上传进度](#使用真实的上传进度)
+    
+    最后由`uploader`解析文件对象并调用服务端上传接口进行上传。
 
     当文件上传完毕后，`uploader`需要返回一个对象，包含三个属性：
 
@@ -101,6 +107,73 @@
                     status : false,
                     message : '文件上传失败，请重试'
                 };
+
+            }
+        }
+    });
+    ---
+    <div style="width:300px;">
+        <ui-upload form-name="文件" :uploader="uploader"></ui-upload>
+    </div>
+    :::
+
+    #### 监听真实的上传进度
+
+    默认情况下文件上传组件中上传进度并不是真实的，你会发现上传文件时会卡在某个点然后突然就完成了，这是因为组件无法获取到真实的上传进度。
+
+    只需要在文件上传适配器中调用文件对象的`onUploadProgress(xhr)`方法，并把远程上传的`XHR`对象作为参数传入，组件即可获取真实的上传进度：
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        methods : {
+            uploader : function (file) {
+
+                let formData = new FormData();
+
+                formData.append('file', file.file);
+                formData.append('filename', file.name);
+
+                return new Promise((resolve, reject) => {
+
+                    $.ajax({
+                        type : 'POST',
+                        url : '/api/uploadfile',
+                        data : formData,
+                        processData : false,
+                        contentType : false,
+                        dataType : 'json',
+                        beforeSend : jqXHR => {
+                            
+                            // 调用文件对象的`onUploadProgress`方法，并将xhr对象传入
+                            // 文件上传组件就会监听真实的上传进度
+                            file.onUploadProgress(jqXHR);
+
+                        },
+                        success : resp => {
+            
+                            if (resp.status) {
+
+                                resolve({
+                                    status : true,
+                                    path : resp.path
+                                });
+
+                            } else {
+
+                                resolve({
+                                    status : false,
+                                    message : resp.message
+                                });
+
+                            }
+
+                        },
+                        error : resp => reject('upload fail.')
+                    });
+
+                });
 
             }
         }
