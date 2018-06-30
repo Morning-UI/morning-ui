@@ -159,12 +159,14 @@ test.serial('import-use-webpack', async t => {
 
     const result = await runner
         .goto(`file://${pathHtml}`)
+        .wait(5000)
         .evaluate(() => ({
-            morning : window.morning,
-            style : window.getComputedStyle(document.querySelector('mor-link'))
+            // morning : window.morning,
+            // style : window.getComputedStyle(document.querySelector('mor-link'))
+            el : document.querySelector('mor-link')
         }));
 
-    console.log('d');
+    console.log('d', result);
 
     // circleci
     delete result.style.inlineSize;
