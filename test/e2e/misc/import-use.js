@@ -9,7 +9,7 @@ const runnerForTag = nightmare({
     show : false
 });
 const runnerForWebpack = nightmare({
-    show : false,
+    show : true,
     waitTimeout : 60 * 1000
 });
 
