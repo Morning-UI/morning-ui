@@ -9,7 +9,8 @@ const runnerForTag = nightmare({
     show : false
 });
 const runnerForWebpack = nightmare({
-    show : false
+    show : false,
+    waitTimeout : 60 * 1000
 });
 
 test.serial('import-use-tag', async t => {
@@ -162,7 +163,7 @@ test.serial('import-use-webpack', async t => {
 
     const result = await runnerForWebpack
         .goto(`file://${pathHtml}`)
-        .wait(5000)
+        .wait('mor-link')
         .evaluate(() => ({
             // morning : window.morning,
             // style : window.getComputedStyle(document.querySelector('mor-link'))
