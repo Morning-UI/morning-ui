@@ -148,7 +148,7 @@ test.serial('import-use-webpack', async t => {
             {
                 maxBuffer : maxBuffer
             },
-            (error, stdout) => {
+            error => {
 
                 if (error) {
 
@@ -170,7 +170,7 @@ test.serial('import-use-webpack', async t => {
             {
                 maxBuffer : maxBuffer
             },
-            (error, stdout) => {
+            error => {
 
                 if (error) {
 
