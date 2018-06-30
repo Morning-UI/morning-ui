@@ -741,7 +741,7 @@ export default {
             let input1HighlightDays;
 
             // start超过左侧日历/end在左侧日历
-            if (start <= input0CalendarStart &&
+            if (start < input0CalendarStart &&
                 end >= input0CalendarStart &&
                 end <= input0CalendarEnd) {
 
@@ -754,7 +754,7 @@ export default {
             }
 
             // start超过左侧日历/end在右侧日历
-            if (start <= input0CalendarStart &&
+            if (start < input0CalendarStart &&
                 end >= input1CalendarStart &&
                 end <= input1CalendarEnd) {
 
@@ -772,7 +772,7 @@ export default {
             // start在左侧日历/end超过右侧日历
             if (start >= input0CalendarStart &&
                 start <= input0CalendarEnd &&
-                end >= input1CalendarEnd) {
+                end > input1CalendarEnd) {
 
                 input0HighlightDays = eachDayOfInterval({
                     start,
@@ -788,7 +788,7 @@ export default {
             // start在右侧日历/end超过右侧日历
             if (start >= input1CalendarStart &&
                 start <= input1CalendarEnd &&
-                end >= input1CalendarEnd) {
+                end > input1CalendarEnd) {
 
                 input0HighlightDays = [];
                 input1HighlightDays = eachDayOfInterval({
@@ -799,8 +799,8 @@ export default {
             }
 
             // start超过左侧日历/end超过右侧日历
-            if (start <= input0CalendarStart &&
-                end >= input1CalendarEnd) {
+            if (start < input0CalendarStart &&
+                end > input1CalendarEnd) {
 
                 input0HighlightDays = eachDayOfInterval({
                     start : subDays(+input0CalendarStart, 1),
