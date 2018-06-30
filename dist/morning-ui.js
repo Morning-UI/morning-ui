@@ -24775,7 +24775,7 @@ exports.default = {
             var input1HighlightDays = void 0;
 
             // start超过左侧日历/end在左侧日历
-            if (start <= input0CalendarStart && end >= input0CalendarStart && end <= input0CalendarEnd) {
+            if (start < input0CalendarStart && end >= input0CalendarStart && end <= input0CalendarEnd) {
 
                 input0HighlightDays = (0, _dateFns.eachDayOfInterval)({
                     start: (0, _dateFns.subDays)(+input0CalendarStart, 1),
@@ -24785,7 +24785,7 @@ exports.default = {
             }
 
             // start超过左侧日历/end在右侧日历
-            if (start <= input0CalendarStart && end >= input1CalendarStart && end <= input1CalendarEnd) {
+            if (start < input0CalendarStart && end >= input1CalendarStart && end <= input1CalendarEnd) {
 
                 input0HighlightDays = (0, _dateFns.eachDayOfInterval)({
                     start: (0, _dateFns.subDays)(+input0CalendarStart, 1),
@@ -24798,7 +24798,7 @@ exports.default = {
             }
 
             // start在左侧日历/end超过右侧日历
-            if (start >= input0CalendarStart && start <= input0CalendarEnd && end >= input1CalendarEnd) {
+            if (start >= input0CalendarStart && start <= input0CalendarEnd && end > input1CalendarEnd) {
 
                 input0HighlightDays = (0, _dateFns.eachDayOfInterval)({
                     start: start,
@@ -24811,7 +24811,7 @@ exports.default = {
             }
 
             // start在右侧日历/end超过右侧日历
-            if (start >= input1CalendarStart && start <= input1CalendarEnd && end >= input1CalendarEnd) {
+            if (start >= input1CalendarStart && start <= input1CalendarEnd && end > input1CalendarEnd) {
 
                 input0HighlightDays = [];
                 input1HighlightDays = (0, _dateFns.eachDayOfInterval)({
@@ -24821,7 +24821,7 @@ exports.default = {
             }
 
             // start超过左侧日历/end超过右侧日历
-            if (start <= input0CalendarStart && end >= input1CalendarEnd) {
+            if (start < input0CalendarStart && end > input1CalendarEnd) {
 
                 input0HighlightDays = (0, _dateFns.eachDayOfInterval)({
                     start: (0, _dateFns.subDays)(+input0CalendarStart, 1),
@@ -35878,7 +35878,7 @@ exports.default = {
 
             var $emitbtn = this.$el.querySelector('[emitbtn]');
 
-            if (this.conf.autoClose && evt.path.indexOf($emitbtn) === notFound || !this.conf.autoClose && evt.path.indexOf(this.data.$wrap) === notFound) {
+            if (evt.path.indexOf($emitbtn) === notFound && evt.path.indexOf(this.data.$wrap) === notFound || evt.path.indexOf($emitbtn) !== notFound || this.conf.autoClose && evt.path.indexOf($emitbtn) === notFound && evt.path.indexOf(this.data.$wrap) !== notFound) {
 
                 this.toggle();
             }
