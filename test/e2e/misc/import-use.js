@@ -163,6 +163,7 @@ test.serial('import-use-webpack', async t => {
         .evaluate(() => ({
             // morning : window.morning,
             // style : window.getComputedStyle(document.querySelector('mor-link'))
+            html : document.body.innerHTML,
             el : document.querySelector('mor-link')
         }));
 
