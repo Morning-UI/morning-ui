@@ -151,7 +151,10 @@ test.serial('import-use-webpack', async t => {
 
     await new Promise(resolve => {
 
-        exec(`cd ${pathDir} && node_modules/.bin/webpack webpack.config.js`, resolve);
+        exec(`cd ${pathDir} && node_modules/.bin/webpack webpack.config.js`, (error, stdout) => {
+            console.log(99, error, stdout);
+            resolve();
+        });
 
     });
 
