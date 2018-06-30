@@ -153,6 +153,7 @@
     - `mute` : 静音
     - `volume` : 音量
     - `getInfo` : 获取信息
+    - `togglePicker` : 切换选择器
 
     </script>
     </doc-guide>
