@@ -140,7 +140,7 @@ test.serial('import-use-webpack', async t => {
     </html>
     `);
 
-    await new Promise(resolve => {
+    await new Promise((resolve, reject) => {
 
         exec(
             `cd ${pathDir} && npm install morning-ui webpack@4.6.0 style-loader css-loader vue`,
@@ -153,7 +153,7 @@ test.serial('import-use-webpack', async t => {
 
                     console.log(error);
 
-                    throw error;
+                    reject(error);
 
                 }
 
@@ -164,7 +164,7 @@ test.serial('import-use-webpack', async t => {
 
     });
 
-    await new Promise(resolve => {
+    await new Promise((resolve, reject) => {
 
         exec(
             `cd ${pathDir} && node_modules/.bin/webpack webpack.config.js`,
@@ -177,7 +177,7 @@ test.serial('import-use-webpack', async t => {
 
                     console.log(error);
 
-                    throw error;
+                    reject(error);
 
                 }
 
