@@ -17,15 +17,15 @@
     "test-snapshot": "npm run unit-snapshot && npm run e2e-snapshot",
     "test-report": "(test -d report || mkdir report) && npm run test -- --tap | node_modules/.bin/tap-out > report/test.json",
     "unit": "node_modules/.bin/cross-env NODE_ENV=test node_modules/.bin/ava test/unit",
-    "ci-unit": "node_modules/.bin/cross-env NODE_ENV=test node_modules/.bin/ava test/unit -c 2",
+    "ci-unit": "node_modules/.bin/cross-env NODE_ENV=test node_modules/.bin/ava",
     "unit-watch": "npm run unit -- --watch",
     "unit-snapshot": "echo 'unit snapshot update must be one by one.'",
     "e2e": "node_modules/.bin/cross-env NODE_ENV=test node_modules/.bin/ava test/e2e",
-    "ci-e2e": "node_modules/.bin/cross-env NODE_ENV=test node_modules/.bin/ava test/e2e -c 2",
+    "ci-e2e": "node_modules/.bin/cross-env NODE_ENV=test node_modules/.bin/ava",
     "e2e-watch": "npm run e2e -- --watch",
     "e2e-snapshot": "echo 'e2e snapshot update must be one by one.'",
     "cover": "node_modules/.bin/cross-env NODE_ENV=test node_modules/.bin/nyc npm run test",
-    "ci-cover": "node_modules/.bin/cross-env NODE_ENV=test node_modules/.bin/nyc npm run test -- -c 2",
+    "ci-cover": "node_modules/.bin/cross-env NODE_ENV=test node_modules/.bin/nyc npm run test -- -c 4",
     "cover-report": "npm run cover && node_modules/.bin/nyc report --reporter=html",
     "codecov-report": "node_modules/.bin/nyc report --reporter=text-lcov > coverage.lcov",
     "update-log-report": "node ./build/get-last-update-info.js",
@@ -162,6 +162,7 @@
       ".js",
       ".vue"
     ],
+    "cache": true,
     "report-dir": "./report/coverage"
   }
 }
