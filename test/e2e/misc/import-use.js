@@ -71,8 +71,9 @@ test.serial('import-use-tag', async t => {
 
 test.serial('import-use-webpack', async t => {
 
-    /* eslint-disable no-alert, no-console */
     t.plan(2);
+
+    const maxBuffer = 512000;
 
     let pathProjectRoot = path.resolve(__dirname, '../../../');
     let pathTmp = path.resolve(pathProjectRoot, '.tmp');
@@ -139,43 +140,51 @@ test.serial('import-use-webpack', async t => {
     </html>
     `);
 
-    console.log('a');
-
     await new Promise(resolve => {
 
-        exec(`cd ${pathDir} && npm install morning-ui webpack@3.8.1 style-loader css-loader vue`, (error, stdout) => {
-            console.log(98, error, stdout);
-            resolve();
-        });
+        exec(
+            `cd ${pathDir} && npm install morning-ui webpack@4.6.0 style-loader css-loader vue`,
+            {
+                maxBuffer : maxBuffer
+            },
+            (error, stdout) => {
+
+                if (error) {
+
+                    throw error;
+
+                }
+
+                resolve();
+
+            }
+        );
 
     });
-
-    console.log('b');
 
     await new Promise(resolve => {
 
         exec(`cd ${pathDir} && node_modules/.bin/webpack webpack.config.js`, (error, stdout) => {
-            console.log(99, error, stdout);
+
+            if (error) {
+
+                throw error;
+
+            }
+
             resolve();
+
         });
 
     });
-
-    console.log('c', pathHtml, fs.readdirSync(pathDist).forEach(file => {
-        console.log(file);
-    }));
 
     const result = await runner
         .goto(`file://${pathHtml}`)
         .wait('mor-link')
         .evaluate(() => ({
-            // morning : window.morning,
-            // style : window.getComputedStyle(document.querySelector('mor-link'))
-            html : document.body.innerHTML,
-            el : document.querySelector('mor-link')
+            morning : window.morning,
+            style : window.getComputedStyle(document.querySelector('mor-link'))
         }));
-
-    console.log('d', result);
 
     // circleci
     delete result.style.inlineSize;
@@ -185,10 +194,7 @@ test.serial('import-use-webpack', async t => {
     delete result.style.webkitTapHighlightColor;
     delete result.style.width;
 
-    console.log(result);
-
     t.is(result.morning.isMorning, true);
     t.snapshot(result.style);
-    /* eslint-enable no-alert, no-console */
 
 });
