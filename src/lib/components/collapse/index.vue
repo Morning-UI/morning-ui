@@ -25,10 +25,8 @@
                     }"
                     :item-key="item.key"
                 >
-                    <div class="content-height-layer">
-                        <div class="content-wrap">
-                            <slot :name="item.key"></slot>
-                        </div>
+                    <div class="content-wrap">
+                        <slot :name="item.key"></slot>
                     </div>
                 </li>
             </template>
@@ -103,24 +101,24 @@ export default {
         },
         _showHeightAnimate : function (key) {
 
-            let $contentHeightLayer = this.$el.querySelector(`.content[item-key="${key}"] .content-height-layer`);
+            let $content = this.$el.querySelector(`.content[item-key="${key}"]`);
             let contentHeight = 0;
             let nowHeight = 0;
 
-            if ($contentHeightLayer) {
+            if ($content) {
 
-                nowHeight = $contentHeightLayer.clientHeight;
-                $contentHeightLayer.removeAttribute('style');
+                nowHeight = $content.clientHeight;
+                $content.removeAttribute('style');
 
                 this.Vue.nextTick(() => {
                 
-                    contentHeight = $contentHeightLayer.clientHeight;
-                    $contentHeightLayer.style.height = `${nowHeight}px`;
+                    contentHeight = $content.clientHeight;
+                    $content.style.height = `${nowHeight}px`;
 
                     setTimeout(() => {
                     
-                        $contentHeightLayer.style.transition = `height ${animateTime/1000}s`;
-                        $contentHeightLayer.style.height = `${contentHeight}px`;
+                        $content.style.transition = `height ${animateTime/1000}s`;
+                        $content.style.height = `${contentHeight}px`;
 
                     });
 
@@ -132,22 +130,21 @@ export default {
         _hideHeightAnimate : function (key) {
             
             let $content = this.$el.querySelector(`.content[item-key="${key}"]`);
-            let $contentHeightLayer = this.$el.querySelector(`.content[item-key="${key}"] .content-height-layer`);
             let contentHeight = 0;
 
-            if ($contentHeightLayer) {
+            if ($content) {
 
                 $content.style.display = 'block';
 
                 this.Vue.nextTick(() => {
 
-                    contentHeight = $contentHeightLayer.clientHeight;
-                    $contentHeightLayer.style.height = `${contentHeight}px`;
+                    contentHeight = $content.clientHeight;
+                    $content.style.height = `${contentHeight}px`;
 
                     setTimeout(() => {
 
-                        $contentHeightLayer.style.transition = `height ${animateTime/1000}s`;
-                        $contentHeightLayer.style.height = '0px';
+                        $content.style.transition = `height ${animateTime/1000}s`;
+                        $content.style.height = '0px';
                     
                     }, );
                     
@@ -176,7 +173,6 @@ export default {
             }
 
             let $content = this.$el.querySelector(`.content[item-key="${key}"]`);
-            let $contentHeightLayer = this.$el.querySelector(`.content[item-key="${key}"] .content-height-layer`);
 
             this.data.showKeys.push(key);
             this._showHeightAnimate(key);
@@ -186,7 +182,6 @@ export default {
             this.data.keyTimeout[key] = setTimeout(() => {
 
                 $content.removeAttribute('style');
-                $contentHeightLayer.removeAttribute('style');
 
             }, animateTime);
             
@@ -204,7 +199,6 @@ export default {
             }
 
             let $content = this.$el.querySelector(`.content[item-key="${key}"]`);
-            let $contentHeightLayer = this.$el.querySelector(`.content[item-key="${key}"] .content-height-layer`);
             let showKeyIndex = this.data.showKeys.indexOf(key);
 
             this.data.showKeys.splice(showKeyIndex, 1);
@@ -219,7 +213,6 @@ export default {
             this.data.keyTimeout[key] = setTimeout(() => {
 
                 $content.removeAttribute('style');
-                $contentHeightLayer.removeAttribute('style');
 
             }, animateTime);
 
