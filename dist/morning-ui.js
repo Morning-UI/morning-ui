@@ -35371,6 +35371,10 @@ var animateTime = 160; //
 //
 //
 //
+//
+//
+
+var oneSecond = 1000;
 
 exports.default = {
     origin: 'UI',
@@ -35385,6 +35389,12 @@ exports.default = {
         maxShow: {
             type: Number,
             default: Infinity
+        },
+        disabledOptions: {
+            type: Array,
+            default: function _default() {
+                return [];
+            }
         }
     },
     computed: {
@@ -35392,7 +35402,8 @@ exports.default = {
 
             return {
                 shows: this.shows,
-                maxShow: this.maxShow
+                maxShow: this.maxShow,
+                disabledOptions: this.disabledOptions
             };
         }
     },
@@ -35442,7 +35453,39 @@ exports.default = {
             }
 
             this.data.list = list;
-            this.data.showKeys = (0, _extend2.default)([], this.conf.shows);
+
+            var showKeys = [];
+
+            var _iteratorNormalCompletion2 = true;
+            var _didIteratorError2 = false;
+            var _iteratorError2 = undefined;
+
+            try {
+                for (var _iterator2 = (0, _extend2.default)([], this.conf.shows)[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                    var _key = _step2.value;
+
+
+                    if (this.conf.disabledOptions.indexOf(_key) === -1) {
+
+                        showKeys.push(_key);
+                    }
+                }
+            } catch (err) {
+                _didIteratorError2 = true;
+                _iteratorError2 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                        _iterator2.return();
+                    }
+                } finally {
+                    if (_didIteratorError2) {
+                        throw _iteratorError2;
+                    }
+                }
+            }
+
+            this.data.showKeys = showKeys;
         },
         _onClick: function _onClick(key) {
 
@@ -35466,7 +35509,7 @@ exports.default = {
 
                     setTimeout(function () {
 
-                        $content.style.transition = 'height ' + animateTime / 1000 + 's';
+                        $content.style.transition = 'height ' + animateTime / oneSecond + 's';
                         $content.style.height = contentHeight + 'px';
                     });
                 });
@@ -35488,7 +35531,7 @@ exports.default = {
 
                     setTimeout(function () {
 
-                        $content.style.transition = 'height ' + animateTime / 1000 + 's';
+                        $content.style.transition = 'height ' + animateTime / oneSecond + 's';
                         $content.style.height = '0px';
                     });
                 });
@@ -35503,6 +35546,11 @@ exports.default = {
             }
         },
         show: function show(key) {
+
+            if (this.conf.disabledOptions.indexOf(key) !== -1) {
+
+                return this;
+            }
 
             if (this.data.showKeys.indexOf(key) !== -1) {
 
@@ -35521,7 +35569,7 @@ exports.default = {
                 $content.removeAttribute('style');
             }, animateTime);
 
-            this.$emit('open', key);
+            this.$emit('show', key);
 
             return this;
         },
@@ -35549,11 +35597,16 @@ exports.default = {
                 $content.removeAttribute('style');
             }, animateTime);
 
-            this.$emit('close', key);
+            this.$emit('hide', key);
 
             return this;
         },
         switch: function _switch(key) {
+
+            if (this.conf.disabledOptions.indexOf(key) !== -1) {
+
+                return this;
+            }
 
             var keyIndex = this.data.showKeys.indexOf(key);
 
@@ -35576,7 +35629,9 @@ exports.default = {
 
         this._refreshList();
 
-        this.$watch('conf.shows', function () {
+        this.$watch(function () {
+            return JSON.stringify(_this2.conf.disabledOptions) + '||' + _this2.conf.shows;
+        }, function () {
 
             _this2._refreshList();
         });
@@ -47410,7 +47465,12 @@ var render = function() {
     "mor-collapse",
     {
       class: [],
-      attrs: { _uiid: _vm.uiid, shows: _vm.shows, "max-show": _vm.maxShow }
+      attrs: {
+        _uiid: _vm.uiid,
+        shows: _vm.shows,
+        "max-show": _vm.maxShow,
+        "disabled-options": _vm.disabledOptions
+      }
     },
     [
       _c(
@@ -47422,7 +47482,8 @@ var render = function() {
               _c("li", {
                 staticClass: "menu",
                 class: {
-                  show: _vm.data.showKeys.indexOf(item.key) !== -1
+                  show: _vm.data.showKeys.indexOf(item.key) !== -1,
+                  disabled: _vm.conf.disabledOptions.indexOf(item.key) !== -1
                 },
                 attrs: { "item-key": item.key },
                 domProps: {
@@ -47448,12 +47509,14 @@ var render = function() {
                   attrs: { "item-key": item.key }
                 },
                 [
-                  _c(
-                    "div",
-                    { staticClass: "content-wrap" },
-                    [_vm._t(item.key)],
-                    2
-                  )
+                  _vm.conf.disabledOptions.indexOf(item.key) === -1
+                    ? _c(
+                        "div",
+                        { staticClass: "content-wrap" },
+                        [_vm._t(item.key)],
+                        2
+                      )
+                    : _vm._e()
                 ]
               )
             ]

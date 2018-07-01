@@ -7131,6 +7131,14 @@ mor-collapse > ul.collapse-ul .menu.show:nth-last-child(2) {
 mor-collapse > ul.collapse-ul .menu.show > .mo-collapse-icon {
   transform: rotateZ(90deg);
 }
+mor-collapse > ul.collapse-ul .menu.disabled {
+  background: #e3e9f0;
+  color: #8E9CAF;
+  cursor: not-allowed;
+}
+mor-collapse > ul.collapse-ul .menu.disabled .mo-collapse-icon {
+  display: none;
+}
 mor-collapse > ul.collapse-ul .content {
   border-left: 1px #E2E8EE solid;
   border-right: 1px #E2E8EE solid;
@@ -7148,6 +7156,7 @@ mor-collapse > ul.collapse-ul .content .content-wrap {
 mor-collapse > ul.collapse-ul .content.show {
   border-bottom: 1px #E2E8EE solid;
   display: block;
+  pointer-events: auto;
 }
 mor-collapse > ul.collapse-ul .content.show:last-child {
   border-radius: 0 0 3px 3px;
@@ -7171,10 +7180,7 @@ mor-collapse.line > ul.collapse-ul {
 }
 mor-collapse.line > ul.collapse-ul .menu {
   background: #FFFFFF;
-  border-bottom-width: 0;
-  border-top-width: 1px;
-  border-left-width: 0;
-  border-right-width: 0;
+  border-width: 1px 0;
   font-weight: 700;
 }
 mor-collapse.line > ul.collapse-ul .menu.show {

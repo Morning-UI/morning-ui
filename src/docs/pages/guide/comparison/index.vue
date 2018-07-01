@@ -10,7 +10,7 @@
 
         <p>希望对你的挑选有所帮助。</p>
 
-        <p>此对比截止：2018年6月22日。</p>
+        <p>此对比截止：2018年7月1日。</p>
         
         <table class="components">
             <thead>
@@ -46,7 +46,7 @@
                     <td class="mark">2.4.0</td>
                     <td class="mark">2.14.1</td>
                     <td class="mark">3.6.1</td>
-                    <td class="mark">0.11.0</td>
+                    <td class="mark">0.11.4</td>
                 </tr>
                 <tr>
                     <td class="item">官网</td>
@@ -1960,7 +1960,7 @@
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
                     <td class="mark">
-                        <i class="iconfont no">&#xe62e;</i>
+                        <i class="iconfont has">&#xe62d;</i>
                     </td>
                 </tr>
                 <tr class="components">
