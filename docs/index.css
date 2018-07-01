@@ -372,8 +372,8 @@ mor-dialog a:hover {
   font-size: 13px;
   padding: 0 20px;
 }
-.lrBox .left a,
-.lrBox .right a {
+.lrBox .left *:not(mor-btn) > a,
+.lrBox .right *:not(mor-btn) > a {
   color: #000;
   padding: 0 5px;
 }

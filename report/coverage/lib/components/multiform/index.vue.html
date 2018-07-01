@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">18.01% </span>
+        <span class="strong">18.52% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>29/161</span>
+        <span class='fraction'>30/162</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">27.27% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>33/121</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">27.5% </span>
+        <span class="strong">29.27% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>11/40</span>
+        <span class='fraction'>12/41</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">16.78% </span>
+        <span class="strong">17.36% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>24/143</span>
+        <span class='fraction'>25/144</span>
       </div>
     </div>
   </div>
@@ -645,7 +645,16 @@
 600
 601
 602
-603</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -774,12 +783,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">140x</span>
-<span class="cline-any cline-yes">140x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">140x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">140x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">142x</span>
+<span class="cline-any cline-yes">142x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">142x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">142x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -826,8 +838,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1246,8 +1264,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">140x</span>
-<span class="cline-any cline-yes">140x</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
+<span class="cline-any cline-yes">142x</span>
+<span class="cline-any cline-yes">142x</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
     &lt;mor-multiform
         :_uiid="uiid"
         :class="[formClass, stateClass, moveClass]"
@@ -1267,6 +1285,7 @@
         :batch-reg="batchReg"
         :batch-filler="batchFiller"
         :batch-uniq="batchUniq"
+        :show-type="showType"
     &gt;
 &nbsp;
     &lt;div class="itemlist"&gt;
@@ -1336,6 +1355,7 @@
         width="500px"
         height="75%"
         color="gray"
+        :showType="conf.showType"
         :ref="'ui-multiform-dialog-'+uiid"
         @show="_showForm"
         @hide="_hideForm"
@@ -1356,6 +1376,7 @@
         width="500px"
         height="240px"
         color="gray"
+        :showType="conf.showType"
         v-if="conf.inputType !== 'single'"
         :ref="'ui-multiform-batchdialog-'+uiid"
     &gt;
@@ -1424,6 +1445,11 @@ export default {
         batchUniq : {
             type : Boolean,
             default : false
+        },
+        showType : {
+            type : String,
+            default : 'top',
+            validator : (value =&gt; ['top', 'center', 'no'].indexOf(value) !== -1)
         }
     },
     computed : {
@@ -1438,7 +1464,8 @@ export default {
                 inputType : this.inputType,
                 batchReg : this.batchReg,
                 batchFiller : this.batchFiller,
-                batchUniq : this.batchUniq
+                batchUniq : this.batchUniq,
+                showType : this.showType
             };
 &nbsp;
         }
@@ -1855,7 +1882,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Jun 24 2018 13:17:21 GMT+0800 (CST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Jul 01 2018 18:36:04 GMT+0800 (CST)
 </div>
 </div>
 <script src="../../../prettify.js"></script>

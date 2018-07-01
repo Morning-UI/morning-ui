@@ -17,9 +17,9 @@
         <section class="s1 versioninfo">
             <p>全新Morning UI : </p>
             <a href="/guide/install.html">
-                <ui-label color="silver" size="xs">0.11.3</ui-label>
+                <ui-label color="silver" size="xs">0.11.4</ui-label>
             </a>
-            <p>发布于2018年6月28日</p>
+            <p>发布于2018年7月1日</p>
         </section>
         <section class="s1 silver">
             <div class="w1k center">
@@ -604,7 +604,7 @@ export default {
             padding: 0 20px;
         }
 
-        a{
+        *:not(mor-btn) > a{
             color: #000;
             padding: 0 5px;
         }
