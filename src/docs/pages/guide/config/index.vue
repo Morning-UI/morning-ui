@@ -277,6 +277,7 @@
     - `value-type` : 值类型
     - `allow-alpha` : 允许透明
     - `title-col-width` : 标题列宽度
+    - `shows` : 显示的项目
 
     </script>
     </doc-guide>

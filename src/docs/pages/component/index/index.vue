@@ -89,6 +89,7 @@
             <ul>
                 <li><a href="/component/dropdown.html">下拉菜单<p>&lt;dropdown></p></a></li>
                 <li><a href="/component/tab.html">标签页<p>&lt;tab></p></a></li>
+                <li><a href="/component/collapse.html">折叠面板<p>&lt;collapse></p></a></li>
                 <li><a href="/component/pagination.html">分页<p>&lt;pagination></p></a></li>
                 <li><a href="/component/breadcrumbs.html">面包屑<p>&lt;breadcrumbs></p></a></li>
             </ul>

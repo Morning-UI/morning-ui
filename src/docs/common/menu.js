@@ -53,6 +53,7 @@ export default {
         // 级联菜单<i class="tag new"></i> : 'b',
         // 树形控件 : 'b',
         '标签页<i class="tag update l1"></i>' : '/component/tab.html',
+        '折叠面板<i class="tag new l1"></i>' : '/component/collapse.html',
         表格 : '/component/table.html',
         分页 : '/component/pagination.html',
         模拟盒 : '/component/dialog.html',
