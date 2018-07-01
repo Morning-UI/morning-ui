@@ -441,7 +441,7 @@ export default {
 
         });
 
-        this.$watch('conf.tab', () => {
+        this.$watch(() => (`${JSON.stringify(this.conf.disabledOptions)}||${this.conf.tab}`), () => {
 
             this._initSelectTab();
 
