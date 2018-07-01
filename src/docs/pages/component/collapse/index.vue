@@ -12,7 +12,7 @@
 
     定义一个折叠面板，折叠面板支持嵌套，这是一个块元素。
 
-    使用`slot`属性标记内容对应的折叠面板的KEY，面板的KEY是唯一索引，所以`slot`不能重复。
+    使用`slot`的`name`属性标记内容对应的折叠面板的KEY，面板的KEY是唯一索引，所以`slot`不能重复。
 
     折叠面板支持多种样式，通过不同的样式类来区分。
 
@@ -229,6 +229,86 @@
     </div>
     :::
 
+    [[[方法]]]
+
+    #### switch(key)
+
+    切换指定面板的显示状态。
+
+    |KEY|可选|描述|接受值|值类型|默认值|
+    |-|-|-|-|-|-|
+    |key|NO|需要切换显示状态的面板的KEY|面板的KEY，即`slot`的`name`|`String`|`undefined`|
+    
+    :::democode/html
+    <div style="width: 560px;">
+        <ui-collapse ref="demo1">
+            <div slot="one" title="第一个">
+                这里是第一个内容
+            </div>
+            <div slot="two" title="第二个">
+                这里是第二个内容
+            </div>
+            <div slot="three" title="第三个">
+                这里是第三个内容
+            </div>
+        </ui-collapse>
+    </div>
+    <br><br> 
+    <ui-link js="morning.findVM('demo1').switch('one');">切换第一个的显示状态</ui-link>
+    <ui-link js="morning.findVM('demo1').switch('two');">切换第二个的显示状态</ui-link>
+    :::
+
+    #### show(key)
+
+    显示指定面板。
+
+    |KEY|可选|描述|接受值|值类型|默认值|
+    |-|-|-|-|-|-|
+    |key|NO|需要显示面板的KEY|面板的KEY，即`slot`的`name`|`String`|`undefined`|
+    
+    :::democode/html
+    <div style="width: 560px;">
+        <ui-collapse ref="demo2">
+            <div slot="one" title="第一个">
+                这里是第一个内容
+            </div>
+            <div slot="two" title="第二个">
+                这里是第二个内容
+            </div>
+            <div slot="three" title="第三个">
+                这里是第三个内容
+            </div>
+        </ui-collapse>
+    </div>
+    <br><br> 
+    <ui-link js="morning.findVM('demo2').show('one');">显示第一个面板</ui-link>
+    :::
+
+    #### hide(key)
+
+    隐藏指定面板。
+
+    |KEY|可选|描述|接受值|值类型|默认值|
+    |-|-|-|-|-|-|
+    |key|NO|需要隐藏面板的KEY|面板的KEY，即`slot`的`name`|`String`|`undefined`|
+    
+    :::democode/html
+    <div style="width: 560px;">
+        <ui-collapse ref="demo3" :shows="['one']">
+            <div slot="one" title="第一个">
+                这里是第一个内容
+            </div>
+            <div slot="two" title="第二个">
+                这里是第二个内容
+            </div>
+            <div slot="three" title="第三个">
+                这里是第三个内容
+            </div>
+        </ui-collapse>
+    </div>
+    <br><br> 
+    <ui-link js="morning.findVM('demo3').hide('one');">隐藏第一个面板</ui-link>
+    :::
 
     [[[源码]]]
 

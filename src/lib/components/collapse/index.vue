@@ -164,7 +164,7 @@ export default {
             }
 
         },
-        open : function (key) {
+        show : function (key) {
 
             if (this.data.showKeys.indexOf(key) !== -1) {
 
@@ -190,7 +190,7 @@ export default {
             return this;
 
         },
-        close : function (key) {
+        hide : function (key) {
 
             if (this.data.showKeys.indexOf(key) === -1) {
 
@@ -227,11 +227,11 @@ export default {
 
             if (keyIndex === -1) {
 
-                this.open(key);
+                this.show(key);
 
             } else {
 
-                this.close(key);
+                this.hide(key);
 
             }
 
