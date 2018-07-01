@@ -179,11 +179,12 @@
 
     |KEY|描述|接受值|值类型|默认值|
     |-|-|-|-|-|
-    |[tab](#tab)|需要展示的标签页|`slot`(标签名)|String|第一个标签名|
+    |[tab](#tab)|需要展示的标签页<br>无法选中`disabled-options`设置的禁用标签。|`slot`(标签名)|String|第一个标签名|
     |[prepend](#prepend)|在对应标签名之前插入内容(可以是HTML，一般用于插入icon)。若标签名在此对象中未找到则什么都不插入。|需要插入内容的hash(键名对应标签名，键值是需要插入的内容)|Object|`{}`|
     |[append](#append)|在对应标签名之后插入内容(可以是HTML，一般用于插入icon)。若标签名在此对象中未找到则什么都不插入。|需要插入内容的hash(键名对应标签名，键值是需要插入的内容)|Object|`{}`|
     |[anchor-target](#anchor-target)|是否启用锚点定位。启用后URL中锚点匹配到的元素所在的标签页，会切换标签并滚动到此元素。<br>多层嵌套的标签页进行切换时，如层级中某个标签页组件未开启此配置，则这个标签页不会进行切换。但不影响其他标签页切换。|`true`<br>`false`|Boolean|`false`|
     |[position](#position)|标签页的位置|`'top'`：上方<br>`'left'`：左侧|String|`'top'`|
+    |[disabled-options](#disabled-options)|禁用指定的标签页，禁用后将无法切换到此标签页<br>若在通过`tab`配置指定的标签处于禁用状态，则会切换到下一个最近可用标签。<br>注意：请至少保留一个可选标签|禁用标签名组成的数组|Array|`[]`|
 
     #### tab
 
@@ -351,6 +352,56 @@
 
     :::democode/html
     <ui-tab position="left" class="btn">
+        <div slot="第一页">第一页</div>
+        <div slot="第二页">第二页</div>
+    <div slot="第三页">第三页</div>
+    </ui-tab>
+    :::
+
+    #### disabled-options
+
+    :::democode/html
+    <ui-tab :disabled-options="['第二页']">
+        <div slot="第一页">第一页</div>
+        <div slot="第二页">第二页</div>
+        <div slot="第三页">第三页</div>
+    </ui-tab>
+    :::
+
+    区块标签页：
+
+    :::democode/html
+    <ui-tab :disabled-options="['第二页']" class="block">
+        <div slot="第一页">第一页</div>
+        <div slot="第二页">第二页</div>
+        <div slot="第三页">第三页</div>
+    </ui-tab>
+    :::
+
+    线条标签页：
+
+    :::democode/html
+    <ui-tab :disabled-options="['第二页']" class="line">
+        <div slot="第一页">第一页</div>
+        <div slot="第二页">第二页</div>
+        <div slot="第三页">第三页</div>
+    </ui-tab>
+    :::
+
+    按钮式标签页：
+
+    :::democode/html
+    <ui-tab :disabled-options="['第二页']" class="btn">
+        <div slot="第一页">第一页</div>
+        <div slot="第二页">第二页</div>
+        <div slot="第三页">第三页</div>
+    </ui-tab>
+    :::
+
+    使用`tab`无法选中禁用的标签（自动切换下一个最近可选标签）：
+
+    :::democode/html
+    <ui-tab :disabled-options="['第二页']" tab="第二页">
         <div slot="第一页">第一页</div>
         <div slot="第二页">第二页</div>
         <div slot="第三页">第三页</div>

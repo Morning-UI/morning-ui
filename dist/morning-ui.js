@@ -22093,7 +22093,8 @@ exports.default = {
                 strawSize: 0,
                 dontPickColor: false,
                 $preview: null,
-                $picker: null
+                $picker: null,
+                toggling: false
             }
         };
     },
@@ -22277,6 +22278,7 @@ exports.default = {
             }
 
             this.data.alpha = value;
+            this.$emit('alpha-slider-change');
         },
         _alphaChangePer: function _alphaChangePer(per) {
 
@@ -22305,6 +22307,7 @@ exports.default = {
             }
 
             this.data.hslH = value;
+            this.$emit('hue-slider-change');
         },
         _hsvChangeSV: function _hsvChangeSV(s, v) {
 
@@ -22372,6 +22375,7 @@ exports.default = {
             }
 
             this.data.showValueType = valueTypes[index];
+            this.$emit('input-type-change');
         },
         _hslHSync: function _hslHSync(sync) {
 
@@ -22479,8 +22483,15 @@ exports.default = {
             (0, _clipboardCopy2.default)(this.colorString);
         },
         togglePicker: function togglePicker(show) {
+            var _this3 = this;
+
+            if (this.data.toggling) {
+
+                return this;
+            }
 
             this.data.first = false;
+            this.data.toggling = true;
 
             if (show === undefined) {
 
@@ -22495,12 +22506,17 @@ exports.default = {
                 this._hidePicker();
             }
 
+            this.Vue.nextTick(function () {
+
+                _this3.data.toggling = false;
+            });
+
             return this;
         }
     },
     created: function created() {},
     mounted: function mounted() {
-        var _this3 = this;
+        var _this4 = this;
 
         this.data.$preview = this.$el.querySelector('.preview');
         this.data.$picker = this.$el.querySelector('.mo-colorpicker-wrap');
@@ -22516,20 +22532,20 @@ exports.default = {
 
         this.Vue.nextTick(function () {
 
-            _this3.data.panel.w = $container.clientWidth;
-            _this3.data.panel.h = $container.clientHeight;
-            _this3.data.strawSize = _this3.data.$picker.querySelector('.straw').offsetWidth;
-            _this3.Move.range = [-_this3.data.strawSize / 2, -_this3.data.strawSize / 2, $container.clientWidth + _this3.data.strawSize / 2, $container.clientHeight + _this3.data.strawSize / 2];
+            _this4.data.panel.w = $container.clientWidth;
+            _this4.data.panel.h = $container.clientHeight;
+            _this4.data.strawSize = _this4.data.$picker.querySelector('.straw').offsetWidth;
+            _this4.Move.range = [-_this4.data.strawSize / 2, -_this4.data.strawSize / 2, $container.clientWidth + _this4.data.strawSize / 2, $container.clientHeight + _this4.data.strawSize / 2];
         });
 
         this.$watch('inputIsReadonly', function () {
 
-            if (_this3.inputIsReadonly) {
+            if (_this4.inputIsReadonly) {
 
-                _this3.Move.can = false;
+                _this4.Move.can = false;
             } else {
 
-                _this3.Move.can = true;
+                _this4.Move.can = true;
             }
         }, {
             immediate: true
@@ -22537,12 +22553,12 @@ exports.default = {
 
         this.$watch('colorHex', function () {
 
-            var colorObj = _this3.colorObj;
+            var colorObj = _this4.colorObj;
             var hsv = colorObj.hsv().object();
 
-            if (_this3.data.$picker) {
+            if (_this4.data.$picker) {
 
-                var $track = _this3.data.$picker.querySelector('.alpha mor-slider .track');
+                var $track = _this4.data.$picker.querySelector('.alpha mor-slider .track');
 
                 if ($track) {
 
@@ -22550,8 +22566,8 @@ exports.default = {
                 }
             }
 
-            var s = _this3.data.hsvS;
-            var v = _this3.data.hsvV;
+            var s = _this4.data.hsvS;
+            var v = _this4.data.hsvV;
 
             if (s === -1) {
 
@@ -22559,14 +22575,14 @@ exports.default = {
                 v = num100 - hsv.v;
             }
 
-            _this3._rePositionStrawWithSV(s, v);
+            _this4._rePositionStrawWithSV(s, v);
         }, {
             immediate: true
         });
 
         this.$watch('colorObj', function () {
 
-            _this3._set(_this3._getColorString(_this3.conf.valueType));
+            _this4._set(_this4._getColorString(_this4.conf.valueType));
         }, {
             deep: true,
             immediate: true
@@ -22574,41 +22590,41 @@ exports.default = {
 
         this.$on('value-change', function () {
 
-            _this3._syncColorFromValue();
+            _this4._syncColorFromValue();
         });
 
         this.$on('show-picker', function () {
 
             setTimeout(function () {
 
-                _this3._globalEventAdd('click', '_checkArea');
+                _this4._globalEventAdd('click', '_checkArea');
             });
         });
 
         this.$on('hide-picker', function () {
 
-            _this3._globalEventRemove('click', '_checkArea');
+            _this4._globalEventRemove('click', '_checkArea');
         });
 
         this.$on('_moveStarted', function () {
 
-            _this3.data.picking = true;
+            _this4.data.picking = true;
         });
 
         this.$on('_moveEnded', function () {
 
-            _this3.data.straw = {
-                x: _this3.Move.current.x,
-                y: _this3.Move.current.y
+            _this4.data.straw = {
+                x: _this4.Move.current.x,
+                y: _this4.Move.current.y
             };
-            _this3.data.picking = false;
-            _this3.data.dontPickColor = false;
-            _this3._hsvChangeSV((+_this3.Move.current.x + _this3.data.strawSize / 2) / _this3.data.panel.w * num100, (+_this3.Move.current.y + _this3.data.strawSize / 2) / _this3.data.panel.h * num100);
+            _this4.data.picking = false;
+            _this4.data.dontPickColor = false;
+            _this4._hsvChangeSV((+_this4.Move.current.x + _this4.data.strawSize / 2) / _this4.data.panel.w * num100, (+_this4.Move.current.y + _this4.data.strawSize / 2) / _this4.data.panel.h * num100);
         });
 
         this.$on('_moveChange', function () {
 
-            _this3._hsvChangeSV((+_this3.Move.current.x + _this3.data.strawSize / 2) / _this3.data.panel.w * num100, (+_this3.Move.current.y + _this3.data.strawSize / 2) / _this3.data.panel.h * num100);
+            _this4._hsvChangeSV((+_this4.Move.current.x + _this4.data.strawSize / 2) / _this4.data.panel.w * num100, (+_this4.Move.current.y + _this4.data.strawSize / 2) / _this4.data.panel.h * num100);
         });
     },
     beforeDestroy: function beforeDestroy() {
