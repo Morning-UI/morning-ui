@@ -186,11 +186,9 @@ export default {
 
                 return null;
 
-            } else {
-
-                return name;
-
             }
+
+            return name;
 
         },
         _initSelectTab : function () {
