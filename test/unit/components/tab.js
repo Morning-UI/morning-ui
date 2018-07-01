@@ -69,7 +69,7 @@ test.serial('slot is dynamic', async t => {
 
         Vue.nextTick(() => {
 
-            t.is(vm.$el.innerHTML, `<ul><li name="first" class="current">first</li><li name="second">second</li><li name="third">third</li></ul><div class="contents" style="width: 100%; min-height: 0;"><div name="first" class="item mor-tab-item current"><div>
+            t.is(vm.$el.innerHTML, `<ul><li name="first" class="current">first</li><li name="second" class="">second</li><li name="third" class="">third</li></ul><div class="contents" style="width: 100%; min-height: 0;"><div name="first" class="item mor-tab-item current"><div>
         CONTENT : first
     </div></div><div name="second" class="item mor-tab-item"><div>
         CONTENT : second
@@ -95,7 +95,7 @@ test.serial('slot is dynamic', async t => {
 
         Vue.nextTick(() => {
             
-            t.is(vm.$children[0].$el.innerHTML, `<ul><li name="4th" class="current">4th</li><li name="5th">5th</li></ul><div class="contents" style="width: 100%; min-height: 0;"><div name="4th" class="item mor-tab-item current"><div>
+            t.is(vm.$children[0].$el.innerHTML, `<ul><li name="4th" class="current">4th</li><li name="5th" class="">5th</li></ul><div class="contents" style="width: 100%; min-height: 0;"><div name="4th" class="item mor-tab-item current"><div>
         CONTENT : 4th
     </div></div><div name="5th" class="item mor-tab-item"><div>
         CONTENT : 5th

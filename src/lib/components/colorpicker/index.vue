@@ -290,7 +290,8 @@ export default {
                 strawSize : 0,
                 dontPickColor : false,
                 $preview : null,
-                $picker : null
+                $picker : null,
+                toggling : false
             }
         };
 
@@ -533,6 +534,7 @@ export default {
             }
 
             this.data.alpha = value;
+            this.$emit('alpha-slider-change');
 
         },
         _alphaChangePer : function (per) {
@@ -567,6 +569,7 @@ export default {
             }
 
             this.data.hslH = value;
+            this.$emit('hue-slider-change');
 
         },
         _hsvChangeSV : function (s, v) {
@@ -648,6 +651,7 @@ export default {
             }
 
             this.data.showValueType = valueTypes[index];
+            this.$emit('input-type-change');
 
         },
         _hslHSync : function (sync) {
@@ -773,7 +777,14 @@ export default {
         },
         togglePicker : function (show) {
 
+            if (this.data.toggling) {
+
+                return this;
+
+            }
+
             this.data.first = false;
+            this.data.toggling = true;
 
             if (show === undefined) {
 
@@ -790,6 +801,12 @@ export default {
                 this._hidePicker();
 
             }
+
+            this.Vue.nextTick(() => {
+
+                this.data.toggling = false;
+
+            });
 
             return this;
 

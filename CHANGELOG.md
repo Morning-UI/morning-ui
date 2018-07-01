@@ -1,5 +1,26 @@
 # CHANGELOG
 
+## 0.11.4
+
+`2018年7月1日`
+
+#### 新特性
+
+- 新增`ui-collapse`折叠面板组件
+- `ui-upload`支持显示真实的上传进度
+- `ui-colorpicker`新增`show-picker`、`hide-picker`、`hue-slider-change`、`alpha-slider-change`、`input-type-change`事件和`togglePicker`方法
+- `ui-tab`新增`disabled-options`配置，支持禁用指定标签
+
+#### 改进
+
+- 使用Parallelism优化CircleCI持续集成性能
+
+#### 修复
+
+- 修复`ui-btn`和`ui-link`的一些样式问题
+- 修复`ui-datepicker`和`ui-datetimepicker`在选中特定日期范围时显示区间错误的问题
+- 修复`ui-dropdown`点击触发元素无法关闭下拉菜单的问题
+
 ## 0.11.3
 
 `2018年6月28日`

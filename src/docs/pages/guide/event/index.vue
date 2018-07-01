@@ -146,6 +146,11 @@
     - `volume-change` : 音量改变
     - `fullscreen-change` : 全屏状态改变
     - `selection-change` : 选取改变
+    - `show-picker` : 显示选择器
+    - `hide-picker` : 隐藏选择器
+    - `hue-slider-change` : HUE选择器变化
+    - `alpha-slider-change` : 透明度选择器变化
+    - `input-type-change` : 输入类型变化
 
     </script>
     </doc-guide>

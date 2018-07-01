@@ -1,0 +1,148 @@
+@import '~Common/var.less';
+
+@menuBorderColor: @colorLightSilver;
+@menuBgColor: lighten(@colorExtraLightSilver, 2%);
+
+mor-collapse{
+    display: block;
+    width: 100%;
+
+    > ul.collapse-ul{
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        font-size: 0;
+
+        > li{
+            width: 100%;
+            box-sizing: border-box;
+            font-size: @fontSize*0.875;
+        }
+
+        .menu{
+            border: 1px @menuBorderColor solid;
+            padding: 0.5em 1.5em;
+            border-radius: 0;
+            margin: 0;
+            background: @menuBgColor;
+            border-top-width: 0;
+            cursor: pointer;
+            position: relative;
+
+            > i{
+                margin-right: 0.2em;
+                font-size: @fontSize*0.875;
+            }
+
+            .mo-collapse-icon{
+                position: absolute;
+                right: 0.5em;
+                font-size: @fontSize*0.875;
+                color: @colorExtraLightBlue;
+                transition: transform 0.16s;
+            }
+
+            &:first-child{
+                border-radius: @borderRadius @borderRadius 0 0;
+                border-top-width: 1px;
+            }
+
+            &:nth-last-child(2){
+                border-radius: 0 0 @borderRadius @borderRadius;
+            }
+
+            &.show{
+                &:nth-last-child(2){
+                    border-radius: 0;
+                }
+
+                > .mo-collapse-icon{
+                    transform: rotateZ(90deg);
+                }
+            }
+
+            &.disabled{
+                background: darken(@menuBgColor, 5%);
+                color: @colorLightBlue;
+                cursor: not-allowed;
+
+                .mo-collapse-icon{
+                    display: none;
+                }
+            }
+        }
+
+        .content{
+            border-left: 1px @menuBorderColor solid;
+            border-right: 1px @menuBorderColor solid;
+            background: @colorWhite;
+            margin: 0;
+            pointer-events: none;
+            overflow: hidden;
+            display: none;
+
+            .content-wrap{
+                padding: 0.5em 1.5em;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            &.show{
+                border-bottom: 1px @menuBorderColor solid;
+                display: block;
+                pointer-events: auto;
+
+                &:last-child{
+                    border-radius: 0 0 @borderRadius @borderRadius;
+                }
+            }
+        }
+    }
+
+    &.block > ul.collapse-ul{
+        .menu{
+            margin-top: 10px;
+            border-top-width: 1px;
+            border-radius: @borderRadius;
+
+            &:first-child{
+                margin-top: 0;
+            }
+
+            &.show{
+                border-radius: @borderRadius @borderRadius 0 0;
+            }
+        }
+
+        .content{
+            border-radius: 0 0 @borderRadius @borderRadius;
+        }
+    }
+
+    &.line > ul.collapse-ul{
+        border-bottom: 1px @menuBorderColor solid;
+
+        .menu{
+            background: @colorWhite;
+            border-width: 1px 0;
+            font-weight: 700;
+
+            &.show{
+                border-bottom-width: 0;
+            }
+        }
+
+        .content{
+            border: none;
+        }
+    }
+
+    &.no-arrow{
+        > ul.collapse-ul .menu .mo-collapse-icon{
+            display: none;
+        }
+    }
+
+    // default status
+    &{}
+}

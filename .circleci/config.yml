@@ -47,6 +47,7 @@ jobs:
   test-unit:
     docker:
       - image: circleci/node:8.7-browsers
+    parallelism: 2
     working_directory: ~/repo
     steps:
       - checkout
@@ -56,10 +57,11 @@ jobs:
       - restore_cache:
           keys:
             - v2-build-{{ .Environment.CIRCLE_SHA1 }}
-      - run: npm run ci-unit
+      - run: circleci tests glob "test/unit/**/*.js" "test/unit/*.js" | circleci tests split | xargs npm run ci-unit --
   test-e2e:
     docker:
       - image: circleci/node:8.7-browsers
+    parallelism: 2
     working_directory: ~/repo
     steps:
       - checkout
@@ -69,7 +71,7 @@ jobs:
       - restore_cache:
           keys:
             - v2-build-{{ .Environment.CIRCLE_SHA1 }}
-      - run: npm run doc -- --port 8089 & npm run ci-e2e
+      - run: npm run doc -- --port 8089 & (circleci tests glob "test/e2e/**/*.js" "test/e2e/*.js" | circleci tests split | xargs npm run ci-e2e --)
   coverage:
     docker:
       - image: circleci/node:8.7-browsers
