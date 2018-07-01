@@ -1,14 +1,17 @@
 @import '~Common/var.less';
 
-@tabBorderColor: lighten(@colorLightSilver, 2%);
+@tabBorderColor: lighten(@colorLightSilver, 0%);
 @tabBorderHoverColor: darken(@colorLightSilver, 8%);
-@tabBorderCurrentColor: darken(@colorLightSilver, 1%);
+@tabBorderCurrentColor: darken(@colorLightSilver, 2%);
+@tabBorderDisabledColor: @colorSilver;
 @tabBgColor: lighten(@colorExtraLightSilver, 2%);
 @tabBgHoverColor: @colorExtraLightSilver;
 @tabBgCurrentColor: @colorWhite;
+@tabBgDisabledColor: @colorSilver;
 @tabFontColor: @colorExtraLightBlue;
 @tabFontHoverColor: @colorExtraLightBlack;
 @tabFontCurrentColor: @colorBlack;
+@tabFontDisabledColor: @colorLightBlue;
 
 mor-tab{
     > ul{
@@ -54,6 +57,13 @@ mor-tab{
                 color: @tabFontCurrentColor;
                 border-color: @tabBorderCurrentColor;
                 z-index: 5;
+                cursor: default;
+            }
+
+            &.disabled{
+                background-color: @tabBgDisabledColor;
+                color: @tabFontDisabledColor;
+                border-color: @tabBorderDisabledColor;
                 cursor: default;
             }
         }
@@ -150,6 +160,13 @@ mor-tab{
                     background: @tabBgCurrentColor;
                     color: @tabFontCurrentColor;
                 }
+
+                &.disabled{
+                    background-color: @tabBgDisabledColor;
+                    color: @tabFontDisabledColor;
+                    border-color: @tabBorderDisabledColor;
+                    cursor: default;
+                }
             }
         }
 
@@ -205,6 +222,12 @@ mor-tab{
                 border-bottom-color: @colorTheme;
                 color: @tabFontCurrentColor;
             }
+
+            &.disabled{
+                color: @tabFontDisabledColor;
+                border-bottom-color: darken(@tabBorderDisabledColor, 20%);
+                cursor: default;
+            }
         }
 
         > .contents{
@@ -250,7 +273,7 @@ mor-tab{
             margin: 0;
             padding: 0.5em 1.3em;
             top: 0;
-            background: @colorWhite;
+            background: @tabBgColor;
 
             &:first-child{
                 border-radius: @borderRadius 0 0 @borderRadius;
@@ -264,22 +287,32 @@ mor-tab{
             &:hover{
                 color: @tabFontHoverColor;
                 border-color: @tabBorderHoverColor;
-                border-right: 1px @tabBorderHoverColor solid;
+
+                + li{
+                    border-left: 1px @tabBorderHoverColor solid;
+                }
+
+                + li.current{
+                    border-left: 1px @colorTheme solid;
+                }
+            }
+
+            &.current{
+                color: @tabFontCurrentColor;
+                border-color: @colorTheme;
+                border-right-width: 1px;
+                background-color: @tabBgCurrentColor;
 
                 + li{
                     border-left-width: 0;
                 }
             }
 
-            &.current{
-                color: @tabFontCurrentColor;
-                border-color: @tabBorderHoverColor;
-                border-right: 1px @tabBorderHoverColor solid;
-                background-color: @tabBorderCurrentColor;
-
-                + li{
-                    border-left-width: 0;
-                }
+            &.disabled{
+                color: @tabFontDisabledColor;
+                border-color: @tabBorderDisabledColor;
+                background-color: @tabBgDisabledColor;
+                cursor: default;
             }
         }
 
@@ -308,16 +341,24 @@ mor-tab{
                 }
 
                 &:hover{
-                    border-bottom: 1px @tabBorderHoverColor solid;
+                    border-bottom-color: @tabBorderHoverColor;
 
                     + li{
+                        border-left-color: @tabBorderColor;
                         border-left-width: 1px;
-                        border-top-width: 0;
+                        border-top-width: 1px;
+                        border-top-color: @tabBorderHoverColor;
+                    }
+
+                    + li.current{
+                        border-left-color: @colorTheme;
+                        border-left-width: 1px;
+                        border-top: 1px @colorTheme solid;
                     }
                 }
 
                 &.current{
-                    border-bottom: 1px @tabBorderHoverColor solid;
+                    border-bottom: 1px @colorTheme solid;
 
                     + li{
                         border-left-width: 1px;

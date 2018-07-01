@@ -5,6 +5,7 @@
     
         :shows="shows"
         :max-show="maxShow"
+        :disabled-options="disabledOptions"
     >
 
         <ul class="collapse-ul">
@@ -12,7 +13,8 @@
                 <li 
                     class="menu"
                     :class="{
-                        show : (data.showKeys.indexOf(item.key) !== -1)
+                        show : (data.showKeys.indexOf(item.key) !== -1),
+                        disabled : (conf.disabledOptions.indexOf(item.key) !== -1)
                     }"
                     :item-key="item.key"
                     v-html="item.title + '<i class=\'mo-collapse-icon mo-icon mo-icon-right\'></i>'"
@@ -25,7 +27,7 @@
                     }"
                     :item-key="item.key"
                 >
-                    <div class="content-wrap">
+                    <div class="content-wrap" v-if="conf.disabledOptions.indexOf(item.key) === -1">
                         <slot :name="item.key"></slot>
                     </div>
                 </li>
@@ -39,6 +41,7 @@
 import extend                       from 'extend';
 
 const animateTime = 160;
+const oneSecond = 1000;
 
 export default {
     origin : 'UI',
@@ -51,6 +54,10 @@ export default {
         maxShow : {
             type : Number,
             default : Infinity
+        },
+        disabledOptions : {
+            type : Array,
+            default : (() => [])
         }
     },
     computed : {
@@ -58,7 +65,8 @@ export default {
 
             return {
                 shows : this.shows,
-                maxShow : this.maxShow
+                maxShow : this.maxShow,
+                disabledOptions : this.disabledOptions
             };
 
         }
@@ -90,8 +98,20 @@ export default {
             }
 
             this.data.list = list;
-            this.data.showKeys = extend([], this.conf.shows);
 
+            let showKeys = [];
+
+            for (let key of extend([], this.conf.shows)) {
+
+                if (this.conf.disabledOptions.indexOf(key) === -1) {
+
+                    showKeys.push(key);
+
+                }
+
+            }
+
+            this.data.showKeys = showKeys;
 
         },
         _onClick : function (key) {
@@ -116,8 +136,8 @@ export default {
                     $content.style.height = `${nowHeight}px`;
 
                     setTimeout(() => {
-                    
-                        $content.style.transition = `height ${animateTime/1000}s`;
+
+                        $content.style.transition = `height ${animateTime / oneSecond}s`;
                         $content.style.height = `${contentHeight}px`;
 
                     });
@@ -143,11 +163,10 @@ export default {
 
                     setTimeout(() => {
 
-                        $content.style.transition = `height ${animateTime/1000}s`;
+                        $content.style.transition = `height ${animateTime / oneSecond}s`;
                         $content.style.height = '0px';
                     
-                    }, );
-                    
+                    });
 
                 });
 
@@ -165,6 +184,12 @@ export default {
 
         },
         show : function (key) {
+
+            if (this.conf.disabledOptions.indexOf(key) !== -1) {
+
+                return this;
+
+            }
 
             if (this.data.showKeys.indexOf(key) !== -1) {
 
@@ -185,7 +210,7 @@ export default {
 
             }, animateTime);
             
-            this.$emit('open', key);  
+            this.$emit('show', key);
 
             return this;
 
@@ -216,12 +241,18 @@ export default {
 
             }, animateTime);
 
-            this.$emit('close', key);  
+            this.$emit('hide', key);
 
             return this;
 
         },
         switch : function (key) {
+
+            if (this.conf.disabledOptions.indexOf(key) !== -1) {
+
+                return this;
+
+            }
 
             let keyIndex = this.data.showKeys.indexOf(key);
 
@@ -246,7 +277,7 @@ export default {
 
         this._refreshList();
 
-        this.$watch('conf.shows', () => {
+        this.$watch(() => (`${JSON.stringify(this.conf.disabledOptions)}||${this.conf.shows}`), () => {
 
             this._refreshList();
 

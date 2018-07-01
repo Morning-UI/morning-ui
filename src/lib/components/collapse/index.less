@@ -61,6 +61,15 @@ mor-collapse{
                 }
             }
 
+            &.disabled{
+                background: darken(@menuBgColor, 5%);
+                color: @colorLightBlue;
+                cursor: not-allowed;
+
+                .mo-collapse-icon{
+                    display: none;
+                }
+            }
         }
 
         .content{
@@ -81,6 +90,7 @@ mor-collapse{
             &.show{
                 border-bottom: 1px @menuBorderColor solid;
                 display: block;
+                pointer-events: auto;
 
                 &:last-child{
                     border-radius: 0 0 @borderRadius @borderRadius;
@@ -90,7 +100,6 @@ mor-collapse{
     }
 
     &.block > ul.collapse-ul{
-        
         .menu{
             margin-top: 10px;
             border-top-width: 1px;
@@ -112,13 +121,10 @@ mor-collapse{
 
     &.line > ul.collapse-ul{
         border-bottom: 1px @menuBorderColor solid;
-        
+
         .menu{
             background: @colorWhite;
-            border-bottom-width: 0;
-            border-top-width: 1px;
-            border-left-width: 0;
-            border-right-width: 0;
+            border-width: 1px 0;
             font-weight: 700;
 
             &.show{
