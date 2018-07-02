@@ -1683,7 +1683,7 @@
 
     [[[源码]]]
 
-    <iframe src=\"/report/coverage/lib/components/select/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight\"></iframe>
+    <iframe src="/report/coverage/lib/components/select/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
 
     </script>
     </doc-component>

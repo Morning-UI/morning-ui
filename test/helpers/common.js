@@ -255,11 +255,36 @@ let e2eStatementFnString = `(ctx, type, attrs, basicDemoSelector) => {
 
 }`;
 
+let e2eRenderTestContent = `(ctx, done) => {
+
+    
+    let options = Object.assign({
+        template : \`<div style="width:300px;">
+            <ui-select
+                ref="test"
+                \$\{ctx.template\}
+            >
+            </ui-select>
+        </div>\`
+    }, eval(\`(\$\{ctx.options\})\`));
+
+    window.testpage.$options.components.testcontent = Vue.extend(options);
+
+    window.testpage.istest = true;
+    window.testpage.$nextTick(done);
+
+}`
+
+let e2eGetValue = `(done) => done(null, window.morning.findVM('test').get())`;
+let e2eSetValue = `(value, done) => {window.morning.findVM('test').set(value);done();}`;
+
 let e2eBasicFnString = `ctx => ({
     style : window.getComputedStyle($(ctx.basicDemo)[0])
 })`;
 
 let getE2eDocUrl = tagName => (`${TEST_HOST}/component/${tagName}.html?istest`);
+
+let getE2eTestUrl = () => (`${TEST_HOST}/e2etest.html?istest`);
 
 export default {
     TEST_HOST,
@@ -269,7 +294,11 @@ export default {
     STATE_NA,
     STATE_ALL,
     STATE_NDR,
+    e2eRenderTestContent,
+    e2eGetValue,
+    e2eSetValue,
     e2eStatementFnString,
     e2eBasicFnString,
-    getE2eDocUrl
+    getE2eDocUrl,
+    getE2eTestUrl
 };
