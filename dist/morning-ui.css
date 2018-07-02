@@ -11440,7 +11440,8 @@ mor-select.input-group .select-area {
   visibility: hidden;
   height: 0;
 }
-.mor-select-wrap.select-list {
+.mor-select-wrap.select-list,
+.mor-select-wrap .select-list {
   pointer-events: none;
   visibility: hidden;
   position: absolute;
@@ -11548,6 +11549,7 @@ mor-select.input-group .select-area {
   visibility: hidden;
   height: 0;
   border-radius: 3px 3px 0 0;
+  border-width: 0;
 }
 .mor-select-wrap .wrap > mor-textinput {
   width: calc( 100% - 30px );
@@ -11627,6 +11629,7 @@ mor-select.input-group .select-area {
   border-color: #d7d7d7;
 }
 .mor-select-wrap .wrap.showwrap {
+  border-width: 1px;
   pointer-events: auto;
   visibility: visible;
   height: auto;
@@ -11738,6 +11741,7 @@ mor-select.input-group .select-area {
 .mor-select-wrap .showlist {
   pointer-events: auto;
   visibility: visible;
+  height: auto;
 }
 .mor-select-wrap.showlist .list,
 .mor-select-wrap .showlist .list {

@@ -331,7 +331,8 @@ mor-select{
         height: 0;
     }
 
-    &.select-list{
+    &.select-list,
+    .select-list{
         .setup-select-list();
     }
 
@@ -436,8 +437,10 @@ mor-select{
         visibility: hidden;
         height: 0;
         border-radius: @borderRadius @borderRadius 0 0;
+        border-width: 0;
 
         &.showwrap{
+            border-width: 1px;
             pointer-events: auto;
             visibility: visible;
             height: auto;
@@ -469,6 +472,7 @@ mor-select{
     .showlist{
         pointer-events: auto;
         visibility: visible;
+        height: auto;
 
         .list{
             transform: scaleY(1);

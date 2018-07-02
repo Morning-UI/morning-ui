@@ -259,7 +259,8 @@ let e2eRenderTestContent = `(ctx, done) => {
 
     
     let options = Object.assign({
-        template : \`<div style="width:300px;">
+        template : \`<div style="width:400px;">
+            \$\{ctx.templateBefore || ''\}
             <ui-select
                 ref="test"
                 \$\{ctx.template\}

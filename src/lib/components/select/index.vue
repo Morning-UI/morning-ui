@@ -1157,14 +1157,17 @@ export default {
                 if (!this.conf.separateEmit) {
 
                     this.data.$listWrap.style.width = `${$target.offsetWidth}px`;
+                    this.data.$listWrap.style.minWidth = '120px';
 
                 } else if (typeof this.conf.listWidth === 'number') {
 
                     this.data.$listWrap.style.width = `${this.conf.listWidth}px`;
+                    this.data.$listWrap.style.minWidth = '0';
 
                 } else {
 
                     this.data.$listWrap.style.width = `${this.$el.offsetWidth || this.data.$listWrap.offsetWidth}px`;
+                    this.data.$listWrap.style.minWidth = '120px';
 
                 }
 
