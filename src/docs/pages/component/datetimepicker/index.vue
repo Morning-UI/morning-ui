@@ -62,6 +62,7 @@
     |[date-selectable-range](#date-selectable-range)|可选日期时间范围，是一个连续的时间段，可以限制到的时分秒，若不设置则不限。这是一个数组，支持以下格式：<br><br>`[开始日期, 结束日期]`: 指定单个可选范围<br>`[[开始日期1, 结束日期1], [开始日期2, 结束日期2]]`: 指定多个可选范围<br><br>可选日期将大于等于`开始日期`，小于等于`结束日期`。<br><br>`开始日期`和`结束日期`均为日期字符串需要符合`format`配置的日期格式。|日期范围数组|Array|`undefined`|
     |[time-selectable-range](#time-selectable-range)|可选时间范围，若不设置则不限。这是一个数组，支持以下格式：<br><br>`[开始时间, 结束时间]`: 指定单个可选范围<br><br>可选时间将大于等于`开始时间`，小于等于`结束时间`。<br><br>`开始时间`和`结束时间`均为时间字符串需要符合`format`配置的时间格式。<br><br>此配置用于限制每天可选的时间范围(仅支持一个范围)，若需要限制一个时间段请使用`date-selectable-range`配置。<br><br>如同时配置了`date-selectable-range`则取可选范围的交集。|时间范围数组|Array|`undefined`|
     |[is-range](#is-range)|选择日期时间区间，开启后可以选在一个日期时间段|`true`<br>`false`|Boolean|`false`|
+    |[range-input-direction](#range-input-direction)|区间日期选择时，开始/结束输入框的排列方向<br>仅在开启`is-range`配置时生效|`'horizontal'` : 横向<br>`'vertical'` : 竖直|String|`'horizontal'`|
     |[separator](#separator)|日期时间区间选择时中间的分隔内容，只有开启`is-range`才有效|分隔字符串|String|`'至'`|
     |[separator-type](#separator-type)|日期时间区间选择时中间的分隔内容的展现类型|`'block'`：块状<br>`'inline'`：行内|String|`'block'`|
     |[start-name](#start-name)|日期时间区间选择时`开始日期时间`表单显示的名称，若设为`false`则显示`form-name`，只有开启`is-range`才有效|任意字符串<br>`false`:显示`form-name`|String<br>Boolean|`'开始日期时间'`|
@@ -338,6 +339,16 @@
     :::democode/html
     <div style="width:460px;">
         <ui-datetimepicker form-name="日期时间" :date="+new Date('2018-03-23')" :is-range="true" :default-value="['2018-03-10 08:00:00', '2018-03-20 21:30:30']"></ui-datetimepicker>
+    </div>
+    :::
+
+    #### range-input-direction
+
+    竖直排列的选择框：
+
+    :::democode/html
+    <div style="width:320px;">
+        <ui-datetimepicker form-name="日期时间" :is-range="true" range-input-direction="vertical"></ui-datetimepicker>
     </div>
     :::
 

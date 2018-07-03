@@ -17,6 +17,7 @@
         :selectable-range="selectableRange"
         :show-timepicker-box="showTimepickerBox"
         :is-range="isRange"
+        :range-input-direction="rangeInputDirection"
         :separator="separator"
         :separator-type="separatorType"
         :start-name="startName"
@@ -29,269 +30,271 @@
             <i class='mo-icon mo-icon-date'></i>
         </div>
 
-        <template v-if="conf.isRange">
-            <morning-private-datepicker
-                class="datepicker-input-0 datepicker-input-first"
-                :ref="'ui-datepicker-input-0-'+uiid"
-                :state="conf.state"
+        <div class="input-box">
+            <template v-if="conf.isRange">
+                <morning-private-datepicker
+                    class="datepicker-input-0 datepicker-input-first"
+                    :ref="'ui-datepicker-input-0-'+uiid"
+                    :state="conf.state"
 
-                :form-name="(conf.startName === false) ? conf.formName : conf.startName"
-                :hide-name="conf.hideName"
-                :date="+data.currentDate || undefined"
-                :format="conf.format"
-                :align="conf.align"
-                :selectable-range="conf.selectableRange"
-                :show-timepicker-box="conf.showTimepickerBox"
-                :auto-refresh-calendar="false"
-                :highlight-days="data.input0HighlightDays"
-                date-select-add-class="date-select-0"
-                :has-quick-pick="(this.conf.quickPick.length > 0)"
+                    :form-name="(conf.startName === false) ? conf.formName : conf.startName"
+                    :hide-name="conf.hideName"
+                    :date="+data.currentDate || undefined"
+                    :format="conf.format"
+                    :align="conf.align"
+                    :selectable-range="conf.selectableRange"
+                    :show-timepicker-box="conf.showTimepickerBox"
+                    :auto-refresh-calendar="false"
+                    :highlight-days="data.input0HighlightDays"
+                    :date-select-add-class="'date-select-0' + (conf.rangeInputDirection === 'vertical' ? ' vertical' : '')"
+                    :has-quick-pick="(this.conf.quickPick.length > 0)"
 
-                @value-change="_syncValueFromInputToRoot"
-                @focus="_focus"
-                @blur="_blur"
-                @input-focus="_inputFocus"
-                @input-blur="_inputBlur"
-                @date-click="_syncValueFromInputToRootForClick"
-                @date-enter="_inputDateEnter"
-                @date-change = "_input0DateChange"
-            >
-                <slot name="timepicker" slot="timepicker"></slot>
-
-                <div
-                    class="quickpick"
-                    slot="quickpick"
-                    v-if="conf.quickPick.length > 0"
+                    @value-change="_syncValueFromInputToRoot"
+                    @focus="_focus"
+                    @blur="_blur"
+                    @input-focus="_inputFocus"
+                    @input-blur="_inputBlur"
+                    @date-click="_syncValueFromInputToRootForClick"
+                    @date-enter="_inputDateEnter"
+                    @date-change = "_input0DateChange"
                 >
-                    <ul>
-                        <template v-for="(pick, name) in conf.quickPick">
-                            <li
-                                v-if="pick === '本周'"
-                                @click="_quickPickDate([_startOfWeek(new Date()), _endOfWeek(new Date())])"
-                            >{{pick}}</li>
-                            <li
-                                v-if="pick === '本月'"
-                                @click="_quickPickDate([_startOfMonth(new Date()), _endOfMonth(new Date())])"
-                            >{{pick}}</li>
-                            <li
-                                v-if="pick === '今年'"
-                                @click="_quickPickDate([_startOfYear(new Date()), _endOfYear(new Date())])"
-                            >{{pick}}</li>
-                            <li
-                                v-if="/^最近 \d+ 秒$/.test(pick)"
-                                @click="_quickPickDate([_addSeconds(new Date(), -pick.replace(/(最近 | 秒)/g, '')), new Date()])"
-                            >{{pick}}</li>
-                            <li
-                                v-if="/^最近 \d+ 分钟$/.test(pick)"
-                                @click="_quickPickDate([_addMinutes(new Date(), -pick.replace(/(最近 | 分钟)/g, '')), new Date()])"
-                            >{{pick}}</li>
-                            <li
-                                v-if="/^最近 \d+ 小时$/.test(pick)"
-                                @click="_quickPickDate([_addHours(new Date(), -pick.replace(/(最近 | 小时)/g, '')), new Date()])"
-                            >{{pick}}</li>
-                            <li
-                                v-if="/^最近 \d+ 天$/.test(pick)"
-                                @click="_quickPickDate([_addDays(new Date(), -pick.replace(/(最近 | 天)/g, '')), new Date()])"
-                            >{{pick}}</li>
-                            <li
-                                v-if="/^最近 \d+ 周$/.test(pick)"
-                                @click="_quickPickDate([_addWeeks(new Date(), -pick.replace(/(最近 | 周)/g, '')), new Date()])"
-                            >{{pick}}</li>
-                            <li
-                                v-if="/^最近 \d+ 月$/.test(pick)"
-                                @click="_quickPickDate([_addMonths(new Date(), -pick.replace(/(最近 | 月)/g, '')), new Date()])"
-                            >{{pick}}</li>
-                            <li
-                                v-if="/^最近 \d+ 年$/.test(pick)"
-                                @click="_quickPickDate([_addYears(new Date(), -pick.replace(/(最近 | 年)/g, '')), new Date()])"
-                            >{{pick}}</li>
+                    <slot name="timepicker" slot="timepicker"></slot>
 
-                            <li
-                                v-if="/^未来 \d+ 秒$/.test(pick)"
-                                @click="_quickPickDate([new Date(), _addSeconds(new Date(), pick.replace(/(未来 | 秒)/g, ''))])"
-                            >{{pick}}</li>
-                            <li
-                                v-if="/^未来 \d+ 分钟$/.test(pick)"
-                                @click="_quickPickDate([new Date(), _addMinutes(new Date(), pick.replace(/(未来 | 分钟)/g, ''))])"
-                            >{{pick}}</li>
-                            <li
-                                v-if="/^未来 \d+ 小时$/.test(pick)"
-                                @click="_quickPickDate([new Date(), _addHours(new Date(), pick.replace(/(未来 | 小时)/g, ''))])"
-                            >{{pick}}</li>
-                            <li
-                                v-if="/^未来 \d+ 天$/.test(pick)"
-                                @click="_quickPickDate([new Date(), _addDays(new Date(), pick.replace(/(未来 | 天)/g, ''))])"
-                            >{{pick}}</li>
-                            <li
-                                v-if="/^未来 \d+ 周$/.test(pick)"
-                                @click="_quickPickDate([new Date(), _addWeeks(new Date(), pick.replace(/(未来 | 周)/g, ''))])"
-                            >{{pick}}</li>
-                            <li
-                                v-if="/^未来 \d+ 月$/.test(pick)"
-                                @click="_quickPickDate([new Date(), _addMonths(new Date(), pick.replace(/(未来 | 月)/g, ''))])"
-                            >{{pick}}</li>
-                            <li
-                                v-if="/^未来 \d+ 年$/.test(pick)"
-                                @click="_quickPickDate([new Date(), _addYears(new Date(), pick.replace(/(未来 | 年)/g, ''))])"
-                            >{{pick}}</li>
-                            <li
-                                v-if="typeof pick === 'object' && pick.start instanceof Date && pick.end instanceof Date"
-                                @click="_quickPickDate([pick.start, pick.end])"
-                            >{{pick.name}}</li>
-                        </template>
-                    </ul>
-                </div>
-            </morning-private-datepicker>
+                    <div
+                        class="quickpick"
+                        slot="quickpick"
+                        v-if="conf.quickPick.length > 0"
+                    >
+                        <ul>
+                            <template v-for="(pick, name) in conf.quickPick">
+                                <li
+                                    v-if="pick === '本周'"
+                                    @click="_quickPickDate([_startOfWeek(new Date()), _endOfWeek(new Date())])"
+                                >{{pick}}</li>
+                                <li
+                                    v-if="pick === '本月'"
+                                    @click="_quickPickDate([_startOfMonth(new Date()), _endOfMonth(new Date())])"
+                                >{{pick}}</li>
+                                <li
+                                    v-if="pick === '今年'"
+                                    @click="_quickPickDate([_startOfYear(new Date()), _endOfYear(new Date())])"
+                                >{{pick}}</li>
+                                <li
+                                    v-if="/^最近 \d+ 秒$/.test(pick)"
+                                    @click="_quickPickDate([_addSeconds(new Date(), -pick.replace(/(最近 | 秒)/g, '')), new Date()])"
+                                >{{pick}}</li>
+                                <li
+                                    v-if="/^最近 \d+ 分钟$/.test(pick)"
+                                    @click="_quickPickDate([_addMinutes(new Date(), -pick.replace(/(最近 | 分钟)/g, '')), new Date()])"
+                                >{{pick}}</li>
+                                <li
+                                    v-if="/^最近 \d+ 小时$/.test(pick)"
+                                    @click="_quickPickDate([_addHours(new Date(), -pick.replace(/(最近 | 小时)/g, '')), new Date()])"
+                                >{{pick}}</li>
+                                <li
+                                    v-if="/^最近 \d+ 天$/.test(pick)"
+                                    @click="_quickPickDate([_addDays(new Date(), -pick.replace(/(最近 | 天)/g, '')), new Date()])"
+                                >{{pick}}</li>
+                                <li
+                                    v-if="/^最近 \d+ 周$/.test(pick)"
+                                    @click="_quickPickDate([_addWeeks(new Date(), -pick.replace(/(最近 | 周)/g, '')), new Date()])"
+                                >{{pick}}</li>
+                                <li
+                                    v-if="/^最近 \d+ 月$/.test(pick)"
+                                    @click="_quickPickDate([_addMonths(new Date(), -pick.replace(/(最近 | 月)/g, '')), new Date()])"
+                                >{{pick}}</li>
+                                <li
+                                    v-if="/^最近 \d+ 年$/.test(pick)"
+                                    @click="_quickPickDate([_addYears(new Date(), -pick.replace(/(最近 | 年)/g, '')), new Date()])"
+                                >{{pick}}</li>
 
-            <div class="separator" :class="conf.separatorType">{{conf.separator}}</div>
+                                <li
+                                    v-if="/^未来 \d+ 秒$/.test(pick)"
+                                    @click="_quickPickDate([new Date(), _addSeconds(new Date(), pick.replace(/(未来 | 秒)/g, ''))])"
+                                >{{pick}}</li>
+                                <li
+                                    v-if="/^未来 \d+ 分钟$/.test(pick)"
+                                    @click="_quickPickDate([new Date(), _addMinutes(new Date(), pick.replace(/(未来 | 分钟)/g, ''))])"
+                                >{{pick}}</li>
+                                <li
+                                    v-if="/^未来 \d+ 小时$/.test(pick)"
+                                    @click="_quickPickDate([new Date(), _addHours(new Date(), pick.replace(/(未来 | 小时)/g, ''))])"
+                                >{{pick}}</li>
+                                <li
+                                    v-if="/^未来 \d+ 天$/.test(pick)"
+                                    @click="_quickPickDate([new Date(), _addDays(new Date(), pick.replace(/(未来 | 天)/g, ''))])"
+                                >{{pick}}</li>
+                                <li
+                                    v-if="/^未来 \d+ 周$/.test(pick)"
+                                    @click="_quickPickDate([new Date(), _addWeeks(new Date(), pick.replace(/(未来 | 周)/g, ''))])"
+                                >{{pick}}</li>
+                                <li
+                                    v-if="/^未来 \d+ 月$/.test(pick)"
+                                    @click="_quickPickDate([new Date(), _addMonths(new Date(), pick.replace(/(未来 | 月)/g, ''))])"
+                                >{{pick}}</li>
+                                <li
+                                    v-if="/^未来 \d+ 年$/.test(pick)"
+                                    @click="_quickPickDate([new Date(), _addYears(new Date(), pick.replace(/(未来 | 年)/g, ''))])"
+                                >{{pick}}</li>
+                                <li
+                                    v-if="typeof pick === 'object' && pick.start instanceof Date && pick.end instanceof Date"
+                                    @click="_quickPickDate([pick.start, pick.end])"
+                                >{{pick.name}}</li>
+                            </template>
+                        </ul>
+                    </div>
+                </morning-private-datepicker>
 
-            <morning-private-datepicker
-                class="datepicker-input-1"
-                :ref="'ui-datepicker-input-1-'+uiid"
-                :state="conf.state"
-                
-                :form-name="(conf.endName === false) ? conf.formName : conf.endName"
-                :hide-name="conf.hideName"
-                :date="+_addMonths(data.currentDate, 1) || undefined"
-                :format="conf.format"
-                :align="conf.align"
-                :selectable-range="conf.selectableRange"
-                :show-timepicker-box="conf.showTimepickerBox"
-                :auto-refresh-calendar="false"
-                :highlight-days="data.input1HighlightDays"
-                date-select-add-class="date-select-1"
+                <div class="separator" :class="conf.separatorType">{{conf.separator}}</div>
 
-                @value-change="_syncValueFromInputToRoot"
-                @focus="_focus"
-                @blur="_blur"
-                @input-focus="_inputFocus"
-                @input-blur="_inputBlur"
-                @date-click="_syncValueFromInputToRootForClick"
-                @date-enter="_inputDateEnter"
-                @date-change = "_input1DateChange"
-            >
-                <slot name="timepicker2" slot="timepicker"></slot>
-            </morning-private-datepicker>
-        </template>
+                <morning-private-datepicker
+                    class="datepicker-input-1"
+                    :ref="'ui-datepicker-input-1-'+uiid"
+                    :state="conf.state"
+                    
+                    :form-name="(conf.endName === false) ? conf.formName : conf.endName"
+                    :hide-name="conf.hideName"
+                    :date="+_addMonths(data.currentDate, 1) || undefined"
+                    :format="conf.format"
+                    :align="conf.align"
+                    :selectable-range="conf.selectableRange"
+                    :show-timepicker-box="conf.showTimepickerBox"
+                    :auto-refresh-calendar="false"
+                    :highlight-days="data.input1HighlightDays"
+                    :date-select-add-class="'date-select-1' + (conf.rangeInputDirection === 'vertical' ? ' vertical' : '')"
 
-        <template v-else>
-            <morning-private-datepicker
-                class="datepicker-input-first"
-                :ref="'ui-datepicker-input-0-'+uiid"
-                :state="conf.state"
-
-                :form-name="conf.formName"
-                :default-value="conf.defaultValue"
-                :hide-name="conf.hideName"
-                :date="+date"
-                :format="conf.format"
-                :align="conf.align"
-                :selectable-range="conf.selectableRange"
-                :show-timepicker-box="conf.showTimepickerBox"
-                :has-quick-pick="(this.conf.quickPick.length > 0)"
-
-                @value-change="_syncValueFromInputToRoot"
-                @input-focus="_inputFocus"
-                @input-blur="_inputBlur"
-                @focus="_focus"
-                @blur="_blur"
-                @date-click="_dateClick"
-            >
-                <slot name="timepicker" slot="timepicker"></slot>
-
-                <div
-                    class="quickpick"
-                    slot="quickpick"
-                    v-if="conf.quickPick.length > 0"
+                    @value-change="_syncValueFromInputToRoot"
+                    @focus="_focus"
+                    @blur="_blur"
+                    @input-focus="_inputFocus"
+                    @input-blur="_inputBlur"
+                    @date-click="_syncValueFromInputToRootForClick"
+                    @date-enter="_inputDateEnter"
+                    @date-change = "_input1DateChange"
                 >
-                    <ul>
-                        <template v-for="(pick, name) in conf.quickPick">
-                            <li
-                                v-if="pick === '今天'"
-                                @click="_quickPickDate(new Date())"
-                            >{{pick}}</li>
-                            <li
-                                v-if="pick === '昨天'"
-                                @click="_quickPickDate(_addDays(new Date(), -1))"
-                            >{{pick}}</li>
-                            <li
-                                v-if="pick === '明天'"
-                                @click="_quickPickDate(_addDays(new Date(), 1))"
-                            >{{pick}}</li>
-                            
-                            <li
-                                v-if="/^\d+ 秒前$/.test(pick)"
-                                @click="_quickPickDate(_addSeconds(new Date(), -pick.replace(' 秒前', '')))"
-                            >{{pick}}</li>
-                            <li
-                                v-if="/^\d+ 分钟前$/.test(pick)"
-                                @click="_quickPickDate(_addMinutes(new Date(), -pick.replace(' 分钟前', '')))"
-                            >{{pick}}</li>
-                            <li
-                                v-if="/^\d+ 小时前$/.test(pick)"
-                                @click="_quickPickDate(_addHours(new Date(), -pick.replace(' 小时前', '')))"
-                            >{{pick}}</li>
-                            <li
-                                v-if="/^\d+ 天前$/.test(pick)"
-                                @click="_quickPickDate(_addDays(new Date(), -pick.replace(' 天前', '')))"
-                            >{{pick}}</li>
-                            <li
-                                v-if="/^\d+ 周前$/.test(pick)"
-                                @click="_quickPickDate(_addWeeks(new Date(), -pick.replace(' 周前', '')))"
-                            >{{pick}}</li>
-                            <li
-                                v-if="/^\d+ 月前$/.test(pick)"
-                                @click="_quickPickDate(_addMonths(new Date(), -pick.replace(' 月前', '')))"
-                            >{{pick}}</li>
-                            <li
-                                v-if="/^\d+ 年前$/.test(pick)"
-                                @click="_quickPickDate(_addYears(new Date(), -pick.replace(' 年前', '')))"
-                            >{{pick}}</li>
+                    <slot name="timepicker2" slot="timepicker"></slot>
+                </morning-private-datepicker>
+            </template>
 
-                            <li
-                                v-if="/^\d+ 秒后$/.test(pick)"
-                                @click="_quickPickDate(_addSeconds(new Date(), pick.replace(' 秒后', '')))"
-                            >{{pick}}</li>
-                            <li
-                                v-if="/^\d+ 分钟后$/.test(pick)"
-                                @click="_quickPickDate(_addMinutes(new Date(), pick.replace(' 分钟后', '')))"
-                            >{{pick}}</li>
-                            <li
-                                v-if="/^\d+ 小时后$/.test(pick)"
-                                @click="_quickPickDate(_addHours(new Date(), pick.replace(' 小时后', '')))"
-                            >{{pick}}</li>
-                            <li
-                                v-if="/^\d+ 天后$/.test(pick)"
-                                @click="_quickPickDate(_addDays(new Date(), pick.replace(' 天后', '')))"
-                            >{{pick}}</li>
-                            <li
-                                v-if="/^\d+ 周后$/.test(pick)"
-                                @click="_quickPickDate(_addWeeks(new Date(), pick.replace(' 周后', '')))"
-                            >{{pick}}</li>
-                            <li
-                                v-if="/^\d+ 月后$/.test(pick)"
-                                @click="_quickPickDate(_addMonths(new Date(), pick.replace(' 月后', '')))"
-                            >{{pick}}</li>
-                            <li
-                                v-if="/^\d+ 年后$/.test(pick)"
-                                @click="_quickPickDate(_addYears(new Date(), pick.replace(' 年后', '')))"
-                            >{{pick}}</li>
+            <template v-else>
+                <morning-private-datepicker
+                    class="datepicker-input-first"
+                    :ref="'ui-datepicker-input-0-'+uiid"
+                    :state="conf.state"
 
-                            <li
-                                v-if="typeof pick === 'object' && typeof pick.pick === 'number'"
-                                @click="_quickPickDate(_addMilliseconds(new Date(), pick.pick * conf.quickPickUnit))"
-                            >{{pick.name}}</li>
+                    :form-name="conf.formName"
+                    :default-value="conf.defaultValue"
+                    :hide-name="conf.hideName"
+                    :date="+date"
+                    :format="conf.format"
+                    :align="conf.align"
+                    :selectable-range="conf.selectableRange"
+                    :show-timepicker-box="conf.showTimepickerBox"
+                    :has-quick-pick="(this.conf.quickPick.length > 0)"
 
-                            <li
-                                v-if="typeof pick === 'object' && pick.pick instanceof Date"
-                                @click="_quickPickDate(pick.pick)"
-                            >{{pick.name}}</li>
-                        </template>
-                    </ul>
-                </div>
+                    @value-change="_syncValueFromInputToRoot"
+                    @input-focus="_inputFocus"
+                    @input-blur="_inputBlur"
+                    @focus="_focus"
+                    @blur="_blur"
+                    @date-click="_dateClick"
+                >
+                    <slot name="timepicker" slot="timepicker"></slot>
 
-            </morning-private-datepicker>
-        </template>
+                    <div
+                        class="quickpick"
+                        slot="quickpick"
+                        v-if="conf.quickPick.length > 0"
+                    >
+                        <ul>
+                            <template v-for="(pick, name) in conf.quickPick">
+                                <li
+                                    v-if="pick === '今天'"
+                                    @click="_quickPickDate(new Date())"
+                                >{{pick}}</li>
+                                <li
+                                    v-if="pick === '昨天'"
+                                    @click="_quickPickDate(_addDays(new Date(), -1))"
+                                >{{pick}}</li>
+                                <li
+                                    v-if="pick === '明天'"
+                                    @click="_quickPickDate(_addDays(new Date(), 1))"
+                                >{{pick}}</li>
+                                
+                                <li
+                                    v-if="/^\d+ 秒前$/.test(pick)"
+                                    @click="_quickPickDate(_addSeconds(new Date(), -pick.replace(' 秒前', '')))"
+                                >{{pick}}</li>
+                                <li
+                                    v-if="/^\d+ 分钟前$/.test(pick)"
+                                    @click="_quickPickDate(_addMinutes(new Date(), -pick.replace(' 分钟前', '')))"
+                                >{{pick}}</li>
+                                <li
+                                    v-if="/^\d+ 小时前$/.test(pick)"
+                                    @click="_quickPickDate(_addHours(new Date(), -pick.replace(' 小时前', '')))"
+                                >{{pick}}</li>
+                                <li
+                                    v-if="/^\d+ 天前$/.test(pick)"
+                                    @click="_quickPickDate(_addDays(new Date(), -pick.replace(' 天前', '')))"
+                                >{{pick}}</li>
+                                <li
+                                    v-if="/^\d+ 周前$/.test(pick)"
+                                    @click="_quickPickDate(_addWeeks(new Date(), -pick.replace(' 周前', '')))"
+                                >{{pick}}</li>
+                                <li
+                                    v-if="/^\d+ 月前$/.test(pick)"
+                                    @click="_quickPickDate(_addMonths(new Date(), -pick.replace(' 月前', '')))"
+                                >{{pick}}</li>
+                                <li
+                                    v-if="/^\d+ 年前$/.test(pick)"
+                                    @click="_quickPickDate(_addYears(new Date(), -pick.replace(' 年前', '')))"
+                                >{{pick}}</li>
+
+                                <li
+                                    v-if="/^\d+ 秒后$/.test(pick)"
+                                    @click="_quickPickDate(_addSeconds(new Date(), pick.replace(' 秒后', '')))"
+                                >{{pick}}</li>
+                                <li
+                                    v-if="/^\d+ 分钟后$/.test(pick)"
+                                    @click="_quickPickDate(_addMinutes(new Date(), pick.replace(' 分钟后', '')))"
+                                >{{pick}}</li>
+                                <li
+                                    v-if="/^\d+ 小时后$/.test(pick)"
+                                    @click="_quickPickDate(_addHours(new Date(), pick.replace(' 小时后', '')))"
+                                >{{pick}}</li>
+                                <li
+                                    v-if="/^\d+ 天后$/.test(pick)"
+                                    @click="_quickPickDate(_addDays(new Date(), pick.replace(' 天后', '')))"
+                                >{{pick}}</li>
+                                <li
+                                    v-if="/^\d+ 周后$/.test(pick)"
+                                    @click="_quickPickDate(_addWeeks(new Date(), pick.replace(' 周后', '')))"
+                                >{{pick}}</li>
+                                <li
+                                    v-if="/^\d+ 月后$/.test(pick)"
+                                    @click="_quickPickDate(_addMonths(new Date(), pick.replace(' 月后', '')))"
+                                >{{pick}}</li>
+                                <li
+                                    v-if="/^\d+ 年后$/.test(pick)"
+                                    @click="_quickPickDate(_addYears(new Date(), pick.replace(' 年后', '')))"
+                                >{{pick}}</li>
+
+                                <li
+                                    v-if="typeof pick === 'object' && typeof pick.pick === 'number'"
+                                    @click="_quickPickDate(_addMilliseconds(new Date(), pick.pick * conf.quickPickUnit))"
+                                >{{pick.name}}</li>
+
+                                <li
+                                    v-if="typeof pick === 'object' && pick.pick instanceof Date"
+                                    @click="_quickPickDate(pick.pick)"
+                                >{{pick.name}}</li>
+                            </template>
+                        </ul>
+                    </div>
+
+                </morning-private-datepicker>
+            </template>
+        </div>
 
     </div>
 
@@ -368,6 +371,11 @@ export default {
             type : Boolean,
             default : false
         },
+        rangeInputDirection : {
+            type : String,
+            default : 'horizontal',
+            validator : (value => ['horizontal', 'vertical'].indexOf(value) !== -1)
+        },
         separator : {
             type : String,
             default : '至'
@@ -402,6 +410,7 @@ export default {
                 selectableRange : this.selectableRange,
                 showTimepickerBox : this.showTimepickerBox,
                 isRange : this.isRange,
+                rangeInputDirection : this.rangeInputDirection,
                 separator : this.separator,
                 separatorType : this.separatorType,
                 startName : this.startName,
@@ -414,7 +423,8 @@ export default {
 
             return {
                 'has-quick-pick' : (this.conf.quickPick.length > 0),
-                'inline-separator' : (this.conf.separatorType === 'inline')
+                'inline-separator' : (this.conf.separatorType === 'inline'),
+                'range-input-vertical' : (this.conf.rangeInputDirection === 'vertical')
             };
 
         }
