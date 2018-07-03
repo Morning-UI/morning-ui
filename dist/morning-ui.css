@@ -7180,7 +7180,7 @@ mor-collapse.line > ul.collapse-ul {
 }
 mor-collapse.line > ul.collapse-ul .menu {
   background: #FFFFFF;
-  border-width: 1px 0;
+  border-width: 1px 0 0;
   font-weight: 700;
 }
 mor-collapse.line > ul.collapse-ul .menu.show {
