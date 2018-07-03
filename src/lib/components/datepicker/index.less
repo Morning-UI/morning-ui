@@ -103,10 +103,9 @@ mor-datepicker{
 
             .input-group-addon{
                 display: inline-block;
-                height: 100%;
                 width: 41px;
-                height: @formHeight * 2;
-                line-height: @formHeight - 12px;
+                height: @formHeight * 2 - 1px;
+                line-height: @formHeight * 2 - 1px - 12px;
             }
 
             .separator{
@@ -126,20 +125,28 @@ mor-datepicker{
                     border-radius: 0 @borderRadius 0 0;
                 }
 
-                &:hover{
+                &:hover mor-textinput{
                     z-index: 2;
+                }
+
+                mor-textinput.input-focus{
+                    z-index: 3;
                 }
             }
 
             .datepicker-input-1{
-                top : -1px;
+                top: -1px;
 
                 mor-textinput input{
                     border-radius: 0 0 @borderRadius 0;
                 }
 
-                &:hover{
+                &:hover mor-textinput{
                     z-index: 2;
+                }
+
+                mor-textinput.input-focus{
+                    z-index: 3;
                 }
             }
         }
@@ -231,5 +238,9 @@ mor-datepicker{
             box-sizing: border-box;
             margin-left: @quickPickWidth;
         }
+    }
+
+    .date-select-0.vertical{
+        top: @formHeight - 1px;
     }
 }

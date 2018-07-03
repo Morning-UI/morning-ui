@@ -320,7 +320,7 @@
     竖直排列的选择框：
 
     :::democode/html
-    <div style="width:360px;">
+    <div style="width:280px;">
         <ui-datepicker form-name="日期" :is-range="true" range-input-direction="vertical"></ui-datepicker>
     </div>
     :::

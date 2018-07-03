@@ -46,7 +46,7 @@
                     :show-timepicker-box="conf.showTimepickerBox"
                     :auto-refresh-calendar="false"
                     :highlight-days="data.input0HighlightDays"
-                    date-select-add-class="date-select-0"
+                    :date-select-add-class="'date-select-0' + (conf.rangeInputDirection === 'vertical' ? ' vertical' : '')"
                     :has-quick-pick="(this.conf.quickPick.length > 0)"
 
                     @value-change="_syncValueFromInputToRoot"
@@ -161,7 +161,7 @@
                     :show-timepicker-box="conf.showTimepickerBox"
                     :auto-refresh-calendar="false"
                     :highlight-days="data.input1HighlightDays"
-                    date-select-add-class="date-select-1"
+                    :date-select-add-class="'date-select-1' + (conf.rangeInputDirection === 'vertical' ? ' vertical' : '')"
 
                     @value-change="_syncValueFromInputToRoot"
                     @focus="_focus"

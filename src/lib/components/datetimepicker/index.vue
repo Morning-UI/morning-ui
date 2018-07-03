@@ -16,6 +16,7 @@
         :date-selectable-range="dateSelectableRange"
         :time-selectable-range="timeSelectableRange"
         :is-range="isRange"
+        :range-input-direction="rangeInputDirection"
         :separator="separator"
         :separator-type="separatorType"
         :start-name="startName"
@@ -34,6 +35,7 @@
             :quick-pick-unit="1000"
             :selectable-range="conf.dateSelectableRange"
             :is-range="conf.isRange"
+            :range-input-direction="conf.rangeInputDirection"
             :separator="conf.separator"
             :separator-type="conf.separatorType"
             :start-name="conf.startName"
@@ -132,6 +134,11 @@ export default {
             type : Boolean,
             default : false
         },
+        rangeInputDirection : {
+            type : String,
+            default : 'horizontal',
+            validator : (value => ['horizontal', 'vertical'].indexOf(value) !== -1)
+        },
         separator : {
             type : String,
             default : '至'
@@ -165,6 +172,7 @@ export default {
                 dateSelectableRange : this.dateSelectableRange,
                 timeSelectableRange : this.timeSelectableRange,
                 isRange : this.isRange,
+                rangeInputDirection : this.rangeInputDirection,
                 separator : this.separator,
                 separatorType : this.separatorType,
                 startName : this.startName,

@@ -13224,10 +13224,9 @@ mor-datepicker.range-input-vertical .wrap .input-box {
 }
 mor-datepicker.range-input-vertical .wrap .input-group-addon {
   display: inline-block;
-  height: 100%;
   width: 41px;
-  height: 84px;
-  line-height: 30px;
+  height: 83px;
+  line-height: 71px;
 }
 mor-datepicker.range-input-vertical .wrap .separator {
   display: none;
@@ -13237,19 +13236,28 @@ mor-datepicker.range-input-vertical .wrap .datepicker-input-1 {
   font-size: 14px;
   display: inline-block;
   width: calc(100% - 41px);
+  position: relative;
 }
 mor-datepicker.range-input-vertical .wrap .datepicker-input-0 mor-textinput input {
-  border-bottom-width: 0;
   border-radius: 0 3px 0 0;
 }
-mor-datepicker.range-input-vertical .wrap .datepicker-input-0:hover mor-textinput input {
-  border-bottom-width: 1px;
+mor-datepicker.range-input-vertical .wrap .datepicker-input-0:hover mor-textinput {
+  z-index: 2;
 }
-mor-datepicker.range-input-vertical .wrap .datepicker-input-0:hover + .datepicker-input-1 mor-textinput input {
-  border-top-width: 0;
+mor-datepicker.range-input-vertical .wrap .datepicker-input-0 mor-textinput.input-focus {
+  z-index: 3;
+}
+mor-datepicker.range-input-vertical .wrap .datepicker-input-1 {
+  top: -1px;
 }
 mor-datepicker.range-input-vertical .wrap .datepicker-input-1 mor-textinput input {
   border-radius: 0 0 3px 0;
+}
+mor-datepicker.range-input-vertical .wrap .datepicker-input-1:hover mor-textinput {
+  z-index: 2;
+}
+mor-datepicker.range-input-vertical .wrap .datepicker-input-1 mor-textinput.input-focus {
+  z-index: 3;
 }
 .mor-date-wrap {
   min-width: 282px;
@@ -13325,6 +13333,9 @@ mor-datepicker.range-input-vertical .wrap .datepicker-input-1 mor-textinput inpu
   font-size: 14px;
   box-sizing: border-box;
   margin-left: 100px;
+}
+.mor-date-wrap .date-select-0.vertical {
+  top: 41px;
 }
 
 mor-datetimepicker {
