@@ -177,7 +177,7 @@ export default {
 
             if (this.data.showKeys.length > this.conf.maxShow) {
 
-                this.close(this.data.showKeys[0]);
+                this.hide(this.data.showKeys[0]);
                 this._closeOverMax();
 
             }
