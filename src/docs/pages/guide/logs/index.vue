@@ -18,6 +18,30 @@
     
     ### 更新记录
 
+    ### 0.11.5 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2018年7月3日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.11.5" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.11.5/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.11.5/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 新特性
+
+    - `ui-datepicker`和`ui-datetimepicker`新增`range-input-direction`配置，可以在区间选择时竖向排列输入框
+
+    #### 修复
+
+    - 修复`ui-select`文档中的一处错误
+    - 修复`ui-collapse`开启`max-show`配置无效的问题
+    - 修复`ui-collapse`的`line`样式类样式错误问题
+
+    ---
+
     ### 0.11.4 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="light-blue">

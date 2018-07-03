@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## 0.11.5
+
+`2018年7月3日`
+
+#### 新特性
+
+- `ui-datepicker`和`ui-datetimepicker`新增`range-input-direction`配置，可以在区间选择时竖向排列输入框
+
+#### 修复
+
+- 修复`ui-select`文档中的一处错误
+- 修复`ui-collapse`开启`max-show`配置无效的问题
+- 修复`ui-collapse`的`line`样式类样式错误问题
+
 ## 0.11.4
 
 `2018年7月1日`
