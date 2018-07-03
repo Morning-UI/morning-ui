@@ -190,7 +190,7 @@ test.serial('import-use-webpack', async t => {
         .wait('mor-link')
         .evaluate(() => ({
             morning : window.morning,
-            style : window.getComputedStyle(document.querySelector('mor-link'))
+            style : window.getComputedStyle(document.querySelector('mor-link a'))
         }));
 
     // circleci
