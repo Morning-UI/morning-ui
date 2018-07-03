@@ -45332,7 +45332,7 @@ var render = function() {
       _c(
         "morning-dialog",
         {
-          ref: "ui-select-dialog-" + this.uiid,
+          ref: "ui-select-dialog-" + _vm.uiid,
           staticClass: "mo-texteditor-dialog",
           attrs: {
             color: "light-silver",
@@ -45353,7 +45353,10 @@ var render = function() {
                 {
                   attrs: {
                     color: "dark-theme",
-                    js: "morning.findVM('ui-select-dialog-'+uiid).toggle(false)"
+                    js:
+                      "morning.findVM('ui-select-dialog-" +
+                      _vm.uiid +
+                      "').toggle(false)"
                   }
                 },
                 [_c("i", { staticClass: "mo-icon mo-icon-close" })]

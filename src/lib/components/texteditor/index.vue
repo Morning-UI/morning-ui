@@ -171,7 +171,7 @@
         </div>
 
         <morning-dialog
-            :ref="'ui-select-dialog-'+this.uiid"
+            :ref="'ui-select-dialog-'+uiid"
             class="mo-texteditor-dialog"
             color="light-silver"
             width="300px"
@@ -180,7 +180,7 @@
         >
             <header slot="header">
                 <h1>插入图片</h1>
-                <ui-link color="dark-theme" js="morning.findVM('ui-select-dialog-'+uiid).toggle(false)"><i class="mo-icon mo-icon-close"></i></ui-link>
+                <ui-link color="dark-theme" :js="'morning.findVM(\'ui-select-dialog-'+uiid+'\').toggle(false)'"><i class="mo-icon mo-icon-close"></i></ui-link>
             </header>
             <div>
                 <ui-upload

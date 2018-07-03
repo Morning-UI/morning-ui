@@ -3,19 +3,27 @@
 mor-link{
     display: inline-block;
     position: relative;
-    height: 1.4em;
 
     > a{
         display: inline-block;
         line-height: 1.4em;
-        height: 100%;
+        height: 1.4em;
         text-decoration: none;
-        width: 100%;
-        vertical-align: top;
 
         &:hover{
             text-decoration: none;
             cursor: pointer;
+        }
+    }
+
+    &.text-overflow-ellipsis{
+        max-width: 100%;
+
+        > a{
+            max-width: 100%;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
         }
     }
 
@@ -43,31 +51,45 @@ mor-link{
     }
 
     &.si-xxl{
-        font-size: @fontSize*1.3;
+        > a{
+            font-size: @fontSize*1.3;
+        }
     }
 
     &.si-xl{
-        font-size: @fontSize*1.1;
+        > a{
+            font-size: @fontSize*1.1;
+        }
     }
 
     &.si-l{
-        font-size: @fontSize*1;
+        > a{
+            font-size: @fontSize*1;
+        }
     }
 
     &.si-m{
-        font-size: @fontSize*0.8125;
+        > a{
+            font-size: @fontSize*0.8125;
+        }
     }
 
     &.si-s{
-        font-size: @fontSize*0.75;
+        > a{
+            font-size: @fontSize*0.75;
+        }
     }
 
     &.si-xs{
-        font-size: @fontSize*0.75;
+        > a{
+            font-size: @fontSize*0.75;
+        }
     }
 
     &.si-xxs{
-        font-size: @fontSize*0.75;
+        > a{
+            font-size: @fontSize*0.75;
+        }
     }
 
     &.co-t{

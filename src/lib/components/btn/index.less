@@ -14,7 +14,7 @@ mor-btn{
         padding: 0 1.1em;
         height: 100%;
         width: 100%;
-        line-height: ~`'calc(2.8em - 2px)'`;
+        line-height: 2.8em;
         text-decoration: none;
 
         &:hover{
@@ -23,8 +23,23 @@ mor-btn{
         }
     }
 
+    &.text-overflow-ellipsis{
+        max-width: 100%;
+
+        > a{
+            max-width: 100%;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+    }
+
     &.plain{
         border: 1px #FFF solid;
+
+        a{
+            line-height: ~'calc(2.8em - 2px)';
+        }
     }
 
     &.round{
@@ -40,9 +55,9 @@ mor-btn{
         text-align: center;
         position: relative;
         border-radius: 100em;
+        width: 2.8em;
 
         a{
-            width: 2.8em;
             padding: 0;
             border-radius: 100em;
 
@@ -64,6 +79,10 @@ mor-btn{
                     transform: translate(-50%, -50%);
                 }
             }
+        }
+
+        &.plain{
+            // width: ~"calc(2.8em - 2px)";
         }
 
         &:not(.st-disabled):not(.st-readonly):hover,
@@ -121,7 +140,10 @@ mor-btn{
     }
 
     &.si-xxl{
-        font-size: @fontSize*1.3;
+        &,
+        a{
+            font-size: @fontSize*1.3;
+        }
 
         a > i{
             font-size: @fontSize*2.2;
@@ -133,7 +155,10 @@ mor-btn{
     }
 
     &.si-xl{
-        font-size: @fontSize*1.1;
+        &,
+        a{
+            font-size: @fontSize*1.1;
+        }
 
         a > i{
             font-size: @fontSize*1.8;
@@ -145,7 +170,10 @@ mor-btn{
     }
 
     &.si-l{
-        font-size: @fontSize*1;
+        &,
+        a{
+            font-size: @fontSize*1;
+        }
 
         a > i{
             font-size: @fontSize*1.6;
@@ -157,7 +185,10 @@ mor-btn{
     }
 
     &.si-m{
-        font-size: @fontSize*0.8125;
+        &,
+        a{
+            font-size: @fontSize*0.8125;
+        }
 
         a > i{
             font-size: @fontSize*1.4;
@@ -169,13 +200,16 @@ mor-btn{
     }
 
     &.si-s{
-        font-size: @fontSize*0.75;
         height: 2.6em;
+
+        &,
+        a{
+            font-size: @fontSize*0.75;
+        }
 
         a{
             padding: 0 0.8em;
             line-height: 2.6em;
-            height: 2.6em;
         }
 
         a > i{
@@ -192,11 +226,14 @@ mor-btn{
     }
 
     &.si-xs{
-        font-size: @fontSize*0.75;
         height: 2.2em;
 
+        &,
         a{
-            height: 2.2em;
+            font-size: @fontSize*0.75;
+        }
+
+        a{
             line-height: 2.2em;
             padding: 0 0.6em;
         }
@@ -215,11 +252,14 @@ mor-btn{
     }
 
     &.si-xxs{
-        font-size: @fontSize*0.75;
         height: 1.8em;
 
+        &,
         a{
-            height: 1.8em;
+            font-size: @fontSize*0.75;
+        }
+
+        a{
             line-height: 1.8em;
             padding: 0 0.4em;
         }
