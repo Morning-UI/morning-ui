@@ -63,22 +63,6 @@
         <ui-img src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
     </ui-btn>
     :::
-
-    #### 省略溢出的文本
-
-    在设置按钮本身宽度，或按钮父容器宽度的情况下，可以使用`text-overflow-ellipsis`样式类来省略溢出的文本：
-
-    :::democode/html
-    <div style="width:150px">
-        <!-- 根据父容器宽度省略文本 -->
-        <ui-btn class="text-overflow-ellipsis">这是一段非常非常非常非常长的文本</ui-btn>
-
-        <br><br>
-
-        <!-- 根据自身宽度省略文本 -->
-        <ui-btn class="text-overflow-ellipsis" style="width:100px">这是一段非常非常非常非常长的文本</ui-btn>
-    </div>
-    :::
     
     [[[形态]]]
 

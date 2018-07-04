@@ -101,6 +101,53 @@ export default {
             }
 
         },
+        _mountA : function () {
+
+            let cursor = 'pointer';
+
+            if (this.conf.state === 'readonly') {
+
+                cursor = 'default';
+
+            }
+
+            if (this.conf.state === 'disabled') {
+
+                cursor = 'not-allowed';
+
+            }
+
+            let shadowHtml = `<style>a{width: 100%;height: 100%;position: absolute;top:0;left:0;font-size: 0;cursor:${cursor}}</style>`;
+
+            if (!this.$el.shadowRoot) {
+
+                this.$el.attachShadow({
+                    mode : 'open'
+                });
+
+            }
+
+            if (this.conf.link) {
+
+                if (this.conf.newTab) {
+                    
+                    shadowHtml += `<a href="${this.conf.link}" target="_blank">555</a><slot></slot>`;
+
+                } else {
+                    
+                    shadowHtml += `<a href="${this.conf.link}" target="_self">555</a><slot></slot>`;
+
+                }
+
+            } else {
+
+                shadowHtml += `<a href="javascript:;"></a><slot></slot>`;
+
+            }
+
+            this.$el.shadowRoot.innerHTML = shadowHtml;
+
+        },
         unlock : function () {
 
             this.data.lock = false;
@@ -132,6 +179,7 @@ export default {
     },
     mounted : function () {
 
+        this._mountA();
         this._emitLock();
 
         this.$on('emit', () => {
@@ -144,54 +192,11 @@ export default {
 
             }
 
-            if (this.conf.link) {
-
-                if (this.conf.newTab) {
-
-                    window.open(this.conf.link);
-
-                } else {
-
-                    window.location.href = this.conf.link;
-
-                }
-
-            }
-
         });
 
-    },
-    updated : function () {
-
-        let html = this.$el.innerHTML;
-        let shadowHtml = `<style>a{    width: 28px;
-    height: 18px;
-    position: absolute;
-    font-size: 0;}</style>`;
-
-        this.$el.attachShadow({
-            mode : 'open'
-        });
-
-        if (this.conf.link) {
-
-            if (this.conf.newTab) {
-                
-                shadowHtml += `<a href="${this.conf.link}" target="_blank">555</a><slot></slot>`;
-
-            } else {
-                
-                shadowHtml += `<a href="${this.conf.link}" target="_self">555</a><slot></slot>`;
-
-            }
-
-        } else {
-
-            shadowHtml += `<a href="javascript:;">555</a><slot></slot>`;
-
-        }
-
-        this.$el.shadowRoot.innerHTML = shadowHtml;
+        this.$watch('conf.link', this._mountA);
+        this.$watch('conf.newTab', this._mountA);
+        this.$watch('conf.state', this._mountA);
 
     }
 };

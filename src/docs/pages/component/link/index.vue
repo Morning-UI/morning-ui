@@ -18,20 +18,6 @@
     <ui-link>链接</ui-link>
     :::
 
-    #### 省略溢出的文本
-
-    在设置链接本身宽度，或链接父容器宽度的情况下，可以使用`text-overflow-ellipsis`样式类来省略溢出的文本：
-
-    :::democode/html
-    <div style="width:100px">
-        <!-- 根据父容器宽度省略文本 -->
-        <ui-link class="text-overflow-ellipsis">这是一段非常非常非常非常长的文本</ui-link>
-
-        <!-- 根据自身宽度省略文本 -->
-        <ui-link class="text-overflow-ellipsis" style="width:50px">这是一段非常非常非常非常长的文本</ui-link>
-    </div>
-    :::
-
     [[[形态]]]
 
     #### 支持
