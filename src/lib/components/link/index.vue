@@ -11,22 +11,18 @@
         @click="_onClick"
     >
 
-    <a :href="href" :target="conf.newTab ? '_blank' : '_self'">
+    <template v-if="data.lock">
+        <div class="mo-loader">
+            <svg class="mo-loader-circular" viewBox="25 25 50 50">
+                <circle class="mo-loader-path" cx="50" cy="50" r="20" fill="none" stroke-width="4" stroke-miterlimit="10"/>
+            </svg>
+        </div>
+        <span><slot></slot></span>
+    </template>
 
-        <template v-if="data.lock">
-            <div class="mo-loader">
-                <svg class="mo-loader-circular" viewBox="25 25 50 50">
-                    <circle class="mo-loader-path" cx="50" cy="50" r="20" fill="none" stroke-width="4" stroke-miterlimit="10"/>
-                </svg>
-            </div>
-            <span><slot></slot></span>
-        </template>
-
-        <template v-else>
-            <slot></slot>
-        </template>
-
-    </a>
+    <template v-else>
+        <slot></slot>
+    </template>
 
     </mor-link>
 </template>
@@ -69,17 +65,6 @@ export default {
             return {
                 loading : this.data.lock
             };
-
-        },
-        href : function () {
-
-            if (this.conf.link) {
-
-                return this.conf.link;
-
-            }
-
-            return 'javascript:;';
 
         }
     },
@@ -159,7 +144,54 @@ export default {
 
             }
 
+            if (this.conf.link) {
+
+                if (this.conf.newTab) {
+
+                    window.open(this.conf.link);
+
+                } else {
+
+                    window.location.href = this.conf.link;
+
+                }
+
+            }
+
         });
+
+    },
+    updated : function () {
+
+        let html = this.$el.innerHTML;
+        let shadowHtml = `<style>a{    width: 28px;
+    height: 18px;
+    position: absolute;
+    font-size: 0;}</style>`;
+
+        this.$el.attachShadow({
+            mode : 'open'
+        });
+
+        if (this.conf.link) {
+
+            if (this.conf.newTab) {
+                
+                shadowHtml += `<a href="${this.conf.link}" target="_blank">555</a><slot></slot>`;
+
+            } else {
+                
+                shadowHtml += `<a href="${this.conf.link}" target="_self">555</a><slot></slot>`;
+
+            }
+
+        } else {
+
+            shadowHtml += `<a href="javascript:;">555</a><slot></slot>`;
+
+        }
+
+        this.$el.shadowRoot.innerHTML = shadowHtml;
 
     }
 };
