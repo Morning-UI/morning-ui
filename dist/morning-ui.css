@@ -5196,76 +5196,51 @@ mor-img.thumbnail {
 
 mor-btn {
   display: inline-block;
+  padding: 0 1.1em;
   border-radius: 0.3em;
   position: relative;
-  box-sizing: border-box;
   height: 2.8em;
-  background-color: #F33D5D;
-}
-mor-btn a {
-  display: inline-block;
+  line-height: calc(2.8em - 2px);
   box-sizing: border-box;
-  border-radius: 0.3em;
-  padding: 0 1.1em;
-  height: 100%;
-  width: 100%;
-  line-height: 2.8em;
-  text-decoration: none;
+  font-size: 13px;
+  background-color: #F33D5D;
+  color: #FFFFFF;
 }
-mor-btn a:hover {
-  text-decoration: none;
+mor-btn:hover {
   cursor: pointer;
-}
-mor-btn.text-overflow-ellipsis {
-  max-width: 100%;
-}
-mor-btn.text-overflow-ellipsis > a {
-  max-width: 100%;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
 }
 mor-btn.plain {
   border: 1px #FFF solid;
 }
-mor-btn.plain a {
-  line-height: calc(2.8em - 2px);
-}
 mor-btn.round {
   border-radius: 100em;
 }
-mor-btn.round a {
-  border-radius: 100em;
-}
 mor-btn.circle {
+  width: 2.8em;
   overflow: hidden;
+  border-radius: 100em;
+  padding: 0;
   text-align: center;
   position: relative;
-  border-radius: 100em;
-  width: 2.8em;
 }
-mor-btn.circle a {
-  padding: 0;
-  border-radius: 100em;
-}
-mor-btn.circle a > i {
+mor-btn.circle > i {
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
 }
-mor-btn.circle a > mor-img {
+mor-btn.circle > mor-img {
   width: 100%;
   height: 100%;
 }
-mor-btn.circle a > mor-img > img {
+mor-btn.circle > mor-img > img {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-mor-btn.circle:not(.st-disabled):not(.st-readonly):hover a > mor-img::after,
-mor-btn.circle.st-hover a > mor-img::after {
+mor-btn.circle:not(.st-disabled):hover > mor-img::after,
+mor-btn.circle.st-hover > mor-img::after {
   content: ' ';
   width: 100%;
   height: 100%;
@@ -5274,8 +5249,8 @@ mor-btn.circle.st-hover a > mor-img::after {
   left: 0;
   top: 0;
 }
-mor-btn.circle:not(.st-disabled):not(.st-readonly):active a > mor-img::after,
-mor-btn.circle.st-active a > mor-img::after {
+mor-btn.circle:not(.st-disabled):active > mor-img::after,
+mor-btn.circle.st-active > mor-img::after {
   content: ' ';
   width: 100%;
   height: 100%;
@@ -5297,62 +5272,52 @@ mor-btn.loading .mo-loader .mo-loader-path {
 mor-btn.loading span {
   opacity: 0;
 }
-mor-btn.loading a,
-mor-btn.loading a:hover {
+mor-btn.loading:hover {
   cursor: default;
 }
-mor-btn.si-xxl,
-mor-btn.si-xxl a {
+mor-btn.si-xxl {
   font-size: 20.8px;
 }
-mor-btn.si-xxl a > i {
+mor-btn.si-xxl > i {
   font-size: 35.2px;
 }
 mor-btn.si-xxl .mo-loader {
   width: 1.6em;
 }
-mor-btn.si-xl,
-mor-btn.si-xl a {
+mor-btn.si-xl {
   font-size: 17.6px;
 }
-mor-btn.si-xl a > i {
+mor-btn.si-xl > i {
   font-size: 28.8px;
 }
 mor-btn.si-xl .mo-loader {
   width: 1.4em;
 }
-mor-btn.si-l,
-mor-btn.si-l a {
+mor-btn.si-l {
   font-size: 16px;
 }
-mor-btn.si-l a > i {
+mor-btn.si-l > i {
   font-size: 25.6px;
 }
 mor-btn.si-l .mo-loader {
   width: 1.3em;
 }
-mor-btn.si-m,
-mor-btn.si-m a {
+mor-btn.si-m {
   font-size: 13px;
 }
-mor-btn.si-m a > i {
+mor-btn.si-m > i {
   font-size: 22.4px;
 }
 mor-btn.si-m .mo-loader {
   width: 1.2em;
 }
 mor-btn.si-s {
-  height: 2.6em;
-}
-mor-btn.si-s,
-mor-btn.si-s a {
   font-size: 12px;
-}
-mor-btn.si-s a {
-  padding: 0 0.8em;
+  height: 2.6em;
   line-height: 2.6em;
+  padding: 0 0.8em;
 }
-mor-btn.si-s a > i {
+mor-btn.si-s > i {
   font-size: 19.2px;
 }
 mor-btn.si-s.circle {
@@ -5362,17 +5327,12 @@ mor-btn.si-s .mo-loader {
   width: 1.2em;
 }
 mor-btn.si-xs {
-  height: 2.2em;
-}
-mor-btn.si-xs,
-mor-btn.si-xs a {
   font-size: 12px;
-}
-mor-btn.si-xs a {
+  height: 2.2em;
   line-height: 2.2em;
   padding: 0 0.6em;
 }
-mor-btn.si-xs a > i {
+mor-btn.si-xs > i {
   font-size: 16px;
 }
 mor-btn.si-xs.circle {
@@ -5382,17 +5342,12 @@ mor-btn.si-xs .mo-loader {
   width: 1.2em;
 }
 mor-btn.si-xxs {
-  height: 1.8em;
-}
-mor-btn.si-xxs,
-mor-btn.si-xxs a {
   font-size: 12px;
-}
-mor-btn.si-xxs a {
+  height: 1.8em;
   line-height: 1.8em;
   padding: 0 0.4em;
 }
-mor-btn.si-xxs a > i {
+mor-btn.si-xxs > i {
   font-size: 12px;
 }
 mor-btn.si-xxs.circle {
@@ -5403,29 +5358,25 @@ mor-btn.si-xxs .mo-loader {
 }
 mor-btn.co-t {
   background-color: #F33D5D;
-}
-mor-btn.co-t a {
   color: #FFFFFF;
 }
 mor-btn.co-t.plain {
   background-color: #fde5e9;
   border-color: #f22549;
-}
-mor-btn.co-t.plain a {
   color: #F33D5D;
 }
 mor-btn.co-t.plain .mo-loader .mo-loader-path {
   stroke: #F33D5D;
 }
-mor-btn.co-t:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-t:not(.st-disabled):hover,
 mor-btn.co-t.st-hover {
   background-color: #f22549;
 }
-mor-btn.co-t:not(.st-disabled):not(.st-readonly):hover.plain a,
-mor-btn.co-t.st-hover.plain a {
+mor-btn.co-t:not(.st-disabled):hover.plain,
+mor-btn.co-t.st-hover.plain {
   color: #FFFFFF;
 }
-mor-btn.co-t:not(.st-disabled):not(.st-readonly):active,
+mor-btn.co-t:not(.st-disabled):active,
 mor-btn.co-t.st-active {
   background-color: #ee0f36;
 }
@@ -5433,36 +5384,29 @@ mor-btn.co-t.st-disabled,
 mor-btn.co-t.st-disabled.plain {
   border: none;
   background-color: #F33D5D;
-}
-mor-btn.co-t.st-disabled a,
-mor-btn.co-t.st-disabled.plain a {
   color: #fab5c1;
 }
 mor-btn.co-lt {
   background-color: #F86F88;
-}
-mor-btn.co-lt a {
   color: #FFFFFF;
 }
 mor-btn.co-lt.plain {
   background-color: #fee9ec;
   border-color: #f75774;
-}
-mor-btn.co-lt.plain a {
   color: #F86F88;
 }
 mor-btn.co-lt.plain .mo-loader .mo-loader-path {
   stroke: #F86F88;
 }
-mor-btn.co-lt:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-lt:not(.st-disabled):hover,
 mor-btn.co-lt.st-hover {
   background-color: #f75774;
 }
-mor-btn.co-lt:not(.st-disabled):not(.st-readonly):hover.plain a,
-mor-btn.co-lt.st-hover.plain a {
+mor-btn.co-lt:not(.st-disabled):hover.plain,
+mor-btn.co-lt.st-hover.plain {
   color: #FFFFFF;
 }
-mor-btn.co-lt:not(.st-disabled):not(.st-readonly):active,
+mor-btn.co-lt:not(.st-disabled):active,
 mor-btn.co-lt.st-active {
   background-color: #f63e60;
 }
@@ -5470,36 +5414,29 @@ mor-btn.co-lt.st-disabled,
 mor-btn.co-lt.st-disabled.plain {
   border: none;
   background-color: #F86F88;
-}
-mor-btn.co-lt.st-disabled a,
-mor-btn.co-lt.st-disabled.plain a {
   color: #fdd0d8;
 }
 mor-btn.co-dt {
   background-color: #D22343;
-}
-mor-btn.co-dt a {
   color: #FFFFFF;
 }
 mor-btn.co-dt.plain {
   background-color: #f3b5c0;
   border-color: #bc1f3c;
-}
-mor-btn.co-dt.plain a {
   color: #D22343;
 }
 mor-btn.co-dt.plain .mo-loader .mo-loader-path {
   stroke: #D22343;
 }
-mor-btn.co-dt:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-dt:not(.st-disabled):hover,
 mor-btn.co-dt.st-hover {
   background-color: #bc1f3c;
 }
-mor-btn.co-dt:not(.st-disabled):not(.st-readonly):hover.plain a,
-mor-btn.co-dt.st-hover.plain a {
+mor-btn.co-dt:not(.st-disabled):hover.plain,
+mor-btn.co-dt.st-hover.plain {
   color: #FFFFFF;
 }
-mor-btn.co-dt:not(.st-disabled):not(.st-readonly):active,
+mor-btn.co-dt:not(.st-disabled):active,
 mor-btn.co-dt.st-active {
   background-color: #a61c35;
 }
@@ -5507,36 +5444,29 @@ mor-btn.co-dt.st-disabled,
 mor-btn.co-dt.st-disabled.plain {
   border: none;
   background-color: #D22343;
-}
-mor-btn.co-dt.st-disabled a,
-mor-btn.co-dt.st-disabled.plain a {
   color: #eb899b;
 }
 mor-btn.co-s {
   background-color: #4DBD67;
-}
-mor-btn.co-s a {
   color: #FFFFFF;
 }
 mor-btn.co-s.plain {
   background-color: #daf1e0;
   border-color: #41af5b;
-}
-mor-btn.co-s.plain a {
   color: #4DBD67;
 }
 mor-btn.co-s.plain .mo-loader .mo-loader-path {
   stroke: #4DBD67;
 }
-mor-btn.co-s:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-s:not(.st-disabled):hover,
 mor-btn.co-s.st-hover {
   background-color: #41af5b;
 }
-mor-btn.co-s:not(.st-disabled):not(.st-readonly):hover.plain a,
-mor-btn.co-s.st-hover.plain a {
+mor-btn.co-s:not(.st-disabled):hover.plain,
+mor-btn.co-s.st-hover.plain {
   color: #FFFFFF;
 }
-mor-btn.co-s:not(.st-disabled):not(.st-readonly):active,
+mor-btn.co-s:not(.st-disabled):active,
 mor-btn.co-s.st-active {
   background-color: #3a9d51;
 }
@@ -5544,36 +5474,29 @@ mor-btn.co-s.st-disabled,
 mor-btn.co-s.st-disabled.plain {
   border: none;
   background-color: #4DBD67;
-}
-mor-btn.co-s.st-disabled a,
-mor-btn.co-s.st-disabled.plain a {
   color: #cfedd6;
 }
 mor-btn.co-w {
   background-color: #F0AD4E;
-}
-mor-btn.co-w a {
   color: #FFFFFF;
 }
 mor-btn.co-w.plain {
   background-color: #fdf3e4;
   border-color: #eea236;
-}
-mor-btn.co-w.plain a {
   color: #F0AD4E;
 }
 mor-btn.co-w.plain .mo-loader .mo-loader-path {
   stroke: #F0AD4E;
 }
-mor-btn.co-w:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-w:not(.st-disabled):hover,
 mor-btn.co-w.st-hover {
   background-color: #eea236;
 }
-mor-btn.co-w:not(.st-disabled):not(.st-readonly):hover.plain a,
-mor-btn.co-w.st-hover.plain a {
+mor-btn.co-w:not(.st-disabled):hover.plain,
+mor-btn.co-w.st-hover.plain {
   color: #FFFFFF;
 }
-mor-btn.co-w:not(.st-disabled):not(.st-readonly):active,
+mor-btn.co-w:not(.st-disabled):active,
 mor-btn.co-w.st-active {
   background-color: #ec971f;
 }
@@ -5581,36 +5504,29 @@ mor-btn.co-w.st-disabled,
 mor-btn.co-w.st-disabled.plain {
   border: none;
   background-color: #F0AD4E;
-}
-mor-btn.co-w.st-disabled a,
-mor-btn.co-w.st-disabled.plain a {
   color: #fef9f3;
 }
 mor-btn.co-d {
   background-color: #D64431;
-}
-mor-btn.co-d a {
   color: #FFFFFF;
 }
 mor-btn.co-d.plain {
   background-color: #f6d7d3;
   border-color: #c63a27;
-}
-mor-btn.co-d.plain a {
   color: #D64431;
 }
 mor-btn.co-d.plain .mo-loader .mo-loader-path {
   stroke: #D64431;
 }
-mor-btn.co-d:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-d:not(.st-disabled):hover,
 mor-btn.co-d.st-hover {
   background-color: #c63a27;
 }
-mor-btn.co-d:not(.st-disabled):not(.st-readonly):hover.plain a,
-mor-btn.co-d.st-hover.plain a {
+mor-btn.co-d:not(.st-disabled):hover.plain,
+mor-btn.co-d.st-hover.plain {
   color: #FFFFFF;
 }
-mor-btn.co-d:not(.st-disabled):not(.st-readonly):active,
+mor-btn.co-d:not(.st-disabled):active,
 mor-btn.co-d.st-active {
   background-color: #b13323;
 }
@@ -5618,36 +5534,29 @@ mor-btn.co-d.st-disabled,
 mor-btn.co-d.st-disabled.plain {
   border: none;
   background-color: #D64431;
-}
-mor-btn.co-d.st-disabled a,
-mor-btn.co-d.st-disabled.plain a {
   color: #f4cbc6;
 }
 mor-btn.co-p {
   background-color: #2185D0;
-}
-mor-btn.co-p a {
   color: #FFFFFF;
 }
 mor-btn.co-p.plain {
   background-color: #d0e6f7;
   border-color: #1e77ba;
-}
-mor-btn.co-p.plain a {
   color: #2185D0;
 }
 mor-btn.co-p.plain .mo-loader .mo-loader-path {
   stroke: #2185D0;
 }
-mor-btn.co-p:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-p:not(.st-disabled):hover,
 mor-btn.co-p.st-hover {
   background-color: #1e77ba;
 }
-mor-btn.co-p:not(.st-disabled):not(.st-readonly):hover.plain a,
-mor-btn.co-p.st-hover.plain a {
+mor-btn.co-p:not(.st-disabled):hover.plain,
+mor-btn.co-p.st-hover.plain {
   color: #FFFFFF;
 }
-mor-btn.co-p:not(.st-disabled):not(.st-readonly):active,
+mor-btn.co-p:not(.st-disabled):active,
 mor-btn.co-p.st-active {
   background-color: #1a69a4;
 }
@@ -5655,36 +5564,29 @@ mor-btn.co-p.st-disabled,
 mor-btn.co-p.st-disabled.plain {
   border: none;
   background-color: #2185D0;
-}
-mor-btn.co-p.st-disabled a,
-mor-btn.co-p.st-disabled.plain a {
   color: #b1d6f3;
 }
 mor-btn.co-m {
   background-color: #A9A9A9;
-}
-mor-btn.co-m a {
   color: #FFFFFF;
 }
 mor-btn.co-m.plain {
   background-color: #ebebeb;
   border-color: #9c9c9c;
-}
-mor-btn.co-m.plain a {
   color: #A9A9A9;
 }
 mor-btn.co-m.plain .mo-loader .mo-loader-path {
   stroke: #A9A9A9;
 }
-mor-btn.co-m:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-m:not(.st-disabled):hover,
 mor-btn.co-m.st-hover {
   background-color: #9c9c9c;
 }
-mor-btn.co-m:not(.st-disabled):not(.st-readonly):hover.plain a,
-mor-btn.co-m.st-hover.plain a {
+mor-btn.co-m:not(.st-disabled):hover.plain,
+mor-btn.co-m.st-hover.plain {
   color: #FFFFFF;
 }
-mor-btn.co-m:not(.st-disabled):not(.st-readonly):active,
+mor-btn.co-m:not(.st-disabled):active,
 mor-btn.co-m.st-active {
   background-color: #909090;
 }
@@ -5692,36 +5594,29 @@ mor-btn.co-m.st-disabled,
 mor-btn.co-m.st-disabled.plain {
   border: none;
   background-color: #A9A9A9;
-}
-mor-btn.co-m.st-disabled a,
-mor-btn.co-m.st-disabled.plain a {
   color: #e9e9e9;
 }
 mor-btn.co-i {
   background-color: #03A6B9;
-}
-mor-btn.co-i a {
   color: #FFFFFF;
 }
 mor-btn.co-i.plain {
   background-color: #effdff;
   border-color: #038fa0;
-}
-mor-btn.co-i.plain a {
   color: #03A6B9;
 }
 mor-btn.co-i.plain .mo-loader .mo-loader-path {
   stroke: #03A6B9;
 }
-mor-btn.co-i:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-i:not(.st-disabled):hover,
 mor-btn.co-i.st-hover {
   background-color: #038fa0;
 }
-mor-btn.co-i:not(.st-disabled):not(.st-readonly):hover.plain a,
-mor-btn.co-i.st-hover.plain a {
+mor-btn.co-i:not(.st-disabled):hover.plain,
+mor-btn.co-i.st-hover.plain {
   color: #FFFFFF;
 }
-mor-btn.co-i:not(.st-disabled):not(.st-readonly):active,
+mor-btn.co-i:not(.st-disabled):active,
 mor-btn.co-i.st-active,
 mor-btn.co-i.st-disabled.plain {
   background-color: #027987;
@@ -5730,36 +5625,29 @@ mor-btn.co-i.st-disabled,
 mor-btn.co-i.st-disabled.plain {
   border: none;
   background-color: #03A6B9;
-}
-mor-btn.co-i.st-disabled a,
-mor-btn.co-i.st-disabled.plain a {
   color: #27e5fb;
 }
 mor-btn.co-bk {
   background-color: #17212D;
-}
-mor-btn.co-bk a {
   color: #FFFFFF;
 }
 mor-btn.co-bk.plain {
   background-color: #94acc8;
   border-color: #17212D;
-}
-mor-btn.co-bk.plain a {
   color: #17212D;
 }
 mor-btn.co-bk.plain .mo-loader .mo-loader-path {
   stroke: #17212D;
 }
-mor-btn.co-bk:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-bk:not(.st-disabled):hover,
 mor-btn.co-bk.st-hover {
   background-color: #202d3e;
 }
-mor-btn.co-bk:not(.st-disabled):not(.st-readonly):hover.plain a,
-mor-btn.co-bk.st-hover.plain a {
+mor-btn.co-bk:not(.st-disabled):hover.plain,
+mor-btn.co-bk.st-hover.plain {
   color: #FFFFFF;
 }
-mor-btn.co-bk:not(.st-disabled):not(.st-readonly):active,
+mor-btn.co-bk:not(.st-disabled):active,
 mor-btn.co-bk.st-active {
   background-color: #283a4f;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.4) inset;
@@ -5768,36 +5656,29 @@ mor-btn.co-bk.st-disabled,
 mor-btn.co-bk.st-disabled.plain {
   border: none;
   background-color: #17212D;
-}
-mor-btn.co-bk.st-disabled a,
-mor-btn.co-bk.st-disabled.plain a {
   color: #6284af;
 }
 mor-btn.co-lbk {
   background-color: #303C4B;
-}
-mor-btn.co-lbk a {
   color: #FFFFFF;
 }
 mor-btn.co-lbk.plain {
   background-color: #afbbcb;
   border-color: #303C4B;
-}
-mor-btn.co-lbk.plain a {
   color: #303C4B;
 }
 mor-btn.co-lbk.plain .mo-loader .mo-loader-path {
   stroke: #303C4B;
 }
-mor-btn.co-lbk:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-lbk:not(.st-disabled):hover,
 mor-btn.co-lbk.st-hover {
   background-color: #3a485b;
 }
-mor-btn.co-lbk:not(.st-disabled):not(.st-readonly):hover.plain a,
-mor-btn.co-lbk.st-hover.plain a {
+mor-btn.co-lbk:not(.st-disabled):hover.plain,
+mor-btn.co-lbk.st-hover.plain {
   color: #FFFFFF;
 }
-mor-btn.co-lbk:not(.st-disabled):not(.st-readonly):active,
+mor-btn.co-lbk:not(.st-disabled):active,
 mor-btn.co-lbk.st-active {
   background-color: #44556a;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.4) inset;
@@ -5806,36 +5687,29 @@ mor-btn.co-lbk.st-disabled,
 mor-btn.co-lbk.st-disabled.plain {
   border: none;
   background-color: #303C4B;
-}
-mor-btn.co-lbk.st-disabled a,
-mor-btn.co-lbk.st-disabled.plain a {
   color: #8fa1b8;
 }
 mor-btn.co-elbk {
   background-color: #45505C;
-}
-mor-btn.co-elbk a {
   color: #FFFFFF;
 }
 mor-btn.co-elbk.plain {
   background-color: #bbc3cc;
   border-color: #45505C;
-}
-mor-btn.co-elbk.plain a {
   color: #45505C;
 }
 mor-btn.co-elbk.plain .mo-loader .mo-loader-path {
   stroke: #45505C;
 }
-mor-btn.co-elbk:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-elbk:not(.st-disabled):hover,
 mor-btn.co-elbk.st-hover {
   background-color: #505d6b;
 }
-mor-btn.co-elbk:not(.st-disabled):not(.st-readonly):hover.plain a,
-mor-btn.co-elbk.st-hover.plain a {
+mor-btn.co-elbk:not(.st-disabled):hover.plain,
+mor-btn.co-elbk.st-hover.plain {
   color: #FFFFFF;
 }
-mor-btn.co-elbk:not(.st-disabled):not(.st-readonly):active,
+mor-btn.co-elbk:not(.st-disabled):active,
 mor-btn.co-elbk.st-active {
   border: none;
   background-color: #5b6979;
@@ -5845,36 +5719,29 @@ mor-btn.co-elbk.st-disabled,
 mor-btn.co-elbk.st-disabled.plain {
   border: none;
   background-color: #45505C;
-}
-mor-btn.co-elbk.st-disabled a,
-mor-btn.co-elbk.st-disabled.plain a {
   color: #acb6c1;
 }
 mor-btn.co-bu {
   background-color: #7C8BA0;
-}
-mor-btn.co-bu a {
   color: #FFFFFF;
 }
 mor-btn.co-bu.plain {
   background-color: #e3e7eb;
   border-color: #6d7e95;
-}
-mor-btn.co-bu.plain a {
   color: #7C8BA0;
 }
 mor-btn.co-bu.plain .mo-loader .mo-loader-path {
   stroke: #7C8BA0;
 }
-mor-btn.co-bu:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-bu:not(.st-disabled):hover,
 mor-btn.co-bu.st-hover {
   background-color: #6d7e95;
 }
-mor-btn.co-bu:not(.st-disabled):not(.st-readonly):hover.plain a,
-mor-btn.co-bu.st-hover.plain a {
+mor-btn.co-bu:not(.st-disabled):hover.plain,
+mor-btn.co-bu.st-hover.plain {
   color: #FFFFFF;
 }
-mor-btn.co-bu:not(.st-disabled):not(.st-readonly):active,
+mor-btn.co-bu:not(.st-disabled):active,
 mor-btn.co-bu.st-active {
   background-color: #627187;
 }
@@ -5882,36 +5749,29 @@ mor-btn.co-bu.st-disabled,
 mor-btn.co-bu.st-disabled.plain {
   border: none;
   background-color: #7C8BA0;
-}
-mor-btn.co-bu.st-disabled a,
-mor-btn.co-bu.st-disabled.plain a {
   color: #d5dae0;
 }
 mor-btn.co-lbu {
   background-color: #8E9CAF;
-}
-mor-btn.co-lbu a {
   color: #FFFFFF;
 }
 mor-btn.co-lbu.plain {
   background-color: #eef0f3;
   border-color: #7f8fa4;
-}
-mor-btn.co-lbu.plain a {
   color: #8E9CAF;
 }
 mor-btn.co-lbu.plain .mo-loader .mo-loader-path {
   stroke: #8E9CAF;
 }
-mor-btn.co-lbu:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-lbu:not(.st-disabled):hover,
 mor-btn.co-lbu.st-hover {
   background-color: #7f8fa4;
 }
-mor-btn.co-lbu:not(.st-disabled):not(.st-readonly):hover.plain a,
-mor-btn.co-lbu.st-hover.plain a {
+mor-btn.co-lbu:not(.st-disabled):hover.plain,
+mor-btn.co-lbu.st-hover.plain {
   color: #FFFFFF;
 }
-mor-btn.co-lbu:not(.st-disabled):not(.st-readonly):active,
+mor-btn.co-lbu:not(.st-disabled):active,
 mor-btn.co-lbu.st-active {
   background-color: #70829a;
 }
@@ -5919,36 +5779,29 @@ mor-btn.co-lbu.st-disabled,
 mor-btn.co-lbu.st-disabled.plain {
   border: none;
   background-color: #8E9CAF;
-}
-mor-btn.co-lbu.st-disabled a,
-mor-btn.co-lbu.st-disabled.plain a {
   color: #e8eaee;
 }
 mor-btn.co-elbu {
   background-color: #A8B3C2;
-}
-mor-btn.co-elbu a {
   color: #FFFFFF;
 }
 mor-btn.co-elbu.plain {
   background-color: #fcfcfd;
   border-color: #99a6b7;
-}
-mor-btn.co-elbu.plain a {
   color: #A8B3C2;
 }
 mor-btn.co-elbu.plain .mo-loader .mo-loader-path {
   stroke: #A8B3C2;
 }
-mor-btn.co-elbu:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-elbu:not(.st-disabled):hover,
 mor-btn.co-elbu.st-hover {
   background-color: #99a6b7;
 }
-mor-btn.co-elbu:not(.st-disabled):not(.st-readonly):hover.plain a,
-mor-btn.co-elbu.st-hover.plain a {
+mor-btn.co-elbu:not(.st-disabled):hover.plain,
+mor-btn.co-elbu.st-hover.plain {
   color: #FFFFFF;
 }
-mor-btn.co-elbu:not(.st-disabled):not(.st-readonly):active,
+mor-btn.co-elbu:not(.st-disabled):active,
 mor-btn.co-elbu.st-active {
   background-color: #8a99ad;
 }
@@ -5956,15 +5809,10 @@ mor-btn.co-elbu.st-disabled,
 mor-btn.co-elbu.st-disabled.plain {
   border: none;
   background-color: #A8B3C2;
-}
-mor-btn.co-elbu.st-disabled a,
-mor-btn.co-elbu.st-disabled.plain a {
   color: #e4e7ec;
 }
 mor-btn.co-si {
   background-color: #D6DDE5;
-}
-mor-btn.co-si a {
   color: #45505C;
 }
 mor-btn.co-si .mo-loader .mo-loader-path {
@@ -5973,22 +5821,20 @@ mor-btn.co-si .mo-loader .mo-loader-path {
 mor-btn.co-si.plain {
   background-color: transparent;
   border-color: #cdd5df;
-}
-mor-btn.co-si.plain a {
   color: #D6DDE5;
 }
 mor-btn.co-si.plain .mo-loader .mo-loader-path {
   stroke: #D6DDE5;
 }
-mor-btn.co-si:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-si:not(.st-disabled):hover,
 mor-btn.co-si.st-hover {
   background-color: #cdd5df;
 }
-mor-btn.co-si:not(.st-disabled):not(.st-readonly):hover.plain a,
-mor-btn.co-si.st-hover.plain a {
+mor-btn.co-si:not(.st-disabled):hover.plain,
+mor-btn.co-si.st-hover.plain {
   color: #45505C;
 }
-mor-btn.co-si:not(.st-disabled):not(.st-readonly):active,
+mor-btn.co-si:not(.st-disabled):active,
 mor-btn.co-si.st-active {
   background-color: #c3cdd9;
 }
@@ -5996,15 +5842,10 @@ mor-btn.co-si.st-disabled,
 mor-btn.co-si.st-disabled.plain {
   border: none;
   background-color: #D6DDE5;
-}
-mor-btn.co-si.st-disabled a,
-mor-btn.co-si.st-disabled.plain a {
   color: #788faa;
 }
 mor-btn.co-lsi {
   background-color: #E2E8EE;
-}
-mor-btn.co-lsi a {
   color: #45505C;
 }
 mor-btn.co-lsi .mo-loader .mo-loader-path {
@@ -6013,22 +5854,20 @@ mor-btn.co-lsi .mo-loader .mo-loader-path {
 mor-btn.co-lsi.plain {
   background-color: transparent;
   border-color: #d8e0e8;
-}
-mor-btn.co-lsi.plain a {
   color: #E2E8EE;
 }
 mor-btn.co-lsi.plain .mo-loader .mo-loader-path {
   stroke: #E2E8EE;
 }
-mor-btn.co-lsi:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-lsi:not(.st-disabled):hover,
 mor-btn.co-lsi.st-hover {
   background-color: #d8e0e8;
 }
-mor-btn.co-lsi:not(.st-disabled):not(.st-readonly):hover.plain a,
-mor-btn.co-lsi.st-hover.plain a {
+mor-btn.co-lsi:not(.st-disabled):hover.plain,
+mor-btn.co-lsi.st-hover.plain {
   color: #45505C;
 }
-mor-btn.co-lsi:not(.st-disabled):not(.st-readonly):active,
+mor-btn.co-lsi:not(.st-disabled):active,
 mor-btn.co-lsi.st-active {
   background-color: #cfd9e3;
 }
@@ -6036,15 +5875,10 @@ mor-btn.co-lsi.st-disabled,
 mor-btn.co-lsi.st-disabled.plain {
   border: none;
   background-color: #E2E8EE;
-}
-mor-btn.co-lsi.st-disabled a,
-mor-btn.co-lsi.st-disabled.plain a {
   color: #829bb5;
 }
 mor-btn.co-elsi {
   background-color: #EDF1F5;
-}
-mor-btn.co-elsi a {
   color: #45505C;
 }
 mor-btn.co-elsi .mo-loader .mo-loader-path {
@@ -6053,22 +5887,20 @@ mor-btn.co-elsi .mo-loader .mo-loader-path {
 mor-btn.co-elsi.plain {
   background-color: transparent;
   border-color: #e3e9f0;
-}
-mor-btn.co-elsi.plain a {
   color: #EDF1F5;
 }
 mor-btn.co-elsi.plain .mo-loader .mo-loader-path {
   stroke: #EDF1F5;
 }
-mor-btn.co-elsi:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-elsi:not(.st-disabled):hover,
 mor-btn.co-elsi.st-hover {
   background-color: #e3e9f0;
 }
-mor-btn.co-elsi:not(.st-disabled):not(.st-readonly):hover.plain a,
-mor-btn.co-elsi.st-hover.plain a {
+mor-btn.co-elsi:not(.st-disabled):hover.plain,
+mor-btn.co-elsi.st-hover.plain {
   color: #45505C;
 }
-mor-btn.co-elsi:not(.st-disabled):not(.st-readonly):active,
+mor-btn.co-elsi:not(.st-disabled):active,
 mor-btn.co-elsi.st-active {
   background-color: #d9e2ea;
 }
@@ -6076,15 +5908,10 @@ mor-btn.co-elsi.st-disabled,
 mor-btn.co-elsi.st-disabled.plain {
   border: none;
   background-color: #EDF1F5;
-}
-mor-btn.co-elsi.st-disabled a,
-mor-btn.co-elsi.st-disabled.plain a {
   color: #8ba4be;
 }
 mor-btn.co-g {
   background-color: #E6E6E6;
-}
-mor-btn.co-g a {
   color: #45505C;
 }
 mor-btn.co-g .mo-loader .mo-loader-path {
@@ -6093,22 +5920,20 @@ mor-btn.co-g .mo-loader .mo-loader-path {
 mor-btn.co-g.plain {
   background-color: transparent;
   border-color: #dedede;
-}
-mor-btn.co-g.plain a {
   color: #E6E6E6;
 }
 mor-btn.co-g.plain .mo-loader .mo-loader-path {
   stroke: #E6E6E6;
 }
-mor-btn.co-g:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-g:not(.st-disabled):hover,
 mor-btn.co-g.st-hover {
   background-color: #dedede;
 }
-mor-btn.co-g:not(.st-disabled):not(.st-readonly):hover.plain a,
-mor-btn.co-g.st-hover.plain a {
+mor-btn.co-g:not(.st-disabled):hover.plain,
+mor-btn.co-g.st-hover.plain {
   color: #45505C;
 }
-mor-btn.co-g:not(.st-disabled):not(.st-readonly):active,
+mor-btn.co-g:not(.st-disabled):active,
 mor-btn.co-g.st-active {
   background-color: #d7d7d7;
 }
@@ -6116,15 +5941,10 @@ mor-btn.co-g.st-disabled,
 mor-btn.co-g.st-disabled.plain {
   border: none;
   background-color: #E6E6E6;
-}
-mor-btn.co-g.st-disabled a,
-mor-btn.co-g.st-disabled.plain a {
   color: #9a9a9a;
 }
 mor-btn.co-lg {
   background-color: #F0F0F0;
-}
-mor-btn.co-lg a {
   color: #45505C;
 }
 mor-btn.co-lg .mo-loader .mo-loader-path {
@@ -6133,22 +5953,20 @@ mor-btn.co-lg .mo-loader .mo-loader-path {
 mor-btn.co-lg.plain {
   background-color: transparent;
   border-color: #e8e8e8;
-}
-mor-btn.co-lg.plain a {
   color: #F0F0F0;
 }
 mor-btn.co-lg.plain .mo-loader .mo-loader-path {
   stroke: #F0F0F0;
 }
-mor-btn.co-lg:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-lg:not(.st-disabled):hover,
 mor-btn.co-lg.st-hover {
   background-color: #e8e8e8;
 }
-mor-btn.co-lg:not(.st-disabled):not(.st-readonly):hover.plain a,
-mor-btn.co-lg.st-hover.plain a {
+mor-btn.co-lg:not(.st-disabled):hover.plain,
+mor-btn.co-lg.st-hover.plain {
   color: #45505C;
 }
-mor-btn.co-lg:not(.st-disabled):not(.st-readonly):active,
+mor-btn.co-lg:not(.st-disabled):active,
 mor-btn.co-lg.st-active {
   background-color: #e1e1e1;
 }
@@ -6156,15 +5974,10 @@ mor-btn.co-lg.st-disabled,
 mor-btn.co-lg.st-disabled.plain {
   border: none;
   background-color: #F0F0F0;
-}
-mor-btn.co-lg.st-disabled a,
-mor-btn.co-lg.st-disabled.plain a {
   color: #a3a3a3;
 }
 mor-btn.co-wh {
   background-color: #FFFFFF;
-}
-mor-btn.co-wh a {
   color: #45505C;
 }
 mor-btn.co-wh .mo-loader .mo-loader-path {
@@ -6173,22 +5986,20 @@ mor-btn.co-wh .mo-loader .mo-loader-path {
 mor-btn.co-wh.plain {
   background-color: transparent;
   border-color: #f7f7f7;
-}
-mor-btn.co-wh.plain a {
   color: #FFFFFF;
 }
 mor-btn.co-wh.plain .mo-loader .mo-loader-path {
   stroke: #FFFFFF;
 }
-mor-btn.co-wh:not(.st-disabled):not(.st-readonly):hover,
+mor-btn.co-wh:not(.st-disabled):hover,
 mor-btn.co-wh.st-hover {
   background-color: #f7f7f7;
 }
-mor-btn.co-wh:not(.st-disabled):not(.st-readonly):hover.plain a,
-mor-btn.co-wh.st-hover.plain a {
+mor-btn.co-wh:not(.st-disabled):hover.plain,
+mor-btn.co-wh.st-hover.plain {
   color: #45505C;
 }
-mor-btn.co-wh:not(.st-disabled):not(.st-readonly):active,
+mor-btn.co-wh:not(.st-disabled):active,
 mor-btn.co-wh.st-active {
   background-color: #f0f0f0;
 }
@@ -6196,28 +6007,17 @@ mor-btn.co-wh.st-disabled,
 mor-btn.co-wh.st-disabled.plain {
   border: none;
   background-color: #FFFFFF;
-}
-mor-btn.co-wh.st-disabled a,
-mor-btn.co-wh.st-disabled.plain a {
   color: #b3b3b3;
 }
 mor-btn.st-active {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.25) inset;
 }
-mor-btn:not(.st-disabled):not(.st-readonly):active {
+mor-btn:not(.st-disabled):active {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.25) inset;
 }
 mor-btn.st-disabled {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.6) inset;
-}
-mor-btn.st-disabled a {
   cursor: not-allowed;
-}
-mor-btn.st-readonly {
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.6) inset;
-}
-mor-btn.st-readonly a {
-  cursor: default;
 }
 mor-btn.st-apparent {
   animation-name: apparent;
@@ -6228,38 +6028,29 @@ mor-btn.st-apparent {
 mor-btn.st-apparent:hover {
   animation-name: none;
 }
-mor-btn,
-mor-btn a {
-  font-size: 13px;
-}
-mor-btn a > i {
+mor-btn > i {
   font-size: 22.4px;
 }
 mor-btn .mo-loader {
   width: 1.2em;
 }
-mor-btn a {
-  color: #FFFFFF;
-}
 mor-btn.plain {
   background-color: #fde5e9;
   border-color: #f22549;
-}
-mor-btn.plain a {
   color: #F33D5D;
 }
 mor-btn.plain .mo-loader .mo-loader-path {
   stroke: #F33D5D;
 }
-mor-btn:not(.st-disabled):not(.st-readonly):hover,
+mor-btn:not(.st-disabled):hover,
 mor-btn.st-hover {
   background-color: #f22549;
 }
-mor-btn:not(.st-disabled):not(.st-readonly):hover.plain a,
-mor-btn.st-hover.plain a {
+mor-btn:not(.st-disabled):hover.plain,
+mor-btn.st-hover.plain {
   color: #FFFFFF;
 }
-mor-btn:not(.st-disabled):not(.st-readonly):active,
+mor-btn:not(.st-disabled):active,
 mor-btn.st-active {
   background-color: #ee0f36;
 }
@@ -6267,36 +6058,18 @@ mor-btn.st-disabled,
 mor-btn.st-disabled.plain {
   border: none;
   background-color: #F33D5D;
-}
-mor-btn.st-disabled a,
-mor-btn.st-disabled.plain a {
   color: #fab5c1;
 }
 
 mor-link {
   display: inline-block;
   position: relative;
-}
-mor-link > a {
-  display: inline-block;
   line-height: 1.4em;
   height: 1.4em;
-  text-decoration: none;
+  font-size: 13px;
+  color: #F33D5D;
 }
-mor-link > a:hover {
-  text-decoration: none;
-  cursor: pointer;
-}
-mor-link.text-overflow-ellipsis {
-  max-width: 100%;
-}
-mor-link.text-overflow-ellipsis > a {
-  max-width: 100%;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
-mor-link.margin > a {
+mor-link.margin {
   padding: 0 0.6em;
 }
 mor-link.loading .mo-loader {
@@ -6309,396 +6082,392 @@ mor-link.loading .mo-loader {
 mor-link.loading span {
   opacity: 0;
 }
-mor-link.loading > a,
-mor-link.loading > a:hover {
+mor-link.loading:hover {
   cursor: default;
 }
-mor-link.si-xxl > a {
+mor-link.si-xxl {
   font-size: 20.8px;
 }
-mor-link.si-xl > a {
+mor-link.si-xl {
   font-size: 17.6px;
 }
-mor-link.si-l > a {
+mor-link.si-l {
   font-size: 16px;
 }
-mor-link.si-m > a {
+mor-link.si-m {
   font-size: 13px;
 }
-mor-link.si-s > a {
+mor-link.si-s {
   font-size: 12px;
 }
-mor-link.si-xs > a {
+mor-link.si-xs {
   font-size: 12px;
 }
-mor-link.si-xxs > a {
+mor-link.si-xxs {
   font-size: 12px;
 }
-mor-link.co-t > a {
+mor-link.co-t {
   color: #F33D5D;
 }
 mor-link.co-t .mo-loader .mo-loader-path {
   stroke: #F33D5D;
 }
-mor-link.co-t:not(.st-disabled):not(.st-readonly):hover > a,
-mor-link.co-t.st-hover > a {
+mor-link.co-t:not(.st-disabled):hover,
+mor-link.co-t.st-hover {
   color: #d60d31;
 }
-mor-link.co-t:not(.st-disabled):not(.st-readonly):active > a,
-mor-link.co-t.st-active > a {
+mor-link.co-t:not(.st-disabled):active,
+mor-link.co-t.st-active {
   color: #a60a26;
 }
-mor-link.co-t.st-disabled > a {
+mor-link.co-t.st-disabled {
   color: #fab5c1;
 }
-mor-link.co-lt > a {
+mor-link.co-lt {
   color: #F86F88;
 }
 mor-link.co-lt .mo-loader .mo-loader-path {
   stroke: #F86F88;
 }
-mor-link.co-lt:not(.st-disabled):not(.st-readonly):hover > a,
-mor-link.co-lt.st-hover > a {
+mor-link.co-lt:not(.st-disabled):hover,
+mor-link.co-lt.st-hover {
   color: #dd0b31;
 }
-mor-link.co-lt:not(.st-disabled):not(.st-readonly):active > a,
-mor-link.co-lt.st-active > a {
+mor-link.co-lt:not(.st-disabled):active,
+mor-link.co-lt.st-active {
   color: #ac0826;
 }
-mor-link.co-lt.st-disabled > a {
+mor-link.co-lt.st-disabled {
   color: #fdd0d8;
 }
-mor-link.co-dt > a {
+mor-link.co-dt {
   color: #D22343;
 }
 mor-link.co-dt .mo-loader .mo-loader-path {
   stroke: #D22343;
 }
-mor-link.co-dt:not(.st-disabled):not(.st-readonly):hover > a,
-mor-link.co-dt.st-hover > a {
+mor-link.co-dt:not(.st-disabled):hover,
+mor-link.co-dt.st-hover {
   color: #a61c35;
 }
-mor-link.co-dt:not(.st-disabled):not(.st-readonly):active > a,
-mor-link.co-dt.st-active > a {
+mor-link.co-dt:not(.st-disabled):active,
+mor-link.co-dt.st-active {
   color: #7b1427;
 }
-mor-link.co-dt.st-disabled > a {
+mor-link.co-dt.st-disabled {
   color: #eb899b;
 }
-mor-link.co-s > a {
+mor-link.co-s {
   color: #4DBD67;
 }
 mor-link.co-s .mo-loader .mo-loader-path {
   stroke: #4DBD67;
 }
-mor-link.co-s:not(.st-disabled):not(.st-readonly):hover > a,
-mor-link.co-s.st-hover > a {
+mor-link.co-s:not(.st-disabled):hover,
+mor-link.co-s.st-hover {
   color: #3a9d51;
 }
-mor-link.co-s:not(.st-disabled):not(.st-readonly):active > a,
-mor-link.co-s.st-active > a {
+mor-link.co-s:not(.st-disabled):active,
+mor-link.co-s.st-active {
   color: #338a47;
 }
-mor-link.co-s.st-disabled > a {
+mor-link.co-s.st-disabled {
   color: #256534;
 }
-mor-link.co-w > a {
+mor-link.co-w {
   color: #F0AD4E;
 }
 mor-link.co-w .mo-loader .mo-loader-path {
   stroke: #F0AD4E;
 }
-mor-link.co-w:not(.st-disabled):not(.st-readonly):hover > a,
-mor-link.co-w.st-hover > a {
+mor-link.co-w:not(.st-disabled):hover,
+mor-link.co-w.st-hover {
   color: #ec971f;
 }
-mor-link.co-w:not(.st-disabled):not(.st-readonly):active > a,
-mor-link.co-w.st-active > a {
+mor-link.co-w:not(.st-disabled):active,
+mor-link.co-w.st-active {
   color: #df8a13;
 }
-mor-link.co-w.st-disabled > a {
+mor-link.co-w.st-disabled {
   color: #f6ce95;
 }
-mor-link.co-d > a {
+mor-link.co-d {
   color: #D64431;
 }
 mor-link.co-d .mo-loader .mo-loader-path {
   stroke: #D64431;
 }
-mor-link.co-d:not(.st-disabled):not(.st-readonly):hover > a,
-mor-link.co-d.st-hover > a {
+mor-link.co-d:not(.st-disabled):hover,
+mor-link.co-d.st-hover {
   color: #c63a27;
 }
-mor-link.co-d:not(.st-disabled):not(.st-readonly):active > a,
-mor-link.co-d.st-active > a {
+mor-link.co-d:not(.st-disabled):active,
+mor-link.co-d.st-active {
   color: #b13323;
 }
-mor-link.co-d.st-disabled > a {
+mor-link.co-d.st-disabled {
   color: #eba59b;
 }
-mor-link.co-p > a {
+mor-link.co-p {
   color: #2185D0;
 }
 mor-link.co-p .mo-loader .mo-loader-path {
   stroke: #2185D0;
 }
-mor-link.co-p:not(.st-disabled):not(.st-readonly):hover > a,
-mor-link.co-p.st-hover > a {
+mor-link.co-p:not(.st-disabled):hover,
+mor-link.co-p.st-hover {
   color: #1a69a4;
 }
-mor-link.co-p:not(.st-disabled):not(.st-readonly):active > a,
-mor-link.co-p.st-active > a {
+mor-link.co-p:not(.st-disabled):active,
+mor-link.co-p.st-active {
   color: #175b8e;
 }
-mor-link.co-p.st-disabled > a {
+mor-link.co-p.st-disabled {
   color: #85c0ec;
 }
-mor-link.co-m > a {
+mor-link.co-m {
   color: #A9A9A9;
 }
 mor-link.co-m .mo-loader .mo-loader-path {
   stroke: #A9A9A9;
 }
-mor-link.co-m:not(.st-disabled):not(.st-readonly):hover > a,
-mor-link.co-m.st-hover > a {
+mor-link.co-m:not(.st-disabled):hover,
+mor-link.co-m.st-hover {
   color: #909090;
 }
-mor-link.co-m:not(.st-disabled):not(.st-readonly):active > a,
-mor-link.co-m.st-active > a {
+mor-link.co-m:not(.st-disabled):active,
+mor-link.co-m.st-active {
   color: #838383;
 }
-mor-link.co-m.st-disabled > a {
+mor-link.co-m.st-disabled {
   color: #cfcfcf;
 }
-mor-link.co-i > a {
+mor-link.co-i {
   color: #03A6B9;
 }
 mor-link.co-i .mo-loader .mo-loader-path {
   stroke: #03A6B9;
 }
-mor-link.co-i:not(.st-disabled):not(.st-readonly):hover > a,
-mor-link.co-i.st-hover > a {
+mor-link.co-i:not(.st-disabled):hover,
+mor-link.co-i.st-hover {
   color: #027987;
 }
-mor-link.co-i:not(.st-disabled):not(.st-readonly):active > a,
-mor-link.co-i.st-active > a {
+mor-link.co-i:not(.st-disabled):active,
+mor-link.co-i.st-active {
   color: #02626e;
 }
-mor-link.co-i.st-disabled > a {
+mor-link.co-i.st-disabled {
   color: #01353c;
 }
-mor-link.co-bk > a {
+mor-link.co-bk {
   color: #17212D;
 }
 mor-link.co-bk .mo-loader .mo-loader-path {
   stroke: #17212D;
 }
-mor-link.co-bk:not(.st-disabled):not(.st-readonly):hover > a,
-mor-link.co-bk.st-hover > a {
+mor-link.co-bk:not(.st-disabled):hover,
+mor-link.co-bk.st-hover {
   color: #314660;
 }
-mor-link.co-bk:not(.st-disabled):not(.st-readonly):active > a,
-mor-link.co-bk.st-active > a {
+mor-link.co-bk:not(.st-disabled):active,
+mor-link.co-bk.st-active {
   color: #4b6b92;
 }
-mor-link.co-bk.st-disabled > a {
+mor-link.co-bk.st-disabled {
   color: #6284af;
 }
-mor-link.co-lbk > a {
+mor-link.co-lbk {
   color: #303C4B;
 }
 mor-link.co-lbk .mo-loader .mo-loader-path {
   stroke: #303C4B;
 }
-mor-link.co-lbk:not(.st-disabled):not(.st-readonly):hover > a,
-mor-link.co-lbk.st-hover > a {
+mor-link.co-lbk:not(.st-disabled):hover,
+mor-link.co-lbk.st-hover {
   color: #4e617a;
 }
-mor-link.co-lbk:not(.st-disabled):not(.st-readonly):active > a,
-mor-link.co-lbk.st-active > a {
+mor-link.co-lbk:not(.st-disabled):active,
+mor-link.co-lbk.st-active {
   color: #627a99;
 }
-mor-link.co-lbk.st-disabled > a {
+mor-link.co-lbk.st-disabled {
   color: #8fa1b8;
 }
-mor-link.co-elbk > a {
+mor-link.co-elbk {
   color: #45505C;
 }
 mor-link.co-elbk .mo-loader .mo-loader-path {
   stroke: #45505C;
 }
-mor-link.co-elbk:not(.st-disabled):not(.st-readonly):hover > a,
-mor-link.co-elbk.st-hover > a {
+mor-link.co-elbk:not(.st-disabled):hover,
+mor-link.co-elbk.st-hover {
   color: #5b6979;
 }
-mor-link.co-elbk:not(.st-disabled):not(.st-readonly):active > a,
-mor-link.co-elbk.st-active > a {
+mor-link.co-elbk:not(.st-disabled):active,
+mor-link.co-elbk.st-active {
   color: #728395;
 }
-mor-link.co-elbk.st-disabled > a {
+mor-link.co-elbk.st-disabled {
   color: #acb6c1;
 }
-mor-link.co-bu a {
+mor-link.co-bu {
   color: #7C8BA0;
 }
 mor-link.co-bu .mo-loader .mo-loader-path {
   stroke: #7C8BA0;
 }
-mor-link.co-bu:not(.st-disabled):not(.st-readonly):hover > a,
-mor-link.co-bu.st-hover > a {
+mor-link.co-bu:not(.st-disabled):hover,
+mor-link.co-bu.st-hover {
   color: #576578;
 }
-mor-link.co-bu:not(.st-disabled):not(.st-readonly):active > a,
-mor-link.co-bu.st-active > a {
+mor-link.co-bu:not(.st-disabled):active,
+mor-link.co-bu.st-active {
   color: #4d5969;
 }
-mor-link.co-bu.st-disabled > a {
+mor-link.co-bu.st-disabled {
   color: #b7bfcb;
 }
-mor-link.co-lbu > a {
+mor-link.co-lbu {
   color: #8E9CAF;
 }
 mor-link.co-lbu .mo-loader .mo-loader-path {
   stroke: #8E9CAF;
 }
-mor-link.co-lbu:not(.st-disabled):not(.st-readonly):hover > a,
-mor-link.co-lbu.st-hover > a {
+mor-link.co-lbu:not(.st-disabled):hover,
+mor-link.co-lbu.st-hover {
   color: #64758d;
 }
-mor-link.co-lbu:not(.st-disabled):not(.st-readonly):active > a,
-mor-link.co-lbu.st-active > a {
+mor-link.co-lbu:not(.st-disabled):active,
+mor-link.co-lbu.st-active {
   color: #59697e;
 }
-mor-link.co-lbu.st-disabled > a {
+mor-link.co-lbu.st-disabled {
   color: #cad0d9;
 }
-mor-link.co-elbu > a {
+mor-link.co-elbu {
   color: #A8B3C2;
 }
 mor-link.co-elbu .mo-loader .mo-loader-path {
   stroke: #A8B3C2;
 }
-mor-link.co-elbu:not(.st-disabled):not(.st-readonly):hover > a,
-mor-link.co-elbu.st-hover > a {
+mor-link.co-elbu:not(.st-disabled):hover,
+mor-link.co-elbu.st-hover {
   color: #7b8ca2;
 }
-mor-link.co-elbu:not(.st-disabled):not(.st-readonly):active > a,
-mor-link.co-elbu.st-active > a {
+mor-link.co-elbu:not(.st-disabled):active,
+mor-link.co-elbu.st-active {
   color: #6c7f98;
 }
-mor-link.co-elbu.st-disabled > a {
+mor-link.co-elbu.st-disabled {
   color: #c6cdd7;
 }
-mor-link.co-si > a {
+mor-link.co-si {
   color: #D6DDE5;
 }
 mor-link.co-si .mo-loader .mo-loader-path {
   stroke: #D6DDE5;
 }
-mor-link.co-si:not(.st-disabled):not(.st-readonly):hover > a,
-mor-link.co-si.st-hover > a {
+mor-link.co-si:not(.st-disabled):hover,
+mor-link.co-si.st-hover {
   color: #bdc8d5;
 }
-mor-link.co-si:not(.st-disabled):not(.st-readonly):active > a,
-mor-link.co-si.st-active > a {
+mor-link.co-si:not(.st-disabled):active,
+mor-link.co-si.st-active {
   color: #b1becd;
 }
-mor-link.co-si.st-disabled > a {
+mor-link.co-si.st-disabled {
   color: #788faa;
 }
-mor-link.co-lsi > a {
+mor-link.co-lsi {
   color: #E2E8EE;
 }
 mor-link.co-lsi .mo-loader .mo-loader-path {
   stroke: #E2E8EE;
 }
-mor-link.co-lsi:not(.st-disabled):not(.st-readonly):hover > a,
-mor-link.co-lsi.st-hover > a {
+mor-link.co-lsi:not(.st-disabled):hover,
+mor-link.co-lsi.st-hover {
   color: #c8d4df;
 }
-mor-link.co-lsi:not(.st-disabled):not(.st-readonly):active > a,
-mor-link.co-lsi.st-active > a {
+mor-link.co-lsi:not(.st-disabled):active,
+mor-link.co-lsi.st-active {
   color: #bbc9d7;
 }
-mor-link.co-lsi.st-disabled > a {
+mor-link.co-lsi.st-disabled {
   color: #829bb5;
 }
-mor-link.co-elsi > a {
+mor-link.co-elsi {
   color: #EDF1F5;
 }
 mor-link.co-elsi .mo-loader .mo-loader-path {
   stroke: #EDF1F5;
 }
-mor-link.co-elsi:not(.st-disabled):not(.st-readonly):hover > a,
-mor-link.co-elsi.st-hover > a {
+mor-link.co-elsi:not(.st-disabled):hover,
+mor-link.co-elsi.st-hover {
   color: #d3dde6;
 }
-mor-link.co-elsi:not(.st-disabled):not(.st-readonly):active > a,
-mor-link.co-elsi.st-active > a {
+mor-link.co-elsi:not(.st-disabled):active,
+mor-link.co-elsi.st-active {
   color: #c6d2df;
 }
-mor-link.co-elsi.st-disabled > a {
+mor-link.co-elsi.st-disabled {
   color: #8ba4be;
 }
-mor-link.co-g > a {
+mor-link.co-g {
   color: #E6E6E6;
 }
 mor-link.co-g .mo-loader .mo-loader-path {
   stroke: #E6E6E6;
 }
-mor-link.co-g:not(.st-disabled):not(.st-readonly):hover > a,
-mor-link.co-g.st-hover > a {
+mor-link.co-g:not(.st-disabled):hover,
+mor-link.co-g.st-hover {
   color: #d2d2d2;
 }
-mor-link.co-g:not(.st-disabled):not(.st-readonly):active > a,
-mor-link.co-g.st-active > a {
+mor-link.co-g:not(.st-disabled):active,
+mor-link.co-g.st-active {
   color: #c7c7c7;
 }
-mor-link.co-g.st-disabled > a {
+mor-link.co-g.st-disabled {
   color: #9a9a9a;
 }
-mor-link.co-lg > a {
+mor-link.co-lg {
   color: #F0F0F0;
 }
 mor-link.co-lg .mo-loader .mo-loader-path {
   stroke: #F0F0F0;
 }
-mor-link.co-lg:not(.st-disabled):not(.st-readonly):hover > a,
-mor-link.co-lg.st-hover > a {
+mor-link.co-lg:not(.st-disabled):hover,
+mor-link.co-lg.st-hover {
   color: #dcdcdc;
 }
-mor-link.co-lg:not(.st-disabled):not(.st-readonly):active > a,
-mor-link.co-lg.st-active > a {
+mor-link.co-lg:not(.st-disabled):active,
+mor-link.co-lg.st-active {
   color: #d1d1d1;
 }
-mor-link.co-lg.st-disabled > a {
+mor-link.co-lg.st-disabled {
   color: #a3a3a3;
 }
-mor-link.co-wh > a {
+mor-link.co-wh {
   color: #FFFFFF;
 }
 mor-link.co-wh .mo-loader .mo-loader-path {
   stroke: #FFFFFF;
 }
-mor-link.co-wh:not(.st-disabled):not(.st-readonly):hover > a,
-mor-link.co-wh.st-hover > a {
+mor-link.co-wh:not(.st-disabled):hover,
+mor-link.co-wh.st-hover {
   color: #ebebeb;
 }
-mor-link.co-wh:not(.st-disabled):not(.st-readonly):active > a,
-mor-link.co-wh.st-active > a {
+mor-link.co-wh:not(.st-disabled):active,
+mor-link.co-wh.st-active {
   color: #e0e0e0;
 }
-mor-link.co-wh.st-disabled > a {
+mor-link.co-wh.st-disabled {
   color: #b3b3b3;
 }
 mor-link.st-hover {
   cursor: pointer;
 }
-mor-link.st-disabled > a {
+mor-link.st-disabled {
   cursor: not-allowed !important;
-}
-mor-link.st-readonly > a {
-  cursor: default !important;
 }
 mor-link.st-apparent {
   animation-name: apparent;
@@ -6709,24 +6478,18 @@ mor-link.st-apparent {
 mor-link.st-apparent:hover {
   animation-name: none;
 }
-mor-link > a {
-  font-size: 13px;
-}
-mor-link > a {
-  color: #F33D5D;
-}
 mor-link .mo-loader .mo-loader-path {
   stroke: #F33D5D;
 }
-mor-link:not(.st-disabled):not(.st-readonly):hover > a,
-mor-link.st-hover > a {
+mor-link:not(.st-disabled):hover,
+mor-link.st-hover {
   color: #d60d31;
 }
-mor-link:not(.st-disabled):not(.st-readonly):active > a,
-mor-link.st-active > a {
+mor-link:not(.st-disabled):active,
+mor-link.st-active {
   color: #a60a26;
 }
-mor-link.st-disabled > a {
+mor-link.st-disabled {
   color: #fab5c1;
 }
 mor-link:hover {
@@ -8656,19 +8419,16 @@ mor-dialog > .content > header > mor-link {
   position: absolute;
   top: 0;
   right: 1.5em;
-  line-height: 50px;
-  height: 50px;
+  line-height: 3em;
+  height: 3em;
   font-size: initial;
-}
-mor-dialog > .content > header > mor-link > a {
-  line-height: 50px;
-  height: 50px;
 }
 mor-dialog > .content > header > mor-link > .iconfont {
   font-size: initial;
 }
 mor-dialog > .content > footer {
   font-size: 13px;
+  line-height: 50px;
   height: 50px;
   width: 100%;
   background: #EDF1F5;
@@ -8682,21 +8442,10 @@ mor-dialog > .content > footer {
 mor-dialog > .content > footer:empty {
   display: none;
 }
-mor-dialog > .content > footer > span {
-  line-height: 50px;
-}
-mor-dialog > .content > footer > span > mor-link > a {
-  height: 50px;
-  line-height: 50px;
-}
 mor-dialog > .content > footer > div {
   position: absolute;
   right: 1em;
-  top: 7px;
-  bottom: 7px;
-}
-mor-dialog > .content > footer > div > mor-link {
-  margin-top: 9px;
+  top: 0;
 }
 mor-dialog > .content > footer > div > * {
   margin-left: 0.2em;
@@ -14400,15 +14149,6 @@ mor-imagemap.st-readonly .operate:hover {
   position: relative;
   top: 50%;
   transform: translateY(-50%);
-  height: 30px;
-}
-.mor-imagemap-map .content > footer .note > mor-link {
-  line-height: 1.4em;
-  height: 1.4em;
-}
-.mor-imagemap-map .content > footer .note > mor-link > a {
-  line-height: 1.4em;
-  height: 1.4em;
 }
 .mor-imagemap-map.imagemap-disabled .zonearea {
   cursor: default;

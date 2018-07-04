@@ -1124,16 +1124,6 @@ mor-dialog a:hover {
   padding: 2px;
   margin-bottom: 10px;
 }
-.markdown-body mor-btn a {
-  color: #FFF;
-}
-.markdown-body mor-link a {
-  color: #F33D5D;
-}
-.markdown-body mor-btn a:hover,
-.markdown-body mor-link a:hover {
-  text-decoration: none;
-}
 .markdown-body pre {
   position: relative;
 }

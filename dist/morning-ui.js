@@ -36468,10 +36468,6 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
-//
-//
-//
-//
 
 exports.default = {
     origin: 'UI',
@@ -36509,15 +36505,6 @@ exports.default = {
             return {
                 loading: this.data.lock
             };
-        },
-        href: function href() {
-
-            if (this.conf.link) {
-
-                return this.conf.link;
-            }
-
-            return 'javascript:;';
         }
     },
     data: function data() {
@@ -36545,6 +36532,45 @@ exports.default = {
 
                 this.lock();
             }
+        },
+        _mountA: function _mountA() {
+
+            var cursor = 'pointer';
+
+            if (this.conf.state === 'readonly') {
+
+                cursor = 'default';
+            }
+
+            if (this.conf.state === 'disabled') {
+
+                cursor = 'not-allowed';
+            }
+
+            var shadowHtml = '<style>a{width: 100%;height: 100%;position: absolute;top:0;left:0;font-size: 0;cursor:' + cursor + '}</style>';
+
+            if (!this.$el.shadowRoot) {
+
+                this.$el.attachShadow({
+                    mode: 'open'
+                });
+            }
+
+            if (this.conf.link) {
+
+                if (this.conf.newTab) {
+
+                    shadowHtml += '<a href="' + this.conf.link + '" target="_blank">555</a><slot></slot>';
+                } else {
+
+                    shadowHtml += '<a href="' + this.conf.link + '" target="_self">555</a><slot></slot>';
+                }
+            } else {
+
+                shadowHtml += '<a href="javascript:;"></a><slot></slot>';
+            }
+
+            this.$el.shadowRoot.innerHTML = shadowHtml;
         },
         unlock: function unlock() {
 
@@ -36574,6 +36600,7 @@ exports.default = {
     mounted: function mounted() {
         var _this2 = this;
 
+        this._mountA();
         this._emitLock();
 
         this.$on('emit', function () {
@@ -36585,6 +36612,10 @@ exports.default = {
                 eval(_this2.conf.js);
             }
         });
+
+        this.$watch('conf.link', this._mountA);
+        this.$watch('conf.newTab', this._mountA);
+        this.$watch('conf.state', this._mountA);
     }
 };
 module.exports = exports['default'];
@@ -36599,8 +36630,6 @@ module.exports = exports['default'];
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-//
-//
 //
 //
 //
@@ -36667,15 +36696,6 @@ exports.default = {
             return {
                 loading: this.data.lock
             };
-        },
-        href: function href() {
-
-            if (this.conf.link) {
-
-                return this.conf.link;
-            }
-
-            return 'javascript:;';
         }
     },
     data: function data() {
@@ -36703,6 +36723,45 @@ exports.default = {
 
                 this.lock();
             }
+        },
+        _mountA: function _mountA() {
+
+            var cursor = 'pointer';
+
+            if (this.conf.state === 'readonly') {
+
+                cursor = 'default';
+            }
+
+            if (this.conf.state === 'disabled') {
+
+                cursor = 'not-allowed';
+            }
+
+            var shadowHtml = '<style>a{width: 100%;height: 100%;position: absolute;top:0;left:0;font-size: 0;cursor:' + cursor + '}</style>';
+
+            if (!this.$el.shadowRoot) {
+
+                this.$el.attachShadow({
+                    mode: 'open'
+                });
+            }
+
+            if (this.conf.link) {
+
+                if (this.conf.newTab) {
+
+                    shadowHtml += '<a href="' + this.conf.link + '" target="_blank">555</a><slot></slot>';
+                } else {
+
+                    shadowHtml += '<a href="' + this.conf.link + '" target="_self">555</a><slot></slot>';
+                }
+            } else {
+
+                shadowHtml += '<a href="javascript:;"></a><slot></slot>';
+            }
+
+            this.$el.shadowRoot.innerHTML = shadowHtml;
         },
         unlock: function unlock() {
 
@@ -36732,6 +36791,7 @@ exports.default = {
     mounted: function mounted() {
         var _this2 = this;
 
+        this._mountA();
         this._emitLock();
 
         this.$on('emit', function () {
@@ -36743,6 +36803,10 @@ exports.default = {
                 eval(_this2.conf.js);
             }
         });
+
+        this.$watch('conf.link', this._mountA);
+        this.$watch('conf.newTab', this._mountA);
+        this.$watch('conf.state', this._mountA);
     }
 };
 module.exports = exports['default'];
@@ -47729,47 +47793,36 @@ var render = function() {
       on: { click: _vm._onClick }
     },
     [
-      _c(
-        "a",
-        {
-          attrs: {
-            href: _vm.href,
-            target: _vm.conf.newTab ? "_blank" : "_self"
-          }
-        },
-        [
-          _vm.data.lock
-            ? [
-                _c("div", { staticClass: "mo-loader" }, [
-                  _c(
-                    "svg",
-                    {
-                      staticClass: "mo-loader-circular",
-                      attrs: { viewBox: "25 25 50 50" }
-                    },
-                    [
-                      _c("circle", {
-                        staticClass: "mo-loader-path",
-                        attrs: {
-                          cx: "50",
-                          cy: "50",
-                          r: "20",
-                          fill: "none",
-                          "stroke-width": "4",
-                          "stroke-miterlimit": "10"
-                        }
-                      })
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("span", [_vm._t("default")], 2)
-              ]
-            : [_vm._t("default")]
-        ],
-        2
-      )
-    ]
+      _vm.data.lock
+        ? [
+            _c("div", { staticClass: "mo-loader" }, [
+              _c(
+                "svg",
+                {
+                  staticClass: "mo-loader-circular",
+                  attrs: { viewBox: "25 25 50 50" }
+                },
+                [
+                  _c("circle", {
+                    staticClass: "mo-loader-path",
+                    attrs: {
+                      cx: "50",
+                      cy: "50",
+                      r: "20",
+                      fill: "none",
+                      "stroke-width": "4",
+                      "stroke-miterlimit": "10"
+                    }
+                  })
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("span", [_vm._t("default")], 2)
+          ]
+        : [_vm._t("default")]
+    ],
+    2
   )
 }
 var staticRenderFns = []
@@ -47802,47 +47855,36 @@ var render = function() {
       on: { click: _vm._onClick }
     },
     [
-      _c(
-        "a",
-        {
-          attrs: {
-            href: _vm.href,
-            target: _vm.conf.newTab ? "_blank" : "_self"
-          }
-        },
-        [
-          _vm.data.lock
-            ? [
-                _c("div", { staticClass: "mo-loader" }, [
-                  _c(
-                    "svg",
-                    {
-                      staticClass: "mo-loader-circular",
-                      attrs: { viewBox: "25 25 50 50" }
-                    },
-                    [
-                      _c("circle", {
-                        staticClass: "mo-loader-path",
-                        attrs: {
-                          cx: "50",
-                          cy: "50",
-                          r: "20",
-                          fill: "none",
-                          "stroke-width": "4",
-                          "stroke-miterlimit": "10"
-                        }
-                      })
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("span", [_vm._t("default")], 2)
-              ]
-            : [_vm._t("default")]
-        ],
-        2
-      )
-    ]
+      _vm.data.lock
+        ? [
+            _c("div", { staticClass: "mo-loader" }, [
+              _c(
+                "svg",
+                {
+                  staticClass: "mo-loader-circular",
+                  attrs: { viewBox: "25 25 50 50" }
+                },
+                [
+                  _c("circle", {
+                    staticClass: "mo-loader-path",
+                    attrs: {
+                      cx: "50",
+                      cy: "50",
+                      r: "20",
+                      fill: "none",
+                      "stroke-width": "4",
+                      "stroke-miterlimit": "10"
+                    }
+                  })
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("span", [_vm._t("default")], 2)
+          ]
+        : [_vm._t("default")]
+    ],
+    2
   )
 }
 var staticRenderFns = []

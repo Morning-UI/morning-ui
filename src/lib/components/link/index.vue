@@ -119,7 +119,7 @@ export default {
 
             let shadowHtml = `<style>a{width: 100%;height: 100%;position: absolute;top:0;left:0;font-size: 0;cursor:${cursor}}</style>`;
 
-            if (!this.$el.shadowRoot) {
+            if (!this.$el.shadowRoot && this.$el.attachShadow) {
 
                 this.$el.attachShadow({
                     mode : 'open'
@@ -145,7 +145,11 @@ export default {
 
             }
 
-            this.$el.shadowRoot.innerHTML = shadowHtml;
+            if (this.$el.shadowRoot) {
+                
+                this.$el.shadowRoot.innerHTML = shadowHtml;
+
+            }
 
         },
         unlock : function () {
