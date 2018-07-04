@@ -29442,11 +29442,7 @@ exports.default = {
     },
     updated: function updated() {
 
-        if (!this.data.highPerfMode) {
-
-            this._setListHeight();
-        }
-
+        this._setListHeight();
         this._resizeInlineImg();
         this._resizeSelectArea();
     },
@@ -33244,34 +33240,6 @@ var _PopupManager2 = _interopRequireDefault(_PopupManager);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var rmIndexTimeout = 120; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
 exports.default = {
     origin: 'UI',
     name: 'dialog',
@@ -33379,11 +33347,6 @@ exports.default = {
                 if (isShown) {
 
                     this.data.show = show;
-
-                    setTimeout(function () {
-
-                        _this._popupHide();
-                    }, rmIndexTimeout);
                 }
 
                 this.$emit('hide');
@@ -33406,7 +33369,34 @@ exports.default = {
             this.data.hasFooter = true;
         }
     }
-};
+}; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 module.exports = exports['default'];
 
 /***/ }),
@@ -36549,7 +36539,7 @@ exports.default = {
 
             var shadowHtml = '<style>a{width: 100%;height: 100%;position: absolute;top:0;left:0;font-size: 0;cursor:' + cursor + '}</style>';
 
-            if (!this.$el.shadowRoot) {
+            if (!this.$el.shadowRoot && this.$el.attachShadow) {
 
                 this.$el.attachShadow({
                     mode: 'open'
@@ -36570,7 +36560,10 @@ exports.default = {
                 shadowHtml += '<a href="javascript:;"></a><slot></slot>';
             }
 
-            this.$el.shadowRoot.innerHTML = shadowHtml;
+            if (this.$el.shadowRoot) {
+
+                this.$el.shadowRoot.innerHTML = shadowHtml;
+            }
         },
         unlock: function unlock() {
 
@@ -36740,7 +36733,7 @@ exports.default = {
 
             var shadowHtml = '<style>a{width: 100%;height: 100%;position: absolute;top:0;left:0;font-size: 0;cursor:' + cursor + '}</style>';
 
-            if (!this.$el.shadowRoot) {
+            if (!this.$el.shadowRoot && this.$el.attachShadow) {
 
                 this.$el.attachShadow({
                     mode: 'open'
@@ -36761,7 +36754,10 @@ exports.default = {
                 shadowHtml += '<a href="javascript:;"></a><slot></slot>';
             }
 
-            this.$el.shadowRoot.innerHTML = shadowHtml;
+            if (this.$el.shadowRoot) {
+
+                this.$el.shadowRoot.innerHTML = shadowHtml;
+            }
         },
         unlock: function unlock() {
 
@@ -72895,7 +72891,7 @@ var morning = {
         white: 'wh'
     },
     isMorning: true,
-    version: '0.11.5',
+    version: '0.11.6',
     map: {}
 };
 
