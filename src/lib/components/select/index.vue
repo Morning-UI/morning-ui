@@ -1363,12 +1363,7 @@ export default {
     },
     updated : function () {
         
-        if (!this.data.highPerfMode) {
-
-            this._setListHeight();
-
-        }
-
+        this._setListHeight();
         this._resizeInlineImg();
         this._resizeSelectArea();
 
