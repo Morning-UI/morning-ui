@@ -101,9 +101,7 @@
     :::repeat/html
     size
     ---
-    <ui-btn size="{$sizeKey}" class="circle" locked>
-        <i class="iconfont">&#xe6e2;</i>
-    </ui-btn>
+    <ui-btn size="{$sizeKey}" class="circle" locked></ui-btn>
     :::
 
     #### 色彩
