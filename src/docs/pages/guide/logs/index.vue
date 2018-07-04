@@ -10,13 +10,37 @@
 
     Morning UI采用[语义化版本控制规范](http://semver.org/lang/zh-CN/)，同时采用`Stable`、`Beta`、`Canary`三种标记分别来标记版本。详见：[版本计划](/guide/versionplan.html)
 
-    如果更新对使用方法有影响，会在更新记录的`Upgrade Precautions`/`升级注意事项`中说明。
+    如果更新对使用方法有影响，会在更新记录的`Upgrade Precautions` / `升级注意事项`中说明。
 
     <!-- ### 1.0.0 <ui-badge class="circle" s light-black>Stable</ui-badge> -->
 
     <!-- ### 0.11.0 <ui-badge class="circle" s light-blue>Beta</ui-badge> -->
     
     ### 更新记录
+
+    ### 0.11.6 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2018年7月4日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.11.6" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.11.6/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.11.6/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 改进
+
+    - 规范了`ui-btn`和`ui-link`的样式行为
+    - 优化了`ui-dialog`非首次打开的性能
+
+    #### 修复
+
+    - 修复`ui-select`高性能模式下拉列表高度计算错误的问题
+    - 修复`ui-texteditor`图片上传弹窗无法主动关闭的问题
+
+    ---
 
     ### 0.11.5 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 

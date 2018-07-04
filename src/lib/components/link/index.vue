@@ -11,22 +11,18 @@
         @click="_onClick"
     >
 
-    <a :href="href" :target="conf.newTab ? '_blank' : '_self'">
+    <template v-if="data.lock">
+        <div class="mo-loader">
+            <svg class="mo-loader-circular" viewBox="25 25 50 50">
+                <circle class="mo-loader-path" cx="50" cy="50" r="20" fill="none" stroke-width="4" stroke-miterlimit="10"/>
+            </svg>
+        </div>
+        <span><slot></slot></span>
+    </template>
 
-        <template v-if="data.lock">
-            <div class="mo-loader">
-                <svg class="mo-loader-circular" viewBox="25 25 50 50">
-                    <circle class="mo-loader-path" cx="50" cy="50" r="20" fill="none" stroke-width="4" stroke-miterlimit="10"/>
-                </svg>
-            </div>
-            <span><slot></slot></span>
-        </template>
-
-        <template v-else>
-            <slot></slot>
-        </template>
-
-    </a>
+    <template v-else>
+        <slot></slot>
+    </template>
 
     </mor-link>
 </template>
@@ -70,17 +66,6 @@ export default {
                 loading : this.data.lock
             };
 
-        },
-        href : function () {
-
-            if (this.conf.link) {
-
-                return this.conf.link;
-
-            }
-
-            return 'javascript:;';
-
         }
     },
     data : function () {
@@ -116,6 +101,57 @@ export default {
             }
 
         },
+        _mountA : function () {
+
+            let cursor = 'pointer';
+
+            if (this.conf.state === 'readonly') {
+
+                cursor = 'default';
+
+            }
+
+            if (this.conf.state === 'disabled') {
+
+                cursor = 'not-allowed';
+
+            }
+
+            let shadowHtml = `<style>a{width: 100%;height: 100%;position: absolute;top:0;left:0;font-size: 0;cursor:${cursor}}</style>`;
+
+            if (!this.$el.shadowRoot && this.$el.attachShadow) {
+
+                this.$el.attachShadow({
+                    mode : 'open'
+                });
+
+            }
+
+            if (this.conf.link) {
+
+                if (this.conf.newTab) {
+                    
+                    shadowHtml += `<a href="${this.conf.link}" target="_blank">555</a><slot></slot>`;
+
+                } else {
+                    
+                    shadowHtml += `<a href="${this.conf.link}" target="_self">555</a><slot></slot>`;
+
+                }
+
+            } else {
+
+                shadowHtml += `<a href="javascript:;"></a><slot></slot>`;
+
+            }
+
+            if (this.$el.shadowRoot) {
+                
+                this.$el.shadowRoot.innerHTML = shadowHtml;
+
+            }
+
+        },
         unlock : function () {
 
             this.data.lock = false;
@@ -147,6 +183,7 @@ export default {
     },
     mounted : function () {
 
+        this._mountA();
         this._emitLock();
 
         this.$on('emit', () => {
@@ -160,6 +197,10 @@ export default {
             }
 
         });
+
+        this.$watch('conf.link', this._mountA);
+        this.$watch('conf.newTab', this._mountA);
+        this.$watch('conf.state', this._mountA);
 
     }
 };
