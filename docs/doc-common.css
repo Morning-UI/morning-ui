@@ -1088,6 +1088,9 @@ footer .tolab {
 .markdown-body mor-select li + li {
   margin-top: 0;
 }
+.markdown-body mor-table table mor-btn a {
+  box-sizing: border-box;
+}
 mor-dialog .body {
   font-size: inherit;
 }
@@ -1120,16 +1123,6 @@ mor-dialog a:hover {
   border: 1px #E6E6E6 solid !important;
   padding: 2px;
   margin-bottom: 10px;
-}
-.markdown-body mor-btn a {
-  color: #FFF;
-}
-.markdown-body mor-link a {
-  color: #F33D5D;
-}
-.markdown-body mor-btn a:hover,
-.markdown-body mor-link a:hover {
-  text-decoration: none;
 }
 .markdown-body pre {
   position: relative;
