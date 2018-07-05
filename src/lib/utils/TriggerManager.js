@@ -8,6 +8,7 @@ let TriggerManager = {
             Trigger : {
                 $targets : null,
                 triggers : '',
+                triggerTimeouts : {},
                 handlerMap : {},
                 handlerInvoke : {},
                 triggerEvtMap : {
@@ -27,7 +28,7 @@ let TriggerManager = {
             evt.preventDefault();
 
         },
-        _triggerCreateHandler : function (handler, trigger) {
+        _triggerCreateHandler : function (handler, trigger, delay) {
 
             return evt => {
 
@@ -48,8 +49,31 @@ let TriggerManager = {
                     });
 
                 }
+               
+                console.log('claer', trigger, delay);
 
-                handler.call(this, evt);
+                if (this.Trigger.triggerTimeouts[trigger]) {
+
+                    clearTimeout(this.Trigger.triggerTimeouts[trigger]);
+
+                }
+
+                // only trigger is hover, delay is worked.
+                if (trigger === 'hover' && delay > 0) {
+
+                    console.log('bind', trigger, handler.name);
+                    this.Trigger.triggerTimeouts[trigger] = setTimeout(() => {
+
+                        handler.call(this, evt);
+
+                    }, delay);
+
+                } else {
+
+                    console.log('action', trigger, handler.name);
+                    handler.call(this, evt);
+
+                }
 
             };
 
@@ -204,14 +228,28 @@ let TriggerManager = {
                         for (let index in val) {
 
                             let handler = val[index];
+                            let fn = handler;
+                            let delay = 0;
+
+                            if (handler.fn) {
+
+                                fn = handler.fn;
+
+                            }
+
+                            if (+handler.delay > 0) {
+
+                                delay = +handler.delay;
+
+                            }
 
                             if (trigger === true) {
 
-                                obj[key][index] = this._triggerCreateHandler(handler, key);
+                                obj[key][index] = this._triggerCreateHandler(fn, key, delay);
 
                             } else {
                                 
-                                obj[key][index] = this._triggerCreateHandler(handler, trigger);
+                                obj[key][index] = this._triggerCreateHandler(fn, trigger, delay);
 
                             }
 
