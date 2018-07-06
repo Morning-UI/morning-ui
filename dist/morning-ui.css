@@ -10993,6 +10993,16 @@ mor-switch.open .track .point {
   box-shadow: 0 0 4px #a60a26;
 }
 
+mor-counter.has-cleanbtn {
+  padding-bottom: 20px;
+}
+mor-counter .cleanbtn {
+  position: absolute;
+  right: 0;
+  font-size: 12px;
+  margin-top: 1px;
+}
+
 mor-select {
   position: relative;
   display: inline-block;

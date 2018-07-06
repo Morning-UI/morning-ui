@@ -270,6 +270,14 @@
             <i class="mo-icon-fullscreen"></i>
             <span>mo-icon-fullscreen</span>
         </div>
+        <div>
+            <i class="mo-icon-add"></i>
+            <span>mo-icon-add</span>
+        </div>
+        <div>
+            <i class="mo-icon-sub"></i>
+            <span>mo-icon-sub</span>
+        </div>
     </div>
     
     ### 图标托管

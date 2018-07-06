@@ -142,6 +142,7 @@
         <div class="sub-group">
             <h3><i class="iconfont">&#xe624;</i>数值</h3>
             <ul>
+                <li><a href="/component/counter.html">计数器<p>&lt;counter></p></a></li>
                 <li><a href="/component/slider.html">滑块输入<p>&lt;slider></p></a></li>
                 <li><a href="/component/colorpicker.html">颜色选择器<p>&lt;colorpicker></p></a></li>
             </ul>
