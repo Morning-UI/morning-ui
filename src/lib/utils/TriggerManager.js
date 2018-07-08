@@ -50,8 +50,6 @@ let TriggerManager = {
 
                 }
                
-                console.log('claer', trigger, delay);
-
                 if (this.Trigger.triggerTimeouts[trigger]) {
 
                     clearTimeout(this.Trigger.triggerTimeouts[trigger]);
@@ -61,7 +59,6 @@ let TriggerManager = {
                 // only trigger is hover, delay is worked.
                 if (trigger === 'hover' && delay > 0) {
 
-                    console.log('bind', trigger, handler.name);
                     this.Trigger.triggerTimeouts[trigger] = setTimeout(() => {
 
                         handler.call(this, evt);
@@ -70,7 +67,6 @@ let TriggerManager = {
 
                 } else {
 
-                    console.log('action', trigger, handler.name);
                     handler.call(this, evt);
 
                 }
