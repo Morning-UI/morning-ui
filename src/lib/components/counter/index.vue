@@ -13,6 +13,7 @@
         :max="max"
         :min="min"
         :formater="formater"
+        :parser="parser" 
         :precision="precision"
     >
 
@@ -29,9 +30,10 @@
         <input
             type="text"
 
-            :value="conf.formater(_toFiexd(data.value))"
+            :value="conf.formater(data.value)"
             :disabled="conf.state === 'disabled' || conf.state === 'readonly'"
-            @input="$emit('input', $event.target.value)"
+
+            @change="_set(conf.parser($event.target.value))"
         />
 
         <div
@@ -71,6 +73,10 @@ export default {
             type : Function,
             default : returnValueFn
         },
+        parser : {
+            type : Function,
+            default : returnValueFn
+        },
         precision : {
             type : [Number, String],
             default : 'auto'
@@ -84,6 +90,7 @@ export default {
                 max : this.max,
                 min : this.min,
                 formater : this.formater,
+                parser : this.parser,
                 precision : this.precision
             };
 
@@ -103,7 +110,17 @@ export default {
     methods : {
         _valueFilter : function (value) {
 
-            value = Number(value) || 0;
+            if (isNaN(Number(value))) {
+
+                // TODO : /(\.)([\d\.]*\.\d)$ 修复
+                value = String(value).replace(/[^\d]/g, '').replace(/(\.)([\d\.]*\.\d)$/, '$2');
+                value = Number(value) || 0;
+
+            } else {
+
+                value = Number(value) || 0;
+
+            }
 
             if (value > this.conf.max) {
 
@@ -114,6 +131,8 @@ export default {
                 value = this.conf.min;
 
             }
+
+            value = this._toFiexd(value);
     
             return value;
 
@@ -218,15 +237,7 @@ export default {
         }
     },
     created : function () {},
-    mounted : function () {
-
-        this.$on('input', value => {
-
-            console.log(value);
-
-        });
-
-    }
+    mounted : function () {}
 };
 </script>
 

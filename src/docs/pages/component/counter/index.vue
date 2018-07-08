@@ -42,7 +42,8 @@
     |[step](#step)|计数器每次变动的步长，用户点击增加或减少时最小的数值调整单位。|大于0的数字|Number|`1`|
     |[max](#max)|计数器的最大值。|数字|Number|`Infinity`|
     |[min](#min)|计数器的最小值。|数字|Number|`-Infinity`|
-    |[formater](#formater)|计数器显示格式化，这是一个函数。第一个参数是当前的数值，返回一个字符串用于显示。|函数|Function|`value => value`|
+    |[formater](#formater)|计数器显示格式化，这是一个函数。第一个参数是当前的数值，返回一个字符串用于显示。<br>必须和`parser`配置一起使用，互为逆向函数。|函数|Function|`value => value`|
+    |[parser](#parser)|计数器显示内容的解析函数，这是一个函数。第一个参数是当前显示的内容，返回一个数字表示解析后对应的数值。<br>必须和`formater`配置一起使用，互为逆向函数。|函数|Function|`value => value`|
     |[precision](#precision)|显示数字的精度，若为`auto`则会取数字的最精确位数。若设置了具体的精度位数则在采用四舍五入。|精度(小数点后位数)|String : 只能设为`auto`，表示自动精度<br>Number : 精度为小数点后几位|`'auto'`|
     :::
 
@@ -88,7 +89,15 @@
 
     :::democode/html
     <div style="width:120px;">
-        <ui-counter form-name="数字" :formater="(value => value + '%')"></ui-counter>
+        <ui-counter form-name="数字" :formater="(value => value + '%')" :parser="(value => +value.replace(/%$/, ''))"></ui-counter>
+    </div>
+    :::
+
+    #### parser
+
+    :::democode/html
+    <div style="width:120px;">
+        <ui-counter form-name="数字" :formater="(value => value + '%')" :parser="(value => +value.replace(/%$/, ''))"></ui-counter>
     </div>
     :::
 
