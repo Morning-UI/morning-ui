@@ -10,6 +10,10 @@
         :hide-name="hideName"
         :clearable="clearable"
         :step="step"
+        :max="max"
+        :min="min"
+        :formater="formater"
+        :precision="precision"
     >
 
     <div class="counter-wrap">
@@ -25,7 +29,8 @@
         <input
             type="text"
 
-            :value="data.value"
+            :value="conf.formater(_toFiexd(data.value))"
+            :disabled="conf.state === 'disabled' || conf.state === 'readonly'"
         />
 
         <div
@@ -42,20 +47,43 @@
 </template>
  
 <script>
+const returnValueFn = value => value;
+
 export default {
     origin : 'Form',
     name : 'counter',
     props : {
         step : {
             type : Number,
-            default : 1
+            default : 1,
+            validator : (value => (value > 0))
+        },
+        max : {
+            type : Number,
+            default : Infinity
+        },
+        min : {
+            type : Number,
+            default : -Infinity
+        },
+        formater : {
+            type : Function,
+            default : returnValueFn
+        },
+        precision : {
+            type : [Number, String],
+            default : 'auto'
         }
     },
     computed : {
         _conf : function () {
 
             return {
-                step : this.step
+                step : this.step,
+                max : this.max,
+                min : this.min,
+                formater : this.formater,
+                precision : this.precision
             };
 
         }
@@ -73,8 +101,20 @@ export default {
     },
     methods : {
         _valueFilter : function (value) {
+
+            value = Number(value) || 0;
+
+            if (value > this.conf.max) {
+
+                value = this.conf.max;
+
+            } else if (value < this.conf.min) {
+
+                value = this.conf.min;
+
+            }
     
-            return Number(value) || 0;
+            return value;
 
         },
         _stopContinued : function () {
@@ -84,7 +124,34 @@ export default {
             clearTimeout(this.data.continueTimeout);
 
         },
-        _change : function (steps = 1, add = 1, continued = false) {
+        _toFiexd : function (value) {
+
+            if (this.conf.precision === 'auto') {
+
+                return value;
+
+            } else if (typeof this.conf.precision === 'number') {
+
+                return value.toFixed(+this.conf.precision);
+
+            }
+
+            return value;
+
+        },
+        _change : function (steps = 1, add = 1, continued = false, ignoreReadonly = false) {
+
+            if (this.conf.state === 'disabled') {
+
+                return;
+
+            }
+
+            if (!ignoreReadonly && this.conf.state === 'readonly') {
+
+                return;
+
+            }
 
             if (isNaN(+steps)) {
 
@@ -92,7 +159,9 @@ export default {
 
             }
 
-            this._set(this.data.value + (add * steps * this.conf.step));
+            let num = this.data.value + (add * steps * this.conf.step);
+
+            this._set(num);
 
             if (continued) {
 
@@ -120,8 +189,6 @@ export default {
 
                 }
 
-                console.log(nextTime);
-
                 this.data.continueChange = true;
 
                 this.data.continueTimeout = setTimeout(() => {
@@ -136,14 +203,14 @@ export default {
         },
         add : function (steps) {
 
-            this._change(steps, 1);
+            this._change(steps, 1, false, true);
 
             return this;
 
         },
         sub : function (steps = 1) {
 
-            this._change(steps, -1);
+            this._change(steps, -1, false, true);
 
             return this;
 
