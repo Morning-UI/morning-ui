@@ -31,6 +31,7 @@
 
             :value="conf.formater(_toFiexd(data.value))"
             :disabled="conf.state === 'disabled' || conf.state === 'readonly'"
+            @input="$emit('input', $event.target.value)"
         />
 
         <div
@@ -217,7 +218,15 @@ export default {
         }
     },
     created : function () {},
-    mounted : function () {}
+    mounted : function () {
+
+        this.$on('input', value => {
+
+            console.log(value);
+
+        });
+
+    }
 };
 </script>
 
