@@ -17,6 +17,8 @@
         :precision="precision"
     >
 
+    <div class="note" v-if="!conf.hideName">{{conf.formName}}</div>
+
     <div class="counter-wrap">
 
         <div
@@ -30,7 +32,7 @@
         <input
             type="text"
 
-            :value="conf.formater(data.value)"
+            :value="conf.formater(_toFixed(data.value))"
             :disabled="conf.state === 'disabled' || conf.state === 'readonly'"
 
             @change="_set(conf.parser($event.target.value))"
@@ -45,6 +47,8 @@
         </div>
         
     </div>
+
+    <morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn">清空</morning-link>
 
     </mor-counter>
 </template>
@@ -112,8 +116,21 @@ export default {
 
             if (isNaN(Number(value))) {
 
-                // TODO : /(\.)([\d\.]*\.\d)$ 修复
-                value = String(value).replace(/[^\d]/g, '').replace(/(\.)([\d\.]*\.\d)$/, '$2');
+                value = String(value).replace(/[^\d.]/g, '');
+                value = value.split('.');
+
+                let decimal = value.pop();
+
+                if (value.length > 0) {
+    
+                    value = `${value.join('')}.${decimal}`;
+
+                } else {
+
+                    value = decimal;
+
+                }
+
                 value = Number(value) || 0;
 
             } else {
@@ -132,9 +149,9 @@ export default {
 
             }
 
-            value = this._toFiexd(value);
-    
-            return value;
+            value = this._toFixed(value);
+            
+            return Number(value) || 0;
 
         },
         _stopContinued : function () {
@@ -144,7 +161,7 @@ export default {
             clearTimeout(this.data.continueTimeout);
 
         },
-        _toFiexd : function (value) {
+        _toFixed : function (value) {
 
             if (this.conf.precision === 'auto') {
 
@@ -181,31 +198,36 @@ export default {
 
             let num = this.data.value + (add * steps * this.conf.step);
 
+            const nextTimeLv1 = 400;
+            const nextTimeLv2 = 50;
+            const nextTimeLv3 = 25;
+            const lv2UptoLv3Count = 80;
+
             this._set(num);
 
             if (continued) {
 
-                let nextTime = 400;
+                let nextTime = nextTimeLv1;
 
                 if (!this.data.continueChange) {
 
-                    nextTime = 500;
+                    nextTime = nextTimeLv1;
 
                 }
 
-                if (this.data.continueCount < 80) {
+                if (this.data.continueCount < lv2UptoLv3Count) {
 
-                    nextTime = nextTime / Math.pow(2, Math.ceil(this.data.continueCount / 5));
+                    nextTime /= Math.pow(2, Math.ceil(this.data.continueCount / 5));
 
-                    if (nextTime < 50) {
+                    if (nextTime < nextTimeLv2) {
 
-                        nextTime = 50;
+                        nextTime = nextTimeLv2;
 
                     }
 
                 } else {
 
-                    nextTime = 25;
+                    nextTime = nextTimeLv3;
 
                 }
 
@@ -221,7 +243,7 @@ export default {
             }
 
         },
-        add : function (steps) {
+        add : function (steps = 1) {
 
             this._change(steps, 1, false, true);
 

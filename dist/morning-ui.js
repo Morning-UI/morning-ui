@@ -29479,27 +29479,239 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+var returnValueFn = function returnValueFn(value) {
+    return value;
+};
 
 exports.default = {
     origin: 'Form',
     name: 'counter',
-    props: {},
+    props: {
+        step: {
+            type: Number,
+            default: 1,
+            validator: function validator(value) {
+                return value > 0;
+            }
+        },
+        max: {
+            type: Number,
+            default: Infinity
+        },
+        min: {
+            type: Number,
+            default: -Infinity
+        },
+        formater: {
+            type: Function,
+            default: returnValueFn
+        },
+        parser: {
+            type: Function,
+            default: returnValueFn
+        },
+        precision: {
+            type: [Number, String],
+            default: 'auto'
+        }
+    },
     computed: {
         _conf: function _conf() {
 
-            return {};
+            return {
+                step: this.step,
+                max: this.max,
+                min: this.min,
+                formater: this.formater,
+                parser: this.parser,
+                precision: this.precision
+            };
         }
     },
     data: function data() {
 
         return {
-            data: {}
+            data: {
+                continueChange: false,
+                continueCount: 0,
+                continueTimeout: null
+            }
         };
     },
     methods: {
         _valueFilter: function _valueFilter(value) {
 
-            return Number(value);
+            if (isNaN(Number(value))) {
+
+                value = String(value).replace(/[^\d.]/g, '');
+                value = value.split('.');
+
+                var decimal = value.pop();
+
+                if (value.length > 0) {
+
+                    value = value.join('') + '.' + decimal;
+                } else {
+
+                    value = decimal;
+                }
+
+                value = Number(value) || 0;
+            } else {
+
+                value = Number(value) || 0;
+            }
+
+            if (value > this.conf.max) {
+
+                value = this.conf.max;
+            } else if (value < this.conf.min) {
+
+                value = this.conf.min;
+            }
+
+            value = this._toFixed(value);
+
+            return Number(value) || 0;
+        },
+        _stopContinued: function _stopContinued() {
+
+            this.data.continueCount = 0;
+            this.data.continueChange = false;
+            clearTimeout(this.data.continueTimeout);
+        },
+        _toFixed: function _toFixed(value) {
+
+            if (this.conf.precision === 'auto') {
+
+                return value;
+            } else if (typeof this.conf.precision === 'number') {
+
+                return value.toFixed(+this.conf.precision);
+            }
+
+            return value;
+        },
+        _change: function _change() {
+            var steps = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+            var add = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+
+            var _this = this;
+
+            var continued = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+            var ignoreReadonly = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
+
+
+            if (this.conf.state === 'disabled') {
+
+                return;
+            }
+
+            if (!ignoreReadonly && this.conf.state === 'readonly') {
+
+                return;
+            }
+
+            if (isNaN(+steps)) {
+
+                return;
+            }
+
+            var num = this.data.value + add * steps * this.conf.step;
+
+            var nextTimeLv1 = 400;
+            var nextTimeLv2 = 50;
+            var nextTimeLv3 = 25;
+            var lv2UptoLv3Count = 80;
+
+            this._set(num);
+
+            if (continued) {
+
+                var nextTime = nextTimeLv1;
+
+                if (!this.data.continueChange) {
+
+                    nextTime = nextTimeLv1;
+                }
+
+                if (this.data.continueCount < lv2UptoLv3Count) {
+
+                    nextTime /= Math.pow(2, Math.ceil(this.data.continueCount / 5));
+
+                    if (nextTime < nextTimeLv2) {
+
+                        nextTime = nextTimeLv2;
+                    }
+                } else {
+
+                    nextTime = nextTimeLv3;
+                }
+
+                this.data.continueChange = true;
+
+                this.data.continueTimeout = setTimeout(function () {
+
+                    _this.data.continueCount++;
+                    _this._change(steps, add, continued);
+                }, nextTime);
+            }
+        },
+        add: function add() {
+            var steps = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+
+
+            this._change(steps, 1, false, true);
+
+            return this;
+        },
+        sub: function sub() {
+            var steps = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+
+
+            this._change(steps, -1, false, true);
+
+            return this;
         }
     },
     created: function created() {},
@@ -44666,18 +44878,95 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("mor-counter", {
-    class: [_vm.formClass, _vm.stateClass],
-    attrs: {
-      _uiid: _vm.uiid,
-      "form-name": _vm.formName,
-      "form-key": _vm.formKey,
-      group: _vm.group,
-      "default-value": _vm.defaultValue,
-      "hide-name": _vm.hideName,
-      clearable: _vm.clearable
-    }
-  })
+  return _c(
+    "mor-counter",
+    {
+      class: [_vm.formClass, _vm.stateClass],
+      attrs: {
+        _uiid: _vm.uiid,
+        "form-name": _vm.formName,
+        "form-key": _vm.formKey,
+        group: _vm.group,
+        "default-value": _vm.defaultValue,
+        "hide-name": _vm.hideName,
+        clearable: _vm.clearable,
+        step: _vm.step,
+        max: _vm.max,
+        min: _vm.min,
+        formater: _vm.formater,
+        parser: _vm.parser,
+        precision: _vm.precision
+      }
+    },
+    [
+      !_vm.conf.hideName
+        ? _c("div", { staticClass: "note" }, [
+            _vm._v(_vm._s(_vm.conf.formName))
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _c("div", { staticClass: "counter-wrap" }, [
+        _c(
+          "div",
+          {
+            staticClass: "sub-step",
+            on: {
+              mousedown: function($event) {
+                _vm._change(1, -1, true)
+              },
+              mouseup: function($event) {
+                _vm._stopContinued()
+              }
+            }
+          },
+          [_c("i", { staticClass: "mo-icon mo-icon-sub" })]
+        ),
+        _vm._v(" "),
+        _c("input", {
+          attrs: {
+            type: "text",
+            disabled:
+              _vm.conf.state === "disabled" || _vm.conf.state === "readonly"
+          },
+          domProps: { value: _vm.conf.formater(_vm._toFixed(_vm.data.value)) },
+          on: {
+            change: function($event) {
+              _vm._set(_vm.conf.parser($event.target.value))
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "add-step",
+            on: {
+              mousedown: function($event) {
+                _vm._change(1, 1, true)
+              },
+              mouseup: function($event) {
+                _vm._stopContinued()
+              }
+            }
+          },
+          [_c("i", { staticClass: "mo-icon mo-icon-add" })]
+        )
+      ]),
+      _vm._v(" "),
+      _vm.conf.clearable
+        ? _c(
+            "morning-link",
+            {
+              staticClass: "cleanbtn",
+              attrs: { color: "minor" },
+              on: { emit: _vm._clean }
+            },
+            [_vm._v("清空")]
+          )
+        : _vm._e()
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
