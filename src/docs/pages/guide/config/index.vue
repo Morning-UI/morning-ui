@@ -278,6 +278,9 @@
     - `allow-alpha` : 允许透明
     - `title-col-width` : 标题列宽度
     - `shows` : 显示的项目
+    - `formater` : 格式化函数
+    - `parser` : 解析函数
+    - `precision` : 精度
 
     </script>
     </doc-guide>

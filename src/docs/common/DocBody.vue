@@ -523,6 +523,36 @@ let data = {
                 valueContent : `[40]`
             }
         ],
+        counter : [
+            {
+                valueType : 'String',
+                valueContent : `'a4.2.2'`
+            },
+            {
+                valueType : 'Number',
+                valueContent : '40'
+            },
+            {
+                valueType : 'Boolean',
+                valueContent : 'true'
+            },
+            {
+                valueType : 'Null',
+                valueContent : 'null'
+            },
+            {
+                valueType : 'Undefined',
+                valueContent : 'undefined'
+            },
+            {
+                valueType : 'Object',
+                valueContent : '{}'
+            },
+            {
+                valueType : 'Array',
+                valueContent : `['a4.2.2']`
+            }
+        ],
         texteditor : [
             {
                 valueType : 'String',
