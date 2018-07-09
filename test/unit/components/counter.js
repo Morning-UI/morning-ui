@@ -12,6 +12,10 @@ test.serial('base : component snapshot', async t => {
 
     t.plan(1);
 
+
+    // cause : counter's formater/parser is a function, when run coverage test, the function always different.
+    delete vm.$el;
+
     snapshot(t, vm);
 
 });
