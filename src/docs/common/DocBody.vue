@@ -1472,7 +1472,10 @@ window.Vue.directive('docmd', {
             let res = window.Vue.compile(`<div>${md}</div>`);
             let instance = new window.Vue({
                 render : res.render,
-                staticRenderFns : res.staticRenderFns
+                staticRenderFns : res.staticRenderFns,
+                data : {
+                    window : window
+                }
             });
 
             instance.$mount();
