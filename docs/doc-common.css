@@ -1124,6 +1124,9 @@ mor-dialog a:hover {
   padding: 2px;
   margin-bottom: 10px;
 }
+.markdown-body input {
+  font-size: 14px;
+}
 .markdown-body pre {
   position: relative;
 }
