@@ -143,7 +143,9 @@
         <!-- 组件名都采用`form-name`配置 -->
         <!-- 组件默认值都采用`default-value`配置 -->
         <ui-textinput ref="demo4" form-name="姓名" default-value="Jim"></ui-textinput>
-        <ui-switch ref="demo5" form-name="开关" :default-value="true"></ui-switch>
+        <ui-switch ref="demo5" form-name="开关" hide-name :default-value="true"></ui-switch>
+
+        <br><br>
 
         <!-- 统一使用get方法获取表单值 -->
         <ui-link js="alert(morning.findVM('demo4').get());">获取姓名数值</ui-link>

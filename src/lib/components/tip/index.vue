@@ -7,9 +7,10 @@
         :placement="placement"
         :offset="offset"
         :trigger="trigger"
+        :trigger-in-delay="triggerInDelay"
         :auto-reverse="autoReverse"
     >
-    
+
     <div class="arrow"></div>
     <div class="con">
         <template v-if="!$slots.default">
@@ -19,7 +20,7 @@
             <slot></slot>
         </template>
     </div>
-        
+
     </mor-tip>
 </template>
  
@@ -50,9 +51,14 @@ export default {
             default : 'hover',
             validator : (value => ['hover', 'click', 'focus', 'method'].indexOf(value) !== -1)
         },
+        triggerInDelay : {
+            type : Number,
+            default : 0
+        },
         autoReverse : {
             type : Boolean,
-            default : true
+            default : true,
+            validator : (value => (value >= 0))
         }
     },
     computed : {
@@ -63,6 +69,7 @@ export default {
                 placement : this.placement,
                 offset : this.offset,
                 trigger : this.trigger,
+                triggerInDelay : this.triggerInDelay,
                 autoReverse : this.autoReverse
             };
 
@@ -125,26 +132,27 @@ export default {
 
             this.data.$target = $target;
             this._triggerUnsetListeners();
-            this.Trigger.$targets = [$target];
+
+            if (this.conf.trigger.indexOf('hover') !== -1) {
+
+                this.Trigger.$targets = [$target, this.$el];
+
+            } else {
+
+                this.Trigger.$targets = [$target];
+
+            }
+
             this._setListeners();
 
         },
         _setListeners : function () {
-
-            if (this.conf.trigger.indexOf('hover') !== -1) {
-
-                this.$el.addEventListener('mouseenter', this._enter);
-                this.$el.addEventListener('mouseleave', this._leave);
-
-            }
 
             this._triggerSetListeners();
 
         },
         _unsetListeners : function () {
 
-            this.$el.removeEventListener('mouseenter', this._enter);
-            this.$el.removeEventListener('mouseleave', this._leave);
             this._triggerUnsetListeners();
 
         },
@@ -209,8 +217,6 @@ export default {
                 return;
 
             }
-
-            clearTimeout(this.data.timeout);
 
             this.data.hoverState = this.data.hoverStates.out;
 
@@ -379,25 +385,31 @@ export default {
 
         }
     },
-    created : function () {
-
-        this.Trigger.handlerMap = {
-            click : [this.toggle],
-            hover : {
-                in : [this._enter],
-                out : [this._leave]
-            },
-            focus : {
-                in : [this._enter],
-                out : [this._leave]
-            }
-        };
-
-    },
     mounted : function () {
 
         this.Trigger.triggers = this.conf.trigger;
         this.Tip.autoReverse = this.conf.autoReverse;
+
+        this.$watch('conf.triggerInDelay', () => {
+
+            this.Trigger.handlerMap = {
+                click : [this.toggle],
+                hover : {
+                    in : [{
+                        fn : this._enter,
+                        delay : this.conf.triggerInDelay
+                    }],
+                    out : [this._leave]
+                },
+                focus : {
+                    in : [this._enter],
+                    out : [this._leave]
+                }
+            };
+
+        }, {
+            immediate : true
+        });
 
         this.$watch('conf.target', () => {
 
@@ -417,7 +429,7 @@ export default {
             this.data.activeTrigger = {};
             this._triggerUnsetListeners();
             this.Trigger.triggers = this.conf.trigger;
-            this._setListeners();
+            this._bindTarget();
 
         });
 

@@ -18,6 +18,33 @@
     
     ### 更新记录
 
+    ### 0.11.7 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2018年7月10日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.11.7" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.11.7/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.11.7/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 新特性
+
+    - 新增`ui-counter`计数器组件
+    - `ui-tip`新增`trigger-in-delay`配置，可以延迟触发小提示
+
+    #### 修复
+
+    - 修复`ui-colorpicker`组件的Vue警告
+
+    #### 更多
+
+    - 更新贡献者指南文档
+
+    ---
+
     ### 0.11.6 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="light-blue">
