@@ -4,6 +4,7 @@
         :class="[showClass]"
         :auto-close="autoClose"
         :trigger="trigger"
+        :trigger-in-delay="triggerInDelay"
     >
     
     <slot name="showbtn"></slot>
@@ -36,6 +37,10 @@ export default {
             type : String,
             default : 'click',
             validator : (value => ['hover', 'click', 'rclick'].indexOf(value) !== -1)
+        },
+        triggerInDelay : {
+            type : Number,
+            default : 200
         }
     },
     computed : {
@@ -43,7 +48,8 @@ export default {
 
             return {
                 autoClose : this.autoClose,
-                trigger : this.trigger
+                trigger : this.trigger,
+                triggerInDelay : this.triggerInDelay
             };
 
         },
@@ -171,18 +177,6 @@ export default {
         }
         
     },
-    created : function () {
-
-        this.Trigger.handlerMap = {
-            click : [this._click],
-            rclick : [this._click],
-            hover : {
-                in : [this._show],
-                out : [this._hide]
-            },
-        };
-
-    },
     mounted : function () {
 
         let $emitbtn = this.$el.querySelector(`[emitbtn]`);
@@ -193,7 +187,26 @@ export default {
         this.Trigger.$targets = [$emitbtn, this.data.$wrap];
         this.Trigger.triggers = this.conf.trigger;
         this.Tip.autoReverse = false;
-        this._triggerSetListeners();
+
+        this.$watch('conf.triggerInDelay', () => {
+
+            this.Trigger.handlerMap = {
+                click : [this._click],
+                rclick : [this._click],
+                hover : {
+                    in : [{
+                        fn : this._show,
+                        delay : this.conf.triggerInDelay
+                    }],
+                    out : [this._hide]
+                }
+            };
+
+            this.Vue.nextTick(() => this._triggerSetListeners());
+
+        }, {
+            immediate : true
+        });
 
         this.$watch('conf.trigger', () => {
 
