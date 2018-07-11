@@ -86,7 +86,8 @@ export default {
             data : {
                 show : false,
                 hasHeader : false,
-                hasFooter : false
+                hasFooter : false,
+                showingTimeout : null
             }
         };
 
@@ -119,6 +120,8 @@ export default {
 
             }
 
+            clearTimeout(this.data.showingTimeout);
+
             show = !!show;
 
             if (show) {
@@ -127,7 +130,7 @@ export default {
 
                     this._popupShow();
 
-                    setTimeout(() => {
+                    this.data.showingTimeout = setTimeout(() => {
 
                         this.data.show = show;
 
