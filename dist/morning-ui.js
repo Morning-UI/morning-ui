@@ -33606,7 +33606,8 @@ exports.default = {
             data: {
                 show: false,
                 hasHeader: false,
-                hasFooter: false
+                hasFooter: false,
+                showingTimeout: null
             }
         };
     },
@@ -33634,6 +33635,8 @@ exports.default = {
                 show = !this.data.show;
             }
 
+            clearTimeout(this.data.showingTimeout);
+
             show = !!show;
 
             if (show) {
@@ -33642,7 +33645,7 @@ exports.default = {
 
                     this._popupShow();
 
-                    setTimeout(function () {
+                    this.data.showingTimeout = setTimeout(function () {
 
                         _this.data.show = show;
                     });

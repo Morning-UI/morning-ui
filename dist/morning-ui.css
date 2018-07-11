@@ -7050,6 +7050,9 @@ mor-table > .wrap > tbody > tr > td::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.1);
   border-radius: 4px;
 }
+mor-table > .wrap > tbody > tr > td:first-child {
+  z-index: 2;
+}
 mor-table > .wrap tr > td.no-data {
   padding: 10px !important;
   min-width: 50px;
