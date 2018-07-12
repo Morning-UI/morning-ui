@@ -31669,7 +31669,7 @@ exports.default = {
         },
         triggerInDelay: {
             type: Number,
-            default: 0
+            default: 200
         },
         autoReverse: {
             type: Boolean,
@@ -36537,6 +36537,10 @@ exports.default = {
             validator: function validator(value) {
                 return ['hover', 'click', 'rclick'].indexOf(value) !== -1;
             }
+        },
+        triggerInDelay: {
+            type: Number,
+            default: 200
         }
     },
     computed: {
@@ -36544,7 +36548,8 @@ exports.default = {
 
             return {
                 autoClose: this.autoClose,
-                trigger: this.trigger
+                trigger: this.trigger,
+                triggerInDelay: this.triggerInDelay
             };
         },
         showClass: function showClass() {
@@ -36649,17 +36654,6 @@ exports.default = {
         }
 
     },
-    created: function created() {
-
-        this.Trigger.handlerMap = {
-            click: [this._click],
-            rclick: [this._click],
-            hover: {
-                in: [this._show],
-                out: [this._hide]
-            }
-        };
-    },
     mounted: function mounted() {
         var _this2 = this;
 
@@ -36671,7 +36665,27 @@ exports.default = {
         this.Trigger.$targets = [$emitbtn, this.data.$wrap];
         this.Trigger.triggers = this.conf.trigger;
         this.Tip.autoReverse = false;
-        this._triggerSetListeners();
+
+        this.$watch('conf.triggerInDelay', function () {
+
+            _this2.Trigger.handlerMap = {
+                click: [_this2._click],
+                rclick: [_this2._click],
+                hover: {
+                    in: [{
+                        fn: _this2._show,
+                        delay: _this2.conf.triggerInDelay
+                    }],
+                    out: [_this2._hide]
+                }
+            };
+
+            _this2.Vue.nextTick(function () {
+                return _this2._triggerSetListeners();
+            });
+        }, {
+            immediate: true
+        });
 
         this.$watch('conf.trigger', function () {
 
@@ -36708,6 +36722,7 @@ exports.default = {
         this._globalEventRemove('click', '_checkArea');
     }
 }; //
+//
 //
 //
 //
@@ -48168,7 +48183,8 @@ var render = function() {
       attrs: {
         _uiid: _vm.uiid,
         "auto-close": _vm.autoClose,
-        trigger: _vm.trigger
+        trigger: _vm.trigger,
+        "trigger-in-delay": _vm.triggerInDelay
       }
     },
     [

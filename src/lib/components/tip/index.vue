@@ -53,7 +53,7 @@ export default {
         },
         triggerInDelay : {
             type : Number,
-            default : 0
+            default : 200
         },
         autoReverse : {
             type : Boolean,
