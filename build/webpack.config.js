@@ -111,6 +111,9 @@ devVerConfig = extend(
             new webpack.DefinePlugin({
                 'process.env.NODE_ENV' : process.env.NODE_ENV
             }),
+            new webpack.ProvidePlugin({
+                'window.Quill' : 'quill/core'
+            }),
             extractDevCss
         ],
         module : {
@@ -126,6 +129,25 @@ devVerConfig = extend(
                             }
                         }, {
                             loader : 'less-loader'
+                        }, {
+                            loader : 'postcss-loader',
+                            options : {
+                                config : {
+                                    path : path.resolve(pathBuild, 'postcss.config.js')
+                                }
+                            }
+                        }]
+                    })
+                },
+                {
+                    test : /\.css$/,
+                    use : extractDevCss.extract({
+                        fallback : 'vue-style-loader',
+                        use : [{
+                            loader : 'css-loader',
+                            options : {
+                                importLoaders : 1
+                            }
                         }, {
                             loader : 'postcss-loader',
                             options : {
@@ -172,9 +194,18 @@ devVerConfig = extend(
                 },
                 {
                     test : /\.js$/,
-                    exclude : /node_modules/,
+                    exclude : /node_modules\/(?!(quill|quill-image-resize-module))/,
                     use : {
                         loader : 'babel-loader'
+                    }
+                },
+                {
+                    test : /\.svg$/,
+                    use : {
+                        loader : 'html-loader',
+                        options : {
+                            minimize : true
+                        }
                     }
                 }
             ]
@@ -231,6 +262,28 @@ prodVerConfig = extend(
                     })
                 },
                 {
+                    test : /\.css$/,
+                    use : extractProdCss.extract({
+                        fallback : 'vue-style-loader',
+                        use : [{
+                            loader : 'css-loader',
+                            options : {
+                                importLoaders : 2,
+                                minimize : true
+                            }
+                        }, {
+                            loader : 'clean-css-loader'
+                        }, {
+                            loader : 'postcss-loader',
+                            options : {
+                                config : {
+                                    path : path.resolve(pathBuild, 'postcss.config.js')
+                                }
+                            }
+                        }]
+                    })
+                },
+                {
                     test : /\.woff/,
                     exclude : /node_modules/,
                     use : [{
@@ -269,9 +322,18 @@ prodVerConfig = extend(
                 },
                 {
                     test : /\.js$/,
-                    exclude : /node_modules/,
+                    exclude : /node_modules\/(?!(quill|quill-image-resize-module))/,
                     use : {
                         loader : 'babel-loader'
+                    }
+                },
+                {
+                    test : /\.svg$/,
+                    use : {
+                        loader : 'html-loader',
+                        options : {
+                            minimize : true
+                        }
                     }
                 }
             ]

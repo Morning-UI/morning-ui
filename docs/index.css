@@ -205,6 +205,9 @@
 .markdown-body mor-select li + li {
   margin-top: 0;
 }
+.markdown-body mor-table table mor-btn a {
+  box-sizing: border-box;
+}
 mor-dialog .body {
   font-size: inherit;
 }
@@ -253,6 +256,7 @@ mor-dialog a:hover {
   padding: 20px 0;
   border-right: 1px #eee solid;
   box-sizing: border-box;
+  vertical-align: top;
 }
 .s1 .c31 > .icon > .iconfont {
   font-size: 60px;
@@ -266,7 +270,11 @@ mor-dialog a:hover {
   padding: 0 40px;
   text-align: center;
   line-height: 1.4em;
-  color: #999;
+  color: #888;
+}
+.s1 .c31 > .desc a {
+  color: #888;
+  text-decoration: underline;
 }
 .s1 .c31:last-child {
   border-right: none;
@@ -274,37 +282,79 @@ mor-dialog a:hover {
 .s1.gray {
   background: #EEE;
 }
+.s1.gray .title {
+  color: #312e2e;
+}
+.s1.gray .title .sub {
+  color: #7f7c7c;
+}
+.s1.silver {
+  background: #E2E8EE;
+}
 .s1 h1 {
   text-align: center;
   font-weight: 400;
   font-size: 54px;
 }
-.keywork {
-  width: 900px;
-  font-size: 0;
-  padding: 0 100px;
-  margin: 50px 0 0;
+.title {
+  color: #303C4B;
+  font-size: 48px;
+  padding: 20px 0;
 }
-.keywork span {
-  display: inline-block;
-  font-size: 36px;
-  vertical-align: top;
-  width: 30%;
-  margin: 0 1.25%;
-  color: #000;
+.title .sub {
+  font-size: 16px;
+  color: #7C8BA0;
+  padding: 15px 0;
+}
+.libdesc {
+  padding: 35px 0 22px 0;
+  width: 100%;
+  font-size: 30px;
+}
+.quick {
+  width: 100%;
   text-align: center;
+  padding: 0 0 20px 0;
+}
+.quick > a {
+  font-size: 16px;
+  text-decoration: none;
+  color: #45505C;
+  padding: 10px 25px;
+  border-radius: 5em;
+  border: 1px #45505C solid;
+  margin: 0 0.3em;
+  display: inline-block;
+}
+.quick > a:hover {
+  color: #17212D;
+  border-color: #17212D;
+}
+.quick .start {
+  color: #fff;
+  background: #45505C;
+}
+.quick .start:hover {
+  color: #fff;
+  background: #303C4B;
 }
 .lrBox {
   font-size: 0;
   border-bottom: 1px #e0e0e0 solid;
-  padding-bottom: 20px;
+  padding: 50px 20px;
+  text-align: left;
+  position: relative;
 }
 .lrBox:last-child {
   border-bottom: none;
 }
+.lrBox .right {
+  position: relative;
+  left: 40%;
+}
 .lrBox .left,
 .lrBox .right {
-  width: 50%;
+  width: 60%;
   display: inline-block;
   padding: 20px;
   box-sizing: border-box;
@@ -313,20 +363,272 @@ mor-dialog a:hover {
 }
 .lrBox .left h3,
 .lrBox .right h3 {
-  font-size: 28px;
+  font-size: 32px;
   font-weight: 400;
 }
 .lrBox .left p,
 .lrBox .right p {
-  font-size: 15px;
   line-height: 1.4em;
+  color: #888;
+  margin: 20px 0 0 0;
+  text-align: center;
+  font-size: 13px;
+  padding: 0 20px;
 }
-.lrBox .left a,
-.lrBox .right a {
+.lrBox .left *:not(mor-btn) > a,
+.lrBox .right *:not(mor-btn) > a {
   color: #000;
   padding: 0 5px;
 }
 .lrBox .left pre,
 .lrBox .right pre {
   font-size: 13px;
+  margin: 0;
+  padding: 0;
+  vertical-align: top;
+  font-size: 0;
+}
+.lrBox .left pre code,
+.lrBox .right pre code {
+  font-size: 13px;
+}
+.lrBox .left {
+  width: 40%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.lrBox .left h3 {
+  margin: 0;
+  text-align: center;
+}
+.img-slider .switch {
+  padding: 20px 0;
+  text-align: center;
+}
+.img-slider .switch i {
+  position: relative;
+  display: inline-block;
+  background: #cdd3da;
+  height: 10px;
+  width: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.img-slider .switch i:hover {
+  background: #A8B3C2;
+}
+.img-slider .switch i.current {
+  width: 20px;
+  background: #f14865;
+}
+.imgs {
+  padding: 2px;
+  width: 640px;
+  background: #fff;
+  margin: 0 auto;
+  border: 1px #eee solid;
+  border-radius: 5px;
+  height: 580px;
+  position: relative;
+}
+.imgs img {
+  position: absolute;
+  width: 640px;
+  left: 2px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: 0.2s;
+}
+.imgs img.show {
+  opacity: 1;
+}
+.img-note {
+  font-size: 18px;
+  margin: 0;
+  padding: 50px 100px 50px 100px;
+}
+.vs {
+  width: 100%;
+  height: 440px;
+  position: relative;
+}
+.vs:nth-child(2) {
+  margin: 100px 0 0 0;
+}
+.vs .logo {
+  position: absolute;
+  top: 40px;
+  left: 110px;
+  width: 300px;
+  text-align: center;
+}
+.vs .vsname,
+.vs .bars {
+  right: 40px;
+}
+.vs .vsname {
+  position: absolute;
+  top: 50px;
+  width: 570px;
+  font-weight: 400;
+  font-size: 40px;
+  text-align: left;
+  margin: 0;
+  padding: 0 0 10px 0;
+  border-bottom: 1px #333 solid;
+}
+.vs .vsdesc {
+  position: absolute;
+  top: 110px;
+  width: 610px;
+  right: 0;
+  padding-right: 50px;
+  text-align: left;
+  font-size: 14px;
+  box-sizing: border-box;
+  line-height: 1.6em;
+}
+.vs .bars {
+  position: absolute;
+  top: 200px;
+  width: 600px;
+  text-align: left;
+}
+.vs .bars .bar {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 0;
+}
+.vs .bars .bar h3 {
+  display: inline-block;
+  width: 120px;
+  font-size: 16px;
+  font-weight: 400;
+  text-align: right;
+  margin: 0;
+}
+.vs .bars .bar .bar-box {
+  height: 16px;
+  display: inline-block;
+  left: 150px;
+  width: 30px;
+  vertical-align: top;
+  padding-left: 30px;
+  box-sizing: border-box;
+  white-space: nowrap;
+  transition: 0.65s;
+  overflow: hidden;
+  margin: 1px 0;
+  transition-timing-function: cubic-bezier(0.36, 0.02, 0, 1.04);
+}
+.vs .bars .bar .bar-box .bar-same {
+  background: #c1cdd8;
+  height: 100%;
+  width: 50%;
+  display: inline-block;
+}
+.vs .bars .bar .bar-box .bar-more {
+  height: 100%;
+  width: 50%;
+  display: inline-block;
+}
+.vs .bars .bar .bar-box .bar-more.morning {
+  background: #f14865;
+}
+.vs .bars .bar .bar-box .bar-more.bootstrap {
+  background: #844fd1;
+}
+.vs .bars .bar .bar-box .bar-more.antd {
+  background: #1286ff;
+}
+.vs .bars .bar .bar-box .bar-more.semantic {
+  background: #34bdb2;
+}
+.vs .bars .bar .bar-box .bar-more.element {
+  background: #20a0ff;
+}
+.vs .bars.show .bar-box {
+  width: 380px;
+}
+.vs .label {
+  font-size: 0;
+  margin-top: 40px;
+  text-align: center;
+}
+.vs .label p {
+  margin: 0 10px;
+  font-size: 0;
+  display: inline-block;
+  vertical-align: top;
+}
+.vs .label p i {
+  width: 24px;
+  height: 10px;
+  background: #c1cdd8;
+  display: inline-block;
+  vertical-align: top;
+  margin: 2px 6px 0 2px;
+}
+.vs .label p i.morning {
+  background: #f14865;
+}
+.vs .label p i.bootstrap {
+  background: #844fd1;
+}
+.vs .label p i.antd {
+  background: #1286ff;
+}
+.vs .label p i.semantic {
+  background: #34bdb2;
+}
+.vs .label p i.element {
+  background: #20a0ff;
+}
+.vs .label p span {
+  font-size: 12px;
+  color: #333;
+  display: inline-block;
+}
+.more {
+  padding: 80px 0 30px 0;
+  width: 100%;
+}
+.comparison,
+.component,
+.usage {
+  font-size: 16px;
+  text-decoration: none;
+  color: #45505C;
+  padding: 10px 25px;
+  border-radius: 5em;
+  border: 1px #45505C solid;
+  margin: 0 0.3em;
+  display: inline-block;
+}
+.comparison:hover,
+.component:hover,
+.usage:hover {
+  color: #17212D;
+  border-color: #17212D;
+}
+.usage {
+  color: #fff;
+  background: #45505C;
+}
+.usage:hover {
+  color: #fff;
+  background: #303C4B;
+}
+.becontributor {
+  font-size: 13px;
+  text-decoration: none;
+  color: #45505C;
+  margin: 0.5em 0 0 0;
+  display: inline-block;
+}
+.becontributor:hover {
+  color: #17212D;
 }

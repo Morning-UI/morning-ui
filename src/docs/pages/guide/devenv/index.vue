@@ -60,20 +60,32 @@
 
     ```
     morning
-    ├─ .babelrc                          // babel配置文件
-    ├─ .eslintignore                       // eslint检测忽略文件
-    ├─ .eslintrc.yml                       // eslint配置
-    ├─ .gitignore                         // git提交忽略文件
-    ├─ package-lock.json                 // npm包lock文件
-    ├─ package.json                      // npm配置文件
+    ├─ .babelrc                         // babel配置文件
+    ├─ .eslintignore                    // eslint检测忽略文件
+    ├─ .eslintrc.yml                    // eslint配置
+    ├─ .gitattributes                   // Git属性配置
+    ├─ .gitignore                       // Git提交忽略文件
+    ├─ .stylelintrc                     // StyleLint配置
+    ├─ CHANGELOG.md                     // 更新日志
+    ├─ LICENSE                          // 许可证
+    ├─ package-lock.json                // npm包lock文件
+    ├─ package.json                     // npm配置文件
     ├─ README.md                        // 介绍文件
+    ├─ .circleci/                       // CircleCI配置
+    ├─ bin/                             // 命令行工具
     ├─ build/                           // 构建脚本
     ├─ dist/                            // UI库成品文件
     ├─ docs/                            // 文档
     ├─ report/                          // 测试报告
+    ├─ server/                          // 文档服务端
     ├─ src/                             // 源码
     │   ├─ docs/                        // 文档源码
     │   └─ lib/                         // UI库源码
+    │       ├─ common/                  // UI库通用部分
+    │       ├─ icon/                    // UI库字体图标
+    │       ├─ utils/                   // 工具代码(通过mixin在组件中使用)
+    │       ├─ components/              // UI组件源码
+    │       └─ index.js                 // UI组件入口
     └─ test/                            // 测试
         ├─ helper                       // 测试辅助文件
         ├─ unit                         // 单元测试
@@ -87,32 +99,32 @@
     ```shell
     $ npm run build                                 # 构建项目(库文件及文档)
     $ npm run dev                                   # 运行开发环境(运行后通过http://localhost:8080/访问)
-    $ npm run build-profile                         # 输出webpack构建性能统计文件
-    $ npm run lint                                  # 通过ESLint及StyleLint检查代码
-    $ npm run js-lint                               # 通过ESLint检查代码
+    $ npm run build-profile                       # 输出webpack构建性能统计文件
+    $ npm run lint                                    # 通过ESLint及StyleLint检查代码
+    $ npm run js-lint                                # 通过ESLint检查代码
     $ npm run js-lint-fix                           # 通过ESLint自动修复代码中的问题
     $ npm run css-lint                              # 通过StyleLint检查代码
-    $ npm run test                                  # 运行所有测试
-    $ npm run test-watch                            # 当文件变化时执行测试
-    $ npm run test-snapshot                         # 为所有测试进行快照
-    $ npm run test-report                           # 生成测试报告
-    $ npm run unit                                  # 运行单元测试
+    $ npm run test                                   # 运行所有测试
+    $ npm run test-watch                         # 当文件变化时执行测试
+    $ npm run test-snapshot                     # 为所有测试进行快照
+    $ npm run test-report                         # 生成测试报告
+    $ npm run unit                                   # 运行单元测试
     $ npm run ci-unit                               # 运行单元测试(持续集成时使用，限制了进程数)
-    $ npm run unit-watch                            # 当文件变化时执行单元测试
-    $ npm run unit-snapshot                         # 为单元测试进行快照
+    $ npm run unit-watch                         # 当文件变化时执行单元测试
+    $ npm run unit-snapshot                     # 为单元测试进行快照
     $ npm run e2e                                   # 运行端点测试
-    $ npm run ci-e2e                                # 运行端点测试(持续集成时使用，限制了进程数)
-    $ npm run e2e-watch                             # 当文件变化时执行端点测试
-    $ npm run e2e-snapshot                          # 为端点测试进行快照
+    $ npm run ci-e2e                               # 运行端点测试(持续集成时使用，限制了进程数)
+    $ npm run e2e-watch                          # 当文件变化时执行端点测试
+    $ npm run e2e-snapshot                      # 为端点测试进行快照
     $ npm run cover                                 # 检查测试覆盖
-    $ npm run ci-cover                              # 检查测试覆盖(持续集成时使用，限制了进程数)
-    $ npm run cover-report                          # 生成测试覆盖报告
-    $ npm run codecov-report                        # 生成codecov测试覆盖报告
-    $ npm run update-log-report                     # 根据Git Log生成组件更新日志
+    $ npm run ci-cover                             # 检查测试覆盖(持续集成时使用，限制了进程数)
+    $ npm run cover-report                       # 生成测试覆盖报告
+    $ npm run codecov-report                   # 生成codecov测试覆盖报告
+    $ npm run update-log-report                # 根据Git Log生成组件更新日志
     $ npm run report                                # 生成所有测试报告
-    $ npm run commit                                # 提交处理，包含：构建项目、生成测试报告
+    $ npm run commit                              # 提交处理，包含：构建项目、生成测试报告
     $ npm run doc                                   # 启动文档服务，可通过`--port`参数设置服务监听端口
-    $ npm run css-analysis                          # 执行CSS分析，分析各个组件占用的CSS大小，此工具可以帮助你优化CSS
+    $ npm run css-analysis                        # 执行CSS分析，分析各个组件占用的CSS大小，此工具可以帮助你优化CSS
     ```
     
     </script>

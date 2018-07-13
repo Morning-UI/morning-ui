@@ -57,6 +57,8 @@
     - `circle` : 圆形
     - `thumbnail` : 相框
     - `plain` : 朴素
+    - `btn` : 按钮式
+    - `border` : 边框
 
     </script>
     </doc-guide>

@@ -3,54 +3,7 @@
 mor-nav{
     display: block;
     width: 100%;
-
-    &.pos-top{
-        .nav-wrap{
-            .root-menu{
-                padding: 0;
-                margin: 0;
-                font-size: 0;
-                border-bottom: 1px @colorExtraLightSilver solid;
-
-                > li{
-                    font-size: @fontSize;
-                    display: inline-block;
-                    vertical-align: top;
-                    margin: 0;
-                    box-sizing: border-box;
-                    cursor: pointer;
-                    position: relative;
-                    height: 3.2em;
-
-                    p{
-                        font-size: @fontSize;
-                        box-sizing: border-box;
-                        padding: 0.8em 1em;
-                        height: ~'calc(3.2em + 1px)';
-                        line-height: 1.4em;
-                        margin: 0;
-                        color: @colorBlue;
-                        position: relative;
-                    }
-
-                    &:hover,
-                    &.current{
-                        p{
-                            border-bottom: 1px @colorTheme solid;
-                            color: @colorTheme;
-                        }
-                    }
-
-                    &.current{
-                        p{
-                            border-bottom-width: 2px;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
+    
     // default status
     &{}
 }

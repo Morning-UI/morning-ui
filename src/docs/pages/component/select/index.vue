@@ -6,32 +6,34 @@
     <script type="text/markdown">
     # 下拉选择框 `<ui-select>`
     
-    <doc-component-status page="select"></doc-component-status>
+    <doc-component-status page="select\"></doc-component-status>
     
     [[[开始]]]
 
     定义下拉选择框。
 
-    在组件中使用`<li>`标签定义选项，使用`value`属性定义选项的值。
-
-    注意`<li>`的`value`属性和纯文本内容(innerText去除两端空格)必须是唯一的，因为这两个值用于标记项目。
+    下拉选择框的选项通过`list`配置传入，`list.key`是选项的值，`list.name`是选项的名称(支持HTML)。
 
     #### 使用
 
     :::democode/html
     <div style="width:300px;">
-        <ui-select form-name="Select designer">
-            <li value="tim">Tim Boelaars</li>
-            <li value="andrew">Andrew Colin Beck</li>
-            <li value="gustavo">Gustavo Zambelli</li>
-            <li value="victor">Victor Erixon</li>
-            <li value="shaun">Shaun Moynihan</li>
-            <li value="emir">Emir Ayouni</li>
-            <li value="katherine">Katherine Rainey</li>
-            <li value="jax">Jax Berndt</li>
-            <li value="elizabeth">Elizabeth Chiu</li>
-            <li value="sara">Sara Nicely</li>
-            <li value="anna">Anna Broussard</li>
+        <ui-select
+            form-name="Select designer"
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
         </ui-select>
     </div>
     :::
@@ -43,58 +45,72 @@
     :::democode/html
     <div style="width:300px;">
         <ui-btn class="demo5">点击选择</ui-btn>
-        <ui-select form-name="Select designer" separate-emit=".demo5">
-            <li value="tim">Tim Boelaars</li>
-            <li value="andrew">Andrew Colin Beck</li>
-            <li value="gustavo">Gustavo Zambelli</li>
-            <li value="victor">Victor Erixon</li>
-            <li value="shaun">Shaun Moynihan</li>
-            <li value="emir">Emir Ayouni</li>
-            <li value="katherine">Katherine Rainey</li>
-            <li value="jax">Jax Berndt</li>
-            <li value="elizabeth">Elizabeth Chiu</li>
-            <li value="sara">Sara Nicely</li>
-            <li value="anna">Anna Broussard</li>
+        <ui-select
+            form-name="Select designer"
+            separate-emit=".demo5"
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
         </ui-select>
     </div>
     :::
 
-    #### 带图片的选项
+    #### 使用HTML的选项
 
     :::democode/html
     <div style="width:300px;">
-        <ui-select form-name="Select designer">
-            <li value="tim"><ui-img class="circle" src="https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894"></ui-img>Tim Boelaars</li>
-            <li value="andrew"><ui-img class="circle" src="https://cdn.dribbble.com/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444"></ui-img>Andrew Colin Beck</li>
-            <li value="gustavo"><ui-img class="circle" src="https://cdn.dribbble.com/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442"></ui-img>Gustavo Zambelli</li>
-            <li value="victor"><ui-img class="circle" src="https://cdn.dribbble.com/users/96387/avatars/normal/debda2342580bda98269c0165054464c.jpg?1435151464"></ui-img>Victor Erixon</li>
-            <li value="shaun"><ui-img class="circle" src="https://cdn.dribbble.com/users/2944/avatars/normal/e08c0e446862572facf0e48316d91c8f.png?1429207992"></ui-img>Shaun Moynihan</li>
-            <li value="emir"><ui-img class="circle" src="https://cdn.dribbble.com/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934"></ui-img>Emir Ayouni</li>
-            <li value="katherine"><ui-img class="circle" src="https://cdn.dribbble.com/users/460187/avatars/normal/eb8e273c036ae93b134b10358c5f19f5.jpg?1418705072"></ui-img>Katherine Rainey</li>
-            <li value="jax"><ui-img class="circle" src="https://cdn.dribbble.com/users/119911/avatars/normal/531fd12e5775ed5ac6a07aea7b492151.jpg?1427986143"></ui-img>Jax Berndt</li>
-            <li value="elizabeth"><ui-img class="circle" src="https://cdn.dribbble.com/users/857412/avatars/normal/8f5f9fbdd66cc70f22304f2ed3be4fa1.png?1440078204"></ui-img>Elizabeth Chiu</li>
-            <li value="sara"><ui-img class="circle" src="https://cdn.dribbble.com/users/162566/avatars/normal/1012292_10104881398564961_565325188_n.jpg?1403561573"></ui-img>Sara Nicely</li>
-            <li value="anna"><ui-img class="circle" src="https://cdn.dribbble.com/users/243797/avatars/normal/657a04cfaeca8f6f5bb7ecf64267bc67.jpg?1416007045"></ui-img>Anna Broussard</li>
+        <ui-select
+            form-name="Select designer"
+            :list="{
+                tim : '<ui-img class=\'circle\' src=\'https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894\'></ui-img>Tim Boelaars',
+                andrew : '<ui-img class=\'circle\' src=\'https://cdn.dribbble.com/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444\'></ui-img>Andrew Colin Beck',
+                gustavo : '<ui-img class=\'circle\' src=\'https://cdn.dribbble.com/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442\'></ui-img>Gustavo Zambelli',
+                victor : '<ui-img class=\'circle\' src=\'https://cdn.dribbble.com/users/96387/avatars/normal/debda2342580bda98269c0165054464c.jpg?1435151464\'></ui-img>Victor Erixon',
+                shaun : '<ui-img class=\'circle\' src=\'https://cdn.dribbble.com/users/2944/avatars/normal/e08c0e446862572facf0e48316d91c8f.png?1429207992\'></ui-img>Shaun Moynihan',
+                emir : '<ui-img class=\'circle\' src=\'https://cdn.dribbble.com/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934\'></ui-img>Emir Ayouni',
+                katherine : '<ui-img class=\'circle\' src=\'https://cdn.dribbble.com/users/460187/avatars/normal/eb8e273c036ae93b134b10358c5f19f5.jpg?1418705072\'></ui-img>Katherine Rainey',
+                jax : '<ui-img class=\'circle\' src=\'https://cdn.dribbble.com/users/119911/avatars/normal/531fd12e5775ed5ac6a07aea7b492151.jpg?1427986143\'></ui-img>Jax Berndt',
+                elizabeth : '<ui-img class=\'circle\' src=\'https://cdn.dribbble.com/users/857412/avatars/normal/8f5f9fbdd66cc70f22304f2ed3be4fa1.png?1440078204\'></ui-img>Elizabeth Chiu',
+                sara : '<ui-img class=\'circle\' src=\'https://cdn.dribbble.com/users/162566/avatars/normal/1012292_10104881398564961_565325188_n.jpg?1403561573\'></ui-img>Sara Nicely',
+                anna : '<ui-img class=\'circle\' src=\'https://cdn.dribbble.com/users/243797/avatars/normal/657a04cfaeca8f6f5bb7ecf64267bc67.jpg?1416007045\'></ui-img>Anna Broussard'
+            }"
+        >
         </ui-select>
     </div>
     :::
-
+    
     #### 可搜索
 
     :::democode/html
     <div style="width:300px;">
-        <ui-select form-name="Select designer" can-search>
-            <li value="tim"><ui-img class="circle" src="https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894"></ui-img>Tim Boelaars</li>
-            <li value="andrew"><ui-img class="circle" src="https://cdn.dribbble.com/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444"></ui-img>Andrew Colin Beck</li>
-            <li value="gustavo"><ui-img class="circle" src="https://cdn.dribbble.com/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442"></ui-img>Gustavo Zambelli</li>
-            <li value="victor"><ui-img class="circle" src="https://cdn.dribbble.com/users/96387/avatars/normal/debda2342580bda98269c0165054464c.jpg?1435151464"></ui-img>Victor Erixon</li>
-            <li value="shaun"><ui-img class="circle" src="https://cdn.dribbble.com/users/2944/avatars/normal/e08c0e446862572facf0e48316d91c8f.png?1429207992"></ui-img>Shaun Moynihan</li>
-            <li value="emir"><ui-img class="circle" src="https://cdn.dribbble.com/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934"></ui-img>Emir Ayouni</li>
-            <li value="katherine"><ui-img class="circle" src="https://cdn.dribbble.com/users/460187/avatars/normal/eb8e273c036ae93b134b10358c5f19f5.jpg?1418705072"></ui-img>Katherine Rainey</li>
-            <li value="jax"><ui-img class="circle" src="https://cdn.dribbble.com/users/119911/avatars/normal/531fd12e5775ed5ac6a07aea7b492151.jpg?1427986143"></ui-img>Jax Berndt</li>
-            <li value="elizabeth"><ui-img class="circle" src="https://cdn.dribbble.com/users/857412/avatars/normal/8f5f9fbdd66cc70f22304f2ed3be4fa1.png?1440078204"></ui-img>Elizabeth Chiu</li>
-            <li value="sara"><ui-img class="circle" src="https://cdn.dribbble.com/users/162566/avatars/normal/1012292_10104881398564961_565325188_n.jpg?1403561573"></ui-img>Sara Nicely</li>
-            <li value="anna"><ui-img class="circle" src="https://cdn.dribbble.com/users/243797/avatars/normal/657a04cfaeca8f6f5bb7ecf64267bc67.jpg?1416007045"></ui-img>Anna Broussard</li>
+        <ui-select
+            form-name="Select designer"
+            can-search
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
         </ui-select>
     </div>
     :::
@@ -103,18 +119,23 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-select form-name="Select designer" multi-select>
-            <li value="tim"><ui-img class="circle" src="https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894"></ui-img>Tim Boelaars</li>
-            <li value="andrew"><ui-img class="circle" src="https://cdn.dribbble.com/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444"></ui-img>Andrew Colin Beck</li>
-            <li value="gustavo"><ui-img class="circle" src="https://cdn.dribbble.com/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442"></ui-img>Gustavo Zambelli</li>
-            <li value="victor"><ui-img class="circle" src="https://cdn.dribbble.com/users/96387/avatars/normal/debda2342580bda98269c0165054464c.jpg?1435151464"></ui-img>Victor Erixon</li>
-            <li value="shaun"><ui-img class="circle" src="https://cdn.dribbble.com/users/2944/avatars/normal/e08c0e446862572facf0e48316d91c8f.png?1429207992"></ui-img>Shaun Moynihan</li>
-            <li value="emir"><ui-img class="circle" src="https://cdn.dribbble.com/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934"></ui-img>Emir Ayouni</li>
-            <li value="katherine"><ui-img class="circle" src="https://cdn.dribbble.com/users/460187/avatars/normal/eb8e273c036ae93b134b10358c5f19f5.jpg?1418705072"></ui-img>Katherine Rainey</li>
-            <li value="jax"><ui-img class="circle" src="https://cdn.dribbble.com/users/119911/avatars/normal/531fd12e5775ed5ac6a07aea7b492151.jpg?1427986143"></ui-img>Jax Berndt</li>
-            <li value="elizabeth"><ui-img class="circle" src="https://cdn.dribbble.com/users/857412/avatars/normal/8f5f9fbdd66cc70f22304f2ed3be4fa1.png?1440078204"></ui-img>Elizabeth Chiu</li>
-            <li value="sara"><ui-img class="circle" src="https://cdn.dribbble.com/users/162566/avatars/normal/1012292_10104881398564961_565325188_n.jpg?1403561573"></ui-img>Sara Nicely</li>
-            <li value="anna"><ui-img class="circle" src="https://cdn.dribbble.com/users/243797/avatars/normal/657a04cfaeca8f6f5bb7ecf64267bc67.jpg?1416007045"></ui-img>Anna Broussard</li>
+        <ui-select
+            form-name="Select designer"
+            multi-select
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
         </ui-select>
     </div>
     :::
@@ -123,73 +144,39 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-select form-name="Select designer" multi-select can-search>
-            <li value="tim"><ui-img class="circle" src="https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894"></ui-img>Tim Boelaars</li>
-            <li value="andrew"><ui-img class="circle" src="https://cdn.dribbble.com/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444"></ui-img>Andrew Colin Beck</li>
-            <li value="gustavo"><ui-img class="circle" src="https://cdn.dribbble.com/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442"></ui-img>Gustavo Zambelli</li>
-            <li value="victor"><ui-img class="circle" src="https://cdn.dribbble.com/users/96387/avatars/normal/debda2342580bda98269c0165054464c.jpg?1435151464"></ui-img>Victor Erixon</li>
-            <li value="shaun"><ui-img class="circle" src="https://cdn.dribbble.com/users/2944/avatars/normal/e08c0e446862572facf0e48316d91c8f.png?1429207992"></ui-img>Shaun Moynihan</li>
-            <li value="emir"><ui-img class="circle" src="https://cdn.dribbble.com/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934"></ui-img>Emir Ayouni</li>
-            <li value="katherine"><ui-img class="circle" src="https://cdn.dribbble.com/users/460187/avatars/normal/eb8e273c036ae93b134b10358c5f19f5.jpg?1418705072"></ui-img>Katherine Rainey</li>
-            <li value="jax"><ui-img class="circle" src="https://cdn.dribbble.com/users/119911/avatars/normal/531fd12e5775ed5ac6a07aea7b492151.jpg?1427986143"></ui-img>Jax Berndt</li>
-            <li value="elizabeth"><ui-img class="circle" src="https://cdn.dribbble.com/users/857412/avatars/normal/8f5f9fbdd66cc70f22304f2ed3be4fa1.png?1440078204"></ui-img>Elizabeth Chiu</li>
-            <li value="sara"><ui-img class="circle" src="https://cdn.dribbble.com/users/162566/avatars/normal/1012292_10104881398564961_565325188_n.jpg?1403561573"></ui-img>Sara Nicely</li>
-            <li value="anna"><ui-img class="circle" src="https://cdn.dribbble.com/users/243797/avatars/normal/657a04cfaeca8f6f5bb7ecf64267bc67.jpg?1416007045"></ui-img>Anna Broussard</li>
-        </ui-select>
-    </div>
-    :::
-
-    #### 通过`v-for`生成可选项
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
-        data : {
-            list : [
-                {name : 'Tim Boelaars'},
-                {name : 'Andrew Colin Beck'},
-                {name : 'Gustavo Zambelli'},
-                {name : 'Victor Erixon'},
-                {name : 'Shaun Moynihan'},
-                {name : 'Emir Ayouni'}
-            ]
-        }
-    });
-    ---
-    <div style="width:300px;">
-        <ui-select form-name="Select designer">
-            <li :value="item.name" v-for="item in list">{*item.name*}</li>
-        </ui-select>
-    </div>
-    :::
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
-        data : {
-            list : {
+        <ui-select
+            form-name="Select designer"
+            multi-select
+            can-search
+            :list="{
                 tim : 'Tim Boelaars',
                 andrew : 'Andrew Colin Beck',
                 gustavo : 'Gustavo Zambelli',
                 victor : 'Victor Erixon',
                 shaun : 'Shaun Moynihan',
-                emir : 'Emir Ayouni'
-            }
-        }
-    });
-    ---
-    <div style="width:300px;">
-        <ui-select form-name="Select designer" multi-select>
-            <li :value="key" v-for="(name, key) in list">{*name*}</li>
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
         </ui-select>
     </div>
     :::
 
+    #### 数量较多的选项
+
+    若下拉选择存在大量选项时，我们推荐以下方法进行优化：
+
+    - 小于`200`项：不需要特殊优化
+    - `200`至`2000`项：采用[max-show](#max-show)配置优化，可减少DOM数量
+    - 大于`2000`项：采用[dynamic-list](#dynamic-list)配置优化，可减少`list`中的数据及DOM数量，同时也可采用远程查询。
+
     #### 高性能模式
 
-    当下拉列表的选项超过200项时，组件会自动开启高性能模式以减少掉帧的现象。在高性能模式下动画及计算会尽可能减少。
+    当下拉列表的选项超过`200`项时，组件会自动开启高性能模式以减少掉帧的现象。在高性能模式下动画及计算会尽可能减少。
 
     [[[形态]]]
 
@@ -198,7 +185,7 @@
     ---
     uikey:select
     statusDefaultValue:['tim']
-    statusSlot:<li value="tim"><ui-img class="circle" src="https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894"></ui-img>Tim Boelaars</li><li value="andrew"><ui-img class="circle" src="https://cdn.dribbble.com/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444"></ui-img>Andrew Colin Beck</li><li value="gustavo"><ui-img class="circle" src="https://cdn.dribbble.com/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442"></ui-img>Gustavo Zambelli</li><li value="victor"><ui-img class="circle" src="https://cdn.dribbble.com/users/96387/avatars/normal/debda2342580bda98269c0165054464c.jpg?1435151464"></ui-img>Victor Erixon</li><li value="shaun"><ui-img class="circle" src="https://cdn.dribbble.com/users/2944/avatars/normal/e08c0e446862572facf0e48316d91c8f.png?1429207992"></ui-img>Shaun Moynihan</li><li value="emir"><ui-img class="circle" src="https://cdn.dribbble.com/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934"></ui-img>Emir Ayouni</li><li value="katherine"><ui-img class="circle" src="https://cdn.dribbble.com/users/460187/avatars/normal/eb8e273c036ae93b134b10358c5f19f5.jpg?1418705072"></ui-img>Katherine Rainey</li><li value="jax"><ui-img class="circle" src="https://cdn.dribbble.com/users/119911/avatars/normal/531fd12e5775ed5ac6a07aea7b492151.jpg?1427986143"></ui-img>Jax Berndt</li><li value="elizabeth"><ui-img class="circle" src="https://cdn.dribbble.com/users/857412/avatars/normal/8f5f9fbdd66cc70f22304f2ed3be4fa1.png?1440078204"></ui-img>Elizabeth Chiu</li><li value="sara"><ui-img class="circle" src="https://cdn.dribbble.com/users/162566/avatars/normal/1012292_10104881398564961_565325188_n.jpg?1403561573"></ui-img>Sara Nicely</li><li value="anna"><ui-img class="circle" src="https://cdn.dribbble.com/users/243797/avatars/normal/657a04cfaeca8f6f5bb7ecf64267bc67.jpg?1416007045"></ui-img>Anna Broussard</li>
+    statusMoreAttr::list="{tim:'Tim Boelaars', andrew:'Andrew Colin Beck', gustavo:'Gustavo Zambelli', victor:'Victor Erixon', shaun:'Shaun Moynihan', emir:'Emir Ayouni', katherine:'Katherine Rainey', jax:'Jax Berndt', elizabeth:'Elizabeth Chiu', sara:'Sara Nicely', anna:'Anna Broussard'}"
     :::
 
     #### 更多`disabled`状态
@@ -208,18 +195,25 @@
     :::democode/html
     <!-- 可搜索情况下disabled -->
     <div style="width:300px;">
-        <ui-select state="disabled" :default-value="['tim']" can-search form-name="禁用" >
-            <li value="tim"><ui-img class="circle" src="https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894"></ui-img>Tim Boelaars</li>
-            <li value="andrew"><ui-img class="circle" src="https://cdn.dribbble.com/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444"></ui-img>Andrew Colin Beck</li>
-            <li value="gustavo"><ui-img class="circle" src="https://cdn.dribbble.com/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442"></ui-img>Gustavo Zambelli</li>
-            <li value="victor"><ui-img class="circle" src="https://cdn.dribbble.com/users/96387/avatars/normal/debda2342580bda98269c0165054464c.jpg?1435151464"></ui-img>Victor Erixon</li>
-            <li value="shaun"><ui-img class="circle" src="https://cdn.dribbble.com/users/2944/avatars/normal/e08c0e446862572facf0e48316d91c8f.png?1429207992"></ui-img>Shaun Moynihan</li>
-            <li value="emir"><ui-img class="circle" src="https://cdn.dribbble.com/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934"></ui-img>Emir Ayouni</li>
-            <li value="katherine"><ui-img class="circle" src="https://cdn.dribbble.com/users/460187/avatars/normal/eb8e273c036ae93b134b10358c5f19f5.jpg?1418705072"></ui-img>Katherine Rainey</li>
-            <li value="jax"><ui-img class="circle" src="https://cdn.dribbble.com/users/119911/avatars/normal/531fd12e5775ed5ac6a07aea7b492151.jpg?1427986143"></ui-img>Jax Berndt</li>
-            <li value="elizabeth"><ui-img class="circle" src="https://cdn.dribbble.com/users/857412/avatars/normal/8f5f9fbdd66cc70f22304f2ed3be4fa1.png?1440078204"></ui-img>Elizabeth Chiu</li>
-            <li value="sara"><ui-img class="circle" src="https://cdn.dribbble.com/users/162566/avatars/normal/1012292_10104881398564961_565325188_n.jpg?1403561573"></ui-img>Sara Nicely</li>
-            <li value="anna"><ui-img class="circle" src="https://cdn.dribbble.com/users/243797/avatars/normal/657a04cfaeca8f6f5bb7ecf64267bc67.jpg?1416007045"></ui-img>Anna Broussard</li>
+        <ui-select
+            form-name="禁用"
+            state="disabled"
+            can-search
+            :default-value="['tim']"
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
         </ui-select>
     </div>
 
@@ -227,18 +221,25 @@
 
     <!-- 多选情况下disabled -->
     <div style="width:300px;">
-        <ui-select state="disabled" :default-value="['tim', 'andrew']" multi-select form-name="禁用" >
-            <li value="tim"><ui-img class="circle" src="https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894"></ui-img>Tim Boelaars</li>
-            <li value="andrew"><ui-img class="circle" src="https://cdn.dribbble.com/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444"></ui-img>Andrew Colin Beck</li>
-            <li value="gustavo"><ui-img class="circle" src="https://cdn.dribbble.com/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442"></ui-img>Gustavo Zambelli</li>
-            <li value="victor"><ui-img class="circle" src="https://cdn.dribbble.com/users/96387/avatars/normal/debda2342580bda98269c0165054464c.jpg?1435151464"></ui-img>Victor Erixon</li>
-            <li value="shaun"><ui-img class="circle" src="https://cdn.dribbble.com/users/2944/avatars/normal/e08c0e446862572facf0e48316d91c8f.png?1429207992"></ui-img>Shaun Moynihan</li>
-            <li value="emir"><ui-img class="circle" src="https://cdn.dribbble.com/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934"></ui-img>Emir Ayouni</li>
-            <li value="katherine"><ui-img class="circle" src="https://cdn.dribbble.com/users/460187/avatars/normal/eb8e273c036ae93b134b10358c5f19f5.jpg?1418705072"></ui-img>Katherine Rainey</li>
-            <li value="jax"><ui-img class="circle" src="https://cdn.dribbble.com/users/119911/avatars/normal/531fd12e5775ed5ac6a07aea7b492151.jpg?1427986143"></ui-img>Jax Berndt</li>
-            <li value="elizabeth"><ui-img class="circle" src="https://cdn.dribbble.com/users/857412/avatars/normal/8f5f9fbdd66cc70f22304f2ed3be4fa1.png?1440078204"></ui-img>Elizabeth Chiu</li>
-            <li value="sara"><ui-img class="circle" src="https://cdn.dribbble.com/users/162566/avatars/normal/1012292_10104881398564961_565325188_n.jpg?1403561573"></ui-img>Sara Nicely</li>
-            <li value="anna"><ui-img class="circle" src="https://cdn.dribbble.com/users/243797/avatars/normal/657a04cfaeca8f6f5bb7ecf64267bc67.jpg?1416007045"></ui-img>Anna Broussard</li>
+        <ui-select
+            form-name="禁用"
+            state="disabled"
+            multi-select
+            :default-value="['tim', 'andrew']"
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
         </ui-select>
     </div>
     :::
@@ -250,18 +251,25 @@
     :::democode/html
     <!-- 可搜索情况下disabled -->
     <div style="width:300px;">
-        <ui-select state="readonly" :default-value="['tim']" can-search form-name="只读" >
-            <li value="tim"><ui-img class="circle" src="https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894"></ui-img>Tim Boelaars</li>
-            <li value="andrew"><ui-img class="circle" src="https://cdn.dribbble.com/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444"></ui-img>Andrew Colin Beck</li>
-            <li value="gustavo"><ui-img class="circle" src="https://cdn.dribbble.com/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442"></ui-img>Gustavo Zambelli</li>
-            <li value="victor"><ui-img class="circle" src="https://cdn.dribbble.com/users/96387/avatars/normal/debda2342580bda98269c0165054464c.jpg?1435151464"></ui-img>Victor Erixon</li>
-            <li value="shaun"><ui-img class="circle" src="https://cdn.dribbble.com/users/2944/avatars/normal/e08c0e446862572facf0e48316d91c8f.png?1429207992"></ui-img>Shaun Moynihan</li>
-            <li value="emir"><ui-img class="circle" src="https://cdn.dribbble.com/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934"></ui-img>Emir Ayouni</li>
-            <li value="katherine"><ui-img class="circle" src="https://cdn.dribbble.com/users/460187/avatars/normal/eb8e273c036ae93b134b10358c5f19f5.jpg?1418705072"></ui-img>Katherine Rainey</li>
-            <li value="jax"><ui-img class="circle" src="https://cdn.dribbble.com/users/119911/avatars/normal/531fd12e5775ed5ac6a07aea7b492151.jpg?1427986143"></ui-img>Jax Berndt</li>
-            <li value="elizabeth"><ui-img class="circle" src="https://cdn.dribbble.com/users/857412/avatars/normal/8f5f9fbdd66cc70f22304f2ed3be4fa1.png?1440078204"></ui-img>Elizabeth Chiu</li>
-            <li value="sara"><ui-img class="circle" src="https://cdn.dribbble.com/users/162566/avatars/normal/1012292_10104881398564961_565325188_n.jpg?1403561573"></ui-img>Sara Nicely</li>
-            <li value="anna"><ui-img class="circle" src="https://cdn.dribbble.com/users/243797/avatars/normal/657a04cfaeca8f6f5bb7ecf64267bc67.jpg?1416007045"></ui-img>Anna Broussard</li>
+        <ui-select
+            form-name="只读"
+            state="readonly"
+            can-search
+            :default-value="['tim']"
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
         </ui-select>
     </div>
 
@@ -269,31 +277,42 @@
 
     <!-- 多选情况下disabled -->
     <div style="width:300px;">
-        <ui-select state="readonly" :default-value="['tim', 'andrew']" multi-select form-name="只读" >
-            <li value="tim"><ui-img class="circle" src="https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894"></ui-img>Tim Boelaars</li>
-            <li value="andrew"><ui-img class="circle" src="https://cdn.dribbble.com/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444"></ui-img>Andrew Colin Beck</li>
-            <li value="gustavo"><ui-img class="circle" src="https://cdn.dribbble.com/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442"></ui-img>Gustavo Zambelli</li>
-            <li value="victor"><ui-img class="circle" src="https://cdn.dribbble.com/users/96387/avatars/normal/debda2342580bda98269c0165054464c.jpg?1435151464"></ui-img>Victor Erixon</li>
-            <li value="shaun"><ui-img class="circle" src="https://cdn.dribbble.com/users/2944/avatars/normal/e08c0e446862572facf0e48316d91c8f.png?1429207992"></ui-img>Shaun Moynihan</li>
-            <li value="emir"><ui-img class="circle" src="https://cdn.dribbble.com/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934"></ui-img>Emir Ayouni</li>
-            <li value="katherine"><ui-img class="circle" src="https://cdn.dribbble.com/users/460187/avatars/normal/eb8e273c036ae93b134b10358c5f19f5.jpg?1418705072"></ui-img>Katherine Rainey</li>
-            <li value="jax"><ui-img class="circle" src="https://cdn.dribbble.com/users/119911/avatars/normal/531fd12e5775ed5ac6a07aea7b492151.jpg?1427986143"></ui-img>Jax Berndt</li>
-            <li value="elizabeth"><ui-img class="circle" src="https://cdn.dribbble.com/users/857412/avatars/normal/8f5f9fbdd66cc70f22304f2ed3be4fa1.png?1440078204"></ui-img>Elizabeth Chiu</li>
-            <li value="sara"><ui-img class="circle" src="https://cdn.dribbble.com/users/162566/avatars/normal/1012292_10104881398564961_565325188_n.jpg?1403561573"></ui-img>Sara Nicely</li>
-            <li value="anna"><ui-img class="circle" src="https://cdn.dribbble.com/users/243797/avatars/normal/657a04cfaeca8f6f5bb7ecf64267bc67.jpg?1416007045"></ui-img>Anna Broussard</li>
+        <ui-select
+            form-name="只读"
+            state="readonly"
+            multi-select
+            :default-value="['tim', 'andrew']"
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
         </ui-select>
     </div>
     :::
-        
+
     [[[配置]]]
 
     :::preset/html
     formConfigTable
     ---
+    |[list](#list)|通过此配置来设置可选项目，这是一个对象或数组。<br><br>若为对象：<br>键名是选项的值<br>键值若为字符串，则为选项的名称<br>若为对象，则可包含以下几个属性：<br>`name` : 选项的名称。<br>`tip` : 选项的提示信息(需要启用`item-tip`配置才会显示)<br><br>若为数组：<br>数组中每一项是一个对象，这个对象包含以下几个属性：<br>`key` : 选项的值<br>`name` : 选项的名称<br>`tip` : 选项的提示信息(需要启用`item-tip`配置才会显示)|对象<br>数组|Object<br>Array|`{}`|
+    |[dynamic-list](#dynamic-list)|动态可选项目，开启此配置后允许动态的改变`list`且不校验选中项目是否在`list`配置中。<br>因为开启此配置后`list`中的选项是不完整的，所以如果需要校验选项是否存在，可以通过`validate`配置来实现。|`true`<br>`false`|Boolean|`false`|
+    |[validate](#validate)|验证选项是否可用，若选项不可用将会直接过滤。只有在开启`dynamic-list`配置时生效。<br>函数包含一个入参：<br><br>参数是需要验证的值<br><br>通过这这个参数来验证有效性。<br><br>此函数的返回值为验证结果，是布尔值：<br><br>非`false`：验证通过<br>`false`：验证失败，直接过滤此值<br><br>需要注意是的验证不支持异步，如果需要异步校验数据应该写到组件取值之后。|验证函数(同步)|Function|`() => {}`|
     |[separate-emit](#separate-emit)|通过其他的元素来触发下拉选择框|元素选择器([MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/Document_Object_Model/Locating_DOM_elements_using_selectors))|String|`''`|
     |[align](#align)|内容对齐方式|`'left'` : 左对齐<br>`'center'` : 居中对齐<br>`'right'` : 右对齐|String|`'left'`|
     |[prepend](#prepend)|表单前缀|任意字符串(支持HTML)|String|`undefined`|
-    |[max-show](#max-show)|下拉列表最多显示几项(超过出现滚动条)|项目数量|Number|`5`|
+    |[max-show](#max-show)|下拉列表最多显示几项，超出的项目会被隐藏并提示通过搜索查看(必须启用`can-search`配置才会生效)。|项目数量|Number|`Infinity`|
+    |[max-show-height](#max-show-height)|下拉列表最高显示几项(超过出现滚动条)的高度|项目数量|Number|`5`|
     |[auto-close](#auto-close)|点击下拉选择框以外的区域自动关闭下拉选择框|`true`<br>`false`|Boolean|`true`|
     |[can-search](#can-search)|允许通过项目内容搜索项目|`true`<br>`false`|Boolean|`false`|
     |[multi-select](#multi-select)|允许选择多个项目|`true`<br>`false`|Boolean|`false`|
@@ -306,14 +325,273 @@
     |[item-tip-direct](#item-tip-direct)|为下拉菜单设置提示的方向，需要开启`list-tip`才有效|`top`<br>`right`<br>`bottom`<br>`left`|String|`top`|
     |[list-width](#list-width)|在开启`separate-emit`的情况下，下拉列表的宽度(单位px)，如果设为`false`则下拉列表会自动调整宽度。<br>若未开启`separate-emit`此配置不会生效，下拉列表的宽度等于组件本身的宽度。|`false`：自动调整宽度<br>数字：下拉列表的宽度(单位px)|Boolean<br>Number|`false`|
     :::
-    
+
     :::preset/html
     formConfigDemo
     ---
     uikey:select
     configDefaultValue:['tim']
-    configSlot:<li value="tim"><ui-img class="circle" src="https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894"></ui-img>Tim Boelaars</li><li value="andrew"><ui-img class="circle" src="https://cdn.dribbble.com/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444"></ui-img>Andrew Colin Beck</li><li value="gustavo"><ui-img class="circle" src="https://cdn.dribbble.com/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442"></ui-img>Gustavo Zambelli</li><li value="victor"><ui-img class="circle" src="https://cdn.dribbble.com/users/96387/avatars/normal/debda2342580bda98269c0165054464c.jpg?1435151464"></ui-img>Victor Erixon</li><li value="shaun"><ui-img class="circle" src="https://cdn.dribbble.com/users/2944/avatars/normal/e08c0e446862572facf0e48316d91c8f.png?1429207992"></ui-img>Shaun Moynihan</li><li value="emir"><ui-img class="circle" src="https://cdn.dribbble.com/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934"></ui-img>Emir Ayouni</li><li value="katherine"><ui-img class="circle" src="https://cdn.dribbble.com/users/460187/avatars/normal/eb8e273c036ae93b134b10358c5f19f5.jpg?1418705072"></ui-img>Katherine Rainey</li><li value="jax"><ui-img class="circle" src="https://cdn.dribbble.com/users/119911/avatars/normal/531fd12e5775ed5ac6a07aea7b492151.jpg?1427986143"></ui-img>Jax Berndt</li><li value="elizabeth"><ui-img class="circle" src="https://cdn.dribbble.com/users/857412/avatars/normal/8f5f9fbdd66cc70f22304f2ed3be4fa1.png?1440078204"></ui-img>Elizabeth Chiu</li><li value="sara"><ui-img class="circle" src="https://cdn.dribbble.com/users/162566/avatars/normal/1012292_10104881398564961_565325188_n.jpg?1403561573"></ui-img>Sara Nicely</li><li value="anna"><ui-img class="circle" src="https://cdn.dribbble.com/users/243797/avatars/normal/657a04cfaeca8f6f5bb7ecf64267bc67.jpg?1416007045"></ui-img>Anna Broussard</li>
+    configMoreAttr::list="{tim:'Tim Boelaars', andrew:'Andrew Colin Beck', gustavo:'Gustavo Zambelli', victor:'Victor Erixon', shaun:'Shaun Moynihan', emir:'Emir Ayouni', katherine:'Katherine Rainey', jax:'Jax Berndt', elizabeth:'Elizabeth Chiu', sara:'Sara Nicely', anna:'Anna Broussard'}"
     :::
+
+    #### list
+
+    简化配置：
+
+    :::democode/html
+    <div style="width:300px;">
+        <ui-select
+            form-name="Select designer"
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon'
+            }"
+        >
+        </ui-select>
+    </div>
+    :::
+
+    完整版配置：
+
+    :::democode/html
+    <div style="width:300px;">
+        <ui-select
+            form-name="Select designer"
+            :list="{
+                tim : {
+                    name : 'Tim Boelaars',
+                    tip : 'This is Tim Boelaars'
+                },
+                andrew : {
+                    name : 'Andrew Colin Beck',
+                    tip : 'This is Andrew Colin Beck'
+                },
+                gustavo : {
+                    name : 'Gustavo Zambelli',
+                    tip : 'This is Gustavo Zambelli'
+                },
+                victor : {
+                    name : 'Victor Erixon',
+                    tip : 'This is Victor Erixon'
+                }
+            }"
+        >
+        </ui-select>
+    </div>
+    :::
+
+    #### dynamic-list
+
+    异步加载数据：
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            fulllist : {
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            },
+            list : {}
+        },
+        methods : {
+            loadlist : function () {
+                
+                this.list = this.fulllist;
+
+            }
+        }
+    });
+    ---
+    <div style="width:300px;">
+        <ui-select
+            ref="demo12"
+            form-name="Select designer"
+            dynamic-list
+            :list="list"
+        >
+        </ui-select>
+        <ui-link @click.native="loadlist">加载选项</ui-link>
+    </div>
+    :::
+
+    通过`dynamic-list`和`can-search`配置可以启用异步检索：
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            fulllist : {
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            },
+            list : {}
+        },
+        methods : {
+            search : function (keyword) {
+
+                setTimeout(() => {
+
+                    this.list = {};
+                    
+                    for (let key in this.fulllist) {
+
+                        if (this.fulllist[key].indexOf(keyword) !== -1) {
+        
+                            this.list[key] = this.fulllist[key];
+
+                        }
+
+                    }
+
+                }, 200);
+
+            }
+        }
+    });
+    ---
+    <div style="width:300px;">
+        <ui-select
+            form-name="Select designer"
+            @search="search"
+            dynamic-list
+            can-search
+            :list="list"
+        >
+        </ui-select>
+    </div>
+    :::
+
+    `dynamic-list`配合`multi-select`使用：
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            fulllist : {
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            },
+            list : {}
+        },
+        methods : {
+            search : function (keyword) {
+
+                setTimeout(() => {
+
+                    this.list = {};
+                    
+                    for (let key in this.fulllist) {
+
+                        if (this.fulllist[key].indexOf(keyword) !== -1) {
+        
+                            this.list[key] = this.fulllist[key];
+
+                        }
+
+                    }
+
+                }, 200);
+
+            }
+        }
+    });
+    ---
+    <div style="width:300px;">
+        <ui-select
+            form-name="Select designer"
+            @search="search"
+            dynamic-list
+            can-search
+            multi-select
+            :list="list"
+        >
+        </ui-select>
+    </div>
+    :::
+
+    #### validate
+
+    下面这个示例中虽然可选项中有`Tim Boelaars`，但在校验器中无法通过校验，所以无法选中(使用时必须开启`dynamic-list`配置)：
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            fulllist : {
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            },
+            list : {}
+        },
+        methods : {
+            validate : function (value) {
+                
+                return (Object.keys(this.fulllist).indexOf(value) !== -1);
+
+            }   
+        },
+        mounted : function () {
+
+            this.list = Object.assign({
+                tim : 'Tim Boelaars'
+            }, this.fulllist);
+
+        }
+    });
+    ---
+    <div style="width:300px;">
+        <ui-select
+            form-name="Select designer"
+            dynamic-list
+            :validate="validate"
+            :list="list"
+        >
+        </ui-select>
+    </div>
+    :::
+
 
     #### separate-emit
 
@@ -322,18 +600,23 @@
     :::democode/html
     <div style="width:300px;">
         <ui-btn class="demo6">点击选择</ui-btn>
-        <ui-select form-name="Select designer" separate-emit=".demo6">
-            <li value="tim">Tim Boelaars</li>
-            <li value="andrew">Andrew Colin Beck</li>
-            <li value="gustavo">Gustavo Zambelli</li>
-            <li value="victor">Victor Erixon</li>
-            <li value="shaun">Shaun Moynihan</li>
-            <li value="emir">Emir Ayouni</li>
-            <li value="katherine">Katherine Rainey</li>
-            <li value="jax">Jax Berndt</li>
-            <li value="elizabeth">Elizabeth Chiu</li>
-            <li value="sara">Sara Nicely</li>
-            <li value="anna">Anna Broussard</li>
+        <ui-select
+            form-name="Select designer"
+            separate-emit=".demo6"
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
         </ui-select>
     </div>
     :::
@@ -343,18 +626,24 @@
     :::democode/html
     <div style="width:300px;">
         <ui-btn class="demo11">点击选择</ui-btn>
-        <ui-select form-name="Select designer" separate-emit=".demo11" list-width="180">
-            <li value="tim">Tim Boelaars</li>
-            <li value="andrew">Andrew Colin Beck</li>
-            <li value="gustavo">Gustavo Zambelli</li>
-            <li value="victor">Victor Erixon</li>
-            <li value="shaun">Shaun Moynihan</li>
-            <li value="emir">Emir Ayouni</li>
-            <li value="katherine">Katherine Rainey</li>
-            <li value="jax">Jax Berndt</li>
-            <li value="elizabeth">Elizabeth Chiu</li>
-            <li value="sara">Sara Nicely</li>
-            <li value="anna">Anna Broussard</li>
+        <ui-select
+            form-name="Select designer"
+            separate-emit=".demo11"
+            :list-width="180"
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
         </ui-select>
     </div>
     :::
@@ -364,18 +653,24 @@
     :::democode/html
     <div style="width:300px;">
         <ui-btn class="demo7">点击选择</ui-btn>
-        <ui-select form-name="Select designer" separate-emit=".demo7" can-search>
-            <li value="tim">Tim Boelaars</li>
-            <li value="andrew">Andrew Colin Beck</li>
-            <li value="gustavo">Gustavo Zambelli</li>
-            <li value="victor">Victor Erixon</li>
-            <li value="shaun">Shaun Moynihan</li>
-            <li value="emir">Emir Ayouni</li>
-            <li value="katherine">Katherine Rainey</li>
-            <li value="jax">Jax Berndt</li>
-            <li value="elizabeth">Elizabeth Chiu</li>
-            <li value="sara">Sara Nicely</li>
-            <li value="anna">Anna Broussard</li>
+        <ui-select
+            form-name="Select designer"
+            separate-emit=".demo7"
+            can-search
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
         </ui-select>
     </div>
     :::
@@ -385,18 +680,25 @@
     :::democode/html
     <div style="width:300px;">
         <ui-btn class="demo8">点击选择</ui-btn>
-        <ui-select form-name="Select designer" separate-emit=".demo8" can-search multi-select :max="5">
-            <li value="tim">Tim Boelaars</li>
-            <li value="andrew">Andrew Colin Beck</li>
-            <li value="gustavo">Gustavo Zambelli</li>
-            <li value="victor">Victor Erixon</li>
-            <li value="shaun">Shaun Moynihan</li>
-            <li value="emir">Emir Ayouni</li>
-            <li value="katherine">Katherine Rainey</li>
-            <li value="jax">Jax Berndt</li>
-            <li value="elizabeth">Elizabeth Chiu</li>
-            <li value="sara">Sara Nicely</li>
-            <li value="anna">Anna Broussard</li>
+        <ui-select
+            form-name="Select designer"
+            separate-emit=".demo8"
+            multi-select
+            :max="5"
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
         </ui-select>
     </div>
     :::
@@ -406,18 +708,26 @@
     :::democode/html
     <div style="width:300px;">
         <ui-btn class="demo9">点击选择</ui-btn>
-        <ui-select form-name="Select designer" separate-emit=".demo9" can-search multi-select can-search>
-            <li value="tim">Tim Boelaars</li>
-            <li value="andrew">Andrew Colin Beck</li>
-            <li value="gustavo">Gustavo Zambelli</li>
-            <li value="victor">Victor Erixon</li>
-            <li value="shaun">Shaun Moynihan</li>
-            <li value="emir">Emir Ayouni</li>
-            <li value="katherine">Katherine Rainey</li>
-            <li value="jax">Jax Berndt</li>
-            <li value="elizabeth">Elizabeth Chiu</li>
-            <li value="sara">Sara Nicely</li>
-            <li value="anna">Anna Broussard</li>
+        <ui-select
+            form-name="Select designer"
+            separate-emit=".demo9"
+            can-search
+            multi-select
+            can-search
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
         </ui-select>
     </div>
     :::
@@ -427,18 +737,26 @@
     :::democode/html
     <div style="width:300px;">
         <ui-btn class="demo10">点击选择</ui-btn>
-        <ui-select form-name="Select designer" separate-emit=".demo10" can-search multi-select can-move>
-            <li value="tim">Tim Boelaars</li>
-            <li value="andrew">Andrew Colin Beck</li>
-            <li value="gustavo">Gustavo Zambelli</li>
-            <li value="victor">Victor Erixon</li>
-            <li value="shaun">Shaun Moynihan</li>
-            <li value="emir">Emir Ayouni</li>
-            <li value="katherine">Katherine Rainey</li>
-            <li value="jax">Jax Berndt</li>
-            <li value="elizabeth">Elizabeth Chiu</li>
-            <li value="sara">Sara Nicely</li>
-            <li value="anna">Anna Broussard</li>
+        <ui-select
+            form-name="Select designer"
+            separate-emit=".demo10"
+            can-search
+            multi-select
+            can-move
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
         </ui-select>
     </div>
     :::
@@ -448,18 +766,25 @@
     :::democode/html
     <div style="width:300px;">
         <ui-btn class="demo13">点击选择</ui-btn>
-        <ui-select form-name="Select designer" separate-emit=".demo13" multi-select :hide-selected="false">
-            <li value="tim">Tim Boelaars</li>
-            <li value="andrew">Andrew Colin Beck</li>
-            <li value="gustavo">Gustavo Zambelli</li>
-            <li value="victor">Victor Erixon</li>
-            <li value="shaun">Shaun Moynihan</li>
-            <li value="emir">Emir Ayouni</li>
-            <li value="katherine">Katherine Rainey</li>
-            <li value="jax">Jax Berndt</li>
-            <li value="elizabeth">Elizabeth Chiu</li>
-            <li value="sara">Sara Nicely</li>
-            <li value="anna">Anna Broussard</li>
+        <ui-select
+            form-name="Select designer"
+            separate-emit=".demo13"
+            multi-select
+            :hide-selected="false"
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
         </ui-select>
     </div>
     :::
@@ -470,18 +795,23 @@
     
     :::democode/html
     <div style="width:300px;">
-        <ui-select form-name="Select designer" align="center">
-            <li value="tim"><ui-img class="circle" src="https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894"></ui-img>Tim Boelaars</li>
-            <li value="andrew"><ui-img class="circle" src="https://cdn.dribbble.com/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444"></ui-img>Andrew Colin Beck</li>
-            <li value="gustavo"><ui-img class="circle" src="https://cdn.dribbble.com/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442"></ui-img>Gustavo Zambelli</li>
-            <li value="victor"><ui-img class="circle" src="https://cdn.dribbble.com/users/96387/avatars/normal/debda2342580bda98269c0165054464c.jpg?1435151464"></ui-img>Victor Erixon</li>
-            <li value="shaun"><ui-img class="circle" src="https://cdn.dribbble.com/users/2944/avatars/normal/e08c0e446862572facf0e48316d91c8f.png?1429207992"></ui-img>Shaun Moynihan</li>
-            <li value="emir"><ui-img class="circle" src="https://cdn.dribbble.com/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934"></ui-img>Emir Ayouni</li>
-            <li value="katherine"><ui-img class="circle" src="https://cdn.dribbble.com/users/460187/avatars/normal/eb8e273c036ae93b134b10358c5f19f5.jpg?1418705072"></ui-img>Katherine Rainey</li>
-            <li value="jax"><ui-img class="circle" src="https://cdn.dribbble.com/users/119911/avatars/normal/531fd12e5775ed5ac6a07aea7b492151.jpg?1427986143"></ui-img>Jax Berndt</li>
-            <li value="elizabeth"><ui-img class="circle" src="https://cdn.dribbble.com/users/857412/avatars/normal/8f5f9fbdd66cc70f22304f2ed3be4fa1.png?1440078204"></ui-img>Elizabeth Chiu</li>
-            <li value="sara"><ui-img class="circle" src="https://cdn.dribbble.com/users/162566/avatars/normal/1012292_10104881398564961_565325188_n.jpg?1403561573"></ui-img>Sara Nicely</li>
-            <li value="anna"><ui-img class="circle" src="https://cdn.dribbble.com/users/243797/avatars/normal/657a04cfaeca8f6f5bb7ecf64267bc67.jpg?1416007045"></ui-img>Anna Broussard</li>
+        <ui-select
+            form-name="Select designer"
+            align="center"
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
         </ui-select>
     </div>
     :::
@@ -490,18 +820,23 @@
     
     :::democode/html
     <div style="width:300px;">
-        <ui-select form-name="Select designer" align="right">
-            <li value="tim"><ui-img class="circle" src="https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894"></ui-img>Tim Boelaars</li>
-            <li value="andrew"><ui-img class="circle" src="https://cdn.dribbble.com/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444"></ui-img>Andrew Colin Beck</li>
-            <li value="gustavo"><ui-img class="circle" src="https://cdn.dribbble.com/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442"></ui-img>Gustavo Zambelli</li>
-            <li value="victor"><ui-img class="circle" src="https://cdn.dribbble.com/users/96387/avatars/normal/debda2342580bda98269c0165054464c.jpg?1435151464"></ui-img>Victor Erixon</li>
-            <li value="shaun"><ui-img class="circle" src="https://cdn.dribbble.com/users/2944/avatars/normal/e08c0e446862572facf0e48316d91c8f.png?1429207992"></ui-img>Shaun Moynihan</li>
-            <li value="emir"><ui-img class="circle" src="https://cdn.dribbble.com/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934"></ui-img>Emir Ayouni</li>
-            <li value="katherine"><ui-img class="circle" src="https://cdn.dribbble.com/users/460187/avatars/normal/eb8e273c036ae93b134b10358c5f19f5.jpg?1418705072"></ui-img>Katherine Rainey</li>
-            <li value="jax"><ui-img class="circle" src="https://cdn.dribbble.com/users/119911/avatars/normal/531fd12e5775ed5ac6a07aea7b492151.jpg?1427986143"></ui-img>Jax Berndt</li>
-            <li value="elizabeth"><ui-img class="circle" src="https://cdn.dribbble.com/users/857412/avatars/normal/8f5f9fbdd66cc70f22304f2ed3be4fa1.png?1440078204"></ui-img>Elizabeth Chiu</li>
-            <li value="sara"><ui-img class="circle" src="https://cdn.dribbble.com/users/162566/avatars/normal/1012292_10104881398564961_565325188_n.jpg?1403561573"></ui-img>Sara Nicely</li>
-            <li value="anna"><ui-img class="circle" src="https://cdn.dribbble.com/users/243797/avatars/normal/657a04cfaeca8f6f5bb7ecf64267bc67.jpg?1416007045"></ui-img>Anna Broussard</li>
+        <ui-select
+            form-name="Select designer"
+            align="right"
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
         </ui-select>
     </div>
     :::
@@ -510,40 +845,80 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-select form-name="Select designer" prepend="设计师">
-            <li value="tim"><ui-img class="circle" src="https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894"></ui-img>Tim Boelaars</li>
-            <li value="andrew"><ui-img class="circle" src="https://cdn.dribbble.com/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444"></ui-img>Andrew Colin Beck</li>
-            <li value="gustavo"><ui-img class="circle" src="https://cdn.dribbble.com/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442"></ui-img>Gustavo Zambelli</li>
-            <li value="victor"><ui-img class="circle" src="https://cdn.dribbble.com/users/96387/avatars/normal/debda2342580bda98269c0165054464c.jpg?1435151464"></ui-img>Victor Erixon</li>
-            <li value="shaun"><ui-img class="circle" src="https://cdn.dribbble.com/users/2944/avatars/normal/e08c0e446862572facf0e48316d91c8f.png?1429207992"></ui-img>Shaun Moynihan</li>
-            <li value="emir"><ui-img class="circle" src="https://cdn.dribbble.com/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934"></ui-img>Emir Ayouni</li>
-            <li value="katherine"><ui-img class="circle" src="https://cdn.dribbble.com/users/460187/avatars/normal/eb8e273c036ae93b134b10358c5f19f5.jpg?1418705072"></ui-img>Katherine Rainey</li>
-            <li value="jax"><ui-img class="circle" src="https://cdn.dribbble.com/users/119911/avatars/normal/531fd12e5775ed5ac6a07aea7b492151.jpg?1427986143"></ui-img>Jax Berndt</li>
-            <li value="elizabeth"><ui-img class="circle" src="https://cdn.dribbble.com/users/857412/avatars/normal/8f5f9fbdd66cc70f22304f2ed3be4fa1.png?1440078204"></ui-img>Elizabeth Chiu</li>
-            <li value="sara"><ui-img class="circle" src="https://cdn.dribbble.com/users/162566/avatars/normal/1012292_10104881398564961_565325188_n.jpg?1403561573"></ui-img>Sara Nicely</li>
-            <li value="anna"><ui-img class="circle" src="https://cdn.dribbble.com/users/243797/avatars/normal/657a04cfaeca8f6f5bb7ecf64267bc67.jpg?1416007045"></ui-img>Anna Broussard</li>
+        <ui-select
+            form-name="Select designer"
+            prepend="设计师"
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
         </ui-select>
     </div>
     :::
 
     #### max-show
+    
+    当可选项目过多时应该启用此配置和`can-search`，因为用户面对过多的选项不会逐项查找，一般通过搜索来查找。若所有选项都进行渲染DOM会过多，从而对性能产生影响。
 
-    下拉列表最多显示两项。
+    最多显示4项：
+
+    :::democode/html
+    <div style="width:300px;">
+        <ui-select
+            form-name="Select designer"
+            can-search
+            :max-show="4"
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
+        </ui-select>
+    </div>
+    :::
+
+    #### max-show-height
+
+    下拉列表的高度可以显示两项：
     
     :::democode/html
     <div style="width:300px;">
-        <ui-select form-name="Select designer" :max-show="2">
-            <li value="tim"><ui-img class="circle" src="https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894"></ui-img>Tim Boelaars</li>
-            <li value="andrew"><ui-img class="circle" src="https://cdn.dribbble.com/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444"></ui-img>Andrew Colin Beck</li>
-            <li value="gustavo"><ui-img class="circle" src="https://cdn.dribbble.com/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442"></ui-img>Gustavo Zambelli</li>
-            <li value="victor"><ui-img class="circle" src="https://cdn.dribbble.com/users/96387/avatars/normal/debda2342580bda98269c0165054464c.jpg?1435151464"></ui-img>Victor Erixon</li>
-            <li value="shaun"><ui-img class="circle" src="https://cdn.dribbble.com/users/2944/avatars/normal/e08c0e446862572facf0e48316d91c8f.png?1429207992"></ui-img>Shaun Moynihan</li>
-            <li value="emir"><ui-img class="circle" src="https://cdn.dribbble.com/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934"></ui-img>Emir Ayouni</li>
-            <li value="katherine"><ui-img class="circle" src="https://cdn.dribbble.com/users/460187/avatars/normal/eb8e273c036ae93b134b10358c5f19f5.jpg?1418705072"></ui-img>Katherine Rainey</li>
-            <li value="jax"><ui-img class="circle" src="https://cdn.dribbble.com/users/119911/avatars/normal/531fd12e5775ed5ac6a07aea7b492151.jpg?1427986143"></ui-img>Jax Berndt</li>
-            <li value="elizabeth"><ui-img class="circle" src="https://cdn.dribbble.com/users/857412/avatars/normal/8f5f9fbdd66cc70f22304f2ed3be4fa1.png?1440078204"></ui-img>Elizabeth Chiu</li>
-            <li value="sara"><ui-img class="circle" src="https://cdn.dribbble.com/users/162566/avatars/normal/1012292_10104881398564961_565325188_n.jpg?1403561573"></ui-img>Sara Nicely</li>
-            <li value="anna"><ui-img class="circle" src="https://cdn.dribbble.com/users/243797/avatars/normal/657a04cfaeca8f6f5bb7ecf64267bc67.jpg?1416007045"></ui-img>Anna Broussard</li>
+        <ui-select
+            form-name="Select designer"
+            :max-show-height="2"
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
         </ui-select>
     </div>
     :::
@@ -554,18 +929,23 @@
     
     :::democode/html
     <div style="width:300px;">
-        <ui-select form-name="Select designer" :auto-close="false">
-            <li value="tim"><ui-img class="circle" src="https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894"></ui-img>Tim Boelaars</li>
-            <li value="andrew"><ui-img class="circle" src="https://cdn.dribbble.com/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444"></ui-img>Andrew Colin Beck</li>
-            <li value="gustavo"><ui-img class="circle" src="https://cdn.dribbble.com/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442"></ui-img>Gustavo Zambelli</li>
-            <li value="victor"><ui-img class="circle" src="https://cdn.dribbble.com/users/96387/avatars/normal/debda2342580bda98269c0165054464c.jpg?1435151464"></ui-img>Victor Erixon</li>
-            <li value="shaun"><ui-img class="circle" src="https://cdn.dribbble.com/users/2944/avatars/normal/e08c0e446862572facf0e48316d91c8f.png?1429207992"></ui-img>Shaun Moynihan</li>
-            <li value="emir"><ui-img class="circle" src="https://cdn.dribbble.com/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934"></ui-img>Emir Ayouni</li>
-            <li value="katherine"><ui-img class="circle" src="https://cdn.dribbble.com/users/460187/avatars/normal/eb8e273c036ae93b134b10358c5f19f5.jpg?1418705072"></ui-img>Katherine Rainey</li>
-            <li value="jax"><ui-img class="circle" src="https://cdn.dribbble.com/users/119911/avatars/normal/531fd12e5775ed5ac6a07aea7b492151.jpg?1427986143"></ui-img>Jax Berndt</li>
-            <li value="elizabeth"><ui-img class="circle" src="https://cdn.dribbble.com/users/857412/avatars/normal/8f5f9fbdd66cc70f22304f2ed3be4fa1.png?1440078204"></ui-img>Elizabeth Chiu</li>
-            <li value="sara"><ui-img class="circle" src="https://cdn.dribbble.com/users/162566/avatars/normal/1012292_10104881398564961_565325188_n.jpg?1403561573"></ui-img>Sara Nicely</li>
-            <li value="anna"><ui-img class="circle" src="https://cdn.dribbble.com/users/243797/avatars/normal/657a04cfaeca8f6f5bb7ecf64267bc67.jpg?1416007045"></ui-img>Anna Broussard</li>
+        <ui-select
+            form-name="Select designer"
+            :auto-close="false"
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
         </ui-select>
     </div>
     :::
@@ -574,18 +954,23 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-select form-name="Select designer" can-search>
-            <li value="tim"><ui-img class="circle" src="https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894"></ui-img>Tim Boelaars</li>
-            <li value="andrew"><ui-img class="circle" src="https://cdn.dribbble.com/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444"></ui-img>Andrew Colin Beck</li>
-            <li value="gustavo"><ui-img class="circle" src="https://cdn.dribbble.com/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442"></ui-img>Gustavo Zambelli</li>
-            <li value="victor"><ui-img class="circle" src="https://cdn.dribbble.com/users/96387/avatars/normal/debda2342580bda98269c0165054464c.jpg?1435151464"></ui-img>Victor Erixon</li>
-            <li value="shaun"><ui-img class="circle" src="https://cdn.dribbble.com/users/2944/avatars/normal/e08c0e446862572facf0e48316d91c8f.png?1429207992"></ui-img>Shaun Moynihan</li>
-            <li value="emir"><ui-img class="circle" src="https://cdn.dribbble.com/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934"></ui-img>Emir Ayouni</li>
-            <li value="katherine"><ui-img class="circle" src="https://cdn.dribbble.com/users/460187/avatars/normal/eb8e273c036ae93b134b10358c5f19f5.jpg?1418705072"></ui-img>Katherine Rainey</li>
-            <li value="jax"><ui-img class="circle" src="https://cdn.dribbble.com/users/119911/avatars/normal/531fd12e5775ed5ac6a07aea7b492151.jpg?1427986143"></ui-img>Jax Berndt</li>
-            <li value="elizabeth"><ui-img class="circle" src="https://cdn.dribbble.com/users/857412/avatars/normal/8f5f9fbdd66cc70f22304f2ed3be4fa1.png?1440078204"></ui-img>Elizabeth Chiu</li>
-            <li value="sara"><ui-img class="circle" src="https://cdn.dribbble.com/users/162566/avatars/normal/1012292_10104881398564961_565325188_n.jpg?1403561573"></ui-img>Sara Nicely</li>
-            <li value="anna"><ui-img class="circle" src="https://cdn.dribbble.com/users/243797/avatars/normal/657a04cfaeca8f6f5bb7ecf64267bc67.jpg?1416007045"></ui-img>Anna Broussard</li>
+        <ui-select
+            form-name="Select designer"
+            can-search
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
         </ui-select>
     </div>
     :::
@@ -594,18 +979,23 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-select form-name="Select designer" multi-select>
-            <li value="tim"><ui-img class="circle" src="https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894"></ui-img>Tim Boelaars</li>
-            <li value="andrew"><ui-img class="circle" src="https://cdn.dribbble.com/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444"></ui-img>Andrew Colin Beck</li>
-            <li value="gustavo"><ui-img class="circle" src="https://cdn.dribbble.com/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442"></ui-img>Gustavo Zambelli</li>
-            <li value="victor"><ui-img class="circle" src="https://cdn.dribbble.com/users/96387/avatars/normal/debda2342580bda98269c0165054464c.jpg?1435151464"></ui-img>Victor Erixon</li>
-            <li value="shaun"><ui-img class="circle" src="https://cdn.dribbble.com/users/2944/avatars/normal/e08c0e446862572facf0e48316d91c8f.png?1429207992"></ui-img>Shaun Moynihan</li>
-            <li value="emir"><ui-img class="circle" src="https://cdn.dribbble.com/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934"></ui-img>Emir Ayouni</li>
-            <li value="katherine"><ui-img class="circle" src="https://cdn.dribbble.com/users/460187/avatars/normal/eb8e273c036ae93b134b10358c5f19f5.jpg?1418705072"></ui-img>Katherine Rainey</li>
-            <li value="jax"><ui-img class="circle" src="https://cdn.dribbble.com/users/119911/avatars/normal/531fd12e5775ed5ac6a07aea7b492151.jpg?1427986143"></ui-img>Jax Berndt</li>
-            <li value="elizabeth"><ui-img class="circle" src="https://cdn.dribbble.com/users/857412/avatars/normal/8f5f9fbdd66cc70f22304f2ed3be4fa1.png?1440078204"></ui-img>Elizabeth Chiu</li>
-            <li value="sara"><ui-img class="circle" src="https://cdn.dribbble.com/users/162566/avatars/normal/1012292_10104881398564961_565325188_n.jpg?1403561573"></ui-img>Sara Nicely</li>
-            <li value="anna"><ui-img class="circle" src="https://cdn.dribbble.com/users/243797/avatars/normal/657a04cfaeca8f6f5bb7ecf64267bc67.jpg?1416007045"></ui-img>Anna Broussard</li>
+        <ui-select
+            form-name="Select designer"
+            multi-select
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
         </ui-select>
     </div>
     :::
@@ -614,18 +1004,25 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-select form-name="Select designer" :default-value="['Tim Boelaars', 'Andrew Colin Beck', 'Gustavo Zambelli']" multi-select can-move>
-            <li value="tim"><ui-img class="circle" src="https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894"></ui-img>Tim Boelaars</li>
-            <li value="andrew"><ui-img class="circle" src="https://cdn.dribbble.com/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444"></ui-img>Andrew Colin Beck</li>
-            <li value="gustavo"><ui-img class="circle" src="https://cdn.dribbble.com/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442"></ui-img>Gustavo Zambelli</li>
-            <li value="victor"><ui-img class="circle" src="https://cdn.dribbble.com/users/96387/avatars/normal/debda2342580bda98269c0165054464c.jpg?1435151464"></ui-img>Victor Erixon</li>
-            <li value="shaun"><ui-img class="circle" src="https://cdn.dribbble.com/users/2944/avatars/normal/e08c0e446862572facf0e48316d91c8f.png?1429207992"></ui-img>Shaun Moynihan</li>
-            <li value="emir"><ui-img class="circle" src="https://cdn.dribbble.com/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934"></ui-img>Emir Ayouni</li>
-            <li value="katherine"><ui-img class="circle" src="https://cdn.dribbble.com/users/460187/avatars/normal/eb8e273c036ae93b134b10358c5f19f5.jpg?1418705072"></ui-img>Katherine Rainey</li>
-            <li value="jax"><ui-img class="circle" src="https://cdn.dribbble.com/users/119911/avatars/normal/531fd12e5775ed5ac6a07aea7b492151.jpg?1427986143"></ui-img>Jax Berndt</li>
-            <li value="elizabeth"><ui-img class="circle" src="https://cdn.dribbble.com/users/857412/avatars/normal/8f5f9fbdd66cc70f22304f2ed3be4fa1.png?1440078204"></ui-img>Elizabeth Chiu</li>
-            <li value="sara"><ui-img class="circle" src="https://cdn.dribbble.com/users/162566/avatars/normal/1012292_10104881398564961_565325188_n.jpg?1403561573"></ui-img>Sara Nicely</li>
-            <li value="anna"><ui-img class="circle" src="https://cdn.dribbble.com/users/243797/avatars/normal/657a04cfaeca8f6f5bb7ecf64267bc67.jpg?1416007045"></ui-img>Anna Broussard</li>
+        <ui-select
+            form-name="Select designer"
+            multi-select
+            can-move
+            :default-value="['Tim Boelaars', 'Andrew Colin Beck', 'Gustavo Zambelli']"
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
         </ui-select>
     </div>
     :::
@@ -636,18 +1033,24 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-select form-name="Select designer" multi-select :max="3">
-            <li value="tim"><ui-img class="circle" src="https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894"></ui-img>Tim Boelaars</li>
-            <li value="andrew"><ui-img class="circle" src="https://cdn.dribbble.com/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444"></ui-img>Andrew Colin Beck</li>
-            <li value="gustavo"><ui-img class="circle" src="https://cdn.dribbble.com/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442"></ui-img>Gustavo Zambelli</li>
-            <li value="victor"><ui-img class="circle" src="https://cdn.dribbble.com/users/96387/avatars/normal/debda2342580bda98269c0165054464c.jpg?1435151464"></ui-img>Victor Erixon</li>
-            <li value="shaun"><ui-img class="circle" src="https://cdn.dribbble.com/users/2944/avatars/normal/e08c0e446862572facf0e48316d91c8f.png?1429207992"></ui-img>Shaun Moynihan</li>
-            <li value="emir"><ui-img class="circle" src="https://cdn.dribbble.com/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934"></ui-img>Emir Ayouni</li>
-            <li value="katherine"><ui-img class="circle" src="https://cdn.dribbble.com/users/460187/avatars/normal/eb8e273c036ae93b134b10358c5f19f5.jpg?1418705072"></ui-img>Katherine Rainey</li>
-            <li value="jax"><ui-img class="circle" src="https://cdn.dribbble.com/users/119911/avatars/normal/531fd12e5775ed5ac6a07aea7b492151.jpg?1427986143"></ui-img>Jax Berndt</li>
-            <li value="elizabeth"><ui-img class="circle" src="https://cdn.dribbble.com/users/857412/avatars/normal/8f5f9fbdd66cc70f22304f2ed3be4fa1.png?1440078204"></ui-img>Elizabeth Chiu</li>
-            <li value="sara"><ui-img class="circle" src="https://cdn.dribbble.com/users/162566/avatars/normal/1012292_10104881398564961_565325188_n.jpg?1403561573"></ui-img>Sara Nicely</li>
-            <li value="anna"><ui-img class="circle" src="https://cdn.dribbble.com/users/243797/avatars/normal/657a04cfaeca8f6f5bb7ecf64267bc67.jpg?1416007045"></ui-img>Anna Broussard</li>
+        <ui-select
+            form-name="Select designer"
+            multi-select
+            :max="3"
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
         </ui-select>
     </div>
     :::
@@ -656,18 +1059,25 @@
     
     :::democode/html
     <div style="width:300px;">
-        <ui-select form-name="Select designer" auto-reset-search multi-select can-search>
-            <li value="tim"><ui-img class="circle" src="https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894"></ui-img>Tim Boelaars</li>
-            <li value="andrew"><ui-img class="circle" src="https://cdn.dribbble.com/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444"></ui-img>Andrew Colin Beck</li>
-            <li value="gustavo"><ui-img class="circle" src="https://cdn.dribbble.com/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442"></ui-img>Gustavo Zambelli</li>
-            <li value="victor"><ui-img class="circle" src="https://cdn.dribbble.com/users/96387/avatars/normal/debda2342580bda98269c0165054464c.jpg?1435151464"></ui-img>Victor Erixon</li>
-            <li value="shaun"><ui-img class="circle" src="https://cdn.dribbble.com/users/2944/avatars/normal/e08c0e446862572facf0e48316d91c8f.png?1429207992"></ui-img>Shaun Moynihan</li>
-            <li value="emir"><ui-img class="circle" src="https://cdn.dribbble.com/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934"></ui-img>Emir Ayouni</li>
-            <li value="katherine"><ui-img class="circle" src="https://cdn.dribbble.com/users/460187/avatars/normal/eb8e273c036ae93b134b10358c5f19f5.jpg?1418705072"></ui-img>Katherine Rainey</li>
-            <li value="jax"><ui-img class="circle" src="https://cdn.dribbble.com/users/119911/avatars/normal/531fd12e5775ed5ac6a07aea7b492151.jpg?1427986143"></ui-img>Jax Berndt</li>
-            <li value="elizabeth"><ui-img class="circle" src="https://cdn.dribbble.com/users/857412/avatars/normal/8f5f9fbdd66cc70f22304f2ed3be4fa1.png?1440078204"></ui-img>Elizabeth Chiu</li>
-            <li value="sara"><ui-img class="circle" src="https://cdn.dribbble.com/users/162566/avatars/normal/1012292_10104881398564961_565325188_n.jpg?1403561573"></ui-img>Sara Nicely</li>
-            <li value="anna"><ui-img class="circle" src="https://cdn.dribbble.com/users/243797/avatars/normal/657a04cfaeca8f6f5bb7ecf64267bc67.jpg?1416007045"></ui-img>Anna Broussard</li>
+        <ui-select
+            form-name="Select designer"
+            auto-reset-search
+            multi-select
+            can-search
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
         </ui-select>
     </div>
     :::
@@ -678,18 +1088,24 @@
     
     :::democode/html
     <div style="width:300px;">
-        <ui-select form-name="Select designer" :hide-selected="false" multi-select>
-            <li value="tim"><ui-img class="circle" src="https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894"></ui-img>Tim Boelaars</li>
-            <li value="andrew"><ui-img class="circle" src="https://cdn.dribbble.com/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444"></ui-img>Andrew Colin Beck</li>
-            <li value="gustavo"><ui-img class="circle" src="https://cdn.dribbble.com/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442"></ui-img>Gustavo Zambelli</li>
-            <li value="victor"><ui-img class="circle" src="https://cdn.dribbble.com/users/96387/avatars/normal/debda2342580bda98269c0165054464c.jpg?1435151464"></ui-img>Victor Erixon</li>
-            <li value="shaun"><ui-img class="circle" src="https://cdn.dribbble.com/users/2944/avatars/normal/e08c0e446862572facf0e48316d91c8f.png?1429207992"></ui-img>Shaun Moynihan</li>
-            <li value="emir"><ui-img class="circle" src="https://cdn.dribbble.com/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934"></ui-img>Emir Ayouni</li>
-            <li value="katherine"><ui-img class="circle" src="https://cdn.dribbble.com/users/460187/avatars/normal/eb8e273c036ae93b134b10358c5f19f5.jpg?1418705072"></ui-img>Katherine Rainey</li>
-            <li value="jax"><ui-img class="circle" src="https://cdn.dribbble.com/users/119911/avatars/normal/531fd12e5775ed5ac6a07aea7b492151.jpg?1427986143"></ui-img>Jax Berndt</li>
-            <li value="elizabeth"><ui-img class="circle" src="https://cdn.dribbble.com/users/857412/avatars/normal/8f5f9fbdd66cc70f22304f2ed3be4fa1.png?1440078204"></ui-img>Elizabeth Chiu</li>
-            <li value="sara"><ui-img class="circle" src="https://cdn.dribbble.com/users/162566/avatars/normal/1012292_10104881398564961_565325188_n.jpg?1403561573"></ui-img>Sara Nicely</li>
-            <li value="anna"><ui-img class="circle" src="https://cdn.dribbble.com/users/243797/avatars/normal/657a04cfaeca8f6f5bb7ecf64267bc67.jpg?1416007045"></ui-img>Anna Broussard</li>
+        <ui-select
+            form-name="Select designer"
+            :hide-selected="false"
+            multi-select
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
         </ui-select>
     </div>
     :::
@@ -698,18 +1114,24 @@
     
     :::democode/html
     <div style="width:300px;">
-        <ui-select form-name="Select designer" hide-selected multi-select>
-            <li value="tim"><ui-img class="circle" src="https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894"></ui-img>Tim Boelaars</li>
-            <li value="andrew"><ui-img class="circle" src="https://cdn.dribbble.com/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444"></ui-img>Andrew Colin Beck</li>
-            <li value="gustavo"><ui-img class="circle" src="https://cdn.dribbble.com/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442"></ui-img>Gustavo Zambelli</li>
-            <li value="victor"><ui-img class="circle" src="https://cdn.dribbble.com/users/96387/avatars/normal/debda2342580bda98269c0165054464c.jpg?1435151464"></ui-img>Victor Erixon</li>
-            <li value="shaun"><ui-img class="circle" src="https://cdn.dribbble.com/users/2944/avatars/normal/e08c0e446862572facf0e48316d91c8f.png?1429207992"></ui-img>Shaun Moynihan</li>
-            <li value="emir"><ui-img class="circle" src="https://cdn.dribbble.com/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934"></ui-img>Emir Ayouni</li>
-            <li value="katherine"><ui-img class="circle" src="https://cdn.dribbble.com/users/460187/avatars/normal/eb8e273c036ae93b134b10358c5f19f5.jpg?1418705072"></ui-img>Katherine Rainey</li>
-            <li value="jax"><ui-img class="circle" src="https://cdn.dribbble.com/users/119911/avatars/normal/531fd12e5775ed5ac6a07aea7b492151.jpg?1427986143"></ui-img>Jax Berndt</li>
-            <li value="elizabeth"><ui-img class="circle" src="https://cdn.dribbble.com/users/857412/avatars/normal/8f5f9fbdd66cc70f22304f2ed3be4fa1.png?1440078204"></ui-img>Elizabeth Chiu</li>
-            <li value="sara"><ui-img class="circle" src="https://cdn.dribbble.com/users/162566/avatars/normal/1012292_10104881398564961_565325188_n.jpg?1403561573"></ui-img>Sara Nicely</li>
-            <li value="anna"><ui-img class="circle" src="https://cdn.dribbble.com/users/243797/avatars/normal/657a04cfaeca8f6f5bb7ecf64267bc67.jpg?1416007045"></ui-img>Anna Broussard</li>
+        <ui-select
+            form-name="Select designer"
+            hide-selected
+            multi-select
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
         </ui-select>
     </div>
     :::
@@ -718,89 +1140,58 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-select form-name="Select designer" inline-img-size="50px">
-            <li value="tim"><ui-img class="circle" src="https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894"></ui-img>Tim Boelaars</li>
-            <li value="andrew"><ui-img class="circle" src="https://cdn.dribbble.com/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444"></ui-img>Andrew Colin Beck</li>
-            <li value="gustavo"><ui-img class="circle" src="https://cdn.dribbble.com/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442"></ui-img>Gustavo Zambelli</li>
-            <li value="victor"><ui-img class="circle" src="https://cdn.dribbble.com/users/96387/avatars/normal/debda2342580bda98269c0165054464c.jpg?1435151464"></ui-img>Victor Erixon</li>
-            <li value="shaun"><ui-img class="circle" src="https://cdn.dribbble.com/users/2944/avatars/normal/e08c0e446862572facf0e48316d91c8f.png?1429207992"></ui-img>Shaun Moynihan</li>
-            <li value="emir"><ui-img class="circle" src="https://cdn.dribbble.com/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934"></ui-img>Emir Ayouni</li>
-            <li value="katherine"><ui-img class="circle" src="https://cdn.dribbble.com/users/460187/avatars/normal/eb8e273c036ae93b134b10358c5f19f5.jpg?1418705072"></ui-img>Katherine Rainey</li>
-            <li value="jax"><ui-img class="circle" src="https://cdn.dribbble.com/users/119911/avatars/normal/531fd12e5775ed5ac6a07aea7b492151.jpg?1427986143"></ui-img>Jax Berndt</li>
-            <li value="elizabeth"><ui-img class="circle" src="https://cdn.dribbble.com/users/857412/avatars/normal/8f5f9fbdd66cc70f22304f2ed3be4fa1.png?1440078204"></ui-img>Elizabeth Chiu</li>
-            <li value="sara"><ui-img class="circle" src="https://cdn.dribbble.com/users/162566/avatars/normal/1012292_10104881398564961_565325188_n.jpg?1403561573"></ui-img>Sara Nicely</li>
-            <li value="anna"><ui-img class="circle" src="https://cdn.dribbble.com/users/243797/avatars/normal/657a04cfaeca8f6f5bb7ecf64267bc67.jpg?1416007045"></ui-img>Anna Broussard</li>
+        <ui-select
+            form-name="Select designer"
+            inline-img-size="50px"
+            :list="{
+                tim : '<ui-img class=\'circle\' src=\'https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894\'></ui-img>Tim Boelaars',
+                andrew : '<ui-img class=\'circle\' src=\'https://cdn.dribbble.com/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444\'></ui-img>Andrew Colin Beck',
+                gustavo : '<ui-img class=\'circle\' src=\'https://cdn.dribbble.com/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442\'></ui-img>Gustavo Zambelli',
+                victor : '<ui-img class=\'circle\' src=\'https://cdn.dribbble.com/users/96387/avatars/normal/debda2342580bda98269c0165054464c.jpg?1435151464\'></ui-img>Victor Erixon',
+                shaun : '<ui-img class=\'circle\' src=\'https://cdn.dribbble.com/users/2944/avatars/normal/e08c0e446862572facf0e48316d91c8f.png?1429207992\'></ui-img>Shaun Moynihan',
+                emir : '<ui-img class=\'circle\' src=\'https://cdn.dribbble.com/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934\'></ui-img>Emir Ayouni',
+                katherine : '<ui-img class=\'circle\' src=\'https://cdn.dribbble.com/users/460187/avatars/normal/eb8e273c036ae93b134b10358c5f19f5.jpg?1418705072\'></ui-img>Katherine Rainey',
+                jax : '<ui-img class=\'circle\' src=\'https://cdn.dribbble.com/users/119911/avatars/normal/531fd12e5775ed5ac6a07aea7b492151.jpg?1427986143\'></ui-img>Jax Berndt',
+                elizabeth : '<ui-img class=\'circle\' src=\'https://cdn.dribbble.com/users/857412/avatars/normal/8f5f9fbdd66cc70f22304f2ed3be4fa1.png?1440078204\'></ui-img>Elizabeth Chiu',
+                sara : '<ui-img class=\'circle\' src=\'https://cdn.dribbble.com/users/162566/avatars/normal/1012292_10104881398564961_565325188_n.jpg?1403561573\'></ui-img>Sara Nicely',
+                anna : '<ui-img class=\'circle\' src=\'https://cdn.dribbble.com/users/243797/avatars/normal/657a04cfaeca8f6f5bb7ecf64267bc67.jpg?1416007045\'></ui-img>Anna Broussard'
+            }"
+        >
         </ui-select>
     </div>
     :::
 
     #### item-tip
 
-    启用`item-tip`后需要在每个有tip的项目后添加`<div class="item-tip">`元素，元素的内容为提示的内容。
+    启用`item-tip`后需要在`list`配置中的每个选项中添加`tip`属性来提供提示内容。
 
     下面示例中在第一和第二项中加入了提示。
 
     :::democode/html
     <div style="width:300px;">
-        <ui-select form-name="Select designer" item-tip>
-            <li value="tim"><ui-img class="circle" src="https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894"></ui-img>Tim Boelaars</li>
-            <div class="item-tip"><p>Tim Boelaars</p><img src="https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894"></div>
-            <li value="andrew"><ui-img class="circle" src="https://cdn.dribbble.com/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444"></ui-img>Andrew Colin Beck</li>
-            <div class="item-tip"><p>Andrew Colin Beck</p><img src="https://cdn.dribbble.com/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444"></div>
-            <li value="gustavo"><ui-img class="circle" src="https://cdn.dribbble.com/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442"></ui-img>Gustavo Zambelli</li>
-            <li value="victor"><ui-img class="circle" src="https://cdn.dribbble.com/users/96387/avatars/normal/debda2342580bda98269c0165054464c.jpg?1435151464"></ui-img>Victor Erixon</li>
-            <li value="shaun"><ui-img class="circle" src="https://cdn.dribbble.com/users/2944/avatars/normal/e08c0e446862572facf0e48316d91c8f.png?1429207992"></ui-img>Shaun Moynihan</li>
-            <li value="emir"><ui-img class="circle" src="https://cdn.dribbble.com/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934"></ui-img>Emir Ayouni</li>
-            <li value="katherine"><ui-img class="circle" src="https://cdn.dribbble.com/users/460187/avatars/normal/eb8e273c036ae93b134b10358c5f19f5.jpg?1418705072"></ui-img>Katherine Rainey</li>
-            <li value="jax"><ui-img class="circle" src="https://cdn.dribbble.com/users/119911/avatars/normal/531fd12e5775ed5ac6a07aea7b492151.jpg?1427986143"></ui-img>Jax Berndt</li>
-            <li value="elizabeth"><ui-img class="circle" src="https://cdn.dribbble.com/users/857412/avatars/normal/8f5f9fbdd66cc70f22304f2ed3be4fa1.png?1440078204"></ui-img>Elizabeth Chiu</li>
-            <li value="sara"><ui-img class="circle" src="https://cdn.dribbble.com/users/162566/avatars/normal/1012292_10104881398564961_565325188_n.jpg?1403561573"></ui-img>Sara Nicely</li>
-            <li value="anna"><ui-img class="circle" src="https://cdn.dribbble.com/users/243797/avatars/normal/657a04cfaeca8f6f5bb7ecf64267bc67.jpg?1416007045"></ui-img>Anna Broussard</li>
-        </ui-select>
-    </div>
-    :::
-
-    使用`v-for`输出tip：
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
-        data : {
-            list : [{
-                key : 'tip',
-                name : 'Tim Boelaars',
-                age : 16
-            },{
-                key : 'andrew',
-                name : 'Andrew Colin Beck',
-                age : 34
-            },{
-                key : 'gustavo',
-                name : 'Gustavo Zambelli',
-                age : 28
-            },{
-                key : 'victor',
-                name : 'Victor Erixon',
-                age : 45
-            },{
-                key : 'shaun',
-                name : 'Shaun Moynihan',
-                age : 32
-            },{
-                key : 'emir',
-                name : 'Emir Ayouni',
-                age : 18
-            }]
-        }
-    });
-    ---
-    <div style="width:300px;">
-        <ui-select ref="demo4" can-search :hide-selected="false" form-name="Select designer" item-tip item-tip-direct="right">
-            <template v-for="item in list">
-                <li :value="item.key">{*item.name*}</li>
-                <div class="item-tip"><p>Name : {*item.name*}, Age :{*item.age*}</p></div>
-            </template>
+        <ui-select
+            form-name="Select designer"
+            item-tip
+            :list="{
+                tim : {
+                    name : 'Tim Boelaars',
+                    tip : 'This is Tim Boelaars'
+                },
+                andrew : {
+                    name : 'Andrew Colin Beck',
+                    tip : 'This is Andrew Colin Beck'
+                },
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
         </ui-select>
     </div>
     :::
@@ -810,110 +1201,222 @@
     :::democode/html
     <div style="width:300px;">
         <p>上侧出现的提示框</p>
-        <ui-select form-name="Select designer" item-tip item-tip-direct="top">
-            <li value="tim"><ui-img class="circle" src="https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894"></ui-img>Tim Boelaars</li>
-            <div class="item-tip"><p>Tim Boelaars</p><img src="https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894"></div>
-            <li value="andrew"><ui-img class="circle" src="https://cdn.dribbble.com/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444"></ui-img>Andrew Colin Beck</li>
-            <div class="item-tip"><p>Andrew Colin Beck</p><img src="https://cdn.dribbble.com/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444"></div>
-            <li value="gustavo"><ui-img class="circle" src="https://cdn.dribbble.com/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442"></ui-img>Gustavo Zambelli</li>
-            <div class="item-tip"><p>Gustavo Zambelli</p><img src="https://cdn.dribbble.com/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442"></div>
-            <li value="victor"><ui-img class="circle" src="https://cdn.dribbble.com/users/96387/avatars/normal/debda2342580bda98269c0165054464c.jpg?1435151464"></ui-img>Victor Erixon</li>
-            <div class="item-tip"><p>Victor Erixon</p><img src="https://cdn.dribbble.com/users/96387/avatars/normal/debda2342580bda98269c0165054464c.jpg?1435151464"></div>
-            <li value="shaun"><ui-img class="circle" src="https://cdn.dribbble.com/users/2944/avatars/normal/e08c0e446862572facf0e48316d91c8f.png?1429207992"></ui-img>Shaun Moynihan</li>
-            <div class="item-tip"><p>Shaun Moynihan</p><img src="https://cdn.dribbble.com/users/2944/avatars/normal/e08c0e446862572facf0e48316d91c8f.png?1429207992"></div>
-            <li value="emir"><ui-img class="circle" src="https://cdn.dribbble.com/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934"></ui-img>Emir Ayouni</li>
-            <div class="item-tip"><p>Emir Ayouni</p><img src="https://cdn.dribbble.com/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934"></div>
-            <li value="katherine"><ui-img class="circle" src="https://cdn.dribbble.com/users/460187/avatars/normal/eb8e273c036ae93b134b10358c5f19f5.jpg?1418705072"></ui-img>Katherine Rainey</li>
-            <div class="item-tip"><p>Katherine Rainey</p><img src="https://cdn.dribbble.com/users/460187/avatars/normal/eb8e273c036ae93b134b10358c5f19f5.jpg?1418705072"></div>
-            <li value="jax"><ui-img class="circle" src="https://cdn.dribbble.com/users/119911/avatars/normal/531fd12e5775ed5ac6a07aea7b492151.jpg?1427986143"></ui-img>Jax Berndt</li>
-            <div class="item-tip"><p>Jax Berndt</p><img src="https://cdn.dribbble.com/users/119911/avatars/normal/531fd12e5775ed5ac6a07aea7b492151.jpg?1427986143"></div>
-            <li value="elizabeth"><ui-img class="circle" src="https://cdn.dribbble.com/users/857412/avatars/normal/8f5f9fbdd66cc70f22304f2ed3be4fa1.png?1440078204"></ui-img>Elizabeth Chiu</li>
-            <div class="item-tip"><p>Elizabeth Chiu</p><img src="https://cdn.dribbble.com/users/857412/avatars/normal/8f5f9fbdd66cc70f22304f2ed3be4fa1.png?1440078204"></div>
-            <li value="sara"><ui-img class="circle" src="https://cdn.dribbble.com/users/162566/avatars/normal/1012292_10104881398564961_565325188_n.jpg?1403561573"></ui-img>Sara Nicely</li>
-            <div class="item-tip"><p>Sara Nicely</p><img src="https://cdn.dribbble.com/users/162566/avatars/normal/1012292_10104881398564961_565325188_n.jpg?1403561573"></div>
-            <li value="anna"><ui-img class="circle" src="https://cdn.dribbble.com/users/243797/avatars/normal/657a04cfaeca8f6f5bb7ecf64267bc67.jpg?1416007045"></ui-img>Anna Broussard</li>
-            <div class="item-tip"><p>Anna Broussard</p><img src="https://cdn.dribbble.com/users/243797/avatars/normal/657a04cfaeca8f6f5bb7ecf64267bc67.jpg?1416007045"></div>
+        <ui-select
+            form-name="Select designer"
+            item-tip
+            item-tip-direct="top"
+            :list="{
+                tim : {
+                    name : 'Tim Boelaars',
+                    tip : 'This is Tim Boelaars'
+                },
+                andrew : {
+                    name : 'Andrew Colin Beck',
+                    tip : 'This is Andrew Colin Beck'
+                },
+                gustavo : {
+                    name : 'Gustavo Zambelli',
+                    tip : 'This is Gustavo Zambelli'
+                },
+                victor : {
+                    name : 'Victor Erixon',
+                    tip : 'This is Victor Erixon'
+                },
+                shaun : {
+                    name : 'Shaun Moynihan',
+                    tip : 'This is Shaun Moynihan'
+                },
+                emir : {
+                    name : 'Emir Ayouni',
+                    tip : 'This is Emir Ayouni'
+                },
+                katherine : {
+                    name : 'Katherine Rainey',
+                    tip : 'This is Katherine Rainey'
+                },
+                jax : {
+                    name : 'Jax Berndt',
+                    tip : 'This is Jax Berndt'
+                },
+                elizabeth : {
+                    name : 'Elizabeth Chiu',
+                    tip : 'This is Elizabeth Chiu'
+                },
+                sara : {
+                    name : 'Sara Nicely',
+                    tip : 'This is Sara Nicely'
+                },
+                anna : {
+                    name : 'Anna Broussard',
+                    tip : 'This is Anna Broussard'
+                }
+            }"
+        >
         </ui-select>
 
         <br><br>
         <p>右侧出现的提示框</p>
-        <ui-select form-name="Select designer" item-tip item-tip-direct="right">
-            <li value="tim"><ui-img class="circle" src="https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894"></ui-img>Tim Boelaars</li>
-            <div class="item-tip"><p>Tim Boelaars</p><img src="https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894"></div>
-            <li value="andrew"><ui-img class="circle" src="https://cdn.dribbble.com/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444"></ui-img>Andrew Colin Beck</li>
-            <div class="item-tip"><p>Andrew Colin Beck</p><img src="https://cdn.dribbble.com/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444"></div>
-            <li value="gustavo"><ui-img class="circle" src="https://cdn.dribbble.com/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442"></ui-img>Gustavo Zambelli</li>
-            <div class="item-tip"><p>Gustavo Zambelli</p><img src="https://cdn.dribbble.com/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442"></div>
-            <li value="victor"><ui-img class="circle" src="https://cdn.dribbble.com/users/96387/avatars/normal/debda2342580bda98269c0165054464c.jpg?1435151464"></ui-img>Victor Erixon</li>
-            <div class="item-tip"><p>Victor Erixon</p><img src="https://cdn.dribbble.com/users/96387/avatars/normal/debda2342580bda98269c0165054464c.jpg?1435151464"></div>
-            <li value="shaun"><ui-img class="circle" src="https://cdn.dribbble.com/users/2944/avatars/normal/e08c0e446862572facf0e48316d91c8f.png?1429207992"></ui-img>Shaun Moynihan</li>
-            <div class="item-tip"><p>Shaun Moynihan</p><img src="https://cdn.dribbble.com/users/2944/avatars/normal/e08c0e446862572facf0e48316d91c8f.png?1429207992"></div>
-            <li value="emir"><ui-img class="circle" src="https://cdn.dribbble.com/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934"></ui-img>Emir Ayouni</li>
-            <div class="item-tip"><p>Emir Ayouni</p><img src="https://cdn.dribbble.com/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934"></div>
-            <li value="katherine"><ui-img class="circle" src="https://cdn.dribbble.com/users/460187/avatars/normal/eb8e273c036ae93b134b10358c5f19f5.jpg?1418705072"></ui-img>Katherine Rainey</li>
-            <div class="item-tip"><p>Katherine Rainey</p><img src="https://cdn.dribbble.com/users/460187/avatars/normal/eb8e273c036ae93b134b10358c5f19f5.jpg?1418705072"></div>
-            <li value="jax"><ui-img class="circle" src="https://cdn.dribbble.com/users/119911/avatars/normal/531fd12e5775ed5ac6a07aea7b492151.jpg?1427986143"></ui-img>Jax Berndt</li>
-            <div class="item-tip"><p>Jax Berndt</p><img src="https://cdn.dribbble.com/users/119911/avatars/normal/531fd12e5775ed5ac6a07aea7b492151.jpg?1427986143"></div>
-            <li value="elizabeth"><ui-img class="circle" src="https://cdn.dribbble.com/users/857412/avatars/normal/8f5f9fbdd66cc70f22304f2ed3be4fa1.png?1440078204"></ui-img>Elizabeth Chiu</li>
-            <div class="item-tip"><p>Elizabeth Chiu</p><img src="https://cdn.dribbble.com/users/857412/avatars/normal/8f5f9fbdd66cc70f22304f2ed3be4fa1.png?1440078204"></div>
-            <li value="sara"><ui-img class="circle" src="https://cdn.dribbble.com/users/162566/avatars/normal/1012292_10104881398564961_565325188_n.jpg?1403561573"></ui-img>Sara Nicely</li>
-            <div class="item-tip"><p>Sara Nicely</p><img src="https://cdn.dribbble.com/users/162566/avatars/normal/1012292_10104881398564961_565325188_n.jpg?1403561573"></div>
-            <li value="anna"><ui-img class="circle" src="https://cdn.dribbble.com/users/243797/avatars/normal/657a04cfaeca8f6f5bb7ecf64267bc67.jpg?1416007045"></ui-img>Anna Broussard</li>
-            <div class="item-tip"><p>Anna Broussard</p><img src="https://cdn.dribbble.com/users/243797/avatars/normal/657a04cfaeca8f6f5bb7ecf64267bc67.jpg?1416007045"></div>
+        <ui-select
+            form-name="Select designer"
+            item-tip
+            item-tip-direct="right"
+            :list="{
+                tim : {
+                    name : 'Tim Boelaars',
+                    tip : 'This is Tim Boelaars'
+                },
+                andrew : {
+                    name : 'Andrew Colin Beck',
+                    tip : 'This is Andrew Colin Beck'
+                },
+                gustavo : {
+                    name : 'Gustavo Zambelli',
+                    tip : 'This is Gustavo Zambelli'
+                },
+                victor : {
+                    name : 'Victor Erixon',
+                    tip : 'This is Victor Erixon'
+                },
+                shaun : {
+                    name : 'Shaun Moynihan',
+                    tip : 'This is Shaun Moynihan'
+                },
+                emir : {
+                    name : 'Emir Ayouni',
+                    tip : 'This is Emir Ayouni'
+                },
+                katherine : {
+                    name : 'Katherine Rainey',
+                    tip : 'This is Katherine Rainey'
+                },
+                jax : {
+                    name : 'Jax Berndt',
+                    tip : 'This is Jax Berndt'
+                },
+                elizabeth : {
+                    name : 'Elizabeth Chiu',
+                    tip : 'This is Elizabeth Chiu'
+                },
+                sara : {
+                    name : 'Sara Nicely',
+                    tip : 'This is Sara Nicely'
+                },
+                anna : {
+                    name : 'Anna Broussard',
+                    tip : 'This is Anna Broussard'
+                }
+            }"
+        >
         </ui-select>
 
         <br><br>
         <p>下侧出现的提示框</p>
-        <ui-select form-name="Select designer" item-tip item-tip-direct="bottom">
-            <li value="tim"><ui-img class="circle" src="https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894"></ui-img>Tim Boelaars</li>
-            <div class="item-tip"><p>Tim Boelaars</p><img src="https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894"></div>
-            <li value="andrew"><ui-img class="circle" src="https://cdn.dribbble.com/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444"></ui-img>Andrew Colin Beck</li>
-            <div class="item-tip"><p>Andrew Colin Beck</p><img src="https://cdn.dribbble.com/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444"></div>
-            <li value="gustavo"><ui-img class="circle" src="https://cdn.dribbble.com/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442"></ui-img>Gustavo Zambelli</li>
-            <div class="item-tip"><p>Gustavo Zambelli</p><img src="https://cdn.dribbble.com/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442"></div>
-            <li value="victor"><ui-img class="circle" src="https://cdn.dribbble.com/users/96387/avatars/normal/debda2342580bda98269c0165054464c.jpg?1435151464"></ui-img>Victor Erixon</li>
-            <div class="item-tip"><p>Victor Erixon</p><img src="https://cdn.dribbble.com/users/96387/avatars/normal/debda2342580bda98269c0165054464c.jpg?1435151464"></div>
-            <li value="shaun"><ui-img class="circle" src="https://cdn.dribbble.com/users/2944/avatars/normal/e08c0e446862572facf0e48316d91c8f.png?1429207992"></ui-img>Shaun Moynihan</li>
-            <div class="item-tip"><p>Shaun Moynihan</p><img src="https://cdn.dribbble.com/users/2944/avatars/normal/e08c0e446862572facf0e48316d91c8f.png?1429207992"></div>
-            <li value="emir"><ui-img class="circle" src="https://cdn.dribbble.com/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934"></ui-img>Emir Ayouni</li>
-            <div class="item-tip"><p>Emir Ayouni</p><img src="https://cdn.dribbble.com/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934"></div>
-            <li value="katherine"><ui-img class="circle" src="https://cdn.dribbble.com/users/460187/avatars/normal/eb8e273c036ae93b134b10358c5f19f5.jpg?1418705072"></ui-img>Katherine Rainey</li>
-            <div class="item-tip"><p>Katherine Rainey</p><img src="https://cdn.dribbble.com/users/460187/avatars/normal/eb8e273c036ae93b134b10358c5f19f5.jpg?1418705072"></div>
-            <li value="jax"><ui-img class="circle" src="https://cdn.dribbble.com/users/119911/avatars/normal/531fd12e5775ed5ac6a07aea7b492151.jpg?1427986143"></ui-img>Jax Berndt</li>
-            <div class="item-tip"><p>Jax Berndt</p><img src="https://cdn.dribbble.com/users/119911/avatars/normal/531fd12e5775ed5ac6a07aea7b492151.jpg?1427986143"></div>
-            <li value="elizabeth"><ui-img class="circle" src="https://cdn.dribbble.com/users/857412/avatars/normal/8f5f9fbdd66cc70f22304f2ed3be4fa1.png?1440078204"></ui-img>Elizabeth Chiu</li>
-            <div class="item-tip"><p>Elizabeth Chiu</p><img src="https://cdn.dribbble.com/users/857412/avatars/normal/8f5f9fbdd66cc70f22304f2ed3be4fa1.png?1440078204"></div>
-            <li value="sara"><ui-img class="circle" src="https://cdn.dribbble.com/users/162566/avatars/normal/1012292_10104881398564961_565325188_n.jpg?1403561573"></ui-img>Sara Nicely</li>
-            <div class="item-tip"><p>Sara Nicely</p><img src="https://cdn.dribbble.com/users/162566/avatars/normal/1012292_10104881398564961_565325188_n.jpg?1403561573"></div>
-            <li value="anna"><ui-img class="circle" src="https://cdn.dribbble.com/users/243797/avatars/normal/657a04cfaeca8f6f5bb7ecf64267bc67.jpg?1416007045"></ui-img>Anna Broussard</li>
-            <div class="item-tip"><p>Anna Broussard</p><img src="https://cdn.dribbble.com/users/243797/avatars/normal/657a04cfaeca8f6f5bb7ecf64267bc67.jpg?1416007045"></div>
+        <ui-select
+            form-name="Select designer"
+            item-tip
+            item-tip-direct="bottom"
+            :list="{
+                tim : {
+                    name : 'Tim Boelaars',
+                    tip : 'This is Tim Boelaars'
+                },
+                andrew : {
+                    name : 'Andrew Colin Beck',
+                    tip : 'This is Andrew Colin Beck'
+                },
+                gustavo : {
+                    name : 'Gustavo Zambelli',
+                    tip : 'This is Gustavo Zambelli'
+                },
+                victor : {
+                    name : 'Victor Erixon',
+                    tip : 'This is Victor Erixon'
+                },
+                shaun : {
+                    name : 'Shaun Moynihan',
+                    tip : 'This is Shaun Moynihan'
+                },
+                emir : {
+                    name : 'Emir Ayouni',
+                    tip : 'This is Emir Ayouni'
+                },
+                katherine : {
+                    name : 'Katherine Rainey',
+                    tip : 'This is Katherine Rainey'
+                },
+                jax : {
+                    name : 'Jax Berndt',
+                    tip : 'This is Jax Berndt'
+                },
+                elizabeth : {
+                    name : 'Elizabeth Chiu',
+                    tip : 'This is Elizabeth Chiu'
+                },
+                sara : {
+                    name : 'Sara Nicely',
+                    tip : 'This is Sara Nicely'
+                },
+                anna : {
+                    name : 'Anna Broussard',
+                    tip : 'This is Anna Broussard'
+                }
+            }"
+        >
         </ui-select>
 
         <br><br>
         <p>左侧出现的提示框</p>
-        <ui-select form-name="Select designer" item-tip item-tip-direct="left">
-            <li value="tim"><ui-img class="circle" src="https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894"></ui-img>Tim Boelaars</li>
-            <div class="item-tip"><p>Tim Boelaars</p><img src="https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894"></div>
-            <li value="andrew"><ui-img class="circle" src="https://cdn.dribbble.com/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444"></ui-img>Andrew Colin Beck</li>
-            <div class="item-tip"><p>Andrew Colin Beck</p><img src="https://cdn.dribbble.com/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444"></div>
-            <li value="gustavo"><ui-img class="circle" src="https://cdn.dribbble.com/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442"></ui-img>Gustavo Zambelli</li>
-            <div class="item-tip"><p>Gustavo Zambelli</p><img src="https://cdn.dribbble.com/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442"></div>
-            <li value="victor"><ui-img class="circle" src="https://cdn.dribbble.com/users/96387/avatars/normal/debda2342580bda98269c0165054464c.jpg?1435151464"></ui-img>Victor Erixon</li>
-            <div class="item-tip"><p>Victor Erixon</p><img src="https://cdn.dribbble.com/users/96387/avatars/normal/debda2342580bda98269c0165054464c.jpg?1435151464"></div>
-            <li value="shaun"><ui-img class="circle" src="https://cdn.dribbble.com/users/2944/avatars/normal/e08c0e446862572facf0e48316d91c8f.png?1429207992"></ui-img>Shaun Moynihan</li>
-            <div class="item-tip"><p>Shaun Moynihan</p><img src="https://cdn.dribbble.com/users/2944/avatars/normal/e08c0e446862572facf0e48316d91c8f.png?1429207992"></div>
-            <li value="emir"><ui-img class="circle" src="https://cdn.dribbble.com/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934"></ui-img>Emir Ayouni</li>
-            <div class="item-tip"><p>Emir Ayouni</p><img src="https://cdn.dribbble.com/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934"></div>
-            <li value="katherine"><ui-img class="circle" src="https://cdn.dribbble.com/users/460187/avatars/normal/eb8e273c036ae93b134b10358c5f19f5.jpg?1418705072"></ui-img>Katherine Rainey</li>
-            <div class="item-tip"><p>Katherine Rainey</p><img src="https://cdn.dribbble.com/users/460187/avatars/normal/eb8e273c036ae93b134b10358c5f19f5.jpg?1418705072"></div>
-            <li value="jax"><ui-img class="circle" src="https://cdn.dribbble.com/users/119911/avatars/normal/531fd12e5775ed5ac6a07aea7b492151.jpg?1427986143"></ui-img>Jax Berndt</li>
-            <div class="item-tip"><p>Jax Berndt</p><img src="https://cdn.dribbble.com/users/119911/avatars/normal/531fd12e5775ed5ac6a07aea7b492151.jpg?1427986143"></div>
-            <li value="elizabeth"><ui-img class="circle" src="https://cdn.dribbble.com/users/857412/avatars/normal/8f5f9fbdd66cc70f22304f2ed3be4fa1.png?1440078204"></ui-img>Elizabeth Chiu</li>
-            <div class="item-tip"><p>Elizabeth Chiu</p><img src="https://cdn.dribbble.com/users/857412/avatars/normal/8f5f9fbdd66cc70f22304f2ed3be4fa1.png?1440078204"></div>
-            <li value="sara"><ui-img class="circle" src="https://cdn.dribbble.com/users/162566/avatars/normal/1012292_10104881398564961_565325188_n.jpg?1403561573"></ui-img>Sara Nicely</li>
-            <div class="item-tip"><p>Sara Nicely</p><img src="https://cdn.dribbble.com/users/162566/avatars/normal/1012292_10104881398564961_565325188_n.jpg?1403561573"></div>
-            <li value="anna"><ui-img class="circle" src="https://cdn.dribbble.com/users/243797/avatars/normal/657a04cfaeca8f6f5bb7ecf64267bc67.jpg?1416007045"></ui-img>Anna Broussard</li>
-            <div class="item-tip"><p>Anna Broussard</p><img src="https://cdn.dribbble.com/users/243797/avatars/normal/657a04cfaeca8f6f5bb7ecf64267bc67.jpg?1416007045"></div>
+        <ui-select
+            form-name="Select designer"
+            item-tip
+            item-tip-direct="left"
+            :list="{
+                tim : {
+                    name : 'Tim Boelaars',
+                    tip : 'This is Tim Boelaars'
+                },
+                andrew : {
+                    name : 'Andrew Colin Beck',
+                    tip : 'This is Andrew Colin Beck'
+                },
+                gustavo : {
+                    name : 'Gustavo Zambelli',
+                    tip : 'This is Gustavo Zambelli'
+                },
+                victor : {
+                    name : 'Victor Erixon',
+                    tip : 'This is Victor Erixon'
+                },
+                shaun : {
+                    name : 'Shaun Moynihan',
+                    tip : 'This is Shaun Moynihan'
+                },
+                emir : {
+                    name : 'Emir Ayouni',
+                    tip : 'This is Emir Ayouni'
+                },
+                katherine : {
+                    name : 'Katherine Rainey',
+                    tip : 'This is Katherine Rainey'
+                },
+                jax : {
+                    name : 'Jax Berndt',
+                    tip : 'This is Jax Berndt'
+                },
+                elizabeth : {
+                    name : 'Elizabeth Chiu',
+                    tip : 'This is Elizabeth Chiu'
+                },
+                sara : {
+                    name : 'Sara Nicely',
+                    tip : 'This is Sara Nicely'
+                },
+                anna : {
+                    name : 'Anna Broussard',
+                    tip : 'This is Anna Broussard'
+                }
+            }"
+        >
         </ui-select>
     </div>
     :::
@@ -925,22 +1428,28 @@
     :::democode/html
     <div style="width:300px;">
         <ui-btn class="demo14">点击选择</ui-btn>
-        <ui-select form-name="Select designer" separate-emit=".demo14" :list-width="280">
-            <li value="tim">Tim Boelaars</li>
-            <li value="andrew">Andrew Colin Beck</li>
-            <li value="gustavo">Gustavo Zambelli</li>
-            <li value="victor">Victor Erixon</li>
-            <li value="shaun">Shaun Moynihan</li>
-            <li value="emir">Emir Ayouni</li>
-            <li value="katherine">Katherine Rainey</li>
-            <li value="jax">Jax Berndt</li>
-            <li value="elizabeth">Elizabeth Chiu</li>
-            <li value="sara">Sara Nicely</li>
-            <li value="anna">Anna Broussard</li>
+        <ui-select
+            form-name="Select designer"
+            separate-emit=".demo14"
+            :list-width="280"
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
         </ui-select>
     </div>
     :::
-   
+
     [[[方法]]]
 
     :::preset/html
@@ -949,7 +1458,7 @@
     uikey:select
     methodValue:['tim']
     methodDefaultValue:['tim']
-    methodSlot:<li value="tim"><ui-img class="circle" src="https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894"></ui-img>Tim Boelaars</li><li value="andrew"><ui-img class="circle" src="https://cdn.dribbble.com/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444"></ui-img>Andrew Colin Beck</li><li value="gustavo"><ui-img class="circle" src="https://cdn.dribbble.com/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442"></ui-img>Gustavo Zambelli</li><li value="victor"><ui-img class="circle" src="https://cdn.dribbble.com/users/96387/avatars/normal/debda2342580bda98269c0165054464c.jpg?1435151464"></ui-img>Victor Erixon</li><li value="shaun"><ui-img class="circle" src="https://cdn.dribbble.com/users/2944/avatars/normal/e08c0e446862572facf0e48316d91c8f.png?1429207992"></ui-img>Shaun Moynihan</li><li value="emir"><ui-img class="circle" src="https://cdn.dribbble.com/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934"></ui-img>Emir Ayouni</li><li value="katherine"><ui-img class="circle" src="https://cdn.dribbble.com/users/460187/avatars/normal/eb8e273c036ae93b134b10358c5f19f5.jpg?1418705072"></ui-img>Katherine Rainey</li><li value="jax"><ui-img class="circle" src="https://cdn.dribbble.com/users/119911/avatars/normal/531fd12e5775ed5ac6a07aea7b492151.jpg?1427986143"></ui-img>Jax Berndt</li><li value="elizabeth"><ui-img class="circle" src="https://cdn.dribbble.com/users/857412/avatars/normal/8f5f9fbdd66cc70f22304f2ed3be4fa1.png?1440078204"></ui-img>Elizabeth Chiu</li><li value="sara"><ui-img class="circle" src="https://cdn.dribbble.com/users/162566/avatars/normal/1012292_10104881398564961_565325188_n.jpg?1403561573"></ui-img>Sara Nicely</li><li value="anna"><ui-img class="circle" src="https://cdn.dribbble.com/users/243797/avatars/normal/657a04cfaeca8f6f5bb7ecf64267bc67.jpg?1416007045"></ui-img>Anna Broussard</li>
+    methodMoreAttr::list="{tim:'Tim Boelaars', andrew:'Andrew Colin Beck', gustavo:'Gustavo Zambelli', victor:'Victor Erixon', shaun:'Shaun Moynihan', emir:'Emir Ayouni', katherine:'Katherine Rainey', jax:'Jax Berndt', elizabeth:'Elizabeth Chiu', sara:'Sara Nicely', anna:'Anna Broussard'}"
     :::
 
     #### toggle([show])
@@ -968,18 +1477,24 @@
 
         <br><br>
 
-        <ui-select ref="demo1" form-name="Select designer" :auto-close="false">
-            <li value="tim"><ui-img class="circle" src="https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894"></ui-img>Tim Boelaars</li>
-            <li value="andrew"><ui-img class="circle" src="https://cdn.dribbble.com/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444"></ui-img>Andrew Colin Beck</li>
-            <li value="gustavo"><ui-img class="circle" src="https://cdn.dribbble.com/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442"></ui-img>Gustavo Zambelli</li>
-            <li value="victor"><ui-img class="circle" src="https://cdn.dribbble.com/users/96387/avatars/normal/debda2342580bda98269c0165054464c.jpg?1435151464"></ui-img>Victor Erixon</li>
-            <li value="shaun"><ui-img class="circle" src="https://cdn.dribbble.com/users/2944/avatars/normal/e08c0e446862572facf0e48316d91c8f.png?1429207992"></ui-img>Shaun Moynihan</li>
-            <li value="emir"><ui-img class="circle" src="https://cdn.dribbble.com/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934"></ui-img>Emir Ayouni</li>
-            <li value="katherine"><ui-img class="circle" src="https://cdn.dribbble.com/users/460187/avatars/normal/eb8e273c036ae93b134b10358c5f19f5.jpg?1418705072"></ui-img>Katherine Rainey</li>
-            <li value="jax"><ui-img class="circle" src="https://cdn.dribbble.com/users/119911/avatars/normal/531fd12e5775ed5ac6a07aea7b492151.jpg?1427986143"></ui-img>Jax Berndt</li>
-            <li value="elizabeth"><ui-img class="circle" src="https://cdn.dribbble.com/users/857412/avatars/normal/8f5f9fbdd66cc70f22304f2ed3be4fa1.png?1440078204"></ui-img>Elizabeth Chiu</li>
-            <li value="sara"><ui-img class="circle" src="https://cdn.dribbble.com/users/162566/avatars/normal/1012292_10104881398564961_565325188_n.jpg?1403561573"></ui-img>Sara Nicely</li>
-            <li value="anna"><ui-img class="circle" src="https://cdn.dribbble.com/users/243797/avatars/normal/657a04cfaeca8f6f5bb7ecf64267bc67.jpg?1416007045"></ui-img>Anna Broussard</li>
+        <ui-select
+            ref="demo1"
+            form-name="Select designer"
+            :auto-close="false"
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
         </ui-select>
     </div>
     :::
@@ -1002,18 +1517,24 @@
     });
     ---
     <div style="width:300px;">
-        <ui-select ref="demo2" form-name="Select designer" @list-show="echo">
-            <li value="tim"><ui-img class="circle" src="https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894"></ui-img>Tim Boelaars</li>
-            <li value="andrew"><ui-img class="circle" src="https://cdn.dribbble.com/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444"></ui-img>Andrew Colin Beck</li>
-            <li value="gustavo"><ui-img class="circle" src="https://cdn.dribbble.com/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442"></ui-img>Gustavo Zambelli</li>
-            <li value="victor"><ui-img class="circle" src="https://cdn.dribbble.com/users/96387/avatars/normal/debda2342580bda98269c0165054464c.jpg?1435151464"></ui-img>Victor Erixon</li>
-            <li value="shaun"><ui-img class="circle" src="https://cdn.dribbble.com/users/2944/avatars/normal/e08c0e446862572facf0e48316d91c8f.png?1429207992"></ui-img>Shaun Moynihan</li>
-            <li value="emir"><ui-img class="circle" src="https://cdn.dribbble.com/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934"></ui-img>Emir Ayouni</li>
-            <li value="katherine"><ui-img class="circle" src="https://cdn.dribbble.com/users/460187/avatars/normal/eb8e273c036ae93b134b10358c5f19f5.jpg?1418705072"></ui-img>Katherine Rainey</li>
-            <li value="jax"><ui-img class="circle" src="https://cdn.dribbble.com/users/119911/avatars/normal/531fd12e5775ed5ac6a07aea7b492151.jpg?1427986143"></ui-img>Jax Berndt</li>
-            <li value="elizabeth"><ui-img class="circle" src="https://cdn.dribbble.com/users/857412/avatars/normal/8f5f9fbdd66cc70f22304f2ed3be4fa1.png?1440078204"></ui-img>Elizabeth Chiu</li>
-            <li value="sara"><ui-img class="circle" src="https://cdn.dribbble.com/users/162566/avatars/normal/1012292_10104881398564961_565325188_n.jpg?1403561573"></ui-img>Sara Nicely</li>
-            <li value="anna"><ui-img class="circle" src="https://cdn.dribbble.com/users/243797/avatars/normal/657a04cfaeca8f6f5bb7ecf64267bc67.jpg?1416007045"></ui-img>Anna Broussard</li>
+        <ui-select
+            ref="demo2"
+            form-name="Select designer"
+            @list-show="echo"
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
         </ui-select>
     </div>
     :::
@@ -1034,18 +1555,63 @@
     });
     ---
     <div style="width:300px;">
-        <ui-select ref="demo3" form-name="Select designer" @list-hide="echo">
-            <li value="tim"><ui-img class="circle" src="https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894"></ui-img>Tim Boelaars</li>
-            <li value="andrew"><ui-img class="circle" src="https://cdn.dribbble.com/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444"></ui-img>Andrew Colin Beck</li>
-            <li value="gustavo"><ui-img class="circle" src="https://cdn.dribbble.com/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442"></ui-img>Gustavo Zambelli</li>
-            <li value="victor"><ui-img class="circle" src="https://cdn.dribbble.com/users/96387/avatars/normal/debda2342580bda98269c0165054464c.jpg?1435151464"></ui-img>Victor Erixon</li>
-            <li value="shaun"><ui-img class="circle" src="https://cdn.dribbble.com/users/2944/avatars/normal/e08c0e446862572facf0e48316d91c8f.png?1429207992"></ui-img>Shaun Moynihan</li>
-            <li value="emir"><ui-img class="circle" src="https://cdn.dribbble.com/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934"></ui-img>Emir Ayouni</li>
-            <li value="katherine"><ui-img class="circle" src="https://cdn.dribbble.com/users/460187/avatars/normal/eb8e273c036ae93b134b10358c5f19f5.jpg?1418705072"></ui-img>Katherine Rainey</li>
-            <li value="jax"><ui-img class="circle" src="https://cdn.dribbble.com/users/119911/avatars/normal/531fd12e5775ed5ac6a07aea7b492151.jpg?1427986143"></ui-img>Jax Berndt</li>
-            <li value="elizabeth"><ui-img class="circle" src="https://cdn.dribbble.com/users/857412/avatars/normal/8f5f9fbdd66cc70f22304f2ed3be4fa1.png?1440078204"></ui-img>Elizabeth Chiu</li>
-            <li value="sara"><ui-img class="circle" src="https://cdn.dribbble.com/users/162566/avatars/normal/1012292_10104881398564961_565325188_n.jpg?1403561573"></ui-img>Sara Nicely</li>
-            <li value="anna"><ui-img class="circle" src="https://cdn.dribbble.com/users/243797/avatars/normal/657a04cfaeca8f6f5bb7ecf64267bc67.jpg?1416007045"></ui-img>Anna Broussard</li>
+        <ui-select
+            ref="demo3"
+            form-name="Select designer"
+            @list-hide="echo"
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
+        </ui-select>
+    </div>
+    :::
+
+    #### search
+
+    当开启`can-search`配置并且搜索关键词变化时时触发。
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        methods : {
+            echo : function () {
+                console.log('demo15.console1', 'search event!');
+            }
+        }
+    });
+    ---
+    <div style="width:300px;">
+        <ui-select
+            ref="demo15"
+            form-name="Select designer"
+            can-search
+            @search="echo"
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
         </ui-select>
     </div>
     :::
@@ -1055,9 +1621,8 @@
     ---
     uikey:select
     eventValue:['tim']
-    eventSlot:<li value="tim"><ui-img class="circle" src="https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894"></ui-img>Tim Boelaars</li><li value="andrew"><ui-img class="circle" src="https://cdn.dribbble.com/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444"></ui-img>Andrew Colin Beck</li><li value="gustavo"><ui-img class="circle" src="https://cdn.dribbble.com/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442"></ui-img>Gustavo Zambelli</li><li value="victor"><ui-img class="circle" src="https://cdn.dribbble.com/users/96387/avatars/normal/debda2342580bda98269c0165054464c.jpg?1435151464"></ui-img>Victor Erixon</li><li value="shaun"><ui-img class="circle" src="https://cdn.dribbble.com/users/2944/avatars/normal/e08c0e446862572facf0e48316d91c8f.png?1429207992"></ui-img>Shaun Moynihan</li><li value="emir"><ui-img class="circle" src="https://cdn.dribbble.com/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934"></ui-img>Emir Ayouni</li><li value="katherine"><ui-img class="circle" src="https://cdn.dribbble.com/users/460187/avatars/normal/eb8e273c036ae93b134b10358c5f19f5.jpg?1418705072"></ui-img>Katherine Rainey</li><li value="jax"><ui-img class="circle" src="https://cdn.dribbble.com/users/119911/avatars/normal/531fd12e5775ed5ac6a07aea7b492151.jpg?1427986143"></ui-img>Jax Berndt</li><li value="elizabeth"><ui-img class="circle" src="https://cdn.dribbble.com/users/857412/avatars/normal/8f5f9fbdd66cc70f22304f2ed3be4fa1.png?1440078204"></ui-img>Elizabeth Chiu</li><li value="sara"><ui-img class="circle" src="https://cdn.dribbble.com/users/162566/avatars/normal/1012292_10104881398564961_565325188_n.jpg?1403561573"></ui-img>Sara Nicely</li><li value="anna"><ui-img class="circle" src="https://cdn.dribbble.com/users/243797/avatars/normal/657a04cfaeca8f6f5bb7ecf64267bc67.jpg?1416007045"></ui-img>Anna Broussard</li>
+    eventMoreAttr::list="{tim:'Tim Boelaars', andrew:'Andrew Colin Beck', gustavo:'Gustavo Zambelli', victor:'Victor Erixon', shaun:'Shaun Moynihan', emir:'Emir Ayouni', katherine:'Katherine Rainey', jax:'Jax Berndt', elizabeth:'Elizabeth Chiu', sara:'Sara Nicely', anna:'Anna Broussard'}"
     :::
-
 
     [[[表单值]]]
 
@@ -1068,7 +1633,8 @@
     #### 值过滤
 
     - 所有不支持的值类型，都会被尝试转换成空数组(`[]`)。
-    - 若数组中的键值不在可选列表内，会被过滤。
+    - 若开启`dynamic-list`配置且设置了`validate`，则会通过此配置过滤，若未设置`validate`则不会过滤。
+    - 若未开启`dynamic-list`配置，则数组中的键值不在可选列表内，会被过滤。
     - 数组项目数过滤：
         - 若未开启`multi-select`，此数组最多只会有一项。
         - 若开启`multi-select`，此数组最多不会超过`max`设置的项目数量。
@@ -1089,18 +1655,22 @@
     <div>
         <p>{$valueType}类型</p>
         <div style="width:300px;">
-            <ui-select ref="demoType{$valueType}">
-                <li value="tim"><ui-img class="circle" src="https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894"></ui-img>Tim Boelaars</li>
-                <li value="andrew"><ui-img class="circle" src="https://cdn.dribbble.com/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444"></ui-img>Andrew Colin Beck</li>
-                <li value="gustavo"><ui-img class="circle" src="https://cdn.dribbble.com/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442"></ui-img>Gustavo Zambelli</li>
-                <li value="victor"><ui-img class="circle" src="https://cdn.dribbble.com/users/96387/avatars/normal/debda2342580bda98269c0165054464c.jpg?1435151464"></ui-img>Victor Erixon</li>
-                <li value="shaun"><ui-img class="circle" src="https://cdn.dribbble.com/users/2944/avatars/normal/e08c0e446862572facf0e48316d91c8f.png?1429207992"></ui-img>Shaun Moynihan</li>
-                <li value="emir"><ui-img class="circle" src="https://cdn.dribbble.com/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934"></ui-img>Emir Ayouni</li>
-                <li value="katherine"><ui-img class="circle" src="https://cdn.dribbble.com/users/460187/avatars/normal/eb8e273c036ae93b134b10358c5f19f5.jpg?1418705072"></ui-img>Katherine Rainey</li>
-                <li value="jax"><ui-img class="circle" src="https://cdn.dribbble.com/users/119911/avatars/normal/531fd12e5775ed5ac6a07aea7b492151.jpg?1427986143"></ui-img>Jax Berndt</li>
-                <li value="elizabeth"><ui-img class="circle" src="https://cdn.dribbble.com/users/857412/avatars/normal/8f5f9fbdd66cc70f22304f2ed3be4fa1.png?1440078204"></ui-img>Elizabeth Chiu</li>
-                <li value="sara"><ui-img class="circle" src="https://cdn.dribbble.com/users/162566/avatars/normal/1012292_10104881398564961_565325188_n.jpg?1403561573"></ui-img>Sara Nicely</li>
-                <li value="anna"><ui-img class="circle" src="https://cdn.dribbble.com/users/243797/avatars/normal/657a04cfaeca8f6f5bb7ecf64267bc67.jpg?1416007045"></ui-img>Anna Broussard</li>
+            <ui-select
+                ref="demoType{$valueType}"
+                :list="{
+                    tim : 'Tim Boelaars',
+                    andrew : 'Andrew Colin Beck',
+                    gustavo : 'Gustavo Zambelli',
+                    victor : 'Victor Erixon',
+                    shaun : 'Shaun Moynihan',
+                    emir : 'Emir Ayouni',
+                    katherine : 'Katherine Rainey',
+                    jax : 'Jax Berndt',
+                    elizabeth : 'Elizabeth Chiu',
+                    sara : 'Sara Nicely',
+                    anna : 'Anna Broussard'
+                }"
+            >
             </ui-select>
         </div>
         <br>
@@ -1113,7 +1683,7 @@
 
     [[[源码]]]
 
-    <iframe src="/report/coverage/lib/components/select/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>
+    <iframe src=\"/report/coverage/lib/components/select/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight\"></iframe>
 
     </script>
     </doc-component>

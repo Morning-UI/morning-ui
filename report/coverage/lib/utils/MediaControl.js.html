@@ -1,0 +1,1232 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for lib/utils/MediaControl.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">All files</a> / <a href="index.html">lib/utils</a> MediaControl.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">37.78% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>51/135</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">25.42% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>15/59</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">40.74% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>11/27</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">37.78% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>51/135</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390</td><td class="line-coverage quiet"><span class="cline-any cline-yes">142x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">142x</span>
+<span class="cline-any cline-yes">142x</span>
+<span class="cline-any cline-yes">142x</span>
+<span class="cline-any cline-yes">142x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">142x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">84x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">84x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import GlobalEvent                  from 'Utils/GlobalEvent';
+&nbsp;
+const oneHour = 3600;
+const oneMinute = 60;
+const maxVolume = 100;
+const num10 = 10;
+&nbsp;
+// must has : conf.src / .conf.autoplay / conf.allowFullscreen
+let MediaControl = {
+    mixins : [GlobalEvent],
+    data : function () {
+&nbsp;
+        return {
+            data : {
+                mcType : 'audio',
+                mcPlaying : false,
+                mc$media : null,
+                mcTotalTime : 1,
+                mcLoadedTimes : [],
+                mcCurrentTime : 0,
+                mcDontSyncCurrentTime : false,
+                mcMuted : false,
+                mcVolume : maxVolume,
+                mcFullscreen : false
+            }
+        };
+&nbsp;
+    },
+    methods : {
+        _mcSyncPlay : <span class="fstat-no" title="function not covered" >function () </span>{
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            this.data.mcPlaying = !this.data.mc$media.paused;</span>
+&nbsp;
+        },
+        _mcSyncTotalTime : function () {
+&nbsp;
+            this.data.mcTotalTime = Math.floor(this.data.mc$media.duration || 0);
+&nbsp;
+        },
+        _mcSyncCurrentTime : function () {
+&nbsp;
+            this.data.mcDontSyncCurrentTime = true;
+            this.data.mcCurrentTime = Math.floor(this.data.mc$media.currentTime || 0);
+            this.$refs[`mor-media-slider-${this.uiid}`].set(this.data.mcCurrentTime);
+&nbsp;
+            this.Vue.nextTick(() =&gt; {
+            
+                this.data.mcDontSyncCurrentTime = false;
+            
+            });
+&nbsp;
+        },
+        _mcSyncLoadedTime : <span class="fstat-no" title="function not covered" >function () </span>{
+&nbsp;
+            let i = <span class="cstat-no" title="statement not covered" >0;</span>
+            let mcLoadedTimes = <span class="cstat-no" title="statement not covered" >[];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            while (i &lt; this.data.mc$media.buffered.length) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                mcLoadedTimes.push([</span>
+                    Math.ceil(this.data.mc$media.buffered.start(i)),
+                    Math.floor(this.data.mc$media.buffered.end(i))
+                ]);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                i++;</span>
+&nbsp;
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            this.data.mcLoadedTimes = mcLoadedTimes;</span>
+&nbsp;
+        },
+        _mcSyncVolume : <span class="fstat-no" title="function not covered" >function () </span>{
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            this.data.mcVolume = Math.floor(this.data.mc$media.volume * maxVolume);</span>
+<span class="cstat-no" title="statement not covered" >            this.data.mcMuted = this.data.mc$media.muted;</span>
+&nbsp;
+        },
+        _mcSyncFullscreen : <span class="fstat-no" title="function not covered" >function () </span>{
+&nbsp;
+            let fullscreenElement = <span class="cstat-no" title="statement not covered" >document.fullscreenElement ||</span>
+                document.webkitFullscreenElement ||
+                document.mozFullScreenElement;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (fullscreenElement === this.data.mc$media) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                this.data.mcFullscreen = true;</span>
+&nbsp;
+            } else {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                this.data.mcFullscreen = false;</span>
+&nbsp;
+            }
+&nbsp;
+        },
+        _mcTimeFormat : function (value) {
+&nbsp;
+            <span class="missing-if-branch" title="else path not taken" >E</span>if (!this.conf.src ||
+<span class="branch-1 cbranch-no" title="branch not covered" >                this.data.mcTotalTime === 0) {</span>
+&nbsp;
+                return '00:00';
+&nbsp;
+            }
+&nbsp;
+            let hours = <span class="cstat-no" title="statement not covered" >Math.floor(value / oneHour);</span>
+            let minutes = <span class="cstat-no" title="statement not covered" >0;</span>
+            let seconds = <span class="cstat-no" title="statement not covered" >0;</span>
+            let left = <span class="cstat-no" title="statement not covered" >value - (hours * oneHour);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (hours) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                hours += ':';</span>
+&nbsp;
+            } else <span class="cstat-no" title="statement not covered" >if (this.data.mcTotalTime &gt; oneHour) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                hours = '0:';</span>
+&nbsp;
+            } else {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                hours = '';</span>
+&nbsp;
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            minutes = Math.floor(left / oneMinute);</span>
+<span class="cstat-no" title="statement not covered" >            left = value - (minutes * oneMinute);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (minutes) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                minutes = `0${minutes}`;</span>
+<span class="cstat-no" title="statement not covered" >                minutes += ':';</span>
+&nbsp;
+            } else <span class="cstat-no" title="statement not covered" >if (this.data.mcTotalTime &gt; oneMinute) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                minutes = '00:';</span>
+&nbsp;
+            } else {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                minutes = '00:';</span>
+&nbsp;
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            seconds = Math.floor(left);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (seconds &lt; num10) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                seconds = `0${seconds}`;</span>
+&nbsp;
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return `${hours}${minutes}${seconds}`;</span>
+&nbsp;
+        },
+        _mcVolumeFormat : function (value) {
+&nbsp;
+            return `${value}%`;
+&nbsp;
+        },
+        _mcPlay : <span class="fstat-no" title="function not covered" >function (</span>play) {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (play === undefined) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                play = !this.data.mcPlaying;</span>
+&nbsp;
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (!this.conf.src) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                play = false;</span>
+&nbsp;
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            this.data.mcPlaying = play;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return this;</span>
+&nbsp;
+        },
+        _mcGetInfo : <span class="fstat-no" title="function not covered" >function () </span>{
+&nbsp;
+            let info = <span class="cstat-no" title="statement not covered" >{</span>
+                totalTime : this.data.mcTotalTime,
+                currentTime : this.data.mcCurrentTime,
+                src : this.conf.src,
+                muted : this.data.mcMuted,
+                volume : this.data.mcVolume
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (this.data.mcType === 'video') {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                info.fullscreen = this.data.mcFullscreen;</span>
+&nbsp;
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return info;</span>
+&nbsp;
+        },
+        _mcTo : function (time) {
+&nbsp;
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (time === undefined) {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                time = this.$refs[`mor-media-slider-${this.uiid}`].get();</span>
+&nbsp;
+            }
+&nbsp;
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (time &gt; this.data.mcTotalTime) {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                time = this.data.mcTotalTime;</span>
+&nbsp;
+            } else <span class="missing-if-branch" title="if path not taken" >I</span>if (time &lt; 0) {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                time = 0;</span>
+&nbsp;
+            }
+&nbsp;
+            this.data.mcCurrentTime = time;
+&nbsp;
+            return this;
+&nbsp;
+        },
+        _mcMute : <span class="fstat-no" title="function not covered" >function (</span>toggle) {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (toggle === undefined) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                toggle = !this.data.mcMuted;</span>
+&nbsp;
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            this.data.mcMuted = toggle;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return this;</span>
+&nbsp;
+        },
+        _mcVolume : <span class="fstat-no" title="function not covered" >function (value = 0) <span class="cstat-no" title="statement not covered" ></span>{</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (value &gt; maxVolume) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                value = maxVolume;</span>
+&nbsp;
+            } else <span class="cstat-no" title="statement not covered" >if (value &lt; 0) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                value = 0;</span>
+&nbsp;
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            this.data.mcVolume = Math.floor(value);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return this;</span>
+&nbsp;
+        },
+        _mcFullscreen : <span class="fstat-no" title="function not covered" >function () </span>{
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (!this.conf.allowFullscreen) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                return this;</span>
+&nbsp;
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            this.data.mc$media.webkitRequestFullscreen();</span>
+<span class="cstat-no" title="statement not covered" >            this.data.mcFullscreen = true;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return this;</span>
+&nbsp;
+        }
+    },
+    mounted : function () {
+&nbsp;
+        this.$watch('data.mc$media', () =&gt; {
+&nbsp;
+            if (!this.data.mc$media) {
+&nbsp;
+                return;
+&nbsp;
+            }
+&nbsp;
+            if (this.data.mc$media.tagName === 'VIDEO') {
+&nbsp;
+                this.data.mcType = 'video';
+&nbsp;
+            } else {
+&nbsp;
+                this.data.mcType = 'audio';
+&nbsp;
+            }
+&nbsp;
+            this.data.mc$media.addEventListener('play', this._mcSyncPlay);
+            this.data.mc$media.addEventListener('durationchange', this._mcSyncTotalTime);
+            this.data.mc$media.addEventListener('timeupdate', this._mcSyncCurrentTime);
+            this.data.mc$media.addEventListener('progress', this._mcSyncLoadedTime);
+            this.data.mc$media.addEventListener('loadeddata', this._mcSyncLoadedTime);
+            this.data.mc$media.addEventListener('volumechange', this._mcSyncVolume);
+&nbsp;
+            if (this.data.mcType === 'video') {
+&nbsp;
+                this._globalEventRemove('fullscreenchange', '_mcSyncFullscreen');
+                this._globalEventRemove('webkitfullscreenchange', '_mcSyncFullscreen');
+                this._globalEventAdd('fullscreenchange', '_mcSyncFullscreen');
+                this._globalEventAdd('webkitfullscreenchange', '_mcSyncFullscreen');
+&nbsp;
+            }
+&nbsp;
+        }, {
+            immediate : true
+        });
+&nbsp;
+        this.Vue.nextTick(() =&gt; {
+&nbsp;
+            this._mcSyncTotalTime();
+            this._mcSyncCurrentTime();
+&nbsp;
+            this.$watch('data.mcPlaying', <span class="fstat-no" title="function not covered" >() =&gt; </span>{
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if (this.data.mcPlaying) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    this.data.mc$media.play();</span>
+<span class="cstat-no" title="statement not covered" >                    this.$emit('play');</span>
+<span class="cstat-no" title="statement not covered" >                    this.$emit('play-change');</span>
+&nbsp;
+                } else {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    this.data.mc$media.pause();</span>
+<span class="cstat-no" title="statement not covered" >                    this.$emit('pause');</span>
+<span class="cstat-no" title="statement not covered" >                    this.$emit('play-change');</span>
+&nbsp;
+                }
+&nbsp;
+            });
+&nbsp;
+            this.$watch('data.mcCurrentTime', <span class="fstat-no" title="function not covered" >() =&gt; </span>{
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if (!this.data.mcDontSyncCurrentTime) {</span>
+            
+<span class="cstat-no" title="statement not covered" >                    this.data.mc$media.currentTime = this.data.mcCurrentTime;</span>
+&nbsp;
+                }
+&nbsp;
+            });
+&nbsp;
+            this.$watch('data.mcVolume', <span class="fstat-no" title="function not covered" >() =&gt; </span>{
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                this.data.mc$media.volume = this.data.mcVolume / maxVolume;</span>
+<span class="cstat-no" title="statement not covered" >                this.$emit('volume-change');</span>
+&nbsp;
+            });
+&nbsp;
+            this.$watch('data.mcMuted', <span class="fstat-no" title="function not covered" >() =&gt; </span>{
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                this.data.mc$media.muted = this.data.mcMuted;</span>
+<span class="cstat-no" title="statement not covered" >                this.$emit('mute-change');</span>
+&nbsp;
+            });
+&nbsp;
+            this.$watch('data.mcFullscreen', <span class="fstat-no" title="function not covered" >() =&gt; </span>{
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if (this.data.mcType !== 'video') {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    return;</span>
+&nbsp;
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                this.$emit('fullscreen-change');</span>
+&nbsp;
+            });
+&nbsp;
+            this.$watch('conf.autoplay', () =&gt; {
+&nbsp;
+                this.data.mc$media.autoplay = this.conf.autoplay;
+&nbsp;
+            }, {
+                immediate : true
+            });
+&nbsp;
+            this.$watch('conf.src', <span class="fstat-no" title="function not covered" >() =&gt; </span>{
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                this.data.mcPlaying = false;</span>
+<span class="cstat-no" title="statement not covered" >                this.data.mc$media.currentTime = 0;</span>
+<span class="cstat-no" title="statement not covered" >                this._mcSyncCurrentTime();</span>
+&nbsp;
+            });
+&nbsp;
+        });
+&nbsp;
+    },
+    beforeDestroy : <span class="fstat-no" title="function not covered" >function () </span>{
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        this._globalEventRemove('webkitfullscreenchange', '_mcSyncFullscreen');</span>
+<span class="cstat-no" title="statement not covered" >        this._globalEventRemove('fullscreenchange', '_mcSyncFullscreen');</span>
+&nbsp;
+    }
+};
+&nbsp;
+export default MediaControl;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Jul 04 2018 20:34:57 GMT+0800 (CST)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

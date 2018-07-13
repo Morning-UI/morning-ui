@@ -25,9 +25,9 @@
         <span class='fraction'>18/27</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">45.16% </span>
+        <span class="strong">46.15% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>14/31</span>
+        <span class='fraction'>18/39</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">75% </span>
@@ -167,7 +167,63 @@
 122
 123
 124
-125</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -206,6 +262,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -290,8 +350,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">129x</span>
-<span class="cline-any cline-yes">129x</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
+<span class="cline-any cline-yes">142x</span>
+<span class="cline-any cline-yes">142x</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
     &lt;mor-switch
         :_uiid="uiid"
         :class="[formClass, colorClass, stateClass, moreClass]"
@@ -303,12 +363,22 @@
         :hide-name="hideName"
         :clearable="clearable"
         :auto-hide-name="autoHideName"
+        :open-note="openNote"
+        :close-note="closeNote"
+        :open-mark="openMark"
+        :close-mark="closeMark"
     &gt;
 &nbsp;
     &lt;div class="note"&gt;{{conf.formName}}&lt;/div&gt;
     
-    &lt;div class="track" @click="conf.state !== 'readonly' &amp;&amp; toggle()"&gt;
-        &lt;div class="point"&gt;&lt;/div&gt;
+    &lt;div class="wrap"&gt;
+        &lt;div class="close-note" v-if="conf.closeNote" v-html="conf.closeNote"&gt;&lt;/div&gt;
+        &lt;div class="track" @click="conf.state !== 'readonly' &amp;&amp; toggle()"&gt;
+            &lt;div class="open-mark" v-if="conf.openMark" v-html="conf.openMark"&gt;&lt;/div&gt;
+            &lt;div class="point"&gt;&lt;/div&gt;
+            &lt;div class="close-mark" v-if="conf.closeMark" v-html="conf.closeMark"&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="open-note" v-if="conf.openNote" v-html="conf.openNote"&gt;&lt;/div&gt;
     &lt;/div&gt;
 &nbsp;
     &lt;morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn"&gt;清空&lt;/morning-link&gt;
@@ -324,13 +394,33 @@ export default {
         autoHideName : {
             type : Boolean,
             default : false
+        },
+        openNote : {
+            type : String,
+            default : ''
+        },
+        closeNote : {
+            type : String,
+            default : ''
+        },
+        openMark : {
+            type : String,
+            default : ''
+        },
+        closeMark : {
+            type : String,
+            default : ''
         }
     },
     computed : {
         _conf : function () {
 &nbsp;
             return {
-                autoHideName : this.autoHideName
+                autoHideName : this.autoHideName,
+                openNote : this.openNote,
+                closeNote : this.closeNote,
+                openMark : this.openMark,
+                closeMark : this.closeMark
             };
 &nbsp;
         },
@@ -414,14 +504,14 @@ export default {
 };
 &lt;/script&gt;
 &nbsp;
-&lt;style lang="less" src="./ind<span class="branch-1 cbranch-no" title="branch not covered" >ex.less"&gt;&lt;/style&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ><span class="branch-1 cbranch-no" title="branch not covered" ><span class="branch-2 cbranch-no" title="branch not covered" ></span></span></span></span></span></span>
+&lt;style lang="less" src="./ind<span class="branch-1 cbranch-no" title="branch not covered" >ex.less"&gt;&lt;/style&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ><span class="branch-1 cbranch-no" title="branch not covered" ><span class="branch-2 cbranch-no" title="branch not covered" ></span></span></span></span></span></span></span></span></span></span>
 <span class="branch-1 cbranch-no" title="branch not covered" ><span class="branch-2 cbranch-no" title="branch not covered" ></span></span></pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Jun 05 2018 14:32:00 GMT+0800 (CST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Jul 04 2018 20:34:57 GMT+0800 (CST)
 </div>
 </div>
 <script src="../../../prettify.js"></script>

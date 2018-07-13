@@ -84,7 +84,11 @@ test.serial('color', async t => {
             'color',
             [{
                 attrs : [
-                    'background-color',
+                    'background-color'
+                ]
+            }, {
+                child : 'a',
+                attrs : [
                     'color'
                 ]
             }, {
@@ -99,6 +103,7 @@ test.serial('color', async t => {
                 ]
             }, {
                 self : '.st-disabled',
+                child : 'a',
                 attrs : [
                     'color'
                 ]
@@ -115,7 +120,11 @@ test.serial('color', async t => {
             [{
                 attrs : [
                     'background-color',
-                    'color'
+                ]
+            }, {
+                child : 'a',
+                attrs : [
+                    'color',
                 ]
             }]
         );
@@ -138,7 +147,6 @@ test.serial('state', async t => {
             'state_all',
             [
                 'box-shadow',
-                'cursor',
                 'animation-name',
                 'animation-duration',
                 'animation-timing-function',

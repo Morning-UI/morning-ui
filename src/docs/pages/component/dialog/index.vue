@@ -127,7 +127,7 @@
     下面是一个完整的模拟盒内容推荐布局。
 
     :::democode/html
-    <ui-dialog ref="demo9" light-gray>
+    <ui-dialog ref="demo9" color="light-gray">
         <header slot="header">选择一张图片</header>
         <ui-grid class="fill">
             <div class="c-11">
@@ -214,7 +214,7 @@
     |[width](#width)|模拟盒宽度|宽度数值（可以是`px`、`em`、`%`等任何css合法单位）|String|`'50%'`|
     |[height](#height)|模拟盒高度|高度数值（可以是`px`、`em`、`%`等任何css合法单位）|String|`'50%'`|
     |[auto-close](#auto-close)|点击模拟盒以外的区域自动关闭模拟盒|`true`<br>`false`|Boolean|`true`|
-    |[show-type](#show-type)|模拟盒打开的方式|`top`:从上往下弹出<br>`center`:从中间弹出<br>`no`:无动画直接出现|String|`'top'`|
+    |[show-type](#show-type)|模拟盒打开的方式(使用`no`可以提升性能)|`top`:从上往下弹出<br>`center`:从中间弹出<br>`no`:无动画直接出现|String|`'top'`|
     |[show-mask](#show-mask)|模拟盒打开后显示背景遮罩|`true`<br>`false`|Boolean|`true`|
 
     #### width

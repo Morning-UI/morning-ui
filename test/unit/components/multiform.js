@@ -11,8 +11,8 @@ test.serial('base : component snapshot', async t => {
     const vm = new Vue(component).$mount();
 
     t.plan(1);
-
-    // cause :npm run test and npm run cover has different result, so not diff vm.$el for now.
+   
+    // cause : item-filler and item-validator is a function, when run coverage test, the function always different.
     delete vm.$el;
 
     snapshot(t, vm);

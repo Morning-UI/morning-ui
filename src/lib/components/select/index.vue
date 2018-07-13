@@ -9,10 +9,14 @@
         :default-value="defaultValue"
         :hide-name="hideName"
         :clearable="clearable"
+        :list="list"
+        :dynamic-list="dynamicList"
+        :validate="validate"
         :separate-emit="separateEmit"
         :align="align"
         :prepend="prepend"
         :max-show="maxShow"
+        :max-show-height="maxShowHeight"
         :auto-close="autoClose"
         :can-search="canSearch"
         :multi-select="multiSelect"
@@ -137,8 +141,45 @@
                 :style="listStyle"
                 @click="_listClick"
             >
-                <slot></slot>
-                <li class="noitem">无项目</li>
+                <template v-for="index in showItemList">
+                    <li
+                        :index="index"
+                        :class="{
+                            hide : data.itemNomathMap[index]
+                        }"
+                        :id="'ui-select-tip-'+uiid+'-'+index"
+                        class="selected"
+                        v-if="data.itemSelectedMap[index]"
+                        v-render="{template : data.itemNameMap[index]+'<i class=\'mo-select-selected-icon mo-icon mo-icon-check\'></i>'}"
+                    >
+                    </li>
+                    <li
+                        :index="index"
+                        :class="{
+                            hide : data.itemNomathMap[index]
+                        }"
+                        :id="'ui-select-tip-'+uiid+'-'+index"
+                        v-else
+                        v-render="{template : data.itemNameMap[index]}"
+                    >
+                    </li>
+
+                    <template v-if="conf.itemTip">
+                        <morning-tip
+                            :target="'#ui-select-tip-'+uiid+'-'+index"
+                            :placement="conf.itemTipDirect"
+                            class="tips"
+                            color="blue"
+                        >{{data.itemTipMap[index]}}</morning-tip>
+                    </template>
+                </template>
+                <li class="noitem infoitem" :class="{show : data.noMatch || showItemList.length === 0 || data.selectedAll}">
+                    <span v-if="conf.dynamicList && conf.canSearch">无匹配项目</span>
+                    <span v-else>无项目</span>
+                </li>
+                <li class="maxshow infoitem" :class="{show : conf.canSearch && (data.matchList.length > conf.maxShow)}">
+                    <span>请搜索以显示更多</span>
+                </li>
             </ul>
         </div>
     </div>
@@ -149,15 +190,29 @@
 </template>
  
 <script>
-import trim                         from 'trim';
+import map                          from 'lodash.map';
 import GlobalEvent                  from 'Utils/GlobalEvent';
 import TipManager                   from 'Utils/TipManager';
+
+let noopFn = () => {};
 
 export default {
     origin : 'Form',
     name : 'select',
     mixins : [GlobalEvent, TipManager],
     props : {
+        list : {
+            type : [Object, Array],
+            default : (() => {})
+        },
+        dynamicList : {
+            type : Boolean,
+            default : false
+        },
+        validate : {
+            type : Function,
+            default : noopFn
+        },
         separateEmit : {
             type : String,
             default : ''
@@ -172,6 +227,10 @@ export default {
             default : undefined
         },
         maxShow : {
+            type : Number,
+            default : Infinity
+        },
+        maxShowHeight : {
             type : Number,
             default : 5
         },
@@ -224,10 +283,14 @@ export default {
         _conf : function () {
 
             return {
+                list : this.list,
+                dynamicList : this.dynamicList,
+                validate : this.validate,
                 separateEmit : this.separateEmit,
                 align : this.align,
                 prepend : this.prepend,
                 maxShow : this.maxShow,
+                maxShowHeight : this.maxShowHeight,
                 autoClose : this.autoClose,
                 canSearch : this.canSearch,
                 multiSelect : this.multiSelect,
@@ -261,6 +324,17 @@ export default {
 
             return false;
 
+        },
+        showItemList : function () {
+
+            if (this.conf.canSearch) {
+
+                return this.data.matchList.slice(0, this.conf.maxShow);
+
+            }
+
+            return Object.keys(this.data.itemValMap || []);
+
         }
     },
     data : function () {
@@ -276,17 +350,24 @@ export default {
                 isMax : false,
                 multiinputLastValue : [],
                 selectInput : false,
-                itemValueList : [],
-                filterNotExist : false,
+                dontSetSearchMultiinput : false,
+                itemValMap : [],
+                itemNameMap : [],
+                itemTipMap : [],
+                itemSelectedMap : [],
+                itemNomathMap : [],
                 lastItemHeight : 0,
-                tipsContent : [],
-                tips : [],
                 $listWrap : null,
                 $list : null,
                 $emitTarget : null,
                 $selectArea : null,
                 $selectList : null,
-                highPerfMode : false
+                highPerfMode : false,
+                noMatch : false,
+                multiinputNameValMap : {},
+                itemValMapInit : false,
+                matchList : [],
+                selectedAll : false
             },
             listStyle : {}
         };
@@ -302,23 +383,16 @@ export default {
 
             }
 
-            this._maxFilter(value);
-
-            if (!this.conf.multiSelect &&
-                this.data.value.length > 1) {
-
-                return value.slice(0, 1);
-
-            }
+            value = this._customFilter(value);
 
             // filter not exist value.
-            if (this.data.filterNotExist) {
+            if (!this.conf.dynamicList && this.data.itemValMapInit) {
 
                 for (let index in value) {
 
                     let val = value[index];
 
-                    if (this.data.itemValueList.indexOf(String(val)) === -1) {
+                    if (this.data.itemValMap.indexOf(val) === -1) {
 
                         value.splice(index, 1);
 
@@ -327,6 +401,15 @@ export default {
                 }
 
             }
+
+            if (!this.conf.multiSelect &&
+                this.data.value.length > 1) {
+
+                return value.slice(0, 1);
+
+            }
+            
+            this._maxFilter(value);
 
             return value;
 
@@ -344,21 +427,33 @@ export default {
             return value;
 
         },
+        _customFilter : function (value) {
+
+            if (this.conf.dynamicList && this.conf.validate) {
+
+                for (let index in value) {
+
+                    if (this.conf.validate(value[index]) === false) {
+
+                        value.splice(index, 1);
+
+                    }
+
+                }
+
+            }
+
+            return value;
+
+        },
         _onValueChange : function () {
 
             let newVal = this.get();
-            let $items = this.data.$list.querySelectorAll('li:not(.noitem)');
-            let $currentItems = this.data.$list.querySelectorAll('li.current');
-            let $noitem = this.data.$list.querySelector('.noitem');
+            let $items = this.data.$list.querySelectorAll('li:not(.infoitem)');
             let searchTextinput;
             let searchMultiinput;
             let multiNames = [];
-
-            for (let $item of $currentItems.values()) {
-
-                $item.classList.remove('current');
-
-            }
+            let valMapVals = Object.values(this.data.itemValMap);
 
             if (this.conf.canSearch &&
                 !this.conf.multiSelect) {
@@ -385,32 +480,21 @@ export default {
 
             for (let val of newVal) {
 
-                for (let $item of $items.values()) {
+                for (let index in valMapVals) {
 
-                    if ($item.getAttribute('value') === val) {
-
-                        $item.classList.add('current');
-
-                        if (this.conf.canSearch) {
-
-                            if (searchTextinput) {
-
-                                searchTextinput._set(undefined, true);
-
-                            }
-
-                        }
+                    if (valMapVals[index] === val) {
 
                         if (this.conf.multiSelect) {
 
-                            multiNames.push(trim($item.textContent));
-                        
+                            multiNames.push(this.data.itemNameMap[index]);
+                            this.data.multiinputNameValMap[this.data.itemNameMap[index]] = valMapVals[index];
+
                         } else {
 
-                            this.data.selectedContent = $item.textContent;
+                            this.data.selectedContent = this.data.itemNameMap[index];
 
                         }
-                    
+
                     }
 
                 }
@@ -418,13 +502,14 @@ export default {
             }
 
             if (this.conf.multiSelect &&
-                this.data.value.length === $items.length) {
+                this.data.value.length === $items.length &&
+                this.conf.hideSelected) {
 
-                $noitem.classList.add('show');
+                this.data.noMatch = true;
 
             } else {
-                
-                $noitem.classList.remove('show');
+
+                this.data.noMatch = false;
 
             }
 
@@ -432,7 +517,14 @@ export default {
                 (this.data.value.length === 0 || this.data.value === undefined)) {
 
                 this.data.selectedContent = this.conf.formName || '';
-            
+
+            }
+
+            if (this.conf.canSearch &&
+                searchTextinput) {
+
+                searchTextinput._set(undefined, true);
+
             }
 
             if (searchMultiinput &&
@@ -441,8 +533,13 @@ export default {
                 let inputValue = searchMultiinput.getInput();
 
                 this.data.selectInput = true;
-                searchMultiinput._set(multiNames, true);
+                
+                if (!this.data.dontSetSearchMultiinput) {
                     
+                    searchMultiinput._set(multiNames, true);
+
+                }
+
                 if (!this.conf.autoResetSearch) {
                     
                     this.Vue.nextTick(() => {
@@ -451,6 +548,14 @@ export default {
 
                     });
         
+                } else {
+                    
+                    this.Vue.nextTick(() => {
+
+                        searchMultiinput.setInput(undefined);
+
+                    });
+
                 }
             
             }
@@ -458,22 +563,109 @@ export default {
             this._refreshShowItems();
 
         },
+        _refreshMatchList : function () {
+
+            let matchList = [];
+            let valMapValues = Object.values(this.data.itemValMap);
+
+            for (let index in valMapValues) {
+
+                if (!this.data.itemNomathMap[index]) {
+
+                    matchList.push(index);
+
+                }
+
+            }
+
+            this.data.matchList = matchList;
+
+        },
         _updateItemValueList : function () {
 
             const useHighPrefModeMinItems = 200;
 
-            let $items = this.data.$list.querySelectorAll('li:not(.noitem)');
+            let confList = this.conf.list;
+            let valMapVals = this.data.itemValMap;
             let list = [];
 
-            for (let $item of $items.values()) {
+            if (confList instanceof Array) {
 
-                list.push($item.getAttribute('value'));
+                for (let item of confList) {
+
+                    list.push({
+                        val : item.key,
+                        name : item.name,
+                        tip : item.tip
+                    });
+
+                }
+
+            } else if (typeof confList === 'object') {
+
+                for (let key of Object.keys(confList)) {
+
+                    let item = {
+                        val : key
+                    };
+
+                    if (typeof confList[key] === 'string') {
+
+                        item.name = confList[key];
+
+                    } else if (typeof confList[key] === 'object') {
+
+                        item.name = confList[key].name;
+                        item.tip = confList[key].tip;
+
+                    }
+
+                    list.push(item);
+
+                }
+
+            }
+
+            for (let index in valMapVals) {
+
+                for (let key in list) {
+
+                    if (list[key].val === valMapVals[index]) {
+
+                        // extend old status
+                        list[key] = {
+                            val : list[key].val || valMapVals[index],
+                            name : list[key].name || this.data.itemNameMap[index],
+                            tip : list[key].tip || this.data.itemTipMap[index],
+                            _selected : list[key]._selected || this.data.itemSelectedMap[index] || 0,
+                            _nomatch : list[key]._nomatch || this.data.itemNomathMap[index] || 0
+                        };
+
+                    }
+
+                }
+
+            }
+
+            // uniq same val
+            let keyList = {};
+            let uniqList = [];
+
+            for (let key in list) {
+
+                if (!keyList[key]) {
+
+                    uniqList.push(list[key]);
+
+                }
+
+                keyList[key] = 1;
 
             }
 
             // 高性能模式，当列表项目大于200后开启
             // 去除了不必要的动画、调整CSS、减少计算频率
-            if (list.length > useHighPrefModeMinItems) {
+            if (uniqList.length > useHighPrefModeMinItems) {
 
                 this.data.highPerfMode = true;
 
@@ -483,13 +675,17 @@ export default {
 
             }
 
-            this.data.itemValueList = list;
+            this.data.itemValMap = map(uniqList, 'val');
+            this.data.itemNameMap = map(uniqList, 'name');
+            this.data.itemTipMap = map(uniqList, 'tip');
+            this.data.itemSelectedMap = map(uniqList, '_selected');
+            this.data.itemNomathMap = map(uniqList, '_nomatch');
 
-            if (this.data.filterNotExist === false) {
+            if (!this.data.itemValMapInit) {
 
-                this.data.filterNotExist = true;
-                this.set(this._valueFilter(this.get()));
-            
+                this.data.itemValMapInit = true;
+                this._set(this._valueFilter(this.get()), true);
+
             }
 
         },
@@ -512,19 +708,6 @@ export default {
 
             }
 
-            // if (this.conf.state === 'disabled' || this.conf.state === 'readonly') {
-
-            //     return;
-                
-            // }
-
-            // if (this.conf.multiSelect &&
-            //     this.data.value.length === this.conf.max) {
-
-            //     return;
-
-            // }
-
             let $searchTextinput = this.data.$selectArea.querySelector('.wrap mor-textinput'),
                 $searchMultiinput = this.data.$selectArea.querySelector('.wrap mor-multiinput'),
                 hasTextinput = (evt.path.indexOf($searchTextinput) !== -1),
@@ -546,7 +729,7 @@ export default {
             if (this.conf.state === 'disabled' || this.conf.state === 'readonly') {
 
                 return;
-                
+
             }
 
             if (this.conf.multiSelect &&
@@ -556,7 +739,17 @@ export default {
 
             }
 
-            let $items = this.data.$list.querySelectorAll('li:not(.noitem)');
+            let $noitem = this.data.$list.querySelector('.noitem');
+            let $maxshow = this.data.$list.querySelector('.maxshow');
+
+            if (evt.path.indexOf($noitem) !== -1 ||
+                evt.path.indexOf($maxshow) !== -1) {
+
+                return;
+
+            }
+
+            let $items = this.data.$list.querySelectorAll('li:not(.infoitem)');
             let $clickItem = false;
 
             for (let $item of $items.values()) {
@@ -572,19 +765,20 @@ export default {
 
             if ($clickItem) {
 
-                let value = [$clickItem.getAttribute('value')];
+                let index = $clickItem.getAttribute('index');
+                let value = [this.data.itemValMap[index]];
 
                 if (this.conf.multiSelect &&
                     this.data.value !== undefined) {
 
                     value = this.get();
 
-                    let clickValue = $clickItem.getAttribute('value');
-                    let index = value.indexOf(clickValue);
+                    let clickValue = this.data.itemValMap[index];
+                    let valIndex = value.indexOf(clickValue);
 
-                    if (index !== -1) {
+                    if (valIndex !== -1) {
 
-                        value.splice(index, 1);
+                        value.splice(valIndex, 1);
 
                     } else {
 
@@ -602,14 +796,17 @@ export default {
                 
                 } else if (value.length >= this.conf.max) {
 
-                    // $(ev.currentTarget).hide();
                     this.toggle();
                 
                 }
 
+            } else {
+
+                this._tipUpdate();
+
             }
 
-            this._tipUpdate();
+            this._refreshShowItems();
 
         },
         _textinputFocus : function () {
@@ -630,21 +827,22 @@ export default {
 
             }
 
-            let $items = this.data.$list.querySelectorAll('li:not(.noitem)');
-            let $noitem = this.data.$list.querySelector('.noitem');
-
             if (!this.conf.canSearch) {
 
                 this.data.searching = false;
                 this.data.searchKey = null;
+                this.data.noMatch = false;
 
-                for (let $item of $items.values()) {
+                let itemNomathMap = [];
 
-                    $item.classList.remove('hide');
-                    $noitem.classList.remove('show');
+                for (let index of Object.keys(this.data.itemNomathMap)) {
+
+                    itemNomathMap[index] = 0;
 
                 }
 
+                this.data.itemNomathMap = itemNomathMap;
+            
                 return;
 
             }
@@ -686,6 +884,8 @@ export default {
                 
             });
 
+            this.$emit('search', this.data.searchKey);
+
         },
         _multiinputFocusNoSearch : function () {
 
@@ -700,30 +900,6 @@ export default {
             this.toggle(true);
 
         },
-        _refreshValue : function (values) {
-
-            let setValue = [];
-            let $items = this.data.$list.querySelectorAll('li:not(.noitem)');
-
-            for (let value of values) {
-
-                for (let $item of $items.values()) {
-
-                    if (trim($item.textContent) === value) {
-
-                        setValue.push($item.getAttribute('value'));
-
-                        break;
-
-                    }
-
-                }
-
-            }
-
-            this.set(setValue);
-
-        },
         _multiinputValueChange : function () {
 
             if (!this.data.mounted) {
@@ -733,7 +909,18 @@ export default {
             }
 
             let searchMultiinput = this.data.$selectArea.querySelector(`#ui-select-mi-${this.uiid}`)._vm;
-            let values = searchMultiinput.get();
+            let names = searchMultiinput.get();
+            let values = [];
+
+            for (let name of names) {
+
+                if (this.data.multiinputNameValMap) {
+
+                    values.push(this.data.multiinputNameValMap[name]);
+
+                }
+
+            }
 
             this.Vue.nextTick(() => {
 
@@ -752,53 +939,59 @@ export default {
             }
             
             this.data.selectInput = false;
+            this.data.dontSetSearchMultiinput = true;
             this.data.multiinputLastValue = values;
-            this._refreshValue(values);
+
+            this._set(values, true);
+
+            this.Vue.nextTick(() => {
+
+                this.data.dontSetSearchMultiinput = false;
+
+            });
 
         },
         _refreshShowItemsWithSearch : function () {
 
             let foundNum = 0;
-            let $noitem = this.data.$list.querySelector('.noitem');
-            let $items;
+            let itemNomathMap = [];
+            let valMapVals = Object.values(this.data.itemValMap);
 
-            if (this.conf.hideSelected) {
-
-                $items = this.data.$list.querySelectorAll('li:not(.noitem):not(.selected)');
-
-            } else {
-
-                $items = this.data.$list.querySelectorAll('li:not(.noitem)');
-
-            }
-
-            for (let $item of $items.values()) {
+            for (let index in valMapVals) {
 
                 if (!this.data.searching) {
 
-                    $item.classList.remove('hide');
+                    itemNomathMap[index] = 0;
 
-                } else if (this.data.showlist && trim($item.textContent).search(this.data.searchKey) !== -1) {
+                } else if (this.data.itemNameMap[index].search(this.data.searchKey) !== -1) {
 
-                    foundNum++;
-                    $item.classList.remove('hide');
+                    if (!this.data.itemSelectedMap[index]) {
 
-                } else if (this.data.showlist) {
+                        foundNum++;
 
-                    $item.classList.add('hide');
+                    }
+
+                    itemNomathMap[index] = 0;
+
+                } else {
+
+                    itemNomathMap[index] = 1;
 
                 }
 
             }
 
+            this.data.itemNomathMap = itemNomathMap;
+
             if (this.data.searching &&
+                this.conf.hideSelected &&
                 foundNum === 0) {
 
-                $noitem.classList.add('show');
+                this.data.noMatch = true;
 
             } else {
                 
-                $noitem.classList.remove('show');
+                this.data.noMatch = false;
 
             }
 
@@ -810,33 +1003,35 @@ export default {
                 return;
 
             }
-           
+
             let values = this.get();
-            let $items = this.data.$list.querySelectorAll('li:not(.noitem)');
+            let itemSelectedMap = [];
+            let valMapVals = Object.values(this.data.itemValMap);
 
-            for (let $item of $items) {
+            for (let index in valMapVals) {
 
-                let selected = false;
+                if (values.indexOf(valMapVals[index]) !== -1) {
 
-                for (let value of values) {
-
-                    if (value === $item.getAttribute('value')) {
-
-                        selected = true;
-
-                        break;
-
-                    }
-
-                }
-
-                if (selected) {
-
-                    $item.classList.add('selected');
+                    itemSelectedMap[index] = 1;
 
                 } else {
 
-                    $item.classList.remove('selected');
+                    itemSelectedMap[index] = 0;
+
+                }
+
+            }
+
+            this.data.itemSelectedMap = itemSelectedMap;
+            this.data.selectedAll = true;
+
+            for (let selected of itemSelectedMap) {
+
+                if (!selected) {
+
+                    this.data.selectedAll = false;
+
+                    break;
 
                 }
 
@@ -877,69 +1072,9 @@ export default {
             }
 
         },
-        _refreshTips : function () {
-
-            for (let tipVm of this.data.tips) {
-
-                tipVm.$destroy();
-
-            }
-
-            this.data.tips = [];
-
-            if (!this.conf.itemTip) {
-
-                return;
-
-            }
-
-            let $items = this.data.$list.querySelectorAll('li:not(.noitem)');
-
-            for (let index of $items.keys()) {
-
-                let $item = $items[index];
-                let $tip = $item.nextElementSibling;
-
-                if (!this.data.tipsContent[index] &&
-                    ($tip === null ||
-                    $tip.classList.value.split(' ').indexOf('item-tip') === -1)) {
-
-                    return;
-
-                }
-
-                if (!this.data.tipsContent[index]) {
-                
-                    this.data.tipsContent[index] = $tip.innerHTML;
-                    $tip.remove();
-
-                }
-
-                const random = 1e8;
-
-                let tipId = `select-tip-${Math.floor(Math.random() * random)}`;
-                let $newTip = document.createElement('morning-tip');
-
-                $newTip.setAttribute(':minor', true);
-                $newTip.setAttribute('target', `#${tipId}`);
-                $newTip.setAttribute('placement', this.conf.itemTipDirect);
-                $newTip.innerHTML = this.data.tipsContent[index];
-
-                let tipVm = new this.Vue({
-                    el : $newTip
-                });
-
-                $item.setAttribute('id', tipId);
-                tipVm.$mount();
-                this.data.$list.append(tipVm.$el);
-                this.data.tips.push(tipVm);
-
-            }
-
-        },
         _setListHeight : function () {
 
-            let $item = this.data.$list.querySelector('li:not(.noitem):not(.current):not(.selected)');
+            let $item = this.data.$list.querySelector('li:not(.infoitem):not(.selected)');
 
             if (!$item) {
 
@@ -953,7 +1088,7 @@ export default {
             this.Vue.nextTick(() => {
 
                 itemHeight = $item.offsetHeight || this.data.lastItemHeight;
-                maxHeight = itemHeight * this.conf.maxShow;
+                maxHeight = itemHeight * this.conf.maxShowHeight;
 
                 if (itemHeight) {
 
@@ -1015,7 +1150,7 @@ export default {
             if (show) {
 
                 let $items = this.data.$list.querySelectorAll('li');
-                let $currentItem = this.data.$list.querySelector('li.current');
+                let $selectedItem = this.data.$list.querySelector('li.selected');
                 
                 this.data.showlist = true;
 
@@ -1044,13 +1179,13 @@ export default {
                 
                     this._refreshShowItems();
                 
-                } else if ($currentItem) {
+                } else if ($selectedItem) {
 
                     for (let index of $items.keys()) {
 
-                        if ($items[index] === $currentItem) {
+                        if ($items[index] === $selectedItem) {
 
-                            this.data.$list.scrollTop = index * $currentItem.offsetHeight;
+                            this.data.$list.scrollTop = index * $selectedItem.offsetHeight;
 
                             break;
 
@@ -1072,11 +1207,17 @@ export default {
 
                 this.data.showlist = false;
 
-                for (let tipVm of this.data.tips) {
+                let $tips = this.data.$list.querySelectorAll('.tips');
 
-                    if (tipVm.$el._vm.data.show) {
+                for (let $tip of $tips.values()) {
 
-                        tipVm.$el._vm.hide();
+                    if ($tip._vm) {
+
+                        if ($tip._vm.data.show) {
+
+                            $tip._vm.hide();
+
+                        }
 
                     }
 
@@ -1099,15 +1240,30 @@ export default {
         this.Tip.autoReverse = false;
         this.Tip.autoOffset = false;
 
-        this._updateItemValueList();
+        this.$watch(() => JSON.stringify(this.conf.list), () => {
+
+            this._updateItemValueList();
+
+        }, {
+            immediate : true
+        });
+
+        // this._refreshShowItems don't need immediate, cause _onValueChange() will exec it.
+        this.$watch(() => JSON.stringify(this.conf.list), () => {
+
+            this._refreshShowItems();
+
+        });
+
         this._onValueChange();
         this._resizeSelectArea();
+        this._refreshMatchList();
 
         this.$on('value-change', this._onValueChange);
 
         setTimeout(() => {
 
-            this.$watch('conf.maxShow', this._setListHeight, {
+            this.$watch('conf.maxShowHeight', this._setListHeight, {
                 immediate : true
             });
 
@@ -1115,9 +1271,11 @@ export default {
 
         this.$watch('conf.separateEmit', (newVal, oldVal) => {
 
-            if (oldVal) {
+            let $oldEmitTarget = document.querySelector(oldVal);
+
+            if (oldVal && $oldEmitTarget) {
                 
-                document.querySelector(oldVal).removeEventListener('click', this._emitClick);
+                $oldEmitTarget.removeEventListener('click', this._emitClick);
 
             }
 
@@ -1174,33 +1332,15 @@ export default {
             immediate : true
         });
 
-        this.$watch('conf.itemTip', () => {
+        this.$watch('data.itemValMap', () => {
 
-            this._refreshTips();
+            this._refreshMatchList();
 
-        }, {
-            immediate : true
         });
 
-        this.$watch('conf.itemTipDirect', () => {
+        this.$watch('data.itemNomathMap', () => {
 
-            for (let tipVm of this.data.tips) {
-
-                tipVm.$el._vm.conf.placement = this.conf.itemTipDirect;
-
-            }
-
-        }, {
-            immediate : true
-        });
-
-        this.$watch('data.itemValueList', (newVal, oldVal) => {
-
-            if (JSON.stringify(newVal) !== JSON.stringify(oldVal)) {
-
-                this._refreshTips();
-
-            }
+            this._refreshMatchList();
 
         });
 
@@ -1223,14 +1363,7 @@ export default {
     },
     updated : function () {
         
-        this._updateItemValueList();
-
-        if (!this.data.highPerfMode) {
-
-            this._setListHeight();
-
-        }
-
+        this._setListHeight();
         this._resizeInlineImg();
         this._resizeSelectArea();
 

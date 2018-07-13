@@ -1,5 +1,196 @@
 # CHANGELOG
 
+## 0.11.7
+
+`2018年7月10日`
+
+#### 新特性
+
+- 新增`ui-counter`计数器组件
+- `ui-tip`新增`trigger-in-delay`配置，可以延迟触发小提示
+
+#### 修复
+
+- 修复`ui-colorpicker`组件的Vue警告
+
+#### 更多
+
+- 更新贡献者指南文档
+
+## 0.11.6
+
+`2018年7月4日`
+
+#### 改进
+
+- 规范了`ui-btn`和`ui-link`的样式行为
+- 优化了`ui-dialog`非首次打开的性能
+
+#### 修复
+
+- 修复`ui-select`高性能模式下拉列表高度计算错误的问题
+- 修复`ui-texteditor`图片上传弹窗无法主动关闭的问题
+
+## 0.11.5
+
+`2018年7月3日`
+
+#### 新特性
+
+- `ui-datepicker`和`ui-datetimepicker`新增`range-input-direction`配置，可以在区间选择时竖向排列输入框
+
+#### 修复
+
+- 修复`ui-select`文档中的一处错误
+- 修复`ui-collapse`开启`max-show`配置无效的问题
+- 修复`ui-collapse`的`line`样式类样式错误问题
+
+## 0.11.4
+
+`2018年7月1日`
+
+#### 新特性
+
+- 新增`ui-collapse`折叠面板组件
+- `ui-upload`支持显示真实的上传进度
+- `ui-colorpicker`新增`show-picker`、`hide-picker`、`hue-slider-change`、`alpha-slider-change`、`input-type-change`事件和`togglePicker`方法
+- `ui-tab`新增`disabled-options`配置，支持禁用指定标签
+
+#### 改进
+
+- 使用Parallelism优化CircleCI持续集成性能
+
+#### 修复
+
+- 修复`ui-btn`和`ui-link`的一些样式问题
+- 修复`ui-datepicker`和`ui-datetimepicker`在选中特定日期范围时显示区间错误的问题
+- 修复`ui-dropdown`点击触发元素无法关闭下拉菜单的问题
+
+## 0.11.3
+
+`2018年6月28日`
+
+#### 新特性
+
+- `ui-texteditor`组件新增图片工具，同时支持图片定位及缩放
+
+#### 改进
+
+-  优化`ui-select`在处理大量可选项时的性能
+- `ui-btn`和`ui-link`采用`<a>`标签实现，可支持浏览器中链接的功能
+
+#### 修复
+
+- 修复`ui-video`组件的一个样式问题
+- 修复`ui-datepicker`和`ui-datetimepicker`的`done-hidden`配置在开启`quick-pick`时不生效的问题
+
+## 0.11.2
+
+`2018年6月25日`
+
+#### 新特性
+
+- `ui-multiform`组件新增`show-type`配置
+- `ui-texteditor`组件`tools`工具配置新增`divider`(横划线)
+
+#### 修复
+
+- 修复`ui-table`在设置标题列并且数据为空时的样式错误
+- 修复`ui-imagemap`缩放时光标状态可能与缩放状态不一致的情况
+- 修复 `ui-imagemap`在缩放放大模式下新建区域最小高宽错误的问题
+- 修复`ui-select`使用`dynamic-list`配置后的一些问题
+- 修复`ui-datetimepicker`和`ui-datepicker`在开启`is-range`配置后无法删除选中日期的问题
+
+## 0.11.1
+
+`2018年6月24日`
+
+#### 新特性
+
+- `ui-table`新增title-col-width`配置，可以设置标题列的绝对宽度
+
+#### 修复
+
+- 修复`ui-colorpicker`透明度不能拖动调整的问题
+- 修复`ui-select`使用`separate-emit`配置时可能报错的问题(`'removeEventListener' of null`)
+- 修复`ui-datetimepicker`和`ui-datepicker`开启`is-range`配置后弹窗错位的问题
+
+#### 更多
+
+- 文档新增富文本编辑器`tools`配置的演示
+
+## 0.11.0
+
+`2018年6月23日`
+
+#### 新特性
+
+- 新增字体图标库
+- 新增`ui-sticky`吸附组件
+- 新增`ui-audio`音频组件
+- 新增`ui-video`视频组件
+- 新增`ui-slider`滑块输入组件
+- 新增`ui-colorpicker`颜色选择器组件
+- `ui-select`新增`list`配置，用来设置可选项目
+- `ui-select`新增`dynamic-list`和`validate`配置，开启后支持动态调整可选项目及过滤项目
+- `ui-select`新增`max-show-height`配置，用来替代原有的`max-show`，原有的`max-show`配置现在用来控制最多显示项目
+- `ui-select`新增`search`事件
+- `ui-select`选中项标识更明显
+- `ui-textinput`新增`append-type`配置，前置和附加内容支持行内样式
+- `ui-textarea`新增`auto-size`配置，可设置段落输入框自动调整高度
+- `ui-textarea`新增`max-rows`配置，可设置最大高度
+- `ui-btn`新增`plain`、`round`、`circle`样式类，以及可配合`ui-img`实现图片按钮
+- `ui-breadcrumbs`新增`separator`配置，可修改层级分隔符
+- `ui-tab`新增`position`配置，可调整标签页位置
+- `ui-tab`新增`btn`样式类，可设置按钮式标签页
+- `ui-checkbox`新增`disabled-options`配置，可禁用部分选项
+- `ui-checkbox`新增`max`配置，可设置对多可选项目数
+- `ui-checkbox`新增`parent`配置，支持多个`ui-checkbox`选择联动
+- `ui-checkbox`新增`border`和`vertical`样式类，为组件增加带边框和垂直样式布局
+- `ui-radio`新增`disabled-options`配置，可禁用部分选项
+- `ui-radio`新增`border`和`vertical`样式类，为组件增加带边框和垂直样式布局
+- `ui-tip`新增`position`方法，配置`trigger`新增`method`选项
+- `ui-switch`新增`open-note`和`close-note`配置，可为开关添加备注
+- `ui-switch`新增`open-mark`和`close-mark`配置，可为开关添加内部标记
+- `ui-datepicker`和`ui-datetimepicker`新增`done-hidden`配置
+
+#### 改进
+
+- 新的文档
+- 优化加载动画效果
+- 全局事件管理支持`hashchange`事件
+- `ui-tab`组件样式优化
+- `morning-co-font-*`、`morning-co-border-*`、`morning-co-bg-*`配色类缩短为`mo-co-font-*`、`mo-co-border-*`、`mo-co-bg-*`
+- `ui-tip`的`underline`样式类改名为`line`
+- `ui-img`的`rounded`样式类改名为`round`
+- `ui-switch`组件样式优化
+- 优化`ui-formgroup`中的部分字体大小，使其更具可读性
+- `ui-multiinput`在删除项目时不会清空输入框已输入的内容
+
+#### 修复
+
+- 修复`ui-dropdown`组件`auto-close`的一个问题
+
+#### 废弃
+
+- `ui-textarea`的`setRows(num)`方法被废弃
+
+#### 更多
+
+- 新的更新日志规范
+- 更新对比文档，新增与iView的对比
+
+__升级注意事项__
+
+- `ui-select`的选项定义方式改变，现在需要使用`list`配置来定义选项
+- `ui-select`的`max-show`配置改名为`max-show-height`
+- `ui-multiinput`在删除项目时不会清空输入框已输入的内容
+- `ui-textarea`的`setRows(num)`方法被废弃，采用`rows`配置来替代
+- `ui-tab`的`underline`样式类改名为`line`
+- `ui-img`的`rounded`样式类改名为`round`
+- `ui-downdrop`组件的内置icon从`<i class="morningicon">&#xe6b1;</i>`变为`<i class="mo-icon mo-icon-dropdown"></i>`
+- `morning-co-font-*`、`morning-co-border-*`、`morning-co-bg-*`配色类缩短为`mo-co-font-*`、`mo-co-border-*`、`mo-co-bg-*`
+
 ## 0.10.32
 
 `2018年6月5日`

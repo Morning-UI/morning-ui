@@ -12,6 +12,7 @@ export default style => {
 
     delete style.webkitTapHighlightColor;
     delete style.transformOrigin;
+    delete style.webkitLocale;
 
     return style;
 

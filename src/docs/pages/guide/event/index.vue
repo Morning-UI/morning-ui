@@ -138,6 +138,19 @@
     - `month-change` : 月份改变
     - `year-change` : 年份改变
     - `highlight` : 高亮变化
+    - `search` : 搜索
+    - `play` : 播放
+    - `pause` : 暂停
+    - `play-change` : 播放状态改变
+    - `mute-change` : 静音状态改变
+    - `volume-change` : 音量改变
+    - `fullscreen-change` : 全屏状态改变
+    - `selection-change` : 选取改变
+    - `show-picker` : 显示选择器
+    - `hide-picker` : 隐藏选择器
+    - `hue-slider-change` : HUE选择器变化
+    - `alpha-slider-change` : 透明度选择器变化
+    - `input-type-change` : 输入类型变化
 
     </script>
     </doc-guide>

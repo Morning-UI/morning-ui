@@ -41,6 +41,29 @@
     </div>
     :::
 
+    #### 简写
+
+    若菜单只有`key`和名字，可以将名字简写字符串。
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            menu : {
+                home : 'Home',
+                msg : 'Messages',
+                settings : 'Settings',
+                support : 'Support'
+            }
+        }
+    });
+    ---
+    <div style="width: 600px;">
+        <ui-nav :list="menu"></ui-nav>
+    </div>
+    :::
+
     #### 在菜单中使用链接
 
     可以通过`link`设置菜单链接，通过`new-tab`设置来控制是否要在新窗口打开链接。
@@ -80,9 +103,7 @@
         template : '{$template}',
         data : {
             menu : {
-                home : {
-                    name : 'Home'
-                },
+                home : 'Home',
                 msg : {
                     name : 'Messages',
                     childs : {
@@ -107,7 +128,15 @@
                             name : 'Safety',
                             childs : {
                                 account : {
-                                    name : 'Account'
+                                    name : 'Account',
+                                    childs : {
+                                        changepassword : {
+                                            name : 'change password'
+                                        },
+                                        verification : {
+                                            name : 'verification'
+                                        }
+                                    }
                                 },
                                 privacy : {
                                     name : 'Privacy'

@@ -8,44 +8,23 @@
     >
 
     <div class="nav-wrap">
-        <nav-menu
+        <morning-private-nav-menu
             :list="list"
             :current="data.current"
-            :to="to"
+            :deep="0"
+            path=""
+            :_to="_to"
             :_linkTo="_linkTo"
-        >
-            <template slot-scope="{
-                item,
-                current,
-                deep,
-                path,
-                to,
-                _linkTo
-            }">
-                <nav-menu
-                    :list="item.childs"
-                    :current="current"
-                    :deep="deep"
-                    :path="path"
-                    :to="to"
-                    :_linkTo="_linkTo"
-                ></nav-menu>
-            </template>
-        </nav-menu>
+        ></morning-private-nav-menu>
     </div>
 
     </mor-nav>
 </template>
 
 <script>
-import navMenu                      from './nav-menu.vue';
-
 export default {
     origin : 'UI',
     name : 'nav',
-    components : {
-        'nav-menu' : navMenu
-    },
     props : {
         list : {
             type : Object,
@@ -108,7 +87,13 @@ export default {
             }
 
         },
-        to : function (keys) {
+        _to : function (keys, item) {
+
+            if (item.childs && item.childs.length > 0) {
+
+                return this;
+
+            }
 
             let level = 0;
 

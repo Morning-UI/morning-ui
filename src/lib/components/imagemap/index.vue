@@ -256,6 +256,8 @@ import GlobalEvent                  from 'Utils/GlobalEvent';
 
 const num100 = 100;
 
+let noopFn = () => {};
+
 export default {
     origin : 'Form',
     name : 'imagemap',
@@ -275,7 +277,7 @@ export default {
         },
         validate : {
             type : Function,
-            default : () => ({})
+            default : noopFn
         },
         uploader : {
             type : Function,
@@ -331,7 +333,7 @@ export default {
         },
         zoneMinSize : function () {
 
-            return 4 * this.data.scale;
+            return 4;
 
         }
     },
@@ -434,7 +436,7 @@ export default {
 
             this.Vue.nextTick(() => {
 
-                this._reizeZoneStart(evt, id, 'bottomright');
+                this._reizeZoneStart(evt, id, 'topleft');
 
             });
 

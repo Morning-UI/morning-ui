@@ -49,7 +49,13 @@
                     :key="index"
                     :class="item.classList"
                 >
-                    <i class="progress"></i>
+                    <i
+                        class="progress"
+                        :class="item.classList"
+                        :style="{
+                            width : (item.classList.uploading) ? ((30 + (+item.progress) * 60) + '%') : 'auto'
+                        }"
+                    ></i>
                     <span>
                         {{item.name}}
                     </span>
@@ -115,6 +121,8 @@
 import axios                       from 'Npm/axios/dist/axios.min.js';
 import extend                      from 'extend';
 
+let noopFn = () => {};
+
 export default {
     origin : 'Form',
     name : 'upload',
@@ -145,7 +153,7 @@ export default {
         },
         validate : {
             type : Function,
-            default : () => ({})
+            default : noopFn
         },
         uploader : {
             type : Function,
@@ -412,6 +420,7 @@ export default {
                 size : 0,
                 data : undefined,
                 path : undefined,
+                progress : 0,
                 classList : {
                     fail : false,
                     uploading : false,
@@ -542,7 +551,25 @@ export default {
             }
 
             let index = this.data.uploadQueue.shift(),
-                uploadObj = {};
+                uploadObj = {
+                    onUploadProgress : xhr => {
+
+                        if (xhr &&
+                            xhr.upload &&
+                            typeof xhr.upload.addEventListener === 'function') {
+
+                            xhr.upload.addEventListener('progress', evt => {
+
+                                this.data.files[index].progress = +(evt.loaded / evt.total) || 0;
+
+                            }, false);
+
+                        }
+
+                    },
+                    file : null,
+                    name : null
+                };
 
             Promise
                 .resolve()

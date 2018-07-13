@@ -8,6 +8,7 @@
         :append="append"
         :anchor-target="anchorTarget"
         :position="position"
+        :disabled-options="disabledOptions"
     >
 
         <ul>
@@ -15,6 +16,9 @@
                 v-for="item in data.namelist"
                 :name="item.name"
                 :key="item.name"
+                :class="{
+                    disabled : (conf.disabledOptions.indexOf(item.name) !== -1)
+                }"
                 v-html="item.html"
                 @click="_onClick(item.name)"
             ></li>
@@ -66,6 +70,10 @@ export default {
                 'top',
                 'left'
             ].indexOf(value) !== -1)
+        },
+        disabledOptions : {
+            type : Array,
+            default : (() => [])
         }
     },
     computed : {
@@ -76,7 +84,8 @@ export default {
                 prepend : this.prepend,
                 append : this.append,
                 anchorTarget : this.anchorTarget,
-                position : this.position
+                position : this.position,
+                disabledOptions : this.disabledOptions
             };
 
         },
@@ -105,6 +114,12 @@ export default {
     methods : {
         _onClick : function (name) {
 
+            if (this.conf.disabledOptions.indexOf(name) !== -1) {
+
+                return;
+
+            }
+
             this.switch(name);
 
         },
@@ -128,11 +143,52 @@ export default {
             this.data.namelist = list;
 
         },
+        _setSticky : function ($con, show) {
+
+            // hidden ui-sticky in tab
+            let $stickys = $con.querySelectorAll('mor-sticky');
+
+            for (let $sticky of $stickys) {
+
+                if (!show) {
+    
+                    $sticky.classList.add('mo-in-tab-hidden');
+
+                } else {
+
+                    $sticky.classList.remove('mo-in-tab-hidden');
+
+                }
+
+            }
+
+        },
         _initTabs : function () {
 
             this._getNamelist();
             this.data.tabs = Object.keys(this.$slots);
             this._initSelectTab();
+
+        },
+        _getClosestCanSelectTab : function (name) {
+
+            if (this.conf.disabledOptions.indexOf(name) !== -1) {
+
+                if (this.data.tabs.indexOf(name) < (this.data.tabs.length - 1)) {
+
+                    return this.data.tabs[this.data.tabs.indexOf(name) + 1];
+
+                } else if (this.data.tabs.indexOf(name) === (this.data.tabs.length - 1)) {
+
+                    return this.data.tabs[0];
+
+                }
+
+                return null;
+
+            }
+
+            return name;
 
         },
         _initSelectTab : function () {
@@ -158,6 +214,7 @@ export default {
                     for (let $el of $currentConEl) {
 
                         $el.classList.remove('current');
+                        this._setSticky($el, false);
 
                     }
 
@@ -168,11 +225,11 @@ export default {
                 // init new select tab
                 if (this.conf.tab) {
 
-                    this.switch(this.conf.tab);
+                    this.switch(this._getClosestCanSelectTab(this.conf.tab));
 
                 } else {
 
-                    this.switch(this.data.tabs[0]);
+                    this.switch(this._getClosestCanSelectTab(this.data.tabs[0]));
 
                 }
 
@@ -299,6 +356,9 @@ export default {
                 conEl.classList.remove('current');
                 tabEl.classList.remove('current');
 
+                // hidden ui-sticky in tab
+                this._setSticky(conEl, false);
+
             }
 
             let current = this.data.tabs.indexOf(name);
@@ -310,6 +370,9 @@ export default {
 
                 conEl.classList.add('current');
                 tabEl.classList.add('current');
+
+                // show ui-sticky in tab
+                this._setSticky(conEl, true);
 
             }
 
@@ -376,7 +439,7 @@ export default {
 
         });
 
-        this.$watch('conf.tab', () => {
+        this.$watch(() => (`${JSON.stringify(this.conf.disabledOptions)}||${this.conf.tab}`), () => {
 
             this._initSelectTab();
 

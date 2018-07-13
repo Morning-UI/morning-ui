@@ -28,8 +28,6 @@
 <script>
 import PopupManager                 from 'Utils/PopupManager';
 
-const rmIndexTimeout = 120;
-
 export default {
     origin : 'UI',
     name : 'dialog',
@@ -88,7 +86,8 @@ export default {
             data : {
                 show : false,
                 hasHeader : false,
-                hasFooter : false
+                hasFooter : false,
+                showingTimeout : null
             }
         };
 
@@ -121,6 +120,8 @@ export default {
 
             }
 
+            clearTimeout(this.data.showingTimeout);
+
             show = !!show;
 
             if (show) {
@@ -129,7 +130,7 @@ export default {
 
                     this._popupShow();
 
-                    setTimeout(() => {
+                    this.data.showingTimeout = setTimeout(() => {
 
                         this.data.show = show;
 
@@ -145,12 +146,6 @@ export default {
                 if (isShown) {
 
                     this.data.show = show;
-
-                    setTimeout(() => {
-
-                        this._popupHide();
-
-                    }, rmIndexTimeout);
 
                 }
 

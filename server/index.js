@@ -48,6 +48,18 @@ router
         next();
 
     })
+    .all('/api/uploadfile', async (ctx, next) => {
+
+        await next();
+
+        if (ctx.request.method === 'OPTIONS') {
+
+            ctx.set('Access-Control-Allow-Origin', '*');
+            ctx.body = {};
+
+        }
+
+    })
     .post('/api/uploadfile', body({
         multipart : true,
         formidable : {

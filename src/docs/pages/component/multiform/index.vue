@@ -80,6 +80,7 @@
     |[batch-reg](#batch-reg)|解析用户输入字符串的正则表达式<br>在`batch-separate`模式下通过这个正则分割字符串得到id数组<br>在`batch-pluck`模式下通过匹配这个正则得到id数组(每匹配到一项添加到数组中)|正则表达式字符串|String|`','`|
     |[batch-filler](#batch-filler)|批量输入的填值函数，此函数有一个参数：<br>`ids`：用户输入的id数组<br><br>通过解析这些id，此函数返回多个项目对象组成的数组<br><br>如果解析是异步的，此函数也可以返回一个`Promise`对象|填值函数|Function|`value => value`|
     |[batch-uniq](#batch-uniq)|对用户输入解析后的id数组进行去重|`true`<br>`false`|Boolean|`false`|
+    |[show-type](#show-type)|组件中模拟盒打开的方式(使用`no`可以提升性能)|`top`:从上往下弹出<br>`center`:从中间弹出<br>`no`:无动画直接出现|String|`'top'`|
     :::
 
     :::preset/html
@@ -651,6 +652,50 @@
                     <div class="content">
                         <div class="form">
                             <ui-textinput form-key="province"></ui-textinput>
+                        </div>
+                    </div>
+                </div>
+            </ui-formgroup>
+        </ui-multiform>
+    </div>
+    :::
+
+    #### show-type
+    
+    从中间弹出的模拟盒：
+
+    :::democode/html
+    <div style="width:300px;">
+        <ui-multiform form-name="名单" item-name="使用者" show-type="center">
+            <ui-formgroup>
+                <div class="item">
+                    <h5 class="title">
+                        <ui-center class="fill">姓名</ui-center>
+                    </h5>
+                    <div class="content">
+                        <div class="form">
+                            <ui-textinput form-key="name"></ui-textinput>
+                        </div>
+                    </div>
+                </div>
+            </ui-formgroup>
+        </ui-multiform>
+    </div>
+    :::
+    
+    无动画直接出现的模拟盒：
+
+    :::democode/html
+    <div style="width:300px;">
+        <ui-multiform form-name="名单" item-name="使用者" show-type="no">
+            <ui-formgroup>
+                <div class="item">
+                    <h5 class="title">
+                        <ui-center class="fill">姓名</ui-center>
+                    </h5>
+                    <div class="content">
+                        <div class="form">
+                            <ui-textinput form-key="name"></ui-textinput>
                         </div>
                     </div>
                 </div>

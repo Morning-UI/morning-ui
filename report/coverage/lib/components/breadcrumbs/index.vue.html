@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">45.83% </span>
+        <span class="strong">45.21% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>33/72</span>
+        <span class='fraction'>33/73</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">39.29% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>22/56</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">47.62% </span>
+        <span class="strong">45.45% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>10/21</span>
+        <span class='fraction'>10/22</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">46.67% </span>
+        <span class="strong">45.9% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>28/60</span>
+        <span class='fraction'>28/61</span>
       </div>
     </div>
   </div>
@@ -297,7 +297,18 @@
 252
 253
 254
-255</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -338,9 +349,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">129x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">129x</span>
+<span class="cline-any cline-yes">142x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">142x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -366,12 +378,22 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -550,8 +572,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">129x</span>
-<span class="cline-any cline-yes">129x</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
+<span class="cline-any cline-yes">142x</span>
+<span class="cline-any cline-yes">142x</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
     &lt;mor-breadcrumbs
         :_uiid="uiid"
         :class="[sizeClass]"
@@ -560,6 +582,7 @@
         :choose-root="chooseRoot"
         :list="list"
         :max-history="maxHistory"
+        :separator="separator"
     &gt;
 &nbsp;
     &lt;ul&gt;
@@ -583,7 +606,7 @@
                 &gt;{{name}}&lt;/li&gt;
                 &lt;li class="last" :value="key" v-else&gt;{{name}}&lt;/li&gt;
             &lt;/template&gt;
-            &lt;li class="separator" v-if="index &lt; (data.lvlist.length - 1)"&gt; / &lt;/li&gt;
+            &lt;li class="separator" v-if="index &lt; (data.lvlist.length - 1)" v-html="separatorHtml"&gt;&lt;/li&gt;
         &lt;/template&gt;
         
     &lt;/ul&gt;
@@ -615,6 +638,10 @@ export default {
         maxHistory : {
             type : Number,
             default : maxHistoryNum
+        },
+        separator : {
+            type : String,
+            default : '/'
         }
     },
     computed : {
@@ -624,8 +651,14 @@ export default {
                 rootName : this.rootName,
                 chooseRoot : this.chooseRoot,
                 list : this.list,
-                maxHistory : this.maxHistory
+                maxHistory : this.maxHistory,
+                separator : this.separator
             };
+&nbsp;
+        },
+        separatorHtml : <span class="fstat-no" title="function not covered" >function () </span>{
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return ` ${this.conf.separator} `;</span>
 &nbsp;
         }
     },
@@ -811,7 +844,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Jun 05 2018 14:32:00 GMT+0800 (CST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Jul 04 2018 20:34:57 GMT+0800 (CST)
 </div>
 </div>
 <script src="../../../prettify.js"></script>

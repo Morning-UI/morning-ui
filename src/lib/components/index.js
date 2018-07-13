@@ -1,4 +1,5 @@
 import                              'Common/common.less';
+import                              'Npm/quill/dist/quill.snow.css';
 
 import h                            from './h/index.vue';
 import lead                         from './lead/index.vue';
@@ -44,11 +45,13 @@ import link                         from './link/index.vue';
 import dropdown                     from './dropdown/index.vue';
 import nav                          from './nav/index.vue';
 import tab                          from './tab/index.vue';
+import collapse                     from './collapse/index.vue';
 import table                        from './table/index.vue';
 import pagination                   from './pagination/index.vue';
 import dialog                       from './dialog/index.vue';
 import calendar                     from './calendar/index.vue';
 import load                         from './load/index.vue';
+import sticky                       from './sticky/index.vue';
 import breadcrumbs                  from './breadcrumbs/index.vue';
 import tip                          from './tip/index.vue';
 import message                      from './message/index.vue';
@@ -57,7 +60,9 @@ import video                        from './video/index.vue';
 
 import textinput                    from './textinput/index.vue';
 import textarea                     from './textarea/index.vue';
+import texteditor                   from './texteditor/index.vue';
 import _switch                      from './switch/index.vue';
+import counter                      from './counter/index.vue';
 import select                       from './select/index.vue';
 import checkbox                     from './checkbox/index.vue';
 import radio                        from './radio/index.vue';
@@ -73,10 +78,12 @@ import imagemap                     from './imagemap/index.vue';
 
 import privateTimepicker             from './private-timepicker/index.vue';
 import privateDatepicker             from './private-datepicker/index.vue';
+import privateNavMenu                from './private-nav-menu/index.vue';
 
 export default {
     'private-timepicker' : privateTimepicker,
     'private-datepicker' : privateDatepicker,
+    'private-nav-menu' : privateNavMenu,
     h,
     lead,
     mark,
@@ -120,11 +127,13 @@ export default {
     dropdown,
     nav,
     tab,
+    collapse,
     table,
     pagination,
     dialog,
     calendar,
     load,
+    sticky,
     breadcrumbs,
     tip,
     message,
@@ -132,7 +141,9 @@ export default {
     video,
     textinput,
     textarea,
+    texteditor,
     switch : _switch,
+    counter,
     select,
     checkbox,
     radio,

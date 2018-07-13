@@ -84,8 +84,8 @@
                         <i class="mo-icon mo-icon-copy"></i>
                     </div>
                 </div>
-                <morning-tip :target="'#mor-colorpicker-copy-'+uiid" color="light-blue" offset="3px 0">
-                    {{colorString}}
+                <morning-tip :ref="'mor-colorpicker-copytip-'+uiid" :target="'#mor-colorpicker-copy-'+uiid" color="light-blue" offset="3px 0">
+                    {{data.copyNote || colorString}}
                 </morning-tip>
                 <div class="slider-tool">
                     <div class="hsb">
@@ -94,7 +94,7 @@
                             :max="360"
                             :state="inputIsReadonly ? 'readonly' : 'normal'"
 
-                            v-model="hslHReversal"
+                            v-model="data.hslHReversal"
                             
                             @value-change="_hslaChangeHBar"
                         ></morning-slider>
@@ -116,29 +116,29 @@
             </div>
             <div class="values">
                 <div class="input">
-                    <div class="rgba" v-if="data.showValueType === 'rgba'">
-                        <morning-textinput v-model="colorValue.r" :state="inputIsReadonly ? 'readonly' : 'normal'" @value-change="_rgbaChangeR"></morning-textinput>
-                        <morning-textinput v-model="colorValue.g" :state="inputIsReadonly ? 'readonly' : 'normal'" @value-change="_rgbaChangeG"></morning-textinput>
-                        <morning-textinput v-model="colorValue.b" :state="inputIsReadonly ? 'readonly' : 'normal'" @value-change="_rgbaChangeB"></morning-textinput>
-                        <morning-textinput v-model="colorValue.a" :state="(inputIsReadonly || !conf.allowAlpha) ? 'readonly' : 'normal'" @value-change="_alphaChangePer"></morning-textinput>
+                    <div class="rgba" v-if="data.showValueType === 'rgba' && typeof data.colorValue === 'object'">
+                        <morning-textinput v-model="data.colorValue.r" :state="inputIsReadonly ? 'readonly' : 'normal'" @value-change="_rgbaChangeR"></morning-textinput>
+                        <morning-textinput v-model="data.colorValue.g" :state="inputIsReadonly ? 'readonly' : 'normal'" @value-change="_rgbaChangeG"></morning-textinput>
+                        <morning-textinput v-model="data.colorValue.b" :state="inputIsReadonly ? 'readonly' : 'normal'" @value-change="_rgbaChangeB"></morning-textinput>
+                        <morning-textinput v-model="data.colorValue.a" :state="(inputIsReadonly || !conf.allowAlpha) ? 'readonly' : 'normal'" @value-change="_alphaChangePer"></morning-textinput>
                         <div class="name">R</div>
                         <div class="name">G</div>
                         <div class="name">B</div>
                         <div class="name">A</div>
                     </div>
-                    <div class="hex" v-if="data.showValueType === 'hex'">
+                    <div class="hex" v-if="data.showValueType === 'hex' && typeof data.colorValue === 'string'">
                         <morning-textinput
-                            v-model="colorValue"
+                            v-model="data.colorValue"
                             :state="inputIsReadonly ? 'readonly' : 'normal'"
                             @value-change="_hexChange"
                         ></morning-textinput>
                         <div class="name">HEX</div>
                     </div>
-                    <div class="hsla" v-if="data.showValueType === 'hsla'">
-                        <morning-textinput v-model="colorValue.h" :state="inputIsReadonly ? 'readonly' : 'normal'" @value-change="_hslChangeH"></morning-textinput>
-                        <morning-textinput v-model="colorValue.s" :state="inputIsReadonly ? 'readonly' : 'normal'" @value-change="_hslChangeS"></morning-textinput>
-                        <morning-textinput v-model="colorValue.l" :state="inputIsReadonly ? 'readonly' : 'normal'" @value-change="_hslChangeL"></morning-textinput>
-                        <morning-textinput v-model="colorValue.a" :state="(inputIsReadonly || !conf.allowAlpha) ? 'readonly' : 'normal'" @value-change="_alphaChangePer"></morning-textinput>
+                    <div class="hsla" v-if="data.showValueType === 'hsla' && typeof data.colorValue === 'object'">
+                        <morning-textinput v-model="data.colorValue.h" :state="inputIsReadonly ? 'readonly' : 'normal'" @value-change="_hslChangeH"></morning-textinput>
+                        <morning-textinput v-model="data.colorValue.s" :state="inputIsReadonly ? 'readonly' : 'normal'" @value-change="_hslChangeS"></morning-textinput>
+                        <morning-textinput v-model="data.colorValue.l" :state="inputIsReadonly ? 'readonly' : 'normal'" @value-change="_hslChangeL"></morning-textinput>
+                        <morning-textinput v-model="data.colorValue.a" :state="(inputIsReadonly || !conf.allowAlpha) ? 'readonly' : 'normal'" @value-change="_alphaChangePer"></morning-textinput>
                         <div class="name">H</div>
                         <div class="name">S</div>
                         <div class="name">L</div>
@@ -224,16 +224,6 @@ export default {
             return this._getColorString();
 
         },
-        colorValue : function () {
-
-            return this._getColorValue();
-
-        },
-        hslHReversal : function () {
-
-            return Math.floor(this.data.hslH);
-
-        },
         colorH : function () {
 
             let hsl = this.colorObj.hsl().object();
@@ -290,7 +280,12 @@ export default {
                 strawSize : 0,
                 dontPickColor : false,
                 $preview : null,
-                $picker : null
+                $picker : null,
+                toggling : false,
+                hslHReversal : null,
+                colorValue : null,
+                copyNote : null,
+                copyNoteTimeout : null
             }
         };
 
@@ -373,8 +368,18 @@ export default {
                 this.data.hslL = hsl.l;
 
                 if (this.conf.allowAlpha) {
-                    
-                    this.data.alpha = Math.round(hsl.alpha * maxAlpha) || maxAlpha;
+                        
+                    let alpha = Math.round(hsl.alpha * maxAlpha);
+
+                    if (isNaN(alpha)) {
+
+                        this.data.alpha = maxAlpha;
+
+                    } else {
+
+                        this.data.alpha = alpha;
+
+                    }
 
                 }
 
@@ -523,6 +528,7 @@ export default {
             }
 
             this.data.alpha = value;
+            this.$emit('alpha-slider-change');
 
         },
         _alphaChangePer : function (per) {
@@ -557,6 +563,7 @@ export default {
             }
 
             this.data.hslH = value;
+            this.$emit('hue-slider-change');
 
         },
         _hsvChangeSV : function (s, v) {
@@ -638,6 +645,7 @@ export default {
             }
 
             this.data.showValueType = valueTypes[index];
+            this.$emit('input-type-change');
 
         },
         _hslHSync : function (sync) {
@@ -758,12 +766,32 @@ export default {
         },
         _colorCopy : function () {
 
+            const copyShowtime = 500;
+
             copy(this.colorString);
+            this.data.copyNote = '已复制';
+            clearTimeout(this.data.copyNoteTimeout);
+
+            this.Vue.nextTick(() => this.$refs[`mor-colorpicker-copytip-${this.uiid}`].position());
+
+            setTimeout(() => {
+
+                this.data.copyNote = null;
+                this.Vue.nextTick(() => this.$refs[`mor-colorpicker-copytip-${this.uiid}`].position());
+
+            }, copyShowtime);
 
         },
         togglePicker : function (show) {
 
+            if (this.data.toggling) {
+
+                return this;
+
+            }
+
             this.data.first = false;
+            this.data.toggling = true;
 
             if (show === undefined) {
 
@@ -780,6 +808,14 @@ export default {
                 this._hidePicker();
 
             }
+
+            this.Vue.nextTick(() => {
+
+                this.data.toggling = false;
+
+            });
+
+            return this;
 
         }
     },
@@ -810,6 +846,22 @@ export default {
                 $container.clientHeight + (this.data.strawSize / 2)
             ];
 
+        });
+
+        this.$watch('data.hslH', () => {
+
+            this.data.hslHReversal = Math.floor(this.data.hslH);
+
+        }, {
+            immediate : true
+        });
+
+        this.$watch(() => this._getColorValue(), newValue => {
+
+            this.data.colorValue = newValue;
+
+        }, {
+            immediate : true
         });
 
         this.$watch('inputIsReadonly', () => {

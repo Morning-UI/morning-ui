@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">19.05% </span>
+        <span class="strong">19.27% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>84/441</span>
+        <span class='fraction'>85/441</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">29.75% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>27/79</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">20.62% </span>
+        <span class="strong">20.9% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>73/354</span>
+        <span class='fraction'>74/354</span>
       </div>
     </div>
   </div>
@@ -1247,7 +1247,9 @@
 1202
 1203
 1204
-1205</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+1205
+1206
+1207</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1499,12 +1501,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">129x</span>
-<span class="cline-any cline-yes">129x</span>
-<span class="cline-any cline-yes">129x</span>
+<span class="cline-any cline-yes">142x</span>
+<span class="cline-any cline-yes">142x</span>
+<span class="cline-any cline-yes">142x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">129x</span>
+<span class="cline-any cline-yes">142x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">142x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1524,7 +1527,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -2450,7 +2454,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">129x</span>
+<span class="cline-any cline-yes">142x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
     &lt;mor-imagemap
         :_uiid="uiid"
@@ -2495,10 +2499,10 @@
 &nbsp;
         &lt;span class="modify-map" v-show="!data.imagesLoading &amp;&amp; data.images.length &gt; 0" @click="_openMap"&gt;
             &lt;template v-if="conf.state === 'disabled' || conf.state === 'readonly'"&gt;
-                &lt;i class="morningicon"&gt;&amp;#xe6a9;&lt;/i&gt; 查看热区
+                &lt;i class="mo-icon mo-icon-imagemap"&gt;&lt;/i&gt; 查看热区
             &lt;/template&gt;
             &lt;template v-else&gt;
-                &lt;i class="morningicon"&gt;&amp;#xe6a9;&lt;/i&gt; 绘制热区
+                &lt;i class="mo-icon mo-icon-imagemap"&gt;&lt;/i&gt; 绘制热区
             &lt;/template&gt;
         &lt;/span&gt;
 &nbsp;
@@ -2709,6 +2713,8 @@ import GlobalEvent                  from 'Utils/GlobalEvent';
 &nbsp;
 const num100 = 100;
 &nbsp;
+let <span class="fstat-no" title="function not covered" >noopFn = (</span>) =&gt; {};
+&nbsp;
 export default {
     origin : 'Form',
     name : 'imagemap',
@@ -2728,7 +2734,7 @@ export default {
         },
         validate : {
             type : Function,
-            default : <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >() =&gt; ({})</span></span>
+            default : noopFn
         },
         uploader : {
             type : Function,
@@ -2784,7 +2790,7 @@ export default {
         },
         zoneMinSize : <span class="fstat-no" title="function not covered" >function () </span>{
 &nbsp;
-<span class="cstat-no" title="statement not covered" >            return 4 * this.data.scale;</span>
+<span class="cstat-no" title="statement not covered" >            return 4;</span>
 &nbsp;
         }
     },
@@ -2887,7 +2893,7 @@ export default {
 &nbsp;
 <span class="cstat-no" title="statement not covered" >            this.Vue.nextTick(<span class="fstat-no" title="function not covered" >() =&gt; </span>{</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >                this._reizeZoneStart(evt, id, 'bottomright');</span>
+<span class="cstat-no" title="statement not covered" >                this._reizeZoneStart(evt, id, 'topleft');</span>
 &nbsp;
             });
 &nbsp;
@@ -3661,7 +3667,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Jun 05 2018 14:32:00 GMT+0800 (CST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Jul 04 2018 20:34:57 GMT+0800 (CST)
 </div>
 </div>
 <script src="../../../prettify.js"></script>

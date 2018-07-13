@@ -1,0 +1,152 @@
+@import '~Common/var.less';
+
+mor-private-nav-menu{
+    display: block;
+
+    &.root-menu{
+        width: 100%;
+    }
+
+    &.second-menu{
+        > .nav-menu-wrap{
+            transform: scale(0);
+        }
+    }
+
+    > .nav-menu-wrap{
+        display: block;
+        height: 100%;
+        width: 100%;
+
+        &.show{
+            pointer-events: auto;
+            animation-name: popup;
+            animation-duration: 0.2s;
+            animation-fill-mode: forwards;
+        }
+
+        &.hide{
+            pointer-events: none;
+            animation-name: popin;
+            animation-duration: 0.18s;
+            animation-fill-mode: forwards;
+        }
+
+        &.root-menu{
+            transform: none;
+            pointer-events: auto;
+            animation: none;
+        }
+    }
+
+    .root-menu,
+    .sub-menu{
+        padding: 0;
+        margin: 0;
+        font-size: 0;
+        list-style: none;
+
+        > li{
+            font-size: @fontSize;
+            cursor: pointer;
+
+            > p{
+                font-size: @fontSize;
+                margin: 0;
+                box-sizing: border-box;
+                color: @colorBlue;
+            }
+
+            &:hover,
+            &.current{
+                > p{
+                    color: @colorTheme;
+                }
+            }
+        }
+    }
+
+    .root-menu{
+        border-bottom: 1px @colorExtraLightSilver solid;
+
+        > li{
+            display: inline-block;
+            vertical-align: top;
+            margin: 0;
+            box-sizing: border-box;
+            cursor: pointer;
+            position: relative;
+            height: 3.2em;
+
+            > p{
+                padding: 0.8em 1em;
+                height: ~'calc(3.2em + 1px)';
+                line-height: 1.4em;
+                position: relative;
+            }
+
+            > mor-private-nav-menu{
+                // padding-top: 3px;
+            }
+
+            &:hover,
+            &.current{
+                > p{
+                    border-bottom: 1px @colorTheme solid;
+                }
+            }
+
+            &.current{
+                > p{
+                    border-bottom-width: 2px;
+                }
+            }
+        }
+    }
+
+    .sub-menu{
+        background: @colorWhite;
+        box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+        border-bottom: 1px @colorLightSilver solid;
+        padding: @fontSize*0.5 0;
+
+        > li{
+            padding: 0.2em 1em;
+
+            > p{
+                font-size: @fontSize*0.875;
+            }
+
+            &.has-child{
+                cursor: default;
+
+                > p{
+                    font-size: @fontSize*0.75;
+                    color: @colorExtraLightBlue;
+                }
+
+                &:hover{
+                    > p{
+                        color: @colorExtraLightBlue;
+                        cursor: default;
+                    }
+                }
+            }
+        }
+
+        .sub-menu{
+            display: block;
+            box-shadow: none;
+            border-bottom: none;
+            padding: 0;
+
+            > li{
+                padding: 0.2em 0.5em;
+
+                > p{
+                    font-size: @fontSize*0.8125;
+                }
+            }
+        }
+    }
+}

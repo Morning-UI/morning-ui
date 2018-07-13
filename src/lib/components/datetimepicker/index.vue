@@ -16,10 +16,12 @@
         :date-selectable-range="dateSelectableRange"
         :time-selectable-range="timeSelectableRange"
         :is-range="isRange"
+        :range-input-direction="rangeInputDirection"
         :separator="separator"
         :separator-type="separatorType"
         :start-name="startName"
         :end-name="endName"
+        :done-hidden="doneHidden"
     >
 
     <div class="wrap">
@@ -33,11 +35,13 @@
             :quick-pick-unit="1000"
             :selectable-range="conf.dateSelectableRange"
             :is-range="conf.isRange"
+            :range-input-direction="conf.rangeInputDirection"
             :separator="conf.separator"
             :separator-type="conf.separatorType"
             :start-name="conf.startName"
             :end-name="conf.endName"
             :show-timepicker-box="true"
+            :done-hidden="conf.doneHidden"
 
             @value-change="_syncFromInputToRoot(0)"
             @input-blur="_syncFromInputToRootIsBlur"
@@ -130,6 +134,11 @@ export default {
             type : Boolean,
             default : false
         },
+        rangeInputDirection : {
+            type : String,
+            default : 'horizontal',
+            validator : (value => ['horizontal', 'vertical'].indexOf(value) !== -1)
+        },
         separator : {
             type : String,
             default : '至'
@@ -146,6 +155,10 @@ export default {
         endName : {
             type : String,
             default : '结束日期时间'
+        },
+        doneHidden : {
+            type : Boolean,
+            default : false
         }
     },
     computed : {
@@ -159,10 +172,12 @@ export default {
                 dateSelectableRange : this.dateSelectableRange,
                 timeSelectableRange : this.timeSelectableRange,
                 isRange : this.isRange,
+                rangeInputDirection : this.rangeInputDirection,
                 separator : this.separator,
                 separatorType : this.separatorType,
                 startName : this.startName,
-                endName : this.endName
+                endName : this.endName,
+                doneHidden : this.doneHidden
             };
 
         },
