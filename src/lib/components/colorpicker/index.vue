@@ -178,6 +178,7 @@ const num16 = 16;
 const num100 = 100;
 const num360 = 360;
 const maxAlpha = 255;
+const maxHex = 255;
 const defaultColor = '#000000';
 const valueTypes = [
     'hex',
@@ -215,16 +216,6 @@ export default {
 
         },
         colorObj : function () {
-
-            console.log('colorObj', {
-                h : this.data.hslH,
-                s : this.data.hslS,
-                l : this.data.hslL
-            }, color({
-                h : this.data.hslH,
-                s : this.data.hslS,
-                l : this.data.hslL
-            }).hsl().object().h);
 
             return color({
                 h : this.data.hslH,
@@ -404,15 +395,15 @@ export default {
         },
         _rgbaChangeR : function () {
 
-            let red = +this.data.colorValue.r|| 0;
+            let red = +this.data.colorValue.r || 0;
 
             if (red < 0) {
 
                 red = 0;
 
-            } else if (red > 255) {
+            } else if (red > maxHex) {
 
-                red = 255;
+                red = maxHex;
 
             }
 
@@ -434,7 +425,7 @@ export default {
             } catch (e) {}
 
         },
-        _rgbaChangeG : function (value) {
+        _rgbaChangeG : function () {
 
             let green = +this.data.colorValue.g || 0;
 
@@ -442,9 +433,9 @@ export default {
 
                 green = 0;
 
-            } else if (green > 255) {
+            } else if (green > maxHex) {
 
-                green = 255;
+                green = maxHex;
 
             }
 
@@ -466,7 +457,7 @@ export default {
             } catch (e) {}
 
         },
-        _rgbaChangeB : function (value) {
+        _rgbaChangeB : function () {
 
             let blue = +this.data.colorValue.b || 0;
 
@@ -474,9 +465,9 @@ export default {
 
                 blue = 0;
 
-            } else if (blue > 255) {
+            } else if (blue > maxHex) {
 
-                blue = 255;
+                blue = maxHex;
 
             }
 
@@ -512,9 +503,9 @@ export default {
 
                 value = 0;
 
-            } else if (value > 360) {
+            } else if (value > num360) {
 
-                value = 359;
+                value = num360 - 1;
 
             }
 
@@ -542,9 +533,9 @@ export default {
 
                 value = 0;
 
-            } else if (value > 100) {
+            } else if (value > num100) {
 
-                value = 100;
+                value = num100;
 
             }
 
@@ -572,9 +563,9 @@ export default {
 
                 value = 0;
 
-            } else if (value > 100) {
+            } else if (value > num100) {
 
-                value = 100;
+                value = num100;
 
             }
 
@@ -594,7 +585,7 @@ export default {
             } catch (e) {}
 
         },
-        _alphaChange : function (value) {
+        _alphaChange : function () {
 
             this.$emit('alpha-slider-change');
 
@@ -694,7 +685,7 @@ export default {
             };
             this._hsvChangeSV(
                 (((+x) + (this.data.strawSize / 2)) / this.data.panel.w) * num100,
-                (num100 - (((+y) + (this.data.strawSize / 2)) / this.data.panel.h) * num100)
+                (num100 - ((((+y) + (this.data.strawSize / 2)) / this.data.panel.h) * num100))
             );
 
             this.Vue.nextTick(() => {
@@ -821,8 +812,6 @@ export default {
         _syncColorFromValue : function () {
 
             let hsl = color(this.get() || defaultColor).hsl();
-
-            console.log('_syncColorFromValue', this.data.hslHSync, this.get());
 
             if (this.data.hslHSync) {
     
@@ -999,7 +988,6 @@ export default {
 
         this.$watch('colorObj', () => {
 
-            console.log('color string', this._getColorString(this.conf.valueType));
             this._set(this._getColorString(this.conf.valueType));
 
         }, {
@@ -1045,7 +1033,7 @@ export default {
             this.data.dontPickColor = false;
             this._hsvChangeSV(
                 (((+this.Move.current.x) + (this.data.strawSize / 2)) / this.data.panel.w) * num100,
-                (num100 - (((+this.Move.current.y) + (this.data.strawSize / 2)) / this.data.panel.h) * num100)
+                (num100 - ((((+this.Move.current.y) + (this.data.strawSize / 2)) / this.data.panel.h) * num100))
             );
 
         });
@@ -1054,7 +1042,7 @@ export default {
 
             this._hsvChangeSV(
                 (((+this.Move.current.x) + (this.data.strawSize / 2)) / this.data.panel.w) * num100,
-                (num100 - (((+this.Move.current.y) + (this.data.strawSize / 2)) / this.data.panel.h) * num100)
+                (num100 - ((((+this.Move.current.y) + (this.data.strawSize / 2)) / this.data.panel.h) * num100))
             );
 
         });
