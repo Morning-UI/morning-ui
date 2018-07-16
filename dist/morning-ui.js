@@ -21986,6 +21986,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
+//
+//
 
 var num16 = 16;
 var num100 = 100;
@@ -22024,6 +22028,16 @@ exports.default = {
             return this.conf.state === 'disabled' || this.conf.state === 'readonly';
         },
         colorObj: function colorObj() {
+
+            console.log('colorObj', {
+                h: this.data.hslH,
+                s: this.data.hslS,
+                l: this.data.hslL
+            }, (0, _color2.default)({
+                h: this.data.hslH,
+                s: this.data.hslS,
+                l: this.data.hslL
+            }).hsl().object().h);
 
             return (0, _color2.default)({
                 h: this.data.hslH,
@@ -22071,8 +22085,8 @@ exports.default = {
                 hslH: 0,
                 hslS: 0,
                 hslL: 0,
-                hsvS: -1,
-                hsvV: 0,
+                // hsvS : -1,
+                // hsvV : 0,
                 picking: false,
                 panel: {
                     w: 0,
@@ -22142,6 +22156,8 @@ exports.default = {
         },
         _hexChange: function _hexChange(value) {
 
+            value = value.trim();
+
             if (value.length !== 7 && value.length !== 9) {
 
                 return;
@@ -22173,11 +22189,21 @@ exports.default = {
                 }
             } catch (e) {}
         },
-        _rgbaChangeR: function _rgbaChangeR(value) {
+        _rgbaChangeR: function _rgbaChangeR() {
+
+            var red = +this.data.colorValue.r || 0;
+
+            if (red < 0) {
+
+                red = 0;
+            } else if (red > 255) {
+
+                red = 255;
+            }
 
             try {
 
-                var hsl = this.colorObj.red(value).hsl();
+                var hsl = this.colorObj.red(red).hsl();
 
                 if (this.data.hslHSync) {
 
@@ -22190,9 +22216,19 @@ exports.default = {
         },
         _rgbaChangeG: function _rgbaChangeG(value) {
 
+            var green = +this.data.colorValue.g || 0;
+
+            if (green < 0) {
+
+                green = 0;
+            } else if (green > 255) {
+
+                green = 255;
+            }
+
             try {
 
-                var hsl = this.colorObj.green(value).hsl();
+                var hsl = this.colorObj.green(green).hsl();
 
                 if (this.data.hslHSync) {
 
@@ -22205,9 +22241,19 @@ exports.default = {
         },
         _rgbaChangeB: function _rgbaChangeB(value) {
 
+            var blue = +this.data.colorValue.b || 0;
+
+            if (blue < 0) {
+
+                blue = 0;
+            } else if (blue > 255) {
+
+                blue = 255;
+            }
+
             try {
 
-                var hsl = this.colorObj.blue(value).hsl();
+                var hsl = this.colorObj.blue(blue).hsl();
 
                 if (this.data.hslHSync) {
 
@@ -22218,11 +22264,21 @@ exports.default = {
                 this.data.hslL = hsl.object().l;
             } catch (e) {}
         },
-        _hslChangeH: function _hslChangeH(value) {
+        _hslChangeH: function _hslChangeH() {
 
             if (!this.data.hslHSync) {
 
                 return;
+            }
+
+            var value = +this.data.colorValue.h || 0;
+
+            if (value < 0) {
+
+                value = 0;
+            } else if (value > 360) {
+
+                value = 359;
             }
 
             try {
@@ -22234,63 +22290,67 @@ exports.default = {
                 this.data.hslH = (0, _color2.default)(hslObj).hsl().object().h;
             } catch (e) {}
         },
-        _hslChangeS: function _hslChangeS(value) {
+        _hslChangeS: function _hslChangeS() {
+
+            var value = +this.data.colorValue.s.replace('%', '') || 0;
+
+            if (value < 0) {
+
+                value = 0;
+            } else if (value > 100) {
+
+                value = 100;
+            }
 
             try {
 
                 var hslObj = this.colorObj.hsl().object();
 
-                hslObj.s = +value.replace('%', '');
+                hslObj.s = value;
 
                 this.data.hslS = (0, _color2.default)(hslObj).hsl().object().s;
             } catch (e) {}
         },
-        _hslChangeL: function _hslChangeL(value) {
+        _hslChangeL: function _hslChangeL() {
+
+            var value = +this.data.colorValue.l.replace('%', '') || 0;
+
+            if (value < 0) {
+
+                value = 0;
+            } else if (value > 100) {
+
+                value = 100;
+            }
 
             try {
 
                 var hslObj = this.colorObj.hsl().object();
 
-                hslObj.l = +value.replace('%', '');
+                hslObj.l = value;
 
                 this.data.hslL = (0, _color2.default)(hslObj).hsl().object().l;
             } catch (e) {}
         },
         _alphaChange: function _alphaChange(value) {
 
-            if (isNaN(+value) || !this.conf.allowAlpha) {
-
-                return;
-            }
-
-            if (value > maxAlpha) {
-
-                value = maxAlpha;
-            }
-
-            if (value < 0) {
-
-                value = 0;
-            }
-
-            this.data.alpha = value;
             this.$emit('alpha-slider-change');
         },
-        _alphaChangePer: function _alphaChangePer(per) {
+        _alphaChangePer: function _alphaChangePer() {
 
             if (!this.conf.allowAlpha) {
 
                 return;
             }
 
-            if (per > 1) {
-
-                per = 1;
-            }
+            var per = +this.data.colorValue.a || 0;
 
             if (per < 0) {
 
                 per = 0;
+            } else if (per > 1) {
+
+                per = 1;
             }
 
             this.data.alpha = Math.round(per * maxAlpha);
@@ -22307,13 +22367,13 @@ exports.default = {
         },
         _hsvChangeSV: function _hsvChangeSV(s, v) {
 
-            this.data.hsvS = s;
-            this.data.hsvV = v;
+            // this.data.hsvS = s;
+            // this.data.hsvV = v;
 
             var hsl = (0, _color2.default)({
                 h: this.data.hslH,
                 s: s,
-                v: num100 - v
+                v: v
             }).hsl().object();
 
             this.data.hslS = hsl.s;
@@ -22323,6 +22383,11 @@ exports.default = {
 
             this.data.dontPickColor = true;
             this._moveItemRecord(0);
+        },
+        _stopmoveStraw: function _stopmoveStraw() {
+
+            this.data.dontPickColor = false;
+            this._moveMouseup();
         },
         _rePositionStrawWithSV: function _rePositionStrawWithSV(s, v) {
             var _this = this;
@@ -22350,7 +22415,7 @@ exports.default = {
                 x: x,
                 y: y
             };
-            this._hsvChangeSV((+x + this.data.strawSize / 2) / this.data.panel.w * num100, (+y + this.data.strawSize / 2) / this.data.panel.h * num100);
+            this._hsvChangeSV((+x + this.data.strawSize / 2) / this.data.panel.w * num100, num100 - (+y + this.data.strawSize / 2) / this.data.panel.h * num100);
 
             this.Vue.nextTick(function () {
 
@@ -22397,7 +22462,7 @@ exports.default = {
                     r: Math.round(colorObj.red()),
                     g: Math.round(colorObj.green()),
                     b: Math.round(colorObj.blue()),
-                    a: this.alphaPer || 1
+                    a: isNaN(this.alphaPer) ? 1 : this.alphaPer
                 };
             } else if (type === 'hsla') {
 
@@ -22407,7 +22472,7 @@ exports.default = {
                     h: Math.round(hsl.h),
                     s: Math.round(hsl.s) + '%',
                     l: Math.round(hsl.l) + '%',
-                    a: this.alphaPer || 1
+                    a: isNaN(this.alphaPer) ? 1 : this.alphaPer
                 };
             }
 
@@ -22461,6 +22526,8 @@ exports.default = {
 
             var hsl = (0, _color2.default)(this.get() || defaultColor).hsl();
 
+            console.log('_syncColorFromValue', this.data.hslHSync, this.get());
+
             if (this.data.hslHSync) {
 
                 this.data.hslH = hsl.object().h;
@@ -22495,8 +22562,21 @@ exports.default = {
                 });
             }, copyShowtime);
         },
-        togglePicker: function togglePicker(show) {
+        set: function set(value) {
             var _this4 = this;
+
+            this._hslHSync(true);
+
+            var result = this._set(value);
+
+            this.Vue.nextTick(function () {
+                return _this4._hslHSync(false);
+            });
+
+            return result;
+        },
+        togglePicker: function togglePicker(show) {
+            var _this5 = this;
 
             if (this.data.toggling) {
 
@@ -22521,7 +22601,7 @@ exports.default = {
 
             this.Vue.nextTick(function () {
 
-                _this4.data.toggling = false;
+                _this5.data.toggling = false;
             });
 
             return this;
@@ -22529,7 +22609,7 @@ exports.default = {
     },
     created: function created() {},
     mounted: function mounted() {
-        var _this5 = this;
+        var _this6 = this;
 
         this.data.$preview = this.$el.querySelector('.preview');
         this.data.$picker = this.$el.querySelector('.mo-colorpicker-wrap');
@@ -22541,53 +22621,57 @@ exports.default = {
         this.Move.target = '.straw';
         this.Move.container = '.panel';
 
+        this._hslHSync(true);
         this._syncColorFromValue();
+        this._hslHSync(false);
 
         this.Vue.nextTick(function () {
 
-            _this5.data.panel.w = $container.clientWidth;
-            _this5.data.panel.h = $container.clientHeight;
-            _this5.data.strawSize = _this5.data.$picker.querySelector('.straw').offsetWidth;
-            _this5.Move.range = [-_this5.data.strawSize / 2, -_this5.data.strawSize / 2, $container.clientWidth + _this5.data.strawSize / 2, $container.clientHeight + _this5.data.strawSize / 2];
+            _this6.data.panel.w = $container.clientWidth;
+            _this6.data.panel.h = $container.clientHeight;
+            _this6.data.strawSize = _this6.data.$picker.querySelector('.straw').offsetWidth;
+            _this6.Move.range = [-_this6.data.strawSize / 2, -_this6.data.strawSize / 2, $container.clientWidth + _this6.data.strawSize / 2, $container.clientHeight + _this6.data.strawSize / 2];
         });
 
         this.$watch('data.hslH', function () {
 
-            _this5.data.hslHReversal = Math.floor(_this5.data.hslH);
+            _this6.data.hslHReversal = _this6.data.hslH;
         }, {
             immediate: true
         });
 
         this.$watch(function () {
-            return _this5._getColorValue();
+            return _this6._getColorValue();
         }, function (newValue) {
 
-            _this5.data.colorValue = newValue;
+            _this6.data.colorValue = newValue;
         }, {
             immediate: true
         });
 
         this.$watch('inputIsReadonly', function () {
 
-            if (_this5.inputIsReadonly) {
+            if (_this6.inputIsReadonly) {
 
-                _this5.Move.can = false;
+                _this6.Move.can = false;
             } else {
 
-                _this5.Move.can = true;
+                _this6.Move.can = true;
             }
         }, {
             immediate: true
         });
 
+        window.color = _color2.default;
+
         this.$watch('colorHex', function () {
 
-            var colorObj = _this5.colorObj;
+            var colorObj = _this6.colorObj;
             var hsv = colorObj.hsv().object();
 
-            if (_this5.data.$picker) {
+            if (_this6.data.$picker) {
 
-                var $track = _this5.data.$picker.querySelector('.alpha mor-slider .track');
+                var $track = _this6.data.$picker.querySelector('.alpha mor-slider .track');
 
                 if ($track) {
 
@@ -22595,23 +22679,18 @@ exports.default = {
                 }
             }
 
-            var s = _this5.data.hsvS;
-            var v = _this5.data.hsvV;
+            var s = hsv.s;
+            var v = num100 - hsv.v;
 
-            if (s === -1) {
-
-                s = hsv.s;
-                v = num100 - hsv.v;
-            }
-
-            _this5._rePositionStrawWithSV(s, v);
+            _this6._rePositionStrawWithSV(s, v);
         }, {
             immediate: true
         });
 
         this.$watch('colorObj', function () {
 
-            _this5._set(_this5._getColorString(_this5.conf.valueType));
+            console.log('color string', _this6._getColorString(_this6.conf.valueType));
+            _this6._set(_this6._getColorString(_this6.conf.valueType));
         }, {
             deep: true,
             immediate: true
@@ -22619,41 +22698,41 @@ exports.default = {
 
         this.$on('value-change', function () {
 
-            _this5._syncColorFromValue();
+            _this6._syncColorFromValue();
         });
 
         this.$on('show-picker', function () {
 
             setTimeout(function () {
 
-                _this5._globalEventAdd('click', '_checkArea');
+                _this6._globalEventAdd('click', '_checkArea');
             });
         });
 
         this.$on('hide-picker', function () {
 
-            _this5._globalEventRemove('click', '_checkArea');
+            _this6._globalEventRemove('click', '_checkArea');
         });
 
         this.$on('_moveStarted', function () {
 
-            _this5.data.picking = true;
+            _this6.data.picking = true;
         });
 
         this.$on('_moveEnded', function () {
 
-            _this5.data.straw = {
-                x: _this5.Move.current.x,
-                y: _this5.Move.current.y
+            _this6.data.straw = {
+                x: _this6.Move.current.x,
+                y: _this6.Move.current.y
             };
-            _this5.data.picking = false;
-            _this5.data.dontPickColor = false;
-            _this5._hsvChangeSV((+_this5.Move.current.x + _this5.data.strawSize / 2) / _this5.data.panel.w * num100, (+_this5.Move.current.y + _this5.data.strawSize / 2) / _this5.data.panel.h * num100);
+            _this6.data.picking = false;
+            _this6.data.dontPickColor = false;
+            _this6._hsvChangeSV((+_this6.Move.current.x + _this6.data.strawSize / 2) / _this6.data.panel.w * num100, num100 - (+_this6.Move.current.y + _this6.data.strawSize / 2) / _this6.data.panel.h * num100);
         });
 
         this.$on('_moveChange', function () {
 
-            _this5._hsvChangeSV((+_this5.Move.current.x + _this5.data.strawSize / 2) / _this5.data.panel.w * num100, (+_this5.Move.current.y + _this5.data.strawSize / 2) / _this5.data.panel.h * num100);
+            _this6._hsvChangeSV((+_this6.Move.current.x + _this6.data.strawSize / 2) / _this6.data.panel.w * num100, num100 - (+_this6.Move.current.y + _this6.data.strawSize / 2) / _this6.data.panel.h * num100);
         });
     },
     beforeDestroy: function beforeDestroy() {
@@ -41656,12 +41735,12 @@ var render = function() {
                   "background-color": _vm.colorH
                 },
                 on: {
-                  mouseup: function($event) {
-                    _vm._hslHSync(true)
-                  },
                   mousedown: function($event) {
                     _vm._pickColor($event)
                     _vm._hslHSync(false)
+                  },
+                  mouseup: function($event) {
+                    _vm._hslHSync(true)
                   }
                 }
               },
@@ -41680,6 +41759,21 @@ var render = function() {
                   on: {
                     "!mousedown": function($event) {
                       return _vm._moveStraw($event)
+                    },
+                    mouseup: function($event) {
+                      if (
+                        !("button" in $event) &&
+                        _vm._k(
+                          $event.keyCode,
+                          "captrue",
+                          undefined,
+                          $event.key,
+                          undefined
+                        )
+                      ) {
+                        return null
+                      }
+                      return _vm._stopmoveStraw($event)
                     }
                   }
                 })
@@ -41747,6 +41841,7 @@ var render = function() {
                         attrs: {
                           "show-tip": false,
                           max: 360,
+                          step: 0.01,
                           state: _vm.inputIsReadonly ? "readonly" : "normal"
                         },
                         on: { "value-change": _vm._hslaChangeHBar },
@@ -41776,11 +41871,11 @@ var render = function() {
                               : "normal"
                         },
                         on: {
-                          mouseup: function($event) {
-                            _vm._hslHSync(true)
-                          },
                           mousedown: function($event) {
                             _vm._hslHSync(false)
+                          },
+                          mouseup: function($event) {
+                            _vm._hslHSync(true)
                           },
                           "value-change": _vm._alphaChange
                         },
@@ -41812,7 +41907,15 @@ var render = function() {
                           attrs: {
                             state: _vm.inputIsReadonly ? "readonly" : "normal"
                           },
-                          on: { "value-change": _vm._rgbaChangeR },
+                          on: {
+                            focus: function($event) {
+                              _vm._hslHSync(true)
+                            },
+                            blur: function($event) {
+                              _vm._rgbaChangeR()
+                              _vm._hslHSync(false)
+                            }
+                          },
                           model: {
                             value: _vm.data.colorValue.r,
                             callback: function($$v) {
@@ -41826,7 +41929,15 @@ var render = function() {
                           attrs: {
                             state: _vm.inputIsReadonly ? "readonly" : "normal"
                           },
-                          on: { "value-change": _vm._rgbaChangeG },
+                          on: {
+                            focus: function($event) {
+                              _vm._hslHSync(true)
+                            },
+                            blur: function($event) {
+                              _vm._rgbaChangeG()
+                              _vm._hslHSync(false)
+                            }
+                          },
                           model: {
                             value: _vm.data.colorValue.g,
                             callback: function($$v) {
@@ -41840,7 +41951,15 @@ var render = function() {
                           attrs: {
                             state: _vm.inputIsReadonly ? "readonly" : "normal"
                           },
-                          on: { "value-change": _vm._rgbaChangeB },
+                          on: {
+                            focus: function($event) {
+                              _vm._hslHSync(true)
+                            },
+                            blur: function($event) {
+                              _vm._rgbaChangeB()
+                              _vm._hslHSync(false)
+                            }
+                          },
                           model: {
                             value: _vm.data.colorValue.b,
                             callback: function($$v) {
@@ -41857,7 +41976,7 @@ var render = function() {
                                 ? "readonly"
                                 : "normal"
                           },
-                          on: { "value-change": _vm._alphaChangePer },
+                          on: { blur: _vm._alphaChangePer },
                           model: {
                             value: _vm.data.colorValue.a,
                             callback: function($$v) {
@@ -41889,7 +42008,15 @@ var render = function() {
                           attrs: {
                             state: _vm.inputIsReadonly ? "readonly" : "normal"
                           },
-                          on: { "value-change": _vm._hexChange },
+                          on: {
+                            "value-change": _vm._hexChange,
+                            focus: function($event) {
+                              _vm._hslHSync(true)
+                            },
+                            blur: function($event) {
+                              _vm._hslHSync(false)
+                            }
+                          },
                           model: {
                             value: _vm.data.colorValue,
                             callback: function($$v) {
@@ -41915,7 +42042,15 @@ var render = function() {
                           attrs: {
                             state: _vm.inputIsReadonly ? "readonly" : "normal"
                           },
-                          on: { "value-change": _vm._hslChangeH },
+                          on: {
+                            focus: function($event) {
+                              _vm._hslHSync(true)
+                            },
+                            blur: function($event) {
+                              _vm._hslChangeH()
+                              _vm._hslHSync(false)
+                            }
+                          },
                           model: {
                             value: _vm.data.colorValue.h,
                             callback: function($$v) {
@@ -41929,7 +42064,7 @@ var render = function() {
                           attrs: {
                             state: _vm.inputIsReadonly ? "readonly" : "normal"
                           },
-                          on: { "value-change": _vm._hslChangeS },
+                          on: { blur: _vm._hslChangeS },
                           model: {
                             value: _vm.data.colorValue.s,
                             callback: function($$v) {
@@ -41943,7 +42078,7 @@ var render = function() {
                           attrs: {
                             state: _vm.inputIsReadonly ? "readonly" : "normal"
                           },
-                          on: { "value-change": _vm._hslChangeL },
+                          on: { blur: _vm._hslChangeL },
                           model: {
                             value: _vm.data.colorValue.l,
                             callback: function($$v) {
@@ -41960,7 +42095,7 @@ var render = function() {
                                 ? "readonly"
                                 : "normal"
                           },
-                          on: { "value-change": _vm._alphaChangePer },
+                          on: { blur: _vm._alphaChangePer },
                           model: {
                             value: _vm.data.colorValue.a,
                             callback: function($$v) {
