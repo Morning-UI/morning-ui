@@ -21995,6 +21995,7 @@ var num16 = 16;
 var num100 = 100;
 var num360 = 360;
 var maxAlpha = 255;
+var maxHex = 255;
 var defaultColor = '#000000';
 var valueTypes = ['hex', 'rgba', 'hsla'];
 
@@ -22028,16 +22029,6 @@ exports.default = {
             return this.conf.state === 'disabled' || this.conf.state === 'readonly';
         },
         colorObj: function colorObj() {
-
-            console.log('colorObj', {
-                h: this.data.hslH,
-                s: this.data.hslS,
-                l: this.data.hslL
-            }, (0, _color2.default)({
-                h: this.data.hslH,
-                s: this.data.hslS,
-                l: this.data.hslL
-            }).hsl().object().h);
 
             return (0, _color2.default)({
                 h: this.data.hslH,
@@ -22196,9 +22187,9 @@ exports.default = {
             if (red < 0) {
 
                 red = 0;
-            } else if (red > 255) {
+            } else if (red > maxHex) {
 
-                red = 255;
+                red = maxHex;
             }
 
             try {
@@ -22214,16 +22205,16 @@ exports.default = {
                 this.data.hslL = hsl.object().l;
             } catch (e) {}
         },
-        _rgbaChangeG: function _rgbaChangeG(value) {
+        _rgbaChangeG: function _rgbaChangeG() {
 
             var green = +this.data.colorValue.g || 0;
 
             if (green < 0) {
 
                 green = 0;
-            } else if (green > 255) {
+            } else if (green > maxHex) {
 
-                green = 255;
+                green = maxHex;
             }
 
             try {
@@ -22239,16 +22230,16 @@ exports.default = {
                 this.data.hslL = hsl.object().l;
             } catch (e) {}
         },
-        _rgbaChangeB: function _rgbaChangeB(value) {
+        _rgbaChangeB: function _rgbaChangeB() {
 
             var blue = +this.data.colorValue.b || 0;
 
             if (blue < 0) {
 
                 blue = 0;
-            } else if (blue > 255) {
+            } else if (blue > maxHex) {
 
-                blue = 255;
+                blue = maxHex;
             }
 
             try {
@@ -22276,9 +22267,9 @@ exports.default = {
             if (value < 0) {
 
                 value = 0;
-            } else if (value > 360) {
+            } else if (value > num360) {
 
-                value = 359;
+                value = num360 - 1;
             }
 
             try {
@@ -22297,9 +22288,9 @@ exports.default = {
             if (value < 0) {
 
                 value = 0;
-            } else if (value > 100) {
+            } else if (value > num100) {
 
-                value = 100;
+                value = num100;
             }
 
             try {
@@ -22318,9 +22309,9 @@ exports.default = {
             if (value < 0) {
 
                 value = 0;
-            } else if (value > 100) {
+            } else if (value > num100) {
 
-                value = 100;
+                value = num100;
             }
 
             try {
@@ -22332,7 +22323,7 @@ exports.default = {
                 this.data.hslL = (0, _color2.default)(hslObj).hsl().object().l;
             } catch (e) {}
         },
-        _alphaChange: function _alphaChange(value) {
+        _alphaChange: function _alphaChange() {
 
             this.$emit('alpha-slider-change');
         },
@@ -22526,8 +22517,6 @@ exports.default = {
 
             var hsl = (0, _color2.default)(this.get() || defaultColor).hsl();
 
-            console.log('_syncColorFromValue', this.data.hslHSync, this.get());
-
             if (this.data.hslHSync) {
 
                 this.data.hslH = hsl.object().h;
@@ -22689,7 +22678,6 @@ exports.default = {
 
         this.$watch('colorObj', function () {
 
-            console.log('color string', _this6._getColorString(_this6.conf.valueType));
             _this6._set(_this6._getColorString(_this6.conf.valueType));
         }, {
             deep: true,
@@ -73550,7 +73538,7 @@ var morning = {
         white: 'wh'
     },
     isMorning: true,
-    version: '0.11.7',
+    version: '0.11.8',
     map: {}
 };
 
