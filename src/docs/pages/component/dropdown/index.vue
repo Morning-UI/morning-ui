@@ -90,7 +90,8 @@
     |KEY|描述|接受值|值类型|默认值|
     |-|-|-|-|-|
     |[auto-close](#auto-close)|点击下拉菜单中按钮后自动隐藏|`true`<br>`false`|Boolean|`true`|
-    |[trigger](#trigger)|触发下拉菜单方式。触发方式一旦改变，已有的触发状态都会被重置。|`hover`<br>`click`<br>`rclick`|String|`click`|
+    |[trigger](#trigger)|触发下拉菜单方式。触发方式一旦改变，已有的触发状态都会被重置。|`hover`：鼠标移入目标元素<br>`click`：鼠标点击目标元素<br>`focus`：目标元素处于焦点状态<br>`method`：通过组件方法触发|String|`click`|
+    |[trigger-in-delay](#trigger-in-delay)|目标触发下拉菜单时进行延迟。<br>此延迟仅在`trigger`为`hover`时生效。<br>使用一定的延迟，可以减少误触的情况，提升页面体验。|延迟触发时间(ms)|Number|`200`|
 
     #### auto-close
 
@@ -133,6 +134,46 @@
 
     :::democode/html
     <ui-dropdown :auto-close="false" trigger="hover">
+        <ui-btn slot="showbtn" emitbtn>更多</ui-btn>
+        <ui-btn color="white">收藏</ui-btn>
+        <ui-btn color="white">修改</ui-btn>
+        <ui-btn color="danger">删除</ui-btn>
+    </ui-dropdown>
+    :::
+
+    `trigger`也可以设置为`method`，这样只能通过组件方法来触发：
+
+    :::democode/html
+    <ui-dropdown ref="demo4" trigger="method">
+        <ui-btn slot="showbtn" emitbtn>更多 <i class="mo-icon  mo-icon-dropdown"></i></ui-btn>
+        <ui-btn color="white">收藏</ui-btn>
+        <ui-btn color="white">修改</ui-btn>
+        <ui-btn color="danger">删除</ui-btn>
+    </ui-dropdown>
+    
+    <br><br>
+
+    <ui-link js="morning.findVM('demo4').toggle(true);">通过组件方法显示</ui-link><br>
+    <ui-link js="morning.findVM('demo4').toggle(false);">通过组件方法隐藏</ui-link>
+    :::
+
+    #### trigger-in-delay
+
+    鼠标移入元素时延迟300ms触发提示：
+
+    :::democode/html
+    <ui-dropdown trigger="hover" :trigger-in-delay="300">
+        <ui-btn slot="showbtn" emitbtn>更多</ui-btn>
+        <ui-btn color="white">收藏</ui-btn>
+        <ui-btn color="white">修改</ui-btn>
+        <ui-btn color="danger">删除</ui-btn>
+    </ui-dropdown>
+    :::
+
+    鼠标移入元素时立即触发提示：
+
+    :::democode/html
+    <ui-dropdown trigger="hover" :trigger-in-delay="0">
         <ui-btn slot="showbtn" emitbtn>更多</ui-btn>
         <ui-btn color="white">收藏</ui-btn>
         <ui-btn color="white">修改</ui-btn>

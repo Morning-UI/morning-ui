@@ -116,7 +116,7 @@
     |[placement](#placement)|提示框位置|`top`:上方<br>`bottom`:下方<br>`left`:左侧<br>`right`:右侧|String|`'top'`|
     |[offset](#offset)|偏移量|上下偏移量(单位px/%) 左右偏移量(单位px/%)|String|`'0 0'`|
     |[trigger](#trigger)|触发方式(支持多触发方式，多个触发器之间用空格分开)。触发方式一旦改变，已有的触发状态都会被重置。|`hover`：鼠标移入目标元素<br>`click`：鼠标点击目标元素<br>`focus`：目标元素处于焦点状态<br>`method`：通过组件方法触发|String|`'hover'`|
-    |[trigger-in-delay](#trigger-in-delay)|目标触发提示时进行延迟。<br>此延迟仅在`trigger`为`hover`时生效。<br>当页面中使用较多`ui-tip`时使用一定的延迟，可以减少误触的情况，提升页面体验。|延迟触发时间(ms)|Number|`0`|
+    |[trigger-in-delay](#trigger-in-delay)|目标触发提示时进行延迟。<br>此延迟仅在`trigger`为`hover`时生效。<br>当页面中使用较多`ui-tip`时使用一定的延迟，可以减少误触的情况，提升页面体验。|延迟触发时间(ms)|Number|`200`|
     |[auto-reverse](#auto-reverse)|当小提示超出窗口时，自动反转小提示的方向，使其可以显示。|`true`<br>`false`|Boolean|`true`|
     
     #### target
@@ -178,7 +178,7 @@
     <br><br>
 
     <ui-link js="morning.findVM('demo22').show();">通过组件方法显示提示</ui-link><br>
-    <ui-link js="morning.findVM('demo22').hide();">通过组件方法显示隐藏</ui-link>
+    <ui-link js="morning.findVM('demo22').hide();">通过组件方法隐藏提示</ui-link>
     :::
 
     #### trigger-in-delay
@@ -188,6 +188,13 @@
     :::democode/html
     <span id="demo24">鼠标悬浮显示小提示</span>
     <ui-tip target="#demo24" :trigger-in-delay="300">提示内容</ui-tip>
+    :::
+
+    鼠标移入元素时立即触发提示：
+
+    :::democode/html
+    <span id="demo24">鼠标悬浮显示小提示</span>
+    <ui-tip target="#demo24" :trigger-in-delay="0">提示内容</ui-tip>
     :::
 
     #### auto-reverse
