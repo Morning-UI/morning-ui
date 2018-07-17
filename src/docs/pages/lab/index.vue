@@ -7,14 +7,15 @@
             <div class="area">
                 <div class="test">
 
-                    <ui-select
-                        form-name="Select designer"
-                        :list="list"
-                        :max-show="100"
-                        v-for="i in 10"
-                        can-search
-                    >
-                    </ui-select>
+                   <ui-dialog ref="dialog_1">
+                        <div>1111</div>
+                    </ui-dialog>
+                    <ui-dialog ref="dialog_2">
+                        <div>2222</div>
+                    </ui-dialog>
+                    <ui-dialog ref="dialog_3">
+                        <div>3333</div>
+                    </ui-dialog>
     
                 </div>
             </div>

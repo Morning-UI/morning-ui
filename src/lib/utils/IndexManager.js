@@ -36,6 +36,7 @@ let IndexManager = {
             if (step !== 0 && step !== undefined) {
 
                 useIndex[key] += step;
+                vmMap[`${this.uiid},${namespace}`] = useIndex[key];
 
             }
 
