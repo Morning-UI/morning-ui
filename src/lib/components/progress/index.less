@@ -1,0 +1,124 @@
+@import '~Common/var.less';
+
+@keyframes progressing{
+    from {
+        width: 10%;
+        opacity: 0.8;
+    }
+
+    50% {
+        width: 100%;
+        opacity: 0.2;
+    }
+
+    60%{
+        width: 100%;
+        opacity: 0;
+    }
+
+    to {
+        width: 0%;
+        opacity: 0;
+    }
+}
+
+mor-progress{
+    display: block;
+
+    .progress-wrap{
+        display: block;
+        font-size: 0;
+
+        .line-track{
+            display: inline-block;
+            height: @fontSize*0.5;
+            border-radius: @fontSize;
+            width: ~"calc(100% - 60px)";
+            background: @colorExtraLightSilver;
+            margin: @fontSize*0.25 0;
+            vertical-align: top;
+        }
+
+        .main{
+            display: block;
+            border-radius: @fontSize;
+            width: 50%;
+            height: 100%;
+            background: @colorBlue;
+            transition: width 0.2s, color 0.2s;
+
+            &.done{
+                background: @colorSuccess;
+            }
+
+            .progressing{
+                width: 0%;
+                height: 100%;
+                opacity: 0;
+                border-radius: @fontSize;
+                background: ~"linear-gradient(-90deg, #fffe 0%, #fffa 20%, #fff1)";
+                animation: 2.4s cubic-bezier(0.23, 0.48, 0.5, 1.04) infinite progressing;
+            }
+        }
+
+        .note{
+            display: inline-block;
+            padding-left: 10px;
+            width: 50px;
+            height: @fontSize;
+            font-size: @fontSize*0.8125;
+            vertical-align: top;
+            position: relative;
+            color: @colorExtraLightBlack;
+            line-height: @fontSize;
+
+            .mo-icon-error-cf{
+                color: @colorDanger;
+            }
+
+            .mo-icon-correct-cf{
+                color: @colorSuccess;
+            }
+        }
+
+        .ring-track{
+            svg{
+                path{
+                    stroke: #f00;
+                    stroke-linecap: round;
+                    stroke-width: 6px;
+                    fill-opacity: 0;
+                }
+
+                .track-bg{
+                    stroke: @colorExtraLightSilver;
+                }
+
+                .main{
+                    stroke: @colorBlue;
+                    transition: stroke-dasharray 0.2s, stroke-opacity 0.2s;
+                }
+            }
+        }
+    }
+
+    &.type-ring{
+        .progress-wrap{
+            position: relative;
+        }
+
+        .note{
+            padding: 0;
+            width: 80%;
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: @fontSize*1.5;
+        }
+    }
+
+    // default status
+    &{}
+}
