@@ -59,6 +59,7 @@
     |[append](#append)|表单后缀|任意字符串(支持HTML)|String|`undefined`|
     |[append-type](#append-type)|表单前后缀内容的展现类型|`'block'`：块状<br>`'inline'`：行内|String|`'block'`|
     |[align](#align)|内容对齐方式|`'left'` : 左对齐<br>`'center'` : 居中对齐<br>`'right'` : 右对齐|String|`'left'`|
+    |[maxlength](#maxlength)|输入内容的最大长度|最大长度|Number|`Infinity`|
     :::
 
     :::preset/html
@@ -115,6 +116,14 @@
     :::democode/html
     <div style="width:300px;">
         <ui-textinput form-name="内容右对齐" align="right"></ui-textinput>
+    </div>
+    :::
+
+    #### maxlength
+
+    :::democode/html
+    <div style="width:300px;">
+        <ui-textinput form-name="姓名" :maxlength="10"></ui-textinput>
     </div>
     :::
 
