@@ -97,6 +97,10 @@ mor-progress{
                 .main{
                     stroke: @colorBlue;
                     transition: stroke-dasharray 0.2s, stroke-opacity 0.2s;
+
+                    &.done{
+                        stroke: @colorSuccess;
+                    }
                 }
             }
         }

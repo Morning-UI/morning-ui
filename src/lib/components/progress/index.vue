@@ -28,7 +28,9 @@
         </template>
 
         <template v-if="conf.type === 'ring'">
-            <div class="ring-track">
+            <div
+                class="ring-track"
+            >
                 <svg viewBox="0 0 100 100">
                     <path
                         d="M 50,5 a 45,45 0 1 1 0,90 a 45,45 0 1 1 0,-90"
@@ -37,6 +39,10 @@
                     <path
                         d="M 50,5 a 45,45 0 1 1 0,90 a 45,45 0 1 1 0,-90"
                         class="main"
+                        :class="{
+                            done : data.mainProgress === 1,
+                            fail : data.failed
+                        }"
                         :style="{
                             'stroke-dasharray' : ringPer,
                             'stroke-opacity' : data.mainProgress ? 1 : 0

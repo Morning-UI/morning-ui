@@ -10249,6 +10249,19 @@ mor-textarea textarea::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.1);
   border-radius: 4px;
 }
+mor-textarea.has-maxlength {
+  padding-bottom: 20px;
+}
+mor-textarea .maxlength {
+  position: absolute;
+  color: #8E9CAF;
+  font-size: 12px;
+  left: 0;
+  bottom: 0;
+}
+mor-textarea.is-maxlength .maxlength {
+  color: #D64431;
+}
 mor-textarea.st-disabled textarea,
 mor-textarea.st-readonly textarea {
   border: 1px #a6a6a6 solid;

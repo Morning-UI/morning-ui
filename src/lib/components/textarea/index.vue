@@ -1,7 +1,7 @@
 <template>
     <mor-textarea
         :_uiid="uiid"
-        :class="[formClass, stateClass]"
+        :class="[formClass, stateClass, moreClass]"
 
         :form-name="formName"
         :form-key="formKey"
@@ -12,6 +12,7 @@
         :rows="rows"
         :auto-size="autoSize"
         :max-rows="maxRows"
+        :maxlength="maxlength"
     >
 
     <textarea
@@ -23,6 +24,7 @@
         :placeholder="placeholder"
         :disabled="conf.state === 'disabled' || conf.state === 'readonly'"
         :rows="data.rows"
+        :maxlength="conf.maxlength"
 
         @focus="_focus()"
         @blur="_blur()"
@@ -30,6 +32,10 @@
         :value="data.value"
         @input="$emit('input', $event.target.value)"
     ></textarea>
+
+    <div class="maxlength" v-if="conf.maxlength !== Infinity">
+        {{(data.value || '').length}}/{{conf.maxlength}}
+    </div>
 
     <morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn">清空</morning-link>
 
@@ -52,6 +58,10 @@ export default {
         maxRows : {
             type : Number,
             default : Infinity
+        },
+        maxlength : {
+            type : Number,
+            default : Infinity
         }
     },
     computed : {
@@ -60,7 +70,16 @@ export default {
             return {
                 rows : this.rows,
                 autoSize : this.autoSize,
-                maxRows : this.maxRows
+                maxRows : this.maxRows,
+                maxlength : this.maxlength
+            };
+
+        },
+        moreClass : function () {
+
+            return {
+                'has-maxlength' : this.conf.maxlength !== Infinity,
+                'is-maxlength' : this.conf.maxlength === (this.data.value || '').length
             };
 
         },
