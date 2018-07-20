@@ -21,6 +21,15 @@
         opacity: 0;
     }
 }
+@keyframes ring-progressing{
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
 
 mor-progress{
     display: block;
@@ -33,7 +42,7 @@ mor-progress{
             display: inline-block;
             height: @fontSize*0.5;
             border-radius: @fontSize;
-            width: ~"calc(100% - 60px)";
+            width: ~'calc(100% - 60px)';
             background: @colorExtraLightSilver;
             margin: @fontSize*0.25 0;
             vertical-align: top;
@@ -48,7 +57,11 @@ mor-progress{
             transition: width 0.2s, color 0.2s;
 
             &.done{
-                background: @colorSuccess;
+                background: @colorSuccess !important;
+            }
+
+            &.fail{
+                background: @colorDanger !important;
             }
 
             .progressing{
@@ -56,7 +69,7 @@ mor-progress{
                 height: 100%;
                 opacity: 0;
                 border-radius: @fontSize;
-                background: ~"linear-gradient(-90deg, #fffe 0%, #fffa 20%, #fff1)";
+                background: ~'linear-gradient(-90deg, #fffe 0%, #fffa 20%, #fff1)';
                 animation: 2.4s cubic-bezier(0.23, 0.48, 0.5, 1.04) infinite progressing;
             }
         }
@@ -84,7 +97,6 @@ mor-progress{
         .ring-track{
             svg{
                 path{
-                    stroke: #f00;
                     stroke-linecap: round;
                     stroke-width: 6px;
                     fill-opacity: 0;
@@ -99,8 +111,19 @@ mor-progress{
                     transition: stroke-dasharray 0.2s, stroke-opacity 0.2s;
 
                     &.done{
-                        stroke: @colorSuccess;
+                        stroke: @colorSuccess !important;
                     }
+
+                    &.fail{
+                        stroke: @colorDanger !important;
+                    }
+                }
+
+                .progressing{
+                    opacity: 0.65;
+                    transform: rotate(0deg);
+                    transform-origin: center center;
+                    animation: 2.4s linear infinite ring-progressing;
                 }
             }
         }
@@ -120,9 +143,256 @@ mor-progress{
             left: 50%;
             transform: translate(-50%, -50%);
             font-size: @fontSize*1.5;
+
+            .mo-icon{
+                transform: scale(2.4);
+                display: block;
+            }
+        }
+    }
+
+    &.co-t{
+        .progress-wrap .main{
+            background: @colorTheme;
+        }
+
+        .progress-wrap .ring-track svg .main{
+            stroke: @colorTheme;
+        }
+    }
+
+    &.co-lt{
+        .progress-wrap .main{
+            background: @colorLightTheme;
+        }
+
+        .progress-wrap .ring-track svg .main{
+            stroke: @colorLightTheme;
+        }
+    }
+
+    &.co-dt{
+        .progress-wrap .main{
+            background: @colorDarkTheme;
+        }
+
+        .progress-wrap .ring-track svg .main{
+            stroke: @colorDarkTheme;
+        }
+    }
+
+    &.co-s{
+        .progress-wrap .main{
+            background: @colorSuccess;
+        }
+
+        .progress-wrap .ring-track svg .main{
+            stroke: @colorSuccess;
+        }
+    }
+
+    &.co-w{
+        .progress-wrap .main{
+            background: @colorWarning;
+        }
+
+        .progress-wrap .ring-track svg .main{
+            stroke: @colorWarning;
+        }
+    }
+
+    &.co-d{
+        .progress-wrap .main{
+            background: @colorDanger;
+        }
+
+        .progress-wrap .ring-track svg .main{
+            stroke: @colorDanger;
+        }
+    }
+
+    &.co-p{
+        .progress-wrap .main{
+            background: @colorPrimary;
+        }
+
+        .progress-wrap .ring-track svg .main{
+            stroke: @colorPrimary;
+        }
+    }
+
+    &.co-m{
+        .progress-wrap .main{
+            background: @colorMinor;
+        }
+
+        .progress-wrap .ring-track svg .main{
+            stroke: @colorMinor;
+        }
+    }
+
+    &.co-i{
+        .progress-wrap .main{
+            background: @colorInfo;
+        }
+
+        .progress-wrap .ring-track svg .main{
+            stroke: @colorInfo;
+        }
+    }
+
+    &.co-bk{
+        .progress-wrap .main{
+            background: @colorBlack;
+        }
+
+        .progress-wrap .ring-track svg .main{
+            stroke: @colorBlack;
+        }
+    }
+
+    &.co-lbk{
+        .progress-wrap .main{
+            background: @colorLightBlack;
+        }
+
+        .progress-wrap .ring-track svg .main{
+            stroke: @colorLightBlack;
+        }
+    }
+
+    &.co-elbk{
+        .progress-wrap .main{
+            background: @colorExtraLightBlack;
+        }
+
+        .progress-wrap .ring-track svg .main{
+            stroke: @colorExtraLightBlack;
+        }
+    }
+
+    &.co-bu{
+        .progress-wrap .main{
+            background: @colorBlue;
+        }
+
+        .progress-wrap .ring-track svg .main{
+            stroke: @colorBlue;
+        }
+    }
+
+    &.co-lbu{
+        .progress-wrap .main{
+            background: @colorLightBlue;
+        }
+
+        .progress-wrap .ring-track svg .main{
+            stroke: @colorLightBlue;
+        }
+    }
+
+    &.co-elbu{
+        .progress-wrap .main{
+            background: @colorExtraLightBlue;
+        }
+
+        .progress-wrap .ring-track svg .main{
+            stroke: @colorExtraLightBlue;
+        }
+    }
+
+    &.co-si{
+        .line-track,
+        .progress-wrap .ring-track svg .track-bg{
+            background: @colorLightBlack;
+        }
+
+        .progress-wrap .main{
+            background: @colorSilver;
+        }
+
+        .progress-wrap .ring-track svg .main{
+            stroke: @colorSilver;
+        }
+    }
+
+    &.co-lsi{
+        .line-track,
+        .progress-wrap .ring-track svg .track-bg{
+            background: @colorLightBlack;
+        }
+
+        .progress-wrap .main{
+            background: @colorLightSilver;
+        }
+
+        .progress-wrap .ring-track svg .main{
+            stroke: @colorLightSilver;
+        }
+    }
+
+    &.co-elsi{
+        .line-track,
+        .progress-wrap .ring-track svg .track-bg{
+            background: @colorLightBlack;
+        }
+
+        .progress-wrap .main{
+            background: @colorExtraLightSilver;
+        }
+
+        .progress-wrap .ring-track svg .main{
+            stroke: @colorExtraLightSilver;
+        }
+    }
+
+    &.co-g{
+        .line-track,
+        .progress-wrap .ring-track svg .track-bg{
+            background: @colorLightBlack;
+        }
+
+        .progress-wrap .main{
+            background: @colorGray;
+        }
+
+        .progress-wrap .ring-track svg .main{
+            stroke: @colorGray;
+        }
+    }
+
+    &.co-lg{
+        .line-track,
+        .progress-wrap .ring-track svg .track-bg{
+            background: @colorLightBlack;
+        }
+
+        .progress-wrap .main{
+            background: @colorLightGray;
+        }
+
+        .progress-wrap .ring-track svg .main{
+            stroke: @colorLightGray;
+        }
+    }
+
+    &.co-wh{
+        .line-track,
+        .progress-wrap .ring-track svg .track-bg{
+            background: @colorLightBlack;
+        }
+
+        .progress-wrap .main{
+            background: @colorWhite;
+        }
+
+        .progress-wrap .ring-track svg .main{
+            stroke: @colorWhite;
         }
     }
 
     // default status
-    &{}
+    &{
+        .co-t;
+    }
 }

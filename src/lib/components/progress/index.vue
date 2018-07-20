@@ -1,9 +1,11 @@
 <template>
     <mor-progress
         :_uiid="uiid"
-        :class="[moreClass]"
+        :class="[colorClass, moreClass]"
+        :percent="percent"
         :progressing="progressing"
         :type="type"
+        :failed="failed"
     >
 
     <div class="progress-wrap">
@@ -13,14 +15,14 @@
                     class="main"
                     :class="{
                         done : data.mainProgress === 1,
-                        fail : data.failed
+                        fail : conf.failed
                     }"
                     :style="{
                         width : data.mainProgress*100 + '%'
                     }"
                 >
                         
-                    <div class="progressing" v-if="conf.progressing && data.mainProgress !== 1"></div>
+                    <div class="progressing" v-if="conf.progressing && data.mainProgress !== 1 && !conf.failed"></div>
             
                 </div>
             </div>
@@ -41,12 +43,35 @@
                         class="main"
                         :class="{
                             done : data.mainProgress === 1,
-                            fail : data.failed
+                            fail : conf.failed
                         }"
                         :style="{
                             'stroke-dasharray' : ringPer,
                             'stroke-opacity' : data.mainProgress ? 1 : 0
                         }"
+                    ></path>
+                    <defs>
+                        <linearGradient
+                            id="ring-progressing"
+                            x1="0%"
+                            y1="50%"
+                            x2="100%"
+                            y2="50%"
+                            gradientUnits="userSpaceOnUse"
+                        >
+                            <stop offset="0%" stop-color="#fff1"/>
+                            <stop offset="80%" stop-color="#fffa"/>
+                            <stop offset="100%" stop-color="#fffe"/>
+                        </linearGradient>
+                    </defs>
+                    <path
+                        d="M 50,5 a 45,45 0 1 1 0,90 a 45,45 0 1 1 0,-90"
+                        class="progressing"
+                        style="stroke: url(#ring-progressing)"
+                        :style="{
+                            'stroke-dasharray' : ringPer
+                        }"
+                        v-if="conf.progressing && data.mainProgress !== 1 && !conf.failed"
                     ></path>
                 </svg>
             </div>
@@ -59,10 +84,17 @@
 </template>
  
 <script>
+const num100 = 100;
+const ringDiameter = 90;
+
 export default {
     origin : 'UI',
     name : 'progress',
     props : {
+        percent : {
+            type : Number,
+            default : 0
+        },
         progressing : {
             type : Boolean,
             default : false
@@ -71,14 +103,20 @@ export default {
             type : String,
             default : 'line',
             validator : (value => ['line', 'ring'].indexOf(value) !== -1)
+        },
+        failed : {
+            type : Boolean,
+            default : false
         }
     },
     computed : {
         _conf : function () {
 
             return {
+                percent : this.percent,
                 progressing : this.progressing,
-                type : this.type
+                type : this.type,
+                failed : this.failed
             };
 
         },
@@ -92,7 +130,7 @@ export default {
         },
         progressNote : function () {
 
-            if (this.data.failed) {
+            if (this.conf.failed) {
 
                 return '<i class="mo-icon mo-icon-error-cf"></i>';
 
@@ -100,16 +138,14 @@ export default {
 
                 return '<i class="mo-icon mo-icon-correct-cf"></i>';
 
-            } else {
-
-                return `${Math.floor(this.data.mainProgress*100)}%`;
-
             }
+
+            return `${Math.floor(this.data.mainProgress * num100)}%`;
 
         },
         ringPer : function () {
 
-            return `${Math.PI * 90 * this.data.mainProgress}, ${Math.PI * 90}`
+            return `${Math.PI * ringDiameter * this.data.mainProgress}, ${Math.PI * ringDiameter}`;
 
         }
     },
@@ -117,14 +153,13 @@ export default {
 
         return {
             data : {
-                mainProgress : 0,
-                failed : false
+                mainProgress : 0
             }
         };
 
     },
     methods : {
-        to : function (per = 0) {
+        _to : function (per = 0) {
 
             per = Number(per) || 0;
 
@@ -145,6 +180,15 @@ export default {
         }
     },
     mounted : function () {
+
+        this.$watch('percent', () => {
+
+            this._to(this.conf.percent / num100);
+            this.$emit('emit');
+
+        }, {
+            immediate : true
+        });
 
     }
 };

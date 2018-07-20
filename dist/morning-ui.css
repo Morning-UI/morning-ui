@@ -9129,6 +9129,14 @@ to {
     opacity: 0;
 }
 }
+@keyframes ring-progressing {
+from {
+    transform: rotate(0deg);
+}
+to {
+    transform: rotate(360deg);
+}
+}
 mor-progress {
   display: block;
 }
@@ -9154,7 +9162,10 @@ mor-progress .progress-wrap .main {
   transition: width 0.2s, color 0.2s;
 }
 mor-progress .progress-wrap .main.done {
-  background: #4DBD67;
+  background: #4DBD67 !important;
+}
+mor-progress .progress-wrap .main.fail {
+  background: #D64431 !important;
 }
 mor-progress .progress-wrap .main .progressing {
   width: 0%;
@@ -9182,7 +9193,6 @@ mor-progress .progress-wrap .note .mo-icon-correct-cf {
   color: #4DBD67;
 }
 mor-progress .progress-wrap .ring-track svg path {
-  stroke: #f00;
   stroke-linecap: round;
   stroke-width: 6px;
   fill-opacity: 0;
@@ -9193,6 +9203,18 @@ mor-progress .progress-wrap .ring-track svg .track-bg {
 mor-progress .progress-wrap .ring-track svg .main {
   stroke: #7C8BA0;
   transition: stroke-dasharray 0.2s, stroke-opacity 0.2s;
+}
+mor-progress .progress-wrap .ring-track svg .main.done {
+  stroke: #4DBD67 !important;
+}
+mor-progress .progress-wrap .ring-track svg .main.fail {
+  stroke: #D64431 !important;
+}
+mor-progress .progress-wrap .ring-track svg .progressing {
+  opacity: 0.65;
+  transform: rotate(0deg);
+  transform-origin: center center;
+  animation: 2.4s linear infinite ring-progressing;
 }
 mor-progress.type-ring .progress-wrap {
   position: relative;
@@ -9206,6 +9228,166 @@ mor-progress.type-ring .note {
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 24px;
+}
+mor-progress.type-ring .note .mo-icon {
+  transform: scale(2.4);
+  display: block;
+}
+mor-progress.co-t .progress-wrap .main {
+  background: #F33D5D;
+}
+mor-progress.co-t .progress-wrap .ring-track svg .main {
+  stroke: #F33D5D;
+}
+mor-progress.co-lt .progress-wrap .main {
+  background: #F86F88;
+}
+mor-progress.co-lt .progress-wrap .ring-track svg .main {
+  stroke: #F86F88;
+}
+mor-progress.co-dt .progress-wrap .main {
+  background: #D22343;
+}
+mor-progress.co-dt .progress-wrap .ring-track svg .main {
+  stroke: #D22343;
+}
+mor-progress.co-s .progress-wrap .main {
+  background: #4DBD67;
+}
+mor-progress.co-s .progress-wrap .ring-track svg .main {
+  stroke: #4DBD67;
+}
+mor-progress.co-w .progress-wrap .main {
+  background: #F0AD4E;
+}
+mor-progress.co-w .progress-wrap .ring-track svg .main {
+  stroke: #F0AD4E;
+}
+mor-progress.co-d .progress-wrap .main {
+  background: #D64431;
+}
+mor-progress.co-d .progress-wrap .ring-track svg .main {
+  stroke: #D64431;
+}
+mor-progress.co-p .progress-wrap .main {
+  background: #2185D0;
+}
+mor-progress.co-p .progress-wrap .ring-track svg .main {
+  stroke: #2185D0;
+}
+mor-progress.co-m .progress-wrap .main {
+  background: #A9A9A9;
+}
+mor-progress.co-m .progress-wrap .ring-track svg .main {
+  stroke: #A9A9A9;
+}
+mor-progress.co-i .progress-wrap .main {
+  background: #03A6B9;
+}
+mor-progress.co-i .progress-wrap .ring-track svg .main {
+  stroke: #03A6B9;
+}
+mor-progress.co-bk .progress-wrap .main {
+  background: #17212D;
+}
+mor-progress.co-bk .progress-wrap .ring-track svg .main {
+  stroke: #17212D;
+}
+mor-progress.co-lbk .progress-wrap .main {
+  background: #303C4B;
+}
+mor-progress.co-lbk .progress-wrap .ring-track svg .main {
+  stroke: #303C4B;
+}
+mor-progress.co-elbk .progress-wrap .main {
+  background: #45505C;
+}
+mor-progress.co-elbk .progress-wrap .ring-track svg .main {
+  stroke: #45505C;
+}
+mor-progress.co-bu .progress-wrap .main {
+  background: #7C8BA0;
+}
+mor-progress.co-bu .progress-wrap .ring-track svg .main {
+  stroke: #7C8BA0;
+}
+mor-progress.co-lbu .progress-wrap .main {
+  background: #8E9CAF;
+}
+mor-progress.co-lbu .progress-wrap .ring-track svg .main {
+  stroke: #8E9CAF;
+}
+mor-progress.co-elbu .progress-wrap .main {
+  background: #A8B3C2;
+}
+mor-progress.co-elbu .progress-wrap .ring-track svg .main {
+  stroke: #A8B3C2;
+}
+mor-progress.co-si .line-track,
+mor-progress.co-si .progress-wrap .ring-track svg .track-bg {
+  background: #303C4B;
+}
+mor-progress.co-si .progress-wrap .main {
+  background: #D6DDE5;
+}
+mor-progress.co-si .progress-wrap .ring-track svg .main {
+  stroke: #D6DDE5;
+}
+mor-progress.co-lsi .line-track,
+mor-progress.co-lsi .progress-wrap .ring-track svg .track-bg {
+  background: #303C4B;
+}
+mor-progress.co-lsi .progress-wrap .main {
+  background: #E2E8EE;
+}
+mor-progress.co-lsi .progress-wrap .ring-track svg .main {
+  stroke: #E2E8EE;
+}
+mor-progress.co-elsi .line-track,
+mor-progress.co-elsi .progress-wrap .ring-track svg .track-bg {
+  background: #303C4B;
+}
+mor-progress.co-elsi .progress-wrap .main {
+  background: #EDF1F5;
+}
+mor-progress.co-elsi .progress-wrap .ring-track svg .main {
+  stroke: #EDF1F5;
+}
+mor-progress.co-g .line-track,
+mor-progress.co-g .progress-wrap .ring-track svg .track-bg {
+  background: #303C4B;
+}
+mor-progress.co-g .progress-wrap .main {
+  background: #E6E6E6;
+}
+mor-progress.co-g .progress-wrap .ring-track svg .main {
+  stroke: #E6E6E6;
+}
+mor-progress.co-lg .line-track,
+mor-progress.co-lg .progress-wrap .ring-track svg .track-bg {
+  background: #303C4B;
+}
+mor-progress.co-lg .progress-wrap .main {
+  background: #F0F0F0;
+}
+mor-progress.co-lg .progress-wrap .ring-track svg .main {
+  stroke: #F0F0F0;
+}
+mor-progress.co-wh .line-track,
+mor-progress.co-wh .progress-wrap .ring-track svg .track-bg {
+  background: #303C4B;
+}
+mor-progress.co-wh .progress-wrap .main {
+  background: #FFFFFF;
+}
+mor-progress.co-wh .progress-wrap .ring-track svg .main {
+  stroke: #FFFFFF;
+}
+mor-progress .progress-wrap .main {
+  background: #F33D5D;
+}
+mor-progress .progress-wrap .ring-track svg .main {
+  stroke: #F33D5D;
 }
 
 mor-sticky {
