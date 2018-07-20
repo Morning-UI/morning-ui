@@ -47,7 +47,8 @@
             'is-max' : !!isMax,
             showlist : !!data.showlist,
             'no-animation' : !!data.highPerfMode,
-            'input-group' : !!conf.prepend
+            'input-group' : !!conf.prepend,
+            'over-bottom' : data.selectListOverBottom
         }, stateClass]"
     >
         <div
@@ -133,7 +134,8 @@
                 showlist : !!data.showlist,
                 'no-animation' : !!data.highPerfMode,
                 'hide-selected' : conf.hideSelected,
-                'mor-select-wrap' : !conf.separateEmit
+                'mor-select-wrap' : !conf.separateEmit,
+                'over-bottom' : data.selectListOverBottom
             }, stateClass]"
         >
             <ul
@@ -367,7 +369,8 @@ export default {
                 multiinputNameValMap : {},
                 itemValMapInit : false,
                 matchList : [],
-                selectedAll : false
+                selectedAll : false,
+                selectListOverBottom : false
             },
             listStyle : {}
         };
@@ -1195,6 +1198,21 @@ export default {
                 
                 }
 
+                this.Vue.nextTick(() => {
+
+                    this.Vue.nextTick(() => {
+
+                        // over bottom
+                        if (this.Tip.overranger[2]) {
+
+                            this._tipUpdate();
+
+                        }
+
+                    });
+
+                });
+
                 this.$emit('list-show');
 
             } else {
@@ -1237,8 +1255,8 @@ export default {
         this.data.$list = this.$el.querySelector('.select-list>.list');
         this.data.$selectList = this.$el.querySelector('.select-list');
         this.data.$selectArea = this.$el.querySelector('.select-area');
-        this.Tip.autoReverse = false;
-        this.Tip.autoOffset = false;
+        this.Tip.autoReverse = true;
+        this.Tip.autoOffset = true;
 
         this.$watch(() => JSON.stringify(this.conf.list), () => {
 
@@ -1341,6 +1359,20 @@ export default {
         this.$watch('data.itemNomathMap', () => {
 
             this._refreshMatchList();
+
+        });
+
+        this.$watch('Tip.overranger', () => {
+
+            if (this.Tip.overranger[2]) {
+
+                this.data.selectListOverBottom = true;
+
+            } else {
+
+                this.data.selectListOverBottom = false;
+
+            }
 
         });
 

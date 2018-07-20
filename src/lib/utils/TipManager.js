@@ -55,6 +55,7 @@ let TipManager = {
             let options = this.Tip.options;
             let rect = options.element.getBoundingClientRect();
             let placement = options.placement;
+            let overranger = [false, false, false, false];
 
             if (placement === 'bottom' ||
                 placement === 'top') {
@@ -63,7 +64,7 @@ let TipManager = {
                 if (this.Tip.autoOffset && (rect.x - blank) < 0) {
 
                     this.Tip.autoFixOffset[1] = rect.x - blank;
-                    this.Tip.overranger[3] = true;
+                    overranger[3] = true;
 
                 }
 
@@ -71,7 +72,7 @@ let TipManager = {
                 if (this.Tip.autoOffset && (rect.x + rect.width + blank) > document.documentElement.clientWidth) {
 
                     this.Tip.autoFixOffset[1] = rect.x + rect.width + blank - document.documentElement.clientWidth;
-                    this.Tip.overranger[1] = true;
+                    overranger[1] = true;
 
                 }
 
@@ -79,7 +80,7 @@ let TipManager = {
                 if (this.Tip.autoReverse && (rect.y - blank) < 0) {
 
                     this.Tip.autoFixPlacement = 'bottom';
-                    this.Tip.overranger[0] = true;
+                    overranger[0] = true;
 
                 }
 
@@ -87,7 +88,7 @@ let TipManager = {
                 if (this.Tip.autoReverse && (rect.y + rect.height + blank) > document.documentElement.clientHeight) {
 
                     this.Tip.autoFixPlacement = 'top';
-                    this.Tip.overranger[2] = true;
+                    overranger[2] = true;
 
                 }
 
@@ -98,7 +99,7 @@ let TipManager = {
                 if (this.Tip.autoReverse && (rect.x - blank) < 0) {
 
                     this.Tip.autoFixPlacement = 'right';
-                    this.Tip.overranger[3] = true;
+                    overranger[3] = true;
 
                 }
 
@@ -106,7 +107,7 @@ let TipManager = {
                 if (this.Tip.autoReverse && (rect.x + rect.width + blank) > document.documentElement.clientWidth) {
 
                     this.Tip.autoFixPlacement = 'left';
-                    this.Tip.overranger[1] = true;
+                    overranger[1] = true;
                        
                 }
 
@@ -114,7 +115,7 @@ let TipManager = {
                 if (this.Tip.autoOffset && (rect.y - blank) < 0) {
 
                     this.Tip.autoFixOffset[0] = rect.y - blank;
-                    this.Tip.overranger[0] = true;
+                    overranger[0] = true;
 
                 }
 
@@ -122,11 +123,13 @@ let TipManager = {
                 if (this.Tip.autoOffset && (rect.y + rect.height + blank) > document.documentElement.clientHeight) {
 
                     this.Tip.autoFixOffset[0] = rect.y + rect.height + blank - document.documentElement.clientHeight;
-                    this.Tip.overranger[2] = true;
+                    overranger[2] = true;
 
                 }
 
             }
+
+            this.Tip.overranger = overranger;
             
         },
         _tipCreate : function (options) {
@@ -154,8 +157,13 @@ let TipManager = {
             this.Tip.overranger = [false, false, false, false];
             this.Tip.options.element.style.zIndex = this._indexMax();
             this._tipUpdate();
-            this._tipAutoPos();
-            this._tipUpdate();
+
+            this.Vue.nextTick(() => {
+
+                this._tipAutoPos();
+                this._tipUpdate();
+
+            });
 
         },
         _tipUpdate : function (options) {
