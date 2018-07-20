@@ -1256,7 +1256,7 @@ export default {
         this.data.$selectList = this.$el.querySelector('.select-list');
         this.data.$selectArea = this.$el.querySelector('.select-area');
         this.Tip.autoReverse = true;
-        this.Tip.autoOffset = true;
+        this.Tip.autoOffset = false;
 
         this.$watch(() => JSON.stringify(this.conf.list), () => {
 
