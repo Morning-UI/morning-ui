@@ -13876,6 +13876,7 @@ var TipManager = {
             var options = this.Tip.options;
             var rect = options.element.getBoundingClientRect();
             var placement = options.placement;
+            var overranger = [false, false, false, false];
 
             if (placement === 'bottom' || placement === 'top') {
 
@@ -13883,28 +13884,28 @@ var TipManager = {
                 if (this.Tip.autoOffset && rect.x - blank < 0) {
 
                     this.Tip.autoFixOffset[1] = rect.x - blank;
-                    this.Tip.overranger[3] = true;
+                    overranger[3] = true;
                 }
 
                 // overright
                 if (this.Tip.autoOffset && rect.x + rect.width + blank > document.documentElement.clientWidth) {
 
                     this.Tip.autoFixOffset[1] = rect.x + rect.width + blank - document.documentElement.clientWidth;
-                    this.Tip.overranger[1] = true;
+                    overranger[1] = true;
                 }
 
                 // overtop
                 if (this.Tip.autoReverse && rect.y - blank < 0) {
 
                     this.Tip.autoFixPlacement = 'bottom';
-                    this.Tip.overranger[0] = true;
+                    overranger[0] = true;
                 }
 
                 // overbottom
                 if (this.Tip.autoReverse && rect.y + rect.height + blank > document.documentElement.clientHeight) {
 
                     this.Tip.autoFixPlacement = 'top';
-                    this.Tip.overranger[2] = true;
+                    overranger[2] = true;
                 }
             } else if (placement === 'left' || placement === 'right') {
 
@@ -13912,30 +13913,32 @@ var TipManager = {
                 if (this.Tip.autoReverse && rect.x - blank < 0) {
 
                     this.Tip.autoFixPlacement = 'right';
-                    this.Tip.overranger[3] = true;
+                    overranger[3] = true;
                 }
 
                 // overright
                 if (this.Tip.autoReverse && rect.x + rect.width + blank > document.documentElement.clientWidth) {
 
                     this.Tip.autoFixPlacement = 'left';
-                    this.Tip.overranger[1] = true;
+                    overranger[1] = true;
                 }
 
                 // overtop
                 if (this.Tip.autoOffset && rect.y - blank < 0) {
 
                     this.Tip.autoFixOffset[0] = rect.y - blank;
-                    this.Tip.overranger[0] = true;
+                    overranger[0] = true;
                 }
 
                 // overbottom
                 if (this.Tip.autoOffset && rect.y + rect.height + blank > document.documentElement.clientHeight) {
 
                     this.Tip.autoFixOffset[0] = rect.y + rect.height + blank - document.documentElement.clientHeight;
-                    this.Tip.overranger[2] = true;
+                    overranger[2] = true;
                 }
             }
+
+            this.Tip.overranger = overranger;
         },
         _tipCreate: function _tipCreate(options) {
 
@@ -13954,14 +13957,19 @@ var TipManager = {
             this._tipShow();
         },
         _tipShow: function _tipShow() {
+            var _this = this;
 
             this.Tip.autoFixOffset = [0, 0];
             this.Tip.autoFixPlacement = null;
             this.Tip.overranger = [false, false, false, false];
             this.Tip.options.element.style.zIndex = this._indexMax();
             this._tipUpdate();
-            this._tipAutoPos();
-            this._tipUpdate();
+
+            this.Vue.nextTick(function () {
+
+                _this._tipAutoPos();
+                _this._tipUpdate();
+            });
         },
         _tipUpdate: function _tipUpdate(options) {
 
@@ -28314,6 +28322,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
 
 var _lodash = __webpack_require__(258);
 
@@ -28497,7 +28507,8 @@ exports.default = {
                 multiinputNameValMap: {},
                 itemValMapInit: false,
                 matchList: [],
-                selectedAll: false
+                selectedAll: false,
+                selectListOverBottom: false
             },
             listStyle: {}
         };
@@ -29288,6 +29299,7 @@ exports.default = {
             }
         },
         toggle: function toggle(show) {
+            var _this4 = this;
 
             if (show === undefined) {
 
@@ -29370,6 +29382,18 @@ exports.default = {
                     }
                 }
 
+                this.Vue.nextTick(function () {
+
+                    _this4.Vue.nextTick(function () {
+
+                        // over bottom
+                        if (_this4.Tip.overranger[2]) {
+
+                            _this4._tipUpdate();
+                        }
+                    });
+                });
+
                 this.$emit('list-show');
             } else {
 
@@ -29421,30 +29445,30 @@ exports.default = {
         }
     },
     mounted: function mounted() {
-        var _this4 = this;
+        var _this5 = this;
 
         this.data.mounted = true;
         this.data.$list = this.$el.querySelector('.select-list>.list');
         this.data.$selectList = this.$el.querySelector('.select-list');
         this.data.$selectArea = this.$el.querySelector('.select-area');
-        this.Tip.autoReverse = false;
-        this.Tip.autoOffset = false;
+        this.Tip.autoReverse = true;
+        this.Tip.autoOffset = true;
 
         this.$watch(function () {
-            return JSON.stringify(_this4.conf.list);
+            return JSON.stringify(_this5.conf.list);
         }, function () {
 
-            _this4._updateItemValueList();
+            _this5._updateItemValueList();
         }, {
             immediate: true
         });
 
         // this._refreshShowItems don't need immediate, cause _onValueChange() will exec it.
         this.$watch(function () {
-            return JSON.stringify(_this4.conf.list);
+            return JSON.stringify(_this5.conf.list);
         }, function () {
 
-            _this4._refreshShowItems();
+            _this5._refreshShowItems();
         });
 
         this._onValueChange();
@@ -29455,7 +29479,7 @@ exports.default = {
 
         setTimeout(function () {
 
-            _this4.$watch('conf.maxShowHeight', _this4._setListHeight, {
+            _this5.$watch('conf.maxShowHeight', _this5._setListHeight, {
                 immediate: true
             });
         });
@@ -29466,21 +29490,21 @@ exports.default = {
 
             if (oldVal && $oldEmitTarget) {
 
-                $oldEmitTarget.removeEventListener('click', _this4._emitClick);
+                $oldEmitTarget.removeEventListener('click', _this5._emitClick);
             }
 
             if (newVal) {
 
-                _this4.data.$listWrap = _this4.data.$selectArea;
+                _this5.data.$listWrap = _this5.data.$selectArea;
 
-                _this4.Vue.nextTick(function () {
+                _this5.Vue.nextTick(function () {
 
-                    _this4.data.$emitTarget = document.querySelector(newVal);
-                    document.querySelector(newVal).addEventListener('click', _this4._emitClick);
+                    _this5.data.$emitTarget = document.querySelector(newVal);
+                    document.querySelector(newVal).addEventListener('click', _this5._emitClick);
                 });
             } else {
 
-                _this4.data.$listWrap = _this4.data.$selectList;
+                _this5.data.$listWrap = _this5.data.$selectList;
             }
         }, {
             immediate: true
@@ -29490,50 +29514,61 @@ exports.default = {
 
         this.$watch('conf.multiSelect', function () {
 
-            var value = _this4.get();
+            var value = _this5.get();
 
-            if (!_this4.conf.multiSelect && value.length > 1) {
+            if (!_this5.conf.multiSelect && value.length > 1) {
 
                 value = value.slice(0, 1);
             }
 
-            _this4._set(value, true);
-            _this4._onValueChange();
+            _this5._set(value, true);
+            _this5._onValueChange();
         });
 
         this.$watch('conf.max', function () {
 
-            _this4._set(_this4._maxFilter(_this4.get()), true);
+            _this5._set(_this5._maxFilter(_this5.get()), true);
         });
 
         this.$watch('conf.inlineImgSize', function () {
 
-            _this4._resizeInlineImg();
+            _this5._resizeInlineImg();
         }, {
             immediate: true
         });
 
         this.$watch('data.itemValMap', function () {
 
-            _this4._refreshMatchList();
+            _this5._refreshMatchList();
         });
 
         this.$watch('data.itemNomathMap', function () {
 
-            _this4._refreshMatchList();
+            _this5._refreshMatchList();
+        });
+
+        this.$watch('Tip.overranger', function () {
+
+            if (_this5.Tip.overranger[2]) {
+
+                _this5.data.selectListOverBottom = true;
+            } else {
+
+                _this5.data.selectListOverBottom = false;
+            }
         });
 
         this.$on('list-show', function () {
 
             setTimeout(function () {
 
-                _this4._globalEventAdd('click', '_checkArea');
+                _this5._globalEventAdd('click', '_checkArea');
             });
         });
 
         this.$on('list-hide', function () {
 
-            _this4._globalEventRemove('click', '_checkArea');
+            _this5._globalEventRemove('click', '_checkArea');
         });
     },
     updated: function updated() {
@@ -45018,7 +45053,8 @@ var render = function() {
               "is-max": !!_vm.isMax,
               showlist: !!_vm.data.showlist,
               "no-animation": !!_vm.data.highPerfMode,
-              "input-group": !!_vm.conf.prepend
+              "input-group": !!_vm.conf.prepend,
+              "over-bottom": _vm.data.selectListOverBottom
             },
             _vm.stateClass
           ]
@@ -45142,7 +45178,8 @@ var render = function() {
                   showlist: !!_vm.data.showlist,
                   "no-animation": !!_vm.data.highPerfMode,
                   "hide-selected": _vm.conf.hideSelected,
-                  "mor-select-wrap": !_vm.conf.separateEmit
+                  "mor-select-wrap": !_vm.conf.separateEmit,
+                  "over-bottom": _vm.data.selectListOverBottom
                 },
                 _vm.stateClass
               ]

@@ -11459,6 +11459,14 @@ mor-select .select-area.showlist .wrap > mor-textinput {
 mor-select .select-area.showlist .wrap > .drop {
   transform: rotateX(180deg);
 }
+mor-select .select-area.showlist.over-bottom .wrap {
+  border-radius: 0 0 3px 3px;
+}
+mor-select .select-area.showlist.over-bottom .list {
+  border-radius: 3px 3px 0 0;
+  border-top-width: 1px;
+  border-bottom-width: 0;
+}
 mor-select .select-area.is-max .wrap {
   cursor: default;
 }
@@ -11710,6 +11718,9 @@ mor-select.input-group .select-area {
   position: relative;
   word-break: break-all;
 }
+.mor-select-wrap li:first-child {
+  border-top-width: 0;
+}
 .mor-select-wrap li img,
 .mor-select-wrap li mor-img {
   height: 2em;
@@ -11878,6 +11889,14 @@ mor-select.input-group .select-area {
 .mor-select-wrap.showlist .wrap > .drop {
   transform: rotateX(180deg);
 }
+.mor-select-wrap.showlist.over-bottom .wrap {
+  border-radius: 0 0 3px 3px;
+}
+.mor-select-wrap.showlist.over-bottom .list {
+  border-radius: 3px 3px 0 0;
+  border-top-width: 1px;
+  border-bottom-width: 0;
+}
 .mor-select-wrap.is-max .wrap {
   cursor: default;
 }
@@ -11951,6 +11970,17 @@ mor-select.input-group .select-area {
   -webkit-user-select: none;
   cursor: not-allowed !important;
 }
+.mor-select-wrap.over-bottom .list {
+  transform-origin: 50% 100%;
+}
+.mor-select-wrap.over-bottom.showlist .showwrap {
+  border-radius: 3px 3px 0 0;
+}
+.mor-select-wrap.over-bottom.showlist .select-list .list {
+  border-bottom-width: 1px;
+  border-radius: 0 0 3px 3px;
+  border-top-width: 0;
+}
 .mor-select-wrap.hide-selected li {
   padding: 0.5em 1em;
 }
@@ -11962,6 +11992,7 @@ mor-select.input-group .select-area {
 .mor-select-wrap .showlist {
   pointer-events: auto;
   visibility: visible;
+  height: auto;
 }
 .mor-select-wrap.showlist .list,
 .mor-select-wrap .showlist .list {
