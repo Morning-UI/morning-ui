@@ -157,13 +157,8 @@ let TipManager = {
             this.Tip.overranger = [false, false, false, false];
             this.Tip.options.element.style.zIndex = this._indexMax();
             this._tipUpdate();
-
-            this.Vue.nextTick(() => {
-
-                this._tipAutoPos();
-                this._tipUpdate();
-
-            });
+            this._tipAutoPos();
+            this._tipUpdate();
 
         },
         _tipUpdate : function (options) {

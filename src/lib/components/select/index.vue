@@ -1199,17 +1199,20 @@ export default {
                 }
 
                 this.Vue.nextTick(() => {
+                   
+                    this._tipAutoPos();
 
-                    this.Vue.nextTick(() => {
+                    // over bottom
+                    if (this.Tip.overranger[2]) {
 
-                        // over bottom
-                        if (this.Tip.overranger[2]) {
-
+                        this.Vue.nextTick(() => {
+                            
                             this._tipUpdate();
+                            this.Vue.nextTick(this._tipUpdate);
 
-                        }
+                        });
 
-                    });
+                    }
 
                 });
 
