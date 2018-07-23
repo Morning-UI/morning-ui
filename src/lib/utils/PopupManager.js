@@ -16,22 +16,24 @@ let PopupManager = {
     methods : {
         _popupShow : function () {
 
-            if (this.Popup.keepDiv) {
+            if (!this.Popup.keepDiv) {
 
-                return;
+                let id = this.morning._popupId++;
+                let keepDiv = document.createElement('div');
+
+                keepDiv.setAttribute('popup-id', id);
+                keepDiv.style.display = 'none';
+                this.Popup.$target.before(keepDiv);
+                this.Popup.oldIndex = this.Popup.$target.style.zIndex;
+                this.Popup.$target.style.zIndex = this._indexInc('Popup');
+                document.body.append(this.Popup.$target);
+                this.Popup.keepDiv = keepDiv;
+
+            } else {
+
+                this.Popup.$target.style.zIndex = this._indexInc('Popup');
 
             }
-
-            let id = this.morning._popupId++;
-            let keepDiv = document.createElement('div');
-
-            keepDiv.setAttribute('popup-id', id);
-            keepDiv.style.display = 'none';
-            this.Popup.$target.before(keepDiv);
-            this.Popup.oldIndex = this.Popup.$target.style.zIndex;
-            this.Popup.$target.style.zIndex = this._indexGet('Popup', id);
-            document.body.append(this.Popup.$target);
-            this.Popup.keepDiv = keepDiv;
 
         },
         _popupHide : function () {

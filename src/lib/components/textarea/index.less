@@ -51,6 +51,24 @@ mor-textarea{
         .setup-scrollbar();
     }
 
+    &.has-maxlength{
+        padding-bottom: @fontSize*1.25;
+    }
+
+    .maxlength{
+        position: absolute;
+        color: @colorLightBlue;
+        font-size: @fontSize*0.75;
+        left: 0;
+        bottom: 0;
+    }
+
+    &.is-maxlength{
+        .maxlength{
+            color: @colorDanger;
+        }
+    }
+
     &.st-normal{}
 
     &.st-disabled,

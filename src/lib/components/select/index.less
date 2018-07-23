@@ -27,6 +27,18 @@
                 transform: rotateX(180deg);
             }
         }
+
+        &.over-bottom{
+            .wrap{
+                border-radius: 0 0 @borderRadius @borderRadius;
+            }
+
+            .list{
+                border-radius: @borderRadius @borderRadius 0 0;
+                border-top-width: 1px;
+                border-bottom-width: 0;
+            }
+        }
     }
 
     &.is-max{
@@ -370,6 +382,10 @@ mor-select{
         position: relative;
         word-break: break-all;
 
+        &:first-child{
+            border-top-width: 0;
+        }
+
         img,
         mor-img {
             height: 2em;
@@ -456,6 +472,24 @@ mor-select{
         .setup-select-area();
     }
 
+    &.over-bottom{
+        .list{
+            transform-origin: 50% 100%;
+        }
+
+        &.showlist{
+            .showwrap{
+                border-radius: @borderRadius @borderRadius 0 0;
+            }
+
+            .select-list .list{
+                border-bottom-width: 1px;
+                border-radius: 0 0 @borderRadius @borderRadius;
+                border-top-width: 0;
+            }
+        }
+    }
+
     &.hide-selected li{
         padding: 0.5em 1em;
     }
@@ -469,6 +503,7 @@ mor-select{
     .showlist{
         pointer-events: auto;
         visibility: visible;
+        height: auto;
 
         .list{
             transform: scaleY(1);

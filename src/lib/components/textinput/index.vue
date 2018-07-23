@@ -14,6 +14,7 @@
         :append="append"
         :append-type="appendType"
         :align="align"
+        :maxlength="maxlength"
     >
 
     <template v-if="conf.prepend">
@@ -28,6 +29,7 @@
             :class="inputClass"
             :placeholder="placeholder"
             :disabled="conf.state === 'disabled' || conf.state === 'readonly'"
+            :maxlength="conf.maxlength"
 
             @focus="_focus()"
             @blur="_blur()"
@@ -44,6 +46,7 @@
             :class="inputClass"
             :placeholder="placeholder"
             :disabled="conf.state === 'disabled' || conf.state === 'readonly'"
+            :maxlength="conf.maxlength"
 
             @focus="_focus()"
             @blur="_blur()"
@@ -88,6 +91,10 @@ export default {
             type : String,
             default : 'left',
             validator : (value => ['left', 'center', 'right'].indexOf(value) !== -1)
+        },
+        maxlength : {
+            type : Number,
+            default : Infinity
         }
     },
     computed : {
@@ -98,7 +105,8 @@ export default {
                 prepend : this.prepend,
                 append : this.append,
                 appendType : this.appendType,
-                align : this.align
+                align : this.align,
+                maxlength : this.maxlength
             };
 
         },

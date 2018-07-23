@@ -18,6 +18,33 @@
     
     ### 更新记录
 
+    ### 0.11.9 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2018年7月23日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.11.9" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.11.9/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.11.9/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 新特性
+
+    - 新增`ui-progress`进度条组件
+    - `ui-textinput`和`ui-textarea`组件新增`maxlength`配置
+
+    #### 改进
+
+    - 现在`ui-select`的下拉框超过视窗边界时，会自动反转方向
+
+    #### 修复
+
+    - 修复`ui-dialog`的`z-index`不按打开顺序递增的问题
+
+    ---
+
     ### 0.11.8 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="light-blue">
