@@ -18,8 +18,8 @@
 
     - 仅消息 : 调用消息组件的`.push(message)`方法并传入一个字符串座位消息内容。
     - 有标题或配色 : 调用消息组件的`.push(option)`方法传入一个配置对象，对象的属性包括：
-        - `title` : 消息标题(String，可选)，若为空则不显示消息的标题
-        - `message` : 消息内容(String，必需)
+        - `title` : 消息标题(String，可选，不支持HTML)，若为空则不显示消息的标题
+        - `message` : 消息内容(String，必需，支持HTML)
         - `color` : 消息的配色(String，可选，默认`theme`配色)，支持[形态/颜色](/guide/status.html#颜色)中的所有颜色。
 
     > 使用时应注意，消息组件仅用于向用户传到信息，不应该包括可交互的行动元素。
@@ -52,6 +52,15 @@
     <div>
         <ui-message ref="demo1"></ui-message>
         <ui-link js="window.morning.findVM('demo1').push({color:'success', message: '这是消息的内容'});">推送一条消息</ui-link>
+    </div>
+    :::
+
+    #### 消息内容使用HTML
+
+    :::democode/html
+    <div>
+        <ui-message ref="demo18"></ui-message>
+        <ui-link js="window.morning.findVM('demo18').push('<i class=\'mo-icon mo-icon-warn-f\' style=\'font-size:32px;width:100%;display:inline-block;text-align:center;\'></i><br><br><b>一条新消息('+new Date()+')</b>');">推送一条新消息</ui-link>
     </div>
     :::
 
