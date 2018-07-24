@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">47.54% </span>
+        <span class="strong">48.39% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>29/61</span>
+        <span class='fraction'>30/62</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">51.11% </span>
+        <span class="strong">50.98% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>23/45</span>
+        <span class='fraction'>26/51</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">57.89% </span>
+        <span class="strong">60% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>11/19</span>
+        <span class='fraction'>12/20</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">45.45% </span>
+        <span class="strong">46.43% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>25/55</span>
+        <span class='fraction'>26/56</span>
       </div>
     </div>
   </div>
@@ -267,7 +267,36 @@
 222
 223
 224
-225</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -328,6 +357,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -490,11 +528,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">142x</span>
+<span class="cline-any cline-yes">146x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
     &lt;mor-textarea
         :_uiid="uiid"
-        :class="[formClass, stateClass]"
+        :class="[formClass, stateClass, moreClass]"
 &nbsp;
         :form-name="formName"
         :form-key="formKey"
@@ -505,6 +543,7 @@
         :rows="rows"
         :auto-size="autoSize"
         :max-rows="maxRows"
+        :maxlength="maxlength"
     &gt;
 &nbsp;
     &lt;textarea
@@ -516,6 +555,7 @@
         :placeholder="placeholder"
         :disabled="conf.state === 'disabled' || conf.state === 'readonly'"
         :rows="data.rows"
+        :maxlength="conf.maxlength"
 &nbsp;
         @focus="_focus()"
         @blur="_blur()"
@@ -523,6 +563,10 @@
         :value="data.value"
         @input="$emit('input', $event.target.value)"
     &gt;&lt;/textarea&gt;
+&nbsp;
+    &lt;div class="maxlength" v-if="conf.maxlength !== Infinity"&gt;
+        {{(data.value || '').length}}/{{conf.maxlength}}
+    &lt;/div&gt;
 &nbsp;
     &lt;morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn"&gt;清空&lt;/morning-link&gt;
 &nbsp;
@@ -545,6 +589,10 @@ export default {
         maxRows : {
             type : Number,
             default : Infinity
+        },
+        maxlength : {
+            type : Number,
+            default : Infinity
         }
     },
     computed : {
@@ -553,7 +601,16 @@ export default {
             return {
                 rows : this.rows,
                 autoSize : this.autoSize,
-                maxRows : this.maxRows
+                maxRows : this.maxRows,
+                maxlength : this.maxlength
+            };
+&nbsp;
+        },
+        moreClass : function () {
+&nbsp;
+            return {
+                'has-maxlength' : this.conf.maxlength !== Infinity,
+                'is-maxlength' : this.conf.maxlength === (this.data.value || '').length
             };
 &nbsp;
         },
@@ -721,7 +778,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Jul 04 2018 20:34:57 GMT+0800 (CST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Jul 23 2018 19:32:31 GMT+0800 (CST)
 </div>
 </div>
 <script src="../../../prettify.js"></script>

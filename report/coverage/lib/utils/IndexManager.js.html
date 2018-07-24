@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">82.14% </span>
+        <span class="strong">75.86% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>23/28</span>
+        <span class='fraction'>22/29</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">72.73% </span>
+        <span class="strong">54.55% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>16/22</span>
+        <span class='fraction'>12/22</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">50% </span>
@@ -35,13 +35,13 @@
         <span class='fraction'>3/6</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">82.14% </span>
+        <span class="strong">75.86% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>23/28</span>
+        <span class='fraction'>22/29</span>
       </div>
     </div>
   </div>
-  <div class='status-line high'></div>
+  <div class='status-line medium'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -125,7 +125,8 @@
 80
 81
 82
-83</td><td class="line-coverage quiet"><span class="cline-any cline-yes">142x</span>
+83
+84</td><td class="line-coverage quiet"><span class="cline-any cline-yes">146x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">122x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -162,35 +163,36 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -242,37 +244,38 @@
 &nbsp;
             }
 &nbsp;
-            <span class="missing-if-branch" title="if path not taken" >I</span>if (step !== 0 &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >step !== undefined) {</span>
+            <span class="missing-if-branch" title="else path not taken" >E</span>if (step !== 0 &amp;&amp; step !== undefined) {
 &nbsp;
-<span class="cstat-no" title="statement not covered" >                useIndex[key] += step;</span>
+                useIndex[key] += step;
+                vmMap[`${this.uiid},${namespace}`] = useIndex[key];
 &nbsp;
             }
 &nbsp;
-            <span class="missing-if-branch" title="if path not taken" >I</span>if (this.morning._indexMap.maxIndex &lt; vmMap[`${this.uiid},${namespace}`]) {
+            <span class="missing-if-branch" title="else path not taken" >E</span>if (this.morning._indexMap.maxIndex &lt; vmMap[`${this.uiid},${namespace}`]) {
 &nbsp;
-<span class="cstat-no" title="statement not covered" >                this.morning._indexMap.maxIndex = vmMap[`${this.uiid},${namespace}`];</span>
+                this.morning._indexMap.maxIndex = vmMap[`${this.uiid},${namespace}`];
 &nbsp;
             }
 &nbsp;
             return vmMap[`${this.uiid},${namespace}`];
 &nbsp;
         },
-        _indexInc : <span class="fstat-no" title="function not covered" >function (</span>namespace) {
+        _indexInc : function (namespace) {
 &nbsp;
-<span class="cstat-no" title="statement not covered" >            return this._indexFetch(namespace, 1);</span>
+            return this._indexFetch(namespace, 1);
 &nbsp;
         },
-        _indexGet : function (namespace, addition = <span class="branch-1 cbranch-no" title="branch not covered" >0) {</span>
+        _indexGet : <span class="fstat-no" title="function not covered" >function (</span>namespace, addition = 0) <span class="cstat-no" title="statement not covered" >{</span>
 &nbsp;
-            let index = this._indexFetch(namespace, 0) + addition;
+            let index = <span class="cstat-no" title="statement not covered" >this._indexFetch(namespace, 0) + addition;</span>
 &nbsp;
-            if (this.morning._indexMap.maxIndex &lt; index) {
+<span class="cstat-no" title="statement not covered" >            if (this.morning._indexMap.maxIndex &lt; index) {</span>
 &nbsp;
-                this.morning._indexMap.maxIndex = index;
+<span class="cstat-no" title="statement not covered" >                this.morning._indexMap.maxIndex = index;</span>
 &nbsp;
             }
 &nbsp;
-            return index;
+<span class="cstat-no" title="statement not covered" >            return index;</span>
 &nbsp;
         },
         _indexDim : <span class="fstat-no" title="function not covered" >function (</span>namespace) {
@@ -295,7 +298,7 @@ export default IndexManager;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Jul 04 2018 20:34:57 GMT+0800 (CST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Jul 23 2018 19:32:31 GMT+0800 (CST)
 </div>
 </div>
 <script src="../../prettify.js"></script>

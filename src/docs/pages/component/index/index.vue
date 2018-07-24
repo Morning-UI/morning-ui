@@ -88,6 +88,7 @@
             <h3><i class="iconfont">&#xe60b;</i>导航</h3>
             <ul>
                 <li><a href="/component/dropdown.html">下拉菜单<p>&lt;dropdown></p></a></li>
+                <li><a href="/component/nav.html">导航菜单<p>&lt;nav></p></a></li>
                 <li><a href="/component/tab.html">标签页<p>&lt;tab></p></a></li>
                 <li><a href="/component/collapse.html">折叠面板<p>&lt;collapse></p></a></li>
                 <li><a href="/component/pagination.html">分页<p>&lt;pagination></p></a></li>
@@ -100,6 +101,7 @@
                 <li><a href="/component/dialog.html">模拟盒<p>&lt;dialog></p></a></li>
                 <li><a href="/component/message.html">消息<p>&lt;message></p></a></li>
                 <li><a href="/component/load.html">加载<p>&lt;load></p></a></li>
+                <li><a href="/component/progress.html">进度条<p>&lt;progress></p></a></li>
             </ul>
         </div>
         <div class="sub-group">

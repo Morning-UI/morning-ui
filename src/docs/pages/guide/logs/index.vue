@@ -18,6 +18,68 @@
     
     ### 更新记录
 
+    ### 0.11.9 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2018年7月23日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.11.9" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.11.9/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.11.9/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 新特性
+
+    - 新增`ui-progress`进度条组件
+    - `ui-textinput`和`ui-textarea`组件新增`maxlength`配置
+
+    #### 改进
+
+    - 现在`ui-select`的下拉框超过视窗边界时，会自动反转方向
+
+    #### 修复
+
+    - 修复`ui-dialog`的`z-index`不按打开顺序递增的问题
+
+    ---
+
+    ### 0.11.8 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2018年7月16日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.11.8" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.11.8/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.11.8/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 新特性
+
+    - `ui-dropdown`组件新增`trigger-in-delay`配置
+
+    #### 改进
+
+    - `ui-tip`和`ui-dropdown`组件默认开启`trigger-in-delay`配置
+    - `ui-colorpicker`在用户输入非法色值时会自动校正
+
+    #### 修复
+
+    - 修复`ui-dialog`同步调用`toggle(true)`和`toggle(false)`时，窗口不会关闭的问题
+    - 修复`ui-table`中包含`ui-link`或`ui-btn`时，在开启`fixed-title-col`时滚动列覆盖标题列的问题
+    - 修复`ui-colorpicker`的`set()`方法在某些情况下设值失败的问题
+    - 修复`ui-colorpicker`在某些情况下在色板上无法单击选中颜色
+    - 修复`ui-colorpicker`输入色值后颜色不变的问题
+
+    <ui-label color="primary">升级注意事项</ui-label>
+
+    - 现在`ui-tip`和`ui-dropdown`组件的`trigger`配置为`hover`时，不会立即触发，会有200毫秒的延迟。可以通过将`trigger-in-delay`配置设为0，来达到立即触发的效果。
+
+    ---
+
     ### 0.11.7 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="light-blue">
