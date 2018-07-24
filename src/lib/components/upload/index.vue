@@ -324,8 +324,11 @@ export default {
 
             }
 
+            url = new URL(url);
+            url.searchParams.set('_mor_fetch_img_t', Date.now());
+
             axios({
-                url,
+                url : url.href,
                 method : 'get',
                 responseType : 'blob'
             })
@@ -343,14 +346,14 @@ export default {
                     this._addFile(file);
 
                 })
-                .catch(() => {
+                .catch(err => {
                     
                     this.data.fetchRemoteFile = false;
 
                     /* eslint-disable no-alert */
-                    window.alert('网络文件获取失败');
+                    window.alert(`网络文件获取失败\n(${err.message})`);
                     /* eslint-enable no-alert */
-    
+
                 });
 
         },
