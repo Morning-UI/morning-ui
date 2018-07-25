@@ -100,7 +100,7 @@
                 <li><a href="/component/dialog.html">模拟盒<p>&lt;dialog></p></a></li>
                 <li><a href="/component/message.html">消息<p>&lt;message></p></a></li>
                 <li><a href="/component/load.html">加载<p>&lt;load></p></a></li>
-                <li><a href="/component/progress.html">进度条<p>&lt;load></p></a></li>
+                <li><a href="/component/progress.html">进度条<p>&lt;progress></p></a></li>
             </ul>
         </div>
         <div class="sub-group">

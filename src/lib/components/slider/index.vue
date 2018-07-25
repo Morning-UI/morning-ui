@@ -18,6 +18,7 @@
         :append="append"
         :show-point="showPoint"
         :mark-range="markRange"
+        :show-counter="showCounter"
     >
 
     <!-- <div class="left-point"></div> -->
@@ -80,6 +81,16 @@
                 offset="3px 0"
             >{{conf.tipFormatter(data.end)}}</morning-tip>
             <!-- <div class="sub-slider"></div> -->
+        </div>
+
+        <div class="counter" v-if="conf.showCounter">
+            <morning-counter
+                :step="conf.step"
+                :max="conf.max"
+                :min="conf.min"
+                hide-name
+                v-model="data.value"
+            ></morning-counter>
         </div>
 
    <!--  <div class="text-bar">
@@ -145,6 +156,10 @@ export default {
         markRange : {
             type : Array,
             default : (() => [])
+        },
+        showCounter : {
+            type : Boolean,
+            default : false
         }
     },
     computed : {
@@ -159,7 +174,8 @@ export default {
                 prepend : this.prepend,
                 append : this.append,
                 showPoint : this.showPoint,
-                markRange : this.markRange
+                markRange : this.markRange,
+                showCounter : this.showCounter
             };
 
         },
@@ -178,7 +194,8 @@ export default {
             return {
                 'has-prepend' : this.hasPrepend,
                 'has-append' : this.hasAppend,
-                'hide-part-points' : this.data.hidePartPoints
+                'hide-part-points' : this.data.hidePartPoints,
+                'has-counter' : this.conf.showCounter
             };
 
         },
