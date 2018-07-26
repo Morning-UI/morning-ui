@@ -25981,6 +25981,17 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var clickTipHideTime = 1000;
 var minPointSpacing = 20;
@@ -26033,6 +26044,10 @@ exports.default = {
             default: function _default() {
                 return [];
             }
+        },
+        showCounter: {
+            type: Boolean,
+            default: false
         }
     },
     computed: {
@@ -26047,7 +26062,8 @@ exports.default = {
                 prepend: this.prepend,
                 append: this.append,
                 showPoint: this.showPoint,
-                markRange: this.markRange
+                markRange: this.markRange,
+                showCounter: this.showCounter
             };
         },
         hasPrepend: function hasPrepend() {
@@ -26063,7 +26079,8 @@ exports.default = {
             return {
                 'has-prepend': this.hasPrepend,
                 'has-append': this.hasAppend,
-                'hide-part-points': this.data.hidePartPoints
+                'hide-part-points': this.data.hidePartPoints,
+                'has-counter': this.conf.showCounter
             };
         },
         range: function range() {
@@ -44252,7 +44269,8 @@ var render = function() {
         prepend: _vm.prepend,
         append: _vm.append,
         "show-point": _vm.showPoint,
-        "mark-range": _vm.markRange
+        "mark-range": _vm.markRange,
+        "show-counter": _vm.showCounter
       }
     },
     [
@@ -44355,7 +44373,32 @@ var render = function() {
             )
           ],
           1
-        )
+        ),
+        _vm._v(" "),
+        _vm.conf.showCounter
+          ? _c(
+              "div",
+              { staticClass: "counter" },
+              [
+                _c("morning-counter", {
+                  attrs: {
+                    step: _vm.conf.step,
+                    max: _vm.conf.max,
+                    min: _vm.conf.min,
+                    "hide-name": ""
+                  },
+                  model: {
+                    value: _vm.data.value,
+                    callback: function($$v) {
+                      _vm.$set(_vm.data, "value", $$v)
+                    },
+                    expression: "data.value"
+                  }
+                })
+              ],
+              1
+            )
+          : _vm._e()
       ]),
       _vm._v(" "),
       _vm.hasAppend

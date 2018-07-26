@@ -285,6 +285,7 @@
     - `close-content` : 关闭内容
     - `type` : 类型
     - `show-icon` : 显示图标
+    - `show-counter` : 显示计数器
 
     </script>
     </doc-guide>

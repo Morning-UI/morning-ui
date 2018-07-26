@@ -17,6 +17,12 @@ mor-slider{
         padding: 0 10px;
     }
 
+    &.hide-name{
+        .note{
+            display: none;
+        }
+    }
+
     .wrap{
         width: 100%;
         box-sizing: border-box;
@@ -163,6 +169,54 @@ mor-slider{
     &.has-prepend.has-append{
         .wrap{
             width: 70%;
+        }
+    }
+
+    &.has-counter{
+        .wrap{
+            display: flex;
+            align-items: center;
+        }
+
+        .track{
+            display: flex;
+            width: 70%;
+        }
+
+        .counter{
+            display: flex;
+            min-width: 90px;
+            padding: 0 0 0 15px;
+            width: 30%;
+            box-sizing: border-box;
+
+            mor-counter{
+                width: 100%;
+
+                .counter-wrap{
+                    > .sub-step,
+                    > .add-step,
+                    > input{
+                        height: @fontSize*1.6;
+                        line-height: @fontSize*1.6;
+                    }
+
+                    > .sub-step,
+                    > .add-step{
+                        padding: 0 0.3em;
+
+                        i{
+                            font-size: @fontSize*0.75;
+                        }
+                    }
+
+                    > input{
+                        padding: 0 0.5em;
+                        min-width: @fontSize*2;
+                        font-size: @fontSize*0.75;
+                    }
+                }
+            }
         }
     }
 

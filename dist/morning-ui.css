@@ -13297,6 +13297,9 @@ mor-slider > .note {
   -webkit-user-select: text;
   padding: 0 10px;
 }
+mor-slider.hide-name .note {
+  display: none;
+}
 mor-slider .wrap {
   width: 100%;
   box-sizing: border-box;
@@ -13422,6 +13425,43 @@ mor-slider.has-append .wrap {
 }
 mor-slider.has-prepend.has-append .wrap {
   width: 70%;
+}
+mor-slider.has-counter .wrap {
+  display: flex;
+  align-items: center;
+}
+mor-slider.has-counter .track {
+  display: flex;
+  width: 70%;
+}
+mor-slider.has-counter .counter {
+  display: flex;
+  min-width: 90px;
+  padding: 0 0 0 15px;
+  width: 30%;
+  box-sizing: border-box;
+}
+mor-slider.has-counter .counter mor-counter {
+  width: 100%;
+}
+mor-slider.has-counter .counter mor-counter .counter-wrap > .sub-step,
+mor-slider.has-counter .counter mor-counter .counter-wrap > .add-step,
+mor-slider.has-counter .counter mor-counter .counter-wrap > input {
+  height: 25.6px;
+  line-height: 25.6px;
+}
+mor-slider.has-counter .counter mor-counter .counter-wrap > .sub-step,
+mor-slider.has-counter .counter mor-counter .counter-wrap > .add-step {
+  padding: 0 0.3em;
+}
+mor-slider.has-counter .counter mor-counter .counter-wrap > .sub-step i,
+mor-slider.has-counter .counter mor-counter .counter-wrap > .add-step i {
+  font-size: 12px;
+}
+mor-slider.has-counter .counter mor-counter .counter-wrap > input {
+  padding: 0 0.5em;
+  min-width: 32px;
+  font-size: 12px;
 }
 mor-slider.st-disabled .wrap,
 mor-slider.st-readonly .wrap {
