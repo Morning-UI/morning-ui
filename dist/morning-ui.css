@@ -9954,7 +9954,7 @@ mor-message.pos-t {
   left: 50%;
   transform: translateX(-50%);
 }
-mor-message.pos-tf {
+mor-message.pos-tl {
   top: 0;
   left: 8px;
   width: 50%;
@@ -10217,6 +10217,128 @@ mor-message .msg-co-wh {
 }
 mor-message .msg-co-wh .bo-ti {
   color: #17212D;
+}
+
+mor-alert {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 6px 16px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 3px;
+  font-size: 0;
+  position: relative;
+}
+mor-alert .alert-icon,
+mor-alert .alert-content {
+  vertical-align: top;
+  display: inline-block;
+  font-size: 14px;
+  line-height: 1.5em;
+}
+mor-alert .alert-icon {
+  height: 1.5em;
+  padding-right: 0.5em;
+}
+mor-alert .alert-content p {
+  display: inline-block;
+  margin: 0;
+  vertical-align: top;
+  line-height: 1.5em;
+  font-size: 14px;
+}
+mor-alert .alert-content h1 {
+  margin: 0;
+  padding: 0.15em 0;
+  font-size: 20px;
+  font-weight: 400;
+}
+mor-alert .alert-content > i.iconfont,
+mor-alert .alert-content > i.mo-icon {
+  vertical-align: middle;
+  font-size: 14px;
+}
+mor-alert .alert-close {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  font-size: 12px;
+  line-height: 1em;
+  height: 1em;
+  cursor: pointer;
+  opacity: 0.5;
+}
+mor-alert .alert-close > i.iconfont,
+mor-alert .alert-close > i.mo-icon {
+  font-size: 12px;
+}
+mor-alert .alert-close:hover {
+  opacity: 0.75;
+}
+mor-alert.has-title {
+  padding: 16px;
+}
+mor-alert.has-title .alert-icon {
+  height: 32px;
+  font-size: 0;
+  padding-right: 8px;
+}
+mor-alert.has-title .alert-icon > i.mo-icon {
+  font-size: 32px;
+  line-height: 1em;
+}
+mor-alert.has-title .alert-close {
+  top: 8px;
+  transform: none;
+}
+mor-alert.align-left {
+  text-align: left;
+}
+mor-alert.align-center {
+  text-align: center;
+}
+mor-alert.align-right {
+  text-align: right;
+}
+mor-alert.can-close {
+  padding-right: 32px;
+}
+mor-alert.type-normal {
+  background: #EDF1F5;
+  border-color: #E2E8EE;
+  color: #303C4B;
+}
+mor-alert.type-success {
+  background: #e2f4e6;
+  border-color: #aadfb6;
+  color: #41af5b;
+}
+mor-alert.type-warning {
+  background: #fceedb;
+  border-color: #f6ce95;
+  color: #eea236;
+}
+mor-alert.type-danger {
+  background: #f8dedb;
+  border-color: #eba59b;
+  color: #c63a27;
+}
+mor-alert.type-primary {
+  background: #c7e2f6;
+  border-color: #85c0ec;
+  color: #1c71b1;
+}
+mor-alert.type-minor {
+  background: #e9e9e9;
+  border-color: #cfcfcf;
+  color: #5d5d5d;
+}
+mor-alert.type-info {
+  background: #48cbda;
+  border-color: #03A6B9;
+  color: #014c55;
 }
 
 mor-audio {
@@ -11323,8 +11445,8 @@ mor-counter .sub-step,
 mor-counter .add-step {
   display: inline-block;
   font-size: 14px;
-  height: 42px;
-  line-height: 42px;
+  height: 35.7px;
+  line-height: 35.7px;
   vertical-align: top;
   padding: 0 0.7em;
   border: 1px #E6E6E6 solid;
@@ -11365,8 +11487,8 @@ mor-counter input {
   background: #FFFFFF;
   border: 1px #E6E6E6 solid;
   border-radius: 0;
-  height: 42px;
-  line-height: 42px;
+  height: 35.7px;
+  line-height: 35.7px;
   color: #b3b3b3 !important;
   outline: none;
   -webkit-appearance: none;
@@ -13175,6 +13297,9 @@ mor-slider > .note {
   -webkit-user-select: text;
   padding: 0 10px;
 }
+mor-slider.hide-name .note {
+  display: none;
+}
 mor-slider .wrap {
   width: 100%;
   box-sizing: border-box;
@@ -13300,6 +13425,43 @@ mor-slider.has-append .wrap {
 }
 mor-slider.has-prepend.has-append .wrap {
   width: 70%;
+}
+mor-slider.has-counter .wrap {
+  display: flex;
+  align-items: center;
+}
+mor-slider.has-counter .track {
+  display: flex;
+  width: 70%;
+}
+mor-slider.has-counter .counter {
+  display: flex;
+  min-width: 90px;
+  padding: 0 0 0 15px;
+  width: 30%;
+  box-sizing: border-box;
+}
+mor-slider.has-counter .counter mor-counter {
+  width: 100%;
+}
+mor-slider.has-counter .counter mor-counter .counter-wrap > .sub-step,
+mor-slider.has-counter .counter mor-counter .counter-wrap > .add-step,
+mor-slider.has-counter .counter mor-counter .counter-wrap > input {
+  height: 25.6px;
+  line-height: 25.6px;
+}
+mor-slider.has-counter .counter mor-counter .counter-wrap > .sub-step,
+mor-slider.has-counter .counter mor-counter .counter-wrap > .add-step {
+  padding: 0 0.3em;
+}
+mor-slider.has-counter .counter mor-counter .counter-wrap > .sub-step i,
+mor-slider.has-counter .counter mor-counter .counter-wrap > .add-step i {
+  font-size: 12px;
+}
+mor-slider.has-counter .counter mor-counter .counter-wrap > input {
+  padding: 0 0.5em;
+  min-width: 32px;
+  font-size: 12px;
 }
 mor-slider.st-disabled .wrap,
 mor-slider.st-readonly .wrap {

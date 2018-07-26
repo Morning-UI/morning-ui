@@ -1,0 +1,151 @@
+@import '~Common/var.less';
+
+mor-alert{
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 6px 16px;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: @borderRadius;
+    font-size: 0;
+    position: relative;
+
+    .alert-icon,
+    .alert-content{
+        vertical-align: top;
+        display: inline-block;
+        font-size: @fontSize*0.875;
+        line-height: 1.5em;
+    }
+
+    .alert-icon{
+        height: 1.5em;
+        padding-right: 0.5em;
+    }
+
+    .alert-content{
+        p {
+            display: inline-block;
+            margin: 0;
+            vertical-align: top;
+            line-height: 1.5em;
+            font-size: @fontSize*0.875;
+        }
+
+        h1 {
+            margin: 0;
+            padding: 0.15em 0;
+            font-size: @fontSize*1.25;
+            font-weight: 400;
+        }
+
+        > i.iconfont,
+        > i.mo-icon{
+            vertical-align: middle;
+            font-size: @fontSize*0.875;
+        }
+    }
+
+    .alert-close{
+        position: absolute;
+        top: 50%;
+        right: 8px;
+        transform: translateY(-50%);
+        font-size: @fontSize*0.75;
+        line-height: 1em;
+        height: 1em;
+        cursor: pointer;
+        opacity: 0.5;
+
+        > i.iconfont,
+        > i.mo-icon{
+            font-size: @fontSize*0.75;
+        }
+
+        &:hover{
+            opacity: 0.75;
+        }
+    }
+
+    &.has-title{
+        padding: 16px;
+
+        .alert-icon{
+            height: @fontSize*2;
+            font-size: 0;
+            padding-right: @fontSize/2;
+
+            > i.mo-icon{
+                font-size: @fontSize*2;
+                line-height: 1em;
+            }
+        }
+
+        .alert-close{
+            top: 8px;
+            transform: none;
+        }
+    }
+
+    &.align-left{
+        text-align: left;
+    }
+
+    &.align-center{
+        text-align: center;
+    }
+
+    &.align-right{
+        text-align: right;
+    }
+
+    &.can-close{
+        padding-right: @fontSize*2;
+    }
+
+    &.type-normal{
+        background: @colorExtraLightSilver;
+        border-color: @colorLightSilver;
+        color: @colorLightBlack;
+    }
+
+    &.type-success{
+        background: lighten(@colorSuccess, 40%);
+        border-color: lighten(@colorSuccess, 25%);
+        color: darken(@colorSuccess, 5%);
+    }
+
+    &.type-warning{
+        background: lighten(@colorWarning, 30%);
+        border-color: lighten(@colorWarning, 15%);
+        color: darken(@colorWarning, 5%);
+    }
+
+    &.type-danger{
+        background: lighten(@colorDanger, 40%);
+        border-color: lighten(@colorDanger, 25%);
+        color: darken(@colorDanger, 5%);
+    }
+
+    &.type-primary{
+        background: lighten(@colorPrimary, 40%);
+        border-color: lighten(@colorPrimary, 25%);
+        color: darken(@colorPrimary, 7%);
+    }
+
+    &.type-minor{
+        background: lighten(@colorMinor, 25%);
+        border-color: lighten(@colorMinor, 15%);
+        color: darken(@colorMinor, 30%);
+    }
+
+    &.type-info{
+        background: desaturate(lighten(@colorInfo, 20%), 30%);
+        border-color: @colorInfo;
+        color: darken(@colorInfo, 20%);
+    }
+
+    // default status
+    &{}
+}

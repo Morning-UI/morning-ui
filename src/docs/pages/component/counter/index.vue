@@ -15,7 +15,7 @@
     #### 使用
 
     :::democode/html
-    <div style="width:150px;">
+    <div style="width:130px;">
         <ui-counter form-name="数字"></ui-counter>
     </div>
     :::
@@ -31,7 +31,7 @@
     ---
     uikey:counter
     statusDefaultValue:5
-    statusDivStyle:width:150px;
+    statusDivStyle:width:130px;
     :::
 
     [[[配置]]]
@@ -52,19 +52,19 @@
     ---
     uikey:counter
     configDefaultValue:5
-    configDivStyle:width:150px;
+    configDivStyle:width:130px;
     :::
 
     #### step
 
     :::democode/html
-    <div style="width:150px;">
+    <div style="width:130px;">
         <ui-counter form-name="数字" step="3"></ui-counter>
     </div>
     :::
 
     :::democode/html
-    <div style="width:150px;">
+    <div style="width:130px;">
         <ui-counter form-name="数字" step="1.25"></ui-counter>
     </div>
     :::
@@ -72,7 +72,7 @@
     #### max
 
     :::democode/html
-    <div style="width:150px;">
+    <div style="width:130px;">
         <ui-counter form-name="数字" max="5"></ui-counter>
     </div>
     :::
@@ -80,7 +80,7 @@
     #### min
 
     :::democode/html
-    <div style="width:150px;">
+    <div style="width:130px;">
         <ui-counter form-name="数字" min="-5"></ui-counter>
     </div>
     :::
@@ -88,7 +88,7 @@
     #### formater
 
     :::democode/html
-    <div style="width:150px;">
+    <div style="width:130px;">
         <ui-counter form-name="数字" :formater="(value => value + '%')" :parser="(value => +value.replace(/%$/, ''))"></ui-counter>
     </div>
     :::
@@ -96,7 +96,7 @@
     #### parser
 
     :::democode/html
-    <div style="width:150px;">
+    <div style="width:130px;">
         <ui-counter form-name="数字" :formater="(value => value + '%')" :parser="(value => +value.replace(/%$/, ''))"></ui-counter>
     </div>
     :::
@@ -106,7 +106,7 @@
     整数精度：
 
     :::democode/html
-    <div style="width:150px;">
+    <div style="width:130px;">
         <ui-counter form-name="数字" step="1.4" :precision="0"></ui-counter>
     </div>
     :::
@@ -114,7 +114,7 @@
     两位小数精度：
 
     :::democode/html
-    <div style="width:150px;">
+    <div style="width:130px;">
         <ui-counter form-name="数字" step="0.2" :precision="2"></ui-counter>
     </div>
     :::
@@ -127,7 +127,7 @@
     uikey:counter
     methodValue:5
     methodDefaultValue:5
-    methodDivStyle:width:150px;
+    methodDivStyle:width:130px;
     :::
     
     #### add([steps])
@@ -139,7 +139,7 @@
     |steps|YES|数值增加几个单位(单位步长)。|数字|`Number`<br>`Undefined`|`1`|
 
     :::democode/html
-    <div style="width:150px;">
+    <div style="width:130px;">
         <ui-counter form-name="数字" ref="demo1"></ui-counter>
         <br><br> 
         <ui-link js="morning.findVM('demo1').add();">增加1个单位步长</ui-link>
@@ -156,7 +156,7 @@
     |steps|YES|数值减少几个单位(单位步长)。|数字|`Number`<br>`Undefined`|`1`|
 
     :::democode/html
-    <div style="width:150px;">
+    <div style="width:130px;">
         <ui-counter form-name="数字" ref="demo2"></ui-counter>
         <br><br> 
         <ui-link js="morning.findVM('demo2').sub();">减少1个单位步长</ui-link>
@@ -171,7 +171,7 @@
     ---
     uikey:counter
     eventValue:5
-    eventDivStyle:width:150px;
+    eventDivStyle:width:130px;
     :::
 
     [[[表单值]]]
@@ -202,7 +202,7 @@
     ---
     <div>
         <p>{$valueType}类型</p>
-        <div style="width:150px;">
+        <div style="width:130px;">
             <ui-counter ref="demoType{$valueType}" form-name="计数器"></ui-counter>
         </div>
         <br>
