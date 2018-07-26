@@ -9954,7 +9954,7 @@ mor-message.pos-t {
   left: 50%;
   transform: translateX(-50%);
 }
-mor-message.pos-tf {
+mor-message.pos-tl {
   top: 0;
   left: 8px;
   width: 50%;
@@ -10217,6 +10217,10 @@ mor-message .msg-co-wh {
 }
 mor-message .msg-co-wh .bo-ti {
   color: #17212D;
+}
+
+mor-btn {
+  display: inline-block;
 }
 
 mor-audio {
