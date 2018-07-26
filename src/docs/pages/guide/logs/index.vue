@@ -18,6 +18,34 @@
     
     ### 更新记录
 
+    ### 0.11.10 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2018年7月26日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.11.10" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.11.10/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.11.10/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 新特性
+
+    - 新增`ui-alert`告示组件
+    - `ui-slider`新增`show-counter`配置，可以显示在滑块输入旁显示计数器
+
+    #### 改进
+
+    - 优化`ui-counter`组件的尺寸，使其与其他表单组件更协调
+
+    #### 修复
+
+    - 修复`ui-message`组件的`show-type`配置为`topleft`时，消息不会显示的问题
+    - 修复在浏览器缓存(from disk cache及from memory cache)情况下`ui-upload`组件通过URL获取图片失败的问题
+
+    ---
+
     ### 0.11.9 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="light-blue">
