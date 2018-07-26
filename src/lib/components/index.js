@@ -55,6 +55,7 @@ import sticky                       from './sticky/index.vue';
 import breadcrumbs                  from './breadcrumbs/index.vue';
 import tip                          from './tip/index.vue';
 import message                      from './message/index.vue';
+import _alert                       from './alert/index.vue';
 import audio                        from './audio/index.vue';
 import video                        from './video/index.vue';
 
@@ -135,6 +136,7 @@ export default {
     breadcrumbs,
     tip,
     message,
+    alert : _alert,
     audio,
     video,
     textinput,

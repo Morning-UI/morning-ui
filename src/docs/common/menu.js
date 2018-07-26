@@ -67,6 +67,7 @@ export default {
         面包屑 : '/component/breadcrumbs.html',
         小提示 : '/component/tip.html',
         消息 : '/component/message.html',
+        '告示<i class="tag new"></i>' : '/component/alert.html',
         音频 : '/component/audio.html',
         视频 : '/component/video.html',
         表单组件 : null,

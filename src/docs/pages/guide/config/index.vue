@@ -281,6 +281,10 @@
     - `formater` : 格式化函数
     - `parser` : 解析函数
     - `precision` : 精度
+    - `can-close` : 可关闭
+    - `close-content` : 关闭内容
+    - `type` : 类型
+    - `show-icon` : 显示图标
     - `show-counter` : 显示计数器
 
     </script>
