@@ -281,6 +281,7 @@
     - `formater` : 格式化函数
     - `parser` : 解析函数
     - `precision` : 精度
+    - `show-counter` : 显示计数器
 
     </script>
     </doc-guide>
