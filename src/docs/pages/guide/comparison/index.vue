@@ -1508,7 +1508,7 @@
                     </td>
                 </tr>
                 <tr class="components">
-                    <td class="item">警告</td>
+                    <td class="item">警告(告示)</td>
                     <td class="mark">
                         <i class="iconfont no">&#xe62e;</i>
                     </td>
@@ -1528,7 +1528,7 @@
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
                     <td class="mark">
-                        <i class="iconfont no">&#xe62e;</i>
+                        <i class="iconfont has">&#xe62d;</i>
                     </td>
                 </tr>
                 <tr class="components">

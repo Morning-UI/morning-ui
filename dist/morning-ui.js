@@ -31491,15 +31491,130 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+var iconMap = {
+    normal: 'info',
+    success: 'correct',
+    warning: 'warn',
+    danger: 'error',
+    primary: 'info',
+    minor: 'question',
+    info: 'info'
+};
+
+var iconSuffixMap = {
+    0: {
+        normal: 'cf',
+        success: 'cf',
+        warning: 'f',
+        danger: 'cf',
+        primary: 'cf',
+        minor: 'cf',
+        info: 'cf'
+    },
+    1: {
+        normal: 'co',
+        success: 'co',
+        warning: 'o',
+        danger: 'co',
+        primary: 'co',
+        minor: 'co',
+        info: 'co'
+    }
+};
 
 exports.default = {
     origin: 'UI',
     name: 'alert',
-    props: {},
+    props: {
+        type: {
+            type: String,
+            default: 'normal',
+            validator: function validator(value) {
+                return ['normal', 'success', 'warning', 'danger', 'primary', 'minor', 'info'].indexOf(value) !== -1;
+            }
+        },
+        showIcon: {
+            type: Boolean,
+            default: false
+        },
+        canClose: {
+            type: Boolean,
+            default: false
+        },
+        closeContent: {
+            type: String,
+            default: '<i class="mo-icon mo-icon-close"></i>'
+        },
+        align: {
+            type: String,
+            default: 'left',
+            validator: function validator(value) {
+                return ['left', 'center', 'right'].indexOf(value) !== -1;
+            }
+        },
+        title: {
+            type: String,
+            default: ''
+        }
+    },
     computed: {
         _conf: function _conf() {
 
-            return {};
+            return {
+                type: this.type,
+                showIcon: this.showIcon,
+                canClose: this.canClose,
+                closeContent: this.closeContent,
+                align: this.align,
+                title: this.title
+            };
+        },
+        moreClass: function moreClass() {
+
+            var classes = {};
+
+            classes['type-' + this.conf.type] = true;
+            classes['align-' + this.conf.align] = true;
+            classes['can-close'] = this.conf.canClose;
+            classes['has-title'] = this.conf.title.length > 0;
+
+            return classes;
+        },
+        iconClass: function iconClass() {
+
+            var classes = {};
+            var hasTitle = this.conf.title.length > 0 ? 1 : 0;
+
+            classes['mo-icon-' + iconMap[this.conf.type] + '-' + iconSuffixMap[hasTitle][this.conf.type]] = true;
+
+            return classes;
         }
     },
     data: function data() {
@@ -31508,7 +31623,19 @@ exports.default = {
             data: {}
         };
     },
-    methods: {},
+    methods: {
+        _onClose: function _onClose() {
+
+            this.$emit('close');
+            this.$destroy();
+        },
+        close: function close() {
+
+            this._onClose();
+
+            return this;
+        }
+    },
     mounted: function mounted() {}
 };
 module.exports = exports['default'];
@@ -47014,7 +47141,46 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("mor-alert", { class: [], attrs: { _uiid: _vm.uiid } })
+  return _c(
+    "mor-alert",
+    {
+      class: [_vm.moreClass],
+      attrs: {
+        _uiid: _vm.uiid,
+        type: _vm.type,
+        "show-icon": _vm.showIcon,
+        "can-close": _vm.canClose,
+        "close-content": _vm.closeContent,
+        align: _vm.align,
+        title: _vm.title
+      }
+    },
+    [
+      _vm.conf.showIcon
+        ? _c("div", { staticClass: "alert-icon" }, [
+            _c("i", { staticClass: "mo-icon", class: _vm.iconClass })
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _c("div", { staticClass: "alert-content" }, [
+        _vm.conf.title.length > 0
+          ? _c("h1", [
+              _vm._v("\n            " + _vm._s(_vm.conf.title) + "\n        ")
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _c("p", [_vm._t("default")], 2)
+      ]),
+      _vm._v(" "),
+      _vm.conf.canClose
+        ? _c("div", {
+            staticClass: "alert-close",
+            domProps: { innerHTML: _vm._s(_vm.conf.closeContent) },
+            on: { click: _vm._onClose }
+          })
+        : _vm._e()
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
