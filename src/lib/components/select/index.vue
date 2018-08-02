@@ -147,9 +147,11 @@
                     <li
                         :index="index"
                         :class="{
-                            hide : data.itemNomathMap[index]
+                            hide : data.itemNomathMap[index],
+                            hover : +data.hoverIndex === +index
                         }"
                         :id="'ui-select-tip-'+uiid+'-'+index"
+                        @mouseenter="_itemHover(index)"
                         class="selected"
                         v-if="data.itemSelectedMap[index]"
                         v-render="{template : data.itemNameMap[index]+'<i class=\'mo-select-selected-icon mo-icon mo-icon-check\'></i>'}"
@@ -158,9 +160,11 @@
                     <li
                         :index="index"
                         :class="{
-                            hide : data.itemNomathMap[index]
+                            hide : data.itemNomathMap[index],
+                            hover : +data.hoverIndex === +index
                         }"
                         :id="'ui-select-tip-'+uiid+'-'+index"
+                        @mouseenter="_itemHover(index)"
                         v-else
                         v-render="{template : data.itemNameMap[index]}"
                     >
@@ -370,7 +374,8 @@ export default {
                 itemValMapInit : false,
                 matchList : [],
                 selectedAll : false,
-                selectListOverBottom : false
+                selectListOverBottom : false,
+                hoverIndex : 0
             },
             listStyle : {}
         };
@@ -1126,6 +1131,68 @@ export default {
             }
 
         },
+        _setScrollView : function () {
+
+            let $hoverItem = this.data.$list.querySelector('.hover');
+
+            if (!$hoverItem) {
+
+                return;
+
+            }
+
+            if (($hoverItem.offsetTop + $hoverItem.offsetHeight) > (this.data.$list.clientHeight + this.data.$list.scrollTop)) {
+
+                this.data.$list.scrollTop += $hoverItem.offsetHeight;
+
+            } else if ($hoverItem.offsetTop < this.data.$list.scrollTop) {
+
+                this.data.$list.scrollTop -= $hoverItem.offsetHeight;
+
+            }
+
+        },
+        _keyHandler : function (evt) {
+
+            let index = this.data.hoverIndex;
+
+            if (evt.code === 'ArrowDown') {
+
+                index++;
+
+            } else if (evt.code === 'ArrowUp') {
+
+                index--;
+
+            }
+
+            if (index < 0) {
+
+                index = 0;
+
+            } else if (index > (this.showItemList.length - 1)) {
+
+                index = this.showItemList.length - 1;
+
+            }
+
+            this.data.hoverIndex = index;
+
+            evt.preventDefault();
+            evt.stopPropagation();
+
+            this.Vue.nextTick(() => {
+
+                this._setScrollView();
+
+            });
+
+        },
+        _itemHover : function (index) {
+
+            this.data.hoverIndex = +index;
+
+        },
         toggle : function (show) {
 
             if (show === undefined) {
@@ -1384,6 +1451,7 @@ export default {
             setTimeout(() => {
 
                 this._globalEventAdd('click', '_checkArea');
+                this._globalEventAdd('keydown', '_keyHandler');
 
             });
 
@@ -1392,6 +1460,7 @@ export default {
         this.$on('list-hide', () => {
 
             this._globalEventRemove('click', '_checkArea');
+            this._globalEventRemove('keydown', '_keyHandler');
 
         });
 
