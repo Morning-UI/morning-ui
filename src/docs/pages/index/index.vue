@@ -26,7 +26,7 @@
                 <div class="title">
                     应有尽有
                     <div class="sub">
-                        超过60款组件，几乎包含了构建WEB应用的所有需要。
+                        超过70款组件，几乎包含了构建WEB应用的所有需要。
                     </div>
                 </div>
                 <div class="vs">
