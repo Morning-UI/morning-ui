@@ -143,15 +143,15 @@
                 :style="listStyle"
                 @click="_listClick"
             >
-                <template v-for="index in showItemList">
+                <template v-for="(index, _index) in showItemList">
                     <li
                         :index="index"
                         :class="{
                             hide : data.itemNomathMap[index],
-                            hover : +data.hoverIndex === +index
+                            hover : +data.hoverIndex === +_index
                         }"
                         :id="'ui-select-tip-'+uiid+'-'+index"
-                        @mouseenter="_itemHover(index)"
+                        @mouseenter="_itemHover(_index)"
                         class="selected"
                         v-if="data.itemSelectedMap[index]"
                         v-render="{template : data.itemNameMap[index]+'<i class=\'mo-select-selected-icon mo-icon mo-icon-check\'></i>'}"
@@ -161,10 +161,10 @@
                         :index="index"
                         :class="{
                             hide : data.itemNomathMap[index],
-                            hover : +data.hoverIndex === +index
+                            hover : +data.hoverIndex === +_index
                         }"
                         :id="'ui-select-tip-'+uiid+'-'+index"
-                        @mouseenter="_itemHover(index)"
+                        @mouseenter="_itemHover(_index)"
                         v-else
                         v-render="{template : data.itemNameMap[index]}"
                     >
@@ -375,7 +375,8 @@ export default {
                 matchList : [],
                 selectedAll : false,
                 selectListOverBottom : false,
-                hoverIndex : 0
+                hoverIndex : 0,
+                mouseenterHoverLock : false
             },
             listStyle : {}
         };
@@ -1152,17 +1153,69 @@ export default {
             }
 
         },
-        _keyHandler : function (evt) {
+        _getNotHiddenItemIndex : function (index, next = true) {
+
+            if (this.conf.hideSelected) {
+
+                let valIndexs = [];
+                let value = this.get() || [];
+
+                for (let val of value) {
+
+                    valIndexs.push(this.data.itemValMap.indexOf(val));
+
+                }
+
+                if (valIndexs.indexOf(index) !== -1) {
+
+                    if (next) {
+
+                        if (index > (this.showItemList.length - 2)) {
+
+                            index--;
+
+                        } else {
+
+                            index++;
+
+                        }
+
+                    } else if (index < 1) {
+
+                        index++;
+
+                    } else {
+
+                        index--;
+
+                    }
+
+                    return this._getNotHiddenItemIndex(index);
+
+                }
+
+                return index;
+
+            }
+
+            return index;
+
+        },
+        _keyDownUp : function (evt) {
 
             let index = this.data.hoverIndex;
+
+            this.data.mouseenterHoverLock = true;
 
             if (evt.code === 'ArrowDown') {
 
                 index++;
+                index = this._getNotHiddenItemIndex(index, true);
 
             } else if (evt.code === 'ArrowUp') {
 
                 index--;
+                index = this._getNotHiddenItemIndex(index, false);
 
             }
 
@@ -1178,19 +1231,59 @@ export default {
 
             this.data.hoverIndex = index;
 
-            evt.preventDefault();
-            evt.stopPropagation();
+        },
+        _keyHandler : function (evt) {
 
-            this.Vue.nextTick(() => {
+            if (evt.code === 'ArrowDown' ||
+                evt.code === 'ArrowUp') {
 
-                this._setScrollView();
+                this._keyDownUp(evt);
 
-            });
+                evt.preventDefault();
+                evt.stopPropagation();
+
+                this.Vue.nextTick(() => {
+
+                    this._setScrollView();
+
+                });
+
+            } else if (evt.code === 'Enter') {
+
+                if (this.conf.multiSelect) {
+
+                    let value = this.get() || [];
+
+                    value.push(this.data.itemValMap[this.showItemList[this.data.hoverIndex]]);
+
+                    this._set(value);
+
+                } else {
+    
+                    this._set([this.data.itemValMap[this.showItemList[this.data.hoverIndex]]]);
+
+                }
+            
+                evt.preventDefault();
+                evt.stopPropagation();
+
+            }
 
         },
         _itemHover : function (index) {
 
+            if (this.data.mouseenterHoverLock) {
+
+                return true;
+
+            }
+
             this.data.hoverIndex = +index;
+
+        },
+        _unlockMouseenterLock : function () {
+
+            this.data.mouseenterHoverLock = false;
 
         },
         toggle : function (show) {
@@ -1452,6 +1545,7 @@ export default {
 
                 this._globalEventAdd('click', '_checkArea');
                 this._globalEventAdd('keydown', '_keyHandler');
+                this._globalEventAdd('mousemove', '_unlockMouseenterLock');
 
             });
 
@@ -1461,6 +1555,7 @@ export default {
 
             this._globalEventRemove('click', '_checkArea');
             this._globalEventRemove('keydown', '_keyHandler');
+            this._globalEventRemove('mousemove', '_unlockMouseenterLock');
 
         });
 
