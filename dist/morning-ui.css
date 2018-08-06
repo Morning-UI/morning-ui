@@ -9416,12 +9416,18 @@ mor-steps .steps-list {
   flex-wrap: nowrap;
   justify-content: space-around;
 }
-mor-steps .steps-list .step {
+mor-steps .steps-list .link {
+  width: 100%;
+  height: 2px;
+  background: #EDF1F5;
+  margin-top: 11px;
+}
+mor-steps .step {
   display: block;
   position: relative;
   text-align: center;
 }
-mor-steps .steps-list .step .mark {
+mor-steps .step .mark {
   font-size: 13px;
   background: #FFFFFF;
   border: 2px #E2E8EE solid;
@@ -9437,17 +9443,17 @@ mor-steps .steps-list .step .mark {
   transform: translateX(-50%);
   box-sizing: border-box;
 }
-mor-steps .steps-list .step .mark .mo-icon,
-mor-steps .steps-list .step .mark .iconfont {
+mor-steps .step .mark .mo-icon,
+mor-steps .step .mark .iconfont {
   font-size: 12px;
 }
-mor-steps .steps-list .step .mark .custom-icon {
+mor-steps .step .mark .custom-icon {
   width: 20px;
   height: 20px;
   line-height: 20px;
   text-align: center;
 }
-mor-steps .steps-list .step .bg {
+mor-steps .step .bg {
   position: absolute;
   width: 100%;
   height: 2px;
@@ -9455,7 +9461,7 @@ mor-steps .steps-list .step .bg {
   left: 0;
   background: #EDF1F5;
 }
-mor-steps .steps-list .step .title {
+mor-steps .step .title {
   font-size: 14px;
   display: block;
   min-width: 50px;
@@ -9463,114 +9469,108 @@ mor-steps .steps-list .step .title {
   padding-top: 12px;
   color: #303C4B;
 }
-mor-steps .steps-list .step .desc {
+mor-steps .step .desc {
   font-size: 12px;
   display: block;
   min-width: 100px;
   max-width: 160px;
   color: #A8B3C2;
 }
-mor-steps .steps-list .step.first .bg {
+mor-steps .step.first .bg {
   left: 50%;
 }
-mor-steps .steps-list .step.last .bg {
+mor-steps .step.last .bg {
   width: 50%;
 }
-mor-steps .steps-list .step.done .mark,
-mor-steps .steps-list .step.done + .link {
+mor-steps .step.done .mark,
+mor-steps .step.done + .link {
   background: #F33D5D;
 }
-mor-steps .steps-list .step.done + .link + .step .bg {
+mor-steps .step.done + .link + .step .bg {
   background: linear-gradient(to left, #EDF1F5 0%, #EDF1F5 50%, #F33D5D 51%, #F33D5D 100%);
 }
-mor-steps .steps-list .step.done + .link + .step.last .bg {
+mor-steps .step.done + .link + .step.last .bg {
   background: #F33D5D;
 }
-mor-steps .steps-list .step.done .bg {
+mor-steps .step.done .bg {
   background: #F33D5D !important;
 }
-mor-steps .steps-list .step.done .mark {
+mor-steps .step.done .mark {
   background: #FFFFFF;
   border: 2px #F33D5D solid;
   color: #F33D5D;
   box-sizing: border-box;
   line-height: 20px;
 }
-mor-steps .steps-list .step.current .title {
+mor-steps .step.current .title {
   color: #17212D;
   font-weight: 700;
 }
-mor-steps .steps-list .step.current .desc {
+mor-steps .step.current .desc {
   color: #45505C;
 }
-mor-steps .steps-list .step.current.highlight .mark {
+mor-steps .step.current.highlight .mark {
   background: #F33D5D;
   border-color: #F33D5D;
   color: #FFFFFF;
 }
-mor-steps .steps-list .step.current.progress .mark {
+mor-steps .step.current.progress .mark {
   background: #FFFFFF;
   border: none;
   width: 32px;
 }
-mor-steps .steps-list .step.current.progress .mark mor-load {
+mor-steps .step.current.progress .mark mor-load {
   top: 2px;
   position: relative;
 }
-mor-steps .steps-list .step.current.progress .mark mor-load .mo-loader .mo-loader-path {
+mor-steps .step.current.progress .mark mor-load .mo-loader .mo-loader-path {
   stroke: #F33D5D;
   animation: loaderDash 1.5s ease-in-out infinite;
 }
-mor-steps .steps-list .step.failed .mark {
+mor-steps .step.failed .mark {
   background: #D64431;
   border-color: #D64431;
   color: #FFFFFF;
 }
-mor-steps .steps-list .step.failed .title {
+mor-steps .step.failed .title {
   color: #D64431;
 }
-mor-steps .steps-list .link {
-  width: 100%;
-  height: 2px;
-  background: #EDF1F5;
-  margin-top: 11px;
-}
-mor-steps.align-left .steps-list .step {
+mor-steps.align-left .step {
   text-align: left;
 }
-mor-steps.align-left .steps-list .step .mark {
+mor-steps.align-left .step .mark {
   left: 0;
   transform: none;
 }
-mor-steps.align-left .steps-list .step .bg {
+mor-steps.align-left .step .bg {
   left: 0;
 }
-mor-steps.align-left .steps-list .step.last .bg {
+mor-steps.align-left .step.last .bg {
   width: 0;
 }
-mor-steps.align-left .steps-list .step.done + .link + .step .bg {
+mor-steps.align-left .step.done + .link + .step .bg {
   background: #EDF1F5;
 }
-mor-steps.align-center .steps-list .step {
+mor-steps.align-center .step {
   text-align: center;
 }
-mor-steps.align-right .steps-list .step {
+mor-steps.align-right .step {
   text-align: right;
 }
-mor-steps.align-right .steps-list .step .mark {
+mor-steps.align-right .step .mark {
   transform: none;
   left: calc(100% - 24px );
 }
-mor-steps.align-right .steps-list .step .bg {
+mor-steps.align-right .step .bg {
   right: 0;
 }
-mor-steps.align-right .steps-list .step.first .bg {
+mor-steps.align-right .step.first .bg {
   width: 0;
 }
-mor-steps.align-right .steps-list .step.last .bg {
+mor-steps.align-right .step.last .bg {
   width: 100%;
 }
-mor-steps.align-right .steps-list .step.done + .link + .step .bg {
+mor-steps.align-right .step.done + .link + .step .bg {
   background: #F33D5D;
 }
 
