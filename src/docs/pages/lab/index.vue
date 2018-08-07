@@ -2,14 +2,12 @@
     <div>
         <doc-header :category="category"></doc-header>
         <!-- darg icon https://h0.hucdn.com/open/201734/175363ad9c01a51b_200x200.png -->
-        <div class="lab">
+        <div class="lab" style="width:1130px">
             <h1><i class="iconfont">&#xe615;</i>Morning Laboratory</h1>
             <div class="area">
-                <div style="width:300px;">
-                    <ui-upload form-name="文件" allow-url></ui-upload>
+                <div style="width:360px;">
+                    <ui-datepicker form-name="日期" :is-range="true"></ui-datepicker>
                 </div>
-
-                <img src="http://h0.hucdn.com/open/201830/7c101bb210e445da_750x1334.png">
             </div>
         </div>
         <doc-footer></doc-footer>

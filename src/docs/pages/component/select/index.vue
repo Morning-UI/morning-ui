@@ -38,6 +38,10 @@
     </div>
     :::
 
+    #### 支持快捷键
+
+    下拉选择框组件支持快捷键选择，你可通过上下方向键选择项目，通过回车键来选中项目。
+
     #### 通过其他元素触发的下拉选择框
 
     通过`separate-emit`你可以指定任意元素来触发下拉选择框，更多用法见：[separate-emit配置](/component/select.html#separate-emit)
