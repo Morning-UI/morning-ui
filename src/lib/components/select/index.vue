@@ -350,7 +350,7 @@ export default {
                 showlist : false,
                 selectedContent : null,
                 searching : false,
-                searchKey : null,
+                searchKey : '',
                 focusSearch : false,
                 mounted : false,
                 isMax : false,
@@ -839,7 +839,7 @@ export default {
             if (!this.conf.canSearch) {
 
                 this.data.searching = false;
-                this.data.searchKey = null;
+                this.data.searchKey = '';
                 this.data.noMatch = false;
 
                 let itemNomathMap = [];
@@ -874,6 +874,12 @@ export default {
             
             }
 
+            if (this.data.searchKey === key) {
+
+                return;
+
+            }
+
             if (key !== '' && key !== undefined) {
 
                 this.data.searching = true;
@@ -882,13 +888,14 @@ export default {
             } else {
 
                 this.data.searching = false;
-                this.data.searchKey = null;
+                this.data.searchKey = '';
 
             }
 
             this._refreshShowItemsWithSearch();
             this.Vue.nextTick(() => {
 
+                this._updateHoverIndex(null, 0);
                 this._tipUpdate();
                 
             });
@@ -1132,7 +1139,7 @@ export default {
             }
 
         },
-        _setScrollView : function () {
+        _scrollViewToHover : function () {
 
             let $hoverItem = this.data.$list.querySelector('.hover');
 
@@ -1142,13 +1149,20 @@ export default {
 
             }
 
-            if (($hoverItem.offsetTop + $hoverItem.offsetHeight) > (this.data.$list.clientHeight + this.data.$list.scrollTop)) {
+            let itemTop = $hoverItem.offsetTop;
+            let itemHeight = $hoverItem.offsetHeight;
+            let listHeight = this.data.$list.clientHeight;
+            let listTop = this.data.$list.scrollTop;
+            let disFromBottom = itemTop + itemHeight - listHeight - listTop;
+            let disFromTop = itemTop - listTop;
 
-                this.data.$list.scrollTop += $hoverItem.offsetHeight;
+            if (disFromBottom > 0) {
 
-            } else if ($hoverItem.offsetTop < this.data.$list.scrollTop) {
+                this.data.$list.scrollTop += Math.ceil(disFromBottom / itemHeight) * itemHeight;
 
-                this.data.$list.scrollTop -= $hoverItem.offsetHeight;
+            } else if (disFromTop < 0) {
+
+                this.data.$list.scrollTop -= Math.ceil(-disFromTop / itemHeight) * itemHeight;
 
             }
 
@@ -1159,10 +1173,17 @@ export default {
 
                 let valIndexs = [];
                 let value = this.get() || [];
+                let showValueList = [];
+
+                for (let i of this.showItemList) {
+
+                    showValueList.push(this.data.itemValMap[i]);
+
+                }
 
                 for (let val of value) {
 
-                    valIndexs.push(this.data.itemValMap.indexOf(val));
+                    valIndexs.push(showValueList.indexOf(val));
 
                 }
 
@@ -1170,9 +1191,10 @@ export default {
 
                     if (next) {
 
-                        if (index > (this.showItemList.length - 2)) {
+                        if (index > (this.showItemList.length - 2) && index > 0) {
 
                             index--;
+                            next = false;
 
                         } else {
 
@@ -1183,6 +1205,7 @@ export default {
                     } else if (index < 1) {
 
                         index++;
+                        next = true;
 
                     } else {
 
@@ -1190,7 +1213,7 @@ export default {
 
                     }
 
-                    return this._getNotHiddenItemIndex(index);
+                    return this._getNotHiddenItemIndex(index, next);
 
                 }
 
@@ -1201,21 +1224,17 @@ export default {
             return index;
 
         },
-        _keyDownUp : function (evt) {
+        _updateHoverIndex : function (step, to) {
 
             let index = this.data.hoverIndex;
 
-            this.data.mouseenterHoverLock = true;
+            if (to === undefined) {
 
-            if (evt.code === 'ArrowDown') {
+                index += step;
 
-                index++;
-                index = this._getNotHiddenItemIndex(index, true);
+            } else {
 
-            } else if (evt.code === 'ArrowUp') {
-
-                index--;
-                index = this._getNotHiddenItemIndex(index, false);
+                index = to;
 
             }
 
@@ -1229,7 +1248,34 @@ export default {
 
             }
 
+            if (index >= 0) {
+
+                index = this._getNotHiddenItemIndex(index, (step >= 0 || to >= 0));
+
+            }
+
             this.data.hoverIndex = index;
+
+            this.Vue.nextTick(() => {
+
+                this._scrollViewToHover();
+
+            });
+
+        },
+        _keyDownUp : function (evt) {
+
+            this.data.mouseenterHoverLock = true;
+
+            if (evt.code === 'ArrowDown') {
+
+                this._updateHoverIndex(1);
+
+            } else if (evt.code === 'ArrowUp') {
+
+                this._updateHoverIndex(-1);
+
+            }
 
         },
         _keyHandler : function (evt) {
@@ -1242,25 +1288,32 @@ export default {
                 evt.preventDefault();
                 evt.stopPropagation();
 
-                this.Vue.nextTick(() => {
-
-                    this._setScrollView();
-
-                });
-
             } else if (evt.code === 'Enter') {
 
-                if (this.conf.multiSelect) {
+                let value = this.get() || [];
+                let selectValue = this.data.itemValMap[this.showItemList[this.data.hoverIndex]];
 
-                    let value = this.get() || [];
+                if (value.indexOf(selectValue) !== -1) {
 
-                    value.push(this.data.itemValMap[this.showItemList[this.data.hoverIndex]]);
+                    value.splice(value.indexOf(selectValue), 1);
+
+                    this._set(value);
+
+                } else if (this.conf.multiSelect) {
+
+                    value.push(selectValue);
 
                     this._set(value);
 
                 } else {
     
-                    this._set([this.data.itemValMap[this.showItemList[this.data.hoverIndex]]]);
+                    this._set([selectValue]);
+
+                }
+
+                if (this.conf.hideSelected) {
+                    
+                    this._updateHoverIndex(1);
 
                 }
             
