@@ -197,15 +197,15 @@ export default {
         },
         colSetMap : function () {
 
-            let map = {};
+            let setmap = {};
 
             for (let col of this.conf.colSet) {
 
-                map[col.col] = col;
+                setmap[col.col] = col;
 
             }
 
-            return map;
+            return setmap;
 
         },
         moreClass : function () {
