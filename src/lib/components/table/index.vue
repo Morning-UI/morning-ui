@@ -93,6 +93,7 @@
 import arrayUniq                    from 'array-uniq';
 import extend                       from 'extend';
 import sortBy                       from 'lodash.sortby';
+import map                          from 'lodash.map';
 import titleTable                   from './title-table.vue';
 import normalTable                  from './normal-table.vue';
 
@@ -196,15 +197,15 @@ export default {
         },
         colSetMap : function () {
 
-            let map = {};
+            let setmap = {};
 
             for (let col of this.conf.colSet) {
 
-                map[col.col] = col;
+                setmap[col.col] = col;
 
             }
 
-            return map;
+            return setmap;
 
         },
         moreClass : function () {
@@ -476,7 +477,8 @@ export default {
                     title : false,
                     hide : false,
                     export : true,
-                    sort : false
+                    sort : false,
+                    pos : 0
                 }, item));
 
             }
@@ -924,11 +926,24 @@ export default {
 
                     if (set.title === true) {
 
-                        titleKeys.push(key);
+                        titleKeys.push({
+                            key,
+                            pos : set.pos
+                        });
+
+                    } else if (set) {
+
+                        normalKeys.push({
+                            key,
+                            pos : set.pos
+                        });
 
                     } else {
 
-                        normalKeys.push(key);
+                        normalKeys.push({
+                            key,
+                            pos : 0
+                        });
 
                     }
 
@@ -945,11 +960,24 @@ export default {
                         if (set &&
                             set.title === true) {
 
-                            titleKeys.push(key);
+                            titleKeys.push({
+                                key,
+                                pos : set.pos
+                            });
+
+                        } else if (set) {
+
+                            normalKeys.push({
+                                key,
+                                pos : set.pos
+                            });
 
                         } else {
 
-                            normalKeys.push(key);
+                            normalKeys.push({
+                                key,
+                                pos : 0
+                            });
 
                         }
 
@@ -959,6 +987,10 @@ export default {
 
             }
 
+            titleKeys = sortBy(titleKeys, item => item.pos);
+            normalKeys = sortBy(normalKeys, item => item.pos);
+            titleKeys = map(titleKeys, 'key');
+            normalKeys = map(normalKeys, 'key');
             titleKeys = arrayUniq(titleKeys);
             normalKeys = arrayUniq(normalKeys);
 
