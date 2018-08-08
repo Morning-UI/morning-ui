@@ -143,13 +143,15 @@
                 :style="listStyle"
                 @click="_listClick"
             >
-                <template v-for="index in showItemList">
+                <template v-for="(index, _index) in showItemList">
                     <li
                         :index="index"
                         :class="{
-                            hide : data.itemNomathMap[index]
+                            hide : data.itemNomathMap[index],
+                            hover : +data.hoverIndex === +_index
                         }"
                         :id="'ui-select-tip-'+uiid+'-'+index"
+                        @mouseenter="_itemHover(_index)"
                         class="selected"
                         v-if="data.itemSelectedMap[index]"
                         v-render="{template : data.itemNameMap[index]+'<i class=\'mo-select-selected-icon mo-icon mo-icon-check\'></i>'}"
@@ -158,9 +160,11 @@
                     <li
                         :index="index"
                         :class="{
-                            hide : data.itemNomathMap[index]
+                            hide : data.itemNomathMap[index],
+                            hover : +data.hoverIndex === +_index
                         }"
                         :id="'ui-select-tip-'+uiid+'-'+index"
+                        @mouseenter="_itemHover(_index)"
                         v-else
                         v-render="{template : data.itemNameMap[index]}"
                     >
@@ -346,7 +350,7 @@ export default {
                 showlist : false,
                 selectedContent : null,
                 searching : false,
-                searchKey : null,
+                searchKey : '',
                 focusSearch : false,
                 mounted : false,
                 isMax : false,
@@ -370,7 +374,9 @@ export default {
                 itemValMapInit : false,
                 matchList : [],
                 selectedAll : false,
-                selectListOverBottom : false
+                selectListOverBottom : false,
+                hoverIndex : 0,
+                mouseenterHoverLock : false
             },
             listStyle : {}
         };
@@ -833,7 +839,7 @@ export default {
             if (!this.conf.canSearch) {
 
                 this.data.searching = false;
-                this.data.searchKey = null;
+                this.data.searchKey = '';
                 this.data.noMatch = false;
 
                 let itemNomathMap = [];
@@ -868,6 +874,12 @@ export default {
             
             }
 
+            if (this.data.searchKey === key) {
+
+                return;
+
+            }
+
             if (key !== '' && key !== undefined) {
 
                 this.data.searching = true;
@@ -876,13 +888,14 @@ export default {
             } else {
 
                 this.data.searching = false;
-                this.data.searchKey = null;
+                this.data.searchKey = '';
 
             }
 
             this._refreshShowItemsWithSearch();
             this.Vue.nextTick(() => {
 
+                this._updateHoverIndex(null, 0);
                 this._tipUpdate();
                 
             });
@@ -1124,6 +1137,206 @@ export default {
                 $selectArea.style.maxWidth = `calc(100% - ${width + 1}px)`;
 
             }
+
+        },
+        _scrollViewToHover : function () {
+
+            let $hoverItem = this.data.$list.querySelector('.hover');
+
+            if (!$hoverItem) {
+
+                return;
+
+            }
+
+            let itemTop = $hoverItem.offsetTop;
+            let itemHeight = $hoverItem.offsetHeight;
+            let listHeight = this.data.$list.clientHeight;
+            let listTop = this.data.$list.scrollTop;
+            let disFromBottom = itemTop + itemHeight - listHeight - listTop;
+            let disFromTop = itemTop - listTop;
+
+            if (disFromBottom > 0) {
+
+                this.data.$list.scrollTop += Math.ceil(disFromBottom / itemHeight) * itemHeight;
+
+            } else if (disFromTop < 0) {
+
+                this.data.$list.scrollTop -= Math.ceil(-disFromTop / itemHeight) * itemHeight;
+
+            }
+
+        },
+        _getNotHiddenItemIndex : function (index, next = true) {
+
+            if (this.conf.hideSelected) {
+
+                let valIndexs = [];
+                let value = this.get() || [];
+                let showValueList = [];
+
+                for (let i of this.showItemList) {
+
+                    showValueList.push(this.data.itemValMap[i]);
+
+                }
+
+                for (let val of value) {
+
+                    valIndexs.push(showValueList.indexOf(val));
+
+                }
+
+                if (valIndexs.indexOf(index) !== -1) {
+
+                    if (next) {
+
+                        if (index > (this.showItemList.length - 2) && index > 0) {
+
+                            index--;
+                            next = false;
+
+                        } else {
+
+                            index++;
+
+                        }
+
+                    } else if (index < 1) {
+
+                        index++;
+                        next = true;
+
+                    } else {
+
+                        index--;
+
+                    }
+
+                    return this._getNotHiddenItemIndex(index, next);
+
+                }
+
+                return index;
+
+            }
+
+            return index;
+
+        },
+        _updateHoverIndex : function (step, to) {
+
+            let index = this.data.hoverIndex;
+
+            if (to === undefined) {
+
+                index += step;
+
+            } else {
+
+                index = to;
+
+            }
+
+            if (index < 0) {
+
+                index = 0;
+
+            } else if (index > (this.showItemList.length - 1)) {
+
+                index = this.showItemList.length - 1;
+
+            }
+
+            if (index >= 0) {
+
+                index = this._getNotHiddenItemIndex(index, (step >= 0 || to >= 0));
+
+            }
+
+            this.data.hoverIndex = index;
+
+            this.Vue.nextTick(() => {
+
+                this._scrollViewToHover();
+
+            });
+
+        },
+        _keyDownUp : function (evt) {
+
+            this.data.mouseenterHoverLock = true;
+
+            if (evt.code === 'ArrowDown') {
+
+                this._updateHoverIndex(1);
+
+            } else if (evt.code === 'ArrowUp') {
+
+                this._updateHoverIndex(-1);
+
+            }
+
+        },
+        _keyHandler : function (evt) {
+
+            if (evt.code === 'ArrowDown' ||
+                evt.code === 'ArrowUp') {
+
+                this._keyDownUp(evt);
+
+                evt.preventDefault();
+                evt.stopPropagation();
+
+            } else if (evt.code === 'Enter') {
+
+                let value = this.get() || [];
+                let selectValue = this.data.itemValMap[this.showItemList[this.data.hoverIndex]];
+
+                if (value.indexOf(selectValue) !== -1) {
+
+                    value.splice(value.indexOf(selectValue), 1);
+
+                    this._set(value);
+
+                } else if (this.conf.multiSelect) {
+
+                    value.push(selectValue);
+
+                    this._set(value);
+
+                } else {
+    
+                    this._set([selectValue]);
+
+                }
+
+                if (this.conf.hideSelected) {
+                    
+                    this._updateHoverIndex(1);
+
+                }
+            
+                evt.preventDefault();
+                evt.stopPropagation();
+
+            }
+
+        },
+        _itemHover : function (index) {
+
+            if (this.data.mouseenterHoverLock) {
+
+                return true;
+
+            }
+
+            this.data.hoverIndex = +index;
+
+        },
+        _unlockMouseenterLock : function () {
+
+            this.data.mouseenterHoverLock = false;
 
         },
         toggle : function (show) {
@@ -1384,6 +1597,8 @@ export default {
             setTimeout(() => {
 
                 this._globalEventAdd('click', '_checkArea');
+                this._globalEventAdd('keydown', '_keyHandler');
+                this._globalEventAdd('mousemove', '_unlockMouseenterLock');
 
             });
 
@@ -1392,6 +1607,8 @@ export default {
         this.$on('list-hide', () => {
 
             this._globalEventRemove('click', '_checkArea');
+            this._globalEventRemove('keydown', '_keyHandler');
+            this._globalEventRemove('mousemove', '_unlockMouseenterLock');
 
         });
 

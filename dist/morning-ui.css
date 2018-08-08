@@ -11917,7 +11917,7 @@ mor-select .wrap > .mo-icon.drop {
 mor-select .wrap > .mo-icon.no-animation {
   transition: none;
 }
-mor-select .wrap:hover {
+mor-select .wrap.hover {
   border-color: #d7d7d7;
 }
 mor-select .select-list {
@@ -12042,7 +12042,7 @@ mor-select.input-group .select-area {
 .mor-select-wrap li.hide {
   display: none;
 }
-.mor-select-wrap li:hover {
+.mor-select-wrap li.hover {
   color: #737373;
   background: #f5f5f5;
 }
@@ -12151,7 +12151,7 @@ mor-select.input-group .select-area {
 .mor-select-wrap .wrap > .mo-icon.no-animation {
   transition: none;
 }
-.mor-select-wrap .wrap:hover {
+.mor-select-wrap .wrap.hover {
   border-color: #d7d7d7;
 }
 .mor-select-wrap .wrap.showwrap {
