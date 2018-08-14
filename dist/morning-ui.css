@@ -8060,6 +8060,10 @@ mor-table .table tr.hover td {
   background-color: #e3e3e3;
 }
 
+mor-menu {
+  display: block;
+}
+
 mor-pagination {
   display: inline-block;
 }
@@ -15128,4 +15132,224 @@ mor-private-datepicker .cleanbtn {
 }
 .mor-date-wrap .date-select mor-calendar .day {
   cursor: pointer;
+}
+
+mor-private-menu {
+  display: block;
+  position: relative;
+}
+mor-private-menu .root-menu {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  background: #FFFFFF;
+}
+mor-private-menu .root-menu > li {
+  margin: 0;
+  position: relative;
+}
+mor-private-menu .root-menu > li > a {
+  font-size: 16px;
+  color: #8E9CAF;
+  padding: 0 1.5em;
+  width: 100%;
+  display: inline-block;
+}
+mor-private-menu .root-menu > li > a:hover {
+  color: #45505C;
+  cursor: pointer;
+  text-decoration: none;
+}
+mor-private-menu .root-menu > li > a.current {
+  color: #17212D;
+}
+mor-private-menu .sub-menu-wrap {
+  width: 100%;
+}
+mor-private-menu .sub-menu {
+  background: #FFFFFF;
+  display: block;
+}
+mor-private-menu .sub-menu > li {
+  display: block;
+  margin: 0;
+  position: relative;
+}
+mor-private-menu .sub-menu > li .has-child-menu {
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%) scale(0.8);
+  line-height: 1em;
+  margin-top: -1px;
+  position: absolute;
+  font-size: 12px;
+  color: #8E9CAF;
+}
+mor-private-menu .sub-menu > li > a {
+  font-size: 14px;
+  color: #8E9CAF;
+  padding: 0.5em 1em;
+  width: 100%;
+  display: inline-block;
+  white-space: nowrap;
+}
+mor-private-menu .sub-menu > li > a:hover {
+  color: #45505C;
+  cursor: pointer;
+  text-decoration: none;
+}
+mor-private-menu .sub-menu > li > a.current {
+  color: #17212D;
+}
+mor-private-menu.pos-top {
+  width: 100%;
+}
+mor-private-menu.pos-top .root-menu {
+  height: 42px;
+  font-size: 0;
+  background: #FFFFFF;
+  border-bottom: 1px #E2E8EE solid;
+}
+mor-private-menu.pos-top .root-menu > li {
+  display: inline-block;
+  vertical-align: top;
+}
+mor-private-menu.pos-top .root-menu > li > a {
+  border-bottom: 1px #E2E8EE solid;
+  height: 42px;
+  line-height: 42px;
+}
+mor-private-menu.pos-top .root-menu > li > a:hover {
+  border-bottom-color: #F33D5D;
+}
+mor-private-menu.pos-top .root-menu > li > a.current {
+  border-bottom-color: #F33D5D;
+  border-bottom-width: 2px;
+}
+mor-private-menu.pos-top .root-menu > li:hover > .sub-menu-wrap {
+  display: block;
+}
+mor-private-menu.pos-top .sub-menu-wrap {
+  position: absolute;
+  top: 42px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+  padding-top: 6.4px;
+  width: auto;
+}
+mor-private-menu.pos-top .sub-menu {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  padding: 8px 0;
+}
+mor-private-menu.pos-top .sub-menu > li.menu-group-title {
+  font-size: 12px;
+  padding: 0.6em 1em 0 1em;
+  color: #A8B3C2;
+  border-top: 1px #E2E8EE solid;
+}
+mor-private-menu.pos-top .sub-menu > li.menu-group-title:first-child {
+  border-top: none;
+}
+mor-private-menu.pos-top .sub-menu > li.has-group {
+  padding-left: 12px;
+}
+mor-private-menu.pos-top .sub-menu > li > a {
+  min-width: 100px;
+  max-width: 200px;
+}
+mor-private-menu.pos-top .sub-menu > li > a:hover {
+  border-bottom-color: #F33D5D;
+}
+mor-private-menu.pos-top .sub-menu > li > a.current {
+  border-bottom-color: #F33D5D;
+  border-bottom-width: 2px;
+}
+mor-private-menu.pos-top .sub-menu > li:hover > .sub-menu-wrap {
+  display: block;
+}
+mor-private-menu.pos-top .root-menu > li.is-disable,
+mor-private-menu.pos-top .sub-menu > li.is-disable {
+  background: #EDF1F5;
+}
+mor-private-menu.pos-top .root-menu > li.is-disable > a,
+mor-private-menu.pos-top .sub-menu > li.is-disable > a {
+  cursor: default;
+}
+mor-private-menu.pos-top .root-menu > li.is-disable > a:hover,
+mor-private-menu.pos-top .sub-menu > li.is-disable > a:hover {
+  color: #8E9CAF;
+}
+mor-private-menu.pos-top .root-menu > li.is-disable .has-child-menu,
+mor-private-menu.pos-top .sub-menu > li.is-disable .has-child-menu {
+  display: none;
+}
+mor-private-menu.pos-top .root-menu > li.is-disable:hover > .sub-menu-wrap,
+mor-private-menu.pos-top .sub-menu > li.is-disable:hover > .sub-menu-wrap {
+  display: none;
+}
+mor-private-menu.pos-top .root-menu > li > a .iconfont,
+mor-private-menu.pos-top .sub-menu > li > a .iconfont,
+mor-private-menu.pos-top .root-menu > li > a .mo-icon,
+mor-private-menu.pos-top .sub-menu > li > a .mo-icon {
+  vertical-align: 1px;
+  font-size: 13px;
+  margin-right: 0.4em;
+}
+mor-private-menu.pos-top .root-menu > li.is-disable > a:hover {
+  border-bottom-color: #E2E8EE;
+}
+mor-private-menu.pos-top .root-menu > li.current > a {
+  border-bottom-width: 2px;
+  border-bottom-color: #F33D5D;
+  color: #17212D;
+}
+mor-private-menu.pos-top .sub-menu > li > a .iconfont,
+mor-private-menu.pos-top .sub-menu > li > a .mo-icon {
+  vertical-align: 0;
+}
+mor-private-menu.pos-top .sub-menu > li.current > a {
+  background-color: #feeff1;
+}
+mor-private-menu.pos-top .deep-submenu {
+  position: absolute;
+  left: 100%;
+  top: 0;
+  padding-top: 0;
+  padding-left: 3px;
+  transform: none;
+}
+mor-private-menu.pos-side .root-menu {
+  border-right: 1px #E2E8EE solid;
+}
+mor-private-menu.pos-side .root-menu > li {
+  min-width: 160px;
+}
+mor-private-menu.pos-side .root-menu > li > a {
+  height: 37.8px;
+  line-height: 37.8px;
+}
+mor-private-menu.pos-side .sub-menu-wrap {
+  display: none;
+}
+mor-private-menu.pos-side .sub-menu {
+  padding-left: 1.5em;
+}
+mor-private-menu.pos-side .sub-menu > li .has-child-menu {
+  right: 12px;
+  top: 13px;
+  transform: scale(0.8);
+  margin-top: 0;
+  position: absolute;
+  transition: transform 0.2s;
+}
+mor-private-menu.pos-side .sub-menu > li > a {
+  padding: 0.5em 1.7em 0.5em 1em;
+  line-height: 23.8px;
+}
+mor-private-menu.pos-side .sub-menu > li.show > .sub-menu-wrap {
+  display: block;
+}
+mor-private-menu.pos-side .sub-menu > li.show > .has-child-menu {
+  transform: rotateZ(180deg) scale(0.8);
 }
