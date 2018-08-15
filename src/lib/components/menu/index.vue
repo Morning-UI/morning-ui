@@ -86,7 +86,7 @@ export default {
 
             }
 
-            data._path.pop()
+            data._path.pop();
             data._path.reverse();
 
             if (this.conf.autoToggleCurrent) {
