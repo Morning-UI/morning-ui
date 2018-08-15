@@ -30,7 +30,7 @@
         }
     });
     ---
-    <div style="width:600px;">
+    <div style="width:700px;">
         <ui-menu :menu="menu"></ui-menu>
     </div>
     :::
@@ -47,8 +47,24 @@
             return {
                 menu : {
                     'home' : '首页',                            // 若目录的值是字符串，则此字符串是目录名称，这是一种简写
+                    'active' : {
+                        name : '活动'                           // 目录的值为对象时，可以通过`name`来设置目录的名称
+                    },
                     'order' : {
-                        name : '订单'                           // 目录的值为对象时，可以通过`name`来设置目录的名称
+                        name : '订单',          
+                        childs : {
+                            'all' : '所有',
+                            'notshipped' : '待发货',
+                            'intransit' : '运输中',
+                            'done' : '已完成',
+                            'history' : '历史订单',
+                            'status' : '订单状态',
+                            'data' : '数据统计'
+                        },
+                        groups : {                              // `groups`可以用来给子菜单`childs`分组
+                            '订单列表' : ['all', 'done', 'notshipped', 'intransit'],
+                            '更多' : ['history', 'status', 'data']
+                        }
                     },
                     'search' : {
                         name : '搜索',
@@ -62,9 +78,37 @@
                     'settings' : {
                         name : '设置',
                         childs : {                              // 通过`child`设置子目录，当一个目录包含`child`后，`link`会失效
-                            'profile' : '个人设置',
-                            'safity' : '账户安全',
-                            'privacy' : '隐私'
+                            'common' : {
+                                name : '通用设置',
+                                childs : {                      // 支持多级子菜单
+                                    'theme' : {
+                                        name : '模板',
+                                        childs : {
+                                            'modify' : '编辑',
+                                            'market' : '模板市场'
+                                        }
+                                    },
+                                    'goods' : '商品',
+                                    'payment' : '支付'
+                                }
+                            },
+                            'account' : {
+                                name : '账户设置',
+                                childs : {
+                                    'email' : '邮箱设置',
+                                    'password' : '修改密码'
+                                }
+                            },
+                            'safity' : {
+                                name : '安全设置',
+                                childs : {
+                                    'multiple' : '多重认证',
+                                    'found' : '账户找回',
+                                    'history' : '登录历史',
+                                    'help' : '寻求帮助',
+                                    'blocked' : '锁定账户'
+                                }
+                            }
                         }
                     },
                     'logout' : {
@@ -85,7 +129,7 @@
         }
     });
     ---
-    <div style="width:600px;">
+    <div style="width:700px;">
         <ui-menu :menu="menu"></ui-menu>
     </div>
     :::
@@ -129,7 +173,7 @@
         }
     });
     ---
-    <div style="width:600px;">
+    <div style="width:700px;">
         <ui-menu :menu="menu"></ui-menu>
     </div>
     :::
@@ -169,7 +213,7 @@
         }
     });
     ---
-    <div style="width:600px;">
+    <div style="width:700px;">
         <ui-menu :menu="menu" @emit="itemClick"></ui-menu>
     </div>
     :::
@@ -225,7 +269,7 @@
         }
     });
     ---
-    <div style="width:600px;">
+    <div style="width:700px;">
         <ui-menu :menu="menu"></ui-menu>
     </div>
     :::
@@ -263,7 +307,7 @@
         }
     });
     ---
-    <div style="width:600px;">
+    <div style="width:700px;">
         <ui-menu :menu="menu"></ui-menu>
     </div>
     :::
@@ -293,7 +337,7 @@
         }
     });
     ---
-    <div style="width:600px;">
+    <div style="width:700px;">
         <ui-menu :menu="menu"></ui-menu>
     </div>
     :::
@@ -333,14 +377,14 @@
         }
     });
     ---
-    <div style="width:600px;">
+    <div style="width:700px;">
         <ui-menu :menu="menu"></ui-menu>
     </div>
     :::
 
     #### 高亮当前所在菜单
 
-    你可以通过`current-menu`配置来高亮当前的菜单，多级菜单用`\/`来分割每一级：
+    你可以通过`current-menu`配置来高亮当前的菜单，多级菜单用斜杠来分割每一级：
 
     :::vue/html
     new Vue({
@@ -369,7 +413,7 @@
         }
     });
     ---
-    <div style="width:600px;">
+    <div style="width:700px;">
         <ui-menu :menu="menu" current-menu="order/history/week"></ui-menu>
     </div>
     :::
@@ -377,7 +421,6 @@
     #### 侧边栏菜单
 
     通过将`position`配置设为`side`，可以将菜单位置改为侧栏：
-
 
     :::vue/html
     new Vue({
@@ -587,6 +630,330 @@
     ---
     <div style="width:220px;">
         <ui-menu :menu="menu" current-menu="order/history/week" position="side"></ui-menu>
+    </div>
+    :::
+
+    [[[形态]]]
+
+    #### 支持
+
+    |类型|支持|默认|
+    |-|-|-|
+    |尺寸|不支持|-|
+    |色彩|不支持|-|
+    |状态|不支持|-|
+
+    <a href="/guide/status.html">查看形态文档</a>
+
+    [[[配置]]]
+
+    |KEY|描述|接受值|值类型|默认值|
+    |-|-|-|-|-|
+    |[menu](#menu)|菜单对象，用来描述整个菜单树状结构。<br><br>可以简写成`key`:`name`的形式，`key`为菜单项的KEY，`name`为菜单项的名称。<br><br>完整的写法为`key`:`object`的形式，其中`object`包含以下字段：<br>`name`: 菜单项的名称<br>`link`: 点击后跳转的链接<br>`newtab`: 链接是否在新窗口打开(配合`link`一起使用)<br>`childs`: 子菜单，值为子菜单的对象树<br>`groups`: 配合`childs`一起使用，这是一个对象，`key`为分组名称，`value`是一个包含子菜单KEY的数组。子菜单会按照这个数组将对应的菜单项分为一组<br>`handler`: 点击菜单项后的处理函数<br>`disable`: 禁用此菜单项<br><br>注意：当一个`object`包含`childs`时`link`和`newtab`会失效|菜单树对象|Object|`{}`|
+    |[current-menu](#current-menu)|高亮当前所在菜单项，接受一个路径字符串，由每一级的菜单项KEY组成，每级之间用斜杠分隔。例如:`settings/profile/email`|路径字符串|String|`''`|
+    |[position](#position)|导航菜单的位置|`'top'` : 位于顶部<br>`'side'` : 位于侧边|String|`'top'`|
+    |[auto-toggle-current](#menu)|用户切换菜单时，是否自动调整并高亮当前所在菜单项。注意：若开启此配置`current-menu`配置和用户操作同时生效。|`true`<br>`false`|Boolean|`true`|
+
+    #### menu
+
+    简写：
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            menu : {
+                'home' : '首页',
+                'order' : '订单',
+                'history' : '历史',
+                'settings' : '设置'
+            }
+        }
+    });
+    ---
+    <div style="width:700px;">
+        <ui-menu :menu="menu"></ui-menu>
+    </div>
+    :::
+
+    完整：
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : function () {
+            return {
+                menu : {
+                    'home' : '首页',                            // 若目录的值是字符串，则此字符串是目录名称，这是一种简写
+                    'active' : {
+                        name : '活动'                           // 目录的值为对象时，可以通过`name`来设置目录的名称
+                    },
+                    'order' : {
+                        name : '订单',          
+                        childs : {
+                            'all' : '所有',
+                            'notshipped' : '待发货',
+                            'intransit' : '运输中',
+                            'done' : '已完成',
+                            'history' : '历史订单',
+                            'status' : '订单状态',
+                            'data' : '数据统计'
+                        },
+                        groups : {                              // `groups`可以用来给子菜单`childs`分组
+                            '订单列表' : ['all', 'done', 'notshipped', 'intransit'],
+                            '更多' : ['history', 'status', 'data']
+                        }
+                    },
+                    'search' : {
+                        name : '搜索',
+                        link : 'https://google.com/'            // 通过`link`设置点击后跳转的链接
+                    },
+                    'map' : {
+                        name : '地图',
+                        link : 'https://maps.google.com/',
+                        newtab : true                           // 通过`newtab`设置点击后新窗口打开链接
+                    },             
+                    'settings' : {
+                        name : '设置',
+                        childs : {                              // 通过`child`设置子目录，当一个目录包含`child`后，`link`会失效
+                            'common' : {
+                                name : '通用设置',
+                                childs : {                      // 支持多级子菜单
+                                    'theme' : {
+                                        name : '模板',
+                                        childs : {
+                                            'modify' : '编辑',
+                                            'market' : '模板市场'
+                                        }
+                                    },
+                                    'goods' : '商品',
+                                    'payment' : '支付'
+                                }
+                            },
+                            'account' : {
+                                name : '账户设置',
+                                childs : {
+                                    'email' : '邮箱设置',
+                                    'password' : '修改密码'
+                                }
+                            },
+                            'safity' : {
+                                name : '安全设置',
+                                childs : {
+                                    'multiple' : '多重认证',
+                                    'found' : '账户找回',
+                                    'history' : '登录历史',
+                                    'help' : '寻求帮助',
+                                    'blocked' : '锁定账户'
+                                }
+                            }
+                        }
+                    },
+                    'logout' : {
+                        name : '注销',
+                        handler : this.logout                   // 通过`handler`为目录指定点击后的处理函数
+                    },
+                    'help' : {
+                        name : '帮助',
+                        disable : true                          // 禁用菜单项
+                    }
+                }
+            };
+        },
+        methods : {
+            logout : function () {
+                alert('注销账户');
+            }
+        }
+    });
+    ---
+    <div style="width:700px;">
+        <ui-menu :menu="menu"></ui-menu>
+    </div>
+    :::
+
+    #### current-menu
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : function () {
+            return {
+                menu : {
+                    'home' : '首页',
+                    'order' : {
+                        name : '订单',
+                        childs : {
+                            'my' : '我的订单',
+                            'history' : {
+                                name : '历史订单',
+                                childs : {
+                                    'week' : '最近一周',
+                                    'month' : '最近一月'
+                                }
+                            }
+                        }
+                    },
+                    'search' : '搜索'
+                }
+            };
+        }
+    });
+    ---
+    <div style="width:700px;">
+        <ui-menu :menu="menu" current-menu="order/history/week"></ui-menu>
+    </div>
+    :::
+
+    #### position
+
+    位于侧栏的导航菜单：
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            menu : {
+                'home' : '首页',
+                'order' : '订单',
+                'history' : '历史',
+                'settings' : '设置'
+            }
+        }
+    });
+    ---
+    <div style="width:220px;">
+        <ui-menu :menu="menu" position="side"></ui-menu>
+    </div>
+    :::
+
+    #### auto-toggle-current
+
+    用户操作不会自动高亮：
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            menu : {
+                'home' : '首页',
+                'order' : '订单',
+                'history' : '历史',
+                'settings' : '设置'
+            }
+        }
+    });
+    ---
+    <div style="width:700px;">
+        <ui-menu :menu="menu" :auto-toggle-current="false"></ui-menu>
+    </div>
+    :::
+
+    用户操作会自动高亮：
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            menu : {
+                'home' : '首页',
+                'order' : '订单',
+                'history' : '历史',
+                'settings' : '设置'
+            }
+        }
+    });
+    ---
+    <div style="width:700px;">
+        <ui-menu :menu="menu" :auto-toggle-current="true"></ui-menu>
+    </div>
+    :::
+
+    [[[方法]]]
+    
+    <h1>暂无</h1>
+
+    [[[事件]]]
+
+    #### emit
+
+    当导航菜单被点击时触发（处于禁用状态的菜单项被点击不会触发）。
+
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            menu : {
+                'home' : '首页',
+                'order' : '订单',
+                'history' : '历史',
+                'settings' : '设置'
+            }
+        },
+        methods : {
+            echo : function () {
+                console.log('demo1.console1', 'emit event!');
+            }
+        }
+    });
+    ---
+    <div style="width:700px;">
+        <ui-menu :menu="menu" @emit="echo"></ui-menu>
+        <br>
+        <p>点击菜单触发emit事件</p>
+    </div>
+    :::
+
+    #### 生命周期事件
+
+    :::vue/html
+    window.demoEventLifecycle = new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : function () {
+            return {
+               text : '导航菜单',
+               show : true,
+                menu : {
+                    'home' : '首页',
+                    'order' : '订单',
+                    'history' : '历史',
+                    'settings' : '设置'
+                }
+            };
+        },
+        methods : {
+            echo : function (name) {
+                console.log('demoEventLifecycle.console1', name + ' event!');
+            }
+        }
+    });
+    ---
+    <div>
+        <ui-menu
+            ref="demoEventLifecycle"
+            v-show="show"
+            :menu="menu"
+            @created="echo('created')"
+            @mounted="echo('mounted')"
+            @before-update="echo('before-update')"
+            @updated="echo('updated')"
+            @before-destroy="echo('before-destroy')"
+            @destroyed="echo('destroyed')"
+        >{*text*}</ui-menu>
+
+        <br><br>
+
+        <ui-link js="window.demoEventLifecycle.text='生命周期事件';">触发update</ui-link>
+        <ui-link js="morning.findVM('demoEventLifecycle').$destroy();">触发destroy</ui-link>
     </div>
     :::
 

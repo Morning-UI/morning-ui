@@ -47,6 +47,13 @@
                     }"
                 >
                     <a
+                        v-if="item.childs && Object.keys(item.childs).length > 0"
+                        href="javascript:;"
+                        @click="_itemClick(key, item);_toggleSubmenu('menu-item-'+conf.deep+'-'+key);"
+                        v-html="item.name"
+                    ></a>
+                    <a
+                        v-else
                         :href="item.link ? item.link : 'javascript:;'"
                         :target="item.newtab ? '_blank' : '_self'"
                         @click="_itemClick(key, item);_toggleSubmenu('menu-item-'+conf.deep+'-'+key);"
@@ -63,7 +70,7 @@
                     ></i>
 
                     <morning-private-menu
-                        v-if="item.childs"
+                        v-if="item.childs && Object.keys(item.childs).length > 0"
                         class="sub-menu-wrap"
                         :class="{
                             'deep-submenu' : conf.deep > 0

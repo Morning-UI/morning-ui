@@ -352,13 +352,14 @@ mor-private-menu{
 
                 &.current{
                     > a{
-                        border-right: 4px @colorTheme solid;
+                        border-right: 4px lighten(@colorTheme, 20%) solid;
                     }
                 }
 
                 &.last-current{
                     > a{
                         background-color: lighten(@colorTheme, 37%);
+                        border-right: 4px @colorTheme solid;
                     }
                 }
             }

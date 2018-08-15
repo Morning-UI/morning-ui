@@ -31,7 +31,7 @@ export default {
     props : {
         menu : {
             type : Object,
-            default : (() => {})
+            default : (() => ({}))
         },
         currentMenu : {
             type : String,
