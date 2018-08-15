@@ -46,6 +46,7 @@ import dropdown                     from './dropdown/index.vue';
 import tab                          from './tab/index.vue';
 import collapse                     from './collapse/index.vue';
 import table                        from './table/index.vue';
+import menu                         from './menu/index.vue';
 import pagination                   from './pagination/index.vue';
 import dialog                       from './dialog/index.vue';
 import calendar                     from './calendar/index.vue';
@@ -80,10 +81,12 @@ import imagemap                     from './imagemap/index.vue';
 
 import privateTimepicker             from './private-timepicker/index.vue';
 import privateDatepicker             from './private-datepicker/index.vue';
+import privateMenu                   from './private-menu/index.vue';
 
 export default {
     'private-timepicker' : privateTimepicker,
     'private-datepicker' : privateDatepicker,
+    'private-menu' : privateMenu,
     h,
     lead,
     mark,
@@ -128,6 +131,7 @@ export default {
     tab,
     collapse,
     table,
+    menu,
     pagination,
     dialog,
     calendar,

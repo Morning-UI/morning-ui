@@ -55,7 +55,7 @@
     "src/lib"
   ],
   "peerDependencies": {
-    "vue": "^2.5.16"
+    "vue": "^2.5.17"
   },
   "dependencies": {
     "array-uniq": "^1.0.3",

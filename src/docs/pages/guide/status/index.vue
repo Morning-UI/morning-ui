@@ -183,7 +183,7 @@
         </div>
     </div>
 
-    你也可以在组件外使用这些颜色，查看：[配色](/guide/uniformcolor.html)。
+    你也可以在组件外使用这些颜色，查看：[配色](/component/uniformcolor.html)。
 
     ### 状态
 
