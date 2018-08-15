@@ -87,11 +87,13 @@
         <div class="sub-group">
             <h3><i class="iconfont">&#xe60b;</i>导航</h3>
             <ul>
+                <li><a href="/component/menu.html">导航菜单<p>&lt;menu></p></a></li>
                 <li><a href="/component/dropdown.html">下拉菜单<p>&lt;dropdown></p></a></li>
                 <li><a href="/component/tab.html">标签页<p>&lt;tab></p></a></li>
                 <li><a href="/component/collapse.html">折叠面板<p>&lt;collapse></p></a></li>
                 <li><a href="/component/pagination.html">分页<p>&lt;pagination></p></a></li>
                 <li><a href="/component/breadcrumbs.html">面包屑<p>&lt;breadcrumbs></p></a></li>
+                <li><a href="/component/steps.html">步骤条<p>&lt;steps></p></a></li>
             </ul>
         </div>
         <div class="sub-group">
@@ -99,6 +101,7 @@
             <ul>
                 <li><a href="/component/dialog.html">模拟盒<p>&lt;dialog></p></a></li>
                 <li><a href="/component/message.html">消息<p>&lt;message></p></a></li>
+                <li><a href="/component/tip.html">小提示<p>&lt;tip></p></a></li>
                 <li><a href="/component/alert.html">告示<p>&lt;alert></p></a></li>
                 <li><a href="/component/load.html">加载<p>&lt;load></p></a></li>
                 <li><a href="/component/progress.html">进度条<p>&lt;progress></p></a></li>
@@ -108,7 +111,6 @@
             <h3><i class="iconfont">&#xe769;</i>展示</h3>
             <ul>
                 <li><a href="/component/table.html">表格<p>&lt;table></p></a></li>
-                <li><a href="/component/tip.html">小提示<p>&lt;tip></p></a></li>
                 <li><a href="/component/calendar.html">日历<p>&lt;calendar></p></a></li>
                 <li><a href="/component/audio.html">音频<p>&lt;audio></p></a></li>
                 <li><a href="/component/video.html">视频<p>&lt;video></p></a></li>

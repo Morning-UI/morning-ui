@@ -18,6 +18,43 @@
     
     ### 更新记录
 
+    ### 0.11.11 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2018年8月15日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.11.11" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.11.11/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.11.11/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 新特性
+
+    - 新增`ui-menu`导航菜单组件
+    - 新增`ui-steps`步骤条组件
+    - `ui-table`的`col-set`配置支持`pos`，可用于设置列的位置
+
+    #### 改进
+
+    - `ui-select`支持快捷键(方向上/下键和回车键)选择选项
+
+    #### 修复
+
+    - 修复`ui-datepicker`和`ui-datetimepicker`在某些情况下弹窗位置会超出可视区边界(位置修正失效)的情况
+    - 修复`Guide/基础/形态`文档中的一处链接错误
+
+    #### 更多
+
+    - 推荐Vue版本升级至`2.5.17`
+
+    <ui-label color="primary">升级注意事项</ui-label>
+
+    - 请注意本地Vue版本，推荐版本升级至`2.5.17`
+
+    ---
+
     ### 0.11.10 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="light-blue">

@@ -17,16 +17,16 @@
         <section class="s1 versioninfo">
             <p>全新Morning UI : </p>
             <a href="/guide/install.html">
-                <ui-label color="silver" size="xs">0.11.10</ui-label>
+                <ui-label color="silver" size="xs">0.11.11</ui-label>
             </a>
-            <p>发布于2018年7月26日</p>
+            <p>发布于2018年8月15日</p>
         </section>
         <section class="s1 silver">
             <div class="w1k center">
                 <div class="title">
                     应有尽有
                     <div class="sub">
-                        超过60款组件，几乎包含了构建WEB应用的所有需要。
+                        超过70款组件，几乎包含了构建WEB应用的所有需要。
                     </div>
                 </div>
                 <div class="vs">

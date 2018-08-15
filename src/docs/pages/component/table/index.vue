@@ -614,6 +614,7 @@
     |hide|在表格中隐藏列，用于某些在`list`存在但不需要在展示的数据。列隐藏后在导出`.csv`文件时仍然会存在，如在导出`.csv`文件时也要排除，使用`col-set`配置的`export`属性来控制|`true`<br>`false`|Boolean|`false`|
     |export|导出`.csv`文件时，是否包含此列，若设为`false`此列不会被导出。一般包含行动区域的列会将此配置设为`false`|`true`<br>`false`|Boolean|`true`|
     |sort|开启单列排序，必需启用`show-col-name`才有效。多列排序需要启用`multi-sort`配置|`true`<br>`false`|Boolean|`false`|
+    |pos|列的位置，这是一个数字，默认为0，表示按照数据输入的顺序。数值越大的列将会显示的越后面，数值也可以为负数。|位置数值|Number|`0`|
 
     注意：在设置`width`、`minwidth`、`maxwidth`为0时，需要加上单位，如：`0px`或`0%`。
 
@@ -896,6 +897,30 @@
     ---
     <ui-table :list="list" :col-set="colset" :show-col-name="true" export-csv></ui-table>
     :::
+
+    ##### pos
+
+    将`Name`的位置放到第三列，将`Age`放到第四列：
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            list : window.list,
+            colset : [
+                {col : 'name', name : 'Name', pos : 1},
+                {col : 'age', name : 'Age', pos : 2},
+                {col : 'gender', name : 'Gender'},
+                {col : 'job', name : 'Job'}
+            ]
+        }
+    });
+    ---
+    <ui-table :list="list" :col-set="colset" :show-col-name="true" export-csv></ui-table>
+    :::
+
+
 
     #### row-set
 

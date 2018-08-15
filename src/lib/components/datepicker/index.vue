@@ -576,7 +576,9 @@ export default {
                     this.Vue.nextTick(() => {
 
                         let input0x = $input0DateSelect.getBoundingClientRect().x;
-                        let input1x = $input1DateSelect.getBoundingClientRect().x;
+                        let input1Rect = $input1DateSelect.getBoundingClientRect();
+                        let input1x = input1Rect.x;
+                        let input1w = input1Rect.width;
                         let offset = ($input0DateSelect.offsetWidth - (input1x - input0x)) / 2;
 
                         offset = Math.round(offset * NUM_1K) / NUM_1K;
@@ -589,13 +591,13 @@ export default {
 
                         this.Vue.nextTick(() => {
 
-                            if (input1.Tip.overranger[1]) {
+                            if (input1.Tip.overranger[1] || (input1x + input1w + offset > document.body.offsetWidth)) {
 
                                 input0._tipUpdate({
                                     offset : `0 ${2 * offset}px`
                                 });
 
-                            } else if (input0.Tip.overranger[3]) {
+                            } else if (input0.Tip.overranger[3] || input0x < offset) {
 
                                 input1._tipUpdate({
                                     offset : `0 ${-2 * offset}px`

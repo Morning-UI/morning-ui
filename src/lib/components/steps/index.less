@@ -1,0 +1,233 @@
+@import '~Common/var.less';
+
+@lineHeight: 2px;
+
+mor-steps{
+    display: block;
+
+    .steps-list{
+        display: flex;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        font-size: 0;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+
+        .link{
+            width: 100%;
+            height: @lineHeight;
+            background: @colorExtraLightSilver;
+            margin-top: (@fontSize*1.5 - @lineHeight) / 2;
+        }
+    }
+
+    .step{
+        display: block;
+        position: relative;
+        text-align: center;
+
+        .mark{
+            font-size: @fontSize*0.8125;
+            background: @colorWhite;
+            border: 2px @colorLightSilver solid;
+            width: @fontSize*1.5;
+            height: @fontSize*1.5;
+            border-radius: 50%;
+            line-height: @fontSize*1.5 - 4px;
+            text-align: center;
+            position: relative;
+            display: block;
+            color: @colorBlue;
+            left: 50%;
+            transform: translateX(-50%);
+            box-sizing: border-box;
+
+            .mo-icon,
+            .iconfont{
+                font-size: @fontSize*0.75;
+            }
+
+            .custom-icon{
+                width: @fontSize*1.5 - 4px;
+                height: @fontSize*1.5 - 4px;
+                line-height: @fontSize*1.5 - 4px;
+                text-align: center;
+            }
+        }
+
+        .bg{
+            position: absolute;
+            width: 100%;
+            height: @lineHeight;
+            top: (@fontSize*1.5 - @lineHeight) / 2;
+            left: 0;
+            background: @colorExtraLightSilver;
+        }
+
+        .title{
+            font-size: @fontSize*0.875;
+            display: block;
+            min-width: 50px;
+            max-width: 160px;
+            padding-top: @fontSize*0.75;
+            color: @colorLightBlack;
+        }
+
+        .desc{
+            font-size: @fontSize*0.75;
+            display: block;
+            min-width: 100px;
+            max-width: 160px;
+            color: @colorExtraLightBlue;
+        }
+
+        &.first{
+            .bg{
+                left: 50%;
+            }
+        }
+
+        &.last{
+            .bg{
+                width: 50%;
+            }
+        }
+
+        &.done{
+            .mark,
+            + .link{
+                background: @colorTheme;
+            }
+
+            + .link + .step .bg{
+                background: linear-gradient(to left, @colorExtraLightSilver 0%, @colorExtraLightSilver 50%, @colorTheme 51%, @colorTheme 100%);
+            }
+
+            + .link + .step.last .bg{
+                background: @colorTheme;
+            }
+
+            .bg{
+                background: @colorTheme !important;
+            }
+
+            .mark{
+                background: @colorWhite;
+                border: 2px @colorTheme solid;
+                color: @colorTheme;
+                box-sizing: border-box;
+                line-height: @fontSize*1.5 - 4px;
+            }
+        }
+
+        &.current{
+            .title{
+                color: @colorBlack;
+                font-weight: 700;
+            }
+
+            .desc{
+                color: @colorExtraLightBlack;
+            }
+
+            &.highlight .mark{
+                background: @colorTheme;
+                border-color: @colorTheme;
+                color: @colorWhite;
+            }
+
+            &.progress .mark{
+                background: @colorWhite;
+                border: none;
+                width: @fontSize*2;
+
+                mor-load{
+                    top: 2px;
+                    position: relative;
+
+                    .mo-loader .mo-loader-path{
+                        stroke: @colorTheme;
+                        animation: loaderDash 1.5s ease-in-out infinite;
+                    }
+                }
+            }
+        }
+
+        &.failed{
+            .mark{
+                background: @colorDanger;
+                border-color: @colorDanger;
+                color: @colorWhite;
+            }
+
+            .title{
+                color: @colorDanger;
+            }
+        }
+    }
+
+    &.align-left{
+        .step{
+            text-align: left;
+
+            .mark{
+                left: 0;
+                transform: none;
+            }
+
+            .bg{
+                left: 0;
+            }
+
+            &.last .bg{
+                width: 0;
+            }
+
+            &.done{
+                + .link + .step .bg{
+                    background: @colorExtraLightSilver;
+                }
+            }
+        }
+    }
+
+    &.align-center{
+        .step{
+            text-align: center;
+        }
+    }
+
+    &.align-right{
+        .step{
+            text-align: right;
+
+            .mark{
+                transform: none;
+                left: ~'calc(100% -' @fontSize*1.5 ~')';
+            }
+
+            .bg{
+                right: 0;
+            }
+
+            &.first .bg{
+                width: 0;
+            }
+
+            &.last .bg{
+                width: 100%;
+            }
+
+            &.done{
+                + .link + .step .bg{
+                    background: @colorTheme;
+                }
+            }
+        }
+    }
+
+    // default status
+    &{}
+}

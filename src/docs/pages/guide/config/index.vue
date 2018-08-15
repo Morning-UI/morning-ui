@@ -286,6 +286,9 @@
     - `type` : 类型
     - `show-icon` : 显示图标
     - `show-counter` : 显示计数器
+    - `menu` : 菜单
+    - `current-menu` : 当前菜单
+    - `auto-toggle-current` : 自动切换当前
 
     </script>
     </doc-guide>

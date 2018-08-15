@@ -8060,6 +8060,10 @@ mor-table .table tr.hover td {
   background-color: #e3e3e3;
 }
 
+mor-menu {
+  display: block;
+}
+
 mor-pagination {
   display: inline-block;
 }
@@ -9401,6 +9405,177 @@ mor-sticky.sticky {
 }
 mor-sticky .sticky-box.fixed {
   position: fixed;
+}
+
+mor-steps {
+  display: block;
+}
+mor-steps .steps-list {
+  display: flex;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-size: 0;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}
+mor-steps .steps-list .link {
+  width: 100%;
+  height: 2px;
+  background: #EDF1F5;
+  margin-top: 11px;
+}
+mor-steps .step {
+  display: block;
+  position: relative;
+  text-align: center;
+}
+mor-steps .step .mark {
+  font-size: 13px;
+  background: #FFFFFF;
+  border: 2px #E2E8EE solid;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  line-height: 20px;
+  text-align: center;
+  position: relative;
+  display: block;
+  color: #7C8BA0;
+  left: 50%;
+  transform: translateX(-50%);
+  box-sizing: border-box;
+}
+mor-steps .step .mark .mo-icon,
+mor-steps .step .mark .iconfont {
+  font-size: 12px;
+}
+mor-steps .step .mark .custom-icon {
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+}
+mor-steps .step .bg {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  top: 11px;
+  left: 0;
+  background: #EDF1F5;
+}
+mor-steps .step .title {
+  font-size: 14px;
+  display: block;
+  min-width: 50px;
+  max-width: 160px;
+  padding-top: 12px;
+  color: #303C4B;
+}
+mor-steps .step .desc {
+  font-size: 12px;
+  display: block;
+  min-width: 100px;
+  max-width: 160px;
+  color: #A8B3C2;
+}
+mor-steps .step.first .bg {
+  left: 50%;
+}
+mor-steps .step.last .bg {
+  width: 50%;
+}
+mor-steps .step.done .mark,
+mor-steps .step.done + .link {
+  background: #F33D5D;
+}
+mor-steps .step.done + .link + .step .bg {
+  background: linear-gradient(to left, #EDF1F5 0%, #EDF1F5 50%, #F33D5D 51%, #F33D5D 100%);
+}
+mor-steps .step.done + .link + .step.last .bg {
+  background: #F33D5D;
+}
+mor-steps .step.done .bg {
+  background: #F33D5D !important;
+}
+mor-steps .step.done .mark {
+  background: #FFFFFF;
+  border: 2px #F33D5D solid;
+  color: #F33D5D;
+  box-sizing: border-box;
+  line-height: 20px;
+}
+mor-steps .step.current .title {
+  color: #17212D;
+  font-weight: 700;
+}
+mor-steps .step.current .desc {
+  color: #45505C;
+}
+mor-steps .step.current.highlight .mark {
+  background: #F33D5D;
+  border-color: #F33D5D;
+  color: #FFFFFF;
+}
+mor-steps .step.current.progress .mark {
+  background: #FFFFFF;
+  border: none;
+  width: 32px;
+}
+mor-steps .step.current.progress .mark mor-load {
+  top: 2px;
+  position: relative;
+}
+mor-steps .step.current.progress .mark mor-load .mo-loader .mo-loader-path {
+  stroke: #F33D5D;
+  animation: loaderDash 1.5s ease-in-out infinite;
+}
+mor-steps .step.failed .mark {
+  background: #D64431;
+  border-color: #D64431;
+  color: #FFFFFF;
+}
+mor-steps .step.failed .title {
+  color: #D64431;
+}
+mor-steps.align-left .step {
+  text-align: left;
+}
+mor-steps.align-left .step .mark {
+  left: 0;
+  transform: none;
+}
+mor-steps.align-left .step .bg {
+  left: 0;
+}
+mor-steps.align-left .step.last .bg {
+  width: 0;
+}
+mor-steps.align-left .step.done + .link + .step .bg {
+  background: #EDF1F5;
+}
+mor-steps.align-center .step {
+  text-align: center;
+}
+mor-steps.align-right .step {
+  text-align: right;
+}
+mor-steps.align-right .step .mark {
+  transform: none;
+  left: calc(100% - 24px );
+}
+mor-steps.align-right .step .bg {
+  right: 0;
+}
+mor-steps.align-right .step.first .bg {
+  width: 0;
+}
+mor-steps.align-right .step.last .bg {
+  width: 100%;
+}
+mor-steps.align-right .step.done + .link + .step .bg {
+  background: #F33D5D;
 }
 
 mor-breadcrumbs {
@@ -11746,7 +11921,7 @@ mor-select .wrap > .mo-icon.drop {
 mor-select .wrap > .mo-icon.no-animation {
   transition: none;
 }
-mor-select .wrap:hover {
+mor-select .wrap.hover {
   border-color: #d7d7d7;
 }
 mor-select .select-list {
@@ -11871,7 +12046,7 @@ mor-select.input-group .select-area {
 .mor-select-wrap li.hide {
   display: none;
 }
-.mor-select-wrap li:hover {
+.mor-select-wrap li.hover {
   color: #737373;
   background: #f5f5f5;
 }
@@ -11980,7 +12155,7 @@ mor-select.input-group .select-area {
 .mor-select-wrap .wrap > .mo-icon.no-animation {
   transition: none;
 }
-.mor-select-wrap .wrap:hover {
+.mor-select-wrap .wrap.hover {
   border-color: #d7d7d7;
 }
 .mor-select-wrap .wrap.showwrap {
@@ -14957,4 +15132,260 @@ mor-private-datepicker .cleanbtn {
 }
 .mor-date-wrap .date-select mor-calendar .day {
   cursor: pointer;
+}
+
+mor-private-menu {
+  display: block;
+  position: relative;
+}
+mor-private-menu .root-menu {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  background: #FFFFFF;
+}
+mor-private-menu .root-menu > li {
+  margin: 0;
+  position: relative;
+}
+mor-private-menu .root-menu > li > a {
+  font-size: 16px;
+  color: #8E9CAF;
+  padding: 0 1.5em;
+  width: 100%;
+  display: inline-block;
+}
+mor-private-menu .root-menu > li > a:hover {
+  color: #45505C;
+  cursor: pointer;
+  text-decoration: none;
+}
+mor-private-menu .root-menu > li > a.current {
+  color: #17212D;
+}
+mor-private-menu .sub-menu-wrap {
+  width: 100%;
+}
+mor-private-menu .sub-menu {
+  background: #FFFFFF;
+  display: block;
+}
+mor-private-menu .sub-menu > li {
+  display: block;
+  margin: 0;
+  position: relative;
+}
+mor-private-menu .sub-menu > li.menu-group-title {
+  font-size: 12px;
+  color: #A8B3C2;
+}
+mor-private-menu .sub-menu > li > a {
+  font-size: 14px;
+  color: #8E9CAF;
+  padding: 0.5em 1em;
+  width: 100%;
+  display: inline-block;
+  white-space: nowrap;
+}
+mor-private-menu .sub-menu > li > a:hover {
+  color: #45505C;
+  cursor: pointer;
+  text-decoration: none;
+}
+mor-private-menu .sub-menu > li > a.current {
+  color: #17212D;
+}
+mor-private-menu .root-menu > li .has-child-menu,
+mor-private-menu .sub-menu > li .has-child-menu {
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%) scale(0.8);
+  line-height: 1em;
+  margin-top: -1px;
+  position: absolute;
+  font-size: 12px;
+  color: #8E9CAF;
+}
+mor-private-menu .root-menu > li > a .iconfont,
+mor-private-menu .sub-menu > li > a .iconfont,
+mor-private-menu .root-menu > li > a .mo-icon,
+mor-private-menu .sub-menu > li > a .mo-icon {
+  vertical-align: 1px;
+  font-size: 13px;
+  margin-right: 0.4em;
+}
+mor-private-menu .root-menu > li.is-disable,
+mor-private-menu .sub-menu > li.is-disable {
+  background: #EDF1F5;
+}
+mor-private-menu .root-menu > li.is-disable > a,
+mor-private-menu .sub-menu > li.is-disable > a {
+  cursor: not-allowed;
+}
+mor-private-menu .root-menu > li.is-disable > a:hover,
+mor-private-menu .sub-menu > li.is-disable > a:hover {
+  color: #8E9CAF;
+}
+mor-private-menu .root-menu > li.is-disable .has-child-menu,
+mor-private-menu .sub-menu > li.is-disable .has-child-menu {
+  display: none;
+}
+mor-private-menu .root-menu > li.is-disable > a:hover {
+  border-bottom-color: #E2E8EE;
+}
+mor-private-menu .root-menu > li.current > a {
+  color: #17212D;
+}
+mor-private-menu .sub-menu > li > a .iconfont,
+mor-private-menu .sub-menu > li > a .mo-icon {
+  vertical-align: 0;
+}
+mor-private-menu.pos-top {
+  width: 100%;
+}
+mor-private-menu.pos-top .root-menu {
+  height: 42px;
+  font-size: 0;
+  background: #FFFFFF;
+  border-bottom: 1px #E2E8EE solid;
+}
+mor-private-menu.pos-top .root-menu > li {
+  display: inline-block;
+  vertical-align: top;
+}
+mor-private-menu.pos-top .root-menu > li > a {
+  border-bottom: 1px #E2E8EE solid;
+  height: 42px;
+  line-height: 42px;
+}
+mor-private-menu.pos-top .root-menu > li > a:hover {
+  border-bottom-color: #F33D5D;
+}
+mor-private-menu.pos-top .root-menu > li > a.current {
+  border-bottom-color: #F33D5D;
+  border-bottom-width: 2px;
+}
+mor-private-menu.pos-top .root-menu > li:hover > .sub-menu-wrap {
+  display: block;
+}
+mor-private-menu.pos-top .root-menu > li.current > a {
+  border-bottom-width: 2px;
+  border-bottom-color: #F33D5D;
+}
+mor-private-menu.pos-top .root-menu > li.is-disable > a {
+  border-bottom: none;
+}
+mor-private-menu.pos-top .sub-menu-wrap {
+  position: absolute;
+  top: 42px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+  padding-top: 6.4px;
+  width: auto;
+}
+mor-private-menu.pos-top .sub-menu {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  padding: 8px 0;
+}
+mor-private-menu.pos-top .sub-menu > li.menu-group-title {
+  padding: 0.6em 1em 0;
+  border-top: 1px #E2E8EE solid;
+}
+mor-private-menu.pos-top .sub-menu > li.menu-group-title:first-child {
+  border-top: none;
+}
+mor-private-menu.pos-top .sub-menu > li.has-group {
+  padding-left: 12px;
+}
+mor-private-menu.pos-top .sub-menu > li > a {
+  min-width: 100px;
+  max-width: 200px;
+}
+mor-private-menu.pos-top .sub-menu > li > a:hover {
+  border-bottom-color: #F33D5D;
+}
+mor-private-menu.pos-top .sub-menu > li > a.current {
+  border-bottom-color: #F33D5D;
+  border-bottom-width: 2px;
+}
+mor-private-menu.pos-top .sub-menu > li:hover > .sub-menu-wrap {
+  display: block;
+}
+mor-private-menu.pos-top .sub-menu > li.current > a {
+  background-color: #feeff1;
+}
+mor-private-menu.pos-top .root-menu > li.is-disable:hover > .sub-menu-wrap,
+mor-private-menu.pos-top .sub-menu > li.is-disable:hover > .sub-menu-wrap {
+  display: none;
+}
+mor-private-menu.pos-top .deep-submenu {
+  position: absolute;
+  left: 100%;
+  top: 0;
+  padding-top: 0;
+  padding-left: 3px;
+  transform: none;
+}
+mor-private-menu.pos-side .root-menu {
+  border-right: 1px #E2E8EE solid;
+}
+mor-private-menu.pos-side .root-menu > li {
+  min-width: 160px;
+}
+mor-private-menu.pos-side .root-menu > li.menu-group-title {
+  padding: 0 1.5em;
+}
+mor-private-menu.pos-side .root-menu > li > a {
+  height: 37.8px;
+  line-height: 37.8px;
+}
+mor-private-menu.pos-side .root-menu > li.current > a {
+  padding-right: calc(1.5em - 4px);
+}
+mor-private-menu.pos-side .sub-menu-wrap {
+  display: none;
+}
+mor-private-menu.pos-side .sub-menu {
+  padding-left: 1.5em;
+}
+mor-private-menu.pos-side .sub-menu > li.menu-group-title {
+  padding: 0.5em 1.7em 0.5em 1em;
+}
+mor-private-menu.pos-side .sub-menu > li > a {
+  padding: 0.5em 1.7em 0.5em 1em;
+  line-height: 23.8px;
+}
+mor-private-menu.pos-side .sub-menu > li.current > a {
+  padding-right: calc(1.7em - 4px);
+}
+mor-private-menu.pos-side .root-menu > li.menu-group-title,
+mor-private-menu.pos-side .sub-menu > li.menu-group-title {
+  border-bottom: 1px #E2E8EE solid;
+}
+mor-private-menu.pos-side .root-menu > li .has-child-menu,
+mor-private-menu.pos-side .sub-menu > li .has-child-menu {
+  right: 12px;
+  top: 13px;
+  transform: scale(0.8);
+  margin-top: 0;
+  position: absolute;
+  transition: transform 0.2s;
+}
+mor-private-menu.pos-side .root-menu > li.show > .sub-menu-wrap,
+mor-private-menu.pos-side .sub-menu > li.show > .sub-menu-wrap {
+  display: block;
+}
+mor-private-menu.pos-side .root-menu > li.show > .has-child-menu,
+mor-private-menu.pos-side .sub-menu > li.show > .has-child-menu {
+  transform: rotateX(180deg) scale(0.8);
+}
+mor-private-menu.pos-side .root-menu > li.current > a,
+mor-private-menu.pos-side .sub-menu > li.current > a {
+  border-right: 4px #f99dad solid;
+}
+mor-private-menu.pos-side .root-menu > li.last-current > a,
+mor-private-menu.pos-side .sub-menu > li.last-current > a {
+  background-color: #feeff1;
+  border-right: 4px #F33D5D solid;
 }
