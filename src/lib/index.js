@@ -44,7 +44,7 @@ let morning = {
         white : 'wh'
     },
     isMorning : true,
-    version : '0.11.10',
+    version : '0.11.11',
     map : {}
 };
 
