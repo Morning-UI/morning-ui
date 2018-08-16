@@ -1,12 +1,13 @@
 <template>
     <mor-menu
         :_uiid="uiid"
-        :class="[]"
+        :class="[sizeClass]"
 
         :menu="menu"
         :current-menu="currentMenu"
         :position="position"
         :auto-toggle-current="autoToggleCurrent"
+        :position-current="positionCurrent"
     >
 
     <morning-private-menu
@@ -45,6 +46,10 @@ export default {
         autoToggleCurrent : {
             type : Boolean,
             default : true
+        },
+        positionCurrent : {
+            type : Boolean,
+            default : false
         }
     },
     computed : {
@@ -54,7 +59,8 @@ export default {
                 menu : this.menu,
                 currentMenu : this.currentMenu,
                 position : this.position,
-                autoToggleCurrent : this.autoToggleCurrent
+                autoToggleCurrent : this.autoToggleCurrent,
+                positionCurrent : this.positionCurrent
             };
 
         },
