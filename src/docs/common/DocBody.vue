@@ -621,8 +621,6 @@ let repeater = {
 
         let size = data.size;
 
-        console.log(_opt);
-
         if (_opt.param !== undefined) {
 
             size = [];
