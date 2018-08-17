@@ -15152,7 +15152,6 @@ mor-private-menu .root-menu > li > a {
   font-size: 16px;
   color: #8E9CAF;
   padding: 0 1.5em;
-  width: 100%;
   display: inline-block;
 }
 mor-private-menu .root-menu > li > a:hover {
@@ -15183,7 +15182,6 @@ mor-private-menu .sub-menu > li > a {
   font-size: 14px;
   color: #8E9CAF;
   padding: 0.5em 1em;
-  width: 100%;
   display: inline-block;
   white-space: nowrap;
 }
@@ -15205,6 +15203,10 @@ mor-private-menu .sub-menu > li .has-child-menu {
   position: absolute;
   font-size: 12px;
   color: #8E9CAF;
+}
+mor-private-menu .root-menu > li > a,
+mor-private-menu .sub-menu > li > a {
+  text-decoration: none;
 }
 mor-private-menu .root-menu > li > a .iconfont,
 mor-private-menu .sub-menu > li > a .iconfont,
@@ -15339,6 +15341,7 @@ mor-private-menu.pos-side .root-menu > li.menu-group-title {
 mor-private-menu.pos-side .root-menu > li > a {
   height: 37.8px;
   line-height: 37.8px;
+  width: 100%;
 }
 mor-private-menu.pos-side .root-menu > li.current > a {
   padding-right: calc(1.5em - 4px);
@@ -15355,6 +15358,7 @@ mor-private-menu.pos-side .sub-menu > li.menu-group-title {
 mor-private-menu.pos-side .sub-menu > li > a {
   padding: 0.5em 1.7em 0.5em 1em;
   line-height: 23.8px;
+  width: 100%;
 }
 mor-private-menu.pos-side .sub-menu > li.current > a {
   padding-right: calc(1.7em - 4px);
