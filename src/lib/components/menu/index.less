@@ -3,6 +3,25 @@
 mor-menu{
     display: block;
 
+    &.si-m,
+    &.si-s{
+        .sub-menu{
+            > li > a{
+                font-size: @fontSize*0.875;
+            }
+        }
+
+        .pos-top{
+            .sub-menu{
+                li{
+                    &.has-group{
+                        padding-left: @fontSize*0.75;
+                    }
+                }
+            }
+        }
+    }
+
     &.si-m{
         .root-menu{
             > li > a{
@@ -13,7 +32,6 @@ mor-menu{
 
         .sub-menu{
             > li > a{
-                font-size: @fontSize*0.875;
                 padding: 0.5em 1em;
             }
         }
@@ -39,17 +57,12 @@ mor-menu{
                 padding: @fontSize*0.5 0;
 
                 > li{
-                    &.menu-group-title{
-                        padding: 0.6em 1em 0;
-                    }
-
-                    &.has-group{
-                        padding-left: @fontSize*0.75;
+                    .has-child-menu{
+                        margin-top: -1px;
                     }
 
                     > a{
                         min-width: 100px;
-                        max-width: 200px;
                     }
                 }
             }
@@ -68,12 +81,6 @@ mor-menu{
                         height: @formHeight*0.9;
                         line-height: @formHeight*0.9;
                     }
-
-                    &.current{
-                        > a{
-                            padding-right: ~'calc(1.5em - 4px)';
-                        }
-                    }    
                 }
             }
 
@@ -89,20 +96,6 @@ mor-menu{
                         padding: 0.5em 1.7em 0.5em 1em;
                         line-height: @formHeight*0.9 - @fontSize*0.875;
                     }
-    
-                    &.current{
-                        > a{
-                            padding-right: ~'calc(1.7em - 4px)';
-                        }
-                    }
-                }
-            }
-
-            .root-menu,
-            .sub-menu{
-                .has-child-menu{
-                    right: 12px;
-                    // top: 13px;
                 }
             }
         }
@@ -118,7 +111,6 @@ mor-menu{
 
         .sub-menu{
             > li > a{
-                font-size: @fontSize*0.875;
                 padding: 0.5em 0.8em;
             }
         }
@@ -144,17 +136,12 @@ mor-menu{
                 padding: @fontSize*0.4 0;
 
                 > li{
-                    &.menu-group-title{
-                        padding: 0.6em 1em 0;
-                    }
-
-                    &.has-group{
-                        padding-left: @fontSize*0.75;
+                    .has-child-menu{
+                        margin-top: 0;
                     }
 
                     > a{
                         min-width: 90px;
-                        max-width: 200px;
                     }
                 }
             }
@@ -174,12 +161,6 @@ mor-menu{
                         line-height: @formHeight*0.75;
                         padding-right: 1.5em;
                     }
-
-                    &.current{
-                        > a{
-                            padding-right: ~'calc(1.5em - 4px)';
-                        }
-                    }    
                 }
             }
 
@@ -195,20 +176,6 @@ mor-menu{
                         padding: 0.5em 1.7em 0.5em 1em;
                         line-height: @formHeight*0.75 - @fontSize*0.875;
                     }
-    
-                    &.current{
-                        > a{
-                            padding-right: ~'calc(1.7em - 4px)';
-                        }
-                    }
-                }
-            }
-
-            .root-menu,
-            .sub-menu{
-                .has-child-menu{
-                    right: 12px;
-                    // top: 11px;
                 }
             }
         }
@@ -254,17 +221,16 @@ mor-menu{
                 padding: @fontSize*0.3 0;
 
                 > li{
-                    &.menu-group-title{
-                        padding: 0.6em 1em 0;
-                    }
-
                     &.has-group{
                         padding-left: @fontSize*0.7;
                     }
 
+                    .has-child-menu{
+                        margin-top: -1px;
+                    }
+
                     > a{
                         min-width: 80px;
-                        max-width: 200px;
                     }
                 }
             }
@@ -283,12 +249,6 @@ mor-menu{
                         height: @formHeight*0.65;
                         line-height: @formHeight*0.65;
                     }
-
-                    &.current{
-                        > a{
-                            padding-right: ~'calc(1.5em - 4px)';
-                        }
-                    }    
                 }
             }
 
@@ -304,20 +264,6 @@ mor-menu{
                         padding: 0.5em 1.7em 0.5em 1em;
                         line-height: @formHeight*0.65 - @fontSize*0.875;
                     }
-    
-                    &.current{
-                        > a{
-                            padding-right: ~'calc(1.7em - 4px)';
-                        }
-                    }
-                }
-            }
-
-            .root-menu,
-            .sub-menu{
-                .has-child-menu{
-                    right: 12px;
-                    // top: 8px;
                 }
             }
         }
@@ -335,15 +281,6 @@ mor-menu{
             > li > a{
                 font-size: @fontSize*0.75;
                 padding: 0.3em 1.2em 0.3em 0.5em;
-            }
-        }
-
-        .root-menu,
-        .sub-menu{
-            > li{
-                .has-child-menu{
-                    margin-top: 0;
-                }
             }
         }
 
@@ -372,17 +309,16 @@ mor-menu{
                 padding: @fontSize*0.3 0;
 
                 > li{
-                    &.menu-group-title{
-                        padding: 0.6em 1em 0;
-                    }
-
                     &.has-group{
                         padding-left: @fontSize*0.5;
                     }
 
+                    .has-child-menu{
+                        margin-top: 0;
+                    }
+
                     > a{
                         min-width: 60px;
-                        max-width: 200px;
                     }
                 }
             }
@@ -400,13 +336,7 @@ mor-menu{
                     > a{
                         height: @formHeight*0.55;
                         line-height: @formHeight*0.55;
-                    }
-
-                    &.current{
-                        > a{
-                            padding-right: ~'calc(1.5em - 4px)';
-                        }
-                    }    
+                    } 
                 }
             }
 
@@ -415,27 +345,13 @@ mor-menu{
 
                 > li{
                     &.menu-group-title{
-                        padding: 0.5em 1.7em 0.5em 1em;
+                        padding: 0.5em 1.9em 0.5em 1em;
                     }
     
                     > a{
-                        padding: 0.5em 1.7em 0.5em 1em;
+                        padding: 0.5em 1.9em 0.5em 1em;
                         line-height: @formHeight*0.55 - @fontSize*0.875;
                     }
-    
-                    &.current{
-                        > a{
-                            padding-right: ~'calc(1.7em - 4px)';
-                        }
-                    }
-                }
-            }
-
-            .root-menu,
-            .sub-menu{
-                .has-child-menu{
-                    right: 12px;
-                    // top: 13px;
                 }
             }
         }

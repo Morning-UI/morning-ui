@@ -77,7 +77,7 @@ mor-private-menu{
                 top: 50%;
                 transform: translateY(-50%) scale(0.8);
                 line-height: 1em;
-                margin-top: -1px;
+                // margin-top: -1px;
                 position: absolute;
                 font-size: @fontSize*0.75;
                 color: @colorLightBlue;
@@ -199,6 +199,7 @@ mor-private-menu{
             > li{
                 &.menu-group-title{
                     border-top: 1px @colorLightSilver solid;
+                    padding: 0.6em 1em 0;
 
                     &:first-child{
                         border-top: none;
@@ -210,6 +211,8 @@ mor-private-menu{
                 }
 
                 > a{
+                    max-width: 200px;
+
                     &:hover{
                         border-bottom-color: @colorTheme;
                     }
@@ -260,6 +263,24 @@ mor-private-menu{
     &.pos-side{
         .root-menu{
             border-right: 1px @colorLightSilver solid;
+
+            > li{
+                &.current{
+                    > a{
+                        padding-right: ~'calc(1.5em - 4px)';
+                    }
+                }    
+            }
+        }
+
+        .sub-menu{
+            > li{
+                &.current{
+                    > a{
+                        padding-right: ~'calc(1.7em - 4px)';
+                    }
+                }
+            }
         }
 
         .sub-menu-wrap{
@@ -279,6 +300,7 @@ mor-private-menu{
                     transform: scale(0.8) translateY(-50%);
                     margin-top: 0;
                     position: absolute;
+                    right: 12px;
                     transition: transform 0.2s;
                 }
 
