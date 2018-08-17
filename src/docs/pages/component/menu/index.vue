@@ -692,7 +692,8 @@
     |[current-menu](#current-menu)|高亮当前所在菜单项，接受一个路径字符串，由每一级的菜单项KEY组成，每级之间用斜杠分隔。例如:`settings/profile/email`|路径字符串|String|`''`|
     |[position](#position)|导航菜单的位置|`'top'` : 位于顶部<br>`'side'` : 位于侧边|String|`'top'`|
     |[auto-toggle-current](#auto-toggle-current)|用户切换菜单时，是否自动调整并高亮当前所在菜单项。注意：若开启此配置`current-menu`配置和用户操作同时生效。|`true`<br>`false`|Boolean|`true`|
-    |[position-current](#position-current)|定位到当前所在的菜单。开启此选项后，若配置了`current-menu`且是一个多层级菜单，菜单会逐级显示直到展示当前所在菜单项|`true`<br>`false`|Boolean|`false`|
+    |[position-current](#position-current)|定位到当前所在的菜单。开启此选项后，若配置了`current-menu`且是一个多层级菜单，菜单会逐级显示直到展示当前所在菜单项。<br>注意：当`position`为`top`时，定位到当前所在的菜单只是暂时显示，当鼠标在组件内移动，定位的菜单会消失。|`true`<br>`false`|Boolean|`false`|
+    |[side-expand](#side-expand)|侧边栏展开，启用后所有的子目录都会展开并且不可收缩。此配置仅在`position`为`side`时生效。|`true`<br>`false`|Boolean|`false`|
 
     #### menu
 
@@ -1016,6 +1017,42 @@
         <ui-menu :menu="menu" current-menu="order/history/week" position="side" :position-current="true"></ui-menu>
     </div>
     :::
+
+    #### side-expand
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : function () {
+            return {
+                menu : {
+                    'home' : '首页',
+                    'order' : {
+                        name : '订单',
+                        childs : {
+                            'my' : '我的订单',
+                            'history' : {
+                                name : '历史订单',
+                                childs : {
+                                    'week' : '最近一周',
+                                    'month' : '最近一月'
+                                }
+                            }
+                        }
+                    },
+                    'search' : '搜索'
+                }
+            };
+        }
+    });
+    ---
+    <div style="width:220px;">
+        <ui-menu :menu="menu" position="side" :side-expand="true"></ui-menu>
+    </div>
+    :::
+
+
 
     [[[方法]]]
     

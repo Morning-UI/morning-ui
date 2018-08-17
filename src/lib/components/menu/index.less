@@ -57,7 +57,7 @@ mor-menu{
                 padding: @fontSize*0.5 0;
 
                 > li{
-                    .has-child-menu{
+                    .has-child-menu-icon{
                         margin-top: -1px;
                     }
 
@@ -95,6 +95,22 @@ mor-menu{
                     > a{
                         padding: 0.5em 1.7em 0.5em 1em;
                         line-height: @formHeight*0.9 - @fontSize*0.875;
+                    }
+                }
+            }
+
+            .root-menu{
+                > li{
+                    .has-child-menu-icon{
+                        top: 13px;
+                    }
+                }
+            }
+
+            .sub-menu{
+                > li{
+                    .has-child-menu-icon{
+                        top: 12px;
                     }
                 }
             }
@@ -136,7 +152,7 @@ mor-menu{
                 padding: @fontSize*0.4 0;
 
                 > li{
-                    .has-child-menu{
+                    .has-child-menu-icon{
                         margin-top: 0;
                     }
 
@@ -175,6 +191,22 @@ mor-menu{
                     > a{
                         padding: 0.5em 1.7em 0.5em 1em;
                         line-height: @formHeight*0.75 - @fontSize*0.875;
+                    }
+                }
+            }
+
+            .root-menu{
+                > li{
+                    .has-child-menu-icon{
+                        top: 11px;
+                    }
+                }
+            }
+
+            .sub-menu{
+                > li{
+                    .has-child-menu-icon{
+                        top: 10px;
                     }
                 }
             }
@@ -225,7 +257,7 @@ mor-menu{
                         padding-left: @fontSize*0.7;
                     }
 
-                    .has-child-menu{
+                    .has-child-menu-icon{
                         margin-top: -1px;
                     }
 
@@ -248,6 +280,7 @@ mor-menu{
                     > a{
                         height: @formHeight*0.65;
                         line-height: @formHeight*0.65;
+                        padding-right: 2em;
                     }
                 }
             }
@@ -263,6 +296,22 @@ mor-menu{
                     > a{
                         padding: 0.5em 1.7em 0.5em 1em;
                         line-height: @formHeight*0.65 - @fontSize*0.875;
+                    }
+                }
+            }
+
+            .root-menu{
+                > li{
+                    .has-child-menu-icon{
+                        top: 8px;
+                    }
+                }
+            }
+
+            .sub-menu{
+                > li{
+                    .has-child-menu-icon{
+                        top: 7px;
                     }
                 }
             }
@@ -313,7 +362,7 @@ mor-menu{
                         padding-left: @fontSize*0.5;
                     }
 
-                    .has-child-menu{
+                    .has-child-menu-icon{
                         margin-top: 0;
                     }
 
@@ -336,6 +385,7 @@ mor-menu{
                     > a{
                         height: @formHeight*0.55;
                         line-height: @formHeight*0.55;
+                        padding-right: 2.5em;
                     } 
                 }
             }
@@ -353,6 +403,81 @@ mor-menu{
                         line-height: @formHeight*0.55 - @fontSize*0.875;
                     }
                 }
+            }
+
+            .root-menu{
+                > li{
+                    .has-child-menu-icon{
+                        top: 5px;
+                    }
+                }
+            }
+
+            .sub-menu{
+                > li{
+                    .has-child-menu-icon{
+                        top: 4px;
+                    }
+                }
+            }
+        }
+    }
+
+    &.expand{
+        .pos-side{
+            .root-menu{
+                > li{
+                    &.current{
+                        > a{
+                            padding-right: 1.5em;
+                        }
+                    }    
+                }
+            }
+
+            .sub-menu{
+                > li{
+                    &.current{
+                        > a{
+                            padding-right: 1.7em;
+                        }
+                    }
+                }
+            }
+            
+            .root-menu,
+            .sub-menu{
+                > li{
+                    .has-child-menu-icon{
+                        display: none;
+                    }
+
+                    > a{
+                        &.has-child-menu{
+                            &:hover{
+                                cursor: default;
+                                color: @colorLightBlue;
+                            }
+                        }
+                    }
+
+                    &.current{
+                        > a{
+                            border-right: none;
+                        }
+                    }
+
+                    &.last-current{
+                        > a{
+                            background-color: lighten(@colorTheme, 37%);
+                            border-right: 4px @colorTheme solid;
+                        }
+                    }
+                }
+            }
+
+            .sub-menu-wrap{
+                display: block;
             }
         }
     }

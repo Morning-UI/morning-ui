@@ -72,7 +72,7 @@ mor-private-menu{
     .root-menu,
     .sub-menu{
         > li{
-            .has-child-menu{
+            .has-child-menu-icon{
                 right: 4px;
                 top: 50%;
                 transform: translateY(-50%) scale(0.8);
@@ -103,7 +103,7 @@ mor-private-menu{
                     }
                 }
 
-                .has-child-menu{
+                .has-child-menu-icon{
                     display: none;
                 }
             }
@@ -164,7 +164,8 @@ mor-private-menu{
                     }
                 }
 
-                &:hover{
+                &:hover,
+                &.show{
                     > .sub-menu-wrap{
                         display: block;
                     }
@@ -223,7 +224,8 @@ mor-private-menu{
                     }
                 }
 
-                &:hover{
+                &:hover,
+                &.show{
                     > .sub-menu-wrap{
                         display: block;
                     }
@@ -241,7 +243,8 @@ mor-private-menu{
         .sub-menu{
             > li{
                 &.is-disable{
-                    &:hover{
+                    &:hover,
+                    &.show{
                         > .sub-menu-wrap{
                             display: none;
                         }
@@ -265,7 +268,8 @@ mor-private-menu{
             border-right: 1px @colorLightSilver solid;
 
             > li{
-                &.current{
+                &.current,
+                &.last-current{
                     > a{
                         padding-right: ~'calc(1.5em - 4px)';
                     }
@@ -275,7 +279,8 @@ mor-private-menu{
 
         .sub-menu{
             > li{
-                &.current{
+                &.current,
+                &.last-current{
                     > a{
                         padding-right: ~'calc(1.7em - 4px)';
                     }
@@ -296,12 +301,13 @@ mor-private-menu{
                     border-bottom: 1px @colorLightSilver solid;
                 }
 
-                .has-child-menu{
-                    transform: scale(0.8) translateY(-50%);
+                .has-child-menu-icon{
+                    transform: scale(0.8);
                     margin-top: 0;
                     position: absolute;
                     right: 12px;
                     transition: transform 0.2s;
+                    transform-origin: center;
                 }
 
                 &.show{
@@ -309,7 +315,7 @@ mor-private-menu{
                         display: block;
                     }
 
-                    > .has-child-menu{
+                    > .has-child-menu-icon{
                         transform: rotateX(180deg) scale(0.8);
                     }
                 }
