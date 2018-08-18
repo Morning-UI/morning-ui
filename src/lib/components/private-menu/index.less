@@ -15,9 +15,7 @@ mor-private-menu{
             position: relative;
 
             > a{
-                font-size: @fontSize;
                 color: @colorLightBlue;
-                padding: 0 1.5em;
                 width: 100%;
                 display: inline-block;
 
@@ -53,9 +51,7 @@ mor-private-menu{
             }
 
             > a{
-                font-size: @fontSize*0.875;
                 color: @colorLightBlue;
-                padding: 0.5em 1em;
                 width: 100%;
                 display: inline-block;
                 white-space: nowrap;
@@ -76,12 +72,12 @@ mor-private-menu{
     .root-menu,
     .sub-menu{
         > li{
-            .has-child-menu{
+            .has-child-menu-icon{
                 right: 4px;
                 top: 50%;
                 transform: translateY(-50%) scale(0.8);
                 line-height: 1em;
-                margin-top: -1px;
+                // margin-top: -1px;
                 position: absolute;
                 font-size: @fontSize*0.75;
                 color: @colorLightBlue;
@@ -107,7 +103,7 @@ mor-private-menu{
                     }
                 }
 
-                .has-child-menu{
+                .has-child-menu-icon{
                     display: none;
                 }
             }
@@ -147,7 +143,6 @@ mor-private-menu{
         width: 100%;
 
         .root-menu{
-            height: @formHeight;
             font-size: 0;
             background: @colorWhite;
             border-bottom: 1px @colorLightSilver solid;
@@ -158,8 +153,6 @@ mor-private-menu{
 
                 > a{
                     border-bottom: 1px @colorLightSilver solid;
-                    height: @formHeight;
-                    line-height: @formHeight;
 
                     &:hover{
                         border-bottom-color: @colorTheme;
@@ -171,7 +164,8 @@ mor-private-menu{
                     }
                 }
 
-                &:hover{
+                &:hover,
+                &.show{
                     > .sub-menu-wrap{
                         display: block;
                     }
@@ -194,22 +188,19 @@ mor-private-menu{
 
         .sub-menu-wrap{
             position: absolute;
-            top: @formHeight;
             left: 50%;
             transform: translateX(-50%);
             display: none;
-            padding-top: @fontSize*0.4;
             width: auto;
         }
 
         .sub-menu{
             box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-            padding: @fontSize*0.5 0;
 
             > li{
                 &.menu-group-title{
-                    padding: 0.6em 1em 0;
                     border-top: 1px @colorLightSilver solid;
+                    padding: 0.6em 1em 0;
 
                     &:first-child{
                         border-top: none;
@@ -221,7 +212,6 @@ mor-private-menu{
                 }
 
                 > a{
-                    min-width: 100px;
                     max-width: 200px;
 
                     &:hover{
@@ -234,7 +224,8 @@ mor-private-menu{
                     }
                 }
 
-                &:hover{
+                &:hover,
+                &.show{
                     > .sub-menu-wrap{
                         display: block;
                     }
@@ -252,7 +243,8 @@ mor-private-menu{
         .sub-menu{
             > li{
                 &.is-disable{
-                    &:hover{
+                    &:hover,
+                    &.show{
                         > .sub-menu-wrap{
                             display: none;
                         }
@@ -264,8 +256,8 @@ mor-private-menu{
         .deep-submenu{
             position: absolute;
             left: 100%;
-            top: 0;
-            padding-top: 0;
+            top: 0 !important;
+            padding-top: 0 !important;
             padding-left: 3px;
             transform: none;
         }
@@ -276,18 +268,8 @@ mor-private-menu{
             border-right: 1px @colorLightSilver solid;
 
             > li{
-                min-width: 160px;
-
-                &.menu-group-title{
-                    padding: 0 1.5em;
-                }
-
-                > a{
-                    height: @formHeight*0.9;
-                    line-height: @formHeight*0.9;
-                }
-
-                &.current{
+                &.current,
+                &.last-current{
                     > a{
                         padding-right: ~'calc(1.5em - 4px)';
                     }
@@ -295,29 +277,19 @@ mor-private-menu{
             }
         }
 
-        .sub-menu-wrap{
-            display: none;
-        }
-
         .sub-menu{
-            padding-left: 1.5em;
-
             > li{
-                &.menu-group-title{
-                    padding: 0.5em 1.7em 0.5em 1em;
-                }
-
-                > a{
-                    padding: 0.5em 1.7em 0.5em 1em;
-                    line-height: @formHeight*0.9 - @fontSize*0.875;
-                }
-
-                &.current{
+                &.current,
+                &.last-current{
                     > a{
                         padding-right: ~'calc(1.7em - 4px)';
                     }
                 }
             }
+        }
+
+        .sub-menu-wrap{
+            display: none;
         }
 
         .root-menu,
@@ -329,13 +301,13 @@ mor-private-menu{
                     border-bottom: 1px @colorLightSilver solid;
                 }
 
-                .has-child-menu{
-                    right: 12px;
-                    top: 13px;
+                .has-child-menu-icon{
                     transform: scale(0.8);
                     margin-top: 0;
                     position: absolute;
+                    right: 12px;
                     transition: transform 0.2s;
+                    transform-origin: center;
                 }
 
                 &.show{
@@ -343,7 +315,7 @@ mor-private-menu{
                         display: block;
                     }
 
-                    > .has-child-menu{
+                    > .has-child-menu-icon{
                         transform: rotateX(180deg) scale(0.8);
                     }
                 }

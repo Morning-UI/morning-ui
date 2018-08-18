@@ -1,12 +1,16 @@
 <template>
     <mor-menu
         :_uiid="uiid"
-        :class="[]"
+        :class="[sizeClass, moreClass]"
 
         :menu="menu"
         :current-menu="currentMenu"
         :position="position"
         :auto-toggle-current="autoToggleCurrent"
+        :position-current="positionCurrent"
+        :side-expand="sideExpand"
+
+        @mousemove="_mousemoveInMenu"
     >
 
     <morning-private-menu
@@ -16,6 +20,7 @@
         :menu="conf.menu"
         :current-menu="data.currentMenu"
         :position="conf.position"
+        :root-item-show-list="data.rootItemShowList"
 
         @emit="_emit"
     ></morning-private-menu>
@@ -45,6 +50,14 @@ export default {
         autoToggleCurrent : {
             type : Boolean,
             default : true
+        },
+        positionCurrent : {
+            type : Boolean,
+            default : false
+        },
+        sideExpand : {
+            type : Boolean,
+            default : false
         }
     },
     computed : {
@@ -54,7 +67,16 @@ export default {
                 menu : this.menu,
                 currentMenu : this.currentMenu,
                 position : this.position,
-                autoToggleCurrent : this.autoToggleCurrent
+                autoToggleCurrent : this.autoToggleCurrent,
+                positionCurrent : this.positionCurrent,
+                sideExpand : this.sideExpand
+            };
+
+        },
+        moreClass : function () {
+
+            return {
+                expand : this.isSideExpand
             };
 
         },
@@ -66,13 +88,19 @@ export default {
 
             return classes;
 
+        },
+        isSideExpand : function () {
+
+            return this.conf.sideExpand && (this.conf.position === 'side');
+
         }
     },
     data : function () {
 
         return {
             data : {
-                currentMenu : ''
+                currentMenu : '',
+                rootItemShowList : {}
             }
         };
 
@@ -99,6 +127,16 @@ export default {
 
             this.$emit('emit', data);
 
+        },
+        _mousemoveInMenu : function () {
+
+            if (this.data.isPositionCurrent && this.conf.position !== 'side') {
+
+                this.data.rootItemShowList = {};
+                this.data.isPositionCurrent = false;
+
+            }
+
         }
     },
     mounted : function () {
@@ -107,8 +145,29 @@ export default {
 
             this.data.currentMenu = this.conf.currentMenu;
 
+            if (this.conf.positionCurrent) {
+
+                let list = this.data.currentMenu.split('/');
+                let showList = {};
+
+                for (let deep in list) {
+
+                    if (list[deep] !== '') {
+
+                        showList[`menu-item-${deep}-${list[deep]}`] = true;
+
+                    }
+
+                }
+
+                this.data.isPositionCurrent = true;
+                this.data.rootItemShowList = showList;
+
+            }
+
         }, {
-            immediate : true
+            immediate : true,
+            deep : true
         });
 
     }
