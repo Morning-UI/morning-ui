@@ -15206,6 +15206,7 @@ mor-private-menu .sub-menu > li .has-child-menu {
 }
 mor-private-menu .root-menu > li > a,
 mor-private-menu .sub-menu > li > a {
+  box-sizing: border-box;
   text-decoration: none;
 }
 mor-private-menu .root-menu > li > a .iconfont,
