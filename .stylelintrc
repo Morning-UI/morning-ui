@@ -31,7 +31,7 @@
             ]
         }],
         "comment-no-empty" : true,
-        "max-nesting-depth" : 6,
+        "max-nesting-depth" : 7,
         "no-extra-semicolons" : true,
         "no-invalid-double-slash-comments" : true,
         "color-named" : "never",
