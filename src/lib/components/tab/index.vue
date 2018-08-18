@@ -148,7 +148,7 @@ export default {
             // hidden ui-sticky in tab
             let $stickys = $con.querySelectorAll('mor-sticky');
 
-            for (let $sticky of $stickys) {
+            for (let $sticky of Array.from($stickys)) {
 
                 if (!show) {
     
@@ -201,7 +201,7 @@ export default {
 
                 if ($currentTabEl) {
 
-                    for (let $el of $currentTabEl) {
+                    for (let $el of Array.from($currentTabEl)) {
 
                         $el.classList.remove('current');
 
@@ -211,7 +211,7 @@ export default {
 
                 if ($currentConEl) {
 
-                    for (let $el of $currentConEl) {
+                    for (let $el of Array.from($currentConEl)) {
 
                         $el.classList.remove('current');
                         this._setSticky($el, false);

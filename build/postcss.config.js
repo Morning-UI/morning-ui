@@ -1,11 +1,7 @@
 module.exports = {
     plugins : {
-        'postcss-normalize' : {
-            browsers : 'Chrome > 52'
-        },
-        autoprefixer : {
-            browsers : 'Chrome > 52'
-        }
+        'postcss-normalize' : {},
+        autoprefixer : {}
     },
     syntax : require('postcss-less')
 };
