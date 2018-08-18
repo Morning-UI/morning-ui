@@ -10,7 +10,39 @@
 
         <p>希望对你的挑选有所帮助。</p>
 
-        <p>此对比截止：2018年7月1日。</p>
+        <p>此对比截止：2018年8月18日。</p>
+
+        <div style="padding-bottom: 40px;">
+            <h4>对比UI库</h4>
+            <ui-checkbox
+                ref="diff"
+                style="width: 400px;"
+                :default-value="['0','1','2','3','4','5','6']"
+                :list="{
+                    0 : 'HMP UI',
+                    1 : 'Bootstrap',
+                    2 : 'Semantic UI',
+                    3 : 'Element UI',
+                    4 : 'iView',
+                    5 : 'Ant Design',
+                    6 : 'Morning UI'
+                }"
+                @value-change="diff"
+            >
+            </ui-checkbox>
+            <h4>显示选项</h4>
+            <ui-radio
+                ref="hidesame"
+                style="width: 400px;"
+                :default-value="'0'"
+                :list="{
+                    0 : '显示所有',
+                    1 : '仅显示不同'
+                }"
+                @value-change="diff"
+            >
+            </ui-radio>
+        </div>
         
         <table class="components">
             <thead>
@@ -46,7 +78,7 @@
                     <td class="mark">2.4.0</td>
                     <td class="mark">2.14.1</td>
                     <td class="mark">3.6.1</td>
-                    <td class="mark">0.11.4</td>
+                    <td class="mark">0.11.12</td>
                 </tr>
                 <tr>
                     <td class="item">官网</td>
@@ -1888,7 +1920,7 @@
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
                     <td class="mark">
-                        <i class="iconfont no">&#xe62e;</i>
+                        <i class="iconfont has">&#xe62d;</i>
                     </td>
                 </tr>
                 <tr class="components">
@@ -2852,6 +2884,91 @@ export default {
     components : {
         'doc-guide' : DocGuide
     },
+    methods : {
+        diff : function () {
+
+            let vm = window.morning.findVM('diff');
+
+            if (!vm) {
+
+                return;
+
+            }
+
+            let hidesameVm = window.morning.findVM('hidesame');
+            let diff = vm.get();
+            let hidesame = +hidesameVm.get();
+            let diffGroup = {};
+
+            for (let i of ['0','1','2','3','4','5','6']) {
+    
+                for (let index in this.$el.querySelectorAll(`.components tr>td.mark`)) {
+
+                    let $cell = this.$el.querySelectorAll(`.components tr>td.mark`)[index];
+
+                    if (index % 7 === +i) {
+
+                        if (diff.indexOf(i) === -1) {
+
+                            $cell.classList.remove('show');
+
+                        } else {
+
+                            $cell.classList.add('show');
+
+                            if (!diffGroup[Math.floor(index/7)]) {
+
+                                diffGroup[Math.floor(index/7)] = [];
+
+                            }
+
+                            diffGroup[Math.floor(index/7)].push($cell);
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+            for (let line in diffGroup) {
+
+                let sameContent = '';
+                let allsame = true;
+
+                for (let $cell of diffGroup[line]) {
+
+                    if (sameContent === '') {
+
+                        sameContent = $cell.innerHTML;
+
+                    } else if (sameContent !== $cell.innerHTML) {
+
+                        allsame = false;
+
+                    }
+
+                }
+
+                for (let $cell of diffGroup[line]) {
+
+                    if (allsame && hidesame) {
+
+                        $cell.parentElement.classList.add('hidesame');
+
+                    } else {
+
+                        $cell.parentElement.classList.remove('hidesame');
+
+                    }
+
+                }
+
+            }
+
+        }
+    },
     mounted : function () {
 
         let allitems = this.$el.querySelectorAll('tbody > .components');
@@ -2864,6 +2981,8 @@ export default {
         this.antdNum = this.$el.querySelectorAll('tbody > .components > .mark:nth-last-child(2)>.has').length;
         this.morningNum = this.$el.querySelectorAll('tbody > .components > .mark:nth-last-child(1)>.has').length;
 
+        this.diff();
+
     }
 };
 </script>
@@ -2872,17 +2991,28 @@ export default {
 .components{
     font-size: 12px;
     word-break: break-all;
+    position: relative;
+
+    &.hidesame{
+        td.mark{
+            display: none;
+        }
+
+        td.mark.show{
+            display: none;
+        }
+    }
 
     td{
         padding: 4px 8px;
-    }
+    
+        &.mark{
+            display: none;
+        }
 
-    td.mark:nth-child(1),
-    td.mark:nth-child(2),
-    td.mark:nth-child(3),
-    td.mark:nth-child(4),
-    td.mark:nth-child(5){
-        width: 100px;
+        &.mark.show{
+            display: table-cell;
+        }
     }
 
     td.item{
