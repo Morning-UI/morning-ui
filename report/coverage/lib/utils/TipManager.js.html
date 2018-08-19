@@ -284,12 +284,12 @@
 239
 240
 241
-242</td><td class="line-coverage quiet"><span class="cline-any cline-yes">148x</span>
-<span class="cline-any cline-yes">148x</span>
-<span class="cline-any cline-yes">148x</span>
-<span class="cline-any cline-yes">148x</span>
+242</td><td class="line-coverage quiet"><span class="cline-any cline-yes">152x</span>
+<span class="cline-any cline-yes">152x</span>
+<span class="cline-any cline-yes">152x</span>
+<span class="cline-any cline-yes">152x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">148x</span>
+<span class="cline-any cline-yes">152x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -588,23 +588,23 @@ let TipManager = {
                 placement === 'top') {
 &nbsp;
                 // overleft
-<span class="cstat-no" title="statement not covered" >                if (this.Tip.autoOffset &amp;&amp; (rect.x - blank) &lt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                if (this.Tip.autoOffset &amp;&amp; (rect.left - blank) &lt; 0) {</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >                    this.Tip.autoFixOffset[1] = rect.x - blank;</span>
+<span class="cstat-no" title="statement not covered" >                    this.Tip.autoFixOffset[1] = rect.left - blank;</span>
 <span class="cstat-no" title="statement not covered" >                    overranger[3] = true;</span>
 &nbsp;
                 }
 &nbsp;
                 // overright
-<span class="cstat-no" title="statement not covered" >                if (this.Tip.autoOffset &amp;&amp; (rect.x + rect.width + blank) &gt; document.documentElement.clientWidth) {</span>
+<span class="cstat-no" title="statement not covered" >                if (this.Tip.autoOffset &amp;&amp; (rect.left + rect.width + blank) &gt; document.documentElement.clientWidth) {</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >                    this.Tip.autoFixOffset[1] = rect.x + rect.width + blank - document.documentElement.clientWidth;</span>
+<span class="cstat-no" title="statement not covered" >                    this.Tip.autoFixOffset[1] = rect.left + rect.width + blank - document.documentElement.clientWidth;</span>
 <span class="cstat-no" title="statement not covered" >                    overranger[1] = true;</span>
 &nbsp;
                 }
 &nbsp;
                 // overtop
-<span class="cstat-no" title="statement not covered" >                if (this.Tip.autoReverse &amp;&amp; (rect.y - blank) &lt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                if (this.Tip.autoReverse &amp;&amp; (rect.top - blank) &lt; 0) {</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >                    this.Tip.autoFixPlacement = 'bottom';</span>
 <span class="cstat-no" title="statement not covered" >                    overranger[0] = true;</span>
@@ -612,7 +612,7 @@ let TipManager = {
                 }
 &nbsp;
                 // overbottom
-<span class="cstat-no" title="statement not covered" >                if (this.Tip.autoReverse &amp;&amp; (rect.y + rect.height + blank) &gt; document.documentElement.clientHeight) {</span>
+<span class="cstat-no" title="statement not covered" >                if (this.Tip.autoReverse &amp;&amp; (rect.top + rect.height + blank) &gt; document.documentElement.clientHeight) {</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >                    this.Tip.autoFixPlacement = 'top';</span>
 <span class="cstat-no" title="statement not covered" >                    overranger[2] = true;</span>
@@ -623,7 +623,7 @@ let TipManager = {
                        placement === 'right') {
 &nbsp;
                 // overleft
-<span class="cstat-no" title="statement not covered" >                if (this.Tip.autoReverse &amp;&amp; (rect.x - blank) &lt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                if (this.Tip.autoReverse &amp;&amp; (rect.left - blank) &lt; 0) {</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >                    this.Tip.autoFixPlacement = 'right';</span>
 <span class="cstat-no" title="statement not covered" >                    overranger[3] = true;</span>
@@ -631,7 +631,7 @@ let TipManager = {
                 }
 &nbsp;
                 // overright
-<span class="cstat-no" title="statement not covered" >                if (this.Tip.autoReverse &amp;&amp; (rect.x + rect.width + blank) &gt; document.documentElement.clientWidth) {</span>
+<span class="cstat-no" title="statement not covered" >                if (this.Tip.autoReverse &amp;&amp; (rect.left + rect.width + blank) &gt; document.documentElement.clientWidth) {</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >                    this.Tip.autoFixPlacement = 'left';</span>
 <span class="cstat-no" title="statement not covered" >                    overranger[1] = true;</span>
@@ -639,17 +639,17 @@ let TipManager = {
                 }
 &nbsp;
                 // overtop
-<span class="cstat-no" title="statement not covered" >                if (this.Tip.autoOffset &amp;&amp; (rect.y - blank) &lt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                if (this.Tip.autoOffset &amp;&amp; (rect.top - blank) &lt; 0) {</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >                    this.Tip.autoFixOffset[0] = rect.y - blank;</span>
+<span class="cstat-no" title="statement not covered" >                    this.Tip.autoFixOffset[0] = rect.top - blank;</span>
 <span class="cstat-no" title="statement not covered" >                    overranger[0] = true;</span>
 &nbsp;
                 }
 &nbsp;
                 // overbottom
-<span class="cstat-no" title="statement not covered" >                if (this.Tip.autoOffset &amp;&amp; (rect.y + rect.height + blank) &gt; document.documentElement.clientHeight) {</span>
+<span class="cstat-no" title="statement not covered" >                if (this.Tip.autoOffset &amp;&amp; (rect.top + rect.height + blank) &gt; document.documentElement.clientHeight) {</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >                    this.Tip.autoFixOffset[0] = rect.y + rect.height + blank - document.documentElement.clientHeight;</span>
+<span class="cstat-no" title="statement not covered" >                    this.Tip.autoFixOffset[0] = rect.top + rect.height + blank - document.documentElement.clientHeight;</span>
 <span class="cstat-no" title="statement not covered" >                    overranger[2] = true;</span>
 &nbsp;
                 }
@@ -772,7 +772,7 @@ export default TipManager;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Jul 26 2018 23:28:45 GMT+0800 (CST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Aug 19 2018 12:29:37 GMT+0800 (CST)
 </div>
 </div>
 <script src="../../prettify.js"></script>

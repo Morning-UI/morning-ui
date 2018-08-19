@@ -1501,13 +1501,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">148x</span>
-<span class="cline-any cline-yes">148x</span>
-<span class="cline-any cline-yes">148x</span>
+<span class="cline-any cline-yes">152x</span>
+<span class="cline-any cline-yes">152x</span>
+<span class="cline-any cline-yes">152x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">148x</span>
+<span class="cline-any cline-yes">152x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">148x</span>
+<span class="cline-any cline-yes">152x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -2454,7 +2454,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">148x</span>
+<span class="cline-any cline-yes">152x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
     &lt;mor-imagemap
         :_uiid="uiid"
@@ -2882,8 +2882,8 @@ export default {
             let x = <span class="cstat-no" title="statement not covered" >evt.x;</span>
             let y = <span class="cstat-no" title="statement not covered" >evt.y;</span>
             let $zonearea = <span class="cstat-no" title="statement not covered" >this.$refs[`ui-imagemap-mapdialog-${this.uiid}`].$el.querySelector('.zonearea');</span>
-            let areaX = <span class="cstat-no" title="statement not covered" >$zonearea.getBoundingClientRect().x;</span>
-            let areaY = <span class="cstat-no" title="statement not covered" >$zonearea.getBoundingClientRect().y;</span>
+            let areaX = <span class="cstat-no" title="statement not covered" >$zonearea.getBoundingClientRect().left;</span>
+            let areaY = <span class="cstat-no" title="statement not covered" >$zonearea.getBoundingClientRect().top;</span>
             let <span class="cstat-no" title="statement not covered" >id;</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >            id = this.addZone({</span>
@@ -2938,13 +2938,13 @@ export default {
 &nbsp;
 <span class="cstat-no" title="statement not covered" >                        zone.w = this.zoneMinSize;</span>
 <span class="cstat-no" title="statement not covered" >                        zone.x -= zone.w;</span>
-<span class="cstat-no" title="statement not covered" >                        this.data.resizeZoneLastXY.x = this._getRealValue($zone.getBoundingClientRect().x) - zone.w;</span>
+<span class="cstat-no" title="statement not covered" >                        this.data.resizeZoneLastXY.x = this._getRealValue($zone.getBoundingClientRect().left) - zone.w;</span>
 &nbsp;
                     } else {
 &nbsp;
 <span class="cstat-no" title="statement not covered" >                        zone.w = Math.abs(w);</span>
 <span class="cstat-no" title="statement not covered" >                        zone.x -= zone.w;</span>
-<span class="cstat-no" title="statement not covered" >                        this.data.resizeZoneLastXY.x = this._getRealValue($zone.getBoundingClientRect().x) - zone.w;</span>
+<span class="cstat-no" title="statement not covered" >                        this.data.resizeZoneLastXY.x = this._getRealValue($zone.getBoundingClientRect().left) - zone.w;</span>
 &nbsp;
                     }
 &nbsp;
@@ -2985,13 +2985,13 @@ export default {
 &nbsp;
 <span class="cstat-no" title="statement not covered" >                        zone.w = this.zoneMinSize;</span>
 <span class="cstat-no" title="statement not covered" >                        zone.x += ow;</span>
-<span class="cstat-no" title="statement not covered" >                        this.data.resizeZoneLastXY.x = this._getRealValue($zone.getBoundingClientRect().x) + ow;</span>
+<span class="cstat-no" title="statement not covered" >                        this.data.resizeZoneLastXY.x = this._getRealValue($zone.getBoundingClientRect().left) + ow;</span>
 &nbsp;
                     } else {
 &nbsp;
 <span class="cstat-no" title="statement not covered" >                        zone.w = Math.abs(w + ow);</span>
 <span class="cstat-no" title="statement not covered" >                        zone.x += ow;</span>
-<span class="cstat-no" title="statement not covered" >                        this.data.resizeZoneLastXY.x = this._getRealValue($zone.getBoundingClientRect().x) + ow;</span>
+<span class="cstat-no" title="statement not covered" >                        this.data.resizeZoneLastXY.x = this._getRealValue($zone.getBoundingClientRect().left) + ow;</span>
 &nbsp;
                     }
 &nbsp;
@@ -3031,13 +3031,13 @@ export default {
 &nbsp;
 <span class="cstat-no" title="statement not covered" >                        zone.h = this.zoneMinSize;</span>
 <span class="cstat-no" title="statement not covered" >                        zone.y -= zone.h;</span>
-<span class="cstat-no" title="statement not covered" >                        this.data.resizeZoneLastXY.y = this._getRealValue($zone.getBoundingClientRect().y) - zone.h;</span>
+<span class="cstat-no" title="statement not covered" >                        this.data.resizeZoneLastXY.y = this._getRealValue($zone.getBoundingClientRect().top) - zone.h;</span>
 &nbsp;
                     } else {
 &nbsp;
 <span class="cstat-no" title="statement not covered" >                        zone.h = Math.abs(h);</span>
 <span class="cstat-no" title="statement not covered" >                        zone.y -= zone.h;</span>
-<span class="cstat-no" title="statement not covered" >                        this.data.resizeZoneLastXY.y = this._getRealValue($zone.getBoundingClientRect().y) - zone.h;</span>
+<span class="cstat-no" title="statement not covered" >                        this.data.resizeZoneLastXY.y = this._getRealValue($zone.getBoundingClientRect().top) - zone.h;</span>
                     
                     }
 &nbsp;
@@ -3078,13 +3078,13 @@ export default {
 &nbsp;
 <span class="cstat-no" title="statement not covered" >                        zone.h = this.zoneMinSize;</span>
 <span class="cstat-no" title="statement not covered" >                        zone.y += oh;</span>
-<span class="cstat-no" title="statement not covered" >                        this.data.resizeZoneLastXY.y = this._getRealValue($zone.getBoundingClientRect().y) + oh;</span>
+<span class="cstat-no" title="statement not covered" >                        this.data.resizeZoneLastXY.y = this._getRealValue($zone.getBoundingClientRect().top) + oh;</span>
 &nbsp;
                     } else {
 &nbsp;
 <span class="cstat-no" title="statement not covered" >                        zone.h = Math.abs(h + oh);</span>
 <span class="cstat-no" title="statement not covered" >                        zone.y += oh;</span>
-<span class="cstat-no" title="statement not covered" >                        this.data.resizeZoneLastXY.y = this._getRealValue($zone.getBoundingClientRect().y) + oh;</span>
+<span class="cstat-no" title="statement not covered" >                        this.data.resizeZoneLastXY.y = this._getRealValue($zone.getBoundingClientRect().top) + oh;</span>
 &nbsp;
                     }
 &nbsp;
@@ -3667,7 +3667,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Jul 26 2018 23:28:45 GMT+0800 (CST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Aug 19 2018 12:29:37 GMT+0800 (CST)
 </div>
 </div>
 <script src="../../../prettify.js"></script>
