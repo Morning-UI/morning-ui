@@ -104,13 +104,14 @@
                 <li><a href="/component/tip.html">小提示<p>&lt;tip></p></a></li>
                 <li><a href="/component/alert.html">告示<p>&lt;alert></p></a></li>
                 <li><a href="/component/load.html">加载<p>&lt;load></p></a></li>
-                <li><a href="/component/progress.html">进度条<p>&lt;progress></p></a></li>
+                <li><a href="/component/progress.html">进度条<p>&lt;progress></p></a></li> 
             </ul>
         </div>
         <div class="sub-group">
             <h3><i class="iconfont">&#xe769;</i>展示</h3>
             <ul>
                 <li><a href="/component/table.html">表格<p>&lt;table></p></a></li>
+                <!-- <li><a href="/component/carousel.html">轮播<p>&lt;carousel></p></a></li> -->
                 <li><a href="/component/calendar.html">日历<p>&lt;calendar></p></a></li>
                 <li><a href="/component/audio.html">音频<p>&lt;audio></p></a></li>
                 <li><a href="/component/video.html">视频<p>&lt;video></p></a></li>
