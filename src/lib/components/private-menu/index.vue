@@ -8,6 +8,7 @@
         :menu="menu"
         :current-menu="currentMenu"
         :position="position"
+        :root-item-show-list="rootItemShowList"
     >
 
     <ul
@@ -49,6 +50,7 @@
                     <a
                         v-if="item.childs && Object.keys(item.childs).length > 0"
                         href="javascript:;"
+                        class="has-child-menu"
                         @click="_itemClick(key, item);_toggleSubmenu('menu-item-'+conf.deep+'-'+key);"
                         v-html="item.name"
                     ></a>
@@ -62,7 +64,7 @@
 
                     <i
                         v-if="(conf.deep > 0 && item.childs) || (conf.position === 'side' && item.childs)"
-                        class="mo-icon has-child-menu"
+                        class="mo-icon has-child-menu-icon"
                         :class="{
                             'mo-icon-right' : (conf.position === 'top'),
                             'mo-icon-down' : (conf.position === 'side')
@@ -81,6 +83,7 @@
                         :groups="item.groups"
                         :current-menu="conf.currentMenu"
                         :position="conf.position"
+                        :root-item-show-list="conf.rootItemShowList"
 
                         @emit="_emit"
                     ></morning-private-menu>
@@ -121,6 +124,10 @@ export default {
         position : {
             type : String,
             default : 'top'
+        },
+        rootItemShowList : {
+            type : Object,
+            default : (() => ({}))
         }
     },
     computed : {
@@ -132,7 +139,8 @@ export default {
                 menu : this.menu,
                 currentMenu : this.currentMenu,
                 groups : this.groups,
-                position : this.position
+                position : this.position,
+                rootItemShowList : this.rootItemShowList
             };
 
         },
@@ -211,7 +219,18 @@ export default {
 
         }
     },
-    mounted : function () {}
+    mounted : function () {
+
+        this.$watch('conf.rootItemShowList', () => {
+
+            this.data.itemShowList = this.conf.rootItemShowList;
+
+        }, {
+            immediate : true,
+            deep : true
+        });
+
+    }
 };
 </script>
 
