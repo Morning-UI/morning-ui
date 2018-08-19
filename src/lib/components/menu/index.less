@@ -3,6 +3,225 @@
 mor-menu{
     display: block;
 
+    &.fill{
+        height: 100%;
+
+        mor-private-menu{
+            height: 100%;
+        }
+
+        .pos-top{
+            .root-menu{
+                height: 100%;
+
+                > li{
+                    height: 100%;
+
+                    > a{
+                        padding-top: ~'calc(100% - ' @formHeight ~')';
+                        padding-bottom: ~'calc(100% - ' @formHeight ~')';
+                        height: 100%;
+                    }
+                }
+            }
+        }
+    }
+
+    &.line{
+        .pos-top{
+            .root-menu{
+                border-bottom: 1px @colorLightSilver solid;
+
+                > li{
+                    > a{
+                        border-bottom: 1px @colorLightSilver solid;
+
+                        &:hover{
+                            color: @colorExtraLightBlack;
+                            border-bottom-color: @colorTheme;
+                        }
+
+                        &.current{
+                            color: @colorBlack;
+                            font-weight: 400;
+                            border-bottom-color: @colorTheme;
+                            border-bottom-width: 2px;
+                        }
+                    }
+
+                    &.current{
+                        > a{
+                            color: @colorBlack;
+                            font-weight: 400;
+                            border-bottom-width: 2px;
+                            border-bottom-color: @colorTheme;
+                        }
+                    }
+                }
+            }
+
+            .sub-menu{
+                > li{
+                    > a{
+                        &.current{
+                            color: @colorBlack;
+                            background-color: lighten(@colorTheme, 37%);
+                        }
+                    }
+
+                    &.current{
+                        > a{
+                            color: @colorBlack;
+                            background-color: lighten(@colorTheme, 37%);
+                        }
+                    }
+                }
+            }
+        }
+
+        .pos-side{
+            .root-menu{
+                border-right: 1px @colorLightSilver solid;
+
+                &.current,
+                &.last-current{
+                    > a{
+                        padding-right: ~'calc(1.5em - 4px)';
+                    }
+                }
+            }
+
+            .sub-menu{
+                > li{
+                    > a{
+                        &.current{
+                            border-bottom-color: @colorTheme;
+                            border-bottom-width: 2px;
+                        }
+                    }
+                }
+
+                &.current,
+                &.last-current{
+                    > a{
+                        padding-right: ~'calc(1.7em - 4px)';
+                    }
+                }
+            }
+
+            .root-menu,
+            .sub-menu{
+                > li{
+                    &.current{
+                        > a{
+                            color: @colorBlack;
+                            font-weight: 400;
+                            background-color: lighten(@colorTheme, 37%);
+                            border-right: 4px lighten(@colorTheme, 20%) solid;
+                        }
+                    }
+
+                    &.last-current{
+                        > a{
+                            color: @colorBlack;
+                            font-weight: 400;
+                            background-color: lighten(@colorTheme, 37%);
+                            border-right: 4px @colorTheme solid;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &.block{
+        .pos-top{
+            .root-menu{
+                > li{
+                    > a{
+                        border-radius: @borderRadius;
+
+                        &:hover{
+                            background-color: @colorExtraLightSilver;
+                        }
+
+                        &.current{
+                            color: @colorWhite;
+                            font-weight: 400;
+                            background-color: @colorLightTheme;
+                        }
+                    }
+
+                    &.current{
+                        > a{
+                            color: @colorWhite;
+                            font-weight: 400;
+                            background-color: @colorLightTheme;
+                        }
+                    }
+                }
+            }
+
+            .sub-menu{
+                > li{
+                    > a{
+                        &.current{
+                            color: @colorWhite;
+                            background-color: @colorLightTheme;
+                        }
+                    }
+
+                    &.current{
+                        > a{
+                            color: @colorWhite;
+                            background-color: @colorLightTheme;
+                        }
+
+                        > .has-child-menu-icon{
+                            color: @colorWhite;
+                        }
+                    }
+                }
+            }
+        }
+
+        .pos-side{
+            .root-menu,
+            .sub-menu{
+                > li{
+                    > a{
+                        border-radius: @borderRadius;
+
+                        &.current{
+                            color: @colorWhite;
+                            font-weight: 400;
+                            background-color: @colorLightTheme;
+                        }
+                    }
+
+                    &.current{
+                        > a{
+                            color: @colorLightTheme;
+                            font-weight: 400;
+                        }
+                    }
+
+                    &.last-current{
+                        > a{
+                            color: @colorWhite;
+                            font-weight: 400;
+                            background-color: @colorTheme;
+                        }
+
+                        > .has-child-menu-icon{
+                            color: @colorWhite;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     &.si-m,
     &.si-s{
         .sub-menu{

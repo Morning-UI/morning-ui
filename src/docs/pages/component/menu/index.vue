@@ -134,6 +134,259 @@
     </div>
     :::
 
+    #### 线条风格的菜单
+
+    通过`line`样式类定义线条风格的菜单：
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            menu : {
+                'home' : '首页',
+                'order' : '订单',
+                'history' : '历史',
+                'settings' : {
+                    name : '设置',
+                    childs : {
+                        'common' : {
+                            name : '通用设置',
+                            childs : {
+                                'theme' : {
+                                    name : '模板',
+                                    childs : {
+                                        'modify' : '编辑',
+                                        'market' : '模板市场'
+                                    }
+                                },
+                                'goods' : '商品',
+                                'payment' : '支付'
+                            }
+                        },
+                        'account' : {
+                            name : '账户设置',
+                            childs : {
+                                'email' : '邮箱设置',
+                                'password' : '修改密码'
+                            }
+                        },
+                        'safity' : {
+                            name : '安全设置',
+                            childs : {
+                                'multiple' : '多重认证',
+                                'found' : '账户找回',
+                                'history' : '登录历史',
+                                'help' : '寻求帮助',
+                                'blocked' : '锁定账户'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    });
+    ---
+    <div style="width:700px;">
+        <ui-menu :menu="menu" class="line"></ui-menu>
+    </div>
+    :::
+
+    侧栏的线条风格的菜单：
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            menu : {
+                'home' : '首页',
+                'order' : '订单',
+                'history' : '历史',            
+                'settings' : {
+                    name : '设置',
+                    childs : {
+                        'common' : {
+                            name : '通用设置',
+                            childs : {
+                                'theme' : {
+                                    name : '模板',
+                                    childs : {
+                                        'modify' : '编辑',
+                                        'market' : '模板市场'
+                                    }
+                                },
+                                'goods' : '商品',
+                                'payment' : '支付'
+                            }
+                        },
+                        'account' : {
+                            name : '账户设置',
+                            childs : {
+                                'email' : '邮箱设置',
+                                'password' : '修改密码'
+                            }
+                        },
+                        'safity' : {
+                            name : '安全设置',
+                            childs : {
+                                'multiple' : '多重认证',
+                                'found' : '账户找回',
+                                'history' : '登录历史',
+                                'help' : '寻求帮助',
+                                'blocked' : '锁定账户'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    });
+    ---
+    <div style="width:220px;">
+        <ui-menu :menu="menu" class="line" position="side"></ui-menu>
+    </div>
+    :::
+
+    #### 区块风格的菜单
+
+    通过`block`样式类定义区块风格的菜单：
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            menu : {
+                'home' : '首页',
+                'order' : '订单',
+                'history' : '历史',          
+                'settings' : {
+                    name : '设置',
+                    childs : {
+                        'common' : {
+                            name : '通用设置',
+                            childs : {
+                                'theme' : {
+                                    name : '模板',
+                                    childs : {
+                                        'modify' : '编辑',
+                                        'market' : '模板市场'
+                                    }
+                                },
+                                'goods' : '商品',
+                                'payment' : '支付'
+                            }
+                        },
+                        'account' : {
+                            name : '账户设置',
+                            childs : {
+                                'email' : '邮箱设置',
+                                'password' : '修改密码'
+                            }
+                        },
+                        'safity' : {
+                            name : '安全设置',
+                            childs : {
+                                'multiple' : '多重认证',
+                                'found' : '账户找回',
+                                'history' : '登录历史',
+                                'help' : '寻求帮助',
+                                'blocked' : '锁定账户'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    });
+    ---
+    <div style="width:700px;">
+        <ui-menu :menu="menu" class="block"></ui-menu>
+    </div>
+    :::
+
+    侧栏的区块风格的菜单：
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            menu : {
+                'home' : '首页',
+                'order' : '订单',
+                'history' : '历史',        
+                'settings' : {
+                    name : '设置',
+                    childs : {
+                        'common' : {
+                            name : '通用设置',
+                            childs : {
+                                'theme' : {
+                                    name : '模板',
+                                    childs : {
+                                        'modify' : '编辑',
+                                        'market' : '模板市场'
+                                    }
+                                },
+                                'goods' : '商品',
+                                'payment' : '支付'
+                            }
+                        },
+                        'account' : {
+                            name : '账户设置',
+                            childs : {
+                                'email' : '邮箱设置',
+                                'password' : '修改密码'
+                            }
+                        },
+                        'safity' : {
+                            name : '安全设置',
+                            childs : {
+                                'multiple' : '多重认证',
+                                'found' : '账户找回',
+                                'history' : '登录历史',
+                                'help' : '寻求帮助',
+                                'blocked' : '锁定账户'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    });
+    ---
+    <div style="width:220px;">
+        <ui-menu :menu="menu" class="block" position="side"></ui-menu>
+    </div>
+    :::
+
+    #### 垂直填满容器的菜单
+
+    当菜单的`position`为`top`时，可以为菜单添加`fill`样式类，使得菜单的高度与父容器高度保持一致：
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            menu : {
+                'home' : '首页',
+                'order' : '订单',
+                'history' : '历史',
+                'settings' : '设置'
+            }
+        }
+    });
+    ---
+    <div style="width:700px;">
+        <div style="height: 120px;">
+            <ui-menu :menu="menu" position="top" class="fill line"></ui-menu>
+        </div>
+    </div>
+    :::
+
     #### 绑定处理函数
 
     帮点菜单点击后的处理函数有两种方法，第一方法是绑定在`menu`配置中，通过`handler`为每一个项目绑定处理函数：
