@@ -39,10 +39,10 @@
                     :form-name="(conf.startName === false) ? conf.formName : conf.startName"
                     :hide-name="conf.hideName"
                     :align="conf.align"
+                    :list="timeList"
 
                     @value-change="_syncValueFromSelectToRoot"
                 >
-                    <li v-for="item in timeList" :value="item">{{item}}</li>            
                 </morning-select>
 
                 <div class="separator" :class="conf.separatorType">{{conf.separator}}</div>
@@ -55,10 +55,10 @@
                     :form-name="(conf.startName === false) ? conf.formName : conf.startName"
                     :hide-name="conf.hideName"
                     :align="conf.align"
+                    :list="timeList"
 
                     @value-change="_syncValueFromSelectToRoot"
                 >
-                    <li v-for="item in timeList" :value="item">{{item}}</li>            
                 </morning-select>
             </template>
 
@@ -71,10 +71,10 @@
                     :default-value="conf.defaultValue"
                     :hide-name="conf.hideName"
                     :align="conf.align"
+                    :list="timeList"
 
                     @value-change="_syncValueFromSelectToRoot"
                 >
-                    <li v-for="item in timeList" :value="item">{{item}}</li>            
                 </morning-select>
             </template>
         </template>
@@ -242,7 +242,7 @@ export default {
 
             if (!this.conf.isList) {
 
-                return [];
+                return {};
 
             }
 
@@ -294,7 +294,15 @@ export default {
             list = arrayUniq(list);
             list = sortBy(list, v => v);
 
-            return list;
+            let listObj = {};
+
+            for (let item of list) {
+
+                listObj[item] = item;
+
+            }
+
+            return listObj;
 
         }
     },
