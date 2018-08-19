@@ -84,6 +84,9 @@ mor-private-menu{
             }
 
             > a{
+                box-sizing: border-box;
+                text-decoration: none;
+
                 .iconfont,
                 .mo-icon{
                     vertical-align: 1px;
@@ -268,6 +271,10 @@ mor-private-menu{
             border-right: 1px @colorLightSilver solid;
 
             > li{
+                > a{
+                    width: 100%;
+                }
+
                 &.current,
                 &.last-current{
                     > a{
@@ -279,6 +286,10 @@ mor-private-menu{
 
         .sub-menu{
             > li{
+                > a{
+                    width: 100%;
+                }
+
                 &.current,
                 &.last-current{
                     > a{

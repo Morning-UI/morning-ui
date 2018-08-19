@@ -15582,6 +15582,11 @@ mor-private-menu .sub-menu > li .has-child-menu-icon {
   font-size: 12px;
   color: #8E9CAF;
 }
+mor-private-menu .root-menu > li > a,
+mor-private-menu .sub-menu > li > a {
+  box-sizing: border-box;
+  text-decoration: none;
+}
 mor-private-menu .root-menu > li > a .iconfont,
 mor-private-menu .sub-menu > li > a .iconfont,
 mor-private-menu .root-menu > li > a .mo-icon,
@@ -15703,9 +15708,15 @@ mor-private-menu.pos-top .deep-submenu {
 mor-private-menu.pos-side .root-menu {
   border-right: 1px #E2E8EE solid;
 }
+mor-private-menu.pos-side .root-menu > li > a {
+  width: 100%;
+}
 mor-private-menu.pos-side .root-menu > li.current > a,
 mor-private-menu.pos-side .root-menu > li.last-current > a {
   padding-right: calc(1.5em - 4px);
+}
+mor-private-menu.pos-side .sub-menu > li > a {
+  width: 100%;
 }
 mor-private-menu.pos-side .sub-menu > li.current > a,
 mor-private-menu.pos-side .sub-menu > li.last-current > a {
