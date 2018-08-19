@@ -425,8 +425,8 @@ export default {
             let x = evt.x;
             let y = evt.y;
             let $zonearea = this.$refs[`ui-imagemap-mapdialog-${this.uiid}`].$el.querySelector('.zonearea');
-            let areaX = $zonearea.getBoundingClientRect().x;
-            let areaY = $zonearea.getBoundingClientRect().y;
+            let areaX = $zonearea.getBoundingClientRect().left;
+            let areaY = $zonearea.getBoundingClientRect().top;
             let id;
 
             id = this.addZone({
@@ -481,13 +481,13 @@ export default {
 
                         zone.w = this.zoneMinSize;
                         zone.x -= zone.w;
-                        this.data.resizeZoneLastXY.x = this._getRealValue($zone.getBoundingClientRect().x) - zone.w;
+                        this.data.resizeZoneLastXY.x = this._getRealValue($zone.getBoundingClientRect().left) - zone.w;
 
                     } else {
 
                         zone.w = Math.abs(w);
                         zone.x -= zone.w;
-                        this.data.resizeZoneLastXY.x = this._getRealValue($zone.getBoundingClientRect().x) - zone.w;
+                        this.data.resizeZoneLastXY.x = this._getRealValue($zone.getBoundingClientRect().left) - zone.w;
 
                     }
 
@@ -528,13 +528,13 @@ export default {
 
                         zone.w = this.zoneMinSize;
                         zone.x += ow;
-                        this.data.resizeZoneLastXY.x = this._getRealValue($zone.getBoundingClientRect().x) + ow;
+                        this.data.resizeZoneLastXY.x = this._getRealValue($zone.getBoundingClientRect().left) + ow;
 
                     } else {
 
                         zone.w = Math.abs(w + ow);
                         zone.x += ow;
-                        this.data.resizeZoneLastXY.x = this._getRealValue($zone.getBoundingClientRect().x) + ow;
+                        this.data.resizeZoneLastXY.x = this._getRealValue($zone.getBoundingClientRect().left) + ow;
 
                     }
 
@@ -574,13 +574,13 @@ export default {
 
                         zone.h = this.zoneMinSize;
                         zone.y -= zone.h;
-                        this.data.resizeZoneLastXY.y = this._getRealValue($zone.getBoundingClientRect().y) - zone.h;
+                        this.data.resizeZoneLastXY.y = this._getRealValue($zone.getBoundingClientRect().top) - zone.h;
 
                     } else {
 
                         zone.h = Math.abs(h);
                         zone.y -= zone.h;
-                        this.data.resizeZoneLastXY.y = this._getRealValue($zone.getBoundingClientRect().y) - zone.h;
+                        this.data.resizeZoneLastXY.y = this._getRealValue($zone.getBoundingClientRect().top) - zone.h;
                     
                     }
 
@@ -621,13 +621,13 @@ export default {
 
                         zone.h = this.zoneMinSize;
                         zone.y += oh;
-                        this.data.resizeZoneLastXY.y = this._getRealValue($zone.getBoundingClientRect().y) + oh;
+                        this.data.resizeZoneLastXY.y = this._getRealValue($zone.getBoundingClientRect().top) + oh;
 
                     } else {
 
                         zone.h = Math.abs(h + oh);
                         zone.y += oh;
-                        this.data.resizeZoneLastXY.y = this._getRealValue($zone.getBoundingClientRect().y) + oh;
+                        this.data.resizeZoneLastXY.y = this._getRealValue($zone.getBoundingClientRect().top) + oh;
 
                     }
 

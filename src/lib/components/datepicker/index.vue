@@ -575,9 +575,9 @@ export default {
 
                     this.Vue.nextTick(() => {
 
-                        let input0x = $input0DateSelect.getBoundingClientRect().x;
+                        let input0x = $input0DateSelect.getBoundingClientRect().left;
                         let input1Rect = $input1DateSelect.getBoundingClientRect();
-                        let input1x = input1Rect.x;
+                        let input1x = input1Rect.left;
                         let input1w = input1Rect.width;
                         let offset = ($input0DateSelect.offsetWidth - (input1x - input0x)) / 2;
 

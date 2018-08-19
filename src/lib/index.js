@@ -1,6 +1,7 @@
 import extend                           from 'extend';
 import uiClass                          from 'Common/ui';
 import formClass                        from 'Common/form';
+import browserPolyfill                  from './polyfill/index';
 import components                       from './components';
 
 let morning = {
@@ -44,7 +45,7 @@ let morning = {
         white : 'wh'
     },
     isMorning : true,
-    version : '0.11.11',
+    version : '0.11.12',
     map : {}
 };
 
@@ -195,6 +196,8 @@ morning.install = function (Vue, options) {
         throw new Error('prefix can\'t be \'mor\'.');
 
     }
+
+    browserPolyfill();
 
     options = extend(true, {
         prefix : 'ui',

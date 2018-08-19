@@ -76,7 +76,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 490);
+/******/ 	return __webpack_require__(__webpack_require__.s = 493);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -13881,28 +13881,28 @@ var TipManager = {
             if (placement === 'bottom' || placement === 'top') {
 
                 // overleft
-                if (this.Tip.autoOffset && rect.x - blank < 0) {
+                if (this.Tip.autoOffset && rect.left - blank < 0) {
 
-                    this.Tip.autoFixOffset[1] = rect.x - blank;
+                    this.Tip.autoFixOffset[1] = rect.left - blank;
                     overranger[3] = true;
                 }
 
                 // overright
-                if (this.Tip.autoOffset && rect.x + rect.width + blank > document.documentElement.clientWidth) {
+                if (this.Tip.autoOffset && rect.left + rect.width + blank > document.documentElement.clientWidth) {
 
-                    this.Tip.autoFixOffset[1] = rect.x + rect.width + blank - document.documentElement.clientWidth;
+                    this.Tip.autoFixOffset[1] = rect.left + rect.width + blank - document.documentElement.clientWidth;
                     overranger[1] = true;
                 }
 
                 // overtop
-                if (this.Tip.autoReverse && rect.y - blank < 0) {
+                if (this.Tip.autoReverse && rect.top - blank < 0) {
 
                     this.Tip.autoFixPlacement = 'bottom';
                     overranger[0] = true;
                 }
 
                 // overbottom
-                if (this.Tip.autoReverse && rect.y + rect.height + blank > document.documentElement.clientHeight) {
+                if (this.Tip.autoReverse && rect.top + rect.height + blank > document.documentElement.clientHeight) {
 
                     this.Tip.autoFixPlacement = 'top';
                     overranger[2] = true;
@@ -13910,30 +13910,30 @@ var TipManager = {
             } else if (placement === 'left' || placement === 'right') {
 
                 // overleft
-                if (this.Tip.autoReverse && rect.x - blank < 0) {
+                if (this.Tip.autoReverse && rect.left - blank < 0) {
 
                     this.Tip.autoFixPlacement = 'right';
                     overranger[3] = true;
                 }
 
                 // overright
-                if (this.Tip.autoReverse && rect.x + rect.width + blank > document.documentElement.clientWidth) {
+                if (this.Tip.autoReverse && rect.left + rect.width + blank > document.documentElement.clientWidth) {
 
                     this.Tip.autoFixPlacement = 'left';
                     overranger[1] = true;
                 }
 
                 // overtop
-                if (this.Tip.autoOffset && rect.y - blank < 0) {
+                if (this.Tip.autoOffset && rect.top - blank < 0) {
 
-                    this.Tip.autoFixOffset[0] = rect.y - blank;
+                    this.Tip.autoFixOffset[0] = rect.top - blank;
                     overranger[0] = true;
                 }
 
                 // overbottom
-                if (this.Tip.autoOffset && rect.y + rect.height + blank > document.documentElement.clientHeight) {
+                if (this.Tip.autoOffset && rect.top + rect.height + blank > document.documentElement.clientHeight) {
 
-                    this.Tip.autoFixOffset[0] = rect.y + rect.height + blank - document.documentElement.clientHeight;
+                    this.Tip.autoFixOffset[0] = rect.top + rect.height + blank - document.documentElement.clientHeight;
                     overranger[2] = true;
                 }
             }
@@ -15688,6 +15688,7 @@ var Move = {
 
                 if (/matrix/.test(transform)) {
 
+                    // safari <11 is not support
                     var matrix = new DOMMatrix(JSON.parse('[' + transform.replace(/(^matrix\(|\)$)/g, '') + ']'));
 
                     transformX = matrix.m41 - window.scrollX;
@@ -19428,6 +19429,9 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
 
 exports.default = {
     origin: 'UI',
@@ -19459,6 +19463,12 @@ exports.default = {
         position: {
             type: String,
             default: 'top'
+        },
+        rootItemShowList: {
+            type: Object,
+            default: function _default() {
+                return {};
+            }
         }
     },
     computed: {
@@ -19470,7 +19480,8 @@ exports.default = {
                 menu: this.menu,
                 currentMenu: this.currentMenu,
                 groups: this.groups,
-                position: this.position
+                position: this.position,
+                rootItemShowList: this.rootItemShowList
             };
         },
         currentMenuList: function currentMenuList() {
@@ -19559,7 +19570,17 @@ exports.default = {
             this.$forceUpdate();
         }
     },
-    mounted: function mounted() {}
+    mounted: function mounted() {
+        var _this = this;
+
+        this.$watch('conf.rootItemShowList', function () {
+
+            _this.data.itemShowList = _this.conf.rootItemShowList;
+        }, {
+            immediate: true,
+            deep: true
+        });
+    }
 };
 module.exports = exports['default'];
 
@@ -21293,8 +21314,8 @@ exports.default = {
             var x = evt.x;
             var y = evt.y;
             var $zonearea = this.$refs['ui-imagemap-mapdialog-' + this.uiid].$el.querySelector('.zonearea');
-            var areaX = $zonearea.getBoundingClientRect().x;
-            var areaY = $zonearea.getBoundingClientRect().y;
+            var areaX = $zonearea.getBoundingClientRect().left;
+            var areaY = $zonearea.getBoundingClientRect().top;
             var id = void 0;
 
             id = this.addZone({
@@ -21347,12 +21368,12 @@ exports.default = {
 
                         zone.w = this.zoneMinSize;
                         zone.x -= zone.w;
-                        this.data.resizeZoneLastXY.x = this._getRealValue($zone.getBoundingClientRect().x) - zone.w;
+                        this.data.resizeZoneLastXY.x = this._getRealValue($zone.getBoundingClientRect().left) - zone.w;
                     } else {
 
                         zone.w = Math.abs(w);
                         zone.x -= zone.w;
-                        this.data.resizeZoneLastXY.x = this._getRealValue($zone.getBoundingClientRect().x) - zone.w;
+                        this.data.resizeZoneLastXY.x = this._getRealValue($zone.getBoundingClientRect().left) - zone.w;
                     }
 
                     return;
@@ -21388,12 +21409,12 @@ exports.default = {
 
                         zone.w = this.zoneMinSize;
                         zone.x += ow;
-                        this.data.resizeZoneLastXY.x = this._getRealValue($zone.getBoundingClientRect().x) + ow;
+                        this.data.resizeZoneLastXY.x = this._getRealValue($zone.getBoundingClientRect().left) + ow;
                     } else {
 
                         zone.w = Math.abs(w + ow);
                         zone.x += ow;
-                        this.data.resizeZoneLastXY.x = this._getRealValue($zone.getBoundingClientRect().x) + ow;
+                        this.data.resizeZoneLastXY.x = this._getRealValue($zone.getBoundingClientRect().left) + ow;
                     }
 
                     return;
@@ -21428,12 +21449,12 @@ exports.default = {
 
                         zone.h = this.zoneMinSize;
                         zone.y -= zone.h;
-                        this.data.resizeZoneLastXY.y = this._getRealValue($zone.getBoundingClientRect().y) - zone.h;
+                        this.data.resizeZoneLastXY.y = this._getRealValue($zone.getBoundingClientRect().top) - zone.h;
                     } else {
 
                         zone.h = Math.abs(h);
                         zone.y -= zone.h;
-                        this.data.resizeZoneLastXY.y = this._getRealValue($zone.getBoundingClientRect().y) - zone.h;
+                        this.data.resizeZoneLastXY.y = this._getRealValue($zone.getBoundingClientRect().top) - zone.h;
                     }
 
                     return;
@@ -21469,12 +21490,12 @@ exports.default = {
 
                         zone.h = this.zoneMinSize;
                         zone.y += oh;
-                        this.data.resizeZoneLastXY.y = this._getRealValue($zone.getBoundingClientRect().y) + oh;
+                        this.data.resizeZoneLastXY.y = this._getRealValue($zone.getBoundingClientRect().top) + oh;
                     } else {
 
                         zone.h = Math.abs(h + oh);
                         zone.y += oh;
-                        this.data.resizeZoneLastXY.y = this._getRealValue($zone.getBoundingClientRect().y) + oh;
+                        this.data.resizeZoneLastXY.y = this._getRealValue($zone.getBoundingClientRect().top) + oh;
                     }
 
                     return;
@@ -25006,9 +25027,9 @@ exports.default = {
 
                     this.Vue.nextTick(function () {
 
-                        var input0x = $input0DateSelect.getBoundingClientRect().x;
+                        var input0x = $input0DateSelect.getBoundingClientRect().left;
                         var input1Rect = $input1DateSelect.getBoundingClientRect();
-                        var input1x = input1Rect.x;
+                        var input1x = input1Rect.left;
                         var input1w = input1Rect.width;
                         var offset = ($input0DateSelect.offsetWidth - (input1x - input0x)) / 2;
 
@@ -25843,7 +25864,7 @@ exports.default = {
 
             if (!this.conf.isList) {
 
-                return [];
+                return {};
             }
 
             var list = (0, _extend2.default)(true, [], this.conf.list);
@@ -25891,7 +25912,35 @@ exports.default = {
                 return v;
             });
 
-            return list;
+            var listObj = {};
+
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+                for (var _iterator = list[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var item = _step.value;
+
+
+                    listObj[item] = item;
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return) {
+                        _iterator.return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
+
+            return listObj;
         }
     },
     data: function data() {
@@ -30079,69 +30128,75 @@ module.exports = exports['default'];
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
+var _GlobalEvent = __webpack_require__(4);
+
+var _GlobalEvent2 = _interopRequireDefault(_GlobalEvent);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var returnValueFn = function returnValueFn(value) {
     return value;
-};
+}; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
     origin: 'Form',
     name: 'counter',
+    mixins: [_GlobalEvent2.default],
     props: {
         step: {
             type: Number,
@@ -30230,8 +30285,14 @@ exports.default = {
 
             return Number(value) || 0;
         },
+        _startContinued: function _startContinued(steps, add, continued) {
+
+            this._change(steps, add, continued);
+            this._globalEventAdd('mouseup', '_stopContinued');
+        },
         _stopContinued: function _stopContinued() {
 
+            this._globalEventRemove('mouseup', '_stopContinued');
             this.data.continueCount = 0;
             this.data.continueChange = false;
             clearTimeout(this.data.continueTimeout);
@@ -30331,7 +30392,11 @@ exports.default = {
         }
     },
     created: function created() {},
-    mounted: function mounted() {}
+    mounted: function mounted() {},
+    beforeDestroy: function beforeDestroy() {
+
+        this._globalEventRemove('mouseup', '_stopContinued');
+    }
 };
 module.exports = exports['default'];
 
@@ -33386,17 +33451,17 @@ exports.default = {
         _checkScroll: function _checkScroll() {
 
             var elRect = this.$el.getBoundingClientRect();
-            var elY = elRect.y;
+            var elY = elRect.top;
 
             if (this.conf.bottom !== undefined && elY + elRect.height >= window.innerHeight - this.conf.bottom) {
 
                 this.data.fixed = true;
-                this.data.fixedX = elRect.x;
+                this.data.fixedX = elRect.left;
                 this.data.fixedY = window.innerHeight - this.conf.bottom - elRect.height;
             } else if (this.conf.bottom === undefined && elY <= this.conf.top) {
 
                 this.data.fixed = true;
-                this.data.fixedX = elRect.x;
+                this.data.fixedX = elRect.left;
                 this.data.fixedY = this.conf.top;
             } else {
 
@@ -35213,6 +35278,11 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
 
 // import extend                       from 'extend';
 exports.default = {
@@ -35239,6 +35309,14 @@ exports.default = {
         autoToggleCurrent: {
             type: Boolean,
             default: true
+        },
+        positionCurrent: {
+            type: Boolean,
+            default: false
+        },
+        sideExpand: {
+            type: Boolean,
+            default: false
         }
     },
     computed: {
@@ -35248,7 +35326,15 @@ exports.default = {
                 menu: this.menu,
                 currentMenu: this.currentMenu,
                 position: this.position,
-                autoToggleCurrent: this.autoToggleCurrent
+                autoToggleCurrent: this.autoToggleCurrent,
+                positionCurrent: this.positionCurrent,
+                sideExpand: this.sideExpand
+            };
+        },
+        moreClass: function moreClass() {
+
+            return {
+                expand: this.isSideExpand
             };
         },
         rootMenuMoreClass: function rootMenuMoreClass() {
@@ -35258,13 +35344,18 @@ exports.default = {
             classes['pos-' + this.conf.position] = true;
 
             return classes;
+        },
+        isSideExpand: function isSideExpand() {
+
+            return this.conf.sideExpand && this.conf.position === 'side';
         }
     },
     data: function data() {
 
         return {
             data: {
-                currentMenu: ''
+                currentMenu: '',
+                rootItemShowList: {}
             }
         };
     },
@@ -35287,6 +35378,14 @@ exports.default = {
             delete data._path;
 
             this.$emit('emit', data);
+        },
+        _mousemoveInMenu: function _mousemoveInMenu() {
+
+            if (this.data.isPositionCurrent && this.conf.position !== 'side') {
+
+                this.data.rootItemShowList = {};
+                this.data.isPositionCurrent = false;
+            }
         }
     },
     mounted: function mounted() {
@@ -35295,8 +35394,26 @@ exports.default = {
         this.$watch('conf.currentMenu', function () {
 
             _this.data.currentMenu = _this.conf.currentMenu;
+
+            if (_this.conf.positionCurrent) {
+
+                var list = _this.data.currentMenu.split('/');
+                var showList = {};
+
+                for (var deep in list) {
+
+                    if (list[deep] !== '') {
+
+                        showList['menu-item-' + deep + '-' + list[deep]] = true;
+                    }
+                }
+
+                _this.data.isPositionCurrent = true;
+                _this.data.rootItemShowList = showList;
+            }
         }, {
-            immediate: true
+            immediate: true,
+            deep: true
         });
     }
 };
@@ -37422,7 +37539,7 @@ exports.default = {
             var _iteratorError2 = undefined;
 
             try {
-                for (var _iterator2 = $stickys[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                for (var _iterator2 = Array.from($stickys)[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
                     var $sticky = _step2.value;
 
 
@@ -37488,7 +37605,7 @@ exports.default = {
 
                     try {
 
-                        for (var _iterator3 = $currentTabEl[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                        for (var _iterator3 = Array.from($currentTabEl)[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
                             var $el = _step3.value;
 
 
@@ -37517,7 +37634,7 @@ exports.default = {
 
                     try {
 
-                        for (var _iterator4 = $currentConEl[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+                        for (var _iterator4 = Array.from($currentConEl)[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
                             var _$el = _step4.value;
 
 
@@ -39480,7 +39597,7 @@ var Dates = {
                 return this._dateGetStandardDate();
             }
 
-            return (0, _dateFns.parse)(_standardDate2.default + ' ' + str, 'YYYY-M-D ' + format, this._dateGetStandardDate());
+            return (0, _dateFns.parse)(str, format, this._dateGetStandardDate());
         },
         _dateGetStandardDate: function _dateGetStandardDate() {
 
@@ -39524,7 +39641,7 @@ var Time = {
                 return this._timeGetStandardDate();
             }
 
-            return (0, _dateFns.parse)(_standardDate2.default + ' ' + str, 'YYYY-M-D ' + format, this._timeGetStandardDate());
+            return (0, _dateFns.parse)(_standardDate2.default + ' ' + str, 'YYYY-MM-DD ' + format, this._timeGetStandardDate());
         },
         _timeSet: function _timeSet(type, value, originDate) {
 
@@ -41697,7 +41814,8 @@ var render = function() {
         deep: _vm.deep,
         menu: _vm.menu,
         "current-menu": _vm.currentMenu,
-        position: _vm.position
+        position: _vm.position,
+        "root-item-show-list": _vm.rootItemShowList
       }
     },
     [
@@ -41775,6 +41893,7 @@ var render = function() {
                         [
                           item.childs && Object.keys(item.childs).length > 0
                             ? _c("a", {
+                                staticClass: "has-child-menu",
                                 attrs: { href: "javascript:;" },
                                 domProps: { innerHTML: _vm._s(item.name) },
                                 on: {
@@ -41805,7 +41924,7 @@ var render = function() {
                           (_vm.conf.deep > 0 && item.childs) ||
                           (_vm.conf.position === "side" && item.childs)
                             ? _c("i", {
-                                staticClass: "mo-icon has-child-menu",
+                                staticClass: "mo-icon has-child-menu-icon",
                                 class: {
                                   "mo-icon-right": _vm.conf.position === "top",
                                   "mo-icon-down": _vm.conf.position === "side"
@@ -41825,7 +41944,9 @@ var render = function() {
                                   menu: item.childs,
                                   groups: item.groups,
                                   "current-menu": _vm.conf.currentMenu,
-                                  position: _vm.conf.position
+                                  position: _vm.conf.position,
+                                  "root-item-show-list":
+                                    _vm.conf.rootItemShowList
                                 },
                                 on: { emit: _vm._emit }
                               })
@@ -45044,28 +45165,21 @@ var render = function() {
             ? [
                 _vm.conf.isRange
                   ? [
-                      _c(
-                        "morning-select",
-                        {
-                          ref: "ui-timepicker-select-0-" + _vm.uiid,
-                          staticClass: "timepicker-select-0",
-                          attrs: {
-                            state: _vm.conf.state,
-                            "form-name":
-                              _vm.conf.startName === false
-                                ? _vm.conf.formName
-                                : _vm.conf.startName,
-                            "hide-name": _vm.conf.hideName,
-                            align: _vm.conf.align
-                          },
-                          on: { "value-change": _vm._syncValueFromSelectToRoot }
+                      _c("morning-select", {
+                        ref: "ui-timepicker-select-0-" + _vm.uiid,
+                        staticClass: "timepicker-select-0",
+                        attrs: {
+                          state: _vm.conf.state,
+                          "form-name":
+                            _vm.conf.startName === false
+                              ? _vm.conf.formName
+                              : _vm.conf.startName,
+                          "hide-name": _vm.conf.hideName,
+                          align: _vm.conf.align,
+                          list: _vm.timeList
                         },
-                        _vm._l(_vm.timeList, function(item) {
-                          return _c("li", { attrs: { value: item } }, [
-                            _vm._v(_vm._s(item))
-                          ])
-                        })
-                      ),
+                        on: { "value-change": _vm._syncValueFromSelectToRoot }
+                      }),
                       _vm._v(" "),
                       _c(
                         "div",
@@ -45076,49 +45190,35 @@ var render = function() {
                         [_vm._v(_vm._s(_vm.conf.separator))]
                       ),
                       _vm._v(" "),
-                      _c(
-                        "morning-select",
-                        {
-                          ref: "ui-timepicker-select-1-" + _vm.uiid,
-                          staticClass: "timepicker-select-1",
-                          attrs: {
-                            state: _vm.conf.state,
-                            "form-name":
-                              _vm.conf.startName === false
-                                ? _vm.conf.formName
-                                : _vm.conf.startName,
-                            "hide-name": _vm.conf.hideName,
-                            align: _vm.conf.align
-                          },
-                          on: { "value-change": _vm._syncValueFromSelectToRoot }
+                      _c("morning-select", {
+                        ref: "ui-timepicker-select-1-" + _vm.uiid,
+                        staticClass: "timepicker-select-1",
+                        attrs: {
+                          state: _vm.conf.state,
+                          "form-name":
+                            _vm.conf.startName === false
+                              ? _vm.conf.formName
+                              : _vm.conf.startName,
+                          "hide-name": _vm.conf.hideName,
+                          align: _vm.conf.align,
+                          list: _vm.timeList
                         },
-                        _vm._l(_vm.timeList, function(item) {
-                          return _c("li", { attrs: { value: item } }, [
-                            _vm._v(_vm._s(item))
-                          ])
-                        })
-                      )
+                        on: { "value-change": _vm._syncValueFromSelectToRoot }
+                      })
                     ]
                   : [
-                      _c(
-                        "morning-select",
-                        {
-                          ref: "ui-timepicker-select-0-" + _vm.uiid,
-                          attrs: {
-                            state: _vm.conf.state,
-                            "form-name": _vm.conf.formName,
-                            "default-value": _vm.conf.defaultValue,
-                            "hide-name": _vm.conf.hideName,
-                            align: _vm.conf.align
-                          },
-                          on: { "value-change": _vm._syncValueFromSelectToRoot }
+                      _c("morning-select", {
+                        ref: "ui-timepicker-select-0-" + _vm.uiid,
+                        attrs: {
+                          state: _vm.conf.state,
+                          "form-name": _vm.conf.formName,
+                          "default-value": _vm.conf.defaultValue,
+                          "hide-name": _vm.conf.hideName,
+                          align: _vm.conf.align,
+                          list: _vm.timeList
                         },
-                        _vm._l(_vm.timeList, function(item) {
-                          return _c("li", { attrs: { value: item } }, [
-                            _vm._v(_vm._s(item))
-                          ])
-                        })
-                      )
+                        on: { "value-change": _vm._syncValueFromSelectToRoot }
+                      })
                     ]
               ]
             : [
@@ -46556,7 +46656,7 @@ var render = function() {
             staticClass: "sub-step",
             on: {
               mousedown: function($event) {
-                _vm._change(1, -1, true)
+                _vm._startContinued(1, -1, true)
               },
               mouseup: function($event) {
                 _vm._stopContinued()
@@ -46586,7 +46686,7 @@ var render = function() {
             staticClass: "add-step",
             on: {
               mousedown: function($event) {
-                _vm._change(1, 1, true)
+                _vm._startContinued(1, 1, true)
               },
               mouseup: function($event) {
                 _vm._stopContinued()
@@ -49431,14 +49531,17 @@ var render = function() {
   return _c(
     "mor-menu",
     {
-      class: [],
+      class: [_vm.sizeClass, _vm.moreClass],
       attrs: {
         _uiid: _vm.uiid,
         menu: _vm.menu,
         "current-menu": _vm.currentMenu,
         position: _vm.position,
-        "auto-toggle-current": _vm.autoToggleCurrent
-      }
+        "auto-toggle-current": _vm.autoToggleCurrent,
+        "position-current": _vm.positionCurrent,
+        "side-expand": _vm.sideExpand
+      },
+      on: { mousemove: _vm._mousemoveInMenu }
     },
     [
       _c("morning-private-menu", {
@@ -49447,7 +49550,8 @@ var render = function() {
           deep: 0,
           menu: _vm.conf.menu,
           "current-menu": _vm.data.currentMenu,
-          position: _vm.conf.position
+          position: _vm.conf.position,
+          "root-item-show-list": _vm.data.rootItemShowList
         },
         on: { emit: _vm._emit }
       })
@@ -52296,8 +52400,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 var standardYear = '1971';
-var standardMonth = '1';
-var standardDay = '1';
+var standardMonth = '01';
+var standardDay = '01';
 var standardDate = standardYear + '-' + standardMonth + '-' + standardDay;
 
 exports.default = standardDate;
@@ -75000,6 +75104,125 @@ module.exports = exports['default'];
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+var evtButtons = function evtButtons() {
+
+    if (!('buttons' in Event.prototype)) {
+
+        Object.defineProperty(Event.prototype, 'buttons', {
+            get: function get() {
+
+                return this.which;
+            }
+        });
+    }
+};
+
+exports.default = {
+    evtButtons: evtButtons
+};
+module.exports = exports['default'];
+
+/***/ }),
+/* 489 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var evtPath = function evtPath() {
+
+    if (!('path' in Event.prototype)) {
+
+        Object.defineProperty(Event.prototype, 'path', {
+            get: function get() {
+
+                var path = [];
+                var currentEle = this.target;
+
+                while (currentEle) {
+
+                    path.push(currentEle);
+                    currentEle = currentEle.parentElement;
+                }
+
+                if (path.indexOf(window) === -1 && path.indexOf(document) === -1) {
+
+                    path.push(document);
+                }
+
+                if (path.indexOf(window) === -1) {
+
+                    path.push(window);
+                }
+
+                return path;
+            }
+        });
+    }
+};
+
+var evtSrcElement = function evtSrcElement() {
+
+    if (!('srcElement' in Event.prototype)) {
+
+        Object.defineProperty(Event.prototype, 'srcElement', {
+            get: function get() {
+
+                return this.target;
+            }
+        });
+    }
+};
+
+exports.default = {
+    evtPath: evtPath,
+    evtSrcElement: evtSrcElement
+};
+module.exports = exports['default'];
+
+/***/ }),
+/* 490 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _firefox = __webpack_require__(489);
+
+var _firefox2 = _interopRequireDefault(_firefox);
+
+var _safari = __webpack_require__(488);
+
+var _safari2 = _interopRequireDefault(_safari);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function () {
+
+    _firefox2.default.evtPath();
+    _firefox2.default.evtSrcElement();
+    _safari2.default.evtButtons();
+};
+
+module.exports = exports['default'];
+
+/***/ }),
+/* 491 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
@@ -75497,7 +75720,7 @@ exports.default = function (UI) {
 module.exports = exports['default'];
 
 /***/ }),
-/* 489 */
+/* 492 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -75671,7 +75894,7 @@ exports.default = function (Vue, morning) {
 module.exports = exports['default'];
 
 /***/ }),
-/* 490 */
+/* 493 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -75687,13 +75910,17 @@ var _extend = __webpack_require__(3);
 
 var _extend2 = _interopRequireDefault(_extend);
 
-var _ui = __webpack_require__(489);
+var _ui = __webpack_require__(492);
 
 var _ui2 = _interopRequireDefault(_ui);
 
-var _form = __webpack_require__(488);
+var _form = __webpack_require__(491);
 
 var _form2 = _interopRequireDefault(_form);
+
+var _index = __webpack_require__(490);
+
+var _index2 = _interopRequireDefault(_index);
 
 var _components = __webpack_require__(487);
 
@@ -75742,7 +75969,7 @@ var morning = {
         white: 'wh'
     },
     isMorning: true,
-    version: '0.11.11',
+    version: '0.11.12',
     map: {}
 };
 
@@ -75949,6 +76176,8 @@ morning.install = function (Vue, options) {
 
         throw new Error('prefix can\'t be \'mor\'.');
     }
+
+    (0, _index2.default)();
 
     options = (0, _extend2.default)(true, {
         prefix: 'ui',

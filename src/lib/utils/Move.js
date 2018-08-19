@@ -370,6 +370,7 @@ let Move = {
 
                 if (/matrix/.test(transform)) {
 
+                    // safari <11 is not support
                     let matrix = new DOMMatrix(JSON.parse(`[${transform.replace(/(^matrix\(|\)$)/g, '')}]`));
 
                     transformX = matrix.m41 - window.scrollX;
