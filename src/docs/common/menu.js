@@ -68,7 +68,7 @@ export default {
         小提示 : '/component/tip.html',
         消息 : '/component/message.html',
         '告示<i class="tag new l2"></i>' : '/component/alert.html',
-        '轮播<i class="tag new"></i>' : '/component/carousel.html',
+        //'轮播<i class="tag new"></i>' : '/component/carousel.html',
         音频 : '/component/audio.html',
         视频 : '/component/video.html',
         表单组件 : null,

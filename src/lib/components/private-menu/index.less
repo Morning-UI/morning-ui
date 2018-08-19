@@ -26,7 +26,15 @@ mor-private-menu{
                 }
 
                 &.current{
-                    color: @colorBlack;
+                    color: @colorTheme;
+                    font-weight: 600;
+                }
+            }
+
+            &.current{
+                > a{
+                    color: @colorTheme;
+                    font-weight: 600;
                 }
             }
         }
@@ -63,7 +71,13 @@ mor-private-menu{
                 }
 
                 &.current{
-                    color: @colorBlack;
+                    color: @colorTheme;
+                }
+            }
+
+            &.current{
+                > a{
+                    color: @colorTheme;
                 }
             }
         }
@@ -96,9 +110,8 @@ mor-private-menu{
             }
 
             &.is-disable{
-                background: @colorExtraLightSilver;
-
                 > a{
+                    background: @colorExtraLightSilver;
                     cursor: not-allowed;
 
                     &:hover{
@@ -122,12 +135,6 @@ mor-private-menu{
                     }
                 }
             }
-
-            &.current{
-                > a{
-                    color: @colorBlack;
-                }
-            }
         }
     }
 
@@ -148,36 +155,15 @@ mor-private-menu{
         .root-menu{
             font-size: 0;
             background: @colorWhite;
-            border-bottom: 1px @colorLightSilver solid;
 
             > li{
                 display: inline-block;
                 vertical-align: top;
 
-                > a{
-                    border-bottom: 1px @colorLightSilver solid;
-
-                    &:hover{
-                        border-bottom-color: @colorTheme;
-                    }
-
-                    &.current{
-                        border-bottom-color: @colorTheme;
-                        border-bottom-width: 2px;
-                    }
-                }
-
                 &:hover,
                 &.show{
                     > .sub-menu-wrap{
                         display: block;
-                    }
-                }
-
-                &.current{
-                    > a{
-                        border-bottom-width: 2px;
-                        border-bottom-color: @colorTheme;
                     }
                 }
 
@@ -216,27 +202,12 @@ mor-private-menu{
 
                 > a{
                     max-width: 200px;
-
-                    &:hover{
-                        border-bottom-color: @colorTheme;
-                    }
-
-                    &.current{
-                        border-bottom-color: @colorTheme;
-                        border-bottom-width: 2px;
-                    }
                 }
 
                 &:hover,
                 &.show{
                     > .sub-menu-wrap{
                         display: block;
-                    }
-                }
-
-                &.current{
-                    > a{
-                        background-color: lighten(@colorTheme, 37%);
                     }
                 }
             }
@@ -268,18 +239,9 @@ mor-private-menu{
 
     &.pos-side{
         .root-menu{
-            border-right: 1px @colorLightSilver solid;
-
             > li{
                 > a{
                     width: 100%;
-                }
-
-                &.current,
-                &.last-current{
-                    > a{
-                        padding-right: ~'calc(1.5em - 4px)';
-                    }
                 }
             }
         }
@@ -288,13 +250,6 @@ mor-private-menu{
             > li{
                 > a{
                     width: 100%;
-                }
-
-                &.current,
-                &.last-current{
-                    > a{
-                        padding-right: ~'calc(1.7em - 4px)';
-                    }
                 }
             }
         }
@@ -306,8 +261,6 @@ mor-private-menu{
         .root-menu,
         .sub-menu{
             > li{
-                // margin: 1px 0;
-
                 &.menu-group-title{
                     border-bottom: 1px @colorLightSilver solid;
                 }
@@ -328,19 +281,6 @@ mor-private-menu{
 
                     > .has-child-menu-icon{
                         transform: rotateX(180deg) scale(0.8);
-                    }
-                }
-
-                &.current{
-                    > a{
-                        border-right: 4px lighten(@colorTheme, 20%) solid;
-                    }
-                }
-
-                &.last-current{
-                    > a{
-                        background-color: lighten(@colorTheme, 37%);
-                        border-right: 4px @colorTheme solid;
                     }
                 }
             }

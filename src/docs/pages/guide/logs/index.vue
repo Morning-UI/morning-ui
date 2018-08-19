@@ -18,6 +18,41 @@
     
     ### 更新记录
 
+    ### 0.11.12 <ui-badge class="circle ver-canary" size="s" color="light-elbk">Beta</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2018年8月19日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.11.12" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.11.12/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.11.12/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 新特性
+
+    - `ui-menu`新增三种尺寸：`s`、`xs`、`xxs`
+    - `ui-menu`新增`position-current`配置，可定位到所在菜单项
+    - `ui-menu`新增`side-expand`配置，可设置不可收缩的菜单
+    - `ui-menu`新增`line`和`block`两个样式类，支持极简、线条、区块三种风格
+    - `ui-menu`新增`fill`样式类，可以使菜单自适应父级元素高度（仅在`position`配置为`top`时可用）
+
+    #### 改进
+
+    - 改进表单组件在`Firefox`及`Safari`浏览器中的兼容性
+
+    #### 修复
+
+    - 修复`ui-counter`在某些情况下鼠标键放开后仍会计数的错误
+    - 修复`ui-menu`的一些样式问题
+
+    <ui-label color=“primary">升级注意事项</ui-label>
+
+    - `ui-menu`的默认样式变为极简，若要使用之前版本的样式，需要添加`line`的样式类
+
+    ---
+
     ### 0.11.11 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="light-blue">
