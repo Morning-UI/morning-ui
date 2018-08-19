@@ -6,7 +6,12 @@
             <h1><i class="iconfont">&#xe615;</i>Morning Laboratory</h1>
             <div class="area">
                 <div style="width:360px;">
-                    <ui-datepicker form-name="日期" :is-range="true"></ui-datepicker>
+                    <ui-menu :menu=" {
+                        'home' : '首页',
+                        'order' : '订单',
+                        'history' : '历史',
+                        'settings' : '设置'
+                    }"></ui-menu>
                 </div>
             </div>
         </div>
