@@ -619,9 +619,31 @@ let data = {
 let repeater = {
     size : _opt => {
 
+        let size = data.size;
+
+        if (_opt.param !== undefined) {
+
+            size = [];
+
+            for (let key of _opt.param.split(',')) {
+
+                for (let item of data.size) {
+
+                    if (item.sizeKey === key) {
+
+                        size.push(item);
+
+                    }
+
+                }
+
+            }
+
+        }
+
         _opt.content = `{$#size}${_opt.content}{$/size}`;
         _opt.context = extend(true, _opt.context, {
-            size : data.size
+            size : size
         });
 
         return _opt;
@@ -1170,8 +1192,9 @@ let extRepeat = (content, paramStr, token, md) => {
 
             _opt.param = undefined;
 
-            if (sitem === 'size') {
+            if (/^size/.test(sitem)) {
 
+                _opt.param = sitem.split(':')[1];
                 repeater.size(_opt);
 
             } else if (/^color/.test(sitem)) {

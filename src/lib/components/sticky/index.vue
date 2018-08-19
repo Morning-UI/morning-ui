@@ -104,19 +104,19 @@ export default {
         _checkScroll : function () {
 
             let elRect = this.$el.getBoundingClientRect();
-            let elY = elRect.y;
+            let elY = elRect.top;
 
             if (this.conf.bottom !== undefined &&
                 (elY + elRect.height) >= (window.innerHeight - this.conf.bottom)) {
 
                 this.data.fixed = true;
-                this.data.fixedX = elRect.x;
+                this.data.fixedX = elRect.left;
                 this.data.fixedY = window.innerHeight - this.conf.bottom - elRect.height;
 
             } else if (this.conf.bottom === undefined && elY <= this.conf.top) {
 
                 this.data.fixed = true;
-                this.data.fixedX = elRect.x;
+                this.data.fixedX = elRect.left;
                 this.data.fixedY = this.conf.top;
 
             } else {

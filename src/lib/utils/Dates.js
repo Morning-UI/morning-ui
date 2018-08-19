@@ -20,8 +20,8 @@ let Dates = {
             }
 
             return parseDate(
-                `${standardDate} ${str}`,
-                `YYYY-M-D ${format}`,
+                str,
+                format,
                 this._dateGetStandardDate()
             );
 

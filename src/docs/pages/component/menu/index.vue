@@ -639,11 +639,50 @@
 
     |类型|支持|默认|
     |-|-|-|
-    |尺寸|不支持|-|
+    |尺寸|`m` `s` `xs` `xxs`|`m`|
     |色彩|不支持|-|
     |状态|不支持|-|
 
     <a href="/guide/status.html">查看形态文档</a>
+
+    #### 尺寸
+
+    :::repeat/html
+    size:m,s,xs,xxs
+    ---
+    <div style="width:700px;">
+        <ui-menu
+            :menu="{
+                'size' : '尺寸{$sizeName}',
+                'home' : '首页',
+                'order' : '订单',
+                'history' : '历史',
+                'settings' : '设置'
+            }"
+            size="{$sizeKey}"
+        ></ui-menu>
+    </div>
+    <br>
+    :::
+
+    :::repeat/html
+    size:m,s,xs,xxs
+    ---
+    <div style="width:220px;">
+        <ui-menu
+            :menu="{
+                'size' : '尺寸{$sizeName}',
+                'home' : '首页',
+                'order' : '订单',
+                'history' : '历史',
+                'settings' : '设置'
+            }"
+            size="{$sizeKey}"
+            position="side"
+        ></ui-menu>
+    </div>
+    <br>
+    :::
 
     [[[配置]]]
 
@@ -652,7 +691,9 @@
     |[menu](#menu)|菜单对象，用来描述整个菜单树状结构。<br><br>可以简写成`key`:`name`的形式，`key`为菜单项的KEY，`name`为菜单项的名称。<br><br>完整的写法为`key`:`object`的形式，其中`object`包含以下字段：<br>`name`: 菜单项的名称<br>`link`: 点击后跳转的链接<br>`newtab`: 链接是否在新窗口打开(配合`link`一起使用)<br>`childs`: 子菜单，值为子菜单的对象树<br>`groups`: 配合`childs`一起使用，这是一个对象，`key`为分组名称，`value`是一个包含子菜单KEY的数组。子菜单会按照这个数组将对应的菜单项分为一组<br>`handler`: 点击菜单项后的处理函数<br>`disable`: 禁用此菜单项<br><br>注意：当一个`object`包含`childs`时`link`和`newtab`会失效|菜单树对象|Object|`{}`|
     |[current-menu](#current-menu)|高亮当前所在菜单项，接受一个路径字符串，由每一级的菜单项KEY组成，每级之间用斜杠分隔。例如:`settings/profile/email`|路径字符串|String|`''`|
     |[position](#position)|导航菜单的位置|`'top'` : 位于顶部<br>`'side'` : 位于侧边|String|`'top'`|
-    |[auto-toggle-current](#menu)|用户切换菜单时，是否自动调整并高亮当前所在菜单项。注意：若开启此配置`current-menu`配置和用户操作同时生效。|`true`<br>`false`|Boolean|`true`|
+    |[auto-toggle-current](#auto-toggle-current)|用户切换菜单时，是否自动调整并高亮当前所在菜单项。注意：若开启此配置`current-menu`配置和用户操作同时生效。|`true`<br>`false`|Boolean|`true`|
+    |[position-current](#position-current)|定位到当前所在的菜单。开启此选项后，若配置了`current-menu`且是一个多层级菜单，菜单会逐级显示直到展示当前所在菜单项。<br>注意：当`position`为`top`时，定位到当前所在的菜单只是暂时显示，当鼠标在组件内移动，定位的菜单会消失。|`true`<br>`false`|Boolean|`false`|
+    |[side-expand](#side-expand)|侧边栏展开，启用后所有的子目录都会展开并且不可收缩。此配置仅在`position`为`side`时生效。|`true`<br>`false`|Boolean|`false`|
 
     #### menu
 
@@ -808,6 +849,40 @@
     </div>
     :::
 
+    配合`position`一起使用：
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : function () {
+            return {
+                menu : {
+                    'home' : '首页',
+                    'order' : {
+                        name : '订单',
+                        childs : {
+                            'my' : '我的订单',
+                            'history' : {
+                                name : '历史订单',
+                                childs : {
+                                    'week' : '最近一周',
+                                    'month' : '最近一月'
+                                }
+                            }
+                        }
+                    },
+                    'search' : '搜索'
+                }
+            };
+        }
+    });
+    ---
+    <div style="width:220px;">
+        <ui-menu :menu="menu" current-menu="order/history/week" position="side"></ui-menu>
+    </div>
+    :::
+
     #### position
 
     位于侧栏的导航菜单：
@@ -874,6 +949,110 @@
         <ui-menu :menu="menu" :auto-toggle-current="true"></ui-menu>
     </div>
     :::
+
+    #### position-current
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : function () {
+            return {
+                menu : {
+                    'home' : '首页',
+                    'order' : {
+                        name : '订单',
+                        childs : {
+                            'my' : '我的订单',
+                            'history' : {
+                                name : '历史订单',
+                                childs : {
+                                    'week' : '最近一周',
+                                    'month' : '最近一月'
+                                }
+                            }
+                        }
+                    },
+                    'search' : '搜索'
+                }
+            };
+        }
+    });
+    ---
+    <div style="width:700px;">
+        <ui-menu :menu="menu" current-menu="order/history/week" :position-current="true"></ui-menu>
+    </div>
+    :::
+
+    配合`position`一起使用：
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : function () {
+            return {
+                menu : {
+                    'home' : '首页',
+                    'order' : {
+                        name : '订单',
+                        childs : {
+                            'my' : '我的订单',
+                            'history' : {
+                                name : '历史订单',
+                                childs : {
+                                    'week' : '最近一周',
+                                    'month' : '最近一月'
+                                }
+                            }
+                        }
+                    },
+                    'search' : '搜索'
+                }
+            };
+        }
+    });
+    ---
+    <div style="width:220px;">
+        <ui-menu :menu="menu" current-menu="order/history/week" position="side" :position-current="true"></ui-menu>
+    </div>
+    :::
+
+    #### side-expand
+
+    :::vue/html
+    new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : function () {
+            return {
+                menu : {
+                    'home' : '首页',
+                    'order' : {
+                        name : '订单',
+                        childs : {
+                            'my' : '我的订单',
+                            'history' : {
+                                name : '历史订单',
+                                childs : {
+                                    'week' : '最近一周',
+                                    'month' : '最近一月'
+                                }
+                            }
+                        }
+                    },
+                    'search' : '搜索'
+                }
+            };
+        }
+    });
+    ---
+    <div style="width:220px;">
+        <ui-menu :menu="menu" position="side" :side-expand="true"></ui-menu>
+    </div>
+    :::
+
+
 
     [[[方法]]]
     

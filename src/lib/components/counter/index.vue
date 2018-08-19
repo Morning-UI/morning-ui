@@ -23,7 +23,7 @@
 
         <div
             class="sub-step"
-            @mousedown="_change(1, -1, true)"
+            @mousedown="_startContinued(1, -1, true)"
             @mouseup="_stopContinued()"
         >
             <i class="mo-icon mo-icon-sub"></i>
@@ -40,7 +40,7 @@
 
         <div
             class="add-step"
-            @mousedown="_change(1, 1, true)"
+            @mousedown="_startContinued(1, 1, true)"
             @mouseup="_stopContinued()"
         >
             <i class="mo-icon mo-icon-add"></i>
@@ -54,11 +54,14 @@
 </template>
  
 <script>
+import GlobalEvent                  from 'Utils/GlobalEvent';
+
 const returnValueFn = value => value;
 
 export default {
     origin : 'Form',
     name : 'counter',
+    mixins : [GlobalEvent],
     props : {
         step : {
             type : Number,
@@ -154,8 +157,15 @@ export default {
             return Number(value) || 0;
 
         },
+        _startContinued : function (steps, add, continued) {
+
+            this._change(steps, add, continued);
+            this._globalEventAdd('mouseup', '_stopContinued');
+
+        },
         _stopContinued : function () {
 
+            this._globalEventRemove('mouseup', '_stopContinued');
             this.data.continueCount = 0;
             this.data.continueChange = false;
             clearTimeout(this.data.continueTimeout);
@@ -259,7 +269,12 @@ export default {
         }
     },
     created : function () {},
-    mounted : function () {}
+    mounted : function () {},
+    beforeDestroy : function () {
+
+        this._globalEventRemove('mouseup', '_stopContinued');
+
+    }
 };
 </script>
 
