@@ -58,6 +58,7 @@ import breadcrumbs                  from './breadcrumbs/index.vue';
 import tip                          from './tip/index.vue';
 import message                      from './message/index.vue';
 import _alert                       from './alert/index.vue';
+import carousel                     from './carousel/index.vue';
 import audio                        from './audio/index.vue';
 import video                        from './video/index.vue';
 
@@ -143,6 +144,7 @@ export default {
     tip,
     message,
     alert : _alert,
+    carousel,
     audio,
     video,
     textinput,
