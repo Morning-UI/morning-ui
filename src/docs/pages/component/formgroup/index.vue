@@ -29,7 +29,7 @@
     - `.row` : 单行(仅内联表单组可用)
 
     表单组通过`.inline`样式类来实现内联的表单样式。
-    
+
     #### 使用
 
     :::democode/html
@@ -39,7 +39,7 @@
             <div class="item">
                 <!-- .title : 表单项名称 -->
                 <h5 class="title">
-                    <ui-center class="fill">Name</ui-center>
+                    <ui-textright class="fill">Name</ui-textright>
                 </h5>
                 <!-- .content : 表单项内容 -->
                 <div class="content">
@@ -60,7 +60,7 @@
         <ui-formgroup>
             <div class="item">
                 <h5 class="title">
-                    <ui-center class="fill">Name</ui-center>
+                    Name
                 </h5>
                 <div class="content">
                     <!-- h6 : 小标题 -->
@@ -86,7 +86,7 @@
             <!-- .item : 表单项 -->
             <div class="item">
                 <h5 class="title">
-                    <ui-center class="fill">Name</ui-center>
+                    Name
                 </h5>
                 <div class="content">
                     <h6>Full Name</h6>
@@ -99,7 +99,7 @@
             <!-- .item : 表单项 -->
             <div class="item">
                 <h5 class="title">
-                    <ui-center class="fill">Introduction</ui-center>
+                    Introduction
                 </h5>
                 <div class="content">
                     <div class="form">
@@ -125,7 +125,7 @@
             </header>
             <div class="item">
                 <h5 class="title">
-                    <ui-center class="fill">Name</ui-center>
+                    Name
                 </h5>
                 <div class="content">
                     <h6>Full Name</h6>
@@ -137,7 +137,7 @@
             </div>
             <div class="item">
                 <h5 class="title">
-                    <ui-center class="fill">Introduction</ui-center>
+                    Introduction
                 </h5>
                 <div class="content">
                     <div class="form">
@@ -162,7 +162,7 @@
             </header>
             <div class="item">
                 <h5 class="title">
-                    <ui-center class="fill">Name</ui-center>
+                    Name
                 </h5>
                 <div class="content">
                     <h6>Full Name</h6>
@@ -174,7 +174,7 @@
             </div>
             <div class="item">
                 <h5 class="title">
-                    <ui-center class="fill">Introduction</ui-center>
+                    Introduction
                 </h5>
                 <div class="content">
                     <div class="form">
@@ -204,7 +204,7 @@
             </header>
             <div class="item">
                 <h5 class="title">
-                    <ui-center class="fill">Name</ui-center>
+                    Name
                 </h5>
                 <div class="content">
                     <!-- 第一个表单 -->
@@ -223,7 +223,7 @@
             </div>
             <div class="item">
                 <h5 class="title">
-                    <ui-center class="fill">Introduction</ui-center>
+                    Introduction
                 </h5>
                 <div class="content">
                     <div class="form">
@@ -513,6 +513,131 @@
     </div>
     :::
 
+    #### 表单项标题的对齐方式
+
+    默认情况下，如果是非内联表单项的标题是居中对齐，内联表单项的标题是左对齐。
+
+    你可以通过`item-title-left`、`item-title-center`、`item-title-right`三个样式类来重新设置。
+
+    非内联表单项标题左对齐：
+
+    :::democode/html
+    <div style="width:500px;margin:auto">
+        <ui-formgroup class="item-title-left">
+            <div class="item">
+                <h5 class="title">
+                    Name
+                </h5>
+                <div class="content">
+                    <div class="form">
+                        <ui-textinput></ui-textinput>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <h5 class="title">
+                    Introduction
+                </h5>
+                <div class="content">
+                    <div class="form">
+                        <ui-textarea></ui-textarea>
+                    </div>
+                </div>
+            </div>
+        </ui-formgroup>
+    </div>
+    :::
+
+    非内联表单项标题右对齐：
+
+    :::democode/html
+    <div style="width:500px;margin:auto">
+        <ui-formgroup class="item-title-right">
+            <div class="item">
+                <h5 class="title">
+                    Name
+                </h5>
+                <div class="content">
+                    <div class="form">
+                        <ui-textinput></ui-textinput>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <h5 class="title">
+                    Introduction
+                </h5>
+                <div class="content">
+                    <div class="form">
+                        <ui-textarea></ui-textarea>
+                    </div>
+                </div>
+            </div>
+        </ui-formgroup>
+    </div>
+    :::
+
+    内联表单项标题剧中对齐：
+
+    :::democode/html
+    <div style="width:500px;margin:auto">
+        <ui-formgroup class="inline item-title-center">
+            <div class="row">
+                <div class="item">
+                    <h5 class="title">
+                        Name
+                    </h5>
+                    <div class="content">
+                        <div class="form">
+                            <ui-textinput></ui-textinput>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <h5 class="title">
+                        Introduction
+                    </h5>
+                    <div class="content">
+                        <div class="form">
+                            <ui-textarea></ui-textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ui-formgroup>
+    </div>
+    :::
+
+    内联表单项标题右对齐：
+
+    :::democode/html
+    <div style="width:500px;margin:auto">
+        <ui-formgroup class="inline item-title-right">
+            <div class="row">
+                <div class="item">
+                    <h5 class="title">
+                        Name
+                    </h5>
+                    <div class="content">
+                        <div class="form">
+                            <ui-textinput></ui-textinput>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <h5 class="title">
+                        Introduction
+                    </h5>
+                    <div class="content">
+                        <div class="form">
+                            <ui-textarea></ui-textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ui-formgroup>
+    </div>
+    :::
 
     [[[形态]]]
 
