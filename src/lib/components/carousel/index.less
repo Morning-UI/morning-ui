@@ -1,27 +1,86 @@
 @import '~Common/var.less';
 
+@keyframes move-right-in{
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0%);
+    }
+}
+@keyframes move-right-out{
+    from {
+        transform: translateX(0%);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}
+@keyframes move-left-in{
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(0%);
+    }
+}
+@keyframes move-left-out{
+    from {
+        transform: translateX(0%);
+    }
+
+    to {
+        transform: translateX(100%);
+    }
+}
+
 mor-carousel{
     display: block;
     position: relative;
-    
+    box-sizing: border-box;
+
     .carousel-wrap{
         display: block;
         width: 100%;
+        overflow: hidden;
+        position: relative;
 
-        > div{
+        > .carousel-list{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        > .carousel-list > div,
+        > .placeholder > div{
             width: 100%;
             background: @colorExtraLightSilver;
-            display: none;
             font-size: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
 
             > img{
                 padding: 0;
                 border: none !important;
                 margin: 0;
             }
+        }
 
-            &.current{
-                display: block;
+        .placeholder{
+            position: relative;
+            z-index: 0;
+            visibility: hidden;
+            opacity: 0;
+            pointer-events: none;
+
+            > div{
+                position: relative;
             }
         }
     }
@@ -32,11 +91,32 @@ mor-carousel{
         height: 100%;
         top: 0;
         left: 0;
+        z-index: 2;
 
-        .switch{
+        > .left-btn,
+        > .right-btn{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.5;
+
+            &:hover{
+                opacity: 0.75;
+            }
+        }
+
+        > .left-btn{
+            left: 10px;
+        }
+
+        > .right-btn{
+            right: 10px;
+        }
+
+        .indicator{
             position: absolute;
             bottom: 10px;
-            height: 10px;
+            height: 18px;
             padding: 0;
             left: 50%;
             transform: translateX(-50%);
@@ -44,27 +124,137 @@ mor-carousel{
             list-style: none;
 
             li{
-                width: 10px;
-                height: 10px;
-                border-radius: 10px;
                 display: inline-block;
                 margin: 0;
-                background: @colorExtraLightBlue;
-                margin: 0 3px;
                 vertical-align: top;
                 cursor: pointer;
-                transition: 0.2s;
+                box-sizing: content-box;
 
                 &.current{
-                    width: 20px;
-                    background: @colorTheme;
                     cursor: default;
                 }
             }
         }
     }
 
-     // default status
+    &.indicator-pos-outside{
+        padding-bottom: 20px;
+
+        .control{
+            .indicator{
+                bottom: 1px;
+            }
+        }
+    }
+
+    &.indicator-type-dot{
+        .control{
+            .indicator{
+                li{
+                    height: 10px;
+                    padding: 4px 3px;
+
+                    > i{
+                        width: 10px;
+                        height: 10px;
+                        border-radius: 10px;
+                        background: @colorExtraLightBlue;
+                        display: inline-block;
+                        vertical-align: top;
+                        transition: 0.2s;
+                    }
+
+                    &.current{
+                        > i{
+                            width: 20px;
+                            background: @colorTheme;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &.indicator-type-line{
+        .control{
+            .indicator{
+                li{
+                    height: 4px;
+                    padding: 7px 3px;
+
+                    i{
+                        width: 10px;
+                        height: 4px;
+                        border-radius: 3px;
+                        background: @colorExtraLightBlue;
+                        display: inline-block;
+                        vertical-align: top;
+                        transition: 0.2s;
+                    }
+
+                    &.current{
+                        > i{
+                            width: 20px;
+                            background: @colorTheme;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &.toggle-type-none{
+        .carousel-list > div{
+            display: none;
+
+            &.current{
+                display: block;
+            }
+        }
+    }
+
+    &.toggle-type-fade{
+        .carousel-list > div{
+            display: block;
+            opacity: 0;
+            transition: opacity 0.36s;
+
+            &.current{
+                opacity: 1;
+            }
+        }
+    }
+
+    &.toggle-type-move{
+        .carousel-list > div{
+            transform: translateX(100%);
+
+            &.next-old{
+                animation: move-right-out 0.36s;
+                animation-fill-mode: forwards;
+            }
+
+            &.prev-old{
+                animation: move-left-out 0.36s;
+                animation-fill-mode: forwards;
+            }
+
+            &.next-new{
+                animation: move-right-in 0.36s;
+                animation-fill-mode: forwards;
+            }
+
+            &.prev-new{
+                animation: move-left-in 0.36s;
+                animation-fill-mode: forwards;
+            }
+
+            &.current{
+                transform: translateX(0%);
+            }
+        }
+    }
+
+    // default status
     &{}
 }
-
