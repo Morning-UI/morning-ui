@@ -19566,8 +19566,11 @@ exports.default = {
         },
         _toggleSubmenu: function _toggleSubmenu(id) {
 
-            this.data.itemShowList[id] = !this.data.itemShowList[id];
-            this.$forceUpdate();
+            if (this.conf.position === 'side') {
+
+                this.data.itemShowList[id] = !this.data.itemShowList[id];
+                this.$forceUpdate();
+            }
         }
     },
     mounted: function mounted() {
@@ -31351,7 +31354,7 @@ exports.default = {
         },
         placeholder: function placeholder() {
 
-            if (!!this.conf.insideName) {
+            if (this.conf.insideName) {
 
                 return this.conf.insideName;
             }
@@ -31633,7 +31636,7 @@ exports.default = {
         },
         placeholder: function placeholder() {
 
-            if (!!this.conf.insideName) {
+            if (this.conf.insideName) {
 
                 return this.conf.insideName;
             }
