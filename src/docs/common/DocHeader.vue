@@ -7,7 +7,7 @@
             <div class="name">Morning UI</div>
             <ul class="menu">
                 <li>
-                    <ui-textinput form-name="搜索文档" class="doc-search" :class="{dark:!isIndex}"></ui-textinput>
+                    <ui-textinput inside-name="搜索文档" class="doc-search" :class="{dark:!isIndex}"></ui-textinput>
                 </li>
                 <li><a :class="{current:isIndex}" href="/index.html">HOME</a></li>
                 <li><a :class="{current:isGuide}" href="/guide/introduction.html">GUIDE</a></li>

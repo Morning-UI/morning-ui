@@ -289,6 +289,20 @@
     - `menu` : 菜单
     - `current-menu` : 当前菜单
     - `auto-toggle-current` : 自动切换当前
+    - `position-current` : 定位到当前
+    - `side-expand` : 侧边展开
+    - `failed` : 失败
+    - `progressing` : 处理中
+    - `percent` : 百分比
+    - `inside-name` : 内部名称
+    - `done-step` : 完成步骤
+    - `mark-current` : 标记当前
+    - `current-type` : 当前的类型
+    - `toggle-time` : 切换时间
+    - `toggle-type` : 切换类型
+    - `toggle-btn` : 切换按钮
+    - `indicator-position` : 指示器位置
+    - `indicator-type` : 指示器类型
 
     </script>
     </doc-guide>

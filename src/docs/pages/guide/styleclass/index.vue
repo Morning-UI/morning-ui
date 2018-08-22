@@ -50,6 +50,7 @@
     - `noborder` : 无边框
     - `flat` : 扁平
     - `circle` : 圆形
+    - `line` : 线条
     - `image` : 使用图片
     - `icon` : 使用图标
     - `split` : 分隔
@@ -59,6 +60,9 @@
     - `plain` : 朴素
     - `btn` : 按钮式
     - `border` : 边框
+    - `item-title-left` : 项标题左对齐
+    - `item-title-center` : 项标题居中对齐
+    - `item-title-right` : 项标题右对齐
 
     </script>
     </doc-guide>
