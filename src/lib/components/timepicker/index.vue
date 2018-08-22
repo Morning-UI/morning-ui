@@ -9,6 +9,7 @@
         :default-value="defaultValue"
         :hide-name="hideName"
         :clearable="clearable"
+        :inside-name="insideName"
         :format="format"
         :align="align"
         :selectable-range="selectableRange"
@@ -23,6 +24,8 @@
         :list-end="listEnd"
         :list-step="listStep"
     >
+    
+    <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
 
     <div class="wrap">
         <div class="input-group-addon" v-if="conf.isRange">
@@ -36,8 +39,7 @@
                     :ref="'ui-timepicker-select-0-'+uiid"
                     :state="conf.state"
 
-                    :form-name="(conf.startName === false) ? conf.formName : conf.startName"
-                    :hide-name="conf.hideName"
+                    :inside-name="(conf.startName === false) ? conf.insideName : conf.startName"
                     :align="conf.align"
                     :list="timeList"
 
@@ -52,8 +54,7 @@
                     :ref="'ui-timepicker-select-1-'+uiid"
                     :state="conf.state"
 
-                    :form-name="(conf.startName === false) ? conf.formName : conf.startName"
-                    :hide-name="conf.hideName"
+                    :inside-name="(conf.startName === false) ? conf.insideName : conf.startName"
                     :align="conf.align"
                     :list="timeList"
 
@@ -67,9 +68,8 @@
                     :ref="'ui-timepicker-select-0-'+uiid"
                     :state="conf.state"
 
-                    :form-name="conf.formName"
+                    :inside-name="conf.insideName"
                     :default-value="conf.defaultValue"
-                    :hide-name="conf.hideName"
                     :align="conf.align"
                     :list="timeList"
 
@@ -86,8 +86,7 @@
                     :ref="'ui-timepicker-input-0-'+uiid"
                     :state="conf.state"
 
-                    :form-name="(conf.startName === false) ? conf.formName : conf.startName"
-                    :hide-name="conf.hideName"
+                    :inside-name="(conf.startName === false) ? conf.insideName : conf.startName"
                     :format="conf.format"
                     :align="conf.align"
                     :selectable-range="conf.selectableRange"
@@ -103,8 +102,7 @@
                     :ref="'ui-timepicker-input-1-'+uiid"
                     :state="conf.state"
                     
-                    :form-name="(conf.endName === false) ? conf.formName : conf.endName"
-                    :hide-name="conf.hideName"
+                    :inside-name="(conf.endName === false) ? conf.insideName : conf.endName"
                     :format="conf.format"
                     :align="conf.align"
                     :selectable-range="conf.selectableRange"
@@ -119,9 +117,8 @@
                     :ref="'ui-timepicker-input-0-'+uiid"
                     :state="conf.state"
 
-                    :form-name="conf.formName"
+                    :inside-name="conf.insideName"
                     :default-value="conf.defaultValue"
-                    :hide-name="conf.hideName"
                     :format="conf.format"
                     :align="conf.align"
                     :selectable-range="conf.selectableRange"
@@ -156,6 +153,10 @@ export default {
     name : 'timepicker',
     mixins : [Time],
     props : {
+        insideName : {
+            type : String,
+            default : ''
+        },
         format : {
             type : String,
             default : 'HH:mm:ss'
@@ -215,6 +216,7 @@ export default {
         _conf : function () {
 
             return {
+                insideName : this.insideName,
                 format : this.format,
                 align : this.align,
                 selectableRange : this.selectableRange,

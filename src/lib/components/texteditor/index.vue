@@ -9,12 +9,12 @@
         :default-value="defaultValue"
         :hide-name="hideName"
         :clearable="clearable"
+        :inside-name="insideName"
         :tools="tools"
-        :placeholder="placeholder"
         :uploader="uploader"
     >
-
-        <div class="note">{{conf.formName}}</div>
+    
+        <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
 
         <div class="editor-wrap">
         
@@ -185,8 +185,7 @@
             <div>
                 <ui-upload
                     :ref="'ui-select-uploader-'+this.uiid"
-                    form-name="插入图片"
-                    hide-name
+                    inside-name="图片"
                     accept-type="image/*"
                     allow-url
                     allow-drag
@@ -632,6 +631,10 @@ export default {
     origin : 'Form',
     name : 'texteditor',
     props : {
+        insideName : {
+            type : String,
+            default : ''
+        },
         tools : {
             type : Array,
             default : (() => [
@@ -690,10 +693,6 @@ export default {
                 ['clean']
             ])
         },
-        placeholder : {
-            type : String,
-            default : ''
-        },
         uploader : {
             type : Function,
             default : undefined
@@ -703,8 +702,8 @@ export default {
         _conf : function () {
 
             return {
+                insideName : this.insideName,
                 tools : this.tools,
-                placeholder : this.placeholder,
                 uploader : this.uploader
             };
 
@@ -712,7 +711,7 @@ export default {
         moreClass : function () {
 
             return {
-                'hide-name' : !!this.conf.hideName
+                'hide-name' : !!this.conf.hideName || !this.conf.formName
             };
 
         }
@@ -820,7 +819,7 @@ export default {
 
         this.data.quill = new Quill(this.$el.querySelector('.quill'), {
             theme : 'snow',
-            placeholder : this.conf.placeholder,
+            placeholder : this.conf.insideName,
             modules : {
                 toolbar : {
                     container : this.$el.querySelector('.toolbar'),

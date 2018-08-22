@@ -51,13 +51,6 @@ mor-switch{
 
     .setup-form();
 
-    > .note{
-        color: @colorFormTextNote;
-        font-size: @fontSize;
-        margin-bottom: 0.5em;
-        -webkit-user-select: text;
-    }
-
     &.mor-switch.has-cleanbtn{
         padding-bottom: 26px;
     }
@@ -177,18 +170,6 @@ mor-switch{
                 animation-duration: 0.24s;
                 animation-fill-mode: forwards;
             }
-        }
-    }
-
-    &.hide-name{
-        .note{
-            display: none;
-        }
-
-        .track{
-            position: relative;
-            left: 0;
-            right: auto;
         }
     }
 
@@ -643,10 +624,6 @@ mor-switch{
     }
 
     &.co-si{
-        .note{
-            color: @colorSilver;
-        }
-
         .track{
             background: darken(@colorSilver, 25%);
             box-shadow: 0 0 2px darken(@colorSilver, 35%) inset;
@@ -700,10 +677,6 @@ mor-switch{
     }
 
     &.co-lsi{
-        .note{
-            color: @colorSilver;
-        }
-
         .track{
             background: darken(@colorLightSilver, 25%);
             box-shadow: 0 0 2px darken(@colorLightSilver, 35%) inset;
@@ -757,10 +730,6 @@ mor-switch{
     }
 
     &.co-elsi{
-        .note{
-            color: @colorSilver;
-        }
-
         .track{
             background: darken(@colorExtraLightSilver, 25%);
             box-shadow: 0 0 2px darken(@colorExtraLightSilver, 35%) inset;
@@ -814,10 +783,6 @@ mor-switch{
     }
 
     &.co-g{
-        .note{
-            color: @colorGray;
-        }
-
         .track{
             background: darken(@colorGray, 25%);
             box-shadow: 0 0 2px darken(@colorGray, 35%) inset;
@@ -871,10 +836,6 @@ mor-switch{
     }
 
     &.co-lg{
-        .note{
-            color: @colorGray;
-        }
-
         .track{
             background: darken(@colorLightGray, 25%);
             box-shadow: 0 0 2px darken(@colorLightGray, 35%) inset;
@@ -928,10 +889,6 @@ mor-switch{
     }
 
     &.co-wh{
-        .note{
-            color: @colorGray;
-        }
-
         .track{
             background: darken(@colorBlack, 25%);
             box-shadow: 0 0 2px darken(@colorBlack, 35%) inset;

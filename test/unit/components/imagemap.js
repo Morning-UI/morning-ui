@@ -23,11 +23,11 @@ test.serial('base : component snapshot', async t => {
 test.serial('base : init component', async t => {
 
     const vm = new Vue(component).$mount();
-    const num29 = 29;
+    const num28 = 28;
 
     t.plan(2);
 
-    t.is(vm.uiid, num29);
+    t.is(vm.uiid, num28);
     t.is(component.options.name, `morning-${name}`);
 
 });

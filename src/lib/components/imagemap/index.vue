@@ -9,6 +9,7 @@
         :default-value="defaultValue"
         :hide-name="hideName"
         :clearable="clearable"
+        :inside-name="insideName"
         :allow-url="allowUrl"
         :allow-drag="allowDrag"
         :multi="multi"
@@ -19,11 +20,12 @@
         :max="max"
         :max-spot="maxSpot"
     >
+    
+    <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
 
     <morning-upload
-        :form-name="conf.formName"
+        :inside-name="conf.insideName"
         :max="conf.max"
-        :hide-name="conf.hideName"
         :multi="conf.multi"
         :allow-url="conf.allowUrl"
         :allow-drag="conf.allowDrag"
@@ -263,6 +265,10 @@ export default {
     name : 'imagemap',
     mixins : [Move, GlobalEvent],
     props : {
+        insideName : {
+            type : String,
+            default : ''
+        },
         allowUrl : {
             type : Boolean,
             default : false
@@ -304,6 +310,7 @@ export default {
         _conf : function () {
 
             return {
+                insideName : this.insideName,
                 allowUrl : this.allowUrl,
                 allowDrag : this.allowDrag,
                 multi : this.multi,

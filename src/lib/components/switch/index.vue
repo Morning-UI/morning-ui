@@ -9,14 +9,13 @@
         :default-value="defaultValue"
         :hide-name="hideName"
         :clearable="clearable"
-        :auto-hide-name="autoHideName"
         :open-note="openNote"
         :close-note="closeNote"
         :open-mark="openMark"
         :close-mark="closeMark"
     >
 
-    <div class="note">{{conf.formName}}</div>
+    <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
     
     <div class="wrap">
         <div class="close-note" v-if="conf.closeNote" v-html="conf.closeNote"></div>
@@ -38,10 +37,6 @@ export default {
     origin : 'Form',
     name : 'switch',
     props : {
-        autoHideName : {
-            type : Boolean,
-            default : false
-        },
         openNote : {
             type : String,
             default : ''
@@ -63,7 +58,6 @@ export default {
         _conf : function () {
 
             return {
-                autoHideName : this.autoHideName,
                 openNote : this.openNote,
                 closeNote : this.closeNote,
                 openMark : this.openMark,
@@ -74,7 +68,6 @@ export default {
         moreClass : function () {
 
             return {
-                'hide-name' : !!this.conf.hideName || !!this.data.nameIsEmpty,
                 open : !!this.data.value
             };
 
@@ -83,9 +76,7 @@ export default {
     data : function () {
 
         return {
-            data : {
-                nameIsEmpty : false
-            }
+            data : {}
         };
 
     },
@@ -93,27 +84,6 @@ export default {
         _valueFilter : function (value) {
 
             return !!value;
-
-        },
-        _setNameIsEmpty : function () {
-
-            if (!this.conf.autoHideName) {
-
-                this.data.nameIsEmpty = false;
-
-                return;
-
-            }
-
-            if (this.conf.formName === '' || this.conf.formName === undefined) {
-
-                this.data.nameIsEmpty = true;
-
-            } else {
-
-                this.data.nameIsEmpty = false;
-
-            }
 
         },
         toggle : function (open) {
@@ -131,23 +101,7 @@ export default {
         }
     },
     created : function () {},
-    mounted : function () {
-
-        this.$watch('conf.formName', () => {
-
-            this._setNameIsEmpty();
-
-        }, {
-            immediate : true
-        });
-
-        this.$watch('conf.autoHideName', () => {
-
-            this._setNameIsEmpty();
-
-        });
-
-    }
+    mounted : function () {}
 };
 </script>
 

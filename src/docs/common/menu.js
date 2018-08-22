@@ -38,7 +38,7 @@ export default {
         标签 : '/component/label.html',
         统计 : '/component/statistic.html',
         行动栏 : '/component/action.html',
-        '表单组' : '/component/formgroup.html',
+        '表单组<i class="tag update"></i>' : '/component/formgroup.html',
         按钮组 : '/component/btngroup.html',
         // 步骤<i class="tag new"></i> : 'b',
         巨幕 : '/component/jumbotron.html',

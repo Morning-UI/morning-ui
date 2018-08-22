@@ -71,6 +71,7 @@
     :::preset/html
     formConfigTable
     ---
+    |[inside-name](#inside-name)|编辑区域默认显示内容|字符串|String|`''`|
     |[item-name](#item-name)|项目的名称，如果没有设置`item-filler`，会作为每项的标题显示。同时会作为添加按钮标题的后缀。|项目的名称|String|`'项目'`|
     |[item-filler](#item-filler)|项目内容填充函数，此函数有一个参数：<br>`item`：每一项的数据对象<br><br>此函数通过`item`获取项目的标题及缩略图，然后返回给组件，最终将标题和缩略图显示在项目上。<br><br>返回值是一个对象，包含两个KEY：`title`、`thumb`(缩略图地址)|填充函数|Function|`() => {}`|
     |[item-validator](#item-validator)|项目添加或更新时，验证或二次处理项目的值，此函数有一个参数：<br>`value`：新增或更新项目的值<br><br>返回值(除`false`以外)作为项目添加或更新的值，若返回为`false`，则表示未通过验证，此项目不会被添加或更新。|验证函数|Function|`value => value`|
@@ -90,6 +91,27 @@
     configDefaultValue:[{name:'Jim'}, {name:'Sam'}]
     configMoreAttr::item-filler="item => ({title: item.name})"
     configSlot:<ui-formgroup><div class="item"><h5 class="title"><ui-center class="fill">名称</ui-center></h5><div class="content"><div class="form"><ui-textinput form-key="name"></ui-textinput></div></div></div></ui-formgroup>
+    :::
+
+    #### inside-name
+
+    :::democode/html
+    <div style="width:300px;">
+        <ui-multiform inside-name="名单">
+            <ui-formgroup>
+                <div class="item">
+                    <h5 class="title">
+                        <ui-center class="fill">姓名</ui-center>
+                    </h5>
+                    <div class="content">
+                        <div class="form">
+                            <ui-textinput form-key="name"></ui-textinput>
+                        </div>
+                    </div>
+                </div>
+            </ui-formgroup>
+        </ui-multiform>
+    </div>
     :::
 
     #### item-name

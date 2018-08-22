@@ -9,6 +9,7 @@
         :default-value="defaultValue"
         :hide-name="hideName"
         :clearable="clearable"
+        :inside-name="insideName"
         :date="date"
         :format="format"
         :align="align"
@@ -24,10 +25,13 @@
         :done-hidden="doneHidden"
     >
 
+    <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
+
     <div class="wrap">
         <morning-datepicker
             :ref="'ui-datetimepicker-date-'+uiid"
             :state="conf.state"
+            :inside-name="conf.insideName"
             :date="conf.date"
             :format="conf.format"
             :align="conf.align"
@@ -49,7 +53,7 @@
             <div slot="timepicker">
                 <morning-timepicker
                     :ref="'ui-datetimepicker-time-'+uiid"
-                    form-name="时间"
+                    inside-name="时间"
                     align="right"
                     :selectable-range="timeSelectableRangeAll"
     
@@ -60,7 +64,7 @@
             <div v-if="conf.isRange" slot="timepicker2">
                 <morning-timepicker
                     :ref="'ui-datetimepicker-time2-'+uiid"
-                    form-name="时间"
+                    inside-name="时间"
                     align="right"
                     :selectable-range="timeSelectableRangeAll"
 
@@ -105,6 +109,10 @@ export default {
     name : 'datetimepicker',
     mixins : [Dates, Time],
     props : {
+        insideName : {
+            type : String,
+            default : ''
+        },
         date : {
             type : Number,
             default : +new Date()
@@ -165,6 +173,7 @@ export default {
         _conf : function () {
 
             return {
+                insideName : this.insideName,
                 date : this.date,
                 format : this.format,
                 align : this.align,
