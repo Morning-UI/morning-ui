@@ -22,7 +22,7 @@
 
 #### 废弃
 
-- `ui-texteditor`组件移除placeholder`配置
+- `ui-texteditor`组件移除`placeholder`配置
 - `ui-switch`组件移除`auto-hide-name`配置
 
 __升级注意事项__
