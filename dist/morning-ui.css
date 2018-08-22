@@ -11518,7 +11518,7 @@ mor-texteditor > .cleanbtn {
 mor-texteditor .editor-wrap {
   height: calc(100% - 32px);
 }
-mor-texteditor > .note:empty + .editor-wrap {
+mor-texteditor > .form-name:empty + .editor-wrap {
   height: 100%;
 }
 mor-texteditor.hide-name .editor-wrap {
@@ -12041,9 +12041,6 @@ mor-switch.co-elbu.open .track {
 mor-switch.co-elbu.open .track .point {
   box-shadow: 0 0 4px #61728a;
 }
-mor-switch.co-si .note {
-  color: #D6DDE5;
-}
 mor-switch.co-si .track {
   background: #889cb4;
   box-shadow: 0 0 2px #6982a0 inset;
@@ -12081,9 +12078,6 @@ mor-switch.co-si.open .track {
 }
 mor-switch.co-si.open .track .point {
   box-shadow: 0 0 4px #b7c3d1;
-}
-mor-switch.co-lsi .note {
-  color: #D6DDE5;
 }
 mor-switch.co-lsi .track {
   background: #92a8bf;
@@ -12123,9 +12117,6 @@ mor-switch.co-lsi.open .track {
 mor-switch.co-lsi.open .track .point {
   box-shadow: 0 0 4px #c2cfdb;
 }
-mor-switch.co-elsi .note {
-  color: #D6DDE5;
-}
 mor-switch.co-elsi .track {
   background: #9bb1c7;
   box-shadow: 0 0 2px #7a98b5 inset;
@@ -12163,9 +12154,6 @@ mor-switch.co-elsi.open .track {
 }
 mor-switch.co-elsi.open .track .point {
   box-shadow: 0 0 4px #ccd7e3;
-}
-mor-switch.co-g .note {
-  color: #E6E6E6;
 }
 mor-switch.co-g .track {
   background: #a6a6a6;
@@ -12205,9 +12193,6 @@ mor-switch.co-g.open .track {
 mor-switch.co-g.open .track .point {
   box-shadow: 0 0 4px #cdcdcd;
 }
-mor-switch.co-lg .note {
-  color: #E6E6E6;
-}
 mor-switch.co-lg .track {
   background: #b0b0b0;
   box-shadow: 0 0 2px #979797 inset;
@@ -12245,9 +12230,6 @@ mor-switch.co-lg.open .track {
 }
 mor-switch.co-lg.open .track .point {
   box-shadow: 0 0 4px #d7d7d7;
-}
-mor-switch.co-wh .note {
-  color: #E6E6E6;
 }
 mor-switch.co-wh .track {
   background: #000000;
@@ -14236,9 +14218,6 @@ mor-slider > .form-name {
 }
 mor-slider > .form-name {
   padding: 0 10px;
-}
-mor-slider.hide-name .note {
-  display: none;
 }
 mor-slider .wrap {
   width: 100%;

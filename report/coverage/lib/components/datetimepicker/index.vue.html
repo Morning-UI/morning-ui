@@ -25,9 +25,9 @@
         <span class='fraction'>129/218</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">40.21% </span>
+        <span class="strong">40.91% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>78/194</span>
+        <span class='fraction'>81/198</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">82.76% </span>
@@ -816,7 +816,16 @@
 771
 772
 773
-774</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+774
+775
+776
+777
+778
+779
+780
+781
+782
+783</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -894,11 +903,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">152x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">154x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -915,8 +924,16 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">152x</span>
-<span class="cline-any cline-yes">152x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">154x</span>
+<span class="cline-any cline-yes">154x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -983,6 +1000,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1588,8 +1606,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">152x</span>
-<span class="cline-any cline-yes">152x</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
+<span class="cline-any cline-yes">154x</span>
+<span class="cline-any cline-yes">154x</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
     &lt;mor-datetimepicker
         :_uiid="uiid"
         :class="[formClass, stateClass]"
@@ -1600,6 +1618,7 @@
         :default-value="defaultValue"
         :hide-name="hideName"
         :clearable="clearable"
+        :inside-name="insideName"
         :date="date"
         :format="format"
         :align="align"
@@ -1615,10 +1634,13 @@
         :done-hidden="doneHidden"
     &gt;
 &nbsp;
+    &lt;div class="form-name" v-if="!conf.hideName &amp;&amp; !!conf.formName"&gt;{{conf.formName}}&lt;/div&gt;
+&nbsp;
     &lt;div class="wrap"&gt;
         &lt;morning-datepicker
             :ref="'ui-datetimepicker-date-'+uiid"
             :state="conf.state"
+            :inside-name="conf.insideName"
             :date="conf.date"
             :format="conf.format"
             :align="conf.align"
@@ -1640,7 +1662,7 @@
             &lt;div slot="timepicker"&gt;
                 &lt;morning-timepicker
                     :ref="'ui-datetimepicker-time-'+uiid"
-                    form-name="时间"
+                    inside-name="时间"
                     align="right"
                     :selectable-range="timeSelectableRangeAll"
     
@@ -1651,7 +1673,7 @@
             &lt;div v-if="conf.isRange" slot="timepicker2"&gt;
                 &lt;morning-timepicker
                     :ref="'ui-datetimepicker-time2-'+uiid"
-                    form-name="时间"
+                    inside-name="时间"
                     align="right"
                     :selectable-range="timeSelectableRangeAll"
 &nbsp;
@@ -1696,6 +1718,10 @@ export default {
     name : 'datetimepicker',
     mixins : [Dates, Time],
     props : {
+        insideName : {
+            type : String,
+            default : ''
+        },
         date : {
             type : Number,
             default : +new Date()
@@ -1756,6 +1782,7 @@ export default {
         _conf : function () {
 &nbsp;
             return {
+                insideName : this.insideName,
                 date : this.date,
                 format : this.format,
                 align : this.align,
@@ -2361,14 +2388,14 @@ export default {
 };
 &lt;/script&gt;
 &nbsp;
-&lt;style lang="less" src="./ind<span class="branch-1 cbranch-no" title="branch not covered" >ex.less"&gt;&lt;/style&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ><span class="branch-1 cbranch-no" title="branch not covered" ><span class="branch-2 cbranch-no" title="branch not covered" ></span></span></span></span></span></span></span>
+&lt;style lang="less" src="./ind<span class="branch-1 cbranch-no" title="branch not covered" >ex.less"&gt;&lt;/style&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ><span class="branch-1 cbranch-no" title="branch not covered" ><span class="branch-2 cbranch-no" title="branch not covered" ></span></span></span></span></span></span></span></span>
 <span class="branch-1 cbranch-no" title="branch not covered" ><span class="branch-2 cbranch-no" title="branch not covered" ></span></span></pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Aug 19 2018 12:29:37 GMT+0800 (CST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Aug 22 2018 18:59:25 GMT+0800 (CST)
 </div>
 </div>
 <script src="../../../prettify.js"></script>

@@ -25,9 +25,9 @@
         <span class='fraction'>47/134</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">28.57% </span>
+        <span class="strong">29.86% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>40/140</span>
+        <span class='fraction'>43/144</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">78.95% </span>
@@ -610,7 +610,9 @@
 565
 566
 567
-568</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+568
+569
+570</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -748,20 +750,21 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">154x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">152x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">154x</span>
+<span class="cline-any cline-yes">154x</span>
+<span class="cline-any cline-yes">154x</span>
+<span class="cline-any cline-yes">154x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">152x</span>
-<span class="cline-any cline-yes">152x</span>
-<span class="cline-any cline-yes">152x</span>
-<span class="cline-any cline-yes">152x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -827,6 +830,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1176,8 +1180,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">152x</span>
-<span class="cline-any cline-yes">152x</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
+<span class="cline-any cline-yes">154x</span>
+<span class="cline-any cline-yes">154x</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
     &lt;mor-timepicker
         :_uiid="uiid"
         :class="[formClass, stateClass, moreClass]"
@@ -1188,6 +1192,7 @@
         :default-value="defaultValue"
         :hide-name="hideName"
         :clearable="clearable"
+        :inside-name="insideName"
         :format="format"
         :align="align"
         :selectable-range="selectableRange"
@@ -1202,6 +1207,8 @@
         :list-end="listEnd"
         :list-step="listStep"
     &gt;
+    
+    &lt;div class="form-name" v-if="!conf.hideName &amp;&amp; !!conf.formName"&gt;{{conf.formName}}&lt;/div&gt;
 &nbsp;
     &lt;div class="wrap"&gt;
         &lt;div class="input-group-addon" v-if="conf.isRange"&gt;
@@ -1215,8 +1222,7 @@
                     :ref="'ui-timepicker-select-0-'+uiid"
                     :state="conf.state"
 &nbsp;
-                    :form-name="(conf.startName === false) ? conf.formName : conf.startName"
-                    :hide-name="conf.hideName"
+                    :inside-name="(conf.startName === false) ? conf.insideName : conf.startName"
                     :align="conf.align"
                     :list="timeList"
 &nbsp;
@@ -1231,8 +1237,7 @@
                     :ref="'ui-timepicker-select-1-'+uiid"
                     :state="conf.state"
 &nbsp;
-                    :form-name="(conf.startName === false) ? conf.formName : conf.startName"
-                    :hide-name="conf.hideName"
+                    :inside-name="(conf.startName === false) ? conf.insideName : conf.startName"
                     :align="conf.align"
                     :list="timeList"
 &nbsp;
@@ -1246,9 +1251,8 @@
                     :ref="'ui-timepicker-select-0-'+uiid"
                     :state="conf.state"
 &nbsp;
-                    :form-name="conf.formName"
+                    :inside-name="conf.insideName"
                     :default-value="conf.defaultValue"
-                    :hide-name="conf.hideName"
                     :align="conf.align"
                     :list="timeList"
 &nbsp;
@@ -1265,8 +1269,7 @@
                     :ref="'ui-timepicker-input-0-'+uiid"
                     :state="conf.state"
 &nbsp;
-                    :form-name="(conf.startName === false) ? conf.formName : conf.startName"
-                    :hide-name="conf.hideName"
+                    :inside-name="(conf.startName === false) ? conf.insideName : conf.startName"
                     :format="conf.format"
                     :align="conf.align"
                     :selectable-range="conf.selectableRange"
@@ -1282,8 +1285,7 @@
                     :ref="'ui-timepicker-input-1-'+uiid"
                     :state="conf.state"
                     
-                    :form-name="(conf.endName === false) ? conf.formName : conf.endName"
-                    :hide-name="conf.hideName"
+                    :inside-name="(conf.endName === false) ? conf.insideName : conf.endName"
                     :format="conf.format"
                     :align="conf.align"
                     :selectable-range="conf.selectableRange"
@@ -1298,9 +1300,8 @@
                     :ref="'ui-timepicker-input-0-'+uiid"
                     :state="conf.state"
 &nbsp;
-                    :form-name="conf.formName"
+                    :inside-name="conf.insideName"
                     :default-value="conf.defaultValue"
-                    :hide-name="conf.hideName"
                     :format="conf.format"
                     :align="conf.align"
                     :selectable-range="conf.selectableRange"
@@ -1335,6 +1336,10 @@ export default {
     name : 'timepicker',
     mixins : [Time],
     props : {
+        insideName : {
+            type : String,
+            default : ''
+        },
         format : {
             type : String,
             default : 'HH:mm:ss'
@@ -1394,6 +1399,7 @@ export default {
         _conf : function () {
 &nbsp;
             return {
+                insideName : this.insideName,
                 format : this.format,
                 align : this.align,
                 selectableRange : this.selectableRange,
@@ -1743,14 +1749,14 @@ export default {
 };
 &lt;/script&gt;
 &nbsp;
-&lt;style lang="less" src="./ind<span class="branch-1 cbranch-no" title="branch not covered" >ex.less"&gt;&lt;/style&gt;<span class="branch-0 cbranch-no" title="branch not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ><span class="branch-1 cbranch-no" title="branch not covered" ><span class="branch-2 cbranch-no" title="branch not covered" ></span></span></span></span></span></span></span>
+&lt;style lang="less" src="./ind<span class="branch-1 cbranch-no" title="branch not covered" >ex.less"&gt;&lt;/style&gt;<span class="branch-0 cbranch-no" title="branch not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ><span class="branch-1 cbranch-no" title="branch not covered" ><span class="branch-2 cbranch-no" title="branch not covered" ></span></span></span></span></span></span></span></span>
 <span class="branch-1 cbranch-no" title="branch not covered" ><span class="branch-2 cbranch-no" title="branch not covered" ></span></span></pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Aug 19 2018 12:29:37 GMT+0800 (CST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Aug 22 2018 18:59:25 GMT+0800 (CST)
 </div>
 </div>
 <script src="../../../prettify.js"></script>
