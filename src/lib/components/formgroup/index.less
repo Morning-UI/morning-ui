@@ -56,6 +56,8 @@ mor-formgroup{
         display: flex;
         align-items: center;
         box-sizing: border-box;
+        justify-content: center;
+        padding-right: 1em;
 
         mor-center p{
             color: #BBB;
@@ -140,6 +142,36 @@ mor-formgroup{
                     }
                 }
             }
+        }
+    }
+
+    &.item-title-left{
+        .row .item > .title{
+            text-align: left;
+        }
+
+        .item > .title{
+            justify-content: flex-start;
+        }
+    }
+
+    &.item-title-center{
+        .row .item > .title{
+            text-align: center;
+        }
+
+        .item > .title{
+            justify-content: center;
+        }
+    }
+
+    &.item-title-right{
+        .row .item > .title{
+            text-align: right;
+        }
+
+        .item > .title{
+            justify-content: flex-end;
         }
     }
 

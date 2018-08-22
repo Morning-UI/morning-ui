@@ -63,6 +63,7 @@
     :::preset/html
     formConfigTable
     ---
+    |[inside-name](#inside-name)|在组件内显示的名称，和`form-name`互为补充。|名称|String|`''`|
     |[date](#date)|日历所在的日期，日历将会切换到`date`所在的月份|时间戳|Number|`+new Date()`|
     |[format](#format)|格式化展示的日期|日期格式化字符串(支持日期占位符见下方的演示)|String|`'YYYY-MM-DD'`|
     |[align](#align)|日期对齐方式|`'left'` : 左对齐<br>`'center'` : 居中对齐<br>`'right'` : 右对齐|String|`'left'`|
@@ -72,8 +73,8 @@
     |[range-input-direction](#range-input-direction)|区间日期选择时，开始/结束输入框的排列方向<br>仅在开启`is-range`配置时生效|`'horizontal'` : 横向<br>`'vertical'` : 竖直|String|`'horizontal'`|
     |[separator](#separator)|日期区间选择时中间的分隔内容，只有开启`is-range`才有效。|分隔字符串|String|`'至'`|
     |[separator-type](#separator-type)|日期区间选择时中间的分隔内容的展现类型|`'block'`：块状<br>`'inline'`：行内|String|`'block'`|
-    |[start-name](#start-name)|日期区间选择时`开始日期`表单显示的名称，若设为`false`则显示`form-name`，只有开启`is-range`才有效|任意字符串<br>`false`:显示`form-name`|String<br>Boolean|`'开始日期'`|
-    |[end-name](#end-name)|日期区间选择时`结束日期`表单显示的名称，若设为`false`则显示`form-name`，只有开启`is-range`才有效。若设置了`hide-name`则不会显示|任意字符串`false`:显示`form-name`|String<br>Boolean|`'结束日期'`|
+    |[start-name](#start-name)|日期区间选择时`开始日期`表单显示的名称，若设为`false`则显示`inside-name`，只有开启`is-range`才有效|任意字符串<br>`false`:显示`inside-name`|String<br>Boolean|`'开始日期'`|
+    |[end-name](#end-name)|日期区间选择时`结束日期`表单显示的名称，若设为`false`则显示`inside-name`，只有开启`is-range`才有效。若设置了`hide-name`则不会显示|任意字符串`false`:显示`inside-name`|String<br>Boolean|`'结束日期'`|
     |[done-hidden](#done-hidden)|开启此配置后当完成日期选择后选择器会被隐藏|`true`<br>`false`|Boolean|`false`|
     :::
 
@@ -83,6 +84,14 @@
     uikey:datepicker
     configDefaultValue:'2018-03-23'
     configMoreAttr::date="+new Date('2018-03-23')"
+    :::
+
+    #### inside-name
+
+    :::democode/html
+    <div style="width:300px">
+        <ui-datepicker inside-name="日期"></ui-datepicker>
+    </div>
     :::
 
     #### date

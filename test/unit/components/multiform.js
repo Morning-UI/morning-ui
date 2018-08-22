@@ -25,7 +25,7 @@ test.serial('base : init component', async t => {
 
     t.plan(2);
 
-    t.is(vm.uiid, 6);
+    t.is(vm.uiid, 5);
     t.is(component.options.name, `morning-${name}`);
 
 });

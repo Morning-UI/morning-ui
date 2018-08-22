@@ -9,12 +9,15 @@
         :default-value="defaultValue"
         :hide-name="hideName"
         :clearable="clearable"
+        :inside-name="insideName"
         :can-move="canMove"
         :max="max"
 
         @keydown.enter="_enterInput"
         @click="_focusInput"
     >
+
+    <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
 
     <div class="itemlist">
 
@@ -37,11 +40,11 @@
                 <template v-if="data.value.length < conf.max">
                     <input
                         type="text"
-                        v-if="!conf.hideName"
+                        v-if="!!conf.insideName"
                         @focus="_focusInput"
                         @blur="_blurInput"
                         :style="{width: data.inputWidth}"
-                        :placeholder="conf.formName"
+                        :placeholder="conf.insideName"
                         key="set-max-show-name"
 
                         :value="data.inputValue"
@@ -67,11 +70,11 @@
             <template v-else>
                     <input
                         type="text"
-                        v-if="!conf.hideName"
+                        v-if="!!conf.insideName"
                         @focus="_focusInput"
                         @blur="_blurInput"
                         :style="{width: data.inputWidth}"
-                        :placeholder="conf.formName"
+                        :placeholder="conf.insideName"
                         key="unset-max-show-name"
 
                         :value="data.inputValue"
@@ -107,6 +110,10 @@ export default {
     name : 'multiinput',
     mixins : [Move],
     props : {
+        insideName : {
+            type : String,
+            default : ''
+        },
         canMove : {
             type : Boolean,
             default : false
@@ -120,6 +127,7 @@ export default {
         _conf : function () {
 
             return {
+                insideName : this.insideName,
                 canMove : this.canMove,
                 max : this.max
             };
@@ -228,9 +236,9 @@ export default {
 
                 this.data.inputWidth = `${this.data.inputValue.length * valueWidth}em`;
 
-            } else if (this.conf.formName) {
+            } else if (this.conf.insideName) {
 
-                this.data.inputWidth = `${this.conf.formName.length * valueWidth}em`;
+                this.data.inputWidth = `${this.conf.insideName.length * valueWidth}em`;
             
             }
 

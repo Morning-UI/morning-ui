@@ -18,6 +18,48 @@
     
     ### 更新记录
 
+    ### 0.11.13 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2018年8月22日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.11.13" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.11.13/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.11.13/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 新特性
+
+    - 新增`ui-carousel`轮播组件
+    - `ui-formgroup`支持设置表单项标题的对齐方式
+
+    #### 改进
+
+    - 统一表单组件的`form-name`配置的行为和表现
+    - 当`form-name`为空时，不需要设置`hide-name`表单名称也会隐藏
+    - `ui-switch`的`form-name`文字色彩不会随着组件的色彩配置改变
+
+    #### 修复
+
+    - 修复`ui-counter`的一个样式问题
+    - 修复`ui-menu`的一些问题
+
+    #### 废弃
+
+    - `ui-texteditor`组件移除placeholder`配置
+    - `ui-switch`组件移除`auto-hide-name`配置
+
+    <ui-label color=“primary">升级注意事项</ui-label>
+
+    - `form-name`配置现在在所有的表单组件中有了一致的行为和表现，部分表单组件原有显示`form-name`的行为采用新的`inside-name`配置替代，具体使用见组件文档
+    - `ui-texteditor`组件的`placeholder`配置被移除，可用`inside-name`替代
+    - `ui-switch`组件移除`auto-hide-name`配置，现在表单名(`form-name`)为空时会自动隐藏
+    - 现在`ui-switch`的`form-name`文字色彩不会随着组件的色彩配置改变，如需调整色彩，可以通过CSS覆写
+
+    ---
+
     ### 0.11.12 <ui-badge class="circle ver-canary" size="s" color="light-elbk">Beta</ui-badge>
 
     <ui-textcolor color="light-blue">
@@ -47,7 +89,7 @@
     - 修复`ui-counter`在某些情况下鼠标键放开后仍会计数的错误
     - 修复`ui-menu`的一些样式问题
 
-    <ui-label color=“primary">升级注意事项</ui-label>
+    <ui-label color="primary">升级注意事项</ui-label>
 
     - `ui-menu`的默认样式变为极简，若要使用之前版本的样式，需要添加`line`的样式类
 

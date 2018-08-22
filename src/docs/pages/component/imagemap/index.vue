@@ -158,6 +158,7 @@
     :::preset/html
     formConfigTable
     ---
+    |[inside-name](#inside-name)|在组件内显示的名称，和`form-name`互为补充。|名称|String|`''`|
     |[allow-url](#allow-url)|允许从网络地址获取文件并上传图片|`true`<br>`false`|Boolean|`false`|
     |[allow-drag](#allow-drag)|允许拖拽文件或网络地址上传图片，若拖拽的是网络地址必须开启`allow-url`|`true`<br>`false`|Boolean|`false`|
     |[multi](#multi)|允许同时选择多个图片上传。注意由于`max`默认为1，请先设置`max`，否则选择多个图片最终只能上传1张。|`true`<br>`false`|Boolean|`false`|
@@ -173,6 +174,14 @@
     ---
     uikey:imagemap
     configDefaultValue:{'images':[{'name':'151244303389249797.png','path':'http://morning-ui-image.test.upcdn.net/uploaddemo/17505/151244303389249797.png'}],'zones':[{'x':361,'y':117,'h':180,'w':274},{'x':86,'y':310,'h':180,'w':275}],'w':722,'h':725}
+    :::
+
+    #### inside-name
+
+    :::democode/html
+    <div style="width:300px;">
+        <ui-imagemap inside-name="热区"></ui-imagemap>
+    </div>
     :::
 
     #### allow-url

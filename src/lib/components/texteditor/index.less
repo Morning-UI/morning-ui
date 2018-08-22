@@ -7,13 +7,6 @@ mor-texteditor{
 
     .setup-form();
 
-    > .note{
-        color: @colorFormTextNote;
-        font-size: @fontSize;
-        margin-bottom: 0.5em;
-        -webkit-user-select: text;
-    }
-
     &.has-cleanbtn{
         padding-bottom: 26px;
     }
@@ -27,15 +20,11 @@ mor-texteditor{
         height: ~'calc(100% - 32px)';
     }
 
-    > .note:empty + .editor-wrap{
+    > .form-name:empty + .editor-wrap{
         height: 100%;
     }
 
     &.hide-name{
-        .note{
-            display: none;
-        }
-
         .editor-wrap{
             height: 100%;
         }

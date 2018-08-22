@@ -7,13 +7,6 @@ mor-counter{
 
     .setup-form();
 
-    > .note{
-        color: @colorFormTextNote;
-        font-size: @fontSize;
-        margin-bottom: 0.5em;
-        -webkit-user-select: text;
-    }
-
     .counter-wrap{
         display: flex;
     }
@@ -23,6 +16,7 @@ mor-counter{
         display: inline-block;
         font-size: @fontSize*0.875;
         height: @formHeight*0.85;
+        box-sizing: border-box;
         line-height: @formHeight*0.85;
         vertical-align: top;
         padding: 0 0.7em;

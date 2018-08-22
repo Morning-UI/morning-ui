@@ -55,6 +55,7 @@
     :::preset/html
     formConfigTable
     ---
+    |[inside-name](#inside-name)|编辑区域默认显示内容|字符串|String|`''`|
     |[date](#date)|日历所在的日期，日历将会切换到`date`所在的月份|时间戳|Number|`+new Date()`|
     |[format](#format)|格式化展示的日期时间|日期时间格式化字符串(支持日期占位符见下方的演示)|String|`'YYYY-MM-DD'`|
     |[align](#align)|日期时间对齐方式|`'left'` : 左对齐<br>`'center'` : 居中对齐<br>`'right'` : 右对齐|String|`'left'`|
@@ -76,6 +77,14 @@
     uikey:datetimepicker
     configDefaultValue:'2018-03-23 18:10:18'
     configMoreAttr::date="+new Date('2018-03-23 18:10:18')"
+    :::
+
+    #### inside-name
+
+    :::democode/html
+    <div style="width:300px">
+        <ui-datetimepicker inside-name="日期时间"></ui-datetimepicker>
+    </div>
     :::
 
     #### date

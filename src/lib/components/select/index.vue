@@ -9,6 +9,7 @@
         :default-value="defaultValue"
         :hide-name="hideName"
         :clearable="clearable"
+        :inside-name="insideName"
         :list="list"
         :dynamic-list="dynamicList"
         :validate="validate"
@@ -30,164 +31,170 @@
         :list-width="listWidth"
     >
 
-    <template v-if="conf.prepend">
-        <div class="input-group-addon" v-html="conf.prepend"></div>
-    </template>
+    <div class="form-name" v-if="!conf.hideName && !!conf.formName && !conf.separateEmit">{{conf.formName}}</div>
 
-    <div
-        class="select-area"
-        :class="[{
-            'mor-select-wrap' : conf.separateEmit,
-            'focus-search' : !!data.focusSearch,
-            searching : !!data.searching,
-            'align-left' : (conf.align === 'left'),
-            'align-center' : (conf.align === 'center'),
-            'align-right' : (conf.align === 'right'),
-            'select-item' : (data.value && data.value.length > 0),
-            'is-max' : !!isMax,
-            showlist : !!data.showlist,
-            'no-animation' : !!data.highPerfMode,
-            'input-group' : !!conf.prepend,
-            'over-bottom' : data.selectListOverBottom
-        }, stateClass]"
-    >
+    <div class="select-wrap">
+            
+        <template v-if="conf.prepend">
+            <div class="input-group-addon" v-html="conf.prepend"></div>
+        </template>
+
         <div
-            class="wrap"
-            :class="{
-                'showwrap' : (conf.separateEmit && !!data.showlist)
-            }"
-            @click="_wrapClick"
-        >
-
-            <template v-if="conf.multiSelect">
-                <morning-multiinput
-                    :id="'ui-select-mi-' + uiid"
-                    :can-move="conf.canMove"
-                    :max="conf.max"
-                    :form-name="conf.formName"
-                    :hide-name="conf.hideName"
-                    :state="conf.state"
-                    key="multi-can-search"
-
-                    v-if="conf.canSearch"
-
-                    @input-focus="_multiinputFocus()"
-                    @value-change="_multiinputValueChange()"
-                    @input-value-change="_searchKeyChange()"
-                ></morning-multiinput>
-
-                <morning-multiinput
-                    :id="'ui-select-mi-' + uiid"
-                    :can-move="conf.canMove"
-                    :max="conf.max"
-                    :form-name="conf.formName"
-                    :hide-name="conf.hideName"
-                    :state="conf.state"
-                    key="multi-no-search"
-
-                    v-else
-
-                    @input-focus="_multiinputFocusNoSearch()"
-                    @value-change="_multiinputValueChange()"
-                ></morning-multiinput>
-            </template>
-
-            <template v-else>
-                <template v-if="conf.canSearch">
-                    <morning-textinput
-                        :id="'ui-select-ti-' + uiid"
-                        :align="conf.align"
-                        @value-change="_searchKeyChange()"
-                        @focus="_textinputFocus()"
-                        @blur="_textinputBlur()"
-                        key="single-can-search"
-                    ></morning-textinput>
-                </template>
-
-                <div
-                    class="selected"
-                    v-if="!conf.multiSelect && data.value && data.value.length === 1"
-                    v-html="data.selectedContent"
-                >
-                </div>
-
-                <div 
-                    class="selected"
-                    v-else-if="!conf.hideName">
-                    {{conf.formName}}
-                </div>
-
-                <div 
-                    class="selected"
-                    v-else>
-                    &nbsp;
-                </div>
-            </template>
-
-            <i class="mo-icon mo-icon-dropdown drop" :class="{'no-animation' : !!data.highPerfMode}"></i>
-
-        </div>
-    
-        <div
-            class="select-list"
+            class="select-area"
             :class="[{
+                'mor-select-wrap' : conf.separateEmit,
+                'focus-search' : !!data.focusSearch,
+                searching : !!data.searching,
+                'align-left' : (conf.align === 'left'),
+                'align-center' : (conf.align === 'center'),
+                'align-right' : (conf.align === 'right'),
+                'select-item' : (data.value && data.value.length > 0),
+                'is-max' : !!isMax,
                 showlist : !!data.showlist,
                 'no-animation' : !!data.highPerfMode,
-                'hide-selected' : conf.hideSelected,
-                'mor-select-wrap' : !conf.separateEmit,
+                'input-group' : !!conf.prepend,
                 'over-bottom' : data.selectListOverBottom
             }, stateClass]"
         >
-            <ul
-                class="list"
-                :style="listStyle"
-                @click="_listClick"
+            <div
+                class="wrap"
+                :class="{
+                    'showwrap' : (conf.separateEmit && !!data.showlist)
+                }"
+                @click="_wrapClick"
             >
-                <template v-for="(index, _index) in showItemList">
-                    <li
-                        :index="index"
-                        :class="{
-                            hide : data.itemNomathMap[index],
-                            hover : +data.hoverIndex === +_index
-                        }"
-                        :id="'ui-select-tip-'+uiid+'-'+index"
-                        @mouseenter="_itemHover(_index)"
-                        class="selected"
-                        v-if="data.itemSelectedMap[index]"
-                        v-render="{template : data.itemNameMap[index]+'<i class=\'mo-select-selected-icon mo-icon mo-icon-check\'></i>'}"
-                    >
-                    </li>
-                    <li
-                        :index="index"
-                        :class="{
-                            hide : data.itemNomathMap[index],
-                            hover : +data.hoverIndex === +_index
-                        }"
-                        :id="'ui-select-tip-'+uiid+'-'+index"
-                        @mouseenter="_itemHover(_index)"
-                        v-else
-                        v-render="{template : data.itemNameMap[index]}"
-                    >
-                    </li>
 
-                    <template v-if="conf.itemTip">
-                        <morning-tip
-                            :target="'#ui-select-tip-'+uiid+'-'+index"
-                            :placement="conf.itemTipDirect"
-                            class="tips"
-                            color="blue"
-                        >{{data.itemTipMap[index]}}</morning-tip>
-                    </template>
+                <template v-if="conf.multiSelect">
+                    <morning-multiinput
+                        :id="'ui-select-mi-' + uiid"
+                        :can-move="conf.canMove"
+                        :max="conf.max"
+                        :inside-name="conf.insideName"
+                        :hide-name="conf.hideName"
+                        :state="conf.state"
+                        key="multi-can-search"
+
+                        v-if="conf.canSearch"
+
+                        @input-focus="_multiinputFocus()"
+                        @value-change="_multiinputValueChange()"
+                        @input-value-change="_searchKeyChange()"
+                    ></morning-multiinput>
+
+                    <morning-multiinput
+                        :id="'ui-select-mi-' + uiid"
+                        :can-move="conf.canMove"
+                        :max="conf.max"
+                        :inside-name="conf.insideName"
+                        :hide-name="conf.hideName"
+                        :state="conf.state"
+                        key="multi-no-search"
+
+                        v-else
+
+                        @input-focus="_multiinputFocusNoSearch()"
+                        @value-change="_multiinputValueChange()"
+                    ></morning-multiinput>
                 </template>
-                <li class="noitem infoitem" :class="{show : data.noMatch || showItemList.length === 0 || data.selectedAll}">
-                    <span v-if="conf.dynamicList && conf.canSearch">无匹配项目</span>
-                    <span v-else>无项目</span>
-                </li>
-                <li class="maxshow infoitem" :class="{show : conf.canSearch && (data.matchList.length > conf.maxShow)}">
-                    <span>请搜索以显示更多</span>
-                </li>
-            </ul>
+
+                <template v-else>
+                    <template v-if="conf.canSearch">
+                        <morning-textinput
+                            :id="'ui-select-ti-' + uiid"
+                            :align="conf.align"
+                            @value-change="_searchKeyChange()"
+                            @focus="_textinputFocus()"
+                            @blur="_textinputBlur()"
+                            key="single-can-search"
+                        ></morning-textinput>
+                    </template>
+
+                    <div
+                        class="selected"
+                        v-if="!conf.multiSelect && data.value && data.value.length === 1"
+                        v-html="data.selectedContent"
+                    >
+                    </div>
+
+                    <div 
+                        class="selected"
+                        v-else-if="!!conf.insideName">
+                        {{conf.insideName}}
+                    </div>
+
+                    <div 
+                        class="selected"
+                        v-else>
+                        &nbsp;
+                    </div>
+                </template>
+
+                <i class="mo-icon mo-icon-dropdown drop" :class="{'no-animation' : !!data.highPerfMode}"></i>
+
+            </div>
+        
+            <div
+                class="select-list"
+                :class="[{
+                    showlist : !!data.showlist,
+                    'no-animation' : !!data.highPerfMode,
+                    'hide-selected' : conf.hideSelected,
+                    'mor-select-wrap' : !conf.separateEmit,
+                    'over-bottom' : data.selectListOverBottom
+                }, stateClass]"
+            >
+                <ul
+                    class="list"
+                    :style="listStyle"
+                    @click="_listClick"
+                >
+                    <template v-for="(index, _index) in showItemList">
+                        <li
+                            :index="index"
+                            :class="{
+                                hide : data.itemNomathMap[index],
+                                hover : +data.hoverIndex === +_index
+                            }"
+                            :id="'ui-select-tip-'+uiid+'-'+index"
+                            @mouseenter="_itemHover(_index)"
+                            class="selected"
+                            v-if="data.itemSelectedMap[index]"
+                            v-render="{template : data.itemNameMap[index]+'<i class=\'mo-select-selected-icon mo-icon mo-icon-check\'></i>'}"
+                        >
+                        </li>
+                        <li
+                            :index="index"
+                            :class="{
+                                hide : data.itemNomathMap[index],
+                                hover : +data.hoverIndex === +_index
+                            }"
+                            :id="'ui-select-tip-'+uiid+'-'+index"
+                            @mouseenter="_itemHover(_index)"
+                            v-else
+                            v-render="{template : data.itemNameMap[index]}"
+                        >
+                        </li>
+
+                        <template v-if="conf.itemTip">
+                            <morning-tip
+                                :target="'#ui-select-tip-'+uiid+'-'+index"
+                                :placement="conf.itemTipDirect"
+                                class="tips"
+                                color="blue"
+                            >{{data.itemTipMap[index]}}</morning-tip>
+                        </template>
+                    </template>
+                    <li class="noitem infoitem" :class="{show : data.noMatch || showItemList.length === 0 || data.selectedAll}">
+                        <span v-if="conf.dynamicList && conf.canSearch">无匹配项目</span>
+                        <span v-else>无项目</span>
+                    </li>
+                    <li class="maxshow infoitem" :class="{show : conf.canSearch && (data.matchList.length > conf.maxShow)}">
+                        <span>请搜索以显示更多</span>
+                    </li>
+                </ul>
+            </div>
         </div>
+
     </div>
 
     <morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn">清空</morning-link>
@@ -207,6 +214,10 @@ export default {
     name : 'select',
     mixins : [GlobalEvent, TipManager],
     props : {
+        insideName : {
+            type : String,
+            default : ''
+        },
         list : {
             type : [Object, Array],
             default : (() => {})
@@ -289,6 +300,7 @@ export default {
         _conf : function () {
 
             return {
+                insideName : this.insideName,
                 list : this.list,
                 dynamicList : this.dynamicList,
                 validate : this.validate,
@@ -525,7 +537,7 @@ export default {
             if (!this.conf.multiSelect &&
                 (this.data.value.length === 0 || this.data.value === undefined)) {
 
-                this.data.selectedContent = this.conf.formName || '';
+                this.data.selectedContent = this.conf.insideName || '';
 
             }
 

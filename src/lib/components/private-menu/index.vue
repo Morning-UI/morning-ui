@@ -214,8 +214,12 @@ export default {
         },
         _toggleSubmenu : function (id) {
 
-            this.data.itemShowList[id] = !this.data.itemShowList[id];
-            this.$forceUpdate();
+            if (this.conf.position === 'side') {
+
+                this.data.itemShowList[id] = !this.data.itemShowList[id];
+                this.$forceUpdate();
+
+            }
 
         }
     },

@@ -26,7 +26,7 @@
 
     :::democode/html
     <div style="width:300px;">
-        <ui-multiinput form-name="按下回车输入标签"></ui-multiinput>
+        <ui-multiinput inside-name="按下回车输入标签"></ui-multiinput>
     </div>
     :::
 
@@ -44,6 +44,7 @@
     :::preset/html
     formConfigTable
     ---
+    |[inside-name](#inside-name)|编辑区域默认显示内容|字符串|String|`''`|
     |[can-move](#can-move)|输入项目是否可以移动|`true`<br>`false`|Boolean|`false`|
     |[max](#max)|可输入的最大项数|数字<br>`false`:不限制数量|String<br>Boolean|`false`|
     :::
@@ -53,6 +54,14 @@
     ---
     uikey:multiinput
     configDefaultValue:['value1', 'value2']
+    :::
+
+    #### inside-name
+
+    :::democode/html
+    <div style="width:300px;">
+        <ui-multiinput inside-name="输入标签"></ui-multiinput>
+    </div>
     :::
 
     #### can-move

@@ -54,6 +54,7 @@
     :::preset/html
     formConfigTable
     ---
+    |[inside-name](#inside-name)|在组件内显示的名称，和`form-name`互为补充。|名称|String|`''`|
     |[hide-value](#hide-value)|表单的数值不可见，一般用于密码表单|`true`<br>`false`|Boolean|`false`|
     |[prepend](#prepend)|表单前缀|任意字符串(支持HTML)|String|`undefined`|
     |[append](#append)|表单后缀|任意字符串(支持HTML)|String|`undefined`|
@@ -67,6 +68,14 @@
     ---
     uikey:textinput
     configDefaultValue:'默认值'
+    :::
+
+    #### inside-name
+
+    :::democode/html
+    <div style="width:300px">
+        <ui-textinput inside-name="姓名"></ui-textinput>
+    </div>
     :::
 
     #### hide-value

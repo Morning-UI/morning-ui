@@ -22,7 +22,7 @@
     >
 
     <!-- <div class="left-point"></div> -->
-    <div class="note" v-if="!conf.hideName">{{conf.formName}}</div>
+    <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
 
     <div class="prepend" v-if="hasPrepend" v-html="conf.prepend"></div>
     
@@ -88,7 +88,6 @@
                 :step="conf.step"
                 :max="conf.max"
                 :min="conf.min"
-                hide-name
                 v-model="data.value"
             ></morning-counter>
         </div>

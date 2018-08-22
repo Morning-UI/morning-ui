@@ -9,6 +9,7 @@
         :default-value="defaultValue"
         :hide-name="hideName"
         :clearable="clearable"
+        :inside-name="insideName"
         :date="date"
         :type="type"
         :format="format"
@@ -23,8 +24,7 @@
 
     <morning-textinput
         :ref="'ui-private-datepicker-input-'+uiid"
-        :form-name="conf.formName"
-        :hide-name="conf.hideName"
+        :inside-name="conf.insideName"
         :align="conf.align"
         :state="conf.state"
         prepend="<i class='mo-icon mo-icon-date'></i>"
@@ -90,6 +90,10 @@ export default {
     name : 'private-datepicker',
     mixins : [Dates, TipManager],
     props : {
+        insideName : {
+            type : String,
+            default : ''
+        },
         date : {
             type : Number,
             default : +new Date()
@@ -137,6 +141,7 @@ export default {
         _conf : function () {
 
             return {
+                insideName : this.insideName,
                 date : this.date,
                 type : this.type,
                 format : this.format,

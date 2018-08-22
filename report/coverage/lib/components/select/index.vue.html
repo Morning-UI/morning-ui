@@ -25,9 +25,9 @@
         <span class='fraction'>135/497</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">22.19% </span>
+        <span class="strong">22.7% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>81/365</span>
+        <span class='fraction'>84/370</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">36.36% </span>
@@ -1674,7 +1674,19 @@
 1629
 1630
 1631
-1632</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+1632
+1633
+1634
+1635
+1636
+1637
+1638
+1639
+1640
+1641
+1642
+1643
+1644</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1872,11 +1884,22 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">152x</span>
-<span class="cline-any cline-yes">152x</span>
-<span class="cline-any cline-yes">152x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">152x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">154x</span>
+<span class="cline-any cline-yes">154x</span>
+<span class="cline-any cline-yes">154x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">154x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1965,6 +1988,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -3304,7 +3328,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">152x</span>
+<span class="cline-any cline-yes">154x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
     &lt;mor-select
         :_uiid="uiid"
@@ -3316,6 +3340,7 @@
         :default-value="defaultValue"
         :hide-name="hideName"
         :clearable="clearable"
+        :inside-name="insideName"
         :list="list"
         :dynamic-list="dynamicList"
         :validate="validate"
@@ -3337,164 +3362,170 @@
         :list-width="listWidth"
     &gt;
 &nbsp;
-    &lt;template v-if="conf.prepend"&gt;
-        &lt;div class="input-group-addon" v-html="conf.prepend"&gt;&lt;/div&gt;
-    &lt;/template&gt;
+    &lt;div class="form-name" v-if="!conf.hideName &amp;&amp; !!conf.formName &amp;&amp; !conf.separateEmit"&gt;{{conf.formName}}&lt;/div&gt;
 &nbsp;
-    &lt;div
-        class="select-area"
-        :class="[{
-            'mor-select-wrap' : conf.separateEmit,
-            'focus-search' : !!data.focusSearch,
-            searching : !!data.searching,
-            'align-left' : (conf.align === 'left'),
-            'align-center' : (conf.align === 'center'),
-            'align-right' : (conf.align === 'right'),
-            'select-item' : (data.value &amp;&amp; data.value.length &gt; 0),
-            'is-max' : !!isMax,
-            showlist : !!data.showlist,
-            'no-animation' : !!data.highPerfMode,
-            'input-group' : !!conf.prepend,
-            'over-bottom' : data.selectListOverBottom
-        }, stateClass]"
-    &gt;
+    &lt;div class="select-wrap"&gt;
+            
+        &lt;template v-if="conf.prepend"&gt;
+            &lt;div class="input-group-addon" v-html="conf.prepend"&gt;&lt;/div&gt;
+        &lt;/template&gt;
+&nbsp;
         &lt;div
-            class="wrap"
-            :class="{
-                'showwrap' : (conf.separateEmit &amp;&amp; !!data.showlist)
-            }"
-            @click="_wrapClick"
-        &gt;
-&nbsp;
-            &lt;template v-if="conf.multiSelect"&gt;
-                &lt;morning-multiinput
-                    :id="'ui-select-mi-' + uiid"
-                    :can-move="conf.canMove"
-                    :max="conf.max"
-                    :form-name="conf.formName"
-                    :hide-name="conf.hideName"
-                    :state="conf.state"
-                    key="multi-can-search"
-&nbsp;
-                    v-if="conf.canSearch"
-&nbsp;
-                    @input-focus="_multiinputFocus()"
-                    @value-change="_multiinputValueChange()"
-                    @input-value-change="_searchKeyChange()"
-                &gt;&lt;/morning-multiinput&gt;
-&nbsp;
-                &lt;morning-multiinput
-                    :id="'ui-select-mi-' + uiid"
-                    :can-move="conf.canMove"
-                    :max="conf.max"
-                    :form-name="conf.formName"
-                    :hide-name="conf.hideName"
-                    :state="conf.state"
-                    key="multi-no-search"
-&nbsp;
-                    v-else
-&nbsp;
-                    @input-focus="_multiinputFocusNoSearch()"
-                    @value-change="_multiinputValueChange()"
-                &gt;&lt;/morning-multiinput&gt;
-            &lt;/template&gt;
-&nbsp;
-            &lt;template v-else&gt;
-                &lt;template v-if="conf.canSearch"&gt;
-                    &lt;morning-textinput
-                        :id="'ui-select-ti-' + uiid"
-                        :align="conf.align"
-                        @value-change="_searchKeyChange()"
-                        @focus="_textinputFocus()"
-                        @blur="_textinputBlur()"
-                        key="single-can-search"
-                    &gt;&lt;/morning-textinput&gt;
-                &lt;/template&gt;
-&nbsp;
-                &lt;div
-                    class="selected"
-                    v-if="!conf.multiSelect &amp;&amp; data.value &amp;&amp; data.value.length === 1"
-                    v-html="data.selectedContent"
-                &gt;
-                &lt;/div&gt;
-&nbsp;
-                &lt;div 
-                    class="selected"
-                    v-else-if="!conf.hideName"&gt;
-                    {{conf.formName}}
-                &lt;/div&gt;
-&nbsp;
-                &lt;div 
-                    class="selected"
-                    v-else&gt;
-                    &amp;nbsp;
-                &lt;/div&gt;
-            &lt;/template&gt;
-&nbsp;
-            &lt;i class="mo-icon mo-icon-dropdown drop" :class="{'no-animation' : !!data.highPerfMode}"&gt;&lt;/i&gt;
-&nbsp;
-        &lt;/div&gt;
-    
-        &lt;div
-            class="select-list"
+            class="select-area"
             :class="[{
+                'mor-select-wrap' : conf.separateEmit,
+                'focus-search' : !!data.focusSearch,
+                searching : !!data.searching,
+                'align-left' : (conf.align === 'left'),
+                'align-center' : (conf.align === 'center'),
+                'align-right' : (conf.align === 'right'),
+                'select-item' : (data.value &amp;&amp; data.value.length &gt; 0),
+                'is-max' : !!isMax,
                 showlist : !!data.showlist,
                 'no-animation' : !!data.highPerfMode,
-                'hide-selected' : conf.hideSelected,
-                'mor-select-wrap' : !conf.separateEmit,
+                'input-group' : !!conf.prepend,
                 'over-bottom' : data.selectListOverBottom
             }, stateClass]"
         &gt;
-            &lt;ul
-                class="list"
-                :style="listStyle"
-                @click="_listClick"
+            &lt;div
+                class="wrap"
+                :class="{
+                    'showwrap' : (conf.separateEmit &amp;&amp; !!data.showlist)
+                }"
+                @click="_wrapClick"
             &gt;
-                &lt;template v-for="(index, _index) in showItemList"&gt;
-                    &lt;li
-                        :index="index"
-                        :class="{
-                            hide : data.itemNomathMap[index],
-                            hover : +data.hoverIndex === +_index
-                        }"
-                        :id="'ui-select-tip-'+uiid+'-'+index"
-                        @mouseenter="_itemHover(_index)"
-                        class="selected"
-                        v-if="data.itemSelectedMap[index]"
-                        v-render="{template : data.itemNameMap[index]+'&lt;i class=\'mo-select-selected-icon mo-icon mo-icon-check\'&gt;&lt;/i&gt;'}"
-                    &gt;
-                    &lt;/li&gt;
-                    &lt;li
-                        :index="index"
-                        :class="{
-                            hide : data.itemNomathMap[index],
-                            hover : +data.hoverIndex === +_index
-                        }"
-                        :id="'ui-select-tip-'+uiid+'-'+index"
-                        @mouseenter="_itemHover(_index)"
-                        v-else
-                        v-render="{template : data.itemNameMap[index]}"
-                    &gt;
-                    &lt;/li&gt;
 &nbsp;
-                    &lt;template v-if="conf.itemTip"&gt;
-                        &lt;morning-tip
-                            :target="'#ui-select-tip-'+uiid+'-'+index"
-                            :placement="conf.itemTipDirect"
-                            class="tips"
-                            color="blue"
-                        &gt;{{data.itemTipMap[index]}}&lt;/morning-tip&gt;
-                    &lt;/template&gt;
+                &lt;template v-if="conf.multiSelect"&gt;
+                    &lt;morning-multiinput
+                        :id="'ui-select-mi-' + uiid"
+                        :can-move="conf.canMove"
+                        :max="conf.max"
+                        :inside-name="conf.insideName"
+                        :hide-name="conf.hideName"
+                        :state="conf.state"
+                        key="multi-can-search"
+&nbsp;
+                        v-if="conf.canSearch"
+&nbsp;
+                        @input-focus="_multiinputFocus()"
+                        @value-change="_multiinputValueChange()"
+                        @input-value-change="_searchKeyChange()"
+                    &gt;&lt;/morning-multiinput&gt;
+&nbsp;
+                    &lt;morning-multiinput
+                        :id="'ui-select-mi-' + uiid"
+                        :can-move="conf.canMove"
+                        :max="conf.max"
+                        :inside-name="conf.insideName"
+                        :hide-name="conf.hideName"
+                        :state="conf.state"
+                        key="multi-no-search"
+&nbsp;
+                        v-else
+&nbsp;
+                        @input-focus="_multiinputFocusNoSearch()"
+                        @value-change="_multiinputValueChange()"
+                    &gt;&lt;/morning-multiinput&gt;
                 &lt;/template&gt;
-                &lt;li class="noitem infoitem" :class="{show : data.noMatch || showItemList.length === 0 || data.selectedAll}"&gt;
-                    &lt;span v-if="conf.dynamicList &amp;&amp; conf.canSearch"&gt;无匹配项目&lt;/span&gt;
-                    &lt;span v-else&gt;无项目&lt;/span&gt;
-                &lt;/li&gt;
-                &lt;li class="maxshow infoitem" :class="{show : conf.canSearch &amp;&amp; (data.matchList.length &gt; conf.maxShow)}"&gt;
-                    &lt;span&gt;请搜索以显示更多&lt;/span&gt;
-                &lt;/li&gt;
-            &lt;/ul&gt;
+&nbsp;
+                &lt;template v-else&gt;
+                    &lt;template v-if="conf.canSearch"&gt;
+                        &lt;morning-textinput
+                            :id="'ui-select-ti-' + uiid"
+                            :align="conf.align"
+                            @value-change="_searchKeyChange()"
+                            @focus="_textinputFocus()"
+                            @blur="_textinputBlur()"
+                            key="single-can-search"
+                        &gt;&lt;/morning-textinput&gt;
+                    &lt;/template&gt;
+&nbsp;
+                    &lt;div
+                        class="selected"
+                        v-if="!conf.multiSelect &amp;&amp; data.value &amp;&amp; data.value.length === 1"
+                        v-html="data.selectedContent"
+                    &gt;
+                    &lt;/div&gt;
+&nbsp;
+                    &lt;div 
+                        class="selected"
+                        v-else-if="!!conf.insideName"&gt;
+                        {{conf.insideName}}
+                    &lt;/div&gt;
+&nbsp;
+                    &lt;div 
+                        class="selected"
+                        v-else&gt;
+                        &amp;nbsp;
+                    &lt;/div&gt;
+                &lt;/template&gt;
+&nbsp;
+                &lt;i class="mo-icon mo-icon-dropdown drop" :class="{'no-animation' : !!data.highPerfMode}"&gt;&lt;/i&gt;
+&nbsp;
+            &lt;/div&gt;
+        
+            &lt;div
+                class="select-list"
+                :class="[{
+                    showlist : !!data.showlist,
+                    'no-animation' : !!data.highPerfMode,
+                    'hide-selected' : conf.hideSelected,
+                    'mor-select-wrap' : !conf.separateEmit,
+                    'over-bottom' : data.selectListOverBottom
+                }, stateClass]"
+            &gt;
+                &lt;ul
+                    class="list"
+                    :style="listStyle"
+                    @click="_listClick"
+                &gt;
+                    &lt;template v-for="(index, _index) in showItemList"&gt;
+                        &lt;li
+                            :index="index"
+                            :class="{
+                                hide : data.itemNomathMap[index],
+                                hover : +data.hoverIndex === +_index
+                            }"
+                            :id="'ui-select-tip-'+uiid+'-'+index"
+                            @mouseenter="_itemHover(_index)"
+                            class="selected"
+                            v-if="data.itemSelectedMap[index]"
+                            v-render="{template : data.itemNameMap[index]+'&lt;i class=\'mo-select-selected-icon mo-icon mo-icon-check\'&gt;&lt;/i&gt;'}"
+                        &gt;
+                        &lt;/li&gt;
+                        &lt;li
+                            :index="index"
+                            :class="{
+                                hide : data.itemNomathMap[index],
+                                hover : +data.hoverIndex === +_index
+                            }"
+                            :id="'ui-select-tip-'+uiid+'-'+index"
+                            @mouseenter="_itemHover(_index)"
+                            v-else
+                            v-render="{template : data.itemNameMap[index]}"
+                        &gt;
+                        &lt;/li&gt;
+&nbsp;
+                        &lt;template v-if="conf.itemTip"&gt;
+                            &lt;morning-tip
+                                :target="'#ui-select-tip-'+uiid+'-'+index"
+                                :placement="conf.itemTipDirect"
+                                class="tips"
+                                color="blue"
+                            &gt;{{data.itemTipMap[index]}}&lt;/morning-tip&gt;
+                        &lt;/template&gt;
+                    &lt;/template&gt;
+                    &lt;li class="noitem infoitem" :class="{show : data.noMatch || showItemList.length === 0 || data.selectedAll}"&gt;
+                        &lt;span v-if="conf.dynamicList &amp;&amp; conf.canSearch"&gt;无匹配项目&lt;/span&gt;
+                        &lt;span v-else&gt;无项目&lt;/span&gt;
+                    &lt;/li&gt;
+                    &lt;li class="maxshow infoitem" :class="{show : conf.canSearch &amp;&amp; (data.matchList.length &gt; conf.maxShow)}"&gt;
+                        &lt;span&gt;请搜索以显示更多&lt;/span&gt;
+                    &lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/div&gt;
         &lt;/div&gt;
+&nbsp;
     &lt;/div&gt;
 &nbsp;
     &lt;morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn"&gt;清空&lt;/morning-link&gt;
@@ -3514,6 +3545,10 @@ export default {
     name : 'select',
     mixins : [GlobalEvent, TipManager],
     props : {
+        insideName : {
+            type : String,
+            default : ''
+        },
         list : {
             type : [Object, Array],
             default : (() =&gt; {})
@@ -3596,6 +3631,7 @@ export default {
         _conf : function () {
 &nbsp;
             return {
+                insideName : this.insideName,
                 list : this.list,
                 dynamicList : this.dynamicList,
                 validate : this.validate,
@@ -3832,7 +3868,7 @@ export default {
             <span class="missing-if-branch" title="else path not taken" >E</span>if (!this.conf.multiSelect &amp;&amp;
                 (this.data.value.length === 0 || <span class="branch-2 cbranch-no" title="branch not covered" >this.data.value === undefined)) {</span>
 &nbsp;
-                this.data.selectedContent = this.conf.formName || '';
+                this.data.selectedContent = this.conf.insideName || '';
 &nbsp;
             }
 &nbsp;
@@ -4935,14 +4971,14 @@ export default {
 };
 &lt;/script&gt;
 &nbsp;
-&lt;style lang="less" src="./ind<span class="branch-1 cbranch-no" title="branch not covered" >ex.less"&gt;&lt;/style&gt;<span class="branch-0 cbranch-no" title="branch not covered" ><span class="branch-1 cbranch-no" title="branch not covered" ><span class="branch-2 cbranch-no" title="branch not covered" ></span></span></span></span>
+&lt;style lang="less" src="./ind<span class="branch-1 cbranch-no" title="branch not covered" >ex.less"&gt;&lt;/style&gt;<span class="branch-0 cbranch-no" title="branch not covered" ><span class="branch-2 cbranch-no" title="branch not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ><span class="branch-1 cbranch-no" title="branch not covered" ><span class="branch-2 cbranch-no" title="branch not covered" ></span></span></span></span></span></span>
 &nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Aug 19 2018 12:29:37 GMT+0800 (CST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Aug 22 2018 18:59:25 GMT+0800 (CST)
 </div>
 </div>
 <script src="../../../prettify.js"></script>

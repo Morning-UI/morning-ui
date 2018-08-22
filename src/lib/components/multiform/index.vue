@@ -9,6 +9,7 @@
         :default-value="defaultValue"
         :hide-name="hideName"
         :clearable="clearable"
+        :inside-name="insideName"
         :item-name="itemName"
         :item-filler="itemFiller"
         :item-validator="itemValidator"
@@ -20,13 +21,15 @@
         :batch-uniq="batchUniq"
         :show-type="showType"
     >
+    
+    <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
 
     <div class="itemlist">
-        <p class="name" v-if="!conf.hideName">
-            <morning-center class="fill">{{conf.formName}}</morning-center>
+        <p class="name" v-if="!!conf.insideName">
+            <morning-center class="fill">{{conf.insideName}}</morning-center>
         </p>
 
-        <div class="itemwrap" :class="{hidename:conf.hideName}">
+        <div class="itemwrap" :class="{hidename:!conf.insideName}">
         
             <div
                 class="item"
@@ -142,6 +145,10 @@ export default {
     name : 'multiform',
     mixins : [Move],
     props : {
+        insideName : {
+            type : String,
+            default : ''
+        },
         itemName : {
             type : String,
             default : '项目'
@@ -189,6 +196,7 @@ export default {
         _conf : function () {
 
             return {
+                insideName : this.insideName,
                 itemName : this.itemName,
                 itemFiller : this.itemFiller,
                 itemValidator : this.itemValidator,

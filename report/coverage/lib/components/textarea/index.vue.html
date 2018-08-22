@@ -25,9 +25,9 @@
         <span class='fraction'>30/62</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">50.98% </span>
+        <span class="strong">52.73% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>26/51</span>
+        <span class='fraction'>29/55</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">60% </span>
@@ -286,7 +286,30 @@
 241
 242
 243
-244</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -356,6 +379,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -375,11 +399,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -528,7 +552,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">152x</span>
+<span class="cline-any cline-yes">154x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
     &lt;mor-textarea
         :_uiid="uiid"
@@ -540,32 +564,39 @@
         :default-value="defaultValue"
         :hide-name="hideName"
         :clearable="clearable"
+        :inside-name="insideName"
         :rows="rows"
         :auto-size="autoSize"
         :max-rows="maxRows"
         :maxlength="maxlength"
     &gt;
 &nbsp;
-    &lt;textarea
-        :class="{
-            'auto-sizing' : this.conf.autoSize,
-            'is-max' : isMaxRows
-        }"
+    &lt;div class="form-name" v-if="!conf.hideName &amp;&amp; !!conf.formName"&gt;{{conf.formName}}&lt;/div&gt;
 &nbsp;
-        :placeholder="placeholder"
-        :disabled="conf.state === 'disabled' || conf.state === 'readonly'"
-        :rows="data.rows"
-        :maxlength="conf.maxlength"
+    &lt;div class="textarea-wrap"&gt;
 &nbsp;
-        @focus="_focus()"
-        @blur="_blur()"
+        &lt;textarea
+            :class="{
+                'auto-sizing' : this.conf.autoSize,
+                'is-max' : isMaxRows
+            }"
 &nbsp;
-        :value="data.value"
-        @input="$emit('input', $event.target.value)"
-    &gt;&lt;/textarea&gt;
+            :placeholder="placeholder"
+            :disabled="conf.state === 'disabled' || conf.state === 'readonly'"
+            :rows="data.rows"
+            :maxlength="conf.maxlength"
 &nbsp;
-    &lt;div class="maxlength" v-if="conf.maxlength !== Infinity"&gt;
-        {{(data.value || '').length}}/{{conf.maxlength}}
+            @focus="_focus()"
+            @blur="_blur()"
+&nbsp;
+            :value="data.value"
+            @input="$emit('input', $event.target.value)"
+        &gt;&lt;/textarea&gt;
+&nbsp;
+        &lt;div class="maxlength" v-if="conf.maxlength !== Infinity"&gt;
+            {{(data.value || '').length}}/{{conf.maxlength}}
+        &lt;/div&gt;
+        
     &lt;/div&gt;
 &nbsp;
     &lt;morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn"&gt;清空&lt;/morning-link&gt;
@@ -578,6 +609,10 @@ export default {
     origin : 'Form',
     name : 'textarea',
     props : {
+        insideName : {
+            type : String,
+            default : ''
+        },
         rows : {
             type : Number,
             default : 4
@@ -599,6 +634,7 @@ export default {
         _conf : function () {
 &nbsp;
             return {
+                insideName : this.insideName,
                 rows : this.rows,
                 autoSize : this.autoSize,
                 maxRows : this.maxRows,
@@ -616,13 +652,13 @@ export default {
         },
         placeholder : function () {
 &nbsp;
-            <span class="missing-if-branch" title="else path not taken" >E</span>if (!this.conf.hideName) {
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (this.conf.insideName) {
 &nbsp;
-                return this.conf.formName;
+<span class="cstat-no" title="statement not covered" >                return this.conf.insideName;</span>
 &nbsp;
             }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >            return false;</span>
+            return false;
 &nbsp;
         },
         isMaxRows : function () {
@@ -771,14 +807,14 @@ export default {
 };
 &lt;/script&gt;
 &nbsp;
-&lt;style lang="less" src="./ind<span class="branch-1 cbranch-no" title="branch not covered" >ex.less"&gt;&lt;/style&gt;<span class="branch-1 cbranch-no" title="branch not covered" ><span class="branch-2 cbranch-no" title="branch not covered" ></span></span></span>
+&lt;style lang="less" src="./ind<span class="branch-1 cbranch-no" title="branch not covered" >ex.less"&gt;&lt;/style&gt;<span class="branch-0 cbranch-no" title="branch not covered" ><span class="branch-1 cbranch-no" title="branch not covered" ><span class="branch-2 cbranch-no" title="branch not covered" ></span></span></span></span>
 &nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Aug 19 2018 12:29:37 GMT+0800 (CST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Aug 22 2018 18:59:25 GMT+0800 (CST)
 </div>
 </div>
 <script src="../../../prettify.js"></script>
