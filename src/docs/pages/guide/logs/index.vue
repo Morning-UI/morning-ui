@@ -47,7 +47,7 @@
     - 修复`ui-counter`在某些情况下鼠标键放开后仍会计数的错误
     - 修复`ui-menu`的一些样式问题
 
-    <ui-label color=“primary">升级注意事项</ui-label>
+    <ui-label color="primary">升级注意事项</ui-label>
 
     - `ui-menu`的默认样式变为极简，若要使用之前版本的样式，需要添加`line`的样式类
 
