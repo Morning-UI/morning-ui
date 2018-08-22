@@ -27,7 +27,7 @@
 
             <div class="action">
                 <morning-btn v-if="conf.exportCsv" color="success" size="xs" @emit="_exportCsv">导出</morning-btn>
-            </div>        
+            </div>
         </header>
     </template>
 

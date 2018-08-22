@@ -43,21 +43,21 @@
     <div class="calendar">
         
         <div class="pick-year" v-show="data.yearPick">
-            <template v-for="i in pickyears.years">
-                <div class="year" @click="set(i, 'year');toggleYearPick(false);">
+            <template v-for="(i, index) in pickyears.years">
+                <div class="year" :key="index" @click="set(i, 'year');toggleYearPick(false);">
                     {{i}}
                 </div>
             </template>
         </div>
         <div class="pick-month" v-show="data.monthPick">
-            <template v-for="i in 12">
-                <div class="month" @click="set(i - 1, 'month');toggleMonthPick(false);">
+            <template v-for="(i, index) in 12">
+                <div class="month" :key="index" @click="set(i - 1, 'month');toggleMonthPick(false);">
                     {{i}}月
                 </div>
             </template>
         </div>
         <div class="pick-day" v-show="!data.monthPick && !data.yearPick">
-            <template v-for="item in calendarDay">
+            <template v-for="(item, index) in calendarDay">
                 <div
                     class="day"
                     :class="[
@@ -66,6 +66,7 @@
                         },
                         _highlightClass(item)
                     ]"
+                    :key="index"
 
                     @click="_dateClick(item.date)"
                     @mouseenter="_dateEnter(item.date)"

@@ -19,148 +19,148 @@
         <div class="editor-wrap">
         
             <div class="toolbar">
-                <template v-for="group in conf.tools">
-                    <div class="ql-formats">
-                        <template v-for="tool in group">
+                <template v-for="(group, index) in conf.tools">
+                    <div class="ql-formats" :key="index">
+                        <template v-for="(tool, index) in group">
                             <template v-if="typeof tool === 'object' && Object.keys(tool)[0] === 'header'">
-                                <select class="ql-header" :id="'mor-te-tool-header-'+uiid">
-                                    <template v-for="header in tool.header">
-                                        <option value="" v-if="header === false">正常</option>
-                                        <option value="1" v-if="header === 1">标题1</option>
-                                        <option value="2" v-if="header === 2">标题2</option>
-                                        <option value="3" v-if="header === 3">标题3</option>
-                                        <option value="4" v-if="header === 4">标题4</option>
-                                        <option value="5" v-if="header === 5">标题5</option>
-                                        <option value="6" v-if="header === 6">标题6</option>
+                                <select class="ql-header" :key="index" :id="'mor-te-tool-header-'+uiid">
+                                    <template v-for="(header, sindex) in tool.header">
+                                        <option value="" :key="sindex" v-if="header === false">正常</option>
+                                        <option value="1" :key="sindex" v-if="header === 1">标题1</option>
+                                        <option value="2" :key="sindex" v-if="header === 2">标题2</option>
+                                        <option value="3" :key="sindex" v-if="header === 3">标题3</option>
+                                        <option value="4" :key="sindex" v-if="header === 4">标题4</option>
+                                        <option value="5" :key="sindex" v-if="header === 5">标题5</option>
+                                        <option value="6" :key="sindex" v-if="header === 6">标题6</option>
                                     </template>
                                 </select>
-                                <morning-tip :target="'#mor-te-tool-header-'+uiid" color="extra-light-black">设置标题</morning-tip>
+                                <morning-tip :key="index" :target="'#mor-te-tool-header-'+uiid" color="extra-light-black">设置标题</morning-tip>
                             </template>
 
                             <template v-if="typeof tool === 'object' && Object.keys(tool)[0] === 'size'">
-                                <select class="ql-size" :id="'mor-te-tool-size-'+uiid">
-                                    <template v-for="size in tool.size">
-                                        <option :value="size || ''">{{size || '默认'}}</option>
+                                <select class="ql-size" :key="index" :id="'mor-te-tool-size-'+uiid">
+                                    <template v-for="(size, index) in tool.size">
+                                        <option :value="size || ''" :key="index">{{size || '默认'}}</option>
                                     </template>
                                 </select>
-                                <morning-tip :target="'#mor-te-tool-size-'+uiid" color="extra-light-black">字体大小</morning-tip>
+                                <morning-tip :key="index" :target="'#mor-te-tool-size-'+uiid" color="extra-light-black">字体大小</morning-tip>
                             </template>
 
                             <template v-if="tool === 'undo'">
-                                <button class="ql-undo" :id="'mor-te-tool-undo-'+uiid"></button>
-                                <morning-tip :target="'#mor-te-tool-undo-'+uiid" color="extra-light-black">撤销</morning-tip>
+                                <button :key="index" class="ql-undo" :id="'mor-te-tool-undo-'+uiid"></button>
+                                <morning-tip :key="index" :target="'#mor-te-tool-undo-'+uiid" color="extra-light-black">撤销</morning-tip>
                             </template>
 
                             <template v-if="tool === 'redo'">
-                                <button class="ql-redo" :id="'mor-te-tool-redo-'+uiid"></button>
-                                <morning-tip :target="'#mor-te-tool-redo-'+uiid" color="extra-light-black">重做</morning-tip>
+                                <button :key="index" class="ql-redo" :id="'mor-te-tool-redo-'+uiid"></button>
+                                <morning-tip :key="index" :target="'#mor-te-tool-redo-'+uiid" color="extra-light-black">重做</morning-tip>
                             </template>
 
                             <template v-if="tool === 'bold'">
-                                <button class="ql-bold" :id="'mor-te-tool-bold-'+uiid"></button>
-                                <morning-tip :target="'#mor-te-tool-bold-'+uiid" color="extra-light-black">加粗</morning-tip>
+                                <button :key="index" class="ql-bold" :id="'mor-te-tool-bold-'+uiid"></button>
+                                <morning-tip :key="index" :target="'#mor-te-tool-bold-'+uiid" color="extra-light-black">加粗</morning-tip>
                             </template>
 
                             <template v-if="tool === 'italic'">
-                                <button class="ql-italic" :id="'mor-te-tool-italic-'+uiid"></button>
-                                <morning-tip :target="'#mor-te-tool-italic-'+uiid" color="extra-light-black">斜体</morning-tip>
+                                <button :key="index" class="ql-italic" :id="'mor-te-tool-italic-'+uiid"></button>
+                                <morning-tip :key="index" :target="'#mor-te-tool-italic-'+uiid" color="extra-light-black">斜体</morning-tip>
                             </template>
 
                             <template v-if="tool === 'underline'">
-                                <button class="ql-underline" :id="'mor-te-tool-underline-'+uiid"></button>
-                                <morning-tip :target="'#mor-te-tool-underline-'+uiid" color="extra-light-black">下划线</morning-tip>
+                                <button :key="index" class="ql-underline" :id="'mor-te-tool-underline-'+uiid"></button>
+                                <morning-tip :key="index" :target="'#mor-te-tool-underline-'+uiid" color="extra-light-black">下划线</morning-tip>
                             </template>
 
                             <template v-if="tool === 'strike'">
-                                <button class="ql-strike" :id="'mor-te-tool-strike-'+uiid"></button>
-                                <morning-tip :target="'#mor-te-tool-strike-'+uiid" color="extra-light-black">删除线</morning-tip>
+                                <button :key="index" class="ql-strike" :id="'mor-te-tool-strike-'+uiid"></button>
+                                <morning-tip :key="index" :target="'#mor-te-tool-strike-'+uiid" color="extra-light-black">删除线</morning-tip>
                             </template>
 
                             <template v-if="tool === 'divider'">
-                                <button class="ql-divider" :id="'mor-te-tool-divider-'+uiid"></button>
-                                <morning-tip :target="'#mor-te-tool-divider-'+uiid" color="extra-light-black">横划线</morning-tip>
+                                <button :key="index" class="ql-divider" :id="'mor-te-tool-divider-'+uiid"></button>
+                                <morning-tip :key="index" :target="'#mor-te-tool-divider-'+uiid" color="extra-light-black">横划线</morning-tip>
                             </template>
 
                             <template v-if="typeof tool === 'object' && Object.keys(tool)[0] === 'color'">
-                                <select class="ql-color" :id="'mor-te-tool-color-'+uiid">
-                                    <template v-for="color in tool.color">
-                                        <option :value="color"></option>
+                                <select :key="index" class="ql-color" :id="'mor-te-tool-color-'+uiid">
+                                    <template v-for="(color, index) in tool.color">
+                                        <option :value="color" :key="index"></option>
                                     </template>
                                 </select>
-                                <morning-tip :target="'#mor-te-tool-color-'+uiid" color="extra-light-black">文本颜色</morning-tip>
+                                <morning-tip :key="index" :target="'#mor-te-tool-color-'+uiid" color="extra-light-black">文本颜色</morning-tip>
                             </template>
 
                             <template v-if="typeof tool === 'object' && Object.keys(tool)[0] === 'background'">
-                                <select class="ql-background" :id="'mor-te-tool-background-'+uiid">
-                                    <template v-for="background in tool.background">
-                                        <option :value="background"></option>
+                                <select :key="index" class="ql-background" :id="'mor-te-tool-background-'+uiid">
+                                    <template v-for="(background, index) in tool.background">
+                                        <option :value="background" :key="index"></option>
                                     </template>
                                 </select>
-                                <morning-tip :target="'#mor-te-tool-background-'+uiid" color="extra-light-black">背景颜色</morning-tip>
+                                <morning-tip :key="index" :target="'#mor-te-tool-background-'+uiid" color="extra-light-black">背景颜色</morning-tip>
                             </template>
 
                             <template v-if="typeof tool === 'object' && Object.keys(tool)[0] === 'align'">
-                                <select class="ql-align" :id="'mor-te-tool-align-'+uiid">
-                                    <template v-for="align in tool.align">
-                                        <option :value="align"></option>
+                                <select :key="index" class="ql-align" :id="'mor-te-tool-align-'+uiid">
+                                    <template v-for="(align, index) in tool.align">
+                                        <option :value="align" :key="index"></option>
                                     </template>
                                 </select>
-                                <morning-tip :target="'#mor-te-tool-align-'+uiid" color="extra-light-black">文本对齐</morning-tip>
+                                <morning-tip :key="index" :target="'#mor-te-tool-align-'+uiid" color="extra-light-black">文本对齐</morning-tip>
                             </template>
 
                             <template v-if="typeof tool === 'object' && Object.keys(tool)[0] === 'list' && tool.list === 'ordered'">
-                                <button class="ql-list" value="ordered" :id="'mor-te-tool-list-ordered-'+uiid"></button>
-                                <morning-tip :target="'#mor-te-tool-list-ordered-'+uiid" color="extra-light-black">有序列表</morning-tip>
+                                <button :key="index" class="ql-list" value="ordered" :id="'mor-te-tool-list-ordered-'+uiid"></button>
+                                <morning-tip :key="index" :target="'#mor-te-tool-list-ordered-'+uiid" color="extra-light-black">有序列表</morning-tip>
                             </template>
 
                             <template v-if="typeof tool === 'object' && Object.keys(tool)[0] === 'list' && tool.list === 'bullet'">
-                                <button class="ql-list" value="bullet" :id="'mor-te-tool-list-bullet-'+uiid"></button>
-                                <morning-tip :target="'#mor-te-tool-list-bullet-'+uiid" color="extra-light-black">无序列表</morning-tip>
+                                <button :key="index" class="ql-list" value="bullet" :id="'mor-te-tool-list-bullet-'+uiid"></button>
+                                <morning-tip :key="index" :target="'#mor-te-tool-list-bullet-'+uiid" color="extra-light-black">无序列表</morning-tip>
                             </template>
 
                             <template v-if="typeof tool === 'object' && Object.keys(tool)[0] === 'indent' && tool.indent === '-1'">
-                                <button class="ql-indent" value="-1" :id="'mor-te-tool-indent--1-'+uiid"></button>
-                                <morning-tip :target="'#mor-te-tool-indent--1-'+uiid" color="extra-light-black">减少缩进</morning-tip>
+                                <button :key="index" class="ql-indent" value="-1" :id="'mor-te-tool-indent--1-'+uiid"></button>
+                                <morning-tip :key="index" :target="'#mor-te-tool-indent--1-'+uiid" color="extra-light-black">减少缩进</morning-tip>
                             </template>
 
                             <template v-if="typeof tool === 'object' && Object.keys(tool)[0] === 'indent' && tool.indent === '+1'">
-                                <button class="ql-indent" value="+1" :id="'mor-te-tool-indent-1-'+uiid"></button>
-                                <morning-tip :target="'#mor-te-tool-indent-1-'+uiid" color="extra-light-black">增加缩进</morning-tip>
+                                <button :key="index" class="ql-indent" value="+1" :id="'mor-te-tool-indent-1-'+uiid"></button>
+                                <morning-tip :key="index" :target="'#mor-te-tool-indent-1-'+uiid" color="extra-light-black">增加缩进</morning-tip>
                             </template>
 
                             <template v-if="typeof tool === 'object' && Object.keys(tool)[0] === 'script' && tool.script === 'sub'">
-                                <button class="ql-script" value="sub" :id="'mor-te-tool-script-sub-'+uiid"></button>
-                                <morning-tip :target="'#mor-te-tool-script-sub-'+uiid" color="extra-light-black">下标</morning-tip>
+                                <button :key="index" class="ql-script" value="sub" :id="'mor-te-tool-script-sub-'+uiid"></button>
+                                <morning-tip :key="index" :target="'#mor-te-tool-script-sub-'+uiid" color="extra-light-black">下标</morning-tip>
                             </template>
 
                             <template v-if="typeof tool === 'object' && Object.keys(tool)[0] === 'script' && tool.script === 'super'">
-                                <button class="ql-script" value="super" :id="'mor-te-tool-script-super-'+uiid"></button>
-                                <morning-tip :target="'#mor-te-tool-script-super-'+uiid" color="extra-light-black">上标</morning-tip>
+                                <button :key="index" class="ql-script" value="super" :id="'mor-te-tool-script-super-'+uiid"></button>
+                                <morning-tip :key="index" :target="'#mor-te-tool-script-super-'+uiid" color="extra-light-black">上标</morning-tip>
                             </template>
 
                             <template v-if="tool === 'blockquote'">
-                                <button class="ql-blockquote" :id="'mor-te-tool-blockquote-'+uiid"></button>
-                                <morning-tip :target="'#mor-te-tool-blockquote-'+uiid" color="extra-light-black">引用</morning-tip>
+                                <button :key="index" class="ql-blockquote" :id="'mor-te-tool-blockquote-'+uiid"></button>
+                                <morning-tip :key="index" :target="'#mor-te-tool-blockquote-'+uiid" color="extra-light-black">引用</morning-tip>
                             </template>
 
                             <template v-if="tool === 'code-block'">
-                                <button class="ql-code-block" :id="'mor-te-tool-code-block-'+uiid"></button>
-                                <morning-tip :target="'#mor-te-tool-code-block-'+uiid" color="extra-light-black">代码</morning-tip>
+                                <button :key="index" class="ql-code-block" :id="'mor-te-tool-code-block-'+uiid"></button>
+                                <morning-tip :key="index" :target="'#mor-te-tool-code-block-'+uiid" color="extra-light-black">代码</morning-tip>
                             </template>
 
                             <template v-if="tool === 'clean'">
-                                <button class="ql-clean" :id="'mor-te-tool-clean-'+uiid"></button>
-                                <morning-tip :target="'#mor-te-tool-clean-'+uiid" color="extra-light-black">清除样式</morning-tip>
+                                <button :key="index" class="ql-clean" :id="'mor-te-tool-clean-'+uiid"></button>
+                                <morning-tip :key="index" :target="'#mor-te-tool-clean-'+uiid" color="extra-light-black">清除样式</morning-tip>
                             </template>
 
                             <template v-if="tool === 'link'">
-                                <button class="ql-link" :id="'mor-te-tool-link-'+uiid"></button>
-                                <morning-tip :target="'#mor-te-tool-link-'+uiid" color="extra-light-black">链接</morning-tip>
+                                <button :key="index" class="ql-link" :id="'mor-te-tool-link-'+uiid"></button>
+                                <morning-tip :key="index" :target="'#mor-te-tool-link-'+uiid" color="extra-light-black">链接</morning-tip>
                             </template>
 
                             <template v-if="tool === 'image'">
-                                <button class="ql-image" :id="'mor-te-tool-image-'+uiid"></button>
-                                <morning-tip :target="'#mor-te-tool-image-'+uiid" color="extra-light-black">图片</morning-tip>
+                                <button :key="index" class="ql-image" :id="'mor-te-tool-image-'+uiid"></button>
+                                <morning-tip :key="index" :target="'#mor-te-tool-image-'+uiid" color="extra-light-black">图片</morning-tip>
                             </template>
                         </template>
                     </div>

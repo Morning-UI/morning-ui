@@ -29,9 +29,14 @@
                     v-if="index < (data.lvlist.length - 1)"
                     @click="toLevel(index)"
                 >{{name}}</li>
-                <li class="last" :value="key" v-else>{{name}}</li>
+                <li
+                    class="last"
+                    :key="index + key"
+                    :value="key"
+                    v-else
+                >{{name}}</li>
             </template>
-            <li class="separator" v-if="index < (data.lvlist.length - 1)" v-html="separatorHtml"></li>
+            <li class="separator" :key="index" v-if="index < (data.lvlist.length - 1)" v-html="separatorHtml"></li>
         </template>
         
     </ul>

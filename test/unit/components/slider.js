@@ -6,6 +6,7 @@ import slider                       from '../../../src/lib/components/slider/ind
 const name = 'slider';
 const component = window.morning._origin.Form.extend(slider);
 const num40 = 40;
+const num60 = 60;
 
 test.serial('base : component snapshot', async t => {
 
@@ -79,7 +80,7 @@ test.serial('form base : init component value is right when both use v-model and
         `,
         data : {
             value1 : num40,
-            value2 : 60
+            value2 : num60
         },
         components : {
             [`ui-${name}`] : component

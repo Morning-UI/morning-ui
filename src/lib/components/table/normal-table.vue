@@ -37,7 +37,7 @@
                 @mouseout="$emit('row-mouseout', line)"
             >
                 <template v-for="(col, index) of row">
-                    <td 
+                    <td
                         v-show="!colSetMap[data.normalKeys[index]] || !colSetMap[data.normalKeys[index]].hide"
                         :key="index"
                         v-render="{template : col}"

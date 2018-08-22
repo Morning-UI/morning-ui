@@ -83,6 +83,7 @@
                 <div
                     v-for="(zone, index) in data.zones"
                     class="zone"
+                    :key="index"
                     :zone-id="index"
                     :style="{
                         width: (zone.w * data.scale) + 'px',
@@ -106,8 +107,8 @@
                 </div>
             </div>
 
-            <template v-for="image in data.images">
-                <img :src="image.path" />
+            <template v-for="(image, index) in data.images">
+                <img :src="image.path" :key="index" />
             </template>
         </div>
 

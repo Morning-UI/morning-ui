@@ -9,7 +9,7 @@
     
     <slot name="showbtn"></slot>
 
-    <div 
+    <div
         class="mor-dropdown-wrap"
         :class="[showClass]"
     >
@@ -23,6 +23,8 @@
 import GlobalEvent                  from 'Utils/GlobalEvent';
 import TipManager                   from 'Utils/TipManager';
 import TriggerManager               from 'Utils/TriggerManager';
+
+const triggerDelayTime = 200;
 
 export default {
     origin : 'UI',
@@ -40,7 +42,7 @@ export default {
         },
         triggerInDelay : {
             type : Number,
-            default : 200
+            default : triggerDelayTime
         }
     },
     computed : {

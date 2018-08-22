@@ -15,7 +15,7 @@
                             <i class="mo-icon mo-icon-arrow-down desc" @click="sortCol(key)" v-if="data.sort[key] && data.sort[key].type === 'desc'"></i>
                         </span>
                     </th>
-                    <th 
+                    <th
                         v-else
                         v-show="!colSetMap[key] || !colSetMap[key].hide"
                         :key="key"

@@ -28,6 +28,8 @@
 import TipManager                   from 'Utils/TipManager';
 import TriggerManager               from 'Utils/TriggerManager';
 
+const triggerDelayTime = 200;
+
 export default {
     origin : 'UI',
     name : 'tip',
@@ -53,7 +55,7 @@ export default {
         },
         triggerInDelay : {
             type : Number,
-            default : 200
+            default : triggerDelayTime
         },
         autoReverse : {
             type : Boolean,

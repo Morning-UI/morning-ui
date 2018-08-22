@@ -92,7 +92,7 @@
                     :selectable-range="conf.selectableRange"
 
                     @value-change="_syncValueFromInputToRoot"
-                >    
+                >
                 </morning-private-timepicker>
 
                 <div class="separator" :class="conf.separatorType">{{conf.separator}}</div>
@@ -108,7 +108,7 @@
                     :selectable-range="conf.selectableRange"
 
                     @value-change="_syncValueFromInputToRoot"
-                >    
+                >
                 </morning-private-timepicker>
             </template>
 
@@ -124,7 +124,7 @@
                     :selectable-range="conf.selectableRange"
 
                     @value-change="_syncValueFromInputToRoot"
-                >    
+                >
                 </morning-private-timepicker>
             </template>
         </template>
