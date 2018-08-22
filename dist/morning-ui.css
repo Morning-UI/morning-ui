@@ -11020,6 +11020,203 @@ mor-alert.type-info {
   color: #014c55;
 }
 
+@keyframes move-right-in {
+from {
+    transform: translateX(100%);
+}
+to {
+    transform: translateX(0%);
+}
+}
+@keyframes move-right-out {
+from {
+    transform: translateX(0%);
+}
+to {
+    transform: translateX(-100%);
+}
+}
+@keyframes move-left-in {
+from {
+    transform: translateX(-100%);
+}
+to {
+    transform: translateX(0%);
+}
+}
+@keyframes move-left-out {
+from {
+    transform: translateX(0%);
+}
+to {
+    transform: translateX(100%);
+}
+}
+mor-carousel {
+  display: block;
+  position: relative;
+  box-sizing: border-box;
+}
+mor-carousel .carousel-wrap {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+mor-carousel .carousel-wrap > .carousel-list {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+mor-carousel .carousel-wrap > .carousel-list > div,
+mor-carousel .carousel-wrap > .placeholder > div {
+  width: 100%;
+  background: #EDF1F5;
+  font-size: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+mor-carousel .carousel-wrap > .carousel-list > div > img,
+mor-carousel .carousel-wrap > .placeholder > div > img {
+  padding: 0;
+  border: none !important;
+  margin: 0;
+}
+mor-carousel .carousel-wrap .placeholder {
+  position: relative;
+  z-index: 0;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+mor-carousel .carousel-wrap .placeholder > div {
+  position: relative;
+}
+mor-carousel .control {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+mor-carousel .control > .left-btn,
+mor-carousel .control > .right-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.5;
+}
+mor-carousel .control > .left-btn:hover,
+mor-carousel .control > .right-btn:hover {
+  opacity: 0.75;
+}
+mor-carousel .control > .left-btn {
+  left: 10px;
+}
+mor-carousel .control > .right-btn {
+  right: 10px;
+}
+mor-carousel .control .indicator {
+  position: absolute;
+  bottom: 10px;
+  height: 18px;
+  padding: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  list-style: none;
+}
+mor-carousel .control .indicator li {
+  display: inline-block;
+  margin: 0;
+  vertical-align: top;
+  cursor: pointer;
+  box-sizing: content-box;
+}
+mor-carousel .control .indicator li.current {
+  cursor: default;
+}
+mor-carousel.indicator-pos-outside {
+  padding-bottom: 20px;
+}
+mor-carousel.indicator-pos-outside .control .indicator {
+  bottom: 1px;
+}
+mor-carousel.indicator-type-dot .control .indicator li {
+  height: 10px;
+  padding: 4px 3px;
+}
+mor-carousel.indicator-type-dot .control .indicator li > i {
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+  background: #A8B3C2;
+  display: inline-block;
+  vertical-align: top;
+  transition: 0.2s;
+}
+mor-carousel.indicator-type-dot .control .indicator li.current > i {
+  width: 20px;
+  background: #F33D5D;
+}
+mor-carousel.indicator-type-line .control .indicator li {
+  height: 4px;
+  padding: 7px 3px;
+}
+mor-carousel.indicator-type-line .control .indicator li i {
+  width: 10px;
+  height: 4px;
+  border-radius: 3px;
+  background: #A8B3C2;
+  display: inline-block;
+  vertical-align: top;
+  transition: 0.2s;
+}
+mor-carousel.indicator-type-line .control .indicator li.current > i {
+  width: 20px;
+  background: #F33D5D;
+}
+mor-carousel.toggle-type-none .carousel-list > div {
+  display: none;
+}
+mor-carousel.toggle-type-none .carousel-list > div.current {
+  display: block;
+}
+mor-carousel.toggle-type-fade .carousel-list > div {
+  display: block;
+  opacity: 0;
+  transition: opacity 0.36s;
+}
+mor-carousel.toggle-type-fade .carousel-list > div.current {
+  opacity: 1;
+}
+mor-carousel.toggle-type-move .carousel-list > div {
+  transform: translateX(100%);
+}
+mor-carousel.toggle-type-move .carousel-list > div.next-old {
+  animation: move-right-out 0.36s;
+  animation-fill-mode: forwards;
+}
+mor-carousel.toggle-type-move .carousel-list > div.prev-old {
+  animation: move-left-out 0.36s;
+  animation-fill-mode: forwards;
+}
+mor-carousel.toggle-type-move .carousel-list > div.next-new {
+  animation: move-right-in 0.36s;
+  animation-fill-mode: forwards;
+}
+mor-carousel.toggle-type-move .carousel-list > div.prev-new {
+  animation: move-left-in 0.36s;
+  animation-fill-mode: forwards;
+}
+mor-carousel.toggle-type-move .carousel-list > div.current {
+  transform: translateX(0%);
+}
+
 mor-audio {
   display: block;
   -webkit-user-select: none;
