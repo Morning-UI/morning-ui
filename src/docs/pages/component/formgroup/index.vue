@@ -39,7 +39,7 @@
             <div class="item">
                 <!-- .title : 表单项名称 -->
                 <h5 class="title">
-                    <ui-textright class="fill">Name</ui-textright>
+                    Name
                 </h5>
                 <!-- .content : 表单项内容 -->
                 <div class="content">
