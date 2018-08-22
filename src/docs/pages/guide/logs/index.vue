@@ -48,10 +48,10 @@
 
     #### 废弃
 
-    - `ui-texteditor`组件移除placeholder`配置
+    - `ui-texteditor`组件移除`placeholder`配置
     - `ui-switch`组件移除`auto-hide-name`配置
 
-    <ui-label color=“primary">升级注意事项</ui-label>
+    <ui-label color="primary">升级注意事项</ui-label>
 
     - `form-name`配置现在在所有的表单组件中有了一致的行为和表现，部分表单组件原有显示`form-name`的行为采用新的`inside-name`配置替代，具体使用见组件文档
     - `ui-texteditor`组件的`placeholder`配置被移除，可用`inside-name`替代
