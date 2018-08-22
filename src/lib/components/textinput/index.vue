@@ -9,6 +9,7 @@
         :default-value="defaultValue"
         :hide-name="hideName"
         :clearable="clearable"
+        :inside-name="insideName"
         :hide-value="hideValue"
         :prepend="prepend"
         :append="append"
@@ -17,48 +18,54 @@
         :maxlength="maxlength"
     >
 
-    <template v-if="conf.prepend">
-        <div class="input-group-addon" v-html="conf.prepend"></div>
-    </template>
+    <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
 
-    <template v-if="inputType === 'text'">
-        <input
-            type="text"
-            key="is-text"
+    <div class="textinput-wrap">
 
-            :class="inputClass"
-            :placeholder="placeholder"
-            :disabled="conf.state === 'disabled' || conf.state === 'readonly'"
-            :maxlength="conf.maxlength"
+        <template v-if="conf.prepend">
+            <div class="input-group-addon" v-html="conf.prepend"></div>
+        </template>
 
-            @focus="_focus()"
-            @blur="_blur()"
+        <template v-if="inputType === 'text'">
+            <input
+                type="text"
+                key="is-text"
 
-            :value="data.value"
-            @input="$emit('input', $event.target.value)"
-        />
-    </template>
-    <template v-else>
-        <input
-            type="password"
-            key="is-password"
-            
-            :class="inputClass"
-            :placeholder="placeholder"
-            :disabled="conf.state === 'disabled' || conf.state === 'readonly'"
-            :maxlength="conf.maxlength"
+                :class="inputClass"
+                :placeholder="placeholder"
+                :disabled="conf.state === 'disabled' || conf.state === 'readonly'"
+                :maxlength="conf.maxlength"
 
-            @focus="_focus()"
-            @blur="_blur()"
+                @focus="_focus()"
+                @blur="_blur()"
 
-            :value="data.value"
-            @input="$emit('input', $event.target.value)"
-        />
-    </template>
+                :value="data.value"
+                @input="$emit('input', $event.target.value)"
+            />
+        </template>
+        <template v-else>
+            <input
+                type="password"
+                key="is-password"
+                
+                :class="inputClass"
+                :placeholder="placeholder"
+                :disabled="conf.state === 'disabled' || conf.state === 'readonly'"
+                :maxlength="conf.maxlength"
 
-    <template v-if="conf.append">
-        <div class="input-group-addon" v-html="conf.append"></div>
-    </template>
+                @focus="_focus()"
+                @blur="_blur()"
+
+                :value="data.value"
+                @input="$emit('input', $event.target.value)"
+            />
+        </template>
+
+        <template v-if="conf.append">
+            <div class="input-group-addon" v-html="conf.append"></div>
+        </template>
+        
+    </div>
 
     <morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn">清空</morning-link>
 
@@ -70,6 +77,10 @@ export default {
     origin : 'Form',
     name : 'textinput',
     props : {
+        insideName : {
+            type : String,
+            default : ''
+        },
         hideValue : {
             type : Boolean,
             default : false
@@ -101,6 +112,7 @@ export default {
         _conf : function () {
 
             return {
+                insideName : this.insideName,
                 hideValue : this.hideValue,
                 prepend : this.prepend,
                 append : this.append,
@@ -123,9 +135,9 @@ export default {
         },
         placeholder : function () {
 
-            if (!this.conf.hideName) {
+            if (this.conf.insideName) {
 
-                return this.conf.formName;
+                return this.conf.insideName;
 
             }
 

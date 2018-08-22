@@ -198,6 +198,7 @@
     :::preset/html
     formConfigTable
     ---
+    |[inside-name](#inside-name)|在组件内显示的名称，和`form-name`互为补充。|名称|String|`''`|
     |[item-name](#item-name)|项目的名称，作为添加按钮标题的后缀。|项目的名称|String|`'文件'`|
     |[accept-type](#accept-type)|指导用户上传指定文件扩展名或MIME类型的文件，多个类型之间采用逗号分隔。比如：<br><br>`'image/png'` 或 `'.png'` : 允许上传png文件<br>`'image/png, image/jpeg'` 或 `'.png, .jpg, .jpeg'` : 允许上传png或jpg图片<br>`'image/*'` : 允许所有MIME类型为`image/*`的文件上传。<br><br>需要注意的是此配置并不验证文件的类型，它只指导用户选择正确类型的文件。用户可以在文件选择器中切换类型来上传其他类型的文件。|文件扩展名<br>MIME类型|String|`undefined`|
     |[multi](#multi)|允许同时选择多个文件上传|`true`<br>`false`|Boolean|`false`|
@@ -214,6 +215,14 @@
     ---
     uikey:upload
     configDefaultValue:[{path:'http://morning-ui-image.test.upcdn.net/uploaddemo/17491/1511259398095810608.png',name:'1511259398095810608.png'}]
+    :::
+
+    #### inside-name
+
+    :::democode/html
+    <div style="width:300px;">
+        <ui-upload inside-name="文件"></ui-upload>
+    </div>
     :::
 
     #### item-name

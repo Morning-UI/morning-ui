@@ -55,7 +55,7 @@ export default {
             appId : 'DLVXHL947A',
             apiKey : 'd65302099392ae084914db95ff986f66',
             indexName : 'morning',
-            inputSelector : '.doc-search > input'
+            inputSelector : '.doc-search input'
         });
 
     }

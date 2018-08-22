@@ -68,8 +68,8 @@
     :::preset/html
     formConfigTable
     ---
+    |[inside-name](#inside-name)|在组件内显示的名称，和`form-name`互为补充。|名称|String|`''`|
     |[tools](#tools)|设置富文本编辑工具，这是一个数组，数组中需要再嵌套一个数组。<br>第二层的数组，代表工具组，多个工具组之间会有更多间隙。<br>在第二层的数组中你可以通过字符串或对象来设置使用的工具。(详见[下面的示例](#tools))<br><br>注意：因为此配置的默认值包含所有工具，随着版本更新工具会不断的增加。建议配置固定的工具，而不是采用默认值，以免引入不必要的工具。|数组|Array|默认是包含所有工具的数组|
-    |[placeholder](#placeholder)|编辑区域默认显示内容|字符串|String|`''`|
     :::
 
     :::preset/html
@@ -78,6 +78,14 @@
     uikey:texteditor
     configDefaultValue:'<p>编辑你的文章...</p>'
     configDivStyle:width:100%;height:240px;padding-bottom:40px;
+    :::
+
+    #### inside-name
+
+    :::democode/html
+    <div style="width:100%;height:240px;">
+        <ui-texteditor inside-name="编写文章..."></ui-texteditor>
+    </div>
     :::
 
     #### tools
@@ -223,14 +231,6 @@
                 ['clean']
             ]"
         ></ui-texteditor>
-    </div>
-    :::
-
-    #### placeholder
-
-    :::democode/html
-    <div style="width:100%;height:240px;">
-        <ui-texteditor form-name="文章编辑" placeholder="编写文章..."></ui-texteditor>
     </div>
     :::
 

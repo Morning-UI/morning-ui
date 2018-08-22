@@ -9,6 +9,7 @@
         :default-value="defaultValue"
         :hide-name="hideName"
         :clearable="clearable"
+        :inside-name="insideName"
         :format="format"
         :align="align"
         :selectable-range="selectableRange"
@@ -16,8 +17,7 @@
 
     <morning-textinput
         :ref="'ui-private-timepicker-input-'+uiid"
-        :form-name="conf.formName"
-        :hide-name="conf.hideName"
+        :inside-name="conf.insideName"
         :align="conf.align"
         :state="conf.state"
         prepend="<i class='mo-icon mo-icon-time-co'></i>"
@@ -116,6 +116,10 @@ export default {
     name : 'private-timepicker',
     mixins : [Time, TipManager],
     props : {
+        insideName : {
+            type : String,
+            default : ''
+        },
         format : {
             type : String,
             default : 'HH:mm:ss'
@@ -134,6 +138,7 @@ export default {
         _conf : function () {
 
             return {
+                insideName : this.insideName,
                 format : this.format,
                 align : this.align,
                 selectableRange : this.selectableRange

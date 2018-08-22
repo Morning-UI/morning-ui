@@ -13,7 +13,7 @@
         :allow-alpha="allowAlpha"
     >
     
-    <div class="note" v-if="!conf.hideName">{{conf.formName}}</div>
+    <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
     
     <div class="preview-wrap">
         <div

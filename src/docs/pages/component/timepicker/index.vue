@@ -83,6 +83,7 @@
     :::preset/html
     formConfigTable
     ---
+    |[inside-name](#inside-name)|编辑区域默认显示内容|字符串|String|`''`|
     |[format](#format)|格式化展示的时间|时间格式化字符串(支持时间占位符见下方的演示)|String|`'HH:mm:ss'`|
     |[align](#align)|时间对齐方式|`'left'` : 左对齐<br>`'center'` : 居中对齐<br>`'right'` : 右对齐|String|`'left'`|
     |[selectable-range](#selectable-range)|可选时间范围，若不设置则不限。这是一个数组，支持以下格式：<br><br>`[开始时间, 结束时间]`: 指定单个可选范围<br>`[[开始时间1, 结束时间1], [开始时间2, 结束时间2]]`: 指定多个可选范围<br><br>可选时间将大于等于`开始时间`，小于等于`结束时间`。<br><br>`开始时间`和`结束时间`均为时间字符串需要符合`format`配置的时间格式。|时间范围数组|Array|`undefined`|
@@ -103,6 +104,14 @@
     ---
     uikey:timepicker
     configDefaultValue:'12:30:24'
+    :::
+
+    #### inside-name
+
+    :::democode/html
+    <div style="width:300px;">
+        <ui-timepicker inside-name="时间"></ui-timepicker>
+    </div>
     :::
 
     #### format

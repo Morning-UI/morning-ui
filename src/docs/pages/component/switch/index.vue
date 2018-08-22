@@ -35,7 +35,6 @@
     :::preset/html
     formConfigTable
     ---
-    |[auto-hide-name](#auto-hide-name)|当表档名为空时自动隐藏表单名部分|`true`<br>`false`|Boolean|`false`|
     |[open-note](#open-note)|开关开启的备注，显示开关的右侧|备注(支持HTML)|String|`''`|
     |[close-note](#close-note)|开关关闭的备注，显示的开发的左侧|备注(支持HTML)|String|`''`|
     |[open-mark](#open-mark)|开关开启的标记，显示开关的内部左侧，一般标记比较短只能容纳一个字符(比如icon)。|标记内容(支持HTML)|String|`''`|
@@ -47,18 +46,6 @@
     ---
     uikey:switch
     configDefaultValue:true
-    :::
-
-    #### auto-hide-name
-
-    第二个组件表单名为空，名字部分被隐藏。
-
-    :::democode/html
-    <div style="width:300px;">
-        <ui-switch form-name="姓名" auto-hide-name></ui-switch>
-        <br><br>
-        <ui-switch form-name="" auto-hide-name></ui-switch>
-    </div>
     :::
     
     #### open-note

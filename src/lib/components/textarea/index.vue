@@ -9,32 +9,39 @@
         :default-value="defaultValue"
         :hide-name="hideName"
         :clearable="clearable"
+        :inside-name="insideName"
         :rows="rows"
         :auto-size="autoSize"
         :max-rows="maxRows"
         :maxlength="maxlength"
     >
 
-    <textarea
-        :class="{
-            'auto-sizing' : this.conf.autoSize,
-            'is-max' : isMaxRows
-        }"
+    <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
 
-        :placeholder="placeholder"
-        :disabled="conf.state === 'disabled' || conf.state === 'readonly'"
-        :rows="data.rows"
-        :maxlength="conf.maxlength"
+    <div class="textarea-wrap">
 
-        @focus="_focus()"
-        @blur="_blur()"
+        <textarea
+            :class="{
+                'auto-sizing' : this.conf.autoSize,
+                'is-max' : isMaxRows
+            }"
 
-        :value="data.value"
-        @input="$emit('input', $event.target.value)"
-    ></textarea>
+            :placeholder="placeholder"
+            :disabled="conf.state === 'disabled' || conf.state === 'readonly'"
+            :rows="data.rows"
+            :maxlength="conf.maxlength"
 
-    <div class="maxlength" v-if="conf.maxlength !== Infinity">
-        {{(data.value || '').length}}/{{conf.maxlength}}
+            @focus="_focus()"
+            @blur="_blur()"
+
+            :value="data.value"
+            @input="$emit('input', $event.target.value)"
+        ></textarea>
+
+        <div class="maxlength" v-if="conf.maxlength !== Infinity">
+            {{(data.value || '').length}}/{{conf.maxlength}}
+        </div>
+        
     </div>
 
     <morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn">清空</morning-link>
@@ -47,6 +54,10 @@ export default {
     origin : 'Form',
     name : 'textarea',
     props : {
+        insideName : {
+            type : String,
+            default : ''
+        },
         rows : {
             type : Number,
             default : 4
@@ -68,6 +79,7 @@ export default {
         _conf : function () {
 
             return {
+                insideName : this.insideName,
                 rows : this.rows,
                 autoSize : this.autoSize,
                 maxRows : this.maxRows,
@@ -85,9 +97,9 @@ export default {
         },
         placeholder : function () {
 
-            if (!this.conf.hideName) {
+            if (this.conf.insideName) {
 
-                return this.conf.formName;
+                return this.conf.insideName;
 
             }
 

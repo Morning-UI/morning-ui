@@ -9,6 +9,7 @@
         :default-value="defaultValue"
         :hide-name="hideName"
         :clearable="clearable"
+        :inside-name="insideName"
         :date="date"
         :format="format"
         :align="align"
@@ -25,6 +26,8 @@
         :done-hidden="doneHidden"
     >
 
+    <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
+
     <div class="wrap">
         <div class="input-group-addon" v-if="conf.isRange">
             <i class='mo-icon mo-icon-date'></i>
@@ -37,8 +40,7 @@
                     :ref="'ui-datepicker-input-0-'+uiid"
                     :state="conf.state"
 
-                    :form-name="(conf.startName === false) ? conf.formName : conf.startName"
-                    :hide-name="conf.hideName"
+                    :inside-name="(conf.startName === false) ? conf.insideName : conf.startName"
                     :date="+data.currentDate || undefined"
                     :format="conf.format"
                     :align="conf.align"
@@ -152,8 +154,7 @@
                     :ref="'ui-datepicker-input-1-'+uiid"
                     :state="conf.state"
                     
-                    :form-name="(conf.endName === false) ? conf.formName : conf.endName"
-                    :hide-name="conf.hideName"
+                    :inside-name="(conf.endName === false) ? conf.insideName : conf.endName"
                     :date="+_addMonths(data.currentDate, 1) || undefined"
                     :format="conf.format"
                     :align="conf.align"
@@ -182,9 +183,8 @@
                     :ref="'ui-datepicker-input-0-'+uiid"
                     :state="conf.state"
 
-                    :form-name="conf.formName"
+                    :inside-name="conf.insideName"
                     :default-value="conf.defaultValue"
-                    :hide-name="conf.hideName"
                     :date="+date"
                     :format="conf.format"
                     :align="conf.align"
@@ -337,6 +337,10 @@ export default {
     name : 'datepicker',
     mixins : [Dates],
     props : {
+        insideName : {
+            type : String,
+            default : ''
+        },
         date : {
             type : Number,
             default : +new Date()
@@ -402,6 +406,7 @@ export default {
         _conf : function () {
 
             return {
+                insideName : this.insideName,
                 date : this.date,
                 format : this.format,
                 align : this.align,

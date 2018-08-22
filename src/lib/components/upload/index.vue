@@ -9,6 +9,7 @@
         :default-value="defaultValue"
         :hide-name="hideName"
         :clearable="clearable"
+        :inside-name="insideName"
         :item-name="itemName"
         :accept-type="acceptType"
         :multi="multi"
@@ -24,6 +25,8 @@
         @drop.stop.prevent="_drop"
     >
 
+    <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
+
     <input
         type="file"
         class="fileinput"
@@ -36,9 +39,9 @@
     />
 
     <div class="fl">
-        <p class="fl-name" v-if="!conf.hideName"><morning-center class="fill">{{conf.formName}}</morning-center></p>
+        <p class="fl-name" v-if="!!conf.insideName"><morning-center class="fill">{{conf.insideName}}</morning-center></p>
 
-        <div class="filewrap" :class="{hidename:conf.hideName}">
+        <div class="filewrap" :class="{hidename:!conf.insideName}">
             
             <template v-for="(item, index) in data.files" v-if="typeof item === 'object'">
                 <a
@@ -127,6 +130,10 @@ export default {
     origin : 'Form',
     name : 'upload',
     props : {
+        insideName : {
+            type : String,
+            default : ''
+        },
         itemName : {
             type : String,
             default : ''
@@ -190,6 +197,7 @@ export default {
 
         return {
             conf : {
+                insideName : this.insideName,
                 itemName : this.itemName,
                 acceptType : this.acceptType,
                 multi : this.multi,
