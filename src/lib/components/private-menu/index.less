@@ -14,6 +14,10 @@ mor-private-menu{
             margin: 0;
             position: relative;
 
+            &:hover{
+                z-index: 2;
+            }
+
             > a{
                 color: @colorLightBlue;
                 width: 100%;
@@ -35,6 +39,10 @@ mor-private-menu{
                 > a{
                     color: @colorTheme;
                     font-weight: 600;
+                }
+
+                > .sub-menu-wrap{
+                    z-index: 2;
                 }
             }
         }

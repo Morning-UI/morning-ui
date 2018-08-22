@@ -15,12 +15,18 @@ mor-menu{
                 height: 100%;
 
                 > li{
-                    height: 100%;
+                    height: ~'calc(100% + 1px)';
 
                     > a{
-                        padding-top: ~'calc(100% - ' @formHeight ~')';
-                        padding-bottom: ~'calc(100% - ' @formHeight ~')';
                         height: 100%;
+                        display: flex;
+                        align-items: center;
+                    }
+
+                    &.current{
+                        > a{
+                            border-top: 1px transparent solid;
+                        }
                     }
                 }
             }

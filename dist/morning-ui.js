@@ -35707,6 +35707,8 @@ exports.default = {
     methods: {
         _emit: function _emit(data) {
 
+            console.log(data);
+
             if (!data.childs || Object.keys(data.childs).length > 0) {
 
                 return;
@@ -42244,9 +42246,6 @@ var render = function() {
                                 on: {
                                   click: function($event) {
                                     _vm._itemClick(key, item)
-                                    _vm._toggleSubmenu(
-                                      "menu-item-" + _vm.conf.deep + "-" + key
-                                    )
                                   }
                                 }
                               })
@@ -42259,9 +42258,6 @@ var render = function() {
                                 on: {
                                   click: function($event) {
                                     _vm._itemClick(key, item)
-                                    _vm._toggleSubmenu(
-                                      "menu-item-" + _vm.conf.deep + "-" + key
-                                    )
                                   }
                                 }
                               }),

@@ -8121,12 +8121,15 @@ mor-menu.fill .pos-top .root-menu {
   height: 100%;
 }
 mor-menu.fill .pos-top .root-menu > li {
-  height: 100%;
+  height: calc(100% + 1px);
 }
 mor-menu.fill .pos-top .root-menu > li > a {
-  padding-top: calc(100% -  42px );
-  padding-bottom: calc(100% -  42px );
   height: 100%;
+  display: flex;
+  align-items: center;
+}
+mor-menu.fill .pos-top .root-menu > li.current > a {
+  border-top: 1px transparent solid;
 }
 mor-menu.line .pos-top .root-menu {
   border-bottom: 1px #E2E8EE solid;
@@ -15854,6 +15857,9 @@ mor-private-menu .root-menu > li {
   margin: 0;
   position: relative;
 }
+mor-private-menu .root-menu > li:hover {
+  z-index: 2;
+}
 mor-private-menu .root-menu > li > a {
   color: #8E9CAF;
   width: 100%;
@@ -15871,6 +15877,9 @@ mor-private-menu .root-menu > li > a.current {
 mor-private-menu .root-menu > li.current > a {
   color: #F33D5D;
   font-weight: 600;
+}
+mor-private-menu .root-menu > li.current > .sub-menu-wrap {
+  z-index: 2;
 }
 mor-private-menu .sub-menu-wrap {
   width: 100%;
