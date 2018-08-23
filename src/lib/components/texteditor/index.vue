@@ -83,8 +83,8 @@
 
                             <template v-if="typeof tool === 'object' && Object.keys(tool)[0] === 'color'">
                                 <select :key="index" class="ql-color" :id="'mor-te-tool-color-'+uiid">
-                                    <template v-for="(color, index) in tool.color">
-                                        <option :value="color" :key="index"></option>
+                                    <template v-for="(color, sindex) in tool.color">
+                                        <option :value="color" :key="sindex"></option>
                                     </template>
                                 </select>
                                 <morning-tip :key="index" :target="'#mor-te-tool-color-'+uiid" color="extra-light-black">文本颜色</morning-tip>
@@ -92,8 +92,8 @@
 
                             <template v-if="typeof tool === 'object' && Object.keys(tool)[0] === 'background'">
                                 <select :key="index" class="ql-background" :id="'mor-te-tool-background-'+uiid">
-                                    <template v-for="(background, index) in tool.background">
-                                        <option :value="background" :key="index"></option>
+                                    <template v-for="(background, sindex) in tool.background">
+                                        <option :value="background" :key="sindex"></option>
                                     </template>
                                 </select>
                                 <morning-tip :key="index" :target="'#mor-te-tool-background-'+uiid" color="extra-light-black">背景颜色</morning-tip>
@@ -101,8 +101,8 @@
 
                             <template v-if="typeof tool === 'object' && Object.keys(tool)[0] === 'align'">
                                 <select :key="index" class="ql-align" :id="'mor-te-tool-align-'+uiid">
-                                    <template v-for="(align, index) in tool.align">
-                                        <option :value="align" :key="index"></option>
+                                    <template v-for="(align, sindex) in tool.align">
+                                        <option :value="align" :key="sindex"></option>
                                     </template>
                                 </select>
                                 <morning-tip :key="index" :target="'#mor-te-tool-align-'+uiid" color="extra-light-black">文本对齐</morning-tip>
