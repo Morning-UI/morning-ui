@@ -38,7 +38,7 @@
                     @mousewheel="_mousewheel($event, 'hour')"
                     @scroll.stop.prevent="_scrollTime('hour')"
                 >
-                    <li v-for="i in 24" :class="{current : (i - 1) === data.h, block : !_checkSelectable('hour', i - 1)}" @click="_to('hour', i - 1, $event)">
+                    <li v-for="i in 24" :key="i" :class="{current : (i - 1) === data.h, block : !_checkSelectable('hour', i - 1)}" @click="_to('hour', i - 1, $event)">
                         <template v-if="i < 11">
                             {{`0${i - 1}`}}
                         </template>
@@ -54,7 +54,7 @@
                     @mousewheel="_mousewheel($event, 'minute')"
                     @scroll.prevent="_scrollTime('minute')"
                 >
-                    <li v-for="i in 60" :class="{current : (i - 1) === data.m, block : !_checkSelectable('minute', i - 1)}" @click="_to('minute', i - 1, $event)">
+                    <li v-for="i in 60" :key="i" :class="{current : (i - 1) === data.m, block : !_checkSelectable('minute', i - 1)}" @click="_to('minute', i - 1, $event)">
                         <template v-if="i < 11">
                             {{`0${i - 1}`}}
                         </template>
@@ -70,7 +70,7 @@
                     @mousewheel="_mousewheel($event, 'second')"
                     @scroll.stop.prevent="_scrollTime('second')"
                 >
-                    <li v-for="i in 60" :class="{current : (i - 1) === data.s, block : !_checkSelectable('second', i - 1)}" @click="_to('second', i - 1, $event)">
+                    <li v-for="i in 60" :key="i" :class="{current : (i - 1) === data.s, block : !_checkSelectable('second', i - 1)}" @click="_to('second', i - 1, $event)">
                         <template v-if="i < 11">
                             {{`0${i - 1}`}}
                         </template>

@@ -7,6 +7,7 @@ const name = 'imagemap';
 const component = window.morning._origin.Form.extend(imagemap);
 const num361 = 361;
 
+/* eslint-disable no-magic-numbers */
 test.serial('base : component snapshot', async t => {
 
     const vm = new Vue(component).$mount();
@@ -139,3 +140,4 @@ test.serial('form base : init component value is right when both use v-model and
     });
 
 });
+/* eslint-enable no-magic-numbers */

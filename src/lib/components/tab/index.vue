@@ -12,7 +12,7 @@
     >
 
         <ul>
-            <li 
+            <li
                 v-for="item in data.namelist"
                 :name="item.name"
                 :key="item.name"
@@ -28,7 +28,7 @@
             class="contents"
             :style="{
                 width : data.contentWidth,
-                'min-height' : data.contentMinHeight 
+                'min-height' : data.contentMinHeight
             }"
         >
             <template v-for="(item, name) in $slots">

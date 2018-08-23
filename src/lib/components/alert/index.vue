@@ -12,7 +12,7 @@
     >
 
         <div class="alert-icon" v-if="conf.showIcon">
-            <i class="mo-icon" :class="iconClass"></i>            
+            <i class="mo-icon" :class="iconClass"></i>
         </div>
 
         <div class="alert-content">
