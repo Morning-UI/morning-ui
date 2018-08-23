@@ -259,39 +259,101 @@ morning.install = function (Vue, options) {
 
     Vue.config.ignoredElements = this._ignoreElements;
 
-    let vueRender = (el, binding) => {
+    // let vueRender = (el, binding) => {
 
-        if (binding.oldValue &&
-            binding.oldValue.template === binding.value.template) {
+    //     if (binding.oldValue &&
+    //         binding.oldValue.template === binding.value.template) {
 
-            return;
+    //         return;
 
-        }
+    //     }
 
-        let tagName = el.tagName;
-        let $vue = new Vue({
-            template : `<${tagName}>${binding.value.template}</${tagName}>`
-        });
+    //     let tagName = el.tagName;
+    //     let $vue = new Vue({
+    //         template : `<${tagName}>${binding.value.template}</${tagName}>`
+    //     });
 
-        $vue.$mount();
+    //     $vue.$mount();
 
-        let $childs = $vue.$el.childNodes;
-        let $child;
+    //     let $childs = $vue.$el.childNodes;
+    //     let $child;
 
-        el.innerHTML = '';
+    //     el.innerHTML = '';
 
-        while (($child = $childs[0])) {
+    //     while (($child = $childs[0])) {
 
-            el.appendChild($child);
+    //         el.appendChild($child);
 
-        }
+    //     }
 
-    };
+    // };
 
-    Vue.directive('render', {
-        inserted : vueRender,
-        update : vueRender
+    // Vue.directive('render', {
+    //     inserted : vueRender,
+    //     update : vueRender
+    // });
+
+    document._console = window.console;
+
+    Vue.component('ta', {
+        // template : ('<div>' + '<tt>123</tt> <tt>123</tt>' + '</div>')
     });
+
+    Vue.component('tt', {
+        template : '<div><slot></slot></div>',
+        data : function () {
+
+            let data = {};
+
+            data.isUI = true;
+            data.uiid = this.morning._uiid++;
+            data.data = {};
+            data.conf = undefined;
+
+            data.sizeClass = '';
+            data.colorClass = '';
+            data.stateClass = '';
+
+            return data;
+
+        },
+        computed : {
+            _conf : function () {
+
+                return {};
+
+            }
+        },
+        beforeCreate : function () {
+
+            this.Vue = Vue;
+            this.morning = morning;
+
+        },
+        mounted : function () {
+
+            this.$watch('_conf', (val, oldVal) => {
+
+                console.log('_conf change', this._uid, JSON.stringify(oldVal), JSON.stringify(val));
+
+                // debugger;
+                // this.conf = Object.assign({}, this.conf, val);
+                this.isUI = !this.isUI;
+
+            }, {
+                immediate : true,
+                deep : true
+            });
+
+        },
+        // mounted : function () {
+
+        //     // this.a++;
+
+        // }
+    });
+
+    Vue.component('render', {});
 
     return this;
 

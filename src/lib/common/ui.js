@@ -163,6 +163,7 @@ export default (Vue, morning) => Vue.extend({
 
         this.$watch('_conf', val => {
 
+            // debugger;
             this.conf = Object.assign({}, this.conf, val);
 
         }, {
@@ -170,37 +171,37 @@ export default (Vue, morning) => Vue.extend({
             deep : true
         });
 
-        this.$emit('created');
+        // this.$emit('created');
 
     },
     mounted : function () {
 
-        this.morning.map[this.uiid] = this;
-        this.$el._vm = this;
+        // this.morning.map[this.uiid] = this;
+        // this.$el._vm = this;
 
-        this.$emit('mounted');
+        // this.$emit('mounted');
 
     },
     beforeUpdate : function () {
 
-        this.$emit('before-update');
+        // this.$emit('before-update');
 
     },
     updated : function () {
 
-        this.$el._vm = this;
-        this.$emit('updated');
+        // this.$el._vm = this;
+        // this.$emit('updated');
 
     },
     beforeDestroy : function () {
 
-        this.$emit('before-destroy');
+        // this.$emit('before-destroy');
 
     },
     destroyed : function () {
 
-        this.$el.remove();
-        delete this.morning.map[this.uiid];
+        // this.$el.remove();
+        // delete this.morning.map[this.uiid];
 
     }
 });

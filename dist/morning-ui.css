@@ -481,10 +481,10 @@ textarea {
 .mo-co-border-theme {
   border-color: #F33D5D;
 }
-.mo-co-border-theme {
+.mo-co-border-light-theme {
   border-color: #F86F88;
 }
-.mo-co-border-theme {
+.mo-co-border-dark-theme {
   border-color: #D22343;
 }
 .mo-co-border-success {
@@ -544,10 +544,10 @@ textarea {
 .mo-co-bg-theme {
   background-color: #F33D5D;
 }
-.mo-co-bg-theme {
+.mo-co-bg-light-theme {
   background-color: #F86F88;
 }
-.mo-co-bg-theme {
+.mo-co-bg-dark-theme {
   background-color: #D22343;
 }
 .mo-co-bg-success {

@@ -6,16 +6,11 @@
             <h1><i class="iconfont">&#xe615;</i>Morning Laboratory</h1>
             <div class="area">
                 <div style="width:600px;height:60px;">
-                    <ui-center class="fill">
-                        <ui-menu
-                            :menu="{
-                                'home' : '首页',
-                                'order' : '订单',
-                                'history' : '历史',
-                                'settings' : '设置'
-                            }"
-                        ></ui-menu>
-                    </ui-center>
+                    <ui-tab>
+                        <div slot="key">
+                            <ui-table :list="list"></ui-table>
+                        </div>
+                    </ui-tab>
                 </div>
             </div>
         </div>
@@ -31,13 +26,26 @@ export default {
     data : function () {
     
         return {
-            pageSize : 30,
+            list : [
+                {name : 'Tim Boelaars', age : 20, gender : 'male', action : '<ui-btn>按钮</ui-btn><ui-em>123</ui-em>'}
+                // {name : 'Andrew Colin Beck', age : 41, gender : 'female', action : '<a href="#">发送</a>'},
+                // {name : 'Gustavo Zambelli', age : 23, gender : 'male', action : '<a href="#">发送</a>'},
+                // {name : 'Victor Erixon', age : 15, gender : 'female', action : '<a href="#">发送</a>'},
+                // {name : 'Shaun Moynihan', age : 27, gender : 'female', action : '<a href="#">发送</a>'},
+                // {name : 'Emir Ayouni', age : 21, gender : 'male', action : '<a href="#">发送</a>'}
+            ],
+            a : 'hello'
         };
 
     },
     components : {
         'doc-header' : DocHeader,
         'doc-footer' : DocFooter
+    },
+    methods : {
+        echo : function (text) {
+            alert(text);
+        }
     },
     mounted : function () {
     }

@@ -1140,7 +1140,7 @@
 
     [[[方法]]]
     
-    无
+    <h1>暂无</h1>
 
     [[[事件]]]
 
@@ -1210,7 +1210,7 @@
         <ui-link js="morning.findVM('demoEventLifecycle').$destroy();">触发destroy</ui-link>
     </div>
     :::
-
+    
     [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/table/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>

@@ -39,9 +39,11 @@
                 <template v-for="(col, index) of row">
                     <td
                         v-show="!colSetMap[data.normalKeys[index]] || !colSetMap[data.normalKeys[index]].hide"
-                        :key="index"
-                        v-render="{template : col}"
-                    ></td>
+                    >
+                        <ta 
+                         :is="{template : ('<div>' + '<tt>123</tt> <tt>123</tt>' + '</div>')}"
+                        ></ta>
+                    </td>
                 </template>
             </tr>
         </tbody>
@@ -55,6 +57,15 @@ export default {
         'data',
         'colSetMap',
         'sortCol'
-    ]
+    ],
+    mounted : function () {
+
+        this.$watch('data.normalRows', () => {
+            debugger;
+        }, {
+            deep : true
+        });
+
+    }
 };
 </script>
