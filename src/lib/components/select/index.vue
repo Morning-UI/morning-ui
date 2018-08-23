@@ -116,13 +116,13 @@
                     >
                     </div>
 
-                    <div 
+                    <div
                         class="selected"
                         v-else-if="!!conf.insideName">
                         {{conf.insideName}}
                     </div>
 
-                    <div 
+                    <div
                         class="selected"
                         v-else>
                         &nbsp;
@@ -150,6 +150,7 @@
                 >
                     <template v-for="(index, _index) in showItemList">
                         <li
+                            :key="_index"
                             :index="index"
                             :class="{
                                 hide : data.itemNomathMap[index],
@@ -163,6 +164,7 @@
                         >
                         </li>
                         <li
+                            :key="_index"
                             :index="index"
                             :class="{
                                 hide : data.itemNomathMap[index],
@@ -177,6 +179,7 @@
 
                         <template v-if="conf.itemTip">
                             <morning-tip
+                                :key="_index"
                                 :target="'#ui-select-tip-'+uiid+'-'+index"
                                 :placement="conf.itemTipDirect"
                                 class="tips"

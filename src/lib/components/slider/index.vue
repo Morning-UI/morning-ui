@@ -34,21 +34,15 @@
         >
             <ul class="points">
                 <li
-                    v-for="i in data.pointNum"
+                    v-for="(i, index) in data.pointNum"
+                    :key="index"
                     :style="{left : `${i * data.pointWidth}px`}"
                 ></li>
             </ul>
             <ul class="marks">
                 <li
-                    v-for="mark in conf.markRange"
-                    v-if="
-                        mark instanceof Array &&
-                        mark.length === 2 &&
-                        typeof mark[0] === 'number' &&
-                        typeof mark[1] === 'number' &&
-                        mark[1] > mark[0] &&
-                        data.$track
-                    "
+                    v-for="(mark, index) in marks"
+                    :key="index"
                     :style="{
                         left : `${(mark[0] - conf.min) / range * data.$track.clientWidth}px`,
                         width : `${(mark[1] - mark[0]) / range * data.$track.clientWidth}px`
@@ -112,6 +106,7 @@ import GlobalEvent                  from 'Utils/GlobalEvent';
 
 const clickTipHideTime = 1000;
 const minPointSpacing = 20;
+const defaultMax = 100;
 const returnValueFn = value => value;
 
 export default {
@@ -121,7 +116,7 @@ export default {
     props : {
         max : {
             type : Number,
-            default : 100
+            default : defaultMax
         },
         min : {
             type : Number,
@@ -220,6 +215,28 @@ export default {
                 start : ((this.data.start - this.conf.min) / this.range) * fullwidth,
                 end : ((this.data.end - this.conf.min) / this.range) * fullwidth
             };
+
+        },
+        marks : function () {
+
+            let marks = [];
+
+            for (let mark of this.conf.markRange) {
+
+                if (mark instanceof Array &&
+                    mark.length === 2 &&
+                    typeof mark[0] === 'number' &&
+                    typeof mark[1] === 'number' &&
+                    mark[1] > mark[0] &&
+                    this.data.$track) {
+
+                    marks.push(mark);
+
+                }
+
+            }
+
+            return marks;
 
         }
     },

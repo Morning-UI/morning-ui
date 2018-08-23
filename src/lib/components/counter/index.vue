@@ -13,7 +13,7 @@
         :max="max"
         :min="min"
         :formater="formater"
-        :parser="parser" 
+        :parser="parser"
         :precision="precision"
     >
     

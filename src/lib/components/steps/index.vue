@@ -15,8 +15,9 @@
     <ul class="steps-list">
         <template v-for="(item, index) in conf.list">
             <template v-if="index < conf.list.length - 1">
-                <li 
+                <li
                     class="step"
+                    :key="index"
                     :class="{
                         first: index === 0,
                         done : index <= conf.doneStep,
@@ -43,11 +44,12 @@
                     <div class="title">{{typeof item === 'string' ? item : (item.title || '')}}</div>
                     <div class="desc" v-if="item.desc">{{item.desc}}</div>
                 </li>
-                <li class="link"></li>
+                <li class="link" :key="index"></li>
             </template>
             <template v-else>
-                <li 
+                <li
                     class="step last"
+                    :key="index"
                     :class="{
                         done : index === conf.doneStep,
                         current : conf.markCurrent && index === (conf.doneStep + 1),

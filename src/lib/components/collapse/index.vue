@@ -9,13 +9,14 @@
     >
 
         <ul class="collapse-ul">
-            <template v-for="item in data.list">
-                <li 
+            <template v-for="(item, index) in data.list">
+                <li
                     class="menu"
                     :class="{
                         show : (data.showKeys.indexOf(item.key) !== -1),
                         disabled : (conf.disabledOptions.indexOf(item.key) !== -1)
                     }"
+                    :key="index"
                     :item-key="item.key"
                     v-html="item.title + '<i class=\'mo-collapse-icon mo-icon mo-icon-right\'></i>'"
                     @click="_onClick(item.key)"
@@ -25,6 +26,7 @@
                     :class="{
                         show : (data.showKeys.indexOf(item.key) !== -1)
                     }"
+                    :key="index"
                     :item-key="item.key"
                 >
                     <div class="content-wrap" v-if="conf.disabledOptions.indexOf(item.key) === -1">

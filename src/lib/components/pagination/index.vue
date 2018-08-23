@@ -19,16 +19,17 @@
     </div>
 
     <div class="list">
-        <template v-for="index in data.total">
+        <template v-for="(index, _index) in data.total">
         
             <template v-if="(data.hideEnd - 1) === index && data.hideEnd !== 1">
-                <a href="javascript:;" class="prev" @click="to(data.currentPage - 1)"><i class="mo-icon mo-icon-left"></i></a>
-                <a href="javascript:;" class="ignore">...</a>
+                <a href="javascript:;" :key="_index" class="prev" @click="to(data.currentPage - 1)"><i class="mo-icon mo-icon-left"></i></a>
+                <a href="javascript:;" :key="_index" class="ignore">...</a>
             </template>
             
             <template v-if="index >= data.hideEnd && index <= data.hideStart">
                 <a
                     v-if="data.currentPage === index"
+                    :key="_index"
                     href="javascript:;"
                     class="current"
                 >
@@ -37,6 +38,7 @@
                 
                 <a
                     v-else
+                    :key="_index"
                     href="javascript:;"
                     @click="to(index)"
                 >
@@ -45,8 +47,8 @@
             </template>
 
             <template v-if="(data.hideStart + 1) === index && data.hideStart !== data.total">
-                <a href="javascript:;" class="ignore">...</a>
-                <a href="javascript:;" class="next" @click="to(data.currentPage + 1)"><i class="mo-icon mo-icon-right"></i></a>
+                <a href="javascript:;" :key="_index" class="ignore">...</a>
+                <a href="javascript:;" :key="_index" class="next" @click="to(data.currentPage + 1)"><i class="mo-icon mo-icon-right"></i></a>
             </template>
 
         </template>
@@ -59,9 +61,6 @@
             <i class="mo-icon mo-icon-arrow-right" @click="_jump()"></i>
         </div>
     </div>
-
-</div>
-
         
     </mor-pagination>
 </template>
