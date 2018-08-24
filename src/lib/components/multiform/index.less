@@ -184,11 +184,10 @@ mor-multiform{
 
     &.st-disabled,
     &.st-readonly{
-        -webkit-user-select: none;
-        cursor: not-allowed !important;
-        background-color: @colorFormBackgroundDisable;
-
         > .itemlist{
+            -webkit-user-select: none;
+            cursor: not-allowed !important;
+            background-color: @colorFormBackgroundDisable;
             border-color: @colorFormBorderDisable;
 
             > .name{
