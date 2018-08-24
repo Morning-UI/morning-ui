@@ -26,15 +26,12 @@ export default {
     data : function () {
     
         return {
+            btntext : '发送',
             list : [
-                {name : 'Tim Boelaars', age : 20, gender : 'male', action : '<ui-btn>按钮</ui-btn><ui-em>123</ui-em>'}
-                // {name : 'Andrew Colin Beck', age : 41, gender : 'female', action : '<a href="#">发送</a>'},
-                // {name : 'Gustavo Zambelli', age : 23, gender : 'male', action : '<a href="#">发送</a>'},
-                // {name : 'Victor Erixon', age : 15, gender : 'female', action : '<a href="#">发送</a>'},
-                // {name : 'Shaun Moynihan', age : 27, gender : 'female', action : '<a href="#">发送</a>'},
-                // {name : 'Emir Ayouni', age : 21, gender : 'male', action : '<a href="#">发送</a>'}
-            ],
-            a : 'hello'
+                {name : 'Tim Boelaars', age : 20, gender : 'male', action : '<ui-btn color="success" size="xs">{{context.btntext}}</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'},
+                {name : 'Andrew Colin Beck', age : 41, gender : 'female', action : '<ui-btn color="success" size="xs">{{context.btntext}}</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'},
+                {name : 'Gustavo Zambelli', age : 23, gender : 'male', action : '<ui-btn color="success" size="xs">{{context.btntext}}</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'}
+            ]
         };
 
     },

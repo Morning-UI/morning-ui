@@ -37,18 +37,18 @@
                 @mouseout="$emit('row-mouseout', line)"
             >
                 <template v-for="(col, index) of row">
-                    <render
-                        v-show="!colSetMap[data.titleKeys[index]] || !colSetMap[data.titleKeys[index]].hide"
+                    <keep-alive>
+                    <component
                         :is="{
-                            template : ('<td>' + '<ui-em>123</ui-em><ui-em>123</ui-em>' + '</td>'),
-                            // data : function () {
-                            //     return {
-                            //         // context : this.$parent.$parent.$vnode.context
-                            //     };
-                            // }
+                            template : ('<div>' + col + '</div>'),
+                            data : function () {
+                                return {
+                                    context : this.$parent.$parent.$vnode.context
+                                };
+                            }
                         }"
-                    >
-                    </render>
+                    ></component>
+                    </keep-alive>
                 </template>
             </tr>
         </tbody>

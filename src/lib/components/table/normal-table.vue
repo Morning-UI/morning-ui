@@ -40,9 +40,18 @@
                     <td
                         v-show="!colSetMap[data.normalKeys[index]] || !colSetMap[data.normalKeys[index]].hide"
                     >
-                        <ta 
-                         :is="{template : ('<div>' + '<tt>123</tt> <tt>123</tt>' + '</div>')}"
-                        ></ta>
+                        <keep-alive>
+                        <component
+                            :is="{
+                                template : ('<div>' + col + '</div>'),
+                                data : function () {
+                                    return {
+                                        context : this.$parent.$parent.$vnode.context
+                                    };
+                                }
+                            }"
+                        ></component>
+                        </keep-alive>
                     </td>
                 </template>
             </tr>
@@ -58,14 +67,6 @@ export default {
         'colSetMap',
         'sortCol'
     ],
-    mounted : function () {
-
-        this.$watch('data.normalRows', () => {
-            debugger;
-        }, {
-            deep : true
-        });
-
-    }
+    mounted : function () {}
 };
 </script>
