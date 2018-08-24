@@ -131,12 +131,11 @@ mor-multiinput{
 
     &.st-disabled,
     &.st-readonly{
-        -webkit-user-select: none;
-        cursor: not-allowed !important;
-        background-color: @colorFormBackgroundDisable;
-
         > .itemlist{
+            -webkit-user-select: none;
+            cursor: not-allowed !important;
             border-color: @colorFormBorderDisable;
+            background-color: @colorFormBackgroundDisable;
 
             > .item{
                 cursor: not-allowed !important;
