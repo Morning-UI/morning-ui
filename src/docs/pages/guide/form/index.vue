@@ -52,7 +52,7 @@
 
     表单组件支持下面几种通用事件：
 
-    - value-change : 表单值发生改变时触发
+    - value-change : 表单值发生改变时触发(表单初始化时的数值变动不会触发此事件)
     - created : 组件实例创建后(组件生命周期事件，等同于vue中的`created`)
     - mounted : 组件挂载到DOM后(组件生命周期事件，等同于vue中的`mounted`)
     - before-update : 组件更新前(组件生命周期事件，等同于vue中的`before-update`)

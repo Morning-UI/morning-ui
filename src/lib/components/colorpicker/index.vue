@@ -771,17 +771,20 @@ export default {
         },
         _getColorString : function (type = this.data.showValueType, colorObj = this.colorObj) {
 
-            let alpha = this.data.alpha;
+            let alpha = Math.round(colorObj.alpha() * maxAlpha);
+            let alphaPer = colorObj.alpha();
 
             if (type === 'hex') {
 
+                let hexString = colorObj.hex();
+
                 if (alpha === maxAlpha) {
 
-                    return this.colorHex;
+                    return hexString;
 
                 }
 
-                return this.colorHexWithAlpha;
+                return `${hexString}${leftPad(alpha.toString(num16), 2, '0')}`;
 
             } else if (type === 'rgba') {
 
@@ -791,7 +794,7 @@ export default {
 
                 }
 
-                return `rgba(${Math.round(colorObj.red())}, ${Math.round(colorObj.green())}, ${Math.round(colorObj.blue())}, ${this.alphaPer || 1})`;
+                return `rgba(${Math.round(colorObj.red())}, ${Math.round(colorObj.green())}, ${Math.round(colorObj.blue())}, ${alphaPer || 1})`;
 
             } else if (type === 'hsla') {
 
@@ -803,7 +806,7 @@ export default {
 
                 }
 
-                return `hsla(${Math.round(hslObj.h)}, ${Math.round(hslObj.s)}%, ${Math.round(hslObj.l)}%, ${this.alphaPer || 1})`;
+                return `hsla(${Math.round(hslObj.h)}, ${Math.round(hslObj.s)}%, ${Math.round(hslObj.l)}%, ${alphaPer || 1})`;
 
             }
 

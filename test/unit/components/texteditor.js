@@ -1,12 +1,13 @@
 import test                         from 'ava';
 import snapshot                     from '../../helpers/snapshot';
 import Vue                          from 'vue/dist/vue.common.js';
-import timepicker                   from '../../../src/lib/components/timepicker/index.vue';
+import texteditor                   from '../../../src/lib/components/texteditor/index.vue';
 
-const name = 'timepicker';
-const component = window.morning._origin.Form.extend(timepicker);
-const formValue1 = '15:30:20';
-const formValue2 = '21:53:15';
+const name = 'texteditor';
+const component = window.morning._origin.Form.extend(texteditor);
+const formValue1 = '<p>编辑你的文章123</p>';
+const formValue2 = '<p>编辑你的文章234</p>';
+const num29 = 29;
 
 test.serial('base : component snapshot', async t => {
 
@@ -24,7 +25,7 @@ test.serial('base : init component', async t => {
 
     t.plan(2);
 
-    t.is(vm.uiid, 4);
+    t.is(vm.uiid, num29);
     t.is(component.options.name, `morning-${name}`);
 
 });
@@ -232,7 +233,7 @@ test.serial('form value-change : set same value not emit event', async t => {
 
 test.serial('form value-change : set invalid value not emit event', async t => {
 
-    // this component allow emit event more than once.
+    // this component value always valid.
     t.plan(1);
     t.pass();
 
@@ -240,9 +241,43 @@ test.serial('form value-change : set invalid value not emit event', async t => {
 
 test.serial('form value-change : value pass filter emit event once', async t => {
 
-    // this component allow emit event more than once.
+    let count = 0;
+
+    const vm = new Vue({
+        template : `
+            <div style="width:300px;">
+                <ui-${name} ref="test" :default-value="value" @value-change="echo"></ui-${name}>
+            </div>
+        `,
+        data : {
+            value : formValue1
+        },
+        components : {
+            [`ui-${name}`] : component
+        },
+        methods : {
+            echo : function () {
+
+                count++;
+
+            }
+        },
+        mounted : function () {
+
+            this.$refs.test.set(null);
+
+            Vue.nextTick(() => {
+
+                t.is(count, 1);
+                
+            });
+
+        }
+    });
+
+    vm.$mount();
+
     t.plan(1);
-    t.pass();
 
 });
 
@@ -331,5 +366,38 @@ test.serial('form value-change : v-model change emit event once', async t => {
     vm.$mount();
 
     t.plan(2);
+
+});
+
+test.serial('set json string value', async t => {
+
+    const vm = new Vue({
+        template : `<ui-${name} v-model="value"></ui-${name}>`,
+        data : {
+            value : ''
+        },
+        components : {
+            [`ui-${name}`] : component
+        }
+    });
+
+    vm.$mount();
+    vm.value = '{"a":"a"}';
+
+    t.plan(2);
+
+    Vue.nextTick(() => {
+
+        t.is(vm.$children[0].get(), '{"a":"a"}');
+
+        vm.value = '[1, 2]';
+
+        Vue.nextTick(() => {
+
+            t.is(vm.$children[0].get(), '[1,2]');
+
+        });
+
+    });
 
 });
