@@ -6,16 +6,11 @@
             <h1><i class="iconfont">&#xe615;</i>Morning Laboratory</h1>
             <div class="area">
                 <div style="width:600px;height:60px;">
-                    <ui-center class="fill">
-                        <ui-menu
-                            :menu="{
-                                'home' : '首页',
-                                'order' : '订单',
-                                'history' : '历史',
-                                'settings' : '设置'
-                            }"
-                        ></ui-menu>
-                    </ui-center>
+                    <ui-tab>
+                        <div slot="key">
+                            <ui-table :list="list"></ui-table>
+                        </div>
+                    </ui-tab>
                 </div>
             </div>
         </div>
@@ -31,13 +26,23 @@ export default {
     data : function () {
     
         return {
-            pageSize : 30,
+            btntext : '发送',
+            list : [
+                {name : 'Tim Boelaars', age : 20, gender : 'male', action : '<ui-btn color="success" size="xs">{{context.btntext}}</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'},
+                {name : 'Andrew Colin Beck', age : 41, gender : 'female', action : '<ui-btn color="success" size="xs">{{context.btntext}}</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'},
+                {name : 'Gustavo Zambelli', age : 23, gender : 'male', action : '<ui-btn color="success" size="xs">{{context.btntext}}</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'}
+            ]
         };
 
     },
     components : {
         'doc-header' : DocHeader,
         'doc-footer' : DocFooter
+    },
+    methods : {
+        echo : function (text) {
+            alert(text);
+        }
     },
     mounted : function () {
     }

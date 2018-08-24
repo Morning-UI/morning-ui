@@ -39,9 +39,21 @@
                 <template v-for="(col, index) of row">
                     <td
                         v-show="!colSetMap[data.titleKeys[index]] || !colSetMap[data.titleKeys[index]].hide"
-                        v-render="{template : col}"
                         :key="index"
-                    ></td>
+                    >
+                        <keep-alive>
+                        <component
+                            :is="{
+                                template : ('<div>' + col + '</div>'),
+                                data : function () {
+                                    return {
+                                        context : this.$parent.$parent.$vnode.context
+                                    };
+                                }
+                            }"
+                        ></component>
+                        </keep-alive>
+                    </td>
                 </template>
             </tr>
         </tbody>

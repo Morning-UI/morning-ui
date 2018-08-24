@@ -1272,9 +1272,10 @@ let extVue = (content, paramStr, token, md) => {
 
     let jsScript = document.createElement('script');
 
+    js = js.replace(/\{\*([a-zA-Z0-9_.]+)\*\}/g, '{{$1}}');
     jsScript.innerHTML = `\n${js}\n`;
     evals.push(jsScript);
-    code += jsScript.outerHTML;
+    code += jsScript.outerHTML.replace(/\{\{([a-zA-Z0-9_.]+)\}\}/g, '{*$1*}');
 
     return `<div class="demo">${demo}</div><pre><code class="lang-${token.lang}">${md.utils.escapeHtml(code)}</code></pre>\n`;
 
