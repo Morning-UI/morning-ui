@@ -39,6 +39,7 @@
                 <template v-for="(col, index) of row">
                     <td
                         v-show="!colSetMap[data.normalKeys[index]] || !colSetMap[data.normalKeys[index]].hide"
+                        :key="index"
                     >
                         <keep-alive>
                         <component
