@@ -243,7 +243,7 @@ export default {
 
         this.$on('input', value => {
 
-            this.data.value = value;
+            this._set(value);
             this._resizeArea();
 
         });

@@ -5,12 +5,16 @@
         <div class="lab" style="width:1130px">
             <h1><i class="iconfont">&#xe615;</i>Morning Laboratory</h1>
             <div class="area">
-                <div style="width:600px;height:60px;">
-                    <ui-tab>
-                        <div slot="key">
-                            <ui-table :list="list"></ui-table>
-                        </div>
-                    </ui-tab>
+                <div style="width:300px;">
+                        <ui-colorpicker
+        form-name="姓名"
+        :default-value="'#AAAAAA'"
+        @value-change="echo"
+    ></ui-colorpicker>
+
+    <!-- <ui-textinput @value-change="echo"></ui-textinput> -->
+    <ui-btn @emit="val = 2;">v-model change</ui-btn>
+
                 </div>
             </div>
         </div>
@@ -26,12 +30,7 @@ export default {
     data : function () {
     
         return {
-            btntext : '发送',
-            list : [
-                {name : 'Tim Boelaars', age : 20, gender : 'male', action : '<ui-btn color="success" size="xs">{{context.btntext}}</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'},
-                {name : 'Andrew Colin Beck', age : 41, gender : 'female', action : '<ui-btn color="success" size="xs">{{context.btntext}}</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'},
-                {name : 'Gustavo Zambelli', age : 23, gender : 'male', action : '<ui-btn color="success" size="xs">{{context.btntext}}</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'}
-            ]
+            val : '#333333'
         };
 
     },
@@ -41,7 +40,7 @@ export default {
     },
     methods : {
         echo : function (text) {
-            alert(text);
+            console.log('value-change!');
         }
     },
     mounted : function () {

@@ -744,13 +744,6 @@ export default {
 
             let val;
 
-            if (!origin) {
-                
-                this.data.uploading = false;
-                this.data.uploadQueue = [];
-
-            }
-
             try {
 
                 val = JSON.parse(value);
@@ -760,6 +753,8 @@ export default {
                 val = value;
 
             }
+
+            val = this._valueHandler(val);
 
             if (typeof val === 'object') {
 
@@ -771,7 +766,7 @@ export default {
 
             } else {
 
-                this.data.value = value;
+                this.data.value = val;
 
             }
 
