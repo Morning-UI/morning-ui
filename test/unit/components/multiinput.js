@@ -140,7 +140,7 @@ test.serial('form value-change : set value emit event once', async t => {
     const vm = new Vue({
         template : `
             <div style="width:300px;">
-                <ui-${name} ref="test" :default-value="value" @value-change="echo"</ui-${name}>
+                <ui-${name} ref="test" :default-value="value" @value-change="echo"></ui-${name}>
             </div>
         `,
         data : {
@@ -187,7 +187,7 @@ test.serial('form value-change : set same value not emit event', async t => {
     const vm = new Vue({
         template : `
             <div style="width:300px;">
-                <ui-${name} ref="test" :default-value="value" @value-change="echo"</ui-${name}>
+                <ui-${name} ref="test" :default-value="value" @value-change="echo"></ui-${name}>
             </div>
         `,
         data : {
@@ -237,7 +237,7 @@ test.serial('form value-change : set invalid value not emit event', async t => {
     const vm = new Vue({
         template : `
             <div style="width:300px;">
-                <ui-${name} ref="test" :default-value="value" @value-change="echo"</ui-${name}>
+                <ui-${name} ref="test" :default-value="value" @value-change="echo"></ui-${name}>
             </div>
         `,
         data : {
@@ -286,7 +286,7 @@ test.serial('form value-change : value pass filter emit event once', async t => 
     const vm = new Vue({
         template : `
             <div style="width:300px;">
-                <ui-${name} ref="test" :default-value="value" @value-change="echo" :max="2"</ui-${name}>
+                <ui-${name} ref="test" :default-value="value" @value-change="echo" :max="2"></ui-${name}>
             </div>
         `,
         data : {
