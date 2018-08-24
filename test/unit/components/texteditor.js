@@ -13,6 +13,9 @@ test.serial('base : component snapshot', async t => {
 
     const vm = new Vue(component).$mount();
 
+    // cause : validate is a function, when run coverage test, the function always different.
+    delete vm.$el;
+
     t.plan(1);
 
     snapshot(t, vm);
