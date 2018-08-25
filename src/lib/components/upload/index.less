@@ -372,12 +372,10 @@ mor-upload{
 
     &.st-disabled,
     &.st-readonly{
-        -webkit-user-select: none;
-        cursor: not-allowed !important;
-        background-color: @colorFormBackgroundDisable;
-
         > .fl{
             border-color: @colorFormBorderDisable;
+            -webkit-user-select: none;
+            cursor: not-allowed !important;
             background-color: @colorFormBackgroundDisable;
 
             &:hover{

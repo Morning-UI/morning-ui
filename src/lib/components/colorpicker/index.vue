@@ -61,7 +61,7 @@
                         top : data.straw.y + 'px'
                     }"
                     @mousedown.capture="_moveStraw"
-                    @mouseup.captrue="_stopmoveStraw"
+                    @mouseup.capture="_stopmoveStraw"
                 ></div>
             </div>
             <div class="tools">
@@ -90,8 +90,8 @@
                 </morning-tip>
                 <div class="slider-tool">
                     <div class="hsb">
-                        <morning-slider 
-                            :show-tip="false" 
+                        <morning-slider
+                            :show-tip="false"
                             :max="360"
                             :step="0.01"
                             :state="inputIsReadonly ? 'readonly' : 'normal'"
@@ -156,7 +156,7 @@
            <!--  <div class="palettes">
                 <ul class="colors">
                     <li></li>
-                </ul> 
+                </ul>
             </div> -->
         </div>
     </div>
@@ -175,6 +175,7 @@ import TipManager                   from 'Utils/TipManager';
 import Move                         from 'Utils/Move';
 
 const num16 = 16;
+const num50 = 50;
 const num100 = 100;
 const num360 = 360;
 const maxAlpha = 255;
@@ -234,7 +235,7 @@ export default {
             let hsl = this.colorObj.hsl().object();
 
             hsl.s = num100;
-            hsl.l = 50;
+            hsl.l = num50;
 
             return color(hsl)
                 .alpha(1)
@@ -770,17 +771,20 @@ export default {
         },
         _getColorString : function (type = this.data.showValueType, colorObj = this.colorObj) {
 
-            let alpha = this.data.alpha;
+            let alpha = Math.round(colorObj.alpha() * maxAlpha);
+            let alphaPer = colorObj.alpha();
 
             if (type === 'hex') {
 
+                let hexString = colorObj.hex();
+
                 if (alpha === maxAlpha) {
 
-                    return this.colorHex;
+                    return hexString;
 
                 }
 
-                return this.colorHexWithAlpha;
+                return `${hexString}${leftPad(alpha.toString(num16), 2, '0')}`;
 
             } else if (type === 'rgba') {
 
@@ -790,7 +794,7 @@ export default {
 
                 }
 
-                return `rgba(${Math.round(colorObj.red())}, ${Math.round(colorObj.green())}, ${Math.round(colorObj.blue())}, ${this.alphaPer || 1})`;
+                return `rgba(${Math.round(colorObj.red())}, ${Math.round(colorObj.green())}, ${Math.round(colorObj.blue())}, ${alphaPer || 1})`;
 
             } else if (type === 'hsla') {
 
@@ -802,7 +806,7 @@ export default {
 
                 }
 
-                return `hsla(${Math.round(hslObj.h)}, ${Math.round(hslObj.s)}%, ${Math.round(hslObj.l)}%, ${this.alphaPer || 1})`;
+                return `hsla(${Math.round(hslObj.h)}, ${Math.round(hslObj.s)}%, ${Math.round(hslObj.l)}%, ${alphaPer || 1})`;
 
             }
 

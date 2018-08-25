@@ -5,17 +5,16 @@
         <div class="lab" style="width:1130px">
             <h1><i class="iconfont">&#xe615;</i>Morning Laboratory</h1>
             <div class="area">
-                <div style="width:600px;height:60px;">
-                    <ui-center class="fill">
-                        <ui-menu
-                            :menu="{
-                                'home' : '首页',
-                                'order' : '订单',
-                                'history' : '历史',
-                                'settings' : '设置'
-                            }"
-                        ></ui-menu>
-                    </ui-center>
+                <div style="width:300px;">
+                        <ui-colorpicker
+        form-name="姓名"
+        :default-value="'#AAAAAA'"
+        @value-change="echo"
+    ></ui-colorpicker>
+
+    <!-- <ui-textinput @value-change="echo"></ui-textinput> -->
+    <ui-btn @emit="val = 2;">v-model change</ui-btn>
+
                 </div>
             </div>
         </div>
@@ -31,13 +30,18 @@ export default {
     data : function () {
     
         return {
-            pageSize : 30,
+            val : '#333333'
         };
 
     },
     components : {
         'doc-header' : DocHeader,
         'doc-footer' : DocFooter
+    },
+    methods : {
+        echo : function (text) {
+            console.log('value-change!');
+        }
     },
     mounted : function () {
     }

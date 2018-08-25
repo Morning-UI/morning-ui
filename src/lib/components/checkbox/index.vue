@@ -62,7 +62,7 @@
             </template>
 
             <template v-else>
-                <label 
+                <label
                     :class="{
                         disabled : data.disabledOptions[key]
                     }"

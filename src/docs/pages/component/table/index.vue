@@ -181,25 +181,21 @@
     <ui-table :list="list"></ui-table>
     :::
 
-    但需要注意的是由于在`list`中使用的组件是动态生成的，所以在组件中无法使用父辈Vue实例上的`props`、`data`、`methods`等属性或方法。
+    但需要注意的是由于在`list`配置中通过字符串模板的形式使用，所以在模板中的组件无法直接使用上下文的`props`、`data`、`methods`等属性或方法。
 
-    `props`、`data`的处理可以将`list`设为计算属性来实现数据绑定：
+    为此表格组件通过`context`来帮你精确定位上下文：
 
     :::vue/html
     window.demoVue2 = new Vue({
         el : '{$el}',
         template : '{$template}',
-        computed : {
-            list : function () {
-                return [
-                    {name : 'Tim Boelaars', age : 20, gender : 'male', action : `<ui-btn color="success" size="xs">${this.btntext}</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>`},
-                    {name : 'Andrew Colin Beck', age : 41, gender : 'female', action : `<ui-btn color="success" size="xs">${this.btntext}</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>`},
-                    {name : 'Gustavo Zambelli', age : 23, gender : 'male', action : `<ui-btn color="success" size="xs">${this.btntext}</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>`}
-                ];
-            }
-        },
         data : {
-            btntext : '发送'
+            btntext : '发送',
+            list : [
+                {name : 'Tim Boelaars', age : 20, gender : 'male', action : '<ui-btn color="success" size="xs">{*context.btntext*}</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'},
+                {name : 'Andrew Colin Beck', age : 41, gender : 'female', action : '<ui-btn color="success" size="xs">{*context.btntext*}</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'},
+                {name : 'Gustavo Zambelli', age : 23, gender : 'male', action : '<ui-btn color="success" size="xs">{*context.btntext*}</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'}
+            ]
         }
     });
     ---
@@ -209,16 +205,16 @@
     </div>
     :::
 
-    `methods`可以通过全局方法来代理，比如在下面的例子中第一个发送是无法直接调用`this.send`，会报错。而第二个发送通过全局的`window.sendProxy`来进行转发，从而调用父辈Vue实例的方法：
+    `methods`也同样可以：
 
     :::vue/html
-    window.demoVue = new Vue({
+    new Vue({
         el : '{$el}',
         template : '{$template}',
         data : {
             list : [
-                {name : 'Tim Boelaars', age : 20, gender : 'male', action : '<ui-btn color="success" size="xs" @emit="send(0);">第一个发送</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'},
-                {name : 'Andrew Colin Beck', age : 41, gender : 'female', action : '<ui-btn color="success" size="xs" @emit="window.sendProxy(1);">第二个发送</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'},
+                {name : 'Tim Boelaars', age : 20, gender : 'male', action : '<ui-btn color="success" size="xs" @emit="context.send(0);">第一个发送</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'},
+                {name : 'Andrew Colin Beck', age : 41, gender : 'female', action : '<ui-btn color="success" size="xs" @emit="context.send(1);">第二个发送</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'},
                 {name : 'Gustavo Zambelli', age : 23, gender : 'male', action : '<ui-btn color="success" size="xs">发送</ui-btn> <ui-link color="minor" size="xs">详情</ui-link>'}
             ]
         },
@@ -228,8 +224,6 @@
             }
         }
     });
-
-    window.sendProxy = id => window.demoVue.send(id);
     ---
     <ui-table :list="list"></ui-table>
     :::
@@ -1140,7 +1134,7 @@
 
     [[[方法]]]
     
-    无
+    <h1>暂无</h1>
 
     [[[事件]]]
 
@@ -1210,7 +1204,7 @@
         <ui-link js="morning.findVM('demoEventLifecycle').$destroy();">触发destroy</ui-link>
     </div>
     :::
-
+    
     [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/table/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>

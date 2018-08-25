@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">37.78% </span>
+        <span class="strong">34.07% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>51/135</span>
+        <span class='fraction'>46/135</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">25.42% </span>
+        <span class="strong">20.34% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>15/59</span>
+        <span class='fraction'>12/59</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">40.74% </span>
+        <span class="strong">37.04% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>11/27</span>
+        <span class='fraction'>10/27</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">37.78% </span>
+        <span class="strong">34.07% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>51/135</span>
+        <span class='fraction'>46/135</span>
       </div>
     </div>
   </div>
@@ -432,15 +432,15 @@
 387
 388
 389
-390</td><td class="line-coverage quiet"><span class="cline-any cline-yes">154x</span>
+390</td><td class="line-coverage quiet"><span class="cline-any cline-yes">155x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">154x</span>
-<span class="cline-any cline-yes">154x</span>
-<span class="cline-any cline-yes">154x</span>
-<span class="cline-any cline-yes">154x</span>
+<span class="cline-any cline-yes">155x</span>
+<span class="cline-any cline-yes">155x</span>
+<span class="cline-any cline-yes">155x</span>
+<span class="cline-any cline-yes">155x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">154x</span>
+<span class="cline-any cline-yes">155x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -628,25 +628,25 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1015,27 +1015,27 @@ let MediaControl = {
 <span class="cstat-no" title="statement not covered" >            return info;</span>
 &nbsp;
         },
-        _mcTo : function (time) {
+        _mcTo : <span class="fstat-no" title="function not covered" >function (</span>time) {
 &nbsp;
-            <span class="missing-if-branch" title="if path not taken" >I</span>if (time === undefined) {
+<span class="cstat-no" title="statement not covered" >            if (time === undefined) {</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >                time = this.$refs[`mor-media-slider-${this.uiid}`].get();</span>
 &nbsp;
             }
 &nbsp;
-            <span class="missing-if-branch" title="if path not taken" >I</span>if (time &gt; this.data.mcTotalTime) {
+<span class="cstat-no" title="statement not covered" >            if (time &gt; this.data.mcTotalTime) {</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >                time = this.data.mcTotalTime;</span>
 &nbsp;
-            } else <span class="missing-if-branch" title="if path not taken" >I</span>if (time &lt; 0) {
+            } else <span class="cstat-no" title="statement not covered" >if (time &lt; 0) {</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >                time = 0;</span>
 &nbsp;
             }
 &nbsp;
-            this.data.mcCurrentTime = time;
+<span class="cstat-no" title="statement not covered" >            this.data.mcCurrentTime = time;</span>
 &nbsp;
-            return this;
+<span class="cstat-no" title="statement not covered" >            return this;</span>
 &nbsp;
         },
         _mcMute : <span class="fstat-no" title="function not covered" >function (</span>toggle) {
@@ -1216,7 +1216,7 @@ export default MediaControl;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Aug 22 2018 18:59:25 GMT+0800 (CST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Aug 25 2018 16:27:06 GMT+0800 (CST)
 </div>
 </div>
 <script src="../../prettify.js"></script>

@@ -18,6 +18,42 @@
     
     ### 更新记录
 
+    ### 0.11.14 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2018年8月25日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.11.14" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.11.14/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.11.14/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 改进
+
+    - 在`ui-table`的单元格中使用Vue组件可以通过`context`对象获取到正确的上下文了(不需要通过`window`代理)
+    - 使用Vue Lint检查并通过`Priority A: Essential(Error Prevention)`规则
+
+    #### 修复
+
+    - 修复表单组件的`value-change`会多次触发的问题，并增加对应的单元测试
+    - 修复边框和背景配色类无效的问题
+    - 修复部分表单组件禁用状态下的样式问题
+    - 修复`ui-texteditor`组件在设置特殊数值(对象)时可能出错的问题
+    - 修复`ui-select`使用`separate-emit`配置后一个样式问题
+
+    #### 废弃
+
+    -  `ui-select`的选项内容现在仅支持HTML
+
+    <ui-label color="primary">升级注意事项</ui-label>
+
+    - 现在表单组件的`value-change`事件不会在组件初始化时触发一次，重复触发次数也减少了，这符合`value-change`事件预期的行为。但是由于之前和触发行为不同，可能导致某些问题。请在升级版本的时候对使用此事件的场景进行检查
+    - `ui-select`的选项内容现在仅支持HTML，需要排查是否使用了Vue组件，并替换成HTML
+
+    ---
+
     ### 0.11.13 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="light-blue">
@@ -48,10 +84,10 @@
 
     #### 废弃
 
-    - `ui-texteditor`组件移除placeholder`配置
+    - `ui-texteditor`组件移除`placeholder`配置
     - `ui-switch`组件移除`auto-hide-name`配置
 
-    <ui-label color=“primary">升级注意事项</ui-label>
+    <ui-label color="primary">升级注意事项</ui-label>
 
     - `form-name`配置现在在所有的表单组件中有了一致的行为和表现，部分表单组件原有显示`form-name`的行为采用新的`inside-name`配置替代，具体使用见组件文档
     - `ui-texteditor`组件的`placeholder`配置被移除，可用`inside-name`替代

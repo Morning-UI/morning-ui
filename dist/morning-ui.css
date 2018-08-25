@@ -481,10 +481,10 @@ textarea {
 .mo-co-border-theme {
   border-color: #F33D5D;
 }
-.mo-co-border-theme {
+.mo-co-border-light-theme {
   border-color: #F86F88;
 }
-.mo-co-border-theme {
+.mo-co-border-dark-theme {
   border-color: #D22343;
 }
 .mo-co-border-success {
@@ -544,10 +544,10 @@ textarea {
 .mo-co-bg-theme {
   background-color: #F33D5D;
 }
-.mo-co-bg-theme {
+.mo-co-bg-light-theme {
   background-color: #F86F88;
 }
-.mo-co-bg-theme {
+.mo-co-bg-dark-theme {
   background-color: #D22343;
 }
 .mo-co-bg-success {
@@ -12655,7 +12655,10 @@ mor-select.separate {
   width: auto;
   position: absolute;
 }
-mor-select.input-group {
+mor-select.separate .mor-select-wrap .wrap > .selected {
+  min-width: 100px;
+}
+mor-select.input-group .select-wrap {
   display: flex;
   vertical-align: middle;
 }
@@ -12747,7 +12750,7 @@ mor-select.input-group .select-area {
 .mor-select-wrap li mor-img > img {
   vertical-align: top;
 }
-.mor-select-wrap li > .mo-select-selected-icon {
+.mor-select-wrap li .mo-select-selected-icon {
   font-size: 12px;
   position: absolute;
   right: 5px;
@@ -13291,7 +13294,6 @@ mor-checkbox.co-elbu.border > .il label.part-checked {
 mor-checkbox.co-si > .il label span {
   color: #A8B3C2;
 }
-mor-checkbox.co-si > .il label,
 mor-checkbox.co-si > .il label .box {
   border: 1px #FFFFFF solid;
 }
@@ -13316,7 +13318,6 @@ mor-checkbox.co-si.border > .il label.part-checked {
 mor-checkbox.co-lsi > .il label span {
   color: #A8B3C2;
 }
-mor-checkbox.co-lsi > .il label,
 mor-checkbox.co-lsi > .il label .box {
   border: 1px #FFFFFF solid;
 }
@@ -13341,7 +13342,6 @@ mor-checkbox.co-lsi.border > .il label.part-checked {
 mor-checkbox.co-elsi > .il label span {
   color: #A8B3C2;
 }
-mor-checkbox.co-elsi > .il label,
 mor-checkbox.co-elsi > .il label .box {
   border: 1px #FFFFFF solid;
 }
@@ -13366,7 +13366,6 @@ mor-checkbox.co-elsi.border > .il label.part-checked {
 mor-checkbox.co-g > .il label span {
   color: #E6E6E6;
 }
-mor-checkbox.co-g > .il label,
 mor-checkbox.co-g > .il label .box {
   border: 1px #FFFFFF solid;
 }
@@ -13391,7 +13390,6 @@ mor-checkbox.co-g.border > .il label.part-checked {
 mor-checkbox.co-lg > .il label span {
   color: #E6E6E6;
 }
-mor-checkbox.co-lg > .il label,
 mor-checkbox.co-lg > .il label .box {
   border: 1px #FFFFFF solid;
 }
@@ -13416,7 +13414,6 @@ mor-checkbox.co-lg.border > .il label.part-checked {
 mor-checkbox.co-wh > .il label span {
   color: #E6E6E6;
 }
-mor-checkbox.co-wh > .il label,
 mor-checkbox.co-wh > .il label .box {
   border: 1px #FFFFFF solid;
 }
@@ -13681,7 +13678,6 @@ mor-radio.co-elbu.border > .il label.checked {
 mor-radio.co-si > .il label span {
   color: #A8B3C2;
 }
-mor-radio.co-si > .il label,
 mor-radio.co-si > .il label .box {
   border: 1px #FFFFFF solid;
 }
@@ -13703,7 +13699,6 @@ mor-radio.co-si.border > .il label.checked {
 mor-radio.co-lsi > .il label span {
   color: #A8B3C2;
 }
-mor-radio.co-lsi > .il label,
 mor-radio.co-lsi > .il label .box {
   border: 1px #FFFFFF solid;
 }
@@ -13725,7 +13720,6 @@ mor-radio.co-lsi.border > .il label.checked {
 mor-radio.co-elsi > .il label span {
   color: #A8B3C2;
 }
-mor-radio.co-elsi > .il label,
 mor-radio.co-elsi > .il label .box {
   border: 1px #FFFFFF solid;
 }
@@ -13747,7 +13741,6 @@ mor-radio.co-elsi.border > .il label.checked {
 mor-radio.co-g > .il label span {
   color: #E6E6E6;
 }
-mor-radio.co-g > .il label,
 mor-radio.co-g > .il label .box {
   border: 1px #FFFFFF solid;
 }
@@ -13769,7 +13762,6 @@ mor-radio.co-g.border > .il label.checked {
 mor-radio.co-lg > .il label span {
   color: #E6E6E6;
 }
-mor-radio.co-lg > .il label,
 mor-radio.co-lg > .il label .box {
   border: 1px #FFFFFF solid;
 }
@@ -13791,7 +13783,6 @@ mor-radio.co-lg.border > .il label.checked {
 mor-radio.co-wh > .il label span {
   color: #E6E6E6;
 }
-mor-radio.co-wh > .il label,
 mor-radio.co-wh > .il label .box {
   border: 1px #FFFFFF solid;
 }
@@ -13962,15 +13953,12 @@ mor-multiinput:hover > .itemlist {
 mor-multiinput.can-move > .itemlist > .item {
   cursor: move;
 }
-mor-multiinput.st-disabled,
-mor-multiinput.st-readonly {
-  -webkit-user-select: none;
-  cursor: not-allowed !important;
-  background-color: #ebebeb;
-}
 mor-multiinput.st-disabled > .itemlist,
 mor-multiinput.st-readonly > .itemlist {
+  -webkit-user-select: none;
+  cursor: not-allowed !important;
   border-color: #a6a6a6;
+  background-color: #ebebeb;
 }
 mor-multiinput.st-disabled > .itemlist > .item,
 mor-multiinput.st-readonly > .itemlist > .item {
@@ -14156,14 +14144,11 @@ mor-multiform:hover > .itemlist {
 mor-multiform.can-move > .itemlist > .itemwrap > .item:not(.add) {
   cursor: move;
 }
-mor-multiform.st-disabled,
-mor-multiform.st-readonly {
+mor-multiform.st-disabled > .itemlist,
+mor-multiform.st-readonly > .itemlist {
   -webkit-user-select: none;
   cursor: not-allowed !important;
   background-color: #ebebeb;
-}
-mor-multiform.st-disabled > .itemlist,
-mor-multiform.st-readonly > .itemlist {
   border-color: #a6a6a6;
 }
 mor-multiform.st-disabled > .itemlist > .name,
@@ -15044,15 +15029,11 @@ mor-upload.allow-url > .fl > .filewrap .add {
 mor-upload.allow-url > .fl > .filewrap .add.url {
   padding: 0.4em 1.6em 0.4em 1em;
 }
-mor-upload.st-disabled,
-mor-upload.st-readonly {
-  -webkit-user-select: none;
-  cursor: not-allowed !important;
-  background-color: #ebebeb;
-}
 mor-upload.st-disabled > .fl,
 mor-upload.st-readonly > .fl {
   border-color: #a6a6a6;
+  -webkit-user-select: none;
+  cursor: not-allowed !important;
   background-color: #ebebeb;
 }
 mor-upload.st-disabled > .fl:hover,

@@ -9,7 +9,7 @@
 
     <template v-if="data.loaded">
         <template v-if="data.fail">
-            <morning-center class="fill loadfail"><i class="mo-icon mo-icon-warn-o"> </i>&nbsp;加载失败</morning-center>
+            <morning-center class="fill loadfail"><i class="mo-icon mo-icon-warn-o"></i>&nbsp;加载失败</morning-center>
         </template>
         <template v-else>
             <slot></slot>

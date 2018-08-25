@@ -116,13 +116,13 @@
                     >
                     </div>
 
-                    <div 
+                    <div
                         class="selected"
                         v-else-if="!!conf.insideName">
                         {{conf.insideName}}
                     </div>
 
-                    <div 
+                    <div
                         class="selected"
                         v-else>
                         &nbsp;
@@ -150,6 +150,7 @@
                 >
                     <template v-for="(index, _index) in showItemList">
                         <li
+                            :key="_index"
                             :index="index"
                             :class="{
                                 hide : data.itemNomathMap[index],
@@ -158,11 +159,12 @@
                             :id="'ui-select-tip-'+uiid+'-'+index"
                             @mouseenter="_itemHover(_index)"
                             class="selected"
+                            v-html="data.itemNameMap[index] + '<i class=\'mo-select-selected-icon mo-icon mo-icon-check\'></i>'"
                             v-if="data.itemSelectedMap[index]"
-                            v-render="{template : data.itemNameMap[index]+'<i class=\'mo-select-selected-icon mo-icon mo-icon-check\'></i>'}"
                         >
                         </li>
                         <li
+                            :key="_index"
                             :index="index"
                             :class="{
                                 hide : data.itemNomathMap[index],
@@ -170,13 +172,14 @@
                             }"
                             :id="'ui-select-tip-'+uiid+'-'+index"
                             @mouseenter="_itemHover(_index)"
+                            v-html="data.itemNameMap[index]"
                             v-else
-                            v-render="{template : data.itemNameMap[index]}"
                         >
                         </li>
 
                         <template v-if="conf.itemTip">
                             <morning-tip
+                                :key="_index"
                                 :target="'#ui-select-tip-'+uiid+'-'+index"
                                 :placement="conf.itemTipDirect"
                                 class="tips"

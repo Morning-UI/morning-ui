@@ -203,6 +203,8 @@ export default UI => UI.extend({
 
             }
 
+            val = this._valueHandler(val);
+
             if (typeof val === 'object') {
 
                 if (JSON.stringify(val) !== JSON.stringify(this.data.value)) {
@@ -213,7 +215,7 @@ export default UI => UI.extend({
 
             } else {
 
-                this.data.value = value;
+                this.data.value = val;
 
             }
 
@@ -228,6 +230,22 @@ export default UI => UI.extend({
         _clean : function () {
 
             this.set(undefined);
+
+        },
+        _valueHandler : function (value) {
+
+            let filteredValue = this._valueFilter(value);
+
+            if ((typeof value === 'object' &&
+                typeof filteredValue === 'object' &&
+                JSON.stringify(value) !== JSON.stringify(filteredValue)) ||
+                value !== filteredValue) {
+
+                return filteredValue;
+
+            }
+
+            return value;
 
         },
         set : function (value) {
@@ -384,6 +402,7 @@ export default UI => UI.extend({
         }
 
         this._syncGroup();
+        this.data.value = this._valueHandler(this.data.value);
 
         this.$watch('modelValue', newValue => {
 
@@ -393,25 +412,11 @@ export default UI => UI.extend({
 
         this.$watch('data.value', newValue => {
 
-            let filteredValue = this._valueFilter(newValue);
-
-            if ((typeof newValue === 'object' &&
-                typeof filteredValue === 'object' &&
-                JSON.stringify(newValue) !== JSON.stringify(filteredValue)) ||
-                newValue !== filteredValue) {
-
-                this.data.value = filteredValue;
-
-                return;
-
-            }
-
             this._syncGroup();
             this.$emit('value-change', newValue);
 
         }, {
-            deep : true,
-            immediate : true
+            deep : true
         });
 
         this.$watch('conf.formKey', (newVal, oldVal) => {

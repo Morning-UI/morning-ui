@@ -43,7 +43,7 @@
 
         <div class="filewrap" :class="{hidename:!conf.insideName}">
             
-            <template v-for="(item, index) in data.files" v-if="typeof item === 'object'">
+            <template v-for="(item, index) in data.showFiles">
                 <a
                     class="file"
                     target="_blank;"
@@ -214,7 +214,8 @@ export default {
                 uploadQueue : [],
                 uploading : false,
                 fetchRemoteFile : false,
-                dragover : false
+                dragover : false,
+                showFiles : []
             }
         };
 
@@ -743,13 +744,6 @@ export default {
 
             let val;
 
-            if (!origin) {
-                
-                this.data.uploading = false;
-                this.data.uploadQueue = [];
-
-            }
-
             try {
 
                 val = JSON.parse(value);
@@ -759,6 +753,8 @@ export default {
                 val = value;
 
             }
+
+            val = this._valueHandler(val);
 
             if (typeof val === 'object') {
 
@@ -770,7 +766,7 @@ export default {
 
             } else {
 
-                this.data.value = value;
+                this.data.value = val;
 
             }
 
@@ -806,6 +802,27 @@ export default {
     mounted : function () {
 
         this.set(this.data.value);
+
+        this.$watch('data.files', () => {
+
+            let files = [];
+
+            for (let item of this.data.files) {
+
+                if (typeof item === 'object') {
+
+                    files.push(item);
+
+                }
+
+            }
+
+            this.data.showFiles = files;
+
+        }, {
+            immediate : true,
+            deep : true
+        });
 
     }
 };
