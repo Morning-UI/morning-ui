@@ -93,6 +93,39 @@
         </ui-select>
     </div>
     :::
+
+    #### 内嵌Vue组件
+
+    下拉选择组件支持内嵌Vue组件，点击下面的第一个选项中的头像，将会触发弹窗：
+
+    :::vue/html
+    window.demoVue = new Vue({
+        el : '{$el}',
+        template : '{$template}',
+        data : {
+            list : {
+                tim : '<ui-img class=\'circle\' src=\'https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894\' @click.native="context.echo"></ui-img>Tim Boelaars',
+                andrew : '<ui-img class=\'circle\' src=\'https://cdn.dribbble.com/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444\'></ui-img>Andrew Colin Beck',
+                gustavo : '<ui-img class=\'circle\' src=\'https://cdn.dribbble.com/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442\'></ui-img>Gustavo Zambelli'
+            }
+        },
+        methods : {
+            echo : function () {
+                alert('点击头像！');
+            }
+        }
+    });
+    ---
+    <div style="width:300px;">
+        <ui-select
+            form-name="Select designer"
+            :list="list"
+        >
+        </ui-select>
+    </div>
+    :::
+
+    但需要注意的是由于在`list`配置中通过字符串模板的形式使用，所以在模板中的组件无法直接使用上下文的`props`、`data`、`methods`等属性或方法。需要额外的访问一下`context`对象来帮助你正确的获取上下文，见上面示例中的用法。
     
     #### 可搜索
 
@@ -623,7 +656,7 @@
     <div style="width:300px;">
         <ui-btn class="demo6">点击选择</ui-btn>
         <ui-select
-            form-name="Select designer"
+            inside-name="Select designer"
             separate-emit=".demo6"
             :list="{
                 tim : 'Tim Boelaars',
@@ -649,7 +682,7 @@
     <div style="width:300px;">
         <ui-btn class="demo11">点击选择</ui-btn>
         <ui-select
-            form-name="Select designer"
+            inside-name="Select designer"
             separate-emit=".demo11"
             :list-width="180"
             :list="{
@@ -676,7 +709,7 @@
     <div style="width:300px;">
         <ui-btn class="demo7">点击选择</ui-btn>
         <ui-select
-            form-name="Select designer"
+            inside-name="Select designer"
             separate-emit=".demo7"
             can-search
             :list="{
@@ -703,7 +736,7 @@
     <div style="width:300px;">
         <ui-btn class="demo8">点击选择</ui-btn>
         <ui-select
-            form-name="Select designer"
+            inside-name="Select designer"
             separate-emit=".demo8"
             multi-select
             :max="5"
@@ -731,7 +764,7 @@
     <div style="width:300px;">
         <ui-btn class="demo9">点击选择</ui-btn>
         <ui-select
-            form-name="Select designer"
+            inside-name="Select designer"
             separate-emit=".demo9"
             can-search
             multi-select
@@ -760,7 +793,7 @@
     <div style="width:300px;">
         <ui-btn class="demo10">点击选择</ui-btn>
         <ui-select
-            form-name="Select designer"
+            inside-name="Select designer"
             separate-emit=".demo10"
             can-search
             multi-select
@@ -789,7 +822,7 @@
     <div style="width:300px;">
         <ui-btn class="demo13">点击选择</ui-btn>
         <ui-select
-            form-name="Select designer"
+            inside-name="Select designer"
             separate-emit=".demo13"
             multi-select
             :hide-selected="false"
