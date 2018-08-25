@@ -159,8 +159,8 @@
                             :id="'ui-select-tip-'+uiid+'-'+index"
                             @mouseenter="_itemHover(_index)"
                             class="selected"
+                            v-html="data.itemNameMap[index] + '<i class=\'mo-select-selected-icon mo-icon mo-icon-check\'></i>'"
                             v-if="data.itemSelectedMap[index]"
-                            v-render="{template : data.itemNameMap[index]+'<i class=\'mo-select-selected-icon mo-icon mo-icon-check\'></i>'}"
                         >
                         </li>
                         <li
@@ -172,8 +172,8 @@
                             }"
                             :id="'ui-select-tip-'+uiid+'-'+index"
                             @mouseenter="_itemHover(_index)"
+                            v-html="data.itemNameMap[index]"
                             v-else
-                            v-render="{template : data.itemNameMap[index]}"
                         >
                         </li>
 

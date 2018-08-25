@@ -291,11 +291,17 @@ mor-select{
         min-height: 0;
         width: auto;
         position: absolute;
+
+        .mor-select-wrap .wrap > .selected{
+            min-width: 100px;
+        }
     }
 
     &.input-group {
-        display: flex;
-        vertical-align: middle;
+        .select-wrap{
+            display: flex;
+            vertical-align: middle;
+        }
 
         .input-group-addon {
             padding: @fontSize*0.375 @fontSize*0.75;
@@ -398,7 +404,7 @@ mor-select{
             vertical-align: top;
         }
 
-        > .mo-select-selected-icon{
+        .mo-select-selected-icon{
             font-size: @fontSize*0.75;
             position: absolute;
             right: 5px;
