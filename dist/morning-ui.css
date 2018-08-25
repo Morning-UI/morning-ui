@@ -12655,7 +12655,10 @@ mor-select.separate {
   width: auto;
   position: absolute;
 }
-mor-select.input-group {
+mor-select.separate .mor-select-wrap .wrap > .selected {
+  min-width: 100px;
+}
+mor-select.input-group .select-wrap {
   display: flex;
   vertical-align: middle;
 }
@@ -12747,7 +12750,7 @@ mor-select.input-group .select-area {
 .mor-select-wrap li mor-img > img {
   vertical-align: top;
 }
-.mor-select-wrap li > .mo-select-selected-icon {
+.mor-select-wrap li .mo-select-selected-icon {
   font-size: 12px;
   position: absolute;
   right: 5px;

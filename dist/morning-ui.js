@@ -22766,16 +22766,19 @@ exports.default = {
             var colorObj = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.colorObj;
 
 
-            var alpha = this.data.alpha;
+            var alpha = Math.round(colorObj.alpha() * maxAlpha);
+            var alphaPer = colorObj.alpha();
 
             if (type === 'hex') {
 
+                var hexString = colorObj.hex();
+
                 if (alpha === maxAlpha) {
 
-                    return this.colorHex;
+                    return hexString;
                 }
 
-                return this.colorHexWithAlpha;
+                return '' + hexString + (0, _leftPad2.default)(alpha.toString(num16), 2, '0');
             } else if (type === 'rgba') {
 
                 if (alpha === maxAlpha) {
@@ -22783,7 +22786,7 @@ exports.default = {
                     return 'rgb(' + Math.round(colorObj.red()) + ', ' + Math.round(colorObj.green()) + ', ' + Math.round(colorObj.blue()) + ')';
                 }
 
-                return 'rgba(' + Math.round(colorObj.red()) + ', ' + Math.round(colorObj.green()) + ', ' + Math.round(colorObj.blue()) + ', ' + (this.alphaPer || 1) + ')';
+                return 'rgba(' + Math.round(colorObj.red()) + ', ' + Math.round(colorObj.green()) + ', ' + Math.round(colorObj.blue()) + ', ' + (alphaPer || 1) + ')';
             } else if (type === 'hsla') {
 
                 var hslObj = colorObj.hsl().object();
@@ -22793,7 +22796,7 @@ exports.default = {
                     return 'hsl(' + Math.round(hslObj.h) + ', ' + Math.round(hslObj.s) + '%, ' + Math.round(hslObj.l) + '%)';
                 }
 
-                return 'hsla(' + Math.round(hslObj.h) + ', ' + Math.round(hslObj.s) + '%, ' + Math.round(hslObj.l) + '%, ' + (this.alphaPer || 1) + ')';
+                return 'hsla(' + Math.round(hslObj.h) + ', ' + Math.round(hslObj.s) + '%, ' + Math.round(hslObj.l) + '%, ' + (alphaPer || 1) + ')';
             }
 
             return defaultColor;
@@ -23729,12 +23732,6 @@ exports.default = {
 
             var val = void 0;
 
-            if (!origin) {
-
-                this.data.uploading = false;
-                this.data.uploadQueue = [];
-            }
-
             try {
 
                 val = JSON.parse(value);
@@ -23742,6 +23739,8 @@ exports.default = {
 
                 val = value;
             }
+
+            val = this._valueHandler(val);
 
             if ((typeof val === 'undefined' ? 'undefined' : _typeof(val)) === 'object') {
 
@@ -23751,7 +23750,7 @@ exports.default = {
                 }
             } else {
 
-                this.data.value = value;
+                this.data.value = val;
             }
 
             if (!origin) {
@@ -30706,6 +30705,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
@@ -31204,6 +31205,11 @@ exports.default = {
         return value;
       }
 
+      if ((typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object') {
+
+        return JSON.stringify(value);
+      }
+
       return String(value);
     },
     _refreshQuillHeight: function _refreshQuillHeight() {
@@ -31591,7 +31597,7 @@ exports.default = {
 
         this.$on('input', function (value) {
 
-            _this.data.value = value;
+            _this._set(value);
             _this._resizeArea();
         });
     }
@@ -31814,7 +31820,7 @@ exports.default = {
 
         this.$on('input', function (value) {
 
-            _this.data.value = value;
+            _this._set(value);
         });
     }
 };
@@ -47106,19 +47112,6 @@ var render = function() {
                         return [
                           _vm.data.itemSelectedMap[index]
                             ? _c("li", {
-                                directives: [
-                                  {
-                                    name: "render",
-                                    rawName: "v-render",
-                                    value: {
-                                      template:
-                                        _vm.data.itemNameMap[index] +
-                                        "<i class='mo-select-selected-icon mo-icon mo-icon-check'></i>"
-                                    },
-                                    expression:
-                                      "{template : data.itemNameMap[index]+'<i class=\\'mo-select-selected-icon mo-icon mo-icon-check\\'></i>'}"
-                                  }
-                                ],
                                 key: _index,
                                 staticClass: "selected",
                                 class: {
@@ -47129,6 +47122,12 @@ var render = function() {
                                   index: index,
                                   id: "ui-select-tip-" + _vm.uiid + "-" + index
                                 },
+                                domProps: {
+                                  innerHTML: _vm._s(
+                                    _vm.data.itemNameMap[index] +
+                                      "<i class='mo-select-selected-icon mo-icon mo-icon-check'></i>"
+                                  )
+                                },
                                 on: {
                                   mouseenter: function($event) {
                                     _vm._itemHover(_index)
@@ -47136,17 +47135,6 @@ var render = function() {
                                 }
                               })
                             : _c("li", {
-                                directives: [
-                                  {
-                                    name: "render",
-                                    rawName: "v-render",
-                                    value: {
-                                      template: _vm.data.itemNameMap[index]
-                                    },
-                                    expression:
-                                      "{template : data.itemNameMap[index]}"
-                                  }
-                                ],
                                 key: _index,
                                 class: {
                                   hide: _vm.data.itemNomathMap[index],
@@ -47155,6 +47143,9 @@ var render = function() {
                                 attrs: {
                                   index: index,
                                   id: "ui-select-tip-" + _vm.uiid + "-" + index
+                                },
+                                domProps: {
+                                  innerHTML: _vm._s(_vm.data.itemNameMap[index])
                                 },
                                 on: {
                                   mouseenter: function($event) {
@@ -47501,7 +47492,7 @@ var render = function() {
                   "div",
                   { key: index, staticClass: "ql-formats" },
                   [
-                    _vm._l(group, function(tool, index) {
+                    _vm._l(group, function(tool, sindex) {
                       return [
                         typeof tool === "object" &&
                         Object.keys(tool)[0] === "header"
@@ -47509,20 +47500,20 @@ var render = function() {
                               _c(
                                 "select",
                                 {
-                                  key: index,
+                                  key: sindex,
                                   staticClass: "ql-header",
                                   attrs: {
                                     id: "mor-te-tool-header-" + _vm.uiid
                                   }
                                 },
                                 [
-                                  _vm._l(tool.header, function(header, sindex) {
+                                  _vm._l(tool.header, function(header, tindex) {
                                     return [
                                       header === false
                                         ? _c(
                                             "option",
                                             {
-                                              key: sindex,
+                                              key: tindex,
                                               attrs: { value: "" }
                                             },
                                             [_vm._v("正常")]
@@ -47533,7 +47524,7 @@ var render = function() {
                                         ? _c(
                                             "option",
                                             {
-                                              key: sindex,
+                                              key: tindex,
                                               attrs: { value: "1" }
                                             },
                                             [_vm._v("标题1")]
@@ -47544,7 +47535,7 @@ var render = function() {
                                         ? _c(
                                             "option",
                                             {
-                                              key: sindex,
+                                              key: tindex,
                                               attrs: { value: "2" }
                                             },
                                             [_vm._v("标题2")]
@@ -47555,7 +47546,7 @@ var render = function() {
                                         ? _c(
                                             "option",
                                             {
-                                              key: sindex,
+                                              key: tindex,
                                               attrs: { value: "3" }
                                             },
                                             [_vm._v("标题3")]
@@ -47566,7 +47557,7 @@ var render = function() {
                                         ? _c(
                                             "option",
                                             {
-                                              key: sindex,
+                                              key: tindex,
                                               attrs: { value: "4" }
                                             },
                                             [_vm._v("标题4")]
@@ -47577,7 +47568,7 @@ var render = function() {
                                         ? _c(
                                             "option",
                                             {
-                                              key: sindex,
+                                              key: tindex,
                                               attrs: { value: "5" }
                                             },
                                             [_vm._v("标题5")]
@@ -47588,7 +47579,7 @@ var render = function() {
                                         ? _c(
                                             "option",
                                             {
-                                              key: sindex,
+                                              key: tindex,
                                               attrs: { value: "6" }
                                             },
                                             [_vm._v("标题6")]
@@ -47603,7 +47594,7 @@ var render = function() {
                               _c(
                                 "morning-tip",
                                 {
-                                  key: index,
+                                  key: sindex,
                                   attrs: {
                                     target: "#mor-te-tool-header-" + _vm.uiid,
                                     color: "extra-light-black"
@@ -47620,17 +47611,17 @@ var render = function() {
                               _c(
                                 "select",
                                 {
-                                  key: index,
+                                  key: sindex,
                                   staticClass: "ql-size",
                                   attrs: { id: "mor-te-tool-size-" + _vm.uiid }
                                 },
                                 [
-                                  _vm._l(tool.size, function(size, index) {
+                                  _vm._l(tool.size, function(size, tindex) {
                                     return [
                                       _c(
                                         "option",
                                         {
-                                          key: index,
+                                          key: tindex,
                                           domProps: { value: size || "" }
                                         },
                                         [_vm._v(_vm._s(size || "默认"))]
@@ -47644,7 +47635,7 @@ var render = function() {
                               _c(
                                 "morning-tip",
                                 {
-                                  key: index,
+                                  key: sindex,
                                   attrs: {
                                     target: "#mor-te-tool-size-" + _vm.uiid,
                                     color: "extra-light-black"
@@ -47658,7 +47649,7 @@ var render = function() {
                         tool === "undo"
                           ? [
                               _c("button", {
-                                key: index,
+                                key: sindex,
                                 staticClass: "ql-undo",
                                 attrs: { id: "mor-te-tool-undo-" + _vm.uiid }
                               }),
@@ -47666,7 +47657,7 @@ var render = function() {
                               _c(
                                 "morning-tip",
                                 {
-                                  key: index,
+                                  key: sindex,
                                   attrs: {
                                     target: "#mor-te-tool-undo-" + _vm.uiid,
                                     color: "extra-light-black"
@@ -47680,7 +47671,7 @@ var render = function() {
                         tool === "redo"
                           ? [
                               _c("button", {
-                                key: index,
+                                key: sindex,
                                 staticClass: "ql-redo",
                                 attrs: { id: "mor-te-tool-redo-" + _vm.uiid }
                               }),
@@ -47688,7 +47679,7 @@ var render = function() {
                               _c(
                                 "morning-tip",
                                 {
-                                  key: index,
+                                  key: sindex,
                                   attrs: {
                                     target: "#mor-te-tool-redo-" + _vm.uiid,
                                     color: "extra-light-black"
@@ -47702,7 +47693,7 @@ var render = function() {
                         tool === "bold"
                           ? [
                               _c("button", {
-                                key: index,
+                                key: sindex,
                                 staticClass: "ql-bold",
                                 attrs: { id: "mor-te-tool-bold-" + _vm.uiid }
                               }),
@@ -47710,7 +47701,7 @@ var render = function() {
                               _c(
                                 "morning-tip",
                                 {
-                                  key: index,
+                                  key: sindex,
                                   attrs: {
                                     target: "#mor-te-tool-bold-" + _vm.uiid,
                                     color: "extra-light-black"
@@ -47724,7 +47715,7 @@ var render = function() {
                         tool === "italic"
                           ? [
                               _c("button", {
-                                key: index,
+                                key: sindex,
                                 staticClass: "ql-italic",
                                 attrs: { id: "mor-te-tool-italic-" + _vm.uiid }
                               }),
@@ -47732,7 +47723,7 @@ var render = function() {
                               _c(
                                 "morning-tip",
                                 {
-                                  key: index,
+                                  key: sindex,
                                   attrs: {
                                     target: "#mor-te-tool-italic-" + _vm.uiid,
                                     color: "extra-light-black"
@@ -47746,7 +47737,7 @@ var render = function() {
                         tool === "underline"
                           ? [
                               _c("button", {
-                                key: index,
+                                key: sindex,
                                 staticClass: "ql-underline",
                                 attrs: {
                                   id: "mor-te-tool-underline-" + _vm.uiid
@@ -47756,7 +47747,7 @@ var render = function() {
                               _c(
                                 "morning-tip",
                                 {
-                                  key: index,
+                                  key: sindex,
                                   attrs: {
                                     target:
                                       "#mor-te-tool-underline-" + _vm.uiid,
@@ -47771,7 +47762,7 @@ var render = function() {
                         tool === "strike"
                           ? [
                               _c("button", {
-                                key: index,
+                                key: sindex,
                                 staticClass: "ql-strike",
                                 attrs: { id: "mor-te-tool-strike-" + _vm.uiid }
                               }),
@@ -47779,7 +47770,7 @@ var render = function() {
                               _c(
                                 "morning-tip",
                                 {
-                                  key: index,
+                                  key: sindex,
                                   attrs: {
                                     target: "#mor-te-tool-strike-" + _vm.uiid,
                                     color: "extra-light-black"
@@ -47793,7 +47784,7 @@ var render = function() {
                         tool === "divider"
                           ? [
                               _c("button", {
-                                key: index,
+                                key: sindex,
                                 staticClass: "ql-divider",
                                 attrs: { id: "mor-te-tool-divider-" + _vm.uiid }
                               }),
@@ -47801,7 +47792,7 @@ var render = function() {
                               _c(
                                 "morning-tip",
                                 {
-                                  key: index,
+                                  key: sindex,
                                   attrs: {
                                     target: "#mor-te-tool-divider-" + _vm.uiid,
                                     color: "extra-light-black"
@@ -47818,15 +47809,15 @@ var render = function() {
                               _c(
                                 "select",
                                 {
-                                  key: index,
+                                  key: sindex,
                                   staticClass: "ql-color",
                                   attrs: { id: "mor-te-tool-color-" + _vm.uiid }
                                 },
                                 [
-                                  _vm._l(tool.color, function(color, sindex) {
+                                  _vm._l(tool.color, function(color, tindex) {
                                     return [
                                       _c("option", {
-                                        key: sindex,
+                                        key: tindex,
                                         domProps: { value: color }
                                       })
                                     ]
@@ -47838,7 +47829,7 @@ var render = function() {
                               _c(
                                 "morning-tip",
                                 {
-                                  key: index,
+                                  key: sindex,
                                   attrs: {
                                     target: "#mor-te-tool-color-" + _vm.uiid,
                                     color: "extra-light-black"
@@ -47855,7 +47846,7 @@ var render = function() {
                               _c(
                                 "select",
                                 {
-                                  key: index,
+                                  key: sindex,
                                   staticClass: "ql-background",
                                   attrs: {
                                     id: "mor-te-tool-background-" + _vm.uiid
@@ -47864,11 +47855,11 @@ var render = function() {
                                 [
                                   _vm._l(tool.background, function(
                                     background,
-                                    sindex
+                                    tindex
                                   ) {
                                     return [
                                       _c("option", {
-                                        key: sindex,
+                                        key: tindex,
                                         domProps: { value: background }
                                       })
                                     ]
@@ -47880,7 +47871,7 @@ var render = function() {
                               _c(
                                 "morning-tip",
                                 {
-                                  key: index,
+                                  key: sindex,
                                   attrs: {
                                     target:
                                       "#mor-te-tool-background-" + _vm.uiid,
@@ -47898,15 +47889,15 @@ var render = function() {
                               _c(
                                 "select",
                                 {
-                                  key: index,
+                                  key: sindex,
                                   staticClass: "ql-align",
                                   attrs: { id: "mor-te-tool-align-" + _vm.uiid }
                                 },
                                 [
-                                  _vm._l(tool.align, function(align, sindex) {
+                                  _vm._l(tool.align, function(align, tindex) {
                                     return [
                                       _c("option", {
-                                        key: sindex,
+                                        key: tindex,
                                         domProps: { value: align }
                                       })
                                     ]
@@ -47918,7 +47909,7 @@ var render = function() {
                               _c(
                                 "morning-tip",
                                 {
-                                  key: index,
+                                  key: sindex,
                                   attrs: {
                                     target: "#mor-te-tool-align-" + _vm.uiid,
                                     color: "extra-light-black"
@@ -47934,7 +47925,7 @@ var render = function() {
                         tool.list === "ordered"
                           ? [
                               _c("button", {
-                                key: index,
+                                key: sindex,
                                 staticClass: "ql-list",
                                 attrs: {
                                   value: "ordered",
@@ -47945,7 +47936,7 @@ var render = function() {
                               _c(
                                 "morning-tip",
                                 {
-                                  key: index,
+                                  key: sindex,
                                   attrs: {
                                     target:
                                       "#mor-te-tool-list-ordered-" + _vm.uiid,
@@ -47962,7 +47953,7 @@ var render = function() {
                         tool.list === "bullet"
                           ? [
                               _c("button", {
-                                key: index,
+                                key: sindex,
                                 staticClass: "ql-list",
                                 attrs: {
                                   value: "bullet",
@@ -47973,7 +47964,7 @@ var render = function() {
                               _c(
                                 "morning-tip",
                                 {
-                                  key: index,
+                                  key: sindex,
                                   attrs: {
                                     target:
                                       "#mor-te-tool-list-bullet-" + _vm.uiid,
@@ -47990,7 +47981,7 @@ var render = function() {
                         tool.indent === "-1"
                           ? [
                               _c("button", {
-                                key: index,
+                                key: sindex,
                                 staticClass: "ql-indent",
                                 attrs: {
                                   value: "-1",
@@ -48001,7 +47992,7 @@ var render = function() {
                               _c(
                                 "morning-tip",
                                 {
-                                  key: index,
+                                  key: sindex,
                                   attrs: {
                                     target:
                                       "#mor-te-tool-indent--1-" + _vm.uiid,
@@ -48018,7 +48009,7 @@ var render = function() {
                         tool.indent === "+1"
                           ? [
                               _c("button", {
-                                key: index,
+                                key: sindex,
                                 staticClass: "ql-indent",
                                 attrs: {
                                   value: "+1",
@@ -48029,7 +48020,7 @@ var render = function() {
                               _c(
                                 "morning-tip",
                                 {
-                                  key: index,
+                                  key: sindex,
                                   attrs: {
                                     target: "#mor-te-tool-indent-1-" + _vm.uiid,
                                     color: "extra-light-black"
@@ -48045,7 +48036,7 @@ var render = function() {
                         tool.script === "sub"
                           ? [
                               _c("button", {
-                                key: index,
+                                key: sindex,
                                 staticClass: "ql-script",
                                 attrs: {
                                   value: "sub",
@@ -48056,7 +48047,7 @@ var render = function() {
                               _c(
                                 "morning-tip",
                                 {
-                                  key: index,
+                                  key: sindex,
                                   attrs: {
                                     target:
                                       "#mor-te-tool-script-sub-" + _vm.uiid,
@@ -48073,7 +48064,7 @@ var render = function() {
                         tool.script === "super"
                           ? [
                               _c("button", {
-                                key: index,
+                                key: sindex,
                                 staticClass: "ql-script",
                                 attrs: {
                                   value: "super",
@@ -48084,7 +48075,7 @@ var render = function() {
                               _c(
                                 "morning-tip",
                                 {
-                                  key: index,
+                                  key: sindex,
                                   attrs: {
                                     target:
                                       "#mor-te-tool-script-super-" + _vm.uiid,
@@ -48099,7 +48090,7 @@ var render = function() {
                         tool === "blockquote"
                           ? [
                               _c("button", {
-                                key: index,
+                                key: sindex,
                                 staticClass: "ql-blockquote",
                                 attrs: {
                                   id: "mor-te-tool-blockquote-" + _vm.uiid
@@ -48109,7 +48100,7 @@ var render = function() {
                               _c(
                                 "morning-tip",
                                 {
-                                  key: index,
+                                  key: sindex,
                                   attrs: {
                                     target:
                                       "#mor-te-tool-blockquote-" + _vm.uiid,
@@ -48124,7 +48115,7 @@ var render = function() {
                         tool === "code-block"
                           ? [
                               _c("button", {
-                                key: index,
+                                key: sindex,
                                 staticClass: "ql-code-block",
                                 attrs: {
                                   id: "mor-te-tool-code-block-" + _vm.uiid
@@ -48134,7 +48125,7 @@ var render = function() {
                               _c(
                                 "morning-tip",
                                 {
-                                  key: index,
+                                  key: sindex,
                                   attrs: {
                                     target:
                                       "#mor-te-tool-code-block-" + _vm.uiid,
@@ -48149,7 +48140,7 @@ var render = function() {
                         tool === "clean"
                           ? [
                               _c("button", {
-                                key: index,
+                                key: sindex,
                                 staticClass: "ql-clean",
                                 attrs: { id: "mor-te-tool-clean-" + _vm.uiid }
                               }),
@@ -48157,7 +48148,7 @@ var render = function() {
                               _c(
                                 "morning-tip",
                                 {
-                                  key: index,
+                                  key: sindex,
                                   attrs: {
                                     target: "#mor-te-tool-clean-" + _vm.uiid,
                                     color: "extra-light-black"
@@ -48171,7 +48162,7 @@ var render = function() {
                         tool === "link"
                           ? [
                               _c("button", {
-                                key: index,
+                                key: sindex,
                                 staticClass: "ql-link",
                                 attrs: { id: "mor-te-tool-link-" + _vm.uiid }
                               }),
@@ -48179,7 +48170,7 @@ var render = function() {
                               _c(
                                 "morning-tip",
                                 {
-                                  key: index,
+                                  key: sindex,
                                   attrs: {
                                     target: "#mor-te-tool-link-" + _vm.uiid,
                                     color: "extra-light-black"
@@ -48193,7 +48184,7 @@ var render = function() {
                         tool === "image"
                           ? [
                               _c("button", {
-                                key: index,
+                                key: sindex,
                                 staticClass: "ql-image",
                                 attrs: { id: "mor-te-tool-image-" + _vm.uiid }
                               }),
@@ -48201,7 +48192,7 @@ var render = function() {
                               _c(
                                 "morning-tip",
                                 {
-                                  key: index,
+                                  key: sindex,
                                   attrs: {
                                     target: "#mor-te-tool-image-" + _vm.uiid,
                                     color: "extra-light-black"
@@ -76464,6 +76455,8 @@ exports.default = function (UI) {
                     val = value;
                 }
 
+                val = this._valueHandler(val);
+
                 if ((typeof val === 'undefined' ? 'undefined' : _typeof(val)) === 'object') {
 
                     if (JSON.stringify(val) !== JSON.stringify(this.data.value)) {
@@ -76472,7 +76465,7 @@ exports.default = function (UI) {
                     }
                 } else {
 
-                    this.data.value = value;
+                    this.data.value = val;
                 }
 
                 return this;
@@ -76484,6 +76477,17 @@ exports.default = function (UI) {
             _clean: function _clean() {
 
                 this.set(undefined);
+            },
+            _valueHandler: function _valueHandler(value) {
+
+                var filteredValue = this._valueFilter(value);
+
+                if ((typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object' && (typeof filteredValue === 'undefined' ? 'undefined' : _typeof(filteredValue)) === 'object' && JSON.stringify(value) !== JSON.stringify(filteredValue) || value !== filteredValue) {
+
+                    return filteredValue;
+                }
+
+                return value;
             },
             set: function set(value) {
 
@@ -76640,6 +76644,7 @@ exports.default = function (UI) {
             }
 
             this._syncGroup();
+            this.data.value = this._valueHandler(this.data.value);
 
             this.$watch('modelValue', function (newValue) {
 
@@ -76648,20 +76653,10 @@ exports.default = function (UI) {
 
             this.$watch('data.value', function (newValue) {
 
-                var filteredValue = _this._valueFilter(newValue);
-
-                if ((typeof newValue === 'undefined' ? 'undefined' : _typeof(newValue)) === 'object' && (typeof filteredValue === 'undefined' ? 'undefined' : _typeof(filteredValue)) === 'object' && JSON.stringify(newValue) !== JSON.stringify(filteredValue) || newValue !== filteredValue) {
-
-                    _this.data.value = filteredValue;
-
-                    return;
-                }
-
                 _this._syncGroup();
                 _this.$emit('value-change', newValue);
             }, {
-                deep: true,
-                immediate: true
+                deep: true
             });
 
             this.$watch('conf.formKey', function (newVal, oldVal) {
@@ -76938,7 +76933,7 @@ var morning = {
         white: 'wh'
     },
     isMorning: true,
-    version: '0.11.13',
+    version: '0.11.14',
     map: {}
 };
 

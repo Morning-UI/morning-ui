@@ -208,6 +208,11 @@
 .markdown-body mor-table table mor-btn a {
   box-sizing: border-box;
 }
+.markdown-body mor-select img {
+  padding: 0;
+  margin-bottom: 0;
+  border: none !important;
+}
 mor-dialog .body {
   font-size: inherit;
 }
