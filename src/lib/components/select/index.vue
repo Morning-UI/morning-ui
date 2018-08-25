@@ -159,20 +159,9 @@
                             :id="'ui-select-tip-'+uiid+'-'+index"
                             @mouseenter="_itemHover(_index)"
                             class="selected"
+                            v-html="data.itemNameMap[index] + '<i class=\'mo-select-selected-icon mo-icon mo-icon-check\'></i>'"
                             v-if="data.itemSelectedMap[index]"
                         >
-                            <keep-alive>
-                            <component
-                                :is="{
-                                    template : ('<span>' + data.itemNameMap[index] + '<i class=\'mo-select-selected-icon mo-icon mo-icon-check\'></i>' + '</span>'),
-                                    data : function () {
-                                        return {
-                                            context : this.$parent.$vnode.context
-                                        };
-                                    }
-                                }"
-                            ></component>
-                            </keep-alive>
                         </li>
                         <li
                             :key="_index"
@@ -183,20 +172,9 @@
                             }"
                             :id="'ui-select-tip-'+uiid+'-'+index"
                             @mouseenter="_itemHover(_index)"
+                            v-html="data.itemNameMap[index]"
                             v-else
                         >
-                            <keep-alive>
-                            <component
-                                :is="{
-                                    template : ('<span>' + data.itemNameMap[index] + '</span>'),
-                                    data : function () {
-                                        return {
-                                            context : this.$parent.$vnode.context
-                                        };
-                                    }
-                                }"
-                            ></component>
-                            </keep-alive>
                         </li>
 
                         <template v-if="conf.itemTip">
