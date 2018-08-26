@@ -1,0 +1,139 @@
+@import '~Common/var.less';
+
+mor-rate{
+    display: inline-block;
+    box-sizing: border-box;
+    position: relative;
+
+    .setup-form();
+
+    .rate-wrap{
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+
+        > .note{
+            padding: 0 0 0 0.5em;
+            font-size: @fontSize*0.875;
+            align-items: center;
+            display: flex;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            color: @colorBlack;
+        }
+    }
+
+    .rate-list{
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-wrap: nowrap;
+        list-style: none;
+        justify-content: space-around;
+
+        > li{
+            padding: 0 0.4em;
+            margin: 0;
+
+            > i,
+            > span{
+                vertical-align: top;
+                font-size: @fontSize * 1.4;
+                color: @colorSilver;
+                pointer-events: none;
+            }
+
+            &.current{
+                > i,
+                > span{
+                    color: @colorTheme;
+                }
+            }
+
+            &.half-current{
+                > i,
+                > span{
+                    background: ~'-webkit-gradient(linear, 0 0, 100% 0, color-stop(0.5, ' @colorTheme ~'), color-stop(0.5, ' @colorSilver ~'), to(' @colorSilver ~'))';
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                }
+            }
+        }
+
+        &.in-hover{
+            > li{
+                transition: transform 0.36s;
+
+                &.last-hover{
+                    transform: scale(1.2);
+                }
+
+                &.current,
+                &.half-current{
+                    > i,
+                    > span{
+                        color: @colorSilver;
+                        background: none;
+                        -webkit-background-clip: initial;
+                        -webkit-text-fill-color: initial;
+                    }
+                }
+
+                &.half-hover{
+                    > i,
+                    > span{
+                        background: ~'-webkit-gradient(linear, 0 0, 100% 0, color-stop(0.5, ' @colorLightTheme ~'), color-stop(0.5, ' @colorSilver ~'), to(' @colorSilver ~'))';
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                    }
+                }
+
+                &.hover{
+                    cursor: pointer;
+
+                    > i,
+                    > span{
+                        color: @colorLightTheme;
+                    }
+                }
+            }
+
+            + .note{
+                color: @colorBlue;
+            }
+        }
+    }
+
+    &.st-normal{}
+
+    &.st-disabled,
+    &.st-readonly{
+        .rate-list{
+            pointer-events: none;
+
+            > li{
+                &.current{
+                    > i,
+                    > span{
+                        color: @colorDarkTheme;
+                    }
+                }
+
+                &.half-current{
+                    > i,
+                    > span{
+                        background: ~'-webkit-gradient(linear, 0 0, 100% 0, color-stop(0.5, ' @colorDarkTheme ~'), color-stop(0.5, ' @colorSilver ~'), to(' @colorSilver ~'))';
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                    }
+                }
+            }
+        }
+    }
+
+    // default status
+    &{
+        .st-normal;
+    }
+}

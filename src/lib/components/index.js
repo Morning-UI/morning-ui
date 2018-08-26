@@ -66,6 +66,7 @@ import textinput                    from './textinput/index.vue';
 import textarea                     from './textarea/index.vue';
 import texteditor                   from './texteditor/index.vue';
 import _switch                      from './switch/index.vue';
+import rate                         from './rate/index.vue';
 import counter                      from './counter/index.vue';
 import select                       from './select/index.vue';
 import checkbox                     from './checkbox/index.vue';
@@ -151,6 +152,7 @@ export default {
     textarea,
     texteditor,
     switch : _switch,
+    rate,
     counter,
     select,
     checkbox,

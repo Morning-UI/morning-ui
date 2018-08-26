@@ -76,6 +76,7 @@ export default {
         段落输入 : '/component/textarea.html',
         富文本编辑器 : '/component/texteditor.html',
         开关 : '/component/switch.html',
+        '评分<i class="tag new"></i>' : '/component/rate.html',
         计数器 : '/component/counter.html',
         下拉选择 : '/component/select.html',
         // 级联选择<i class="tag update"></i> : 'b',

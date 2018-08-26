@@ -523,6 +523,36 @@ let data = {
                 valueContent : `[40]`
             }
         ],
+        rate : [
+            {
+                valueType : 'String',
+                valueContent : `'3'`
+            },
+            {
+                valueType : 'Number',
+                valueContent : '3'
+            },
+            {
+                valueType : 'Boolean',
+                valueContent : 'true'
+            },
+            {
+                valueType : 'Null',
+                valueContent : 'null'
+            },
+            {
+                valueType : 'Undefined',
+                valueContent : 'undefined'
+            },
+            {
+                valueType : 'Object',
+                valueContent : '{}'
+            },
+            {
+                valueType : 'Array',
+                valueContent : `['3']`
+            }
+        ],
         counter : [
             {
                 valueType : 'String',
