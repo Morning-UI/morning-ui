@@ -36,6 +36,42 @@
         transform: translateX(100%);
     }
 }
+@keyframes vertical-move-right-in{
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0%);
+    }
+}
+@keyframes vertical-move-right-out{
+    from {
+        transform: translateY(0%);
+    }
+
+    to {
+        transform: translateY(-100%);
+    }
+}
+@keyframes vertical-move-left-in{
+    from {
+        transform: translateY(-100%);
+    }
+
+    to {
+        transform: translateY(0%);
+    }
+}
+@keyframes vertical-move-left-out{
+    from {
+        transform: translateY(0%);
+    }
+
+    to {
+        transform: translateY(100%);
+    }
+}
 
 mor-carousel{
     display: block;
@@ -93,16 +129,28 @@ mor-carousel{
         left: 0;
         z-index: 2;
 
+        > .up-btn,
+        > .down-btn,
         > .left-btn,
         > .right-btn{
             position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
             opacity: 0.5;
 
             &:hover{
                 opacity: 0.75;
             }
+        }
+
+        > .up-btn,
+        > .down-btn{
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        > .left-btn,
+        > .right-btn{
+            top: 50%;
+            transform: translateY(-50%);
         }
 
         > .left-btn{
@@ -111,6 +159,14 @@ mor-carousel{
 
         > .right-btn{
             right: 10px;
+        }
+
+        > .up-btn{
+            top: 6px;
+        }
+
+        > .down-btn{
+            bottom: 6px;
         }
 
         .indicator{
@@ -137,12 +193,41 @@ mor-carousel{
         }
     }
 
+    &.direction-vertical{
+        .control{
+            .indicator{
+                left: auto;
+                right: 10px;
+                transform: translateY(-50%);
+                top: 50%;
+                bottom: auto;
+                height: auto;
+
+                li{
+                    display: block;
+                }
+            }
+        }
+    }
+
     &.indicator-pos-outside{
         padding-bottom: 20px;
 
         .control{
             .indicator{
                 bottom: 1px;
+            }
+        }
+
+        &.direction-vertical{
+            padding-bottom: 0;
+            padding-right: 20px;
+
+            .control{
+                .indicator{
+                    bottom: auto;
+                    right: 1px;
+                }
             }
         }
     }
@@ -152,6 +237,7 @@ mor-carousel{
             .indicator{
                 li{
                     height: 10px;
+                    width: auto;
                     padding: 4px 3px;
 
                     > i{
@@ -167,7 +253,31 @@ mor-carousel{
                     &.current{
                         > i{
                             width: 20px;
+                            height: 10px;
                             background: @colorTheme;
+                        }
+                    }
+                }
+            }
+        }
+
+        &.direction-vertical{
+            .control{
+                .indicator{
+                    li{
+                        height: 10px;
+                        width: 10px;
+                        padding: 3px 4px;
+                        transition: height 0.2s;
+
+                        &.current{
+                            height: 20px;
+                            
+                            > i{
+                                width: 10px;
+                                height: 20px;
+                                background: @colorTheme;
+                            }
                         }
                     }
                 }
@@ -251,6 +361,36 @@ mor-carousel{
 
             &.current{
                 transform: translateX(0%);
+            }
+        }
+
+        &.direction-vertical{
+            .carousel-list > div{
+                transform: translateX(100%);
+
+                &.next-old{
+                    animation: vertical-move-right-out 0.36s;
+                    animation-fill-mode: forwards;
+                }
+
+                &.prev-old{
+                    animation: vertical-move-left-out 0.36s;
+                    animation-fill-mode: forwards;
+                }
+
+                &.next-new{
+                    animation: vertical-move-right-in 0.36s;
+                    animation-fill-mode: forwards;
+                }
+
+                &.prev-new{
+                    animation: vertical-move-left-in 0.36s;
+                    animation-fill-mode: forwards;
+                }
+
+                &.current{
+                    transform: translateX(0%);
+                }
             }
         }
     }
