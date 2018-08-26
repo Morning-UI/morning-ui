@@ -12303,6 +12303,121 @@ mor-switch.open .track .point {
   box-shadow: 0 0 4px #a60a26;
 }
 
+mor-rate {
+  display: inline-block;
+  box-sizing: border-box;
+  position: relative;
+}
+mor-rate.has-cleanbtn {
+  padding-bottom: 20px;
+}
+mor-rate .cleanbtn {
+  position: absolute;
+  right: 0;
+  font-size: 12px;
+  margin-top: 1px;
+}
+mor-rate > .form-name {
+  color: #303C4B;
+  font-size: 16px;
+  margin-bottom: 0.5em;
+  -webkit-user-select: text;
+  text-align: left;
+}
+mor-rate .rate-wrap {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}
+mor-rate .rate-wrap > .note {
+  padding: 0 0 0 0.5em;
+  font-size: 14px;
+  align-items: center;
+  display: flex;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  color: #17212D;
+}
+mor-rate .rate-list {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: nowrap;
+  list-style: none;
+  justify-content: space-around;
+}
+mor-rate .rate-list > li {
+  padding: 0 0.4em;
+  margin: 0;
+}
+mor-rate .rate-list > li > i,
+mor-rate .rate-list > li > span {
+  vertical-align: top;
+  font-size: 22.4px;
+  color: #D6DDE5;
+  pointer-events: none;
+}
+mor-rate .rate-list > li.current > i,
+mor-rate .rate-list > li.current > span {
+  color: #F33D5D;
+}
+mor-rate .rate-list > li.half-current > i,
+mor-rate .rate-list > li.half-current > span {
+  background: -webkit-gradient(linear, 0 0, 100% 0, color-stop(0.5,  #F33D5D ), color-stop(0.5,  #D6DDE5 ), to( #D6DDE5 ));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+mor-rate .rate-list.in-hover > li {
+  transition: transform 0.36s;
+}
+mor-rate .rate-list.in-hover > li.last-hover {
+  transform: scale(1.2);
+}
+mor-rate .rate-list.in-hover > li.current > i,
+mor-rate .rate-list.in-hover > li.half-current > i,
+mor-rate .rate-list.in-hover > li.current > span,
+mor-rate .rate-list.in-hover > li.half-current > span {
+  color: #D6DDE5;
+  background: none;
+  -webkit-background-clip: initial;
+  -webkit-text-fill-color: initial;
+}
+mor-rate .rate-list.in-hover > li.half-hover > i,
+mor-rate .rate-list.in-hover > li.half-hover > span {
+  background: -webkit-gradient(linear, 0 0, 100% 0, color-stop(0.5,  #F86F88 ), color-stop(0.5,  #D6DDE5 ), to( #D6DDE5 ));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+mor-rate .rate-list.in-hover > li.hover {
+  cursor: pointer;
+}
+mor-rate .rate-list.in-hover > li.hover > i,
+mor-rate .rate-list.in-hover > li.hover > span {
+  color: #F86F88;
+}
+mor-rate .rate-list.in-hover + .note {
+  color: #7C8BA0;
+}
+mor-rate.st-disabled .rate-list,
+mor-rate.st-readonly .rate-list {
+  pointer-events: none;
+}
+mor-rate.st-disabled .rate-list > li.current > i,
+mor-rate.st-readonly .rate-list > li.current > i,
+mor-rate.st-disabled .rate-list > li.current > span,
+mor-rate.st-readonly .rate-list > li.current > span {
+  color: #D22343;
+}
+mor-rate.st-disabled .rate-list > li.half-current > i,
+mor-rate.st-readonly .rate-list > li.half-current > i,
+mor-rate.st-disabled .rate-list > li.half-current > span,
+mor-rate.st-readonly .rate-list > li.half-current > span {
+  background: -webkit-gradient(linear, 0 0, 100% 0, color-stop(0.5,  #D22343 ), color-stop(0.5,  #D6DDE5 ), to( #D6DDE5 ));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 mor-counter {
   display: block;
   font-size: 0;

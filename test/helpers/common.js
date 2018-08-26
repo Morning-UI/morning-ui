@@ -250,7 +250,7 @@ let e2eStatementFnString = `(ctx, type, attrs, basicDemoSelector) => {
         basicDemoSelector(null, data);
 
     }
-    
+
     return data;
 
 }`;
