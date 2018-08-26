@@ -96,7 +96,7 @@
 
     ---
 
-    ### 0.11.12 <ui-badge class="circle ver-canary" size="s" color="light-elbk">Beta</ui-badge>
+    ### 0.11.12 <ui-badge class="circle ver-beta" size="s" color="light-blue">Beta</ui-badge>
 
     <ui-textcolor color="light-blue">
         <ui-small>
@@ -530,7 +530,7 @@
 
     ---
 
-    ### 0.10.32 <ui-badge class="circle ver-stable" size="s" color="light-theme">Stable</ui-badge>
+    ### 0.10.32 <ui-badge class="circle ver-stable" size="s" color="extra-light-black">Stable</ui-badge>
 
     <ui-textcolor color="light-blue">
         <ui-small>
@@ -549,7 +549,7 @@
 
     ---
 
-    ### 0.10.31 <ui-badge class="circle ver-stable" size="s" color="light-theme">Stable</ui-badge>
+    ### 0.10.31 <ui-badge class="circle ver-stable" size="s" color="extra-light-black">Stable</ui-badge>
 
     <ui-textcolor color="light-blue">
         <ui-small>
@@ -568,7 +568,7 @@
 
     ---
 
-    ### 0.10.30 <ui-badge class="circle ver-stable" size="s" color="light-theme">Stable</ui-badge>
+    ### 0.10.30 <ui-badge class="circle ver-stable" size="s" color="extra-light-black">Stable</ui-badge>
 
     <ui-textcolor color="light-blue">
         <ui-small>
@@ -587,7 +587,7 @@
 
     ---
 
-    ### 0.10.29 <ui-badge class="circle ver-stable" size="s" color="light-theme">Stable</ui-badge>
+    ### 0.10.29 <ui-badge class="circle ver-stable" size="s" color="extra-light-black">Stable</ui-badge>
 
     <ui-textcolor color="light-blue">
         <ui-small>
@@ -604,7 +604,7 @@
 
     ---
 
-    ### 0.10.28 <ui-badge class="circle ver-stable" size="s" color="light-theme">Stable</ui-badge>
+    ### 0.10.28 <ui-badge class="circle ver-stable" size="s" color="extra-light-black">Stable</ui-badge>
 
     <ui-textcolor color="light-blue">
         <ui-small>
@@ -626,7 +626,7 @@
 
     ---
 
-    ### 0.10.27 <ui-badge class="circle ver-stable" size="s" color="extra-light-black">Beta</ui-badge>
+    ### 0.10.27 <ui-badge class="circle ver-beta" size="s" color="light-blue">Beta</ui-badge>
 
     <ui-textcolor color="light-blue">
         <ui-small>
@@ -649,7 +649,7 @@
 
     ---
 
-    ### 0.10.26 <ui-badge class="circle ver-stable" size="s" color="extra-light-black">Beta</ui-badge>
+    ### 0.10.26 <ui-badge class="circle ver-beta" size="s" color="light-blue">Beta</ui-badge>
 
     <ui-textcolor color="light-blue">
         <ui-small>
@@ -703,7 +703,7 @@
 
     ---
 
-    ### 0.10.24 <ui-badge class="circle ver-stable" size="s" color="extra-light-black">Beta</ui-badge>
+    ### 0.10.24 <ui-badge class="circle ver-beta" size="s" color="light-blue">Beta</ui-badge>
 
     <ui-textcolor color="light-blue">
         <ui-small>
@@ -727,7 +727,7 @@
 
     ---
 
-    ### 0.10.23 <ui-badge class="circle ver-beta" size="s" color="extra-light-black">Beta</ui-badge>
+    ### 0.10.23 <ui-badge class="circle ver-beta" size="s" color="light-blue">Beta</ui-badge>
     
     <ui-textcolor color="light-blue">
         <ui-small>
@@ -746,7 +746,7 @@
 
     ---
 
-    ### 0.10.22 <ui-badge class="circle ver-beta" size="s" color="extra-light-black">Beta</ui-badge>
+    ### 0.10.22 <ui-badge class="circle ver-beta" size="s" color="light-blue">Beta</ui-badge>
 
     <ui-textcolor color="light-blue">
         <ui-small>
