@@ -84,6 +84,7 @@
     |[indicator-position](#indicator-position)|指示器的位置|`'inside'` : 轮播内<br>`'outside'` : 轮播外|String|`'inside'`|
     |[indicator-type](#indicator-type)|指示器的类型|`'dot'` : 原点<br>`'line'` : 线条|String|`'dot'`|
     |[trigger](#trigger)|指示器的触发方式|`'click'` : 点击<br>`'hover'` : 鼠标移入|String|`'click'`|
+    |[direction](#direction)|轮播方向|`'horizontal'` : 横向<br>`'vertical'` : 竖向|String|`'horizontal'`|
 
     #### toggle-time
 
@@ -246,6 +247,104 @@
     :::democode/html
     <div style="width:480px;">
         <ui-carousel trigger="hover">
+            <div slot="item">
+                <img src="http://morning-ui-image.test.upcdn.net/carousel/1.png" alt="1">
+            </div>
+            <div slot="item">
+                <img src="http://morning-ui-image.test.upcdn.net/carousel/2.png" alt="2">
+            </div>
+            <div slot="item">
+                <img src="http://morning-ui-image.test.upcdn.net/carousel/3.png" alt="3">
+            </div>
+            <div slot="item">
+                <img src="http://morning-ui-image.test.upcdn.net/carousel/4.png" alt="4">
+            </div>
+            <div slot="item">
+                <img src="http://morning-ui-image.test.upcdn.net/carousel/5.png" alt="5">
+            </div>
+        </ui-carousel>
+    </div>
+    :::
+
+    #### direction
+    
+    竖向的轮播：
+
+    :::democode/html
+    <div style="width:480px;">
+        <ui-carousel direction="vertical">
+            <div slot="item">
+                <img src="http://morning-ui-image.test.upcdn.net/carousel/1.png" alt="1">
+            </div>
+            <div slot="item">
+                <img src="http://morning-ui-image.test.upcdn.net/carousel/2.png" alt="2">
+            </div>
+            <div slot="item">
+                <img src="http://morning-ui-image.test.upcdn.net/carousel/3.png" alt="3">
+            </div>
+            <div slot="item">
+                <img src="http://morning-ui-image.test.upcdn.net/carousel/4.png" alt="4">
+            </div>
+            <div slot="item">
+                <img src="http://morning-ui-image.test.upcdn.net/carousel/5.png" alt="5">
+            </div>
+        </ui-carousel>
+    </div>
+    :::
+
+    配合`toggle-type`一起使用：
+
+    :::democode/html
+    <div style="width:480px;">
+        <ui-carousel direction="vertical" toggle-type="move">
+            <div slot="item">
+                <img src="http://morning-ui-image.test.upcdn.net/carousel/1.png" alt="1">
+            </div>
+            <div slot="item">
+                <img src="http://morning-ui-image.test.upcdn.net/carousel/2.png" alt="2">
+            </div>
+            <div slot="item">
+                <img src="http://morning-ui-image.test.upcdn.net/carousel/3.png" alt="3">
+            </div>
+            <div slot="item">
+                <img src="http://morning-ui-image.test.upcdn.net/carousel/4.png" alt="4">
+            </div>
+            <div slot="item">
+                <img src="http://morning-ui-image.test.upcdn.net/carousel/5.png" alt="5">
+            </div>
+        </ui-carousel>
+    </div>
+    :::
+
+    配合`toggle-btn`一起使用：
+
+    :::democode/html
+    <div style="width:480px;">
+        <ui-carousel direction="vertical" toggle-btn>
+            <div slot="item">
+                <img src="http://morning-ui-image.test.upcdn.net/carousel/1.png" alt="1">
+            </div>
+            <div slot="item">
+                <img src="http://morning-ui-image.test.upcdn.net/carousel/2.png" alt="2">
+            </div>
+            <div slot="item">
+                <img src="http://morning-ui-image.test.upcdn.net/carousel/3.png" alt="3">
+            </div>
+            <div slot="item">
+                <img src="http://morning-ui-image.test.upcdn.net/carousel/4.png" alt="4">
+            </div>
+            <div slot="item">
+                <img src="http://morning-ui-image.test.upcdn.net/carousel/5.png" alt="5">
+            </div>
+        </ui-carousel>
+    </div>
+    :::
+
+    配合`indicator-position`一起使用：
+
+    :::democode/html
+    <div style="width:480px;">
+        <ui-carousel direction="vertical" indicator-position="outside">
             <div slot="item">
                 <img src="http://morning-ui-image.test.upcdn.net/carousel/1.png" alt="1">
             </div>
