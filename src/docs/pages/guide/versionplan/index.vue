@@ -38,12 +38,12 @@
 
     - `0.10.0` : <ui-badge size="xxs" color="success">DONE</ui-badge>Morning UI的首个版本
     - `0.11.0` : <ui-badge size="xxs" color="success">DONE</ui-badge>同步HMP的所有组件，计划2018年春季发布
-    - `0.12.0` : <ui-badge size="xxs" color="gray">PLAN</ui-badge>同步Element UI组件，计划2018年夏季发布
-    - `0.13.0` : <ui-badge size="xxs" color="gray">PLAN</ui-badge>同步AntD组件，计划2018年夏季发布
+    - `0.12.0` : <ui-badge size="xxs" color="success">DONE</ui-badge>同步Element UI组件，计划2018年夏季发布
+    - `0.13.0` : <ui-badge size="xxs" color="gray">PLAN</ui-badge>同步AntD组件，计划2018年秋季发布
     - `0.14.0` : <ui-badge size="xxs" color="gray">PLAN</ui-badge>组件性能提升，计划2018年秋季发布
-    - `0.15.0` : <ui-badge size="xxs" color="gray">PLAN</ui-badge>同步Semantic UI组件，计划2018年秋季发布
-    - `0.16.0` : <ui-badge size="xxs" color="gray">PLAN</ui-badge>完成所有组件的测试覆盖，计划2018年冬季发布
-    - `0.17.0` : <ui-badge size="xxs" color="gray">PLAN</ui-badge>支持构建自定义的组件库，计划2019年春季发布
+    - `0.15.0` : <ui-badge size="xxs" color="gray">PLAN</ui-badge>同步Semantic UI组件，计划2018年冬季发布
+    - `0.16.0` : <ui-badge size="xxs" color="gray">PLAN</ui-badge>完成所有组件的测试覆盖，计划2018年春季发布
+    - `0.17.0` : <ui-badge size="xxs" color="gray">PLAN</ui-badge>符合WCAG2标准，更好的浏览器兼容性，计划2019年夏季发布
     - `1.0.0` : <ui-badge size="xxs" color="gray">PLAN</ui-badge>第一个正式版本，计划2019年夏季发布
 
     </script>
