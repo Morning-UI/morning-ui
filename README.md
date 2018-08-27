@@ -9,6 +9,9 @@
     <a href="https://codecov.io/gh/Morning-UI/morning-ui/branch/master">
         <img src="https://img.shields.io/codecov/c/github/Morning-UI/morning-ui/master.svg" alt="Codecov branch">
     </a>
+    <a href="https://www.browserstack.com/automate/public-build/">
+        <img src='https://www.browserstack.com/automate/badge.svg?badge_key='/>
+    </a>
     <a href="https://www.codacy.com/app/EarlyH/morning-ui?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Morning-UI/morning-ui&amp;utm_campaign=Badge_Grade">
         <img src="https://img.shields.io/codacy/grade/91448799c68e4422ba6436a7ecdb08a7/master.svg" alt="Codacy branch grade">
     </a>
@@ -63,6 +66,14 @@ Morning UI是一套桌面端UI组件库，基于[Vue.js](https://github.com/vuej
 ## 贡献
 
 我们欢迎所有的贡献者，请查看[贡献者文档](https://morning-ui.com/guide/becontributor.html)获取更多信息。
+
+## 浏览器支持
+
+Tested With
+
+<a href="https://www.browserstack.com" rel="nofollow">
+    <img src="https://user-images.githubusercontent.com/1768041/44645022-b6e94000-aa08-11e8-9c53-0c1e878ba5e4.png" alt="BrowserStack" width="200">
+</a>
 
 ## 许可
 
