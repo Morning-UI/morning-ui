@@ -18,6 +18,29 @@
     
     ### 更新记录
 
+    ### 0.11.15 <ui-badge class="circle ver-beta" size="s" color="extra-light-black">Beta</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2018年8月28日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.11.15" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.11.15/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.11.15/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 修复
+
+    - 修复`ui-video`和`ui-audio`组件进度条的样式问题
+    - 修复`ui-imagemap`在某些情况下缩放值会调整为`0%`的问题
+
+    #### 更多
+
+    - README新增BrowserStack的信息
+
+    ---
+
     ### 0.11.14 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="light-blue">
