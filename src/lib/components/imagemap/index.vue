@@ -329,6 +329,7 @@ export default {
             let value = this.get();
 
             if (isNaN(+this.data.setScale) ||
+                +this.data.setScale === 0 ||
                 (value && value.w === 0) ||
                 value === undefined) {
 
@@ -1006,6 +1007,8 @@ export default {
 
             let $zonearea = this.$refs[`ui-imagemap-mapdialog-${this.uiid}`].$el.querySelector('.zonearea');
             let value = this.get();
+
+            console.log(value, value.w, $zonearea.clientWidth);
 
             if (value &&
                 value.w) {
