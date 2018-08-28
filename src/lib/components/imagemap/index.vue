@@ -1008,8 +1008,6 @@ export default {
             let $zonearea = this.$refs[`ui-imagemap-mapdialog-${this.uiid}`].$el.querySelector('.zonearea');
             let value = this.get();
 
-            console.log(value, value.w, $zonearea.clientWidth);
-
             if (value &&
                 value.w) {
 
