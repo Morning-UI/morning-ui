@@ -678,8 +678,13 @@ textarea {
   vertical-align: top;
   width: 100%;
   position: relative;
-  top: -2px;
+  top: 0;
   min-width: 160px;
+}
+.mo-media-control .progress mor-slider {
+  padding: 0;
+  top: 50%;
+  transform: translateY(-50%);
 }
 .mo-media-control .progress mor-slider .wrap {
   padding-left: 16px;
