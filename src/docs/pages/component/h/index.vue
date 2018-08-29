@@ -15,7 +15,7 @@
 
     #### 使用
     
-    :::democode/html
+    :::vue
     <ui-h>标题</ui-h>
     :::
 

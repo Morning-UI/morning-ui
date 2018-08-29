@@ -32466,6 +32466,25 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
     origin: 'UI',
@@ -32506,6 +32525,13 @@ exports.default = {
             validator: function validator(value) {
                 return ['click', 'hover'].indexOf(value) !== -1;
             }
+        },
+        direction: {
+            type: String,
+            default: 'horizontal',
+            validator: function validator(value) {
+                return ['horizontal', 'vertical'].indexOf(value) !== -1;
+            }
         }
     },
     computed: {
@@ -32517,7 +32543,8 @@ exports.default = {
                 toggleBtn: this.toggleBtn,
                 indicatorPosition: this.indicatorPosition,
                 indicatorType: this.indicatorType,
-                trigger: this.trigger
+                trigger: this.trigger,
+                direction: this.direction
             };
         },
         moreClass: function moreClass() {
@@ -32527,6 +32554,7 @@ exports.default = {
             classes['toggle-type-' + this.conf.toggleType] = true;
             classes['indicator-pos-' + this.conf.indicatorPosition] = true;
             classes['indicator-type-' + this.conf.indicatorType] = true;
+            classes['direction-' + this.conf.direction] = true;
 
             return classes;
         }
@@ -49309,7 +49337,8 @@ var render = function() {
         "toggle-btn": _vm.toggleBtn,
         "indicator-position": _vm.indicatorPosition,
         "indicator-type": _vm.indicatorType,
-        trigger: _vm.trigger
+        trigger: _vm.trigger,
+        direction: _vm.direction
       }
     },
     [
@@ -49325,25 +49354,49 @@ var render = function() {
         [
           _vm.conf.toggleBtn
             ? [
-                _c(
-                  "morning-btn",
-                  {
-                    staticClass: "circle left-btn",
-                    attrs: { color: "extra-light-silver" },
-                    on: { emit: _vm.prev }
-                  },
-                  [_c("i", { staticClass: "mo-icon mo-icon-left" })]
-                ),
-                _vm._v(" "),
-                _c(
-                  "morning-btn",
-                  {
-                    staticClass: "circle right-btn",
-                    attrs: { color: "extra-light-silver" },
-                    on: { emit: _vm.next }
-                  },
-                  [_c("i", { staticClass: "mo-icon mo-icon-right" })]
-                )
+                _vm.conf.direction === "horizontal"
+                  ? [
+                      _c(
+                        "morning-btn",
+                        {
+                          staticClass: "circle left-btn",
+                          attrs: { color: "extra-light-silver" },
+                          on: { emit: _vm.prev }
+                        },
+                        [_c("i", { staticClass: "mo-icon mo-icon-left" })]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "morning-btn",
+                        {
+                          staticClass: "circle right-btn",
+                          attrs: { color: "extra-light-silver" },
+                          on: { emit: _vm.next }
+                        },
+                        [_c("i", { staticClass: "mo-icon mo-icon-right" })]
+                      )
+                    ]
+                  : [
+                      _c(
+                        "morning-btn",
+                        {
+                          staticClass: "circle up-btn",
+                          attrs: { color: "extra-light-silver" },
+                          on: { emit: _vm.prev }
+                        },
+                        [_c("i", { staticClass: "mo-icon mo-icon-up" })]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "morning-btn",
+                        {
+                          staticClass: "circle down-btn",
+                          attrs: { color: "extra-light-silver" },
+                          on: { emit: _vm.next }
+                        },
+                        [_c("i", { staticClass: "mo-icon mo-icon-down" })]
+                      )
+                    ]
               ]
             : _vm._e(),
           _vm._v(" "),

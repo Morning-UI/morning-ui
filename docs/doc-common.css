@@ -1135,6 +1135,9 @@ mor-dialog a:hover {
 .markdown-body pre {
   position: relative;
 }
+.markdown-body code span {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
 .markdown-body .lang-js::before,
 .markdown-body .language-js::before,
 .markdown-body .lang-html::before,
@@ -1146,7 +1149,9 @@ mor-dialog a:hover {
 .markdown-body .lang-text::before,
 .markdown-body .language-text::before,
 .markdown-body .lang-less::before,
-.markdown-body .language-less::before {
+.markdown-body .language-less::before,
+.markdown-body .lang-vue::before,
+.markdown-body .language-vue::before {
   font-family: PingFangSC-Light, sans-serif;
   font-size: 12px;
   color: #CCC;
@@ -1180,6 +1185,10 @@ mor-dialog a:hover {
 .markdown-body .language-text::before {
   content: 'Text';
 }
+.markdown-body .lang-vue::before,
+.markdown-body .language-vue::before {
+  content: 'Vue';
+}
 .body {
   width: 1100px;
   margin: 0 auto;
@@ -1208,17 +1217,85 @@ mor-dialog a:hover {
   transform-origin: bottom;
   margin-right: -0.15em;
 }
-.demo {
-  padding: 10px;
-  box-sizing: border-box;
-  border: 1px #F1F4F6 solid;
-  border-radius: 3px 3px 0 0;
-  z-index: 9;
+.demo-box {
+  border: 1px #E9ECEF solid;
+  border-radius: 3px;
+  overflow: hidden;
   position: relative;
 }
-.demo + pre {
-  border-radius: 0 0 3px 3px;
+.demo-box:hover {
+  box-shadow: 0 3px 6px rgba(194, 204, 212, 0.42);
+  border: 1px #e3e8ea solid;
 }
-.demo mor-btn {
+.demo-box .demo {
+  margin: 0;
+  position: relative;
+  display: block;
+  background: #fff;
+  padding: 10px;
+  border-bottom: 1px #E9ECEF solid;
+}
+.demo-box .code {
+  font-size: 0;
+}
+.demo-box .code > pre {
+  background-color: #F6F8FA;
+  font-size: 12px;
+  width: 100%;
+  margin: 0;
+  border-radius: 0;
   vertical-align: top;
+  display: block;
+}
+.demo-box .code > .note {
+  display: none;
+}
+.demo-box.vue .code {
+  position: relative;
+  display: flex;
+}
+.demo-box.vue .code > pre {
+  display: inline-block;
+  width: 70%;
+}
+.demo-box.vue .code > .note {
+  width: 30%;
+  display: inline-block;
+  border: none;
+  vertical-align: top;
+  box-sizing: border-box;
+  border-left: 1px #e5e9ec dashed;
+}
+.demo-box.vue .code > .note > h3 {
+  margin: 0;
+  padding: 14px;
+  font-size: 14px;
+  color: #45505C;
+  font-weight: 700;
+}
+.demo-box.vue .code > .note > div {
+  padding: 0 14px 14px 14px;
+  margin: 0;
+  font-size: 13px;
+}
+.demo-box.vue .code > .note > div p {
+  margin: 0;
+}
+.demo-box.vue .code > .demo-tools {
+  position: absolute;
+  right: 30%;
+  top: 23px;
+  width: 16px;
+  line-height: 1.5em;
+  font-size: 13px;
+  padding-right: 8px;
+  box-sizing: content-box;
+}
+.demo-box.vue .code > .demo-tools > a {
+  color: #83888e;
+  text-decoration: none;
+}
+.demo-box.vue .code > .demo-tools > a:hover {
+  text-decoration: none;
+  color: #18191b;
 }

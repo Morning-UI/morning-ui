@@ -14,7 +14,7 @@
 
     #### 使用
     
-    :::democode/html
+    :::vue
     <ui-lead>中心内容</ui-lead>
     :::
 

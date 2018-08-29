@@ -11072,6 +11072,38 @@ to {
     transform: translateX(100%);
 }
 }
+@keyframes vertical-move-right-in {
+from {
+    transform: translateY(100%);
+}
+to {
+    transform: translateY(0%);
+}
+}
+@keyframes vertical-move-right-out {
+from {
+    transform: translateY(0%);
+}
+to {
+    transform: translateY(-100%);
+}
+}
+@keyframes vertical-move-left-in {
+from {
+    transform: translateY(-100%);
+}
+to {
+    transform: translateY(0%);
+}
+}
+@keyframes vertical-move-left-out {
+from {
+    transform: translateY(0%);
+}
+to {
+    transform: translateY(100%);
+}
+}
 mor-carousel {
   display: block;
   position: relative;
@@ -11123,22 +11155,40 @@ mor-carousel .control {
   left: 0;
   z-index: 2;
 }
+mor-carousel .control > .up-btn,
+mor-carousel .control > .down-btn,
 mor-carousel .control > .left-btn,
 mor-carousel .control > .right-btn {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
   opacity: 0.5;
 }
+mor-carousel .control > .up-btn:hover,
+mor-carousel .control > .down-btn:hover,
 mor-carousel .control > .left-btn:hover,
 mor-carousel .control > .right-btn:hover {
   opacity: 0.75;
+}
+mor-carousel .control > .up-btn,
+mor-carousel .control > .down-btn {
+  left: 50%;
+  transform: translateX(-50%);
+}
+mor-carousel .control > .left-btn,
+mor-carousel .control > .right-btn {
+  top: 50%;
+  transform: translateY(-50%);
 }
 mor-carousel .control > .left-btn {
   left: 10px;
 }
 mor-carousel .control > .right-btn {
   right: 10px;
+}
+mor-carousel .control > .up-btn {
+  top: 6px;
+}
+mor-carousel .control > .down-btn {
+  bottom: 6px;
 }
 mor-carousel .control .indicator {
   position: absolute;
@@ -11160,14 +11210,34 @@ mor-carousel .control .indicator li {
 mor-carousel .control .indicator li.current {
   cursor: default;
 }
+mor-carousel.direction-vertical .control .indicator {
+  left: auto;
+  right: 10px;
+  transform: translateY(-50%);
+  top: 50%;
+  bottom: auto;
+  height: auto;
+}
+mor-carousel.direction-vertical .control .indicator li {
+  display: block;
+}
 mor-carousel.indicator-pos-outside {
   padding-bottom: 20px;
 }
 mor-carousel.indicator-pos-outside .control .indicator {
   bottom: 1px;
 }
+mor-carousel.indicator-pos-outside.direction-vertical {
+  padding-bottom: 0;
+  padding-right: 20px;
+}
+mor-carousel.indicator-pos-outside.direction-vertical .control .indicator {
+  bottom: auto;
+  right: 1px;
+}
 mor-carousel.indicator-type-dot .control .indicator li {
   height: 10px;
+  width: auto;
   padding: 4px 3px;
 }
 mor-carousel.indicator-type-dot .control .indicator li > i {
@@ -11181,6 +11251,21 @@ mor-carousel.indicator-type-dot .control .indicator li > i {
 }
 mor-carousel.indicator-type-dot .control .indicator li.current > i {
   width: 20px;
+  height: 10px;
+  background: #F33D5D;
+}
+mor-carousel.indicator-type-dot.direction-vertical .control .indicator li {
+  height: 10px;
+  width: 10px;
+  padding: 3px 4px;
+  transition: height 0.2s;
+}
+mor-carousel.indicator-type-dot.direction-vertical .control .indicator li.current {
+  height: 20px;
+}
+mor-carousel.indicator-type-dot.direction-vertical .control .indicator li.current > i {
+  width: 10px;
+  height: 20px;
   background: #F33D5D;
 }
 mor-carousel.indicator-type-line .control .indicator li {
@@ -11234,6 +11319,28 @@ mor-carousel.toggle-type-move .carousel-list > div.prev-new {
   animation-fill-mode: forwards;
 }
 mor-carousel.toggle-type-move .carousel-list > div.current {
+  transform: translateX(0%);
+}
+mor-carousel.toggle-type-move.direction-vertical .carousel-list > div {
+  transform: translateX(100%);
+}
+mor-carousel.toggle-type-move.direction-vertical .carousel-list > div.next-old {
+  animation: vertical-move-right-out 0.36s;
+  animation-fill-mode: forwards;
+}
+mor-carousel.toggle-type-move.direction-vertical .carousel-list > div.prev-old {
+  animation: vertical-move-left-out 0.36s;
+  animation-fill-mode: forwards;
+}
+mor-carousel.toggle-type-move.direction-vertical .carousel-list > div.next-new {
+  animation: vertical-move-right-in 0.36s;
+  animation-fill-mode: forwards;
+}
+mor-carousel.toggle-type-move.direction-vertical .carousel-list > div.prev-new {
+  animation: vertical-move-left-in 0.36s;
+  animation-fill-mode: forwards;
+}
+mor-carousel.toggle-type-move.direction-vertical .carousel-list > div.current {
   transform: translateX(0%);
 }
 
