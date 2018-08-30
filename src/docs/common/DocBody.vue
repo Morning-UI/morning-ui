@@ -695,11 +695,11 @@ let repeater = {
 
         if (color === 'silver') {
 
-            _opt.style.push('background: #626b75;border-color: #454d57');
+            _opt.style.push('background: #626b75;border-color: #454d57;padding: 5px;');
 
         } else if (color === 'gray') {
 
-            _opt.style.push('background:#676767;border-color: #494949');
+            _opt.style.push('background:#676767;border-color: #494949;padding: 5px;');
 
         }
 
@@ -1249,6 +1249,7 @@ let extRepeat = (content, paramStr, token, md) => {
                 _opt.param = sitem.split(':')[1];
                 repeater.size(_opt);
                 _opt.paramStr = [
+                    '> no-anchor',
                     '> title',
                     '尺寸',
                     '> desc',
@@ -1260,6 +1261,7 @@ let extRepeat = (content, paramStr, token, md) => {
                 _opt.param = sitem.split(':')[1];
                 repeater.color(_opt);
                 _opt.paramStr = [
+                    '> no-anchor',
                     '> title',
                     '色彩',
                     '> desc',
@@ -1271,6 +1273,7 @@ let extRepeat = (content, paramStr, token, md) => {
                 _opt.param = sitem.split(':')[1];
                 repeater.state(_opt);
                 _opt.paramStr = [
+                    '> no-anchor',
                     '> title',
                     '状态',
                     '> desc',
@@ -1327,180 +1330,52 @@ let extRepeat = (content, paramStr, token, md) => {
 
 };
 
+let extVueParser = {
+    vars : data => {
+
+        let vars = {};
+
+        data = data.split('\n');
+
+        for (let item of data) {
+
+            let tokens = item.replace(/^@/, '').split(':');
+            let key = tokens.shift();
+            let val = tokens.join(':');
+
+            vars[key] = val;
+
+        }
+
+        return vars;
+
+    },
+    section : data => {
+
+        data = data.split('\n');
+
+        return {
+            type : data.shift().replace(/\:$/, ''),
+            tokens : data
+        };
+
+    }
+};
+
 let extVue = (content, paramStr, token, md) => {
 
-    let inputTitle = [];
-    let inputDesc = [];
-    let inputScript = [];
-    let demoid = `demo-${_.random(randomRangeMin, randomRangeMax)}`;
-    let context = {
-        id : demoid,
-        el : `#${demoid}-el`,
-        template : `#${demoid}-tmpl`
-    };
-    let outputScript = `    export default {};`;
-    let execScript = `new Vue({
-    id : '{$id}',
-    el : '{$el}',
-    template : '{$template}'
-});`;
-    let liveScript = `Vue.use(morning);
+    let ctx = {};
 
-new Vue({
-    el : '{$el}'
-});`;
-    let outputTemplate = content;
-    let execTemplate = content;
-    let liveTemplate = content;
-    let noteTitle = '基本用法';
-    let noteContent = '';
-    let demo = '';
-    let outputCode = '';
+    ctx.vars = extVueParser.vars(paramStr.shift());
+    ctx.sections = [];
 
-    // get input title
-    let item;
-    let ctx = 'script';
+    while (ctx.unparseSection = paramStr.shift()) {
 
-    while(item = paramStr.shift()) {
-
-        if (item === '> title') {
-
-            ctx = 'title';
-
-        } else if (item === '> desc') {
-
-            ctx = 'desc';
-
-        } else if (item === '> script') {
-
-            ctx = 'script';
-
-        }
-
-        if (item !== '> title' &&
-            item !== '> desc' &&
-            item !== '> script') {
-
-            if (ctx === 'title') {
-
-                inputTitle.push(item);
-
-            } else if (ctx === 'desc') {
-
-                inputDesc.push(item);
-
-            } else if (ctx === 'script') {
-
-                inputScript.push(item);
-
-            }
-
-        }
+        ctx.sections.push(extVueParser.section(ctx.unparseSection));
 
     }
 
-    inputTitle = inputTitle.join('\n');
-    inputDesc = inputDesc.join('\n');
-    inputScript = inputScript.join('\n');
-
-    inputDesc = markdown.render(inputDesc);
-
-    console.log(1,inputTitle);
-    console.log(2,inputDesc);
-
-    noteTitle = inputTitle || noteTitle;
-    noteContent = inputDesc || noteContent;
-
-    // format start
-    // exec format
-    Mustache.parse(execScript, ['{$', '}']);
-    execScript = Mustache.render(execScript, context);
-    Mustache.parse(execTemplate, ['{$', '}']);
-    execTemplate = Mustache.render(execTemplate, context);
-
-    execScript = execScript.replace(/\{\*([a-zA-Z0-9_.]+)\*\}/g, '{{$1}}');
-
-    execTemplate = execTemplate.replace(/\{\*([a-zA-Z0-9_.]+)\*\}/g, '{{$1}}');
-
-    // output format
-    Mustache.parse(outputScript, ['{$', '}']);
-    outputScript = Mustache.render(outputScript, context);
-    Mustache.parse(outputTemplate, ['{$', '}']);
-    outputTemplate = Mustache.render(outputTemplate, context);
-
-    outputScript = outputScript.replace(/\{\*([a-zA-Z0-9_.]+)\*\}/g, '{{$1}}');
-
-    outputTemplate = outputTemplate.replace(/\{\*([a-zA-Z0-9_.]+)\*\}/g, '{{$1}}');
-    outputTemplate = outputTemplate.replace(/\n$/, '');
-    outputTemplate = addSpace(rmEndWrap(outputTemplate), 4);
-
-    // live format
-    Mustache.parse(liveScript, ['{$', '}']);
-    liveScript = Mustache.render(liveScript, context);
-    Mustache.parse(liveTemplate, ['{$', '}']);
-    liveTemplate = Mustache.render(liveTemplate, context);
-
-    liveScript = liveScript.replace(/\{\*([a-zA-Z0-9_.]+)\*\}/g, '{{$1}}');
-
-    liveTemplate = liveTemplate.replace(/\{\*([a-zA-Z0-9_.]+)\*\}/g, '{{$1}}');
-    liveTemplate = liveTemplate.replace(/\n$/, '');
-    liveTemplate = addSpace(rmEndWrap(liveTemplate), 4);
-    liveTemplate = `<div id="${demoid}-el">\n${liveTemplate}\n</div>`;
-    // format end
-
-    demo = `<div id="${demoid}-el"></div>`;
-
-    let templateScript = document.createElement('script');
-
-    templateScript.innerHTML = `\n${execTemplate}`;
-    templateScript.type = 'x-template';
-    templateScript.id = `${demoid}-tmpl`;
-
-    evals.push(templateScript);
-
-    let scriptScript = document.createElement('script');
-
-    scriptScript.innerHTML = execScript;
-    evals.push(scriptScript);
-
-    outputCode = `<template>
-${outputTemplate}
-</template>
-
-<script>
-${outputScript}
-<\/script>
-`;
-
-    livedata[demoid] = {
-        js : liveScript,
-        html : liveTemplate
-    };
-
-    outputcode[demoid] = outputCode;
-
-    return `
-        <div class="demo-box vue">
-            <div class="demo">${demo}</div>
-            <div class="code">
-                <pre><code class="lang-html lang-vue">${md.utils.escapeHtml(outputCode)}</code></pre>
-                <div class="note">
-                    <h3>${noteTitle}</h3>
-                    <div>${noteContent}</div>
-                </div>
-                <div class="demo-tools">
-                    <a href="javascript:;" class="live" demo-id="${demoid}" id="live-demo-${demoid}">
-                        <i class="iconfont">&#xe616;</i>
-                    </a>
-                    <ui-tip color="extra-light-black" target="#live-demo-${demoid}">在 JSFiddle 中查看</ui-tip>
-                    <a href="javascript:;" class="copy" demo-id="${demoid}" id="copy-demo-${demoid}">
-                        <i class="iconfont">&#xe632;</i>
-                    </a>
-                    <ui-tip id="copy-tip-${demoid}" color="extra-light-black" target="#copy-demo-${demoid}">复制代码</ui-tip>
-                </div>
-            </div>
-        </div>
-    `;
+    console.log(ctx); 
 
 };
 
@@ -1663,15 +1538,23 @@ let demoWithCodePlugin = (md, opt) => {
         let content;
         let result = '';
 
-        if (list.length > 1) {
+        if (method !== 'vue') {
 
-            paramStr = list.shift();
+            if (list.length > 1) {
+
+                paramStr = list.shift();
+
+            }
+
+            content = list.join('\n---\n');
+
+            paramStr = paramStr.split('\n');
+
+        } else {
+
+            paramStr = list;
 
         }
-
-        content = list.join('\n---\n');
-
-        paramStr = paramStr.split('\n');
 
         if (method === 'democode') {
 
@@ -1737,7 +1620,7 @@ window.Vue.directive('docmd', {
             
             md = md.replace(/\{\*([a-zA-Z0-9_.]+)\*\}/g, '{{"\\{\\{$1\\}\\}"}}');
             md = md.replace(/<p>(\[\[\[(.+)\]\]\])<\/p>/g, '$1');
-            md = md.replace(/(\[\[\[)/, '<ui-tab class="block noborder" anchor-target>$1');
+            md = md.replace(/(\[\[\[)/, '<ui-tab class="block noborder no-padding" anchor-target>$1');
             md = md.replace(/\[\[\[开始\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="开始"><div class="content-title">开始</div>$1</div>$3');
             md = md.replace(/\[\[\[形态\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="形态"><div class="content-title">形态</div>$1</div>$3');
             md = md.replace(/\[\[\[配置\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="配置"><div class="content-title">配置</div>$1</div>$3');
@@ -1812,8 +1695,6 @@ export default {
 
             const copyShowtime = 1500;
 
-            console.log(2, event.target, event.target.parentElement);
-
             if (event.target &&
                 event.target.parentElement &&
                 event.target.parentElement.classList.value.indexOf('copy') !== -1) {
@@ -1880,7 +1761,7 @@ export default {
             fieldPanelJs.setAttribute('name', 'panel_js');
             fieldPanelJs.value = '0';
             fieldResources.setAttribute('name', 'resources');
-            fieldResources.value = 'https://cdn.jsdelivr.net/npm/vue@2.5.17,https://cdn.jsdelivr.net/npm/morning-ui/dist/morning-ui.js,https://cdn.jsdelivr.net/npm/morning-ui/dist/morning-ui.css';
+            fieldResources.value = 'https://cdn.jsdelivr.net/npm/vue@2.5.17,https://cdn.jsdelivr.net/npm/morning-ui/dist/morning-ui.js,https://cdn.jsdelivr.net/npm/morning-ui/dist/morning-ui.css,https://morning-ui.com/iconfont.woff';
             fieldHtml.setAttribute('name', 'html');
             fieldHtml.value = data.html;
             fieldJs.setAttribute('name', 'js');
@@ -1951,7 +1832,7 @@ a{ }
     position: relative;
 
     &:hover{
-        box-shadow: 0 3px 6px rgba(194, 204, 212, 0.42);
+        box-shadow: 0 3px 6px rgba(194, 204, 212, 0.34);
         border: 1px #e3e8ea solid;
     }
 
@@ -2000,7 +1881,7 @@ a{ }
                 box-sizing: border-box;
                 border-left: 1px #e5e9ec dashed;
 
-                > h3{
+                > h5{
                     margin: 0;
                     padding: 14px;
                     font-size: 14px;
@@ -2038,6 +1919,55 @@ a{ }
                         color: #18191b;
                     }
                 }
+            }
+        }
+    }
+
+    &.vue.has-config{
+        margin-bottom: 20px;
+        > h4{
+            margin: 0;
+            padding: 16px 14px;
+            font-size: 18px;
+        }
+
+        > .config{
+            padding: 0 14px 14px 14px;
+            border-bottom: 2px #e5e9ec dashed;
+
+            > table{
+                margin: 0;
+                display: table;
+                font-size: 12px;
+                
+                thead tr{
+                    background: #e5e9ec;
+                    border: none;
+                }
+
+                th,
+                td{
+                    padding: 5px;
+                    border: 1px solid #e5e9ec;
+                }
+            }
+        }
+
+        .code{
+            display: block;
+
+            > pre{
+                width: 100%;
+                border-bottom: 1px #e5e9ec dashed;
+            }
+
+            > .note{
+                width: 100%;
+                border-left: none;
+            }
+
+            > .demo-tools{
+                right: 0;
             }
         }
     }

@@ -12,9 +12,10 @@
 
     定义一个无序列表，支持多层嵌套，列表中每一项使用`<li>`标签。
 
-    #### 使用
-    
-    :::democode/html
+    :::vue
+    > title
+    使用
+    ---
     <ui-ul>
         <li>This is first</li>
         <li>This is second</li>
@@ -22,9 +23,12 @@
     </ui-ul>
     :::
 
-    #### 三层嵌套
-    
-    :::democode/html
+    :::vue
+    > title
+    三层嵌套
+    > desc
+    无序列表支持多层嵌套。
+    ---
     <ui-ul>
         <li>This is 1</li>
         <ui-ul>
@@ -39,11 +43,12 @@
     </ui-ul>
     :::
 
-    #### 超过三层嵌套
-
-    超过三层的无序列表，项目序号均为square。
-    
-    :::democode/html
+    :::vue
+    > title
+    超过三层嵌套
+    > desc
+    超过三层的无序列表，项目序号均为`square`。
+    ---
     <ui-ul>
         <li>This is 1</li>
         <ui-ul>

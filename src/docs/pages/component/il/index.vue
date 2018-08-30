@@ -11,10 +11,11 @@
     [[[开始]]]
 
     定义一个内联列表，不支持嵌套，列表中每一项使用`<li>`标签。
-
-    #### 使用
     
-    :::democode/html
+    :::vue
+    > title
+    使用
+    ---
     <ui-il>
         <li>This is first</li>
         <li>This is second</li>

@@ -12,56 +12,65 @@
 
     定义统计区域，统计包含数值和名称，这是一个内联块标签。
 
+    :::vue
+    > title
+    使用
+    > desc
     统计可包含：
-
-    - 数值 .value
-    - 名称 .label
-
-    #### 使用
-
-    :::democode/html
+    <br><br>
+    - 数值: `.value`
+    - 名称: `.label`
+    ---
     <ui-statistic>
         <div class="value">5,550</div>
         <div class="label">downloads</div>
     </ui-statistic>
     :::
 
-    #### 带图片统计
-
-    :::democode/html
+    :::vue
+    > title
+    带图片统计
+    ---
     <ui-statistic>
         <div class="value"><img src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"/><span>5,550</span></div>
         <div class="label">downloads</div>
     </ui-statistic>
     :::
 
-    #### 带图标统计
-
-    :::democode/html
+    :::vue
+    > title
+    带图标统计
+    ---
     <ui-statistic>
         <div class="value"><i class="iconfont">&#xe6e2;</i><span>5,550</span></div>
         <div class="label">downloads</div>
     </ui-statistic>
     :::
 
-    #### 水平名称
+    :::vue
+    > title
+    水平名称
+    > desc
+    通过添加`horizontal`类可实现水平的名称。
+    ---
+    <div>
+        <ui-statistic class="horizontal">
+            <div class="value">5,550</div>
+            <div class="label">downloads</div>
+        </ui-statistic>
 
-    :::democode/html
-    <ui-statistic class="horizontal">
-        <div class="value">5,550</div>
-        <div class="label">downloads</div>
-    </ui-statistic>
 
-
-    <ui-statistic class="horizontal">
-        <div class="label">downloads</div>
-        <div class="value">5,550</div>
-    </ui-statistic>
+        <ui-statistic class="horizontal">
+            <div class="label">downloads</div>
+            <div class="value">5,550</div>
+        </ui-statistic>
+    </div>
     :::
 
-    #### 上方名称
-
-    :::democode/html
+    :::vue
+    > title
+    上方名称
+    ---
     <ui-statistic>
         <div class="label">downloads</div>
         <div class="value">5,550</div>

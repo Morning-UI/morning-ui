@@ -11,10 +11,11 @@
     [[[开始]]]
 
     标记一段着重内容，这是一个内联元素。
-
-    #### 使用
     
-    :::democode/html
+    :::vue
+    > title
+    使用
+    ---
     <ui-strong>着重文本</ui-strong>
     :::
 

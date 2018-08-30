@@ -12,10 +12,11 @@
 
     小写文本组件，这是一个内联元素。
 
-    #### 使用
-    
-    :::democode/html
-    <div><ui-lowercase>小写的英文文本: tHere is A LEtter</ui-lowercase></div>
+    :::vue
+    > title
+    使用
+    ---
+    <ui-lowercase>小写的英文文本: tHere is A LEtter</ui-lowercase>
     :::
 
     [[[形态]]]

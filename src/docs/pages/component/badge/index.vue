@@ -14,29 +14,33 @@
 
     徽章内部只能包含文本内容。
 
-    #### 使用
-
-    :::democode/html
+    :::vue
+    > title
+    使用
+    ---
     <ui-badge>24</ui-badge>
     :::
 
-    #### 扁平徽章
-
-    :::democode/html
+    :::vue
+    > title
+    扁平徽章
+    ---
     <ui-badge class="flat">24</ui-badge>
     :::
     
-    #### 圆形徽章
-
-    :::democode/html
+    :::vue
+    > title
+    圆形徽章
+    ---
     <ui-badge class="circle">圆形徽章</ui-badge>
     :::
 
-    #### 无内容隐藏
-
+    :::vue
+    > title
+    无内容隐藏
+    > desc
     当徽章内没有内容时，会自动隐藏。
-
-    :::democode/html
+    ---
     <ui-badge></ui-badge>
     :::
 

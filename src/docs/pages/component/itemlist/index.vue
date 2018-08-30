@@ -12,188 +12,195 @@
 
     定义项目列表组件，项目列表中的每一项包含图片及文字内容，这是一个块级元素。
 
-    项目列表可包含：
 
+    :::vue
+    > title
+    使用
+    > desc
+    项目列表可包含：
+    <br><br>
     - 缩略图 `img`
     - 标题 `.title`
     - 描述 `.desc`
     - 主体内容 `.body`
     - 附加信息 `.additional`
-
-    #### 使用
-
-    :::democode/html
+    ---
     <div style="width:400px">
-    <ui-itemlist>
-        <ui-ul>
-            <li>
-                <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
-                <h3 class="title">Header</h3>
-                <p class="desc">Description</p>
-                <div class="body">Body</div>
-                <div class="additional">Additional Details</div> 
-            </li>
-            <li>
-                <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
-                <h3 class="title">Header</h3>
-                <p class="desc">Description</p>
-                <div class="body">Body</div>
-                <div class="additional">Additional Details</div> 
-            </li>
-            <li>
-                <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
-                <h3 class="title">Header</h3>
-                <p class="desc">Description</p>
-                <div class="body">Body</div>
-                <div class="additional">Additional Details</div> 
-            </li>
-        </ui-ul>
-    </ui-itemlist>
+        <ui-itemlist>
+            <ui-ul>
+                <li>
+                    <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                    <h3 class="title">Header</h3>
+                    <p class="desc">Description</p>
+                    <div class="body">Body</div>
+                    <div class="additional">Additional Details</div> 
+                </li>
+                <li>
+                    <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                    <h3 class="title">Header</h3>
+                    <p class="desc">Description</p>
+                    <div class="body">Body</div>
+                    <div class="additional">Additional Details</div> 
+                </li>
+                <li>
+                    <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                    <h3 class="title">Header</h3>
+                    <p class="desc">Description</p>
+                    <div class="body">Body</div>
+                    <div class="additional">Additional Details</div> 
+                </li>
+            </ui-ul>
+        </ui-itemlist>
     </div>
     :::
 
-    #### 下划线分隔
-    
-    :::democode/html
+    :::vue
+    > title
+    下划线分隔
+    ---
     <div style="width:400px">
-    <ui-itemlist class="underline">
-        <ui-ul>
-            <li>
-                <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
-                <h3 class="title">Header</h3>
-                <p class="desc">Description</p>
-                <div class="body">Body</div>
-                <div class="additional">Additional Details</div> 
-            </li>
-            <li>
-                <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
-                <h3 class="title">Header</h3>
-                <p class="desc">Description</p>
-                <div class="body">Body</div>
-                <div class="additional">Additional Details</div> 
-            </li>
-            <li>
-                <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
-                <h3 class="title">Header</h3>
-                <p class="desc">Description</p>
-                <div class="body">Body</div>
-                <div class="additional">Additional Details</div> 
-            </li>
-        </ui-ul>
-    </ui-itemlist>
+        <ui-itemlist class="underline">
+            <ui-ul>
+                <li>
+                    <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                    <h3 class="title">Header</h3>
+                    <p class="desc">Description</p>
+                    <div class="body">Body</div>
+                    <div class="additional">Additional Details</div> 
+                </li>
+                <li>
+                    <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                    <h3 class="title">Header</h3>
+                    <p class="desc">Description</p>
+                    <div class="body">Body</div>
+                    <div class="additional">Additional Details</div> 
+                </li>
+                <li>
+                    <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                    <h3 class="title">Header</h3>
+                    <p class="desc">Description</p>
+                    <div class="body">Body</div>
+                    <div class="additional">Additional Details</div> 
+                </li>
+            </ui-ul>
+        </ui-itemlist>
     </div>
     :::
 
-    #### 单行标题
-    
-    :::democode/html
+    :::vue
+    > title
+    单行标题
+    ---
     <div style="width:400px">
-    <ui-itemlist xs>
-        <ui-ul>
-            <li>
-                <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
-                <h3 class="title">Header</h3>
-            </li>
-            <li>
-                <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
-                <h3 class="title">Header</h3>
-            </li>
-            <li>
-                <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
-                <h3 class="title">Header</h3>
-            </li>
-        </ui-ul>
-    </ui-itemlist>
+        <ui-itemlist xs>
+            <ui-ul>
+                <li>
+                    <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                    <h3 class="title">Header</h3>
+                </li>
+                <li>
+                    <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                    <h3 class="title">Header</h3>
+                </li>
+                <li>
+                    <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                    <h3 class="title">Header</h3>
+                </li>
+            </ui-ul>
+        </ui-itemlist>
+    </div>
+    :::
+    
+    :::vue
+    > title
+    单行内容
+    ---
+    <div style="width:400px">
+        <ui-itemlist xs>
+            <ui-ul>
+                <li>
+                    <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                    <div class="body">Body</div>
+                </li>
+                <li>
+                    <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                    <div class="body">Body</div>
+                </li>
+                <li>
+                    <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                    <div class="body">Body</div>
+                </li>
+            </ui-ul>
+        </ui-itemlist>
     </div>
     :::
 
-    #### 单行内容
-    
-    :::democode/html
+    :::vue
+    > title
+    无图片
+    ---
     <div style="width:400px">
-    <ui-itemlist xs>
-        <ui-ul>
-            <li>
-                <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
-                <div class="body">Body</div>
-            </li>
-            <li>
-                <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
-                <div class="body">Body</div>
-            </li>
-            <li>
-                <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
-                <div class="body">Body</div>
-            </li>
-        </ui-ul>
-    </ui-itemlist>
+        <ui-itemlist>
+            <ui-ul>
+                <li>
+                    <h3 class="title">Header</h3>
+                    <p class="desc">Description</p>
+                    <div class="body">Body</div>
+                    <div class="additional">Additional Details</div> 
+                </li>
+                <li>
+                    <h3 class="title">Header</h3>
+                    <p class="desc">Description</p>
+                    <div class="body">Body</div>
+                    <div class="additional">Additional Details</div> 
+                </li>
+                <li>
+                    <h3 class="title">Header</h3>
+                    <p class="desc">Description</p>
+                    <div class="body">Body</div>
+                    <div class="additional">Additional Details</div> 
+                </li>
+            </ui-ul>
+        </ui-itemlist>
     </div>
     :::
-
-    #### 无图片
     
-    :::democode/html
+    :::vue
+    > title
+    配合`ui-label`
+    ---
     <div style="width:400px">
-    <ui-itemlist>
-        <ui-ul>
-            <li>
-                <h3 class="title">Header</h3>
-                <p class="desc">Description</p>
-                <div class="body">Body</div>
-                <div class="additional">Additional Details</div> 
-            </li>
-            <li>
-                <h3 class="title">Header</h3>
-                <p class="desc">Description</p>
-                <div class="body">Body</div>
-                <div class="additional">Additional Details</div> 
-            </li>
-            <li>
-                <h3 class="title">Header</h3>
-                <p class="desc">Description</p>
-                <div class="body">Body</div>
-                <div class="additional">Additional Details</div> 
-            </li>
-        </ui-ul>
-    </ui-itemlist>
-    </div>
-    :::
-
-    #### 配合`ui-label`
-    
-    :::democode/html
-    <div style="width:400px">
-    <ui-itemlist>
-        <ui-ul>
-            <li>
-                <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
-                <h3 class="title">Header</h3>
-                <p class="desc">Description</p>
-                <div class="body">Body</div>
-                <div class="additional">
-                    <ui-label s minor>Normal</ui-label>
-                </div> 
-            </li>
-            <li>
-                <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
-                <h3 class="title">Header</h3>
-                <p class="desc">Description</p>
-                <div class="body">Body</div>
-                <div class="additional">
-                    <ui-label s danger>High</ui-label>
-                </div> 
-            </li>
-            <li>
-                <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
-                <h3 class="title">Header</h3>
-                <p class="desc">Description</p>
-                <div class="body">Body</div>
-                <div class="additional">
-                    <ui-label s minor>Normal</ui-label>
-                </div> 
-            </li>
-        </ui-ul>
-    </ui-itemlist>
+        <ui-itemlist>
+            <ui-ul>
+                <li>
+                    <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                    <h3 class="title">Header</h3>
+                    <p class="desc">Description</p>
+                    <div class="body">Body</div>
+                    <div class="additional">
+                        <ui-label s minor>Normal</ui-label>
+                    </div> 
+                </li>
+                <li>
+                    <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                    <h3 class="title">Header</h3>
+                    <p class="desc">Description</p>
+                    <div class="body">Body</div>
+                    <div class="additional">
+                        <ui-label s danger>High</ui-label>
+                    </div> 
+                </li>
+                <li>
+                    <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                    <h3 class="title">Header</h3>
+                    <p class="desc">Description</p>
+                    <div class="body">Body</div>
+                    <div class="additional">
+                        <ui-label s minor>Normal</ui-label>
+                    </div> 
+                </li>
+            </ui-ul>
+        </ui-itemlist>
     </div>
     :::
 
@@ -215,31 +222,31 @@
     size
     ---
     <div style="width:400px">
-    <ui-itemlist size="{$sizeKey}">
-        <ui-ul>
-            <li>
-                <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
-                <h3 class="title">{$&sizeName}</h3>
-                <p class="desc">Description</p>
-                <div class="body">Body</div>
-                <div class="additional">Additional Details</div> 
-            </li>
-            <li>
-                <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
-                <h3 class="title">{$&sizeName}</h3>
-                <p class="desc">Description</p>
-                <div class="body">Body</div>
-                <div class="additional">Additional Details</div> 
-            </li>
-            <li>
-                <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
-                <h3 class="title">{$&sizeName}</h3>
-                <p class="desc">Description</p>
-                <div class="body">Body</div>
-                <div class="additional">Additional Details</div> 
-            </li>
-        </ui-ul>
-    </ui-itemlist>
+        <ui-itemlist size="{$sizeKey}">
+            <ui-ul>
+                <li>
+                    <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                    <h3 class="title">{$&sizeName}</h3>
+                    <p class="desc">Description</p>
+                    <div class="body">Body</div>
+                    <div class="additional">Additional Details</div> 
+                </li>
+                <li>
+                    <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                    <h3 class="title">{$&sizeName}</h3>
+                    <p class="desc">Description</p>
+                    <div class="body">Body</div>
+                    <div class="additional">Additional Details</div> 
+                </li>
+                <li>
+                    <ui-img class="img" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+                    <h3 class="title">{$&sizeName}</h3>
+                    <p class="desc">Description</p>
+                    <div class="body">Body</div>
+                    <div class="additional">Additional Details</div> 
+                </li>
+            </ui-ul>
+        </ui-itemlist>
     </div>
     <br><br>
     :::

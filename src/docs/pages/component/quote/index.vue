@@ -12,9 +12,10 @@
 
     定义一段引用的内容，这是一个块级元素。
 
-    #### 使用
-    
-    :::democode/html
+    :::vue
+    > title
+    使用
+    ---
     <ui-quote>引用文本</ui-quote>
     :::
 

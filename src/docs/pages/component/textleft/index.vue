@@ -11,10 +11,11 @@
     [[[开始]]]
 
     内容左对齐组件，这是一个块级元素。
-
-    #### 使用
     
-    :::democode/html
+    :::vue
+    > title
+    使用
+    ---
     <ui-textleft>左对齐文本</ui-textleft>
     :::
 

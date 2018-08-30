@@ -15,10 +15,11 @@
     描述列表是一个块级元素。
 
     描述列表支持多种布局样式，可以通过额外的`class`来使用。
-
-    #### 使用
     
-    :::democode/html
+    :::vue
+    > title
+    使用
+    ---
     <ui-dl>
         <dt>Foo</dt>
         <dd>this is detail of foo</dd>
@@ -27,9 +28,12 @@
     </ui-dl>
     :::
 
-    #### 水平排列布局
-
-    :::democode/html
+    :::vue
+    > title
+    水平排列布局
+    > desc
+    通过添加`horizontal`可以实现水平排列布局。
+    ---
     <ui-dl class="horizontal">
         <dt>Horizon</dt>
         <dd>this is horizontal ui-dl</dd>
@@ -38,9 +42,14 @@
     </ui-dl>
     :::
 
-    #### 下划线布局
+    #### 
 
-    :::democode/html
+    :::vue
+    > title
+    下划线布局
+    > desc
+    通过添加`underline`可以添加下划线。
+    ---
     <ui-dl class="underline">
         <dt>Underline</dt>
         <dd>this is underline ui-dl</dd>

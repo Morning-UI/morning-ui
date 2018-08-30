@@ -14,16 +14,15 @@
 
     这是一个24列的栅格系统，支持自适应，不支持响应式。
 
-    通过类`c-[n]`来标记栅格所占用的列，通过类`offset-[n]`来标记栅格偏移列数。
-
     列之间默认具有间隙，两端无间隙，可以通过两个类来调整间隙：
 
     - `nogap` : 生成不具有间隙的栅格
     - `avggap` : 生成两端包含间隙的栅格
 
-    #### 使用
-
-    :::democode/html
+    :::vue
+    > title
+    使用
+    ---
     <ui-grid>
         <div class="c-6" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-6</div>
         <div class="c-6" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-6</div>
@@ -32,84 +31,93 @@
     </ui-grid>
     :::
 
-    #### 栅格组合
+    :::vue
+    > title
+    栅格组合
+    > desc
+    通过类`c-[n]`来标记栅格所占用的列。
+    ---
+    <div>
+        <ui-grid>
+            <div class="c-24" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-24</div>
+        </ui-grid>
 
-    :::democode/html
-    <ui-grid>
-        <div class="c-24" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-24</div>
-    </ui-grid>
+        <br>
 
-    <br>
+        <ui-grid>
+            <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
+            <div class="c-22" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-22</div>
+        </ui-grid>
 
-    <ui-grid>
-        <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
-        <div class="c-22" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-22</div>
-    </ui-grid>
+        <br>
 
-    <br>
+        <ui-grid>
+            <div class="c-8" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-8</div>
+            <div class="c-16" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-16</div>
+        </ui-grid>
 
-    <ui-grid>
-        <div class="c-8" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-8</div>
-        <div class="c-16" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-16</div>
-    </ui-grid>
+        <br>
+        
+        <ui-grid>
+            <div class="c-4" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-4</div>
+            <div class="c-7" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-7</div>
+            <div class="c-13" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-13</div>
+        </ui-grid>
 
-    <br>
-    
-    <ui-grid>
-        <div class="c-4" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-4</div>
-        <div class="c-7" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-7</div>
-        <div class="c-13" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-13</div>
-    </ui-grid>
-
-    <br>
-    
-    <ui-grid>
-        <div class="c-6" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-6</div>
-        <div class="c-6" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-6</div>
-        <div class="c-12" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-12</div>
-    </ui-grid>
+        <br>
+        
+        <ui-grid>
+            <div class="c-6" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-6</div>
+            <div class="c-6" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-6</div>
+            <div class="c-12" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-12</div>
+        </ui-grid>
+    </div>
     :::
 
-    #### 栅格偏移
+    :::vue
+    > title
+    栅格偏移
+    > desc
+    通过类`offset-[n]`来标记栅格偏移列数。
+    ---
+    <div>
+        <ui-grid>
+            <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
+            <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
+            <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
+            <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
+            <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
+            <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
+            <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
+            <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
+            <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
+            <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
+            <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
+            <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
+        </ui-grid>
 
-    :::democode/html
-    <ui-grid>
-        <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
-        <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
-        <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
-        <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
-        <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
-        <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
-        <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
-        <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
-        <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
-        <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
-        <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
-        <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
-    </ui-grid>
+        <br>
 
-    <br>
+        <ui-grid>
+            <div class="c-4 offset-4" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-4 offset-4</div>
+            <div class="c-4 offset-4" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-4 offset-4</div>
+        </ui-grid>
 
-    <ui-grid>
-        <div class="c-4 offset-4" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-4 offset-4</div>
-        <div class="c-4 offset-4" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-4 offset-4</div>
-    </ui-grid>
+        <br>
 
-    <br>
-
-    <ui-grid>
-        <div class="c-4 offset-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-4 offset-2</div>
-        <div class="c-9 offset-1" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-9 offset-1</div>
-    </ui-grid>
+        <ui-grid>
+            <div class="c-4 offset-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-4 offset-2</div>
+            <div class="c-9 offset-1" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-9 offset-1</div>
+        </ui-grid>
+    </div>
     :::
 
-
-
-    #### 栅格嵌套
-
+    :::vue
+    > title
+    栅格嵌套
+    > desc
     栅格系统支持多层级嵌套。
-    
-    :::democode/html
+    ---
     <ui-grid>
         <div class="c-6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</div>
         <div class="c-18" style="background-color:#D6DDE5;">
@@ -121,99 +129,106 @@
     </ui-grid>
     :::
 
-    #### 无间隔栅格
+    :::vue
+    > title
+    无间隔栅格
+    > desc
+    添加`nogap`的样式类可以使栅格之间无间隔
+    ---
+    <div>
+        <ui-grid class="nogap">
+            <div class="c-6" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-6</div>
+            <div class="c-6" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-6</div>
+            <div class="c-6" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-6</div>
+            <div class="c-6" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-6</div>
+        </ui-grid>
 
-    添加`nogap`的样式类可以使栅格之间无间隔。
+        <br>
 
-    :::democode/html
-    <ui-grid class="nogap">
-        <div class="c-6" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-6</div>
-        <div class="c-6" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-6</div>
-        <div class="c-6" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-6</div>
-        <div class="c-6" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-6</div>
-    </ui-grid>
+        <ui-grid class="nogap">
+            <div class="c-9" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-9</div>
+            <div class="c-15" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-15</div>
+        </ui-grid>
 
-    <br>
+        <br>
 
-    <ui-grid class="nogap">
-        <div class="c-9" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-9</div>
-        <div class="c-15" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-15</div>
-    </ui-grid>
+        <ui-grid class="nogap">
+            <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
+            <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
+            <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
+            <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
+            <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
+            <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
+            <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
+            <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
+            <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
+            <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
+            <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
+            <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
+        </ui-grid>
 
-    <br>
+        <br>
 
-    <ui-grid class="nogap">
-        <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
-        <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
-        <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
-        <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
-        <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
-        <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
-        <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
-        <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
-        <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
-        <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
-        <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
-        <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
-    </ui-grid>
-
-    <br>
-
-    <ui-grid class="nogap">
-        <div class="c-4 offset-4" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-4 offset-4</div>
-        <div class="c-4 offset-4" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-4 offset-4</div>
-    </ui-grid>
+        <ui-grid class="nogap">
+            <div class="c-4 offset-4" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-4 offset-4</div>
+            <div class="c-4 offset-4" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-4 offset-4</div>
+        </ui-grid>
+    </div>
     :::
 
-    #### 两端包含间隙栅格
-
+    :::vue
+    > title
+    两端包含间隙栅格
+    > desc
     添加`avggap`的样式类可以使栅格两端也有间隙。
+    ---
+    <div>
+        <ui-grid class="avggap">
+            <div class="c-6" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-6</div>
+            <div class="c-6" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-6</div>
+            <div class="c-6" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-6</div>
+            <div class="c-6" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-6</div>
+        </ui-grid>
 
-    :::democode/html
-    <ui-grid class="avggap">
-        <div class="c-6" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-6</div>
-        <div class="c-6" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-6</div>
-        <div class="c-6" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-6</div>
-        <div class="c-6" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-6</div>
-    </ui-grid>
+        <br>
 
-    <br>
-    
-    <ui-grid class="avggap">
-        <div class="c-9" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-9</div>
-        <div class="c-15" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-15</div>
-    </ui-grid>
+        <ui-grid class="avggap">
+            <div class="c-9" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-9</div>
+            <div class="c-15" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-15</div>
+        </ui-grid>
 
-    <br>
+        <br>
 
-    <ui-grid class="avggap">
-        <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
-        <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
-        <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
-        <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
-        <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
-        <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
-        <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
-        <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
-        <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
-        <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
-        <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
-        <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
-    </ui-grid>
+        <ui-grid class="avggap">
+            <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
+            <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
+            <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
+            <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
+            <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
+            <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
+            <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
+            <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
+            <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
+            <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
+            <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
+            <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
+        </ui-grid>
+        
+        <br>
 
-    <br>
-
-    <ui-grid class="avggap">
-        <div class="c-4 offset-4" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-4 offset-4</div>
-        <div class="c-4 offset-4" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-4 offset-4</div>
-    </ui-grid>
+        <ui-grid class="avggap">
+            <div class="c-4 offset-4" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-4 offset-4</div>
+            <div class="c-4 offset-4" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-4 offset-4</div>
+        </ui-grid>
+    </div>
     :::
 
-    #### 填满容器的栅格
-
+    :::vue
+    > title
+    填满容器的栅格
+    > desc
     填满容器的栅格高度为100%。
-
-    :::democode/html
+    ---
     <div style="height:200px;">
         <ui-grid class="fill">
             <div class="c-6" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-6</div>
@@ -223,7 +238,6 @@
         </ui-grid>
     </div>
     :::
-
 
     [[[形态]]]
 
