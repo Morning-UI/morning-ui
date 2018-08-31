@@ -15,9 +15,10 @@
     #### 使用
 
     :::vue
-    > title
-    使用
+    @name:使用
     ---
+    #demo
+    >tpl
     <ui-textcolor>This is ui-textcolor</ui-textcolor>
     :::
 
@@ -32,8 +33,6 @@
     |状态|不支持|-|
 
     <a href="/guide/status.html">查看形态文档</a>
-
-    #### 色彩
 
     :::preset/html
     statusColor

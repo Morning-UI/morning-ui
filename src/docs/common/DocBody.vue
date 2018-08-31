@@ -1218,6 +1218,8 @@ let rmEndWrap = content => (content.replace(/\n$/, ''));
 let extRepeat = (content, paramStr, token, md) => {
 
     let params = {};
+    let paramStrList = [];
+    let name;
 
     params.list = [];
 
@@ -1248,8 +1250,8 @@ let extRepeat = (content, paramStr, token, md) => {
 
                 _opt.param = sitem.split(':')[1];
                 repeater.size(_opt);
+                name = '@name:尺寸';
                 _opt.paramStr = [
-                    '@name:尺寸',
                     '#demo\n>title\n尺寸\n>desc\n通过`size`来设置组件的尺寸，可用尺寸详见[形态/尺寸](/guide/status.html#尺寸)'
                 ];
 
@@ -1257,17 +1259,34 @@ let extRepeat = (content, paramStr, token, md) => {
 
                 _opt.param = sitem.split(':')[1];
                 repeater.color(_opt);
-                _opt.paramStr = [
-                    '@name:色彩',
-                    '#demo\n>title\n色彩\n>desc\n通过`color`来设置组件的色彩，可用色彩详见[形态/色彩](/guide/status.html#色彩)'
-                ];
+                name = '@name:色彩';
+
+                if (_opt.param === 'theme') {
+
+                    _opt.paramStr = _opt.paramStr.concat([
+                        '#demo\n>title\n主题色彩\n>desc\n通过`color`来设置组件的主题色彩，可用色彩详见[形态/色彩/主题色](/guide/status.html#主题色)'
+                    ]);
+
+                } else if (_opt.param === 'feature') {
+
+                    _opt.paramStr = _opt.paramStr.concat([
+                        '#demo\n>title\n功能色彩\n>desc\n通过`color`来设置组件的功能色彩，可用色彩详见[形态/色彩/功能色](/guide/status.html#功能色)'
+                    ]);
+
+                } else {
+
+                    _opt.paramStr = _opt.paramStr.concat([
+                        '#demo\n>title\n辅助色彩\n>desc\n通过`color`来设置组件的辅助色彩，可用色彩详见[形态/色彩/辅助色](/guide/status.html#辅助色)'
+                    ]);
+
+                }
 
             } else if (/^state/.test(sitem)) {
 
                 _opt.param = sitem.split(':')[1];
                 repeater.state(_opt);
+                name = '@name:状态';
                 _opt.paramStr = [
-                    '@name:状态',
                     '#demo\n>title\n状态\n>desc\n通过`state`来设置组件的状态，可用状态详见[形态/状态](/guide/status.html#状态)'
                 ];
 
@@ -1293,34 +1312,32 @@ let extRepeat = (content, paramStr, token, md) => {
 
         let renderContent = Mustache.render(_opt.content, _opt.context);
 
+        console.log(99, _opt.paramStr);
 
         if (_opt.style.length > 0) {
 
-            _opt.paramStr[1] = _opt.paramStr[1].replace(/(^\#demo)/, `$1\n>tpl\n<div style="${_opt.style.join('')}">\n${addSpace(rmEndWrap(renderContent), 4)}\n<div>`);
-            fullContent += extVue(
-                null,
-                _opt.paramStr,
-                token,
-                md
-            );
-            fullContent += '<br>';
+            _opt.paramStr[0] = _opt.paramStr[0].replace(/(^\#demo)/, `$1\n>tpl\n<div style="${_opt.style.join('')}">\n${addSpace(rmEndWrap(renderContent), 4)}\n<div>`);
+            paramStrList = paramStrList.concat(_opt.paramStr);
 
         } else {
             
-            _opt.paramStr[1] = _opt.paramStr[1].replace(/(^\#demo)/, `$1\n>tpl\n<div>\n${addSpace(rmEndWrap(renderContent), 4)}\n<div>`);
-            fullContent += extVue(
-                null,
-                _opt.paramStr,
-                token,
-                md
-            );
-            fullContent += '<br>';
+            _opt.paramStr[0] = _opt.paramStr[0].replace(/(^\#demo)/, `$1\n>tpl\n<div>\n${addSpace(rmEndWrap(renderContent), 4)}\n<div>`);
+            paramStrList = paramStrList.concat(_opt.paramStr);
 
         }
 
     }
 
-    return fullContent;
+    paramStrList.unshift(name);
+
+    console.log('end', extend(true, [], paramStrList));
+
+    return extVue(
+        null,
+        paramStrList,
+        token,
+        md
+    );
 
 };
 
@@ -1336,6 +1353,10 @@ let extVueParser = {
             let tokens = item.replace(/^@/, '').split(':');
             let key = tokens.shift();
             let val = tokens.join(':');
+
+            val = markdown.render(val);
+            val = val.replace(/(^\<p\>|\<\/p\>)/g, '');
+            val = val.replace(/\n$/, '');
 
             vars[key] = val;
 
@@ -1364,14 +1385,15 @@ let extVueParser = {
             'conf-accept',
             'conf-type',
             'conf-default',
-            'script'
+            'script',
+            'repeat'
         ];
         let item;
         let curType;
         let parts = {};
         let partIndex = 0;
 
-        while (item = data.shift()) {
+        while ((item = data.shift()) !== undefined) {
 
             let index = typeMap.indexOf(item.replace(/^\>/, ''));
 
@@ -1381,7 +1403,7 @@ let extVueParser = {
                 parts[curType] = [];
 
             } else {
-                
+
                 if (curType) {
 
                     parts[curType].push(item);
@@ -1398,9 +1420,9 @@ let extVueParser = {
 };
 
 let extVueTranslater = {
-    _tpl : (data, _ctx) => {
+    _tpl : (_data, _ctx) => {
 
-        if (!data) {
+        if (!_data) {
 
             return {
                 exec : '',
@@ -1410,10 +1432,10 @@ let extVueTranslater = {
 
         }
 
-        data = data.join('\n');
-        Mustache.parse(data, ['{$', '}']);
-        data = Mustache.render(data, _ctx);
-        data = data.replace(/\{\*([a-zA-Z0-9_.]+)\*\}/g, '{{$1}}');
+        _data = _data.join('\n');
+        Mustache.parse(_data, ['{$', '}']);
+        _data = Mustache.render(_data, _ctx);
+        _data = _data.replace(/\{\*([a-zA-Z0-9_.]+)\*\}/g, '{{$1}}');
 
         let template = {
             exec : '',
@@ -1421,174 +1443,182 @@ let extVueTranslater = {
             live : ''
         };
 
-        template.exec = data;
-        template.print = addSpace(rmEndWrap(data), 4);
-        template.live = data.replace(/\n$/, '');
+        template.exec = _data;
+        template.print = addSpace(rmEndWrap(_data), 4);
+        template.live = _data.replace(/\n$/, '');
         template.live = addSpace(rmEndWrap(template.live), 4);
         template.live = `<div id="${_ctx.demoid}-el">\n${template.live}\n</div>`;
 
         return template;
 
     },
-    _script : (data, _ctx) => {
+    _script : (_data, _ctx) => {
 
-        if (!data) {
+        if (!_data) {
 
-            data = {
+            _data = {
                 exec : [`new Vue({
-                    id : '{$demoid}',
-                    el : '{$el}',
-                    template : '{$template}'
+                    id : '${_ctx.demoid}',
+                    el : '#${_ctx.demoid}-el',
+                    template : '#${_ctx.demoid}-tmpl'
                 });`],
                 print : ['    export default {};'],
-                live : [`Vue.use(morning);\n\nnew Vue({\n    el : '{$el}'\n});`]
+                live : [`Vue.use(morning);\n\nnew Vue({\n    el : '#${_ctx.demoid}-el'\n});`]
             };
 
         }
 
-        data.exec = data.exec.join('\n');
-        data.print = data.print.join('\n');
-        data.live = data.live.join('\n');
+        _data.exec = _data.exec.join('\n');
+        _data.print = _data.print.join('\n');
+        _data.live = _data.live.join('\n');
 
-        Mustache.parse(data.exec, ['{$', '}']);
-        Mustache.parse(data.print, ['{$', '}']);
-        Mustache.parse(data.live, ['{$', '}']);
-        data.exec = Mustache.render(data.exec, _ctx);
-        data.print = Mustache.render(data.print, _ctx);
-        data.live = Mustache.render(data.live, _ctx);
+        Mustache.parse(_data.exec, ['{$', '}']);
+        Mustache.parse(_data.print, ['{$', '}']);
+        Mustache.parse(_data.live, ['{$', '}']);
+        _data.exec = Mustache.render(_data.exec, _ctx);
+        _data.print = Mustache.render(_data.print, _ctx);
+        _data.live = Mustache.render(_data.live, _ctx);
 
-        data.exec = data.exec.replace(/\{\*([a-zA-Z0-9_.]+)\*\}/g, '{{$1}}');
-        data.print = data.print.replace(/\{\*([a-zA-Z0-9_.]+)\*\}/g, '{{$1}}');
-        data.live = data.live.replace(/\{\*([a-zA-Z0-9_.]+)\*\}/g, '{{$1}}');
+        _data.exec = _data.exec.replace(/\{\*([a-zA-Z0-9_.]+)\*\}/g, '{{$1}}');
+        _data.print = _data.print.replace(/\{\*([a-zA-Z0-9_.]+)\*\}/g, '{{$1}}');
+        _data.live = _data.live.replace(/\{\*([a-zA-Z0-9_.]+)\*\}/g, '{{$1}}');
 
-        return data;
+        return _data;
 
     },
-    _title : (data, _ctx) => {
+    _title : (_data, _ctx) => {
 
-        if (!data) {
+        if (!_data) {
 
             return '';
 
         }
         
-        data = data.join('\n');
-        data = markdown.render(data);
-        data = data.replace(/(^\<p\>|\<\/p\>)/g, '');
+        _data = _data.join('\n');
+        _data = markdown.render(_data);
+        _data = _data.replace(/(^\<p\>|\<\/p\>)/g, '');
 
-        return `<h5>${data}</h5>`;
+        return `<h5>${_data}</h5>`;
 
     },
-    _desc : (data, _ctx) => {
+    _desc : (_data, _ctx) => {
 
-        if (!data) {
+        if (!_data) {
 
             return '';
 
         }
         
-        data = data.join('\n');
-        data = data.replace(/\\n/g, '\n');
-        data = markdown.render(data);
+        _data = _data.join('\n');
+        _data = _data.replace(/\\n/g, '\n');
+        _data = markdown.render(_data);
 
-        return `<div>${data}</div>`;
+        return `<div>${_data}</div>`;
 
     },
-    // _conf_desc : (data, _ctx) => {
+    _conf_accept : (_data, _ctx) => {
 
-    //     if (!data) {
-
-    //         return '|描述|-|';
-
-    //     }
-
-    //     data = data.join('\n');
-    //     // data = data.replace(/\\n/g, '<br>');
-
-    //     return data;
-
-
-    // },
-    _conf_accept : (data, _ctx) => {
-
-        if (!data) {
+        if (!_data) {
 
             return '|接受值|-|';
 
         }
 
-        data = data.join('\n');
-        data = data.replace(/\\n/g, '<br>');
+        _data = _data.join('\n');
+        _data = _data.replace(/\\n/g, '<br>');
 
-        return `|接受值|${data}|`;
+        return `|接受值|${_data}|`;
 
 
     },
-    _conf_type : (data, _ctx) => {
+    _conf_type : (_data, _ctx) => {
 
-        if (!data) {
+        if (!_data) {
 
             return '|值类型|-|';
 
         }
 
-        data = data.join('\n');
-        data = data.replace(/\\n/g, '<br>');
+        _data = _data.join('\n');
+        _data = _data.replace(/\\n/g, '<br>');
 
-        return `|值类型|${data}|`;
+        return `|值类型|${_data}|`;
 
 
     },
-    _conf_default : (data, _ctx) => {
+    _conf_default : (_data, _ctx) => {
 
-        if (!data) {
+        if (!_data) {
 
             return '|默认值|-|';
 
         }
 
-        data = data.join('\n');
-        data = data.replace(/\\n/g, '<br>');
+        _data = _data.join('\n');
+        _data = _data.replace(/\\n/g, '<br>');
 
-        return `|默认值|${data}|`;
+        return `|默认值|${_data}|`;
 
 
     },
-    demo : (data, _ctx) => {
+    demo : (_data, _ctx) => {
+
+        // console.log(191, extend(true, {}, data.parts));
+
+        if (_data.parts.repeat &&
+            _data.parts.repeat.length > 0) {
+
+            let tpl = _data.parts.tpl.join('\n');
+            let type = _data.parts.repeat[0];
+
+            tpl = tpl.replace(/\n$/, '');
+            tpl = `<div>\n{$#${type}}${addSpace(tpl, 4)}\n{$/${type}}</div>`;
+            Mustache.parse(tpl, ['{$', '}']);
+
+            tpl = Mustache.render(tpl, {
+                [type] : data[type]
+            });
+            console.log(14, tpl);
+
+            _data.parts.tpl = tpl.split('\n');
+
+            console.log('part', extend(true, {}, _data))
+
+        }
 
         return {
-            type : data.type,
-            tpl : extVueTranslater._tpl(data.parts.tpl, _ctx),
-            script : extVueTranslater._script(data.parts.script, _ctx),
-            title : extVueTranslater._title(data.parts.title, _ctx),
-            desc : extVueTranslater._desc(data.parts.desc, _ctx)
+            type : _data.type,
+            tpl : extVueTranslater._tpl(_data.parts.tpl, _ctx),
+            script : extVueTranslater._script(_data.parts.script, _ctx),
+            title : extVueTranslater._title(_data.parts.title, _ctx),
+            desc : extVueTranslater._desc(_data.parts.desc, _ctx)
         };
 
     },
-    config : (data, _ctx) => {
+    config : (_data, _ctx) => {
 
         return {
-            type : data.type,
-            desc : extVueTranslater._desc(data.parts.desc, _ctx),
-            'conf-desc' : extVueTranslater._desc(data.parts['conf-desc'], _ctx),
-            'conf-accept' : extVueTranslater._conf_accept(data.parts['conf-accept'], _ctx),
-            'conf-type' : extVueTranslater._conf_type(data.parts['conf-type'], _ctx),
-            'conf-default' : extVueTranslater._conf_default(data.parts['conf-default'], _ctx)
+            type : _data.type,
+            desc : extVueTranslater._desc(_data.parts.desc, _ctx),
+            'conf-desc' : extVueTranslater._desc(_data.parts['conf-desc'], _ctx),
+            'conf-accept' : extVueTranslater._conf_accept(_data.parts['conf-accept'], _ctx),
+            'conf-type' : extVueTranslater._conf_type(_data.parts['conf-type'], _ctx),
+            'conf-default' : extVueTranslater._conf_default(_data.parts['conf-default'], _ctx)
         };
 
     }
 };
 
 let extVueCompiler = {
-    demo : (data, _ctx) => {
+    demo : (_data, _ctx) => {
 
-        let printCode = `<template>\n${data.tpl.print}\n</template>\n\n<script>\n${data.script.print}\n<\/script>`;
+        let printCode = `<template>\n${_data.tpl.print}\n</template>\n\n<script>\n${_data.script.print}\n<\/script>`;
 
         outputcode[_ctx.demoid] = printCode;
 
         let templateScript = document.createElement('script');
 
-        templateScript.innerHTML = `\n${data.tpl.exec}`;
+        templateScript.innerHTML = `\n${_data.tpl.exec}`;
         templateScript.type = 'x-template';
         templateScript.id = `${_ctx.demoid}-tmpl`;
 
@@ -1596,12 +1626,12 @@ let extVueCompiler = {
 
         let scriptScript = document.createElement('script');
 
-        scriptScript.innerHTML = data.script.exec;
+        scriptScript.innerHTML = _data.script.exec;
         evals.push(scriptScript);
 
         livedata[_ctx.demoid] = {
-            js : data.script.live,
-            html : data.tpl.live
+            js : _data.script.live,
+            html : _data.tpl.live
         };
 
         return `
@@ -1623,22 +1653,22 @@ let extVueCompiler = {
                             <ui-tip id="copy-tip-${_ctx.demoid}" color="extra-light-black" target="#copy-demo-${_ctx.demoid}">复制代码</ui-tip>
                         </div>
                     </div>
-                    <div class="note">${data.title}${data.desc}</div>
+                    <div class="note">${_data.title}${_data.desc}</div>
                 </div>
             </div>
         `;
 
     },
-    config : (data, _ctx) => {
+    config : (_data, _ctx) => {
 
-        let table = `|A|B|\n|-|-|\n${data['conf-accept']}\n${data['conf-type']}\n${data['conf-default']}`;
+        let table = `|A|B|\n|-|-|\n${_data['conf-accept']}\n${_data['conf-type']}\n${_data['conf-default']}`;
 
         table = markdown.render(table);
         table = table.replace(/^<table/, '<table frame="void"');
 
         return `
             <div class="section-config">
-                <div class="desc">${data['conf-desc']}</div>
+                <div class="desc">${_data['conf-desc']}</div>
                 <div class="config">${table}</div>
             </div>
         `;
@@ -1651,10 +1681,9 @@ let extVue = (content, paramStr, token, md) => {
     let demoid = `demo-${_.random(randomRangeMin, randomRangeMax)}`;
     let ctx = {
         _ctx : {
-            demoid : demoid,
-            el : `#${demoid}-el`,
-            template : `#${demoid}-tmpl`,
-            md
+            demoid : '',
+            md,
+            index : 0
         }
     };
 
@@ -1671,26 +1700,27 @@ let extVue = (content, paramStr, token, md) => {
 
     while (ctx.translateSection = ctx.sections.shift()) {
 
+        ctx._ctx.demoid = `${demoid}-${ctx._ctx.index++}`;
         ctx.translate.push(extVueTranslater[ctx.translateSection.type](ctx.translateSection, ctx._ctx));
 
     }
 
     ctx.compiled = [];
+    ctx._ctx.index = 0;
 
     while (ctx.compileSection = ctx.translate.shift()) {
 
+        ctx._ctx.demoid = `${demoid}-${ctx._ctx.index++}`;
         ctx.compiled.push(extVueCompiler[ctx.compileSection.type](ctx.compileSection, ctx._ctx));
 
     }
 
-    console.log(ctx);
-
     return `
     <div class="demo-root">
-        <h4 id="${ctx.vars.name}"><a href="#${ctx.vars.name}" aria-hidden="true" class="permalink">#</a> ${ctx.vars.name}</h4>
+        <h4 id="${ctx.vars.name.replace(/(\<[\/]*\w+?\>)/g, '')}"><a href="#${ctx.vars.name.replace(/(\<[\/]*\w+?\>)/g, '')}" aria-hidden="true" class="permalink">#</a> ${ctx.vars.name}</h4>
         ${ctx.compiled.join('\n')}
     </div>
-    `
+    `;
 
 };
 
@@ -2146,9 +2176,10 @@ a{ }
     overflow: hidden;
     position: relative;
     font-size: 0;
+    margin: 20px 0;
 
     &:hover{
-        box-shadow: 0 0 8px rgba(194, 204, 212, 0.36);
+        box-shadow: 0 0 8px rgba(194, 204, 212, 0.42);
         border: 1px #e3e8ea solid;
     }
 
@@ -2157,25 +2188,34 @@ a{ }
         padding: 8px 12px;
         background: #f6f8fa;
         font-size: 18px;
+
+        > code{
+            vertical-align: middle;
+        }
     }
 
     .section-demo,
     .section-config{
-        border-top: 2px #E9ECEF solid;
+        border-top: 4px #E9ECEF solid;
 
         &:first-child{
             border-top: none;
+        }
+
+        &:nth-child(2){
+            border-top: 1px #E9ECEF solid;
         }
     }
 
     .section-demo{
         .demo-con{
-            padding: 10px;
+            padding: 20px 10px;
             position: relative;
             display: block;
             background: #fff;
             margin: 0;
             border-bottom: 1px #E9ECEF dashed;
+            font-size: 14px;
         }
 
         .code-con{
@@ -2193,6 +2233,7 @@ a{ }
 
                 > pre{
                     font-size: 12px;
+                    margin: 0;
                 }
 
                 > .demo-tools{
@@ -2242,6 +2283,10 @@ a{ }
                     padding: 0 14px 14px 14px;
                     margin: 0;
                     font-size: 13px;
+
+                    &:first-child{
+                        padding: 14px;
+                    }
 
                     p {
                         margin: 0;
@@ -2327,7 +2372,7 @@ a{ }
     position: relative;
 
     &:hover{
-        box-shadow: 0 0 8px rgba(194, 204, 212, 0.36);
+        box-shadow: 0 0 8px rgba(194, 204, 212, 0.42);
         border: 1px #e3e8ea solid;
     }
 

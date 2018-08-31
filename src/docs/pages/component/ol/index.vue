@@ -13,9 +13,10 @@
     定义一个有序列表，支持多层嵌套，列表中每一项使用`<li>`标签。
 
     :::vue
-    > title
-    使用
+    @name:使用
     ---
+    #demo
+    >tpl
     <ui-ol>
         <li>This is first</li>
         <li>This is second</li>
@@ -24,11 +25,12 @@
     :::
 
     :::vue
-    > title
-    三层嵌套
-    > desc
-    有序列表支持多层嵌套。
+    @name:三层嵌套
     ---
+    #demo
+    >desc
+    有序列表支持多层嵌套。
+    >tpl
     <ui-ol>
         <li>This is 1</li>
         <ui-ol>
@@ -44,11 +46,12 @@
     :::
 
     :::vue
-    > title
-    超过三层嵌套
-    > desc
-    超过三层的无序列表，项目序号均为`lower-latin`。
+    @name:超过三层嵌套
     ---
+    #demo
+    >desc
+    超过三层的无序列表，项目序号均为`lower-latin`。
+    >tpl
     <ui-ol>
         <li>This is 1</li>
         <ui-ol>
@@ -79,8 +82,6 @@
 
     <a href="/guide/status.html">查看形态文档</a>
 
-    #### 状态
-    
     :::repeat/html
     state:normal,apparent
     ---

@@ -13,16 +13,18 @@
     定义一个区块，区块一般包含标题和正文内容，区块与其他样式组件不同的是可以用来定义一个带风格的区域。
 
     :::vue
-    > title
-    使用
+    @name:使用
     ---
+    #demo
+    >tpl
     <ui-block>区块</ui-block>
     :::
 
     :::vue
-    > title
-    常用示例
+    @name:常用示例
     ---
+    #demo
+    >tpl
     <ui-block>
         <ui-h color="white" size="xs">标题内容</ui-h>
         <ui-textcolor color="white">正文内容</ui-textcolor>
@@ -30,11 +32,12 @@
     :::
 
     :::vue
-    > title
-    无间隙的区块
-    > desc
-    可以通过添加`full`类来标记一个无间隙的区块。
+    @name:无间隙的区块
     ---
+    #demo
+    >desc
+    可以通过添加`full`类来标记一个无间隙的区块。
+    >tpl
     <ui-block class="full">无间隙的区块</ui-block>
     :::
 
@@ -49,8 +52,6 @@
     |状态|不支持|-|
 
     <a href="/guide/status.html">查看形态文档</a>
-
-    #### 色彩
 
     :::preset/html
     statusColor

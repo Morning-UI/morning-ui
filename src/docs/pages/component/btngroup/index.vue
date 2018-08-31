@@ -15,9 +15,10 @@
     按钮组默认水平排列。
 
     :::vue
-    > title
-    使用
+    @name:使用
     ---
+    #demo
+    >tpl
     <ui-btngroup>
         <ui-btn>按钮一</ui-btn>
         <ui-btn>按钮二</ui-btn>
@@ -27,11 +28,12 @@
     :::
 
     :::vue
-    > title
-    水平排列示例
-    > desc
-    添加`horizontal`样式类可以实现按钮水平排列。
+    @name:水平排列示例
     ---
+    #demo
+    >desc
+    添加`horizontal`样式类可以实现按钮水平排列。
+    >tpl
     <ui-btngroup class="horizontal">
         <ui-btn>按钮一</ui-btn>
         <ui-btn>按钮二</ui-btn>
@@ -41,11 +43,12 @@
     :::
 
     :::vue
-    > title
-    垂直排列示例
-    > desc
-    添加`vertical`样式类可以实现按钮垂直排列。
+    @name:垂直排列示例
     ---
+    #demo
+    >desc
+    添加`vertical`样式类可以实现按钮垂直排列。
+    >tpl
     <ui-btngroup class="vertical">
         <ui-btn>按钮一</ui-btn>
         <ui-btn>按钮二</ui-btn>
@@ -55,11 +58,12 @@
     :::
 
     :::vue
-    > title
-    无间隔按钮组
-    > desc
-    添加`nogap`样式类可以实现无间隔按钮组。
+    @name:无间隔按钮组
     ---
+    #demo
+    >desc
+    添加`nogap`样式类可以实现无间隔按钮组。
+    >tpl
     <div>
         <ui-btngroup class="nogap">
             <ui-btn color="success">确认</ui-btn>
@@ -76,11 +80,12 @@
     :::
 
     :::vue
-    > title
-    分隔按钮组
-    > desc
-    添加`split`样式类按钮之间可以插入文本分隔。
+    @name:分隔按钮组
     ---
+    #demo
+    >desc
+    添加`split`样式类按钮之间可以插入文本分隔。
+    >tpl
     <div>
         <ui-btngroup class="split">
             <ui-btn color="success">确认</ui-btn>
@@ -113,13 +118,14 @@
     <a href="/guide/status.html">查看形态文档</a>
 
     :::vue
-    > title
-    组合不同的形态
-    > desc
+    @name:组合不同的形态
+    ---
+    #demo
+    >desc
     按钮组不支持形态，但可通过`ui-btn`自身的形态来控制。
     <br><br>
     这也意味着你可以组合不同形态的按钮，这是一个十分有用的特性。
-    ---
+    >tpl
     <div>
         <p>不同尺寸组合</p>
         <ui-btngroup>
@@ -153,6 +159,8 @@
     :::
 
     #### `ui-btn`尺寸
+
+    `ui-btngroup`本身不支持尺寸，可以使用`ui-btn`来设置尺寸。
     
     :::repeat/html
     size
@@ -166,6 +174,8 @@
     :::
 
     #### `ui-btn`色彩
+
+    `ui-btngroup`本身不支持色彩，可以使用`ui-btn`来设置色彩。
 
     :::repeat/html
     color:theme
@@ -184,6 +194,8 @@
     :::
 
     #### `ui-btn`状态
+
+    `ui-btngroup`本身不支持状态，可以使用`ui-btn`来设置状态。
     
     :::repeat/html
     state

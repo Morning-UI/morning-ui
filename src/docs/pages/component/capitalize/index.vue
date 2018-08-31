@@ -13,9 +13,10 @@
     首字大写文本组件，这是一个内联元素。
 
     :::vue
-    > title
-    使用
+    @name:使用
     ---
+    #demo
+    >tpl
     <ui-capitalize>首字母大写的文本: tHere is A LEtter</ui-capitalize>
     :::
 

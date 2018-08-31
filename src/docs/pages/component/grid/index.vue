@@ -20,9 +20,10 @@
     - `avggap` : 生成两端包含间隙的栅格
 
     :::vue
-    > title
-    使用
+    @name:使用
     ---
+    #demo
+    >tpl
     <ui-grid>
         <div class="c-6" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-6</div>
         <div class="c-6" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-6</div>
@@ -32,11 +33,12 @@
     :::
 
     :::vue
-    > title
-    栅格组合
-    > desc
-    通过类`c-[n]`来标记栅格所占用的列。
+    @name:栅格组合
     ---
+    #demo
+    >desc
+    通过类`c-[n]`来标记栅格所占用的列。
+    >tpl
     <div>
         <ui-grid>
             <div class="c-24" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-24</div>
@@ -75,11 +77,12 @@
     :::
 
     :::vue
-    > title
-    栅格偏移
-    > desc
-    通过类`offset-[n]`来标记栅格偏移列数。
+    @name:栅格偏移
     ---
+    #demo
+    >desc
+    通过类`offset-[n]`来标记栅格偏移列数。
+    >tpl
     <div>
         <ui-grid>
             <div class="c-2" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-2</div>
@@ -113,11 +116,12 @@
     :::
 
     :::vue
-    > title
-    栅格嵌套
-    > desc
-    栅格系统支持多层级嵌套。
+    @name:栅格嵌套
     ---
+    #demo
+    >desc
+    栅格系统支持多层级嵌套。
+    >tpl
     <ui-grid>
         <div class="c-6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</div>
         <div class="c-18" style="background-color:#D6DDE5;">
@@ -130,11 +134,12 @@
     :::
 
     :::vue
-    > title
-    无间隔栅格
-    > desc
-    添加`nogap`的样式类可以使栅格之间无间隔
+    @name:无间隔栅格
     ---
+    #demo
+    >desc
+    添加`nogap`的样式类可以使栅格之间无间隔。
+    >tpl
     <div>
         <ui-grid class="nogap">
             <div class="c-6" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-6</div>
@@ -177,11 +182,12 @@
     :::
 
     :::vue
-    > title
-    两端包含间隙栅格
-    > desc
-    添加`avggap`的样式类可以使栅格两端也有间隙。
+    @name:两端包含间隙栅格
     ---
+    #demo
+    >desc
+    添加`avggap`的样式类可以使栅格两端也有间隙。
+    >tpl
     <div>
         <ui-grid class="avggap">
             <div class="c-6" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-6</div>
@@ -222,13 +228,14 @@
         </ui-grid>
     </div>
     :::
-
+    
     :::vue
-    > title
-    填满容器的栅格
-    > desc
-    填满容器的栅格高度为100%。
+    @name:填满容器的栅格
     ---
+    #demo
+    >desc
+    填满容器的栅格高度为100%。
+    >tpl
     <div style="height:200px;">
         <ui-grid class="fill">
             <div class="c-6" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-6</div>
@@ -250,7 +257,6 @@
     |状态|不支持|-|
 
     <a href="/guide/status.html">查看形态文档</a>
-
 
     [[[源码]]]
 

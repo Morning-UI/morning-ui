@@ -13,9 +13,10 @@
     内容左对齐组件，这是一个块级元素。
     
     :::vue
-    > title
-    使用
+    @name:使用
     ---
+    #demo
+    >tpl
     <ui-textleft>左对齐文本</ui-textleft>
     :::
 

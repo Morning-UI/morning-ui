@@ -15,9 +15,10 @@
     分频器常配合`ui-grid`使用。
 
     :::vue
-    > title
-    使用
+    @name:使用
     ---
+    #demo
+    >tpl
     <div style="width:500px;height:300px;border:1px solid #eee;">
         <ui-grid class="fill">
             <div class="c-11">
@@ -34,11 +35,12 @@
     :::
 
     :::vue
-    > title
-    竖直的分频器
-    > desc
-    添加`vertical`类可使用竖直的分频器。
+    @name:竖直的分频器
     ---
+    #demo
+    >desc
+    添加`vertical`类可使用竖直的分频器。
+    >tpl
     <div style="width:500px;height:300px;border:1px solid #eee;">
         <div style="width:100%;height:140px;">
             <ui-center class="fill"><p>TOP</p></ui-center>
@@ -51,11 +53,12 @@
         </div>
     </div>
     :::
-    
+
     :::vue
-    > title
-    无内容的分频器
+    @name:无内容的分频器
     ---
+    #demo
+    >tpl
     <div style="width:500px;height:300px;border:1px solid #eee;">
         <ui-grid class="fill">
             <div class="c-11">

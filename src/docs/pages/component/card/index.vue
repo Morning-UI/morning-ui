@@ -13,9 +13,10 @@
     定义一张卡片，卡片包含头部和主体部分。
 
     :::vue
-    > title
-    使用
+    @name:使用
     ---
+    #demo
+    >tpl
     <div style="width:180px;height:240px;">
         <ui-card>
             <header>头部</header>
@@ -25,20 +26,22 @@
     :::
 
     :::vue
-    > title
-    没有头部的卡片
+    @name:没有头部的卡片
     ---
+    #demo
+    >tpl
     <div style="width:180px;height:240px;">
         <ui-card>卡片</ui-card>
     </div>
     :::
 
     :::vue
-    > title
-    无间隙卡片
-    > desc
-    卡片内容部分默认具有间隙，可以通过`full`类来去除间隙。
+    @name:无间隙卡片
     ---
+    #demo
+    >desc
+    卡片内容部分默认具有间隙，可以通过`full`类来去除间隙。
+    >tpl
     <div>
         <div style="width:180px;height:240px;display:inline-block;margin:10px;vertical-align: top;">
             <ui-card class="full">卡片</ui-card>
@@ -64,8 +67,6 @@
     |状态|不支持|-|
 
     <a href="/guide/status.html">查看形态文档</a>
-
-    #### 色彩
 
     :::repeat/html
     color:theme

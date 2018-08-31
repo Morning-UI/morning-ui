@@ -15,32 +15,36 @@
     徽章内部只能包含文本内容。
 
     :::vue
-    > title
-    使用
+    @name:使用
     ---
+    #demo
+    >tpl
     <ui-badge>24</ui-badge>
     :::
 
     :::vue
-    > title
-    扁平徽章
+    @name:扁平徽章
     ---
+    #demo
+    >tpl
     <ui-badge class="flat">24</ui-badge>
     :::
     
     :::vue
-    > title
-    圆形徽章
+    @name:圆形徽章
     ---
+    #demo
+    >tpl
     <ui-badge class="circle">圆形徽章</ui-badge>
     :::
 
     :::vue
-    > title
-    无内容隐藏
-    > desc
-    当徽章内没有内容时，会自动隐藏。
+    @name:无内容隐藏
     ---
+    #demo
+    >desc
+    当徽章内没有内容时，会自动隐藏。
+    >tpl
     <ui-badge></ui-badge>
     :::
 
@@ -56,8 +60,6 @@
 
     <a href="/guide/status.html">查看形态文档</a>
 
-    #### 尺寸
-    
     :::repeat/html
     size
     ---
@@ -70,16 +72,12 @@
     <ui-badge class="circle" size="{$sizeKey}">{$&sizeName}</ui-badge>
     :::
 
-    #### 色彩
-
     :::preset/html
     statusColor
     ---
     uikey:badge
     :::
 
-    #### 状态
-    
     :::repeat/html
     state:normal,apparent
     ---

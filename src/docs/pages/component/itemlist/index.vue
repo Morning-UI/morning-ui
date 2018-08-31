@@ -12,11 +12,11 @@
 
     定义项目列表组件，项目列表中的每一项包含图片及文字内容，这是一个块级元素。
 
-
     :::vue
-    > title
-    使用
-    > desc
+    @name:使用
+    ---
+    #demo
+    >desc
     项目列表可包含：
     <br><br>
     - 缩略图 `img`
@@ -24,7 +24,7 @@
     - 描述 `.desc`
     - 主体内容 `.body`
     - 附加信息 `.additional`
-    ---
+    >tpl
     <div style="width:400px">
         <ui-itemlist>
             <ui-ul>
@@ -55,9 +55,12 @@
     :::
 
     :::vue
-    > title
-    下划线分隔
+    @name:下划线分隔
     ---
+    #demo
+    >desc
+    添加`underline`样式类可添加下划线分隔。
+    >tpl
     <div style="width:400px">
         <ui-itemlist class="underline">
             <ui-ul>
@@ -88,9 +91,10 @@
     :::
 
     :::vue
-    > title
-    单行标题
+    @name:单行标题
     ---
+    #demo
+    >tpl
     <div style="width:400px">
         <ui-itemlist xs>
             <ui-ul>
@@ -110,11 +114,12 @@
         </ui-itemlist>
     </div>
     :::
-    
+
     :::vue
-    > title
-    单行内容
+    @name:单行内容
     ---
+    #demo
+    >tpl
     <div style="width:400px">
         <ui-itemlist xs>
             <ui-ul>
@@ -136,9 +141,10 @@
     :::
 
     :::vue
-    > title
-    无图片
+    @name:无图片
     ---
+    #demo
+    >tpl
     <div style="width:400px">
         <ui-itemlist>
             <ui-ul>
@@ -166,9 +172,10 @@
     :::
     
     :::vue
-    > title
-    配合`ui-label`
+    @name:配合`ui-label`
     ---
+    #demo
+    >tpl
     <div style="width:400px">
         <ui-itemlist>
             <ui-ul>

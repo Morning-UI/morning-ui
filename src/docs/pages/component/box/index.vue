@@ -15,9 +15,10 @@
     容器默认高度是自适应的。
 
     :::vue
-    > title
-    使用
+    @name:使用
     ---
+    #demo
+    >tpl
     <div style="width:400px;height:200px;">
         <ui-box style="background-color:#e0e0e0">
             容器
@@ -26,9 +27,10 @@
     :::
 
     :::vue
-    > title
-    有边距的容器
+    @name:有边距的容器
     ---
+    #demo
+    >tpl
     <div style="width:400px;height:200px;">
         <ui-box class="margin" style="background-color:#e0e0e0">
             有边距的容器
@@ -37,11 +39,12 @@
     :::
 
     :::vue
-    > title
-    填满的容器
-    > desc
-    填满的容器高度为100%。
+    @name:填满的容器
     ---
+    #demo
+    >desc
+    填满的容器高度为100%。
+    >tpl
     <div>
         <div style="width:400px;height:200px;">
             <ui-box class="fill" style="background-color:#e0e0e0">

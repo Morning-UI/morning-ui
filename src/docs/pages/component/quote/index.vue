@@ -13,9 +13,10 @@
     定义一段引用的内容，这是一个块级元素。
 
     :::vue
-    > title
-    使用
+    @name:使用
     ---
+    #demo
+    >tpl
     <ui-quote>引用文本</ui-quote>
     :::
 
@@ -30,8 +31,6 @@
     |状态|不支持|-|
 
     <a href="/guide/status.html">查看形态文档</a>
-
-    #### 色彩
 
     :::repeat/html
     color:theme

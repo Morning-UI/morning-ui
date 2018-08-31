@@ -13,15 +13,16 @@
     定义一个巨幕，巨幕包含标题、内容和一组按钮或链接，巨幕往往用来定义一个显眼的行动区域。
 
     :::vue
-    > title
-    使用
-    > desc
+    @name:使用
+    ---
+    #demo
+    >desc
     巨幕可包含：
     <br><br>
     - 标题: `h1`
     - 说明: `p`
     - 行动区域
-    ---
+    >tpl
     <ui-jumbotron>
         <h1>标题</h1>
         <p>这个一个介绍区域，用来放置一些介绍内容。<br>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
@@ -41,7 +42,6 @@
     |状态|不支持|-|
 
     <a href="/guide/status.html">查看形态文档</a>
-
 
     [[[源码]]]
 

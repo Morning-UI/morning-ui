@@ -11,18 +11,19 @@
     [[[开始]]]
 
     定义文章内容区域，支持多种类来格式化文章标题、元信息及内容。
-    
+
     :::vue
-    > title
-    使用
-    > desc
+    @name:使用
+    ---
+    #demo
+    >desc
     文章可包含：
     <br><br>
     - 标题: `.title`
     - 元信息: `.meta`
     - 核心内容: `.lead`
     - 正文: `.body`
-    ---
+    >tpl
     <ui-article>
         <div class="title">A Guide to Upgrading to Polymer 1.0</div>
         <div class="meta">July 15, 2015 by Pankaj Parashar</div>
@@ -35,11 +36,12 @@
     :::
 
     :::vue
-    > title
-    带下划线的元信息
-    > desc
-    添加`underline`样式类可为文章的元信息添加下划线。
+    @name:带下划线的元信息
     ---
+    #demo
+    >desc
+    添加`underline`样式类可为文章的元信息添加下划线。
+    >tpl
     <ui-article class="underline">
         <div class="title">A Guide to Upgrading to Polymer 1.0</div>
         <div class="meta">July 15, 2015 by Pankaj Parashar</div>

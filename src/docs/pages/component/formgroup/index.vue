@@ -15,9 +15,10 @@
     表单组通过`.inline`样式类来实现内联的表单样式。
 
     :::vue
-    > title
-    使用
-    > desc
+    @name:使用
+    ---
+    #demo
+    >desc
     表单组内包含了各种表单，一般由表单组抬头、各种表单项、行动栏组成。
     <br><br>
     你可以用下面的类或元素来标记不同的表单部分：
@@ -26,7 +27,7 @@
     - `.item > .title` : 表单项名称
     - `.item > .content` : 表单项内容
     - `.item > .content > .form` : 表单容器
-    ---
+    >tpl
     <div style="width:500px;margin:auto">
         <ui-formgroup>
             <!-- .item : 表单项 -->
@@ -48,14 +49,15 @@
     :::
 
     :::vue
-    > title
-    表单项小标题及说明
-    > desc
+    @name:表单项小标题及说明
+    ---
+    #demo
+    >desc
     你可以用下面的类或元素来标记小标题及说明：
     <br><br>
     - `.item > .content > h6` : 表单项小标题
     - `.item > .content > p` : 表单项说明信息
-    ---
+    >tpl
     <div style="width:500px;margin:auto">
         <ui-formgroup>
             <div class="item">
@@ -77,11 +79,12 @@
     :::
 
     :::vue
-    > title
-    多个表单项
-    > desc
-    多个表单项之前会有间隔线。
+    @name:多个表单项
     ---
+    #demo
+    >desc
+    多个表单项之前会有间隔线。
+    >tpl
     <div style="width:500px;margin:auto">
         <ui-formgroup>
             <!-- .item : 表单项 -->
@@ -111,17 +114,18 @@
         </ui-formgroup>
     </div>
     :::
-    
+
     :::vue
-    > title
-    表单组标题
-    > desc
+    @name:表单组标题
+    ---
+    #demo
+    >desc
     你可以用下面的类或元素来标记表单组标题：
     <br><br>
     - `header` : 表单组头部
     - `header > h5` : 表单组标题
     - `header > p` : 表单组说明信息
-    ---
+    >tpl
     <div style="width:500px;margin:auto">
         <ui-formgroup>
             <!-- header : 表单组头部 -->
@@ -158,13 +162,14 @@
     :::
 
     :::vue
-    > title
-    行动栏
-    > desc
+    @name:行动栏
+    ---
+    #demo
+    >desc
     你可以用下面的类或元素在表尾添加行动区域：
     <br><br>
     - `.action` : 行动区域
-    ---
+    >tpl
     <div style="width:500px;margin:auto">
         <ui-formgroup>
             <header>
@@ -203,11 +208,12 @@
     :::
     
     :::vue
-    > title
-    单项多表单
-    > desc
-    你可以在单个表单项中添加多个表单。
+    @name:单项多表单
     ---
+    #demo
+    >desc
+    你可以在单个表单项中添加多个表单。
+    >tpl
     <div style="width:500px;margin:auto">
         <ui-formgroup>
             <header>
@@ -250,11 +256,12 @@
         </ui-formgroup>
     </div>
     :::
-
+    
     :::vue
-    > title
-    内联表单组
-    > desc
+    @name:内联表单组
+    ---
+    #demo
+    >desc
     表单组支持内联方式，这种方式一行支持多个表单。表单的宽度会根据一行中表单的数量适配。
     <br><br>
     添加`.inline`样式类来使用内联的表单样式。
@@ -262,7 +269,7 @@
     你可以用下面的类或元素来标记单行表单：
     <br><br>
     - `.row` : 单行(仅内联表单组可用)
-    ---
+    >tpl
     <div style="width:600px;margin:auto">
         <ui-formgroup class="inline">
             <!-- .row : 单行 -->
@@ -294,9 +301,10 @@
     :::
     
     :::vue
-    > title
-    内联表单组的小标题及说明
+    @name:内联表单组的小标题及说明
     ---
+    #demo
+    >tpl
     <div style="width:600px;margin:auto">
         <ui-formgroup class="inline">
             <div class="row">
@@ -327,13 +335,14 @@
         </ui-formgroup>
     </div>
     :::
-    
+
     :::vue
-    > title
-    多行内联表单组
-    > desc
-    通过多个`.row`可以实现多行的内联表单组。
+    @name:多行内联表单组
     ---
+    #demo
+    >desc
+    通过多个`.row`可以实现多行的内联表单组。
+    >tpl
     <div style="width:600px;margin:auto">
         <ui-formgroup class="inline">
             <div class="row">
@@ -373,9 +382,10 @@
     :::
     
     :::vue
-    > title
-    内联表单组加表单组标题
+    @name:内联表单组加表单组标题
     ---
+    #demo
+    >tpl
     <div style="width:600px;margin:auto">
         <ui-formgroup class="inline">
             <!-- header : 表单组头部 -->
@@ -422,9 +432,10 @@
     :::
 
     :::vue
-    > title
-    内联表单组加行动栏
+    @name:内联表单组加行动栏
     ---
+    #demo
+    >tpl
     <div style="width:600px;margin:auto">
         <ui-formgroup class="inline">
             <header>
@@ -472,13 +483,14 @@
     :::
     
     :::vue
-    > title
-    内联表单组调整表单宽度
-    > desc
+    @name:内联表单组调整表单宽度
+    ---
+    #demo
+    >desc
     默认情况下所有表单会均分一行，你也可以通过样式按比例调整宽度占比。
     <br><br>
     注意由于采用了`flex`布局，样式的宽度只能影响比例，并不能设置固定值。
-    ---
+    >tpl
     <div style="width:600px;margin:auto">
         <ui-formgroup class="inline">
             <header>
@@ -534,15 +546,16 @@
         </ui-formgroup>
     </div>
     :::
-
+    
     :::vue
-    > title
-    非内联表单项标题左对齐
-    > desc
+    @name:非内联表单项标题左对齐
+    ---
+    #demo
+    >desc
     默认情况下，如果是非内联表单项的标题是居中对齐，内联表单项的标题是左对齐。
     <br><br>
     你可以通过`item-title-left`、`item-title-center`、`item-title-right`三个样式类来重新设置。
-    ---
+    >tpl
     <div style="width:500px;margin:auto">
         <ui-formgroup class="item-title-left">
             <div class="item">
@@ -570,13 +583,14 @@
     :::
 
     :::vue
-    > title
-    非内联表单项标题右对齐
-    > desc
+    @name:非内联表单项标题右对齐
+    ---
+    #demo
+    >desc
     默认情况下，如果是非内联表单项的标题是居中对齐，内联表单项的标题是左对齐。
     <br><br>
     你可以通过`item-title-left`、`item-title-center`、`item-title-right`三个样式类来重新设置。
-    ---
+    >tpl
     <div style="width:500px;margin:auto">
         <ui-formgroup class="item-title-right">
             <div class="item">
@@ -604,13 +618,14 @@
     :::
 
     :::vue
-    > title
-    内联表单项标题居中对齐
-    > desc
+    @name:内联表单项标题居中对齐
+    ---
+    #demo
+    >desc
     默认情况下，如果是非内联表单项的标题是居中对齐，内联表单项的标题是左对齐。
     <br><br>
     你可以通过`item-title-left`、`item-title-center`、`item-title-right`三个样式类来重新设置。
-    ---
+    >tpl
     <div style="width:500px;margin:auto">
         <ui-formgroup class="inline item-title-center">
             <div class="row">
@@ -640,13 +655,14 @@
     :::
 
     :::vue
-    > title
-    内联表单项标题右对齐
-    > desc
+    @name:内联表单项标题右对齐
+    ---
+    #demo
+    >desc
     默认情况下，如果是非内联表单项的标题是居中对齐，内联表单项的标题是左对齐。
     <br><br>
     你可以通过`item-title-left`、`item-title-center`、`item-title-right`三个样式类来重新设置。
-    ---
+    >tpl
     <div style="width:500px;margin:auto">
         <ui-formgroup class="inline item-title-right">
             <div class="row">

@@ -13,9 +13,10 @@
     定义一段中心内容，这是一个块级元素。
 
     :::vue
-    > title
-    使用
+    @name:使用
     ---
+    #demo
+    >tpl
     <ui-lead>中心内容</ui-lead>
     :::
 
@@ -31,16 +32,12 @@
 
     <a href="/guide/status.html">查看形态文档</a>
 
-    #### 色彩
-
     :::preset/html
     statusColor
     ---
     uikey:lead
     :::
 
-    #### 状态
-    
     :::repeat/html
     state:normal,apparent
     ---

@@ -11,31 +11,34 @@
     [[[开始]]]
 
     定义图片容器，支持三种不同形状的图片，可为图片添加文字说明。
-    
+
     :::vue
-    > title
-    使用
+    @name:使用
     ---
+    #demo
+    >tpl
     <ui-img src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
     :::
 
     :::vue
-    > title
-    带文字说明图片
+    @name:带文字说明图片
     ---
+    #demo
+    >tpl
     <ui-img src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg">说明文字</ui-img>
     :::
 
     :::vue
-    > title
-    不同形状
-    > desc
+    @name:不同形状
+    ---
+    #demo
+    >desc
     支持三种：
     <br><br>
     - `.round` : 圆角
     - `.circle` : 圆形
     - `.thumbnail` : 相框
-    ---
+    >tpl
     <div>
         <ui-img class="round" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
         <ui-img class="circle" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
@@ -44,9 +47,10 @@
     :::
 
     :::vue
-    > title
-    支持的属性
-    > desc
+    @name:支持的属性
+    ---
+    #demo
+    >desc
     `ui-img`仅支持下面这些属性：
     <br><br>
     - `src` : 图片地址
@@ -54,7 +58,7 @@
     - `height` : 图片高度
     - `alt` : 图片加载失败显示内容
     - `title` : 图标标题
-    ---
+    >tpl
     <div>
         <!-- 添加width属性，自动设置图片宽度 -->
         <ui-img width="130" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>

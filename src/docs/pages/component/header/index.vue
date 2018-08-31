@@ -13,42 +13,46 @@
     定义一个页头，常用在容器内部，这是一个块级元素。
 
     :::vue
-    > title
-    使用
+    @name:使用
     ---
+    #demo
+    >tpl
     <ui-header>
         页头标题
     </ui-header>
     :::
 
     :::vue
-    > title
-    子标题
-    > desc
-    你可以使用`<small>`标记子标题。
+    @name:子标题
     ---
+    #demo
+    >desc
+    你可以使用`<small>`标记子标题。
+    >tpl
     <ui-header>
         页头标题<small>页头子标题</small>
     </ui-header>
     :::
 
     :::vue
-    > title
-    带标记的页头
-    > desc
-    使用`mark`类可显示带标记的页头。
+    @name:带标记的页头
     ---
+    #demo
+    >desc
+    使用`mark`类可显示带标记的页头。
+    >tpl
     <ui-header class="mark">
         页头标题<small>页头子标题</small>
     </ui-header>
     :::
 
     :::vue
-    > title
-    带下划线的页头
-    > desc
-    使用`underline`类可显示带下划线的页头。
+    @name:带下划线的页头
     ---
+    #demo
+    >desc
+    使用`underline`类可显示带下划线的页头。
+    >tpl
     <ui-header class="underline">
         页头标题<small>页头子标题</small>
     </ui-header>
@@ -66,15 +70,11 @@
 
     <a href="/guide/status.html">查看形态文档</a>
 
-    #### 尺寸
-    
     :::repeat/html
     size
     ---
     <ui-header class="mark" size="{$sizeKey}">{$&sizeName}<small>页头子标题</small></ui-header>
     :::
-
-    #### 色彩
 
     :::repeat/html
     color:theme

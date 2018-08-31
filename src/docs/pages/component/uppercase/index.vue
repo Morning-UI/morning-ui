@@ -13,9 +13,10 @@
     大写文本组件，这是一个内联元素。
     
     :::vue
-    > title
-    使用
+    @name:使用
     ---
+    #demo
+    >tpl
     <ui-uppercase>大写的英文文本: tHere is A LEtter</ui-uppercase>
     :::
 

@@ -13,15 +13,16 @@
     定义一个包含多个操作的行动栏。
 
     :::vue
-    > title
-    使用
-    > desc
+    @name:使用
+    ---
+    #demo
+    >desc
     行动栏可包含：
     <br><br>
     - 名称: `.title`
     - 说明: `.note`
     - 行动区域: `.action`
-    ---
+    >tpl
     <div style="width:400px">
         <ui-action>
             <div class="title">
@@ -36,9 +37,10 @@
     :::
 
     :::vue
-    > title
-    多个行动入口
+    @name:多个行动入口
     ---
+    #demo
+    >tpl
     <div style="width:400px">
         <ui-action>
             <div class="title">
@@ -54,9 +56,10 @@
     :::
 
     :::vue
-    > title
-    垂直排列
+    @name:垂直排列
     ---
+    #demo
+    >tpl
     <div style="width:400px">
         <ui-action class="vertical">
             <div class="title">
@@ -82,8 +85,6 @@
 
     <a href="/guide/status.html">查看形态文档</a>
 
-    #### 尺寸
-    
     :::repeat/html
     size
     ---
@@ -100,8 +101,6 @@
     </div>
     <br>
     :::
-
-    #### 色彩
 
     :::repeat/html
     color:theme

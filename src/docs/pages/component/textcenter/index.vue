@@ -13,9 +13,10 @@
     内容居中对齐组件，这是一个块级元素。
     
     :::vue
-    > title
-    使用
+    @name:使用
     ---
+    #demo
+    >tpl
     <ui-textcenter>居中的文本</ui-textcenter>
     :::
 

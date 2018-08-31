@@ -13,9 +13,10 @@
     标记一段小号内容，这是一个内联元素。
     
     :::vue
-    > title
-    使用
+    @name:使用
     ---
+    #demo
+    >tpl
     <ui-small>小号文本</ui-small>
     :::
 
