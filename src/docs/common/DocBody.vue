@@ -1249,11 +1249,8 @@ let extRepeat = (content, paramStr, token, md) => {
                 _opt.param = sitem.split(':')[1];
                 repeater.size(_opt);
                 _opt.paramStr = [
-                    '> no-anchor',
-                    '> title',
-                    '尺寸',
-                    '> desc',
-                    '通过`size`来设置组件的尺寸，可用尺寸详见[形态/尺寸](/guide/status.html#尺寸)'
+                    '@name:尺寸',
+                    '#demo\n>title\n尺寸\n>desc\n通过`size`来设置组件的尺寸，可用尺寸详见[形态/尺寸](/guide/status.html#尺寸)'
                 ];
 
             } else if (/^color/.test(sitem)) {
@@ -1261,11 +1258,8 @@ let extRepeat = (content, paramStr, token, md) => {
                 _opt.param = sitem.split(':')[1];
                 repeater.color(_opt);
                 _opt.paramStr = [
-                    '> no-anchor',
-                    '> title',
-                    '色彩',
-                    '> desc',
-                    '通过`color`来设置组件的色彩，可用色彩详见[形态/色彩](/guide/status.html#色彩)'
+                    '@name:色彩',
+                    '#demo\n>title\n色彩\n>desc\n通过`color`来设置组件的色彩，可用色彩详见[形态/色彩](/guide/status.html#色彩)'
                 ];
 
             } else if (/^state/.test(sitem)) {
@@ -1273,11 +1267,8 @@ let extRepeat = (content, paramStr, token, md) => {
                 _opt.param = sitem.split(':')[1];
                 repeater.state(_opt);
                 _opt.paramStr = [
-                    '> no-anchor',
-                    '> title',
-                    '状态',
-                    '> desc',
-                    '通过`color`来设置组件的色彩，可用状态详见[形态/状态](/guide/status.html#状态)'
+                    '@name:状态',
+                    '#demo\n>title\n状态\n>desc\n通过`state`来设置组件的状态，可用状态详见[形态/状态](/guide/status.html#状态)'
                 ];
 
             } else if (/^br/.test(sitem)) {
@@ -1302,10 +1293,12 @@ let extRepeat = (content, paramStr, token, md) => {
 
         let renderContent = Mustache.render(_opt.content, _opt.context);
 
+
         if (_opt.style.length > 0) {
 
+            _opt.paramStr[1] = _opt.paramStr[1].replace(/(^\#demo)/, `$1\n>tpl\n<div style="${_opt.style.join('')}">\n${addSpace(rmEndWrap(renderContent), 4)}\n<div>`);
             fullContent += extVue(
-                `<div style="${_opt.style.join('')}">\n${addSpace(rmEndWrap(renderContent), 4)}\n</div>`,
+                null,
                 _opt.paramStr,
                 token,
                 md
@@ -1313,9 +1306,10 @@ let extRepeat = (content, paramStr, token, md) => {
             fullContent += '<br>';
 
         } else {
-
+            
+            _opt.paramStr[1] = _opt.paramStr[1].replace(/(^\#demo)/, `$1\n>tpl\n<div>\n${addSpace(rmEndWrap(renderContent), 4)}\n<div>`);
             fullContent += extVue(
-                `<div>\n${addSpace(rmEndWrap(renderContent), 4)}\n</div>`,
+                null,
                 _opt.paramStr,
                 token,
                 md
@@ -1355,16 +1349,314 @@ let extVueParser = {
         data = data.split('\n');
 
         return {
-            type : data.shift().replace(/\:$/, ''),
-            tokens : data
+            type : data.shift().replace(/^\#/, ''),
+            parts : extVueParser.part(data)
         };
+
+    },
+    part : data => {
+
+        let typeMap = [
+            'tpl',
+            'title',
+            'desc',
+            'conf-desc',
+            'conf-accept',
+            'conf-type',
+            'conf-default',
+            'script'
+        ];
+        let item;
+        let curType;
+        let parts = {};
+        let partIndex = 0;
+
+        while (item = data.shift()) {
+
+            let index = typeMap.indexOf(item.replace(/^\>/, ''));
+
+            if (index !== -1) {
+
+                curType = typeMap[index];
+                parts[curType] = [];
+
+            } else {
+                
+                if (curType) {
+
+                    parts[curType].push(item);
+
+                }
+
+            }
+
+        }
+
+        return parts;
+
+    }
+};
+
+let extVueTranslater = {
+    _tpl : (data, _ctx) => {
+
+        if (!data) {
+
+            return {
+                exec : '',
+                print : '',
+                live : ''
+            };
+
+        }
+
+        data = data.join('\n');
+        Mustache.parse(data, ['{$', '}']);
+        data = Mustache.render(data, _ctx);
+        data = data.replace(/\{\*([a-zA-Z0-9_.]+)\*\}/g, '{{$1}}');
+
+        let template = {
+            exec : '',
+            print : '',
+            live : ''
+        };
+
+        template.exec = data;
+        template.print = addSpace(rmEndWrap(data), 4);
+        template.live = data.replace(/\n$/, '');
+        template.live = addSpace(rmEndWrap(template.live), 4);
+        template.live = `<div id="${_ctx.demoid}-el">\n${template.live}\n</div>`;
+
+        return template;
+
+    },
+    _script : (data, _ctx) => {
+
+        if (!data) {
+
+            data = {
+                exec : [`new Vue({
+                    id : '{$demoid}',
+                    el : '{$el}',
+                    template : '{$template}'
+                });`],
+                print : ['    export default {};'],
+                live : [`Vue.use(morning);\n\nnew Vue({\n    el : '{$el}'\n});`]
+            };
+
+        }
+
+        data.exec = data.exec.join('\n');
+        data.print = data.print.join('\n');
+        data.live = data.live.join('\n');
+
+        Mustache.parse(data.exec, ['{$', '}']);
+        Mustache.parse(data.print, ['{$', '}']);
+        Mustache.parse(data.live, ['{$', '}']);
+        data.exec = Mustache.render(data.exec, _ctx);
+        data.print = Mustache.render(data.print, _ctx);
+        data.live = Mustache.render(data.live, _ctx);
+
+        data.exec = data.exec.replace(/\{\*([a-zA-Z0-9_.]+)\*\}/g, '{{$1}}');
+        data.print = data.print.replace(/\{\*([a-zA-Z0-9_.]+)\*\}/g, '{{$1}}');
+        data.live = data.live.replace(/\{\*([a-zA-Z0-9_.]+)\*\}/g, '{{$1}}');
+
+        return data;
+
+    },
+    _title : (data, _ctx) => {
+
+        if (!data) {
+
+            return '';
+
+        }
+        
+        data = data.join('\n');
+        data = markdown.render(data);
+        data = data.replace(/(^\<p\>|\<\/p\>)/g, '');
+
+        return `<h5>${data}</h5>`;
+
+    },
+    _desc : (data, _ctx) => {
+
+        if (!data) {
+
+            return '';
+
+        }
+        
+        data = data.join('\n');
+        data = data.replace(/\\n/g, '\n');
+        data = markdown.render(data);
+
+        return `<div>${data}</div>`;
+
+    },
+    // _conf_desc : (data, _ctx) => {
+
+    //     if (!data) {
+
+    //         return '|描述|-|';
+
+    //     }
+
+    //     data = data.join('\n');
+    //     // data = data.replace(/\\n/g, '<br>');
+
+    //     return data;
+
+
+    // },
+    _conf_accept : (data, _ctx) => {
+
+        if (!data) {
+
+            return '|接受值|-|';
+
+        }
+
+        data = data.join('\n');
+        data = data.replace(/\\n/g, '<br>');
+
+        return `|接受值|${data}|`;
+
+
+    },
+    _conf_type : (data, _ctx) => {
+
+        if (!data) {
+
+            return '|值类型|-|';
+
+        }
+
+        data = data.join('\n');
+        data = data.replace(/\\n/g, '<br>');
+
+        return `|值类型|${data}|`;
+
+
+    },
+    _conf_default : (data, _ctx) => {
+
+        if (!data) {
+
+            return '|默认值|-|';
+
+        }
+
+        data = data.join('\n');
+        data = data.replace(/\\n/g, '<br>');
+
+        return `|默认值|${data}|`;
+
+
+    },
+    demo : (data, _ctx) => {
+
+        return {
+            type : data.type,
+            tpl : extVueTranslater._tpl(data.parts.tpl, _ctx),
+            script : extVueTranslater._script(data.parts.script, _ctx),
+            title : extVueTranslater._title(data.parts.title, _ctx),
+            desc : extVueTranslater._desc(data.parts.desc, _ctx)
+        };
+
+    },
+    config : (data, _ctx) => {
+
+        return {
+            type : data.type,
+            desc : extVueTranslater._desc(data.parts.desc, _ctx),
+            'conf-desc' : extVueTranslater._desc(data.parts['conf-desc'], _ctx),
+            'conf-accept' : extVueTranslater._conf_accept(data.parts['conf-accept'], _ctx),
+            'conf-type' : extVueTranslater._conf_type(data.parts['conf-type'], _ctx),
+            'conf-default' : extVueTranslater._conf_default(data.parts['conf-default'], _ctx)
+        };
+
+    }
+};
+
+let extVueCompiler = {
+    demo : (data, _ctx) => {
+
+        let printCode = `<template>\n${data.tpl.print}\n</template>\n\n<script>\n${data.script.print}\n<\/script>`;
+
+        outputcode[_ctx.demoid] = printCode;
+
+        let templateScript = document.createElement('script');
+
+        templateScript.innerHTML = `\n${data.tpl.exec}`;
+        templateScript.type = 'x-template';
+        templateScript.id = `${_ctx.demoid}-tmpl`;
+
+        evals.push(templateScript);
+
+        let scriptScript = document.createElement('script');
+
+        scriptScript.innerHTML = data.script.exec;
+        evals.push(scriptScript);
+
+        livedata[_ctx.demoid] = {
+            js : data.script.live,
+            html : data.tpl.live
+        };
+
+        return `
+            <div class="section-demo">
+                <div class="demo-con">
+                    <div id="${_ctx.demoid}-el"></div>
+                </div>
+                <div class="code-con">
+                    <div class="code">
+                        <pre><code class="lang-html lang-vue">${_ctx.md.utils.escapeHtml(printCode)}</code></pre>
+                        <div class="demo-tools">
+                            <a href="javascript:;" class="live" demo-id="${_ctx.demoid}" id="live-demo-${_ctx.demoid}">
+                                <i class="iconfont">&#xe616;</i>
+                            </a>
+                            <ui-tip color="extra-light-black" target="#live-demo-${_ctx.demoid}">在 JSFiddle 中查看</ui-tip>
+                            <a href="javascript:;" class="copy" demo-id="${_ctx.demoid}" id="copy-demo-${_ctx.demoid}">
+                                <i class="iconfont">&#xe632;</i>
+                            </a>
+                            <ui-tip id="copy-tip-${_ctx.demoid}" color="extra-light-black" target="#copy-demo-${_ctx.demoid}">复制代码</ui-tip>
+                        </div>
+                    </div>
+                    <div class="note">${data.title}${data.desc}</div>
+                </div>
+            </div>
+        `;
+
+    },
+    config : (data, _ctx) => {
+
+        let table = `|A|B|\n|-|-|\n${data['conf-accept']}\n${data['conf-type']}\n${data['conf-default']}`;
+
+        table = markdown.render(table);
+        table = table.replace(/^<table/, '<table frame="void"');
+
+        return `
+            <div class="section-config">
+                <div class="desc">${data['conf-desc']}</div>
+                <div class="config">${table}</div>
+            </div>
+        `;
 
     }
 };
 
 let extVue = (content, paramStr, token, md) => {
 
-    let ctx = {};
+    let demoid = `demo-${_.random(randomRangeMin, randomRangeMax)}`;
+    let ctx = {
+        _ctx : {
+            demoid : demoid,
+            el : `#${demoid}-el`,
+            template : `#${demoid}-tmpl`,
+            md
+        }
+    };
 
     ctx.vars = extVueParser.vars(paramStr.shift());
     ctx.sections = [];
@@ -1375,7 +1667,30 @@ let extVue = (content, paramStr, token, md) => {
 
     }
 
-    console.log(ctx); 
+    ctx.translate = [];
+
+    while (ctx.translateSection = ctx.sections.shift()) {
+
+        ctx.translate.push(extVueTranslater[ctx.translateSection.type](ctx.translateSection, ctx._ctx));
+
+    }
+
+    ctx.compiled = [];
+
+    while (ctx.compileSection = ctx.translate.shift()) {
+
+        ctx.compiled.push(extVueCompiler[ctx.compileSection.type](ctx.compileSection, ctx._ctx));
+
+    }
+
+    console.log(ctx);
+
+    return `
+    <div class="demo-root">
+        <h4 id="${ctx.vars.name}"><a href="#${ctx.vars.name}" aria-hidden="true" class="permalink">#</a> ${ctx.vars.name}</h4>
+        ${ctx.compiled.join('\n')}
+    </div>
+    `
 
 };
 
@@ -1825,6 +2140,186 @@ a{ }
     }
 }
 
+.demo-root{
+    border: 1px #E9ECEF solid;
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+    font-size: 0;
+
+    &:hover{
+        box-shadow: 0 0 8px rgba(194, 204, 212, 0.36);
+        border: 1px #e3e8ea solid;
+    }
+
+    > h4{
+        margin: 0;
+        padding: 8px 12px;
+        background: #f6f8fa;
+        font-size: 18px;
+    }
+
+    .section-demo,
+    .section-config{
+        border-top: 2px #E9ECEF solid;
+
+        &:first-child{
+            border-top: none;
+        }
+    }
+
+    .section-demo{
+        .demo-con{
+            padding: 10px;
+            position: relative;
+            display: block;
+            background: #fff;
+            margin: 0;
+            border-bottom: 1px #E9ECEF dashed;
+        }
+
+        .code-con{
+            position: relative;
+            display: flex;
+
+            > .code{
+                background-color: #F6F8FA;
+                width: 100%;
+                margin: 0;
+                border-radius: 0;
+                vertical-align: top;
+                display: block;
+                position: relative;
+
+                > pre{
+                    font-size: 12px;
+                }
+
+                > .demo-tools{
+                    position: absolute;
+                    right: 0;
+                    top: 23px;
+                    width: 16px;
+                    line-height: 1.5em;
+                    font-size: 13px;
+                    padding-right: 8px;
+                    box-sizing: content-box;
+
+                    > a{
+                        color: #83888e;
+                        text-decoration: none;
+
+                        &:hover{
+                            text-decoration: none;
+                            color: #18191b;
+                        }
+                    }
+                }
+            }
+
+            > .note{
+                width: 50%;
+                display: block;
+                border: none;
+                vertical-align: top;
+                box-sizing: border-box;
+                border-left: 1px #e5e9ec dashed;
+
+                &:empty{
+                    display: none;
+                    width: 0;
+                }
+
+                > h5{
+                    margin: 0;
+                    padding: 14px;
+                    font-size: 14px !important;
+                    color: #45505C;
+                    font-weight: 700;
+                }
+
+                > div{
+                    padding: 0 14px 14px 14px;
+                    margin: 0;
+                    font-size: 13px;
+
+                    p {
+                        margin: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    .section-config{
+        font-size: 14px;
+        padding: 0;
+        display: flex;
+
+        .config{
+            width: 35%;
+
+            table{
+                margin: 0;
+                display: table;
+                font-size: 12px;
+                
+                thead{
+                    display: none;
+                }
+
+                tr:first-child{
+                    td{
+                        border-top: none;
+                    }
+                }
+
+                tr:last-child{
+                    td{
+                        border-bottom: none;
+                    }
+                }
+
+                th,
+                td{
+                    padding: 10px 15px;
+                    border-right: 1px solid #e5e9ec;
+                    border-bottom: 1px solid #e5e9ec;
+
+                    &:first-child{
+                        border-left: 1px solid #e5e9ec;
+                        white-space: nowrap;
+                        background: #f6f8fa;
+                    }
+
+                    &:last-child{
+                        border-right: none;
+                    }
+                }
+
+                tr:nth-child(2n){
+                    background: #fff !important;
+                }
+            }
+        }
+
+        .desc{
+            width: 65%;
+            box-sizing: border-box;
+            border-right: 1px #e5e9ec solid;
+            padding: 10px;
+
+            > div{
+                margin: 0;
+
+                p {
+                    margin: 0;
+                }
+            }
+        }
+    }
+}
+
 .demo-box{
     border: 1px #E9ECEF solid;
     border-radius: 3px;
@@ -1832,7 +2327,7 @@ a{ }
     position: relative;
 
     &:hover{
-        box-shadow: 0 3px 6px rgba(194, 204, 212, 0.34);
+        box-shadow: 0 0 8px rgba(194, 204, 212, 0.36);
         border: 1px #e3e8ea solid;
     }
 
@@ -1860,115 +2355,6 @@ a{ }
 
         > .note{
             display: none;
-        }
-    }
-
-    &.vue{
-        .code{
-            position: relative;
-            display: flex;
-
-            > pre{
-                display: inline-block;
-                width: 70%;
-            }
-
-            > .note{
-                width: 30%;
-                display: inline-block;
-                border: none;
-                vertical-align: top;
-                box-sizing: border-box;
-                border-left: 1px #e5e9ec dashed;
-
-                > h5{
-                    margin: 0;
-                    padding: 14px;
-                    font-size: 14px;
-                    color: #45505C;
-                    font-weight: 700;
-                }
-
-                > div{
-                    padding: 0 14px 14px 14px;
-                    margin: 0;
-                    font-size: 13px;
-
-                    p {
-                        margin: 0;
-                    }
-                }
-            }
-
-            > .demo-tools{
-                position: absolute;
-                right: 30%;
-                top: 23px;
-                width: 16px;
-                line-height: 1.5em;
-                font-size: 13px;
-                padding-right: 8px;
-                box-sizing: content-box;
-
-                > a{
-                    color: #83888e;
-                    text-decoration: none;
-
-                    &:hover{
-                        text-decoration: none;
-                        color: #18191b;
-                    }
-                }
-            }
-        }
-    }
-
-    &.vue.has-config{
-        margin-bottom: 20px;
-        > h4{
-            margin: 0;
-            padding: 16px 14px;
-            font-size: 18px;
-        }
-
-        > .config{
-            padding: 0 14px 14px 14px;
-            border-bottom: 2px #e5e9ec dashed;
-
-            > table{
-                margin: 0;
-                display: table;
-                font-size: 12px;
-                
-                thead tr{
-                    background: #e5e9ec;
-                    border: none;
-                }
-
-                th,
-                td{
-                    padding: 5px;
-                    border: 1px solid #e5e9ec;
-                }
-            }
-        }
-
-        .code{
-            display: block;
-
-            > pre{
-                width: 100%;
-                border-bottom: 1px #e5e9ec dashed;
-            }
-
-            > .note{
-                width: 100%;
-                border-left: none;
-            }
-
-            > .demo-tools{
-                right: 0;
-            }
         }
     }
 }
