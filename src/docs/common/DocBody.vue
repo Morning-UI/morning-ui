@@ -1592,8 +1592,9 @@ let extVueRenderer = {
     },
     'lifecycle-event' : (parts) => {
 
-        let key = parts.rules[0];
-        let name = parts.rules[1];
+        let key = parts.rules.shift();
+        let name = parts.rules.shift();
+        let slot = parts.rules;
 
         let newParamStr = [
             [
@@ -1638,6 +1639,23 @@ let extVueRenderer = {
                 ``
             ]
         ];
+
+        if (slot.length > 0) {
+
+            let oneSlot;
+
+            newParamStr[1].splice(12, 1, '    >');
+            newParamStr[1].splice(13, 0, `    </ui-${key}>`);
+
+            while ((oneSlot = slot.pop()) !== undefined) {
+
+                newParamStr[1].splice(13, 0, addSpace(oneSlot, 8));
+
+            }
+
+        }
+
+        console.log(newParamStr);
 
         newParamStr[0] = newParamStr[0].join('\n');
         newParamStr[1] = newParamStr[1].join('\n');
@@ -1795,11 +1813,19 @@ let extVueTranslater = {
 
         let exec = extend(true, [], _data);
 
+        console.log(20, extend(true, [], exec));
+
+        if (exec[exec.length - 1] === '') {
+
+            exec.pop();
+
+        }
+
         exec.shift();
-        exec.pop();
         exec.pop();
         exec.unshift(',');
         exec = exec.join('\n');
+        console.log(23, exec);
 
         let script = {};
 
@@ -1819,8 +1845,11 @@ let extVueTranslater = {
         script.live = Mustache.render(script.live, _ctx);
 
         script.exec = script.exec.replace(/\{\*([a-zA-Z0-9_.]+)\*\}/g, '{{$1}}');
-        script.print = script.print.replace(/\{\*([a-zA-Z0-9_.]+)\*\}/g, '{{$1}}');
+        // script.print = script.print.replace(/\{\*([a-zA-Z0-9_.]+)\*\}/g, '{{$1}}');
+        // script.print = addSpace(rmEndWrap(_data), 4).replace(/\{\{([a-zA-Z0-9_.]+)\}\}/g, '{*$1*}');
         script.live = script.live.replace(/\{\*([a-zA-Z0-9_.]+)\*\}/g, '{{$1}}');
+
+        console.log(123, extend(true, {}, script));
 
         return script;
 
@@ -2190,9 +2219,18 @@ let extVue = (content, paramStr, token, md) => {
 
     }
 
+    let name = ctx._ctx.vars.name;
+
+    if (name) {
+        
+        name = markdown.render(name);
+        name = name.replace(/(^\<p\>|\<\/p\>)/g, '');
+
+    }
+
     return `
     <div class="demo-root">
-        <h4 id="${ctx._ctx.vars.name.replace(/(\<[\/]*\w+?\>|\]|\[|\}|\{|\>|\<|\)|\()/g, '-')}"><a href="#${ctx._ctx.vars.name.replace(/(\<[\/]*\w+?\>|\]|\[|\}|\{|\>|\<|\)|\()/g, '-')}" aria-hidden="true" class="permalink">#</a> ${ctx._ctx.vars.name}</h4>
+        <h4 id="${name.replace(/(\<[\/]*\w+?\>|\]|\[|\}|\{|\>|\<|\)|\()/g, '-')}"><a href="#${name.replace(/(\<[\/]*\w+?\>|\]|\[|\}|\{|\>|\<|\)|\()/g, '-')}" aria-hidden="true" class="permalink">#</a> ${name}</h4>
         ${ctx.compiled.join('\n')}
     </div>
     `;
@@ -2585,7 +2623,17 @@ export default {
             fieldHtml.setAttribute('name', 'html');
             fieldHtml.value = data.html;
             fieldJs.setAttribute('name', 'js');
-            fieldJs.value = data.js;
+
+            if (window.demodata) {
+
+                fieldJs.value = `// demo data\nwindow.demodata = ${JSON.stringify(window.demodata, null, '    ')}\n\n${data.js}`;
+
+            } else {
+
+                fieldJs.value = `${data.js}`;
+    
+            }
+
             fieldWrap.setAttribute('name', 'wrap');
             fieldWrap.value = 'd';
 

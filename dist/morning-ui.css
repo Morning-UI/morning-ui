@@ -6728,16 +6728,16 @@ mor-tab > ul > li.disabled {
   border-color: #D6DDE5;
   cursor: default;
 }
-mor-tab .contents {
+mor-tab > .contents {
   border: 1px #dce3ea solid;
   position: relative;
 }
-mor-tab .contents > .item {
+mor-tab > .contents > .item {
   pointer-events: none;
   height: 0;
   overflow: hidden;
 }
-mor-tab .contents > .item.current {
+mor-tab > .contents > .item.current {
   padding: 16px;
   pointer-events: auto;
   height: auto;
@@ -6766,12 +6766,12 @@ mor-tab.position-left > ul > li:first-child {
 mor-tab.position-left > ul > li:last-child {
   margin-bottom: 0;
 }
-mor-tab.position-left .contents {
+mor-tab.position-left > .contents {
   font-size: 14px;
   display: inline-block;
   vertical-align: top;
 }
-mor-tab.no-padding .contents > .item.current {
+mor-tab.no-padding > .contents > .item.current {
   padding: 0;
 }
 mor-tab.block > ul {
