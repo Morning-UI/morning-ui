@@ -60,26 +60,32 @@
 
     <a href="/guide/status.html">查看形态文档</a>
 
-    :::repeat/html
-    size
+    :::vue
+    @name:尺寸
     ---
+    #renderer
+    >name
+    size-repeat
+    >tpl
     <ui-badge size="{$sizeKey}">{$&sizeName}</ui-badge>
-    :::
-    
-    :::repeat/html
-    size
     ---
+    #renderer
+    >name
+    size-repeat
+    >desc
+    尺寸配合`circle`样式类一起使用。
+    >tpl
     <ui-badge class="circle" size="{$sizeKey}">{$&sizeName}</ui-badge>
     :::
 
-    :::preset/html
-    statusColor
+    :::vue
+    @layout:color
     ---
-    uikey:badge
+    <ui-badge color="{$colorKey}">{$&colorName}</ui-badge>
     :::
 
-    :::repeat/html
-    state:normal,apparent
+    :::vue
+    @layout:state-na
     ---
     <ui-badge state="{$stateKey}">{$&stateName}</ui-badge>
     :::

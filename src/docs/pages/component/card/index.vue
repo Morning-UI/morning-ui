@@ -68,13 +68,8 @@
 
     <a href="/guide/status.html">查看形态文档</a>
 
-    :::repeat/html
-    color:theme
-    color:feature
-    color:black
-    color:blue
-    color:silver
-    color:gray
+    :::vue
+    @layout:color
     ---
     <div style="width:180px;height:240px;display:inline-block;margin:10px;">
         <ui-card color="{$colorKey}">

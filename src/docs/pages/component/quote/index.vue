@@ -32,13 +32,8 @@
 
     <a href="/guide/status.html">查看形态文档</a>
 
-    :::repeat/html
-    color:theme
-    color:feature
-    color:black
-    color:blue
-    color:silver
-    color:gray
+    :::vue
+    @layout:color
     ---
     <ui-quote color="{$colorKey}">{$&colorName}</ui-quote>
     <br>

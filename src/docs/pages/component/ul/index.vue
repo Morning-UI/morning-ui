@@ -81,9 +81,9 @@
     |状态|`normal`<br/>`apparent`|`normal`|
 
     <a href="/guide/status.html">查看形态文档</a>
-    
-    :::repeat/html
-    state:normal,apparent
+
+    :::vue
+    @layout:state-na
     ---
     <ui-ul state="{$stateKey}">
         <li>this is {$&stateName} ui-ul</li>

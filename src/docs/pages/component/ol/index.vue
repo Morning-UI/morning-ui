@@ -82,8 +82,8 @@
 
     <a href="/guide/status.html">查看形态文档</a>
 
-    :::repeat/html
-    state:normal,apparent
+    :::vue
+    @layout:state-na
     ---
     <ui-ol state="{$stateKey}">
         <li>this is {$&stateName} ui-ol</li>

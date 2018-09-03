@@ -34,10 +34,10 @@
 
     <a href="/guide/status.html">查看形态文档</a>
 
-    :::preset/html
-    statusColor
+    :::vue
+    @layout:color
     ---
-    uikey:textcolor
+    <ui-textcolor color="{$colorKey}">{$&colorName}</ui-textcolor>
     :::
 
     [[[源码]]]

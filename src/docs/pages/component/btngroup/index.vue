@@ -162,8 +162,8 @@
 
     `ui-btngroup`本身不支持尺寸，可以使用`ui-btn`来设置尺寸。
     
-    :::repeat/html
-    size
+    :::vue
+    @layout:size
     ---
     <ui-btngroup>
         <ui-btn size="{$sizeKey}">{$&sizeName}</ui-btn>
@@ -177,13 +177,8 @@
 
     `ui-btngroup`本身不支持色彩，可以使用`ui-btn`来设置色彩。
 
-    :::repeat/html
-    color:theme
-    color:feature
-    color:black
-    color:blue
-    color:silver
-    color:gray
+    :::vue
+    @layout:color
     ---
     <ui-btngroup>
         <ui-btn color="{$colorKey}">{$&colorName}</ui-btn>
@@ -197,8 +192,8 @@
 
     `ui-btngroup`本身不支持状态，可以使用`ui-btn`来设置状态。
     
-    :::repeat/html
-    state
+    :::vue
+    @layout:state-na
     ---
     <ui-btngroup>
         <ui-btn state="{$stateKey}">{$&stateName}</ui-btn>

@@ -70,19 +70,14 @@
 
     <a href="/guide/status.html">查看形态文档</a>
 
-    :::repeat/html
-    size
+    :::vue
+    @layout:size
     ---
     <ui-header class="mark" size="{$sizeKey}">{$&sizeName}<small>页头子标题</small></ui-header>
     :::
 
-    :::repeat/html
-    color:theme
-    color:feature
-    color:black
-    color:blue
-    color:silver
-    color:gray
+    :::vue
+    @layout:color
     ---
     <ui-header color="{$colorKey}">{$&colorName}<small>页头子标题</small></ui-header>
     :::

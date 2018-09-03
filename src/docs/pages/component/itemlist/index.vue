@@ -223,10 +223,8 @@
 
     <a href="/guide/status.html">查看形态文档</a>
 
-    #### 尺寸
-    
-    :::repeat/html
-    size
+    :::vue
+    @layout:size
     ---
     <div style="width:400px">
         <ui-itemlist size="{$sizeKey}">
@@ -255,7 +253,6 @@
             </ui-ul>
         </ui-itemlist>
     </div>
-    <br><br>
     :::
 
     [[[源码]]]

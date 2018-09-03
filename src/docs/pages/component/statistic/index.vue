@@ -93,9 +93,9 @@
     |状态|`normal`<br/>`apparent`|`normal`|
 
     <a href="/guide/status.html">查看形态文档</a>
-    
-    :::repeat/html
-    size
+
+    :::vue
+    @layout:size
     ---
     <ui-statistic size="{$sizeKey}">
         <div class="value">5,550</div>
@@ -103,13 +103,8 @@
     </ui-statistic>
     :::
 
-    :::repeat/html
-    color:theme
-    color:feature
-    color:black
-    color:blue
-    color:silver
-    color:gray
+    :::vue
+    @layout:color
     ---
     <ui-statistic color="{$colorKey}">
         <div class="value">5,550</div>
@@ -117,8 +112,8 @@
     </ui-statistic>
     :::
 
-    :::repeat/html
-    state:normal,apparent
+    :::vue
+    @layout:state-na
     ---
     <ui-statistic state="{$stateKey}">
         <div class="value">5,550</div>

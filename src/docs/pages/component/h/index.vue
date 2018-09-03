@@ -32,21 +32,21 @@
     |状态|`normal`<br/>`apparent`|`normal`|
 
     <a href="/guide/status.html">查看形态文档</a>
-
-    :::repeat/html
-    size
+    
+    :::vue
+    @layout:size
     ---
     <ui-h size="{$sizeKey}">{$&sizeName}</ui-h>
     :::
 
-    :::preset/html
-    statusColor
+    :::vue
+    @layout:color
     ---
-    uikey:h
+    <ui-h color="{$colorKey}">{$&colorName}</ui-h>
     :::
 
-    :::repeat/html 
-    state:normal,apparent
+    :::vue
+    @layout:state-na
     ---
     <ui-h state="{$stateKey}">{$&stateName}</ui-h>
     :::

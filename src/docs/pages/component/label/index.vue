@@ -78,32 +78,40 @@
 
     <a href="/guide/status.html">查看形态文档</a>
 
-    :::repeat/html
-    size
+    :::vue
+    @name:尺寸
     ---
+    #renderer
+    >name
+    size-repeat
+    >tpl
     <ui-label size="{$sizeKey}">{$&sizeName}</ui-label>
-    :::
-    
-    :::repeat/html
-    size
     ---
+    #renderer
+    >name
+    size-repeat
+    >desc
+    不同尺寸带图标的标签。
+    >tpl
     <ui-label class="icon" size="{$sizeKey}"><i class="mo-icon mo-icon-star-f"></i> <span>{$&sizeName}</span></ui-label>
-    :::
-    
-    :::repeat/html
-    size
     ---
+    #renderer
+    >name
+    size-repeat
+    >desc
+    不同尺寸带图片的标签。
+    >tpl
     <ui-label class="image" size="{$sizeKey}"><img src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"/> <span>{$&sizeName}</span></ui-label>
     :::
-    
-    :::preset/html
-    statusColor
+
+    :::vue
+    @layout:color
     ---
-    uikey:label
+    <ui-label color="{$colorKey}">{$&colorName}</ui-label>
     :::
-    
-    :::repeat/html
-    state:normal,apparent
+
+    :::vue
+    @layout:state-na
     ---
     <ui-label state="{$stateKey}">{$&stateName}</ui-label>
     :::

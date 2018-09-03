@@ -192,7 +192,7 @@ export default {
 
             if (this.conf.js) {
 
-                eval(this.conf.js);
+                new Function(this.conf.js).call(this.$vnode.context);
 
             }
 

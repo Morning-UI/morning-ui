@@ -84,9 +84,9 @@
     |状态|不支持|-|
 
     <a href="/guide/status.html">查看形态文档</a>
-
-    :::repeat/html
-    size
+    
+    :::vue
+    @layout:size
     ---
     <div style="width:400px">
         <ui-action size="{$sizeKey}">
@@ -102,13 +102,8 @@
     <br>
     :::
 
-    :::repeat/html
-    color:theme
-    color:feature
-    color:black
-    color:blue
-    color:silver
-    color:gray
+    :::vue
+    @layout:color
     ---
     <div style="width:400px">
         <ui-action color="{$colorKey}">

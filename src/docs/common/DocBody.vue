@@ -1312,8 +1312,6 @@ let extRepeat = (content, paramStr, token, md) => {
 
         let renderContent = Mustache.render(_opt.content, _opt.context);
 
-        console.log(99, _opt.paramStr);
-
         if (_opt.style.length > 0) {
 
             _opt.paramStr[0] = _opt.paramStr[0].replace(/(^\#demo)/, `$1\n>tpl\n<div style="${_opt.style.join('')}">\n${addSpace(rmEndWrap(renderContent), 4)}\n<div>`);
@@ -1330,8 +1328,6 @@ let extRepeat = (content, paramStr, token, md) => {
 
     paramStrList.unshift(name);
 
-    console.log('end', extend(true, [], paramStrList));
-
     return extVue(
         null,
         paramStrList,
@@ -1341,24 +1337,352 @@ let extRepeat = (content, paramStr, token, md) => {
 
 };
 
+let extVueLayout = {
+    color : (paramStr) => {
+
+        return [
+            '@name:色彩',
+            [
+                '#renderer',
+                '>name',
+                'color-repeat',
+                '>rules',
+                'color:theme',
+                'color:feature',
+                'color:black',
+                'color:blue',
+                'color:silver',
+                'color:gray',
+                '>tpl'
+            ].concat(paramStr).join('\n')
+        ];
+
+    },
+    size : (paramStr) => {
+
+        return [
+            '@name:尺寸',
+            [
+                '#renderer',
+                '>name',
+                'size-repeat',
+                '>tpl'
+            ].concat(paramStr).join('\n')
+        ];
+
+    },
+    'state-na' : (paramStr) => {
+
+        return [
+            '@name:状态',
+            [
+                '#renderer',
+                '>name',
+                'state-repeat',
+                '>rules',
+                'normal,apparent',
+                '>tpl'
+            ].concat(paramStr).join('\n')
+        ];
+
+    },
+    'lifecycle-event' : (paramStr) => {
+
+        return [
+            '@name:生命周期事件',
+            [
+                '#renderer',
+                '>name',
+                'lifecycle-event',
+                '>rules',
+            ].concat(paramStr).join('\n')
+        ];
+
+    }
+};
+
+let extVueRenderer = {
+    'color-repeat' : (parts) => {
+
+        let newParamStr = [];
+        let colorTitleMap = {
+            theme : '主题色彩',
+            feature : '功能色彩',
+            other : '辅助色彩'
+        };
+        let colorDescMap = {
+            theme : '通过`color`来设置组件的主题色彩，可用色彩详见[形态/色彩/主题色](/guide/status.html#主题色)',
+            feature : '通过`color`来设置组件的功能色彩，可用色彩详见[形态/色彩/功能色](/guide/status.html#功能色)',
+            other : '通过`color`来设置组件的辅助色彩，可用色彩详见[形态/色彩/辅助色](/guide/status.html#辅助色)'
+        };
+
+        if (!parts.rules) {
+
+            parts.rules = [
+                'color:theme',
+                'color:feature',
+                'color:black',
+                'color:blue',
+                'color:silver',
+                'color:gray'
+            ];
+
+        }
+
+        for (let rule of parts.rules) {
+
+            if (/^color/.test(rule)) {
+
+                let color = rule.split(':')[1];
+                let colorPreset = [
+                    '#demo',
+                    '>data',
+                    color,
+                    '>title',
+                    (parts.title || colorTitleMap[color] || colorTitleMap.other),
+                    '>desc',
+                    (parts.desc || colorDescMap[color] || colorDescMap.other),
+                    '>tpl'
+                ];
+
+                if (color === 'silver') {
+
+                    colorPreset.push(`<div style="background: #626b75;border-color: #454d57;padding: 5px;">{$#${color}}\n${addSpace(rmEndWrap(parts.tpl.join('\n')), 4)}{$/${color}}\n</div>`);
+
+                } else if (color === 'gray') {
+
+                    colorPreset.push(`<div style="background:#676767;border-color: #494949;padding: 5px;">{$#${color}}\n${addSpace(rmEndWrap(parts.tpl.join('\n')), 4)}{$/${color}}\n</div>`);
+
+                } else {
+
+                    colorPreset.push(`<div>{$#${color}}\n${addSpace(rmEndWrap(parts.tpl.join('\n')), 4)}{$/${color}}\n</div>`);
+
+                }
+                
+                newParamStr.push(colorPreset.join('\n'));
+
+            }
+
+        }
+
+        return newParamStr;
+
+    },
+    'size-repeat' : (parts) => {
+
+        let newParamStr = [];
+        let sizePreset = [
+            '#demo',
+            '>data',
+            'size',
+            '>title',
+            (parts.title || '尺寸'),
+            '>desc',
+            (parts.desc || '通过`size`来设置组件的尺寸，可用尺寸详见[形态/尺寸](/guide/status.html#尺寸)'),
+            '>tpl',
+            `<div>{$#size}\n${addSpace(rmEndWrap(parts.tpl.join('\n')), 4)}{$/size}\n</div>`
+        ];
+
+        newParamStr.push(sizePreset.join('\n'));
+        
+        return newParamStr;
+
+    },
+    'state-repeat' : (parts) => {
+
+        let newParamStr = [];
+        let stateData = [];
+
+        if (parts.rules[0] === 'all' || !parts.rules) {
+
+            stateData = data.state;
+
+        } else {
+
+            let states = parts.rules[0].split(',');
+
+            for (let state of data.state) {
+
+                if (states.indexOf(state.stateKey) !== -1) {
+
+                    stateData.push(state);
+
+                }
+
+            }
+
+        }
+
+        stateData = {
+            state : stateData
+        };
+
+        let statePreset = [
+            '#demo',
+            '>data-json',
+            JSON.stringify(stateData),
+            '>title',
+            (parts.title || '状态'),
+            '>desc',
+            (parts.desc || '通过`state`来设置组件的状态，可用状态详见[形态/状态](/guide/status.html#状态)'),
+            '>tpl',
+            `<div>{$#state}\n${addSpace(rmEndWrap(parts.tpl.join('\n')), 4)}{$/state}\n</div>`
+        ];
+
+        newParamStr.push(statePreset.join('\n'));
+        
+        return newParamStr;
+
+    },
+    'state-color-repeat' : (parts) => {
+
+        let newParamStr = [];
+
+        parts.rules = [
+            'color:theme',
+            'color:feature',
+            'color:black',
+            'color:blue',
+            'color:silver',
+            'color:gray'
+        ];
+
+        for (let rule of parts.rules) {
+
+            if (/^color/.test(rule)) {
+
+                let color = rule.split(':')[1];
+                let colorPreset = [
+                    '#demo',
+                    '>data',
+                    color,
+                    '>data-json',
+                    JSON.stringify({
+                        state : data.state
+                    }),
+                    '>title',
+                    (parts.title || '状态'),
+                    '>desc',
+                    (parts.desc || '通过`state`来设置组件的状态，可用状态详见[形态/状态](/guide/status.html#状态)'),
+                    '>tpl'
+                ];
+
+                if (color === 'silver') {
+
+                    colorPreset.push(`<div style="background: #626b75;border-color: #454d57;padding: 5px;">{$#${color}}{$#state}\n${addSpace(rmEndWrap(parts.tpl.join('\n')), 4)}{$/state}\n\n<br><br>\n{$/${color}}\n</div>`);
+
+                } else if (color === 'gray') {
+
+                    colorPreset.push(`<div style="background:#676767;border-color: #494949;padding: 5px;">{$#${color}}{$#state}\n${addSpace(rmEndWrap(parts.tpl.join('\n')), 4)}{$/state}\n\n<br><br>\n{$/${color}}\n</div>`);
+
+                } else {
+
+                    colorPreset.push(`<div>{$#${color}}{$#state}\n${addSpace(rmEndWrap(parts.tpl.join('\n')), 4)}{$/state}\n\n<br><br>\n{$/${color}}\n</div>`);
+
+                }
+                
+                newParamStr.push(colorPreset.join('\n'));
+
+            }
+
+        }
+
+        return newParamStr;
+
+    },
+    'lifecycle-event' : (parts) => {
+
+        let key = parts.rules[0];
+        let name = parts.rules[1];
+
+        let newParamStr = [
+            [
+                `#event`,
+                `>event-desc`,
+                `组件的生命周期事件，详见:[基础/事件/生命周期事件](/guide/event.html#生命周期事件)。`
+            ],
+            [
+                `#demo`,
+                `>tpl`,
+                `<div>`,
+                `    <ui-${key}`,
+                `        ref="demoEventLifecycle"`,
+                `        v-show="show"`,
+                `        @created="echo('created')"`,
+                `        @mounted="echo('mounted')"`,
+                `        @before-update="echo('before-update')"`,
+                `        @updated="echo('updated')"`,
+                `        @before-destroy="echo('before-destroy')"`,
+                `        @destroyed="echo('destroyed')"`,
+                `    >{*text*}</ui-${key}>`,
+                ``,
+                `   <br><br>`,
+                ``,
+                `    <ui-link js="this.text='生命周期事件';">触发update</ui-link>`,
+                `    <ui-link js="this.$refs['demoEventLifecycle'].$destroy();">触发destroy</ui-link>`,
+                `</div>`,
+                `>script`,
+                `{`,
+                `    data : function () {`,
+                `        return {`,
+                `           text : '${name}',`,
+                `           show : true`,
+                `        };`,
+                `    },`,
+                `    methods : {`,
+                `        echo : function (name) {`,
+                `            console.log('demoEventLifecycle.console1', name + ' event!');`,
+                `        }`,
+                `    }`,
+                `}`,
+                ``
+            ]
+        ];
+
+        newParamStr[0] = newParamStr[0].join('\n');
+        newParamStr[1] = newParamStr[1].join('\n');
+
+        return newParamStr;
+
+    }
+};
+
 let extVueParser = {
     vars : data => {
 
         let vars = {};
+        let line;
+        let ctx;
 
         data = data.split('\n');
 
-        for (let item of data) {
+        while (line = data.shift()) {
 
-            let tokens = item.replace(/^@/, '').split(':');
-            let key = tokens.shift();
-            let val = tokens.join(':');
+            if (/^@/.test(line)) {
 
-            val = markdown.render(val);
-            val = val.replace(/(^\<p\>|\<\/p\>)/g, '');
-            val = val.replace(/\n$/, '');
+                let tokens = line.replace(/^@/, '').split(':');
 
-            vars[key] = val;
+                ctx = tokens.shift();
+
+                if (tokens[0] === '') {
+
+                    tokens.shift();
+
+                }
+
+                vars[ctx] = tokens;
+
+            } else if (ctx) {
+
+                vars[ctx].push(line);
+
+            }
+
+        }
+
+        for (let key in vars) {
+
+            vars[key] = vars[key].join('\n');
 
         }
 
@@ -1385,8 +1709,16 @@ let extVueParser = {
             'conf-accept',
             'conf-type',
             'conf-default',
+            'method-desc',
+            'method-args',
+            'method-return',
+            'event-desc',
             'script',
-            'repeat'
+            'repeat',
+            'rules',
+            'name',
+            'data',
+            'data-json'
         ];
         let item;
         let curType;
@@ -1444,7 +1776,7 @@ let extVueTranslater = {
         };
 
         template.exec = _data;
-        template.print = addSpace(rmEndWrap(_data), 4);
+        template.print = addSpace(rmEndWrap(_data), 4).replace(/\{\{([a-zA-Z0-9_.]+)\}\}/g, '{*$1*}');
         template.live = _data.replace(/\n$/, '');
         template.live = addSpace(rmEndWrap(template.live), 4);
         template.live = `<div id="${_ctx.demoid}-el">\n${template.live}\n</div>`;
@@ -1454,36 +1786,43 @@ let extVueTranslater = {
     },
     _script : (_data, _ctx) => {
 
+
         if (!_data) {
 
-            _data = {
-                exec : [`new Vue({
-                    id : '${_ctx.demoid}',
-                    el : '#${_ctx.demoid}-el',
-                    template : '#${_ctx.demoid}-tmpl'
-                });`],
-                print : ['    export default {};'],
-                live : [`Vue.use(morning);\n\nnew Vue({\n    el : '#${_ctx.demoid}-el'\n});`]
-            };
+            _data = ['{}'];
 
         }
 
-        _data.exec = _data.exec.join('\n');
-        _data.print = _data.print.join('\n');
-        _data.live = _data.live.join('\n');
+        let exec = extend(true, [], _data);
 
-        Mustache.parse(_data.exec, ['{$', '}']);
-        Mustache.parse(_data.print, ['{$', '}']);
-        Mustache.parse(_data.live, ['{$', '}']);
-        _data.exec = Mustache.render(_data.exec, _ctx);
-        _data.print = Mustache.render(_data.print, _ctx);
-        _data.live = Mustache.render(_data.live, _ctx);
+        exec.shift();
+        exec.pop();
+        exec.pop();
+        exec.unshift(',');
+        exec = exec.join('\n');
 
-        _data.exec = _data.exec.replace(/\{\*([a-zA-Z0-9_.]+)\*\}/g, '{{$1}}');
-        _data.print = _data.print.replace(/\{\*([a-zA-Z0-9_.]+)\*\}/g, '{{$1}}');
-        _data.live = _data.live.replace(/\{\*([a-zA-Z0-9_.]+)\*\}/g, '{{$1}}');
+        let script = {};
 
-        return _data;
+        script.exec = `new Vue({
+                id : '${_ctx.demoid}',
+                el : '#${_ctx.demoid}-el',
+                template : '#${_ctx.demoid}-tmpl'${exec}
+            });`;
+        script.print = `    export default {\n${addSpace(rmEndWrap(exec.replace(/^\,\n/, '')), 4)}\n    };`;
+        script.live = `Vue.use(morning);\n\nnew Vue({\n    el : '#${_ctx.demoid}-el'${exec}\n});`;
+
+        Mustache.parse(script.exec, ['{$', '}']);
+        Mustache.parse(script.print, ['{$', '}']);
+        Mustache.parse(script.live, ['{$', '}']);
+        script.exec = Mustache.render(script.exec, _ctx);
+        script.print = Mustache.render(script.print, _ctx);
+        script.live = Mustache.render(script.live, _ctx);
+
+        script.exec = script.exec.replace(/\{\*([a-zA-Z0-9_.]+)\*\}/g, '{{$1}}');
+        script.print = script.print.replace(/\{\*([a-zA-Z0-9_.]+)\*\}/g, '{{$1}}');
+        script.live = script.live.replace(/\{\*([a-zA-Z0-9_.]+)\*\}/g, '{{$1}}');
+
+        return script;
 
     },
     _title : (_data, _ctx) => {
@@ -1561,50 +1900,150 @@ let extVueTranslater = {
 
 
     },
-    demo : (_data, _ctx) => {
+    _method_args : (_data, _ctx) => {
 
-        // console.log(191, extend(true, {}, data.parts));
+        if (!_data) {
 
-        if (_data.parts.repeat &&
-            _data.parts.repeat.length > 0) {
+            _data = `|参数|\n|-|\n|无参数|`;
+            _data = markdown.render(_data);
+            _data = _data.replace(/^<table/, '<table class="no-args" frame="void"');
 
-            let tpl = _data.parts.tpl.join('\n');
-            let type = _data.parts.repeat[0];
-
-            tpl = tpl.replace(/\n$/, '');
-            tpl = `<div>\n{$#${type}}${addSpace(tpl, 4)}\n{$/${type}}</div>`;
-            Mustache.parse(tpl, ['{$', '}']);
-
-            tpl = Mustache.render(tpl, {
-                [type] : data[type]
-            });
-            console.log(14, tpl);
-
-            _data.parts.tpl = tpl.split('\n');
-
-            console.log('part', extend(true, {}, _data))
+            return _data;
 
         }
 
-        return {
+        _data = _data.join('\n');
+        _data = `|KEY|可选|描述|接受值|值类型|默认值|\n|-|-|-|-|-|-|\n${_data}`;
+        _data = markdown.render(_data);
+        _data = _data.replace(/<thead>/, '<thead><tr><th colspan="6">参数</th></tr>');
+        _data = _data.replace(/^<table/, '<table frame="void"');
+
+        return _data;
+
+    },
+    _method_return : (_data, _ctx) => {
+
+        if (!_data) {
+
+            return '无返回值';
+
+        }
+
+        _data = _data.join('\n');
+        _data = `|返回值|\n|-|\n|${_data}|`;
+        _data = markdown.render(_data);
+        _data = _data.replace(/^<table/, '<table frame="void"');
+
+        return _data;
+
+    },
+    _event_args : (_data, _ctx) => {
+
+        if (!_data) {
+
+            _data = `|事件参数|\n|-|\n|无参数|`;
+            _data = markdown.render(_data);
+            _data = _data.replace(/^<table/, '<table class="no-args" frame="void"');
+
+            return _data;
+
+        }
+
+        _data = _data.join('\n');
+        _data = `|KEY|描述|值类型|\n|-|-|-|\n${_data}`;
+        _data = markdown.render(_data);
+        _data = _data.replace(/<thead>/, '<thead><tr><th colspan="3">参数</th></tr>');
+        _data = _data.replace(/^<table/, '<table frame="void"');
+
+        return _data;
+
+    },
+    demo : (_data, _ctx) => {
+
+        if (_data.parts.data) {
+
+            let mountData = _data.parts.data[0];
+
+            _ctx[mountData] = data[mountData];
+
+        }
+
+        if (_data.parts['data-json']) {
+
+            let mountData = JSON.parse(_data.parts['data-json'][0]);
+
+            extend(_ctx, mountData);
+
+        }
+
+        return [{
             type : _data.type,
             tpl : extVueTranslater._tpl(_data.parts.tpl, _ctx),
             script : extVueTranslater._script(_data.parts.script, _ctx),
             title : extVueTranslater._title(_data.parts.title, _ctx),
             desc : extVueTranslater._desc(_data.parts.desc, _ctx)
-        };
+        }];
+
+    },
+    renderer : (_data, _ctx) => {
+
+        let paramStr = [];
+        let unparseSection;
+        let sections = [];
+        let translateSection;
+        let translate = [];
+        let demoid;
+
+        paramStr = extVueRenderer[_data.parts.name[0]](_data.parts);
+        _ctx.index--;
+
+        while (unparseSection = paramStr.shift()) {
+
+            sections.push(extVueParser.section(unparseSection));
+
+        }
+
+        while (translateSection = sections.shift()) {
+
+            _ctx.demoid = `${_ctx.oriDemoid}-${_ctx.index++}`;
+            translate = translate.concat(extVueTranslater[translateSection.type](translateSection, _ctx));
+
+        }
+
+        return translate;
 
     },
     config : (_data, _ctx) => {
 
-        return {
+        return [{
             type : _data.type,
             desc : extVueTranslater._desc(_data.parts.desc, _ctx),
             'conf-desc' : extVueTranslater._desc(_data.parts['conf-desc'], _ctx),
             'conf-accept' : extVueTranslater._conf_accept(_data.parts['conf-accept'], _ctx),
             'conf-type' : extVueTranslater._conf_type(_data.parts['conf-type'], _ctx),
             'conf-default' : extVueTranslater._conf_default(_data.parts['conf-default'], _ctx)
-        };
+        }];
+
+    },
+    method : (_data, _ctx) => {
+
+        return [{
+            type : _data.type,
+            desc : extVueTranslater._desc(_data.parts.desc, _ctx),
+            'method-desc' : extVueTranslater._desc(_data.parts['method-desc'], _ctx),
+            'method-args' : extVueTranslater._method_args(_data.parts['method-args'], _ctx),
+            'method-return' : extVueTranslater._method_return(_data.parts['method-return'], _ctx)
+        }];
+
+    },
+    event : (_data, _ctx) => {
+
+        return [{
+            type : _data.type,
+            desc : extVueTranslater._desc(_data.parts.desc, _ctx),
+            'event-desc' : extVueTranslater._desc(_data.parts['event-desc'], _ctx),
+            'event-args' : extVueTranslater._event_args(_data.parts['event-args'], _ctx)
+        }];
 
     }
 };
@@ -1673,6 +2112,31 @@ let extVueCompiler = {
             </div>
         `;
 
+    },
+    method : (_data, _ctx) => {
+
+        return `
+            <div class="section-method">
+                <div class="desc">${_data['method-desc']}</div>
+                <div class="args-return">
+                    ${_data['method-args']}
+                    ${_data['method-return']}
+                </div>
+            </div>
+        `;
+
+    },
+    event : (_data, _ctx) => {
+
+        return `
+            <div class="section-event">
+                <div class="desc">${_data['event-desc']}</div>
+                <div class="args-return">
+                    ${_data['event-args']}
+                </div>
+            </div>
+        `;
+
     }
 };
 
@@ -1682,12 +2146,23 @@ let extVue = (content, paramStr, token, md) => {
     let ctx = {
         _ctx : {
             demoid : '',
+            oriDemoid : demoid,
             md,
-            index : 0
+            index : 0,
+            paramStr
         }
     };
 
-    ctx.vars = extVueParser.vars(paramStr.shift());
+    ctx._ctx.vars = extVueParser.vars(paramStr.shift());
+
+    if (ctx._ctx.vars.layout) {
+
+        paramStr = extVueLayout[ctx._ctx.vars.layout](paramStr);
+        ctx._ctx.vars = extVueParser.vars(paramStr.shift());
+        delete ctx._ctx.vars.layout;
+
+    }
+
     ctx.sections = [];
 
     while (ctx.unparseSection = paramStr.shift()) {
@@ -1701,7 +2176,7 @@ let extVue = (content, paramStr, token, md) => {
     while (ctx.translateSection = ctx.sections.shift()) {
 
         ctx._ctx.demoid = `${demoid}-${ctx._ctx.index++}`;
-        ctx.translate.push(extVueTranslater[ctx.translateSection.type](ctx.translateSection, ctx._ctx));
+        ctx.translate = ctx.translate.concat(extVueTranslater[ctx.translateSection.type](ctx.translateSection, ctx._ctx));
 
     }
 
@@ -1717,7 +2192,7 @@ let extVue = (content, paramStr, token, md) => {
 
     return `
     <div class="demo-root">
-        <h4 id="${ctx.vars.name.replace(/(\<[\/]*\w+?\>)/g, '')}"><a href="#${ctx.vars.name.replace(/(\<[\/]*\w+?\>)/g, '')}" aria-hidden="true" class="permalink">#</a> ${ctx.vars.name}</h4>
+        <h4 id="${ctx._ctx.vars.name.replace(/(\<[\/]*\w+?\>|\]|\[|\}|\{|\>|\<|\)|\()/g, '-')}"><a href="#${ctx._ctx.vars.name.replace(/(\<[\/]*\w+?\>|\]|\[|\}|\{|\>|\<|\)|\()/g, '-')}" aria-hidden="true" class="permalink">#</a> ${ctx._ctx.vars.name}</h4>
         ${ctx.compiled.join('\n')}
     </div>
     `;
@@ -2176,7 +2651,7 @@ a{ }
     overflow: hidden;
     position: relative;
     font-size: 0;
-    margin: 20px 0;
+    margin: 20px 0 40px 0;
 
     &:hover{
         box-shadow: 0 0 8px rgba(194, 204, 212, 0.42);
@@ -2195,7 +2670,9 @@ a{ }
     }
 
     .section-demo,
-    .section-config{
+    .section-config,
+    .section-method,
+    .section-event{
         border-top: 4px #E9ECEF solid;
 
         &:first-child{
@@ -2203,7 +2680,7 @@ a{ }
         }
 
         &:nth-child(2){
-            border-top: 1px #E9ECEF solid;
+            border-top: 2px #E9ECEF solid;
         }
     }
 
@@ -2273,20 +2750,20 @@ a{ }
 
                 > h5{
                     margin: 0;
-                    padding: 14px;
+                    padding: 14px 14px 0 14px;
                     font-size: 14px !important;
                     color: #45505C;
                     font-weight: 700;
+
+                    &:empty{
+                        display: none;
+                    }
                 }
 
                 > div{
-                    padding: 0 14px 14px 14px;
+                    padding: 14px;
                     margin: 0;
                     font-size: 13px;
-
-                    &:first-child{
-                        padding: 14px;
-                    }
 
                     p {
                         margin: 0;
@@ -2296,12 +2773,16 @@ a{ }
         }
     }
 
-    .section-config{
+    .section-config,
+    .section-method,
+    .section-event{
+        min-height: 100px;
         font-size: 14px;
         padding: 0;
         display: flex;
 
-        .config{
+        .config,
+        .args-return{
             width: 35%;
 
             table{
@@ -2361,6 +2842,58 @@ a{ }
                     margin: 0;
                 }
             }
+        }
+    }
+
+    .section-method,
+    .section-event{
+        .args-return{
+            width: 65%;
+            
+            table{
+                thead{
+                    display: table-header-group;
+                }
+
+                tr:first-child > th:first-child{
+                    font-size: 14px;
+                }
+
+                th,
+                td{
+                    padding: 4px;
+                }
+            }
+
+            table:first-child > thead > tr:nth-child(2) > th{
+                white-space: nowrap;
+            }
+
+            table + table{
+                border-top: 1px #e5e9ec solid;
+            }
+
+            table + table,
+            table.no-args{
+                td{
+                    background: #fff !important;
+                    text-align: center;
+                }
+            }
+        }
+
+        .desc{
+            width: 35%;
+        }
+    }
+
+    .section-event{
+        .args-return{
+            width: 50%;
+        }
+
+        .desc{
+            width: 50%;
         }
     }
 }

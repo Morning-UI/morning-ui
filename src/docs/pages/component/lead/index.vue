@@ -32,14 +32,14 @@
 
     <a href="/guide/status.html">查看形态文档</a>
 
-    :::preset/html
-    statusColor
+    :::vue
+    @layout:color
     ---
-    uikey:lead
+    <ui-lead color="{$colorKey}">{$&colorName}</ui-lead>
     :::
 
-    :::repeat/html
-    state:normal,apparent
+    :::vue
+    @layout:state-na
     ---
     <ui-lead state="{$stateKey}">{$&stateName}</ui-lead>
     :::
