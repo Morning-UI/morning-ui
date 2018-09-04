@@ -415,6 +415,854 @@
     <ui-table :list="window.demodata.list" :vertical-border="false"></ui-table>
     :::
 
+    :::vue
+    @name:horizontal-border
+    ---
+    #config
+    >conf-desc
+    显示表格内的横向边框。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `true`
+    ---
+    #demo
+    >desc
+    隐藏表格内横向边框。
+    >tpl
+    <ui-table :list="window.demodata.list" :horizontal-border="false"></ui-table>
+    ---
+    #demo
+    >desc
+    隐藏表格内所有边框。
+    >tpl
+    <ui-table :list="window.demodata.list" :vertical-border="false" :horizontal-border="false"></ui-table>
+    :::
+
+    :::vue
+    @name:align
+    ---
+    #config
+    >conf-desc
+    列的对齐方式，这是单个表格的全局设置，可以使用`col-set`来单独设置某一列的对齐方式。
+    >conf-accept
+    `'left'`: 左对齐<br>`'center'`: 居中对齐<br>`'right'`: 右对齐
+    >conf-type
+    String
+    >conf-default
+    `'center'`
+    ---
+    #demo
+    >desc
+    列内容右对齐。
+    >tpl
+    <ui-table :list="window.demodata.list" align="right"></ui-table>
+    ---
+    #demo
+    >desc
+    列内容左对齐。
+    >tpl
+    <ui-table :list="window.demodata.list" align="left"></ui-table>
+    :::
+
+    :::vue
+    @name:show-col-name
+    ---
+    #config
+    >conf-desc
+    在标题行显示列的名称，需要先在`col-set`中设置每列的名称。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >tpl
+    <ui-table :list="list" :col-set="colset" :show-col-name="true"></ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.list,
+            colset : [
+                {col : 'name', name : 'Name'},
+                {col : 'age', name : 'Age'},
+                {col : 'gender', name : 'Gender'},
+                {col : 'job', name : 'Job'}
+            ]
+        }
+    }
+    :::
+
+    :::vue
+    @name:fixed-title-col
+    ---
+    #config
+    >conf-desc
+    标题列的位置，可以设置左侧或右侧。对于列数较多的表格，可以使用固定标题列。
+    >conf-accept
+    `'left'`: 位于左侧，不固定<br>`'right'`: 位于右侧，不固定<br>`'left-fixed'`: 位于左侧，固定<br>`'right-fixed'`: 位于右侧，固定
+    >conf-type
+    String
+    >conf-default
+    `'left'`
+    ---
+    #demo
+    >desc
+    此配置需要先在`col-set`中设置标题列。
+    <br><br>
+    将标题列放到右侧。
+    >tpl
+    <ui-table :list="list" :col-set="colset" :show-col-name="true" fixed-title-col="right"></ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.list,
+            colset : [
+                {col : 'name', name : 'Name', title : true},
+                {col : 'age', name : 'Age'},
+                {col : 'gender', name : 'Gender', title : true},
+                {col : 'job', name : 'Job'}
+            ]
+        }
+    }
+    ---
+    #demo
+    >desc
+    将标题列固定在左侧。
+    >tpl
+    <ui-table :list="list" :col-set="colset" :show-col-name="true" fixed-title-col="left-fixed"></ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.biglist,
+            colset : [
+                {col : 'name', name : 'Name', title : true, minwidth : '120px'},
+                {col : 'age', name : 'Age', minwidth : '300px'},
+                {col : 'gender', name : 'Gender', title : true, minwidth : '80px'},
+                {col : 'job', name : 'Job', minwidth : '300px'},
+                {col : 'country', name : 'Country', minwidth : '300px'},
+                {col : 'height', name : 'Height', minwidth : '300px'},
+                {col : 'weight', name : 'Body weight', minwidth : '300px'}
+            ]
+        }
+    }
+    ---
+    #demo
+    >desc
+    将标题列固定在右侧，且导出的表格的列顺序也一样。
+    >tpl
+    <ui-table :list="list" :col-set="colset" :show-col-name="true" fixed-title-col="right-fixed" export-csv></ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.biglist,
+            colset : [
+                {col : 'name', name : 'Name', title : true, minwidth : '120px'},
+                {col : 'age', name : 'Age', minwidth : '300px'},
+                {col : 'gender', name : 'Gender', title : true, minwidth : '80px'},
+                {col : 'job', name : 'Job', minwidth : '300px'},
+                {col : 'country', name : 'Country', minwidth : '300px'},
+                {col : 'height', name : 'Height', minwidth : '300px'},
+                {col : 'weight', name : 'Body weight', minwidth : '300px'}
+            ]
+        }
+    }
+    :::
+
+    :::vue
+    @name:title-col-width
+    ---
+    #config
+    >conf-desc
+    设置标题列的绝对宽度，请谨慎使用此配置，因为此宽度优先于其他配置的宽度。<br>若此配置为`0`，则不会启用。<br><br>此配置一般用来调整标题列与表格整体的占比。
+    >conf-accept
+    宽度数值(单位为px，无需添加单位)
+    >conf-type
+    Number
+    >conf-default
+    `0`
+    ---
+    #demo
+    >desc
+    将宽度设为`150`。
+    >tpl
+    <ui-table :list="list" :col-set="colset" :show-col-name="true" fixed-title-col="left" :title-col-width="150"></ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.biglist,
+            colset : [
+                {col : 'name', name : 'Name', title : true},
+                {col : 'age', name : 'Age'},
+                {col : 'gender', name : 'Gender', title : true},
+                {col : 'job', name : 'Job'},
+                {col : 'country', name : 'Country'},
+                {col : 'height', name : 'Height'},
+                {col : 'weight', name : 'Body weight'}
+            ]
+        }
+    }
+    ---
+    #demo
+    >desc
+    将标题列固定在左侧并将宽度设为`150`。
+    >tpl
+    <ui-table :list="list" :col-set="colset" :show-col-name="true" fixed-title-col="left-fixed" :title-col-width="150"></ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.biglist,
+            colset : [
+                {col : 'name', name : 'Name', title : true, minwidth : '120px'},
+                {col : 'age', name : 'Age', minwidth : '300px'},
+                {col : 'gender', name : 'Gender', title : true, minwidth : '80px'},
+                {col : 'job', name : 'Job', minwidth : '300px'},
+                {col : 'country', name : 'Country', minwidth : '300px'},
+                {col : 'height', name : 'Height', minwidth : '300px'},
+                {col : 'weight', name : 'Body weight', minwidth : '300px'}
+            ]
+        }
+    }
+    ---
+    #demo
+    >desc
+    将标题列固定在右侧并将宽度设为`150`。
+    >tpl
+    <ui-table :list="list" :col-set="colset" :show-col-name="true" fixed-title-col="right-fixed" :title-col-width="150"></ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.biglist,
+            colset : [
+                {col : 'name', name : 'Name', title : true, minwidth : '120px'},
+                {col : 'age', name : 'Age', minwidth : '300px'},
+                {col : 'gender', name : 'Gender', title : true, minwidth : '80px'},
+                {col : 'job', name : 'Job', minwidth : '300px'},
+                {col : 'country', name : 'Country', minwidth : '300px'},
+                {col : 'height', name : 'Height', minwidth : '300px'},
+                {col : 'weight', name : 'Body weight', minwidth : '300px'}
+            ]
+        }
+    }
+    :::
+
+    :::vue
+    @name:col-set
+    ---
+    #config
+    >conf-desc
+    列设置可以用来控制单独的一列。
+    <br><br>
+    `col-set`用于列控制，是一个数组，数组的每项都是一个配置对象。
+    <br><br>
+    配置对象包含下面这些属性，其中`col`用来定位需要设置列的位置。
+    <br><br>
+    |KEY|描述|接受值|值类型|默认值|
+    |-|-|-|-|-|
+    |col|需要设置列的KEY|列的KEY(`list`配置中设置)|String|`undefined`|
+    |name|列的名称，如果开启`show-col-name`配置，名称会显示在标题行|名称|String|`undefined`|
+    |width|列的宽度，此配置会改变列在宽度分配时的权重，但不一定完全符合设置的宽度值，如果需要最小最大宽度使用`minwidth`和`maxwidth`。<br>如果需要设置标题列的宽度请使用`title-col-width`配置。|宽度数值(必需包含单位`px`或`%`)|String|`undefined`|
+    |minwidth|列的最小宽度，注意列会尽可能遵循此值，但不是绝对一致的。|宽度数值(必需包含单位`px`或`%`)|String|`undefined`|
+    |maxwidth|列的最小宽度，注意列会尽可能遵循此值，但不是绝对一致的。|宽度数值(必需包含单位`px`或`%`)|String|`undefined`|
+    |style|设置列的色彩样式|[形态/颜色](/guide/status.html#颜色)中所有的颜色值|String|`undefined`|
+    |disabled|是否展示列的禁用样式|`true`<br>`false`|Boolean|`false`|
+    |align|列的对齐方式|`'left'`<br>`'right'`<br>`'align'`|String|`'align'`|
+    |title|此列是否是标题列，根据`fixed-title-col`的设置所有的标题列会被放到最左或最右|`true`<br>`false`|Boolean|`false`|
+    |hide|在表格中隐藏列，用于某些在`list`存在但不需要在展示的数据。列隐藏后在导出`.csv`文件时仍然会存在，如在导出`.csv`文件时也要排除，使用`col-set`配置的`export`属性来控制|`true`<br>`false`|Boolean|`false`|
+    |export|导出`.csv`文件时，是否包含此列，若设为`false`此列不会被导出。一般包含行动区域的列会将此配置设为`false`|`true`<br>`false`|Boolean|`true`|
+    |sort|开启单列排序，必需启用`show-col-name`才有效。多列排序需要启用`multi-sort`配置|`true`<br>`false`|Boolean|`false`|
+    |pos|列的位置，这是一个数字，默认为0，表示按照数据输入的顺序。数值越大的列将会显示的越后面，数值也可以为负数。|位置数值|Number|`0`|
+    <br>
+    注意：在设置`width`、`minwidth`、`maxwidth`为0时，需要加上单位，如：`0px`或`0%`。
+    >conf-accept
+    数组
+    >conf-type
+    Array
+    >conf-default
+    `[]`
+    ---
+    #demo
+    >title
+    name
+    >desc
+    通过`name`及`show-col-name`设置标题行。
+    >tpl
+    <ui-table :list="list" :col-set="colset" :show-col-name="true"></ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.list,
+            colset : [
+                {col : 'name', name : 'Name'},
+                {col : 'age', name : 'Age'},
+                {col : 'gender', name : 'Gender'},
+                {col : 'job', name : 'Job'}
+            ]
+        }
+    }
+    ---
+    #demo
+    >title
+    name
+    >desc
+    标题行结合表头。
+    >tpl
+    <ui-table :list="list" title="表名" :col-set="colset" :show-col-name="true"></ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.list,
+            colset : [
+                {col : 'name', name : 'Name'},
+                {col : 'age', name : 'Age'},
+                {col : 'gender', name : 'Gender'},
+                {col : 'job', name : 'Job'}
+            ]
+        }
+    }
+    ---
+    #demo
+    >title
+    width、minwidth、maxwidth
+    >desc
+    设置列的`width` 、 `minwidth` 、 `maxwidth`。
+    >tpl
+    <ui-table :list="list" :col-set="colset" :show-col-name="true"></ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.list,
+            colset : [
+                {col : 'name', name : 'Name', maxwidth : '50px'},
+                {col : 'age', name : 'Age', width : '150px'},
+                {col : 'gender', name : 'Gender', minwidth : '150px'},
+                {col : 'job', name : 'Job'}
+            ]
+        }
+    }
+    ---
+    #demo
+    >title
+    style
+    >desc
+    设置指定列的样式（仅支持形态中的色彩）。
+    >tpl
+    <ui-table :list="list" :col-set="colset" :show-col-name="true"></ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.list,
+            colset : [
+                {col : 'name', name : 'Name'},
+                {col : 'age', name : 'Age', style : 'primary'},
+                {col : 'gender', name : 'Gender'},
+                {col : 'job', name : 'Job'}
+            ]
+        }
+    }
+    ---
+    #demo
+    >title
+    disabled
+    >desc
+    将单元格设置为禁用样式。
+    >tpl
+    <ui-table :list="list" :col-set="colset" :show-col-name="true"></ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.list,
+            colset : [
+                {col : 'name', name : 'Name'},
+                {col : 'age', name : 'Age', disabled : true},
+                {col : 'gender', name : 'Gender'},
+                {col : 'job', name : 'Job'}
+            ]
+        }
+    }
+    ---
+    #demo
+    >title
+    align
+    >desc
+    使用`align`来单独设置某一列的对齐方式。
+    >tpl
+    <ui-table :list="list" :col-set="colset" :show-col-name="true"></ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.list,
+            colset : [
+                {col : 'name', name : 'Name', align : 'right'},
+                {col : 'age', name : 'Age', align : 'left'},
+                {col : 'gender', name : 'Gender', align : 'center'},
+                {col : 'job', name : 'Job'}
+            ]
+        }
+    }
+    ---
+    #demo
+    >title
+    title
+    >desc
+    使用`title`来置标题列，标题列会被放置在最左或最右（通过`fixed-title-col`设置）。
+    >tpl
+    <ui-table :list="list" :col-set="colset" :show-col-name="true"></ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.list,
+            colset : [
+                {col : 'name', name : 'Name', title : true},
+                {col : 'age', name : 'Age'},
+                {col : 'gender', name : 'Gender', title : true},
+                {col : 'job', name : 'Job'}
+            ]
+        }
+    }
+    ---
+    #demo
+    >title
+    title
+    >desc
+    使用`title`设置标题列之后，导出的`csv`的列顺序也会保持一致。
+    >tpl
+    <ui-table :list="list" :col-set="colset" :show-col-name="true" export-csv></ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.list,
+            colset : [
+                {col : 'name', name : 'Name', title : true},
+                {col : 'age', name : 'Age'},
+                {col : 'gender', name : 'Gender', title : true},
+                {col : 'job', name : 'Job'}
+            ]
+        }
+    }
+    ---
+    #demo
+    >title
+    title
+    >desc
+    使用`title`设置标题列之后，若未开启`show-col-name`，导出的`csv`不会包含标题行。
+    >tpl
+    <ui-table :list="list" :col-set="colset" export-csv></ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.list,
+            colset : [
+                {col : 'name', name : 'Name', title : true},
+                {col : 'age', name : 'Age'},
+                {col : 'gender', name : 'Gender', title : true},
+                {col : 'job', name : 'Job'}
+            ]
+        }
+    }
+    ---
+    #demo
+    >title
+    hide
+    >desc
+    在表格中隐藏`Job`和`Gender`列，同时不导出`Gender`列。
+    >tpl
+    <ui-table :list="list" :col-set="colset" :show-col-name="true" export-csv></ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.list,
+            colset : [
+                {col : 'name', name : 'Name'},
+                {col : 'age', name : 'Age'},
+                {col : 'gender', name : 'Gender', hide : true, export : false},
+                {col : 'job', name : 'Job', hide : true}
+            ]
+        }
+    }
+    ---
+    #demo
+    >title
+    export
+    >desc
+    不导出`Gender`列。
+    >tpl
+    <ui-table :list="list" :col-set="colset" :show-col-name="true" export-csv></ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.list,
+            colset : [
+                {col : 'name', name : 'Name'},
+                {col : 'age', name : 'Age'},
+                {col : 'gender', name : 'Gender', export : false},
+                {col : 'job', name : 'Job'}
+            ]
+        }
+    }
+    ---
+    #demo
+    >title
+    sort
+    >desc
+    通过`sort`字段可以开启单列排序(多列排序需要开启`multi-sort`配置)，并且导出的`csv`也是排序之后的顺序。
+    >tpl
+    <ui-table :list="list" :col-set="colset" :show-col-name="true" export-csv></ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.list,
+            colset : [
+                {col : 'name', name : 'Name', sort : true},
+                {col : 'age', name : 'Age', sort : true},
+                {col : 'gender', name : 'Gender'},
+                {col : 'job', name : 'Job'}
+            ]
+        }
+    }
+    ---
+    #demo
+    >title
+    sort
+    >desc
+    标题列也可以使用`sort`。
+    >tpl
+    <ui-table :list="list" :col-set="colset" :show-col-name="true" export-csv></ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.list,
+            colset : [
+                {col : 'name', name : 'Name', sort : true, title : true},
+                {col : 'age', name : 'Age', sort : true},
+                {col : 'gender', name : 'Gender'},
+                {col : 'job', name : 'Job'}
+            ]
+        }
+    }
+    ---
+    #demo
+    >title
+    pos
+    >desc
+    将`Name`的位置放到第三列，将`Age`放到第四列。
+    >tpl
+    <ui-table :list="list" :col-set="colset" :show-col-name="true" export-csv></ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.list,
+            colset : [
+                {col : 'name', name : 'Name', pos : 1},
+                {col : 'age', name : 'Age', pos : 2},
+                {col : 'gender', name : 'Gender'},
+                {col : 'job', name : 'Job'}
+            ]
+        }
+    }
+    :::
+
+    :::vue
+    @name:row-set
+    ---
+    #config
+    >conf-desc
+    单行设置可以用来控制一行。
+    <br><br>
+    `row-set`用于行控制，是一个数组，数组的每项都是一个配置对象，用来设置单行。
+    <br><br>
+    配置对象包含下面这些属性，其中`row`用来定位需要设置行的位置。
+    <br><br>
+    |KEY|描述|接受值|值类型|默认值|
+    |-|-|-|-|-|
+    |row|需要设置的行数(从0开始，0表示标题行)|行数|Number|`undefined`|
+    |style|设置行的色彩样式|[形态/颜色](/guide/status.html#颜色)中所有的颜色值|String|`undefined`|
+    |disabled|是否展示行的禁用样式|`true`<br>`false`|Boolean|`false`|
+    |align|行的对齐方式|`'left'`<br>`'right'`<br>`'align'`|String|`'align'`|
+    <br>
+    注意：在设置`width`、`minwidth`、`maxwidth`为0时，需要加上单位，如：`0px`或`0%`。
+    >conf-accept
+    数组
+    >conf-type
+    Array
+    >conf-default
+    `[]`
+    ---
+    #demo
+    >title
+    style
+    >desc
+    设置指定行的样式（仅支持形态中的色彩）。
+    >tpl
+    <ui-table :list="list" :col-set="colset" :row-set="rowset" :show-col-name="true"></ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.list,
+            colset : [
+                {col : 'name', name : 'Name'},
+                {col : 'age', name : 'Age'},
+                {col : 'gender', name : 'Gender'},
+                {col : 'job', name : 'Job'}
+            ],
+            rowset : [
+                {row : 0, style : 'success'},
+                {row : 2, style : 'warning'}
+            ]
+        }
+    }
+    ---
+    #demo
+    >title
+    disabled
+    >desc
+    将单行设置为禁用样式。
+    >tpl
+    <ui-table :list="list" :row-set="rowset" export-csv></ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.list,
+            rowset : [
+                {row : 1, disabled : true}
+            ]
+        }
+    }
+    ---
+    #demo
+    >title
+    align
+    >desc
+    使用`align`来设置单行的对齐方式。
+    >tpl
+    <ui-table :list="list" :col-set="colset" :row-set="rowset" :show-col-name="true"></ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.list,
+            colset : [
+                {col : 'name', name : 'Name'},
+                {col : 'age', name : 'Age'},
+                {col : 'gender', name : 'Gender'},
+                {col : 'job', name : 'Job'}
+            ],
+            rowset : [
+                {row : 0, align : 'left'},
+                {row : 1, align : 'right'},
+                {row : 2, align : 'center'}
+            ]
+        }
+    }
+    :::
+
+    :::vue
+    @name:cell-set
+    ---
+    #config
+    >conf-desc
+    单元格设置可以用来控制单个单元格。
+    <br><br>
+    `cell-set`用于单元格控制，是一个数组，数组的每项都是一个配置对象，用来设置单个单元格。
+    <br><br>
+    配置对象包含下面这些属性，其中`row`和`col`用来定位需要设置单元格的位置。
+    <br><br>
+    |KEY|描述|接受值|值类型|默认值|
+    |-|-|-|-|-|
+    |row|需要设置单元格的行数(从0开始，0表示标题行)|行数|Number|`undefined`|
+    |col|需要设置单元格所在列的KEY|列的KEY(`list`配置中设置)|String|`undefined`|
+    |style|设置单元格的色彩样式|[形态/颜色](/guide/status.html#颜色)中所有的颜色值|String|`undefined`|
+    |disabled|是否展示单元格的禁用样式|`true`<br>`false`|Boolean|`false`|
+    |align|单元格的对齐方式|`'left'`<br>`'right'`<br>`'align'`|String|`'align'`|
+    <br>
+    注意：在设置`width`、`minwidth`、`maxwidth`为0时，需要加上单位，如：`0px`或`0%`。
+    >conf-accept
+    数组
+    >conf-type
+    Array
+    >conf-default
+    `[]`
+    ---
+    #demo
+    >title
+    style
+    >desc
+    设置指定单元格的样式（仅支持形态中的色彩）。
+    >tpl
+    <ui-table :list="list" :col-set="colset" :cell-set="cellset" :show-col-name="true"></ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.list,
+            colset : [
+                {col : 'name', name : 'Name'},
+                {col : 'age', name : 'Age'},
+                {col : 'gender', name : 'Gender'},
+                {col : 'job', name : 'Job'}
+            ],
+            cellset : [
+                {row : 0, col : 'age', style : 'success'},
+                {row : 2, col : 'age', style : 'warning'},
+                {row : 3, col : 'job', style : 'danger'}
+            ]
+        }
+    }
+    ---
+    #demo
+    >title
+    disabled
+    >desc
+    设将单元格设置为禁用样式。
+    >tpl
+    <ui-table :list="list" :cell-set="cellset" export-csv></ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.list,
+            cellset : [
+                {row : 1, col : 'age', disabled : true}
+            ]
+        }
+    }
+    ---
+    #demo
+    >title
+    align
+    >desc
+    使用`align`来单独设置单元格的对齐方式。
+    >tpl
+    <ui-table :list="list" :col-set="colset" :cell-set="cellset" :show-col-name="true"></ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.list,
+            colset : [
+                {col : 'name', name : 'Name'},
+                {col : 'age', name : 'Age'},
+                {col : 'gender', name : 'Gender'},
+                {col : 'job', name : 'Job'}
+            ],
+            cellset : [
+                {row : 0, col : 'age', align : 'left'},
+                {row : 1, col : 'age', align : 'right'},
+                {row : 2, col : 'age', align : 'center'},
+                {row : 3, col : 'age', align : 'left'},
+                {row : 4, col : 'age', align : 'right'}
+            ]
+        }
+    }
+    :::
+
+    :::vue
+    @name:export-csv
+    ---
+    #config
+    >conf-desc
+    开启将表格导出csv文件的功能。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >tpl
+    <ui-table :list="list" export-csv></ui-table>
+    :::
+
+    :::vue
+    @name:csv-name
+    ---
+    #config
+    >conf-desc
+    导出csv文件的名称。
+    >conf-accept
+    文件名称(不需要加尾缀)
+    >conf-type
+    String
+    >conf-default
+    `undefined`
+    ---
+    #demo
+    >tpl
+    <ui-table :list="list" export-csv csv-name="demo"></ui-table>
+    :::
+
+    :::vue
+    @name:multi-sort
+    ---
+    #config
+    >conf-desc
+    支持多列排序，默认只支持单列排序。多列排序时会根据所选排序列的顺序进行多次排序。使用此配置前需要先通过`col-set`的指定排序列。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >desc
+    使用`multi-sort`后设置多个排序列，当多个列进行排序时会按照先后顺序对表格进行多次排序。
+    >tpl
+    <ui-table :list="list" :col-set="colset" show-col-name multi-sort export-csv></ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.list,
+            colset : [
+                {col : 'name', name : 'Name', sort : true},
+                {col : 'age', name : 'Age', sort : true},
+                {col : 'gender', name : 'Gender', sort : true},
+                {col : 'job', name : 'Job'}
+            ]
+        }
+    }
+    :::
+
+    [[[方法]]]
+    
+    <h1>暂无</h1>
+
+    [[[事件]]]
+
+    :::vue
+    @name:list-change
+    ---
+    #event
+    >event-desc
+    当表格数据变化后触发。
+    ---
+    #demo
+    >tpl
+    <div>
+        <ui-table ref="demo2" :list="list" @list-change="echo"></ui-table>
+        <br><br>
+        <ui-link js="morning.findVM('demo2').conf.list = window.demodata.biglist;">重新设置表格数据</ui-link>
+    </div>
+    >script
+    {
+        data : {
+            list : window.demodata.list
+        },
+        methods : {
+            echo : function () {
+                console.log('demo2.console1', `list-change event!`);
+            }
+        }
+    }
+    :::
+
+    :::vue
+    @layout:lifecycle-event
+    ---
+    table
+    表格
+    :::
 
     [[[源码]]]
 

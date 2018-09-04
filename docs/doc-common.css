@@ -1442,6 +1442,23 @@ mor-dialog a:hover {
   border-right: 1px #e5e9ec solid;
   padding: 10px;
 }
+.demo-root .section-config .desc table,
+.demo-root .section-method .desc table,
+.demo-root .section-event .desc table {
+  margin: 0;
+  display: table;
+  font-size: 12px;
+}
+.demo-root .section-config .desc table tbody td,
+.demo-root .section-method .desc table tbody td,
+.demo-root .section-event .desc table tbody td {
+  padding: 3px 5px;
+}
+.demo-root .section-config .desc table tbody td:nth-child(2),
+.demo-root .section-method .desc table tbody td:nth-child(2),
+.demo-root .section-event .desc table tbody td:nth-child(2) {
+  word-break: break-word;
+}
 .demo-root .section-config .desc > div,
 .demo-root .section-method .desc > div,
 .demo-root .section-event .desc > div {

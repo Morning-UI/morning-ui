@@ -1471,17 +1471,54 @@ let extVueRenderer = {
     'size-repeat' : (parts) => {
 
         let newParamStr = [];
+        let sizeList;
+        let sizeData = [];
         let sizePreset = [
-            '#demo',
-            '>data',
-            'size',
+            '#demo'
+        ];
+
+        if (parts.rules && parts.rules[0]) {
+
+            sizeList = parts.rules[0];
+
+        }
+
+        if (sizeList === undefined) {
+
+            sizePreset.push('>data');
+            sizePreset.push('size');
+
+        } else {
+
+            sizeList = sizeList.split(',');
+
+            for (let size of data.size) {
+
+                if (sizeList.indexOf(size.sizeKey) !== -1) {
+
+                    sizeData.push(size);
+
+                }
+
+            }
+
+            sizePreset.push('>data-json');
+            sizePreset.push(JSON.stringify({
+                size : sizeData
+            }));
+
+        }
+
+        sizePreset = sizePreset.concat([
             '>title',
             (parts.title || '尺寸'),
             '>desc',
             (parts.desc || '通过`size`来设置组件的尺寸，可用尺寸详见[形态/尺寸](/guide/status.html#尺寸)'),
             '>tpl',
             `<div>{$#size}\n${addSpace(rmEndWrap(parts.tpl.join('\n')), 4)}{$/size}\n</div>`
-        ];
+        ]);
+
+        console.log(123, sizePreset);
 
         newParamStr.push(sizePreset.join('\n'));
         
@@ -1640,6 +1677,12 @@ let extVueRenderer = {
             ]
         ];
 
+        if (slot[slot.length - 1] === '') {
+
+            slot.pop();
+
+        }
+
         if (slot.length > 0) {
 
             let oneSlot;
@@ -1654,8 +1697,6 @@ let extVueRenderer = {
             }
 
         }
-
-        console.log(newParamStr);
 
         newParamStr[0] = newParamStr[0].join('\n');
         newParamStr[1] = newParamStr[1].join('\n');
@@ -1747,7 +1788,7 @@ let extVueParser = {
 
             let index = typeMap.indexOf(item.replace(/^\>/, ''));
 
-            if (index !== -1) {
+            if (index !== -1 && /^\>/.test(item)) {
 
                 curType = typeMap[index];
                 parts[curType] = [];
@@ -1813,8 +1854,6 @@ let extVueTranslater = {
 
         let exec = extend(true, [], _data);
 
-        console.log(20, extend(true, [], exec));
-
         if (exec[exec.length - 1] === '') {
 
             exec.pop();
@@ -1825,7 +1864,6 @@ let extVueTranslater = {
         exec.pop();
         exec.unshift(',');
         exec = exec.join('\n');
-        console.log(23, exec);
 
         let script = {};
 
@@ -1848,8 +1886,6 @@ let extVueTranslater = {
         // script.print = script.print.replace(/\{\*([a-zA-Z0-9_.]+)\*\}/g, '{{$1}}');
         // script.print = addSpace(rmEndWrap(_data), 4).replace(/\{\{([a-zA-Z0-9_.]+)\}\}/g, '{*$1*}');
         script.live = script.live.replace(/\{\*([a-zA-Z0-9_.]+)\*\}/g, '{{$1}}');
-
-        console.log(123, extend(true, {}, script));
 
         return script;
 
@@ -2005,6 +2041,7 @@ let extVueTranslater = {
 
         }
 
+        console.log(9, _data.parts.tpl, _ctx);
         return [{
             type : _data.type,
             tpl : extVueTranslater._tpl(_data.parts.tpl, _ctx),
@@ -2225,6 +2262,7 @@ let extVue = (content, paramStr, token, md) => {
         
         name = markdown.render(name);
         name = name.replace(/(^\<p\>|\<\/p\>)/g, '');
+        name = name.replace(/\n$/, '');
 
     }
 
@@ -2882,6 +2920,22 @@ a{ }
             box-sizing: border-box;
             border-right: 1px #e5e9ec solid;
             padding: 10px;
+
+            table{
+                margin: 0;
+                display: table;
+                font-size: 12px;
+
+                tbody{
+                    td{
+                        padding: 3px 5px;
+                    }
+
+                    td:nth-child(2){
+                        word-break: break-word;
+                    }
+                }
+            }
 
             > div{
                 margin: 0;
