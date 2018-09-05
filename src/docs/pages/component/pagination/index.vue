@@ -282,6 +282,184 @@
     <ui-pagination :total="10" :max-show="5" :jump-page="false"></ui-pagination>
     :::
 
+    [[[方法]]]
+
+    :::vue
+    @name:getPage()
+    ---
+    #method
+    >method-desc
+    获取当前页码。
+    >method-return
+    返回当前页码。
+    ---
+    #demo
+    >tpl
+    <div>
+        <ui-pagination ref="demo2" :total="10"></ui-pagination>
+        <br><br>
+        <ui-link js="alert(morning.findVM('demo2').getPage());">获取当前页码</ui-link>
+    </div>
+    :::
+
+    :::vue
+    @name:to(num)
+    ---
+    #method
+    >method-desc
+    跳转到指定页码。
+    >method-args
+    |num|NO|需要跳转的页码|大于最大页数：跳转到最后一页<br>小于0：跳转到从最后开始往前`num`页<br>等于0：跳转到第一页|`Number`|`undefined`|
+    >method-return
+    当前组件VM实例。
+    ---
+    #demo
+    >tpl
+    <div>
+        <ui-pagination ref="demo3" :total="10"></ui-pagination>
+        <br><br>
+        <ui-link js="morning.findVM('demo3').to(5);">跳转到第5页</ui-link>
+        <br>
+        <ui-link js="morning.findVM('demo3').to(20);">跳转到大于最大页数</ui-link>
+        <br>
+        <ui-link js="morning.findVM('demo3').to(-5);">跳转到从后往前第5页</ui-link>
+        <br>
+        <ui-link js="morning.findVM('demo3').to(1);">跳转到第1页(输入1)</ui-link>
+        <br>
+        <ui-link js="morning.findVM('demo3').to(0);">跳转到第1页(输入0)</ui-link>
+    </div>
+    :::
+
+    :::vue
+    @name:next([offset])
+    ---
+    #method
+    >method-desc
+    跳转到后几页。
+    >method-args
+    |offset|YES|需要往后跳转的页码数|页码数|`Number`|`1`|
+    >method-return
+    当前组件VM实例。
+    ---
+    #demo
+    >tpl
+    <div>
+        <ui-pagination ref="demo4" :total="10"></ui-pagination>
+        <br><br> 
+        <ui-link js="morning.findVM('demo4').next();">往后跳转1页</ui-link>
+        <ui-link js="morning.findVM('demo4').next(3);">往后跳转3页</ui-link>
+    </div>
+    :::
+
+    :::vue
+    @name:prev([offset])
+    ---
+    #method
+    >method-desc
+    跳转到前几页。
+    >method-args
+    |offset|YES|需要往前跳转的页码数|页码数|`Number`|`1`|
+    >method-return
+    当前组件VM实例。
+    ---
+    #demo
+    >tpl
+    <div>
+        <ui-pagination ref="demo5" :total="10" :page="8"></ui-pagination>
+        <br><br> 
+        <ui-link js="morning.findVM('demo5').prev();">往前跳转1页</ui-link>
+        <ui-link js="morning.findVM('demo5').prev(3);">往前跳转3页</ui-link>
+    </div>
+    :::
+
+    :::vue
+    @name:setTotal(num)
+    ---
+    #method
+    >method-desc
+    重新设置总页数。如果设置了`list`此方法无效。
+    <br><br>
+    如果新的页数小于当前所在的页码，则会跳到新页数的最后一页。
+    >method-args
+    |num|NO|总页码数|页码数|`Number`|`undefined`|
+    >method-return
+    当前组件VM实例。
+    ---
+    #demo
+    >tpl
+    <div>
+        <ui-pagination ref="demo6" :total="2"></ui-pagination>
+        <br><br>
+        <ui-link js="morning.findVM('demo6').setTotal(10);">总页数设为10</ui-link>
+        <ui-link js="morning.findVM('demo6').setTotal(3);">总页数设为3</ui-link>
+    </div>
+    :::
+
+    [[[事件]]]
+
+    :::vue
+    @name:emit
+    ---
+    #event
+    >event-desc
+    当页码改变时时触发。
+    ---
+    #demo
+    >tpl
+    <div>
+        <p>切换页码触发emit事件</p>
+        <ui-pagination @emit="echo" :total="10"></ui-pagination>
+    </div>
+    >script
+    {
+        methods : {
+            echo : function () {
+                console.log('demo7.console1', 'emit event!');
+            }
+        }
+    }
+    :::
+
+    :::vue
+    @name:生命周期事件
+    ---
+    #event
+    >event-desc
+    组件的生命周期事件，详见:[基础/事件/生命周期事件](/guide/event.html#生命周期事件)。
+    ---
+    #demo
+    >tpl
+    <div>
+        <ui-pagination
+            ref="demoEventLifecycle"
+            v-show="show"
+            :total="10"
+            @created="echo('created')"
+            @mounted="echo('mounted')"
+            @before-update="echo('before-update')"
+            @updated="echo('updated')"
+            @before-destroy="echo('before-destroy')"
+            @destroyed="echo('destroyed')"
+        >{*text*}</ui-pagination>
+        <br><br>
+        <ui-link js="this.text='生命周期事件';">触发update</ui-link>
+        <ui-link js="this.$refs['demoEventLifecycle'].$destroy();">触发destroy</ui-link>
+    </div>
+    >script
+    {
+        data : function () {
+            return {
+               text : '分页',
+               show : true
+            };
+        },
+        methods : {
+            echo : function (name) {
+                console.log('demoEventLifecycle.console1', name + ' event!');
+            }
+        }
+    }
+    :::
 
     [[[源码]]]
 
