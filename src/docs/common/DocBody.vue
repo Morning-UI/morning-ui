@@ -222,11 +222,6 @@ let data = {
             stateName : '醒目'
         }
     ],
-    formConfig : {
-        formName : '表单名',
-        formKey : 'formKey',
-        formGroupOne : 'groupName'
-    },
     formValueType : {
         default : [
             {
@@ -801,18 +796,6 @@ let repeater = {
 };
 
 let presets = {
-    statusColor : `
-:::repeat/html
-color:theme
-color:feature
-color:black
-color:blue
-color:silver
-color:gray
----
-<ui-{%uikey%} color="{$colorKey}">{$&colorName}</ui-{%uikey%}>
-:::
-`,
     formStatus : `
 #### 支持
 
@@ -824,13 +807,17 @@ color:gray
 
 <a href="/guide/status.html">查看形态文档</a>
 
-#### 状态
-
-:::repeat/html
-state:normal,disabled,readonly
+:::vue
+@name:状态
 ---
-<div style="width:300px;{%statusDivStyle%}">
-    <ui-{%uikey%} state="{$stateKey}" :default-value="{%&statusDefaultValue%}" form-name="{$&stateName}" {%&statusMoreAttr%}>{%&statusSlot%}</ui-{%uikey%}>
+#renderer
+>name
+state-repeat
+>rules
+normal,disabled,readonly
+>tpl
+<div style="width:300px;{%wrapStyle%}">
+    <ui-{%uikey%} state="{$stateKey}" :default-value="{%&defaultValue%}" form-name="{$&stateName}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
 </div>
 <br>
 :::
@@ -873,149 +860,217 @@ state:normal,disabled,readonly
 <br>
 :::
 `,
-    formConfigDemo : `
-#### form-name
-
-:::repeat/html
-formConfig
+    formConfig : `
+:::vue
+@name:form-name
 ---
-<div style="width:300px;{%configDivStyle%}">
-    <ui-{%uikey%} form-name="{$formName}" {%&configMoreAttr%}>{%&configSlot%}</ui-{%uikey%}>
+#config
+>conf-desc
+表单的名称（用于显示）。
+>conf-accept
+任意字符串
+>conf-type
+String
+>conf-default
+\`undefined\`
+---
+#demo
+>tpl
+<div style="width:300px;{%wrapStyle%}">
+    <ui-{%uikey%} form-name="{%formName%}" {%&configMoreAttr%}>{%&slot%}</ui-{%uikey%}>
 </div>
 :::
 
-#### form-key
-
-:::repeat/html
-formConfig
+:::vue
+@name:form-key
 ---
-<div style="width:300px;{%configDivStyle%}">
-    <ui-{%uikey%} form-name="{$formName}" form-key="{$formKey}" {%&configMoreAttr%}>{%&configSlot%}</ui-{%uikey%}>
+#config
+>conf-desc
+表单的Key（用于逻辑中作为识别标示）。
+>conf-accept
+任意字符串(唯一)
+>conf-type
+String
+>conf-default
+\`undefined\`
+---
+#demo
+>tpl
+<div style="width:300px;{%wrapStyle%}">
+    <ui-{%uikey%} form-name="{%formName%}" form-key="{%formKey%}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
 </div>
 :::
 
-#### group
-
-设置单个组：
-
-:::repeat/html
-formConfig
+:::vue
+@name:group
 ---
-<div style="width:300px;{%configDivStyle%}">
+#config
+>conf-desc
+表单组，用于将多个表单的数值添加到同一个对象中。一个表单可以同时属于多个组。
+>conf-accept
+若是字符串，则将表单添加到单个组<br>若是数组，则将表单添加到多个组
+>conf-type
+String<br/>Array
+>conf-default
+\`[]\`
+---
+#demo
+>desc
+设置单个组。
+>tpl
+<div style="width:300px;{%wrapStyle%}">
     <!-- 设置单个组 -->
-    <ui-{%uikey%} form-name="{$formName}" form-key="{$formKey}" group="{$formGroupOne}" {%&configMoreAttr%}>{%&configSlot%}</ui-{%uikey%}>
+    <ui-{%uikey%} form-name="{%formName%" form-key="{%formKey%}" group="{%formGroupOne%}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
 </div>
-:::
-
-设置多个组：
-
-:::repeat/html
-formConfig
 ---
-<div style="width:300px;{%configDivStyle%}">
+#demo
+>desc
+设置多个组。
+>tpl
+<div style="width:300px;{%wrapStyle%}">
     <!-- 设置多个组 -->
-    <ui-{%uikey%} form-name="{$formName}" form-key="{$formKey}" :group="['group1', 'group2', 'group3']" {%&configMoreAttr%}>{%&configSlot%}</ui-{%uikey%}>
+    <ui-{%uikey%} form-name="{$formName}" form-key="{%formKey%}" :group="{%formGroupMore%}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
 </div>
 :::
 
-#### default-value
-
-:::repeat/html
-formConfig
+:::vue
+@name:default-value
 ---
-<div style="width:300px;{%configDivStyle%}">
-    <ui-{%uikey%} form-name="{$formName}" :default-value="{%&configDefaultValue%}" {%&configMoreAttr%}>{%&configSlot%}</ui-{%uikey%}>
+#config
+>conf-desc
+表单的默认值(注意：\`default-value\`不支持单向数据流，此配置仅在表单初次创建时生效，修改表单值需要使用\`set()\`方法或使用\`v-model\`指令， 详见：[表单数据双向绑定](/guide/form.html#表单数据双向绑定))。
+>conf-accept
+任意(接受表单原始数值，也接受JSON序列化后的表单数值，若数值是JSON序列化的会自动转换成原始数值)
+>conf-type
+Any
+>conf-default
+\`undefined\`
+---
+#demo
+>tpl
+<div style="width:300px;{%wrapStyle%}">
+    <ui-{%uikey%} form-name="{%formName%}" :default-value="{%&defaultValue%}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
 </div>
 :::
 
-#### hide-name
-
+:::vue
+@name:hide-name
+---
+#config
+>conf-desc
+隐藏表单名。
+>conf-accept
+\`true\`<br>\`false\`
+>conf-type
+Boolean
+>conf-default
+\`false\`
+---
+#demo
+>desc
 隐藏后表单默认位置的名字不会显示，可以在其他地方设置表单名。
-
-:::repeat/html
-formConfig
----
-<div style="width:300px;{%configDivStyle%}">
-    <p>{$formName}</p>
-    <ui-{%uikey%} form-name="{$formName}" hide-name {%&configMoreAttr%}>{%&configSlot%}</ui-{%uikey%}>
+>tpl
+<div style="width:300px;{%wrapStyle%}">
+    <p>{%formName%}</p>
+    <ui-{%uikey%} form-name="{%formName%}" hide-name {%&attrs%}>{%&slot%}</ui-{%uikey%}>
 </div>
 :::
 
-#### clearable
-
-:::repeat/html
-formConfig
+:::vue
+@name:clearable
 ---
-<div style="width:300px;{%configDivStyle%}">
-    <ui-{%uikey%} form-name="{$formName}" :clearable="true" :default-value="{%&configDefaultValue%}" {%&configMoreAttr%}>{%&configSlot%}</ui-{%uikey%}>
+#config
+>conf-desc
+显示表单清空按钮。
+>conf-accept
+\`true\`<br>\`false\`
+>conf-type
+Boolean
+>conf-default
+\`false\`
+---
+#demo
+>desc
+隐藏后表单默认位置的名字不会显示，可以在其他地方设置表单名。
+>tpl
+<div style="width:300px;{%wrapStyle%}">
+    <ui-{%uikey%} form-name="{%formName%}" :clearable="true" :default-value="{%&defaultValue%}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
 </div>
 :::
-    
-    `,
-    formConfigTable : `
-|KEY|描述|接受值|值类型|默认值|
-|-|-|-|-|-|
-|[form-name](#form-name)|表单的名称（用于显示）|任意字符串|String|\`undefined\`|
-|[form-key](#form-key)|表单的Key（用于逻辑中作为识别标示）|任意字符串(唯一)|String|\`undefined\`|
-|[group](#group)|表单组，用于将多个表单的数值添加到同一个对象中。一个表单可以同时属于多个组|若是字符串，则将表单添加到单个组<br>若是数组，则将表单添加到多个组|String<br/>Array|\`[]\`|
-|[default-value](#default-value)|表单的默认值(注意：\`default-value\`不支持单向数据流，此配置仅在表单初次创建时生效，修改表单值需要使用\`set()\`方法或使用\`v-model\`指令， 详见：[表单数据双向绑定](/guide/form.html#表单数据双向绑定))|任意(接受表单原始数值，也接受JSON序列化后的表单数值，若数值是JSON序列化的会自动转换成原始数值)|Any|\`undefined\`|
-|[hide-name](#hide-name)|隐藏表单名|\`true\`<br>\`false\`|Boolean|\`false\`|
-|[clearable](#clearable)|显示表单清空按钮|\`true\`<br>\`false\`|\`false\`|
-{%&content%}
 `,
     formMethod : `
-#### set([value])
-
+:::vue
+@name:set([value])
+---
+#method
+>method-desc
 设置表单的值。
-
-|KEY|可选|描述|接受值|值类型|默认值|
-|-|-|-|-|-|-|
+>method-args
 |value|YES|需要设置表单的值，如果需要清空表单的值，可以不传此参数。|接受任何数值。<br/>\`undefined\`:清空表单的值<br>原始值:表单的原始值，根据表单不同可以是字符串、对象、数组等<br>JSON数值:表单原始值JSON序列化后的值，传入后表单会自动解析并还原原始值。|Any|\`undefined\`|
-
-:::democode/html
-<div style="width:300px;{%methodDivStyle%}">
-    <ui-{%uikey%} ref="demoMethodSet" form-name="表单名" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>
+>method-return
+当前组件VM实例。
+---
+#demo
+>tpl
+<div style="width:300px;{%wrapStyle%}">
+    <ui-{%uikey%} ref="demoMethodSet" form-name="表单名" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
     <br>
-    <ui-link js="window.morning.findVM('demoMethodSet').set({%&methodValue%})">设置值</ui-link>
+    <ui-link js="window.morning.findVM('demoMethodSet').set({%&value%})">设置值</ui-link>
     <ui-link js="window.morning.findVM('demoMethodSet').set()">移除值</ui-link>
 </div>
 :::
 
-#### get()
-
+:::vue
+@name:get()
+---
+#method
+>method-desc
 获取表单的原始值。
-
-:::democode/html
-<div style="width:300px;{%methodDivStyle%}">
-    <ui-{%uikey%} ref="demoMethodGet" form-name="表单名" :default-value="{%&methodDefaultValue%}" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>
+>method-return
+返回表单组件的值。
+---
+#demo
+>tpl
+<div style="width:300px;{%wrapStyle%}">
+    <ui-{%uikey%} ref="demoMethodGet" form-name="表单名" :default-value="{%&defaultValue%}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
     <br>
     <ui-link js="console.log(window.morning.findVM('demoMethodGet').get())">获取表单原始值</ui-link>
 </div>
 :::
 
-#### getJson()
-
+:::vue
+@name:getJson()
+---
+#method
+>method-desc
 获取表单值的JSON序列化字符串。若你需要和其他程序进行数据交互，使用JSON是一种较好的方法。
-
-:::democode/html
-<div style="width:300px;{%methodDivStyle%}">
-    <ui-{%uikey%} ref="demoMethodGetJson" form-name="表单名" :default-value="{%&methodDefaultValue%}" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>
+>method-return
+返回表单组件值的JSON序列化字符串。
+---
+#demo
+>tpl
+<div style="width:300px;{%wrapStyle%}">
+    <ui-{%uikey%} ref="demoMethodGetJson" form-name="表单名" :default-value="{%&defaultValue%}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
     <br>
     <ui-link js="console.log(window.morning.findVM('demoMethodGetJson').getJson())">获取表单值的JSON序列化字符串</ui-link>
 </div>
 :::
 
-#### setName([name])
-
+:::vue
+@name:setName([name])
+---
+#method
+>method-desc
 设置表单的名称。
-
-|KEY|可选|描述|接受值|值类型|默认值|
-|-|-|-|-|-|-|
+>method-args
 |name|YES|需要设置表单的名称，如果需要清空表单的名称，可以不传此参数。|任意字符串|String|\`undefined\`|
-
-:::democode/html
-<div style="width:300px;{%methodDivStyle%}">
-    <ui-{%uikey%} ref="demoMethodSetName" form-name="姓名" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>
+>method-return
+当前组件VM实例。
+---
+#demo
+>tpl
+<div style="width:300px;{%wrapStyle%}">
+    <ui-{%uikey%} ref="demoMethodSetName" form-name="姓名" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
     <br>
     <ui-link js="alert(window.morning.findVM('demoMethodSetName').getName())">获取表单名称</ui-link>
     <ui-link js="window.morning.findVM('demoMethodSetName').setName('年龄')">设置表单名称</ui-link>
@@ -1023,29 +1078,39 @@ formConfig
 </div>
 :::
 
-#### getName()
-
+:::vue
+@name:getName()
+---
+#method
+>method-desc
 获取表单的名称。
-
-:::democode/html
-<div style="width:300px;{%methodDivStyle%}">
-    <ui-{%uikey%} ref="demoMethodGetName" form-name="姓名" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>
+>method-return
+返回表单的名称。
+---
+#demo
+>tpl
+<div style="width:300px;{%wrapStyle%}">
+    <ui-{%uikey%} ref="demoMethodGetName" form-name="姓名" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
     <br>
     <ui-link js="alert(window.morning.findVM('demoMethodGetName').getName())">获取表单名称</ui-link>
 </div>
 :::
 
-#### setKey([key])
-
+:::vue
+@name:setKey([key])
+---
+#method
+>method-desc
 设置表单的KEY。
-
-|KEY|可选|描述|接受值|值类型|默认值|
-|-|-|-|-|-|-|
+>method-args
 |key|YES|需要设置表单的KEY，如果需要清空表单的KEY，可以不传此参数。|任意字符串|String|\`undefined\`|
-
-:::democode/html
-<div style="width:300px;{%methodDivStyle%}">
-    <ui-{%uikey%} ref="demoMethodSetKey" form-name="表单名" form-key="name" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>
+>method-return
+当前组件VM实例。
+---
+#demo
+>tpl
+<div style="width:300px;{%wrapStyle%}">
+    <ui-{%uikey%} ref="demoMethodSetKey" form-name="表单名" form-key="name" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
     <br>
     <ui-link js="alert(window.morning.findVM('demoMethodSetKey').getKey())">获取表单KEY</ui-link>
     <ui-link js="window.morning.findVM('demoMethodSetKey').setKey('age')">设置表单KEY</ui-link>
@@ -1053,30 +1118,40 @@ formConfig
 </div>
 :::
 
-#### getKey()
-
+:::vue
+@name:getKey()
+---
+#method
+>method-desc
 获取表单的KEY。
-
-:::democode/html
-<div style="width:300px;{%methodDivStyle%}">
-    <ui-{%uikey%} ref="demoMethodGetKey" form-name="表单名" form-key="name" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>
+>method-return
+返回组件的KEY。
+---
+#demo
+>tpl
+<div style="width:300px;{%wrapStyle%}">
+    <ui-{%uikey%} ref="demoMethodGetKey" form-name="表单名" form-key="name" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
     <br>
     <ui-link js="alert(window.morning.findVM('demoMethodGetKey').getKey())">获取表单KEY</ui-link>
 </div>
 :::
 
-#### setGroup([groups])
-
+:::vue
+@name:setGroup([groups])
+---
+#method
+>method-desc
 设置表单所属的表单组。
-
-|KEY|可选|描述|接受值|值类型|默认值|
-|-|-|-|-|-|-|
+>method-args
 |groups|YES|需要设置的表单组。如果需要清空所有表单组，可以不传此参数。|\`undefined\`:清空所有表单组<br>String:设置一个表单组<br>Array:设置多个表单组。|String<br>Array<br>Undefined|\`undefined\`|
-
-:::democode/html
-<div style="width:300px;{%methodDivStyle%}">
+>method-return
+当前组件VM实例。
+---
+#demo
+>tpl
+<div style="width:300px;{%wrapStyle%}">
     <!-- 设置多个组 -->
-    <ui-{%uikey%} ref="demoMethodSetGroup" form-name="表单名" form-key="name" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>
+    <ui-{%uikey%} ref="demoMethodSetGroup" form-name="表单名" form-key="name" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
     <br>
     <ui-link js="alert(JSON.stringify(window.morning.findVM('demoMethodSetGroup').getGroup()))">获取表单组</ui-link>
     <ui-link js="window.morning.findVM('demoMethodSetGroup').setGroup('group1')">设置单个表单组</ui-link>
@@ -1085,87 +1160,126 @@ formConfig
 </div>
 :::
 
-#### getGroup()
-
+:::vue
+@name:getGroup()
+---
+#method
+>method-desc
 获取表单所属的表单组。
-
-:::democode/html
-<div style="width:300px;{%methodDivStyle%}">
+>method-return
+返回组件的表单组。
+---
+#demo
+>tpl
+<div style="width:300px;{%wrapStyle%}">
     <!-- 设置多个组 -->
-    <ui-{%uikey%} ref="demoMethodGetGroup" form-name="表单名" form-key="name" group="group1" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>
+    <ui-{%uikey%} ref="demoMethodGetGroup" form-name="表单名" form-key="name" group="group1" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
     <br>
     <ui-link js="alert(JSON.stringify(window.morning.findVM('demoMethodGetGroup').getGroup()))">获取表单组</ui-link>
 </div>
 :::
 
-#### addGroup(group)
-
+:::vue
+@name:addGroup(group)
+---
+#method
+>method-desc
 添加一个指定的表单组。
-
-|KEY|可选|描述|接受值|值类型|默认值|
-|-|-|-|-|-|-|
+>method-args
 |group|NO|添加表单组的KEY|表单组的KEY|String|\`undefined\`|
-
-:::democode/html
-<div style="width:300px;{%methodDivStyle%}">
+>method-return
+当前组件VM实例。
+---
+#demo
+>tpl
+<div style="width:300px;{%wrapStyle%}">
     <!-- 设置多个组 -->
-    <ui-{%uikey%} ref="demoMethodAddGroup" form-name="表单名" form-key="name" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>
+    <ui-{%uikey%} ref="demoMethodAddGroup" form-name="表单名" form-key="name" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
     <br>
     <ui-link js="alert(JSON.stringify(window.morning.findVM('demoMethodAddGroup').getGroup()))">获取表单组</ui-link>
     <ui-link js="window.morning.findVM('demoMethodAddGroup').addGroup('group1')">添加表单组</ui-link>
 </div>
 :::
 
-#### removeGroup(group)
-
+:::vue
+@name:removeGroup(group)
+---
+#method
+>method-desc
 移除一个指定的表单组。
-
-|KEY|可选|描述|接受值|值类型|默认值|
-|-|-|-|-|-|-|
+>method-args
 |group|NO|移除表单组的KEY|表单组的KEY|String|\`undefined\`|
-
-:::democode/html
-<div style="width:300px;{%methodDivStyle%}">
+>method-return
+当前组件VM实例。
+---
+#demo
+>tpl
+<div style="width:300px;{%wrapStyle%}">
     <!-- 设置多个组 -->
-    <ui-{%uikey%} ref="demoMethodRemoveGroup" form-name="表单名" form-key="name" group="group1" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>
+    <ui-{%uikey%} ref="demoMethodRemoveGroup" form-name="表单名" form-key="name" group="group1" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
     <br>
     <ui-link js="alert(JSON.stringify(window.morning.findVM('demoMethodRemoveGroup').getGroup()))">获取表单组</ui-link>
     <ui-link js="window.morning.findVM('demoMethodRemoveGroup').removeGroup('group1')">移除表单组</ui-link>
 </div>
 :::
-    `,
+`,
     formEvent : `
-#### value-change
-
+:::vue
+@name:value-change
+---
+#event
+>event-desc
 当表单值变化时触发。
-
-:::vue/html
-new Vue({
-    el : '{$el}',
-    template : '{$template}',
+---
+#demo
+>tpl
+<div style="{%wrapStyle%}">
+    <ui-{%uikey%} ref="demoValueChange" form-name="表单名" @value-change="echo" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
+    <br>
+    <ui-link js="window.morning.findVM('demoValueChange').set({%&value%})">触发value-change事件</ui-link>
+</div>
+>script
+{
     methods : {
         echo : function () {
             console.log('demoValueChange.console1', 'value-change event!');
         }
     }
-});
----
-<div style="width:300px;{%eventDivStyle%}">
-    <ui-{%uikey%} ref="demoValueChange" form-name="表单名" @value-change="echo" {%&eventMoreAttr%}>{%&eventSlot%}</ui-{%uikey%}>
-    <br>
-    <ui-link js="window.morning.findVM('demoValueChange').set({%&eventValue%})">触发value-change事件</ui-link>
-</div>
+}
 :::
 
-#### 生命周期事件
+:::vue
+@name:生命周期事件
+---
+#event
+>event-desc
+组件的生命周期事件，详见:[基础/事件/生命周期事件](/guide/event.html#生命周期事件)。
+---
+#demo
+>tpl
+<div style="{%wrapStyle%}">
+    <ui-{%uikey%}
+        ref="demoEventLifecycle"
+        v-show="show"
+        @created="echo('created')"
+        @mounted="echo('mounted')"
+        @before-update="echo('before-update')"
+        @updated="echo('updated')"
+        @before-destroy="echo('before-destroy')"
+        @destroyed="echo('destroyed')"
+        {%&attrs%}
+    >{%&slot%}<span style="display:none;">{*text*}</span></ui-{%uikey%}>
 
-:::vue/html
-window.demoEventLifecycle = new Vue({
-    el : '{$el}',
-    template : '{$template}',
+   <br><br>
+
+    <ui-link js="this.text='生命周期事件';">触发update</ui-link>
+    <ui-link js="this.$refs['demoEventLifecycle'].$destroy();">触发destroy</ui-link>
+</div>
+>script
+{
     data : function () {
         return {
-           text : '按钮',
+           text : '{%uiname%}',
            show : true
         };
     },
@@ -1174,27 +1288,21 @@ window.demoEventLifecycle = new Vue({
             console.log('demoEventLifecycle.console1', name + ' event!');
         }
     }
-});
+}
+:::
+`,
+    formValue : `
+:::vue
+@name:多种表单值输入
 ---
-<div style="width:300px;{%eventDivStyle%}">
-    <ui-{%uikey%}
-        ref="demoEventLifecycle"
-        form-name="表单名"
-        v-show="show"
-        @created="echo('created')"
-        @mounted="echo('mounted')"
-        @before-update="echo('before-update')"
-        @updated="echo('updated')"
-        @before-destroy="echo('before-destroy')"
-        @destroyed="echo('destroyed')"
-        {%&eventMoreAttr%}
-    >{%&eventSlot%}<span style="display:none;">{*text*}</span></ui-{%uikey%}>
-
-    <br><br>
-
-    <ui-link js="window.demoEventLifecycle.text='生命周期事件';">触发update</ui-link>
-    <ui-link js="morning.findVM('demoEventLifecycle').$destroy();">触发destroy</ui-link>
-</div>
+#renderer
+>name
+value-type
+>rules
+{%uikey%}
+{%uiname%}
+{%valueType%}
+{%wrapStyle%}
 :::
 `
 };
@@ -1568,6 +1676,8 @@ let extVueRenderer = {
 
         newParamStr.push(statePreset.join('\n'));
         
+        console.log(56, newParamStr);
+
         return newParamStr;
 
     },
@@ -1703,6 +1813,48 @@ let extVueRenderer = {
 
         return newParamStr;
 
+    },
+    'value-type' : (parts) => {
+
+        let key = parts.rules.shift();
+        let name = parts.rules.shift();
+        let type = parts.rules.shift() || 'default';
+        let wrapStyle = parts.rules.shift() || '';
+        let typeData = data.formValueType[type];
+
+        typeData = {
+            types : typeData
+        };
+
+        let newParamStr = [
+            [
+                `#demo`,
+                `>data-json`,
+                JSON.stringify(typeData),
+                `>desc`,
+                `输入各种类型的表单值，${name}组件的值过滤。`,
+                `>tpl`,
+                `<div>{$#types}`,
+                `    <div style="${wrapStyle}">`,
+                `        <p>{$valueType}类型</p>`,
+                `        <div style="width:300px;">`,
+                `            <ui-textinput ref="demoType{$valueType}"></ui-textinput>`,
+                `        </div>`,
+                `        <br>`,
+                `        <ui-link js="window.morning.findVM('demoType{$valueType}').set({$&valueContent})">设置{$valueType}类型</ui-link>`,
+                `        <ui-link js="alert(window.morning.findVM('demoType{$valueType}').getJson())">获取表单JSON值</ui-link>`,
+                `    </div>`,
+                `    <br><br>`,
+                `{$/types}</div>`
+            ]
+        ];
+
+        newParamStr[0] = newParamStr[0].join('\n');
+
+        console.log(55, newParamStr);
+
+        return newParamStr;
+
     }
 };
 
@@ -1729,7 +1881,7 @@ let extVueParser = {
 
                 }
 
-                vars[ctx] = tokens;
+                vars[ctx] = [tokens.join(':')];
 
             } else if (ctx) {
 
@@ -2041,7 +2193,6 @@ let extVueTranslater = {
 
         }
 
-        console.log(9, _data.parts.tpl, _ctx);
         return [{
             type : _data.type,
             tpl : extVueTranslater._tpl(_data.parts.tpl, _ctx),
@@ -2277,28 +2428,36 @@ let extVue = (content, paramStr, token, md) => {
 
 let extPreset = (content, paramStr) => {
 
-    let context = {
-        content : content
-    };
-    let template = presets[paramStr[0]];
+    let vars = extVueParser.vars(content);
+    let template = presets[vars.name];
 
-    content = content.split('\n');
-
-    for (let item of content) {
-        
-        if (item) {
-
-            item = item.split(':');
-            context[item.shift()] = item.join(':');
-
-        }
-
-    }
+    vars.formName = '表单名';
+    vars.formKey = 'formKey';
+    vars.formGroupOne = 'groupName'; 
+    vars.formGroupMore = `['group1', 'group2', 'group3']`;
 
     Mustache.parse(template, ['{%', '%}']);
-    template = Mustache.render(template, context);
+    template = Mustache.render(template, vars);
+    
+    // let context = {
+    //     content : content
+    // };
+
+    // content = content.split('\n');
+
+    // for (let item of content) {
+        
+    //     if (item) {
+
+    //         item = item.split(':');
+    //         context[item.shift()] = item.join(':');
+
+    //     }
+
+    // }
 
     return markdown.render(template);
+    // return '<h1>123</h1>';
 
 };
 
@@ -2703,6 +2862,22 @@ a{ }
     margin: 0 auto;
     font-size: 0;
 }
+
+.contents{
+    > .item > div{
+        > h4,
+        > p,
+        > table{
+            padding-left: 12px;
+        }
+
+        > ul,
+        > ol{
+            padding-left: ~'calc(2em + 14px)';
+        }
+    }
+}
+
 .content {
     width: 900px;
     display: inline-block;
