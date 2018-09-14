@@ -1293,7 +1293,7 @@ Boolean
 `,
     formValue : `
 :::vue
-@name:多种表单值输入
+@name:输入/输出示例
 ---
 #renderer
 >name
@@ -1816,6 +1816,7 @@ let extVueRenderer = {
     },
     'value-type' : (parts) => {
 
+        console.log(991, parts.rules);
         let key = parts.rules.shift();
         let name = parts.rules.shift();
         let type = parts.rules.shift() || 'default';
@@ -1837,8 +1838,8 @@ let extVueRenderer = {
                 `<div>{$#types}`,
                 `    <div style="${wrapStyle}">`,
                 `        <p>{$valueType}类型</p>`,
-                `        <div style="width:300px;">`,
-                `            <ui-textinput ref="demoType{$valueType}"></ui-textinput>`,
+                `        <div>`,
+                `            <ui-${key} ref="demoType{$valueType}"></ui-${key}>`,
                 `        </div>`,
                 `        <br>`,
                 `        <ui-link js="window.morning.findVM('demoType{$valueType}').set({$&valueContent})">设置{$valueType}类型</ui-link>`,

@@ -49,7 +49,7 @@
     :::preset
     @name:formStatus
     @uikey:textinput
-    @defaultValue:''
+    @defaultValue:'默认文本'
     :::
 
     [[[配置]]]
@@ -57,7 +57,7 @@
     :::preset
     @name:formConfig
     @uikey:textinput
-    @defaultValue:''
+    @defaultValue:'默认文本'
     :::
 
     :::vue
@@ -296,6 +296,8 @@
     @name:formValue
     @uikey:textinput
     @uiname:文本输入框
+    @valueType:default
+    @wrapStyle:width:300px;
     :::
 
     [[[源码]]]

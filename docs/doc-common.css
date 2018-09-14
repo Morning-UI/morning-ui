@@ -1194,6 +1194,15 @@ mor-dialog a:hover {
   margin: 0 auto;
   font-size: 0;
 }
+.contents > .item > div > h4,
+.contents > .item > div > p,
+.contents > .item > div > table {
+  padding-left: 12px;
+}
+.contents > .item > div > ul,
+.contents > .item > div > ol {
+  padding-left: calc(2em + 14px);
+}
 .content {
   width: 900px;
   display: inline-block;

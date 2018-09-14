@@ -8673,7 +8673,7 @@ mor-pagination > .list > .page-jump {
   vertical-align: top !important;
   margin-left: 2px;
 }
-mor-pagination > .list > .page-jump .page-num {
+mor-pagination > .list > .page-jump mor-textinput.page-num {
   position: relative;
   z-index: 2;
   outline: none;
@@ -8681,7 +8681,7 @@ mor-pagination > .list > .page-jump .page-num {
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
 }
-mor-pagination > .list > .page-jump .page-num > input {
+mor-pagination > .list > .page-jump mor-textinput.page-num .textinput-wrap > input {
   vertical-align: top !important;
   border: 1px solid #F0F0F0;
   padding: 0 0.8em;
@@ -8706,7 +8706,7 @@ mor-pagination > .list > .page-jump .mo-icon:hover {
 mor-pagination.si-xxl .list > a {
   font-size: 20.8px;
 }
-mor-pagination.si-xxl .list .page-jump .page-num > input {
+mor-pagination.si-xxl .list .page-jump .page-num > .textinput-wrap > input {
   font-size: 20.8px;
 }
 mor-pagination.si-xxl .list .page-jump .mo-icon {
@@ -8716,7 +8716,7 @@ mor-pagination.si-xxl .list .page-jump .mo-icon {
 mor-pagination.si-xl .list > a {
   font-size: 19.2px;
 }
-mor-pagination.si-xl .list .page-jump .page-num > input {
+mor-pagination.si-xl .list .page-jump .page-num > .textinput-wrap > input {
   font-size: 19.2px;
 }
 mor-pagination.si-xl .list .page-jump .mo-icon {
@@ -8726,7 +8726,7 @@ mor-pagination.si-xl .list .page-jump .mo-icon {
 mor-pagination.si-l .list > a {
   font-size: 17.6px;
 }
-mor-pagination.si-l .list .page-jump .page-num > input {
+mor-pagination.si-l .list .page-jump .page-num > .textinput-wrap > input {
   font-size: 17.6px;
 }
 mor-pagination.si-l .list .page-jump .mo-icon {
@@ -8736,7 +8736,7 @@ mor-pagination.si-l .list .page-jump .mo-icon {
 mor-pagination.si-m .list > a {
   font-size: 16px;
 }
-mor-pagination.si-m .list .page-jump .page-num > input {
+mor-pagination.si-m .list .page-jump .page-num > .textinput-wrap > input {
   font-size: 16px;
 }
 mor-pagination.si-m .list .page-jump .mo-icon {
@@ -8746,7 +8746,7 @@ mor-pagination.si-m .list .page-jump .mo-icon {
 mor-pagination.si-s .list > a {
   font-size: 14px;
 }
-mor-pagination.si-s .list .page-jump .page-num > input {
+mor-pagination.si-s .list .page-jump .page-num > .textinput-wrap > input {
   font-size: 14px;
 }
 mor-pagination.si-s .list .page-jump .mo-icon {
@@ -8763,7 +8763,7 @@ mor-pagination.si-xs .list > a.ignore {
   line-height: 1.6em;
   padding: 0 0.1em;
 }
-mor-pagination.si-xs .list .page-jump .page-num > input {
+mor-pagination.si-xs .list .page-jump .page-num > .textinput-wrap > input {
   font-size: 12px;
   padding: 0 0.6em;
   line-height: 2.2em;
@@ -8783,7 +8783,7 @@ mor-pagination.si-xxs .list > a.ignore {
   line-height: 1.4em;
   padding: 0;
 }
-mor-pagination.si-xxs .list .page-jump .page-num > input {
+mor-pagination.si-xxs .list .page-jump .page-num > .textinput-wrap > input {
   font-size: 12px;
   padding: 0 0.4em;
   line-height: 2em;
@@ -8889,7 +8889,7 @@ mor-pagination.co-wh .list > a.current {
 mor-pagination .list > a {
   font-size: 16px;
 }
-mor-pagination .list .page-jump .page-num > input {
+mor-pagination .list .page-jump .page-num > .textinput-wrap > input {
   font-size: 16px;
 }
 mor-pagination .list .page-jump .mo-icon {
