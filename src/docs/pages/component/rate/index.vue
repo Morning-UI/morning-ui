@@ -12,27 +12,33 @@
 
     定义评分组件，评分组件输出一个数字。
 
-    #### 使用
-
-    :::democode/html
+    :::vue
+    @name:使用
+    ---
+    #demo
+    >tpl
     <div style="width:200px;">
         <ui-rate form-name="评分"></ui-rate>
     </div>
     :::
 
-    #### 支持半星
-
-    :::democode/html
+    :::vue
+    @name:支持半星
+    ---
+    #demo
+    >tpl
     <div style="width:200px;">
         <ui-rate form-name="评分" allow-half></ui-rate>
     </div>
     :::
 
-    #### 显示文本
-
+    :::vue
+    @name:显示文本
+    ---
+    #demo
+    >desc
     通过`show-note`来显示辅助文本，也可以通过`formater`配置来自定义文本。
-
-    :::democode/html
+    >tpl
     <div style="width:200px;">
         <ui-rate form-name="评分" show-note></ui-rate>
     </div>
@@ -40,54 +46,97 @@
 
     [[[形态]]]
 
-    :::preset/html
-    formStatus
-    ---
-    uikey:rate
-    statusDefaultValue:3
+    :::preset
+    @name:formStatus
+    @uikey:rate
+    @defaultValue:3
     :::
-    
+
     [[[配置]]]
 
-    :::preset/html
-    formConfigTable
-    ---
-    |[max](#max)|最大评分|数字，必须是整数且大于0|Number|`5`|
-    |[allow-half](#allow-half)|是否允许半星评分|`true`<br>`false`|Boolean|`false`|
-    |[show-note](#show-note)|是否显示辅助文字|`true`<br>`false`|Boolean|`false`|
-    |[formater](#formater)|辅助文字格式化函数，此函数接受一个参数，为当前的评分(数字)。<br>此函数的返回值将显示为辅助文字|格式化函数|Function|`(rate)=>(rate+'星')`|  
-    |[icon](#icon)|配置评分显示的图标内容，可以是：<br><br>图标：使用`<i>`标签的字体图标<br>文字：使用`<span>`标签包裹的文本|图标HTML字符串|String|`<i class="mo-icon mo-icon-star-f"></i>`|
+    :::preset
+    @name:formConfig
+    @uikey:rate
+    @defaultValue:3
     :::
-
-    #### max
-
-    :::democode/html
+    
+    :::vue
+    @name:max
+    ---
+    #config
+    >conf-desc
+    最大评分。
+    >conf-accept
+    数字，必须是整数且大于0
+    >conf-type
+    Number
+    >conf-default
+    `5`
+    ---
+    #demo
+    >tpl
     <div style="width:200px;">
         <ui-rate form-name="评分" :max="3"></ui-rate>
     </div>
     :::
 
-    #### allow-half
-
-    :::democode/html
+    :::vue
+    @name:allow-half
+    ---
+    #config
+    >conf-desc
+    是否允许半星评分。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >tpl
     <div style="width:200px;">
         <ui-rate form-name="评分" allow-half></ui-rate>
     </div>
     :::
 
-    #### show-note
-
-    :::democode/html
+    :::vue
+    @name:show-note
+    ---
+    #config
+    >conf-desc
+    是否显示辅助文字。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >tpl
     <div style="width:200px;">
         <ui-rate form-name="评分" allow-half></ui-rate>
     </div>
     :::
 
-    #### formater
-
-    根据评分显示满意级别：
-
-    :::democode/html
+    :::vue
+    @name:formater
+    ---
+    #config
+    >conf-desc
+    辅助文字格式化函数，此函数接受一个参数，为当前的评分(数字)。<br>此函数的返回值将显示为辅助文字
+    >conf-accept
+    格式化函数
+    >conf-type
+    Function
+    >conf-default
+    `(rate)=>(rate+'星')`
+    ---
+    #demo
+    >desc
+    根据评分显示满意级别。
+    >tpl
     <div style="width:200px;">
         <ui-rate
             form-name="评分"
@@ -113,11 +162,11 @@
             }"
         ></ui-rate>
     </div>
-    :::
-
-    显示评分值：
-
-    :::democode/html
+    ---
+    #demo
+    >desc
+    显示评分值。
+    >tpl
     <div style="width:250px;">
         <ui-rate
             form-name="评分"
@@ -129,22 +178,34 @@
     </div>
     :::
 
-    #### icon
-
-    替换icon：
-
-    :::democode/html
+    :::vue
+    @name:icon
+    ---
+    #config
+    >conf-desc
+    配置评分显示的图标内容，可以是：<br><br>图标：使用`<i>`标签的字体图标<br>文字：使用`<span>`标签包裹的文本。
+    >conf-accept
+    图标HTML字符串
+    >conf-type
+    String
+    >conf-default
+    `<i class="mo-icon mo-icon-star-f"></i>`
+    ---
+    #demo
+    >desc
+    替换icon。
+    >tpl
     <div style="width:250px;">
         <ui-rate
             form-name="评分"
             icon="<i class='mo-icon mo-icon-love-f'></i>"
         ></ui-rate>
     </div>
-    :::
-    
-    使用文字：
-
-    :::democode/html
+    ---
+    #demo
+    >desc
+    使用文字。
+    >tpl
     <div style="width:250px;">
         <ui-rate
             form-name="评分"
@@ -155,41 +216,43 @@
 
     [[[方法]]]
 
-    :::preset/html
-    formMethod
-    ---
-    uikey:rate
-    methodValue:3
-    methodDefaultValue:3
+    :::preset
+    @name:formMethod
+    @uikey:rate
+    @value:3
+    @defaultValue:3
     :::
-    
+
     [[[事件]]]
 
-    #### rating
+    :::preset
+    @name:formEvent
+    @uiname:评分
+    @uikey:rate
+    @value:3
+    @wrapStyle:width:250px;
+    :::
 
+    :::vue
+    @name:focus
+    ---
+    #event
+    >event-desc
     当鼠标切换评分时触发。
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
+    ---
+    #demo
+    >tpl
+    <div style="width:300px;">
+        <ui-rate @rating="echo" ref="demo1"></ui-rate>
+    </div>
+    >script
+    {
         methods : {
             echo : function () {
                 console.log('demo1.console1', 'rating event!');
             }
         }
-    });
-    ---
-    <div style="width:300px;">
-        <ui-rate @rating="echo" ref="demo1"></ui-rate>
-    </div>
-    :::
-
-    :::preset/html
-    formEvent
-    ---
-    uikey:rate
-    eventValue:3
+    }
     :::
 
     [[[表单值]]]
@@ -212,22 +275,12 @@
 
     `0`
 
-    #### 输入/输出示例
-
-    :::repeat/html
-    formValueType:rate
-    ---
-    <div>
-        <p>{$valueType}类型</p>
-        <div style="width:300px;">
-            <ui-rate ref="demoType{$valueType}"></ui-rate>
-        </div>
-        <br>
-        <ui-link js="window.morning.findVM('demoType{$valueType}').set({$&valueContent})">设置{$valueType}类型</ui-link>
-        <ui-link js="alert(window.morning.findVM('demoType{$valueType}').getJson())">获取表单JSON值</ui-link>
-    </div>
-    <br>
-    <br>
+    :::preset
+    @name:formValue
+    @uikey:rate
+    @uiname:评分
+    @valueType:rate
+    @wrapStyle:width:300px;
     :::
 
     [[[源码]]]
