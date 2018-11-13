@@ -2245,7 +2245,7 @@ mor-itemlist.si-xxl > mor-ul > li {
   padding-bottom: 12.8px;
 }
 mor-itemlist.si-xxl > mor-ul > li > *:not(.img) {
-  width: calc(100% -  144px );
+  width: calc(100% - 16px*9);
   padding: 0 6%;
 }
 mor-itemlist.si-xxl > mor-ul > li > mor-img {
@@ -2281,7 +2281,7 @@ mor-itemlist.si-xl > mor-ul > li {
   padding-bottom: 12.8px;
 }
 mor-itemlist.si-xl > mor-ul > li > *:not(.img) {
-  width: calc(100% -  128px );
+  width: calc(100% - 16px*8);
   padding: 0 5%;
 }
 mor-itemlist.si-xl > mor-ul > li > mor-img {
@@ -2317,7 +2317,7 @@ mor-itemlist.si-l > mor-ul > li {
   padding-bottom: 9.6px;
 }
 mor-itemlist.si-l > mor-ul > li > *:not(.img) {
-  width: calc(100% -  112px );
+  width: calc(100% - 16px*7);
   padding: 0 4%;
 }
 mor-itemlist.si-l > mor-ul > li > mor-img {
@@ -2353,7 +2353,7 @@ mor-itemlist.si-m > mor-ul > li {
   padding-bottom: 8px;
 }
 mor-itemlist.si-m > mor-ul > li > *:not(.img) {
-  width: calc(100% -  96px );
+  width: calc(100% - 16px*6);
   padding: 0 3.5%;
 }
 mor-itemlist.si-m > mor-ul > li > mor-img {
@@ -2387,7 +2387,7 @@ mor-itemlist.si-s > mor-ul > li {
   padding-bottom: 6.4px;
 }
 mor-itemlist.si-s > mor-ul > li > *:not(.img) {
-  width: calc(100% -  80px );
+  width: calc(100% - 16px*5);
   padding: 0 2.5%;
 }
 mor-itemlist.si-s > mor-ul > li > mor-img {
@@ -2421,7 +2421,7 @@ mor-itemlist.si-xs > mor-ul > li {
   padding-bottom: 4.8px;
 }
 mor-itemlist.si-xs > mor-ul > li > *:not(.img) {
-  width: calc(100% -  64px );
+  width: calc(100% - 16px*4);
   padding: 0 2%;
 }
 mor-itemlist.si-xs > mor-ul > li > mor-img {
@@ -2457,7 +2457,7 @@ mor-itemlist.si-xxs > mor-ul > li {
   padding-bottom: 3.2px;
 }
 mor-itemlist.si-xxs > mor-ul > li > *:not(.img) {
-  width: calc(100% -  48px );
+  width: calc(100% - 16px*3);
   padding: 0 1.5%;
 }
 mor-itemlist.si-xxs > mor-ul > li > mor-img {
@@ -2518,7 +2518,7 @@ mor-itemlist > mor-ul > li {
   padding-bottom: 8px;
 }
 mor-itemlist > mor-ul > li > *:not(.img) {
-  width: calc(100% -  96px );
+  width: calc(100% - 16px*6);
   padding: 0 3.5%;
 }
 mor-itemlist > mor-ul > li > mor-img {
@@ -2646,6 +2646,21 @@ mor-apparent.block {
 mor-grid {
   display: block;
 }
+mor-grid > [class^='c-']:last-child,
+mor-grid > [class^='xs-c-']:last-child,
+mor-grid > [class^='s-c-']:last-child,
+mor-grid > [class^='m-c-']:last-child,
+mor-grid > [class^='l-c-']:last-child,
+mor-grid > [class^='xl-c-']:last-child {
+  margin-right: 0;
+}
+mor-grid::after {
+  content: ' ';
+  height: 0;
+  display: block;
+  clear: both;
+}
+mor-grid .c-n,
 mor-grid .c-1,
 mor-grid .c-2,
 mor-grid .c-3,
@@ -2674,156 +2689,148 @@ mor-grid .c-24 {
   float: left;
   margin-right: 1%;
 }
+mor-grid .offset-1 {
+  margin-left: 4.2083%;
+}
 mor-grid .c-1 {
-  width: 3.208%;
+  width: 3.2083%;
+}
+mor-grid .offset-2 {
+  margin-left: 8.4166%;
 }
 mor-grid .c-2 {
-  width: 7.416%;
+  width: 7.4166%;
+}
+mor-grid .offset-3 {
+  margin-left: 12.6249%;
 }
 mor-grid .c-3 {
-  width: 11.624%;
+  width: 11.6249%;
+}
+mor-grid .offset-4 {
+  margin-left: 16.8332%;
 }
 mor-grid .c-4 {
-  width: 15.832%;
+  width: 15.8332%;
+}
+mor-grid .offset-5 {
+  margin-left: 21.0415%;
 }
 mor-grid .c-5 {
-  width: 20.04%;
+  width: 20.0415%;
+}
+mor-grid .offset-6 {
+  margin-left: 25.2498%;
 }
 mor-grid .c-6 {
-  width: 24.248%;
+  width: 24.2498%;
+}
+mor-grid .offset-7 {
+  margin-left: 29.4581%;
 }
 mor-grid .c-7 {
-  width: 28.456%;
+  width: 28.4581%;
+}
+mor-grid .offset-8 {
+  margin-left: 33.6664%;
 }
 mor-grid .c-8 {
-  width: 32.664%;
+  width: 32.6664%;
+}
+mor-grid .offset-9 {
+  margin-left: 37.8747%;
 }
 mor-grid .c-9 {
-  width: 36.872%;
+  width: 36.8747%;
+}
+mor-grid .offset-10 {
+  margin-left: 42.083%;
 }
 mor-grid .c-10 {
-  width: 41.08%;
+  width: 41.083%;
+}
+mor-grid .offset-11 {
+  margin-left: 46.2913%;
 }
 mor-grid .c-11 {
-  width: 45.288%;
+  width: 45.2913%;
+}
+mor-grid .offset-12 {
+  margin-left: 50.4996%;
 }
 mor-grid .c-12 {
-  width: 49.496%;
+  width: 49.4996%;
+}
+mor-grid .offset-13 {
+  margin-left: 54.7079%;
 }
 mor-grid .c-13 {
-  width: 53.704%;
+  width: 53.7079%;
+}
+mor-grid .offset-14 {
+  margin-left: 58.9162%;
 }
 mor-grid .c-14 {
-  width: 57.912%;
+  width: 57.9162%;
+}
+mor-grid .offset-15 {
+  margin-left: 63.1245%;
 }
 mor-grid .c-15 {
-  width: 62.12%;
+  width: 62.1245%;
+}
+mor-grid .offset-16 {
+  margin-left: 67.3328%;
 }
 mor-grid .c-16 {
-  width: 66.328%;
+  width: 66.3328%;
+}
+mor-grid .offset-17 {
+  margin-left: 71.5411%;
 }
 mor-grid .c-17 {
-  width: 70.536%;
+  width: 70.5411%;
+}
+mor-grid .offset-18 {
+  margin-left: 75.7494%;
 }
 mor-grid .c-18 {
-  width: 74.744%;
+  width: 74.7494%;
+}
+mor-grid .offset-19 {
+  margin-left: 79.9577%;
 }
 mor-grid .c-19 {
-  width: 78.952%;
+  width: 78.9577%;
+}
+mor-grid .offset-20 {
+  margin-left: 84.166%;
 }
 mor-grid .c-20 {
-  width: 83.16%;
+  width: 83.166%;
+}
+mor-grid .offset-21 {
+  margin-left: 88.3743%;
 }
 mor-grid .c-21 {
-  width: 87.368%;
+  width: 87.3743%;
+}
+mor-grid .offset-22 {
+  margin-left: 92.5826%;
 }
 mor-grid .c-22 {
-  width: 91.576%;
+  width: 91.5826%;
+}
+mor-grid .offset-23 {
+  margin-left: 96.7909%;
 }
 mor-grid .c-23 {
-  width: 95.784%;
+  width: 95.7909%;
 }
 mor-grid .c-24 {
   width: 100%;
 }
-mor-grid .offset-1 {
-  margin-left: 4.208%;
-}
-mor-grid .offset-2 {
-  margin-left: 8.416%;
-}
-mor-grid .offset-3 {
-  margin-left: 12.624%;
-}
-mor-grid .offset-4 {
-  margin-left: 16.832%;
-}
-mor-grid .offset-5 {
-  margin-left: 21.04%;
-}
-mor-grid .offset-6 {
-  margin-left: 25.248%;
-}
-mor-grid .offset-7 {
-  margin-left: 29.456%;
-}
-mor-grid .offset-8 {
-  margin-left: 33.664%;
-}
-mor-grid .offset-9 {
-  margin-left: 37.872%;
-}
-mor-grid .offset-10 {
-  margin-left: 42.08%;
-}
-mor-grid .offset-11 {
-  margin-left: 46.288%;
-}
-mor-grid .offset-12 {
-  margin-left: 50.496%;
-}
-mor-grid .offset-13 {
-  margin-left: 54.704%;
-}
-mor-grid .offset-14 {
-  margin-left: 58.912%;
-}
-mor-grid .offset-15 {
-  margin-left: 63.12%;
-}
-mor-grid .offset-16 {
-  margin-left: 67.328%;
-}
-mor-grid .offset-17 {
-  margin-left: 71.536%;
-}
-mor-grid .offset-18 {
-  margin-left: 75.744%;
-}
-mor-grid .offset-19 {
-  margin-left: 79.952%;
-}
-mor-grid .offset-20 {
-  margin-left: 84.16%;
-}
-mor-grid .offset-21 {
-  margin-left: 88.368%;
-}
-mor-grid .offset-22 {
-  margin-left: 92.576%;
-}
-mor-grid .offset-23 {
-  margin-left: 96.784%;
-}
-mor-grid > [class^='c-']:last-child {
-  margin-right: 0;
-}
-mor-grid::after {
-  content: ' ';
-  height: 0;
-  display: block;
-  clear: both;
-}
+mor-grid.nogap .c-n,
 mor-grid.nogap .c-1,
 mor-grid.nogap .c-2,
 mor-grid.nogap .c-3,
@@ -2852,435 +2859,3875 @@ mor-grid.nogap .c-24 {
   float: left;
   margin-right: 0;
 }
+mor-grid.nogap .offset-1 {
+  margin-left: 4.1667%;
+}
 mor-grid.nogap .c-1 {
-  width: 4.167%;
+  width: 4.1667%;
+}
+mor-grid.nogap .offset-2 {
+  margin-left: 8.3334%;
 }
 mor-grid.nogap .c-2 {
-  width: 8.334%;
+  width: 8.3334%;
+}
+mor-grid.nogap .offset-3 {
+  margin-left: 12.5001%;
 }
 mor-grid.nogap .c-3 {
-  width: 12.501%;
+  width: 12.5001%;
+}
+mor-grid.nogap .offset-4 {
+  margin-left: 16.6668%;
 }
 mor-grid.nogap .c-4 {
-  width: 16.668%;
+  width: 16.6668%;
+}
+mor-grid.nogap .offset-5 {
+  margin-left: 20.8335%;
 }
 mor-grid.nogap .c-5 {
-  width: 20.835%;
+  width: 20.8335%;
+}
+mor-grid.nogap .offset-6 {
+  margin-left: 25.0002%;
 }
 mor-grid.nogap .c-6 {
-  width: 25.002%;
+  width: 25.0002%;
+}
+mor-grid.nogap .offset-7 {
+  margin-left: 29.1669%;
 }
 mor-grid.nogap .c-7 {
-  width: 29.169%;
+  width: 29.1669%;
+}
+mor-grid.nogap .offset-8 {
+  margin-left: 33.3336%;
 }
 mor-grid.nogap .c-8 {
-  width: 33.336%;
+  width: 33.3336%;
+}
+mor-grid.nogap .offset-9 {
+  margin-left: 37.5003%;
 }
 mor-grid.nogap .c-9 {
-  width: 37.503%;
+  width: 37.5003%;
+}
+mor-grid.nogap .offset-10 {
+  margin-left: 41.667%;
 }
 mor-grid.nogap .c-10 {
-  width: 41.67%;
+  width: 41.667%;
+}
+mor-grid.nogap .offset-11 {
+  margin-left: 45.8337%;
 }
 mor-grid.nogap .c-11 {
-  width: 45.837%;
+  width: 45.8337%;
+}
+mor-grid.nogap .offset-12 {
+  margin-left: 50.0004%;
 }
 mor-grid.nogap .c-12 {
-  width: 50.004%;
+  width: 50.0004%;
+}
+mor-grid.nogap .offset-13 {
+  margin-left: 54.1671%;
 }
 mor-grid.nogap .c-13 {
-  width: 54.171%;
+  width: 54.1671%;
+}
+mor-grid.nogap .offset-14 {
+  margin-left: 58.3338%;
 }
 mor-grid.nogap .c-14 {
-  width: 58.338%;
+  width: 58.3338%;
+}
+mor-grid.nogap .offset-15 {
+  margin-left: 62.5005%;
 }
 mor-grid.nogap .c-15 {
-  width: 62.505%;
+  width: 62.5005%;
+}
+mor-grid.nogap .offset-16 {
+  margin-left: 66.6672%;
 }
 mor-grid.nogap .c-16 {
-  width: 66.672%;
+  width: 66.6672%;
+}
+mor-grid.nogap .offset-17 {
+  margin-left: 70.8339%;
 }
 mor-grid.nogap .c-17 {
-  width: 70.839%;
+  width: 70.8339%;
+}
+mor-grid.nogap .offset-18 {
+  margin-left: 75.0006%;
 }
 mor-grid.nogap .c-18 {
-  width: 75.006%;
+  width: 75.0006%;
+}
+mor-grid.nogap .offset-19 {
+  margin-left: 79.1673%;
 }
 mor-grid.nogap .c-19 {
-  width: 79.173%;
+  width: 79.1673%;
+}
+mor-grid.nogap .offset-20 {
+  margin-left: 83.334%;
 }
 mor-grid.nogap .c-20 {
-  width: 83.34%;
+  width: 83.334%;
+}
+mor-grid.nogap .offset-21 {
+  margin-left: 87.5007%;
 }
 mor-grid.nogap .c-21 {
-  width: 87.507%;
+  width: 87.5007%;
+}
+mor-grid.nogap .offset-22 {
+  margin-left: 91.6674%;
 }
 mor-grid.nogap .c-22 {
-  width: 91.674%;
+  width: 91.6674%;
+}
+mor-grid.nogap .offset-23 {
+  margin-left: 95.8341%;
 }
 mor-grid.nogap .c-23 {
-  width: 95.841%;
+  width: 95.8341%;
 }
 mor-grid.nogap .c-24 {
   width: 100%;
 }
-mor-grid.nogap .offset-1 {
-  margin-left: 4.167%;
+mor-grid.avggap > [class^='c-']:first-child,
+mor-grid.avggap > [class^='xs-c-']:first-child,
+mor-grid.avggap > [class^='s-c-']:first-child,
+mor-grid.avggap > [class^='m-c-']:first-child,
+mor-grid.avggap > [class^='l-c-']:first-child,
+mor-grid.avggap > [class^='xl-c-']:first-child {
+  margin-left: 1%;
 }
-mor-grid.nogap .offset-2 {
-  margin-left: 8.334%;
+mor-grid.avggap > [class^='c-']:last-child,
+mor-grid.avggap > [class^='xs-c-']:last-child,
+mor-grid.avggap > [class^='s-c-']:last-child,
+mor-grid.avggap > [class^='m-c-']:last-child,
+mor-grid.avggap > [class^='l-c-']:last-child,
+mor-grid.avggap > [class^='xl-c-']:last-child {
+  margin-right: 1%;
 }
-mor-grid.nogap .offset-3 {
-  margin-left: 12.501%;
+mor-grid.avggap .offset-1 {
+  margin-left: 4.125% !important;
 }
-mor-grid.nogap .offset-4 {
-  margin-left: 16.668%;
+mor-grid.avggap .offset-1:first-child {
+  margin-left: 5.125% !important;
 }
-mor-grid.nogap .offset-5 {
-  margin-left: 20.835%;
-}
-mor-grid.nogap .offset-6 {
-  margin-left: 25.002%;
-}
-mor-grid.nogap .offset-7 {
-  margin-left: 29.169%;
-}
-mor-grid.nogap .offset-8 {
-  margin-left: 33.336%;
-}
-mor-grid.nogap .offset-9 {
-  margin-left: 37.503%;
-}
-mor-grid.nogap .offset-10 {
-  margin-left: 41.67%;
-}
-mor-grid.nogap .offset-11 {
-  margin-left: 45.837%;
-}
-mor-grid.nogap .offset-12 {
-  margin-left: 50.004%;
-}
-mor-grid.nogap .offset-13 {
-  margin-left: 54.171%;
-}
-mor-grid.nogap .offset-14 {
-  margin-left: 58.338%;
-}
-mor-grid.nogap .offset-15 {
-  margin-left: 62.505%;
-}
-mor-grid.nogap .offset-16 {
-  margin-left: 66.672%;
-}
-mor-grid.nogap .offset-17 {
-  margin-left: 70.839%;
-}
-mor-grid.nogap .offset-18 {
-  margin-left: 75.006%;
-}
-mor-grid.nogap .offset-19 {
-  margin-left: 79.173%;
-}
-mor-grid.nogap .offset-20 {
-  margin-left: 83.34%;
-}
-mor-grid.nogap .offset-21 {
-  margin-left: 87.507%;
-}
-mor-grid.nogap .offset-22 {
-  margin-left: 91.674%;
-}
-mor-grid.nogap .offset-23 {
-  margin-left: 95.841%;
+mor-grid.avggap .offset-1:last-child {
+  margin-right: 0;
 }
 mor-grid.avggap .c-1 {
   width: 3.125%;
 }
+mor-grid.avggap .offset-2 {
+  margin-left: 8.25% !important;
+}
+mor-grid.avggap .offset-2:first-child {
+  margin-left: 9.25% !important;
+}
+mor-grid.avggap .offset-2:last-child {
+  margin-right: 0;
+}
 mor-grid.avggap .c-2 {
   width: 7.25%;
+}
+mor-grid.avggap .offset-3 {
+  margin-left: 12.375% !important;
+}
+mor-grid.avggap .offset-3:first-child {
+  margin-left: 13.375% !important;
+}
+mor-grid.avggap .offset-3:last-child {
+  margin-right: 0;
 }
 mor-grid.avggap .c-3 {
   width: 11.375%;
 }
+mor-grid.avggap .offset-4 {
+  margin-left: 16.5% !important;
+}
+mor-grid.avggap .offset-4:first-child {
+  margin-left: 17.5% !important;
+}
+mor-grid.avggap .offset-4:last-child {
+  margin-right: 0;
+}
 mor-grid.avggap .c-4 {
   width: 15.5%;
+}
+mor-grid.avggap .offset-5 {
+  margin-left: 20.625% !important;
+}
+mor-grid.avggap .offset-5:first-child {
+  margin-left: 21.625% !important;
+}
+mor-grid.avggap .offset-5:last-child {
+  margin-right: 0;
 }
 mor-grid.avggap .c-5 {
   width: 19.625%;
 }
+mor-grid.avggap .offset-6 {
+  margin-left: 24.75% !important;
+}
+mor-grid.avggap .offset-6:first-child {
+  margin-left: 25.75% !important;
+}
+mor-grid.avggap .offset-6:last-child {
+  margin-right: 0;
+}
 mor-grid.avggap .c-6 {
   width: 23.75%;
+}
+mor-grid.avggap .offset-7 {
+  margin-left: 28.875% !important;
+}
+mor-grid.avggap .offset-7:first-child {
+  margin-left: 29.875% !important;
+}
+mor-grid.avggap .offset-7:last-child {
+  margin-right: 0;
 }
 mor-grid.avggap .c-7 {
   width: 27.875%;
 }
+mor-grid.avggap .offset-8 {
+  margin-left: 33% !important;
+}
+mor-grid.avggap .offset-8:first-child {
+  margin-left: 34% !important;
+}
+mor-grid.avggap .offset-8:last-child {
+  margin-right: 0;
+}
 mor-grid.avggap .c-8 {
   width: 32%;
+}
+mor-grid.avggap .offset-9 {
+  margin-left: 37.125% !important;
+}
+mor-grid.avggap .offset-9:first-child {
+  margin-left: 38.125% !important;
+}
+mor-grid.avggap .offset-9:last-child {
+  margin-right: 0;
 }
 mor-grid.avggap .c-9 {
   width: 36.125%;
 }
+mor-grid.avggap .offset-10 {
+  margin-left: 41.25% !important;
+}
+mor-grid.avggap .offset-10:first-child {
+  margin-left: 42.25% !important;
+}
+mor-grid.avggap .offset-10:last-child {
+  margin-right: 0;
+}
 mor-grid.avggap .c-10 {
   width: 40.25%;
+}
+mor-grid.avggap .offset-11 {
+  margin-left: 45.375% !important;
+}
+mor-grid.avggap .offset-11:first-child {
+  margin-left: 46.375% !important;
+}
+mor-grid.avggap .offset-11:last-child {
+  margin-right: 0;
 }
 mor-grid.avggap .c-11 {
   width: 44.375%;
 }
+mor-grid.avggap .offset-12 {
+  margin-left: 49.5% !important;
+}
+mor-grid.avggap .offset-12:first-child {
+  margin-left: 50.5% !important;
+}
+mor-grid.avggap .offset-12:last-child {
+  margin-right: 0;
+}
 mor-grid.avggap .c-12 {
   width: 48.5%;
+}
+mor-grid.avggap .offset-13 {
+  margin-left: 53.625% !important;
+}
+mor-grid.avggap .offset-13:first-child {
+  margin-left: 54.625% !important;
+}
+mor-grid.avggap .offset-13:last-child {
+  margin-right: 0;
 }
 mor-grid.avggap .c-13 {
   width: 52.625%;
 }
+mor-grid.avggap .offset-14 {
+  margin-left: 57.75% !important;
+}
+mor-grid.avggap .offset-14:first-child {
+  margin-left: 58.75% !important;
+}
+mor-grid.avggap .offset-14:last-child {
+  margin-right: 0;
+}
 mor-grid.avggap .c-14 {
   width: 56.75%;
+}
+mor-grid.avggap .offset-15 {
+  margin-left: 61.875% !important;
+}
+mor-grid.avggap .offset-15:first-child {
+  margin-left: 62.875% !important;
+}
+mor-grid.avggap .offset-15:last-child {
+  margin-right: 0;
 }
 mor-grid.avggap .c-15 {
   width: 60.875%;
 }
+mor-grid.avggap .offset-16 {
+  margin-left: 66% !important;
+}
+mor-grid.avggap .offset-16:first-child {
+  margin-left: 67% !important;
+}
+mor-grid.avggap .offset-16:last-child {
+  margin-right: 0;
+}
 mor-grid.avggap .c-16 {
   width: 65%;
+}
+mor-grid.avggap .offset-17 {
+  margin-left: 70.125% !important;
+}
+mor-grid.avggap .offset-17:first-child {
+  margin-left: 71.125% !important;
+}
+mor-grid.avggap .offset-17:last-child {
+  margin-right: 0;
 }
 mor-grid.avggap .c-17 {
   width: 69.125%;
 }
+mor-grid.avggap .offset-18 {
+  margin-left: 74.25% !important;
+}
+mor-grid.avggap .offset-18:first-child {
+  margin-left: 75.25% !important;
+}
+mor-grid.avggap .offset-18:last-child {
+  margin-right: 0;
+}
 mor-grid.avggap .c-18 {
   width: 73.25%;
+}
+mor-grid.avggap .offset-19 {
+  margin-left: 78.375% !important;
+}
+mor-grid.avggap .offset-19:first-child {
+  margin-left: 79.375% !important;
+}
+mor-grid.avggap .offset-19:last-child {
+  margin-right: 0;
 }
 mor-grid.avggap .c-19 {
   width: 77.375%;
 }
+mor-grid.avggap .offset-20 {
+  margin-left: 82.5% !important;
+}
+mor-grid.avggap .offset-20:first-child {
+  margin-left: 83.5% !important;
+}
+mor-grid.avggap .offset-20:last-child {
+  margin-right: 0;
+}
 mor-grid.avggap .c-20 {
   width: 81.5%;
+}
+mor-grid.avggap .offset-21 {
+  margin-left: 86.625% !important;
+}
+mor-grid.avggap .offset-21:first-child {
+  margin-left: 87.625% !important;
+}
+mor-grid.avggap .offset-21:last-child {
+  margin-right: 0;
 }
 mor-grid.avggap .c-21 {
   width: 85.625%;
 }
+mor-grid.avggap .offset-22 {
+  margin-left: 90.75% !important;
+}
+mor-grid.avggap .offset-22:first-child {
+  margin-left: 91.75% !important;
+}
+mor-grid.avggap .offset-22:last-child {
+  margin-right: 0;
+}
 mor-grid.avggap .c-22 {
   width: 89.75%;
+}
+mor-grid.avggap .offset-23 {
+  margin-left: 94.875% !important;
+}
+mor-grid.avggap .offset-23:first-child {
+  margin-left: 95.875% !important;
+}
+mor-grid.avggap .offset-23:last-child {
+  margin-right: 0;
 }
 mor-grid.avggap .c-23 {
   width: 93.875%;
 }
 mor-grid.avggap .c-24 {
-  width: 98%;
-}
-mor-grid.avggap > [class^='c-']:first-child {
-  margin-left: 1%;
-}
-mor-grid.avggap > [class^='c-']:last-child {
-  margin-right: 1%;
-}
-mor-grid.avggap > .offset-1 {
-  margin-left: 4.125%;
-}
-mor-grid.avggap > .offset-1:first-child {
-  margin-left: 5.125% !important;
-}
-mor-grid.avggap > .offset-1:last-child {
-  margin-right: 0;
-}
-mor-grid.avggap > .offset-2 {
-  margin-left: 8.25% !important;
-}
-mor-grid.avggap > .offset-2:first-child {
-  margin-left: 9.25% !important;
-}
-mor-grid.avggap > .offset-2:last-child {
-  margin-right: 0;
-}
-mor-grid.avggap > .offset-3 {
-  margin-left: 12.375% !important;
-}
-mor-grid.avggap > .offset-3:first-child {
-  margin-left: 13.375% !important;
-}
-mor-grid.avggap > .offset-3:last-child {
-  margin-right: 0;
-}
-mor-grid.avggap > .offset-4 {
-  margin-left: 16.5% !important;
-}
-mor-grid.avggap > .offset-4:first-child {
-  margin-left: 17.5% !important;
-}
-mor-grid.avggap > .offset-4:last-child {
-  margin-right: 0;
-}
-mor-grid.avggap > .offset-5 {
-  margin-left: 20.625% !important;
-}
-mor-grid.avggap > .offset-5:first-child {
-  margin-left: 21.625% !important;
-}
-mor-grid.avggap > .offset-5:last-child {
-  margin-right: 0;
-}
-mor-grid.avggap > .offset-6 {
-  margin-left: 24.75% !important;
-}
-mor-grid.avggap > .offset-6:first-child {
-  margin-left: 25.75% !important;
-}
-mor-grid.avggap > .offset-6:last-child {
-  margin-right: 0;
-}
-mor-grid.avggap > .offset-7 {
-  margin-left: 28.875% !important;
-}
-mor-grid.avggap > .offset-7:first-child {
-  margin-left: 29.875% !important;
-}
-mor-grid.avggap > .offset-7:last-child {
-  margin-right: 0;
-}
-mor-grid.avggap > .offset-8 {
-  margin-left: 33% !important;
-}
-mor-grid.avggap > .offset-8:first-child {
-  margin-left: 34% !important;
-}
-mor-grid.avggap > .offset-8:last-child {
-  margin-right: 0;
-}
-mor-grid.avggap > .offset-9 {
-  margin-left: 37.125% !important;
-}
-mor-grid.avggap > .offset-9:first-child {
-  margin-left: 38.125% !important;
-}
-mor-grid.avggap > .offset-9:last-child {
-  margin-right: 0;
-}
-mor-grid.avggap > .offset-10 {
-  margin-left: 41.25% !important;
-}
-mor-grid.avggap > .offset-10:first-child {
-  margin-left: 42.25% !important;
-}
-mor-grid.avggap > .offset-10:last-child {
-  margin-right: 0;
-}
-mor-grid.avggap > .offset-11 {
-  margin-left: 45.375% !important;
-}
-mor-grid.avggap > .offset-11:first-child {
-  margin-left: 46.375% !important;
-}
-mor-grid.avggap > .offset-11:last-child {
-  margin-right: 0;
-}
-mor-grid.avggap > .offset-12 {
-  margin-left: 49.5% !important;
-}
-mor-grid.avggap > .offset-12:first-child {
-  margin-left: 50.5% !important;
-}
-mor-grid.avggap > .offset-12:last-child {
-  margin-right: 0;
-}
-mor-grid.avggap > .offset-13 {
-  margin-left: 53.625% !important;
-}
-mor-grid.avggap > .offset-13:first-child {
-  margin-left: 54.625% !important;
-}
-mor-grid.avggap > .offset-13:last-child {
-  margin-right: 0;
-}
-mor-grid.avggap > .offset-14 {
-  margin-left: 57.75% !important;
-}
-mor-grid.avggap > .offset-14:first-child {
-  margin-left: 58.75% !important;
-}
-mor-grid.avggap > .offset-14:last-child {
-  margin-right: 0;
-}
-mor-grid.avggap > .offset-15 {
-  margin-left: 61.875% !important;
-}
-mor-grid.avggap > .offset-15:first-child {
-  margin-left: 62.875% !important;
-}
-mor-grid.avggap > .offset-15:last-child {
-  margin-right: 0;
-}
-mor-grid.avggap > .offset-16 {
-  margin-left: 66% !important;
-}
-mor-grid.avggap > .offset-16:first-child {
-  margin-left: 67% !important;
-}
-mor-grid.avggap > .offset-16:last-child {
-  margin-right: 0;
-}
-mor-grid.avggap > .offset-17 {
-  margin-left: 70.125% !important;
-}
-mor-grid.avggap > .offset-17:first-child {
-  margin-left: 71.125% !important;
-}
-mor-grid.avggap > .offset-17:last-child {
-  margin-right: 0;
-}
-mor-grid.avggap > .offset-18 {
-  margin-left: 74.25% !important;
-}
-mor-grid.avggap > .offset-18:first-child {
-  margin-left: 75.25% !important;
-}
-mor-grid.avggap > .offset-18:last-child {
-  margin-right: 0;
-}
-mor-grid.avggap > .offset-19 {
-  margin-left: 78.375% !important;
-}
-mor-grid.avggap > .offset-19:first-child {
-  margin-left: 79.375% !important;
-}
-mor-grid.avggap > .offset-19:last-child {
-  margin-right: 0;
-}
-mor-grid.avggap > .offset-20 {
-  margin-left: 82.5% !important;
-}
-mor-grid.avggap > .offset-20:first-child {
-  margin-left: 83.5% !important;
-}
-mor-grid.avggap > .offset-20:last-child {
-  margin-right: 0;
-}
-mor-grid.avggap > .offset-21 {
-  margin-left: 86.625% !important;
-}
-mor-grid.avggap > .offset-21:first-child {
-  margin-left: 87.625% !important;
-}
-mor-grid.avggap > .offset-21:last-child {
-  margin-right: 0;
-}
-mor-grid.avggap > .offset-22 {
-  margin-left: 90.75% !important;
-}
-mor-grid.avggap > .offset-22:first-child {
-  margin-left: 91.75% !important;
-}
-mor-grid.avggap > .offset-22:last-child {
-  margin-right: 0;
-}
-mor-grid.avggap > .offset-23 {
-  margin-left: 94.875% !important;
-}
-mor-grid.avggap > .offset-23:first-child {
-  margin-left: 95.875% !important;
-}
-mor-grid.avggap > .offset-23:last-child {
-  margin-right: 0;
+  width: 100%;
 }
 mor-grid.fill,
-mor-grid.fill > [class^='c-'] {
+mor-grid.fill > [class^='c-'],
+mor-grid.fill > [class^='xs-c-'],
+mor-grid.fill > [class^='s-c-'],
+mor-grid.fill > [class^='m--c-'],
+mor-grid.fill > [class^='l-c-'],
+mor-grid.fill > [class^='xl-c-'] {
   height: 100%;
+}
+@media only screen and (max-width: 575.98px) {
+mor-grid .c-n,
+  mor-grid .xs-c-1,
+  mor-grid .xs-c-2,
+  mor-grid .xs-c-3,
+  mor-grid .xs-c-4,
+  mor-grid .xs-c-5,
+  mor-grid .xs-c-6,
+  mor-grid .xs-c-7,
+  mor-grid .xs-c-8,
+  mor-grid .xs-c-9,
+  mor-grid .xs-c-10,
+  mor-grid .xs-c-11,
+  mor-grid .xs-c-12,
+  mor-grid .xs-c-13,
+  mor-grid .xs-c-14,
+  mor-grid .xs-c-15,
+  mor-grid .xs-c-16,
+  mor-grid .xs-c-17,
+  mor-grid .xs-c-18,
+  mor-grid .xs-c-19,
+  mor-grid .xs-c-20,
+  mor-grid .xs-c-21,
+  mor-grid .xs-c-22,
+  mor-grid .xs-c-23,
+  mor-grid .xs-c-24,
+  mor-grid .c-1,
+  mor-grid .c-2,
+  mor-grid .c-3,
+  mor-grid .c-4,
+  mor-grid .c-5,
+  mor-grid .c-6,
+  mor-grid .c-7,
+  mor-grid .c-8,
+  mor-grid .c-9,
+  mor-grid .c-10,
+  mor-grid .c-11,
+  mor-grid .c-12,
+  mor-grid .c-13,
+  mor-grid .c-14,
+  mor-grid .c-15,
+  mor-grid .c-16,
+  mor-grid .c-17,
+  mor-grid .c-18,
+  mor-grid .c-19,
+  mor-grid .c-20,
+  mor-grid .c-21,
+  mor-grid .c-22,
+  mor-grid .c-23,
+  mor-grid .c-24 {
+    display: block;
+    float: left;
+    margin-right: 1%;
+}
+mor-grid .xs-offset-1 {
+    margin-left: 4.2083%;
+}
+mor-grid .xs-c-1 {
+    width: 3.2083%;
+}
+mor-grid .xs-offset-2 {
+    margin-left: 8.4166%;
+}
+mor-grid .xs-c-2 {
+    width: 7.4166%;
+}
+mor-grid .xs-offset-3 {
+    margin-left: 12.6249%;
+}
+mor-grid .xs-c-3 {
+    width: 11.6249%;
+}
+mor-grid .xs-offset-4 {
+    margin-left: 16.8332%;
+}
+mor-grid .xs-c-4 {
+    width: 15.8332%;
+}
+mor-grid .xs-offset-5 {
+    margin-left: 21.0415%;
+}
+mor-grid .xs-c-5 {
+    width: 20.0415%;
+}
+mor-grid .xs-offset-6 {
+    margin-left: 25.2498%;
+}
+mor-grid .xs-c-6 {
+    width: 24.2498%;
+}
+mor-grid .xs-offset-7 {
+    margin-left: 29.4581%;
+}
+mor-grid .xs-c-7 {
+    width: 28.4581%;
+}
+mor-grid .xs-offset-8 {
+    margin-left: 33.6664%;
+}
+mor-grid .xs-c-8 {
+    width: 32.6664%;
+}
+mor-grid .xs-offset-9 {
+    margin-left: 37.8747%;
+}
+mor-grid .xs-c-9 {
+    width: 36.8747%;
+}
+mor-grid .xs-offset-10 {
+    margin-left: 42.083%;
+}
+mor-grid .xs-c-10 {
+    width: 41.083%;
+}
+mor-grid .xs-offset-11 {
+    margin-left: 46.2913%;
+}
+mor-grid .xs-c-11 {
+    width: 45.2913%;
+}
+mor-grid .xs-offset-12 {
+    margin-left: 50.4996%;
+}
+mor-grid .xs-c-12 {
+    width: 49.4996%;
+}
+mor-grid .xs-offset-13 {
+    margin-left: 54.7079%;
+}
+mor-grid .xs-c-13 {
+    width: 53.7079%;
+}
+mor-grid .xs-offset-14 {
+    margin-left: 58.9162%;
+}
+mor-grid .xs-c-14 {
+    width: 57.9162%;
+}
+mor-grid .xs-offset-15 {
+    margin-left: 63.1245%;
+}
+mor-grid .xs-c-15 {
+    width: 62.1245%;
+}
+mor-grid .xs-offset-16 {
+    margin-left: 67.3328%;
+}
+mor-grid .xs-c-16 {
+    width: 66.3328%;
+}
+mor-grid .xs-offset-17 {
+    margin-left: 71.5411%;
+}
+mor-grid .xs-c-17 {
+    width: 70.5411%;
+}
+mor-grid .xs-offset-18 {
+    margin-left: 75.7494%;
+}
+mor-grid .xs-c-18 {
+    width: 74.7494%;
+}
+mor-grid .xs-offset-19 {
+    margin-left: 79.9577%;
+}
+mor-grid .xs-c-19 {
+    width: 78.9577%;
+}
+mor-grid .xs-offset-20 {
+    margin-left: 84.166%;
+}
+mor-grid .xs-c-20 {
+    width: 83.166%;
+}
+mor-grid .xs-offset-21 {
+    margin-left: 88.3743%;
+}
+mor-grid .xs-c-21 {
+    width: 87.3743%;
+}
+mor-grid .xs-offset-22 {
+    margin-left: 92.5826%;
+}
+mor-grid .xs-c-22 {
+    width: 91.5826%;
+}
+mor-grid .xs-offset-23 {
+    margin-left: 96.7909%;
+}
+mor-grid .xs-c-23 {
+    width: 95.7909%;
+}
+mor-grid .xs-c-24 {
+    width: 100%;
+}
+mor-grid.nogap .c-n,
+  mor-grid.nogap .xs-c-1,
+  mor-grid.nogap .xs-c-2,
+  mor-grid.nogap .xs-c-3,
+  mor-grid.nogap .xs-c-4,
+  mor-grid.nogap .xs-c-5,
+  mor-grid.nogap .xs-c-6,
+  mor-grid.nogap .xs-c-7,
+  mor-grid.nogap .xs-c-8,
+  mor-grid.nogap .xs-c-9,
+  mor-grid.nogap .xs-c-10,
+  mor-grid.nogap .xs-c-11,
+  mor-grid.nogap .xs-c-12,
+  mor-grid.nogap .xs-c-13,
+  mor-grid.nogap .xs-c-14,
+  mor-grid.nogap .xs-c-15,
+  mor-grid.nogap .xs-c-16,
+  mor-grid.nogap .xs-c-17,
+  mor-grid.nogap .xs-c-18,
+  mor-grid.nogap .xs-c-19,
+  mor-grid.nogap .xs-c-20,
+  mor-grid.nogap .xs-c-21,
+  mor-grid.nogap .xs-c-22,
+  mor-grid.nogap .xs-c-23,
+  mor-grid.nogap .xs-c-24,
+  mor-grid.nogap .c-1,
+  mor-grid.nogap .c-2,
+  mor-grid.nogap .c-3,
+  mor-grid.nogap .c-4,
+  mor-grid.nogap .c-5,
+  mor-grid.nogap .c-6,
+  mor-grid.nogap .c-7,
+  mor-grid.nogap .c-8,
+  mor-grid.nogap .c-9,
+  mor-grid.nogap .c-10,
+  mor-grid.nogap .c-11,
+  mor-grid.nogap .c-12,
+  mor-grid.nogap .c-13,
+  mor-grid.nogap .c-14,
+  mor-grid.nogap .c-15,
+  mor-grid.nogap .c-16,
+  mor-grid.nogap .c-17,
+  mor-grid.nogap .c-18,
+  mor-grid.nogap .c-19,
+  mor-grid.nogap .c-20,
+  mor-grid.nogap .c-21,
+  mor-grid.nogap .c-22,
+  mor-grid.nogap .c-23,
+  mor-grid.nogap .c-24 {
+    display: block;
+    float: left;
+    margin-right: 0;
+}
+mor-grid.nogap .xs-offset-1 {
+    margin-left: 4.1667%;
+}
+mor-grid.nogap .xs-c-1 {
+    width: 4.1667%;
+}
+mor-grid.nogap .xs-offset-2 {
+    margin-left: 8.3334%;
+}
+mor-grid.nogap .xs-c-2 {
+    width: 8.3334%;
+}
+mor-grid.nogap .xs-offset-3 {
+    margin-left: 12.5001%;
+}
+mor-grid.nogap .xs-c-3 {
+    width: 12.5001%;
+}
+mor-grid.nogap .xs-offset-4 {
+    margin-left: 16.6668%;
+}
+mor-grid.nogap .xs-c-4 {
+    width: 16.6668%;
+}
+mor-grid.nogap .xs-offset-5 {
+    margin-left: 20.8335%;
+}
+mor-grid.nogap .xs-c-5 {
+    width: 20.8335%;
+}
+mor-grid.nogap .xs-offset-6 {
+    margin-left: 25.0002%;
+}
+mor-grid.nogap .xs-c-6 {
+    width: 25.0002%;
+}
+mor-grid.nogap .xs-offset-7 {
+    margin-left: 29.1669%;
+}
+mor-grid.nogap .xs-c-7 {
+    width: 29.1669%;
+}
+mor-grid.nogap .xs-offset-8 {
+    margin-left: 33.3336%;
+}
+mor-grid.nogap .xs-c-8 {
+    width: 33.3336%;
+}
+mor-grid.nogap .xs-offset-9 {
+    margin-left: 37.5003%;
+}
+mor-grid.nogap .xs-c-9 {
+    width: 37.5003%;
+}
+mor-grid.nogap .xs-offset-10 {
+    margin-left: 41.667%;
+}
+mor-grid.nogap .xs-c-10 {
+    width: 41.667%;
+}
+mor-grid.nogap .xs-offset-11 {
+    margin-left: 45.8337%;
+}
+mor-grid.nogap .xs-c-11 {
+    width: 45.8337%;
+}
+mor-grid.nogap .xs-offset-12 {
+    margin-left: 50.0004%;
+}
+mor-grid.nogap .xs-c-12 {
+    width: 50.0004%;
+}
+mor-grid.nogap .xs-offset-13 {
+    margin-left: 54.1671%;
+}
+mor-grid.nogap .xs-c-13 {
+    width: 54.1671%;
+}
+mor-grid.nogap .xs-offset-14 {
+    margin-left: 58.3338%;
+}
+mor-grid.nogap .xs-c-14 {
+    width: 58.3338%;
+}
+mor-grid.nogap .xs-offset-15 {
+    margin-left: 62.5005%;
+}
+mor-grid.nogap .xs-c-15 {
+    width: 62.5005%;
+}
+mor-grid.nogap .xs-offset-16 {
+    margin-left: 66.6672%;
+}
+mor-grid.nogap .xs-c-16 {
+    width: 66.6672%;
+}
+mor-grid.nogap .xs-offset-17 {
+    margin-left: 70.8339%;
+}
+mor-grid.nogap .xs-c-17 {
+    width: 70.8339%;
+}
+mor-grid.nogap .xs-offset-18 {
+    margin-left: 75.0006%;
+}
+mor-grid.nogap .xs-c-18 {
+    width: 75.0006%;
+}
+mor-grid.nogap .xs-offset-19 {
+    margin-left: 79.1673%;
+}
+mor-grid.nogap .xs-c-19 {
+    width: 79.1673%;
+}
+mor-grid.nogap .xs-offset-20 {
+    margin-left: 83.334%;
+}
+mor-grid.nogap .xs-c-20 {
+    width: 83.334%;
+}
+mor-grid.nogap .xs-offset-21 {
+    margin-left: 87.5007%;
+}
+mor-grid.nogap .xs-c-21 {
+    width: 87.5007%;
+}
+mor-grid.nogap .xs-offset-22 {
+    margin-left: 91.6674%;
+}
+mor-grid.nogap .xs-c-22 {
+    width: 91.6674%;
+}
+mor-grid.nogap .xs-offset-23 {
+    margin-left: 95.8341%;
+}
+mor-grid.nogap .xs-c-23 {
+    width: 95.8341%;
+}
+mor-grid.nogap .xs-c-24 {
+    width: 100%;
+}
+mor-grid.avggap > [class^='c-']:first-child,
+  mor-grid.avggap > [class^='xs-c-']:first-child,
+  mor-grid.avggap > [class^='s-c-']:first-child,
+  mor-grid.avggap > [class^='m-c-']:first-child,
+  mor-grid.avggap > [class^='l-c-']:first-child,
+  mor-grid.avggap > [class^='xl-c-']:first-child {
+    margin-left: 1%;
+}
+mor-grid.avggap > [class^='c-']:last-child,
+  mor-grid.avggap > [class^='xs-c-']:last-child,
+  mor-grid.avggap > [class^='s-c-']:last-child,
+  mor-grid.avggap > [class^='m-c-']:last-child,
+  mor-grid.avggap > [class^='l-c-']:last-child,
+  mor-grid.avggap > [class^='xl-c-']:last-child {
+    margin-right: 1%;
+}
+mor-grid.avggap .xs-offset-1 {
+    margin-left: 4.125% !important;
+}
+mor-grid.avggap .xs-offset-1:first-child {
+    margin-left: 5.125% !important;
+}
+mor-grid.avggap .xs-offset-1:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .xs-c-1 {
+    width: 3.125%;
+}
+mor-grid.avggap .xs-offset-2 {
+    margin-left: 8.25% !important;
+}
+mor-grid.avggap .xs-offset-2:first-child {
+    margin-left: 9.25% !important;
+}
+mor-grid.avggap .xs-offset-2:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .xs-c-2 {
+    width: 7.25%;
+}
+mor-grid.avggap .xs-offset-3 {
+    margin-left: 12.375% !important;
+}
+mor-grid.avggap .xs-offset-3:first-child {
+    margin-left: 13.375% !important;
+}
+mor-grid.avggap .xs-offset-3:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .xs-c-3 {
+    width: 11.375%;
+}
+mor-grid.avggap .xs-offset-4 {
+    margin-left: 16.5% !important;
+}
+mor-grid.avggap .xs-offset-4:first-child {
+    margin-left: 17.5% !important;
+}
+mor-grid.avggap .xs-offset-4:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .xs-c-4 {
+    width: 15.5%;
+}
+mor-grid.avggap .xs-offset-5 {
+    margin-left: 20.625% !important;
+}
+mor-grid.avggap .xs-offset-5:first-child {
+    margin-left: 21.625% !important;
+}
+mor-grid.avggap .xs-offset-5:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .xs-c-5 {
+    width: 19.625%;
+}
+mor-grid.avggap .xs-offset-6 {
+    margin-left: 24.75% !important;
+}
+mor-grid.avggap .xs-offset-6:first-child {
+    margin-left: 25.75% !important;
+}
+mor-grid.avggap .xs-offset-6:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .xs-c-6 {
+    width: 23.75%;
+}
+mor-grid.avggap .xs-offset-7 {
+    margin-left: 28.875% !important;
+}
+mor-grid.avggap .xs-offset-7:first-child {
+    margin-left: 29.875% !important;
+}
+mor-grid.avggap .xs-offset-7:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .xs-c-7 {
+    width: 27.875%;
+}
+mor-grid.avggap .xs-offset-8 {
+    margin-left: 33% !important;
+}
+mor-grid.avggap .xs-offset-8:first-child {
+    margin-left: 34% !important;
+}
+mor-grid.avggap .xs-offset-8:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .xs-c-8 {
+    width: 32%;
+}
+mor-grid.avggap .xs-offset-9 {
+    margin-left: 37.125% !important;
+}
+mor-grid.avggap .xs-offset-9:first-child {
+    margin-left: 38.125% !important;
+}
+mor-grid.avggap .xs-offset-9:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .xs-c-9 {
+    width: 36.125%;
+}
+mor-grid.avggap .xs-offset-10 {
+    margin-left: 41.25% !important;
+}
+mor-grid.avggap .xs-offset-10:first-child {
+    margin-left: 42.25% !important;
+}
+mor-grid.avggap .xs-offset-10:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .xs-c-10 {
+    width: 40.25%;
+}
+mor-grid.avggap .xs-offset-11 {
+    margin-left: 45.375% !important;
+}
+mor-grid.avggap .xs-offset-11:first-child {
+    margin-left: 46.375% !important;
+}
+mor-grid.avggap .xs-offset-11:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .xs-c-11 {
+    width: 44.375%;
+}
+mor-grid.avggap .xs-offset-12 {
+    margin-left: 49.5% !important;
+}
+mor-grid.avggap .xs-offset-12:first-child {
+    margin-left: 50.5% !important;
+}
+mor-grid.avggap .xs-offset-12:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .xs-c-12 {
+    width: 48.5%;
+}
+mor-grid.avggap .xs-offset-13 {
+    margin-left: 53.625% !important;
+}
+mor-grid.avggap .xs-offset-13:first-child {
+    margin-left: 54.625% !important;
+}
+mor-grid.avggap .xs-offset-13:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .xs-c-13 {
+    width: 52.625%;
+}
+mor-grid.avggap .xs-offset-14 {
+    margin-left: 57.75% !important;
+}
+mor-grid.avggap .xs-offset-14:first-child {
+    margin-left: 58.75% !important;
+}
+mor-grid.avggap .xs-offset-14:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .xs-c-14 {
+    width: 56.75%;
+}
+mor-grid.avggap .xs-offset-15 {
+    margin-left: 61.875% !important;
+}
+mor-grid.avggap .xs-offset-15:first-child {
+    margin-left: 62.875% !important;
+}
+mor-grid.avggap .xs-offset-15:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .xs-c-15 {
+    width: 60.875%;
+}
+mor-grid.avggap .xs-offset-16 {
+    margin-left: 66% !important;
+}
+mor-grid.avggap .xs-offset-16:first-child {
+    margin-left: 67% !important;
+}
+mor-grid.avggap .xs-offset-16:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .xs-c-16 {
+    width: 65%;
+}
+mor-grid.avggap .xs-offset-17 {
+    margin-left: 70.125% !important;
+}
+mor-grid.avggap .xs-offset-17:first-child {
+    margin-left: 71.125% !important;
+}
+mor-grid.avggap .xs-offset-17:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .xs-c-17 {
+    width: 69.125%;
+}
+mor-grid.avggap .xs-offset-18 {
+    margin-left: 74.25% !important;
+}
+mor-grid.avggap .xs-offset-18:first-child {
+    margin-left: 75.25% !important;
+}
+mor-grid.avggap .xs-offset-18:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .xs-c-18 {
+    width: 73.25%;
+}
+mor-grid.avggap .xs-offset-19 {
+    margin-left: 78.375% !important;
+}
+mor-grid.avggap .xs-offset-19:first-child {
+    margin-left: 79.375% !important;
+}
+mor-grid.avggap .xs-offset-19:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .xs-c-19 {
+    width: 77.375%;
+}
+mor-grid.avggap .xs-offset-20 {
+    margin-left: 82.5% !important;
+}
+mor-grid.avggap .xs-offset-20:first-child {
+    margin-left: 83.5% !important;
+}
+mor-grid.avggap .xs-offset-20:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .xs-c-20 {
+    width: 81.5%;
+}
+mor-grid.avggap .xs-offset-21 {
+    margin-left: 86.625% !important;
+}
+mor-grid.avggap .xs-offset-21:first-child {
+    margin-left: 87.625% !important;
+}
+mor-grid.avggap .xs-offset-21:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .xs-c-21 {
+    width: 85.625%;
+}
+mor-grid.avggap .xs-offset-22 {
+    margin-left: 90.75% !important;
+}
+mor-grid.avggap .xs-offset-22:first-child {
+    margin-left: 91.75% !important;
+}
+mor-grid.avggap .xs-offset-22:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .xs-c-22 {
+    width: 89.75%;
+}
+mor-grid.avggap .xs-offset-23 {
+    margin-left: 94.875% !important;
+}
+mor-grid.avggap .xs-offset-23:first-child {
+    margin-left: 95.875% !important;
+}
+mor-grid.avggap .xs-offset-23:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .xs-c-23 {
+    width: 93.875%;
+}
+mor-grid.avggap .xs-c-24 {
+    width: 100%;
+}
+}
+@media only screen and (min-width: 576px) and (max-width: 767.98px) {
+mor-grid .c-n,
+  mor-grid .s-c-1,
+  mor-grid .s-c-2,
+  mor-grid .s-c-3,
+  mor-grid .s-c-4,
+  mor-grid .s-c-5,
+  mor-grid .s-c-6,
+  mor-grid .s-c-7,
+  mor-grid .s-c-8,
+  mor-grid .s-c-9,
+  mor-grid .s-c-10,
+  mor-grid .s-c-11,
+  mor-grid .s-c-12,
+  mor-grid .s-c-13,
+  mor-grid .s-c-14,
+  mor-grid .s-c-15,
+  mor-grid .s-c-16,
+  mor-grid .s-c-17,
+  mor-grid .s-c-18,
+  mor-grid .s-c-19,
+  mor-grid .s-c-20,
+  mor-grid .s-c-21,
+  mor-grid .s-c-22,
+  mor-grid .s-c-23,
+  mor-grid .s-c-24,
+  mor-grid .c-1,
+  mor-grid .c-2,
+  mor-grid .c-3,
+  mor-grid .c-4,
+  mor-grid .c-5,
+  mor-grid .c-6,
+  mor-grid .c-7,
+  mor-grid .c-8,
+  mor-grid .c-9,
+  mor-grid .c-10,
+  mor-grid .c-11,
+  mor-grid .c-12,
+  mor-grid .c-13,
+  mor-grid .c-14,
+  mor-grid .c-15,
+  mor-grid .c-16,
+  mor-grid .c-17,
+  mor-grid .c-18,
+  mor-grid .c-19,
+  mor-grid .c-20,
+  mor-grid .c-21,
+  mor-grid .c-22,
+  mor-grid .c-23,
+  mor-grid .c-24 {
+    display: block;
+    float: left;
+    margin-right: 1%;
+}
+mor-grid .s-offset-1 {
+    margin-left: 4.2083%;
+}
+mor-grid .s-c-1 {
+    width: 3.2083%;
+}
+mor-grid .s-offset-2 {
+    margin-left: 8.4166%;
+}
+mor-grid .s-c-2 {
+    width: 7.4166%;
+}
+mor-grid .s-offset-3 {
+    margin-left: 12.6249%;
+}
+mor-grid .s-c-3 {
+    width: 11.6249%;
+}
+mor-grid .s-offset-4 {
+    margin-left: 16.8332%;
+}
+mor-grid .s-c-4 {
+    width: 15.8332%;
+}
+mor-grid .s-offset-5 {
+    margin-left: 21.0415%;
+}
+mor-grid .s-c-5 {
+    width: 20.0415%;
+}
+mor-grid .s-offset-6 {
+    margin-left: 25.2498%;
+}
+mor-grid .s-c-6 {
+    width: 24.2498%;
+}
+mor-grid .s-offset-7 {
+    margin-left: 29.4581%;
+}
+mor-grid .s-c-7 {
+    width: 28.4581%;
+}
+mor-grid .s-offset-8 {
+    margin-left: 33.6664%;
+}
+mor-grid .s-c-8 {
+    width: 32.6664%;
+}
+mor-grid .s-offset-9 {
+    margin-left: 37.8747%;
+}
+mor-grid .s-c-9 {
+    width: 36.8747%;
+}
+mor-grid .s-offset-10 {
+    margin-left: 42.083%;
+}
+mor-grid .s-c-10 {
+    width: 41.083%;
+}
+mor-grid .s-offset-11 {
+    margin-left: 46.2913%;
+}
+mor-grid .s-c-11 {
+    width: 45.2913%;
+}
+mor-grid .s-offset-12 {
+    margin-left: 50.4996%;
+}
+mor-grid .s-c-12 {
+    width: 49.4996%;
+}
+mor-grid .s-offset-13 {
+    margin-left: 54.7079%;
+}
+mor-grid .s-c-13 {
+    width: 53.7079%;
+}
+mor-grid .s-offset-14 {
+    margin-left: 58.9162%;
+}
+mor-grid .s-c-14 {
+    width: 57.9162%;
+}
+mor-grid .s-offset-15 {
+    margin-left: 63.1245%;
+}
+mor-grid .s-c-15 {
+    width: 62.1245%;
+}
+mor-grid .s-offset-16 {
+    margin-left: 67.3328%;
+}
+mor-grid .s-c-16 {
+    width: 66.3328%;
+}
+mor-grid .s-offset-17 {
+    margin-left: 71.5411%;
+}
+mor-grid .s-c-17 {
+    width: 70.5411%;
+}
+mor-grid .s-offset-18 {
+    margin-left: 75.7494%;
+}
+mor-grid .s-c-18 {
+    width: 74.7494%;
+}
+mor-grid .s-offset-19 {
+    margin-left: 79.9577%;
+}
+mor-grid .s-c-19 {
+    width: 78.9577%;
+}
+mor-grid .s-offset-20 {
+    margin-left: 84.166%;
+}
+mor-grid .s-c-20 {
+    width: 83.166%;
+}
+mor-grid .s-offset-21 {
+    margin-left: 88.3743%;
+}
+mor-grid .s-c-21 {
+    width: 87.3743%;
+}
+mor-grid .s-offset-22 {
+    margin-left: 92.5826%;
+}
+mor-grid .s-c-22 {
+    width: 91.5826%;
+}
+mor-grid .s-offset-23 {
+    margin-left: 96.7909%;
+}
+mor-grid .s-c-23 {
+    width: 95.7909%;
+}
+mor-grid .s-c-24 {
+    width: 100%;
+}
+mor-grid.nogap .c-n,
+  mor-grid.nogap .s-c-1,
+  mor-grid.nogap .s-c-2,
+  mor-grid.nogap .s-c-3,
+  mor-grid.nogap .s-c-4,
+  mor-grid.nogap .s-c-5,
+  mor-grid.nogap .s-c-6,
+  mor-grid.nogap .s-c-7,
+  mor-grid.nogap .s-c-8,
+  mor-grid.nogap .s-c-9,
+  mor-grid.nogap .s-c-10,
+  mor-grid.nogap .s-c-11,
+  mor-grid.nogap .s-c-12,
+  mor-grid.nogap .s-c-13,
+  mor-grid.nogap .s-c-14,
+  mor-grid.nogap .s-c-15,
+  mor-grid.nogap .s-c-16,
+  mor-grid.nogap .s-c-17,
+  mor-grid.nogap .s-c-18,
+  mor-grid.nogap .s-c-19,
+  mor-grid.nogap .s-c-20,
+  mor-grid.nogap .s-c-21,
+  mor-grid.nogap .s-c-22,
+  mor-grid.nogap .s-c-23,
+  mor-grid.nogap .s-c-24,
+  mor-grid.nogap .c-1,
+  mor-grid.nogap .c-2,
+  mor-grid.nogap .c-3,
+  mor-grid.nogap .c-4,
+  mor-grid.nogap .c-5,
+  mor-grid.nogap .c-6,
+  mor-grid.nogap .c-7,
+  mor-grid.nogap .c-8,
+  mor-grid.nogap .c-9,
+  mor-grid.nogap .c-10,
+  mor-grid.nogap .c-11,
+  mor-grid.nogap .c-12,
+  mor-grid.nogap .c-13,
+  mor-grid.nogap .c-14,
+  mor-grid.nogap .c-15,
+  mor-grid.nogap .c-16,
+  mor-grid.nogap .c-17,
+  mor-grid.nogap .c-18,
+  mor-grid.nogap .c-19,
+  mor-grid.nogap .c-20,
+  mor-grid.nogap .c-21,
+  mor-grid.nogap .c-22,
+  mor-grid.nogap .c-23,
+  mor-grid.nogap .c-24 {
+    display: block;
+    float: left;
+    margin-right: 0;
+}
+mor-grid.nogap .s-offset-1 {
+    margin-left: 4.1667%;
+}
+mor-grid.nogap .s-c-1 {
+    width: 4.1667%;
+}
+mor-grid.nogap .s-offset-2 {
+    margin-left: 8.3334%;
+}
+mor-grid.nogap .s-c-2 {
+    width: 8.3334%;
+}
+mor-grid.nogap .s-offset-3 {
+    margin-left: 12.5001%;
+}
+mor-grid.nogap .s-c-3 {
+    width: 12.5001%;
+}
+mor-grid.nogap .s-offset-4 {
+    margin-left: 16.6668%;
+}
+mor-grid.nogap .s-c-4 {
+    width: 16.6668%;
+}
+mor-grid.nogap .s-offset-5 {
+    margin-left: 20.8335%;
+}
+mor-grid.nogap .s-c-5 {
+    width: 20.8335%;
+}
+mor-grid.nogap .s-offset-6 {
+    margin-left: 25.0002%;
+}
+mor-grid.nogap .s-c-6 {
+    width: 25.0002%;
+}
+mor-grid.nogap .s-offset-7 {
+    margin-left: 29.1669%;
+}
+mor-grid.nogap .s-c-7 {
+    width: 29.1669%;
+}
+mor-grid.nogap .s-offset-8 {
+    margin-left: 33.3336%;
+}
+mor-grid.nogap .s-c-8 {
+    width: 33.3336%;
+}
+mor-grid.nogap .s-offset-9 {
+    margin-left: 37.5003%;
+}
+mor-grid.nogap .s-c-9 {
+    width: 37.5003%;
+}
+mor-grid.nogap .s-offset-10 {
+    margin-left: 41.667%;
+}
+mor-grid.nogap .s-c-10 {
+    width: 41.667%;
+}
+mor-grid.nogap .s-offset-11 {
+    margin-left: 45.8337%;
+}
+mor-grid.nogap .s-c-11 {
+    width: 45.8337%;
+}
+mor-grid.nogap .s-offset-12 {
+    margin-left: 50.0004%;
+}
+mor-grid.nogap .s-c-12 {
+    width: 50.0004%;
+}
+mor-grid.nogap .s-offset-13 {
+    margin-left: 54.1671%;
+}
+mor-grid.nogap .s-c-13 {
+    width: 54.1671%;
+}
+mor-grid.nogap .s-offset-14 {
+    margin-left: 58.3338%;
+}
+mor-grid.nogap .s-c-14 {
+    width: 58.3338%;
+}
+mor-grid.nogap .s-offset-15 {
+    margin-left: 62.5005%;
+}
+mor-grid.nogap .s-c-15 {
+    width: 62.5005%;
+}
+mor-grid.nogap .s-offset-16 {
+    margin-left: 66.6672%;
+}
+mor-grid.nogap .s-c-16 {
+    width: 66.6672%;
+}
+mor-grid.nogap .s-offset-17 {
+    margin-left: 70.8339%;
+}
+mor-grid.nogap .s-c-17 {
+    width: 70.8339%;
+}
+mor-grid.nogap .s-offset-18 {
+    margin-left: 75.0006%;
+}
+mor-grid.nogap .s-c-18 {
+    width: 75.0006%;
+}
+mor-grid.nogap .s-offset-19 {
+    margin-left: 79.1673%;
+}
+mor-grid.nogap .s-c-19 {
+    width: 79.1673%;
+}
+mor-grid.nogap .s-offset-20 {
+    margin-left: 83.334%;
+}
+mor-grid.nogap .s-c-20 {
+    width: 83.334%;
+}
+mor-grid.nogap .s-offset-21 {
+    margin-left: 87.5007%;
+}
+mor-grid.nogap .s-c-21 {
+    width: 87.5007%;
+}
+mor-grid.nogap .s-offset-22 {
+    margin-left: 91.6674%;
+}
+mor-grid.nogap .s-c-22 {
+    width: 91.6674%;
+}
+mor-grid.nogap .s-offset-23 {
+    margin-left: 95.8341%;
+}
+mor-grid.nogap .s-c-23 {
+    width: 95.8341%;
+}
+mor-grid.nogap .s-c-24 {
+    width: 100%;
+}
+mor-grid.avggap > [class^='c-']:first-child,
+  mor-grid.avggap > [class^='xs-c-']:first-child,
+  mor-grid.avggap > [class^='s-c-']:first-child,
+  mor-grid.avggap > [class^='m-c-']:first-child,
+  mor-grid.avggap > [class^='l-c-']:first-child,
+  mor-grid.avggap > [class^='xl-c-']:first-child {
+    margin-left: 1%;
+}
+mor-grid.avggap > [class^='c-']:last-child,
+  mor-grid.avggap > [class^='xs-c-']:last-child,
+  mor-grid.avggap > [class^='s-c-']:last-child,
+  mor-grid.avggap > [class^='m-c-']:last-child,
+  mor-grid.avggap > [class^='l-c-']:last-child,
+  mor-grid.avggap > [class^='xl-c-']:last-child {
+    margin-right: 1%;
+}
+mor-grid.avggap .s-offset-1 {
+    margin-left: 4.125% !important;
+}
+mor-grid.avggap .s-offset-1:first-child {
+    margin-left: 5.125% !important;
+}
+mor-grid.avggap .s-offset-1:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .s-c-1 {
+    width: 3.125%;
+}
+mor-grid.avggap .s-offset-2 {
+    margin-left: 8.25% !important;
+}
+mor-grid.avggap .s-offset-2:first-child {
+    margin-left: 9.25% !important;
+}
+mor-grid.avggap .s-offset-2:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .s-c-2 {
+    width: 7.25%;
+}
+mor-grid.avggap .s-offset-3 {
+    margin-left: 12.375% !important;
+}
+mor-grid.avggap .s-offset-3:first-child {
+    margin-left: 13.375% !important;
+}
+mor-grid.avggap .s-offset-3:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .s-c-3 {
+    width: 11.375%;
+}
+mor-grid.avggap .s-offset-4 {
+    margin-left: 16.5% !important;
+}
+mor-grid.avggap .s-offset-4:first-child {
+    margin-left: 17.5% !important;
+}
+mor-grid.avggap .s-offset-4:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .s-c-4 {
+    width: 15.5%;
+}
+mor-grid.avggap .s-offset-5 {
+    margin-left: 20.625% !important;
+}
+mor-grid.avggap .s-offset-5:first-child {
+    margin-left: 21.625% !important;
+}
+mor-grid.avggap .s-offset-5:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .s-c-5 {
+    width: 19.625%;
+}
+mor-grid.avggap .s-offset-6 {
+    margin-left: 24.75% !important;
+}
+mor-grid.avggap .s-offset-6:first-child {
+    margin-left: 25.75% !important;
+}
+mor-grid.avggap .s-offset-6:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .s-c-6 {
+    width: 23.75%;
+}
+mor-grid.avggap .s-offset-7 {
+    margin-left: 28.875% !important;
+}
+mor-grid.avggap .s-offset-7:first-child {
+    margin-left: 29.875% !important;
+}
+mor-grid.avggap .s-offset-7:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .s-c-7 {
+    width: 27.875%;
+}
+mor-grid.avggap .s-offset-8 {
+    margin-left: 33% !important;
+}
+mor-grid.avggap .s-offset-8:first-child {
+    margin-left: 34% !important;
+}
+mor-grid.avggap .s-offset-8:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .s-c-8 {
+    width: 32%;
+}
+mor-grid.avggap .s-offset-9 {
+    margin-left: 37.125% !important;
+}
+mor-grid.avggap .s-offset-9:first-child {
+    margin-left: 38.125% !important;
+}
+mor-grid.avggap .s-offset-9:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .s-c-9 {
+    width: 36.125%;
+}
+mor-grid.avggap .s-offset-10 {
+    margin-left: 41.25% !important;
+}
+mor-grid.avggap .s-offset-10:first-child {
+    margin-left: 42.25% !important;
+}
+mor-grid.avggap .s-offset-10:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .s-c-10 {
+    width: 40.25%;
+}
+mor-grid.avggap .s-offset-11 {
+    margin-left: 45.375% !important;
+}
+mor-grid.avggap .s-offset-11:first-child {
+    margin-left: 46.375% !important;
+}
+mor-grid.avggap .s-offset-11:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .s-c-11 {
+    width: 44.375%;
+}
+mor-grid.avggap .s-offset-12 {
+    margin-left: 49.5% !important;
+}
+mor-grid.avggap .s-offset-12:first-child {
+    margin-left: 50.5% !important;
+}
+mor-grid.avggap .s-offset-12:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .s-c-12 {
+    width: 48.5%;
+}
+mor-grid.avggap .s-offset-13 {
+    margin-left: 53.625% !important;
+}
+mor-grid.avggap .s-offset-13:first-child {
+    margin-left: 54.625% !important;
+}
+mor-grid.avggap .s-offset-13:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .s-c-13 {
+    width: 52.625%;
+}
+mor-grid.avggap .s-offset-14 {
+    margin-left: 57.75% !important;
+}
+mor-grid.avggap .s-offset-14:first-child {
+    margin-left: 58.75% !important;
+}
+mor-grid.avggap .s-offset-14:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .s-c-14 {
+    width: 56.75%;
+}
+mor-grid.avggap .s-offset-15 {
+    margin-left: 61.875% !important;
+}
+mor-grid.avggap .s-offset-15:first-child {
+    margin-left: 62.875% !important;
+}
+mor-grid.avggap .s-offset-15:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .s-c-15 {
+    width: 60.875%;
+}
+mor-grid.avggap .s-offset-16 {
+    margin-left: 66% !important;
+}
+mor-grid.avggap .s-offset-16:first-child {
+    margin-left: 67% !important;
+}
+mor-grid.avggap .s-offset-16:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .s-c-16 {
+    width: 65%;
+}
+mor-grid.avggap .s-offset-17 {
+    margin-left: 70.125% !important;
+}
+mor-grid.avggap .s-offset-17:first-child {
+    margin-left: 71.125% !important;
+}
+mor-grid.avggap .s-offset-17:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .s-c-17 {
+    width: 69.125%;
+}
+mor-grid.avggap .s-offset-18 {
+    margin-left: 74.25% !important;
+}
+mor-grid.avggap .s-offset-18:first-child {
+    margin-left: 75.25% !important;
+}
+mor-grid.avggap .s-offset-18:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .s-c-18 {
+    width: 73.25%;
+}
+mor-grid.avggap .s-offset-19 {
+    margin-left: 78.375% !important;
+}
+mor-grid.avggap .s-offset-19:first-child {
+    margin-left: 79.375% !important;
+}
+mor-grid.avggap .s-offset-19:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .s-c-19 {
+    width: 77.375%;
+}
+mor-grid.avggap .s-offset-20 {
+    margin-left: 82.5% !important;
+}
+mor-grid.avggap .s-offset-20:first-child {
+    margin-left: 83.5% !important;
+}
+mor-grid.avggap .s-offset-20:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .s-c-20 {
+    width: 81.5%;
+}
+mor-grid.avggap .s-offset-21 {
+    margin-left: 86.625% !important;
+}
+mor-grid.avggap .s-offset-21:first-child {
+    margin-left: 87.625% !important;
+}
+mor-grid.avggap .s-offset-21:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .s-c-21 {
+    width: 85.625%;
+}
+mor-grid.avggap .s-offset-22 {
+    margin-left: 90.75% !important;
+}
+mor-grid.avggap .s-offset-22:first-child {
+    margin-left: 91.75% !important;
+}
+mor-grid.avggap .s-offset-22:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .s-c-22 {
+    width: 89.75%;
+}
+mor-grid.avggap .s-offset-23 {
+    margin-left: 94.875% !important;
+}
+mor-grid.avggap .s-offset-23:first-child {
+    margin-left: 95.875% !important;
+}
+mor-grid.avggap .s-offset-23:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .s-c-23 {
+    width: 93.875%;
+}
+mor-grid.avggap .s-c-24 {
+    width: 100%;
+}
+}
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+mor-grid .c-n,
+  mor-grid .m-c-1,
+  mor-grid .m-c-2,
+  mor-grid .m-c-3,
+  mor-grid .m-c-4,
+  mor-grid .m-c-5,
+  mor-grid .m-c-6,
+  mor-grid .m-c-7,
+  mor-grid .m-c-8,
+  mor-grid .m-c-9,
+  mor-grid .m-c-10,
+  mor-grid .m-c-11,
+  mor-grid .m-c-12,
+  mor-grid .m-c-13,
+  mor-grid .m-c-14,
+  mor-grid .m-c-15,
+  mor-grid .m-c-16,
+  mor-grid .m-c-17,
+  mor-grid .m-c-18,
+  mor-grid .m-c-19,
+  mor-grid .m-c-20,
+  mor-grid .m-c-21,
+  mor-grid .m-c-22,
+  mor-grid .m-c-23,
+  mor-grid .m-c-24,
+  mor-grid .c-1,
+  mor-grid .c-2,
+  mor-grid .c-3,
+  mor-grid .c-4,
+  mor-grid .c-5,
+  mor-grid .c-6,
+  mor-grid .c-7,
+  mor-grid .c-8,
+  mor-grid .c-9,
+  mor-grid .c-10,
+  mor-grid .c-11,
+  mor-grid .c-12,
+  mor-grid .c-13,
+  mor-grid .c-14,
+  mor-grid .c-15,
+  mor-grid .c-16,
+  mor-grid .c-17,
+  mor-grid .c-18,
+  mor-grid .c-19,
+  mor-grid .c-20,
+  mor-grid .c-21,
+  mor-grid .c-22,
+  mor-grid .c-23,
+  mor-grid .c-24 {
+    display: block;
+    float: left;
+    margin-right: 1%;
+}
+mor-grid .m-offset-1 {
+    margin-left: 4.2083%;
+}
+mor-grid .m-c-1 {
+    width: 3.2083%;
+}
+mor-grid .m-offset-2 {
+    margin-left: 8.4166%;
+}
+mor-grid .m-c-2 {
+    width: 7.4166%;
+}
+mor-grid .m-offset-3 {
+    margin-left: 12.6249%;
+}
+mor-grid .m-c-3 {
+    width: 11.6249%;
+}
+mor-grid .m-offset-4 {
+    margin-left: 16.8332%;
+}
+mor-grid .m-c-4 {
+    width: 15.8332%;
+}
+mor-grid .m-offset-5 {
+    margin-left: 21.0415%;
+}
+mor-grid .m-c-5 {
+    width: 20.0415%;
+}
+mor-grid .m-offset-6 {
+    margin-left: 25.2498%;
+}
+mor-grid .m-c-6 {
+    width: 24.2498%;
+}
+mor-grid .m-offset-7 {
+    margin-left: 29.4581%;
+}
+mor-grid .m-c-7 {
+    width: 28.4581%;
+}
+mor-grid .m-offset-8 {
+    margin-left: 33.6664%;
+}
+mor-grid .m-c-8 {
+    width: 32.6664%;
+}
+mor-grid .m-offset-9 {
+    margin-left: 37.8747%;
+}
+mor-grid .m-c-9 {
+    width: 36.8747%;
+}
+mor-grid .m-offset-10 {
+    margin-left: 42.083%;
+}
+mor-grid .m-c-10 {
+    width: 41.083%;
+}
+mor-grid .m-offset-11 {
+    margin-left: 46.2913%;
+}
+mor-grid .m-c-11 {
+    width: 45.2913%;
+}
+mor-grid .m-offset-12 {
+    margin-left: 50.4996%;
+}
+mor-grid .m-c-12 {
+    width: 49.4996%;
+}
+mor-grid .m-offset-13 {
+    margin-left: 54.7079%;
+}
+mor-grid .m-c-13 {
+    width: 53.7079%;
+}
+mor-grid .m-offset-14 {
+    margin-left: 58.9162%;
+}
+mor-grid .m-c-14 {
+    width: 57.9162%;
+}
+mor-grid .m-offset-15 {
+    margin-left: 63.1245%;
+}
+mor-grid .m-c-15 {
+    width: 62.1245%;
+}
+mor-grid .m-offset-16 {
+    margin-left: 67.3328%;
+}
+mor-grid .m-c-16 {
+    width: 66.3328%;
+}
+mor-grid .m-offset-17 {
+    margin-left: 71.5411%;
+}
+mor-grid .m-c-17 {
+    width: 70.5411%;
+}
+mor-grid .m-offset-18 {
+    margin-left: 75.7494%;
+}
+mor-grid .m-c-18 {
+    width: 74.7494%;
+}
+mor-grid .m-offset-19 {
+    margin-left: 79.9577%;
+}
+mor-grid .m-c-19 {
+    width: 78.9577%;
+}
+mor-grid .m-offset-20 {
+    margin-left: 84.166%;
+}
+mor-grid .m-c-20 {
+    width: 83.166%;
+}
+mor-grid .m-offset-21 {
+    margin-left: 88.3743%;
+}
+mor-grid .m-c-21 {
+    width: 87.3743%;
+}
+mor-grid .m-offset-22 {
+    margin-left: 92.5826%;
+}
+mor-grid .m-c-22 {
+    width: 91.5826%;
+}
+mor-grid .m-offset-23 {
+    margin-left: 96.7909%;
+}
+mor-grid .m-c-23 {
+    width: 95.7909%;
+}
+mor-grid .m-c-24 {
+    width: 100%;
+}
+mor-grid.nogap .c-n,
+  mor-grid.nogap .m-c-1,
+  mor-grid.nogap .m-c-2,
+  mor-grid.nogap .m-c-3,
+  mor-grid.nogap .m-c-4,
+  mor-grid.nogap .m-c-5,
+  mor-grid.nogap .m-c-6,
+  mor-grid.nogap .m-c-7,
+  mor-grid.nogap .m-c-8,
+  mor-grid.nogap .m-c-9,
+  mor-grid.nogap .m-c-10,
+  mor-grid.nogap .m-c-11,
+  mor-grid.nogap .m-c-12,
+  mor-grid.nogap .m-c-13,
+  mor-grid.nogap .m-c-14,
+  mor-grid.nogap .m-c-15,
+  mor-grid.nogap .m-c-16,
+  mor-grid.nogap .m-c-17,
+  mor-grid.nogap .m-c-18,
+  mor-grid.nogap .m-c-19,
+  mor-grid.nogap .m-c-20,
+  mor-grid.nogap .m-c-21,
+  mor-grid.nogap .m-c-22,
+  mor-grid.nogap .m-c-23,
+  mor-grid.nogap .m-c-24,
+  mor-grid.nogap .c-1,
+  mor-grid.nogap .c-2,
+  mor-grid.nogap .c-3,
+  mor-grid.nogap .c-4,
+  mor-grid.nogap .c-5,
+  mor-grid.nogap .c-6,
+  mor-grid.nogap .c-7,
+  mor-grid.nogap .c-8,
+  mor-grid.nogap .c-9,
+  mor-grid.nogap .c-10,
+  mor-grid.nogap .c-11,
+  mor-grid.nogap .c-12,
+  mor-grid.nogap .c-13,
+  mor-grid.nogap .c-14,
+  mor-grid.nogap .c-15,
+  mor-grid.nogap .c-16,
+  mor-grid.nogap .c-17,
+  mor-grid.nogap .c-18,
+  mor-grid.nogap .c-19,
+  mor-grid.nogap .c-20,
+  mor-grid.nogap .c-21,
+  mor-grid.nogap .c-22,
+  mor-grid.nogap .c-23,
+  mor-grid.nogap .c-24 {
+    display: block;
+    float: left;
+    margin-right: 0;
+}
+mor-grid.nogap .m-offset-1 {
+    margin-left: 4.1667%;
+}
+mor-grid.nogap .m-c-1 {
+    width: 4.1667%;
+}
+mor-grid.nogap .m-offset-2 {
+    margin-left: 8.3334%;
+}
+mor-grid.nogap .m-c-2 {
+    width: 8.3334%;
+}
+mor-grid.nogap .m-offset-3 {
+    margin-left: 12.5001%;
+}
+mor-grid.nogap .m-c-3 {
+    width: 12.5001%;
+}
+mor-grid.nogap .m-offset-4 {
+    margin-left: 16.6668%;
+}
+mor-grid.nogap .m-c-4 {
+    width: 16.6668%;
+}
+mor-grid.nogap .m-offset-5 {
+    margin-left: 20.8335%;
+}
+mor-grid.nogap .m-c-5 {
+    width: 20.8335%;
+}
+mor-grid.nogap .m-offset-6 {
+    margin-left: 25.0002%;
+}
+mor-grid.nogap .m-c-6 {
+    width: 25.0002%;
+}
+mor-grid.nogap .m-offset-7 {
+    margin-left: 29.1669%;
+}
+mor-grid.nogap .m-c-7 {
+    width: 29.1669%;
+}
+mor-grid.nogap .m-offset-8 {
+    margin-left: 33.3336%;
+}
+mor-grid.nogap .m-c-8 {
+    width: 33.3336%;
+}
+mor-grid.nogap .m-offset-9 {
+    margin-left: 37.5003%;
+}
+mor-grid.nogap .m-c-9 {
+    width: 37.5003%;
+}
+mor-grid.nogap .m-offset-10 {
+    margin-left: 41.667%;
+}
+mor-grid.nogap .m-c-10 {
+    width: 41.667%;
+}
+mor-grid.nogap .m-offset-11 {
+    margin-left: 45.8337%;
+}
+mor-grid.nogap .m-c-11 {
+    width: 45.8337%;
+}
+mor-grid.nogap .m-offset-12 {
+    margin-left: 50.0004%;
+}
+mor-grid.nogap .m-c-12 {
+    width: 50.0004%;
+}
+mor-grid.nogap .m-offset-13 {
+    margin-left: 54.1671%;
+}
+mor-grid.nogap .m-c-13 {
+    width: 54.1671%;
+}
+mor-grid.nogap .m-offset-14 {
+    margin-left: 58.3338%;
+}
+mor-grid.nogap .m-c-14 {
+    width: 58.3338%;
+}
+mor-grid.nogap .m-offset-15 {
+    margin-left: 62.5005%;
+}
+mor-grid.nogap .m-c-15 {
+    width: 62.5005%;
+}
+mor-grid.nogap .m-offset-16 {
+    margin-left: 66.6672%;
+}
+mor-grid.nogap .m-c-16 {
+    width: 66.6672%;
+}
+mor-grid.nogap .m-offset-17 {
+    margin-left: 70.8339%;
+}
+mor-grid.nogap .m-c-17 {
+    width: 70.8339%;
+}
+mor-grid.nogap .m-offset-18 {
+    margin-left: 75.0006%;
+}
+mor-grid.nogap .m-c-18 {
+    width: 75.0006%;
+}
+mor-grid.nogap .m-offset-19 {
+    margin-left: 79.1673%;
+}
+mor-grid.nogap .m-c-19 {
+    width: 79.1673%;
+}
+mor-grid.nogap .m-offset-20 {
+    margin-left: 83.334%;
+}
+mor-grid.nogap .m-c-20 {
+    width: 83.334%;
+}
+mor-grid.nogap .m-offset-21 {
+    margin-left: 87.5007%;
+}
+mor-grid.nogap .m-c-21 {
+    width: 87.5007%;
+}
+mor-grid.nogap .m-offset-22 {
+    margin-left: 91.6674%;
+}
+mor-grid.nogap .m-c-22 {
+    width: 91.6674%;
+}
+mor-grid.nogap .m-offset-23 {
+    margin-left: 95.8341%;
+}
+mor-grid.nogap .m-c-23 {
+    width: 95.8341%;
+}
+mor-grid.nogap .m-c-24 {
+    width: 100%;
+}
+mor-grid.avggap > [class^='c-']:first-child,
+  mor-grid.avggap > [class^='xs-c-']:first-child,
+  mor-grid.avggap > [class^='s-c-']:first-child,
+  mor-grid.avggap > [class^='m-c-']:first-child,
+  mor-grid.avggap > [class^='l-c-']:first-child,
+  mor-grid.avggap > [class^='xl-c-']:first-child {
+    margin-left: 1%;
+}
+mor-grid.avggap > [class^='c-']:last-child,
+  mor-grid.avggap > [class^='xs-c-']:last-child,
+  mor-grid.avggap > [class^='s-c-']:last-child,
+  mor-grid.avggap > [class^='m-c-']:last-child,
+  mor-grid.avggap > [class^='l-c-']:last-child,
+  mor-grid.avggap > [class^='xl-c-']:last-child {
+    margin-right: 1%;
+}
+mor-grid.avggap .m-offset-1 {
+    margin-left: 4.125% !important;
+}
+mor-grid.avggap .m-offset-1:first-child {
+    margin-left: 5.125% !important;
+}
+mor-grid.avggap .m-offset-1:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .m-c-1 {
+    width: 3.125%;
+}
+mor-grid.avggap .m-offset-2 {
+    margin-left: 8.25% !important;
+}
+mor-grid.avggap .m-offset-2:first-child {
+    margin-left: 9.25% !important;
+}
+mor-grid.avggap .m-offset-2:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .m-c-2 {
+    width: 7.25%;
+}
+mor-grid.avggap .m-offset-3 {
+    margin-left: 12.375% !important;
+}
+mor-grid.avggap .m-offset-3:first-child {
+    margin-left: 13.375% !important;
+}
+mor-grid.avggap .m-offset-3:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .m-c-3 {
+    width: 11.375%;
+}
+mor-grid.avggap .m-offset-4 {
+    margin-left: 16.5% !important;
+}
+mor-grid.avggap .m-offset-4:first-child {
+    margin-left: 17.5% !important;
+}
+mor-grid.avggap .m-offset-4:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .m-c-4 {
+    width: 15.5%;
+}
+mor-grid.avggap .m-offset-5 {
+    margin-left: 20.625% !important;
+}
+mor-grid.avggap .m-offset-5:first-child {
+    margin-left: 21.625% !important;
+}
+mor-grid.avggap .m-offset-5:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .m-c-5 {
+    width: 19.625%;
+}
+mor-grid.avggap .m-offset-6 {
+    margin-left: 24.75% !important;
+}
+mor-grid.avggap .m-offset-6:first-child {
+    margin-left: 25.75% !important;
+}
+mor-grid.avggap .m-offset-6:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .m-c-6 {
+    width: 23.75%;
+}
+mor-grid.avggap .m-offset-7 {
+    margin-left: 28.875% !important;
+}
+mor-grid.avggap .m-offset-7:first-child {
+    margin-left: 29.875% !important;
+}
+mor-grid.avggap .m-offset-7:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .m-c-7 {
+    width: 27.875%;
+}
+mor-grid.avggap .m-offset-8 {
+    margin-left: 33% !important;
+}
+mor-grid.avggap .m-offset-8:first-child {
+    margin-left: 34% !important;
+}
+mor-grid.avggap .m-offset-8:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .m-c-8 {
+    width: 32%;
+}
+mor-grid.avggap .m-offset-9 {
+    margin-left: 37.125% !important;
+}
+mor-grid.avggap .m-offset-9:first-child {
+    margin-left: 38.125% !important;
+}
+mor-grid.avggap .m-offset-9:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .m-c-9 {
+    width: 36.125%;
+}
+mor-grid.avggap .m-offset-10 {
+    margin-left: 41.25% !important;
+}
+mor-grid.avggap .m-offset-10:first-child {
+    margin-left: 42.25% !important;
+}
+mor-grid.avggap .m-offset-10:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .m-c-10 {
+    width: 40.25%;
+}
+mor-grid.avggap .m-offset-11 {
+    margin-left: 45.375% !important;
+}
+mor-grid.avggap .m-offset-11:first-child {
+    margin-left: 46.375% !important;
+}
+mor-grid.avggap .m-offset-11:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .m-c-11 {
+    width: 44.375%;
+}
+mor-grid.avggap .m-offset-12 {
+    margin-left: 49.5% !important;
+}
+mor-grid.avggap .m-offset-12:first-child {
+    margin-left: 50.5% !important;
+}
+mor-grid.avggap .m-offset-12:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .m-c-12 {
+    width: 48.5%;
+}
+mor-grid.avggap .m-offset-13 {
+    margin-left: 53.625% !important;
+}
+mor-grid.avggap .m-offset-13:first-child {
+    margin-left: 54.625% !important;
+}
+mor-grid.avggap .m-offset-13:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .m-c-13 {
+    width: 52.625%;
+}
+mor-grid.avggap .m-offset-14 {
+    margin-left: 57.75% !important;
+}
+mor-grid.avggap .m-offset-14:first-child {
+    margin-left: 58.75% !important;
+}
+mor-grid.avggap .m-offset-14:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .m-c-14 {
+    width: 56.75%;
+}
+mor-grid.avggap .m-offset-15 {
+    margin-left: 61.875% !important;
+}
+mor-grid.avggap .m-offset-15:first-child {
+    margin-left: 62.875% !important;
+}
+mor-grid.avggap .m-offset-15:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .m-c-15 {
+    width: 60.875%;
+}
+mor-grid.avggap .m-offset-16 {
+    margin-left: 66% !important;
+}
+mor-grid.avggap .m-offset-16:first-child {
+    margin-left: 67% !important;
+}
+mor-grid.avggap .m-offset-16:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .m-c-16 {
+    width: 65%;
+}
+mor-grid.avggap .m-offset-17 {
+    margin-left: 70.125% !important;
+}
+mor-grid.avggap .m-offset-17:first-child {
+    margin-left: 71.125% !important;
+}
+mor-grid.avggap .m-offset-17:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .m-c-17 {
+    width: 69.125%;
+}
+mor-grid.avggap .m-offset-18 {
+    margin-left: 74.25% !important;
+}
+mor-grid.avggap .m-offset-18:first-child {
+    margin-left: 75.25% !important;
+}
+mor-grid.avggap .m-offset-18:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .m-c-18 {
+    width: 73.25%;
+}
+mor-grid.avggap .m-offset-19 {
+    margin-left: 78.375% !important;
+}
+mor-grid.avggap .m-offset-19:first-child {
+    margin-left: 79.375% !important;
+}
+mor-grid.avggap .m-offset-19:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .m-c-19 {
+    width: 77.375%;
+}
+mor-grid.avggap .m-offset-20 {
+    margin-left: 82.5% !important;
+}
+mor-grid.avggap .m-offset-20:first-child {
+    margin-left: 83.5% !important;
+}
+mor-grid.avggap .m-offset-20:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .m-c-20 {
+    width: 81.5%;
+}
+mor-grid.avggap .m-offset-21 {
+    margin-left: 86.625% !important;
+}
+mor-grid.avggap .m-offset-21:first-child {
+    margin-left: 87.625% !important;
+}
+mor-grid.avggap .m-offset-21:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .m-c-21 {
+    width: 85.625%;
+}
+mor-grid.avggap .m-offset-22 {
+    margin-left: 90.75% !important;
+}
+mor-grid.avggap .m-offset-22:first-child {
+    margin-left: 91.75% !important;
+}
+mor-grid.avggap .m-offset-22:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .m-c-22 {
+    width: 89.75%;
+}
+mor-grid.avggap .m-offset-23 {
+    margin-left: 94.875% !important;
+}
+mor-grid.avggap .m-offset-23:first-child {
+    margin-left: 95.875% !important;
+}
+mor-grid.avggap .m-offset-23:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .m-c-23 {
+    width: 93.875%;
+}
+mor-grid.avggap .m-c-24 {
+    width: 100%;
+}
+}
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+mor-grid .c-n,
+  mor-grid .l-c-1,
+  mor-grid .l-c-2,
+  mor-grid .l-c-3,
+  mor-grid .l-c-4,
+  mor-grid .l-c-5,
+  mor-grid .l-c-6,
+  mor-grid .l-c-7,
+  mor-grid .l-c-8,
+  mor-grid .l-c-9,
+  mor-grid .l-c-10,
+  mor-grid .l-c-11,
+  mor-grid .l-c-12,
+  mor-grid .l-c-13,
+  mor-grid .l-c-14,
+  mor-grid .l-c-15,
+  mor-grid .l-c-16,
+  mor-grid .l-c-17,
+  mor-grid .l-c-18,
+  mor-grid .l-c-19,
+  mor-grid .l-c-20,
+  mor-grid .l-c-21,
+  mor-grid .l-c-22,
+  mor-grid .l-c-23,
+  mor-grid .l-c-24,
+  mor-grid .c-1,
+  mor-grid .c-2,
+  mor-grid .c-3,
+  mor-grid .c-4,
+  mor-grid .c-5,
+  mor-grid .c-6,
+  mor-grid .c-7,
+  mor-grid .c-8,
+  mor-grid .c-9,
+  mor-grid .c-10,
+  mor-grid .c-11,
+  mor-grid .c-12,
+  mor-grid .c-13,
+  mor-grid .c-14,
+  mor-grid .c-15,
+  mor-grid .c-16,
+  mor-grid .c-17,
+  mor-grid .c-18,
+  mor-grid .c-19,
+  mor-grid .c-20,
+  mor-grid .c-21,
+  mor-grid .c-22,
+  mor-grid .c-23,
+  mor-grid .c-24 {
+    display: block;
+    float: left;
+    margin-right: 1%;
+}
+mor-grid .l-offset-1 {
+    margin-left: 4.2083%;
+}
+mor-grid .l-c-1 {
+    width: 3.2083%;
+}
+mor-grid .l-offset-2 {
+    margin-left: 8.4166%;
+}
+mor-grid .l-c-2 {
+    width: 7.4166%;
+}
+mor-grid .l-offset-3 {
+    margin-left: 12.6249%;
+}
+mor-grid .l-c-3 {
+    width: 11.6249%;
+}
+mor-grid .l-offset-4 {
+    margin-left: 16.8332%;
+}
+mor-grid .l-c-4 {
+    width: 15.8332%;
+}
+mor-grid .l-offset-5 {
+    margin-left: 21.0415%;
+}
+mor-grid .l-c-5 {
+    width: 20.0415%;
+}
+mor-grid .l-offset-6 {
+    margin-left: 25.2498%;
+}
+mor-grid .l-c-6 {
+    width: 24.2498%;
+}
+mor-grid .l-offset-7 {
+    margin-left: 29.4581%;
+}
+mor-grid .l-c-7 {
+    width: 28.4581%;
+}
+mor-grid .l-offset-8 {
+    margin-left: 33.6664%;
+}
+mor-grid .l-c-8 {
+    width: 32.6664%;
+}
+mor-grid .l-offset-9 {
+    margin-left: 37.8747%;
+}
+mor-grid .l-c-9 {
+    width: 36.8747%;
+}
+mor-grid .l-offset-10 {
+    margin-left: 42.083%;
+}
+mor-grid .l-c-10 {
+    width: 41.083%;
+}
+mor-grid .l-offset-11 {
+    margin-left: 46.2913%;
+}
+mor-grid .l-c-11 {
+    width: 45.2913%;
+}
+mor-grid .l-offset-12 {
+    margin-left: 50.4996%;
+}
+mor-grid .l-c-12 {
+    width: 49.4996%;
+}
+mor-grid .l-offset-13 {
+    margin-left: 54.7079%;
+}
+mor-grid .l-c-13 {
+    width: 53.7079%;
+}
+mor-grid .l-offset-14 {
+    margin-left: 58.9162%;
+}
+mor-grid .l-c-14 {
+    width: 57.9162%;
+}
+mor-grid .l-offset-15 {
+    margin-left: 63.1245%;
+}
+mor-grid .l-c-15 {
+    width: 62.1245%;
+}
+mor-grid .l-offset-16 {
+    margin-left: 67.3328%;
+}
+mor-grid .l-c-16 {
+    width: 66.3328%;
+}
+mor-grid .l-offset-17 {
+    margin-left: 71.5411%;
+}
+mor-grid .l-c-17 {
+    width: 70.5411%;
+}
+mor-grid .l-offset-18 {
+    margin-left: 75.7494%;
+}
+mor-grid .l-c-18 {
+    width: 74.7494%;
+}
+mor-grid .l-offset-19 {
+    margin-left: 79.9577%;
+}
+mor-grid .l-c-19 {
+    width: 78.9577%;
+}
+mor-grid .l-offset-20 {
+    margin-left: 84.166%;
+}
+mor-grid .l-c-20 {
+    width: 83.166%;
+}
+mor-grid .l-offset-21 {
+    margin-left: 88.3743%;
+}
+mor-grid .l-c-21 {
+    width: 87.3743%;
+}
+mor-grid .l-offset-22 {
+    margin-left: 92.5826%;
+}
+mor-grid .l-c-22 {
+    width: 91.5826%;
+}
+mor-grid .l-offset-23 {
+    margin-left: 96.7909%;
+}
+mor-grid .l-c-23 {
+    width: 95.7909%;
+}
+mor-grid .l-c-24 {
+    width: 100%;
+}
+mor-grid.nogap .c-n,
+  mor-grid.nogap .l-c-1,
+  mor-grid.nogap .l-c-2,
+  mor-grid.nogap .l-c-3,
+  mor-grid.nogap .l-c-4,
+  mor-grid.nogap .l-c-5,
+  mor-grid.nogap .l-c-6,
+  mor-grid.nogap .l-c-7,
+  mor-grid.nogap .l-c-8,
+  mor-grid.nogap .l-c-9,
+  mor-grid.nogap .l-c-10,
+  mor-grid.nogap .l-c-11,
+  mor-grid.nogap .l-c-12,
+  mor-grid.nogap .l-c-13,
+  mor-grid.nogap .l-c-14,
+  mor-grid.nogap .l-c-15,
+  mor-grid.nogap .l-c-16,
+  mor-grid.nogap .l-c-17,
+  mor-grid.nogap .l-c-18,
+  mor-grid.nogap .l-c-19,
+  mor-grid.nogap .l-c-20,
+  mor-grid.nogap .l-c-21,
+  mor-grid.nogap .l-c-22,
+  mor-grid.nogap .l-c-23,
+  mor-grid.nogap .l-c-24,
+  mor-grid.nogap .c-1,
+  mor-grid.nogap .c-2,
+  mor-grid.nogap .c-3,
+  mor-grid.nogap .c-4,
+  mor-grid.nogap .c-5,
+  mor-grid.nogap .c-6,
+  mor-grid.nogap .c-7,
+  mor-grid.nogap .c-8,
+  mor-grid.nogap .c-9,
+  mor-grid.nogap .c-10,
+  mor-grid.nogap .c-11,
+  mor-grid.nogap .c-12,
+  mor-grid.nogap .c-13,
+  mor-grid.nogap .c-14,
+  mor-grid.nogap .c-15,
+  mor-grid.nogap .c-16,
+  mor-grid.nogap .c-17,
+  mor-grid.nogap .c-18,
+  mor-grid.nogap .c-19,
+  mor-grid.nogap .c-20,
+  mor-grid.nogap .c-21,
+  mor-grid.nogap .c-22,
+  mor-grid.nogap .c-23,
+  mor-grid.nogap .c-24 {
+    display: block;
+    float: left;
+    margin-right: 0;
+}
+mor-grid.nogap .l-offset-1 {
+    margin-left: 4.1667%;
+}
+mor-grid.nogap .l-c-1 {
+    width: 4.1667%;
+}
+mor-grid.nogap .l-offset-2 {
+    margin-left: 8.3334%;
+}
+mor-grid.nogap .l-c-2 {
+    width: 8.3334%;
+}
+mor-grid.nogap .l-offset-3 {
+    margin-left: 12.5001%;
+}
+mor-grid.nogap .l-c-3 {
+    width: 12.5001%;
+}
+mor-grid.nogap .l-offset-4 {
+    margin-left: 16.6668%;
+}
+mor-grid.nogap .l-c-4 {
+    width: 16.6668%;
+}
+mor-grid.nogap .l-offset-5 {
+    margin-left: 20.8335%;
+}
+mor-grid.nogap .l-c-5 {
+    width: 20.8335%;
+}
+mor-grid.nogap .l-offset-6 {
+    margin-left: 25.0002%;
+}
+mor-grid.nogap .l-c-6 {
+    width: 25.0002%;
+}
+mor-grid.nogap .l-offset-7 {
+    margin-left: 29.1669%;
+}
+mor-grid.nogap .l-c-7 {
+    width: 29.1669%;
+}
+mor-grid.nogap .l-offset-8 {
+    margin-left: 33.3336%;
+}
+mor-grid.nogap .l-c-8 {
+    width: 33.3336%;
+}
+mor-grid.nogap .l-offset-9 {
+    margin-left: 37.5003%;
+}
+mor-grid.nogap .l-c-9 {
+    width: 37.5003%;
+}
+mor-grid.nogap .l-offset-10 {
+    margin-left: 41.667%;
+}
+mor-grid.nogap .l-c-10 {
+    width: 41.667%;
+}
+mor-grid.nogap .l-offset-11 {
+    margin-left: 45.8337%;
+}
+mor-grid.nogap .l-c-11 {
+    width: 45.8337%;
+}
+mor-grid.nogap .l-offset-12 {
+    margin-left: 50.0004%;
+}
+mor-grid.nogap .l-c-12 {
+    width: 50.0004%;
+}
+mor-grid.nogap .l-offset-13 {
+    margin-left: 54.1671%;
+}
+mor-grid.nogap .l-c-13 {
+    width: 54.1671%;
+}
+mor-grid.nogap .l-offset-14 {
+    margin-left: 58.3338%;
+}
+mor-grid.nogap .l-c-14 {
+    width: 58.3338%;
+}
+mor-grid.nogap .l-offset-15 {
+    margin-left: 62.5005%;
+}
+mor-grid.nogap .l-c-15 {
+    width: 62.5005%;
+}
+mor-grid.nogap .l-offset-16 {
+    margin-left: 66.6672%;
+}
+mor-grid.nogap .l-c-16 {
+    width: 66.6672%;
+}
+mor-grid.nogap .l-offset-17 {
+    margin-left: 70.8339%;
+}
+mor-grid.nogap .l-c-17 {
+    width: 70.8339%;
+}
+mor-grid.nogap .l-offset-18 {
+    margin-left: 75.0006%;
+}
+mor-grid.nogap .l-c-18 {
+    width: 75.0006%;
+}
+mor-grid.nogap .l-offset-19 {
+    margin-left: 79.1673%;
+}
+mor-grid.nogap .l-c-19 {
+    width: 79.1673%;
+}
+mor-grid.nogap .l-offset-20 {
+    margin-left: 83.334%;
+}
+mor-grid.nogap .l-c-20 {
+    width: 83.334%;
+}
+mor-grid.nogap .l-offset-21 {
+    margin-left: 87.5007%;
+}
+mor-grid.nogap .l-c-21 {
+    width: 87.5007%;
+}
+mor-grid.nogap .l-offset-22 {
+    margin-left: 91.6674%;
+}
+mor-grid.nogap .l-c-22 {
+    width: 91.6674%;
+}
+mor-grid.nogap .l-offset-23 {
+    margin-left: 95.8341%;
+}
+mor-grid.nogap .l-c-23 {
+    width: 95.8341%;
+}
+mor-grid.nogap .l-c-24 {
+    width: 100%;
+}
+mor-grid.avggap > [class^='c-']:first-child,
+  mor-grid.avggap > [class^='xs-c-']:first-child,
+  mor-grid.avggap > [class^='s-c-']:first-child,
+  mor-grid.avggap > [class^='m-c-']:first-child,
+  mor-grid.avggap > [class^='l-c-']:first-child,
+  mor-grid.avggap > [class^='xl-c-']:first-child {
+    margin-left: 1%;
+}
+mor-grid.avggap > [class^='c-']:last-child,
+  mor-grid.avggap > [class^='xs-c-']:last-child,
+  mor-grid.avggap > [class^='s-c-']:last-child,
+  mor-grid.avggap > [class^='m-c-']:last-child,
+  mor-grid.avggap > [class^='l-c-']:last-child,
+  mor-grid.avggap > [class^='xl-c-']:last-child {
+    margin-right: 1%;
+}
+mor-grid.avggap .l-offset-1 {
+    margin-left: 4.125% !important;
+}
+mor-grid.avggap .l-offset-1:first-child {
+    margin-left: 5.125% !important;
+}
+mor-grid.avggap .l-offset-1:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .l-c-1 {
+    width: 3.125%;
+}
+mor-grid.avggap .l-offset-2 {
+    margin-left: 8.25% !important;
+}
+mor-grid.avggap .l-offset-2:first-child {
+    margin-left: 9.25% !important;
+}
+mor-grid.avggap .l-offset-2:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .l-c-2 {
+    width: 7.25%;
+}
+mor-grid.avggap .l-offset-3 {
+    margin-left: 12.375% !important;
+}
+mor-grid.avggap .l-offset-3:first-child {
+    margin-left: 13.375% !important;
+}
+mor-grid.avggap .l-offset-3:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .l-c-3 {
+    width: 11.375%;
+}
+mor-grid.avggap .l-offset-4 {
+    margin-left: 16.5% !important;
+}
+mor-grid.avggap .l-offset-4:first-child {
+    margin-left: 17.5% !important;
+}
+mor-grid.avggap .l-offset-4:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .l-c-4 {
+    width: 15.5%;
+}
+mor-grid.avggap .l-offset-5 {
+    margin-left: 20.625% !important;
+}
+mor-grid.avggap .l-offset-5:first-child {
+    margin-left: 21.625% !important;
+}
+mor-grid.avggap .l-offset-5:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .l-c-5 {
+    width: 19.625%;
+}
+mor-grid.avggap .l-offset-6 {
+    margin-left: 24.75% !important;
+}
+mor-grid.avggap .l-offset-6:first-child {
+    margin-left: 25.75% !important;
+}
+mor-grid.avggap .l-offset-6:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .l-c-6 {
+    width: 23.75%;
+}
+mor-grid.avggap .l-offset-7 {
+    margin-left: 28.875% !important;
+}
+mor-grid.avggap .l-offset-7:first-child {
+    margin-left: 29.875% !important;
+}
+mor-grid.avggap .l-offset-7:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .l-c-7 {
+    width: 27.875%;
+}
+mor-grid.avggap .l-offset-8 {
+    margin-left: 33% !important;
+}
+mor-grid.avggap .l-offset-8:first-child {
+    margin-left: 34% !important;
+}
+mor-grid.avggap .l-offset-8:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .l-c-8 {
+    width: 32%;
+}
+mor-grid.avggap .l-offset-9 {
+    margin-left: 37.125% !important;
+}
+mor-grid.avggap .l-offset-9:first-child {
+    margin-left: 38.125% !important;
+}
+mor-grid.avggap .l-offset-9:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .l-c-9 {
+    width: 36.125%;
+}
+mor-grid.avggap .l-offset-10 {
+    margin-left: 41.25% !important;
+}
+mor-grid.avggap .l-offset-10:first-child {
+    margin-left: 42.25% !important;
+}
+mor-grid.avggap .l-offset-10:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .l-c-10 {
+    width: 40.25%;
+}
+mor-grid.avggap .l-offset-11 {
+    margin-left: 45.375% !important;
+}
+mor-grid.avggap .l-offset-11:first-child {
+    margin-left: 46.375% !important;
+}
+mor-grid.avggap .l-offset-11:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .l-c-11 {
+    width: 44.375%;
+}
+mor-grid.avggap .l-offset-12 {
+    margin-left: 49.5% !important;
+}
+mor-grid.avggap .l-offset-12:first-child {
+    margin-left: 50.5% !important;
+}
+mor-grid.avggap .l-offset-12:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .l-c-12 {
+    width: 48.5%;
+}
+mor-grid.avggap .l-offset-13 {
+    margin-left: 53.625% !important;
+}
+mor-grid.avggap .l-offset-13:first-child {
+    margin-left: 54.625% !important;
+}
+mor-grid.avggap .l-offset-13:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .l-c-13 {
+    width: 52.625%;
+}
+mor-grid.avggap .l-offset-14 {
+    margin-left: 57.75% !important;
+}
+mor-grid.avggap .l-offset-14:first-child {
+    margin-left: 58.75% !important;
+}
+mor-grid.avggap .l-offset-14:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .l-c-14 {
+    width: 56.75%;
+}
+mor-grid.avggap .l-offset-15 {
+    margin-left: 61.875% !important;
+}
+mor-grid.avggap .l-offset-15:first-child {
+    margin-left: 62.875% !important;
+}
+mor-grid.avggap .l-offset-15:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .l-c-15 {
+    width: 60.875%;
+}
+mor-grid.avggap .l-offset-16 {
+    margin-left: 66% !important;
+}
+mor-grid.avggap .l-offset-16:first-child {
+    margin-left: 67% !important;
+}
+mor-grid.avggap .l-offset-16:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .l-c-16 {
+    width: 65%;
+}
+mor-grid.avggap .l-offset-17 {
+    margin-left: 70.125% !important;
+}
+mor-grid.avggap .l-offset-17:first-child {
+    margin-left: 71.125% !important;
+}
+mor-grid.avggap .l-offset-17:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .l-c-17 {
+    width: 69.125%;
+}
+mor-grid.avggap .l-offset-18 {
+    margin-left: 74.25% !important;
+}
+mor-grid.avggap .l-offset-18:first-child {
+    margin-left: 75.25% !important;
+}
+mor-grid.avggap .l-offset-18:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .l-c-18 {
+    width: 73.25%;
+}
+mor-grid.avggap .l-offset-19 {
+    margin-left: 78.375% !important;
+}
+mor-grid.avggap .l-offset-19:first-child {
+    margin-left: 79.375% !important;
+}
+mor-grid.avggap .l-offset-19:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .l-c-19 {
+    width: 77.375%;
+}
+mor-grid.avggap .l-offset-20 {
+    margin-left: 82.5% !important;
+}
+mor-grid.avggap .l-offset-20:first-child {
+    margin-left: 83.5% !important;
+}
+mor-grid.avggap .l-offset-20:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .l-c-20 {
+    width: 81.5%;
+}
+mor-grid.avggap .l-offset-21 {
+    margin-left: 86.625% !important;
+}
+mor-grid.avggap .l-offset-21:first-child {
+    margin-left: 87.625% !important;
+}
+mor-grid.avggap .l-offset-21:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .l-c-21 {
+    width: 85.625%;
+}
+mor-grid.avggap .l-offset-22 {
+    margin-left: 90.75% !important;
+}
+mor-grid.avggap .l-offset-22:first-child {
+    margin-left: 91.75% !important;
+}
+mor-grid.avggap .l-offset-22:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .l-c-22 {
+    width: 89.75%;
+}
+mor-grid.avggap .l-offset-23 {
+    margin-left: 94.875% !important;
+}
+mor-grid.avggap .l-offset-23:first-child {
+    margin-left: 95.875% !important;
+}
+mor-grid.avggap .l-offset-23:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .l-c-23 {
+    width: 93.875%;
+}
+mor-grid.avggap .l-c-24 {
+    width: 100%;
+}
+}
+@media only screen and (min-width: 1200px) {
+mor-grid .c-n,
+  mor-grid .xl-c-1,
+  mor-grid .xl-c-2,
+  mor-grid .xl-c-3,
+  mor-grid .xl-c-4,
+  mor-grid .xl-c-5,
+  mor-grid .xl-c-6,
+  mor-grid .xl-c-7,
+  mor-grid .xl-c-8,
+  mor-grid .xl-c-9,
+  mor-grid .xl-c-10,
+  mor-grid .xl-c-11,
+  mor-grid .xl-c-12,
+  mor-grid .xl-c-13,
+  mor-grid .xl-c-14,
+  mor-grid .xl-c-15,
+  mor-grid .xl-c-16,
+  mor-grid .xl-c-17,
+  mor-grid .xl-c-18,
+  mor-grid .xl-c-19,
+  mor-grid .xl-c-20,
+  mor-grid .xl-c-21,
+  mor-grid .xl-c-22,
+  mor-grid .xl-c-23,
+  mor-grid .xl-c-24,
+  mor-grid .c-1,
+  mor-grid .c-2,
+  mor-grid .c-3,
+  mor-grid .c-4,
+  mor-grid .c-5,
+  mor-grid .c-6,
+  mor-grid .c-7,
+  mor-grid .c-8,
+  mor-grid .c-9,
+  mor-grid .c-10,
+  mor-grid .c-11,
+  mor-grid .c-12,
+  mor-grid .c-13,
+  mor-grid .c-14,
+  mor-grid .c-15,
+  mor-grid .c-16,
+  mor-grid .c-17,
+  mor-grid .c-18,
+  mor-grid .c-19,
+  mor-grid .c-20,
+  mor-grid .c-21,
+  mor-grid .c-22,
+  mor-grid .c-23,
+  mor-grid .c-24 {
+    display: block;
+    float: left;
+    margin-right: 1%;
+}
+mor-grid .xl-offset-1 {
+    margin-left: 4.2083%;
+}
+mor-grid .xl-c-1 {
+    width: 3.2083%;
+}
+mor-grid .xl-offset-2 {
+    margin-left: 8.4166%;
+}
+mor-grid .xl-c-2 {
+    width: 7.4166%;
+}
+mor-grid .xl-offset-3 {
+    margin-left: 12.6249%;
+}
+mor-grid .xl-c-3 {
+    width: 11.6249%;
+}
+mor-grid .xl-offset-4 {
+    margin-left: 16.8332%;
+}
+mor-grid .xl-c-4 {
+    width: 15.8332%;
+}
+mor-grid .xl-offset-5 {
+    margin-left: 21.0415%;
+}
+mor-grid .xl-c-5 {
+    width: 20.0415%;
+}
+mor-grid .xl-offset-6 {
+    margin-left: 25.2498%;
+}
+mor-grid .xl-c-6 {
+    width: 24.2498%;
+}
+mor-grid .xl-offset-7 {
+    margin-left: 29.4581%;
+}
+mor-grid .xl-c-7 {
+    width: 28.4581%;
+}
+mor-grid .xl-offset-8 {
+    margin-left: 33.6664%;
+}
+mor-grid .xl-c-8 {
+    width: 32.6664%;
+}
+mor-grid .xl-offset-9 {
+    margin-left: 37.8747%;
+}
+mor-grid .xl-c-9 {
+    width: 36.8747%;
+}
+mor-grid .xl-offset-10 {
+    margin-left: 42.083%;
+}
+mor-grid .xl-c-10 {
+    width: 41.083%;
+}
+mor-grid .xl-offset-11 {
+    margin-left: 46.2913%;
+}
+mor-grid .xl-c-11 {
+    width: 45.2913%;
+}
+mor-grid .xl-offset-12 {
+    margin-left: 50.4996%;
+}
+mor-grid .xl-c-12 {
+    width: 49.4996%;
+}
+mor-grid .xl-offset-13 {
+    margin-left: 54.7079%;
+}
+mor-grid .xl-c-13 {
+    width: 53.7079%;
+}
+mor-grid .xl-offset-14 {
+    margin-left: 58.9162%;
+}
+mor-grid .xl-c-14 {
+    width: 57.9162%;
+}
+mor-grid .xl-offset-15 {
+    margin-left: 63.1245%;
+}
+mor-grid .xl-c-15 {
+    width: 62.1245%;
+}
+mor-grid .xl-offset-16 {
+    margin-left: 67.3328%;
+}
+mor-grid .xl-c-16 {
+    width: 66.3328%;
+}
+mor-grid .xl-offset-17 {
+    margin-left: 71.5411%;
+}
+mor-grid .xl-c-17 {
+    width: 70.5411%;
+}
+mor-grid .xl-offset-18 {
+    margin-left: 75.7494%;
+}
+mor-grid .xl-c-18 {
+    width: 74.7494%;
+}
+mor-grid .xl-offset-19 {
+    margin-left: 79.9577%;
+}
+mor-grid .xl-c-19 {
+    width: 78.9577%;
+}
+mor-grid .xl-offset-20 {
+    margin-left: 84.166%;
+}
+mor-grid .xl-c-20 {
+    width: 83.166%;
+}
+mor-grid .xl-offset-21 {
+    margin-left: 88.3743%;
+}
+mor-grid .xl-c-21 {
+    width: 87.3743%;
+}
+mor-grid .xl-offset-22 {
+    margin-left: 92.5826%;
+}
+mor-grid .xl-c-22 {
+    width: 91.5826%;
+}
+mor-grid .xl-offset-23 {
+    margin-left: 96.7909%;
+}
+mor-grid .xl-c-23 {
+    width: 95.7909%;
+}
+mor-grid .xl-c-24 {
+    width: 100%;
+}
+mor-grid.nogap .c-n,
+  mor-grid.nogap .xl-c-1,
+  mor-grid.nogap .xl-c-2,
+  mor-grid.nogap .xl-c-3,
+  mor-grid.nogap .xl-c-4,
+  mor-grid.nogap .xl-c-5,
+  mor-grid.nogap .xl-c-6,
+  mor-grid.nogap .xl-c-7,
+  mor-grid.nogap .xl-c-8,
+  mor-grid.nogap .xl-c-9,
+  mor-grid.nogap .xl-c-10,
+  mor-grid.nogap .xl-c-11,
+  mor-grid.nogap .xl-c-12,
+  mor-grid.nogap .xl-c-13,
+  mor-grid.nogap .xl-c-14,
+  mor-grid.nogap .xl-c-15,
+  mor-grid.nogap .xl-c-16,
+  mor-grid.nogap .xl-c-17,
+  mor-grid.nogap .xl-c-18,
+  mor-grid.nogap .xl-c-19,
+  mor-grid.nogap .xl-c-20,
+  mor-grid.nogap .xl-c-21,
+  mor-grid.nogap .xl-c-22,
+  mor-grid.nogap .xl-c-23,
+  mor-grid.nogap .xl-c-24,
+  mor-grid.nogap .c-1,
+  mor-grid.nogap .c-2,
+  mor-grid.nogap .c-3,
+  mor-grid.nogap .c-4,
+  mor-grid.nogap .c-5,
+  mor-grid.nogap .c-6,
+  mor-grid.nogap .c-7,
+  mor-grid.nogap .c-8,
+  mor-grid.nogap .c-9,
+  mor-grid.nogap .c-10,
+  mor-grid.nogap .c-11,
+  mor-grid.nogap .c-12,
+  mor-grid.nogap .c-13,
+  mor-grid.nogap .c-14,
+  mor-grid.nogap .c-15,
+  mor-grid.nogap .c-16,
+  mor-grid.nogap .c-17,
+  mor-grid.nogap .c-18,
+  mor-grid.nogap .c-19,
+  mor-grid.nogap .c-20,
+  mor-grid.nogap .c-21,
+  mor-grid.nogap .c-22,
+  mor-grid.nogap .c-23,
+  mor-grid.nogap .c-24 {
+    display: block;
+    float: left;
+    margin-right: 0;
+}
+mor-grid.nogap .xl-offset-1 {
+    margin-left: 4.1667%;
+}
+mor-grid.nogap .xl-c-1 {
+    width: 4.1667%;
+}
+mor-grid.nogap .xl-offset-2 {
+    margin-left: 8.3334%;
+}
+mor-grid.nogap .xl-c-2 {
+    width: 8.3334%;
+}
+mor-grid.nogap .xl-offset-3 {
+    margin-left: 12.5001%;
+}
+mor-grid.nogap .xl-c-3 {
+    width: 12.5001%;
+}
+mor-grid.nogap .xl-offset-4 {
+    margin-left: 16.6668%;
+}
+mor-grid.nogap .xl-c-4 {
+    width: 16.6668%;
+}
+mor-grid.nogap .xl-offset-5 {
+    margin-left: 20.8335%;
+}
+mor-grid.nogap .xl-c-5 {
+    width: 20.8335%;
+}
+mor-grid.nogap .xl-offset-6 {
+    margin-left: 25.0002%;
+}
+mor-grid.nogap .xl-c-6 {
+    width: 25.0002%;
+}
+mor-grid.nogap .xl-offset-7 {
+    margin-left: 29.1669%;
+}
+mor-grid.nogap .xl-c-7 {
+    width: 29.1669%;
+}
+mor-grid.nogap .xl-offset-8 {
+    margin-left: 33.3336%;
+}
+mor-grid.nogap .xl-c-8 {
+    width: 33.3336%;
+}
+mor-grid.nogap .xl-offset-9 {
+    margin-left: 37.5003%;
+}
+mor-grid.nogap .xl-c-9 {
+    width: 37.5003%;
+}
+mor-grid.nogap .xl-offset-10 {
+    margin-left: 41.667%;
+}
+mor-grid.nogap .xl-c-10 {
+    width: 41.667%;
+}
+mor-grid.nogap .xl-offset-11 {
+    margin-left: 45.8337%;
+}
+mor-grid.nogap .xl-c-11 {
+    width: 45.8337%;
+}
+mor-grid.nogap .xl-offset-12 {
+    margin-left: 50.0004%;
+}
+mor-grid.nogap .xl-c-12 {
+    width: 50.0004%;
+}
+mor-grid.nogap .xl-offset-13 {
+    margin-left: 54.1671%;
+}
+mor-grid.nogap .xl-c-13 {
+    width: 54.1671%;
+}
+mor-grid.nogap .xl-offset-14 {
+    margin-left: 58.3338%;
+}
+mor-grid.nogap .xl-c-14 {
+    width: 58.3338%;
+}
+mor-grid.nogap .xl-offset-15 {
+    margin-left: 62.5005%;
+}
+mor-grid.nogap .xl-c-15 {
+    width: 62.5005%;
+}
+mor-grid.nogap .xl-offset-16 {
+    margin-left: 66.6672%;
+}
+mor-grid.nogap .xl-c-16 {
+    width: 66.6672%;
+}
+mor-grid.nogap .xl-offset-17 {
+    margin-left: 70.8339%;
+}
+mor-grid.nogap .xl-c-17 {
+    width: 70.8339%;
+}
+mor-grid.nogap .xl-offset-18 {
+    margin-left: 75.0006%;
+}
+mor-grid.nogap .xl-c-18 {
+    width: 75.0006%;
+}
+mor-grid.nogap .xl-offset-19 {
+    margin-left: 79.1673%;
+}
+mor-grid.nogap .xl-c-19 {
+    width: 79.1673%;
+}
+mor-grid.nogap .xl-offset-20 {
+    margin-left: 83.334%;
+}
+mor-grid.nogap .xl-c-20 {
+    width: 83.334%;
+}
+mor-grid.nogap .xl-offset-21 {
+    margin-left: 87.5007%;
+}
+mor-grid.nogap .xl-c-21 {
+    width: 87.5007%;
+}
+mor-grid.nogap .xl-offset-22 {
+    margin-left: 91.6674%;
+}
+mor-grid.nogap .xl-c-22 {
+    width: 91.6674%;
+}
+mor-grid.nogap .xl-offset-23 {
+    margin-left: 95.8341%;
+}
+mor-grid.nogap .xl-c-23 {
+    width: 95.8341%;
+}
+mor-grid.nogap .xl-c-24 {
+    width: 100%;
+}
+mor-grid.avggap > [class^='c-']:first-child,
+  mor-grid.avggap > [class^='xs-c-']:first-child,
+  mor-grid.avggap > [class^='s-c-']:first-child,
+  mor-grid.avggap > [class^='m-c-']:first-child,
+  mor-grid.avggap > [class^='l-c-']:first-child,
+  mor-grid.avggap > [class^='xl-c-']:first-child {
+    margin-left: 1%;
+}
+mor-grid.avggap > [class^='c-']:last-child,
+  mor-grid.avggap > [class^='xs-c-']:last-child,
+  mor-grid.avggap > [class^='s-c-']:last-child,
+  mor-grid.avggap > [class^='m-c-']:last-child,
+  mor-grid.avggap > [class^='l-c-']:last-child,
+  mor-grid.avggap > [class^='xl-c-']:last-child {
+    margin-right: 1%;
+}
+mor-grid.avggap .xl-offset-1 {
+    margin-left: 4.125% !important;
+}
+mor-grid.avggap .xl-offset-1:first-child {
+    margin-left: 5.125% !important;
+}
+mor-grid.avggap .xl-offset-1:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .xl-c-1 {
+    width: 3.125%;
+}
+mor-grid.avggap .xl-offset-2 {
+    margin-left: 8.25% !important;
+}
+mor-grid.avggap .xl-offset-2:first-child {
+    margin-left: 9.25% !important;
+}
+mor-grid.avggap .xl-offset-2:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .xl-c-2 {
+    width: 7.25%;
+}
+mor-grid.avggap .xl-offset-3 {
+    margin-left: 12.375% !important;
+}
+mor-grid.avggap .xl-offset-3:first-child {
+    margin-left: 13.375% !important;
+}
+mor-grid.avggap .xl-offset-3:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .xl-c-3 {
+    width: 11.375%;
+}
+mor-grid.avggap .xl-offset-4 {
+    margin-left: 16.5% !important;
+}
+mor-grid.avggap .xl-offset-4:first-child {
+    margin-left: 17.5% !important;
+}
+mor-grid.avggap .xl-offset-4:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .xl-c-4 {
+    width: 15.5%;
+}
+mor-grid.avggap .xl-offset-5 {
+    margin-left: 20.625% !important;
+}
+mor-grid.avggap .xl-offset-5:first-child {
+    margin-left: 21.625% !important;
+}
+mor-grid.avggap .xl-offset-5:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .xl-c-5 {
+    width: 19.625%;
+}
+mor-grid.avggap .xl-offset-6 {
+    margin-left: 24.75% !important;
+}
+mor-grid.avggap .xl-offset-6:first-child {
+    margin-left: 25.75% !important;
+}
+mor-grid.avggap .xl-offset-6:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .xl-c-6 {
+    width: 23.75%;
+}
+mor-grid.avggap .xl-offset-7 {
+    margin-left: 28.875% !important;
+}
+mor-grid.avggap .xl-offset-7:first-child {
+    margin-left: 29.875% !important;
+}
+mor-grid.avggap .xl-offset-7:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .xl-c-7 {
+    width: 27.875%;
+}
+mor-grid.avggap .xl-offset-8 {
+    margin-left: 33% !important;
+}
+mor-grid.avggap .xl-offset-8:first-child {
+    margin-left: 34% !important;
+}
+mor-grid.avggap .xl-offset-8:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .xl-c-8 {
+    width: 32%;
+}
+mor-grid.avggap .xl-offset-9 {
+    margin-left: 37.125% !important;
+}
+mor-grid.avggap .xl-offset-9:first-child {
+    margin-left: 38.125% !important;
+}
+mor-grid.avggap .xl-offset-9:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .xl-c-9 {
+    width: 36.125%;
+}
+mor-grid.avggap .xl-offset-10 {
+    margin-left: 41.25% !important;
+}
+mor-grid.avggap .xl-offset-10:first-child {
+    margin-left: 42.25% !important;
+}
+mor-grid.avggap .xl-offset-10:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .xl-c-10 {
+    width: 40.25%;
+}
+mor-grid.avggap .xl-offset-11 {
+    margin-left: 45.375% !important;
+}
+mor-grid.avggap .xl-offset-11:first-child {
+    margin-left: 46.375% !important;
+}
+mor-grid.avggap .xl-offset-11:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .xl-c-11 {
+    width: 44.375%;
+}
+mor-grid.avggap .xl-offset-12 {
+    margin-left: 49.5% !important;
+}
+mor-grid.avggap .xl-offset-12:first-child {
+    margin-left: 50.5% !important;
+}
+mor-grid.avggap .xl-offset-12:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .xl-c-12 {
+    width: 48.5%;
+}
+mor-grid.avggap .xl-offset-13 {
+    margin-left: 53.625% !important;
+}
+mor-grid.avggap .xl-offset-13:first-child {
+    margin-left: 54.625% !important;
+}
+mor-grid.avggap .xl-offset-13:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .xl-c-13 {
+    width: 52.625%;
+}
+mor-grid.avggap .xl-offset-14 {
+    margin-left: 57.75% !important;
+}
+mor-grid.avggap .xl-offset-14:first-child {
+    margin-left: 58.75% !important;
+}
+mor-grid.avggap .xl-offset-14:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .xl-c-14 {
+    width: 56.75%;
+}
+mor-grid.avggap .xl-offset-15 {
+    margin-left: 61.875% !important;
+}
+mor-grid.avggap .xl-offset-15:first-child {
+    margin-left: 62.875% !important;
+}
+mor-grid.avggap .xl-offset-15:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .xl-c-15 {
+    width: 60.875%;
+}
+mor-grid.avggap .xl-offset-16 {
+    margin-left: 66% !important;
+}
+mor-grid.avggap .xl-offset-16:first-child {
+    margin-left: 67% !important;
+}
+mor-grid.avggap .xl-offset-16:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .xl-c-16 {
+    width: 65%;
+}
+mor-grid.avggap .xl-offset-17 {
+    margin-left: 70.125% !important;
+}
+mor-grid.avggap .xl-offset-17:first-child {
+    margin-left: 71.125% !important;
+}
+mor-grid.avggap .xl-offset-17:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .xl-c-17 {
+    width: 69.125%;
+}
+mor-grid.avggap .xl-offset-18 {
+    margin-left: 74.25% !important;
+}
+mor-grid.avggap .xl-offset-18:first-child {
+    margin-left: 75.25% !important;
+}
+mor-grid.avggap .xl-offset-18:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .xl-c-18 {
+    width: 73.25%;
+}
+mor-grid.avggap .xl-offset-19 {
+    margin-left: 78.375% !important;
+}
+mor-grid.avggap .xl-offset-19:first-child {
+    margin-left: 79.375% !important;
+}
+mor-grid.avggap .xl-offset-19:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .xl-c-19 {
+    width: 77.375%;
+}
+mor-grid.avggap .xl-offset-20 {
+    margin-left: 82.5% !important;
+}
+mor-grid.avggap .xl-offset-20:first-child {
+    margin-left: 83.5% !important;
+}
+mor-grid.avggap .xl-offset-20:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .xl-c-20 {
+    width: 81.5%;
+}
+mor-grid.avggap .xl-offset-21 {
+    margin-left: 86.625% !important;
+}
+mor-grid.avggap .xl-offset-21:first-child {
+    margin-left: 87.625% !important;
+}
+mor-grid.avggap .xl-offset-21:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .xl-c-21 {
+    width: 85.625%;
+}
+mor-grid.avggap .xl-offset-22 {
+    margin-left: 90.75% !important;
+}
+mor-grid.avggap .xl-offset-22:first-child {
+    margin-left: 91.75% !important;
+}
+mor-grid.avggap .xl-offset-22:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .xl-c-22 {
+    width: 89.75%;
+}
+mor-grid.avggap .xl-offset-23 {
+    margin-left: 94.875% !important;
+}
+mor-grid.avggap .xl-offset-23:first-child {
+    margin-left: 95.875% !important;
+}
+mor-grid.avggap .xl-offset-23:last-child {
+    margin-right: 0;
+}
+mor-grid.avggap .xl-c-23 {
+    width: 93.875%;
+}
+mor-grid.avggap .xl-c-24 {
+    width: 100%;
+}
 }
 
 mor-card {
@@ -3419,7 +6866,7 @@ mor-box.margin {
   margin: 32px;
 }
 mor-box.margin.fill {
-  height: calc(100% -  32px );
+  height: calc(100% - 16px*2);
 }
 
 mor-block {
@@ -5139,7 +8586,7 @@ mor-btngroup mor-btn.si-m + span {
   width: 2em;
   height: 2em;
   line-height: 2em;
-  margin-left: calc(-1em -  2px );
+  margin-left: calc(-1em - 2px);
   margin-top: -1em;
   top: 50%;
 }
@@ -6909,7 +10356,7 @@ mor-tab.btn > .contents {
   margin-top: 8px;
 }
 mor-tab.btn.position-left > ul {
-  width: calc(20% - 8px );
+  width: calc(20% - 16px/2);
 }
 mor-tab.btn.position-left > ul > li {
   border-right-width: 1px;
@@ -9244,7 +12691,7 @@ mor-calendar .day.now {
 mor-calendar .day.now .inner-layer {
   color: #F33D5D;
   border: 2px #F33D5D solid;
-  line-height: calc( 32px  - 4px);
+  line-height: calc(16px*2 - 4px);
   box-sizing: border-box;
 }
 mor-calendar .day.highlight {
@@ -9269,7 +12716,7 @@ mor-calendar .day.start .inner-layer {
 }
 mor-calendar .day.start .select-layer {
   text-align: center;
-  padding-right: calc(50% -  16px );
+  padding-right: calc(50% - 16px);
   background-color: #fee9ec;
   border-radius: 100em 0 0 100em;
   width: auto;
@@ -9283,7 +12730,7 @@ mor-calendar .day.end .inner-layer {
 }
 mor-calendar .day.end .select-layer {
   text-align: center;
-  padding-left: calc(50% -  16px );
+  padding-left: calc(50% - 16px);
   background-color: #fee9ec;
   border-radius: 0 100em 100em 0;
   width: auto;
@@ -10092,7 +13539,7 @@ mor-steps.align-right .step {
 }
 mor-steps.align-right .step .mark {
   transform: none;
-  left: calc(100% - 24px );
+  left: calc(100% - 16px*1.5);
 }
 mor-steps.align-right .step .bg {
   right: 0;
@@ -12572,7 +16019,7 @@ mor-select .wrap {
   overflow: hidden;
 }
 mor-select .wrap > mor-textinput {
-  width: calc( 100% - 30px );
+  width: calc(100% - 30px);
   height: 40px;
   line-height: 40px;
   padding: 0;
@@ -12589,7 +16036,7 @@ mor-select .wrap > mor-textinput input {
 }
 mor-select .wrap > mor-multiinput {
   margin: 0;
-  width: calc( 100% - 2em);
+  width: calc(100% - 2em);
   background-color: #FFF;
   vertical-align: top;
   min-height: 40px;
@@ -12604,7 +16051,7 @@ mor-select .wrap > mor-multiinput .itemlist > input {
 }
 mor-select .wrap > .selected {
   color: #b3b3b3;
-  width: calc( 100% - 2em );
+  width: calc(100% - 2em);
   height: 40px;
   line-height: 40px;
   padding: 0 1em;
@@ -12809,7 +16256,7 @@ mor-select.input-group .select-area {
   border-radius: 3px 3px 0 0;
 }
 .mor-select-wrap .wrap > mor-textinput {
-  width: calc( 100% - 30px );
+  width: calc(100% - 30px);
   height: 40px;
   line-height: 40px;
   padding: 0;
@@ -12826,7 +16273,7 @@ mor-select.input-group .select-area {
 }
 .mor-select-wrap .wrap > mor-multiinput {
   margin: 0;
-  width: calc( 100% - 2em);
+  width: calc(100% - 2em);
   background-color: #FFF;
   vertical-align: top;
   min-height: 40px;
@@ -12841,7 +16288,7 @@ mor-select.input-group .select-area {
 }
 .mor-select-wrap .wrap > .selected {
   color: #b3b3b3;
-  width: calc( 100% - 2em );
+  width: calc(100% - 2em);
   height: 40px;
   line-height: 40px;
   padding: 0 1em;
@@ -14577,7 +18024,6 @@ mor-datepicker.range-input-vertical .wrap .datepicker-input-0,
 mor-datepicker.range-input-vertical .wrap .datepicker-input-1 {
   font-size: 14px;
   display: inline-block;
-  width: calc(100% - 41px);
   position: relative;
 }
 mor-datepicker.range-input-vertical .wrap .datepicker-input-0 mor-textinput input {
@@ -15267,7 +18713,7 @@ mor-colorpicker.st-readonly .preview .color {
 }
 .mo-colorpicker-wrap .tools .slider-tool {
   display: inline-block;
-  width: calc(100% - 64px );
+  width: calc(100% - 16px*4);
   vertical-align: top;
   height: 100%;
 }
