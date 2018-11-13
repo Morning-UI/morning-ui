@@ -1,5 +1,17 @@
 <template>
+    
+
     <div>
+
+
+    <div style="width:100%">
+        <ui-grid>
+            <div class="xs-c-2 s-c-4 m-c-6 l-c-8 xl-c-10" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">col</div>
+            <div class="xs-c-20 s-c-16 m-c-12 l-c-8 xl-c-4" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">col</div>
+            <div class="xs-c-2 s-c-4 m-c-6 l-c-8 xl-c-10" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">col</div>
+        </ui-grid>
+    </div>
+    
         <doc-header :category="category"></doc-header>
         <!-- darg icon https://h0.hucdn.com/open/201734/175363ad9c01a51b_200x200.png -->
         <div class="lab" style="width:1130px">
