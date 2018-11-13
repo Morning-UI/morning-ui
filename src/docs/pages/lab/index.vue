@@ -5,17 +5,19 @@
         <div class="lab" style="width:1130px">
             <h1><i class="iconfont">&#xe615;</i>Morning Laboratory</h1>
             <div class="area">
-                <div style="width:300px;">
-                        <ui-colorpicker
-        form-name="姓名"
-        :default-value="'#AAAAAA'"
-        @value-change="echo"
-    ></ui-colorpicker>
 
-    <!-- <ui-textinput @value-change="echo"></ui-textinput> -->
-    <ui-btn @emit="val = 2;">v-model change</ui-btn>
+                <ui-select
+                    multi-select
+                    group="filter"
+                    :default-value="filterValue"
+                    :list="list"
+                    v-model="filterUrls"
+                    @value-change="changeUrls" 
+                    can-search
+                    :hidden-selected="false"
+                >
+                </ui-select>
 
-                </div>
             </div>
         </div>
         <doc-footer></doc-footer>
@@ -30,7 +32,34 @@ export default {
     data : function () {
     
         return {
-            val : '#333333'
+            filterUrls : ["all"],
+            filterValue : ["util.js"],
+            list : {
+                'util.js': {
+                    name: 'util.js',
+                    tip: 'util.js'
+                },
+                '/data/webroot/beidian_m/app/controllers/shop.js': {
+                    name: '/data/webroot/beidian_m/app/controllers/shop.js',
+                    tip: '/data/webroot/beidian_m/app/controllers/shop.js'
+                },
+                'all': {
+                    name: '全部',
+                    tip: '全部'
+                },
+                '/data/webroot/beidian_m/app/controllers/trade/similar-product.js': {
+                    name: '/data/webroot/beidian_m/app/controllers/trade/similar-product.js',
+                    tip: '/data/webroot/beidian_m/app/controllers/trade/similar-product.js'
+                },
+                '/data/webroot/beidian_m/app/helpers/middleware.js': {
+                    name: '/data/webroot/beidian_m/app/helpers/middleware.js',
+                    tip: '/data/webroot/beidian_m/app/helpers/middleware.js'
+                },
+                '/data/webroot/beidian_m/node_modules/html-minifier/src/htmlparser.js': {
+                    name: '/data/webroot/beidian_m/node_modules/html-minifier/src/htmlparser.js',
+                    tip: '/data/webroot/beidian_m/node_modules/html-minifier/src/htmlparser.js'
+                }
+            }
         };
 
     },
@@ -41,6 +70,19 @@ export default {
     methods : {
         echo : function (text) {
             console.log('value-change!');
+        },
+        changeUrls : function () {
+            let tempUrls = this.filterUrls.slice(0);
+            let newUrl = tempUrls[tempUrls.length - 1];
+
+            console.log(newUrl);
+            // 选中的是全部
+            if (newUrl === 'all') {
+                this.filterUrls = ['all'];
+            } else if (tempUrls.indexOf('all') > -1) {
+                tempUrls.splice(tempUrls.indexOf('all'), 1);
+                this.filterUrls = tempUrls;
+            }
         }
     },
     mounted : function () {
