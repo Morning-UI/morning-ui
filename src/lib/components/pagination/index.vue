@@ -57,7 +57,7 @@
             class="page-jump"
             v-if="conf.jumpPage && data.total > conf.maxShow"
         >
-            <morning-textinput :ref="'ui-select-input-' + uiid" class="page-num" form-name="页码"></morning-textinput>
+            <morning-textinput :ref="'ui-select-input-' + uiid" class="page-num" inside-name="页码"></morning-textinput>
             <i class="mo-icon mo-icon-arrow-right" @click="_jump()"></i>
         </div>
     </div>

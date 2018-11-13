@@ -115,7 +115,7 @@
     "koa-router": "^7.2.1",
     "koa-sslify": "^2.1.2",
     "koa-static": "^4.0.1",
-    "less": "^2.7.2",
+    "less": "^3.8.1",
     "less-loader": "^4.1.0",
     "markdown-it": "^8.4.0",
     "markdown-it-anchor": "^4.0.0",

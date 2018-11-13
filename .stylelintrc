@@ -65,7 +65,12 @@
         "function-comma-space-after" : "always",
         "function-comma-space-before" : "never",
         "function-max-empty-lines" : 0,
-        "function-name-case" : "lower",
+        "function-name-case" : [
+            "lower",
+            {
+                ignoreFunctions: ["@gridGutterWidth*"]
+            }
+        ],
         "function-parentheses-newline-inside" : "never-multi-line",
         "function-parentheses-space-inside" : "never",
         "function-url-quotes" : "never",
