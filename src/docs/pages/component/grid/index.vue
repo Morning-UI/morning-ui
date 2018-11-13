@@ -265,7 +265,7 @@
                 m-c-12 m-offset-6
                 l-c-8 l-offset-8
                 xl-c-4 xl-offset-10
-            " style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">c-6</div>
+            " style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">col</div>
         </ui-grid>
     </div>
     :::

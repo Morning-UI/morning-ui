@@ -14,7 +14,7 @@
 
 .generate-col(@prefix, @n, @i: 1) when (@i =< @n) {
     .@{prefix}c-@{i} {
-        width: if((@i = @n), 100%, @gridColumnWidth*@i + @gridGutterWidth*(@i - 1));
+        width: if((@i = @n), 100%, (@gridColumnWidth*@i + @gridGutterWidth*(@i - 1)));
     }
     .generate-col(@prefix, @n, (@i + 1));
 }
