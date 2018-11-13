@@ -193,11 +193,19 @@ export default UI => UI.extend({
 
             let val;
 
-            try {
+            if (typeof value === 'string') {
 
-                val = JSON.parse(value);
+                try {
 
-            } catch (e) {
+                    val = JSON.parse(value);
+
+                } catch (e) {
+
+                    val = value;
+
+                }
+
+            } else {
 
                 val = value;
 
