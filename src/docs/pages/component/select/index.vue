@@ -1183,6 +1183,727 @@
     </div>
     :::
 
+    :::vue
+    @name:max
+    ---
+    #config
+    >conf-desc
+    允许多选的最大项数，仅在开启`multi-select`后生效，未开启`multi-select`至多只能选择一项。
+    >conf-accept
+    数字
+    >conf-type
+    Number
+    >conf-default
+    `Infinity`
+    ---
+    #demo
+    >desc
+    最多选择三项。
+    >tpl
+    <div style="width:300px;">
+        <ui-select
+            form-name="Select designer"
+            multi-select
+            :max="3"
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
+        </ui-select>
+    </div>
+    :::
+
+    :::vue
+    @name:auto-reset-search
+    ---
+    #config
+    >conf-desc
+    在多选模式下当选中某项或表单值发生变化后，重置搜索内容。(仅在开启`multi-select`及`can-search`时生效)
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >tpl
+    <div style="width:300px;">
+        <ui-select
+            form-name="Select designer"
+            auto-reset-search
+            multi-select
+            can-search
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
+        </ui-select>
+    </div>
+    :::
+
+    :::vue
+    @name:hide-selected
+    ---
+    #config
+    >conf-desc
+    开启此配置后当项目被选中时会被隐藏，若关闭此配置则会标记选中的项目。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `true`
+    ---
+    #demo
+    >desc
+    显示选中项。
+    >tpl
+    <div style="width:300px;">
+        <ui-select
+            form-name="Select designer"
+            :hide-selected="false"
+            multi-select
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
+        </ui-select>
+    </div>
+    ---
+    #demo
+    >desc
+    隐藏选中项。
+    >tpl
+    <div style="width:300px;">
+        <ui-select
+            form-name="Select designer"
+            hide-selected
+            multi-select
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
+        </ui-select>
+    </div>
+    :::
+
+    :::vue
+    @name:inline-img-size
+    ---
+    #config
+    >conf-desc
+    项目的缩略图大小(这不会影响选中项目的缩略图大小)
+    >conf-accept
+    px或em为单位的数值字符串
+    >conf-type
+    String
+    >conf-default
+    `'2em'`
+    ---
+    #demo
+    >tpl
+    <div style="width:300px;">
+        <ui-select
+            form-name="Select designer"
+            inline-img-size="50px"
+            :list="{
+                tim : '<img style=\'border-radius: 50%;\' src=\'https://cdn.dribbble.com/users/2489/avatars/normal/702fb51d7c85c8b61628604762ffc21a.jpg?1444639894\'></img>Tim Boelaars',
+                andrew : '<img style=\'border-radius: 50%;\' src=\'https://cdn.dribbble.com/users/108671/avatars/normal/dadb0bd212cc107ad3a1d1baedc46938.jpg?1416997444\'></img>Andrew Colin Beck',
+                gustavo : '<img style=\'border-radius: 50%;\' src=\'https://cdn.dribbble.com/users/60266/avatars/normal/gustavo_avatar.jpg?1402000442\'></img>Gustavo Zambelli',
+                victor : '<img style=\'border-radius: 50%;\' src=\'https://cdn.dribbble.com/users/96387/avatars/normal/debda2342580bda98269c0165054464c.jpg?1435151464\'></img>Victor Erixon',
+                shaun : '<img style=\'border-radius: 50%;\' src=\'https://cdn.dribbble.com/users/2944/avatars/normal/e08c0e446862572facf0e48316d91c8f.png?1429207992\'></img>Shaun Moynihan',
+                emir : '<img style=\'border-radius: 50%;\' src=\'https://cdn.dribbble.com/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934\'></img>Emir Ayouni',
+                katherine : '<img style=\'border-radius: 50%;\' src=\'https://cdn.dribbble.com/users/460187/avatars/normal/eb8e273c036ae93b134b10358c5f19f5.jpg?1418705072\'></img>Katherine Rainey',
+                jax : '<img style=\'border-radius: 50%;\' src=\'https://cdn.dribbble.com/users/119911/avatars/normal/531fd12e5775ed5ac6a07aea7b492151.jpg?1427986143\'></img>Jax Berndt',
+                elizabeth : '<img style=\'border-radius: 50%;\' src=\'https://cdn.dribbble.com/users/857412/avatars/normal/8f5f9fbdd66cc70f22304f2ed3be4fa1.png?1440078204\'></img>Elizabeth Chiu',
+                sara : '<img style=\'border-radius: 50%;\' src=\'https://cdn.dribbble.com/users/162566/avatars/normal/1012292_10104881398564961_565325188_n.jpg?1403561573\'></img>Sara Nicely',
+                anna : '<img style=\'border-radius: 50%;\' src=\'https://cdn.dribbble.com/users/243797/avatars/normal/657a04cfaeca8f6f5bb7ecf64267bc67.jpg?1416007045\'></img>Anna Broussard'
+            }"
+        >
+        </ui-select>
+    </div>
+    :::
+
+    :::vue
+    @name:item-tip
+    ---
+    #config
+    >conf-desc
+    允许为下拉菜单设置提示。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >desc
+    启用`item-tip`后需要在`list`配置中的每个选项中添加`tip`属性来提供提示内容。<br>下面示例中在第一和第二项中加入了提示。
+    >tpl
+    <div style="width:300px;">
+        <ui-select
+            form-name="Select designer"
+            item-tip
+            :list="{
+                tim : {
+                    name : 'Tim Boelaars',
+                    tip : 'This is Tim Boelaars'
+                },
+                andrew : {
+                    name : 'Andrew Colin Beck',
+                    tip : 'This is Andrew Colin Beck'
+                },
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
+        </ui-select>
+    </div>
+    :::
+
+    :::vue
+    @name:item-tip-direct
+    ---
+    #config
+    >conf-desc
+    为下拉菜单设置提示的方向，需要开启`list-tip`才有效。
+    >conf-accept
+    `top`<br>`right`<br>`bottom`<br>`left`
+    >conf-type
+    String
+    >conf-default
+    `top`
+    ---
+    #demo
+    >tpl
+    <div style="width:300px;">
+        <p>上侧出现的提示框</p>
+        <ui-select
+            form-name="Select designer"
+            item-tip
+            item-tip-direct="top"
+            :list="{
+                tim : {
+                    name : 'Tim Boelaars',
+                    tip : 'This is Tim Boelaars'
+                },
+                andrew : {
+                    name : 'Andrew Colin Beck',
+                    tip : 'This is Andrew Colin Beck'
+                },
+                gustavo : {
+                    name : 'Gustavo Zambelli',
+                    tip : 'This is Gustavo Zambelli'
+                },
+                victor : {
+                    name : 'Victor Erixon',
+                    tip : 'This is Victor Erixon'
+                },
+                shaun : {
+                    name : 'Shaun Moynihan',
+                    tip : 'This is Shaun Moynihan'
+                },
+                emir : {
+                    name : 'Emir Ayouni',
+                    tip : 'This is Emir Ayouni'
+                },
+                katherine : {
+                    name : 'Katherine Rainey',
+                    tip : 'This is Katherine Rainey'
+                },
+                jax : {
+                    name : 'Jax Berndt',
+                    tip : 'This is Jax Berndt'
+                },
+                elizabeth : {
+                    name : 'Elizabeth Chiu',
+                    tip : 'This is Elizabeth Chiu'
+                },
+                sara : {
+                    name : 'Sara Nicely',
+                    tip : 'This is Sara Nicely'
+                },
+                anna : {
+                    name : 'Anna Broussard',
+                    tip : 'This is Anna Broussard'
+                }
+            }"
+        >
+        </ui-select>
+
+        <br><br>
+        <p>右侧出现的提示框</p>
+        <ui-select
+            form-name="Select designer"
+            item-tip
+            item-tip-direct="right"
+            :list="{
+                tim : {
+                    name : 'Tim Boelaars',
+                    tip : 'This is Tim Boelaars'
+                },
+                andrew : {
+                    name : 'Andrew Colin Beck',
+                    tip : 'This is Andrew Colin Beck'
+                },
+                gustavo : {
+                    name : 'Gustavo Zambelli',
+                    tip : 'This is Gustavo Zambelli'
+                },
+                victor : {
+                    name : 'Victor Erixon',
+                    tip : 'This is Victor Erixon'
+                },
+                shaun : {
+                    name : 'Shaun Moynihan',
+                    tip : 'This is Shaun Moynihan'
+                },
+                emir : {
+                    name : 'Emir Ayouni',
+                    tip : 'This is Emir Ayouni'
+                },
+                katherine : {
+                    name : 'Katherine Rainey',
+                    tip : 'This is Katherine Rainey'
+                },
+                jax : {
+                    name : 'Jax Berndt',
+                    tip : 'This is Jax Berndt'
+                },
+                elizabeth : {
+                    name : 'Elizabeth Chiu',
+                    tip : 'This is Elizabeth Chiu'
+                },
+                sara : {
+                    name : 'Sara Nicely',
+                    tip : 'This is Sara Nicely'
+                },
+                anna : {
+                    name : 'Anna Broussard',
+                    tip : 'This is Anna Broussard'
+                }
+            }"
+        >
+        </ui-select>
+
+        <br><br>
+        <p>下侧出现的提示框</p>
+        <ui-select
+            form-name="Select designer"
+            item-tip
+            item-tip-direct="bottom"
+            :list="{
+                tim : {
+                    name : 'Tim Boelaars',
+                    tip : 'This is Tim Boelaars'
+                },
+                andrew : {
+                    name : 'Andrew Colin Beck',
+                    tip : 'This is Andrew Colin Beck'
+                },
+                gustavo : {
+                    name : 'Gustavo Zambelli',
+                    tip : 'This is Gustavo Zambelli'
+                },
+                victor : {
+                    name : 'Victor Erixon',
+                    tip : 'This is Victor Erixon'
+                },
+                shaun : {
+                    name : 'Shaun Moynihan',
+                    tip : 'This is Shaun Moynihan'
+                },
+                emir : {
+                    name : 'Emir Ayouni',
+                    tip : 'This is Emir Ayouni'
+                },
+                katherine : {
+                    name : 'Katherine Rainey',
+                    tip : 'This is Katherine Rainey'
+                },
+                jax : {
+                    name : 'Jax Berndt',
+                    tip : 'This is Jax Berndt'
+                },
+                elizabeth : {
+                    name : 'Elizabeth Chiu',
+                    tip : 'This is Elizabeth Chiu'
+                },
+                sara : {
+                    name : 'Sara Nicely',
+                    tip : 'This is Sara Nicely'
+                },
+                anna : {
+                    name : 'Anna Broussard',
+                    tip : 'This is Anna Broussard'
+                }
+            }"
+        >
+        </ui-select>
+
+        <br><br>
+        <p>左侧出现的提示框</p>
+        <ui-select
+            form-name="Select designer"
+            item-tip
+            item-tip-direct="left"
+            :list="{
+                tim : {
+                    name : 'Tim Boelaars',
+                    tip : 'This is Tim Boelaars'
+                },
+                andrew : {
+                    name : 'Andrew Colin Beck',
+                    tip : 'This is Andrew Colin Beck'
+                },
+                gustavo : {
+                    name : 'Gustavo Zambelli',
+                    tip : 'This is Gustavo Zambelli'
+                },
+                victor : {
+                    name : 'Victor Erixon',
+                    tip : 'This is Victor Erixon'
+                },
+                shaun : {
+                    name : 'Shaun Moynihan',
+                    tip : 'This is Shaun Moynihan'
+                },
+                emir : {
+                    name : 'Emir Ayouni',
+                    tip : 'This is Emir Ayouni'
+                },
+                katherine : {
+                    name : 'Katherine Rainey',
+                    tip : 'This is Katherine Rainey'
+                },
+                jax : {
+                    name : 'Jax Berndt',
+                    tip : 'This is Jax Berndt'
+                },
+                elizabeth : {
+                    name : 'Elizabeth Chiu',
+                    tip : 'This is Elizabeth Chiu'
+                },
+                sara : {
+                    name : 'Sara Nicely',
+                    tip : 'This is Sara Nicely'
+                },
+                anna : {
+                    name : 'Anna Broussard',
+                    tip : 'This is Anna Broussard'
+                }
+            }"
+        >
+        </ui-select>
+    </div>
+    :::
+    
+    :::vue
+    @name:list-width
+    ---
+    #config
+    >conf-desc
+    在开启`separate-emit`的情况下，下拉列表的宽度(单位px)，如果设为`false`则下拉列表会自动调整宽度。<br>若未开启`separate-emit`此配置不会生效，下拉列表的宽度等于组件本身的宽度。
+    >conf-accept
+    `false`：自动调整宽度<br>数字：下拉列表的宽度(单位px)
+    >conf-type
+    Boolean<br>Number
+    >conf-default
+    `false`
+    ---
+    #demo
+    >desc
+    设置下拉列表的宽度为280px。
+    >tpl
+    <div style="width:300px;">
+        <ui-btn class="demo14">点击选择</ui-btn>
+        <ui-select
+            inside-name="Select designer"
+            separate-emit=".demo14"
+            :list-width="280"
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
+        </ui-select>
+    </div>
+    :::
+
+    [[[方法]]]
+
+    :::preset
+    @name:formMethod
+    @uikey:select
+    @value:['tim']
+    @defaultValue:['tim']
+    @attrs::list="{tim:'Tim Boelaars', andrew:'Andrew Colin Beck', gustavo:'Gustavo Zambelli', victor:'Victor Erixon', shaun:'Shaun Moynihan', emir:'Emir Ayouni', katherine:'Katherine Rainey', jax:'Jax Berndt', elizabeth:'Elizabeth Chiu', sara:'Sara Nicely', anna:'Anna Broussard'}"
+    :::
+
+    :::vue
+    @name:toggle([show])
+    ---
+    #method
+    >method-desc
+    切换下拉选择框的下拉列表是否显示。
+    >method-args
+    |show|YES|下拉列表需要切换到隐藏或显示，若不设置则切换到相反的状态。|`undefined`<br>`true`<br>`false`|`Undefined`<br>`Boolean`|`undefined`|
+    >method-return
+    当前组件VM实例。
+    ---
+    #demo
+    >tpl
+    <div style="width:300px;">
+        <ui-link js="window.morning.findVM('demo1').toggle(true);">显示下拉列表</ui-link>
+        <ui-link js="window.morning.findVM('demo1').toggle(false);">隐藏下拉列表</ui-link>
+        <ui-link js="window.morning.findVM('demo1').toggle();">切换到反向状态</ui-link>
+
+        <br><br>
+
+        <ui-select
+            ref="demo1"
+            form-name="Select designer"
+            :auto-close="false"
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
+        </ui-select>
+    </div>
+    :::
+
+    [[[事件]]]
+
+    :::preset
+    @name:formEvent
+    @uiname:下拉选择框
+    @uikey:select
+    @value:['tim']
+    @wrapStyle:width:300px;
+    @attrs::list="{tim:'Tim Boelaars', andrew:'Andrew Colin Beck', gustavo:'Gustavo Zambelli', victor:'Victor Erixon', shaun:'Shaun Moynihan', emir:'Emir Ayouni', katherine:'Katherine Rainey', jax:'Jax Berndt', elizabeth:'Elizabeth Chiu', sara:'Sara Nicely', anna:'Anna Broussard'}"
+    :::
+
+    :::vue
+    @name:list-show
+    ---
+    #event
+    >event-desc
+    当下拉列表显示时触发。
+    ---
+    #demo
+    >tpl
+    <div style="width:300px;">
+        <ui-select
+            ref="demo2"
+            form-name="Select designer"
+            @list-show="echo"
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
+        </ui-select>
+    </div>
+    >script
+    {
+        methods : {
+            echo : function () {
+                console.log('demo2.console1', 'list-show event!');
+            }
+        }
+    }
+    :::
+
+    :::vue
+    @name:list-hide
+    ---
+    #event
+    >event-desc
+    当下拉列表隐藏时触发。
+    ---
+    #demo
+    >tpl
+    <div style="width:300px;">
+        <ui-select
+            ref="demo3"
+            form-name="Select designer"
+            @list-hide="echo"
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
+        </ui-select>
+    </div>
+    >script
+    {
+        methods : {
+            echo : function () {
+                console.log('demo3.console1', 'list-hide event!');
+            }
+        }
+    }
+    :::
+
+    :::vue
+    @name:search
+    ---
+    #event
+    >event-desc
+    当开启`can-search`配置并且搜索关键词变化时时触发。
+    ---
+    #demo
+    >tpl
+    <div style="width:300px;">
+        <ui-select
+            ref="demo15"
+            form-name="Select designer"
+            can-search
+            @search="echo"
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
+        </ui-select>
+    </div>
+    >script
+    {
+        methods : {
+            echo : function () {
+                console.log('demo15.console1', 'search event!');
+            }
+        }
+    }
+    :::
+
+    [[[表单值]]]
+
+    #### 值类型
+    
+    `Array` : 数组
+
+    #### 值过滤
+
+    - 所有不支持的值类型，都会被尝试转换成空数组(`[]`)。
+    - 若开启`dynamic-list`配置且设置了`validate`，则会通过此配置过滤，若未设置`validate`则不会过滤。
+    - 若未开启`dynamic-list`配置，则数组中的键值不在可选列表内，会被过滤。
+    - 数组项目数过滤：
+        - 若未开启`multi-select`，此数组最多只会有一项。
+        - 若开启`multi-select`，此数组最多不会超过`max`设置的项目数量。
+
+    #### 值格式
+
+    包含选中键值的无序数组，键值是字符串。
+
+    #### 默认值
+
+    `[]`
+
+    :::preset
+    @name:formValue
+    @uikey:select
+    @uiname:下拉选择框
+    @valueType:select
+    @wrapStyle:width:300px;
+    @attrs::list="{tim:'Tim Boelaars', andrew:'Andrew Colin Beck', gustavo:'Gustavo Zambelli', victor:'Victor Erixon', shaun:'Shaun Moynihan', emir:'Emir Ayouni', katherine:'Katherine Rainey', jax:'Jax Berndt', elizabeth:'Elizabeth Chiu', sara:'Sara Nicely', anna:'Anna Broussard'}"
+    :::
+
     [[[源码]]]
 
     <iframe src=\"/report/coverage/lib/components/select/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight\"></iframe>
