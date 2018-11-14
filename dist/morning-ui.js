@@ -50246,14 +50246,13 @@ var render = function() {
         "div",
         { staticClass: "list" },
         [
-          _vm._l(_vm.data.total, function(index, _index) {
+          _vm._l(_vm.data.total, function(index) {
             return [
               _vm.data.hideEnd - 1 === index && _vm.data.hideEnd !== 1
                 ? [
                     _c(
                       "a",
                       {
-                        key: _index,
                         staticClass: "prev",
                         attrs: { href: "javascript:;" },
                         on: {
@@ -50268,7 +50267,6 @@ var render = function() {
                     _c(
                       "a",
                       {
-                        key: _index,
                         staticClass: "ignore",
                         attrs: { href: "javascript:;" }
                       },
@@ -50283,7 +50281,6 @@ var render = function() {
                       ? _c(
                           "a",
                           {
-                            key: _index,
                             staticClass: "current",
                             attrs: { href: "javascript:;" }
                           },
@@ -50298,7 +50295,6 @@ var render = function() {
                       : _c(
                           "a",
                           {
-                            key: _index,
                             attrs: { href: "javascript:;" },
                             on: {
                               click: function($event) {
@@ -50323,7 +50319,6 @@ var render = function() {
                     _c(
                       "a",
                       {
-                        key: _index,
                         staticClass: "ignore",
                         attrs: { href: "javascript:;" }
                       },
@@ -50333,7 +50328,6 @@ var render = function() {
                     _c(
                       "a",
                       {
-                        key: _index,
                         staticClass: "next",
                         attrs: { href: "javascript:;" },
                         on: {
@@ -50357,7 +50351,7 @@ var render = function() {
                   _c("morning-textinput", {
                     ref: "ui-select-input-" + _vm.uiid,
                     staticClass: "page-num",
-                    attrs: { "form-name": "页码" }
+                    attrs: { "inside-name": "页码" }
                   }),
                   _vm._v(" "),
                   _c("i", {
@@ -76447,10 +76441,16 @@ exports.default = function (UI) {
 
                 var val = void 0;
 
-                try {
+                if (typeof value === 'string') {
 
-                    val = JSON.parse(value);
-                } catch (e) {
+                    try {
+
+                        val = JSON.parse(value);
+                    } catch (e) {
+
+                        val = value;
+                    }
+                } else {
 
                     val = value;
                 }
@@ -76933,7 +76933,7 @@ var morning = {
         white: 'wh'
     },
     isMorning: true,
-    version: '0.11.15',
+    version: '0.11.16',
     map: {}
 };
 

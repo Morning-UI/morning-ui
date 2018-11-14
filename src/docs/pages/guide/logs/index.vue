@@ -18,6 +18,34 @@
     
     ### 更新记录
 
+    ### 0.11.16 <ui-badge class="circle ver-beta" size="s" color="extra-light-black">Beta</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2018年11月14日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.11.16" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.11.16/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.11.16/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 新特性
+
+    - `ui-grid`支持响应式布局
+
+    #### 修复
+
+    - 修复`ui-select`组件设置一个数组的值且数组中包含数字时，值会被过滤的问题
+    - 修复`ui-pagination`页码输入框的样式问题
+    - 修复`ui-pagination`组件报错的问题
+
+    #### 更多
+
+    - LESS升级至`3.8.1`
+
+    ---
+
     ### 0.11.15 <ui-badge class="circle ver-beta" size="s" color="extra-light-black">Beta</ui-badge>
 
     <ui-textcolor color="light-blue">
