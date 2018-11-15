@@ -877,7 +877,7 @@ String
 #demo
 >tpl
 <div style="width:300px;{%wrapStyle%}">
-    <ui-{%uikey%} form-name="{%formName%}" {%&configMoreAttr%}>{%&slot%}</ui-{%uikey%}>
+    <ui-{%uikey%} form-name="{%formName%}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
 </div>
 :::
 
@@ -929,7 +929,7 @@ String<br/>Array
 >tpl
 <div style="width:300px;{%wrapStyle%}">
     <!-- 设置多个组 -->
-    <ui-{%uikey%} form-name="{$formName}" form-key="{%formKey%}" :group="{%formGroupMore%}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
+    <ui-{%uikey%} form-name="{$formName}" form-key="{%formKey%}" :group="{%&formGroupMore%}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
 </div>
 :::
 
@@ -1303,6 +1303,8 @@ value-type
 {%uiname%}
 {%valueType%}
 {%wrapStyle%}
+{%&attrs%}
+{%&slot%}
 :::
 `
 };
@@ -1816,12 +1818,14 @@ let extVueRenderer = {
     },
     'value-type' : (parts) => {
 
-        console.log(991, parts.rules);
         let key = parts.rules.shift();
         let name = parts.rules.shift();
         let type = parts.rules.shift() || 'default';
         let wrapStyle = parts.rules.shift() || '';
+        let attrs = parts.rules.shift() || '';
+        let slot = parts.rules.shift() || '';
         let typeData = data.formValueType[type];
+        console.log(991, parts.rules, attrs);
 
         typeData = {
             types : typeData
@@ -1839,7 +1843,7 @@ let extVueRenderer = {
                 `    <div style="${wrapStyle}">`,
                 `        <p>{$valueType}类型</p>`,
                 `        <div>`,
-                `            <ui-${key} ref="demoType{$valueType}"></ui-${key}>`,
+                `            <ui-${key} ref="demoType{$valueType}" ${attrs}>${slot}</ui-${key}>`,
                 `        </div>`,
                 `        <br>`,
                 `        <ui-link js="window.morning.findVM('demoType{$valueType}').set({$&valueContent})">设置{$valueType}类型</ui-link>`,
@@ -2438,6 +2442,7 @@ let extPreset = (content, paramStr) => {
     vars.formGroupMore = `['group1', 'group2', 'group3']`;
 
     Mustache.parse(template, ['{%', '%}']);
+    console.log(51, vars);
     template = Mustache.render(template, vars);
     
     // let context = {

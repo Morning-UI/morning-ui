@@ -291,7 +291,7 @@ export default {
             if (this.conf.max &&
                 this.conf.max <= value.length) {
             
-                return;
+                return this;
             
             }
             

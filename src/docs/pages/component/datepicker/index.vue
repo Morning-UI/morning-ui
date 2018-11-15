@@ -83,7 +83,7 @@
     ---
     uikey:datepicker
     configDefaultValue:'2018-03-23'
-    configMoreAttr::date="+new Date('2018-03-23')"
+    attrs::date="+new Date('2018-03-23')"
     :::
 
     #### inside-name
