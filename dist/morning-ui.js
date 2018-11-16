@@ -27816,7 +27816,7 @@ exports.default = {
 
             if (this.conf.max && this.conf.max <= value.length) {
 
-                return;
+                return this;
             }
 
             if (index >= 0) {
