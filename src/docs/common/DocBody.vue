@@ -646,154 +646,154 @@ let data = {
     }
 };
 
-let repeater = {
-    size : _opt => {
+// let repeater = {
+//     size : _opt => {
 
-        let size = data.size;
+//         let size = data.size;
 
-        if (_opt.param !== undefined) {
+//         if (_opt.param !== undefined) {
 
-            size = [];
+//             size = [];
 
-            for (let key of _opt.param.split(',')) {
+//             for (let key of _opt.param.split(',')) {
 
-                for (let item of data.size) {
+//                 for (let item of data.size) {
 
-                    if (item.sizeKey === key) {
+//                     if (item.sizeKey === key) {
 
-                        size.push(item);
+//                         size.push(item);
 
-                    }
+//                     }
 
-                }
+//                 }
 
-            }
+//             }
 
-        }
+//         }
 
-        _opt.content = `{$#size}${_opt.content}{$/size}`;
-        _opt.context = extend(true, _opt.context, {
-            size : size
-        });
+//         _opt.content = `{$#size}${_opt.content}{$/size}`;
+//         _opt.context = extend(true, _opt.context, {
+//             size : size
+//         });
 
-        return _opt;
+//         return _opt;
 
-    },
-    color : _opt => {
+//     },
+//     color : _opt => {
 
-        let color = _opt.param;
+//         let color = _opt.param;
 
-        _opt.content = `{$#${color}}${_opt.content}{$/${color}}`;
-        _opt.context = extend(true, _opt.context, {
-            [color] : data[color]
-        });
+//         _opt.content = `{$#${color}}${_opt.content}{$/${color}}`;
+//         _opt.context = extend(true, _opt.context, {
+//             [color] : data[color]
+//         });
 
-        if (color === 'silver') {
+//         if (color === 'silver') {
 
-            _opt.style.push('background: #626b75;border-color: #454d57;padding: 5px;');
+//             _opt.style.push('background: #626b75;border-color: #454d57;padding: 5px;');
 
-        } else if (color === 'gray') {
+//         } else if (color === 'gray') {
 
-            _opt.style.push('background:#676767;border-color: #494949;padding: 5px;');
+//             _opt.style.push('background:#676767;border-color: #494949;padding: 5px;');
 
-        }
+//         }
 
-        return _opt;
+//         return _opt;
 
-    },
-    state : _opt => {
+//     },
+//     state : _opt => {
 
-        if (_opt.param === undefined) {
+//         if (_opt.param === undefined) {
             
-            _opt.param = 'all';
+//             _opt.param = 'all';
 
-        }
+//         }
 
-        let states = _opt.param.split(',');
+//         let states = _opt.param.split(',');
 
-        if (states.length > 0 &&
-            states.indexOf('all') === -1) {
+//         if (states.length > 0 &&
+//             states.indexOf('all') === -1) {
 
-            let sna = [];
+//             let sna = [];
 
-            for (let state of data.state) {
+//             for (let state of data.state) {
 
-                if (states.indexOf(state.stateKey) !== -1) {
+//                 if (states.indexOf(state.stateKey) !== -1) {
 
-                    sna.push(state);
+//                     sna.push(state);
 
-                }
+//                 }
 
-            }
+//             }
 
-            _opt.context = extend(true, _opt.context, {
-                state : sna
-            });
+//             _opt.context = extend(true, _opt.context, {
+//                 state : sna
+//             });
 
-        } else if (states[0] === 'all') {
+//         } else if (states[0] === 'all') {
 
-            _opt.context = extend(true, _opt.context, {
-                state : data.state
-            });
+//             _opt.context = extend(true, _opt.context, {
+//                 state : data.state
+//             });
 
-        }
+//         }
 
-        // if (typeof opt.content === 'string') {
+//         // if (typeof opt.content === 'string') {
 
-        _opt.content = `{$#state}${_opt.content}{$/state}`;
+//         _opt.content = `{$#state}${_opt.content}{$/state}`;
 
-        // } else if (typeof opt.contnet === 'object') {
+//         // } else if (typeof opt.contnet === 'object') {
 
-        //     for (let key in opt.content) {
+//         //     for (let key in opt.content) {
                     
-        //         opt.content[key] = `{$#state}${opt.content[key]}\n{$/state}`;
+//         //         opt.content[key] = `{$#state}${opt.content[key]}\n{$/state}`;
                 
-        //     }
+//         //     }
 
-        // }
+//         // }
 
-        return _opt;
+//         return _opt;
 
-    },
-    br : _opt => {
+//     },
+//     br : _opt => {
 
-        let num = +_opt.param || 1;
-        let brs = '';
+//         let num = +_opt.param || 1;
+//         let brs = '';
 
-        while (num--) {
+//         while (num--) {
 
-            brs += '<br/>';
+//             brs += '<br/>';
 
-        }
+//         }
 
-        _opt.content = `${_opt.content}\n${brs}\n`;
+//         _opt.content = `${_opt.content}\n${brs}\n`;
 
-        return _opt;
+//         return _opt;
 
-    },
-    formConfig : _opt => {
+//     },
+//     formConfig : _opt => {
 
-        _opt.content = `{$#formConfig}${_opt.content}\n{$/formConfig}`;
-        _opt.context = extend(true, _opt.context, {
-            formConfig : data.formConfig
-        });
+//         _opt.content = `{$#formConfig}${_opt.content}\n{$/formConfig}`;
+//         _opt.context = extend(true, _opt.context, {
+//             formConfig : data.formConfig
+//         });
 
-        return _opt;
+//         return _opt;
 
-    },
-    formValueType : _opt => {
+//     },
+//     formValueType : _opt => {
 
-        let key = _opt.param || 'default';
+//         let key = _opt.param || 'default';
 
-        _opt.content = `{$#formValueType.${key}}${_opt.content}\n{$/formValueType.${key}}`;
-        _opt.context = extend(true, _opt.context, {
-            formValueType : data.formValueType
-        });
+//         _opt.content = `{$#formValueType.${key}}${_opt.content}\n{$/formValueType.${key}}`;
+//         _opt.context = extend(true, _opt.context, {
+//             formValueType : data.formValueType
+//         });
 
-        return _opt;
+//         return _opt;
 
-    }
-};
+//     }
+// };
 
 let presets = {
     formStatus : `
@@ -1325,127 +1325,127 @@ let addSpace = (content, tabs) => {
 
 let rmEndWrap = content => (content.replace(/\n$/, ''));
 
-let extRepeat = (content, paramStr, token, md) => {
+// let extRepeat = (content, paramStr, token, md) => {
 
-    let params = {};
-    let paramStrList = [];
-    let name;
+//     let params = {};
+//     let paramStrList = [];
+//     let name;
 
-    params.list = [];
+//     params.list = [];
 
-    for (let item of paramStr) {
+//     for (let item of paramStr) {
 
-        item = item.split('|');
+//         item = item.split('|');
 
-        params.list.push(item);
+//         params.list.push(item);
 
-    }
+//     }
 
-    let fullContent = '';
+//     let fullContent = '';
 
-    for (let item of params.list) {
+//     for (let item of params.list) {
 
-        let _opt = {
-            content,
-            context : {},
-            style : [],
-            paramStr : []
-        };
+//         let _opt = {
+//             content,
+//             context : {},
+//             style : [],
+//             paramStr : []
+//         };
 
-        for (let sitem of item) {
+//         for (let sitem of item) {
 
-            _opt.param = undefined;
+//             _opt.param = undefined;
 
-            if (/^size/.test(sitem)) {
+//             if (/^size/.test(sitem)) {
 
-                _opt.param = sitem.split(':')[1];
-                repeater.size(_opt);
-                name = '@name:尺寸';
-                _opt.paramStr = [
-                    '#demo\n>title\n尺寸\n>desc\n通过`size`来设置组件的尺寸，可用尺寸详见[形态/尺寸](/guide/status.html#尺寸)'
-                ];
+//                 _opt.param = sitem.split(':')[1];
+//                 repeater.size(_opt);
+//                 name = '@name:尺寸';
+//                 _opt.paramStr = [
+//                     '#demo\n>title\n尺寸\n>desc\n通过`size`来设置组件的尺寸，可用尺寸详见[形态/尺寸](/guide/status.html#尺寸)'
+//                 ];
 
-            } else if (/^color/.test(sitem)) {
+//             } else if (/^color/.test(sitem)) {
 
-                _opt.param = sitem.split(':')[1];
-                repeater.color(_opt);
-                name = '@name:色彩';
+//                 _opt.param = sitem.split(':')[1];
+//                 repeater.color(_opt);
+//                 name = '@name:色彩';
 
-                if (_opt.param === 'theme') {
+//                 if (_opt.param === 'theme') {
 
-                    _opt.paramStr = _opt.paramStr.concat([
-                        '#demo\n>title\n主题色彩\n>desc\n通过`color`来设置组件的主题色彩，可用色彩详见[形态/色彩/主题色](/guide/status.html#主题色)'
-                    ]);
+//                     _opt.paramStr = _opt.paramStr.concat([
+//                         '#demo\n>title\n主题色彩\n>desc\n通过`color`来设置组件的主题色彩，可用色彩详见[形态/色彩/主题色](/guide/status.html#主题色)'
+//                     ]);
 
-                } else if (_opt.param === 'feature') {
+//                 } else if (_opt.param === 'feature') {
 
-                    _opt.paramStr = _opt.paramStr.concat([
-                        '#demo\n>title\n功能色彩\n>desc\n通过`color`来设置组件的功能色彩，可用色彩详见[形态/色彩/功能色](/guide/status.html#功能色)'
-                    ]);
+//                     _opt.paramStr = _opt.paramStr.concat([
+//                         '#demo\n>title\n功能色彩\n>desc\n通过`color`来设置组件的功能色彩，可用色彩详见[形态/色彩/功能色](/guide/status.html#功能色)'
+//                     ]);
 
-                } else {
+//                 } else {
 
-                    _opt.paramStr = _opt.paramStr.concat([
-                        '#demo\n>title\n辅助色彩\n>desc\n通过`color`来设置组件的辅助色彩，可用色彩详见[形态/色彩/辅助色](/guide/status.html#辅助色)'
-                    ]);
+//                     _opt.paramStr = _opt.paramStr.concat([
+//                         '#demo\n>title\n辅助色彩\n>desc\n通过`color`来设置组件的辅助色彩，可用色彩详见[形态/色彩/辅助色](/guide/status.html#辅助色)'
+//                     ]);
 
-                }
+//                 }
 
-            } else if (/^state/.test(sitem)) {
+//             } else if (/^state/.test(sitem)) {
 
-                _opt.param = sitem.split(':')[1];
-                repeater.state(_opt);
-                name = '@name:状态';
-                _opt.paramStr = [
-                    '#demo\n>title\n状态\n>desc\n通过`state`来设置组件的状态，可用状态详见[形态/状态](/guide/status.html#状态)'
-                ];
+//                 _opt.param = sitem.split(':')[1];
+//                 repeater.state(_opt);
+//                 name = '@name:状态';
+//                 _opt.paramStr = [
+//                     '#demo\n>title\n状态\n>desc\n通过`state`来设置组件的状态，可用状态详见[形态/状态](/guide/status.html#状态)'
+//                 ];
 
-            } else if (/^br/.test(sitem)) {
+//             } else if (/^br/.test(sitem)) {
 
-                _opt.param = sitem.split(':')[1];
-                repeater.br(_opt);
+//                 _opt.param = sitem.split(':')[1];
+//                 repeater.br(_opt);
 
-            } else if (/^formConfig/.test(sitem)) {
+//             } else if (/^formConfig/.test(sitem)) {
 
-                repeater.formConfig(_opt);
+//                 repeater.formConfig(_opt);
 
-            } else if (/^formValueType/.test(sitem)) {
+//             } else if (/^formValueType/.test(sitem)) {
 
-                _opt.param = sitem.split(':')[1];
-                repeater.formValueType(_opt);
+//                 _opt.param = sitem.split(':')[1];
+//                 repeater.formValueType(_opt);
 
-            }
+//             }
 
-        }
+//         }
 
-        Mustache.parse(_opt.content, ['{$', '}']);
+//         Mustache.parse(_opt.content, ['{$', '}']);
 
-        let renderContent = Mustache.render(_opt.content, _opt.context);
+//         let renderContent = Mustache.render(_opt.content, _opt.context);
 
-        if (_opt.style.length > 0) {
+//         if (_opt.style.length > 0) {
 
-            _opt.paramStr[0] = _opt.paramStr[0].replace(/(^\#demo)/, `$1\n>tpl\n<div style="${_opt.style.join('')}">\n${addSpace(rmEndWrap(renderContent), 4)}\n<div>`);
-            paramStrList = paramStrList.concat(_opt.paramStr);
+//             _opt.paramStr[0] = _opt.paramStr[0].replace(/(^\#demo)/, `$1\n>tpl\n<div style="${_opt.style.join('')}">\n${addSpace(rmEndWrap(renderContent), 4)}\n<div>`);
+//             paramStrList = paramStrList.concat(_opt.paramStr);
 
-        } else {
+//         } else {
             
-            _opt.paramStr[0] = _opt.paramStr[0].replace(/(^\#demo)/, `$1\n>tpl\n<div>\n${addSpace(rmEndWrap(renderContent), 4)}\n<div>`);
-            paramStrList = paramStrList.concat(_opt.paramStr);
+//             _opt.paramStr[0] = _opt.paramStr[0].replace(/(^\#demo)/, `$1\n>tpl\n<div>\n${addSpace(rmEndWrap(renderContent), 4)}\n<div>`);
+//             paramStrList = paramStrList.concat(_opt.paramStr);
 
-        }
+//         }
 
-    }
+//     }
 
-    paramStrList.unshift(name);
+//     paramStrList.unshift(name);
 
-    return extVue(
-        null,
-        paramStrList,
-        token,
-        md
-    );
+//     return extVue(
+//         null,
+//         paramStrList,
+//         token,
+//         md
+//     );
 
-};
+// };
 
 let extVueLayout = {
     color : (paramStr) => {
@@ -1628,8 +1628,6 @@ let extVueRenderer = {
             `<div>{$#size}\n${addSpace(rmEndWrap(parts.tpl.join('\n')), 4)}{$/size}\n</div>`
         ]);
 
-        console.log(123, sizePreset);
-
         newParamStr.push(sizePreset.join('\n'));
         
         return newParamStr;
@@ -1678,8 +1676,6 @@ let extVueRenderer = {
 
         newParamStr.push(statePreset.join('\n'));
         
-        console.log(56, newParamStr);
-
         return newParamStr;
 
     },
@@ -1825,7 +1821,6 @@ let extVueRenderer = {
         let attrs = parts.rules.shift() || '';
         let slot = parts.rules.shift() || '';
         let typeData = data.formValueType[type];
-        console.log(991, parts.rules, attrs);
 
         typeData = {
             types : typeData
@@ -1855,8 +1850,6 @@ let extVueRenderer = {
         ];
 
         newParamStr[0] = newParamStr[0].join('\n');
-
-        console.log(55, newParamStr);
 
         return newParamStr;
 
@@ -2019,7 +2012,6 @@ let extVueTranslater = {
 
         exec.shift();
         exec.pop();
-        exec.unshift(',');
         exec = exec.join('\n');
 
         let script = {};
@@ -2027,10 +2019,21 @@ let extVueTranslater = {
         script.exec = `new Vue({
                 id : '${_ctx.demoid}',
                 el : '#${_ctx.demoid}-el',
-                template : '#${_ctx.demoid}-tmpl'${exec}
+                template : '#${_ctx.demoid}-tmpl',${exec}
             });`;
-        script.print = `    export default {\n${addSpace(rmEndWrap(exec.replace(/^\,\n/, '')), 4)}\n    };`;
-        script.live = `Vue.use(morning);\n\nnew Vue({\n    el : '#${_ctx.demoid}-el'${exec}\n});`;
+
+        if (exec.length > 0) {
+            script.print = `    export default {\n${addSpace(rmEndWrap(exec), 4)}\n    };`;
+        } else {
+            script.print = `    export default {};`;
+        }
+
+
+        if (exec.length > 0) {
+            script.live = `Vue.use(morning);\n\nnew Vue({\n    el : '#${_ctx.demoid}-el',\n${exec}\n});`;
+        } else {
+            script.live = `Vue.use(morning);\n\nnew Vue({\n    el : '#${_ctx.demoid}-el'\n});`;
+        }
 
         Mustache.parse(script.exec, ['{$', '}']);
         Mustache.parse(script.print, ['{$', '}']);
@@ -2375,7 +2378,11 @@ let extVue = (content, paramStr, token, md) => {
         }
     };
 
-    ctx._ctx.vars = extVueParser.vars(paramStr.shift());
+    if (paramStr.length > 1) {
+        ctx._ctx.vars = extVueParser.vars(paramStr.shift());
+    } else {
+        ctx._ctx.vars = {};
+    }
 
     if (ctx._ctx.vars.layout) {
 
@@ -2420,14 +2427,22 @@ let extVue = (content, paramStr, token, md) => {
         name = name.replace(/(^\<p\>|\<\/p\>)/g, '');
         name = name.replace(/\n$/, '');
 
-    }
+        return `
+        <div class="demo-root">
+            <h4 id="${name.replace(/(\<[\/]*\w+?\>|\]|\[|\}|\{|\>|\<|\)|\()/g, '-')}"><a href="#${name.replace(/(\<[\/]*\w+?\>|\]|\[|\}|\{|\>|\<|\)|\()/g, '-')}" aria-hidden="true" class="permalink">#</a> ${name}</h4>
+            ${ctx.compiled.join('\n')}
+        </div>
+        `;
 
-    return `
-    <div class="demo-root">
-        <h4 id="${name.replace(/(\<[\/]*\w+?\>|\]|\[|\}|\{|\>|\<|\)|\()/g, '-')}"><a href="#${name.replace(/(\<[\/]*\w+?\>|\]|\[|\}|\{|\>|\<|\)|\()/g, '-')}" aria-hidden="true" class="permalink">#</a> ${name}</h4>
-        ${ctx.compiled.join('\n')}
-    </div>
-    `;
+    } else {
+
+        return `
+        <div class="demo-root">
+            ${ctx.compiled.join('\n')}
+        </div>
+        `;
+
+    }
 
 };
 
@@ -2442,7 +2457,6 @@ let extPreset = (content, paramStr) => {
     vars.formGroupMore = `['group1', 'group2', 'group3']`;
 
     Mustache.parse(template, ['{%', '%}']);
-    console.log(51, vars);
     template = Mustache.render(template, vars);
     
     // let context = {
@@ -2467,8 +2481,8 @@ let extPreset = (content, paramStr) => {
 
 };
 
-let demoWithCodePlugin = (md, opt) => {
-    md.block.ruler.before('table', 'codeWithDemo', (state, startLine, endLine) => {
+let mdExtendPlugin = (md, opt) => {
+    md.block.ruler.before('table', 'mdExtend', (state, startLine, endLine) => {
 
         // if it's indented more than 3 spaces, it should be a code block
         if (state.sCount[startLine] - state.blkIndent >= 4) {
@@ -2629,12 +2643,6 @@ let demoWithCodePlugin = (md, opt) => {
 
         }
 
-        if (method === 'repeat') {
-
-            result = extRepeat(content, paramStr, token, md);
-
-        }
-
         if (method === 'vue') {
 
             result = extVue(content, paramStr, token, md);
@@ -2653,7 +2661,7 @@ let demoWithCodePlugin = (md, opt) => {
 
 };
 
-markdown.use(demoWithCodePlugin);
+markdown.use(mdExtendPlugin);
 
 window.Vue.component('doc-component-status', DocComponentStatus);
 

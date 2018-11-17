@@ -17,7 +17,9 @@
 
     在使用组件时，可以在组件标签`<ui-*>`的`attr`属性中传入初始化配置：
 
-    :::democode/html
+    :::vue
+    #demo
+    >tpl
     <!-- ui-btn设置link配置 -->
     <!-- 配置名称是: link -->
     <!-- 配置数值是: https://www.google.com -->
@@ -28,15 +30,9 @@
 
     由于初始化配置基于`Vue`的`props`，你也可以使用`v-bind`来传入配置，或使用JavaScript表达式。
 
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
-        data : {
-            link : 'https://www.google.com'
-        }
-    });
-    ---
+    :::vue
+    #demo
+    >tpl
     <div>
         <!-- 通过v-bind为ui-btn设置link -->
         <ui-btn new-tab :link="link">Google</ui-btn>
@@ -44,6 +40,12 @@
         <!-- 通过JavaScript表达式为ui-btn设置link -->
         <ui-btn new-tab :link="'https://www.google.com'">Google</ui-btn>
     </div>
+    >script
+    {
+        data : {
+            link : 'https://www.google.com'
+        }
+    }
     :::
 
     更多用法见:[Vue/模板语法](https://cn.vuejs.org/v2/guide/syntax.html)。
@@ -52,19 +54,19 @@
 
     HTML特性是不区分大小写的。所以，当配置的名称是camelCased(驼峰式)命名的prop，在HTML中需要转换为相对应的kebab-case(短横线隔开式)命名：
 
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
+    :::vue
+    #demo
+    >tpl
+    <div>
+        <!-- new-tab在HTML中是kebab-case命名 -->
+        <ui-btn new-tab :link="link">Google</ui-btn>
+    </div>
+    >script
+    {
         data : {
             link : 'https://www.google.com'
         }
-    });
-    ---
-    <div>
-        <!-- new-tab在HTML中是kebab-case命名 -->
-        <ui-btn ref="demo3" new-tab :link="link">Google</ui-btn>
-    </div>
+    }
     :::
 
     ### 单向数据流
@@ -76,29 +78,32 @@
     - 当组件的配置`link`发生变更时，并不会同步到父实例的`link`中
     - 当父实例的`link`发生变更时，会同步到组件的配置`link`中
 
-    :::vue/html
-    var demo2 = new Vue({
-        el : '{$el}',
-        template : '{$template}',
-        data : {
-            link : 'https://www.google.com'
-        }
-    });
-
-    // 组件的配置`link`改变时，父实例获取不到变化的配置
-    morning.findVM('demo2').conf.link = 'https://www.baidu.com';
-    console.log('demo2.console1', demo2.link); // `https://www.google.com`
-
-    // 父实例的`link`改变会同步到组件的配置中
-    demo2.link = 'https://bing.com';
-    Vue.nextTick(() => {
-        console.log('demo2.console2', morning.findVM('demo2').getConf().link); // `https://bing.com`
-    });
-    ---
+    :::vue
+    #demo
+    >tpl
     <div>
         <!-- 通过v-bind为ui-btn设置link -->
         <ui-btn ref="demo2" new-tab :link="link">Google</ui-btn>
     </div>
+    >script
+    {
+        data : {
+            link : 'https://www.google.com'
+        },
+        mounted : function () {
+
+            // 组件的配置`link`改变时，父实例获取不到变化的配置
+            morning.findVM('demo2').conf.link = 'https://www.baidu.com';
+            console.log('demo2.console1', this.link); // `https://www.google.com`
+
+            // 父实例的`link`改变会同步到组件的配置中
+            this.link = 'https://bing.com';
+            Vue.nextTick(() => {
+                console.log('demo2.console2', morning.findVM('demo2').getConf().link); // `https://bing.com`
+            });
+
+        }
+    }
     :::
 
     下面有张图可以帮助你更好的理解上面的概念：

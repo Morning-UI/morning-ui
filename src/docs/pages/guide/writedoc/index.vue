@@ -111,21 +111,20 @@
     
     - [删除线(GFM)](https://help.github.com/articles/basic-writing-and-formatting-syntax/#styling-text)
     - [表格(GFM)](https://help.github.com/articles/organizing-information-with-tables/)
-    - 演示 : 一份代码，同时生成可视化的示例和完整展示代码。
-    - 重复 : 可以按预设的规则重复你的演示代码。
-    - Vue实例 : 快速生成Vue容器、模板和JS，并进行绑定。
+    - 演示及代码 : 一份代码，同时生成可视化的示例和完整展示代码。
+    - Vue演示 : 快速生成Vue容器、模板和JS，并进行绑定。
     - 预设 : 预设的演示代码，传入配置即可生成演示代码。
     - 示例 : 用虚线框起来的一个区域，告诉使用者这里面是示例。用以区分文档和示例。
 
-    现在你对于这些新概念一定很懵逼，下面的章节详细为你解释了这些新的用法。
+    下面的章节详细为你解释了这些新的用法。
 
     #### 扩展语法
 
-    除示例之外的，演示、重复、Vue实例、预设都基于了同一种扩展语法：使用`:::`标记的区块，格式如下：
+    除示例之外的，演示、Vue演示、预设都基于了同一种扩展语法：使用`:::`标记的区块，格式如下：
 
     ```text
     :::[扩展名]/[代码语言]
-    [配置部分]
+    [扩展配置]
     ---
     [内容部分]
     :::
@@ -133,14 +132,14 @@
 
     - `扩展名` : 标记需要使用的扩展功能
     - `代码语言` : <ui-badge size="xxs" color="minor">非必需</ui-badge>标记`内容部分`的语言类型
-    - `配置部分` : <ui-badge size="xxs" color="minor">非必需</ui-badge>可以用来配置不同的扩展功能，不同扩展的配置方式不同，会在后面详细说明
+    - `扩展配置` : <ui-badge size="xxs" color="minor">非必需</ui-badge>用来声明扩展的配置，会在后面详细说明
     - `内容部分` : <ui-badge size="xxs" color="minor">非必需</ui-badge>是扩展的主体内容部分
 
     其中配置和内容采用`---`分隔。
 
-    #### 演示
+    #### 演示及代码
 
-    下面这段代码标记了一段演示区域:
+    下面这段代码标记了一段演示及代码区域:
 
     ```text
     :::democode/html
@@ -158,196 +157,61 @@
 
     ---demoend---
 
-    `演示`会同时生成示例和代码。避免了示例和代码需要重复写两份，这也可以确保示例和代码的一致性。
+    `演示及代码`会同时生成示例和代码。避免了示例和代码需要重复写两份，这也可以确保示例和代码的一致性。
 
     在上面示例中的`html`你也可以替换成其他语言。
 
-    #### 重复
+    #### Vue演示
+    
+    有些时候你的演示会需要使用到Vue的实例，这意味着需要创建Vue的容器、模板、JS并将它们绑定在一起，这时候你可以使用`Vue演示`来简化操作。
 
-    在演示区域中支持使用重复来减少重复文档的书写，比如你的`演示`需要展现所有支持的组件尺寸：
+    扩展中的配置部分变为了初始化`Vue演示`的JS脚本，内容部分为Vue的模板：
 
     ```text
-    :::democode/html
-    <ui-btn size="xxl">XXL尺寸</ui-btn>
-    <ui-btn size="xl">XL尺寸</ui-btn>
-    <ui-btn size="l">L尺寸</ui-btn>
-    <ui-btn size="m">M尺寸</ui-btn>
-    <ui-btn size="s">S尺寸</ui-btn>
-    <ui-btn size="xs">XS尺寸</ui-btn>
-    <ui-btn size="xxs">XXS尺寸</ui-btn>
-    :::
-    ```
-
-    上面的写法十分繁琐，`重复`让你只需写出一个尺寸的演示，然后循环输出其余的尺寸。通过`size`配置，简写成：
-
-    ```text
-    :::repeat/html
-    size
-    ---
-    <ui-btn size="{$sizeKey}">{$&sizeName}</ui-btn>
-    :::
-    ```
-
-    最终的效果：
-
-    ---demostart---
-
-    :::repeat/html
-    size
-    ---
-    <ui-btn size="{$sizeKey}">{$&sizeName}</ui-btn>
-    :::
-    
-    ---demoend---
-    
-    `重复`的配置部分声明了需要采用哪种重复方式，`重复`会循环渲染输出内容部分。并且内容部分支持变量，在循环时会动态渲染，语法基于[mustache](https://github.com/janl/mustache.js)，采用`{$`和`}`来包裹变量。
-
-    比如上面示例中的的`size`重复，支持`sizeKey`和`sizeName`，所以你可以在下面的内容部分中使用这两个变量，通过`重复`的循环来输出所有的尺寸示例。
-
-    ##### 配置参数
-
-    `重复`的配置支持参数，你可以在配置后通过`:`来添加参数（一条配置仅支持一个参数）。
-
-    比如`color`需要传入一个色彩参数，来告诉指令需要渲染哪组色彩：
-    
-    ```text
-    :::repeat/html
-    color:theme
-    ---
-    <ui-btn color="{$colorKey}">{$&colorName}</ui-btn>
-    :::
-    ```
-
-    最终的效果：
-
-    ---demostart---
-
-    :::repeat/html
-    color:theme
-    ---
-    <ui-btn color="{$colorKey}">{$&colorName}</ui-btn>
-    :::
-    
-    ---demoend---
-
-    ##### 多个演示区域
-
-    有时候在一个演示区域内放太多示例会让使用者难以阅读，所以`重复`也支持循环生成多个演示区域：
-
-    ```text
-    :::repeat/html
-    color:blue
-    color:silver
-    color:gray
-    ---
-    <ui-btn color="{$colorKey}">{$&colorName}</ui-btn>
-    :::
-    ```
-
-    最终的效果：
-
-    ---demostart---
-    
-    :::repeat/html
-    color:blue
-    color:silver
-    color:gray
-    ---
-    <ui-btn color="{$colorKey}">{$&colorName}</ui-btn>
-    :::
-    
-    ---demoend---
-    
-    如同上面的示例，每一行的配置都会生成一个新的演示区域。同时，`重复`也会非常贴心的帮改变演示区域的样式，让示例看起来更易读。
-
-    ##### 多配置
-
-    有些时候为了展示复杂的重复情况，你需要同时使用多个配置进行循环输出示例，你可以这样使用：
-
-    ```text
-    :::repeat/html
-    state|br:2|color:theme
-    ---
-    <ui-btn state="{$stateKey}" color="{$colorKey}">{$&stateName}</ui-btn>
-    :::
-    ```
-
-    最终的效果：
-
-    ---demostart---
-
-    :::repeat/html
-    state|br:2|color:theme
-    ---
-    <ui-btn state="{$stateKey}" color="{$colorKey}">{$&stateName}</ui-btn>
-    :::
-
-    ---demoend---
-
-    通过`|`分隔你可以在一行中使用多个配置，你的文档将会从左向右重复这些配置。其中`br`配置用来向文档插入换行符，让示例更易读。
-
-    ##### 所有配置
-
-    |配置名|参数|说明|支持变量|
-    |-|-|-|-|
-    |size|无|循环输出尺寸形态|sizeKey / sizeName|
-    |color|`theme`:主题色组<br>`feature`:功能色组<br>`black`:黑色组<br>`blue`:青色组<br>`silver`:银色组<br>`gray`:浅色组<br>|循环输出颜色形态|colorKey / colorName|
-    |state|需要输出的状态，多个之间用`,`分隔。<br>`normal`:正常状态<br>`hover`:Hover状态<br>`active`:激活状态<br>`disabled`:禁用状态<br>`apparent`:醒目状态|循环输出状态形态|stateKey / stateName|
-    |br|需要插入的换行符数量|在循环中插入换行符`<br>`|无|
-    |formConfig|无|输出演示用的表单名称、Key、表单组(由预设使用)|formName / formKey / formGroupOne|
-    |formValueType|需要输出一组值的名称|在表单值演示中输出一组包含所有类型的数值|valueType / valueContent|
-
-    #### Vue实例
-
-    有些时候你的演示会需要使用到Vue的实例，这意味着需要创建Vue的容器、模板、JS并将它们绑定在一起，这时候你可以使用`Vue实例`来简化操作。
-
-    扩展中的配置部分变为了初始化`Vue实例`的JS脚本，内容部分为Vue的模板：
-
-    ```text
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
+    :::vue
+    #demo
+    >tpl
+    <div>
+        <ui-btn @emit="echo">点击触发emit事件</ui-btn>
+    </div>
+    >script
+    {
         methods : {
             echo : function () {
                 console.log('emit event!');
             }
         }
-    });
-    ---
-    <div>
-        <ui-btn @emit="echo">点击触发emit事件</ui-btn>
-    </div>
+    }
     :::
     ```
 
-    你一定注意到上面代码中的`{$el}`和`${template}`，这是[mustache](https://github.com/janl/mustache.js)语法，在生成文档时`Vue实例`会自动帮你替换成对应的Vue元素及模板id。
+    你一定注意到上面代码中的`{$el}`和`${template}`，这是[mustache](https://github.com/janl/mustache.js)语法，在生成文档时`Vue演示`会自动帮你替换成对应的Vue元素及模板id。
 
-    这是为了防止同一个页面中的Vue元素或模板id冲突，`Vue实例`会帮你管理这些id。
+    这是为了防止同一个页面中的Vue元素或模板id冲突，`Vue演示`会帮你管理这些id。
 
     最终效果：
 
     ---demostart---
 
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
-        methods : {
-            echo : function () {
-                alert('emit event!');
-            }
-        }
-    });
-    ---
+    :::vue
+    #demo
+    >tpl
     <div>
         <ui-btn @emit="echo">点击触发emit事件</ui-btn>
     </div>
+    >script
+    {
+        methods : {
+            echo : function () {
+                console.log('emit event!');
+            }
+        }
+    }
     :::
 
     ---demoend---
 
-    其中的`<div id="demo-[id]-el">`就是`Vue实例`自动帮你生成的Vue实例根节点。
+    其中的`<div id="demo-[id]-el">`就是`Vue演示`自动帮你生成的Vue演示根节点。
 
     #### 预设
 
@@ -356,11 +220,10 @@
     使用方式如下：
 
     ```text
-    :::preset/html
-    formStatus
-    ---
-    uikey:textinput
-    statusDefaultValue:''
+    :::preset
+    @name:formConfig
+    @uikey:textinput
+    @defaultValue:'默认文本'
     :::
     ```
 
@@ -377,15 +240,14 @@
     ---demostart---
 
     :::preset
-    formStatus
-    ---
-    uikey:textinput
-    statusDefaultValue:''
+    @name:formConfig
+    @uikey:textinput
+    @defaultValue:'默认文本'
     :::
 
     ---demoend---
 
-    可以看到上面这一大段的文档，仅需6行代码就可以生成，这就是`预设`的效果。
+    可以看到上面这一大段的文档，仅需5行代码就可以生成，这就是`预设`的效果。
 
     ##### 所有预设
 
@@ -400,7 +262,6 @@
     |formConfigTable|组件的其余配置作为内容部分|表单配置说明文档(表格)|
     |formMethod|@uikey：组件的Key<br>@methodDefaultValue：组件的默认值<br>@methodMoreAttr：组件的配置<br>@methodSlot：组件的插值<br>@methodValue：组件的值|表单基本方法示例文档|
     |formEvent|@uikey：组件的Key<br>@eventMoreAttr：组件的配置<br>@eventSlot：组件的插值<br>@eventValue：组件的值|表单基本事件示例文档|
-
 
     #### 示例
 
