@@ -646,155 +646,6 @@ let data = {
     }
 };
 
-// let repeater = {
-//     size : _opt => {
-
-//         let size = data.size;
-
-//         if (_opt.param !== undefined) {
-
-//             size = [];
-
-//             for (let key of _opt.param.split(',')) {
-
-//                 for (let item of data.size) {
-
-//                     if (item.sizeKey === key) {
-
-//                         size.push(item);
-
-//                     }
-
-//                 }
-
-//             }
-
-//         }
-
-//         _opt.content = `{$#size}${_opt.content}{$/size}`;
-//         _opt.context = extend(true, _opt.context, {
-//             size : size
-//         });
-
-//         return _opt;
-
-//     },
-//     color : _opt => {
-
-//         let color = _opt.param;
-
-//         _opt.content = `{$#${color}}${_opt.content}{$/${color}}`;
-//         _opt.context = extend(true, _opt.context, {
-//             [color] : data[color]
-//         });
-
-//         if (color === 'silver') {
-
-//             _opt.style.push('background: #626b75;border-color: #454d57;padding: 5px;');
-
-//         } else if (color === 'gray') {
-
-//             _opt.style.push('background:#676767;border-color: #494949;padding: 5px;');
-
-//         }
-
-//         return _opt;
-
-//     },
-//     state : _opt => {
-
-//         if (_opt.param === undefined) {
-            
-//             _opt.param = 'all';
-
-//         }
-
-//         let states = _opt.param.split(',');
-
-//         if (states.length > 0 &&
-//             states.indexOf('all') === -1) {
-
-//             let sna = [];
-
-//             for (let state of data.state) {
-
-//                 if (states.indexOf(state.stateKey) !== -1) {
-
-//                     sna.push(state);
-
-//                 }
-
-//             }
-
-//             _opt.context = extend(true, _opt.context, {
-//                 state : sna
-//             });
-
-//         } else if (states[0] === 'all') {
-
-//             _opt.context = extend(true, _opt.context, {
-//                 state : data.state
-//             });
-
-//         }
-
-//         // if (typeof opt.content === 'string') {
-
-//         _opt.content = `{$#state}${_opt.content}{$/state}`;
-
-//         // } else if (typeof opt.contnet === 'object') {
-
-//         //     for (let key in opt.content) {
-                    
-//         //         opt.content[key] = `{$#state}${opt.content[key]}\n{$/state}`;
-                
-//         //     }
-
-//         // }
-
-//         return _opt;
-
-//     },
-//     br : _opt => {
-
-//         let num = +_opt.param || 1;
-//         let brs = '';
-
-//         while (num--) {
-
-//             brs += '<br/>';
-
-//         }
-
-//         _opt.content = `${_opt.content}\n${brs}\n`;
-
-//         return _opt;
-
-//     },
-//     formConfig : _opt => {
-
-//         _opt.content = `{$#formConfig}${_opt.content}\n{$/formConfig}`;
-//         _opt.context = extend(true, _opt.context, {
-//             formConfig : data.formConfig
-//         });
-
-//         return _opt;
-
-//     },
-//     formValueType : _opt => {
-
-//         let key = _opt.param || 'default';
-
-//         _opt.content = `{$#formValueType.${key}}${_opt.content}\n{$/formValueType.${key}}`;
-//         _opt.context = extend(true, _opt.context, {
-//             formValueType : data.formValueType
-//         });
-
-//         return _opt;
-
-//     }
-// };
-
 let presets = {
     formStatus : `
 #### 支持
@@ -843,8 +694,8 @@ color:blue
 color:silver
 color:gray
 ---
-<div style="width:300px;{%statusDivStyle%}">
-    <ui-{%uikey%} color="{$colorKey}" :default-value="{%&statusDefaultValue%}" form-name="{$&colorName}" {%&statusMoreAttr%}>{%&statusSlot%}</ui-{%uikey%}>
+<div style="width:300px;{%wrapStyle%}">
+    <ui-{%uikey%} color="{$colorKey}" :default-value="{%&defaultValue%}" form-name="{$&colorName}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
 </div>
 <br>
 :::
@@ -854,8 +705,8 @@ color:gray
 :::repeat/html
 state:normal,disabled,readonly
 ---
-<div style="width:300px;">
-    <ui-{%uikey%} state="{$stateKey}" :default-value="{%&statusDefaultValue%}" form-name="{$&stateName}" {%&statusMoreAttr%}>{%&statusSlot%}</ui-{%uikey%}>
+<div style="width:300px;{%wrapStyle%}">
+    <ui-{%uikey%} state="{$stateKey}" :default-value="{%&defaultValue%}" form-name="{$&stateName}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
 </div>
 <br>
 :::
@@ -920,7 +771,7 @@ String<br/>Array
 >tpl
 <div style="width:300px;{%wrapStyle%}">
     <!-- 设置单个组 -->
-    <ui-{%uikey%} form-name="{%formName%" form-key="{%formKey%}" group="{%formGroupOne%}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
+    <ui-{%uikey%} form-name="{%formName%}" form-key="{%formKey%}" group="{%formGroupOne%}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
 </div>
 ---
 #demo
@@ -1324,128 +1175,6 @@ let addSpace = (content, tabs) => {
 };
 
 let rmEndWrap = content => (content.replace(/\n$/, ''));
-
-// let extRepeat = (content, paramStr, token, md) => {
-
-//     let params = {};
-//     let paramStrList = [];
-//     let name;
-
-//     params.list = [];
-
-//     for (let item of paramStr) {
-
-//         item = item.split('|');
-
-//         params.list.push(item);
-
-//     }
-
-//     let fullContent = '';
-
-//     for (let item of params.list) {
-
-//         let _opt = {
-//             content,
-//             context : {},
-//             style : [],
-//             paramStr : []
-//         };
-
-//         for (let sitem of item) {
-
-//             _opt.param = undefined;
-
-//             if (/^size/.test(sitem)) {
-
-//                 _opt.param = sitem.split(':')[1];
-//                 repeater.size(_opt);
-//                 name = '@name:尺寸';
-//                 _opt.paramStr = [
-//                     '#demo\n>title\n尺寸\n>desc\n通过`size`来设置组件的尺寸，可用尺寸详见[形态/尺寸](/guide/status.html#尺寸)'
-//                 ];
-
-//             } else if (/^color/.test(sitem)) {
-
-//                 _opt.param = sitem.split(':')[1];
-//                 repeater.color(_opt);
-//                 name = '@name:色彩';
-
-//                 if (_opt.param === 'theme') {
-
-//                     _opt.paramStr = _opt.paramStr.concat([
-//                         '#demo\n>title\n主题色彩\n>desc\n通过`color`来设置组件的主题色彩，可用色彩详见[形态/色彩/主题色](/guide/status.html#主题色)'
-//                     ]);
-
-//                 } else if (_opt.param === 'feature') {
-
-//                     _opt.paramStr = _opt.paramStr.concat([
-//                         '#demo\n>title\n功能色彩\n>desc\n通过`color`来设置组件的功能色彩，可用色彩详见[形态/色彩/功能色](/guide/status.html#功能色)'
-//                     ]);
-
-//                 } else {
-
-//                     _opt.paramStr = _opt.paramStr.concat([
-//                         '#demo\n>title\n辅助色彩\n>desc\n通过`color`来设置组件的辅助色彩，可用色彩详见[形态/色彩/辅助色](/guide/status.html#辅助色)'
-//                     ]);
-
-//                 }
-
-//             } else if (/^state/.test(sitem)) {
-
-//                 _opt.param = sitem.split(':')[1];
-//                 repeater.state(_opt);
-//                 name = '@name:状态';
-//                 _opt.paramStr = [
-//                     '#demo\n>title\n状态\n>desc\n通过`state`来设置组件的状态，可用状态详见[形态/状态](/guide/status.html#状态)'
-//                 ];
-
-//             } else if (/^br/.test(sitem)) {
-
-//                 _opt.param = sitem.split(':')[1];
-//                 repeater.br(_opt);
-
-//             } else if (/^formConfig/.test(sitem)) {
-
-//                 repeater.formConfig(_opt);
-
-//             } else if (/^formValueType/.test(sitem)) {
-
-//                 _opt.param = sitem.split(':')[1];
-//                 repeater.formValueType(_opt);
-
-//             }
-
-//         }
-
-//         Mustache.parse(_opt.content, ['{$', '}']);
-
-//         let renderContent = Mustache.render(_opt.content, _opt.context);
-
-//         if (_opt.style.length > 0) {
-
-//             _opt.paramStr[0] = _opt.paramStr[0].replace(/(^\#demo)/, `$1\n>tpl\n<div style="${_opt.style.join('')}">\n${addSpace(rmEndWrap(renderContent), 4)}\n<div>`);
-//             paramStrList = paramStrList.concat(_opt.paramStr);
-
-//         } else {
-            
-//             _opt.paramStr[0] = _opt.paramStr[0].replace(/(^\#demo)/, `$1\n>tpl\n<div>\n${addSpace(rmEndWrap(renderContent), 4)}\n<div>`);
-//             paramStrList = paramStrList.concat(_opt.paramStr);
-
-//         }
-
-//     }
-
-//     paramStrList.unshift(name);
-
-//     return extVue(
-//         null,
-//         paramStrList,
-//         token,
-//         md
-//     );
-
-// };
 
 let extVueLayout = {
     color : (paramStr) => {
@@ -2458,26 +2187,8 @@ let extPreset = (content, paramStr) => {
 
     Mustache.parse(template, ['{%', '%}']);
     template = Mustache.render(template, vars);
-    
-    // let context = {
-    //     content : content
-    // };
-
-    // content = content.split('\n');
-
-    // for (let item of content) {
-        
-    //     if (item) {
-
-    //         item = item.split(':');
-    //         context[item.shift()] = item.join(':');
-
-    //     }
-
-    // }
 
     return markdown.render(template);
-    // return '<h1>123</h1>';
 
 };
 

@@ -21252,7 +21252,7 @@ exports.default = {
 
             var value = this.get();
 
-            if (isNaN(+this.data.setScale) || value && value.w === 0 || value === undefined) {
+            if (isNaN(+this.data.setScale) || this.data.setScale === null || value && value.w === 0 || value === undefined) {
 
                 return num100 + '%';
             }

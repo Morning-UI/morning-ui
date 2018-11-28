@@ -84,7 +84,9 @@
     ##### 代码、演示及示例
     
     - ` ``` ` : 代码区域([CommonMark Spec](http://spec.commonmark.org/)支持)
-    - `:::democode` : 演示区域，包含示例和代码(扩展用法，见下面章节)
+    - `:::democode` : 演示及代码区域，包含示例和代码(扩展用法，见下面章节)
+    - `:::vue` : Vue演示区域，包含符合Vue风格的示例和代码(扩展用法，见下面章节)
+    - `:::preset` : 引用预设的文档内容(扩展用法，见下面章节)
     - `---demostart---`和`---demoend---` : 示例区域(扩展用法，见下面章节)
 
     ##### 链接
@@ -111,33 +113,28 @@
     
     - [删除线(GFM)](https://help.github.com/articles/basic-writing-and-formatting-syntax/#styling-text)
     - [表格(GFM)](https://help.github.com/articles/organizing-information-with-tables/)
-    - 演示及代码 : 一份代码，同时生成可视化的示例和完整展示代码。
-    - Vue演示 : 快速生成Vue容器、模板和JS，并进行绑定。
-    - 预设 : 预设的演示代码，传入配置即可生成演示代码。
+    - 演示及代码(`democode`) : 一份代码，同时生成可视化的示例和完整展示代码。
+    - Vue演示(`vue`) : 快速生成Vue容器、模板和JS，并进行绑定。
+    - 预设(`preset`) : 预设的演示代码，传入配置即可生成演示代码。
     - 示例 : 用虚线框起来的一个区域，告诉使用者这里面是示例。用以区分文档和示例。
 
-    下面的章节详细为你解释了这些新的用法。
+    其中`演示及代码`、`Vue演示`、`预设`都使用了同一种区块格式(这种格式我们称为`Markdown Extend`)，通过为这种区块格式指定不同的模式来决定最终的效果，后面的章节将详细介绍。
 
-    #### 扩展语法
+    #### `Markdown Extend`语法
 
-    除示例之外的，演示、Vue演示、预设都基于了同一种扩展语法：使用`:::`标记的区块，格式如下：
+    `Markdown Extend`是一个扩展语法，其中`演示及代码`、`Vue演示`、`预设`都基于这种语法，使用`:::`来标记区块，格式如下：
 
     ```text
     :::[扩展名]/[代码语言]
-    [扩展配置]
-    ---
-    [内容部分]
+    [扩展内容]
     :::
     ```
 
-    - `扩展名` : 标记需要使用的扩展功能
-    - `代码语言` : <ui-badge size="xxs" color="minor">非必需</ui-badge>标记`内容部分`的语言类型
-    - `扩展配置` : <ui-badge size="xxs" color="minor">非必需</ui-badge>用来声明扩展的配置，会在后面详细说明
-    - `内容部分` : <ui-badge size="xxs" color="minor">非必需</ui-badge>是扩展的主体内容部分
+    - `扩展名` : 标记区块的扩展模式，包括：演示及代码(`democode`)、Vue演示(`vue`)、预设(`preset`)
+    - `代码语言` : <ui-badge size="xxs" color="minor">非必需</ui-badge>在`演示及代码`模式下，可标记`内容部分`的语言类型
+    - `扩展内容` : <ui-badge size="xxs" color="minor">非必需</ui-badge>扩展的主体内容部分，在不同的模式下有不同的格式，下面的章节将详细介绍
 
-    其中配置和内容采用`---`分隔。
-
-    #### 演示及代码
+    #### 演示及代码(`democode`)
 
     下面这段代码标记了一段演示及代码区域:
 
@@ -165,7 +162,7 @@
     
     有些时候你的演示会需要使用到Vue的实例，这意味着需要创建Vue的容器、模板、JS并将它们绑定在一起，这时候你可以使用`Vue演示`来简化操作。
 
-    扩展中的配置部分变为了初始化`Vue演示`的JS脚本，内容部分为Vue的模板：
+    下面是一个简单的Vue演示写法：
 
     ```text
     :::vue
@@ -185,11 +182,7 @@
     :::
     ```
 
-    你一定注意到上面代码中的`{$el}`和`${template}`，这是[mustache](https://github.com/janl/mustache.js)语法，在生成文档时`Vue演示`会自动帮你替换成对应的Vue元素及模板id。
-
-    这是为了防止同一个页面中的Vue元素或模板id冲突，`Vue演示`会帮你管理这些id。
-
-    最终效果：
+    其中`#demo`用来标记一个Vue实例演示区的开始，`>tpl`和`>script`需要和`#demo`一起使用，分别用来标记这个Vue实例的模板和脚本，最终效果：
 
     ---demostart---
 
@@ -211,7 +204,228 @@
 
     ---demoend---
 
-    其中的`<div id="demo-[id]-el">`就是`Vue演示`自动帮你生成的Vue演示根节点。
+    ##### Vue演示的标题
+
+    你也可以像下面这样为你的Vue演示设置一个标题：
+
+    ```text
+    :::vue
+    @name:事件演示
+    ---
+    #demo
+    >tpl
+    <div>
+        <ui-btn @emit="echo">点击触发emit事件</ui-btn>
+    </div>
+    >script
+    {
+        methods : {
+            echo : function () {
+                console.log('emit event!');
+            }
+        }
+    }
+    :::
+    ```
+
+    其中`---`用来在Vue演示区域内分隔两个内区块，当出现`---`时第一个内区块是参数区。用`@[参数名]:[参数值]`来设置参数。
+
+    `@name`可以用来设置一个标题。
+
+    最终效果：
+
+    ---demostart---
+
+    :::vue
+    @name:事件演示
+    ---
+    #demo
+    >tpl
+    <div>
+        <ui-btn @emit="echo">点击触发emit事件</ui-btn>
+    </div>
+    >script
+    {
+        methods : {
+            echo : function () {
+                console.log('emit event!');
+            }
+        }
+    }
+    :::
+
+    ---demoend---
+
+    ##### 多个Vue演示
+
+    你也可以在一个Vue演示区域内展现多个Vue实例：
+
+    ```text
+    :::vue
+    @name:图片按钮
+    ---
+    #demo
+    >tpl
+    <ui-btn class="circle">
+        <ui-img src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+    </ui-btn>
+    ---
+    #demo
+    >tpl
+    <ui-btn class="circle plain" color="danger">
+        <ui-img src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+    </ui-btn>
+    :::
+    ```
+
+    同样通过多个`---`和`#demo`可以在一个Vue演示区域内展现多个Vue实例，效果如下：
+
+    ---demostart---
+
+    :::vue
+    @name:图片按钮
+    ---
+    #demo
+    >tpl
+    <ui-btn class="circle">
+        <ui-img src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+    </ui-btn>
+    ---
+    #demo
+    >tpl
+    <ui-btn class="circle plain" color="danger">
+        <ui-img src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+    </ui-btn>
+    :::
+
+    ---demoend---
+
+    ##### 为单个Vue实例添加标题和描述
+
+    在`#demo`后除了`>tpl`和`>script`外，还可以添加`>title`和`>desc`为某个Vue实例添加标题和描述：
+
+    ```text
+    :::vue
+    @name:图片按钮
+    ---
+    #demo
+    >title
+    图片按钮效果
+    >desc
+    `circle`配合`ui-img`一起使用可实现图片按钮的效果。
+    >tpl
+    <ui-btn class="circle">
+        <ui-img src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+    </ui-btn>
+    :::
+    ```
+    
+    效果如下：
+
+    ---demostart---
+
+    :::vue
+    @name:图片按钮
+    ---
+    #demo
+    >title
+    图片按钮效果
+    >desc
+    `circle`配合`ui-img`一起使用可实现图片按钮的效果。
+    >tpl
+    <ui-btn class="circle">
+        <ui-img src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img>
+    </ui-btn>
+    :::
+
+    ---demoend---
+
+    ##### 在Vue演示中使用特殊的渲染器
+
+    默认通过`#demo`标记的内区域将采用默认的Vue实例渲染器，如上面的示例演示的一样。但是针对复杂情况也支持特殊的渲染器，通过`#renderer`来标记一个实用特殊渲染的内区域：
+    
+    ```text
+    :::vue
+    @name:尺寸
+    ---
+    #renderer
+    >name
+    size-repeat
+    >tpl
+    <ui-btn size="{$sizeKey}">{$&sizeName}</ui-btn>
+    :::
+    ```
+
+    其中使用`#renderer`时一定要添加`>name`来指定渲染器的名称。渲染器一般用于基于某个模板快速生成多个Vue实例，所以你可以在不同的渲染器的`>tpl`中使用变量，通过`{$[变量名]}`来使用，如果需要避免HTML转义可以使用`{$&[变量名]}`，最终效果如下：
+
+    ---demostart---
+
+    :::vue
+    @name:尺寸
+    ---
+    #renderer
+    >name
+    size-repeat
+    >tpl
+    <ui-btn size="{$sizeKey}">{$&sizeName}</ui-btn>
+    :::
+
+    ---demoend---
+
+    目前支持的渲染器有：
+
+    |渲染器|参数/内容|说明|
+    |-|-|-|
+    |size-repeat|`sizeKey`：尺寸<br>`sizeName`：尺寸的名称|用来生成所有尺寸的演示内容|
+    |color-repeat|`colorKey`：色彩<br>`colorName`：色彩的名称|用来生成所有色彩的演示内容|
+    |state-repeat|`stateKey`：状态<br>`stateName`：状态的名称|用来生成所有状态的演示内容|
+    |state-color-repeat|`colorKey`：色彩<br>`colorName`：色彩的名称<br>`stateKey`：状态<br>`stateName`：状态的名称|用来生成所有状态和色彩笛卡尔积的演示内容|
+    |lifecycle-event(内部)|无|用来生成所有生命周期事件的演示内容|
+    |value-type(内部)|无|用来生成表单组件的输入/输出的演示内容|
+
+
+    ##### 在Vue演示中使用布局
+
+    通过上面的文档你已经了解到Vue演示的配置非常丰富，这就引出了一个问题，如果有很多类似的Vue演示，并且内容都很长，是否需要重复写。Vue演示布局就是用来解决这个问题的，布局可以认为是预先设置好的Vue演示配置，它的格式是：
+
+    ```text
+    :::vue
+    @laytou:[布局名称]
+    ---
+    [布局内容/参数]
+    ```
+
+    下面是一个例子：
+
+    ```text
+    :::vue
+    @layout:color
+    ---
+    <ui-badge color="{$colorKey}">{$&colorName}</ui-badge>
+    :::
+    ```
+
+    它长的非常像一个Vue演示的写法，但不是。比如在`---`之后只能写布局内容/参数。最终效果：
+
+
+    ---demostart---
+
+    :::vue
+    @layout:color
+    ---
+    <ui-badge color="{$colorKey}">{$&colorName}</ui-badge>
+    :::
+
+    ---demoend---
+
+    目前支持的布局有：
+
+    |布局|参数/内容|说明|
+    |-|-|-|
+    |color|`colorKey`：色彩<br>`colorName`：色彩的名称|色彩演示|
+    |size|`sizeKey`：尺寸<br>`sizeName`：尺寸的名称|尺寸演示|
+    |state-na|`stateKey`：状态<br>`stateName`：状态的名称|状态演示(仅包含`normal`和`apparent`两种状态)|
+    |lifecycle-event|无|生命周期事件演示|
 
     #### 预设
 
@@ -231,7 +445,7 @@
 
     在内容区域有两种用法：
 
-    一种是为`预设`传入的参数，一行一个，格式是`[参数名]:[参数值]`，冒号分隔参数名和参数值，这些参数会填写到预设模板中对应的位置。
+    一种是为`预设`传入的参数，一行一个，格式是`@[参数名]:[参数值]`，冒号分隔参数名和参数值，这些参数会填写到预设模板中对应的位置。
 
     另一种是不设置参数，内容区域整个传入。不同的预设支持不同的用法，详见下面的`所有预设`章节。
 
@@ -255,13 +469,12 @@
 
     |预设|参数/内容|说明|
     |-|-|-|
-    |colorColor|@uikey：组件的Key|除表单组件外的色彩形态文档(仅简单情况，负责情况请使用自定义模板和`重复`来生成)|
-    |formStatus|@uikey：组件的Key<br>@statusDefaultValue：组件的默认值<br>@statusMoreAttr：组件的配置<br>@statusSlot：组件的插值|输出表单组件的形态文档(仅状态)|
-    |formStatusWithStyle|@uikey：组件的Key<br>@statusDefaultValue：组件的默认值<br>@statusMoreAttr：组件的配置<br>@statusSlot：组件的插值|输出表单组件的形态文档(包含状态及色彩)|
-    |formConfigDemo|@uikey：组件的Key<br>@configDefaultValue：组件的默认值<br>@configMoreAttr：组件的配置<br>@configSlot：组件的插值|表单基本配置示例文档|
-    |formConfigTable|组件的其余配置作为内容部分|表单配置说明文档(表格)|
-    |formMethod|@uikey：组件的Key<br>@methodDefaultValue：组件的默认值<br>@methodMoreAttr：组件的配置<br>@methodSlot：组件的插值<br>@methodValue：组件的值|表单基本方法示例文档|
-    |formEvent|@uikey：组件的Key<br>@eventMoreAttr：组件的配置<br>@eventSlot：组件的插值<br>@eventValue：组件的值|表单基本事件示例文档|
+    |formStatus|@uikey：组件的Key<br>@wrapStyle：外部容器样式<br>@defaultValue：组件的默认值<br>@attrs：组件的配置<br>@slot：组件的插值|输出表单组件的形态文档(仅状态)|
+    |formStatusWithStyle|@uikey：组件的Key<br>@wrapStyle：外部容器样式<br>@defaultValue：组件的默认值<br>@attrs：组件的配置<br>@slot：组件的插值|输出表单组件的形态文档(包含状态及色彩)|
+    |formConfig|@uikey：组件的Key<br>@wrapStyle：外部容器样式<br>@defaultValue：组件的默认值<br>@attrs：组件的配置<br>@slot：组件的插值<br>@formName：表单名<br>@formKey：表单KEY|表单组件基本配置演示文档|
+    |formMethod|@uikey：组件的Key<br>@wrapStyle：外部容器样式<br>@defaultValue：组件的默认值<br>@attrs：组件的配置<br>@slot：组件的插值<br>@formName：表单名<br>@formKey：表单KEY|表单组件基本方法演示文档|
+    |formEvent|@uikey：组件的Key<br>@wrapStyle：外部容器样式<br>@defaultValue：组件的默认值<br>@attrs：组件的配置<br>@slot：组件的插值<br>@formName：表单名<br>@formKey：表单KEY|表单组件基本事件演示文档|
+    |formValue|@uikey：组件的Key<br>@wrapStyle：外部容器样式<br>@defaultValue：组件的默认值<br>@attrs：组件的配置<br>@slot：组件的插值<br>@formName：表单名<br>@formKey：表单KEY<br>@valueType：数值类型|表单组件输入/输出的演示文档|
 
     #### 示例
 
@@ -319,7 +532,11 @@
 
     #### 使用
     
-    :::democode/html
+    :::vue
+    @name:使用
+    ---
+    #demo
+    >tpl
     <ui-h>标题</ui-h>
     :::
     ```
