@@ -861,6 +861,7 @@ export default {
             let csv = [];
             let downloadLink = document.createElement('a');
             let blob;
+            let bomBlob = new Buffer('\xEF\xBB\xBF', 'binary');
 
             if (this.conf.fixedTitleCol[0] === 'r') {
 
@@ -888,8 +889,8 @@ export default {
 
             csv = csv.join('\n');
 
-            blob = new Blob([csv]);
-            
+            blob = new Blob([bomBlob, csv]);
+
             downloadLink.style.display = 'none';
             downloadLink.href = URL.createObjectURL(blob);
 
