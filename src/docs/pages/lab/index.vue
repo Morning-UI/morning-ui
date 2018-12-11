@@ -36,7 +36,7 @@ export default {
     
         return {
             list : [
-            {name : '这里是中文s', age : 20, gender : 'male', job : 'driver'},
+            {name : 'Tim, Boelaars', age : 20, gender : 'male', job : 'driver'},
             {name : 'Andrew" Colin Beck', age : 41, gender : 'female', job : 'engineer'},
             {name : 'Gustavo, "Zambelli', age : 23, gender : 'male', job : 'teacher'},
             {name : 'Victor Erixon', age : 15, gender : 'female', job : 'doctors'},
