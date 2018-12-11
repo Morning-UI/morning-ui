@@ -779,6 +779,11 @@ export default {
             $normalTr.classList.remove('hover');
 
         },
+        _csvEncode : function (str) {
+
+            return `"${String(str).replace(/\"/g, '\"\"')}"`;
+
+        },
         _exportRows : function (csv, type) {
 
             let ignoreColIndex = [];
@@ -800,7 +805,7 @@ export default {
                         if (set &&
                             set.name) {
 
-                            csv[0].push(set.name);
+                            csv[0].push(this._csvEncode(set.name));
 
                         } else {
 
@@ -837,7 +842,7 @@ export default {
 
                     if (ignoreColIndex.indexOf(col) === -1) {
 
-                        row.push(originRow[col]);
+                        row.push(this._csvEncode(originRow[col]));
                     
                     }
 
