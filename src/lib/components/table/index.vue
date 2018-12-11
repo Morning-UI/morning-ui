@@ -781,7 +781,7 @@ export default {
         },
         _csvEncode : function (str) {
 
-            return `"${String(str).replace(/\"/g, '\"\"')}"`;
+            return `"${String(str).replace(/"/g, '""')}"`;
 
         },
         _exportRows : function (csv, type) {
