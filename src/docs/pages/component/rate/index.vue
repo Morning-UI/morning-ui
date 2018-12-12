@@ -234,11 +234,13 @@
     :::
 
     :::vue
-    @name:focus
+    @name:rating
     ---
     #event
     >event-desc
     当鼠标切换评分时触发。
+    >event-args
+    |rate|评分值|`Number`|
     ---
     #demo
     >tpl

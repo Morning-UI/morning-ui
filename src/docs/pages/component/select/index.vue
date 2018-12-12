@@ -1837,6 +1837,8 @@
     #event
     >event-desc
     当开启`can-search`配置并且搜索关键词变化时时触发。
+    >event-args
+    |key|用户搜索的内容|`String`|
     ---
     #demo
     >tpl

@@ -19,6 +19,8 @@
     </div>
 
     <div class="list">
+
+        <!-- eslint-disable vue/require-v-for-key -->
         <template v-for="index in data.total">
         
             <template v-if="(data.hideEnd - 1) === index && data.hideEnd !== 1">
@@ -50,6 +52,7 @@
             </template>
 
         </template>
+        <!-- eslint-enable vue/require-v-for-key -->
 
         <div
             class="page-jump"

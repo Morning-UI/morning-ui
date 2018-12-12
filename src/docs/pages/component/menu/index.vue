@@ -1372,6 +1372,8 @@
     #event
     >event-desc
     当导航菜单被点击时触发（处于禁用状态的菜单项被点击不会触发）。
+    >event-args
+    |data|菜单触发的数据对象|`Object`|
     ---
     #demo
     >tpl

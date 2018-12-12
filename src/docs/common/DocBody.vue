@@ -1651,6 +1651,7 @@ let extVueParser = {
             'method-args',
             'method-return',
             'event-desc',
+            'event-args',
             'script',
             'repeat',
             'rules',

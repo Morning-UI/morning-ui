@@ -445,6 +445,8 @@
     #event
     >event-desc
     当有面板显示/隐藏状态变化时触发。
+    >event-args
+    |key|切换面板的slot值|`String`|
     ---
     #demo
     >tpl
@@ -479,6 +481,8 @@
     #event
     >event-desc
     当有面板显示时触发。
+    >event-args
+    |key|显示面板的slot值|`String`|
     ---
     #demo
     >tpl
@@ -513,6 +517,8 @@
     #event
     >event-desc
     当有面板隐藏时触发。
+    >event-args
+    |key|隐藏面板的slot值|`String`|
     ---
     #demo
     >tpl

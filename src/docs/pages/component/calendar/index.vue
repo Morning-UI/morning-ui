@@ -666,7 +666,7 @@
     #event
     >event-desc
     某个日期被点击时触发。
-    >evet-args
+    >event-args
     |date|用户点击的日期|`Date`|
     ---
     #demo
@@ -691,7 +691,7 @@
     #event
     >event-desc
     鼠标移入某个日期时触发。
-    >evet-args
+    >event-args
     |date|鼠标移入的日期|`Date`|
     ---
     #demo
@@ -716,7 +716,7 @@
     #event
     >event-desc
     鼠标移出某个日期时触发。
-    >evet-args
+    >event-args
     |date|鼠标移出的日期|`Date`|
     ---
     #demo
