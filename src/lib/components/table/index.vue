@@ -781,7 +781,18 @@ export default {
         },
         _csvEncode : function (str) {
 
-            return `"${String(str).replace(/"/g, '""')}"`;
+            str = String(str);
+
+            if (/(<|>)/.test(str)) {
+                
+                let div = document.createElement('div');
+
+                div.innerHTML = str;
+                str = div.innerText;
+
+            }
+
+            return `"${str.replace(/\n/g, '\r').replace(/"/g, '""')}"`;
 
         },
         _exportRows : function (csv, type) {
