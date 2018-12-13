@@ -36,7 +36,7 @@ export default {
     
         return {
             list : [
-            {name : 'Tim, Boelaars', age : 20, gender : 'male', job : 'driver'},
+            {name : '<div>Tim, Boelaars</div><div>123123</div>', age : 20, gender : 'male', job : 'driver'},
             {name : 'Andrew" Colin Beck', age : 41, gender : 'female', job : 'engineer'},
             {name : 'Gustavo, "Zambelli', age : 23, gender : 'male', job : 'teacher'},
             {name : 'Victor Erixon', age : 15, gender : 'female', job : 'doctors'},

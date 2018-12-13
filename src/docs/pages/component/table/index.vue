@@ -308,7 +308,7 @@
     |[col-set](#col-set)|列设置可以用来控制单独的一列，具体配置方法见下面的[col-set](#col-set)章节|数组|Array|`[]`|
     |[row-set](#row-set)|单行设置可以用来控制一行，具体配置方法见下面的[row-set](#row-set)章节|数组|Array|`[]`|
     |[cell-set](#cell-set)|单元格设置可以用来控制单个单元格，具体配置方法见下面的[cell-set](#cell-set)章节|数组|Array|`[]`|
-    |[export-csv](#export-csv)|开启将表格导出csv文件的功能|`true`<br>`false`|Boolean|`false`|
+    |[export-csv](#export-csv)|开启将表格导出csv文件的功能。<br><br>导出的表格单元格内容中若包含HTML，则会被过滤仅保留文本内容(若存在`<br>`则会被替换成换行符)。|`true`<br>`false`|Boolean|`false`|
     |[csv-name](#csv-name)|导出csv文件的名称|文件名称(不需要加尾缀)|String|`undefined`|
     |[multi-sort](#multi-sort)|支持多列排序，默认只支持单列排序。多列排序时会根据所选排序列的顺序进行多次排序。使用此配置前需要先通过`col-set`的指定排序列|`true`<br>`false`|Boolean|`false`|
 
