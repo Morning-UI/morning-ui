@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">35% </span>
+        <span class="strong">34.4% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>140/400</span>
+        <span class='fraction'>140/407</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">22.75% </span>
+        <span class="strong">22.54% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>48/211</span>
+        <span class='fraction'>48/213</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">74.47% </span>
+        <span class="strong">72.92% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>35/47</span>
+        <span class='fraction'>35/48</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">36.24% </span>
+        <span class="strong">35.56% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>133/367</span>
+        <span class='fraction'>133/374</span>
       </div>
     </div>
   </div>
@@ -1202,7 +1202,24 @@
 1157
 1158
 1159
-1160</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+1160
+1161
+1162
+1163
+1164
+1165
+1166
+1167
+1168
+1169
+1170
+1171
+1172
+1173
+1174
+1175
+1176
+1177</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1991,6 +2008,22 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -2062,6 +2095,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -3142,6 +3176,22 @@ export default {
 <span class="cstat-no" title="statement not covered" >            $normalTr.classList.remove('hover');</span>
 &nbsp;
         },
+        _csvEncode : <span class="fstat-no" title="function not covered" >function (</span>str) {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            str = String(str);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (/(&lt;|&gt;)/.test(str)) {</span>
+                
+                let div = <span class="cstat-no" title="statement not covered" >document.createElement('div');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                div.innerHTML = str;</span>
+<span class="cstat-no" title="statement not covered" >                str = div.innerText;</span>
+&nbsp;
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return `"${str.replace(/\n/g, '\r').replace(/"/g, '""')}"`;</span>
+&nbsp;
+        },
         _exportRows : <span class="fstat-no" title="function not covered" >function (</span>csv, type) {
 &nbsp;
             let ignoreColIndex = <span class="cstat-no" title="statement not covered" >[];</span>
@@ -3163,7 +3213,7 @@ export default {
 <span class="cstat-no" title="statement not covered" >                        if (set &amp;&amp;</span>
                             set.name) {
 &nbsp;
-<span class="cstat-no" title="statement not covered" >                            csv[0].push(set.name);</span>
+<span class="cstat-no" title="statement not covered" >                            csv[0].push(this._csvEncode(set.name));</span>
 &nbsp;
                         } else {
 &nbsp;
@@ -3200,7 +3250,7 @@ export default {
 &nbsp;
 <span class="cstat-no" title="statement not covered" >                    if (ignoreColIndex.indexOf(col) === -1) {</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >                        row.push(originRow[col]);</span>
+<span class="cstat-no" title="statement not covered" >                        row.push(this._csvEncode(originRow[col]));</span>
                     
                     }
 &nbsp;
@@ -3224,6 +3274,7 @@ export default {
             let csv = <span class="cstat-no" title="statement not covered" >[];</span>
             let downloadLink = <span class="cstat-no" title="statement not covered" >document.createElement('a');</span>
             let <span class="cstat-no" title="statement not covered" >blob;</span>
+            let bomBlob = <span class="cstat-no" title="statement not covered" >new Buffer('\xEF\xBB\xBF', 'binary');</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >            if (this.conf.fixedTitleCol[0] === 'r') {</span>
 &nbsp;
@@ -3251,8 +3302,8 @@ export default {
 &nbsp;
 <span class="cstat-no" title="statement not covered" >            csv = csv.join('\n');</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >            blob = new Blob([csv]);</span>
-            
+<span class="cstat-no" title="statement not covered" >            blob = new Blob([bomBlob, csv]);</span>
+&nbsp;
 <span class="cstat-no" title="statement not covered" >            downloadLink.style.display = 'none';</span>
 <span class="cstat-no" title="statement not covered" >            downloadLink.href = URL.createObjectURL(blob);</span>
 &nbsp;
@@ -3526,7 +3577,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Aug 28 2018 21:15:16 GMT+0800 (CST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Jan 03 2019 18:26:34 GMT+0800 (CST)
 </div>
 </div>
 <script src="../../../prettify.js"></script>

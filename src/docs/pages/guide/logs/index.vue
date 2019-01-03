@@ -18,6 +18,30 @@
     
     ### 更新记录
 
+    ### 0.11.17 <ui-badge class="circle ver-beta" size="s" color="extra-light-black">Beta</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2019年1月3日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.11.17" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.11.17/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.11.17/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 改进
+
+    - 现在`ui-table`在导出csv文件时会过滤HTML标签，并将`<br>`转换为换行符
+
+    #### 修复
+
+    - 修复`ui-dialog`使用时可能导致内部元素高宽获取错误的问题
+    - 修复`ui-table`导出csv文件时，特殊字符引起的csv错乱
+    - 修复`ui-table`导出的csv文件中包含中文字符时，在excel中打开乱码的问题
+
+    ---
+
     ### 0.11.16 <ui-badge class="circle ver-beta" size="s" color="extra-light-black">Beta</ui-badge>
 
     <ui-textcolor color="light-blue">

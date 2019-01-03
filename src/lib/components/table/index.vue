@@ -779,6 +779,22 @@ export default {
             $normalTr.classList.remove('hover');
 
         },
+        _csvEncode : function (str) {
+
+            str = String(str);
+
+            if (/(<|>)/.test(str)) {
+                
+                let div = document.createElement('div');
+
+                div.innerHTML = str;
+                str = div.innerText;
+
+            }
+
+            return `"${str.replace(/\n/g, '\r').replace(/"/g, '""')}"`;
+
+        },
         _exportRows : function (csv, type) {
 
             let ignoreColIndex = [];
@@ -800,7 +816,7 @@ export default {
                         if (set &&
                             set.name) {
 
-                            csv[0].push(set.name);
+                            csv[0].push(this._csvEncode(set.name));
 
                         } else {
 
@@ -837,7 +853,7 @@ export default {
 
                     if (ignoreColIndex.indexOf(col) === -1) {
 
-                        row.push(originRow[col]);
+                        row.push(this._csvEncode(originRow[col]));
                     
                     }
 
@@ -861,6 +877,7 @@ export default {
             let csv = [];
             let downloadLink = document.createElement('a');
             let blob;
+            let bomBlob = new Buffer('\xEF\xBB\xBF', 'binary');
 
             if (this.conf.fixedTitleCol[0] === 'r') {
 
@@ -888,8 +905,8 @@ export default {
 
             csv = csv.join('\n');
 
-            blob = new Blob([csv]);
-            
+            blob = new Blob([bomBlob, csv]);
+
             downloadLink.style.display = 'none';
             downloadLink.href = URL.createObjectURL(blob);
 

@@ -173,6 +173,8 @@ export default {
 
         }
 
+        this._popupShow();
+
     }
 };
 </script>

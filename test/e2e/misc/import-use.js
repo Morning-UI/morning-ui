@@ -33,7 +33,7 @@ test.serial('import-use-tag', async t => {
         </head>
         <body>
             <div id="vue"></div>
-        <script src="https://cdn.bootcss.com/vue/2.5.3/vue.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17"></script>
         <script src="./morning-ui.js"></script>
         <script>
         Vue.use(morning);
