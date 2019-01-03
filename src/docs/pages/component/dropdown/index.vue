@@ -92,6 +92,7 @@
     |[auto-close](#auto-close)|点击下拉菜单中按钮后自动隐藏|`true`<br>`false`|Boolean|`true`|
     |[trigger](#trigger)|触发下拉菜单方式。触发方式一旦改变，已有的触发状态都会被重置。|`hover`：鼠标移入目标元素<br>`click`：鼠标点击目标元素<br>`focus`：目标元素处于焦点状态<br>`method`：通过组件方法触发|String|`click`|
     |[trigger-in-delay](#trigger-in-delay)|目标触发下拉菜单时进行延迟。<br>此延迟仅在`trigger`为`hover`时生效。<br>使用一定的延迟，可以减少误触的情况，提升页面体验。|延迟触发时间(ms)|Number|`200`|
+    |[auto-reverse](#auto-reverse)|当下拉菜单超出窗口时，自动反转下拉菜单的方向，使其可以显示。|`true`<br>`false`|Boolean|`true`|
 
     #### auto-close
 
@@ -175,6 +176,30 @@
     :::democode/html
     <ui-dropdown trigger="hover" :trigger-in-delay="0">
         <ui-btn slot="showbtn" emitbtn>更多</ui-btn>
+        <ui-btn color="white">收藏</ui-btn>
+        <ui-btn color="white">修改</ui-btn>
+        <ui-btn color="danger">删除</ui-btn>
+    </ui-dropdown>
+    :::
+
+    #### auto-reverse
+
+    滚动页面的位置，使得下面的demo靠近窗口底部，当关闭`auto-reverse`后，下拉菜单不会反转方向：
+
+    :::democode/html
+    <ui-dropdown :auto-reverse="false">
+        <ui-btn slot="showbtn" emitbtn>更多 <i class="mo-icon mo-icon-dropdown"></i></ui-btn>
+        <ui-btn color="white">收藏</ui-btn>
+        <ui-btn color="white">修改</ui-btn>
+        <ui-btn color="danger">删除</ui-btn>
+    </ui-dropdown>
+    :::
+
+    开启`auto-reverse`后，下拉菜单会反转方向：
+
+    :::democode/html
+    <ui-dropdown :auto-reverse="true">
+        <ui-btn slot="showbtn" emitbtn>更多 <i class="mo-icon mo-icon-dropdown"></i></ui-btn>
         <ui-btn color="white">收藏</ui-btn>
         <ui-btn color="white">修改</ui-btn>
         <ui-btn color="danger">删除</ui-btn>
