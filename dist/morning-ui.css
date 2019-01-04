@@ -10098,6 +10098,9 @@ mor-dropdown.hide mor-link .mo-icon {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
+.mor-dropdown-wrap.show {
+  height: auto;
+}
 .mor-dropdown-wrap.hide {
   pointer-events: none;
 }
