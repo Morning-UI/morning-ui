@@ -88,6 +88,7 @@
             <h3><i class="iconfont">&#xe60b;</i>导航</h3>
             <ul>
                 <li><a href="/component/menu.html">导航菜单<p>&lt;menu></p></a></li>
+                <li><a href="/component/anchor.html">锚点导航<p>&lt;anchor></p></a></li>
                 <li><a href="/component/dropdown.html">下拉菜单<p>&lt;dropdown></p></a></li>
                 <li><a href="/component/tab.html">标签页<p>&lt;tab></p></a></li>
                 <li><a href="/component/collapse.html">折叠面板<p>&lt;collapse></p></a></li>

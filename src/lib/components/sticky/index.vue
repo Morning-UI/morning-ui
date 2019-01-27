@@ -101,6 +101,21 @@ export default {
 
     },
     methods : {
+        _getWH : function () {
+
+            console.log(2, this.data.fixed);
+            if (this.data.fixed === false) {
+
+                let $box = this.$el.querySelector('.sticky-box');
+                let boxRect = $box.getBoundingClientRect();
+
+                console.log(boxRect);
+                this.data.stickyH = `${boxRect.height}px`;
+                this.data.stickyW = `${boxRect.width}px`;
+
+            }
+
+        },
         _checkScroll : function () {
 
             let elRect = this.$el.getBoundingClientRect();
@@ -109,12 +124,16 @@ export default {
             if (this.conf.bottom !== undefined &&
                 (elY + elRect.height) >= (window.innerHeight - this.conf.bottom)) {
 
+                console.log(1);
+                this._getWH();
                 this.data.fixed = true;
                 this.data.fixedX = elRect.left;
                 this.data.fixedY = window.innerHeight - this.conf.bottom - elRect.height;
 
             } else if (this.conf.bottom === undefined && elY <= this.conf.top) {
 
+                console.log(2);
+                this._getWH();
                 this.data.fixed = true;
                 this.data.fixedX = elRect.left;
                 this.data.fixedY = this.conf.top;
@@ -165,12 +184,6 @@ export default {
 
     },
     updated : function () {
-            
-        let $box = this.$el.querySelector('.sticky-box');
-        let boxRect = $box.getBoundingClientRect();
-
-        this.data.stickyH = `${boxRect.height}px`;
-        this.data.stickyW = `${boxRect.width}px`;
 
         if (this.data.stickyObj) {
 

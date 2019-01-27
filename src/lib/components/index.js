@@ -47,6 +47,7 @@ import tab                          from './tab/index.vue';
 import collapse                     from './collapse/index.vue';
 import table                        from './table/index.vue';
 import menu                         from './menu/index.vue';
+import anchor                       from './anchor/index.vue';
 import pagination                   from './pagination/index.vue';
 import dialog                       from './dialog/index.vue';
 import calendar                     from './calendar/index.vue';
@@ -134,6 +135,7 @@ export default {
     collapse,
     table,
     menu,
+    anchor,
     pagination,
     dialog,
     calendar,
