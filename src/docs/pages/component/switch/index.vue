@@ -12,9 +12,11 @@
 
     定义开关，开关只存在布尔状态。
 
-    #### 使用
-
-    :::democode/html
+    :::vue
+    @name:使用
+    ---
+    #demo
+    >tpl
     <div style="width:300px;">
         <ui-switch form-name="姓名"></ui-switch>
     </div>
@@ -22,91 +24,128 @@
 
     [[[形态]]]
 
-    :::preset/html
-    formStatusWithStyle
-    ---
-    uikey:switch
-    statusDefaultValue:true
-    statusMoreAttr:open-mark="开" close-mark="关"
+    :::preset
+    @name:formStatus
+    @uikey:switch
+    @defaultValue:true
+    @attrs:open-mark="开" close-mark="关"
     :::
 
     [[[配置]]]
 
-    :::preset/html
-    formConfigTable
-    ---
-    |[open-note](#open-note)|开关开启的备注，显示开关的右侧|备注(支持HTML)|String|`''`|
-    |[close-note](#close-note)|开关关闭的备注，显示的开发的左侧|备注(支持HTML)|String|`''`|
-    |[open-mark](#open-mark)|开关开启的标记，显示开关的内部左侧，一般标记比较短只能容纳一个字符(比如icon)。|标记内容(支持HTML)|String|`''`|
-    |[close-mark](#close-mark)|开关开启的标记，显示开关的内部右侧，一般标记比较短只能容纳一个字符(比如icon)。|标记内容(支持HTML)|String|`''`|
+    :::preset
+    @name:formConfig
+    @uikey:switch
+    @defaultValue:true
     :::
 
-    :::preset/html
-    formConfigDemo
+    :::vue
+    @name:open-note
     ---
-    uikey:switch
-    configDefaultValue:true
-    :::
-    
-    #### open-note
-
-    :::democode/html
+    #config
+    >conf-desc
+    开关开启的备注，显示开关的右侧。
+    >conf-accept
+    备注(支持HTML)
+    >conf-type
+    String
+    >conf-default
+    `''`
+    ---
+    #demo
+    >tpl
     <div style="width:300px;">
         <ui-switch form-name="姓名" open-note="开启"></ui-switch>
     </div>
-    :::
-
-    `open-note`和`close-note`一起使用：
-
-    :::democode/html
+    ---
+    #demo
+    >desc
+    `open-note`和`close-note`一起使用。
+    >tpl
     <div style="width:300px;">
         <ui-switch form-name="姓名" close-note="关闭" open-note="开启"></ui-switch>
     </div>
-    :::
-
-    支持HTML:
-
-    :::democode/html
+    ---
+    #demo
+    >desc
+    支持HTML。
+    >tpl
     <div style="width:300px;">
         <ui-switch form-name="姓名" close-note="<span style='color:red'>关闭</span>" open-note="<span style='color:green'>开启</span>"></ui-switch>
     </div>
     :::
 
-    #### close-note
-
-    :::democode/html
+    :::vue
+    @name:close-note
+    ---
+    #config
+    >conf-desc
+    开关关闭的备注，显示的开发的左侧。
+    >conf-accept
+    备注(支持HTML)
+    >conf-type
+    String
+    >conf-default
+    `''`
+    ---
+    #demo
+    >tpl
     <div style="width:300px;">
         <ui-switch form-note="姓名" close-note="关闭"></ui-switch>
     </div>
     :::
 
-    #### open-mark
-
-    :::democode/html
+    :::vue
+    @name:open-mark
+    ---
+    #config
+    >conf-desc
+    开关开启的标记，显示开关的内部左侧，一般标记比较短只能容纳一个字符(比如icon)。
+    >conf-accept
+    标记内容(支持HTML)
+    >conf-type
+    String
+    >conf-default
+    `''`
+    ---
+    #demo
+    >tpl
     <div style="width:300px;">
         <ui-switch form-note="姓名" open-mark="开"></ui-switch>
     </div>
-    :::
-
-    `open-mark`和`close-mark`一起使用：
-
-    :::democode/html
+    ---
+    #demo
+    >desc
+    `open-mark`和`close-mark`一起使用。
+    >tpl
     <div style="width:300px;">
         <ui-switch form-note="姓名" open-mark="开" close-mark="关"></ui-switch>
     </div>
-    :::
-
-    使用icon：
-
-    :::democode/html
+    ---
+    #demo
+    >desc
+    使用icon。
+    >tpl
     <div style="width:300px;">
         <ui-switch form-note="姓名" open-mark="<i class='mo-icon mo-icon-check'>" close-mark="<i class='mo-icon mo-icon-close'>"></ui-switch>
     </div>
     :::
 
-    #### close-mark
-
-    :::democode/html
+    :::vue
+    @name:close-mark
+    ---
+    #config
+    >conf-desc
+    开关开启的标记，显示开关的内部右侧，一般标记比较短只能容纳一个字符(比如icon)。
+    >conf-accept
+    标记内容(支持HTML)
+    >conf-type
+    String
+    >conf-default
+    `''`
+    ---
+    #demo
+    >tpl
     <div style="width:300px;">
         <ui-switch form-note="姓名" close-mark="关"></ui-switch>
     </div>
@@ -114,23 +153,26 @@
 
     [[[方法]]]
 
-    :::preset/html
-    formMethod
-    ---
-    uikey:switch
-    methodValue:true
-    methodDefaultValue:true
+    :::preset
+    @name:formMethod
+    @uikey:switch
+    @value:true
+    @defaultValue:true
     :::
 
-    #### toggle([open])
-
+    :::vue
+    @name:toggle([open])
+    ---
+    #method
+    >method-desc
     切换下拉按钮组是否显示。
-    
-    |KEY|可选|描述|接受值|值类型|默认值|
-    |-|-|-|-|-|-|
+    >method-args
     |open|YES|指定开关切换到开启或关闭，若不设置则切换到相反的状态。|`undefined`<br>`true`<br>`false`|`Undefined`<br>`Boolean`|`undefined`|
-
-    :::democode/html
+    >method-return
+    当前组件VM实例。
+    ---
+    #demo
+    >tpl
     <div style="width:300px;">
         <ui-switch ref="demo1" form-name="姓名"></ui-switch>
         <br><br> 
@@ -142,11 +184,12 @@
 
     [[[事件]]]
 
-    :::preset/html
-    formEvent
-    ---
-    uikey:switch
-    eventValue:true
+    :::preset
+    @name:formEvent
+    @uiname:开关
+    @uikey:switch
+    @value:true
+    @wrapStyle:width:300px;
     :::
 
     [[[表单值]]]
@@ -167,22 +210,12 @@
 
     `false`
 
-    #### 输入/输出示例
-
-    :::repeat/html
-    formValueType
-    ---
-    <div>
-        <p>{$valueType}类型</p>
-        <div style="width:300px;">
-            <ui-switch ref="demoType{$valueType}" form-name="开关"></ui-switch>
-        </div>
-        <br>
-        <ui-link js="window.morning.findVM('demoType{$valueType}').set({$&valueContent})">设置{$valueType}类型</ui-link>
-        <ui-link js="alert(window.morning.findVM('demoType{$valueType}').getJson())">获取表单JSON值</ui-link>
-    </div>
-    <br>
-    <br>
+    :::preset
+    @name:formValue
+    @uikey:switch
+    @uiname:开关
+    @valueType:default
+    @wrapStyle:width:300px;
     :::
 
     [[[源码]]]

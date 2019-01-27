@@ -12,9 +12,11 @@
 
     内容右对齐组件，这是一个块级元素。
 
-    #### 使用
-    
-    :::democode/html
+    :::vue
+    @name:使用
+    ---
+    #demo
+    >tpl
     <ui-textright>右对齐文本</ui-textright>
     :::
 

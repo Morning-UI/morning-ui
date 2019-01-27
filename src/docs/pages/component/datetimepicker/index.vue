@@ -12,29 +12,35 @@
 
     定义日期时间选择器。
 
-    #### 使用
-
-    :::democode/html
+    :::vue
+    @name:使用
+    ---
+    #demo
+    >tpl
     <div style="width:300px;">
         <ui-datetimepicker form-name="日期时间"></ui-datetimepicker>
     </div>
     :::
 
-    #### 自定义日期时间格式
-
-    日期时间选择器允许用户自定日期时间格式，使用中文时间：
-        
-    :::democode/html
+    :::vue
+    @name:自定义日期时间格式
+    ---
+    #demo
+    >desc
+    日期时间选择器允许用户自定日期时间格式，使用中文时间。
+    <br><br>
+    更多自定义格式见：[format配置](/component/datetimepicker.html#format)。
+    >tpl
     <div style="width:300px;">
         <ui-datetimepicker form-name="日期时间" :date="+new Date('2018-03-23')" format="YYYY年MM月DD日 HH点mm分ss秒" default-value="2018年03月23日 18点10分18秒"></ui-datetimepicker>
     </div>
     :::
 
-    更多自定义格式见：[format配置](/component/datetimepicker.html#format)。
-
-    #### 范围日期时间选择
-
-    :::democode/html
+    :::vue
+    @name:范围日期时间选择
+    ---
+    #demo
+    >tpl
     <div style="width:460px;">
         <ui-datetimepicker form-name="日期时间" :is-range="true"></ui-datetimepicker>
     </div>
@@ -42,63 +48,71 @@
 
     [[[形态]]]
 
-    :::preset/html
-    formStatus
-    ---
-    uikey:datetimepicker
-    statusDefaultValue:'2018-03-23 18:10:18'
-    statusMoreAttr::date="+new Date('2018-03-23 18:10:18')"
+    :::preset
+    @name:formStatus
+    @uikey:datetimepicker
+    @defaultValue:'2018-03-23 18:10:18'
+    @attrs: :date="+new Date('2018-03-23 18:10:18')"
     :::
 
     [[[配置]]]
 
-    :::preset/html
-    formConfigTable
-    ---
-    |[inside-name](#inside-name)|编辑区域默认显示内容|字符串|String|`''`|
-    |[date](#date)|日历所在的日期，日历将会切换到`date`所在的月份|时间戳|Number|`+new Date()`|
-    |[format](#format)|格式化展示的日期时间|日期时间格式化字符串(支持日期占位符见下方的演示)|String|`'YYYY-MM-DD'`|
-    |[align](#align)|日期时间对齐方式|`'left'` : 左对齐<br>`'center'` : 居中对齐<br>`'right'` : 右对齐|String|`'left'`|
-    |[quick-pick](#quick-pick)|显示快速选择项，这个配置是一个数组，数组中的每一项都是一个快速选择项目。<br><br>数组项支持两种类型：<br><br>__关键词__ ：支持字符串格式的快速选择关键词。<br><br>未开启`is-range`情况下包括：`今天`、`昨天`、`明天`、`n 秒前`、`n 分钟前`、`n 小时前`、`n 天前`、`n 周前`、`n 月前`、`n 年前`、`n 秒后`、`n 分钟后`、`n 小时后`、`n 天后`、`n 周后`、`n 月后`、`n 年后`(需要注意`n`后面有空格)，例如：`2 天前`、`3 周前`。<br><br>开启`is-range`情况下包括：`本周`、`本月`、`今年`、`最近 n 秒`、`最近 n 分钟`、`最近 n 小时`、`最近 n 天`、`最近 n 周`、`最近 n 月`、`最近 n 年`、`未来 n 秒`、`未来 n 分钟`、`未来 n 小时`、`未来 n 天`、`未来 n 周`、`未来 n 月`、`未来 n 年`(需要注意`n`前后有空格)，例如：`未来 2 周`、`最近 3 月`。<br><br>__时间设置__：是一个对象。<br><br>未开启`is-range`情况下包含`name`和`pick`两个属性。<br>`name`是快速选择项展现的名称。<br>`pick`支持`数字`或`日期对象`。若`pick`是`数字`则代表相对秒数，会选中当前日期时间和`pick`相加后的日期时间，所以`pick`是负数代表过去的日期时间，正数则代表未来的日期时间。若`pick`是`日期对象`则会选中`pick`所表示的日期时间。<br><br>开启`is-range`情况下包含`name`、`start`、`end`三个属性。<br>`name`是快速选择项展现的名称。<br>`start`和`end`是`日期对象`分别表示选择日期时间段的开始和结束。<br><br>你可以混合使用多种类型的快速选择项(详见[下面的示例](#quick-pick))。|字符串(关键词)<br>对象(时间设置)|Array|`[]`|
-    |[date-selectable-range](#date-selectable-range)|可选日期时间范围，是一个连续的时间段，可以限制到的时分秒，若不设置则不限。这是一个数组，支持以下格式：<br><br>`[开始日期, 结束日期]`: 指定单个可选范围<br>`[[开始日期1, 结束日期1], [开始日期2, 结束日期2]]`: 指定多个可选范围<br><br>可选日期将大于等于`开始日期`，小于等于`结束日期`。<br><br>`开始日期`和`结束日期`均为日期字符串需要符合`format`配置的日期格式。|日期范围数组|Array|`undefined`|
-    |[time-selectable-range](#time-selectable-range)|可选时间范围，若不设置则不限。这是一个数组，支持以下格式：<br><br>`[开始时间, 结束时间]`: 指定单个可选范围<br><br>可选时间将大于等于`开始时间`，小于等于`结束时间`。<br><br>`开始时间`和`结束时间`均为时间字符串需要符合`format`配置的时间格式。<br><br>此配置用于限制每天可选的时间范围(仅支持一个范围)，若需要限制一个时间段请使用`date-selectable-range`配置。<br><br>如同时配置了`date-selectable-range`则取可选范围的交集。|时间范围数组|Array|`undefined`|
-    |[is-range](#is-range)|选择日期时间区间，开启后可以选在一个日期时间段|`true`<br>`false`|Boolean|`false`|
-    |[range-input-direction](#range-input-direction)|区间日期选择时，开始/结束输入框的排列方向<br>仅在开启`is-range`配置时生效|`'horizontal'` : 横向<br>`'vertical'` : 竖直|String|`'horizontal'`|
-    |[separator](#separator)|日期时间区间选择时中间的分隔内容，只有开启`is-range`才有效|分隔字符串|String|`'至'`|
-    |[separator-type](#separator-type)|日期时间区间选择时中间的分隔内容的展现类型|`'block'`：块状<br>`'inline'`：行内|String|`'block'`|
-    |[start-name](#start-name)|日期时间区间选择时`开始日期时间`表单显示的名称，若设为`false`则显示`form-name`，只有开启`is-range`才有效|任意字符串<br>`false`:显示`form-name`|String<br>Boolean|`'开始日期时间'`|
-    |[end-name](#end-name)|日期时间区间选择时`结束日期时间`表单显示的名称，若设为`false`则显示`form-name`，只有开启`is-range`才有效。若设置了`hide-name`则不会显示|任意字符串`false`:显示`form-name`|String<br>Boolean|`'结束日期时间'`|
-    |[done-hidden](#done-hidden)|开启此配置后当完成日期选择后选择器会被隐藏|`true`<br>`false`|Boolean|`false`|
+    :::preset
+    @name:formConfig
+    @uikey:datetimepicker
+    @defaultValue:'2018-03-23 18:10:18'
+    @attrs: :date="+new Date('2018-03-23 18:10:18')"
     :::
 
-    :::preset/html
-    formConfigDemo
+    :::vue
+    @name:inside-name
     ---
-    uikey:datetimepicker
-    configDefaultValue:'2018-03-23 18:10:18'
-    configMoreAttr::date="+new Date('2018-03-23 18:10:18')"
-    :::
-
-    #### inside-name
-
-    :::democode/html
+    #config
+    >conf-desc
+    在组件内显示的名称，和`form-name`互为补充。
+    >conf-accept
+    名称
+    >conf-type
+    String
+    >conf-default
+    `''`
+    ---
+    #demo
+    >tpl
     <div style="width:300px">
         <ui-datetimepicker inside-name="日期时间"></ui-datetimepicker>
     </div>
     :::
-
-    #### date
-
-    :::democode/html
+    
+    :::vue
+    @name:date
+    ---
+    #config
+    >conf-desc
+    日历所在的日期，日历将会切换到`date`所在的月份。
+    >conf-accept
+    时间戳
+    >conf-type
+    Number
+    >conf-default
+    `+new Date()`
+    ---
+    #demo
+    >tpl
     <div style="width:300px">
         <ui-datetimepicker :date="+new Date('2018-03-23')"></ui-datetimepicker>
     </div>
     :::
-
-    #### format
-        
+    
+    :::vue
+    @name:format
+    ---
+    #config
+    >conf-desc
+    格式化展示的日期时间。
+    <br><br>
     `format`允许自定义组件展示的日期时间格式，支持以下占位符：
-
+    <br><br>
     |单位|占位符|示例|
     |-|-|-|
     |年份|YY|00, 01, ..., 99|
@@ -132,46 +146,77 @@
     ||m|0, 1, ... 59|
     |秒|ss|00, 01, ... 59|
     ||s|0, 1, ... 59|
-
-    采用`|`分隔日期时间：
-
-    :::democode/html
+    >conf-accept
+    日期时间格式化字符串(支持日期占位符见下方的演示)
+    >conf-type
+    String
+    >conf-default
+    `'YYYY-MM-DD'`
+    ---
+    #demo
+    >desc
+    采用`|`分隔日期时间。
+    >tpl
     <div style="width:300px;">
         <ui-datetimepicker form-name="日期时间" :date="+new Date('2018-03-23')" format="YYYY | MM | DD | HH | mm | ss" default-value="2018 | 03 | 23 | 18 | 10 | 08"></ui-datetimepicker>
     </div>
-    :::
-
-    同时显示多种日期时间格式(显示多个日期时，最后一个优先级最高)：
-
-    :::democode/html
+    ---
+    #demo
+    >desc
+    同时显示多种日期时间格式(显示多个日期时，最后一个优先级最高)。
+    >tpl
     <div style="width:400px;">
         <ui-datetimepicker form-name="日期时间" :date="+new Date('2018-03-23')" format="YYYY-MM-DD HH:mm:ss | HH:m:s, MMM DD, YYYY" default-value="2018-03-23 18:10:08 | 18:10:8, Mar 23, 2018"></ui-datetimepicker>
     </div>
     :::
 
-    #### align
-
-    居中对齐：
-
-    :::democode/html
+    :::vue
+    @name:align
+    ---
+    #config
+    >conf-desc
+    日期时间对齐方式。
+    >conf-accept
+    `'left'` : 左对齐<br>`'center'` : 居中对齐<br>`'right'` : 右对齐
+    >conf-type
+    String
+    >conf-default
+    `'left'`
+    ---
+    #demo
+    >desc
+    居中对齐。
+    >tpl
     <div style="width:300px;">
         <ui-datetimepicker form-name="日期时间" :date="+new Date('2018-03-23')" default-value="2018-03-23 18:10:18" align="center"></ui-datetimepicker>
     </div>
-    :::
-
-    右对齐：
-
-    :::democode/html
+    ---
+    #demo
+    >desc
+    右对齐。
+    >tpl
     <div style="width:300px;">
         <ui-datetimepicker form-name="日期时间" :date="+new Date('2018-03-23')" default-value="2018-03-23 18:10:18" align="right"></ui-datetimepicker>
     </div>
     :::
 
-    #### quick-pick
-        
-    你可以通过预设的关键词来设置日期快速选择项：
-
-    :::democode/html
+    :::vue
+    @name:quick-pick
+    ---
+    #config
+    >conf-desc
+    显示快速选择项，这个配置是一个数组，数组中的每一项都是一个快速选择项目。<br><br>数组项支持两种类型：<br><br>__关键词__ ：支持字符串格式的快速选择关键词。<br><br>未开启`is-range`情况下包括：`今天`、`昨天`、`明天`、`n 秒前`、`n 分钟前`、`n 小时前`、`n 天前`、`n 周前`、`n 月前`、`n 年前`、`n 秒后`、`n 分钟后`、`n 小时后`、`n 天后`、`n 周后`、`n 月后`、`n 年后`(需要注意`n`后面有空格)，例如：`2 天前`、`3 周前`。<br><br>开启`is-range`情况下包括：`本周`、`本月`、`今年`、`最近 n 秒`、`最近 n 分钟`、`最近 n 小时`、`最近 n 天`、`最近 n 周`、`最近 n 月`、`最近 n 年`、`未来 n 秒`、`未来 n 分钟`、`未来 n 小时`、`未来 n 天`、`未来 n 周`、`未来 n 月`、`未来 n 年`(需要注意`n`前后有空格)，例如：`未来 2 周`、`最近 3 月`。<br><br>__时间设置__：是一个对象。<br><br>未开启`is-range`情况下包含`name`和`pick`两个属性。<br>`name`是快速选择项展现的名称。<br>`pick`支持`数字`或`日期对象`。若`pick`是`数字`则代表相对秒数，会选中当前日期时间和`pick`相加后的日期时间，所以`pick`是负数代表过去的日期时间，正数则代表未来的日期时间。若`pick`是`日期对象`则会选中`pick`所表示的日期时间。<br><br>开启`is-range`情况下包含`name`、`start`、`end`三个属性。<br>`name`是快速选择项展现的名称。<br>`start`和`end`是`日期对象`分别表示选择日期时间段的开始和结束。<br><br>你可以混合使用多种类型的快速选择项(详见[下面的示例](#quick-pick))。
+    >conf-accept
+    字符串(关键词)<br>对象(时间设置)
+    >conf-type
+    Array
+    >conf-default
+    `[]`
+    ---
+    #demo
+    >desc
+    你可以通过预设的关键词来设置日期快速选择项。
+    >tpl
     <div style="width:300px;">
         <ui-datetimepicker
             form-name="日期时间"
@@ -189,11 +234,11 @@
             ]"
         ></ui-datetimepicker>
     </div>
-    :::
-
-    未来的时间也可以设置：
-
-    :::democode/html
+    ---
+    #demo
+    >desc
+    未来的时间也可以设置。
+    >tpl
     <div style="width:300px;">
         <ui-datetimepicker
             form-name="日期时间"
@@ -209,11 +254,11 @@
             ]"
         ></ui-datetimepicker>
     </div>
-    :::
-
-    也可以通过选中日期时间相对与现在的秒数(正数为未来，负数为过去)来设置：
-    
-    :::democode/html
+    ---
+    #demo
+    >desc
+    也可以通过选中日期时间相对与现在的秒数(正数为未来，负数为过去)来设置。
+    >tpl
     <div style="width:300px;">
         <ui-datetimepicker
             form-name="日期时间"
@@ -225,19 +270,19 @@
             ]"
         ></ui-datetimepicker>
     </div>
-    :::
-
-    也可以通过选中日期的绝对值来设置：
-
-    :::democode/html
+    ---
+    #demo
+    >desc
+    也可以通过选中日期的绝对值来设置。
+    >tpl
     <div style="width:300px;">
         <ui-datetimepicker form-name="日期时间" :quick-pick="[{name: '生日派对', pick: new Date('2018-3-23 19:00:00')}]"></ui-datetimepicker>
     </div>
-    :::
-    
-    配合`is-range`使用时：
-
-    :::democode/html
+    ---
+    #demo
+    >desc
+    配合`is-range`使用时。
+    >tpl
     <div style="width:460px;">
         <ui-datetimepicker
             form-name="日期"
@@ -265,27 +310,39 @@
     </div>
     :::
 
-    #### date-selectable-range
-
-    设置单个可选范围(2018-03-08至2018-03-23)：
-
-    :::democode/html
+    :::vue
+    @name:date-selectable-range
+    ---
+    #config
+    >conf-desc
+    可选日期时间范围，是一个连续的时间段，可以限制到的时分秒，若不设置则不限。这是一个数组，支持以下格式：<br><br>`[开始日期, 结束日期]`: 指定单个可选范围<br>`[[开始日期1, 结束日期1], [开始日期2, 结束日期2]]`: 指定多个可选范围<br><br>可选日期将大于等于`开始日期`，小于等于`结束日期`。<br><br>`开始日期`和`结束日期`均为日期字符串需要符合`format`配置的日期格式。
+    >conf-accept
+    日期范围数组
+    >conf-type
+    Array
+    >conf-default
+    `undefined`
+    ---
+    #demo
+    >desc
+    设置单个可选范围(2018-03-08至2018-03-23)。
+    >tpl
     <div style="width:300px;">
         <ui-datetimepicker form-name="日期时间" :date="+new Date('2018-03-23')" :date-selectable-range="['2018-03-08 00:00:00', '2018-03-23 00:00:00']"></ui-datetimepicker>
     </div>
-    :::
-
-    设置具体时间(2018-03-08 12:30:00至2018-03-23 20:59:59)：
-
-    :::democode/html
+    ---
+    #demo
+    >desc
+    设置具体时间(2018-03-08 12:30:00至2018-03-23 20:59:59)。
+    >tpl
     <div style="width:300px;">
         <ui-datetimepicker form-name="日期时间" :date="+new Date('2018-03-23')" :date-selectable-range="['2018-03-08 12:30:00', '2018-03-23 20:59:59']"></ui-datetimepicker>
     </div>
-    :::
-
-    设置多个可选范围(2018-02-10至2018-02-20, 2018-02-20至2018-03-02, 2018-03-15至2018-03-25, 2018-03-20至2018-03-28, 2018-04-02至2018-04-05)：
-
-    :::democode/html
+    ---
+    #demo
+    >desc
+    设置多个可选范围(2018-02-10至2018-02-20, 2018-02-20至2018-03-02, 2018-03-15至2018-03-25, 2018-03-20至2018-03-28, 2018-04-02至2018-04-05)。
+    >tpl
     <div style="width:300px;">
         <ui-datetimepicker
             form-name="日期时间"
@@ -299,147 +356,245 @@
             ]"
         ></ui-datetimepicker>
     </div>
-    :::
-
-    在使用`selectable-range`的同时开启`is-range`：
-
-    :::democode/html
+    ---
+    #demo
+    >desc
+    在使用`selectable-range`的同时开启`is-range`。
+    >tpl
     <div style="width:460px;">
         <ui-datetimepicker form-name="日期时间" :date="+new Date('2018-03-23')" :date-selectable-range="['2018-03-08 00:00:00', '2018-03-23 00:00:00']" is-range></ui-datetimepicker>
     </div>
-    :::
-
-    如果`default-value`超过`selectable-range`范围：
-
-    :::democode/html
+    ---
+    #demo
+    >desc
+    如果`default-value`超过`selectable-range`范围。
+    >tpl
     <div style="width:460px;">
         <ui-datetimepicker form-name="日期时间" :date="+new Date('2018-03-23')" :date-selectable-range="['2018-03-08 00:00:00', '2018-03-23 00:00:00']" :default-value="['2018-03-04 12:00:00', '2018-03-29 12:00:00']" is-range></ui-datetimepicker>
     </div>
     :::
-    
-    #### time-selectable-range
 
-    设置每天可选时间为(8:00-18:00)：
-
-    :::democode/html
+    :::vue
+    @name:time-selectable-range
+    ---
+    #config
+    >conf-desc
+    可选时间范围，若不设置则不限。这是一个数组，支持以下格式：<br><br>`[开始时间, 结束时间]`: 指定单个可选范围<br><br>可选时间将大于等于`开始时间`，小于等于`结束时间`。<br><br>`开始时间`和`结束时间`均为时间字符串需要符合`format`配置的时间格式。<br><br>此配置用于限制每天可选的时间范围(仅支持一个范围)，若需要限制一个时间段请使用`date-selectable-range`配置。<br><br>如同时配置了`date-selectable-range`则取可选范围的交集。
+    >conf-accept
+    时间范围数组
+    >conf-type
+    Array
+    >conf-default
+    `undefined`
+    ---
+    #demo
+    >desc
+    设置每天可选时间为(8:00-18:00)。
+    >tpl
     <div style="width:300px;">
         <ui-datetimepicker form-name="日期时间" :date="+new Date('2018-03-23')" :time-selectable-range="['08:00:00', '18:00:00']"></ui-datetimepicker>
     </div>
-    :::
-
-    配合`date-selectable-range`使用时可选时间需要符合两个条件的限制：
-
-    :::democode/html
+    ---
+    #demo
+    >desc
+    配合`date-selectable-range`使用时可选时间需要符合两个条件的限制。
+    >tpl
     <div style="width:300px;">
         <ui-datetimepicker form-name="日期时间" :date="+new Date('2018-03-23')" :date-selectable-range="['2018-03-08 12:30:00', '2018-03-23 20:00:00']" :time-selectable-range="['08:00:00', '18:00:00']"></ui-datetimepicker>
     </div>
     :::
 
-    #### is-range
-
-    :::democode/html
+    :::vue
+    @name:is-range
+    ---
+    #config
+    >conf-desc
+    选择日期时间区间，开启后可以选在一个日期时间段。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >tpl
     <div style="width:460px;">
         <ui-datetimepicker form-name="日期时间" :is-range="true"></ui-datetimepicker>
     </div>
-    :::
-
-    在开启`is-range`的情况下设置`default-value`:
-
-    :::democode/html
+    ---
+    #demo
+    >desc
+    在开启`is-range`的情况下设置`default-value`。
+    >tpl
     <div style="width:460px;">
         <ui-datetimepicker form-name="日期时间" :date="+new Date('2018-03-23')" :is-range="true" :default-value="['2018-03-10 08:00:00', '2018-03-20 21:30:30']"></ui-datetimepicker>
     </div>
     :::
 
-    #### range-input-direction
-
-    竖直排列的选择框：
-
-    :::democode/html
+    :::vue
+    @name:range-input-direction
+    ---
+    #config
+    >conf-desc
+    区间日期选择时，开始/结束输入框的排列方向<br>仅在开启`is-range`配置时生效。
+    >conf-accept
+    `'horizontal'` : 横向<br>`'vertical'` : 竖直
+    >conf-type
+    String
+    >conf-default
+    `'horizontal'`
+    ---
+    #demo
+    >desc
+    竖直排列的选择框。
+    >tpl
     <div style="width:320px;">
         <ui-datetimepicker form-name="日期时间" :is-range="true" range-input-direction="vertical"></ui-datetimepicker>
     </div>
     :::
 
-    #### separator
-
-    :::democode/html
+    :::vue
+    @name:separator
+    ---
+    #config
+    >conf-desc
+    日期时间区间选择时中间的分隔内容，只有开启`is-range`才有效。
+    >conf-accept
+    分隔字符串
+    >conf-type
+    String
+    >conf-default
+    `'至'`
+    ---
+    #demo
+    >desc
+    竖直排列的选择框。
+    >tpl
     <div style="width:460px;">
         <ui-datetimepicker form-name="日期时间" :is-range="true" separator="~"></ui-datetimepicker>
     </div>
     :::
 
-    #### separator-type
-
-    `inline`的分隔(一般配合`align`居中一起使用)：
-
-    :::democode/html
+    :::vue
+    @name:separator-type
+    ---
+    #config
+    >conf-desc
+    日期时间区间选择时中间的分隔内容的展现类型。
+    >conf-accept
+    `'block'`：块状<br>`'inline'`：行内
+    >conf-type
+    String
+    >conf-default
+    `'block'`
+    ---
+    #demo
+    >desc
+    `inline`的分隔(一般配合`align`居中一起使用)。
+    >tpl
     <div style="width:400px;">
         <ui-datetimepicker form-name="日期时间" :is-range="true" separator="~" separator-type="inline" align="center"></ui-datetimepicker>
     </div>
     :::
 
-    #### start-name
-
-    :::democode/html
+    :::vue
+    @name:start-name
+    ---
+    #config
+    >conf-desc
+    日期时间区间选择时`开始日期时间`表单显示的名称，若设为`false`则显示`form-name`，只有开启`is-range`才有效。
+    >conf-accept
+    任意字符串<br>`false`:显示`form-name`
+    >conf-type
+    String<br>Boolean
+    >conf-default
+    `'开始日期时间'`
+    ---
+    #demo
+    >tpl
     <div style="width:460px;">
         <ui-datetimepicker form-name="日期时间" :is-range="true" start-name="发车日期"></ui-datetimepicker>
     </div>
-    :::
-
-    若设为`false`则显示`form-name`：
-
-    :::democode/html
+    ---
+    #demo
+    >desc
+    若设为`false`则显示`form-name`。
+    >tpl
     <div style="width:460px;">
         <ui-datetimepicker form-name="日期时间" :is-range="true" :start-name="false"></ui-datetimepicker>
     </div>
     :::
 
-    #### end-name
-
-    :::democode/html
+    :::vue
+    @name:end-name
+    ---
+    #config
+    >conf-desc
+    日期时间区间选择时`结束日期时间`表单显示的名称，若设为`false`则显示`form-name`，只有开启`is-range`才有效。若设置了`hide-name`则不会显示。
+    >conf-accept
+    任意字符串`false`:显示`form-name`
+    >conf-type
+    String<br>Boolean
+    >conf-default
+    `'结束日期时间'`
+    ---
+    #demo
+    >tpl
     <div style="width:460px;">
         <ui-datetimepicker form-name="日期时间" :is-range="true" end-name="到达日期"></ui-datetimepicker>
     </div>
-    :::
-
-    若设为`false`则显示`form-name`：
-
-    :::democode/html
+    ---
+    #demo
+    >desc
+    若设为`false`则显示`form-name`。
+    >tpl
     <div style="width:460px;">
         <ui-datetimepicker form-name="日期时间" :is-range="true" :end-name="false"></ui-datetimepicker>
     </div>
     :::
 
-    #### done-hidden
-
-    选择完日期后不隐藏选择器：
-
-    :::democode/html
+    :::vue
+    @name:done-hidden
+    ---
+    #config
+    >conf-desc
+    开启此配置后当完成日期选择后选择器会被隐藏。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >desc
+    选择完日期后不隐藏选择器。
+    >tpl
     <div style="width:300px;">
         <ui-datetimepicker form-name="日期时间" :done-hidden="false"></ui-datetimepicker>
     </div>
-    :::
-
-    选择完日期后隐藏选择器：
-
-    :::democode/html
+    ---
+    #demo
+    >desc
+    选择完日期后隐藏选择器。
+    >tpl
     <div style="width:300px;">
         <ui-datetimepicker form-name="日期时间" done-hidden></ui-datetimepicker>
     </div>
-    :::
-
-    `done-hidden`和`is-range`一起使用：
-
-    :::democode/html
+    ---
+    #demo
+    >desc
+    `done-hidden`和`is-range`一起使用。
+    >tpl
     <div style="width:460px;">
         <ui-datetimepicker form-name="日期时间" done-hidden is-range></ui-datetimepicker>
     </div>
-    :::
-
-    `done-hidden`和`quick-pick`一起使用：
-
-    :::democode/html
+    ---
+    #demo
+    >desc
+    `done-hidden`和`quick-pick`一起使用。
+    >tpl
     <div style="width:300px;">
         <ui-datetimepicker
             form-name="日期时间"
@@ -457,21 +612,21 @@
 
     [[[方法]]]
 
-    :::preset/html
-    formMethod
-    ---
-    uikey:datetimepicker
-    methodValue:'2018-03-23 12:13:14'
-    methodDefaultValue:'2018-03-23 12:13:14'
+    :::preset
+    @name:formMethod
+    @uikey:datetimepicker
+    @value:'2018-03-23 12:13:14'
+    @defaultValue:'2018-03-23 12:13:14'
     :::
-
+    
     [[[事件]]]
 
-    :::preset/html
-    formEvent
-    ---
-    uikey:datetimepicker
-    eventValue:'2018-03-23 12:13:14'
+    :::preset
+    @name:formEvent
+    @uiname:日期时间选择器
+    @uikey:datetimepicker
+    @value:'2018-03-23 12:13:14'
+    @wrapStyle:width:300px;
     :::
 
     [[[表单值]]]
@@ -501,22 +656,12 @@
 
     `undefined`
 
-    #### 输入/输出示例
-
-    :::repeat/html
-    formValueType:datetimepicker
-    ---
-    <div>
-        <p>{$valueType}类型</p>
-        <div style="width:300px;">
-            <ui-datetimepicker ref="demoType{$valueType}"></ui-datetimepicker>
-        </div>
-        <br>
-        <ui-link js="window.morning.findVM('demoType{$valueType}').set({$&valueContent})">设置{$valueType}类型</ui-link>
-        <ui-link js="alert(window.morning.findVM('demoType{$valueType}').getJson())">获取表单JSON值</ui-link>
-    </div>
-    <br>
-    <br>
+    :::preset
+    @name:formValue
+    @uikey:datetimepicker
+    @uiname:日期时间选择器
+    @valueType:datetimepicker
+    @wrapStyle:width:300px;
     :::
 
     [[[源码]]]

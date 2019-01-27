@@ -12,9 +12,11 @@
 
     定义单选框组，单选框组只能单选，若需要多选请使用`ui-checkbox`。
 
-    #### 使用
-
-    :::democode/html
+    :::vue
+    @name:使用
+    ---
+    #demo
+    >tpl
     <div style="width:300px;">
         <ui-radio
             form-name="姓名"
@@ -27,11 +29,13 @@
     </div>
     :::
 
-    #### 带边框的单选框组
-
-    通过`border`样式类指定单选框组以带边框的样式显示：
-
-    :::democode/html
+    :::vue
+    @name:带边框的单选框组
+    ---
+    #demo
+    >desc
+    通过`border`样式类指定单选框组以带边框的样式显示。
+    >tpl
     <div style="width:320px;">
         <ui-radio
             form-name="姓名"
@@ -44,9 +48,11 @@
     </div>
     :::
 
-    #### 垂直布局的单选框组
-
-    :::democode/html
+    :::vue
+    @name:垂直布局的单选框组
+    ---
+    #demo
+    >tpl
     <div style="width:320px;">
         <ui-radio
             form-name="姓名"
@@ -62,40 +68,48 @@
 
     [[[形态]]]
 
-    :::preset/html
-    formStatusWithStyle
-    ---
-    uikey:radio
-    statusDefaultValue:'Tim'
-    statusMoreAttr::list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"
+    :::preset
+    @name:formStatus
+    @uikey:radio
+    @defaultValue:'Tim'
+    @attrs: :list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"
     :::
 
     [[[配置]]]
 
-    :::preset/html
-    formConfigTable
-    ---
-    |[accept-html](#accept-html)|项目的的名称可以使用HTML|`true`<br>`false`|Boolean|`false`|
-    |[list](#list)|可选项目列表|可选项目列表的对象，键名是key，键值是name用于显示|Object|`{}`|
-    |[disabled-options](#disabled-options)|禁止选中的项目（`set()`方法仍然可以选中禁止的项目，但`toggle()`方法无法选中禁止的项目）。|由禁止修改项目键名(key)组成的数组|Array|`[]`|
+    :::preset
+    @name:formConfig
+    @uikey:radio
+    @defaultValue:'Tim'
+    @attrs: :list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"
     :::
 
-    :::preset/html
-    formConfigDemo
+    :::vue
+    @name:accept-html
     ---
-    uikey:radio
-    configDefaultValue:'Tim'
-    configMoreAttr::list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"
-    :::
-    
-    #### accept-html
-
+    #config
+    >conf-desc
+    项目的的名称可以使用HTML。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >desc
     如果让`ui-radio`的显示文本，渲染成HTML，而不是字符串。可以设置`accept-html`。
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
+    >tpl
+    <div style="width:300px;">
+        <ui-radio
+            form-name="姓名"
+            accept-html
+            :list="list"
+        ></ui-radio>
+    </div>
+    >script
+    {
         data : function () {
             return {
                 list : {
@@ -104,20 +118,24 @@
                 }
             }
         }
-    });
-    ---
-    <div style="width:300px;">
-        <ui-radio
-            form-name="姓名"
-            accept-html
-            :list="list"
-        ></ui-radio>
-    </div>
+    }
     :::
 
-    #### list
-
-    :::democode/html
+    :::vue
+    @name:list
+    ---
+    #config
+    >conf-desc
+    可选项目列表。
+    >conf-accept
+    可选项目列表的对象，键名是key，键值是name用于显示
+    >conf-type
+    Object
+    >conf-default
+    `{}`
+    ---
+    #demo
+    >tpl
     <div style="width:300px;">
         <ui-radio
             form-name="姓名"
@@ -130,11 +148,23 @@
     </div>
     :::
 
-    #### disabled-options
-
-    被禁止的项目将无法选中：
-
-    :::democode/html
+    :::vue
+    @name:disabled-options
+    ---
+    #config
+    >conf-desc
+    禁止选中的项目（`set()`方法仍然可以选中禁止的项目，但`toggle()`方法无法选中禁止的项目）。
+    >conf-accept
+    由禁止修改项目键名(key)组成的数组
+    >conf-type
+    Array
+    >conf-default
+    `[]`
+    ---
+    #demo
+    >desc
+    被禁止的项目将无法选中。
+    >tpl
     <div style="width:300px;">
         <ui-radio
             form-name="姓名"
@@ -148,11 +178,11 @@
             :disabled-options="['Tim', 'Victor']"
         ></ui-radio>
     </div>
-    :::
-
-    若禁止的项目已经被选中，则组件会清空：
-
-    :::democode/html
+    ---
+    #demo
+    >desc
+    若禁止的项目已经被选中，则组件会清空。
+    >tpl
     <div style="width:300px;">
         <ui-radio
             form-name="姓名"
@@ -171,48 +201,53 @@
 
     [[[方法]]]
 
-    :::preset/html
-    formMethod
-    ---
-    uikey:radio
-    methodValue:'Tim'
-    methodDefaultValue:'Tim'
-    methodMoreAttr::list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"
+    :::preset
+    @name:formMethod
+    @uikey:radio
+    @value:'Tim'
+    @defaultValue:'Tim'
+    @attrs: :list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"
     :::
-    
-    #### toggle(key)
 
+    :::vue
+    @name:toggle(key)
+    ---
+    #method
+    >method-desc
     选中单个选项。
-    
-    |KEY|可选|描述|接受值|值类型|默认值|
-    |-|-|-|-|-|-|
+    >method-args
     |key|NO|需要选中选项的键值|键值字符串|`String`|`undefined`|
-
-    :::democode/html
-    <div style="width:300px;">
-        <ui-radio
-            ref="demo2"
-            form-name="姓名"
-            :list="{
-                Tim : 'Tim Boelaars',
-                Andrew : 'Andrew Colin Beck',
-                Victor : 'Victor Erixon'
-            }"
-        ></ui-radio>
+    >method-return
+    当前组件VM实例。
+    ---
+    #demo
+    >tpl
+    <div>
+        <div style="width:300px;">
+            <ui-radio
+                ref="demo2"
+                form-name="姓名"
+                :list="{
+                    Tim : 'Tim Boelaars',
+                    Andrew : 'Andrew Colin Beck',
+                    Victor : 'Victor Erixon'
+                }"
+            ></ui-radio>
+        </div>
+        <br>
+        <ui-link js="morning.findVM('demo2').toggle('Tim');">选中Tim</ui-link>
+        <ui-link js="morning.findVM('demo2').toggle('Andrew');">选中Andrew</ui-link>
     </div>
-    <br>
-    <ui-link js="morning.findVM('demo2').toggle('Tim');">选中Tim</ui-link>
-    <ui-link js="morning.findVM('demo2').toggle('Andrew');">选中Andrew</ui-link>
     :::
 
     [[[事件]]]
 
-    :::preset/html
-    formEvent
-    ---
-    uikey:radio
-    eventValue:'Tim'
-    eventMoreAttr::list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"
+    :::preset
+    @name:formEvent
+    @uiname:单选框组
+    @uikey:radio
+    @value:'Tim'
+    @attrs: :list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"
     :::
 
     [[[表单值]]]
@@ -234,22 +269,12 @@
 
     `undefined`
 
-    #### 输入/输出示例
-
-    :::repeat/html
-    formValueType
-    ---
-    <div>
-        <p>{$valueType}类型</p>
-        <div style="width:300px;">
-            <ui-radio ref="demoType{$valueType}" :list="{Jim:'Jim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"></ui-radio>
-        </div>
-        <br>
-        <ui-link js="window.morning.findVM('demoType{$valueType}').set({$&valueContent})">设置{$valueType}类型</ui-link>
-        <ui-link js="alert(window.morning.findVM('demoType{$valueType}').getJson())">获取表单JSON值</ui-link>
-    </div>
-    <br>
-    <br>
+    :::preset
+    @name:formValue
+    @uikey:radio
+    @uiname:单选框组
+    @valueType:default
+    @attrs: :list="{Jim:'Jim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"
     :::
 
     [[[源码]]]

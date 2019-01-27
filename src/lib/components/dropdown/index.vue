@@ -5,6 +5,7 @@
         :auto-close="autoClose"
         :trigger="trigger"
         :trigger-in-delay="triggerInDelay"
+        :auto-reverse="autoReverse"
     >
     
     <slot name="showbtn"></slot>
@@ -43,6 +44,11 @@ export default {
         triggerInDelay : {
             type : Number,
             default : triggerDelayTime
+        },
+        autoReverse : {
+            type : Boolean,
+            default : true,
+            validator : (value => (value >= 0))
         }
     },
     computed : {
@@ -51,7 +57,8 @@ export default {
             return {
                 autoClose : this.autoClose,
                 trigger : this.trigger,
-                triggerInDelay : this.triggerInDelay
+                triggerInDelay : this.triggerInDelay,
+                autoReverse : this.autoReverse
             };
 
         },
@@ -159,11 +166,15 @@ export default {
 
                 }
 
-                this._tipCreate({
-                    placement : 'bottom',
-                    element : this.data.$wrap,
-                    target : this.$el,
-                    offset : '0 0'
+                this.Vue.nextTick(() => {
+                    
+                    this._tipCreate({
+                        placement : 'bottom',
+                        element : this.data.$wrap,
+                        target : this.$el,
+                        offset : '0 0'
+                    });
+                    
                 });
 
                 this.$emit('show');
@@ -188,7 +199,7 @@ export default {
 
         this.Trigger.$targets = [$emitbtn, this.data.$wrap];
         this.Trigger.triggers = this.conf.trigger;
-        this.Tip.autoReverse = false;
+        this.Tip.autoReverse = this.conf.autoReverse;
 
         this.$watch('conf.triggerInDelay', () => {
 

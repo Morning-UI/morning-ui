@@ -14,9 +14,11 @@
 
     下拉选择框的选项通过`list`配置传入，`list.key`是选项的值，`list.name`是选项的名称(支持HTML)。
 
-    #### 使用
-
-    :::democode/html
+    :::vue
+    @name:使用
+    ---
+    #demo
+    >tpl
     <div style="width:300px;">
         <ui-select
             form-name="Select designer"
@@ -38,15 +40,13 @@
     </div>
     :::
 
-    #### 支持快捷键
-
-    下拉选择框组件支持快捷键选择，你可通过上下方向键选择项目，通过回车键来选中项目。
-
-    #### 通过其他元素触发的下拉选择框
-
+    :::vue
+    @name:通过其他元素触发的下拉选择框
+    ---
+    #demo
+    >desc
     通过`separate-emit`你可以指定任意元素来触发下拉选择框，更多用法见：[separate-emit配置](/component/select.html#separate-emit)
-
-    :::democode/html
+    >tpl
     <div style="width:300px;">
         <ui-btn class="demo5">点击选择</ui-btn>
         <ui-select
@@ -70,9 +70,11 @@
     </div>
     :::
 
-    #### 使用HTML的选项
-
-    :::democode/html
+    :::vue
+    @name:使用HTML的选项
+    ---
+    #demo
+    >tpl
     <div style="width:300px;">
         <ui-select
             form-name="Select designer"
@@ -94,9 +96,11 @@
     </div>
     :::
 
-    #### 可搜索
-
-    :::democode/html
+    :::vue
+    @name:可搜索
+    ---
+    #demo
+    >tpl
     <div style="width:300px;">
         <ui-select
             form-name="Select designer"
@@ -119,9 +123,11 @@
     </div>
     :::
 
-    #### 多选
-
-    :::democode/html
+    :::vue
+    @name:多选
+    ---
+    #demo
+    >tpl
     <div style="width:300px;">
         <ui-select
             form-name="Select designer"
@@ -144,9 +150,11 @@
     </div>
     :::
 
-    #### 可搜索的多选
-
-    :::democode/html
+    :::vue
+    @name:可搜索的多选
+    ---
+    #demo
+    >tpl
     <div style="width:300px;">
         <ui-select
             form-name="Select designer"
@@ -169,6 +177,10 @@
         </ui-select>
     </div>
     :::
+
+    #### 支持快捷键
+
+    下拉选择框组件支持快捷键选择，你可通过上下方向键选择项目，通过回车键来选中项目。
 
     #### 数量较多的选项
 
@@ -183,20 +195,21 @@
     当下拉列表的选项超过`200`项时，组件会自动开启高性能模式以减少掉帧的现象。在高性能模式下动画及计算会尽可能减少。
 
     [[[形态]]]
+    
+    :::preset
+    @name:formStatus
+    @uikey:select
+    @defaultValue:['tim']
+    @attrs: :list="{tim:'Tim Boelaars', andrew:'Andrew Colin Beck', gustavo:'Gustavo Zambelli', victor:'Victor Erixon', shaun:'Shaun Moynihan', emir:'Emir Ayouni', katherine:'Katherine Rainey', jax:'Jax Berndt', elizabeth:'Elizabeth Chiu', sara:'Sara Nicely', anna:'Anna Broussard'}"
+    :::
 
-    :::preset/html
-    formStatus
+    :::vue
+    @name:更多`disabled`状态
     ---
-    uikey:select
-    statusDefaultValue:['tim']
-    statusMoreAttr::list="{tim:'Tim Boelaars', andrew:'Andrew Colin Beck', gustavo:'Gustavo Zambelli', victor:'Victor Erixon', shaun:'Shaun Moynihan', emir:'Emir Ayouni', katherine:'Katherine Rainey', jax:'Jax Berndt', elizabeth:'Elizabeth Chiu', sara:'Sara Nicely', anna:'Anna Broussard'}"
-    :::
-
-    #### 更多`disabled`状态
-
+    #demo
+    >desc
     多选及可搜索情况下`disabled`。
-
-    :::democode/html
+    >tpl
     <!-- 可搜索情况下disabled -->
     <div style="width:300px;">
         <ui-select
@@ -248,11 +261,13 @@
     </div>
     :::
 
-    #### 更多`readonly`状态
-
+    :::vue
+    @name:更多`readonly`状态
+    ---
+    #demo
+    >desc
     多选及可搜索情况下`readonly`。
-
-    :::democode/html
+    >tpl
     <!-- 可搜索情况下disabled -->
     <div style="width:300px;">
         <ui-select
@@ -303,45 +318,31 @@
         </ui-select>
     </div>
     :::
-
+    
     [[[配置]]]
 
-    :::preset/html
-    formConfigTable
-    ---
-    |[inside-name](#inside-name)|编辑区域默认显示内容|字符串|String|`''`|
-    |[list](#list)|通过此配置来设置可选项目，这是一个对象或数组。<br><br>若为对象：<br>键名是选项的值<br>键值若为字符串，则为选项的名称<br>若为对象，则可包含以下几个属性：<br>`name` : 选项的名称。<br>`tip` : 选项的提示信息(需要启用`item-tip`配置才会显示)<br><br>若为数组：<br>数组中每一项是一个对象，这个对象包含以下几个属性：<br>`key` : 选项的值<br>`name` : 选项的名称<br>`tip` : 选项的提示信息(需要启用`item-tip`配置才会显示)|对象<br>数组|Object<br>Array|`{}`|
-    |[dynamic-list](#dynamic-list)|动态可选项目，开启此配置后允许动态的改变`list`且不校验选中项目是否在`list`配置中。<br>因为开启此配置后`list`中的选项是不完整的，所以如果需要校验选项是否存在，可以通过`validate`配置来实现。|`true`<br>`false`|Boolean|`false`|
-    |[validate](#validate)|验证选项是否可用，若选项不可用将会直接过滤。只有在开启`dynamic-list`配置时生效。<br>函数包含一个入参：<br><br>参数是需要验证的值<br><br>通过这这个参数来验证有效性。<br><br>此函数的返回值为验证结果，是布尔值：<br><br>非`false`：验证通过<br>`false`：验证失败，直接过滤此值<br><br>需要注意是的验证不支持异步，如果需要异步校验数据应该写到组件取值之后。|验证函数(同步)|Function|`() => {}`|
-    |[separate-emit](#separate-emit)|通过其他的元素来触发下拉选择框。<br>注意开启后`form-name`将不会显示，可使用`inside-name`。|元素选择器([MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/Document_Object_Model/Locating_DOM_elements_using_selectors))|String|`''`|
-    |[align](#align)|内容对齐方式|`'left'` : 左对齐<br>`'center'` : 居中对齐<br>`'right'` : 右对齐|String|`'left'`|
-    |[prepend](#prepend)|表单前缀|任意字符串(支持HTML)|String|`undefined`|
-    |[max-show](#max-show)|下拉列表最多显示几项，超出的项目会被隐藏并提示通过搜索查看(必须启用`can-search`配置才会生效)。|项目数量|Number|`Infinity`|
-    |[max-show-height](#max-show-height)|下拉列表最高显示几项(超过出现滚动条)的高度|项目数量|Number|`5`|
-    |[auto-close](#auto-close)|点击下拉选择框以外的区域自动关闭下拉选择框|`true`<br>`false`|Boolean|`true`|
-    |[can-search](#can-search)|允许通过项目内容搜索项目|`true`<br>`false`|Boolean|`false`|
-    |[multi-select](#multi-select)|允许选择多个项目|`true`<br>`false`|Boolean|`false`|
-    |[can-move](#can-move)|项目是否可以移动|`true`<br>`false`|Boolean|`false`|
-    |[max](#max)|允许多选的最大项数，仅在开启`multi-select`后生效，未开启`multi-select`至多只能选择一项|数字|Number|`Infinity`|
-    |[auto-reset-search](#auto-reset-search)|在多选模式下当选中某项或表单值发生变化后，重置搜索内容。(仅在开启`multi-select`及`can-search`时生效)|`true`<br>`false`|Boolean|`false`|
-    |[hide-selected](#hide-selected)|开启此配置后当项目被选中时会被隐藏，若关闭此配置则会标记选中的项目。|`true`<br>`false`|Boolean|`true`|
-    |[inline-img-size](#inline-img-size)|项目的缩略图大小(这不会影响选中项目的缩略图大小)|px或em为单位的数值字符串|String|'2em'|
-    |[item-tip](#item-tip)|允许为下拉菜单设置提示|`true`<br>`false`|Boolean|`false`|
-    |[item-tip-direct](#item-tip-direct)|为下拉菜单设置提示的方向，需要开启`list-tip`才有效|`top`<br>`right`<br>`bottom`<br>`left`|String|`top`|
-    |[list-width](#list-width)|在开启`separate-emit`的情况下，下拉列表的宽度(单位px)，如果设为`false`则下拉列表会自动调整宽度。<br>若未开启`separate-emit`此配置不会生效，下拉列表的宽度等于组件本身的宽度。|`false`：自动调整宽度<br>数字：下拉列表的宽度(单位px)|Boolean<br>Number|`false`|
+    :::preset
+    @name:formConfig
+    @uikey:select
+    @defaultValue:['tim']
+    @attrs: :list="{tim:'Tim Boelaars', andrew:'Andrew Colin Beck', gustavo:'Gustavo Zambelli', victor:'Victor Erixon', shaun:'Shaun Moynihan', emir:'Emir Ayouni', katherine:'Katherine Rainey', jax:'Jax Berndt', elizabeth:'Elizabeth Chiu', sara:'Sara Nicely', anna:'Anna Broussard'}"
     :::
-
-    :::preset/html
-    formConfigDemo
+    
+    :::vue
+    @name:inside-name
     ---
-    uikey:select
-    configDefaultValue:['tim']
-    configMoreAttr::list="{tim:'Tim Boelaars', andrew:'Andrew Colin Beck', gustavo:'Gustavo Zambelli', victor:'Victor Erixon', shaun:'Shaun Moynihan', emir:'Emir Ayouni', katherine:'Katherine Rainey', jax:'Jax Berndt', elizabeth:'Elizabeth Chiu', sara:'Sara Nicely', anna:'Anna Broussard'}"
-    :::
-
-    #### inside-name
-
-    :::democode/html
+    #config
+    >conf-desc
+    在组件内显示的名称，和`form-name`互为补充。
+    >conf-accept
+    字符串
+    >conf-type
+    String
+    >conf-default
+    `''`
+    ---
+    #demo
+    >tpl
     <div style="width:300px;">
         <ui-select
             inside-name="Select designer"
@@ -356,11 +357,23 @@
     </div>
     :::
 
-    #### list
-
-    简化配置：
-
-    :::democode/html
+    :::vue
+    @name:list
+    ---
+    #config
+    >conf-desc
+    通过此配置来设置可选项目，这是一个对象或数组。<br><br>若为对象：<br>键名是选项的值<br>键值若为字符串，则为选项的名称<br>若为对象，则可包含以下几个属性：<br>`name` : 选项的名称。<br>`tip` : 选项的提示信息(需要启用`item-tip`配置才会显示)<br><br>若为数组：<br>数组中每一项是一个对象，这个对象包含以下几个属性：<br>`key` : 选项的值<br>`name` : 选项的名称<br>`tip` : 选项的提示信息(需要启用`item-tip`配置才会显示)。
+    >conf-accept
+    对象<br>数组
+    >conf-type
+    Object<br>Array
+    >conf-default
+    `{}`
+    ---
+    #demo
+    >desc
+    简化配置。
+    >tpl
     <div style="width:300px;">
         <ui-select
             form-name="Select designer"
@@ -373,11 +386,11 @@
         >
         </ui-select>
     </div>
-    :::
-
-    完整版配置：
-
-    :::democode/html
+    ---
+    #demo
+    >desc
+    完整版配置。
+    >tpl
     <div style="width:300px;">
         <ui-select
             form-name="Select designer"
@@ -404,14 +417,35 @@
     </div>
     :::
 
-    #### dynamic-list
-
-    异步加载数据：
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
+    :::vue
+    @name:dynamic-list
+    ---
+    #config
+    >conf-desc
+    动态可选项目，开启此配置后允许动态的改变`list`且不校验选中项目是否在`list`配置中。<br>因为开启此配置后`list`中的选项是不完整的，所以如果需要校验选项是否存在，可以通过`validate`配置来实现。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >desc
+    异步加载数据。
+    >tpl
+    <div style="width:300px;">
+        <ui-select
+            ref="demo12"
+            form-name="Select designer"
+            dynamic-list
+            :list="list"
+        >
+        </ui-select>
+        <ui-link @click.native="loadlist">加载选项</ui-link>
+    </div>
+    >script
+    {
         data : {
             fulllist : {
                 tim : 'Tim Boelaars',
@@ -435,65 +469,12 @@
 
             }
         }
-    });
+    }
     ---
-    <div style="width:300px;">
-        <ui-select
-            ref="demo12"
-            form-name="Select designer"
-            dynamic-list
-            :list="list"
-        >
-        </ui-select>
-        <ui-link @click.native="loadlist">加载选项</ui-link>
-    </div>
-    :::
-
-    通过`dynamic-list`和`can-search`配置可以启用异步检索：
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
-        data : {
-            fulllist : {
-                tim : 'Tim Boelaars',
-                andrew : 'Andrew Colin Beck',
-                gustavo : 'Gustavo Zambelli',
-                victor : 'Victor Erixon',
-                shaun : 'Shaun Moynihan',
-                emir : 'Emir Ayouni',
-                katherine : 'Katherine Rainey',
-                jax : 'Jax Berndt',
-                elizabeth : 'Elizabeth Chiu',
-                sara : 'Sara Nicely',
-                anna : 'Anna Broussard'
-            },
-            list : {}
-        },
-        methods : {
-            search : function (keyword) {
-
-                setTimeout(() => {
-
-                    this.list = {};
-                    
-                    for (let key in this.fulllist) {
-
-                        if (this.fulllist[key].indexOf(keyword) !== -1) {
-        
-                            this.list[key] = this.fulllist[key];
-
-                        }
-
-                    }
-
-                }, 200);
-
-            }
-        }
-    });
-    ---
+    #demo
+    >desc
+    通过`dynamic-list`和`can-search`配置可以启用异步检索。
+    >tpl
     <div style="width:300px;">
         <ui-select
             form-name="Select designer"
@@ -504,14 +485,8 @@
         >
         </ui-select>
     </div>
-    :::
-
-    `dynamic-list`配合`multi-select`使用：
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
+    >script
+    {
         data : {
             fulllist : {
                 tim : 'Tim Boelaars',
@@ -549,8 +524,12 @@
 
             }
         }
-    });
+    }
     ---
+    #demo
+    >desc
+    `dynamic-list`配合`multi-select`使用。
+    >tpl
     <div style="width:300px;">
         <ui-select
             form-name="Select designer"
@@ -562,16 +541,76 @@
         >
         </ui-select>
     </div>
+    >script
+    {
+        data : {
+            fulllist : {
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            },
+            list : {}
+        },
+        methods : {
+            search : function (keyword) {
+
+                setTimeout(() => {
+
+                    this.list = {};
+                    
+                    for (let key in this.fulllist) {
+
+                        if (this.fulllist[key].indexOf(keyword) !== -1) {
+        
+                            this.list[key] = this.fulllist[key];
+
+                        }
+
+                    }
+
+                }, 200);
+
+            }
+        }
+    }
     :::
 
-    #### validate
-
-    下面这个示例中虽然可选项中有`Tim Boelaars`，但在校验器中无法通过校验，所以无法选中(使用时必须开启`dynamic-list`配置)：
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
+    :::vue
+    @name:validate
+    ---
+    #config
+    >conf-desc
+    验证选项是否可用，若选项不可用将会直接过滤。只有在开启`dynamic-list`配置时生效。<br>函数包含一个入参：<br><br>参数是需要验证的值<br><br>通过这这个参数来验证有效性。<br><br>此函数的返回值为验证结果，是布尔值：<br><br>非`false`：验证通过<br>`false`：验证失败，直接过滤此值<br><br>需要注意是的验证不支持异步，如果需要异步校验数据应该写到组件取值之后。
+    >conf-accept
+    验证函数(同步)
+    >conf-type
+    Function
+    >conf-default
+    `() => {}`
+    ---
+    #demo
+    >desc
+    下面这个示例中虽然可选项中有`Tim Boelaars`，但在校验器中无法通过校验，所以无法选中(使用时必须开启`dynamic-list`配置)。
+    >tpl
+    <div style="width:300px;">
+        <ui-select
+            form-name="Select designer"
+            dynamic-list
+            :validate="validate"
+            :list="list"
+        >
+        </ui-select>
+    </div>
+    >script
+    {
         data : {
             fulllist : {
                 andrew : 'Andrew Colin Beck',
@@ -601,25 +640,26 @@
             }, this.fulllist);
 
         }
-    });
-    ---
-    <div style="width:300px;">
-        <ui-select
-            form-name="Select designer"
-            dynamic-list
-            :validate="validate"
-            :list="list"
-        >
-        </ui-select>
-    </div>
+    }
     :::
 
-
-    #### separate-emit
-
-    通过`separate-emit`你可以指定任意元素来触发下拉选择框：
-
-    :::democode/html
+    :::vue
+    @name:separate-emit
+    ---
+    #config
+    >conf-desc
+    通过其他的元素来触发下拉选择框。<br>注意开启后`form-name`将不会显示，可使用`inside-name`。
+    >conf-accept
+    元素选择器([MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/Document_Object_Model/Locating_DOM_elements_using_selectors))
+    >conf-type
+    String
+    >conf-default
+    `''`
+    ---
+    #demo
+    >desc
+    通过`separate-emit`你可以指定任意元素来触发下拉选择框。
+    >tpl
     <div style="width:300px;">
         <ui-btn class="demo6">点击选择</ui-btn>
         <ui-select
@@ -641,11 +681,11 @@
         >
         </ui-select>
     </div>
-    :::
-
-    你可以通过设置`list-width`配置来调整宽度：
-
-    :::democode/html
+    ---
+    #demo
+    >desc
+    你可以通过设置`list-width`配置来调整宽度。
+    >tpl
     <div style="width:300px;">
         <ui-btn class="demo11">点击选择</ui-btn>
         <ui-select
@@ -668,11 +708,11 @@
         >
         </ui-select>
     </div>
-    :::
-
-    `separate-emit`和`can-search`共同使用：
-
-    :::democode/html
+    ---
+    #demo
+    >desc
+    `separate-emit`和`can-search`共同使用。
+    >tpl
     <div style="width:300px;">
         <ui-btn class="demo7">点击选择</ui-btn>
         <ui-select
@@ -695,11 +735,11 @@
         >
         </ui-select>
     </div>
-    :::
-
-    `separate-emit`和`multi-select`共同使用：
-
-    :::democode/html
+    ---
+    #demo
+    >desc
+    `separate-emit`和`multi-select`共同使用。
+    >tpl
     <div style="width:300px;">
         <ui-btn class="demo8">点击选择</ui-btn>
         <ui-select
@@ -723,11 +763,11 @@
         >
         </ui-select>
     </div>
-    :::
-
-    `separate-emit`、`multi-select`、`can-search`共同使用：
-
-    :::democode/html
+    ---
+    #demo
+    >desc
+    `separate-emit`、`multi-select`、`can-search`共同使用。
+    >tpl
     <div style="width:300px;">
         <ui-btn class="demo9">点击选择</ui-btn>
         <ui-select
@@ -752,11 +792,11 @@
         >
         </ui-select>
     </div>
-    :::
-
-    `separate-emit`、`multi-select`、`can-move`共同使用：
-
-    :::democode/html
+    ---
+    #demo
+    >desc
+    `separate-emit`、`multi-select`、`can-move`共同使用。
+    >tpl
     <div style="width:300px;">
         <ui-btn class="demo10">点击选择</ui-btn>
         <ui-select
@@ -781,11 +821,11 @@
         >
         </ui-select>
     </div>
-    :::
-
-    `separate-emit`、`multi-select`、`hide-selected`共同使用：
-
-    :::democode/html
+    ---
+    #demo
+    >desc
+    `separate-emit`、`multi-select`、`hide-selected`共同使用。
+    >tpl
     <div style="width:300px;">
         <ui-btn class="demo13">点击选择</ui-btn>
         <ui-select
@@ -811,11 +851,23 @@
     </div>
     :::
 
-    #### align
-
-    内容居中对齐：
-    
-    :::democode/html
+    :::vue
+    @name:align
+    ---
+    #config
+    >conf-desc
+    内容对齐方式充。
+    >conf-accept
+    `'left'` : 左对齐<br>`'center'` : 居中对齐<br>`'right'` : 右对齐
+    >conf-type
+    String
+    >conf-default
+    `'left'`
+    ---
+    #demo
+    >desc
+    内容居中对齐。
+    >tpl
     <div style="width:300px;">
         <ui-select
             form-name="Select designer"
@@ -836,11 +888,11 @@
         >
         </ui-select>
     </div>
-    :::
-
-    内容右对齐：
-    
-    :::democode/html
+    ---
+    #demo
+    >desc
+    内容右对齐。
+    >tpl
     <div style="width:300px;">
         <ui-select
             form-name="Select designer"
@@ -863,9 +915,21 @@
     </div>
     :::
 
-    #### prepend
-
-    :::democode/html
+    :::vue
+    @name:prepend
+    ---
+    #config
+    >conf-desc
+    表单前缀。
+    >conf-accept
+    任意字符串(支持HTML)
+    >conf-type
+    String
+    >conf-default
+    `undefined`
+    ---
+    #demo
+    >tpl
     <div style="width:300px;">
         <ui-select
             form-name="Select designer"
@@ -888,13 +952,23 @@
     </div>
     :::
 
-    #### max-show
-    
-    当可选项目过多时应该启用此配置和`can-search`，因为用户面对过多的选项不会逐项查找，一般通过搜索来查找。若所有选项都进行渲染DOM会过多，从而对性能产生影响。
-
-    最多显示4项：
-
-    :::democode/html
+    :::vue
+    @name:max-show
+    ---
+    #config
+    >conf-desc
+    下拉列表最多显示几项，超出的项目会被隐藏并提示通过搜索查看(必须启用`can-search`配置才会生效)。<br><br>当可选项目过多时应该启用此配置和`can-search`，因为用户面对过多的选项不会逐项查找，一般通过搜索来查找。若所有选项都进行渲染DOM会过多，从而对性能产生影响。
+    >conf-accept
+    项目数量
+    >conf-type
+    Number
+    >conf-default
+    `Infinity`
+    ---
+    #demo
+    >desc
+    最多显示4项。
+    >tpl
     <div style="width:300px;">
         <ui-select
             form-name="Select designer"
@@ -918,11 +992,23 @@
     </div>
     :::
 
-    #### max-show-height
-
-    下拉列表的高度可以显示两项：
-    
-    :::democode/html
+    :::vue
+    @name:max-show-height
+    ---
+    #config
+    >conf-desc
+    下拉列表最高显示几项(超过出现滚动条)的高度。
+    >conf-accept
+    项目数量
+    >conf-type
+    Number
+    >conf-default
+    `5`
+    ---
+    #demo
+    >desc
+    下拉列表的高度可以显示两项。
+    >tpl
     <div style="width:300px;">
         <ui-select
             form-name="Select designer"
@@ -945,11 +1031,23 @@
     </div>
     :::
 
-    #### auto-close
-
+    :::vue
+    @name:auto-close
+    ---
+    #config
+    >conf-desc
+    点击下拉选择框以外的区域自动关闭下拉选择框。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `true`
+    ---
+    #demo
+    >desc
     点击外部区域不会关闭下拉列表。
-    
-    :::democode/html
+    >tpl
     <div style="width:300px;">
         <ui-select
             form-name="Select designer"
@@ -972,9 +1070,21 @@
     </div>
     :::
 
-    #### can-search
-
-    :::democode/html
+    :::vue
+    @name:can-search
+    ---
+    #config
+    >conf-desc
+    允许通过项目内容搜索项目。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >tpl
     <div style="width:300px;">
         <ui-select
             form-name="Select designer"
@@ -997,9 +1107,21 @@
     </div>
     :::
 
-    #### multi-select
-
-    :::democode/html
+    :::vue
+    @name:multi-select
+    ---
+    #config
+    >conf-desc
+    允许选择多个项目。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >tpl
     <div style="width:300px;">
         <ui-select
             form-name="Select designer"
@@ -1022,9 +1144,21 @@
     </div>
     :::
 
-    #### can-move
-
-    :::democode/html
+    :::vue
+    @name:can-move
+    ---
+    #config
+    >conf-desc
+    项目是否可以移动。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >tpl
     <div style="width:300px;">
         <ui-select
             form-name="Select designer"
@@ -1049,11 +1183,23 @@
     </div>
     :::
 
-    #### max
-
+    :::vue
+    @name:max
+    ---
+    #config
+    >conf-desc
+    允许多选的最大项数，仅在开启`multi-select`后生效，未开启`multi-select`至多只能选择一项。
+    >conf-accept
+    数字
+    >conf-type
+    Number
+    >conf-default
+    `Infinity`
+    ---
+    #demo
+    >desc
     最多选择三项。
-
-    :::democode/html
+    >tpl
     <div style="width:300px;">
         <ui-select
             form-name="Select designer"
@@ -1077,9 +1223,21 @@
     </div>
     :::
 
-    #### auto-reset-search
-    
-    :::democode/html
+    :::vue
+    @name:auto-reset-search
+    ---
+    #config
+    >conf-desc
+    在多选模式下当选中某项或表单值发生变化后，重置搜索内容。(仅在开启`multi-select`及`can-search`时生效)
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >tpl
     <div style="width:300px;">
         <ui-select
             form-name="Select designer"
@@ -1104,11 +1262,23 @@
     </div>
     :::
 
-    #### hide-selected
-
-    显示选中项：
-    
-    :::democode/html
+    :::vue
+    @name:hide-selected
+    ---
+    #config
+    >conf-desc
+    开启此配置后当项目被选中时会被隐藏，若关闭此配置则会标记选中的项目。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `true`
+    ---
+    #demo
+    >desc
+    显示选中项。
+    >tpl
     <div style="width:300px;">
         <ui-select
             form-name="Select designer"
@@ -1130,11 +1300,11 @@
         >
         </ui-select>
     </div>
-    :::
-
-    隐藏选中项：
-    
-    :::democode/html
+    ---
+    #demo
+    >desc
+    隐藏选中项。
+    >tpl
     <div style="width:300px;">
         <ui-select
             form-name="Select designer"
@@ -1158,9 +1328,21 @@
     </div>
     :::
 
-    #### inline-img-size
-
-    :::democode/html
+    :::vue
+    @name:inline-img-size
+    ---
+    #config
+    >conf-desc
+    项目的缩略图大小(这不会影响选中项目的缩略图大小)
+    >conf-accept
+    px或em为单位的数值字符串
+    >conf-type
+    String
+    >conf-default
+    `'2em'`
+    ---
+    #demo
+    >tpl
     <div style="width:300px;">
         <ui-select
             form-name="Select designer"
@@ -1183,13 +1365,23 @@
     </div>
     :::
 
-    #### item-tip
-
-    启用`item-tip`后需要在`list`配置中的每个选项中添加`tip`属性来提供提示内容。
-
-    下面示例中在第一和第二项中加入了提示。
-
-    :::democode/html
+    :::vue
+    @name:item-tip
+    ---
+    #config
+    >conf-desc
+    允许为下拉菜单设置提示。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >desc
+    启用`item-tip`后需要在`list`配置中的每个选项中添加`tip`属性来提供提示内容。<br>下面示例中在第一和第二项中加入了提示。
+    >tpl
     <div style="width:300px;">
         <ui-select
             form-name="Select designer"
@@ -1218,9 +1410,21 @@
     </div>
     :::
 
-    #### item-tip-direct
-
-    :::democode/html
+    :::vue
+    @name:item-tip-direct
+    ---
+    #config
+    >conf-desc
+    为下拉菜单设置提示的方向，需要开启`list-tip`才有效。
+    >conf-accept
+    `top`<br>`right`<br>`bottom`<br>`left`
+    >conf-type
+    String
+    >conf-default
+    `top`
+    ---
+    #demo
+    >tpl
     <div style="width:300px;">
         <p>上侧出现的提示框</p>
         <ui-select
@@ -1442,12 +1646,24 @@
         </ui-select>
     </div>
     :::
-
-    #### list-width
-
-    设置下拉列表的宽度为280px：
-
-    :::democode/html
+    
+    :::vue
+    @name:list-width
+    ---
+    #config
+    >conf-desc
+    在开启`separate-emit`的情况下，下拉列表的宽度(单位px)，如果设为`false`则下拉列表会自动调整宽度。<br>若未开启`separate-emit`此配置不会生效，下拉列表的宽度等于组件本身的宽度。
+    >conf-accept
+    `false`：自动调整宽度<br>数字：下拉列表的宽度(单位px)
+    >conf-type
+    Boolean<br>Number
+    >conf-default
+    `false`
+    ---
+    #demo
+    >desc
+    设置下拉列表的宽度为280px。
+    >tpl
     <div style="width:300px;">
         <ui-btn class="demo14">点击选择</ui-btn>
         <ui-select
@@ -1474,24 +1690,27 @@
 
     [[[方法]]]
 
-    :::preset/html
-    formMethod
-    ---
-    uikey:select
-    methodValue:['tim']
-    methodDefaultValue:['tim']
-    methodMoreAttr::list="{tim:'Tim Boelaars', andrew:'Andrew Colin Beck', gustavo:'Gustavo Zambelli', victor:'Victor Erixon', shaun:'Shaun Moynihan', emir:'Emir Ayouni', katherine:'Katherine Rainey', jax:'Jax Berndt', elizabeth:'Elizabeth Chiu', sara:'Sara Nicely', anna:'Anna Broussard'}"
+    :::preset
+    @name:formMethod
+    @uikey:select
+    @value:['tim']
+    @defaultValue:['tim']
+    @attrs: :list="{tim:'Tim Boelaars', andrew:'Andrew Colin Beck', gustavo:'Gustavo Zambelli', victor:'Victor Erixon', shaun:'Shaun Moynihan', emir:'Emir Ayouni', katherine:'Katherine Rainey', jax:'Jax Berndt', elizabeth:'Elizabeth Chiu', sara:'Sara Nicely', anna:'Anna Broussard'}"
     :::
 
-    #### toggle([show])
-
+    :::vue
+    @name:toggle([show])
+    ---
+    #method
+    >method-desc
     切换下拉选择框的下拉列表是否显示。
-    
-    |KEY|可选|描述|接受值|值类型|默认值|
-    |-|-|-|-|-|-|
+    >method-args
     |show|YES|下拉列表需要切换到隐藏或显示，若不设置则切换到相反的状态。|`undefined`<br>`true`<br>`false`|`Undefined`<br>`Boolean`|`undefined`|
-
-    :::democode/html
+    >method-return
+    当前组件VM实例。
+    ---
+    #demo
+    >tpl
     <div style="width:300px;">
         <ui-link js="window.morning.findVM('demo1').toggle(true);">显示下拉列表</ui-link>
         <ui-link js="window.morning.findVM('demo1').toggle(false);">隐藏下拉列表</ui-link>
@@ -1523,21 +1742,24 @@
 
     [[[事件]]]
 
-    #### list-show
+    :::preset
+    @name:formEvent
+    @uiname:下拉选择框
+    @uikey:select
+    @value:['tim']
+    @wrapStyle:width:300px;
+    @attrs: :list="{tim:'Tim Boelaars', andrew:'Andrew Colin Beck', gustavo:'Gustavo Zambelli', victor:'Victor Erixon', shaun:'Shaun Moynihan', emir:'Emir Ayouni', katherine:'Katherine Rainey', jax:'Jax Berndt', elizabeth:'Elizabeth Chiu', sara:'Sara Nicely', anna:'Anna Broussard'}"
+    :::
 
-    当下拉列表显示时触发。
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
-        methods : {
-            echo : function () {
-                console.log('demo2.console1', 'list-show event!');
-            }
-        }
-    });
+    :::vue
+    @name:list-show
     ---
+    #event
+    >event-desc
+    当下拉列表显示时触发。
+    ---
+    #demo
+    >tpl
     <div style="width:300px;">
         <ui-select
             ref="demo2"
@@ -1559,23 +1781,25 @@
         >
         </ui-select>
     </div>
-    :::
-
-    #### list-hide
-
-    当下拉列表隐藏时触发。
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
+    >script
+    {
         methods : {
             echo : function () {
-                console.log('demo3.console1', 'list-hide event!');
+                console.log('demo2.console1', 'list-show event!');
             }
         }
-    });
+    }
+    :::
+
+    :::vue
+    @name:list-hide
     ---
+    #event
+    >event-desc
+    当下拉列表隐藏时触发。
+    ---
+    #demo
+    >tpl
     <div style="width:300px;">
         <ui-select
             ref="demo3"
@@ -1597,23 +1821,27 @@
         >
         </ui-select>
     </div>
-    :::
-
-    #### search
-
-    当开启`can-search`配置并且搜索关键词变化时时触发。
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
+    >script
+    {
         methods : {
             echo : function () {
-                console.log('demo15.console1', 'search event!');
+                console.log('demo3.console1', 'list-hide event!');
             }
         }
-    });
+    }
+    :::
+
+    :::vue
+    @name:search
     ---
+    #event
+    >event-desc
+    当开启`can-search`配置并且搜索关键词变化时时触发。
+    >event-args
+    |key|用户搜索的内容|`String`|
+    ---
+    #demo
+    >tpl
     <div style="width:300px;">
         <ui-select
             ref="demo15"
@@ -1636,14 +1864,14 @@
         >
         </ui-select>
     </div>
-    :::
-
-    :::preset/html
-    formEvent
-    ---
-    uikey:select
-    eventValue:['tim']
-    eventMoreAttr::list="{tim:'Tim Boelaars', andrew:'Andrew Colin Beck', gustavo:'Gustavo Zambelli', victor:'Victor Erixon', shaun:'Shaun Moynihan', emir:'Emir Ayouni', katherine:'Katherine Rainey', jax:'Jax Berndt', elizabeth:'Elizabeth Chiu', sara:'Sara Nicely', anna:'Anna Broussard'}"
+    >script
+    {
+        methods : {
+            echo : function () {
+                console.log('demo15.console1', 'search event!');
+            }
+        }
+    }
     :::
 
     [[[表单值]]]
@@ -1669,38 +1897,13 @@
 
     `[]`
 
-    #### 输入/输出示例
-
-    :::repeat/html
-    formValueType:select
-    ---
-    <div>
-        <p>{$valueType}类型</p>
-        <div style="width:300px;">
-            <ui-select
-                ref="demoType{$valueType}"
-                :list="{
-                    tim : 'Tim Boelaars',
-                    andrew : 'Andrew Colin Beck',
-                    gustavo : 'Gustavo Zambelli',
-                    victor : 'Victor Erixon',
-                    shaun : 'Shaun Moynihan',
-                    emir : 'Emir Ayouni',
-                    katherine : 'Katherine Rainey',
-                    jax : 'Jax Berndt',
-                    elizabeth : 'Elizabeth Chiu',
-                    sara : 'Sara Nicely',
-                    anna : 'Anna Broussard'
-                }"
-            >
-            </ui-select>
-        </div>
-        <br>
-        <ui-link js="window.morning.findVM('demoType{$valueType}').set({$&valueContent})">设置{$valueType}类型</ui-link>
-        <ui-link js="alert(window.morning.findVM('demoType{$valueType}').getJson())">获取表单JSON值</ui-link>
-    </div>
-    <br>
-    <br>
+    :::preset
+    @name:formValue
+    @uikey:select
+    @uiname:下拉选择框
+    @valueType:select
+    @wrapStyle:width:300px;
+    @attrs: :list="{tim:'Tim Boelaars', andrew:'Andrew Colin Beck', gustavo:'Gustavo Zambelli', victor:'Victor Erixon', shaun:'Shaun Moynihan', emir:'Emir Ayouni', katherine:'Katherine Rainey', jax:'Jax Berndt', elizabeth:'Elizabeth Chiu', sara:'Sara Nicely', anna:'Anna Broussard'}"
     :::
 
     [[[源码]]]

@@ -12,9 +12,11 @@
 
     定义一个步骤条，这是一个块元素。
 
-    #### 使用
-
-    :::democode/html
+    :::vue
+    @name:使用
+    ---
+    #demo
+    >tpl
     <div style="width:500px">
         <ui-steps
             :list="[
@@ -26,11 +28,13 @@
     </div>
     :::
 
-    #### 描述
-
-    你可以为每个步骤添加描述：
-
-    :::democode/html
+    :::vue
+    @name:描述
+    ---
+    #demo
+    >desc
+    你可以为每个步骤添加描述。
+    >tpl
     <div style="width:500px">
         <ui-steps
             :list="[
@@ -51,11 +55,13 @@
     </div>
     :::
 
-    #### 完成的步骤
-
-    通过`done-step`来配置完成的步骤(-1表示没有完成步骤，0表示完成第一步，以此类推)：
-
-    :::democode/html
+    :::vue
+    @name:完成的步骤
+    ---
+    #demo
+    >desc
+    通过`done-step`来配置完成的步骤(-1表示没有完成步骤，0表示完成第一步，以此类推)。
+    >tpl
     <div style="width:500px">
         <ui-steps
             :done-step="0"
@@ -77,11 +83,13 @@
     </div>
     :::
 
-    #### 高亮当前步骤
-
-    通过开启`mark-current`配置来高亮当前步骤：
-
-    :::democode/html
+    :::vue
+    @name:高亮当前步骤
+    ---
+    #demo
+    >desc
+    通过开启`mark-current`配置来高亮当前步骤。
+    >tpl
     <div style="width:500px">
         <ui-steps
             mark-current
@@ -104,11 +112,13 @@
     </div>
     :::
 
-    #### 将当前步骤标记为进行中
-
-    在开启`mark-current`后，通过将`current-type`设为`progress`可将当前步骤标记为进行中：
-
-    :::democode/html
+    :::vue
+    @name:将当前步骤标记为进行中
+    ---
+    #demo
+    >desc
+    在开启`mark-current`后，通过将`current-type`设为`progress`可将当前步骤标记为进行中。
+    >tpl
     <div style="width:500px">
         <ui-steps
             mark-current
@@ -132,11 +142,13 @@
     </div>
     :::
 
-    #### 标记完成的步骤
-
-    开启`show-icon`配置可以标记完成的步骤：
-
-    :::democode/html
+    :::vue
+    @name:标记完成的步骤
+    ---
+    #demo
+    >desc
+    开启`show-icon`配置可以标记完成的步骤。
+    >tpl
     <div style="width:500px">
         <ui-steps
             show-icon
@@ -173,21 +185,23 @@
 
     [[[配置]]]
 
-    |KEY|描述|接受值|值类型|默认值|
-    |-|-|-|-|-|
-    |[list](#list)|步骤的列表，这是一个数组，数组中每一项都是一个步骤。项目可以是对象或字符串。<br><br>项目是字符串时，字符串是步骤的标题（这是一种缩写）。<br><br>项目是对象时，这个对象用来描述这个步骤，包含以下字段：<br>`title` : 步骤标题(必须)<br>`desc` : 步骤描述<br>`icon` : 步骤的icon，这是一个HTML片段<br><br>这个列表数组是有序的。|步骤列表数组|Array|`[]`|
-    |[done-step](#done-step)|完成的步骤数，`-1`表示未完成，`0`表示完成第一步，`1`表示完成第二步，以此类推|步骤数|Number|`-1`|
-    |[mark-current](#mark-current)|是否标记当前的步骤，比较类型通过`current-type`设置|`true`<br>`false`|Boolean|`false`|
-    |[current-type](#current-type)|标记当前步骤的方式|`'highlight'` : 高亮<br>`'progress'` : 进行中|String|`'highlight'`|
-    |[align](#align)|步骤的标题和描述对齐方式|`'center'` : 居中<br>`'left'` : 左对齐<br>`'right'` : 右对齐|String|`'center'`|
-    |[show-icon](#show-icon)|完成时是否显示特定icon|`true`<br>`false`|Boolean|`false`|
-    |[failed](#failed)|失败的步骤，这是一个数组，数组中的每一项都是一个数字，表示失败步骤的索引(从0开始)|数组|Array|`[]`|
-
-    #### list
-
-    项目为字符串的简写：
-
-    :::democode/html
+    :::vue
+    @name:list
+    ---
+    #config
+    >conf-desc
+    步骤的列表，这是一个数组，数组中每一项都是一个步骤。项目可以是对象或字符串。<br><br>项目是字符串时，字符串是步骤的标题（这是一种缩写）。<br><br>项目是对象时，这个对象用来描述这个步骤，包含以下字段：<br>`title` : 步骤标题(必须)<br>`desc` : 步骤描述<br>`icon` : 步骤的icon，这是一个HTML片段<br><br>这个列表数组是有序的。
+    >conf-accept
+    步骤列表数组
+    >conf-type
+    Array
+    >conf-default
+    `[]`
+    ---
+    #demo
+    >desc
+    项目为字符串的简写。
+    >tpl
     <div style="width:500px">
         <ui-steps
             :list="[
@@ -197,11 +211,11 @@
             ]"
         ></ui-steps>
     </div>
-    :::
-
-    包含步骤描述的写法：
-
-    :::democode/html
+    ---
+    #demo
+    >desc
+    包含步骤描述的写法。
+    >tpl
     <div style="width:500px">
         <ui-steps
             :list="[
@@ -220,11 +234,11 @@
             ]"
         ></ui-steps>
     </div>
-    :::
-
-    定制步骤icon的写法：
-
-    :::democode/html
+    ---
+    #demo
+    >desc
+    定制步骤icon的写法。
+    >tpl
     <div style="width:500px">
         <ui-steps
             :list="[
@@ -248,9 +262,21 @@
     </div>
     :::
 
-    #### done-step
-    
-    :::democode/html
+    :::vue
+    @name:done-step
+    ---
+    #config
+    >conf-desc
+    完成的步骤数，`-1`表示未完成，`0`表示完成第一步，`1`表示完成第二步，以此类推。
+    >conf-accept
+    步骤数
+    >conf-type
+    Number
+    >conf-default
+    `-1`
+    ---
+    #demo
+    >tpl
     <div style="width:500px">
         <ui-steps
             :done-step="0"
@@ -272,9 +298,21 @@
     </div>
     :::
 
-    #### mark-current
-
-    :::democode/html
+    :::vue
+    @name:mark-current
+    ---
+    #config
+    >conf-desc
+    是否标记当前的步骤，比较类型通过`current-type`设置。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >tpl
     <div style="width:500px">
         <ui-steps
             mark-current
@@ -297,9 +335,21 @@
     </div>
     :::
 
-    #### current-type
-
-    :::democode/html
+    :::vue
+    @name:current-type
+    ---
+    #config
+    >conf-desc
+    标记当前步骤的方式。
+    >conf-accept
+    `'highlight'` : 高亮<br>`'progress'` : 进行中
+    >conf-type
+    String
+    >conf-default
+    `'highlight'`
+    ---
+    #demo
+    >tpl
     <div style="width:500px">
         <ui-steps
             mark-current
@@ -323,9 +373,21 @@
     </div>
     :::
 
-    #### show-icon
-
-    :::democode/html
+    :::vue
+    @name:show-icon
+    ---
+    #config
+    >conf-desc
+    完成时是否显示特定icon。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >tpl
     <div style="width:500px">
         <ui-steps
             show-icon
@@ -348,11 +410,23 @@
     </div>
     :::
 
-    #### align
-
-    左对齐：
-
-    :::democode/html
+    :::vue
+    @name:align
+    ---
+    #config
+    >conf-desc
+    步骤的标题和描述对齐方式。
+    >conf-accept
+    `'center'` : 居中<br>`'left'` : 左对齐<br>`'right'` : 右对齐
+    >conf-type
+    String
+    >conf-default
+    `'center'`
+    ---
+    #demo
+    >desc
+    左对齐。
+    >tpl
     <div style="width:500px">
         <ui-steps
             align="left"
@@ -372,11 +446,11 @@
             ]"
         ></ui-steps>
     </div>
-    :::
-
-    右对齐：
-
-    :::democode/html
+    ---
+    #demo
+    >desc
+    右对齐。
+    >tpl
     <div style="width:500px">
         <ui-steps
             align="right"
@@ -398,9 +472,21 @@
     </div>
     :::
 
-    #### failed
-
-    :::democode/html
+    :::vue
+    @name:failed
+    ---
+    #config
+    >conf-desc
+    失败的步骤，这是一个数组，数组中的每一项都是一个数字，表示失败步骤的索引(从0开始)。
+    >conf-accept
+    数组
+    >conf-type
+    Array
+    >conf-default
+    `[]`
+    ---
+    #demo
+    >tpl
     <div style="width:500px">
         <ui-steps
             :failed="[1]"
@@ -420,11 +506,11 @@
             ]"
         ></ui-steps>
     </div>
-    :::
-
-    配合`show-icon`使用：
-
-    :::democode/html
+    ---
+    #demo
+    >desc
+    配合`show-icon`使用。
+    >tpl
     <div style="width:500px">
         <ui-steps
             :done-step="1"
@@ -454,35 +540,19 @@
 
     [[[事件]]]
 
-    #### 生命周期事件
-
-    :::vue/html
-    window.demoEventLifecycle = new Vue({
-        el : '{$el}',
-        template : '{$template}',
-        data : function () {
-            return {
-               text : '步骤条',
-               show : true
-            };
-        },
-        methods : {
-            echo : function (name) {
-                console.log('demoEventLifecycle.console1', name + ' event!');
-            }
-        }
-    });
+    :::vue
+    @name:生命周期事件
     ---
-    <div style="width:500px">
+    #event
+    >event-desc
+    组件的生命周期事件，详见:[基础/事件/生命周期事件](/guide/event.html#生命周期事件)。
+    ---
+    #demo
+    >tpl
+    <div>
         <ui-steps
             ref="demoEventLifecycle"
             v-show="show"
-            @created="echo('created')"
-            @mounted="echo('mounted')"
-            @before-update="echo('before-update')"
-            @updated="echo('updated')"
-            @before-destroy="echo('before-destroy')"
-            @destroyed="echo('destroyed')"
             :list="[
                 {
                     title : '第一步',
@@ -497,15 +567,33 @@
                     desc : '开通账号'
                 }
             ]"
+            @created="echo('created')"
+            @mounted="echo('mounted')"
+            @before-update="echo('before-update')"
+            @updated="echo('updated')"
+            @before-destroy="echo('before-destroy')"
+            @destroyed="echo('destroyed')"
         >{*text*}</ui-steps>
-
         <br><br>
-
-        <ui-link js="window.demoEventLifecycle.text='生命周期事件';">触发update</ui-link>
-        <ui-link js="morning.findVM('demoEventLifecycle').$destroy();">触发destroy</ui-link>
+        <ui-link js="this.text='生命周期事件';">触发update</ui-link>
+        <ui-link js="this.$refs['demoEventLifecycle'].$destroy();">触发destroy</ui-link>
     </div>
+    >script
+    {
+        data : function () {
+            return {
+               text : '步骤条',
+               show : true
+            };
+        },
+        methods : {
+            echo : function (name) {
+                console.log('demoEventLifecycle.console1', name + ' event!');
+            }
+        }
+    }
     :::
-
+    
     [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/steps/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>

@@ -124,7 +124,7 @@ test.serial('image', async t => {
         .goto(docUrl)
         .wait(basicDemo)
         .evaluate(() => ({
-            image : window.getComputedStyle($('[name="开始"] [_uiid="4"] img')[0])
+            image : window.getComputedStyle($('[name="开始"] [_uiid="31"] img')[0])
         }));
 
     t.plan(1);
@@ -140,7 +140,7 @@ test.serial('iconfont', async t => {
         .goto(docUrl)
         .wait(basicDemo)
         .evaluate(() => ({
-            iconfont : window.getComputedStyle($('[name="开始"] [_uiid="5"] .iconfont')[0])
+            iconfont : window.getComputedStyle($('[name="开始"] [_uiid="32"] .iconfont')[0])
         }));
 
     t.plan(1);
@@ -156,7 +156,7 @@ test.serial('horizontal left', async t => {
         .goto(docUrl)
         .wait(basicDemo)
         .evaluate(() => ({
-            horizontal : window.getComputedStyle($('[name="开始"] [_uiid="6"]')[0])
+            horizontal : window.getComputedStyle($('[name="开始"] [_uiid="33"]')[0])
         }));
 
     t.plan(1);
@@ -177,7 +177,7 @@ test.serial('horizontal right', async t => {
         .goto(docUrl)
         .wait(basicDemo)
         .evaluate(() => ({
-            horizontal : window.getComputedStyle($('[name="开始"] [_uiid="7"]')[0])
+            horizontal : window.getComputedStyle($('[name="开始"] [_uiid="34"]')[0])
         }));
 
     t.plan(1);
@@ -198,7 +198,7 @@ test.serial('top name', async t => {
         .goto(docUrl)
         .wait(basicDemo)
         .evaluate(() => ({
-            topname : window.getComputedStyle($('[name="开始"] [_uiid="8"]')[0])
+            topname : window.getComputedStyle($('[name="开始"] [_uiid="35"]')[0])
         }));
 
     t.plan(1);

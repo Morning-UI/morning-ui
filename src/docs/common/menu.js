@@ -26,7 +26,7 @@ export default {
         描述列表 : '/component/dl.html',
         项目列表 : '/component/itemlist.html',
         文本颜色 : '/component/textcolor.html',
-        醒目文本 : '/component/apparent.html',
+        醒目内容 : '/component/apparent.html',
         栅格 : '/component/grid.html',
         卡片 : '/component/card.html',
         容器 : '/component/box.html',

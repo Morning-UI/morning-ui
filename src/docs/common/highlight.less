@@ -3,6 +3,10 @@
         position: relative;
     }
 
+    code span{
+        font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+    }
+
     .lang-js::before,
     .language-js::before,
     .lang-html::before,
@@ -14,7 +18,9 @@
     .lang-text::before,
     .language-text::before,
     .lang-less::before,
-    .language-less::before{
+    .language-less::before,
+    .lang-vue::before,
+    .language-vue::before{
         font-family: PingFangSC-Light, sans-serif;
         font-size: 12px;
         color: #CCC;
@@ -53,5 +59,10 @@
     .lang-text::before,
     .language-text::before{
         content: 'Text';
+    }
+
+    .lang-vue::before,
+    .language-vue::before{
+        content: 'Vue';
     }
 }

@@ -12,9 +12,11 @@
 
     定义一段中心内容，这是一个块级元素。
 
-    #### 使用
-    
-    :::democode/html
+    :::vue
+    @name:使用
+    ---
+    #demo
+    >tpl
     <ui-lead>中心内容</ui-lead>
     :::
 
@@ -30,18 +32,14 @@
 
     <a href="/guide/status.html">查看形态文档</a>
 
-    #### 色彩
-
-    :::preset/html
-    statusColor
+    :::vue
+    @layout:color
     ---
-    uikey:lead
+    <ui-lead color="{$colorKey}">{$&colorName}</ui-lead>
     :::
 
-    #### 状态
-    
-    :::repeat/html
-    state:normal,apparent
+    :::vue
+    @layout:state-na
     ---
     <ui-lead state="{$stateKey}">{$&stateName}</ui-lead>
     :::

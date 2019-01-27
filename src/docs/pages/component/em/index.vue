@@ -12,9 +12,11 @@
 
     标记一段斜体内容，这是一个内联元素。
 
-    #### 使用
-    
-    :::democode/html
+    :::vue
+    @name:使用
+    ---
+    #demo
+    >tpl
     <ui-em>斜体文本</ui-em>
     :::
 

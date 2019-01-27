@@ -12,9 +12,11 @@
 
     定义段落输入框。
 
-    #### 使用
-
-    :::democode/html
+    :::vue
+    @name:使用
+    ---
+    #demo
+    >tpl
     <div style="width:300px;">
         <ui-textarea form-name="姓名"></ui-textarea>
     </div>
@@ -22,79 +24,127 @@
 
     [[[形态]]]
 
-    :::preset/html
-    formStatus
-    ---
-    uikey:textarea
-    statusDefaultValue:''
+    :::preset
+    @name:formStatus
+    @uikey:textarea
+    @defaultValue:'默认文本'
     :::
-    
+
     [[[配置]]]
 
-    :::preset/html
-    formConfigTable
-    ---
-    |[inside-name](#inside-name)|在组件内显示的名称，和`form-name`互为补充。|名称|String|`''`|
-    |[rows](#rows)|段落输入框的默认高度对应的行数，若设置了`max-rows`则此数值不会超过`max-rows`。|大于0的数字|Number|`4`|
-    |[auto-size](#auto-size)|段落内容超过输入框并将出现滚动条时，自动增加输入框的高度。当内容减少时，自动减少输入框高度。最小高度将维持在`rows`配置设置的高度(最小为2行的高度)，最大高度不超过`max-rows`。|`true`<br>`false`|Boolean|`false`|
-    |[max-rows](#max-rows)|段落内容的最大高度对应的行数。若同时设置了`auto-size`配置，则超过`max-rows`后会出现滚动条。|大于0的数字|Number|`Infinity`|
-    |[maxlength](#maxlength)|输入内容的最大长度|最大长度|Number|`Infinity`|
+    :::preset
+    @name:formConfig
+    @uikey:textarea
+    @defaultValue:'默认文本'
     :::
 
-    :::preset/html
-    formConfigDemo
+    :::vue
+    @name:inside-name
     ---
-    uikey:textarea
-    configDefaultValue:'默认值'
-    :::
-
-    #### inside-name
-
-    :::democode/html
+    #config
+    >conf-desc
+    在组件内显示的名称，和`form-name`互为补充。
+    >conf-accept
+    名称
+    >conf-type
+    String
+    >conf-default
+    `''`
+    ---
+    #demo
+    >tpl
     <div style="width:300px">
         <ui-textarea inside-name="段落"></ui-textarea>
     </div>
     :::
 
-    #### rows
-
-    :::democode/html
+    :::vue
+    @name:rows
+    ---
+    #config
+    >conf-desc
+    段落输入框的默认高度对应的行数，若设置了`max-rows`则此数值不会超过`max-rows`。
+    >conf-accept
+    大于0的数字
+    >conf-type
+    Number
+    >conf-default
+    `4`
+    ---
+    #demo
+    >tpl
     <div style="width:300px;">
         <ui-textarea :rows="8"></ui-textarea>
     </div>
     :::
 
-    #### auto-size
-
-    尝试输入5行内容，段落输入框会自动增加高度：
-
-    :::democode/html
+    :::vue
+    @name:auto-size
+    ---
+    #config
+    >conf-desc
+    段落内容超过输入框并将出现滚动条时，自动增加输入框的高度。当内容减少时，自动减少输入框高度。最小高度将维持在`rows`配置设置的高度(最小为2行的高度)，最大高度不超过`max-rows`。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >desc
+    尝试输入5行内容，段落输入框会自动增加高度。
+    >tpl
     <div style="width:300px;">
         <ui-textarea auto-size></ui-textarea>
     </div>
     :::
 
-    #### max-rows
-
-    超过8行后会出现滚动条：
-
-    :::democode/html
+    :::vue
+    @name:max-rows
+    ---
+    #config
+    >conf-desc
+    段落内容的最大高度对应的行数。若同时设置了`auto-size`配置，则超过`max-rows`后会出现滚动条。
+    >conf-accept
+    大于0的数字
+    >conf-type
+    Number
+    >conf-default
+    `Infinity`
+    ---
+    #demo
+    >desc
+    超过8行后会出现滚动条。
+    >tpl
     <div style="width:300px;">
         <ui-textarea auto-size :max-rows="8"></ui-textarea>
     </div>
-    :::
-
-    同时设置最小3行，最大6行：
-
-    :::democode/html
+    ---
+    #demo
+    >desc
+    同时设置最小3行，最大6行。
+    >tpl
     <div style="width:300px;">
         <ui-textarea auto-size :rows="3" :max-rows="6"></ui-textarea>
     </div>
     :::
 
-    #### maxlength
-
-    :::democode/html
+    :::vue
+    @name:maxlength
+    ---
+    #config
+    >conf-desc
+    输入内容的最大长度。
+    >conf-accept
+    最大长度
+    >conf-type
+    Number
+    >conf-default
+    `Infinity`
+    ---
+    #demo
+    >tpl
     <div style="width:300px;">
         <ui-textarea :maxlength="50"></ui-textarea>
     </div>
@@ -102,61 +152,65 @@
 
     [[[方法]]]
 
-    :::preset/html
-    formMethod
-    ---
-    uikey:textarea
-    methodValue:'Jim'
-    methodDefaultValue:'Jim'
+    :::preset
+    @name:formMethod
+    @uikey:textarea
+    @value:'Jim'
+    @defaultValue:'Jim'
     :::
 
     [[[事件]]]
 
-    #### focus
+    :::preset
+    @name:formEvent
+    @uiname:段落输入框
+    @uikey:textarea
+    @value:'Jim'
+    @wrapStyle:width:300px;
+    :::
 
+    :::vue
+    @name:focus
+    ---
+    #event
+    >event-desc
     当表单聚焦后触发。
-    
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
+    ---
+    #demo
+    >tpl
+    <div style="width:300px;">
+        <ui-textarea @focus="echo" ref="demo2"></ui-textarea>
+    </div>
+    >script
+    {
         methods : {
             echo : function () {
                 console.log('demo2.console1', 'focus event!');
             }
         }
-    });
-    ---
-    <div style="width:300px;">
-        <ui-textarea @focus="echo" ref="demo2"></ui-textarea>
-    </div>
+    }
     :::
 
-    #### blur
-
+    :::vue
+    @name:blur
+    ---
+    #event
+    >event-desc
     当表单失焦后触发。
-    
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
+    ---
+    #demo
+    >tpl
+    <div style="width:300px;">
+        <ui-textarea @blur="echo" ref="demo3"></ui-textarea>
+    </div>
+    >script
+    {
         methods : {
             echo : function () {
                 console.log('demo3.console1', 'blur event!');
             }
         }
-    });
-    ---
-    <div style="width:300px;">
-        <ui-textarea @blur="echo" ref="demo3"></ui-textarea>
-    </div>
-    :::
-
-    :::preset/html
-    formEvent
-    ---
-    uikey:textarea
-    eventValue:'Jim'
+    }
     :::
 
     [[[表单值]]]
@@ -178,22 +232,12 @@
 
     `''`
 
-    #### 输入/输出示例
-
-    :::repeat/html
-    formValueType
-    ---
-    <div>
-        <p>{$valueType}类型</p>
-        <div style="width:300px;">
-            <ui-textarea ref="demoType{$valueType}"></ui-textarea>
-        </div>
-        <br>
-        <ui-link js="window.morning.findVM('demoType{$valueType}').set({$&valueContent})">设置{$valueType}类型</ui-link>
-        <ui-link js="alert(window.morning.findVM('demoType{$valueType}').getJson())">获取表单JSON值</ui-link>
-    </div>
-    <br>
-    <br>
+    :::preset
+    @name:formValue
+    @uikey:textarea
+    @uiname:段落输入框
+    @valueType:default
+    @wrapStyle:width:300px;
     :::
 
     [[[源码]]]

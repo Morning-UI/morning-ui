@@ -14,33 +14,23 @@
 
     富文本编辑器基于[quilljs](https://quilljs.com/)(版本1.3.6)打造，Morning UI深度定制并扩展了[quilljs](https://quilljs.com/)。
 
-    #### 使用
-
-    :::democode/html
+    :::vue
+    @name:使用
+    ---
+    #demo
+    >tpl
     <div style="width:100%;height:320px;">
         <ui-texteditor form-name="文章编辑"></ui-texteditor>
     </div>
     :::
 
-    #### 获取富文本并渲染HTML
-    
-    富文本编辑器的取值自带了基础样式，用于还原富文本内容的样式。所以你可以直接将获取的到数值插入至HTML，即可还原富文本。
-    
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
-        methods : {
-            syncHtml : function (value) {
-
-                let $preview = this.$el.querySelector('.demo1-preview');
-                
-                $preview && ($preview.innerHTML = value);
-
-            }
-        }
-    });
+    :::vue
+    @name:获取富文本并渲染HTML
     ---
+    #demo
+    >desc
+    富文本编辑器的取值自带了基础样式，用于还原富文本内容的样式。所以你可以直接将获取的到数值插入至HTML，即可还原富文本。
+    >tpl
     <div>
         <div style="width:100%;height:320px;">
             <ui-texteditor form-name="文章编辑" @value-change="syncHtml"></ui-texteditor>
@@ -51,47 +41,65 @@
             
         </div>
     </div>
+    >script
+    {
+        methods : {
+            syncHtml : function (value) {
+
+                let $preview = this.$el.querySelector('.demo1-preview');
+                
+                $preview && ($preview.innerHTML = value);
+
+            }
+        }
+    }
     :::
 
     [[[形态]]]
 
-    :::preset/html
-    formStatus
-    ---
-    uikey:texteditor
-    statusDefaultValue:'<p>编辑你的文章...</p>'
-    statusDivStyle:width:100%;height:160px;
+    :::preset
+    @name:formStatus
+    @uikey:texteditor
+    @defaultValue:'<p>编辑你的文章...</p>'
+    @wrapStyle:width:100%;height:160px;
     :::
 
     [[[配置]]]
 
-    :::preset/html
-    formConfigTable
-    ---
-    |[inside-name](#inside-name)|在组件内显示的名称，和`form-name`互为补充。|名称|String|`''`|
-    |[tools](#tools)|设置富文本编辑工具，这是一个数组，数组中需要再嵌套一个数组。<br>第二层的数组，代表工具组，多个工具组之间会有更多间隙。<br>在第二层的数组中你可以通过字符串或对象来设置使用的工具。(详见[下面的示例](#tools))<br><br>注意：因为此配置的默认值包含所有工具，随着版本更新工具会不断的增加。建议配置固定的工具，而不是采用默认值，以免引入不必要的工具。|数组|Array|默认是包含所有工具的数组|
+    :::preset
+    @name:formConfig
+    @uikey:texteditor
+    @defaultValue:'<p>编辑你的文章...</p>'
+    @wrapStyle:width:100%;height:160px;
     :::
 
-    :::preset/html
-    formConfigDemo
+    :::vue
+    @name:inside-name
     ---
-    uikey:texteditor
-    configDefaultValue:'<p>编辑你的文章...</p>'
-    configDivStyle:width:100%;height:240px;padding-bottom:40px;
-    :::
-
-    #### inside-name
-
-    :::democode/html
+    #config
+    >conf-desc
+    在组件内显示的名称，和`form-name`互为补充。
+    >conf-accept
+    名称
+    >conf-type
+    String
+    >conf-default
+    `''`
+    ---
+    #demo
+    >tpl
     <div style="width:100%;height:240px;">
         <ui-texteditor inside-name="编写文章..."></ui-texteditor>
     </div>
     :::
 
-    #### tools
-
-    `tools`允许你设置富文本编辑工具，工具包含：
-
+    :::vue
+    @name:tools
+    ---
+    #config
+    >conf-desc
+    设置富文本编辑工具，这是一个数组，数组中需要再嵌套一个数组。<br>第二层的数组，代表工具组，多个工具组之间会有更多间隙。<br>在第二层的数组中你可以通过字符串或对象来设置使用的工具。<br><br>注意：因为此配置的默认值包含所有工具，随着版本更新工具会不断的增加。建议配置固定的工具，而不是采用默认值，以免引入不必要的工具。<br><br>下面是可用的工具配置：
+    <br><br>
     |KEY|说明|值|
     |-|-|-|
     |header|标题设置|数组，完整列表：`[false, 1, 2, 3, 4, 5, 6]`，可选其中部分使用|
@@ -114,10 +122,17 @@
     |link|链接|无|
     |image|图片|无|
     |clean|清除样式|无|
-
-    使用<b>无值</b>的工具：
-
-    :::democode/html
+    >conf-accept
+    数组
+    >conf-type
+    Array
+    >conf-default
+    默认是包含所有工具的数组
+    ---
+    #demo
+    >desc
+    使用<b>无值</b>的工具。
+    >tpl
     <div style="width:100%;height:240px;">
         <ui-texteditor
             form-name="文章编辑"
@@ -126,11 +141,11 @@
             ]"
         ></ui-texteditor>
     </div>
-    :::
-
-    使用<b>值为数组</b>的工具：
-
-    :::democode/html
+    ---
+    #demo
+    >desc
+    使用<b>值为数组</b>的工具。
+    >tpl
     <div style="width:100%;height:240px;">
         <ui-texteditor
             form-name="文章编辑"
@@ -139,11 +154,11 @@
             ]"
         ></ui-texteditor>
     </div>
-    :::
-
-    使用<b>值为选项</b>的工具：
-
-    :::democode/html
+    ---
+    #demo
+    >desc
+    使用<b>值为选项</b>的工具。
+    >tpl
     <div style="width:100%;height:240px;">
         <ui-texteditor 
             form-name="文章编辑" 
@@ -152,11 +167,11 @@
             ]"
         ></ui-texteditor>
     </div>
-    :::
-
-    通过`tools`中嵌套数组将工具分为多个组（多个组时间会有更多的间隙）：
-
-    :::democode/html
+    ---
+    #demo
+    >desc
+    通过`tools`中嵌套数组将工具分为多个组（多个组时间会有更多的间隙）。
+    >tpl
     <div style="width:100%;height:240px;">
         <ui-texteditor
             form-name="文章编辑"
@@ -167,11 +182,11 @@
             ]"
         ></ui-texteditor>
     </div>
-    :::
-
-    完整的`tools`配置如下：
-
-    :::democode/html
+    ---
+    #demo
+    >desc
+    完整的`tools`配置如下。
+    >tpl
     <div style="width:100%;height:240px;">
         <ui-texteditor
             form-name="文章编辑"
@@ -236,43 +251,44 @@
 
     [[[方法]]]
 
-    :::preset/html
-    formMethod
-    ---
-    uikey:texteditor
-    methodValue:'<p>编辑你的文章...</p>'
-    methodDefaultValue:'<p>编辑你的文章...</p>'
-    methodDivStyle:width:100%;height:260px;padding-bottom:80px;
+    :::preset
+    @name:formMethod
+    @uikey:texteditor
+    @value:'<p>编辑你的文章...</p>'
+    @defaultValue:'<p>编辑你的文章...</p>'
+    @wrapStyle:width:100%;height:260px;padding-bottom:80px;
     :::
 
     [[[事件]]]
 
-    #### selection-change
+    :::preset
+    @name:formEvent
+    @uiname:富文本编辑器
+    @uikey:texteditor
+    @value:'<p>编辑你的文章...</p>'
+    @wrapStyle:width:100%;height:260px;padding-bottom:80px;
+    :::
 
+    :::vue
+    @name:selection-change
+    ---
+    #event
+    >event-desc
     当用户选择编辑文字发生变化后触发。
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
+    ---
+    #demo
+    >tpl
+    <div style="width:100%;height:240px;">
+        <ui-texteditor @selection-change="echo" ref="demo2"></ui-texteditor>
+    </div>
+    >script
+    {
         methods : {
             echo : function () {
                 console.log('demo2.console1', 'selection-change event!');
             }
         }
-    });
-    ---
-    <div style="width:100%;height:240px;">
-        <ui-texteditor @selection-change="echo" ref="demo2"></ui-texteditor>
-    </div>
-    :::
-
-    :::preset/html
-    formEvent
-    ---
-    uikey:texteditor
-    eventValue:'<p>编辑你的文章...</p>'
-    eventDivStyle:width:100%;height:260px;padding-bottom:80px;
+    }
     :::
 
     [[[表单值]]]
@@ -293,22 +309,12 @@
 
     `undefined`
 
-    #### 输入/输出示例
-
-    :::repeat/html
-    formValueType:texteditor
-    ---
-    <div>
-        <p>{$valueType}类型</p>
-        <div style="width:100%;height: 240px;">
-            <ui-texteditor ref="demoType{$valueType}"></ui-texteditor>
-        </div>
-        <br>
-        <ui-link js="window.morning.findVM('demoType{$valueType}').set({$&valueContent})">设置{$valueType}类型</ui-link>
-        <ui-link js="alert(window.morning.findVM('demoType{$valueType}').getJson())">获取表单JSON值</ui-link>
-    </div>
-    <br>
-    <br>
+    :::preset
+    @name:formValue
+    @uikey:texteditor
+    @uiname:富文本编辑器
+    @valueType:texteditor
+    @wrapStyle:width:100%;height:260px;padding-bottom:80px;
     :::
 
     [[[源码]]]

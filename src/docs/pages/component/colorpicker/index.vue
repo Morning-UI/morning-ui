@@ -12,9 +12,11 @@
 
     定义颜色选择器。
 
-    #### 使用
-
-    :::democode/html
+    :::vue
+    @name:使用
+    ---
+    #demo
+    >tpl
     <div style="width:300px;">
         <ui-colorpicker form-name="颜色选择"></ui-colorpicker>
     </div>
@@ -22,62 +24,76 @@
 
     [[[形态]]]
 
-    :::preset/html
-    formStatus
-    ---
-    uikey:colorpicker
-    statusDefaultValue:'#ff0000'
+    :::preset
+    @name:formStatus
+    @uikey:colorpicker
+    @defaultValue:'#ff0000'
     :::
 
     [[[配置]]]
 
-    :::preset/html
-    formConfigTable
-    ---
-    |[value-type](#value-type)|通过`set()`方法获取颜色的数值类型。若颜色没有透明度，在数值上会自动过滤透明度。|`'hex'`<br>`'rgba'`<br>`'hsla'`|String|`'hex'`|
-    |[allow-alpha](#allow-alpha)|是否允许颜色具有透明度|`true`<br>`false`|Boolean|`true`|
+    :::preset
+    @name:formConfig
+    @uikey:colorpicker
+    @defaultValue:'#ff0000'
     :::
 
-    :::preset/html
-    formConfigDemo
+    :::vue
+    @name:value-type
     ---
-    uikey:colorpicker
-    configDefaultValue:'#ff0000'
-    :::
-
-    #### value-type
-
-    获取颜色的HEX：
-
-    :::democode/html
+    #config
+    >conf-desc
+    通过`set()`方法获取颜色的数值类型。若颜色没有透明度，在数值上会自动过滤透明度。
+    >conf-accept
+    `'hex'`<br>`'rgba'`<br>`'hsla'`
+    >conf-type
+    String
+    >conf-default
+    `'hex'`
+    ---
+    #demo
+    >desc
+    获取颜色的HEX。
+    >tpl
     <div style="width:300px;">
         <ui-colorpicker ref="demo1" form-name="颜色选择" value-type="hex"></ui-colorpicker><br>
         <ui-link js="alert(window.morning.findVM('demo1').get())">获取颜色值</ui-link>
     </div>
-    :::
-    
-
-    获取颜色的RGBA：
-
-    :::democode/html
+    ---
+    #demo
+    >desc
+    获取颜色的RGBA。
+    >tpl
     <div style="width:300px;">
         <ui-colorpicker ref="demo2" form-name="颜色选择" value-type="rgba"></ui-colorpicker><br>
         <ui-link js="alert(window.morning.findVM('demo2').get())">获取颜色值</ui-link>
     </div>
-    :::
-
-    获取颜色的HSLA：
-
-    :::democode/html
+    ---
+    #demo
+    >desc
+    获取颜色的HSLA。
+    >tpl
     <div style="width:300px;">
         <ui-colorpicker ref="demo3" form-name="颜色选择" value-type="hsla"></ui-colorpicker><br>
         <ui-link js="alert(window.morning.findVM('demo3').get())">获取颜色值</ui-link>
     </div>
     :::
 
-    #### allow-alpha
-
-    :::democode/html
+    :::vue
+    @name:allow-alpha
+    ---
+    #config
+    >conf-desc
+    是否允许颜色具有透明度。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `true`
+    ---
+    #demo
+    >tpl
     <div style="width:300px;">
         <ui-colorpicker form-name="颜色选择" :allow-alpha="false"></ui-colorpicker>
     </div>
@@ -85,149 +101,165 @@
 
     [[[方法]]]
 
-    #### togglePicker([toggle])
-
-    显示/隐藏颜色选择器的下拉框。
-    
-    |KEY|可选|描述|接受值|值类型|默认值|
-    |-|-|-|-|-|-|
-    |show|YES|颜色选择器的下拉框切换到隐藏或显示，若不设置则切换到相反的状态。|`undefined`<br>`true`<br>`false`|`Undefined`<br>`Boolean`|`undefined`|
-
-    :::democode/html
-    <div style="width:300px">
-        <ui-colorpicker ref="demo5"></ui-colorpicker>
-    </div>
-    <br>
-    <ui-link js="window.morning.findVM('demo5').togglePicker();">切换相反状态</ui-link>
-    <ui-link js="window.morning.findVM('demo5').togglePicker(true);">切换至显示</ui-link>
-    <ui-link js="window.morning.findVM('demo5').togglePicker(false);">切换至隐藏</ui-link>
+    :::preset
+    @name:formMethod
+    @uikey:colorpicker
+    @value:'#ff0000'
+    @defaultValue:'#ff0000'
     :::
 
-    :::preset/html
-    formMethod
+    :::vue
+    @name:togglePicker([toggle])
     ---
-    uikey:colorpicker
-    methodValue:'#ff0000'
-    methodDefaultValue:'#ff0000'
+    #method
+    >method-desc
+    显示/隐藏颜色选择器的下拉框。
+    >method-args
+    |show|YES|颜色选择器的下拉框切换到隐藏或显示，若不设置则切换到相反的状态。|`undefined`<br>`true`<br>`false`|`Undefined`<br>`Boolean`|`undefined`|
+    >method-return
+    当前组件VM实例。
+    ---
+    #demo
+    >tpl
+    <div>
+        <div style="width:300px">
+            <ui-colorpicker ref="demo5"></ui-colorpicker>
+        </div>
+        <br>
+        <ui-link js="window.morning.findVM('demo5').togglePicker();">切换相反状态</ui-link>
+        <ui-link js="window.morning.findVM('demo5').togglePicker(true);">切换至显示</ui-link>
+        <ui-link js="window.morning.findVM('demo5').togglePicker(false);">切换至隐藏</ui-link>
+    </div>
     :::
 
     [[[事件]]]
 
-    #### show-picker
+    :::preset
+    @name:formEvent
+    @uiname:颜色选择器
+    @uikey:colorpicker
+    @value:'#ff0000'
+    @wrapStyle:width:300px;
+    :::
 
-    当颜色选择器的下拉框显示时触发。
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
-        methods : {
-            echo : function () {
-                console.log('demo4.show-picker', 'emit event!');
-            }
-        }
-    });
+    :::vue
+    @name:show-picker
     ---
+    #event
+    >event-desc
+    当颜色选择器的下拉框显示时触发。
+    ---
+    #demo
+    >tpl
     <div style="width:300px">
         <ui-colorpicker ref="demo4" @show-picker="echo"></ui-colorpicker>
         <br> 
         <ui-link js="window.morning.findVM('demo4').togglePicker(true);">点击触发show-picker事件</ui-link>
     </div>
-    :::
-
-    #### hide-picker
-
-    当颜色选择器的下拉框隐藏时触发。
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
+    >script
+    {
         methods : {
             echo : function () {
-                console.log('demo6.hide-picker', 'emit event!');
+                console.log('demo4.show-picker', 'emit event!');
             }
         }
-    });
+    }
+    :::
+    
+    :::vue
+    @name:hide-picker
     ---
+    #event
+    >event-desc
+    当颜色选择器的下拉框隐藏时触发。
+    ---
+    #demo
+    >tpl
     <div style="width:300px">
         <ui-colorpicker ref="demo6" @hide-picker="echo"></ui-colorpicker>
         <br> 
         <ui-link js="window.morning.findVM('demo4').togglePicker(true);setTimeout(()=>(window.morning.findVM('demo6').togglePicker(false)));">点击触发hide-picker事件</ui-link>
     </div>
-    :::
-
-    #### hue-slider-change
-
-    当颜色选择器的HUE滑块移动时触发。
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
+    >script
+    {
         methods : {
             echo : function () {
-                console.log('demo7.hue-slider-change', 'emit event!');
+                console.log('demo6.hide-picker', 'emit event!');
             }
         }
-    });
+    }
+    :::
+    
+    :::vue
+    @name:hue-slider-change
     ---
+    #event
+    >event-desc
+    当颜色选择器的HUE滑块移动时触发。
+    ---
+    #demo
+    >tpl
     <div style="width:300px">
         <ui-colorpicker ref="demo7" @hue-slider-change="echo"></ui-colorpicker>
         <br> 
         <p>拖动HUE滑块来触发此事件</p>
     </div>
-    :::
-
-    #### alpha-slider-change
-
-    当颜色选择器的透明度滑块移动时触发。
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
+    >script
+    {
         methods : {
             echo : function () {
-                console.log('demo8.alpha-slider-change', 'emit event!');
+                console.log('demo7.hue-slider-change', 'emit event!');
             }
         }
-    });
+    }
+    :::
+    
+    :::vue
+    @name:alpha-slider-change
     ---
+    #event
+    >event-desc
+    当颜色选择器的透明度滑块移动时触发。
+    ---
+    #demo
+    >tpl
     <div style="width:300px">
         <ui-colorpicker ref="demo8" @alpha-slider-change="echo"></ui-colorpicker>
         <br> 
         <p>拖动透明度滑块来触发此事件</p>
     </div>
-    :::
-
-    #### input-type-change
-
-    当颜色选择器的色值输入类型变化时触发。
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
+    >script
+    {
         methods : {
             echo : function () {
-                console.log('demo9.input-type-change', 'emit event!');
+                console.log('demo8.alpha-slider-change', 'emit event!');
             }
         }
-    });
+    }
+    :::
+    
+    :::vue
+    @name:input-type-change
     ---
+    #event
+    >event-desc
+    当颜色选择器的色值输入类型变化时触发。
+    ---
+    #demo
+    >tpl
     <div style="width:300px">
         <ui-colorpicker ref="demo9" @input-type-change="echo"></ui-colorpicker>
         <br> 
         <p>切换颜色输入类型来触发此事件</p>
     </div>
-    :::
-
-    :::preset/html
-    formEvent
-    ---
-    uikey:colorpicker
-    eventValue:'#ff0000'
+    >script
+    {
+        methods : {
+            echo : function () {
+                console.log('demo9.input-type-change', 'emit event!');
+            }
+        }
+    }
     :::
 
     [[[表单值]]]
@@ -249,22 +281,12 @@
 
     `#000000`(若设置了`value-type`则是纯黑色的其他表达形式)
 
-    #### 输入/输出示例
-
-    :::repeat/html
-    formValueType:colorpicker
-    ---
-    <div>
-        <p>{$valueType}类型</p>
-        <div style="width:300px;">
-            <ui-colorpicker ref="demoType{$valueType}"></ui-colorpicker>
-        </div>
-        <br>
-        <ui-link js="window.morning.findVM('demoType{$valueType}').set({$&valueContent})">设置{$valueType}类型</ui-link>
-        <ui-link js="alert(window.morning.findVM('demoType{$valueType}').getJson())">获取表单JSON值</ui-link>
-    </div>
-    <br>
-    <br>
+    :::preset
+    @name:formValue
+    @uikey:colorpicker
+    @uiname:颜色选择器
+    @valueType:colorpicker
+    @wrapStyle:width:300px;
     :::
 
     [[[源码]]]

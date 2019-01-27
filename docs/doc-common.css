@@ -1135,6 +1135,9 @@ mor-dialog a:hover {
 .markdown-body pre {
   position: relative;
 }
+.markdown-body code span {
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+}
 .markdown-body .lang-js::before,
 .markdown-body .language-js::before,
 .markdown-body .lang-html::before,
@@ -1146,7 +1149,9 @@ mor-dialog a:hover {
 .markdown-body .lang-text::before,
 .markdown-body .language-text::before,
 .markdown-body .lang-less::before,
-.markdown-body .language-less::before {
+.markdown-body .language-less::before,
+.markdown-body .lang-vue::before,
+.markdown-body .language-vue::before {
   font-family: PingFangSC-Light, sans-serif;
   font-size: 12px;
   color: #CCC;
@@ -1180,10 +1185,23 @@ mor-dialog a:hover {
 .markdown-body .language-text::before {
   content: 'Text';
 }
+.markdown-body .lang-vue::before,
+.markdown-body .language-vue::before {
+  content: 'Vue';
+}
 .body {
   width: 1100px;
   margin: 0 auto;
   font-size: 0;
+}
+.contents > .item > div > h4,
+.contents > .item > div > p,
+.contents > .item > div > table {
+  padding-left: 12px;
+}
+.contents > .item > div > ul,
+.contents > .item > div > ol {
+  padding-left: calc(2em + 14px);
 }
 .content {
   width: 900px;
@@ -1208,17 +1226,331 @@ mor-dialog a:hover {
   transform-origin: bottom;
   margin-right: -0.15em;
 }
-.demo {
-  padding: 10px;
-  box-sizing: border-box;
-  border: 1px #F1F4F6 solid;
-  border-radius: 3px 3px 0 0;
-  z-index: 9;
+.demo-root {
+  border: 1px #E9ECEF solid;
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+  font-size: 0;
+  margin: 20px 0 40px 0;
+}
+.demo-root:hover {
+  box-shadow: 0 0 8px rgba(194, 204, 212, 0.42);
+  border: 1px #e3e8ea solid;
+}
+.demo-root > h4 {
+  margin: 0;
+  padding: 8px 12px;
+  background: #f6f8fa;
+  font-size: 18px;
+}
+.demo-root > h4 > code {
+  vertical-align: middle;
+}
+.demo-root .section-demo,
+.demo-root .section-config,
+.demo-root .section-method,
+.demo-root .section-event {
+  border-top: 4px #E9ECEF solid;
+}
+.demo-root .section-demo:first-child,
+.demo-root .section-config:first-child,
+.demo-root .section-method:first-child,
+.demo-root .section-event:first-child {
+  border-top: none;
+}
+.demo-root .section-demo:nth-child(2),
+.demo-root .section-config:nth-child(2),
+.demo-root .section-method:nth-child(2),
+.demo-root .section-event:nth-child(2) {
+  border-top: 2px #E9ECEF solid;
+}
+.demo-root .section-demo .demo-con {
+  padding: 20px 10px;
+  position: relative;
+  display: block;
+  background: #fff;
+  margin: 0;
+  border-bottom: 1px #E9ECEF dashed;
+  font-size: 14px;
+}
+.demo-root .section-demo .code-con {
+  position: relative;
+  display: flex;
+}
+.demo-root .section-demo .code-con > .code {
+  background-color: #F6F8FA;
+  width: 100%;
+  margin: 0;
+  border-radius: 0;
+  vertical-align: top;
+  display: block;
   position: relative;
 }
-.demo + pre {
-  border-radius: 0 0 3px 3px;
+.demo-root .section-demo .code-con > .code > pre {
+  font-size: 12px;
+  margin: 0;
 }
-.demo mor-btn {
+.demo-root .section-demo .code-con > .code > .demo-tools {
+  position: absolute;
+  right: 0;
+  top: 23px;
+  width: 16px;
+  line-height: 1.5em;
+  font-size: 13px;
+  padding-right: 8px;
+  box-sizing: content-box;
+}
+.demo-root .section-demo .code-con > .code > .demo-tools > a {
+  color: #83888e;
+  text-decoration: none;
+}
+.demo-root .section-demo .code-con > .code > .demo-tools > a:hover {
+  text-decoration: none;
+  color: #18191b;
+}
+.demo-root .section-demo .code-con > .note {
+  width: 50%;
+  display: block;
+  border: none;
   vertical-align: top;
+  box-sizing: border-box;
+  border-left: 1px #e5e9ec dashed;
+}
+.demo-root .section-demo .code-con > .note:empty {
+  display: none;
+  width: 0;
+}
+.demo-root .section-demo .code-con > .note > h5 {
+  margin: 0;
+  padding: 14px 14px 0 14px;
+  font-size: 14px !important;
+  color: #45505C;
+  font-weight: 700;
+}
+.demo-root .section-demo .code-con > .note > h5:empty {
+  display: none;
+}
+.demo-root .section-demo .code-con > .note > div {
+  padding: 14px;
+  margin: 0;
+  font-size: 13px;
+}
+.demo-root .section-demo .code-con > .note > div p {
+  margin: 0;
+}
+.demo-root .section-config,
+.demo-root .section-method,
+.demo-root .section-event {
+  min-height: 100px;
+  font-size: 14px;
+  padding: 0;
+  display: flex;
+}
+.demo-root .section-config .config,
+.demo-root .section-method .config,
+.demo-root .section-event .config,
+.demo-root .section-config .args-return,
+.demo-root .section-method .args-return,
+.demo-root .section-event .args-return {
+  width: 35%;
+}
+.demo-root .section-config .config table,
+.demo-root .section-method .config table,
+.demo-root .section-event .config table,
+.demo-root .section-config .args-return table,
+.demo-root .section-method .args-return table,
+.demo-root .section-event .args-return table {
+  margin: 0;
+  display: table;
+  font-size: 12px;
+}
+.demo-root .section-config .config table thead,
+.demo-root .section-method .config table thead,
+.demo-root .section-event .config table thead,
+.demo-root .section-config .args-return table thead,
+.demo-root .section-method .args-return table thead,
+.demo-root .section-event .args-return table thead {
+  display: none;
+}
+.demo-root .section-config .config table tr:first-child td,
+.demo-root .section-method .config table tr:first-child td,
+.demo-root .section-event .config table tr:first-child td,
+.demo-root .section-config .args-return table tr:first-child td,
+.demo-root .section-method .args-return table tr:first-child td,
+.demo-root .section-event .args-return table tr:first-child td {
+  border-top: none;
+}
+.demo-root .section-config .config table tr:last-child td,
+.demo-root .section-method .config table tr:last-child td,
+.demo-root .section-event .config table tr:last-child td,
+.demo-root .section-config .args-return table tr:last-child td,
+.demo-root .section-method .args-return table tr:last-child td,
+.demo-root .section-event .args-return table tr:last-child td {
+  border-bottom: none;
+}
+.demo-root .section-config .config table th,
+.demo-root .section-method .config table th,
+.demo-root .section-event .config table th,
+.demo-root .section-config .args-return table th,
+.demo-root .section-method .args-return table th,
+.demo-root .section-event .args-return table th,
+.demo-root .section-config .config table td,
+.demo-root .section-method .config table td,
+.demo-root .section-event .config table td,
+.demo-root .section-config .args-return table td,
+.demo-root .section-method .args-return table td,
+.demo-root .section-event .args-return table td {
+  padding: 10px 15px;
+  border-right: 1px solid #e5e9ec;
+  border-bottom: 1px solid #e5e9ec;
+}
+.demo-root .section-config .config table th:first-child,
+.demo-root .section-method .config table th:first-child,
+.demo-root .section-event .config table th:first-child,
+.demo-root .section-config .args-return table th:first-child,
+.demo-root .section-method .args-return table th:first-child,
+.demo-root .section-event .args-return table th:first-child,
+.demo-root .section-config .config table td:first-child,
+.demo-root .section-method .config table td:first-child,
+.demo-root .section-event .config table td:first-child,
+.demo-root .section-config .args-return table td:first-child,
+.demo-root .section-method .args-return table td:first-child,
+.demo-root .section-event .args-return table td:first-child {
+  border-left: 1px solid #e5e9ec;
+  white-space: nowrap;
+  background: #f6f8fa;
+}
+.demo-root .section-config .config table th:last-child,
+.demo-root .section-method .config table th:last-child,
+.demo-root .section-event .config table th:last-child,
+.demo-root .section-config .args-return table th:last-child,
+.demo-root .section-method .args-return table th:last-child,
+.demo-root .section-event .args-return table th:last-child,
+.demo-root .section-config .config table td:last-child,
+.demo-root .section-method .config table td:last-child,
+.demo-root .section-event .config table td:last-child,
+.demo-root .section-config .args-return table td:last-child,
+.demo-root .section-method .args-return table td:last-child,
+.demo-root .section-event .args-return table td:last-child {
+  border-right: none;
+}
+.demo-root .section-config .config table tr:nth-child(2n),
+.demo-root .section-method .config table tr:nth-child(2n),
+.demo-root .section-event .config table tr:nth-child(2n),
+.demo-root .section-config .args-return table tr:nth-child(2n),
+.demo-root .section-method .args-return table tr:nth-child(2n),
+.demo-root .section-event .args-return table tr:nth-child(2n) {
+  background: #fff !important;
+}
+.demo-root .section-config .desc,
+.demo-root .section-method .desc,
+.demo-root .section-event .desc {
+  width: 65%;
+  box-sizing: border-box;
+  border-right: 1px #e5e9ec solid;
+  padding: 10px;
+}
+.demo-root .section-config .desc table,
+.demo-root .section-method .desc table,
+.demo-root .section-event .desc table {
+  margin: 0;
+  display: table;
+  font-size: 12px;
+}
+.demo-root .section-config .desc table tbody td,
+.demo-root .section-method .desc table tbody td,
+.demo-root .section-event .desc table tbody td {
+  padding: 3px 5px;
+}
+.demo-root .section-config .desc table tbody td:nth-child(2),
+.demo-root .section-method .desc table tbody td:nth-child(2),
+.demo-root .section-event .desc table tbody td:nth-child(2) {
+  word-break: break-word;
+}
+.demo-root .section-config .desc > div,
+.demo-root .section-method .desc > div,
+.demo-root .section-event .desc > div {
+  margin: 0;
+}
+.demo-root .section-config .desc > div p,
+.demo-root .section-method .desc > div p,
+.demo-root .section-event .desc > div p {
+  margin: 0;
+}
+.demo-root .section-method .args-return,
+.demo-root .section-event .args-return {
+  width: 65%;
+}
+.demo-root .section-method .args-return table thead,
+.demo-root .section-event .args-return table thead {
+  display: table-header-group;
+}
+.demo-root .section-method .args-return table tr:first-child > th:first-child,
+.demo-root .section-event .args-return table tr:first-child > th:first-child {
+  font-size: 14px;
+}
+.demo-root .section-method .args-return table th,
+.demo-root .section-event .args-return table th,
+.demo-root .section-method .args-return table td,
+.demo-root .section-event .args-return table td {
+  padding: 4px;
+}
+.demo-root .section-method .args-return table:first-child > thead > tr:nth-child(2) > th,
+.demo-root .section-event .args-return table:first-child > thead > tr:nth-child(2) > th {
+  white-space: nowrap;
+}
+.demo-root .section-method .args-return table + table,
+.demo-root .section-event .args-return table + table {
+  border-top: 1px #e5e9ec solid;
+}
+.demo-root .section-method .args-return table + table td,
+.demo-root .section-event .args-return table + table td,
+.demo-root .section-method .args-return table.no-args td,
+.demo-root .section-event .args-return table.no-args td {
+  background: #fff !important;
+  text-align: center;
+}
+.demo-root .section-method .desc,
+.demo-root .section-event .desc {
+  width: 35%;
+}
+.demo-root .section-event .args-return {
+  width: 50%;
+}
+.demo-root .section-event .desc {
+  width: 50%;
+}
+.demo-box {
+  border: 1px #E9ECEF solid;
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+}
+.demo-box:hover {
+  box-shadow: 0 0 8px rgba(194, 204, 212, 0.42);
+  border: 1px #e3e8ea solid;
+}
+.demo-box .demo {
+  margin: 0;
+  position: relative;
+  display: block;
+  background: #fff;
+  padding: 10px;
+  border-bottom: 1px #E9ECEF solid;
+}
+.demo-box .code {
+  font-size: 0;
+}
+.demo-box .code > pre {
+  background-color: #F6F8FA;
+  font-size: 12px;
+  width: 100%;
+  margin: 0;
+  border-radius: 0;
+  vertical-align: top;
+  display: block;
+}
+.demo-box .code > .note {
+  display: none;
 }

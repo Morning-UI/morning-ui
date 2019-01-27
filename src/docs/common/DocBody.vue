@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div @click="onClick">
         <doc-header :category="category"></doc-header>
         <div class="body">
             <doc-submenu
@@ -13,6 +13,8 @@
             >
                 <slot></slot>
             </div>
+
+            <ui-message ref="copied"></ui-message>
         </div>
         <doc-footer></doc-footer>
     </div>
@@ -28,13 +30,14 @@ import Mustache                     from 'Npm/mustache/mustache.min.js';
 // 正常加载
 import Anchor                       from 'markdown-it-anchor';
 import extend                       from 'extend';
+import copy                         from 'clipboard-copy';
 import DocHeader                    from 'Docs/common/DocHeader.vue';
 import DocFooter                    from 'Docs/common/DocFooter.vue';
 import DocSubmenu                   from 'Docs/common/DocSubmenu.vue';
 import DocComponentStatus           from 'Docs/common/DocComponentStatus.vue';
 
-const randomRangeMin = 1e3;
-const randomRangeMax = 9e3;
+const randomRangeMin = 1e4;
+const randomRangeMax = 9e4;
 
 const markdown = new MarkdownIt({
     html : true
@@ -63,6 +66,8 @@ markdown.use(Anchor, {
 });
 
 let evals = [];
+let livedata = {};
+let outputcode = {};
 
 let data = {
     size : [
@@ -217,11 +222,6 @@ let data = {
             stateName : '醒目'
         }
     ],
-    formConfig : {
-        formName : '表单名',
-        formKey : 'formKey',
-        formGroupOne : 'groupName'
-    },
     formValueType : {
         default : [
             {
@@ -646,168 +646,7 @@ let data = {
     }
 };
 
-let repeater = {
-    size : _opt => {
-
-        let size = data.size;
-
-        if (_opt.param !== undefined) {
-
-            size = [];
-
-            for (let key of _opt.param.split(',')) {
-
-                for (let item of data.size) {
-
-                    if (item.sizeKey === key) {
-
-                        size.push(item);
-
-                    }
-
-                }
-
-            }
-
-        }
-
-        _opt.content = `{$#size}${_opt.content}{$/size}`;
-        _opt.context = extend(true, _opt.context, {
-            size : size
-        });
-
-        return _opt;
-
-    },
-    color : _opt => {
-
-        let color = _opt.param;
-
-        _opt.content = `{$#${color}}${_opt.content}{$/${color}}`;
-        _opt.context = extend(true, _opt.context, {
-            [color] : data[color]
-        });
-
-        if (color === 'silver') {
-
-            _opt.style.push('background: #626b75;border-color: #454d57');
-
-        } else if (color === 'gray') {
-
-            _opt.style.push('background:#676767;border-color: #494949');
-
-        }
-
-        return _opt;
-
-    },
-    state : _opt => {
-
-        if (_opt.param === undefined) {
-            
-            _opt.param = 'all';
-
-        }
-
-        let states = _opt.param.split(',');
-
-        if (states.length > 0 &&
-            states.indexOf('all') === -1) {
-
-            let sna = [];
-
-            for (let state of data.state) {
-
-                if (states.indexOf(state.stateKey) !== -1) {
-
-                    sna.push(state);
-
-                }
-
-            }
-
-            _opt.context = extend(true, _opt.context, {
-                state : sna
-            });
-
-        } else if (states[0] === 'all') {
-
-            _opt.context = extend(true, _opt.context, {
-                state : data.state
-            });
-
-        }
-
-        // if (typeof opt.content === 'string') {
-
-        _opt.content = `{$#state}${_opt.content}{$/state}`;
-
-        // } else if (typeof opt.contnet === 'object') {
-
-        //     for (let key in opt.content) {
-                    
-        //         opt.content[key] = `{$#state}${opt.content[key]}\n{$/state}`;
-                
-        //     }
-
-        // }
-
-        return _opt;
-
-    },
-    br : _opt => {
-
-        let num = +_opt.param || 1;
-        let brs = '';
-
-        while (num--) {
-
-            brs += '<br/>';
-
-        }
-
-        _opt.content = `${_opt.content}\n${brs}\n`;
-
-        return _opt;
-
-    },
-    formConfig : _opt => {
-
-        _opt.content = `{$#formConfig}${_opt.content}\n{$/formConfig}`;
-        _opt.context = extend(true, _opt.context, {
-            formConfig : data.formConfig
-        });
-
-        return _opt;
-
-    },
-    formValueType : _opt => {
-
-        let key = _opt.param || 'default';
-
-        _opt.content = `{$#formValueType.${key}}${_opt.content}\n{$/formValueType.${key}}`;
-        _opt.context = extend(true, _opt.context, {
-            formValueType : data.formValueType
-        });
-
-        return _opt;
-
-    }
-};
-
 let presets = {
-    statusColor : `
-:::repeat/html
-color:theme
-color:feature
-color:black
-color:blue
-color:silver
-color:gray
----
-<ui-{%uikey%} color="{$colorKey}">{$&colorName}</ui-{%uikey%}>
-:::
-`,
     formStatus : `
 #### 支持
 
@@ -819,13 +658,17 @@ color:gray
 
 <a href="/guide/status.html">查看形态文档</a>
 
-#### 状态
-
-:::repeat/html
-state:normal,disabled,readonly
+:::vue
+@name:状态
 ---
-<div style="width:300px;{%statusDivStyle%}">
-    <ui-{%uikey%} state="{$stateKey}" :default-value="{%&statusDefaultValue%}" form-name="{$&stateName}" {%&statusMoreAttr%}>{%&statusSlot%}</ui-{%uikey%}>
+#renderer
+>name
+state-repeat
+>rules
+normal,disabled,readonly
+>tpl
+<div style="width:300px;{%wrapStyle%}">
+    <ui-{%uikey%} state="{$stateKey}" :default-value="{%&defaultValue%}" form-name="{$&stateName}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
 </div>
 <br>
 :::
@@ -851,8 +694,8 @@ color:blue
 color:silver
 color:gray
 ---
-<div style="width:300px;{%statusDivStyle%}">
-    <ui-{%uikey%} color="{$colorKey}" :default-value="{%&statusDefaultValue%}" form-name="{$&colorName}" {%&statusMoreAttr%}>{%&statusSlot%}</ui-{%uikey%}>
+<div style="width:300px;{%wrapStyle%}">
+    <ui-{%uikey%} color="{$colorKey}" :default-value="{%&defaultValue%}" form-name="{$&colorName}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
 </div>
 <br>
 :::
@@ -862,155 +705,223 @@ color:gray
 :::repeat/html
 state:normal,disabled,readonly
 ---
-<div style="width:300px;">
-    <ui-{%uikey%} state="{$stateKey}" :default-value="{%&statusDefaultValue%}" form-name="{$&stateName}" {%&statusMoreAttr%}>{%&statusSlot%}</ui-{%uikey%}>
+<div style="width:300px;{%wrapStyle%}">
+    <ui-{%uikey%} state="{$stateKey}" :default-value="{%&defaultValue%}" form-name="{$&stateName}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
 </div>
 <br>
 :::
 `,
-    formConfigDemo : `
-#### form-name
-
-:::repeat/html
-formConfig
+    formConfig : `
+:::vue
+@name:form-name
 ---
-<div style="width:300px;{%configDivStyle%}">
-    <ui-{%uikey%} form-name="{$formName}" {%&configMoreAttr%}>{%&configSlot%}</ui-{%uikey%}>
+#config
+>conf-desc
+表单的名称（用于显示）。
+>conf-accept
+任意字符串
+>conf-type
+String
+>conf-default
+\`undefined\`
+---
+#demo
+>tpl
+<div style="width:300px;{%wrapStyle%}">
+    <ui-{%uikey%} form-name="{%formName%}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
 </div>
 :::
 
-#### form-key
-
-:::repeat/html
-formConfig
+:::vue
+@name:form-key
 ---
-<div style="width:300px;{%configDivStyle%}">
-    <ui-{%uikey%} form-name="{$formName}" form-key="{$formKey}" {%&configMoreAttr%}>{%&configSlot%}</ui-{%uikey%}>
+#config
+>conf-desc
+表单的Key（用于逻辑中作为识别标示）。
+>conf-accept
+任意字符串(唯一)
+>conf-type
+String
+>conf-default
+\`undefined\`
+---
+#demo
+>tpl
+<div style="width:300px;{%wrapStyle%}">
+    <ui-{%uikey%} form-name="{%formName%}" form-key="{%formKey%}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
 </div>
 :::
 
-#### group
-
-设置单个组：
-
-:::repeat/html
-formConfig
+:::vue
+@name:group
 ---
-<div style="width:300px;{%configDivStyle%}">
+#config
+>conf-desc
+表单组，用于将多个表单的数值添加到同一个对象中。一个表单可以同时属于多个组。
+>conf-accept
+若是字符串，则将表单添加到单个组<br>若是数组，则将表单添加到多个组
+>conf-type
+String<br/>Array
+>conf-default
+\`[]\`
+---
+#demo
+>desc
+设置单个组。
+>tpl
+<div style="width:300px;{%wrapStyle%}">
     <!-- 设置单个组 -->
-    <ui-{%uikey%} form-name="{$formName}" form-key="{$formKey}" group="{$formGroupOne}" {%&configMoreAttr%}>{%&configSlot%}</ui-{%uikey%}>
+    <ui-{%uikey%} form-name="{%formName%}" form-key="{%formKey%}" group="{%formGroupOne%}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
 </div>
-:::
-
-设置多个组：
-
-:::repeat/html
-formConfig
 ---
-<div style="width:300px;{%configDivStyle%}">
+#demo
+>desc
+设置多个组。
+>tpl
+<div style="width:300px;{%wrapStyle%}">
     <!-- 设置多个组 -->
-    <ui-{%uikey%} form-name="{$formName}" form-key="{$formKey}" :group="['group1', 'group2', 'group3']" {%&configMoreAttr%}>{%&configSlot%}</ui-{%uikey%}>
+    <ui-{%uikey%} form-name="{$formName}" form-key="{%formKey%}" :group="{%&formGroupMore%}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
 </div>
 :::
 
-#### default-value
-
-:::repeat/html
-formConfig
+:::vue
+@name:default-value
 ---
-<div style="width:300px;{%configDivStyle%}">
-    <ui-{%uikey%} form-name="{$formName}" :default-value="{%&configDefaultValue%}" {%&configMoreAttr%}>{%&configSlot%}</ui-{%uikey%}>
+#config
+>conf-desc
+表单的默认值(注意：\`default-value\`不支持单向数据流，此配置仅在表单初次创建时生效，修改表单值需要使用\`set()\`方法或使用\`v-model\`指令， 详见：[表单数据双向绑定](/guide/form.html#表单数据双向绑定))。
+>conf-accept
+任意(接受表单原始数值，也接受JSON序列化后的表单数值，若数值是JSON序列化的会自动转换成原始数值)
+>conf-type
+Any
+>conf-default
+\`undefined\`
+---
+#demo
+>tpl
+<div style="width:300px;{%wrapStyle%}">
+    <ui-{%uikey%} form-name="{%formName%}" :default-value="{%&defaultValue%}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
 </div>
 :::
 
-#### hide-name
-
+:::vue
+@name:hide-name
+---
+#config
+>conf-desc
+隐藏表单名。
+>conf-accept
+\`true\`<br>\`false\`
+>conf-type
+Boolean
+>conf-default
+\`false\`
+---
+#demo
+>desc
 隐藏后表单默认位置的名字不会显示，可以在其他地方设置表单名。
-
-:::repeat/html
-formConfig
----
-<div style="width:300px;{%configDivStyle%}">
-    <p>{$formName}</p>
-    <ui-{%uikey%} form-name="{$formName}" hide-name {%&configMoreAttr%}>{%&configSlot%}</ui-{%uikey%}>
+>tpl
+<div style="width:300px;{%wrapStyle%}">
+    <p>{%formName%}</p>
+    <ui-{%uikey%} form-name="{%formName%}" hide-name {%&attrs%}>{%&slot%}</ui-{%uikey%}>
 </div>
 :::
 
-#### clearable
-
-:::repeat/html
-formConfig
+:::vue
+@name:clearable
 ---
-<div style="width:300px;{%configDivStyle%}">
-    <ui-{%uikey%} form-name="{$formName}" :clearable="true" :default-value="{%&configDefaultValue%}" {%&configMoreAttr%}>{%&configSlot%}</ui-{%uikey%}>
+#config
+>conf-desc
+显示表单清空按钮。
+>conf-accept
+\`true\`<br>\`false\`
+>conf-type
+Boolean
+>conf-default
+\`false\`
+---
+#demo
+>desc
+隐藏后表单默认位置的名字不会显示，可以在其他地方设置表单名。
+>tpl
+<div style="width:300px;{%wrapStyle%}">
+    <ui-{%uikey%} form-name="{%formName%}" :clearable="true" :default-value="{%&defaultValue%}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
 </div>
 :::
-    
-    `,
-    formConfigTable : `
-|KEY|描述|接受值|值类型|默认值|
-|-|-|-|-|-|
-|[form-name](#form-name)|表单的名称（用于显示）|任意字符串|String|\`undefined\`|
-|[form-key](#form-key)|表单的Key（用于逻辑中作为识别标示）|任意字符串(唯一)|String|\`undefined\`|
-|[group](#group)|表单组，用于将多个表单的数值添加到同一个对象中。一个表单可以同时属于多个组|若是字符串，则将表单添加到单个组<br>若是数组，则将表单添加到多个组|String<br/>Array|\`[]\`|
-|[default-value](#default-value)|表单的默认值(注意：\`default-value\`不支持单向数据流，此配置仅在表单初次创建时生效，修改表单值需要使用\`set()\`方法或使用\`v-model\`指令， 详见：[表单数据双向绑定](/guide/form.html#表单数据双向绑定))|任意(接受表单原始数值，也接受JSON序列化后的表单数值，若数值是JSON序列化的会自动转换成原始数值)|Any|\`undefined\`|
-|[hide-name](#hide-name)|隐藏表单名|\`true\`<br>\`false\`|Boolean|\`false\`|
-|[clearable](#clearable)|显示表单清空按钮|\`true\`<br>\`false\`|\`false\`|
-{%&content%}
 `,
     formMethod : `
-#### set([value])
-
+:::vue
+@name:set([value])
+---
+#method
+>method-desc
 设置表单的值。
-
-|KEY|可选|描述|接受值|值类型|默认值|
-|-|-|-|-|-|-|
+>method-args
 |value|YES|需要设置表单的值，如果需要清空表单的值，可以不传此参数。|接受任何数值。<br/>\`undefined\`:清空表单的值<br>原始值:表单的原始值，根据表单不同可以是字符串、对象、数组等<br>JSON数值:表单原始值JSON序列化后的值，传入后表单会自动解析并还原原始值。|Any|\`undefined\`|
-
-:::democode/html
-<div style="width:300px;{%methodDivStyle%}">
-    <ui-{%uikey%} ref="demoMethodSet" form-name="表单名" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>
+>method-return
+当前组件VM实例。
+---
+#demo
+>tpl
+<div style="width:300px;{%wrapStyle%}">
+    <ui-{%uikey%} ref="demoMethodSet" form-name="表单名" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
     <br>
-    <ui-link js="window.morning.findVM('demoMethodSet').set({%&methodValue%})">设置值</ui-link>
+    <ui-link js="window.morning.findVM('demoMethodSet').set({%&value%})">设置值</ui-link>
     <ui-link js="window.morning.findVM('demoMethodSet').set()">移除值</ui-link>
 </div>
 :::
 
-#### get()
-
+:::vue
+@name:get()
+---
+#method
+>method-desc
 获取表单的原始值。
-
-:::democode/html
-<div style="width:300px;{%methodDivStyle%}">
-    <ui-{%uikey%} ref="demoMethodGet" form-name="表单名" :default-value="{%&methodDefaultValue%}" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>
+>method-return
+返回表单组件的值。
+---
+#demo
+>tpl
+<div style="width:300px;{%wrapStyle%}">
+    <ui-{%uikey%} ref="demoMethodGet" form-name="表单名" :default-value="{%&defaultValue%}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
     <br>
     <ui-link js="console.log(window.morning.findVM('demoMethodGet').get())">获取表单原始值</ui-link>
 </div>
 :::
 
-#### getJson()
-
+:::vue
+@name:getJson()
+---
+#method
+>method-desc
 获取表单值的JSON序列化字符串。若你需要和其他程序进行数据交互，使用JSON是一种较好的方法。
-
-:::democode/html
-<div style="width:300px;{%methodDivStyle%}">
-    <ui-{%uikey%} ref="demoMethodGetJson" form-name="表单名" :default-value="{%&methodDefaultValue%}" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>
+>method-return
+返回表单组件值的JSON序列化字符串。
+---
+#demo
+>tpl
+<div style="width:300px;{%wrapStyle%}">
+    <ui-{%uikey%} ref="demoMethodGetJson" form-name="表单名" :default-value="{%&defaultValue%}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
     <br>
     <ui-link js="console.log(window.morning.findVM('demoMethodGetJson').getJson())">获取表单值的JSON序列化字符串</ui-link>
 </div>
 :::
 
-#### setName([name])
-
+:::vue
+@name:setName([name])
+---
+#method
+>method-desc
 设置表单的名称。
-
-|KEY|可选|描述|接受值|值类型|默认值|
-|-|-|-|-|-|-|
+>method-args
 |name|YES|需要设置表单的名称，如果需要清空表单的名称，可以不传此参数。|任意字符串|String|\`undefined\`|
-
-:::democode/html
-<div style="width:300px;{%methodDivStyle%}">
-    <ui-{%uikey%} ref="demoMethodSetName" form-name="姓名" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>
+>method-return
+当前组件VM实例。
+---
+#demo
+>tpl
+<div style="width:300px;{%wrapStyle%}">
+    <ui-{%uikey%} ref="demoMethodSetName" form-name="姓名" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
     <br>
     <ui-link js="alert(window.morning.findVM('demoMethodSetName').getName())">获取表单名称</ui-link>
     <ui-link js="window.morning.findVM('demoMethodSetName').setName('年龄')">设置表单名称</ui-link>
@@ -1018,29 +929,39 @@ formConfig
 </div>
 :::
 
-#### getName()
-
+:::vue
+@name:getName()
+---
+#method
+>method-desc
 获取表单的名称。
-
-:::democode/html
-<div style="width:300px;{%methodDivStyle%}">
-    <ui-{%uikey%} ref="demoMethodGetName" form-name="姓名" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>
+>method-return
+返回表单的名称。
+---
+#demo
+>tpl
+<div style="width:300px;{%wrapStyle%}">
+    <ui-{%uikey%} ref="demoMethodGetName" form-name="姓名" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
     <br>
     <ui-link js="alert(window.morning.findVM('demoMethodGetName').getName())">获取表单名称</ui-link>
 </div>
 :::
 
-#### setKey([key])
-
+:::vue
+@name:setKey([key])
+---
+#method
+>method-desc
 设置表单的KEY。
-
-|KEY|可选|描述|接受值|值类型|默认值|
-|-|-|-|-|-|-|
+>method-args
 |key|YES|需要设置表单的KEY，如果需要清空表单的KEY，可以不传此参数。|任意字符串|String|\`undefined\`|
-
-:::democode/html
-<div style="width:300px;{%methodDivStyle%}">
-    <ui-{%uikey%} ref="demoMethodSetKey" form-name="表单名" form-key="name" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>
+>method-return
+当前组件VM实例。
+---
+#demo
+>tpl
+<div style="width:300px;{%wrapStyle%}">
+    <ui-{%uikey%} ref="demoMethodSetKey" form-name="表单名" form-key="name" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
     <br>
     <ui-link js="alert(window.morning.findVM('demoMethodSetKey').getKey())">获取表单KEY</ui-link>
     <ui-link js="window.morning.findVM('demoMethodSetKey').setKey('age')">设置表单KEY</ui-link>
@@ -1048,30 +969,40 @@ formConfig
 </div>
 :::
 
-#### getKey()
-
+:::vue
+@name:getKey()
+---
+#method
+>method-desc
 获取表单的KEY。
-
-:::democode/html
-<div style="width:300px;{%methodDivStyle%}">
-    <ui-{%uikey%} ref="demoMethodGetKey" form-name="表单名" form-key="name" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>
+>method-return
+返回组件的KEY。
+---
+#demo
+>tpl
+<div style="width:300px;{%wrapStyle%}">
+    <ui-{%uikey%} ref="demoMethodGetKey" form-name="表单名" form-key="name" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
     <br>
     <ui-link js="alert(window.morning.findVM('demoMethodGetKey').getKey())">获取表单KEY</ui-link>
 </div>
 :::
 
-#### setGroup([groups])
-
+:::vue
+@name:setGroup([groups])
+---
+#method
+>method-desc
 设置表单所属的表单组。
-
-|KEY|可选|描述|接受值|值类型|默认值|
-|-|-|-|-|-|-|
+>method-args
 |groups|YES|需要设置的表单组。如果需要清空所有表单组，可以不传此参数。|\`undefined\`:清空所有表单组<br>String:设置一个表单组<br>Array:设置多个表单组。|String<br>Array<br>Undefined|\`undefined\`|
-
-:::democode/html
-<div style="width:300px;{%methodDivStyle%}">
+>method-return
+当前组件VM实例。
+---
+#demo
+>tpl
+<div style="width:300px;{%wrapStyle%}">
     <!-- 设置多个组 -->
-    <ui-{%uikey%} ref="demoMethodSetGroup" form-name="表单名" form-key="name" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>
+    <ui-{%uikey%} ref="demoMethodSetGroup" form-name="表单名" form-key="name" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
     <br>
     <ui-link js="alert(JSON.stringify(window.morning.findVM('demoMethodSetGroup').getGroup()))">获取表单组</ui-link>
     <ui-link js="window.morning.findVM('demoMethodSetGroup').setGroup('group1')">设置单个表单组</ui-link>
@@ -1080,87 +1011,126 @@ formConfig
 </div>
 :::
 
-#### getGroup()
-
+:::vue
+@name:getGroup()
+---
+#method
+>method-desc
 获取表单所属的表单组。
-
-:::democode/html
-<div style="width:300px;{%methodDivStyle%}">
+>method-return
+返回组件的表单组。
+---
+#demo
+>tpl
+<div style="width:300px;{%wrapStyle%}">
     <!-- 设置多个组 -->
-    <ui-{%uikey%} ref="demoMethodGetGroup" form-name="表单名" form-key="name" group="group1" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>
+    <ui-{%uikey%} ref="demoMethodGetGroup" form-name="表单名" form-key="name" group="group1" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
     <br>
     <ui-link js="alert(JSON.stringify(window.morning.findVM('demoMethodGetGroup').getGroup()))">获取表单组</ui-link>
 </div>
 :::
 
-#### addGroup(group)
-
+:::vue
+@name:addGroup(group)
+---
+#method
+>method-desc
 添加一个指定的表单组。
-
-|KEY|可选|描述|接受值|值类型|默认值|
-|-|-|-|-|-|-|
+>method-args
 |group|NO|添加表单组的KEY|表单组的KEY|String|\`undefined\`|
-
-:::democode/html
-<div style="width:300px;{%methodDivStyle%}">
+>method-return
+当前组件VM实例。
+---
+#demo
+>tpl
+<div style="width:300px;{%wrapStyle%}">
     <!-- 设置多个组 -->
-    <ui-{%uikey%} ref="demoMethodAddGroup" form-name="表单名" form-key="name" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>
+    <ui-{%uikey%} ref="demoMethodAddGroup" form-name="表单名" form-key="name" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
     <br>
     <ui-link js="alert(JSON.stringify(window.morning.findVM('demoMethodAddGroup').getGroup()))">获取表单组</ui-link>
     <ui-link js="window.morning.findVM('demoMethodAddGroup').addGroup('group1')">添加表单组</ui-link>
 </div>
 :::
 
-#### removeGroup(group)
-
+:::vue
+@name:removeGroup(group)
+---
+#method
+>method-desc
 移除一个指定的表单组。
-
-|KEY|可选|描述|接受值|值类型|默认值|
-|-|-|-|-|-|-|
+>method-args
 |group|NO|移除表单组的KEY|表单组的KEY|String|\`undefined\`|
-
-:::democode/html
-<div style="width:300px;{%methodDivStyle%}">
+>method-return
+当前组件VM实例。
+---
+#demo
+>tpl
+<div style="width:300px;{%wrapStyle%}">
     <!-- 设置多个组 -->
-    <ui-{%uikey%} ref="demoMethodRemoveGroup" form-name="表单名" form-key="name" group="group1" {%&methodMoreAttr%}>{%&methodSlot%}</ui-{%uikey%}>
+    <ui-{%uikey%} ref="demoMethodRemoveGroup" form-name="表单名" form-key="name" group="group1" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
     <br>
     <ui-link js="alert(JSON.stringify(window.morning.findVM('demoMethodRemoveGroup').getGroup()))">获取表单组</ui-link>
     <ui-link js="window.morning.findVM('demoMethodRemoveGroup').removeGroup('group1')">移除表单组</ui-link>
 </div>
 :::
-    `,
+`,
     formEvent : `
-#### value-change
-
+:::vue
+@name:value-change
+---
+#event
+>event-desc
 当表单值变化时触发。
-
-:::vue/html
-new Vue({
-    el : '{$el}',
-    template : '{$template}',
+---
+#demo
+>tpl
+<div style="{%wrapStyle%}">
+    <ui-{%uikey%} ref="demoValueChange" form-name="表单名" @value-change="echo" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
+    <br>
+    <ui-link js="window.morning.findVM('demoValueChange').set({%&value%})">触发value-change事件</ui-link>
+</div>
+>script
+{
     methods : {
         echo : function () {
             console.log('demoValueChange.console1', 'value-change event!');
         }
     }
-});
----
-<div style="width:300px;{%eventDivStyle%}">
-    <ui-{%uikey%} ref="demoValueChange" form-name="表单名" @value-change="echo" {%&eventMoreAttr%}>{%&eventSlot%}</ui-{%uikey%}>
-    <br>
-    <ui-link js="window.morning.findVM('demoValueChange').set({%&eventValue%})">触发value-change事件</ui-link>
-</div>
+}
 :::
 
-#### 生命周期事件
+:::vue
+@name:生命周期事件
+---
+#event
+>event-desc
+组件的生命周期事件，详见:[基础/事件/生命周期事件](/guide/event.html#生命周期事件)。
+---
+#demo
+>tpl
+<div style="{%wrapStyle%}">
+    <ui-{%uikey%}
+        ref="demoEventLifecycle"
+        v-show="show"
+        @created="echo('created')"
+        @mounted="echo('mounted')"
+        @before-update="echo('before-update')"
+        @updated="echo('updated')"
+        @before-destroy="echo('before-destroy')"
+        @destroyed="echo('destroyed')"
+        {%&attrs%}
+    >{%&slot%}<span style="display:none;">{*text*}</span></ui-{%uikey%}>
 
-:::vue/html
-window.demoEventLifecycle = new Vue({
-    el : '{$el}',
-    template : '{$template}',
+   <br><br>
+
+    <ui-link js="this.text='生命周期事件';">触发update</ui-link>
+    <ui-link js="this.$refs['demoEventLifecycle'].$destroy();">触发destroy</ui-link>
+</div>
+>script
+{
     data : function () {
         return {
-           text : '按钮',
+           text : '{%uiname%}',
            show : true
         };
     },
@@ -1169,177 +1139,1062 @@ window.demoEventLifecycle = new Vue({
             console.log('demoEventLifecycle.console1', name + ' event!');
         }
     }
-});
+}
+:::
+`,
+    formValue : `
+:::vue
+@name:输入/输出示例
 ---
-<div style="width:300px;{%eventDivStyle%}">
-    <ui-{%uikey%}
-        ref="demoEventLifecycle"
-        form-name="表单名"
-        v-show="show"
-        @created="echo('created')"
-        @mounted="echo('mounted')"
-        @before-update="echo('before-update')"
-        @updated="echo('updated')"
-        @before-destroy="echo('before-destroy')"
-        @destroyed="echo('destroyed')"
-        {%&eventMoreAttr%}
-    >{%&eventSlot%}<span style="display:none;">{*text*}</span></ui-{%uikey%}>
-
-    <br><br>
-
-    <ui-link js="window.demoEventLifecycle.text='生命周期事件';">触发update</ui-link>
-    <ui-link js="morning.findVM('demoEventLifecycle').$destroy();">触发destroy</ui-link>
-</div>
+#renderer
+>name
+value-type
+>rules
+{%uikey%}
+{%uiname%}
+{%valueType%}
+{%wrapStyle%}
+{%&attrs%}
+{%&slot%}
 :::
 `
 };
 
-let extRepeat = (content, paramStr, token, md) => {
+let addSpace = (content, tabs) => {
 
-    let params = {};
+    let prepend = '';
 
-    params.list = [];
+    for (;tabs--;){
 
-    for (let item of paramStr) {
-
-        item = item.split('|');
-
-        params.list.push(item);
+        prepend += ' ';
 
     }
 
-    let fullContent = '';
+    return content.replace(/(^|\n)/g, `$1${prepend}`);
 
-    for (let item of params.list) {
+};
 
-        let _opt = {
-            content,
-            context : {},
-            style : []
+let rmEndWrap = content => (content.replace(/\n$/, ''));
+
+let extVueLayout = {
+    color : (paramStr) => {
+
+        return [
+            '@name:色彩',
+            [
+                '#renderer',
+                '>name',
+                'color-repeat',
+                '>rules',
+                'color:theme',
+                'color:feature',
+                'color:black',
+                'color:blue',
+                'color:silver',
+                'color:gray',
+                '>tpl'
+            ].concat(paramStr).join('\n')
+        ];
+
+    },
+    size : (paramStr) => {
+
+        return [
+            '@name:尺寸',
+            [
+                '#renderer',
+                '>name',
+                'size-repeat',
+                '>tpl'
+            ].concat(paramStr).join('\n')
+        ];
+
+    },
+    'state-na' : (paramStr) => {
+
+        return [
+            '@name:状态',
+            [
+                '#renderer',
+                '>name',
+                'state-repeat',
+                '>rules',
+                'normal,apparent',
+                '>tpl'
+            ].concat(paramStr).join('\n')
+        ];
+
+    },
+    'lifecycle-event' : (paramStr) => {
+
+        return [
+            '@name:生命周期事件',
+            [
+                '#renderer',
+                '>name',
+                'lifecycle-event',
+                '>rules',
+            ].concat(paramStr).join('\n')
+        ];
+
+    }
+};
+
+let extVueRenderer = {
+    'color-repeat' : (parts) => {
+
+        let newParamStr = [];
+        let colorTitleMap = {
+            theme : '主题色彩',
+            feature : '功能色彩',
+            other : '辅助色彩'
+        };
+        let colorDescMap = {
+            theme : '通过`color`来设置组件的主题色彩，可用色彩详见[形态/色彩/主题色](/guide/status.html#主题色)',
+            feature : '通过`color`来设置组件的功能色彩，可用色彩详见[形态/色彩/功能色](/guide/status.html#功能色)',
+            other : '通过`color`来设置组件的辅助色彩，可用色彩详见[形态/色彩/辅助色](/guide/status.html#辅助色)'
         };
 
-        for (let sitem of item) {
+        if (!parts.rules) {
 
-            _opt.param = undefined;
+            parts.rules = [
+                'color:theme',
+                'color:feature',
+                'color:black',
+                'color:blue',
+                'color:silver',
+                'color:gray'
+            ];
 
-            if (/^size/.test(sitem)) {
+        }
 
-                _opt.param = sitem.split(':')[1];
-                repeater.size(_opt);
+        for (let rule of parts.rules) {
 
-            } else if (/^color/.test(sitem)) {
+            if (/^color/.test(rule)) {
 
-                _opt.param = sitem.split(':')[1];
-                repeater.color(_opt);
+                let color = rule.split(':')[1];
+                let colorPreset = [
+                    '#demo',
+                    '>data',
+                    color,
+                    '>title',
+                    (parts.title || colorTitleMap[color] || colorTitleMap.other),
+                    '>desc',
+                    (parts.desc || colorDescMap[color] || colorDescMap.other),
+                    '>tpl'
+                ];
 
-            } else if (/^state/.test(sitem)) {
+                if (color === 'silver') {
 
-                _opt.param = sitem.split(':')[1];
-                repeater.state(_opt);
+                    colorPreset.push(`<div style="background: #626b75;border-color: #454d57;padding: 5px;">{$#${color}}\n${addSpace(rmEndWrap(parts.tpl.join('\n')), 4)}{$/${color}}\n</div>`);
 
-            } else if (/^br/.test(sitem)) {
+                } else if (color === 'gray') {
 
-                _opt.param = sitem.split(':')[1];
-                repeater.br(_opt);
+                    colorPreset.push(`<div style="background:#676767;border-color: #494949;padding: 5px;">{$#${color}}\n${addSpace(rmEndWrap(parts.tpl.join('\n')), 4)}{$/${color}}\n</div>`);
 
-            } else if (/^formConfig/.test(sitem)) {
+                } else {
 
-                repeater.formConfig(_opt);
+                    colorPreset.push(`<div>{$#${color}}\n${addSpace(rmEndWrap(parts.tpl.join('\n')), 4)}{$/${color}}\n</div>`);
 
-            } else if (/^formValueType/.test(sitem)) {
-
-                _opt.param = sitem.split(':')[1];
-                repeater.formValueType(_opt);
+                }
+                
+                newParamStr.push(colorPreset.join('\n'));
 
             }
 
         }
 
-        Mustache.parse(_opt.content, ['{$', '}']);
+        return newParamStr;
 
-        let renderContent = Mustache.render(_opt.content, _opt.context);
+    },
+    'size-repeat' : (parts) => {
 
-        fullContent += `<div class="demo" style="${_opt.style.join('')}">${renderContent}</div><pre><code class="lang-${token.lang}">${md.utils.escapeHtml(renderContent)}</code></pre>\n`;
+        let newParamStr = [];
+        let sizeList;
+        let sizeData = [];
+        let sizePreset = [
+            '#demo'
+        ];
+
+        if (parts.rules && parts.rules[0]) {
+
+            sizeList = parts.rules[0];
+
+        }
+
+        if (sizeList === undefined) {
+
+            sizePreset.push('>data');
+            sizePreset.push('size');
+
+        } else {
+
+            sizeList = sizeList.split(',');
+
+            for (let size of data.size) {
+
+                if (sizeList.indexOf(size.sizeKey) !== -1) {
+
+                    sizeData.push(size);
+
+                }
+
+            }
+
+            sizePreset.push('>data-json');
+            sizePreset.push(JSON.stringify({
+                size : sizeData
+            }));
+
+        }
+
+        sizePreset = sizePreset.concat([
+            '>title',
+            (parts.title || '尺寸'),
+            '>desc',
+            (parts.desc || '通过`size`来设置组件的尺寸，可用尺寸详见[形态/尺寸](/guide/status.html#尺寸)'),
+            '>tpl',
+            `<div>{$#size}\n${addSpace(rmEndWrap(parts.tpl.join('\n')), 4)}{$/size}\n</div>`
+        ]);
+
+        newParamStr.push(sizePreset.join('\n'));
+        
+        return newParamStr;
+
+    },
+    'state-repeat' : (parts) => {
+
+        let newParamStr = [];
+        let stateData = [];
+
+        if (parts.rules[0] === 'all' || !parts.rules) {
+
+            stateData = data.state;
+
+        } else {
+
+            let states = parts.rules[0].split(',');
+
+            for (let state of data.state) {
+
+                if (states.indexOf(state.stateKey) !== -1) {
+
+                    stateData.push(state);
+
+                }
+
+            }
+
+        }
+
+        stateData = {
+            state : stateData
+        };
+
+        let statePreset = [
+            '#demo',
+            '>data-json',
+            JSON.stringify(stateData),
+            '>title',
+            (parts.title || '状态'),
+            '>desc',
+            (parts.desc || '通过`state`来设置组件的状态，可用状态详见[形态/状态](/guide/status.html#状态)'),
+            '>tpl',
+            `<div>{$#state}\n${addSpace(rmEndWrap(parts.tpl.join('\n')), 4)}{$/state}\n</div>`
+        ];
+
+        newParamStr.push(statePreset.join('\n'));
+        
+        return newParamStr;
+
+    },
+    'state-color-repeat' : (parts) => {
+
+        let newParamStr = [];
+
+        parts.rules = [
+            'color:theme',
+            'color:feature',
+            'color:black',
+            'color:blue',
+            'color:silver',
+            'color:gray'
+        ];
+
+        for (let rule of parts.rules) {
+
+            if (/^color/.test(rule)) {
+
+                let color = rule.split(':')[1];
+                let colorPreset = [
+                    '#demo',
+                    '>data',
+                    color,
+                    '>data-json',
+                    JSON.stringify({
+                        state : data.state
+                    }),
+                    '>title',
+                    (parts.title || '状态'),
+                    '>desc',
+                    (parts.desc || '通过`state`来设置组件的状态，可用状态详见[形态/状态](/guide/status.html#状态)'),
+                    '>tpl'
+                ];
+
+                if (color === 'silver') {
+
+                    colorPreset.push(`<div style="background: #626b75;border-color: #454d57;padding: 5px;">{$#${color}}{$#state}\n${addSpace(rmEndWrap(parts.tpl.join('\n')), 4)}{$/state}\n\n<br><br>\n{$/${color}}\n</div>`);
+
+                } else if (color === 'gray') {
+
+                    colorPreset.push(`<div style="background:#676767;border-color: #494949;padding: 5px;">{$#${color}}{$#state}\n${addSpace(rmEndWrap(parts.tpl.join('\n')), 4)}{$/state}\n\n<br><br>\n{$/${color}}\n</div>`);
+
+                } else {
+
+                    colorPreset.push(`<div>{$#${color}}{$#state}\n${addSpace(rmEndWrap(parts.tpl.join('\n')), 4)}{$/state}\n\n<br><br>\n{$/${color}}\n</div>`);
+
+                }
+                
+                newParamStr.push(colorPreset.join('\n'));
+
+            }
+
+        }
+
+        return newParamStr;
+
+    },
+    'lifecycle-event' : (parts) => {
+
+        let key = parts.rules.shift();
+        let name = parts.rules.shift();
+        let slot = parts.rules;
+
+        let newParamStr = [
+            [
+                `#event`,
+                `>event-desc`,
+                `组件的生命周期事件，详见:[基础/事件/生命周期事件](/guide/event.html#生命周期事件)。`
+            ],
+            [
+                `#demo`,
+                `>tpl`,
+                `<div>`,
+                `    <ui-${key}`,
+                `        ref="demoEventLifecycle"`,
+                `        v-show="show"`,
+                `        @created="echo('created')"`,
+                `        @mounted="echo('mounted')"`,
+                `        @before-update="echo('before-update')"`,
+                `        @updated="echo('updated')"`,
+                `        @before-destroy="echo('before-destroy')"`,
+                `        @destroyed="echo('destroyed')"`,
+                `    >{*text*}</ui-${key}>`,
+                ``,
+                `   <br><br>`,
+                ``,
+                `    <ui-link js="this.text='生命周期事件';">触发update</ui-link>`,
+                `    <ui-link js="this.$refs['demoEventLifecycle'].$destroy();">触发destroy</ui-link>`,
+                `</div>`,
+                `>script`,
+                `{`,
+                `    data : function () {`,
+                `        return {`,
+                `           text : '${name}',`,
+                `           show : true`,
+                `        };`,
+                `    },`,
+                `    methods : {`,
+                `        echo : function (name) {`,
+                `            console.log('demoEventLifecycle.console1', name + ' event!');`,
+                `        }`,
+                `    }`,
+                `}`,
+                ``
+            ]
+        ];
+
+        if (slot[slot.length - 1] === '') {
+
+            slot.pop();
+
+        }
+
+        if (slot.length > 0) {
+
+            let oneSlot;
+
+            newParamStr[1].splice(12, 1, '    >');
+            newParamStr[1].splice(13, 0, `    </ui-${key}>`);
+
+            while ((oneSlot = slot.pop()) !== undefined) {
+
+                newParamStr[1].splice(13, 0, addSpace(oneSlot, 8));
+
+            }
+
+        }
+
+        newParamStr[0] = newParamStr[0].join('\n');
+        newParamStr[1] = newParamStr[1].join('\n');
+
+        return newParamStr;
+
+    },
+    'value-type' : (parts) => {
+
+        let key = parts.rules.shift();
+        let name = parts.rules.shift();
+        let type = parts.rules.shift() || 'default';
+        let wrapStyle = parts.rules.shift() || '';
+        let attrs = parts.rules.shift() || '';
+        let slot = parts.rules.shift() || '';
+        let typeData = data.formValueType[type];
+
+        typeData = {
+            types : typeData
+        };
+
+        let newParamStr = [
+            [
+                `#demo`,
+                `>data-json`,
+                JSON.stringify(typeData),
+                `>desc`,
+                `输入各种类型的表单值，${name}组件的值过滤。`,
+                `>tpl`,
+                `<div>{$#types}`,
+                `    <div style="${wrapStyle}">`,
+                `        <p>{$valueType}类型</p>`,
+                `        <div>`,
+                `            <ui-${key} ref="demoType{$valueType}" ${attrs}>${slot}</ui-${key}>`,
+                `        </div>`,
+                `        <br>`,
+                `        <ui-link js="window.morning.findVM('demoType{$valueType}').set({$&valueContent})">设置{$valueType}类型</ui-link>`,
+                `        <ui-link js="alert(window.morning.findVM('demoType{$valueType}').getJson())">获取表单JSON值</ui-link>`,
+                `    </div>`,
+                `    <br><br>`,
+                `{$/types}</div>`
+            ]
+        ];
+
+        newParamStr[0] = newParamStr[0].join('\n');
+
+        return newParamStr;
 
     }
+};
 
-    return fullContent;
+let extVueParser = {
+    vars : data => {
 
+        let vars = {};
+        let line;
+        let ctx;
+
+        data = data.split('\n');
+
+        while (line = data.shift()) {
+
+            if (/^@/.test(line)) {
+
+                let tokens = line.replace(/^@/, '').split(':');
+
+                ctx = tokens.shift();
+
+                if (tokens[0] === '') {
+
+                    tokens.shift();
+
+                }
+
+                vars[ctx] = [tokens.join(':')];
+
+            } else if (ctx) {
+
+                vars[ctx].push(line);
+
+            }
+
+        }
+
+        for (let key in vars) {
+
+            vars[key] = vars[key].join('\n');
+
+        }
+
+        return vars;
+
+    },
+    section : data => {
+
+        data = data.split('\n');
+
+        return {
+            type : data.shift().replace(/^\#/, ''),
+            parts : extVueParser.part(data)
+        };
+
+    },
+    part : data => {
+
+        let typeMap = [
+            'tpl',
+            'title',
+            'desc',
+            'conf-desc',
+            'conf-accept',
+            'conf-type',
+            'conf-default',
+            'method-desc',
+            'method-args',
+            'method-return',
+            'event-desc',
+            'event-args',
+            'script',
+            'repeat',
+            'rules',
+            'name',
+            'data',
+            'data-json'
+        ];
+        let item;
+        let curType;
+        let parts = {};
+        let partIndex = 0;
+
+        while ((item = data.shift()) !== undefined) {
+
+            let index = typeMap.indexOf(item.replace(/^\>/, ''));
+
+            if (index !== -1 && /^\>/.test(item)) {
+
+                curType = typeMap[index];
+                parts[curType] = [];
+
+            } else {
+
+                if (curType) {
+
+                    parts[curType].push(item);
+
+                }
+
+            }
+
+        }
+
+        return parts;
+
+    }
+};
+
+let extVueTranslater = {
+    _tpl : (_data, _ctx) => {
+
+        if (!_data) {
+
+            return {
+                exec : '',
+                print : '',
+                live : ''
+            };
+
+        }
+
+        _data = _data.join('\n');
+        Mustache.parse(_data, ['{$', '}']);
+        _data = Mustache.render(_data, _ctx);
+        _data = _data.replace(/\{\*([a-zA-Z0-9_.]+)\*\}/g, '{{$1}}');
+
+        let template = {
+            exec : '',
+            print : '',
+            live : ''
+        };
+
+        template.exec = _data;
+        template.print = addSpace(rmEndWrap(_data), 4).replace(/\{\{([a-zA-Z0-9_.]+)\}\}/g, '{*$1*}');
+        template.live = _data.replace(/\n$/, '');
+        template.live = addSpace(rmEndWrap(template.live), 4);
+        template.live = `<div id="${_ctx.demoid}-el">\n${template.live}\n</div>`;
+
+        return template;
+
+    },
+    _script : (_data, _ctx) => {
+
+
+        if (!_data) {
+
+            _data = ['{}'];
+
+        }
+
+        let exec = extend(true, [], _data);
+
+        if (exec[exec.length - 1] === '') {
+
+            exec.pop();
+
+        }
+
+        exec.shift();
+        exec.pop();
+        exec = exec.join('\n');
+
+        let script = {};
+
+        script.exec = `new Vue({
+                id : '${_ctx.demoid}',
+                el : '#${_ctx.demoid}-el',
+                template : '#${_ctx.demoid}-tmpl',${exec}
+            });`;
+
+        if (exec.length > 0) {
+            script.print = `    export default {\n${addSpace(rmEndWrap(exec), 4)}\n    };`;
+        } else {
+            script.print = `    export default {};`;
+        }
+
+
+        if (exec.length > 0) {
+            script.live = `Vue.use(morning);\n\nnew Vue({\n    el : '#${_ctx.demoid}-el',\n${exec}\n});`;
+        } else {
+            script.live = `Vue.use(morning);\n\nnew Vue({\n    el : '#${_ctx.demoid}-el'\n});`;
+        }
+
+        Mustache.parse(script.exec, ['{$', '}']);
+        Mustache.parse(script.print, ['{$', '}']);
+        Mustache.parse(script.live, ['{$', '}']);
+        script.exec = Mustache.render(script.exec, _ctx);
+        script.print = Mustache.render(script.print, _ctx);
+        script.live = Mustache.render(script.live, _ctx);
+
+        script.exec = script.exec.replace(/\{\*([a-zA-Z0-9_.]+)\*\}/g, '{{$1}}');
+        // script.print = script.print.replace(/\{\*([a-zA-Z0-9_.]+)\*\}/g, '{{$1}}');
+        // script.print = addSpace(rmEndWrap(_data), 4).replace(/\{\{([a-zA-Z0-9_.]+)\}\}/g, '{*$1*}');
+        script.live = script.live.replace(/\{\*([a-zA-Z0-9_.]+)\*\}/g, '{{$1}}');
+
+        return script;
+
+    },
+    _title : (_data, _ctx) => {
+
+        if (!_data) {
+
+            return '';
+
+        }
+        
+        _data = _data.join('\n');
+        _data = markdown.render(_data);
+        _data = _data.replace(/(^\<p\>|\<\/p\>)/g, '');
+
+        return `<h5>${_data}</h5>`;
+
+    },
+    _desc : (_data, _ctx) => {
+
+        if (!_data) {
+
+            return '';
+
+        }
+        
+        _data = _data.join('\n');
+        _data = _data.replace(/\\n/g, '\n');
+        _data = markdown.render(_data);
+
+        return `<div>${_data}</div>`;
+
+    },
+    _conf_accept : (_data, _ctx) => {
+
+        if (!_data) {
+
+            return '|接受值|-|';
+
+        }
+
+        _data = _data.join('\n');
+        _data = _data.replace(/\\n/g, '<br>');
+
+        return `|接受值|${_data}|`;
+
+
+    },
+    _conf_type : (_data, _ctx) => {
+
+        if (!_data) {
+
+            return '|值类型|-|';
+
+        }
+
+        _data = _data.join('\n');
+        _data = _data.replace(/\\n/g, '<br>');
+
+        return `|值类型|${_data}|`;
+
+
+    },
+    _conf_default : (_data, _ctx) => {
+
+        if (!_data) {
+
+            return '|默认值|-|';
+
+        }
+
+        _data = _data.join('\n');
+        _data = _data.replace(/\\n/g, '<br>');
+
+        return `|默认值|${_data}|`;
+
+
+    },
+    _method_args : (_data, _ctx) => {
+
+        if (!_data) {
+
+            _data = `|参数|\n|-|\n|无参数|`;
+            _data = markdown.render(_data);
+            _data = _data.replace(/^<table/, '<table class="no-args" frame="void"');
+
+            return _data;
+
+        }
+
+        _data = _data.join('\n');
+        _data = `|KEY|可选|描述|接受值|值类型|默认值|\n|-|-|-|-|-|-|\n${_data}`;
+        _data = markdown.render(_data);
+        _data = _data.replace(/<thead>/, '<thead><tr><th colspan="6">参数</th></tr>');
+        _data = _data.replace(/^<table/, '<table frame="void"');
+
+        return _data;
+
+    },
+    _method_return : (_data, _ctx) => {
+
+        if (!_data) {
+
+            return '无返回值';
+
+        }
+
+        _data = _data.join('\n');
+        _data = `|返回值|\n|-|\n|${_data}|`;
+        _data = markdown.render(_data);
+        _data = _data.replace(/^<table/, '<table frame="void"');
+
+        return _data;
+
+    },
+    _event_args : (_data, _ctx) => {
+
+        if (!_data) {
+
+            _data = `|事件参数|\n|-|\n|无参数|`;
+            _data = markdown.render(_data);
+            _data = _data.replace(/^<table/, '<table class="no-args" frame="void"');
+
+            return _data;
+
+        }
+
+        _data = _data.join('\n');
+        _data = `|KEY|描述|值类型|\n|-|-|-|\n${_data}`;
+        _data = markdown.render(_data);
+        _data = _data.replace(/<thead>/, '<thead><tr><th colspan="3">参数</th></tr>');
+        _data = _data.replace(/^<table/, '<table frame="void"');
+
+        return _data;
+
+    },
+    demo : (_data, _ctx) => {
+
+        if (_data.parts.data) {
+
+            let mountData = _data.parts.data[0];
+
+            _ctx[mountData] = data[mountData];
+
+        }
+
+        if (_data.parts['data-json']) {
+
+            let mountData = JSON.parse(_data.parts['data-json'][0]);
+
+            extend(_ctx, mountData);
+
+        }
+
+        return [{
+            type : _data.type,
+            tpl : extVueTranslater._tpl(_data.parts.tpl, _ctx),
+            script : extVueTranslater._script(_data.parts.script, _ctx),
+            title : extVueTranslater._title(_data.parts.title, _ctx),
+            desc : extVueTranslater._desc(_data.parts.desc, _ctx)
+        }];
+
+    },
+    renderer : (_data, _ctx) => {
+
+        let paramStr = [];
+        let unparseSection;
+        let sections = [];
+        let translateSection;
+        let translate = [];
+        let demoid;
+
+        paramStr = extVueRenderer[_data.parts.name[0]](_data.parts);
+        _ctx.index--;
+
+        while (unparseSection = paramStr.shift()) {
+
+            sections.push(extVueParser.section(unparseSection));
+
+        }
+
+        while (translateSection = sections.shift()) {
+
+            _ctx.demoid = `${_ctx.oriDemoid}-${_ctx.index++}`;
+            translate = translate.concat(extVueTranslater[translateSection.type](translateSection, _ctx));
+
+        }
+
+        return translate;
+
+    },
+    config : (_data, _ctx) => {
+
+        return [{
+            type : _data.type,
+            desc : extVueTranslater._desc(_data.parts.desc, _ctx),
+            'conf-desc' : extVueTranslater._desc(_data.parts['conf-desc'], _ctx),
+            'conf-accept' : extVueTranslater._conf_accept(_data.parts['conf-accept'], _ctx),
+            'conf-type' : extVueTranslater._conf_type(_data.parts['conf-type'], _ctx),
+            'conf-default' : extVueTranslater._conf_default(_data.parts['conf-default'], _ctx)
+        }];
+
+    },
+    method : (_data, _ctx) => {
+
+        return [{
+            type : _data.type,
+            desc : extVueTranslater._desc(_data.parts.desc, _ctx),
+            'method-desc' : extVueTranslater._desc(_data.parts['method-desc'], _ctx),
+            'method-args' : extVueTranslater._method_args(_data.parts['method-args'], _ctx),
+            'method-return' : extVueTranslater._method_return(_data.parts['method-return'], _ctx)
+        }];
+
+    },
+    event : (_data, _ctx) => {
+
+        return [{
+            type : _data.type,
+            desc : extVueTranslater._desc(_data.parts.desc, _ctx),
+            'event-desc' : extVueTranslater._desc(_data.parts['event-desc'], _ctx),
+            'event-args' : extVueTranslater._event_args(_data.parts['event-args'], _ctx)
+        }];
+
+    }
+};
+
+let extVueCompiler = {
+    demo : (_data, _ctx) => {
+
+        let printCode = `<template>\n${_data.tpl.print}\n</template>\n\n<script>\n${_data.script.print}\n<\/script>`;
+
+        outputcode[_ctx.demoid] = printCode;
+
+        let templateScript = document.createElement('script');
+
+        templateScript.innerHTML = `\n${_data.tpl.exec}`;
+        templateScript.type = 'x-template';
+        templateScript.id = `${_ctx.demoid}-tmpl`;
+
+        evals.push(templateScript);
+
+        let scriptScript = document.createElement('script');
+
+        scriptScript.innerHTML = _data.script.exec;
+        evals.push(scriptScript);
+
+        livedata[_ctx.demoid] = {
+            js : _data.script.live,
+            html : _data.tpl.live
+        };
+
+        return `
+            <div class="section-demo">
+                <div class="demo-con">
+                    <div id="${_ctx.demoid}-el"></div>
+                </div>
+                <div class="code-con">
+                    <div class="code">
+                        <pre><code class="lang-html lang-vue">${_ctx.md.utils.escapeHtml(printCode)}</code></pre>
+                        <div class="demo-tools">
+                            <a href="javascript:;" class="live" demo-id="${_ctx.demoid}" id="live-demo-${_ctx.demoid}">
+                                <i class="iconfont">&#xe616;</i>
+                            </a>
+                            <ui-tip color="extra-light-black" target="#live-demo-${_ctx.demoid}">在 JSFiddle 中查看</ui-tip>
+                            <a href="javascript:;" class="copy" demo-id="${_ctx.demoid}" id="copy-demo-${_ctx.demoid}">
+                                <i class="iconfont">&#xe632;</i>
+                            </a>
+                            <ui-tip id="copy-tip-${_ctx.demoid}" color="extra-light-black" target="#copy-demo-${_ctx.demoid}">复制代码</ui-tip>
+                        </div>
+                    </div>
+                    <div class="note">${_data.title}${_data.desc}</div>
+                </div>
+            </div>
+        `;
+
+    },
+    config : (_data, _ctx) => {
+
+        let table = `|A|B|\n|-|-|\n${_data['conf-accept']}\n${_data['conf-type']}\n${_data['conf-default']}`;
+
+        table = markdown.render(table);
+        table = table.replace(/^<table/, '<table frame="void"');
+
+        return `
+            <div class="section-config">
+                <div class="desc">${_data['conf-desc']}</div>
+                <div class="config">${table}</div>
+            </div>
+        `;
+
+    },
+    method : (_data, _ctx) => {
+
+        return `
+            <div class="section-method">
+                <div class="desc">${_data['method-desc']}</div>
+                <div class="args-return">
+                    ${_data['method-args']}
+                    ${_data['method-return']}
+                </div>
+            </div>
+        `;
+
+    },
+    event : (_data, _ctx) => {
+
+        return `
+            <div class="section-event">
+                <div class="desc">${_data['event-desc']}</div>
+                <div class="args-return">
+                    ${_data['event-args']}
+                </div>
+            </div>
+        `;
+
+    }
 };
 
 let extVue = (content, paramStr, token, md) => {
 
-    let js = paramStr.join('\n');
-    let html = content;
     let demoid = `demo-${_.random(randomRangeMin, randomRangeMax)}`;
-    let context = {
-        id : demoid,
-        el : `#${demoid}-el`,
-        template : `#${demoid}-tmpl`
+    let ctx = {
+        _ctx : {
+            demoid : '',
+            oriDemoid : demoid,
+            md,
+            index : 0,
+            paramStr
+        }
     };
-    let code,
-        demo;
 
-    Mustache.parse(js, ['{$', '}']);
-    js = Mustache.render(js, context);
+    if (paramStr.length > 1) {
+        ctx._ctx.vars = extVueParser.vars(paramStr.shift());
+    } else {
+        ctx._ctx.vars = {};
+    }
 
-    Mustache.parse(html, ['{$', '}']);
-    html = Mustache.render(html, context);
+    if (ctx._ctx.vars.layout) {
 
-    code = `<div id="${demoid}-el"><!-- ${demoid} 容器 --></div>\n\n`;
-    demo = `<div id="${demoid}-el"></div>`;
+        paramStr = extVueLayout[ctx._ctx.vars.layout](paramStr);
+        ctx._ctx.vars = extVueParser.vars(paramStr.shift());
+        delete ctx._ctx.vars.layout;
 
-    let htmlScript = document.createElement('script');
+    }
 
-    htmlScript.innerHTML = `\n${html}`;
-    htmlScript.type = 'x-template';
-    htmlScript.id = `${demoid}-tmpl`;
+    ctx.sections = [];
 
-    code += `${htmlScript.outerHTML}\n\n`;
+    while (ctx.unparseSection = paramStr.shift()) {
 
-    htmlScript.innerHTML = htmlScript.innerHTML.replace(/\{\*([a-zA-Z0-9_.]+)\*\}/g, '{{$1}}');
-    evals.push(htmlScript);
+        ctx.sections.push(extVueParser.section(ctx.unparseSection));
 
-    let jsScript = document.createElement('script');
+    }
 
-    js = js.replace(/\{\*([a-zA-Z0-9_.]+)\*\}/g, '{{$1}}');
-    jsScript.innerHTML = `\n${js}\n`;
-    evals.push(jsScript);
-    code += jsScript.outerHTML.replace(/\{\{([a-zA-Z0-9_.]+)\}\}/g, '{*$1*}');
+    ctx.translate = [];
 
-    return `<div class="demo">${demo}</div><pre><code class="lang-${token.lang}">${md.utils.escapeHtml(code)}</code></pre>\n`;
+    while (ctx.translateSection = ctx.sections.shift()) {
+
+        ctx._ctx.demoid = `${demoid}-${ctx._ctx.index++}`;
+        ctx.translate = ctx.translate.concat(extVueTranslater[ctx.translateSection.type](ctx.translateSection, ctx._ctx));
+
+    }
+
+    ctx.compiled = [];
+    ctx._ctx.index = 0;
+
+    while (ctx.compileSection = ctx.translate.shift()) {
+
+        ctx._ctx.demoid = `${demoid}-${ctx._ctx.index++}`;
+        ctx.compiled.push(extVueCompiler[ctx.compileSection.type](ctx.compileSection, ctx._ctx));
+
+    }
+
+    let name = ctx._ctx.vars.name;
+
+    if (name) {
+        
+        name = markdown.render(name);
+        name = name.replace(/(^\<p\>|\<\/p\>)/g, '');
+        name = name.replace(/\n$/, '');
+
+        return `
+        <div class="demo-root">
+            <h4 id="${name.replace(/(\<[\/]*\w+?\>|\]|\[|\}|\{|\>|\<|\)|\()/g, '-')}"><a href="#${name.replace(/(\<[\/]*\w+?\>|\]|\[|\}|\{|\>|\<|\)|\()/g, '-')}" aria-hidden="true" class="permalink">#</a> ${name}</h4>
+            ${ctx.compiled.join('\n')}
+        </div>
+        `;
+
+    } else {
+
+        return `
+        <div class="demo-root">
+            ${ctx.compiled.join('\n')}
+        </div>
+        `;
+
+    }
 
 };
 
 let extPreset = (content, paramStr) => {
 
-    let context = {
-        content : content
-    };
-    let template = presets[paramStr[0]];
+    let vars = extVueParser.vars(content);
+    let template = presets[vars.name];
 
-    content = content.split('\n');
-
-    for (let item of content) {
-        
-        if (item) {
-
-            item = item.split(':');
-            context[item.shift()] = item.join(':');
-
-        }
-
-    }
+    vars.formName = '表单名';
+    vars.formKey = 'formKey';
+    vars.formGroupOne = 'groupName'; 
+    vars.formGroupMore = `['group1', 'group2', 'group3']`;
 
     Mustache.parse(template, ['{%', '%}']);
-    template = Mustache.render(template, context);
+    template = Mustache.render(template, vars);
 
     return markdown.render(template);
 
 };
 
-let demoWithCodePlugin = (md, opt) => {
-    md.block.ruler.before('table', 'codeWithDemo', (state, startLine, endLine) => {
+let mdExtendPlugin = (md, opt) => {
+    md.block.ruler.before('table', 'mdExtend', (state, startLine, endLine) => {
 
         // if it's indented more than 3 spaces, it should be a code block
         if (state.sCount[startLine] - state.blkIndent >= 4) {
@@ -1470,25 +2325,33 @@ let demoWithCodePlugin = (md, opt) => {
         let content;
         let result = '';
 
-        if (list.length > 1) {
+        if (method !== 'vue') {
 
-            paramStr = list.shift();
+            if (list.length > 1) {
+
+                paramStr = list.shift();
+
+            }
+
+            content = list.join('\n---\n');
+
+            paramStr = paramStr.split('\n');
+
+        } else {
+
+            paramStr = list;
 
         }
-
-        content = list.join('\n---\n');
-
-        paramStr = paramStr.split('\n');
 
         if (method === 'democode') {
 
-            result = `<div class="demo">${content}</div><pre><code class="lang-${token.lang}">${md.utils.escapeHtml(content)}</code></pre>\n`;
-
-        }
-
-        if (method === 'repeat') {
-
-            result = extRepeat(content, paramStr, token, md);
+            result = `
+            <div class="demo-box">
+                <div class="demo">${content}</div>
+                <div class="code">
+                    <pre><code class="lang-${token.lang}">${md.utils.escapeHtml(content)}</code></pre>
+                </div>
+            </div>\n`;
 
         }
 
@@ -1510,7 +2373,7 @@ let demoWithCodePlugin = (md, opt) => {
 
 };
 
-markdown.use(demoWithCodePlugin);
+markdown.use(mdExtendPlugin);
 
 window.Vue.component('doc-component-status', DocComponentStatus);
 
@@ -1538,7 +2401,7 @@ window.Vue.directive('docmd', {
             
             md = md.replace(/\{\*([a-zA-Z0-9_.]+)\*\}/g, '{{"\\{\\{$1\\}\\}"}}');
             md = md.replace(/<p>(\[\[\[(.+)\]\]\])<\/p>/g, '$1');
-            md = md.replace(/(\[\[\[)/, '<ui-tab class="block noborder" anchor-target>$1');
+            md = md.replace(/(\[\[\[)/, '<ui-tab class="block noborder no-padding" anchor-target>$1');
             md = md.replace(/\[\[\[开始\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="开始"><div class="content-title">开始</div>$1</div>$3');
             md = md.replace(/\[\[\[形态\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="形态"><div class="content-title">形态</div>$1</div>$3');
             md = md.replace(/\[\[\[配置\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="配置"><div class="content-title">配置</div>$1</div>$3');
@@ -1604,6 +2467,109 @@ export default {
 
         });
 
+    },
+    methods : {
+        onClick : function (event) {
+
+            let $target;
+            let type;
+
+            const copyShowtime = 1500;
+
+            if (event.target &&
+                event.target.parentElement &&
+                event.target.parentElement.classList.value.indexOf('copy') !== -1) {
+
+                $target = event.target.parentElement;
+                type = 'copy';
+
+            } else if (event.target &&
+                event.target.parentElement &&
+                event.target.parentElement.classList.value.indexOf('live') !== -1) {
+
+                $target = event.target.parentElement;
+                type = 'live';
+
+            } else if (event.target &&
+                event.target.classList.value.indexOf('copy') !== -1) {
+
+                $target = event.target.parentElement;
+                type = 'copy';
+
+            } else if (event.target &&
+                event.target.classList.value.indexOf('live') !== -1) {
+
+                $target = event.target.parentElement;
+                type = 'live';
+
+            }
+
+            if ($target && type) {
+
+                let demoid = $target.getAttribute('demo-id');
+
+                if (type === 'live') {
+
+                    this.showJsfiddle(livedata[demoid]);
+
+                } else if (type === 'copy') {
+
+                    copy(outputcode[demoid]);
+                    window.morning.findVM('copied').push({
+                        message : '<span style=\'display:inline-block;text-align:center;\'><i class=\'mo-icon mo-icon-check\' style=\'font-size:13px;vertical-align:top;margin-right:4px;\'></i> 已复制</span>',
+                        color : 'success'
+                    });
+
+                }
+
+            }
+
+        },
+        showJsfiddle : function (data) {
+
+            let form = document.createElement("form");
+            
+            form.setAttribute('method', 'post');
+            form.setAttribute('action', 'http://jsfiddle.net/api/post/library/pure/');
+            form.setAttribute("target", "_blank");
+
+            let fieldPanelJs = document.createElement("textarea");
+            let fieldResources = document.createElement("textarea");
+            let fieldHtml = document.createElement("textarea");
+            let fieldJs = document.createElement("textarea");
+            let fieldWrap = document.createElement("textarea");
+
+            fieldPanelJs.setAttribute('name', 'panel_js');
+            fieldPanelJs.value = '0';
+            fieldResources.setAttribute('name', 'resources');
+            fieldResources.value = 'https://cdn.jsdelivr.net/npm/vue@2.5.17,https://cdn.jsdelivr.net/npm/morning-ui/dist/morning-ui.js,https://cdn.jsdelivr.net/npm/morning-ui/dist/morning-ui.css,https://morning-ui.com/iconfont.woff';
+            fieldHtml.setAttribute('name', 'html');
+            fieldHtml.value = data.html;
+            fieldJs.setAttribute('name', 'js');
+
+            if (window.demodata) {
+
+                fieldJs.value = `// demo data\nwindow.demodata = ${JSON.stringify(window.demodata, null, '    ')}\n\n${data.js}`;
+
+            } else {
+
+                fieldJs.value = `${data.js}`;
+    
+            }
+
+            fieldWrap.setAttribute('name', 'wrap');
+            fieldWrap.value = 'd';
+
+            form.appendChild(fieldPanelJs);
+            form.appendChild(fieldResources);
+            form.appendChild(fieldHtml);
+            form.appendChild(fieldJs);
+            form.appendChild(fieldWrap);
+            document.body.appendChild(form);       
+            form.submit();
+            form.remove();
+
+        }
     }
 };
 </script>
@@ -1622,6 +2588,22 @@ a{ }
     margin: 0 auto;
     font-size: 0;
 }
+
+.contents{
+    > .item > div{
+        > h4,
+        > p,
+        > table{
+            padding-left: 12px;
+        }
+
+        > ul,
+        > ol{
+            padding-left: ~'calc(2em + 14px)';
+        }
+    }
+}
+
 .content {
     width: 900px;
     display: inline-block;
@@ -1649,20 +2631,329 @@ a{ }
         margin-right: -0.15em;
     }
 }
-.demo{
-    padding: 10px;
-    box-sizing: border-box;
-    border: 1px #F1F4F6 solid;
-    border-radius: 3px 3px 0 0;
-    z-index: 9;
-    position: relative;
 
-    &+pre{
-        border-radius: 0 0 3px 3px;
+.demo-root{
+    border: 1px #E9ECEF solid;
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+    font-size: 0;
+    margin: 20px 0 40px 0;
+
+    &:hover{
+        box-shadow: 0 0 8px rgba(194, 204, 212, 0.42);
+        border: 1px #e3e8ea solid;
     }
 
-    mor-btn{
-        vertical-align: top; 
+    > h4{
+        margin: 0;
+        padding: 8px 12px;
+        background: #f6f8fa;
+        font-size: 18px;
+
+        > code{
+            vertical-align: middle;
+        }
+    }
+
+    .section-demo,
+    .section-config,
+    .section-method,
+    .section-event{
+        border-top: 4px #E9ECEF solid;
+
+        &:first-child{
+            border-top: none;
+        }
+
+        &:nth-child(2){
+            border-top: 2px #E9ECEF solid;
+        }
+    }
+
+    .section-demo{
+        .demo-con{
+            padding: 20px 10px;
+            position: relative;
+            display: block;
+            background: #fff;
+            margin: 0;
+            border-bottom: 1px #E9ECEF dashed;
+            font-size: 14px;
+        }
+
+        .code-con{
+            position: relative;
+            display: flex;
+
+            > .code{
+                background-color: #F6F8FA;
+                width: 100%;
+                margin: 0;
+                border-radius: 0;
+                vertical-align: top;
+                display: block;
+                position: relative;
+
+                > pre{
+                    font-size: 12px;
+                    margin: 0;
+                }
+
+                > .demo-tools{
+                    position: absolute;
+                    right: 0;
+                    top: 23px;
+                    width: 16px;
+                    line-height: 1.5em;
+                    font-size: 13px;
+                    padding-right: 8px;
+                    box-sizing: content-box;
+
+                    > a{
+                        color: #83888e;
+                        text-decoration: none;
+
+                        &:hover{
+                            text-decoration: none;
+                            color: #18191b;
+                        }
+                    }
+                }
+            }
+
+            > .note{
+                width: 50%;
+                display: block;
+                border: none;
+                vertical-align: top;
+                box-sizing: border-box;
+                border-left: 1px #e5e9ec dashed;
+
+                &:empty{
+                    display: none;
+                    width: 0;
+                }
+
+                > h5{
+                    margin: 0;
+                    padding: 14px 14px 0 14px;
+                    font-size: 14px !important;
+                    color: #45505C;
+                    font-weight: 700;
+
+                    &:empty{
+                        display: none;
+                    }
+                }
+
+                > div{
+                    padding: 14px;
+                    margin: 0;
+                    font-size: 13px;
+
+                    p {
+                        margin: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    .section-config,
+    .section-method,
+    .section-event{
+        min-height: 100px;
+        font-size: 14px;
+        padding: 0;
+        display: flex;
+
+        .config,
+        .args-return{
+            width: 35%;
+
+            table{
+                margin: 0;
+                display: table;
+                font-size: 12px;
+                
+                thead{
+                    display: none;
+                }
+
+                tr:first-child{
+                    td{
+                        border-top: none;
+                    }
+                }
+
+                tr:last-child{
+                    td{
+                        border-bottom: none;
+                    }
+                }
+
+                th,
+                td{
+                    padding: 10px 15px;
+                    border-right: 1px solid #e5e9ec;
+                    border-bottom: 1px solid #e5e9ec;
+
+                    &:first-child{
+                        border-left: 1px solid #e5e9ec;
+                        white-space: nowrap;
+                        background: #f6f8fa;
+                    }
+
+                    &:last-child{
+                        border-right: none;
+                    }
+                }
+
+                tr:nth-child(2n){
+                    background: #fff !important;
+                }
+            }
+        }
+
+        .desc{
+            width: 65%;
+            box-sizing: border-box;
+            border-right: 1px #e5e9ec solid;
+            padding: 10px;
+
+            table{
+                margin: 0;
+                display: table;
+                font-size: 12px;
+
+                tbody{
+                    td{
+                        padding: 3px 5px;
+                    }
+
+                    td:nth-child(2){
+                        word-break: break-word;
+                    }
+                }
+            }
+
+            > div{
+                margin: 0;
+
+                p {
+                    margin: 0;
+                }
+            }
+        }
+    }
+
+    .section-method,
+    .section-event{
+        .args-return{
+            width: 65%;
+            
+            table{
+                thead{
+                    display: table-header-group;
+                }
+
+                tr:first-child > th:first-child{
+                    font-size: 14px;
+                }
+
+                th,
+                td{
+                    padding: 4px;
+                }
+            }
+
+            table:first-child > thead > tr:nth-child(2) > th{
+                white-space: nowrap;
+            }
+
+            table + table{
+                border-top: 1px #e5e9ec solid;
+            }
+
+            table + table,
+            table.no-args{
+                td{
+                    background: #fff !important;
+                    text-align: center;
+                }
+            }
+        }
+
+        .desc{
+            width: 35%;
+        }
+    }
+
+    .section-event{
+        .args-return{
+            width: 50%;
+        }
+
+        .desc{
+            width: 50%;
+        }
     }
 }
+
+.demo-box{
+    border: 1px #E9ECEF solid;
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+
+    &:hover{
+        box-shadow: 0 0 8px rgba(194, 204, 212, 0.42);
+        border: 1px #e3e8ea solid;
+    }
+
+    .demo{
+        margin: 0;
+        position: relative;
+        display: block;
+        background: #fff;
+        padding: 10px;
+        border-bottom: 1px #E9ECEF solid;
+    }
+
+    .code{
+        font-size: 0;
+
+        > pre{
+            background-color: #F6F8FA;
+            font-size: 12px;
+            width: 100%;
+            margin: 0;
+            border-radius: 0;
+            vertical-align: top;
+            display: block;
+        }
+
+        > .note{
+            display: none;
+        }
+    }
+}
+
+// .demo{
+//     padding: 10px;
+//     box-sizing: border-box;
+//     border: 1px #F1F4F6 solid;
+//     border-radius: 3px 3px 0 0;
+//     z-index: 9;
+//     position: relative;
+
+//     &+pre{
+//         border-radius: 0 0 3px 3px;
+//     }
+
+//     mor-btn{
+//         vertical-align: top; 
+//     }
+// }
 </style>
