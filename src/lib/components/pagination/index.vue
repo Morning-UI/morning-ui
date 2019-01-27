@@ -19,10 +19,9 @@
     </div>
 
     <div class="list">
-
-        <!-- eslint-disable vue/require-v-for-key -->
         <template v-for="index in data.total">
-        
+            
+            <!-- eslint-disable vue/require-v-for-key -->
             <template v-if="(data.hideEnd - 1) === index && data.hideEnd !== 1">
                 <a href="javascript:;" class="prev" @click="to(data.currentPage - 1)"><i class="mo-icon mo-icon-left"></i></a>
                 <a href="javascript:;" class="ignore">...</a>
@@ -50,9 +49,9 @@
                 <a href="javascript:;" class="ignore">...</a>
                 <a href="javascript:;" class="next" @click="to(data.currentPage + 1)"><i class="mo-icon mo-icon-right"></i></a>
             </template>
+            <!-- eslint-enable vue/require-v-for-key -->
 
         </template>
-        <!-- eslint-enable vue/require-v-for-key -->
 
         <div
             class="page-jump"

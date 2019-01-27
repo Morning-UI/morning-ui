@@ -1136,7 +1136,7 @@ mor-dialog a:hover {
   position: relative;
 }
 .markdown-body code span {
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
 }
 .markdown-body .lang-js::before,
 .markdown-body .language-js::before,

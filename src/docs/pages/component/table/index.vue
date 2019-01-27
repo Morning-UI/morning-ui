@@ -273,7 +273,7 @@
     :::
 
     [[[配置]]]
-    
+
     :::vue
     @name:list
     ---
@@ -1161,7 +1161,7 @@
     ---
     #config
     >conf-desc
-    开启将表格导出csv文件的功能。
+    开启将表格导出csv文件的功能。<br><br>导出的表格单元格内容中若包含HTML，则会被过滤仅保留文本内容(若存在`<br>`则会被替换成换行符)。
     >conf-accept
     `true`<br>`false`
     >conf-type

@@ -221,6 +221,42 @@
     </ui-dropdown>
     :::
 
+    :::vue
+    @name:auto-reverse
+    ---
+    #config
+    >conf-desc
+    当下拉菜单超出窗口时，自动反转下拉菜单的方向，使其可以显示。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `true`
+    ---
+    #demo
+    >desc
+    滚动页面的位置，使得下面的demo靠近窗口底部，当关闭`auto-reverse`后，下拉菜单不会反转方向。
+    >tpl
+    <ui-dropdown :auto-reverse="false">
+        <ui-btn slot="showbtn" emitbtn>更多 <i class="mo-icon mo-icon-dropdown"></i></ui-btn>
+        <ui-btn color="white">收藏</ui-btn>
+        <ui-btn color="white">修改</ui-btn>
+        <ui-btn color="danger">删除</ui-btn>
+    </ui-dropdown>
+    ---
+    #demo
+    >desc
+    开启`auto-reverse`后，下拉菜单会反转方向。
+    >tpl
+    <ui-dropdown :auto-reverse="true">
+        <ui-btn slot="showbtn" emitbtn>更多 <i class="mo-icon mo-icon-dropdown"></i></ui-btn>
+        <ui-btn color="white">收藏</ui-btn>
+        <ui-btn color="white">修改</ui-btn>
+        <ui-btn color="danger">删除</ui-btn>
+    </ui-dropdown>
+    :::
+
     [[[方法]]]
 
     :::vue

@@ -23,9 +23,9 @@
 @borderRadius : 3px;
 @gridColumnNumber : 24;
 @gridGutterWidth : 1%;
-@gridColumnWidth : (100% - (@gridColumnNumber - 1)*@gridGutterWidth)/@gridColumnNumber;
-@gridColumnWidthGapAverage : (100% - (@gridColumnNumber + 1)*@gridGutterWidth)/@gridColumnNumber;
-@gridColumnWidthWithoutGap : 100%/@gridColumnNumber;
+@gridColumnWidth : round((100% - (@gridColumnNumber - 1)*@gridGutterWidth)/@gridColumnNumber, 4);
+@gridColumnWidthGapAverage : round((100% - (@gridColumnNumber + 1)*@gridGutterWidth)/@gridColumnNumber, 4);
+@gridColumnWidthWithoutGap : round(100%/@gridColumnNumber, 4);
 @formHeight : 42px;
 @colorFormBorder : @colorGray;
 @colorFormBorderHover : darken(@colorGray, 6%);

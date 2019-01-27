@@ -1,4 +1,6 @@
 <template>
+    
+
     <div>
         <doc-header :category="category"></doc-header>
         <!-- darg icon https://h0.hucdn.com/open/201734/175363ad9c01a51b_200x200.png -->
@@ -6,14 +8,17 @@
             <h1><i class="iconfont">&#xe615;</i>Morning Laboratory</h1>
             <div class="area">
                 <div style="width:300px;">
-                        <ui-colorpicker
-        form-name="姓名"
-        :default-value="'#AAAAAA'"
-        @value-change="echo"
-    ></ui-colorpicker>
 
-    <!-- <ui-textinput @value-change="echo"></ui-textinput> -->
-    <ui-btn @emit="val = 2;">v-model change</ui-btn>
+
+                    <!-- AREA START -->
+
+
+<ui-table :list="list" export-csv></ui-table>
+
+
+
+                    <!-- AREA END -->
+                     
 
                 </div>
             </div>
@@ -30,8 +35,14 @@ export default {
     data : function () {
     
         return {
-            val : '#333333'
-        };
+            list : [
+            {name : '<div>Tim, Boelaars</div><div>123123</div>', age : 20, gender : 'male', job : 'driver'},
+            {name : 'Andrew" Colin Beck', age : 41, gender : 'female', job : 'engineer'},
+            {name : 'Gustavo, "Zambelli', age : 23, gender : 'male', job : 'teacher'},
+            {name : 'Victor Erixon', age : 15, gender : 'female', job : 'doctors'},
+            {name : 'Shaun Moynihan', age : 27, gender : 'female', job : 'driver'},
+            {name : 'Emir Ayouni', age : 21, gender : 'male', job : 'gardener'}
+        ]        };
 
     },
     components : {
