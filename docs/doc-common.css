@@ -1229,7 +1229,6 @@ mor-dialog a:hover {
 .demo-root {
   border: 1px #E9ECEF solid;
   border-radius: 3px;
-  overflow: hidden;
   position: relative;
   font-size: 0;
   margin: 20px 0 40px 0;
@@ -1273,6 +1272,7 @@ mor-dialog a:hover {
   margin: 0;
   border-bottom: 1px #E9ECEF dashed;
   font-size: 14px;
+  z-index: 2;
 }
 .demo-root .section-demo .code-con {
   position: relative;

@@ -166,6 +166,9 @@
     - `volume` : 音量
     - `getInfo` : 获取信息
     - `togglePicker` : 切换选择器
+    - `getIndex` : 获取索引
+    - `getId` : 获取ID
+    - `getTitle` : 获取标题
 
     </script>
     </doc-guide>

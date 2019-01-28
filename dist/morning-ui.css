@@ -12066,6 +12066,54 @@ mor-menu .pos-side .sub-menu > li .has-child-menu-icon {
   top: 12px;
 }
 
+mor-anchor {
+  position: relative;
+  display: flex;
+}
+mor-anchor .nav-wrap {
+  min-width: 128px;
+  position: relative;
+}
+mor-anchor .anchor-nav {
+  position: relative;
+}
+mor-anchor .anchor-nav .line {
+  width: 2px;
+  background: #d5dae2;
+  height: 100%;
+  position: absolute;
+  left: 4px;
+  top: 0;
+}
+mor-anchor .anchor-nav .current-point {
+  position: absolute;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  left: 0;
+  border: 3px solid #F33D5D;
+  background: #FFFFFF;
+  transition: top 0.16s;
+}
+mor-anchor .anchor-nav ul.menu {
+  padding: 5.6px 0 5.6px 16px;
+  list-style: none;
+  margin: 0;
+}
+mor-anchor .anchor-nav ul.menu > li {
+  font-size: 12px;
+  line-height: 1.4em;
+  margin: 4px 0;
+  color: #8E9CAF;
+}
+mor-anchor .anchor-nav ul.menu > li:hover {
+  cursor: pointer;
+  color: #17212D;
+}
+mor-anchor .anchor-nav ul.menu > li.current {
+  color: #F33D5D;
+}
+
 mor-pagination {
   display: inline-block;
 }
@@ -13406,6 +13454,9 @@ mor-sticky.mo-in-tab-hidden {
 mor-sticky.sticky {
   position: -webkit-sticky;
   position: sticky;
+}
+mor-sticky .sticky-box {
+  width: inherit;
 }
 mor-sticky .sticky-box.fixed {
   position: fixed;

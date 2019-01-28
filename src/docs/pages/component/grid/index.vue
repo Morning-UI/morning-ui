@@ -246,19 +246,21 @@
     </div>
     :::
     
-    #### 响应式栅格
-
+    :::vue
+    @name:响应式栅格
+    ---
+    #demo
+    >desc
     参考了 Bootstrap 的 [响应式设计](http://getbootstrap.com/css/#grid-media-queries)，预设六个尺寸：
-
+    <br><br>
     - `xs` : 屏幕宽度小于`576px`
     - `s` : 屏幕宽度介于`576px`和`768px`之间
     - `m` : 屏幕宽度介于`768px`和`992px`之间
     - `l` : 屏幕宽度介于`992px`和`1200px`之间
     - `xl` : 屏幕宽度大于`1200px`
-
-    使用时在原有的`c-[n]`和`offset-[n]`前加上如`xs-`这样的前缀即可：
-
-    :::democode/html
+    <br><br>
+    使用时在原有的`c-[n]`和`offset-[n]`前加上如`xs-`这样的前缀即可。
+    >tpl
     <div>
         <ui-grid>
             <div class="xs-c-2 s-c-4 m-c-6 l-c-8 xl-c-10" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">col</div>
@@ -266,11 +268,11 @@
             <div class="xs-c-2 s-c-4 m-c-6 l-c-8 xl-c-10" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">col</div>
         </ui-grid>
     </div>
-    :::
-
-    `offset`也同样支持：
-
-    :::democode/html
+    ---
+    #demo
+    >desc
+    `offset`也同样支持。
+    >tpl
     <div>
         <ui-grid>
             <div class="xs-c-2 s-c-4 m-c-6 l-c-8 xl-c-10" style="background-color:#E2E8EE;padding: 1em 0.6em;font-size:12px;">col</div>
@@ -291,7 +293,7 @@
         </ui-grid>
     </div>
     :::
-
+    
     [[[形态]]]
 
     #### 支持

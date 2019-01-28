@@ -2635,7 +2635,7 @@ a{ }
 .demo-root{
     border: 1px #E9ECEF solid;
     border-radius: 3px;
-    overflow: hidden;
+    // overflow: hidden; // 尝试去除因为sticky
     position: relative;
     font-size: 0;
     margin: 20px 0 40px 0;
@@ -2680,6 +2680,7 @@ a{ }
             margin: 0;
             border-bottom: 1px #E9ECEF dashed;
             font-size: 14px;
+            z-index: 2;
         }
 
         .code-con{
