@@ -91,7 +91,6 @@
                 <li><a href="/component/anchor.html">锚点导航<p>&lt;anchor></p></a></li>
                 <li><a href="/component/dropdown.html">下拉菜单<p>&lt;dropdown></p></a></li>
                 <li><a href="/component/tab.html">标签页<p>&lt;tab></p></a></li>
-                <li><a href="/component/collapse.html">折叠面板<p>&lt;collapse></p></a></li>
                 <li><a href="/component/pagination.html">分页<p>&lt;pagination></p></a></li>
                 <li><a href="/component/breadcrumbs.html">面包屑<p>&lt;breadcrumbs></p></a></li>
                 <li><a href="/component/steps.html">步骤条<p>&lt;steps></p></a></li>
@@ -111,6 +110,8 @@
         <div class="sub-group">
             <h4><i class="iconfont">&#xe769;</i>展示</h4>
             <ul>
+                <li><a href="/component/collapse.html">折叠面板<p>&lt;collapse></p></a></li>
+                <li><a href="/component/tree.html">树状控件<p>&lt;tree></p></a></li>
                 <li><a href="/component/table.html">表格<p>&lt;table></p></a></li>
                 <li><a href="/component/carousel.html">轮播<p>&lt;carousel></p></a></li>
                 <li><a href="/component/calendar.html">日历<p>&lt;calendar></p></a></li>

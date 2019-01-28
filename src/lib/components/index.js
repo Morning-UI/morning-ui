@@ -45,6 +45,7 @@ import link                         from './link/index.vue';
 import dropdown                     from './dropdown/index.vue';
 import tab                          from './tab/index.vue';
 import collapse                     from './collapse/index.vue';
+import tree                         from './tree/index.vue';
 import table                        from './table/index.vue';
 import menu                         from './menu/index.vue';
 import anchor                       from './anchor/index.vue';
@@ -133,6 +134,7 @@ export default {
     dropdown,
     tab,
     collapse,
+    tree,
     table,
     menu,
     anchor,

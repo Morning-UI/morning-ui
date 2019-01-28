@@ -10545,6 +10545,10 @@ mor-collapse.no-arrow > ul.collapse-ul .menu .mo-collapse-icon {
   display: none;
 }
 
+mor-tree {
+  display: block;
+}
+
 mor-table {
   width: 100%;
   overflow: auto;
