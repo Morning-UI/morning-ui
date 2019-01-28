@@ -308,6 +308,7 @@
     - `toggle-btn` : 切换按钮
     - `indicator-position` : 指示器位置
     - `indicator-type` : 指示器类型
+    - `sticky` : 吸附
 
     </script>
     </doc-guide>

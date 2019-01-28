@@ -2,6 +2,10 @@
     <mor-anchor
         :_uiid="uiid"
         :class="[]"
+
+        :show-point="showPoint"
+        :sticky="sticky"
+        :top="top"
     >
         <div class="content-wrap">
             <slot></slot>
@@ -10,11 +14,15 @@
         <div class="nav-wrap">
 
             <morning-sticky
+                v-if="conf.sticky"
                 position="parent"
+                :top="conf.top"
             >
                 <div class="anchor-nav">
                     <div class="line"></div>
                     <div
+                        v-if="conf.showPoint"
+
                         class="current-point"
                         :style="{
                             top : data.pointOffset + 'px'
@@ -23,6 +31,7 @@
                     <ul class="menu">
                         <li
                             v-for="(item, index) in data.list"
+                            :key="index"
                             :class="{
                                 current : index === data.current
                             }"
@@ -38,6 +47,34 @@
                 </div>
             </morning-sticky>
 
+            <div v-else class="anchor-nav">
+                <div class="line"></div>
+                <div
+                    v-if="conf.showPoint"
+
+                    class="current-point"
+                    :style="{
+                        top : data.pointOffset + 'px'
+                    }"
+                ></div>
+                <ul class="menu">
+                    <li
+                        v-for="(item, index) in data.list"
+                        :key="index"
+                        :class="{
+                            current : index === data.current
+                        }"
+                        :style="{
+                            'text-indent' : (item.level - 1) + 'em'
+                        }"
+
+                        @click="_onClick(index)"
+                    >
+                        {{item.title}}
+                    </li>
+                </ul>
+            </div>
+
         </div>
     </mor-anchor>
 </template>
@@ -49,11 +86,28 @@ export default {
     origin : 'UI',
     name : 'anchor',
     mixins : [GlobalEvent],
-    props : {},
+    props : {
+        showPoint : {
+            type : Boolean,
+            default : true
+        },
+        sticky : {
+            type : Boolean,
+            default : true
+        },
+        top : {
+            type : Number,
+            default : 0
+        }
+    },
     computed : {
         _conf : function () {
 
-            return {};
+            return {
+                showPoint : this.showPoint,
+                sticky : this.sticky,
+                top : this.top
+            };
 
         }
     },
@@ -71,8 +125,20 @@ export default {
     methods : {
         _resetPoint : function () {
 
+            if (!this.conf.showPoint) {
+
+                return;
+
+            }
+
             let $li = this.$el.querySelectorAll('.menu > li')[this.data.current];
             let $point = this.$el.querySelector('.current-point');
+
+            if (!$li || !$point) {
+
+                return;
+
+            }
 
             // 4 is item margin
             this.data.pointOffset = $li.offsetTop + (($li.clientHeight - $point.offsetHeight) / 2) - 1;
@@ -118,13 +184,14 @@ export default {
         _currentChange : function () {
 
             this._resetPoint();
+            this.$emit('switch');
 
         },
         _anchorTo : function (changeHash = true) {
 
             this.data.list[this.data.current].$anchor.scrollIntoView({
-                behavior: "instant",
-                block: "start"
+                behavior : 'instant',
+                block : 'start'
             });
 
             if (changeHash) {
@@ -176,6 +243,50 @@ export default {
 
             this._anchorTo(false);
 
+        },
+        to : function (index) {
+
+            if (typeof index === 'number') {
+
+                this.data.current = +index;
+                this._anchorTo();
+
+            } else {
+
+                for (let i in this.data.list) {
+
+                    let anchor = this.data.list[i];
+
+                    if (anchor.anchor === String(index)) {
+
+                        this.data.current = +i;
+                        this._anchorTo();
+
+                        break;
+
+                    }
+
+                }
+
+            }
+
+            return this;
+
+        },
+        getIndex : function () {
+
+            return +this.data.current;
+
+        },
+        getId : function () {
+
+            return this.data.list[this.data.current].anchor;
+
+        },
+        getTitle : function () {
+
+            return this.data.list[this.data.current].title;
+
         }
     },
     created : function () {},
@@ -191,8 +302,8 @@ export default {
             this._globalEventAdd('scroll', '_checkScroll');
             this._globalEventAdd('hashchange', '_updateCurrentFromHash');
 
-            if (!!window.location.hash) {
-                
+            if (window.location.hash) {
+
                 this._globalEventAdd('DOMContentLoaded', '_anchorToOnload');
 
             }
