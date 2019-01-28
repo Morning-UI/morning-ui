@@ -6,7 +6,7 @@
     <script type="text/markdown">
     # 致谢
 
-    ### 开源项目
+    ## 开源项目
 
     MorningUI受到以下开源项目的启发：
     
@@ -17,11 +17,11 @@
 
     在此向这些项目致敬。
 
-    ### Vue.js
+    ## Vue.js
 
     MorningUI基于[Vue.js](https://vuejs.org/)开发，在此感谢。
 
-    ### HmpUI贡献者
+    ## HmpUI贡献者
 
     MorningUI的诞生离不开HmpUI，在此感谢曾为HmpUI付出贡献的开发者：
 
@@ -34,7 +34,7 @@
     - 童颖(ying.tong@husor.com)
     - 朱双龙(shuanglong.zhu@husor.com)
 
-    ### MorningUI贡献者
+    ## MorningUI贡献者
 
     - Early(earlyhe0@gmail.com) <ui-textcolor color="minor"><ui-small>Coding/Review</ui-small></ui-textcolor>
 

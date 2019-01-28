@@ -8,10 +8,16 @@
             ></doc-submenu>
             <div
                 class="content markdown-body"
-                :class="{padding : hasPadding}"
+                :class="{
+                    padding : hasPadding,
+                    'is-component-doc' : isComponentDoc
+                }"
                 v-docmd
             >
-                <slot></slot>
+                <morning-anchor v-if="!isComponentDoc">
+                    <slot></slot>
+                </morning-anchor>
+                <slot v-else></slot>
             </div>
 
             <ui-message ref="copied"></ui-message>
@@ -42,6 +48,7 @@ const randomRangeMax = 9e4;
 const markdown = new MarkdownIt({
     html : true
 });
+const anchorReplaceRegExp = /(\<[\/]*\w+?\>|\]|\[|\}|\{|\>|\<|\)|\(| |\,)/g;
 
 hljs.registerLanguage('accesslog',      require('highlight.js/lib/languages/accesslog'));
 hljs.registerLanguage('xml',            require('highlight.js/lib/languages/xml'));
@@ -57,7 +64,7 @@ hljs.registerLanguage('makefile',       require('highlight.js/lib/languages/make
 hljs.registerLanguage('shell',          require('highlight.js/lib/languages/shell'));
 
 markdown.use(Anchor, {
-    level : [3, 4],
+    level : [2, 3],
     slugify : s => (s.replace(/[^a-zA-Z0-9-_\u4e00-\u9fa5]/g, '')),
     permalink : true,
     permalinkBefore : true,
@@ -2159,7 +2166,7 @@ let extVue = (content, paramStr, token, md) => {
 
         return `
         <div class="demo-root">
-            <h4 id="${name.replace(/(\<[\/]*\w+?\>|\]|\[|\}|\{|\>|\<|\)|\()/g, '-')}"><a href="#${name.replace(/(\<[\/]*\w+?\>|\]|\[|\}|\{|\>|\<|\)|\()/g, '-')}" aria-hidden="true" class="permalink">#</a> ${name}</h4>
+            <h4 id="${name.replace(anchorReplaceRegExp, '-')}"><a href="#${name.replace(anchorReplaceRegExp, '-')}" aria-hidden="true" class="permalink">#</a> ${name}</h4>
             ${ctx.compiled.join('\n')}
         </div>
         `;
@@ -2404,9 +2411,9 @@ window.Vue.directive('docmd', {
             md = md.replace(/(\[\[\[)/, '<ui-tab class="block noborder no-padding" anchor-target>$1');
             md = md.replace(/\[\[\[开始\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="开始"><div class="content-title">开始</div>$1</div>$3');
             md = md.replace(/\[\[\[形态\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="形态"><div class="content-title">形态</div>$1</div>$3');
-            md = md.replace(/\[\[\[配置\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="配置"><div class="content-title">配置</div>$1</div>$3');
-            md = md.replace(/\[\[\[方法\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="方法"><div class="content-title">方法</div>$1</div>$3');
-            md = md.replace(/\[\[\[事件\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="事件"><div class="content-title">事件</div>$1</div>$3');
+            md = md.replace(/\[\[\[配置\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="配置"><morning-anchor><div class="content-title" title="配置" id="配置" is-anchor>配置</div>$1</morning-anchor></div>$3');
+            md = md.replace(/\[\[\[方法\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="方法"><morning-anchor><div class="content-title" title="方法" id="方法" is-anchor>方法</div>$1</div>$3');
+            md = md.replace(/\[\[\[事件\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="事件"><morning-anchor><div class="content-title" title="事件" id="事件" is-anchor>事件</div>$1</div>$3');
             md = md.replace(/\[\[\[表单值\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="表单值"><div class="content-title">表单值</div>$1</div>$3');
             // window.location.search !== \'?istest\'
             // cause: e2e test use chrome 59, if both has vue and iframe, get a bug.(when version update may remove this code)
@@ -2426,7 +2433,54 @@ window.Vue.directive('docmd', {
             });
 
             instance.$mount();
-            el.appendChild(instance.$el);
+
+            if (window.isComponentDoc) {
+
+                let $h4s = instance.$el.querySelectorAll('.demo-root > h4');
+
+                for (let $h4 of $h4s) {
+
+                    $h4.setAttribute('is-anchor', '2');
+                    $h4.setAttribute('title', $h4.innerText.replace(/^# /, ''));
+                    $h4.setAttribute('id', $h4.innerText.replace(/^# /, '').replace(anchorReplaceRegExp, '-'));
+
+                }
+
+                el.appendChild(instance.$el);
+
+            } else {
+
+                el.querySelector('mor-anchor .content-wrap').appendChild(instance.$el);
+
+                let $h1s = instance.$el.querySelectorAll('h1');
+                let $h2s = instance.$el.querySelectorAll('h2');
+                let $h3s = instance.$el.querySelectorAll('h3');
+
+                for (let $h1 of $h1s) {
+
+                    $h1.setAttribute('is-anchor', '');
+                    $h1.setAttribute('title', $h1.innerText);
+                    $h1.setAttribute('id', $h1.innerText.replace(anchorReplaceRegExp, '-'));
+
+                }
+
+                for (let $h2 of $h2s) {
+
+                    $h2.setAttribute('is-anchor', '2');
+                    $h2.setAttribute('title', $h2.innerText.replace(/^# /, ''));
+                    $h2.setAttribute('id', $h2.innerText.replace(/^# /, '').replace(anchorReplaceRegExp, '-'));
+
+                }
+
+                for (let $h3 of $h3s) {
+
+                    $h3.setAttribute('is-anchor', '3');
+                    $h3.setAttribute('title', $h3.innerText.replace(/^# /, ''));
+                    $h3.setAttribute('id', $h3.innerText.replace(/^# /, '').replace(anchorReplaceRegExp, '-'));
+
+                }
+
+            }
 
         }
 
@@ -2441,13 +2495,35 @@ export default {
     },
     data : function () {
 
-        return {};
+        return {
+            isComponentDoc : false
+        };
 
     },
     components : {
         'doc-header' : DocHeader,
         'doc-submenu' : DocSubmenu,
         'doc-footer' : DocFooter
+    },
+    created : function () {
+
+        if (this.category === 'component' &&
+            (
+                this.page !== 'index' &&
+                this.page !== 'uniformcolor' &&
+                this.page !== 'iconfont'
+            )) {
+
+            this.isComponentDoc = true;
+            window.isComponentDoc = true;
+
+        } else {
+
+            this.isComponentDoc = false;
+            window.isComponentDoc = false;
+
+        }
+
     },
     mounted : function () {
 
@@ -2584,7 +2660,7 @@ export default {
 a{ }
 
 .body {
-    width: 1100px;
+    width: 1150px;
     margin: 0 auto;
     font-size: 0;
 }
@@ -2605,22 +2681,33 @@ a{ }
 }
 
 .content {
-    width: 900px;
+    width: 990px;
     display: inline-block;
     vertical-align: top;
     font-size: 14px;
     box-sizing: border-box;
+
+    h2{
+        border-bottom: none;
+        padding-bottom: 0;
+    }
 
     div > h1 > code{
         vertical-align: 6px;
     }
 
     &.padding {
-        padding: 50px;
+        padding: 50px 0 50px 40px;
+    }
+
+    &.is-component-doc{
+
     }
 
     .content-title{
-        display: none;
+        display: block;
+        font-size: 0;
+        height: 0;
     }
 
     .permalink{
@@ -2629,6 +2716,17 @@ a{ }
         display: inline-block;
         transform-origin: bottom;
         margin-right: -0.15em;
+    }
+
+    mor-anchor{
+        .nav-wrap{
+            min-width: 150px;
+            padding-left: 3px;
+        }
+
+        .content-wrap{
+            min-width: 800px;
+        }
     }
 }
 

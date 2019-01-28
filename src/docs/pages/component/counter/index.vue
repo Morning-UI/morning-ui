@@ -180,6 +180,28 @@
     </div>
     :::
 
+    :::vue
+    @name:controls-position
+    ---
+    #config
+    >conf-desc
+    按钮位置。
+    >conf-accept
+    `'both'`<br>`'right'`
+    >conf-type
+    String
+    >conf-default
+    `'both'`
+    ---
+    #demo
+    >desc
+    位于右侧的按钮。
+    >tpl
+    <div style="width:130px;">
+        <ui-counter form-name="数字" controls-position="right"></ui-counter>
+    </div>
+    :::
+
     [[[方法]]]
 
     :::preset

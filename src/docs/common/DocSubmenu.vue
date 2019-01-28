@@ -56,7 +56,7 @@ export default {
 
 <style lang="less">
 .submenu {
-    width: 200px;
+    width: 160px;
     display: inline-block;
     vertical-align: top;
     border-right: 1px #EEE solid;
@@ -68,7 +68,7 @@ export default {
     li {
         
         a{
-            font-size: 13px;
+            font-size: 14px;
             color: #999;
             text-decoration: none;
             text-indent: 8px;
@@ -95,7 +95,7 @@ export default {
         }
 
         .title{
-            font-size: 14px;
+            font-size: 15px;
             color: #333;
             margin: 20px 0 5px;
         }

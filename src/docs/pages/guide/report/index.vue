@@ -14,7 +14,7 @@
 
     也可以点击`Open a regular issue`来创建一个无模板的Issue。
     
-    ### Issue模板
+    ## Issue模板
 
     为了便于开发者快速了解你的诉求，我们建议Issue请按照以下模板填写：
 
@@ -76,7 +76,7 @@
     - bug report : BUG报告
     - feature request : 功能请求
 
-    ### 跟踪进展
+    ## 跟踪进展
 
     当你通过Issue反馈问题后，MorningUI的开发者会对Issue添加标签，你可以根据标签的情况了解进展：
 
@@ -89,7 +89,7 @@
     - in review : 审查中
     - launched : 已解决并发布
 
-    ### 其他
+    ## 其他
 
     除了反馈问题外，还会有一些讨论或开发性质的Issue：
 

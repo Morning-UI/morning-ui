@@ -11,7 +11,7 @@
 
     Morning UI使用了一套基于[CommonMark Spec](http://spec.commonmark.org/)扩展的Markdown解析器，这意味着你可以使用任何[CommonMark Spec](http://spec.commonmark.org/)语法。
 
-    ### 如何编写
+    ## 如何编写
 
     #### 创建新文档
 
@@ -107,7 +107,7 @@
 
     采用HTML。
 
-    ### 扩展功能
+    ## 扩展功能
 
     Morning UI为了让开发者尽可能轻松的写文档，扩展了[CommonMark Spec](http://spec.commonmark.org/)。提供了很多方便的用法：
     
@@ -484,11 +484,11 @@
 
     注意：`---demostart---`和`---demoend---`前后需要空一行。
 
-    ### 文档编写规范
+    ## 文档编写规范
 
     编写文档时请遵循[开发规范](/guide/devrule.html)中的文档规范，[Code Review](/guide/review.html)将会检查文档编写规范。
 
-    ### 组件(Component)文档
+    ## 组件(Component)文档
 
     #### 内容组成
 
@@ -599,7 +599,7 @@
 
     只需引入`<iframe src="/report/coverage/lib/components/[组件Key]/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>`，会自动生成组件的源码。其中`[组件Key]`，需要替换成对应组件的Key。
 
-    ### 指南(Guide)文档
+    ## 指南(Guide)文档
     
     Coming soon.
 

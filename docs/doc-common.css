@@ -135,7 +135,7 @@ footer .tolab {
 }
 
 .submenu {
-  width: 200px;
+  width: 160px;
   display: inline-block;
   vertical-align: top;
   border-right: 1px #EEE solid;
@@ -145,7 +145,7 @@ footer .tolab {
   list-style: none;
 }
 .submenu li a {
-  font-size: 13px;
+  font-size: 14px;
   color: #999;
   text-decoration: none;
   text-indent: 8px;
@@ -167,7 +167,7 @@ footer .tolab {
   color: #a0a0a0;
 }
 .submenu li .title {
-  font-size: 14px;
+  font-size: 15px;
   color: #333;
   margin: 20px 0 5px;
 }
@@ -1190,7 +1190,7 @@ mor-dialog a:hover {
   content: 'Vue';
 }
 .body {
-  width: 1100px;
+  width: 1150px;
   margin: 0 auto;
   font-size: 0;
 }
@@ -1204,20 +1204,26 @@ mor-dialog a:hover {
   padding-left: calc(2em + 14px);
 }
 .content {
-  width: 900px;
+  width: 990px;
   display: inline-block;
   vertical-align: top;
   font-size: 14px;
   box-sizing: border-box;
 }
+.content h2 {
+  border-bottom: none;
+  padding-bottom: 0;
+}
 .content div > h1 > code {
   vertical-align: 6px;
 }
 .content.padding {
-  padding: 50px;
+  padding: 50px 0 50px 40px;
 }
 .content .content-title {
-  display: none;
+  display: block;
+  font-size: 0;
+  height: 0;
 }
 .content .permalink {
   color: #9F9F9F;
@@ -1225,6 +1231,13 @@ mor-dialog a:hover {
   display: inline-block;
   transform-origin: bottom;
   margin-right: -0.15em;
+}
+.content mor-anchor .nav-wrap {
+  min-width: 150px;
+  padding-left: 3px;
+}
+.content mor-anchor .content-wrap {
+  min-width: 800px;
 }
 .demo-root {
   border: 1px #E9ECEF solid;

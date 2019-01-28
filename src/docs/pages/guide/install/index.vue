@@ -6,13 +6,13 @@
     <script type="text/markdown">
     # 安装
 
-    ### 安装Vue
+    ## 安装Vue
 
     由于MorningUI依赖Vue.js，请先安装`2.5.3`以上的Vue.js（推荐使用`2.5.17`版本的Vue.js）。
 
     [了解如何安装Vue.js](https://cn.vuejs.org/v2/guide/installation.html)
 
-    ### 获取MorningUI
+    ## 获取MorningUI
 
     Morning UI的构建版本位于`dist`目录，包含四个文件：
 
@@ -25,13 +25,13 @@
 
     你可以通过下面的方式获取：
 
-    ##### 直接下载
+    #### 直接下载
 
     <ui-btn size="m" new-tab id="download">下载</ui-btn>
 
     <a href="/guide/logs.html">下载历史版本(Package)</a>
     
-    ##### NPM安装
+    #### NPM安装
     
     推荐使用NPM的方式安装，它能很好地和诸如`Webpack`或`Rollup`模块打包器配合使用。
 
@@ -40,7 +40,7 @@
     $ npm install morning-ui
     ```
     
-    ##### CDN
+    #### CDN
 
     - 最新版Morning UI：
         - jsdelivr
@@ -61,9 +61,9 @@
     - jsdelivr : https://cdn.jsdelivr.net/npm/morning-ui@0.10.21/dist/morning-ui.js
     - unpkg : https://unpkg.com/morning-ui@0.10.21/dist/morning-ui.js
 
-    ### 页面引用
+    ## 页面引用
 
-    ##### 使用标签
+    #### 使用标签
 
     分别使用`<script>`及`<style>`标签在页面中引用：
 
@@ -85,7 +85,7 @@
 
     这种方式会在全局注册`window.morning`变量。
 
-    ##### 使用模块打包器
+    #### 使用模块打包器
     
     在JS文件中通过`import`引入：
     
@@ -101,7 +101,7 @@
     Vue.use(morning);
     ```
 
-    ### 更多
+    ## 更多
 
     #### 更新日志
 

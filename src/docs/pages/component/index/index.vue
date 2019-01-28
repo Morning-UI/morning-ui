@@ -11,7 +11,7 @@
     <div class="group">
         <h2>样式组件(纯CSS，无JavaScript)</h2>
         <div class="sub-group">
-            <h3><i class="iconfont">&#xe959;</i>文本</h3>
+            <h4><i class="iconfont">&#xe959;</i>文本</h4>
             <ul>
                 <li><a href="/component/h.html">标题<p>&lt;b></p></a></li>
                 <li><a href="/component/lead.html">中心内容<p>&lt;lead></p></a></li>
@@ -33,7 +33,7 @@
             </ul>
         </div>
         <div class="sub-group">
-            <h3><i class="iconfont">&#xe625;</i>列表</h3>
+            <h4><i class="iconfont">&#xe625;</i>列表</h4>
             <ul>
                 <li><a href="/component/ol.html">有序列表<p>&lt;ol></p></a></li>
                 <li><a href="/component/ul.html">无序列表<p>&lt;ul></p></a></li>
@@ -43,7 +43,7 @@
             </ul>
         </div>
         <div class="sub-group">
-            <h3><i class="iconfont">&#xe679;</i>布局</h3>
+            <h4><i class="iconfont">&#xe679;</i>布局</h4>
             <ul>
                 <li><a href="/component/grid.html">栅格<p>&lt;grid></p></a></li>
                 <li><a href="/component/card.html">卡片<p>&lt;card></p></a></li>
@@ -60,7 +60,7 @@
             </ul>
         </div>
         <div class="sub-group">
-            <h3><i class="iconfont">&#xe624;</i>数值</h3>
+            <h4><i class="iconfont">&#xe624;</i>数值</h4>
             <ul>
                 <li><a href="/component/badge.html">徽章<p>&lt;badge></p></a></li>
                 <li><a href="/component/label.html">标签<p>&lt;label></p></a></li>
@@ -68,7 +68,7 @@
             </ul>
         </div>
         <div class="sub-group">
-            <h3><i class="iconfont">&#xe669;</i>图片</h3>
+            <h4><i class="iconfont">&#xe669;</i>图片</h4>
             <ul>
                 <li><a href="/component/img.html">图片<p>&lt;img></p></a></li>
             </ul>
@@ -78,14 +78,14 @@
     <div class="group">
         <h2>交互组件</h2>
         <div class="sub-group">
-            <h3><i class="iconfont">&#xe6e5;</i>基础</h3>
+            <h4><i class="iconfont">&#xe6e5;</i>基础</h4>
             <ul>
                 <li><a href="/component/btn.html">按钮<p>&lt;btn></p></a></li>
                 <li><a href="/component/link.html">链接<p>&lt;link></p></a></li>
             </ul>
         </div>
         <div class="sub-group">
-            <h3><i class="iconfont">&#xe60b;</i>导航</h3>
+            <h4><i class="iconfont">&#xe60b;</i>导航</h4>
             <ul>
                 <li><a href="/component/menu.html">导航菜单<p>&lt;menu></p></a></li>
                 <li><a href="/component/anchor.html">锚点导航<p>&lt;anchor></p></a></li>
@@ -98,7 +98,7 @@
             </ul>
         </div>
         <div class="sub-group">
-            <h3><i class="iconfont">&#xe60a;</i>反馈</h3>
+            <h4><i class="iconfont">&#xe60a;</i>反馈</h4>
             <ul>
                 <li><a href="/component/dialog.html">模拟盒<p>&lt;dialog></p></a></li>
                 <li><a href="/component/message.html">消息<p>&lt;message></p></a></li>
@@ -109,7 +109,7 @@
             </ul>
         </div>
         <div class="sub-group">
-            <h3><i class="iconfont">&#xe769;</i>展示</h3>
+            <h4><i class="iconfont">&#xe769;</i>展示</h4>
             <ul>
                 <li><a href="/component/table.html">表格<p>&lt;table></p></a></li>
                 <li><a href="/component/carousel.html">轮播<p>&lt;carousel></p></a></li>
@@ -119,7 +119,7 @@
             </ul>
         </div>
         <div class="sub-group">
-            <h3><i class="iconfont">&#xe645;</i>其他</h3>
+            <h4><i class="iconfont">&#xe645;</i>其他</h4>
             <ul>
                 <li><a href="/component/sticky.html">吸附<p>&lt;sticky></p></a></li>
             </ul>
@@ -129,7 +129,7 @@
     <div class="group">
         <h2>表单组件</h2>
         <div class="sub-group">
-            <h3><i class="iconfont">&#xe959;</i>文本</h3>
+            <h4><i class="iconfont">&#xe959;</i>文本</h4>
             <ul>
                 <li><a href="/component/textinput.html">文本输入<p>&lt;textinput></p></a></li>
                 <li><a href="/component/textarea.html">段落输入<p>&lt;textarea></p></a></li>
@@ -137,7 +137,7 @@
             </ul>
         </div>
         <div class="sub-group">
-            <h3><i class="iconfont">&#xe646;</i>选项</h3>
+            <h4><i class="iconfont">&#xe646;</i>选项</h4>
             <ul>
                 <li><a href="/component/switch.html">开关<p>&lt;switch></p></a></li>
                 <li><a href="/component/select.html">下拉选择<p>&lt;select></p></a></li>
@@ -146,7 +146,7 @@
             </ul>
         </div>
         <div class="sub-group">
-            <h3><i class="iconfont">&#xe624;</i>数值</h3>
+            <h4><i class="iconfont">&#xe624;</i>数值</h4>
             <ul>
                 <li><a href="/component/counter.html">计数器<p>&lt;counter></p></a></li>
                 <li><a href="/component/rate.html">评分<p>&lt;rate></p></a></li>
@@ -155,7 +155,7 @@
             </ul>
         </div>
         <div class="sub-group">
-            <h3><i class="iconfont">&#xe71e;</i>日期时间</h3>
+            <h4><i class="iconfont">&#xe71e;</i>日期时间</h4>
             <ul>
                 <li><a href="/component/timepicker.html">时间选择器<p>&lt;timepicker></p></a></li>
                 <li><a href="/component/datepicker.html">日期选择器<p>&lt;datepicker></p></a></li>
@@ -163,14 +163,14 @@
             </ul>
         </div>
         <div class="sub-group">
-            <h3><i class="iconfont">&#xe603;</i>结构数据</h3>
+            <h4><i class="iconfont">&#xe603;</i>结构数据</h4>
             <ul>
                 <li><a href="/component/multiinput.html">多项输入<p>&lt;multiinput></p></a></li>
                 <li><a href="/component/multiform.html">多项表单输入<p>&lt;multiform></p></a></li>
             </ul>
         </div>
         <div class="sub-group">
-            <h3><i class="iconfont">&#xe645;</i>其他</h3>
+            <h4><i class="iconfont">&#xe645;</i>其他</h4>
             <ul>
                 <li><a href="/component/upload.html">文件上传<p>&lt;upload></p></a></li>
                 <li><a href="/component/imagemap.html">图片热区输入<p>&lt;imagemap></p></a></li>
@@ -214,7 +214,7 @@ export default {
         box-sizing: border-box;
         vertical-align: top;
 
-        h3{
+        h4{
             font-size: 16px;
 
             .iconfont{
