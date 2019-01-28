@@ -7,11 +7,11 @@
     
     # 介绍
 
-    ### Morning UI是什么？
+    ## Morning UI是什么？
 
     Morning UI是一套桌面端UI组件库，基于[Vue.js](https://vuejs.org/)。
 
-    ### 快速开始
+    ## 快速开始
 
     首先确保你的页面采用了Vue.js，然后只需简单三步即可使用Morning UI:
 
@@ -67,7 +67,7 @@
 
     恭喜你使用了第一个Morning UI组件。
 
-    ### 接下来
+    ## 接下来
 
     通过CDN、Webpack或更多途径使用Morning UI，见：[安装](/guide/install.html)
 

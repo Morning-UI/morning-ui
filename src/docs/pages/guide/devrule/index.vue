@@ -11,7 +11,7 @@
 
     > 若下面的规范后添加了<ui-badge size="xxs" class="circle">AUTO</ui-badge>标记，则表示此条规范会在自动化测试中检测。
 
-    ### 组件规范
+    ## 组件规范
 
     #### 通用
         
@@ -84,7 +84,7 @@
     - 支持以下这些方法：`.set`、`.get`、`.setName`、`.getName`、`.setKey`、`.getKey`、`.setGroup`、`.getGroup`、`.addGroup`、`.removeGroup`
     - 支持`value-change`事件
 
-    ### 文档规范
+    ## 文档规范
 
     #### 通用
 
@@ -121,7 +121,7 @@
     - 具有以下这些方法演示：`.set`、`.get`、`.setName`、`.getName`、`.setKey`、`.getKey`、`.setGroup`、`.getGroup`、`.addGroup`、`.removeGroup`
     - 具有`value-change`事件演示
 
-    ### 测试用例规范
+    ## 测试用例规范
 
     Coming soon
 

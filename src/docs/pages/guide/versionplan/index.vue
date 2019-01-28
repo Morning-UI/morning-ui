@@ -6,7 +6,7 @@
     <script type="text/markdown">
     # 版本计划
 
-    ### 版本规范
+    ## 版本规范
 
     Morning UI采用[语义化版本控制规范](http://semver.org/lang/zh-CN/)。
 
@@ -20,7 +20,7 @@
 
     版本发布情况请查看：[更新日志](/guide/logs.html)。
 
-    ### 更新日志规范
+    ## 更新日志规范
 
     更新日志包含了单个版本的变动，按变动类型分为：
 
@@ -34,7 +34,7 @@
 
     如果变动中包含了不兼容的变动，需要增加`升级注意事项`来写清楚变动情况及替代方案。
     
-    ### ROAD MAP
+    ## ROAD MAP
 
     - `0.10.0` : <ui-badge size="xxs" color="success">DONE</ui-badge>Morning UI的首个版本
     - `0.11.0` : <ui-badge size="xxs" color="success">DONE</ui-badge>同步HMP的所有组件，计划2018年春季发布

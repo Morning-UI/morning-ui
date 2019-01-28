@@ -16108,12 +16108,32 @@ mor-counter .add-step:active {
   background: #D6DDE5;
   z-index: 3;
 }
+mor-counter .sub-step .mo-icon,
+mor-counter .add-step .mo-icon {
+  font-size: 14px;
+}
 mor-counter .sub-step {
   border-radius: 3px 0 0 3px;
 }
 mor-counter .add-step {
   border-radius: 0 3px 3px 0;
   margin-left: -2px;
+}
+mor-counter .step-controls {
+  height: 35.7px;
+}
+mor-counter .step-controls .sub-step,
+mor-counter .step-controls .add-step {
+  height: 50%;
+  line-height: 17.85px;
+}
+mor-counter .step-controls .sub-step {
+  border-radius: 0 0 3px 0;
+  margin-left: -1px;
+}
+mor-counter .step-controls .add-step {
+  border-radius: 0 3px 0 0;
+  margin-left: -1px;
 }
 mor-counter input {
   position: relative;
@@ -16126,7 +16146,6 @@ mor-counter input {
   padding: 0 1em;
   background: #FFFFFF;
   border: 1px #E6E6E6 solid;
-  border-radius: 0;
   height: 35.7px;
   line-height: 35.7px;
   color: #b3b3b3 !important;
@@ -16150,6 +16169,13 @@ mor-counter input:hover {
 mor-counter input:focus {
   border-color: #8E9CAF;
   color: #17212D !important;
+}
+mor-counter.controls-on-both input {
+  border-radius: 0;
+}
+mor-counter.controls-on-right input {
+  border-radius: 3px 0 0 3px;
+  margin-left: 0;
 }
 mor-counter.st-disabled input,
 mor-counter.st-readonly input {

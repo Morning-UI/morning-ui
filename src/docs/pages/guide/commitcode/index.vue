@@ -9,7 +9,7 @@
 
     Morning UI的协作开发基于Git的分支。
 
-    ### Git分支
+    ## Git分支
 
     Morning UI的分支分为：
 
@@ -28,7 +28,7 @@
 
     下面的内容将会进一步说明提交代码每一步需要做什么及注意的事项。
 
-    ### 标记Issue
+    ## 标记Issue
 
     找到你想要处理的Issue，在标记之前请先确保此Issue**未处于**以下任何一个状态：
 
@@ -65,7 +65,7 @@
 
     > 注意：目前新增功能、优化代码、更新逻辑等处理都被认为是`feature`。
 
-    ### 新建分支
+    ## 新建分支
 
     在你的本地项目中切换到`dev`分支：`git checkout dev`，然后执行`git pull`确保代码库是最新的。
 
@@ -77,7 +77,7 @@
 
     接下来就可以正式编码了。
 
-    ### 提交代码
+    ## 提交代码
 
     当你完成改动后，使用`git add`和`git commit`命令提交你的改动，请在提交前确保处在正确的分支上。
 
@@ -85,7 +85,7 @@
 
     然后通过`git push`将代码推送到Github，首次推送新分支时需要使用`git push --set-upstream origin [分支名]`。
 
-    ### Pull Request
+    ## Pull Request
     
     当你完成了所有的编码工作，前往：`https://github.com/Morning-UI/morning-ui/pulls`，点击`New pull request`：
 
@@ -107,7 +107,7 @@
 
     关于Reviwe详见：[指出问题及沟通](/guide/review.html#指出问题及沟通)
 
-    ### 合入主开发分支
+    ## 合入主开发分支
     
     当你的`pull request`满足下面的条件：
 
@@ -117,7 +117,7 @@
 
     项目管理员会将你的代码合并至主开发分支。
 
-    ### 版本发布
+    ## 版本发布
 
     当项目管理员合并完版本中的所有`pull request`之后，会将主开发分支代码合入`master`。然后发布版本。
 

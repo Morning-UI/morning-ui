@@ -78,7 +78,7 @@ export default {
         富文本编辑器 : '/component/texteditor.html',
         开关 : '/component/switch.html',
         '评分<i class="tag new"></i>' : '/component/rate.html',
-        计数器 : '/component/counter.html',
+        '计数器<i class="tag update"></i>' : '/component/counter.html',
         下拉选择 : '/component/select.html',
         // 级联选择<i class="tag update"></i> : 'b',
         复选框组 : '/component/checkbox.html',

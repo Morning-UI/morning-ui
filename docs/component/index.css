@@ -13,10 +13,10 @@
   box-sizing: border-box;
   vertical-align: top;
 }
-.group .sub-group h3 {
+.group .sub-group h4 {
   font-size: 16px;
 }
-.group .sub-group h3 .iconfont {
+.group .sub-group h4 .iconfont {
   margin-right: 6px;
 }
 .group .sub-group ul {
