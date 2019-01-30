@@ -5,9 +5,9 @@
   "main": "dist/morning-ui.js",
   "style": "dist/morning-ui.css",
   "scripts": {
-    "build": "./node_modules/.bin/webpack --config ./build/webpack.config.js --mode production",
-    "dev": "./node_modules/.bin/webpack-dev-server --config ./build/webpack.config.js --mode development",
-    "build-profile": "./node_modules/.bin/webpack --config ./build/webpack.config.js --mode production --profile --json > webpack-profile.json",
+    "build": "./node_modules/.bin/parallel-webpack --config ./build/webpack.prod.config.js --mode production",
+    "dev": "./node_modules/.bin/webpack-dev-server --config ./build/webpack.dev.config.js --mode development",
+    "build-profile": "./node_modules/.bin/webpack --config ./build/webpack.prod.config.js --mode production --profile --json > webpack-profile.json",
     "lint": "npm run js-lint && npm run css-lint",
     "js-lint": "node_modules/.bin/eslint --ext js,vue src/ build/ test/ bin/ server/",
     "js-lint-fix": "npm run lint -- --fix",
@@ -89,8 +89,8 @@
     "browser-env": "^3.2.5",
     "clean-css": "^4.1.11",
     "clean-css-loader": "^0.1.4",
-    "clean-webpack-plugin": "^0.1.19",
-    "copy-webpack-plugin": "^4.5.1",
+    "clean-webpack-plugin": "^1.0.1",
+    "copy-webpack-plugin": "^4.6.0",
     "cross-env": "^5.0.5",
     "css-loader": "^0.28.11",
     "eslint": "^4.5.0",
@@ -123,6 +123,7 @@
     "mustache": "^2.3.0",
     "nightmare": "^3.0.1",
     "nyc": "^11.2.1",
+    "parallel-webpack": "^2.3.0",
     "postcss-less": "^1.1.0",
     "postcss-loader": "^2.1.4",
     "postcss-normalize": "^4.0.0",
@@ -132,6 +133,7 @@
     "stylelint": "^8.1.1",
     "stylelint-processor-html": "^1.0.0",
     "tap-out": "^2.0.0",
+    "thread-loader": "^2.1.2",
     "underscore": "^1.8.3",
     "upyun": "^3.3.2",
     "url-loader": "^1.0.1",
@@ -141,9 +143,10 @@
     "vue-style-loader": "^4.1.0",
     "vue-template-compiler": "^2.5.16",
     "walk": "^2.3.9",
-    "webpack": "^4.6.0",
-    "webpack-cli": "^2.0.14",
-    "webpack-dev-server": "^3.1.3"
+    "webpack": "^4.29.0",
+    "webpack-cli": "^3.2.1",
+    "webpack-dev-server": "^3.1.14",
+    "webpack-merge": "^4.2.1"
   },
   "ava": {
     "require": [
