@@ -5,9 +5,9 @@
   "main": "dist/morning-ui.js",
   "style": "dist/morning-ui.css",
   "scripts": {
-    "build": "./node_modules/.bin/webpack --config ./build/webpack.config.js --mode production",
-    "dev": "./node_modules/.bin/webpack-dev-server --config ./build/webpack.config.js --mode development",
-    "build-profile": "./node_modules/.bin/webpack --config ./build/webpack.config.js --mode production --profile --json > webpack-profile.json",
+    "build": "./node_modules/.bin/parallel-webpack --config ./build/webpack.prod.config.js --mode production",
+    "dev": "./node_modules/.bin/webpack-dev-server --config ./build/webpack.dev.config.js --mode development",
+    "build-profile": "./node_modules/.bin/webpack --config ./build/webpack.prod.config.js --mode production --profile --json > webpack-profile.json",
     "lint": "npm run js-lint && npm run css-lint",
     "js-lint": "node_modules/.bin/eslint --ext js,vue src/ build/ test/ bin/ server/",
     "js-lint-fix": "npm run lint -- --fix",
@@ -133,6 +133,7 @@
     "stylelint": "^8.1.1",
     "stylelint-processor-html": "^1.0.0",
     "tap-out": "^2.0.0",
+    "thread-loader": "^2.1.2",
     "underscore": "^1.8.3",
     "upyun": "^3.3.2",
     "url-loader": "^1.0.1",
@@ -144,7 +145,8 @@
     "walk": "^2.3.9",
     "webpack": "^4.29.0",
     "webpack-cli": "^3.2.1",
-    "webpack-dev-server": "^3.1.14"
+    "webpack-dev-server": "^3.1.14",
+    "webpack-merge": "^4.2.1"
   },
   "ava": {
     "require": [

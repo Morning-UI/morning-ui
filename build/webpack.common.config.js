@@ -163,37 +163,43 @@ devVerConfig = extend(
                 },
                 {
                     test : /\.vue$/,
-                    loader : 'vue-loader',
-                    options : {
-                        loaders : {
-                            js : 'babel-loader',
-                            less : extractDevCss.extract({
-                                fallback : 'vue-style-loader',
-                                use : [{
-                                    loader : 'css-loader',
-                                    options : {
-                                        importLoaders : 2
-                                    }
-                                }, {
-                                    loader : 'less-loader'
-                                }, {
-                                    loader : 'postcss-loader',
-                                    options : {
-                                        config : {
-                                            path : path.resolve(pathBuild, 'postcss.config.js')
-                                        }
-                                    }
-                                }]
-                            })
+                    use : [
+                        // 'thread-loader',
+                        {
+                            loader : 'vue-loader',
+                            options : {
+                                loaders : {
+                                    js : 'babel-loader',
+                                    less : extractDevCss.extract({
+                                        fallback : 'vue-style-loader',
+                                        use : [{
+                                            loader : 'css-loader',
+                                            options : {
+                                                importLoaders : 2
+                                            }
+                                        }, {
+                                            loader : 'less-loader'
+                                        }, {
+                                            loader : 'postcss-loader',
+                                            options : {
+                                                config : {
+                                                    path : path.resolve(pathBuild, 'postcss.config.js')
+                                                }
+                                            }
+                                        }]
+                                    })
+                                }
+                            }
                         }
-                    }
+                    ]
                 },
                 {
                     test : /\.js$/,
                     exclude : /node_modules\/(?!(quill|quill-image-resize-module))/,
-                    use : {
-                        loader : 'babel-loader'
-                    }
+                    use : [
+                        // 'thread-loader',
+                        'babel-loader'
+                    ]
                 },
                 {
                     test : /\.svg$/,
@@ -287,42 +293,46 @@ prodVerConfig = extend(
                 },
                 {
                     test : /\.vue$/,
-                    use : {
-                        loader : 'vue-loader',
-                        options : {
-                            loaders : {
-                                js : 'babel-loader',
-                                less : extractProdCss.extract({
-                                    fallback : 'vue-style-loader',
-                                    use : [{
-                                        loader : 'css-loader',
-                                        options : {
-                                            importLoaders : 3,
-                                            minimize : true
-                                        }
-                                    }, {
-                                        loader : 'clean-css-loader'
-                                    }, {
-                                        loader : 'less-loader'
-                                    }, {
-                                        loader : 'postcss-loader',
-                                        options : {
-                                            config : {
-                                                path : path.resolve(pathBuild, 'postcss.config.js')
+                    use : [
+                        // 'thread-loader',
+                        {
+                            loader : 'vue-loader',
+                            options : {
+                                loaders : {
+                                    js : 'babel-loader',
+                                    less : extractProdCss.extract({
+                                        fallback : 'vue-style-loader',
+                                        use : [{
+                                            loader : 'css-loader',
+                                            options : {
+                                                importLoaders : 3,
+                                                minimize : true
                                             }
-                                        }
-                                    }]
-                                })
+                                        }, {
+                                            loader : 'clean-css-loader'
+                                        }, {
+                                            loader : 'less-loader'
+                                        }, {
+                                            loader : 'postcss-loader',
+                                            options : {
+                                                config : {
+                                                    path : path.resolve(pathBuild, 'postcss.config.js')
+                                                }
+                                            }
+                                        }]
+                                    })
+                                }
                             }
                         }
-                    }
+                    ]
                 },
                 {
                     test : /\.js$/,
                     exclude : /node_modules\/(?!(quill|quill-image-resize-module))/,
-                    use : {
-                        loader : 'babel-loader'
-                    }
+                    use : [
+                        // 'thread-loader',
+                        'babel-loader'
+                    ]
                 },
                 {
                     test : /\.svg$/,
@@ -393,23 +403,29 @@ docsConfig = {
             },
             {
                 test : /\.vue$/,
-                use : {
-                    loader : 'vue-loader',
-                    options : {
-                        loaders : {
-                            js : 'babel-loader',
-                            less : extractDocsCss.extract({
-                                fallback : 'vue-style-loader',
-                                use : ['css-loader', 'less-loader']
-                            })
+                use : [
+                    // 'thread-loader',
+                    {
+                        loader : 'vue-loader',
+                        options : {
+                            loaders : {
+                                js : 'babel-loader',
+                                less : extractDocsCss.extract({
+                                    fallback : 'vue-style-loader',
+                                    use : ['css-loader', 'less-loader']
+                                })
+                            }
                         }
                     }
-                }
+                ]
             },
             {
                 test : /\.js$/,
                 exclude : /(node_modules|libs)/,
-                use : ['babel-loader']
+                use : [
+                    // 'thread-loader',
+                    'babel-loader'
+                ]
             }
         ]
     },
@@ -431,13 +447,11 @@ docsConfig = {
     }
 };
 
-let targets = [
-    devVerConfig,
-    prodVerConfig,
-    docsConfig
-];
-
 getDocsEntry(docsConfig);
 getDocsHtmlPlugin(docsConfig);
 
-module.exports = targets;
+module.exports = {
+    devVerConfig,
+    prodVerConfig,
+    docsConfig
+};
