@@ -1,0 +1,163 @@
+@import '~Common/var.less';
+
+mor-transfer{
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    height: 100%;
+
+    .transfer-wrap{
+        display: flex;
+        align-items : stretch;
+        justify-content: center;
+        height: 100%;
+    }
+
+    &.has-form-name{
+        .transfer-wrap{
+            height: calc(100% - @fontSize*1.5 - @fontSize*0.5);
+        }
+    }
+
+    .transfer-source-list,
+    .transfer-target-list,
+    .transfer-controls{
+        flex-grow : 4;
+    }
+
+    .transfer-source-list,
+    .transfer-target-list{
+        border: 1px @colorSilver solid;
+        background: @colorWhite;
+        border-radius: 3px;
+        overflow: hidden;
+        padding: 0;
+        font-size: @fontSize;
+        min-width: 10em;
+
+        .transfer-title{
+            height: @fontSize*2.6;
+            font-size: @fontSize;
+            padding: @fontSize*0.4 @fontSize*0.6;
+            background: @colorExtraLightSilver;
+            font-size: 0;
+            position: relative;
+
+            .transfer-source-count,
+            .transfer-target-count,
+            > p,
+            > mor-checkbox{
+                line-height: @fontSize*1.8;
+            }
+
+            .transfer-source-count,
+            .transfer-target-count{
+                font-size: @fontSize*0.75;
+                position: absolute;
+                right: @fontSize*0.6;
+                top: @fontSize*0.4;
+            }
+
+            > p{
+                font-size: @fontSize*0.875;
+                display: inline-block;
+                color: @colorBlack;
+                margin: 0 0 0 0.5em;
+                vertical-align: top;
+
+                > i{
+                    color: @colorBlack;
+                }
+            }
+
+            > mor-checkbox{
+                display: inline-block;
+                width: auto;
+                vertical-align: top;
+
+                label > span {
+                    font-size: 0;
+                }
+            }
+        }
+
+        .transfer-list{
+            height: calc(100% - @fontSize*2.6);
+            position: relative;
+
+            > mor-checkbox{
+                height: 100%;
+                overflow-y: scroll;
+
+                .setup-hover-scrollbar();
+
+                > .il {
+                    flex-direction: column;
+                    padding: @fontSize*0.5 0;
+
+                    > label{
+                        margin: 0;
+                        padding: @fontSize*0.3 @fontSize*0.6;
+
+                        > span{
+                            line-height: 1em;
+                        }
+                    }
+                }
+            }
+
+            .search-input{
+                padding: @fontSize*0.5 @fontSize*0.5 0 @fontSize*0.5;
+
+                mor-textinput input{
+                    padding: 0 0.6em;
+                    height: @fontSize*2;
+                    font-size: @fontSize*0.75;
+                }
+            }
+
+            .list-is-empty{
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                font-size: @fontSize*2;
+                color: @colorSilver;
+            }
+        }
+    }
+
+    .transfer-controls{
+        flex-grow : 1;
+        flex-direction: column;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 1em;
+
+        >mor-btn{
+            margin: 0.5em 0;
+
+            > .mo-icon{
+                font-size: @fontSize*0.75;
+            }
+        }
+    }
+
+    .setup-form();
+
+    &.st-normal{}
+
+    &.st-disabled,
+    &.st-readonly{
+        .transfer-source-list,
+        .transfer-target-list{
+            border: 1px @colorExtraLightBlue solid;
+        }
+    }
+
+    // default status
+    &{
+        .st-normal;
+    }
+}

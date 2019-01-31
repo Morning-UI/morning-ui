@@ -16907,6 +16907,9 @@ mor-checkbox > .il label.disabled:hover span {
 mor-checkbox > .il label.disabled.checked .mo-icon {
   opacity: 0.6;
 }
+mor-checkbox > .il label.hidden {
+  display: none;
+}
 mor-checkbox.is-max > .il label:not(.checked) {
   border-color: #d2d2d2;
   -webkit-user-select: none;
@@ -16943,6 +16946,13 @@ mor-checkbox.co-t > .il label.part-checked .box {
 mor-checkbox.co-t.border > .il label.checked,
 mor-checkbox.co-t.border > .il label.part-checked {
   border-color: #F33D5D;
+}
+mor-checkbox.co-t.st-disabled > .il label.checked .box,
+mor-checkbox.co-t.st-readonly > .il label.checked .box,
+mor-checkbox.co-t.st-disabled > .il label.part-checked .box,
+mor-checkbox.co-t.st-readonly > .il label.part-checked .box {
+  background: #d60d31;
+  border-color: #d60d31;
 }
 mor-checkbox.co-lt > .il label.checked .box,
 mor-checkbox.co-lt > .il label.part-checked .box {
@@ -17241,6 +17251,13 @@ mor-checkbox > .il label.part-checked .box {
 mor-checkbox.border > .il label.checked,
 mor-checkbox.border > .il label.part-checked {
   border-color: #F33D5D;
+}
+mor-checkbox.st-disabled > .il label.checked .box,
+mor-checkbox.st-readonly > .il label.checked .box,
+mor-checkbox.st-disabled > .il label.part-checked .box,
+mor-checkbox.st-readonly > .il label.part-checked .box {
+  background: #d60d31;
+  border-color: #d60d31;
 }
 
 mor-radio {
@@ -17605,6 +17622,183 @@ mor-radio > .il label.checked .box {
 }
 mor-radio.border > .il label.checked {
   border-color: #F33D5D;
+}
+
+mor-transfer {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  height: 100%;
+}
+mor-transfer .transfer-wrap {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  height: 100%;
+}
+mor-transfer.has-form-name .transfer-wrap {
+  height: calc(100% - 16px*1.5 - 16px*0.5);
+}
+mor-transfer .transfer-source-list,
+mor-transfer .transfer-target-list,
+mor-transfer .transfer-controls {
+  flex-grow: 4;
+}
+mor-transfer .transfer-source-list,
+mor-transfer .transfer-target-list {
+  border: 1px #D6DDE5 solid;
+  background: #FFFFFF;
+  border-radius: 3px;
+  overflow: hidden;
+  padding: 0;
+  font-size: 16px;
+  min-width: 10em;
+}
+mor-transfer .transfer-source-list .transfer-title,
+mor-transfer .transfer-target-list .transfer-title {
+  height: 41.6px;
+  font-size: 16px;
+  padding: 6.4px 9.6px;
+  background: #EDF1F5;
+  font-size: 0;
+  position: relative;
+}
+mor-transfer .transfer-source-list .transfer-title .transfer-source-count,
+mor-transfer .transfer-target-list .transfer-title .transfer-source-count,
+mor-transfer .transfer-source-list .transfer-title .transfer-target-count,
+mor-transfer .transfer-target-list .transfer-title .transfer-target-count,
+mor-transfer .transfer-source-list .transfer-title > p,
+mor-transfer .transfer-target-list .transfer-title > p,
+mor-transfer .transfer-source-list .transfer-title > mor-checkbox,
+mor-transfer .transfer-target-list .transfer-title > mor-checkbox {
+  line-height: 28.8px;
+}
+mor-transfer .transfer-source-list .transfer-title .transfer-source-count,
+mor-transfer .transfer-target-list .transfer-title .transfer-source-count,
+mor-transfer .transfer-source-list .transfer-title .transfer-target-count,
+mor-transfer .transfer-target-list .transfer-title .transfer-target-count {
+  font-size: 12px;
+  position: absolute;
+  right: 9.6px;
+  top: 6.4px;
+}
+mor-transfer .transfer-source-list .transfer-title > p,
+mor-transfer .transfer-target-list .transfer-title > p {
+  font-size: 14px;
+  display: inline-block;
+  color: #17212D;
+  margin: 0 0 0 0.5em;
+  vertical-align: top;
+}
+mor-transfer .transfer-source-list .transfer-title > p > i,
+mor-transfer .transfer-target-list .transfer-title > p > i {
+  color: #17212D;
+}
+mor-transfer .transfer-source-list .transfer-title > mor-checkbox,
+mor-transfer .transfer-target-list .transfer-title > mor-checkbox {
+  display: inline-block;
+  width: auto;
+  vertical-align: top;
+}
+mor-transfer .transfer-source-list .transfer-title > mor-checkbox label > span,
+mor-transfer .transfer-target-list .transfer-title > mor-checkbox label > span {
+  font-size: 0;
+}
+mor-transfer .transfer-source-list .transfer-list,
+mor-transfer .transfer-target-list .transfer-list {
+  height: calc(100% - 16px*2.6);
+  position: relative;
+}
+mor-transfer .transfer-source-list .transfer-list > mor-checkbox,
+mor-transfer .transfer-target-list .transfer-list > mor-checkbox {
+  height: 100%;
+  overflow-y: scroll;
+}
+mor-transfer .transfer-source-list .transfer-list > mor-checkbox::-webkit-scrollbar,
+mor-transfer .transfer-target-list .transfer-list > mor-checkbox::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  background-color: rgba(0, 0, 0, 0);
+}
+mor-transfer .transfer-source-list .transfer-list > mor-checkbox::-webkit-scrollbar-thumb,
+mor-transfer .transfer-target-list .transfer-list > mor-checkbox::-webkit-scrollbar-thumb {
+  width: 5px;
+  height: 5px;
+  background: rgba(0, 0, 0, 0);
+  border-radius: 4px;
+}
+mor-transfer .transfer-source-list .transfer-list > mor-checkbox:hover::-webkit-scrollbar-thumb,
+mor-transfer .transfer-target-list .transfer-list > mor-checkbox:hover::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+}
+mor-transfer .transfer-source-list .transfer-list > mor-checkbox > .il,
+mor-transfer .transfer-target-list .transfer-list > mor-checkbox > .il {
+  flex-direction: column;
+  padding: 8px 0;
+}
+mor-transfer .transfer-source-list .transfer-list > mor-checkbox > .il > label,
+mor-transfer .transfer-target-list .transfer-list > mor-checkbox > .il > label {
+  margin: 0;
+  padding: 4.8px 9.6px;
+}
+mor-transfer .transfer-source-list .transfer-list > mor-checkbox > .il > label > span,
+mor-transfer .transfer-target-list .transfer-list > mor-checkbox > .il > label > span {
+  line-height: 1em;
+}
+mor-transfer .transfer-source-list .transfer-list .search-input,
+mor-transfer .transfer-target-list .transfer-list .search-input {
+  padding: 8px 8px 0 8px;
+}
+mor-transfer .transfer-source-list .transfer-list .search-input mor-textinput input,
+mor-transfer .transfer-target-list .transfer-list .search-input mor-textinput input {
+  padding: 0 0.6em;
+  height: 32px;
+  font-size: 12px;
+}
+mor-transfer .transfer-source-list .transfer-list .list-is-empty,
+mor-transfer .transfer-target-list .transfer-list .list-is-empty {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 32px;
+  color: #D6DDE5;
+}
+mor-transfer .transfer-controls {
+  flex-grow: 1;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 1em;
+}
+mor-transfer .transfer-controls > mor-btn {
+  margin: 0.5em 0;
+}
+mor-transfer .transfer-controls > mor-btn > .mo-icon {
+  font-size: 12px;
+}
+mor-transfer.has-cleanbtn {
+  padding-bottom: 20px;
+}
+mor-transfer .cleanbtn {
+  position: absolute;
+  right: 0;
+  font-size: 12px;
+  margin-top: 1px;
+}
+mor-transfer > .form-name {
+  color: #303C4B;
+  font-size: 16px;
+  margin-bottom: 0.5em;
+  -webkit-user-select: text;
+  text-align: left;
+}
+mor-transfer.st-disabled .transfer-source-list,
+mor-transfer.st-readonly .transfer-source-list,
+mor-transfer.st-disabled .transfer-target-list,
+mor-transfer.st-readonly .transfer-target-list {
+  border: 1px #A8B3C2 solid;
 }
 
 mor-multiinput {

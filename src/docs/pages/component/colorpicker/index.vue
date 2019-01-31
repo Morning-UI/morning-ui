@@ -43,7 +43,7 @@
     ---
     #config
     >conf-desc
-    通过`set()`方法获取颜色的数值类型。若颜色没有透明度，在数值上会自动过滤透明度。
+    通过`get()`方法获取颜色的数值类型。若颜色没有透明度，在数值上会自动过滤透明度。
     >conf-accept
     `'hex'`<br>`'rgba'`<br>`'hsla'`
     >conf-type

@@ -114,6 +114,10 @@ mor-checkbox{
             &.disabled{
                 .set-label-disabled();
             }
+
+            &.hidden{
+                display: none;
+            }
         }
     }
 
@@ -155,6 +159,15 @@ mor-checkbox{
         &.border > .il label.checked,
         &.border > .il label.part-checked{
             border-color: @colorTheme;
+        }
+
+        &.st-disabled,
+        &.st-readonly{
+            > .il label.checked .box,
+            > .il label.part-checked .box{
+                background: darken(@colorTheme, 15%);
+                border-color: darken(@colorTheme, 15%);
+            }
         }
     }
 

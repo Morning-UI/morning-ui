@@ -116,7 +116,7 @@
     #demo
     >tpl
     <div style="width:200px;">
-        <ui-rate form-name="评分" allow-half></ui-rate>
+        <ui-rate form-name="评分" show-note></ui-rate>
     </div>
     :::
 
