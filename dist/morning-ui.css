@@ -16907,6 +16907,9 @@ mor-checkbox > .il label.disabled:hover span {
 mor-checkbox > .il label.disabled.checked .mo-icon {
   opacity: 0.6;
 }
+mor-checkbox > .il label.hidden {
+  display: none;
+}
 mor-checkbox.is-max > .il label:not(.checked) {
   border-color: #d2d2d2;
   -webkit-user-select: none;
@@ -16944,6 +16947,18 @@ mor-checkbox.co-t.border > .il label.checked,
 mor-checkbox.co-t.border > .il label.part-checked {
   border-color: #F33D5D;
 }
+mor-checkbox.co-t.st-disabled > .il label.checked .box,
+mor-checkbox.co-t.st-readonly > .il label.checked .box,
+mor-checkbox.co-t.st-disabled > .il label.part-checked .box,
+mor-checkbox.co-t.st-readonly > .il label.part-checked .box {
+  background: #de526a;
+  border-color: #de526a;
+}
+mor-checkbox.co-t > .il label.checked.disabled .box,
+mor-checkbox.co-t > .il label.part-checked.disabled .box {
+  background: #de526a;
+  border-color: #de526a;
+}
 mor-checkbox.co-lt > .il label.checked .box,
 mor-checkbox.co-lt > .il label.part-checked .box {
   background: #F86F88;
@@ -16952,6 +16967,18 @@ mor-checkbox.co-lt > .il label.part-checked .box {
 mor-checkbox.co-lt.border > .il label.checked,
 mor-checkbox.co-lt.border > .il label.part-checked {
   border-color: #F86F88;
+}
+mor-checkbox.co-lt.st-disabled > .il label.checked .box,
+mor-checkbox.co-lt.st-readonly > .il label.checked .box,
+mor-checkbox.co-lt.st-disabled > .il label.part-checked .box,
+mor-checkbox.co-lt.st-readonly > .il label.part-checked .box {
+  background: #e97e92;
+  border-color: #e97e92;
+}
+mor-checkbox.co-lt > .il label.checked.disabled .box,
+mor-checkbox.co-lt > .il label.part-checked.disabled .box {
+  background: #e97e92;
+  border-color: #e97e92;
 }
 mor-checkbox.co-dt > .il label.checked .box,
 mor-checkbox.co-dt > .il label.part-checked .box {
@@ -16962,6 +16989,18 @@ mor-checkbox.co-dt.border > .il label.checked,
 mor-checkbox.co-dt.border > .il label.part-checked {
   border-color: #D22343;
 }
+mor-checkbox.co-dt.st-disabled > .il label.checked .box,
+mor-checkbox.co-dt.st-readonly > .il label.checked .box,
+mor-checkbox.co-dt.st-disabled > .il label.part-checked .box,
+mor-checkbox.co-dt.st-readonly > .il label.part-checked .box {
+  background: #b93c53;
+  border-color: #b93c53;
+}
+mor-checkbox.co-dt > .il label.checked.disabled .box,
+mor-checkbox.co-dt > .il label.part-checked.disabled .box {
+  background: #b93c53;
+  border-color: #b93c53;
+}
 mor-checkbox.co-s > .il label.checked .box,
 mor-checkbox.co-s > .il label.part-checked .box {
   background: #4DBD67;
@@ -16970,6 +17009,18 @@ mor-checkbox.co-s > .il label.part-checked .box {
 mor-checkbox.co-s.border > .il label.checked,
 mor-checkbox.co-s.border > .il label.part-checked {
   border-color: #4DBD67;
+}
+mor-checkbox.co-s.st-disabled > .il label.checked .box,
+mor-checkbox.co-s.st-readonly > .il label.checked .box,
+mor-checkbox.co-s.st-disabled > .il label.part-checked .box,
+mor-checkbox.co-s.st-readonly > .il label.part-checked .box {
+  background: #65a574;
+  border-color: #65a574;
+}
+mor-checkbox.co-s > .il label.checked.disabled .box,
+mor-checkbox.co-s > .il label.part-checked.disabled .box {
+  background: #65a574;
+  border-color: #65a574;
 }
 mor-checkbox.co-w > .il label.checked .box,
 mor-checkbox.co-w > .il label.part-checked .box {
@@ -16980,6 +17031,18 @@ mor-checkbox.co-w.border > .il label.checked,
 mor-checkbox.co-w.border > .il label.part-checked {
   border-color: #F0AD4E;
 }
+mor-checkbox.co-w.st-disabled > .il label.checked .box,
+mor-checkbox.co-w.st-readonly > .il label.checked .box,
+mor-checkbox.co-w.st-disabled > .il label.part-checked .box,
+mor-checkbox.co-w.st-readonly > .il label.part-checked .box {
+  background: #ddaa61;
+  border-color: #ddaa61;
+}
+mor-checkbox.co-w > .il label.checked.disabled .box,
+mor-checkbox.co-w > .il label.part-checked.disabled .box {
+  background: #ddaa61;
+  border-color: #ddaa61;
+}
 mor-checkbox.co-d > .il label.checked .box,
 mor-checkbox.co-d > .il label.part-checked .box {
   background: #D64431;
@@ -16988,6 +17051,18 @@ mor-checkbox.co-d > .il label.part-checked .box {
 mor-checkbox.co-d.border > .il label.checked,
 mor-checkbox.co-d.border > .il label.part-checked {
   border-color: #D64431;
+}
+mor-checkbox.co-d.st-disabled > .il label.checked .box,
+mor-checkbox.co-d.st-readonly > .il label.checked .box,
+mor-checkbox.co-d.st-disabled > .il label.part-checked .box,
+mor-checkbox.co-d.st-readonly > .il label.part-checked .box {
+  background: #bd574a;
+  border-color: #bd574a;
+}
+mor-checkbox.co-d > .il label.checked.disabled .box,
+mor-checkbox.co-d > .il label.part-checked.disabled .box {
+  background: #bd574a;
+  border-color: #bd574a;
 }
 mor-checkbox.co-p > .il label.checked .box,
 mor-checkbox.co-p > .il label.part-checked .box {
@@ -16998,6 +17073,18 @@ mor-checkbox.co-p.border > .il label.checked,
 mor-checkbox.co-p.border > .il label.part-checked {
   border-color: #2185D0;
 }
+mor-checkbox.co-p.st-disabled > .il label.checked .box,
+mor-checkbox.co-p.st-readonly > .il label.checked .box,
+mor-checkbox.co-p.st-disabled > .il label.part-checked .box,
+mor-checkbox.co-p.st-readonly > .il label.part-checked .box {
+  background: #3982b8;
+  border-color: #3982b8;
+}
+mor-checkbox.co-p > .il label.checked.disabled .box,
+mor-checkbox.co-p > .il label.part-checked.disabled .box {
+  background: #3982b8;
+  border-color: #3982b8;
+}
 mor-checkbox.co-m > .il label.checked .box,
 mor-checkbox.co-m > .il label.part-checked .box {
   background: #A9A9A9;
@@ -17006,6 +17093,18 @@ mor-checkbox.co-m > .il label.part-checked .box {
 mor-checkbox.co-m.border > .il label.checked,
 mor-checkbox.co-m.border > .il label.part-checked {
   border-color: #A9A9A9;
+}
+mor-checkbox.co-m.st-disabled > .il label.checked .box,
+mor-checkbox.co-m.st-readonly > .il label.checked .box,
+mor-checkbox.co-m.st-disabled > .il label.part-checked .box,
+mor-checkbox.co-m.st-readonly > .il label.part-checked .box {
+  background: #a9a9a9;
+  border-color: #a9a9a9;
+}
+mor-checkbox.co-m > .il label.checked.disabled .box,
+mor-checkbox.co-m > .il label.part-checked.disabled .box {
+  background: #a9a9a9;
+  border-color: #a9a9a9;
 }
 mor-checkbox.co-i > .il label.checked .box,
 mor-checkbox.co-i > .il label.part-checked .box {
@@ -17016,6 +17115,18 @@ mor-checkbox.co-i.border > .il label.checked,
 mor-checkbox.co-i.border > .il label.part-checked {
   border-color: #03A6B9;
 }
+mor-checkbox.co-i.st-disabled > .il label.checked .box,
+mor-checkbox.co-i.st-readonly > .il label.checked .box,
+mor-checkbox.co-i.st-disabled > .il label.part-checked .box,
+mor-checkbox.co-i.st-readonly > .il label.part-checked .box {
+  background: #1697a6;
+  border-color: #1697a6;
+}
+mor-checkbox.co-i > .il label.checked.disabled .box,
+mor-checkbox.co-i > .il label.part-checked.disabled .box {
+  background: #1697a6;
+  border-color: #1697a6;
+}
 mor-checkbox.co-bk > .il label.checked .box,
 mor-checkbox.co-bk > .il label.part-checked .box {
   background: #17212D;
@@ -17024,6 +17135,18 @@ mor-checkbox.co-bk > .il label.part-checked .box {
 mor-checkbox.co-bk.border > .il label.checked,
 mor-checkbox.co-bk.border > .il label.part-checked {
   border-color: #17212D;
+}
+mor-checkbox.co-bk.st-disabled > .il label.checked .box,
+mor-checkbox.co-bk.st-readonly > .il label.checked .box,
+mor-checkbox.co-bk.st-disabled > .il label.part-checked .box,
+mor-checkbox.co-bk.st-readonly > .il label.part-checked .box {
+  background: #0d2037;
+  border-color: #0d2037;
+}
+mor-checkbox.co-bk > .il label.checked.disabled .box,
+mor-checkbox.co-bk > .il label.part-checked.disabled .box {
+  background: #0d2037;
+  border-color: #0d2037;
 }
 mor-checkbox.co-lbk > .il label.checked .box,
 mor-checkbox.co-lbk > .il label.part-checked .box {
@@ -17034,6 +17157,18 @@ mor-checkbox.co-lbk.border > .il label.checked,
 mor-checkbox.co-lbk.border > .il label.part-checked {
   border-color: #303C4B;
 }
+mor-checkbox.co-lbk.st-disabled > .il label.checked .box,
+mor-checkbox.co-lbk.st-readonly > .il label.checked .box,
+mor-checkbox.co-lbk.st-disabled > .il label.part-checked .box,
+mor-checkbox.co-lbk.st-readonly > .il label.part-checked .box {
+  background: #1e3a5d;
+  border-color: #1e3a5d;
+}
+mor-checkbox.co-lbk > .il label.checked.disabled .box,
+mor-checkbox.co-lbk > .il label.part-checked.disabled .box {
+  background: #1e3a5d;
+  border-color: #1e3a5d;
+}
 mor-checkbox.co-elbk > .il label.checked .box,
 mor-checkbox.co-elbk > .il label.part-checked .box {
   background: #45505C;
@@ -17042,6 +17177,18 @@ mor-checkbox.co-elbk > .il label.part-checked .box {
 mor-checkbox.co-elbk.border > .il label.checked,
 mor-checkbox.co-elbk.border > .il label.part-checked {
   border-color: #45505C;
+}
+mor-checkbox.co-elbk.st-disabled > .il label.checked .box,
+mor-checkbox.co-elbk.st-readonly > .il label.checked .box,
+mor-checkbox.co-elbk.st-disabled > .il label.part-checked .box,
+mor-checkbox.co-elbk.st-readonly > .il label.part-checked .box {
+  background: #2d4f74;
+  border-color: #2d4f74;
+}
+mor-checkbox.co-elbk > .il label.checked.disabled .box,
+mor-checkbox.co-elbk > .il label.part-checked.disabled .box {
+  background: #2d4f74;
+  border-color: #2d4f74;
 }
 mor-checkbox.co-bu > .il label.checked .box,
 mor-checkbox.co-bu > .il label.part-checked .box {
@@ -17052,6 +17199,18 @@ mor-checkbox.co-bu.border > .il label.checked,
 mor-checkbox.co-bu.border > .il label.part-checked {
   border-color: #7C8BA0;
 }
+mor-checkbox.co-bu.st-disabled > .il label.checked .box,
+mor-checkbox.co-bu.st-readonly > .il label.checked .box,
+mor-checkbox.co-bu.st-disabled > .il label.part-checked .box,
+mor-checkbox.co-bu.st-readonly > .il label.part-checked .box {
+  background: #878d95;
+  border-color: #878d95;
+}
+mor-checkbox.co-bu > .il label.checked.disabled .box,
+mor-checkbox.co-bu > .il label.part-checked.disabled .box {
+  background: #878d95;
+  border-color: #878d95;
+}
 mor-checkbox.co-lbu > .il label.checked .box,
 mor-checkbox.co-lbu > .il label.part-checked .box {
   background: #8E9CAF;
@@ -17061,6 +17220,18 @@ mor-checkbox.co-lbu.border > .il label.checked,
 mor-checkbox.co-lbu.border > .il label.part-checked {
   border-color: #8E9CAF;
 }
+mor-checkbox.co-lbu.st-disabled > .il label.checked .box,
+mor-checkbox.co-lbu.st-readonly > .il label.checked .box,
+mor-checkbox.co-lbu.st-disabled > .il label.part-checked .box,
+mor-checkbox.co-lbu.st-readonly > .il label.part-checked .box {
+  background: #989da5;
+  border-color: #989da5;
+}
+mor-checkbox.co-lbu > .il label.checked.disabled .box,
+mor-checkbox.co-lbu > .il label.part-checked.disabled .box {
+  background: #989da5;
+  border-color: #989da5;
+}
 mor-checkbox.co-elbu > .il label.checked .box,
 mor-checkbox.co-elbu > .il label.part-checked .box {
   background: #A8B3C2;
@@ -17069,6 +17240,18 @@ mor-checkbox.co-elbu > .il label.part-checked .box {
 mor-checkbox.co-elbu.border > .il label.checked,
 mor-checkbox.co-elbu.border > .il label.part-checked {
   border-color: #A8B3C2;
+}
+mor-checkbox.co-elbu.st-disabled > .il label.checked .box,
+mor-checkbox.co-elbu.st-readonly > .il label.checked .box,
+mor-checkbox.co-elbu.st-disabled > .il label.part-checked .box,
+mor-checkbox.co-elbu.st-readonly > .il label.part-checked .box {
+  background: #afb4bb;
+  border-color: #afb4bb;
+}
+mor-checkbox.co-elbu > .il label.checked.disabled .box,
+mor-checkbox.co-elbu > .il label.part-checked.disabled .box {
+  background: #afb4bb;
+  border-color: #afb4bb;
 }
 mor-checkbox.co-si > .il label span {
   color: #A8B3C2;
@@ -17094,6 +17277,18 @@ mor-checkbox.co-si.border > .il label.checked,
 mor-checkbox.co-si.border > .il label.part-checked {
   border-color: #D6DDE5;
 }
+mor-checkbox.co-si.st-disabled > .il label.checked .box,
+mor-checkbox.co-si.st-readonly > .il label.checked .box,
+mor-checkbox.co-si.st-disabled > .il label.part-checked .box,
+mor-checkbox.co-si.st-readonly > .il label.part-checked .box {
+  background: #ddddde;
+  border-color: #ddddde;
+}
+mor-checkbox.co-si > .il label.checked.disabled .box,
+mor-checkbox.co-si > .il label.part-checked.disabled .box {
+  background: #ddddde;
+  border-color: #ddddde;
+}
 mor-checkbox.co-lsi > .il label span {
   color: #A8B3C2;
 }
@@ -17117,6 +17312,18 @@ mor-checkbox.co-lsi > .il label.part-checked .mo-icon {
 mor-checkbox.co-lsi.border > .il label.checked,
 mor-checkbox.co-lsi.border > .il label.part-checked {
   border-color: #E2E8EE;
+}
+mor-checkbox.co-lsi.st-disabled > .il label.checked .box,
+mor-checkbox.co-lsi.st-readonly > .il label.checked .box,
+mor-checkbox.co-lsi.st-disabled > .il label.part-checked .box,
+mor-checkbox.co-lsi.st-readonly > .il label.part-checked .box {
+  background: #e7e8e9;
+  border-color: #e7e8e9;
+}
+mor-checkbox.co-lsi > .il label.checked.disabled .box,
+mor-checkbox.co-lsi > .il label.part-checked.disabled .box {
+  background: #e7e8e9;
+  border-color: #e7e8e9;
 }
 mor-checkbox.co-elsi > .il label span {
   color: #A8B3C2;
@@ -17142,6 +17349,18 @@ mor-checkbox.co-elsi.border > .il label.checked,
 mor-checkbox.co-elsi.border > .il label.part-checked {
   border-color: #EDF1F5;
 }
+mor-checkbox.co-elsi.st-disabled > .il label.checked .box,
+mor-checkbox.co-elsi.st-readonly > .il label.checked .box,
+mor-checkbox.co-elsi.st-disabled > .il label.part-checked .box,
+mor-checkbox.co-elsi.st-readonly > .il label.part-checked .box {
+  background: #f0f1f2;
+  border-color: #f0f1f2;
+}
+mor-checkbox.co-elsi > .il label.checked.disabled .box,
+mor-checkbox.co-elsi > .il label.part-checked.disabled .box {
+  background: #f0f1f2;
+  border-color: #f0f1f2;
+}
 mor-checkbox.co-g > .il label span {
   color: #E6E6E6;
 }
@@ -17165,6 +17384,18 @@ mor-checkbox.co-g > .il label.part-checked .mo-icon {
 mor-checkbox.co-g.border > .il label.checked,
 mor-checkbox.co-g.border > .il label.part-checked {
   border-color: #E6E6E6;
+}
+mor-checkbox.co-g.st-disabled > .il label.checked .box,
+mor-checkbox.co-g.st-readonly > .il label.checked .box,
+mor-checkbox.co-g.st-disabled > .il label.part-checked .box,
+mor-checkbox.co-g.st-readonly > .il label.part-checked .box {
+  background: #e6e6e6;
+  border-color: #e6e6e6;
+}
+mor-checkbox.co-g > .il label.checked.disabled .box,
+mor-checkbox.co-g > .il label.part-checked.disabled .box {
+  background: #e6e6e6;
+  border-color: #e6e6e6;
 }
 mor-checkbox.co-lg > .il label span {
   color: #E6E6E6;
@@ -17190,6 +17421,18 @@ mor-checkbox.co-lg.border > .il label.checked,
 mor-checkbox.co-lg.border > .il label.part-checked {
   border-color: #F0F0F0;
 }
+mor-checkbox.co-lg.st-disabled > .il label.checked .box,
+mor-checkbox.co-lg.st-readonly > .il label.checked .box,
+mor-checkbox.co-lg.st-disabled > .il label.part-checked .box,
+mor-checkbox.co-lg.st-readonly > .il label.part-checked .box {
+  background: #f0f0f0;
+  border-color: #f0f0f0;
+}
+mor-checkbox.co-lg > .il label.checked.disabled .box,
+mor-checkbox.co-lg > .il label.part-checked.disabled .box {
+  background: #f0f0f0;
+  border-color: #f0f0f0;
+}
 mor-checkbox.co-wh > .il label span {
   color: #E6E6E6;
 }
@@ -17213,6 +17456,18 @@ mor-checkbox.co-wh > .il label.part-checked .mo-icon {
 mor-checkbox.co-wh.border > .il label.checked,
 mor-checkbox.co-wh.border > .il label.part-checked {
   border-color: #FFFFFF;
+}
+mor-checkbox.co-wh.st-disabled > .il label.checked .box,
+mor-checkbox.co-wh.st-readonly > .il label.checked .box,
+mor-checkbox.co-wh.st-disabled > .il label.part-checked .box,
+mor-checkbox.co-wh.st-readonly > .il label.part-checked .box {
+  background: #ffffff;
+  border-color: #ffffff;
+}
+mor-checkbox.co-wh > .il label.checked.disabled .box,
+mor-checkbox.co-wh > .il label.part-checked.disabled .box {
+  background: #ffffff;
+  border-color: #ffffff;
 }
 mor-checkbox.st-disabled > .il > label,
 mor-checkbox.st-readonly > .il > label {
@@ -17241,6 +17496,18 @@ mor-checkbox > .il label.part-checked .box {
 mor-checkbox.border > .il label.checked,
 mor-checkbox.border > .il label.part-checked {
   border-color: #F33D5D;
+}
+mor-checkbox.st-disabled > .il label.checked .box,
+mor-checkbox.st-readonly > .il label.checked .box,
+mor-checkbox.st-disabled > .il label.part-checked .box,
+mor-checkbox.st-readonly > .il label.part-checked .box {
+  background: #de526a;
+  border-color: #de526a;
+}
+mor-checkbox > .il label.checked.disabled .box,
+mor-checkbox > .il label.part-checked.disabled .box {
+  background: #de526a;
+  border-color: #de526a;
 }
 
 mor-radio {
@@ -17336,6 +17603,9 @@ mor-radio > .il label.disabled:hover span {
 mor-radio > .il label.disabled.checked .mo-icon {
   opacity: 0.6;
 }
+mor-radio > .il label.hidden {
+  display: none;
+}
 mor-radio.border > .il label {
   padding: 0.4em 0.6em;
   margin: 0 0.5em 0.5em 0;
@@ -17356,12 +17626,30 @@ mor-radio.co-t > .il label.checked .box {
 mor-radio.co-t.border > .il label.checked {
   border-color: #F33D5D;
 }
+mor-radio.co-t.st-disabled > .il label.checked .box,
+mor-radio.co-t.st-readonly > .il label.checked .box {
+  background: #de526a;
+  border-color: #de526a;
+}
+mor-radio.co-t > .il label.checked.disabled .box {
+  background: #de526a;
+  border-color: #de526a;
+}
 mor-radio.co-lt > .il label.checked .box {
   background: #F86F88;
   border-color: #F86F88;
 }
 mor-radio.co-lt.border > .il label.checked {
   border-color: #F86F88;
+}
+mor-radio.co-lt.st-disabled > .il label.checked .box,
+mor-radio.co-lt.st-readonly > .il label.checked .box {
+  background: #e97e92;
+  border-color: #e97e92;
+}
+mor-radio.co-lt > .il label.checked.disabled .box {
+  background: #e97e92;
+  border-color: #e97e92;
 }
 mor-radio.co-dt > .il label.checked .box {
   background: #D22343;
@@ -17370,12 +17658,30 @@ mor-radio.co-dt > .il label.checked .box {
 mor-radio.co-dt.border > .il label.checked {
   border-color: #D22343;
 }
+mor-radio.co-dt.st-disabled > .il label.checked .box,
+mor-radio.co-dt.st-readonly > .il label.checked .box {
+  background: #b93c53;
+  border-color: #b93c53;
+}
+mor-radio.co-dt > .il label.checked.disabled .box {
+  background: #b93c53;
+  border-color: #b93c53;
+}
 mor-radio.co-s > .il label.checked .box {
   background: #4DBD67;
   border-color: #4DBD67;
 }
 mor-radio.co-s.border > .il label.checked {
   border-color: #4DBD67;
+}
+mor-radio.co-s.st-disabled > .il label.checked .box,
+mor-radio.co-s.st-readonly > .il label.checked .box {
+  background: #65a574;
+  border-color: #65a574;
+}
+mor-radio.co-s > .il label.checked.disabled .box {
+  background: #65a574;
+  border-color: #65a574;
 }
 mor-radio.co-w > .il label.checked .box {
   background: #F0AD4E;
@@ -17384,12 +17690,30 @@ mor-radio.co-w > .il label.checked .box {
 mor-radio.co-w.border > .il label.checked {
   border-color: #F0AD4E;
 }
+mor-radio.co-w.st-disabled > .il label.checked .box,
+mor-radio.co-w.st-readonly > .il label.checked .box {
+  background: #ddaa61;
+  border-color: #ddaa61;
+}
+mor-radio.co-w > .il label.checked.disabled .box {
+  background: #ddaa61;
+  border-color: #ddaa61;
+}
 mor-radio.co-d > .il label.checked .box {
   background: #D64431;
   border-color: #D64431;
 }
 mor-radio.co-d.border > .il label.checked {
   border-color: #D64431;
+}
+mor-radio.co-d.st-disabled > .il label.checked .box,
+mor-radio.co-d.st-readonly > .il label.checked .box {
+  background: #bd574a;
+  border-color: #bd574a;
+}
+mor-radio.co-d > .il label.checked.disabled .box {
+  background: #bd574a;
+  border-color: #bd574a;
 }
 mor-radio.co-p > .il label.checked .box {
   background: #2185D0;
@@ -17398,12 +17722,30 @@ mor-radio.co-p > .il label.checked .box {
 mor-radio.co-p.border > .il label.checked {
   border-color: #2185D0;
 }
+mor-radio.co-p.st-disabled > .il label.checked .box,
+mor-radio.co-p.st-readonly > .il label.checked .box {
+  background: #3982b8;
+  border-color: #3982b8;
+}
+mor-radio.co-p > .il label.checked.disabled .box {
+  background: #3982b8;
+  border-color: #3982b8;
+}
 mor-radio.co-m > .il label.checked .box {
   background: #A9A9A9;
   border-color: #A9A9A9;
 }
 mor-radio.co-m.border > .il label.checked {
   border-color: #A9A9A9;
+}
+mor-radio.co-m.st-disabled > .il label.checked .box,
+mor-radio.co-m.st-readonly > .il label.checked .box {
+  background: #a9a9a9;
+  border-color: #a9a9a9;
+}
+mor-radio.co-m > .il label.checked.disabled .box {
+  background: #a9a9a9;
+  border-color: #a9a9a9;
 }
 mor-radio.co-i > .il label.checked .box {
   background: #03A6B9;
@@ -17412,12 +17754,30 @@ mor-radio.co-i > .il label.checked .box {
 mor-radio.co-i.border > .il label.checked {
   border-color: #03A6B9;
 }
+mor-radio.co-i.st-disabled > .il label.checked .box,
+mor-radio.co-i.st-readonly > .il label.checked .box {
+  background: #1697a6;
+  border-color: #1697a6;
+}
+mor-radio.co-i > .il label.checked.disabled .box {
+  background: #1697a6;
+  border-color: #1697a6;
+}
 mor-radio.co-bk > .il label.checked .box {
   background: #17212D;
   border-color: #17212D;
 }
 mor-radio.co-bk.border > .il label.checked {
   border-color: #17212D;
+}
+mor-radio.co-bk.st-disabled > .il label.checked .box,
+mor-radio.co-bk.st-readonly > .il label.checked .box {
+  background: #142130;
+  border-color: #142130;
+}
+mor-radio.co-bk > .il label.checked.disabled .box {
+  background: #142130;
+  border-color: #142130;
 }
 mor-radio.co-lbk > .il label.checked .box {
   background: #303C4B;
@@ -17426,12 +17786,30 @@ mor-radio.co-lbk > .il label.checked .box {
 mor-radio.co-lbk.border > .il label.checked {
   border-color: #303C4B;
 }
+mor-radio.co-lbk.st-disabled > .il label.checked .box,
+mor-radio.co-lbk.st-readonly > .il label.checked .box {
+  background: #2a3b51;
+  border-color: #2a3b51;
+}
+mor-radio.co-lbk > .il label.checked.disabled .box {
+  background: #2a3b51;
+  border-color: #2a3b51;
+}
 mor-radio.co-elbk > .il label.checked .box {
   background: #45505C;
   border-color: #45505C;
 }
 mor-radio.co-elbk.border > .il label.checked {
   border-color: #45505C;
+}
+mor-radio.co-elbk.st-disabled > .il label.checked .box,
+mor-radio.co-elbk.st-readonly > .il label.checked .box {
+  background: #3d5064;
+  border-color: #3d5064;
+}
+mor-radio.co-elbk > .il label.checked.disabled .box {
+  background: #3d5064;
+  border-color: #3d5064;
 }
 mor-radio.co-bu > .il label.checked .box {
   background: #7C8BA0;
@@ -17440,6 +17818,15 @@ mor-radio.co-bu > .il label.checked .box {
 mor-radio.co-bu.border > .il label.checked {
   border-color: #7C8BA0;
 }
+mor-radio.co-bu.st-disabled > .il label.checked .box,
+mor-radio.co-bu.st-readonly > .il label.checked .box {
+  background: #878d95;
+  border-color: #878d95;
+}
+mor-radio.co-bu > .il label.checked.disabled .box {
+  background: #878d95;
+  border-color: #878d95;
+}
 mor-radio.co-lbu > .il label.checked .box {
   background: #8E9CAF;
   border-color: #8E9CAF;
@@ -17447,12 +17834,30 @@ mor-radio.co-lbu > .il label.checked .box {
 mor-radio.co-lbu.border > .il label.checked {
   border-color: #8E9CAF;
 }
+mor-radio.co-lbu.st-disabled > .il label.checked .box,
+mor-radio.co-lbu.st-readonly > .il label.checked .box {
+  background: #989da5;
+  border-color: #989da5;
+}
+mor-radio.co-lbu > .il label.checked.disabled .box {
+  background: #989da5;
+  border-color: #989da5;
+}
 mor-radio.co-elbu > .il label.checked .box {
   background: #A8B3C2;
   border-color: #A8B3C2;
 }
 mor-radio.co-elbu.border > .il label.checked {
   border-color: #A8B3C2;
+}
+mor-radio.co-elbu.st-disabled > .il label.checked .box,
+mor-radio.co-elbu.st-readonly > .il label.checked .box {
+  background: #afb4bb;
+  border-color: #afb4bb;
+}
+mor-radio.co-elbu > .il label.checked.disabled .box {
+  background: #afb4bb;
+  border-color: #afb4bb;
 }
 mor-radio.co-si > .il label span {
   color: #A8B3C2;
@@ -17475,6 +17880,15 @@ mor-radio.co-si > .il label.checked .mo-icon {
 mor-radio.co-si.border > .il label.checked {
   border-color: #E2E8EE;
 }
+mor-radio.co-si.st-disabled > .il label.checked .box,
+mor-radio.co-si.st-readonly > .il label.checked .box {
+  background: #ddddde;
+  border-color: #ddddde;
+}
+mor-radio.co-si > .il label.checked.disabled .box {
+  background: #ddddde;
+  border-color: #ddddde;
+}
 mor-radio.co-lsi > .il label span {
   color: #A8B3C2;
 }
@@ -17495,6 +17909,15 @@ mor-radio.co-lsi > .il label.checked .mo-icon {
 }
 mor-radio.co-lsi.border > .il label.checked {
   border-color: #E2E8EE;
+}
+mor-radio.co-lsi.st-disabled > .il label.checked .box,
+mor-radio.co-lsi.st-readonly > .il label.checked .box {
+  background: #e7e8e9;
+  border-color: #e7e8e9;
+}
+mor-radio.co-lsi > .il label.checked.disabled .box {
+  background: #e7e8e9;
+  border-color: #e7e8e9;
 }
 mor-radio.co-elsi > .il label span {
   color: #A8B3C2;
@@ -17517,6 +17940,15 @@ mor-radio.co-elsi > .il label.checked .mo-icon {
 mor-radio.co-elsi.border > .il label.checked {
   border-color: #EDF1F5;
 }
+mor-radio.co-elsi.st-disabled > .il label.checked .box,
+mor-radio.co-elsi.st-readonly > .il label.checked .box {
+  background: #f0f1f2;
+  border-color: #f0f1f2;
+}
+mor-radio.co-elsi > .il label.checked.disabled .box {
+  background: #f0f1f2;
+  border-color: #f0f1f2;
+}
 mor-radio.co-g > .il label span {
   color: #E6E6E6;
 }
@@ -17537,6 +17969,15 @@ mor-radio.co-g > .il label.checked .mo-icon {
 }
 mor-radio.co-g.border > .il label.checked {
   border-color: #E6E6E6;
+}
+mor-radio.co-g.st-disabled > .il label.checked .box,
+mor-radio.co-g.st-readonly > .il label.checked .box {
+  background: #e6e6e6;
+  border-color: #e6e6e6;
+}
+mor-radio.co-g > .il label.checked.disabled .box {
+  background: #e6e6e6;
+  border-color: #e6e6e6;
 }
 mor-radio.co-lg > .il label span {
   color: #E6E6E6;
@@ -17559,6 +18000,15 @@ mor-radio.co-lg > .il label.checked .mo-icon {
 mor-radio.co-lg.border > .il label.checked {
   border-color: #F0F0F0;
 }
+mor-radio.co-lg.st-disabled > .il label.checked .box,
+mor-radio.co-lg.st-readonly > .il label.checked .box {
+  background: #f0f0f0;
+  border-color: #f0f0f0;
+}
+mor-radio.co-lg > .il label.checked.disabled .box {
+  background: #f0f0f0;
+  border-color: #f0f0f0;
+}
 mor-radio.co-wh > .il label span {
   color: #E6E6E6;
 }
@@ -17579,6 +18029,15 @@ mor-radio.co-wh > .il label.checked .mo-icon {
 }
 mor-radio.co-wh.border > .il label.checked {
   border-color: #FFFFFF;
+}
+mor-radio.co-wh.st-disabled > .il label.checked .box,
+mor-radio.co-wh.st-readonly > .il label.checked .box {
+  background: #ffffff;
+  border-color: #ffffff;
+}
+mor-radio.co-wh > .il label.checked.disabled .box {
+  background: #ffffff;
+  border-color: #ffffff;
 }
 mor-radio.st-disabled > .il > label,
 mor-radio.st-readonly > .il > label {
@@ -17605,6 +18064,192 @@ mor-radio > .il label.checked .box {
 }
 mor-radio.border > .il label.checked {
   border-color: #F33D5D;
+}
+mor-radio.st-disabled > .il label.checked .box,
+mor-radio.st-readonly > .il label.checked .box {
+  background: #de526a;
+  border-color: #de526a;
+}
+mor-radio > .il label.checked.disabled .box {
+  background: #de526a;
+  border-color: #de526a;
+}
+
+mor-transfer {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  height: 100%;
+}
+mor-transfer .transfer-wrap {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  height: 100%;
+}
+mor-transfer.has-form-name .transfer-wrap {
+  height: calc(100% - 16px*1.5 - 16px*0.5);
+}
+mor-transfer .transfer-source-list,
+mor-transfer .transfer-target-list,
+mor-transfer .transfer-controls {
+  flex-grow: 4;
+}
+mor-transfer .transfer-source-list,
+mor-transfer .transfer-target-list {
+  border: 1px #D6DDE5 solid;
+  background: #FFFFFF;
+  border-radius: 3px;
+  overflow: hidden;
+  padding: 0;
+  font-size: 16px;
+  min-width: 10em;
+}
+mor-transfer .transfer-source-list .transfer-title,
+mor-transfer .transfer-target-list .transfer-title {
+  height: 41.6px;
+  font-size: 16px;
+  padding: 6.4px 9.6px;
+  background: #EDF1F5;
+  font-size: 0;
+  position: relative;
+}
+mor-transfer .transfer-source-list .transfer-title .transfer-source-count,
+mor-transfer .transfer-target-list .transfer-title .transfer-source-count,
+mor-transfer .transfer-source-list .transfer-title .transfer-target-count,
+mor-transfer .transfer-target-list .transfer-title .transfer-target-count,
+mor-transfer .transfer-source-list .transfer-title > p,
+mor-transfer .transfer-target-list .transfer-title > p,
+mor-transfer .transfer-source-list .transfer-title > mor-checkbox,
+mor-transfer .transfer-target-list .transfer-title > mor-checkbox {
+  line-height: 28.8px;
+}
+mor-transfer .transfer-source-list .transfer-title .transfer-source-count,
+mor-transfer .transfer-target-list .transfer-title .transfer-source-count,
+mor-transfer .transfer-source-list .transfer-title .transfer-target-count,
+mor-transfer .transfer-target-list .transfer-title .transfer-target-count {
+  font-size: 12px;
+  position: absolute;
+  right: 9.6px;
+  top: 6.4px;
+}
+mor-transfer .transfer-source-list .transfer-title > p,
+mor-transfer .transfer-target-list .transfer-title > p {
+  font-size: 14px;
+  display: inline-block;
+  color: #17212D;
+  margin: 0 0 0 0.5em;
+  vertical-align: top;
+}
+mor-transfer .transfer-source-list .transfer-title > p > i,
+mor-transfer .transfer-target-list .transfer-title > p > i {
+  color: #17212D;
+}
+mor-transfer .transfer-source-list .transfer-title > mor-checkbox,
+mor-transfer .transfer-target-list .transfer-title > mor-checkbox {
+  display: inline-block;
+  width: auto;
+  vertical-align: top;
+}
+mor-transfer .transfer-source-list .transfer-title > mor-checkbox label > span,
+mor-transfer .transfer-target-list .transfer-title > mor-checkbox label > span {
+  font-size: 0;
+}
+mor-transfer .transfer-source-list .transfer-list,
+mor-transfer .transfer-target-list .transfer-list {
+  height: calc(100% - 16px*2.6);
+  position: relative;
+}
+mor-transfer .transfer-source-list .transfer-list > mor-checkbox,
+mor-transfer .transfer-target-list .transfer-list > mor-checkbox {
+  height: 100%;
+  overflow-y: scroll;
+}
+mor-transfer .transfer-source-list .transfer-list > mor-checkbox::-webkit-scrollbar,
+mor-transfer .transfer-target-list .transfer-list > mor-checkbox::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  background-color: rgba(0, 0, 0, 0);
+}
+mor-transfer .transfer-source-list .transfer-list > mor-checkbox::-webkit-scrollbar-thumb,
+mor-transfer .transfer-target-list .transfer-list > mor-checkbox::-webkit-scrollbar-thumb {
+  width: 5px;
+  height: 5px;
+  background: rgba(0, 0, 0, 0);
+  border-radius: 4px;
+}
+mor-transfer .transfer-source-list .transfer-list > mor-checkbox:hover::-webkit-scrollbar-thumb,
+mor-transfer .transfer-target-list .transfer-list > mor-checkbox:hover::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+}
+mor-transfer .transfer-source-list .transfer-list > mor-checkbox > .il,
+mor-transfer .transfer-target-list .transfer-list > mor-checkbox > .il {
+  flex-direction: column;
+  padding: 8px 0;
+}
+mor-transfer .transfer-source-list .transfer-list > mor-checkbox > .il > label,
+mor-transfer .transfer-target-list .transfer-list > mor-checkbox > .il > label {
+  margin: 0;
+  padding: 4.8px 9.6px;
+}
+mor-transfer .transfer-source-list .transfer-list > mor-checkbox > .il > label > span,
+mor-transfer .transfer-target-list .transfer-list > mor-checkbox > .il > label > span {
+  line-height: 1em;
+}
+mor-transfer .transfer-source-list .transfer-list .search-input,
+mor-transfer .transfer-target-list .transfer-list .search-input {
+  padding: 8px 8px 0 8px;
+}
+mor-transfer .transfer-source-list .transfer-list .search-input mor-textinput input,
+mor-transfer .transfer-target-list .transfer-list .search-input mor-textinput input {
+  padding: 0 0.6em;
+  height: 32px;
+  font-size: 12px;
+}
+mor-transfer .transfer-source-list .transfer-list .list-is-empty,
+mor-transfer .transfer-target-list .transfer-list .list-is-empty {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 32px;
+  color: #D6DDE5;
+}
+mor-transfer .transfer-controls {
+  flex-grow: 1;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 1em;
+}
+mor-transfer .transfer-controls > mor-btn {
+  margin: 0.5em 0;
+}
+mor-transfer .transfer-controls > mor-btn > .mo-icon {
+  font-size: 12px;
+}
+mor-transfer.has-cleanbtn {
+  padding-bottom: 20px;
+}
+mor-transfer .cleanbtn {
+  position: absolute;
+  right: 0;
+  font-size: 12px;
+  margin-top: 1px;
+}
+mor-transfer > .form-name {
+  color: #303C4B;
+  font-size: 16px;
+  margin-bottom: 0.5em;
+  -webkit-user-select: text;
+  text-align: left;
+}
+mor-transfer.st-disabled .transfer-source-list,
+mor-transfer.st-readonly .transfer-source-list,
+mor-transfer.st-disabled .transfer-target-list,
+mor-transfer.st-readonly .transfer-target-list {
+  border: 1px #A8B3C2 solid;
 }
 
 mor-multiinput {

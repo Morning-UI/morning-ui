@@ -70,7 +70,7 @@
     [[[形态]]]
 
     :::preset
-    @name:formStatus
+    @name:formStatusWithStyle
     @uikey:checkbox
     @defaultValue:['Tim']
     @attrs: :list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"
@@ -196,6 +196,36 @@
             }" 
             :disabled-options="['Tim', 'Victor']" 
             :default-value="['Tim', 'Emir']"
+        ></ui-checkbox>
+    </div>
+    :::
+
+    :::vue
+    @name:hidden-options
+    ---
+    #config
+    >conf-desc
+    隐藏指定的选项。注意：隐藏仅仅是视觉上的，若隐藏的选项已经选中，并不会改变其选中状态。
+    >conf-accept
+    由需要隐藏项目键名(key)组成的数组
+    >conf-type
+    Array
+    >conf-default
+    `[]`
+    ---
+    #demo
+    >tpl
+    <div style="width:300px;">
+        <ui-checkbox
+            form-name="姓名"
+            :list="{
+                Tim : 'Tim Boelaars',
+                Andrew : 'Andrew Colin Beck',
+                Victor : 'Victor Erixon',
+                Shaun : 'Shaun Moynihan',
+                Emir : 'Emir Ayouni'
+            }"
+            :hidden-options="['Tim', 'Victor']"
         ></ui-checkbox>
     </div>
     :::

@@ -649,6 +649,36 @@ let data = {
                 valueType : 'Array',
                 valueContent : '[{\'images\':[{\'name\':\'151244303389249797.png\',\'path\':\'http://morning-ui-image.test.upcdn.net/uploaddemo/17505/151244303389249797.png\'}],\'zones\':[{\'x\':361,\'y\':117,\'h\':180,\'w\':274},{\'x\':86,\'y\':310,\'h\':180,\'w\':275}],\'w\':722,\'h\':725}]'
             }
+        ],
+        transfer : [
+            {
+                valueType : 'String',
+                valueContent : `'{\'source\':[\'item4\',\'item5\',\'item6\',\'item7\'],\'target\':[\'item1\',\'item2\',\'item3\']}'`
+            },
+            {
+                valueType : 'Number',
+                valueContent : '5'
+            },
+            {
+                valueType : 'Boolean',
+                valueContent : 'true'
+            },
+            {
+                valueType : 'Null',
+                valueContent : 'null'
+            },
+            {
+                valueType : 'Undefined',
+                valueContent : 'undefined'
+            },
+            {
+                valueType : 'Object',
+                valueContent : '{\'source\':[\'item4\',\'item5\',\'item6\',\'item7\'],\'target\':[\'item1\',\'item2\',\'item3\']}'
+            },
+            {
+                valueType : 'Array',
+                valueContent : '[{\'source\':[\'item4\',\'item5\',\'item6\',\'item7\'],\'target\':[\'item1\',\'item2\',\'item3\']}]'
+            }
         ]
     }
 };
@@ -691,27 +721,35 @@ normal,disabled,readonly
 
 <a href="/guide/status.html">查看形态文档</a>
 
-#### 色彩
-
-:::repeat/html
+:::vue
+@name:色彩
+---
+#renderer
+>name
+color-repeat
+>rules
 color:theme
 color:feature
 color:black
 color:blue
 color:silver
 color:gray
----
+>tpl
 <div style="width:300px;{%wrapStyle%}">
     <ui-{%uikey%} color="{$colorKey}" :default-value="{%&defaultValue%}" form-name="{$&colorName}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
 </div>
 <br>
 :::
 
-#### 状态
-
-:::repeat/html
-state:normal,disabled,readonly
+:::vue
+@name:状态
 ---
+#renderer
+>name
+state-repeat
+>rules
+normal,disabled,readonly
+>tpl
 <div style="width:300px;{%wrapStyle%}">
     <ui-{%uikey%} state="{$stateKey}" :default-value="{%&defaultValue%}" form-name="{$&stateName}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
 </div>
