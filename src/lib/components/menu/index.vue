@@ -1,7 +1,7 @@
 <template>
     <mor-menu
         :_uiid="uiid"
-        :class="[sizeClass, moreClass]"
+        :class="[sizeClass, colorClass, moreClass]"
 
         :menu="menu"
         :current-menu="currentMenu"

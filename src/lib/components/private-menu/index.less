@@ -8,7 +8,6 @@ mor-private-menu{
         padding: 0;
         margin: 0;
         list-style: none;
-        background: @colorWhite;
 
         > li{
             margin: 0;
@@ -19,25 +18,21 @@ mor-private-menu{
             }
 
             > a{
-                color: @colorLightBlue;
                 width: 100%;
                 display: inline-block;
 
                 &:hover{
-                    color: @colorExtraLightBlack;
                     cursor: pointer;
                     text-decoration: none;
                 }
 
                 &.current{
-                    color: @colorTheme;
                     font-weight: 600;
                 }
             }
 
             &.current{
                 > a{
-                    color: @colorTheme;
                     font-weight: 600;
                 }
 
@@ -53,7 +48,6 @@ mor-private-menu{
     }
 
     .sub-menu{
-        background: @colorWhite;
         display: block;
 
         > li{
@@ -67,25 +61,13 @@ mor-private-menu{
             }
 
             > a{
-                color: @colorLightBlue;
                 width: 100%;
                 display: inline-block;
                 white-space: nowrap;
 
                 &:hover{
-                    color: @colorExtraLightBlack;
                     cursor: pointer;
                     text-decoration: none;
-                }
-
-                &.current{
-                    color: @colorTheme;
-                }
-            }
-
-            &.current{
-                > a{
-                    color: @colorTheme;
                 }
             }
         }
@@ -119,28 +101,11 @@ mor-private-menu{
 
             &.is-disable{
                 > a{
-                    background: @colorExtraLightSilver;
                     cursor: not-allowed;
-
-                    &:hover{
-                        color: @colorLightBlue;
-                    }
                 }
 
                 .has-child-menu-icon{
                     display: none;
-                }
-            }
-        }
-    }
-
-    .root-menu{
-        > li{
-            &.is-disable{
-                > a{
-                    &:hover{
-                        border-bottom-color: @colorLightSilver;
-                    }
                 }
             }
         }
@@ -162,7 +127,6 @@ mor-private-menu{
 
         .root-menu{
             font-size: 0;
-            background: @colorWhite;
 
             > li{
                 display: inline-block;

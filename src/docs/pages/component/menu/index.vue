@@ -877,7 +877,7 @@
     |类型|支持|默认|
     |-|-|-|
     |尺寸|`m` `s` `xs` `xxs`|`m`|
-    |色彩|不支持|-|
+    |色彩|`white` `gray` `light-gray` `black` `light-black` `extra-light-black`|`white`|
     |状态|不支持|-|
 
     <a href="/guide/status.html">查看形态文档</a>
@@ -925,6 +925,884 @@
             size="{$sizeKey}"
             position="side"
         ></ui-menu>
+        <br>
+    </div>
+    :::
+
+    :::vue
+    @name:色彩(浅色)
+    ---
+    #renderer
+    >name
+    color-repeat
+    >rules
+    color:gray
+    >tpl
+    <div style="width:700px;padding:20px;">
+        <ui-menu
+            :menu="{
+                'home' : '颜色{$colorName}菜单',
+                'active' : {
+                    name : '活动',
+                    disable : true
+                },
+                'order' : {
+                    name : '订单',          
+                    childs : {
+                        'all' : '所有',
+                        'notshipped' : '待发货',
+                        'intransit' : '运输中',
+                        'done' : '已完成',
+                        'history' : '历史订单',
+                        'status' : '订单状态',
+                        'data' : '数据统计'
+                    },
+                    groups : {
+                        '订单列表' : ['all', 'done', 'notshipped', 'intransit'],
+                        '更多' : ['history', 'status', 'data']
+                    }
+                },
+                'settings' : {
+                    name : '设置',
+                    childs : {
+                        'common' : {
+                            name : '通用设置',
+                            childs : {
+                                'theme' : {
+                                    name : '模板',
+                                    childs : {
+                                        'modify' : '编辑',
+                                        'market' : '模板市场'
+                                    }
+                                },
+                                'goods' : '商品',
+                                'payment' : '支付'
+                            }
+                        },
+                        'account' : {
+                            name : '账户设置',
+                            childs : {
+                                'email' : '邮箱设置',
+                                'password' : '修改密码'
+                            }
+                        },
+                        'safity' : {
+                            name : '安全设置',
+                            childs : {
+                                'multiple' : '多重认证',
+                                'found' : '账户找回',
+                                'history' : '登录历史',
+                                'help' : '寻求帮助',
+                                'blocked' : '锁定账户'
+                            }
+                        }
+                    }
+                }
+            }"
+            color="{$colorKey}"
+        ></ui-menu>
+        <br>
+    </div>
+    ---
+    #renderer
+    >name
+    color-repeat
+    >rules
+    color:gray
+    >desc
+    侧边栏导航菜单的尺寸。
+    >tpl
+    <div style="width:260px;padding:20px;">
+        <ui-menu
+            :menu="{
+                'home' : '颜色{$colorName}菜单',
+                'active' : {
+                    name : '活动',
+                    disable : true
+                },
+                'order' : {
+                    name : '订单',          
+                    childs : {
+                        'all' : '所有',
+                        'notshipped' : '待发货',
+                        'intransit' : '运输中',
+                        'done' : '已完成',
+                        'history' : '历史订单',
+                        'status' : '订单状态',
+                        'data' : '数据统计'
+                    },
+                    groups : {
+                        '订单列表' : ['all', 'done', 'notshipped', 'intransit'],
+                        '更多' : ['history', 'status', 'data']
+                    }
+                },
+                'settings' : {
+                    name : '设置',
+                    childs : {
+                        'common' : {
+                            name : '通用设置',
+                            childs : {
+                                'theme' : {
+                                    name : '模板',
+                                    childs : {
+                                        'modify' : '编辑',
+                                        'market' : '模板市场'
+                                    }
+                                },
+                                'goods' : '商品',
+                                'payment' : '支付'
+                            }
+                        },
+                        'account' : {
+                            name : '账户设置',
+                            childs : {
+                                'email' : '邮箱设置',
+                                'password' : '修改密码'
+                            }
+                        },
+                        'safity' : {
+                            name : '安全设置',
+                            childs : {
+                                'multiple' : '多重认证',
+                                'found' : '账户找回',
+                                'history' : '登录历史',
+                                'help' : '寻求帮助',
+                                'blocked' : '锁定账户'
+                            }
+                        }
+                    }
+                }
+            }"
+            color="{$colorKey}"
+            position="side"
+        ></ui-menu>
+        <br>
+    </div>
+    ---
+    #renderer
+    >name
+    color-repeat
+    >rules
+    color:gray
+    >desc
+    线条风格的菜单。
+    >tpl
+    <div>
+        <div style="width:700px;padding:20px;">
+            <ui-menu
+                :menu="{
+                    'home' : '颜色{$colorName}菜单',
+                    'active' : {
+                        name : '活动',
+                        disable : true
+                    },
+                    'order' : {
+                        name : '订单',          
+                        childs : {
+                            'all' : '所有',
+                            'notshipped' : '待发货',
+                            'intransit' : '运输中',
+                            'done' : '已完成',
+                            'history' : '历史订单',
+                            'status' : '订单状态',
+                            'data' : '数据统计'
+                        },
+                        groups : {
+                            '订单列表' : ['all', 'done', 'notshipped', 'intransit'],
+                            '更多' : ['history', 'status', 'data']
+                        }
+                    },
+                    'settings' : {
+                        name : '设置',
+                        childs : {
+                            'common' : {
+                                name : '通用设置',
+                                childs : {
+                                    'theme' : {
+                                        name : '模板',
+                                        childs : {
+                                            'modify' : '编辑',
+                                            'market' : '模板市场'
+                                        }
+                                    },
+                                    'goods' : '商品',
+                                    'payment' : '支付'
+                                }
+                            },
+                            'account' : {
+                                name : '账户设置',
+                                childs : {
+                                    'email' : '邮箱设置',
+                                    'password' : '修改密码'
+                                }
+                            },
+                            'safity' : {
+                                name : '安全设置',
+                                childs : {
+                                    'multiple' : '多重认证',
+                                    'found' : '账户找回',
+                                    'history' : '登录历史',
+                                    'help' : '寻求帮助',
+                                    'blocked' : '锁定账户'
+                                }
+                            }
+                        }
+                    }
+                }"
+                color="{$colorKey}"
+                class="line"
+            ></ui-menu>
+        </div>
+        <br>
+        <div style="width:260px;padding:20px;">
+            <ui-menu
+                :menu="{
+                    'home' : '颜色{$colorName}菜单',
+                    'active' : {
+                        name : '活动',
+                        disable : true
+                    },
+                    'order' : {
+                        name : '订单',          
+                        childs : {
+                            'all' : '所有',
+                            'notshipped' : '待发货',
+                            'intransit' : '运输中',
+                            'done' : '已完成',
+                            'history' : '历史订单',
+                            'status' : '订单状态',
+                            'data' : '数据统计'
+                        },
+                        groups : {
+                            '订单列表' : ['all', 'done', 'notshipped', 'intransit'],
+                            '更多' : ['history', 'status', 'data']
+                        }
+                    },
+                    'settings' : {
+                        name : '设置',
+                        childs : {
+                            'common' : {
+                                name : '通用设置',
+                                childs : {
+                                    'theme' : {
+                                        name : '模板',
+                                        childs : {
+                                            'modify' : '编辑',
+                                            'market' : '模板市场'
+                                        }
+                                    },
+                                    'goods' : '商品',
+                                    'payment' : '支付'
+                                }
+                            },
+                            'account' : {
+                                name : '账户设置',
+                                childs : {
+                                    'email' : '邮箱设置',
+                                    'password' : '修改密码'
+                                }
+                            },
+                            'safity' : {
+                                name : '安全设置',
+                                childs : {
+                                    'multiple' : '多重认证',
+                                    'found' : '账户找回',
+                                    'history' : '登录历史',
+                                    'help' : '寻求帮助',
+                                    'blocked' : '锁定账户'
+                                }
+                            }
+                        }
+                    }
+                }"
+                color="{$colorKey}"
+                class="line"
+                position="side"
+            ></ui-menu>
+        </div>
+        <br>
+    </div>
+    ---
+    #renderer
+    >name
+    color-repeat
+    >rules
+    color:gray
+    >desc
+    区块风格的菜单。
+    >tpl
+    <div>
+        <div style="width:700px;padding:20px;">
+            <ui-menu
+                :menu="{
+                    'home' : '颜色{$colorName}菜单',
+                    'active' : {
+                        name : '活动',
+                        disable : true
+                    },
+                    'order' : {
+                        name : '订单',          
+                        childs : {
+                            'all' : '所有',
+                            'notshipped' : '待发货',
+                            'intransit' : '运输中',
+                            'done' : '已完成',
+                            'history' : '历史订单',
+                            'status' : '订单状态',
+                            'data' : '数据统计'
+                        },
+                        groups : {
+                            '订单列表' : ['all', 'done', 'notshipped', 'intransit'],
+                            '更多' : ['history', 'status', 'data']
+                        }
+                    },
+                    'settings' : {
+                        name : '设置',
+                        childs : {
+                            'common' : {
+                                name : '通用设置',
+                                childs : {
+                                    'theme' : {
+                                        name : '模板',
+                                        childs : {
+                                            'modify' : '编辑',
+                                            'market' : '模板市场'
+                                        }
+                                    },
+                                    'goods' : '商品',
+                                    'payment' : '支付'
+                                }
+                            },
+                            'account' : {
+                                name : '账户设置',
+                                childs : {
+                                    'email' : '邮箱设置',
+                                    'password' : '修改密码'
+                                }
+                            },
+                            'safity' : {
+                                name : '安全设置',
+                                childs : {
+                                    'multiple' : '多重认证',
+                                    'found' : '账户找回',
+                                    'history' : '登录历史',
+                                    'help' : '寻求帮助',
+                                    'blocked' : '锁定账户'
+                                }
+                            }
+                        }
+                    }
+                }"
+                color="{$colorKey}"
+                class="block"
+            ></ui-menu>
+        </div>
+        <br>
+        <div style="width:260px;padding:20px;">
+            <ui-menu
+                :menu="{
+                    'home' : '颜色{$colorName}菜单',
+                    'active' : {
+                        name : '活动',
+                        disable : true
+                    },
+                    'order' : {
+                        name : '订单',          
+                        childs : {
+                            'all' : '所有',
+                            'notshipped' : '待发货',
+                            'intransit' : '运输中',
+                            'done' : '已完成',
+                            'history' : '历史订单',
+                            'status' : '订单状态',
+                            'data' : '数据统计'
+                        },
+                        groups : {
+                            '订单列表' : ['all', 'done', 'notshipped', 'intransit'],
+                            '更多' : ['history', 'status', 'data']
+                        }
+                    },
+                    'settings' : {
+                        name : '设置',
+                        childs : {
+                            'common' : {
+                                name : '通用设置',
+                                childs : {
+                                    'theme' : {
+                                        name : '模板',
+                                        childs : {
+                                            'modify' : '编辑',
+                                            'market' : '模板市场'
+                                        }
+                                    },
+                                    'goods' : '商品',
+                                    'payment' : '支付'
+                                }
+                            },
+                            'account' : {
+                                name : '账户设置',
+                                childs : {
+                                    'email' : '邮箱设置',
+                                    'password' : '修改密码'
+                                }
+                            },
+                            'safity' : {
+                                name : '安全设置',
+                                childs : {
+                                    'multiple' : '多重认证',
+                                    'found' : '账户找回',
+                                    'history' : '登录历史',
+                                    'help' : '寻求帮助',
+                                    'blocked' : '锁定账户'
+                                }
+                            }
+                        }
+                    }
+                }"
+                color="{$colorKey}"
+                class="block"
+                position="side"
+            ></ui-menu>
+        </div>
+        <br>
+    </div>
+    :::
+
+    :::vue
+    @name:色彩(深色)
+    ---
+    #renderer
+    >name
+    color-repeat
+    >rules
+    color:black
+    >tpl
+    <div style="width:700px;padding:20px;background:#646b75;">
+        <ui-menu
+            :menu="{
+                'home' : '颜色{$colorName}菜单',
+                'active' : {
+                    name : '活动',
+                    disable : true
+                },
+                'order' : {
+                    name : '订单',          
+                    childs : {
+                        'all' : '所有',
+                        'notshipped' : '待发货',
+                        'intransit' : '运输中',
+                        'done' : '已完成',
+                        'history' : '历史订单',
+                        'status' : '订单状态',
+                        'data' : '数据统计'
+                    },
+                    groups : {
+                        '订单列表' : ['all', 'done', 'notshipped', 'intransit'],
+                        '更多' : ['history', 'status', 'data']
+                    }
+                },
+                'settings' : {
+                    name : '设置',
+                    childs : {
+                        'common' : {
+                            name : '通用设置',
+                            childs : {
+                                'theme' : {
+                                    name : '模板',
+                                    childs : {
+                                        'modify' : '编辑',
+                                        'market' : '模板市场'
+                                    }
+                                },
+                                'goods' : '商品',
+                                'payment' : '支付'
+                            }
+                        },
+                        'account' : {
+                            name : '账户设置',
+                            childs : {
+                                'email' : '邮箱设置',
+                                'password' : '修改密码'
+                            }
+                        },
+                        'safity' : {
+                            name : '安全设置',
+                            childs : {
+                                'multiple' : '多重认证',
+                                'found' : '账户找回',
+                                'history' : '登录历史',
+                                'help' : '寻求帮助',
+                                'blocked' : '锁定账户'
+                            }
+                        }
+                    }
+                }
+            }"
+            color="{$colorKey}"
+        ></ui-menu>
+        <br>
+    </div>
+    ---
+    #renderer
+    >name
+    color-repeat
+    >rules
+    color:black
+    >desc
+    侧边栏导航菜单的尺寸。
+    >tpl
+    <div style="width:260px;padding:20px;background:#646b75;">
+        <ui-menu
+            :menu="{
+                'home' : '颜色{$colorName}菜单',
+                'active' : {
+                    name : '活动',
+                    disable : true
+                },
+                'order' : {
+                    name : '订单',          
+                    childs : {
+                        'all' : '所有',
+                        'notshipped' : '待发货',
+                        'intransit' : '运输中',
+                        'done' : '已完成',
+                        'history' : '历史订单',
+                        'status' : '订单状态',
+                        'data' : '数据统计'
+                    },
+                    groups : {
+                        '订单列表' : ['all', 'done', 'notshipped', 'intransit'],
+                        '更多' : ['history', 'status', 'data']
+                    }
+                },
+                'settings' : {
+                    name : '设置',
+                    childs : {
+                        'common' : {
+                            name : '通用设置',
+                            childs : {
+                                'theme' : {
+                                    name : '模板',
+                                    childs : {
+                                        'modify' : '编辑',
+                                        'market' : '模板市场'
+                                    }
+                                },
+                                'goods' : '商品',
+                                'payment' : '支付'
+                            }
+                        },
+                        'account' : {
+                            name : '账户设置',
+                            childs : {
+                                'email' : '邮箱设置',
+                                'password' : '修改密码'
+                            }
+                        },
+                        'safity' : {
+                            name : '安全设置',
+                            childs : {
+                                'multiple' : '多重认证',
+                                'found' : '账户找回',
+                                'history' : '登录历史',
+                                'help' : '寻求帮助',
+                                'blocked' : '锁定账户'
+                            }
+                        }
+                    }
+                }
+            }"
+            color="{$colorKey}"
+            position="side"
+        ></ui-menu>
+        <br>
+    </div>
+    ---
+    #renderer
+    >name
+    color-repeat
+    >rules
+    color:black
+    >desc
+    线条风格的菜单。
+    >tpl
+    <div>
+        <div style="width:700px;padding:20px;background:#646b75;">
+            <ui-menu
+                :menu="{
+                    'home' : '颜色{$colorName}菜单',
+                    'active' : {
+                        name : '活动',
+                        disable : true
+                    },
+                    'order' : {
+                        name : '订单',          
+                        childs : {
+                            'all' : '所有',
+                            'notshipped' : '待发货',
+                            'intransit' : '运输中',
+                            'done' : '已完成',
+                            'history' : '历史订单',
+                            'status' : '订单状态',
+                            'data' : '数据统计'
+                        },
+                        groups : {
+                            '订单列表' : ['all', 'done', 'notshipped', 'intransit'],
+                            '更多' : ['history', 'status', 'data']
+                        }
+                    },
+                    'settings' : {
+                        name : '设置',
+                        childs : {
+                            'common' : {
+                                name : '通用设置',
+                                childs : {
+                                    'theme' : {
+                                        name : '模板',
+                                        childs : {
+                                            'modify' : '编辑',
+                                            'market' : '模板市场'
+                                        }
+                                    },
+                                    'goods' : '商品',
+                                    'payment' : '支付'
+                                }
+                            },
+                            'account' : {
+                                name : '账户设置',
+                                childs : {
+                                    'email' : '邮箱设置',
+                                    'password' : '修改密码'
+                                }
+                            },
+                            'safity' : {
+                                name : '安全设置',
+                                childs : {
+                                    'multiple' : '多重认证',
+                                    'found' : '账户找回',
+                                    'history' : '登录历史',
+                                    'help' : '寻求帮助',
+                                    'blocked' : '锁定账户'
+                                }
+                            }
+                        }
+                    }
+                }"
+                color="{$colorKey}"
+                class="line"
+            ></ui-menu>
+        </div>
+        <br>
+        <div style="width:260px;padding:20px;background:#646b75;">
+            <ui-menu
+                :menu="{
+                    'home' : '颜色{$colorName}菜单',
+                    'active' : {
+                        name : '活动',
+                        disable : true
+                    },
+                    'order' : {
+                        name : '订单',          
+                        childs : {
+                            'all' : '所有',
+                            'notshipped' : '待发货',
+                            'intransit' : '运输中',
+                            'done' : '已完成',
+                            'history' : '历史订单',
+                            'status' : '订单状态',
+                            'data' : '数据统计'
+                        },
+                        groups : {
+                            '订单列表' : ['all', 'done', 'notshipped', 'intransit'],
+                            '更多' : ['history', 'status', 'data']
+                        }
+                    },
+                    'settings' : {
+                        name : '设置',
+                        childs : {
+                            'common' : {
+                                name : '通用设置',
+                                childs : {
+                                    'theme' : {
+                                        name : '模板',
+                                        childs : {
+                                            'modify' : '编辑',
+                                            'market' : '模板市场'
+                                        }
+                                    },
+                                    'goods' : '商品',
+                                    'payment' : '支付'
+                                }
+                            },
+                            'account' : {
+                                name : '账户设置',
+                                childs : {
+                                    'email' : '邮箱设置',
+                                    'password' : '修改密码'
+                                }
+                            },
+                            'safity' : {
+                                name : '安全设置',
+                                childs : {
+                                    'multiple' : '多重认证',
+                                    'found' : '账户找回',
+                                    'history' : '登录历史',
+                                    'help' : '寻求帮助',
+                                    'blocked' : '锁定账户'
+                                }
+                            }
+                        }
+                    }
+                }"
+                color="{$colorKey}"
+                class="line"
+                position="side"
+            ></ui-menu>
+        </div>
+        <br>
+    </div>
+    ---
+    #renderer
+    >name
+    color-repeat
+    >rules
+    color:black
+    >desc
+    区块风格的菜单。
+    >tpl
+    <div>
+        <div style="width:700px;padding:20px;background:#646b75;">
+            <ui-menu
+                :menu="{
+                    'home' : '颜色{$colorName}菜单',
+                    'active' : {
+                        name : '活动',
+                        disable : true
+                    },
+                    'order' : {
+                        name : '订单',          
+                        childs : {
+                            'all' : '所有',
+                            'notshipped' : '待发货',
+                            'intransit' : '运输中',
+                            'done' : '已完成',
+                            'history' : '历史订单',
+                            'status' : '订单状态',
+                            'data' : '数据统计'
+                        },
+                        groups : {
+                            '订单列表' : ['all', 'done', 'notshipped', 'intransit'],
+                            '更多' : ['history', 'status', 'data']
+                        }
+                    },
+                    'settings' : {
+                        name : '设置',
+                        childs : {
+                            'common' : {
+                                name : '通用设置',
+                                childs : {
+                                    'theme' : {
+                                        name : '模板',
+                                        childs : {
+                                            'modify' : '编辑',
+                                            'market' : '模板市场'
+                                        }
+                                    },
+                                    'goods' : '商品',
+                                    'payment' : '支付'
+                                }
+                            },
+                            'account' : {
+                                name : '账户设置',
+                                childs : {
+                                    'email' : '邮箱设置',
+                                    'password' : '修改密码'
+                                }
+                            },
+                            'safity' : {
+                                name : '安全设置',
+                                childs : {
+                                    'multiple' : '多重认证',
+                                    'found' : '账户找回',
+                                    'history' : '登录历史',
+                                    'help' : '寻求帮助',
+                                    'blocked' : '锁定账户'
+                                }
+                            }
+                        }
+                    }
+                }"
+                color="{$colorKey}"
+                class="block"
+            ></ui-menu>
+        </div>
+        <br>
+        <div style="width:260px;padding:20px;background:#646b75;">
+            <ui-menu
+                :menu="{
+                    'home' : '颜色{$colorName}菜单',
+                    'active' : {
+                        name : '活动',
+                        disable : true
+                    },
+                    'order' : {
+                        name : '订单',          
+                        childs : {
+                            'all' : '所有',
+                            'notshipped' : '待发货',
+                            'intransit' : '运输中',
+                            'done' : '已完成',
+                            'history' : '历史订单',
+                            'status' : '订单状态',
+                            'data' : '数据统计'
+                        },
+                        groups : {
+                            '订单列表' : ['all', 'done', 'notshipped', 'intransit'],
+                            '更多' : ['history', 'status', 'data']
+                        }
+                    },
+                    'settings' : {
+                        name : '设置',
+                        childs : {
+                            'common' : {
+                                name : '通用设置',
+                                childs : {
+                                    'theme' : {
+                                        name : '模板',
+                                        childs : {
+                                            'modify' : '编辑',
+                                            'market' : '模板市场'
+                                        }
+                                    },
+                                    'goods' : '商品',
+                                    'payment' : '支付'
+                                }
+                            },
+                            'account' : {
+                                name : '账户设置',
+                                childs : {
+                                    'email' : '邮箱设置',
+                                    'password' : '修改密码'
+                                }
+                            },
+                            'safity' : {
+                                name : '安全设置',
+                                childs : {
+                                    'multiple' : '多重认证',
+                                    'found' : '账户找回',
+                                    'history' : '登录历史',
+                                    'help' : '寻求帮助',
+                                    'blocked' : '锁定账户'
+                                }
+                            }
+                        }
+                    }
+                }"
+                color="{$colorKey}"
+                class="block"
+                position="side"
+            ></ui-menu>
+        </div>
         <br>
     </div>
     :::

@@ -48510,7 +48510,7 @@ var render = function() {
   return _c(
     "mor-menu",
     {
-      class: [_vm.sizeClass, _vm.moreClass],
+      class: [_vm.sizeClass, _vm.colorClass, _vm.moreClass],
       attrs: {
         _uiid: _vm.uiid,
         menu: _vm.menu,
