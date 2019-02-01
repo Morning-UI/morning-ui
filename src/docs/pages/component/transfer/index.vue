@@ -420,6 +420,107 @@
     @wrapStyle:width:500px;height:280px;box-sizing:content-box;padding-bottom:50px;
     :::
 
+    :::vue
+    @name:toggle(key, [checked])
+    ---
+    #method
+    >method-desc
+    切换单个选项的选中状态。
+    >method-args
+    |key|NO|需要切换状态的选项的键值|键值字符串|`String`|`undefined`|
+    |checked|YES|需要切换的状态|`undefined`: 切换到相反的状态<br>`true`: 切换到选中状态<br>`false`: 切换到未选中状态|`Undefined`<br>`Boolean`|`undefined`|
+    >method-return
+    当前组件VM实例。
+    ---
+    #demo
+    >tpl
+    <div>
+        <div style="width:500px;height:280px;">
+            <ui-transfer :list="list" v-model="value" ref="demo1"></ui-transfer>
+        </div>
+        <br>
+        <ui-link js="morning.findVM('demo1').toggle('item5');">切换 备选项-5 至相反状态</ui-link>
+        <ui-link js="morning.findVM('demo1').toggle('item5', true);">切换 备选项-5 至选中</ui-link>
+        <ui-link js="morning.findVM('demo1').toggle('item5', false);">切换 备选项-5 至未选中</ui-link>
+    </div>
+    >script
+    {
+        data : {
+            list : {
+                item1 : '备选项-1',
+                item2 : '备选项-2',
+                item3 : '备选项-3',
+                item4 : '备选项-4',
+                item5 : '备选项-5',
+                item6 : '备选项-6',
+                item7 : '备选项-7',
+                item8 : '备选项-8',
+                item9 : '备选项-9'
+            },
+            value : {
+                source : [
+                    'item5',
+                    'item6',
+                    'item7',
+                    'item8',
+                    'item9'
+                ],
+                target : [
+                    'item1',
+                    'item2',
+                    'item3',
+                    'item4',
+                ]
+            }
+        }
+    }
+    :::
+
+    [[[事件]]]
+
+    :::preset
+    @name:formEvent
+    @uiname:穿梭框
+    @uikey:transfer
+    @value:{source:['item2','item3','item4','item5','item6','item7','item8','item9'],target:['item1']}
+    @attrs: :list="{item1:'备选项-1',item2:'备选项-2',item3:'备选项-3',item4:'备选项-4',item5:'备选项-5',item6:'备选项-6',item7:'备选项-7',item8:'备选项-8',item9:'备选项-9'}"
+    @wrapStyle:width:500px;height:280px;box-sizing:content-box;padding-bottom:50px;
+    :::
+
+    [[[表单值]]]
+
+    #### 值类型
+    
+    `Object` : 对象
+
+    #### 值过滤
+    
+    - 所有不支持的值类型，都会被尝试转换成默认对象（其中`source`的值为`list`配置的键名数组）。
+    - 数值对象的`target`属性类型若不为数组，则会被转换成空数组。
+    - 数值对象的`source`属性类型若不为数组，则会被转换成数组，并且数组内容为`list`配置的键名数组和`target`属性数组的差集。
+
+    #### 值格式
+
+    对象包含属性：
+
+    - `source` : 左侧存在的项目，这是一个数组，数组中每一项的值都是`list`配置中某一项的键名。
+    - `target` : 右侧存在的项目，这是一个数组，数组中每一项的值都是`list`配置中某一项的键名。
+
+    且`source`和`target`两个数组的合集等同于`list`配置的键名数组。
+
+    #### 默认值
+
+    `{source:[ (list配置的键名数组) ], target:[]}`
+
+    :::preset
+    @name:formValue
+    @uikey:transfer
+    @uiname:穿梭框
+    @valueType:transfer
+    @attrs: :list="{item1:'备选项-1',item2:'备选项-2',item3:'备选项-3',item4:'备选项-4',item5:'备选项-5',item6:'备选项-6',item7:'备选项-7'}"
+    @wrapStyle:width:500px;
+    :::
+
     [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/transfer/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>

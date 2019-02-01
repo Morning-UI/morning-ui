@@ -36,7 +36,7 @@
                 >
                     {{data.sourceSelected.length}}/{{sourceTotalCount}}
                 </span>
-                <span 
+                <span
                     class="transfer-target-count"
                     v-else
                 >{{sourceTotalCount}}</span>
@@ -83,7 +83,7 @@
                 @emit="_toSource"
             >
                 <i class="mo-icon mo-icon-left"></i>
-            </morning-btn>     
+            </morning-btn>
         </div>
         
         <div class="transfer-target-list">
@@ -101,7 +101,7 @@
                 >
                     {{data.targetSelected.length}}/{{targetTotalCount}}
                 </span>
-                <span 
+                <span
                     class="transfer-target-count"
                     v-else
                 >{{targetTotalCount}}</span>
@@ -140,6 +140,7 @@
 <script>
 import difference                   from 'lodash.difference';
 import intersection                 from 'lodash.intersection';
+import isPlainObject                from 'lodash.isplainobject';
 
 export default {
     origin : 'Form',
@@ -204,8 +205,6 @@ export default {
 
             }
 
-            console.log(this.uiid, 'source list', list);
-
             return list;
 
         },
@@ -256,7 +255,7 @@ export default {
 
             let listKeys = Object.keys(this.conf.list);
 
-            if (value === undefined) {
+            if (!isPlainObject(value)) {
 
                 value = {
                     source : listKeys,
@@ -265,13 +264,13 @@ export default {
 
             }
 
-            if (value.target === undefined) {
+            if (!Array.isArray(value.target)) {
 
                 value.target = [];
 
             }
 
-            if (value.source === undefined) {
+            if (!Array.isArray(value.source)) {
 
                 value.source = difference(listKeys, value.target);
 
@@ -306,7 +305,7 @@ export default {
             this.data.targetSelected = [];
 
         },
-        _sourceOnSearch : function (key) {
+        _sourceOnSearch : function () {
 
             let hitKeys = [];
             let searchKey = this.$refs[`mor-transfer-source-search-${this.uiid}`].get();
@@ -340,6 +339,50 @@ export default {
             }
 
             this.data.searchTargetMissKeys = difference(Object.keys(this.conf.list), hitKeys);
+
+        },
+        toggle : function (key, checked) {
+
+            if (this.conf.disabledOptions[key]) {
+
+                return this;
+
+            }
+
+            let list = this.get();
+            let pos = 'source';
+
+            if (list.target.indexOf(key) !== -1) {
+
+                pos = 'target';
+
+            }
+            
+            let index = this.data[`${pos}Selected`].indexOf(key);
+
+            if (checked === undefined) {
+
+                if (index !== -1) {
+
+                    this.data[`${pos}Selected`].splice(index, 1);
+
+                } else {
+
+                    this.data[`${pos}Selected`].push(key);
+
+                }
+            
+            } else if (checked && index === -1) {
+
+                this.data[`${pos}Selected`].push(key);
+
+            } else if (!checked && index !== -1) {
+
+                this.data[`${pos}Selected`].splice(index, 1);
+
+            }
+
+            return this;
 
         }
     },
