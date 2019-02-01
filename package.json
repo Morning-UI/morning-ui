@@ -91,7 +91,7 @@
     "babel-register": "^6.26.0",
     "browser-env": "^3.2.5",
     "clean-css": "^4.2.1",
-    "clean-css-loader": "^0.1.4",
+    "clean-css-loader": "^1.1.0",
     "clean-webpack-plugin": "^1.0.1",
     "copy-webpack-plugin": "^4.6.0",
     "cross-env": "^5.0.5",

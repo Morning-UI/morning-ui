@@ -6,7 +6,7 @@ const CleanWebpackPlugin            = require('clean-webpack-plugin');
 const CopyWebpackPlugin             = require('copy-webpack-plugin');
 const ExtractTextPlugin             = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin             = require('html-webpack-plugin');
-const VueLoaderPlugin               = require('vue-loader/lib/plugin')
+const VueLoaderPlugin               = require('vue-loader/lib/plugin');
 
 let pathProjectRoot = path.resolve(__dirname, '../');
 let pathPackage = path.resolve(pathProjectRoot, 'package.json');
@@ -349,7 +349,7 @@ docsConfig = {
     module : {
         rules : [
             {
-                test: /\.less$/,
+                test : /\.less$/,
                 use : extractDocsCss.extract({
                     fallback : 'vue-style-loader',
                     use : [{
@@ -360,7 +360,7 @@ docsConfig = {
                 })
             },
             {
-                test: /\.css$/,
+                test : /\.css$/,
                 use : extractDocsCss.extract({
                     fallback : 'vue-style-loader',
                     use : [{
