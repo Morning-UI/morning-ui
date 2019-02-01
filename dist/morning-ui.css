@@ -1695,7 +1695,6 @@ textarea {
 .ql-container.ql-snow {
   border: 1px solid #ccc;
 }
-
 mor-h {
   display: block;
   line-height: 1.6em;
@@ -1794,7 +1793,6 @@ mor-h.st-apparent {
   animation-timing-function: linear;
   animation-iteration-count: infinite;
 }
-
 mor-lead {
   display: block;
   line-height: 1.428em;
@@ -1871,7 +1869,6 @@ mor-lead.st-apparent {
   animation-timing-function: linear;
   animation-iteration-count: infinite;
 }
-
 mor-mark {
   display: inline;
   background-color: #fab5c1;
@@ -1945,62 +1942,50 @@ mor-mark.st-apparent {
   animation-timing-function: linear;
   animation-iteration-count: infinite;
 }
-
 mor-del {
   display: inline;
   text-decoration: line-through;
 }
-
 mor-u {
   display: inline;
   text-decoration: underline;
 }
-
 mor-small {
   display: inline;
   font-size: smaller;
 }
-
 mor-strong {
   display: inline;
   font-weight: 700;
 }
-
 mor-em {
   display: inline;
   font-style: italic;
 }
-
 mor-textcenter {
   display: block;
   text-align: center;
 }
-
 mor-textleft {
   display: block;
   text-align: left;
 }
-
 mor-textright {
   display: block;
   text-align: right;
 }
-
 mor-lowercase {
   display: inline;
   text-transform: lowercase;
 }
-
 mor-uppercase {
   display: inline;
   text-transform: uppercase;
 }
-
 mor-capitalize {
   display: inline;
   text-transform: capitalize;
 }
-
 mor-quote {
   display: block;
   padding: 0 1em;
@@ -2071,7 +2056,6 @@ mor-quote.co-lg {
 mor-quote.co-wh {
   color: #FFFFFF;
 }
-
 mor-ol {
   display: block;
   list-style-type: decimal;
@@ -2092,7 +2076,6 @@ mor-ol.st-apparent {
   animation-timing-function: linear;
   animation-iteration-count: infinite;
 }
-
 mor-ul {
   display: block;
   list-style-type: disc;
@@ -2113,7 +2096,6 @@ mor-ul.st-apparent {
   animation-timing-function: linear;
   animation-iteration-count: infinite;
 }
-
 mor-il {
   display: block;
 }
@@ -2128,7 +2110,6 @@ mor-il.st-apparent {
   animation-timing-function: linear;
   animation-iteration-count: infinite;
 }
-
 mor-dl {
   display: block;
 }
@@ -2176,7 +2157,6 @@ mor-dl.st-apparent {
   animation-timing-function: linear;
   animation-iteration-count: infinite;
 }
-
 mor-itemlist {
   display: block;
   vertical-align: middle;
@@ -2559,7 +2539,6 @@ mor-itemlist > mor-ul > li > mor-img + .body {
   margin: 0 !important;
   align-items: center;
 }
-
 mor-textcolor {
   display: inline;
   color: #F33D5D;
@@ -2627,7 +2606,6 @@ mor-textcolor.co-lg {
 mor-textcolor.co-wh {
   color: #FFFFFF;
 }
-
 mor-apparent {
   display: inline;
   animation-name: apparent;
@@ -2644,7 +2622,6 @@ mor-apparent.inline-block {
 mor-apparent.block {
   display: block;
 }
-
 mor-grid {
   display: block;
 }
@@ -6737,7 +6714,6 @@ mor-grid.avggap .xl-c-24 {
     width: 100%;
 }
 }
-
 mor-card {
   width: 100%;
   height: 100%;
@@ -6863,7 +6839,6 @@ mor-card > header {
   background-color: #F33D5D;
   color: #FFFFFF;
 }
-
 mor-box {
   display: block;
 }
@@ -6876,7 +6851,6 @@ mor-box.margin {
 mor-box.margin.fill {
   height: calc(100% - 16px*2);
 }
-
 mor-block {
   display: block;
   padding: 32px 24px;
@@ -6971,7 +6945,6 @@ mor-block.co-wh {
 mor-block.full {
   padding: 0;
 }
-
 mor-divider {
   height: 100%;
   display: flex;
@@ -7010,7 +6983,6 @@ mor-divider.vertical::after {
 mor-divider:empty {
   font-size: 0;
 }
-
 mor-center {
   display: flex;
   align-items: center;
@@ -7020,7 +6992,6 @@ mor-center.fill {
   width: 100%;
   height: 100%;
 }
-
 mor-header {
   display: block;
   margin: 0.6em 0;
@@ -7369,7 +7340,6 @@ mor-header.underline {
 mor-header small {
   color: #5378a3;
 }
-
 mor-badge {
   display: inline-block;
   color: #FFF;
@@ -7548,7 +7518,6 @@ mor-badge.flat {
 mor-badge.circle {
   border-radius: 16px;
 }
-
 mor-label {
   display: inline-block;
   white-space: nowrap;
@@ -7949,7 +7918,6 @@ mor-label.icon > span:last-child {
 mor-label.icon > span:first-child {
   padding: 0 1.6px 0 12.8px;
 }
-
 mor-statistic {
   display: inline-block;
   padding: 0 0.4em;
@@ -8210,7 +8178,6 @@ mor-statistic .value {
 mor-statistic .label {
   color: #4b6b92;
 }
-
 mor-action {
   display: block;
   margin-top: 16px;
@@ -8395,7 +8362,6 @@ mor-action .title .note {
 mor-action .title h5 {
   color: #17212D;
 }
-
 mor-formgroup {
   width: 100%;
   display: block;
@@ -8533,7 +8499,6 @@ mor-formgroup.item-title-right .row .item > .title {
 mor-formgroup.item-title-right .item > .title {
   justify-content: flex-end;
 }
-
 mor-btngroup {
   display: inline-block;
   font-size: 0;
@@ -8650,7 +8615,6 @@ mor-btngroup.nogap > mor-btn {
 mor-btngroup.nogap.vertical > mor-btn {
   margin-bottom: 0;
 }
-
 mor-jumbotron {
   display: block;
   padding: 20.8px;
@@ -8669,7 +8633,6 @@ mor-jumbotron p {
   font-size: 16px !important;
   margin: 14.4px 0 20.8px 0;
 }
-
 mor-article {
   display: block;
   line-height: 1.8em;
@@ -8706,7 +8669,6 @@ mor-article.underline .meta {
   margin-top: -0.2em;
   border-bottom: 1px #E6E6E6 solid;
 }
-
 mor-img {
   display: inline-block;
   position: relative;
@@ -8745,7 +8707,6 @@ mor-img.thumbnail {
   overflow: hidden;
   border: 1px solid #E6E6E6;
 }
-
 mor-btn {
   display: inline-block;
   padding: 0 1.1em;
@@ -9612,7 +9573,6 @@ mor-btn.st-disabled.plain {
   background-color: #F33D5D;
   color: #fab5c1;
 }
-
 mor-link {
   display: inline-block;
   position: relative;
@@ -10047,7 +10007,6 @@ mor-link.st-disabled {
 mor-link:hover {
   cursor: pointer;
 }
-
 @keyframes dropdown_popup_arrow {
 from {
     transform: rotateX(0deg);
@@ -10139,7 +10098,6 @@ mor-dropdown.hide mor-link .mo-icon {
   animation-duration: 0.18s;
   animation-fill-mode: forwards;
 }
-
 mor-tab > ul {
   list-style: none;
   padding: 0 !important;
@@ -10433,7 +10391,6 @@ mor-tab.noborder.position-left > .contents {
   border-top-width: 0;
   border-left-width: 1px;
 }
-
 mor-collapse {
   display: block;
   width: 100%;
@@ -10544,7 +10501,6 @@ mor-collapse.line > ul.collapse-ul .content {
 mor-collapse.no-arrow > ul.collapse-ul .menu .mo-collapse-icon {
   display: none;
 }
-
 mor-table {
   width: 100%;
   overflow: auto;
@@ -11607,7 +11563,6 @@ mor-table.ts-zp .table tr.hover td,
 mor-table .table tr.hover td {
   background-color: #e3e3e3;
 }
-
 mor-menu {
   display: block;
 }
@@ -12065,7 +12020,6 @@ mor-menu .pos-side .root-menu > li .has-child-menu-icon {
 mor-menu .pos-side .sub-menu > li .has-child-menu-icon {
   top: 12px;
 }
-
 mor-anchor {
   position: relative;
   display: flex;
@@ -12113,7 +12067,6 @@ mor-anchor .anchor-nav ul.menu > li:hover {
 mor-anchor .anchor-nav ul.menu > li.current {
   color: #F33D5D;
 }
-
 mor-pagination {
   display: inline-block;
 }
@@ -12407,7 +12360,6 @@ mor-pagination .list .page-jump .mo-icon {
 mor-pagination .list > a.current {
   background-color: #F33D5D !important;
 }
-
 mor-dialog {
   width: 100%;
   height: 100%;
@@ -12658,7 +12610,6 @@ mor-dialog > .content > header {
   background-color: #F33D5D;
   color: #FFFFFF;
 }
-
 mor-calendar {
   display: block;
   -webkit-user-select: none;
@@ -13074,7 +13025,6 @@ mor-calendar.highlight-hover .calendar .pick-day .day:hover {
 mor-calendar.highlight-hover .calendar .pick-day .day.bg-mark-disabled:hover {
   font-weight: 400;
 }
-
 @keyframes loadColor {
 100%,
   0% {
@@ -13165,7 +13115,6 @@ mor-load .loadfail,
 mor-load .loading > p {
   font-size: 14px;
 }
-
 @keyframes progressing {
 from {
     width: 10%;
@@ -13444,7 +13393,6 @@ mor-progress .progress-wrap .main {
 mor-progress .progress-wrap .ring-track svg .main {
   stroke: #F33D5D;
 }
-
 mor-sticky {
   display: inline-block;
 }
@@ -13461,7 +13409,6 @@ mor-sticky .sticky-box {
 mor-sticky .sticky-box.fixed {
   position: fixed;
 }
-
 mor-steps {
   display: block;
 }
@@ -13632,7 +13579,6 @@ mor-steps.align-right .step.last .bg {
 mor-steps.align-right .step.done + .link + .step .bg {
   background: #F33D5D;
 }
-
 mor-breadcrumbs {
   display: block;
   vertical-align: middle;
@@ -13752,7 +13698,6 @@ mor-breadcrumbs ul li.separator {
   vertical-align: -5px !important;
   margin: 0 0.5em;
 }
-
 mor-tip {
   position: fixed;
   display: block;
@@ -14170,7 +14115,6 @@ mor-tip.tet-ea-left .arrow {
 mor-tip.tet-ea-right .arrow {
   border-left-color: #F33D5D;
 }
-
 mor-message {
   display: block;
   position: fixed;
@@ -14448,7 +14392,6 @@ mor-message .msg-co-wh {
 mor-message .msg-co-wh .bo-ti {
   color: #17212D;
 }
-
 mor-alert {
   display: block;
   width: 100%;
@@ -14570,7 +14513,6 @@ mor-alert.type-info {
   border-color: #03A6B9;
   color: #014c55;
 }
-
 @keyframes move-right-in {
 from {
     transform: translateX(100%);
@@ -14874,7 +14816,6 @@ mor-carousel.toggle-type-move.direction-vertical .carousel-list > div.prev-new {
 mor-carousel.toggle-type-move.direction-vertical .carousel-list > div.current {
   transform: translateX(0%);
 }
-
 mor-audio {
   display: block;
   -webkit-user-select: none;
@@ -14885,7 +14826,6 @@ mor-audio {
 mor-audio > audio {
   display: none;
 }
-
 mor-video {
   display: block;
   -webkit-user-select: none;
@@ -14898,7 +14838,6 @@ mor-video > video {
   background: #000;
   display: flex;
 }
-
 mor-textinput {
   position: relative;
   z-index: 1;
@@ -15031,7 +14970,6 @@ mor-textinput.st-readonly input[disabled] {
   cursor: not-allowed !important;
   color: #8d8d8d !important;
 }
-
 mor-textarea {
   position: relative;
   z-index: 1;
@@ -15124,7 +15062,6 @@ mor-textarea.st-readonly textarea {
   cursor: not-allowed !important;
   color: #8d8d8d !important;
 }
-
 mor-texteditor {
   display: block;
   height: 100%;
@@ -15219,7 +15156,6 @@ mor-texteditor.st-readonly .ql-container {
 .mo-texteditor-dialog header .mo-icon:hover {
   color: #7C8BA0;
 }
-
 @keyframes switchOpen {
 0% {
     left: 2px;
@@ -15940,7 +15876,6 @@ mor-switch.open .track {
 mor-switch.open .track .point {
   box-shadow: 0 0 4px #a60a26;
 }
-
 mor-rate {
   display: inline-block;
   box-sizing: border-box;
@@ -16055,7 +15990,6 @@ mor-rate.st-readonly .rate-list > li.half-current > span {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-
 mor-counter {
   display: block;
   font-size: 0;
@@ -16208,7 +16142,6 @@ mor-counter.st-readonly .add-step:active {
   border-color: #a6a6a6;
   z-index: 1;
 }
-
 mor-select {
   position: relative;
   display: inline-block;
@@ -16800,7 +16733,6 @@ mor-select.input-group .select-area {
 .mor-select-wrap.no-animation .showlist .list {
   transform: none;
 }
-
 mor-checkbox {
   width: 100%;
   position: relative;
@@ -17509,7 +17441,6 @@ mor-checkbox > .il label.part-checked.disabled .box {
   background: #de526a;
   border-color: #de526a;
 }
-
 mor-radio {
   width: 100%;
   position: relative;
@@ -18074,7 +18005,6 @@ mor-radio > .il label.checked.disabled .box {
   background: #de526a;
   border-color: #de526a;
 }
-
 mor-transfer {
   position: relative;
   display: block;
@@ -18108,7 +18038,6 @@ mor-transfer .transfer-target-list {
 mor-transfer .transfer-source-list .transfer-title,
 mor-transfer .transfer-target-list .transfer-title {
   height: 41.6px;
-  font-size: 16px;
   padding: 6.4px 9.6px;
   background: #EDF1F5;
   font-size: 0;
@@ -18192,8 +18121,8 @@ mor-transfer .transfer-target-list .transfer-list > mor-checkbox > .il > label {
   margin: 0;
   padding: 4.8px 9.6px;
 }
-mor-transfer .transfer-source-list .transfer-list > mor-checkbox > .il > label > span,
-mor-transfer .transfer-target-list .transfer-list > mor-checkbox > .il > label > span {
+mor-transfer .transfer-source-list .transfer-list > mor-checkbox > .il span,
+mor-transfer .transfer-target-list .transfer-list > mor-checkbox > .il span {
   line-height: 1em;
 }
 mor-transfer .transfer-source-list .transfer-list .search-input,
@@ -18251,7 +18180,6 @@ mor-transfer.st-disabled .transfer-target-list,
 mor-transfer.st-readonly .transfer-target-list {
   border: 1px #A8B3C2 solid;
 }
-
 mor-multiinput {
   position: relative;
   z-index: 1;
@@ -18401,7 +18329,6 @@ mor-multiinput.st-disabled > .itemlist:hover,
 mor-multiinput.st-readonly > .itemlist:hover {
   border-color: #a6a6a6;
 }
-
 mor-multiform {
   position: relative;
   z-index: 1;
@@ -18601,7 +18528,6 @@ mor-multiform.st-disabled > .itemlist:hover,
 mor-multiform.st-readonly > .itemlist:hover {
   border-color: #a6a6a6;
 }
-
 mor-slider {
   display: inline-block;
   width: 100%;
@@ -18810,7 +18736,6 @@ mor-slider.st-readonly .wrap .main-slider {
   cursor: not-allowed;
   border-color: #7f95ae;
 }
-
 mor-timepicker {
   display: block;
   position: relative;
@@ -18896,7 +18821,6 @@ mor-timepicker.inline-separator .wrap .timepicker-input-0 mor-textinput input {
 mor-timepicker.inline-separator .wrap .timepicker-input-1 mor-textinput input {
   border-left: 0;
 }
-
 mor-datepicker {
   display: block;
   position: relative;
@@ -19097,7 +19021,6 @@ mor-datepicker.range-input-vertical .wrap .datepicker-input-1 mor-textinput.inpu
 .mor-date-wrap .date-select-0.vertical {
   top: 41px;
 }
-
 mor-datetimepicker {
   display: block;
   position: relative;
@@ -19132,7 +19055,6 @@ mor-datetimepicker > .form-name {
   transform-origin: right;
   font-size: 14px;
 }
-
 mor-upload {
   position: relative;
   z-index: 1;
@@ -19493,7 +19415,6 @@ mor-upload.st-readonly .fl-name {
   background-color: #d7d7d7;
   color: #7C8BA0;
 }
-
 mor-colorpicker {
   display: inline-block;
   position: relative;
@@ -19838,7 +19759,6 @@ mor-colorpicker.st-readonly .preview .color {
 .mo-colorpicker-wrap.not-allow .panel {
   cursor: not-allowed;
 }
-
 mor-imagemap {
   display: block;
   width: 100%;
@@ -20151,7 +20071,6 @@ mor-imagemap.st-readonly .operate:hover {
 .mor-imagemap-map.imagemap-disabled .zonearea .zone .bottomright {
   cursor: default !important;
 }
-
 mor-private-timepicker {
   display: block;
   width: 100%;
@@ -20285,7 +20204,6 @@ mor-private-timepicker > .form-name {
   line-height: calc(1.5em - 2px);
   z-index: 2;
 }
-
 mor-private-datepicker {
   display: block;
   width: 100%;
@@ -20338,7 +20256,6 @@ mor-private-datepicker > .form-name {
 .mor-date-wrap .date-select mor-calendar .day {
   cursor: pointer;
 }
-
 mor-private-menu {
   display: block;
   position: relative;

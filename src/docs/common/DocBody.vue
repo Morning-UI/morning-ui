@@ -2656,7 +2656,7 @@ export default {
             fieldPanelJs.setAttribute('name', 'panel_js');
             fieldPanelJs.value = '0';
             fieldResources.setAttribute('name', 'resources');
-            fieldResources.value = 'https://cdn.jsdelivr.net/npm/vue@2.5.17,https://cdn.jsdelivr.net/npm/morning-ui/dist/morning-ui.js,https://cdn.jsdelivr.net/npm/morning-ui/dist/morning-ui.css,https://morning-ui.com/iconfont.woff';
+            fieldResources.value = 'https://cdn.jsdelivr.net/npm/vue@2.5.22,https://cdn.jsdelivr.net/npm/morning-ui/dist/morning-ui.js,https://cdn.jsdelivr.net/npm/morning-ui/dist/morning-ui.css,https://morning-ui.com/iconfont.woff';
             fieldHtml.setAttribute('name', 'html');
             fieldHtml.value = data.html;
             fieldJs.setAttribute('name', 'js');
