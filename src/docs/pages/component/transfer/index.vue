@@ -409,6 +409,17 @@
     }
     :::
 
+    [[[方法]]]
+
+    :::preset
+    @name:formMethod
+    @uikey:transfer
+    @value:{source:['item2','item3','item4','item5','item6','item7','item8','item9'],target:['item1']}
+    @defaultValue:{source:['item2','item3','item4','item5','item6','item7','item8','item9'],target:['item1']}
+    @attrs: :list="{item1:'备选项-1',item2:'备选项-2',item3:'备选项-3',item4:'备选项-4',item5:'备选项-5',item6:'备选项-6',item7:'备选项-7',item8:'备选项-8',item9:'备选项-9'}"
+    @wrapStyle:width:500px;height:280px;box-sizing:content-box;padding-bottom:50px;
+    :::
+
     [[[源码]]]
 
     <iframe src="/report/coverage/lib/components/transfer/index.vue.html" name="codeFrame" frameborder="0" onload="this.height=codeFrame.document.body.scrollHeight"></iframe>

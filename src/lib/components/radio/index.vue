@@ -12,6 +12,7 @@
         :accept-html="acceptHtml"
         :list="list"
         :disabled-options="disabledOptions"
+        :hidden-options="hiddenOptions"
     >
 
     <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
@@ -23,7 +24,8 @@
                 <label
                     class="checked"
                     :class="{
-                        disabled : data.disabledOptions[key]
+                        disabled : data.disabledOptions[key],
+                        hidden : (conf.hiddenOptions.indexOf(key) !== -1)
                     }"
                     :value="key"
                     :key="key"
@@ -42,7 +44,8 @@
             <template v-else>
                 <label
                     :class="{
-                        disabled : data.disabledOptions[key]
+                        disabled : data.disabledOptions[key],
+                        hidden : (conf.hiddenOptions.indexOf(key) !== -1)
                     }"
                     :value="key"
                     :key="key"
@@ -82,6 +85,10 @@ export default {
         disabledOptions : {
             type : Array,
             default : () => ([])
+        },
+        hiddenOptions : {
+            type : Array,
+            default : () => ([])
         }
     },
     computed : {
@@ -90,7 +97,8 @@ export default {
             return {
                 acceptHtml : this.acceptHtml,
                 list : this.list,
-                disabledOptions : this.disabledOptions
+                disabledOptions : this.disabledOptions,
+                hiddenOptions : this.hiddenOptions
             };
 
         }

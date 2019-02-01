@@ -32038,6 +32038,9 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
 
 exports.default = {
     origin: 'Form',
@@ -32058,6 +32061,12 @@ exports.default = {
             default: function _default() {
                 return [];
             }
+        },
+        hiddenOptions: {
+            type: Array,
+            default: function _default() {
+                return [];
+            }
         }
     },
     computed: {
@@ -32066,7 +32075,8 @@ exports.default = {
             return {
                 acceptHtml: this.acceptHtml,
                 list: this.list,
-                disabledOptions: this.disabledOptions
+                disabledOptions: this.disabledOptions,
+                hiddenOptions: this.hiddenOptions
             };
         }
     },
@@ -32387,6 +32397,8 @@ exports.default = {
                 }
             }
 
+            console.log(this.uiid, 'source list', list);
+
             return list;
         },
         targetList: function targetList() {
@@ -32419,7 +32431,9 @@ exports.default = {
                 sourceSelected: [],
                 targetSelected: [],
                 searchSourceMissKeys: [],
-                searchTargetMissKeys: []
+                searchTargetMissKeys: [],
+                sourceDisabledOptions: [],
+                targetDisabledOptions: []
             }
         };
     },
@@ -32539,6 +32553,16 @@ exports.default = {
 
             _this.data.sourceSelected = (0, _lodash4.default)(value.source, _this.conf.checkedOptions);
             _this.data.targetSelected = (0, _lodash4.default)(value.target, _this.conf.checkedOptions);
+        }, {
+            immediate: true
+        });
+
+        this.$watch('conf.disabledOptions', function () {
+
+            var value = _this.get();
+
+            _this.data.sourceDisabledOptions = (0, _lodash4.default)(value.source, _this.conf.disabledOptions);
+            _this.data.targetDisabledOptions = (0, _lodash4.default)(value.target, _this.conf.disabledOptions);
         }, {
             immediate: true
         });
@@ -51092,7 +51116,8 @@ var render = function() {
         clearable: _vm.clearable,
         "accept-html": _vm.acceptHtml,
         list: _vm.list,
-        "disabled-options": _vm.disabledOptions
+        "disabled-options": _vm.disabledOptions,
+        "hidden-options": _vm.hiddenOptions
       }
     },
     [
@@ -51116,7 +51141,8 @@ var render = function() {
                         key: key,
                         staticClass: "checked",
                         class: {
-                          disabled: _vm.data.disabledOptions[key]
+                          disabled: _vm.data.disabledOptions[key],
+                          hidden: _vm.conf.hiddenOptions.indexOf(key) !== -1
                         },
                         attrs: { value: key },
                         on: {
@@ -51147,7 +51173,8 @@ var render = function() {
                       {
                         key: key,
                         class: {
-                          disabled: _vm.data.disabledOptions[key]
+                          disabled: _vm.data.disabledOptions[key],
+                          hidden: _vm.conf.hiddenOptions.indexOf(key) !== -1
                         },
                         attrs: { value: key },
                         on: {
@@ -51297,7 +51324,7 @@ var render = function() {
                   list: _vm.sourceList,
                   parent: "#mor-transfer-source-" + _vm.uiid + ":all",
                   hiddenOptions: _vm.data.searchSourceMissKeys,
-                  disabledOptions: _vm.conf.disabledOptions
+                  disabledOptions: _vm.data.sourceDisabledOptions
                 },
                 model: {
                   value: _vm.data.sourceSelected,
@@ -51415,7 +51442,7 @@ var render = function() {
                   list: _vm.targetList,
                   parent: "#mor-transfer-target-" + _vm.uiid + ":all",
                   hiddenOptions: _vm.data.searchTargetMissKeys,
-                  disabledOptions: _vm.conf.disabledOptions
+                  disabledOptions: _vm.data.targetDisabledOptions
                 },
                 model: {
                   value: _vm.data.targetSelected,

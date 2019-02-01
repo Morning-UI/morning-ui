@@ -57,7 +57,7 @@
                     :list="sourceList"
                     :parent="'#mor-transfer-source-'+uiid+':all'"
                     :hiddenOptions="data.searchSourceMissKeys"
-                    :disabledOptions="conf.disabledOptions"
+                    :disabledOptions="data.sourceDisabledOptions"
                     v-model="data.sourceSelected"
                 >
                 </morning-checkbox>
@@ -122,7 +122,7 @@
                     :list="targetList"
                     :parent="'#mor-transfer-target-'+uiid+':all'"
                     :hiddenOptions="data.searchTargetMissKeys"
-                    :disabledOptions="conf.disabledOptions"
+                    :disabledOptions="data.targetDisabledOptions"
                     v-model="data.targetSelected"
                 >
                 </morning-checkbox>
@@ -204,6 +204,8 @@ export default {
 
             }
 
+            console.log(this.uiid, 'source list', list);
+
             return list;
 
         },
@@ -242,7 +244,9 @@ export default {
                 sourceSelected : [],
                 targetSelected : [],
                 searchSourceMissKeys : [],
-                searchTargetMissKeys : []
+                searchTargetMissKeys : [],
+                sourceDisabledOptions : [],
+                targetDisabledOptions : []
             }
         };
 
@@ -380,6 +384,17 @@ export default {
 
             this.data.sourceSelected = intersection(value.source, this.conf.checkedOptions);
             this.data.targetSelected = intersection(value.target, this.conf.checkedOptions);
+
+        }, {
+            immediate : true
+        });
+
+        this.$watch('conf.disabledOptions', () => {
+
+            let value = this.get();
+
+            this.data.sourceDisabledOptions = intersection(value.source, this.conf.disabledOptions);
+            this.data.targetDisabledOptions = intersection(value.target, this.conf.disabledOptions);
 
         }, {
             immediate : true

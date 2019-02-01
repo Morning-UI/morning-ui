@@ -691,27 +691,35 @@ normal,disabled,readonly
 
 <a href="/guide/status.html">查看形态文档</a>
 
-#### 色彩
-
-:::repeat/html
+:::vue
+@name:色彩
+---
+#renderer
+>name
+color-repeat
+>rules
 color:theme
 color:feature
 color:black
 color:blue
 color:silver
 color:gray
----
+>tpl
 <div style="width:300px;{%wrapStyle%}">
     <ui-{%uikey%} color="{$colorKey}" :default-value="{%&defaultValue%}" form-name="{$&colorName}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
 </div>
 <br>
 :::
 
-#### 状态
-
-:::repeat/html
-state:normal,disabled,readonly
+:::vue
+@name:状态
 ---
+#renderer
+>name
+state-repeat
+>rules
+normal,disabled,readonly
+>tpl
 <div style="width:300px;{%wrapStyle%}">
     <ui-{%uikey%} state="{$stateKey}" :default-value="{%&defaultValue%}" form-name="{$&stateName}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
 </div>

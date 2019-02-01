@@ -163,10 +163,20 @@ mor-checkbox{
 
         &.st-disabled,
         &.st-readonly{
-            > .il label.checked .box,
-            > .il label.part-checked .box{
-                background: darken(@colorTheme, 15%);
-                border-color: darken(@colorTheme, 15%);
+            > .il label.checked,
+            > .il label.part-checked{
+                .box{
+                    background: desaturate(@colorTheme, 20%);
+                    border-color: desaturate(@colorTheme, 20%);
+                }
+            }
+        }
+
+        > .il label.checked.disabled,
+        > .il label.part-checked.disabled{
+            .box{
+                background: desaturate(@colorTheme, 20%);
+                border-color: desaturate(@colorTheme, 20%);
             }
         }
     }
@@ -182,6 +192,25 @@ mor-checkbox{
         &.border > .il label.part-checked{
             border-color: @colorLightTheme;
         }
+
+        &.st-disabled,
+        &.st-readonly{
+            > .il label.checked,
+            > .il label.part-checked{
+                .box{
+                    background: desaturate(@colorLightTheme, 20%);
+                    border-color: desaturate(@colorLightTheme, 20%);
+                }
+            }
+        }
+
+        > .il label.checked.disabled,
+        > .il label.part-checked.disabled{
+            .box{
+                background: desaturate(@colorLightTheme, 20%);
+                border-color: desaturate(@colorLightTheme, 20%);
+            }
+        }
     }
 
     &.co-dt{
@@ -194,6 +223,25 @@ mor-checkbox{
         &.border > .il label.checked,
         &.border > .il label.part-checked{
             border-color: @colorDarkTheme;
+        }
+
+        &.st-disabled,
+        &.st-readonly{
+            > .il label.checked,
+            > .il label.part-checked{
+                .box{
+                    background: desaturate(@colorDarkTheme, 20%);
+                    border-color: desaturate(@colorDarkTheme, 20%);
+                }
+            }
+        }
+
+        > .il label.checked.disabled,
+        > .il label.part-checked.disabled{
+            .box{
+                background: desaturate(@colorDarkTheme, 20%);
+                border-color: desaturate(@colorDarkTheme, 20%);
+            }
         }
     }
 
@@ -208,6 +256,25 @@ mor-checkbox{
         &.border > .il label.part-checked{
             border-color: @colorSuccess;
         }
+
+        &.st-disabled,
+        &.st-readonly{
+            > .il label.checked,
+            > .il label.part-checked{
+                .box{
+                    background: desaturate(@colorSuccess, 20%);
+                    border-color: desaturate(@colorSuccess, 20%);
+                }
+            }
+        }
+
+        > .il label.checked.disabled,
+        > .il label.part-checked.disabled{
+            .box{
+                background: desaturate(@colorSuccess, 20%);
+                border-color: desaturate(@colorSuccess, 20%);
+            }
+        }
     }
 
     &.co-w{
@@ -220,6 +287,25 @@ mor-checkbox{
         &.border > .il label.checked,
         &.border > .il label.part-checked{
             border-color: @colorWarning;
+        }
+
+        &.st-disabled,
+        &.st-readonly{
+            > .il label.checked,
+            > .il label.part-checked{
+                .box{
+                    background: desaturate(@colorWarning, 20%);
+                    border-color: desaturate(@colorWarning, 20%);
+                }
+            }
+        }
+
+        > .il label.checked.disabled,
+        > .il label.part-checked.disabled{
+            .box{
+                background: desaturate(@colorWarning, 20%);
+                border-color: desaturate(@colorWarning, 20%);
+            }
         }
     }
 
@@ -234,6 +320,25 @@ mor-checkbox{
         &.border > .il label.part-checked{
             border-color: @colorDanger;
         }
+
+        &.st-disabled,
+        &.st-readonly{
+            > .il label.checked,
+            > .il label.part-checked{
+                .box{
+                    background: desaturate(@colorDanger, 20%);
+                    border-color: desaturate(@colorDanger, 20%);
+                }
+            }
+        }
+
+        > .il label.checked.disabled,
+        > .il label.part-checked.disabled{
+            .box{
+                background: desaturate(@colorDanger, 20%);
+                border-color: desaturate(@colorDanger, 20%);
+            }
+        }
     }
 
     &.co-p{
@@ -246,6 +351,25 @@ mor-checkbox{
         &.border > .il label.checked,
         &.border > .il label.part-checked{
             border-color: @colorPrimary;
+        }
+
+        &.st-disabled,
+        &.st-readonly{
+            > .il label.checked,
+            > .il label.part-checked{
+                .box{
+                    background: desaturate(@colorPrimary, 20%);
+                    border-color: desaturate(@colorPrimary, 20%);
+                }
+            }
+        }
+
+        > .il label.checked.disabled,
+        > .il label.part-checked.disabled{
+            .box{
+                background: desaturate(@colorPrimary, 20%);
+                border-color: desaturate(@colorPrimary, 20%);
+            }
         }
     }
 
@@ -260,6 +384,25 @@ mor-checkbox{
         &.border > .il label.part-checked{
             border-color: @colorMinor;
         }
+
+        &.st-disabled,
+        &.st-readonly{
+            > .il label.checked,
+            > .il label.part-checked{
+                .box{
+                    background: desaturate(@colorMinor, 20%);
+                    border-color: desaturate(@colorMinor, 20%);
+                }
+            }
+        }
+
+        > .il label.checked.disabled,
+        > .il label.part-checked.disabled{
+            .box{
+                background: desaturate(@colorMinor, 20%);
+                border-color: desaturate(@colorMinor, 20%);
+            }
+        }
     }
 
     &.co-i{
@@ -272,6 +415,25 @@ mor-checkbox{
         &.border > .il label.checked,
         &.border > .il label.part-checked{
             border-color: @colorInfo;
+        }
+
+        &.st-disabled,
+        &.st-readonly{
+            > .il label.checked,
+            > .il label.part-checked{
+                .box{
+                    background: desaturate(@colorInfo, 20%);
+                    border-color: desaturate(@colorInfo, 20%);
+                }
+            }
+        }
+
+        > .il label.checked.disabled,
+        > .il label.part-checked.disabled{
+            .box{
+                background: desaturate(@colorInfo, 20%);
+                border-color: desaturate(@colorInfo, 20%);
+            }
         }
     }
 
@@ -286,6 +448,25 @@ mor-checkbox{
         &.border > .il label.part-checked{
             border-color: @colorBlack;
         }
+
+        &.st-disabled,
+        &.st-readonly{
+            > .il label.checked,
+            > .il label.part-checked{
+                .box{
+                    background: saturate(@colorBlack, 30%);
+                    border-color: saturate(@colorBlack, 30%);
+                }
+            }
+        }
+
+        > .il label.checked.disabled,
+        > .il label.part-checked.disabled{
+            .box{
+                background: saturate(@colorBlack, 30%);
+                border-color: saturate(@colorBlack, 30%);
+            }
+        }
     }
 
     &.co-lbk{
@@ -298,6 +479,25 @@ mor-checkbox{
         &.border > .il label.checked,
         &.border > .il label.part-checked{
             border-color: @colorLightBlack;
+        }
+
+        &.st-disabled,
+        &.st-readonly{
+            > .il label.checked,
+            > .il label.part-checked{
+                .box{
+                    background: saturate(@colorLightBlack, 30%);
+                    border-color: saturate(@colorLightBlack, 30%);
+                }
+            }
+        }
+
+        > .il label.checked.disabled,
+        > .il label.part-checked.disabled{
+            .box{
+                background: saturate(@colorLightBlack, 30%);
+                border-color: saturate(@colorLightBlack, 30%);
+            }
         }
     }
 
@@ -312,6 +512,25 @@ mor-checkbox{
         &.border > .il label.part-checked{
             border-color: @colorExtraLightBlack;
         }
+
+        &.st-disabled,
+        &.st-readonly{
+            > .il label.checked,
+            > .il label.part-checked{
+                .box{
+                    background: saturate(@colorExtraLightBlack, 30%);
+                    border-color: saturate(@colorExtraLightBlack, 30%);
+                }
+            }
+        }
+
+        > .il label.checked.disabled,
+        > .il label.part-checked.disabled{
+            .box{
+                background: saturate(@colorExtraLightBlack, 30%);
+                border-color: saturate(@colorExtraLightBlack, 30%);
+            }
+        }
     }
 
     &.co-bu{
@@ -324,6 +543,25 @@ mor-checkbox{
         &.border > .il label.checked,
         &.border > .il label.part-checked{
             border-color: @colorBlue;
+        }
+
+        &.st-disabled,
+        &.st-readonly{
+            > .il label.checked,
+            > .il label.part-checked{
+                .box{
+                    background: desaturate(@colorBlue, 10%);
+                    border-color: desaturate(@colorBlue, 10%);
+                }
+            }
+        }
+
+        > .il label.checked.disabled,
+        > .il label.part-checked.disabled{
+            .box{
+                background: desaturate(@colorBlue, 10%);
+                border-color: desaturate(@colorBlue, 10%);
+            }
         }
     }
 
@@ -338,6 +576,25 @@ mor-checkbox{
         &.border > .il label.part-checked{
             border-color: @colorLightBlue;
         }
+
+        &.st-disabled,
+        &.st-readonly{
+            > .il label.checked,
+            > .il label.part-checked{
+                .box{
+                    background: desaturate(@colorLightBlue, 10%);
+                    border-color: desaturate(@colorLightBlue, 10%);
+                }
+            }
+        }
+
+        > .il label.checked.disabled,
+        > .il label.part-checked.disabled{
+            .box{
+                background: desaturate(@colorLightBlue, 10%);
+                border-color: desaturate(@colorLightBlue, 10%);
+            }
+        }
     }
 
     &.co-elbu{
@@ -350,6 +607,25 @@ mor-checkbox{
         &.border > .il label.checked,
         &.border > .il label.part-checked{
             border-color: @colorExtraLightBlue;
+        }
+
+        &.st-disabled,
+        &.st-readonly{
+            > .il label.checked,
+            > .il label.part-checked{
+                .box{
+                    background: desaturate(@colorExtraLightBlue, 10%);
+                    border-color: desaturate(@colorExtraLightBlue, 10%);
+                }
+            }
+        }
+
+        > .il label.checked.disabled,
+        > .il label.part-checked.disabled{
+            .box{
+                background: desaturate(@colorExtraLightBlue, 10%);
+                border-color: desaturate(@colorExtraLightBlue, 10%);
+            }
         }
     }
 
@@ -389,6 +665,25 @@ mor-checkbox{
         &.border > .il label.part-checked{
             border-color: @colorSilver;
         }
+
+        &.st-disabled,
+        &.st-readonly{
+            > .il label.checked,
+            > .il label.part-checked{
+                .box{
+                    background: desaturate(@colorSilver, 20%);
+                    border-color: desaturate(@colorSilver, 20%);
+                }
+            }
+        }
+
+        > .il label.checked.disabled,
+        > .il label.part-checked.disabled{
+            .box{
+                background: desaturate(@colorSilver, 20%);
+                border-color: desaturate(@colorSilver, 20%);
+            }
+        }
     }
 
     &.co-lsi{
@@ -426,6 +721,25 @@ mor-checkbox{
         &.border > .il label.checked,
         &.border > .il label.part-checked{
             border-color: @colorLightSilver;
+        }
+
+        &.st-disabled,
+        &.st-readonly{
+            > .il label.checked,
+            > .il label.part-checked{
+                .box{
+                    background: desaturate(@colorLightSilver, 20%);
+                    border-color: desaturate(@colorLightSilver, 20%);
+                }
+            }
+        }
+
+        > .il label.checked.disabled,
+        > .il label.part-checked.disabled{
+            .box{
+                background: desaturate(@colorLightSilver, 20%);
+                border-color: desaturate(@colorLightSilver, 20%);
+            }
         }
     }
 
@@ -465,6 +779,25 @@ mor-checkbox{
         &.border > .il label.part-checked{
             border-color: @colorExtraLightSilver;
         }
+
+        &.st-disabled,
+        &.st-readonly{
+            > .il label.checked,
+            > .il label.part-checked{
+                .box{
+                    background: desaturate(@colorExtraLightSilver, 20%);
+                    border-color: desaturate(@colorExtraLightSilver, 20%);
+                }
+            }
+        }
+
+        > .il label.checked.disabled,
+        > .il label.part-checked.disabled{
+            .box{
+                background: desaturate(@colorExtraLightSilver, 20%);
+                border-color: desaturate(@colorExtraLightSilver, 20%);
+            }
+        }
     }
 
     &.co-g{
@@ -502,6 +835,25 @@ mor-checkbox{
         &.border > .il label.checked,
         &.border > .il label.part-checked{
             border-color: @colorGray;
+        }
+
+        &.st-disabled,
+        &.st-readonly{
+            > .il label.checked,
+            > .il label.part-checked{
+                .box{
+                    background: desaturate(@colorGray, 20%);
+                    border-color: desaturate(@colorGray, 20%);
+                }
+            }
+        }
+
+        > .il label.checked.disabled,
+        > .il label.part-checked.disabled{
+            .box{
+                background: desaturate(@colorGray, 20%);
+                border-color: desaturate(@colorGray, 20%);
+            }
         }
     }
 
@@ -541,6 +893,25 @@ mor-checkbox{
         &.border > .il label.part-checked{
             border-color: @colorLightGray;
         }
+
+        &.st-disabled,
+        &.st-readonly{
+            > .il label.checked,
+            > .il label.part-checked{
+                .box{
+                    background: desaturate(@colorLightGray, 20%);
+                    border-color: desaturate(@colorLightGray, 20%);
+                }
+            }
+        }
+
+        > .il label.checked.disabled,
+        > .il label.part-checked.disabled{
+            .box{
+                background: desaturate(@colorLightGray, 20%);
+                border-color: desaturate(@colorLightGray, 20%);
+            }
+        }
     }
 
     &.co-wh{
@@ -578,6 +949,25 @@ mor-checkbox{
         &.border > .il label.checked,
         &.border > .il label.part-checked{
             border-color: @colorWhite;
+        }
+
+        &.st-disabled,
+        &.st-readonly{
+            > .il label.checked,
+            > .il label.part-checked{
+                .box{
+                    background: desaturate(@colorWhite, 20%);
+                    border-color: desaturate(@colorWhite, 20%);
+                }
+            }
+        }
+
+        > .il label.checked.disabled,
+        > .il label.part-checked.disabled{
+            .box{
+                background: desaturate(@colorWhite, 20%);
+                border-color: desaturate(@colorWhite, 20%);
+            }
         }
     }
 
