@@ -19901,3 +19901,56 @@ mor-private-menu.pos-side .root-menu > li.show > .has-child-menu-icon,
 mor-private-menu.pos-side .sub-menu > li.show > .has-child-menu-icon {
   transform: rotateX(180deg) scale(0.8);
 }
+
+mor-private-tree {
+  display: block;
+}
+mor-private-tree mor-private-tree {
+  padding-left: 2em;
+  margin-top: 0.25em;
+}
+mor-private-tree ul.tree-body {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 14px;
+}
+mor-private-tree ul.tree-body .tree-node {
+  padding: 0;
+  margin: 0.25em 0;
+  box-sizing: border-box;
+}
+mor-private-tree ul.tree-body .tree-node > span {
+  display: inline-block;
+  font-size: 0;
+}
+mor-private-tree ul.tree-body .tree-node > span > a {
+  color: #17212D;
+  font-size: 14px;
+  display: inline-block;
+  box-sizing: border-box;
+}
+mor-private-tree ul.tree-body .tree-node > span > a:hover {
+  cursor: pointer;
+  text-decoration: none;
+}
+mor-private-tree ul.tree-body .tree-node > span .node-switcher {
+  transform-origin: center;
+  transform: scale(0.8);
+}
+mor-private-tree ul.tree-body .tree-node > span .node-switcher .mo-icon {
+  font-size: 12px;
+}
+mor-private-tree ul.tree-body .tree-node > span .node-name {
+  padding: 0.1em 0.5em;
+  border-radius: 3px;
+}
+mor-private-tree ul.tree-body .tree-node > span .node-name:hover {
+  background: #feedf0;
+}
+mor-private-tree ul.tree-body .tree-node > span .node-name.current {
+  background: #fdd0d8;
+}
+mor-private-tree ul.tree-body .tree-node.fold > mor-private-tree {
+  display: none;
+}

@@ -17,12 +17,50 @@
     ---
     #demo
     >desc
-    使用`slot`的`name`属性标记内容对应的折叠面板的KEY，面板的KEY是唯一索引，所以`slot`不能重复。
+    通过`tree`配置来设置树状控件，每一项目可以简写为：`key:name`的形式，也可以完整的写为：`key:[object]`。
+    <br><br>
+    其中`object`包含两个属性：
+    - `name` : 当前节点的名称
+    - `child` : 子节点对象
     >tpl
     <div style="width: 560px;">
-        <ui-tree></ui-tree>
+        <ui-tree :tree="tree"></ui-tree>
     </div>
+    >script
+    {
+        data : {
+            tree : {
+                0 : {
+                    name : 'ROOT',
+                    childs : {
+                        '0-1' : '0-1',
+                        '0-2' : '0-2',
+                        '0-3' : {
+                            name : '0-3',
+                            childs : {
+                                '0-3-1' : '0-3-1',
+                                '0-3-2' : '0-3-2'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
     :::
+
+    [[[形态]]]
+
+    #### 支持
+
+    |类型|支持|默认|
+    |-|-|-|
+    |尺寸|`m` `s` `xs` `xxs`|`m`|
+    |色彩|不支持|-|
+    |状态|不支持|-|
+
+    <a href="/guide/status.html">查看形态文档</a>
+
 
     [[[源码]]]
 

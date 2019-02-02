@@ -86,11 +86,13 @@ import imagemap                     from './imagemap/index.vue';
 import privateTimepicker             from './private-timepicker/index.vue';
 import privateDatepicker             from './private-datepicker/index.vue';
 import privateMenu                   from './private-menu/index.vue';
+import privateTree                   from './private-tree/index.vue';
 
 export default {
     'private-timepicker' : privateTimepicker,
     'private-datepicker' : privateDatepicker,
     'private-menu' : privateMenu,
+    'private-tree' : privateTree,
     h,
     lead,
     mark,

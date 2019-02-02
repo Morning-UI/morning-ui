@@ -1,0 +1,70 @@
+@import '~Common/var.less';
+
+mor-private-tree{
+    display: block;
+
+    mor-private-tree{
+        padding-left: 2em;
+        margin-top: 0.25em;
+    } 
+
+    ul.tree-body{
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        font-size: @fontSize*0.875;
+
+        .tree-node{
+            padding: 0;
+            margin: 0.25em 0;
+            box-sizing: border-box;
+
+            > span{
+                display: inline-block;
+                font-size: 0;
+
+                > a{
+                    color: @colorBlack;
+                    font-size: @fontSize*0.875;
+                    display: inline-block;
+                    box-sizing: border-box;
+
+                    &:hover{
+                        cursor: pointer;
+                        text-decoration: none;
+                    }
+                }
+
+                .node-switcher{
+                    transform-origin: center;
+                    transform: scale(0.8);
+
+                    .mo-icon{
+                        font-size: @fontSize*0.75;
+
+                    }
+                }
+
+                .node-name{
+                    padding: 0.1em 0.5em;
+                    border-radius: @borderRadius;
+
+                    &:hover{
+                        background: lighten(@colorLightTheme, 26%);
+                    }
+
+                    &.current{
+                        background: lighten(@colorLightTheme, 20%);
+                    }
+                }
+            }
+
+            &.fold > mor-private-tree{
+                display: none;
+            }
+        }
+    }
+
+    // default status
+    &{}
+}
