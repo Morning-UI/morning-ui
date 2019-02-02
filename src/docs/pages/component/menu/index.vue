@@ -2297,7 +2297,7 @@
     ---
     #config
     >conf-desc
-    侧边栏折叠，折叠后侧边栏仅显示菜单图标，可以缩小导航菜单所占用的空间。此配置仅在`position`为`side`时生效。
+    侧边栏折叠，折叠后侧边栏仅显示菜单图标(必须配置顶级菜单图标)，可以缩小导航菜单所占用的空间。此配置仅在`position`为`side`时生效。
     >conf-accept
     `true`<br>`false`
     >conf-type
