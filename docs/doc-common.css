@@ -1232,11 +1232,17 @@ mor-dialog a:hover {
   transform-origin: bottom;
   margin-right: -0.15em;
 }
-.content mor-anchor .nav-wrap {
+.content .item > div > mor-anchor > .nav-wrap,
+.content > mor-anchor > .nav-wrap {
   min-width: 150px;
   padding-left: 3px;
 }
-.content mor-anchor .content-wrap {
+.content .item > div > mor-anchor > .nav-wrap > mor-sticky,
+.content > mor-anchor > .nav-wrap > mor-sticky {
+  min-width: 150px;
+}
+.content .item > div > mor-anchor > .content-wrap,
+.content > mor-anchor > .content-wrap {
   min-width: 800px;
 }
 .demo-root {

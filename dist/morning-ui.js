@@ -36283,6 +36283,11 @@ exports.default = {
 
             var list = [];
             var $anchors = this.$el.querySelectorAll('[is-anchor]');
+            var $otherAnchors = this.$el.querySelectorAll(':scope mor-anchor [is-anchor]');
+
+            $otherAnchors = Array.from($otherAnchors);
+
+            console.log(this.$el);
 
             var _iteratorNormalCompletion = true;
             var _didIteratorError = false;
@@ -36293,12 +36298,15 @@ exports.default = {
                     var $anchor = _step.value;
 
 
-                    list.push({
-                        title: $anchor.getAttribute('title'),
-                        anchor: $anchor.getAttribute('id'),
-                        level: $anchor.getAttribute('is-anchor') || 1,
-                        $anchor: $anchor
-                    });
+                    if ($otherAnchors.indexOf($anchor) === -1) {
+
+                        list.push({
+                            title: $anchor.getAttribute('title'),
+                            anchor: $anchor.getAttribute('id'),
+                            level: $anchor.getAttribute('is-anchor') || 1,
+                            $anchor: $anchor
+                        });
+                    }
                 }
             } catch (err) {
                 _didIteratorError = true;

@@ -20,6 +20,8 @@
     `ui-anchor`的`slot`为需要导航的内容，在内容中通过`is-anchor`属性将元素标记为锚点。
     <br><br>
     被标记为锚点的元素必须包含`id`和`title`属性，其中`id`为显示在URL中的锚点KEY，`title`为锚点在导航菜单中显示的名字。
+    <br><br>
+    需要注意`id`必须在页面中唯一。
     >tpl
     <ui-anchor>
         <div>
