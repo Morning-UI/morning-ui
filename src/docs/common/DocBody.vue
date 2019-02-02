@@ -2447,7 +2447,7 @@ window.Vue.directive('docmd', {
             md = md.replace(/\{\*([a-zA-Z0-9_.]+)\*\}/g, '{{"\\{\\{$1\\}\\}"}}');
             md = md.replace(/<p>(\[\[\[(.+)\]\]\])<\/p>/g, '$1');
             md = md.replace(/(\[\[\[)/, '<ui-tab class="block noborder no-padding" anchor-target>$1');
-            md = md.replace(/\[\[\[开始\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="开始"><div class="content-title">开始</div>$1</div>$3');
+            md = md.replace(/\[\[\[开始\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="开始"><morning-anchor><div class="content-title" title="开始" id="开始" is-anchor>开始</div>$1</morning-anchor></div>$3');
             md = md.replace(/\[\[\[形态\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="形态"><div class="content-title">形态</div>$1</div>$3');
             md = md.replace(/\[\[\[配置\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="配置"><morning-anchor><div class="content-title" title="配置" id="配置" is-anchor>配置</div>$1</morning-anchor></div>$3');
             md = md.replace(/\[\[\[方法\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="方法"><morning-anchor><div class="content-title" title="方法" id="方法" is-anchor>方法</div>$1</div>$3');

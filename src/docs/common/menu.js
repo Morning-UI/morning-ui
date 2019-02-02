@@ -55,7 +55,7 @@ export default {
         标签页 : '/component/tab.html',
         折叠面板 : '/component/collapse.html',
         表格 : '/component/table.html',
-        导航菜单 : '/component/menu.html',
+        '导航菜单<i class="tag update"></i>' : '/component/menu.html',
         '锚点导航<i class="tag new"></i>' : '/component/anchor.html',
         分页 : '/component/pagination.html',
         模拟盒 : '/component/dialog.html',

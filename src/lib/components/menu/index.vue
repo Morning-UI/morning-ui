@@ -1,7 +1,7 @@
 <template>
     <mor-menu
         :_uiid="uiid"
-        :class="[sizeClass, moreClass]"
+        :class="[sizeClass, colorClass, moreClass]"
 
         :menu="menu"
         :current-menu="currentMenu"
@@ -9,6 +9,7 @@
         :auto-toggle-current="autoToggleCurrent"
         :position-current="positionCurrent"
         :side-expand="sideExpand"
+        :side-collapse="sideCollapse"
 
         @mousemove="_mousemoveInMenu"
     >
@@ -21,6 +22,7 @@
         :current-menu="data.currentMenu"
         :position="conf.position"
         :root-item-show-list="data.rootItemShowList"
+        :side-collapse="conf.sideCollapse"
 
         @emit="_emit"
     ></morning-private-menu>
@@ -58,6 +60,10 @@ export default {
         sideExpand : {
             type : Boolean,
             default : false
+        },
+        sideCollapse : {
+            type : Boolean,
+            default : false
         }
     },
     computed : {
@@ -69,14 +75,16 @@ export default {
                 position : this.position,
                 autoToggleCurrent : this.autoToggleCurrent,
                 positionCurrent : this.positionCurrent,
-                sideExpand : this.sideExpand
+                sideExpand : this.sideExpand,
+                sideCollapse : this.sideCollapse
             };
 
         },
         moreClass : function () {
 
             return {
-                expand : this.isSideExpand
+                expand : this.isSideExpand,
+                collapse : this.isSideCollapse
             };
 
         },
@@ -92,6 +100,11 @@ export default {
         isSideExpand : function () {
 
             return this.conf.sideExpand && (this.conf.position === 'side');
+
+        },
+        isSideCollapse : function () {
+
+            return this.conf.sideCollapse && (this.conf.position === 'side');
 
         }
     },
