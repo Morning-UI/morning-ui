@@ -33868,6 +33868,9 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
 
 exports.default = {
     origin: 'Form',
@@ -53323,7 +53326,13 @@ var render = function() {
           ])
         : _vm._e(),
       _vm._v(" "),
-      _c("div", { staticClass: "cascader-wrap" }),
+      _c("div", { staticClass: "cascader-wrap" }, [
+        _c("div", { staticClass: "cascader-input" }, [
+          _c("span", { staticClass: "note" }, [_vm._v("选择")]),
+          _vm._v(" "),
+          _c("i", { staticClass: "mo-icon mo-icon-dropdown" })
+        ])
+      ]),
       _vm._v(" "),
       _vm.conf.clearable
         ? _c(

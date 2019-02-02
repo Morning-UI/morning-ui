@@ -1294,10 +1294,38 @@ mor-dialog a:hover {
   vertical-align: top;
   display: block;
   position: relative;
+  overflow: hidden;
 }
 .demo-root .section-demo .code-con > .code > pre {
   font-size: 12px;
   margin: 0;
+  max-height: 120px;
+  overflow: hidden;
+}
+.demo-root .section-demo .code-con > .code > pre.show-more {
+  max-height: none;
+}
+.demo-root .section-demo .code-con > .code > .see-more {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 40px;
+  width: 100%;
+  background: #f6f8fa;
+  font-size: 14px;
+  text-align: center;
+  line-height: 40px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  color: #7C8BA0;
+}
+.demo-root .section-demo .code-con > .code > .see-more.show-more {
+  display: none;
+}
+.demo-root .section-demo .code-con > .code > .see-more:hover {
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+  text-decoration: none;
+  color: #303C4B;
 }
 .demo-root .section-demo .code-con > .code > .demo-tools {
   position: absolute;

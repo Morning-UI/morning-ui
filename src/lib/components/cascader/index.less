@@ -3,6 +3,45 @@
 mor-cascader{
     position: relative;
 
+    .setup-form();
+    
+    .cascader-wrap{
+        .cascader-input{
+            box-sizing: border-box;
+            padding: 0 1em;
+            border: 1px solid;
+            border-radius: 3px;
+            position: relative;
+            background: @colorFormBackground;
+            border: 1px @colorFormBorder solid;
+            height: @formHeight;
+            line-height: @formHeight;
+            color: @colorFormText !important;
+            cursor: pointer;
+
+            &:hover{
+                border-color: @colorFormBorderHover;
+                color: @colorFormTextHover !important;
+            }
+
+            > .note{
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                display: inline-block;
+                width: 100%;
+                overflow: hidden;
+                padding: 0 1em 0 0;
+            }
+
+            > .mo-icon{
+                position: absolute;
+                right: 0;
+                top: 0;
+                font-size: @fontSize*1.25;
+            }
+        }
+    }
+
     &.st-normal{}
 
     &.st-disabled,

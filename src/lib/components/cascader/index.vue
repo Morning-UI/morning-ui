@@ -14,7 +14,10 @@
     <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
 
     <div class="cascader-wrap">
-
+        <div class="cascader-input">
+            <span class="note">选择</span>
+            <i class="mo-icon mo-icon-dropdown"></i>
+        </div>
     </div>
 
     <morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn">清空</morning-link>

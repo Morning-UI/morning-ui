@@ -18619,6 +18619,53 @@ mor-transfer.st-readonly .transfer-target-list {
 mor-cascader {
   position: relative;
 }
+mor-cascader.has-cleanbtn {
+  padding-bottom: 20px;
+}
+mor-cascader .cleanbtn {
+  position: absolute;
+  right: 0;
+  font-size: 12px;
+  margin-top: 1px;
+}
+mor-cascader > .form-name {
+  color: #303C4B;
+  font-size: 16px;
+  margin-bottom: 0.5em;
+  -webkit-user-select: text;
+  text-align: left;
+}
+mor-cascader .cascader-wrap .cascader-input {
+  box-sizing: border-box;
+  padding: 0 1em;
+  border: 1px solid;
+  border-radius: 3px;
+  position: relative;
+  background: #FFFFFF;
+  border: 1px #E6E6E6 solid;
+  height: 42px;
+  line-height: 42px;
+  color: #b3b3b3 !important;
+  cursor: pointer;
+}
+mor-cascader .cascader-wrap .cascader-input:hover {
+  border-color: #d7d7d7;
+  color: #9a9a9a !important;
+}
+mor-cascader .cascader-wrap .cascader-input > .note {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: inline-block;
+  width: 100%;
+  overflow: hidden;
+  padding: 0 1em 0 0;
+}
+mor-cascader .cascader-wrap .cascader-input > .mo-icon {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 20px;
+}
 mor-multiinput {
   position: relative;
   z-index: 1;
