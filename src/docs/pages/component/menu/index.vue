@@ -894,11 +894,21 @@
     <div style="width:700px;">
         <ui-menu
             :menu="{
-                'size' : '尺寸{$sizeName}',
-                'home' : '首页',
-                'order' : '订单',
-                'history' : '历史',
-                'settings' : '设置'
+                'home' : '<i class=\'mo-icon mo-icon-block-4\'></i>尺寸{$sizeName}',
+                'order' : {
+                    name : '<i class=\'mo-icon mo-icon-menu\'></i>订单',
+                    childs : {
+                        'my' : '我的订单',
+                        'history' : {
+                            name : '历史订单',
+                            childs : {
+                                'week' : '最近一周',
+                                'month' : '最近一月'
+                            }
+                        }
+                    }
+                },
+                'search' : '<i class=\'mo-icon mo-icon-more\'></i>搜索'
             }"
             size="{$sizeKey}"
         ></ui-menu>
@@ -916,14 +926,58 @@
     <div style="width:220px;">
         <ui-menu
             :menu="{
-                'size' : '尺寸{$sizeName}',
-                'home' : '首页',
-                'order' : '订单',
-                'history' : '历史',
-                'settings' : '设置'
+                'home' : '<i class=\'mo-icon mo-icon-block-4\'></i>尺寸{$sizeName}',
+                'order' : {
+                    name : '<i class=\'mo-icon mo-icon-menu\'></i>订单',
+                    childs : {
+                        'my' : '我的订单',
+                        'history' : {
+                            name : '历史订单',
+                            childs : {
+                                'week' : '最近一周',
+                                'month' : '最近一月'
+                            }
+                        }
+                    }
+                },
+                'search' : '<i class=\'mo-icon mo-icon-more\'></i>搜索'
             }"
             size="{$sizeKey}"
             position="side"
+        ></ui-menu>
+        <br>
+    </div>
+    ---
+    #renderer
+    >name
+    size-repeat
+    >rules
+    m,s,xs,xxs
+    >desc
+    侧边栏折叠后的导航菜单的尺寸。
+    >tpl
+    <div style="width:220px;">
+        <ui-menu
+            :menu="{
+                'home' : '<i class=\'mo-icon mo-icon-block-4\'></i>尺寸{$sizeName}',
+                'order' : {
+                    name : '<i class=\'mo-icon mo-icon-menu\'></i>订单',
+                    childs : {
+                        'my' : '我的订单',
+                        'history' : {
+                            name : '历史订单',
+                            childs : {
+                                'week' : '最近一周',
+                                'month' : '最近一月'
+                            }
+                        }
+                    }
+                },
+                'search' : '<i class=\'mo-icon mo-icon-more\'></i>搜索'
+            }"
+            size="{$sizeKey}"
+            position="side"
+            :side-collapse="true"
         ></ui-menu>
         <br>
     </div>
@@ -941,7 +995,7 @@
     <div style="width:700px;padding:20px;">
         <ui-menu
             :menu="{
-                'home' : '颜色{$colorName}菜单',
+                'home' : '<i class=\'mo-icon mo-icon-block-4\'></i>颜色{$colorName}菜单',
                 'active' : {
                     name : '活动',
                     disable : true
@@ -1015,7 +1069,7 @@
     <div style="width:260px;padding:20px;">
         <ui-menu
             :menu="{
-                'home' : '颜色{$colorName}菜单',
+                'home' : '<i class=\'mo-icon mo-icon-block-4\'></i>颜色{$colorName}菜单',
                 'active' : {
                     name : '活动',
                     disable : true
@@ -1091,7 +1145,7 @@
         <div style="width:700px;padding:20px;">
             <ui-menu
                 :menu="{
-                    'home' : '颜色{$colorName}菜单',
+                    'home' : '<i class=\'mo-icon mo-icon-block-4\'></i>颜色{$colorName}菜单',
                     'active' : {
                         name : '活动',
                         disable : true
@@ -1157,7 +1211,7 @@
         <div style="width:260px;padding:20px;">
             <ui-menu
                 :menu="{
-                    'home' : '颜色{$colorName}菜单',
+                    'home' : '<i class=\'mo-icon mo-icon-block-4\'></i>颜色{$colorName}菜单',
                     'active' : {
                         name : '活动',
                         disable : true
@@ -1235,7 +1289,7 @@
         <div style="width:700px;padding:20px;">
             <ui-menu
                 :menu="{
-                    'home' : '颜色{$colorName}菜单',
+                    'home' : '<i class=\'mo-icon mo-icon-block-4\'></i>颜色{$colorName}菜单',
                     'active' : {
                         name : '活动',
                         disable : true
@@ -1301,7 +1355,7 @@
         <div style="width:260px;padding:20px;">
             <ui-menu
                 :menu="{
-                    'home' : '颜色{$colorName}菜单',
+                    'home' : '<i class=\'mo-icon mo-icon-block-4\'></i>颜色{$colorName}菜单',
                     'active' : {
                         name : '活动',
                         disable : true
@@ -1380,7 +1434,7 @@
     <div style="width:700px;padding:20px;background:#646b75;">
         <ui-menu
             :menu="{
-                'home' : '颜色{$colorName}菜单',
+                'home' : '<i class=\'mo-icon mo-icon-block-4\'></i>颜色{$colorName}菜单',
                 'active' : {
                     name : '活动',
                     disable : true
@@ -1454,7 +1508,7 @@
     <div style="width:260px;padding:20px;background:#646b75;">
         <ui-menu
             :menu="{
-                'home' : '颜色{$colorName}菜单',
+                'home' : '<i class=\'mo-icon mo-icon-block-4\'></i>颜色{$colorName}菜单',
                 'active' : {
                     name : '活动',
                     disable : true
@@ -1530,7 +1584,7 @@
         <div style="width:700px;padding:20px;background:#646b75;">
             <ui-menu
                 :menu="{
-                    'home' : '颜色{$colorName}菜单',
+                    'home' : '<i class=\'mo-icon mo-icon-block-4\'></i>颜色{$colorName}菜单',
                     'active' : {
                         name : '活动',
                         disable : true
@@ -1596,7 +1650,7 @@
         <div style="width:260px;padding:20px;background:#646b75;">
             <ui-menu
                 :menu="{
-                    'home' : '颜色{$colorName}菜单',
+                    'home' : '<i class=\'mo-icon mo-icon-block-4\'></i>颜色{$colorName}菜单',
                     'active' : {
                         name : '活动',
                         disable : true
@@ -1674,7 +1728,7 @@
         <div style="width:700px;padding:20px;background:#646b75;">
             <ui-menu
                 :menu="{
-                    'home' : '颜色{$colorName}菜单',
+                    'home' : '<i class=\'mo-icon mo-icon-block-4\'></i>颜色{$colorName}菜单',
                     'active' : {
                         name : '活动',
                         disable : true
@@ -1740,7 +1794,7 @@
         <div style="width:260px;padding:20px;background:#646b75;">
             <ui-menu
                 :menu="{
-                    'home' : '颜色{$colorName}菜单',
+                    'home' : '<i class=\'mo-icon mo-icon-block-4\'></i>颜色{$colorName}菜单',
                     'active' : {
                         name : '活动',
                         disable : true
@@ -2199,7 +2253,7 @@
     ---
     #config
     >conf-desc
-    侧边栏展开，启用后所有的子目录都会展开并且不可收缩。此配置仅在`position`为`side`时生效。
+    侧边栏的子菜单展开，启用后所有的子目录都会展开并且不可收缩。此配置仅在`position`为`side`时生效。
     >conf-accept
     `true`<br>`false`
     >conf-type
@@ -2232,6 +2286,50 @@
                         }
                     },
                     'search' : '搜索'
+                }
+            };
+        }
+    }
+    :::
+
+    :::vue
+    @name:side-collapse
+    ---
+    #config
+    >conf-desc
+    侧边栏折叠，折叠后侧边栏仅显示菜单图标，可以缩小导航菜单所占用的空间。此配置仅在`position`为`side`时生效。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >tpl
+    <div style="width:220px;">
+        <ui-menu :menu="menu" position="side" :side-collapse="true"></ui-menu>
+    </div>
+    >script
+    {
+        data : function () {
+            return {
+                menu : {
+                    'home' : '<i class="mo-icon mo-icon-block-4"></i>首页',
+                    'order' : {
+                        name : '<i class="mo-icon mo-icon-menu"></i>订单',
+                        childs : {
+                            'my' : '我的订单',
+                            'history' : {
+                                name : '历史订单',
+                                childs : {
+                                    'week' : '最近一周',
+                                    'month' : '最近一月'
+                                }
+                            }
+                        }
+                    },
+                    'search' : '<i class="mo-icon mo-icon-more"></i>搜索'
                 }
             };
         }

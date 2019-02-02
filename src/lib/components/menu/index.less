@@ -299,8 +299,8 @@ mor-menu{
                     }
 
                     > a{
-                        height: @formHeight*0.9;
-                        line-height: @formHeight*0.9;
+                        height: @formHeight*1.2;
+                        line-height: @formHeight*1.2;
                     }
                 }
             }
@@ -323,7 +323,7 @@ mor-menu{
             .root-menu{
                 > li{
                     .has-child-menu-icon{
-                        top: 13px;
+                        top: 20px;
                     }
                 }
             }
@@ -334,6 +334,15 @@ mor-menu{
                         top: 12px;
                     }
                 }
+            }
+        }
+
+        &.collapse{
+            &,
+            .pos-side,
+            .pos-side .root-menu,
+            .pos-side .root-menu > li > a{
+                width: @fontSize*4;
             }
         }
     }
@@ -394,8 +403,8 @@ mor-menu{
                     }
 
                     > a{
-                        height: @formHeight*0.75;
-                        line-height: @formHeight*0.75;
+                        height: @formHeight;
+                        line-height: @formHeight;
                         padding-right: 1.5em;
                     }
                 }
@@ -419,7 +428,7 @@ mor-menu{
             .root-menu{
                 > li{
                     .has-child-menu-icon{
-                        top: 11px;
+                        top: 15px;
                     }
                 }
             }
@@ -430,6 +439,19 @@ mor-menu{
                         top: 10px;
                     }
                 }
+            }
+        }
+
+        &.collapse{
+            &,
+            .pos-side,
+            .pos-side .root-menu,
+            .pos-side .root-menu > li > a{
+                width: @fontSize*3.4375;
+            }
+
+            .pos-side .root-menu > li > a{
+                padding-right: 1.3em;
             }
         }
     }
@@ -499,8 +521,8 @@ mor-menu{
                     }
 
                     > a{
-                        height: @formHeight*0.65;
-                        line-height: @formHeight*0.65;
+                        height: @formHeight*0.85;
+                        line-height: @formHeight*0.85;
                         padding-right: 2em;
                     }
                 }
@@ -524,7 +546,7 @@ mor-menu{
             .root-menu{
                 > li{
                     .has-child-menu-icon{
-                        top: 8px;
+                        top: 12px;
                     }
                 }
             }
@@ -535,6 +557,19 @@ mor-menu{
                         top: 7px;
                     }
                 }
+            }
+        }
+
+        &.collapse{
+            &,
+            .pos-side,
+            .pos-side .root-menu,
+            .pos-side .root-menu > li > a{
+                width: @fontSize*2.75;
+            }
+
+            .pos-side .root-menu > li > a{
+                padding-right: 1em;
             }
         }
     }
@@ -604,8 +639,8 @@ mor-menu{
                     }
 
                     > a{
-                        height: @formHeight*0.55;
-                        line-height: @formHeight*0.55;
+                        height: @formHeight*0.7;
+                        line-height: @formHeight*0.7;
                         padding-right: 2.5em;
                     }
                 }
@@ -629,7 +664,7 @@ mor-menu{
             .root-menu{
                 > li{
                     .has-child-menu-icon{
-                        top: 5px;
+                        top: 12px;
                     }
                 }
             }
@@ -640,6 +675,19 @@ mor-menu{
                         top: 4px;
                     }
                 }
+            }
+        }
+
+        &.collapse{
+            &,
+            .pos-side,
+            .pos-side .root-menu,
+            .pos-side .root-menu > li > a{
+                width: @fontSize*1.8125;
+            }
+
+            .pos-side .root-menu > li > a{
+                padding-right: 0.5em;
             }
         }
     }
@@ -1091,6 +1139,47 @@ mor-menu{
 
             .sub-menu-wrap{
                 display: block;
+            }
+        }
+    }
+
+    &.collapse{
+        .pos-side{
+            .root-menu{
+                > li{
+                    min-width: 0;
+                    display: inline-block;
+
+                    > a{
+                        overflow: hidden;
+
+                        > .mo-icon{
+                            padding-right: 0;
+                        }
+
+                        &:hover{
+                            background: @colorExtraLightSilver;
+                        }
+                    }
+
+                    > .has-child-menu-icon{
+                        display: none;
+                    }
+                }
+            }
+
+            .sub-menu{
+                padding-left: 0;
+
+                > li > .has-child-menu-icon{
+                    right: 4px;
+                }
+            }
+
+            .sub-menu-wrap{
+                left: 100%;
+                top: 0;
+                transform: none;
             }
         }
     }

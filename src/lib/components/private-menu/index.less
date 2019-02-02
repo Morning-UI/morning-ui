@@ -93,9 +93,11 @@ mor-private-menu{
 
                 .iconfont,
                 .mo-icon{
-                    vertical-align: 1px;
-                    font-size: @fontSize*0.8125;
-                    margin-right: 0.4em;
+                    vertical-align: 0;
+                    font-size: @fontSize;
+                    display: inline-block;
+                    margin: 0;
+                    padding: 0 0.4em 0 0;
                 }
             }
 
@@ -116,7 +118,7 @@ mor-private-menu{
             > a{
                 .iconfont,
                 .mo-icon{
-                    vertical-align: 0;
+                    vertical-align: -1px;
                 }
             }
         }
@@ -132,16 +134,23 @@ mor-private-menu{
                 display: inline-block;
                 vertical-align: top;
 
+                &.is-disable{
+                    > a{
+                        border-bottom: none;
+                    }
+                }
+            }
+        }
+    }
+
+    &.pos-top,
+    &.pos-side-with-collapse{
+        .root-menu{
+            > li{
                 &:hover,
                 &.show{
                     > .sub-menu-wrap{
                         display: block;
-                    }
-                }
-
-                &.is-disable{
-                    > a{
-                        border-bottom: none;
                     }
                 }
             }
