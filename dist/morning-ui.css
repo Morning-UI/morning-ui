@@ -11732,8 +11732,8 @@ mor-menu.si-m .pos-side .root-menu > li.menu-group-title {
   padding: 0 1.5em;
 }
 mor-menu.si-m .pos-side .root-menu > li > a {
-  height: 37.8px;
-  line-height: 37.8px;
+  height: 50.4px;
+  line-height: 50.4px;
 }
 mor-menu.si-m .pos-side .sub-menu {
   padding-left: 1.5em;
@@ -11746,10 +11746,16 @@ mor-menu.si-m .pos-side .sub-menu > li > a {
   line-height: 23.8px;
 }
 mor-menu.si-m .pos-side .root-menu > li .has-child-menu-icon {
-  top: 13px;
+  top: 20px;
 }
 mor-menu.si-m .pos-side .sub-menu > li .has-child-menu-icon {
   top: 12px;
+}
+mor-menu.si-m.collapse,
+mor-menu.si-m.collapse .pos-side,
+mor-menu.si-m.collapse .pos-side .root-menu,
+mor-menu.si-m.collapse .pos-side .root-menu > li > a {
+  width: 64px;
 }
 mor-menu.si-s .root-menu > li > a {
   font-size: 15px;
@@ -11785,8 +11791,8 @@ mor-menu.si-s .pos-side .root-menu > li.menu-group-title {
   padding: 0 1.3em;
 }
 mor-menu.si-s .pos-side .root-menu > li > a {
-  height: 31.5px;
-  line-height: 31.5px;
+  height: 42px;
+  line-height: 42px;
   padding-right: 1.5em;
 }
 mor-menu.si-s .pos-side .sub-menu {
@@ -11800,10 +11806,19 @@ mor-menu.si-s .pos-side .sub-menu > li > a {
   line-height: 17.5px;
 }
 mor-menu.si-s .pos-side .root-menu > li .has-child-menu-icon {
-  top: 11px;
+  top: 15px;
 }
 mor-menu.si-s .pos-side .sub-menu > li .has-child-menu-icon {
   top: 10px;
+}
+mor-menu.si-s.collapse,
+mor-menu.si-s.collapse .pos-side,
+mor-menu.si-s.collapse .pos-side .root-menu,
+mor-menu.si-s.collapse .pos-side .root-menu > li > a {
+  width: 55px;
+}
+mor-menu.si-s.collapse .pos-side .root-menu > li > a {
+  padding-right: 1.3em;
 }
 mor-menu.si-xs .root-menu > li > a {
   font-size: 14px;
@@ -11846,8 +11861,8 @@ mor-menu.si-xs .pos-side .root-menu > li.menu-group-title {
   padding: 0 1.3em;
 }
 mor-menu.si-xs .pos-side .root-menu > li > a {
-  height: 27.3px;
-  line-height: 27.3px;
+  height: 35.7px;
+  line-height: 35.7px;
   padding-right: 2em;
 }
 mor-menu.si-xs .pos-side .sub-menu {
@@ -11861,10 +11876,19 @@ mor-menu.si-xs .pos-side .sub-menu > li > a {
   line-height: 13.3px;
 }
 mor-menu.si-xs .pos-side .root-menu > li .has-child-menu-icon {
-  top: 8px;
+  top: 12px;
 }
 mor-menu.si-xs .pos-side .sub-menu > li .has-child-menu-icon {
   top: 7px;
+}
+mor-menu.si-xs.collapse,
+mor-menu.si-xs.collapse .pos-side,
+mor-menu.si-xs.collapse .pos-side .root-menu,
+mor-menu.si-xs.collapse .pos-side .root-menu > li > a {
+  width: 44px;
+}
+mor-menu.si-xs.collapse .pos-side .root-menu > li > a {
+  padding-right: 1em;
 }
 mor-menu.si-xxs .root-menu > li > a {
   font-size: 13px;
@@ -11907,8 +11931,8 @@ mor-menu.si-xxs .pos-side .root-menu > li.menu-group-title {
   padding: 0 1.3em;
 }
 mor-menu.si-xxs .pos-side .root-menu > li > a {
-  height: 23.1px;
-  line-height: 23.1px;
+  height: 29.4px;
+  line-height: 29.4px;
   padding-right: 2.5em;
 }
 mor-menu.si-xxs .pos-side .sub-menu {
@@ -11922,10 +11946,19 @@ mor-menu.si-xxs .pos-side .sub-menu > li > a {
   line-height: 9.1px;
 }
 mor-menu.si-xxs .pos-side .root-menu > li .has-child-menu-icon {
-  top: 5px;
+  top: 12px;
 }
 mor-menu.si-xxs .pos-side .sub-menu > li .has-child-menu-icon {
   top: 4px;
+}
+mor-menu.si-xxs.collapse,
+mor-menu.si-xxs.collapse .pos-side,
+mor-menu.si-xxs.collapse .pos-side .root-menu,
+mor-menu.si-xxs.collapse .pos-side .root-menu > li > a {
+  width: 29px;
+}
+mor-menu.si-xxs.collapse .pos-side .root-menu > li > a {
+  padding-right: 0.5em;
 }
 mor-menu.co-bk .pos-top .root-menu,
 mor-menu.co-bk .pos-side .root-menu,
@@ -12285,6 +12318,33 @@ mor-menu.expand .pos-side .sub-menu > li.last-current > a {
 mor-menu.expand .pos-side .sub-menu-wrap {
   display: block;
 }
+mor-menu.collapse .pos-side .root-menu > li {
+  min-width: 0;
+  display: inline-block;
+}
+mor-menu.collapse .pos-side .root-menu > li > a {
+  overflow: hidden;
+}
+mor-menu.collapse .pos-side .root-menu > li > a > .mo-icon {
+  padding-right: 0;
+}
+mor-menu.collapse .pos-side .root-menu > li > a:hover {
+  background: #EDF1F5;
+}
+mor-menu.collapse .pos-side .root-menu > li > .has-child-menu-icon {
+  display: none;
+}
+mor-menu.collapse .pos-side .sub-menu {
+  padding-left: 0;
+}
+mor-menu.collapse .pos-side .sub-menu > li > .has-child-menu-icon {
+  right: 4px;
+}
+mor-menu.collapse .pos-side .sub-menu-wrap {
+  left: 100%;
+  top: 0;
+  transform: none;
+}
 mor-menu .sub-menu > li > a {
   font-size: 14px;
 }
@@ -12325,8 +12385,8 @@ mor-menu .pos-side .root-menu > li.menu-group-title {
   padding: 0 1.5em;
 }
 mor-menu .pos-side .root-menu > li > a {
-  height: 37.8px;
-  line-height: 37.8px;
+  height: 50.4px;
+  line-height: 50.4px;
 }
 mor-menu .pos-side .sub-menu {
   padding-left: 1.5em;
@@ -12339,10 +12399,16 @@ mor-menu .pos-side .sub-menu > li > a {
   line-height: 23.8px;
 }
 mor-menu .pos-side .root-menu > li .has-child-menu-icon {
-  top: 13px;
+  top: 20px;
 }
 mor-menu .pos-side .sub-menu > li .has-child-menu-icon {
   top: 12px;
+}
+mor-menu.collapse,
+mor-menu.collapse .pos-side,
+mor-menu.collapse .pos-side .root-menu,
+mor-menu.collapse .pos-side .root-menu > li > a {
+  width: 64px;
 }
 mor-menu .pos-top .root-menu,
 mor-menu .pos-side .root-menu,
@@ -18550,6 +18616,9 @@ mor-transfer.st-disabled .transfer-target-list,
 mor-transfer.st-readonly .transfer-target-list {
   border: 1px #A8B3C2 solid;
 }
+mor-cascader {
+  position: relative;
+}
 mor-multiinput {
   position: relative;
   z-index: 1;
@@ -20702,9 +20771,11 @@ mor-private-menu .root-menu > li > a .iconfont,
 mor-private-menu .sub-menu > li > a .iconfont,
 mor-private-menu .root-menu > li > a .mo-icon,
 mor-private-menu .sub-menu > li > a .mo-icon {
-  vertical-align: 1px;
-  font-size: 13px;
-  margin-right: 0.4em;
+  vertical-align: 0;
+  font-size: 16px;
+  display: inline-block;
+  margin: 0;
+  padding: 0 0.4em 0 0;
 }
 mor-private-menu .root-menu > li.is-disable > a,
 mor-private-menu .sub-menu > li.is-disable > a {
@@ -20716,7 +20787,7 @@ mor-private-menu .sub-menu > li.is-disable .has-child-menu-icon {
 }
 mor-private-menu .sub-menu > li > a .iconfont,
 mor-private-menu .sub-menu > li > a .mo-icon {
-  vertical-align: 0;
+  vertical-align: -1px;
 }
 mor-private-menu.pos-top {
   width: 100%;
@@ -20728,47 +20799,62 @@ mor-private-menu.pos-top .root-menu > li {
   display: inline-block;
   vertical-align: top;
 }
-mor-private-menu.pos-top .root-menu > li:hover > .sub-menu-wrap,
-mor-private-menu.pos-top .root-menu > li.show > .sub-menu-wrap {
-  display: block;
-}
 mor-private-menu.pos-top .root-menu > li.is-disable > a {
   border-bottom: none;
 }
-mor-private-menu.pos-top .sub-menu-wrap {
+mor-private-menu.pos-top .root-menu > li:hover > .sub-menu-wrap,
+mor-private-menu.pos-side-with-collapse .root-menu > li:hover > .sub-menu-wrap,
+mor-private-menu.pos-top .root-menu > li.show > .sub-menu-wrap,
+mor-private-menu.pos-side-with-collapse .root-menu > li.show > .sub-menu-wrap {
+  display: block;
+}
+mor-private-menu.pos-top .sub-menu-wrap,
+mor-private-menu.pos-side-with-collapse .sub-menu-wrap {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   display: none;
   width: auto;
 }
-mor-private-menu.pos-top .sub-menu {
+mor-private-menu.pos-top .sub-menu,
+mor-private-menu.pos-side-with-collapse .sub-menu {
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
-mor-private-menu.pos-top .sub-menu > li.menu-group-title {
+mor-private-menu.pos-top .sub-menu > li.menu-group-title,
+mor-private-menu.pos-side-with-collapse .sub-menu > li.menu-group-title {
   border-top: 1px #E2E8EE solid;
   padding: 0.6em 1em 0;
 }
-mor-private-menu.pos-top .sub-menu > li.menu-group-title:first-child {
+mor-private-menu.pos-top .sub-menu > li.menu-group-title:first-child,
+mor-private-menu.pos-side-with-collapse .sub-menu > li.menu-group-title:first-child {
   border-top: none;
 }
-mor-private-menu.pos-top .sub-menu > li.has-group {
+mor-private-menu.pos-top .sub-menu > li.has-group,
+mor-private-menu.pos-side-with-collapse .sub-menu > li.has-group {
   padding-left: 12px;
 }
-mor-private-menu.pos-top .sub-menu > li > a {
+mor-private-menu.pos-top .sub-menu > li > a,
+mor-private-menu.pos-side-with-collapse .sub-menu > li > a {
   max-width: 200px;
 }
 mor-private-menu.pos-top .sub-menu > li:hover > .sub-menu-wrap,
-mor-private-menu.pos-top .sub-menu > li.show > .sub-menu-wrap {
+mor-private-menu.pos-side-with-collapse .sub-menu > li:hover > .sub-menu-wrap,
+mor-private-menu.pos-top .sub-menu > li.show > .sub-menu-wrap,
+mor-private-menu.pos-side-with-collapse .sub-menu > li.show > .sub-menu-wrap {
   display: block;
 }
 mor-private-menu.pos-top .root-menu > li.is-disable:hover > .sub-menu-wrap,
+mor-private-menu.pos-side-with-collapse .root-menu > li.is-disable:hover > .sub-menu-wrap,
 mor-private-menu.pos-top .sub-menu > li.is-disable:hover > .sub-menu-wrap,
+mor-private-menu.pos-side-with-collapse .sub-menu > li.is-disable:hover > .sub-menu-wrap,
 mor-private-menu.pos-top .root-menu > li.is-disable.show > .sub-menu-wrap,
-mor-private-menu.pos-top .sub-menu > li.is-disable.show > .sub-menu-wrap {
+mor-private-menu.pos-side-with-collapse .root-menu > li.is-disable.show > .sub-menu-wrap,
+mor-private-menu.pos-top .sub-menu > li.is-disable.show > .sub-menu-wrap,
+mor-private-menu.pos-side-with-collapse .sub-menu > li.is-disable.show > .sub-menu-wrap {
   display: none;
 }
-mor-private-menu.pos-top .deep-submenu {
+mor-private-menu.pos-top .deep-submenu,
+mor-private-menu.pos-side-with-collapse .deep-submenu {
   position: absolute;
   left: 100%;
   top: 0 !important;

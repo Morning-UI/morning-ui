@@ -73,6 +73,7 @@ import select                       from './select/index.vue';
 import checkbox                     from './checkbox/index.vue';
 import radio                        from './radio/index.vue';
 import transfer                     from './transfer/index.vue';
+import cascader                     from './cascader/index.vue';
 import multiinput                   from './multiinput/index.vue';
 import multiform                    from './multiform/index.vue';
 import slider                       from './slider/index.vue';
@@ -161,6 +162,7 @@ export default {
     checkbox,
     radio,
     transfer,
+    cascader,
     multiinput,
     multiform,
     slider,

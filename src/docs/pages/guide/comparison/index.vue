@@ -248,8 +248,8 @@
                         <p>CSS: 303kb</p>
                     </td>
                     <td class="mark">
-                        <p>JS: 715kb</p>
-                        <p>CSS: 258kb</p>
+                        <p>JS: 838kb</p>
+                        <p>CSS: 395kb</p>
                     </td>
                 </tr>
                 <tr>
@@ -2664,7 +2664,7 @@
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
                     <td class="mark">
-                        <i class="iconfont no">&#xe62e;</i>
+                        <i class="iconfont has">&#xe62d;</i>
                     </td>
                 </tr>
                 <tr class="components">
