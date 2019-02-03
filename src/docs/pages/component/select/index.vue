@@ -216,7 +216,7 @@
             form-name="禁用"
             state="disabled"
             can-search
-            :default-value="['tim']"
+            v-model="value1"
             :list="{
                 tim : 'Tim Boelaars',
                 andrew : 'Andrew Colin Beck',
@@ -242,7 +242,7 @@
             form-name="禁用"
             state="disabled"
             multi-select
-            :default-value="['tim', 'andrew']"
+            v-model="value2"
             :list="{
                 tim : 'Tim Boelaars',
                 andrew : 'Andrew Colin Beck',
@@ -259,6 +259,13 @@
         >
         </ui-select>
     </div>
+    >script
+    {
+        data : {
+            value1 : ['tim'],
+            value2 : ['tim', 'andrew']
+        }
+    }
     :::
 
     :::vue
@@ -274,7 +281,7 @@
             form-name="只读"
             state="readonly"
             can-search
-            :default-value="['tim']"
+            v-model="value1"
             :list="{
                 tim : 'Tim Boelaars',
                 andrew : 'Andrew Colin Beck',
@@ -300,7 +307,7 @@
             form-name="只读"
             state="readonly"
             multi-select
-            :default-value="['tim', 'andrew']"
+            v-model="value2"
             :list="{
                 tim : 'Tim Boelaars',
                 andrew : 'Andrew Colin Beck',
@@ -317,6 +324,13 @@
         >
         </ui-select>
     </div>
+    >script
+    {
+        data : {
+            value1 : ['tim'],
+            value2 : ['tim', 'andrew']
+        }
+    }
     :::
     
     [[[配置]]]
@@ -1164,7 +1178,7 @@
             form-name="Select designer"
             multi-select
             can-move
-            :default-value="['Tim Boelaars', 'Andrew Colin Beck', 'Gustavo Zambelli']"
+            v-model="value"
             :list="{
                 tim : 'Tim Boelaars',
                 andrew : 'Andrew Colin Beck',
@@ -1181,6 +1195,12 @@
         >
         </ui-select>
     </div>
+    >script
+    {
+        data : {
+            value : ['Tim Boelaars', 'Andrew Colin Beck', 'Gustavo Zambelli']
+        }
+    }
     :::
 
     :::vue

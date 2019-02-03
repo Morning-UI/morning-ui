@@ -401,13 +401,13 @@ export default UI => UI.extend({
             deep : true
         });
 
-        this.data.value = this.conf.defaultValue;
+        // this.data.value = this.conf.defaultValue;
 
-        if (this.modelValue !== undefined && this.conf.state !== 'disabled') {
+        // if (this.modelValue !== undefined && this.conf.state !== 'disabled') {
 
-            this.data.value = this.modelValue;
+        this.data.value = this.modelValue;
 
-        }
+        // }
 
         this._syncGroup();
         this.data.value = this._valueHandler(this.data.value);

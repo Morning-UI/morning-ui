@@ -86,8 +86,14 @@
     #demo
     >tpl
     <div style="width:300px;">
-        <ui-multiinput form-name="输入标签" :default-value="['value1', 'value2']" can-move></ui-multiinput>
+        <ui-multiinput form-name="输入标签" v-model="value" can-move></ui-multiinput>
     </div>
+    >script
+    {
+        data : {
+            value : ['value1', 'value2']
+        }
+    }
     :::
 
     :::vue
@@ -106,8 +112,14 @@
     #demo
     >tpl
     <div style="width:300px;">
-        <ui-multiinput form-name="输入标签" :default-value="['value1', 'value2', 'value3', 'value4']" :max="3"></ui-multiinput>
+        <ui-multiinput form-name="输入标签" v-model="value" :max="3"></ui-multiinput>
     </div>
+    >script
+    {
+        data : {
+            value : ['value1', 'value2', 'value3', 'value4']
+        }
+    }
     :::
 
     [[[方法]]]
@@ -159,11 +171,17 @@
     >tpl
     <div>
         <div style="width:300px;">
-            <ui-multiinput ref="demo8" form-name="输入标签" :default-value="['value1', 'value2', 'value3', 'value4']"></ui-multiinput>
+            <ui-multiinput ref="demo8" form-name="输入标签" :default-value="["></ui-multiinput>
         </div>
         <br>
         <ui-link js="morning.findVM('demo8').update('newValue', 1);">将第2项的更新为newValue</ui-link>
     </div>
+    >script
+    {
+        data : {
+            value : 'value1', 'value2', 'value3', 'value4']
+        }
+    }
     :::
 
     :::vue
@@ -181,11 +199,17 @@
     >tpl
     <div>
         <div style="width:300px;">
-            <ui-multiinput ref="demo3" form-name="输入标签" :default-value="['value1', 'value2', 'value3', 'value4']"></ui-multiinput>
+            <ui-multiinput ref="demo3" form-name="输入标签" v-model="value"></ui-multiinput>
         </div>
         <br>
         <ui-link js="morning.findVM('demo3').del(0);">删除第0项</ui-link>
     </div>
+    >script
+    {
+        data : {
+            value : ['value1', 'value2', 'value3', 'value4']
+        }
+    }
     :::
 
     :::vue
@@ -204,11 +228,17 @@
     >tpl
     <div>
         <div style="width:300px;">
-            <ui-multiinput ref="demo4" form-name="输入标签" :default-value="['value1', 'value2', 'value3', 'value4']"></ui-multiinput>
+            <ui-multiinput ref="demo4" form-name="输入标签" v-model="value"></ui-multiinput>
         </div>
         <br>
         <ui-link js="morning.findVM('demo4').move(2, 0);">将第2项移到第0项</ui-link>
     </div>
+    >script
+    {
+        data : {
+            value : ['value1', 'value2', 'value3', 'value4']
+        }
+    }
     :::
 
     :::vue

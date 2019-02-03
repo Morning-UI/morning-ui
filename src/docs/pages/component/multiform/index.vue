@@ -181,13 +181,19 @@
                     </h5>
                     <div class="content">
                         <div class="form">
-                            <ui-textinput form-key="img" default-value="https://cdn.dribbble.com/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934"></ui-textinput>
+                            <ui-textinput form-key="img" v-model="inputValue"></ui-textinput>
                         </div>
                     </div>
                 </div>
             </ui-formgroup>
         </ui-multiform>
     </div>
+    >script
+    {
+        data : {
+            inputValue : 'https://cdn.dribbble.com/users/23569/avatars/normal/4c2dc35fbb2e0da85969e49592dfd49d.jpg?1420405934'
+        }
+    }
     ---
     #demo
     >desc
@@ -317,7 +323,7 @@
     #demo
     >tpl
     <div style="width:300px;">
-        <ui-multiform form-name="名单" can-move :item-filler="item => ({title: item.name})" :default-value="[{name:'Jim'}, {name:'Sam'}, {name:'Gustavo'}]">
+        <ui-multiform form-name="名单" can-move :item-filler="item => ({title: item.name})" v-model="value">
             <ui-formgroup>
                 <div class="item">
                     <h5 class="title">
@@ -332,6 +338,12 @@
             </ui-formgroup>
         </ui-multiform>
     </div>
+    >script
+    {
+        data : {
+            value : [{name:'Jim'}, {name:'Sam'}, {name:'Gustavo'}]
+        }
+    }
     :::
 
     :::vue
@@ -352,7 +364,7 @@
     下面的演示中设置了最多输入3项。
     >tpl
     <div style="width:300px;">
-        <ui-multiform form-name="名单" max=3 :default-value="[{name:'Jim'}, {name:'Sam'}, {name:'Gustavo'}]">
+        <ui-multiform form-name="名单" max=3 v-model="value">
             <ui-formgroup>
                 <div class="item">
                     <h5 class="title">
@@ -367,6 +379,12 @@
             </ui-formgroup>
         </ui-multiform>
     </div>
+    >script
+    {
+        data : {
+            value : [{name:'Jim'}, {name:'Sam'}, {name:'Gustavo'}]
+        }
+    }
     :::
 
     :::vue
@@ -853,7 +871,7 @@
     >tpl
     <div>
         <div style="width:300px;">
-            <ui-multiform ref="demo2" form-name="名单" :item-filler="item => ({title: item.name})" :default-value="[{name:'Jim'}]">
+            <ui-multiform ref="demo2" form-name="名单" :item-filler="item => ({title: item.name})" v-model="value">
                 <ui-formgroup>
                     <div class="item">
                         <h5 class="title">
@@ -872,6 +890,12 @@
         <ui-link js="morning.findVM('demo2').add({name: 'Sam'});">添加到最后</ui-link>
         <ui-link js="morning.findVM('demo2').add({name: 'Gustavo'}, 0);">添加到第0项</ui-link>
     </div>
+    >script
+    {
+        data : {
+            value : [{name:'Jim'}]
+        }
+    }
     :::
 
     :::vue
@@ -890,7 +914,7 @@
     >tpl
     <div>
         <div style="width:300px;">
-            <ui-multiform ref="demo4" form-name="名单" :item-filler="item => ({title: item.name})" :default-value="[{name:'Jim'}, {name:'Sam'}, {name:'Gustavo'}]">
+            <ui-multiform ref="demo4" form-name="名单" :item-filler="item => ({title: item.name})" v-model="value">
                 <ui-formgroup>
                     <div class="item">
                         <h5 class="title">
@@ -908,6 +932,12 @@
         <br>
         <ui-link js="morning.findVM('demo4').update({name: 'Katherine'}, 1);">将第2项的name更新为Katherine</ui-link>
     </div>
+    >script
+    {
+        data : {
+            value : [{name:'Jim'}, {name:'Sam'}, {name:'Gustavo'}]
+        }
+    }
     :::
     
     :::vue
@@ -925,7 +955,7 @@
     >tpl
     <div>
         <div style="width:300px;">
-            <ui-multiform ref="demo3" form-name="名单" :item-filler="item => ({title: item.name})" :default-value="[{name:'Jim'}, {name:'Sam'}, {name:'Gustavo'}]">
+            <ui-multiform ref="demo3" form-name="名单" :item-filler="item => ({title: item.name})" v-model="value">
                 <ui-formgroup>
                     <div class="item">
                         <h5 class="title">
@@ -943,6 +973,12 @@
         <br>
         <ui-link js="morning.findVM('demo3').del(0);">删除第0项</ui-link>
     </div>
+    >script
+    {
+        data : {
+            value : [{name:'Jim'}, {name:'Sam'}, {name:'Gustavo'}]
+        }
+    }
     :::
     
     :::vue
@@ -961,7 +997,7 @@
     >tpl
     <div>
         <div style="width:300px;">
-            <ui-multiform ref="demo5" form-name="名单" :item-filler="item => ({title: item.name})" :default-value="[{name:'Jim'}, {name:'Sam'}, {name:'Gustavo'}]">
+            <ui-multiform ref="demo5" form-name="名单" :item-filler="item => ({title: item.name})" v-model="value">
                 <ui-formgroup>
                     <div class="item">
                         <h5 class="title">
@@ -979,6 +1015,12 @@
         <br>
         <ui-link js="morning.findVM('demo5').move(2, 0);">将第2项移到第0项</ui-link>
     </div>
+    >script
+    {
+        data : {
+            value : [{name:'Jim'}, {name:'Sam'}, {name:'Gustavo'}]
+        }
+    }
     :::
 
     [[[事件]]]

@@ -24355,6 +24355,8 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
 
 // import extend                       from 'extend';
 exports.default = {
@@ -24389,6 +24391,10 @@ exports.default = {
         sideExpand: {
             type: Boolean,
             default: false
+        },
+        sideCollapse: {
+            type: Boolean,
+            default: false
         }
     },
     computed: {
@@ -24400,13 +24406,15 @@ exports.default = {
                 position: this.position,
                 autoToggleCurrent: this.autoToggleCurrent,
                 positionCurrent: this.positionCurrent,
-                sideExpand: this.sideExpand
+                sideExpand: this.sideExpand,
+                sideCollapse: this.sideCollapse
             };
         },
         moreClass: function moreClass() {
 
             return {
-                expand: this.isSideExpand
+                expand: this.isSideExpand,
+                collapse: this.isSideCollapse
             };
         },
         rootMenuMoreClass: function rootMenuMoreClass() {
@@ -24420,6 +24428,10 @@ exports.default = {
         isSideExpand: function isSideExpand() {
 
             return this.conf.sideExpand && this.conf.position === 'side';
+        },
+        isSideCollapse: function isSideCollapse() {
+
+            return this.conf.sideCollapse && this.conf.position === 'side';
         }
     },
     data: function data() {
@@ -42482,6 +42494,8 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
 
 exports.default = {
     origin: 'UI',
@@ -42519,6 +42533,10 @@ exports.default = {
             default: function _default() {
                 return {};
             }
+        },
+        sideCollapse: {
+            type: Boolean,
+            default: false
         }
     },
     computed: {
@@ -42531,12 +42549,19 @@ exports.default = {
                 currentMenu: this.currentMenu,
                 groups: this.groups,
                 position: this.position,
-                rootItemShowList: this.rootItemShowList
+                rootItemShowList: this.rootItemShowList,
+                sideCollapse: this.sideCollapse
             };
         },
         currentMenuList: function currentMenuList() {
 
             return this.conf.currentMenu.split('/');
+        },
+        moreClass: function moreClass() {
+
+            return {
+                'pos-side-with-collapse': this.conf.sideCollapse
+            };
         }
     },
     data: function data() {
@@ -48207,7 +48232,7 @@ var render = function() {
   return _c(
     "mor-private-menu",
     {
-      class: [],
+      class: [_vm.moreClass],
       attrs: {
         _uiid: _vm.uiid,
         "item-key": _vm.itemKey,
@@ -48215,7 +48240,8 @@ var render = function() {
         menu: _vm.menu,
         "current-menu": _vm.currentMenu,
         position: _vm.position,
-        "root-item-show-list": _vm.rootItemShowList
+        "root-item-show-list": _vm.rootItemShowList,
+        "side-collapse": _vm.sideCollapse
       }
     },
     [
@@ -48326,8 +48352,13 @@ var render = function() {
                             ? _c("i", {
                                 staticClass: "mo-icon has-child-menu-icon",
                                 class: {
-                                  "mo-icon-right": _vm.conf.position === "top",
-                                  "mo-icon-down": _vm.conf.position === "side"
+                                  "mo-icon-right":
+                                    _vm.conf.position === "top" ||
+                                    (_vm.conf.sideCollapse &&
+                                      _vm.conf.position === "side"),
+                                  "mo-icon-down":
+                                    _vm.conf.position === "side" &&
+                                    !_vm.conf.sideCollapse
                                 }
                               })
                             : _vm._e(),
@@ -48346,7 +48377,8 @@ var render = function() {
                                   "current-menu": _vm.conf.currentMenu,
                                   position: _vm.conf.position,
                                   "root-item-show-list":
-                                    _vm.conf.rootItemShowList
+                                    _vm.conf.rootItemShowList,
+                                  "side-collapse": _vm.conf.sideCollapse
                                 },
                                 on: { emit: _vm._emit }
                               })
@@ -48518,7 +48550,8 @@ var render = function() {
         position: _vm.position,
         "auto-toggle-current": _vm.autoToggleCurrent,
         "position-current": _vm.positionCurrent,
-        "side-expand": _vm.sideExpand
+        "side-expand": _vm.sideExpand,
+        "side-collapse": _vm.sideCollapse
       },
       on: { mousemove: _vm._mousemoveInMenu }
     },
@@ -48530,7 +48563,8 @@ var render = function() {
           menu: _vm.conf.menu,
           "current-menu": _vm.data.currentMenu,
           position: _vm.conf.position,
-          "root-item-show-list": _vm.data.rootItemShowList
+          "root-item-show-list": _vm.data.rootItemShowList,
+          "side-collapse": _vm.conf.sideCollapse
         },
         on: { emit: _vm._emit }
       })
@@ -64144,12 +64178,13 @@ exports.default = function (UI) {
                 deep: true
             });
 
-            this.data.value = this.conf.defaultValue;
+            // this.data.value = this.conf.defaultValue;
 
-            if (this.modelValue !== undefined && this.conf.state !== 'disabled') {
+            // if (this.modelValue !== undefined && this.conf.state !== 'disabled') {
 
-                this.data.value = this.modelValue;
-            }
+            this.data.value = this.modelValue;
+
+            // }
 
             this._syncGroup();
             this.data.value = this._valueHandler(this.data.value);
