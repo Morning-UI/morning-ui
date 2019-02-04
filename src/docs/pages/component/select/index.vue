@@ -6,7 +6,7 @@
     <script type="text/markdown">
     # 下拉选择框 `<ui-select>`
     
-    <doc-component-status page="select\"></doc-component-status>
+    <doc-component-status page="select"></doc-component-status>
     
     [[[开始]]]
 

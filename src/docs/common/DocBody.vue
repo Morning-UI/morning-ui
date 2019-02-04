@@ -1463,7 +1463,7 @@ let extVueRenderer = {
             '>tpl',
             `<div>{$#state}\n${addSpace(rmEndWrap(parts.tpl.join('\n')), 4)}{$/state}\n</div>`,
             '>script',
-            (parts.script.join('\n') || '')
+            (parts.script || ['']).join('\n')
         ];
 
         newParamStr.push(statePreset.join('\n'));
@@ -2020,14 +2020,10 @@ let extVueTranslater = {
 
         }
 
-        console.log(sections[0].parts.script);
-
         while (translateSection = sections.shift()) {
 
             _ctx.demoid = `${_ctx.oriDemoid}-${_ctx.index++}`;
-        console.log(translateSection.type, translateSection);
             translate = translate.concat(extVueTranslater[translateSection.type](translateSection, _ctx));
-            console.log(translate);
 
         }
 

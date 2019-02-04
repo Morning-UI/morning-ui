@@ -6,9 +6,9 @@
         :form-name="formName"
         :form-key="formKey"
         :group="group"
-        :default-value="defaultValue"
         :hide-name="hideName"
         :clearable="clearable"
+        :init-value="initValue"
         :inside-name="insideName"
         :date="date"
         :type="type"
@@ -90,6 +90,10 @@ export default {
     name : 'private-datepicker',
     mixins : [Dates, TipManager],
     props : {
+        initValue : {
+            type : String,
+            default : undefined
+        },
         insideName : {
             type : String,
             default : ''
@@ -141,6 +145,7 @@ export default {
         _conf : function () {
 
             return {
+                initValue : this.initValue,
                 insideName : this.insideName,
                 date : this.date,
                 type : this.type,
@@ -623,7 +628,11 @@ export default {
 
         }
     },
-    created : function () {},
+    created : function () {
+
+        this._set(this.conf.initValue, true);
+
+    },
     mounted : function () {
 
         this.data.$dateWrap = this.$el.querySelector('.mor-date-wrap');

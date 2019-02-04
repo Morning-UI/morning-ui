@@ -171,7 +171,7 @@
     >tpl
     <div>
         <div style="width:300px;">
-            <ui-multiinput ref="demo8" form-name="输入标签" :default-value="["></ui-multiinput>
+            <ui-multiinput ref="demo8" form-name="输入标签" v-model="value"></ui-multiinput>
         </div>
         <br>
         <ui-link js="morning.findVM('demo8').update('newValue', 1);">将第2项的更新为newValue</ui-link>
@@ -179,7 +179,7 @@
     >script
     {
         data : {
-            value : 'value1', 'value2', 'value3', 'value4']
+            value : ['value1', 'value2', 'value3', 'value4']
         }
     }
     :::
