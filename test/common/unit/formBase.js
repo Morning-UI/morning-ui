@@ -1,5 +1,6 @@
 export default options => {
 
+    /* eslint-disable no-unused-vars */
     let {
         test,
         Vue,
@@ -17,6 +18,7 @@ export default options => {
         _formValueChangeSkipInvalidValueEmitTest,
         _formValueChangeSkipValueFilterEmitTest
     } = options;
+    /* eslint-enable no-unused-vars */
 
     test.serial('form base : init component value is right when use v-model', async t => {
 

@@ -1,5 +1,6 @@
 export default (options, extOptions) => {
 
+    /* eslint-disable no-unused-vars */
     let {
         test,
         Vue,
@@ -17,8 +18,9 @@ export default (options, extOptions) => {
         _formValueChangeSkipInvalidValueEmitTest,
         _formValueChangeSkipValueFilterEmitTest
     } = options;
+    /* eslint-enable no-unused-vars */
 
-   test.serial('slot is dynamic', async t => {
+    test.serial('slot is dynamic', async t => {
 
         let vm = new Vue({
             template : `

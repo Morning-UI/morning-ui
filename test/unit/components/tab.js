@@ -32,7 +32,7 @@ commonTest.componentDynamicSlot(testOptions, {
     },
     secondCheck : (t, vm) => {
 
-            t.is(vm.$children[0].$el.innerHTML, `<ul><li name="4th" class="current">4th</li><li name="5th" class="">5th</li></ul><div class="contents" style="width: 100%; min-height: 0;"><div name="4th" class="item mor-tab-item current"><div>
+        t.is(vm.$children[0].$el.innerHTML, `<ul><li name="4th" class="current">4th</li><li name="5th" class="">5th</li></ul><div class="contents" style="width: 100%; min-height: 0;"><div name="4th" class="item mor-tab-item current"><div>
         CONTENT : 4th
     </div></div><div name="5th" class="item mor-tab-item"><div>
         CONTENT : 5th
@@ -41,7 +41,7 @@ commonTest.componentDynamicSlot(testOptions, {
     },
     thirdCheck : (t, vm) => {
             
-            t.is(vm.$el.innerHTML, `<ul><li name="6th" class="current">6th</li></ul><div class="contents" style="width: 100%; min-height: 0;"><div name="6th" class="item mor-tab-item current"><div>
+        t.is(vm.$el.innerHTML, `<ul><li name="6th" class="current">6th</li></ul><div class="contents" style="width: 100%; min-height: 0;"><div name="6th" class="item mor-tab-item current"><div>
         CONTENT : 6th
     </div></div></div>`);
         
