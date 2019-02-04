@@ -24355,6 +24355,8 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
 
 // import extend                       from 'extend';
 exports.default = {
@@ -24389,6 +24391,10 @@ exports.default = {
         sideExpand: {
             type: Boolean,
             default: false
+        },
+        sideCollapse: {
+            type: Boolean,
+            default: false
         }
     },
     computed: {
@@ -24400,13 +24406,15 @@ exports.default = {
                 position: this.position,
                 autoToggleCurrent: this.autoToggleCurrent,
                 positionCurrent: this.positionCurrent,
-                sideExpand: this.sideExpand
+                sideExpand: this.sideExpand,
+                sideCollapse: this.sideCollapse
             };
         },
         moreClass: function moreClass() {
 
             return {
-                expand: this.isSideExpand
+                expand: this.isSideExpand,
+                collapse: this.isSideCollapse
             };
         },
         rootMenuMoreClass: function rootMenuMoreClass() {
@@ -24420,6 +24428,10 @@ exports.default = {
         isSideExpand: function isSideExpand() {
 
             return this.conf.sideExpand && this.conf.position === 'side';
+        },
+        isSideCollapse: function isSideCollapse() {
+
+            return this.conf.sideCollapse && this.conf.position === 'side';
         }
     },
     data: function data() {
@@ -29162,7 +29174,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
-//
 
 exports.default = {
     origin: 'Form',
@@ -29328,7 +29339,6 @@ Object.defineProperty(exports, "__esModule", {
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-//
 //
 //
 //
@@ -29671,7 +29681,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //
-//
 //
 //
 //
@@ -30302,7 +30311,6 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
-//
 
 exports.default = {
     origin: 'Form',
@@ -30397,7 +30405,6 @@ __webpack_require__.r(__webpack_exports__);
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-//
 //
 //
 //
@@ -30616,7 +30623,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var returnValueFn = function returnValueFn(value) {
     return value;
 }; //
-//
 //
 //
 //
@@ -30954,7 +30960,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; //
-//
 //
 //
 //
@@ -32771,7 +32776,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
-//
 
 var _extend = __webpack_require__(2);
 
@@ -33151,7 +33155,6 @@ __webpack_require__.r(__webpack_exports__);
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-//
 //
 //
 //
@@ -33801,7 +33804,6 @@ exports.default = {
 //
 //
 //
-//
 
 module.exports = exports['default'];
 
@@ -33834,7 +33836,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; //
-//
 //
 //
 //
@@ -34400,7 +34401,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
-//
 
 var _arrayUniq = __webpack_require__(9);
 
@@ -34533,6 +34533,7 @@ exports.default = {
         _resetForm: function _resetForm() {
 
             var formVm = this._findDialogForm();
+            var formValues = this.get();
 
             this.data.modifyIndex = null;
 
@@ -34545,7 +34546,7 @@ exports.default = {
                     var vm = _step.value;
 
 
-                    vm.set(vm.conf.defaultValue || undefined);
+                    vm.set(formValues[vm.conf.key] || undefined);
                 }
             } catch (err) {
                 _didIteratorError = true;
@@ -34994,7 +34995,6 @@ var _GlobalEvent2 = _interopRequireDefault(_GlobalEvent);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//
 //
 //
 //
@@ -35698,7 +35698,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
-//
 
 var _dateFns = __webpack_require__(8);
 
@@ -36139,7 +36138,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; //
-//
 //
 //
 //
@@ -37412,7 +37410,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
-//
 
 var _dateFns = __webpack_require__(8);
 
@@ -38065,7 +38062,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; //
-//
 //
 //
 //
@@ -39080,7 +39076,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-//
 
 var num16 = 16;
 var num50 = 50;
@@ -39854,7 +39849,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; //
-//
 //
 //
 //
@@ -41055,6 +41049,10 @@ exports.default = {
     name: 'private-timepicker',
     mixins: [_Time2.default, _TipManager2.default],
     props: {
+        initValue: {
+            type: String,
+            default: undefined
+        },
         insideName: {
             type: String,
             default: ''
@@ -41081,6 +41079,7 @@ exports.default = {
         _conf: function _conf() {
 
             return {
+                initValue: this.initValue,
                 insideName: this.insideName,
                 format: this.format,
                 align: this.align,
@@ -41556,7 +41555,10 @@ exports.default = {
             }
         }
     },
-    created: function created() {},
+    created: function created() {
+
+        this._set(this.conf.initValue, true);
+    },
     mounted: function mounted() {
         var _this2 = this;
 
@@ -41798,6 +41800,10 @@ exports.default = {
     name: 'private-datepicker',
     mixins: [_Dates2.default, _TipManager2.default],
     props: {
+        initValue: {
+            type: String,
+            default: undefined
+        },
         insideName: {
             type: String,
             default: ''
@@ -41857,6 +41863,7 @@ exports.default = {
         _conf: function _conf() {
 
             return {
+                initValue: this.initValue,
                 insideName: this.insideName,
                 date: this.date,
                 type: this.type,
@@ -42311,7 +42318,10 @@ exports.default = {
             }
         }
     },
-    created: function created() {},
+    created: function created() {
+
+        this._set(this.conf.initValue, true);
+    },
     mounted: function mounted() {
         var _this2 = this;
 
@@ -42482,6 +42492,8 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
 
 exports.default = {
     origin: 'UI',
@@ -42519,6 +42531,10 @@ exports.default = {
             default: function _default() {
                 return {};
             }
+        },
+        sideCollapse: {
+            type: Boolean,
+            default: false
         }
     },
     computed: {
@@ -42531,12 +42547,19 @@ exports.default = {
                 currentMenu: this.currentMenu,
                 groups: this.groups,
                 position: this.position,
-                rootItemShowList: this.rootItemShowList
+                rootItemShowList: this.rootItemShowList,
+                sideCollapse: this.sideCollapse
             };
         },
         currentMenuList: function currentMenuList() {
 
             return this.conf.currentMenu.split('/');
+        },
+        moreClass: function moreClass() {
+
+            return {
+                'pos-side-with-collapse': this.conf.sideCollapse
+            };
         }
     },
     data: function data() {
@@ -48207,7 +48230,7 @@ var render = function() {
   return _c(
     "mor-private-menu",
     {
-      class: [],
+      class: [_vm.moreClass],
       attrs: {
         _uiid: _vm.uiid,
         "item-key": _vm.itemKey,
@@ -48215,7 +48238,8 @@ var render = function() {
         menu: _vm.menu,
         "current-menu": _vm.currentMenu,
         position: _vm.position,
-        "root-item-show-list": _vm.rootItemShowList
+        "root-item-show-list": _vm.rootItemShowList,
+        "side-collapse": _vm.sideCollapse
       }
     },
     [
@@ -48326,8 +48350,13 @@ var render = function() {
                             ? _c("i", {
                                 staticClass: "mo-icon has-child-menu-icon",
                                 class: {
-                                  "mo-icon-right": _vm.conf.position === "top",
-                                  "mo-icon-down": _vm.conf.position === "side"
+                                  "mo-icon-right":
+                                    _vm.conf.position === "top" ||
+                                    (_vm.conf.sideCollapse &&
+                                      _vm.conf.position === "side"),
+                                  "mo-icon-down":
+                                    _vm.conf.position === "side" &&
+                                    !_vm.conf.sideCollapse
                                 }
                               })
                             : _vm._e(),
@@ -48346,7 +48375,8 @@ var render = function() {
                                   "current-menu": _vm.conf.currentMenu,
                                   position: _vm.conf.position,
                                   "root-item-show-list":
-                                    _vm.conf.rootItemShowList
+                                    _vm.conf.rootItemShowList,
+                                  "side-collapse": _vm.conf.sideCollapse
                                 },
                                 on: { emit: _vm._emit }
                               })
@@ -48393,9 +48423,9 @@ var render = function() {
         "form-name": _vm.formName,
         "form-key": _vm.formKey,
         group: _vm.group,
-        "default-value": _vm.defaultValue,
         "hide-name": _vm.hideName,
         clearable: _vm.clearable,
+        "init-value": _vm.initValue,
         "inside-name": _vm.insideName,
         date: _vm.date,
         type: _vm.type,
@@ -48518,7 +48548,8 @@ var render = function() {
         position: _vm.position,
         "auto-toggle-current": _vm.autoToggleCurrent,
         "position-current": _vm.positionCurrent,
-        "side-expand": _vm.sideExpand
+        "side-expand": _vm.sideExpand,
+        "side-collapse": _vm.sideCollapse
       },
       on: { mousemove: _vm._mousemoveInMenu }
     },
@@ -48530,7 +48561,8 @@ var render = function() {
           menu: _vm.conf.menu,
           "current-menu": _vm.data.currentMenu,
           position: _vm.conf.position,
-          "root-item-show-list": _vm.data.rootItemShowList
+          "root-item-show-list": _vm.data.rootItemShowList,
+          "side-collapse": _vm.conf.sideCollapse
         },
         on: { emit: _vm._emit }
       })
@@ -49253,9 +49285,9 @@ var render = function() {
         "form-name": _vm.formName,
         "form-key": _vm.formKey,
         group: _vm.group,
-        "default-value": _vm.defaultValue,
         "hide-name": _vm.hideName,
         clearable: _vm.clearable,
+        "init-value": _vm.initValue,
         "inside-name": _vm.insideName,
         format: _vm.format,
         align: _vm.align,
@@ -49522,7 +49554,6 @@ var render = function() {
         "form-name": _vm.formName,
         "form-key": _vm.formKey,
         group: _vm.group,
-        "default-value": _vm.defaultValue,
         "hide-name": _vm.hideName,
         clearable: _vm.clearable,
         "inside-name": _vm.insideName,
@@ -50364,7 +50395,6 @@ var render = function() {
         "form-name": _vm.formName,
         "form-key": _vm.formKey,
         group: _vm.group,
-        "default-value": _vm.defaultValue,
         "hide-name": _vm.hideName,
         clearable: _vm.clearable,
         "value-type": _vm.valueType,
@@ -50856,7 +50886,6 @@ var render = function() {
         "form-name": _vm.formName,
         "form-key": _vm.formKey,
         group: _vm.group,
-        "default-value": _vm.defaultValue,
         "hide-name": _vm.hideName,
         clearable: _vm.clearable,
         "inside-name": _vm.insideName,
@@ -51153,7 +51182,6 @@ var render = function() {
         "form-name": _vm.formName,
         "form-key": _vm.formKey,
         group: _vm.group,
-        "default-value": _vm.defaultValue,
         "hide-name": _vm.hideName,
         clearable: _vm.clearable,
         "inside-name": _vm.insideName,
@@ -51306,7 +51334,6 @@ var render = function() {
         "form-name": _vm.formName,
         "form-key": _vm.formKey,
         group: _vm.group,
-        "default-value": _vm.defaultValue,
         "hide-name": _vm.hideName,
         clearable: _vm.clearable,
         "inside-name": _vm.insideName,
@@ -51884,7 +51911,7 @@ var render = function() {
                       attrs: {
                         state: _vm.conf.state,
                         "inside-name": _vm.conf.insideName,
-                        "default-value": _vm.conf.defaultValue,
+                        "init-value": _vm.data.value,
                         date: +_vm.date,
                         format: _vm.conf.format,
                         align: _vm.conf.align,
@@ -52360,7 +52387,6 @@ var render = function() {
         "form-name": _vm.formName,
         "form-key": _vm.formKey,
         group: _vm.group,
-        "default-value": _vm.defaultValue,
         "hide-name": _vm.hideName,
         clearable: _vm.clearable,
         "inside-name": _vm.insideName,
@@ -52445,7 +52471,7 @@ var render = function() {
                         attrs: {
                           state: _vm.conf.state,
                           "inside-name": _vm.conf.insideName,
-                          "default-value": _vm.conf.defaultValue,
+                          "init-value": _vm.data.value,
                           align: _vm.conf.align,
                           list: _vm.timeList
                         },
@@ -52503,7 +52529,7 @@ var render = function() {
                         attrs: {
                           state: _vm.conf.state,
                           "inside-name": _vm.conf.insideName,
-                          "default-value": _vm.conf.defaultValue,
+                          "init-value": _vm.data.value,
                           format: _vm.conf.format,
                           align: _vm.conf.align,
                           "selectable-range": _vm.conf.selectableRange
@@ -52560,7 +52586,6 @@ var render = function() {
         "form-name": _vm.formName,
         "form-key": _vm.formKey,
         group: _vm.group,
-        "default-value": _vm.defaultValue,
         "hide-name": _vm.hideName,
         clearable: _vm.clearable,
         max: _vm.max,
@@ -52748,7 +52773,6 @@ var render = function() {
         "form-name": _vm.formName,
         "form-key": _vm.formKey,
         group: _vm.group,
-        "default-value": _vm.defaultValue,
         "hide-name": _vm.hideName,
         clearable: _vm.clearable,
         "inside-name": _vm.insideName,
@@ -53052,7 +53076,6 @@ var render = function() {
         "form-name": _vm.formName,
         "form-key": _vm.formKey,
         group: _vm.group,
-        "default-value": _vm.defaultValue,
         "hide-name": _vm.hideName,
         clearable: _vm.clearable,
         "inside-name": _vm.insideName,
@@ -53241,7 +53264,6 @@ var render = function() {
         "form-name": _vm.formName,
         "form-key": _vm.formKey,
         group: _vm.group,
-        "default-value": _vm.defaultValue,
         "hide-name": _vm.hideName,
         clearable: _vm.clearable,
         list: _vm.list,
@@ -53514,7 +53536,6 @@ var render = function() {
         "form-name": _vm.formName,
         "form-key": _vm.formKey,
         group: _vm.group,
-        "default-value": _vm.defaultValue,
         "hide-name": _vm.hideName,
         clearable: _vm.clearable,
         "accept-html": _vm.acceptHtml,
@@ -53652,7 +53673,6 @@ var render = function() {
         "form-name": _vm.formName,
         "form-key": _vm.formKey,
         group: _vm.group,
-        "default-value": _vm.defaultValue,
         "hide-name": _vm.hideName,
         clearable: _vm.clearable,
         "accept-html": _vm.acceptHtml,
@@ -53826,7 +53846,6 @@ var render = function() {
         "form-name": _vm.formName,
         "form-key": _vm.formKey,
         group: _vm.group,
-        "default-value": _vm.defaultValue,
         "hide-name": _vm.hideName,
         clearable: _vm.clearable,
         "inside-name": _vm.insideName,
@@ -54184,7 +54203,6 @@ var render = function() {
         "form-name": _vm.formName,
         "form-key": _vm.formKey,
         group: _vm.group,
-        "default-value": _vm.defaultValue,
         "hide-name": _vm.hideName,
         clearable: _vm.clearable,
         step: _vm.step,
@@ -54349,7 +54367,6 @@ var render = function() {
         "form-name": _vm.formName,
         "form-key": _vm.formKey,
         group: _vm.group,
-        "default-value": _vm.defaultValue,
         "hide-name": _vm.hideName,
         clearable: _vm.clearable,
         max: _vm.max,
@@ -54462,7 +54479,6 @@ var render = function() {
         "form-name": _vm.formName,
         "form-key": _vm.formKey,
         group: _vm.group,
-        "default-value": _vm.defaultValue,
         "hide-name": _vm.hideName,
         clearable: _vm.clearable,
         "open-note": _vm.openNote,
@@ -54567,7 +54583,6 @@ var render = function() {
         "form-name": _vm.formName,
         "form-key": _vm.formKey,
         group: _vm.group,
-        "default-value": _vm.defaultValue,
         "hide-name": _vm.hideName,
         clearable: _vm.clearable,
         "inside-name": _vm.insideName,
@@ -55417,7 +55432,6 @@ var render = function() {
         "form-name": _vm.formName,
         "form-key": _vm.formKey,
         group: _vm.group,
-        "default-value": _vm.defaultValue,
         "hide-name": _vm.hideName,
         clearable: _vm.clearable,
         "inside-name": _vm.insideName,
@@ -55518,7 +55532,6 @@ var render = function() {
         "form-name": _vm.formName,
         "form-key": _vm.formKey,
         group: _vm.group,
-        "default-value": _vm.defaultValue,
         "hide-name": _vm.hideName,
         clearable: _vm.clearable,
         "inside-name": _vm.insideName,
@@ -63715,9 +63728,6 @@ exports.default = function (UI) {
                     return [];
                 }
             },
-            defaultValue: {
-                default: undefined
-            },
             hideName: {
                 type: Boolean,
                 default: false
@@ -63737,7 +63747,6 @@ exports.default = function (UI) {
                     formName: this.formName,
                     formKey: this.formKey,
                     group: this.group,
-                    defaultValue: this.defaultValue,
                     hideName: this.hideName,
                     clearable: this.clearable
                 };
@@ -64144,12 +64153,7 @@ exports.default = function (UI) {
                 deep: true
             });
 
-            this.data.value = this.conf.defaultValue;
-
-            if (this.modelValue !== undefined && this.conf.state !== 'disabled') {
-
-                this.data.value = this.modelValue;
-            }
+            this.data.value = this.modelValue;
 
             this._syncGroup();
             this.data.value = this._valueHandler(this.data.value);

@@ -6,9 +6,9 @@
         :form-name="formName"
         :form-key="formKey"
         :group="group"
-        :default-value="defaultValue"
         :hide-name="hideName"
         :clearable="clearable"
+        :init-value="initValue"
         :inside-name="insideName"
         :format="format"
         :align="align"
@@ -116,6 +116,10 @@ export default {
     name : 'private-timepicker',
     mixins : [Time, TipManager],
     props : {
+        initValue : {
+            type : String,
+            default : undefined
+        },
         insideName : {
             type : String,
             default : ''
@@ -138,6 +142,7 @@ export default {
         _conf : function () {
 
             return {
+                initValue : this.initValue,
                 insideName : this.insideName,
                 format : this.format,
                 align : this.align,
@@ -601,7 +606,11 @@ export default {
 
         }
     },
-    created : function () {},
+    created : function () {
+
+        this._set(this.conf.initValue, true);
+
+    },
     mounted : function () {
 
         this.data.$timeWrap = this.$el.querySelector('.mor-time-wrap');

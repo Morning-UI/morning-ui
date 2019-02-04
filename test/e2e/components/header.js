@@ -57,7 +57,7 @@ test.serial('size', async t => {
                     'margin-left'
                 ]
             }],
-            '[_uiid="28"]'
+            '[_uiid="30"]'
         );
 
     t.plan(2);
@@ -97,7 +97,7 @@ test.serial('color', async t => {
                     'color'
                 ]
             }],
-            '[_uiid="28"]'
+            '[_uiid="30"]'
         );
 
     t.plan(2);

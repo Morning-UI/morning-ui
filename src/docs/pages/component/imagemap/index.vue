@@ -106,7 +106,13 @@
     <div style="width:300px;">
         <ui-imagemap
             form-name="热区"
-            :default-value="{
+            v-model="value"
+        ></ui-imagemap>
+    </div>
+    >script
+    {
+        data : {
+        value : {
                 'images' : [
                     {
                         'name' : '151244303389249797.png',
@@ -119,9 +125,9 @@
                 ],
                 'w' : 361,
                 'h' : 362.5
-            }"
-        ></ui-imagemap>
-    </div>
+            }
+        }
+    }
     ---
     #demo
     >desc
@@ -132,7 +138,13 @@
     <div style="width:300px;">
         <ui-imagemap
             form-name="热区"
-            :default-value="{
+            v-model="value"
+        ></ui-imagemap>
+    </div>
+    >script
+    {
+        data : {
+            value : {
                 'images' : [
                     {
                         'name' : '151244303389249797.png',
@@ -145,9 +157,9 @@
                 ],
                 'w' : 1444,
                 'h' : 1450
-            }"
-        ></ui-imagemap>
-    </div>
+            }
+        }
+    }
     :::
 
     [[[形态]]]
@@ -361,7 +373,14 @@
             form-name="热区"
             multi
             :max="10"
-            :default-value="{
+            v-model="value"
+            :clean-allzone-btn="false"
+        ></ui-imagemap>
+    </div>
+    >script
+    {
+        data : {
+            value : {
                 'images' : [
                     {
                         'name' : '151244303389249797.png',
@@ -371,10 +390,9 @@
                 'zones' : [],
                 'w' : 722,
                 'h' : 725
-            }"
-            :clean-allzone-btn="false"
-        ></ui-imagemap>
-    </div>
+            }
+        }
+    }
     :::
 
     :::vue
@@ -418,7 +436,13 @@
         <ui-imagemap
             form-name="热区"
             :max-spot="3"
-            :default-value="{
+            v-model="value"
+        ></ui-imagemap>
+    </div>
+    >script
+    {
+        data : {
+            value : {
                 'images' : [
                     {
                         'name' : '151244303389249797.png',
@@ -428,9 +452,9 @@
                 'zones' : [],
                 'w' : 722,
                 'h' : 725
-            }"
-        ></ui-imagemap>
-    </div>
+            }
+        }
+    }
     ---
     #demo
     >desc
@@ -440,7 +464,13 @@
         <ui-imagemap
             form-name="热区"
             :max-spot="1"
-            :default-value="{
+            v-model="value"
+        ></ui-imagemap>
+    </div>
+    >script
+    {
+        data : {
+            value : {
                 'images' : [
                     {
                         'name' : '151244303389249797.png',
@@ -453,9 +483,9 @@
                 ],
                 'w' : 722,
                 'h' : 725
-            }"
-        ></ui-imagemap>
-    </div>
+            }
+        }
+    }
     :::
 
     [[[方法]]]
@@ -482,7 +512,15 @@
         <ui-imagemap
             ref="demo6"
             form-name="热区"
-            :default-value="{
+            v-model="value"
+        ></ui-imagemap>
+        <br>
+        <ui-link js="alert(morning.findVM('demo6').getScale())">获取缩放比</ui-link>
+    </div>
+    >script
+    {
+        data : {
+            value : {
                 'images' : [
                     {
                         'name' : '151244303389249797.png',
@@ -495,11 +533,9 @@
                 ],
                 'w' : 1444,
                 'h' : 1450
-            }"
-        ></ui-imagemap>
-        <br>
-        <ui-link js="alert(morning.findVM('demo6').getScale())">获取缩放比</ui-link>
-    </div>
+            }
+        }
+    }
     :::
 
     :::vue
@@ -519,7 +555,16 @@
         <ui-imagemap
             ref="demo3"
             form-name="热区"
-            :default-value="{
+            v-model="value"
+        ></ui-imagemap>
+        <br>
+        <ui-link js="morning.findVM('demo3').addZone()">新增一个默认热区</ui-link><br>
+        <ui-link js="morning.findVM('demo3').addZone({x:20, y: 20, w: 50, h: 50})">新增一个热区</ui-link>
+    </div>
+    >script
+    {
+        data : {
+            value : {
                 'images' : [
                     {
                         'name' : '151244303389249797.png',
@@ -532,12 +577,9 @@
                 ],
                 'w' : 722,
                 'h' : 725
-            }"
-        ></ui-imagemap>
-        <br>
-        <ui-link js="morning.findVM('demo3').addZone()">新增一个默认热区</ui-link><br>
-        <ui-link js="morning.findVM('demo3').addZone({x:20, y: 20, w: 50, h: 50})">新增一个热区</ui-link>
-    </div>
+            }
+        }
+    }
     :::
 
     :::vue
@@ -557,7 +599,15 @@
         <ui-imagemap
             ref="demo4"
             form-name="热区"
-            :default-value="{
+            v-model="value"
+        ></ui-imagemap>
+        <br>
+        <ui-link js="morning.findVM('demo4').removeZone(0)">删除第一个热区</ui-link>
+    </div>
+    >script
+    {
+        data : {
+            value : {
                 'images' : [
                     {
                         'name' : '151244303389249797.png',
@@ -570,11 +620,9 @@
                 ],
                 'w' : 722,
                 'h' : 725
-            }"
-        ></ui-imagemap>
-        <br>
-        <ui-link js="morning.findVM('demo4').removeZone(0)">删除第一个热区</ui-link>
-    </div>
+            }
+        }
+    }
     :::
 
     :::vue
@@ -595,7 +643,15 @@
         <ui-imagemap 
             ref="demo5"
             form-name="热区"
-            :default-value="{
+            v-model="value"
+        ></ui-imagemap>
+        <br>
+        <ui-link js="morning.findVM('demo5').updateZone(0, {x: 10, y: 10, w: 50, h: 50})">更新第一个热区</ui-link>
+    </div>
+    >script
+    {
+        data : {
+            value : {
                 'images' : [
                     {
                         'name' : '151244303389249797.png',
@@ -608,11 +664,9 @@
                 ],
                 'w' : 722,
                 'h' : 725
-            }"
-        ></ui-imagemap>
-        <br>
-        <ui-link js="morning.findVM('demo5').updateZone(0, {x: 10, y: 10, w: 50, h: 50})">更新第一个热区</ui-link>
-    </div>
+            }
+        }
+    }
     :::
 
     :::vue
@@ -630,7 +684,15 @@
         <ui-imagemap
             ref="demo2"
             form-name="热区"
-            :default-value="{
+            v-model="value"
+        ></ui-imagemap>
+        <br>
+        <ui-link js="morning.findVM('demo2').cleanZones()">清除所有热区</ui-link>
+    </div>
+    >script
+    {
+        data : {
+            value : {
                 'images' : [
                     {
                         'name' : '151244303389249797.png',
@@ -643,11 +705,9 @@
                 ],
                 'w' : 722,
                 'h' : 725
-            }"
-        ></ui-imagemap>
-        <br>
-        <ui-link js="morning.findVM('demo2').cleanZones()">清除所有热区</ui-link>
-    </div>
+            }
+        }
+    }
     :::
 
     [[[事件]]]
