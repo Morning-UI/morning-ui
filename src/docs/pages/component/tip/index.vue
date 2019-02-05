@@ -129,7 +129,7 @@
     >conf-desc
     触发提示的目标元素，必填项。此配置改变后，若小提示处于显示状态，则会触发一次`hide`和`show`事件，以刷新小提示的位置。
     >conf-accept
-    元素选择器([MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/Document_Object_Model/Locating_DOM_elements_using_selectors)
+    元素选择器([MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/Document_Object_Model/Locating_DOM_elements_using_selectors))
     >conf-type
     String<br>Null
     >conf-default
@@ -233,7 +233,7 @@
     >tpl
     <div>
         <span id="demo22">目标文字</span>
-        <ui-tip target="#demo22" ref="demo22" trigger="click">提示内容</ui-tip>
+        <ui-tip target="#demo22" ref="demo22" trigger="method">提示内容</ui-tip>
         
         <br><br>
 
@@ -473,7 +473,6 @@
             target="#demoEventLifecycle"
             ref="demoEventLifecycle"
             v-show="show"
-            :total="10"
             @created="echo('created')"
             @mounted="echo('mounted')"
             @before-update="echo('before-update')"

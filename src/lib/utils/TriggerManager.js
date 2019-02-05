@@ -56,6 +56,19 @@ let TriggerManager = {
 
                 }
 
+                // mouse leave target element to other target element not emit leave, when use hover
+                if (trigger === 'hover' &&
+                    evt.type === 'mouseleave' &&
+                    (
+                        this.Trigger.$targets.indexOf(evt.toElement) !== -1 ||
+                        (evt.toElement.parentElement && this.Trigger.$targets.indexOf(evt.toElement.parentElement) !== -1)
+                    )
+                ) {
+
+                    return;
+
+                }
+
                 // only trigger is hover, delay is worked.
                 if (trigger === 'hover' && delay > 0) {
 
