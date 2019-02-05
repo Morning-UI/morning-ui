@@ -14551,6 +14551,91 @@ mor-tip.tet-ea-left .arrow {
 mor-tip.tet-ea-right .arrow {
   border-left-color: #F33D5D;
 }
+mor-popover {
+  position: fixed;
+  display: block;
+  font-size: 12px;
+  opacity: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+mor-popover.in {
+  opacity: 1;
+  pointer-events: auto;
+}
+mor-popover.tet-ea-bottom {
+  padding: 8px 0;
+}
+mor-popover.tet-ea-bottom .popover-con {
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+}
+mor-popover.tet-ea-bottom .popover-arrow {
+  bottom: 3px;
+  left: 50%;
+  margin-left: -5px;
+  border-color: #0000 #FFFFFF #FFFFFF #0000;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+mor-popover.tet-ea-left {
+  padding: 0 5px 0 10px;
+}
+mor-popover.tet-ea-left .popover-con {
+  box-shadow: -1px 0 5px rgba(0, 0, 0, 0.15);
+}
+mor-popover.tet-ea-left .popover-arrow {
+  top: 50%;
+  left: 5px;
+  margin-top: -5px;
+  border-color: #0000 #0000 #FFFFFF #FFFFFF;
+  box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+mor-popover.tet-ea-top {
+  padding: 8px 0;
+}
+mor-popover.tet-ea-top .popover-con {
+  box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.15);
+}
+mor-popover.tet-ea-top .popover-arrow {
+  top: 3px;
+  left: 50%;
+  margin-left: -5px;
+  border-color: #FFFFFF #0000 #0000 #FFFFFF;
+  box-shadow: -2px -2px 4px rgba(0, 0, 0, 0.1);
+}
+mor-popover.tet-ea-right {
+  padding: 0 10px 0 5px;
+}
+mor-popover.tet-ea-right .popover-con {
+  box-shadow: 1px 0 5px rgba(0, 0, 0, 0.15);
+}
+mor-popover.tet-ea-right .popover-arrow {
+  top: 50%;
+  right: 5px;
+  margin-top: -5px;
+  border-color: #FFFFFF #FFFFFF #0000 #0000;
+  box-shadow: 2px -2px 4px rgba(0, 0, 0, 0.1);
+}
+mor-popover .popover-con {
+  border-radius: 3px;
+  word-break: break-all;
+  background: #FFFFFF;
+}
+mor-popover .popover-con .popover-title {
+  padding: 8px 12px;
+  border-bottom: 1px #E6E6E6 solid;
+  font-size: 14px;
+}
+mor-popover .popover-con .popover-body {
+  padding: 12px;
+}
+mor-popover .popover-arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 5px;
+  transform: rotate(45deg);
+}
 mor-message {
   display: block;
   position: fixed;

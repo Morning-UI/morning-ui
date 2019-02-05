@@ -1,0 +1,109 @@
+@import '~Common/var.less';
+
+@tip-arrowWidth : 5px;
+
+mor-popover{
+    position: fixed;
+    display: block;
+    font-size: @fontSize*0.75;
+    opacity: 0;
+    z-index: -1;
+    pointer-events: none;
+
+    &.in {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    &.tet-ea-bottom {
+        padding: (@tip-arrowWidth + 3px) 0;
+
+        .popover-con {
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+        }
+
+        .popover-arrow {
+            bottom: 3px;
+            left: 50%;
+            margin-left: -@tip-arrowWidth;
+            border-color: #0000 @colorWhite @colorWhite #0000;
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    }
+
+    &.tet-ea-left {
+        padding: 0 @tip-arrowWidth 0 @tip-arrowWidth*2;
+
+        .popover-con {
+            box-shadow: -1px 0 5px rgba(0, 0, 0, 0.15);
+        }
+
+        .popover-arrow {
+            top: 50%;
+            left: @tip-arrowWidth;
+            margin-top: -@tip-arrowWidth;
+            border-color: #0000 #0000 @colorWhite @colorWhite;
+            box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    }
+
+    &.tet-ea-top {
+        padding: (@tip-arrowWidth + 3px) 0;
+
+        .popover-con {
+            box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.15);
+        }
+
+        .popover-arrow {
+            top: 3px;
+            left: 50%;
+            margin-left: -@tip-arrowWidth;
+            border-color: @colorWhite #0000 #0000 @colorWhite;
+            box-shadow: -2px -2px 4px rgba(0, 0, 0, 0.1);
+        }
+    }
+
+    &.tet-ea-right {
+        padding: 0 @tip-arrowWidth*2 0 @tip-arrowWidth;
+
+        .popover-con {
+            box-shadow: 1px 0 5px rgba(0, 0, 0, 0.15);
+        }
+
+        .popover-arrow {
+            top: 50%;
+            right: @tip-arrowWidth;
+            margin-top: -@tip-arrowWidth;
+            border-color: @colorWhite @colorWhite #0000 #0000;
+            box-shadow: 2px -2px 4px rgba(0, 0, 0, 0.1);
+        }
+    }
+
+    .popover-con {
+        border-radius: @borderRadius;
+        word-break: break-all;
+        background: @colorWhite;
+
+        .popover-title{
+            padding: @fontSize*0.5 @fontSize*0.75;
+            border-bottom: 1px @colorFormBorder solid;
+            font-size: @fontSize*0.875;
+        }
+
+        .popover-body{
+            padding: @fontSize*0.75;
+        }
+    }
+
+    .popover-arrow {
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 5px;
+        transform: rotate(45deg);
+    }
+
+    // default status
+    &{}
+}
