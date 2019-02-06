@@ -19,7 +19,7 @@
     ---
     #demo
     >tpl
-    <div style="width:100%;height:320px;">
+    <div style="width:100%;height:320px;padding-bottom:70px;">
         <ui-texteditor form-name="文章编辑"></ui-texteditor>
     </div>
     :::
@@ -32,9 +32,11 @@
     富文本编辑器的取值自带了基础样式，用于还原富文本内容的样式。所以你可以直接将获取的到数值插入至HTML，即可还原富文本。
     >tpl
     <div>
-        <div style="width:100%;height:320px;">
+        <div style="width:100%;height:320px;padding-bottom:70px;">
             <ui-texteditor form-name="文章编辑" @value-change="syncHtml"></ui-texteditor>
         </div>
+        <br>
+        <br>
         <br>
         <h3>预览</h3>
         <div class="demo1-preview" style="width:100%;height:320px;border:1px #e0e0e0 solid;padding:15px;overflow-x: scroll;">
@@ -61,7 +63,7 @@
     @name:formStatus
     @uikey:texteditor
     @defaultValue:'<p>编辑你的文章...</p>'
-    @wrapStyle:width:100%;height:160px;
+    @wrapStyle:width:100%;height:160px;padding-bottom:70px;
     :::
 
     [[[配置]]]
@@ -70,7 +72,7 @@
     @name:formConfig
     @uikey:texteditor
     @defaultValue:'<p>编辑你的文章...</p>'
-    @wrapStyle:width:100%;height:160px;
+    @wrapStyle:width:100%;height:260px;padding-bottom:70px;
     :::
 
     :::vue
@@ -88,7 +90,7 @@
     ---
     #demo
     >tpl
-    <div style="width:100%;height:240px;">
+    <div style="width:100%;height:240px;padding-bottom:70px;">
         <ui-texteditor inside-name="编写文章..."></ui-texteditor>
     </div>
     :::
@@ -133,7 +135,7 @@
     >desc
     使用<b>无值</b>的工具。
     >tpl
-    <div style="width:100%;height:240px;">
+    <div style="width:100%;height:240px;padding-bottom:70px;">
         <ui-texteditor
             form-name="文章编辑"
             :tools="[
@@ -146,7 +148,7 @@
     >desc
     使用<b>值为数组</b>的工具。
     >tpl
-    <div style="width:100%;height:240px;">
+    <div style="width:100%;height:240px;padding-bottom:70px;">
         <ui-texteditor
             form-name="文章编辑"
             :tools="[
@@ -159,7 +161,7 @@
     >desc
     使用<b>值为选项</b>的工具。
     >tpl
-    <div style="width:100%;height:240px;">
+    <div style="width:100%;height:240px;padding-bottom:70px;">
         <ui-texteditor 
             form-name="文章编辑" 
             :tools="[
@@ -172,7 +174,7 @@
     >desc
     通过`tools`中嵌套数组将工具分为多个组（多个组时间会有更多的间隙）。
     >tpl
-    <div style="width:100%;height:240px;">
+    <div style="width:100%;height:240px;padding-bottom:70px;">
         <ui-texteditor
             form-name="文章编辑"
             :tools="[
@@ -187,7 +189,7 @@
     >desc
     完整的`tools`配置如下。
     >tpl
-    <div style="width:100%;height:240px;">
+    <div style="width:100%;height:240px;padding-bottom:70px;">
         <ui-texteditor
             form-name="文章编辑"
             :tools="[

@@ -1,6 +1,7 @@
 <template>
     <ul class="submenu">
         <li v-for="(link, name) in currentMenu">
+
             <template v-if="link === '/' + category + '/' + page + '.html'">
                 <a
                     v-if="typeof link === 'string'"

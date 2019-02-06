@@ -1,7 +1,7 @@
 <template>
     <mor-popover
         :_uiid="uiid"
-        :class="[moreClass]"
+        :class="[moreClass, tipClass]"
 
         :target="target"
         :placement="placement"
@@ -9,6 +9,7 @@
         :trigger="trigger"
         :trigger-in-delay="triggerInDelay"
         :auto-reverse="autoReverse"
+        :align="align"
     >
 
     <div class="popover-arrow"></div>
@@ -27,13 +28,14 @@
 <script>
 import TipManager                   from 'Utils/TipManager';
 import TriggerManager               from 'Utils/TriggerManager';
+import GlobalEvent                  from 'Utils/GlobalEvent';
 
 const triggerDelayTime = 200;
 
 export default {
     origin : 'UI',
     name : 'popover',
-    mixins : [TipManager, TriggerManager],
+    mixins : [TipManager, TriggerManager, GlobalEvent],
     props : {
         target : {
             type : String,
@@ -61,6 +63,11 @@ export default {
             type : Boolean,
             default : true,
             validator : (value => (value >= 0))
+        },
+        align : {
+            type : String,
+            default : 'middle',
+            validator : (value => ['start', 'middle', 'end'].indexOf(value) !== -1)
         }
     },
     computed : {
@@ -72,15 +79,20 @@ export default {
                 offset : this.offset,
                 trigger : this.trigger,
                 triggerInDelay : this.triggerInDelay,
-                autoReverse : this.autoReverse
+                autoReverse : this.autoReverse,
+                align : this.align
             };
 
         },
         moreClass : function () {
 
-            return {
+            let classes = {
                 in : this.data.in
             };
+
+            classes[`align-${this.conf.align}`] = true;
+
+            return classes;
 
         }
     },
@@ -160,6 +172,8 @@ export default {
 
             }
 
+            this._globalEventAdd('click', '_checkArea');
+
         },
         _hideComplete : function () {
 
@@ -169,6 +183,8 @@ export default {
             this.$emit('emit');
 
             this.data.hoverState = '';
+
+            this._globalEventRemove('click', '_checkArea');
 
         },
         _enter : function (evt) {
@@ -256,6 +272,20 @@ export default {
             return Object.values(this.data.activeTrigger).indexOf(true) !== -1;
 
         },
+        _checkArea : function (evt) {
+
+            const notFound = -1;
+
+            if (evt.path.indexOf(this.conf.$target) === notFound &&
+                evt.path.indexOf(this.$el) === notFound) {
+
+                this.hide();
+
+            }
+
+            return evt;
+
+        },
         show : function () {
 
             this._tipCreate({
@@ -288,7 +318,11 @@ export default {
         },
         toggle : function () {
 
-            this.data.activeTrigger.click = !this.data.activeTrigger.click;
+            if (this.data.activeTrigger.click === undefined) {
+                
+                this.data.activeTrigger.click = !this.data.activeTrigger.click;
+
+            }
 
             if (this._isWithActiveTrigger()) {
 
@@ -302,12 +336,20 @@ export default {
             
             return this;
 
+        },
+        position : function () {
+
+            this._tipUpdate();
+
+            return this;
+
         }
     },
     mounted : function () {
 
         this.Trigger.triggers = this.conf.trigger;
         this.Tip.autoReverse = this.conf.autoReverse;
+        this.Tip.align = this.conf.align;
 
         this.$watch('conf.triggerInDelay', () => {
 
@@ -366,6 +408,12 @@ export default {
 
         });
 
+        this.$watch('conf.align', () => {
+
+            this.Tip.align = this.conf.align;
+
+        });
+
         this.$watch('conf.offset', () => {
 
             this._tipUpdate({
@@ -383,6 +431,7 @@ export default {
     },
     beforeDestroy : function () {
 
+        this._globalEventRemove('click', '_checkArea');
         clearTimeout(this.data.timeout);
 
     }

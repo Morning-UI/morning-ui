@@ -61,7 +61,11 @@ let TriggerManager = {
                     evt.type === 'mouseleave' &&
                     (
                         this.Trigger.$targets.indexOf(evt.toElement) !== -1 ||
-                        (evt.toElement.parentElement && this.Trigger.$targets.indexOf(evt.toElement.parentElement) !== -1)
+                        (
+                            evt.toElement &&
+                            evt.toElement.parentElement &&
+                            this.Trigger.$targets.indexOf(evt.toElement.parentElement) !== -1
+                        )
                     )
                 ) {
 

@@ -679,6 +679,36 @@ let data = {
                 valueType : 'Array',
                 valueContent : '[{\'source\':[\'item4\',\'item5\',\'item6\',\'item7\'],\'target\':[\'item1\',\'item2\',\'item3\']}]'
             }
+        ],
+        cascader : [
+            {
+                valueType : 'String',
+                valueContent : `'tim'`
+            },
+            {
+                valueType : 'Number',
+                valueContent : '5'
+            },
+            {
+                valueType : 'Boolean',
+                valueContent : 'true'
+            },
+            {
+                valueType : 'Null',
+                valueContent : 'null'
+            },
+            {
+                valueType : 'Undefined',
+                valueContent : 'undefined'
+            },
+            {
+                valueType : 'Object',
+                valueContent : '{\'zj\':\'wz\'}'
+            },
+            {
+                valueType : 'Array',
+                valueContent : '[\'zj\', \'wz\']'
+            }
         ]
     }
 };
@@ -2098,6 +2128,7 @@ let extVueCompiler = {
                 <div class="code-con">
                     <div class="code">
                         <pre><code class="lang-html lang-vue">${_ctx.md.utils.escapeHtml(printCode)}</code></pre>
+                        <a class="see-more" href="javascript:;" onclick="this.previousElementSibling.classList.add('show-more');this.classList.add('show-more')">查看完整代码</a>
                         <div class="demo-tools">
                             <a href="javascript:;" class="live" demo-id="${_ctx.demoid}" id="live-demo-${_ctx.demoid}">
                                 <i class="iconfont">&#xe616;</i>
@@ -2848,10 +2879,42 @@ a{ }
                 vertical-align: top;
                 display: block;
                 position: relative;
+                overflow: hidden;
 
                 > pre{
                     font-size: 12px;
                     margin: 0;
+                    max-height: 120px;
+                    overflow: hidden;
+
+                    &.show-more{
+                        max-height: none;
+                    }
+                }
+
+                > .see-more{
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    height: 40px;
+                    width: 100%;
+                    background: #f6f8fa;
+                    font-size: 14px;
+                    text-align: center;
+                    line-height: 40px;
+                    box-shadow: 0 0 3px rgba(0,0,0,0.2);
+                    cursor: pointer;
+                    color: #7C8BA0;
+
+                    &.show-more{
+                        display: none;
+                    }
+
+                    &:hover{
+                        box-shadow: 0 0 4px rgba(0,0,0,0.3);
+                        text-decoration: none;
+                        color: #303C4B;
+                    }
                 }
 
                 > .demo-tools{

@@ -208,6 +208,8 @@
     #config
     >conf-desc
     触发方式(支持多触发方式，多个触发器之间用空格分开)。触发方式一旦改变，已有的触发状态都会被重置。
+    <br><br>
+    当处于`click`配置时，点击`target`元素会切换显示/隐藏状态，同时点击其他区域会隐藏弹出框。
     >conf-accept
     `hover`：鼠标移入目标元素<br>`click`：鼠标点击目标元素<br>`focus`：目标元素处于焦点状态<br>`method`：通过组件方法触发
     >conf-type
@@ -346,6 +348,58 @@
             <p>内容内容内容内容内容</p>
             <p>内容内容内容内容内容</p>
             <p>内容内容内容内容内容</p>
+        </ui-popover>
+    </div>
+    :::
+
+    :::vue
+    @name:align
+    ---
+    #config
+    >conf-desc
+    弹出框对于触发元素的对齐。
+    >conf-accept
+    `start`:向左或向上对齐<br>`middle`:居中对齐<br>`end`:向右或向下对齐
+    >conf-type
+    String
+    >conf-default
+    `'middle'`
+    ---
+    #demo
+    >tpl
+    <div>
+        <span id="demo25">向左对齐</span>
+        <ui-popover target="#demo25" align="start">
+            <p>内容内容内容内容内容1...</p>
+            <p>内容内容内容内容2...</p>
+            <p>内容内容内容3...</p>
+        </ui-popover>
+
+        <br>
+
+        <span id="demo26">向上对齐</span>
+        <ui-popover target="#demo26" align="start" placement="left">
+            <p>内容内容内容内容内容1...</p>
+            <p>内容内容内容内容2...</p>
+            <p>内容内容内容3...</p>
+        </ui-popover>
+
+        <br>
+
+        <span id="demo27">向右对齐</span>
+        <ui-popover target="#demo27" align="end">
+            <p>内容内容内容内容内容1...</p>
+            <p>内容内容内容内容2...</p>
+            <p>内容内容内容3...</p>
+        </ui-popover>
+
+        <br>
+
+        <span id="demo28">向下对齐</span>
+        <ui-popover target="#demo28" align="end" placement="left">
+            <p>内容内容内容内容内容1...</p>
+            <p>内容内容内容内容2...</p>
+            <p>内容内容内容3...</p>
         </ui-popover>
     </div>
     :::

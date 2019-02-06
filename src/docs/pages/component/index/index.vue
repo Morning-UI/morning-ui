@@ -167,6 +167,7 @@
             <h4><i class="iconfont">&#xe603;</i>结构数据</h4>
             <ul>
                 <li><a href="/component/transfer.html">穿梭框<p>&lt;transfer></p></a></li>
+                <li><a href="/component/cascader.html">级联选择<p>&lt;cascader></p></a></li>
                 <li><a href="/component/multiinput.html">多项输入<p>&lt;multiinput></p></a></li>
                 <li><a href="/component/multiform.html">多项表单输入<p>&lt;multiform></p></a></li>
             </ul>

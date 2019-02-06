@@ -15,7 +15,7 @@ mor-popover{
         pointer-events: auto;
     }
 
-    &.tet-ea-bottom {
+    &.tip-placement-top {
         padding: (@tip-arrowWidth + 3px) 0;
 
         .popover-con {
@@ -31,7 +31,7 @@ mor-popover{
         }
     }
 
-    &.tet-ea-left {
+    &.tip-placement-right {
         padding: 0 @tip-arrowWidth 0 @tip-arrowWidth*2;
 
         .popover-con {
@@ -47,7 +47,7 @@ mor-popover{
         }
     }
 
-    &.tet-ea-top {
+    &.tip-placement-bottom {
         padding: (@tip-arrowWidth + 3px) 0;
 
         .popover-con {
@@ -63,7 +63,7 @@ mor-popover{
         }
     }
 
-    &.tet-ea-right {
+    &.tip-placement-left {
         padding: 0 @tip-arrowWidth*2 0 @tip-arrowWidth;
 
         .popover-con {
@@ -76,6 +76,42 @@ mor-popover{
             margin-top: -@tip-arrowWidth;
             border-color: @colorWhite @colorWhite #0000 #0000;
             box-shadow: 2px -2px 4px rgba(0, 0, 0, 0.1);
+        }
+    }
+
+    &.tip-placement-left,
+    &.tip-placement-right {
+        &.align-start{
+            .popover-arrow{
+                margin-top: 0;
+                top: @tip-arrowWidth*2;
+            }
+        }
+
+        &.align-end{
+            .popover-arrow{
+                top: unset;
+                margin-top: 0;
+                bottom: @tip-arrowWidth*2;
+            }
+        }
+    }
+
+    &.tip-placement-top,
+    &.tip-placement-bottom {
+        &.align-start{
+            .popover-arrow{
+                margin-left: 0;
+                left: @tip-arrowWidth*2;
+            }
+        }
+
+        &.align-end{
+            .popover-arrow{
+                left: unset;
+                margin-left: 0;
+                right: @tip-arrowWidth*2;
+            }
         }
     }
 

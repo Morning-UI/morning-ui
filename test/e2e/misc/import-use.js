@@ -144,7 +144,7 @@ test.serial('import-use-webpack', async t => {
     await new Promise((resolve, reject) => {
 
         exec(
-            `cd ${pathDir} && npm install morning-ui webpack@4.6.0 style-loader css-loader vue`,
+            `cd ${pathDir} && npm install morning-ui webpack@4.29.0 style-loader css-loader vue@2.5.22`,
             {
                 maxBuffer : maxBuffer
             },
