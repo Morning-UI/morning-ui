@@ -152,8 +152,6 @@ export default {
 
             $otherAnchors = Array.from($otherAnchors);
 
-            console.log(this.$el);
-
             for (let $anchor of $anchors) {
 
                 if ($otherAnchors.indexOf($anchor) === -1) {

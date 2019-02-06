@@ -83,6 +83,8 @@ export default {
 
             }
 
+            return {};
+
         }
     },
     data : function () {

@@ -4,9 +4,9 @@ mor-private-tree{
     display: block;
 
     mor-private-tree{
-        padding-left: 2em;
+        padding-left: 1.5em;
         margin-top: 0.25em;
-    } 
+    }
 
     ul.tree-body{
         margin: 0;
@@ -15,33 +15,53 @@ mor-private-tree{
         font-size: @fontSize*0.875;
 
         .tree-node{
-            padding: 0;
-            margin: 0.25em 0;
+            padding: 0.25em 0;
+            margin: 0;
             box-sizing: border-box;
+            position: relative;
+            vertical-align: top;
 
             > span{
                 display: inline-block;
                 font-size: 0;
+                background: @colorWhite;
+                position: relative;
+                z-index: 1;
+                vertical-align: top;
 
                 > a{
                     color: @colorBlack;
                     font-size: @fontSize*0.875;
                     display: inline-block;
                     box-sizing: border-box;
+                    cursor: default;
 
                     &:hover{
-                        cursor: pointer;
                         text-decoration: none;
                     }
                 }
 
                 .node-switcher{
-                    transform-origin: center;
-                    transform: scale(0.8);
+                    // transform-origin: center;
+                    // transform: scale(0.8);
+
+                    &:hover{
+                        cursor: pointer;
+                    }
 
                     .mo-icon{
-                        font-size: @fontSize*0.75;
+                        font-size: @fontSize;
+                        width: @fontSize;
+                        height: @fontSize*1.25;
+                        line-height: @fontSize*1.25;
+                        display: inline-block;
+                        vertical-align: top;
+                        text-align: center;
+                    }
 
+                    .mo-icon-down,
+                    .mo-icon-right{
+                        font-size: @fontSize*0.75;
                     }
                 }
 
@@ -49,18 +69,52 @@ mor-private-tree{
                     padding: 0.1em 0.5em;
                     border-radius: @borderRadius;
 
-                    &:hover{
-                        background: lighten(@colorLightTheme, 26%);
-                    }
-
                     &.current{
                         background: lighten(@colorLightTheme, 20%);
                     }
                 }
+
+                .leafnode-icon{
+                    display: inline-block;
+                    vertical-align: top;
+                    width: @fontSize;
+                    height: @fontSize*1.25;
+                    line-height: @fontSize*1.25;
+
+                    .mo-icon{
+                        font-size: @fontSize;
+                        display: inline-block;
+                        vertical-align: top;
+                        text-align: center;
+                    }
+                }
             }
 
-            &.fold > mor-private-tree{
+            &.is-fold{
+                padding: 0.25em 0;
+            }
+
+            &.hide{
                 display: none;
+            }
+
+            &.disabled{
+                > span{
+                    .node-switcher{
+                        &:hover{
+                            cursor: not-allowed;
+                        }
+                    }
+
+                    .node-name{
+                        background: @colorFormBackgroundDisable;
+                        cursor: not-allowed !important;
+
+                        &:hover{
+                            background: @colorFormBackgroundDisable !important;
+                        }
+                    }
+                }
             }
         }
     }

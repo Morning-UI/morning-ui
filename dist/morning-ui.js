@@ -3649,7 +3649,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _arrayUniq = __webpack_require__(9);
+var _arrayUniq = __webpack_require__(5);
 
 var _arrayUniq2 = _interopRequireDefault(_arrayUniq);
 
@@ -3766,6 +3766,76 @@ module.exports = exports['default'];
 
 /***/ }),
 /* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(global) {
+
+// there's 3 implementations written in increasing order of efficiency
+
+// 1 - no Set type is defined
+function uniqNoSet(arr) {
+	var ret = [];
+
+	for (var i = 0; i < arr.length; i++) {
+		if (ret.indexOf(arr[i]) === -1) {
+			ret.push(arr[i]);
+		}
+	}
+
+	return ret;
+}
+
+// 2 - a simple Set type is defined
+function uniqSet(arr) {
+	var seen = new Set();
+	return arr.filter(function (el) {
+		if (!seen.has(el)) {
+			seen.add(el);
+			return true;
+		}
+
+		return false;
+	});
+}
+
+// 3 - a standard Set type is defined and it has a forEach method
+function uniqSetWithForEach(arr) {
+	var ret = [];
+
+	(new Set(arr)).forEach(function (el) {
+		ret.push(el);
+	});
+
+	return ret;
+}
+
+// V8 currently has a broken implementation
+// https://github.com/joyent/node/issues/8449
+function doesForEachActuallyWork() {
+	var ret = false;
+
+	(new Set([true])).forEach(function (el) {
+		ret = el;
+	});
+
+	return ret === true;
+}
+
+if ('Set' in global) {
+	if (typeof Set.prototype.forEach === 'function' && doesForEachActuallyWork()) {
+		module.exports = uniqSetWithForEach;
+	} else {
+		module.exports = uniqSet;
+	}
+} else {
+	module.exports = uniqNoSet;
+}
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(10)))
+
+/***/ }),
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4115,7 +4185,7 @@ Delta.prototype.transformPosition = function (index, priority) {
 module.exports = Delta;
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4134,7 +4204,7 @@ var _extend = __webpack_require__(2);
 
 var _extend2 = _interopRequireDefault(_extend);
 
-var _quillDelta = __webpack_require__(5);
+var _quillDelta = __webpack_require__(6);
 
 var _quillDelta2 = _interopRequireDefault(_quillDelta);
 
@@ -4146,7 +4216,7 @@ var _break = __webpack_require__(27);
 
 var _break2 = _interopRequireDefault(_break);
 
-var _inline = __webpack_require__(7);
+var _inline = __webpack_require__(8);
 
 var _inline2 = _interopRequireDefault(_inline);
 
@@ -4373,7 +4443,7 @@ exports.BlockEmbed = BlockEmbed;
 exports.default = Block;
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4464,7 +4534,7 @@ exports.default = Inline;
 module.exports = exports['default'];
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -17120,76 +17190,6 @@ function subYears(dirtyDate, dirtyAmount) {
 
 
 /***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(global) {
-
-// there's 3 implementations written in increasing order of efficiency
-
-// 1 - no Set type is defined
-function uniqNoSet(arr) {
-	var ret = [];
-
-	for (var i = 0; i < arr.length; i++) {
-		if (ret.indexOf(arr[i]) === -1) {
-			ret.push(arr[i]);
-		}
-	}
-
-	return ret;
-}
-
-// 2 - a simple Set type is defined
-function uniqSet(arr) {
-	var seen = new Set();
-	return arr.filter(function (el) {
-		if (!seen.has(el)) {
-			seen.add(el);
-			return true;
-		}
-
-		return false;
-	});
-}
-
-// 3 - a standard Set type is defined and it has a forEach method
-function uniqSetWithForEach(arr) {
-	var ret = [];
-
-	(new Set(arr)).forEach(function (el) {
-		ret.push(el);
-	});
-
-	return ret;
-}
-
-// V8 currently has a broken implementation
-// https://github.com/joyent/node/issues/8449
-function doesForEachActuallyWork() {
-	var ret = false;
-
-	(new Set([true])).forEach(function (el) {
-		ret = el;
-	});
-
-	return ret === true;
-}
-
-if ('Set' in global) {
-	if (typeof Set.prototype.forEach === 'function' && doesForEachActuallyWork()) {
-		module.exports = uniqSetWithForEach;
-	} else {
-		module.exports = uniqSet;
-	}
-} else {
-	module.exports = uniqNoSet;
-}
-
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(10)))
-
-/***/ }),
 /* 10 */
 /***/ (function(module, exports) {
 
@@ -17529,7 +17529,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 __webpack_require__(565);
 
-var _quillDelta = __webpack_require__(5);
+var _quillDelta = __webpack_require__(6);
 
 var _quillDelta2 = _interopRequireDefault(_quillDelta);
 
@@ -18559,7 +18559,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _quillDelta = __webpack_require__(5);
+var _quillDelta = __webpack_require__(6);
 
 var _quillDelta2 = _interopRequireDefault(_quillDelta);
 
@@ -18567,11 +18567,11 @@ var _parchment = __webpack_require__(1);
 
 var _parchment2 = _interopRequireDefault(_parchment);
 
-var _block = __webpack_require__(6);
+var _block = __webpack_require__(7);
 
 var _block2 = _interopRequireDefault(_block);
 
-var _inline = __webpack_require__(7);
+var _inline = __webpack_require__(8);
 
 var _inline2 = _interopRequireDefault(_inline);
 
@@ -26969,6 +26969,31 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
     origin: 'UI',
@@ -26983,6 +27008,37 @@ exports.default = {
         foldable: {
             type: Boolean,
             default: true
+        },
+        cable: {
+            type: Boolean,
+            default: false
+        },
+        canClick: {
+            type: Boolean,
+            default: true
+        },
+        canSearch: {
+            type: Boolean,
+            default: false
+        },
+        customFoldIcon: {
+            type: String,
+            default: ''
+        },
+        customUnfoldIcon: {
+            type: String,
+            default: ''
+        },
+        customLeafnodeIcon: {
+            type: String,
+            default: ''
+        },
+        foldStyle: {
+            type: String,
+            default: 'arrow',
+            validator: function validator(value) {
+                return ['arrow', 'folder', 'symbol'].indexOf(value) !== -1;
+            }
         }
     },
     computed: {
@@ -26990,7 +27046,22 @@ exports.default = {
 
             return {
                 tree: this.tree,
-                foldable: this.foldable
+                foldable: this.foldable,
+                cable: this.cable,
+                canClick: this.canClick,
+                canSearch: this.canSearch,
+                customFoldIcon: this.customFoldIcon,
+                customUnfoldIcon: this.customUnfoldIcon,
+                customLeafnodeIcon: this.customLeafnodeIcon,
+                foldStyle: this.foldStyle
+            };
+        },
+        moreClass: function moreClass() {
+
+            return {
+                'has-cabel': this.conf.cable,
+                'can-click': this.conf.canClick,
+                foldable: this.conf.foldable
             };
         }
     },
@@ -26998,7 +27069,8 @@ exports.default = {
 
         return {
             data: {
-                currentNode: ''
+                currentNode: '',
+                searchKey: ''
             }
         };
     },
@@ -27006,6 +27078,33 @@ exports.default = {
         _nodeEmit: function _nodeEmit(path) {
 
             this.data.currentNode = path.join('/');
+            this.$emit('node-emit', path);
+        },
+        _nodeFold: function _nodeFold(path) {
+
+            this.$emit('node-fold', path);
+        },
+        _nodeUnfold: function _nodeUnfold(path) {
+
+            this.$emit('node-unfold', path);
+        },
+        foldNode: function foldNode(pathArr, fold) {
+
+            this.$refs['mor-tree-roottree-' + this.uiid]._foldNode(pathArr, fold);
+
+            return this;
+        },
+        foldAllNode: function foldAllNode() {
+
+            this.$refs['mor-tree-roottree-' + this.uiid]._foldAllNode(true);
+
+            return this;
+        },
+        unfoldAllNode: function unfoldAllNode() {
+
+            this.$refs['mor-tree-roottree-' + this.uiid]._foldAllNode(false);
+
+            return this;
         }
     },
     created: function created() {},
@@ -27133,7 +27232,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 
-var _arrayUniq = __webpack_require__(9);
+var _arrayUniq = __webpack_require__(5);
 
 var _arrayUniq2 = _interopRequireDefault(_arrayUniq);
 
@@ -29045,8 +29144,6 @@ exports.default = {
 
             $otherAnchors = Array.from($otherAnchors);
 
-            console.log(this.$el);
-
             var _iteratorNormalCompletion = true;
             var _didIteratorError = false;
             var _iteratorError = undefined;
@@ -29864,7 +29961,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _arrayUniq = __webpack_require__(9);
+var _arrayUniq = __webpack_require__(5);
 
 var _arrayUniq2 = _interopRequireDefault(_arrayUniq);
 
@@ -29872,7 +29969,7 @@ var _lodash = __webpack_require__(26);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
-var _dateFns = __webpack_require__(8);
+var _dateFns = __webpack_require__(9);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -31225,6 +31322,8 @@ exports.default = {
                     left: this.data.fixedX + 'px'
                 };
             }
+
+            return {};
         }
     },
     data: function data() {
@@ -37710,7 +37809,7 @@ var _extend = __webpack_require__(2);
 
 var _extend2 = _interopRequireDefault(_extend);
 
-var _arrayUniq = __webpack_require__(9);
+var _arrayUniq = __webpack_require__(5);
 
 var _arrayUniq2 = _interopRequireDefault(_arrayUniq);
 
@@ -39721,7 +39820,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 
-var _arrayUniq = __webpack_require__(9);
+var _arrayUniq = __webpack_require__(5);
 
 var _arrayUniq2 = _interopRequireDefault(_arrayUniq);
 
@@ -41018,9 +41117,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 
-var _dateFns = __webpack_require__(8);
+var _dateFns = __webpack_require__(9);
 
-var _arrayUniq = __webpack_require__(9);
+var _arrayUniq = __webpack_require__(5);
 
 var _arrayUniq2 = _interopRequireDefault(_arrayUniq);
 
@@ -41798,7 +41897,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 
-var _dateFns = __webpack_require__(8);
+var _dateFns = __webpack_require__(9);
 
 var _lodash = __webpack_require__(26);
 
@@ -42730,7 +42829,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 
-var _dateFns = __webpack_require__(8);
+var _dateFns = __webpack_require__(9);
 
 var _Dates = __webpack_require__(310);
 
@@ -46350,7 +46449,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _dateFns = __webpack_require__(8);
+var _dateFns = __webpack_require__(9);
 
 var _Time = __webpack_require__(309);
 
@@ -47028,7 +47127,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _dateFns = __webpack_require__(8);
+var _dateFns = __webpack_require__(9);
 
 var _lodash = __webpack_require__(697);
 
@@ -48006,6 +48105,8 @@ __webpack_require__.r(__webpack_exports__);
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; //
 //
 //
 //
@@ -48078,6 +48179,63 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+var _arrayUniq = __webpack_require__(5);
+
+var _arrayUniq2 = _interopRequireDefault(_arrayUniq);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
     origin: 'UI',
@@ -48103,6 +48261,37 @@ exports.default = {
         foldable: {
             type: Boolean,
             default: true
+        },
+        canClick: {
+            type: Boolean,
+            default: true
+        },
+        canSearch: {
+            type: Boolean,
+            default: false
+        },
+        searchKey: {
+            type: String,
+            default: ''
+        },
+        customFoldIcon: {
+            type: String,
+            default: ''
+        },
+        customUnfoldIcon: {
+            type: String,
+            default: ''
+        },
+        customLeafnodeIcon: {
+            type: String,
+            default: ''
+        },
+        foldStyle: {
+            type: String,
+            default: 'arrow',
+            validator: function validator(value) {
+                return ['arrow', 'folder', 'symbol'].indexOf(value) !== -1;
+            }
         }
     },
     computed: {
@@ -48112,8 +48301,75 @@ exports.default = {
                 tree: this.tree,
                 parentPath: this.parentPath,
                 currentNode: this.currentNode,
-                foldable: this.foldable
+                foldable: this.foldable,
+                canClick: this.canClick,
+                canSearch: this.canSearch,
+                searchKey: this.searchKey,
+                customFoldIcon: this.customFoldIcon,
+                customUnfoldIcon: this.customUnfoldIcon,
+                customLeafnodeIcon: this.customLeafnodeIcon,
+                foldStyle: this.foldStyle
             };
+        },
+        foldIcon: function foldIcon() {
+
+            var icon = void 0;
+
+            if (this.conf.foldStyle === 'arrow') {
+
+                icon = '<i class="mo-icon mo-icon-down"></i>';
+            } else if (this.conf.foldStyle === 'folder') {
+
+                icon = '<i class="mo-icon mo-icon-folder-open-o"></i>';
+            } else if (this.conf.foldStyle === 'symbol') {
+
+                icon = '<i class="mo-icon mo-icon-sub"></i>';
+            }
+
+            if (this.conf.customFoldIcon) {
+
+                icon = this.conf.customFoldIcon;
+            }
+
+            return icon;
+        },
+        unfoldIcon: function unfoldIcon() {
+
+            var icon = void 0;
+
+            if (this.conf.foldStyle === 'arrow') {
+
+                icon = '<i class="mo-icon mo-icon-right"></i>';
+            } else if (this.conf.foldStyle === 'folder') {
+
+                icon = '<i class="mo-icon mo-icon-folder-close-o"></i>';
+            } else if (this.conf.foldStyle === 'symbol') {
+
+                icon = '<i class="mo-icon mo-icon-add"></i>';
+            }
+
+            if (this.conf.customUnfoldIcon) {
+
+                icon = this.conf.customUnfoldIcon;
+            }
+
+            return icon;
+        },
+        leafnodeIcon: function leafnodeIcon() {
+
+            var icon = void 0;
+
+            if (this.conf.foldStyle === 'folder') {
+
+                icon = '<i class="mo-icon mo-icon-file-o"></i>';
+            }
+
+            if (this.conf.customLeafnodeIcon) {
+
+                icon = this.conf.customLeafnodeIcon;
+            }
+
+            return icon;
         }
     },
     data: function data() {
@@ -48121,14 +48377,18 @@ exports.default = {
         return {
             data: {
                 current: null,
-                foldKeys: []
+                unfoldKeys: [],
+                childPathHitSearch: []
             }
         };
     },
     methods: {
         _nodeClick: function _nodeClick(key) {
 
-            console.log(key);
+            if (!this.conf.canClick) {
+
+                return;
+            }
 
             var nodePath = this.conf.parentPath.concat([key]);
 
@@ -48138,20 +48398,227 @@ exports.default = {
 
             this.$emit('node-emit', path);
         },
-        _nodeFoldSwitch: function _nodeFoldSwitch(key) {
+        _nodeFold: function _nodeFold(path) {
 
-            var index = this.data.foldKeys.indexOf(key);
+            this.$emit('node-fold', path);
+        },
+        _nodeUnfold: function _nodeUnfold(path) {
 
-            if (index === -1) {
+            this.$emit('node-unfold', path);
+        },
+        _nodeFoldSwitch: function _nodeFoldSwitch(key, fold) {
 
-                this.data.foldKeys.push(key);
+            var index = this.data.unfoldKeys.indexOf(key);
+
+            if (fold === undefined) {
+
+                if (index === -1) {
+
+                    this.data.unfoldKeys.push(key);
+                    this.$emit('node-unfold', this.conf.parentPath.concat([key]));
+                } else {
+
+                    this.data.unfoldKeys.splice(index, 1);
+                    this.$emit('node-fold', this.conf.parentPath.concat([key]));
+                }
+            } else if (fold === false && index === -1) {
+
+                this.data.unfoldKeys.push(key);
+                this.$emit('node-unfold', this.conf.parentPath.concat([key]));
+            } else if (fold === true && index !== -1) {
+
+                this.data.unfoldKeys.splice(index, 1);
+                this.$emit('node-fold', this.conf.parentPath.concat([key]));
+            }
+        },
+        _syncChildHitSearch: function _syncChildHitSearch(childPath, hitKey) {
+
+            if (hitKey !== false) {
+
+                this.data.childPathHitSearch.push(childPath);
             } else {
 
-                this.data.foldKeys.splice(index, 1);
+                var index = this.data.childPathHitSearch.indexOf(childPath);
+
+                if (index > -1) {
+
+                    this.data.childPathHitSearch.splice(index, 1);
+                }
+            }
+
+            if (this.data.childPathHitSearch.length > 0) {
+
+                this.$emit('hit-search', this.conf.parentPath.join('/'), true);
+            } else {
+
+                this.$emit('hit-search', this.conf.parentPath.join('/'), false);
+            }
+        },
+        _foldNode: function _foldNode(pathArr, fold) {
+
+            var key = pathArr.shift();
+            var submenu = this.$refs['mor-tree-subtree-' + this.uiid + '-' + key];
+
+            this._nodeFoldSwitch(key, fold);
+
+            if (pathArr.length > 0 && submenu && submenu[0]) {
+
+                submenu[0]._foldNode(pathArr, fold);
+            }
+        },
+        _foldAllNode: function _foldAllNode(fold) {
+
+            var item = void 0;
+            var submenu = void 0;
+
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+                for (var _iterator = Object.keys(this.conf.tree)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var key = _step.value;
+
+
+                    this._nodeFoldSwitch(key, fold);
+                    item = this.conf.tree[key];
+
+                    if (item.childs) {
+
+                        submenu = this.$refs['mor-tree-subtree-' + this.uiid + '-' + key];
+
+                        if (submenu && submenu[0]) {
+
+                            submenu[0]._foldAllNode(fold);
+                        }
+                    }
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return) {
+                        _iterator.return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
             }
         }
     },
-    mounted: function mounted() {}
+    mounted: function mounted() {
+        var _this = this;
+
+        this.$watch('conf.tree', function () {
+
+            var tree = _this.conf.tree;
+            var item = void 0;
+            var index = void 0;
+
+            var _iteratorNormalCompletion2 = true;
+            var _didIteratorError2 = false;
+            var _iteratorError2 = undefined;
+
+            try {
+                for (var _iterator2 = Object.keys(tree)[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                    var key = _step2.value;
+
+
+                    item = tree[key];
+
+                    if ((typeof item === 'undefined' ? 'undefined' : _typeof(item)) === 'object' && item.unfold === true) {
+
+                        _this.data.unfoldKeys.push(key);
+                        _this.data.unfoldKeys = (0, _arrayUniq2.default)(_this.data.unfoldKeys);
+                        _this.$emit('node-unfold', _this.conf.parentPath.concat([key]));
+                    } else if (item.unfold === false) {
+
+                        index = _this.data.unfoldKeys.indexOf(key);
+
+                        if (index > -1) {
+
+                            _this.data.unfoldKeys.splice(index, 1);
+                            _this.$emit('node-fold', _this.conf.parentPath.concat([key]));
+                        }
+                    }
+                }
+            } catch (err) {
+                _didIteratorError2 = true;
+                _iteratorError2 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                        _iterator2.return();
+                    }
+                } finally {
+                    if (_didIteratorError2) {
+                        throw _iteratorError2;
+                    }
+                }
+            }
+        }, {
+            immediate: true
+        });
+
+        this.$watch('conf.searchKey', function () {
+
+            _this.data.childPathHitSearch = [];
+
+            // use next tick, make sure parent's childPathHitSearch is clean.
+            _this.Vue.nextTick(function () {
+
+                var hitKey = false;
+                var item = void 0;
+                var content = void 0;
+
+                var _iteratorNormalCompletion3 = true;
+                var _didIteratorError3 = false;
+                var _iteratorError3 = undefined;
+
+                try {
+                    for (var _iterator3 = Object.keys(_this.conf.tree)[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                        var key = _step3.value;
+
+
+                        item = _this.conf.tree[key];
+
+                        if (typeof item === 'string') {
+
+                            content = item;
+                        } else {
+
+                            content = item.name;
+                        }
+
+                        if (content.search(_this.conf.searchKey) !== -1) {
+
+                            hitKey = key;
+
+                            break;
+                        }
+                    }
+                } catch (err) {
+                    _didIteratorError3 = true;
+                    _iteratorError3 = err;
+                } finally {
+                    try {
+                        if (!_iteratorNormalCompletion3 && _iterator3.return) {
+                            _iterator3.return();
+                        }
+                    } finally {
+                        if (_didIteratorError3) {
+                            throw _iteratorError3;
+                        }
+                    }
+                }
+
+                _this.$emit('hit-search', _this.conf.parentPath.join('/'), hitKey);
+            });
+        });
+    }
 };
 module.exports = exports['default'];
 
@@ -48338,7 +48805,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var _arrayUniq = __webpack_require__(9);
+var _arrayUniq = __webpack_require__(5);
 
 var _arrayUniq2 = _interopRequireDefault(_arrayUniq);
 
@@ -50922,7 +51389,7 @@ var _parchment = __webpack_require__(1);
 
 var _parchment2 = _interopRequireDefault(_parchment);
 
-var _block = __webpack_require__(6);
+var _block = __webpack_require__(7);
 
 var _block2 = _interopRequireDefault(_block);
 
@@ -51044,7 +51511,7 @@ var _extend = __webpack_require__(2);
 
 var _extend2 = _interopRequireDefault(_extend);
 
-var _quillDelta = __webpack_require__(5);
+var _quillDelta = __webpack_require__(6);
 
 var _quillDelta2 = _interopRequireDefault(_quillDelta);
 
@@ -52442,7 +52909,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _dateFns = __webpack_require__(8);
+var _dateFns = __webpack_require__(9);
 
 var _standardDate = __webpack_require__(416);
 
@@ -52506,7 +52973,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _dateFns = __webpack_require__(8);
+var _dateFns = __webpack_require__(9);
 
 var _standardDate = __webpack_require__(416);
 
@@ -54002,18 +54469,55 @@ var render = function() {
   return _c(
     "mor-tree",
     {
-      class: [],
-      attrs: { _uiid: _vm.uiid, tree: _vm.tree, foldable: _vm.foldable }
+      class: [_vm.moreClass],
+      attrs: {
+        _uiid: _vm.uiid,
+        tree: _vm.tree,
+        foldable: _vm.foldable,
+        cable: _vm.cable,
+        "can-click": _vm.canClick,
+        "can-search": _vm.canSearch,
+        "custom-fold-icon": _vm.customFoldIcon,
+        "custom-unfold-icon": _vm.customUnfoldIcon,
+        "custom-leafnode-icon": _vm.customLeafnodeIcon,
+        "fold-style": _vm.foldStyle
+      }
     },
     [
+      _vm.conf.canSearch
+        ? _c("morning-textinput", {
+            attrs: { "inside-name": "搜索" },
+            model: {
+              value: _vm.data.searchKey,
+              callback: function($$v) {
+                _vm.$set(_vm.data, "searchKey", $$v)
+              },
+              expression: "data.searchKey"
+            }
+          })
+        : _vm._e(),
+      _vm._v(" "),
       _c("morning-private-tree", {
+        ref: "mor-tree-roottree-" + _vm.uiid,
         attrs: {
           tree: _vm.conf.tree,
           "parent-path": [],
           "current-node": _vm.data.currentNode,
-          foldable: _vm.conf.foldable
+          foldable: _vm.conf.foldable,
+          cable: _vm.conf.cable,
+          "can-click": _vm.conf.canClick,
+          "can-search": _vm.conf.canSearch,
+          "search-key": _vm.data.searchKey,
+          "custom-fold-icon": _vm.conf.customFoldIcon,
+          "custom-unfold-icon": _vm.conf.customUnfoldIcon,
+          "custom-leafnode-icon": _vm.conf.customLeafnodeIcon,
+          "fold-style": _vm.conf.foldStyle
         },
-        on: { "node-emit": _vm._nodeEmit }
+        on: {
+          "node-emit": _vm._nodeEmit,
+          "node-fold": _vm._nodeFold,
+          "node-unfold": _vm._nodeUnfold
+        }
       })
     ],
     1
@@ -54078,7 +54582,14 @@ var render = function() {
         tree: _vm.tree,
         "parent-path": _vm.parentPath,
         "current-node": _vm.currentNode,
-        foldable: _vm.foldable
+        foldable: _vm.foldable,
+        "can-click": _vm.canClick,
+        "can-search": _vm.canSearch,
+        "search-key": _vm.searchKey,
+        "custom-fold-icon": _vm.customFoldIcon,
+        "custom-unfold-icon": _vm.customUnfoldIcon,
+        "custom-leafnode-icon": _vm.customLeafnodeIcon,
+        "fold-style": _vm.foldStyle
       }
     },
     [
@@ -54089,62 +54600,26 @@ var render = function() {
           _vm._l(_vm.conf.tree, function(item, key) {
             return [
               typeof item === "string"
-                ? _c("li", { staticClass: "tree-node" }, [
-                    _c("span", [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "node-name",
-                          class: {
-                            current:
-                              _vm.conf.currentNode ===
-                              _vm.conf.parentPath.concat([key]).join("/")
-                          },
-                          attrs: { href: "javascript:;" },
-                          on: {
-                            click: function($event) {
-                              $event.stopPropagation()
-                              return _vm._nodeClick(key)
-                            }
-                          }
-                        },
-                        [_vm._v(_vm._s(item))]
-                      )
-                    ])
-                  ])
-                : _c(
+                ? _c(
                     "li",
                     {
+                      key: key,
                       staticClass: "tree-node",
                       class: {
-                        fold: _vm.data.foldKeys.indexOf(key) !== -1
+                        hide:
+                          _vm.conf.canSearch &&
+                          _vm.conf.searchKey !== "" &&
+                          item.search(_vm.conf.searchKey) === -1
                       }
                     },
                     [
                       _c("span", [
-                        _vm.conf.foldable
-                          ? _c(
-                              "a",
-                              {
-                                staticClass: "node-switcher",
-                                attrs: { href: "javascript:;" },
-                                on: {
-                                  click: function($event) {
-                                    return _vm._nodeFoldSwitch(key)
-                                  }
-                                }
-                              },
-                              [
-                                _vm.data.foldKeys.indexOf(key) === -1
-                                  ? _c("i", {
-                                      staticClass: "mo-icon mo-icon-down"
-                                    })
-                                  : _c("i", {
-                                      staticClass: "mo-icon mo-icon-right"
-                                    })
-                              ]
-                            )
-                          : _vm._e(),
+                        _c("span", {
+                          staticClass: "leafnode-icon",
+                          domProps: {
+                            innerHTML: _vm._s(item.icon || _vm.leafnodeIcon)
+                          }
+                        }),
                         _vm._v(" "),
                         _c(
                           "a",
@@ -54163,19 +54638,154 @@ var render = function() {
                               }
                             }
                           },
-                          [_vm._v(_vm._s(item.name))]
+                          [
+                            _vm._v(
+                              "\n                    " +
+                                _vm._s(item) +
+                                "\n                "
+                            )
+                          ]
                         )
+                      ])
+                    ]
+                  )
+                : _c(
+                    "li",
+                    {
+                      key: key,
+                      staticClass: "tree-node is-fold",
+                      class: {
+                        unfold: _vm.data.unfoldKeys.indexOf(key) !== -1,
+                        hide:
+                          _vm.conf.canSearch &&
+                          _vm.conf.searchKey !== "" &&
+                          item.name.search(_vm.conf.searchKey) === -1 &&
+                          _vm.data.childPathHitSearch.indexOf(
+                            _vm.conf.parentPath.concat([key]).join("/")
+                          ) === -1,
+                        disabled: item.disabled
+                      }
+                    },
+                    [
+                      _c("span", [
+                        _vm.conf.foldable && item.childs && !item.disabled
+                          ? _c(
+                              "a",
+                              {
+                                staticClass: "node-switcher",
+                                attrs: { href: "javascript:;" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm._nodeFoldSwitch(key)
+                                  }
+                                }
+                              },
+                              [
+                                _vm.data.unfoldKeys.indexOf(key) === -1
+                                  ? _c("span", {
+                                      domProps: {
+                                        innerHTML: _vm._s(_vm.unfoldIcon)
+                                      }
+                                    })
+                                  : _c("span", {
+                                      domProps: {
+                                        innerHTML: _vm._s(_vm.foldIcon)
+                                      }
+                                    })
+                              ]
+                            )
+                          : _vm.conf.foldable && item.childs && item.disabled
+                          ? _c(
+                              "a",
+                              {
+                                staticClass: "node-switcher",
+                                attrs: { href: "javascript:;" }
+                              },
+                              [
+                                _vm.data.unfoldKeys.indexOf(key) === -1
+                                  ? _c("span", {
+                                      domProps: {
+                                        innerHTML: _vm._s(_vm.unfoldIcon)
+                                      }
+                                    })
+                                  : _c("span", {
+                                      domProps: {
+                                        innerHTML: _vm._s(_vm.foldIcon)
+                                      }
+                                    })
+                              ]
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        !item.childs
+                          ? _c("span", {
+                              staticClass: "leafnode-icon",
+                              domProps: {
+                                innerHTML: _vm._s(item.icon || _vm.leafnodeIcon)
+                              }
+                            })
+                          : _vm._e(),
+                        _vm._v(" "),
+                        !item.disabled
+                          ? _c(
+                              "a",
+                              {
+                                staticClass: "node-name",
+                                class: {
+                                  current:
+                                    _vm.conf.currentNode ===
+                                    _vm.conf.parentPath.concat([key]).join("/")
+                                },
+                                attrs: { href: "javascript:;" },
+                                on: {
+                                  click: function($event) {
+                                    $event.stopPropagation()
+                                    return _vm._nodeClick(key)
+                                  }
+                                }
+                              },
+                              [_vm._v(_vm._s(item.name))]
+                            )
+                          : _c(
+                              "a",
+                              {
+                                staticClass: "node-name",
+                                class: {
+                                  current:
+                                    _vm.conf.currentNode ===
+                                    _vm.conf.parentPath.concat([key]).join("/")
+                                },
+                                attrs: { href: "javascript:;" }
+                              },
+                              [_vm._v(_vm._s(item.name))]
+                            )
                       ]),
                       _vm._v(" "),
-                      _c("morning-private-tree", {
-                        attrs: {
-                          tree: item.childs,
-                          parentPath: _vm.conf.parentPath.concat([key]),
-                          currentNode: _vm.conf.currentNode,
-                          foldable: _vm.conf.foldable
-                        },
-                        on: { "node-emit": _vm._nodeEmit }
-                      })
+                      item.childs
+                        ? _c("morning-private-tree", {
+                            ref: "mor-tree-subtree-" + _vm.uiid + "-" + key,
+                            refInFor: true,
+                            attrs: {
+                              tree: item.childs,
+                              parentPath: _vm.conf.parentPath.concat([key]),
+                              currentNode: _vm.conf.currentNode,
+                              foldable: _vm.conf.foldable,
+                              "can-search": _vm.conf.canSearch,
+                              "search-key": _vm.conf.searchKey,
+                              "custom-fold-icon": _vm.conf.customFoldIcon,
+                              "custom-unfold-icon": _vm.conf.customUnfoldIcon,
+                              "custom-leafnode-icon":
+                                _vm.conf.customLeafnodeIcon,
+                              "fold-style": _vm.conf.foldStyle
+                            },
+                            on: {
+                              "hit-search": _vm._syncChildHitSearch,
+                              "node-emit": _vm._nodeEmit,
+                              "node-fold": _vm._nodeFold,
+                              "node-unfold": _vm._nodeUnfold
+                            }
+                          })
+                        : _vm._e()
                     ],
                     1
                   )
@@ -67407,7 +68017,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _inline = __webpack_require__(7);
+var _inline = __webpack_require__(8);
 
 var _inline2 = _interopRequireDefault(_inline);
 
@@ -67558,7 +68168,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _inline = __webpack_require__(7);
+var _inline = __webpack_require__(8);
 
 var _inline2 = _interopRequireDefault(_inline);
 
@@ -74055,7 +74665,7 @@ var _quill = __webpack_require__(12);
 
 var _quill2 = _interopRequireDefault(_quill);
 
-var _block = __webpack_require__(6);
+var _block = __webpack_require__(7);
 
 var _block2 = _interopRequireDefault(_block);
 
@@ -74075,7 +74685,7 @@ var _embed = __webpack_require__(571);
 
 var _embed2 = _interopRequireDefault(_embed);
 
-var _inline = __webpack_require__(7);
+var _inline = __webpack_require__(8);
 
 var _inline2 = _interopRequireDefault(_inline);
 
@@ -74995,7 +75605,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _quillDelta = __webpack_require__(5);
+var _quillDelta = __webpack_require__(6);
 
 var _quillDelta2 = _interopRequireDefault(_quillDelta);
 
@@ -75015,7 +75625,7 @@ var _cursor = __webpack_require__(401);
 
 var _cursor2 = _interopRequireDefault(_cursor);
 
-var _block = __webpack_require__(6);
+var _block = __webpack_require__(7);
 
 var _block2 = _interopRequireDefault(_block);
 
@@ -75812,7 +76422,7 @@ var _emitter = __webpack_require__(19);
 
 var _emitter2 = _interopRequireDefault(_emitter);
 
-var _block = __webpack_require__(6);
+var _block = __webpack_require__(7);
 
 var _block2 = _interopRequireDefault(_block);
 
@@ -76063,7 +76673,7 @@ var _extend2 = __webpack_require__(2);
 
 var _extend3 = _interopRequireDefault(_extend2);
 
-var _quillDelta = __webpack_require__(5);
+var _quillDelta = __webpack_require__(6);
 
 var _quillDelta2 = _interopRequireDefault(_quillDelta);
 
@@ -76739,7 +77349,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _quillDelta = __webpack_require__(5);
+var _quillDelta = __webpack_require__(6);
 
 var _quillDelta2 = _interopRequireDefault(_quillDelta);
 
@@ -77396,7 +78006,7 @@ var _extend = __webpack_require__(2);
 
 var _extend2 = _interopRequireDefault(_extend);
 
-var _quillDelta = __webpack_require__(5);
+var _quillDelta = __webpack_require__(6);
 
 var _quillDelta2 = _interopRequireDefault(_quillDelta);
 
@@ -78200,7 +78810,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _block = __webpack_require__(6);
+var _block = __webpack_require__(7);
 
 var _block2 = _interopRequireDefault(_block);
 
@@ -78243,7 +78853,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _block = __webpack_require__(6);
+var _block = __webpack_require__(7);
 
 var _block2 = _interopRequireDefault(_block);
 
@@ -78300,7 +78910,7 @@ var _parchment = __webpack_require__(1);
 
 var _parchment2 = _interopRequireDefault(_parchment);
 
-var _block = __webpack_require__(6);
+var _block = __webpack_require__(7);
 
 var _block2 = _interopRequireDefault(_block);
 
@@ -78533,7 +79143,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _inline = __webpack_require__(7);
+var _inline = __webpack_require__(8);
 
 var _inline2 = _interopRequireDefault(_inline);
 
@@ -78594,7 +79204,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _inline = __webpack_require__(7);
+var _inline = __webpack_require__(8);
 
 var _inline2 = _interopRequireDefault(_inline);
 
@@ -78635,7 +79245,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _inline = __webpack_require__(7);
+var _inline = __webpack_require__(8);
 
 var _inline2 = _interopRequireDefault(_inline);
 
