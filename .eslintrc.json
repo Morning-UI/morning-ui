@@ -33,7 +33,7 @@
             "error",
             {
                 "min": 1,
-                "max": 34
+                "max": 40
             }
         ],
         "no-magic-numbers": [

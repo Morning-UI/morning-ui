@@ -30,16 +30,28 @@
     时间选择器允许用户自定时间格式，使用中文时间。
     >tpl
     <div style="width:300px;">
-        <ui-timepicker form-name="时间" format="HH时mm分ss秒" default-value="12时30分24秒"></ui-timepicker>
+        <ui-timepicker form-name="时间" format="HH时mm分ss秒" v-model="value"></ui-timepicker>
     </div>
+    >script
+    {
+        data : {
+            value : "12时30分24秒"
+        }
+    }
     ---
     #demo
     >desc
     使用12小时制。<br><br>更多自定义格式见：[format配置](/component/timepicker.html#format)。
     >tpl
     <div style="width:300px;">
-        <ui-timepicker form-name="时间" format="h:m:s aa" default-value="12:30:24 a.m."></ui-timepicker>
+        <ui-timepicker form-name="时间" format="h:m:s aa" v-model="value"></ui-timepicker>
     </div>
+    >script
+    {
+        data : {
+            value : "12:30:24 a.m."
+        }
+    }
     :::
 
     :::vue
@@ -50,16 +62,28 @@
     当用户在选择器上切换时，对应修改的时间单位区域会高亮。
     >tpl
     <div style="width:300px;">
-        <ui-timepicker form-name="时间" format="h:m:s" default-value="8:30:24"></ui-timepicker>
+        <ui-timepicker form-name="时间" format="h:m:s" v-model="value"></ui-timepicker>
     </div>
+    >script
+    {
+        data : {
+            value : "8:30:24"
+        }
+    }
     ---
     #demo
     >desc
     当同时有多个时间单位匹配时，只会高亮第一个匹配到的。
     >tpl
     <div style="width:300px;">
-        <ui-timepicker form-name="时间" format="h:m:s aa | HH:mm:ss" default-value="8:30:24 a.m. | 08:30:24"></ui-timepicker>
+        <ui-timepicker form-name="时间" format="h:m:s aa | HH:mm:ss" v-model="value"></ui-timepicker>
     </div>
+    >script
+    {
+        data : {
+            value : "8:30:24 a.m. | 08:30:24"
+        }
+    }
     :::
 
     [[[形态]]]
@@ -76,12 +100,19 @@
     #demo
     >tpl
     <div style="width:300px;">
-        <ui-timepicker state="normal" :is-list="true" :list="['09:00:00', '10:00:00', '11:00:00']" :default-value="['10:00:00']" form-name="正常" ></ui-timepicker>
+        <ui-timepicker state="normal" :is-list="true" :list="['09:00:00', '10:00:00', '11:00:00']" v-model="value1" form-name="正常" ></ui-timepicker>
         
         <br>
         
-        <ui-timepicker state="disabled" :is-list="true" :list="['09:00:00', '10:00:00', '11:00:00']" :default-value="['10:00:00']" form-name="禁用" ></ui-timepicker>
+        <ui-timepicker state="disabled" :is-list="true" :list="['09:00:00', '10:00:00', '11:00:00']" v-model="value2" form-name="禁用" ></ui-timepicker>
     </div>
+    >script
+    {
+        data : {
+            value1 : ['10:00:00'],
+            value2 : ['10:00:00']
+        }
+    }
     :::
 
     [[[配置]]]
@@ -147,16 +178,28 @@
     采用`|`分隔时间。
     >tpl
     <div style="width:300px;">
-        <ui-timepicker form-name="时间" format="HH | mm | ss" default-value="12 | 30 | 24"></ui-timepicker>
+        <ui-timepicker form-name="时间" format="HH | mm | ss" v-model="value"></ui-timepicker>
     </div>
+    >script
+    {
+        data : {
+            value : "12 | 30 | 24"
+        }
+    }
     ---
     #demo
     >desc
     同时显示多种时间格式(显示多个时间时，最后一个优先级最高)。
     >tpl
     <div style="width:400px;">
-        <ui-timepicker form-name="时间" format="HH:mm:ss(24小时制), h:m:s aa(12小时制)" default-value="08:30:24(24小时制), 8:30:24 a.m.(12小时制)"></ui-timepicker>
+        <ui-timepicker form-name="时间" format="HH:mm:ss(24小时制), h:m:s aa(12小时制)" v-model="value"></ui-timepicker>
     </div>
+    >script
+    {
+        data : {
+            value : "08:30:24(24小时制), 8:30:24 a.m.(12小时制)"
+        }
+    }
     :::
 
     :::vue
@@ -177,16 +220,28 @@
     居中对齐。
     >tpl
     <div style="width:300px;">
-        <ui-timepicker form-name="时间" default-value="12:30:24" align="center"></ui-timepicker>
+        <ui-timepicker form-name="时间" v-model="value" align="center"></ui-timepicker>
     </div>
+    >script
+    {
+        data : {
+            value : "12:30:24"
+        }
+    }
     ---
     #demo
     >desc
     右对齐。
     >tpl
     <div style="width:300px;">
-        <ui-timepicker form-name="时间" default-value="12:30:24" align="right"></ui-timepicker>
+        <ui-timepicker form-name="时间" v-model="value" align="right"></ui-timepicker>
     </div>
+    >script
+    {
+        data : {
+            value : "12:30:24"
+        }
+    }
     :::
 
     :::vue
@@ -220,11 +275,17 @@
     ---
     #demo
     >desc
-    如果`default-value`超过`selectable-range`范围。
+    如果`v-model`超过`selectable-range`范围。
     >tpl
     <div style="width:300px;">
-        <ui-timepicker form-name="时间" :selectable-range="['08:00:00', '12:30:00']" :default-value="['06:30:00', '13:45:30']" is-range></ui-timepicker>
+        <ui-timepicker form-name="时间" :selectable-range="['08:00:00', '12:30:00']" v-model="value" is-range></ui-timepicker>
     </div>
+    >script
+    {
+        data : {
+            value : ['06:30:00', '13:45:30']
+        }
+    }
     :::
 
     :::vue
@@ -248,11 +309,17 @@
     ---
     #demo
     >desc
-    在开启`is-range`的情况下设置`default-value`。
+    在开启`is-range`的情况下设置`v-model`。
     >tpl
     <div style="width:300px;">
-        <ui-timepicker form-name="时间" :is-range="true" :default-value="['09:00:00', '10:30:30']"></ui-timepicker>
+        <ui-timepicker form-name="时间" :is-range="true" v-model="value"></ui-timepicker>
     </div>
+    >script
+    {
+        data : {
+            value : ['09:00:00', '10:30:30']
+        }
+    }
     :::
 
     :::vue

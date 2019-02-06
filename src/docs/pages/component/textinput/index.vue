@@ -98,8 +98,14 @@
     隐藏数值后表单的值在界面中不可见。
     >tpl
     <div style="width:300px;">
-        <ui-textinput hide-value default-value="this is password"></ui-textinput>
+        <ui-textinput hide-value v-model="value"></ui-textinput>
     </div>
+    >script
+    {
+        data : {
+            value : "this is password"
+        }
+    }
     :::
 
     :::vue

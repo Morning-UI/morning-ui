@@ -56,7 +56,7 @@ test.serial('no content', async t => {
         .goto(docUrl)
         .wait(basicDemo)
         .evaluate(() => ({
-            nocontent : window.getComputedStyle($(`[name="开始"] [_uiid="12"]`)[0])
+            nocontent : window.getComputedStyle($(`[name="开始"] [_uiid="21"]`)[0])
         }));
 
     t.plan(1);

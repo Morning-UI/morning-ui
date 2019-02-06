@@ -58,6 +58,7 @@ import sticky                       from './sticky/index.vue';
 import steps                        from './steps/index.vue';
 import breadcrumbs                  from './breadcrumbs/index.vue';
 import tip                          from './tip/index.vue';
+import popover                      from './popover/index.vue';
 import message                      from './message/index.vue';
 import _alert                       from './alert/index.vue';
 import carousel                     from './carousel/index.vue';
@@ -73,6 +74,8 @@ import counter                      from './counter/index.vue';
 import select                       from './select/index.vue';
 import checkbox                     from './checkbox/index.vue';
 import radio                        from './radio/index.vue';
+import transfer                     from './transfer/index.vue';
+import cascader                     from './cascader/index.vue';
 import multiinput                   from './multiinput/index.vue';
 import multiform                    from './multiform/index.vue';
 import slider                       from './slider/index.vue';
@@ -149,6 +152,7 @@ export default {
     steps,
     breadcrumbs,
     tip,
+    popover,
     message,
     alert : _alert,
     carousel,
@@ -163,6 +167,8 @@ export default {
     select,
     checkbox,
     radio,
+    transfer,
+    cascader,
     multiinput,
     multiform,
     slider,

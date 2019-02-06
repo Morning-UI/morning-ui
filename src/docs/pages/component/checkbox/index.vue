@@ -70,7 +70,7 @@
     [[[形态]]]
 
     :::preset
-    @name:formStatus
+    @name:formStatusWithStyle
     @uikey:checkbox
     @defaultValue:['Tim']
     @attrs: :list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"
@@ -195,7 +195,43 @@
                 Emir : 'Emir Ayouni'
             }" 
             :disabled-options="['Tim', 'Victor']" 
-            :default-value="['Tim', 'Emir']"
+            v-model="value"
+        ></ui-checkbox>
+    </div>
+    >script
+    {
+        data : {
+            value : ['Tim', 'Emir']
+        }
+    }
+    :::
+
+    :::vue
+    @name:hidden-options
+    ---
+    #config
+    >conf-desc
+    隐藏指定的选项。注意：隐藏仅仅是视觉上的，若隐藏的选项已经选中，并不会改变其选中状态。
+    >conf-accept
+    由需要隐藏项目键名(key)组成的数组
+    >conf-type
+    Array
+    >conf-default
+    `[]`
+    ---
+    #demo
+    >tpl
+    <div style="width:300px;">
+        <ui-checkbox
+            form-name="姓名"
+            :list="{
+                Tim : 'Tim Boelaars',
+                Andrew : 'Andrew Colin Beck',
+                Victor : 'Victor Erixon',
+                Shaun : 'Shaun Moynihan',
+                Emir : 'Emir Ayouni'
+            }"
+            :hidden-options="['Tim', 'Victor']"
         ></ui-checkbox>
     </div>
     :::
@@ -304,7 +340,7 @@
         <ui-checkbox
             form-name="Continents"
             id="continents2"
-            :default-value="['europe']"
+            v-model="value1"
             :list="{
                 asia : 'Asia',
                 na : 'North America',
@@ -325,7 +361,7 @@
         <ui-checkbox
             form-name="North America"
             parent="#continents2:na"
-            :default-value="['ny']"
+            v-model="value2"
             :list="{
                 ny : 'New York',
                 toronto : 'Toronto',
@@ -347,13 +383,21 @@
         <ui-checkbox
             form-name="Africa"
             parent="#continents2:africa"
-            :default-value="['cairo', 'cuba']"
+            v-model="value3"
             :list="{
                 cairo : 'Cairo',
                 cuba : 'Cuba'
             }"
         ></ui-checkbox>
     </div>
+    >script
+    {
+        data : {
+            value1 : ['europe'],
+            value2 : ['ny'],
+            value3 : ['cairo', 'cuba']
+        }
+    }
     ---
     #demo
     >desc

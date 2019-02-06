@@ -9,25 +9,25 @@
             background-color: @background;
         }
 
-        &.tet-ea-bottom {
+        &.tip-placement-top {
             .arrow {
                 border-top-color: @background;
             }
         }
 
-        &.tet-ea-top {
+        &.tip-placement-bottom {
             .arrow {
                 border-bottom-color: @background;
             }
         }
 
-        &.tet-ea-left {
+        &.tip-placement-right {
             .arrow {
                 border-right-color: @background;
             }
         }
 
-        &.tet-ea-right {
+        &.tip-placement-left {
             .arrow {
                 border-left-color: @background;
             }
@@ -48,7 +48,7 @@ mor-tip{
         pointer-events: auto;
     }
 
-    &.tet-ea-bottom {
+    &.tip-placement-top {
         padding: @tip-arrowWidth 0;
 
         .arrow {
@@ -59,7 +59,7 @@ mor-tip{
         }
     }
 
-    &.tet-ea-left {
+    &.tip-placement-right {
         padding: 0 @tip-arrowWidth 0 @tip-arrowWidth*2;
 
         .arrow {
@@ -67,11 +67,10 @@ mor-tip{
             left: @tip-arrowWidth;
             margin-top: -@tip-arrowWidth;
             border-width: @tip-arrowWidth @tip-arrowWidth @tip-arrowWidth 0;
-            // border-right-color: @tip-arrowColor;
         }
     }
 
-    &.tet-ea-top {
+    &.tip-placement-bottom {
         padding: @tip-arrowWidth 0;
 
         .arrow {
@@ -79,11 +78,10 @@ mor-tip{
             left: 50%;
             margin-left: -@tip-arrowWidth;
             border-width: 0 @tip-arrowWidth @tip-arrowWidth;
-            // border-bottom-color: @tip-arrowColor;
         }
     }
 
-    &.tet-ea-right {
+    &.tip-placement-left {
         padding: 0 @tip-arrowWidth*2 0 @tip-arrowWidth;
 
         .arrow {
@@ -92,6 +90,42 @@ mor-tip{
             margin-top: -@tip-arrowWidth;
             border-width: @tip-arrowWidth 0 @tip-arrowWidth @tip-arrowWidth;
             // border-left-color: @tip-arrowColor;
+        }
+    }
+
+    &.tip-placement-left,
+    &.tip-placement-right {
+        &.align-start{
+            .arrow{
+                margin-top: 0;
+                top: @tip-arrowWidth;
+            }
+        }
+
+        &.align-end{
+            .arrow{
+                top: unset;
+                margin-top: 0;
+                bottom: @tip-arrowWidth;
+            }
+        }
+    }
+
+    &.tip-placement-top,
+    &.tip-placement-bottom {
+        &.align-start{
+            .arrow{
+                margin-left: 0;
+                left: @tip-arrowWidth;
+            }
+        }
+
+        &.align-end{
+            .arrow{
+                left: unset;
+                margin-left: 0;
+                right: @tip-arrowWidth;
+            }
         }
     }
 

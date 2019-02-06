@@ -102,6 +102,7 @@
                 <li><a href="/component/dialog.html">模拟盒<p>&lt;dialog></p></a></li>
                 <li><a href="/component/message.html">消息<p>&lt;message></p></a></li>
                 <li><a href="/component/tip.html">小提示<p>&lt;tip></p></a></li>
+                <li><a href="/component/popover.html">弹出框<p>&lt;popover></p></a></li>
                 <li><a href="/component/alert.html">告示<p>&lt;alert></p></a></li>
                 <li><a href="/component/load.html">加载<p>&lt;load></p></a></li>
                 <li><a href="/component/progress.html">进度条<p>&lt;progress></p></a></li> 
@@ -166,6 +167,8 @@
         <div class="sub-group">
             <h4><i class="iconfont">&#xe603;</i>结构数据</h4>
             <ul>
+                <li><a href="/component/transfer.html">穿梭框<p>&lt;transfer></p></a></li>
+                <li><a href="/component/cascader.html">级联选择<p>&lt;cascader></p></a></li>
                 <li><a href="/component/multiinput.html">多项输入<p>&lt;multiinput></p></a></li>
                 <li><a href="/component/multiform.html">多项表单输入<p>&lt;multiform></p></a></li>
             </ul>

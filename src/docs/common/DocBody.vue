@@ -649,6 +649,66 @@ let data = {
                 valueType : 'Array',
                 valueContent : '[{\'images\':[{\'name\':\'151244303389249797.png\',\'path\':\'http://morning-ui-image.test.upcdn.net/uploaddemo/17505/151244303389249797.png\'}],\'zones\':[{\'x\':361,\'y\':117,\'h\':180,\'w\':274},{\'x\':86,\'y\':310,\'h\':180,\'w\':275}],\'w\':722,\'h\':725}]'
             }
+        ],
+        transfer : [
+            {
+                valueType : 'String',
+                valueContent : `'{\'source\':[\'item4\',\'item5\',\'item6\',\'item7\'],\'target\':[\'item1\',\'item2\',\'item3\']}'`
+            },
+            {
+                valueType : 'Number',
+                valueContent : '5'
+            },
+            {
+                valueType : 'Boolean',
+                valueContent : 'true'
+            },
+            {
+                valueType : 'Null',
+                valueContent : 'null'
+            },
+            {
+                valueType : 'Undefined',
+                valueContent : 'undefined'
+            },
+            {
+                valueType : 'Object',
+                valueContent : '{\'source\':[\'item4\',\'item5\',\'item6\',\'item7\'],\'target\':[\'item1\',\'item2\',\'item3\']}'
+            },
+            {
+                valueType : 'Array',
+                valueContent : '[{\'source\':[\'item4\',\'item5\',\'item6\',\'item7\'],\'target\':[\'item1\',\'item2\',\'item3\']}]'
+            }
+        ],
+        cascader : [
+            {
+                valueType : 'String',
+                valueContent : `'tim'`
+            },
+            {
+                valueType : 'Number',
+                valueContent : '5'
+            },
+            {
+                valueType : 'Boolean',
+                valueContent : 'true'
+            },
+            {
+                valueType : 'Null',
+                valueContent : 'null'
+            },
+            {
+                valueType : 'Undefined',
+                valueContent : 'undefined'
+            },
+            {
+                valueType : 'Object',
+                valueContent : '{\'zj\':\'wz\'}'
+            },
+            {
+                valueType : 'Array',
+                valueContent : '[\'zj\', \'wz\']'
+            }
         ]
     }
 };
@@ -675,9 +735,15 @@ state-repeat
 normal,disabled,readonly
 >tpl
 <div style="width:300px;{%wrapStyle%}">
-    <ui-{%uikey%} state="{$stateKey}" :default-value="{%&defaultValue%}" form-name="{$&stateName}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
+    <ui-{%uikey%} state="{$stateKey}" v-model="value" form-name="{$&stateName}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
 </div>
 <br>
+>script
+{
+    data : {
+        value : {%&defaultValue%}
+    }
+}
 :::
 `,
     formStatusWithStyle : `
@@ -691,31 +757,51 @@ normal,disabled,readonly
 
 <a href="/guide/status.html">查看形态文档</a>
 
-#### 色彩
-
-:::repeat/html
+:::vue
+@name:色彩
+---
+#renderer
+>name
+color-repeat
+>rules
 color:theme
 color:feature
 color:black
 color:blue
 color:silver
 color:gray
----
+>tpl
 <div style="width:300px;{%wrapStyle%}">
-    <ui-{%uikey%} color="{$colorKey}" :default-value="{%&defaultValue%}" form-name="{$&colorName}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
+    <ui-{%uikey%} color="{$colorKey}" v-model="value" form-name="{$&colorName}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
 </div>
 <br>
+>script
+{
+    data : {
+        value : {%&defaultValue%}
+    }
+}
 :::
 
-#### 状态
-
-:::repeat/html
-state:normal,disabled,readonly
+:::vue
+@name:状态
 ---
+#renderer
+>name
+state-repeat
+>rules
+normal,disabled,readonly
+>tpl
 <div style="width:300px;{%wrapStyle%}">
-    <ui-{%uikey%} state="{$stateKey}" :default-value="{%&defaultValue%}" form-name="{$&stateName}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
+    <ui-{%uikey%} state="{$stateKey}" v-model="value" form-name="{$&stateName}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
 </div>
 <br>
+>script
+{
+    data : {
+        value : {%&defaultValue%}
+    }
+}
 :::
 `,
     formConfig : `
@@ -792,26 +878,6 @@ String<br/>Array
 :::
 
 :::vue
-@name:default-value
----
-#config
->conf-desc
-表单的默认值(注意：\`default-value\`不支持单向数据流，此配置仅在表单初次创建时生效，修改表单值需要使用\`set()\`方法或使用\`v-model\`指令， 详见：[表单数据双向绑定](/guide/form.html#表单数据双向绑定))。
->conf-accept
-任意(接受表单原始数值，也接受JSON序列化后的表单数值，若数值是JSON序列化的会自动转换成原始数值)
->conf-type
-Any
->conf-default
-\`undefined\`
----
-#demo
->tpl
-<div style="width:300px;{%wrapStyle%}">
-    <ui-{%uikey%} form-name="{%formName%}" :default-value="{%&defaultValue%}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
-</div>
-:::
-
-:::vue
 @name:hide-name
 ---
 #config
@@ -852,8 +918,14 @@ Boolean
 隐藏后表单默认位置的名字不会显示，可以在其他地方设置表单名。
 >tpl
 <div style="width:300px;{%wrapStyle%}">
-    <ui-{%uikey%} form-name="{%formName%}" :clearable="true" :default-value="{%&defaultValue%}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
+    <ui-{%uikey%} form-name="{%formName%}" :clearable="true" v-model="value" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
 </div>
+>script
+{
+    data : {
+        value : {%&defaultValue%}
+    }
+}
 :::
 `,
     formMethod : `
@@ -890,10 +962,16 @@ Boolean
 #demo
 >tpl
 <div style="width:300px;{%wrapStyle%}">
-    <ui-{%uikey%} ref="demoMethodGet" form-name="表单名" :default-value="{%&defaultValue%}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
+    <ui-{%uikey%} ref="demoMethodGet" form-name="表单名" v-model="value" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
     <br>
     <ui-link js="console.log(window.morning.findVM('demoMethodGet').get())">获取表单原始值</ui-link>
 </div>
+>script
+{
+    data : {
+        value : {%&defaultValue%}
+    }
+}
 :::
 
 :::vue
@@ -908,10 +986,16 @@ Boolean
 #demo
 >tpl
 <div style="width:300px;{%wrapStyle%}">
-    <ui-{%uikey%} ref="demoMethodGetJson" form-name="表单名" :default-value="{%&defaultValue%}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
+    <ui-{%uikey%} ref="demoMethodGetJson" form-name="表单名" v-model="value" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
     <br>
     <ui-link js="console.log(window.morning.findVM('demoMethodGetJson').getJson())">获取表单值的JSON序列化字符串</ui-link>
 </div>
+>script
+{
+    data : {
+        value : {%&defaultValue%}
+    }
+}
 :::
 
 :::vue
@@ -1407,7 +1491,9 @@ let extVueRenderer = {
             '>desc',
             (parts.desc || '通过`state`来设置组件的状态，可用状态详见[形态/状态](/guide/status.html#状态)'),
             '>tpl',
-            `<div>{$#state}\n${addSpace(rmEndWrap(parts.tpl.join('\n')), 4)}{$/state}\n</div>`
+            `<div>{$#state}\n${addSpace(rmEndWrap(parts.tpl.join('\n')), 4)}{$/state}\n</div>`,
+            '>script',
+            (parts.script || ['']).join('\n')
         ];
 
         newParamStr.push(statePreset.join('\n'));
@@ -1732,7 +1818,6 @@ let extVueTranslater = {
     },
     _script : (_data, _ctx) => {
 
-
         if (!_data) {
 
             _data = ['{}'];
@@ -2043,6 +2128,7 @@ let extVueCompiler = {
                 <div class="code-con">
                     <div class="code">
                         <pre><code class="lang-html lang-vue">${_ctx.md.utils.escapeHtml(printCode)}</code></pre>
+                        <a class="see-more" href="javascript:;" onclick="this.previousElementSibling.classList.add('show-more');this.classList.add('show-more')">查看完整代码</a>
                         <div class="demo-tools">
                             <a href="javascript:;" class="live" demo-id="${_ctx.demoid}" id="live-demo-${_ctx.demoid}">
                                 <i class="iconfont">&#xe616;</i>
@@ -2409,7 +2495,7 @@ window.Vue.directive('docmd', {
             md = md.replace(/\{\*([a-zA-Z0-9_.]+)\*\}/g, '{{"\\{\\{$1\\}\\}"}}');
             md = md.replace(/<p>(\[\[\[(.+)\]\]\])<\/p>/g, '$1');
             md = md.replace(/(\[\[\[)/, '<ui-tab class="block noborder no-padding" anchor-target>$1');
-            md = md.replace(/\[\[\[开始\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="开始"><div class="content-title">开始</div>$1</div>$3');
+            md = md.replace(/\[\[\[开始\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="开始"><morning-anchor><div class="content-title" title="开始" id="开始" is-anchor>开始</div>$1</morning-anchor></div>$3');
             md = md.replace(/\[\[\[形态\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="形态"><div class="content-title">形态</div>$1</div>$3');
             md = md.replace(/\[\[\[配置\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="配置"><morning-anchor><div class="content-title" title="配置" id="配置" is-anchor>配置</div>$1</morning-anchor></div>$3');
             md = md.replace(/\[\[\[方法\]\]\]((.|\n)+?)(\[\[\[|$)/g, '<div slot="方法"><morning-anchor><div class="content-title" title="方法" id="方法" is-anchor>方法</div>$1</div>$3');
@@ -2618,7 +2704,7 @@ export default {
             fieldPanelJs.setAttribute('name', 'panel_js');
             fieldPanelJs.value = '0';
             fieldResources.setAttribute('name', 'resources');
-            fieldResources.value = 'https://cdn.jsdelivr.net/npm/vue@2.5.17,https://cdn.jsdelivr.net/npm/morning-ui/dist/morning-ui.js,https://cdn.jsdelivr.net/npm/morning-ui/dist/morning-ui.css,https://morning-ui.com/iconfont.woff';
+            fieldResources.value = 'https://cdn.jsdelivr.net/npm/vue@2.5.22,https://cdn.jsdelivr.net/npm/morning-ui/dist/morning-ui.js,https://cdn.jsdelivr.net/npm/morning-ui/dist/morning-ui.css,https://morning-ui.com/iconfont.woff';
             fieldHtml.setAttribute('name', 'html');
             fieldHtml.value = data.html;
             fieldJs.setAttribute('name', 'js');
@@ -2799,10 +2885,42 @@ a{ }
                 vertical-align: top;
                 display: block;
                 position: relative;
+                overflow: hidden;
 
                 > pre{
                     font-size: 12px;
                     margin: 0;
+                    max-height: 120px;
+                    overflow: hidden;
+
+                    &.show-more{
+                        max-height: none;
+                    }
+                }
+
+                > .see-more{
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    height: 40px;
+                    width: 100%;
+                    background: #f6f8fa;
+                    font-size: 14px;
+                    text-align: center;
+                    line-height: 40px;
+                    box-shadow: 0 0 3px rgba(0,0,0,0.2);
+                    cursor: pointer;
+                    color: #7C8BA0;
+
+                    &.show-more{
+                        display: none;
+                    }
+
+                    &:hover{
+                        box-shadow: 0 0 4px rgba(0,0,0,0.3);
+                        text-decoration: none;
+                        color: #303C4B;
+                    }
                 }
 
                 > .demo-tools{

@@ -78,7 +78,7 @@
     [[[配置]]]
 
     :::preset
-    @name:formConfig
+    @name:formStatusWithStyle
     @uikey:radio
     @defaultValue:'Tim'
     @attrs: :list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"
@@ -194,7 +194,43 @@
                 Emir : 'Emir Ayouni'
             }"
             :disabled-options="['Tim', 'Victor']"
-            default-value="Tim"
+            v-model="value"
+        ></ui-radio>
+    </div>
+    >script
+    {
+        data : {
+            value : 'Tim'
+        }
+    }
+    :::
+
+    :::vue
+    @name:hidden-options
+    ---
+    #config
+    >conf-desc
+    隐藏指定的选项。注意：隐藏仅仅是视觉上的，若隐藏的选项已经选中，并不会改变其选中状态。
+    >conf-accept
+    由需要隐藏项目键名(key)组成的数组
+    >conf-type
+    Array
+    >conf-default
+    `[]`
+    ---
+    #demo
+    >tpl
+    <div style="width:300px;">
+        <ui-radio
+            form-name="姓名"
+            :list="{
+                Tim : 'Tim Boelaars',
+                Andrew : 'Andrew Colin Beck',
+                Victor : 'Victor Erixon',
+                Shaun : 'Shaun Moynihan',
+                Emir : 'Emir Ayouni'
+            }"
+            :hidden-options="['Tim', 'Victor']"
         ></ui-radio>
     </div>
     :::

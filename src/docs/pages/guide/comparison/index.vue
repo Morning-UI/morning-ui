@@ -10,14 +10,14 @@
 
         <p>希望对你的挑选有所帮助。</p>
 
-        <p>此对比截止：2018年8月18日。</p>
+        <p>此对比截止：2019年2月1日。</p>
         
         <div style="padding-bottom: 40px;">
             <h4>对比UI库</h4>
             <ui-checkbox
                 ref="diff"
                 style="width: 400px;"
-                :default-value="['0','1','2','3','4','5','6']"
+                v-model="uiLibs"
                 :list="{
                     0 : 'HMP UI',
                     1 : 'Bootstrap',
@@ -34,7 +34,7 @@
             <ui-radio
                 ref="hidesame"
                 style="width: 400px;"
-                :default-value="'0'"
+                v-model="showType"
                 :list="{
                     0 : '显示所有',
                     1 : '仅显示不同'
@@ -78,7 +78,7 @@
                     <td class="mark">2.4.0</td>
                     <td class="mark">2.14.1</td>
                     <td class="mark">3.6.1</td>
-                    <td class="mark">0.11.13</td>
+                    <td class="mark">0.12.0</td>
                 </tr>
                 <tr>
                     <td class="item">官网</td>
@@ -248,8 +248,8 @@
                         <p>CSS: 303kb</p>
                     </td>
                     <td class="mark">
-                        <p>JS: 715kb</p>
-                        <p>CSS: 258kb</p>
+                        <p>JS: 838kb</p>
+                        <p>CSS: 395kb</p>
                     </td>
                 </tr>
                 <tr>
@@ -2016,7 +2016,7 @@
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
                     <td class="mark">
-                        <i class="iconfont no">&#xe62e;</i>
+                        <i class="iconfont has">&#xe62d;</i>
                     </td>
                 </tr>
                 <tr class="components">
@@ -2202,13 +2202,13 @@
                         <i class="iconfont no">&#xe62e;</i>
                     </td>
                     <td class="mark">
-                        <i class="iconfont no">&#xe62e;</i>
+                        <i class="iconfont has">&#xe62d;</i>
                     </td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
                     <td class="mark">
-                        <i class="iconfont no">&#xe62e;</i>
+                        <i class="iconfont has">&#xe62d;</i>
                     </td>
                 </tr>
                 <tr class="components">
@@ -2664,7 +2664,7 @@
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
                     <td class="mark">
-                        <i class="iconfont no">&#xe62e;</i>
+                        <i class="iconfont has">&#xe62d;</i>
                     </td>
                 </tr>
                 <tr class="components">
@@ -2784,7 +2784,7 @@
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
                     <td class="mark">
-                        <i class="iconfont no">&#xe62e;</i>
+                        <i class="iconfont has">&#xe62d;</i>
                     </td>
                 </tr>
                 <tr class="components">
@@ -2877,7 +2877,9 @@ export default {
             btNum : 0,
             eleNum : 0,
             antdNum : 0,
-            morningNum : 0
+            morningNum : 0,
+            uiLibs : ['0','1','2','3','4','5','6'],
+            showType : 0
         };
 
     },

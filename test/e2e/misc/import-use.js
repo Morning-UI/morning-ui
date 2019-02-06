@@ -33,7 +33,7 @@ test.serial('import-use-tag', async t => {
         </head>
         <body>
             <div id="vue"></div>
-        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.22"></script>
         <script src="./morning-ui.js"></script>
         <script>
         Vue.use(morning);
@@ -144,7 +144,7 @@ test.serial('import-use-webpack', async t => {
     await new Promise((resolve, reject) => {
 
         exec(
-            `cd ${pathDir} && npm install morning-ui webpack@4.6.0 style-loader css-loader vue`,
+            `cd ${pathDir} && npm install morning-ui webpack@4.29.0 style-loader css-loader vue@2.5.22`,
             {
                 maxBuffer : maxBuffer
             },

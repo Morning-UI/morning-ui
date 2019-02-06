@@ -6,7 +6,6 @@
         :form-name="formName"
         :form-key="formKey"
         :group="group"
-        :default-value="defaultValue"
         :hide-name="hideName"
         :clearable="clearable"
         :inside-name="insideName"
@@ -69,7 +68,7 @@
                     :state="conf.state"
 
                     :inside-name="conf.insideName"
-                    :default-value="conf.defaultValue"
+                    :init-value="data.value"
                     :align="conf.align"
                     :list="timeList"
 
@@ -118,7 +117,7 @@
                     :state="conf.state"
 
                     :inside-name="conf.insideName"
-                    :default-value="conf.defaultValue"
+                    :init-value="data.value"
                     :format="conf.format"
                     :align="conf.align"
                     :selectable-range="conf.selectableRange"

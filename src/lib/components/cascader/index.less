@@ -1,0 +1,139 @@
+@import '~Common/var.less';
+
+mor-cascader{
+    position: relative;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+
+    .setup-form();
+
+    .cascader-wrap{
+        .cascader-input{
+            box-sizing: border-box;
+            padding: 0;
+            border-radius: 3px;
+            position: relative;
+            background: @colorFormBackground;
+            border: 1px @colorFormBorder solid;
+            height: @formHeight;
+            line-height: @formHeight;
+            color: @colorFormText !important;
+            cursor: pointer;
+
+            > .note{
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                display: inline-block;
+                width: calc(100% - 2em);
+                overflow: hidden;
+                padding: 0 1em;
+
+                &.has-selected{
+                    color: @colorFormTextFocus;
+                }
+            }
+
+            &:hover{
+                border-color: @colorFormBorderHover;
+                color: @colorFormTextHover !important;
+            }
+
+            > .mo-icon{
+                position: absolute;
+                right: 0;
+                top: 0;
+                width: @fontSize*1.5;
+                font-size: @fontSize*1.875;
+                transform: rotateX(0deg);
+                transition: transform 0.2s;
+                text-indent: 1px;
+            }
+        }
+    }
+
+    &.popover-show{
+        .cascader-wrap{
+            .cascader-input{
+                > .mo-icon{
+                    transform: rotateX(180deg);
+                }
+            }
+        }
+    }
+
+    &.st-normal{}
+
+    &.st-disabled,
+    &.st-readonly{
+        .cascader-wrap{
+            .cascader-input{
+                border: 1px @colorFormBorderDisable solid;
+                background-color: @colorFormBackgroundDisable;
+                -webkit-user-select: none;
+                cursor: not-allowed !important;
+                color: @colorFormTextDisable !important;
+
+                > .note{
+                    color: @colorFormTextDisable !important;
+                }
+            }
+        }
+    }
+
+    // default status
+    &{
+        .st-normal;
+    }
+}
+
+.mor-cascader-popover{
+    .popover-con .popover-body{
+        padding: 0;
+        display: flex;
+
+        .cascader-menu{
+            border-left: 1px solid @colorExtraLightSilver;
+
+            &:first-child{
+                border-left: none;
+            }
+
+            > ul{
+                padding: 0.5em 0;
+                margin: 0;
+                list-style: none;
+                font-size: @fontSize*0.875;
+                min-width: @fontSize*8;
+                max-width: @fontSize*12;
+                min-height: @fontSize*12;
+                max-height: @fontSize*24;
+                overflow-y: auto;
+
+                > li{
+                    font-size: @fontSize*0.875;
+                    padding: 0.6em 1.5em;
+                    cursor: pointer;
+
+                    &:hover{
+                        background: @colorExtraLightSilver;
+                    }
+
+                    &.current{
+                        background: @colorWhite;
+                        color: @colorTheme;
+                    }
+
+                    &.last-current{
+                        background: @colorExtraLightSilver;
+                    }
+
+                    &.disabled{
+                        background: @colorFormBackgroundDisable;
+                        cursor: not-allowed;
+                    }
+                }
+            }
+        }
+    }
+}
