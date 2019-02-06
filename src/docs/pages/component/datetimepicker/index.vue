@@ -32,8 +32,14 @@
     更多自定义格式见：[format配置](/component/datetimepicker.html#format)。
     >tpl
     <div style="width:300px;">
-        <ui-datetimepicker form-name="日期时间" :date="+new Date('2018-03-23')" format="YYYY年MM月DD日 HH点mm分ss秒" default-value="2018年03月23日 18点10分18秒"></ui-datetimepicker>
+        <ui-datetimepicker form-name="日期时间" :date="+new Date('2018-03-23')" format="YYYY年MM月DD日 HH点mm分ss秒" v-model="value"></ui-datetimepicker>
     </div>
+    >script
+    {
+        data : {
+            value : '2018年03月23日 18点10分18秒'
+        }
+    }
     :::
 
     :::vue
@@ -158,16 +164,28 @@
     采用`|`分隔日期时间。
     >tpl
     <div style="width:300px;">
-        <ui-datetimepicker form-name="日期时间" :date="+new Date('2018-03-23')" format="YYYY | MM | DD | HH | mm | ss" default-value="2018 | 03 | 23 | 18 | 10 | 08"></ui-datetimepicker>
+        <ui-datetimepicker form-name="日期时间" :date="+new Date('2018-03-23')" format="YYYY | MM | DD | HH | mm | ss" v-model="value"></ui-datetimepicker>
     </div>
+    >script
+    {
+        data : {
+            value : '2018 | 03 | 23 | 18 | 10 | 08'
+        }
+    }
     ---
     #demo
     >desc
     同时显示多种日期时间格式(显示多个日期时，最后一个优先级最高)。
     >tpl
     <div style="width:400px;">
-        <ui-datetimepicker form-name="日期时间" :date="+new Date('2018-03-23')" format="YYYY-MM-DD HH:mm:ss | HH:m:s, MMM DD, YYYY" default-value="2018-03-23 18:10:08 | 18:10:8, Mar 23, 2018"></ui-datetimepicker>
+        <ui-datetimepicker form-name="日期时间" :date="+new Date('2018-03-23')" format="YYYY-MM-DD HH:mm:ss | HH:m:s, MMM DD, YYYY" v-model="value"></ui-datetimepicker>
     </div>
+    >script
+    {
+        data : {
+            value : '2018-03-23 18:10:08 | 18:10:8, Mar 23, 2018'
+        }
+    }
     :::
 
     :::vue
@@ -188,16 +206,28 @@
     居中对齐。
     >tpl
     <div style="width:300px;">
-        <ui-datetimepicker form-name="日期时间" :date="+new Date('2018-03-23')" default-value="2018-03-23 18:10:18" align="center"></ui-datetimepicker>
+        <ui-datetimepicker form-name="日期时间" :date="+new Date('2018-03-23')" v-model="value" align="center"></ui-datetimepicker>
     </div>
+    >script
+    {
+        data : {
+            value : '2018-03-23 18:10:18'
+        }
+    }
     ---
     #demo
     >desc
     右对齐。
     >tpl
     <div style="width:300px;">
-        <ui-datetimepicker form-name="日期时间" :date="+new Date('2018-03-23')" default-value="2018-03-23 18:10:18" align="right"></ui-datetimepicker>
+        <ui-datetimepicker form-name="日期时间" :date="+new Date('2018-03-23')" v-model="value" align="right"></ui-datetimepicker>
     </div>
+    >script
+    {
+        data : {
+            value : '2018-03-23 18:10:18'
+        }
+    }
     :::
 
     :::vue
@@ -367,11 +397,17 @@
     ---
     #demo
     >desc
-    如果`default-value`超过`selectable-range`范围。
+    如果`v-model`超过`selectable-range`范围。
     >tpl
     <div style="width:460px;">
-        <ui-datetimepicker form-name="日期时间" :date="+new Date('2018-03-23')" :date-selectable-range="['2018-03-08 00:00:00', '2018-03-23 00:00:00']" :default-value="['2018-03-04 12:00:00', '2018-03-29 12:00:00']" is-range></ui-datetimepicker>
+        <ui-datetimepicker form-name="日期时间" :date="+new Date('2018-03-23')" :date-selectable-range="['2018-03-08 00:00:00', '2018-03-23 00:00:00']" v-model="value" is-range></ui-datetimepicker>
     </div>
+    >script
+    {
+        data : {
+            value : ['2018-03-04 12:00:00', '2018-03-29 12:00:00']
+        }
+    }
     :::
 
     :::vue
@@ -425,11 +461,17 @@
     ---
     #demo
     >desc
-    在开启`is-range`的情况下设置`default-value`。
+    在开启`is-range`的情况下设置`v-model`。
     >tpl
     <div style="width:460px;">
-        <ui-datetimepicker form-name="日期时间" :date="+new Date('2018-03-23')" :is-range="true" :default-value="['2018-03-10 08:00:00', '2018-03-20 21:30:30']"></ui-datetimepicker>
+        <ui-datetimepicker form-name="日期时间" :date="+new Date('2018-03-23')" :is-range="true" v-model="value"></ui-datetimepicker>
     </div>
+    >script
+    {
+        data : {
+            value : ['2018-03-10 08:00:00', '2018-03-20 21:30:30']
+        }
+    }
     :::
 
     :::vue

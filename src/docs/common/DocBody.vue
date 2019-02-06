@@ -679,6 +679,36 @@ let data = {
                 valueType : 'Array',
                 valueContent : '[{\'source\':[\'item4\',\'item5\',\'item6\',\'item7\'],\'target\':[\'item1\',\'item2\',\'item3\']}]'
             }
+        ],
+        cascader : [
+            {
+                valueType : 'String',
+                valueContent : `'tim'`
+            },
+            {
+                valueType : 'Number',
+                valueContent : '5'
+            },
+            {
+                valueType : 'Boolean',
+                valueContent : 'true'
+            },
+            {
+                valueType : 'Null',
+                valueContent : 'null'
+            },
+            {
+                valueType : 'Undefined',
+                valueContent : 'undefined'
+            },
+            {
+                valueType : 'Object',
+                valueContent : '{\'zj\':\'wz\'}'
+            },
+            {
+                valueType : 'Array',
+                valueContent : '[\'zj\', \'wz\']'
+            }
         ]
     }
 };
@@ -705,9 +735,15 @@ state-repeat
 normal,disabled,readonly
 >tpl
 <div style="width:300px;{%wrapStyle%}">
-    <ui-{%uikey%} state="{$stateKey}" :default-value="{%&defaultValue%}" form-name="{$&stateName}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
+    <ui-{%uikey%} state="{$stateKey}" v-model="value" form-name="{$&stateName}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
 </div>
 <br>
+>script
+{
+    data : {
+        value : {%&defaultValue%}
+    }
+}
 :::
 `,
     formStatusWithStyle : `
@@ -736,9 +772,15 @@ color:silver
 color:gray
 >tpl
 <div style="width:300px;{%wrapStyle%}">
-    <ui-{%uikey%} color="{$colorKey}" :default-value="{%&defaultValue%}" form-name="{$&colorName}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
+    <ui-{%uikey%} color="{$colorKey}" v-model="value" form-name="{$&colorName}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
 </div>
 <br>
+>script
+{
+    data : {
+        value : {%&defaultValue%}
+    }
+}
 :::
 
 :::vue
@@ -751,9 +793,15 @@ state-repeat
 normal,disabled,readonly
 >tpl
 <div style="width:300px;{%wrapStyle%}">
-    <ui-{%uikey%} state="{$stateKey}" :default-value="{%&defaultValue%}" form-name="{$&stateName}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
+    <ui-{%uikey%} state="{$stateKey}" v-model="value" form-name="{$&stateName}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
 </div>
 <br>
+>script
+{
+    data : {
+        value : {%&defaultValue%}
+    }
+}
 :::
 `,
     formConfig : `
@@ -830,26 +878,6 @@ String<br/>Array
 :::
 
 :::vue
-@name:default-value
----
-#config
->conf-desc
-表单的默认值(注意：\`default-value\`不支持单向数据流，此配置仅在表单初次创建时生效，修改表单值需要使用\`set()\`方法或使用\`v-model\`指令， 详见：[表单数据双向绑定](/guide/form.html#表单数据双向绑定))。
->conf-accept
-任意(接受表单原始数值，也接受JSON序列化后的表单数值，若数值是JSON序列化的会自动转换成原始数值)
->conf-type
-Any
->conf-default
-\`undefined\`
----
-#demo
->tpl
-<div style="width:300px;{%wrapStyle%}">
-    <ui-{%uikey%} form-name="{%formName%}" :default-value="{%&defaultValue%}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
-</div>
-:::
-
-:::vue
 @name:hide-name
 ---
 #config
@@ -890,8 +918,14 @@ Boolean
 隐藏后表单默认位置的名字不会显示，可以在其他地方设置表单名。
 >tpl
 <div style="width:300px;{%wrapStyle%}">
-    <ui-{%uikey%} form-name="{%formName%}" :clearable="true" :default-value="{%&defaultValue%}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
+    <ui-{%uikey%} form-name="{%formName%}" :clearable="true" v-model="value" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
 </div>
+>script
+{
+    data : {
+        value : {%&defaultValue%}
+    }
+}
 :::
 `,
     formMethod : `
@@ -928,10 +962,16 @@ Boolean
 #demo
 >tpl
 <div style="width:300px;{%wrapStyle%}">
-    <ui-{%uikey%} ref="demoMethodGet" form-name="表单名" :default-value="{%&defaultValue%}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
+    <ui-{%uikey%} ref="demoMethodGet" form-name="表单名" v-model="value" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
     <br>
     <ui-link js="console.log(window.morning.findVM('demoMethodGet').get())">获取表单原始值</ui-link>
 </div>
+>script
+{
+    data : {
+        value : {%&defaultValue%}
+    }
+}
 :::
 
 :::vue
@@ -946,10 +986,16 @@ Boolean
 #demo
 >tpl
 <div style="width:300px;{%wrapStyle%}">
-    <ui-{%uikey%} ref="demoMethodGetJson" form-name="表单名" :default-value="{%&defaultValue%}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
+    <ui-{%uikey%} ref="demoMethodGetJson" form-name="表单名" v-model="value" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
     <br>
     <ui-link js="console.log(window.morning.findVM('demoMethodGetJson').getJson())">获取表单值的JSON序列化字符串</ui-link>
 </div>
+>script
+{
+    data : {
+        value : {%&defaultValue%}
+    }
+}
 :::
 
 :::vue
@@ -1445,7 +1491,9 @@ let extVueRenderer = {
             '>desc',
             (parts.desc || '通过`state`来设置组件的状态，可用状态详见[形态/状态](/guide/status.html#状态)'),
             '>tpl',
-            `<div>{$#state}\n${addSpace(rmEndWrap(parts.tpl.join('\n')), 4)}{$/state}\n</div>`
+            `<div>{$#state}\n${addSpace(rmEndWrap(parts.tpl.join('\n')), 4)}{$/state}\n</div>`,
+            '>script',
+            (parts.script || ['']).join('\n')
         ];
 
         newParamStr.push(statePreset.join('\n'));
@@ -1769,7 +1817,6 @@ let extVueTranslater = {
 
     },
     _script : (_data, _ctx) => {
-
 
         if (!_data) {
 

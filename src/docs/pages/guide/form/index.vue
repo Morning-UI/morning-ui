@@ -29,8 +29,8 @@
     - form-name : 表单的名称(用于显示)
     - form-key : 表单的KEY(用于逻辑中作为识别标示)
     - group : 表单组
-    - default-value : 表单的默认值(不支持单向数据流)
     - hide-name : 隐藏表单名(所有表单默认都有显示表单名的位置，你可以隐藏后自行设置)
+    - clearable : 显示清空表单按钮
     
     #### 表单方法
 
@@ -87,18 +87,27 @@
     >tpl
     <div>
         <div style="width:300px;">
-            <ui-textinput group="demo1" form-key="name" form-name="姓名" default-value="Jim"></ui-textinput>
+            <ui-textinput group="demo1" form-key="name" form-name="姓名" v-model="valueName"></ui-textinput>
             <br> 
-            <ui-textinput group="demo1" form-key="age" form-name="年龄" default-value="17"></ui-textinput>
+            <ui-textinput group="demo1" form-key="age" form-name="年龄" v-model="valueAge"></ui-textinput>
             <br> 
-            <ui-radio :list="{male:'Male',female:'Female'}" group="demo1" form-key="gender" form-name="性别" default-value="male"></ui-radio>
+            <ui-radio :list="{male:'Male',female:'Female'}" group="demo1" form-key="gender" form-name="性别" v-model="valueGender"></ui-radio>
             <br> 
-            <ui-multiinput group="demo1" form-key="tags" form-name="标签" :default-value="['Happy']"></ui-multiinput>
+            <ui-multiinput group="demo1" form-key="tags" form-name="标签" v-model="valueTags"></ui-multiinput>
         </div>
         <br><br>
         <ui-btn js="console.log('demo1 data', window.morning.getGroup('demo1'));">在Console输出表单组数据</ui-btn>
         <ui-btn js="console.log('demo1 data', window.morning.getGroupJson('demo1'));">在Console输出表单组JSON数据</ui-btn>
     </div>
+    >script
+    {
+        data : {
+            valueName : "Jim",
+            valueAge : "17",
+            valueGender : "male",
+            valueTags : ['Happy'],
+        }
+    }
     :::
 
     一组表单也可以同时设置值：
@@ -154,13 +163,20 @@
     >tpl
     <div>
         <div style="width:300px;">
-            <ui-textinput group="demo4" form-key="name" form-name="姓名" default-value="Jim"></ui-textinput>
+            <ui-textinput group="demo4" form-key="name" form-name="姓名" v-model="valueName"></ui-textinput>
             <br> 
-            <ui-radio :list="{male:'Male',female:'Female'}" group="demo4" form-key="gender" form-name="性别" default-value="male"></ui-radio>
+            <ui-radio :list="{male:'Male',female:'Female'}" group="demo4" form-key="gender" form-name="性别" v-model="valueGender"></ui-radio>
         </div>
         <br><br>
         <ui-btn js="window.morning.setGroup('demo4', {gender:undefined});">清空性别表单</ui-btn>
     </div>
+    >script
+    {
+        data : {
+            valueName : "Jim",
+            valueGender : "male"
+        }
+    }
     :::
 
     #### 清空一组表单的值
@@ -172,13 +188,20 @@
     >tpl
     <div>
         <div style="width:300px;">
-            <ui-textinput group="demo5" form-key="name" form-name="姓名" default-value="Jim"></ui-textinput>
+            <ui-textinput group="demo5" form-key="name" form-name="姓名" v-model="valueName"></ui-textinput>
             <br> 
-            <ui-radio :list="{male:'Male',female:'Female'}" group="demo5" form-key="gender" form-name="性别" default-value="male"></ui-radio>
+            <ui-radio :list="{male:'Male',female:'Female'}" group="demo5" form-key="gender" form-name="性别" v-model="valueGender"></ui-radio>
         </div>
         <br><br>
         <ui-btn js="window.morning.cleanGroup('demo5');">清空整组表单</ui-btn>
     </div>
+    >script
+    {
+        data : {
+            valueName : "Jim",
+            valueGender : "male"
+        }
+    }
     :::
 
     ## 表单数据双向绑定
@@ -194,19 +217,19 @@
         <p>1. 修改下面表单内容，然后点击<code>获取父视图的data</code>，父视图的数据同步变化</p>
         <p>2. 点击<code>修改父视图的data</code>，表单的值也会变化</p>
         <ui-formgroup>
-        <ui-textinput v-model="name" form-name="姓名" default-value="Jim"></ui-textinput>
+        <ui-textinput v-model="name" form-name="姓名"></ui-textinput>
         <br>
-        <ui-radio :list="{male:'Male',female:'Female'}" v-model="gender" default-value="male"></ui-radio>
+        <ui-radio :list="{male:'Male',female:'Female'}" v-model="gender"></ui-radio>
         </ui-formgroup>
         <br><br>
-        <ui-btn js="alert(demoVm.getData());">获取父视图的data</ui-btn>
-        <ui-btn js="demoVm.setData();">修改父视图的data</ui-btn>
+        <ui-btn js="alert(this.getData());">获取父视图的data</ui-btn>
+        <ui-btn js="this.setData();">修改父视图的data</ui-btn>
     </div>
     >script
     {
         data : {
-            name : undefined,
-            gender : undefined
+            name : "Jim",
+            gender : "male",
         },
         methods : {
             getData : function() {
@@ -223,13 +246,9 @@
     }
     :::
 
-    注意：如果表单处于`disable`状态，父视图中的数值变化将不会同步到表单(但`default-value`数值可以应用到表单)。
+    注意：如果表单处于`disable`状态，父视图中的数值变化将不会同步到表单(仅在初始化时`v-model`的数值会同步到表单)。
 
     `v-model`指令的用法详见：<a href="https://cn.vuejs.org/v2/guide/forms.html" target="_blank">表单输入绑定</a>
-
-    #### `v-model`和`default-value`一起使用
-
-    当`v-model`和`default-value`一起使用并都有效时，组件会优先同步到`v-model`的数值。
 
     ## 全局扩展
 

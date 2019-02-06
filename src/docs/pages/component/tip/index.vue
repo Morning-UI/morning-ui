@@ -129,7 +129,7 @@
     >conf-desc
     触发提示的目标元素，必填项。此配置改变后，若小提示处于显示状态，则会触发一次`hide`和`show`事件，以刷新小提示的位置。
     >conf-accept
-    元素选择器([MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/Document_Object_Model/Locating_DOM_elements_using_selectors)
+    元素选择器([MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/Document_Object_Model/Locating_DOM_elements_using_selectors))
     >conf-type
     String<br>Null
     >conf-default
@@ -208,6 +208,8 @@
     #config
     >conf-desc
     触发方式(支持多触发方式，多个触发器之间用空格分开)。触发方式一旦改变，已有的触发状态都会被重置。
+    <br><br>
+    当处于`click`配置时，点击`target`元素会切换显示/隐藏状态，同时点击其他区域会隐藏小提示。
     >conf-accept
     `hover`：鼠标移入目标元素<br>`click`：鼠标点击目标元素<br>`focus`：目标元素处于焦点状态<br>`method`：通过组件方法触发
     >conf-type
@@ -233,7 +235,7 @@
     >tpl
     <div>
         <span id="demo22">目标文字</span>
-        <ui-tip target="#demo22" ref="demo22" trigger="click">提示内容</ui-tip>
+        <ui-tip target="#demo22" ref="demo22" trigger="method">提示内容</ui-tip>
         
         <br><br>
 
@@ -305,6 +307,43 @@
         <ui-tip target="#demo21" placement="bottom" :auto-reverse="true">这是一段非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常长的提示内容</ui-tip>
     </div>
     :::
+
+    :::vue
+    @name:align
+    ---
+    #config
+    >conf-desc
+    小提示对于触发元素的对齐。
+    >conf-accept
+    `start`:向左或向上对齐<br>`middle`:居中对齐<br>`end`:向右或向下对齐
+    >conf-type
+    String
+    >conf-default
+    `'middle'`
+    ---
+    #demo
+    >tpl
+    <div>
+        <span id="demo28">向左对齐</span>
+        <ui-tip target="#demo28" align="start">提示内容</ui-tip>
+
+        <br>
+
+        <span id="demo29">向上对齐</span>
+        <ui-tip target="#demo29" align="start" placement="left">提示内容</ui-tip>
+
+        <br>
+
+        <span id="demo30">向右对齐</span>
+        <ui-tip target="#demo30" align="end">提示内容</ui-tip>
+
+        <br>
+
+        <span id="demo31">向下对齐</span>
+        <ui-tip target="#demo31" align="end" placement="left">提示内容</ui-tip>
+    </div>
+    :::
+
 
     [[[方法]]]
 
@@ -473,7 +512,6 @@
             target="#demoEventLifecycle"
             ref="demoEventLifecycle"
             v-show="show"
-            :total="10"
             @created="echo('created')"
             @mounted="echo('mounted')"
             @before-update="echo('before-update')"

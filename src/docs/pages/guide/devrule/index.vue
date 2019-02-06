@@ -73,14 +73,14 @@
     - 方法的命名符合[方法全局命名规范](/guide/method.html#方法全局命名规范)
     - 事件的命名符合[事件全局命名规范](/guide/event.html#事件全局命名规范)
     - 需要添加`_valueFilter`方法来处理数值过滤
-    - 在模板中绑定以下的`props`:`form-name`、`form-key`、`group`、`default-value`、`hide-name`
+    - 在模板中绑定以下的`props`:`form-name`、`form-key`、`group`、`hide-name`
     - 组件模板中包含显示`form-name`的位置
     - 当`hide-name`配置为`true`是隐藏`form-name`
     - 表单高度应尽量使用`common/var.less`中`@formHeight`变量为基础
     - 表单边框、背景、文字等色彩以`common/var.less`中`@colorForm`开头的变量为基础，可以修改亮度
     - 表单的值可被JSON序列化
     - 支持状态形态中的`normal`和`disabled`
-    - 支持以下这些配置：`form-name`、`form-key`、`group`、`default-value`、`hide-name`
+    - 支持以下这些配置：`form-name`、`form-key`、`group`、`hide-name`
     - 支持以下这些方法：`.set`、`.get`、`.setName`、`.getName`、`.setKey`、`.getKey`、`.setGroup`、`.getGroup`、`.addGroup`、`.removeGroup`
     - 支持`value-change`事件
 
@@ -117,7 +117,7 @@
 
     - 文档包含：标题、组件状态栏、开始、形态、配置、方法、事件、表单值、源码
     - 具有状态形态中的`normal`和`disabled`的演示
-    - 具有以下这些配置演示：`form-name`、`form-key`、`group`、`default-value`、`hide-name`
+    - 具有以下这些配置演示：`form-name`、`form-key`、`group`、`hide-name`
     - 具有以下这些方法演示：`.set`、`.get`、`.setName`、`.getName`、`.setKey`、`.getKey`、`.setGroup`、`.getGroup`、`.addGroup`、`.removeGroup`
     - 具有`value-change`事件演示
 

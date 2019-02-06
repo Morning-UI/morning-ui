@@ -194,9 +194,15 @@
                 Emir : 'Emir Ayouni'
             }"
             :disabled-options="['Tim', 'Victor']"
-            default-value="Tim"
+            v-model="value"
         ></ui-radio>
     </div>
+    >script
+    {
+        data : {
+            value : 'Tim'
+        }
+    }
     :::
 
     :::vue

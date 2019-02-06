@@ -152,9 +152,9 @@
     <div style="width:300px">
         <!-- 下面示例中： -->
         <!-- 组件名都采用`form-name`配置 -->
-        <!-- 组件默认值都采用`default-value`配置 -->
-        <ui-textinput ref="demo4" form-name="姓名" default-value="Jim"></ui-textinput>
-        <ui-switch ref="demo5" form-name="开关" hide-name :default-value="true"></ui-switch>
+        <!-- 组件默认值采用`v-model`设置 -->
+        <ui-textinput ref="demo4" form-name="姓名" v-model="valueInput"></ui-textinput>
+        <ui-switch ref="demo5" form-name="开关" hide-name v-model="valueSwitch"></ui-switch>
 
         <br><br>
 
@@ -162,6 +162,13 @@
         <ui-link js="alert(morning.findVM('demo4').get());">获取姓名数值</ui-link>
         <ui-link js="alert(morning.findVM('demo5').get());">获取开关数值</ui-link>
     </div>
+    >script
+    {
+        data : {
+            valueInput : "Jim",
+            valueSwitch : true
+        }
+    }
     :::
 
     表单组件还有更多的通用配置、方法、事件，更多内容见：[表单](/guide/form.html)。

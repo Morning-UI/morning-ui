@@ -17,7 +17,7 @@
             <ui-checkbox
                 ref="diff"
                 style="width: 400px;"
-                :default-value="['0','1','2','3','4','5','6']"
+                v-model="uiLibs"
                 :list="{
                     0 : 'HMP UI',
                     1 : 'Bootstrap',
@@ -34,7 +34,7 @@
             <ui-radio
                 ref="hidesame"
                 style="width: 400px;"
-                :default-value="'0'"
+                v-model="showType"
                 :list="{
                     0 : '显示所有',
                     1 : '仅显示不同'
@@ -2016,7 +2016,7 @@
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
                     <td class="mark">
-                        <i class="iconfont no">&#xe62e;</i>
+                        <i class="iconfont has">&#xe62d;</i>
                     </td>
                 </tr>
                 <tr class="components">
@@ -2877,7 +2877,9 @@ export default {
             btNum : 0,
             eleNum : 0,
             antdNum : 0,
-            morningNum : 0
+            morningNum : 0,
+            uiLibs : ['0','1','2','3','4','5','6'],
+            showType : 0
         };
 
     },

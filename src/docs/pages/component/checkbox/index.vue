@@ -195,9 +195,15 @@
                 Emir : 'Emir Ayouni'
             }" 
             :disabled-options="['Tim', 'Victor']" 
-            :default-value="['Tim', 'Emir']"
+            v-model="value"
         ></ui-checkbox>
     </div>
+    >script
+    {
+        data : {
+            value : ['Tim', 'Emir']
+        }
+    }
     :::
 
     :::vue
@@ -334,7 +340,7 @@
         <ui-checkbox
             form-name="Continents"
             id="continents2"
-            :default-value="['europe']"
+            v-model="value1"
             :list="{
                 asia : 'Asia',
                 na : 'North America',
@@ -355,7 +361,7 @@
         <ui-checkbox
             form-name="North America"
             parent="#continents2:na"
-            :default-value="['ny']"
+            v-model="value2"
             :list="{
                 ny : 'New York',
                 toronto : 'Toronto',
@@ -377,13 +383,21 @@
         <ui-checkbox
             form-name="Africa"
             parent="#continents2:africa"
-            :default-value="['cairo', 'cuba']"
+            v-model="value3"
             :list="{
                 cairo : 'Cairo',
                 cuba : 'Cuba'
             }"
         ></ui-checkbox>
     </div>
+    >script
+    {
+        data : {
+            value1 : ['europe'],
+            value2 : ['ny'],
+            value3 : ['cairo', 'cuba']
+        }
+    }
     ---
     #demo
     >desc

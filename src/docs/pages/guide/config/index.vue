@@ -177,7 +177,6 @@
     - `form-name` : 表单名
     - `form-key` : 表单Key
     - `group` : 表单组
-    - `default-value` : 表单默认值
     - `hide-name` : 隐藏表单名
     - `hide-value` : 表单数值不可见
     - `rows` : 行数

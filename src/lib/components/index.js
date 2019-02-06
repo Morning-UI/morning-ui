@@ -57,6 +57,7 @@ import sticky                       from './sticky/index.vue';
 import steps                        from './steps/index.vue';
 import breadcrumbs                  from './breadcrumbs/index.vue';
 import tip                          from './tip/index.vue';
+import popover                      from './popover/index.vue';
 import message                      from './message/index.vue';
 import _alert                       from './alert/index.vue';
 import carousel                     from './carousel/index.vue';
@@ -147,6 +148,7 @@ export default {
     steps,
     breadcrumbs,
     tip,
+    popover,
     message,
     alert : _alert,
     carousel,

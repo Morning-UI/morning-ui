@@ -67,6 +67,7 @@ export default {
         步骤条 : '/component/steps.html',
         面包屑 : '/component/breadcrumbs.html',
         小提示 : '/component/tip.html',
+        '弹出框<i class="tag new"></i>' : '/component/popover.html',
         消息 : '/component/message.html',
         告示 : '/component/alert.html',
         轮播 : '/component/carousel.html',
