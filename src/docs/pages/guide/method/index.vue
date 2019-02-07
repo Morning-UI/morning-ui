@@ -10,7 +10,7 @@
 
     所有的方法都需要遵循全局命名规范。
 
-    ### 使用
+    ## 使用
 
     组件的方法挂载在组件的vm上，调用方法需要先找到组件的vm。
 
@@ -25,12 +25,9 @@
 
     使用前需要在被调用的组件上通过`ref`指定一个索引ID，然后在父vm中通过`this.$refs.[refId]`即可找到组件的vm：
 
-    :::vue/html
-    window.parentVm1 = new Vue({
-        el : '{$el}',
-        template : '{$template}'
-    });
-    ---
+    :::vue
+    #demo
+    >tpl
     <div>
         <!-- 在组件上添加`ref`，指定索引ID -->
         <ui-btn ref="demo1">按钮</ui-btn>
@@ -38,16 +35,29 @@
         <br><br>
 
         <!-- 在父vm中通过`$refs`找到组件vm并调用挂载的方法 -->
-        <ui-link js="window.parentVm1.$refs.demo1.lock();">锁定按钮</ui-link>
-        <ui-link js="window.parentVm1.$refs.demo1.unlock();">解锁按钮</ui-link>
+        <ui-link @emit="lockFromParent">锁定按钮</ui-link>
+        <ui-link @emit="unloackFromParent">解锁按钮</ui-link>
     </div>
+    >script
+    {
+        methods : {
+            lockFromParent : function () {
+                this.$refs.demo1.lock();
+            },
+            unloackFromParent : function () {
+                this.$refs.demo1.unlock();
+            }
+        }
+    }
     :::
 
     #### 全局查找调用
 
     使用前需要在被调用的组件上通过ref指定一个索引ID，然后通过Morning UI提供的全局方法`morning.findVM()`查找组件vm：
 
-    :::democode/html
+    :::vue
+    #demo
+    >tpl
     <div>
         <!-- 在组件上添加`ref`，指定索引ID -->
         <ui-btn ref="demo2">按钮</ui-btn>
@@ -55,16 +65,18 @@
         <br><br>
 
         <!-- 通过findVM方法全局查找组件vm并调用挂载的方法 -->
-        <ui-link js="window.morning.findVM('demo2').lock();">锁定按钮</ui-link><br>
+        <ui-link js="window.morning.findVM('demo2').lock();">锁定按钮</ui-link>
         <ui-link js="window.morning.findVM('demo2').unlock();">解锁按钮</ui-link>
     </div>
     :::
-    
+
     `findVM()`方法本质上也是基于`ref`来实现的，只是提供了一个全局查找的快捷方法。[查看findVM()方法详情](/guide/morning.html#findVMref)
 
     `findVM()`方法只会返回第一个匹配`ref`的组件vm，如果你需要查询所有匹配`ref`的组件vm，可以使用`findAllVM()`方法。这个方法将会返回一个数组：
 
-    :::democode/html
+    :::vue
+    #demo
+    >tpl
     <div>
         <!-- 在组件上添加`ref`，指定索引ID -->
         <ui-link v-for="n in 5" ref="demo3">(链接)</ui-link>
@@ -80,17 +92,17 @@
 
     [查看findAllVM()方法详情](/guide/morning.html#findAllVMref)
 
-    ### 通用方法
+    ## 通用方法
 
     交互和表单组件都支持一些通用的方法:
 
     - `getConf` : 获取组件配置，详见[获取配置](/guide/config.html#获取配置)
 
-    ### 私有方法
+    ## 私有方法
 
     组件vm上任何以下划线开头的都是私有方法，用法及变动不会再文档中提及，不应该使用。
 
-    ### 方法全局命名规范
+    ## 方法全局命名规范
 
     方法在全局有一套命名规范，这样是为了防止不同的组件对于某个名词理解不同，导致同一名词在不同组件的不同行为。
 
@@ -154,6 +166,9 @@
     - `volume` : 音量
     - `getInfo` : 获取信息
     - `togglePicker` : 切换选择器
+    - `getIndex` : 获取索引
+    - `getId` : 获取ID
+    - `getTitle` : 获取标题
 
     </script>
     </doc-guide>

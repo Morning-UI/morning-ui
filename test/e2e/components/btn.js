@@ -78,11 +78,7 @@ test.serial('color', async t => {
             'color',
             [{
                 attrs : [
-                    'background-color'
-                ]
-            }, {
-                child : 'a',
-                attrs : [
+                    'background-color',
                     'color'
                 ]
             }, {
@@ -97,7 +93,6 @@ test.serial('color', async t => {
                 ]
             }, {
                 self : '.st-disabled',
-                child : 'a',
                 attrs : [
                     'color'
                 ]

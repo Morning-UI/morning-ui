@@ -17,13 +17,15 @@ let TipManager = {
                 },
                 tether : null,
                 placement : 'top',
+                align : 'middle',
                 options : {},
                 autoReverse : true,
                 autoFixPlacement : null,
                 autoOffset : true,
                 autoFixOffset : [0, 0],
                 overranger : [false, false, false, false]
-            }
+            },
+            tipClass : {}
         };
 
     },
@@ -42,7 +44,7 @@ let TipManager = {
                 }
             }, this.Tip.options, options);
 
-            options.attachment = this.Tip.attachmentMap[options.placement];
+            this._tipAlignSet(options, options.placement, this.Tip.attachmentMap[options.placement]);
             this.Tip.options = options;
 
             return options;
@@ -172,7 +174,8 @@ let TipManager = {
             options = this._tipOptionsHandler(options);
 
             let offset = options.offset;
-            let attachment = options.attachment;
+            
+            this._tipAlignSet(options, options.placement, options.attachment);
 
             if (offset) {
 
@@ -185,15 +188,16 @@ let TipManager = {
 
             if (this.Tip.autoFixPlacement) {
                 
-                attachment = this.Tip.attachmentMap[this.Tip.autoFixPlacement];
-            
+                this._tipAlignSet(options, this.Tip.autoFixPlacement, this.Tip.attachmentMap[this.Tip.autoFixPlacement]);
+
             }
 
             this.Tip.tether.setOptions(extend({}, options, {
-                attachment,
                 offset
             }));
             this.Tip.tether.position();
+            this.tipClass = {};
+            this.tipClass[`tip-placement-${this.Tip.autoFixPlacement || options.placement}`] = true;
 
         },
         _tipDestroy : function () {
@@ -225,6 +229,45 @@ let TipManager = {
 
                     $ele.classList.remove(cls);
 
+                }
+
+            }
+
+        },
+        _tipAlignSet : function (options, placement, attachment) {
+
+            if (this.Tip.align === 'start') {
+
+                options.attachment = attachment.replace(/center/, 'left').replace(/middle/, 'top');
+
+            } else if (this.Tip.align === 'end') {
+
+                options.attachment = attachment.replace(/center/, 'right').replace(/middle/, 'bottom');
+
+            } else {
+
+                options.attachment = attachment;
+
+            }
+
+            if (this.Tip.align !== 'middle') {
+
+                if (placement === 'top') {
+
+                    options.targetAttachment = options.attachment.replace(/bottom/, 'top');
+                
+                } else if (placement === 'bottom') {
+
+                    options.targetAttachment = options.attachment.replace(/top/, 'bottom');
+                
+                } else if (placement === 'left') {
+
+                    options.targetAttachment = options.attachment.replace(/right/, 'left');
+                
+                } else if (placement === 'right') {
+
+                    options.targetAttachment = options.attachment.replace(/left/, 'right');
+                
                 }
 
             }

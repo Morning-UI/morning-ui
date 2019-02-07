@@ -1,6 +1,7 @@
 <template>
     <ul class="submenu">
         <li v-for="(link, name) in currentMenu">
+
             <template v-if="link === '/' + category + '/' + page + '.html'">
                 <a
                     v-if="typeof link === 'string'"
@@ -56,7 +57,7 @@ export default {
 
 <style lang="less">
 .submenu {
-    width: 200px;
+    width: 160px;
     display: inline-block;
     vertical-align: top;
     border-right: 1px #EEE solid;
@@ -68,7 +69,7 @@ export default {
     li {
         
         a{
-            font-size: 13px;
+            font-size: 14px;
             color: #999;
             text-decoration: none;
             text-indent: 8px;
@@ -95,7 +96,7 @@ export default {
         }
 
         .title{
-            font-size: 14px;
+            font-size: 15px;
             color: #333;
             margin: 20px 0 5px;
         }

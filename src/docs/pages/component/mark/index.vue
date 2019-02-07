@@ -12,9 +12,11 @@
 
     定义标记内容，这是一个内联元素。
 
-    #### 使用
-    
-    :::democode/html
+    :::vue
+    @name:使用
+    ---
+    #demo
+    >tpl
     <ui-mark>标记的文本</ui-mark>
     :::
 
@@ -30,18 +32,14 @@
 
     <a href="/guide/status.html">查看形态文档</a>
 
-    #### 色彩
-
-    :::preset/html
-    statusColor
+    :::vue
+    @layout:color
     ---
-    uikey:mark
+    <ui-mark color="{$colorKey}">{$&colorName}</ui-mark>
     :::
 
-    #### 状态
-    
-    :::repeat/html
-    state:normal,apparent
+    :::vue
+    @layout:state-na
     ---
     <ui-mark state="{$stateKey}">{$&stateName}</ui-mark>
     :::

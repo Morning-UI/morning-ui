@@ -10,7 +10,7 @@
                 [
                     "babel-plugin-webpack-alias",
                     {
-                        "config": "./build/webpack.config.js"
+                        "config": "./build/webpack.prod.config.js"
                     }
                 ]
             ]

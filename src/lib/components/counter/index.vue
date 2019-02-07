@@ -1,12 +1,11 @@
 <template>
     <mor-counter
         :_uiid="uiid"
-        :class="[formClass, stateClass]"
+        :class="[formClass, stateClass, moreClass]"
 
         :form-name="formName"
         :form-key="formKey"
         :group="group"
-        :default-value="defaultValue"
         :hide-name="hideName"
         :clearable="clearable"
         :step="step"
@@ -15,11 +14,12 @@
         :formater="formater"
         :parser="parser"
         :precision="precision"
+        :controls-position="controlsPosition"
     >
     
     <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
 
-    <div class="counter-wrap">
+    <div class="counter-wrap" v-if="conf.controlsPosition === 'both'">
 
         <div
             class="sub-step"
@@ -44,6 +44,36 @@
             @mouseup="_stopContinued()"
         >
             <i class="mo-icon mo-icon-add"></i>
+        </div>
+        
+    </div>
+
+    <div class="counter-wrap" v-else>
+
+        <input
+            type="text"
+
+            :value="conf.formater(_toFixed(data.value))"
+            :disabled="conf.state === 'disabled' || conf.state === 'readonly'"
+
+            @change="_set(conf.parser($event.target.value))"
+        />
+
+        <div class="step-controls">
+            <div
+                class="add-step"
+                @mousedown="_startContinued(1, 1, true)"
+                @mouseup="_stopContinued()"
+            >
+                <i class="mo-icon mo-icon-add"></i>
+            </div>
+            <div
+                class="sub-step"
+                @mousedown="_startContinued(1, -1, true)"
+                @mouseup="_stopContinued()"
+            >
+                <i class="mo-icon mo-icon-sub"></i>
+            </div>
         </div>
         
     </div>
@@ -87,6 +117,11 @@ export default {
         precision : {
             type : [Number, String],
             default : 'auto'
+        },
+        controlsPosition : {
+            type : String,
+            default : 'both',
+            validator : (value => ['both', 'right'].indexOf(value) !== -1)
         }
     },
     computed : {
@@ -98,8 +133,18 @@ export default {
                 min : this.min,
                 formater : this.formater,
                 parser : this.parser,
-                precision : this.precision
+                precision : this.precision,
+                controlsPosition : this.controlsPosition
             };
+
+        },
+        moreClass : function () {
+
+            let classes = {};
+
+            classes[`controls-on-${this.conf.controlsPosition}`] = true;
+
+            return classes;
 
         }
     },

@@ -11,10 +11,12 @@
     [[[开始]]]
 
     定义一个内联列表，不支持嵌套，列表中每一项使用`<li>`标签。
-
-    #### 使用
     
-    :::democode/html
+    :::vue
+    @name:使用
+    ---
+    #demo
+    >tpl
     <ui-il>
         <li>This is first</li>
         <li>This is second</li>
@@ -34,10 +36,8 @@
 
     <a href="/guide/status.html">查看形态文档</a>
 
-    #### 状态    
-    
-    :::repeat/html
-    state:normal,apparent
+    :::vue
+    @layout:state-na
     ---
     <ui-il state="{$stateKey}">
         <li>this is {$&stateName} ui-il</li>

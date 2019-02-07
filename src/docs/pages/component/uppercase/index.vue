@@ -11,11 +11,13 @@
     [[[开始]]]
 
     大写文本组件，这是一个内联元素。
-
-    #### 使用
     
-    :::democode/html
-    <div><ui-uppercase>大写的英文文本: tHere is A LEtter</ui-uppercase></div>
+    :::vue
+    @name:使用
+    ---
+    #demo
+    >tpl
+    <ui-uppercase>大写的英文文本: tHere is A LEtter</ui-uppercase>
     :::
 
     [[[形态]]]

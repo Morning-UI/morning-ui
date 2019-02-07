@@ -6,12 +6,12 @@
         :form-name="formName"
         :form-key="formKey"
         :group="group"
-        :default-value="defaultValue"
         :hide-name="hideName"
         :clearable="clearable"
         :accept-html="acceptHtml"
         :list="list"
         :disabled-options="disabledOptions"
+        :hidden-options="hiddenOptions"
         :max="max"
         :parent="parent"
     >
@@ -25,7 +25,8 @@
                 <label
                     class="checked"
                     :class="{
-                        disabled : data.disabledOptions[key]
+                        disabled : data.disabledOptions[key],
+                        hidden : (conf.hiddenOptions.indexOf(key) !== -1)
                     }"
                     :value="key"
                     :key="key"
@@ -45,7 +46,8 @@
                 <label
                     class="part-checked"
                     :class="{
-                        disabled : data.disabledOptions[key]
+                        disabled : data.disabledOptions[key],
+                        hidden : (conf.hiddenOptions.indexOf(key) !== -1)
                     }"
                     :value="key"
                     :key="key"
@@ -64,7 +66,8 @@
             <template v-else>
                 <label
                     :class="{
-                        disabled : data.disabledOptions[key]
+                        disabled : data.disabledOptions[key],
+                        hidden : (conf.hiddenOptions.indexOf(key) !== -1)
                     }"
                     :value="key"
                     :key="key"
@@ -108,6 +111,10 @@ export default {
             type : Array,
             default : () => ([])
         },
+        hiddenOptions : {
+            type : Array,
+            default : () => ([])
+        },
         max : {
             type : Number,
             default : Infinity
@@ -124,6 +131,7 @@ export default {
                 acceptHtml : this.acceptHtml,
                 list : this.list,
                 disabledOptions : this.disabledOptions,
+                hiddenOptions : this.hiddenOptions,
                 max : this.max,
                 parent : this.parent
             };
@@ -386,6 +394,15 @@ export default {
             immediate : true
         });
 
+        this.$watch('conf.list', () => {
+
+            if (this.data.$parentVm) {
+                
+                this.data.$parentVm._syncLinkedCheckedStatus(this.data.parentKey);
+
+            }
+
+        });
         this.$on('value-change', () => {
 
             if (this.data.$parentVm) {

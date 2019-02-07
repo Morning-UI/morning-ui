@@ -131,7 +131,7 @@ test.serial('icon', async t => {
         .goto(docUrl)
         .wait(basicDemo)
         .evaluate(() => ({
-            icon : window.getComputedStyle($('[name="开始"] .icon .iconfont')[0])
+            icon : window.getComputedStyle($('[name="开始"] .icon .mo-icon')[0])
         }));
 
     t.plan(1);

@@ -13,11 +13,13 @@
     - 形态是一种通用的组件属性，可以区分样式及JS逻辑，有一套全局的规范，大部分组件都支持。
     - 不通的组件可以有不同的配置，常用于区分JS逻辑，也可以区分样式，全局仅在命名上有规范，只有交互和表单组件支持。
 
-    ### 初始化配置
+    ## 初始化配置
 
     在使用组件时，可以在组件标签`<ui-*>`的`attr`属性中传入初始化配置：
 
-    :::democode/html
+    :::vue
+    #demo
+    >tpl
     <!-- ui-btn设置link配置 -->
     <!-- 配置名称是: link -->
     <!-- 配置数值是: https://www.google.com -->
@@ -28,15 +30,9 @@
 
     由于初始化配置基于`Vue`的`props`，你也可以使用`v-bind`来传入配置，或使用JavaScript表达式。
 
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
-        data : {
-            link : 'https://www.google.com'
-        }
-    });
-    ---
+    :::vue
+    #demo
+    >tpl
     <div>
         <!-- 通过v-bind为ui-btn设置link -->
         <ui-btn new-tab :link="link">Google</ui-btn>
@@ -44,30 +40,36 @@
         <!-- 通过JavaScript表达式为ui-btn设置link -->
         <ui-btn new-tab :link="'https://www.google.com'">Google</ui-btn>
     </div>
+    >script
+    {
+        data : {
+            link : 'https://www.google.com'
+        }
+    }
     :::
 
     更多用法见:[Vue/模板语法](https://cn.vuejs.org/v2/guide/syntax.html)。
 
-    ### camelCase 和 kebab-case
+    ## camelCase 和 kebab-case
 
     HTML特性是不区分大小写的。所以，当配置的名称是camelCased(驼峰式)命名的prop，在HTML中需要转换为相对应的kebab-case(短横线隔开式)命名：
 
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
+    :::vue
+    #demo
+    >tpl
+    <div>
+        <!-- new-tab在HTML中是kebab-case命名 -->
+        <ui-btn new-tab :link="link">Google</ui-btn>
+    </div>
+    >script
+    {
         data : {
             link : 'https://www.google.com'
         }
-    });
-    ---
-    <div>
-        <!-- new-tab在HTML中是kebab-case命名 -->
-        <ui-btn ref="demo3" new-tab :link="link">Google</ui-btn>
-    </div>
+    }
     :::
 
-    ### 单向数据流
+    ## 单向数据流
 
     配置是基于Vue的[Prop](https://cn.vuejs.org/v2/guide/components.html#Prop)实现的，所以具有`Prop`的特性。
 
@@ -76,29 +78,32 @@
     - 当组件的配置`link`发生变更时，并不会同步到父实例的`link`中
     - 当父实例的`link`发生变更时，会同步到组件的配置`link`中
 
-    :::vue/html
-    var demo2 = new Vue({
-        el : '{$el}',
-        template : '{$template}',
-        data : {
-            link : 'https://www.google.com'
-        }
-    });
-
-    // 组件的配置`link`改变时，父实例获取不到变化的配置
-    morning.findVM('demo2').conf.link = 'https://www.baidu.com';
-    console.log('demo2.console1', demo2.link); // `https://www.google.com`
-
-    // 父实例的`link`改变会同步到组件的配置中
-    demo2.link = 'https://bing.com';
-    Vue.nextTick(() => {
-        console.log('demo2.console2', morning.findVM('demo2').getConf().link); // `https://bing.com`
-    });
-    ---
+    :::vue
+    #demo
+    >tpl
     <div>
         <!-- 通过v-bind为ui-btn设置link -->
         <ui-btn ref="demo2" new-tab :link="link">Google</ui-btn>
     </div>
+    >script
+    {
+        data : {
+            link : 'https://www.google.com'
+        },
+        mounted : function () {
+
+            // 组件的配置`link`改变时，父实例获取不到变化的配置
+            morning.findVM('demo2').conf.link = 'https://www.baidu.com';
+            console.log('demo2.console1', this.link); // `https://www.google.com`
+
+            // 父实例的`link`改变会同步到组件的配置中
+            this.link = 'https://bing.com';
+            Vue.nextTick(() => {
+                console.log('demo2.console2', morning.findVM('demo2').getConf().link); // `https://bing.com`
+            });
+
+        }
+    }
     :::
 
     下面有张图可以帮助你更好的理解上面的概念：
@@ -107,7 +112,7 @@
     
     父实例的配置变化时，会引起`Prop`的变化，`Prop`的变化会同步到组件的配置`vm.conf`中。
 
-    ### 获取配置
+    ## 获取配置
 
     获取组件的配置应该使用组件上的`getConf()`方法，这个方法会对组件的配置进行一次拷贝然后返回，避免对配置的意外修改。
 
@@ -123,7 +128,7 @@
 
     单项配置数值，或包含所有配置的对象，键名是配置的名称，键值是配置的数值。返回的配置内容经过拷贝，所以修改返回值并不会影响组件当前的配置。
 
-    ### 配置属性
+    ## 配置属性
 
     任何一项配置都包含五个关键属性：
 
@@ -135,11 +140,11 @@
 
     组件的逻辑及文档必须响应这些关键属性。
 
-    ### 独立性
+    ## 独立性
 
     不同的配置之间应该是相互独立的，尽可能是无依赖的。
 
-    ### 配置全局命名规范
+    ## 配置全局命名规范
 
     配置在全局有一套命名规范，这样是为了防止不同的组件对于某个名词理解不同，导致同一名词在不同组件的不同行为。
 
@@ -172,7 +177,6 @@
     - `form-name` : 表单名
     - `form-key` : 表单Key
     - `group` : 表单组
-    - `default-value` : 表单默认值
     - `hide-name` : 隐藏表单名
     - `hide-value` : 表单数值不可见
     - `rows` : 行数
@@ -303,6 +307,8 @@
     - `toggle-btn` : 切换按钮
     - `indicator-position` : 指示器位置
     - `indicator-type` : 指示器类型
+    - `sticky` : 吸附
+    - `controls-position` : 控制器位置
 
     </script>
     </doc-guide>

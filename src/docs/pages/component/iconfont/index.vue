@@ -8,7 +8,7 @@
 
     Morning UI内置了一套常用的图标库。
     
-    ### 使用
+    ## 使用
 
     通过`<i></i>`和以`mo-icon`为前缀的类名来使用，比如：
 
@@ -20,7 +20,7 @@
     </div>
     :::
 
-    ### 命名规范
+    ## 命名规范
     
     每个图标的命名规则如下：
 
@@ -31,7 +31,7 @@
         - `c` : 圆形
         - 这些关键词也可以组合(按字母顺序排)，比如：`co`表示圆形的描线图标，`cf`表示圆形的填充图标
 
-    ### 可用图标
+    ## 可用图标
 
     <div class="iconlist">
         <div>
@@ -278,9 +278,21 @@
             <i class="mo-icon-sub"></i>
             <span>mo-icon-sub</span>
         </div>
+        <div>
+            <i class="mo-icon-file-o"></i>
+            <span>mo-icon-file-o</span>
+        </div>
+        <div>
+            <i class="mo-icon-folder-close-o"></i>
+            <span>mo-icon-folder-close-o</span>
+        </div>
+        <div>
+            <i class="mo-icon-folder-open-o"></i>
+            <span>mo-icon-folder-open-o</span>
+        </div>
     </div>
     
-    ### 图标托管
+    ## 图标托管
 
     Morning UI图标托管在[Iconfont](http://iconfont.cn/)，再此感谢[Iconfont](http://iconfont.cn/)。
 

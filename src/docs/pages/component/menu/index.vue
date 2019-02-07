@@ -12,14 +12,18 @@
 
     定义一个导航菜单，这是一个内联块元素。
 
-    #### 使用
-
-    通过`menu`配置来设置菜单：
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
+    :::vue
+    @name:使用
+    ---
+    #demo
+    >desc
+    通过`menu`配置来设置菜单。
+    >tpl
+    <div style="width:700px;">
+        <ui-menu :menu="menu"></ui-menu>
+    </div>
+    >script
+    {
         data : {
             menu : {
                 'home' : '首页',
@@ -28,21 +32,21 @@
                 'settings' : '设置'
             }
         }
-    });
+    }
+    :::
+
+    :::vue
+    @name:完整的菜单
     ---
+    #demo
+    >desc
+    上面的菜单设置是简写，下面是一个完整的菜单设置。
+    >tpl
     <div style="width:700px;">
         <ui-menu :menu="menu"></ui-menu>
     </div>
-    :::
-
-    #### 完整的菜单
-
-    上面的菜单设置是简写，下面是一个完整的菜单设置
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
+    >script
+    {
         data : function () {
             return {
                 menu : {
@@ -127,21 +131,21 @@
                 alert('注销账户');
             }
         }
-    });
-    ---
-    <div style="width:700px;">
-        <ui-menu :menu="menu"></ui-menu>
-    </div>
+    }
     :::
 
-    #### 线条风格的菜单
-
-    通过`line`样式类定义线条风格的菜单：
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
+    :::vue
+    @name:线条风格的菜单
+    ---
+    #demo
+    >desc
+    通过`line`样式类定义线条风格的菜单。
+    >tpl
+    <div style="width:700px;">
+        <ui-menu :menu="menu" class="line"></ui-menu>
+    </div>
+    >script
+    {
         data : {
             menu : {
                 'home' : '首页',
@@ -185,19 +189,17 @@
                 }
             }
         }
-    });
+    }
     ---
-    <div style="width:700px;">
-        <ui-menu :menu="menu" class="line"></ui-menu>
+    #demo
+    >desc
+    侧栏的线条风格的菜单。
+    >tpl
+    <div style="width:220px;">
+        <ui-menu :menu="menu" class="line" position="side"></ui-menu>
     </div>
-    :::
-
-    侧栏的线条风格的菜单：
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
+    >script
+    {
         data : {
             menu : {
                 'home' : '首页',
@@ -241,21 +243,21 @@
                 }
             }
         }
-    });
-    ---
-    <div style="width:220px;">
-        <ui-menu :menu="menu" class="line" position="side"></ui-menu>
-    </div>
+    }
     :::
 
-    #### 区块风格的菜单
-
-    通过`block`样式类定义区块风格的菜单：
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
+    :::vue
+    @name:区块风格的菜单
+    ---
+    #demo
+    >desc
+    通过`block`样式类定义区块风格的菜单。
+    >tpl
+    <div style="width:700px;">
+        <ui-menu :menu="menu" class="block"></ui-menu>
+    </div>
+    >script
+    {
         data : {
             menu : {
                 'home' : '首页',
@@ -299,19 +301,17 @@
                 }
             }
         }
-    });
+    }
     ---
-    <div style="width:700px;">
-        <ui-menu :menu="menu" class="block"></ui-menu>
+    #demo
+    >desc
+    侧栏的区块风格的菜单。
+    >tpl
+    <div style="width:220px;">
+        <ui-menu :menu="menu" class="block" position="side"></ui-menu>
     </div>
-    :::
-
-    侧栏的区块风格的菜单：
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
+    >script
+    {
         data : {
             menu : {
                 'home' : '首页',
@@ -355,21 +355,23 @@
                 }
             }
         }
-    });
-    ---
-    <div style="width:220px;">
-        <ui-menu :menu="menu" class="block" position="side"></ui-menu>
-    </div>
+    }
     :::
 
-    #### 垂直填满容器的菜单
-
-    当菜单的`position`为`top`时，可以为菜单添加`fill`样式类，使得菜单的高度与父容器高度保持一致：
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
+    :::vue
+    @name:垂直填满容器的菜单
+    ---
+    #demo
+    >desc
+    当菜单的`position`为`top`时，可以为菜单添加`fill`样式类，使得菜单的高度与父容器高度保持一致。
+    >tpl
+    <div style="width:700px;">
+        <div style="height: 120px;">
+            <ui-menu :menu="menu" position="top" class="fill line"></ui-menu>
+        </div>
+    </div>
+    >script
+    {
         data : {
             menu : {
                 'home' : '首页',
@@ -378,23 +380,21 @@
                 'settings' : '设置'
             }
         }
-    });
-    ---
-    <div style="width:700px;">
-        <div style="height: 120px;">
-            <ui-menu :menu="menu" position="top" class="fill line"></ui-menu>
-        </div>
-    </div>
+    }
     :::
 
-    #### 绑定处理函数
-
-    帮点菜单点击后的处理函数有两种方法，第一方法是绑定在`menu`配置中，通过`handler`为每一个项目绑定处理函数：
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
+    :::vue
+    @name:绑定处理函数
+    ---
+    #demo
+    >desc
+    帮点菜单点击后的处理函数有两种方法，第一方法是绑定在`menu`配置中，通过`handler`为每一个项目绑定处理函数。
+    >tpl
+    <div style="width:700px;">
+        <ui-menu :menu="menu"></ui-menu>
+    </div>
+    >script
+    {
         data : function () {
             return {
                 menu : {
@@ -424,19 +424,17 @@
                 alert('点击搜索');
             }
         }
-    });
+    }
     ---
+    #demo
+    >desc
+    第二种方法通过监听导航菜单组件的`emit`事件。
+    >tpl
     <div style="width:700px;">
-        <ui-menu :menu="menu"></ui-menu>
+        <ui-menu :menu="menu" @emit="itemClick"></ui-menu>
     </div>
-    :::
-
-    第二种方法通过监听导航菜单组件的`emit`事件：
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
+    >script
+    {
         data : function () {
             return {
                 menu : {
@@ -464,19 +462,19 @@
                 alert(`点击${item.name}(${item.key})`);
             }
         }
-    });
-    ---
-    <div style="width:700px;">
-        <ui-menu :menu="menu" @emit="itemClick"></ui-menu>
-    </div>
+    }
     :::
 
-    #### 多级子菜单
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
+    :::vue
+    @name:多级子菜单
+    ---
+    #demo
+    >tpl
+    <div style="width:700px;">
+        <ui-menu :menu="menu"></ui-menu>
+    </div>
+    >script
+    {
         data : {
             menu : {
                 'home' : '首页',
@@ -520,21 +518,21 @@
                 }
             }
         }
-    });
+    }
+    :::
+
+    :::vue
+    @name:子菜单分组
     ---
+    #demo
+    >desc
+    从二级菜单开始，可以通过`groups`为菜单项目进行分组。需要注意的当指定了`groups`菜单项的顺序将按照`groups`为准，而不是`childs`中的顺序。
+    >tpl
     <div style="width:700px;">
         <ui-menu :menu="menu"></ui-menu>
     </div>
-    :::
-
-    #### 子菜单分组
-
-    从二级菜单开始，可以通过`groups`为菜单项目进行分组。需要注意的当指定了`groups`菜单项的顺序将按照`groups`为准，而不是`childs`中的顺序。
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
+    >script
+    {
         data : function () {
             return {
                 menu : {
@@ -558,21 +556,21 @@
                 }
             };
         }
-    });
+    }
+    :::
+
+    :::vue
+    @name:带图标的菜单
     ---
+    #demo
+    >desc
+    你可以直接在`name`中增加`<i>`标签来为菜单增加图标。
+    >tpl
     <div style="width:700px;">
         <ui-menu :menu="menu"></ui-menu>
     </div>
-    :::
-
-    #### 带图标的菜单
-
-    你可以直接在`name`中增加`<i>`标签来为菜单增加图标：
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
+    >script
+    {
         data : function () {
             return {
                 menu : {
@@ -588,21 +586,21 @@
                 }
             };
         }
-    });
+    }
+    :::
+
+    :::vue
+    @name:菜单禁用
     ---
+    #demo
+    >desc
+    通过`disabled`可以禁用菜单项，当项目被禁用后不会显示子菜单，也不会响应点击。
+    >tpl
     <div style="width:700px;">
         <ui-menu :menu="menu"></ui-menu>
     </div>
-    :::
-
-    #### 菜单禁用
-    
-    通过`disabled`可以禁用菜单项，当项目被禁用后不会显示子菜单，也不会响应点击：
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
+    >script
+    {
         data : function () {
             return {
                 menu : {
@@ -628,21 +626,21 @@
                 }
             };
         }
-    });
-    ---
-    <div style="width:700px;">
-        <ui-menu :menu="menu"></ui-menu>
-    </div>
+    }
     :::
 
-    #### 高亮当前所在菜单
-
-    你可以通过`current-menu`配置来高亮当前的菜单，多级菜单用斜杠来分割每一级：
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
+    :::vue
+    @name:高亮当前所在菜单
+    ---
+    #demo
+    >desc
+    你可以通过`current-menu`配置来高亮当前的菜单，多级菜单用斜杠来分割每一级。
+    >tpl
+    <div style="width:700px;">
+        <ui-menu :menu="menu" current-menu="order/history/week"></ui-menu>
+    </div>
+    >script
+    {
         data : function () {
             return {
                 menu : {
@@ -664,21 +662,21 @@
                 }
             };
         }
-    });
-    ---
-    <div style="width:700px;">
-        <ui-menu :menu="menu" current-menu="order/history/week"></ui-menu>
-    </div>
+    }
     :::
 
-    #### 侧边栏菜单
-
-    通过将`position`配置设为`side`，可以将菜单位置改为侧栏：
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
+    :::vue
+    @name:侧边栏菜单
+    ---
+    #demo
+    >desc
+    通过将`position`配置设为`side`，可以将菜单位置改为侧栏。
+    >tpl
+    <div style="width:220px;">
+        <ui-menu :menu="menu" position="side"></ui-menu>
+    </div>
+    >script
+    {
         data : {
             menu : {
                 'home' : '首页',
@@ -687,19 +685,17 @@
                 'settings' : '设置'
             }
         }
-    });
+    }
     ---
+    #demo
+    >desc
+    有多级子菜单的侧边栏菜单。
+    >tpl
     <div style="width:220px;">
         <ui-menu :menu="menu" position="side"></ui-menu>
     </div>
-    :::
-
-    有多级子菜单的侧边栏菜单：
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
+    >script
+    {
         data : {
             menu : {
                 'home' : '首页',
@@ -743,19 +739,17 @@
                 }
             }
         }
-    });
+    }
     ---
+    #demo
+    >desc
+    带菜单分组的侧边栏菜单。
+    >tpl
     <div style="width:220px;">
         <ui-menu :menu="menu" position="side"></ui-menu>
     </div>
-    :::
-
-    带菜单分组的侧边栏菜单：
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
+    >script
+    {
         data : function () {
             return {
                 menu : {
@@ -779,19 +773,17 @@
                 }
             };
         }
-    });
+    }
     ---
+    #demo
+    >desc
+    带图标的侧边栏菜单。
+    >tpl
     <div style="width:220px;">
         <ui-menu :menu="menu" position="side"></ui-menu>
     </div>
-    :::
-
-    带图标的侧边栏菜单：
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
+    >script
+    {
         data : function () {
             return {
                 menu : {
@@ -807,19 +799,17 @@
                 }
             };
         }
-    });
+    }
     ---
+    #demo
+    >desc
+    带禁用项的侧边栏菜单。
+    >tpl
     <div style="width:220px;">
         <ui-menu :menu="menu" position="side"></ui-menu>
     </div>
-    :::
-
-    带禁用项的侧边栏菜单：
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
+    >script
+    {
         data : function () {
             return {
                 menu : {
@@ -845,19 +835,17 @@
                 }
             };
         }
-    });
+    }
     ---
+    #demo
+    >desc
+    高亮当前所在菜单的侧边栏菜单。
+    >tpl
     <div style="width:220px;">
-        <ui-menu :menu="menu" position="side"></ui-menu>
+        <ui-menu :menu="menu" current-menu="order/history/week" position="side"></ui-menu>
     </div>
-    :::
-
-    高亮当前所在菜单的侧边栏菜单：
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
+    >script
+    {
         data : function () {
             return {
                 menu : {
@@ -879,11 +867,7 @@
                 }
             };
         }
-    });
-    ---
-    <div style="width:220px;">
-        <ui-menu :menu="menu" current-menu="order/history/week" position="side"></ui-menu>
-    </div>
+    }
     :::
 
     [[[形态]]]
@@ -893,69 +877,1034 @@
     |类型|支持|默认|
     |-|-|-|
     |尺寸|`m` `s` `xs` `xxs`|`m`|
-    |色彩|不支持|-|
+    |色彩|`white` `gray` `light-gray` `black` `light-black` `extra-light-black`|`white`|
     |状态|不支持|-|
 
     <a href="/guide/status.html">查看形态文档</a>
 
-    #### 尺寸
-
-    :::repeat/html
-    size:m,s,xs,xxs
+    :::vue
+    @name:尺寸
     ---
+    #renderer
+    >name
+    size-repeat
+    >rules
+    m,s,xs,xxs
+    >tpl
     <div style="width:700px;">
         <ui-menu
             :menu="{
-                'size' : '尺寸{$sizeName}',
-                'home' : '首页',
-                'order' : '订单',
-                'history' : '历史',
-                'settings' : '设置'
+                'home' : '<i class=\'mo-icon mo-icon-block-4\'></i>尺寸{$sizeName}',
+                'order' : {
+                    name : '<i class=\'mo-icon mo-icon-menu\'></i>订单',
+                    childs : {
+                        'my' : '我的订单',
+                        'history' : {
+                            name : '历史订单',
+                            childs : {
+                                'week' : '最近一周',
+                                'month' : '最近一月'
+                            }
+                        }
+                    }
+                },
+                'search' : '<i class=\'mo-icon mo-icon-more\'></i>搜索'
             }"
             size="{$sizeKey}"
         ></ui-menu>
+        <br>
     </div>
-    <br>
-    :::
-
-    :::repeat/html
-    size:m,s,xs,xxs
     ---
+    #renderer
+    >name
+    size-repeat
+    >rules
+    m,s,xs,xxs
+    >desc
+    侧边栏导航菜单的尺寸。
+    >tpl
     <div style="width:220px;">
         <ui-menu
             :menu="{
-                'size' : '尺寸{$sizeName}',
-                'home' : '首页',
-                'order' : '订单',
-                'history' : '历史',
-                'settings' : '设置'
+                'home' : '<i class=\'mo-icon mo-icon-block-4\'></i>尺寸{$sizeName}',
+                'order' : {
+                    name : '<i class=\'mo-icon mo-icon-menu\'></i>订单',
+                    childs : {
+                        'my' : '我的订单',
+                        'history' : {
+                            name : '历史订单',
+                            childs : {
+                                'week' : '最近一周',
+                                'month' : '最近一月'
+                            }
+                        }
+                    }
+                },
+                'search' : '<i class=\'mo-icon mo-icon-more\'></i>搜索'
             }"
             size="{$sizeKey}"
             position="side"
         ></ui-menu>
+        <br>
     </div>
-    <br>
+    ---
+    #renderer
+    >name
+    size-repeat
+    >rules
+    m,s,xs,xxs
+    >desc
+    侧边栏折叠后的导航菜单的尺寸。
+    >tpl
+    <div style="width:220px;">
+        <ui-menu
+            :menu="{
+                'home' : '<i class=\'mo-icon mo-icon-block-4\'></i>尺寸{$sizeName}',
+                'order' : {
+                    name : '<i class=\'mo-icon mo-icon-menu\'></i>订单',
+                    childs : {
+                        'my' : '我的订单',
+                        'history' : {
+                            name : '历史订单',
+                            childs : {
+                                'week' : '最近一周',
+                                'month' : '最近一月'
+                            }
+                        }
+                    }
+                },
+                'search' : '<i class=\'mo-icon mo-icon-more\'></i>搜索'
+            }"
+            size="{$sizeKey}"
+            position="side"
+            :side-collapse="true"
+        ></ui-menu>
+        <br>
+    </div>
+    :::
+
+    :::vue
+    @name:色彩(浅色)
+    ---
+    #renderer
+    >name
+    color-repeat
+    >rules
+    color:gray
+    >tpl
+    <div style="width:700px;padding:20px;">
+        <ui-menu
+            :menu="{
+                'home' : '<i class=\'mo-icon mo-icon-block-4\'></i>颜色{$colorName}菜单',
+                'active' : {
+                    name : '活动',
+                    disable : true
+                },
+                'order' : {
+                    name : '订单',          
+                    childs : {
+                        'all' : '所有',
+                        'notshipped' : '待发货',
+                        'intransit' : '运输中',
+                        'done' : '已完成',
+                        'history' : '历史订单',
+                        'status' : '订单状态',
+                        'data' : '数据统计'
+                    },
+                    groups : {
+                        '订单列表' : ['all', 'done', 'notshipped', 'intransit'],
+                        '更多' : ['history', 'status', 'data']
+                    }
+                },
+                'settings' : {
+                    name : '设置',
+                    childs : {
+                        'common' : {
+                            name : '通用设置',
+                            childs : {
+                                'theme' : {
+                                    name : '模板',
+                                    childs : {
+                                        'modify' : '编辑',
+                                        'market' : '模板市场'
+                                    }
+                                },
+                                'goods' : '商品',
+                                'payment' : '支付'
+                            }
+                        },
+                        'account' : {
+                            name : '账户设置',
+                            childs : {
+                                'email' : '邮箱设置',
+                                'password' : '修改密码'
+                            }
+                        },
+                        'safity' : {
+                            name : '安全设置',
+                            childs : {
+                                'multiple' : '多重认证',
+                                'found' : '账户找回',
+                                'history' : '登录历史',
+                                'help' : '寻求帮助',
+                                'blocked' : '锁定账户'
+                            }
+                        }
+                    }
+                }
+            }"
+            color="{$colorKey}"
+        ></ui-menu>
+        <br>
+    </div>
+    ---
+    #renderer
+    >name
+    color-repeat
+    >rules
+    color:gray
+    >desc
+    侧边栏导航菜单的尺寸。
+    >tpl
+    <div style="width:260px;padding:20px;">
+        <ui-menu
+            :menu="{
+                'home' : '<i class=\'mo-icon mo-icon-block-4\'></i>颜色{$colorName}菜单',
+                'active' : {
+                    name : '活动',
+                    disable : true
+                },
+                'order' : {
+                    name : '订单',          
+                    childs : {
+                        'all' : '所有',
+                        'notshipped' : '待发货',
+                        'intransit' : '运输中',
+                        'done' : '已完成',
+                        'history' : '历史订单',
+                        'status' : '订单状态',
+                        'data' : '数据统计'
+                    },
+                    groups : {
+                        '订单列表' : ['all', 'done', 'notshipped', 'intransit'],
+                        '更多' : ['history', 'status', 'data']
+                    }
+                },
+                'settings' : {
+                    name : '设置',
+                    childs : {
+                        'common' : {
+                            name : '通用设置',
+                            childs : {
+                                'theme' : {
+                                    name : '模板',
+                                    childs : {
+                                        'modify' : '编辑',
+                                        'market' : '模板市场'
+                                    }
+                                },
+                                'goods' : '商品',
+                                'payment' : '支付'
+                            }
+                        },
+                        'account' : {
+                            name : '账户设置',
+                            childs : {
+                                'email' : '邮箱设置',
+                                'password' : '修改密码'
+                            }
+                        },
+                        'safity' : {
+                            name : '安全设置',
+                            childs : {
+                                'multiple' : '多重认证',
+                                'found' : '账户找回',
+                                'history' : '登录历史',
+                                'help' : '寻求帮助',
+                                'blocked' : '锁定账户'
+                            }
+                        }
+                    }
+                }
+            }"
+            color="{$colorKey}"
+            position="side"
+        ></ui-menu>
+        <br>
+    </div>
+    ---
+    #renderer
+    >name
+    color-repeat
+    >rules
+    color:gray
+    >desc
+    线条风格的菜单。
+    >tpl
+    <div>
+        <div style="width:700px;padding:20px;">
+            <ui-menu
+                :menu="{
+                    'home' : '<i class=\'mo-icon mo-icon-block-4\'></i>颜色{$colorName}菜单',
+                    'active' : {
+                        name : '活动',
+                        disable : true
+                    },
+                    'order' : {
+                        name : '订单',          
+                        childs : {
+                            'all' : '所有',
+                            'notshipped' : '待发货',
+                            'intransit' : '运输中',
+                            'done' : '已完成',
+                            'history' : '历史订单',
+                            'status' : '订单状态',
+                            'data' : '数据统计'
+                        },
+                        groups : {
+                            '订单列表' : ['all', 'done', 'notshipped', 'intransit'],
+                            '更多' : ['history', 'status', 'data']
+                        }
+                    },
+                    'settings' : {
+                        name : '设置',
+                        childs : {
+                            'common' : {
+                                name : '通用设置',
+                                childs : {
+                                    'theme' : {
+                                        name : '模板',
+                                        childs : {
+                                            'modify' : '编辑',
+                                            'market' : '模板市场'
+                                        }
+                                    },
+                                    'goods' : '商品',
+                                    'payment' : '支付'
+                                }
+                            },
+                            'account' : {
+                                name : '账户设置',
+                                childs : {
+                                    'email' : '邮箱设置',
+                                    'password' : '修改密码'
+                                }
+                            },
+                            'safity' : {
+                                name : '安全设置',
+                                childs : {
+                                    'multiple' : '多重认证',
+                                    'found' : '账户找回',
+                                    'history' : '登录历史',
+                                    'help' : '寻求帮助',
+                                    'blocked' : '锁定账户'
+                                }
+                            }
+                        }
+                    }
+                }"
+                color="{$colorKey}"
+                class="line"
+            ></ui-menu>
+        </div>
+        <br>
+        <div style="width:260px;padding:20px;">
+            <ui-menu
+                :menu="{
+                    'home' : '<i class=\'mo-icon mo-icon-block-4\'></i>颜色{$colorName}菜单',
+                    'active' : {
+                        name : '活动',
+                        disable : true
+                    },
+                    'order' : {
+                        name : '订单',          
+                        childs : {
+                            'all' : '所有',
+                            'notshipped' : '待发货',
+                            'intransit' : '运输中',
+                            'done' : '已完成',
+                            'history' : '历史订单',
+                            'status' : '订单状态',
+                            'data' : '数据统计'
+                        },
+                        groups : {
+                            '订单列表' : ['all', 'done', 'notshipped', 'intransit'],
+                            '更多' : ['history', 'status', 'data']
+                        }
+                    },
+                    'settings' : {
+                        name : '设置',
+                        childs : {
+                            'common' : {
+                                name : '通用设置',
+                                childs : {
+                                    'theme' : {
+                                        name : '模板',
+                                        childs : {
+                                            'modify' : '编辑',
+                                            'market' : '模板市场'
+                                        }
+                                    },
+                                    'goods' : '商品',
+                                    'payment' : '支付'
+                                }
+                            },
+                            'account' : {
+                                name : '账户设置',
+                                childs : {
+                                    'email' : '邮箱设置',
+                                    'password' : '修改密码'
+                                }
+                            },
+                            'safity' : {
+                                name : '安全设置',
+                                childs : {
+                                    'multiple' : '多重认证',
+                                    'found' : '账户找回',
+                                    'history' : '登录历史',
+                                    'help' : '寻求帮助',
+                                    'blocked' : '锁定账户'
+                                }
+                            }
+                        }
+                    }
+                }"
+                color="{$colorKey}"
+                class="line"
+                position="side"
+            ></ui-menu>
+        </div>
+        <br>
+    </div>
+    ---
+    #renderer
+    >name
+    color-repeat
+    >rules
+    color:gray
+    >desc
+    区块风格的菜单。
+    >tpl
+    <div>
+        <div style="width:700px;padding:20px;">
+            <ui-menu
+                :menu="{
+                    'home' : '<i class=\'mo-icon mo-icon-block-4\'></i>颜色{$colorName}菜单',
+                    'active' : {
+                        name : '活动',
+                        disable : true
+                    },
+                    'order' : {
+                        name : '订单',          
+                        childs : {
+                            'all' : '所有',
+                            'notshipped' : '待发货',
+                            'intransit' : '运输中',
+                            'done' : '已完成',
+                            'history' : '历史订单',
+                            'status' : '订单状态',
+                            'data' : '数据统计'
+                        },
+                        groups : {
+                            '订单列表' : ['all', 'done', 'notshipped', 'intransit'],
+                            '更多' : ['history', 'status', 'data']
+                        }
+                    },
+                    'settings' : {
+                        name : '设置',
+                        childs : {
+                            'common' : {
+                                name : '通用设置',
+                                childs : {
+                                    'theme' : {
+                                        name : '模板',
+                                        childs : {
+                                            'modify' : '编辑',
+                                            'market' : '模板市场'
+                                        }
+                                    },
+                                    'goods' : '商品',
+                                    'payment' : '支付'
+                                }
+                            },
+                            'account' : {
+                                name : '账户设置',
+                                childs : {
+                                    'email' : '邮箱设置',
+                                    'password' : '修改密码'
+                                }
+                            },
+                            'safity' : {
+                                name : '安全设置',
+                                childs : {
+                                    'multiple' : '多重认证',
+                                    'found' : '账户找回',
+                                    'history' : '登录历史',
+                                    'help' : '寻求帮助',
+                                    'blocked' : '锁定账户'
+                                }
+                            }
+                        }
+                    }
+                }"
+                color="{$colorKey}"
+                class="block"
+            ></ui-menu>
+        </div>
+        <br>
+        <div style="width:260px;padding:20px;">
+            <ui-menu
+                :menu="{
+                    'home' : '<i class=\'mo-icon mo-icon-block-4\'></i>颜色{$colorName}菜单',
+                    'active' : {
+                        name : '活动',
+                        disable : true
+                    },
+                    'order' : {
+                        name : '订单',          
+                        childs : {
+                            'all' : '所有',
+                            'notshipped' : '待发货',
+                            'intransit' : '运输中',
+                            'done' : '已完成',
+                            'history' : '历史订单',
+                            'status' : '订单状态',
+                            'data' : '数据统计'
+                        },
+                        groups : {
+                            '订单列表' : ['all', 'done', 'notshipped', 'intransit'],
+                            '更多' : ['history', 'status', 'data']
+                        }
+                    },
+                    'settings' : {
+                        name : '设置',
+                        childs : {
+                            'common' : {
+                                name : '通用设置',
+                                childs : {
+                                    'theme' : {
+                                        name : '模板',
+                                        childs : {
+                                            'modify' : '编辑',
+                                            'market' : '模板市场'
+                                        }
+                                    },
+                                    'goods' : '商品',
+                                    'payment' : '支付'
+                                }
+                            },
+                            'account' : {
+                                name : '账户设置',
+                                childs : {
+                                    'email' : '邮箱设置',
+                                    'password' : '修改密码'
+                                }
+                            },
+                            'safity' : {
+                                name : '安全设置',
+                                childs : {
+                                    'multiple' : '多重认证',
+                                    'found' : '账户找回',
+                                    'history' : '登录历史',
+                                    'help' : '寻求帮助',
+                                    'blocked' : '锁定账户'
+                                }
+                            }
+                        }
+                    }
+                }"
+                color="{$colorKey}"
+                class="block"
+                position="side"
+            ></ui-menu>
+        </div>
+        <br>
+    </div>
+    :::
+
+    :::vue
+    @name:色彩(深色)
+    ---
+    #renderer
+    >name
+    color-repeat
+    >rules
+    color:black
+    >tpl
+    <div style="width:700px;padding:20px;background:#646b75;">
+        <ui-menu
+            :menu="{
+                'home' : '<i class=\'mo-icon mo-icon-block-4\'></i>颜色{$colorName}菜单',
+                'active' : {
+                    name : '活动',
+                    disable : true
+                },
+                'order' : {
+                    name : '订单',          
+                    childs : {
+                        'all' : '所有',
+                        'notshipped' : '待发货',
+                        'intransit' : '运输中',
+                        'done' : '已完成',
+                        'history' : '历史订单',
+                        'status' : '订单状态',
+                        'data' : '数据统计'
+                    },
+                    groups : {
+                        '订单列表' : ['all', 'done', 'notshipped', 'intransit'],
+                        '更多' : ['history', 'status', 'data']
+                    }
+                },
+                'settings' : {
+                    name : '设置',
+                    childs : {
+                        'common' : {
+                            name : '通用设置',
+                            childs : {
+                                'theme' : {
+                                    name : '模板',
+                                    childs : {
+                                        'modify' : '编辑',
+                                        'market' : '模板市场'
+                                    }
+                                },
+                                'goods' : '商品',
+                                'payment' : '支付'
+                            }
+                        },
+                        'account' : {
+                            name : '账户设置',
+                            childs : {
+                                'email' : '邮箱设置',
+                                'password' : '修改密码'
+                            }
+                        },
+                        'safity' : {
+                            name : '安全设置',
+                            childs : {
+                                'multiple' : '多重认证',
+                                'found' : '账户找回',
+                                'history' : '登录历史',
+                                'help' : '寻求帮助',
+                                'blocked' : '锁定账户'
+                            }
+                        }
+                    }
+                }
+            }"
+            color="{$colorKey}"
+        ></ui-menu>
+        <br>
+    </div>
+    ---
+    #renderer
+    >name
+    color-repeat
+    >rules
+    color:black
+    >desc
+    侧边栏导航菜单的尺寸。
+    >tpl
+    <div style="width:260px;padding:20px;background:#646b75;">
+        <ui-menu
+            :menu="{
+                'home' : '<i class=\'mo-icon mo-icon-block-4\'></i>颜色{$colorName}菜单',
+                'active' : {
+                    name : '活动',
+                    disable : true
+                },
+                'order' : {
+                    name : '订单',          
+                    childs : {
+                        'all' : '所有',
+                        'notshipped' : '待发货',
+                        'intransit' : '运输中',
+                        'done' : '已完成',
+                        'history' : '历史订单',
+                        'status' : '订单状态',
+                        'data' : '数据统计'
+                    },
+                    groups : {
+                        '订单列表' : ['all', 'done', 'notshipped', 'intransit'],
+                        '更多' : ['history', 'status', 'data']
+                    }
+                },
+                'settings' : {
+                    name : '设置',
+                    childs : {
+                        'common' : {
+                            name : '通用设置',
+                            childs : {
+                                'theme' : {
+                                    name : '模板',
+                                    childs : {
+                                        'modify' : '编辑',
+                                        'market' : '模板市场'
+                                    }
+                                },
+                                'goods' : '商品',
+                                'payment' : '支付'
+                            }
+                        },
+                        'account' : {
+                            name : '账户设置',
+                            childs : {
+                                'email' : '邮箱设置',
+                                'password' : '修改密码'
+                            }
+                        },
+                        'safity' : {
+                            name : '安全设置',
+                            childs : {
+                                'multiple' : '多重认证',
+                                'found' : '账户找回',
+                                'history' : '登录历史',
+                                'help' : '寻求帮助',
+                                'blocked' : '锁定账户'
+                            }
+                        }
+                    }
+                }
+            }"
+            color="{$colorKey}"
+            position="side"
+        ></ui-menu>
+        <br>
+    </div>
+    ---
+    #renderer
+    >name
+    color-repeat
+    >rules
+    color:black
+    >desc
+    线条风格的菜单。
+    >tpl
+    <div>
+        <div style="width:700px;padding:20px;background:#646b75;">
+            <ui-menu
+                :menu="{
+                    'home' : '<i class=\'mo-icon mo-icon-block-4\'></i>颜色{$colorName}菜单',
+                    'active' : {
+                        name : '活动',
+                        disable : true
+                    },
+                    'order' : {
+                        name : '订单',          
+                        childs : {
+                            'all' : '所有',
+                            'notshipped' : '待发货',
+                            'intransit' : '运输中',
+                            'done' : '已完成',
+                            'history' : '历史订单',
+                            'status' : '订单状态',
+                            'data' : '数据统计'
+                        },
+                        groups : {
+                            '订单列表' : ['all', 'done', 'notshipped', 'intransit'],
+                            '更多' : ['history', 'status', 'data']
+                        }
+                    },
+                    'settings' : {
+                        name : '设置',
+                        childs : {
+                            'common' : {
+                                name : '通用设置',
+                                childs : {
+                                    'theme' : {
+                                        name : '模板',
+                                        childs : {
+                                            'modify' : '编辑',
+                                            'market' : '模板市场'
+                                        }
+                                    },
+                                    'goods' : '商品',
+                                    'payment' : '支付'
+                                }
+                            },
+                            'account' : {
+                                name : '账户设置',
+                                childs : {
+                                    'email' : '邮箱设置',
+                                    'password' : '修改密码'
+                                }
+                            },
+                            'safity' : {
+                                name : '安全设置',
+                                childs : {
+                                    'multiple' : '多重认证',
+                                    'found' : '账户找回',
+                                    'history' : '登录历史',
+                                    'help' : '寻求帮助',
+                                    'blocked' : '锁定账户'
+                                }
+                            }
+                        }
+                    }
+                }"
+                color="{$colorKey}"
+                class="line"
+            ></ui-menu>
+        </div>
+        <br>
+        <div style="width:260px;padding:20px;background:#646b75;">
+            <ui-menu
+                :menu="{
+                    'home' : '<i class=\'mo-icon mo-icon-block-4\'></i>颜色{$colorName}菜单',
+                    'active' : {
+                        name : '活动',
+                        disable : true
+                    },
+                    'order' : {
+                        name : '订单',          
+                        childs : {
+                            'all' : '所有',
+                            'notshipped' : '待发货',
+                            'intransit' : '运输中',
+                            'done' : '已完成',
+                            'history' : '历史订单',
+                            'status' : '订单状态',
+                            'data' : '数据统计'
+                        },
+                        groups : {
+                            '订单列表' : ['all', 'done', 'notshipped', 'intransit'],
+                            '更多' : ['history', 'status', 'data']
+                        }
+                    },
+                    'settings' : {
+                        name : '设置',
+                        childs : {
+                            'common' : {
+                                name : '通用设置',
+                                childs : {
+                                    'theme' : {
+                                        name : '模板',
+                                        childs : {
+                                            'modify' : '编辑',
+                                            'market' : '模板市场'
+                                        }
+                                    },
+                                    'goods' : '商品',
+                                    'payment' : '支付'
+                                }
+                            },
+                            'account' : {
+                                name : '账户设置',
+                                childs : {
+                                    'email' : '邮箱设置',
+                                    'password' : '修改密码'
+                                }
+                            },
+                            'safity' : {
+                                name : '安全设置',
+                                childs : {
+                                    'multiple' : '多重认证',
+                                    'found' : '账户找回',
+                                    'history' : '登录历史',
+                                    'help' : '寻求帮助',
+                                    'blocked' : '锁定账户'
+                                }
+                            }
+                        }
+                    }
+                }"
+                color="{$colorKey}"
+                class="line"
+                position="side"
+            ></ui-menu>
+        </div>
+        <br>
+    </div>
+    ---
+    #renderer
+    >name
+    color-repeat
+    >rules
+    color:black
+    >desc
+    区块风格的菜单。
+    >tpl
+    <div>
+        <div style="width:700px;padding:20px;background:#646b75;">
+            <ui-menu
+                :menu="{
+                    'home' : '<i class=\'mo-icon mo-icon-block-4\'></i>颜色{$colorName}菜单',
+                    'active' : {
+                        name : '活动',
+                        disable : true
+                    },
+                    'order' : {
+                        name : '订单',          
+                        childs : {
+                            'all' : '所有',
+                            'notshipped' : '待发货',
+                            'intransit' : '运输中',
+                            'done' : '已完成',
+                            'history' : '历史订单',
+                            'status' : '订单状态',
+                            'data' : '数据统计'
+                        },
+                        groups : {
+                            '订单列表' : ['all', 'done', 'notshipped', 'intransit'],
+                            '更多' : ['history', 'status', 'data']
+                        }
+                    },
+                    'settings' : {
+                        name : '设置',
+                        childs : {
+                            'common' : {
+                                name : '通用设置',
+                                childs : {
+                                    'theme' : {
+                                        name : '模板',
+                                        childs : {
+                                            'modify' : '编辑',
+                                            'market' : '模板市场'
+                                        }
+                                    },
+                                    'goods' : '商品',
+                                    'payment' : '支付'
+                                }
+                            },
+                            'account' : {
+                                name : '账户设置',
+                                childs : {
+                                    'email' : '邮箱设置',
+                                    'password' : '修改密码'
+                                }
+                            },
+                            'safity' : {
+                                name : '安全设置',
+                                childs : {
+                                    'multiple' : '多重认证',
+                                    'found' : '账户找回',
+                                    'history' : '登录历史',
+                                    'help' : '寻求帮助',
+                                    'blocked' : '锁定账户'
+                                }
+                            }
+                        }
+                    }
+                }"
+                color="{$colorKey}"
+                class="block"
+            ></ui-menu>
+        </div>
+        <br>
+        <div style="width:260px;padding:20px;background:#646b75;">
+            <ui-menu
+                :menu="{
+                    'home' : '<i class=\'mo-icon mo-icon-block-4\'></i>颜色{$colorName}菜单',
+                    'active' : {
+                        name : '活动',
+                        disable : true
+                    },
+                    'order' : {
+                        name : '订单',          
+                        childs : {
+                            'all' : '所有',
+                            'notshipped' : '待发货',
+                            'intransit' : '运输中',
+                            'done' : '已完成',
+                            'history' : '历史订单',
+                            'status' : '订单状态',
+                            'data' : '数据统计'
+                        },
+                        groups : {
+                            '订单列表' : ['all', 'done', 'notshipped', 'intransit'],
+                            '更多' : ['history', 'status', 'data']
+                        }
+                    },
+                    'settings' : {
+                        name : '设置',
+                        childs : {
+                            'common' : {
+                                name : '通用设置',
+                                childs : {
+                                    'theme' : {
+                                        name : '模板',
+                                        childs : {
+                                            'modify' : '编辑',
+                                            'market' : '模板市场'
+                                        }
+                                    },
+                                    'goods' : '商品',
+                                    'payment' : '支付'
+                                }
+                            },
+                            'account' : {
+                                name : '账户设置',
+                                childs : {
+                                    'email' : '邮箱设置',
+                                    'password' : '修改密码'
+                                }
+                            },
+                            'safity' : {
+                                name : '安全设置',
+                                childs : {
+                                    'multiple' : '多重认证',
+                                    'found' : '账户找回',
+                                    'history' : '登录历史',
+                                    'help' : '寻求帮助',
+                                    'blocked' : '锁定账户'
+                                }
+                            }
+                        }
+                    }
+                }"
+                color="{$colorKey}"
+                class="block"
+                position="side"
+            ></ui-menu>
+        </div>
+        <br>
+    </div>
     :::
 
     [[[配置]]]
 
-    |KEY|描述|接受值|值类型|默认值|
-    |-|-|-|-|-|
-    |[menu](#menu)|菜单对象，用来描述整个菜单树状结构。<br><br>可以简写成`key`:`name`的形式，`key`为菜单项的KEY，`name`为菜单项的名称。<br><br>完整的写法为`key`:`object`的形式，其中`object`包含以下字段：<br>`name`: 菜单项的名称<br>`link`: 点击后跳转的链接<br>`newtab`: 链接是否在新窗口打开(配合`link`一起使用)<br>`childs`: 子菜单，值为子菜单的对象树<br>`groups`: 配合`childs`一起使用，这是一个对象，`key`为分组名称，`value`是一个包含子菜单KEY的数组。子菜单会按照这个数组将对应的菜单项分为一组<br>`handler`: 点击菜单项后的处理函数<br>`disable`: 禁用此菜单项<br><br>注意：当一个`object`包含`childs`时`link`和`newtab`会失效|菜单树对象|Object|`{}`|
-    |[current-menu](#current-menu)|高亮当前所在菜单项，接受一个路径字符串，由每一级的菜单项KEY组成，每级之间用斜杠分隔。例如:`settings/profile/email`|路径字符串|String|`''`|
-    |[position](#position)|导航菜单的位置|`'top'` : 位于顶部<br>`'side'` : 位于侧边|String|`'top'`|
-    |[auto-toggle-current](#auto-toggle-current)|用户切换菜单时，是否自动调整并高亮当前所在菜单项。注意：若开启此配置`current-menu`配置和用户操作同时生效。|`true`<br>`false`|Boolean|`true`|
-    |[position-current](#position-current)|定位到当前所在的菜单。开启此选项后，若配置了`current-menu`且是一个多层级菜单，菜单会逐级显示直到展示当前所在菜单项。<br>注意：当`position`为`top`时，定位到当前所在的菜单只是暂时显示，当鼠标在组件内移动，定位的菜单会消失。|`true`<br>`false`|Boolean|`false`|
-    |[side-expand](#side-expand)|侧边栏展开，启用后所有的子目录都会展开并且不可收缩。此配置仅在`position`为`side`时生效。|`true`<br>`false`|Boolean|`false`|
-
-    #### menu
-
-    简写：
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
+    :::vue
+    @name:menu
+    ---
+    #config
+    >conf-desc
+    菜单对象，用来描述整个菜单树状结构。
+    <br><br>
+    可以简写成`key`:`name`的形式，`key`为菜单项的KEY，`name`为菜单项的名称。
+    <br><br>
+    完整的写法为`key`:`object`的形式，其中`object`包含以下字段：
+    <br>
+    `name`: 菜单项的名称
+    <br>
+    `link`: 点击后跳转的链接
+    <br>
+    `newtab`: 链接是否在新窗口打开(配合`link`一起使用)
+    <br>
+    `childs`: 子菜单，值为子菜单的对象树
+    <br>
+    `groups`: 配合`childs`一起使用，这是一个对象，`key`为分组名称，`value`是一个包含子菜单KEY的数组。子菜单会按照这个数组将对应的菜单项分为一组
+    <br>
+    `handler`: 点击菜单项后的处理函数
+    <br>
+    `disable`: 禁用此菜单项
+    <br><br>
+    注意：当一个`object`包含`childs`时`link`和`newtab`会失效。
+    >conf-accept
+    菜单树对象
+    >conf-type
+    Object
+    >conf-default
+    `{}`
+    ---
+    #demo
+    >desc
+    简写
+    >tpl
+    <div style="width:700px;">
+        <ui-menu :menu="menu"></ui-menu>
+    </div>
+    >script
+    {
         data : {
             menu : {
                 'home' : '首页',
@@ -964,19 +1913,17 @@
                 'settings' : '设置'
             }
         }
-    });
+    }
     ---
+    #demo
+    >desc
+    完整
+    >tpl
     <div style="width:700px;">
         <ui-menu :menu="menu"></ui-menu>
     </div>
-    :::
-
-    完整：
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
+    >script
+    {
         data : function () {
             return {
                 menu : {
@@ -1061,53 +2008,29 @@
                 alert('注销账户');
             }
         }
-    });
-    ---
-    <div style="width:700px;">
-        <ui-menu :menu="menu"></ui-menu>
-    </div>
+    }
     :::
 
-    #### current-menu
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
-        data : function () {
-            return {
-                menu : {
-                    'home' : '首页',
-                    'order' : {
-                        name : '订单',
-                        childs : {
-                            'my' : '我的订单',
-                            'history' : {
-                                name : '历史订单',
-                                childs : {
-                                    'week' : '最近一周',
-                                    'month' : '最近一月'
-                                }
-                            }
-                        }
-                    },
-                    'search' : '搜索'
-                }
-            };
-        }
-    });
+    :::vue
+    @name:current-menu
     ---
+    #config
+    >conf-desc
+    高亮当前所在菜单项，接受一个路径字符串，由每一级的菜单项KEY组成，每级之间用斜杠分隔。例如:`settings/profile/email`。
+    >conf-accept
+    路径字符串
+    >conf-type
+    String
+    >conf-default
+    `''`
+    ---
+    #demo
+    >tpl
     <div style="width:700px;">
         <ui-menu :menu="menu" current-menu="order/history/week"></ui-menu>
     </div>
-    :::
-
-    配合`position`一起使用：
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
+    >script
+    {
         data : function () {
             return {
                 menu : {
@@ -1129,44 +2052,63 @@
                 }
             };
         }
-    });
+    }
     ---
+    #demo
+    >desc
+    配合`position`一起使用。
+    >tpl
     <div style="width:220px;">
         <ui-menu :menu="menu" current-menu="order/history/week" position="side"></ui-menu>
     </div>
+    >script
+    {
+        data : function () {
+            return {
+                menu : {
+                    'home' : '首页',
+                    'order' : {
+                        name : '订单',
+                        childs : {
+                            'my' : '我的订单',
+                            'history' : {
+                                name : '历史订单',
+                                childs : {
+                                    'week' : '最近一周',
+                                    'month' : '最近一月'
+                                }
+                            }
+                        }
+                    },
+                    'search' : '搜索'
+                }
+            };
+        }
+    }
     :::
 
-    #### position
-
-    位于侧栏的导航菜单：
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
-        data : {
-            menu : {
-                'home' : '首页',
-                'order' : '订单',
-                'history' : '历史',
-                'settings' : '设置'
-            }
-        }
-    });
+    :::vue
+    @name:position
     ---
+    #config
+    >conf-desc
+    导航菜单的位置。
+    >conf-accept
+    `'top'` : 位于顶部<br>`'side'` : 位于侧边
+    >conf-type
+    String
+    >conf-default
+    `'top'`
+    ---
+    #demo
+    >desc
+    位于侧栏的导航菜单。
+    >tpl
     <div style="width:220px;">
         <ui-menu :menu="menu" position="side"></ui-menu>
     </div>
-    :::
-
-    #### auto-toggle-current
-
-    用户操作不会自动高亮：
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
+    >script
+    {
         data : {
             menu : {
                 'home' : '首页',
@@ -1175,19 +2117,31 @@
                 'settings' : '设置'
             }
         }
-    });
+    }
+    :::
+
+    :::vue
+    @name:auto-toggle-current
     ---
+    #config
+    >conf-desc
+    用户切换菜单时，是否自动调整并高亮当前所在菜单项。注意：若开启此配置`current-menu`配置和用户操作同时生效。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `true`
+    ---
+    #demo
+    >desc
+    用户操作不会自动高亮。
+    >tpl
     <div style="width:700px;">
         <ui-menu :menu="menu" :auto-toggle-current="false"></ui-menu>
     </div>
-    :::
-
-    用户操作会自动高亮：
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
+    >script
+    {
         data : {
             menu : {
                 'home' : '首页',
@@ -1196,53 +2150,48 @@
                 'settings' : '设置'
             }
         }
-    });
+    }
     ---
+    #demo
+    >desc
+    用户操作会自动高亮。
+    >tpl
     <div style="width:700px;">
         <ui-menu :menu="menu" :auto-toggle-current="true"></ui-menu>
     </div>
+    >script
+    {
+        data : {
+            menu : {
+                'home' : '首页',
+                'order' : '订单',
+                'history' : '历史',
+                'settings' : '设置'
+            }
+        }
+    }
     :::
 
-    #### position-current
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
-        data : function () {
-            return {
-                menu : {
-                    'home' : '首页',
-                    'order' : {
-                        name : '订单',
-                        childs : {
-                            'my' : '我的订单',
-                            'history' : {
-                                name : '历史订单',
-                                childs : {
-                                    'week' : '最近一周',
-                                    'month' : '最近一月'
-                                }
-                            }
-                        }
-                    },
-                    'search' : '搜索'
-                }
-            };
-        }
-    });
+    :::vue
+    @name:position-current
     ---
+    #config
+    >conf-desc
+    定位到当前所在的菜单。开启此选项后，若配置了`current-menu`且是一个多层级菜单，菜单会逐级显示直到展示当前所在菜单项。<br>注意：当`position`为`top`时，定位到当前所在的菜单只是暂时显示，当鼠标在组件内移动，定位的菜单会消失。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >tpl
     <div style="width:700px;">
         <ui-menu :menu="menu" current-menu="order/history/week" :position-current="true"></ui-menu>
     </div>
-    :::
-
-    配合`position`一起使用：
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
+    >script
+    {
         data : function () {
             return {
                 menu : {
@@ -1264,19 +2213,17 @@
                 }
             };
         }
-    });
+    }
     ---
+    #demo
+    >desc
+    配合`position`一起使用。
+    >tpl
     <div style="width:220px;">
         <ui-menu :menu="menu" current-menu="order/history/week" position="side" :position-current="true"></ui-menu>
     </div>
-    :::
-
-    #### side-expand
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
+    >script
+    {
         data : function () {
             return {
                 menu : {
@@ -1298,14 +2245,96 @@
                 }
             };
         }
-    });
+    }
+    :::
+
+    :::vue
+    @name:side-expand
     ---
+    #config
+    >conf-desc
+    侧边栏的子菜单展开，启用后所有的子目录都会展开并且不可收缩。此配置仅在`position`为`side`时生效。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >tpl
     <div style="width:220px;">
         <ui-menu :menu="menu" position="side" :side-expand="true"></ui-menu>
     </div>
+    >script
+    {
+        data : function () {
+            return {
+                menu : {
+                    'home' : '首页',
+                    'order' : {
+                        name : '订单',
+                        childs : {
+                            'my' : '我的订单',
+                            'history' : {
+                                name : '历史订单',
+                                childs : {
+                                    'week' : '最近一周',
+                                    'month' : '最近一月'
+                                }
+                            }
+                        }
+                    },
+                    'search' : '搜索'
+                }
+            };
+        }
+    }
     :::
 
-
+    :::vue
+    @name:side-collapse
+    ---
+    #config
+    >conf-desc
+    侧边栏折叠，折叠后侧边栏仅显示菜单图标(必须配置顶级菜单图标)，可以缩小导航菜单所占用的空间。此配置仅在`position`为`side`时生效。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >tpl
+    <div style="width:220px;">
+        <ui-menu :menu="menu" position="side" :side-collapse="true"></ui-menu>
+    </div>
+    >script
+    {
+        data : function () {
+            return {
+                menu : {
+                    'home' : '<i class="mo-icon mo-icon-block-4"></i>首页',
+                    'order' : {
+                        name : '<i class="mo-icon mo-icon-menu"></i>订单',
+                        childs : {
+                            'my' : '我的订单',
+                            'history' : {
+                                name : '历史订单',
+                                childs : {
+                                    'week' : '最近一周',
+                                    'month' : '最近一月'
+                                }
+                            }
+                        }
+                    },
+                    'search' : '<i class="mo-icon mo-icon-more"></i>搜索'
+                }
+            };
+        }
+    }
+    :::
 
     [[[方法]]]
     
@@ -1313,15 +2342,24 @@
 
     [[[事件]]]
 
-    #### emit
-
+    :::vue
+    @name:emit
+    ---
+    #event
+    >event-desc
     当导航菜单被点击时触发（处于禁用状态的菜单项被点击不会触发）。
-
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
+    >event-args
+    |data|菜单触发的数据对象|`Object`|
+    ---
+    #demo
+    >tpl
+    <div style="width:700px;">
+        <ui-menu :menu="menu" @emit="echo"></ui-menu>
+        <br>
+        <p>点击菜单触发emit事件</p>
+    </div>
+    >script
+    {
         data : {
             menu : {
                 'home' : '首页',
@@ -1335,45 +2373,28 @@
                 console.log('demo1.console1', 'emit event!');
             }
         }
-    });
-    ---
-    <div style="width:700px;">
-        <ui-menu :menu="menu" @emit="echo"></ui-menu>
-        <br>
-        <p>点击菜单触发emit事件</p>
-    </div>
+    }
     :::
 
-    #### 生命周期事件
-
-    :::vue/html
-    window.demoEventLifecycle = new Vue({
-        el : '{$el}',
-        template : '{$template}',
-        data : function () {
-            return {
-               text : '导航菜单',
-               show : true,
-                menu : {
-                    'home' : '首页',
-                    'order' : '订单',
-                    'history' : '历史',
-                    'settings' : '设置'
-                }
-            };
-        },
-        methods : {
-            echo : function (name) {
-                console.log('demoEventLifecycle.console1', name + ' event!');
-            }
-        }
-    });
+    :::vue
+    @name:生命周期事件
     ---
+    #event
+    >event-desc
+    组件的生命周期事件，详见:[基础/事件/生命周期事件](/guide/event.html#生命周期事件)。
+    ---
+    #demo
+    >tpl
     <div>
         <ui-menu
             ref="demoEventLifecycle"
             v-show="show"
-            :menu="menu"
+            :menu="{
+                'home' : '首页',
+                'order' : '订单',
+                'history' : '历史',
+                'settings' : '设置'
+            }"
             @created="echo('created')"
             @mounted="echo('mounted')"
             @before-update="echo('before-update')"
@@ -1381,12 +2402,24 @@
             @before-destroy="echo('before-destroy')"
             @destroyed="echo('destroyed')"
         >{*text*}</ui-menu>
-
         <br><br>
-
-        <ui-link js="window.demoEventLifecycle.text='生命周期事件';">触发update</ui-link>
-        <ui-link js="morning.findVM('demoEventLifecycle').$destroy();">触发destroy</ui-link>
+        <ui-link js="this.text='生命周期事件';">触发update</ui-link>
+        <ui-link js="this.$refs['demoEventLifecycle'].$destroy();">触发destroy</ui-link>
     </div>
+    >script
+    {
+        data : function () {
+            return {
+               text : '导航菜单',
+               show : true
+            };
+        },
+        methods : {
+            echo : function (name) {
+                console.log('demoEventLifecycle.console1', name + ' event!');
+            }
+        }
+    }
     :::
 
     [[[源码]]]

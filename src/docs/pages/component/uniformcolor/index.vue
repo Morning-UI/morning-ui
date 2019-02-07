@@ -10,7 +10,7 @@
 
     配色支持[形态/颜色](/guide/status.html#颜色)中的所有色彩。
 
-    ### 文字配色
+    ## 文字配色
 
     如果你需要对元素内的文字，通过`mo-co-font-*`这样的CSS类来进行配色，比如：`mo-co-font-theme`：
 
@@ -18,7 +18,7 @@
     <p class="mo-co-font-theme">这里是非组件元素</p>
     :::
 
-    ### 边框配色
+    ## 边框配色
 
     如果你需要对元素的边框配色，通过`mo-co-border-*`这样的CSS类来进行配色，比如：`mo-co-border-theme`：
 
@@ -26,7 +26,7 @@
     <div style="width:200px;height:50px;border-width:3px;border-style: solid;" class="mo-co-border-theme">这里是非组件元素</div>
     :::
 
-    ### 背景配色
+    ## 背景配色
 
     如果你需要对元素的边框配色，通过`mo-co-bg-*`这样的CSS类来进行配色，比如：`mo-co-bg-theme`：
 
@@ -34,7 +34,7 @@
     <div style="width:200px;height:200px;color: #FFF;" class="mo-co-bg-theme">这里是非组件元素</div>
     :::
 
-    ### 一起使用
+    ## 一起使用
 
     所有的配色都可以一起使用：
 

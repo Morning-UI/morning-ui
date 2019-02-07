@@ -14,29 +14,37 @@
 
     徽章内部只能包含文本内容。
 
-    #### 使用
-
-    :::democode/html
+    :::vue
+    @name:使用
+    ---
+    #demo
+    >tpl
     <ui-badge>24</ui-badge>
     :::
 
-    #### 扁平徽章
-
-    :::democode/html
+    :::vue
+    @name:扁平徽章
+    ---
+    #demo
+    >tpl
     <ui-badge class="flat">24</ui-badge>
     :::
     
-    #### 圆形徽章
-
-    :::democode/html
+    :::vue
+    @name:圆形徽章
+    ---
+    #demo
+    >tpl
     <ui-badge class="circle">圆形徽章</ui-badge>
     :::
 
-    #### 无内容隐藏
-
+    :::vue
+    @name:无内容隐藏
+    ---
+    #demo
+    >desc
     当徽章内没有内容时，会自动隐藏。
-
-    :::democode/html
+    >tpl
     <ui-badge></ui-badge>
     :::
 
@@ -52,32 +60,32 @@
 
     <a href="/guide/status.html">查看形态文档</a>
 
-    #### 尺寸
-    
-    :::repeat/html
-    size
+    :::vue
+    @name:尺寸
     ---
+    #renderer
+    >name
+    size-repeat
+    >tpl
     <ui-badge size="{$sizeKey}">{$&sizeName}</ui-badge>
-    :::
-    
-    :::repeat/html
-    size
     ---
+    #renderer
+    >name
+    size-repeat
+    >desc
+    尺寸配合`circle`样式类一起使用。
+    >tpl
     <ui-badge class="circle" size="{$sizeKey}">{$&sizeName}</ui-badge>
     :::
 
-    #### 色彩
-
-    :::preset/html
-    statusColor
+    :::vue
+    @layout:color
     ---
-    uikey:badge
+    <ui-badge color="{$colorKey}">{$&colorName}</ui-badge>
     :::
 
-    #### 状态
-    
-    :::repeat/html
-    state:normal,apparent
+    :::vue
+    @layout:state-na
     ---
     <ui-badge state="{$stateKey}">{$&stateName}</ui-badge>
     :::

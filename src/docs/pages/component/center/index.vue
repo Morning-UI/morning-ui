@@ -12,9 +12,11 @@
 
     定义居中的容器，容器的内容将被居中显示，这是一个块级元素。
 
-    #### 使用
-
-    :::democode/html
+    :::vue
+    @name:使用
+    ---
+    #demo
+    >tpl
     <div style="width:400px; height:300px;background-color:#EDF1F5">
         <ui-center>
             <div style="background-color:#A8B3C2;">居中div</div>
@@ -23,12 +25,13 @@
     </div>
     :::
 
-    #### 填满容器的居中
-
+    :::vue
+    @name:填满容器的居中
+    ---
+    #demo
+    >desc
     填满的居中容器高度为100%。
-
-
-    :::democode/html
+    >tpl
     <div style="width:400px; height:300px;background-color:#EDF1F5">
         <ui-center class="fill">
             <div style="background-color:#A8B3C2;">充满父容器</div>
@@ -48,7 +51,6 @@
     |状态|不支持|-|
 
     <a href="/guide/status.html">查看形态文档</a>
-
 
     [[[源码]]]
 

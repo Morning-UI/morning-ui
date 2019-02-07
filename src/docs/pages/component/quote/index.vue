@@ -12,9 +12,11 @@
 
     定义一段引用的内容，这是一个块级元素。
 
-    #### 使用
-    
-    :::democode/html
+    :::vue
+    @name:使用
+    ---
+    #demo
+    >tpl
     <ui-quote>引用文本</ui-quote>
     :::
 
@@ -30,15 +32,8 @@
 
     <a href="/guide/status.html">查看形态文档</a>
 
-    #### 色彩
-
-    :::repeat/html
-    color:theme
-    color:feature
-    color:black
-    color:blue
-    color:silver
-    color:gray
+    :::vue
+    @layout:color
     ---
     <ui-quote color="{$colorKey}">{$&colorName}</ui-quote>
     <br>

@@ -11,10 +11,12 @@
     [[[开始]]]
 
     定义复选框组，复选框组可以多选，若需要单选请使用`ui-radio`。
-
-    #### 使用
-
-    :::democode/html
+    
+    :::vue
+    @name:使用
+    ---
+    #demo
+    >tpl
     <div style="width:300px;">
         <ui-checkbox
             form-name="姓名"
@@ -27,11 +29,13 @@
     </div>
     :::
 
-    #### 带边框的复选框组
-
-    通过`border`样式类指定复选框组以带边框的样式显示：
-
-    :::democode/html
+    :::vue
+    @name:带边框的复选框组
+    ---
+    #demo
+    >desc
+    通过`border`样式类指定复选框组以带边框的样式显示。
+    >tpl
     <div style="width:320px;">
         <ui-checkbox
             form-name="姓名"
@@ -45,9 +49,11 @@
     </div>
     :::
 
-    #### 垂直布局的复选框组
-
-    :::democode/html
+    :::vue
+    @name:垂直布局的复选框组
+    ---
+    #demo
+    >tpl
     <div style="width:320px;">
         <ui-checkbox
             form-name="姓名"
@@ -63,42 +69,48 @@
 
     [[[形态]]]
 
-    :::preset/html
-    formStatusWithStyle
-    ---
-    uikey:checkbox
-    statusDefaultValue:['Tim']
-    statusMoreAttr::list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"
+    :::preset
+    @name:formStatusWithStyle
+    @uikey:checkbox
+    @defaultValue:['Tim']
+    @attrs: :list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"
     :::
 
     [[[配置]]]
 
-    :::preset/html
-    formConfigTable
-    ---
-    |[accept-html](#accept-html)|项目的的名称可以使用HTML|`true`<br>`false`|Boolean|`false`|
-    |[list](#list)|可选项目列表|可选项目列表的对象，键名是key，键值是name用于显示|Object|`{}`|
-    |[disabled-options](#disabled-options)|禁止选中的项目（`set()`方法仍然可以选中禁止的项目，但`toggle()`方法无法选中禁止的项目）。|由禁止修改项目键名(key)组成的数组|Array|`[]`|
-    |[max](#max)|最多可选项目的数量|数量|Number|`Infinity`|
-    |[parent](#parent)|此配置可以将当前的复选框组件关联到另一个复选框的某个选项上，建立从属关系。<br><br>如果父选项被选中，那么所关联的子选项都会被选中。<br>如果部分子选项被选中，那么父选项会处于部分选中状态。<br><br>每个父选项只能关联到一个复选框组件上。关联时会优先取子复选框组件的状态。|`[关联复选框的选择器]:[关联选项的key]`|String|`''`|
+    :::preset
+    @name:formConfig
+    @uikey:checkbox
+    @defaultValue:['Tim']
+    @attrs: :list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"
     :::
 
-    :::preset/html
-    formConfigDemo
+    :::vue
+    @name:accept-html
     ---
-    uikey:checkbox
-    configDefaultValue:['Tim']
-    configMoreAttr::list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"
-    :::
-    
-    #### accept-html
-
+    #config
+    >conf-desc
+    项目的的名称可以使用HTML。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >desc
     如果让`ui-checkbox`的显示文本，渲染成HTML，而不是字符串。可以设置`accept-html`。
-    
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
+    >tpl
+    <div style="width:300px;">
+        <ui-checkbox
+            form-name="姓名"
+            accept-html
+            :list="list"
+        ></ui-checkbox>
+    </div>
+    >script
+    {
         data : function () {
             return {
                 list : {
@@ -107,20 +119,24 @@
                 }
             }
         }
-    });
-    ---
-    <div style="width:300px;">
-        <ui-checkbox
-            form-name="姓名"
-            accept-html
-            :list="list"
-        ></ui-checkbox>
-    </div>
+    }
     :::
 
-    #### list
-
-    :::democode/html
+    :::vue
+    @name:list
+    ---
+    #config
+    >conf-desc
+    可选项目列表。
+    >conf-accept
+    可选项目列表的对象，键名是key，键值是name用于显示
+    >conf-type
+    Object
+    >conf-default
+    `{}`
+    ---
+    #demo
+    >tpl
     <div style="width:300px;">
         <ui-checkbox
             form-name="姓名"
@@ -133,11 +149,23 @@
     </div>
     :::
 
-    #### disabled-options
-
-    被禁止的项目将无法选中：
-
-    :::democode/html
+    :::vue
+    @name:disabled-options
+    ---
+    #config
+    >conf-desc
+    禁止选中的项目（`set()`方法仍然可以选中禁止的项目，但`toggle()`方法无法选中禁止的项目）。
+    >conf-accept
+    由禁止修改项目键名(key)组成的数组
+    >conf-type
+    Array
+    >conf-default
+    `[]`
+    ---
+    #demo
+    >desc
+    被禁止的项目将无法选中。
+    >tpl
     <div style="width:300px;">
         <ui-checkbox 
             form-name="姓名" 
@@ -151,11 +179,11 @@
             :disabled-options="['Tim', 'Victor']"
         ></ui-checkbox>
     </div>
-    :::
-
-    若禁止的项目已经被选中，则不可修改：
-
-    :::democode/html
+    ---
+    #demo
+    >desc
+    若禁止的项目已经被选中，则不可修改。
+    >tpl
     <div style="width:300px;">
         <ui-checkbox 
             form-name="姓名" 
@@ -167,14 +195,62 @@
                 Emir : 'Emir Ayouni'
             }" 
             :disabled-options="['Tim', 'Victor']" 
-            :default-value="['Tim', 'Emir']"
+            v-model="value"
+        ></ui-checkbox>
+    </div>
+    >script
+    {
+        data : {
+            value : ['Tim', 'Emir']
+        }
+    }
+    :::
+
+    :::vue
+    @name:hidden-options
+    ---
+    #config
+    >conf-desc
+    隐藏指定的选项。注意：隐藏仅仅是视觉上的，若隐藏的选项已经选中，并不会改变其选中状态。
+    >conf-accept
+    由需要隐藏项目键名(key)组成的数组
+    >conf-type
+    Array
+    >conf-default
+    `[]`
+    ---
+    #demo
+    >tpl
+    <div style="width:300px;">
+        <ui-checkbox
+            form-name="姓名"
+            :list="{
+                Tim : 'Tim Boelaars',
+                Andrew : 'Andrew Colin Beck',
+                Victor : 'Victor Erixon',
+                Shaun : 'Shaun Moynihan',
+                Emir : 'Emir Ayouni'
+            }"
+            :hidden-options="['Tim', 'Victor']"
         ></ui-checkbox>
     </div>
     :::
 
-    #### max
-
-    :::democode/html
+    :::vue
+    @name:max
+    ---
+    #config
+    >conf-desc
+    最多可选项目的数量。
+    >conf-accept
+    数量
+    >conf-type
+    Number
+    >conf-default
+    `Infinity`
+    ---
+    #demo
+    >tpl
     <div style="width:300px;">
         <ui-checkbox
             form-name="姓名"
@@ -190,9 +266,21 @@
     </div>
     :::
 
-    #### parent
-
-    :::democode/html
+    :::vue
+    @name:parent
+    ---
+    #config
+    >conf-desc
+    此配置可以将当前的复选框组件关联到另一个复选框的某个选项上，建立从属关系。<br><br>如果父选项被选中，那么所关联的子选项都会被选中。<br>如果部分子选项被选中，那么父选项会处于部分选中状态。<br><br>每个父选项只能关联到一个复选框组件上。关联时会优先取子复选框组件的状态。
+    >conf-accept
+    `[关联复选框的选择器]:[关联选项的key]`
+    >conf-type
+    String
+    >conf-default
+    `''`
+    ---
+    #demo
+    >tpl
     <div style="width:300px;">
         <ui-checkbox
             form-name="Continents"
@@ -243,16 +331,16 @@
             }"
         ></ui-checkbox>
     </div>
-    :::
-
-    有默认值的情况：
-
-    :::democode/html
+    ---
+    #demo
+    >desc
+    有默认值的情况。
+    >tpl
     <div style="width:300px;">
         <ui-checkbox
             form-name="Continents"
             id="continents2"
-            :default-value="['europe']"
+            v-model="value1"
             :list="{
                 asia : 'Asia',
                 na : 'North America',
@@ -273,7 +361,7 @@
         <ui-checkbox
             form-name="North America"
             parent="#continents2:na"
-            :default-value="['ny']"
+            v-model="value2"
             :list="{
                 ny : 'New York',
                 toronto : 'Toronto',
@@ -295,18 +383,26 @@
         <ui-checkbox
             form-name="Africa"
             parent="#continents2:africa"
-            :default-value="['cairo', 'cuba']"
+            v-model="value3"
             :list="{
                 cairo : 'Cairo',
                 cuba : 'Cuba'
             }"
         ></ui-checkbox>
     </div>
-    :::
-    
-    配合`disabled-options`一起使用：
-
-    :::democode/html
+    >script
+    {
+        data : {
+            value1 : ['europe'],
+            value2 : ['ny'],
+            value3 : ['cairo', 'cuba']
+        }
+    }
+    ---
+    #demo
+    >desc
+    配合`disabled-options`一起使用。
+    >tpl
     <div style="width:300px;">
         <ui-checkbox
             form-name="Continents"
@@ -325,11 +421,11 @@
             }"
         ></ui-checkbox>
     </div>
-    :::
-
-    配合`max`一起使用：
-
-    :::democode/html
+    ---
+    #demo
+    >desc
+    配合`max`一起使用。
+    >tpl
     <div style="width:300px;">
         <ui-checkbox 
             form-name="Continents" 
@@ -349,53 +445,58 @@
         ></ui-checkbox>
     </div>
     :::
-   
+
     [[[方法]]]
 
-    :::preset/html
-    formMethod
-    ---
-    uikey:checkbox
-    methodValue:['Tim', 'Andrew']
-    methodDefaultValue:['Tim']
-    methodMoreAttr::list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"
+    :::preset
+    @name:formMethod
+    @uikey:checkbox
+    @value:['Tim', 'Andrew']
+    @defaultValue:['Tim']
+    @attrs: :list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"
     :::
-    
-    #### toggle(key, [checked])
 
+    :::vue
+    @name:toggle(key, [checked])
+    ---
+    #method
+    >method-desc
     切换单个选项的选中状态。
-    
-    |KEY|可选|描述|接受值|值类型|默认值|
-    |-|-|-|-|-|-|
+    >method-args
     |key|NO|需要切换状态的选项的键值|键值字符串|`String`|`undefined`|
     |checked|YES|需要切换的状态|`undefined`: 切换到相反的状态<br>`true`: 切换到选中状态<br>`false`: 切换到未选中状态|`Undefined`<br>`Boolean`|`undefined`|
-
-    :::democode/html
-    <div style="width:300px;">
-        <ui-checkbox
-            ref="demo2"
-            form-name="姓名"
-            :list="{
-                Tim : 'Tim Boelaars',
-                Andrew : 'Andrew Colin Beck',
-                Victor : 'Victor Erixon'
-            }"
-        ></ui-checkbox>
+    >method-return
+    当前组件VM实例。
+    ---
+    #demo
+    >tpl
+    <div>
+        <div style="width:300px;">
+            <ui-checkbox
+                ref="demo2"
+                form-name="姓名"
+                :list="{
+                    Tim : 'Tim Boelaars',
+                    Andrew : 'Andrew Colin Beck',
+                    Victor : 'Victor Erixon'
+                }"
+            ></ui-checkbox>
+        </div>
+        <br>
+        <ui-link js="morning.findVM('demo2').toggle('Tim');">切换Tim至相反状态</ui-link>
+        <ui-link js="morning.findVM('demo2').toggle('Tim', true);">切换Tim至选中</ui-link>
+        <ui-link js="morning.findVM('demo2').toggle('Tim', false);">切换Tim至未选中</ui-link>
     </div>
-    <br>
-    <ui-link js="morning.findVM('demo2').toggle('Tim');">切换Tim至相反状态</ui-link>
-    <ui-link js="morning.findVM('demo2').toggle('Tim', true);">切换Tim至选中</ui-link>
-    <ui-link js="morning.findVM('demo2').toggle('Tim', false);">切换Tim至未选中</ui-link>
     :::
 
     [[[事件]]]
 
-    :::preset/html
-    formEvent
-    ---
-    uikey:checkbox
-    eventValue:['Tim', 'Andrew']
-    eventMoreAttr::list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"
+    :::preset
+    @name:formEvent
+    @uiname:复选框组
+    @uikey:checkbox
+    @value:['Tim', 'Andrew']
+    @attrs: :list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"
     :::
 
     [[[表单值]]]
@@ -418,29 +519,12 @@
 
     `[]`
 
-    #### 输入/输出示例
-
-    :::repeat/html
-    formValueType:checkbox
-    ---
-    <div>
-        <p>{$valueType}类型</p>
-        <div style="width:300px;">
-            <ui-checkbox
-                ref="demoType{$valueType}"
-                :list="{
-                    Tim : 'Tim Boelaars',
-                    Andrew : 'Andrew Colin Beck',
-                    Victor : 'Victor Erixon'
-                }"
-            ></ui-checkbox>
-        </div>
-        <br>
-        <ui-link js="window.morning.findVM('demoType{$valueType}').set({$&valueContent})">设置{$valueType}类型</ui-link>
-        <ui-link js="alert(window.morning.findVM('demoType{$valueType}').getJson())">获取表单JSON值</ui-link>
-    </div>
-    <br>
-    <br>
+    :::preset
+    @name:formValue
+    @uikey:checkbox
+    @uiname:复选框组
+    @valueType:checkbox
+    @attrs: :list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"
     :::
 
     [[[源码]]]

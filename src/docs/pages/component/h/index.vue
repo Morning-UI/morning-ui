@@ -12,10 +12,12 @@
     [[[开始]]]
 
     定义一个标准标题，此组件可以替换原生的`h1-h6`标签，这是一个块级元素。
-
-    #### 使用
     
-    :::democode/html
+    :::vue
+    @name:使用
+    ---
+    #demo
+    >tpl
     <ui-h>标题</ui-h>
     :::
 
@@ -30,27 +32,21 @@
     |状态|`normal`<br/>`apparent`|`normal`|
 
     <a href="/guide/status.html">查看形态文档</a>
-
-    #### 尺寸
     
-    :::repeat/html
-    size
+    :::vue
+    @layout:size
     ---
     <ui-h size="{$sizeKey}">{$&sizeName}</ui-h>
     :::
 
-    #### 色彩
-
-    :::preset/html
-    statusColor
+    :::vue
+    @layout:color
     ---
-    uikey:h
+    <ui-h color="{$colorKey}">{$&colorName}</ui-h>
     :::
 
-    #### 状态
-    
-    :::repeat/html
-    state:normal,apparent
+    :::vue
+    @layout:state-na
     ---
     <ui-h state="{$stateKey}">{$&stateName}</ui-h>
     :::

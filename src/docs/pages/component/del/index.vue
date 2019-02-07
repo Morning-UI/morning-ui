@@ -12,10 +12,12 @@
 
     将一段内容标记为废弃的，这是内联元素。
 
-    #### 使用
-    
-    :::democode/html
-    <ui-del>中心内容</ui-del>
+    :::vue
+    @name:使用
+    ---
+    #demo
+    >tpl
+    <ui-del>删除的文本</ui-del>
     :::
 
     [[[形态]]]

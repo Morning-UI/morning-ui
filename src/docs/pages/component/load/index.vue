@@ -21,49 +21,63 @@
 
     当内容载入失败时加载会提示用户载入失败。
 
-    #### 使用
-
-    :::democode/html
+    :::vue
+    @name:使用
+    ---
+    #demo
+    >tpl
     <div style="width:400px;height:200px;background: #f6f6f6">
         <!-- 默认0.2秒后加载成功 -->
         <ui-load>0.2秒后加载成功</ui-load>
     </div>
     :::
 
-    #### 5秒后加载成功
-
-    :::democode/html
+    :::vue
+    @name:5秒后加载成功
+    ---
+    #demo
+    >tpl
     <div style="width:400px;height:200px;background: #f6f6f6">
         <ui-load :time="5000">5秒后加载成功</ui-load>
     </div>
     :::
 
-    #### 使用Promise完成加载
-
-    :::democode/html
-    <div style="width:400px;height:200px;background: #f6f6f6">
-        <ui-load ref="demo1" :time="false">加载成功</ui-load>
+    :::vue
+    @name:使用Promise完成加载
+    ---
+    #demo
+    >tpl
+    <div>
+        <div style="width:400px;height:200px;background: #f6f6f6">
+            <ui-load ref="demo1" :time="false">加载成功</ui-load>
+        </div>
+        <ui-link js="window.morning.findVM('demo1').resolve();">完成加载</ui-link>
     </div>
-    <ui-link js="window.morning.findVM('demo1').resolve();">完成加载</ui-link>
     :::
 
-    #### 使用Promise失败加载
-
-    :::democode/html
-    <div style="width:400px;height:200px;background: #f6f6f6">
-        <ui-load ref="demo2" :time="false">加载失败</ui-load>
+    :::vue
+    @name:使用Promise失败加载
+    ---
+    #demo
+    >tpl
+    <div>
+        <div style="width:400px;height:200px;background: #f6f6f6">
+            <ui-load ref="demo2" :time="false">加载失败</ui-load>
+        </div>
+        <ui-link js="window.morning.findVM('demo2').reject();">失败加载</ui-link>
     </div>
-    <ui-link js="window.morning.findVM('demo2').reject();">失败加载</ui-link>
     :::
 
-    #### 带提示的加载
-
-    :::democode/html
+    :::vue
+    @name:带提示的加载
+    ---
+    #demo
+    >tpl
     <div style="width:400px;height:200px;background: #f6f6f6">
         <ui-load :time="false" note="加载中">加载成功</ui-load>
     </div>
     :::
-    
+
     [[[形态]]]
 
     #### 支持
@@ -76,12 +90,13 @@
 
     <a href="/guide/status.html">查看形态文档</a>
 
-
-    #### 尺寸
-
-    :::repeat/html
-    size
+    :::vue
+    @name:尺寸
     ---
+    #renderer
+    >name
+    size-repeat
+    >tpl
     <div style="width:400px;height:200px;background: #f6f6f6">
         <ui-load size="{$sizeKey}" :time="false" note="{$sizeName}">加载成功</ui-load>
     </div>
@@ -89,24 +104,43 @@
 
     [[[配置]]]
 
-    |KEY|描述|接受值|值类型|默认值|
-    |-|-|-|-|-|
-    |[time](#time)|多少时间(ms)后完成加载，若设为false则需要手动完成或拒绝加载。如果当前正处于加载中，`time`改变后需要下次加载生效。|时间值(ms)<br>`false`|Boolean<br>Number|`200`|
-    |[note](#note)|加载过程中的提示|提示字符串|String|`''`|
-
-    #### time
-
+    :::vue
+    @name:time
+    ---
+    #config
+    >conf-desc
+    多少时间(ms)后完成加载，若设为false则需要手动完成或拒绝加载。如果当前正处于加载中，`time`改变后需要下次加载生效。
+    >conf-accept
+    时间值(ms)<br>`false`
+    >conf-type
+    Boolean<br>Number
+    >conf-default
+    `200`
+    ---
+    #demo
+    >desc
     设定一段时间后加载完成。
-
-    :::democode/html
+    >tpl
     <div style="width:400px;height:200px;background: #f6f6f6">
         <ui-load :time="5000">5秒后加载成功</ui-load>
     </div>
     :::
 
-    #### note
-
-    :::democode/html
+    :::vue
+    @name:note
+    ---
+    #config
+    >conf-desc
+    加载过程中的提示。
+    >conf-accept
+    提示字符串
+    >conf-type
+    String
+    >conf-default
+    `''`
+    ---
+    #demo
+    >tpl
     <div style="width:400px;height:200px;background: #f6f6f6">
         <ui-load :time="false" note="加载中">加载成功</ui-load>
     </div>
@@ -114,146 +148,145 @@
 
     [[[方法]]]
 
-    #### resolve()
-
+    :::vue
+    @name:resolve()
+    ---
+    #method
+    >method-desc
     完成加载，一般在远程请求成功获取数据后调用。
-
-    :::democode/html
-    <div style="width:400px;height:200px;background: #f6f6f6">
-        <ui-load ref="demo3" :time="false">加载成功</ui-load>
+    >method-return
+    当前组件VM实例。
+    ---
+    #demo
+    >tpl
+    <div>
+        <div style="width:400px;height:200px;background: #f6f6f6">
+            <ui-load ref="demo3" :time="false">加载成功</ui-load>
+        </div>
+        <ui-link js="window.morning.findVM('demo3').resolve();">完成加载</ui-link>
     </div>
-    <ui-link js="window.morning.findVM('demo3').resolve();">完成加载</ui-link>
     :::
 
-    #### reject()
-
+    :::vue
+    @name:reject()
+    ---
+    #method
+    >method-desc
     失败加载，一般在远程请求失败后调用。
-
-    :::democode/html
-    <div style="width:400px;height:200px;background: #f6f6f6">
-        <ui-load ref="demo4" :time="false">加载成功</ui-load>
+    >method-return
+    当前组件VM实例。
+    ---
+    #demo
+    >tpl
+    <div>
+        <div style="width:400px;height:200px;background: #f6f6f6">
+            <ui-load ref="demo4" :time="false">加载成功</ui-load>
+        </div>
+        <ui-link js="window.morning.findVM('demo4').reject();">失败加载</ui-link>
     </div>
-    <ui-link js="window.morning.findVM('demo4').reject();">失败加载</ui-link>
     :::
-
-    #### reload()
-
+    
+    :::vue
+    @name:reload()
+    ---
+    #method
+    >method-desc
     重新进入加载状态，若组件仍在加载状态，此方法无效。
-
-    :::democode/html
-    <div style="width:400px;height:200px;background: #f6f6f6">
-        <ui-load ref="demo5" :time="3000">加载成功</ui-load>
+    >method-return
+    当前组件VM实例。
+    ---
+    #demo
+    >tpl
+    <div>
+        <div style="width:400px;height:200px;background: #f6f6f6">
+            <ui-load ref="demo5" :time="3000">加载成功</ui-load>
+        </div>
+        <ui-link js="window.morning.findVM('demo5').reload();">重新加载</ui-link>
     </div>
-    <ui-link js="window.morning.findVM('demo5').reload();">重新加载</ui-link>
     :::
 
     [[[事件]]]
 
-    #### emit
-
-    当加载完毕时触发，不管加载是否成功都会触发此事件。
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
-        methods : {
-            echo : function () {
-                console.log('demo6.console1', 'emit event!');
-            }
-        }
-    });
+    :::vue
+    @name:emit
     ---
+    #event
+    >event-desc
+    当加载完毕时触发，不管加载是否成功都会触发此事件。
+    ---
+    #demo
+    >tpl
     <div>
         <div style="width:400px;height:200px;background: #f6f6f6">
             <ui-load ref="demo6" @emit="echo" :time="false">加载成功</ui-load>
         </div>
         <ui-link js="window.morning.findVM('demo6').resolve();">触发emit</ui-link>
     </div>
-    :::
-
-    #### done
-
-    当加载完毕并成功时触发。
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
+    >script
+    {
         methods : {
             echo : function () {
-                console.log('demo7.console1', 'done event!');
+                console.log('demo6.console1', 'emit event!');
             }
         }
-    });
+    }
+    :::
+
+    :::vue
+    @name:done
     ---
+    #event
+    >event-desc
+    当加载完毕并成功时触发。
+    ---
+    #demo
+    >tpl
     <div>
         <div style="width:400px;height:200px;background: #f6f6f6">
             <ui-load ref="demo7" @done="echo" :time="false">加载成功</ui-load>
         </div>
         <ui-link js="window.morning.findVM('demo7').resolve();">触发done</ui-link>
     </div>
-    :::
-
-    #### fail
-
-    当加载完毕并成功时触发。
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
+    >script
+    {
         methods : {
             echo : function () {
-                console.log('demo8.console1', 'fail event!');
+                console.log('demo7.console1', 'done event!');
             }
         }
-    });
+    }
+    :::
+
+    :::vue
+    @name:fail
     ---
+    #event
+    >event-desc
+    当加载完毕并成功时触发。
+    ---
+    #demo
+    >tpl
     <div>
         <div style="width:400px;height:200px;background: #f6f6f6">
             <ui-load ref="demo8" @fail="echo" :time="false">加载失败</ui-load>
         </div>
         <ui-link js="window.morning.findVM('demo8').reject();">触发fail</ui-link>
     </div>
-    :::
-
-    #### 生命周期事件
-    
-    :::vue/html
-    window.demoEventLifecycle = new Vue({
-        el : '{$el}',
-        template : '{$template}',
-        data : function () {
-            return {
-               text : '加载',
-               show : true
-            };
-        },
+    >script
+    {
         methods : {
-            echo : function (name) {
-                console.log('demoEventLifecycle.console1', `${name} event!`);
+            echo : function () {
+                console.log('demo8.console1', 'fail event!');
             }
         }
-    });
-    ---
-    <div>
-        <ui-load
-            ref="demoEventLifecycle"
-            v-show="show"
-            @created="echo('created')"
-            @mounted="echo('mounted')"
-            @before-update="echo('before-update')"
-            @updated="echo('updated')"
-            @before-destroy="echo('before-destroy')"
-            @destroyed="echo('destroyed')"
-        >{*text*}</ui-load>
+    }
+    :::
 
-        <br><br>
-    
-        <ui-link js="window.demoEventLifecycle.text='生命周期事件';">触发update</ui-link>
-        <ui-link js="morning.findVM('demoEventLifecycle').$destroy();">触发destroy</ui-link>
-    </div>
+    :::vue
+    @layout:lifecycle-event
+    ---
+    load
+    加载
     :::
 
     [[[源码]]]

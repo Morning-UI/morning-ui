@@ -2,40 +2,21 @@ import test                         from 'ava';
 import snapshot                     from '../../helpers/snapshot';
 import Vue                          from 'vue/dist/vue.common.js';
 import link                         from '../../../src/lib/components/link/index.vue';
+import commonTest                   from '../../common/unit';
 
-const name = 'link';
-const component = window.morning._origin.UI.extend(link);
+const testOptions = {
+    test,
+    Vue,
+    snapshot,
+    component : window.morning._origin.Form.extend(link),
+    name : 'link',
+    attrs : ``,
+    uiid : 2,
+    delVmEl : false,
+    _baseTestHookCustomMount : false
+};
 
-test.serial('base : component snapshot', async t => {
-
-    const vm = new Vue(component).$mount();
-
-    t.plan(1);
-
-    snapshot(t, vm);
-
-});
-
-test.serial('base : init component', async t => {
-
-    const vm = new Vue(component).$mount();
-
-    t.plan(2);
-
-    t.is(vm.uiid, 2);
-    t.is(component.options.name, `morning-${name}`);
-
-});
-
-test.serial('base : component tag name is t-*', async t => {
-
-    const vm = new Vue(component).$mount();
-
-    t.plan(1);
-
-    t.is(vm.$el.tagName, `mor-${name}`.toUpperCase());
-
-});
+commonTest.componentBase(testOptions);
 
 test.serial('config : link', async t => {
 
@@ -45,7 +26,7 @@ test.serial('config : link', async t => {
             link : 'https://www.google.com'
         },
         components : {
-            'ui-link' : component
+            'ui-link' : testOptions.component
         }
     });
 

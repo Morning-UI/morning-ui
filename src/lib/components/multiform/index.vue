@@ -6,7 +6,6 @@
         :form-name="formName"
         :form-key="formKey"
         :group="group"
-        :default-value="defaultValue"
         :hide-name="hideName"
         :clearable="clearable"
         :inside-name="insideName"
@@ -261,12 +260,13 @@ export default {
         _resetForm : function () {
             
             let formVm = this._findDialogForm();
+            let formValues = this.get();
 
             this.data.modifyIndex = null;
 
             for (let vm of formVm) {
 
-                vm.set(vm.conf.defaultValue || undefined);
+                vm.set(formValues[vm.conf.key] || undefined);
 
             }
 
