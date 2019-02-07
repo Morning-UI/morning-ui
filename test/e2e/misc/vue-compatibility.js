@@ -5,6 +5,10 @@ import path                         from 'path';
 import test                         from 'ava';
 import nightmare                    from 'nightmare';
 
+const runner = nightmare({
+    show : false
+});
+
 const testVer = [
     '2.5.3',
     '2.5.5',
@@ -24,11 +28,7 @@ for (let ver of testVer) {
 
     let vueVer = ver;
 
-    test(`vue-compatibility : v${ver}`, async t => {
-        
-        const runner = nightmare({
-            show : false
-        });
+    test.serial(`vue-compatibility : v${ver}`, async t => {
 
         t.plan(4);
 
