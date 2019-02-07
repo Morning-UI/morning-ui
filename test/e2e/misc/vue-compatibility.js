@@ -102,7 +102,7 @@ for (let ver of testVer) {
         await new Promise((resolve, reject) => {
 
             exec(
-                `cd ${pathDir} && npm install ../../../morning-ui && npm install webpack@4.29.0 style-loader css-loader vue@${vueVer}`,
+                `cd ${pathDir} && npm install ../../ && npm install webpack@4.29.0 style-loader css-loader vue@${vueVer}`,
                 {
                     maxBuffer : maxBuffer
                 },
