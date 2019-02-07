@@ -30,7 +30,7 @@ for (let ver of testVer) {
             show : false
         });
 
-        t.plan(2);
+        t.plan(4);
 
         const maxBuffer = 1024000;
 
@@ -178,7 +178,9 @@ for (let ver of testVer) {
         delete result.styleOfColorpicker.width;
 
         t.is(result.morning, true);
-        t.snapshot(result.style);
+        t.snapshot(result.styleOfLink);
+        t.snapshot(result.styleOfCalendar);
+        t.snapshot(result.styleOfColorpicker);
 
     });
 
