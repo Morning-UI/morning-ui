@@ -22,7 +22,6 @@ test.serial('import-use-tag', async t => {
     let pathJs = path.resolve(pathDir, 'morning-ui.js');
     let pathCss = path.resolve(pathDir, 'morning-ui.css');
 
-    fse.emptyDirSync(pathTmp);
     fse.emptyDirSync(pathDir);
 
     fs.writeFileSync(pathHtml, `
@@ -85,7 +84,6 @@ test.serial('import-use-webpack', async t => {
     let pathHtml = path.resolve(pathDist, 'index.html');
     let pathJs = path.resolve(pathSrc, 'index.js');
 
-    fse.emptyDirSync(pathTmp);
     fse.emptyDirSync(pathDir);
     fse.emptyDirSync(pathSrc);
     fse.emptyDirSync(pathDist);
@@ -189,7 +187,7 @@ test.serial('import-use-webpack', async t => {
         .goto(`file://${pathHtml}`)
         .wait('mor-link')
         .evaluate(() => ({
-            morning : window.morning,
+            morning : window.morning.isMorning,
             style : window.getComputedStyle(document.querySelector('mor-link'))
         }));
 
@@ -201,7 +199,7 @@ test.serial('import-use-webpack', async t => {
     delete result.style.webkitTapHighlightColor;
     delete result.style.width;
 
-    t.is(result.morning.isMorning, true);
+    t.is(result.morning, true);
     t.snapshot(result.style);
 
 });
