@@ -17,9 +17,9 @@
         <section class="s1 versioninfo">
             <p>全新Morning UI : </p>
             <a href="/guide/install.html">
-                <ui-label color="silver" size="xs">0.11.17</ui-label>
+                <ui-label color="silver" size="xs">0.12.0</ui-label>
             </a>
-            <p>发布于2019年1月3日</p>
+            <p>发布于2019年2月7日</p>
         </section>
         <section class="s1 silver">
             <div class="w1k center">
@@ -31,7 +31,7 @@
                 </div>
                 <div class="vs">
                     <div class="logo">
-                        <img src="http://morning-ui-image.test.upcdn.net/bootstrap-stack.png" width="300" alt="">
+                        <img src="http://morning-ui-image.test.upcdn.net/bootstrap-stack.png" width="240" alt="">
                     </div>
                     <h2 class="vsname">
                         对比Bootstrap
@@ -43,15 +43,15 @@
                         <div class="bar">
                             <h3>Morning UI</h3>
                             <div class="bar-box">
-                                <div class="bar-same" style="width:calc(350 / 65 * 35px)"></div>
-                                <div class="bar-more morning" style="width:calc(350 / 65 * 30px)"></div>
+                                <div class="bar-same" style="width:calc(350 / 78 * 41px)"></div>
+                                <div class="bar-more morning" style="width:calc(350 / 78 * 37px)"></div>
                             </div>
                         </div>
                         <div class="bar">
                             <h3>Bootstrap</h3>
                             <div class="bar-box">
-                                <div class="bar-same" style="width:calc(350 / 65 * 35px)"></div>
-                                <div class="bar-more bootstrap" style="width:calc(350 / 65 * 14px)"></div>
+                                <div class="bar-same" style="width:calc(350 / 78 * 41px)"></div>
+                                <div class="bar-more bootstrap" style="width:calc(350 / 78 * 8px)"></div>
                             </div>
                         </div>
                         <div class="label">
@@ -73,27 +73,27 @@
 
                 <div class="vs">
                     <div class="logo">
-                        <img src="http://morning-ui-image.test.upcdn.net/semantic-ui-logo-png-transparent.png" width="230" alt="">
+                        <img src="http://morning-ui-image.test.upcdn.net/semantic-ui-logo-png-transparent.png" width="200" alt="">
                     </div>
                     <h2 class="vsname">
                         对比Semantic UI
                     </h2>
                     <p class="vsdesc">
-                        更完善的表单组件，支持输入数组、对象等结构化数据，以及富文本、色彩等特殊数值。
+                        一套为开发者、设计师和产品经理准备的基于 Vue 2.0 的桌面端组件库。
                     </p>
                     <div class="bars">
                         <div class="bar">
                             <h3>Morning UI</h3>
                             <div class="bar-box">
-                                <div class="bar-same" style="width:calc(350 / 65 * 26px)"></div>
-                                <div class="bar-more morning" style="width:calc(350 / 65 * 39px)"></div>
+                                <div class="bar-same" style="width:calc(350 / 78 * 32px)"></div>
+                                <div class="bar-more morning" style="width:calc(350 / 78 * 46px)"></div>
                             </div>
                         </div>
                         <div class="bar">
                             <h3>Semantic UI</h3>
                             <div class="bar-box">
-                                <div class="bar-same" style="width:calc(350 / 65 * 26px)"></div>
-                                <div class="bar-more semantic" style="width:calc(350 / 65 * 17px)"></div>
+                                <div class="bar-same" style="width:calc(350 / 78 * 32px)"></div>
+                                <div class="bar-more semantic" style="width:calc(350 / 78 * 11px)"></div>
                             </div>
                         </div>
                         <div class="label">
@@ -115,7 +115,91 @@
 
                 <div class="vs">
                     <div class="logo">
-                        <img src="http://morning-ui-image.test.upcdn.net/antd.svg" width="250" alt="">
+                        <img src="https://cdn.worldvectorlogo.com/logos/element-ui-1.svg" width="190" alt="">
+                    </div>
+                    <h2 class="vsname">
+                        对比Element UI
+                    </h2>
+                    <p class="vsdesc">
+                        包含众多的纯样式的布局组件，快速搭建页面原型。
+                    </p>
+                    <div class="bars">
+                        <div class="bar">
+                            <h3>Morning UI</h3>
+                            <div class="bar-box">
+                                <div class="bar-same" style="width:calc(350 / 78 * 43px)"></div>
+                                <div class="bar-more morning" style="width:calc(350 / 78 * 35px)"></div>
+                            </div>
+                        </div>
+                        <div class="bar">
+                            <h3>Ant Design</h3>
+                            <div class="bar-box">
+                                <div class="bar-same" style="width:calc(350 / 78 * 43px)"></div>
+                                <div class="bar-more element" style="width:calc(350 / 78 * 2px)"></div>
+                            </div>
+                        </div>
+                        <div class="label">
+                            <p>
+                                <i class="same"></i>
+                                <span>均有组件</span>
+                            </p>
+                            <p>
+                                <i class="morning"></i>
+                                <span>Morning专有组件</span>
+                            </p>
+                            <p>
+                                <i class="element"></i>
+                                <span>Element UI专有组件</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="vs">
+                    <div class="logo">
+                        <img src="https://static.oschina.net/uploads/logo/iview-admin_kz5oX.svg" width="220" alt="">
+                    </div>
+                    <h2 class="vsname">
+                        对比iView UI
+                    </h2>
+                    <p class="vsdesc">
+                        iView 是一套基于 Vue.js 的开源 UI 组件库，主要服务于 PC 界面的中后台产品。
+                    </p>
+                    <div class="bars">
+                        <div class="bar">
+                            <h3>Morning UI</h3>
+                            <div class="bar-box">
+                                <div class="bar-same" style="width:calc(350 / 78 * 42px)"></div>
+                                <div class="bar-more morning" style="width:calc(350 / 78 * 36px)"></div>
+                            </div>
+                        </div>
+                        <div class="bar">
+                            <h3>iView UI</h3>
+                            <div class="bar-box">
+                                <div class="bar-same" style="width:calc(350 / 78 * 42px)"></div>
+                                <div class="bar-more iview" style="width:calc(350 / 78 * 11px)"></div>
+                            </div>
+                        </div>
+                        <div class="label">
+                            <p>
+                                <i class="same"></i>
+                                <span>均有组件</span>
+                            </p>
+                            <p>
+                                <i class="morning"></i>
+                                <span>Morning专有组件</span>
+                            </p>
+                            <p>
+                                <i class="iview"></i>
+                                <span>iView UI专有组件</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="vs">
+                    <div class="logo">
+                        <img src="http://morning-ui-image.test.upcdn.net/antd.svg" width="210" alt="">
                     </div>
                     <h2 class="vsname">
                         对比Ant Design
@@ -127,15 +211,15 @@
                         <div class="bar">
                             <h3>Morning UI</h3>
                             <div class="bar-box">
-                                <div class="bar-same" style="width:calc(350 / 65 * 37px)"></div>
-                                <div class="bar-more morning" style="width:calc(350 / 65 * 28px)"></div>
+                                <div class="bar-same" style="width:calc(350 / 78 * 50px)"></div>
+                                <div class="bar-more morning" style="width:calc(350 / 78 * 28px)"></div>
                             </div>
                         </div>
                         <div class="bar">
                             <h3>Ant Design</h3>
                             <div class="bar-box">
-                                <div class="bar-same" style="width:calc(350 / 65 * 37px)"></div>
-                                <div class="bar-more antd" style="width:calc(350 / 65 * 21px)"></div>
+                                <div class="bar-same" style="width:calc(350 / 78 * 50px)"></div>
+                                <div class="bar-more antd" style="width:calc(350 / 78 * 13px)"></div>
                             </div>
                         </div>
                         <div class="label">
@@ -156,44 +240,6 @@
                 </div>
 
                 <a href="/guide/comparison.html" class="comparison">查看完整对比</a>
-               <!--  <div class="vs">
-                    <div class="logo">
-                        <img src="http://morning-ui-image.test.upcdn.net/element.png" width="300" alt="">
-                    </div>
-                    <h2 class="vsname">
-                        对比Element UI
-                    </h2>
-                    <div class="bars">
-                        <div class="bar">
-                            <h3>Morning UI</h3>
-                            <div class="bar-box">
-                                <div class="bar-same" style="width:calc(350 / 65 * 32px)"></div>
-                                <div class="bar-more morning" style="width:calc(350 / 65 * 33px)"></div>
-                            </div>
-                        </div>
-                        <div class="bar">
-                            <h3>Element UI</h3>
-                            <div class="bar-box">
-                                <div class="bar-same" style="width:calc(350 / 65 * 32px)"></div>
-                                <div class="bar-more element" style="width:calc(350 / 65 * 14px)"></div>
-                            </div>
-                        </div>
-                        <div class="label">
-                            <p>
-                                <i class="same"></i>
-                                <span>均有组件</span>
-                            </p>
-                            <p>
-                                <i class="morning"></i>
-                                <span>Morning专有组件</span>
-                            </p>
-                            <p>
-                                <i class="element"></i>
-                                <span>Element UI专有组件</span>
-                            </p>
-                        </div>
-                    </div>
-                </div> -->
             </div>
         </section>
         <section class="s1">
@@ -692,11 +738,11 @@ export default {
 }
 .vs{
     width: 100%;
-    height: 440px;
+    height: 360px;
     position: relative;
 
     &:nth-child(2){
-        margin: 100px 0 0 0;
+        margin: 70px 0 0 0;
     }
 
     .logo{    
@@ -738,13 +784,13 @@ export default {
 
     .bars{
         position: absolute;
-        top: 200px;
+        top: 190px;
         width: 600px;
         text-align: left;
 
         .bar{
             width: 100%;
-            padding: 10px 0;
+            padding: 6px 0;
             font-size: 0;
 
             h3{
@@ -801,6 +847,10 @@ export default {
                     &.element{
                         background: #20a0ff;
                     }
+
+                    &.iview{
+                        background: #0c9;
+                    }
                 }
             }
         }
@@ -814,7 +864,7 @@ export default {
 
     .label{
         font-size: 0;
-        margin-top: 40px;
+        margin-top: 30px;
         text-align: center;
 
         p{    
@@ -849,6 +899,10 @@ export default {
 
                 &.element{
                     background: #20a0ff;
+                }
+
+                &.iview{
+                    background: #0c9;
                 }
             }
 

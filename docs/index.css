@@ -456,11 +456,11 @@ mor-dialog a:hover {
 }
 .vs {
   width: 100%;
-  height: 440px;
+  height: 360px;
   position: relative;
 }
 .vs:nth-child(2) {
-  margin: 100px 0 0 0;
+  margin: 70px 0 0 0;
 }
 .vs .logo {
   position: absolute;
@@ -497,13 +497,13 @@ mor-dialog a:hover {
 }
 .vs .bars {
   position: absolute;
-  top: 200px;
+  top: 190px;
   width: 600px;
   text-align: left;
 }
 .vs .bars .bar {
   width: 100%;
-  padding: 10px 0;
+  padding: 6px 0;
   font-size: 0;
 }
 .vs .bars .bar h3 {
@@ -554,12 +554,15 @@ mor-dialog a:hover {
 .vs .bars .bar .bar-box .bar-more.element {
   background: #20a0ff;
 }
+.vs .bars .bar .bar-box .bar-more.iview {
+  background: #0c9;
+}
 .vs .bars.show .bar-box {
   width: 380px;
 }
 .vs .label {
   font-size: 0;
-  margin-top: 40px;
+  margin-top: 30px;
   text-align: center;
 }
 .vs .label p {
@@ -590,6 +593,9 @@ mor-dialog a:hover {
 }
 .vs .label p i.element {
   background: #20a0ff;
+}
+.vs .label p i.iview {
+  background: #0c9;
 }
 .vs .label p span {
   font-size: 12px;
