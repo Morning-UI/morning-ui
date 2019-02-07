@@ -2804,16 +2804,22 @@ a{ }
         margin-right: -0.15em;
     }
 
-    mor-anchor{
-        .nav-wrap{
+    .item > div > mor-anchor,
+    & > mor-anchor{
+        > .nav-wrap{
             min-width: 150px;
             padding-left: 3px;
+
+            > mor-sticky{
+                min-width: 150px;
+            }
         }
 
-        .content-wrap{
+        > .content-wrap{
             min-width: 800px;
         }
     }
+    
 }
 
 .demo-root{

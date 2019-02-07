@@ -497,7 +497,6 @@ footer .tolab {
 }
 .markdown-body a {
   background-color: transparent;
-  -webkit-text-decoration-skip: objects;
 }
 .markdown-body a:active,
 .markdown-body a:hover {
@@ -515,9 +514,6 @@ footer .tolab {
 }
 .markdown-body img {
   border-style: none;
-}
-.markdown-body svg:not(:root) {
-  overflow: hidden;
 }
 .markdown-body code,
 .markdown-body kbd,
@@ -817,6 +813,9 @@ footer .tolab {
   margin-top: 0;
   margin-bottom: 0;
 }
+.markdown-body li {
+  word-wrap: break-all;
+}
 .markdown-body li > p {
   margin-top: 16px;
 }
@@ -869,18 +868,11 @@ footer .tolab {
   padding-right: 20px;
 }
 .markdown-body code {
-  padding: 0;
-  padding-top: 0.2em;
-  padding-bottom: 0.2em;
+  padding: 0.2em 0.4em;
   margin: 0;
   font-size: 85%;
   background-color: rgba(27, 31, 35, 0.05);
   border-radius: 3px;
-}
-.markdown-body code::before,
-.markdown-body code::after {
-  letter-spacing: -0.2em;
-  content: "\A0";
 }
 .markdown-body pre {
   word-wrap: normal;
@@ -920,10 +912,6 @@ footer .tolab {
   word-wrap: normal;
   background-color: transparent;
   border: 0;
-}
-.markdown-body pre code::before,
-.markdown-body pre code::after {
-  content: normal;
 }
 .markdown-body .full-commit .btn-outline:not(:disabled):hover {
   color: #005cc5;
@@ -1227,11 +1215,17 @@ mor-dialog a:hover {
   transform-origin: bottom;
   margin-right: -0.15em;
 }
-.content mor-anchor .nav-wrap {
+.content .item > div > mor-anchor > .nav-wrap,
+.content > mor-anchor > .nav-wrap {
   min-width: 150px;
   padding-left: 3px;
 }
-.content mor-anchor .content-wrap {
+.content .item > div > mor-anchor > .nav-wrap > mor-sticky,
+.content > mor-anchor > .nav-wrap > mor-sticky {
+  min-width: 150px;
+}
+.content .item > div > mor-anchor > .content-wrap,
+.content > mor-anchor > .content-wrap {
   min-width: 800px;
 }
 .demo-root {

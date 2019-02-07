@@ -278,6 +278,18 @@
             <i class="mo-icon-sub"></i>
             <span>mo-icon-sub</span>
         </div>
+        <div>
+            <i class="mo-icon-file-o"></i>
+            <span>mo-icon-file-o</span>
+        </div>
+        <div>
+            <i class="mo-icon-folder-close-o"></i>
+            <span>mo-icon-folder-close-o</span>
+        </div>
+        <div>
+            <i class="mo-icon-folder-open-o"></i>
+            <span>mo-icon-folder-open-o</span>
+        </div>
     </div>
     
     ## 图标托管

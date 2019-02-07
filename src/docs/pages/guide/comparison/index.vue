@@ -304,7 +304,7 @@
                     </td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
-                        <p>61个</p>
+                        <p>64个</p>
                     </td>
                 </tr>
                 <tr>
@@ -1968,7 +1968,7 @@
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
                     <td class="mark">
-                        <i class="iconfont no">&#xe62e;</i>
+                        <i class="iconfont has">&#xe62d;</i>
                     </td>
                 </tr>
                 <tr class="components">
@@ -2132,7 +2132,7 @@
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
-                    <td class="mark">
+                    <td class="mark">c
                         <i class="iconfont no">&#xe62e;</i>
                     </td>
                     <td class="mark">
@@ -2160,7 +2160,7 @@
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
                     <td class="mark">
-                        <i class="iconfont no">&#xe62e;</i>
+                        <i class="iconfont has">&#xe62d;</i>
                     </td>
                 </tr>
                 <tr class="components">

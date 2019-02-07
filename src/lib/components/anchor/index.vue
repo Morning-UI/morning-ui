@@ -148,15 +148,22 @@ export default {
 
             let list = [];
             let $anchors = this.$el.querySelectorAll('[is-anchor]');
+            let $otherAnchors = this.$el.querySelectorAll(':scope mor-anchor [is-anchor]');
+
+            $otherAnchors = Array.from($otherAnchors);
 
             for (let $anchor of $anchors) {
 
-                list.push({
-                    title : $anchor.getAttribute('title'),
-                    anchor : $anchor.getAttribute('id'),
-                    level : $anchor.getAttribute('is-anchor') || 1,
-                    $anchor
-                });
+                if ($otherAnchors.indexOf($anchor) === -1) {
+
+                    list.push({
+                        title : $anchor.getAttribute('title'),
+                        anchor : $anchor.getAttribute('id'),
+                        level : $anchor.getAttribute('is-anchor') || 1,
+                        $anchor
+                    });
+
+                }
 
             }
 

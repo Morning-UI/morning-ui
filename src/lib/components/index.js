@@ -45,6 +45,7 @@ import link                         from './link/index.vue';
 import dropdown                     from './dropdown/index.vue';
 import tab                          from './tab/index.vue';
 import collapse                     from './collapse/index.vue';
+import tree                         from './tree/index.vue';
 import table                        from './table/index.vue';
 import menu                         from './menu/index.vue';
 import anchor                       from './anchor/index.vue';
@@ -88,11 +89,13 @@ import imagemap                     from './imagemap/index.vue';
 import privateTimepicker             from './private-timepicker/index.vue';
 import privateDatepicker             from './private-datepicker/index.vue';
 import privateMenu                   from './private-menu/index.vue';
+import privateTree                   from './private-tree/index.vue';
 
 export default {
     'private-timepicker' : privateTimepicker,
     'private-datepicker' : privateDatepicker,
     'private-menu' : privateMenu,
+    'private-tree' : privateTree,
     h,
     lead,
     mark,
@@ -136,6 +139,7 @@ export default {
     dropdown,
     tab,
     collapse,
+    tree,
     table,
     menu,
     anchor,
