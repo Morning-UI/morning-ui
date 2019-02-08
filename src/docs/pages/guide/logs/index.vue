@@ -18,6 +18,81 @@
     
     ### 更新记录
 
+    ### 0.12.0 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2019年2月8日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.0" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.0/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.0/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 新特性
+
+    - 新增`ui-tree`树状控件组件
+    - 新增`ui-rate`评分组件
+    - 新增`ui-anchor`锚点导航组件
+    - 新增`ui-transfer`穿梭框组件
+    - 新增`ui-popover`弹出框组件
+    - 新增`ui-cascader`级联选择组件
+    - `ui-carousel`新增`direction`配置，可设置竖向的轮播
+    - `ui-menu`支持暗色系配色
+    - `ui-menu`支持`side-collapse`配置，可以折叠侧边栏
+    - `ui-counter`新增`controls-position`配置，可调按钮位置
+    - `ui-dropdown`新增`auto-reverse`配置，可在下拉菜单超出可视区域时自动反转出现方向
+    - `ui-checkbox`和`ui-radio`新增`hidden-options`配置，可以隐藏指定的选项
+    - `ui-tip`新增`align`配置，可以设置小提示对齐
+
+    #### 改进
+
+    - 现在`ui-link`和`ui-btn`中使用`js`来执行代码时，可以通过`this`访问正确的视图模型上下文
+    - 优化文档中示例的展示，使示例更清晰
+    - 优化文档中配置的展示
+    - 优化部分组件的示例
+    - 现在文档中的示例可以在jsfiddle中浏览
+    - 组件的事件文档增加参数说明
+    - 组件的方法文档增加返回值说明
+    - 优化Webpack构建性能
+
+    #### 修复
+
+    - 修复`ui-itemlist`的一个样式问题
+    - 修复`ui-grid`的一些样式问题
+    - 修复`ui-block`文档中的一处错误
+    - 修复`ui-tab`嵌套使用时，父组件会影响子组件的问题
+    - 修复`ui-pagination`使用`total`配置时的一个问题
+    - 修复`ui-pagination`的一个样式问题
+    - 修复`ui-multiinput`的`add`方法在某些情况下返回`undefined`的问题
+    - 修复`ui-imagemap`在某些情况下热区编辑区缩放会变为0%的问题
+    - 修复`ui-tip`当`trigger-in-delay`配置大于0且`trigger`配置为`hover`时，会导致鼠标从触发元素移动到提示内容时，小提示消失的问题
+    - 修复`ui-tip`中当`trigger`配置为`click`时，点击显示，然后使用`toggle()`方法关闭小提示后，点击无法再次打开的问题
+
+    #### 废弃
+
+    - 移除所有表单组件`default-value`配置
+
+    #### 更多
+
+    - Morning UI 网站更新
+    - Morning UI Roadmap更新
+    - 推荐Vue版本升级至`2.5.22`
+    - 优化单元测试写法
+    - `v-model`在表单组件初始化时会同步数值到表单，行为与`default-value`保持一致
+    - 修正部分文档中的错误
+    - 新增Vue版本兼容性测试
+    - 新增三个图标(`mo-icon-folder-close-o`/`mo-icon-folder-open-o`/`mo-icon-file-o`)
+
+    <ui-label color="primary">升级注意事项</ui-label>
+
+    - 请注意本地Vue版本，推荐版本升级至`2.5.22`
+    - 现在所有表单组件的`default-value`配置被废弃了，可以通过`v-model`来替代。若只想为表单单次设值，也可以通过`set()`或`setGroup()`方法来替代。
+    - 现在`v-model`的行为有略微改变，将会在表单初始化时对表单进行首次赋值。在早前的版本中若表单处于`disabled`状态，只有`default-value`会进行首次赋值，`v-model`不会首次赋值。在新的版本中表单处于`disabled`状态，`v-model`也会进行首次赋值。
+        
+    ---
+
     ### 0.11.17 <ui-badge class="circle ver-beta" size="s" color="extra-light-black">Beta</ui-badge>
 
     <ui-textcolor color="light-blue">
