@@ -6,7 +6,6 @@
         :form-name="formName"
         :form-key="formKey"
         :group="group"
-        :default-value="defaultValue"
         :hide-name="hideName"
         :clearable="clearable"
         :inside-name="insideName"
@@ -291,7 +290,7 @@ export default {
             if (this.conf.max &&
                 this.conf.max <= value.length) {
             
-                return;
+                return this;
             
             }
             

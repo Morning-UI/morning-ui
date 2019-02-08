@@ -163,15 +163,15 @@ let e2eStatementFnString = `(ctx, type, attrs, basicDemoSelector) => {
 
                     if (attr.child) {
 
-                        el = $('[name="形态"] '+prefix[type]+ctx.common.COLOR_SHORT_MAP[item]+' '+attr.child).eq(0);
+                        el = $('[name="形态"] .demo-con '+prefix[type]+ctx.common.COLOR_SHORT_MAP[item]+' '+attr.child).eq(0);
 
                     } else if (attr.self){
 
-                        el = $('[name="形态"] '+prefix[type]+ctx.common.COLOR_SHORT_MAP[item]+attr.self).eq(0);
+                        el = $('[name="形态"] .demo-con '+prefix[type]+ctx.common.COLOR_SHORT_MAP[item]+attr.self).eq(0);
 
                     } else {
 
-                        el = $('[name="形态"] '+prefix[type]+ctx.common.COLOR_SHORT_MAP[item]).eq(0);
+                        el = $('[name="形态"] .demo-con '+prefix[type]+ctx.common.COLOR_SHORT_MAP[item]).eq(0);
 
                     }
 
@@ -179,15 +179,15 @@ let e2eStatementFnString = `(ctx, type, attrs, basicDemoSelector) => {
 
                     if (attr.child) {
 
-                        el = $('[name="形态"] '+prefix[type]+item+' '+attr.child).eq(0);
+                        el = $('[name="形态"] .demo-con '+prefix[type]+item+' '+attr.child).eq(0);
 
                     } else if (attr.self){
 
-                        el = $('[name="形态"] '+prefix[type]+item+attr.self).eq(0);
+                        el = $('[name="形态"] .demo-con '+prefix[type]+item+attr.self).eq(0);
 
                     } else {
 
-                        el = $('[name="形态"] '+prefix[type]+item).eq(0);
+                        el = $('[name="形态"] .demo-con '+prefix[type]+item).eq(0);
 
                     }
             
@@ -205,16 +205,16 @@ let e2eStatementFnString = `(ctx, type, attrs, basicDemoSelector) => {
 
                     if (attr.child) {
 
-                        data[type][item][attr] = $('[name="形态"] '+prefix[type]+ctx.common.COLOR_SHORT_MAP[item]+' '+attr.child).eq(0).css(attr);
+                        data[type][item][attr] = $('[name="形态"] .demo-con '+prefix[type]+ctx.common.COLOR_SHORT_MAP[item]+' '+attr.child).eq(0).css(attr);
 
                     } else if (attr.self){
 
-                        data[type][item][attr] = $('[name="形态"] '+prefix[type]+ctx.common.COLOR_SHORT_MAP[item]+attr.self).eq(0).css(attr);
+                        data[type][item][attr] = $('[name="形态"] .demo-con '+prefix[type]+ctx.common.COLOR_SHORT_MAP[item]+attr.self).eq(0).css(attr);
 
 
                     } else {
 
-                        data[type][item][attr] = $('[name="形态"] '+prefix[type]+ctx.common.COLOR_SHORT_MAP[item]).eq(0).css(attr);
+                        data[type][item][attr] = $('[name="形态"] .demo-con '+prefix[type]+ctx.common.COLOR_SHORT_MAP[item]).eq(0).css(attr);
 
 
                     }
@@ -223,16 +223,16 @@ let e2eStatementFnString = `(ctx, type, attrs, basicDemoSelector) => {
 
                     if (attr.child) {
 
-                        data[type][item][attr] = $('[name="形态"] '+prefix[type]+item+' '+attr.child).eq(0).css(attr);
+                        data[type][item][attr] = $('[name="形态"] .demo-con '+prefix[type]+item+' '+attr.child).eq(0).css(attr);
 
                     } else if (attr.self){
 
-                        data[type][item][attr] = $('[name="形态"] '+prefix[type]+item+attr.self).eq(0).css(attr);
+                        data[type][item][attr] = $('[name="形态"] .demo-con '+prefix[type]+item+attr.self).eq(0).css(attr);
 
 
                     } else {
 
-                        data[type][item][attr] = $('[name="形态"] '+prefix[type]+item).eq(0).css(attr);
+                        data[type][item][attr] = $('[name="形态"] .demo-con '+prefix[type]+item).eq(0).css(attr);
 
 
                     }
@@ -250,7 +250,7 @@ let e2eStatementFnString = `(ctx, type, attrs, basicDemoSelector) => {
         basicDemoSelector(null, data);
 
     }
-    
+
     return data;
 
 }`;

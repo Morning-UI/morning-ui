@@ -6,7 +6,6 @@
         :form-name="formName"
         :form-key="formKey"
         :group="group"
-        :default-value="defaultValue"
         :hide-name="hideName"
         :clearable="clearable"
         :inside-name="insideName"
@@ -329,7 +328,7 @@ export default {
             let value = this.get();
 
             if (isNaN(+this.data.setScale) ||
-                +this.data.setScale === 0 ||
+                this.data.setScale === null ||
                 (value && value.w === 0) ||
                 value === undefined) {
 

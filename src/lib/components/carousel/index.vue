@@ -9,6 +9,7 @@
         :indicator-position="indicatorPosition"
         :indicator-type="indicatorType"
         :trigger="trigger"
+        :direction="direction"
     >
     
         <div
@@ -22,20 +23,38 @@
 
         <div class="control">
             <template v-if="conf.toggleBtn">
-                <morning-btn
-                    class="circle left-btn"
-                    color="extra-light-silver"
-                    @emit="prev"
-                >
-                    <i class="mo-icon mo-icon-left"></i>
-                </morning-btn>
-                <morning-btn
-                    class="circle right-btn"
-                    color="extra-light-silver"
-                    @emit="next"
-                >
-                    <i class="mo-icon mo-icon-right"></i>
-                </morning-btn>
+                <template v-if="conf.direction === 'horizontal'">
+                    <morning-btn
+                        class="circle left-btn"
+                        color="extra-light-silver"
+                        @emit="prev"
+                    >
+                        <i class="mo-icon mo-icon-left"></i>
+                    </morning-btn>
+                    <morning-btn
+                        class="circle right-btn"
+                        color="extra-light-silver"
+                        @emit="next"
+                    >
+                        <i class="mo-icon mo-icon-right"></i>
+                    </morning-btn>
+                </template>
+                <template v-else>
+                    <morning-btn
+                        class="circle up-btn"
+                        color="extra-light-silver"
+                        @emit="prev"
+                    >
+                        <i class="mo-icon mo-icon-up"></i>
+                    </morning-btn>
+                    <morning-btn
+                        class="circle down-btn"
+                        color="extra-light-silver"
+                        @emit="next"
+                    >
+                        <i class="mo-icon mo-icon-down"></i>
+                    </morning-btn>
+                </template>
             </template>
             <ul class="indicator">
                 <template v-if="conf.trigger === 'click'">
@@ -113,6 +132,14 @@ export default {
                 'click',
                 'hover'
             ].indexOf(value) !== -1)
+        },
+        direction : {
+            type : String,
+            default : 'horizontal',
+            validator : (value => [
+                'horizontal',
+                'vertical'
+            ].indexOf(value) !== -1)
         }
     },
     computed : {
@@ -124,7 +151,8 @@ export default {
                 toggleBtn : this.toggleBtn,
                 indicatorPosition : this.indicatorPosition,
                 indicatorType : this.indicatorType,
-                trigger : this.trigger
+                trigger : this.trigger,
+                direction : this.direction
             };
 
         },
@@ -135,6 +163,7 @@ export default {
             classes[`toggle-type-${this.conf.toggleType}`] = true;
             classes[`indicator-pos-${this.conf.indicatorPosition}`] = true;
             classes[`indicator-type-${this.conf.indicatorType}`] = true;
+            classes[`direction-${this.conf.direction}`] = true;
 
             return classes;
 

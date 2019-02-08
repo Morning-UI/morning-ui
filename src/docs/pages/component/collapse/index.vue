@@ -12,13 +12,15 @@
 
     定义一个折叠面板，折叠面板支持嵌套，这是一个块元素。
 
-    使用`slot`的`name`属性标记内容对应的折叠面板的KEY，面板的KEY是唯一索引，所以`slot`不能重复。
-
     折叠面板支持多种样式，通过不同的样式类来区分。
 
-    #### 使用
-
-    :::democode/html
+    :::vue
+    @name:使用
+    ---
+    #demo
+    >desc
+    使用`slot`的`name`属性标记内容对应的折叠面板的KEY，面板的KEY是唯一索引，所以`slot`不能重复。
+    >tpl
     <div style="width: 560px;">
         <ui-collapse>
             <div slot="one" title="第一个">
@@ -34,11 +36,13 @@
     </div>
     :::
 
-    #### 使用HTML标题
-
+    :::vue
+    @name:使用HTML标题
+    ---
+    #demo
+    >desc
     标题支持使用HTML，但不支持使用Morning或VUE组件。
-
-    :::democode/html
+    >tpl
     <div style="width: 560px;">
         <ui-collapse>
             <div slot="app" :title="'<i class=\'iconfont\'>&#xe601;</i>应用'">
@@ -54,11 +58,13 @@
     </div>
     :::
 
-    #### 手风琴效果
-
-    通过将`max-show`配置设为`1`可以实现手风琴效果：
-
-    :::democode/html
+    :::vue
+    @name:手风琴效果
+    ---
+    #demo
+    >desc
+    通过将`max-show`配置设为`1`可以实现手风琴效果。
+    >tpl
     <div style="width: 560px;">
         <ui-collapse :max-show="1">
             <div slot="one" title="第一个">
@@ -74,11 +80,13 @@
     </div>
     :::
 
-    #### 线条风格的折叠面板
-
-    通过`line`样式类可以显示线条风格的折叠面板：
-
-    :::democode/html
+    :::vue
+    @name:线条风格的折叠面板
+    ---
+    #demo
+    >desc
+    通过`line`样式类可以显示线条风格的折叠面板。
+    >tpl
     <div style="width: 560px;">
         <ui-collapse class="line">
             <div slot="one" title="第一个">
@@ -94,11 +102,13 @@
     </div>
     :::
 
-    #### 区块风格的折叠面板
-
-    通过`block`样式类可以显示区块风格的折叠面板：
-
-    :::democode/html
+    :::vue
+    @name:区块风格的折叠面板
+    ---
+    #demo
+    >desc
+    通过`block`样式类可以显示区块风格的折叠面板。
+    >tpl
     <div style="width: 560px;">
         <ui-collapse class="block">
             <div slot="one" title="第一个">
@@ -114,11 +124,13 @@
     </div>
     :::
 
-    #### 不显示右侧箭头
-
-    通过`no-arrow`样式类可以不显示右侧箭头：
-
-    :::democode/html
+    :::vue
+    @name:不显示右侧箭头
+    ---
+    #demo
+    >desc
+    通过`no-arrow`样式类可以不显示右侧箭头。
+    >tpl
     <div style="width: 560px;">
         <ui-collapse class="no-arrow">
             <div slot="one" title="第一个">
@@ -134,9 +146,11 @@
     </div>
     :::
 
-    #### 支持嵌套
-
-    :::democode/html
+    :::vue
+    @name:支持嵌套
+    ---
+    #demo
+    >tpl
     <div style="width: 560px;">
         <ui-collapse>
             <div slot="one" title="第一组">
@@ -176,17 +190,23 @@
 
     [[[配置]]]
 
-    |KEY|描述|接受值|值类型|默认值|
-    |-|-|-|-|-|
-    |[shows](#shows)|需要打开的面板|`slot`名(面板的KEY)组成的数组|Array|`[]`|
-    |[max-show](#max-show)|最多同时打开几个面板|数字|Number|`Infinity`|
-    |[disabled-options](#disabled-options)|禁止打开指定的面板<br>被禁止的面板内容不会被渲染|禁用面板的KEY组成的数组|Array|`[]`|
-
-    #### shows
-
-    打开单个面板：
-
-    :::democode/html
+    :::vue
+    @name:shows
+    ---
+    #config
+    >conf-desc
+    需要打开的面板。
+    >conf-accept
+    `slot`名(面板的KEY)组成的数组
+    >conf-type
+    Array
+    >conf-default
+    `[]`
+    ---
+    #demo
+    >desc
+    打开单个面板。
+    >tpl
     <div style="width: 560px;">
         <ui-collapse :shows="['two']">
             <div slot="one" title="第一个">
@@ -200,11 +220,11 @@
             </div>
         </ui-collapse>
     </div>
-    :::
-
-    打开多个面板：
-
-    :::democode/html
+    ---
+    #demo
+    >desc
+    打开多个面板。
+    >tpl
     <div style="width: 560px;">
         <ui-collapse :shows="['two', 'three']">
             <div slot="one" title="第一个">
@@ -218,11 +238,11 @@
             </div>
         </ui-collapse>
     </div>
-    :::
-
-    无法打开被`disabled-options`禁止的面板：
-
-    :::democode/html
+    ---
+    #demo
+    >desc
+    无法打开被`disabled-options`禁止的面板。
+    >tpl
     <div style="width: 560px;">
         <ui-collapse :shows="['two', 'three']" :disabled-options="['three']">
             <div slot="one" title="第一个">
@@ -238,11 +258,23 @@
     </div>
     :::
 
-    #### max-show
-
-    设置为`1`可以实现手风琴效果：
-
-    :::democode/html
+    :::vue
+    @name:max-show
+    ---
+    #config
+    >conf-desc
+    最多同时打开几个面板。
+    >conf-accept
+    数字
+    >conf-type
+    Number
+    >conf-default
+    `Infinity`
+    ---
+    #demo
+    >desc
+    设置为`1`可以实现手风琴效果。
+    >tpl
     <div style="width: 560px;">
         <ui-collapse :max-show="1">
             <div slot="one" title="第一个">
@@ -256,11 +288,11 @@
             </div>
         </ui-collapse>
     </div>
-    :::
-
-    也可以设为更多，关闭时会按照打开顺序依次关闭：
-
-    :::democode/html
+    ---
+    #demo
+    >desc
+    也可以设为更多，关闭时会按照打开顺序依次关闭。
+    >tpl
     <div style="width: 560px;">
         <ui-collapse :max-show="2">
             <div slot="one" title="第一个">
@@ -272,13 +304,25 @@
             <div slot="three" title="第三个">
                 这里是第三个内容
             </div>
-    </ui-collapse>
+        </ui-collapse>
     </div>
     :::
 
-    #### disabled-options
-
-    :::democode/html
+    :::vue
+    @name:disabled-options
+    ---
+    #config
+    >conf-desc
+    禁止打开指定的面板<br>被禁止的面板内容不会被渲染。
+    >conf-accept
+    禁用面板的KEY组成的数组
+    >conf-type
+    Array
+    >conf-default
+    `[]`
+    ---
+    #demo
+    >tpl
     <div style="width: 560px;">
         <ui-collapse :disabled-options="['two']">
             <div slot="one" title="第一个">
@@ -294,105 +338,118 @@
     </div>
     :::
 
-
     [[[方法]]]
 
-    #### switch(key)
-
+    :::vue
+    @name:switch(key)
+    ---
+    #method
+    >method-desc
     切换指定面板的显示状态。
-
-    |KEY|可选|描述|接受值|值类型|默认值|
-    |-|-|-|-|-|-|
+    >method-args
     |key|NO|需要切换显示状态的面板的KEY|面板的KEY，即`slot`的`name`|`String`|`undefined`|
-    
-    :::democode/html
-    <div style="width: 560px;">
-        <ui-collapse ref="demo1">
-            <div slot="one" title="第一个">
-                这里是第一个内容
-            </div>
-            <div slot="two" title="第二个">
-                这里是第二个内容
-            </div>
-            <div slot="three" title="第三个">
-                这里是第三个内容
-            </div>
-        </ui-collapse>
+    >method-return
+    当前组件VM实例。
+    ---
+    #demo
+    >tpl
+    <div>
+        <div style="width: 560px;">
+            <ui-collapse ref="demo1">
+                <div slot="one" title="第一个">
+                    这里是第一个内容
+                </div>
+                <div slot="two" title="第二个">
+                    这里是第二个内容
+                </div>
+                <div slot="three" title="第三个">
+                    这里是第三个内容
+                </div>
+            </ui-collapse>
+        </div>
+        <br><br> 
+        <ui-link js="morning.findVM('demo1').switch('one');">切换第一个的显示状态</ui-link>
+        <ui-link js="morning.findVM('demo1').switch('two');">切换第二个的显示状态</ui-link>
     </div>
-    <br><br> 
-    <ui-link js="morning.findVM('demo1').switch('one');">切换第一个的显示状态</ui-link>
-    <ui-link js="morning.findVM('demo1').switch('two');">切换第二个的显示状态</ui-link>
     :::
 
-    #### show(key)
-
+    :::vue
+    @name:show(key)
+    ---
+    #method
+    >method-desc
     显示指定面板。
-
-    |KEY|可选|描述|接受值|值类型|默认值|
-    |-|-|-|-|-|-|
+    >method-args
     |key|NO|需要显示面板的KEY|面板的KEY，即`slot`的`name`|`String`|`undefined`|
-    
-    :::democode/html
-    <div style="width: 560px;">
-        <ui-collapse ref="demo2">
-            <div slot="one" title="第一个">
-                这里是第一个内容
-            </div>
-            <div slot="two" title="第二个">
-                这里是第二个内容
-            </div>
-            <div slot="three" title="第三个">
-                这里是第三个内容
-            </div>
-        </ui-collapse>
+    >method-return
+    当前组件VM实例。
+    ---
+    #demo
+    >tpl
+    <div>
+        <div style="width: 560px;">
+            <ui-collapse ref="demo2">
+                <div slot="one" title="第一个">
+                    这里是第一个内容
+                </div>
+                <div slot="two" title="第二个">
+                    这里是第二个内容
+                </div>
+                <div slot="three" title="第三个">
+                    这里是第三个内容
+                </div>
+            </ui-collapse>
+        </div>
+        <br><br> 
+        <ui-link js="morning.findVM('demo2').show('one');">显示第一个面板</ui-link>
     </div>
-    <br><br> 
-    <ui-link js="morning.findVM('demo2').show('one');">显示第一个面板</ui-link>
     :::
 
-    #### hide(key)
-
+    :::vue
+    @name:hide(key)
+    ---
+    #method
+    >method-desc
     隐藏指定面板。
-
-    |KEY|可选|描述|接受值|值类型|默认值|
-    |-|-|-|-|-|-|
+    >method-args
     |key|NO|需要隐藏面板的KEY|面板的KEY，即`slot`的`name`|`String`|`undefined`|
-    
-    :::democode/html
-    <div style="width: 560px;">
-        <ui-collapse ref="demo3" :shows="['one']">
-            <div slot="one" title="第一个">
-                这里是第一个内容
-            </div>
-            <div slot="two" title="第二个">
-                这里是第二个内容
-            </div>
-            <div slot="three" title="第三个">
-                这里是第三个内容
-            </div>
-        </ui-collapse>
+    >method-return
+    当前组件VM实例。
+    ---
+    #demo
+    >tpl
+    <div>
+        <div style="width: 560px;">
+            <ui-collapse ref="demo3" :shows="['one']">
+                <div slot="one" title="第一个">
+                    这里是第一个内容
+                </div>
+                <div slot="two" title="第二个">
+                    这里是第二个内容
+                </div>
+                <div slot="three" title="第三个">
+                    这里是第三个内容
+                </div>
+            </ui-collapse>
+        </div>
+        <br><br> 
+        <ui-link js="morning.findVM('demo3').hide('one');">隐藏第一个面板</ui-link>
     </div>
-    <br><br> 
-    <ui-link js="morning.findVM('demo3').hide('one');">隐藏第一个面板</ui-link>
     :::
 
     [[[事件]]]
 
-    #### switch
-
-    当有面板显示/隐藏状态变化时触发。
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
-        methods : {
-            echo : function () {
-                console.log('demo4.console1', 'switch event!');
-            }
-        }
-    });
+    :::vue
+    @name:switch
     ---
+    #event
+    >event-desc
+    当有面板显示/隐藏状态变化时触发。
+    >event-args
+    |key|切换面板的slot值|`String`|
+    ---
+    #demo
+    >tpl
     <div style="width: 560px;">
         <ui-collapse ref="demo4" @switch="echo">
             <div slot="one" title="第一个">
@@ -408,23 +465,27 @@
         <br>
         <p>点击面板触发此事件</p>
     </div>
-    :::
-
-    #### show
-
-    当有面板显示时触发。
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
+    >script
+    {
         methods : {
             echo : function () {
-                console.log('demo5.console1', 'show event!');
+                console.log('demo4.console1', 'switch event!');
             }
         }
-    });
+    }
+    :::
+
+    :::vue
+    @name:show
     ---
+    #event
+    >event-desc
+    当有面板显示时触发。
+    >event-args
+    |key|显示面板的slot值|`String`|
+    ---
+    #demo
+    >tpl
     <div style="width: 560px;">
         <ui-collapse ref="demo5" @show="echo">
             <div slot="one" title="第一个">
@@ -440,23 +501,27 @@
         <br>
         <p>点击面板触发此事件</p>
     </div>
-    :::
-
-    #### hide
-
-    当有面板隐藏时触发。
-
-    :::vue/html
-    new Vue({
-        el : '{$el}',
-        template : '{$template}',
+    >script
+    {
         methods : {
             echo : function () {
-                console.log('demo6.console1', 'hide event!');
+                console.log('demo5.console1', 'show event!');
             }
         }
-    });
+    }
+    :::
+
+    :::vue
+    @name:hide
     ---
+    #event
+    >event-desc
+    当有面板隐藏时触发。
+    >event-args
+    |key|隐藏面板的slot值|`String`|
+    ---
+    #demo
+    >tpl
     <div style="width: 560px;">
         <ui-collapse ref="demo6" @hide="echo">
             <div slot="one" title="第一个">
@@ -472,56 +537,31 @@
         <br>
         <p>点击面板触发此事件</p>
     </div>
-    :::
-
-    #### 生命周期事件
-
-    :::vue/html
-    window.demoEventLifecycle = new Vue({
-        el : '{$el}',
-        template : '{$template}',
-        data : function () {
-            return {
-               text : '折叠面板',
-               show : true
-            };
-        },
+    >script
+    {
         methods : {
-            echo : function (name) {
-                console.log('demoEventLifecycle.console1', `${name} event!`);
+            echo : function () {
+                console.log('demo6.console1', 'hide event!');
             }
         }
-    });
-    ---
-    <div>
-        <ui-collapse
-            ref="demoEventLifecycle"
-            v-show="show"
-            @created="echo('created')"
-            @mounted="echo('mounted')"
-            @before-update="echo('before-update')"
-            @updated="echo('updated')"
-            @before-destroy="echo('before-destroy')"
-            @destroyed="echo('destroyed')"
-        >
-            <div slot="one" title="第一个">
-                {*text*}
-            </div>
-            <div slot="two" title="第二个">
-                这里是第二个内容
-            </div>
-            <div slot="three" title="第三个">
-                这里是第三个内容
-            </div>
-        </ui-collapse>
-
-        <br><br>
-    
-        <ui-link js="window.demoEventLifecycle.text='生命周期事件';">触发update</ui-link>
-        <ui-link js="morning.findVM('demoEventLifecycle').$destroy();">触发destroy</ui-link>
-    </div>
+    }
     :::
 
+    :::vue
+    @layout:lifecycle-event
+    ---
+    collapse
+    折叠面板
+    <div slot="one" title="第一个">
+        {*text*}
+    </div>
+    <div slot="two" title="第二个">
+        这里是第二个内容
+    </div>
+    <div slot="three" title="第三个">
+        这里是第三个内容
+    </div>
+    :::
 
     [[[源码]]]
 

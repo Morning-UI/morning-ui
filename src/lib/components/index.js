@@ -45,8 +45,10 @@ import link                         from './link/index.vue';
 import dropdown                     from './dropdown/index.vue';
 import tab                          from './tab/index.vue';
 import collapse                     from './collapse/index.vue';
+import tree                         from './tree/index.vue';
 import table                        from './table/index.vue';
 import menu                         from './menu/index.vue';
+import anchor                       from './anchor/index.vue';
 import pagination                   from './pagination/index.vue';
 import dialog                       from './dialog/index.vue';
 import calendar                     from './calendar/index.vue';
@@ -56,6 +58,7 @@ import sticky                       from './sticky/index.vue';
 import steps                        from './steps/index.vue';
 import breadcrumbs                  from './breadcrumbs/index.vue';
 import tip                          from './tip/index.vue';
+import popover                      from './popover/index.vue';
 import message                      from './message/index.vue';
 import _alert                       from './alert/index.vue';
 import carousel                     from './carousel/index.vue';
@@ -66,10 +69,13 @@ import textinput                    from './textinput/index.vue';
 import textarea                     from './textarea/index.vue';
 import texteditor                   from './texteditor/index.vue';
 import _switch                      from './switch/index.vue';
+import rate                         from './rate/index.vue';
 import counter                      from './counter/index.vue';
 import select                       from './select/index.vue';
 import checkbox                     from './checkbox/index.vue';
 import radio                        from './radio/index.vue';
+import transfer                     from './transfer/index.vue';
+import cascader                     from './cascader/index.vue';
 import multiinput                   from './multiinput/index.vue';
 import multiform                    from './multiform/index.vue';
 import slider                       from './slider/index.vue';
@@ -83,11 +89,13 @@ import imagemap                     from './imagemap/index.vue';
 import privateTimepicker             from './private-timepicker/index.vue';
 import privateDatepicker             from './private-datepicker/index.vue';
 import privateMenu                   from './private-menu/index.vue';
+import privateTree                   from './private-tree/index.vue';
 
 export default {
     'private-timepicker' : privateTimepicker,
     'private-datepicker' : privateDatepicker,
     'private-menu' : privateMenu,
+    'private-tree' : privateTree,
     h,
     lead,
     mark,
@@ -131,8 +139,10 @@ export default {
     dropdown,
     tab,
     collapse,
+    tree,
     table,
     menu,
+    anchor,
     pagination,
     dialog,
     calendar,
@@ -142,6 +152,7 @@ export default {
     steps,
     breadcrumbs,
     tip,
+    popover,
     message,
     alert : _alert,
     carousel,
@@ -151,10 +162,13 @@ export default {
     textarea,
     texteditor,
     switch : _switch,
+    rate,
     counter,
     select,
     checkbox,
     radio,
+    transfer,
+    cascader,
     multiinput,
     multiform,
     slider,

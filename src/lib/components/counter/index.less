@@ -38,6 +38,10 @@ mor-counter{
             background: @colorSilver;
             z-index: 3;
         }
+
+        .mo-icon{
+            font-size: @fontSize*0.875;
+        }
     }
 
     .sub-step{
@@ -47,6 +51,27 @@ mor-counter{
     .add-step{
         border-radius: 0 @borderRadius @borderRadius 0;
         margin-left: -2px;
+    }
+
+    .step-controls{
+        height: @formHeight*0.85;
+        // line-height: @formHeight*0.85;
+
+        .sub-step,
+        .add-step{
+            height: 50%;
+            line-height: @formHeight*0.85/2;
+        }
+
+        .sub-step{
+            border-radius: 0 0 @borderRadius 0;
+            margin-left: -1px;
+        }
+
+        .add-step{
+            border-radius: 0 @borderRadius 0 0;
+            margin-left: -1px;
+        }
     }
 
     input{
@@ -60,7 +85,6 @@ mor-counter{
         padding: 0 1em;
         background: @colorFormBackground;
         border: 1px @colorFormBorder solid;
-        border-radius: 0;
         height: @formHeight*0.85;
         line-height: @formHeight*0.85;
         color: @colorFormText !important;
@@ -95,6 +119,20 @@ mor-counter{
         &:focus{
             border-color: @colorFormBorderFocus;
             color: @colorFormTextFocus !important;
+        }
+    }
+
+    &.controls-on-both{
+        input{
+            border-radius: 0;
+        }
+    }
+
+    &.controls-on-right{
+        input{
+            border-radius: @borderRadius 0 0 @borderRadius;
+            // border-right: none;
+            margin-left: 0;
         }
     }
 

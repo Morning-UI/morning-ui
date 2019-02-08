@@ -18,9 +18,6 @@ export default UI => UI.extend({
             type : [Array, String],
             default : () => ([])
         },
-        defaultValue : {
-            default : undefined
-        },
         hideName : {
             type : Boolean,
             default : false
@@ -40,7 +37,6 @@ export default UI => UI.extend({
                 formName : this.formName,
                 formKey : this.formKey,
                 group : this.group,
-                defaultValue : this.defaultValue,
                 hideName : this.hideName,
                 clearable : this.clearable
             };
@@ -401,13 +397,7 @@ export default UI => UI.extend({
             deep : true
         });
 
-        this.data.value = this.conf.defaultValue;
-
-        if (this.modelValue !== undefined && this.conf.state !== 'disabled') {
-
-            this.data.value = this.modelValue;
-
-        }
+        this.data.value = this.modelValue;
 
         this._syncGroup();
         this.data.value = this._valueHandler(this.data.value);

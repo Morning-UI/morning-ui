@@ -1,6 +1,4 @@
-import {
-    parse as parseDate
-}                                   from 'date-fns';
+import {parse as parseDate}         from 'date-fns';
 import standardDate                 from './standardDate';
 
 let Dates = {

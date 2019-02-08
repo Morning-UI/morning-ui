@@ -1,7 +1,7 @@
 <template>
     <mor-private-menu
         :_uiid="uiid"
-        :class="[]"
+        :class="[moreClass]"
 
         :item-key="itemKey"
         :deep="deep"
@@ -9,6 +9,7 @@
         :current-menu="currentMenu"
         :position="position"
         :root-item-show-list="rootItemShowList"
+        :side-collapse="sideCollapse"
     >
 
     <ul
@@ -66,8 +67,8 @@
                         v-if="(conf.deep > 0 && item.childs) || (conf.position === 'side' && item.childs)"
                         class="mo-icon has-child-menu-icon"
                         :class="{
-                            'mo-icon-right' : (conf.position === 'top'),
-                            'mo-icon-down' : (conf.position === 'side')
+                            'mo-icon-right' : (conf.position === 'top' || (conf.sideCollapse && conf.position === 'side')),
+                            'mo-icon-down' : (conf.position === 'side' && !conf.sideCollapse)
                         }"
                     ></i>
 
@@ -84,6 +85,7 @@
                         :current-menu="conf.currentMenu"
                         :position="conf.position"
                         :root-item-show-list="conf.rootItemShowList"
+                        :side-collapse="conf.sideCollapse"
 
                         @emit="_emit"
                     ></morning-private-menu>
@@ -128,6 +130,10 @@ export default {
         rootItemShowList : {
             type : Object,
             default : (() => ({}))
+        },
+        sideCollapse : {
+            type : Boolean,
+            default : false
         }
     },
     computed : {
@@ -140,13 +146,21 @@ export default {
                 currentMenu : this.currentMenu,
                 groups : this.groups,
                 position : this.position,
-                rootItemShowList : this.rootItemShowList
+                rootItemShowList : this.rootItemShowList,
+                sideCollapse : this.sideCollapse
             };
 
         },
         currentMenuList : function () {
 
             return this.conf.currentMenu.split('/');
+
+        },
+        moreClass : function () {
+
+            return {
+                'pos-side-with-collapse' : this.conf.sideCollapse
+            };
 
         }
     },

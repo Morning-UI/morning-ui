@@ -1,0 +1,67 @@
+@import '~Common/var.less';
+
+mor-tree{
+    display: block;
+
+    > mor-textinput{
+        margin-bottom: @fontSize;
+    }
+
+    &.foldable{
+        mor-private-tree{
+            ul.tree-body{
+                .tree-node{
+                    > mor-private-tree{
+                        display: none;
+                    }
+
+                    &.unfold > mor-private-tree{
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+
+    &.has-cabel{
+        mor-private-tree{
+            ul.tree-body{
+                .tree-node{
+                    &.is-fold{
+                        &::before{
+                            width: 1px;
+                            content: '';
+                            background: @colorLightSilver;
+                            position: absolute;
+                            left: 6px;
+                            top: 0.25em;
+                            bottom: 0.25em;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &.can-click{
+        mor-private-tree{
+            ul.tree-body{
+                .tree-node{
+                    > span {
+                        > a:hover{
+                            cursor: pointer;
+                            text-decoration: none;
+                        }
+
+                        .node-name:hover{
+                            background: lighten(@colorLightTheme, 26%);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // default status
+    &{}
+}
