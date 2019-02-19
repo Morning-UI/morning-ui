@@ -34,6 +34,11 @@ mor-transfer{
         padding: 0;
         font-size: @fontSize;
         min-width: 10em;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: space-between;
+        height: 100%;
 
         .transfer-title{
             height: @fontSize*2.6;
@@ -41,6 +46,8 @@ mor-transfer{
             background: @colorExtraLightSilver;
             font-size: 0;
             position: relative;
+            flex-shrink: 0;
+            flex-grow: 0;
 
             .transfer-source-count,
             .transfer-target-count,
@@ -81,12 +88,15 @@ mor-transfer{
         }
 
         .transfer-list{
-            height: calc(100% - @fontSize*2.6);
             position: relative;
+            flex-grow: 1;
+            overflow-y: auto;
+            font-size: 0;
 
             > mor-checkbox{
                 height: 100%;
                 overflow-y: scroll;
+                font-size: @fontSize;
 
                 .setup-hover-scrollbar();
 
@@ -124,6 +134,18 @@ mor-transfer{
                 height: 100%;
             }
         }
+
+        .transfer-footer{
+            flex-shrink: 0;
+            flex-grow: 0;
+            padding: 0.5em;
+            font-size: @fontSize;
+            border-top: 1px @colorLightSilver solid;
+
+            &:empty{
+                display: none;
+            }
+        }
     }
 
     .transfer-controls{
@@ -139,6 +161,10 @@ mor-transfer{
 
             > .mo-icon{
                 font-size: @fontSize*0.75;
+            }
+
+            > span{
+                vertical-align: middle;
             }
         }
     }

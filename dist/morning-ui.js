@@ -34293,6 +34293,14 @@ exports.default = {
             default: function _default() {
                 return [];
             }
+        },
+        sourceToTargetText: {
+            type: String,
+            default: undefined
+        },
+        targetToSourceText: {
+            type: String,
+            default: undefined
         }
     },
     computed: {
@@ -34304,7 +34312,9 @@ exports.default = {
                 targetTitle: this.targetTitle,
                 canSearch: this.canSearch,
                 disabledOptions: this.disabledOptions,
-                checkedOptions: this.checkedOptions
+                checkedOptions: this.checkedOptions,
+                sourceToTargetText: this.sourceToTargetText,
+                targetToSourceText: this.targetToSourceText
             };
         },
         moreClass: function moreClass() {
@@ -34530,6 +34540,22 @@ exports.default = {
         });
     }
 }; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -55961,7 +55987,9 @@ var render = function() {
         "target-title": _vm.targetTitle,
         "can-search": _vm.canSearch,
         "disabled-options": _vm.disabledOptions,
-        "checked-options": _vm.checkedOptions
+        "checked-options": _vm.checkedOptions,
+        "source-to-target-text": _vm.sourceToTargetText,
+        "target-to-source-text": _vm.targetToSourceText
       }
     },
     [
@@ -56061,6 +56089,13 @@ var render = function() {
               )
             ],
             1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "transfer-footer" },
+            [_vm._t("source-footer")],
+            2
           )
         ]),
         _vm._v(" "),
@@ -56068,27 +56103,41 @@ var render = function() {
           "div",
           { staticClass: "transfer-controls" },
           [
-            _c(
-              "morning-btn",
-              {
-                staticClass: "circle",
-                attrs: { color: "silver", size: "xs", state: _vm.conf.state },
-                on: { emit: _vm._toTarget }
-              },
-              [_c("i", { staticClass: "mo-icon mo-icon-right" })]
-            ),
+            _vm._t("sourceToTargetBtn", [
+              _c(
+                "morning-btn",
+                {
+                  class: {
+                    circle: !_vm.conf.sourceToTargetText
+                  },
+                  attrs: { color: "silver", size: "xs", state: _vm.conf.state },
+                  on: { emit: _vm._toTarget }
+                },
+                [
+                  _c("i", { staticClass: "mo-icon mo-icon-right" }),
+                  _vm._v(" "),
+                  _c("span", [_vm._v(_vm._s(_vm.conf.sourceToTargetText))])
+                ]
+              )
+            ]),
             _vm._v(" "),
             _c(
               "morning-btn",
               {
-                staticClass: "circle",
+                class: {
+                  circle: !_vm.conf.targetToSourceText
+                },
                 attrs: { color: "silver", size: "xs", state: _vm.conf.state },
                 on: { emit: _vm._toSource }
               },
-              [_c("i", { staticClass: "mo-icon mo-icon-left" })]
+              [
+                _c("i", { staticClass: "mo-icon mo-icon-left" }),
+                _vm._v(" "),
+                _c("span", [_vm._v(_vm._s(_vm.conf.targetToSourceText))])
+              ]
             )
           ],
-          1
+          2
         ),
         _vm._v(" "),
         _c("div", { staticClass: "transfer-target-list" }, [
@@ -56180,6 +56229,13 @@ var render = function() {
               )
             ],
             1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "transfer-footer" },
+            [_vm._t("target-footer")],
+            2
           )
         ])
       ]),
