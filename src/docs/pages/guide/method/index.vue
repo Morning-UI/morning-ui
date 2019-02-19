@@ -169,6 +169,10 @@
     - `getIndex` : 获取索引
     - `getId` : 获取ID
     - `getTitle` : 获取标题
+    - `foldNode` : 折叠节点
+    - `foldAllNode` : 折叠所有节点
+    - `unfoldAllNode` : 展开所有节点
+    - `position` : 定位
 
     </script>
     </doc-guide>

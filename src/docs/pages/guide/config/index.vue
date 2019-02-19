@@ -309,6 +309,26 @@
     - `indicator-type` : 指示器类型
     - `sticky` : 吸附
     - `controls-position` : 控制器位置
+    - `tree` : 树状列表数据
+    - `foldable` : 可折叠
+    - `cable` : 连接线
+    - `can-click` : 可点击
+    - `custom-fold-icon` : 自定义折叠后图标
+    - `custom-unfold-icon` : 自定义未折叠图标
+    - `custom-leafnode-icon` : 自定义叶子结点图标
+    - `fold-style` : 折叠图标样式
+    - `side-collapse` : 侧边可折叠
+    - `image` : 图片
+    - `allow-half` : 允许半值
+    - `show-note` : 显示提示
+    - `formater` : 格式化函数
+    - `icon` : 图标
+    - `source-title` : 源标题
+    - `target-title` : 目标标题
+    - `checked-options` : 选中选项
+    - `submenu-trigger` : 子菜单触发时机
+    - `show-last-name` : 显示最后一级名字
+    - `change-on-select` : 选中即改变
 
     </script>
     </doc-guide>

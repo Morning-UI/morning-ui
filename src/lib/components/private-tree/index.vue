@@ -103,6 +103,7 @@
                     :parentPath="conf.parentPath.concat([key])"
                     :currentNode="conf.currentNode"
                     :foldable="conf.foldable"
+                    :can-click="conf.canClick"
                     :can-search="conf.canSearch"
                     :search-key="conf.searchKey"
                     :custom-fold-icon="conf.customFoldIcon"

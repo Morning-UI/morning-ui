@@ -27006,8 +27006,6 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 
-var defaultTime = 200;
-
 exports.default = {
     origin: 'UI',
     name: 'empty',
@@ -44071,6 +44069,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
 
 var _arrayUniq = __webpack_require__(5);
 
@@ -49055,6 +49054,7 @@ var render = function() {
                               parentPath: _vm.conf.parentPath.concat([key]),
                               currentNode: _vm.conf.currentNode,
                               foldable: _vm.conf.foldable,
+                              "can-click": _vm.conf.canClick,
                               "can-search": _vm.conf.canSearch,
                               "search-key": _vm.conf.searchKey,
                               "custom-fold-icon": _vm.conf.customFoldIcon,
