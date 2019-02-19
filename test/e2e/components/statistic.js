@@ -140,7 +140,7 @@ test.serial('iconfont', async t => {
         .goto(docUrl)
         .wait(basicDemo)
         .evaluate(() => ({
-            iconfont : window.getComputedStyle($('[name="开始"] [_uiid="34"] .iconfont')[0])
+            iconfont : window.getComputedStyle($('[name="开始"] [_uiid="34"] .mo-icon')[0])
         }));
 
     t.plan(1);
