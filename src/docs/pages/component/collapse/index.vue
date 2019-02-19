@@ -45,10 +45,10 @@
     >tpl
     <div style="width: 560px;">
         <ui-collapse>
-            <div slot="app" :title="'<i class=\'iconfont\'>&#xe601;</i>应用'">
+            <div slot="app" :title="'<i class=\'mo-icon mo-icon-block-4\'></i>应用'">
                 这里是应用内容
             </div>
-            <div slot="tag" :title="'<i class=\'iconfont\'>&#xe815;</i>标签'">
+            <div slot="tag" :title="'<i class=\'mo-icon mo-icon-tag-f\'></i>标签'">
                 这里是标签内容
             </div>
             <div slot="more" title="更多">

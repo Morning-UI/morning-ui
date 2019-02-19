@@ -132,7 +132,7 @@
                             </div>
                         </div>
                         <div class="bar">
-                            <h3>Ant Design</h3>
+                            <h3>Element UI</h3>
                             <div class="bar-box">
                                 <div class="bar-same" style="width:calc(350 / 78 * 43px)"></div>
                                 <div class="bar-more element" style="width:calc(350 / 78 * 2px)"></div>

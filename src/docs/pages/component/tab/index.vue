@@ -250,8 +250,8 @@
             return {
                 // 需要插入的内容
                 prepend : {
-                    '应用' : '{{'<i class="iconfont">&#xe601;</i> '}}',
-                    '标签' : '{{'<i class="iconfont">&#xe815;</i> '}}'
+                    '应用' : '{{'<i class="mo-icon mo-icon-block-4"></i> '}}',
+                    '标签' : '{{'<i class="mo-icon mo-icon-star-f"></i> '}}'
                 }
             }
         }
@@ -288,8 +288,8 @@
             return {
                 // 需要插入的内容
                 append : {
-                    '应用' : '{{' <i class="iconfont">&#xe601;</i>'}}',
-                    '标签' : '{{' <i class="iconfont">&#xe815;</i>'}}'
+                    '应用' : '{{' <i class="mo-icon mo-icon-block-4"></i>'}}',
+                    '标签' : '{{' <i class="mo-icon mo-icon-star-f"></i>'}}'
                 }
             }
         }

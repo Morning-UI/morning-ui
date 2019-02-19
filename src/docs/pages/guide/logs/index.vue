@@ -83,7 +83,7 @@
     - `v-model`在表单组件初始化时会同步数值到表单，行为与`default-value`保持一致
     - 修正部分文档中的错误
     - 新增Vue版本兼容性测试
-    - 新增三个图标(`mo-icon-folder-close-o`/`mo-icon-folder-open-o`/`mo-icon-file-o`)
+    - 新增三个图标( `mo-icon-folder-close-o` / `mo-icon-folder-open-o` / `mo-icon-file-o` )
 
     <ui-label color="primary">升级注意事项</ui-label>
 
