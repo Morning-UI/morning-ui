@@ -64,6 +64,7 @@ export default {
         日历 : '/component/calendar.html',
         加载 : '/component/load.html',
         进度条 : '/component/progress.html',
+        '空状态<i class="tag new"></i>' : '/component/empty.html',
         吸附 : '/component/sticky.html',
         步骤条 : '/component/steps.html',
         面包屑 : '/component/breadcrumbs.html',

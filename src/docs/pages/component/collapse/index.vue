@@ -176,6 +176,28 @@
     </div>
     :::
 
+    :::vue
+    @name:无内容面板
+    ---
+    #demo
+    >desc
+    若某个面板中没有内容，建议使用空状态组件(`ui-empty`)。
+    >tpl
+    <div style="width: 560px;">
+        <ui-collapse>
+            <div slot="app" title="应用">
+                这里是应用内容
+            </div>
+            <div slot="tag"title="标签">
+                <ui-empty></ui-empty>
+            </div>
+            <div slot="more" title="更多">
+                <ui-empty></ui-empty>
+            </div>
+        </ui-collapse>
+    </div>
+    :::
+
     [[[形态]]]
 
     #### 支持

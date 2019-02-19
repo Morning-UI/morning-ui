@@ -1,0 +1,46 @@
+@import '~Common/var.less';
+
+mor-empty{
+    .empty-image{
+        width: 100%;
+        text-align: center;
+        line-height: 1em;
+        font-size: @fontSize*3;
+        padding: 0 0 0.2em 0;
+
+        i,
+        i.iconfont,
+        i.mo-icon{
+            font-size: @fontSize*3;
+            color: @colorSilver;
+        }
+
+        img{
+            padding: 0;
+            margin: 0;
+            border: none !important;
+        }
+    }
+
+    .empty-note{
+        font-size: @fontSize*0.875;
+        color: @colorBlue;
+        text-align: center;
+
+        mor-link,
+        mor-btn{
+            vertical-align: top;
+        }
+
+        mor-link{
+            font-size: @fontSize*0.875;
+        }
+    }
+
+    .empty-more{
+        margin-top: @fontSize*0.5;
+    }
+
+    // default status
+    &{}
+}

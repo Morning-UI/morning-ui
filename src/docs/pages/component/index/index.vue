@@ -124,6 +124,7 @@
             <h4><i class="iconfont">&#xe645;</i>其他</h4>
             <ul>
                 <li><a href="/component/sticky.html">吸附<p>&lt;sticky></p></a></li>
+                <li><a href="/component/empty.html">空状态<p>&lt;empty></p></a></li>
             </ul>
         </div>
     </div>
