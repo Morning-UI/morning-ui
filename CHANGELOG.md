@@ -1,5 +1,25 @@
 # CHANGELOG
 
+## 0.12.1
+
+`2019年2月19日`
+
+#### 新特性
+
+- 新增`ui-empty`空状态组件
+- `ui-transfer`新增`source-to-target-text`和`target-to-source-text`配置，可以自定义按钮文案
+- `ui-transfer`新增`source-footer`和`target-footer`两个`slot`，可以自定义两侧底部内容
+
+#### 修复
+
+- 修复`ui-tree`的`can-click`配置设为`false`时，子节点仍然可以点击的问题
+- 修复`ui-tree`的连接线(`cable`配置)的样式问题
+- 修复一些文档错误
+
+#### 更多
+
+- 新增图标( `mo-icon-tag-f` / `mo-icon-drawer-full` / `mo-icon-drawer-empty`)
+
 ## 0.12.0
 
 `2019年2月8日`
