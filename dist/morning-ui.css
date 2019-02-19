@@ -18879,6 +18879,11 @@ mor-transfer .transfer-target-list {
   padding: 0;
   font-size: 16px;
   min-width: 10em;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+  height: 100%;
 }
 mor-transfer .transfer-source-list .transfer-title,
 mor-transfer .transfer-target-list .transfer-title {
@@ -18887,6 +18892,8 @@ mor-transfer .transfer-target-list .transfer-title {
   background: #EDF1F5;
   font-size: 0;
   position: relative;
+  flex-shrink: 0;
+  flex-grow: 0;
 }
 mor-transfer .transfer-source-list .transfer-title .transfer-source-count,
 mor-transfer .transfer-target-list .transfer-title .transfer-source-count,
@@ -18931,13 +18938,16 @@ mor-transfer .transfer-target-list .transfer-title > mor-checkbox label > span {
 }
 mor-transfer .transfer-source-list .transfer-list,
 mor-transfer .transfer-target-list .transfer-list {
-  height: calc(100% - 16px*2.6);
   position: relative;
+  flex-grow: 1;
+  overflow-y: auto;
+  font-size: 0;
 }
 mor-transfer .transfer-source-list .transfer-list > mor-checkbox,
 mor-transfer .transfer-target-list .transfer-list > mor-checkbox {
   height: 100%;
   overflow-y: scroll;
+  font-size: 16px;
 }
 mor-transfer .transfer-source-list .transfer-list > mor-checkbox::-webkit-scrollbar,
 mor-transfer .transfer-target-list .transfer-list > mor-checkbox::-webkit-scrollbar {
@@ -18989,6 +18999,18 @@ mor-transfer .transfer-target-list .transfer-list .list-is-empty {
   left: 0;
   height: 100%;
 }
+mor-transfer .transfer-source-list .transfer-footer,
+mor-transfer .transfer-target-list .transfer-footer {
+  flex-shrink: 0;
+  flex-grow: 0;
+  padding: 0.5em;
+  font-size: 16px;
+  border-top: 1px #E2E8EE solid;
+}
+mor-transfer .transfer-source-list .transfer-footer:empty,
+mor-transfer .transfer-target-list .transfer-footer:empty {
+  display: none;
+}
 mor-transfer .transfer-controls {
   flex-grow: 1;
   flex-direction: column;
@@ -19002,6 +19024,9 @@ mor-transfer .transfer-controls > mor-btn {
 }
 mor-transfer .transfer-controls > mor-btn > .mo-icon {
   font-size: 12px;
+}
+mor-transfer .transfer-controls > mor-btn > span {
+  vertical-align: middle;
 }
 mor-transfer.has-cleanbtn {
   padding-bottom: 20px;

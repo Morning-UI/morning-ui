@@ -14,6 +14,8 @@
         :can-search="canSearch"
         :disabled-options="disabledOptions"
         :checked-options="checkedOptions"
+        :source-to-target-text="sourceToTargetText"
+        :target-to-source-text="targetToSourceText"
     >
 
     <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
@@ -64,26 +66,37 @@
                     <morning-empty></morning-empty>
                 </div>
             </div>
+            <div class="transfer-footer">
+                <slot name="source-footer"></slot>
+            </div>
         </div>
 
         <div class="transfer-controls">
+            <slot name="sourceToTargetBtn">
+                <morning-btn
+                    :class="{
+                        circle : !conf.sourceToTargetText
+                    }"
+                    color="silver"
+                    size="xs"
+                    :state="conf.state"
+                    @emit="_toTarget"
+                >
+                    <i class="mo-icon mo-icon-right"></i>
+                    <span>{{conf.sourceToTargetText}}</span>
+                </morning-btn>
+            </slot>
             <morning-btn
-                class="circle"
-                color="silver"
-                size="xs"
-                :state="conf.state"
-                @emit="_toTarget"
-            >
-                <i class="mo-icon mo-icon-right"></i>
-            </morning-btn>
-            <morning-btn
-                class="circle"
+                :class="{
+                    circle : !conf.targetToSourceText
+                }"
                 color="silver"
                 size="xs"
                 :state="conf.state"
                 @emit="_toSource"
             >
                 <i class="mo-icon mo-icon-left"></i>
+                <span>{{conf.targetToSourceText}}</span>
             </morning-btn>
         </div>
         
@@ -131,6 +144,9 @@
                     <morning-empty></morning-empty>
                 </div>
             </div>
+            <div class="transfer-footer">
+                <slot name="target-footer"></slot>
+            </div>
         </div>
 
     </div>
@@ -172,6 +188,14 @@ export default {
         checkedOptions : {
             type : Array,
             default : (() => ([]))
+        },
+        sourceToTargetText : {
+            type : String,
+            default : undefined
+        },
+        targetToSourceText : {
+            type : String,
+            default : undefined
         }
     },
     computed : {
@@ -183,7 +207,9 @@ export default {
                 targetTitle : this.targetTitle,
                 canSearch : this.canSearch,
                 disabledOptions : this.disabledOptions,
-                checkedOptions : this.checkedOptions
+                checkedOptions : this.checkedOptions,
+                sourceToTargetText : this.sourceToTargetText,
+                targetToSourceText : this.targetToSourceText
             };
 
         },
