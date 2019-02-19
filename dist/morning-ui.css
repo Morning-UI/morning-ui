@@ -10543,7 +10543,7 @@ mor-tree.has-cabel mor-private-tree ul.tree-body .tree-node.is-fold::before {
   content: '';
   background: #E2E8EE;
   position: absolute;
-  left: 6px;
+  left: 8px;
   top: 0.25em;
   bottom: 0.25em;
 }
@@ -14081,7 +14081,7 @@ mor-empty .empty-image {
   text-align: center;
   line-height: 1em;
   font-size: 48px;
-  padding: 0 0 0.2em 0;
+  padding: 0 0 0.2em;
 }
 mor-empty .empty-image i,
 mor-empty .empty-image i.iconfont,

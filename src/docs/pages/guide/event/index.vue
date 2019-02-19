@@ -154,6 +154,10 @@
     - `hue-slider-change` : HUE选择器变化
     - `alpha-slider-change` : 透明度选择器变化
     - `input-type-change` : 输入类型变化
+    - `node-emit` : 节点触发
+    - `node-fold` : 节点折叠
+    - `node-unfold` : 节点展开
+    - `rating` : 评分
 
     </script>
     </doc-guide>
