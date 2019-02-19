@@ -49,7 +49,7 @@
     ---
     #demo
     >desc
-    为`ui-label`加上`icon`类，然后在标签内通过`<i class="iconfont">`标签插入图标，此时标签文本请使用`<span>`标签。
+    为`ui-label`加上`icon`类，然后在标签内通过`<i>`标签插入图标，此时标签文本请使用`<span>`标签。
     <br><br>
     注意：使用时请确保`<span>`和`<img>`标签之间有空格。
     >tpl

@@ -45,7 +45,7 @@
     #demo
     >tpl
     <ui-statistic>
-        <div class="value"><i class="iconfont">&#xe6e2;</i><span>5,550</span></div>
+        <div class="value"><i class="mo-icon mo-icon-star-f"></i><span>5,550</span></div>
         <div class="label">downloads</div>
     </ui-statistic>
     :::

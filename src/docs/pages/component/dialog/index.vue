@@ -59,7 +59,7 @@
         <ui-dialog ref="demo3">
             <header slot="header">
                 <h1>This is title</h1>
-                <ui-link color="dark-theme" js="window.morning.findVM('demo3').toggle();"><i class="iconfont">&#xe62e;</i></ui-link>
+                <ui-link color="white" js="window.morning.findVM('demo3').toggle();"><i class="mo-icon mo-icon-close"></i></ui-link>
             </header>
         </ui-dialog>
         <ui-link js="window.morning.findVM('demo3').toggle(true);">显示模拟盒</ui-link>
@@ -318,7 +318,7 @@
         <ui-dialog ref="demo17" :auto-close="false">
             <header slot="header">
                 <h1>点击外部区域不会关闭，需要点击右侧关闭</h1>
-                <ui-link color="dark-theme" js="window.morning.findVM('demo17').toggle();"><i class="iconfont">&#xe62e;</i></ui-link>
+                <ui-link color="white" js="window.morning.findVM('demo17').toggle();"><i class="mo-icon mo-icon-close"></i></ui-link>
             </header>
         </ui-dialog>
         <ui-link js="window.morning.findVM('demo17').toggle(true);">显示模拟盒</ui-link>

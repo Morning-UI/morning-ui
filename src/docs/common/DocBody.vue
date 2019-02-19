@@ -64,7 +64,7 @@ hljs.registerLanguage('makefile',       require('highlight.js/lib/languages/make
 hljs.registerLanguage('shell',          require('highlight.js/lib/languages/shell'));
 
 markdown.use(Anchor, {
-    level : [2, 3],
+    level : [2, 3, 4],
     slugify : s => (s.replace(/[^a-zA-Z0-9-_\u4e00-\u9fa5]/g, '')),
     permalink : true,
     permalinkBefore : true,
@@ -2522,7 +2522,7 @@ window.Vue.directive('docmd', {
 
             if (window.isComponentDoc) {
 
-                let $h4s = instance.$el.querySelectorAll('.demo-root > h4');
+                let $h4s = instance.$el.querySelectorAll('.demo-root > h4, .content-wrap > h4');
 
                 for (let $h4 of $h4s) {
 

@@ -37,7 +37,7 @@
         <ui-btn class="round">圆角按钮</ui-btn>
         <br><br>
         <ui-btn class="circle">
-            <i class="iconfont">&#xe6e2;</i>
+            <i class="mo-icon mo-icon-star-f"></i>
         </ui-btn>
     </div>
     ---
@@ -49,7 +49,7 @@
         <ui-btn class="round plain">朴素的圆角按钮</ui-btn>
         <br><br>
         <ui-btn class="circle plain">
-            <i class="iconfont">&#xe6e2;</i>
+            <i class="mo-icon mo-icon-star-f"></i>
         </ui-btn>
     </div>
     :::
@@ -110,7 +110,7 @@
     尺寸配合`circle`样式类一起使用。
     >tpl
     <ui-btn size="{$sizeKey}" class="circle">
-        <i class="iconfont">&#xe6e2;</i>
+        <i class="mo-icon mo-icon-star-f"></i>
     </ui-btn>
     ---
     #renderer
