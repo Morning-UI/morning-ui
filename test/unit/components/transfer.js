@@ -4,6 +4,7 @@ import Vue                          from 'vue/dist/vue.common.js';
 import transfer                     from '../../../src/lib/components/transfer/index.vue';
 import commonTest                   from '../../common/unit';
 
+const uiid = 12;
 const testOptions = {
     test,
     Vue,
@@ -53,7 +54,7 @@ const testOptions = {
         item8 : '备选项-8',
         item9 : '备选项-9'
     }"`,
-    uiid : 12,
+    uiid,
     delVmEl : false,
     _baseTestHookCustomMount : false,
     _formValueChangeSkipInvalidValueEmitTest : false,
