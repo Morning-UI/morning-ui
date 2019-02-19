@@ -45,10 +45,10 @@
     >tpl
     <div style="width: 560px;">
         <ui-collapse>
-            <div slot="app" :title="'<i class=\'iconfont\'>&#xe601;</i>应用'">
+            <div slot="app" :title="'<i class=\'mo-icon mo-icon-block-4\'></i>应用'">
                 这里是应用内容
             </div>
-            <div slot="tag" :title="'<i class=\'iconfont\'>&#xe815;</i>标签'">
+            <div slot="tag" :title="'<i class=\'mo-icon mo-icon-tag-f\'></i>标签'">
                 这里是标签内容
             </div>
             <div slot="more" title="更多">
@@ -171,6 +171,28 @@
             </div>
             <div slot="three" title="第三组">
                 这里是第三组内容
+            </div>
+        </ui-collapse>
+    </div>
+    :::
+
+    :::vue
+    @name:无内容面板
+    ---
+    #demo
+    >desc
+    若某个面板中没有内容，建议使用空状态组件(`ui-empty`)。
+    >tpl
+    <div style="width: 560px;">
+        <ui-collapse>
+            <div slot="app" title="应用">
+                这里是应用内容
+            </div>
+            <div slot="tag"title="标签">
+                <ui-empty></ui-empty>
+            </div>
+            <div slot="more" title="更多">
+                <ui-empty></ui-empty>
             </div>
         </ui-collapse>
     </div>

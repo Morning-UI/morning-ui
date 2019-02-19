@@ -53,6 +53,57 @@
     }
     :::
 
+    :::vue
+    @name:定义两侧底部额外内容
+    ---
+    #demo
+    >desc
+    可以通过`target-footer`和`source-footer`两个`slot`来分别定义左右两侧的底部内容。
+    >tpl
+    <div style="width:500px;height:280px;">
+        <ui-transfer form-name="选择" :list="list" v-model="value">
+            <div slot="target-footer">
+                <ui-btn size="xxs">操作1</ui-btn>
+                <ui-link size="xxs" color="minor">操作2</ui-link>
+            </div>
+            <div slot="source-footer">
+                <ui-btn size="xxs">操作1</ui-btn>
+                <ui-link size="xxs" color="minor">操作2</ui-link>
+            </div>
+        </ui-transfer>
+    </div>
+    >script
+    {
+        data : {
+            list : {
+                item1 : '备选项-1',
+                item2 : '备选项-2',
+                item3 : '备选项-3',
+                item4 : '备选项-4',
+                item5 : '备选项-5',
+                item6 : '备选项-6',
+                item7 : '备选项-7',
+                item8 : '备选项-8',
+                item9 : '备选项-9'
+            },
+            value : {
+                source : [
+                    'item2',
+                    'item3',
+                    'item4',
+                    'item5',
+                    'item6',
+                    'item7',
+                    'item8',
+                    'item9'
+                ],
+                target : [
+                    'item1'
+                ]
+            }
+        }
+    }
+    :::
     [[[形态]]]
 
     :::preset
@@ -375,6 +426,186 @@
     >tpl
     <div style="width:500px;height:280px;">
         <ui-transfer :checked-options="['item6', 'item8', 'item2', 'item4']" :disabled-options="['item6', 'item9', 'item4']" :list="list" v-model="value"></ui-transfer>
+    </div>
+    >script
+    {
+        data : {
+            list : {
+                item1 : '备选项-1',
+                item2 : '备选项-2',
+                item3 : '备选项-3',
+                item4 : '备选项-4',
+                item5 : '备选项-5',
+                item6 : '备选项-6',
+                item7 : '备选项-7',
+                item8 : '备选项-8',
+                item9 : '备选项-9'
+            },
+            value : {
+                source : [
+                    'item5',
+                    'item6',
+                    'item7',
+                    'item8',
+                    'item9'
+                ],
+                target : [
+                    'item1',
+                    'item2',
+                    'item3',
+                    'item4',
+                ]
+            }
+        }
+    }
+    :::
+
+    :::vue
+    @name:source-to-target-text
+    ---
+    #config
+    >conf-desc
+    左侧至右侧按钮文案。
+    >conf-accept
+    文案
+    >conf-type
+    String
+    >conf-default
+    `undefined`
+    ---
+    #demo
+    >tpl
+    <div style="width:500px;height:280px;">
+        <ui-transfer :list="list" v-model="value" source-to-target-text="移至右侧"></ui-transfer>
+    </div>
+    >script
+    {
+        data : {
+            list : {
+                item1 : '备选项-1',
+                item2 : '备选项-2',
+                item3 : '备选项-3',
+                item4 : '备选项-4',
+                item5 : '备选项-5',
+                item6 : '备选项-6',
+                item7 : '备选项-7',
+                item8 : '备选项-8',
+                item9 : '备选项-9'
+            },
+            value : {
+                source : [
+                    'item5',
+                    'item6',
+                    'item7',
+                    'item8',
+                    'item9'
+                ],
+                target : [
+                    'item1',
+                    'item2',
+                    'item3',
+                    'item4',
+                ]
+            }
+        }
+    }
+    ---
+    #demo
+    >desc
+    `source-to-target-text`和`target-to-source-text`一起使用。
+    >tpl
+    <div style="width:500px;height:280px;">
+        <ui-transfer :list="list" v-model="value" source-to-target-text="移至右侧" target-to-source-text="移至左侧"></ui-transfer>
+    </div>
+    >script
+    {
+        data : {
+            list : {
+                item1 : '备选项-1',
+                item2 : '备选项-2',
+                item3 : '备选项-3',
+                item4 : '备选项-4',
+                item5 : '备选项-5',
+                item6 : '备选项-6',
+                item7 : '备选项-7',
+                item8 : '备选项-8',
+                item9 : '备选项-9'
+            },
+            value : {
+                source : [
+                    'item5',
+                    'item6',
+                    'item7',
+                    'item8',
+                    'item9'
+                ],
+                target : [
+                    'item1',
+                    'item2',
+                    'item3',
+                    'item4',
+                ]
+            }
+        }
+    }
+    :::
+
+    :::vue
+    @name:target-to-source-text
+    ---
+    #config
+    >conf-desc
+    右侧至左侧按钮文案。
+    >conf-accept
+    文案
+    >conf-type
+    String
+    >conf-default
+    `undefined`
+    ---
+    #demo
+    >tpl
+    <div style="width:500px;height:280px;">
+        <ui-transfer :list="list" v-model="value" target-to-source-text="移至左侧"></ui-transfer>
+    </div>
+    >script
+    {
+        data : {
+            list : {
+                item1 : '备选项-1',
+                item2 : '备选项-2',
+                item3 : '备选项-3',
+                item4 : '备选项-4',
+                item5 : '备选项-5',
+                item6 : '备选项-6',
+                item7 : '备选项-7',
+                item8 : '备选项-8',
+                item9 : '备选项-9'
+            },
+            value : {
+                source : [
+                    'item5',
+                    'item6',
+                    'item7',
+                    'item8',
+                    'item9'
+                ],
+                target : [
+                    'item1',
+                    'item2',
+                    'item3',
+                    'item4',
+                ]
+            }
+        }
+    }
+    ---
+    #demo
+    >desc
+    `source-to-target-text`和`target-to-source-text`一起使用。
+    >tpl
+    <div style="width:500px;height:280px;">
+        <ui-transfer :list="list" v-model="value" source-to-target-text="移至右侧" target-to-source-text="移至左侧"></ui-transfer>
     </div>
     >script
     {

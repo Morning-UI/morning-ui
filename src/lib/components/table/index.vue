@@ -80,8 +80,12 @@
             </tr>
 
             <tr v-if="data.normalRows.length === 0 && data.titleRows.length === 0">
-                <td class="no-data" colspan="2" v-if="data.titleKeys.length > 0">无数据</td>
-                <td class="no-data" v-else>无数据</td>
+                <td class="no-data" colspan="2" v-if="data.titleKeys.length > 0">
+                    <morning-empty></morning-empty>
+                </td>
+                <td class="no-data" v-else>
+                    <morning-empty></morning-empty>
+                </td>
             </tr>
         </tbody>
     </table>

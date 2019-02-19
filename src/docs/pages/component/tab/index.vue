@@ -183,6 +183,20 @@
     </ui-tab>
     :::
 
+    :::vue
+    @name:无内容标签页
+    ---
+    #demo
+    >desc
+    若某个标签页中没有内容，建议使用空状态组件(`ui-empty`)。
+    >tpl
+    <ui-tab>
+        <div slot="第一页">第一页</div>
+        <div slot="第二页"><ui-empty></ui-empty></div>
+        <div slot="第三页"><ui-empty></ui-empty></div>
+    </ui-tab>
+    :::
+
     [[[形态]]]
 
     #### 支持
@@ -250,8 +264,8 @@
             return {
                 // 需要插入的内容
                 prepend : {
-                    '应用' : '{{'<i class="iconfont">&#xe601;</i> '}}',
-                    '标签' : '{{'<i class="iconfont">&#xe815;</i> '}}'
+                    '应用' : '{{'<i class="mo-icon mo-icon-block-4"></i> '}}',
+                    '标签' : '{{'<i class="mo-icon mo-icon-star-f"></i> '}}'
                 }
             }
         }
@@ -288,8 +302,8 @@
             return {
                 // 需要插入的内容
                 append : {
-                    '应用' : '{{' <i class="iconfont">&#xe601;</i>'}}',
-                    '标签' : '{{' <i class="iconfont">&#xe815;</i>'}}'
+                    '应用' : '{{' <i class="mo-icon mo-icon-block-4"></i>'}}',
+                    '标签' : '{{' <i class="mo-icon mo-icon-star-f"></i>'}}'
                 }
             }
         }

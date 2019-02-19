@@ -10,7 +10,7 @@
 
         <p>希望对你的挑选有所帮助。</p>
 
-        <p>此对比截止：2019年2月1日。</p>
+        <p>此对比截止：2019年2月19日。</p>
         
         <div style="padding-bottom: 40px;">
             <h4>对比UI库</h4>
@@ -78,7 +78,7 @@
                     <td class="mark">2.5.4</td>
                     <td class="mark">3.2.2</td>
                     <td class="mark">3.13.2</td>
-                    <td class="mark">0.12.0</td>
+                    <td class="mark">0.12.1</td>
                 </tr>
                 <tr>
                     <td class="item">官网</td>
@@ -304,7 +304,7 @@
                     </td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
-                        <p>64个</p>
+                        <p>67个</p>
                     </td>
                 </tr>
                 <tr>
@@ -1896,7 +1896,7 @@
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
                     <td class="mark">
-                        <i class="iconfont no">&#xe62e;</i>
+                        <i class="iconfont has">&#xe62d;</i>
                     </td>
                 </tr>
                 <tr class="components">
@@ -2228,7 +2228,7 @@
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
-                    <td class="mark">c
+                    <td class="mark">
                         <i class="iconfont no">&#xe62e;</i>
                     </td>
                     <td class="mark">

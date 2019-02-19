@@ -18,6 +18,36 @@
     
     ### 更新记录
 
+    ### 0.12.1 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2019年2月19日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.1" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.1/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.1/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 新特性
+
+    - 新增`ui-empty`空状态组件
+    - `ui-transfer`新增`source-to-target-text`和`target-to-source-text`配置，可以自定义按钮文案
+    - `ui-transfer`新增`source-footer`和`target-footer`两个`slot`，可以自定义两侧底部内容
+
+    #### 修复
+
+    - 修复`ui-tree`的`can-click`配置设为`false`时，子节点仍然可以点击的问题
+    - 修复`ui-tree`的连接线(`cable`配置)的样式问题
+    - 修复一些文档错误
+
+    #### 更多
+
+    - 新增图标( `mo-icon-tag-f` / `mo-icon-drawer-full` / `mo-icon-drawer-empty`)
+
+    ---
+
     ### 0.12.0 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="light-blue">
@@ -83,7 +113,7 @@
     - `v-model`在表单组件初始化时会同步数值到表单，行为与`default-value`保持一致
     - 修正部分文档中的错误
     - 新增Vue版本兼容性测试
-    - 新增三个图标(`mo-icon-folder-close-o`/`mo-icon-folder-open-o`/`mo-icon-file-o`)
+    - 新增三个图标( `mo-icon-folder-close-o` / `mo-icon-folder-open-o` / `mo-icon-file-o` )
 
     <ui-label color="primary">升级注意事项</ui-label>
 

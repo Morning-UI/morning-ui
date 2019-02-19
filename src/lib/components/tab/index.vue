@@ -32,7 +32,9 @@
             }"
         >
             <template v-for="(item, name) in $slots">
-                <div class="item mor-tab-item" :name="name" :key="name"><slot :name="name"></slot></div>
+                <div class="item mor-tab-item" :name="name" :key="name">
+                    <slot :name="name"></slot>
+                </div>
             </template>
         </div>
 

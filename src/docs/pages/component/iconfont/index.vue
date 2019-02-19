@@ -290,6 +290,18 @@
             <i class="mo-icon-folder-open-o"></i>
             <span>mo-icon-folder-open-o</span>
         </div>
+        <div>
+            <i class="mo-icon-tag-f"></i>
+            <span>mo-icon-tag-f</span>
+        </div>
+        <div>
+            <i class="mo-icon-drawer-full"></i>
+            <span>mo-icon-drawer-full</span>
+        </div>
+        <div>
+            <i class="mo-icon-drawer-empty"></i>
+            <span>mo-icon-drawer-empty</span>
+        </div>
     </div>
     
     ## 图标托管
