@@ -11,7 +11,7 @@ const testOptions = {
     component : window.morning._origin.Form.extend(table),
     name : 'table',
     attrs : ``,
-    uiid : 2,
+    uiid : 4,
     delVmEl : false,
     _baseTestHookCustomMount : false
 };

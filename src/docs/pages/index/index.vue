@@ -43,15 +43,15 @@
                         <div class="bar">
                             <h3>Morning UI</h3>
                             <div class="bar-box">
-                                <div class="bar-same" style="width:calc(350 / 78 * 41px)"></div>
-                                <div class="bar-more morning" style="width:calc(350 / 78 * 37px)"></div>
+                                <div class="bar-same" style="width:calc(350 / 79 * 42px)"></div>
+                                <div class="bar-more morning" style="width:calc(350 / 79 * 37px)"></div>
                             </div>
                         </div>
                         <div class="bar">
                             <h3>Bootstrap</h3>
                             <div class="bar-box">
-                                <div class="bar-same" style="width:calc(350 / 78 * 41px)"></div>
-                                <div class="bar-more bootstrap" style="width:calc(350 / 78 * 8px)"></div>
+                                <div class="bar-same" style="width:calc(350 / 79 * 42px)"></div>
+                                <div class="bar-more bootstrap" style="width:calc(350 / 79 * 8px)"></div>
                             </div>
                         </div>
                         <div class="label">
@@ -85,15 +85,15 @@
                         <div class="bar">
                             <h3>Morning UI</h3>
                             <div class="bar-box">
-                                <div class="bar-same" style="width:calc(350 / 78 * 32px)"></div>
-                                <div class="bar-more morning" style="width:calc(350 / 78 * 46px)"></div>
+                                <div class="bar-same" style="width:calc(350 / 79 * 33px)"></div>
+                                <div class="bar-more morning" style="width:calc(350 / 79 * 46px)"></div>
                             </div>
                         </div>
                         <div class="bar">
                             <h3>Semantic UI</h3>
                             <div class="bar-box">
-                                <div class="bar-same" style="width:calc(350 / 78 * 32px)"></div>
-                                <div class="bar-more semantic" style="width:calc(350 / 78 * 11px)"></div>
+                                <div class="bar-same" style="width:calc(350 / 79 * 33px)"></div>
+                                <div class="bar-more semantic" style="width:calc(350 / 79 * 11px)"></div>
                             </div>
                         </div>
                         <div class="label">
@@ -127,15 +127,15 @@
                         <div class="bar">
                             <h3>Morning UI</h3>
                             <div class="bar-box">
-                                <div class="bar-same" style="width:calc(350 / 78 * 43px)"></div>
-                                <div class="bar-more morning" style="width:calc(350 / 78 * 35px)"></div>
+                                <div class="bar-same" style="width:calc(350 / 79 * 44px)"></div>
+                                <div class="bar-more morning" style="width:calc(350 / 79 * 35px)"></div>
                             </div>
                         </div>
                         <div class="bar">
                             <h3>Element UI</h3>
                             <div class="bar-box">
-                                <div class="bar-same" style="width:calc(350 / 78 * 43px)"></div>
-                                <div class="bar-more element" style="width:calc(350 / 78 * 2px)"></div>
+                                <div class="bar-same" style="width:calc(350 / 79 * 44px)"></div>
+                                <div class="bar-more element" style="width:calc(350 / 79 * 2px)"></div>
                             </div>
                         </div>
                         <div class="label">
@@ -169,15 +169,15 @@
                         <div class="bar">
                             <h3>Morning UI</h3>
                             <div class="bar-box">
-                                <div class="bar-same" style="width:calc(350 / 78 * 42px)"></div>
-                                <div class="bar-more morning" style="width:calc(350 / 78 * 36px)"></div>
+                                <div class="bar-same" style="width:calc(350 / 79 * 43px)"></div>
+                                <div class="bar-more morning" style="width:calc(350 / 79 * 36px)"></div>
                             </div>
                         </div>
                         <div class="bar">
                             <h3>iView UI</h3>
                             <div class="bar-box">
-                                <div class="bar-same" style="width:calc(350 / 78 * 42px)"></div>
-                                <div class="bar-more iview" style="width:calc(350 / 78 * 11px)"></div>
+                                <div class="bar-same" style="width:calc(350 / 79 * 43px)"></div>
+                                <div class="bar-more iview" style="width:calc(350 / 79 * 11px)"></div>
                             </div>
                         </div>
                         <div class="label">
@@ -211,15 +211,15 @@
                         <div class="bar">
                             <h3>Morning UI</h3>
                             <div class="bar-box">
-                                <div class="bar-same" style="width:calc(350 / 78 * 50px)"></div>
-                                <div class="bar-more morning" style="width:calc(350 / 78 * 28px)"></div>
+                                <div class="bar-same" style="width:calc(350 / 79 * 52px)"></div>
+                                <div class="bar-more morning" style="width:calc(350 / 79 * 27px)"></div>
                             </div>
                         </div>
                         <div class="bar">
                             <h3>Ant Design</h3>
                             <div class="bar-box">
-                                <div class="bar-same" style="width:calc(350 / 78 * 50px)"></div>
-                                <div class="bar-more antd" style="width:calc(350 / 78 * 13px)"></div>
+                                <div class="bar-same" style="width:calc(350 / 79 * 52px)"></div>
+                                <div class="bar-more antd" style="width:calc(350 / 79 * 11px)"></div>
                             </div>
                         </div>
                         <div class="label">

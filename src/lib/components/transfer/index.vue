@@ -60,7 +60,9 @@
                     v-model="data.sourceSelected"
                 >
                 </morning-checkbox>
-                <p class="list-is-empty" v-show="Object.keys(sourceList).length === 0">空</p>
+                <div class="list-is-empty" v-show="Object.keys(sourceList).length === 0">
+                    <morning-empty></morning-empty>
+                </div>
             </div>
         </div>
 
@@ -125,7 +127,9 @@
                     v-model="data.targetSelected"
                 >
                 </morning-checkbox>
-                <p class="list-is-empty" v-show="Object.keys(targetList).length === 0">空</p>
+                <div class="list-is-empty" v-show="Object.keys(targetList).length === 0">
+                    <morning-empty></morning-empty>
+                </div>
             </div>
         </div>
 
