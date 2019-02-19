@@ -53,7 +53,7 @@ const testOptions = {
         item8 : '备选项-8',
         item9 : '备选项-9'
     }"`,
-    uiid : 8,
+    uiid : 12,
     delVmEl : false,
     _baseTestHookCustomMount : false,
     _formValueChangeSkipInvalidValueEmitTest : false,
