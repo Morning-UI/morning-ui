@@ -33,8 +33,6 @@
 </template>
  
 <script>
-const defaultTime = 200;
-
 export default {
     origin : 'UI',
     name : 'empty',
