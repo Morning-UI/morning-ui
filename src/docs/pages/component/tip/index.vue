@@ -271,8 +271,8 @@
     鼠标移入元素时立即触发提示。
     >tpl
     <div>
-        <span id="demo24">鼠标悬浮显示小提示</span>
-        <ui-tip target="#demo24" :trigger-in-delay="0">提示内容</ui-tip>
+        <span id="demo32">鼠标悬浮显示小提示</span>
+        <ui-tip target="#demo32" :trigger-in-delay="0">提示内容</ui-tip>
     </div>
     :::
 

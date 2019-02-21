@@ -60,11 +60,11 @@ let TriggerManager = {
                 if (trigger === 'hover' &&
                     evt.type === 'mouseleave' &&
                     (
-                        this.Trigger.$targets.indexOf(evt.toElement) !== -1 ||
+                        this.Trigger.$targets.indexOf(evt.relatedTarget) !== -1 ||
                         (
-                            evt.toElement &&
-                            evt.toElement.parentElement &&
-                            this.Trigger.$targets.indexOf(evt.toElement.parentElement) !== -1
+                            evt.relatedTarget &&
+                            evt.relatedTarget.parentElement &&
+                            this.Trigger.$targets.indexOf(evt.relatedTarget.parentElement) !== -1
                         )
                     )
                 ) {

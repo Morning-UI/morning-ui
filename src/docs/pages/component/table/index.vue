@@ -1172,6 +1172,12 @@
     #demo
     >tpl
     <ui-table :list="list" export-csv></ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.list
+        }
+    }
     :::
 
     :::vue
@@ -1190,6 +1196,12 @@
     #demo
     >tpl
     <ui-table :list="list" export-csv csv-name="demo"></ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.list
+        }
+    }
     :::
 
     :::vue

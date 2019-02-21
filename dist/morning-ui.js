@@ -21609,13 +21609,23 @@ exports.default = {
         _checkArea: function _checkArea(evt) {
             var _this = this;
 
+            if (evt.button === 2) {
+
+                return;
+            }
+
             var notFound = -1;
 
             this.data.isCheckArea = true;
 
             var $emitbtn = this.$el.querySelector('[emitbtn]');
 
-            if (evt.path.indexOf($emitbtn) === notFound && evt.path.indexOf(this.data.$wrap) === notFound || evt.path.indexOf($emitbtn) !== notFound || this.conf.autoClose && evt.path.indexOf($emitbtn) === notFound && evt.path.indexOf(this.data.$wrap) !== notFound) {
+            if (evt.path.indexOf($emitbtn) === notFound && evt.path.indexOf(this.data.$wrap) !== notFound && this.conf.autoClose) {
+
+                this.toggle();
+            }
+
+            if ((evt.path.indexOf($emitbtn) === notFound && evt.path.indexOf(this.data.$wrap) === notFound || evt.path.indexOf($emitbtn) !== notFound) && this.conf.trigger === 'click') {
 
                 this.toggle();
             }
@@ -21631,7 +21641,7 @@ exports.default = {
         },
         _hide: function _hide(evt) {
 
-            if (evt.type === 'mouseleave' && (this.data.$wrap.contains(evt.toElement) || this.$el.contains(evt.toElement))) {
+            if (evt.type === 'mouseleave' && (this.data.$wrap.contains(evt.relatedTarget) || this.$el.contains(evt.relatedTarget))) {
 
                 return;
             }
@@ -21736,7 +21746,7 @@ exports.default = {
             _this3.data.first = false;
             _this3.data.show = true;
 
-            setTimeout(function () {
+            _this3.Vue.nextTick(function () {
 
                 _this3._globalEventAdd('click', '_checkArea', true);
             });
@@ -28063,6 +28073,7 @@ exports.default = {
             return hasContent;
         },
         _showComplete: function _showComplete() {
+            var _this3 = this;
 
             var prevHoverState = this.data.hoverState;
 
@@ -28077,7 +28088,10 @@ exports.default = {
                 this._leave();
             }
 
-            this._globalEventAdd('click', '_checkArea');
+            this.Vue.nextTick(function () {
+
+                _this3._globalEventAdd('click', '_checkArea', true);
+            });
         },
 
         _hideComplete: function _hideComplete() {
@@ -28097,17 +28111,27 @@ exports.default = {
         },
         _checkArea: function _checkArea(evt) {
 
+            if (evt.button === 2) {
+
+                return;
+            }
+
             var notFound = -1;
 
-            if (evt.path.indexOf(this.conf.$target) === notFound && evt.path.indexOf(this.$el) === notFound) {
+            if (evt.path.indexOf(this.data.$target) === notFound && evt.path.indexOf(this.$el) === notFound && this.conf.trigger.indexOf('click') !== -1) {
 
                 this.hide();
             }
 
             return evt;
         },
+        _clickToggle: function _clickToggle() {
+
+            this.data.activeTrigger.click = !this.data.activeTrigger.click;
+            this.toggle();
+        },
         show: function show() {
-            var _this3 = this;
+            var _this4 = this;
 
             if (!this._hasContent()) {
 
@@ -28128,7 +28152,7 @@ exports.default = {
 
             this.Vue.nextTick(function () {
 
-                _this3._tipUpdate();
+                _this4._tipUpdate();
             });
 
             return this;
@@ -28148,11 +28172,6 @@ exports.default = {
         },
         toggle: function toggle() {
 
-            if (this.data.activeTrigger.click === undefined) {
-
-                this.data.activeTrigger.click = !this.data.activeTrigger.click;
-            }
-
             if (this._isWithActiveTrigger()) {
 
                 this._enter();
@@ -28171,7 +28190,7 @@ exports.default = {
         }
     },
     mounted: function mounted() {
-        var _this4 = this;
+        var _this5 = this;
 
         this.Trigger.triggers = this.conf.trigger;
         this.Tip.autoReverse = this.conf.autoReverse;
@@ -28179,18 +28198,18 @@ exports.default = {
 
         this.$watch('conf.triggerInDelay', function () {
 
-            _this4.Trigger.handlerMap = {
-                click: [_this4.toggle],
+            _this5.Trigger.handlerMap = {
+                click: [_this5._clickToggle],
                 hover: {
                     in: [{
-                        fn: _this4._enter,
-                        delay: _this4.conf.triggerInDelay
+                        fn: _this5._enter,
+                        delay: _this5.conf.triggerInDelay
                     }],
-                    out: [_this4._leave]
+                    out: [_this5._leave]
                 },
                 focus: {
-                    in: [_this4._enter],
-                    out: [_this4._leave]
+                    in: [_this5._enter],
+                    out: [_this5._leave]
                 }
             };
         }, {
@@ -28199,50 +28218,50 @@ exports.default = {
 
         this.$watch('conf.target', function () {
 
-            _this4._bindTarget();
+            _this5._bindTarget();
 
-            if (_this4.data.show) {
+            if (_this5.data.show) {
 
-                _this4.hide();
-                _this4.show();
+                _this5.hide();
+                _this5.show();
             }
         });
 
         this.$watch('conf.trigger', function () {
 
-            _this4.data.activeTrigger = {};
-            _this4._triggerUnsetListeners();
-            _this4.Trigger.triggers = _this4.conf.trigger;
-            _this4._bindTarget();
+            _this5.data.activeTrigger = {};
+            _this5._triggerUnsetListeners();
+            _this5.Trigger.triggers = _this5.conf.trigger;
+            _this5._bindTarget();
         });
 
         this.$watch('conf.placement', function () {
 
-            _this4._tipUpdate({
-                placement: _this4.conf.placement
+            _this5._tipUpdate({
+                placement: _this5.conf.placement
             });
         });
 
         this.$watch('conf.autoReverse', function () {
 
-            _this4.Tip.autoReverse = _this4.conf.autoReverse;
+            _this5.Tip.autoReverse = _this5.conf.autoReverse;
         });
 
         this.$watch('conf.align', function () {
 
-            _this4.Tip.align = _this4.conf.align;
+            _this5.Tip.align = _this5.conf.align;
         });
 
         this.$watch('conf.offset', function () {
 
-            _this4._tipUpdate({
-                offset: _this4.conf.offset
+            _this5._tipUpdate({
+                offset: _this5.conf.offset
             });
         });
 
         this.Vue.nextTick(function () {
 
-            _this4._bindTarget();
+            _this5._bindTarget();
         });
     },
     beforeDestroy: function beforeDestroy() {
@@ -28447,6 +28466,7 @@ exports.default = {
             this._triggerSetListeners();
         },
         _showComplete: function _showComplete() {
+            var _this = this;
 
             var prevHoverState = this.data.hoverState;
 
@@ -28461,7 +28481,10 @@ exports.default = {
                 this._leave();
             }
 
-            this._globalEventAdd('click', '_checkArea');
+            this.Vue.nextTick(function () {
+
+                _this._globalEventAdd('click', '_checkArea', true);
+            });
         },
 
         _hideComplete: function _hideComplete() {
@@ -28476,7 +28499,7 @@ exports.default = {
             this._globalEventRemove('click', '_checkArea');
         },
         _enter: function _enter(evt) {
-            var _this = this;
+            var _this2 = this;
 
             if (this._isEventObj(evt)) {
 
@@ -28502,14 +28525,14 @@ exports.default = {
 
             this.data.timeout = setTimeout(function () {
 
-                if (_this.data.hoverState === _this.data.hoverStates.in) {
+                if (_this2.data.hoverState === _this2.data.hoverStates.in) {
 
-                    _this.show();
+                    _this2.show();
                 }
             });
         },
         _leave: function _leave(evt) {
-            var _this2 = this;
+            var _this3 = this;
 
             if (this._isEventObj(evt)) {
 
@@ -28531,9 +28554,9 @@ exports.default = {
 
             this.data.timeout = setTimeout(function () {
 
-                if (_this2.data.hoverState === _this2.data.hoverStates.out) {
+                if (_this3.data.hoverState === _this3.data.hoverStates.out) {
 
-                    _this2.hide();
+                    _this3.hide();
                 }
             });
         },
@@ -28547,17 +28570,27 @@ exports.default = {
         },
         _checkArea: function _checkArea(evt) {
 
+            if (evt.button === 2) {
+
+                return;
+            }
+
             var notFound = -1;
 
-            if (evt.path.indexOf(this.conf.$target) === notFound && evt.path.indexOf(this.$el) === notFound) {
+            if (evt.path.indexOf(this.data.$target) === notFound && evt.path.indexOf(this.$el) === notFound && this.conf.trigger.indexOf('click') !== -1) {
 
                 this.hide();
             }
 
             return evt;
         },
+        _clickToggle: function _clickToggle() {
+
+            this.data.activeTrigger.click = !this.data.activeTrigger.click;
+            this.toggle();
+        },
         show: function show() {
-            var _this3 = this;
+            var _this4 = this;
 
             this._tipCreate({
                 placement: this.conf.placement,
@@ -28571,7 +28604,7 @@ exports.default = {
 
             this.Vue.nextTick(function () {
 
-                _this3._tipUpdate();
+                _this4._tipUpdate();
             });
 
             return this;
@@ -28585,11 +28618,6 @@ exports.default = {
             return this;
         },
         toggle: function toggle() {
-
-            if (this.data.activeTrigger.click === undefined) {
-
-                this.data.activeTrigger.click = !this.data.activeTrigger.click;
-            }
 
             if (this._isWithActiveTrigger()) {
 
@@ -28609,7 +28637,7 @@ exports.default = {
         }
     },
     mounted: function mounted() {
-        var _this4 = this;
+        var _this5 = this;
 
         this.Trigger.triggers = this.conf.trigger;
         this.Tip.autoReverse = this.conf.autoReverse;
@@ -28617,18 +28645,18 @@ exports.default = {
 
         this.$watch('conf.triggerInDelay', function () {
 
-            _this4.Trigger.handlerMap = {
-                click: [_this4.toggle],
+            _this5.Trigger.handlerMap = {
+                click: [_this5._clickToggle],
                 hover: {
                     in: [{
-                        fn: _this4._enter,
-                        delay: _this4.conf.triggerInDelay
+                        fn: _this5._enter,
+                        delay: _this5.conf.triggerInDelay
                     }],
-                    out: [_this4._leave]
+                    out: [_this5._leave]
                 },
                 focus: {
-                    in: [_this4._enter],
-                    out: [_this4._leave]
+                    in: [_this5._enter],
+                    out: [_this5._leave]
                 }
             };
         }, {
@@ -28637,50 +28665,50 @@ exports.default = {
 
         this.$watch('conf.target', function () {
 
-            _this4._bindTarget();
+            _this5._bindTarget();
 
-            if (_this4.data.show) {
+            if (_this5.data.show) {
 
-                _this4.hide();
-                _this4.show();
+                _this5.hide();
+                _this5.show();
             }
         });
 
         this.$watch('conf.trigger', function () {
 
-            _this4.data.activeTrigger = {};
-            _this4._triggerUnsetListeners();
-            _this4.Trigger.triggers = _this4.conf.trigger;
-            _this4._bindTarget();
+            _this5.data.activeTrigger = {};
+            _this5._triggerUnsetListeners();
+            _this5.Trigger.triggers = _this5.conf.trigger;
+            _this5._bindTarget();
         });
 
         this.$watch('conf.placement', function () {
 
-            _this4._tipUpdate({
-                placement: _this4.conf.placement
+            _this5._tipUpdate({
+                placement: _this5.conf.placement
             });
         });
 
         this.$watch('conf.autoReverse', function () {
 
-            _this4.Tip.autoReverse = _this4.conf.autoReverse;
+            _this5.Tip.autoReverse = _this5.conf.autoReverse;
         });
 
         this.$watch('conf.align', function () {
 
-            _this4.Tip.align = _this4.conf.align;
+            _this5.Tip.align = _this5.conf.align;
         });
 
         this.$watch('conf.offset', function () {
 
-            _this4._tipUpdate({
-                offset: _this4.conf.offset
+            _this5._tipUpdate({
+                offset: _this5.conf.offset
             });
         });
 
         this.Vue.nextTick(function () {
 
-            _this4._bindTarget();
+            _this5._bindTarget();
         });
     },
     beforeDestroy: function beforeDestroy() {
@@ -44732,7 +44760,7 @@ var TriggerManager = {
                 }
 
                 // mouse leave target element to other target element not emit leave, when use hover
-                if (trigger === 'hover' && evt.type === 'mouseleave' && (_this.Trigger.$targets.indexOf(evt.toElement) !== -1 || evt.toElement && evt.toElement.parentElement && _this.Trigger.$targets.indexOf(evt.toElement.parentElement) !== -1)) {
+                if (trigger === 'hover' && evt.type === 'mouseleave' && (_this.Trigger.$targets.indexOf(evt.relatedTarget) !== -1 || evt.relatedTarget && evt.relatedTarget.parentElement && _this.Trigger.$targets.indexOf(evt.relatedTarget.parentElement) !== -1)) {
 
                     return;
                 }
