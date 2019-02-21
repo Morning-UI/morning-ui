@@ -12292,6 +12292,9 @@ mor-menu.co-bk.block .pos-top .sub-menu > li.current > a {
 mor-menu.co-bk.block .pos-side .sub-menu > li.last-current > a {
   background-color: #45505C;
 }
+mor-menu.co-bk.collapse .pos-side .root-menu > li > a:hover {
+  background: #202d3e;
+}
 mor-menu.co-lbk .pos-top .root-menu,
 mor-menu.co-lbk .pos-side .root-menu,
 mor-menu.co-lbk .pos-top mor-private-menu .sub-menu,
@@ -12378,6 +12381,9 @@ mor-menu.co-lbk.block .pos-top .sub-menu > li.current > a {
 }
 mor-menu.co-lbk.block .pos-side .sub-menu > li.last-current > a {
   background-color: #45505C;
+}
+mor-menu.co-lbk.collapse .pos-side .root-menu > li > a:hover {
+  background: #3a485b;
 }
 mor-menu.co-elbk .pos-top .root-menu,
 mor-menu.co-elbk .pos-side .root-menu,
@@ -12466,6 +12472,9 @@ mor-menu.co-elbk.block .pos-top .sub-menu > li.current > a {
 mor-menu.co-elbk.block .pos-side .sub-menu > li.last-current > a {
   background-color: #7C8BA0;
 }
+mor-menu.co-elbk.collapse .pos-side .root-menu > li > a:hover {
+  background: #505d6b;
+}
 mor-menu.co-g .pos-top .root-menu,
 mor-menu.co-g .pos-side .root-menu,
 mor-menu.co-g .pos-top .sub-menu,
@@ -12478,6 +12487,9 @@ mor-menu.co-g .pos-top .sub-menu > li.is-disable > a,
 mor-menu.co-g .pos-side .sub-menu > li.is-disable > a {
   background: #d9d9d9;
 }
+mor-menu.co-g.collapse .pos-side .root-menu > li > a:hover {
+  background: #d2d2d2;
+}
 mor-menu.co-lg .pos-top .root-menu,
 mor-menu.co-lg .pos-side .root-menu,
 mor-menu.co-lg .pos-top .sub-menu,
@@ -12489,6 +12501,9 @@ mor-menu.co-lg .pos-side .root-menu > li.is-disable > a,
 mor-menu.co-lg .pos-top .sub-menu > li.is-disable > a,
 mor-menu.co-lg .pos-side .sub-menu > li.is-disable > a {
   background: #e3e3e3;
+}
+mor-menu.co-lg.collapse .pos-side .root-menu > li > a:hover {
+  background: #d7d7d7;
 }
 mor-menu.co-wh .pos-top .root-menu,
 mor-menu.co-wh .pos-side .root-menu,
@@ -12535,6 +12550,9 @@ mor-menu.co-wh .pos-side .sub-menu > li.is-disable > a:hover {
 mor-menu.co-wh .pos-top .root-menu > li.is-disable > a:hover,
 mor-menu.co-wh .pos-side .root-menu > li.is-disable > a:hover {
   border-bottom-color: #E2E8EE;
+}
+mor-menu.co-wh.collapse .pos-side .root-menu > li > a:hover {
+  background: #E2E8EE;
 }
 mor-menu.expand .pos-side .root-menu > li.current > a {
   padding-right: 1.5em;
@@ -12700,6 +12718,9 @@ mor-menu .pos-side .sub-menu > li.is-disable > a:hover {
 mor-menu .pos-top .root-menu > li.is-disable > a:hover,
 mor-menu .pos-side .root-menu > li.is-disable > a:hover {
   border-bottom-color: #E2E8EE;
+}
+mor-menu.collapse .pos-side .root-menu > li > a:hover {
+  background: #E2E8EE;
 }
 mor-anchor {
   position: relative;
