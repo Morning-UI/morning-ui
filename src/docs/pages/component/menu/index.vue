@@ -56,7 +56,7 @@
                     },
                     'order' : {
                         name : '订单',          
-                        childs : {
+                        children : {
                             'all' : '所有',
                             'notshipped' : '待发货',
                             'intransit' : '运输中',
@@ -65,7 +65,7 @@
                             'status' : '订单状态',
                             'data' : '数据统计'
                         },
-                        groups : {                              // `groups`可以用来给子菜单`childs`分组
+                        groups : {                              // `groups`可以用来给子菜单`children`分组
                             '订单列表' : ['all', 'done', 'notshipped', 'intransit'],
                             '更多' : ['history', 'status', 'data']
                         }
@@ -81,13 +81,13 @@
                     },             
                     'settings' : {
                         name : '设置',
-                        childs : {                              // 通过`child`设置子目录，当一个目录包含`child`后，`link`会失效
+                        children : {                              // 通过`child`设置子目录，当一个目录包含`child`后，`link`会失效
                             'common' : {
                                 name : '通用设置',
-                                childs : {                      // 支持多级子菜单
+                                children : {                      // 支持多级子菜单
                                     'theme' : {
                                         name : '模板',
-                                        childs : {
+                                        children : {
                                             'modify' : '编辑',
                                             'market' : '模板市场'
                                         }
@@ -98,14 +98,14 @@
                             },
                             'account' : {
                                 name : '账户设置',
-                                childs : {
+                                children : {
                                     'email' : '邮箱设置',
                                     'password' : '修改密码'
                                 }
                             },
                             'safity' : {
                                 name : '安全设置',
-                                childs : {
+                                children : {
                                     'multiple' : '多重认证',
                                     'found' : '账户找回',
                                     'history' : '登录历史',
@@ -153,13 +153,13 @@
                 'history' : '历史',
                 'settings' : {
                     name : '设置',
-                    childs : {
+                    children : {
                         'common' : {
                             name : '通用设置',
-                            childs : {
+                            children : {
                                 'theme' : {
                                     name : '模板',
-                                    childs : {
+                                    children : {
                                         'modify' : '编辑',
                                         'market' : '模板市场'
                                     }
@@ -170,14 +170,14 @@
                         },
                         'account' : {
                             name : '账户设置',
-                            childs : {
+                            children : {
                                 'email' : '邮箱设置',
                                 'password' : '修改密码'
                             }
                         },
                         'safity' : {
                             name : '安全设置',
-                            childs : {
+                            children : {
                                 'multiple' : '多重认证',
                                 'found' : '账户找回',
                                 'history' : '登录历史',
@@ -207,13 +207,13 @@
                 'history' : '历史',            
                 'settings' : {
                     name : '设置',
-                    childs : {
+                    children : {
                         'common' : {
                             name : '通用设置',
-                            childs : {
+                            children : {
                                 'theme' : {
                                     name : '模板',
-                                    childs : {
+                                    children : {
                                         'modify' : '编辑',
                                         'market' : '模板市场'
                                     }
@@ -224,14 +224,14 @@
                         },
                         'account' : {
                             name : '账户设置',
-                            childs : {
+                            children : {
                                 'email' : '邮箱设置',
                                 'password' : '修改密码'
                             }
                         },
                         'safity' : {
                             name : '安全设置',
-                            childs : {
+                            children : {
                                 'multiple' : '多重认证',
                                 'found' : '账户找回',
                                 'history' : '登录历史',
@@ -265,13 +265,13 @@
                 'history' : '历史',          
                 'settings' : {
                     name : '设置',
-                    childs : {
+                    children : {
                         'common' : {
                             name : '通用设置',
-                            childs : {
+                            children : {
                                 'theme' : {
                                     name : '模板',
-                                    childs : {
+                                    children : {
                                         'modify' : '编辑',
                                         'market' : '模板市场'
                                     }
@@ -282,14 +282,14 @@
                         },
                         'account' : {
                             name : '账户设置',
-                            childs : {
+                            children : {
                                 'email' : '邮箱设置',
                                 'password' : '修改密码'
                             }
                         },
                         'safity' : {
                             name : '安全设置',
-                            childs : {
+                            children : {
                                 'multiple' : '多重认证',
                                 'found' : '账户找回',
                                 'history' : '登录历史',
@@ -319,13 +319,13 @@
                 'history' : '历史',        
                 'settings' : {
                     name : '设置',
-                    childs : {
+                    children : {
                         'common' : {
                             name : '通用设置',
-                            childs : {
+                            children : {
                                 'theme' : {
                                     name : '模板',
-                                    childs : {
+                                    children : {
                                         'modify' : '编辑',
                                         'market' : '模板市场'
                                     }
@@ -336,14 +336,14 @@
                         },
                         'account' : {
                             name : '账户设置',
-                            childs : {
+                            children : {
                                 'email' : '邮箱设置',
                                 'password' : '修改密码'
                             }
                         },
                         'safity' : {
                             name : '安全设置',
-                            childs : {
+                            children : {
                                 'multiple' : '多重认证',
                                 'found' : '账户找回',
                                 'history' : '登录历史',
@@ -441,7 +441,7 @@
                     'home' : '首页',
                     'order' : {
                         name : '订单',
-                        childs : {
+                        children : {
                             'my' : '我的订单',
                             'history' : '历史订单'
                         }
@@ -458,7 +458,7 @@
                 // item.name : 项目的名称
                 // item.link : 跳转链接
                 // item.newtab : 是否新窗口打开
-                // item.childs : 子菜单对象
+                // item.children : 子菜单对象
                 alert(`点击${item.name}(${item.key})`);
             }
         }
@@ -482,13 +482,13 @@
                 'history' : '历史',
                 'settings' : {
                     name : '设置',
-                    childs : {
+                    children : {
                         'common' : {
                             name : '通用设置',
-                            childs : {
+                            children : {
                                 'theme' : {
                                     name : '模板',
-                                    childs : {
+                                    children : {
                                         'modify' : '编辑',
                                         'market' : '模板市场'
                                     }
@@ -499,14 +499,14 @@
                         },
                         'account' : {
                             name : '账户设置',
-                            childs : {
+                            children : {
                                 'email' : '邮箱设置',
                                 'password' : '修改密码'
                             }
                         },
                         'safity' : {
                             name : '安全设置',
-                            childs : {
+                            children : {
                                 'multiple' : '多重认证',
                                 'found' : '账户找回',
                                 'history' : '登录历史',
@@ -526,7 +526,7 @@
     ---
     #demo
     >desc
-    从二级菜单开始，可以通过`groups`为菜单项目进行分组。需要注意的当指定了`groups`菜单项的顺序将按照`groups`为准，而不是`childs`中的顺序。
+    从二级菜单开始，可以通过`groups`为菜单项目进行分组。需要注意的当指定了`groups`菜单项的顺序将按照`groups`为准，而不是`children`中的顺序。
     >tpl
     <div style="width:700px;">
         <ui-menu :menu="menu"></ui-menu>
@@ -539,7 +539,7 @@
                     'home' : '首页',
                     'order' : {
                         name : '订单',
-                        childs : {
+                        children : {
                             'all' : '所有',
                             'notshipped' : '待发货',
                             'intransit' : '运输中',
@@ -577,7 +577,7 @@
                     'home' : '<i class="mo-icon mo-icon-block-4"></i>首页',
                     'order' : {
                         name : '<i class="mo-icon mo-icon-menu"></i>订单',
-                        childs : {
+                        children : {
                             'my' : '<i class="mo-icon mo-icon-list"></i>我的订单',
                             'history' : '<i class="mo-icon mo-icon-time-cf"></i>历史订单'
                         }
@@ -607,11 +607,11 @@
                     'home' : '<i class="mo-icon mo-icon-block-4"></i>首页',
                     'order' : {
                         name : '<i class="mo-icon mo-icon-menu"></i>订单',
-                        childs : {
+                        children : {
                             'my' : '<i class="mo-icon mo-icon-list"></i>我的订单',
                             'history' : {
                                 name : '<i class="mo-icon mo-icon-time-cf"></i>历史订单',
-                                childs : {
+                                children : {
                                     'week' : '最近一周',
                                     'month' : '最近一月'
                                 },
@@ -647,11 +647,11 @@
                     'home' : '首页',
                     'order' : {
                         name : '订单',
-                        childs : {
+                        children : {
                             'my' : '我的订单',
                             'history' : {
                                 name : '历史订单',
-                                childs : {
+                                children : {
                                     'week' : '最近一周',
                                     'month' : '最近一月'
                                 }
@@ -703,13 +703,13 @@
                 'history' : '历史',
                 'settings' : {
                     name : '设置',
-                    childs : {
+                    children : {
                         'common' : {
                             name : '通用设置',
-                            childs : {
+                            children : {
                                 'theme' : {
                                     name : '模板',
-                                    childs : {
+                                    children : {
                                         'modify' : '编辑',
                                         'market' : '模板市场'
                                     }
@@ -720,14 +720,14 @@
                         },
                         'account' : {
                             name : '账户设置',
-                            childs : {
+                            children : {
                                 'email' : '邮箱设置',
                                 'password' : '修改密码'
                             }
                         },
                         'safity' : {
                             name : '安全设置',
-                            childs : {
+                            children : {
                                 'multiple' : '多重认证',
                                 'found' : '账户找回',
                                 'history' : '登录历史',
@@ -756,7 +756,7 @@
                     'home' : '首页',
                     'order' : {
                         name : '订单',
-                        childs : {
+                        children : {
                             'all' : '所有',
                             'notshipped' : '待发货',
                             'intransit' : '运输中',
@@ -790,7 +790,7 @@
                     'home' : '<i class="mo-icon mo-icon-block-4"></i>首页',
                     'order' : {
                         name : '<i class="mo-icon mo-icon-menu"></i>订单',
-                        childs : {
+                        children : {
                             'my' : '<i class="mo-icon mo-icon-list"></i>我的订单',
                             'history' : '<i class="mo-icon mo-icon-time-cf"></i>历史订单'
                         }
@@ -816,11 +816,11 @@
                     'home' : '<i class="mo-icon mo-icon-block-4"></i>首页',
                     'order' : {
                         name : '<i class="mo-icon mo-icon-menu"></i>订单',
-                        childs : {
+                        children : {
                             'my' : '<i class="mo-icon mo-icon-list"></i>我的订单',
                             'history' : {
                                 name : '<i class="mo-icon mo-icon-time-cf"></i>历史订单',
-                                childs : {
+                                children : {
                                     'week' : '最近一周',
                                     'month' : '最近一月'
                                 },
@@ -852,11 +852,11 @@
                     'home' : '首页',
                     'order' : {
                         name : '订单',
-                        childs : {
+                        children : {
                             'my' : '我的订单',
                             'history' : {
                                 name : '历史订单',
-                                childs : {
+                                children : {
                                     'week' : '最近一周',
                                     'month' : '最近一月'
                                 }
@@ -897,11 +897,11 @@
                 'home' : '<i class=\'mo-icon mo-icon-block-4\'></i>尺寸{$sizeName}',
                 'order' : {
                     name : '<i class=\'mo-icon mo-icon-menu\'></i>订单',
-                    childs : {
+                    children : {
                         'my' : '我的订单',
                         'history' : {
                             name : '历史订单',
-                            childs : {
+                            children : {
                                 'week' : '最近一周',
                                 'month' : '最近一月'
                             }
@@ -929,11 +929,11 @@
                 'home' : '<i class=\'mo-icon mo-icon-block-4\'></i>尺寸{$sizeName}',
                 'order' : {
                     name : '<i class=\'mo-icon mo-icon-menu\'></i>订单',
-                    childs : {
+                    children : {
                         'my' : '我的订单',
                         'history' : {
                             name : '历史订单',
-                            childs : {
+                            children : {
                                 'week' : '最近一周',
                                 'month' : '最近一月'
                             }
@@ -962,11 +962,11 @@
                 'home' : '<i class=\'mo-icon mo-icon-block-4\'></i>尺寸{$sizeName}',
                 'order' : {
                     name : '<i class=\'mo-icon mo-icon-menu\'></i>订单',
-                    childs : {
+                    children : {
                         'my' : '我的订单',
                         'history' : {
                             name : '历史订单',
-                            childs : {
+                            children : {
                                 'week' : '最近一周',
                                 'month' : '最近一月'
                             }
@@ -1002,7 +1002,7 @@
                 },
                 'order' : {
                     name : '订单',          
-                    childs : {
+                    children : {
                         'all' : '所有',
                         'notshipped' : '待发货',
                         'intransit' : '运输中',
@@ -1018,13 +1018,13 @@
                 },
                 'settings' : {
                     name : '设置',
-                    childs : {
+                    children : {
                         'common' : {
                             name : '通用设置',
-                            childs : {
+                            children : {
                                 'theme' : {
                                     name : '模板',
-                                    childs : {
+                                    children : {
                                         'modify' : '编辑',
                                         'market' : '模板市场'
                                     }
@@ -1035,14 +1035,14 @@
                         },
                         'account' : {
                             name : '账户设置',
-                            childs : {
+                            children : {
                                 'email' : '邮箱设置',
                                 'password' : '修改密码'
                             }
                         },
                         'safity' : {
                             name : '安全设置',
-                            childs : {
+                            children : {
                                 'multiple' : '多重认证',
                                 'found' : '账户找回',
                                 'history' : '登录历史',
@@ -1076,7 +1076,7 @@
                 },
                 'order' : {
                     name : '订单',          
-                    childs : {
+                    children : {
                         'all' : '所有',
                         'notshipped' : '待发货',
                         'intransit' : '运输中',
@@ -1092,13 +1092,13 @@
                 },
                 'settings' : {
                     name : '设置',
-                    childs : {
+                    children : {
                         'common' : {
                             name : '通用设置',
-                            childs : {
+                            children : {
                                 'theme' : {
                                     name : '模板',
-                                    childs : {
+                                    children : {
                                         'modify' : '编辑',
                                         'market' : '模板市场'
                                     }
@@ -1109,14 +1109,14 @@
                         },
                         'account' : {
                             name : '账户设置',
-                            childs : {
+                            children : {
                                 'email' : '邮箱设置',
                                 'password' : '修改密码'
                             }
                         },
                         'safity' : {
                             name : '安全设置',
-                            childs : {
+                            children : {
                                 'multiple' : '多重认证',
                                 'found' : '账户找回',
                                 'history' : '登录历史',
@@ -1152,7 +1152,7 @@
                     },
                     'order' : {
                         name : '订单',          
-                        childs : {
+                        children : {
                             'all' : '所有',
                             'notshipped' : '待发货',
                             'intransit' : '运输中',
@@ -1168,13 +1168,13 @@
                     },
                     'settings' : {
                         name : '设置',
-                        childs : {
+                        children : {
                             'common' : {
                                 name : '通用设置',
-                                childs : {
+                                children : {
                                     'theme' : {
                                         name : '模板',
-                                        childs : {
+                                        children : {
                                             'modify' : '编辑',
                                             'market' : '模板市场'
                                         }
@@ -1185,14 +1185,14 @@
                             },
                             'account' : {
                                 name : '账户设置',
-                                childs : {
+                                children : {
                                     'email' : '邮箱设置',
                                     'password' : '修改密码'
                                 }
                             },
                             'safity' : {
                                 name : '安全设置',
-                                childs : {
+                                children : {
                                     'multiple' : '多重认证',
                                     'found' : '账户找回',
                                     'history' : '登录历史',
@@ -1218,7 +1218,7 @@
                     },
                     'order' : {
                         name : '订单',          
-                        childs : {
+                        children : {
                             'all' : '所有',
                             'notshipped' : '待发货',
                             'intransit' : '运输中',
@@ -1234,13 +1234,13 @@
                     },
                     'settings' : {
                         name : '设置',
-                        childs : {
+                        children : {
                             'common' : {
                                 name : '通用设置',
-                                childs : {
+                                children : {
                                     'theme' : {
                                         name : '模板',
-                                        childs : {
+                                        children : {
                                             'modify' : '编辑',
                                             'market' : '模板市场'
                                         }
@@ -1251,14 +1251,14 @@
                             },
                             'account' : {
                                 name : '账户设置',
-                                childs : {
+                                children : {
                                     'email' : '邮箱设置',
                                     'password' : '修改密码'
                                 }
                             },
                             'safity' : {
                                 name : '安全设置',
-                                childs : {
+                                children : {
                                     'multiple' : '多重认证',
                                     'found' : '账户找回',
                                     'history' : '登录历史',
@@ -1296,7 +1296,7 @@
                     },
                     'order' : {
                         name : '订单',          
-                        childs : {
+                        children : {
                             'all' : '所有',
                             'notshipped' : '待发货',
                             'intransit' : '运输中',
@@ -1312,13 +1312,13 @@
                     },
                     'settings' : {
                         name : '设置',
-                        childs : {
+                        children : {
                             'common' : {
                                 name : '通用设置',
-                                childs : {
+                                children : {
                                     'theme' : {
                                         name : '模板',
-                                        childs : {
+                                        children : {
                                             'modify' : '编辑',
                                             'market' : '模板市场'
                                         }
@@ -1329,14 +1329,14 @@
                             },
                             'account' : {
                                 name : '账户设置',
-                                childs : {
+                                children : {
                                     'email' : '邮箱设置',
                                     'password' : '修改密码'
                                 }
                             },
                             'safity' : {
                                 name : '安全设置',
-                                childs : {
+                                children : {
                                     'multiple' : '多重认证',
                                     'found' : '账户找回',
                                     'history' : '登录历史',
@@ -1362,7 +1362,7 @@
                     },
                     'order' : {
                         name : '订单',          
-                        childs : {
+                        children : {
                             'all' : '所有',
                             'notshipped' : '待发货',
                             'intransit' : '运输中',
@@ -1378,13 +1378,13 @@
                     },
                     'settings' : {
                         name : '设置',
-                        childs : {
+                        children : {
                             'common' : {
                                 name : '通用设置',
-                                childs : {
+                                children : {
                                     'theme' : {
                                         name : '模板',
-                                        childs : {
+                                        children : {
                                             'modify' : '编辑',
                                             'market' : '模板市场'
                                         }
@@ -1395,14 +1395,14 @@
                             },
                             'account' : {
                                 name : '账户设置',
-                                childs : {
+                                children : {
                                     'email' : '邮箱设置',
                                     'password' : '修改密码'
                                 }
                             },
                             'safity' : {
                                 name : '安全设置',
-                                childs : {
+                                children : {
                                     'multiple' : '多重认证',
                                     'found' : '账户找回',
                                     'history' : '登录历史',
@@ -1441,7 +1441,7 @@
                 },
                 'order' : {
                     name : '订单',          
-                    childs : {
+                    children : {
                         'all' : '所有',
                         'notshipped' : '待发货',
                         'intransit' : '运输中',
@@ -1457,13 +1457,13 @@
                 },
                 'settings' : {
                     name : '设置',
-                    childs : {
+                    children : {
                         'common' : {
                             name : '通用设置',
-                            childs : {
+                            children : {
                                 'theme' : {
                                     name : '模板',
-                                    childs : {
+                                    children : {
                                         'modify' : '编辑',
                                         'market' : '模板市场'
                                     }
@@ -1474,14 +1474,14 @@
                         },
                         'account' : {
                             name : '账户设置',
-                            childs : {
+                            children : {
                                 'email' : '邮箱设置',
                                 'password' : '修改密码'
                             }
                         },
                         'safity' : {
                             name : '安全设置',
-                            childs : {
+                            children : {
                                 'multiple' : '多重认证',
                                 'found' : '账户找回',
                                 'history' : '登录历史',
@@ -1515,7 +1515,7 @@
                 },
                 'order' : {
                     name : '订单',          
-                    childs : {
+                    children : {
                         'all' : '所有',
                         'notshipped' : '待发货',
                         'intransit' : '运输中',
@@ -1531,13 +1531,13 @@
                 },
                 'settings' : {
                     name : '设置',
-                    childs : {
+                    children : {
                         'common' : {
                             name : '通用设置',
-                            childs : {
+                            children : {
                                 'theme' : {
                                     name : '模板',
-                                    childs : {
+                                    children : {
                                         'modify' : '编辑',
                                         'market' : '模板市场'
                                     }
@@ -1548,14 +1548,14 @@
                         },
                         'account' : {
                             name : '账户设置',
-                            childs : {
+                            children : {
                                 'email' : '邮箱设置',
                                 'password' : '修改密码'
                             }
                         },
                         'safity' : {
                             name : '安全设置',
-                            childs : {
+                            children : {
                                 'multiple' : '多重认证',
                                 'found' : '账户找回',
                                 'history' : '登录历史',
@@ -1591,7 +1591,7 @@
                     },
                     'order' : {
                         name : '订单',          
-                        childs : {
+                        children : {
                             'all' : '所有',
                             'notshipped' : '待发货',
                             'intransit' : '运输中',
@@ -1607,13 +1607,13 @@
                     },
                     'settings' : {
                         name : '设置',
-                        childs : {
+                        children : {
                             'common' : {
                                 name : '通用设置',
-                                childs : {
+                                children : {
                                     'theme' : {
                                         name : '模板',
-                                        childs : {
+                                        children : {
                                             'modify' : '编辑',
                                             'market' : '模板市场'
                                         }
@@ -1624,14 +1624,14 @@
                             },
                             'account' : {
                                 name : '账户设置',
-                                childs : {
+                                children : {
                                     'email' : '邮箱设置',
                                     'password' : '修改密码'
                                 }
                             },
                             'safity' : {
                                 name : '安全设置',
-                                childs : {
+                                children : {
                                     'multiple' : '多重认证',
                                     'found' : '账户找回',
                                     'history' : '登录历史',
@@ -1657,7 +1657,7 @@
                     },
                     'order' : {
                         name : '订单',          
-                        childs : {
+                        children : {
                             'all' : '所有',
                             'notshipped' : '待发货',
                             'intransit' : '运输中',
@@ -1673,13 +1673,13 @@
                     },
                     'settings' : {
                         name : '设置',
-                        childs : {
+                        children : {
                             'common' : {
                                 name : '通用设置',
-                                childs : {
+                                children : {
                                     'theme' : {
                                         name : '模板',
-                                        childs : {
+                                        children : {
                                             'modify' : '编辑',
                                             'market' : '模板市场'
                                         }
@@ -1690,14 +1690,14 @@
                             },
                             'account' : {
                                 name : '账户设置',
-                                childs : {
+                                children : {
                                     'email' : '邮箱设置',
                                     'password' : '修改密码'
                                 }
                             },
                             'safity' : {
                                 name : '安全设置',
-                                childs : {
+                                children : {
                                     'multiple' : '多重认证',
                                     'found' : '账户找回',
                                     'history' : '登录历史',
@@ -1735,7 +1735,7 @@
                     },
                     'order' : {
                         name : '订单',          
-                        childs : {
+                        children : {
                             'all' : '所有',
                             'notshipped' : '待发货',
                             'intransit' : '运输中',
@@ -1751,13 +1751,13 @@
                     },
                     'settings' : {
                         name : '设置',
-                        childs : {
+                        children : {
                             'common' : {
                                 name : '通用设置',
-                                childs : {
+                                children : {
                                     'theme' : {
                                         name : '模板',
-                                        childs : {
+                                        children : {
                                             'modify' : '编辑',
                                             'market' : '模板市场'
                                         }
@@ -1768,14 +1768,14 @@
                             },
                             'account' : {
                                 name : '账户设置',
-                                childs : {
+                                children : {
                                     'email' : '邮箱设置',
                                     'password' : '修改密码'
                                 }
                             },
                             'safity' : {
                                 name : '安全设置',
-                                childs : {
+                                children : {
                                     'multiple' : '多重认证',
                                     'found' : '账户找回',
                                     'history' : '登录历史',
@@ -1801,7 +1801,7 @@
                     },
                     'order' : {
                         name : '订单',          
-                        childs : {
+                        children : {
                             'all' : '所有',
                             'notshipped' : '待发货',
                             'intransit' : '运输中',
@@ -1817,13 +1817,13 @@
                     },
                     'settings' : {
                         name : '设置',
-                        childs : {
+                        children : {
                             'common' : {
                                 name : '通用设置',
-                                childs : {
+                                children : {
                                     'theme' : {
                                         name : '模板',
-                                        childs : {
+                                        children : {
                                             'modify' : '编辑',
                                             'market' : '模板市场'
                                         }
@@ -1834,14 +1834,14 @@
                             },
                             'account' : {
                                 name : '账户设置',
-                                childs : {
+                                children : {
                                     'email' : '邮箱设置',
                                     'password' : '修改密码'
                                 }
                             },
                             'safity' : {
                                 name : '安全设置',
-                                childs : {
+                                children : {
                                     'multiple' : '多重认证',
                                     'found' : '账户找回',
                                     'history' : '登录历史',
@@ -1880,15 +1880,15 @@
     <br>
     `newtab`: 链接是否在新窗口打开(配合`link`一起使用)
     <br>
-    `childs`: 子菜单，值为子菜单的对象树
+    `children`: 子菜单，值为子菜单的对象树
     <br>
-    `groups`: 配合`childs`一起使用，这是一个对象，`key`为分组名称，`value`是一个包含子菜单KEY的数组。子菜单会按照这个数组将对应的菜单项分为一组
+    `groups`: 配合`children`一起使用，这是一个对象，`key`为分组名称，`value`是一个包含子菜单KEY的数组。子菜单会按照这个数组将对应的菜单项分为一组
     <br>
     `handler`: 点击菜单项后的处理函数
     <br>
     `disable`: 禁用此菜单项
     <br><br>
-    注意：当一个`object`包含`childs`时`link`和`newtab`会失效。
+    注意：当一个`object`包含`children`时`link`和`newtab`会失效。
     >conf-accept
     菜单树对象
     >conf-type
@@ -1933,7 +1933,7 @@
                     },
                     'order' : {
                         name : '订单',          
-                        childs : {
+                        children : {
                             'all' : '所有',
                             'notshipped' : '待发货',
                             'intransit' : '运输中',
@@ -1942,7 +1942,7 @@
                             'status' : '订单状态',
                             'data' : '数据统计'
                         },
-                        groups : {                              // `groups`可以用来给子菜单`childs`分组
+                        groups : {                              // `groups`可以用来给子菜单`children`分组
                             '订单列表' : ['all', 'done', 'notshipped', 'intransit'],
                             '更多' : ['history', 'status', 'data']
                         }
@@ -1958,13 +1958,13 @@
                     },             
                     'settings' : {
                         name : '设置',
-                        childs : {                              // 通过`child`设置子目录，当一个目录包含`child`后，`link`会失效
+                        children : {                              // 通过`child`设置子目录，当一个目录包含`child`后，`link`会失效
                             'common' : {
                                 name : '通用设置',
-                                childs : {                      // 支持多级子菜单
+                                children : {                      // 支持多级子菜单
                                     'theme' : {
                                         name : '模板',
-                                        childs : {
+                                        children : {
                                             'modify' : '编辑',
                                             'market' : '模板市场'
                                         }
@@ -1975,14 +1975,14 @@
                             },
                             'account' : {
                                 name : '账户设置',
-                                childs : {
+                                children : {
                                     'email' : '邮箱设置',
                                     'password' : '修改密码'
                                 }
                             },
                             'safity' : {
                                 name : '安全设置',
-                                childs : {
+                                children : {
                                     'multiple' : '多重认证',
                                     'found' : '账户找回',
                                     'history' : '登录历史',
@@ -2037,11 +2037,11 @@
                     'home' : '首页',
                     'order' : {
                         name : '订单',
-                        childs : {
+                        children : {
                             'my' : '我的订单',
                             'history' : {
                                 name : '历史订单',
-                                childs : {
+                                children : {
                                     'week' : '最近一周',
                                     'month' : '最近一月'
                                 }
@@ -2069,11 +2069,11 @@
                     'home' : '首页',
                     'order' : {
                         name : '订单',
-                        childs : {
+                        children : {
                             'my' : '我的订单',
                             'history' : {
                                 name : '历史订单',
-                                childs : {
+                                children : {
                                     'week' : '最近一周',
                                     'month' : '最近一月'
                                 }
@@ -2198,11 +2198,11 @@
                     'home' : '首页',
                     'order' : {
                         name : '订单',
-                        childs : {
+                        children : {
                             'my' : '我的订单',
                             'history' : {
                                 name : '历史订单',
-                                childs : {
+                                children : {
                                     'week' : '最近一周',
                                     'month' : '最近一月'
                                 }
@@ -2230,11 +2230,11 @@
                     'home' : '首页',
                     'order' : {
                         name : '订单',
-                        childs : {
+                        children : {
                             'my' : '我的订单',
                             'history' : {
                                 name : '历史订单',
-                                childs : {
+                                children : {
                                     'week' : '最近一周',
                                     'month' : '最近一月'
                                 }
@@ -2274,11 +2274,11 @@
                     'home' : '首页',
                     'order' : {
                         name : '订单',
-                        childs : {
+                        children : {
                             'my' : '我的订单',
                             'history' : {
                                 name : '历史订单',
-                                childs : {
+                                children : {
                                     'week' : '最近一周',
                                     'month' : '最近一月'
                                 }
@@ -2318,11 +2318,11 @@
                     'home' : '<i class="mo-icon mo-icon-block-4"></i>首页',
                     'order' : {
                         name : '<i class="mo-icon mo-icon-menu"></i>订单',
-                        childs : {
+                        children : {
                             'my' : '我的订单',
                             'history' : {
                                 name : '历史订单',
-                                childs : {
+                                children : {
                                     'week' : '最近一周',
                                     'month' : '最近一月'
                                 }
