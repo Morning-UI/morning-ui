@@ -121,7 +121,7 @@ export default {
     methods : {
         _emit : function (data) {
 
-            if (!data.childs || Object.keys(data.childs).length > 0) {
+            if (!data.children || Object.keys(data.children).length > 0) {
 
                 return;
 
