@@ -24737,7 +24737,7 @@ exports.default = {
     methods: {
         _emit: function _emit(data) {
 
-            if (!data.childs || Object.keys(data.childs).length > 0) {
+            if (!data.children || Object.keys(data.children).length > 0) {
 
                 return;
             }
@@ -34854,7 +34854,7 @@ exports.default = {
                     break;
                 }
 
-                currentMenu = currentMenu[key].childs || {};
+                currentMenu = currentMenu[key].children || {};
             }
 
             return value;
@@ -34911,7 +34911,7 @@ exports.default = {
             }
 
             // is last level, auto close popover
-            if (!this.data.menuList[level][key].childs) {
+            if (!this.data.menuList[level][key].children) {
 
                 if (!this.conf.changeOnSelect) {
 
@@ -34942,11 +34942,11 @@ exports.default = {
 
                     var item = currentList[key];
 
-                    if (item && item.childs) {
+                    if (item && item.children) {
 
-                        item.childs.__parentKey = key;
-                        list.push(item.childs);
-                        currentList = item.childs;
+                        item.children.__parentKey = key;
+                        list.push(item.children);
+                        currentList = item.children;
                         level += 1;
                     }
                 }
@@ -43937,7 +43937,7 @@ exports.default = {
                 name: item.name,
                 link: item.link || null,
                 newtab: item.newtab || false,
-                childs: item.childs || {},
+                children: item.children || {},
                 _path: [key, this.conf.itemKey]
             };
 
@@ -44377,7 +44377,7 @@ exports.default = {
                     this._nodeFoldSwitch(key, fold);
                     item = this.conf.tree[key];
 
-                    if (item.childs) {
+                    if (item.children) {
 
                         submenu = this.$refs['mor-tree-subtree-' + this.uiid + '-' + key];
 
@@ -49006,7 +49006,7 @@ var render = function() {
                     },
                     [
                       _c("span", [
-                        _vm.conf.foldable && item.childs && !item.disabled
+                        _vm.conf.foldable && item.children && !item.disabled
                           ? _c(
                               "a",
                               {
@@ -49032,7 +49032,7 @@ var render = function() {
                                     })
                               ]
                             )
-                          : _vm.conf.foldable && item.childs && item.disabled
+                          : _vm.conf.foldable && item.children && item.disabled
                           ? _c(
                               "a",
                               {
@@ -49055,7 +49055,7 @@ var render = function() {
                             )
                           : _vm._e(),
                         _vm._v(" "),
-                        !item.childs
+                        !item.children
                           ? _c("span", {
                               staticClass: "leafnode-icon",
                               domProps: {
@@ -49099,12 +49099,12 @@ var render = function() {
                             )
                       ]),
                       _vm._v(" "),
-                      item.childs
+                      item.children
                         ? _c("morning-private-tree", {
                             ref: "mor-tree-subtree-" + _vm.uiid + "-" + key,
                             refInFor: true,
                             attrs: {
-                              tree: item.childs,
+                              tree: item.children,
                               parentPath: _vm.conf.parentPath.concat([key]),
                               currentNode: _vm.conf.currentNode,
                               foldable: _vm.conf.foldable,
@@ -50817,7 +50817,7 @@ var render = function() {
                           }
                         },
                         [
-                          item.childs && Object.keys(item.childs).length > 0
+                          item.children && Object.keys(item.children).length > 0
                             ? _c("a", {
                                 staticClass: "has-child-menu",
                                 attrs: { href: "javascript:;" },
@@ -50847,8 +50847,8 @@ var render = function() {
                                 }
                               }),
                           _vm._v(" "),
-                          (_vm.conf.deep > 0 && item.childs) ||
-                          (_vm.conf.position === "side" && item.childs)
+                          (_vm.conf.deep > 0 && item.children) ||
+                          (_vm.conf.position === "side" && item.children)
                             ? _c("i", {
                                 staticClass: "mo-icon has-child-menu-icon",
                                 class: {
@@ -50863,7 +50863,7 @@ var render = function() {
                               })
                             : _vm._e(),
                           _vm._v(" "),
-                          item.childs && Object.keys(item.childs).length > 0
+                          item.children && Object.keys(item.children).length > 0
                             ? _c("morning-private-menu", {
                                 staticClass: "sub-menu-wrap",
                                 class: {
@@ -50872,7 +50872,7 @@ var render = function() {
                                 attrs: {
                                   "item-key": key,
                                   deep: _vm.conf.deep + 1,
-                                  menu: item.childs,
+                                  menu: item.children,
                                   groups: item.groups,
                                   "current-menu": _vm.conf.currentMenu,
                                   position: _vm.conf.position,

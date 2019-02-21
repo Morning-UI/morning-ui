@@ -26,10 +26,10 @@
             list : {
                 "zj" : {
                     name : "浙江省",
-                    childs : {
+                    children : {
                         "hz" : {
                             name : "杭州",
-                            childs : {
+                            children : {
                                 "xcq" : "下城区",
                                 "xhq" : "西湖区",
                                 "jgq" : "江干区"
@@ -37,7 +37,7 @@
                         },
                         "nb" : {
                             name : "宁波",
-                            childs : {
+                            children : {
                                 "jbq" : "江北区",
                                 "zhq" : "镇海区"
                             }
@@ -47,10 +47,10 @@
                 },
                 "js" : {
                     name : "江苏省",
-                    childs : {
+                    children : {
                         "nj" : {
                             name : "南京",
-                            childs : {
+                            children : {
                                 "xwq" : "玄武区",
                                 "jnq" : "江宁区"
                             }
@@ -60,7 +60,7 @@
                 },
                 "gd" : {
                     name : "广东省",
-                    childs : {
+                    children : {
                         "gz" : "广州",
                         "sz" : "深圳",
                         "fs" : "佛山"
@@ -77,7 +77,7 @@
     @name:formStatus
     @uikey:cascader
     @defaultValue:['zj', 'hz', 'jgq']
-    @attrs: :list="{'zj':{name:'浙江省',childs:{'hz':{name:'杭州',childs:{'xcq':'下城区','xhq':'西湖区','jgq':'江干区'}},'nb':{name:'宁波',childs:{'jbq':'江北区','zhq':'镇海区'}},'wz':'温州'}},'js':{name:'江苏省',childs:{'nj':{name:'南京',childs:{'xwq':'玄武区','jnq':'江宁区'}},'sz':'苏州'}},'gd':{name:'广东省',childs:{'gz':'广州','sz':'深圳','fs':'佛山'}}}"
+    @attrs: :list="{'zj':{name:'浙江省',children:{'hz':{name:'杭州',children:{'xcq':'下城区','xhq':'西湖区','jgq':'江干区'}},'nb':{name:'宁波',children:{'jbq':'江北区','zhq':'镇海区'}},'wz':'温州'}},'js':{name:'江苏省',children:{'nj':{name:'南京',children:{'xwq':'玄武区','jnq':'江宁区'}},'sz':'苏州'}},'gd':{name:'广东省',children:{'gz':'广州','sz':'深圳','fs':'佛山'}}}"
     :::
     
     [[[配置]]]
@@ -86,7 +86,7 @@
     @name:formConfig
     @uikey:cascader
     @defaultValue:['zj', 'hz', 'jgq']
-    @attrs: :list="{'zj':{name:'浙江省',childs:{'hz':{name:'杭州',childs:{'xcq':'下城区','xhq':'西湖区','jgq':'江干区'}},'nb':{name:'宁波',childs:{'jbq':'江北区','zhq':'镇海区'}},'wz':'温州'}},'js':{name:'江苏省',childs:{'nj':{name:'南京',childs:{'xwq':'玄武区','jnq':'江宁区'}},'sz':'苏州'}},'gd':{name:'广东省',childs:{'gz':'广州','sz':'深圳','fs':'佛山'}}}"
+    @attrs: :list="{'zj':{name:'浙江省',children:{'hz':{name:'杭州',children:{'xcq':'下城区','xhq':'西湖区','jgq':'江干区'}},'nb':{name:'宁波',children:{'jbq':'江北区','zhq':'镇海区'}},'wz':'温州'}},'js':{name:'江苏省',children:{'nj':{name:'南京',children:{'xwq':'玄武区','jnq':'江宁区'}},'sz':'苏州'}},'gd':{name:'广东省',children:{'gz':'广州','sz':'深圳','fs':'佛山'}}}"
     :::
 
     :::vue
@@ -113,10 +113,10 @@
             list : {
                 "zj" : {
                     name : "浙江省",
-                    childs : {
+                    children : {
                         "hz" : {
                             name : "杭州",
-                            childs : {
+                            children : {
                                 "xcq" : "下城区",
                                 "xhq" : "西湖区",
                                 "jgq" : "江干区"
@@ -124,7 +124,7 @@
                         },
                         "nb" : {
                             name : "宁波",
-                            childs : {
+                            children : {
                                 "jbq" : "江北区",
                                 "zhq" : "镇海区"
                             }
@@ -134,10 +134,10 @@
                 },
                 "js" : {
                     name : "江苏省",
-                    childs : {
+                    children : {
                         "nj" : {
                             name : "南京",
-                            childs : {
+                            children : {
                                 "xwq" : "玄武区",
                                 "jnq" : "江宁区"
                             }
@@ -147,7 +147,7 @@
                 },
                 "gd" : {
                     name : "广东省",
-                    childs : {
+                    children : {
                         "gz" : "广州",
                         "sz" : "深圳",
                         "fs" : "佛山"
@@ -171,7 +171,7 @@
     <br>
     `name`: 可选项的名称
     <br>
-    `childs`: 子选项，值为子选项的对象树
+    `children`: 子选项，值为子选项的对象树
     <br>
     `disable`: 禁用此选项
     >conf-accept
@@ -212,10 +212,10 @@
             list : {
                 "zj" : {
                     name : "浙江省",
-                    childs : {
+                    children : {
                         "hz" : {
                             name : "杭州",
-                            childs : {
+                            children : {
                                 "xcq" : "下城区",
                                 "xhq" : "西湖区",
                                 "jgq" : "江干区"
@@ -223,7 +223,7 @@
                         },
                         "nb" : {
                             name : "宁波",
-                            childs : {
+                            children : {
                                 "jbq" : "江北区",
                                 "zhq" : "镇海区"
                             }
@@ -233,10 +233,10 @@
                 },
                 "js" : {
                     name : "江苏省",
-                    childs : {
+                    children : {
                         "nj" : {
                             name : "南京",
-                            childs : {
+                            children : {
                                 "xwq" : "玄武区",
                                 "jnq" : "江宁区"
                             }
@@ -246,7 +246,7 @@
                 },
                 "gd" : {
                     name : "广东省",
-                    childs : {
+                    children : {
                         "gz" : "广州",
                         "sz" : "深圳",
                         "fs" : "佛山"
@@ -269,10 +269,10 @@
             list : {
                 "zj" : {
                     name : "浙江省",
-                    childs : {
+                    children : {
                         "hz" : {
                             name : "杭州",
-                            childs : {
+                            children : {
                                 "xcq" : "下城区",
                                 "xhq" : "西湖区",
                                 "jgq" : "江干区"
@@ -280,7 +280,7 @@
                         },
                         "nb" : {
                             name : "宁波",
-                            childs : {
+                            children : {
                                 "jbq" : "江北区",
                                 "zhq" : "镇海区"
                             }
@@ -293,11 +293,11 @@
                 },
                 "js" : {
                     name : "江苏省",
-                    childs : {
+                    children : {
                         "nj" : {
                             name : "南京",
                             disable : true,
-                            childs : {
+                            children : {
                                 "xwq" : "玄武区",
                                 "jnq" : "江宁区"
                             }
@@ -307,7 +307,7 @@
                 },
                 "gd" : {
                     name : "广东省",
-                    childs : {
+                    children : {
                         "gz" : "广州",
                         "sz" : "深圳",
                         "fs" : "佛山"
@@ -344,10 +344,10 @@
             list : {
                 "zj" : {
                     name : "浙江省",
-                    childs : {
+                    children : {
                         "hz" : {
                             name : "杭州",
-                            childs : {
+                            children : {
                                 "xcq" : "下城区",
                                 "xhq" : "西湖区",
                                 "jgq" : "江干区"
@@ -355,7 +355,7 @@
                         },
                         "nb" : {
                             name : "宁波",
-                            childs : {
+                            children : {
                                 "jbq" : "江北区",
                                 "zhq" : "镇海区"
                             }
@@ -365,10 +365,10 @@
                 },
                 "js" : {
                     name : "江苏省",
-                    childs : {
+                    children : {
                         "nj" : {
                             name : "南京",
-                            childs : {
+                            children : {
                                 "xwq" : "玄武区",
                                 "jnq" : "江宁区"
                             }
@@ -378,7 +378,7 @@
                 },
                 "gd" : {
                     name : "广东省",
-                    childs : {
+                    children : {
                         "gz" : "广州",
                         "sz" : "深圳",
                         "fs" : "佛山"
@@ -413,10 +413,10 @@
             list : {
                 "zj" : {
                     name : "浙江省",
-                    childs : {
+                    children : {
                         "hz" : {
                             name : "杭州",
-                            childs : {
+                            children : {
                                 "xcq" : "下城区",
                                 "xhq" : "西湖区",
                                 "jgq" : "江干区"
@@ -424,7 +424,7 @@
                         },
                         "nb" : {
                             name : "宁波",
-                            childs : {
+                            children : {
                                 "jbq" : "江北区",
                                 "zhq" : "镇海区"
                             }
@@ -434,10 +434,10 @@
                 },
                 "js" : {
                     name : "江苏省",
-                    childs : {
+                    children : {
                         "nj" : {
                             name : "南京",
-                            childs : {
+                            children : {
                                 "xwq" : "玄武区",
                                 "jnq" : "江宁区"
                             }
@@ -447,7 +447,7 @@
                 },
                 "gd" : {
                     name : "广东省",
-                    childs : {
+                    children : {
                         "gz" : "广州",
                         "sz" : "深圳",
                         "fs" : "佛山"
@@ -482,10 +482,10 @@
             list : {
                 "zj" : {
                     name : "浙江省",
-                    childs : {
+                    children : {
                         "hz" : {
                             name : "杭州",
-                            childs : {
+                            children : {
                                 "xcq" : "下城区",
                                 "xhq" : "西湖区",
                                 "jgq" : "江干区"
@@ -493,7 +493,7 @@
                         },
                         "nb" : {
                             name : "宁波",
-                            childs : {
+                            children : {
                                 "jbq" : "江北区",
                                 "zhq" : "镇海区"
                             }
@@ -503,10 +503,10 @@
                 },
                 "js" : {
                     name : "江苏省",
-                    childs : {
+                    children : {
                         "nj" : {
                             name : "南京",
-                            childs : {
+                            children : {
                                 "xwq" : "玄武区",
                                 "jnq" : "江宁区"
                             }
@@ -516,7 +516,7 @@
                 },
                 "gd" : {
                     name : "广东省",
-                    childs : {
+                    children : {
                         "gz" : "广州",
                         "sz" : "深圳",
                         "fs" : "佛山"
@@ -534,7 +534,7 @@
     @uikey:cascader
     @value:['zj', 'hz', 'jgq']
     @defaultValue:['zj', 'hz', 'jgq']
-    @attrs: :list="{'zj':{name:'浙江省',childs:{'hz':{name:'杭州',childs:{'xcq':'下城区','xhq':'西湖区','jgq':'江干区'}},'nb':{name:'宁波',childs:{'jbq':'江北区','zhq':'镇海区'}},'wz':'温州'}},'js':{name:'江苏省',childs:{'nj':{name:'南京',childs:{'xwq':'玄武区','jnq':'江宁区'}},'sz':'苏州'}},'gd':{name:'广东省',childs:{'gz':'广州','sz':'深圳','fs':'佛山'}}}"
+    @attrs: :list="{'zj':{name:'浙江省',children:{'hz':{name:'杭州',children:{'xcq':'下城区','xhq':'西湖区','jgq':'江干区'}},'nb':{name:'宁波',children:{'jbq':'江北区','zhq':'镇海区'}},'wz':'温州'}},'js':{name:'江苏省',children:{'nj':{name:'南京',children:{'xwq':'玄武区','jnq':'江宁区'}},'sz':'苏州'}},'gd':{name:'广东省',children:{'gz':'广州','sz':'深圳','fs':'佛山'}}}"
     :::
 
     [[[事件]]]
@@ -545,7 +545,7 @@
     @uikey:cascader
     @value:['zj', 'hz', 'jgq']
     @wrapStyle:width:300px;
-    @attrs: :list="{'zj':{name:'浙江省',childs:{'hz':{name:'杭州',childs:{'xcq':'下城区','xhq':'西湖区','jgq':'江干区'}},'nb':{name:'宁波',childs:{'jbq':'江北区','zhq':'镇海区'}},'wz':'温州'}},'js':{name:'江苏省',childs:{'nj':{name:'南京',childs:{'xwq':'玄武区','jnq':'江宁区'}},'sz':'苏州'}},'gd':{name:'广东省',childs:{'gz':'广州','sz':'深圳','fs':'佛山'}}}"
+    @attrs: :list="{'zj':{name:'浙江省',children:{'hz':{name:'杭州',children:{'xcq':'下城区','xhq':'西湖区','jgq':'江干区'}},'nb':{name:'宁波',children:{'jbq':'江北区','zhq':'镇海区'}},'wz':'温州'}},'js':{name:'江苏省',children:{'nj':{name:'南京',children:{'xwq':'玄武区','jnq':'江宁区'}},'sz':'苏州'}},'gd':{name:'广东省',children:{'gz':'广州','sz':'深圳','fs':'佛山'}}}"
     :::
 
     [[[表单值]]]
@@ -573,7 +573,7 @@
     @uiname:下拉选择框
     @valueType:cascader
     @wrapStyle:width:300px;
-    @attrs: :list="{'zj':{name:'浙江省',childs:{'hz':{name:'杭州',childs:{'xcq':'下城区','xhq':'西湖区','jgq':'江干区'}},'nb':{name:'宁波',childs:{'jbq':'江北区','zhq':'镇海区'}},'wz':'温州'}},'js':{name:'江苏省',childs:{'nj':{name:'南京',childs:{'xwq':'玄武区','jnq':'江宁区'}},'sz':'苏州'}},'gd':{name:'广东省',childs:{'gz':'广州','sz':'深圳','fs':'佛山'}}}"
+    @attrs: :list="{'zj':{name:'浙江省',children:{'hz':{name:'杭州',children:{'xcq':'下城区','xhq':'西湖区','jgq':'江干区'}},'nb':{name:'宁波',children:{'jbq':'江北区','zhq':'镇海区'}},'wz':'温州'}},'js':{name:'江苏省',children:{'nj':{name:'南京',children:{'xwq':'玄武区','jnq':'江宁区'}},'sz':'苏州'}},'gd':{name:'广东省',children:{'gz':'广州','sz':'深圳','fs':'佛山'}}}"
     :::
 
     [[[源码]]]
