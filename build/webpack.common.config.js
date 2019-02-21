@@ -233,7 +233,10 @@ prodVerConfig = extend(
                                 minimize : true
                             }
                         }, {
-                            loader : 'clean-css-loader'
+                            loader : 'clean-css-loader',
+                            options : {
+                                inline : false
+                            }
                         }, {
                             loader : 'less-loader'
                         }, {
@@ -269,7 +272,7 @@ prodVerConfig = extend(
                     })
                 },
                 {
-                    test : /\.woff/,
+                    test : /\.woff$/,
                     exclude : /node_modules/,
                     use : [{
                         loader : 'url-loader'

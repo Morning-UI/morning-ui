@@ -1,3 +1,5 @@
+import                                  './styles/index.less';
+
 import extend                           from 'extend';
 import uiClass                          from 'Common/ui';
 import formClass                        from 'Common/form';

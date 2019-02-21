@@ -103,6 +103,7 @@ export default {
         安装 : '/guide/install.html',
         使用 : '/guide/usage.html',
         对比 : '/guide/comparison.html',
+        定制化 : '/guide/custom.html',
         // 定制化 : '/guide/custom.html',
         基础 : null,
         查阅文档 : '/guide/componentdoc.html',

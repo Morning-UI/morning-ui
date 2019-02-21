@@ -45,8 +45,8 @@
     - 组件支持Vue.js的`in-DOM`模板
     - 组件内依赖其它组件，使用`morning-`前缀，比如依赖按钮使用：`morning-btn`
     - 支持形态的情况下，需要添加形态的样式
-    - 组件内所有的色彩以`common/var.less`中`@color`开头的变量为基础，可以修改亮度
-    - 组件内的尺寸应尽量使用`common/var.less`中`@fontSize`变量为基础
+    - 组件内所有的色彩以`styles/var.less`中`@color`开头的变量为基础，可以修改亮度
+    - 组件内的尺寸应尽量使用`styles/var.less`中`@fontSize`变量为基础
     - 组件内的尺寸单位首选`em`
     - LESS中的`id`、`class`、函数命名采用中划线命名<ui-badge size="xxs" class="circle">AUTO</ui-badge>
     - 形态在LESS中的书写顺序为：尺寸、颜色、状态
@@ -76,8 +76,8 @@
     - 在模板中绑定以下的`props`:`form-name`、`form-key`、`group`、`hide-name`
     - 组件模板中包含显示`form-name`的位置
     - 当`hide-name`配置为`true`是隐藏`form-name`
-    - 表单高度应尽量使用`common/var.less`中`@formHeight`变量为基础
-    - 表单边框、背景、文字等色彩以`common/var.less`中`@colorForm`开头的变量为基础，可以修改亮度
+    - 表单高度应尽量使用`styles/var.less`中`@formHeight`变量为基础
+    - 表单边框、背景、文字等色彩以`styles/var.less`中`@colorForm`开头的变量为基础，可以修改亮度
     - 表单的值可被JSON序列化
     - 支持状态形态中的`normal`和`disabled`
     - 支持以下这些配置：`form-name`、`form-key`、`group`、`hide-name`
