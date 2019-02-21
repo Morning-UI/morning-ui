@@ -309,8 +309,8 @@
         <ui-datepicker 
             form-name="日期"
             :quick-pick="[
-                {name: '劳动节', pick: new Date('2018-5-1')},
-                {name: '国庆节', pick: new Date('2018-10-1')}
+                {name: '劳动节', pick: new Date('2018-05-01')},
+                {name: '国庆节', pick: new Date('2018-10-01')}
             ]"
         ></ui-datepicker>
     </div>

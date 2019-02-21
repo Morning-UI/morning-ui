@@ -87,17 +87,30 @@ export default {
     methods : {
         _checkArea : function (evt) {
 
+            if (evt.button === 2) {
+
+                return;
+
+            }
+
             const notFound = -1;
 
             this.data.isCheckArea = true;
 
             let $emitbtn = this.$el.querySelector('[emitbtn]');
 
-            if (
+            if ((
+                evt.path.indexOf($emitbtn) === notFound && evt.path.indexOf(this.data.$wrap) !== notFound
+            ) && this.conf.autoClose) {
+
+                this.toggle();
+
+            }
+
+            if ((
                 (evt.path.indexOf($emitbtn) === notFound && evt.path.indexOf(this.data.$wrap) === notFound) ||
-                (evt.path.indexOf($emitbtn) !== notFound) ||
-                (this.conf.autoClose && evt.path.indexOf($emitbtn) === notFound && evt.path.indexOf(this.data.$wrap) !== notFound)
-            ) {
+                (evt.path.indexOf($emitbtn) !== notFound)
+            ) && this.conf.trigger === 'click') {
 
                 this.toggle();
 
@@ -118,8 +131,8 @@ export default {
         _hide : function (evt) {
 
             if (evt.type === 'mouseleave' &&
-                (this.data.$wrap.contains(evt.toElement) ||
-                this.$el.contains(evt.toElement))) {
+                (this.data.$wrap.contains(evt.relatedTarget) ||
+                this.$el.contains(evt.relatedTarget))) {
 
                 return;
 
@@ -234,7 +247,7 @@ export default {
             this.data.first = false;
             this.data.show = true;
 
-            setTimeout(() => {
+            this.Vue.nextTick(() => {
 
                 this._globalEventAdd('click', '_checkArea', true);
 

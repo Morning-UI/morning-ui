@@ -115,12 +115,12 @@
     >tpl
     <div style="width:300px">
         <ui-calendar
-            :date="+new Date('2017-11-1')"
+            :date="+new Date('2017-11-01')"
             :highlight-day="[
                 new Date('2017-10-31'),
-                +new Date('2017-11-1'),
-                new Date('2017-11-2'),
-                +new Date('2017-11-8')
+                +new Date('2017-11-01'),
+                new Date('2017-11-02'),
+                +new Date('2017-11-08')
             ]"
         ></ui-calendar>
     </div>
@@ -131,11 +131,11 @@
     >tpl
     <div style="width:300px">
         <ui-calendar
-            :date="+new Date('2017-11-1')"
+            :date="+new Date('2017-11-01')"
             :highlight-day="[
-                [new Date('2017-10-27'), new Date('2017-11-3')],
-                [new Date('2017-11-29'), new Date('2017-12-2')],
-                [new Date('2017-12-5'), new Date('2017-12-12')]
+                [new Date('2017-10-27'), new Date('2017-11-03')],
+                [new Date('2017-11-29'), new Date('2017-12-02')],
+                [new Date('2017-12-05'), new Date('2017-12-12')]
             ]"
         ></ui-calendar>
     </div>
@@ -180,10 +180,10 @@
     >tpl
     <div style="width:300px">
         <ui-calendar 
-            :date="+new Date('2017-11-1')"
+            :date="+new Date('2017-11-01')"
             :background-mark="[
                 {
-                    start: new Date('2017-11-9'),
+                    start: new Date('2017-11-09'),
                     end: new Date('2017-11-13'),
                     style: 'primary'
                 },
@@ -202,11 +202,11 @@
     >tpl
     <div style="width:300px">
         <ui-calendar
-            :date="+new Date('2017-11-1')"
+            :date="+new Date('2017-11-01')"
             :background-mark="[
                 {
                     start: new Date('2017-10-20'), 
-                    end: new Date('2017-11-3'), 
+                    end: new Date('2017-11-03'), 
                     style: 'light-gray'
                 }
             ]"
@@ -220,10 +220,10 @@
     <div style="width:300px">
         <ui-calendar
             highlight-hover
-            :date="+new Date('2017-11-1')"
+            :date="+new Date('2017-11-01')"
             :background-mark="[
                 {
-                    start: new Date('2017-11-9'),
+                    start: new Date('2017-11-09'),
                     end: new Date('2017-11-13'),
                     disabled: true
                 }
@@ -249,10 +249,10 @@
     >tpl
     <div style="width:300px">
         <ui-calendar
-            :date="+new Date('2017-11-1')"
+            :date="+new Date('2017-11-01')"
             :point-mark="[
                 {   
-                    start: new Date('2017-11-9'),
+                    start: new Date('2017-11-09'),
                     end: new Date('2017-11-13'),
                     style: 'primary'
                 },
@@ -271,30 +271,12 @@
     >tpl
     <div style="width:300px">
         <ui-calendar
-            :date="+new Date('2017-11-1')"
+            :date="+new Date('2017-11-01')"
             :point-mark="[
                 {
                     start: new Date('2017-10-20'),
-                    end: new Date('2017-11-3'),
+                    end: new Date('2017-11-03'),
                     style: 'primary'
-                }
-            ]"
-        ></ui-calendar>
-    </div>
-    ---
-    #demo
-    >desc
-    禁用样式配合`highlight-hover`。
-    >tpl
-    <div style="width:300px">
-        <ui-calendar
-            highlight-hover
-            :date="+new Date('2017-11-1')"
-            :point-mark="[
-                {
-                    start: new Date('2017-11-9'), 
-                    end: new Date('2017-11-13'), 
-                    disabled: true
                 }
             ]"
         ></ui-calendar>
@@ -411,7 +393,7 @@
             <ui-calendar ref="demo5"></ui-calendar>
         </div>
         <br>
-        <ui-link js="window.morning.findVM('demo5').setTime(+new Date('2016-1-1'));">日历所在日期设置到2016年1月1日</ui-link>
+        <ui-link js="window.morning.findVM('demo5').setTime(+new Date('2016-01-01'));">日历所在日期设置到2016年1月1日</ui-link>
     </div>
     :::
 
@@ -507,10 +489,10 @@
             <ui-calendar
                 ref="demo9"
                 :highlight-day="[
-                    new Date('2017-11-5 13:00:00'),
-                    [new Date('2017-11-3'), new Date('2017-11-11')],
-                    [new Date('2017-10-27'), new Date('2017-11-2')],
-                    [new Date('2017-12-7 21:30:23'), new Date('2017-12-20')],
+                    new Date('2017-11-05T13:00:00'),
+                    [new Date('2017-11-03'), new Date('2017-11-11')],
+                    [new Date('2017-10-27'), new Date('2017-11-02')],
+                    [new Date('2017-12-07T21:30:23'), new Date('2017-12-20')],
                     new Date('2017-12-15')
                 ]"
             ></ui-calendar>
@@ -539,7 +521,7 @@
             <ui-calendar ref="demo10"></ui-calendar>
         </div>
         <br>
-        <ui-link js="window.morning.findVM('demo10').setHighlight([new Date('2017-11-5'), [new Date('2017-11-7'), new Date('2017-11-11')], [new Date('2017-10-27'), new Date('2017-11-2')], [new Date('2017-12-7'), new Date('2017-12-20')], new Date('2017-12-15')])">高亮指定日期</ui-link>
+        <ui-link js="window.morning.findVM('demo10').setHighlight([new Date('2017-11-05'), [new Date('2017-11-07'), new Date('2017-11-11')], [new Date('2017-10-27'), new Date('2017-11-02')], [new Date('2017-12-07'), new Date('2017-12-20')], new Date('2017-12-15')])">高亮指定日期</ui-link>
     </div>
     :::
 
@@ -556,7 +538,7 @@
     >tpl
     <div style="width:300px">
         <ui-calendar ref="demo11" @change="echo"></ui-calendar>
-        <ui-link js="window.morning.findVM('demo11').setTime(+new Date('2017-10-1'));">触发change事件</ui-link>
+        <ui-link js="window.morning.findVM('demo11').setTime(+new Date('2017-10-01'));">触发change事件</ui-link>
     </div>
     >script
     {
@@ -648,7 +630,7 @@
     >tpl
     <div style="width:300px">
         <ui-calendar ref="demo14" @highlight="echo"></ui-calendar>
-        <ui-link js="window.morning.findVM('demo14').setHighlight([new Date('2017-1-1')]);">触发highlight事件</ui-link>
+        <ui-link js="window.morning.findVM('demo14').setHighlight([new Date('2017-01-01')]);">触发highlight事件</ui-link>
     </div>
     >script
     {
