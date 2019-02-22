@@ -6,8 +6,7 @@ import test                         from 'ava';
 import nightmare                    from 'nightmare';
 
 const runner = nightmare({
-    show : true,
-    openDevTools : true
+    show : false
 });
 
 test.serial('custom-theme-color', async t => {
@@ -61,7 +60,7 @@ test.serial('custom-theme-color', async t => {
                     ]
                 },
                 {
-                    test : /\.woff$/,
+                    test : /\\.woff$/,
                     exclude : /node_modules/,
                     use : [{
                         loader : 'url-loader'
@@ -109,7 +108,7 @@ test.serial('custom-theme-color', async t => {
     await new Promise((resolve, reject) => {
 
         exec(
-            `cd ${pathDir} && npm install ../../ && npm install webpack@4.29.0 style-loader css-loader less-loader url-loader vue@2.5.22`,
+            `cd ${pathDir} && npm install morning-ui && npm install webpack@4.29.0 style-loader css-loader less-loader url-loader vue@2.5.22`,
             {
                 maxBuffer : maxBuffer
             },
