@@ -321,23 +321,106 @@ mor-colorpicker{
                 }
             }
         }
+    }
 
-        .toggle-type{
-            width: 8%;
-            display: inline-block;
-            vertical-align: top;
-            line-height: @fontSize*2;
-            height: @fontSize*2;
-            margin: @fontSize*0.75 0;
-            text-align: center;
-            color: @colorExtraLightBlue;
+    .palettes{
+        padding: @fontSize;
+        border-top: 1px @colorExtraLightSilver solid;
+        margin: 0;
+        list-style: none;
+        display: flex;
+        justify-content: space-around;
+        position: relative;
+
+        &.multi-palettes{
+            padding-right: @fontSize*2.5;
+        }
+
+        .palettes-color-item {
+            width: @fontSize*0.75;
+            height: @fontSize*0.75;
             cursor: pointer;
-            border-radius: @borderRadius;
 
             &:hover{
-                color: @colorBlue;
-                background: @colorExtraLightSilver;
+                box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
             }
+        }
+
+        .palettes-picker{
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            max-height: 200px;
+            overflow-y: auto;
+            align-items: stretch;
+            display: flex;
+            flex-direction: column;
+            background: @colorWhite;
+            box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+
+            .setup-hover-scrollbar();
+
+            .palette-item{
+                display: flex;
+                width: 100%;
+                padding: 0.5em;
+                justify-content: space-between;
+                box-sizing: border-box;
+                border-top: 1px @colorExtraLightSilver solid;
+
+                &:hover{
+                    background: @colorExtraLightSilver;
+                    cursor: pointer;
+                }
+
+                .palette-name{
+                    font-size: @fontSize*0.8125;
+                    padding: 0 0.5em;
+                    width: 40%;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    white-space: nowrap;
+                }
+
+                .palette-color-preview{
+                    display: flex;
+                    justify-content: space-around;
+                    width: 60%;
+                }
+            }
+        }
+    }
+
+    .toggle-type,
+    .toggle-palette{
+        width: 8%;
+        display: inline-block;
+        vertical-align: top;
+        line-height: @fontSize*2;
+        height: @fontSize*2;
+        margin: @fontSize*0.75 0;
+        text-align: center;
+        color: @colorExtraLightBlue;
+        cursor: pointer;
+        border-radius: @borderRadius;
+
+        &:hover{
+            color: @colorBlue;
+            background: @colorExtraLightSilver;
+        }
+    }
+
+    .toggle-palette{
+        position: absolute;
+        top: @fontSize*0.375;
+        right: @fontSize*0.375;
+        color: @colorExtraLightBlue;
+        margin: 0;
+
+        .mo-icon{
+            font-size: @fontSize*0.875;
         }
     }
 

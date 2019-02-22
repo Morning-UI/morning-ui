@@ -10,6 +10,7 @@
         :clearable="clearable"
         :value-type="valueType"
         :allow-alpha="allowAlpha"
+        :palettes="palettes"
     >
     
     <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
@@ -152,11 +153,69 @@
                     <i class="mo-icon mo-icon-sort"></i>
                 </div>
             </div>
-           <!--  <div class="palettes">
-                <ul class="colors">
-                    <li></li>
-                </ul>
-            </div> -->
+
+            <template v-if="conf.palettes.length > 0 && typeof conf.palettes[0] === 'string'">
+                <div class="palettes">
+                    <template v-for="(color, index) in conf.palettes">
+                        <div
+                            class="palettes-color-item"
+                            :style="{
+                                'background-color' : color
+                            }"
+                            :id="'mor-colorpicker-palettes-tip-'+uiid+'-'+index"
+                            :title="color"
+                            @click="set(color)"
+                        >
+                        </div>
+                        <morning-tip :target="'#mor-colorpicker-palettes-tip-'+uiid+'-'+index" color="light-blue" offset="3px 0">
+                            {{color}}
+                        </morning-tip>
+                    </template>
+                </div>
+            </template>
+
+            <template v-else-if="conf.palettes.length > 0 && typeof conf.palettes[0] === 'object'">
+                <div class="palettes multi-palettes">
+                    <template v-for="(color, index) in conf.palettes[data.currentPalette].colors">
+                        <div
+                            class="palettes-color-item"
+                            :style="{
+                                'background-color' : color
+                            }"
+                            :id="'mor-colorpicker-palettes-tip-'+uiid+'-'+index"
+                            :title="color"
+                            @click="set(color)"
+                        >
+                        </div>
+                        <morning-tip :target="'#mor-colorpicker-palettes-tip-'+uiid+'-'+index" color="light-blue" offset="3px 0">
+                            {{color}}
+                        </morning-tip>
+                    </template>
+                    <div class="toggle-palette">
+                        <i class="mo-icon mo-icon-block-4"></i>
+                    </div>
+                    <div class="palettes-picker">
+                        <div class="palette-title">
+                            <b>选择色板</b>
+                            <i class="mo-icon mo-icon-close"></i>
+                        </div>
+                        <div class="palette-item" v-for="(item, index) in conf.palettes">
+                            <div class="palette-name">{{item.name}}</div>
+                            <div class="palette-color-preview">
+                                <div
+                                    class="palettes-color-item"
+                                    v-for="previewColor in item.colors.slice(0, 6)"
+                                    :style="{
+                                        'background-color' : previewColor
+                                    }"
+                                >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </template>
+
         </div>
     </div>
 
@@ -199,6 +258,10 @@ export default {
         allowAlpha : {
             type : Boolean,
             default : true
+        },
+        palettes : {
+            type : Array,
+            default : (() => [])
         }
     },
     computed : {
@@ -206,7 +269,8 @@ export default {
 
             return {
                 valueType : this.valueType,
-                allowAlpha : this.allowAlpha
+                allowAlpha : this.allowAlpha,
+                palettes : this.palettes
             };
 
         },
@@ -290,7 +354,8 @@ export default {
                 hslHReversal : null,
                 colorValue : null,
                 copyNote : null,
-                copyNoteTimeout : null
+                copyNoteTimeout : null,
+                currentPalette : 0
             }
         };
 
