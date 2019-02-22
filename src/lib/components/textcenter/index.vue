@@ -13,15 +13,3 @@ export default {
     name : 'textcenter'
 };
 </script>
-
-<style lang="less">
-@import '~Common/var.less';
-
-mor-textcenter{
-    display: block;
-    text-align: center;
-
-    // default status
-    &{}
-}
-</style>

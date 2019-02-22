@@ -306,7 +306,7 @@
     也可以通过选中日期的绝对值来设置。
     >tpl
     <div style="width:300px;">
-        <ui-datetimepicker form-name="日期时间" :quick-pick="[{name: '生日派对', pick: new Date('2018-3-23 19:00:00')}]"></ui-datetimepicker>
+        <ui-datetimepicker form-name="日期时间" :quick-pick="[{name: '生日派对', pick: new Date('2018-03-23 19:00:00')}]"></ui-datetimepicker>
     </div>
     ---
     #demo

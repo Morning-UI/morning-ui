@@ -13,5 +13,3 @@ export default {
     name : 'btngroup'
 };
 </script>
-
-<style lang="less" src="./index.less"></style>

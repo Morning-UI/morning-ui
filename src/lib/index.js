@@ -1,3 +1,5 @@
+import                                  './styles/index.less';
+
 import extend                           from 'extend';
 import uiClass                          from 'Common/ui';
 import formClass                        from 'Common/form';
@@ -45,7 +47,7 @@ let morning = {
         white : 'wh'
     },
     isMorning : true,
-    version : '0.12.1',
+    version : '0.12.2',
     map : {}
 };
 

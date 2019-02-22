@@ -13,5 +13,3 @@ export default {
     name : 'card'
 };
 </script>
-
-<style lang="less" src="./index.less"></style>
