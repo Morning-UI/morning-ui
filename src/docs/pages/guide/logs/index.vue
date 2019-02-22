@@ -17,6 +17,44 @@
     <!-- ### 0.11.0 <ui-badge class="circle" s light-blue>Beta</ui-badge> -->
     
     ### 更新记录
+    
+    ### 0.12.2 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2019年2月22日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.2" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.2/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.2/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 新特性
+
+    - 支持自定义主题色
+
+    #### 改进
+
+    - 现在`ui-dropdown`、`ui-tip`、`ui-popover`在鼠标右键点击时不会触发弹出框的显示及隐藏
+
+    #### 修复
+
+    - 修复`ui-dropdown`当`trigger`配置不为`click`时，点击展示下拉列表的逻辑问题
+    - 修复`ui-table`文档中的一些问题
+    - 修复`ui-calendar`文档中的一处问题及部分文档日期格式在`Safari`浏览器中错误的问题
+    - 修复`ui-tip`组件当`trigger`配置设为`hover click`时的触发行为不正确的问题
+    - 修复`ui-carousel`文档中的一处错误
+    - 修复`ui-menu`在使用`side-collapse`配置及`block`样式时的交互样式错误问题
+
+    #### 更多
+
+    - 所有交互组件可兼容`Firefox`及`Safari`浏览器
+    - 组件库中所有的`childs`字段均改为`children`
+
+    <ui-label color="primary">升级注意事项</ui-label>
+
+    - 所有组件配置中的`childs`字段已改为`children`，涉及：`ui-cascader`的`list`配置、`ui-menu`的`menu`配置、`ui-tree`的`tree`配置
 
     ### 0.12.1 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
