@@ -13,5 +13,3 @@ export default {
     name : 'badge'
 };
 </script>
-
-<style lang="less" src="./index.less"></style>

@@ -82,6 +82,7 @@
     │   ├─ docs/                        // 文档源码
     │   └─ lib/                         // UI库源码
     │       ├─ common/                  // UI库通用部分
+    │       ├─ styles/                  // UI库通用样式
     │       ├─ icon/                    // UI库字体图标
     │       ├─ utils/                   // 工具代码(通过mixin在组件中使用)
     │       ├─ components/              // UI组件源码

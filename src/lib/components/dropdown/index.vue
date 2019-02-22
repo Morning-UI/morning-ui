@@ -276,5 +276,3 @@ export default {
     }
 };
 </script>
-
-<style lang="less" src="./index.less"></style>

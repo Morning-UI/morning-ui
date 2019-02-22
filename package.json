@@ -58,6 +58,7 @@
     "vue": "^2.5.22"
   },
   "dependencies": {
+    "@csstools/normalize.css": "^9.0.1",
     "array-uniq": "^1.0.3",
     "clipboard-copy": "^2.0.0",
     "color": "^3.0.0",
@@ -129,7 +130,6 @@
     "parallel-webpack": "^2.3.0",
     "postcss-less": "^1.1.0",
     "postcss-loader": "^2.1.4",
-    "postcss-normalize": "^4.0.0",
     "require-extension-hooks": "^0.3.0",
     "require-extension-hooks-babel": "^0.1.1",
     "require-extension-hooks-vue": "^0.4.0",
