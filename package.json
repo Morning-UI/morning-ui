@@ -52,8 +52,7 @@
   "license": "MIT",
   "files": [
     "dist",
-    "src/lib",
-    "bin"
+    "src/lib"
   ],
   "peerDependencies": {
     "vue": "^2.5.22"
@@ -63,7 +62,6 @@
     "array-uniq": "^1.0.3",
     "clipboard-copy": "^2.0.0",
     "color": "^3.0.0",
-    "commander": "^2.19.0",
     "date-fns": "2.0.0-alpha.7",
     "extend": "^3.0.1",
     "get-divisors": "^1.0.0",
@@ -93,7 +91,7 @@
     "babel-preset-env": "^1.6.0",
     "babel-register": "^6.26.0",
     "browser-env": "^3.2.5",
-    "`s": "^4.2.1",
+    "clean-css": "^4.2.1",
     "clean-css-loader": "^1.1.0",
     "clean-webpack-plugin": "^1.0.1",
     "copy-webpack-plugin": "^4.6.0",
