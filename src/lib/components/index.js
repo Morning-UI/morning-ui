@@ -1,6 +1,3 @@
-import                              'Common/common.less';
-import                              'Npm/quill/dist/quill.snow.css';
-
 import h                            from './h/index.vue';
 import lead                         from './lead/index.vue';
 import mark                         from './mark/index.vue';

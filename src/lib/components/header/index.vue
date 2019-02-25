@@ -13,5 +13,3 @@ export default {
     name : 'header'
 };
 </script>
-
-<style lang="less" src="./index.less"></style>

@@ -188,5 +188,3 @@ export default {
     mounted : function () {}
 };
 </script>
-
-<style lang="less" src="./index.less"></style>

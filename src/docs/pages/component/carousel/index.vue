@@ -98,7 +98,7 @@
     每2000ms切换下一张。
     >tpl
     <div style="width:480px;">
-        <ui-carousel :toggle-time="0">
+        <ui-carousel :toggle-time="2000">
             <div slot="item">
                 <img src="http://morning-ui-image.test.upcdn.net/carousel/1.png" alt="1">
             </div>

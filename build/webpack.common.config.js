@@ -214,6 +214,9 @@ prodVerConfig = extend(
             new webpack.DefinePlugin({
                 'process.env.NODE_ENV' : process.env.NODE_ENV
             }),
+            new webpack.ProvidePlugin({
+                'window.Quill' : 'quill/core'
+            }),
             extractProdCss,
             new VueLoaderPlugin()
         ],
@@ -230,7 +233,10 @@ prodVerConfig = extend(
                                 minimize : true
                             }
                         }, {
-                            loader : 'clean-css-loader'
+                            loader : 'clean-css-loader',
+                            options : {
+                                inline : false
+                            }
                         }, {
                             loader : 'less-loader'
                         }, {
@@ -266,7 +272,7 @@ prodVerConfig = extend(
                     })
                 },
                 {
-                    test : /\.woff/,
+                    test : /\.woff$/,
                     exclude : /node_modules/,
                     use : [{
                         loader : 'url-loader'

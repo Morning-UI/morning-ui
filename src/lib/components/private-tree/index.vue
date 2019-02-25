@@ -53,7 +53,7 @@
             >
                 <span>
                     <a
-                        v-if="conf.foldable && item.childs && !item.disabled"
+                        v-if="conf.foldable && item.children && !item.disabled"
                         href="javascript:;"
                         @click="_nodeFoldSwitch(key)"
                         class="node-switcher"
@@ -62,7 +62,7 @@
                         <span v-else v-html="foldIcon"></span>
                     </a>
                     <a
-                        v-else-if="conf.foldable && item.childs && item.disabled"
+                        v-else-if="conf.foldable && item.children && item.disabled"
                         href="javascript:;"
                         class="node-switcher"
                     >
@@ -71,7 +71,7 @@
                     </a>
 
                     <span
-                        v-if="!item.childs"
+                        v-if="!item.children"
                         class="leafnode-icon"
                         v-html="item.icon || leafnodeIcon"
                     ></span>
@@ -96,10 +96,10 @@
                 </span>
                 
                 <morning-private-tree
-                    v-if="item.childs"
+                    v-if="item.children"
                     
                     :ref="'mor-tree-subtree-'+uiid+'-'+key"
-                    :tree="item.childs"
+                    :tree="item.children"
                     :parentPath="conf.parentPath.concat([key])"
                     :currentNode="conf.currentNode"
                     :foldable="conf.foldable"
@@ -393,7 +393,7 @@ export default {
                 this._nodeFoldSwitch(key, fold);
                 item = this.conf.tree[key];
 
-                if (item.childs) {
+                if (item.children) {
     
                     submenu = this.$refs[`mor-tree-subtree-${this.uiid}-${key}`];
 
@@ -490,5 +490,3 @@ export default {
     }
 };
 </script>
-
-<style lang="less" src="./index.less"></style>

@@ -49,7 +49,7 @@
                     }"
                 >
                     <a
-                        v-if="item.childs && Object.keys(item.childs).length > 0"
+                        v-if="item.children && Object.keys(item.children).length > 0"
                         href="javascript:;"
                         class="has-child-menu"
                         @click="_itemClick(key, item);_toggleSubmenu('menu-item-'+conf.deep+'-'+key);"
@@ -64,7 +64,7 @@
                     ></a>
 
                     <i
-                        v-if="(conf.deep > 0 && item.childs) || (conf.position === 'side' && item.childs)"
+                        v-if="(conf.deep > 0 && item.children) || (conf.position === 'side' && item.children)"
                         class="mo-icon has-child-menu-icon"
                         :class="{
                             'mo-icon-right' : (conf.position === 'top' || (conf.sideCollapse && conf.position === 'side')),
@@ -73,14 +73,14 @@
                     ></i>
 
                     <morning-private-menu
-                        v-if="item.childs && Object.keys(item.childs).length > 0"
+                        v-if="item.children && Object.keys(item.children).length > 0"
                         class="sub-menu-wrap"
                         :class="{
                             'deep-submenu' : conf.deep > 0
                         }"
                         :item-key="key"
                         :deep="conf.deep+1"
-                        :menu="item.childs"
+                        :menu="item.children"
                         :groups="item.groups"
                         :current-menu="conf.currentMenu"
                         :position="conf.position"
@@ -213,7 +213,7 @@ export default {
                 name : item.name,
                 link : item.link || null,
                 newtab : item.newtab || false,
-                childs : item.childs || {},
+                children : item.children || {},
                 _path : [key, this.conf.itemKey]
             };
             
@@ -251,5 +251,3 @@ export default {
     }
 };
 </script>
-
-<style lang="less" src="./index.less"></style>

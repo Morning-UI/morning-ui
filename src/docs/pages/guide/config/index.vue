@@ -329,6 +329,8 @@
     - `submenu-trigger` : 子菜单触发时机
     - `show-last-name` : 显示最后一级名字
     - `change-on-select` : 选中即改变
+    - `source-to-target-text` : 源至目标文案
+    - `target-to-source-text` : 目标至源文案
 
     </script>
     </doc-guide>

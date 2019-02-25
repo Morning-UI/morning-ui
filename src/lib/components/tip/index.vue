@@ -314,7 +314,11 @@ export default {
 
             }
 
-            this._globalEventAdd('click', '_checkArea');
+            this.Vue.nextTick(() => {
+
+                this._globalEventAdd('click', '_checkArea', true);
+
+            });
 
         },
         _hideComplete : function () {
@@ -336,16 +340,30 @@ export default {
         },
         _checkArea : function (evt) {
 
+            if (evt.button === 2) {
+
+                return;
+
+            }
+
             const notFound = -1;
 
-            if (evt.path.indexOf(this.conf.$target) === notFound &&
-                evt.path.indexOf(this.$el) === notFound) {
+            if ((
+                evt.path.indexOf(this.data.$target) === notFound &&
+                evt.path.indexOf(this.$el) === notFound
+            ) && this.conf.trigger.indexOf('click') !== -1) {
 
                 this.hide();
 
             }
 
             return evt;
+
+        },
+        _clickToggle : function () {
+
+            this.data.activeTrigger.click = !this.data.activeTrigger.click;
+            this.toggle();
 
         },
         show : function () {
@@ -394,12 +412,6 @@ export default {
         },
         toggle : function () {
 
-            if (this.data.activeTrigger.click === undefined) {
-                
-                this.data.activeTrigger.click = !this.data.activeTrigger.click;
-
-            }
-
             if (this._isWithActiveTrigger()) {
 
                 this._enter();
@@ -430,7 +442,7 @@ export default {
         this.$watch('conf.triggerInDelay', () => {
 
             this.Trigger.handlerMap = {
-                click : [this.toggle],
+                click : [this._clickToggle],
                 hover : {
                     in : [{
                         fn : this._enter,
@@ -513,5 +525,3 @@ export default {
     }
 };
 </script>
-
-<style lang="less" src="./index.less"></style>

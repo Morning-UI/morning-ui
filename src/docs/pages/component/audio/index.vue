@@ -12,6 +12,8 @@
 
     定义一个音频播放，这是一个块元素。
 
+    注意：在`Safari`浏览器的部分版本(比如`11`)中，你需要允许网站播放音频，否则此组件无法正常工作，[详见此](https://webkit.org/blog/7734/auto-play-policy-changes-for-macos/)。
+
     :::vue
     @name:使用
     ---

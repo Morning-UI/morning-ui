@@ -191,7 +191,7 @@ export default {
 
                 }
 
-                currentMenu = currentMenu[key].childs || {};
+                currentMenu = currentMenu[key].children || {};
 
             }
 
@@ -260,7 +260,7 @@ export default {
             }
 
             // is last level, auto close popover
-            if (!this.data.menuList[level][key].childs) {
+            if (!this.data.menuList[level][key].children) {
 
                 if (!this.conf.changeOnSelect) {
 
@@ -286,11 +286,11 @@ export default {
 
                 let item = currentList[key];
 
-                if (item && item.childs) {
+                if (item && item.children) {
 
-                    item.childs.__parentKey = key;
-                    list.push(item.childs);
-                    currentList = item.childs;
+                    item.children.__parentKey = key;
+                    list.push(item.children);
+                    currentList = item.children;
                     level += 1;
 
                 }
@@ -363,5 +363,3 @@ export default {
     }
 };
 </script>
-
-<style lang="less" src="./index.less"></style>
