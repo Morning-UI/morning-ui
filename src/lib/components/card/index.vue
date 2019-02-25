@@ -2,7 +2,7 @@
     <mor-card
         :_uiid="uiid"
         :class="[colorClass]"
-    >   
+    >
         <div class="card-header" v-if="$slots.header">
             <slot name="header"></slot>
         </div>

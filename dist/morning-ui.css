@@ -6976,125 +6976,147 @@ mor-grid.fill > [class^='xl-c-'] {
 mor-card {
   width: 100%;
   height: 100%;
-  display: block;
+  display: flex;
+  flex-direction: column;
   box-sizing: border-box;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
   border-radius: 3px;
-  padding: 1em;
   position: relative;
   background: #FFF;
 }
-mor-card > header {
+mor-card > .card-header,
+mor-card > .card-footer {
   line-height: 1.5em;
-  position: absolute;
   height: auto;
-  left: 0;
-  top: 0;
-  right: 0;
   padding: 0.5em 1em;
   border-radius: 3px 3px 0 0;
   font-size: 14px;
+  flex-grow: 0;
+  flex-shrink: 0;
 }
-mor-card.co-t > header {
+mor-card > .card-footer {
+  border-radius: 0 0 3px 3px;
+  background: #EDF1F5;
+  color: #17212D;
+  border-top: 1px solid #E2E8EE;
+}
+mor-card > .card-body {
+  padding: 1em;
+  box-sizing: border-box;
+  width: 100%;
+  flex-grow: 1;
+  overflow-y: auto;
+  word-break: break-all;
+}
+mor-card > .card-body::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  background-color: rgba(0, 0, 0, 0);
+}
+mor-card > .card-body::-webkit-scrollbar-thumb {
+  width: 5px;
+  height: 5px;
+  background: rgba(0, 0, 0, 0);
+  border-radius: 4px;
+}
+mor-card > .card-body:hover::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+}
+mor-card.co-t > .card-header {
   background-color: #F33D5D;
   color: #FFFFFF;
 }
-mor-card.co-lt > header {
+mor-card.co-lt > .card-header {
   background-color: #F86F88;
   color: #FFFFFF;
 }
-mor-card.co-dt > header {
+mor-card.co-dt > .card-header {
   background-color: #D22343;
   color: #FFFFFF;
 }
-mor-card.co-s > header {
+mor-card.co-s > .card-header {
   background-color: #4DBD67;
 }
-mor-card.co-w > header {
+mor-card.co-w > .card-header {
   background-color: #F0AD4E;
   color: #FFFFFF;
 }
-mor-card.co-d > header {
+mor-card.co-d > .card-header {
   background-color: #D64431;
   color: #FFFFFF;
 }
-mor-card.co-p > header {
+mor-card.co-p > .card-header {
   background-color: #2185D0;
   color: #FFFFFF;
 }
-mor-card.co-m > header {
+mor-card.co-m > .card-header {
   background-color: #A9A9A9;
   color: #FFFFFF;
 }
-mor-card.co-i > header {
+mor-card.co-i > .card-header {
   background-color: #03A6B9;
   color: #FFFFFF;
 }
-mor-card.co-bk > header {
+mor-card.co-bk > .card-header {
   background-color: #17212D;
   color: #FFFFFF;
 }
-mor-card.co-lbk > header {
+mor-card.co-lbk > .card-header {
   background-color: #303C4B;
   color: #FFFFFF;
 }
-mor-card.co-elbk > header {
+mor-card.co-elbk > .card-header {
   background-color: #45505C;
   color: #FFFFFF;
 }
-mor-card.co-bu > header {
+mor-card.co-bu > .card-header {
   background-color: #7C8BA0;
   color: #FFFFFF;
 }
-mor-card.co-lbu > header {
+mor-card.co-lbu > .card-header {
   background-color: #8E9CAF;
   color: #FFFFFF;
 }
-mor-card.co-elbu > header {
+mor-card.co-elbu > .card-header {
   background-color: #A8B3C2;
   color: #FFFFFF;
 }
-mor-card.co-si > header {
+mor-card.co-si > .card-header {
   background-color: #D6DDE5;
   color: #303C4B;
 }
-mor-card.co-lsi > header {
+mor-card.co-lsi > .card-header {
   background-color: #E2E8EE;
   color: #303C4B;
 }
-mor-card.co-elsi > header {
+mor-card.co-elsi > .card-header {
   background-color: #EDF1F5;
   color: #303C4B;
 }
-mor-card.co-g > header {
+mor-card.co-g > .card-header {
   background-color: #E6E6E6;
   color: #303C4B;
 }
-mor-card.co-lg > header {
+mor-card.co-lg > .card-header {
   background-color: #F0F0F0;
   color: #303C4B;
 }
-mor-card.co-wh > header {
+mor-card.co-wh > .card-header {
   background-color: #FFFFFF;
   color: #303C4B;
 }
-mor-card > div {
-  padding: 0;
-  box-sizing: border-box;
-  width: 100%;
-  height: 100%;
-}
-mor-card.full,
-mor-card.full > div {
+mor-card.full > .card-body {
   padding: 0;
 }
-mor-card > header + div {
-  padding-top: 2.2em;
+mor-card.inside-padding {
+  padding: 1em;
 }
-mor-card.full > header + div {
-  padding-top: 2.2em;
+mor-card.inside-padding > .card-header,
+mor-card.inside-padding > .card-footer {
+  border-radius: 3px;
+  border-top: none;
 }
-mor-card > header {
+mor-card > .card-header {
   background-color: #F33D5D;
   color: #FFFFFF;
 }
@@ -16034,7 +16056,7 @@ mor-textinput.input-group .input-group-addon + input.has-append {
   border-bottom-right-radius: 0;
 }
 mor-textinput.inline-append .input-group-addon {
-  background: none;
+  background: #FFFFFF;
 }
 mor-textinput.inline-append .input-group-addon:first-child {
   padding-right: 0;
@@ -19438,6 +19460,17 @@ mor-cascader.st-readonly .cascader-wrap .cascader-input > .note {
   min-height: 192px;
   max-height: 384px;
   overflow-y: auto;
+}
+.mor-cascader-popover .popover-con .popover-body .cascader-menu > ul::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.mor-cascader-popover .popover-con .popover-body .cascader-menu > ul::-webkit-scrollbar-thumb {
+  width: 5px;
+  height: 5px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
 }
 .mor-cascader-popover .popover-con .popover-body .cascader-menu > ul > li {
   font-size: 14px;
