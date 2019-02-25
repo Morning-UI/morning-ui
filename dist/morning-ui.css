@@ -7104,6 +7104,7 @@ mor-card.co-lg > .card-header {
 mor-card.co-wh > .card-header {
   background-color: #FFFFFF;
   color: #303C4B;
+  border-bottom: 1px #E6E6E6 solid;
 }
 mor-card.full > .card-body {
   padding: 0;
@@ -15979,17 +15980,14 @@ mor-textinput > .form-name {
 mor-textinput input {
   box-sizing: border-box;
   z-index: 2;
-  font-size: 14px;
-  padding: 0 1em;
   width: 100%;
   background: #FFFFFF;
   border: 1px #E6E6E6 solid;
   border-radius: 3px;
-  height: 42px;
-  line-height: 42px;
   color: #b3b3b3 !important;
   outline: none;
   -webkit-appearance: none;
+  padding: 0 1em;
 }
 mor-textinput input.align-left {
   text-align: left;
@@ -16016,8 +16014,6 @@ mor-textinput.input-group .textinput-wrap {
   vertical-align: middle;
 }
 mor-textinput.input-group .input-group-addon {
-  padding: 6px 12px;
-  font-size: 12px;
   color: #7C8BA0;
   text-align: center;
   background-color: #F0F0F0;
@@ -16027,6 +16023,7 @@ mor-textinput.input-group .input-group-addon {
   display: flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
 }
 mor-textinput.input-group .input-group-addon:first-child {
   border-right: 0;
@@ -16036,15 +16033,9 @@ mor-textinput.input-group input {
   vertical-align: middle;
   margin: 0;
 }
-mor-textinput.input-group .input-group-addon:first-child,
-mor-textinput.input-group input:first-child {
+mor-textinput.input-group .input-group-addon:first-child {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
-}
-mor-textinput.input-group .input-group-addon:nth-child(2),
-mor-textinput.input-group input:nth-child(2) {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
 }
 mor-textinput.input-group input + .input-group-addon {
   border-top-left-radius: 0;
@@ -16055,31 +16046,148 @@ mor-textinput.input-group .input-group-addon + input.has-append {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
-mor-textinput.inline-append .input-group-addon {
-  background: #FFFFFF;
+mor-textinput.input-group .input-group-addon + input.has-prepend {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
 }
-mor-textinput.inline-append .input-group-addon:first-child {
+mor-textinput.input-group.inline-prepend .input-group-addon:first-child {
+  background: #FFFFFF;
   padding-right: 0;
 }
-mor-textinput.inline-append .input-group-addon:nth-child(3) {
-  padding-left: 0;
-}
-mor-textinput.inline-append .input-group-addon + input {
+mor-textinput.input-group.inline-prepend .input-group-addon + input {
   border-left: 0;
 }
-mor-textinput.inline-append input.has-append {
+mor-textinput.input-group.inline-prepend.input-focus .input-group-addon:first-child {
+  border-color: #8E9CAF;
+}
+mor-textinput.input-group.inline-append .input-group-addon:nth-child(3) {
+  background: #FFFFFF;
+  padding-left: 0;
+}
+mor-textinput.input-group.inline-append input.has-append {
   border-right: 0;
 }
-mor-textinput.inline-append.input-focus .input-group-addon {
+mor-textinput.input-group.inline-append.input-focus .input-group-addon:nth-child(3) {
   border-color: #8E9CAF;
+}
+mor-textinput.si-xs > .form-name {
+  font-size: 13px;
+}
+mor-textinput.si-xs input {
+  font-size: 12px;
+  height: 29.4px;
+  line-height: 29.4px;
+}
+mor-textinput.si-xs.input-group .input-group-addon {
+  padding: 5px 10px;
+  font-size: 12px;
+  height: 29.4px;
+}
+mor-textinput.si-xs.input-group .input-group-addon > .mo-icon,
+mor-textinput.si-xs.input-group .input-group-addon > .iconfont > i {
+  font-size: 12px;
+}
+mor-textinput.si-s > .form-name {
+  font-size: 14px;
+}
+mor-textinput.si-s input {
+  font-size: 13px;
+  height: 35.7px;
+  line-height: 35.7px;
+}
+mor-textinput.si-s.input-group .input-group-addon {
+  padding: 6px 12px;
+  font-size: 13px;
+  height: 35.7px;
+}
+mor-textinput.si-s.input-group .input-group-addon > .mo-icon,
+mor-textinput.si-s.input-group .input-group-addon > .iconfont > i {
+  font-size: 13px;
+}
+mor-textinput.si-m > .form-name {
+  font-size: 16px;
+}
+mor-textinput.si-m input {
+  font-size: 14px;
+  height: 42px;
+  line-height: 42px;
+}
+mor-textinput.si-m.input-group .input-group-addon {
+  padding: 6px 12px;
+  font-size: 14px;
+  height: 42px;
+}
+mor-textinput.si-m.input-group .input-group-addon > .mo-icon,
+mor-textinput.si-m.input-group .input-group-addon > .iconfont > i {
+  font-size: 14px;
+}
+mor-textinput.si-l > .form-name {
+  font-size: 19.2px;
+}
+mor-textinput.si-l input {
+  font-size: 16px;
+  height: 50.4px;
+  line-height: 50.4px;
+}
+mor-textinput.si-l.input-group .input-group-addon {
+  padding: 8px 13px;
+  font-size: 16px;
+  height: 50.4px;
+}
+mor-textinput.si-l.input-group .input-group-addon > .mo-icon,
+mor-textinput.si-l.input-group .input-group-addon > .iconfont > i {
+  font-size: 16px;
+}
+mor-textinput.si-xl > .form-name {
+  font-size: 24px;
+}
+mor-textinput.si-xl input {
+  font-size: 20px;
+  height: 63px;
+  line-height: 63px;
+}
+mor-textinput.si-xl.input-group .input-group-addon {
+  padding: 12px 16px;
+  font-size: 19.2px;
+  height: 63px;
+}
+mor-textinput.si-xl.input-group .input-group-addon > .mo-icon,
+mor-textinput.si-xl.input-group .input-group-addon > .iconfont > i {
+  font-size: 19.2px;
 }
 mor-textinput.st-disabled input[disabled],
 mor-textinput.st-readonly input[disabled] {
-  border: 1px #a6a6a6 solid;
+  border-color: #a6a6a6;
   background-color: #ebebeb;
   -webkit-user-select: none;
   cursor: not-allowed !important;
   color: #8d8d8d !important;
+}
+mor-textinput.st-disabled.inline-prepend .input-group-addon:first-child,
+mor-textinput.st-readonly.inline-prepend .input-group-addon:first-child,
+mor-textinput.st-disabled.inline-append .input-group-addon:nth-child(3),
+mor-textinput.st-readonly.inline-append .input-group-addon:nth-child(3) {
+  border-color: #a6a6a6;
+  background-color: #ebebeb;
+  -webkit-user-select: none;
+  cursor: not-allowed !important;
+}
+mor-textinput > .form-name {
+  font-size: 16px;
+}
+mor-textinput input {
+  font-size: 14px;
+  height: 42px;
+  line-height: 42px;
+}
+mor-textinput.input-group .input-group-addon {
+  padding: 6px 12px;
+  font-size: 14px;
+  height: 42px;
+}
+mor-textinput.input-group .input-group-addon > .mo-icon,
+mor-textinput.input-group .input-group-addon > .iconfont > i {
+  font-size: 14px;
 }
 mor-textarea {
   position: relative;

@@ -29698,9 +29698,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
-//
-//
-//
 
 exports.default = {
     origin: 'Form',
@@ -29729,6 +29726,13 @@ exports.default = {
                 return ['block', 'inline'].indexOf(value) !== -1;
             }
         },
+        prependType: {
+            type: String,
+            default: 'block',
+            validator: function validator(value) {
+                return ['block', 'inline'].indexOf(value) !== -1;
+            }
+        },
         align: {
             type: String,
             default: 'left',
@@ -29750,6 +29754,7 @@ exports.default = {
                 prepend: this.prepend,
                 append: this.append,
                 appendType: this.appendType,
+                prependType: this.prependType,
                 align: this.align,
                 maxlength: this.maxlength
             };
@@ -29777,6 +29782,7 @@ exports.default = {
             return {
                 'input-group': !!(this.conf.prepend || this.conf.append),
                 'inline-append': this.conf.appendType === 'inline',
+                'inline-prepend': this.conf.prependType === 'inline',
                 'input-focus': this.data.inputFocus
             };
         },
@@ -29784,6 +29790,7 @@ exports.default = {
 
             return {
                 'has-append': !!this.conf.append,
+                'has-prepend': !!this.conf.prepend,
                 'align-left': this.conf.align === 'left',
                 'align-center': this.conf.align === 'center',
                 'align-right': this.conf.align === 'right'
@@ -58172,7 +58179,7 @@ var render = function() {
   return _c(
     "mor-textinput",
     {
-      class: [_vm.formClass, _vm.stateClass, _vm.moreClass],
+      class: [_vm.formClass, _vm.sizeClass, _vm.stateClass, _vm.moreClass],
       attrs: {
         _uiid: _vm.uiid,
         "form-name": _vm.formName,
@@ -58185,6 +58192,7 @@ var render = function() {
         prepend: _vm.prepend,
         append: _vm.append,
         "append-type": _vm.appendType,
+        "prepend-type": _vm.prependType,
         align: _vm.align,
         maxlength: _vm.maxlength
       }
@@ -58200,14 +58208,18 @@ var render = function() {
         "div",
         { staticClass: "textinput-wrap" },
         [
-          _vm.conf.prepend
-            ? [
-                _c("div", {
-                  staticClass: "input-group-addon",
-                  domProps: { innerHTML: _vm._s(_vm.conf.prepend) }
-                })
-              ]
-            : _vm._e(),
+          _c("div", {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: !!_vm.conf.prepend,
+                expression: "!!conf.prepend"
+              }
+            ],
+            staticClass: "input-group-addon",
+            domProps: { innerHTML: _vm._s(_vm.conf.prepend) }
+          }),
           _vm._v(" "),
           _vm.inputType === "text"
             ? [
@@ -58263,14 +58275,18 @@ var render = function() {
                 })
               ],
           _vm._v(" "),
-          _vm.conf.append
-            ? [
-                _c("div", {
-                  staticClass: "input-group-addon",
-                  domProps: { innerHTML: _vm._s(_vm.conf.append) }
-                })
-              ]
-            : _vm._e()
+          _c("div", {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: !!_vm.conf.append,
+                expression: "!!conf.append"
+              }
+            ],
+            staticClass: "input-group-addon",
+            domProps: { innerHTML: _vm._s(_vm.conf.append) }
+          })
         ],
         2
       ),
