@@ -28,7 +28,7 @@ export default {
         文本颜色 : '/component/textcolor.html',
         醒目内容 : '/component/apparent.html',
         栅格 : '/component/grid.html',
-        卡片 : '/component/card.html',
+        '卡片<i class="tag update"></i>' : '/component/card.html',
         容器 : '/component/box.html',
         区块 : '/component/block.html',
         分频器 : '/component/divider.html',
