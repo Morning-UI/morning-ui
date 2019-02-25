@@ -76,7 +76,7 @@ export default {
         音频 : '/component/audio.html',
         视频 : '/component/video.html',
         表单组件 : null,
-        文本输入 : '/component/textinput.html',
+        '文本输入<i class="tag update"></i>' : '/component/textinput.html',
         段落输入 : '/component/textarea.html',
         富文本编辑器 : '/component/texteditor.html',
         开关 : '/component/switch.html',

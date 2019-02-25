@@ -1,7 +1,7 @@
 <template>
     <mor-textinput
         :_uiid="uiid"
-        :class="[formClass, stateClass, moreClass]"
+        :class="[formClass, sizeClass, stateClass, moreClass]"
 
         :form-name="formName"
         :form-key="formKey"
@@ -13,6 +13,7 @@
         :prepend="prepend"
         :append="append"
         :append-type="appendType"
+        :prepend-type="prependType"
         :align="align"
         :maxlength="maxlength"
     >
@@ -21,9 +22,7 @@
 
     <div class="textinput-wrap">
 
-        <template v-if="conf.prepend">
-            <div class="input-group-addon" v-html="conf.prepend"></div>
-        </template>
+        <div class="input-group-addon" v-html="conf.prepend" v-show="!!conf.prepend"></div>
 
         <template v-if="inputType === 'text'">
             <input
@@ -60,9 +59,7 @@
             />
         </template>
 
-        <template v-if="conf.append">
-            <div class="input-group-addon" v-html="conf.append"></div>
-        </template>
+        <div class="input-group-addon" v-html="conf.append" v-show="!!conf.append"></div>
         
     </div>
 
@@ -97,6 +94,11 @@ export default {
             default : 'block',
             validator : (value => ['block', 'inline'].indexOf(value) !== -1)
         },
+        prependType : {
+            type : String,
+            default : 'block',
+            validator : (value => ['block', 'inline'].indexOf(value) !== -1)
+        },
         align : {
             type : String,
             default : 'left',
@@ -116,6 +118,7 @@ export default {
                 prepend : this.prepend,
                 append : this.append,
                 appendType : this.appendType,
+                prependType : this.prependType,
                 align : this.align,
                 maxlength : this.maxlength
             };
@@ -148,6 +151,7 @@ export default {
             return {
                 'input-group' : !!(this.conf.prepend || this.conf.append),
                 'inline-append' : (this.conf.appendType === 'inline'),
+                'inline-prepend' : (this.conf.prependType === 'inline'),
                 'input-focus' : this.data.inputFocus
             };
 
@@ -156,6 +160,7 @@ export default {
 
             return {
                 'has-append' : !!this.conf.append,
+                'has-prepend' : !!this.conf.prepend,
                 'align-left' : (this.conf.align === 'left'),
                 'align-center' : (this.conf.align === 'center'),
                 'align-right' : (this.conf.align === 'right')
