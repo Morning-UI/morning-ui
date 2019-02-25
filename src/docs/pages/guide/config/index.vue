@@ -333,6 +333,7 @@
     - `target-to-source-text` : 目标至源文案
     - `palettes` : 色板
     - `only-palettes` : 仅使用色板
+    - `inside-padding` : 内部填充
 
     </script>
     </doc-guide>
