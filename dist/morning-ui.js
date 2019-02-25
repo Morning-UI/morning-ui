@@ -20297,6 +20297,14 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
     origin: 'UI',
@@ -49366,8 +49374,17 @@ var render = function() {
   return _c(
     "mor-card",
     { class: [_vm.colorClass], attrs: { _uiid: _vm.uiid } },
-    [_vm._t("default")],
-    2
+    [
+      _vm.$slots.header
+        ? _c("div", { staticClass: "card-header" }, [_vm._t("header")], 2)
+        : _vm._e(),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-body" }, [_vm._t("default")], 2),
+      _vm._v(" "),
+      _vm.$slots.footer
+        ? _c("div", { staticClass: "card-footer" }, [_vm._t("footer")], 2)
+        : _vm._e()
+    ]
   )
 }
 var staticRenderFns = []
