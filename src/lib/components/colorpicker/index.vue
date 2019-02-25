@@ -11,6 +11,7 @@
         :value-type="valueType"
         :allow-alpha="allowAlpha"
         :palettes="palettes"
+        :only-palettes="onlyPalettes"
     >
     
     <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
@@ -44,10 +45,13 @@
         <div class="picker">
             <div
                 class="panel"
+                :class="{
+                        'not-allow' : onlyUsePalettes
+                    }"
                 :style="{
                     'background-color' : colorH
                 }"
-
+                   
                 @mousedown="_pickColor($event);_hslHSync(false)"
                 @mouseup="_hslHSync(true)"
             >
@@ -64,7 +68,7 @@
                     @mouseup.capture="_stopmoveStraw"
                 ></div>
             </div>
-            <div class="tools">
+            <div class="tools" v-show="!onlyUsePalettes">
                 <div
                     class="color-copy"
                      :id="'mor-colorpicker-copy-'+uiid"
@@ -116,7 +120,7 @@
                     </div>
                 </div>
             </div>
-            <div class="values">
+            <div class="values" v-show="!onlyUsePalettes">
                 <div class="input">
                     <div class="rgba" v-if="data.showValueType === 'rgba' && typeof data.colorValue === 'object'">
                         <morning-textinput v-model="data.colorValue.r" :state="inputIsReadonly ? 'readonly' : 'normal'" @focus="_hslHSync(true)" @blur="_rgbaChangeR();_hslHSync(false)"></morning-textinput>
@@ -159,6 +163,7 @@
                     <template v-for="(color, index) in conf.palettes">
                         <div
                             class="palettes-color-item"
+                            :key="index"
                             :style="{
                                 'background-color' : color
                             }"
@@ -167,7 +172,12 @@
                             @click="set(color)"
                         >
                         </div>
-                        <morning-tip :target="'#mor-colorpicker-palettes-tip-'+uiid+'-'+index" color="light-blue" offset="3px 0">
+                        <morning-tip
+                            :key="index"
+                            :target="'#mor-colorpicker-palettes-tip-'+uiid+'-'+index"
+                            color="light-blue"
+                            offset="3px 0"
+                        >
                             {{color}}
                         </morning-tip>
                     </template>
@@ -179,6 +189,7 @@
                     <template v-for="(color, index) in conf.palettes[data.currentPalette].colors">
                         <div
                             class="palettes-color-item"
+                            :key="index"
                             :style="{
                                 'background-color' : color
                             }"
@@ -187,28 +198,46 @@
                             @click="set(color)"
                         >
                         </div>
-                        <morning-tip :target="'#mor-colorpicker-palettes-tip-'+uiid+'-'+index" color="light-blue" offset="3px 0">
+                        <morning-tip
+                            :key="index"
+                            :target="'#mor-colorpicker-palettes-tip-'+uiid+'-'+index"
+                            color="light-blue"
+                            offset="3px 0">
                             {{color}}
                         </morning-tip>
                     </template>
-                    <div class="toggle-palette">
+                    <div
+                        class="toggle-palette"
+                        @click="_togglePalettesPicker"
+                    >
                         <i class="mo-icon mo-icon-block-4"></i>
                     </div>
-                    <div class="palettes-picker">
+                    <div
+                        class="palettes-picker"
+                        :class="{show : data.palettesPicker}"
+                    >
                         <div class="palette-title">
-                            <b>选择色板</b>
-                            <i class="mo-icon mo-icon-close"></i>
+                            <span>选择色板</span>
+                            <i class="mo-icon mo-icon-close" @click="_togglePalettesPicker"></i>
                         </div>
-                        <div class="palette-item" v-for="(item, index) in conf.palettes">
-                            <div class="palette-name">{{item.name}}</div>
-                            <div class="palette-color-preview">
-                                <div
-                                    class="palettes-color-item"
-                                    v-for="previewColor in item.colors.slice(0, 6)"
-                                    :style="{
-                                        'background-color' : previewColor
-                                    }"
-                                >
+                        <div class="palette-item-list">
+                            <div
+                                v-for="(item, index) in conf.palettes"
+                                :key="index"
+                                class="palette-item"
+                                @click="_usePalettes(index);_togglePalettesPicker()"
+                            >
+                                <div class="palette-name">{{item.name}}</div>
+                                <div class="palette-color-preview">
+                                    <div
+                                        v-for="(previewColor, previewIndex) in item.colors.slice(0, 6)"
+                                        :key="previewIndex"
+                                        class="palettes-color-item"
+                                        :style="{
+                                            'background-color' : previewColor
+                                        }"
+                                    >
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -262,6 +291,10 @@ export default {
         palettes : {
             type : Array,
             default : (() => [])
+        },
+        onlyPalettes : {
+            type : Boolean,
+            default : false
         }
     },
     computed : {
@@ -270,7 +303,8 @@ export default {
             return {
                 valueType : this.valueType,
                 allowAlpha : this.allowAlpha,
-                palettes : this.palettes
+                palettes : this.palettes,
+                onlyPalettes : this.onlyPalettes
             };
 
         },
@@ -321,6 +355,11 @@ export default {
 
             return Math.round(this.data.alpha / maxAlpha * num100) / num100;
 
+        },
+        onlyUsePalettes : function () {
+
+            return this.conf.onlyPalettes && this.conf.palettes.length > 0;
+
         }
     },
     data : function () {
@@ -355,7 +394,8 @@ export default {
                 colorValue : null,
                 copyNote : null,
                 copyNoteTimeout : null,
-                currentPalette : 0
+                currentPalette : 0,
+                palettesPicker : false
             }
         };
 
@@ -708,12 +748,24 @@ export default {
 
         },
         _moveStraw : function () {
+
+            if (this.onlyUsePalettes) {
+
+                return;
+
+            }
           
             this.data.dontPickColor = true;
             this._moveItemRecord(0);
 
         },
         _stopmoveStraw : function () {
+
+            if (this.onlyUsePalettes) {
+
+                return;
+
+            }
 
             this.data.dontPickColor = false;
             this._moveMouseup();
@@ -732,6 +784,12 @@ export default {
 
         },
         _pickColor : function (evt) {
+
+            if (this.onlyUsePalettes) {
+
+                return;
+
+            }
 
             if (this.data.dontPickColor ||
                 this.conf.state === 'disabled' ||
@@ -913,6 +971,16 @@ export default {
                 this.Vue.nextTick(() => this.$refs[`mor-colorpicker-copytip-${this.uiid}`].position());
 
             }, copyShowtime);
+
+        },
+        _togglePalettesPicker : function () {
+
+            this.data.palettesPicker = !this.data.palettesPicker;
+
+        },
+        _usePalettes : function (index) {
+
+            this.data.currentPalette = index;
 
         },
         set : function (value) {

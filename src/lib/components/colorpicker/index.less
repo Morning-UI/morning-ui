@@ -142,6 +142,14 @@ mor-colorpicker{
             box-shadow: 0 0 1px #000;
             z-index: 3;
         }
+
+        &.not-allow{
+            cursor: not-allowed;
+
+            .straw{
+                cursor: not-allowed;
+            }
+        }
     }
 
     .tools{
@@ -348,19 +356,52 @@ mor-colorpicker{
 
         .palettes-picker{
             position: absolute;
-            bottom: 0;
+            bottom: -170px;
             left: 0;
             width: 100%;
-            max-height: 200px;
-            overflow-y: auto;
+            max-height: 170px;
             align-items: stretch;
             display: flex;
             flex-direction: column;
             background: @colorWhite;
             box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
             z-index: 2;
+            transition: bottom 0.2s;
 
-            .setup-hover-scrollbar();
+            &.show{
+                bottom: 0;
+            }
+
+            .palette-item-list{
+                overflow-y: auto;
+                max-height: 120px;
+
+                .setup-hover-scrollbar();
+            }
+
+            .palette-title{
+                padding: 1em;
+                position: relative;
+
+                > span{
+                    font-size: @fontSize;
+                    color: #333;
+                }
+
+                > .mo-icon{
+                    position: absolute;
+                    top: 0;
+                    right: 0.5em;
+                    line-height: @fontSize*3.125;
+                    font-size: 14px;
+                    color: @colorExtraLightBlue;
+
+                    &:hover{
+                        cursor: pointer;
+                        color: @colorLightBlue;
+                    }
+                }
+            }
 
             .palette-item{
                 display: flex;
