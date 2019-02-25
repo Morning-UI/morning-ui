@@ -1,7 +1,7 @@
 <template>
     <mor-textinput
         :_uiid="uiid"
-        :class="[formClass, stateClass, moreClass]"
+        :class="[formClass, sizeClass, stateClass, moreClass]"
 
         :form-name="formName"
         :form-key="formKey"
@@ -13,6 +13,7 @@
         :prepend="prepend"
         :append="append"
         :append-type="appendType"
+        :prepend-type="prependType"
         :align="align"
         :maxlength="maxlength"
     >
@@ -97,6 +98,11 @@ export default {
             default : 'block',
             validator : (value => ['block', 'inline'].indexOf(value) !== -1)
         },
+        prependType : {
+            type : String,
+            default : 'block',
+            validator : (value => ['block', 'inline'].indexOf(value) !== -1)
+        },
         align : {
             type : String,
             default : 'left',
@@ -116,6 +122,7 @@ export default {
                 prepend : this.prepend,
                 append : this.append,
                 appendType : this.appendType,
+                prependType : this.prependType,
                 align : this.align,
                 maxlength : this.maxlength
             };
@@ -148,6 +155,7 @@ export default {
             return {
                 'input-group' : !!(this.conf.prepend || this.conf.append),
                 'inline-append' : (this.conf.appendType === 'inline'),
+                'inline-prepend' : (this.conf.prependType === 'inline'),
                 'input-focus' : this.data.inputFocus
             };
 

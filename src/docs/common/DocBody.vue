@@ -1445,7 +1445,9 @@ let extVueRenderer = {
             '>desc',
             (parts.desc || '通过`size`来设置组件的尺寸，可用尺寸详见[形态/尺寸](/guide/status.html#尺寸)'),
             '>tpl',
-            `<div>{$#size}\n${addSpace(rmEndWrap(parts.tpl.join('\n')), 4)}{$/size}\n</div>`
+            `<div>{$#size}\n${addSpace(rmEndWrap(parts.tpl.join('\n')), 4)}{$/size}\n</div>`,
+            '>script',
+            (parts.script || ['']).join('\n')
         ]);
 
         newParamStr.push(sizePreset.join('\n'));
