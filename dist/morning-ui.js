@@ -29698,10 +29698,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
-//
-//
-//
-//
 
 exports.default = {
     origin: 'Form',
@@ -29794,6 +29790,7 @@ exports.default = {
 
             return {
                 'has-append': !!this.conf.append,
+                'has-prepend': !!this.conf.prepend,
                 'align-left': this.conf.align === 'left',
                 'align-center': this.conf.align === 'center',
                 'align-right': this.conf.align === 'right'
@@ -58211,14 +58208,18 @@ var render = function() {
         "div",
         { staticClass: "textinput-wrap" },
         [
-          _vm.conf.prepend
-            ? [
-                _c("div", {
-                  staticClass: "input-group-addon",
-                  domProps: { innerHTML: _vm._s(_vm.conf.prepend) }
-                })
-              ]
-            : _vm._e(),
+          _c("div", {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: !!_vm.conf.prepend,
+                expression: "!!conf.prepend"
+              }
+            ],
+            staticClass: "input-group-addon",
+            domProps: { innerHTML: _vm._s(_vm.conf.prepend) }
+          }),
           _vm._v(" "),
           _vm.inputType === "text"
             ? [
@@ -58274,14 +58275,18 @@ var render = function() {
                 })
               ],
           _vm._v(" "),
-          _vm.conf.append
-            ? [
-                _c("div", {
-                  staticClass: "input-group-addon",
-                  domProps: { innerHTML: _vm._s(_vm.conf.append) }
-                })
-              ]
-            : _vm._e()
+          _c("div", {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: !!_vm.conf.append,
+                expression: "!!conf.append"
+              }
+            ],
+            staticClass: "input-group-addon",
+            domProps: { innerHTML: _vm._s(_vm.conf.append) }
+          })
         ],
         2
       ),
