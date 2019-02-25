@@ -39907,6 +39907,94 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var num16 = 16;
 var num50 = 50;
@@ -39932,6 +40020,16 @@ exports.default = {
         allowAlpha: {
             type: Boolean,
             default: true
+        },
+        palettes: {
+            type: Array,
+            default: function _default() {
+                return [];
+            }
+        },
+        onlyPalettes: {
+            type: Boolean,
+            default: false
         }
     },
     computed: {
@@ -39939,7 +40037,9 @@ exports.default = {
 
             return {
                 valueType: this.valueType,
-                allowAlpha: this.allowAlpha
+                allowAlpha: this.allowAlpha,
+                palettes: this.palettes,
+                onlyPalettes: this.onlyPalettes
             };
         },
         inputIsReadonly: function inputIsReadonly() {
@@ -39980,6 +40080,10 @@ exports.default = {
         alphaPer: function alphaPer() {
 
             return Math.round(this.data.alpha / maxAlpha * num100) / num100;
+        },
+        onlyUsePalettes: function onlyUsePalettes() {
+
+            return this.conf.onlyPalettes && this.conf.palettes.length > 0;
         }
     },
     data: function data() {
@@ -40013,7 +40117,9 @@ exports.default = {
                 hslHReversal: null,
                 colorValue: null,
                 copyNote: null,
-                copyNoteTimeout: null
+                copyNoteTimeout: null,
+                currentPalette: 0,
+                palettesPicker: false
             }
         };
     },
@@ -40290,10 +40396,20 @@ exports.default = {
         },
         _moveStraw: function _moveStraw() {
 
+            if (this.onlyUsePalettes) {
+
+                return;
+            }
+
             this.data.dontPickColor = true;
             this._moveItemRecord(0);
         },
         _stopmoveStraw: function _stopmoveStraw() {
+
+            if (this.onlyUsePalettes) {
+
+                return;
+            }
 
             this.data.dontPickColor = false;
             this._moveMouseup();
@@ -40311,6 +40427,11 @@ exports.default = {
         },
         _pickColor: function _pickColor(evt) {
             var _this2 = this;
+
+            if (this.onlyUsePalettes) {
+
+                return;
+            }
 
             if (this.data.dontPickColor || this.conf.state === 'disabled' || this.conf.state === 'readonly') {
 
@@ -40471,6 +40592,14 @@ exports.default = {
                     return _this3.$refs['mor-colorpicker-copytip-' + _this3.uiid].position();
                 });
             }, copyShowtime);
+        },
+        _togglePalettesPicker: function _togglePalettesPicker() {
+
+            this.data.palettesPicker = !this.data.palettesPicker;
+        },
+        _usePalettes: function _usePalettes(index) {
+
+            this.data.currentPalette = index;
         },
         set: function set(value) {
             var _this4 = this;
@@ -52396,7 +52525,9 @@ var render = function() {
         "hide-name": _vm.hideName,
         clearable: _vm.clearable,
         "value-type": _vm.valueType,
-        "allow-alpha": _vm.allowAlpha
+        "allow-alpha": _vm.allowAlpha,
+        palettes: _vm.palettes,
+        "only-palettes": _vm.onlyPalettes
       }
     },
     [
@@ -52447,396 +52578,634 @@ var render = function() {
           }
         },
         [
-          _c("div", { staticClass: "picker" }, [
-            _c(
-              "div",
-              {
-                staticClass: "panel",
-                style: {
-                  "background-color": _vm.colorH
-                },
-                on: {
-                  mousedown: function($event) {
-                    _vm._pickColor($event)
-                    _vm._hslHSync(false)
+          _c(
+            "div",
+            { staticClass: "picker" },
+            [
+              _c(
+                "div",
+                {
+                  staticClass: "panel",
+                  class: {
+                    "not-allow": _vm.onlyUsePalettes
                   },
-                  mouseup: function($event) {
-                    return _vm._hslHSync(true)
-                  }
-                }
-              },
-              [
-                _c("div", { staticClass: "mask-white" }),
-                _vm._v(" "),
-                _c("div", { staticClass: "mask-black" }),
-                _vm._v(" "),
-                _c("div", {
-                  staticClass: "straw",
                   style: {
-                    display: _vm.data.picking ? "none" : "block",
-                    left: _vm.data.straw.x + "px",
-                    top: _vm.data.straw.y + "px"
+                    "background-color": _vm.colorH
                   },
                   on: {
-                    "!mousedown": function($event) {
-                      return _vm._moveStraw($event)
+                    mousedown: function($event) {
+                      _vm._pickColor($event)
+                      _vm._hslHSync(false)
                     },
-                    "!mouseup": function($event) {
-                      return _vm._stopmoveStraw($event)
+                    mouseup: function($event) {
+                      return _vm._hslHSync(true)
                     }
                   }
-                })
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "tools" },
-              [
-                _c(
-                  "div",
-                  {
-                    staticClass: "color-copy",
-                    attrs: { id: "mor-colorpicker-copy-" + _vm.uiid },
-                    on: { click: _vm._colorCopy }
-                  },
-                  [
-                    _c("div", { staticClass: "alpha-bg-1" }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "alpha-bg-2" }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "alpha-bg-3" }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "alpha-bg-4" }),
-                    _vm._v(" "),
-                    _c("div", {
-                      staticClass: "color",
-                      style: {
-                        "background-color": _vm.colorHexWithAlpha
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "copy-mask" }, [
-                      _c("i", { staticClass: "mo-icon mo-icon-copy" })
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "morning-tip",
-                  {
-                    ref: "mor-colorpicker-copytip-" + _vm.uiid,
-                    attrs: {
-                      target: "#mor-colorpicker-copy-" + _vm.uiid,
-                      color: "light-blue",
-                      offset: "3px 0"
-                    }
-                  },
-                  [
-                    _vm._v(
-                      "\n                " +
-                        _vm._s(_vm.data.copyNote || _vm.colorString) +
-                        "\n            "
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "slider-tool" }, [
-                  _c(
-                    "div",
-                    { staticClass: "hsb" },
-                    [
-                      _c("morning-slider", {
-                        attrs: {
-                          "show-tip": false,
-                          max: 360,
-                          step: 0.01,
-                          state: _vm.inputIsReadonly ? "readonly" : "normal"
-                        },
-                        on: { "value-change": _vm._hslaChangeHBar },
-                        model: {
-                          value: _vm.data.hslHReversal,
-                          callback: function($$v) {
-                            _vm.$set(_vm.data, "hslHReversal", $$v)
-                          },
-                          expression: "data.hslHReversal"
-                        }
-                      })
-                    ],
-                    1
-                  ),
+                },
+                [
+                  _c("div", { staticClass: "mask-white" }),
                   _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "alpha" },
-                    [
-                      _c("morning-slider", {
-                        attrs: {
-                          "show-tip": false,
-                          max: 255,
-                          state:
-                            _vm.inputIsReadonly || !_vm.conf.allowAlpha
-                              ? "readonly"
-                              : "normal"
-                        },
-                        on: {
-                          mousedown: function($event) {
-                            return _vm._hslHSync(false)
-                          },
-                          mouseup: function($event) {
-                            return _vm._hslHSync(true)
-                          },
-                          "value-change": _vm._alphaChange
-                        },
-                        model: {
-                          value: _vm.data.alpha,
-                          callback: function($$v) {
-                            _vm.$set(_vm.data, "alpha", $$v)
-                          },
-                          expression: "data.alpha"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ])
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "values" }, [
-              _c("div", { staticClass: "input" }, [
-                _vm.data.showValueType === "rgba" &&
-                typeof _vm.data.colorValue === "object"
-                  ? _c(
-                      "div",
-                      { staticClass: "rgba" },
-                      [
-                        _c("morning-textinput", {
-                          attrs: {
-                            state: _vm.inputIsReadonly ? "readonly" : "normal"
-                          },
-                          on: {
-                            focus: function($event) {
-                              return _vm._hslHSync(true)
-                            },
-                            blur: function($event) {
-                              _vm._rgbaChangeR()
-                              _vm._hslHSync(false)
-                            }
-                          },
-                          model: {
-                            value: _vm.data.colorValue.r,
-                            callback: function($$v) {
-                              _vm.$set(_vm.data.colorValue, "r", $$v)
-                            },
-                            expression: "data.colorValue.r"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("morning-textinput", {
-                          attrs: {
-                            state: _vm.inputIsReadonly ? "readonly" : "normal"
-                          },
-                          on: {
-                            focus: function($event) {
-                              return _vm._hslHSync(true)
-                            },
-                            blur: function($event) {
-                              _vm._rgbaChangeG()
-                              _vm._hslHSync(false)
-                            }
-                          },
-                          model: {
-                            value: _vm.data.colorValue.g,
-                            callback: function($$v) {
-                              _vm.$set(_vm.data.colorValue, "g", $$v)
-                            },
-                            expression: "data.colorValue.g"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("morning-textinput", {
-                          attrs: {
-                            state: _vm.inputIsReadonly ? "readonly" : "normal"
-                          },
-                          on: {
-                            focus: function($event) {
-                              return _vm._hslHSync(true)
-                            },
-                            blur: function($event) {
-                              _vm._rgbaChangeB()
-                              _vm._hslHSync(false)
-                            }
-                          },
-                          model: {
-                            value: _vm.data.colorValue.b,
-                            callback: function($$v) {
-                              _vm.$set(_vm.data.colorValue, "b", $$v)
-                            },
-                            expression: "data.colorValue.b"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("morning-textinput", {
-                          attrs: {
-                            state:
-                              _vm.inputIsReadonly || !_vm.conf.allowAlpha
-                                ? "readonly"
-                                : "normal"
-                          },
-                          on: { blur: _vm._alphaChangePer },
-                          model: {
-                            value: _vm.data.colorValue.a,
-                            callback: function($$v) {
-                              _vm.$set(_vm.data.colorValue, "a", $$v)
-                            },
-                            expression: "data.colorValue.a"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "name" }, [_vm._v("R")]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "name" }, [_vm._v("G")]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "name" }, [_vm._v("B")]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "name" }, [_vm._v("A")])
-                      ],
-                      1
-                    )
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.data.showValueType === "hex" &&
-                typeof _vm.data.colorValue === "string"
-                  ? _c(
-                      "div",
-                      { staticClass: "hex" },
-                      [
-                        _c("morning-textinput", {
-                          attrs: {
-                            state: _vm.inputIsReadonly ? "readonly" : "normal"
-                          },
-                          on: {
-                            "value-change": _vm._hexChange,
-                            focus: function($event) {
-                              return _vm._hslHSync(true)
-                            },
-                            blur: function($event) {
-                              return _vm._hslHSync(false)
-                            }
-                          },
-                          model: {
-                            value: _vm.data.colorValue,
-                            callback: function($$v) {
-                              _vm.$set(_vm.data, "colorValue", $$v)
-                            },
-                            expression: "data.colorValue"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "name" }, [_vm._v("HEX")])
-                      ],
-                      1
-                    )
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.data.showValueType === "hsla" &&
-                typeof _vm.data.colorValue === "object"
-                  ? _c(
-                      "div",
-                      { staticClass: "hsla" },
-                      [
-                        _c("morning-textinput", {
-                          attrs: {
-                            state: _vm.inputIsReadonly ? "readonly" : "normal"
-                          },
-                          on: {
-                            focus: function($event) {
-                              return _vm._hslHSync(true)
-                            },
-                            blur: function($event) {
-                              _vm._hslChangeH()
-                              _vm._hslHSync(false)
-                            }
-                          },
-                          model: {
-                            value: _vm.data.colorValue.h,
-                            callback: function($$v) {
-                              _vm.$set(_vm.data.colorValue, "h", $$v)
-                            },
-                            expression: "data.colorValue.h"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("morning-textinput", {
-                          attrs: {
-                            state: _vm.inputIsReadonly ? "readonly" : "normal"
-                          },
-                          on: { blur: _vm._hslChangeS },
-                          model: {
-                            value: _vm.data.colorValue.s,
-                            callback: function($$v) {
-                              _vm.$set(_vm.data.colorValue, "s", $$v)
-                            },
-                            expression: "data.colorValue.s"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("morning-textinput", {
-                          attrs: {
-                            state: _vm.inputIsReadonly ? "readonly" : "normal"
-                          },
-                          on: { blur: _vm._hslChangeL },
-                          model: {
-                            value: _vm.data.colorValue.l,
-                            callback: function($$v) {
-                              _vm.$set(_vm.data.colorValue, "l", $$v)
-                            },
-                            expression: "data.colorValue.l"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("morning-textinput", {
-                          attrs: {
-                            state:
-                              _vm.inputIsReadonly || !_vm.conf.allowAlpha
-                                ? "readonly"
-                                : "normal"
-                          },
-                          on: { blur: _vm._alphaChangePer },
-                          model: {
-                            value: _vm.data.colorValue.a,
-                            callback: function($$v) {
-                              _vm.$set(_vm.data.colorValue, "a", $$v)
-                            },
-                            expression: "data.colorValue.a"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "name" }, [_vm._v("H")]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "name" }, [_vm._v("S")]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "name" }, [_vm._v("L")]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "name" }, [_vm._v("A")])
-                      ],
-                      1
-                    )
-                  : _vm._e()
-              ]),
+                  _c("div", { staticClass: "mask-black" }),
+                  _vm._v(" "),
+                  _c("div", {
+                    staticClass: "straw",
+                    style: {
+                      display: _vm.data.picking ? "none" : "block",
+                      left: _vm.data.straw.x + "px",
+                      top: _vm.data.straw.y + "px"
+                    },
+                    on: {
+                      "!mousedown": function($event) {
+                        return _vm._moveStraw($event)
+                      },
+                      "!mouseup": function($event) {
+                        return _vm._stopmoveStraw($event)
+                      }
+                    }
+                  })
+                ]
+              ),
               _vm._v(" "),
               _c(
                 "div",
                 {
-                  staticClass: "toggle-type",
-                  on: { click: _vm._toggleShowType }
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: !_vm.onlyUsePalettes,
+                      expression: "!onlyUsePalettes"
+                    }
+                  ],
+                  staticClass: "tools"
                 },
-                [_c("i", { staticClass: "mo-icon mo-icon-sort" })]
-              )
-            ])
-          ])
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "color-copy",
+                      attrs: { id: "mor-colorpicker-copy-" + _vm.uiid },
+                      on: { click: _vm._colorCopy }
+                    },
+                    [
+                      _c("div", { staticClass: "alpha-bg-1" }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "alpha-bg-2" }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "alpha-bg-3" }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "alpha-bg-4" }),
+                      _vm._v(" "),
+                      _c("div", {
+                        staticClass: "color",
+                        style: {
+                          "background-color": _vm.colorHexWithAlpha
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "copy-mask" }, [
+                        _c("i", { staticClass: "mo-icon mo-icon-copy" })
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "morning-tip",
+                    {
+                      ref: "mor-colorpicker-copytip-" + _vm.uiid,
+                      attrs: {
+                        target: "#mor-colorpicker-copy-" + _vm.uiid,
+                        color: "light-blue",
+                        offset: "3px 0"
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(_vm.data.copyNote || _vm.colorString) +
+                          "\n            "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "slider-tool" }, [
+                    _c(
+                      "div",
+                      { staticClass: "hsb" },
+                      [
+                        _c("morning-slider", {
+                          attrs: {
+                            "show-tip": false,
+                            max: 360,
+                            step: 0.01,
+                            state: _vm.inputIsReadonly ? "readonly" : "normal"
+                          },
+                          on: { "value-change": _vm._hslaChangeHBar },
+                          model: {
+                            value: _vm.data.hslHReversal,
+                            callback: function($$v) {
+                              _vm.$set(_vm.data, "hslHReversal", $$v)
+                            },
+                            expression: "data.hslHReversal"
+                          }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "alpha" },
+                      [
+                        _c("morning-slider", {
+                          attrs: {
+                            "show-tip": false,
+                            max: 255,
+                            state:
+                              _vm.inputIsReadonly || !_vm.conf.allowAlpha
+                                ? "readonly"
+                                : "normal"
+                          },
+                          on: {
+                            mousedown: function($event) {
+                              return _vm._hslHSync(false)
+                            },
+                            mouseup: function($event) {
+                              return _vm._hslHSync(true)
+                            },
+                            "value-change": _vm._alphaChange
+                          },
+                          model: {
+                            value: _vm.data.alpha,
+                            callback: function($$v) {
+                              _vm.$set(_vm.data, "alpha", $$v)
+                            },
+                            expression: "data.alpha"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: !_vm.onlyUsePalettes,
+                      expression: "!onlyUsePalettes"
+                    }
+                  ],
+                  staticClass: "values"
+                },
+                [
+                  _c("div", { staticClass: "input" }, [
+                    _vm.data.showValueType === "rgba" &&
+                    typeof _vm.data.colorValue === "object"
+                      ? _c(
+                          "div",
+                          { staticClass: "rgba" },
+                          [
+                            _c("morning-textinput", {
+                              attrs: {
+                                state: _vm.inputIsReadonly
+                                  ? "readonly"
+                                  : "normal"
+                              },
+                              on: {
+                                focus: function($event) {
+                                  return _vm._hslHSync(true)
+                                },
+                                blur: function($event) {
+                                  _vm._rgbaChangeR()
+                                  _vm._hslHSync(false)
+                                }
+                              },
+                              model: {
+                                value: _vm.data.colorValue.r,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.data.colorValue, "r", $$v)
+                                },
+                                expression: "data.colorValue.r"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("morning-textinput", {
+                              attrs: {
+                                state: _vm.inputIsReadonly
+                                  ? "readonly"
+                                  : "normal"
+                              },
+                              on: {
+                                focus: function($event) {
+                                  return _vm._hslHSync(true)
+                                },
+                                blur: function($event) {
+                                  _vm._rgbaChangeG()
+                                  _vm._hslHSync(false)
+                                }
+                              },
+                              model: {
+                                value: _vm.data.colorValue.g,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.data.colorValue, "g", $$v)
+                                },
+                                expression: "data.colorValue.g"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("morning-textinput", {
+                              attrs: {
+                                state: _vm.inputIsReadonly
+                                  ? "readonly"
+                                  : "normal"
+                              },
+                              on: {
+                                focus: function($event) {
+                                  return _vm._hslHSync(true)
+                                },
+                                blur: function($event) {
+                                  _vm._rgbaChangeB()
+                                  _vm._hslHSync(false)
+                                }
+                              },
+                              model: {
+                                value: _vm.data.colorValue.b,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.data.colorValue, "b", $$v)
+                                },
+                                expression: "data.colorValue.b"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("morning-textinput", {
+                              attrs: {
+                                state:
+                                  _vm.inputIsReadonly || !_vm.conf.allowAlpha
+                                    ? "readonly"
+                                    : "normal"
+                              },
+                              on: { blur: _vm._alphaChangePer },
+                              model: {
+                                value: _vm.data.colorValue.a,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.data.colorValue, "a", $$v)
+                                },
+                                expression: "data.colorValue.a"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "name" }, [_vm._v("R")]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "name" }, [_vm._v("G")]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "name" }, [_vm._v("B")]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "name" }, [_vm._v("A")])
+                          ],
+                          1
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.data.showValueType === "hex" &&
+                    typeof _vm.data.colorValue === "string"
+                      ? _c(
+                          "div",
+                          { staticClass: "hex" },
+                          [
+                            _c("morning-textinput", {
+                              attrs: {
+                                state: _vm.inputIsReadonly
+                                  ? "readonly"
+                                  : "normal"
+                              },
+                              on: {
+                                "value-change": _vm._hexChange,
+                                focus: function($event) {
+                                  return _vm._hslHSync(true)
+                                },
+                                blur: function($event) {
+                                  return _vm._hslHSync(false)
+                                }
+                              },
+                              model: {
+                                value: _vm.data.colorValue,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.data, "colorValue", $$v)
+                                },
+                                expression: "data.colorValue"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "name" }, [_vm._v("HEX")])
+                          ],
+                          1
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.data.showValueType === "hsla" &&
+                    typeof _vm.data.colorValue === "object"
+                      ? _c(
+                          "div",
+                          { staticClass: "hsla" },
+                          [
+                            _c("morning-textinput", {
+                              attrs: {
+                                state: _vm.inputIsReadonly
+                                  ? "readonly"
+                                  : "normal"
+                              },
+                              on: {
+                                focus: function($event) {
+                                  return _vm._hslHSync(true)
+                                },
+                                blur: function($event) {
+                                  _vm._hslChangeH()
+                                  _vm._hslHSync(false)
+                                }
+                              },
+                              model: {
+                                value: _vm.data.colorValue.h,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.data.colorValue, "h", $$v)
+                                },
+                                expression: "data.colorValue.h"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("morning-textinput", {
+                              attrs: {
+                                state: _vm.inputIsReadonly
+                                  ? "readonly"
+                                  : "normal"
+                              },
+                              on: { blur: _vm._hslChangeS },
+                              model: {
+                                value: _vm.data.colorValue.s,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.data.colorValue, "s", $$v)
+                                },
+                                expression: "data.colorValue.s"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("morning-textinput", {
+                              attrs: {
+                                state: _vm.inputIsReadonly
+                                  ? "readonly"
+                                  : "normal"
+                              },
+                              on: { blur: _vm._hslChangeL },
+                              model: {
+                                value: _vm.data.colorValue.l,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.data.colorValue, "l", $$v)
+                                },
+                                expression: "data.colorValue.l"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("morning-textinput", {
+                              attrs: {
+                                state:
+                                  _vm.inputIsReadonly || !_vm.conf.allowAlpha
+                                    ? "readonly"
+                                    : "normal"
+                              },
+                              on: { blur: _vm._alphaChangePer },
+                              model: {
+                                value: _vm.data.colorValue.a,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.data.colorValue, "a", $$v)
+                                },
+                                expression: "data.colorValue.a"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "name" }, [_vm._v("H")]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "name" }, [_vm._v("S")]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "name" }, [_vm._v("L")]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "name" }, [_vm._v("A")])
+                          ],
+                          1
+                        )
+                      : _vm._e()
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "toggle-type",
+                      on: { click: _vm._toggleShowType }
+                    },
+                    [_c("i", { staticClass: "mo-icon mo-icon-sort" })]
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _vm.conf.palettes.length > 0 &&
+              typeof _vm.conf.palettes[0] === "string"
+                ? [
+                    _c(
+                      "div",
+                      { staticClass: "palettes" },
+                      [
+                        _vm._l(_vm.conf.palettes, function(color, index) {
+                          return [
+                            _c("div", {
+                              key: index,
+                              staticClass: "palettes-color-item",
+                              style: {
+                                "background-color": color
+                              },
+                              attrs: {
+                                id:
+                                  "mor-colorpicker-palettes-tip-" +
+                                  _vm.uiid +
+                                  "-" +
+                                  index,
+                                title: color
+                              },
+                              on: {
+                                click: function($event) {
+                                  return _vm.set(color)
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "morning-tip",
+                              {
+                                key: index,
+                                attrs: {
+                                  target:
+                                    "#mor-colorpicker-palettes-tip-" +
+                                    _vm.uiid +
+                                    "-" +
+                                    index,
+                                  color: "light-blue",
+                                  offset: "3px 0"
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                        " +
+                                    _vm._s(color) +
+                                    "\n                    "
+                                )
+                              ]
+                            )
+                          ]
+                        })
+                      ],
+                      2
+                    )
+                  ]
+                : _vm.conf.palettes.length > 0 &&
+                  typeof _vm.conf.palettes[0] === "object"
+                ? [
+                    _c(
+                      "div",
+                      { staticClass: "palettes multi-palettes" },
+                      [
+                        _vm._l(
+                          _vm.conf.palettes[_vm.data.currentPalette].colors,
+                          function(color, index) {
+                            return [
+                              _c("div", {
+                                key: index,
+                                staticClass: "palettes-color-item",
+                                style: {
+                                  "background-color": color
+                                },
+                                attrs: {
+                                  id:
+                                    "mor-colorpicker-palettes-tip-" +
+                                    _vm.uiid +
+                                    "-" +
+                                    index,
+                                  title: color
+                                },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.set(color)
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "morning-tip",
+                                {
+                                  key: index,
+                                  attrs: {
+                                    target:
+                                      "#mor-colorpicker-palettes-tip-" +
+                                      _vm.uiid +
+                                      "-" +
+                                      index,
+                                    color: "light-blue",
+                                    offset: "3px 0"
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                        " +
+                                      _vm._s(color) +
+                                      "\n                    "
+                                  )
+                                ]
+                              )
+                            ]
+                          }
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "toggle-palette",
+                            on: { click: _vm._togglePalettesPicker }
+                          },
+                          [_c("i", { staticClass: "mo-icon mo-icon-block-4" })]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "palettes-picker",
+                            class: { show: _vm.data.palettesPicker }
+                          },
+                          [
+                            _c("div", { staticClass: "palette-title" }, [
+                              _c("span", [_vm._v("选择色板")]),
+                              _vm._v(" "),
+                              _c("i", {
+                                staticClass: "mo-icon mo-icon-close",
+                                on: { click: _vm._togglePalettesPicker }
+                              })
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "palette-item-list" },
+                              _vm._l(_vm.conf.palettes, function(item, index) {
+                                return _c(
+                                  "div",
+                                  {
+                                    key: index,
+                                    staticClass: "palette-item",
+                                    on: {
+                                      click: function($event) {
+                                        _vm._usePalettes(index)
+                                        _vm._togglePalettesPicker()
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("div", { staticClass: "palette-name" }, [
+                                      _vm._v(_vm._s(item.name))
+                                    ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      { staticClass: "palette-color-preview" },
+                                      _vm._l(item.colors.slice(0, 6), function(
+                                        previewColor,
+                                        previewIndex
+                                      ) {
+                                        return _c("div", {
+                                          key: previewIndex,
+                                          staticClass: "palettes-color-item",
+                                          style: {
+                                            "background-color": previewColor
+                                          }
+                                        })
+                                      }),
+                                      0
+                                    )
+                                  ]
+                                )
+                              }),
+                              0
+                            )
+                          ]
+                        )
+                      ],
+                      2
+                    )
+                  ]
+                : _vm._e()
+            ],
+            2
+          )
         ]
       ),
       _vm._v(" "),

@@ -99,6 +99,187 @@
     </div>
     :::
 
+    :::vue
+    @name:palettes
+    ---
+    #config
+    >conf-desc
+    显示调色板，调色板包含一组或多组预设颜色，让用户可以快速选择。
+    >conf-accept
+    包含颜色色值(支持`hex`、`rgba`、`hsla`)的数组。<br>包含一组色值对象的数组，色值对象包含两个属性：`name`：调色板名称，`colors`：预设颜色色值(支持`hex`、`rgba`、`hsla`)数组。
+    >conf-type
+    Array
+    >conf-default
+    `[]`
+    ---
+    #demo
+    >tpl
+    <div style="width:300px;">
+        <ui-colorpicker form-name="颜色选择"
+            :palettes="[
+                '#f44336',
+                '#e91e63',
+                '#9c27b0',
+                '#3f51b5',
+                '#2196f3',
+                '#009688',
+                '#8bc34a',
+                '#ff9800'
+            ]"
+        ></ui-colorpicker>
+    </div>
+    ---
+    #demo
+    >desc
+    预设颜色也支持`hex`、`rgba`、`hsla`类型，若和`value-type`不一致则会自动转换。
+    >tpl
+    <div style="width:300px;">
+        <ui-colorpicker form-name="颜色选择"
+            value-type="hex"
+            :palettes="[
+                'rgb(244, 67, 54)',
+                'rgb(233, 30, 99)',
+                'rgb(156, 39, 176)',
+                'rgb(63, 81, 181)',
+                'rgb(33, 150, 243)',
+                'hsl(174, 100%, 29%)',
+                'hsl(88, 50%, 53%)',
+                'hsl(36, 100%, 50%)'
+            ]"
+        ></ui-colorpicker>
+    </div>
+    ---
+    #demo
+    >desc
+    预设颜色也支持透明度。
+    >tpl
+    <div style="width:300px;">
+        <ui-colorpicker form-name="颜色选择"
+            :palettes="[
+                'rgb(244, 67, 54, 0.7)',
+                'rgb(233, 30, 99, 0.7)',
+                'rgb(156, 39, 176, 0.7)',
+                'rgb(63, 81, 181, 0.7)',
+                'rgb(33, 150, 243, 0.7)',
+                '#009688aa',
+                '#8bc34aaa',
+                '#ff9800aa'
+            ]"
+        ></ui-colorpicker>
+    </div>
+    ---
+    #demo
+    >desc
+    预设颜色也支持透明度。
+    >tpl
+    <div style="width:300px;">
+        <ui-colorpicker form-name="颜色选择"
+            :palettes="[
+                'rgb(244, 67, 54, 0.7)',
+                'rgb(233, 30, 99, 0.7)',
+                'rgb(156, 39, 176, 0.7)',
+                'rgb(63, 81, 181, 0.7)',
+                'rgb(33, 150, 243, 0.7)',
+                '#009688aa',
+                '#8bc34aaa',
+                '#ff9800aa'
+            ]"
+        ></ui-colorpicker>
+    </div>
+    ---
+    #demo
+    >desc
+    设置多个调色板。
+    <br>
+    需要注意当使用多个调色板时`palettes`数组中的每一项都必须是对象，不能混用色值字符串和对象两种写法。
+    <br>
+    <br>
+    在调色板选择界面，最多可以预览每组颜色的前6个颜色。
+    >tpl
+    <div style="width:300px;">
+        <ui-colorpicker form-name="颜色选择"
+            :palettes="[
+                {
+                    name : '红色系',
+                    colors : ['#b71c1c', '#c62828', '#d32f2f', '#e53935', '#f44336', '#ef5350', '#e57373', '#ef9a9a', '#ffcdd2', '#ffebee']
+                },
+                {
+                    name : '蓝色系',
+                    colors : ['#0d47a1', '#1565c0', '#1976d2', '#1e88e5', '#2196f3', '#42a5f5', '#64b5f6', '#90caf9', '#bbdefb', '#e3f2fd']
+                },
+                {
+                    name : '绿色系',
+                    colors : ['#1b5e20', '#2e7d32', '#388e3c', '#43a047', '#4caf50', '#66bb6a', '#81c784', '#a5d6a7', '#c8e6c9', '#e8f5e9']
+                },
+                {
+                    name : '橙色系',
+                    colors : ['#e65100', '#ef6c00', '#f57c00', '#fb8c00', '#ff9800', '#ffa726', '#ffb74d', '#ffcc80', '#ffe0b2', '#fff3e0']
+                }
+            ]"
+        ></ui-colorpicker>
+    </div>
+    :::
+
+    :::vue
+    @name:only-palettes
+    ---
+    #config
+    >conf-desc
+    仅使用色板选取颜色。使用此配置时需要确保`palettes`配置中至少有一组色彩，否则此配置不生效。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >tpl
+    <div style="width:300px;">
+        <ui-colorpicker form-name="颜色选择"
+            :only-palettes="true"
+            :palettes="[
+                '#f44336',
+                '#e91e63',
+                '#9c27b0',
+                '#3f51b5',
+                '#2196f3',
+                '#009688',
+                '#8bc34a',
+                '#ff9800'
+            ]"
+        ></ui-colorpicker>
+    </div>
+    ---
+    #demo
+    >desc
+    可通过`palettes`配置设置多个调色板。
+    >tpl
+    <div style="width:300px;">
+        <ui-colorpicker form-name="颜色选择"
+            :only-palettes="true"
+            :palettes="[
+                {
+                    name : '红色系',
+                    colors : ['#b71c1c', '#c62828', '#d32f2f', '#e53935', '#f44336', '#ef5350', '#e57373', '#ef9a9a', '#ffcdd2', '#ffebee']
+                },
+                {
+                    name : '蓝色系',
+                    colors : ['#0d47a1', '#1565c0', '#1976d2', '#1e88e5', '#2196f3', '#42a5f5', '#64b5f6', '#90caf9', '#bbdefb', '#e3f2fd']
+                },
+                {
+                    name : '绿色系',
+                    colors : ['#1b5e20', '#2e7d32', '#388e3c', '#43a047', '#4caf50', '#66bb6a', '#81c784', '#a5d6a7', '#c8e6c9', '#e8f5e9']
+                },
+                {
+                    name : '橙色系',
+                    colors : ['#e65100', '#ef6c00', '#f57c00', '#fb8c00', '#ff9800', '#ffa726', '#ffb74d', '#ffcc80', '#ffe0b2', '#fff3e0']
+                }
+            ]"
+        ></ui-colorpicker>
+    </div>
+    :::
+
     [[[方法]]]
 
     :::preset
