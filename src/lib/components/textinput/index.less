@@ -95,46 +95,38 @@ mor-textinput{
             border-top-right-radius: 0;
             border-bottom-right-radius: 0;
         }
-    }
 
-    &.inline-prepend{
-        input {
-            padding-left: 0;
-        }
-
-        .input-group-addon:first-child{
-            background: @colorWhite;
-            padding-right: 0;
-        }
-
-        .input-group-addon + input{
-            border-left: 0;
-        }
-
-        &.input-focus{
+        &.inline-prepend{
             .input-group-addon:first-child{
-                border-color: @colorFormBorderFocus;
+                background: @colorWhite;
+                padding-right: 0;
+            }
+
+            .input-group-addon + input{
+                border-left: 0;
+            }
+
+            &.input-focus{
+                .input-group-addon:first-child{
+                    border-color: @colorFormBorderFocus;
+                }
             }
         }
-    }
 
-    &.inline-append{
-        input {
-            padding-right: 0;
-        }
-
-        .input-group-addon:nth-child(3){
-            background: @colorWhite;
-            padding-left: 0;
-        }
-
-        input.has-append {
-            border-right: 0;
-        }
-
-        &.input-focus{
+        &.inline-append{
             .input-group-addon:nth-child(3){
-                border-color: @colorFormBorderFocus;
+                background: @colorWhite;
+                padding-left: 0;
+            }
+
+            input.has-append {
+                border-right: 0;
+            }
+
+            &.input-focus{
+                .input-group-addon:nth-child(3){
+                    border-color: @colorFormBorderFocus;
+                }
             }
         }
     }

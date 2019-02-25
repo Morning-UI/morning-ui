@@ -231,6 +231,14 @@
     行内类型的前缀。
     >tpl
     <div style="width:180px;">
+        <ui-textinput form-name="当天消费" prepend="支出" prepend-type="inline"></ui-textinput>
+    </div>
+    ---
+    #demo
+    >desc
+    配合`append`一起使用。
+    >tpl
+    <div style="width:180px;">
         <ui-textinput form-name="当天消费" prepend="支出" append="人名币" prepend-type="inline"></ui-textinput>
     </div>
     ---
@@ -259,6 +267,14 @@
     #demo
     >desc
     行内类型的后缀。
+    >tpl
+    <div style="width:180px;">
+        <ui-textinput form-name="当天消费" append="人名币" append-type="inline"></ui-textinput>
+    </div>
+    ---
+    #demo
+    >desc
+    配合`prepend`一起使用。
     >tpl
     <div style="width:180px;">
         <ui-textinput form-name="当天消费" prepend="支出" append="人名币" append-type="inline"></ui-textinput>

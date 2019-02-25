@@ -22,9 +22,7 @@
 
     <div class="textinput-wrap">
 
-        <template v-if="conf.prepend">
-            <div class="input-group-addon" v-html="conf.prepend"></div>
-        </template>
+        <div class="input-group-addon" v-html="conf.prepend" v-show="!!conf.prepend"></div>
 
         <template v-if="inputType === 'text'">
             <input
@@ -61,9 +59,7 @@
             />
         </template>
 
-        <template v-if="conf.append">
-            <div class="input-group-addon" v-html="conf.append"></div>
-        </template>
+        <div class="input-group-addon" v-html="conf.append" v-show="!!conf.append"></div>
         
     </div>
 
