@@ -73,16 +73,11 @@ mor-textinput{
         input {
             vertical-align: middle;
             margin: 0;
+        }
 
-            &:first-child {
-                border-top-right-radius: 0;
-                border-bottom-right-radius: 0;
-            }
-
-            &:nth-child(2) {
-                border-top-left-radius: 0;
-                border-bottom-left-radius: 0;
-            }
+        .input-group-addon:first-child {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
         }
 
         input + .input-group-addon {
@@ -94,6 +89,11 @@ mor-textinput{
         .input-group-addon + input.has-append {
             border-top-right-radius: 0;
             border-bottom-right-radius: 0;
+        }
+
+        .input-group-addon + input.has-prepend {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
         }
 
         &.inline-prepend{

@@ -160,6 +160,7 @@ export default {
 
             return {
                 'has-append' : !!this.conf.append,
+                'has-prepend' : !!this.conf.prepend,
                 'align-left' : (this.conf.align === 'left'),
                 'align-center' : (this.conf.align === 'center'),
                 'align-right' : (this.conf.align === 'right')
