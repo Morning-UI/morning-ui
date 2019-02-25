@@ -61,7 +61,6 @@ test.serial('custom-theme-color', async t => {
                 },
                 {
                     test : /\\.woff$/,
-                    exclude : /node_modules/,
                     use : [{
                         loader : 'url-loader'
                     }]
