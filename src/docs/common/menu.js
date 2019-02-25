@@ -94,7 +94,7 @@ export default {
         日期选择器 : '/component/datepicker.html',
         日期时间选择器 : '/component/datetimepicker.html',
         文件上传 : '/component/upload.html',
-        颜色选择器 : '/component/colorpicker.html',
+        '颜色选择器<i class="tag update"></i>' : '/component/colorpicker.html',
         图片热区输入 : '/component/imagemap.html'
     },
     guide : {

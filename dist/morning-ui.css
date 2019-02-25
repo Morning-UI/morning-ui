@@ -20817,6 +20817,12 @@ mor-colorpicker.st-readonly .preview .color {
   box-shadow: 0 0 1px #000;
   z-index: 3;
 }
+.mo-colorpicker-wrap .panel.not-allow {
+  cursor: not-allowed;
+}
+.mo-colorpicker-wrap .panel.not-allow .straw {
+  cursor: not-allowed;
+}
 .mo-colorpicker-wrap .tools {
   height: 64px;
   font-size: 0;
@@ -20993,7 +20999,108 @@ mor-colorpicker.st-readonly .preview .color {
 .mo-colorpicker-wrap .values .input .hex .name {
   width: 100%;
 }
-.mo-colorpicker-wrap .values .toggle-type {
+.mo-colorpicker-wrap .palettes {
+  padding: 16px;
+  border-top: 1px #EDF1F5 solid;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+}
+.mo-colorpicker-wrap .palettes.multi-palettes {
+  padding-right: 40px;
+}
+.mo-colorpicker-wrap .palettes .palettes-color-item {
+  width: 12px;
+  height: 12px;
+  cursor: pointer;
+}
+.mo-colorpicker-wrap .palettes .palettes-color-item:hover {
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+}
+.mo-colorpicker-wrap .palettes .palettes-picker {
+  position: absolute;
+  bottom: -170px;
+  left: 0;
+  width: 100%;
+  max-height: 170px;
+  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  background: #FFFFFF;
+  box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+  transition: bottom 0.2s;
+}
+.mo-colorpicker-wrap .palettes .palettes-picker.show {
+  bottom: 0;
+}
+.mo-colorpicker-wrap .palettes .palettes-picker .palette-item-list {
+  overflow-y: auto;
+  max-height: 120px;
+}
+.mo-colorpicker-wrap .palettes .palettes-picker .palette-item-list::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  background-color: rgba(0, 0, 0, 0);
+}
+.mo-colorpicker-wrap .palettes .palettes-picker .palette-item-list::-webkit-scrollbar-thumb {
+  width: 5px;
+  height: 5px;
+  background: rgba(0, 0, 0, 0);
+  border-radius: 4px;
+}
+.mo-colorpicker-wrap .palettes .palettes-picker .palette-item-list:hover::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+}
+.mo-colorpicker-wrap .palettes .palettes-picker .palette-title {
+  padding: 1em;
+  position: relative;
+}
+.mo-colorpicker-wrap .palettes .palettes-picker .palette-title > span {
+  font-size: 16px;
+  color: #333;
+}
+.mo-colorpicker-wrap .palettes .palettes-picker .palette-title > .mo-icon {
+  position: absolute;
+  top: 0;
+  right: 0.5em;
+  line-height: 50px;
+  font-size: 14px;
+  color: #A8B3C2;
+}
+.mo-colorpicker-wrap .palettes .palettes-picker .palette-title > .mo-icon:hover {
+  cursor: pointer;
+  color: #8E9CAF;
+}
+.mo-colorpicker-wrap .palettes .palettes-picker .palette-item {
+  display: flex;
+  width: 100%;
+  padding: 0.5em;
+  justify-content: space-between;
+  box-sizing: border-box;
+  border-top: 1px #EDF1F5 solid;
+}
+.mo-colorpicker-wrap .palettes .palettes-picker .palette-item:hover {
+  background: #EDF1F5;
+  cursor: pointer;
+}
+.mo-colorpicker-wrap .palettes .palettes-picker .palette-item .palette-name {
+  font-size: 13px;
+  padding: 0 0.5em;
+  width: 40%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.mo-colorpicker-wrap .palettes .palettes-picker .palette-item .palette-color-preview {
+  display: flex;
+  justify-content: space-around;
+  width: 60%;
+}
+.mo-colorpicker-wrap .toggle-type,
+.mo-colorpicker-wrap .toggle-palette {
   width: 8%;
   display: inline-block;
   vertical-align: top;
@@ -21005,9 +21112,20 @@ mor-colorpicker.st-readonly .preview .color {
   cursor: pointer;
   border-radius: 3px;
 }
-.mo-colorpicker-wrap .values .toggle-type:hover {
+.mo-colorpicker-wrap .toggle-type:hover,
+.mo-colorpicker-wrap .toggle-palette:hover {
   color: #7C8BA0;
   background: #EDF1F5;
+}
+.mo-colorpicker-wrap .toggle-palette {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  color: #A8B3C2;
+  margin: 0;
+}
+.mo-colorpicker-wrap .toggle-palette .mo-icon {
+  font-size: 14px;
 }
 .mo-colorpicker-wrap.show {
   pointer-events: auto;
