@@ -25399,6 +25399,11 @@ exports.default = {
 //
 //
 //
+//
+//
+//
+//
+//
 
 module.exports = exports['default'];
 
@@ -50940,13 +50945,48 @@ var render = function() {
           style: { width: _vm.conf.width, height: _vm.conf.height }
         },
         [
-          _vm._t("header"),
+          _c(
+            "header",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value:
+                    _vm.$slots.header &&
+                    _vm.$slots.header[0].elm &&
+                    _vm.$slots.header[0].elm.innerHTML !== "",
+                  expression:
+                    "$slots.header && $slots.header[0].elm && $slots.header[0].elm.innerHTML !== ''"
+                }
+              ]
+            },
+            [_vm._t("header")],
+            2
+          ),
           _vm._v(" "),
           _c("div", { staticClass: "body" }, [_vm._t("default")], 2),
           _vm._v(" "),
-          _vm._t("footer")
-        ],
-        2
+          _c(
+            "footer",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value:
+                    _vm.$slots.footer &&
+                    _vm.$slots.footer[0].elm &&
+                    _vm.$slots.footer[0].elm.innerHTML !== "",
+                  expression:
+                    "$slots.footer && $slots.footer[0].elm && $slots.footer[0].elm.innerHTML !== ''"
+                }
+              ]
+            },
+            [_vm._t("footer")],
+            2
+          )
+        ]
       )
     ]
   )
