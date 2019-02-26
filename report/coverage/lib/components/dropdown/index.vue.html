@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">41.1% </span>
+        <span class="strong">38.96% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>30/73</span>
+        <span class='fraction'>30/77</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">27.27% </span>
+        <span class="strong">24.49% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>12/44</span>
+        <span class='fraction'>12/49</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">42.86% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>9/21</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">36.76% </span>
+        <span class="strong">34.72% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>25/68</span>
+        <span class='fraction'>25/72</span>
       </div>
     </div>
     <p class="quiet">
@@ -313,7 +313,18 @@
 <a name='L265'></a><a href='#L265'>265</a>
 <a name='L266'></a><a href='#L266'>266</a>
 <a name='L267'></a><a href='#L267'>267</a>
-<a name='L268'></a><a href='#L268'>268</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L268'></a><a href='#L268'>268</a>
+<a name='L269'></a><a href='#L269'>269</a>
+<a name='L270'></a><a href='#L270'>270</a>
+<a name='L271'></a><a href='#L271'>271</a>
+<a name='L272'></a><a href='#L272'>272</a>
+<a name='L273'></a><a href='#L273'>273</a>
+<a name='L274'></a><a href='#L274'>274</a>
+<a name='L275'></a><a href='#L275'>275</a>
+<a name='L276'></a><a href='#L276'>276</a>
+<a name='L277'></a><a href='#L277'>277</a>
+<a name='L278'></a><a href='#L278'>278</a>
+<a name='L279'></a><a href='#L279'>279</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -336,11 +347,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">170x</span>
-<span class="cline-any cline-yes">170x</span>
-<span class="cline-any cline-yes">170x</span>
+<span class="cline-any cline-yes">171x</span>
+<span class="cline-any cline-yes">171x</span>
+<span class="cline-any cline-yes">171x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">170x</span>
+<span class="cline-any cline-yes">171x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -406,10 +417,23 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -578,9 +602,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">170x</span>
-<span class="cline-any cline-yes">170x</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
     &lt;mor-dropdown
         :_uiid="uiid"
         :class="[showClass]"
@@ -669,17 +691,30 @@ export default {
     methods : {
         _checkArea : <span class="fstat-no" title="function not covered" >function (</span>evt) <span class="cstat-no" title="statement not covered" >{</span>
 &nbsp;
+<span class="cstat-no" title="statement not covered" >            if (evt.button === 2) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                return;</span>
+&nbsp;
+            }
+&nbsp;
             const notFound = <span class="cstat-no" title="statement not covered" >-1;</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >            this.data.isCheckArea = true;</span>
 &nbsp;
             let $emitbtn = <span class="cstat-no" title="statement not covered" >this.$el.querySelector('[emitbtn]');</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >            if (</span>
+<span class="cstat-no" title="statement not covered" >            if ((</span>
+                evt.path.indexOf($emitbtn) === notFound &amp;&amp; evt.path.indexOf(this.data.$wrap) !== notFound
+            ) &amp;&amp; this.conf.autoClose) {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                this.toggle();</span>
+&nbsp;
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if ((</span>
                 (evt.path.indexOf($emitbtn) === notFound &amp;&amp; evt.path.indexOf(this.data.$wrap) === notFound) ||
-                (evt.path.indexOf($emitbtn) !== notFound) ||
-                (this.conf.autoClose &amp;&amp; evt.path.indexOf($emitbtn) === notFound &amp;&amp; evt.path.indexOf(this.data.$wrap) !== notFound)
-            ) {
+                (evt.path.indexOf($emitbtn) !== notFound)
+            ) &amp;&amp; this.conf.trigger === 'click') {
 &nbsp;
 <span class="cstat-no" title="statement not covered" >                this.toggle();</span>
 &nbsp;
@@ -700,8 +735,8 @@ export default {
         _hide : <span class="fstat-no" title="function not covered" >function (</span>evt) {
 &nbsp;
 <span class="cstat-no" title="statement not covered" >            if (evt.type === 'mouseleave' &amp;&amp;</span>
-                (this.data.$wrap.contains(evt.toElement) ||
-                this.$el.contains(evt.toElement))) {
+                (this.data.$wrap.contains(evt.relatedTarget) ||
+                this.$el.contains(evt.relatedTarget))) {
 &nbsp;
 <span class="cstat-no" title="statement not covered" >                return;</span>
 &nbsp;
@@ -816,7 +851,7 @@ export default {
 <span class="cstat-no" title="statement not covered" >            this.data.first = false;</span>
 <span class="cstat-no" title="statement not covered" >            this.data.show = true;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >            setTimeout(<span class="fstat-no" title="function not covered" >() =&gt; </span>{</span>
+<span class="cstat-no" title="statement not covered" >            this.Vue.nextTick(<span class="fstat-no" title="function not covered" >() =&gt; </span>{</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >                this._globalEventAdd('click', '_checkArea', true);</span>
 &nbsp;
@@ -845,15 +880,13 @@ export default {
     }
 };
 &lt;/script&gt;
-&nbsp;
-&lt;style lang="less" src="./ind<span class="branch-1 cbranch-no" title="branch not covered" >ex.less"&gt;&lt;/style&gt;<span class="branch-1 cbranch-no" title="branch not covered" ><span class="branch-2 cbranch-no" title="branch not covered" ></span></span></span>
-<span class="branch-1 cbranch-no" title="branch not covered" ><span class="branch-2 cbranch-no" title="branch not covered" ></span></span></pre></td></tr>
+&nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Feb 19 2019 20:44:47 GMT+0800 (CST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Feb 26 2019 15:43:42 GMT+0800 (CST)
 </div>
 </div>
 <script src="../../../prettify.js"></script>

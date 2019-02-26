@@ -1033,7 +1033,7 @@ footer .tolab {
   border-bottom: inherit;
   font-size: inherit;
 }
-.markdown-body > div > mor-tab > .contents > .item > div {
+.markdown-body > div > mor-tab > .contents > .tab-item > div {
   margin-top: 30px;
 }
 .markdown-body > div > h3 > mor-badge {
@@ -1177,13 +1177,13 @@ mor-dialog a:hover {
   margin: 0 auto;
   font-size: 0;
 }
-.contents > .item > div > h4,
-.contents > .item > div > p,
-.contents > .item > div > table {
+.contents > .tab-item > div > h4,
+.contents > .tab-item > div > p,
+.contents > .tab-item > div > table {
   padding-left: 12px;
 }
-.contents > .item > div > ul,
-.contents > .item > div > ol {
+.contents > .tab-item > div > ul,
+.contents > .tab-item > div > ol {
   padding-left: calc(2em + 14px);
 }
 .content {
@@ -1215,16 +1215,16 @@ mor-dialog a:hover {
   transform-origin: bottom;
   margin-right: -0.15em;
 }
-.content .item > div > mor-anchor > .nav-wrap,
+.content .tab-item > div > mor-anchor > .nav-wrap,
 .content > mor-anchor > .nav-wrap {
   min-width: 150px;
   padding-left: 3px;
 }
-.content .item > div > mor-anchor > .nav-wrap > mor-sticky,
+.content .tab-item > div > mor-anchor > .nav-wrap > mor-sticky,
 .content > mor-anchor > .nav-wrap > mor-sticky {
   min-width: 150px;
 }
-.content .item > div > mor-anchor > .content-wrap,
+.content .tab-item > div > mor-anchor > .content-wrap,
 .content > mor-anchor > .content-wrap {
   min-width: 800px;
 }
@@ -1293,7 +1293,7 @@ mor-dialog a:hover {
 .demo-root .section-demo .code-con > .code > pre {
   font-size: 12px;
   margin: 0;
-  max-height: 120px;
+  max-height: 130px;
   overflow: hidden;
 }
 .demo-root .section-demo .code-con > .code > pre.show-more {

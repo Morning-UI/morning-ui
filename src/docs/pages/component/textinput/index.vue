@@ -46,10 +46,59 @@
 
     [[[形态]]]
 
-    :::preset
-    @name:formStatus
-    @uikey:textinput
-    @defaultValue:'默认文本'
+    #### 支持
+
+    |类型|支持|默认|
+    |-|-|-|
+    |尺寸|`xs` / `s` / `m` / `l` / `xl`|`m`|
+    |色彩|不支持|-|
+    |状态|`normal`<br/>`disabled`<br>`readonly`|`normal`|
+
+    <a href="/guide/status.html">查看形态文档</a>
+
+    :::vue
+    @name:尺寸
+    ---
+    #renderer
+    >name
+    size-repeat
+    >rules
+    xl,l,m,s,xs
+    >tpl
+    <div style="width:300px;">
+        <ui-textinput size="{$sizeKey}"  v-model="value" form-name="{$&sizeName}"></ui-textinput>
+        <br>
+        <ui-textinput size="{$sizeKey}" v-model="value" prepend="@" append="%" append-type="inline"></ui-textinput>
+    </div>
+    <br>
+    >script
+    {
+        data : {
+            value : '默认文本'
+        }
+    }
+    :::
+
+    :::vue
+    @name:状态
+    ---
+    #renderer
+    >name
+    state-repeat
+    >rules
+    normal,disabled,readonly
+    >tpl
+    <div style="width:300px;">
+        <ui-textinput state="{$stateKey}" v-model="value" form-name="{$&stateName}"></ui-textinput>
+        <ui-textinput state="{$stateKey}" v-model="value" form-name="{$&stateName}" prepend="@" append="%" append-type="inline"></ui-textinput>
+    </div>
+    <br>
+    >script
+    {
+        data : {
+            value : '默认文本'
+        }
+    }
     :::
 
     [[[配置]]]
@@ -126,6 +175,14 @@
     <div style="width:300px;">
         <ui-textinput form-name="姓名" prepend="@"></ui-textinput>
     </div>
+    ---
+    #demo
+    >desc
+    也可以使用图标。
+    >tpl
+    <div style="width:300px;">
+        <ui-textinput form-name="内容" prepend="<i class='mo-icon mo-icon-block-4'>"></ui-textinput>
+    </div>
     :::
 
     :::vue
@@ -146,14 +203,22 @@
     <div style="width:300px;">
         <ui-textinput form-name="百分比" append="%"></ui-textinput>
     </div>
+    ---
+    #demo
+    >desc
+    也可以使用图标。
+    >tpl
+    <div style="width:300px;">
+        <ui-textinput form-name="内容" append="<i class='mo-icon mo-icon-block-4'>"></ui-textinput>
+    </div>
     :::
 
     :::vue
-    @name:append-type
+    @name:prepend-type
     ---
     #config
     >conf-desc
-    表单前后缀内容的展现类型。
+    表单前缀内容的展现类型。
     >conf-accept
     `'block'`：块状<br>`'inline'`：行内
     >conf-type
@@ -163,10 +228,64 @@
     ---
     #demo
     >desc
-    行内类型的前后缀。
+    行内类型的前缀。
     >tpl
     <div style="width:180px;">
-        <ui-textinput form-name="当天消费" prepend="支出"  append="人名币" append-type="inline"></ui-textinput>
+        <ui-textinput form-name="当天消费" prepend="支出" prepend-type="inline"></ui-textinput>
+    </div>
+    ---
+    #demo
+    >desc
+    配合`append`一起使用。
+    >tpl
+    <div style="width:180px;">
+        <ui-textinput form-name="当天消费" prepend="支出" append="人名币" prepend-type="inline"></ui-textinput>
+    </div>
+    ---
+    #demo
+    >desc
+    同时设置行内类型的前后缀。
+    >tpl
+    <div style="width:180px;">
+        <ui-textinput form-name="当天消费" prepend="支出" append="人名币" prepend-type="inline" append-type="inline"></ui-textinput>
+    </div>
+    :::
+
+    :::vue
+    @name:append-type
+    ---
+    #config
+    >conf-desc
+    表单后缀内容的展现类型。
+    >conf-accept
+    `'block'`：块状<br>`'inline'`：行内
+    >conf-type
+    String
+    >conf-default
+    `'block'`
+    ---
+    #demo
+    >desc
+    行内类型的后缀。
+    >tpl
+    <div style="width:180px;">
+        <ui-textinput form-name="当天消费" append="人名币" append-type="inline"></ui-textinput>
+    </div>
+    ---
+    #demo
+    >desc
+    配合`prepend`一起使用。
+    >tpl
+    <div style="width:180px;">
+        <ui-textinput form-name="当天消费" prepend="支出" append="人名币" append-type="inline"></ui-textinput>
+    </div>
+    ---
+    #demo
+    >desc
+    同时设置行内类型的前后缀。
+    >tpl
+    <div style="width:180px;">
+        <ui-textinput form-name="当天消费" prepend="支出" append="人名币" prepend-type="inline" append-type="inline"></ui-textinput>
     </div>
     :::
 

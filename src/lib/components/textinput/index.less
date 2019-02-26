@@ -11,17 +11,14 @@ mor-textinput{
     input{
         box-sizing: border-box;
         z-index: 2;
-        font-size: @fontSize*0.875;
-        padding: 0 1em;
         width: 100%;
         background: @colorFormBackground;
         border: 1px @colorFormBorder solid;
         border-radius: @borderRadius;
-        height: @formHeight;
-        line-height: @formHeight;
         color: @colorFormText !important;
         outline: none;
         -webkit-appearance: none;
+        padding: 0 1em;
 
         &.align-left{
             text-align: left;
@@ -57,8 +54,6 @@ mor-textinput{
         }
 
         .input-group-addon {
-            padding: @fontSize*0.375 @fontSize*0.75;
-            font-size: @fontSize*0.75;
             color: @colorBlue;
             text-align: center;
             background-color: @colorLightGray;
@@ -68,6 +63,7 @@ mor-textinput{
             display: flex;
             align-items: center;
             justify-content: center;
+            box-sizing: border-box;
 
             &:first-child {
                 border-right: 0;
@@ -78,16 +74,11 @@ mor-textinput{
         input {
             vertical-align: middle;
             margin: 0;
+        }
 
-            &:first-child {
-                border-top-right-radius: 0;
-                border-bottom-right-radius: 0;
-            }
-
-            &:nth-child(2) {
-                border-top-left-radius: 0;
-                border-bottom-left-radius: 0;
-            }
+        .input-group-addon:first-child {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
         }
 
         input + .input-group-addon {
@@ -100,32 +91,173 @@ mor-textinput{
             border-top-right-radius: 0;
             border-bottom-right-radius: 0;
         }
-    }
 
-    &.inline-append{
-        .input-group-addon{
-            background: none;
+        .input-group-addon + input.has-prepend {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
 
-            &:first-child{
+        &.inline-prepend{
+            .input-group-addon:first-child{
+                background: @colorWhite;
                 padding-right: 0;
             }
 
-            &:nth-child(3) {
-                padding-left: 0;
+            .input-group-addon + input{
+                border-left: 0;
+            }
+
+            &.input-focus{
+                .input-group-addon:first-child{
+                    border-color: @colorFormBorderFocus;
+                }
             }
         }
 
-        .input-group-addon + input{
-            border-left: 0;
+        &.inline-append{
+            .input-group-addon:nth-child(3){
+                background: @colorWhite;
+                padding-left: 0;
+            }
+
+            input.has-append {
+                border-right: 0;
+            }
+
+            &.input-focus{
+                .input-group-addon:nth-child(3){
+                    border-color: @colorFormBorderFocus;
+                }
+            }
+        }
+    }
+
+    &.si-xs{
+        > .form-name{
+            font-size: @fontSize*0.8125;
         }
 
-        input.has-append {
-            border-right: 0;
+        input{
+            font-size: @fontSize*0.75;
+            height: @formHeight*0.7;
+            line-height: @formHeight*0.7;
         }
 
-        &.input-focus{
-            .input-group-addon{
-                border-color: @colorFormBorderFocus;
+        &.input-group {
+            .input-group-addon {
+                padding: @fontSize*0.3125 @fontSize*0.625;
+                font-size: @fontSize*0.75;
+                height: @formHeight*0.7;
+
+                > .mo-icon,
+                > .iconfont,
+                > i{
+                    font-size: @fontSize*0.75;
+                }
+            }
+        }
+    }
+
+    &.si-s{
+        > .form-name{
+            font-size: @fontSize*0.875;
+        }
+
+        input{
+            font-size: @fontSize*0.8125;
+            height: @formHeight*0.85;
+            line-height: @formHeight*0.85;
+        }
+
+        &.input-group {
+            .input-group-addon {
+                padding: @fontSize*0.375 @fontSize*0.75;
+                font-size: @fontSize*0.8125;
+                height: @formHeight*0.85;
+
+                > .mo-icon,
+                > .iconfont,
+                > i{
+                    font-size: @fontSize*0.8125;
+                }
+            }
+        }
+    }
+
+    &.si-m{
+        > .form-name{
+            font-size: @fontSize;
+        }
+
+        input{
+            font-size: @fontSize*0.875;
+            height: @formHeight;
+            line-height: @formHeight;
+        }
+
+        &.input-group {
+            .input-group-addon {
+                padding: @fontSize*0.375 @fontSize*0.75;
+                font-size: @fontSize*0.875;
+                height: @formHeight;
+
+                > .mo-icon,
+                > .iconfont,
+                > i{
+                    font-size: @fontSize*0.875;
+                }
+            }
+        }
+    }
+
+    &.si-l{
+        > .form-name{
+            font-size: @fontSize*1.2;
+        }
+
+        input{
+            font-size: @fontSize;
+            height: @formHeight*1.2;
+            line-height: @formHeight*1.2;
+        }
+
+        &.input-group {
+            .input-group-addon {
+                padding: @fontSize*0.5 @fontSize*0.8125;
+                font-size: @fontSize;
+                height: @formHeight*1.2;
+
+                > .mo-icon,
+                > .iconfont,
+                > i{
+                    font-size: @fontSize;
+                }
+            }
+        }
+    }
+
+    &.si-xl{
+        > .form-name{
+            font-size: @fontSize*1.5;
+        }
+
+        input{
+            font-size: @fontSize*1.25;
+            height: @formHeight*1.5;
+            line-height: @formHeight*1.5;
+        }
+
+        &.input-group {
+            .input-group-addon {
+                padding: @fontSize*0.75 @fontSize;
+                font-size: @fontSize*1.2;
+                height: @formHeight*1.5;
+
+                > .mo-icon,
+                > .iconfont,
+                > i{
+                    font-size: @fontSize*1.2;
+                }
             }
         }
     }
@@ -135,16 +267,25 @@ mor-textinput{
     &.st-disabled,
     &.st-readonly{
         input[disabled] {
-            border: 1px @colorFormBorderDisable solid;
+            border-color: @colorFormBorderDisable;
             background-color: @colorFormBackgroundDisable;
             -webkit-user-select: none;
             cursor: not-allowed !important;
             color: @colorFormTextDisable !important;
+        }
+
+        &.inline-prepend .input-group-addon:first-child,
+        &.inline-append .input-group-addon:nth-child(3){
+            border-color: @colorFormBorderDisable;
+            background-color: @colorFormBackgroundDisable;
+            -webkit-user-select: none;
+            cursor: not-allowed !important;
         }
     }
 
     // default status
     &{
         .st-normal;
+        .si-m;
     }
 }

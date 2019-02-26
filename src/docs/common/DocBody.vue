@@ -1445,7 +1445,9 @@ let extVueRenderer = {
             '>desc',
             (parts.desc || '通过`size`来设置组件的尺寸，可用尺寸详见[形态/尺寸](/guide/status.html#尺寸)'),
             '>tpl',
-            `<div>{$#size}\n${addSpace(rmEndWrap(parts.tpl.join('\n')), 4)}{$/size}\n</div>`
+            `<div>{$#size}\n${addSpace(rmEndWrap(parts.tpl.join('\n')), 4)}{$/size}\n</div>`,
+            '>script',
+            (parts.script || ['']).join('\n')
         ]);
 
         newParamStr.push(sizePreset.join('\n'));
@@ -2130,10 +2132,14 @@ let extVueCompiler = {
                         <pre><code class="lang-html lang-vue">${_ctx.md.utils.escapeHtml(printCode)}</code></pre>
                         <a class="see-more" href="javascript:;" onclick="this.previousElementSibling.classList.add('show-more');this.classList.add('show-more')">查看完整代码</a>
                         <div class="demo-tools">
-                            <a href="javascript:;" class="live" demo-id="${_ctx.demoid}" id="live-demo-${_ctx.demoid}">
+                            <a href="javascript:;" class="live live-on-jsfiddle" demo-id="${_ctx.demoid}" id="live-on-jsfiddle-demo-${_ctx.demoid}">
                                 <i class="iconfont">&#xe616;</i>
                             </a>
-                            <ui-tip color="extra-light-black" target="#live-demo-${_ctx.demoid}">在 JSFiddle 中查看</ui-tip>
+                            <a href="javascript:;" class="live live-on-codepen" demo-id="${_ctx.demoid}" id="live-on-codepen-demo-${_ctx.demoid}">
+                                <i class="iconfont">&#xe692;</i>
+                            </a>
+                            <ui-tip color="extra-light-black" target="#live-on-jsfiddle-demo-${_ctx.demoid}">在 JSFiddle 中查看</ui-tip>
+                            <ui-tip color="extra-light-black" target="#live-on-codepen-demo-${_ctx.demoid}">在 CodePen 中查看</ui-tip>
                             <a href="javascript:;" class="copy" demo-id="${_ctx.demoid}" id="copy-demo-${_ctx.demoid}">
                                 <i class="iconfont">&#xe632;</i>
                             </a>
@@ -2647,10 +2653,17 @@ export default {
 
             } else if (event.target &&
                 event.target.parentElement &&
-                event.target.parentElement.classList.value.indexOf('live') !== -1) {
+                event.target.parentElement.classList.value.indexOf('live-on-jsfiddle') !== -1) {
 
                 $target = event.target.parentElement;
-                type = 'live';
+                type = 'live-on-jsfiddle';
+
+            } else if (event.target &&
+                event.target.parentElement &&
+                event.target.parentElement.classList.value.indexOf('live-on-codepen') !== -1) {
+
+                $target = event.target.parentElement;
+                type = 'live-on-codepen';
 
             } else if (event.target &&
                 event.target.classList.value.indexOf('copy') !== -1) {
@@ -2659,10 +2672,16 @@ export default {
                 type = 'copy';
 
             } else if (event.target &&
-                event.target.classList.value.indexOf('live') !== -1) {
+                event.target.classList.value.indexOf('live-on-jsfiddle') !== -1) {
 
                 $target = event.target.parentElement;
-                type = 'live';
+                type = 'live-on-jsfiddle';
+
+            } else if (event.target &&
+                event.target.classList.value.indexOf('live-on-codepen') !== -1) {
+
+                $target = event.target.parentElement;
+                type = 'live-on-codepen';
 
             }
 
@@ -2670,9 +2689,13 @@ export default {
 
                 let demoid = $target.getAttribute('demo-id');
 
-                if (type === 'live') {
+                if (type === 'live-on-jsfiddle') {
 
                     this.showJsfiddle(livedata[demoid]);
+
+                } else if (type === 'live-on-codepen') {
+
+                    this.showCodePen(livedata[demoid]);
 
                 } else if (type === 'copy') {
 
@@ -2699,6 +2722,7 @@ export default {
             let fieldResources = document.createElement("textarea");
             let fieldHtml = document.createElement("textarea");
             let fieldJs = document.createElement("textarea");
+            let fieldTitle = document.createElement("textarea");
             let fieldWrap = document.createElement("textarea");
 
             fieldPanelJs.setAttribute('name', 'panel_js');
@@ -2708,6 +2732,8 @@ export default {
             fieldHtml.setAttribute('name', 'html');
             fieldHtml.value = data.html;
             fieldJs.setAttribute('name', 'js');
+            fieldTitle.setAttribute('name', 'title');
+            fieldTitle.value = 'Morning UI 演示';
 
             if (window.demodata) {
 
@@ -2726,7 +2752,49 @@ export default {
             form.appendChild(fieldResources);
             form.appendChild(fieldHtml);
             form.appendChild(fieldJs);
+            form.appendChild(fieldTitle);
             form.appendChild(fieldWrap);
+            document.body.appendChild(form);       
+            form.submit();
+            form.remove();
+
+        },
+        showCodePen : function (data) {
+
+            let form = document.createElement("form");
+            
+            form.setAttribute('method', 'post');
+            form.setAttribute('action', 'https://codepen.io/pen/define/');
+            form.setAttribute("target", "_blank");
+
+            let codeData = {
+                title : 'Morning UI 演示',
+                html : data.html,
+                js : '',
+                js_external : 'https://cdn.jsdelivr.net/npm/vue@2.5.22;https://cdn.jsdelivr.net/npm/morning-ui/dist/morning-ui.js;https://morning-ui.com/iconfont.woff',
+                css_external : 'https://cdn.jsdelivr.net/npm/morning-ui/dist/morning-ui.css'
+            };
+
+            if (window.demodata) {
+
+                codeData.js = `// demo data\nwindow.demodata = ${JSON.stringify(window.demodata, null, '    ')}\n\n${data.js}`;
+
+            } else {
+
+                codeData.js = `${data.js}`;
+    
+            }
+
+            let fieldData = document.createElement("input");
+
+            fieldData.setAttribute('name', 'data');
+            fieldData.setAttribute('value', JSON.stringify(codeData));
+
+            // let fieldWrap = document.createElement("textarea");
+            // fieldWrap.setAttribute('name', 'wrap');
+            // fieldWrap.value = 'd';
+
+            form.appendChild(fieldData);
             document.body.appendChild(form);       
             form.submit();
             form.remove();
@@ -2752,7 +2820,7 @@ a{ }
 }
 
 .contents{
-    > .item > div{
+    > .tab-item > div{
         > h4,
         > p,
         > table{
@@ -2804,7 +2872,7 @@ a{ }
         margin-right: -0.15em;
     }
 
-    .item > div > mor-anchor,
+    .tab-item > div > mor-anchor,
     & > mor-anchor{
         > .nav-wrap{
             min-width: 150px;
@@ -2890,7 +2958,7 @@ a{ }
                 > pre{
                     font-size: 12px;
                     margin: 0;
-                    max-height: 120px;
+                    max-height: 130px;
                     overflow: hidden;
 
                     &.show-more{

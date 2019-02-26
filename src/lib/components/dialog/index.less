@@ -54,11 +54,7 @@ mor-dialog{
             box-sizing: border-box;
             position: relative;
 
-            &:empty{
-                display: none;
-            }
-
-            > h1{
+            h1{
                 font-size: @fontSize;
                 margin: 0;
                 padding: 0;
@@ -68,7 +64,7 @@ mor-dialog{
                 overflow: hidden;
             }
 
-            > mor-link{
+            mor-link{
                 position: absolute;
                 top: 0;
                 right: 1.5em;
@@ -77,8 +73,8 @@ mor-dialog{
                 font-size: initial;
             }
 
-            > mor-link > .iconfont,
-            > mor-link > .mo-icon{
+            mor-link > .iconfont,
+            mor-link > .mo-icon{
                 font-size: initial;
             }
         }
@@ -96,11 +92,7 @@ mor-dialog{
             bottom: 0;
             text-align: left;
 
-            &:empty{
-                display: none;
-            }
-
-            > div{
+            .operate{
                 position: absolute;
                 right: 1em;
                 top: 0;

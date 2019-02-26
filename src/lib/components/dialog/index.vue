@@ -17,9 +17,14 @@
         class="content"
         :style="{width: conf.width, height: conf.height}"
     >
-        <slot name="header"></slot>
+        
+        <header v-show="$slots.header && $slots.header[0].elm && $slots.header[0].elm.innerHTML !== ''">
+            <slot name="header"></slot>
+        </header>
         <div class="body"><slot></slot></div>
-        <slot name="footer"></slot>
+        <footer v-show="$slots.footer && $slots.footer[0].elm && $slots.footer[0].elm.innerHTML !== ''">
+            <slot name="footer"></slot>
+        </footer>
     </div>
         
     </mor-dialog>

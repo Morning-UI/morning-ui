@@ -13,7 +13,7 @@
         <img src='https://www.browserstack.com/automate/badge.svg?badge_key='/>
     </a>
     <a href="https://www.codacy.com/app/EarlyH/morning-ui?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Morning-UI/morning-ui&amp;utm_campaign=Badge_Grade">
-        <img src="https://img.shields.io/codacy/grade/91448799c68e4422ba6436a7ecdb08a7/master.svg" alt="Codacy branch grade">
+        <img src="https://img.shields.io/codacy/grade/a350b137efdd45bf8a312573f9850129/master.svg" alt="Codacy branch grade">
     </a>
     <a href="https://app.fossa.io/projects/git%2Bgithub.com%2FMorning-UI%2Fmorning-ui?ref=badge_shield">
         <img src="https://app.fossa.io/api/projects/git%2Bgithub.com%2FMorning-UI%2Fmorning-ui.svg?type=shield" alt="FOSSA Status">

@@ -1,190 +1,202 @@
 mor-card{
     width: 100%;
     height: 100%;
-    display: block;
+    display: flex;
+    flex-direction: column;
     box-sizing: border-box;
     box-shadow: 0 0 @borderRadius rgba(0, 0, 0, 0.2);
     border-radius: @borderRadius;
-    padding: 1em;
     position: relative;
     background: #FFF;
 
-    & > header{
+    & > .card-header,
+    & > .card-footer{
         line-height: 1.5em;
-        position: absolute;
         height: auto;
-        left: 0;
-        top: 0;
-        right: 0;
         padding: 0.5em 1em;
         border-radius: @borderRadius @borderRadius 0 0;
         font-size: @fontSize*0.875;
+        flex-grow: 0;
+        flex-shrink: 0;
+    }
+
+    & > .card-footer{
+        border-radius: 0 0 @borderRadius @borderRadius;
+        background: @colorExtraLightSilver;
+        color: @colorBlack;
+        border-top: 1px solid @colorLightSilver;
+    }
+
+    & > .card-body{
+        padding: 1em;
+        box-sizing: border-box;
+        width: 100%;
+        flex-grow: 1;
+        overflow-y: auto;
+        word-break: break-all;
+
+        .setup-hover-scrollbar();
     }
 
     &.co-t{
-        & > header {
+        & > .card-header {
             background-color: @colorTheme;
             color: @colorWhite;
         }
     }
 
     &.co-lt{
-        & > header {
+        & > .card-header {
             background-color: @colorLightTheme;
             color: @colorWhite;
         }
     }
 
     &.co-dt{
-        & > header {
+        & > .card-header {
             background-color: @colorDarkTheme;
             color: @colorWhite;
         }
     }
 
     &.co-s{
-        & > header {
+        & > .card-header {
             background-color: @colorSuccess;
         }
     }
 
     &.co-w{
-        & > header {
+        & > .card-header {
             background-color: @colorWarning;
             color: @colorWhite;
         }
     }
 
     &.co-d{
-        & > header {
+        & > .card-header {
             background-color: @colorDanger;
             color: @colorWhite;
         }
     }
 
     &.co-p{
-        & > header {
+        & > .card-header {
             background-color: @colorPrimary;
             color: @colorWhite;
         }
     }
 
     &.co-m{
-        & > header {
+        & > .card-header {
             background-color: @colorMinor;
             color: @colorWhite;
         }
     }
 
     &.co-i{
-        & > header {
+        & > .card-header {
             background-color: @colorInfo;
             color: @colorWhite;
         }
     }
 
     &.co-bk{
-        & > header {
+        & > .card-header {
             background-color: @colorBlack;
             color: @colorWhite;
         }
     }
 
     &.co-lbk{
-        & > header {
+        & > .card-header {
             background-color: @colorLightBlack;
             color: @colorWhite;
         }
     }
 
     &.co-elbk{
-        & > header {
+        & > .card-header {
             background-color: @colorExtraLightBlack;
             color: @colorWhite;
         }
     }
 
     &.co-bu{
-        & > header {
+        & > .card-header {
             background-color: @colorBlue;
             color: @colorWhite;
         }
     }
 
     &.co-lbu{
-        & > header {
+        & > .card-header {
             background-color: @colorLightBlue;
             color: @colorWhite;
         }
     }
 
     &.co-elbu{
-        & > header {
+        & > .card-header {
             background-color: @colorExtraLightBlue;
             color: @colorWhite;
         }
     }
 
     &.co-si{
-        & > header {
+        & > .card-header {
             background-color: @colorSilver;
             color: @colorLightBlack;
         }
     }
 
     &.co-lsi{
-        & > header {
+        & > .card-header {
             background-color: @colorLightSilver;
             color: @colorLightBlack;
         }
     }
 
     &.co-elsi{
-        & > header {
+        & > .card-header {
             background-color: @colorExtraLightSilver;
             color: @colorLightBlack;
         }
     }
 
     &.co-g{
-        & > header {
+        & > .card-header {
             background-color: @colorGray;
             color: @colorLightBlack;
         }
     }
 
     &.co-lg{
-        & > header {
+        & > .card-header {
             background-color: @colorLightGray;
             color: @colorLightBlack;
         }
     }
 
     &.co-wh{
-        & > header {
+        & > .card-header {
             background-color: @colorWhite;
             color: @colorLightBlack;
+            border-bottom: 1px @colorGray solid;
         }
     }
 
-    & > div{
-        padding: 0;
-        box-sizing: border-box;
-        width: 100%;
-        height: 100%;
-    }
-
-    &.full,
-    &.full > div{
+    &.full > .card-body{
         padding: 0;
     }
 
-    & > header + div{
-        padding-top: 2.2em;
-    }
+    &.inside-padding{
+        padding: 1em;
 
-    &.full > header + div{
-        padding-top: 2.2em;
+        > .card-header,
+        > .card-footer{
+            border-radius: @borderRadius;
+            border-top: none;
+        }
     }
 
     // default status

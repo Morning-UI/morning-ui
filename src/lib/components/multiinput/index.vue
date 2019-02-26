@@ -21,7 +21,7 @@
     <div class="itemlist">
 
         <div
-            class="item"
+            class="multiinput-item"
             v-for="(value, index) in data.value"
             :key="index"
             @mousedown="_moveItemRecord(index)"
@@ -366,7 +366,7 @@ export default {
 
         this.$watch('conf.canMove', newVal => {
 
-            this.Move.target = '.item';
+            this.Move.target = '.multiinput-item';
             this.Move.container = '.itemlist';
             this.Move.can = !!newVal;
 
@@ -392,7 +392,7 @@ export default {
 
             const maxDistance = 20;
 
-            let $items = this.$el.querySelectorAll('.item');
+            let $items = this.$el.querySelectorAll('.multiinput-item');
 
             for (let item of $items.entries()) {
 

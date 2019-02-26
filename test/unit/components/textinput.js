@@ -28,3 +28,27 @@ commonTest.formBase(testOptions);
 commonTest.formValueChange(testOptions);
 commonTest.formSetJsonValueInText(testOptions);
 
+test.serial('set pure number string value, get a string not number', async t => {
+
+    const vm = new Vue({
+        template : `<ui-${testOptions.name} v-model="value" ${testOptions.attrs}></ui-${testOptions.name}>`,
+        data : {
+            value : ''
+        },
+        components : {
+            [`ui-${testOptions.name}`] : testOptions.component
+        }
+    });
+
+    vm.$mount();
+    vm.value = '123123123123123123123123123123123123';
+
+    t.plan(1);
+
+    Vue.nextTick(() => {
+
+        t.is(vm.$children[0].get(), '123123123123123123123123123123123123');
+
+    });
+
+});
