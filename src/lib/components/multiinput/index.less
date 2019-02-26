@@ -16,7 +16,7 @@ mor-multiinput{
         position: relative;
         font-size: 0;
 
-        > .item{
+        > .multiinput-item{
             color: @colorFormItemColor !important;
             background-color: @colorFromItemBackground;
             display: inline-block;
@@ -120,7 +120,7 @@ mor-multiinput{
     }
 
     &.can-move{
-        > .itemlist > .item{
+        > .itemlist > .multiinput-item{
             cursor: move;
         }
     }
@@ -135,7 +135,7 @@ mor-multiinput{
             border-color: @colorFormBorderDisable;
             background-color: @colorFormBackgroundDisable;
 
-            > .item{
+            > .multiinput-item{
                 cursor: not-allowed !important;
                 background: @colorFromItemBackgroundDisable;
 
