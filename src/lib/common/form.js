@@ -195,6 +195,13 @@ export default UI => UI.extend({
 
                     val = JSON.parse(value);
 
+                    // cause : JSON.parse('5') = 5, but '5' is not a number, is pure number string.
+                    if (typeof val === 'number') {
+
+                        val = value;
+
+                    }
+
                 } catch (e) {
 
                     val = value;
