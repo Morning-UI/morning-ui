@@ -33,6 +33,8 @@
 
 ## 简介
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/fc2bbb61eeb944af8256e285235ab6c5)](https://app.codacy.com/app/EarlyH/morning-ui?utm_source=github.com&utm_medium=referral&utm_content=Morning-UI/morning-ui&utm_campaign=Badge_Grade_Settings)
+
 Morning UI是一套桌面端UI组件库，基于[Vue.js](https://github.com/vuejs/vue)。
 
 ## 为什么要用 Morning UI？
