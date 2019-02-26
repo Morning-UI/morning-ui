@@ -2754,7 +2754,7 @@ a{ }
 }
 
 .contents{
-    > .item > div{
+    > .tab-item > div{
         > h4,
         > p,
         > table{
