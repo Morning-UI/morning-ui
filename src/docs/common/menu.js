@@ -59,7 +59,7 @@ export default {
         '导航菜单<i class="tag update"></i>' : '/component/menu.html',
         '锚点导航<i class="tag new"></i>' : '/component/anchor.html',
         分页 : '/component/pagination.html',
-        模拟盒 : '/component/dialog.html',
+        '模拟盒<i class="tag update"></i>' : '/component/dialog.html',
         // 消息提示 : 'b',
         日历 : '/component/calendar.html',
         加载 : '/component/load.html',

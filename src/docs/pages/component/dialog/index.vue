@@ -38,11 +38,11 @@
     ---
     #demo
     >desc
-    通过`<header slot="header">`标签标记一个头部内容。
+    通过`slot="header"`标签标记一个头部内容。
     >tpl
     <div>
         <ui-dialog ref="demo2">
-            <header slot="header">This is title</header>
+            <div slot="header">This is title</div>
         </ui-dialog>
         <ui-link js="window.morning.findVM('demo2').toggle(true);">显示模拟盒</ui-link>
     </div>
@@ -57,10 +57,10 @@
     >tpl
     <div>
         <ui-dialog ref="demo3">
-            <header slot="header">
+            <div slot="header">
                 <h1>This is title</h1>
                 <ui-link color="white" js="window.morning.findVM('demo3').toggle();"><i class="mo-icon mo-icon-close"></i></ui-link>
-            </header>
+            </div>
         </ui-dialog>
         <ui-link js="window.morning.findVM('demo3').toggle(true);">显示模拟盒</ui-link>
     </div>
@@ -73,7 +73,7 @@
     >tpl
     <div>
         <ui-dialog ref="demo4">
-            <header slot="header"></header>
+            <div slot="header"></div>
         </ui-dialog>
         <ui-link js="window.morning.findVM('demo4').toggle(true);">显示模拟盒</ui-link>
     </div>
@@ -84,11 +84,11 @@
     ---
     #demo
     >desc
-    通过`<footer slot="footer">`标签标记一个尾部内容。
+    通过`slot="footer"`标签标记一个尾部内容。
     >tpl
     <div>
         <ui-dialog ref="demo5">
-            <footer slot="footer">This is footer</footer>
+            <div slot="footer">This is footer</div>
         </ui-dialog>
         <ui-link js="window.morning.findVM('demo5').toggle(true);">显示模拟盒</ui-link>
     </div>
@@ -99,17 +99,17 @@
     ---
     #demo
     >desc
-    你可以在尾部的`<div>`中加入`ui-btn`和`ui-link`来实现可选操作。
+    你可以在尾部的`.operate`元素中加入`ui-btn`和`ui-link`来实现可选操作。
     >tpl
     <div>
         <ui-dialog ref="demo6">
-            <footer slot="footer">
+            <div slot="footer">
                 <span>This is footer</span>
-                <div>
+                <div class="operate">
                     <ui-link class="margin" color="minor" js="window.morning.findVM('demo6').toggle();">取消</ui-link>
                     <ui-btn color="success">确认</ui-btn>
                 </div>
-            </footer>
+            </div>
         </ui-dialog>
         <ui-link js="window.morning.findVM('demo6').toggle(true);">显示模拟盒</ui-link>
     </div>
@@ -120,7 +120,7 @@
     ---
     #demo
     >desc
-    在组件内添加除`<header slot="header">`和`<footer slot="footer">`以外的元素会加载到模拟盒的主体部分。
+    在组件内添加除`slot="header"`和`slot="footer"`以外的元素会加载到模拟盒的主体部分。
     >tpl
     <div>
         <ui-dialog ref="demo7">
@@ -162,7 +162,7 @@
     >tpl
     <div>
         <ui-dialog ref="demo9" color="light-gray">
-            <header slot="header">选择一张图片</header>
+            <div slot="header">选择一张图片</div>
             <ui-grid class="fill">
                 <div class="c-11">
                     <ui-center class="fill"><ui-img class="round" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img></ui-center>
@@ -174,16 +174,16 @@
                     <ui-center class="fill"><ui-img class="round" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img></ui-center>
                 </div>
             </ui-grid>
-            <footer slot="footer">
+            <div slot="footer">
                 <span>
                     需要帮助? <ui-link color="info" size="xxs">获取帮助</ui-link>
                 </span>
-                <div>
+                <div class="operate">
                     <ui-link class="margin" color="minor" js="window.morning.findVM('demo9').toggle(false);">取消</ui-link>
                     <ui-btn color="success">左边</ui-btn>
                     <ui-btn color="success">右边</ui-btn>
                 </div>
-            </footer>
+            </div>
         </ui-dialog>
         <ui-link js="window.morning.findVM('demo9').toggle(true);">显示模拟盒</ui-link>
     </div>
@@ -198,17 +198,17 @@
     >tpl
     <div>
         <ui-dialog ref="demo10" color="black" width="60%" height="60%">
-            <header slot="header">第一级</header>
+            <div slot="header">第一级</div>
             <ui-link js="window.morning.findVM('demo11').toggle(true);">显示第二级模拟盒</ui-link>
         </ui-dialog>
 
         <ui-dialog ref="demo11" color="extra-light-black" width="40%" height="40%">
-            <header slot="header">第二级</header>
+            <div slot="header">第二级</div>
             <ui-link js="window.morning.findVM('demo12').toggle(true);">显示第三级模拟盒</ui-link>
         </ui-dialog>
 
         <ui-dialog ref="demo12" color="light-blue" width="20%" height="20%">
-            <header slot="header">第三级</header>
+            <div slot="header">第三级</div>
         </ui-dialog>
 
         <ui-link js="window.morning.findVM('demo10').toggle(true);">显示模拟盒</ui-link>
@@ -231,8 +231,8 @@
     @layout:color
     ---
     <ui-dialog ref="demo{$colorKey}" color="{$colorKey}">
-        <header slot="header">This is title</header>
-        <footer slot="footer">This is footer</footer>
+        <div slot="header">This is title</div>
+        <div slot="footer">This is footer</div>
     </ui-dialog>
     <ui-link js="window.morning.findVM('demo{$colorKey}').toggle(true);" color="{$colorKey}">{$colorName}模拟盒</ui-link>
 
@@ -316,10 +316,10 @@
     >tpl
     <div>
         <ui-dialog ref="demo17" :auto-close="false">
-            <header slot="header">
+            <div slot="header">
                 <h1>点击外部区域不会关闭，需要点击右侧关闭</h1>
                 <ui-link color="white" js="window.morning.findVM('demo17').toggle();"><i class="mo-icon mo-icon-close"></i></ui-link>
-            </header>
+            </div>
         </ui-dialog>
         <ui-link js="window.morning.findVM('demo17').toggle(true);">显示模拟盒</ui-link>
     </div>

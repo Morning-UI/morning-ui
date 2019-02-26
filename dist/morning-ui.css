@@ -13378,10 +13378,7 @@ mor-dialog > .content > header {
   box-sizing: border-box;
   position: relative;
 }
-mor-dialog > .content > header:empty {
-  display: none;
-}
-mor-dialog > .content > header > h1 {
+mor-dialog > .content > header h1 {
   font-size: 16px;
   margin: 0;
   padding: 0;
@@ -13390,7 +13387,7 @@ mor-dialog > .content > header > h1 {
   text-overflow: ellipsis;
   overflow: hidden;
 }
-mor-dialog > .content > header > mor-link {
+mor-dialog > .content > header mor-link {
   position: absolute;
   top: 0;
   right: 1.5em;
@@ -13398,8 +13395,8 @@ mor-dialog > .content > header > mor-link {
   height: 3em;
   font-size: initial;
 }
-mor-dialog > .content > header > mor-link > .iconfont,
-mor-dialog > .content > header > mor-link > .mo-icon {
+mor-dialog > .content > header mor-link > .iconfont,
+mor-dialog > .content > header mor-link > .mo-icon {
   font-size: initial;
 }
 mor-dialog > .content > footer {
@@ -13415,15 +13412,12 @@ mor-dialog > .content > footer {
   bottom: 0;
   text-align: left;
 }
-mor-dialog > .content > footer:empty {
-  display: none;
-}
-mor-dialog > .content > footer > div {
+mor-dialog > .content > footer .operate {
   position: absolute;
   right: 1em;
   top: 0;
 }
-mor-dialog > .content > footer > div > * {
+mor-dialog > .content > footer .operate > * {
   margin-left: 0.2em;
 }
 mor-dialog.has-footer > .content > .body {
