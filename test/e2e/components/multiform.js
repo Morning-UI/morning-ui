@@ -61,7 +61,7 @@ test.serial('state', async t => {
                     'color'
                 ]
             }, {
-                child : '.itemwrap > .item',
+                child : '.itemwrap > .multiform-item',
                 attrs : [
                     'cursor',
                     'background-color'

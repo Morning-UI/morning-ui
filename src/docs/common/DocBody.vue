@@ -2754,7 +2754,7 @@ a{ }
 }
 
 .contents{
-    > .item > div{
+    > .tab-item > div{
         > h4,
         > p,
         > table{
@@ -2806,7 +2806,7 @@ a{ }
         margin-right: -0.15em;
     }
 
-    .item > div > mor-anchor,
+    .tab-item > div > mor-anchor,
     & > mor-anchor{
         > .nav-wrap{
             min-width: 150px;

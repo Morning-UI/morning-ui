@@ -31,7 +31,7 @@
         <div class="itemwrap" :class="{hidename:!conf.insideName}">
         
             <div
-                class="item"
+                class="multiform-item"
                 v-for="(item, index) of data.value"
                 :class="{'has-img' : (conf.itemFiller(item) && conf.itemFiller(item).thumb)}"
                 :key="index"
@@ -61,7 +61,7 @@
                 <template v-if="conf.max">
                     <a
                         href="javascript:;"
-                        class="add item"
+                        class="add multiform-item"
                         v-if="data.value.length < conf.max"
                         @click="_addItemDialog"
                         key="set-max"
@@ -74,7 +74,7 @@
                 <template v-else>
                     <a
                         href="javascript:;"
-                        class="add item"
+                        class="add multiform-item"
                         @click="_addItemDialog"
                         key="unset-max"
                     >
@@ -565,7 +565,7 @@ export default {
 
         this.$watch('conf.canMove', newVal => {
 
-            this.Move.target = '.item:not(.add)';
+            this.Move.target = '.multiform-item:not(.add)';
             this.Move.container = '.itemwrap';
             this.Move.can = !!newVal;
 
@@ -585,7 +585,7 @@ export default {
 
             const maxDistance = 20;
 
-            let $items = this.$el.querySelectorAll('.item:not(.add)');
+            let $items = this.$el.querySelectorAll('.multiform-item:not(.add)');
 
             for (let item of $items.entries()) {
 

@@ -10431,12 +10431,12 @@ mor-tab > .contents {
   border: 1px #dce3ea solid;
   position: relative;
 }
-mor-tab > .contents > .item {
+mor-tab > .contents > .tab-item {
   pointer-events: none;
   height: 0;
   overflow: hidden;
 }
-mor-tab > .contents > .item.current {
+mor-tab > .contents > .tab-item.current {
   padding: 16px;
   pointer-events: auto;
   height: auto;
@@ -10470,7 +10470,7 @@ mor-tab.position-left > .contents {
   display: inline-block;
   vertical-align: top;
 }
-mor-tab.no-padding > .contents > .item.current {
+mor-tab.no-padding > .contents > .tab-item.current {
   padding: 0;
 }
 mor-tab.block > ul {
@@ -16084,7 +16084,8 @@ mor-textinput.si-xs.input-group .input-group-addon {
   height: 29.4px;
 }
 mor-textinput.si-xs.input-group .input-group-addon > .mo-icon,
-mor-textinput.si-xs.input-group .input-group-addon > .iconfont > i {
+mor-textinput.si-xs.input-group .input-group-addon > .iconfont,
+mor-textinput.si-xs.input-group .input-group-addon > i {
   font-size: 12px;
 }
 mor-textinput.si-s > .form-name {
@@ -16101,7 +16102,8 @@ mor-textinput.si-s.input-group .input-group-addon {
   height: 35.7px;
 }
 mor-textinput.si-s.input-group .input-group-addon > .mo-icon,
-mor-textinput.si-s.input-group .input-group-addon > .iconfont > i {
+mor-textinput.si-s.input-group .input-group-addon > .iconfont,
+mor-textinput.si-s.input-group .input-group-addon > i {
   font-size: 13px;
 }
 mor-textinput.si-m > .form-name {
@@ -16118,7 +16120,8 @@ mor-textinput.si-m.input-group .input-group-addon {
   height: 42px;
 }
 mor-textinput.si-m.input-group .input-group-addon > .mo-icon,
-mor-textinput.si-m.input-group .input-group-addon > .iconfont > i {
+mor-textinput.si-m.input-group .input-group-addon > .iconfont,
+mor-textinput.si-m.input-group .input-group-addon > i {
   font-size: 14px;
 }
 mor-textinput.si-l > .form-name {
@@ -16135,7 +16138,8 @@ mor-textinput.si-l.input-group .input-group-addon {
   height: 50.4px;
 }
 mor-textinput.si-l.input-group .input-group-addon > .mo-icon,
-mor-textinput.si-l.input-group .input-group-addon > .iconfont > i {
+mor-textinput.si-l.input-group .input-group-addon > .iconfont,
+mor-textinput.si-l.input-group .input-group-addon > i {
   font-size: 16px;
 }
 mor-textinput.si-xl > .form-name {
@@ -16152,7 +16156,8 @@ mor-textinput.si-xl.input-group .input-group-addon {
   height: 63px;
 }
 mor-textinput.si-xl.input-group .input-group-addon > .mo-icon,
-mor-textinput.si-xl.input-group .input-group-addon > .iconfont > i {
+mor-textinput.si-xl.input-group .input-group-addon > .iconfont,
+mor-textinput.si-xl.input-group .input-group-addon > i {
   font-size: 19.2px;
 }
 mor-textinput.st-disabled input[disabled],
@@ -16186,7 +16191,8 @@ mor-textinput.input-group .input-group-addon {
   height: 42px;
 }
 mor-textinput.input-group .input-group-addon > .mo-icon,
-mor-textinput.input-group .input-group-addon > .iconfont > i {
+mor-textinput.input-group .input-group-addon > .iconfont,
+mor-textinput.input-group .input-group-addon > i {
   font-size: 14px;
 }
 mor-textarea {
@@ -19631,7 +19637,7 @@ mor-multiinput > .itemlist {
   position: relative;
   font-size: 0;
 }
-mor-multiinput > .itemlist > .item {
+mor-multiinput > .itemlist > .multiinput-item {
   color: #9a9a9a !important;
   background-color: #f0f0f0;
   display: inline-block;
@@ -19647,7 +19653,7 @@ mor-multiinput > .itemlist > .item {
   font-size: 13px;
   box-sizing: border-box;
 }
-mor-multiinput > .itemlist > .item > span {
+mor-multiinput > .itemlist > .multiinput-item > span {
   max-width: 100%;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -19657,12 +19663,12 @@ mor-multiinput > .itemlist > .item > span {
   vertical-align: middle;
   box-sizing: border-box;
 }
-mor-multiinput > .itemlist > .item:hover {
+mor-multiinput > .itemlist > .multiinput-item:hover {
   text-decoration: none;
   color: #808080 !important;
   background: #e8e8e8;
 }
-mor-multiinput > .itemlist > .item > i.mo-icon {
+mor-multiinput > .itemlist > .multiinput-item > i.mo-icon {
   font-size: 12px;
   position: absolute;
   right: 0.5em;
@@ -19670,19 +19676,19 @@ mor-multiinput > .itemlist > .item > i.mo-icon {
   transform: translateY(-50%);
   cursor: pointer;
 }
-mor-multiinput > .itemlist > .item > i.mo-icon:hover {
+mor-multiinput > .itemlist > .multiinput-item > i.mo-icon:hover {
   color: #D64431 !important;
 }
-mor-multiinput > .itemlist > .item.move-moving {
+mor-multiinput > .itemlist > .multiinput-item.move-moving {
   opacity: 0.5;
 }
-mor-multiinput > .itemlist > .item.move-drag-item {
+mor-multiinput > .itemlist > .multiinput-item.move-drag-item {
   opacity: 1;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.35);
   max-width: none;
   z-index: 2;
 }
-mor-multiinput > .itemlist > .item.move-drag-item:hover {
+mor-multiinput > .itemlist > .multiinput-item.move-drag-item:hover {
   cursor: move;
   color: #9a9a9a !important;
   background-color: #f0f0f0;
@@ -19718,7 +19724,7 @@ mor-multiinput.focus > .itemlist,
 mor-multiinput:hover > .itemlist {
   border-color: #d7d7d7;
 }
-mor-multiinput.can-move > .itemlist > .item {
+mor-multiinput.can-move > .itemlist > .multiinput-item {
   cursor: move;
 }
 mor-multiinput.st-disabled > .itemlist,
@@ -19728,17 +19734,17 @@ mor-multiinput.st-readonly > .itemlist {
   border-color: #a6a6a6;
   background-color: #ebebeb;
 }
-mor-multiinput.st-disabled > .itemlist > .item,
-mor-multiinput.st-readonly > .itemlist > .item {
+mor-multiinput.st-disabled > .itemlist > .multiinput-item,
+mor-multiinput.st-readonly > .itemlist > .multiinput-item {
   cursor: not-allowed !important;
   background: #d7d7d7;
 }
-mor-multiinput.st-disabled > .itemlist > .item > span,
-mor-multiinput.st-readonly > .itemlist > .item > span {
+mor-multiinput.st-disabled > .itemlist > .multiinput-item > span,
+mor-multiinput.st-readonly > .itemlist > .multiinput-item > span {
   padding-right: 0;
 }
-mor-multiinput.st-disabled > .itemlist > .item:hover,
-mor-multiinput.st-readonly > .itemlist > .item:hover {
+mor-multiinput.st-disabled > .itemlist > .multiinput-item:hover,
+mor-multiinput.st-readonly > .itemlist > .multiinput-item:hover {
   color: #9a9a9a !important;
 }
 mor-multiinput.st-disabled > .itemlist:hover,
@@ -19805,7 +19811,7 @@ mor-multiform > .itemlist > .itemwrap.hidename {
   width: 100%;
   left: 0;
 }
-mor-multiform > .itemlist > .itemwrap > .item {
+mor-multiform > .itemlist > .itemwrap > .multiform-item {
   color: #9a9a9a !important;
   background-color: #f0f0f0;
   display: inline-block;
@@ -19822,7 +19828,7 @@ mor-multiform > .itemlist > .itemwrap > .item {
   box-sizing: border-box;
   max-width: 95%;
 }
-mor-multiform > .itemlist > .itemwrap > .item > span {
+mor-multiform > .itemlist > .itemwrap > .multiform-item > span {
   max-width: 100%;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -19832,15 +19838,15 @@ mor-multiform > .itemlist > .itemwrap > .item > span {
   vertical-align: middle;
   box-sizing: border-box;
 }
-mor-multiform > .itemlist > .itemwrap > .item:hover {
+mor-multiform > .itemlist > .itemwrap > .multiform-item:hover {
   text-decoration: none;
   color: #808080 !important;
   background: #e8e8e8;
 }
-mor-multiform > .itemlist > .itemwrap > .item.move-moving {
+mor-multiform > .itemlist > .itemwrap > .multiform-item.move-moving {
   opacity: 0.2;
 }
-mor-multiform > .itemlist > .itemwrap > .item > i.mo-icon {
+mor-multiform > .itemlist > .itemwrap > .multiform-item > i.mo-icon {
   font-size: 12px;
   position: absolute;
   right: 1em;
@@ -19848,10 +19854,10 @@ mor-multiform > .itemlist > .itemwrap > .item > i.mo-icon {
   transform: translateY(-50%);
   cursor: pointer;
 }
-mor-multiform > .itemlist > .itemwrap > .item > i.mo-icon:hover {
+mor-multiform > .itemlist > .itemwrap > .multiform-item > i.mo-icon:hover {
   color: #D64431 !important;
 }
-mor-multiform > .itemlist > .itemwrap > .item.move-drag-item {
+mor-multiform > .itemlist > .itemwrap > .multiform-item.move-drag-item {
   opacity: 1;
   position: absolute;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.35);
@@ -19859,34 +19865,34 @@ mor-multiform > .itemlist > .itemwrap > .item.move-drag-item {
   box-sizing: border-box;
   max-width: 95%;
 }
-mor-multiform > .itemlist > .itemwrap > .item.move-drag-item:hover {
+mor-multiform > .itemlist > .itemwrap > .multiform-item.move-drag-item:hover {
   cursor: move;
   color: #9a9a9a !important;
   background-color: #e8e8e8;
 }
-mor-multiform > .itemlist > .itemwrap > .item.add {
+mor-multiform > .itemlist > .itemwrap > .multiform-item.add {
   padding: 0 1.4em;
 }
-mor-multiform > .itemlist > .itemwrap > .item.add > span {
+mor-multiform > .itemlist > .itemwrap > .multiform-item.add > span {
   padding-right: 0;
   padding-left: 1em;
 }
-mor-multiform > .itemlist > .itemwrap > .item.add > i.mo-icon {
+mor-multiform > .itemlist > .itemwrap > .multiform-item.add > i.mo-icon {
   top: 52%;
   left: 1.3em;
   right: auto;
 }
-mor-multiform > .itemlist > .itemwrap > .item.add:hover {
+mor-multiform > .itemlist > .itemwrap > .multiform-item.add:hover {
   cursor: pointer;
 }
-mor-multiform > .itemlist > .itemwrap > .item.add:hover > i.mo-icon {
+mor-multiform > .itemlist > .itemwrap > .multiform-item.add:hover > i.mo-icon {
   color: #9a9a9a !important;
 }
-mor-multiform > .itemlist > .itemwrap > .item.has-img {
+mor-multiform > .itemlist > .itemwrap > .multiform-item.has-img {
   border-radius: 0 100px 100px 0;
   padding-left: 3em;
 }
-mor-multiform > .itemlist > .itemwrap > .item.has-img .thumb {
+mor-multiform > .itemlist > .itemwrap > .multiform-item.has-img .thumb {
   position: absolute;
   top: 0;
   left: 0;
@@ -19908,7 +19914,7 @@ mor-multiform.focus > .itemlist,
 mor-multiform:hover > .itemlist {
   border-color: #d7d7d7;
 }
-mor-multiform.can-move > .itemlist > .itemwrap > .item:not(.add) {
+mor-multiform.can-move > .itemlist > .itemwrap > .multiform-item:not(.add) {
   cursor: move;
 }
 mor-multiform.st-disabled > .itemlist,
@@ -19923,21 +19929,21 @@ mor-multiform.st-readonly > .itemlist > .name {
   background-color: #d7d7d7;
   color: #627187;
 }
-mor-multiform.st-disabled > .itemlist > .itemwrap > .item,
-mor-multiform.st-readonly > .itemlist > .itemwrap > .item {
+mor-multiform.st-disabled > .itemlist > .itemwrap > .multiform-item,
+mor-multiform.st-readonly > .itemlist > .itemwrap > .multiform-item {
   cursor: not-allowed !important;
   background-color: #d7d7d7;
 }
-mor-multiform.st-disabled > .itemlist > .itemwrap > .item > span,
-mor-multiform.st-readonly > .itemlist > .itemwrap > .item > span {
+mor-multiform.st-disabled > .itemlist > .itemwrap > .multiform-item > span,
+mor-multiform.st-readonly > .itemlist > .itemwrap > .multiform-item > span {
   padding-right: 0;
 }
-mor-multiform.st-disabled > .itemlist > .itemwrap > .item:hover,
-mor-multiform.st-readonly > .itemlist > .itemwrap > .item:hover {
+mor-multiform.st-disabled > .itemlist > .itemwrap > .multiform-item:hover,
+mor-multiform.st-readonly > .itemlist > .itemwrap > .multiform-item:hover {
   color: #9a9a9a !important;
 }
-mor-multiform.st-disabled > .itemlist > .itemwrap > .item.add:hover,
-mor-multiform.st-readonly > .itemlist > .itemwrap > .item.add:hover {
+mor-multiform.st-disabled > .itemlist > .itemwrap > .multiform-item.add:hover,
+mor-multiform.st-readonly > .itemlist > .itemwrap > .multiform-item.add:hover {
   cursor: default;
 }
 mor-multiform.st-disabled > .itemlist:hover,
@@ -22064,298 +22070,4 @@ mor-private-tree ul.tree-body .tree-node.disabled > span .node-name {
 }
 mor-private-tree ul.tree-body .tree-node.disabled > span .node-name:hover {
   background: #ebebeb !important;
-}
-mor-tab > ul {
-  list-style: none;
-  padding: 0 !important;
-  margin: 0 !important;
-  font-size: 0;
-  position: relative;
-}
-mor-tab > ul > li {
-  display: inline-block;
-  font-size: 14px;
-  padding: 0.5em 1em;
-  margin: 0 0.1em;
-  border-radius: 3px 3px 0 0;
-  color: #A8B3C2;
-  position: relative;
-  background-color: #f4f6f9;
-  top: 1px;
-  cursor: pointer;
-  border: 1px #e2e8ee solid;
-  border-bottom-width: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-mor-tab > ul > li > i,
-mor-tab > ul > li > i.iconfont,
-mor-tab > ul > li > i.mo-icon {
-  font-size: 12px;
-}
-mor-tab > ul > li:first-child {
-  margin-left: 0;
-}
-mor-tab > ul > li:hover {
-  background-color: #EDF1F5;
-  color: #45505C;
-}
-mor-tab > ul > li.current {
-  background-color: #FFFFFF;
-  color: #17212D;
-  border-color: #dce3ea;
-  z-index: 5;
-  cursor: default;
-}
-mor-tab > ul > li.disabled {
-  background-color: #D6DDE5;
-  color: #8E9CAF;
-  border-color: #D6DDE5;
-  cursor: default;
-}
-mor-tab > .contents {
-  border: 1px #dce3ea solid;
-  position: relative;
-}
-mor-tab > .contents > .item {
-  pointer-events: none;
-  height: 0;
-  overflow: hidden;
-}
-mor-tab > .contents > .item.current {
-  padding: 16px;
-  pointer-events: auto;
-  height: auto;
-  overflow: visible;
-}
-mor-tab.position-left {
-  font-size: 0;
-}
-mor-tab.position-left > ul {
-  width: 20%;
-  max-width: 160px;
-  display: inline-block;
-}
-mor-tab.position-left > ul > li {
-  border-radius: 3px 0 0 3px;
-  width: 100%;
-  border-bottom-width: 1px;
-  border-right-width: 0;
-  margin: 0.1em 0;
-  left: 1px;
-  top: 0;
-}
-mor-tab.position-left > ul > li:first-child {
-  margin-top: 0;
-}
-mor-tab.position-left > ul > li:last-child {
-  margin-bottom: 0;
-}
-mor-tab.position-left > .contents {
-  font-size: 14px;
-  display: inline-block;
-  vertical-align: top;
-}
-mor-tab.no-padding > .contents > .item.current {
-  padding: 0;
-}
-mor-tab.block > ul {
-  display: flex;
-}
-mor-tab.block > ul > li {
-  margin: 0;
-  display: block;
-  border: 1px #dce3ea solid;
-  background-color: #f4f6f9;
-  padding: 1em 0;
-  text-align: center;
-  flex: 1;
-  border-radius: 0;
-}
-mor-tab.block > ul > li:hover {
-  background-color: #EDF1F5;
-  color: #45505C;
-}
-mor-tab.block > ul > li:not(:last-child) {
-  border-right-width: 0;
-}
-mor-tab.block > ul > li.current {
-  border-color: #dce3ea;
-  border-top: 1px #F33D5D solid;
-  box-shadow: inset 0 3px 0 #F33D5D;
-  border-bottom-width: 0;
-  background: #FFFFFF;
-  color: #17212D;
-}
-mor-tab.block > ul > li.disabled {
-  background-color: #D6DDE5;
-  color: #8E9CAF;
-  border-color: #D6DDE5;
-  cursor: default;
-}
-mor-tab.block.position-left ul {
-  display: inline-block;
-}
-mor-tab.block.position-left ul > li:not(:last-child) {
-  border-bottom-width: 0;
-}
-mor-tab.block.position-left ul > li.current {
-  border-top: 1px #dce3ea solid;
-  border-left: 1px #F33D5D solid;
-  box-shadow: inset 3px 0 0 #F33D5D;
-  border-right-width: 0;
-}
-mor-tab.block.position-left ul > li.current:last-child {
-  border-bottom-width: 1px;
-}
-mor-tab.line > ul::before {
-  content: ' ';
-  width: 100%;
-  height: 2px;
-  position: absolute;
-  background: #e2e8ee;
-  left: 0;
-  bottom: 0;
-}
-mor-tab.line > ul > li {
-  border: none;
-  border-bottom: 2px #dce3ea solid;
-  margin: 0;
-  padding: 0.5em 1.3em;
-  top: 0;
-  background: transparent;
-}
-mor-tab.line > ul > li:hover {
-  color: #45505C;
-  border-bottom-color: #c8d4df;
-}
-mor-tab.line > ul > li.current {
-  border-bottom-color: #F33D5D;
-  color: #17212D;
-}
-mor-tab.line > ul > li.disabled {
-  color: #8E9CAF;
-  border-bottom-color: #98a9bd;
-  cursor: default;
-}
-mor-tab.line > .contents {
-  border-top-width: 0;
-}
-mor-tab.line.position-left > ul::before {
-  height: 100%;
-  width: 2px;
-  top: 0;
-  left: auto;
-  right: 0;
-}
-mor-tab.line.position-left > ul > li {
-  border-bottom-width: 0;
-  border-right: 2px #dce3ea solid;
-  left: 0;
-}
-mor-tab.line.position-left > ul > li:hover {
-  border-bottom-color: #e2e8ee;
-  border-right-color: #c8d4df;
-}
-mor-tab.line.position-left > ul > li.current {
-  border-right-color: #F33D5D;
-}
-mor-tab.line.position-left > .contents {
-  border-left-width: 0;
-  border-top-width: 1px;
-}
-mor-tab.btn > ul > li {
-  border: 1px #e2e8ee solid;
-  border-right-width: 0;
-  border-radius: 0;
-  margin: 0;
-  padding: 0.5em 1.3em;
-  top: 0;
-  background: #f4f6f9;
-}
-mor-tab.btn > ul > li:first-child {
-  border-radius: 3px 0 0 3px;
-}
-mor-tab.btn > ul > li:last-child {
-  border-right: 1px #e2e8ee solid;
-  border-radius: 0 3px 3px 0;
-}
-mor-tab.btn > ul > li:hover {
-  color: #45505C;
-  border-color: #c8d4df;
-}
-mor-tab.btn > ul > li:hover + li {
-  border-left: 1px #c8d4df solid;
-}
-mor-tab.btn > ul > li:hover + li.current {
-  border-left: 1px #F33D5D solid;
-}
-mor-tab.btn > ul > li.current {
-  color: #17212D;
-  border-color: #F33D5D;
-  border-right-width: 1px;
-  background-color: #FFFFFF;
-}
-mor-tab.btn > ul > li.current + li {
-  border-left-width: 0;
-}
-mor-tab.btn > ul > li.disabled {
-  color: #8E9CAF;
-  border-color: #D6DDE5;
-  background-color: #D6DDE5;
-  cursor: default;
-}
-mor-tab.btn > .contents {
-  margin-top: 8px;
-}
-mor-tab.btn.position-left > ul {
-  width: calc(20% - 16px/2);
-}
-mor-tab.btn.position-left > ul > li {
-  border-right-width: 1px;
-  border-bottom-width: 0;
-  padding: 0.5em;
-  left: 0;
-}
-mor-tab.btn.position-left > ul > li:first-child {
-  border-radius: 3px 3px 0 0;
-}
-mor-tab.btn.position-left > ul > li:last-child {
-  border-bottom: 1px #e2e8ee solid;
-  border-radius: 0 0 3px 3px;
-}
-mor-tab.btn.position-left > ul > li:hover {
-  border-bottom-color: #c8d4df;
-}
-mor-tab.btn.position-left > ul > li:hover + li {
-  border-left-color: #e2e8ee;
-  border-left-width: 1px;
-  border-top-width: 1px;
-  border-top-color: #c8d4df;
-}
-mor-tab.btn.position-left > ul > li:hover + li.current {
-  border-left-color: #F33D5D;
-  border-left-width: 1px;
-  border-top: 1px #F33D5D solid;
-}
-mor-tab.btn.position-left > ul > li.current {
-  border-bottom: 1px #F33D5D solid;
-}
-mor-tab.btn.position-left > ul > li.current + li {
-  border-left-width: 1px;
-  border-top-width: 0;
-}
-mor-tab.btn.position-left > .contents {
-  margin-left: 8px;
-  margin-top: 0;
-}
-mor-tab.noborder > .contents {
-  border-bottom-width: 0;
-  border-left-width: 0;
-  border-right-width: 0;
-}
-mor-tab.noborder.position-left > .contents {
-  border-top-width: 0;
-  border-left-width: 1px;
 }
