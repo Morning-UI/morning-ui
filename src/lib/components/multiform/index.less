@@ -48,7 +48,7 @@ mor-multiform{
                 left: 0;
             }
 
-            > .item{
+            > .multiform-item{
                 color: @colorFormItemColor !important;
                 background-color: @colorFromItemBackground;
                 display: inline-block;
@@ -173,7 +173,7 @@ mor-multiform{
     }
 
     &.can-move{
-        > .itemlist > .itemwrap > .item:not(.add){
+        > .itemlist > .itemwrap > .multiform-item:not(.add){
             cursor: move;
         }
     }
@@ -193,7 +193,7 @@ mor-multiform{
                 color: darken(@colorBlue, 10%);
             }
 
-            > .itemwrap > .item{
+            > .itemwrap > .multiform-item{
                 cursor: not-allowed !important;
                 background-color: @colorFromItemBackgroundDisable;
 

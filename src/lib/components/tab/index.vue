@@ -32,7 +32,7 @@
             }"
         >
             <template v-for="(item, name) in $slots">
-                <div class="item mor-tab-item" :name="name" :key="name">
+                <div class="tab-item mor-tab-item" :name="name" :key="name">
                     <slot :name="name"></slot>
                 </div>
             </template>
@@ -484,5 +484,3 @@ export default {
     }
 };
 </script>
-
-<style lang="less" src="./index.less"></style>
