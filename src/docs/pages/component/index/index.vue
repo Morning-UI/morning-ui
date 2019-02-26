@@ -100,6 +100,7 @@
             <h4><i class="iconfont">&#xe60a;</i>反馈</h4>
             <ul>
                 <li><a href="/component/dialog.html">模拟盒<p>&lt;dialog></p></a></li>
+                <li><a href="/component/drawer.html">抽屉<p>&lt;drawer></p></a></li>
                 <li><a href="/component/message.html">消息<p>&lt;message></p></a></li>
                 <li><a href="/component/tip.html">小提示<p>&lt;tip></p></a></li>
                 <li><a href="/component/popover.html">弹出框<p>&lt;popover></p></a></li>
