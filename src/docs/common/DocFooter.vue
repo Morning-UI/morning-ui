@@ -13,7 +13,7 @@ export default {};
 </script>
 
 <style lang="less">
-footer{
+body > div > footer{
     font-size: 12px;
     color: #aaa;
     padding: 30px 0;

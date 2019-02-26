@@ -37,7 +37,7 @@
         @value-change="_uploadValueChange"
     ></morning-upload>
     
-    <div class="operate" :class="{loading : data.imagesLoading}" v-show="data.imagesLoading || data.images.length > 0" >
+    <div class="imagemap-operate" :class="{loading : data.imagesLoading}" v-show="data.imagesLoading || data.images.length > 0" >
 
         <span v-show="data.imagesLoading">获取图片中...</span>
 
@@ -63,14 +63,14 @@
 
         @show="_refreshScale"
     >
-        <header slot="header">
+        <div slot="header">
             <template v-if="conf.state === 'disabled' || conf.state === 'readonly'">
                 查看热区
             </template>
             <template v-else>
                 绘制热区
             </template>
-        </header>
+        </div>
     
         <div
             class="maparea"
@@ -111,18 +111,18 @@
             </template>
         </div>
 
-        <footer slot="footer">
+        <div class="imagemap-dialog-footer" slot="footer">
             <span class="note">
                 鼠标左键拖拽移动热区/调整尺寸，鼠标右键点击编辑数据
                 <br>
                 当前缩放：{{Math.round(this.data.scale * 100)}}%
                 <morning-link color="info" size="s" @emit="morning.findVM('ui-imagemap-scaledialog-'+uiid).toggle(true)">设置</morning-link>
             </span>
-            <div>
+            <div class="operate">
                 <morning-link color="danger" class="clean-allzone-btn" v-if="conf.cleanAllzoneBtn && (conf.state !== 'disabled' && conf.state !== 'readonly')" @emit="_cleanAllzone">清除所有热区</morning-link>
                 <morning-btn color="minor" @emit="morning.findVM('ui-imagemap-mapdialog-'+uiid).toggle(false)">关闭</morning-btn>
             </div>
-        </footer>
+        </div>
         
     </morning-dialog>
 
@@ -133,9 +133,9 @@
         height="90%"
         :ref="'ui-imagemap-zonedialog-'+uiid"
     >
-        <header slot="header">
+        <div slot="header">
             编辑热区
-        </header>
+        </div>
 
         <morning-tab class="block">
             <div slot="数据" v-if="$scopedSlots.default || $slots.default">
@@ -203,13 +203,13 @@
             </div>
         </morning-tab>
 
-        <footer slot="footer">
-            <div>
+        <div class="imagemap-dialog-footer" slot="footer">
+            <div class="operate">
                 <morning-link color="minor" @emit="morning.findVM('ui-imagemap-zonedialog-'+uiid).toggle(false)">取消</morning-link>
                 <morning-btn color="danger" @emit="_removeZone" v-if="conf.state !== 'disabled' && conf.state !== 'readonly'">删除</morning-btn>
                 <morning-btn color="success" @emit="_saveZoneModify" v-if="conf.state !== 'disabled' && conf.state !== 'readonly'">保存</morning-btn>
             </div>
-        </footer>
+        </div>
         
     </morning-dialog>
 
@@ -220,9 +220,9 @@
         height="300px"
         :ref="'ui-imagemap-scaledialog-'+uiid"
     >
-        <header slot="header">
+        <div slot="header">
             设置编辑区域缩放
-        </header>
+        </div>
 
         <morning-formgroup>
             <div class="item">
@@ -238,11 +238,11 @@
             </div>
         </morning-formgroup>
 
-        <footer slot="footer">
-            <div>
+        <div class="imagemap-dialog-footer" slot="footer">
+            <div class="operate">
                 <morning-link color="minor" @emit="morning.findVM('ui-imagemap-scaledialog-'+uiid).toggle(false)">关闭</morning-link>
             </div>
-        </footer>
+        </div>
         
     </morning-dialog>
 
