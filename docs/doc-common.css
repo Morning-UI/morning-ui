@@ -1293,7 +1293,7 @@ mor-dialog a:hover {
 .demo-root .section-demo .code-con > .code > pre {
   font-size: 12px;
   margin: 0;
-  max-height: 120px;
+  max-height: 130px;
   overflow: hidden;
 }
 .demo-root .section-demo .code-con > .code > pre.show-more {
