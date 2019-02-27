@@ -73,7 +73,7 @@ test.serial('custom-theme-color', async t => {
     fs.writeFileSync(pathTheme, `
 @import '~morning-ui/src/lib/styles/index.less';
 
-// 覆写主题色
+// 自定主题色
 @colorTheme : #2890DA;
 @colorLightTheme : #3594D8;
 @colorDarkTheme : #0672BF;
