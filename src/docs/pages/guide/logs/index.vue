@@ -33,24 +33,22 @@
     #### 新特性
 
     - `ui-colorpicker`支持`palettes`和`only-palettes`配置，可使用调色板选取色彩及仅使用调色板选取色彩
-    - `ui-card`支持通过`slot=“header”`和`slot=“footer”`来设置卡片的头部和尾部，且支持HTML内容
+    - `ui-card`支持通过`slot="header"`和`slot="footer"`来设置卡片的头部和尾部，且支持HTML内容
     - `ui-card`新增`inside-padding`样式类，用来设置具有内部留白的卡片
-    - `ui-textinput`新增五种尺寸：`xs`、`s`、`l`、’xl’
+    - `ui-textinput`新增五种尺寸：`xs`、`s`、`m`、`l`、`xl`
     - `ui-textinput`新增`prepend-type`配置，可以区分前缀和后缀的展现类型
 
     #### 改进
 
     - `ui-cascader`组件的滚动条现在符合组件库整体风格
-    - 现在`ui-dialog`的头部和尾部设置只需通过`slot=“header”`或`slot=“footer”`来指定，不再要求必须使用`<header>`或`<footer>`标签，和其他组件的用法保持一致 #560
+    - 现在`ui-dialog`的头部和尾部设置只需通过`slot="header"`或`slot="footer"`来指定，不再要求必须使用`<header>`或`<footer>`标签，和其他组件的用法保持一致
 
     #### 修复
 
     - 修复`ui-textinput`组件在使用`prepend`/`append`和`append-type`配置时的一个样式问题
     - 修复`ui-textinput`在使用`prepend`和`append`配置时，同时使用表单的禁用和只读状态时，表单样式错误的问题
-    - 修复`ui-formgroup`组件会影响子组件中`.item`元素的样式的问题 #563
-    - 修复表单组件在设置纯数字字符串(比如：`”99"`)时，在转换过程中字符串会被转换成数字类型，若字符串中为较长数字或小数，最终导致输入数据不正确的问题
-
-    #### 废弃
+    - 修复`ui-formgroup`组件会影响子组件中`.item`元素的样式的问题
+    - 修复表单组件在设置纯数字字符串(比如：`"99"`)时，在转换过程中字符串会被转换成数字类型，若字符串中为较长数字或小数，最终导致输入数据不正确的问题
 
     #### 更多
 
@@ -58,10 +56,10 @@
 
     <ui-label color="primary">升级注意事项</ui-label>
 
-    - `ui-card`不再支持`slot`传入`header`和`div`来设置卡片的头部和主体，现在需要通过`slot=“header”`来设置卡片头部，其余内容会默认为卡片的主体
+    - `ui-card`不再支持`slot`传入`header`和`div`来设置卡片的头部和主体，现在需要通过`slot="header"`来设置卡片头部，其余内容会默认为卡片的主体
     - `ui-textinput`的`append-type`配置不再应用于前缀和后缀的样式控制，现在需要通过`prepend-type`来控制前缀样式，`append-type`来控制后缀样式
-    - `ui-dialog`中的`<header slot=“header”>`和`<footer slot=“footer">`现在不再需要使用`<header>`或`<footer>`标签，像`<div slot=“header”>`或`<div slot=“footer">`这样的写法也被支持
-    - `ui-dialog`中`footer`部分，在之前的版本中如果要添加操作区需要在`<footer slot=“footer">`标签中增加子级`<div>`来实现，现在可以在任意的标签中使用`.operate`元素来实现一个操作区，比如`<div slot=“footer”><div class=“operate"></div></div>`这样的写法
+    - `ui-dialog`中的`<header slot="header">`和`<footer slot="footer">`现在不再需要使用`<header>`或`<footer>`标签，像`<div slot="header">`或`<div slot="footer">`这样的写法也被支持
+    - `ui-dialog`中`footer`部分，在之前的版本中如果要添加操作区需要在`<footer slot="footer">`标签中增加子级`<div>`来实现，现在可以在任意的标签中使用`.operate`元素来实现一个操作区，比如`<div slot="footer"><div class="operate"></div></div>`这样的写法
 
     ---
     
@@ -951,7 +949,7 @@
     - 优化`ui-select`、`ui-timepicker`、`ui-datepicker`、`ui-datetimepicker`组件的弹框，若超出窗口位置会自动调整位置
     - 优化CSS大小(从 240.57kb 减少至 186.257kb)
     - 修复日期组件文档中`quick-pick`配置中的一个错误
-    - 修复`ui-imagemap`的一个问题(`custom validator check failed for prop “color”`)
+    - 修复`ui-imagemap`的一个问题(`custom validator check failed for prop "color"`)
     - 修复`ui-datepicker`中的一个样式问题
     - 修复`ui-datepicker`中一个数值类型错误的问题
     - 修复`ui-datepicker`中启用`quick-pick`会报错(Uncaught TypeError: Cannot read property '0' of undefined)的问题

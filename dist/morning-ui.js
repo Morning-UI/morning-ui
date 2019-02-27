@@ -25315,6 +25315,24 @@ exports.default = {
 
             return this.$el.classList.value.split(' ').indexOf('show') !== -1;
         },
+        _checkHeaderAndFooter: function _checkHeaderAndFooter() {
+
+            if (this.$slots.header && this.$slots.header[0] && this.$slots.header[0].elm && this.$slots.header[0].elm.innerHTML !== '') {
+
+                this.data.hasHeader = true;
+            } else {
+
+                this.data.hasHeader = false;
+            }
+
+            if (this.$slots.footer && this.$slots.footer[0] && this.$slots.footer[0].elm && this.$slots.footer[0].elm.innerHTML !== '') {
+
+                this.data.hasFooter = true;
+            } else {
+
+                this.data.hasFooter = false;
+            }
+        },
         toggle: function toggle(show) {
             var _this = this;
 
@@ -25358,18 +25376,13 @@ exports.default = {
         }
 
     },
+    updated: function updated() {
+
+        this._checkHeaderAndFooter();
+    },
     mounted: function mounted() {
 
-        if (this.$slots.header) {
-
-            this.data.hasHeader = true;
-        }
-
-        if (this.$slots.footer) {
-
-            this.data.hasFooter = true;
-        }
-
+        this._checkHeaderAndFooter();
         this._popupShow();
     }
 }; //
@@ -50952,12 +50965,8 @@ var render = function() {
                 {
                   name: "show",
                   rawName: "v-show",
-                  value:
-                    _vm.$slots.header &&
-                    _vm.$slots.header[0].elm &&
-                    _vm.$slots.header[0].elm.innerHTML !== "",
-                  expression:
-                    "$slots.header && $slots.header[0].elm && $slots.header[0].elm.innerHTML !== ''"
+                  value: _vm.data.hasHeader,
+                  expression: "data.hasHeader"
                 }
               ]
             },
@@ -50974,12 +50983,8 @@ var render = function() {
                 {
                   name: "show",
                   rawName: "v-show",
-                  value:
-                    _vm.$slots.footer &&
-                    _vm.$slots.footer[0].elm &&
-                    _vm.$slots.footer[0].elm.innerHTML !== "",
-                  expression:
-                    "$slots.footer && $slots.footer[0].elm && $slots.footer[0].elm.innerHTML !== ''"
+                  value: _vm.data.hasFooter,
+                  expression: "data.hasFooter"
                 }
               ]
             },
@@ -51775,7 +51780,7 @@ var render = function() {
               expression: "data.imagesLoading || data.images.length > 0"
             }
           ],
-          staticClass: "operate",
+          staticClass: "imagemap-operate",
           class: { loading: _vm.data.imagesLoading }
         },
         [
@@ -51843,7 +51848,7 @@ var render = function() {
         },
         [
           _c(
-            "header",
+            "div",
             { attrs: { slot: "header" }, slot: "header" },
             [
               _vm.conf.state === "disabled" || _vm.conf.state === "readonly"
@@ -52115,72 +52120,82 @@ var render = function() {
             2
           ),
           _vm._v(" "),
-          _c("footer", { attrs: { slot: "footer" }, slot: "footer" }, [
-            _c(
-              "span",
-              { staticClass: "note" },
-              [
-                _vm._v(
-                  "\n            鼠标左键拖拽移动热区/调整尺寸，鼠标右键点击编辑数据\n            "
-                ),
-                _c("br"),
-                _vm._v(
-                  "\n            当前缩放：" +
-                    _vm._s(Math.round(this.data.scale * 100)) +
-                    "%\n            "
-                ),
-                _c(
-                  "morning-link",
-                  {
-                    attrs: { color: "info", size: "s" },
-                    on: {
-                      emit: function($event) {
-                        _vm.morning
-                          .findVM("ui-imagemap-scaledialog-" + _vm.uiid)
-                          .toggle(true)
+          _c(
+            "div",
+            {
+              staticClass: "imagemap-dialog-footer",
+              attrs: { slot: "footer" },
+              slot: "footer"
+            },
+            [
+              _c(
+                "span",
+                { staticClass: "note" },
+                [
+                  _vm._v(
+                    "\n            鼠标左键拖拽移动热区/调整尺寸，鼠标右键点击编辑数据\n            "
+                  ),
+                  _c("br"),
+                  _vm._v(
+                    "\n            当前缩放：" +
+                      _vm._s(Math.round(this.data.scale * 100)) +
+                      "%\n            "
+                  ),
+                  _c(
+                    "morning-link",
+                    {
+                      attrs: { color: "info", size: "s" },
+                      on: {
+                        emit: function($event) {
+                          _vm.morning
+                            .findVM("ui-imagemap-scaledialog-" + _vm.uiid)
+                            .toggle(true)
+                        }
                       }
-                    }
-                  },
-                  [_vm._v("设置")]
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              [
-                _vm.conf.cleanAllzoneBtn &&
-                (_vm.conf.state !== "disabled" && _vm.conf.state !== "readonly")
-                  ? _c(
-                      "morning-link",
-                      {
-                        staticClass: "clean-allzone-btn",
-                        attrs: { color: "danger" },
-                        on: { emit: _vm._cleanAllzone }
-                      },
-                      [_vm._v("清除所有热区")]
-                    )
-                  : _vm._e(),
-                _vm._v(" "),
-                _c(
-                  "morning-btn",
-                  {
-                    attrs: { color: "minor" },
-                    on: {
-                      emit: function($event) {
-                        _vm.morning
-                          .findVM("ui-imagemap-mapdialog-" + _vm.uiid)
-                          .toggle(false)
+                    },
+                    [_vm._v("设置")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "operate" },
+                [
+                  _vm.conf.cleanAllzoneBtn &&
+                  (_vm.conf.state !== "disabled" &&
+                    _vm.conf.state !== "readonly")
+                    ? _c(
+                        "morning-link",
+                        {
+                          staticClass: "clean-allzone-btn",
+                          attrs: { color: "danger" },
+                          on: { emit: _vm._cleanAllzone }
+                        },
+                        [_vm._v("清除所有热区")]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c(
+                    "morning-btn",
+                    {
+                      attrs: { color: "minor" },
+                      on: {
+                        emit: function($event) {
+                          _vm.morning
+                            .findVM("ui-imagemap-mapdialog-" + _vm.uiid)
+                            .toggle(false)
+                        }
                       }
-                    }
-                  },
-                  [_vm._v("关闭")]
-                )
-              ],
-              1
-            )
-          ])
+                    },
+                    [_vm._v("关闭")]
+                  )
+                ],
+                1
+              )
+            ]
+          )
         ]
       ),
       _vm._v(" "),
@@ -52192,7 +52207,7 @@ var render = function() {
           attrs: { color: "gray", width: "600px", height: "90%" }
         },
         [
-          _c("header", { attrs: { slot: "header" }, slot: "header" }, [
+          _c("div", { attrs: { slot: "header" }, slot: "header" }, [
             _vm._v("\n        编辑热区\n    ")
           ]),
           _vm._v(" "),
@@ -52410,50 +52425,59 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _c("footer", { attrs: { slot: "footer" }, slot: "footer" }, [
-            _c(
-              "div",
-              [
-                _c(
-                  "morning-link",
-                  {
-                    attrs: { color: "minor" },
-                    on: {
-                      emit: function($event) {
-                        _vm.morning
-                          .findVM("ui-imagemap-zonedialog-" + _vm.uiid)
-                          .toggle(false)
+          _c(
+            "div",
+            {
+              staticClass: "imagemap-dialog-footer",
+              attrs: { slot: "footer" },
+              slot: "footer"
+            },
+            [
+              _c(
+                "div",
+                { staticClass: "operate" },
+                [
+                  _c(
+                    "morning-link",
+                    {
+                      attrs: { color: "minor" },
+                      on: {
+                        emit: function($event) {
+                          _vm.morning
+                            .findVM("ui-imagemap-zonedialog-" + _vm.uiid)
+                            .toggle(false)
+                        }
                       }
-                    }
-                  },
-                  [_vm._v("取消")]
-                ),
-                _vm._v(" "),
-                _vm.conf.state !== "disabled" && _vm.conf.state !== "readonly"
-                  ? _c(
-                      "morning-btn",
-                      {
-                        attrs: { color: "danger" },
-                        on: { emit: _vm._removeZone }
-                      },
-                      [_vm._v("删除")]
-                    )
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.conf.state !== "disabled" && _vm.conf.state !== "readonly"
-                  ? _c(
-                      "morning-btn",
-                      {
-                        attrs: { color: "success" },
-                        on: { emit: _vm._saveZoneModify }
-                      },
-                      [_vm._v("保存")]
-                    )
-                  : _vm._e()
-              ],
-              1
-            )
-          ])
+                    },
+                    [_vm._v("取消")]
+                  ),
+                  _vm._v(" "),
+                  _vm.conf.state !== "disabled" && _vm.conf.state !== "readonly"
+                    ? _c(
+                        "morning-btn",
+                        {
+                          attrs: { color: "danger" },
+                          on: { emit: _vm._removeZone }
+                        },
+                        [_vm._v("删除")]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.conf.state !== "disabled" && _vm.conf.state !== "readonly"
+                    ? _c(
+                        "morning-btn",
+                        {
+                          attrs: { color: "success" },
+                          on: { emit: _vm._saveZoneModify }
+                        },
+                        [_vm._v("保存")]
+                      )
+                    : _vm._e()
+                ],
+                1
+              )
+            ]
+          )
         ],
         1
       ),
@@ -52466,7 +52490,7 @@ var render = function() {
           attrs: { color: "gray", width: "500px", height: "300px" }
         },
         [
-          _c("header", { attrs: { slot: "header" }, slot: "header" }, [
+          _c("div", { attrs: { slot: "header" }, slot: "header" }, [
             _vm._v("\n        设置编辑区域缩放\n    ")
           ]),
           _vm._v(" "),
@@ -52510,28 +52534,37 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _c("footer", { attrs: { slot: "footer" }, slot: "footer" }, [
-            _c(
-              "div",
-              [
-                _c(
-                  "morning-link",
-                  {
-                    attrs: { color: "minor" },
-                    on: {
-                      emit: function($event) {
-                        _vm.morning
-                          .findVM("ui-imagemap-scaledialog-" + _vm.uiid)
-                          .toggle(false)
+          _c(
+            "div",
+            {
+              staticClass: "imagemap-dialog-footer",
+              attrs: { slot: "footer" },
+              slot: "footer"
+            },
+            [
+              _c(
+                "div",
+                { staticClass: "operate" },
+                [
+                  _c(
+                    "morning-link",
+                    {
+                      attrs: { color: "minor" },
+                      on: {
+                        emit: function($event) {
+                          _vm.morning
+                            .findVM("ui-imagemap-scaledialog-" + _vm.uiid)
+                            .toggle(false)
+                        }
                       }
-                    }
-                  },
-                  [_vm._v("关闭")]
-                )
-              ],
-              1
-            )
-          ])
+                    },
+                    [_vm._v("关闭")]
+                  )
+                ],
+                1
+              )
+            ]
+          )
         ],
         1
       ),
@@ -55378,9 +55411,10 @@ var render = function() {
           _vm._v(" "),
           _vm._t("default"),
           _vm._v(" "),
-          _c("footer", { attrs: { slot: "footer" }, slot: "footer" }, [
+          _c("div", { attrs: { slot: "footer" }, slot: "footer" }, [
             _c(
               "div",
+              { staticClass: "operate" },
               [
                 _c(
                   "morning-link",
@@ -55427,9 +55461,10 @@ var render = function() {
                 ref: "ui-multiform-batchinput-" + _vm.uiid
               }),
               _vm._v(" "),
-              _c("footer", { attrs: { slot: "footer" }, slot: "footer" }, [
+              _c("div", { attrs: { slot: "footer" }, slot: "footer" }, [
                 _c(
                   "div",
+                  { staticClass: "operate" },
                   [
                     _c(
                       "morning-link",

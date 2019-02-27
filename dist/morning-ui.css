@@ -13412,9 +13412,12 @@ mor-dialog > .content > footer {
   bottom: 0;
   text-align: left;
 }
+mor-dialog > .content > footer > div {
+  position: relative;
+}
 mor-dialog > .content > footer .operate {
   position: absolute;
-  right: 1em;
+  right: 0;
   top: 0;
 }
 mor-dialog > .content > footer .operate > * {
@@ -21309,7 +21312,7 @@ mor-imagemap > .form-name {
   -webkit-user-select: text;
   text-align: left;
 }
-mor-imagemap .operate {
+mor-imagemap .imagemap-operate {
   display: block;
   color: #8E9CAF;
   background: #F0F0F0;
@@ -21323,33 +21326,33 @@ mor-imagemap .operate {
   vertical-align: top;
   font-size: 13px;
 }
-mor-imagemap .operate > span {
+mor-imagemap .imagemap-operate > span {
   display: inline-block;
   padding: 0.2em 0;
   width: 100%;
 }
-mor-imagemap .operate .mo-icon {
+mor-imagemap .imagemap-operate .mo-icon {
   font-size: 13px;
   vertical-align: top;
 }
-mor-imagemap .operate:hover {
+mor-imagemap .imagemap-operate:hover {
   text-decoration: none;
   color: #45505C;
   background: #E6E6E6;
   cursor: pointer;
 }
-mor-imagemap .operate.loading:hover {
+mor-imagemap .imagemap-operate.loading:hover {
   cursor: default;
   color: #8E9CAF;
   background: #F0F0F0;
 }
-mor-imagemap.st-disabled .operate,
-mor-imagemap.st-readonly .operate {
+mor-imagemap.st-disabled .imagemap-operate,
+mor-imagemap.st-readonly .imagemap-operate {
   border-color: #a6a6a6;
   background: #ebebeb;
 }
-mor-imagemap.st-disabled .operate:hover,
-mor-imagemap.st-readonly .operate:hover {
+mor-imagemap.st-disabled .imagemap-operate:hover,
+mor-imagemap.st-readonly .imagemap-operate:hover {
   color: #8E9CAF;
 }
 .mor-imagemap-map .maparea {
@@ -21567,13 +21570,15 @@ mor-imagemap.st-readonly .operate:hover {
   right: -10px;
   z-index: 10;
 }
-.mor-imagemap-map .content > footer {
+.mor-imagemap-map .content .imagemap-dialog-footer {
   z-index: 2;
+  position: relative;
+  height: 100%;
 }
-.mor-imagemap-map .content > footer .clean-allzone-btn {
+.mor-imagemap-map .content .imagemap-dialog-footer .clean-allzone-btn {
   margin-right: 6px;
 }
-.mor-imagemap-map .content > footer .note {
+.mor-imagemap-map .content .imagemap-dialog-footer .note {
   font-size: 12px;
   line-height: 1.2em;
   display: block;
