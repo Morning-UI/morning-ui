@@ -44251,13 +44251,19 @@ Object.defineProperty(exports, "__esModule", {
 });
 var IndexManager = {
     methods: {
-        _indexReg: function _indexReg(namespace) {
-            var index = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
-
+        _indexReg: function _indexReg(namespace, index) {
 
             var key = this.$options.name + "." + namespace;
 
             if (this.morning._indexMap.regIndex[key] === undefined) {
+
+                if (index === undefined) {
+
+                    index = this.morning._options.zIndex;
+                } else {
+
+                    index += this.morning._options.zIndex;
+                }
 
                 this.morning._indexMap.regIndex[key] = index;
                 this.morning._indexMap.maxIndex = index;
@@ -65990,16 +65996,35 @@ morning.install = function (Vue, options) {
         throw new Error('Vue version mismatch(version must > 2.5.2), please update Vue.');
     }
 
-    if (options && options.prefix === 'mor') {
+    if (options) {
 
-        throw new Error('prefix can\'t be \'mor\'.');
+        if (options.prefix === 'mor') {
+
+            throw new Error('prefix can\'t be \'mor\'.');
+        }
+
+        if (options.zIndex !== undefined) {
+
+            options.zIndex = Number(options.zIndex);
+
+            if (options.zIndex && isNaN(options.zIndex)) {
+
+                throw new Error('zIndex must be a number.');
+            }
+
+            if (options.zIndex <= 0) {
+
+                throw new Error('zIndex must be greater than 0.');
+            }
+        }
     }
 
     (0, _index2.default)();
 
     options = (0, _extend2.default)(true, {
         prefix: 'ui',
-        uploader: null
+        uploader: null,
+        zIndex: 1
     }, options);
 
     morning._options = options;
