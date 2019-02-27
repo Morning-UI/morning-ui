@@ -193,9 +193,31 @@ morning.install = function (Vue, options) {
 
     }
 
-    if (options && options.prefix === 'mor') {
+    if (options) {
 
-        throw new Error('prefix can\'t be \'mor\'.');
+        if (options.prefix === 'mor') {
+
+            throw new Error('prefix can\'t be \'mor\'.');
+
+        }
+
+        if (options.zIndex !== undefined) {
+
+            options.zIndex = Number(options.zIndex);
+
+            if (options.zIndex && isNaN(options.zIndex)) {
+
+                throw new Error('zIndex must be a number.');
+
+            }
+
+            if (options.zIndex <= 0) {
+
+                throw new Error('zIndex must be greater than 0.');
+
+            }
+
+        }
 
     }
 
@@ -203,7 +225,8 @@ morning.install = function (Vue, options) {
 
     options = extend(true, {
         prefix : 'ui',
-        uploader : null
+        uploader : null,
+        zIndex : 1
     }, options);
 
     morning._options = options;
