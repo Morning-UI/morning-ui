@@ -18,7 +18,7 @@ test.serial('config-z-index', async t => {
     let pathMroningJs = path.resolve(pathProjectRoot, 'dist/morning-ui.js');
     let pathMroningCss = path.resolve(pathProjectRoot, 'dist/morning-ui.css');
     let pathTmp = path.resolve(pathProjectRoot, '.tmp');
-    let pathDir = path.resolve(pathTmp, 'import-use-tag/');
+    let pathDir = path.resolve(pathTmp, 'config-z-index/');
     let pathHtml = path.resolve(pathDir, 'index.html');
     let pathJs = path.resolve(pathDir, 'morning-ui.js');
     let pathCss = path.resolve(pathDir, 'morning-ui.css');
@@ -28,7 +28,7 @@ test.serial('config-z-index', async t => {
     fs.writeFileSync(pathHtml, `
     <html>
         <head>
-            <title>e2e test : import-use-tag</title>
+            <title>e2e test : config-z-index</title>
             <link rel="stylesheet" href="./morning-ui.css" />
         </head>
         <body>
