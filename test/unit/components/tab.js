@@ -27,7 +27,7 @@ commonTest.componentDynamicSlot(testOptions, {
         CONTENT : second
     </div></div><div name="third" class="tab-item mor-tab-item"><div>
         CONTENT : third
-    </div></div></div>`);
+    </div></div></div><!---->`);
 
     },
     secondCheck : (t, vm) => {
@@ -36,14 +36,14 @@ commonTest.componentDynamicSlot(testOptions, {
         CONTENT : 4th
     </div></div><div name="5th" class="tab-item mor-tab-item"><div>
         CONTENT : 5th
-    </div></div></div>`);
+    </div></div></div><!---->`);
 
     },
     thirdCheck : (t, vm) => {
             
         t.is(vm.$el.innerHTML, `<ul><li name="6th" class="current">6th</li></ul><div class="contents" style="width: 100%; min-height: 0;"><div name="6th" class="tab-item mor-tab-item current"><div>
         CONTENT : 6th
-    </div></div></div>`);
+    </div></div></div><!---->`);
         
     }
 });
