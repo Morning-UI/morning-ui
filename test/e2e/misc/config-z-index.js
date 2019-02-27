@@ -1,4 +1,3 @@
-import {exec}                       from 'child_process';
 import fs                           from 'fs';
 import fse                          from 'fs-extra';
 import path                         from 'path';
@@ -12,6 +11,8 @@ const runner = nightmare({
 test.serial('config-z-index', async t => {
 
     t.plan(2);
+
+    const zIndex = 9001;
 
     let pathProjectRoot = path.resolve(__dirname, '../../../');
     let pathMroningJs = path.resolve(pathProjectRoot, 'dist/morning-ui.js');
@@ -58,6 +59,6 @@ test.serial('config-z-index', async t => {
         }));
 
     t.is(result.morning.isMorning, true);
-    t.is(result.zindex, 9001);
+    t.is(result.zindex, zIndex);
 
 });
