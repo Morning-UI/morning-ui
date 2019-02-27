@@ -11,18 +11,20 @@
         :disabled-options="disabledOptions"
     >
 
-        <ul>
-            <li
-                v-for="item in data.namelist"
-                :name="item.name"
-                :key="item.name"
-                :class="{
-                    disabled : (conf.disabledOptions.indexOf(item.name) !== -1)
-                }"
-                v-html="item.html"
-                @click="_onClick(item.name)"
-            ></li>
-        </ul>
+        <template v-if="conf.position === 'left' || conf.position === 'top'">
+            <ul>
+                <li
+                    v-for="item in data.namelist"
+                    :name="item.name"
+                    :key="item.name"
+                    :class="{
+                        disabled : (conf.disabledOptions.indexOf(item.name) !== -1)
+                    }"
+                    v-html="item.html"
+                    @click="_onClick(item.name)"
+                ></li>
+            </ul>
+        </template>
         
         <div
             class="contents"
@@ -37,6 +39,21 @@
                 </div>
             </template>
         </div>
+
+        <template v-if="conf.position === 'right' || conf.position === 'bottom'">
+            <ul>
+                <li
+                    v-for="item in data.namelist"
+                    :name="item.name"
+                    :key="item.name"
+                    :class="{
+                        disabled : (conf.disabledOptions.indexOf(item.name) !== -1)
+                    }"
+                    v-html="item.html"
+                    @click="_onClick(item.name)"
+                ></li>
+            </ul>
+        </template>
 
     </mor-tab>
 </template>
@@ -95,7 +112,9 @@ export default {
 
             return {
                 'position-top' : (this.conf.position === 'top'),
-                'position-left' : (this.conf.position === 'left')
+                'position-left' : (this.conf.position === 'left'),
+                'position-right' : (this.conf.position === 'right'),
+                'position-bottom' : (this.conf.position === 'bottom'),
             };
 
         }
@@ -198,8 +217,8 @@ export default {
             this.Vue.nextTick(() => {
 
                 // clean old status
-                let $currentTabEl = this.$el.children[0].children;
-                let $currentConEl = this.$el.children[1].children;
+                let $currentTabEl = this.$el.querySelector('ul').children;
+                let $currentConEl = this.$el.querySelector('.contents').children;
 
                 if ($currentTabEl) {
 
@@ -273,17 +292,18 @@ export default {
         },
         _setContentWidth : function () {
 
-            if (this.conf.position === 'top') {
+            if (this.conf.position === 'top' ||
+                this.conf.position === 'bottom') {
 
                 this.data.contentWidth = '100%';
 
             } else {
 
-                this.data.contentWidth = `calc(100% - ${this.$el.children[0].clientWidth}px)`;
+                this.data.contentWidth = `calc(100% - ${this.$el.querySelector('ul').clientWidth}px)`;
 
                 if (this.$el.classList.value.split(' ').indexOf('btn') !== -1) {
 
-                    this.data.contentWidth = `calc(100% - ${this.$el.children[0].clientWidth + 8}px)`;
+                    this.data.contentWidth = `calc(100% - ${this.$el.querySelector('ul').clientWidth + 8}px)`;
 
                 }
 
@@ -292,13 +312,14 @@ export default {
         },
         _setContentMinHeight : function () {
 
-            if (this.conf.position === 'top') {
+            if (this.conf.position === 'top' ||
+                this.conf.position === 'bottom') {
 
                 this.data.contentMinHeight = '0';
 
             } else {
 
-                this.data.contentMinHeight = `${this.$el.children[0].clientHeight}px`;
+                this.data.contentMinHeight = `${this.$el.querySelector('ul').clientHeight}px`;
 
             }
 
@@ -352,8 +373,8 @@ export default {
 
             if (old !== -1) {
 
-                let conEl = this.$el.children[1].children[old];
-                let tabEl = this.$el.children[0].children[old];
+                let conEl = this.$el.querySelector('.contents').children[old];
+                let tabEl = this.$el.querySelector('ul').children[old];
 
                 conEl.classList.remove('current');
                 tabEl.classList.remove('current');
@@ -367,8 +388,8 @@ export default {
 
             if (current !== -1) {
 
-                let conEl = this.$el.children[1].children[current];
-                let tabEl = this.$el.children[0].children[current];
+                let conEl = this.$el.querySelector('.contents').children[current];
+                let tabEl = this.$el.querySelector('ul').children[current];
 
                 conEl.classList.add('current');
                 tabEl.classList.add('current');
