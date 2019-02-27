@@ -6,7 +6,7 @@ mor-imagemap{
 
     .setup-form();
 
-    .operate{
+    .imagemap-operate{
         display: block;
         color: @colorLightBlue;
         background: @colorLightGray;
@@ -49,7 +49,7 @@ mor-imagemap{
 
     &.st-disabled,
     &.st-readonly{
-        .operate{
+        .imagemap-operate{
             border-color: @colorFormBorderDisable;
             background: @colorFormBackgroundDisable;
 
@@ -315,8 +315,10 @@ mor-imagemap{
         }
     }
 
-    .content > footer{
+    .content .imagemap-dialog-footer{
         z-index: 2;
+        position: relative;
+        height: 100%;
 
         .clean-allzone-btn{
             margin-right: 6px;

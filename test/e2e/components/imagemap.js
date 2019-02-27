@@ -44,7 +44,7 @@ test.serial('state', async t => {
             context,
             'state_ndr',
             [{
-                child : '.operate',
+                child : '.imagemap-operate',
                 attrs : [
                     'border-color',
                     'background'
