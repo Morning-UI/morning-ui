@@ -372,7 +372,7 @@
     >conf-desc
     标签页的位置。
     >conf-accept
-    `'top'`：上方<br>`'left'`：左侧
+    `'top'`：上方<br>`'left'`：左侧<br>`'right'`：右侧<br>`'bottom'`：下方
     >conf-type
     String
     >conf-default
@@ -382,7 +382,97 @@
     >desc
     标签页在上方。
     >tpl
-    <ui-tab>
+    <ui-tab position="top">
+        <div slot="第一页">第一页</div>
+        <div slot="第二页">第二页</div>
+        <div slot="第三页">第三页</div>
+    </ui-tab>
+    ---
+    #demo
+    >desc
+    标签页在上方，配合无边框。
+    >tpl
+    <ui-tab position="top" class="noborder">
+        <div slot="第一页">第一页</div>
+        <div slot="第二页">第二页</div>
+        <div slot="第三页">第三页</div>
+    </ui-tab>
+    ---
+    #demo
+    >desc
+    标签页在上方，配合区块标签页。
+    >tpl
+    <ui-tab position="top" class="block">
+        <div slot="第一页">第一页</div>
+        <div slot="第二页">第二页</div>
+        <div slot="第三页">第三页</div>
+    </ui-tab>
+    ---
+    #demo
+    >desc
+    标签页在上方，配合线条标签页。
+    >tpl
+    <ui-tab position="top" class="line">
+        <div slot="第一页">第一页</div>
+        <div slot="第二页">第二页</div>
+        <div slot="第三页">第三页</div>
+    </ui-tab>
+    ---
+    #demo
+    >desc
+    标签页在上方，配合按钮式标签页。
+    >tpl
+    <ui-tab position="top" class="btn">
+        <div slot="第一页">第一页</div>
+        <div slot="第二页">第二页</div>
+        <div slot="第三页">第三页</div>
+    </ui-tab>
+    ---
+    #demo
+    >desc
+    标签页在下方。
+    >tpl
+    <ui-tab position="bottom">
+        <div slot="第一页">第一页</div>
+        <div slot="第二页">第二页</div>
+        <div slot="第三页">第三页</div>
+    </ui-tab>
+    ---
+    #demo
+    >desc
+    标签页在下方，配合无边框。
+    >tpl
+    <ui-tab position="bottom" class="noborder">
+        <div slot="第一页">第一页</div>
+        <div slot="第二页">第二页</div>
+        <div slot="第三页">第三页</div>
+    </ui-tab>
+    ---
+    #demo
+    >desc
+    标签页在下方，配合区块标签页。
+    >tpl
+    <ui-tab position="bottom" class="block">
+        <div slot="第一页">第一页</div>
+        <div slot="第二页">第二页</div>
+        <div slot="第三页">第三页</div>
+    </ui-tab>
+    ---
+    #demo
+    >desc
+    标签页在下方，配合线条标签页。
+    >tpl
+    <ui-tab position="bottom" class="line">
+        <div slot="第一页">第一页</div>
+        <div slot="第二页">第二页</div>
+        <div slot="第三页">第三页</div>
+    </ui-tab>
+    ---
+    #demo
+    >desc
+    标签页在下方，配合按钮式标签页。
+    >tpl
+    <ui-tab position="bottom" class="btn">
         <div slot="第一页">第一页</div>
         <div slot="第二页">第二页</div>
         <div slot="第三页">第三页</div>
@@ -400,7 +490,7 @@
     ---
     #demo
     >desc
-    配合无边框。
+    标签页在左侧，配合无边框。
     >tpl
     <ui-tab position="left" class="noborder">
         <div slot="第一页">第一页</div>
@@ -410,7 +500,7 @@
     ---
     #demo
     >desc
-    配合区块标签页。
+    标签页在左侧，配合区块标签页。
     >tpl
     <ui-tab position="left" class="block">
         <div slot="第一页">第一页</div>
@@ -420,7 +510,7 @@
     ---
     #demo
     >desc
-    配合线条标签页。
+    标签页在左侧，配合线条标签页。
     >tpl
     <ui-tab position="left" class="line">
         <div slot="第一页">第一页</div>
@@ -430,13 +520,64 @@
     ---
     #demo
     >desc
-    配合按钮式标签页。
+    标签页在左侧，配合按钮式标签页。
     >tpl
     <ui-tab position="left" class="btn">
         <div slot="第一页">第一页</div>
         <div slot="第二页">第二页</div>
         <div slot="第三页">第三页</div>
     </ui-tab>
+    ---
+    #demo
+    >desc
+    标签页在右侧。
+    >tpl
+    <ui-tab position="right">
+        <div slot="第一页">第一页</div>
+        <div slot="第二页">第二页</div>
+        <div slot="第三页">第三页</div>
+    </ui-tab>
+    ---
+    #demo
+    >desc
+    标签页在右侧，配合无边框。
+    >tpl
+    <ui-tab position="right" class="noborder">
+        <div slot="第一页">第一页</div>
+        <div slot="第二页">第二页</div>
+        <div slot="第三页">第三页</div>
+    </ui-tab>
+    ---
+    #demo
+    >desc
+    标签页在右侧，配合区块标签页。
+    >tpl
+    <ui-tab position="right" class="block">
+        <div slot="第一页">第一页</div>
+        <div slot="第二页">第二页</div>
+        <div slot="第三页">第三页</div>
+    </ui-tab>
+    ---
+    #demo
+    >desc
+    标签页在右侧，配合线条标签页。
+    >tpl
+    <ui-tab position="right" class="line">
+        <div slot="第一页">第一页</div>
+        <div slot="第二页">第二页</div>
+        <div slot="第三页">第三页</div>
+    </ui-tab>
+    ---
+    #demo
+    >desc
+    标签页在右侧，配合按钮式标签页。
+    >tpl
+    <ui-tab position="right" class="btn">
+        <div slot="第一页">第一页</div>
+        <div slot="第二页">第二页</div>
+        <div slot="第三页">第三页</div>
+    </ui-tab>
+    ---
     :::
 
     :::vue

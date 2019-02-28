@@ -9,7 +9,7 @@ const runner = nightmare({
     show : false
 });
 
-test.serial('custom-theme-color', async t => {
+test.serial('custom-border-radius', async t => {
 
     t.plan(2);
 
@@ -17,7 +17,7 @@ test.serial('custom-theme-color', async t => {
 
     let pathProjectRoot = path.resolve(__dirname, '../../../');
     let pathTmp = path.resolve(pathProjectRoot, '.tmp');
-    let pathDir = path.resolve(pathTmp, 'custom-theme-color/');
+    let pathDir = path.resolve(pathTmp, 'custom-border-radius/');
     let pathPackage = path.resolve(pathDir, 'package.json');
     let pathWebpack = path.resolve(pathDir, 'webpack.config.js');
     let pathSrc = path.resolve(pathDir, 'src/');
@@ -73,10 +73,8 @@ test.serial('custom-theme-color', async t => {
     fs.writeFileSync(pathTheme, `
 @import '~morning-ui/src/lib/styles/index.less';
 
-// 自定主题色
-@colorTheme : #2890DA;
-@colorLightTheme : #3594D8;
-@colorDarkTheme : #0672BF;
+// 自定圆角
+@borderRadius : 9px;
     `);
 
     fs.writeFileSync(pathJs, `
@@ -88,7 +86,7 @@ test.serial('custom-theme-color', async t => {
     Vue.use(morning);
     new Vue({
         el : '#vue',
-        template : '<ui-link>link</ui-link>'
+        template : '<div><ui-textinput></ui-textinput></div>'
     });
     `);
 
@@ -150,21 +148,13 @@ test.serial('custom-theme-color', async t => {
 
     const result = await runner
         .goto(`file://${pathHtml}`)
-        .wait('mor-link')
+        .wait('mor-textinput')
         .evaluate(() => ({
             morning : window.morning.isMorning,
-            style : window.getComputedStyle(document.querySelector('mor-link')).color
+            textinput : window.getComputedStyle(document.querySelector('mor-textinput input')).borderRadius
         }));
 
-    // circleci
-    delete result.style.inlineSize;
-    delete result.style.perspectiveOrigin;
-    delete result.style.transformOrigin;
-    delete result.style.webkitLogicalWidth;
-    delete result.style.webkitTapHighlightColor;
-    delete result.style.width;
-
     t.is(result.morning, true);
-    t.snapshot(result.style, 'rgb(40, 144, 218)');
+    t.is(result.textinput, '9px');
 
 });

@@ -1,10 +1,20 @@
 let IndexManager = {
     methods : {
-        _indexReg : function (namespace, index = 1) {
+        _indexReg : function (namespace, index) {
 
             let key = `${this.$options.name}.${namespace}`;
 
             if (this.morning._indexMap.regIndex[key] === undefined) {
+
+                if (index === undefined) {
+
+                    index = this.morning._options.zIndex;
+
+                } else {
+
+                    index += this.morning._options.zIndex;
+
+                }
 
                 this.morning._indexMap.regIndex[key] = index;
                 this.morning._indexMap.maxIndex = index;

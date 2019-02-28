@@ -48,6 +48,7 @@ import menu                         from './menu/index.vue';
 import anchor                       from './anchor/index.vue';
 import pagination                   from './pagination/index.vue';
 import dialog                       from './dialog/index.vue';
+import drawer                       from './drawer/index.vue';
 import calendar                     from './calendar/index.vue';
 import load                         from './load/index.vue';
 import progress                     from './progress/index.vue';
@@ -143,6 +144,7 @@ export default {
     anchor,
     pagination,
     dialog,
+    drawer,
     calendar,
     load,
     progress,

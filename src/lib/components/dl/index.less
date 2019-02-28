@@ -1,5 +1,7 @@
 mor-dl{
     display: block;
+    font-size: @fontSize*0.875;
+    line-height: 1.5;
 
     dt{
         color: @colorBlack;
@@ -17,18 +19,22 @@ mor-dl{
     }
 
     &.horizontal{
+        display: flex;
         overflow: hidden;
+        flex-wrap: wrap;
 
         dt{
-            width: 15%;
             display: inline-block;
             margin-bottom: 0.7em;
+            width: 20%;
         }
 
         dd{
-            width: 80%;
             display: inline-block;
             vertical-align: top;
+            width: 80%;
+            padding-left: 1.5em;
+            box-sizing: border-box;
         }
     }
 

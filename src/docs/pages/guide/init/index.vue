@@ -14,6 +14,7 @@
     |-|-|-|
     |prefix|组件标签前缀，默认为ui，可在冲突时使用自定义|`string`|
     |uploader|文件上传组件的适配器，用来将文件上传到服务端|`function`|
+    |zIndex|Morning UI在管理`z-index`时初始的值，以此开始递增|`number`|
 
     ## 更改组件标签前缀
 
@@ -42,6 +43,16 @@
     ```
 
     详见：[文件上传适配器](/component/upload.html#文件上传适配器)
+
+    ## 配置初始`z-index`值
+
+    Morning UI在全局管理了所有组件的`z-index`值，默认从`1`或组件指定的值开始递增，若使用了此配置则组件的`z-index`将从（配置值）或（组件指定的值 + 配置值）开始递增。
+
+    ```js
+    Vue.use(morning, {
+        zIndex : 1000
+    });
+    ```
 
     </script>
     </doc-guide>

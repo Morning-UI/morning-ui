@@ -1,7 +1,210 @@
 mor-drawer{
     display: block;
     box-sizing: border-box;
+    position: fixed;
+    z-index: 999;
+    overflow: hidden;
+    pointer-events: none;
+    visibility: hidden;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
 
+    > .drawer-mask{
+        .setup-fullscreen-mask();
+    }
+
+    > .drawer-content{
+        position: absolute;
+        background-color: @colorWhite;
+        box-sizing: border-box;
+
+        > header{
+            font-size: @fontSize;
+            line-height: @headerHeight;
+            height: @headerHeight;
+            width: 100%;
+            padding: 0 1.5em;
+            box-sizing: border-box;
+            position: relative;
+            border-bottom: 1px @colorLightSilver solid;
+
+            h1{
+                font-size: @fontSize;
+                margin: 0;
+                padding: 0;
+                font-weight: 400;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+            }
+
+            mor-link{
+                position: absolute;
+                top: 0;
+                right: 1.5em;
+                line-height: 3em;
+                height: 3em;
+                font-size: initial;
+            }
+
+            mor-link > .iconfont,
+            mor-link > .mo-icon{
+                font-size: initial;
+            }
+        }
+
+        > footer{
+            font-size: @fontSize*0.8125;
+            line-height: @footerHeight;
+            height: @footerHeight;
+            width: 100%;
+            background: @colorExtraLightSilver;
+            color: @colorBlue;
+            padding: 0 1.5em;
+            box-sizing: border-box;
+            position: absolute;
+            bottom: 0;
+            text-align: left;
+            border-top: 1px @colorLightSilver solid;
+
+            > div{
+                position: relative;
+            }
+
+            .operate{
+                position: absolute;
+                right: 0;
+                top: 0;
+
+                > *{
+                    margin-left: 0.2em;
+                }
+            }
+        }
+
+        > .drawer-body{
+            overflow-y: auto;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+
+            .setup-scrollbar();
+        }
+    }
+
+    &.position-left,
+    &.position-right{
+        > .drawer-content{
+            top: 0;
+            height: 100%;
+        }
+
+        &.show > .drawer-content{
+            transform: translateX(0%);
+        }
+    }
+
+    &.position-left{
+        > .drawer-content{
+            left: 0;
+            box-shadow: 3px 0 3px rgba(0, 0, 0, 0.1);
+            transform: translateX(-100%);
+        }
+    }
+
+    &.position-right{
+        > .drawer-content{
+            right: 0;
+            box-shadow: -3px 0 3px rgba(0, 0, 0, 0.1);
+            transform: translateX(100%);
+        }
+    }
+
+    &.position-top,
+    &.position-bottom{
+        > .drawer-content{
+            left: 0;
+            width: 100%;
+        }
+
+        &.show > .drawer-content{
+            transform: translateY(0%);
+        }
+    }
+
+    &.position-top{
+        > .drawer-content{
+            top: 0;
+            box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
+            transform: translateY(-100%);
+        }
+    }
+
+    &.position-bottom{
+        > .drawer-content{
+            bottom: 0;
+            box-shadow: 0 -3px 3px rgba(0, 0, 0, 0.1);
+            transform: translateY(100%);
+        }
+    }
+
+    &.has-footer > .drawer-content > .drawer-body{
+        bottom: @footerHeight;
+    }
+
+    &.has-header > .drawer-content > .drawer-body{
+        top: @headerHeight;
+    }
+
+    &.show{
+        pointer-events: auto;
+        visibility: visible;
+
+        > .drawer-mask{
+            opacity: 1;
+        }
+    }
+
+    &.show-slide-out{
+        transition: visibility 0.3s;
+
+        > .drawer-mask{
+            transition: opacity 0.3s;
+        }
+
+        > .drawer-content{
+            // opacity: 0;
+            transition: transform 0.3s, margin 0.3s;
+        }
+
+        &.show{
+            > .drawer-content{
+                // opacity: 1;
+            }
+        }
+    }
+
+    &.show-no-animate{
+        transition: 0s;
+    
+        > .drawer-mask{
+            transition: 0s;
+        }
+
+        > .drawer-content{
+            opacity: 0;
+            transition: 0s;
+        }
+
+        &.show{
+            > .drawer-content{
+                opacity: 1;
+            }
+        }
+    }
     // default status
     &{}
 }

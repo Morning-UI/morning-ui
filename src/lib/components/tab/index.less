@@ -26,17 +26,18 @@ mor-tab{
             font-size: @fontSize*0.875;
             padding: 0.5em 1em;
             margin: 0 0.1em;
-            border-radius: @borderRadius @borderRadius 0 0;
             color: @tabFontColor;
             position: relative;
             background-color: @tabBgColor;
-            top: 1px;
             cursor: pointer;
             border: 1px @tabBorderColor solid;
-            border-bottom-width: 0;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+
+            + li{
+                margin-top: 0 !important;
+            }
 
             > i,
             > i.iconfont,
@@ -88,7 +89,31 @@ mor-tab{
         }
     }
 
-    &.position-left{
+    &.position-top,
+    &.position-bottom{}
+
+    &.position-top{
+        > ul{
+            > li{
+                border-radius: @borderRadius @borderRadius 0 0;
+                border-bottom-width: 0;
+                top: 1px;
+            }
+        }
+    }
+
+    &.position-bottom{
+        > ul{
+            > li{
+                border-radius: 0 0 @borderRadius @borderRadius;
+                border-top-width: 0;
+                bottom: 1px;
+            }
+        }
+    }
+
+    &.position-left,
+    &.position-right{
         font-size: 0;
 
         > ul{
@@ -97,12 +122,9 @@ mor-tab{
             display: inline-block;
 
             > li{
-                border-radius: @borderRadius 0 0 @borderRadius;
                 width: 100%;
                 border-bottom-width: 1px;
-                border-right-width: 0;
                 margin: 0.1em 0;
-                left: 1px;
                 top: 0;
 
                 &:first-child{
@@ -119,6 +141,33 @@ mor-tab{
             font-size: @fontSize*0.875;
             display: inline-block;
             vertical-align: top;
+        }
+    }
+
+    &.position-left{
+        > ul{
+            > li{
+                border-radius: @borderRadius 0 0 @borderRadius;
+                border-right-width: 0;
+                left: 1px;
+            }
+        }
+    }
+
+    &.position-right{
+        > ul{
+            > li{
+                border-radius: 0 @borderRadius @borderRadius 0;
+                border-left-width: 0;
+                left: -1px;
+            }
+        }
+    }
+
+    &.position-right,
+    &.position-bottom{
+        > .contents{
+            z-index: 2;
         }
     }
 
@@ -149,15 +198,8 @@ mor-tab{
                     color: @tabFontHoverColor;
                 }
 
-                &:not(:last-child){
-                    border-right-width: 0;
-                }
-
                 &.current{
                     border-color: @tabBorderCurrentColor;
-                    border-top: 1px @colorTheme solid;
-                    box-shadow: inset 0 3px 0 @colorTheme;
-                    border-bottom-width: 0;
                     background: @tabBgCurrentColor;
                     color: @tabFontCurrentColor;
                 }
@@ -171,24 +213,82 @@ mor-tab{
             }
         }
 
-        &.position-left{
+        &.position-top,
+        &.position-bottom{
+            > ul{
+                > li{
+                    &:not(:last-child){
+                        border-right-width: 0;
+                    }
+                }
+            }
+        }
+
+        &.position-top{
+            > ul{
+                > li{
+                    &.current{
+                        border-top: 1px @colorTheme solid;
+                        border-bottom-width: 0;
+                        box-shadow: inset 0 3px 0 @colorTheme;
+                    }
+                }
+            }
+        }
+
+        &.position-bottom{
+            > ul{
+                > li{
+                    &.current{
+                        border-bottom: 1px @colorTheme solid;
+                        border-top-width: 0;
+                        box-shadow: inset 0 -3px 0 @colorTheme;
+                    }
+                }
+            }
+        }
+
+        &.position-left,
+        &.position-right{
             ul{
                 display: inline-block;
 
                 > li{
                     &:not(:last-child){
                         border-bottom-width: 0;
+                        // border-right-width: 1px;
                     }
 
                     &.current{
                         border-top: 1px @tabBorderCurrentColor solid;
-                        border-left: 1px @colorTheme solid;
-                        box-shadow: inset 3px 0 0 @colorTheme;
-                        border-right-width: 0;
 
                         &:last-child{
                             border-bottom-width: 1px;
                         }
+                    }
+                }
+            }
+        }
+
+        &.position-left{
+            ul{
+                > li{
+                    &.current{
+                        border-left: 1px @colorTheme solid;
+                        box-shadow: inset 3px 0 0 @colorTheme;
+                        border-right-width: 0;
+                    }
+                }
+            }
+        }
+
+        &.position-right{
+            ul{
+                > li{
+                    &.current{
+                        border-right: 1px @colorTheme solid;
+                        box-shadow: inset -3px 0 0 @colorTheme;
+                        border-left-width: 0;
                     }
                 }
             }
@@ -198,17 +298,12 @@ mor-tab{
     &.line{
         > ul::before{
             content: ' ';
-            width: 100%;
-            height: 2px;
             position: absolute;
             background: @tabBorderColor;
-            left: 0;
-            bottom: 0;
         }
 
         > ul > li{
             border: none;
-            border-bottom: 2px @tabBorderCurrentColor solid;
             margin: 0;
             padding: 0.5em 1.3em;
             top: 0;
@@ -216,41 +311,115 @@ mor-tab{
 
             &:hover{
                 color: @tabFontHoverColor;
-                border-bottom-color: @tabBorderHoverColor;
             }
 
             &.current{
-                border-bottom-color: @colorTheme;
                 color: @tabFontCurrentColor;
             }
 
             &.disabled{
                 color: @tabFontDisabledColor;
-                border-bottom-color: darken(@tabBorderDisabledColor, 20%);
                 cursor: default;
             }
         }
 
-        > .contents{
-            border-top-width: 0;
+        &.position-top,
+        &.position-bottom{
+            > ul::before{
+                width: 100%;
+                height: 2px;
+                left: 0;
+            }
         }
 
-        &.position-left{
+        &.position-top{
+            > ul::before{
+                bottom: 0;
+            }
+
+            > ul{
+                > li{
+                    border-bottom: 2px @tabBorderCurrentColor solid;
+
+                    &:hover{
+                        border-bottom-color: @tabBorderHoverColor;
+                    }
+
+                    &.current{
+                        border-bottom-color: @colorTheme;
+                    }
+
+                    &.disabled{
+                        border-bottom-color: darken(@tabBorderDisabledColor, 20%);
+                    }
+                }
+            }
+
+            > .contents{
+                border-top-width: 0;
+            }
+        }
+
+        &.position-bottom{
+            > ul::before{
+                top: 0;
+            }
+
+            > ul{
+                > li{
+                    border-top: 2px @tabBorderCurrentColor solid;
+
+                    &:hover{
+                        border-top-color: @tabBorderHoverColor;
+                    }
+
+                    &.current{
+                        border-top-color: @colorTheme;
+                    }
+
+                    &.disabled{
+                        border-top-color: darken(@tabBorderDisabledColor, 20%);
+                    }
+                }
+            }
+
+            > .contents{
+                border-bottom-width: 0;
+            }
+        }
+
+        &.position-left,
+        &.position-right{
             > ul::before{
                 height: 100%;
                 width: 2px;
                 top: 0;
+            }
+
+            > ul > li{
+                border-bottom-width: 0;
+                left: 0;
+
+                &:hover{
+                    border-bottom-color: @tabBorderColor;
+                }
+            }
+
+            > .contents{
+                border-top-width: 1px;
+            }
+        }
+
+        &.position-left{
+            > ul::before{
                 left: auto;
                 right: 0;
             }
 
             > ul > li{
-                border-bottom-width: 0;
                 border-right: 2px @tabBorderCurrentColor solid;
-                left: 0;
 
                 &:hover{
-                    border-bottom-color: @tabBorderColor;
                     border-right-color: @tabBorderHoverColor;
                 }
 
@@ -261,7 +430,29 @@ mor-tab{
 
             > .contents{
                 border-left-width: 0;
-                border-top-width: 1px;
+            }
+        }
+
+        &.position-right{
+            > ul::before{
+                left: 0;
+                right: auto;
+            }
+
+            > ul > li{
+                border-left: 2px @tabBorderCurrentColor solid;
+
+                &:hover{
+                    border-left-color: @tabBorderHoverColor;
+                }
+
+                &.current{
+                    border-left-color: @colorTheme;
+                }
+            }
+
+            > .contents{
+                border-right-width: 0;
             }
         }
     }
@@ -269,65 +460,86 @@ mor-tab{
     &.btn{
         > ul > li{
             border: 1px @tabBorderColor solid;
-            border-right-width: 0;
             border-radius: 0;
             margin: 0;
             padding: 0.5em 1.3em;
             top: 0;
             background: @tabBgColor;
 
-            &:first-child{
-                border-radius: @borderRadius 0 0 @borderRadius;
-            }
-
-            &:last-child{
-                border-right: 1px @tabBorderColor solid;
-                border-radius: 0 @borderRadius @borderRadius 0;
-            }
-
             &:hover{
-                color: @tabFontHoverColor;
                 border-color: @tabBorderHoverColor;
-
-                + li{
-                    border-left: 1px @tabBorderHoverColor solid;
-                }
-
-                + li.current{
-                    border-left: 1px @colorTheme solid;
-                }
+                color: @tabFontHoverColor;
             }
 
             &.current{
                 color: @tabFontCurrentColor;
-                border-color: @colorTheme;
-                border-right-width: 1px;
                 background-color: @tabBgCurrentColor;
-
-                + li{
-                    border-left-width: 0;
-                }
+                border-color: @colorTheme;
             }
 
             &.disabled{
                 color: @tabFontDisabledColor;
-                border-color: @tabBorderDisabledColor;
                 background-color: @tabBgDisabledColor;
                 cursor: default;
+                border-color: @tabBorderDisabledColor;
             }
         }
 
-        > .contents{
-            margin-top: @fontSize/2;
+        &.position-top,
+        &.position-bottom{
+            > ul{
+                > li{
+                    border-right-width: 0;
+
+                    &:first-child{
+                        border-radius: @borderRadius 0 0 @borderRadius;
+                    }
+
+                    &:last-child{
+                        border-radius: 0 @borderRadius @borderRadius 0;
+                        border-right-width: 1px;
+                    }
+
+                    &:hover{
+                        + li{
+                            border-left: 1px @tabBorderHoverColor solid;
+                        }
+
+                        + li.current{
+                            border-left: 1px @colorTheme solid;
+                        }
+                    }
+
+                    &.current{
+                        border-right-width: 1px;
+
+                        + li{
+                            border-left-width: 0;
+                        }
+                    }
+                }
+            }
         }
 
-        &.position-left{
+        &.position-top{
+            > .contents{
+                margin-top: @fontSize/2;
+            }
+        }
+
+        &.position-bottom{
+            > .contents{
+                margin-bottom: @fontSize/2;
+            }
+        }
+
+        &.position-left,
+        &.position-right{
             > ul{
                 width: calc(20% - @fontSize/2);
             }
 
             > ul > li{
-                border-right-width: 1px;
                 border-bottom-width: 0;
                 padding: 0.5em;
                 left: 0;
@@ -345,15 +557,11 @@ mor-tab{
                     border-bottom-color: @tabBorderHoverColor;
 
                     + li{
-                        border-left-color: @tabBorderColor;
-                        border-left-width: 1px;
                         border-top-width: 1px;
                         border-top-color: @tabBorderHoverColor;
                     }
 
                     + li.current{
-                        border-left-color: @colorTheme;
-                        border-left-width: 1px;
                         border-top: 1px @colorTheme solid;
                     }
                 }
@@ -362,30 +570,109 @@ mor-tab{
                     border-bottom: 1px @colorTheme solid;
 
                     + li{
-                        border-left-width: 1px;
+                        border-right-width: 1px;
                         border-top-width: 0;
                     }
                 }
             }
 
             > .contents{
-                margin-left: @fontSize/2;
                 margin-top: 0;
+            }
+        }
+
+        &.position-left{
+            > ul > li{
+                border-right-width: 1px;
+
+                &:hover{
+                    + li{
+                        border-left-color: @tabBorderColor;
+                        border-left-width: 1px;
+                    }
+
+                    + li.current{
+                        border-left-color: @colorTheme;
+                        border-left-width: 1px;
+                    }
+                }
+
+                &.current{
+                    + li{
+                        border-left-width: 1px;
+                    }
+                }
+            }
+
+            > .contents{
+                margin-left: @fontSize/2;
+            }
+        }
+
+        &.position-right{
+            > ul > li{
+                border-left-width: 1px;
+
+                &:hover{
+                    + li{
+                        border-right-color: @tabBorderColor;
+                        border-right-width: 1px;
+                    }
+
+                    + li.current{
+                        border-right-color: @colorTheme;
+                        border-right-width: 1px;
+                    }
+                }
+
+                &.current{
+                    + li{
+                        border-right-width: 1px;
+                    }
+                }
+            }
+
+            > .contents{
+                margin-right: @fontSize/2;
             }
         }
     }
 
     &.noborder{
         > .contents{
-            border-bottom-width: 0;
             border-left-width: 0;
             border-right-width: 0;
         }
 
-        &.position-left{
+        &.position-top{
+            > .contents{
+                border-bottom-width: 0;
+            }
+        }
+
+        &.position-bottom{
             > .contents{
                 border-top-width: 0;
+            }
+        }
+
+        &.position-left,
+        &.position-right{
+            > .contents{
+                border-top-width: 0;
+                border-bottom-width: 0;
+            }
+        }
+
+        &.position-left{
+            > .contents{
                 border-left-width: 1px;
+            }
+        }
+
+        &.position-right{
+            > .contents{
+                border-right-width: 1px;
             }
         }
     }

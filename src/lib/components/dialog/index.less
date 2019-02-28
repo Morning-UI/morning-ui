@@ -14,15 +14,7 @@ mor-dialog{
     transition: 0.3s;
 
     > .mask{
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        left: 0;
-        top: 0;
-        background-color: rgba(0, 0, 0, 0.7);
-        opacity: 0;
-        transition: 0.2s;
-        pointer-events: none;
+        .setup-fullscreen-mask();
     }
 
     > .content{
@@ -30,7 +22,7 @@ mor-dialog{
         height: 50%;
         position: absolute;
         left: 50%;
-        background-color: #FFF;
+        background-color: @colorWhite;
         box-sizing: border-box;
 
         > .body{
@@ -91,10 +83,15 @@ mor-dialog{
             position: absolute;
             bottom: 0;
             text-align: left;
+            border-top: 1px @colorLightSilver solid;
+
+            > div{
+                position: relative;
+            }
 
             .operate{
                 position: absolute;
-                right: 1em;
+                right: 0;
                 top: 0;
 
                 > *{

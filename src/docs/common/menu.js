@@ -52,7 +52,7 @@ export default {
         下拉菜单 : '/component/dropdown.html',
         // 级联菜单<i class="tag new"></i> : 'b',
         // 树形控件 : 'b',
-        标签页 : '/component/tab.html',
+        '标签页<i class="tag update"></i>' : '/component/tab.html',
         折叠面板 : '/component/collapse.html',
         '树状控件<i class="tag new l1"></i>' : '/component/tree.html',
         表格 : '/component/table.html',

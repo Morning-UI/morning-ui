@@ -7,9 +7,9 @@ const runner = nightmare({
     show : false
 });
 
-let tagName = 'imagemap';
+let tagName = 'drawer';
 let docUrl = common.getE2eDocUrl(tagName);
-let basicDemo = `[name="开始"] mor-${tagName}`;
+let basicDemo = `mor-${tagName}`;
 
 let context = {
     tagName,
@@ -30,31 +30,13 @@ test.serial('basic style', async t => {
     t.plan(1);
 
     cleanstyle(result.style);
-    t.snapshot(result);
 
-});
-
-test.serial('state', async t => {
-
-    const result = await runner
-        .goto(docUrl)
-        .wait(basicDemo)
-        .evaluate(
-            eval(`(${common.e2eStatementFnString})`),
-            context,
-            'state_ndr',
-            [{
-                child : '.imagemap-operate',
-                attrs : [
-                    'border-color',
-                    'background'
-                ]
-            }]
-        );
-
-    t.plan(2);
+    // cause : circleci use other webkit.
+    delete result.style.blockSize;
+    delete result.style.height;
+    delete result.style.perspectiveOrigin;
+    delete result.style.webkitLogicalHeight;
 
     t.snapshot(result);
-    t.is(JSON.stringify(result.state_ndr.normal), JSON.stringify(result.default));
 
 });

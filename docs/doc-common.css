@@ -104,7 +104,7 @@ body > div > header .ds-dropdown-menu {
 body > div > header .ds-dataset-1 {
   width: 380px;
 }
-footer {
+body > div > footer {
   font-size: 12px;
   color: #aaa;
   padding: 30px 0;
@@ -113,17 +113,17 @@ footer {
   position: relative;
   line-height: 1.4em;
 }
-footer img {
+body > div > footer img {
   width: 43px;
   height: 40px;
   opacity: 0.8;
 }
-footer a,
-footer a:hover {
+body > div > footer a,
+body > div > footer a:hover {
   color: #aaa;
   text-decoration: none;
 }
-footer .tolab {
+body > div > footer .tolab {
   position: absolute;
   bottom: 3px;
   left: 50%;
