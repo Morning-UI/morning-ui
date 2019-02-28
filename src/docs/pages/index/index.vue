@@ -26,7 +26,7 @@
                 <div class="title">
                     应有尽有
                     <div class="sub">
-                        超过70款组件，几乎包含了构建WEB应用的所有需要。
+                        超过80款组件，几乎包含了构建WEB应用的所有需要。
                     </div>
                 </div>
                 <div class="vs">
@@ -43,15 +43,15 @@
                         <div class="bar">
                             <h3>Morning UI</h3>
                             <div class="bar-box">
-                                <div class="bar-same" style="width:calc(350 / 79 * 42px)"></div>
-                                <div class="bar-more morning" style="width:calc(350 / 79 * 37px)"></div>
+                                <div class="bar-same" style="width:calc(350 / 80 * 42px)"></div>
+                                <div class="bar-more morning" style="width:calc(350 / 80 * 38px)"></div>
                             </div>
                         </div>
                         <div class="bar">
                             <h3>Bootstrap</h3>
                             <div class="bar-box">
-                                <div class="bar-same" style="width:calc(350 / 79 * 42px)"></div>
-                                <div class="bar-more bootstrap" style="width:calc(350 / 79 * 8px)"></div>
+                                <div class="bar-same" style="width:calc(350 / 80 * 42px)"></div>
+                                <div class="bar-more bootstrap" style="width:calc(350 / 80 * 8px)"></div>
                             </div>
                         </div>
                         <div class="label">
@@ -85,15 +85,15 @@
                         <div class="bar">
                             <h3>Morning UI</h3>
                             <div class="bar-box">
-                                <div class="bar-same" style="width:calc(350 / 79 * 33px)"></div>
-                                <div class="bar-more morning" style="width:calc(350 / 79 * 46px)"></div>
+                                <div class="bar-same" style="width:calc(350 / 80 * 33px)"></div>
+                                <div class="bar-more morning" style="width:calc(350 / 80 * 47px)"></div>
                             </div>
                         </div>
                         <div class="bar">
                             <h3>Semantic UI</h3>
                             <div class="bar-box">
-                                <div class="bar-same" style="width:calc(350 / 79 * 33px)"></div>
-                                <div class="bar-more semantic" style="width:calc(350 / 79 * 11px)"></div>
+                                <div class="bar-same" style="width:calc(350 / 80 * 33px)"></div>
+                                <div class="bar-more semantic" style="width:calc(350 / 80 * 11px)"></div>
                             </div>
                         </div>
                         <div class="label">
@@ -127,15 +127,15 @@
                         <div class="bar">
                             <h3>Morning UI</h3>
                             <div class="bar-box">
-                                <div class="bar-same" style="width:calc(350 / 79 * 44px)"></div>
-                                <div class="bar-more morning" style="width:calc(350 / 79 * 35px)"></div>
+                                <div class="bar-same" style="width:calc(350 / 80 * 44px)"></div>
+                                <div class="bar-more morning" style="width:calc(350 / 80 * 36px)"></div>
                             </div>
                         </div>
                         <div class="bar">
                             <h3>Element UI</h3>
                             <div class="bar-box">
-                                <div class="bar-same" style="width:calc(350 / 79 * 44px)"></div>
-                                <div class="bar-more element" style="width:calc(350 / 79 * 2px)"></div>
+                                <div class="bar-same" style="width:calc(350 / 80 * 44px)"></div>
+                                <div class="bar-more element" style="width:calc(350 / 80 * 2px)"></div>
                             </div>
                         </div>
                         <div class="label">
@@ -169,15 +169,15 @@
                         <div class="bar">
                             <h3>Morning UI</h3>
                             <div class="bar-box">
-                                <div class="bar-same" style="width:calc(350 / 79 * 43px)"></div>
-                                <div class="bar-more morning" style="width:calc(350 / 79 * 36px)"></div>
+                                <div class="bar-same" style="width:calc(350 / 80 * 44px)"></div>
+                                <div class="bar-more morning" style="width:calc(350 / 80 * 36px)"></div>
                             </div>
                         </div>
                         <div class="bar">
                             <h3>iView UI</h3>
                             <div class="bar-box">
-                                <div class="bar-same" style="width:calc(350 / 79 * 43px)"></div>
-                                <div class="bar-more iview" style="width:calc(350 / 79 * 11px)"></div>
+                                <div class="bar-same" style="width:calc(350 / 80 * 44px)"></div>
+                                <div class="bar-more iview" style="width:calc(350 / 80 * 10px)"></div>
                             </div>
                         </div>
                         <div class="label">
@@ -211,15 +211,15 @@
                         <div class="bar">
                             <h3>Morning UI</h3>
                             <div class="bar-box">
-                                <div class="bar-same" style="width:calc(350 / 79 * 52px)"></div>
-                                <div class="bar-more morning" style="width:calc(350 / 79 * 27px)"></div>
+                                <div class="bar-same" style="width:calc(350 / 80 * 53px)"></div>
+                                <div class="bar-more morning" style="width:calc(350 / 80 * 27px)"></div>
                             </div>
                         </div>
                         <div class="bar">
                             <h3>Ant Design</h3>
                             <div class="bar-box">
-                                <div class="bar-same" style="width:calc(350 / 79 * 52px)"></div>
-                                <div class="bar-more antd" style="width:calc(350 / 79 * 11px)"></div>
+                                <div class="bar-same" style="width:calc(350 / 80 * 53px)"></div>
+                                <div class="bar-more antd" style="width:calc(350 / 80 * 10px)"></div>
                             </div>
                         </div>
                         <div class="label">

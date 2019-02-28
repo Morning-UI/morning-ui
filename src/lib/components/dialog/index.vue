@@ -25,6 +25,7 @@
         <footer v-show="data.hasFooter">
             <slot name="footer"></slot>
         </footer>
+
     </div>
         
     </mor-dialog>
@@ -166,7 +167,11 @@ export default {
 
                     this.data.showingTimeout = setTimeout(() => {
 
-                        this.data.show = show;
+                        this.Vue.nextTick(() => {
+
+                            this.data.show = show;
+                        
+                        });
 
                     });
 
@@ -191,7 +196,6 @@ export default {
             return this;
 
         }
-
     },
     updated : function () {
 

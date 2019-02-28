@@ -87,7 +87,9 @@ export default {
             default : 'top',
             validator : value => ([
                 'top',
-                'left'
+                'left',
+                'right',
+                'bottom'
             ].indexOf(value) !== -1)
         },
         disabledOptions : {
