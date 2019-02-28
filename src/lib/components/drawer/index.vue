@@ -42,6 +42,7 @@
 import PopupManager                 from 'Utils/PopupManager';
 
 const moveOffset = 30;
+const moveDelayTime = 150;
 
 export default {
     origin : 'UI',
@@ -293,7 +294,7 @@ export default {
 
                     this._moveParentDrawer(1);
 
-                }, 150);
+                }, moveDelayTime);
 
             } else {
 
