@@ -97,13 +97,13 @@
     >
         <header slot="header">请填写表单</header>
         <slot></slot>
-        <footer slot="footer">
-            <div>
+        <div slot="footer">
+            <div class="operate">
                 <!-- action="emit:toggle" -->
                 <morning-link class="margin" color="minor" @emit="_hideDialog">取消</morning-link>
                 <morning-btn color="success" @emit="_saveItem">确认</morning-btn>
             </div>
-        </footer>
+        </div>
     </morning-dialog>
 
     <morning-dialog
@@ -117,13 +117,13 @@
     >
         <header slot="header">请输入需要添加的项目</header>
         <morning-textarea :ref="'ui-multiform-batchinput-'+uiid"></morning-textarea>
-        <footer slot="footer">
-            <div>
+        <div slot="footer">
+            <div class="operate">
                 <!-- action="emit:toggle" -->
                 <morning-link class="margin" color="minor" @emit="_hideBatchDialog">取消</morning-link>
                 <morning-btn color="success" :ref="'ui-multiform-batchsave-'+uiid" @emit="_batchInput">确认</morning-btn>
             </div>
-        </footer>
+        </div>
     </morning-dialog>
 
     <morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn">清空</morning-link>

@@ -18,13 +18,14 @@
         :style="{width: conf.width, height: conf.height}"
     >
         
-        <header v-show="$slots.header && $slots.header[0].elm && $slots.header[0].elm.innerHTML !== ''">
+        <header v-show="data.hasHeader">
             <slot name="header"></slot>
         </header>
         <div class="body"><slot></slot></div>
-        <footer v-show="$slots.footer && $slots.footer[0].elm && $slots.footer[0].elm.innerHTML !== ''">
+        <footer v-show="data.hasFooter">
             <slot name="footer"></slot>
         </footer>
+
     </div>
         
     </mor-dialog>
@@ -115,6 +116,35 @@ export default {
             return (this.$el.classList.value.split(' ').indexOf('show') !== -1);
 
         },
+        _checkHeaderAndFooter : function () {
+
+            if (this.$slots.header &&
+                this.$slots.header[0] &&
+                this.$slots.header[0].elm &&
+                this.$slots.header[0].elm.innerHTML !== '') {
+
+                this.data.hasHeader = true;
+
+            } else {
+
+                this.data.hasHeader = false;
+
+            }
+
+            if (this.$slots.footer &&
+                this.$slots.footer[0] &&
+                this.$slots.footer[0].elm &&
+                this.$slots.footer[0].elm.innerHTML !== '') {
+
+                this.data.hasFooter = true;
+
+            } else {
+
+                this.data.hasFooter = false;
+
+            }
+
+        },
         toggle : function (show) {
 
             let isShown = this._isShown();
@@ -137,7 +167,11 @@ export default {
 
                     this.data.showingTimeout = setTimeout(() => {
 
-                        this.data.show = show;
+                        this.Vue.nextTick(() => {
+
+                            this.data.show = show;
+                        
+                        });
 
                     });
 
@@ -162,22 +196,15 @@ export default {
             return this;
 
         }
+    },
+    updated : function () {
+
+        this._checkHeaderAndFooter();
 
     },
     mounted : function () {
 
-        if (this.$slots.header) {
-
-            this.data.hasHeader = true;
-
-        }
-
-        if (this.$slots.footer) {
-
-            this.data.hasFooter = true;
-
-        }
-
+        this._checkHeaderAndFooter();
         this._popupShow();
 
     }

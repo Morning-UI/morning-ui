@@ -16,7 +16,7 @@
     - 主体
     - 操作区(尾部)
     
-    模拟盒支持两种不同的出现形式：
+    模拟盒支持三种不同的出现形式：
 
     - 上方出现：一般用在信息确认时，提供是或否的选择，较弱，尺寸一般较小。
     - 中间出现：一般用在填写内容或阅读内容时，较强，尺寸较大。
@@ -53,7 +53,7 @@
     ---
     #demo
     >desc
-    头部标题也可以在`<h1>`标签中。
+    头部标题也可以在`<h1>`标签中，通过`<ui-link>`来增加关闭按钮。。
     >tpl
     <div>
         <ui-dialog ref="demo3">
@@ -67,13 +67,14 @@
     :::
 
     :::vue
-    @name:当头部无内容时自动隐藏
+    @name:当头尾部无内容时自动隐藏
     ---
     #demo
     >tpl
     <div>
         <ui-dialog ref="demo4">
             <div slot="header"></div>
+            <div slot="footer"></div>
         </ui-dialog>
         <ui-link js="window.morning.findVM('demo4').toggle(true);">显示模拟盒</ui-link>
     </div>
