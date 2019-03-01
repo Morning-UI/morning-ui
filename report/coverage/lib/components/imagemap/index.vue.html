@@ -1512,13 +1512,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">171x</span>
-<span class="cline-any cline-yes">171x</span>
-<span class="cline-any cline-yes">171x</span>
+<span class="cline-any cline-yes">175x</span>
+<span class="cline-any cline-yes">175x</span>
+<span class="cline-any cline-yes">175x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">171x</span>
+<span class="cline-any cline-yes">175x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">171x</span>
+<span class="cline-any cline-yes">175x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -2509,7 +2509,7 @@
         @value-change="_uploadValueChange"
     &gt;&lt;/morning-upload&gt;
     
-    &lt;div class="operate" :class="{loading : data.imagesLoading}" v-show="data.imagesLoading || data.images.length &gt; 0" &gt;
+    &lt;div class="imagemap-operate" :class="{loading : data.imagesLoading}" v-show="data.imagesLoading || data.images.length &gt; 0" &gt;
 &nbsp;
         &lt;span v-show="data.imagesLoading"&gt;获取图片中...&lt;/span&gt;
 &nbsp;
@@ -2535,14 +2535,14 @@
 &nbsp;
         @show="_refreshScale"
     &gt;
-        &lt;header slot="header"&gt;
+        &lt;div slot="header"&gt;
             &lt;template v-if="conf.state === 'disabled' || conf.state === 'readonly'"&gt;
                 查看热区
             &lt;/template&gt;
             &lt;template v-else&gt;
                 绘制热区
             &lt;/template&gt;
-        &lt;/header&gt;
+        &lt;/div&gt;
     
         &lt;div
             class="maparea"
@@ -2583,18 +2583,18 @@
             &lt;/template&gt;
         &lt;/div&gt;
 &nbsp;
-        &lt;footer slot="footer"&gt;
+        &lt;div class="imagemap-dialog-footer" slot="footer"&gt;
             &lt;span class="note"&gt;
                 鼠标左键拖拽移动热区/调整尺寸，鼠标右键点击编辑数据
                 &lt;br&gt;
                 当前缩放：{{Math.round(this.data.scale * 100)}}%
                 &lt;morning-link color="info" size="s" @emit="morning.findVM('ui-imagemap-scaledialog-'+uiid).toggle(true)"&gt;设置&lt;/morning-link&gt;
             &lt;/span&gt;
-            &lt;div&gt;
+            &lt;div class="operate"&gt;
                 &lt;morning-link color="danger" class="clean-allzone-btn" v-if="conf.cleanAllzoneBtn &amp;&amp; (conf.state !== 'disabled' &amp;&amp; conf.state !== 'readonly')" @emit="_cleanAllzone"&gt;清除所有热区&lt;/morning-link&gt;
                 &lt;morning-btn color="minor" @emit="morning.findVM('ui-imagemap-mapdialog-'+uiid).toggle(false)"&gt;关闭&lt;/morning-btn&gt;
             &lt;/div&gt;
-        &lt;/footer&gt;
+        &lt;/div&gt;
         
     &lt;/morning-dialog&gt;
 &nbsp;
@@ -2605,9 +2605,9 @@
         height="90%"
         :ref="'ui-imagemap-zonedialog-'+uiid"
     &gt;
-        &lt;header slot="header"&gt;
+        &lt;div slot="header"&gt;
             编辑热区
-        &lt;/header&gt;
+        &lt;/div&gt;
 &nbsp;
         &lt;morning-tab class="block"&gt;
             &lt;div slot="数据" v-if="$scopedSlots.default || $slots.default"&gt;
@@ -2675,13 +2675,13 @@
             &lt;/div&gt;
         &lt;/morning-tab&gt;
 &nbsp;
-        &lt;footer slot="footer"&gt;
-            &lt;div&gt;
+        &lt;div class="imagemap-dialog-footer" slot="footer"&gt;
+            &lt;div class="operate"&gt;
                 &lt;morning-link color="minor" @emit="morning.findVM('ui-imagemap-zonedialog-'+uiid).toggle(false)"&gt;取消&lt;/morning-link&gt;
                 &lt;morning-btn color="danger" @emit="_removeZone" v-if="conf.state !== 'disabled' &amp;&amp; conf.state !== 'readonly'"&gt;删除&lt;/morning-btn&gt;
                 &lt;morning-btn color="success" @emit="_saveZoneModify" v-if="conf.state !== 'disabled' &amp;&amp; conf.state !== 'readonly'"&gt;保存&lt;/morning-btn&gt;
             &lt;/div&gt;
-        &lt;/footer&gt;
+        &lt;/div&gt;
         
     &lt;/morning-dialog&gt;
 &nbsp;
@@ -2692,9 +2692,9 @@
         height="300px"
         :ref="'ui-imagemap-scaledialog-'+uiid"
     &gt;
-        &lt;header slot="header"&gt;
+        &lt;div slot="header"&gt;
             设置编辑区域缩放
-        &lt;/header&gt;
+        &lt;/div&gt;
 &nbsp;
         &lt;morning-formgroup&gt;
             &lt;div class="item"&gt;
@@ -2710,11 +2710,11 @@
             &lt;/div&gt;
         &lt;/morning-formgroup&gt;
 &nbsp;
-        &lt;footer slot="footer"&gt;
-            &lt;div&gt;
+        &lt;div class="imagemap-dialog-footer" slot="footer"&gt;
+            &lt;div class="operate"&gt;
                 &lt;morning-link color="minor" @emit="morning.findVM('ui-imagemap-scaledialog-'+uiid).toggle(false)"&gt;关闭&lt;/morning-link&gt;
             &lt;/div&gt;
-        &lt;/footer&gt;
+        &lt;/div&gt;
         
     &lt;/morning-dialog&gt;
 &nbsp;
@@ -3688,7 +3688,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Feb 26 2019 15:43:42 GMT+0800 (CST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Mar 01 2019 12:52:36 GMT+0800 (CST)
 </div>
 </div>
 <script src="../../../prettify.js"></script>

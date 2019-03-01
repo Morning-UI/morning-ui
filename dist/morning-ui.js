@@ -25588,6 +25588,8 @@ var moveOffset = 30; //
 //
 //
 
+var moveDelayTime = 150;
+
 exports.default = {
     origin: 'UI',
     name: 'drawer',
@@ -25801,7 +25803,7 @@ exports.default = {
                 _this2.data.moveTimeout = setTimeout(function () {
 
                     _this2._moveParentDrawer(1);
-                }, 150);
+                }, moveDelayTime);
             } else {
 
                 _this2._moveParentDrawer(-1);
@@ -66225,7 +66227,7 @@ var morning = {
         white: 'wh'
     },
     isMorning: true,
-    version: '0.12.3',
+    version: '0.12.4',
     map: {}
 };
 

@@ -17,6 +17,32 @@
     <!-- ### 0.11.0 <ui-badge class="circle" s light-blue>Beta</ui-badge> -->
     
     ### 更新记录
+    
+    ### 0.12.4 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2019年3月1日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.4" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.4/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.4/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 新特性
+
+    - 新增`ui-drawer`抽屉组件
+    - `ui-tab`组件的`position`配置新增`right`和`bottom`两个值，可以分别设置位于右侧和底部的标签页
+    - Morning UI全局配置新增`zIndex`可用来配置组件初始`z-index`值，并以此递增
+    - Morning UI现在支持圆角定制化
+
+    #### 修复
+
+    - 修复所有使用`ui-dialog`的组件的弹窗尾部样式问题，以及内容更新会导致头部和尾部消失的问题
+    - 修复在线演示中Morning UI版本可能不正确的问题
+
+    ---
 
     ### 0.12.3 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
