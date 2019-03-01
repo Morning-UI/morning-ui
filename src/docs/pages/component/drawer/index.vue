@@ -162,7 +162,7 @@
     信息展示型的HTML内容。
     >tpl
     <div>
-        <ui-drawer ref="demo9">
+        <ui-drawer ref="demo9" width="400px">
             <ui-box class="margin">
                 <ui-header size="xs" color="extra-light-black" class="underline">
                     个人资料
