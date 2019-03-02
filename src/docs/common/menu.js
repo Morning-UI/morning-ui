@@ -62,6 +62,7 @@ export default {
         '模拟盒<i class="tag update l1"></i>' : '/component/dialog.html',
         '抽屉<i class="tag new"></i>' : '/component/drawer.html',
         // 消息提示 : 'b',
+        时间 : '/component/time.html',
         日历 : '/component/calendar.html',
         加载 : '/component/load.html',
         进度条 : '/component/progress.html',
