@@ -35,6 +35,9 @@ import {
 }                                   from 'date-fns';
 import locale                       from 'date-fns/locale/zh-CN';
 
+const num10 = 10;
+const oneSecond = 1000;
+
 export default {
     origin : 'UI',
     name : 'time',
@@ -81,7 +84,9 @@ export default {
 
             let date = this.conf.time;
 
+            /* eslint-disable vue/no-side-effects-in-computed-properties */
             this.data.realTimeCounter--;
+            /* eslint-enable vue/no-side-effects-in-computed-properties */
 
             if (this.data.isCountdownMode) {
 
@@ -128,9 +133,10 @@ export default {
 
                     future = subHours(future, hours);
 
-                    if (hours < 10) {
+                    if (hours < num10) {
 
                         hours = `0${hours}`;
+
                     }
 
                     distanceStr.push(`${hours}小时`);
@@ -143,9 +149,10 @@ export default {
 
                     future = subMinutes(future, minutes);
 
-                    if (minutes < 10) {
+                    if (minutes < num10) {
 
                         minutes = `0${minutes}`;
+
                     }
 
                     distanceStr.push(`${minutes}分`);
@@ -156,9 +163,10 @@ export default {
 
                 if (seconds >= 0) {
 
-                    if (seconds < 10) {
+                    if (seconds < num10) {
 
                         seconds = `0${seconds}`;
+
                     }
 
                     distanceStr.push(`${seconds}秒`);
@@ -179,15 +187,13 @@ export default {
                         addSuffix : '前'
                     });
 
-                } else {
-
-                    return formatDistance(date, new Date(), {
-                        locale,
-                        includeSeconds : true,
-                        addSuffix : '前'
-                    });
-
                 }
+
+                return formatDistance(date, new Date(), {
+                    locale,
+                    includeSeconds : true,
+                    addSuffix : '前'
+                });
 
             }
 
@@ -259,7 +265,7 @@ export default {
 
                 if (interval === true) {
 
-                    interval = 1000;
+                    interval = oneSecond;
 
                 }
 
