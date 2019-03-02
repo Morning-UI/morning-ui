@@ -13921,6 +13921,9 @@ mor-drawer.show-no-animate > .drawer-content {
 mor-drawer.show-no-animate.show > .drawer-content {
   opacity: 1;
 }
+mor-time {
+  display: inline-block;
+}
 mor-calendar {
   display: block;
   user-select: none;
