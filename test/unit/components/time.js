@@ -32,6 +32,11 @@ const testOptions = {
 
         return vm;
 
+    },
+    _baseTestHookBeforeSnapshot : async vm => {
+
+        vm.$el = String(vm.$el).replace('GMT+0000 (UTC)', 'GMT+0800 (CST)');
+
     }
 };
 
