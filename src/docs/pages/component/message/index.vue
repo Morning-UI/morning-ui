@@ -144,7 +144,7 @@
     ---
     #config
     >conf-desc
-    是否显示关闭消息的按钮，开启后用户可以主动关闭消息，否则消息会在`close-time`设置的时间后消失。
+    是否显示关闭消息的按钮，开启后用户可以主动关闭消息，否则消息会在`done-time`设置的时间后消失。
     >conf-accept
     `true`<br>`false`
     >conf-type
@@ -161,7 +161,7 @@
     :::
 
     :::vue
-    @name:close-time
+    @name:done-time
     ---
     #config
     >conf-desc
@@ -178,7 +178,7 @@
     将关闭时间缩短到1秒。
     >tpl
     <div>
-        <ui-message ref="demo9" :close-time="1000"></ui-message>
+        <ui-message ref="demo9" :done-time="1000"></ui-message>
         <ui-link js="window.morning.findVM('demo9').push('一条新消息('+new Date()+')');">推送一条新消息</ui-link>
     </div>
     ---
@@ -187,7 +187,7 @@
     将关闭时间设置为`false`，必需通过关闭按钮来关闭消息。
     >tpl
     <div>
-        <ui-message ref="demo17" :close-time="false" :close-btn="true"></ui-message>
+        <ui-message ref="demo17" :done-time="false" :close-btn="true"></ui-message>
         <ui-link js="window.morning.findVM('demo17').push('必需通过按钮关闭的消息');">推送一条新消息</ui-link>
     </div>
     :::
@@ -218,7 +218,7 @@
     ---
     #config
     >conf-desc
-    同时最多显示几条消息(仅针对当前的消息组件)，当有新的消息时，超出`max-show`的消息会被暂时隐藏。如果新的消息被手动关闭，被暂时隐藏的消息会重新显示，直至超过`close-time`。若设为`false`时则显示全部消息。
+    同时最多显示几条消息(仅针对当前的消息组件)，当有新的消息时，超出`max-show`的消息会被暂时隐藏。如果新的消息被手动关闭，被暂时隐藏的消息会重新显示，直至超过`done-time`。若设为`false`时则显示全部消息。
     >conf-accept
     Number : 最多显示消息的数量<br>`false` : 显示所有
     >conf-type
@@ -291,7 +291,7 @@
     #demo
     >tpl
     <div>
-        <ui-message ref="demo14" :close-time="30000" show-type="topright"></ui-message>
+        <ui-message ref="demo14" :done-time="30000" show-type="topright"></ui-message>
         <ui-link js="alert(window.demo15id = window.morning.findVM('demo14').push('一条新消息('+new Date()+')'))">推送一条新消息，并获取消息ID</ui-link><br>
         <ui-link js="window.morning.findVM('demo14').close(window.demo15id)">通过消息ID关闭消息</ui-link>
     </div>
