@@ -1274,6 +1274,7 @@ template {
 .ql-container.ql-snow {
   border: 1px solid #ccc;
 }
+/* stylelint-disable at-rule-empty-line-before */
 *,
 input,
 textarea {
@@ -1954,6 +1955,7 @@ textarea {
 .mor-media-volume .slider .note {
   display: none;
 }
+/* stylelint-disable at-rule-empty-line-before */
 mor-h {
   display: block;
   line-height: 1.6em;
@@ -2890,6 +2892,9 @@ mor-apparent.inline-block {
 mor-apparent.block {
   display: block;
 }
+/* stylelint-disable property-no-unknown,length-zero-no-unit */
+/* stylelint-disable selector-class-pattern */
+/* stylelint-enable selector-class-pattern */
 mor-grid {
   display: flex;
   width: 100%;
@@ -34187,6 +34192,9 @@ mor-divider::after {
   position: absolute;
   background-color: #E2E8EE;
 }
+mor-divider:not(.vertical) {
+  width: 100%;
+}
 mor-divider:not(.vertical)::before,
 mor-divider:not(.vertical)::after {
   height: calc(45% - 1em);
@@ -35676,7 +35684,7 @@ mor-formgroup .item > .content > p {
   transform-origin: 0;
 }
 mor-formgroup .item > .content > h6 + p {
-  margin: -0.15em 0 0.375em 0;
+  margin: -0.15em 0 0.375em;
 }
 mor-formgroup.inline > header {
   margin-bottom: 1.5em;
@@ -49364,3 +49372,5 @@ mor-private-tree ul.tree-body .tree-node.disabled > span .node-name {
 mor-private-tree ul.tree-body .tree-node.disabled > span .node-name:hover {
   background: #ebebeb !important;
 }
+/* stylelint-enable at-rule-empty-line-before */
+/* stylelint-enable at-rule-empty-line-before */
