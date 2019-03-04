@@ -1,3 +1,4 @@
+// Base Var
 @fontSize : 16px;
 @colorTheme : #F33D5D;
 @colorLightTheme : #F86F88;
@@ -21,11 +22,16 @@
 @colorLightGray : #F0F0F0;
 @colorWhite : #FFFFFF;
 @borderRadius : 3px;
+
+// Grid Var
 @gridColumnNumber : 24;
-@gridGutterWidth : 1%;
-@gridColumnWidth : round((100% - (@gridColumnNumber - 1)*@gridGutterWidth)/@gridColumnNumber, 4);
-@gridColumnWidthGapAverage : round((100% - (@gridColumnNumber + 1)*@gridGutterWidth)/@gridColumnNumber, 4);
-@gridColumnWidthWithoutGap : round(100%/@gridColumnNumber, 4);
+@gridGutterWidth : 8px;
+// @gridColumnWidth : %(~'%s% - %s', round((100% / @gridColumnNumber), 4), (@gridGutterWidth * (@gridColumnNumber - 1)));
+// @gridColumnWidth : round((100% - (@gridColumnNumber - 1)*@gridGutterWidth)/@gridColumnNumber, 4);
+// @gridColumnWidthGapAverage : round((100% - (@gridColumnNumber + 1)*@gridGutterWidth)/@gridColumnNumber, 4);
+// @gridColumnWidthWithoutGap : round(100%/@gridColumnNumber, 4);
+
+// Form Var
 @formHeight : 42px;
 @colorFormBorder : @colorGray;
 @colorFormBorderHover : darken(@colorGray, 6%);
