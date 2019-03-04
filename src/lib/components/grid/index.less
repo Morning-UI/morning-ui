@@ -1,3 +1,4 @@
+/* stylelint-disable property-no-unknown,length-zero-no-unit */
 @gutterSizes: {
     xs: 4px;
     s: 8px;
@@ -6,6 +7,7 @@
     xl: 36px;
     none: 0px;
 }
+/* stylelint-enable property-no-unknown,length-zero-no-unit */
 
 .generate-col(@prefix, @n, @spaceAround: false, @gutter: @gridGutterWidth, @i: 1) when (@i =< @n) {
     @gridColumnWidth : if((@spaceAround = true), %(~'(100% - %s * %s) / %s', @gutter, @n, @n), %(~'(100% - %s * (%s - 1)) / %s', @gutter, @n, @n));
@@ -37,7 +39,6 @@
 
     .@{prefix}push-@{i} when (@i < @n) {
         left: calc(@gridColumnWidth * @i + @gutter * @i);
-
     }
 
     .@{prefix}pull-@{i} when (@i < @n) {
@@ -51,6 +52,7 @@
     .generate-col(@prefix, @n, @spaceAround, @gutter, (@i + 1));
 }
 
+/* stylelint-disable selector-class-pattern */
 .grid(@prefix: ~'') {
     each(@gutterSizes, {
         &.space-around .row when (@key = m) {
@@ -72,6 +74,7 @@
         }
     });
 }
+/* stylelint-enable selector-class-pattern */
 
 mor-grid {
     display: flex;
