@@ -21,14 +21,16 @@
     >tpl
     <div style="width:500px;height:300px;border:1px solid #eee;">
         <ui-grid class="fill">
-            <div class="c-11">
-                <ui-center class="fill"><p>LEFT</p></ui-center>
-            </div>
-            <div class="c-2">
-                <ui-divider>OR</ui-divider>
-            </div>
-            <div class="c-11">
-                <ui-center class="fill"><p>RIGHT</p></ui-center>
+            <div class="row">
+                <div class="col-11">
+                    <ui-center class="fill"><p>LEFT</p></ui-center>
+                </div>
+                <div class="col-2">
+                    <ui-divider>OR</ui-divider>
+                </div>
+                <div class="col-11">
+                    <ui-center class="fill"><p>RIGHT</p></ui-center>
+                </div>
             </div>
         </ui-grid>
     </div>
@@ -61,14 +63,16 @@
     >tpl
     <div style="width:500px;height:300px;border:1px solid #eee;">
         <ui-grid class="fill">
-            <div class="c-11">
-                <ui-center class="fill"><p>LEFT</p></ui-center>
-            </div>
-            <div class="c-2">
-                <ui-divider></ui-divider>
-            </div>
-            <div class="c-11">
-                <ui-center class="fill"><p>RIGHT</p></ui-center>
+            <div class="row">
+                <div class="col-11">
+                    <ui-center class="fill"><p>LEFT</p></ui-center>
+                </div>
+                <div class="col-2">
+                    <ui-divider></ui-divider>
+                </div>
+                <div class="col-11">
+                    <ui-center class="fill"><p>RIGHT</p></ui-center>
+                </div>
             </div>
         </ui-grid>
     </div>
