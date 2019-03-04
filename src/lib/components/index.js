@@ -64,6 +64,7 @@ import _alert                       from './alert/index.vue';
 import carousel                     from './carousel/index.vue';
 import audio                        from './audio/index.vue';
 import video                        from './video/index.vue';
+import backtop                      from './backtop/index.vue';
 
 import textinput                    from './textinput/index.vue';
 import textarea                     from './textarea/index.vue';
@@ -161,6 +162,7 @@ export default {
     carousel,
     audio,
     video,
+    backtop,
     textinput,
     textarea,
     texteditor,

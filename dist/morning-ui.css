@@ -43251,6 +43251,44 @@ mor-video > video {
   background: #000;
   display: flex;
 }
+mor-backtop {
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  background-color: #A8B3C2;
+  cursor: pointer;
+  transition: background-color 0.2s, opacity 0.2s;
+  color: #45505C;
+  font-size: 14px;
+  padding: 0 1em;
+  opacity: 0;
+  pointer-events: none;
+}
+mor-backtop > i,
+mor-backtop > .mo-icon,
+mor-backtop > .iconfont {
+  color: #45505C;
+}
+mor-backtop.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+mor-backtop:hover {
+  background-color: #8E9CAF;
+  color: #17212D;
+}
+mor-backtop:hover > i,
+mor-backtop:hover > .mo-icon,
+mor-backtop:hover > .iconfont {
+  color: #17212D;
+}
+mor-backtop.fixed {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  z-index: 1;
+}
 mor-textinput {
   position: relative;
   z-index: 1;

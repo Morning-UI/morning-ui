@@ -77,6 +77,7 @@ export default {
         轮播 : '/component/carousel.html',
         音频 : '/component/audio.html',
         视频 : '/component/video.html',
+        '回到顶部<i class="tag new"></i>' : '/component/backtop.html',
         表单组件 : null,
         '文本输入<i class="tag update l2"></i>' : '/component/textinput.html',
         段落输入 : '/component/textarea.html',
