@@ -158,6 +158,8 @@
 
     - 所有组件配置中的`childs`字段已改为`children`，涉及：`ui-cascader`的`list`配置、`ui-menu`的`menu`配置、`ui-tree`的`tree`配置
 
+    ---
+
     ### 0.12.1 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="light-blue">
