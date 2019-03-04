@@ -216,7 +216,7 @@
     - `export-csv` : 导出CSV文件
     - `csv-name` : CSV文件的名称
     - `close-btn` : 关闭按钮
-    - `close-time` : 关闭时间
+    - `done-time` : 完成/关闭时间
     - `date` : 日期
     - `highlight-now` : 高亮当日
     - `highlight-day` : 高亮日期
@@ -334,6 +334,10 @@
     - `palettes` : 色板
     - `only-palettes` : 仅使用色板
     - `inside-padding` : 内部填充
+    - `relative` : 相对
+    - `strict` : 严格
+    - `real-time` : 实时
+    - `countdown` : 倒计
 
     </script>
     </doc-guide>
