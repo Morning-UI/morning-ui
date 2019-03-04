@@ -1,14 +1,3 @@
-/* stylelint-disable property-no-unknown,length-zero-no-unit */
-@gutterSizes: {
-    xs: 4px;
-    s: 8px;
-    m: 16px;
-    l: 24px;
-    xl: 36px;
-    none: 0px;
-}
-/* stylelint-enable property-no-unknown,length-zero-no-unit */
-
 .generate-col(@prefix, @n, @spaceAround: false, @gutter: @gridGutterWidth, @i: 1) when (@i =< @n) {
     @gridColumnWidth : if((@spaceAround = true), %(~'(100% - %s * %s) / %s', @gutter, @n, @n), %(~'(100% - %s * (%s - 1)) / %s', @gutter, @n, @n));
 
@@ -52,29 +41,36 @@
     .generate-col(@prefix, @n, @spaceAround, @gutter, (@i + 1));
 }
 
-/* stylelint-disable selector-class-pattern */
-.grid(@prefix: ~'') {
-    each(@gutterSizes, {
-        &.space-around .row when (@key = m) {
-            .generate-col(@prefix, @gridColumnNumber, true, @value);
+.gutterSize(@key, @size) {
+    &.space-around .row when (@key = m) {
+        .generate-col(@prefix, @gridColumnNumber, true, @size);
+    }
+
+    .row when (@key = m) {
+        .generate-col(@prefix, @gridColumnNumber, false, @size);
+    }
+
+    &.gutter-@{key}{
+        &.space-around .row{
+            .generate-col(@prefix, @gridColumnNumber, true, @size);
         }
 
-        .row when (@key = m) {
-            .generate-col(@prefix, @gridColumnNumber, false, @value);
+        .row{
+            .generate-col(@prefix, @gridColumnNumber, false, @size);
         }
-
-        &.gutter-@{key}{
-            &.space-around .row{
-                .generate-col(@prefix, @gridColumnNumber, true, @value);
-            }
-
-            .row{
-                .generate-col(@prefix, @gridColumnNumber, false, @value);
-            }
-        }
-    });
+    }
 }
-/* stylelint-enable selector-class-pattern */
+
+/* stylelint-disable length-zero-no-unit */
+.grid(@prefix: ~'') {
+    .gutterSize(xs, 4px);
+    .gutterSize(s, 8px);
+    .gutterSize(m, 16px);
+    .gutterSize(l, 24px);
+    .gutterSize(xl, 36px);
+    .gutterSize(none, 0px);
+}
+/* stylelint-enable length-zero-no-unit */
 
 mor-grid {
     display: flex;
