@@ -116,6 +116,7 @@
                 <li><a href="/component/tree.html">树状控件<p>&lt;tree></p></a></li>
                 <li><a href="/component/table.html">表格<p>&lt;table></p></a></li>
                 <li><a href="/component/carousel.html">轮播<p>&lt;carousel></p></a></li>
+                <li><a href="/component/time.html">时间<p>&lt;time></p></a></li>
                 <li><a href="/component/calendar.html">日历<p>&lt;calendar></p></a></li>
                 <li><a href="/component/audio.html">音频<p>&lt;audio></p></a></li>
                 <li><a href="/component/video.html">视频<p>&lt;video></p></a></li>

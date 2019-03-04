@@ -15,6 +15,7 @@ export default options => {
         uiid,
         delVmEl,
         _baseTestHookCustomMount,
+        _baseTestHookBeforeSnapshot,
         _formValueChangeSkipInvalidValueEmitTest,
         _formValueChangeSkipValueFilterEmitTest
     } = options;
@@ -41,6 +42,12 @@ export default options => {
             
             delete vm.$el;
         
+        }
+
+        if (_baseTestHookBeforeSnapshot) {
+
+            vm = await _baseTestHookBeforeSnapshot(vm);
+
         }
 
         snapshot(t, vm);

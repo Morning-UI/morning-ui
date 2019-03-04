@@ -38,7 +38,7 @@
     #demo
     >tpl
     <div style="width:400px;height:200px;background: #f6f6f6">
-        <ui-load :time="5000">5秒后加载成功</ui-load>
+        <ui-load :done-time="5000">5秒后加载成功</ui-load>
     </div>
     :::
 
@@ -49,7 +49,7 @@
     >tpl
     <div>
         <div style="width:400px;height:200px;background: #f6f6f6">
-            <ui-load ref="demo1" :time="false">加载成功</ui-load>
+            <ui-load ref="demo1" :done-time="false">加载成功</ui-load>
         </div>
         <ui-link js="window.morning.findVM('demo1').resolve();">完成加载</ui-link>
     </div>
@@ -62,7 +62,7 @@
     >tpl
     <div>
         <div style="width:400px;height:200px;background: #f6f6f6">
-            <ui-load ref="demo2" :time="false">加载失败</ui-load>
+            <ui-load ref="demo2" :done-time="false">加载失败</ui-load>
         </div>
         <ui-link js="window.morning.findVM('demo2').reject();">失败加载</ui-link>
     </div>
@@ -74,7 +74,7 @@
     #demo
     >tpl
     <div style="width:400px;height:200px;background: #f6f6f6">
-        <ui-load :time="false" note="加载中">加载成功</ui-load>
+        <ui-load :done-time="false" note="加载中">加载成功</ui-load>
     </div>
     :::
 
@@ -98,18 +98,18 @@
     size-repeat
     >tpl
     <div style="width:400px;height:200px;background: #f6f6f6">
-        <ui-load size="{$sizeKey}" :time="false" note="{$sizeName}">加载成功</ui-load>
+        <ui-load size="{$sizeKey}" :done-time="false" note="{$sizeName}">加载成功</ui-load>
     </div>
     :::
 
     [[[配置]]]
 
     :::vue
-    @name:time
+    @name:done-time
     ---
     #config
     >conf-desc
-    多少时间(ms)后完成加载，若设为false则需要手动完成或拒绝加载。如果当前正处于加载中，`time`改变后需要下次加载生效。
+    多少时间(ms)后完成加载，若设为false则需要手动完成或拒绝加载。如果当前正处于加载中，`done-time`改变后需要下次加载生效。
     >conf-accept
     时间值(ms)<br>`false`
     >conf-type
@@ -122,7 +122,7 @@
     设定一段时间后加载完成。
     >tpl
     <div style="width:400px;height:200px;background: #f6f6f6">
-        <ui-load :time="5000">5秒后加载成功</ui-load>
+        <ui-load :done-time="5000">5秒后加载成功</ui-load>
     </div>
     :::
 
@@ -142,7 +142,7 @@
     #demo
     >tpl
     <div style="width:400px;height:200px;background: #f6f6f6">
-        <ui-load :time="false" note="加载中">加载成功</ui-load>
+        <ui-load :done-time="false" note="加载中">加载成功</ui-load>
     </div>
     :::
 
@@ -161,7 +161,7 @@
     >tpl
     <div>
         <div style="width:400px;height:200px;background: #f6f6f6">
-            <ui-load ref="demo3" :time="false">加载成功</ui-load>
+            <ui-load ref="demo3" :done-time="false">加载成功</ui-load>
         </div>
         <ui-link js="window.morning.findVM('demo3').resolve();">完成加载</ui-link>
     </div>
@@ -180,7 +180,7 @@
     >tpl
     <div>
         <div style="width:400px;height:200px;background: #f6f6f6">
-            <ui-load ref="demo4" :time="false">加载成功</ui-load>
+            <ui-load ref="demo4" :done-time="false">加载成功</ui-load>
         </div>
         <ui-link js="window.morning.findVM('demo4').reject();">失败加载</ui-link>
     </div>
@@ -199,7 +199,7 @@
     >tpl
     <div>
         <div style="width:400px;height:200px;background: #f6f6f6">
-            <ui-load ref="demo5" :time="3000">加载成功</ui-load>
+            <ui-load ref="demo5" :done-time="3000">加载成功</ui-load>
         </div>
         <ui-link js="window.morning.findVM('demo5').reload();">重新加载</ui-link>
     </div>
@@ -218,7 +218,7 @@
     >tpl
     <div>
         <div style="width:400px;height:200px;background: #f6f6f6">
-            <ui-load ref="demo6" @emit="echo" :time="false">加载成功</ui-load>
+            <ui-load ref="demo6" @emit="echo" :done-time="false">加载成功</ui-load>
         </div>
         <ui-link js="window.morning.findVM('demo6').resolve();">触发emit</ui-link>
     </div>
@@ -243,7 +243,7 @@
     >tpl
     <div>
         <div style="width:400px;height:200px;background: #f6f6f6">
-            <ui-load ref="demo7" @done="echo" :time="false">加载成功</ui-load>
+            <ui-load ref="demo7" @done="echo" :done-time="false">加载成功</ui-load>
         </div>
         <ui-link js="window.morning.findVM('demo7').resolve();">触发done</ui-link>
     </div>
@@ -268,7 +268,7 @@
     >tpl
     <div>
         <div style="width:400px;height:200px;background: #f6f6f6">
-            <ui-load ref="demo8" @fail="echo" :time="false">加载失败</ui-load>
+            <ui-load ref="demo8" @fail="echo" :done-time="false">加载失败</ui-load>
         </div>
         <ui-link js="window.morning.findVM('demo8').reject();">触发fail</ui-link>
     </div>

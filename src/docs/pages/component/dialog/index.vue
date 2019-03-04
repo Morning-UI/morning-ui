@@ -139,14 +139,16 @@
     <div>
         <ui-dialog ref="demo8">
             <ui-grid class="fill">
-                <div class="c-11">
-                    <ui-center class="fill"><p>LEFT</p></ui-center>
-                </div>
-                <div class="c-2">
-                    <ui-divider>OR</ui-divider>
-                </div>
-                <div class="c-11">
-                    <ui-center class="fill"><p>RIGHT</p></ui-center>
+                <div class="row">
+                    <div class="col-11">
+                        <ui-center class="fill"><p>LEFT</p></ui-center>
+                    </div>
+                    <div class="col-2">
+                        <ui-divider>OR</ui-divider>
+                    </div>
+                    <div class="col-11">
+                        <ui-center class="fill"><p>RIGHT</p></ui-center>
+                    </div>
                 </div>
             </ui-grid>
         </ui-dialog>
@@ -165,14 +167,16 @@
         <ui-dialog ref="demo9" color="light-gray">
             <div slot="header">选择一张图片</div>
             <ui-grid class="fill">
-                <div class="c-11">
-                    <ui-center class="fill"><ui-img class="round" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img></ui-center>
-                </div>
-                <div class="c-2">
-                    <ui-divider>OR</ui-divider>
-                </div>
-                <div class="c-11">
-                    <ui-center class="fill"><ui-img class="round" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img></ui-center>
+                <div class="row">
+                    <div class="col-11">
+                        <ui-center class="fill"><ui-img class="round" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img></ui-center>
+                    </div>
+                    <div class="col-2">
+                        <ui-divider>OR</ui-divider>
+                    </div>
+                    <div class="col-11">
+                        <ui-center class="fill"><ui-img class="round" src="http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg"></ui-img></ui-center>
+                    </div>
                 </div>
             </ui-grid>
             <div slot="footer">
