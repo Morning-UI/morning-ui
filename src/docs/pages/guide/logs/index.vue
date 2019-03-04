@@ -17,6 +17,37 @@
     <!-- ### 0.11.0 <ui-badge class="circle" s light-blue>Beta</ui-badge> -->
     
     ### 更新记录
+
+    ### 0.12.5 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2019年3月4日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.5" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.5/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.5/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 新特性
+
+    - 新增`ui-time`组件
+    - `ui-grid`支持设置栅格列的位移，支持等宽栅格，支持水平和垂直对齐方式，支持设置栅格空隙尺寸
+
+    #### 改进
+
+    - 统一`ui-message`和`ui-load`组件中含义类似的配置名(`time`及`close-time`现在统一为`done-time`)
+
+    <ui-label color="primary">升级注意事项</ui-label>
+
+    - `ui-message`组件的`close-time`配置改名为`done-time`
+    - `ui-load`组件的`time` 配置改名为`done-time`
+    - 现在`ui-grid`中的`.c-[n]`改名为`.col-[n]`，且必须在`.row`中使用
+    - `ui-grid`组件的`avggap`样式类改名为`space-around`
+    - `ui-grid`组件的`nogap`样式类改名为`gutter-none`
+
+    ---
     
     ### 0.12.4 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 

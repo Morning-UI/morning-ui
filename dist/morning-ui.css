@@ -2892,9 +2892,8 @@ mor-apparent.inline-block {
 mor-apparent.block {
   display: block;
 }
-/* stylelint-disable property-no-unknown,length-zero-no-unit */
-/* stylelint-disable selector-class-pattern */
-/* stylelint-enable selector-class-pattern */
+/* stylelint-disable length-zero-no-unit */
+/* stylelint-enable length-zero-no-unit */
 mor-grid {
   display: flex;
   width: 100%;
