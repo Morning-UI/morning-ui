@@ -24,7 +24,7 @@ let Time = {
 
             return parseDate(
                 `${standardDate} ${str}`,
-                `YYYY-MM-DD ${format}`,
+                `yyyy-MM-dd ${format}`,
                 this._timeGetStandardDate()
             );
 

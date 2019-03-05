@@ -48,7 +48,7 @@ export default {
         },
         format : {
             type : String,
-            default : 'YYYY-MM-DD HH:mm:ss'
+            default : 'yyyy-MM-dd HH:mm:ss'
         },
         relative : {
             type : Boolean,

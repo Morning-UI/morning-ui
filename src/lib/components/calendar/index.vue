@@ -607,7 +607,7 @@ export default {
             this.data.monthPick = !!show;
 
         },
-        getDate : function (format) {
+        getDate : function (format = 'yyyy-MM-dd\'T\'HH:mm:ss.SSSxxx') {
 
             return formatDate(this.data.current, format);
 
@@ -772,8 +772,8 @@ export default {
 
         this.$watch('data.current', () => {
 
-            let lastMonth = formatDate(this.data.current, 'YYYY-MM');
-            let lastYear = formatDate(this.data.current, 'YYYY');
+            let lastMonth = formatDate(this.data.current, 'yyyy-MM');
+            let lastYear = formatDate(this.data.current, 'yyyy');
 
             this.$emit('change');
 

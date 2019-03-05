@@ -2911,7 +2911,7 @@ mor-grid .row .col {
   width: 100%;
 }
 mor-grid .row > [class*='col-'] {
-  display: flex;
+  display: block;
   box-sizing: border-box;
   flex-shrink: 0;
   flex-grow: 0;

@@ -340,7 +340,7 @@
     >method-desc
     将日历所在日期格式化后返回。
     >method-args
-    |format|YES|日期格式，采用`data-fns`进行格式化|格式化字符串，参数见[date-fns/format](https://date-fns.org/v1.29.0/docs/format)|`String`|`'YYYY-MM-DDTHH:mm:ss.SSSZ'`|
+    |format|YES|日期格式，采用`data-fns`进行格式化|格式化字符串，参数见[date-fns/format](https://date-fns.org/v2.0.0-alpha.27/docs/format)|`String`|`"yyyy-MM-dd'T'HH:mm:ss.SSSxxx"`|
     >method-return
     返回格式化后的日期字符串。
     ---
@@ -405,7 +405,7 @@
     将日历设定到指定的年份或月份。
     >method-args
     |value|NO|设置的数值|年份或月份|`Number`|`undefined`|
-    |unit|YES|设置年份或月份|`'year'`<br>`'month'`|`String`|`'month'`|
+    |unit|YES|设置年份或月份(月份从0开始)|`'year'`<br>`'month'`|`String`|`'month'`|
     >method-return
     当前组件VM实例。
     ---
@@ -417,7 +417,7 @@
         </div>
         <br>
         <ui-link js="window.morning.findVM('demo6').set(2009, 'year');">日历的年份设置到2009年</ui-link>
-        <ui-link js="window.morning.findVM('demo6').set(5, 'month');">日历的月份设置到5月</ui-link>
+        <ui-link js="window.morning.findVM('demo6').set(5, 'month');">日历的月份设置到6月</ui-link>
     </div>
     :::
 
@@ -488,6 +488,7 @@
         <div style="width:300px">
             <ui-calendar
                 ref="demo9"
+                :date="new Date('2017-10-01')"
                 :highlight-day="[
                     new Date('2017-11-05T13:00:00'),
                     [new Date('2017-11-03'), new Date('2017-11-11')],
@@ -518,7 +519,7 @@
     >tpl
     <div>
         <div style="width:300px">
-            <ui-calendar ref="demo10"></ui-calendar>
+            <ui-calendar ref="demo10" :date="new Date('2017-11-01')"></ui-calendar>
         </div>
         <br>
         <ui-link js="window.morning.findVM('demo10').setHighlight([new Date('2017-11-05'), [new Date('2017-11-07'), new Date('2017-11-11')], [new Date('2017-10-27'), new Date('2017-11-02')], [new Date('2017-12-07'), new Date('2017-12-20')], new Date('2017-12-15')])">高亮指定日期</ui-link>
@@ -572,29 +573,6 @@
         }
     }
     :::
-
-    :::vue
-    @name:year-change
-    ---
-    #event
-    >event-desc
-    当日历所在年份变化时触发。
-    ---
-    #demo
-    >tpl
-    <div style="width:300px">
-        <ui-calendar ref="demo13" @year-change="echo"></ui-calendar>
-        <ui-link js="window.morning.findVM('demo13').sub(1, 'year');">触发year-change事件</ui-link>
-    </div>
-    >script
-    {
-        methods : {
-            echo : function () {
-                console.log('demo13.console1', 'year-change event!');
-            }
-        }
-    }
-    :::
     
     :::vue
     @name:year-change
@@ -629,7 +607,7 @@
     #demo
     >tpl
     <div style="width:300px">
-        <ui-calendar ref="demo14" @highlight="echo"></ui-calendar>
+        <ui-calendar ref="demo14" @highlight="echo" :date="new Date('2017-01-01')"></ui-calendar>
         <ui-link js="window.morning.findVM('demo14').setHighlight([new Date('2017-01-01')]);">触发highlight事件</ui-link>
     </div>
     >script

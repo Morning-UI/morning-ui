@@ -30,7 +30,7 @@
     日期选择器允许用户自定日期格式，使用中文时间。
     >tpl
     <div style="width:300px;">
-        <ui-datepicker form-name="日期" :date="+new Date('2018-03-23')" format="YYYY年MM月DD日" v-model="value"></ui-datepicker>
+        <ui-datepicker form-name="日期" :date="+new Date('2018-03-23')" format="yyyy年MM月dd日" v-model="value"></ui-datepicker>
     </div>
     >script
     {
@@ -44,7 +44,7 @@
     使用简短的年份。<br><br>更多自定义格式见：[format配置](/component/datepicker.html#format)。
     >tpl
     <div style="width:300px;">
-        <ui-datepicker form-name="日期" :date="+new Date('2018-03-23')" format="YY年MM月DD日" v-model="value"></ui-datepicker>
+        <ui-datepicker form-name="日期" :date="+new Date('2018-03-23')" format="yy年MM月dd日" v-model="value"></ui-datepicker>
     </div>
     >script
     {
@@ -132,39 +132,41 @@
     `format`允许自定义组件展示的日期格式，支持以下占位符：
     |单位|占位符|示例|
     |-|-|-|
-    |年份|YY|00, 01, ..., 99|
-    ||YYYY|1900, 1901, ..., 2099|
+    |年份|yy|00, 01, ..., 99|
+    ||yyyy|1900, 1901, ..., 2099|
     |季度|Q|1, 2, 3, 4|
     ||Qo|1st, 2nd, 3rd, 4th|
+    ||QQ|01, 02, 03, 04|
+    ||QQQ|Q1, Q2, Q3, Q4|
     |月份|M|1, 2, ..., 12|
     ||Mo|1st, 2nd, ..., 12th|
     ||MM|01, 02, ..., 12|
     ||MMM|Jan, Feb, ..., Dec|
     ||MMMM|January, February, ..., December|
-    |一月中第几天|D|1, 2, ..., 31|
-    ||Do|1st, 2nd, ..., 31st|
-    ||DD|01, 02, ..., 31|
-    |一周中第几天|d|0, 1, ..., 6|
-    ||do|0th, 1st, ..., 6th|
-    ||dd|Su, Mo, ..., Sa|
-    ||ddd|Sun, Mon, ..., Sat|
-    ||dddd|Sunday, Monday, ..., Saturday|
-    |一年中第几天|DDD|1, 2, ..., 366|
+    |一月中第几天|d|1, 2, ..., 31|
+    ||do|1st, 2nd, ..., 31st|
+    ||dd|01, 02, ..., 31|
+    |一周中第几天|i|1, 2, 3, ..., 7|
+    ||io|1st, 2nd, ..., 7th|
+    ||iii|Mon, Tue, Wed, ..., Su|
+    ||iiii|Monday, Tuesday, ..., Sunday|
+    ||iiiiii|Mo, Tu, We, Th, Fr, Su, Sa|
+    |一年中第几天|D|1, 2, ..., 366|
+    ||DDD|001, 002, ..., 366|
     ||DDDo|1st, 2nd, ..., 366th|
-    ||DDDD|001, 002, ..., 366|
     >conf-accept
     日期格式化字符串(支持日期占位符见下方的演示)
     >conf-type
     String
     >conf-default
-    `'YYYY-MM-DD'`
+    `'yyyy-MM-dd'`
     ---
     #demo
     >desc
     采用`|`分隔日期。
     >tpl
     <div style="width:300px;">
-        <ui-datepicker form-name="日期" :date="+new Date('2018-03-23')" format="YYYY | MM | DD" v-model="value"></ui-datepicker>
+        <ui-datepicker form-name="日期" :date="+new Date('2018-03-23')" format="yyyy | MM | dd" v-model="value"></ui-datepicker>
     </div>
     >script
     {
@@ -178,7 +180,7 @@
     同时显示多种日期格式(显示多个日期时，最后一个优先级最高)。
     >tpl
     <div style="width:400px;">
-        <ui-datepicker form-name="日期" :date="+new Date('2018-03-23')" format="YYYY-MM-DD | MMM DD, YYYY" v-model="value"></ui-datepicker>
+        <ui-datepicker form-name="日期" :date="+new Date('2018-03-23')" format="yyyy-MM-dd | MMM dd, yyyy" v-model="value"></ui-datepicker>
     </div>
     >script
     {
