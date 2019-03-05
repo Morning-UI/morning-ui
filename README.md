@@ -38,7 +38,7 @@ Morning UI是一套桌面端UI组件库，基于[Vue.js](https://github.com/vuej
 ## 为什么要用 Morning UI？
 
 - 基于Vue.js，开箱即用，简单易学
-- 超过60个组件
+- 超过80个组件
 - 强大的表单组件，可用于生成复杂数据结构(包括对象和数组等)
 
 ## 安装

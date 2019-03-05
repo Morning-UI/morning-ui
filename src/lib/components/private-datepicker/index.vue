@@ -109,7 +109,7 @@ export default {
         },
         format : {
             type : String,
-            default : 'YYYY-MM-DD'
+            default : 'yyyy-MM-dd'
         },
         align : {
             type : String,

@@ -383,7 +383,7 @@ export default {
         },
         format : {
             type : String,
-            default : 'YYYY-MM-DD'
+            default : 'yyyy-MM-dd'
         },
         align : {
             type : String,
@@ -918,7 +918,7 @@ export default {
         },
         _syncValueFromInputToRootForClick : function (date) {
 
-            let val = this.get() || [];
+            let val = this.getDate() || [];
 
             if (!this.data.selected) {
 

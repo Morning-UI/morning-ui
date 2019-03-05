@@ -525,7 +525,7 @@
     :::
 
     :::vue
-    @name:list-end
+    @name:list-step
     ---
     #config
     >conf-desc

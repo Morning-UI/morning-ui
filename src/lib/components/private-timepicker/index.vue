@@ -285,7 +285,7 @@ export default {
                 second : '(ss|s)'
             };
             let result = this.conf.format.match(map[type]);
-            let leftString = formatDate(date, `${this.conf.format.slice(0, result.index)}`);
+            let leftString = formatDate(date, `${this.conf.format.slice(0, result.index) || ' '}`);
             let selfString = formatDate(date, `${this.conf.format.slice(result.index, result.index + result[0].length)}`);
 
             if (leftString === ' ' && result.index === 0) {

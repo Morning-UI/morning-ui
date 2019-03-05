@@ -12,7 +12,7 @@
 
     定义一个时间展示组件，这是一个内联块级元素。
     
-    时间展示组件可以用来展示各种格式的绝对时间和相对时间。
+    时间展示组件可以用来展示各种格式的绝对时间和相对时间，时间组件本身无样式可以通过额外的CSS来为时间组件添加样式。
 
     :::vue
     @name:使用
@@ -145,29 +145,30 @@
     <br><br>
     |单位|占位符|示例|
     |-|-|-|
-    |年份|YY|00, 01, ..., 99|
-    ||YYYY|1900, 1901, ..., 2099|
+    |年份|yy|00, 01, ..., 99|
+    ||yyyy|1900, 1901, ..., 2099|
     |季度|Q|1, 2, 3, 4|
     ||Qo|1st, 2nd, 3rd, 4th|
+    ||QQ|01, 02, 03, 04|
+    ||QQQ|Q1, Q2, Q3, Q4|
     |月份|M|1, 2, ..., 12|
     ||Mo|1st, 2nd, ..., 12th|
     ||MM|01, 02, ..., 12|
     ||MMM|Jan, Feb, ..., Dec|
     ||MMMM|January, February, ..., December|
-    |一月中第几天|D|1, 2, ..., 31|
-    ||Do|1st, 2nd, ..., 31st|
-    ||DD|01, 02, ..., 31|
-    |一周中第几天|d|0, 1, ..., 6|
-    ||do|0th, 1st, ..., 6th|
-    ||dd|Su, Mo, ..., Sa|
-    ||ddd|Sun, Mon, ..., Sat|
-    ||dddd|Sunday, Monday, ..., Saturday|
-    |一年中第几天|DDD|1, 2, ..., 366|
+    |一月中第几天|d|1, 2, ..., 31|
+    ||do|1st, 2nd, ..., 31st|
+    ||dd|01, 02, ..., 31|
+    |一周中第几天|i|1, 2, 3, ..., 7|
+    ||io|1st, 2nd, ..., 7th|
+    ||iii|Mon, Tue, Wed, ..., Su|
+    ||iiii|Monday, Tuesday, ..., Sunday|
+    ||iiiiii|Mo, Tu, We, Th, Fr, Su, Sa|
+    |一年中第几天|D|1, 2, ..., 366|
+    ||DDD|001, 002, ..., 366|
     ||DDDo|1st, 2nd, ..., 366th|
-    ||DDDD|001, 002, ..., 366|
-    |上午/下午|A|AM, PM|
-    ||a|am, pm|
-    ||aa|a.m., p.m.|
+    |上午/下午|a|AM, PM|
+    ||aaaa|a.m., p.m.|
     |小时|H|0, 1, ... 23|
     ||HH|00, 01, ... 23|
     ||h|0, 1, ... 12|
@@ -184,13 +185,13 @@
     >conf-type
     String
     >conf-default
-    `'YYYY-MM-DD HH:mm:ss'`
+    `'yyyy-MM-dd HH:mm:ss'`
     ---
     #demo
     >desc
     自定义绝对时间展示格式。
     >tpl
-    <ui-time :time="new Date()" format="YYYY | MM | DD | HH | mm | ss"></ui-time>
+    <ui-time :time="new Date()" format="yyyy | MM | dd | HH | mm | ss"></ui-time>
     :::
 
     :::vue

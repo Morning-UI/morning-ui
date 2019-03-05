@@ -118,7 +118,7 @@ export default {
         },
         format : {
             type : String,
-            default : 'YYYY-MM-DD HH:mm:ss'
+            default : 'yyyy-MM-dd HH:mm:ss'
         },
         align : {
             type : String,
@@ -311,7 +311,7 @@ export default {
 
             }
 
-            if (!this._checkSelectable(formatDate(date, this.conf.format))) {
+            if (!this._checkSelectable(date)) {
 
                 date = this._getClosestDate(date);
 
