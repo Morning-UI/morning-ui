@@ -94,6 +94,7 @@
                 <li><a href="/component/pagination.html">分页<p>&lt;pagination></p></a></li>
                 <li><a href="/component/breadcrumbs.html">面包屑<p>&lt;breadcrumbs></p></a></li>
                 <li><a href="/component/steps.html">步骤条<p>&lt;steps></p></a></li>
+                <li><a href="/component/backtop.html">返回顶部<p>&lt;backtop></p></a></li>
             </ul>
         </div>
         <div class="sub-group">
