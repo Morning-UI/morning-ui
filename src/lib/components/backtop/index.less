@@ -1,0 +1,46 @@
+mor-backtop{
+    display: inline-block;
+    height: @fontSize*2.5;
+    line-height: @fontSize*2.5;
+    text-align: center;
+    background-color: @colorExtraLightBlue;
+    cursor: pointer;
+    transition: background-color 0.2s, opacity 0.2s;
+    color: @colorExtraLightBlack;
+    font-size: @fontSize*0.875;
+    padding: 0 1em;
+    opacity: 0;
+    pointer-events: none;
+
+    > i,
+    > .mo-icon,
+    > .iconfont{
+        color: @colorExtraLightBlack;
+    }
+
+    &.show{
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    &:hover{
+        background-color: @colorLightBlue;
+        color: @colorBlack;
+
+        > i,
+        > .mo-icon,
+        > .iconfont{
+            color: @colorBlack;
+        }
+    }
+
+    &.fixed{
+        position: fixed;
+        bottom: @fontSize*2.5;
+        right: @fontSize*2.5;
+        z-index: 1;
+    }
+
+    // default status
+    &{}
+}
