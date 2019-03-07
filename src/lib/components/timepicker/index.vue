@@ -22,6 +22,7 @@
         :list-start="listStart"
         :list-end="listEnd"
         :list-step="listStep"
+        :relative="relative"
     >
     
     <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
@@ -31,7 +32,7 @@
             <i class='mo-icon mo-icon-time-co'></i>
         </div>
 
-        <template v-if="conf.isList">
+        <template v-if="conf.isList && !conf.relative">
             <template v-if="conf.isRange">
                 <morning-select
                     class="timepicker-select-0"
@@ -89,6 +90,7 @@
                     :format="conf.format"
                     :align="conf.align"
                     :selectable-range="conf.selectableRange"
+                    :relative="conf.relative"
 
                     @value-change="_syncValueFromInputToRoot"
                 >
@@ -105,6 +107,7 @@
                     :format="conf.format"
                     :align="conf.align"
                     :selectable-range="conf.selectableRange"
+                    :relative="conf.relative"
 
                     @value-change="_syncValueFromInputToRoot"
                 >
@@ -121,6 +124,7 @@
                     :format="conf.format"
                     :align="conf.align"
                     :selectable-range="conf.selectableRange"
+                    :relative="conf.relative"
 
                     @value-change="_syncValueFromInputToRoot"
                 >
@@ -136,7 +140,6 @@
  
 <script>
 import {
-    isValid,
     format as formatDate,
     addHours,
     addMinutes,
@@ -209,6 +212,10 @@ export default {
         listStep : {
             type : String,
             default : '00:30:00'
+        },
+        relative : {
+            type : Boolean,
+            default : false
         }
     },
     computed : {
@@ -228,7 +235,8 @@ export default {
                 list : this.list,
                 listStart : this.listStart,
                 listEnd : this.listEnd,
-                listStep : this.listStep
+                listStep : this.listStep,
+                relative : this.relative
             };
 
         },
@@ -241,7 +249,7 @@ export default {
         },
         timeList : function () {
 
-            if (!this.conf.isList) {
+            if (!(this.conf.isList && !this.conf.relative)) {
 
                 return {};
 
@@ -282,11 +290,7 @@ export default {
 
                     let date = this._timeStringToDate(list[i], this.conf.format);
 
-                    if (isValid(date)) {
-
-                        list[i] = formatDate(date, this.conf.format);
-
-                    }
+                    list[i] = formatDate(date, this.conf.format);
 
                 }
 
@@ -329,7 +333,12 @@ export default {
 
             if (typeof value === 'string') {
 
-                value = this._filterDateString(value);
+                if (!this.conf.relative ||
+                    (this.conf.relative && !this._timeIsRelativeTime(value))) {
+
+                    value = this._filterDateString(value);
+
+                }
 
             } else if (typeof value === 'object' && value instanceof Array) {
 
@@ -347,7 +356,12 @@ export default {
 
                     for (let k in value) {
 
-                        value[k] = this._filterDateString(value[k]);
+                        if (!this.conf.relative ||
+                            (this.conf.relative && !this._timeIsRelativeTime(value[k]))) {
+
+                            value[k] = this._filterDateString(value[k]);
+
+                        }
 
                     }
 
@@ -366,11 +380,9 @@ export default {
 
             }
 
-            let date = this._timeStringToDate(value, this.conf.format);
+            if (!this._timeStringIsValid(value, this.conf.format)) {
 
-            if (!isValid(date)) {
-
-                value = this._timeGetStandardDate();
+                value = formatDate(this._timeGetStandardDate(), this.conf.format);
 
             }
 
@@ -456,7 +468,7 @@ export default {
 
             let type = 'input';
 
-            if (this.conf.isList) {
+            if (this.conf.isList && !this.conf.relative) {
 
                 type = 'select';
 
@@ -528,17 +540,60 @@ export default {
         getDate : function () {
 
             let value = this.get();
+            let relativeTime;
 
             if (typeof value === 'string') {
 
-                return this._timeStringToDate(value, this.conf.format);
+                if (this.conf.relative) {
+
+                    relativeTime = this._timeParseRelativeTimeToObj(value);
+
+                }
+
+                if (this.conf.relative && relativeTime.relative) {
+
+                    return this._timeGetRelativeTime(relativeTime, this.conf.format);
+
+                } else {
+
+                    return this._timeStringToDate(value);
+
+                }
 
             } else if (value instanceof Array) {
 
-                return [
-                    this._timeStringToDate(value[0], this.conf.format),
-                    this._timeStringToDate(value[1], this.conf.format)
-                ];
+                let result = [];
+
+                if (this.conf.relative) {
+
+                    relativeTime = [
+                        this._timeParseRelativeTimeToObj(value[0]),
+                        this._timeParseRelativeTimeToObj(value[1])
+                    ];
+
+                }
+
+                if (this.conf.relative && relativeTime[0].relative) {
+
+                    result[0] = this._timeGetRelativeTime(relativeTime[0]);
+
+                } else {
+
+                    result[0] = this._timeStringToDate(value[0], this.conf.format);
+
+                }
+
+                if (this.conf.relative && relativeTime[1].relative) {
+
+                    result[1] = this._timeGetRelativeTime(relativeTime[1]);
+
+                } else {
+
+                    result[1] = this._timeStringToDate(value[1], this.conf.format);
+
+                }
+
+                return result;
 
             }
 

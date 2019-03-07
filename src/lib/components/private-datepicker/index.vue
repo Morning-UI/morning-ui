@@ -20,6 +20,8 @@
         :highlight-days="highlightDays"
         :date-select-add-class="dateSelectAddClass"
         :has-quick-pick="hasQuickPick"
+        :relative="relative"
+        :_relative-time="_relativeTime"
     >
 
     <morning-textinput
@@ -82,13 +84,14 @@ import {
 }                                   from 'date-fns';
 import without                      from 'lodash.without';
 import Dates                        from 'Utils/Dates';
+import DateTime                     from 'Utils/DateTime';
 import TipManager                   from 'Utils/TipManager';
 
 export default {
     origin : 'Form',
     private : true,
     name : 'private-datepicker',
-    mixins : [Dates, TipManager],
+    mixins : [Dates, DateTime, TipManager],
     props : {
         initValue : {
             type : String,
@@ -139,6 +142,14 @@ export default {
         hasQuickPick : {
             type : Boolean,
             default : false
+        },
+        relative : {
+            type : Boolean,
+            default : false
+        },
+        _relativeTime : {
+            type : Boolean,
+            default : false
         }
     },
     computed : {
@@ -156,7 +167,9 @@ export default {
                 showTimepickerBox : this.showTimepickerBox,
                 highlightDays : this.highlightDays,
                 dateSelectAddClass : this.dateSelectAddClass,
-                hasQuickPick : this.hasQuickPick
+                hasQuickPick : this.hasQuickPick,
+                relative : this.relative,
+                _relativeTime : this._relativeTime
             };
 
         },
@@ -181,6 +194,12 @@ export default {
 
         },
         backgroundMark : function () {
+
+            if (this.conf.relative) {
+
+                return;
+
+            }
 
             let marks = [];
 
@@ -228,13 +247,13 @@ export default {
 
             }
 
-            let date = this._dateStringToDate(value, this.conf.format);
+            if (this.conf.relative && this._isRelativeDate(value)) {
 
-            if (!isValid(date)) {
-
-                date = this._dateGetStandardDate();
+                return value;
 
             }
+
+            let date = this._dateStringToDate(value, this.conf.format);
 
             if (!this._checkSelectable(formatDate(date, this.conf.format))) {
 
@@ -243,6 +262,28 @@ export default {
             }
 
             return formatDate(date, this.conf.format);
+
+        },
+        _isRelativeDate : function (value) {
+
+            if (this.conf._relativeTime) {
+
+                return this._dtIsRelativeDatetime(value);
+
+            }
+
+            return this._dateIsRelativeDate(value);
+
+        },
+        _getRelativeDate : function (relativeObj) {
+
+            if (this.conf._relativeTime) {
+
+                return this._dtGetRelativeDatetime(relativeObj);
+
+            }
+
+            return this._dateGetRelativeDate(relativeObj);
 
         },
         _toggleSelector : function () {
@@ -289,11 +330,15 @@ export default {
 
                 this._set(undefined, true);
 
+            } else if (this.conf.relative && this._isRelativeDate(this.data.inputValue)) {
+
+                this._set(this.data.inputValue, true);
+
             } else {
 
                 let date = this._dateStringToDate(this.data.inputValue, this.conf.format);
 
-                if (!isValid(date)) {
+                if (!this._dateStringIsValid(this.data.inputValue, this.conf.format)) {
 
                     this._refreshInputValue();
 
@@ -371,7 +416,15 @@ export default {
 
             if (this.data.value !== undefined) {
 
-                dateString = formatDate(this._dateStringToDate(this.data.value, this.conf.format), this.conf.format);
+                if (this.conf.relative && this._isRelativeDate(this.data.value)) {
+
+                    dateString = this.data.value;
+
+                } else {
+
+                    dateString = formatDate(this._dateStringToDate(this.data.value, this.conf.format), this.conf.format);
+
+                }
 
             }
 
@@ -383,6 +436,7 @@ export default {
             let ranges = this.conf.selectableRange;
 
             if (!(ranges instanceof Array) ||
+                this.conf.relative ||
                 ranges.length === 0) {
 
                 return true;
@@ -404,9 +458,7 @@ export default {
                 start = startOfDay(start);
                 end = endOfDay(end);
 
-                if (isValid(start) &&
-                    isValid(end) &&
-                    isWithinInterval(date, {
+                if (isWithinInterval(date, {
                         start,
                         end
                     })) {
@@ -431,9 +483,7 @@ export default {
                         start = startOfDay(start);
                         end = endOfDay(end);
 
-                        if (isValid(start) &&
-                            isValid(end) &&
-                            isWithinInterval(date, {
+                        if (isWithinInterval(date, {
                                 start,
                                 end
                             })) {
@@ -601,8 +651,16 @@ export default {
             let valueDate = this.conf.date;
 
             if (value !== undefined) {
+
+                if (this.conf.relative && this._isRelativeDate(value)) {
+
+                    valueDate = this._getRelativeDate(this._dateParseRelativeDateToObj(value));
+
+                } else {
+
+                    valueDate = this._dateStringToDate(value, this.conf.format);
                 
-                valueDate = this._dateStringToDate(value, this.conf.format);
+                }
 
             }
 

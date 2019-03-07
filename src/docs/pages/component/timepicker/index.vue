@@ -86,6 +86,29 @@
     }
     :::
 
+    :::vue
+    @name:使用相对时间
+    ---
+    #demo
+    >desc
+    时间选择器也支持手动输入相对时间(需要开启`relative`配置)。
+    <br><br>
+    由于是相对时间，当通过`getDate()`方法获取时间时，结果会随着时间变化。
+    <br><br>
+    相对时间支持以某一时刻为起点的任意距离的时刻，详见[配置/relative](#relative)。
+    >tpl
+    <div style="width:300px;">
+        <ui-timepicker form-name="相对时间" relative v-model="value" ref="demo2"></ui-timepicker>
+        <ui-link js="console.log(morning.findVM('demo2').getDate());">获取一小时前的时间对象</ui-link>
+    </div>
+    >script
+    {
+        data : {
+            value : "now - 1h"
+        }
+    }
+    :::
+
     [[[形态]]]
 
     :::preset
@@ -250,6 +273,8 @@
     #config
     >conf-desc
     可选时间范围，若不设置则不限。这是一个数组，支持以下格式：<br><br>`[开始时间, 结束时间]`: 指定单个可选范围<br>`[[开始时间1, 结束时间1], [开始时间2, 结束时间2]]`: 指定多个可选范围<br><br>可选时间将大于等于`开始时间`，小于等于`结束时间`。<br><br>`开始时间`和`结束时间`均为时间字符串需要符合`format`配置的时间格式。
+    <br><br>
+    此配置无法和`relative`一起使用。
     >conf-accept
     时间范围数组
     >conf-type
@@ -426,6 +451,8 @@
     #config
     >conf-desc
     选择时间列表，开启后可指定可选的时间点。<br><br>通过`list`配置可以指定可选时间点的列表<br>通过`list-start`、`list-end`、`list-step`，可以设置开始/结束时间和步进来生成可选时间点的列表。
+    <br><br>
+    此配置无法和`relative`一起使用。
     >conf-accept
     `true`<br>`false`
     >conf-type
@@ -551,6 +578,97 @@
         <ui-timepicker form-name="时间" :is-list="true" list-start="09:00:00" list-end="15:00:00" list-step="01:30:00" :list="['21:00:00', '22:00:00']"></ui-timepicker>
     </div>
     :::
+
+    :::vue
+    @name:relative
+    ---
+    #config
+    >conf-desc
+    相对时间，开启后支持用户输入指定格式的相对时间，相对时间为某时刻开始距离一定时间的时刻。
+    <br><br>
+    开启后可以在时间选择器中输入`相对时间表达式`，格式如下：
+    <br>
+    `[开始时间] [操作符] [时间值][时间单位]`
+    <br><br>
+    - 开始时间包括：
+        - `now` : 当前时间
+        - `startOfSecond` : 当前秒的第一毫秒
+        - `endOfSecond` : 当前秒的最后一毫秒
+        - `startOfMinute` : 当前分钟的第一秒
+        - `endOfMinute` : 当前分钟的最后一秒
+        - `startOfHour` : 当前小时的第一分钟
+        - `endOfHour` : 当前小时的最后一分钟
+    - 操作符包括：
+        - `+` : 往后的时间
+        - `-` : 往前的时间
+    - 时间值 ： 一个数字，根据单位不同，代表不同的时间长度
+    - 时间单位包括（大小写敏感）：
+        - `ms` : 毫秒
+        - `s` : 秒
+        - `m` : 分钟
+        - `h` : 小时
+
+    `相对时间表达式`可以这么写：
+    - `startOfMinute` : 当前分钟的第一秒
+    - `now - 1h` : 1小时前
+    - `endOfHour + 1h` : 下一小时的最后一分钟
+
+    通过`getDate()`获取的时间对象，将依据`相对时间表达式`进行计算，不同的时间获取到的值将不同。
+    <br><br>
+    注意：使用此配置后`is-list`、`list`、`list-start`、`list-end`、`list-step`、`selectable-range`配置将失效。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >tpl
+    <div style="width:300px;">
+        <ui-timepicker form-name="相对时间" relative v-model="value" ref="demo3"></ui-timepicker>
+        <ui-link js="console.log(morning.findVM('demo3').getDate());">获取一小时前的时间对象</ui-link>
+    </div>
+    >script
+    {
+        data : {
+            value : "now - 1h"
+        }
+    }
+    ---
+    #demo
+    >desc
+    配合`is-range`一起使用。
+    >tpl
+    <div style="width:300px;">
+        <ui-timepicker form-name="相对时间" relative is-range v-model="value" ref="demo4"></ui-timepicker>
+        <ui-link js="console.log(morning.findVM('demo4').getDate());">获取5小时前至现在的时间对象</ui-link>
+    </div>
+    >script
+    {
+        data : {
+            value : ["now - 5h", "now"]
+        }
+    }
+    ---
+    #demo
+    >desc
+    和`is-list`一起使用，`is-list`将失效。
+    >tpl
+    <div style="width:300px;">
+        <ui-timepicker form-name="相对时间" relative :is-list="true" list-start="09:00:00" list-end="15:00:00" list-step="01:30:00"></ui-timepicker>
+    </div>
+    ---
+    #demo
+    >desc
+    和`selectable-range`一起使用，`selectable-range`将失效。
+    <br><br>
+    因为相对时间无法被限制范围。
+    >tpl
+    <div style="width:300px;">
+        <ui-timepicker form-name="相对时间" relative :selectable-range="['08:30:00', '12:00:00']"></ui-timepicker>
+    </div>
+    :::
     
     [[[方法]]]
 
@@ -567,6 +685,8 @@
     #method
     >method-desc
     获取当前选中时间的日期对象。
+    <br><br>
+    获取的日期对象，仅时间部分有效，日期部分均为起始位置。
     >method-return
     日期对象。
     ---
@@ -575,7 +695,7 @@
     <div style="width:300px;">
         <ui-timepicker ref="demo1" form-name="时间"></ui-timepicker>
         <br><br> 
-        <ui-link js="morning.findVM('demo1').getDate();">获取当前选中时间的日期对象</ui-link>
+        <ui-link js="console.log(morning.findVM('demo1').getDate());">获取当前选中时间的日期对象</ui-link>
     </div>
     :::
 
@@ -594,21 +714,23 @@
     #### 值类型
     
     - `Array` : 数组
-    - `String` : 字符串(按`format`配置格式化)
+    - `String` : 字符串(按`format`配置格式化)或`相对时间表达式`
 
     #### 值过滤
 
     - 若是范围时间选择(开启`isRange`配置)，则数值是一个字符串，则将数值转换成数组，该字符串作为第一项       
     - 若是单一时间选择(未开启`isRange`配置)，且数值是一个数组，则取第一项
+    - 若开启了`relative`配置且格式符合`相对时间表达式`则不做任何处理，否则进行下列判断
     - 若数值的类型是字符串则检测字符串的时间格式是否符合`format`配置，若不符合尝试转换成符合的格式，若无法转换则转换成`00:00:00`的符合`format`的时间字符串。
     - 若数值的类型是一个数组，且数组长度为`0`则转换为`undefined`
     - 若数值的类型是一个数组，且数组长度大于`2`，则过滤多余的项目，只保留两项
-    - 若数值的类型是一个数组，且数组长度大于`0`且小于`3`，会过滤数组中所有不是字符串类型的项目，然后按照第三条规则，对所有字符串项目进行过滤
+    - 若数值的类型是一个数组，且数组长度大于`0`且小于`3`，会过滤数组中所有不是字符串类型的项目，然后按照第3/4条规则，对所有字符串项目进行过滤
     
     #### 值格式
 
-    若是单一时间选择，则是时间字符串(符合`format`的格式化规则)
-    若是范围时间选择，则是长度为2的数组，数组中第一项是开始时间点的时间字符串(符合`format`的格式化规则)，数组中第二项是结束时间点的时间字符串(符合`format`的格式化规则)。
+    若是单一时间选择，则是时间字符串(符合`format`的格式化规则)或`相对时间表达式`
+
+    若是范围时间选择，则是长度为2的数组，数组中第一项是开始时间点的时间字符串(符合`format`的格式化规则)或`相对时间表达式`，数组中第二项是结束时间点的时间字符串(符合`format`的格式化规则)或`相对时间表达式`。
 
     #### 默认值
 

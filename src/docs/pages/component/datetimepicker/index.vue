@@ -52,6 +52,29 @@
     </div>
     :::
 
+    :::vue
+    @name:使用相对日期时间
+    ---
+    #demo
+    >desc
+    日期时间选择器也支持手动输入相对日期时间(需要开启`relative`配置)。
+    <br><br>
+    由于是相对日期时间，当通过`getDate()`方法获取日期时间时，结果会随着时间变化。
+    <br><br>
+    相对日期时间支持以某一日期时间为起点的任意距离的日期时间，详见[配置/relative](#relative)。
+    >tpl
+    <div style="width:300px;">
+        <ui-datetimepicker form-name="相对日期" relative v-model="value" ref="demo5"></ui-datetimepicker>
+        <ui-link js="console.log(morning.findVM('demo5').getDate());">获取一天前的时间对象</ui-link>
+    </div>
+    >script
+    {
+        data : {
+            value : "now - 1D"
+        }
+    }
+    :::
+
     [[[形态]]]
 
     :::preset
@@ -347,6 +370,8 @@
     #config
     >conf-desc
     可选日期时间范围，是一个连续的时间段，可以限制到的时分秒，若不设置则不限。这是一个数组，支持以下格式：<br><br>`[开始日期, 结束日期]`: 指定单个可选范围<br>`[[开始日期1, 结束日期1], [开始日期2, 结束日期2]]`: 指定多个可选范围<br><br>可选日期将大于等于`开始日期`，小于等于`结束日期`。<br><br>`开始日期`和`结束日期`均为日期字符串需要符合`format`配置的日期格式。
+    <br><br>
+    此配置无法和`relative`一起使用。
     >conf-accept
     日期范围数组
     >conf-type
@@ -417,6 +442,8 @@
     #config
     >conf-desc
     可选时间范围，若不设置则不限。这是一个数组，支持以下格式：<br><br>`[开始时间, 结束时间]`: 指定单个可选范围<br><br>可选时间将大于等于`开始时间`，小于等于`结束时间`。<br><br>`开始时间`和`结束时间`均为时间字符串需要符合`format`配置的时间格式。<br><br>此配置用于限制每天可选的时间范围(仅支持一个范围)，若需要限制一个时间段请使用`date-selectable-range`配置。<br><br>如同时配置了`date-selectable-range`则取可选范围的交集。
+    <br><br>
+    此配置无法和`relative`一起使用。
     >conf-accept
     时间范围数组
     >conf-type
