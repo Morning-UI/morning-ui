@@ -172,7 +172,7 @@ export default {
 
             if (this.data.show) {
 
-                if (!this.Tip.tether &&
+                if (!this.Tip.popper &&
                     this.data.$arrow) {
 
                     this.data.$wrap.style.minWidth = `${this.data.$wrap.offsetWidth + this.data.$arrow.offsetWidth}px`;

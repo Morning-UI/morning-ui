@@ -42,7 +42,7 @@
         <span id="demo33">鼠标悬浮显示小提示</span>
         <ui-tip target="#demo33" color="silver">
             <ui-h size="xxs" color="light-black">标题</ui-h>
-            <p style="max-width:200px;">很长很长的内容很长很长的内容很长很长的内容很长很长的内容很长很长的内容很长很长的内容很长很长的内容...</p>
+            <p>很长很长的内容很长很长的内容很长很长的内容很长很长的内容很长很长的内容很长很长的内容很长很长的内容很长很长的内容很长很长的内容很长很长的内容很长很长的内容很长很长的内容很长很长的内容很长很长的内容...</p>
         </ui-tip>
     </div>
     :::
@@ -93,14 +93,14 @@
         <br><br>
 
         <span id="demo26">多个不同位置小提示</span>
-        <ui-tip target="#demo26" offset="0 30px">小提示1</ui-tip>
-        <ui-tip target="#demo26" offset="0 -30px">小提示2</ui-tip>
+        <ui-tip target="#demo26" offset="30px, 0">小提示1</ui-tip>
+        <ui-tip target="#demo26" offset="-30px, 0">小提示2</ui-tip>
 
         <br><br>
 
         <span id="demo27">多个不同时机显示的小提示</span>
-        <ui-tip target="#demo27" offset="0 30px">小提示1</ui-tip>
-        <ui-tip target="#demo27" offset="0 -30px" :trigger-in-delay="500">小提示2</ui-tip>
+        <ui-tip target="#demo27" offset="30px, 0">小提示1</ui-tip>
+        <ui-tip target="#demo27" offset="-30px, 0" :trigger-in-delay="500">小提示2</ui-tip>
     </div>
     :::
 

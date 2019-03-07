@@ -48,7 +48,7 @@ export default {
         },
         offset : {
             type : String,
-            default : '0 0'
+            default : '0, 0'
         },
         trigger : {
             type : String,
@@ -61,8 +61,7 @@ export default {
         },
         autoReverse : {
             type : Boolean,
-            default : true,
-            validator : (value => (value >= 0))
+            default : true
         },
         align : {
             type : String,
@@ -87,8 +86,8 @@ export default {
         moreClass : function () {
 
             let classes = {
-                'only-has-text' : this.data.onlyHasText,
-                in : this.data.in
+                'only-has-text' : this.data.onlyHasText
+                // in : this.data.in
             };
 
             classes[`align-${this.conf.align}`] = true;
@@ -116,7 +115,7 @@ export default {
                 },
                 timeout : null,
                 onlyHasText : false,
-                in : false
+                // in : false
             }
         };
 
@@ -377,20 +376,29 @@ export default {
             this._checkOnlyHasText();
 
             this._tipCreate({
-                placement : this.conf.placement,
-                element : this.$el,
-                target : this.data.$target,
-                offset : this.conf.offset
+                popper : this.$el,
+                reference : this.data.$target,
+                options : {
+                    placement : this.conf.placement,
+                    modifiers : {
+                        offset : {
+                            offset : this.conf.offset
+                        },
+                        flip : {
+                            enabled : this.conf.autoReverse
+                        }
+                    }
+                }
             });
 
-            this.data.in = true;
+            // this.data.in = true;
             this._showComplete();
 
-            this.Vue.nextTick(() => {
+            // this.Vue.nextTick(() => {
 
-                this._tipUpdate();
+            //     this._tipUpdate();
     
-            });
+            // });
 
             return this;
 
@@ -403,7 +411,7 @@ export default {
 
             }
 
-            this.data.in = false;
+            // this.data.in = false;
             this._tipDestroy();
             this._hideComplete();
 
@@ -436,7 +444,7 @@ export default {
     mounted : function () {
 
         this.Trigger.triggers = this.conf.trigger;
-        this.Tip.autoReverse = this.conf.autoReverse;
+        // this.Tip.autoReverse = this.conf.autoReverse;
         this.Tip.align = this.conf.align;
 
         this.$watch('conf.triggerInDelay', () => {
@@ -484,15 +492,25 @@ export default {
 
         this.$watch('conf.placement', () => {
 
-            this._tipUpdate({
-                placement : this.conf.placement
+            this._tipUpdateOptions({
+                options : {
+                    placement : this.conf.placement
+                }
             });
 
         });
 
         this.$watch('conf.autoReverse', () => {
 
-            this.Tip.autoReverse = this.conf.autoReverse;
+            this._tipUpdateOptions({
+                options : {
+                    modifiers : {
+                        flip : {
+                            enabled : this.conf.autoReverse
+                        }
+                    }
+                }
+            })
 
         });
 
@@ -504,8 +522,14 @@ export default {
 
         this.$watch('conf.offset', () => {
 
-            this._tipUpdate({
-                offset : this.conf.offset
+            this._tipUpdateOptions({
+                options : {
+                    modifiers : {
+                        offset : {
+                            offset : this.conf.offset
+                        }
+                    }
+                }
             });
 
         });
