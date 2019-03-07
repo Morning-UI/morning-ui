@@ -73,7 +73,7 @@ let Time = {
 
                 result = isValid(this._timeStringToDate(str, format, false));
 
-            } catch(e) {}
+            } catch (e) {}
 
             return result;
 

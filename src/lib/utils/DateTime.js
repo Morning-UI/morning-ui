@@ -1,11 +1,7 @@
-import {
-    isValid,
-    parse as parseDate,
-    format as formatDate
-}                                   from 'date-fns';
 import DateTimeCore                 from './DateTimeCore';
 
 let DateTime = {
+    mixins : [DateTimeCore],
     data : function () {
 
         return {};

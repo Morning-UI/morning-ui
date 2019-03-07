@@ -36,7 +36,7 @@
             :format="conf.format"
             :align="conf.align"
             :quick-pick="conf.quickPick"
-            :quick-pick-unit="1000"
+            :_quick-pick-unit="1000"
             :selectable-range="conf.dateSelectableRange"
             :is-range="conf.isRange"
             :range-input-direction="conf.rangeInputDirection"
@@ -388,7 +388,6 @@ export default {
         },
         _syncFromRootToChild : function () {
 
-
             let $date = this.$refs[`ui-datetimepicker-date-${this.uiid}`];
             let $time = this.$refs[`ui-datetimepicker-time-${this.uiid}`];
             let $time2 = this.$refs[`ui-datetimepicker-time2-${this.uiid}`];
@@ -556,29 +555,61 @@ export default {
             if (isSet) {
 
                 if (date instanceof Date) {
+
+                    if (this.conf.relative && this._dtIsRelativeDatetime(date)) {
     
-                    this._set(formatDate(date, this.conf.format), true);
+                        this._set(date, true);
+
+                    } else {
+    
+                        this._set(formatDate(date, this.conf.format), true);
+
+                    }
 
                 } else if (date instanceof Array) {
 
                     if (date.length === 1) {
 
-                        this._set(
-                            [
-                                formatDate(date[0], this.conf.format)
-                            ],
-                            true
-                        );
+                        if (this.conf.relative && this._dtIsRelativeDatetime(date[0])) {
+        
+                            this._set(date[0], true);
+
+                        } else {
+
+                            this._set(
+                                [
+                                    formatDate(date[0], this.conf.format)
+                                ],
+                                true
+                            );
+
+                        }
 
                     } else {
 
-                        this._set(
-                            [
-                                formatDate(date[0], this.conf.format),
-                                formatDate(date[1], this.conf.format)
-                            ],
-                            true
-                        );
+                        let value = [];
+
+                        if (this.conf.relative && this._dtIsRelativeDatetime(date[0])) {
+        
+                            value[0] = date[0];
+
+                        } else {
+
+                            value[0] = formatDate(date[0], this.conf.format);
+
+                        }
+
+                        if (this.conf.relative && this._dtIsRelativeDatetime(date[1])) {
+        
+                            value[1] = date[1];
+
+                        } else {
+
+                            value[1] = formatDate(date[1], this.conf.format);
+
+                        }
+
+                        this._set(value, true);
 
                     }
 
@@ -843,11 +874,11 @@ export default {
                 let start = this._dateStringToDate(ranges[0], this.conf.format);
                 let end = this._dateStringToDate(ranges[1], this.conf.format);
 
-                if (isWithinInterval(date, {
-                        start,
-                        end
-                    })) {
-                    
+                if (isWithinInterval(this._dateStringToDate(date), {
+                    start,
+                    end
+                })) {
+                
                     found = true;
 
                 }
@@ -864,10 +895,10 @@ export default {
                         let start = this._dateStringToDate(range[0], this.conf.format);
                         let end = this._dateStringToDate(range[1], this.conf.format);
 
-                        if (isWithinInterval(date, {
-                                start,
-                                end
-                            })) {
+                        if (isWithinInterval(this._dateStringToDate(date), {
+                            start,
+                            end
+                        })) {
 
                             found = true;
 
@@ -898,11 +929,9 @@ export default {
 
                     return this._dtGetRelativeDatetime(relativeDate);
 
-                } else {
-
-                    return this._dateStringToDate(value, this.conf.format);
-
                 }
+                
+                return this._dateStringToDate(value, this.conf.format);
 
             } else if (value instanceof Array) {
 

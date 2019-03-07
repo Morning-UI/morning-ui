@@ -459,9 +459,9 @@ export default {
                 end = endOfDay(end);
 
                 if (isWithinInterval(date, {
-                        start,
-                        end
-                    })) {
+                    start,
+                    end
+                })) {
                     
                     found = true;
 
@@ -484,9 +484,9 @@ export default {
                         end = endOfDay(end);
 
                         if (isWithinInterval(date, {
-                                start,
-                                end
-                            })) {
+                            start,
+                            end
+                        })) {
                             
                             found = true;
 

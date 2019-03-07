@@ -13,7 +13,6 @@
         :format="format"
         :align="align"
         :quick-pick="quickPick"
-        :quick-pick-unit="quickPickUnit"
         :selectable-range="selectableRange"
         :show-timepicker-box="showTimepickerBox"
         :is-range="isRange"
@@ -24,6 +23,7 @@
         :end-name="endName"
         :done-hidden="doneHidden"
         :relative="relative"
+        :_quick-pick-unit="_quickPickUnit"
         :_relative-time="_relativeTime"
     >
 
@@ -158,8 +158,9 @@
                                     :key="index"
                                     @click="_quickPickDate([new Date(), _addYears(new Date(), pick.replace(/(未来 | 年)/g, ''))])"
                                 >{{pick}}</li>
+
                                 <li
-                                    v-if="typeof pick === 'object' && pick.start instanceof Date && pick.end instanceof Date"
+                                    v-if="typeof pick === 'object'"
                                     :key="index"
                                     @click="_quickPickDate([pick.start, pick.end])"
                                 >{{pick.name}}</li>
@@ -322,13 +323,7 @@
                                 >{{pick}}</li>
 
                                 <li
-                                    v-if="typeof pick === 'object' && typeof pick.pick === 'number'"
-                                    :key="index"
-                                    @click="_quickPickDate(_addMilliseconds(new Date(), pick.pick * conf.quickPickUnit))"
-                                >{{pick.name}}</li>
-
-                                <li
-                                    v-if="typeof pick === 'object' && pick.pick instanceof Date"
+                                    v-if="typeof pick === 'object'"
                                     :key="index"
                                     @click="_quickPickDate(pick.pick)"
                                 >{{pick.name}}</li>
@@ -402,7 +397,7 @@ export default {
             type : Array,
             default : (() => [])
         },
-        quickPickUnit : {
+        _quickPickUnit : {
             type : Number,
             default : (NUM_60 * NUM_60 * NUM_1K)
         },
@@ -463,7 +458,6 @@ export default {
                 format : this.format,
                 align : this.align,
                 quickPick : this.quickPick,
-                quickPickUnit : this.quickPickUnit,
                 selectableRange : this.selectableRange,
                 showTimepickerBox : this.showTimepickerBox,
                 isRange : this.isRange,
@@ -474,6 +468,7 @@ export default {
                 endName : this.endName,
                 doneHidden : this.doneHidden,
                 relative : this.relative,
+                _quickPickUnit : this._quickPickUnit,
                 _relativeTime : this._relativeTime
             };
 
@@ -838,6 +833,7 @@ export default {
                 } else {
 
                     start = this._dateStringToDate(value[0], this.conf.format);
+                
                 }
 
             }
@@ -851,6 +847,7 @@ export default {
                 } else {
 
                     end = this._dateStringToDate(value[1], this.conf.format);
+                
                 }
 
             }
@@ -1154,11 +1151,10 @@ export default {
                         val[0] = input0Val;
 
                     } else {
-                        
+
                         val[0] = formatDate(input0Val, this.conf.format);
 
                     }
-
 
                     if (this.conf.relative && this._isRelativeDate(input1Val)) {
 
@@ -1302,35 +1298,97 @@ export default {
         },
         _quickPickDate : function (date) {
 
-            if (date instanceof Date &&
-                !this.conf.isRange) {
+            if (!this.conf.isRange) {
 
-                this._set(formatDate(date, this.conf.format));
+                if (this.conf.relative &&
+                    typeof date === 'string' &&
+                    this._isRelativeDate(date)) {
 
-                if (this.$slots.timepicker &&
-                    this.$slots.timepicker[0] &&
-                    this.$slots.timepicker[0].children &&
-                    this.$slots.timepicker[0].children[0]) {
+                    this._set(date);
 
-                    let $timepicker = this.$slots.timepicker[0].children[0].componentInstance;
-
-                    $timepicker._set(formatDate(date, $timepicker.conf.format));
+                    return;
 
                 }
 
-            }
+                if (typeof date === 'number') {
 
-            if (date instanceof Array &&
-                date[0] instanceof Date &&
-                date[1] instanceof Date &&
-                this.conf.isRange) {
+                    date = addMilliseconds(new Date(), date * this.conf._quickPickUnit);
 
-                this._set([
-                    formatDate(date[0], this.conf.format),
-                    formatDate(date[1], this.conf.format)
-                ]);
+                }
 
-                if (this.$slots.timepicker &&
+                if (date instanceof Date) {
+
+                    if (this.$slots.timepicker &&
+                        this.$slots.timepicker[0] &&
+                        this.$slots.timepicker[0].children &&
+                        this.$slots.timepicker[0].children[0]) {
+
+                        let $timepicker = this.$slots.timepicker[0].children[0].componentInstance;
+
+                        $timepicker._set(formatDate(date, $timepicker.conf.format));
+
+                    }
+
+                    this._set(formatDate(date, this.conf.format));
+
+                }
+
+            } else if (date instanceof Array) {
+
+                let value = [];
+                let value1IsRelative = false;
+                let value2IsRelative = false;
+
+                if (this.conf.relative &&
+                    typeof date[0] === 'string' &&
+                    this._isRelativeDate(date[0])) {
+
+                    value[0] = date[0];
+                    value1IsRelative = true;
+
+                } else {
+
+                    if (typeof date[0] === 'number') {
+
+                        date[0] = addMilliseconds(new Date(), date[0] * this.conf._quickPickUnit);
+
+                    }
+
+                    if (date[0] instanceof Date) {
+
+                        value[0] = formatDate(date[0], this.conf.format);
+
+                    }
+
+                }
+
+                if (this.conf.relative &&
+                    typeof date[1] === 'string' &&
+                    this._isRelativeDate(date[1])) {
+
+                    value[1] = date[1];
+                    value2IsRelative = true;
+
+                } else {
+
+                    if (typeof date[1] === 'number') {
+
+                        date[1] = addMilliseconds(new Date(), date[1] * this.conf._quickPickUnit);
+
+                    }
+
+                    if (date[1] instanceof Date) {
+
+                        value[1] = formatDate(date[1], this.conf.format);
+
+                    }
+
+                }
+
+                this._set(value);
+
+                if (!value1IsRelative &&
+                    this.$slots.timepicker &&
                     this.$slots.timepicker[0] &&
                     this.$slots.timepicker[0].children &&
                     this.$slots.timepicker[0].children[0]) {
@@ -1341,7 +1399,8 @@ export default {
 
                 }
 
-                if (this.$slots.timepicker2 &&
+                if (!value2IsRelative &&
+                    this.$slots.timepicker2 &&
                     this.$slots.timepicker2[0] &&
                     this.$slots.timepicker2[0].children &&
                     this.$slots.timepicker2[0].children[0]) {
@@ -1379,11 +1438,9 @@ export default {
 
                     return this._getRelativeDate(relativeDate);
 
-                } else {
-
-                    return this._dateStringToDate(value, this.conf.format);
-
                 }
+
+                return this._dateStringToDate(value, this.conf.format);
 
             } else if (value instanceof Array) {
 

@@ -12,6 +12,8 @@
 
     定义日期时间选择器。
 
+    注意：日期时间选择器的`set()` / `get()`方法设置/获取的数值为格式化后的日期时间字符串，如需获取可计算的日期对象，请使用`getDate()`方法。
+
     :::vue
     @name:使用
     ---
@@ -259,7 +261,35 @@
     ---
     #config
     >conf-desc
-    显示快速选择项，这个配置是一个数组，数组中的每一项都是一个快速选择项目。<br><br>数组项支持两种类型：<br><br>__关键词__ ：支持字符串格式的快速选择关键词。<br><br>未开启`is-range`情况下包括：`今天`、`昨天`、`明天`、`n 秒前`、`n 分钟前`、`n 小时前`、`n 天前`、`n 周前`、`n 月前`、`n 年前`、`n 秒后`、`n 分钟后`、`n 小时后`、`n 天后`、`n 周后`、`n 月后`、`n 年后`(需要注意`n`后面有空格)，例如：`2 天前`、`3 周前`。<br><br>开启`is-range`情况下包括：`本周`、`本月`、`今年`、`最近 n 秒`、`最近 n 分钟`、`最近 n 小时`、`最近 n 天`、`最近 n 周`、`最近 n 月`、`最近 n 年`、`未来 n 秒`、`未来 n 分钟`、`未来 n 小时`、`未来 n 天`、`未来 n 周`、`未来 n 月`、`未来 n 年`(需要注意`n`前后有空格)，例如：`未来 2 周`、`最近 3 月`。<br><br>__时间设置__：是一个对象。<br><br>未开启`is-range`情况下包含`name`和`pick`两个属性。<br>`name`是快速选择项展现的名称。<br>`pick`支持`数字`或`日期对象`。若`pick`是`数字`则代表相对秒数，会选中当前日期时间和`pick`相加后的日期时间，所以`pick`是负数代表过去的日期时间，正数则代表未来的日期时间。若`pick`是`日期对象`则会选中`pick`所表示的日期时间。<br><br>开启`is-range`情况下包含`name`、`start`、`end`三个属性。<br>`name`是快速选择项展现的名称。<br>`start`和`end`是`日期对象`分别表示选择日期时间段的开始和结束。<br><br>你可以混合使用多种类型的快速选择项(详见[下面的示例](#quick-pick))。
+    显示快速选择项，这个配置是一个数组，数组中的每一项都是一个快速选择项目。
+    <br><br>
+    数组项支持三种类型：
+    <br><br>
+    __关键词__ ：支持字符串格式的快速选择关键词。
+    <br><br>
+    未开启`is-range`情况下包括：`今天`、`昨天`、`明天`、`n 秒前`、`n 分钟前`、`n 小时前`、`n 天前`、`n 周前`、`n 月前`、`n 年前`、`n 秒后`、`n 分钟后`、`n 小时后`、`n 天后`、`n 周后`、`n 月后`、`n 年后`(需要注意`n`后面有空格)，例如：`2 天前`、`3 周前`。
+    <br><br>
+    开启`is-range`情况下包括：`本周`、`本月`、`今年`、`最近 n 秒`、`最近 n 分钟`、`最近 n 小时`、`最近 n 天`、`最近 n 周`、`最近 n 月`、`最近 n 年`、`未来 n 秒`、`未来 n 分钟`、`未来 n 小时`、`未来 n 天`、`未来 n 周`、`未来 n 月`、`未来 n 年`(需要注意`n`前后有空格)，例如：`未来 2 周`、`最近 3 月`。
+    <br><br>
+    __时间设置__：是一个对象。
+    <br><br>
+    未开启`is-range`情况下包含`name`和`pick`两个属性。<br>`name`是快速选择项展现的名称。
+    <br><br>
+    `pick`支持`数字`、`日期对象`、`相对日期时间表达式`。
+    <br>
+    若`pick`是`数字`则代表相对秒数，会选中当前日期时间和`pick`相加后的日期时间，所以`pick`是负数代表过去的日期时间，正数则代表未来的日期时间。
+    <br>
+    若`pick`是`日期对象`则会选中`pick`所表示的日期时间。
+    <br>
+    若`pick`是`相对日期时间表达式`，必须开启`relative`配置，详见：[配置/relative](#relative)。
+    <br><br>
+    开启`is-range`情况下包含`name`、`start`、`end`三个属性。
+    <br><br>
+    `name`是快速选择项展现的名称。
+    <br>
+    `start`和`end`是`日期对象`分别表示选择日期时间段的开始和结束（支持`数字`、`日期对象`、`相对日期时间表达式`）。
+    <br><br>
+    你可以混合使用多种类型的快速选择项(详见[下面的示例](#quick-pick))。
     >conf-accept
     字符串(关键词)<br>对象(时间设置)
     >conf-type
@@ -340,6 +370,7 @@
     <div style="width:460px;">
         <ui-datetimepicker
             form-name="日期"
+            is-range
             :quick-pick="[
                 '本周',
                 '本月',
@@ -359,7 +390,60 @@
                     end: new Date('2017-12-31 23:59:59')
                 }
             ]"
+        ></ui-datetimepicker>
+    </div>
+    ---
+    #demo
+    >desc
+    开启`relative`配置，并设置`相对日期时间表达式`。相对日期时间详见：[配置/relative](#relative)
+    >tpl
+    <div style="width:300px;">
+        <ui-datetimepicker
+            form-name="日期时间"
+            relative
+            :quick-pick="[
+                {
+                    name: '五分钟前',
+                    pick : 'now - 5m'
+                },
+                {
+                    name: '季度末',
+                    pick : 'endOfQuarter'
+                },
+                {
+                    name : '年度初',
+                    pick : 'startOfYear'
+                }
+            ]"
+        ></ui-datetimepicker>
+    </div>
+    ---
+    #demo
+    >desc
+    开启`relative`和`is-range`配置，配合`相对日期时间表达式`。相对日期时间详见：[配置/relative](#relative)
+    >tpl
+    <div style="width:460px;">
+        <ui-datetimepicker
+            form-name="日期时间"
             is-range
+            relative
+            :quick-pick="[
+                {
+                    name : '近一小时',
+                    start : 'now - 1h',
+                    end : 'now'
+                },
+                {
+                    name : '本周截止目前',
+                    start : 'startOfWeek',
+                    end : 'now'
+                },
+                {
+                    name: '本季度',
+                    start : 'startOfQuarter',
+                    end : 'endOfQuarter'
+                }
+            ]"
         ></ui-datetimepicker>
     </div>
     :::
@@ -680,6 +764,119 @@
     </div>
     :::
 
+    :::vue
+    @name:relative
+    ---
+    #config
+    >conf-desc
+    相对日期时间，开启后支持用户输入指定格式的相对日期时间，相对日期时间为某日期时间开始距离一定时间的日期时间。
+    <br><br>
+    开启后可以在日期时间选择器中输入`相对日期时间表达式`，格式如下：
+    <br>
+    `[开始日期/时间] [操作符] [日期/时间值][日期/时间单位]`
+    <br><br>
+    - 开始日期/时间包括：
+        - `now` : 当前时间
+        - `startOfSecond` : 当前秒的第一毫秒
+        - `endOfSecond` : 当前秒的最后一毫秒
+        - `startOfMinute` : 当前分钟的第一秒
+        - `endOfMinute` : 当前分钟的最后一秒
+        - `startOfHour` : 当前小时的第一分钟
+        - `endOfHour` : 当前小时的最后一分钟
+        - `startOfDay` : 当天的第一小时
+        - `endOfDay` : 当天的最后一小时
+        - `startOfWeex` : 本周的第一天
+        - `endOfWeex` : 本周的最后一天
+        - `startOfMonth` : 本月的第一天
+        - `endOfMonth` : 本月的最后一天
+        - `startOfQuarter` : 本季度的第一天
+        - `endOfQuarter` : 本季度的最后一天
+        - `startOfYear` : 本年的第一天
+        - `endOfYear` : 本年的最后一天
+    - 操作符包括：
+        - `+` : 往后的日期时间
+        - `-` : 往前的日期时间
+    - 日期/时间值 ： 一个数字，根据单位不同，代表不同的时间长度
+    - 日期/时间单位包括（大小写敏感）：
+        - `ms` : 毫秒
+        - `s` : 秒
+        - `m` : 分钟
+        - `h` : 小时
+        - `D` : 天
+        - `W` : 周
+        - `M` : 月
+        - `Q` : 季度
+        - `Y` : 年
+
+    `相对日期时间表达式`可以这么写：
+    - `now - 1m` : 一分钟前
+    - `now - 1W` : 一周前
+    - `startOfQuarter + 1Q` : 下个季度的第一天
+
+    通过`getDate()`获取的日期对象，将依据`相对日期时间表达式`进行计算，不同的时间获取到的值将不同。
+    <br><br>
+    注意：使用此配置后`date-selectable-range`和`time-selectable-range`配置将失效。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >tpl
+    <div style="width:300px;">
+        <ui-datetimepicker form-name="相对日期" relative v-model="value" ref="demo6"></ui-datetimepicker>
+        <ui-link js="console.log(morning.findVM('demo6').getDate());">获取一天前的时间对象</ui-link>
+    </div>
+    >script
+    {
+        data : {
+            value : "now - 1D"
+        }
+    }
+    ---
+    #demo
+    >desc
+    配合`is-range`一起使用。
+    >tpl
+    <div style="width:300px;">
+        <ui-datetimepicker form-name="相对日期" relative is-range v-model="value" ref="demo7"></ui-datetimepicker>
+        <ui-link js="console.log(morning.findVM('demo7').getDate());">获取5小时前至现在的时间对象</ui-link>
+    </div>
+    >script
+    {
+        data : {
+            value : ["now - 5h", "now"]
+        }
+    }
+    ---
+    #demo
+    >desc
+    设置当天的开始至结束。
+    >tpl
+    <div style="width:420px;">
+        <ui-datetimepicker form-name="相对日期" relative is-range v-model="value" ref="demo8"></ui-datetimepicker>
+        <ui-link js="console.log(morning.findVM('demo8').getDate());">获取当天的开始至结束的时间对象</ui-link>
+    </div>
+    >script
+    {
+        data : {
+            value : ["startOfDay", "endOfDay"]
+        }
+    }
+    ---
+    #demo
+    >desc
+    与`date-selectable-range`和`time-selectable-range`一起使用，`date-selectable-range`和`time-selectable-range`将失效。
+    <br><br>
+    因为相对日期时间无法被限制范围。
+    >tpl
+    <div style="width:300px;">
+        <ui-datetimepicker form-name="相对日期" relative :date="+new Date('2018-03-23')" :date-selectable-range="['2018-03-08 12:30:00', '2018-03-23 20:00:00']" :time-selectable-range="['08:00:00', '18:00:00']"></ui-datetimepicker>
+    </div>
+    :::
+
     [[[方法]]]
 
     :::preset
@@ -687,6 +884,26 @@
     @uikey:datetimepicker
     @value:'2018-03-23 12:13:14'
     @defaultValue:'2018-03-23 12:13:14'
+    :::
+
+    :::vue
+    @name:getDate()
+    ---
+    #method
+    >method-desc
+    获取当前选中日期时间的日期对象。
+    <br><br>
+    获取的日期对象。
+    >method-return
+    日期对象。
+    ---
+    #demo
+    >tpl
+    <div style="width:300px;">
+        <ui-datetimepicker ref="demo9" form-name="日期"></ui-datetimepicker>
+        <br><br>
+        <ui-link js="console.log(morning.findVM('demo9').getDate());">获取当前选中的日期对象</ui-link>
+    </div>
     :::
     
     [[[事件]]]
@@ -704,23 +921,24 @@
     #### 值类型
     
     - `Array` : 数组
-    - `String` : 字符串(按`format`配置格式化)
+    - `String` : 字符串(按`format`配置格式化)或`相对日期时间表达式`
 
     #### 值过滤
 
     - 若是范围日期时间选择(开启`isRange`配置)，则数值是一个字符串，则将数值转换成数组，该字符串作为第一项       
     - 若是单一日期时间选择(未开启`isRange`配置)，且数值是一个数组，则取第一项
+    - 若开启了`relative`配置且格式符合`相对日期时间表达式`则不做任何处理，否则进行下列判断
     - 若数值的类型是字符串则检测字符串的日期时间格式是否符合`format`配置，若不符合尝试转换成符合的格式，若无法转换则转换成`1971-01-01 00:00:00`的符合`format`的日期时间
     - 若使用了`date-selectable-range`或`time-selectable-range`配置，且数值对应的日期时间不在范围内，则会转换成最近的范围内日期时间
     - 若数值的类型是一个数组，且数组长度为`0`则转换为`undefined`
     - 若数值的类型是一个数组，且数组长度大于`2`，则过滤多余的项目，只保留两项
-    - 若数值的类型是一个数组，且数组长度大于`0`且小于`3`，会过滤数组中所有不是字符串类型的项目，然后按照第三条规则，对所有字符串项目进行过滤
+    - 若数值的类型是一个数组，且数组长度大于`0`且小于`3`，会过滤数组中所有不是字符串类型的项目，然后按照第3/4条规则，对所有字符串项目进行过滤
     - 若数值的类型是一个数组，且第二项代表的日期时间大于第一项，则对换数组的两项
     
     #### 值格式
 
-    若是单一日期时间选择，则是日期时间字时间符串(符合`format`的格式化规则)
-    若是范围日期时间选择，则是长度为2的数组，数组中第一项是开始日期时间的日期时间字符串(符合`format`的格式化规则)，数组中第二项是结束日期时间的日期时间字符串(符合`format`的格式化规则)。
+    若是单一日期时间选择，则是日期时间字时间符串(符合`format`的格式化规则)或`相对日期时间表达式`
+    若是范围日期时间选择，则是长度为2的数组，数组中第一项是开始日期时间的日期时间字符串(符合`format`的格式化规则)或`相对日期时间表达式`，数组中第二项是结束日期时间的日期时间字符串(符合`format`的格式化规则)或`相对日期时间表达式`。
 
     #### 默认值
 

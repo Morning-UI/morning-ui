@@ -3,7 +3,6 @@ import {
     parse as parseDate,
     format as formatDate
 }                                   from 'date-fns';
-import standardDate                 from './standardDate';
 import DateTimeCore                 from './DateTimeCore';
 
 let Dates = {
@@ -44,7 +43,7 @@ let Dates = {
 
                 result = isValid(this._dateStringToDate(str, format, false));
 
-            } catch(e) {}
+            } catch (e) {}
 
             return result;
 

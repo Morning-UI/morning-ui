@@ -199,9 +199,7 @@ export default {
 
             }
 
-            let date = this._timeStringToDate(value, this.conf.format); 
-
-            console.log(date);
+            let date = this._timeStringToDate(value, this.conf.format);
 
             if (date) {
 
@@ -435,7 +433,6 @@ export default {
                     timeString = formatDate(this._timeStringToDate(this.data.value, this.conf.format), this.conf.format);
 
                 }
-
 
             }
 

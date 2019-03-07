@@ -554,11 +554,9 @@ export default {
 
                     return this._timeGetRelativeTime(relativeTime, this.conf.format);
 
-                } else {
-
-                    return this._timeStringToDate(value);
-
                 }
+
+                return this._timeStringToDate(value);
 
             } else if (value instanceof Array) {
 

@@ -86,7 +86,7 @@ const unit = {
     ]
 };
 
-leftExpression.datetime =leftExpression.common
+leftExpression.datetime = leftExpression.common
     .concat(leftExpression.time)
     .concat(leftExpression.date)
     .concat(['startOfDay', 'endOfDay']);
@@ -175,7 +175,6 @@ let DateTimeCore = {
             let date = this._dtcoreGetStandardDate();
             let now = new Date();
             let dateFn = addDays;
-            let startDate;
 
             if (type.indexOf('date') !== -1) {
 
@@ -196,7 +195,15 @@ let DateTimeCore = {
 
             if (type.indexOf('date') !== -1) {
 
-                if (relativeObj.start === 'startOfWeek') {
+                if (relativeObj.start === 'startOfDay') {
+
+                    date = startOfDay(date);
+
+                } else if (relativeObj.start === 'endOfDay') {
+
+                    date = endOfDay(date);
+
+                } else if (relativeObj.start === 'startOfWeek') {
 
                     date = startOfWeek(date);
 

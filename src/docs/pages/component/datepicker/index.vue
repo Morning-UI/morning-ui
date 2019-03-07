@@ -12,6 +12,8 @@
 
     定义日期选择器。
 
+    注意：日期选择器的`set()` / `get()`方法设置/获取的数值为格式化后的日期字符串，如需获取可计算的日期对象，请使用`getDate()`方法。
+
     :::vue
     @name:使用
     ---
@@ -260,7 +262,33 @@
     ---
     #config
     >conf-desc
-    显示快速选择项，这个配置是一个数组，数组中的每一项都是一个快速选择项目。<br><br>数组项支持两种类型：<br><br>__关键词__ ：支持字符串格式的快速选择关键词。<br><br>未开启`is-range`情况下包括：`今天`、`昨天`、`明天`、`n 天前`、`n 周前`、`n 月前`、`n 年前`、`n 天后`、`n 周后`、`n 月后`、`n 年后`(需要注意`n`后面有空格)，例如：`2 天前`、`3 周前`。<br><br>开启`is-range`情况下包括：`本周`、`本月`、`今年`、`最近 n 天`、`最近 n 周`、`最近 n 月`、`最近 n 年`、`未来 n 天`、`未来 n 周`、`未来 n 月`、`未来 n 年`(需要注意`n`前后有空格)，例如：`未来 2 周`、`最近 3 月`。<br><br>__时间设置__：是一个对象。<br><br>未开启`is-range`情况下包含`name`和`pick`两个属性。<br>`name`是快速选择项展现的名称。<br>`pick`支持`数字`或`日期对象`。若`pick`是`数字`则代表相对天数，会选中当前日期和`pick`相加后的日期，所以`pick`是负数代表过去的日期，正数则代表未来的日期。若`pick`是`日期对象`则会选中`pick`所表示的日期。<br><br>开启`is-range`情况下包含`name`、`start`、`end`三个属性。<br>`name`是快速选择项展现的名称。<br>`start`和`end`是`日期对象`分别表示选择日期段的开始和结束。<br><br>你可以混合使用多种类型的快速选择项(详见[下面的示例](#quick-pick))。
+    显示快速选择项，这个配置是一个数组，数组中的每一项都是一个快速选择项目。
+    <br><br>
+    数组项支持两种类型：
+    <br><br>
+    __关键词__ ：支持字符串格式的快速选择关键词。
+    <br><br>
+    未开启`is-range`情况下包括：`今天`、`昨天`、`明天`、`n 天前`、`n 周前`、`n 月前`、`n 年前`、`n 天后`、`n 周后`、`n 月后`、`n 年后`(需要注意`n`后面有空格)，例如：`2 天前`、`3 周前`。
+    <br><br>
+    开启`is-range`情况下包括：`本周`、`本月`、`今年`、`最近 n 天`、`最近 n 周`、`最近 n 月`、`最近 n 年`、`未来 n 天`、`未来 n 周`、`未来 n 月`、`未来 n 年`(需要注意`n`前后有空格)，例如：`未来 2 周`、`最近 3 月`。
+    <br><br>
+    __时间设置__：是一个对象。
+    <br><br>
+    未开启`is-range`情况下包含`name`和`pick`两个属性。
+    <br>
+    `name`是快速选择项展现的名称。
+    <br>
+    `pick`支持`数字`、`日期对象`、`相对日期时间表达式`。
+    <br>
+    若`pick`是`数字`则代表相对天数，会选中当前日期和`pick`相加后的日期，所以`pick`是负数代表过去的日期，正数则代表未来的日期。
+    <br>
+    若`pick`是`日期对象`则会选中`pick`所表示的日期。
+    <br>
+    若`pick`是`相对日期时间表达式`，必须开启`relative`配置，详见：[配置/relative](#relative)。
+    <br><br>
+    开启`is-range`情况下包含`name`、`start`、`end`三个属性。<br>`name`是快速选择项展现的名称。<br>`start`和`end`是`日期对象`分别表示选择日期段的开始和结束。
+    <br><br>
+    你可以混合使用多种类型的快速选择项(详见[下面的示例](#quick-pick))。
     >conf-accept
     字符串(关键词)<br>对象(时间设置)
     >conf-type
@@ -364,6 +392,51 @@
                 }
             ]"
             is-range
+        ></ui-datepicker>
+    </div>
+    ---
+    #demo
+    >desc
+    开启`relative`配置，并设置`相对日期时间表达式`。相对日期时间详见：[配置/relative](#relative)
+    >tpl
+    <div style="width:300px;">
+        <ui-datepicker
+            form-name="日期时间"
+            relative
+            :quick-pick="[
+                {
+                    name: '季度末',
+                    pick : 'endOfQuarter'
+                },
+                {
+                    name : '年度初',
+                    pick : 'startOfYear'
+                }
+            ]"
+        ></ui-datepicker>
+    </div>
+    ---
+    #demo
+    >desc
+    开启`relative`和`is-range`配置，配合`相对日期时间表达式`。相对日期时间详见：[配置/relative](#relative)
+    >tpl
+    <div style="width:460px;">
+        <ui-datepicker
+            form-name="日期时间"
+            is-range
+            relative
+            :quick-pick="[
+                {
+                    name : '本周截止目前',
+                    start : 'startOfWeek',
+                    end : 'now'
+                },
+                {
+                    name: '本季度',
+                    start : 'startOfQuarter',
+                    end : 'endOfQuarter'
+                }
+            ]"
         ></ui-datepicker>
     </div>
     :::
@@ -653,7 +726,7 @@
     <br>
     `[开始日期] [操作符] [日期值][日期单位]`
     <br><br>
-    - 开始时间包括：
+    - 开始日期包括：
         - `now` : 当前时间
         - `startOfWeex` : 本周的第一天
         - `endOfWeex` : 本周的最后一天
