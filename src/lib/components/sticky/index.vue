@@ -6,7 +6,8 @@
             width : data.stickyW,
             height : data.stickyH,
             top : (data.sticky && conf.top !== undefined && conf.bottom === undefined) ? `${conf.top}px` : 'auto',
-            bottom : (data.sticky && conf.bottom !== undefined) ? `${conf.bottom}px` : 'auto'
+            bottom : (data.sticky && conf.bottom !== undefined) ? `${conf.bottom}px` : 'auto',
+            'z-index' : _indexInitValue() - 1
         }"
 
         :position="position"
@@ -28,11 +29,12 @@
 <script>
 import Stickyfill                   from 'stickyfilljs/dist/stickyfill.min.js';
 import GlobalEvent                  from 'Utils/GlobalEvent';
+import IndexManager                 from 'Utils/IndexManager';
 
 export default {
     origin : 'UI',
     name : 'sticky',
-    mixins : [GlobalEvent],
+    mixins : [GlobalEvent, IndexManager],
     props : {
         position : {
             type : String,
