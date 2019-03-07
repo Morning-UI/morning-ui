@@ -1,138 +1,159 @@
-.generate-col(@prefix, @n, @i: 1) when (@i < @n) {
-    .@{prefix}offset-@{i} {
-        margin-left: round(@gridColumnWidth*@i + @gridGutterWidth*@i, 3);
+.generate-col(@prefix, @n, @spaceAround: false, @gutter: @gridGutterWidth, @i: 1) when (@i =< @n) {
+    @gridColumnWidth : if((@spaceAround = true), %(~'(100% - %s)', (@gutter*@n)), %(~'(100% - %s)', (@gutter*(@n - 1))));
+
+    .@{prefix}col-@{i} {
+        width: if((@i = @n), 100%, %(~'calc(%s * %s + %s)', @gridColumnWidth, round(@i / @n, 4), (@gutter*(@i - 1))));
+    }
+
+    .@{prefix}offset-@{i} when (@i < @n) {
+        /* stylelint-disable max-line-length */
+        margin-left: if((@spaceAround = true), %(~'calc(%s * %s + %s)', @gridColumnWidth, round(@i / @n, 4), (@gutter*(@i + 0.5))), %(~'calc(%s * %s + %s)', @gridColumnWidth, round(@i / @n, 4), (@gutter*@i)));
+        /* stylelint-enable max-line-length */
+    }
+
+    .@{prefix}push-@{i} when (@i < @n) {
+        left: %(~'calc(%s * %s + %s)', @gridColumnWidth, round(@i / @n, 4), (@gutter * @i));
+    }
+
+    .@{prefix}pull-@{i} when (@i < @n) {
+        right: %(~'calc(%s * %s + %s)', @gridColumnWidth, round(@i / @n, 4), (@gutter * @i));
+    }
+
+    [class*='col-'] when ((@i = 1) and (@prefix = ~''))  {
+        & when (@spaceAround = false) {
+            margin-right: @gutter;
+        }
+
+        & when (@spaceAround = true) {
+            margin: 0 @gutter / 2;
+        }
+    }
+
+    .row when ((@i = 1) and (@prefix = ~'')) {
+        margin-bottom: @gutter;
+    }
+
+    .col when ((@i = 1) and (@prefix = ~'')) {
+        margin-right: @gutter;
+    }
+
+    .generate-col(@prefix, @n, @spaceAround, @gutter, (@i + 1));
+}
+
+.gutterSize(@prefix, @key, @size) {
+    & when (@key = m) {
+        &.gutter-@{key},
+        &{
+            .generate-col(@prefix, @gridColumnNumber, false, @size);
+
+            &.space-around {
+                .generate-col(@prefix, @gridColumnNumber, true, @size);
+            }
+        }
+    }
+
+    &.gutter-@{key} when not (@key = m){
+        .generate-col(@prefix, @gridColumnNumber, false, @size);
+
+        &.space-around {
+            .generate-col(@prefix, @gridColumnNumber, true, @size);
+        }
     }
 }
 
-.generate-col(@prefix, @n, @i: 1) when (@i =< @n) {
-    .@{prefix}c-@{i} {
-        &:extend(mor-grid .c-n);
-    }
+/* stylelint-disable length-zero-no-unit,selector-class-pattern */
+.grid(@prefix: ~'') {
+    .gutterSize(@prefix, xs, 4px);
+    .gutterSize(@prefix, s, 8px);
+    .gutterSize(@prefix, m, 16px);
+    .gutterSize(@prefix, l, 24px);
+    .gutterSize(@prefix, xl, 36px);
+    .gutterSize(@prefix, none, 0px);
 }
+/* stylelint-enable length-zero-no-unit,selector-class-pattern */
 
-.generate-col(@prefix, @n, @i: 1) when (@i =< @n) {
-    .@{prefix}c-@{i} {
-        width: if((@i = @n), 100%, round(@gridColumnWidth*@i + @gridGutterWidth*(@i - 1), 3));
-    }
-    .generate-col(@prefix, @n, (@i + 1));
-}
+mor-grid {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
 
-.generate-col-nogap(@prefix, @n, @i: 1) when (@i < @n) {
-    .@{prefix}offset-@{i} {
-        margin-left: round(@gridColumnWidthWithoutGap*@i, 3);
-    }
-}
+    .row{
+        display: flex;
+        width: 100%;
+        flex-wrap: nowrap;
+        position: relative;
 
-.generate-col-nogap(@prefix, @n, @i: 1) when (@i =< @n) {
-    .@{prefix}c-@{i} {
-        &:extend(mor-grid.nogap .c-n);
-    }
-}
+        .col{
+            flex-shrink: 1;
+            flex-grow: 1;
+            width: 100%;
+        }
 
-.generate-col-nogap(@prefix, @n, @i: 1) when (@i =< @n) {
-    .@{prefix}c-@{i} {
-        width: if((@i = @n), 100%, round(@gridColumnWidthWithoutGap*@i, 3));
-    }
-    .generate-col-nogap(@prefix, @n, (@i + 1));
-}
+        > [class*='col-']{
+            display: block;
+            box-sizing: border-box;
+            flex-shrink: 0;
+            flex-grow: 0;
+        }
 
-.generate-col-avggap(@prefix, @n, @i: 1) when (@i < @n) {
-    .@{prefix}offset-@{i} {
-        margin-left: round(@gridColumnWidthGapAverage*@i + @gridGutterWidth*@i, 3) !important;
+        > [class*='push-'],
+        > [class*='pull-']{
+            position: relative;
+        }
 
-        &:first-child{
-            margin-left: round(@gridColumnWidthGapAverage*@i + @gridGutterWidth*(@i + 1), 3) !important;
+        &,
+        &.justify-start{
+            justify-content: flex-start;
+        }
+
+        &.justify-end{
+            justify-content: flex-end;
+        }
+
+        &.justify-center{
+            justify-content: center;
+        }
+
+        &.justify-space-between{
+            justify-content: space-between;
+        }
+
+        &.justify-space-around{
+            justify-content: space-around;
+        }
+
+        &.vertical-top{
+            align-items: flex-start;
+        }
+
+        &.vertical-center{
+            align-items: center;
+        }
+
+        &.vertical-bottom{
+            align-items: flex-end;
         }
 
         &:last-child{
-            margin-right: 0;
+            margin-bottom: 0 !important;
         }
-    }
-}
-
-.generate-col-avggap(@prefix, @n, @i: 1) when (@i =< @n) {
-    .@{prefix}c-@{i} {
-        width: if((@i = @n), 100%, round(@gridColumnWidthGapAverage*@i + @gridGutterWidth*(@i - 1), 3));
-    }
-    .generate-col-avggap(@prefix, @n, (@i + 1));
-}
-
-.grid(@prefix: ~'') {
-    .c-n{
-        display: block;
-        float: left;
-        margin-right: @gridGutterWidth;
-        box-sizing: border-box;
-    }
-
-    .generate-col(@prefix, 24);
-
-    &.nogap{
-        .c-n {
-            display: block;
-            float: left;
-            margin-right: 0;
-        }
-
-        .generate-col-nogap(@prefix, 24);
-    }
-
-    &.avggap{
-        > [class^='c-']:first-child,
-        > [class^='xs-c-']:first-child,
-        > [class^='s-c-']:first-child,
-        > [class^='m-c-']:first-child,
-        > [class^='l-c-']:first-child,
-        > [class^='xl-c-']:first-child{
-            margin-left: @gridGutterWidth;
-        }
-
-        > [class^='c-']:last-child,
-        > [class^='xs-c-']:last-child,
-        > [class^='s-c-']:last-child,
-        > [class^='m-c-']:last-child,
-        > [class^='l-c-']:last-child,
-        > [class^='xl-c-']:last-child{
-            margin-right: @gridGutterWidth;
-        }
-
-        .generate-col-avggap(@prefix, 24);
-    }
-}
-
-mor-grid {
-    display: block;
-
-    > [class^='c-']:last-child,
-    > [class^='xs-c-']:last-child,
-    > [class^='s-c-']:last-child,
-    > [class^='m-c-']:last-child,
-    > [class^='l-c-']:last-child,
-    > [class^='xl-c-']:last-child{
-        margin-right: 0;
-    }
-
-    &::after{
-        content: ' ';
-        height: 0;
-        display: block;
-        clear: both;
     }
 
     .grid();
 
-    &.fill,
-    &.fill > [class^='c-'],
-    &.fill > [class^='xs-c-'],
-    &.fill > [class^='s-c-'],
-    &.fill > [class^='m--c-'],
-    &.fill > [class^='l-c-'],
-    &.fill > [class^='xl-c-'] {
-        height: 100%;
+    &:not(.space-around) .row{
+        > [class*='col-']:last-child,
+        > .col:last-child{
+            margin-right: 0 !important;
+        }
     }
 
-    // default status
-    &{}
+    &.fill,
+    &.fill > .row,
+    &.fill > .row > .col,
+    &.fill > .row > [class*='col-'] {
+        height: 100%;
+    }
 }
 
 @media only screen{

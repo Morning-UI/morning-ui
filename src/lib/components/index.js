@@ -49,6 +49,7 @@ import anchor                       from './anchor/index.vue';
 import pagination                   from './pagination/index.vue';
 import dialog                       from './dialog/index.vue';
 import drawer                       from './drawer/index.vue';
+import time                         from './time/index.vue';
 import calendar                     from './calendar/index.vue';
 import load                         from './load/index.vue';
 import progress                     from './progress/index.vue';
@@ -63,6 +64,7 @@ import _alert                       from './alert/index.vue';
 import carousel                     from './carousel/index.vue';
 import audio                        from './audio/index.vue';
 import video                        from './video/index.vue';
+import backtop                      from './backtop/index.vue';
 
 import textinput                    from './textinput/index.vue';
 import textarea                     from './textarea/index.vue';
@@ -145,6 +147,7 @@ export default {
     pagination,
     dialog,
     drawer,
+    time,
     calendar,
     load,
     progress,
@@ -159,6 +162,7 @@ export default {
     carousel,
     audio,
     video,
+    backtop,
     textinput,
     textarea,
     texteditor,

@@ -2328,7 +2328,7 @@
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
                     <td class="mark">
-                        <i class="iconfont no">&#xe62e;</i>
+                        <i class="iconfont has">&#xe62d;</i>
                     </td>
                 </tr>
                 <tr class="components">
@@ -2400,7 +2400,7 @@
                         <i class="iconfont no">&#xe62e;</i>
                     </td>
                     <td class="mark">
-                        <i class="iconfont no">&#xe62e;</i>
+                        <i class="iconfont has">&#xe62d;</i>
                     </td>
                 </tr>
                 <tr class="components">

@@ -545,7 +545,7 @@
     >desc
     添加`.fill`可使用填满容器的栅格。
     >tpl
-    <div style="height:260px">
+    <div style="height:200px">
         <ui-grid class="fill" style="background-color: #EDF1F5">
             <div class="row">
                 <div class="col-6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</div>

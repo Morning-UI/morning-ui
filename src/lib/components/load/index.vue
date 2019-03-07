@@ -3,7 +3,7 @@
         :_uiid="uiid"
         :class="[sizeClass]"
 
-        :time="time"
+        :done-time="doneTime"
         :note="note"
     >
 
@@ -35,15 +35,15 @@
 </template>
  
 <script>
-const defaultTime = 200;
+const defaultDoneTime = 200;
 
 export default {
     origin : 'UI',
     name : 'load',
     props : {
-        time : {
+        doneTime : {
             type : [Boolean, Number],
-            default : defaultTime
+            default : defaultDoneTime
         },
         note : {
             type : String,
@@ -54,7 +54,7 @@ export default {
         _conf : function () {
 
             return {
-                time : this.time,
+                doneTime : this.doneTime,
                 note : this.note
             };
 
@@ -122,14 +122,14 @@ export default {
 
                 });
 
-            if (this.conf.time) {
+            if (this.conf.doneTime) {
 
                 setTimeout(() => {
 
                     this.data.loading = false;
                     this.data.loaded = true;
 
-                }, this.conf.time);
+                }, this.conf.doneTime);
 
             }
 

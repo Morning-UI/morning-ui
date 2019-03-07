@@ -36,8 +36,8 @@
 
     - `horizontal` : 水平排列
     - `vertical` : 垂直排列
-    - `nogap` : 子元素间没有间隙
-    - `avggap` : 子元素间(包括两侧)均有相等间隙
+    - `gutter-none` : 子元素间没有间隙
+    - `space-around` : 子元素间(包括两侧)均有相等间隙
     - `fill` : 高度填满父元素
     - `full` : 元素没有内边距
     - `margin` : 元素有外边距

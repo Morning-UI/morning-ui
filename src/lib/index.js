@@ -47,9 +47,11 @@ let morning = {
         white : 'wh'
     },
     isMorning : true,
-    version : '0.12.4',
+    version : '0.12.5',
     map : {}
 };
+
+const defaultZIndex = 100;
 
 morning.findVM = function (ref) {
 
@@ -226,7 +228,7 @@ morning.install = function (Vue, options) {
     options = extend(true, {
         prefix : 'ui',
         uploader : null,
-        zIndex : 1
+        zIndex : defaultZIndex
     }, options);
 
     morning._options = options;

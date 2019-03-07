@@ -4,7 +4,7 @@
         :class="[moreClass]"
 
         :close-btn="closeBtn"
-        :close-time="closeTime"
+        :done-time="doneTime"
         :show-type="showType"
         :max-show="maxShow"
     >
@@ -32,7 +32,7 @@
 import PopupManager                 from 'Utils/PopupManager';
 import IndexManager                 from 'Utils/IndexManager';
 
-const defaultCloseTime = 4000;
+const defaultDoneTime = 4000;
 
 export default {
     origin : 'UI',
@@ -43,9 +43,9 @@ export default {
             type : Boolean,
             default : false
         },
-        closeTime : {
+        doneTime : {
             type : [Number, Boolean],
-            default : defaultCloseTime
+            default : defaultDoneTime
         },
         showType : {
             type : String,
@@ -62,7 +62,7 @@ export default {
 
             return {
                 closeBtn : this.closeBtn,
-                closeTime : this.closeTime,
+                doneTime : this.doneTime,
                 showType : this.showType,
                 maxShow : this.maxShow
             };
@@ -157,13 +157,13 @@ export default {
             this.$el.style.zIndex = this._indexMax();
             this.data.list = list;
 
-            if (this.conf.closeTime !== false) {
+            if (this.conf.doneTime !== false) {
 
                 setTimeout(() => {
 
                     this.close(options.id);
 
-                }, this.conf.closeTime);
+                }, this.conf.doneTime);
 
             }
 

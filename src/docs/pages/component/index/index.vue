@@ -94,6 +94,7 @@
                 <li><a href="/component/pagination.html">分页<p>&lt;pagination></p></a></li>
                 <li><a href="/component/breadcrumbs.html">面包屑<p>&lt;breadcrumbs></p></a></li>
                 <li><a href="/component/steps.html">步骤条<p>&lt;steps></p></a></li>
+                <li><a href="/component/backtop.html">返回顶部<p>&lt;backtop></p></a></li>
             </ul>
         </div>
         <div class="sub-group">
@@ -116,6 +117,7 @@
                 <li><a href="/component/tree.html">树状控件<p>&lt;tree></p></a></li>
                 <li><a href="/component/table.html">表格<p>&lt;table></p></a></li>
                 <li><a href="/component/carousel.html">轮播<p>&lt;carousel></p></a></li>
+                <li><a href="/component/time.html">时间<p>&lt;time></p></a></li>
                 <li><a href="/component/calendar.html">日历<p>&lt;calendar></p></a></li>
                 <li><a href="/component/audio.html">音频<p>&lt;audio></p></a></li>
                 <li><a href="/component/video.html">视频<p>&lt;video></p></a></li>
