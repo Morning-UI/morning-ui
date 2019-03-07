@@ -70,7 +70,7 @@ export default {
         吸附 : '/component/sticky.html',
         步骤条 : '/component/steps.html',
         面包屑 : '/component/breadcrumbs.html',
-        小提示 : '/component/tip.html',
+        '小提示<i class="tag update"></i>' : '/component/tip.html',
         '弹出框<i class="tag new l3"></i>' : '/component/popover.html',
         消息 : '/component/message.html',
         告示 : '/component/alert.html',
