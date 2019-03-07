@@ -124,7 +124,7 @@ test.serial('image', async t => {
         .goto(docUrl)
         .wait(basicDemo)
         .evaluate(() => ({
-            image : window.getComputedStyle($('[name="开始"] [_uiid="46"] img')[0])
+            image : window.getComputedStyle($('[name="开始"] [_uiid="47"] img')[0])
         }));
 
     t.plan(1);
@@ -140,7 +140,7 @@ test.serial('iconfont', async t => {
         .goto(docUrl)
         .wait(basicDemo)
         .evaluate(() => ({
-            iconfont : window.getComputedStyle($('[name="开始"] [_uiid="47"] .mo-icon')[0])
+            iconfont : window.getComputedStyle($('[name="开始"] [_uiid="48"] .mo-icon')[0])
         }));
 
     t.plan(1);
@@ -151,27 +151,6 @@ test.serial('iconfont', async t => {
 });
 
 test.serial('horizontal left', async t => {
-
-    const result = await runner
-        .goto(docUrl)
-        .wait(basicDemo)
-        .evaluate(() => ({
-            horizontal : window.getComputedStyle($('[name="开始"] [_uiid="48"]')[0])
-        }));
-
-    t.plan(1);
-
-    delete result.horizontal.inlineSize;
-    delete result.horizontal.perspectiveOrigin;
-    delete result.horizontal.webkitLogicalWidth;
-    delete result.horizontal.width;
-
-    cleanstyle(result.horizontal);
-    t.snapshot(result);
-
-});
-
-test.serial('horizontal right', async t => {
 
     const result = await runner
         .goto(docUrl)
@@ -192,13 +171,34 @@ test.serial('horizontal right', async t => {
 
 });
 
+test.serial('horizontal right', async t => {
+
+    const result = await runner
+        .goto(docUrl)
+        .wait(basicDemo)
+        .evaluate(() => ({
+            horizontal : window.getComputedStyle($('[name="开始"] [_uiid="50"]')[0])
+        }));
+
+    t.plan(1);
+
+    delete result.horizontal.inlineSize;
+    delete result.horizontal.perspectiveOrigin;
+    delete result.horizontal.webkitLogicalWidth;
+    delete result.horizontal.width;
+
+    cleanstyle(result.horizontal);
+    t.snapshot(result);
+
+});
+
 test.serial('top name', async t => {
 
     const result = await runner
         .goto(docUrl)
         .wait(basicDemo)
         .evaluate(() => ({
-            topname : window.getComputedStyle($('[name="开始"] [_uiid="50"]')[0])
+            topname : window.getComputedStyle($('[name="开始"] [_uiid="51"]')[0])
         }));
 
     t.plan(1);
