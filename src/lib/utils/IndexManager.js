@@ -82,6 +82,11 @@ let IndexManager = {
             return this._indexFetch(namespace, -1);
 
         },
+        _indexInitValue : function () {
+
+            return this.morning._options.zIndex;
+
+        },
         _indexMax : function () {
 
             return ++this.morning._indexMap.maxIndex;

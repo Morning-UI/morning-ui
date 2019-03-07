@@ -23,6 +23,8 @@
             <ui-message ref="copied"></ui-message>
         </div>
         <doc-footer></doc-footer>
+
+        <ui-backtop fixed></ui-backtop>
     </div>
 </template>
 
