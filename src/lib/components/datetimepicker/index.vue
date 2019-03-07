@@ -22,6 +22,7 @@
         :start-name="startName"
         :end-name="endName"
         :done-hidden="doneHidden"
+        :relative="relative"
     >
 
     <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
@@ -35,7 +36,7 @@
             :format="conf.format"
             :align="conf.align"
             :quick-pick="conf.quickPick"
-            :quick-pick-unit="1000"
+            :_quick-pick-unit="1000"
             :selectable-range="conf.dateSelectableRange"
             :is-range="conf.isRange"
             :range-input-direction="conf.rangeInputDirection"
@@ -45,6 +46,8 @@
             :end-name="conf.endName"
             :show-timepicker-box="true"
             :done-hidden="conf.doneHidden"
+            :relative="conf.relative"
+            :_relative-time="conf.relative"
 
             @value-change="_syncFromInputToRoot(0)"
             @input-blur="_syncFromInputToRootIsBlur"
@@ -55,6 +58,8 @@
                     inside-name="时间"
                     align="right"
                     :selectable-range="timeSelectableRangeAll"
+                    :relative="conf.relative"
+                    :state="isRelativeDatetime1 ? 'readonly' : 'normal'"
     
                     @value-change="_syncFromInputToRoot(1)"
                 ></morning-timepicker>
@@ -66,6 +71,8 @@
                     inside-name="时间"
                     align="right"
                     :selectable-range="timeSelectableRangeAll"
+                    :relative="conf.relative"
+                    :state="isRelativeDatetime2 ? 'readonly' : 'normal'"
 
                     @value-change="_syncFromInputToRoot(1)"
                 ></morning-timepicker>
@@ -97,16 +104,16 @@ import {
     setMilliseconds,
     isSameDay,
     closestTo,
-    isValid,
     isWithinInterval
 }                                   from 'date-fns';
 import Dates                        from 'Utils/Dates';
 import Time                         from 'Utils/Time';
+import DateTime                     from 'Utils/DateTime';
 
 export default {
     origin : 'Form',
     name : 'datetimepicker',
-    mixins : [Dates, Time],
+    mixins : [Dates, Time, DateTime],
     props : {
         insideName : {
             type : String,
@@ -166,6 +173,10 @@ export default {
         doneHidden : {
             type : Boolean,
             default : false
+        },
+        relative : {
+            type : Boolean,
+            default : false
         }
     },
     computed : {
@@ -185,7 +196,8 @@ export default {
                 separatorType : this.separatorType,
                 startName : this.startName,
                 endName : this.endName,
-                doneHidden : this.doneHidden
+                doneHidden : this.doneHidden,
+                relative : this.relative
             };
 
         },
@@ -216,6 +228,30 @@ export default {
             }
 
             return all;
+
+        },
+        isRelativeDatetime1 : function () {
+
+            if (this.data.value === undefined ||
+                typeof this.data.value === 'string') {
+
+                return this._dtIsRelativeDatetime(this.data.value);
+
+            }
+
+            return this._dtIsRelativeDatetime(this.data.value[0]);
+
+        },
+        isRelativeDatetime2 : function () {
+
+            if (this.data.value === undefined ||
+                typeof this.data.value === 'string') {
+
+                return false;
+
+            }
+
+            return this._dtIsRelativeDatetime(this.data.value[1]);
 
         }
     },
@@ -250,7 +286,12 @@ export default {
 
             if (typeof value === 'string') {
 
-                value = this._filterDateString(value);
+                if (!this.conf.relative ||
+                    (this.conf.relative && !this._dtIsRelativeDatetime(value))) {
+
+                    value = this._filterDateString(value);
+
+                }
 
             } else if (typeof value === 'object' && value instanceof Array) {
 
@@ -268,14 +309,39 @@ export default {
 
                     for (let k in value) {
 
-                        value[k] = this._filterDateString(value[k]);
+                        if (!this.conf.relative ||
+                            (this.conf.relative && !this._dtIsRelativeDatetime(value[k]))) {
+
+                            value[k] = this._filterDateString(value[k]);
+
+                        }
 
                     }
 
                     if (value.length > 1) {
 
-                        let start = this._dateStringToDate(value[0], this.conf.format);
-                        let end = this._dateStringToDate(value[1], this.conf.format);
+                        let start;
+                        let end;
+
+                        if (this.conf.relative && this._dtIsRelativeDatetime(value[0])) {
+
+                            start = this._getDate(value[0]);
+
+                        } else {
+
+                            start = this._dateStringToDate(value[0], this.conf.format);
+
+                        }
+
+                        if (this.conf.relative && this._dtIsRelativeDatetime(value[1])) {
+
+                            start = this._getDate(value[1]);
+
+                        } else {
+
+                            start = this._dateStringToDate(value[1], this.conf.format);
+
+                        }
 
                         if (+start > +end) {
 
@@ -305,16 +371,16 @@ export default {
 
             let date = this._dateStringToDate(value, this.conf.format);
 
-            if (!isValid(date)) {
+            if (!this._dateStringIsValid(value, this.conf.format)) {
 
                 date = this._dateGetStandardDate();
 
             }
 
-            if (!this._checkSelectable(date)) {
-
+            if (!this._checkSelectable(formatDate(date, this.conf.format))) {
+ 
                 date = this._getClosestDate(date);
-
+ 
             }
 
             return formatDate(date, this.conf.format);
@@ -348,20 +414,38 @@ export default {
                         if (this.conf.isRange) {
 
                             if (value[0]) {
-    
-                                timeDate = this._dateStringToDate(value[0], $date.conf.format);
 
-                                $time._set(formatDate(timeDate, $time.conf.format), true);
+                                if (this.conf.relative && this._dtIsRelativeDatetime(value[0])) {
+
+                                    $time._set(undefined, true);
+                                 
+                                } else {
+
+                                    timeDate = this._dateStringToDate(value[0], $date.conf.format);
+                                    $time._set(formatDate(timeDate, $time.conf.format), true);
+
+                                }
     
                             }
     
                             if (value[1]) {
-    
-                                timeDate2 = this._dateStringToDate(value[1], $date.conf.format);
 
-                                $time2._set(formatDate(timeDate2, $time2.conf.format), true);
+                                if (this.conf.relative && this._dtIsRelativeDatetime(value[1])) {
+
+                                    $time2._set(undefined, true);
+
+                                } else {
+                                
+                                    timeDate2 = this._dateStringToDate(value[1], $date.conf.format);
+                                    $time2._set(formatDate(timeDate2, $time2.conf.format), true);
+
+                                }
 
                             }
+
+                        } else if (this.conf.relative && this._dtIsRelativeDatetime(value)) {
+
+                            $time._set(undefined, true);
 
                         } else {
 
@@ -471,29 +555,61 @@ export default {
             if (isSet) {
 
                 if (date instanceof Date) {
+
+                    if (this.conf.relative && this._dtIsRelativeDatetime(date)) {
     
-                    this._set(formatDate(date, this.conf.format), true);
+                        this._set(date, true);
+
+                    } else {
+    
+                        this._set(formatDate(date, this.conf.format), true);
+
+                    }
 
                 } else if (date instanceof Array) {
 
                     if (date.length === 1) {
 
-                        this._set(
-                            [
-                                formatDate(date[0], this.conf.format)
-                            ],
-                            true
-                        );
+                        if (this.conf.relative && this._dtIsRelativeDatetime(date[0])) {
+        
+                            this._set(date[0], true);
+
+                        } else {
+
+                            this._set(
+                                [
+                                    formatDate(date[0], this.conf.format)
+                                ],
+                                true
+                            );
+
+                        }
 
                     } else {
 
-                        this._set(
-                            [
-                                formatDate(date[0], this.conf.format),
-                                formatDate(date[1], this.conf.format)
-                            ],
-                            true
-                        );
+                        let value = [];
+
+                        if (this.conf.relative && this._dtIsRelativeDatetime(date[0])) {
+        
+                            value[0] = date[0];
+
+                        } else {
+
+                            value[0] = formatDate(date[0], this.conf.format);
+
+                        }
+
+                        if (this.conf.relative && this._dtIsRelativeDatetime(date[1])) {
+        
+                            value[1] = date[1];
+
+                        } else {
+
+                            value[1] = formatDate(date[1], this.conf.format);
+
+                        }
+
+                        this._set(value, true);
 
                     }
 
@@ -535,51 +651,89 @@ export default {
                     }
 
                     if (!this.conf.isRange) {
-                    
-                        fulldate0 = this._getFulldate({
-                            $date,
-                            $time,
-                            date : dateValue,
-                            time : timeValue,
-                            type
-                        });
 
-                        this._setValue(fulldate0.date, fulldate0.isSet);
+                        if (this.conf.relative && this._dtIsRelativeDatetime(dateValue)) {
+
+                            this._set(dateValue, true);
+
+                        } else {
+                    
+                            fulldate0 = this._getFulldate({
+                                $date,
+                                $time,
+                                date : dateValue,
+                                time : timeValue,
+                                type
+                            });
+
+                            this._setValue(fulldate0.date, fulldate0.isSet);
+
+                        }
                     
                     } else if (dateValue && dateValue.length === 1) {
 
-                        fulldate0 = this._getFulldate({
-                            $date,
-                            $time,
-                            date : dateValue[0],
-                            time : timeValue,
-                            type
-                        });
+                        if (this.conf.relative && this._dtIsRelativeDatetime(dateValue[0])) {
 
-                        this._setValue(
-                            [
-                                fulldate0.date
-                            ],
-                            fulldate0.isSet
-                        );
+                            this._set([dateValue[0]], true);
+
+                        } else {
+
+                            fulldate0 = this._getFulldate({
+                                $date,
+                                $time,
+                                date : dateValue[0],
+                                time : timeValue,
+                                type
+                            });
+
+                            this._setValue(
+                                [
+                                    fulldate0.date
+                                ],
+                                fulldate0.isSet
+                            );
+
+                        }
 
                     } else if (dateValue && dateValue.length === 2) {
 
-                        fulldate0 = this._getFulldate({
-                            $date,
-                            $time,
-                            date : dateValue[0],
-                            time : timeValue,
-                            type
-                        });
+                        if (this.conf.relative && this._dtIsRelativeDatetime(dateValue[0])) {
 
-                        fulldate1 = this._getFulldate({
-                            $date,
-                            $time : $time2,
-                            date : dateValue[1],
-                            time : timeValue2,
-                            type
-                        });
+                            fulldate0 = {
+                                date : dateValue[0],
+                                isSet : true
+                            };
+
+                        } else {
+
+                            fulldate0 = this._getFulldate({
+                                $date,
+                                $time,
+                                date : dateValue[0],
+                                time : timeValue,
+                                type
+                            });
+
+                        }
+
+                        if (this.conf.relative && this._dtIsRelativeDatetime(dateValue[1])) {
+
+                            fulldate1 = {
+                                date : dateValue[1],
+                                isSet : true
+                            };
+
+                        } else {
+
+                            fulldate1 = this._getFulldate({
+                                $date,
+                                $time : $time2,
+                                date : dateValue[1],
+                                time : timeValue2,
+                                type
+                            });
+
+                        }
 
                         this._setValue(
                             [
@@ -703,6 +857,7 @@ export default {
             let ranges = this.conf.dateSelectableRange;
 
             if (!(ranges instanceof Array) ||
+                this.conf.relative ||
                 ranges.length === 0) {
 
                 return true;
@@ -719,13 +874,11 @@ export default {
                 let start = this._dateStringToDate(ranges[0], this.conf.format);
                 let end = this._dateStringToDate(ranges[1], this.conf.format);
 
-                if (isValid(start) &&
-                    isValid(end) &&
-                    isWithinInterval(date, {
-                        start,
-                        end
-                    })) {
-                    
+                if (isWithinInterval(this._dateStringToDate(date), {
+                    start,
+                    end
+                })) {
+                
                     found = true;
 
                 }
@@ -742,12 +895,10 @@ export default {
                         let start = this._dateStringToDate(range[0], this.conf.format);
                         let end = this._dateStringToDate(range[1], this.conf.format);
 
-                        if (isValid(start) &&
-                            isValid(end) &&
-                            isWithinInterval(date, {
-                                start,
-                                end
-                            })) {
+                        if (isWithinInterval(this._dateStringToDate(date), {
+                            start,
+                            end
+                        })) {
 
                             found = true;
 
@@ -760,6 +911,71 @@ export default {
             }
 
             return found;
+
+        },
+        _getDate : function (value) {
+
+            let relativeDate;
+
+            if (typeof value === 'string') {
+
+                if (this.conf.relative) {
+
+                    relativeDate = this._dtParseRelativeDatetimeToObj(value);
+
+                }
+
+                if (this.conf.relative && relativeDate.relative) {
+
+                    return this._dtGetRelativeDatetime(relativeDate);
+
+                }
+                
+                return this._dateStringToDate(value, this.conf.format);
+
+            } else if (value instanceof Array) {
+
+                let result = [];
+
+                if (this.conf.relative) {
+
+                    relativeDate = [
+                        this._dtParseRelativeDatetimeToObj(value[0]),
+                        this._dtParseRelativeDatetimeToObj(value[1])
+                    ];
+
+                }
+
+                if (this.conf.relative && relativeDate[0].relative) {
+
+                    result[0] = this._dtGetRelativeDatetime(relativeDate[0]);
+
+                } else {
+
+                    result[0] = this._dateStringToDate(value[0], this.conf.format);
+
+                }
+
+                if (this.conf.relative && relativeDate[1].relative) {
+
+                    result[1] = this._dtGetRelativeDatetime(relativeDate[1]);
+
+                } else {
+
+                    result[1] = this._dateStringToDate(value[1], this.conf.format);
+
+                }
+
+                return result;
+
+            }
+
+            return value;
+
+        },
+        getDate : function () {
+
+            return this._getDate(this.get());
 
         }
     },

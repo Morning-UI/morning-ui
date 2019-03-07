@@ -27867,9 +27867,6 @@ mor-divider::after {
   position: absolute;
   background-color: #E2E8EE;
 }
-mor-divider:not(.vertical) {
-  width: 100%;
-}
 mor-divider:not(.vertical)::before,
 mor-divider:not(.vertical)::after {
   height: calc(45% - 1em);
@@ -36519,6 +36516,7 @@ mor-alert .alert-content h1 {
   padding: 0.15em 0;
   font-size: 20px;
   font-weight: 400;
+  border-bottom: 0;
 }
 mor-alert .alert-content > i.iconfont,
 mor-alert .alert-content > i.mo-icon {

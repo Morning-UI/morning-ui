@@ -41,6 +41,7 @@ import DocHeader                    from 'Docs/common/DocHeader.vue';
 import DocFooter                    from 'Docs/common/DocFooter.vue';
 import DocSubmenu                   from 'Docs/common/DocSubmenu.vue';
 import DocComponentStatus           from 'Docs/common/DocComponentStatus.vue';
+import DocComponentNotRecommended   from 'Docs/common/DocComponentNotRecommended.vue';
 
 const randomRangeMin = 1e4;
 const randomRangeMax = 9e4;
@@ -2475,6 +2476,7 @@ let mdExtendPlugin = (md, opt) => {
 markdown.use(mdExtendPlugin);
 
 window.Vue.component('doc-component-status', DocComponentStatus);
+window.Vue.component('doc-component-not-recommended', DocComponentNotRecommended);
 
 window.Vue.directive('docmd', {
     bind : el => {

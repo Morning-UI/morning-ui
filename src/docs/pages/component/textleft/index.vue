@@ -8,6 +8,8 @@
     
     <doc-component-status page="textleft"></doc-component-status>
 
+    <doc-component-not-recommended date="2019年3月7日" plan="使用CSS样式text-align来替代"></doc-component-not-recommended>
+
     [[[开始]]]
 
     内容左对齐组件，这是一个块级元素。

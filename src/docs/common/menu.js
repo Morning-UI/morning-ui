@@ -93,9 +93,9 @@ export default {
         多项输入 : '/component/multiinput.html',
         多项表单输入 : '/component/multiform.html',
         滑块输入 : '/component/slider.html',
-        时间选择器 : '/component/timepicker.html',
-        日期选择器 : '/component/datepicker.html',
-        日期时间选择器 : '/component/datetimepicker.html',
+        '时间选择器<i class="tag update"></i>' : '/component/timepicker.html',
+        '日期选择器<i class="tag update"></i>' : '/component/datepicker.html',
+        '日期时间选择器<i class="tag update"></i>' : '/component/datetimepicker.html',
         文件上传 : '/component/upload.html',
         '颜色选择器<i class="tag update l3"></i>' : '/component/colorpicker.html',
         图片热区输入 : '/component/imagemap.html'

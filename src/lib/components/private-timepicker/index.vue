@@ -13,6 +13,7 @@
         :format="format"
         :align="align"
         :selectable-range="selectableRange"
+        :relative="relative"
     >
 
     <morning-textinput
@@ -98,7 +99,6 @@ import {
     setHours,
     setMinutes,
     setSeconds,
-    isValid,
     startOfHour,
     endOfHour,
     startOfMinute,
@@ -136,6 +136,10 @@ export default {
         selectableRange : {
             type : Array,
             default : (() => [])
+        },
+        relative : {
+            type : Boolean,
+            default : false
         }
     },
     computed : {
@@ -146,7 +150,8 @@ export default {
                 insideName : this.insideName,
                 format : this.format,
                 align : this.align,
-                selectableRange : this.selectableRange
+                selectableRange : this.selectableRange,
+                relative : this.relative
             };
 
         },
@@ -188,13 +193,13 @@ export default {
 
             }
 
-            let date = this._timeStringToDate(value, this.conf.format);
+            if (this.conf.relative && this._timeIsRelativeTime(value)) {
 
-            if (!isValid(date)) {
-
-                date = this._timeGetStandardDate();
+                return value;
 
             }
+
+            let date = this._timeStringToDate(value, this.conf.format);
 
             if (date) {
 
@@ -245,6 +250,10 @@ export default {
 
                 this._set(undefined, true);
 
+            } else if (this.conf.relative && this._timeIsRelativeTime(this.data.inputValue)) {
+
+                this._set(this.data.inputValue, true);
+
             } else {
 
                 let date = this._timeStringToDate(this.data.inputValue, this.conf.format);
@@ -274,6 +283,12 @@ export default {
 
         },
         _focusType : function (type) {
+
+            if (this.conf.relative && this._timeIsRelativeTime(this.data.value)) {
+
+                return;
+
+            }
 
             let date = this._timeStringToDate(this.data.value, this.conf.format);
             let $input = this.$el.querySelector('input');
@@ -325,6 +340,12 @@ export default {
                 this.data.stopScrollHandler[type] = false;
 
                 return;
+
+            }
+
+            if (this.conf.relative && this._timeIsRelativeTime(this.data.value)) {
+
+                this._set(undefined, true);
 
             }
 
@@ -403,7 +424,15 @@ export default {
 
             if (this.data.value !== undefined) {
 
-                timeString = formatDate(this._timeStringToDate(this.data.value, this.conf.format), this.conf.format);
+                if (this.conf.relative && this._timeIsRelativeTime(this.data.value)) {
+
+                    timeString = this.data.value;
+
+                } else {
+
+                    timeString = formatDate(this._timeStringToDate(this.data.value, this.conf.format), this.conf.format);
+
+                }
 
             }
 
@@ -413,6 +442,7 @@ export default {
         _checkSelectable : function (type, num) {
 
             if (!this.conf.selectableRange ||
+                this.conf.relative ||
                 this.data.selectableTimes.length === 0) {
 
                 return true;
@@ -538,8 +568,8 @@ export default {
                 ranges.length === 2 &&
                 typeof ranges[0] === 'string' &&
                 typeof ranges[1] === 'string' &&
-                isValid(this._timeStringToDate(ranges[0], this.conf.format)) &&
-                isValid(this._timeStringToDate(ranges[1], this.conf.format))) {
+                this._timeStringIsValid(ranges[0], this.conf.format) &&
+                this._timeStringIsValid(ranges[1], this.conf.format)) {
 
                 this._initSelectableTime(ranges, selectableTimes);
                 
@@ -551,8 +581,8 @@ export default {
                         range.length === 2 &&
                         typeof range[0] === 'string' &&
                         typeof range[1] === 'string' &&
-                        isValid(this._timeStringToDate(range[0], this.conf.format)) &&
-                        isValid(this._timeStringToDate(range[1], this.conf.format))) {
+                        this._timeStringIsValid(ranges[0], this.conf.format) &&
+                        this._timeStringIsValid(ranges[1], this.conf.format)) {
 
                         this._initSelectableTime(range, selectableTimes);
 
