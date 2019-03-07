@@ -51,6 +51,8 @@ let morning = {
     map : {}
 };
 
+const defaultZIndex = 100;
+
 morning.findVM = function (ref) {
 
     for (let vm of Object.values(this.map)) {
@@ -226,7 +228,7 @@ morning.install = function (Vue, options) {
     options = extend(true, {
         prefix : 'ui',
         uploader : null,
-        zIndex : 1
+        zIndex : defaultZIndex
     }, options);
 
     morning._options = options;
