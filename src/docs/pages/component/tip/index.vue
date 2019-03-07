@@ -12,6 +12,8 @@
 
     定义一个小提示，为界面的元素提供简要说明。
 
+    如果需要在小提示中显示更复杂的内容，可以使用[弹出框](/component/popover.html)。
+
     :::vue
     @name:使用
     ---
@@ -33,6 +35,14 @@
         <ui-tip target="#demo2">
             <p>标题</p>
             <img width='160px' height='160px' src='http://morning-ui-image.test.upcdn.net/48fc612216b4fd2112a6bcd7d0db6eba.jpeg'>
+        </ui-tip>
+
+        <br>
+
+        <span id="demo33">鼠标悬浮显示小提示</span>
+        <ui-tip target="#demo33" color="silver">
+            <ui-h size="xxs" color="light-black">标题</ui-h>
+            <p style="max-width:200px;">很长很长的内容很长很长的内容很长很长的内容很长很长的内容很长很长的内容很长很长的内容很长很长的内容...</p>
         </ui-tip>
     </div>
     :::
