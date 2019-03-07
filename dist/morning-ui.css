@@ -35731,7 +35731,6 @@ mor-tip.tip-placement-bottom.align-end .arrow {
 }
 mor-tip .con {
   padding: 8px;
-  max-width: 200px;
   text-align: center;
   border-radius: 3px;
   word-break: break-all;

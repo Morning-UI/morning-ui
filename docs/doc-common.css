@@ -1276,6 +1276,10 @@ mor-dialog a:hover {
   font-size: 14px;
   z-index: 2;
 }
+.demo-root .section-demo .demo-con .demo-con-silver .form-name,
+.demo-root .section-demo .demo-con .demo-con-gray .form-name {
+  color: #fff;
+}
 .demo-root .section-demo .code-con {
   position: relative;
   display: flex;

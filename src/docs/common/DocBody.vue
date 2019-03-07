@@ -1375,23 +1375,25 @@ let extVueRenderer = {
                     (parts.title || colorTitleMap[color] || colorTitleMap.other),
                     '>desc',
                     (parts.desc || colorDescMap[color] || colorDescMap.other),
-                    '>tpl'
+                    '>tpl',
                 ];
 
                 if (color === 'silver') {
 
-                    colorPreset.push(`<div style="background: #626b75;border-color: #454d57;padding: 5px;">{$#${color}}\n${addSpace(rmEndWrap(parts.tpl.join('\n')), 4)}{$/${color}}\n</div>`);
+                    colorPreset.push(`<div class="demo-con-silver" style="background: #626b75;border-color: #454d57;padding: 5px;">{$#${color}}\n${addSpace(rmEndWrap(parts.tpl.join('\n')), 4)}{$/${color}}\n</div>`);
 
                 } else if (color === 'gray') {
 
-                    colorPreset.push(`<div style="background:#676767;border-color: #494949;padding: 5px;">{$#${color}}\n${addSpace(rmEndWrap(parts.tpl.join('\n')), 4)}{$/${color}}\n</div>`);
+                    colorPreset.push(`<div class="demo-con-gray" style="background:#676767;border-color: #494949;padding: 5px;">{$#${color}}\n${addSpace(rmEndWrap(parts.tpl.join('\n')), 4)}{$/${color}}\n</div>`);
 
                 } else {
 
                     colorPreset.push(`<div>{$#${color}}\n${addSpace(rmEndWrap(parts.tpl.join('\n')), 4)}{$/${color}}\n</div>`);
 
                 }
-                
+
+                colorPreset.push('>script');
+                colorPreset.push((parts.script || ['']).join('\n'));
                 newParamStr.push(colorPreset.join('\n'));
 
             }
@@ -2943,6 +2945,13 @@ a{ }
             border-bottom: 1px #E9ECEF dashed;
             font-size: 14px;
             z-index: 2;
+
+            .demo-con-silver,
+            .demo-con-gray{
+                .form-name{
+                    color: #fff;
+                }
+            }
         }
 
         .code-con{
