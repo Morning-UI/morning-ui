@@ -1,5 +1,3 @@
-@tip-arrowWidth : 5px;
-
 .tip-style(@background; @color; @style) {
     &.co-@{style} {
         .con {
@@ -7,27 +5,35 @@
             background-color: @background;
         }
 
-        &.popper-placement-top {
-            .arrow {
-                border-top-color: @background;
-            }
-        }
-
-        &.popper-placement-bottom {
-            .arrow {
-                border-bottom-color: @background;
-            }
-        }
-
-        &.popper-placement-right {
+        &.tip-placement-top {
             .arrow {
                 border-right-color: @background;
+                border-bottom-color: @background;
+                box-shadow: none;
             }
         }
 
-        &.popper-placement-left {
+        &.tip-placement-bottom {
             .arrow {
                 border-left-color: @background;
+                border-top-color: @background;
+                box-shadow: none;
+            }
+        }
+
+        &.tip-placement-right {
+            .arrow {
+                border-bottom-color: @background;
+                border-left-color: @background;
+                box-shadow: none;
+            }
+        }
+
+        &.tip-placement-left {
+            .arrow {
+                border-top-color: @background;
+                border-right-color: @background;
+                box-shadow: none;
             }
         }
     }
@@ -35,112 +41,23 @@
 
 mor-tip{
     position: fixed;
-    display: block;
+    display: none;
     font-size: @fontSize*0.75;
-    // opacity: 0;
-    // z-index: -1;
-    // pointer-events: none;
 
-    // &.in {
-    //     opacity: 1;
-    //     pointer-events: auto;
-    // }
-
-    &.popper-placement-top {
-        padding: @tip-arrowWidth 0;
-
-        .arrow {
-            bottom: 0;
-            left: 50%;
-            margin-left: -@tip-arrowWidth;
-            border-width: @tip-arrowWidth @tip-arrowWidth 0;
-        }
-    }
-
-    &.popper-placement-right {
-        padding: 0 @tip-arrowWidth 0 @tip-arrowWidth*2;
-
-        .arrow {
-            top: 50%;
-            left: @tip-arrowWidth;
-            margin-top: -@tip-arrowWidth;
-            border-width: @tip-arrowWidth @tip-arrowWidth @tip-arrowWidth 0;
-        }
-    }
-
-    &.popper-placement-bottom {
-        padding: @tip-arrowWidth 0;
-
-        .arrow {
-            top: 0;
-            left: 50%;
-            margin-left: -@tip-arrowWidth;
-            border-width: 0 @tip-arrowWidth @tip-arrowWidth;
-        }
-    }
-
-    &.popper-placement-left {
-        padding: 0 @tip-arrowWidth*2 0 @tip-arrowWidth;
-
-        .arrow {
-            top: 50%;
-            right: @tip-arrowWidth;
-            margin-top: -@tip-arrowWidth;
-            border-width: @tip-arrowWidth 0 @tip-arrowWidth @tip-arrowWidth;
-            // border-left-color: @tip-arrowColor;
-        }
-    }
-
-    &.popper-placement-left,
-    &.popper-placement-right {
-        &.align-start{
-            .arrow{
-                margin-top: 0;
-                top: @tip-arrowWidth;
-            }
-        }
-
-        &.align-end{
-            .arrow{
-                top: unset;
-                margin-top: 0;
-                bottom: @tip-arrowWidth;
-            }
-        }
-    }
-
-    &.popper-placement-top,
-    &.popper-placement-bottom {
-        &.align-start{
-            .arrow{
-                margin-left: 0;
-                left: @tip-arrowWidth;
-            }
-        }
-
-        &.align-end{
-            .arrow{
-                left: unset;
-                margin-left: 0;
-                right: @tip-arrowWidth;
-            }
-        }
+    &.has-content{
+        display: block;
     }
 
     .con {
         padding: @fontSize*0.5;
-        // max-width: @fontSize*12.5;
         text-align: center;
         border-radius: @borderRadius;
         word-break: break-all;
     }
 
-    .arrow {
-        position: absolute;
-        width: 0;
-        height: 0;
-        border-color: transparent;
-        border-style: solid;
+    .setup-tip(3px);
+
+    .arrow{
     }
 
     &.only-has-text{

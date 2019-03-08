@@ -198,17 +198,17 @@
     >conf-desc
     偏移量。
     >conf-accept
-    上下偏移量(单位px/%) 左右偏移量(单位px/%)
+    左右偏移量(单位px/%), 上下偏移量(单位px/%)
     >conf-type
     String
     >conf-default
-    `'0 0'`
+    `'0, 0'`
     ---
     #demo
     >tpl
     <div>
         <span id="demo11">鼠标悬浮显示小提示</span>
-        <ui-tip target="#demo11" offset="10px -30px">提示内容</ui-tip>
+        <ui-tip target="#demo11" offset="-30px, 10px">提示内容</ui-tip>
     </div>
     :::
 
@@ -305,7 +305,7 @@
     >tpl
     <div>
         <span id="demo20">鼠标悬浮显示小提示</span>
-        <ui-tip target="#demo20" placement="bottom" :auto-reverse="false">这是一段非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常长的提示内容</ui-tip>
+        <ui-tip target="#demo20" placement="bottom" :auto-reverse="false" style="max-width:160px;">这是一段非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常长的提示内容</ui-tip>
     </div>
     ---
     #demo
@@ -314,7 +314,7 @@
     >tpl
     <div>
         <span id="demo21">鼠标悬浮显示小提示</span>
-        <ui-tip target="#demo21" placement="bottom" :auto-reverse="true">这是一段非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常长的提示内容</ui-tip>
+        <ui-tip target="#demo21" placement="bottom" :auto-reverse="true" style="max-width:160px;">这是一段非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常长的提示内容</ui-tip>
     </div>
     :::
 

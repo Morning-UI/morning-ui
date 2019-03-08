@@ -186,17 +186,17 @@
     >conf-desc
     偏移量。
     >conf-accept
-    上下偏移量(单位px/%) 左右偏移量(单位px/%)
+    左右偏移量(单位px/%), 上下偏移量(单位px/%)
     >conf-type
     String
     >conf-default
-    `'0 0'`
+    `'0, 0'`
     ---
     #demo
     >tpl
     <div>
         <span id="demo10">鼠标悬浮显示弹出框</span>
-        <ui-popover target="#demo10" offset="10px -30px">
+        <ui-popover target="#demo10" offset="-30px, 10px">
             <p>内容内容内容内容内容1...</p>
             <p>内容内容内容内容2...</p>
             <p>内容内容内容3...</p>

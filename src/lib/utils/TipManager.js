@@ -3,31 +3,31 @@ import Tether                       from 'Npm/tether/dist/js/tether.min.js';
 import Popper                       from 'Npm/popper.js/dist/popper.min.js';
 import PopupManager                 from 'Utils/PopupManager';
 import IndexManager                 from 'Utils/IndexManager';
+import TriggerManager               from 'Utils/TriggerManager';
+import GlobalEvent                  from 'Utils/GlobalEvent';
 
 let TipManager = {
-    mixins : [PopupManager, IndexManager],
+    mixins : [PopupManager, IndexManager, TriggerManager, GlobalEvent],
     data : function () {
 
         return {
             Tip : {
-                // attachmentMap : {
-                //     top : 'bottom center',
-                //     right : 'middle left',
-                //     bottom : 'top center',
-                //     left : 'middle right'
-                // },
+                $target : null,
                 popper : null,
-                // placement : 'top',
-                // align : 'middle',
+                align : 'middle',
                 options : {},
-                data : {}
-                // autoReverse : true,
-                // autoFixPlacement : null,
-                // autoOffset : true,
-                // autoFixOffset : [0, 0],
-                // overranger : [false, false, false, false]
-            },
-            // tipClass : {}
+                data : {},
+                activeTrigger : {},
+                hoverState : '',
+                hoverStates : {
+                    in : 'in',
+                    out : 'out'
+                },
+                classNames : {
+                    in : 'tip-target-hover'
+                },
+                timeout : null
+            }
         };
 
     },
@@ -42,14 +42,18 @@ let TipManager = {
                     offset : '0 0',
                     onCreate : data => {
                         this.Tip.data = data;
-                        this._tipShow();
+                        this._tipPopperShow();
                     },
                     onUpdate : data => {
-                        console.log(51, data);
+                        this.Tip.data = data;
+                        this._tipPopperShow(true);
                     },
                     modifiers : {
                         flip : {
                             enabled : false
+                        },
+                        hide : {
+                            true : false
                         },
                         preventOverflow : {
                             enabled : false,
@@ -57,27 +61,7 @@ let TipManager = {
                         },
                         arrow : {
                             enabled : true,
-                            element : this.$el.querySelector('.arrow'),
-                            fn : data => {
-
-                                console.log(data);
-
-                                // 8 is 5(margin-left) + 3(border-radius)
-                                if (data.offsets.arrow.left < 8) {
-
-                                    data.offsets.arrow.left = 8;
-
-                                }
-
-                                if (data.offsets.arrow.left > (data.offsets.popper.width - 8)) {
-
-                                    data.offsets.arrow.left = (data.offsets.popper.width - 8);
-
-                                }
-
-                                return data;
-
-                            }
+                            element : this.$el.querySelector('.tip-arrow')
                         },
                         offset : {
                             enabled : true,
@@ -87,116 +71,24 @@ let TipManager = {
                 }
             }, this.Tip.options, options);
 
+            if (this.Tip.align !== 'middle') {
+
+                options.options.placement = `${options.options.placement}-${this.Tip.align}`;
+
+            }
+
             if (options.options.modifiers.flip.enabled) {
 
                 options.options.modifiers.preventOverflow.enabled = true;
 
             }
 
-            // options = extend({
-            //     placement : this.Tip.placement,
-            //     element : null,
-            //     target : null,
-            //     targetOffset : '0 0',
-            //     classPrefix : 'mor-tet',
-            //     offset : '0 0',
-            //     classes : {
-            //         'element-attached' : 'tet-ea'
-            //     }
-            // }, this.Tip.options, options);
-
-            // this._tipAlignSet(options, options.placement, this.Tip.attachmentMap[options.placement]);
-
             this.Tip.options = options;
 
             return options;
 
         },
-        // _tipAutoPos : function () {
-
-        //     const blank = 5;
-
-        //     let options = this.Tip.options;
-        //     let rect = options.element.getBoundingClientRect();
-        //     let placement = options.placement;
-        //     let overranger = [false, false, false, false];
-
-        //     if (placement === 'bottom' ||
-        //         placement === 'top') {
-
-        //         // overleft
-        //         if (this.Tip.autoOffset && (rect.left - blank) < 0) {
-
-        //             this.Tip.autoFixOffset[1] = rect.left - blank;
-        //             overranger[3] = true;
-
-        //         }
-
-        //         // overright
-        //         if (this.Tip.autoOffset && (rect.left + rect.width + blank) > document.documentElement.clientWidth) {
-
-        //             this.Tip.autoFixOffset[1] = rect.left + rect.width + blank - document.documentElement.clientWidth;
-        //             overranger[1] = true;
-
-        //         }
-
-        //         // overtop
-        //         if (this.Tip.autoReverse && (rect.top - blank) < 0) {
-
-        //             this.Tip.autoFixPlacement = 'bottom';
-        //             overranger[0] = true;
-
-        //         }
-
-        //         // overbottom
-        //         if (this.Tip.autoReverse && (rect.top + rect.height + blank) > document.documentElement.clientHeight) {
-
-        //             this.Tip.autoFixPlacement = 'top';
-        //             overranger[2] = true;
-
-        //         }
-
-        //     } else if (placement === 'left' ||
-        //                placement === 'right') {
-
-        //         // overleft
-        //         if (this.Tip.autoReverse && (rect.left - blank) < 0) {
-
-        //             this.Tip.autoFixPlacement = 'right';
-        //             overranger[3] = true;
-
-        //         }
-
-        //         // overright
-        //         if (this.Tip.autoReverse && (rect.left + rect.width + blank) > document.documentElement.clientWidth) {
-
-        //             this.Tip.autoFixPlacement = 'left';
-        //             overranger[1] = true;
-                       
-        //         }
-
-        //         // overtop
-        //         if (this.Tip.autoOffset && (rect.top - blank) < 0) {
-
-        //             this.Tip.autoFixOffset[0] = rect.top - blank;
-        //             overranger[0] = true;
-
-        //         }
-
-        //         // overbottom
-        //         if (this.Tip.autoOffset && (rect.top + rect.height + blank) > document.documentElement.clientHeight) {
-
-        //             this.Tip.autoFixOffset[0] = rect.top + rect.height + blank - document.documentElement.clientHeight;
-        //             overranger[2] = true;
-
-        //         }
-
-        //     }
-
-        //     this.Tip.overranger = overranger;
-            
-        // },
-        _tipCreate : function (options) {
+        _tipPopperCreate : function (options) {
 
             if (this.Tip.popper) {
 
@@ -209,10 +101,9 @@ let TipManager = {
             this._tipOptionsHandler(options);
             this.Popup.$target = this.Tip.options.popper;
             this._popupShow();
-            this.Tip.options.placement = 'top';
-            this._tipHide();
-
-            console.log(9, this.Tip.options.options);
+            console.log(556, extend(true, {}, this.Tip.options));
+            // this.Tip.options.placement = 'top';
+            this._tipPopperHide();
 
             this.Vue.nextTick(() => {
                 this.Tip.popper = new Popper(
@@ -221,24 +112,31 @@ let TipManager = {
                     this.Tip.options.options
                 );
 
-                // this._tipShow();
 
             });
 
         },
-        _tipShow : function () {
+        _tipPopperShow : function (dontUpdate = false) {
 
-            // this.Tip.autoFixOffset = [0, 0];
-            // this.Tip.autoFixPlacement = null;
-            // this.Tip.overranger = [false, false, false, false];
             this.Tip.options.popper.style.zIndex = this._indexMax();
             this.Tip.options.popper.style.opacity = 1;
             this.Tip.options.popper.style['pointer-events'] = 'auto';
-            this.Tip.options.popper.classList.add(`popper-placement-${this.Tip.data.placement}`);
-            this._tipUpdate();
-            // this._tipUpdate();
-            // this._tipAutoPos();
-            // this._tipUpdate();
+            this._tipRemoveClasses(this.Tip.options.popper, 'tip-placement-');
+            this.Tip.options.popper.classList.add(`tip-placement-${this.Tip.data.placement.split('-')[0]}`);
+
+            if (!dontUpdate) {
+
+                this._tipUpdate();
+
+            }
+
+        },
+        _tipPopperHide : function () {
+
+            this.Tip.options.popper.style.zIndex = -1;
+            this.Tip.options.popper.style.opacity = 0;
+            this.Tip.options.popper.style['pointer-events'] = 'none';
+            this._tipRemoveClasses(this.Tip.options.popper, 'tip-placement-');
 
         },
         _tipUpdate : function () {
@@ -246,19 +144,11 @@ let TipManager = {
             this.Tip.popper.update();
 
         },
-        _tipHide : function () {
-
-            this.Tip.options.popper.style.zIndex = -1;
-            this.Tip.options.popper.style.opacity = 0;
-            this.Tip.options.popper.style['pointer-events'] = 'none';
-            this._tipRemoveClasses(this.Tip.options.popper, 'popper-placement-');
-
-        },
-        _tipDestroy : function () {
+        _tipPopperDestroy : function () {
 
             if (this.Tip.popper) {
 
-                this._tipHide();
+                this._tipPopperHide();
                 this.Tip.popper.destroy();
                 this.Tip.popper = null;
 
@@ -267,9 +157,16 @@ let TipManager = {
         },
         _tipUpdateOptions : function (options) {
 
-            this._tipOptionsHandler(options);
-            this._tipDestroy();
-            this._tipCreate();
+            options = this._tipOptionsHandler(options);
+
+            console.log('_tipUpdateOptions', this.Tip.popper);
+
+            if (this.Tip.popper) {
+
+                this._tipPopperDestroy();
+                this._tipPopperCreate(options);
+
+            }
 
         },
         _tipRemoveClasses : function ($ele, className) {
@@ -289,49 +186,361 @@ let TipManager = {
             }
 
         },
-        // _tipAlignSet : function (options, placement, attachment) {
+        _tipBindTarget : function () {
+            
+            let $target;
 
-        //     if (this.Tip.align === 'start') {
+            try {
 
-        //         options.attachment = attachment.replace(/center/, 'left').replace(/middle/, 'top');
+                $target = document.querySelector(this.conf.target);
+            
+            } catch (e) {}
 
-        //     } else if (this.Tip.align === 'end') {
+            if (!$target) {
 
-        //         options.attachment = attachment.replace(/center/, 'right').replace(/middle/, 'bottom');
+                return;
 
-        //     } else {
+            }
 
-        //         options.attachment = attachment;
+            this.Tip.$target = $target;
+            this._triggerUnsetListeners();
 
-        //     }
+            if (this.Trigger.triggers.indexOf('hover') !== -1) {
 
-        //     if (this.Tip.align !== 'middle') {
+                this.Trigger.$targets = [$target, this.$el];
 
-        //         if (placement === 'top') {
+            } else {
 
-        //             options.targetAttachment = options.attachment.replace(/bottom/, 'top');
+                this.Trigger.$targets = [$target];
+
+            }
+
+            this._triggerSetListeners();
+            this.$emit('TipManager-bind-target', $target);
+
+        },
+        _tipIsEventObj : function (evt) {
+
+            return evt && /Event\]$/.test(evt.toString());
+
+        },
+        _tipIsWithActiveTrigger : function () {
+
+            return Object.values(this.Tip.activeTrigger).indexOf(true) !== -1;
+
+        },
+        _tipCheckArea : function (evt) {
+
+            if (evt.button === 2) {
+
+                return;
+
+            }
+
+            const notFound = -1;
+
+            if ((
+                evt.path.indexOf(this.Tip.$target) === notFound &&
+                evt.path.indexOf(this.$el) === notFound
+            ) && this.conf.trigger.indexOf('click') !== -1) {
+
+                this._tipHide();
+
+            }
+
+            return evt;
+
+        },
+        _tipShowComplete () {
+
+            let prevHoverState = this.Tip.hoverState;
+
+            this.Tip.hoverState = null;
+
+            if (prevHoverState === this.Tip.hoverStates.out) {
+
+                this._tipLeave();
+
+            }
+
+            this.Vue.nextTick(() => {
+
+                this._globalEventAdd('click', '_tipCheckArea', true);
+
+            });
+
+        },
+        _tipHideComplete : function () {
+
+            this.$emit('TipManager-hide');
+
+            this.Tip.hoverState = '';
+
+            this._globalEventRemove('click', '_tipCheckArea');
+
+        },
+        _tipShow : function () {
+
+            this.$emit('TipManager-will-show');
+
+            this._tipPopperCreate({
+                popper : this.$el,
+                reference : this.Tip.$target,
+                options : {
+                    placement : this.conf.placement,
+                    modifiers : {
+                        offset : {
+                            offset : this.conf.offset
+                        },
+                        flip : {
+                            enabled : this.conf.autoReverse
+                        }
+                    }
+                }
+            });
+
+            this.$el.classList.add('tip-target-hover');
+            this._tipShowComplete();
+
+        },
+        _tipHide : function () {
+
+            this.$el.classList.remove('tip-target-hover');
+            this._tipPopperDestroy();
+            this._tipHideComplete();
+
+        },
+        _tipToggle : function () {
+
+            if (this._tipIsWithActiveTrigger()) {
+
+                this._tipEnter();
+
+            } else {
+
+                this._tipLeave();
+
+            }
+
+        },
+        _tipClickToggle : function () {
+
+            this.Tip.activeTrigger.click = !this.Tip.activeTrigger.click;
+            this._tipToggle();
+
+        },
+        _tipEnter : function (evt) {
+
+            if (this._tipIsEventObj(evt)) {
+
+                if (evt.type === 'focusin') {
+
+                    this.Tip.activeTrigger.focus = true;
+
+                } else if (evt.type === 'mouseenter') {
+
+                    this.Tip.activeTrigger.hover = true;
+
+                }
+
+            }
+
+            if (this.$el.classList.value.split(' ').indexOf(this.Tip.classNames.in) !== -1 ||
+                this.Tip.hoverState === this.Tip.hoverStates.in) {
+
+                this.Tip.hoverState = this.Tip.hoverStates.in;
+
+                return;
+
+            }
+
+            clearTimeout(this.Tip.timeout);
+
+            this.Tip.hoverState = this.Tip.hoverStates.in;
+
+            this.Tip.timeout = setTimeout(() => {
+
+                if (this.Tip.hoverState === this.Tip.hoverStates.in) {
+
+                    this._tipShow();
+
+                }
+
+            });
+
+        },
+        _tipLeave : function (evt) {
+
+            if (this._tipIsEventObj(evt)) {
+
+                if (evt.type === 'focusout') {
+
+                    this.Tip.activeTrigger.focus = false;
+
+                } else if (evt.type === 'mouseleave') {
+
+                    this.Tip.activeTrigger.hover = false;
+
+                }
+
+            }
+
+            if (this._tipIsWithActiveTrigger()) {
+
+                return;
+
+            }
+
+            this.Tip.hoverState = this.Tip.hoverStates.out;
+
+            this.Tip.timeout = setTimeout(() => {
+
+                if (this.Tip.hoverState === this.Tip.hoverStates.out) {
+                    
+                    this._tipHide();
+
+                }
+
+            });
+
+        },
+    },
+    mounted : function () {
+
+        this.Trigger.triggers = this.conf.trigger;
+        this.$el.style.zIndex = -1;
+        this.$el.style.opacity = 0;
+        this.$el.style['pointer-events'] = 'none';
+
+        if (this.conf.placement !== undefined) {
+
+            this.$watch('conf.placement', () => {
+
+                this._tipUpdateOptions({
+                    options : {
+                        placement : this.conf.placement
+                    }
+                });
+
+            });
+
+        }
+
+        if (this.conf.autoReverse !== undefined) {
+
+            this.$watch('conf.autoReverse', () => {
+
+                this._tipUpdateOptions({
+                    options : {
+                        modifiers : {
+                            flip : {
+                                enabled : this.conf.autoReverse
+                            }
+                        }
+                    }
+                })
+
+            });
+
+        }
+
+        if (this.conf.align !== undefined) {
+
+            this.Tip.align = this.conf.align;
+
+            this.$watch('conf.align', () => {
+
+                this.Tip.align = this.conf.align;
                 
-        //         } else if (placement === 'bottom') {
+            });
 
-        //             options.targetAttachment = options.attachment.replace(/top/, 'bottom');
-                
-        //         } else if (placement === 'left') {
+        }
 
-        //             options.targetAttachment = options.attachment.replace(/right/, 'left');
-                
-        //         } else if (placement === 'right') {
+        if (this.conf.offset !== undefined) {
 
-        //             options.targetAttachment = options.attachment.replace(/left/, 'right');
-                
-        //         }
+            this.$watch('conf.offset', () => {
 
-        //     }
+                this._tipUpdateOptions({
+                    options : {
+                        modifiers : {
+                            offset : {
+                                offset : this.conf.offset
+                            }
+                        }
+                    }
+                });
 
-        // }
+            });
+
+        }
+
+        if (this.conf.triggerInDelay !== undefined) {
+
+            this.$watch('conf.triggerInDelay', () => {
+
+                this.Trigger.handlerMap = {
+                    click : [this._tipClickToggle],
+                    hover : {
+                        in : [{
+                            fn : this._tipEnter,
+                            delay : this.conf.triggerInDelay
+                        }],
+                        out : [this._tipLeave]
+                    },
+                    focus : {
+                        in : [this._tipEnter],
+                        out : [this._tipLeave]
+                    }
+                };
+
+            }, {
+                immediate : true
+            });
+
+        }
+
+        if (this.conf.trigger !== undefined) {
+
+            this.$watch('conf.trigger', () => {
+
+                this.Tip.activeTrigger = {};
+                this._triggerUnsetListeners();
+                this.Trigger.triggers = this.conf.trigger;
+                this._tipBindTarget();
+
+            });
+
+        }
+
+        if (this.conf.target !== undefined) {
+
+            this.$watch('conf.target', () => {
+
+                this._tipBindTarget();
+
+                if (this.Tip.popper) {
+                    
+                    this._tipHide();
+                    this._tipShow();
+
+                }
+
+            });
+
+        }
+
+        this.Vue.nextTick(() => {
+
+            this._tipBindTarget();
+
+        });
+
     },
     beforeDestroy : function () {
 
-        this._tipDestroy();
+        this._tipPopperDestroy();
+        this._globalEventRemove('click', '_tipCheckArea');
+        clearTimeout(this.Tip.timeout);
 
     }
 };
