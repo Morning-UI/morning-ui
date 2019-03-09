@@ -1,5 +1,4 @@
 import extend                       from 'extend';
-import Tether                       from 'Npm/tether/dist/js/tether.min.js';
 import Popper                       from 'Npm/popper.js/dist/popper.min.js';
 import PopupManager                 from 'Utils/PopupManager';
 import IndexManager                 from 'Utils/IndexManager';
@@ -41,12 +40,16 @@ let TipManager = {
                     placement : 'top',
                     offset : '0 0',
                     onCreate : data => {
+
                         this.Tip.data = data;
                         this._tipPopperShow();
+
                     },
                     onUpdate : data => {
+
                         this.Tip.data = data;
                         this._tipPopperShow(true);
+
                     },
                     modifiers : {
                         flip : {
@@ -101,17 +104,16 @@ let TipManager = {
             this._tipOptionsHandler(options);
             this.Popup.$target = this.Tip.options.popper;
             this._popupShow();
-            console.log(556, extend(true, {}, this.Tip.options));
             // this.Tip.options.placement = 'top';
             this._tipPopperHide();
 
             this.Vue.nextTick(() => {
+                
                 this.Tip.popper = new Popper(
                     this.Tip.options.reference,
                     this.Tip.options.popper,
                     this.Tip.options.options
                 );
-
 
             });
 

@@ -231,7 +231,6 @@ export default {
             if (this.data.inputFocus && (this.data.state !== 'disabled')) {
 
                 this.$refs[`ui-private-timepicker-popover-${this.uiid}`].show();
-             
 
             } else {
 
