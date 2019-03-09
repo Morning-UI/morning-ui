@@ -141,7 +141,11 @@ let TipManager = {
         },
         _tipUpdate : function () {
 
-            this.Tip.popper.update();
+            if (this.Tip.popper) {
+
+                this.Tip.popper.update();
+
+            }
 
         },
         _tipPopperDestroy : function () {
@@ -227,6 +231,15 @@ let TipManager = {
             return Object.values(this.Tip.activeTrigger).indexOf(true) !== -1;
 
         },
+        _tipCleanAllActiveTrigger : function () {
+
+            for (let key in this.Tip.activeTrigger) {
+
+                this.Tip.activeTrigger[key] = false;
+
+            }
+
+        },
         _tipCheckArea : function (evt) {
 
             if (evt.button === 2) {
@@ -290,11 +303,10 @@ let TipManager = {
         },
         _tipHideComplete : function () {
 
-            this.$emit('TipManager-hide');
-
+            this._tipCleanAllActiveTrigger();
             this.Tip.hoverState = '';
-
             this._globalEventRemove('click', '_tipCheckArea');
+            this.$emit('TipManager-hide');
 
         },
         _tipShow : function () {
