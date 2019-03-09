@@ -207,6 +207,8 @@ let TriggerManager = {
             let triggers = this.Trigger.triggers.split(' ');
             let $targets = this.Trigger.$targets;
 
+            triggers = arrayUniq(triggers);
+
             this._triggerHandleListeners($targets, triggers, true);
 
         },

@@ -51,7 +51,7 @@ export default {
         trigger : {
             type : String,
             default : 'hover',
-            validator : (value => ['hover', 'click', 'focus', 'method'].indexOf(value) !== -1)
+            validator : (value => ['hover', 'click', 'rclick', 'focus', 'method'].indexOf(value) !== -1)
         },
         triggerInDelay : {
             type : Number,
@@ -218,7 +218,6 @@ export default {
             this.$emit('emit');
 
         });
-
 
     }
 };

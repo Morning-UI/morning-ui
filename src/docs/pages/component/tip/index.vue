@@ -221,7 +221,7 @@
     <br><br>
     当处于`click`配置时，点击`target`元素会切换显示/隐藏状态，同时点击其他区域会隐藏小提示。
     >conf-accept
-    `hover`：鼠标移入目标元素<br>`click`：鼠标点击目标元素<br>`focus`：目标元素处于焦点状态<br>`method`：通过组件方法触发
+    `hover`：鼠标移入目标元素<br>`click`：鼠标点击目标元素<br>`rclick`：鼠标右键点击目标元素<br>`focus`：目标元素处于焦点状态<br>`method`：通过组件方法触发
     >conf-type
     String
     >conf-default
@@ -237,6 +237,20 @@
 
         <span id="demo13">鼠标悬浮或点击显示小提示</span>
         <ui-tip target="#demo13" trigger="click hover">提示内容</ui-tip>
+    </div>
+    ---
+    #demo
+    >desc
+    鼠标右键点击显示的小提示。
+    >tpl
+    <div>
+        <span id="demo34">右键点击显示小提示</span>
+        <ui-tip target="#demo34" trigger="rclick">提示内容</ui-tip>
+
+        <br>
+
+        <span id="demo35">鼠标悬浮或右键点击显示小提示</span>
+        <ui-tip target="#demo35" trigger="rclick hover">提示内容</ui-tip>
     </div>
     ---
     #demo

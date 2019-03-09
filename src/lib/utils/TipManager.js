@@ -159,8 +159,6 @@ let TipManager = {
 
             options = this._tipOptionsHandler(options);
 
-            console.log('_tipUpdateOptions', this.Tip.popper);
-
             if (this.Tip.popper) {
 
                 this._tipPopperDestroy();
@@ -242,9 +240,27 @@ let TipManager = {
             if ((
                 evt.path.indexOf(this.Tip.$target) === notFound &&
                 evt.path.indexOf(this.$el) === notFound
-            ) && this.conf.trigger.indexOf('click') !== -1) {
+            ) &&
+                this.conf.trigger.indexOf('click') !== -1 &&
+                this.Tip.activeTrigger.click) {
 
-                this._tipHide();
+                this.Tip.activeTrigger.click = false;
+                this._tipLeave();
+
+                return evt;
+
+            }
+
+            if ((
+                evt.path.indexOf(this.Tip.$target) === notFound &&
+                evt.path.indexOf(this.$el) === notFound
+            ) && this.conf.trigger.indexOf('rclick') !== -1 &&
+                this.Tip.activeTrigger.rclick) {
+
+                this.Tip.activeTrigger.rclick = false;
+                this._tipLeave();
+
+                return evt;
 
             }
 
@@ -268,6 +284,8 @@ let TipManager = {
                 this._globalEventAdd('click', '_tipCheckArea', true);
 
             });
+
+            this.$emit('TipManager-show');
 
         },
         _tipHideComplete : function () {
@@ -326,6 +344,12 @@ let TipManager = {
         _tipClickToggle : function () {
 
             this.Tip.activeTrigger.click = !this.Tip.activeTrigger.click;
+            this._tipToggle();
+
+        },
+        _tipRclickToggle : function () {
+
+            this.Tip.activeTrigger.rclick = !this.Tip.activeTrigger.rclick;
             this._tipToggle();
 
         },
@@ -438,7 +462,7 @@ let TipManager = {
                             }
                         }
                     }
-                })
+                });
 
             });
 
@@ -480,6 +504,7 @@ let TipManager = {
 
                 this.Trigger.handlerMap = {
                     click : [this._tipClickToggle],
+                    rclick : [this._tipRclickToggle],
                     hover : {
                         in : [{
                             fn : this._tipEnter,
