@@ -545,6 +545,8 @@
     #config
     >conf-desc
     区间日期选择时，开始/结束输入框的排列方向<br>仅在开启`is-range`配置时生效。
+    <br>
+    注意：开启此配置后弹出框超出视窗，位置自动调整会被禁用。
     >conf-accept
     `'horizontal'` : 横向<br>`'vertical'` : 竖直
     >conf-type

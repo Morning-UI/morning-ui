@@ -49,10 +49,11 @@
                     :show-timepicker-box="conf.showTimepickerBox"
                     :auto-refresh-calendar="false"
                     :highlight-days="data.input0HighlightDays"
-                    :date-select-add-class="'date-select-0' + (conf.rangeInputDirection === 'vertical' ? ' vertical' : '')"
                     :has-quick-pick="(this.conf.quickPick.length > 0)"
                     :relative="conf.relative"
+                    :_date-popover-add-class="'date-select-0'"
                     :_relative-time="conf._relativeTime"
+                    :_range-input-direction="conf.rangeInputDirection === 'vertical'"
 
                     @value-change="_syncValueFromInputToRoot"
                     @focus="_focus"
@@ -184,9 +185,10 @@
                     :show-timepicker-box="conf.showTimepickerBox"
                     :auto-refresh-calendar="false"
                     :highlight-days="data.input1HighlightDays"
-                    :date-select-add-class="'date-select-1' + (conf.rangeInputDirection === 'vertical' ? ' vertical' : '')"
                     :relative="conf.relative"
+                    :_date-popover-add-class="'date-select-1'"
                     :_relative-time="conf._relativeTime"
+                    :_range-input-direction="conf.rangeInputDirection === 'vertical'"
 
                     @value-change="_syncValueFromInputToRoot"
                     @focus="_focus"
@@ -706,28 +708,56 @@ export default {
 
                         }
 
-                        this.Vue.nextTick(() => {
+                        setTimeout(() => {
 
-                            if (input1.Tip.overranger[1] || (input1x + input1w + offset > document.body.offsetWidth)) {
+                            let input0 = this.$refs[`ui-datepicker-input-0-${this.uiid}`];
+                            let input1 = this.$refs[`ui-datepicker-input-1-${this.uiid}`];
+                            let popover0 = input0.$refs[`ui-private-datepicker-popover-${input0.uiid}`];
+                            let popover1 = input1.$refs[`ui-private-datepicker-popover-${input1.uiid}`];
+                            let offsets0 = popover0.Tip.data.offsets;
+                            let offsets1 = popover1.Tip.data.offsets;
+                            let offsetFixed = 0;
+                            let popover0OriginOffsetY = popover0
+                                .Tip
+                                .data
+                                .instance
+                                .options
+                                .modifiers
+                                .offset
+                                .offset
+                                .split(' ')[1];
+                            let popover1OriginOffsetY = popover1
+                                .Tip
+                                .data
+                                .instance
+                                .options
+                                .modifiers
+                                .offset
+                                .offset
+                                .split(' ')[1];
 
-                                input0._tipUpdate({
-                                    offset : `0 ${2 * offset}px`
+                            if ((offsets0.popper.width + offsets0.popper.left) > offsets1.popper.left) {
+
+                                offsetFixed = (offsets0.popper.width + offsets0.popper.left - offsets1.popper.left) / 2;
+
+                                popover0._tipUpdateOptions({
+                                    options : {
+                                        modifiers : {
+                                            offset : {
+                                                offset : `${-offsetFixed}px, ${popover0OriginOffsetY}`
+                                            }
+                                        }
+                                    }
                                 });
 
-                            } else if (input0.Tip.overranger[3] || input0x < offset) {
-
-                                input1._tipUpdate({
-                                    offset : `0 ${-2 * offset}px`
-                                });
-
-                            } else {
-
-                                input0._tipUpdate({
-                                    offset : `0 ${offset}px`
-                                });
-
-                                input1._tipUpdate({
-                                    offset : `0 ${-offset}px`
+                                popover1._tipUpdateOptions({
+                                    options : {
+                                        modifiers : {
+                                            offset : {
+                                                offset : `${offsetFixed}px, ${popover1OriginOffsetY}`
+                                            }
+                                        }
+                                    }
                                 });
 
                             }

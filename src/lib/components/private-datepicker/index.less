@@ -15,25 +15,18 @@ mor-private-datepicker{
     }
 }
 
-.mor-date-wrap{
+.mor-private-datepicker-popover{
     min-width: calc(280px + 2px);
-    position: absolute;
     top: @formHeight + 3;
-    pointer-events: none;
-    opacity: 0;
-    height: 0;
-    transform: scale(0);
     box-sizing: border-box;
     font-size: @fontSize*0.875;
 
-    &.show{
-        pointer-events: auto;
-        opacity: 1;
+    .popover-con .popover-body{
+        padding: 0;
     }
 
     .date-select{
         box-sizing: border-box;
-        border: 1px @colorFormBorder solid;
         background: @colorFormBackground;
         border-radius: @borderRadius;
         z-index: 2;
