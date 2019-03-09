@@ -184,7 +184,7 @@ export default {
     },
     mounted : function () {
 
-        this.$on('TipManager-bind-target', $target => {
+        this.$on('_tipManagerBindTarget', $target => {
 
             if ($target.attributes.title) {
 
@@ -194,14 +194,14 @@ export default {
 
         });
 
-        this.$on('TipManager-will-show', () => {
+        this.$on('_tipManagerWillShow', () => {
 
             this._checkOnlyHasText();
             this.data.hasContent = this._tipHasContent();
 
         });
 
-        this.$on('TipManager-show', () => {
+        this.$on('_tipManagerShow', () => {
 
             this.data.show = true;
 
@@ -210,7 +210,7 @@ export default {
 
         });
 
-        this.$on('TipManager-hide', () => {
+        this.$on('_tipManagerHide', () => {
 
             this.data.show = false;
 

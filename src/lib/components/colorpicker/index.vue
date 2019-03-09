@@ -16,10 +16,9 @@
     
     <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
     
-    <div class="preview-wrap">
+    <div class="preview-wrap" :id="'mor-colorpicker-wrap-'+uiid">
         <div
             class="preview"
-            @click="togglePicker(undefined)"
         >
             <div class="alpha-bg-1"></div>
             <div class="alpha-bg-2"></div>
@@ -34,14 +33,21 @@
         </div>
     </div>
 
-    <div
-        class="mo-colorpicker-wrap"
-        :class="{
-            show : data.showPicker,
-            hide : !data.showPicker && !data.first,
-            'not-allow' : inputIsReadonly
-        }"
+    <morning-popover
+        :ref="'ui-colorpicker-popover-'+uiid"
+        :class="[
+            'mor-colorpicker-popover',
+            {
+                'not-allow' : inputIsReadonly
+            }
+        ]"
+
+        :target="'#mor-colorpicker-wrap-'+uiid"
+        placement="bottom"
+        trigger="method click"
+        :auto-reverse="true"
     >
+
         <div class="picker">
             <div
                 class="panel"
@@ -246,7 +252,8 @@
             </template>
 
         </div>
-    </div>
+
+    </morning-popover>
 
     <morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn">清空</morning-link>
 
@@ -257,8 +264,6 @@
 import color                        from 'color';
 import leftPad                      from 'left-pad';
 import copy                         from 'clipboard-copy';
-import GlobalEvent                  from 'Utils/GlobalEvent';
-import TipManager                   from 'Utils/TipManager';
 import Move                         from 'Utils/Move';
 
 const num16 = 16;
@@ -277,7 +282,7 @@ const valueTypes = [
 export default {
     origin : 'Form',
     name : 'colorpicker',
-    mixins : [GlobalEvent, TipManager, Move],
+    mixins : [Move],
     props : {
         valueType : {
             type : String,
@@ -368,14 +373,11 @@ export default {
             data : {
                 showValueType : valueTypes[0],
                 showPicker : false,
-                first : true,
                 hslHSync : false,
                 alpha : maxAlpha,
                 hslH : 0,
                 hslS : 0,
                 hslL : 0,
-                // hsvS : -1,
-                // hsvV : 0,
                 picking : false,
                 panel : {
                     w : 0,
@@ -387,7 +389,6 @@ export default {
                 },
                 strawSize : 0,
                 dontPickColor : false,
-                $preview : null,
                 $picker : null,
                 toggling : false,
                 hslHReversal : null,
@@ -422,35 +423,14 @@ export default {
             return value;
 
         },
-        _checkArea : function (evt) {
-
-            const notFound = -1;
-
-            if (evt.path.indexOf(this.data.$picker) === notFound) {
-
-                this.togglePicker(false);
-
-            }
-
-            return evt;
-
-        },
         _showPicker : function () {
 
-            this._tipCreate({
-                placement : 'bottom',
-                element : this.data.$picker,
-                target : this.data.$preview,
-                offset : '0 0'
-            });
-            this.data.showPicker = true;
-            this.$emit('show-picker');
+            this.$refs[`ui-colorpicker-popover-${this.uiid}`].show();
 
         },
         _hidePicker : function () {
 
-            this.data.showPicker = false;
-            this.$emit('hide-picker');
+            this.$refs[`ui-colorpicker-popover-${this.uiid}`].hide();
 
         },
         _hexChange : function (value) {
@@ -732,9 +712,6 @@ export default {
         },
         _hsvChangeSV : function (s, v) {
 
-            // this.data.hsvS = s;
-            // this.data.hsvV = v;
-
             let hsl = color({
                 h : this.data.hslH,
                 s : s,
@@ -996,15 +973,6 @@ export default {
         },
         togglePicker : function (show) {
 
-            if (this.data.toggling) {
-
-                return this;
-
-            }
-
-            this.data.first = false;
-            this.data.toggling = true;
-
             if (show === undefined) {
 
                 show = !this.data.showPicker;
@@ -1021,12 +989,6 @@ export default {
 
             }
 
-            this.Vue.nextTick(() => {
-
-                this.data.toggling = false;
-
-            });
-
             return this;
 
         }
@@ -1034,8 +996,7 @@ export default {
     created : function () {},
     mounted : function () {
 
-        this.data.$preview = this.$el.querySelector('.preview');
-        this.data.$picker = this.$el.querySelector('.mo-colorpicker-wrap');
+        this.data.$picker = this.$refs[`ui-colorpicker-popover-${this.uiid}`].$el.querySelector('.picker');
 
         let $container = this.data.$picker.querySelector('.panel');
 
@@ -1043,6 +1004,7 @@ export default {
         this.Move.$root = this.data.$picker;
         this.Move.target = '.straw';
         this.Move.container = '.panel';
+        this.Move.type = 'absolute';
 
         this._hslHSync(true);
         this._syncColorFromValue();
@@ -1094,8 +1056,6 @@ export default {
             immediate : true
         });
 
-        window.color = color;
-
         this.$watch('colorHex', () => {
 
             let colorObj = this.colorObj;
@@ -1137,22 +1097,6 @@ export default {
 
         });
 
-        this.$on('show-picker', () => {
-
-            setTimeout(() => {
-
-                this._globalEventAdd('click', '_checkArea');
-
-            });
-
-        });
-
-        this.$on('hide-picker', () => {
-
-            this._globalEventRemove('click', '_checkArea');
-
-        });
-
         this.$on('_moveStarted', () => {
 
             this.data.picking = true;
@@ -1183,10 +1127,19 @@ export default {
 
         });
 
-    },
-    beforeDestroy : function () {
+        this.$refs[`ui-colorpicker-popover-${this.uiid}`].$on('show', () => {
 
-        this._globalEventRemove('click', '_checkArea');
+            this.data.showPicker = true;
+            this.$emit('show-picker');
+
+        });
+
+        this.$refs[`ui-colorpicker-popover-${this.uiid}`].$on('hide', () => {
+
+            this.data.showPicker = false;
+            this.$emit('hide-picker');
+
+        });
 
     }
 };

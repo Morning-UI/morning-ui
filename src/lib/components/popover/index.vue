@@ -123,7 +123,7 @@ export default {
     },
     mounted : function () {
 
-        this.$on('TipManager-show', () => {
+        this.$on('_tipManagerShow', () => {
 
             this.data.show = true;
 
@@ -132,7 +132,7 @@ export default {
 
         });
 
-        this.$on('TipManager-hide', () => {
+        this.$on('_tipManagerHide', () => {
 
             this.data.show = false;
 

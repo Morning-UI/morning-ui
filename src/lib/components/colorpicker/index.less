@@ -87,10 +87,13 @@ mor-colorpicker{
     }
 }
 
-.mo-colorpicker-wrap{
+.mor-colorpicker-popover{
     width: @fontSize*16;
-    position: absolute;
     user-select: none;
+
+    .popover-con .popover-body{
+        padding: 0;
+    }
 
     .picker{
         height: 100%;
@@ -99,9 +102,7 @@ mor-colorpicker{
         border-radius: @borderRadius;
         overflow: hidden;
         background: @colorWhite;
-        box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
-        transform-origin: top center;
-        transform: scale(0);
+        position: relative;
     }
 
     .panel{
@@ -465,29 +466,29 @@ mor-colorpicker{
         }
     }
 
-    &.show{
-        pointer-events: auto;
-    }
+    // &.show{
+    //     pointer-events: auto;
+    // }
 
-    &.show .picker{
-        animation-name: popup;
-        animation-duration: 0.2s;
-        animation-fill-mode: forwards;
-    }
+    // &.show .picker{
+    //     animation-name: popup;
+    //     animation-duration: 0.2s;
+    //     animation-fill-mode: forwards;
+    // }
 
-    &.hide{
-        pointer-events: none;
-    }
+    // &.hide{
+    //     pointer-events: none;
+    // }
 
-    &.hide .picker{
-        animation-name: popin;
-        animation-duration: 0.18s;
-        animation-fill-mode: forwards;
-    }
+    // &.hide .picker{
+    //     animation-name: popin;
+    //     animation-duration: 0.18s;
+    //     animation-fill-mode: forwards;
+    // }
 
-    &.not-allow{
-        .panel{
-            cursor: not-allowed;
-        }
-    }
+    // &.not-allow{
+    //     .panel{
+    //         cursor: not-allowed;
+    //     }
+    // }
 }

@@ -14,6 +14,8 @@
 
     如果仅展示简单的内容，比如一句话或一张图可以使用[小提示](/component/tip.html)。
 
+    而需要展现更多内容时，可以使用[模拟盒](/component/dialog.html)。
+
     :::vue
     @name:使用
     ---

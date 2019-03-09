@@ -93,6 +93,8 @@
                     />
             </template>
         </template>
+
+        <input class="disabled-placeholder" />
         
     </div>
 

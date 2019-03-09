@@ -108,7 +108,7 @@ let TipManager = {
             this._tipPopperHide();
 
             this.Vue.nextTick(() => {
-                
+
                 this.Tip.popper = new Popper(
                     this.Tip.options.reference,
                     this.Tip.options.popper,
@@ -220,7 +220,7 @@ let TipManager = {
             }
 
             this._triggerSetListeners();
-            this.$emit('TipManager-bind-target', $target);
+            this.$emit('_tipManagerBindTarget', $target);
 
         },
         _tipIsEventObj : function (evt) {
@@ -300,7 +300,7 @@ let TipManager = {
 
             });
 
-            this.$emit('TipManager-show');
+            this.$emit('_tipManagerShow');
 
         },
         _tipHideComplete : function () {
@@ -308,12 +308,12 @@ let TipManager = {
             this._tipCleanAllActiveTrigger();
             this.Tip.hoverState = '';
             this._globalEventRemove('click', '_tipCheckArea');
-            this.$emit('TipManager-hide');
+            this.$emit('_tipManagerHide');
 
         },
         _tipShow : function () {
 
-            this.$emit('TipManager-will-show');
+            this.$emit('_tipManagerWillShow');
 
             this._tipPopperCreate({
                 popper : this.$el,
