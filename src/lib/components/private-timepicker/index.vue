@@ -18,6 +18,7 @@
 
     <morning-textinput
         :ref="'ui-private-timepicker-input-'+uiid"
+        :id="'mor-private-timepicker-input-'+uiid"
         :inside-name="conf.insideName"
         :align="conf.align"
         :state="conf.state"
@@ -28,8 +29,19 @@
 
         v-model="data.inputValue"
     ></morning-textinput>
-    
-    <div class="mor-time-wrap" :class="timeSelectClass">
+
+    <morning-popover
+        :ref="'ui-private-timepicker-popover-'+uiid"
+        :class="[
+            'mor-private-timepicker-popover'
+        ]"
+
+        :target="'#mor-private-timepicker-input-'+uiid"
+        placement="bottom"
+        trigger="method"
+        :auto-reverse="true"
+    >
+
         <div class="select" @mousedown.stop.prevent="_noop">
             <div class="time-box">
                 <ul
@@ -83,7 +95,8 @@
                 <div class="selected">&nbsp;</div>
             </div>
         </div>
-    </div>
+        
+    </morning-popover>
 
     <morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn">清空</morning-link>
 
@@ -108,13 +121,12 @@ import {
     areIntervalsOverlapping
 }                                   from 'date-fns';
 import Time                         from 'Utils/Time';
-import TipManager                   from 'Utils/TipManager';
 
 export default {
     origin : 'Form',
     private : true,
     name : 'private-timepicker',
-    mixins : [Time, TipManager],
+    mixins : [Time],
     props : {
         initValue : {
             type : String,
@@ -153,15 +165,6 @@ export default {
                 selectableRange : this.selectableRange,
                 relative : this.relative
             };
-
-        },
-        timeSelectClass : function () {
-
-            let classes = {};
-
-            classes.show = (this.data.inputFocus && (this.data.state !== 'disabled'));
-
-            return classes;
 
         }
     },
@@ -227,16 +230,12 @@ export default {
 
             if (this.data.inputFocus && (this.data.state !== 'disabled')) {
 
-                this._tipCreate({
-                    placement : 'bottom',
-                    element : this.data.$timeWrap,
-                    target : this.$refs[`ui-private-timepicker-input-${this.uiid}`].$el,
-                    offset : '0 0'
-                });
+                this.$refs[`ui-private-timepicker-popover-${this.uiid}`].show();
+             
 
             } else {
 
-                // this._tipDestroy();
+                this.$refs[`ui-private-timepicker-popover-${this.uiid}`].hide();
 
             }
 
@@ -643,9 +642,7 @@ export default {
     },
     mounted : function () {
 
-        this.data.$timeWrap = this.$el.querySelector('.mor-time-wrap');
-        this.Tip.autoReverse = false;
-        this.Tip.autoOffset = false;
+        this.data.$timeWrap = this.$el.querySelector('.mor-private-timepicker-popover');
 
         this.$nextTick(() => {
 
