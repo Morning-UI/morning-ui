@@ -18,6 +18,65 @@
     
     ### 更新记录
 
+    ### 0.12.6 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2019年3月10日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.6" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.6/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.6/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 新特性
+    
+    - 新增`ui-backtop`回到顶部组件
+    - `ui-datetimepicker`新增`getDate()`方法
+    - `ui-timepicker`、`ui-datepicker`、`ui-datetimepicker`组件新增`relative`配置，支持通过相对日期时间表达式选择日期和时间
+    - `ui-tip`和`ui-popover`的`trigger`配置新增`rclick`选项，可用于鼠标右键触发
+    
+    #### 改进
+    
+    - 优化`ui-grid`的样式文件大小
+    - `ui-sticky`组件现在有了默认的`z-index`值(为组件库全局初始`z-index`值减1)
+    - 移除了`ui-tip`组件的最大宽度限制
+    
+    #### 修复
+    
+    - 修复`ui-calendar`组件的`getDate`方法取值不正确的问题
+    - 修复`ui-grid`中的一个样式问题
+    - 修复`ui-calendar`、`ui-timepicker`、`ui-datepicker`文档中的一些问题
+    - 修复`ui-checkbox`、`ui-radio`文档中`形态`部分内容无法显示的问题
+    - 修复`ui-multiinput`组件当处于禁用状态且没有值时，高度错误的问题
+    
+    #### 更多
+    
+    - `ui-textleft`、`ui-textcenter`、`ui-textright`已经不再推荐使用
+    - 依赖库`tether`替换为`popper`，因为`tether`已经不再维护
+    - `date-fns`升级至`2.0.0-alpha.27`
+    - `css-loader`升级至`2.1.0`
+    - `github-markdown-css`升级至`3.0.1`
+    - `less`升级至`3.9.0`
+    - `postcss-les`升级至`3.1.1`
+    - `postcss-loader`升级至`3.0.0`
+    
+    <ui-label color="primary">升级注意事项</ui-label>
+    
+    - `ui-datepicker`、`ui-datetimepicker`、`ui-time`组件的`format`配置格式改变：
+        - `YYYY`由`yyyy`替代，`DD`由`dd`替代，因为`YYYY`和`DD`是一个不佳的用法（详见[date-fns: Popular mistakes](https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md#popular-mistakes)）
+        - `d`由`i`替代，`do`由`io`替代，`dd`由`iiiiii`替代，`ddd`由`iii`替代，`dddd`由`iiii`，且开始日期从周一开始
+        - `DDD`由`D`替代，`DDDo`由`Do`替代，`DDDD`由`DDD`替代
+        - `A`由`a`替代，`DDDo`由`Do`替代，`DDDD`由`DDD`替代
+    - `ui-grid`中的`.col-[n]`元素现在从`display:flex`变为了`display:block`，这会导致子元素的排列方式改变(从横向排列变为垂直)
+    - `ui-textleft`、`ui-textcenter`、`ui-textright`已经不再推荐使用，替代方案详见组件文档
+    - `ui-tip`的默认最大宽度限制被移除，现在如果内容过宽，需要在`slot`中的元素上设置额外的样式来解决
+    - `ui-tip`、`ui-popover`组件`offset`配置现在通过`,`(逗号)来分割两个偏移量，同时第一位改为左右偏移量，第二位改为上下偏移量
+    
+    ---
+
+
     ### 0.12.5 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="light-blue">
