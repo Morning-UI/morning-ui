@@ -60,12 +60,10 @@ mor-dropdown{
     &{}
 }
 
-.mor-dropdown-wrap{
-    position: absolute;
-    top: 110%;
-    left: 50%;
-    transform: translateX(-50%);
-    height: 0;
+.mor-dropdown-popover{
+    .popover-con .popover-body{
+        padding: 0;
+    }
 
     .btnlist{
         width: 100%;
@@ -73,7 +71,6 @@ mor-dropdown{
         transform-origin: top center;
         border-radius: @borderRadius;
         box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
-        transform: scale(0);
 
         mor-btn{
             white-space: nowrap;
@@ -91,25 +88,5 @@ mor-dropdown{
                 border-bottom-right-radius: 0;
             }
         }
-    }
-
-    &.show{
-        height: auto;
-    }
-
-    &.hide{
-        pointer-events: none;
-    }
-
-    &.show .btnlist{
-        animation-name: popup;
-        animation-duration: 0.2s;
-        animation-fill-mode: forwards;
-    }
-
-    &.hide .btnlist{
-        animation-name: popin;
-        animation-duration: 0.18s;
-        animation-fill-mode: forwards;
     }
 }

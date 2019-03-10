@@ -84,7 +84,7 @@ mor-multiinput{
             padding: 0.2em;
             border: none;
             outline: none;
-            font-size: 14px;
+            font-size: @fontSize*0.875;
             color: @colorFormText !important;
             line-height: 1.7em;
             width: 0;
@@ -109,6 +109,10 @@ mor-multiinput{
             padding: 0.4em 0.7em;
             text-align: center;
             display: block;
+        }
+
+        .disabled-placeholder{
+            display: none;
         }
     }
 
@@ -150,6 +154,15 @@ mor-multiinput{
 
             &:hover{
                 border-color: @colorFormBorderDisable;
+            }
+
+            .disabled-placeholder{
+                width: 0;
+                pointer-events: none;
+                user-select: none;
+                opacity: 0;
+                visibility: hidden;
+                display: inline-block;
             }
         }
     }

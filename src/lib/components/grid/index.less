@@ -1,76 +1,76 @@
 .generate-col(@prefix, @n, @spaceAround: false, @gutter: @gridGutterWidth, @i: 1) when (@i =< @n) {
-    @gridColumnWidth : if((@spaceAround = true), %(~'(100% - %s * %s) / %s', @gutter, @n, @n), %(~'(100% - %s * (%s - 1)) / %s', @gutter, @n, @n));
-
-    &{
-        margin-bottom: @gutter;
-    }
+    @gridColumnWidth : if((@spaceAround = true), %(~'(100% - %s)', (@gutter*@n)), %(~'(100% - %s)', (@gutter*(@n - 1))));
 
     .@{prefix}col-@{i} {
-        width: if((@i = @n), 100%, calc(@gridColumnWidth * @i + @gutter * (@i - 1)));
-        margin-right: @gutter;
-
-        & when (@spaceAround = true) {
-            margin: 0 @gutter / 2;
-        }
-
-        &:last-child when (@spaceAround = true) {
-            margin: 0 @gutter / 2;
-        }
+        width: if((@i = @n), 100%, %(~'calc(%s * %s + %s)', @gridColumnWidth, round(@i / @n, 4), (@gutter*(@i - 1))));
     }
 
     .@{prefix}offset-@{i} when (@i < @n) {
-        margin-left: calc(@gridColumnWidth * @i + @gutter * @i);
-
-        & when (@spaceAround = true) {
-            margin-left: calc(@gridColumnWidth * @i + @gutter * (@i + 0.5));
-        }
+        /* stylelint-disable max-line-length */
+        margin-left: if((@spaceAround = true), %(~'calc(%s * %s + %s)', @gridColumnWidth, round(@i / @n, 4), (@gutter*(@i + 0.5))), %(~'calc(%s * %s + %s)', @gridColumnWidth, round(@i / @n, 4), (@gutter*@i)));
+        /* stylelint-enable max-line-length */
     }
 
     .@{prefix}push-@{i} when (@i < @n) {
-        left: calc(@gridColumnWidth * @i + @gutter * @i);
+        left: %(~'calc(%s * %s + %s)', @gridColumnWidth, round(@i / @n, 4), (@gutter * @i));
     }
 
     .@{prefix}pull-@{i} when (@i < @n) {
-        right: calc(@gridColumnWidth * @i + @gutter * @i);
+        right: %(~'calc(%s * %s + %s)', @gridColumnWidth, round(@i / @n, 4), (@gutter * @i));
     }
 
-    .col when (@i = 1){
+    [class*='col-'] when ((@i = 1) and (@prefix = ~''))  {
+        & when (@spaceAround = false) {
+            margin-right: @gutter;
+        }
+
+        & when (@spaceAround = true) {
+            margin: 0 @gutter / 2;
+        }
+    }
+
+    .row when ((@i = 1) and (@prefix = ~'')) {
+        margin-bottom: @gutter;
+    }
+
+    .col when ((@i = 1) and (@prefix = ~'')) {
         margin-right: @gutter;
     }
 
     .generate-col(@prefix, @n, @spaceAround, @gutter, (@i + 1));
 }
 
-.gutterSize(@key, @size) {
-    &.space-around .row when (@key = m) {
-        .generate-col(@prefix, @gridColumnNumber, true, @size);
+.gutterSize(@prefix, @key, @size) {
+    & when (@key = m) {
+        &.gutter-@{key},
+        &{
+            .generate-col(@prefix, @gridColumnNumber, false, @size);
+
+            &.space-around {
+                .generate-col(@prefix, @gridColumnNumber, true, @size);
+            }
+        }
     }
 
-    .row when (@key = m) {
+    &.gutter-@{key} when not (@key = m){
         .generate-col(@prefix, @gridColumnNumber, false, @size);
-    }
 
-    &.gutter-@{key}{
-        &.space-around .row{
+        &.space-around {
             .generate-col(@prefix, @gridColumnNumber, true, @size);
         }
-
-        .row{
-            .generate-col(@prefix, @gridColumnNumber, false, @size);
-        }
     }
 }
 
-/* stylelint-disable length-zero-no-unit */
+/* stylelint-disable length-zero-no-unit,selector-class-pattern */
 .grid(@prefix: ~'') {
-    .gutterSize(xs, 4px);
-    .gutterSize(s, 8px);
-    .gutterSize(m, 16px);
-    .gutterSize(l, 24px);
-    .gutterSize(xl, 36px);
-    .gutterSize(none, 0px);
+    .gutterSize(@prefix, xs, 4px);
+    .gutterSize(@prefix, s, 8px);
+    .gutterSize(@prefix, m, 16px);
+    .gutterSize(@prefix, l, 24px);
+    .gutterSize(@prefix, xl, 36px);
+    .gutterSize(@prefix, none, 0px);
 }
-/* stylelint-enable length-zero-no-unit */
+/* stylelint-enable length-zero-no-unit,selector-class-pattern */
 
 mor-grid {
     display: flex;
@@ -90,7 +90,7 @@ mor-grid {
         }
 
         > [class*='col-']{
-            display: flex;
+            display: block;
             box-sizing: border-box;
             flex-shrink: 0;
             flex-grow: 0;
@@ -99,11 +99,6 @@ mor-grid {
         > [class*='push-'],
         > [class*='pull-']{
             position: relative;
-        }
-
-        > [class*='col-']:last-child,
-        > .col:last-child{
-            margin-right: 0 !important;
         }
 
         &,
@@ -145,6 +140,13 @@ mor-grid {
     }
 
     .grid();
+
+    &:not(.space-around) .row{
+        > [class*='col-']:last-child,
+        > .col:last-child{
+            margin-right: 0 !important;
+        }
+    }
 
     &.fill,
     &.fill > .row,

@@ -15,7 +15,7 @@ const testOptions = {
     formValueInvalid1 : ['asd'],
     formValueInvalid2 : ['sdf'],
     attrs : `:list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"`,
-    uiid : 2,
+    uiid : 5,
     // cause : validate is a function, when run coverage test, the function always different.
     delVmEl : true,
     _baseTestHookCustomMount : false,

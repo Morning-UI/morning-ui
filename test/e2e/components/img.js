@@ -40,7 +40,7 @@ test.serial('hastext', async t => {
         .goto(docUrl)
         .wait(basicDemo)
         .evaluate(() => ({
-            hastext : window.getComputedStyle($('[name="开始"] [_uiid="19"]')[0])
+            hastext : window.getComputedStyle($('[name="开始"] [_uiid="20"]')[0])
         }));
 
     t.plan(1);

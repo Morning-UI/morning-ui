@@ -359,14 +359,14 @@ let Move = {
             let y;
 
             // body > div if has transform, is tether
-            let $tetParent = $target.closest('body > div');
+            let $popoverParent = $target.closest('body > mor-popover, body > mor-tip, body > div');
             let transformX = 0;
             let transformY = 0;
 
             // if parent has transformX/Y
-            if ($tetParent) {
+            if ($popoverParent) {
 
-                let transform = $tetParent.ownerDocument.defaultView.getComputedStyle($tetParent).transform;
+                let transform = $popoverParent.ownerDocument.defaultView.getComputedStyle($popoverParent).transform;
 
                 if (/matrix/.test(transform)) {
 
@@ -380,6 +380,7 @@ let Move = {
 
             }
 
+            // 313, 116
             marginLeft = +marginLeft.split('px')[0];
             marginTop = +marginTop.split('px')[0];
             left = +left.split('px')[0];

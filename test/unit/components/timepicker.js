@@ -15,7 +15,7 @@ const testOptions = {
     formValueInvalid1 : undefined,
     formValueInvalid2 : undefined,
     attrs : ``,
-    uiid : 4,
+    uiid : 5,
     delVmEl : false,
     _baseTestHookCustomMount : false,
     // this component allow emit event more than once.

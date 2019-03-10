@@ -13,10 +13,12 @@
         :format="format"
         :align="align"
         :selectable-range="selectableRange"
+        :relative="relative"
     >
 
     <morning-textinput
         :ref="'ui-private-timepicker-input-'+uiid"
+        :id="'mor-private-timepicker-input-'+uiid"
         :inside-name="conf.insideName"
         :align="conf.align"
         :state="conf.state"
@@ -27,8 +29,19 @@
 
         v-model="data.inputValue"
     ></morning-textinput>
-    
-    <div class="mor-time-wrap" :class="timeSelectClass">
+
+    <morning-popover
+        :ref="'ui-private-timepicker-popover-'+uiid"
+        :class="[
+            'mor-private-timepicker-popover'
+        ]"
+
+        :target="'#mor-private-timepicker-input-'+uiid"
+        placement="bottom"
+        trigger="method"
+        :auto-reverse="true"
+    >
+
         <div class="select" @mousedown.stop.prevent="_noop">
             <div class="time-box">
                 <ul
@@ -82,7 +95,8 @@
                 <div class="selected">&nbsp;</div>
             </div>
         </div>
-    </div>
+        
+    </morning-popover>
 
     <morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn">清空</morning-link>
 
@@ -98,7 +112,6 @@ import {
     setHours,
     setMinutes,
     setSeconds,
-    isValid,
     startOfHour,
     endOfHour,
     startOfMinute,
@@ -108,13 +121,12 @@ import {
     areIntervalsOverlapping
 }                                   from 'date-fns';
 import Time                         from 'Utils/Time';
-import TipManager                   from 'Utils/TipManager';
 
 export default {
     origin : 'Form',
     private : true,
     name : 'private-timepicker',
-    mixins : [Time, TipManager],
+    mixins : [Time],
     props : {
         initValue : {
             type : String,
@@ -136,6 +148,10 @@ export default {
         selectableRange : {
             type : Array,
             default : (() => [])
+        },
+        relative : {
+            type : Boolean,
+            default : false
         }
     },
     computed : {
@@ -146,17 +162,9 @@ export default {
                 insideName : this.insideName,
                 format : this.format,
                 align : this.align,
-                selectableRange : this.selectableRange
+                selectableRange : this.selectableRange,
+                relative : this.relative
             };
-
-        },
-        timeSelectClass : function () {
-
-            let classes = {};
-
-            classes.show = (this.data.inputFocus && (this.data.state !== 'disabled'));
-
-            return classes;
 
         }
     },
@@ -188,13 +196,13 @@ export default {
 
             }
 
-            let date = this._timeStringToDate(value, this.conf.format);
+            if (this.conf.relative && this._timeIsRelativeTime(value)) {
 
-            if (!isValid(date)) {
-
-                date = this._timeGetStandardDate();
+                return value;
 
             }
+
+            let date = this._timeStringToDate(value, this.conf.format);
 
             if (date) {
 
@@ -222,16 +230,11 @@ export default {
 
             if (this.data.inputFocus && (this.data.state !== 'disabled')) {
 
-                this._tipCreate({
-                    placement : 'bottom',
-                    element : this.data.$timeWrap,
-                    target : this.$refs[`ui-private-timepicker-input-${this.uiid}`].$el,
-                    offset : '0 0'
-                });
+                this.$refs[`ui-private-timepicker-popover-${this.uiid}`].show();
 
             } else {
 
-                // this._tipDestroy();
+                this.$refs[`ui-private-timepicker-popover-${this.uiid}`].hide();
 
             }
 
@@ -244,6 +247,10 @@ export default {
                 this.data.inputValue === '') {
 
                 this._set(undefined, true);
+
+            } else if (this.conf.relative && this._timeIsRelativeTime(this.data.inputValue)) {
+
+                this._set(this.data.inputValue, true);
 
             } else {
 
@@ -275,6 +282,12 @@ export default {
         },
         _focusType : function (type) {
 
+            if (this.conf.relative && this._timeIsRelativeTime(this.data.value)) {
+
+                return;
+
+            }
+
             let date = this._timeStringToDate(this.data.value, this.conf.format);
             let $input = this.$el.querySelector('input');
             let start = 0;
@@ -285,7 +298,7 @@ export default {
                 second : '(ss|s)'
             };
             let result = this.conf.format.match(map[type]);
-            let leftString = formatDate(date, `${this.conf.format.slice(0, result.index)}`);
+            let leftString = formatDate(date, `${this.conf.format.slice(0, result.index) || ' '}`);
             let selfString = formatDate(date, `${this.conf.format.slice(result.index, result.index + result[0].length)}`);
 
             if (leftString === ' ' && result.index === 0) {
@@ -325,6 +338,12 @@ export default {
                 this.data.stopScrollHandler[type] = false;
 
                 return;
+
+            }
+
+            if (this.conf.relative && this._timeIsRelativeTime(this.data.value)) {
+
+                this._set(undefined, true);
 
             }
 
@@ -403,7 +422,15 @@ export default {
 
             if (this.data.value !== undefined) {
 
-                timeString = formatDate(this._timeStringToDate(this.data.value, this.conf.format), this.conf.format);
+                if (this.conf.relative && this._timeIsRelativeTime(this.data.value)) {
+
+                    timeString = this.data.value;
+
+                } else {
+
+                    timeString = formatDate(this._timeStringToDate(this.data.value, this.conf.format), this.conf.format);
+
+                }
 
             }
 
@@ -413,6 +440,7 @@ export default {
         _checkSelectable : function (type, num) {
 
             if (!this.conf.selectableRange ||
+                this.conf.relative ||
                 this.data.selectableTimes.length === 0) {
 
                 return true;
@@ -538,8 +566,8 @@ export default {
                 ranges.length === 2 &&
                 typeof ranges[0] === 'string' &&
                 typeof ranges[1] === 'string' &&
-                isValid(this._timeStringToDate(ranges[0], this.conf.format)) &&
-                isValid(this._timeStringToDate(ranges[1], this.conf.format))) {
+                this._timeStringIsValid(ranges[0], this.conf.format) &&
+                this._timeStringIsValid(ranges[1], this.conf.format)) {
 
                 this._initSelectableTime(ranges, selectableTimes);
                 
@@ -551,8 +579,8 @@ export default {
                         range.length === 2 &&
                         typeof range[0] === 'string' &&
                         typeof range[1] === 'string' &&
-                        isValid(this._timeStringToDate(range[0], this.conf.format)) &&
-                        isValid(this._timeStringToDate(range[1], this.conf.format))) {
+                        this._timeStringIsValid(ranges[0], this.conf.format) &&
+                        this._timeStringIsValid(ranges[1], this.conf.format)) {
 
                         this._initSelectableTime(range, selectableTimes);
 
@@ -613,9 +641,7 @@ export default {
     },
     mounted : function () {
 
-        this.data.$timeWrap = this.$el.querySelector('.mor-time-wrap');
-        this.Tip.autoReverse = false;
-        this.Tip.autoOffset = false;
+        this.data.$timeWrap = this.$el.querySelector('.mor-private-timepicker-popover');
 
         this.$nextTick(() => {
 

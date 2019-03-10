@@ -15,25 +15,19 @@ mor-private-timepicker{
     }
 }
 
-.mor-time-wrap{
+.mor-private-timepicker-popover{
     width: @fontSize*10;
-    position: absolute;
     top: @formHeight + 3;
-    pointer-events: none;
-    opacity: 0;
-    height: 0;
     box-sizing: border-box;
-    transform: scale(0);
 
-    &.show{
-        pointer-events: auto;
-        opacity: 1;
+    .popover-con .popover-body{
+        padding: 0;
     }
 
     .select{
         width: 100%;
         background: @colorFormBackground;
-        border: 1px @colorFormBorder solid;
+        // border: 1px @colorFormBorder solid;
         border-radius: @borderRadius;
         font-size: 0;
         user-select: none;

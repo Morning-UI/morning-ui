@@ -24,7 +24,7 @@
     ---
     #demo
     >tpl
-    <ui-grid>
+    <ui-grid style="background-color: #EDF1F5">
         <div class="row">
             <div class="col-6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</div>
             <div class="col-6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</div>
@@ -41,7 +41,7 @@
     >desc
     通过`.col-[n]`来标记栅格所占用的列。
     >tpl
-    <ui-grid>
+    <ui-grid style="background-color: #EDF1F5">
         <div class="row">
             <div class="col-24" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-24</div>
         </div>
@@ -99,7 +99,7 @@
     >desc
     可以通过`.col`来标记一组等宽栅格。
     >tpl
-    <ui-grid>
+    <ui-grid style="background-color: #EDF1F5">
         <div class="row">
             <div class="col" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">Equal width</div>
             <div class="col" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">Equal width</div>
@@ -148,7 +148,7 @@
     >desc
     通过`.offset-[n]`来标记栅格偏移列数。
     >tpl
-    <ui-grid>
+    <ui-grid style="background-color: #EDF1F5">
         <div class="row">
             <div class="col-2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</div>
             <div class="col-2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</div>
@@ -183,7 +183,7 @@
     <br>
     其中`.push-[n]`可以将栅格向右位移，`.pull-[n]`可以将栅格向左位移。
     >tpl
-    <ui-grid>
+    <ui-grid style="background-color: #EDF1F5">
         <div class="row">
             <div class="col-2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</div>
             <div class="col-2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</div>
@@ -212,7 +212,7 @@
     >desc
     `栅格列位移`和`栅格列偏移`的区别为，`栅格列位移`仅对当前列生效(采用`left`或`right`)，不会影响之后的列。而`栅格列偏移`会影响之后的列。
     >tpl
-    <ui-grid>
+    <ui-grid style="background-color: #EDF1F5">
         <div class="row">
             <div class="col-2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</div>
             <div class="col-2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</div>
@@ -251,7 +251,7 @@
     - `.justify-space-between` : 等宽对齐
     - `.justify-space-around` : 分散对齐
     >tpl
-    <ui-grid>
+    <ui-grid style="background-color: #EDF1F5">
         <div class="row">
             <div class="col-2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</div>
             <div class="col-2" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-2</div>
@@ -305,7 +305,7 @@
     - `.vertical-bottom` : 向下对齐
     - `.vertical-center` : 居中对齐
     >tpl
-    <ui-grid>
+    <ui-grid style="background-color: #EDF1F5">
         <div class="row vertical-top" style="height:120px;background-color:#EDF1F5">
             <div class="col-4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;
     height: 80px;">c-4</div>
@@ -340,7 +340,7 @@
     >desc
     添加`.gutter-none`的样式类可以使栅格之间无间隔。
     >tpl
-    <ui-grid class="gutter-none">
+    <ui-grid class="gutter-none" style="background-color: #EDF1F5">
         <div class="row">
             <div class="col-6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</div>
             <div class="col-6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</div>
@@ -383,7 +383,7 @@
     >desc
     添加`.space-around`的样式类可以使栅格两端也有空隙。
     >tpl
-    <ui-grid class="space-around">
+    <ui-grid class="space-around" style="background-color: #EDF1F5">
         <div class="row">
             <div class="col-6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</div>
             <div class="col-6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</div>
@@ -545,8 +545,8 @@
     >desc
     添加`.fill`可使用填满容器的栅格。
     >tpl
-    <div style="height:260px">
-        <ui-grid class="fill">
+    <div style="height:200px">
+        <ui-grid class="fill" style="background-color: #EDF1F5">
             <div class="row">
                 <div class="col-6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</div>
                 <div class="col-6" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">c-6</div>
@@ -572,7 +572,7 @@
     <br><br>
     使用时在原有的`.col-[n]`、`.offset-[n]`、`.push-[n]`、`.pull-[n]`前加上如`xs-`这样的前缀即可。
     >tpl
-    <ui-grid>
+    <ui-grid style="background-color: #EDF1F5">
         <div class="row">
             <div class="xs-col-2 s-col-4 m-col-6 l-col-8 xl-col-10" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">col</div>
             <div class="xs-col-20 s-col-16 m-col-12 l-col-8 xl-col-4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">col</div>
@@ -585,7 +585,7 @@
     `.offset-[n]`也同样支持。
     >tpl
     <div>
-        <ui-grid>
+        <ui-grid style="background-color: #EDF1F5">
             <div class="row">
                 <div class="xs-col-2 s-col-4 m-col-6 l-col-8 xl-col-10" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">col</div>
                 <div class="xs-col-20 s-col-16 m-col-12 l-col-8 xl-col-4" style="background-color:#D6DDE5;padding: 1em 0.6em;font-size:12px;">col</div>
@@ -595,7 +595,7 @@
 
         <br>
         
-        <ui-grid>
+        <ui-grid style="background-color: #EDF1F5">
             <div class="row">
                 <div class="
                     xs-col-20 xs-offset-2
