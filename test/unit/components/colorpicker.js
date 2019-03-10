@@ -15,7 +15,7 @@ const testOptions = {
     formValueInvalid1 : '#000000',
     formValueInvalid2 : '@asd123',
     attrs : ``,
-    uiid : 8,
+    uiid : 9,
     // cause : slider's tip-formatter is a function, when run coverage test, the function always different.
     delVmEl : true,
     _baseTestHookCustomMount : false,

@@ -11,7 +11,7 @@ const testOptions = {
     component : window.morning._origin.Form.extend(dropdown),
     name : 'dropdown',
     attrs : ``,
-    uiid : 2,
+    uiid : 3,
     delVmEl : false,
     _baseTestHookCustomMount : false
 };

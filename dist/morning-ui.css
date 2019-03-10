@@ -30958,50 +30958,29 @@ mor-dropdown.hide mor-link .mo-icon {
   animation-duration: 0.2s;
   animation-fill-mode: forwards;
 }
-.mor-dropdown-wrap {
-  position: absolute;
-  top: 110%;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 0;
+.mor-dropdown-popover .popover-con .popover-body {
+  padding: 0;
 }
-.mor-dropdown-wrap .btnlist {
+.mor-dropdown-popover .btnlist {
   width: 100%;
   font-size: 0;
   transform-origin: top center;
   border-radius: 3px;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
-  transform: scale(0);
 }
-.mor-dropdown-wrap .btnlist mor-btn {
+.mor-dropdown-popover .btnlist mor-btn {
   white-space: nowrap;
   display: block;
   margin: 0;
   text-align: center;
 }
-.mor-dropdown-wrap .btnlist mor-btn:not(:first-child) {
+.mor-dropdown-popover .btnlist mor-btn:not(:first-child) {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-.mor-dropdown-wrap .btnlist mor-btn:not(:last-child) {
+.mor-dropdown-popover .btnlist mor-btn:not(:last-child) {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
-}
-.mor-dropdown-wrap.show {
-  height: auto;
-}
-.mor-dropdown-wrap.hide {
-  pointer-events: none;
-}
-.mor-dropdown-wrap.show .btnlist {
-  animation-name: popup;
-  animation-duration: 0.2s;
-  animation-fill-mode: forwards;
-}
-.mor-dropdown-wrap.hide .btnlist {
-  animation-name: popin;
-  animation-duration: 0.18s;
-  animation-fill-mode: forwards;
 }
 mor-tab > ul {
   list-style: none;
@@ -35681,24 +35660,38 @@ mor-tip .tip-arrow {
   border-width: 3px;
   transform: rotate(45deg);
 }
-mor-tip.tip-placement-top {
+mor-tip .tip-wrap {
+  opacity: 0;
+  transition: unset;
+  transform: scale(0.4);
+  transition-timing-function: ease-in;
+}
+mor-tip.show-tip .tip-wrap {
+  transition: opacity 0.16s, transform 0.16s;
+  opacity: 1;
+  transform: scale(1);
+}
+mor-tip.tip-placement-top .tip-wrap {
   padding: 6px 0;
+  transform-origin: center bottom;
 }
 mor-tip.tip-placement-top .tip-arrow {
   bottom: 3px;
   border-color: #0000 #FFFFFF #FFFFFF #0000;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
-mor-tip.tip-placement-right {
+mor-tip.tip-placement-right .tip-wrap {
   padding: 0 3px 0 6px;
+  transform-origin: left center;
 }
 mor-tip.tip-placement-right .tip-arrow {
   left: 3px;
   border-color: #0000 #0000 #FFFFFF #FFFFFF;
   box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.1);
 }
-mor-tip.tip-placement-bottom {
+mor-tip.tip-placement-bottom .tip-wrap {
   padding: 6px 0;
+  transform-origin: center top;
 }
 mor-tip.tip-placement-bottom .tip-arrow {
   top: 3px;
@@ -35706,8 +35699,9 @@ mor-tip.tip-placement-bottom .tip-arrow {
   border-color: #FFFFFF #0000 #0000 #FFFFFF;
   box-shadow: -2px -2px 4px rgba(0, 0, 0, 0.1);
 }
-mor-tip.tip-placement-left {
+mor-tip.tip-placement-left .tip-wrap {
   padding: 0 6px 0 3px;
+  transform-origin: right center;
 }
 mor-tip.tip-placement-left .tip-arrow {
   right: 3px;
@@ -36259,6 +36253,7 @@ mor-popover {
   position: fixed;
   display: block;
   font-size: 12px;
+  text-align: left;
 }
 mor-popover.tip-placement-top .popover-con {
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
@@ -36293,24 +36288,38 @@ mor-popover .tip-arrow {
   border-width: 5px;
   transform: rotate(45deg);
 }
-mor-popover.tip-placement-top {
+mor-popover .tip-wrap {
+  opacity: 0;
+  transition: unset;
+  transform: scale(0.4);
+  transition-timing-function: ease-in;
+}
+mor-popover.show-tip .tip-wrap {
+  transition: opacity 0.16s, transform 0.16s;
+  opacity: 1;
+  transform: scale(1);
+}
+mor-popover.tip-placement-top .tip-wrap {
   padding: 8px 0;
+  transform-origin: center bottom;
 }
 mor-popover.tip-placement-top .tip-arrow {
   bottom: 3px;
   border-color: #0000 #FFFFFF #FFFFFF #0000;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
-mor-popover.tip-placement-right {
+mor-popover.tip-placement-right .tip-wrap {
   padding: 0 5px 0 10px;
+  transform-origin: left center;
 }
 mor-popover.tip-placement-right .tip-arrow {
   left: 5px;
   border-color: #0000 #0000 #FFFFFF #FFFFFF;
   box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.1);
 }
-mor-popover.tip-placement-bottom {
+mor-popover.tip-placement-bottom .tip-wrap {
   padding: 8px 0;
+  transform-origin: center top;
 }
 mor-popover.tip-placement-bottom .tip-arrow {
   top: 3px;
@@ -36318,8 +36327,9 @@ mor-popover.tip-placement-bottom .tip-arrow {
   border-color: #FFFFFF #0000 #0000 #FFFFFF;
   box-shadow: -2px -2px 4px rgba(0, 0, 0, 0.1);
 }
-mor-popover.tip-placement-left {
+mor-popover.tip-placement-left .tip-wrap {
   padding: 0 10px 0 5px;
+  transform-origin: right center;
 }
 mor-popover.tip-placement-left .tip-arrow {
   right: 5px;
@@ -38538,22 +38548,12 @@ mor-select .select-area.searching .wrap > .selected {
 }
 mor-select .select-area.showlist .wrap {
   border-color: #E6E6E6;
-  border-radius: 3px 3px 0 0;
-  padding-bottom: 1px;
 }
 mor-select .select-area.showlist .wrap > mor-textinput {
   cursor: initial;
 }
 mor-select .select-area.showlist .wrap > .drop {
   transform: rotateX(180deg);
-}
-mor-select .select-area.showlist.over-bottom .wrap {
-  border-radius: 0 0 3px 3px;
-}
-mor-select .select-area.showlist.over-bottom .list {
-  border-radius: 3px 3px 0 0;
-  border-top-width: 1px;
-  border-bottom-width: 0;
 }
 mor-select .select-area.is-max .wrap {
   cursor: default;
@@ -38618,7 +38618,6 @@ mor-select .select-area.st-readonly .wrap > mor-textinput {
 }
 mor-select .select-area.st-disabled .list,
 mor-select .select-area.st-readonly .list {
-  border-color: #a6a6a6;
   background-color: #ebebeb;
   -webkit-user-select: none;
   cursor: not-allowed !important;
@@ -38630,6 +38629,9 @@ mor-select .select-area.st-readonly .list li {
 }
 mor-select .wrap {
   border: 1px solid #E6E6E6;
+  border-top-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
   border-radius: 3px;
   position: relative;
   cursor: pointer;
@@ -38709,17 +38711,8 @@ mor-select .wrap > .mo-icon.drop {
   font-size: 30px;
   text-indent: 1px;
 }
-mor-select .wrap > .mo-icon.no-animation {
-  transition: none;
-}
 mor-select .wrap.hover {
   border-color: #d7d7d7;
-}
-mor-select .select-list {
-  pointer-events: none;
-  visibility: hidden;
-  position: absolute;
-  height: 0;
 }
 mor-select.separate {
   height: 0;
@@ -38758,31 +38751,16 @@ mor-select.input-group .select-area {
   vertical-align: middle;
   margin: 0;
 }
-.mor-select-wrap.select-area {
-  pointer-events: none;
-  visibility: hidden;
-  height: 0;
-}
-.mor-select-wrap.select-list {
-  pointer-events: none;
-  visibility: hidden;
-  position: absolute;
-  height: 0;
-}
 .mor-select-wrap .list {
   margin: 0;
   padding: 0;
   list-style: none;
-  border: 1px #E6E6E6 solid;
   border-top-width: 0;
   border-radius: 0 0 3px 3px;
   overflow-x: hidden;
   overflow-y: auto;
-  background-color: #FFF;
+  background-color: #FFFFFF;
   box-sizing: border-box;
-  transform: scaleY(0);
-  transition: transform 0.2s, visibility 0.2s, border 0.2s;
-  transform-origin: 50% 0%;
   width: 100%;
 }
 .mor-select-wrap .list::-webkit-scrollbar {
@@ -38796,12 +38774,8 @@ mor-select.input-group .select-area {
   background: rgba(0, 0, 0, 0.1);
   border-radius: 4px;
 }
-.mor-select-wrap.no-animation .list {
-  transform: none;
-  transition: none;
-}
 .mor-select-wrap li {
-  padding: 0.5em 2em 0.5em 1em;
+  padding: 0.5em 1em;
   border-top: 1px #f3f3f3 solid;
   cursor: pointer;
   font-size: 14px;
@@ -38856,13 +38830,20 @@ mor-select.input-group .select-area {
   color: #c0c0c0;
   background: #FFFFFF;
 }
+.mor-select-wrap li.noitem {
+  border-top: none;
+}
 .mor-select-wrap li.maxshow {
   font-size: 12px;
   text-align: center;
   padding: 7.5px 0;
 }
 .mor-select-wrap .wrap {
+  border-radius: 3px 3px 0 0;
   border: 1px solid #E6E6E6;
+  border-top-width: 0;
+  border-left-width: 0;
+  border-right-width: 0;
   border-radius: 3px;
   position: relative;
   cursor: pointer;
@@ -38870,13 +38851,9 @@ mor-select.input-group .select-area {
   -webkit-user-select: none;
   background-color: #FFF;
   overflow: hidden;
-  pointer-events: none;
-  visibility: hidden;
-  height: 0;
-  border-radius: 3px 3px 0 0;
 }
 .mor-select-wrap .wrap > mor-textinput {
-  width: calc(100% - 30px);
+  width: 100%;
   height: 40px;
   line-height: 40px;
   padding: 0;
@@ -38946,16 +38923,8 @@ mor-select.input-group .select-area {
   font-size: 30px;
   text-indent: 1px;
 }
-.mor-select-wrap .wrap > .mo-icon.no-animation {
-  transition: none;
-}
 .mor-select-wrap .wrap.hover {
   border-color: #d7d7d7;
-}
-.mor-select-wrap .wrap.showwrap {
-  pointer-events: auto;
-  visibility: visible;
-  height: auto;
 }
 .mor-select-wrap .wrap > .selected {
   width: 100%;
@@ -38971,22 +38940,12 @@ mor-select.input-group .select-area {
 }
 .mor-select-wrap.showlist .wrap {
   border-color: #E6E6E6;
-  border-radius: 3px 3px 0 0;
-  padding-bottom: 1px;
 }
 .mor-select-wrap.showlist .wrap > mor-textinput {
   cursor: initial;
 }
 .mor-select-wrap.showlist .wrap > .drop {
   transform: rotateX(180deg);
-}
-.mor-select-wrap.showlist.over-bottom .wrap {
-  border-radius: 0 0 3px 3px;
-}
-.mor-select-wrap.showlist.over-bottom .list {
-  border-radius: 3px 3px 0 0;
-  border-top-width: 1px;
-  border-bottom-width: 0;
 }
 .mor-select-wrap.is-max .wrap {
   cursor: default;
@@ -39051,7 +39010,6 @@ mor-select.input-group .select-area {
 }
 .mor-select-wrap.st-disabled .list,
 .mor-select-wrap.st-readonly .list {
-  border-color: #a6a6a6;
   background-color: #ebebeb;
   -webkit-user-select: none;
   cursor: not-allowed !important;
@@ -39061,17 +39019,6 @@ mor-select.input-group .select-area {
   -webkit-user-select: none;
   cursor: not-allowed !important;
 }
-.mor-select-wrap.over-bottom .list {
-  transform-origin: 50% 100%;
-}
-.mor-select-wrap.over-bottom.showlist .showwrap {
-  border-radius: 3px 3px 0 0;
-}
-.mor-select-wrap.over-bottom.showlist .select-list .list {
-  border-bottom-width: 1px;
-  border-radius: 0 0 3px 3px;
-  border-top-width: 0;
-}
 .mor-select-wrap.hide-selected li {
   padding: 0.5em 1em;
 }
@@ -39079,19 +39026,11 @@ mor-select.input-group .select-area {
 .mor-select-wrap .hide-selected li.selected {
   display: none;
 }
-.mor-select-wrap.showlist,
-.mor-select-wrap .showlist {
-  pointer-events: auto;
-  visibility: visible;
-  height: auto;
+.mor-select-popover .popover-con .popover-body {
+  padding: 0;
 }
-.mor-select-wrap.showlist .list,
-.mor-select-wrap .showlist .list {
-  transform: scaleY(1);
-}
-.mor-select-wrap.no-animation.showlist .list,
-.mor-select-wrap.no-animation .showlist .list {
-  transform: none;
+.mor-select-popover.no-animation .tip-wrap {
+  transition: none;
 }
 mor-checkbox {
   width: 100%;
@@ -40861,6 +40800,9 @@ mor-multiinput > .itemlist > span {
   text-align: center;
   display: block;
 }
+mor-multiinput > .itemlist .disabled-placeholder {
+  display: none;
+}
 mor-multiinput.focus > .itemlist,
 mor-multiinput:hover > .itemlist {
   border-color: #d7d7d7;
@@ -40891,6 +40833,15 @@ mor-multiinput.st-readonly > .itemlist > .multiinput-item:hover {
 mor-multiinput.st-disabled > .itemlist:hover,
 mor-multiinput.st-readonly > .itemlist:hover {
   border-color: #a6a6a6;
+}
+mor-multiinput.st-disabled > .itemlist .disabled-placeholder,
+mor-multiinput.st-readonly > .itemlist .disabled-placeholder {
+  width: 0;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0;
+  visibility: hidden;
+  display: inline-block;
 }
 mor-multiform {
   position: relative;
@@ -41504,38 +41455,45 @@ mor-datepicker.range-input-vertical .wrap .datepicker-input-1:hover mor-textinpu
 mor-datepicker.range-input-vertical .wrap .datepicker-input-1 mor-textinput.input-focus {
   z-index: 3;
 }
-.mor-date-wrap {
+.mor-private-datepicker-popover {
   min-width: 282px;
   max-width: 282px;
 }
-.mor-date-wrap .date-select {
+.mor-private-datepicker-popover .date-select {
   position: relative;
 }
-.mor-date-wrap .date-select:hover {
+.mor-private-datepicker-popover .date-select:hover {
   border-color: #E6E6E6;
 }
-.mor-date-wrap.date-select-0 {
+.mor-private-datepicker-popover.date-select-0 {
   min-width: 281px;
   max-width: 281px;
 }
-.mor-date-wrap .date-select.date-select-0 {
+.mor-private-datepicker-popover.date-select-0 .date-select {
   border-bottom-right-radius: 0;
   border-top-right-radius: 0;
   border-right: none;
 }
-.mor-date-wrap .date-select.date-select-1 {
+.mor-private-datepicker-popover.date-select-1 {
+  min-width: 281px;
+  max-width: 281px;
+}
+.mor-private-datepicker-popover.date-select-1 .popover-arrow {
+  display: none;
+}
+.mor-private-datepicker-popover.date-select-1 .date-select {
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
 }
-.mor-date-wrap.has-quick-pick {
+.mor-private-datepicker-popover.has-quick-pick {
   max-width: 382px;
   min-width: 382px;
 }
-.mor-date-wrap.has-quick-pick.date-select-0 {
+.mor-private-datepicker-popover.has-quick-pick.date-select-0 {
   min-width: 381px;
   max-width: 381px;
 }
-.mor-date-wrap.has-quick-pick .quickpick {
+.mor-private-datepicker-popover.has-quick-pick .quickpick {
   display: inline-block;
   width: 100px;
   font-size: 14px;
@@ -41546,41 +41504,38 @@ mor-datepicker.range-input-vertical .wrap .datepicker-input-1 mor-textinput.inpu
   overflow-y: scroll;
   border-right: 1px #E6E6E6 solid;
 }
-.mor-date-wrap.has-quick-pick .quickpick::-webkit-scrollbar {
+.mor-private-datepicker-popover.has-quick-pick .quickpick::-webkit-scrollbar {
   width: 5px;
   height: 5px;
   background-color: rgba(0, 0, 0, 0.05);
 }
-.mor-date-wrap.has-quick-pick .quickpick::-webkit-scrollbar-thumb {
+.mor-private-datepicker-popover.has-quick-pick .quickpick::-webkit-scrollbar-thumb {
   width: 5px;
   height: 5px;
   background: rgba(0, 0, 0, 0.1);
   border-radius: 4px;
 }
-.mor-date-wrap.has-quick-pick .quickpick ul {
+.mor-private-datepicker-popover.has-quick-pick .quickpick ul {
   margin: 0;
   padding: 10px 0;
   list-style: none;
 }
-.mor-date-wrap.has-quick-pick .quickpick ul li {
+.mor-private-datepicker-popover.has-quick-pick .quickpick ul li {
   padding: 4px 10px;
   margin: 0;
   cursor: pointer;
   font-size: 13px;
   color: #A8B3C2;
 }
-.mor-date-wrap.has-quick-pick .quickpick ul li:hover {
+.mor-private-datepicker-popover.has-quick-pick .quickpick ul li:hover {
   color: #17212D;
 }
-.mor-date-wrap.has-quick-pick mor-calendar {
+.mor-private-datepicker-popover.has-quick-pick mor-calendar {
   display: inline-block;
   width: 280px;
   font-size: 14px;
   box-sizing: border-box;
   margin-left: 100px;
-}
-.mor-date-wrap .date-select-0.vertical {
-  top: 41px;
 }
 mor-datetimepicker {
   display: block;
@@ -41602,12 +41557,12 @@ mor-datetimepicker > .form-name {
   -webkit-user-select: text;
   text-align: left;
 }
-.mor-date-wrap .timepicker {
+.mor-private-datepicker-popover .timepicker {
   width: 100%;
   height: 40px;
   position: relative;
 }
-.mor-date-wrap .timepicker mor-timepicker {
+.mor-private-datepicker-popover .timepicker mor-timepicker {
   transform: scale(0.8);
   z-index: 2;
   width: 150px;
@@ -42053,29 +42008,29 @@ mor-colorpicker.st-readonly .preview .color {
   box-shadow: 0 0 6px inset #000;
   cursor: default;
 }
-.mo-colorpicker-wrap {
+.mor-colorpicker-popover {
   width: 256px;
-  position: absolute;
   user-select: none;
 }
-.mo-colorpicker-wrap .picker {
+.mor-colorpicker-popover .popover-con .popover-body {
+  padding: 0;
+}
+.mor-colorpicker-popover .picker {
   height: 100%;
   width: 100%;
   box-sizing: border-box;
   border-radius: 3px;
   overflow: hidden;
   background: #FFFFFF;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
-  transform-origin: top center;
-  transform: scale(0);
+  position: relative;
 }
-.mo-colorpicker-wrap .panel {
+.mor-colorpicker-popover .panel {
   position: relative;
   height: 128px;
   cursor: crosshair;
   overflow: hidden;
 }
-.mo-colorpicker-wrap .panel .mask-white {
+.mor-colorpicker-popover .panel .mask-white {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -42084,7 +42039,7 @@ mor-colorpicker.st-readonly .preview .color {
   z-index: 1;
   background: -webkit-linear-gradient(left, #FFF, #FFF0);
 }
-.mo-colorpicker-wrap .panel .mask-black {
+.mor-colorpicker-popover .panel .mask-black {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -42093,7 +42048,7 @@ mor-colorpicker.st-readonly .preview .color {
   background: -webkit-linear-gradient(#0000, #000);
   z-index: 2;
 }
-.mo-colorpicker-wrap .panel .straw {
+.mor-colorpicker-popover .panel .straw {
   position: absolute;
   left: 100px;
   top: 30px;
@@ -42105,17 +42060,17 @@ mor-colorpicker.st-readonly .preview .color {
   box-shadow: 0 0 1px #000;
   z-index: 3;
 }
-.mo-colorpicker-wrap .panel.not-allow {
+.mor-colorpicker-popover .panel.not-allow {
   cursor: not-allowed;
 }
-.mo-colorpicker-wrap .panel.not-allow .straw {
+.mor-colorpicker-popover .panel.not-allow .straw {
   cursor: not-allowed;
 }
-.mo-colorpicker-wrap .tools {
+.mor-colorpicker-popover .tools {
   height: 64px;
   font-size: 0;
 }
-.mo-colorpicker-wrap .tools .color-copy {
+.mor-colorpicker-popover .tools .color-copy {
   height: 32px;
   width: 32px;
   margin: 16px;
@@ -42125,7 +42080,7 @@ mor-colorpicker.st-readonly .preview .color {
   position: relative;
   overflow: hidden;
 }
-.mo-colorpicker-wrap .tools .color-copy .copy-mask {
+.mor-colorpicker-popover .tools .color-copy .copy-mask {
   position: absolute;
   display: none;
   top: 50%;
@@ -42136,29 +42091,29 @@ mor-colorpicker.st-readonly .preview .color {
   color: #FFF;
   text-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
 }
-.mo-colorpicker-wrap .tools .color-copy:hover {
+.mor-colorpicker-popover .tools .color-copy:hover {
   cursor: pointer;
 }
-.mo-colorpicker-wrap .tools .color-copy:hover .copy-mask {
+.mor-colorpicker-popover .tools .color-copy:hover .copy-mask {
   display: block;
 }
-.mo-colorpicker-wrap .tools .alpha-bg-1,
-.mo-colorpicker-wrap .tools .alpha-bg-2,
-.mo-colorpicker-wrap .tools .alpha-bg-3,
-.mo-colorpicker-wrap .tools .alpha-bg-4 {
+.mor-colorpicker-popover .tools .alpha-bg-1,
+.mor-colorpicker-popover .tools .alpha-bg-2,
+.mor-colorpicker-popover .tools .alpha-bg-3,
+.mor-colorpicker-popover .tools .alpha-bg-4 {
   background-size: 16px;
   height: 8px;
   background-color: #DDD;
 }
-.mo-colorpicker-wrap .tools .alpha-bg-1,
-.mo-colorpicker-wrap .tools .alpha-bg-3 {
+.mor-colorpicker-popover .tools .alpha-bg-1,
+.mor-colorpicker-popover .tools .alpha-bg-3 {
   background-image: -webkit-gradient(linear, 0 0, 100% 0, color-stop(0.5, #0000), color-stop(0.5, #fff), to(#fff));
 }
-.mo-colorpicker-wrap .tools .alpha-bg-2,
-.mo-colorpicker-wrap .tools .alpha-bg-4 {
+.mor-colorpicker-popover .tools .alpha-bg-2,
+.mor-colorpicker-popover .tools .alpha-bg-4 {
   background-image: -webkit-gradient(linear,  0 0, 100% 0, color-stop(0.5, #fff), color-stop(0.5, #0000), to(#0000));
 }
-.mo-colorpicker-wrap .tools .color {
+.mor-colorpicker-popover .tools .color {
   position: absolute;
   top: 0;
   left: 0;
@@ -42167,48 +42122,48 @@ mor-colorpicker.st-readonly .preview .color {
   height: 100%;
   box-shadow: 0 0 4px inset rgba(0, 0, 0, 0.25);
 }
-.mo-colorpicker-wrap .tools .slider-tool {
+.mor-colorpicker-popover .tools .slider-tool {
   display: inline-block;
   width: calc(100% - 16px*4);
   vertical-align: top;
   height: 100%;
 }
-.mo-colorpicker-wrap .tools .slider-tool .hsb {
+.mor-colorpicker-popover .tools .slider-tool .hsb {
   padding-top: 8px;
 }
-.mo-colorpicker-wrap .tools .slider-tool .alpha {
+.mor-colorpicker-popover .tools .slider-tool .alpha {
   padding-bottom: 8px;
 }
-.mo-colorpicker-wrap .tools .slider-tool .hsb,
-.mo-colorpicker-wrap .tools .slider-tool .alpha {
+.mor-colorpicker-popover .tools .slider-tool .hsb,
+.mor-colorpicker-popover .tools .slider-tool .alpha {
   height: 50%;
   box-sizing: border-box;
 }
-.mo-colorpicker-wrap .tools .slider-tool .hsb mor-slider .form-name,
-.mo-colorpicker-wrap .tools .slider-tool .alpha mor-slider .form-name {
+.mor-colorpicker-popover .tools .slider-tool .hsb mor-slider .form-name,
+.mor-colorpicker-popover .tools .slider-tool .alpha mor-slider .form-name {
   display: none;
 }
-.mo-colorpicker-wrap .tools .slider-tool .hsb mor-slider .wrap,
-.mo-colorpicker-wrap .tools .slider-tool .alpha mor-slider .wrap {
+.mor-colorpicker-popover .tools .slider-tool .hsb mor-slider .wrap,
+.mor-colorpicker-popover .tools .slider-tool .alpha mor-slider .wrap {
   padding: 6px 12px;
 }
-.mo-colorpicker-wrap .tools .slider-tool .hsb mor-slider .track,
-.mo-colorpicker-wrap .tools .slider-tool .alpha mor-slider .track {
+.mor-colorpicker-popover .tools .slider-tool .hsb mor-slider .track,
+.mor-colorpicker-popover .tools .slider-tool .alpha mor-slider .track {
   background: linear-gradient(to left, #F00, #F0F, #00F, #0FF, #0F0, #FF0, #F00);
   height: 10px;
 }
-.mo-colorpicker-wrap .tools .slider-tool .hsb mor-slider .selected-line,
-.mo-colorpicker-wrap .tools .slider-tool .alpha mor-slider .selected-line {
+.mor-colorpicker-popover .tools .slider-tool .hsb mor-slider .selected-line,
+.mor-colorpicker-popover .tools .slider-tool .alpha mor-slider .selected-line {
   display: none;
 }
-.mo-colorpicker-wrap .tools .slider-tool .hsb mor-slider .main-slider,
-.mo-colorpicker-wrap .tools .slider-tool .alpha mor-slider .main-slider {
+.mor-colorpicker-popover .tools .slider-tool .hsb mor-slider .main-slider,
+.mor-colorpicker-popover .tools .slider-tool .alpha mor-slider .main-slider {
   top: -4px;
   border-color: #FFFFFF;
   border-width: 0;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
 }
-.mo-colorpicker-wrap .tools .slider-tool .alpha mor-slider .track::before {
+.mor-colorpicker-popover .tools .slider-tool .alpha mor-slider .track::before {
   background-image: -webkit-gradient(linear, 0 0, 100% 0, color-stop(0.5, #0000), color-stop(0.5, #fff), to(#fff));
   background-color: #DDD;
   content: ' ';
@@ -42222,72 +42177,72 @@ mor-colorpicker.st-readonly .preview .color {
   border-radius: 10em;
   background-size: 10px;
 }
-.mo-colorpicker-wrap .values {
+.mor-colorpicker-popover .values {
   height: 56px;
   font-size: 0;
   border-top: 1px #EDF1F5 solid;
 }
-.mo-colorpicker-wrap .values .input {
+.mor-colorpicker-popover .values .input {
   width: 90%;
   height: 100%;
   display: inline-block;
   padding: 8px 0;
   box-sizing: border-box;
 }
-.mo-colorpicker-wrap .values .input .rgba,
-.mo-colorpicker-wrap .values .input .hex,
-.mo-colorpicker-wrap .values .input .hsla {
+.mor-colorpicker-popover .values .input .rgba,
+.mor-colorpicker-popover .values .input .hex,
+.mor-colorpicker-popover .values .input .hsla {
   width: 100%;
 }
-.mo-colorpicker-wrap .values .input .rgba mor-textinput,
-.mo-colorpicker-wrap .values .input .hex mor-textinput,
-.mo-colorpicker-wrap .values .input .hsla mor-textinput {
+.mor-colorpicker-popover .values .input .rgba mor-textinput,
+.mor-colorpicker-popover .values .input .hex mor-textinput,
+.mor-colorpicker-popover .values .input .hsla mor-textinput {
   display: inline-block;
   box-sizing: border-box;
 }
-.mo-colorpicker-wrap .values .input .rgba mor-textinput input,
-.mo-colorpicker-wrap .values .input .hex mor-textinput input,
-.mo-colorpicker-wrap .values .input .hsla mor-textinput input {
+.mor-colorpicker-popover .values .input .rgba mor-textinput input,
+.mor-colorpicker-popover .values .input .hex mor-textinput input,
+.mor-colorpicker-popover .values .input .hsla mor-textinput input {
   height: 24px;
   text-align: center;
   padding: 0 0.5em;
   font-size: 12px;
 }
-.mo-colorpicker-wrap .values .input .rgba .name,
-.mo-colorpicker-wrap .values .input .hex .name,
-.mo-colorpicker-wrap .values .input .hsla .name {
+.mor-colorpicker-popover .values .input .rgba .name,
+.mor-colorpicker-popover .values .input .hex .name,
+.mor-colorpicker-popover .values .input .hsla .name {
   height: 40%;
   font-size: 12px;
   text-align: center;
   padding-top: 0.3em;
 }
-.mo-colorpicker-wrap .values .input .rgba mor-textinput,
-.mo-colorpicker-wrap .values .input .hsla mor-textinput {
+.mor-colorpicker-popover .values .input .rgba mor-textinput,
+.mor-colorpicker-popover .values .input .hsla mor-textinput {
   width: 20%;
   margin-right: 4%;
 }
-.mo-colorpicker-wrap .values .input .rgba mor-textinput:first-child,
-.mo-colorpicker-wrap .values .input .hsla mor-textinput:first-child {
+.mor-colorpicker-popover .values .input .rgba mor-textinput:first-child,
+.mor-colorpicker-popover .values .input .hsla mor-textinput:first-child {
   margin-left: 4%;
 }
-.mo-colorpicker-wrap .values .input .rgba .name,
-.mo-colorpicker-wrap .values .input .hsla .name {
+.mor-colorpicker-popover .values .input .rgba .name,
+.mor-colorpicker-popover .values .input .hsla .name {
   width: 22.5%;
   margin-right: 2%;
   display: inline-block;
 }
-.mo-colorpicker-wrap .values .input .rgba .name:nth-child(5),
-.mo-colorpicker-wrap .values .input .hsla .name:nth-child(5) {
+.mor-colorpicker-popover .values .input .rgba .name:nth-child(5),
+.mor-colorpicker-popover .values .input .hsla .name:nth-child(5) {
   margin-left: 2%;
 }
-.mo-colorpicker-wrap .values .input .hex mor-textinput {
+.mor-colorpicker-popover .values .input .hex mor-textinput {
   width: 80%;
   margin: 0 10%;
 }
-.mo-colorpicker-wrap .values .input .hex .name {
+.mor-colorpicker-popover .values .input .hex .name {
   width: 100%;
 }
-.mo-colorpicker-wrap .palettes {
+.mor-colorpicker-popover .palettes {
   padding: 16px;
   border-top: 1px #EDF1F5 solid;
   margin: 0;
@@ -42296,18 +42251,18 @@ mor-colorpicker.st-readonly .preview .color {
   justify-content: space-around;
   position: relative;
 }
-.mo-colorpicker-wrap .palettes.multi-palettes {
+.mor-colorpicker-popover .palettes.multi-palettes {
   padding-right: 40px;
 }
-.mo-colorpicker-wrap .palettes .palettes-color-item {
+.mor-colorpicker-popover .palettes .palettes-color-item {
   width: 12px;
   height: 12px;
   cursor: pointer;
 }
-.mo-colorpicker-wrap .palettes .palettes-color-item:hover {
+.mor-colorpicker-popover .palettes .palettes-color-item:hover {
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
 }
-.mo-colorpicker-wrap .palettes .palettes-picker {
+.mor-colorpicker-popover .palettes .palettes-picker {
   position: absolute;
   bottom: -170px;
   left: 0;
@@ -42321,36 +42276,36 @@ mor-colorpicker.st-readonly .preview .color {
   z-index: 2;
   transition: bottom 0.2s;
 }
-.mo-colorpicker-wrap .palettes .palettes-picker.show {
+.mor-colorpicker-popover .palettes .palettes-picker.show {
   bottom: 0;
 }
-.mo-colorpicker-wrap .palettes .palettes-picker .palette-item-list {
+.mor-colorpicker-popover .palettes .palettes-picker .palette-item-list {
   overflow-y: auto;
   max-height: 120px;
 }
-.mo-colorpicker-wrap .palettes .palettes-picker .palette-item-list::-webkit-scrollbar {
+.mor-colorpicker-popover .palettes .palettes-picker .palette-item-list::-webkit-scrollbar {
   width: 5px;
   height: 5px;
   background-color: rgba(0, 0, 0, 0);
 }
-.mo-colorpicker-wrap .palettes .palettes-picker .palette-item-list::-webkit-scrollbar-thumb {
+.mor-colorpicker-popover .palettes .palettes-picker .palette-item-list::-webkit-scrollbar-thumb {
   width: 5px;
   height: 5px;
   background: rgba(0, 0, 0, 0);
   border-radius: 4px;
 }
-.mo-colorpicker-wrap .palettes .palettes-picker .palette-item-list:hover::-webkit-scrollbar-thumb {
+.mor-colorpicker-popover .palettes .palettes-picker .palette-item-list:hover::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.1);
 }
-.mo-colorpicker-wrap .palettes .palettes-picker .palette-title {
+.mor-colorpicker-popover .palettes .palettes-picker .palette-title {
   padding: 1em;
   position: relative;
 }
-.mo-colorpicker-wrap .palettes .palettes-picker .palette-title > span {
+.mor-colorpicker-popover .palettes .palettes-picker .palette-title > span {
   font-size: 16px;
   color: #333;
 }
-.mo-colorpicker-wrap .palettes .palettes-picker .palette-title > .mo-icon {
+.mor-colorpicker-popover .palettes .palettes-picker .palette-title > .mo-icon {
   position: absolute;
   top: 0;
   right: 0.5em;
@@ -42358,11 +42313,11 @@ mor-colorpicker.st-readonly .preview .color {
   font-size: 14px;
   color: #A8B3C2;
 }
-.mo-colorpicker-wrap .palettes .palettes-picker .palette-title > .mo-icon:hover {
+.mor-colorpicker-popover .palettes .palettes-picker .palette-title > .mo-icon:hover {
   cursor: pointer;
   color: #8E9CAF;
 }
-.mo-colorpicker-wrap .palettes .palettes-picker .palette-item {
+.mor-colorpicker-popover .palettes .palettes-picker .palette-item {
   display: flex;
   width: 100%;
   padding: 0.5em;
@@ -42370,11 +42325,11 @@ mor-colorpicker.st-readonly .preview .color {
   box-sizing: border-box;
   border-top: 1px #EDF1F5 solid;
 }
-.mo-colorpicker-wrap .palettes .palettes-picker .palette-item:hover {
+.mor-colorpicker-popover .palettes .palettes-picker .palette-item:hover {
   background: #EDF1F5;
   cursor: pointer;
 }
-.mo-colorpicker-wrap .palettes .palettes-picker .palette-item .palette-name {
+.mor-colorpicker-popover .palettes .palettes-picker .palette-item .palette-name {
   font-size: 13px;
   padding: 0 0.5em;
   width: 40%;
@@ -42382,13 +42337,13 @@ mor-colorpicker.st-readonly .preview .color {
   overflow: hidden;
   white-space: nowrap;
 }
-.mo-colorpicker-wrap .palettes .palettes-picker .palette-item .palette-color-preview {
+.mor-colorpicker-popover .palettes .palettes-picker .palette-item .palette-color-preview {
   display: flex;
   justify-content: space-around;
   width: 60%;
 }
-.mo-colorpicker-wrap .toggle-type,
-.mo-colorpicker-wrap .toggle-palette {
+.mor-colorpicker-popover .toggle-type,
+.mor-colorpicker-popover .toggle-palette {
   width: 8%;
   display: inline-block;
   vertical-align: top;
@@ -42400,39 +42355,20 @@ mor-colorpicker.st-readonly .preview .color {
   cursor: pointer;
   border-radius: 3px;
 }
-.mo-colorpicker-wrap .toggle-type:hover,
-.mo-colorpicker-wrap .toggle-palette:hover {
+.mor-colorpicker-popover .toggle-type:hover,
+.mor-colorpicker-popover .toggle-palette:hover {
   color: #7C8BA0;
   background: #EDF1F5;
 }
-.mo-colorpicker-wrap .toggle-palette {
+.mor-colorpicker-popover .toggle-palette {
   position: absolute;
   top: 6px;
   right: 6px;
   color: #A8B3C2;
   margin: 0;
 }
-.mo-colorpicker-wrap .toggle-palette .mo-icon {
+.mor-colorpicker-popover .toggle-palette .mo-icon {
   font-size: 14px;
-}
-.mo-colorpicker-wrap.show {
-  pointer-events: auto;
-}
-.mo-colorpicker-wrap.show .picker {
-  animation-name: popup;
-  animation-duration: 0.2s;
-  animation-fill-mode: forwards;
-}
-.mo-colorpicker-wrap.hide {
-  pointer-events: none;
-}
-.mo-colorpicker-wrap.hide .picker {
-  animation-name: popin;
-  animation-duration: 0.18s;
-  animation-fill-mode: forwards;
-}
-.mo-colorpicker-wrap.not-allow .panel {
-  cursor: not-allowed;
 }
 mor-imagemap {
   display: block;
@@ -42767,36 +42703,29 @@ mor-private-timepicker > .form-name {
   -webkit-user-select: text;
   text-align: left;
 }
-.mor-time-wrap {
+.mor-private-timepicker-popover {
   width: 160px;
-  position: absolute;
   top: 45px;
-  pointer-events: none;
-  opacity: 0;
-  height: 0;
   box-sizing: border-box;
-  transform: scale(0);
 }
-.mor-time-wrap.show {
-  pointer-events: auto;
-  opacity: 1;
+.mor-private-timepicker-popover .popover-con .popover-body {
+  padding: 0;
 }
-.mor-time-wrap .select {
+.mor-private-timepicker-popover .select {
   width: 100%;
   background: #FFFFFF;
-  border: 1px #E6E6E6 solid;
   border-radius: 3px;
   font-size: 0;
   user-select: none;
   z-index: 1;
 }
-.mor-time-wrap .select:hover {
+.mor-private-timepicker-popover .select:hover {
   border-color: #d7d7d7;
 }
-.mor-time-wrap .select .time-box {
+.mor-private-timepicker-popover .select .time-box {
   position: relative;
 }
-.mor-time-wrap .select .time-box > ul {
+.mor-private-timepicker-popover .select .time-box > ul {
   list-style: none;
   padding: 0;
   font-size: 0;
@@ -42809,21 +42738,21 @@ mor-private-timepicker > .form-name {
   position: relative;
   z-index: 1;
 }
-.mor-time-wrap .select .time-box > ul::-webkit-scrollbar {
+.mor-private-timepicker-popover .select .time-box > ul::-webkit-scrollbar {
   width: 5px;
   height: 5px;
   background-color: rgba(0, 0, 0, 0);
 }
-.mor-time-wrap .select .time-box > ul::-webkit-scrollbar-thumb {
+.mor-private-timepicker-popover .select .time-box > ul::-webkit-scrollbar-thumb {
   width: 5px;
   height: 5px;
   background: rgba(0, 0, 0, 0);
   border-radius: 4px;
 }
-.mor-time-wrap .select .time-box > ul:hover::-webkit-scrollbar-thumb {
+.mor-private-timepicker-popover .select .time-box > ul:hover::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.1);
 }
-.mor-time-wrap .select .time-box > ul li {
+.mor-private-timepicker-popover .select .time-box > ul li {
   display: block;
   font-size: 12px;
   padding: 0.5em 0;
@@ -42834,34 +42763,34 @@ mor-private-timepicker > .form-name {
   box-sizing: content-box;
   color: #808080;
 }
-.mor-time-wrap .select .time-box > ul li.current {
+.mor-private-timepicker-popover .select .time-box > ul li.current {
   color: #17212D;
   font-weight: 700;
 }
-.mor-time-wrap .select .time-box > ul li.block {
+.mor-private-timepicker-popover .select .time-box > ul li.block {
   color: #d9d9d9 !important;
   font-weight: 400 !important;
   background-color: #f3f3f3;
 }
-.mor-time-wrap .select .time-box > ul li:first-child {
+.mor-private-timepicker-popover .select .time-box > ul li:first-child {
   margin-top: 6.25em;
 }
-.mor-time-wrap .select .time-box > ul li:last-child {
+.mor-private-timepicker-popover .select .time-box > ul li:last-child {
   margin-bottom: 6.25em;
 }
-.mor-time-wrap .select .time-box > ul li:hover {
+.mor-private-timepicker-popover .select .time-box > ul li:hover {
   background-color: #f5f5f5;
   cursor: pointer;
 }
-.mor-time-wrap .select .time-box > ul li.current:hover {
+.mor-private-timepicker-popover .select .time-box > ul li.current:hover {
   background-color: rgba(0, 0, 0, 0);
   cursor: default;
 }
-.mor-time-wrap .select .time-box > ul li.block:hover {
+.mor-private-timepicker-popover .select .time-box > ul li.block:hover {
   background-color: #f3f3f3;
   cursor: not-allowed;
 }
-.mor-time-wrap .select .time-box .selected {
+.mor-private-timepicker-popover .select .time-box .selected {
   position: absolute;
   top: 50%;
   left: 8%;
@@ -42898,33 +42827,26 @@ mor-private-datepicker > .form-name {
   -webkit-user-select: text;
   text-align: left;
 }
-.mor-date-wrap {
+.mor-private-datepicker-popover {
   min-width: calc(280px + 2px);
-  position: absolute;
   top: 45px;
-  pointer-events: none;
-  opacity: 0;
-  height: 0;
-  transform: scale(0);
   box-sizing: border-box;
   font-size: 14px;
 }
-.mor-date-wrap.show {
-  pointer-events: auto;
-  opacity: 1;
+.mor-private-datepicker-popover .popover-con .popover-body {
+  padding: 0;
 }
-.mor-date-wrap .date-select {
+.mor-private-datepicker-popover .date-select {
   box-sizing: border-box;
-  border: 1px #E6E6E6 solid;
   background: #FFFFFF;
   border-radius: 3px;
   z-index: 2;
   user-select: none;
 }
-.mor-date-wrap .date-select:hover {
+.mor-private-datepicker-popover .date-select:hover {
   border-color: #d7d7d7;
 }
-.mor-date-wrap .date-select mor-calendar .day {
+.mor-private-datepicker-popover .date-select mor-calendar .day {
   cursor: pointer;
 }
 mor-private-menu {

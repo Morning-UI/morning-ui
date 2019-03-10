@@ -1,5 +1,5 @@
 import extend                       from 'extend';
-import Popper                       from 'Npm/popper.js/dist/popper.min.js';
+import Popper                       from 'Npm/popper.js/dist/umd/popper.min.js';
 import PopupManager                 from 'Utils/PopupManager';
 import IndexManager                 from 'Utils/IndexManager';
 import TriggerManager               from 'Utils/TriggerManager';
