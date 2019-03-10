@@ -697,7 +697,7 @@ export default {
                         let input0x = $input0DateSelect.getBoundingClientRect().left;
                         let input1Rect = $input1DateSelect.getBoundingClientRect();
                         let input1x = input1Rect.left;
-                        let input1w = input1Rect.width;
+                        // let input1w = input1Rect.width;
                         let offset = ($input0DateSelect.offsetWidth - (input1x - input0x)) / 2;
 
                         offset = Math.round(offset * NUM_1K) / NUM_1K;
@@ -710,8 +710,6 @@ export default {
 
                         setTimeout(() => {
 
-                            let input0 = this.$refs[`ui-datepicker-input-0-${this.uiid}`];
-                            let input1 = this.$refs[`ui-datepicker-input-1-${this.uiid}`];
                             let popover0 = input0.$refs[`ui-private-datepicker-popover-${input0.uiid}`];
                             let popover1 = input1.$refs[`ui-private-datepicker-popover-${input1.uiid}`];
                             let offsets0 = popover0.Tip.data.offsets;

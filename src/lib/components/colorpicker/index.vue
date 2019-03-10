@@ -1004,7 +1004,7 @@ export default {
         this.Move.$root = this.data.$picker;
         this.Move.target = '.straw';
         this.Move.container = '.panel';
-        this.Move.type = 'absolute';
+        // this.Move.type = 'absolute';
 
         this._hslHSync(true);
         this._syncColorFromValue();

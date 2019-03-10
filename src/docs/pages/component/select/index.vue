@@ -935,6 +935,8 @@
     #config
     >conf-desc
     表单前缀。
+    <br><br>
+    仅在未使用`separate-emit`配置时有效。
     >conf-accept
     任意字符串(支持HTML)
     >conf-type

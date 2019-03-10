@@ -32,189 +32,107 @@
 
     <div class="form-name" v-if="!conf.hideName && !!conf.formName && !conf.separateEmit">{{conf.formName}}</div>
 
-    <div class="select-wrap">
-            
+    <div class="select-wrap" v-if="!conf.separateEmit">
         <template v-if="conf.prepend">
             <div class="input-group-addon" v-html="conf.prepend"></div>
         </template>
 
-        <div
-            class="select-area"
-            :class="[{
-                'mor-select-wrap' : conf.separateEmit,
-                'focus-search' : !!data.focusSearch,
-                searching : !!data.searching,
-                'align-left' : (conf.align === 'left'),
-                'align-center' : (conf.align === 'center'),
-                'align-right' : (conf.align === 'right'),
-                'select-item' : (data.value && data.value.length > 0),
-                'is-max' : !!isMax,
-                showlist : !!data.showlist,
-                'no-animation' : !!data.highPerfMode,
-                'input-group' : !!conf.prepend,
-                'over-bottom' : data.selectListOverBottom
-            }, stateClass]"
-        >
-            <div
-                class="wrap"
-                :class="{
-                    'showwrap' : (conf.separateEmit && !!data.showlist)
-                }"
-                @click="_wrapClick"
-            >
-
-                <template v-if="conf.multiSelect">
-                    <morning-multiinput
-                        :id="'ui-select-mi-' + uiid"
-                        :can-move="conf.canMove"
-                        :max="conf.max"
-                        :inside-name="conf.insideName"
-                        :hide-name="conf.hideName"
-                        :state="conf.state"
-                        key="multi-can-search"
-
-                        v-if="conf.canSearch"
-
-                        @input-focus="_multiinputFocus()"
-                        @value-change="_multiinputValueChange()"
-                        @input-value-change="_searchKeyChange()"
-                    ></morning-multiinput>
-
-                    <morning-multiinput
-                        :id="'ui-select-mi-' + uiid"
-                        :can-move="conf.canMove"
-                        :max="conf.max"
-                        :inside-name="conf.insideName"
-                        :hide-name="conf.hideName"
-                        :state="conf.state"
-                        key="multi-no-search"
-
-                        v-else
-
-                        @input-focus="_multiinputFocusNoSearch()"
-                        @value-change="_multiinputValueChange()"
-                    ></morning-multiinput>
-                </template>
-
-                <template v-else>
-                    <template v-if="conf.canSearch">
-                        <morning-textinput
-                            :id="'ui-select-ti-' + uiid"
-                            :align="conf.align"
-                            @value-change="_searchKeyChange()"
-                            @focus="_textinputFocus()"
-                            @blur="_textinputBlur()"
-                            key="single-can-search"
-                        ></morning-textinput>
-                    </template>
-
-                    <div
-                        class="selected"
-                        v-if="!conf.multiSelect && data.value && data.value.length === 1"
-                        v-html="data.selectedContent"
-                    >
-                    </div>
-
-                    <div
-                        class="selected"
-                        v-else-if="!!conf.insideName">
-                        {{conf.insideName}}
-                    </div>
-
-                    <div
-                        class="selected"
-                        v-else>
-                        &nbsp;
-                    </div>
-                </template>
-
-                <i class="mo-icon mo-icon-dropdown drop" :class="{'no-animation' : !!data.highPerfMode}"></i>
-
-            </div>
-        
-            <div
-                class="select-list"
-                :class="[{
-                    showlist : !!data.showlist,
-                    'no-animation' : !!data.highPerfMode,
-                    'hide-selected' : conf.hideSelected,
-                    'mor-select-wrap' : !conf.separateEmit,
-                    'over-bottom' : data.selectListOverBottom
-                }, stateClass]"
-            >
-                <ul
-                    class="list"
-                    :style="listStyle"
-                    @click="_listClick"
-                >
-                    <template v-for="(index, _index) in showItemList">
-                        <li
-                            :key="_index"
-                            :index="index"
-                            :class="{
-                                hide : data.itemNomathMap[index],
-                                hover : +data.hoverIndex === +_index
-                            }"
-                            :id="'ui-select-tip-'+uiid+'-'+index"
-                            @mouseenter="_itemHover(_index)"
-                            class="selected"
-                            v-html="data.itemNameMap[index] + '<i class=\'mo-select-selected-icon mo-icon mo-icon-check\'></i>'"
-                            v-if="data.itemSelectedMap[index]"
-                        >
-                        </li>
-                        <li
-                            :key="_index"
-                            :index="index"
-                            :class="{
-                                hide : data.itemNomathMap[index],
-                                hover : +data.hoverIndex === +_index
-                            }"
-                            :id="'ui-select-tip-'+uiid+'-'+index"
-                            @mouseenter="_itemHover(_index)"
-                            v-html="data.itemNameMap[index]"
-                            v-else
-                        >
-                        </li>
-
-                        <template v-if="conf.itemTip">
-                            <morning-tip
-                                :key="_index"
-                                :target="'#ui-select-tip-'+uiid+'-'+index"
-                                :placement="conf.itemTipDirect"
-                                class="tips"
-                                color="blue"
-                            >{{data.itemTipMap[index]}}</morning-tip>
-                        </template>
-                    </template>
-                    <li class="noitem infoitem" :class="{show : data.noMatch || showItemList.length === 0 || data.selectedAll}">
-                        <span v-if="conf.dynamicList && conf.canSearch">无匹配项目</span>
-                        <span v-else>无项目</span>
-                    </li>
-                    <li class="maxshow infoitem" :class="{show : conf.canSearch && (data.matchList.length > conf.maxShow)}">
-                        <span>请搜索以显示更多</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
+        <select-area
+            :ref="'ui-select-area-'+uiid"
+            :conf="conf"
+            :data="data"
+            :stateClass="stateClass"
+            :listStyle="listStyle"
+            :uiid="uiid"
+            :_wrapClick="_wrapClick"
+            :_multiinputFocus="_multiinputFocus"
+            :_multiinputValueChange="_multiinputValueChange"
+            :_searchKeyChange="_searchKeyChange"
+            :_multiinputFocusNoSearch="_multiinputFocusNoSearch"
+            :_textinputFocus="_textinputFocus"
+            :_textinputBlur="_textinputBlur"
+            :_listClick="_listClick"
+            :_itemHover="_itemHover"
+            :showItemList="showItemList"
+        ></select-area>
     </div>
+
+    <morning-popover
+        v-else
+        :ref="'ui-select-popover-'+uiid"
+        :class="[
+            'mor-select-popover',
+            {
+                'no-animation' : !!data.highPerfMode
+            }
+        ]"
+
+        :target="conf.separateEmit"
+        placement="bottom"
+        trigger="method"
+        :auto-reverse="true"
+    >
+        <div class="select-wrap">
+            <select-area
+                :ref="'ui-select-area-'+uiid"
+                :conf="conf"
+                :data="data"
+                :stateClass="stateClass"
+                :listStyle="listStyle"
+                :uiid="uiid"
+                :_wrapClick="_wrapClick"
+                :_multiinputFocus="_multiinputFocus"
+                :_multiinputValueChange="_multiinputValueChange"
+                :_searchKeyChange="_searchKeyChange"
+                :_multiinputFocusNoSearch="_multiinputFocusNoSearch"
+                :_textinputFocus="_textinputFocus"
+                :_textinputBlur="_textinputBlur"
+                :_listClick="_listClick"
+                :_itemHover="_itemHover"
+                :showItemList="showItemList"
+            ></select-area>
+        </div>
+    </morning-popover>
 
     <morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn">清空</morning-link>
 
     </mor-select>
 </template>
+
+<!--
+DOM with different conf.separateEmit:
+
+v-if="!conf.separateEmit"
+    select-wrap
+        input-group-addon
+        @select-area
+            wrap
+            morning-popover*
+                @select-list
+v-else
+    morning-popover*
+        select-wrap
+            @select-wrap
+                input-group-addon
+                select-area
+                    wrap
+                    @select-list
+-->
  
 <script>
 import map                          from 'lodash.map';
 import GlobalEvent                  from 'Utils/GlobalEvent';
-import TipManager                   from 'Utils/TipManager';
+import selectArea                   from './select-area.vue';
 
 let noopFn = () => {};
 
 export default {
     origin : 'Form',
     name : 'select',
-    mixins : [GlobalEvent, TipManager],
+    mixins : [GlobalEvent],
+    components : {
+        'select-area' : selectArea
+    },
     props : {
         insideName : {
             type : String,
@@ -388,9 +306,9 @@ export default {
                 itemValMapInit : false,
                 matchList : [],
                 selectedAll : false,
-                selectListOverBottom : false,
                 hoverIndex : 0,
-                mouseenterHoverLock : false
+                mouseenterHoverLock : false,
+                popoverVm : null
             },
             listStyle : {}
         };
@@ -825,7 +743,7 @@ export default {
 
             } else {
 
-                this._tipUpdate();
+                this.popoverVm.position();
 
             }
 
@@ -910,7 +828,7 @@ export default {
             this.Vue.nextTick(() => {
 
                 this._updateHoverIndex(null, 0);
-                this._tipUpdate();
+                this.popoverVm.position();
                 
             });
 
@@ -954,7 +872,7 @@ export default {
 
             this.Vue.nextTick(() => {
 
-                this._tipUpdate();
+                this.popoverVm.position();
 
             });
 
@@ -1077,8 +995,12 @@ export default {
             if (this.data.showlist &&
                 this.conf.autoClose &&
                 evt.path.indexOf(this.$el) === -1 &&
-                evt.path.indexOf($wrap) === -1) {
-                
+                evt.path.indexOf($wrap) === -1 &&
+                (
+                    (this.conf.separateEmit && evt.path.indexOf(this.data.$emitTarget) === -1) ||
+                    !this.conf.separateEmit
+                )) {
+
                 this.toggle(false);
             
             }
@@ -1141,7 +1063,7 @@ export default {
         },
         _resizeSelectArea : function () {
 
-            if (this.conf.prepend !== undefined) {
+            if (this.conf.prepend !== undefined && !this.conf.separateEmit) {
 
                 let $inputGroupAddon = this.$el.querySelector('.input-group-addon');
                 let $selectArea = this.data.$selectArea;
@@ -1201,7 +1123,8 @@ export default {
 
                 }
 
-                if (valIndexs.indexOf(index) !== -1) {
+                if (valIndexs.indexOf(index) !== -1 &&
+                    valIndexs.length !== showValueList.length) {
 
                     if (next) {
 
@@ -1379,11 +1302,6 @@ export default {
 
             if (show) {
 
-                let $items = this.data.$list.querySelectorAll('li');
-                let $selectedItem = this.data.$list.querySelector('li.selected');
-                
-                this.data.showlist = true;
-
                 if (!this.conf.separateEmit) {
 
                     this.data.$listWrap.style.width = `${$target.offsetWidth}px`;
@@ -1398,52 +1316,7 @@ export default {
 
                 }
 
-                this._tipCreate({
-                    placement : 'bottom',
-                    element : this.data.$listWrap,
-                    target : $target,
-                    offset : '0 0'
-                });
-
-                if (this.conf.multiSelect) {
-                
-                    this._refreshShowItems();
-                
-                } else if ($selectedItem) {
-
-                    for (let index of $items.keys()) {
-
-                        if ($items[index] === $selectedItem) {
-
-                            this.data.$list.scrollTop = index * $selectedItem.offsetHeight;
-
-                            break;
-
-                        }
-
-                    }
-                
-                }
-
-                this.Vue.nextTick(() => {
-                   
-                    this._tipAutoPos();
-
-                    // over bottom
-                    if (this.Tip.overranger[2]) {
-
-                        this.Vue.nextTick(() => {
-                            
-                            this._tipUpdate();
-                            this.Vue.nextTick(this._tipUpdate);
-
-                        });
-
-                    }
-
-                });
-
-                this.$emit('list-show');
+                this.popoverVm.show();
 
             } else {
 
@@ -1453,25 +1326,7 @@ export default {
 
                 }
 
-                this.data.showlist = false;
-
-                let $tips = this.data.$list.querySelectorAll('.tips');
-
-                for (let $tip of $tips.values()) {
-
-                    if ($tip._vm) {
-
-                        if ($tip._vm.data.show) {
-
-                            $tip._vm.hide();
-
-                        }
-
-                    }
-
-                }
-
-                this.$emit('list-hide');
+                this.popoverVm.hide();
 
             }
 
@@ -1485,8 +1340,6 @@ export default {
         this.data.$list = this.$el.querySelector('.select-list>.list');
         this.data.$selectList = this.$el.querySelector('.select-list');
         this.data.$selectArea = this.$el.querySelector('.select-area');
-        this.Tip.autoReverse = true;
-        this.Tip.autoOffset = false;
 
         this.$watch(() => JSON.stringify(this.conf.list), () => {
 
@@ -1509,14 +1362,6 @@ export default {
 
         this.$on('value-change', this._onValueChange);
 
-        setTimeout(() => {
-
-            this.$watch('conf.maxShowHeight', this._setListHeight, {
-                immediate : true
-            });
-
-        });
-
         this.$watch('conf.separateEmit', (newVal, oldVal) => {
 
             let $oldEmitTarget = document.querySelector(oldVal);
@@ -1529,7 +1374,9 @@ export default {
 
             if (newVal) {
 
+                this.popoverVm = this.$refs[`ui-select-popover-${this.uiid}`];
                 this.data.$listWrap = this.data.$selectArea;
+                this.data.$selectArea = this.popoverVm.$el.querySelector('.select-area');
 
                 this.Vue.nextTick(() => {
 
@@ -1540,12 +1387,80 @@ export default {
 
             } else {
 
+                this.popoverVm = this.$refs[`ui-select-area-${this.uiid}`].$refs[`ui-select-popover-${this.uiid}`];
                 this.data.$listWrap = this.data.$selectList;
+                this.data.$selectArea = this.$el.querySelector('.select-area');
 
             }
 
+            this.data.$list = this.popoverVm.$el.querySelector('.select-list>.list');
+            this.data.$selectList = this.popoverVm.$el.querySelector('.select-list');
+
+            this.popoverVm.$on('show', () => {
+
+                let $items = this.data.$list.querySelectorAll('li');
+                let $selectedItem = this.data.$list.querySelector('li.selected');
+                    
+                this.data.showlist = true;
+
+                if (this.conf.multiSelect) {
+                
+                    this._refreshShowItems();
+                
+                } else if ($selectedItem) {
+
+                    for (let index of $items.keys()) {
+
+                        if ($items[index] === $selectedItem) {
+
+                            this.data.$list.scrollTop = index * $selectedItem.offsetHeight;
+
+                            break;
+
+                        }
+
+                    }
+                
+                }
+
+                this.$emit('list-show');
+
+            });
+
+            this.popoverVm.$on('hide', () => {
+
+                let $tips = this.data.$list.querySelectorAll('.tips');
+                
+                this.data.showlist = false;
+
+                for (let $tip of $tips.values()) {
+
+                    if ($tip._vm) {
+
+                        if ($tip._vm.data.show) {
+
+                            $tip._vm.hide();
+
+                        }
+
+                    }
+
+                }
+
+                this.$emit('list-hide');
+
+            });
+
         }, {
             immediate : true
+        });
+
+        setTimeout(() => {
+
+            this.$watch('conf.maxShowHeight', this._setListHeight, {
+                immediate : true
+            });
+
         });
 
         this.$watch('conf.canSearch', this._searchKeyChange);
@@ -1589,20 +1504,6 @@ export default {
         this.$watch('data.itemNomathMap', () => {
 
             this._refreshMatchList();
-
-        });
-
-        this.$watch('Tip.overranger', () => {
-
-            if (this.Tip.overranger[2]) {
-
-                this.data.selectListOverBottom = true;
-
-            } else {
-
-                this.data.selectListOverBottom = false;
-
-            }
 
         });
 

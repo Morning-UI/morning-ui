@@ -110,14 +110,10 @@ mor-multiinput{
             text-align: center;
             display: block;
         }
-    }
 
-    .disabled-placeholder{
-        width: 0;
-        pointer-events: none;
-        user-select: none;
-        opacity: 0;
-        visibility: hidden;
+        .disabled-placeholder{
+            display: none;
+        }
     }
 
     &.focus,
@@ -158,6 +154,15 @@ mor-multiinput{
 
             &:hover{
                 border-color: @colorFormBorderDisable;
+            }
+
+            .disabled-placeholder{
+                width: 0;
+                pointer-events: none;
+                user-select: none;
+                opacity: 0;
+                visibility: hidden;
+                display: inline-block;
             }
         }
     }
