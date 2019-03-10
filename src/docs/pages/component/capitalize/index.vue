@@ -8,6 +8,8 @@
     
     <doc-component-status page="capitalize"></doc-component-status>
 
+    <doc-component-not-recommended date="2019年3月11日" plan="使用CSS样式text-transform来替代"></doc-component-not-recommended>
+
     [[[开始]]]
 
     首字大写文本组件，这是一个内联元素。

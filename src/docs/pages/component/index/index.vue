@@ -62,7 +62,6 @@
         <div class="sub-group">
             <h4><i class="iconfont">&#xe624;</i>数值</h4>
             <ul>
-                <li><a href="/component/badge.html">徽章<p>&lt;badge></p></a></li>
                 <li><a href="/component/label.html">标签<p>&lt;label></p></a></li>
                 <li><a href="/component/statistic.html">统计<p>&lt;statistic></p></a></li>
             </ul>
@@ -117,6 +116,7 @@
                 <li><a href="/component/tree.html">树状控件<p>&lt;tree></p></a></li>
                 <li><a href="/component/table.html">表格<p>&lt;table></p></a></li>
                 <li><a href="/component/carousel.html">轮播<p>&lt;carousel></p></a></li>
+                <li><a href="/component/badge.html">徽标<p>&lt;badge></p></a></li>
                 <li><a href="/component/time.html">时间<p>&lt;time></p></a></li>
                 <li><a href="/component/calendar.html">日历<p>&lt;calendar></p></a></li>
                 <li><a href="/component/audio.html">音频<p>&lt;audio></p></a></li>

@@ -6,6 +6,7 @@ mor-badge{
     vertical-align: middle;
     height: auto;
     line-height: 1.6em;
+    box-sizing: border-box;
 
     &:empty{
         display: none;
@@ -16,13 +17,20 @@ mor-badge{
         padding: 0 @fontSize*1;
         margin: @fontSize*0.5;
 
-        &,
-        &.flat{
+        &:not(.badge-point),
+        &.flat:not(.badge-point){
             border-radius: @borderRadius*1.6;
         }
 
-        &.circle{
+        &.circle:not(.badge-point){
             border-radius: @fontSize*1.6;
+        }
+
+        &.badge-point{
+            > span{
+                width: @fontSize*1.1875;
+                height: @fontSize*1.1875;
+            }
         }
     }
 
@@ -36,8 +44,15 @@ mor-badge{
             border-radius: @borderRadius*1.4;
         }
 
-        &.circle{
+        &.circle:not(.badge-point){
             border-radius: @fontSize*1.4;
+        }
+
+        &.badge-point{
+            > span{
+                width: @fontSize;
+                height: @fontSize;
+            }
         }
     }
 
@@ -51,8 +66,15 @@ mor-badge{
             border-radius: @borderRadius*1.2;
         }
 
-        &.circle{
+        &.circle:not(.badge-point){
             border-radius: @fontSize*1.2;
+        }
+
+        &.badge-point{
+            > span{
+                width: @fontSize*0.8125;
+                height: @fontSize*0.8125;
+            }
         }
     }
 
@@ -65,8 +87,15 @@ mor-badge{
             border-radius: @borderRadius*1;
         }
 
-        &.circle{
+        &.circle:not(.badge-point){
             border-radius: @fontSize;
+        }
+
+        &.badge-point{
+            > span{
+                width: @fontSize*0.625;
+                height: @fontSize*0.625;
+            }
         }
     }
 
@@ -79,8 +108,15 @@ mor-badge{
             border-radius: @borderRadius*0.8;
         }
 
-        &.circle{
+        &.circle:not(.badge-point){
             border-radius: @fontSize*0.8;
+        }
+
+        &.badge-point{
+            > span{
+                width: @fontSize*0.5;
+                height: @fontSize*0.5;
+            }
         }
     }
 
@@ -93,8 +129,15 @@ mor-badge{
             border-radius: @borderRadius*0.75;
         }
 
-        &.circle{
+        &.circle:not(.badge-point){
             border-radius: @fontSize*0.75;
+        }
+
+        &.badge-point{
+            > span{
+                width: @fontSize*0.375;
+                height: @fontSize*0.375;
+            }
         }
     }
 
@@ -108,99 +151,227 @@ mor-badge{
             border-radius: @borderRadius*0.625;
         }
 
-        &.circle{
+        &.circle:not(.badge-point){
             border-radius: @fontSize*0.625;
+        }
+
+        &.badge-point{
+            > span{
+                width: @fontSize*0.28125;
+                height: @fontSize*0.28125;
+            }
         }
     }
 
     &.co-t{
         background-color: @colorTheme;
+
+        &.plain{
+            border-color: @colorTheme;
+            color: @colorTheme;
+        }
     }
 
     &.co-lt{
         background-color: @colorLightTheme;
+
+        &.plain{
+            border-color: @colorLightTheme;
+            color: @colorLightTheme;
+        }
     }
 
     &.co-dt{
         background-color: @colorDarkTheme;
+
+        &.plain{
+            border-color: @colorDarkTheme;
+            color: @colorDarkTheme;
+        }
     }
 
     &.co-s{
         background-color: @colorSuccess;
+
+        &.plain{
+            border-color: @colorSuccess;
+            color: @colorSuccess;
+        }
     }
 
     &.co-w{
         background-color: @colorWarning;
+
+        &.plain{
+            border-color: @colorWarning;
+            color: @colorWarning;
+        }
     }
 
     &.co-d{
         background-color: @colorDanger;
+
+        &.plain{
+            border-color: @colorDanger;
+            color: @colorDanger;
+        }
     }
 
     &.co-p{
         background-color: @colorPrimary;
+
+        &.plain{
+            border-color: @colorPrimary;
+            color: @colorPrimary;
+        }
     }
 
     &.co-m{
         background-color: @colorMinor;
+
+        &.plain{
+            border-color: @colorMinor;
+            color: @colorMinor;
+        }
     }
 
     &.co-i{
         background-color: @colorInfo;
+
+        &.plain{
+            border-color: @colorInfo;
+            color: @colorInfo;
+        }
     }
 
     &.co-bk{
         background-color: @colorBlack;
+
+        &.plain{
+            border-color: @colorBlack;
+            color: @colorBlack;
+        }
     }
 
     &.co-lbk{
         background-color: @colorLightBlack;
+
+        &.plain{
+            border-color: @colorLightBlack;
+            color: @colorLightBlack;
+        }
     }
 
     &.co-elbk{
         background-color: @colorExtraLightBlack;
+
+        &.plain{
+            border-color: @colorExtraLightBlack;
+            color: @colorExtraLightBlack;
+        }
     }
 
     &.co-bu{
         background-color: @colorBlue;
+
+        &.plain{
+            border-color: @colorBlue;
+            color: @colorBlue;
+        }
     }
 
     &.co-lbu{
         background-color: @colorLightBlue;
+
+        &.plain{
+            border-color: @colorLightBlue;
+            color: @colorLightBlue;
+        }
     }
 
     &.co-elbu{
         background-color: @colorExtraLightBlue;
+
+        &.plain{
+            border-color: @colorExtraLightBlue;
+            color: @colorExtraLightBlue;
+        }
     }
 
     &.co-si{
         background-color: @colorSilver;
         color: @colorLightBlack;
+
+        &.plain{
+            border-color: @colorSilver;
+            color: @colorSilver;
+        }
     }
 
     &.co-lsi{
         background-color: @colorLightSilver;
         color: @colorLightBlack;
+
+        &.plain{
+            border-color: @colorLightSilver;
+            color: @colorLightSilver;
+        }
     }
 
     &.co-elsi{
         background-color: @colorExtraLightSilver;
         color: @colorLightBlack;
+
+        &.plain{
+            border-color: @colorExtraLightSilver;
+            color: @colorExtraLightSilver;
+        }
     }
 
     &.co-g{
         background-color: @colorGray;
         color: @colorLightBlack;
+
+        &.plain{
+            border-color: @colorGray;
+            color: @colorGray;
+        }
     }
 
     &.co-lg{
         background-color: @colorLightGray;
         color: @colorLightBlack;
+
+        &.plain{
+            border-color: @colorLightGray;
+            color: @colorLightGray;
+        }
     }
 
     &.co-wh{
         background-color: @colorWhite;
         color: @colorLightBlack;
+
+        &.plain{
+            border-color: @colorWhite;
+            color: @colorWhite;
+        }
+    }
+
+    &.plain:not(.badge-point){
+        background-color: transparent;
+        border-width: 1px;
+        border-style: solid;
+    }
+
+    &.badge-point{
+        font-size: 0;
+        padding: 0;
+        border-radius: 50%;
+
+        > span{
+            display: block;
+        }
     }
 
     &.st-normal{}
