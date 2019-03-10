@@ -216,6 +216,24 @@
             }
         }
     }
+    ---
+    #demo
+    >desc
+    由于表格中使用的Vue模板是动态生成的，所以如果需要使用一些依赖元素绑定的组件（比如：`ui-tip`），则需要将这些组件也写到模板中。
+    <br><br>
+    >tpl
+    <div>
+        <ui-table :list="list"></ui-table>
+        <ui-tip target="#demo-tip-1">这个提示不会显示</ui-tip>
+    </div>
+    >script
+    {
+        data : {
+            list : [
+                {fisrt : '<span id="demo-tip-1">第一个提示不会显示</span>', second : '<span id="demo-tip-2">第二个提示会显示</span><ui-tip target="#demo-tip-2">这个提示可以正常显示</ui-tip>', gender : 'male'},
+            ]
+        }
+    }
     :::
 
     :::vue

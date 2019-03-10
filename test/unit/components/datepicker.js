@@ -15,7 +15,7 @@ const testOptions = {
     formValueInvalid1 : undefined,
     formValueInvalid2 : undefined,
     attrs : ``,
-    uiid : 6,
+    uiid : 7,
     // cause : ui-calendar will highlight today.
     // but ui-datepicker no config can disabled this config.for test eveyday snapshot is different.
     delVmEl : true,

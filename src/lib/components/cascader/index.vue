@@ -38,6 +38,7 @@
             :trigger="popoverTrigger"
             placement="bottom"
             align="start"
+            :auto-reverse="true"
 
             @show="_popoverShow"
             @hide="_popoverHide"

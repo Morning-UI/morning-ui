@@ -14,8 +14,6 @@
     &.showlist{
         .wrap{
             border-color: @colorFormBorder;
-            border-radius: @borderRadius @borderRadius 0 0;
-            padding-bottom: 1px;
 
             > mor-textinput{
                 cursor: initial;
@@ -23,18 +21,6 @@
 
             > .drop{
                 transform: rotateX(180deg);
-            }
-        }
-
-        &.over-bottom{
-            .wrap{
-                border-radius: 0 0 @borderRadius @borderRadius;
-            }
-
-            .list{
-                border-radius: @borderRadius @borderRadius 0 0;
-                border-top-width: 1px;
-                border-bottom-width: 0;
             }
         }
     }
@@ -130,7 +116,7 @@
         }
 
         .list{
-            border-color: @colorFormBorderDisable;
+            // border-color: @colorFormBorderDisable;
             background-color: @colorFormBackgroundDisable;
             -webkit-user-select: none;
             cursor: not-allowed !important;
@@ -142,8 +128,11 @@
         }
     }
 }
-.setup-wrap(){
+.setup-wrap(@is-separate){
     border: 1px solid @colorFormBorder;
+    border-top-width: if(@is-separate, 0, 1px);
+    border-left-width: if(@is-separate, 0, 1px);
+    border-right-width: if(@is-separate, 0, 1px);
     border-radius: @borderRadius;
     position: relative;
     cursor: pointer;
@@ -153,7 +142,7 @@
     overflow: hidden;
 
     > mor-textinput{
-        width: calc(100% - 30px);
+        width: if(@is-separate, 100%, calc(100% - 30px));
         height: @formHeight - 2px;
         line-height: @formHeight - 2px;
         padding: 0;
@@ -231,32 +220,11 @@
             font-size: 30px;
             text-indent: 1px;
         }
-
-        &.no-animation{
-            transition: none;
-        }
-
-        // &.clean{
-        //     top: 0;
-        //     right: 26px;
-        //     width: 18px;
-        //     font-size: 16px;
-
-        //     &:hover{
-        //         color: @colorDanger;
-        //     }
-        // }
     }
 
     &.hover{
         border-color: @colorFormBorderHover;
     }
-}
-.setup-select-list(){
-    pointer-events: none;
-    visibility: hidden;
-    position: absolute;
-    height: 0;
 }
 
 mor-select{
@@ -277,11 +245,7 @@ mor-select{
     }
 
     .wrap{
-        .setup-wrap();
-    }
-
-    .select-list{
-        .setup-select-list();
+        .setup-wrap(false);
     }
 
     &.separate{
@@ -341,44 +305,23 @@ mor-select{
 }
 
 .mor-select-wrap{
-    &.select-area{
-        pointer-events: none;
-        visibility: hidden;
-        height: 0;
-    }
-
-    &.select-list{
-        .setup-select-list();
-    }
-
     .list{
         margin: 0;
         padding: 0;
         list-style: none;
-        border: 1px @colorFormBorder solid;
         border-top-width: 0;
         border-radius: 0 0 @borderRadius @borderRadius;
         overflow-x: hidden;
         overflow-y: auto;
-        background-color: #FFF;
+        background-color: @colorWhite;
         box-sizing: border-box;
-        transform: scaleY(0);
-        transition: transform 0.2s, visibility 0.2s, border 0.2s;
-        transform-origin: 50% 0%;
         width: 100%;
 
         .setup-scrollbar();
     }
 
-    &.no-animation{
-        .list{
-            transform: none;
-            transition: none;
-        }
-    }
-
     li{
-        padding: 0.5em 2em 0.5em 1em;
+        padding: 0.5em 1em;
         border-top: 1px lighten(@colorFormBorder, 5%) solid;
         cursor: pointer;
         font-size: 14px;
@@ -443,6 +386,10 @@ mor-select{
             }
         }
 
+        &.noitem{
+            border-top: none;
+        }
+
         &.maxshow{
             font-size: 12px;
             text-align: center;
@@ -451,17 +398,9 @@ mor-select{
     }
 
     .wrap{
-        .setup-wrap();
-        pointer-events: none;
-        visibility: hidden;
-        height: 0;
         border-radius: @borderRadius @borderRadius 0 0;
 
-        &.showwrap{
-            pointer-events: auto;
-            visibility: visible;
-            height: auto;
-        }
+        .setup-wrap(true);
 
         > .selected{
             width: 100%;
@@ -476,24 +415,6 @@ mor-select{
         .setup-select-area();
     }
 
-    &.over-bottom{
-        .list{
-            transform-origin: 50% 100%;
-        }
-
-        &.showlist{
-            .showwrap{
-                border-radius: @borderRadius @borderRadius 0 0;
-            }
-
-            .select-list .list{
-                border-bottom-width: 1px;
-                border-radius: 0 0 @borderRadius @borderRadius;
-                border-top-width: 0;
-            }
-        }
-    }
-
     &.hide-selected li{
         padding: 0.5em 1em;
     }
@@ -502,22 +423,16 @@ mor-select{
     .hide-selected li.selected{
         display: none;
     }
+}
 
-    &.showlist,
-    .showlist{
-        pointer-events: auto;
-        visibility: visible;
-        height: auto;
-
-        .list{
-            transform: scaleY(1);
-        }
+.mor-select-popover{
+    .popover-con .popover-body{
+        padding: 0;
     }
 
-    &.no-animation.showlist,
-    &.no-animation .showlist{
-        .list{
-            transform: none;
+    &.no-animation{
+        .tip-wrap{
+            transition: none;
         }
     }
 }

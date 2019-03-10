@@ -18,14 +18,16 @@
         :auto-refresh-calendar="autoRefreshCalendar"
         :show-timepicker-box="showTimepickerBox"
         :highlight-days="highlightDays"
-        :date-select-add-class="dateSelectAddClass"
         :has-quick-pick="hasQuickPick"
         :relative="relative"
+        :_date-popover-add-class="_datePopoverAddClass"
         :_relative-time="_relativeTime"
+        :_range-input-direction="_rangeInputDirection"
     >
 
     <morning-textinput
         :ref="'ui-private-datepicker-input-'+uiid"
+        :id="'mor-private-datepicker-input-'+uiid"
         :inside-name="conf.insideName"
         :align="conf.align"
         :state="conf.state"
@@ -37,8 +39,22 @@
         v-model="data.inputValue"
     ></morning-textinput>
 
-    <div class="mor-date-wrap" :class="[dateSelectClass, conf.dateSelectAddClass]">
-        <div class="date-select" :class="conf.dateSelectAddClass">
+    <morning-popover
+        :ref="'ui-private-datepicker-popover-'+uiid"
+        :class="[
+            'mor-private-datepicker-popover',
+            dateSelectClass,
+            conf._datePopoverAddClass
+        ]"
+
+        :target="'#mor-private-datepicker-input-'+uiid"
+        placement="bottom"
+        trigger="method"
+        :auto-reverse="!conf._rangeInputDirection"
+        :offset="(conf._rangeInputDirection && conf._datePopoverAddClass === 'date-select-0') ? '0, 41px' : '0, 0'"
+    >
+
+        <div class="date-select">
 
             <div class="timepicker" v-if="conf.showTimepickerBox">
                 <slot name="timepicker"></slot>
@@ -61,7 +77,8 @@
             ></morning-calendar>
 
         </div>
-    </div>
+
+    </morning-popover>
 
     <morning-link v-if="conf.clearable" color="minor" @emit="_clean" class="cleanbtn">清空</morning-link>
 
@@ -85,13 +102,12 @@ import {
 import without                      from 'lodash.without';
 import Dates                        from 'Utils/Dates';
 import DateTime                     from 'Utils/DateTime';
-import TipManager                   from 'Utils/TipManager';
 
 export default {
     origin : 'Form',
     private : true,
     name : 'private-datepicker',
-    mixins : [Dates, DateTime, TipManager],
+    mixins : [Dates, DateTime],
     props : {
         initValue : {
             type : String,
@@ -135,10 +151,6 @@ export default {
             type : Array,
             default : (() => [])
         },
-        dateSelectAddClass : {
-            type : String,
-            default : ''
-        },
         hasQuickPick : {
             type : Boolean,
             default : false
@@ -147,7 +159,15 @@ export default {
             type : Boolean,
             default : false
         },
+        _datePopoverAddClass : {
+            type : String,
+            default : ''
+        },
         _relativeTime : {
+            type : Boolean,
+            default : false
+        },
+        _rangeInputDirection : {
             type : Boolean,
             default : false
         }
@@ -166,10 +186,11 @@ export default {
                 autoRefreshCalendar : this.autoRefreshCalendar,
                 showTimepickerBox : this.showTimepickerBox,
                 highlightDays : this.highlightDays,
-                dateSelectAddClass : this.dateSelectAddClass,
                 hasQuickPick : this.hasQuickPick,
                 relative : this.relative,
-                _relativeTime : this._relativeTime
+                _datePopoverAddClass : this._datePopoverAddClass,
+                _relativeTime : this._relativeTime,
+                _rangeInputDirection : this._rangeInputDirection
             };
 
         },
@@ -177,7 +198,6 @@ export default {
 
             let classes = {};
 
-            classes.show = (this.data.inputFocus && (this.data.state !== 'disabled'));
             classes[`align-${this.conf.align}`] = true;
             classes['has-quick-pick'] = this.conf.hasQuickPick;
 
@@ -293,19 +313,13 @@ export default {
                 let $input = this.$refs[`ui-private-datepicker-input-${this.uiid}`].$el;
 
                 this.data.$dateWrap.style.width = `${$input.offsetWidth}px`;
-
-                this._tipCreate({
-                    placement : 'bottom',
-                    element : this.data.$dateWrap,
-                    target : $input,
-                    offset : '0 0'
-                });
+                this.$refs[`ui-private-datepicker-popover-${this.uiid}`].show();
 
             } else {
 
                 setTimeout(() => {
 
-                    this._tipDestroy();
+                    this.$refs[`ui-private-datepicker-popover-${this.uiid}`].hide();
 
                 });
 
@@ -693,9 +707,7 @@ export default {
     },
     mounted : function () {
 
-        this.data.$dateWrap = this.$el.querySelector('.mor-date-wrap');
-        this.Tip.autoReverse = false;
-        this.Tip.autoOffset = true;
+        this.data.$dateWrap = this.$el.querySelector('.mor-private-datepicker-popover');
 
         this.$nextTick(() => {
 

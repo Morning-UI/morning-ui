@@ -4,7 +4,7 @@ import Vue                          from 'vue/dist/vue.common.js';
 import datetimepicker               from '../../../src/lib/components/datetimepicker/index.vue';
 import commonTest                   from '../../common/unit';
 
-const uiid = 10;
+const uiid = 12;
 const testOptions = {
     test,
     Vue,

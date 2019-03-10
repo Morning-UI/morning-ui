@@ -23,6 +23,8 @@
     - 滑动出现：从父元素边缘滑出，交互效果较好。
     - 直接出现：一般用在页面内容较多，对性能有要求的页面，较快(去除了动画带来的性能负担)。
 
+    当你需要展现的内容较少时，可以使用[模拟盒](/component/dialog.html)组件。
+
     :::vue
     @name:使用
     ---
@@ -162,7 +164,7 @@
     信息展示型的HTML内容。
     >tpl
     <div>
-        <ui-drawer ref="demo9">
+        <ui-drawer ref="demo9" width="400px">
             <ui-box class="margin">
                 <ui-header size="xs" color="extra-light-black" class="underline">
                     个人资料

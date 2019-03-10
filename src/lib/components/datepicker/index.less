@@ -160,7 +160,7 @@ mor-datepicker{
     }
 }
 
-.mor-date-wrap{
+.mor-private-datepicker-popover{
     min-width: 280px + 2px;
     max-width: 280px + 2px;
 
@@ -175,17 +175,26 @@ mor-datepicker{
     &.date-select-0{
         min-width: 280px + 1px;
         max-width: 280px + 1px;
+
+        .date-select{
+            border-bottom-right-radius: 0;
+            border-top-right-radius: 0;
+            border-right: none;
+        }
     }
 
-    .date-select.date-select-0{
-        border-bottom-right-radius: 0;
-        border-top-right-radius: 0;
-        border-right: none;
-    }
+    &.date-select-1{
+        min-width: 280px + 1px;
+        max-width: 280px + 1px;
 
-    .date-select.date-select-1{
-        border-bottom-left-radius: 0;
-        border-top-left-radius: 0;
+        .popover-arrow{
+            display: none;
+        }
+
+        .date-select{
+            border-bottom-left-radius: 0;
+            border-top-left-radius: 0;
+        }
     }
 
     &.has-quick-pick{
@@ -236,9 +245,5 @@ mor-datepicker{
             box-sizing: border-box;
             margin-left: @quickPickWidth;
         }
-    }
-
-    .date-select-0.vertical{
-        top: @formHeight - 1px;
     }
 }

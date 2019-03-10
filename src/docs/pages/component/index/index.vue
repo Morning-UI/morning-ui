@@ -13,7 +13,7 @@
         <div class="sub-group">
             <h4><i class="iconfont">&#xe959;</i>文本</h4>
             <ul>
-                <li><a href="/component/h.html">标题<p>&lt;b></p></a></li>
+                <li><a href="/component/h.html">标题<p>&lt;h></p></a></li>
                 <li><a href="/component/lead.html">中心内容<p>&lt;lead></p></a></li>
                 <li><a href="/component/mark.html">标记的文本<p>&lt;mark></p></a></li>
                 <li><a href="/component/del.html">删除的文本<p>&lt;del></p></a></li>

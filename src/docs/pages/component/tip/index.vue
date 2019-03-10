@@ -42,7 +42,7 @@
         <span id="demo33">鼠标悬浮显示小提示</span>
         <ui-tip target="#demo33" color="silver">
             <ui-h size="xxs" color="light-black">标题</ui-h>
-            <p style="max-width:200px;">很长很长的内容很长很长的内容很长很长的内容很长很长的内容很长很长的内容很长很长的内容很长很长的内容...</p>
+            <p>很长很长的内容很长很长的内容很长很长的内容很长很长的内容很长很长的内容很长很长的内容很长很长的内容很长很长的内容很长很长的内容很长很长的内容很长很长的内容很长很长的内容很长很长的内容很长很长的内容...</p>
         </ui-tip>
     </div>
     :::
@@ -93,14 +93,14 @@
         <br><br>
 
         <span id="demo26">多个不同位置小提示</span>
-        <ui-tip target="#demo26" offset="0 30px">小提示1</ui-tip>
-        <ui-tip target="#demo26" offset="0 -30px">小提示2</ui-tip>
+        <ui-tip target="#demo26" offset="30px, 0">小提示1</ui-tip>
+        <ui-tip target="#demo26" offset="-30px, 0">小提示2</ui-tip>
 
         <br><br>
 
         <span id="demo27">多个不同时机显示的小提示</span>
-        <ui-tip target="#demo27" offset="0 30px">小提示1</ui-tip>
-        <ui-tip target="#demo27" offset="0 -30px" :trigger-in-delay="500">小提示2</ui-tip>
+        <ui-tip target="#demo27" offset="30px, 0">小提示1</ui-tip>
+        <ui-tip target="#demo27" offset="-30px, 0" :trigger-in-delay="500">小提示2</ui-tip>
     </div>
     :::
 
@@ -198,17 +198,17 @@
     >conf-desc
     偏移量。
     >conf-accept
-    上下偏移量(单位px/%) 左右偏移量(单位px/%)
+    左右偏移量(单位px/%), 上下偏移量(单位px/%)
     >conf-type
     String
     >conf-default
-    `'0 0'`
+    `'0, 0'`
     ---
     #demo
     >tpl
     <div>
         <span id="demo11">鼠标悬浮显示小提示</span>
-        <ui-tip target="#demo11" offset="10px -30px">提示内容</ui-tip>
+        <ui-tip target="#demo11" offset="-30px, 10px">提示内容</ui-tip>
     </div>
     :::
 
@@ -221,7 +221,7 @@
     <br><br>
     当处于`click`配置时，点击`target`元素会切换显示/隐藏状态，同时点击其他区域会隐藏小提示。
     >conf-accept
-    `hover`：鼠标移入目标元素<br>`click`：鼠标点击目标元素<br>`focus`：目标元素处于焦点状态<br>`method`：通过组件方法触发
+    `hover`：鼠标移入目标元素<br>`click`：鼠标点击目标元素<br>`rclick`：鼠标右键点击目标元素<br>`focus`：目标元素处于焦点状态<br>`method`：通过组件方法触发
     >conf-type
     String
     >conf-default
@@ -237,6 +237,20 @@
 
         <span id="demo13">鼠标悬浮或点击显示小提示</span>
         <ui-tip target="#demo13" trigger="click hover">提示内容</ui-tip>
+    </div>
+    ---
+    #demo
+    >desc
+    鼠标右键点击显示的小提示。
+    >tpl
+    <div>
+        <span id="demo34">右键点击显示小提示</span>
+        <ui-tip target="#demo34" trigger="rclick">提示内容</ui-tip>
+
+        <br>
+
+        <span id="demo35">鼠标悬浮或右键点击显示小提示</span>
+        <ui-tip target="#demo35" trigger="rclick hover">提示内容</ui-tip>
     </div>
     ---
     #demo
@@ -305,7 +319,7 @@
     >tpl
     <div>
         <span id="demo20">鼠标悬浮显示小提示</span>
-        <ui-tip target="#demo20" placement="bottom" :auto-reverse="false">这是一段非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常长的提示内容</ui-tip>
+        <ui-tip target="#demo20" placement="bottom" :auto-reverse="false" style="max-width:160px;">这是一段非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常长的提示内容</ui-tip>
     </div>
     ---
     #demo
@@ -314,7 +328,7 @@
     >tpl
     <div>
         <span id="demo21">鼠标悬浮显示小提示</span>
-        <ui-tip target="#demo21" placement="bottom" :auto-reverse="true">这是一段非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常长的提示内容</ui-tip>
+        <ui-tip target="#demo21" placement="bottom" :auto-reverse="true" style="max-width:160px;">这是一段非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常非常长的提示内容</ui-tip>
     </div>
     :::
 

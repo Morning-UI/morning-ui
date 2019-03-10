@@ -14,6 +14,8 @@
 
     如果仅展示简单的内容，比如一句话或一张图可以使用[小提示](/component/tip.html)。
 
+    而需要展现更多内容时，可以使用[模拟盒](/component/dialog.html)。
+
     :::vue
     @name:使用
     ---
@@ -186,17 +188,17 @@
     >conf-desc
     偏移量。
     >conf-accept
-    上下偏移量(单位px/%) 左右偏移量(单位px/%)
+    左右偏移量(单位px/%), 上下偏移量(单位px/%)
     >conf-type
     String
     >conf-default
-    `'0 0'`
+    `'0, 0'`
     ---
     #demo
     >tpl
     <div>
         <span id="demo10">鼠标悬浮显示弹出框</span>
-        <ui-popover target="#demo10" offset="10px -30px">
+        <ui-popover target="#demo10" offset="-30px, 10px">
             <p>内容内容内容内容内容1...</p>
             <p>内容内容内容内容2...</p>
             <p>内容内容内容3...</p>
@@ -213,7 +215,7 @@
     <br><br>
     当处于`click`配置时，点击`target`元素会切换显示/隐藏状态，同时点击其他区域会隐藏弹出框。
     >conf-accept
-    `hover`：鼠标移入目标元素<br>`click`：鼠标点击目标元素<br>`focus`：目标元素处于焦点状态<br>`method`：通过组件方法触发
+    `hover`：鼠标移入目标元素<br>`click`：鼠标点击目标元素<br>`rclick`：鼠标右键点击目标元素<br>`focus`：目标元素处于焦点状态<br>`method`：通过组件方法触发
     >conf-type
     String
     >conf-default
@@ -233,6 +235,28 @@
 
         <span id="demo12">鼠标悬浮或点击显示弹出框</span>
         <ui-popover target="#demo12" trigger="click hover">
+            <p>内容内容内容内容内容1...</p>
+            <p>内容内容内容内容2...</p>
+            <p>内容内容内容3...</p>
+        </ui-popover>
+    </div>
+    ---
+    #demo
+    >desc
+    鼠标右键点击显示的弹出框。
+    >tpl
+    <div>
+        <span id="demo34">右键点击显示弹出框</span>
+        <ui-popover target="#demo34" trigger="rclick">
+            <p>内容内容内容内容内容1...</p>
+            <p>内容内容内容内容2...</p>
+            <p>内容内容内容3...</p>
+        </ui-popover>
+
+        <br>
+
+        <span id="demo35">鼠标悬浮或右键点击显示弹出框</span>
+        <ui-popover target="#demo35" trigger="rclick hover">
             <p>内容内容内容内容内容1...</p>
             <p>内容内容内容内容2...</p>
             <p>内容内容内容3...</p>

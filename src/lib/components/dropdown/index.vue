@@ -2,6 +2,8 @@
     <mor-dropdown
         :_uiid="uiid"
         :class="[showClass]"
+        :id="'mor-dropdown-'+uiid"
+
         :auto-close="autoClose"
         :trigger="trigger"
         :trigger-in-delay="triggerInDelay"
@@ -9,28 +11,29 @@
     >
     
     <slot name="showbtn"></slot>
-
-    <div
-        class="mor-dropdown-wrap"
-        :class="[showClass]"
+    
+    <morning-popover
+        :ref="'ui-dropdown-popover-'+uiid"
+        class="mor-dropdown-popover"
+    
+        :target="'#mor-dropdown-'+uiid+' [emitbtn]'"
+        placement="bottom"
+        :trigger="conf.trigger + ' method'"
+        :trigger-in-delay="conf.triggerInDelay"
+        :auto-reverse="conf.autoReverse"
     >
-        <div class="btnlist" ><slot></slot></div>
-    </div>
+        <div class="btnlist" @click="_onBtnClick"><slot></slot></div>
+    </morning-popover>
         
     </mor-dropdown>
 </template>
  
 <script>
-import GlobalEvent                  from 'Utils/GlobalEvent';
-import TipManager                   from 'Utils/TipManager';
-import TriggerManager               from 'Utils/TriggerManager';
-
 const triggerDelayTime = 200;
 
 export default {
     origin : 'UI',
     name : 'dropdown',
-    mixins : [GlobalEvent, TipManager, TriggerManager],
     props : {
         autoClose : {
             type : Boolean,
@@ -39,7 +42,7 @@ export default {
         trigger : {
             type : String,
             default : 'click',
-            validator : (value => ['hover', 'click', 'rclick'].indexOf(value) !== -1)
+            validator : (value => ['hover', 'click', 'rclick', 'method'].indexOf(value) !== -1)
         },
         triggerInDelay : {
             type : Number,
@@ -61,95 +64,25 @@ export default {
                 autoReverse : this.autoReverse
             };
 
-        },
-        showClass : function () {
-
-            return {
-                show : this.data.show,
-                hide : !this.data.show && !this.data.first
-            };
-
         }
     },
     data : function () {
 
         return {
             data : {
-                show : false,
-                first : true,
-                isCheckArea : false,
-                $wrap : null,
-                $arrow : null
+                show : false
             }
         };
 
     },
     methods : {
-        _checkArea : function (evt) {
+        _onBtnClick : function () {
 
-            if (evt.button === 2) {
+            if (this.conf.autoClose) {
 
-                return;
-
-            }
-
-            const notFound = -1;
-
-            this.data.isCheckArea = true;
-
-            let $emitbtn = this.$el.querySelector('[emitbtn]');
-
-            if ((
-                evt.path.indexOf($emitbtn) === notFound && evt.path.indexOf(this.data.$wrap) !== notFound
-            ) && this.conf.autoClose) {
-
-                this.toggle();
+                this.toggle(false);
 
             }
-
-            if ((
-                (evt.path.indexOf($emitbtn) === notFound && evt.path.indexOf(this.data.$wrap) === notFound) ||
-                (evt.path.indexOf($emitbtn) !== notFound)
-            ) && this.conf.trigger === 'click') {
-
-                this.toggle();
-
-            }
-
-            setTimeout(() => {
-        
-                this.data.isCheckArea = false;
-
-            });
-
-        },
-        _show : function () {
-
-            this.toggle(true);
-
-        },
-        _hide : function (evt) {
-
-            if (evt.type === 'mouseleave' &&
-                (this.data.$wrap.contains(evt.relatedTarget) ||
-                this.$el.contains(evt.relatedTarget))) {
-
-                return;
-
-            }
-
-            this.toggle(false);
-
-        },
-        _click : function () {
-
-            if (this.data.isCheckArea) {
-
-                return;
-
-            }
-
-            this.toggle();
 
         },
         toggle : function (show) {
@@ -172,29 +105,15 @@ export default {
 
             if (this.data.show) {
 
-                if (!this.Tip.tether &&
-                    this.data.$arrow) {
-
-                    this.data.$wrap.style.minWidth = `${this.data.$wrap.offsetWidth + this.data.$arrow.offsetWidth}px`;
-
-                }
-
                 this.Vue.nextTick(() => {
-                    
-                    this._tipCreate({
-                        placement : 'bottom',
-                        element : this.data.$wrap,
-                        target : this.$el,
-                        offset : '0 0'
-                    });
+
+                    this.$refs[`ui-dropdown-popover-${this.uiid}`].show();
                     
                 });
 
-                this.$emit('show');
-
             } else {
 
-                this.$emit('hide');
+                this.$refs[`ui-dropdown-popover-${this.uiid}`].hide();
 
             }
 
@@ -205,73 +124,23 @@ export default {
     },
     mounted : function () {
 
-        let $emitbtn = this.$el.querySelector(`[emitbtn]`);
+        this.data.$popperCon = this.$refs[`ui-dropdown-popover-${this.uiid}`].$el.querySelector('.popover-con');
 
-        this.data.$wrap = this.$el.querySelector('.mor-dropdown-wrap');
-        this.data.$arrow = this.$el.querySelector('mor-btn>.mo-icon, mor-link>.mo-icon');
+        this.$refs[`ui-dropdown-popover-${this.uiid}`].$on('show', () => {
 
-        this.Trigger.$targets = [$emitbtn, this.data.$wrap];
-        this.Trigger.triggers = this.conf.trigger;
-        this.Tip.autoReverse = this.conf.autoReverse;
-
-        this.$watch('conf.triggerInDelay', () => {
-
-            this.Trigger.handlerMap = {
-                click : [this._click],
-                rclick : [this._click],
-                hover : {
-                    in : [{
-                        fn : this._show,
-                        delay : this.conf.triggerInDelay
-                    }],
-                    out : [this._hide]
-                }
-            };
-
-            this.Vue.nextTick(() => this._triggerSetListeners());
-
-        }, {
-            immediate : true
-        });
-
-        this.$watch('conf.trigger', () => {
-
-            this._triggerUnsetListeners();
-            this.Trigger.triggers = this.conf.trigger;
-            this._triggerSetListeners();
-
-        });
-
-        this.$on('show', () => {
-
-            this.data.first = false;
             this.data.show = true;
-
-            this.Vue.nextTick(() => {
-
-                this._globalEventAdd('click', '_checkArea', true);
-
-            });
-            
             this.$emit('emit');
+            this.$emit('show');
 
         });
 
-        this.$on('hide', () => {
+        this.$refs[`ui-dropdown-popover-${this.uiid}`].$on('hide', () => {
 
-            this.data.first = false;
             this.data.show = false;
-
-            this._globalEventRemove('click', '_checkArea');
-
             this.$emit('emit');
+            this.$emit('hide');
 
         });
-
-    },
-    beforeDestroy : function () {
-
-        this._globalEventRemove('click', '_checkArea');
 
     }
 };
