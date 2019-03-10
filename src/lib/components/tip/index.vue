@@ -12,14 +12,16 @@
         :align="align"
     >
 
-    <div class="arrow tip-arrow"></div>
-    <div class="con">
-        <template v-if="!$slots.default">
-            {{data.title}}
-        </template>
-        <template v-else>
-            <slot></slot>
-        </template>
+    <div class="tip-wrap">
+        <div class="arrow tip-arrow"></div>
+        <div class="con">
+            <template v-if="!$slots.default">
+                {{data.title}}
+            </template>
+            <template v-else>
+                <slot></slot>
+            </template>
+        </div>
     </div>
 
     </mor-tip>

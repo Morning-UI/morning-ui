@@ -132,9 +132,16 @@ let TipManager = {
 
             }
 
+            setTimeout(() => {
+
+                this.Tip.options.popper.classList.add('show-tip');
+
+            });
+
         },
         _tipPopperHide : function () {
 
+            this.Tip.options.popper.classList.remove('show-tip');
             this.Tip.options.popper.style.zIndex = -1;
             this.Tip.options.popper.style.opacity = 0;
             this.Tip.options.popper.style['pointer-events'] = 'none';

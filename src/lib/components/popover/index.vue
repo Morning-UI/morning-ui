@@ -11,18 +11,21 @@
         :auto-reverse="autoReverse"
         :align="align"
     >
-
-    <div class="popover-arrow tip-arrow"></div>
-    <div class="popover-con">
-        <div class="popover-title" v-if="$slots.title">
-            <slot name="title"></slot>
-        </div>
-        <div class="popover-body">
-            <slot></slot>
+    
+    <div class="tip-wrap">
+        <div class="popover-arrow tip-arrow"></div>
+        <div class="popover-con">
+            <div class="popover-title" v-if="$slots.title">
+                <slot name="title"></slot>
+            </div>
+            <div class="popover-body">
+                <slot></slot>
+            </div>
         </div>
     </div>
-
+    
     </mor-popover>
+
 </template>
  
 <script>

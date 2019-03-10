@@ -222,8 +222,26 @@
         transform: rotate(45deg);
     }
 
+    .tip-wrap{
+        opacity: 0;
+        transition: unset;
+        transform: scale(0.4);
+        transition-timing-function: ease-in;
+    }
+
+    &.show-tip{
+        .tip-wrap{
+            transition: opacity 0.16s, transform 0.16s;
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
     &.tip-placement-top {
-        padding: (@size + 3px) 0;
+        .tip-wrap{
+            padding: (@size + 3px) 0;
+            transform-origin: center bottom;
+        }
 
         .tip-arrow {
             bottom: 3px;
@@ -233,7 +251,10 @@
     }
 
     &.tip-placement-right {
-        padding: 0 @size 0 @size*2;
+        .tip-wrap{
+            padding: 0 @size 0 @size*2;
+            transform-origin: left center;
+        }
 
         .tip-arrow {
             left: @size;
@@ -243,7 +264,10 @@
     }
 
     &.tip-placement-bottom {
-        padding: (@size + 3px) 0;
+        .tip-wrap{
+            padding: (@size + 3px) 0;
+            transform-origin: center top;
+        }
 
         .tip-arrow {
             top: 3px;
@@ -254,7 +278,10 @@
     }
 
     &.tip-placement-left {
-        padding: 0 @size*2 0 @size;
+        .tip-wrap{
+            padding: 0 @size*2 0 @size;
+            transform-origin: right center;
+        }
 
         .tip-arrow {
             right: @size;
@@ -273,6 +300,7 @@
 
     &.tip-placement-top,
     &.tip-placement-bottom {
+
         .tip-arrow{
             left: calc(50% - @size);
             margin: 0 @size*2;
