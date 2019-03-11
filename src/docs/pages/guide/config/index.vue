@@ -338,6 +338,8 @@
     - `strict` : 严格
     - `real-time` : 实时
     - `countdown` : 倒计
+    - `count` : 计数
+    - `attach` : 附着
 
     </script>
     </doc-guide>

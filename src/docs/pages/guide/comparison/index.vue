@@ -1012,7 +1012,7 @@
                     </td>
                 </tr>
                 <tr class="components">
-                    <td class="item">徽章</td>
+                    <td class="item">徽标</td>
                     <td class="mark">
                         <i class="iconfont has">&#xe62d;</i>
                     </td>
