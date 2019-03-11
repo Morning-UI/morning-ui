@@ -6,8 +6,9 @@
         :type="type"
         :count="count"
         :max-show="maxShow"
+        :attach="attach"
     >
-        <slot v-if="conf.type === 'normal'"></slot>
+        <slot v-if="conf.type === 'normal' || conf.type === 'icon'"></slot>
         <span v-else-if="conf.type === 'counter'">
             <template v-if="conf.count <= conf.maxShow">
                 {{conf.count}}
@@ -21,6 +22,8 @@
 </template>
  
 <script>
+const maxShowDefault = 99;
+
 export default {
     origin : 'UI',
     name : 'badge',
@@ -28,7 +31,7 @@ export default {
         type : {
             type : String,
             default : 'normal',
-            validator : (value => ['normal', 'counter', 'point'].indexOf(value) !== -1)
+            validator : (value => ['normal', 'counter', 'point', 'icon'].indexOf(value) !== -1)
         },
         count : {
             type : Number,
@@ -36,7 +39,12 @@ export default {
         },
         maxShow : {
             type : Number,
-            default : 99
+            default : maxShowDefault
+        },
+        attach : {
+            type : [Boolean, String],
+            default : false,
+            validator : (value => (value === false || ['left-top', 'left-bottom', 'right-top', 'right-bottom'].indexOf(value) !== -1))
         }
     },
     computed : {
@@ -45,15 +53,23 @@ export default {
             return {
                 type : this.type,
                 count : this.count,
-                maxShow : this.maxShow
+                maxShow : this.maxShow,
+                attach : this.attach
             };
 
         },
         moreClass : function () {
 
             let classes = {
-                'badge-point' : (this.conf.type === 'point')
+                'badge-point' : (this.conf.type === 'point'),
+                'badge-icon' : (this.conf.type === 'icon')
             };
+
+            if (this.conf.attach) {
+
+                classes[`badge-attach-${this.conf.attach}`] = true;
+
+            }
 
             return classes;
 

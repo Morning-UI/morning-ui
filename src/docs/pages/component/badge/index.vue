@@ -45,6 +45,18 @@
     >tpl
     <ui-badge class="plain">朴素徽标</ui-badge>
     :::
+    
+    :::vue
+    @name:附着在父辈元素
+    ---
+    #demo
+    >desc
+    徽标可以附着在父辈元素的四个角上，详见：[配置/attach](#attach)
+    >tpl
+    <div style="display:inline-block;width:50px;height:50px;border-radius:3px;background:#E2E8EE;position: relative;">
+        <ui-badge type="normal" size="xs" attach="right-top" class="circle">New</ui-badge>
+    </div>
+    :::
 
     :::vue
     @name:无内容隐藏
@@ -130,6 +142,7 @@
     - `normal` : 默认模式，支持显示纯文本的徽标（通过`slot`）
     - `counter` : 计数器模式，配合`count`和`max-show`配置一起使用，仅展现`count`的数字不会显示`slot`内容
     - `point` : 小圆点模式，不显示任何内容
+    - `icon` : 图标模式，请在`slot`中填写`<i>`作为字体图标
 
     >conf-accept
     `'normal'`<br>`'counter'`<br>`'point'`
@@ -142,22 +155,41 @@
     >desc
     正常模式，可以显示`slot`的内容。
     >tpl
-    <ui-badge type="normal">这里是内容</ui-badge>
-    <ui-badge type="normal" class="plain">这里是内容</ui-badge>
+    <div>
+        <ui-badge type="normal">这里是内容</ui-badge>
+        <ui-badge type="normal" class="plain">这里是内容</ui-badge>
+    </div>
     ---
     #demo
     >desc
     计数器模式，仅显示`count`的数字。
     >tpl
-    <ui-badge type="counter" :count="36">这里是内容</ui-badge>
-    <ui-badge type="counter" :count="36" class="plain">这里是内容</ui-badge>
+    <div>
+        <ui-badge type="counter" :count="36">这里是内容</ui-badge>
+        <ui-badge type="counter" :count="36" class="plain">这里是内容</ui-badge>
+    </div>
     ---
     #demo
     >desc
     小圆点模式，不显示任何内容。
     >tpl
-    <ui-badge type="point">这里是内容</ui-badge>
-    <ui-badge type="point" class="plain">这里是内容</ui-badge>
+    <div>
+        <ui-badge type="point">这里是内容</ui-badge>
+        <ui-badge type="point" class="plain">这里是内容</ui-badge>
+    </div>
+    ---
+    #demo
+    >desc
+    图标模式，在配合`.plain`样式使用时，图标会放大1.2倍。
+    >tpl
+    <div>
+        <ui-badge type="icon">
+            <i class="mo-icon mo-icon-time-co"></i>
+        </ui-badge>
+        <ui-badge type="icon" class="plain">
+            <i class="mo-icon mo-icon-time-co"></i>
+        </ui-badge>
+    </div>
     :::
 
     :::vue
@@ -212,6 +244,135 @@
     #demo
     >tpl
     <ui-badge type="counter" :count="103" :max-show="99"></ui-badge>
+    :::
+
+    :::vue
+    @name:attach
+    ---
+    #config
+    >conf-desc
+    徽标可以附着在父辈元素的四个角上（被附着的父辈元素`position`不能为`static`）。
+    >conf-accept
+    `false` : 不附着<br>`'left-top'` : 附着在左上角<br>`'left-bottom'` : 附着在左下角<br>`'right-top'` : 附着在右上角<br>`'right-bottom'` : 附着在右下角
+    >conf-type
+    Boolean<br>String
+    >conf-default
+    `false`
+    ---
+    #demo
+    >desc
+    分别附着在父辈元素的四个角上（建议使用`xs`尺寸）。
+    >tpl
+    <div>
+        <div style="display:inline-block;width:50px;height:50px;border-radius:3px;background:#E2E8EE;position: relative;">
+            <ui-badge type="counter" size="xs" :count="6" attach="left-top"></ui-badge>
+        </div>
+        <div style="display:inline-block;width:50px;height:50px;border-radius:3px;background:#E2E8EE;position: relative;">
+            <ui-badge type="counter" size="xs" :count="6" attach="left-bottom"></ui-badge>
+        </div>
+        <div style="display:inline-block;width:50px;height:50px;border-radius:3px;background:#E2E8EE;position: relative;">
+            <ui-badge type="counter" size="xs" :count="6" attach="right-top"></ui-badge>
+        </div>
+        <div style="display:inline-block;width:50px;height:50px;border-radius:3px;background:#E2E8EE;position: relative;">
+            <ui-badge type="counter" size="xs" :count="6" attach="right-bottom"></ui-badge>
+        </div>
+    </div>
+    ---
+    #demo
+    >desc
+    配合`.circle`一起使用。
+    >tpl
+    <div>
+        <div style="display:inline-block;width:50px;height:50px;border-radius:3px;background:#E2E8EE;position: relative;">
+            <ui-badge type="normal" size="xs" attach="left-top" class="circle">New</ui-badge>
+        </div>
+        <div style="display:inline-block;width:50px;height:50px;border-radius:3px;background:#E2E8EE;position: relative;">
+            <ui-badge type="normal" size="xs" attach="left-bottom" class="circle">New</ui-badge>
+        </div>
+        <div style="display:inline-block;width:50px;height:50px;border-radius:3px;background:#E2E8EE;position: relative;">
+            <ui-badge type="normal" size="xs" attach="right-top" class="circle">New</ui-badge>
+        </div>
+        <div style="display:inline-block;width:50px;height:50px;border-radius:3px;background:#E2E8EE;position: relative;">
+            <ui-badge type="normal" size="xs" attach="right-bottom" class="circle">New</ui-badge>
+        </div>
+    </div>
+    ---
+    #demo
+    >desc
+    配合`.plain`和`.circle`一起使用。
+    >tpl
+    <div>
+        <div style="display:inline-block;width:50px;height:50px;border-radius:3px;background:#E2E8EE;position: relative;">
+            <ui-badge type="counter" size="xs" :count="6" attach="left-top" class="circle plain"></ui-badge>
+        </div>
+        <div style="display:inline-block;width:50px;height:50px;border-radius:3px;background:#E2E8EE;position: relative;">
+            <ui-badge type="counter" size="xs" :count="6" attach="left-bottom" class="circle plain"></ui-badge>
+        </div>
+        <div style="display:inline-block;width:50px;height:50px;border-radius:3px;background:#E2E8EE;position: relative;">
+            <ui-badge type="counter" size="xs" :count="6" attach="right-top" class="circle plain"></ui-badge>
+        </div>
+        <div style="display:inline-block;width:50px;height:50px;border-radius:3px;background:#E2E8EE;position: relative;">
+            <ui-badge type="counter" size="xs" :count="6" attach="right-bottom" class="circle plain"></ui-badge>
+        </div>
+    </div>
+    ---
+    #demo
+    >desc
+    配合`type`为`point`一起使用（建议使用`m`尺寸）。
+    >tpl
+    <div>
+        <div style="display:inline-block;width:50px;height:50px;border-radius:3px;background:#E2E8EE;position: relative;">
+            <ui-badge type="point" attach="left-top"></ui-badge>
+        </div>
+        <div style="display:inline-block;width:50px;height:50px;border-radius:3px;background:#E2E8EE;position: relative;">
+            <ui-badge type="point" attach="left-bottom"></ui-badge>
+        </div>
+        <div style="display:inline-block;width:50px;height:50px;border-radius:3px;background:#E2E8EE;position: relative;">
+            <ui-badge type="point" attach="right-top"></ui-badge>
+        </div>
+        <div style="display:inline-block;width:50px;height:50px;border-radius:3px;background:#E2E8EE;position: relative;">
+            <ui-badge type="point" attach="right-bottom"></ui-badge>
+        </div>
+    </div>
+    ---
+    #demo
+    >desc
+    配合`type`为`icon`及`.plain`一起使用（建议使用`l`尺寸）。
+    >tpl
+    <div>
+        <div style="display:inline-block;width:50px;height:50px;border-radius:3px;background:#E2E8EE;position: relative;">
+            <ui-badge type="icon" size="l" class="plain" attach="left-top">
+                <i class="mo-icon mo-icon-time-co"></i>
+            </ui-badge>
+        </div>
+        <div style="display:inline-block;width:50px;height:50px;border-radius:3px;background:#E2E8EE;position: relative;">
+            <ui-badge type="icon" size="l" class="plain" attach="left-bottom">
+                <i class="mo-icon mo-icon-time-co"></i>
+            </ui-badge>
+        </div>
+        <div style="display:inline-block;width:50px;height:50px;border-radius:3px;background:#E2E8EE;position: relative;">
+            <ui-badge type="icon" size="l" class="plain" attach="right-top">
+                <i class="mo-icon mo-icon-time-co"></i>
+            </ui-badge>
+        </div>
+        <div style="display:inline-block;width:50px;height:50px;border-radius:3px;background:#E2E8EE;position: relative;">
+            <ui-badge type="icon" size="l" class="plain" attach="right-bottom">
+                <i class="mo-icon mo-icon-time-co"></i>
+            </ui-badge>
+        </div>
+    </div>
+    :::
+
+    [[[方法]]]
+    
+    <h1>暂无</h1>
+
+    [[[事件]]]
+
+    :::vue
+    @layout:lifecycle-event
+    ---
+    empty
     :::
 
     [[[源码]]]
