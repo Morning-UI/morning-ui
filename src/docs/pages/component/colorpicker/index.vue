@@ -170,25 +170,6 @@
     ---
     #demo
     >desc
-    预设颜色也支持透明度。
-    >tpl
-    <div style="width:300px;">
-        <ui-colorpicker form-name="颜色选择"
-            :palettes="[
-                'rgb(244, 67, 54, 0.7)',
-                'rgb(233, 30, 99, 0.7)',
-                'rgb(156, 39, 176, 0.7)',
-                'rgb(63, 81, 181, 0.7)',
-                'rgb(33, 150, 243, 0.7)',
-                '#009688aa',
-                '#8bc34aaa',
-                '#ff9800aa'
-            ]"
-        ></ui-colorpicker>
-    </div>
-    ---
-    #demo
-    >desc
     设置多个调色板。
     <br>
     需要注意当使用多个调色板时`palettes`数组中的每一项都必须是对象，不能混用色值字符串和对象两种写法。

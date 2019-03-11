@@ -28247,184 +28247,6 @@ mor-header.underline {
 mor-header small {
   color: #5378a3;
 }
-mor-badge {
-  display: inline-block;
-  color: #FFF;
-  margin: 2px;
-  text-align: center;
-  vertical-align: middle;
-  height: auto;
-  line-height: 1.6em;
-  font-size: 12.8px;
-  padding: 0 10.4px;
-  background-color: #F33D5D;
-}
-mor-badge:empty {
-  display: none;
-}
-mor-badge.si-xxl {
-  font-size: 22.4px;
-  padding: 0 16px;
-  margin: 8px;
-}
-mor-badge.si-xxl,
-mor-badge.si-xxl.flat {
-  border-radius: 4.8px;
-}
-mor-badge.si-xxl.circle {
-  border-radius: 25.6px;
-}
-mor-badge.si-xl {
-  font-size: 19.2px;
-  padding: 0 12.8px;
-  margin: 4.8px;
-}
-mor-badge.si-xl,
-mor-badge.si-xl.flat {
-  border-radius: 4.2px;
-}
-mor-badge.si-xl.circle {
-  border-radius: 22.4px;
-}
-mor-badge.si-l {
-  font-size: 16px;
-  padding: 0 12px;
-  margin: 1.6px;
-}
-mor-badge.si-l,
-mor-badge.si-l.flat {
-  border-radius: 3.6px;
-}
-mor-badge.si-l.circle {
-  border-radius: 19.2px;
-}
-mor-badge.si-m {
-  font-size: 12.8px;
-  padding: 0 10.4px;
-}
-mor-badge.si-m,
-mor-badge.si-m.flat {
-  border-radius: 3px;
-}
-mor-badge.si-m.circle {
-  border-radius: 16px;
-}
-mor-badge.si-s {
-  font-size: 12px;
-  padding: 0 8.8px;
-}
-mor-badge.si-s,
-mor-badge.si-s.flat {
-  border-radius: 2.4px;
-}
-mor-badge.si-s.circle {
-  border-radius: 12.8px;
-}
-mor-badge.si-xs {
-  font-size: 12px;
-  padding: 0 4.8px;
-}
-mor-badge.si-xs,
-mor-badge.si-xs.flat {
-  border-radius: 2.25px;
-}
-mor-badge.si-xs.circle {
-  border-radius: 12px;
-}
-mor-badge.si-xxs {
-  font-size: 12px;
-  padding: 0 5px;
-  transform: scale(0.8);
-}
-mor-badge.si-xxs,
-mor-badge.si-xxs.flat {
-  border-radius: 1.875px;
-}
-mor-badge.si-xxs.circle {
-  border-radius: 10px;
-}
-mor-badge.co-t {
-  background-color: #F33D5D;
-}
-mor-badge.co-lt {
-  background-color: #F86F88;
-}
-mor-badge.co-dt {
-  background-color: #D22343;
-}
-mor-badge.co-s {
-  background-color: #4DBD67;
-}
-mor-badge.co-w {
-  background-color: #F0AD4E;
-}
-mor-badge.co-d {
-  background-color: #D64431;
-}
-mor-badge.co-p {
-  background-color: #2185D0;
-}
-mor-badge.co-m {
-  background-color: #A9A9A9;
-}
-mor-badge.co-i {
-  background-color: #03A6B9;
-}
-mor-badge.co-bk {
-  background-color: #17212D;
-}
-mor-badge.co-lbk {
-  background-color: #303C4B;
-}
-mor-badge.co-elbk {
-  background-color: #45505C;
-}
-mor-badge.co-bu {
-  background-color: #7C8BA0;
-}
-mor-badge.co-lbu {
-  background-color: #8E9CAF;
-}
-mor-badge.co-elbu {
-  background-color: #A8B3C2;
-}
-mor-badge.co-si {
-  background-color: #D6DDE5;
-  color: #303C4B;
-}
-mor-badge.co-lsi {
-  background-color: #E2E8EE;
-  color: #303C4B;
-}
-mor-badge.co-elsi {
-  background-color: #EDF1F5;
-  color: #303C4B;
-}
-mor-badge.co-g {
-  background-color: #E6E6E6;
-  color: #303C4B;
-}
-mor-badge.co-lg {
-  background-color: #F0F0F0;
-  color: #303C4B;
-}
-mor-badge.co-wh {
-  background-color: #FFFFFF;
-  color: #303C4B;
-}
-mor-badge.st-apparent {
-  animation-name: apparent;
-  animation-duration: 1s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-}
-mor-badge,
-mor-badge.flat {
-  border-radius: 3px;
-}
-mor-badge.circle {
-  border-radius: 16px;
-}
 mor-label {
   display: inline-block;
   white-space: nowrap;
@@ -34515,6 +34337,425 @@ mor-drawer.show-no-animate > .drawer-content {
 }
 mor-drawer.show-no-animate.show > .drawer-content {
   opacity: 1;
+}
+mor-badge {
+  display: inline-block;
+  color: #FFF;
+  margin: 2px;
+  text-align: center;
+  vertical-align: middle;
+  height: auto;
+  line-height: 1.6em;
+  min-width: 1.6em;
+  box-sizing: border-box;
+  font-size: 13px;
+  padding: 0 10.4px;
+  background-color: #F33D5D;
+  border-color: #F33D5D;
+}
+mor-badge:empty {
+  display: none;
+}
+mor-badge:not(.badge-point) {
+  border-width: 1px;
+  border-style: solid;
+}
+mor-badge.si-xxl {
+  font-size: 22.4px;
+  padding: 0 16px;
+  margin: 8px;
+}
+mor-badge.si-xxl > i,
+mor-badge.si-xxl > i.iconfont,
+mor-badge.si-xxl > i.mo-icon {
+  font-size: 22.4px;
+}
+mor-badge.si-xxl:not(.badge-point),
+mor-badge.si-xxl.flat:not(.badge-point) {
+  border-radius: 4.8px;
+}
+mor-badge.si-xxl.circle:not(.badge-point) {
+  border-radius: 25.6px;
+}
+mor-badge.si-xxl.badge-point > span {
+  width: 19px;
+  height: 19px;
+}
+mor-badge.si-xl {
+  font-size: 19.2px;
+  padding: 0 12.8px;
+  margin: 4.8px;
+}
+mor-badge.si-xl > i,
+mor-badge.si-xl > i.iconfont,
+mor-badge.si-xl > i.mo-icon {
+  font-size: 19.2px;
+}
+mor-badge.si-xl,
+mor-badge.si-xl.flat {
+  border-radius: 4.2px;
+}
+mor-badge.si-xl.circle:not(.badge-point) {
+  border-radius: 22.4px;
+}
+mor-badge.si-xl.badge-point > span {
+  width: 16px;
+  height: 16px;
+}
+mor-badge.si-l {
+  font-size: 16px;
+  padding: 0 12px;
+  margin: 1.6px;
+}
+mor-badge.si-l > i,
+mor-badge.si-l > i.iconfont,
+mor-badge.si-l > i.mo-icon {
+  font-size: 16px;
+}
+mor-badge.si-l,
+mor-badge.si-l.flat {
+  border-radius: 3.6px;
+}
+mor-badge.si-l.circle:not(.badge-point) {
+  border-radius: 19.2px;
+}
+mor-badge.si-l.badge-point > span {
+  width: 13px;
+  height: 13px;
+}
+mor-badge.si-m {
+  font-size: 13px;
+  padding: 0 10.4px;
+}
+mor-badge.si-m > i,
+mor-badge.si-m > i.iconfont,
+mor-badge.si-m > i.mo-icon {
+  font-size: 13px;
+}
+mor-badge.si-m,
+mor-badge.si-m.flat {
+  border-radius: 3px;
+}
+mor-badge.si-m.circle:not(.badge-point) {
+  border-radius: 16px;
+}
+mor-badge.si-m.badge-point > span {
+  width: 10px;
+  height: 10px;
+}
+mor-badge.si-s {
+  font-size: 12px;
+  padding: 0 8.8px;
+}
+mor-badge.si-s > i,
+mor-badge.si-s > i.iconfont,
+mor-badge.si-s > i.mo-icon {
+  font-size: 12px;
+}
+mor-badge.si-s,
+mor-badge.si-s.flat {
+  border-radius: 2.4px;
+}
+mor-badge.si-s.circle:not(.badge-point) {
+  border-radius: 12.8px;
+}
+mor-badge.si-s.badge-point > span {
+  width: 8px;
+  height: 8px;
+}
+mor-badge.si-xs {
+  font-size: 12px;
+  padding: 0 4.8px;
+  transform: scale(0.9);
+}
+mor-badge.si-xs > i,
+mor-badge.si-xs > i.iconfont,
+mor-badge.si-xs > i.mo-icon {
+  font-size: 12px;
+}
+mor-badge.si-xs,
+mor-badge.si-xs.flat {
+  border-radius: 2.25px;
+}
+mor-badge.si-xs.circle:not(.badge-point) {
+  border-radius: 12px;
+}
+mor-badge.si-xs.badge-point > span {
+  width: 6px;
+  height: 6px;
+}
+mor-badge.si-xxs {
+  font-size: 12px;
+  padding: 0 5px;
+  transform: scale(0.8);
+}
+mor-badge.si-xxs > i,
+mor-badge.si-xxs > i.iconfont,
+mor-badge.si-xxs > i.mo-icon {
+  font-size: 12px;
+}
+mor-badge.si-xxs,
+mor-badge.si-xxs.flat {
+  border-radius: 1.875px;
+}
+mor-badge.si-xxs.circle:not(.badge-point) {
+  border-radius: 10px;
+}
+mor-badge.si-xxs.badge-point > span {
+  width: 4.5px;
+  height: 4.5px;
+}
+mor-badge.co-t {
+  background-color: #F33D5D;
+  border-color: #F33D5D;
+}
+mor-badge.co-t.plain {
+  color: #F33D5D;
+}
+mor-badge.co-lt {
+  background-color: #F86F88;
+  border-color: #F86F88;
+}
+mor-badge.co-lt.plain {
+  color: #F86F88;
+}
+mor-badge.co-dt {
+  background-color: #D22343;
+  border-color: #D22343;
+}
+mor-badge.co-dt.plain {
+  color: #D22343;
+}
+mor-badge.co-s {
+  background-color: #4DBD67;
+  border-color: #4DBD67;
+}
+mor-badge.co-s.plain {
+  color: #4DBD67;
+}
+mor-badge.co-w {
+  background-color: #F0AD4E;
+  border-color: #F0AD4E;
+}
+mor-badge.co-w.plain {
+  color: #F0AD4E;
+}
+mor-badge.co-d {
+  background-color: #D64431;
+  border-color: #D64431;
+}
+mor-badge.co-d.plain {
+  color: #D64431;
+}
+mor-badge.co-p {
+  background-color: #2185D0;
+  border-color: #2185D0;
+}
+mor-badge.co-p.plain {
+  color: #2185D0;
+}
+mor-badge.co-m {
+  background-color: #A9A9A9;
+  border-color: #A9A9A9;
+}
+mor-badge.co-m.plain {
+  color: #A9A9A9;
+}
+mor-badge.co-i {
+  background-color: #03A6B9;
+  border-color: #03A6B9;
+}
+mor-badge.co-i.plain {
+  color: #03A6B9;
+}
+mor-badge.co-bk {
+  background-color: #17212D;
+  border-color: #17212D;
+}
+mor-badge.co-bk.plain {
+  color: #17212D;
+}
+mor-badge.co-lbk {
+  background-color: #303C4B;
+  border-color: #303C4B;
+}
+mor-badge.co-lbk.plain {
+  color: #303C4B;
+}
+mor-badge.co-elbk {
+  background-color: #45505C;
+  border-color: #45505C;
+}
+mor-badge.co-elbk.plain {
+  color: #45505C;
+}
+mor-badge.co-bu {
+  background-color: #7C8BA0;
+  border-color: #7C8BA0;
+}
+mor-badge.co-bu.plain {
+  color: #7C8BA0;
+}
+mor-badge.co-lbu {
+  background-color: #8E9CAF;
+  border-color: #8E9CAF;
+}
+mor-badge.co-lbu.plain {
+  color: #8E9CAF;
+}
+mor-badge.co-elbu {
+  background-color: #A8B3C2;
+  border-color: #A8B3C2;
+}
+mor-badge.co-elbu.plain {
+  color: #A8B3C2;
+}
+mor-badge.co-si {
+  background-color: #D6DDE5;
+  color: #303C4B;
+  border-color: #D6DDE5;
+}
+mor-badge.co-si.plain {
+  color: #D6DDE5;
+}
+mor-badge.co-lsi {
+  background-color: #E2E8EE;
+  color: #303C4B;
+  border-color: #E2E8EE;
+}
+mor-badge.co-lsi.plain {
+  color: #E2E8EE;
+}
+mor-badge.co-elsi {
+  background-color: #EDF1F5;
+  color: #303C4B;
+  border-color: #EDF1F5;
+}
+mor-badge.co-elsi.plain {
+  color: #EDF1F5;
+}
+mor-badge.co-g {
+  background-color: #E6E6E6;
+  color: #303C4B;
+  border-color: #E6E6E6;
+}
+mor-badge.co-g.plain {
+  color: #E6E6E6;
+}
+mor-badge.co-lg {
+  background-color: #F0F0F0;
+  color: #303C4B;
+  border-color: #F0F0F0;
+}
+mor-badge.co-lg.plain {
+  color: #F0F0F0;
+}
+mor-badge.co-wh {
+  background-color: #FFFFFF;
+  color: #303C4B;
+  border-color: #FFFFFF;
+}
+mor-badge.co-wh.plain {
+  color: #FFFFFF;
+}
+mor-badge.plain:not(.badge-point) {
+  background-color: transparent;
+}
+mor-badge.badge-point {
+  font-size: 0;
+  padding: 0;
+  border-radius: 50%;
+}
+mor-badge.badge-point > span {
+  display: block;
+}
+mor-badge.plain {
+  min-width: calc(1.6em + 2px);
+}
+mor-badge.plain.badge-icon {
+  border-color: transparent;
+}
+mor-badge.plain.badge-icon > i,
+mor-badge.plain.badge-icon > i.iconfont,
+mor-badge.plain.badge-icon > i.mo-icon {
+  transform: scale(1.2);
+  display: inline-block;
+}
+mor-badge.badge-attach-left-top,
+mor-badge.badge-attach-left-bottom,
+mor-badge.badge-attach-right-top,
+mor-badge.badge-attach-right-bottom {
+  position: absolute;
+  z-index: 9;
+}
+mor-badge.badge-attach-left-top {
+  left: 0;
+  top: 0;
+  transform: translate(-50%, -50%);
+}
+mor-badge.badge-attach-left-top.si-xs {
+  transform: translate(-50%, -50%) scale(0.9);
+}
+mor-badge.badge-attach-left-top.si-xxs {
+  transform: translate(-50%, -50%) scale(0.8);
+}
+mor-badge.badge-attach-left-bottom {
+  left: 0;
+  bottom: 0;
+  transform: translate(-50%, 50%);
+}
+mor-badge.badge-attach-left-bottom.si-xs {
+  transform: translate(-50%, 50%) scale(0.9);
+}
+mor-badge.badge-attach-left-bottom.si-xxs {
+  transform: translate(-50%, 50%) scale(0.8);
+}
+mor-badge.badge-attach-right-top {
+  right: 0;
+  top: 0;
+  transform: translate(50%, -50%);
+}
+mor-badge.badge-attach-right-top.si-xs {
+  transform: translate(50%, -50%) scale(0.9);
+}
+mor-badge.badge-attach-right-top.si-xxs {
+  transform: translate(50%, -50%) scale(0.8);
+}
+mor-badge.badge-attach-right-bottom {
+  right: 0;
+  bottom: 0;
+  transform: translate(50%, 50%);
+}
+mor-badge.badge-attach-right-bottom.si-xs {
+  transform: translate(50%, 50%) scale(0.9);
+}
+mor-badge.badge-attach-right-bottom.si-xxs {
+  transform: translate(50%, 50%) scale(0.8);
+}
+mor-badge.st-apparent {
+  animation-name: apparent;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+mor-badge > i,
+mor-badge > i.iconfont,
+mor-badge > i.mo-icon {
+  font-size: 13px;
+}
+mor-badge,
+mor-badge.flat {
+  border-radius: 3px;
+}
+mor-badge.circle:not(.badge-point) {
+  border-radius: 16px;
+}
+mor-badge.badge-point > span {
+  width: 10px;
+  height: 10px;
+}
+mor-badge.plain {
+  color: #F33D5D;
 }
 mor-time {
   display: inline-block;
@@ -42309,7 +42550,7 @@ mor-colorpicker.st-readonly .preview .color {
   position: absolute;
   top: 0;
   right: 0.5em;
-  line-height: 50px;
+  line-height: 42px;
   font-size: 14px;
   color: #A8B3C2;
 }
