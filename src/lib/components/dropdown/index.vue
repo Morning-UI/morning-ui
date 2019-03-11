@@ -4,7 +4,7 @@
         :class="[showClass]"
         :id="'mor-dropdown-'+uiid"
 
-        :auto-close="autoClose"
+        :done-hidden="doneHidden"
         :trigger="trigger"
         :trigger-in-delay="triggerInDelay"
         :auto-reverse="autoReverse"
@@ -35,7 +35,7 @@ export default {
     origin : 'UI',
     name : 'dropdown',
     props : {
-        autoClose : {
+        doneHidden : {
             type : Boolean,
             default : true
         },
@@ -58,7 +58,7 @@ export default {
         _conf : function () {
 
             return {
-                autoClose : this.autoClose,
+                doneHidden : this.doneHidden,
                 trigger : this.trigger,
                 triggerInDelay : this.triggerInDelay,
                 autoReverse : this.autoReverse
@@ -78,7 +78,7 @@ export default {
     methods : {
         _onBtnClick : function () {
 
-            if (this.conf.autoClose) {
+            if (this.conf.doneHidden) {
 
                 this.toggle(false);
 

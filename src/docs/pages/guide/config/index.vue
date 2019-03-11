@@ -261,7 +261,7 @@
     - `close-note` : 关闭备注
     - `open-mark` : 开启标记
     - `close-mark` : 关闭标记
-    - `done-hidden` : 完成后隐藏
+    - `done-hidden` : 完成后消失
     - `top` : 距离顶部
     - `bottom` : 距离底部
     - `src` :  源

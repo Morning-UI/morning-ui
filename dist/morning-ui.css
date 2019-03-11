@@ -34348,13 +34348,17 @@ mor-avatar {
 }
 mor-avatar > .wrap {
   border-radius: 3px;
-  font-weight: bold;
+  font-weight: 700;
   overflow: hidden;
   color: #FFFFFF;
   text-align: center;
 }
 mor-avatar > .wrap img {
   vertical-align: top;
+}
+mor-avatar > .wrap .avatar-string {
+  white-space: nowrap;
+  display: inline-block;
 }
 mor-avatar.si-xxs,
 mor-avatar.si-xxs > .wrap {
@@ -34513,6 +34517,9 @@ mor-avatar.co-wh > .wrap {
 }
 mor-avatar.circle > .wrap {
   border-radius: 50%;
+}
+mor-avatar.avatar-image > .wrap {
+  background-color: #EDF1F5;
 }
 mor-avatar.st-apparent {
   animation-name: apparent;

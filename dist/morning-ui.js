@@ -25425,7 +25425,7 @@ exports.default = {
     origin: 'UI',
     name: 'dropdown',
     props: {
-        autoClose: {
+        doneHidden: {
             type: Boolean,
             default: true
         },
@@ -25452,7 +25452,7 @@ exports.default = {
         _conf: function _conf() {
 
             return {
-                autoClose: this.autoClose,
+                doneHidden: this.doneHidden,
                 trigger: this.trigger,
                 triggerInDelay: this.triggerInDelay,
                 autoReverse: this.autoReverse
@@ -25470,7 +25470,7 @@ exports.default = {
     methods: {
         _onBtnClick: function _onBtnClick() {
 
-            if (this.conf.autoClose) {
+            if (this.conf.doneHidden) {
 
                 this.toggle(false);
             }
@@ -29758,6 +29758,9 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
 
 exports.default = {
     origin: 'UI',
@@ -29767,16 +29770,68 @@ exports.default = {
         _conf: function _conf() {
 
             return {};
+        },
+        moreClass: function moreClass() {
+
+            return {
+                'avatar-image': this.data.type === 'image'
+            };
         }
     },
     data: function data() {
 
         return {
-            data: {}
+            data: {
+                type: 'string',
+                $wrap: null
+            }
         };
     },
     methods: {},
-    mounted: function mounted() {}
+    updated: function updated() {
+
+        if (this.data.type === 'string') {
+
+            var $wrap = this.data.$wrap;
+            var $string = this.data.$wrap.querySelector('.avatar-string');
+            var padding = $wrap.clientWidth / 5;
+
+            if ($wrap.clientWidth < $string.clientWidth + padding) {
+
+                $string.style.transform = 'translateX(-50%) scale(' + $wrap.clientWidth / ($string.clientWidth + padding) + ')';
+                $string.style.left = '50%';
+                $string.style.position = 'relative';
+            } else {
+
+                $string.style.transform = 'unset';
+                $string.style.left = 'unset';
+                $string.style.position = 'unset';
+            }
+        }
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        this.data.$wrap = this.$el.querySelector('.wrap');
+
+        this.$watch('$slots.default[0]', function () {
+
+            var $el = _this.$slots.default[0].elm;
+
+            if ($el.nodeName === '#text') {
+
+                _this.data.type = 'string';
+            } else if ($el.nodeName === 'I') {
+
+                _this.data.type = 'icon';
+            } else {
+
+                _this.data.type = 'image';
+            }
+        }, {
+            immediate: true
+        });
+    }
 };
 module.exports = exports['default'];
 
@@ -44085,6 +44140,21 @@ exports.default = {
         }
     },
     computed: {
+        _conf: function _conf() {
+
+            return {
+                insideName: this.insideName,
+                itemName: this.itemName,
+                acceptType: this.acceptType,
+                multi: this.multi,
+                max: this.max,
+                allowUrl: this.allowUrl,
+                allowDrag: this.allowDrag,
+                validate: this.validate,
+                uploader: this.uploader,
+                keepOriginName: this.keepOriginName
+            };
+        },
         moreClass: function moreClass() {
 
             return {
@@ -44104,18 +44174,6 @@ exports.default = {
     data: function data() {
 
         return {
-            conf: {
-                insideName: this.insideName,
-                itemName: this.itemName,
-                acceptType: this.acceptType,
-                multi: this.multi,
-                max: this.max,
-                allowUrl: this.allowUrl,
-                allowDrag: this.allowDrag,
-                validate: this.validate,
-                uploader: this.uploader,
-                keepOriginName: this.keepOriginName
-            },
             data: {
                 inputKey: 0,
                 files: [],
@@ -54723,7 +54781,7 @@ var render = function() {
       attrs: {
         _uiid: _vm.uiid,
         id: "mor-dropdown-" + _vm.uiid,
-        "auto-close": _vm.autoClose,
+        "done-hidden": _vm.doneHidden,
         trigger: _vm.trigger,
         "trigger-in-delay": _vm.triggerInDelay,
         "auto-reverse": _vm.autoReverse
@@ -55876,10 +55934,26 @@ var render = function() {
   return _c(
     "mor-avatar",
     {
-      class: [_vm.sizeClass, _vm.colorClass, _vm.stateClass],
+      class: [_vm.sizeClass, _vm.colorClass, _vm.stateClass, _vm.moreClass],
       attrs: { _uiid: _vm.uiid }
     },
-    [_c("div", { staticClass: "wrap" }, [_vm._t("default")], 2)]
+    [
+      _c(
+        "div",
+        { staticClass: "wrap" },
+        [
+          _vm.data.type === "string"
+            ? _c(
+                "span",
+                { staticClass: "avatar-string" },
+                [_vm._t("default")],
+                2
+              )
+            : _vm._t("default")
+        ],
+        2
+      )
+    ]
   )
 }
 var staticRenderFns = []

@@ -84,6 +84,35 @@
     </div>
     :::
 
+    :::vue
+    @name:自动调整字符大小
+    ---
+    #demo
+    >desc
+    当头像内容是文本时，可自动根据文本长度调整大小。
+    >tpl
+    <div>
+        <ui-avatar class="circle">
+            {*name*}
+        </ui-avatar>
+        <br><br>
+        <ui-link js="this.changeName()">更换名字</ui-link>
+    </div>
+    >script
+    {
+        data : {
+            nameList : ['U', 'Luck', 'Tom', 'Edward'],
+            name : 'U',
+            index : 0
+        },
+        methods : {
+            changeName : function () {
+                this.name = this.nameList[(++this.index)%4];
+            }
+        }
+    }
+    :::
+
     [[[形态]]]
 
     #### 支持
@@ -163,6 +192,23 @@
         <i class="mo-icon-user-o"></i>
     </ui-avatar>
     <br><br>
+    :::
+
+    [[[配置]]]
+    
+    <h1>暂无</h1>
+    
+    [[[方法]]]
+    
+    <h1>暂无</h1>
+
+    [[[事件]]]
+
+    :::vue
+    @layout:lifecycle-event
+    ---
+    avatar
+    头像
     :::
 
     [[[源码]]]

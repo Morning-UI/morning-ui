@@ -4,13 +4,18 @@ mor-avatar{
 
     > .wrap{
         border-radius: @borderRadius;
-        font-weight: bold;
+        font-weight: 700;
         overflow: hidden;
         color: @colorWhite;
         text-align: center;
-        
+
         img{
             vertical-align: top;
+        }
+
+        .avatar-string{
+            white-space: nowrap;
+            display: inline-block;
         }
     }
 
@@ -263,6 +268,12 @@ mor-avatar{
     &.circle{
         > .wrap{
             border-radius: 50%;
+        }
+    }
+
+    &.avatar-image{
+        > .wrap{
+            background-color: @colorExtraLightSilver;
         }
     }
 
