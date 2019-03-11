@@ -62,6 +62,7 @@ export default {
         '抽屉<i class="tag new l2"></i>' : '/component/drawer.html',
         // 消息提示 : 'b',
         '徽标<i class="tag update l1"></i>' : '/component/badge.html',
+        '头像<i class="tag update l1"></i>' : '/component/avatar.html',
         '时间<i class="tag new l1"></i>' : '/component/time.html',
         日历 : '/component/calendar.html',
         加载 : '/component/load.html',

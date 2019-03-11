@@ -26,6 +26,8 @@
     @name:扁平徽标
     ---
     #demo
+    >desc
+    通过`.flat`可以设置扁平徽标。
     >tpl
     <ui-badge class="flat">24</ui-badge>
     :::
@@ -34,6 +36,8 @@
     @name:圆形徽标
     ---
     #demo
+    >desc
+    通过`.circle`可以设置圆形徽标。
     >tpl
     <ui-badge class="circle">圆形徽标</ui-badge>
     :::
@@ -42,6 +46,8 @@
     @name:朴素徽标
     ---
     #demo
+    >desc
+    通过`.plain`可以设置朴素徽标。
     >tpl
     <ui-badge class="plain">朴素徽标</ui-badge>
     :::
