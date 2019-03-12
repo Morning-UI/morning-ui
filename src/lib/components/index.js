@@ -48,6 +48,7 @@ import anchor                       from './anchor/index.vue';
 import pagination                   from './pagination/index.vue';
 import dialog                       from './dialog/index.vue';
 import drawer                       from './drawer/index.vue';
+import avatar                       from './avatar/index.vue';
 import badge                        from './badge/index.vue';
 import time                         from './time/index.vue';
 import calendar                     from './calendar/index.vue';
@@ -146,6 +147,7 @@ export default {
     pagination,
     dialog,
     drawer,
+    avatar,
     badge,
     time,
     calendar,

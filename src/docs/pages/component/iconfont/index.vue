@@ -302,6 +302,10 @@
             <i class="mo-icon-drawer-empty"></i>
             <span>mo-icon-drawer-empty</span>
         </div>
+        <div>
+            <i class="mo-icon-user-o"></i>
+            <span>mo-icon-user-o</span>
+        </div>
     </div>
     
     ## 图标托管

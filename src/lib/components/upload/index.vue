@@ -171,6 +171,22 @@ export default {
         }
     },
     computed : {
+        _conf : function () {
+
+            return {
+                insideName : this.insideName,
+                itemName : this.itemName,
+                acceptType : this.acceptType,
+                multi : this.multi,
+                max : this.max,
+                allowUrl : this.allowUrl,
+                allowDrag : this.allowDrag,
+                validate : this.validate,
+                uploader : this.uploader,
+                keepOriginName : this.keepOriginName
+            };
+
+        },
         moreClass : function () {
 
             return {
@@ -195,18 +211,6 @@ export default {
     data : function () {
 
         return {
-            conf : {
-                insideName : this.insideName,
-                itemName : this.itemName,
-                acceptType : this.acceptType,
-                multi : this.multi,
-                max : this.max,
-                allowUrl : this.allowUrl,
-                allowDrag : this.allowDrag,
-                validate : this.validate,
-                uploader : this.uploader,
-                keepOriginName : this.keepOriginName
-            },
             data : {
                 inputKey : 0,
                 files : [],
