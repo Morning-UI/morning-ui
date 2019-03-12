@@ -27,7 +27,6 @@ import block                        from './block/index.vue';
 import divider                      from './divider/index.vue';
 import center                       from './center/index.vue';
 import header                       from './header/index.vue';
-import badge                        from './badge/index.vue';
 import label                        from './label/index.vue';
 import statistic                    from './statistic/index.vue';
 import action                       from './action/index.vue';
@@ -49,6 +48,8 @@ import anchor                       from './anchor/index.vue';
 import pagination                   from './pagination/index.vue';
 import dialog                       from './dialog/index.vue';
 import drawer                       from './drawer/index.vue';
+import avatar                       from './avatar/index.vue';
+import badge                        from './badge/index.vue';
 import time                         from './time/index.vue';
 import calendar                     from './calendar/index.vue';
 import load                         from './load/index.vue';
@@ -126,7 +127,6 @@ export default {
     divider,
     center,
     header,
-    badge,
     label,
     statistic,
     action,
@@ -147,6 +147,8 @@ export default {
     pagination,
     dialog,
     drawer,
+    avatar,
+    badge,
     time,
     calendar,
     load,

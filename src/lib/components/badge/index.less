@@ -1,14 +1,22 @@
 mor-badge{
     display: inline-block;
-    color: #FFF;
+    color: @colorWhite;
     margin: @fontSize*0.125;
     text-align: center;
     vertical-align: middle;
     height: auto;
     line-height: 1.6em;
+    min-width: 1.6em;
+    box-sizing: border-box;
+    font-weight: 400;
 
     &:empty{
         display: none;
+    }
+
+    &:not(.badge-point){
+        border-width: 1px;
+        border-style: solid;
     }
 
     &.si-xxl{
@@ -16,13 +24,26 @@ mor-badge{
         padding: 0 @fontSize*1;
         margin: @fontSize*0.5;
 
-        &,
-        &.flat{
+        > i,
+        > i.iconfont,
+        > i.mo-icon{
+            font-size: @fontSize*1.4;
+        }
+
+        &:not(.badge-point),
+        &.flat:not(.badge-point){
             border-radius: @borderRadius*1.6;
         }
 
-        &.circle{
+        &.circle:not(.badge-point){
             border-radius: @fontSize*1.6;
+        }
+
+        &.badge-point{
+            > span{
+                width: @fontSize*1.1875;
+                height: @fontSize*1.1875;
+            }
         }
     }
 
@@ -31,13 +52,26 @@ mor-badge{
         padding: 0 @fontSize*0.8;
         margin: @fontSize*0.3;
 
+        > i,
+        > i.iconfont,
+        > i.mo-icon{
+            font-size: @fontSize*1.2;
+        }
+
         &,
         &.flat{
             border-radius: @borderRadius*1.4;
         }
 
-        &.circle{
+        &.circle:not(.badge-point){
             border-radius: @fontSize*1.4;
+        }
+
+        &.badge-point{
+            > span{
+                width: @fontSize;
+                height: @fontSize;
+            }
         }
     }
 
@@ -46,27 +80,53 @@ mor-badge{
         padding: 0 @fontSize*0.75;
         margin: @fontSize*0.1;
 
+        > i,
+        > i.iconfont,
+        > i.mo-icon{
+            font-size: @fontSize*1;
+        }
+
         &,
         &.flat{
             border-radius: @borderRadius*1.2;
         }
 
-        &.circle{
+        &.circle:not(.badge-point){
             border-radius: @fontSize*1.2;
+        }
+
+        &.badge-point{
+            > span{
+                width: @fontSize*0.8125;
+                height: @fontSize*0.8125;
+            }
         }
     }
 
     &.si-m{
-        font-size: @fontSize*0.8;
+        font-size: @fontSize*0.8125;
         padding: 0 @fontSize*0.65;
+
+        > i,
+        > i.iconfont,
+        > i.mo-icon{
+            font-size: @fontSize*0.8125;
+        }
 
         &,
         &.flat{
             border-radius: @borderRadius*1;
         }
 
-        &.circle{
+        &.circle:not(.badge-point){
             border-radius: @fontSize;
+        }
+
+        &.badge-point{
+            > span{
+                width: @fontSize*0.625;
+                height: @fontSize*0.625;
+            }
         }
     }
 
@@ -74,27 +134,54 @@ mor-badge{
         font-size: @fontSize*0.75;
         padding: 0 @fontSize*0.55;
 
+        > i,
+        > i.iconfont,
+        > i.mo-icon{
+            font-size: @fontSize*0.75;
+        }
+
         &,
         &.flat{
             border-radius: @borderRadius*0.8;
         }
 
-        &.circle{
+        &.circle:not(.badge-point){
             border-radius: @fontSize*0.8;
+        }
+
+        &.badge-point{
+            > span{
+                width: @fontSize*0.5;
+                height: @fontSize*0.5;
+            }
         }
     }
 
     &.si-xs{
         font-size: @fontSize*0.75;
         padding: 0 @fontSize*0.3;
+        transform: scale(0.9);
+
+        > i,
+        > i.iconfont,
+        > i.mo-icon{
+            font-size: @fontSize*0.75;
+        }
 
         &,
         &.flat{
             border-radius: @borderRadius*0.75;
         }
 
-        &.circle{
+        &.circle:not(.badge-point){
             border-radius: @fontSize*0.75;
+        }
+
+        &.badge-point{
+            > span{
+                width: @fontSize*0.375;
+                height: @fontSize*0.375;
+            }
         }
     }
 
@@ -103,104 +190,315 @@ mor-badge{
         padding: 0 @fontSize*0.3125;
         transform: scale(0.8);
 
+        > i,
+        > i.iconfont,
+        > i.mo-icon{
+            font-size: @fontSize*0.75;
+        }
+
         &,
         &.flat{
             border-radius: @borderRadius*0.625;
         }
 
-        &.circle{
+        &.circle:not(.badge-point){
             border-radius: @fontSize*0.625;
+        }
+
+        &.badge-point{
+            > span{
+                width: @fontSize*0.28125;
+                height: @fontSize*0.28125;
+            }
         }
     }
 
     &.co-t{
         background-color: @colorTheme;
+        border-color: @colorTheme;
+
+        &.plain{
+            color: @colorTheme;
+        }
     }
 
     &.co-lt{
         background-color: @colorLightTheme;
+        border-color: @colorLightTheme;
+
+        &.plain{
+            color: @colorLightTheme;
+        }
     }
 
     &.co-dt{
         background-color: @colorDarkTheme;
+        border-color: @colorDarkTheme;
+
+        &.plain{
+            color: @colorDarkTheme;
+        }
     }
 
     &.co-s{
         background-color: @colorSuccess;
+        border-color: @colorSuccess;
+
+        &.plain{
+            color: @colorSuccess;
+        }
     }
 
     &.co-w{
         background-color: @colorWarning;
+        border-color: @colorWarning;
+
+        &.plain{
+            color: @colorWarning;
+        }
     }
 
     &.co-d{
         background-color: @colorDanger;
+        border-color: @colorDanger;
+
+        &.plain{
+            color: @colorDanger;
+        }
     }
 
     &.co-p{
         background-color: @colorPrimary;
+        border-color: @colorPrimary;
+
+        &.plain{
+            color: @colorPrimary;
+        }
     }
 
     &.co-m{
         background-color: @colorMinor;
+        border-color: @colorMinor;
+
+        &.plain{
+            color: @colorMinor;
+        }
     }
 
     &.co-i{
         background-color: @colorInfo;
+        border-color: @colorInfo;
+
+        &.plain{
+            color: @colorInfo;
+        }
     }
 
     &.co-bk{
         background-color: @colorBlack;
+        border-color: @colorBlack;
+
+        &.plain{
+            color: @colorBlack;
+        }
     }
 
     &.co-lbk{
         background-color: @colorLightBlack;
+        border-color: @colorLightBlack;
+
+        &.plain{
+            color: @colorLightBlack;
+        }
     }
 
     &.co-elbk{
         background-color: @colorExtraLightBlack;
+        border-color: @colorExtraLightBlack;
+
+        &.plain{
+            color: @colorExtraLightBlack;
+        }
     }
 
     &.co-bu{
         background-color: @colorBlue;
+        border-color: @colorBlue;
+
+        &.plain{
+            color: @colorBlue;
+        }
     }
 
     &.co-lbu{
         background-color: @colorLightBlue;
+        border-color: @colorLightBlue;
+
+        &.plain{
+            color: @colorLightBlue;
+        }
     }
 
     &.co-elbu{
         background-color: @colorExtraLightBlue;
+        border-color: @colorExtraLightBlue;
+
+        &.plain{
+            color: @colorExtraLightBlue;
+        }
     }
 
     &.co-si{
         background-color: @colorSilver;
         color: @colorLightBlack;
+        border-color: @colorSilver;
+
+        &.plain{
+            color: @colorSilver;
+        }
     }
 
     &.co-lsi{
         background-color: @colorLightSilver;
         color: @colorLightBlack;
+        border-color: @colorLightSilver;
+
+        &.plain{
+            color: @colorLightSilver;
+        }
     }
 
     &.co-elsi{
         background-color: @colorExtraLightSilver;
         color: @colorLightBlack;
+        border-color: @colorExtraLightSilver;
+
+        &.plain{
+            color: @colorExtraLightSilver;
+        }
     }
 
     &.co-g{
         background-color: @colorGray;
         color: @colorLightBlack;
+        border-color: @colorGray;
+
+        &.plain{
+            color: @colorGray;
+        }
     }
 
     &.co-lg{
         background-color: @colorLightGray;
         color: @colorLightBlack;
+        border-color: @colorLightGray;
+
+        &.plain{
+            color: @colorLightGray;
+        }
     }
 
     &.co-wh{
         background-color: @colorWhite;
         color: @colorLightBlack;
+        border-color: @colorWhite;
+
+        &.plain{
+            color: @colorWhite;
+        }
+    }
+
+    &.plain:not(.badge-point){
+        background-color: transparent;
+    }
+
+    &.badge-point{
+        font-size: 0;
+        padding: 0;
+        border-radius: 50%;
+
+        > span{
+            display: block;
+        }
+    }
+
+    &.plain{
+        min-width: calc(1.6em + 2px);
+
+        &.badge-icon{
+            border-color: transparent;
+
+            > i,
+            > i.iconfont,
+            > i.mo-icon{
+                transform: scale(1.2);
+                display: inline-block;
+            }
+        }
+    }
+
+    &.badge-attach-left-top,
+    &.badge-attach-left-bottom,
+    &.badge-attach-right-top,
+    &.badge-attach-right-bottom{
+        position: absolute;
+        z-index: 9;
+    }
+
+    &.badge-attach-left-top{
+        left: 0;
+        top: 0;
+        transform: translate(-50%, -50%);
+
+        &.si-xs{
+            transform: translate(-50%, -50%) scale(0.9);
+        }
+
+        &.si-xxs{
+            transform: translate(-50%, -50%) scale(0.8);
+        }
+    }
+
+    &.badge-attach-left-bottom{
+        left: 0;
+        bottom: 0;
+        transform: translate(-50%, 50%);
+
+        &.si-xs{
+            transform: translate(-50%, 50%) scale(0.9);
+        }
+
+        &.si-xxs{
+            transform: translate(-50%, 50%) scale(0.8);
+        }
+    }
+
+    &.badge-attach-right-top{
+        right: 0;
+        top: 0;
+        transform: translate(50%, -50%);
+
+        &.si-xs{
+            transform: translate(50%, -50%) scale(0.9);
+        }
+
+        &.si-xxs{
+            transform: translate(50%, -50%) scale(0.8);
+        }
+    }
+
+    &.badge-attach-right-bottom{
+        right: 0;
+        bottom: 0;
+        transform: translate(50%, 50%);
+
+        &.si-xs{
+            transform: translate(50%, 50%) scale(0.9);
+        }
+
+        &.si-xxs{
+            transform: translate(50%, 50%) scale(0.8);
+        }
     }
 
     &.st-normal{}

@@ -33,16 +33,6 @@
             </ul>
         </div>
         <div class="sub-group">
-            <h4><i class="iconfont">&#xe625;</i>列表</h4>
-            <ul>
-                <li><a href="/component/ol.html">有序列表<p>&lt;ol></p></a></li>
-                <li><a href="/component/ul.html">无序列表<p>&lt;ul></p></a></li>
-                <li><a href="/component/il.html">内联列表<p>&lt;il></p></a></li>
-                <li><a href="/component/dl.html">描述列表<p>&lt;dl></p></a></li>
-                <li><a href="/component/itemlist.html">项目列表<p>&lt;itemlist></p></a></li>
-            </ul>
-        </div>
-        <div class="sub-group">
             <h4><i class="iconfont">&#xe679;</i>布局</h4>
             <ul>
                 <li><a href="/component/grid.html">栅格<p>&lt;grid></p></a></li>
@@ -60,9 +50,18 @@
             </ul>
         </div>
         <div class="sub-group">
+            <h4><i class="iconfont">&#xe625;</i>列表</h4>
+            <ul>
+                <li><a href="/component/ol.html">有序列表<p>&lt;ol></p></a></li>
+                <li><a href="/component/ul.html">无序列表<p>&lt;ul></p></a></li>
+                <li><a href="/component/il.html">内联列表<p>&lt;il></p></a></li>
+                <li><a href="/component/dl.html">描述列表<p>&lt;dl></p></a></li>
+                <li><a href="/component/itemlist.html">项目列表<p>&lt;itemlist></p></a></li>
+            </ul>
+        </div>
+        <div class="sub-group">
             <h4><i class="iconfont">&#xe624;</i>数值</h4>
             <ul>
-                <li><a href="/component/badge.html">徽章<p>&lt;badge></p></a></li>
                 <li><a href="/component/label.html">标签<p>&lt;label></p></a></li>
                 <li><a href="/component/statistic.html">统计<p>&lt;statistic></p></a></li>
             </ul>
@@ -78,10 +77,18 @@
     <div class="group">
         <h2>交互组件</h2>
         <div class="sub-group">
-            <h4><i class="iconfont">&#xe6e5;</i>基础</h4>
+            <h4><i class="iconfont">&#xe769;</i>展示</h4>
             <ul>
-                <li><a href="/component/btn.html">按钮<p>&lt;btn></p></a></li>
-                <li><a href="/component/link.html">链接<p>&lt;link></p></a></li>
+                <li><a href="/component/collapse.html">折叠面板<p>&lt;collapse></p></a></li>
+                <li><a href="/component/tree.html">树状控件<p>&lt;tree></p></a></li>
+                <li><a href="/component/table.html">表格<p>&lt;table></p></a></li>
+                <li><a href="/component/carousel.html">轮播<p>&lt;carousel></p></a></li>
+                <li><a href="/component/badge.html">徽标<p>&lt;badge></p></a></li>
+                <li><a href="/component/avatar.html">头像<p>&lt;avatar></p></a></li>
+                <li><a href="/component/time.html">时间<p>&lt;time></p></a></li>
+                <li><a href="/component/calendar.html">日历<p>&lt;calendar></p></a></li>
+                <li><a href="/component/audio.html">音频<p>&lt;audio></p></a></li>
+                <li><a href="/component/video.html">视频<p>&lt;video></p></a></li>
             </ul>
         </div>
         <div class="sub-group">
@@ -111,16 +118,10 @@
             </ul>
         </div>
         <div class="sub-group">
-            <h4><i class="iconfont">&#xe769;</i>展示</h4>
+            <h4><i class="iconfont">&#xe6e5;</i>行动</h4>
             <ul>
-                <li><a href="/component/collapse.html">折叠面板<p>&lt;collapse></p></a></li>
-                <li><a href="/component/tree.html">树状控件<p>&lt;tree></p></a></li>
-                <li><a href="/component/table.html">表格<p>&lt;table></p></a></li>
-                <li><a href="/component/carousel.html">轮播<p>&lt;carousel></p></a></li>
-                <li><a href="/component/time.html">时间<p>&lt;time></p></a></li>
-                <li><a href="/component/calendar.html">日历<p>&lt;calendar></p></a></li>
-                <li><a href="/component/audio.html">音频<p>&lt;audio></p></a></li>
-                <li><a href="/component/video.html">视频<p>&lt;video></p></a></li>
+                <li><a href="/component/btn.html">按钮<p>&lt;btn></p></a></li>
+                <li><a href="/component/link.html">链接<p>&lt;link></p></a></li>
             </ul>
         </div>
         <div class="sub-group">

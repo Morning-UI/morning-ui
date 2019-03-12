@@ -1,0 +1,295 @@
+mor-avatar{
+    display: inline-block;
+    position: relative;
+
+    > .wrap{
+        border-radius: @borderRadius;
+        font-weight: 700;
+        overflow: hidden;
+        color: @colorWhite;
+        text-align: center;
+
+        img{
+            vertical-align: top;
+        }
+
+        .avatar-string{
+            white-space: nowrap;
+            display: inline-block;
+        }
+    }
+
+    &.si-xxs{
+        &,
+        > .wrap{
+            width: @fontSize*1.125;
+            height: @fontSize*1.125;
+            line-height: @fontSize*1.125;
+            font-size: @fontSize*0.75;
+            font-weight: 400;
+        }
+
+        .wrap > i,
+        .wrap > i.iconfont,
+        .wrap > i.mo-icon{
+            font-size: @fontSize*0.75;
+        }
+    }
+
+    &.si-xs{
+        &,
+        > .wrap{
+            width: @fontSize*1.375;
+            height: @fontSize*1.375;
+            line-height: @fontSize*1.375;
+            font-size: @fontSize*0.75;
+            font-weight: 400;
+        }
+
+        .wrap > i,
+        .wrap > i.iconfont,
+        .wrap > i.mo-icon{
+            font-size: @fontSize*0.75;
+        }
+    }
+
+    &.si-s{
+        &,
+        > .wrap{
+            width: @fontSize*1.625;
+            height: @fontSize*1.625;
+            line-height: @fontSize*1.625;
+            font-size: @fontSize*0.8125;
+        }
+
+        .wrap > i,
+        .wrap > i.iconfont,
+        .wrap > i.mo-icon{
+            font-size: @fontSize*0.8125;
+        }
+    }
+
+    &.si-m{
+        &,
+        > .wrap{
+            width: @fontSize*2;
+            height: @fontSize*2;
+            line-height: @fontSize*2;
+            font-size: @fontSize*0.875;
+        }
+
+        .wrap > i,
+        .wrap > i.iconfont,
+        .wrap > i.mo-icon{
+            font-size: @fontSize*0.875;
+        }
+    }
+
+    &.si-l{
+        &,
+        > .wrap{
+            width: @fontSize*2.5;
+            height: @fontSize*2.5;
+            line-height: @fontSize*2.5;
+            font-size: @fontSize*1.25;
+        }
+
+        .wrap > i,
+        .wrap > i.iconfont,
+        .wrap > i.mo-icon{
+            font-size: @fontSize*1.25;
+        }
+    }
+
+    &.si-xl{
+        &,
+        > .wrap{
+            width: @fontSize*3;
+            height: @fontSize*3;
+            line-height: @fontSize*3;
+            font-size: @fontSize*1.5;
+        }
+
+        .wrap > i,
+        .wrap > i.iconfont,
+        .wrap > i.mo-icon{
+            font-size: @fontSize*1.5;
+        }
+    }
+
+    &.si-xxl{
+        &,
+        > .wrap{
+            width: @fontSize*4;
+            height: @fontSize*4;
+            line-height: @fontSize*4;
+            font-size: @fontSize*2;
+        }
+
+        .wrap > i,
+        .wrap > i.iconfont,
+        .wrap > i.mo-icon{
+            font-size: @fontSize*2;
+        }
+    }
+
+    &.co-t{
+        > .wrap{
+            background-color: @colorTheme;
+        }
+    }
+
+    &.co-lt{
+        > .wrap{
+            background-color: @colorLightTheme;
+        }
+    }
+
+    &.co-dt{
+        > .wrap{
+            background-color: @colorDarkTheme;
+        }
+    }
+
+    &.co-s{
+        > .wrap{
+            background-color: @colorSuccess;
+        }
+    }
+
+    &.co-w{
+        > .wrap{
+            background-color: @colorWarning;
+        }
+    }
+
+    &.co-d{
+        > .wrap{
+            background-color: @colorDanger;
+        }
+    }
+
+    &.co-p{
+        > .wrap{
+            background-color: @colorPrimary;
+        }
+    }
+
+    &.co-m{
+        > .wrap{
+            background-color: @colorMinor;
+        }
+    }
+
+    &.co-i{
+        > .wrap{
+            background-color: @colorInfo;
+        }
+    }
+
+    &.co-bk{
+        > .wrap{
+            background-color: @colorBlack;
+        }
+    }
+
+    &.co-lbk{
+        > .wrap{
+            background-color: @colorLightBlack;
+        }
+    }
+
+    &.co-elbk{
+        > .wrap{
+            background-color: @colorExtraLightBlack;
+        }
+    }
+
+    &.co-bu{
+        > .wrap{
+            background-color: @colorBlue;
+        }
+    }
+
+    &.co-lbu{
+        > .wrap{
+            background-color: @colorLightBlue;
+        }
+    }
+
+    &.co-elbu{
+        > .wrap{
+            background-color: @colorExtraLightBlue;
+        }
+    }
+
+    &.co-si{
+        > .wrap{
+            background-color: @colorSilver;
+            color: @colorLightBlack;
+        }
+    }
+
+    &.co-lsi{
+        > .wrap{
+            background-color: @colorLightSilver;
+            color: @colorLightBlack;
+        }
+    }
+
+    &.co-elsi{
+        > .wrap{
+            background-color: @colorExtraLightSilver;
+            color: @colorLightBlack;
+        }
+    }
+
+    &.co-g{
+        > .wrap{
+            background-color: @colorGray;
+            color: @colorLightBlack;
+        }
+    }
+
+    &.co-lg{
+        > .wrap{
+            background-color: @colorLightGray;
+            color: @colorLightBlack;
+        }
+    }
+
+    &.co-wh{
+        > .wrap{
+            background-color: @colorWhite;
+            color: @colorLightBlack;
+        }
+    }
+
+    &.circle{
+        > .wrap{
+            border-radius: 50%;
+        }
+    }
+
+    &.avatar-image{
+        > .wrap{
+            background-color: @colorExtraLightSilver;
+        }
+    }
+
+    &.st-normal{}
+
+    &.st-apparent{
+        animation-name: apparent;
+        animation-duration: 1s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+    }
+
+    // default status
+    &{
+        .si-m;
+        .co-t;
+        .st-normal;
+    }
+}

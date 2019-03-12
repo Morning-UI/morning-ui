@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">33.02% </span>
+        <span class="strong">33.33% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>70/212</span>
+        <span class='fraction'>71/213</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">42.93% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>79/184</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">32.65% </span>
+        <span class="strong">34% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>16/49</span>
+        <span class='fraction'>17/50</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">32.12% </span>
+        <span class="strong">32.47% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>62/193</span>
+        <span class='fraction'>63/194</span>
       </div>
     </div>
     <p class="quiet">
@@ -874,7 +874,11 @@
 <a name='L826'></a><a href='#L826'>826</a>
 <a name='L827'></a><a href='#L827'>827</a>
 <a name='L828'></a><a href='#L828'>828</a>
-<a name='L829'></a><a href='#L829'>829</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L829'></a><a href='#L829'>829</a>
+<a name='L830'></a><a href='#L830'>830</a>
+<a name='L831'></a><a href='#L831'>831</a>
+<a name='L832'></a><a href='#L832'>832</a>
+<a name='L833'></a><a href='#L833'>833</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -996,10 +1000,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">179x</span>
-<span class="cline-any cline-yes">179x</span>
+<span class="cline-any cline-yes">181x</span>
+<span class="cline-any cline-yes">181x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">179x</span>
+<span class="cline-any cline-yes">181x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1034,6 +1038,22 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">29x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1071,18 +1091,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">29x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1875,6 +1883,22 @@ export default {
         }
     },
     computed : {
+        _conf : function () {
+&nbsp;
+            return {
+                insideName : this.insideName,
+                itemName : this.itemName,
+                acceptType : this.acceptType,
+                multi : this.multi,
+                max : this.max,
+                allowUrl : this.allowUrl,
+                allowDrag : this.allowDrag,
+                validate : this.validate,
+                uploader : this.uploader,
+                keepOriginName : this.keepOriginName
+            };
+&nbsp;
+        },
         moreClass : function () {
 &nbsp;
             return {
@@ -1899,18 +1923,6 @@ export default {
     data : function () {
 &nbsp;
         return {
-            conf : {
-                insideName : this.insideName,
-                itemName : this.itemName,
-                acceptType : this.acceptType,
-                multi : this.multi,
-                max : this.max,
-                allowUrl : this.allowUrl,
-                allowDrag : this.allowDrag,
-                validate : this.validate,
-                uploader : this.uploader,
-                keepOriginName : this.keepOriginName
-            },
             data : {
                 inputKey : 0,
                 files : [],
@@ -2536,7 +2548,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Mar 10 2019 18:34:39 GMT+0800 (CST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Mar 12 2019 09:39:56 GMT+0800 (CST)
 </div>
 </div>
 <script src="../../../prettify.js"></script>

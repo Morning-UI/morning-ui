@@ -1,5 +1,30 @@
 # CHANGELOG
 
+## 0.12.7
+
+`2019年3月12日`
+
+#### 新特性
+
+- 新增`ui-avatar`头像组件
+- 徽章组件更名为徽标，同时从样式组件变更为交互组件，支持作为角标使用，新增计数模式、小圆点模式、图标模式，新增`plain`样式
+
+#### 修复
+
+- 修复`ui-colorpicker`的色板选择层关闭按钮错位的问题
+
+#### 更多
+
+- `ui-dropdown`组件的`auto-close`配置改名为`done-hidden`，使得语意更准确（`done-hidden`为完成后消失，`auto-close`为点击外部区域关闭）
+- `ui-lowercase`、`ui-uppercase`、`ui-capitalize`已经不再推荐使用
+- 新增图标( mo-icon-tag-f / mo-icon-drawer-full / mo-icon-drawer-empty)
+
+__升级注意事项__
+
+- `ui-lowercase`、`ui-uppercase`、`ui-capitalize`已经不再推荐使用，替代方案详见组件文档
+- `ui-dropdown`组件的`auto-close`配置改名为`done-hidden`，请注意替换
+- `徽章`更名为`徽标`
+
 ## 0.12.6
 
 `2019年3月10日`

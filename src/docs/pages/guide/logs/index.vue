@@ -18,6 +18,41 @@
     
     ### 更新记录
 
+    ### 0.12.7 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2019年3月12日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.7" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.7/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.7/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 新特性
+
+    - 新增`ui-avatar`头像组件
+    - 徽章组件更名为徽标，同时从样式组件变更为交互组件，支持作为角标使用，新增计数模式、小圆点模式、图标模式，新增`plain`样式
+
+    #### 修复
+
+    - 修复`ui-colorpicker`的色板选择层关闭按钮错位的问题
+
+    #### 更多
+
+    - `ui-dropdown`组件的`auto-close`配置改名为`done-hidden`，使得语意更准确（`done-hidden`为完成后消失，`auto-close`为点击外部区域关闭）
+    - `ui-lowercase`、`ui-uppercase`、`ui-capitalize`已经不再推荐使用
+    - 新增图标( mo-icon-tag-f / mo-icon-drawer-full / mo-icon-drawer-empty)
+
+    <ui-label color="primary">升级注意事项</ui-label>
+
+    - `ui-lowercase`、`ui-uppercase`、`ui-capitalize`已经不再推荐使用，替代方案详见组件文档
+    - `ui-dropdown`组件的`auto-close`配置改名为`done-hidden`，请注意替换
+    - `徽章`更名为`徽标`
+
+    ---
+
     ### 0.12.6 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="light-blue">

@@ -96,7 +96,7 @@
     [[[配置]]]
 
     :::vue
-    @name:auto-close
+    @name:done-hidden
     ---
     #config
     >conf-desc
@@ -112,7 +112,7 @@
     >desc
     点击菜单中按钮后不会自动隐藏，需要点击`更多`来隐藏。
     >tpl
-    <ui-dropdown :auto-close="false">
+    <ui-dropdown :done-hidden="false">
         <ui-btn slot="showbtn" emitbtn>更多</ui-btn>
         <ui-btn color="white">收藏</ui-btn>
         <ui-btn color="white">修改</ui-btn>
@@ -157,9 +157,9 @@
     ---
     #demo
     >desc
-    `trigger`和`auto-close`配合使用。
+    `trigger`和`done-hidden`配合使用。
     >tpl
-    <ui-dropdown :auto-close="false" trigger="hover">
+    <ui-dropdown :done-hidden="false" trigger="hover">
         <ui-btn slot="showbtn" emitbtn>更多</ui-btn>
         <ui-btn color="white">收藏</ui-btn>
         <ui-btn color="white">修改</ui-btn>
