@@ -33,7 +33,7 @@
     ---
     #demo
     >desc
-    标签页默认有一定内边距，通过`no-padding`样式类为标签页内容取消内边距。
+    标签页默认有一定内边距，通过`.no-padding`为标签页内容取消内边距。
     >tpl
     <ui-tab class="no-padding">
         <div slot="第一页">第一页</div>
@@ -47,7 +47,7 @@
     ---
     #demo
     >desc
-    通过`block`样式类定义区块风格的标签页。
+    通过`.block`定义区块风格的标签页。
     >tpl
     <ui-tab class="block">
         <div slot="第一页">第一页</div>
@@ -61,7 +61,7 @@
     ---
     #demo
     >desc
-    通过`line`样式类定义线条风格的标签页。
+    通过`.line`定义线条风格的标签页。
     >tpl
     <ui-tab class="line">
         <div slot="第一页">第一页</div>
@@ -75,7 +75,7 @@
     ---
     #demo
     >desc
-    通过`line`样式类定义线条风格的标签页。
+    通过`.btn`定义线条风格的标签页。
     >tpl
     <ui-tab class="btn">
         <div slot="第一页">第一页</div>
@@ -89,7 +89,7 @@
     ---
     #demo
     >desc
-    通过`noborder`样式类定义无边框标签页，一般配合线条使用。
+    通过`.noborder`定义无边框标签页，一般配合线条使用。
     >tpl
     <ui-tab class="line noborder">
         <div slot="第一页">第一页</div>
@@ -722,6 +722,8 @@
     #event
     >event-desc
     当标签页切换后触发。
+    >event-args
+    |name|切换到标签的名称`slot`|`String`|
     ---
     #demo
     >tpl
@@ -736,8 +738,8 @@
     >script
     {
         methods : {
-            echo : function () {
-                console.log('demo6.console1', 'switch event!');
+            echo : function (name) {
+                console.log('demo6.console1', 'switch event!', name);
             }
         }
     }

@@ -403,7 +403,7 @@ export default {
 
             this.data.selectTab = name;
 
-            this.$emit('switch');
+            this.$emit('switch', name);
 
             return this;
 
