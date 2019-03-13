@@ -187,6 +187,7 @@ export default {
                 $parentVm : null,
                 parentKey : null,
                 linkedVm : {},
+                linkedVmKeyMap : {},
                 partCheckedKeys : []
             }
         };
@@ -237,12 +238,12 @@ export default {
             this.data.disabledOptions = list;
 
         },
-        _syncLinkedCheckedStatus : function (key) {
+        _syncLinkedCheckedStatus : function (key, childUiid) {
 
             if (key) {
 
-                let vm = this.data.linkedVm[key];
-                let status = vm.checkedStatus;
+                // let vm = this.data.linkedVm[key][childUiid];
+                let childStatus = [];
                 let index = this.data.partCheckedKeys.indexOf(key);
 
                 if (index > -1) {
@@ -251,16 +252,31 @@ export default {
 
                 }
 
-                if (status === 1) {
+                for (let linkKey of Object.keys(this.data.linkedVm)) {
 
-                    this.toggle(key, true);
+                    if (linkKey.search(`${key}:`) === 0) {
 
-                } else if (status === -1) {
+                        childStatus.push(this.data.linkedVm[linkKey].checkedStatus);
 
+                    }
+
+                }
+
+                childStatus = arrayUniq(childStatus);
+
+                if (childStatus.length === 1 && childStatus[0] === -1) {
+
+                    // all uncheck
                     this.toggle(key, false);
+
+                } else if (childStatus.length === 1 && childStatus[0] === 1) {
+
+                    // all checked
+                    this.toggle(key, true);
 
                 } else {
 
+                    // part checked
                     this.toggle(key, false);
                     this.data.partCheckedKeys.push(key);
 
@@ -275,9 +291,10 @@ export default {
 
                 let value = this.get();
 
-                for (let key of Object.keys(this.data.linkedVm)) {
+                for (let childKey of Object.keys(this.data.linkedVm)) {
 
-                    let vm = this.data.linkedVm[key];
+                    let vm = this.data.linkedVm[childKey];
+                    let key = childKey.split(':')[0];
 
                     if (value.indexOf(key) !== -1) {
 
@@ -372,8 +389,9 @@ export default {
 
                         this.data.$parentVm = $parent._vm;
                         this.data.parentKey = key;
-                        $parent._vm.data.linkedVm[key] = this;
-                        $parent._vm._syncLinkedCheckedStatus(key);
+                        $parent._vm.data.linkedVm[`${key}:${this.uiid}`] = this;
+                        // $parent._vm.data.linkedVmKeyMap[key] = this.uiid;
+                        $parent._vm._syncLinkedCheckedStatus(key, this.uiid);
 
                     }
 
@@ -398,7 +416,7 @@ export default {
 
             if (this.data.$parentVm) {
                 
-                this.data.$parentVm._syncLinkedCheckedStatus(this.data.parentKey);
+                this.data.$parentVm._syncLinkedCheckedStatus(this.data.parentKey, this.uiid);
 
             }
 
@@ -407,13 +425,23 @@ export default {
 
             if (this.data.$parentVm) {
                 
-                this.data.$parentVm._syncLinkedCheckedStatus(this.data.parentKey);
+                this.data.$parentVm._syncLinkedCheckedStatus(this.data.parentKey, this.uiid);
 
             }
 
             this._syncLinkedChild();
 
         });
+
+    },
+    destroyed : function () {
+
+        // unlink parent
+        if (this.data.$parentVm) {
+
+            delete this.data.$parentVm.data.linkedVm[`${this.data.parentKey}:${this.uiid}`];
+
+        }
 
     }
 };

@@ -11,9 +11,12 @@ mor-table{
     position: relative;
     box-sizing: border-box;
 
+    .setup-scrollbar();
+
     table{
         border-spacing: 0;
         border-collapse: collapse;
+        min-width: 100%;
 
         td{
             padding: initial;
@@ -41,7 +44,7 @@ mor-table{
 
     & > .wrap{
         overflow: hidden !important;
-        width: 100% !important;
+        // width: 100% !important;
         border-width: 0 !important;
 
         > tbody > tr > td {
@@ -49,6 +52,11 @@ mor-table{
 
             &:first-child{
                 z-index: 2;
+            }
+
+            &.title-td{
+                position: relative;
+                z-index: 3;
             }
         }
 
@@ -116,6 +124,25 @@ mor-table{
                 }
             }
         }
+
+        .table-checked{
+            min-width: unset;
+            width: 1px;
+
+            mor-checkbox{
+                // height: @fontSize*1.3125;
+                // width: @fontSize*1.3125;
+                min-width: unset;
+
+                > .il label{
+                    margin: 0;
+
+                    .box{
+                        margin: 0;
+                    }
+                }
+            }
+        }
     }
 
     .title-table{
@@ -130,19 +157,21 @@ mor-table{
     &.title-col-left-fixed,
     &.title-col-right-fixed{
         position: relative;
-        overflow: hidden;
+        // overflow: hidden;
     }
 
     &.title-col-right .title-table,
     &.title-col-right-fixed .title-table{
         border-left-style: solid;
-        border-left-width: 2px;
+        border-left-width: 1px;
+        box-shadow: -2px 0 3px rgba(0, 0, 0, 0.08);
     }
 
     &.title-col-left .title-table,
     &.title-col-left-fixed .title-table{
         border-right-style: solid;
-        border-right-width: 2px;
+        border-right-width: 1px;
+        box-shadow: 2px 0 3px rgba(0, 0, 0, 0.08);
     }
 
     &.has-title-col{
@@ -236,9 +265,17 @@ mor-table{
 
         &.ts-zp .table,
         .table{
-            tr:hover td,
-            tr.hover td{
-                background-color: darken(@colorTheme, 20%);
+            tr:hover,
+            tr.hover,
+            tr.last-click{
+                td{
+                    background-color: darken(@colorTheme, 20%);
+                    border-color: darken(@colorTheme, 20%) !important;
+                }
+
+                + tr > td{
+                    border-top-color: darken(@colorTheme, 20%) !important;
+                }
             }
         }
 
@@ -293,9 +330,17 @@ mor-table{
 
         &.ts-zp .table,
         .table{
-            tr:hover td,
-            tr.hover td{
-                background-color: darken(@colorLightTheme, 25%);
+            tr:hover,
+            tr.hover,
+            tr.last-click{
+                td{
+                    background-color: darken(@colorLightTheme, 25%);
+                    border-color: darken(@colorLightTheme, 25%) !important;
+                }
+
+                + tr > td{
+                    border-top-color: darken(@colorLightTheme, 25%) !important;
+                }
             }
         }
 
@@ -350,9 +395,17 @@ mor-table{
 
         &.ts-zp .table,
         .table{
-            tr:hover td,
-            tr.hover td{
-                background-color: darken(@colorDarkTheme, 20%);
+            tr:hover,
+            tr.hover,
+            tr.last-click{
+                td{
+                    background-color: darken(@colorDarkTheme, 20%);
+                    border-color: darken(@colorDarkTheme, 20%) !important;
+                }
+
+                + tr > td{
+                    border-top-color: darken(@colorDarkTheme, 20%) !important;
+                }
             }
         }
 
@@ -407,9 +460,17 @@ mor-table{
 
         &.ts-zp .table,
         .table{
-            tr:hover td,
-            tr.hover td{
-                background-color: darken(@colorSuccess, 25%);
+            tr:hover,
+            tr.hover,
+            tr.last-click{
+                td{
+                    background-color: darken(@colorSuccess, 25%);
+                    border-color: darken(@colorSuccess, 25%) !important;
+                }
+
+                + tr > td{
+                    border-top-color: darken(@colorSuccess, 25%) !important;
+                }
             }
         }
 
@@ -464,9 +525,17 @@ mor-table{
 
         &.ts-zp .table,
         .table{
-            tr:hover td,
-            tr.hover td{
-                background-color: darken(@colorWarning, 25%);
+            tr:hover,
+            tr.hover,
+            tr.last-click{
+                td{
+                    background-color: darken(@colorWarning, 25%);
+                    border-color: darken(@colorWarning, 25%) !important;
+                }
+
+                + tr > td{
+                    border-top-color: darken(@colorWarning, 25%) !important;
+                }
             }
         }
 
@@ -521,9 +590,17 @@ mor-table{
 
         &.ts-zp .table,
         .table{
-            tr:hover td,
-            tr.hover td{
-                background-color: darken(@colorDanger, 25%);
+            tr:hover,
+            tr.hover,
+            tr.last-click{
+                td{
+                    background-color: darken(@colorDanger, 25%);
+                    border-color: darken(@colorDanger, 25%) !important;
+                }
+
+                + tr > td{
+                    border-top-color: darken(@colorDanger, 25%) !important;
+                }
             }
         }
 
@@ -578,9 +655,17 @@ mor-table{
 
         &.ts-zp .table,
         .table{
-            tr:hover td,
-            tr.hover td{
-                background-color: darken(@colorPrimary, 25%);
+            tr:hover,
+            tr.hover,
+            tr.last-click{
+                td{
+                    background-color: darken(@colorPrimary, 25%);
+                    border-color: darken(@colorPrimary, 25%) !important;
+                }
+
+                + tr > td{
+                    border-top-color: darken(@colorPrimary, 25%) !important;
+                }
             }
         }
 
@@ -635,9 +720,17 @@ mor-table{
 
         &.ts-zp .table,
         .table{
-            tr:hover td,
-            tr.hover td{
-                background-color: darken(@colorMinor, 25%);
+            tr:hover,
+            tr.hover,
+            tr.last-click{
+                td{
+                    background-color: darken(@colorMinor, 25%);
+                    border-color: darken(@colorMinor, 25%) !important;
+                }
+
+                + tr > td{
+                    border-top-color: darken(@colorMinor, 25%) !important;
+                }
             }
         }
 
@@ -692,9 +785,17 @@ mor-table{
 
         &.ts-zp .table,
         .table{
-            tr:hover td,
-            tr.hover td{
-                background-color: darken(@colorInfo, 25%);
+            tr:hover,
+            tr.hover,
+            tr.last-click{
+                td{
+                    background-color: darken(@colorInfo, 25%);
+                    border-color: darken(@colorInfo, 25%) !important;
+                }
+
+                + tr > td{
+                    border-top-color: darken(@colorInfo, 25%) !important;
+                }
             }
         }
 
@@ -749,9 +850,17 @@ mor-table{
 
         &.ts-zp .table,
         .table{
-            tr:hover td,
-            tr.hover td{
-                background-color: @colorBlack;
+            tr:hover,
+            tr.hover,
+            tr.last-click{
+                td{
+                    background-color: lighten(@colorBlack, 5%);
+                    border-color: lighten(@colorBlack, 5%) !important;
+                }
+
+                + tr > td{
+                    border-top-color: lighten(@colorBlack, 5%) !important;
+                }
             }
         }
 
@@ -806,9 +915,17 @@ mor-table{
 
         &.ts-zp .table,
         .table{
-            tr:hover td,
-            tr.hover td{
-                background-color: @colorLightBlack;
+            tr:hover,
+            tr.hover,
+            tr.last-click{
+                td{
+                    background-color: lighten(@colorLightBlack, 5%);
+                    border-color: lighten(@colorLightBlack, 5%) !important;
+                }
+
+                + tr > td{
+                    border-top-color: lighten(@colorLightBlack, 5%) !important;
+                }
             }
         }
 
@@ -863,9 +980,17 @@ mor-table{
 
         &.ts-zp .table,
         .table{
-            tr:hover td,
-            tr.hover td{
-                background-color: @colorExtraLightBlack;
+            tr:hover,
+            tr.hover,
+            tr.last-click{
+                td{
+                    background-color: lighten(@colorExtraLightBlack, 3%);
+                    border-color: lighten(@colorExtraLightBlack, 3%) !important;
+                }
+
+                + tr > td{
+                    border-top-color: lighten(@colorExtraLightBlack, 3%) !important;
+                }
             }
         }
 
@@ -920,9 +1045,17 @@ mor-table{
 
         &.ts-zp .table,
         .table{
-            tr:hover td,
-            tr.hover td{
-                background-color: darken(@colorBlue, 25%);
+            tr:hover,
+            tr.hover,
+            tr.last-click{
+                td{
+                    background-color: darken(@colorBlue, 25%);
+                    border-color: darken(@colorBlue, 25%) !important;
+                }
+
+                + tr > td{
+                    border-top-color: darken(@colorBlue, 25%) !important;
+                }
             }
         }
 
@@ -975,9 +1108,17 @@ mor-table{
 
         &.ts-zp .table,
         .table{
-            tr:hover td,
-            tr.hover td{
-                background-color: darken(@colorLightBlue, 25%);
+            tr:hover,
+            tr.hover,
+            tr.last-click{
+                td{
+                    background-color: darken(@colorLightBlue, 25%);
+                    border-color: darken(@colorLightBlue, 25%) !important;
+                }
+
+                + tr > td{
+                    border-top-color: darken(@colorLightBlue, 25%) !important;
+                }
             }
         }
 
@@ -1030,9 +1171,17 @@ mor-table{
 
         &.ts-zp .table,
         .table{
-            tr:hover td,
-            tr.hover td{
-                background-color: darken(@colorExtraLightBlue, 25%);
+            tr:hover,
+            tr.hover,
+            tr.last-click{
+                td{
+                    background-color: darken(@colorExtraLightBlue, 25%);
+                    border-color: darken(@colorExtraLightBlue, 25%) !important;
+                }
+
+                + tr > td{
+                    border-top-color: darken(@colorExtraLightBlue, 25%) !important;
+                }
             }
         }
 
@@ -1085,9 +1234,17 @@ mor-table{
 
         &.ts-zp .table,
         .table{
-            tr:hover td,
-            tr.hover td{
-                background-color: darken(@colorSilver, 10%);
+            tr:hover,
+            tr.hover,
+            tr.last-click{
+                td{
+                    background-color: darken(@colorSilver, 10%);
+                    border-color: darken(@colorSilver, 10%) !important;
+                }
+
+                + tr > td{
+                    border-top-color: darken(@colorSilver, 10%) !important;
+                }
             }
         }
 
@@ -1140,9 +1297,17 @@ mor-table{
 
         &.ts-zp .table,
         .table{
-            tr:hover td,
-            tr.hover td{
-                background-color: darken(@colorLightSilver, 10%);
+            tr:hover,
+            tr.hover,
+            tr.last-click{
+                td{
+                    background-color: darken(@colorLightSilver, 10%);
+                    border-color: darken(@colorLightSilver, 10%) !important;
+                }
+
+                + tr > td{
+                    border-top-color: darken(@colorLightSilver, 10%) !important;
+                }
             }
         }
 
@@ -1195,9 +1360,17 @@ mor-table{
 
         &.ts-zp .table,
         .table{
-            tr:hover td,
-            tr.hover td{
-                background-color: darken(@colorExtraLightSilver, 10%);
+            tr:hover,
+            tr.hover,
+            tr.last-click{
+                td{
+                    background-color: darken(@colorExtraLightSilver, 10%);
+                    border-color: darken(@colorExtraLightSilver, 10%) !important;
+                }
+
+                + tr > td{
+                    border-top-color: darken(@colorExtraLightSilver, 10%) !important;
+                }
             }
         }
 
@@ -1250,9 +1423,17 @@ mor-table{
 
         &.ts-zp .table,
         .table{
-            tr:hover td,
-            tr.hover td{
-                background-color: darken(@colorGray, 5%);
+            tr:hover,
+            tr.hover,
+            tr.last-click{
+                td{
+                    background-color: lighten(@colorTheme, 35%);
+                    border-color: lighten(@colorTheme, 35%) !important;
+                }
+
+                + tr > td{
+                    border-top-color: lighten(@colorTheme, 35%) !important;
+                }
             }
         }
 
@@ -1305,9 +1486,17 @@ mor-table{
 
         &.ts-zp .table,
         .table{
-            tr:hover td,
-            tr.hover td{
-                background-color: darken(@colorLightGray, 5%);
+            tr:hover,
+            tr.hover,
+            tr.last-click{
+                td{
+                    background-color: lighten(@colorTheme, 35%);
+                    border-color: lighten(@colorTheme, 35%) !important;
+                }
+
+                + tr > td{
+                    border-top-color: lighten(@colorTheme, 35%) !important;
+                }
             }
         }
 
@@ -1360,9 +1549,17 @@ mor-table{
 
         &.ts-zp .table,
         .table{
-            tr:hover td,
-            tr.hover td{
-                background-color: darken(@colorWhite, 5%);
+            tr:hover,
+            tr.hover,
+            tr.last-click {
+                td{
+                    background-color: lighten(@colorTheme, 35%);
+                    border-color: lighten(@colorTheme, 35%) !important;
+                }
+
+                + tr > td{
+                    border-top-color: lighten(@colorTheme, 35%) !important;
+                }
             }
         }
     }

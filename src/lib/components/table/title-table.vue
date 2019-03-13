@@ -2,6 +2,12 @@
     <table class="title-table table co-style">
         <thead v-if="conf.showColName">
             <tr>
+                <th
+                    v-if="conf.multiSelect"
+                    class="table-checked"
+                >
+                    <morning-checkbox :list="{checked:''}" :id="'mor-table-row-checked-'+uiid+'-all'" :ref="'mor-table-row-checked-'+uiid+'-all'"></morning-checkbox>
+                </th>
                 <template v-for="key of data.titleKeys">
                     <th
                         v-if="colSetMap[key] && colSetMap[key].name"
@@ -35,7 +41,14 @@
                 :key="line"
                 @mouseover="$emit('row-mouseover', line)"
                 @mouseout="$emit('row-mouseout', line)"
+                @click="$emit('row-click', line)"
             >
+                <td
+                    v-if="conf.multiSelect"
+                    class="table-checked"
+                >
+                    <morning-checkbox :list="{checked:''}" :ref="'mor-table-row-checked-'+uiid+'-'+line" @value-change="_syncRowChecked(line)" :parent="'#mor-table-row-checked-'+uiid+'-all:checked'"></morning-checkbox>
+                </td>
                 <template v-for="(col, index) of row">
                     <td
                         v-show="!colSetMap[data.titleKeys[index]] || !colSetMap[data.titleKeys[index]].hide"
@@ -66,7 +79,52 @@ export default {
         'conf',
         'data',
         'colSetMap',
-        'sortCol'
-    ]
+        'sortCol',
+        'uiid'
+    ],
+    methods : {
+        _syncRowChecked : function (line) {
+
+            let val = this.$refs[`mor-table-row-checked-${this.uiid}-${line}`][0].get();
+
+            if (val && val[0] === 'checked') {
+
+                this.data.rowChecked[line] = true;
+            
+            } else {
+
+                this.data.rowChecked[line] = false;
+
+            }
+
+
+        }
+    },
+    mounted : function () {
+
+        this.$watch('data.rowChecked', (newVal) => {
+
+            let checkedNum = 0;
+
+            for (let line in newVal) {
+
+                if (newVal[line]) {
+
+                    this.$refs[`mor-table-row-checked-${this.uiid}-${line}`].set(["checked"]);
+                    checkedNum++;
+
+                } else {
+
+                    this.$refs[`mor-table-row-checked-${this.uiid}-${line}`].set(undefined);
+
+                }
+
+            }
+
+        }, {
+            immediate : true
+        });
+
+    }
 };
 </script>
