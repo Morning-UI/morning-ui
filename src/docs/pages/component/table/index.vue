@@ -133,7 +133,86 @@
     :::
 
     :::vue
-    @name:内嵌HTML
+    @name:自定义表头内容
+    ---
+    #demo
+    >desc
+    通过`slot="header"`可以自定义表头内容。
+    >tpl
+    <ui-table :list="window.demodata.list">
+        <div slot="header">
+            <div style="display:inline-block;width:160px">
+                <ui-textinput size="xs" inside-name="填写内容..."></ui-textinput>
+            </div>
+            <ui-btn size="xs">按钮1</ui-btn>
+            <ui-btn size="xs">按钮2</ui-btn>
+        </div>
+    </ui-table>
+    ---
+    #demo
+    >desc
+    配合`title`和`export-csv`一起使用。
+    >tpl
+    <ui-table :list="window.demodata.list" title="自定义表头内容" export-csv>
+        <div slot="header">
+            <ui-btn size="m">按钮1</ui-btn>
+        </div>
+    </ui-table>
+    :::
+
+    :::vue
+    @name:实现搜索功能
+    ---
+    #demo
+    >desc
+    使用自定义表头实现搜索功能。
+    >tpl
+    <ui-table ref="demo8" :list="list">
+        <div slot="header">
+            <div style="display:inline-block;width:160px">
+                <ui-textinput ref="demo8input" size="xs" inside-name="关键词..."></ui-textinput>
+            </div>
+            <ui-btn size="xs" @emit="search">搜索</ui-btn>
+        </div>
+    </ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.list
+        },
+        methods : {
+            search : function () {
+
+                let key = this.$refs.demo8input.get();
+
+                if (key) {
+
+                    let result = [];
+
+                    for (let item of window.demodata.list) {
+
+                        if (Object.values(item).join().search(key) !== -1) {
+
+                            result.push(item);
+
+                        }
+                    
+                    }
+
+                    this.list = result;
+
+                } else {
+
+                    this.list = window.demodata.list;
+
+                }
+            }
+        }
+    }
+    :::
+
+    :::vue
+    @name:单元格内嵌HTML
     ---
     #demo
     >desc
@@ -156,7 +235,7 @@
     :::
 
     :::vue
-    @name:内嵌Vue组件
+    @name:单元格内嵌Vue组件
     ---
     #demo
     >desc
@@ -276,11 +355,24 @@
 
     |类型|支持|默认|
     |-|-|-|
-    |尺寸|不支持|-|
+    |尺寸|`xs` / `s` / `m` / `l` / `xl`|`m`|
     |色彩|全部|`light-gray`|
     |状态|不支持|-|
 
     <a href="/guide/status.html">查看形态文档</a>
+
+    :::vue
+    @name:尺寸
+    ---
+    #renderer
+    >name
+    size-repeat
+    >rules
+    xl,l,m,s,xs
+    >tpl
+    <br><br>
+    <ui-table :list="window.demodata.list" size="{$sizeKey}" title="{$sizeName}的表格" export-csv></ui-table>
+    :::
 
     :::vue
     @layout:color
@@ -1518,6 +1610,96 @@
         methods : {
             echo : function () {
                 console.log('demo2.console1', `list-change event!`);
+            }
+        }
+    }
+    :::
+
+    :::vue
+    @name:cell-click
+    ---
+    #event
+    >event-desc
+    当单元格被点击时触发。
+    >event-args
+    |rowNum|被点击单元格所在的行号(从`0`开始)|`Number`|
+    |colKey|被点击单元格所在列的`key`|`String`|
+    ---
+    #demo
+    >tpl
+    <div>
+        <ui-table ref="demo5" :list="list" @cell-click="echo"></ui-table>
+        <br><br>
+        <p>点击单元格触发事件</p>
+    </div>
+    >script
+    {
+        data : {
+            list : window.demodata.list
+        },
+        methods : {
+            echo : function (rowNum, colKey) {
+                console.log('demo5.console1', `cell-click event!`, rowNum, colKey);
+            }
+        }
+    }
+    :::
+
+    :::vue
+    @name:cell-enter
+    ---
+    #event
+    >event-desc
+    当鼠标移入单元格时触发。
+    >event-args
+    |rowNum|鼠标移入单元格所在的行号(从`0`开始)|`Number`|
+    |colKey|鼠标移入单元格所在列的`key`|`String`|
+    ---
+    #demo
+    >tpl
+    <div>
+        <ui-table ref="demo6" :list="list" @cell-enter="echo"></ui-table>
+        <br><br>
+        <p>鼠标移入单元格触发事件</p>
+    </div>
+    >script
+    {
+        data : {
+            list : window.demodata.list
+        },
+        methods : {
+            echo : function (rowNum, colKey) {
+                console.log('demo6.console1', `cell-enter event!`, rowNum, colKey);
+            }
+        }
+    }
+    :::
+
+    :::vue
+    @name:cell-leave
+    ---
+    #event
+    >event-desc
+    当鼠标移出单元格时触发。
+    >event-args
+    |rowNum|鼠标移出单元格所在的行号(从`0`开始)|`Number`|
+    |colKey|鼠标移出单元格所在列的`key`|`String`|
+    ---
+    #demo
+    >tpl
+    <div>
+        <ui-table ref="demo7" :list="list" @cell-leave="echo"></ui-table>
+        <br><br>
+        <p>鼠标移出单元格触发事件</p>
+    </div>
+    >script
+    {
+        data : {
+            list : window.demodata.list
+        },
+        methods : {
+            echo : function (rowNum, colKey) {
+                console.log('demo7.console1', `cell-leave event!`, rowNum, colKey);
             }
         }
     }

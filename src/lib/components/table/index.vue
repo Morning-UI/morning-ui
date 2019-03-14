@@ -1,7 +1,7 @@
 <template>
     <mor-table
         :_uiid="uiid"
-        :class="[colorClass, moreClass]"
+        :class="[sizeClass, colorClass, moreClass]"
 
         :list="list"
         :empty-cell-value="emptyCellValue"
@@ -26,13 +26,17 @@
         @scroll="_tableScroll"
     >
 
-    <template v-if="conf.title || conf.exportCsv">
+    <template v-if="conf.title || conf.exportCsv || $slots.header">
         <header>
             <h1 v-if="conf.title">{{conf.title}}</h1>
 
-            <div class="action">
-                <morning-btn v-if="conf.exportCsv" color="success" size="xs" @emit="_exportCsv">导出</morning-btn>
+            <div class="custom-header">
+                <slot name="header"></slot>
+                <div class="action">
+                    <morning-btn v-if="conf.exportCsv" color="success" :size="conf.size" @emit="_exportCsv">导出</morning-btn>
+                </div>
             </div>
+
         </header>
     </template>
 
@@ -49,6 +53,9 @@
                         @row-mouseover="_rowOver"
                         @row-mouseout="_rowOut"
                         @row-click="_rowClick"
+                        @cell-click="_cellClick"
+                        @cell-enter="_cellEnter"
+                        @cell-leave="_cellLeave"
                     ></normal-table>
                 </td>
                 <td class="title-td">
@@ -61,6 +68,9 @@
                         @row-mouseover="_rowOver"
                         @row-mouseout="_rowOut"
                         @row-click="_rowClick"
+                        @cell-click="_cellClick"
+                        @cell-enter="_cellEnter"
+                        @cell-leave="_cellLeave"
                     ></title-table>
                 </td>
             </tr>
@@ -76,6 +86,9 @@
                         @row-mouseover="_rowOver"
                         @row-mouseout="_rowOut"
                         @row-click="_rowClick"
+                        @cell-click="_cellClick"
+                        @cell-enter="_cellEnter"
+                        @cell-leave="_cellLeave"
                     ></title-table>
                 </td>
                 <td>
@@ -88,6 +101,9 @@
                         @row-mouseover="_rowOver"
                         @row-mouseout="_rowOut"
                         @row-click="_rowClick"
+                        @cell-click="_cellClick"
+                        @cell-enter="_cellEnter"
+                        @cell-leave="_cellLeave"
                     ></normal-table>
                 </td>
             </tr>
@@ -1128,6 +1144,21 @@ export default {
                 $titleHeader.style.transform = `translateY(${evt.srcElement.scrollTop}px)`;
 
             }
+
+        },
+        _cellClick : function (line, key) {
+
+            this.$emit('cell-click', Number(line), key);
+
+        },
+        _cellEnter : function (line, key) {
+
+            this.$emit('cell-enter', Number(line), key);
+
+        },
+        _cellLeave : function (line, key) {
+
+            this.$emit('cell-leave', Number(line), key);
 
         },
         getHighlightRow : function () {

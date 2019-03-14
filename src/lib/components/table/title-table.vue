@@ -53,6 +53,10 @@
                     <td
                         v-show="!colSetMap[data.titleKeys[index]] || !colSetMap[data.titleKeys[index]].hide"
                         :key="index"
+                    
+                        @click="$emit('cell-click', line, data.normalKeys[index])"
+                        @mouseenter="$emit('cell-enter', line, data.normalKeys[index])"
+                        @mouseleave="$emit('cell-leave', line, data.normalKeys[index])"
                     >
                         <keep-alive>
                         <component
@@ -97,21 +101,17 @@ export default {
 
             }
 
-
         }
     },
     mounted : function () {
 
-        this.$watch('data.rowChecked', (newVal) => {
-
-            let checkedNum = 0;
+        this.$watch('data.rowChecked', newVal => {
 
             for (let line in newVal) {
 
                 if (newVal[line]) {
 
-                    this.$refs[`mor-table-row-checked-${this.uiid}-${line}`].set(["checked"]);
-                    checkedNum++;
+                    this.$refs[`mor-table-row-checked-${this.uiid}-${line}`].set(['checked']);
 
                 } else {
 

@@ -238,11 +238,10 @@ export default {
             this.data.disabledOptions = list;
 
         },
-        _syncLinkedCheckedStatus : function (key, childUiid) {
+        _syncLinkedCheckedStatus : function (key) {
 
             if (key) {
 
-                // let vm = this.data.linkedVm[key][childUiid];
                 let childStatus = [];
                 let index = this.data.partCheckedKeys.indexOf(key);
 

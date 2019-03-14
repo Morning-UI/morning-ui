@@ -25,20 +25,28 @@ mor-table{
 
     header{
         position: relative;
-        height: @fontSize*3.25;
 
         h1{
             margin: 0 !important;
-            font-size: @fontSize*1.5 !important;
             font-weight: 400 !important;
             text-align: left;
-            padding: @fontSize*0.5 @fontSize !important;
+            max-width: 40%;
+            position: absolute;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .action{
+            margin-left: @fontSize/2;
+        }
+
+        .custom-header{
+            max-width: 60%;
             position: absolute;
-            top: 13px;
-            right: 13px;
+            right: 10px;
+            display: flex;
+            align-items: center;
         }
     }
 
@@ -61,7 +69,6 @@ mor-table{
         }
 
         tr > td.no-data{
-            padding: @fontSize*0.625 !important;
             min-width: @fontSize*3.125;
             overflow: hidden;
             word-break: break-all;
@@ -74,7 +81,6 @@ mor-table{
         min-width: 100%;
         text-align: center;
         color: #666;
-        font-size: @fontSize*0.875;
         margin: 0;
         box-sizing: content-box !important;
         border-collapse: separate;
@@ -95,7 +101,6 @@ mor-table{
 
             th{
                 font-weight: 400;
-                padding: @fontSize*0.625 !important;
                 line-height: 1.2em;
                 height: @fontSize*1.25;
                 overflow: hidden;
@@ -105,7 +110,6 @@ mor-table{
             }
 
             td{
-                padding: @fontSize*0.625 !important;
                 min-width: @fontSize*3.125;
                 overflow: hidden;
                 word-break: break-all;
@@ -225,6 +229,191 @@ mor-table{
             tr:first-child th,
             tr:first-child td{
                 border-top: none !important;
+            }
+        }
+    }
+
+    &.si-xl{
+        & > .wrap{
+            tr > td.no-data{
+                padding: @fontSize*1.125 !important;
+            }
+        }
+
+        header{
+            height: @fontSize*6;
+
+            h1{
+                font-size: @fontSize*2 !important;
+                padding: @fontSize*1 @fontSize*1.5 !important;
+                line-height: @fontSize*4;
+                height: @fontSize*6;
+            }
+
+            .custom-header{
+                height: @fontSize*6;
+            }
+        }
+
+        .table{
+            font-size: @fontSize*1.125;
+
+            tr{
+                th{
+                    padding: @fontSize*1.125 !important;
+                }
+
+                td{
+                    padding: @fontSize*1.125 !important;
+                }
+            }
+        }
+    }
+
+    &.si-l{
+        & > .wrap{
+            tr > td.no-data{
+                padding: @fontSize*0.875 !important;
+            }
+        }
+
+        header{
+            height: @fontSize*4.5;
+
+            h1{
+                font-size: @fontSize*1.75 !important;
+                padding: @fontSize*0.75 @fontSize*1.25 !important;
+                line-height: @fontSize*3;
+                height: @fontSize*4.5;
+            }
+
+            .custom-header{
+                height: @fontSize*4.5;
+            }
+        }
+
+        .table{
+            font-size: @fontSize*1;
+
+            tr{
+                th{
+                    padding: @fontSize*0.875 !important;
+                }
+
+                td{
+                    padding: @fontSize*0.875 !important;
+                }
+            }
+        }
+    }
+
+    &.si-m{
+        & > .wrap{
+            tr > td.no-data{
+                padding: @fontSize*0.625 !important;
+            }
+        }
+
+        header{
+            height: @fontSize*3.25;
+
+            h1{
+                font-size: @fontSize*1.5 !important;
+                padding: @fontSize*0.5 @fontSize !important;
+                line-height: @fontSize*2.25;
+                height: @fontSize*3.25;
+            }
+
+            .custom-header{
+                height: @fontSize*3.25;
+            }
+        }
+
+        .table{
+            font-size: @fontSize*0.875;
+
+            tr{
+                th{
+                    padding: @fontSize*0.625 !important;
+                }
+
+                td{
+                    padding: @fontSize*0.625 !important;
+                }
+            }
+        }
+    }
+
+    &.si-s{
+        & > .wrap{
+            tr > td.no-data{
+                padding: @fontSize*0.5 !important;
+            }
+        }
+
+        header{
+            height: @fontSize*2.5;
+
+            h1{
+                font-size: @fontSize*1.125 !important;
+                padding: @fontSize*0.375 @fontSize*0.75 !important;
+                line-height: @fontSize*1.75;
+                height: @fontSize*2.5;
+            }
+
+            .custom-header{
+                height: @fontSize*2.5;
+            }
+        }
+
+        .table{
+            font-size: @fontSize*0.8125;
+
+            tr{
+                th{
+                    padding: @fontSize*0.5 !important;
+                }
+
+                td{
+                    padding: @fontSize*0.5 !important;
+                }
+            }
+        }
+    }
+
+    &.si-xs{
+        & > .wrap{
+            tr > td.no-data{
+                padding: @fontSize*0.1875 !important;
+            }
+        }
+
+        header{
+            height: @fontSize*1.875;
+
+            h1{
+                font-size: @fontSize*0.875 !important;
+                padding: @fontSize*0.25 @fontSize*0.5 !important;
+                line-height: @fontSize*1.375;
+                height: @fontSize*1.875;
+            }
+
+            .custom-header{
+                height: @fontSize*1.875;
+            }
+        }
+
+        .table{
+            font-size: @fontSize*0.75;
+
+            tr{
+                th{
+                    padding: @fontSize*0.1875 !important;
+                }
+
+                td{
+                    padding: @fontSize*0.1875 !important;
+                }
             }
         }
     }
@@ -1391,7 +1580,7 @@ mor-table{
         border-color: darken(@colorGray, 5%) !important;
 
         header{
-            background-color: darken(@colorGray, 5%);
+            background-color: darken(@colorGray, 2%);
             color: @colorBlack;
         }
 
@@ -1454,7 +1643,7 @@ mor-table{
         border-color: darken(@colorLightGray, 5%) !important;
 
         header{
-            background-color: darken(@colorLightGray, 5%);
+            background-color: darken(@colorLightGray, 2%);
             color: @colorBlack;
         }
 
@@ -1775,5 +1964,6 @@ mor-table{
     // default status
     &{
         .co-lg;
+        .si-m;
     }
 }
