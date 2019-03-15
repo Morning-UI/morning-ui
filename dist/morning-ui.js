@@ -25812,10 +25812,10 @@ exports.default = {
                 // init new select tab
                 if (_this.conf.tab) {
 
-                    _this.switch(_this._getClosestCanSelectTab(_this.conf.tab));
+                    _this.switch(_this._getClosestCanSelectTab(_this.conf.tab), true);
                 } else {
 
-                    _this.switch(_this._getClosestCanSelectTab(_this.data.tabs[0]));
+                    _this.switch(_this._getClosestCanSelectTab(_this.data.tabs[0]), true);
                 }
             });
         },
@@ -25903,6 +25903,8 @@ exports.default = {
             }
         },
         switch: function _switch(name) {
+            var dontEmitEvt = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
 
             if (name === this.data.selectTab) {
 
@@ -25939,7 +25941,10 @@ exports.default = {
 
             this.data.selectTab = name;
 
-            this.$emit('switch', name);
+            if (!dontEmitEvt) {
+
+                this.$emit('switch', name);
+            }
 
             return this;
         },
@@ -26733,6 +26738,35 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var _arrayUniq = __webpack_require__(6);
 
@@ -26812,6 +26846,10 @@ exports.default = {
                 return ['left', 'right', 'left-fixed', 'right-fixed'].indexOf(value) !== -1;
             }
         },
+        fixedTitleRow: {
+            type: Boolean,
+            default: false
+        },
         titleColWidth: {
             type: Number,
             default: 0
@@ -26845,6 +26883,14 @@ exports.default = {
         multiSort: {
             type: Boolean,
             default: false
+        },
+        highlightRow: {
+            type: Boolean,
+            default: false
+        },
+        multiSelect: {
+            type: Boolean,
+            default: false
         }
     },
     computed: {
@@ -26860,13 +26906,16 @@ exports.default = {
                 align: this.align,
                 showColName: this.showColName,
                 fixedTitleCol: this.fixedTitleCol,
+                fixedTitleRow: this.fixedTitleRow,
                 titleColWidth: this.titleColWidth,
                 colSet: this.colSet,
                 rowSet: this.rowSet,
                 cellSet: this.cellSet,
                 exportCsv: this.exportCsv,
                 csvName: this.csvName,
-                multiSort: this.multiSort
+                multiSort: this.multiSort,
+                highlightRow: this.highlightRow,
+                multiSelect: this.multiSelect
             };
         },
         colSetMap: function colSetMap() {
@@ -26926,7 +26975,8 @@ exports.default = {
                 titleRows: [],
                 listDataJson: '[]',
                 sort: {},
-                sortCol: []
+                sortCol: [],
+                rowChecked: {}
             }
         };
     },
@@ -27119,7 +27169,10 @@ exports.default = {
                                 var className = _step5.value;
 
 
-                                $cell.classList.remove(className);
+                                if (/^(cell-align-|cco-|cell-disabled)/.test(className)) {
+
+                                    $cell.classList.remove(className);
+                                }
                             }
                         } catch (err) {
                             _didIteratorError5 = true;
@@ -27618,11 +27671,12 @@ exports.default = {
 
             var $titleTable = this.$el.querySelector('.title-table');
             var $normalTable = this.$el.querySelector('.normal-table');
+            var $wrapTable = this.$el.querySelector('.wrap');
 
             $normalTable.parentElement.style.maxWidth = '';
             $titleTable.parentElement.style.maxWidth = '';
-            $normalTable.parentElement.style.overflowX = '';
-            $titleTable.parentElement.style.overflowX = '';
+            // $normalTable.parentElement.style.overflowX = '';
+            // $titleTable.parentElement.style.overflowX = '';
             $normalTable.parentElement.style.width = '';
             $titleTable.parentElement.style.width = '';
             $normalTable.parentElement.style.position = '';
@@ -27635,6 +27689,7 @@ exports.default = {
             $titleTable.style.borderLeft = '';
             $normalTable.style.borderRight = '';
             $titleTable.style.borderRight = '';
+            $wrapTable.style.width = '';
 
             var titleColWidth = $titleTable.clientWidth;
             var elWidth = this.$el.clientWidth;
@@ -27642,7 +27697,7 @@ exports.default = {
             if (/fixed/.test(this.conf.fixedTitleCol)) {
 
                 $normalTable.parentElement.style.maxWidth = elWidth - titleColWidth + 'px';
-                $normalTable.parentElement.style.overflowX = 'auto';
+                // $normalTable.parentElement.style.overflowX = 'auto';
 
                 $titleTable.parentElement.style.width = titleColWidth + 'px';
                 $titleTable.parentElement.style.position = 'absolute';
@@ -27656,6 +27711,11 @@ exports.default = {
                     $normalTable.style.borderRight = titleColWidth + 'px rgba(0,0,0,0) solid';
                     $titleTable.parentElement.style.right = 0;
                 }
+
+                this.Vue.nextTick(function () {
+
+                    $wrapTable.style.width = $normalTable.offsetWidth + 'px';
+                });
             }
 
             if (this.conf.titleColWidth) {
@@ -27693,6 +27753,10 @@ exports.default = {
 
             $titleTr.classList.remove('hover');
             $normalTr.classList.remove('hover');
+        },
+        _rowClick: function _rowClick(line) {
+
+            this.setHighlightRow(line);
         },
         _csvEncode: function _csvEncode(str) {
 
@@ -28056,6 +28120,127 @@ exports.default = {
             this.data.titleRows = titleRows;
             this.data.normalRows = normalRows;
             this.data.listDataJson = JSON.stringify(list);
+        },
+        _tableScroll: function _tableScroll(evt) {
+
+            var $titleTable = this.$el.querySelector('.title-table');
+            var $header = this.$el.querySelector('header');
+
+            $titleTable.style.transform = 'translateX(' + evt.srcElement.scrollLeft + 'px)';
+
+            if ($header) {
+
+                $header.style.transform = 'translateX(' + evt.srcElement.scrollLeft + 'px)';
+            }
+
+            if (this.conf.fixedTitleRow) {
+
+                var $normalHeader = this.$el.querySelector('.normal-table > thead');
+                var $titleHeader = this.$el.querySelector('.title-table > thead');
+
+                $normalHeader.style.transform = 'translateY(' + evt.srcElement.scrollTop + 'px)';
+                $titleHeader.style.transform = 'translateY(' + evt.srcElement.scrollTop + 'px)';
+            }
+        },
+        _cellClick: function _cellClick(line, key) {
+
+            this.$emit('cell-click', Number(line), key);
+        },
+        _cellEnter: function _cellEnter(line, key) {
+
+            this.$emit('cell-enter', Number(line), key);
+        },
+        _cellLeave: function _cellLeave(line, key) {
+
+            this.$emit('cell-leave', Number(line), key);
+        },
+        getHighlightRow: function getHighlightRow() {
+
+            if (!this.conf.highlightRow) {
+
+                return -1;
+            }
+
+            var $lastClickNormalTr = this.$el.querySelector('.normal-table tbody tr.last-click');
+            var $normalTr = this.$el.querySelectorAll('.normal-table tbody tr');
+
+            return Array.from($normalTr).indexOf($lastClickNormalTr);
+        },
+        setHighlightRow: function setHighlightRow(rowNum) {
+
+            if (!this.conf.highlightRow) {
+
+                return this;
+            }
+
+            this.cleanHighlightRow();
+
+            var $titleTr = this.$el.querySelectorAll('.title-table tbody tr')[rowNum];
+            var $normalTr = this.$el.querySelectorAll('.normal-table tbody tr')[rowNum];
+
+            if ($titleTr) {
+
+                $titleTr.classList.add('last-click');
+            }
+
+            if ($normalTr) {
+
+                $normalTr.classList.add('last-click');
+            }
+
+            return this;
+        },
+        cleanHighlightRow: function cleanHighlightRow() {
+
+            var $lastClickTitleTr = this.$el.querySelector('.title-table tbody tr.last-click');
+            var $lastClickNormalTr = this.$el.querySelector('.normal-table tbody tr.last-click');
+
+            if ($lastClickTitleTr) {
+
+                $lastClickTitleTr.classList.remove('last-click');
+            }
+
+            if ($lastClickNormalTr) {
+
+                $lastClickNormalTr.classList.remove('last-click');
+            }
+
+            return this;
+        },
+        getCheckedRows: function getCheckedRows() {
+
+            var result = [];
+
+            var _iteratorNormalCompletion22 = true;
+            var _didIteratorError22 = false;
+            var _iteratorError22 = undefined;
+
+            try {
+                for (var _iterator22 = Object.keys(this.data.rowChecked)[Symbol.iterator](), _step22; !(_iteratorNormalCompletion22 = (_step22 = _iterator22.next()).done); _iteratorNormalCompletion22 = true) {
+                    var line = _step22.value;
+
+
+                    if (this.data.rowChecked[line]) {
+
+                        result.push(+line);
+                    }
+                }
+            } catch (err) {
+                _didIteratorError22 = true;
+                _iteratorError22 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion22 && _iterator22.return) {
+                        _iterator22.return();
+                    }
+                } finally {
+                    if (_didIteratorError22) {
+                        throw _iteratorError22;
+                    }
+                }
+            }
+
+            return result;
         }
     },
     mounted: function mounted() {
@@ -28246,9 +28431,59 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
-    props: ['conf', 'data', 'colSetMap', 'sortCol']
+    props: ['conf', 'data', 'colSetMap', 'sortCol', 'uiid'],
+    methods: {
+        _syncRowChecked: function _syncRowChecked(line) {
+
+            var val = this.$refs['mor-table-row-checked-' + this.uiid + '-' + line][0].get();
+
+            if (val && val[0] === 'checked') {
+
+                this.data.rowChecked[line] = true;
+            } else {
+
+                this.data.rowChecked[line] = false;
+            }
+        }
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        this.$watch('data.rowChecked', function (newVal) {
+
+            for (var line in newVal) {
+
+                if (newVal[line]) {
+
+                    _this.$refs['mor-table-row-checked-' + _this.uiid + '-' + line].set(['checked']);
+                } else {
+
+                    _this.$refs['mor-table-row-checked-' + _this.uiid + '-' + line].set(undefined);
+                }
+            }
+        }, {
+            immediate: true
+        });
+    }
 };
 module.exports = exports['default'];
 
@@ -28335,10 +28570,59 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
-    props: ['conf', 'data', 'colSetMap', 'sortCol'],
-    mounted: function mounted() {}
+    props: ['conf', 'data', 'colSetMap', 'sortCol', 'uiid'],
+    methods: {
+        _syncRowChecked: function _syncRowChecked(line) {
+
+            var val = this.$refs['mor-table-row-checked-' + this.uiid + '-' + line][0].get();
+
+            if (val && val[0] === 'checked') {
+
+                this.data.rowChecked[line] = true;
+            } else {
+
+                this.data.rowChecked[line] = false;
+            }
+        }
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        this.$watch('data.rowChecked', function (newVal) {
+
+            for (var line in newVal) {
+
+                if (newVal[line]) {
+
+                    _this.$refs['mor-table-row-checked-' + _this.uiid + '-' + line].set(['checked']);
+                } else {
+
+                    _this.$refs['mor-table-row-checked-' + _this.uiid + '-' + line].set(undefined);
+                }
+            }
+        }, {
+            immediate: true
+        });
+    }
 };
 module.exports = exports['default'];
 
@@ -37963,6 +38247,7 @@ exports.default = {
                 $parentVm: null,
                 parentKey: null,
                 linkedVm: {},
+                linkedVmKeyMap: {},
                 partCheckedKeys: []
             }
         };
@@ -38029,8 +38314,7 @@ exports.default = {
 
             if (key) {
 
-                var vm = this.data.linkedVm[key];
-                var status = vm.checkedStatus;
+                var childStatus = [];
                 var index = this.data.partCheckedKeys.indexOf(key);
 
                 if (index > -1) {
@@ -38038,42 +38322,18 @@ exports.default = {
                     this.data.partCheckedKeys.splice(index, 1);
                 }
 
-                if (status === 1) {
-
-                    this.toggle(key, true);
-                } else if (status === -1) {
-
-                    this.toggle(key, false);
-                } else {
-
-                    this.toggle(key, false);
-                    this.data.partCheckedKeys.push(key);
-                }
-            }
-        },
-        _syncLinkedChild: function _syncLinkedChild() {
-
-            if (this.data.linkedVm) {
-
-                var value = this.get();
-
                 var _iteratorNormalCompletion2 = true;
                 var _didIteratorError2 = false;
                 var _iteratorError2 = undefined;
 
                 try {
                     for (var _iterator2 = Object.keys(this.data.linkedVm)[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                        var key = _step2.value;
+                        var linkKey = _step2.value;
 
 
-                        var vm = this.data.linkedVm[key];
+                        if (linkKey.search(key + ':') === 0) {
 
-                        if (value.indexOf(key) !== -1) {
-
-                            vm._toggleAll(true);
-                        } else if (this.data.partCheckedKeys.indexOf(key) === -1) {
-
-                            vm._toggleAll(false);
+                            childStatus.push(this.data.linkedVm[linkKey].checkedStatus);
                         }
                     }
                 } catch (err) {
@@ -38090,32 +38350,91 @@ exports.default = {
                         }
                     }
                 }
+
+                childStatus = (0, _arrayUniq2.default)(childStatus);
+
+                if (childStatus.length === 1 && childStatus[0] === -1) {
+
+                    // all uncheck
+                    this.toggle(key, false);
+                } else if (childStatus.length === 1 && childStatus[0] === 1) {
+
+                    // all checked
+                    this.toggle(key, true);
+                } else {
+
+                    // part checked
+                    this.toggle(key, false);
+                    this.data.partCheckedKeys.push(key);
+                }
+            }
+        },
+        _syncLinkedChild: function _syncLinkedChild() {
+
+            if (this.data.linkedVm) {
+
+                var value = this.get();
+
+                var _iteratorNormalCompletion3 = true;
+                var _didIteratorError3 = false;
+                var _iteratorError3 = undefined;
+
+                try {
+                    for (var _iterator3 = Object.keys(this.data.linkedVm)[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                        var childKey = _step3.value;
+
+
+                        var vm = this.data.linkedVm[childKey];
+                        var key = childKey.split(':')[0];
+
+                        if (value.indexOf(key) !== -1) {
+
+                            vm._toggleAll(true);
+                        } else if (this.data.partCheckedKeys.indexOf(key) === -1) {
+
+                            vm._toggleAll(false);
+                        }
+                    }
+                } catch (err) {
+                    _didIteratorError3 = true;
+                    _iteratorError3 = err;
+                } finally {
+                    try {
+                        if (!_iteratorNormalCompletion3 && _iterator3.return) {
+                            _iterator3.return();
+                        }
+                    } finally {
+                        if (_didIteratorError3) {
+                            throw _iteratorError3;
+                        }
+                    }
+                }
             }
         },
         _toggleAll: function _toggleAll(checked) {
-            var _iteratorNormalCompletion3 = true;
-            var _didIteratorError3 = false;
-            var _iteratorError3 = undefined;
+            var _iteratorNormalCompletion4 = true;
+            var _didIteratorError4 = false;
+            var _iteratorError4 = undefined;
 
             try {
 
-                for (var _iterator3 = Object.keys(this.conf.list)[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-                    var key = _step3.value;
+                for (var _iterator4 = Object.keys(this.conf.list)[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+                    var key = _step4.value;
 
 
                     this.toggle(key, checked);
                 }
             } catch (err) {
-                _didIteratorError3 = true;
-                _iteratorError3 = err;
+                _didIteratorError4 = true;
+                _iteratorError4 = err;
             } finally {
                 try {
-                    if (!_iteratorNormalCompletion3 && _iterator3.return) {
-                        _iterator3.return();
+                    if (!_iteratorNormalCompletion4 && _iterator4.return) {
+                        _iterator4.return();
                     }
                 } finally {
-                    if (_didIteratorError3) {
-                        throw _iteratorError3;
+                    if (_didIteratorError4) {
+                        throw _iteratorError4;
                     }
                 }
             }
@@ -38179,8 +38498,9 @@ exports.default = {
 
                         _this.data.$parentVm = $parent._vm;
                         _this.data.parentKey = key;
-                        $parent._vm.data.linkedVm[key] = _this;
-                        $parent._vm._syncLinkedCheckedStatus(key);
+                        $parent._vm.data.linkedVm[key + ':' + _this.uiid] = _this;
+                        // $parent._vm.data.linkedVmKeyMap[key] = this.uiid;
+                        $parent._vm._syncLinkedCheckedStatus(key, _this.uiid);
                     }
                 }
             });
@@ -38200,18 +38520,26 @@ exports.default = {
 
             if (_this.data.$parentVm) {
 
-                _this.data.$parentVm._syncLinkedCheckedStatus(_this.data.parentKey);
+                _this.data.$parentVm._syncLinkedCheckedStatus(_this.data.parentKey, _this.uiid);
             }
         });
         this.$on('value-change', function () {
 
             if (_this.data.$parentVm) {
 
-                _this.data.$parentVm._syncLinkedCheckedStatus(_this.data.parentKey);
+                _this.data.$parentVm._syncLinkedCheckedStatus(_this.data.parentKey, _this.uiid);
             }
 
             _this._syncLinkedChild();
         });
+    },
+    destroyed: function destroyed() {
+
+        // unlink parent
+        if (this.data.$parentVm) {
+
+            delete this.data.$parentVm.data.linkedVm[this.data.parentKey + ':' + this.uiid];
+        }
     }
 };
 module.exports = exports['default'];
@@ -55118,7 +55446,7 @@ var render = function() {
   return _c(
     "mor-table",
     {
-      class: [_vm.colorClass, _vm.moreClass],
+      class: [_vm.sizeClass, _vm.colorClass, _vm.moreClass],
       attrs: {
         _uiid: _vm.uiid,
         list: _vm.list,
@@ -55130,17 +55458,21 @@ var render = function() {
         align: _vm.align,
         "show-col-name": _vm.showColName,
         "fixed-title-col": _vm.fixedTitleCol,
+        "fixed-title-row": _vm.fixedTitleRow,
         "title-col-width": _vm.titleColWidth,
         "col-set": _vm.colSet,
         "row-set": _vm.rowSet,
         "cell-set": _vm.cellSet,
         "export-csv": _vm.exportCsv,
         "csv-name": _vm.csvName,
-        "multi-sort": _vm.multiSort
-      }
+        "multi-sort": _vm.multiSort,
+        "highlight-row": _vm.highlightRow,
+        "multi-select": _vm.multiSelect
+      },
+      on: { scroll: _vm._tableScroll }
     },
     [
-      _vm.conf.title || _vm.conf.exportCsv
+      _vm.conf.title || _vm.conf.exportCsv || _vm.$slots.header
         ? [
             _c("header", [
               _vm.conf.title
@@ -55149,20 +55481,29 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "div",
-                { staticClass: "action" },
+                { staticClass: "custom-header" },
                 [
-                  _vm.conf.exportCsv
-                    ? _c(
-                        "morning-btn",
-                        {
-                          attrs: { color: "success", size: "xs" },
-                          on: { emit: _vm._exportCsv }
-                        },
-                        [_vm._v("导出")]
-                      )
-                    : _vm._e()
+                  _vm._t("header"),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "action" },
+                    [
+                      _vm.conf.exportCsv
+                        ? _c(
+                            "morning-btn",
+                            {
+                              attrs: { color: "success", size: _vm.conf.size },
+                              on: { emit: _vm._exportCsv }
+                            },
+                            [_vm._v("导出")]
+                          )
+                        : _vm._e()
+                    ],
+                    1
+                  )
                 ],
-                1
+                2
               )
             ])
           ]
@@ -55180,11 +55521,16 @@ var render = function() {
                         conf: _vm.conf,
                         data: _vm.data,
                         "col-set-map": _vm.colSetMap,
-                        "sort-col": _vm._sortCol
+                        "sort-col": _vm._sortCol,
+                        uiid: _vm.uiid
                       },
                       on: {
                         "row-mouseover": _vm._rowOver,
-                        "row-mouseout": _vm._rowOut
+                        "row-mouseout": _vm._rowOut,
+                        "row-click": _vm._rowClick,
+                        "cell-click": _vm._cellClick,
+                        "cell-enter": _vm._cellEnter,
+                        "cell-leave": _vm._cellLeave
                       }
                     })
                   ],
@@ -55193,17 +55539,23 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "td",
+                  { staticClass: "title-td" },
                   [
                     _c("title-table", {
                       attrs: {
                         conf: _vm.conf,
                         data: _vm.data,
                         "col-set-map": _vm.colSetMap,
-                        "sort-col": _vm._sortCol
+                        "sort-col": _vm._sortCol,
+                        uiid: _vm.uiid
                       },
                       on: {
                         "row-mouseover": _vm._rowOver,
-                        "row-mouseout": _vm._rowOut
+                        "row-mouseout": _vm._rowOut,
+                        "row-click": _vm._rowClick,
+                        "cell-click": _vm._cellClick,
+                        "cell-enter": _vm._cellEnter,
+                        "cell-leave": _vm._cellLeave
                       }
                     })
                   ],
@@ -55213,17 +55565,23 @@ var render = function() {
             : _c("tr", [
                 _c(
                   "td",
+                  { staticClass: "title-td" },
                   [
                     _c("title-table", {
                       attrs: {
                         conf: _vm.conf,
                         data: _vm.data,
                         "col-set-map": _vm.colSetMap,
-                        "sort-col": _vm._sortCol
+                        "sort-col": _vm._sortCol,
+                        uiid: _vm.uiid
                       },
                       on: {
                         "row-mouseover": _vm._rowOver,
-                        "row-mouseout": _vm._rowOut
+                        "row-mouseout": _vm._rowOut,
+                        "row-click": _vm._rowClick,
+                        "cell-click": _vm._cellClick,
+                        "cell-enter": _vm._cellEnter,
+                        "cell-leave": _vm._cellLeave
                       }
                     })
                   ],
@@ -55238,11 +55596,16 @@ var render = function() {
                         conf: _vm.conf,
                         data: _vm.data,
                         "col-set-map": _vm.colSetMap,
-                        "sort-col": _vm._sortCol
+                        "sort-col": _vm._sortCol,
+                        uiid: _vm.uiid
                       },
                       on: {
                         "row-mouseover": _vm._rowOver,
-                        "row-mouseout": _vm._rowOut
+                        "row-mouseout": _vm._rowOut,
+                        "row-click": _vm._rowClick,
+                        "cell-click": _vm._cellClick,
+                        "cell-enter": _vm._cellEnter,
+                        "cell-leave": _vm._cellLeave
                       }
                     })
                   ],
@@ -65013,6 +65376,23 @@ var render = function() {
           _c(
             "tr",
             [
+              _vm.conf.multiSelect
+                ? _c(
+                    "th",
+                    { staticClass: "table-checked" },
+                    [
+                      _c("morning-checkbox", {
+                        ref: "mor-table-row-checked-" + _vm.uiid + "-all",
+                        attrs: {
+                          list: { checked: "" },
+                          id: "mor-table-row-checked-" + _vm.uiid + "-all"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                : _vm._e(),
+              _vm._v(" "),
               _vm._l(_vm.data.titleKeys, function(key) {
                 return [
                   _vm.colSetMap[key] && _vm.colSetMap[key].name
@@ -65162,10 +65542,37 @@ var render = function() {
               },
               mouseout: function($event) {
                 return _vm.$emit("row-mouseout", line)
+              },
+              click: function($event) {
+                return _vm.$emit("row-click", line)
               }
             }
           },
           [
+            _vm.conf.multiSelect
+              ? _c(
+                  "td",
+                  { staticClass: "table-checked" },
+                  [
+                    _c("morning-checkbox", {
+                      ref: "mor-table-row-checked-" + _vm.uiid + "-" + line,
+                      refInFor: true,
+                      attrs: {
+                        list: { checked: "" },
+                        parent:
+                          "#mor-table-row-checked-" + _vm.uiid + "-all:checked"
+                      },
+                      on: {
+                        "value-change": function($event) {
+                          return _vm._syncRowChecked(line)
+                        }
+                      }
+                    })
+                  ],
+                  1
+                )
+              : _vm._e(),
+            _vm._v(" "),
             _vm._l(row, function(col, index) {
               return [
                 _c(
@@ -65182,7 +65589,30 @@ var render = function() {
                           "!colSetMap[data.titleKeys[index]] || !colSetMap[data.titleKeys[index]].hide"
                       }
                     ],
-                    key: index
+                    key: index,
+                    on: {
+                      click: function($event) {
+                        return _vm.$emit(
+                          "cell-click",
+                          line,
+                          _vm.data.normalKeys[index]
+                        )
+                      },
+                      mouseenter: function($event) {
+                        return _vm.$emit(
+                          "cell-enter",
+                          line,
+                          _vm.data.normalKeys[index]
+                        )
+                      },
+                      mouseleave: function($event) {
+                        return _vm.$emit(
+                          "cell-leave",
+                          line,
+                          _vm.data.normalKeys[index]
+                        )
+                      }
+                    }
                   },
                   [
                     _c(
@@ -65241,6 +65671,23 @@ var render = function() {
           _c(
             "tr",
             [
+              _vm.conf.multiSelect && _vm.data.titleKeys.length === 0
+                ? _c(
+                    "th",
+                    { staticClass: "table-checked" },
+                    [
+                      _c("morning-checkbox", {
+                        ref: "mor-table-row-checked-" + _vm.uiid + "-all",
+                        attrs: {
+                          list: { checked: "" },
+                          id: "mor-table-row-checked-" + _vm.uiid + "-all"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                : _vm._e(),
+              _vm._v(" "),
               _vm._l(_vm.data.normalKeys, function(key) {
                 return [
                   _vm.colSetMap[key] && _vm.colSetMap[key].name
@@ -65261,9 +65708,9 @@ var render = function() {
                         },
                         [
                           _vm._v(
-                            "\n                    " +
+                            "\n                        " +
                               _vm._s(_vm.colSetMap[key].name) +
-                              "\n                    "
+                              "\n                        "
                           ),
                           _vm.colSetMap[key].sort
                             ? _c("span", { staticClass: "th-sort" }, [
@@ -65390,10 +65837,37 @@ var render = function() {
               },
               mouseout: function($event) {
                 return _vm.$emit("row-mouseout", line)
+              },
+              click: function($event) {
+                return _vm.$emit("row-click", line)
               }
             }
           },
           [
+            _vm.conf.multiSelect && _vm.data.titleKeys.length === 0
+              ? _c(
+                  "td",
+                  { staticClass: "table-checked" },
+                  [
+                    _c("morning-checkbox", {
+                      ref: "mor-table-row-checked-" + _vm.uiid + "-" + line,
+                      refInFor: true,
+                      attrs: {
+                        list: { checked: "" },
+                        parent:
+                          "#mor-table-row-checked-" + _vm.uiid + "-all:checked"
+                      },
+                      on: {
+                        "value-change": function($event) {
+                          return _vm._syncRowChecked(line)
+                        }
+                      }
+                    })
+                  ],
+                  1
+                )
+              : _vm._e(),
+            _vm._v(" "),
             _vm._l(row, function(col, index) {
               return [
                 _c(
@@ -65410,7 +65884,30 @@ var render = function() {
                           "!colSetMap[data.normalKeys[index]] || !colSetMap[data.normalKeys[index]].hide"
                       }
                     ],
-                    key: index
+                    key: index,
+                    on: {
+                      click: function($event) {
+                        return _vm.$emit(
+                          "cell-click",
+                          line,
+                          _vm.data.normalKeys[index]
+                        )
+                      },
+                      mouseenter: function($event) {
+                        return _vm.$emit(
+                          "cell-enter",
+                          line,
+                          _vm.data.normalKeys[index]
+                        )
+                      },
+                      mouseleave: function($event) {
+                        return _vm.$emit(
+                          "cell-leave",
+                          line,
+                          _vm.data.normalKeys[index]
+                        )
+                      }
+                    }
                   },
                   [
                     _c(

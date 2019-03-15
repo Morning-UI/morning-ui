@@ -17,7 +17,7 @@
 
 - `ui-dropdown`组件的`auto-close`配置改名为`done-hidden`，使得语意更准确（`done-hidden`为完成后消失，`auto-close`为点击外部区域关闭）
 - `ui-lowercase`、`ui-uppercase`、`ui-capitalize`已经不再推荐使用
-- 新增图标( mo-icon-tag-f / mo-icon-drawer-full / mo-icon-drawer-empty)
+- 新增图标( `mo-icon-user-o` )
 
 __升级注意事项__
 
