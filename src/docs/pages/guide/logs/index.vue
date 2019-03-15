@@ -18,6 +18,45 @@
     
     ### 更新记录
 
+    ### 0.12.8 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2019年3月15日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.8" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.8/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.8/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 新特性
+
+    - `ui-table`新增`highlight-last-click`配置，开启后会高亮最后点击的行
+    - `ui-table`新增`multi-select`配置，支持多选行
+    - `ui-table`新增`fixed-title-row`配置，可固定标题行
+    - `ui-table`新增`getHighlightRow()`、`setHighlightRow()`、`cleanLastClickRow()`方法，可分别用于获取/设置最后一次点击行号及清空
+    - `ui-table`新增`getCheckedRow()`方法，可获取选中的行号
+    - `ui-table`新增`cell-click`、`cell-enter`、`cell-leave`事件，分别在点击单元格、鼠标移入/移出单元格触发
+    - `ui-table`新增`xl`、`l`、`s`、`xs`四种尺寸
+    - `ui-table`支持通过`slot=“header”`来自定义表头内容
+    - `ui-tab`的`switch`事件的回调函数新增一个`name`参数，可用于获取当前所在的标签页名字
+    - `ui-datetimepicker`新增`input-blur`、`input-focus`、`blur`、`focus`事件
+    - `ui-datepicker`和`ui-datetimepicker`新增`pick-done`事件
+
+    #### 改进
+
+    - 优化`ui-table`的固定标题列的样式
+    - `ui-checkbox`的`parent`配置现在支持多个复选框组件关联一个父选项
+
+    #### 修复
+
+    - 修复`ui-datepicker`的`blur`和`focus`事件在开启`is-range`配置且在两个输入框间切换时会触发两次的问题
+    - 修复`ui-menu`的在`color=black`且使用`.block`的情况下，选中样式错误的问题
+    - 修复`ui-menu`动态切换`side-collapse`时的一个样式问题
+
+    ---
+
     ### 0.12.7 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="light-blue">
