@@ -56,8 +56,8 @@
                     :_range-input-direction="conf.rangeInputDirection === 'vertical'"
 
                     @value-change="_syncValueFromInputToRoot"
-                    @focus="_focus"
-                    @blur="_blur"
+                    @focus="_focus();_emitFocus()"
+                    @blur="_blur();_emitBlur()"
                     @input-focus="_inputFocus"
                     @input-blur="_inputBlur"
                     @date-click="_syncValueFromInputToRootForClick"
@@ -492,7 +492,8 @@ export default {
                 currentDate : undefined,
                 selected : false,
                 input0HighlightDays : [],
-                input1HighlightDays : []
+                input1HighlightDays : [],
+                lastComponentFocusStatus : false
             }
         };
 
@@ -656,7 +657,7 @@ export default {
 
         },
         _inputBlur : function () {
-
+            
             this.$emit('input-blur');
 
         },
@@ -784,8 +785,6 @@ export default {
 
             }
 
-            this.$emit('focus');
-
         },
         _blur : function () {
 
@@ -820,7 +819,21 @@ export default {
 
             }
 
+        },
+        _emitFocus : function () {
+
+            if (!this.data.lastComponentFocusStatus) {
+                
+                this.$emit('focus');
+                this.data.lastComponentFocusStatus = true;
+
+            }
+
+        },
+        _emitBlur : function () {
+           
             this.$emit('blur');
+            this.data.lastComponentFocusStatus = false;
 
         },
         _filterDateString : function (value) {
@@ -1545,6 +1558,20 @@ export default {
 
             this._syncFromRootToChild();
             this.$nextTick(() => this._highlightDateFromValue());
+
+            if (this.conf.isRange) {
+
+                if (this.data.value.length === 2) {
+
+                    this.$emit('pick-done');
+
+                }
+
+            } else {
+
+                this.$emit('pick-done');
+
+            }
             
         });
 

@@ -340,6 +340,8 @@
     - `countdown` : 倒计
     - `count` : 计数
     - `attach` : 附着
+    - `pick-done` : 选择完成
+    - `date-pick-done` : 日期选择完成
 
     </script>
     </doc-guide>

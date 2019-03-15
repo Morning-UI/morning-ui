@@ -916,6 +916,140 @@
     @wrapStyle:width:300px;
     :::
 
+    :::vue
+    @name:input-focus
+    ---
+    #event
+    >event-desc
+    当日期时间选择器的输入框聚焦时触发，若开启了`is-range`配置则在两个输入框间切换时不会触发此事件。
+    ---
+    #demo
+    >tpl
+    <div>
+        <div style="width:300px;">
+            <ui-datetimepicker ref="demo10" @input-focus="echo"></ui-datetimepicker>
+        </div>
+    </div>
+    >script
+    {
+        methods : {
+            echo : function () {
+                console.log('demo10.console1', 'input-focus event!');
+            }
+        }
+    }
+    :::
+
+    :::vue
+    @name:input-blur
+    ---
+    #event
+    >event-desc
+    当日期时间选择器的输入框失焦时触发，若开启了`is-range`配置则在两个输入框间切换时不会触发此事件。
+    ---
+    #demo
+    >tpl
+    <div>
+        <div style="width:300px;">
+            <ui-datetimepicker ref="demo11" @input-blur="echo"></ui-datetimepicker>
+        </div>
+    </div>
+    >script
+    {
+        methods : {
+            echo : function () {
+                console.log('demo11.console1', 'input-blur event!');
+            }
+        }
+    }
+    :::
+
+    :::vue
+    @name:focus
+    ---
+    #event
+    >event-desc
+    当日期时间选择器聚焦时触发。
+    ---
+    #demo
+    >tpl
+    <div>
+        <div style="width:300px;">
+            <ui-datetimepicker @focus="echo"></ui-datetimepicker>
+        </div>
+        <br><br>
+        <div style="width:420px;">
+            <ui-datetimepicker is-range @focus="echo"></ui-datetimepicker>
+        </div>
+    </div>
+    >script
+    {
+        methods : {
+            echo : function () {
+                console.log('demo12.console1', 'focus event!');
+            }
+        }
+    }
+    :::
+
+    :::vue
+    @name:blur
+    ---
+    #event
+    >event-desc
+    当日期时间选择器失焦时触发。
+    ---
+    #demo
+    >tpl
+    <div>
+        <div style="width:300px;">
+            <ui-datetimepicker @blur="echo"></ui-datetimepicker>
+        </div>
+        <br><br>
+        <div style="width:420px;">
+            <ui-datetimepicker is-range @blur="echo"></ui-datetimepicker>
+        </div>
+    </div>
+    >script
+    {
+        methods : {
+            echo : function () {
+                console.log('demo13.console1', 'blur event!');
+            }
+        }
+    }
+    :::
+
+    :::vue
+    @name:pick-done
+    ---
+    #event
+    >event-desc
+    当日期时间选择器完成日期时间选择时触发。
+    <br>
+    在关闭`is-range`配置时，`pick-done`等效于`value-change`，但在开启`is-range`时，`pick-done`的触发需要选择完一段完整的日期时间范围。
+    ---
+    #demo
+    >tpl
+    <div>
+        <div style="width:300px;">
+            <ui-datetimepicker @pick-done="echo"></ui-datetimepicker>
+        </div>
+        <br><br>
+        <div style="width:420px;">
+            <ui-datetimepicker is-range @pick-done="echo"></ui-datetimepicker>
+        </div>
+    </div>
+    >script
+    {
+        methods : {
+            echo : function () {
+                console.log('demo14.console1', 'pick-done event!');
+            }
+        }
+    }
+    :::
+
     [[[表单值]]]
 
     #### 值类型
