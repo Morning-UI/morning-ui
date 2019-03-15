@@ -33562,9 +33562,6 @@ mor-menu.co-bk.block .pos-top .root-menu > li.current > a,
 mor-menu.co-bk.block .pos-top .sub-menu > li.current > a {
   background-color: #45505C;
 }
-mor-menu.co-bk.block .pos-side .sub-menu > li.last-current > a {
-  background-color: #45505C;
-}
 mor-menu.co-bk.collapse .pos-side .root-menu > li > a:hover {
   background: #202d3e;
 }
@@ -33652,9 +33649,6 @@ mor-menu.co-lbk.block .pos-top .root-menu > li.current > a,
 mor-menu.co-lbk.block .pos-top .sub-menu > li.current > a {
   background-color: #45505C;
 }
-mor-menu.co-lbk.block .pos-side .sub-menu > li.last-current > a {
-  background-color: #45505C;
-}
 mor-menu.co-lbk.collapse .pos-side .root-menu > li > a:hover {
   background: #3a485b;
 }
@@ -33740,9 +33734,6 @@ mor-menu.co-elbk.block .pos-top .root-menu > li:not(.is-disable) > a:hover {
 }
 mor-menu.co-elbk.block .pos-top .root-menu > li.current > a,
 mor-menu.co-elbk.block .pos-top .sub-menu > li.current > a {
-  background-color: #7C8BA0;
-}
-mor-menu.co-elbk.block .pos-side .sub-menu > li.last-current > a {
   background-color: #7C8BA0;
 }
 mor-menu.co-elbk.collapse .pos-side .root-menu > li > a:hover {

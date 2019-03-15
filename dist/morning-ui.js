@@ -28821,6 +28821,11 @@ exports.default = {
             immediate: true,
             deep: true
         });
+
+        this.$watch('conf.sideCollapse', function () {
+
+            _this.data.rootItemShowList = {};
+        });
     }
 };
 module.exports = exports['default'];
@@ -42465,7 +42470,8 @@ exports.default = {
                 currentDate: undefined,
                 selected: false,
                 input0HighlightDays: [],
-                input1HighlightDays: []
+                input1HighlightDays: [],
+                lastComponentFocusStatus: false
             }
         };
     },
@@ -42703,8 +42709,6 @@ exports.default = {
                     return _this3._highlightDateFromValue();
                 });
             }
-
-            this.$emit('focus');
         },
         _blur: function _blur() {
 
@@ -42734,8 +42738,19 @@ exports.default = {
                     delete $input1DateSelect.style.left;
                 }
             }
+        },
+        _emitFocus: function _emitFocus() {
+
+            if (!this.data.lastComponentFocusStatus) {
+
+                this.$emit('focus');
+                this.data.lastComponentFocusStatus = true;
+            }
+        },
+        _emitBlur: function _emitBlur() {
 
             this.$emit('blur');
+            this.data.lastComponentFocusStatus = false;
         },
         _filterDateString: function _filterDateString(value) {
 
@@ -43354,6 +43369,17 @@ exports.default = {
             _this5.$nextTick(function () {
                 return _this5._highlightDateFromValue();
             });
+
+            if (_this5.conf.isRange) {
+
+                if (_this5.data.value.length === 2) {
+
+                    _this5.$emit('pick-done');
+                }
+            } else {
+
+                _this5.$emit('pick-done');
+            }
         });
 
         this._syncFromRootToChild();
@@ -43384,6 +43410,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; //
+//
+//
+//
+//
 //
 //
 //
@@ -44246,6 +44276,27 @@ exports.default = {
             }
 
             return value;
+        },
+        _inputFocus: function _inputFocus() {
+
+            this.$emit('input-focus');
+        },
+        _inputBlur: function _inputBlur(evt) {
+
+            this._syncFromInputToRootIsBlur(evt);
+            this.$emit('input-blur');
+        },
+        _focus: function _focus() {
+
+            this.$emit('focus');
+        },
+        _blur: function _blur() {
+
+            this.$emit('blur');
+        },
+        _pickDone: function _pickDone() {
+
+            this.$emit('pick-done');
         },
         getDate: function getDate() {
 
@@ -58842,7 +58893,11 @@ var render = function() {
                 "value-change": function($event) {
                   return _vm._syncFromInputToRoot(0)
                 },
-                "input-blur": _vm._syncFromInputToRootIsBlur
+                "input-blur": _vm._inputBlur,
+                "input-focus": _vm._inputFocus,
+                blur: _vm._blur,
+                focus: _vm._focus,
+                "pick-done": _vm._pickDone
               }
             },
             [
@@ -59011,8 +59066,14 @@ var render = function() {
                       },
                       on: {
                         "value-change": _vm._syncValueFromInputToRoot,
-                        focus: _vm._focus,
-                        blur: _vm._blur,
+                        focus: function($event) {
+                          _vm._focus()
+                          _vm._emitFocus()
+                        },
+                        blur: function($event) {
+                          _vm._blur()
+                          _vm._emitBlur()
+                        },
                         "input-focus": _vm._inputFocus,
                         "input-blur": _vm._inputBlur,
                         "date-click": _vm._syncValueFromInputToRootForClick,

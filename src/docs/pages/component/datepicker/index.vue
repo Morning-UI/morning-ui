@@ -916,7 +916,11 @@
     >tpl
     <div>
         <div style="width:300px;">
-            <ui-datepicker ref="demo3" @focus="echo"></ui-datepicker>
+            <ui-datepicker @focus="echo"></ui-datepicker>
+        </div>
+        <br><br>
+        <div style="width:420px;">
+            <ui-datepicker is-range @focus="echo"></ui-datepicker>
         </div>
     </div>
     >script
@@ -940,7 +944,11 @@
     >tpl
     <div>
         <div style="width:300px;">
-            <ui-datepicker ref="demo4" @blur="echo"></ui-datepicker>
+            <ui-datepicker @blur="echo"></ui-datepicker>
+        </div>
+        <br><br>
+        <div style="width:420px;">
+            <ui-datepicker is-range @blur="echo"></ui-datepicker>
         </div>
     </div>
     >script
@@ -948,6 +956,36 @@
         methods : {
             echo : function () {
                 console.log('demo4.console1', 'blur event!');
+            }
+        }
+    }
+    :::
+
+    :::vue
+    @name:pick-done
+    ---
+    #event
+    >event-desc
+    当日期选择器完成日期选择时触发。
+    <br>
+    在关闭`is-range`配置时，`pick-done`等效于`value-change`，但在开启`is-range`时，`pick-done`的触发需要选择完一段完整的日期范围。
+    ---
+    #demo
+    >tpl
+    <div>
+        <div style="width:300px;">
+            <ui-datepicker @pick-done="echo"></ui-datepicker>
+        </div>
+        <br><br>
+        <div style="width:420px;">
+            <ui-datepicker is-range @pick-done="echo"></ui-datepicker>
+        </div>
+    </div>
+    >script
+    {
+        methods : {
+            echo : function () {
+                console.log('demo5.console1', 'pick-done event!');
             }
         }
     }
