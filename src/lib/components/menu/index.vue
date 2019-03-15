@@ -183,6 +183,12 @@ export default {
             deep : true
         });
 
+        this.$watch('conf.sideCollapse', () => {
+
+            this.data.rootItemShowList = {};
+
+        });
+
     }
 };
 </script>

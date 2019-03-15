@@ -133,7 +133,86 @@
     :::
 
     :::vue
-    @name:内嵌HTML
+    @name:自定义表头内容
+    ---
+    #demo
+    >desc
+    通过`slot="header"`可以自定义表头内容。
+    >tpl
+    <ui-table :list="window.demodata.list">
+        <div slot="header">
+            <div style="display:inline-block;width:160px">
+                <ui-textinput size="xs" inside-name="填写内容..."></ui-textinput>
+            </div>
+            <ui-btn size="xs">按钮1</ui-btn>
+            <ui-btn size="xs">按钮2</ui-btn>
+        </div>
+    </ui-table>
+    ---
+    #demo
+    >desc
+    配合`title`和`export-csv`一起使用。
+    >tpl
+    <ui-table :list="window.demodata.list" title="自定义表头内容" export-csv>
+        <div slot="header">
+            <ui-btn size="m">按钮1</ui-btn>
+        </div>
+    </ui-table>
+    :::
+
+    :::vue
+    @name:实现搜索功能
+    ---
+    #demo
+    >desc
+    使用自定义表头实现搜索功能。
+    >tpl
+    <ui-table ref="demo8" :list="list">
+        <div slot="header">
+            <div style="display:inline-block;width:160px">
+                <ui-textinput ref="demo8input" size="xs" inside-name="关键词..."></ui-textinput>
+            </div>
+            <ui-btn size="xs" @emit="search">搜索</ui-btn>
+        </div>
+    </ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.list
+        },
+        methods : {
+            search : function () {
+
+                let key = this.$refs.demo8input.get();
+
+                if (key) {
+
+                    let result = [];
+
+                    for (let item of window.demodata.list) {
+
+                        if (Object.values(item).join().search(key) !== -1) {
+
+                            result.push(item);
+
+                        }
+                    
+                    }
+
+                    this.list = result;
+
+                } else {
+
+                    this.list = window.demodata.list;
+
+                }
+            }
+        }
+    }
+    :::
+
+    :::vue
+    @name:单元格内嵌HTML
     ---
     #demo
     >desc
@@ -156,7 +235,7 @@
     :::
 
     :::vue
-    @name:内嵌Vue组件
+    @name:单元格内嵌Vue组件
     ---
     #demo
     >desc
@@ -276,11 +355,24 @@
 
     |类型|支持|默认|
     |-|-|-|
-    |尺寸|不支持|-|
+    |尺寸|`xs` / `s` / `m` / `l` / `xl`|`m`|
     |色彩|全部|`light-gray`|
     |状态|不支持|-|
 
     <a href="/guide/status.html">查看形态文档</a>
+
+    :::vue
+    @name:尺寸
+    ---
+    #renderer
+    >name
+    size-repeat
+    >rules
+    xl,l,m,s,xs
+    >tpl
+    <br><br>
+    <ui-table :list="window.demodata.list" size="{$sizeKey}" title="{$sizeName}的表格" export-csv></ui-table>
+    :::
 
     :::vue
     @layout:color
@@ -586,6 +678,54 @@
                 {col : 'country', name : 'Country', minwidth : '300px'},
                 {col : 'height', name : 'Height', minwidth : '300px'},
                 {col : 'weight', name : 'Body weight', minwidth : '300px'}
+            ]
+        }
+    }
+    :::
+
+    :::vue
+    @name:fixed-title-row
+    ---
+    #config
+    >conf-desc
+    固定标题行。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >tpl
+    <ui-table style="height: 200px;" :list="list" :col-set="colset" :show-col-name="true" :fixed-title-row="true"></ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.list,
+            colset : [
+                {col : 'name', name : 'Name'},
+                {col : 'age', name : 'Age'},
+                {col : 'gender', name : 'Gender'},
+                {col : 'job', name : 'Job'}
+            ]
+        }
+    }
+    ---
+    #demo
+    >desc
+    配合`fixed-title-col`一起使用。
+    >tpl
+    <ui-table style="height: 200px;" :list="list" :col-set="colset" :show-col-name="true" :fixed-title-row="true" fixed-title-col="left-fixed"></ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.list,
+            colset : [
+                {col : 'name', name : 'Name', title : true},
+                {col : 'age', name : 'Age', minwidth : '300px'},
+                {col : 'gender', name : 'Gender', minwidth : '300px'},
+                {col : 'job', name : 'Job', minwidth : '300px'}
             ]
         }
     }
@@ -1254,9 +1394,197 @@
     }
     :::
 
+    :::vue
+    @name:highlight-row
+    ---
+    #config
+    >conf-desc
+    是否高亮行，开启后最后点击的行会被高亮，同时也可以通过`setHighlightRow()`方法来高亮指定行，同一时间只能高亮一行。
+    <br><br>
+    也可以通过`row-set`配置来实现类似的功能，区别在于此配置可以通过`getHighlightRow()`来获取最后点击行，从而实现单选的功能。
+    <br>
+    同时也可以通过`cleanHighlightRow()`来取消高亮最后点击行。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >desc
+    开启此配置后，最后点击的行将被高亮。
+    >tpl
+    <ui-table :list="list" highlight-row></ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.list
+        }
+    }
+    :::
+
+    :::vue
+    @name:multi-select
+    ---
+    #config
+    >conf-desc
+    表格可多选（多选仅行可用）。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >desc
+    开启此配置后，最后点击的行将被高亮。
+    >tpl
+    <ui-table :list="list" multi-select></ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.list
+        }
+    }
+    ---
+    #demo
+    >desc
+    开启`show-col-name`配置后，会展示全选的复选框。
+    >tpl
+    <ui-table :list="list" :col-set="colset" multi-select show-col-name></ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.list,
+            colset : [
+                {col : 'name', name : 'Name'},
+                {col : 'age', name : 'Age'},
+                {col : 'gender', name : 'Gender'},
+                {col : 'job', name : 'Job'}
+            ]
+        }
+    }
+    ---
+    #demo
+    >desc
+    开启`fixed-title-col`配置后，复选框也会固定到标题列。
+    >tpl
+    <ui-table :list="list" :col-set="colset" multi-select show-col-name fixed-title-col="left"></ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.list,
+            colset : [
+                {col : 'name', name : 'Name', title: true},
+                {col : 'age', name : 'Age'},
+                {col : 'gender', name : 'Gender'},
+                {col : 'job', name : 'Job'}
+            ]
+        }
+    }
+    :::
+
     [[[方法]]]
-    
-    <h1>暂无</h1>
+
+    :::vue
+    @name:getHighlightRow()
+    ---
+    #method
+    >method-desc
+    获取高亮的行号（从`0`开始），需要开启`highlight-row`配置，否则返回`-1`。
+    >method-return
+    高亮的行号。
+    ---
+    #demo
+    >tpl
+    <div>
+        <ui-table ref="demo1" :list="list" highlight-row></ui-table>
+        <br><br> 
+        <ui-link js="alert(morning.findVM('demo1').getHighlightRow());">获取高亮的行号</ui-link>
+    </div>
+    >script
+    {
+        data : {
+            list : window.demodata.list
+        }
+    }
+    :::
+
+    :::vue
+    @name:setHighlightRow(rowNum)
+    ---
+    #method
+    >method-desc
+    高亮指定的行，需要开启`highlight-row`才生效。
+    >method-args
+    |rowNum|NO|需要高亮的行数|行数(从`0`开始)|`Number`|`undefined`|
+    >method-return
+    当前组件VM实例。
+    ---
+    #demo
+    >tpl
+    <div>
+        <ui-table ref="demo3" :list="list" highlight-row></ui-table>
+        <br><br> 
+        <ui-link js="morning.findVM('demo3').setHighlightRow(1);">高亮第二行</ui-link>
+    </div>
+    >script
+    {
+        data : {
+            list : window.demodata.list
+        }
+    }
+    :::
+
+    :::vue
+    @name:cleanHighlightRow()
+    ---
+    #method
+    >method-desc
+    清除高亮行，需要开启`highlight-row`配置才有效。
+    >method-return
+    当前组件VM实例。
+    ---
+    #demo
+    >tpl
+    <div>
+        <ui-table ref="demo2" :list="list" highlight-row></ui-table>
+        <br><br> 
+        <ui-link js="morning.findVM('demo2').cleanHighlightRow();">清除高亮行</ui-link>
+    </div>
+    >script
+    {
+        data : {
+            list : window.demodata.list
+        }
+    }
+    :::
+
+    :::vue
+    @name:getCheckedRows()
+    ---
+    #method
+    >method-desc
+    获取选中的行号（从`0`开始），需要开启`multi-select`配置。
+    >method-return
+    选中的行号组成的数组。
+    ---
+    #demo
+    >tpl
+    <div>
+        <ui-table ref="demo4" :list="list" multi-select></ui-table>
+        <br><br> 
+        <ui-link js="alert(morning.findVM('demo4').getCheckedRows().join(','));">获取选中的行号</ui-link>
+    </div>
+    >script
+    {
+        data : {
+            list : window.demodata.list
+        }
+    }
+    :::
 
     [[[事件]]]
 
@@ -1282,6 +1610,96 @@
         methods : {
             echo : function () {
                 console.log('demo2.console1', `list-change event!`);
+            }
+        }
+    }
+    :::
+
+    :::vue
+    @name:cell-click
+    ---
+    #event
+    >event-desc
+    当单元格被点击时触发。
+    >event-args
+    |rowNum|被点击单元格所在的行号(从`0`开始)|`Number`|
+    |colKey|被点击单元格所在列的`key`|`String`|
+    ---
+    #demo
+    >tpl
+    <div>
+        <ui-table ref="demo5" :list="list" @cell-click="echo"></ui-table>
+        <br><br>
+        <p>点击单元格触发事件</p>
+    </div>
+    >script
+    {
+        data : {
+            list : window.demodata.list
+        },
+        methods : {
+            echo : function (rowNum, colKey) {
+                console.log('demo5.console1', `cell-click event!`, rowNum, colKey);
+            }
+        }
+    }
+    :::
+
+    :::vue
+    @name:cell-enter
+    ---
+    #event
+    >event-desc
+    当鼠标移入单元格时触发。
+    >event-args
+    |rowNum|鼠标移入单元格所在的行号(从`0`开始)|`Number`|
+    |colKey|鼠标移入单元格所在列的`key`|`String`|
+    ---
+    #demo
+    >tpl
+    <div>
+        <ui-table ref="demo6" :list="list" @cell-enter="echo"></ui-table>
+        <br><br>
+        <p>鼠标移入单元格触发事件</p>
+    </div>
+    >script
+    {
+        data : {
+            list : window.demodata.list
+        },
+        methods : {
+            echo : function (rowNum, colKey) {
+                console.log('demo6.console1', `cell-enter event!`, rowNum, colKey);
+            }
+        }
+    }
+    :::
+
+    :::vue
+    @name:cell-leave
+    ---
+    #event
+    >event-desc
+    当鼠标移出单元格时触发。
+    >event-args
+    |rowNum|鼠标移出单元格所在的行号(从`0`开始)|`Number`|
+    |colKey|鼠标移出单元格所在列的`key`|`String`|
+    ---
+    #demo
+    >tpl
+    <div>
+        <ui-table ref="demo7" :list="list" @cell-leave="echo"></ui-table>
+        <br><br>
+        <p>鼠标移出单元格触发事件</p>
+    </div>
+    >script
+    {
+        data : {
+            list : window.demodata.list
+        },
+        methods : {
+            echo : function (rowNum, colKey) {
+                console.log('demo7.console1', `cell-leave event!`, rowNum, colKey);
             }
         }
     }

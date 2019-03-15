@@ -50,7 +50,11 @@
             :_relative-time="conf.relative"
 
             @value-change="_syncFromInputToRoot(0)"
-            @input-blur="_syncFromInputToRootIsBlur"
+            @input-blur="_inputBlur"
+            @input-focus="_inputFocus"
+            @blur="_blur"
+            @focus="_focus"
+            @pick-done="_pickDone"
         >
             <div slot="timepicker">
                 <morning-timepicker
@@ -971,6 +975,32 @@ export default {
             }
 
             return value;
+
+        },
+        _inputFocus : function () {
+
+            this.$emit('input-focus');
+
+        },
+        _inputBlur : function (evt) {
+            
+            this._syncFromInputToRootIsBlur(evt);
+            this.$emit('input-blur');
+
+        },
+        _focus : function () {
+
+            this.$emit('focus');
+
+        },
+        _blur : function () {
+
+            this.$emit('blur');
+
+        },
+        _pickDone : function () {
+
+            this.$emit('pick-done');
 
         },
         getDate : function () {

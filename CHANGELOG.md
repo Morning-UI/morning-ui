@@ -1,5 +1,34 @@
 # CHANGELOG
 
+## 0.12.8
+
+`2019年3月15日`
+
+#### 新特性
+
+- `ui-table`新增`highlight-last-click`配置，开启后会高亮最后点击的行
+- `ui-table`新增`multi-select`配置，支持多选行
+- `ui-table`新增`fixed-title-row`配置，可固定标题行
+- `ui-table`新增`getHighlightRow()`、`setHighlightRow()`、`cleanLastClickRow()`方法，可分别用于获取/设置最后一次点击行号及清空
+- `ui-table`新增`getCheckedRow()`方法，可获取选中的行号
+- `ui-table`新增`cell-click`、`cell-enter`、`cell-leave`事件，分别在点击单元格、鼠标移入/移出单元格触发
+- `ui-table`新增`xl`、`l`、`s`、`xs`四种尺寸
+- `ui-table`支持通过`slot=“header”`来自定义表头内容
+- `ui-tab`的`switch`事件的回调函数新增一个`name`参数，可用于获取当前所在的标签页名字
+- `ui-datetimepicker`新增`input-blur`、`input-focus`、`blur`、`focus`事件
+- `ui-datepicker`和`ui-datetimepicker`新增`pick-done`事件
+
+#### 改进
+
+- 优化`ui-table`的固定标题列的样式
+- `ui-checkbox`的`parent`配置现在支持多个复选框组件关联一个父选项
+
+#### 修复
+
+- 修复`ui-datepicker`的`blur`和`focus`事件在开启`is-range`配置且在两个输入框间切换时会触发两次的问题
+- 修复`ui-menu`的在`color=black`且使用`.block`的情况下，选中样式错误的问题
+- 修复`ui-menu`动态切换`side-collapse`时的一个样式问题
+
 ## 0.12.7
 
 `2019年3月12日`
@@ -17,7 +46,7 @@
 
 - `ui-dropdown`组件的`auto-close`配置改名为`done-hidden`，使得语意更准确（`done-hidden`为完成后消失，`auto-close`为点击外部区域关闭）
 - `ui-lowercase`、`ui-uppercase`、`ui-capitalize`已经不再推荐使用
-- 新增图标( mo-icon-tag-f / mo-icon-drawer-full / mo-icon-drawer-empty)
+- 新增图标( `mo-icon-user-o` )
 
 __升级注意事项__
 

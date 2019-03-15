@@ -1,7 +1,7 @@
 <template>
     <mor-table
         :_uiid="uiid"
-        :class="[colorClass, moreClass]"
+        :class="[sizeClass, colorClass, moreClass]"
 
         :list="list"
         :empty-cell-value="emptyCellValue"
@@ -12,6 +12,7 @@
         :align="align"
         :show-col-name="showColName"
         :fixed-title-col="fixedTitleCol"
+        :fixed-title-row="fixedTitleRow"
         :title-col-width="titleColWidth"
         :col-set="colSet"
         :row-set="rowSet"
@@ -19,15 +20,23 @@
         :export-csv="exportCsv"
         :csv-name="csvName"
         :multi-sort="multiSort"
+        :highlight-row="highlightRow"
+        :multi-select="multiSelect"
+
+        @scroll="_tableScroll"
     >
 
-    <template v-if="conf.title || conf.exportCsv">
+    <template v-if="conf.title || conf.exportCsv || $slots.header">
         <header>
             <h1 v-if="conf.title">{{conf.title}}</h1>
 
-            <div class="action">
-                <morning-btn v-if="conf.exportCsv" color="success" size="xs" @emit="_exportCsv">导出</morning-btn>
+            <div class="custom-header">
+                <slot name="header"></slot>
+                <div class="action">
+                    <morning-btn v-if="conf.exportCsv" color="success" :size="conf.size" @emit="_exportCsv">导出</morning-btn>
+                </div>
             </div>
+
         </header>
     </template>
 
@@ -40,31 +49,46 @@
                         :data="data"
                         :col-set-map="colSetMap"
                         :sort-col="_sortCol"
+                        :uiid="uiid"
                         @row-mouseover="_rowOver"
                         @row-mouseout="_rowOut"
+                        @row-click="_rowClick"
+                        @cell-click="_cellClick"
+                        @cell-enter="_cellEnter"
+                        @cell-leave="_cellLeave"
                     ></normal-table>
                 </td>
-                <td>
+                <td class="title-td">
                     <title-table
                         :conf="conf"
                         :data="data"
                         :col-set-map="colSetMap"
                         :sort-col="_sortCol"
+                        :uiid="uiid"
                         @row-mouseover="_rowOver"
                         @row-mouseout="_rowOut"
+                        @row-click="_rowClick"
+                        @cell-click="_cellClick"
+                        @cell-enter="_cellEnter"
+                        @cell-leave="_cellLeave"
                     ></title-table>
                 </td>
             </tr>
 
             <tr v-else>
-                <td>
+                <td class="title-td">
                     <title-table
                         :conf="conf"
                         :data="data"
                         :col-set-map="colSetMap"
                         :sort-col="_sortCol"
+                        :uiid="uiid"
                         @row-mouseover="_rowOver"
                         @row-mouseout="_rowOut"
+                        @row-click="_rowClick"
+                        @cell-click="_cellClick"
+                        @cell-enter="_cellEnter"
+                        @cell-leave="_cellLeave"
                     ></title-table>
                 </td>
                 <td>
@@ -73,8 +97,13 @@
                         :data="data"
                         :col-set-map="colSetMap"
                         :sort-col="_sortCol"
+                        :uiid="uiid"
                         @row-mouseover="_rowOver"
                         @row-mouseout="_rowOut"
+                        @row-click="_rowClick"
+                        @cell-click="_cellClick"
+                        @cell-enter="_cellEnter"
+                        @cell-leave="_cellLeave"
                     ></normal-table>
                 </td>
             </tr>
@@ -147,6 +176,10 @@ export default {
             default : 'left',
             validator : (value => ['left', 'right', 'left-fixed', 'right-fixed'].indexOf(value) !== -1)
         },
+        fixedTitleRow : {
+            type : Boolean,
+            default : false
+        },
         titleColWidth : {
             type : Number,
             default : 0
@@ -174,6 +207,14 @@ export default {
         multiSort : {
             type : Boolean,
             default : false
+        },
+        highlightRow : {
+            type : Boolean,
+            default : false
+        },
+        multiSelect : {
+            type : Boolean,
+            default : false
         }
     },
     computed : {
@@ -189,13 +230,16 @@ export default {
                 align : this.align,
                 showColName : this.showColName,
                 fixedTitleCol : this.fixedTitleCol,
+                fixedTitleRow : this.fixedTitleRow,
                 titleColWidth : this.titleColWidth,
                 colSet : this.colSet,
                 rowSet : this.rowSet,
                 cellSet : this.cellSet,
                 exportCsv : this.exportCsv,
                 csvName : this.csvName,
-                multiSort : this.multiSort
+                multiSort : this.multiSort,
+                highlightRow : this.highlightRow,
+                multiSelect : this.multiSelect
             };
 
         },
@@ -238,7 +282,8 @@ export default {
                 titleRows : [],
                 listDataJson : '[]',
                 sort : {},
-                sortCol : []
+                sortCol : [],
+                rowChecked : {}
             }
         };
 
@@ -387,7 +432,11 @@ export default {
                     
                     for (let className of $cell.classList.values()) {
 
-                        $cell.classList.remove(className);
+                        if (/^(cell-align-|cco-|cell-disabled)/.test(className)) {
+    
+                            $cell.classList.remove(className);
+
+                        }
 
                     }
 
@@ -697,11 +746,12 @@ export default {
 
             let $titleTable = this.$el.querySelector('.title-table');
             let $normalTable = this.$el.querySelector('.normal-table');
+            let $wrapTable = this.$el.querySelector('.wrap');
 
             $normalTable.parentElement.style.maxWidth = '';
             $titleTable.parentElement.style.maxWidth = '';
-            $normalTable.parentElement.style.overflowX = '';
-            $titleTable.parentElement.style.overflowX = '';
+            // $normalTable.parentElement.style.overflowX = '';
+            // $titleTable.parentElement.style.overflowX = '';
             $normalTable.parentElement.style.width = '';
             $titleTable.parentElement.style.width = '';
             $normalTable.parentElement.style.position = '';
@@ -714,6 +764,7 @@ export default {
             $titleTable.style.borderLeft = '';
             $normalTable.style.borderRight = '';
             $titleTable.style.borderRight = '';
+            $wrapTable.style.width = '';
             
             let titleColWidth = $titleTable.clientWidth;
             let elWidth = this.$el.clientWidth;
@@ -721,7 +772,7 @@ export default {
             if (/fixed/.test(this.conf.fixedTitleCol)) {
 
                 $normalTable.parentElement.style.maxWidth = `${elWidth - titleColWidth}px`;
-                $normalTable.parentElement.style.overflowX = 'auto';
+                // $normalTable.parentElement.style.overflowX = 'auto';
                 
                 $titleTable.parentElement.style.width = `${titleColWidth}px`;
                 $titleTable.parentElement.style.position = 'absolute';
@@ -737,6 +788,12 @@ export default {
                     $titleTable.parentElement.style.right = 0;
 
                 }
+
+                this.Vue.nextTick(() => {
+
+                    $wrapTable.style.width = `${$normalTable.offsetWidth}px`;
+
+                });
 
             }
 
@@ -781,6 +838,11 @@ export default {
 
             $titleTr.classList.remove('hover');
             $normalTr.classList.remove('hover');
+
+        },
+        _rowClick : function (line) {
+
+            this.setHighlightRow(line);
 
         },
         _csvEncode : function (str) {
@@ -1058,6 +1120,124 @@ export default {
             this.data.titleRows = titleRows;
             this.data.normalRows = normalRows;
             this.data.listDataJson = JSON.stringify(list);
+
+        },
+        _tableScroll : function (evt) {
+
+            let $titleTable = this.$el.querySelector('.title-table');
+            let $header = this.$el.querySelector('header');
+            
+            $titleTable.style.transform = `translateX(${evt.srcElement.scrollLeft}px)`;
+
+            if ($header) {
+    
+                $header.style.transform = `translateX(${evt.srcElement.scrollLeft}px)`;
+
+            }
+
+            if (this.conf.fixedTitleRow) {
+
+                let $normalHeader = this.$el.querySelector('.normal-table > thead');
+                let $titleHeader = this.$el.querySelector('.title-table > thead');
+                
+                $normalHeader.style.transform = `translateY(${evt.srcElement.scrollTop}px)`;
+                $titleHeader.style.transform = `translateY(${evt.srcElement.scrollTop}px)`;
+
+            }
+
+        },
+        _cellClick : function (line, key) {
+
+            this.$emit('cell-click', Number(line), key);
+
+        },
+        _cellEnter : function (line, key) {
+
+            this.$emit('cell-enter', Number(line), key);
+
+        },
+        _cellLeave : function (line, key) {
+
+            this.$emit('cell-leave', Number(line), key);
+
+        },
+        getHighlightRow : function () {
+
+            if (!this.conf.highlightRow) {
+
+                return -1;
+
+            }
+
+            let $lastClickNormalTr = this.$el.querySelector('.normal-table tbody tr.last-click');
+            let $normalTr = this.$el.querySelectorAll('.normal-table tbody tr');
+
+            return Array.from($normalTr).indexOf($lastClickNormalTr);
+
+        },
+        setHighlightRow : function (rowNum) {
+
+            if (!this.conf.highlightRow) {
+
+                return this;
+
+            }
+
+            this.cleanHighlightRow();
+
+            let $titleTr = this.$el.querySelectorAll('.title-table tbody tr')[rowNum];
+            let $normalTr = this.$el.querySelectorAll('.normal-table tbody tr')[rowNum];
+
+            if ($titleTr) {
+
+                $titleTr.classList.add('last-click');
+
+            }
+
+            if ($normalTr) {
+
+                $normalTr.classList.add('last-click');
+
+            }
+
+            return this;
+
+        },
+        cleanHighlightRow : function () {
+
+            let $lastClickTitleTr = this.$el.querySelector('.title-table tbody tr.last-click');
+            let $lastClickNormalTr = this.$el.querySelector('.normal-table tbody tr.last-click');
+
+            if ($lastClickTitleTr) {
+                
+                $lastClickTitleTr.classList.remove('last-click');
+
+            }
+
+            if ($lastClickNormalTr) {
+                
+                $lastClickNormalTr.classList.remove('last-click');
+
+            }
+
+            return this;
+
+        },
+        getCheckedRows : function () {
+
+            let result = [];
+
+            for (let line of Object.keys(this.data.rowChecked)) {
+
+                if (this.data.rowChecked[line]) {
+
+                    result.push(+line);
+
+                }
+
+            }
+
+            return result;
 
         }
     },

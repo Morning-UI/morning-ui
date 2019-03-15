@@ -31423,32 +31423,50 @@ mor-table {
   box-sizing: border-box;
   border-color: #e3e3e3 !important;
 }
+mor-table::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+mor-table::-webkit-scrollbar-thumb {
+  width: 5px;
+  height: 5px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
 mor-table table {
   border-spacing: 0;
   border-collapse: collapse;
+  min-width: 100%;
 }
 mor-table table td {
   padding: initial;
 }
 mor-table header {
   position: relative;
-  height: 52px;
 }
 mor-table header h1 {
   margin: 0 !important;
-  font-size: 24px !important;
   font-weight: 400 !important;
   text-align: left;
-  padding: 8px 16px !important;
+  max-width: 40%;
+  position: absolute;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 mor-table header .action {
+  margin-left: 8px;
+}
+mor-table header .custom-header {
+  max-width: 60%;
   position: absolute;
-  top: 13px;
-  right: 13px;
+  right: 10px;
+  display: flex;
+  align-items: center;
 }
 mor-table > .wrap {
   overflow: hidden !important;
-  width: 100% !important;
   border-width: 0 !important;
 }
 mor-table > .wrap > tbody > tr > td::-webkit-scrollbar {
@@ -31465,8 +31483,11 @@ mor-table > .wrap > tbody > tr > td::-webkit-scrollbar-thumb {
 mor-table > .wrap > tbody > tr > td:first-child {
   z-index: 2;
 }
+mor-table > .wrap > tbody > tr > td.title-td {
+  position: relative;
+  z-index: 3;
+}
 mor-table > .wrap tr > td.no-data {
-  padding: 10px !important;
   min-width: 50px;
   overflow: hidden;
   word-break: break-all;
@@ -31477,7 +31498,6 @@ mor-table .table {
   min-width: 100%;
   text-align: center;
   color: #666;
-  font-size: 14px;
   margin: 0;
   box-sizing: content-box !important;
   border-collapse: separate;
@@ -31494,7 +31514,6 @@ mor-table .table tr {
 }
 mor-table .table tr th {
   font-weight: 400;
-  padding: 10px !important;
   line-height: 1.2em;
   height: 20px;
   overflow: hidden;
@@ -31503,7 +31522,6 @@ mor-table .table tr th {
   border-bottom-style: solid;
 }
 mor-table .table tr td {
-  padding: 10px !important;
   min-width: 50px;
   overflow: hidden;
   word-break: break-all;
@@ -31517,6 +31535,19 @@ mor-table .table .th-sort .mo-icon:hover {
   cursor: pointer;
   opacity: 0.7;
 }
+mor-table .table .table-checked {
+  min-width: unset;
+  width: 1px;
+}
+mor-table .table .table-checked mor-checkbox {
+  min-width: unset;
+}
+mor-table .table .table-checked mor-checkbox > .il label {
+  margin: 0;
+}
+mor-table .table .table-checked mor-checkbox > .il label .box {
+  margin: 0;
+}
 mor-table .title-table {
   border-bottom-left-radius: 3px;
   border-top-left-radius: 3px;
@@ -31527,17 +31558,18 @@ mor-table .normal-table {
 mor-table.title-col-left-fixed,
 mor-table.title-col-right-fixed {
   position: relative;
-  overflow: hidden;
 }
 mor-table.title-col-right .title-table,
 mor-table.title-col-right-fixed .title-table {
   border-left-style: solid;
-  border-left-width: 2px;
+  border-left-width: 1px;
+  box-shadow: -2px 0 3px rgba(0, 0, 0, 0.08);
 }
 mor-table.title-col-left .title-table,
 mor-table.title-col-left-fixed .title-table {
   border-right-style: solid;
-  border-right-width: 2px;
+  border-right-width: 1px;
+  box-shadow: 2px 0 3px rgba(0, 0, 0, 0.08);
 }
 mor-table.has-title-col .normal-table {
   border-radius: 0 3px 3px 0;
@@ -31575,6 +31607,126 @@ mor-table.horizontal-border .table tr:first-child th,
 mor-table.horizontal-border .table tr:first-child td {
   border-top: none !important;
 }
+mor-table.si-xl > .wrap tr > td.no-data {
+  padding: 18px !important;
+}
+mor-table.si-xl header {
+  height: 96px;
+}
+mor-table.si-xl header h1 {
+  font-size: 32px !important;
+  padding: 16px 24px !important;
+  line-height: 64px;
+  height: 96px;
+}
+mor-table.si-xl header .custom-header {
+  height: 96px;
+}
+mor-table.si-xl .table {
+  font-size: 18px;
+}
+mor-table.si-xl .table tr th {
+  padding: 18px !important;
+}
+mor-table.si-xl .table tr td {
+  padding: 18px !important;
+}
+mor-table.si-l > .wrap tr > td.no-data {
+  padding: 14px !important;
+}
+mor-table.si-l header {
+  height: 72px;
+}
+mor-table.si-l header h1 {
+  font-size: 28px !important;
+  padding: 12px 20px !important;
+  line-height: 48px;
+  height: 72px;
+}
+mor-table.si-l header .custom-header {
+  height: 72px;
+}
+mor-table.si-l .table {
+  font-size: 16px;
+}
+mor-table.si-l .table tr th {
+  padding: 14px !important;
+}
+mor-table.si-l .table tr td {
+  padding: 14px !important;
+}
+mor-table.si-m > .wrap tr > td.no-data {
+  padding: 10px !important;
+}
+mor-table.si-m header {
+  height: 52px;
+}
+mor-table.si-m header h1 {
+  font-size: 24px !important;
+  padding: 8px 16px !important;
+  line-height: 36px;
+  height: 52px;
+}
+mor-table.si-m header .custom-header {
+  height: 52px;
+}
+mor-table.si-m .table {
+  font-size: 14px;
+}
+mor-table.si-m .table tr th {
+  padding: 10px !important;
+}
+mor-table.si-m .table tr td {
+  padding: 10px !important;
+}
+mor-table.si-s > .wrap tr > td.no-data {
+  padding: 8px !important;
+}
+mor-table.si-s header {
+  height: 40px;
+}
+mor-table.si-s header h1 {
+  font-size: 18px !important;
+  padding: 6px 12px !important;
+  line-height: 28px;
+  height: 40px;
+}
+mor-table.si-s header .custom-header {
+  height: 40px;
+}
+mor-table.si-s .table {
+  font-size: 13px;
+}
+mor-table.si-s .table tr th {
+  padding: 8px !important;
+}
+mor-table.si-s .table tr td {
+  padding: 8px !important;
+}
+mor-table.si-xs > .wrap tr > td.no-data {
+  padding: 3px !important;
+}
+mor-table.si-xs header {
+  height: 30px;
+}
+mor-table.si-xs header h1 {
+  font-size: 14px !important;
+  padding: 4px 8px !important;
+  line-height: 22px;
+  height: 30px;
+}
+mor-table.si-xs header .custom-header {
+  height: 30px;
+}
+mor-table.si-xs .table {
+  font-size: 12px;
+}
+mor-table.si-xs .table tr th {
+  padding: 3px !important;
+}
+mor-table.si-xs .table tr td {
+  padding: 3px !important;
+}
 mor-table.co-t {
   border-color: #be0c2b !important;
 }
@@ -31604,8 +31756,19 @@ mor-table.co-t.ts-zp .co-style tr:nth-child(2n) td {
 mor-table.co-t.ts-zp .table tr:hover td,
 mor-table.co-t .table tr:hover td,
 mor-table.co-t.ts-zp .table tr.hover td,
-mor-table.co-t .table tr.hover td {
+mor-table.co-t .table tr.hover td,
+mor-table.co-t.ts-zp .table tr.last-click td,
+mor-table.co-t .table tr.last-click td {
   background-color: #be0c2b;
+  border-color: #be0c2b !important;
+}
+mor-table.co-t.ts-zp .table tr:hover + tr > td,
+mor-table.co-t .table tr:hover + tr > td,
+mor-table.co-t.ts-zp .table tr.hover + tr > td,
+mor-table.co-t .table tr.hover + tr > td,
+mor-table.co-t.ts-zp .table tr.last-click + tr > td,
+mor-table.co-t .table tr.last-click + tr > td {
+  border-top-color: #be0c2b !important;
 }
 mor-table.co-t mor-empty .empty-image i,
 mor-table.co-t mor-empty .empty-image i.iconfont,
@@ -31646,8 +31809,19 @@ mor-table.co-lt.ts-zp .co-style tr:nth-child(2n) td {
 mor-table.co-lt.ts-zp .table tr:hover td,
 mor-table.co-lt .table tr:hover td,
 mor-table.co-lt.ts-zp .table tr.hover td,
-mor-table.co-lt .table tr.hover td {
+mor-table.co-lt .table tr.hover td,
+mor-table.co-lt.ts-zp .table tr.last-click td,
+mor-table.co-lt .table tr.last-click td {
   background-color: #dd0b31;
+  border-color: #dd0b31 !important;
+}
+mor-table.co-lt.ts-zp .table tr:hover + tr > td,
+mor-table.co-lt .table tr:hover + tr > td,
+mor-table.co-lt.ts-zp .table tr.hover + tr > td,
+mor-table.co-lt .table tr.hover + tr > td,
+mor-table.co-lt.ts-zp .table tr.last-click + tr > td,
+mor-table.co-lt .table tr.last-click + tr > td {
+  border-top-color: #dd0b31 !important;
 }
 mor-table.co-lt mor-empty .empty-image i,
 mor-table.co-lt mor-empty .empty-image i.iconfont,
@@ -31688,8 +31862,19 @@ mor-table.co-dt.ts-zp .co-style tr:nth-child(2n) td {
 mor-table.co-dt.ts-zp .table tr:hover td,
 mor-table.co-dt .table tr:hover td,
 mor-table.co-dt.ts-zp .table tr.hover td,
-mor-table.co-dt .table tr.hover td {
+mor-table.co-dt .table tr.hover td,
+mor-table.co-dt.ts-zp .table tr.last-click td,
+mor-table.co-dt .table tr.last-click td {
   background-color: #7b1427;
+  border-color: #7b1427 !important;
+}
+mor-table.co-dt.ts-zp .table tr:hover + tr > td,
+mor-table.co-dt .table tr:hover + tr > td,
+mor-table.co-dt.ts-zp .table tr.hover + tr > td,
+mor-table.co-dt .table tr.hover + tr > td,
+mor-table.co-dt.ts-zp .table tr.last-click + tr > td,
+mor-table.co-dt .table tr.last-click + tr > td {
+  border-top-color: #7b1427 !important;
 }
 mor-table.co-dt mor-empty .empty-image i,
 mor-table.co-dt mor-empty .empty-image i.iconfont,
@@ -31730,8 +31915,19 @@ mor-table.co-s.ts-zp .co-style tr:nth-child(2n) td {
 mor-table.co-s.ts-zp .table tr:hover td,
 mor-table.co-s .table tr:hover td,
 mor-table.co-s.ts-zp .table tr.hover td,
-mor-table.co-s .table tr.hover td {
+mor-table.co-s .table tr.hover td,
+mor-table.co-s.ts-zp .table tr.last-click td,
+mor-table.co-s .table tr.last-click td {
   background-color: #256534;
+  border-color: #256534 !important;
+}
+mor-table.co-s.ts-zp .table tr:hover + tr > td,
+mor-table.co-s .table tr:hover + tr > td,
+mor-table.co-s.ts-zp .table tr.hover + tr > td,
+mor-table.co-s .table tr.hover + tr > td,
+mor-table.co-s.ts-zp .table tr.last-click + tr > td,
+mor-table.co-s .table tr.last-click + tr > td {
+  border-top-color: #256534 !important;
 }
 mor-table.co-s mor-empty .empty-image i,
 mor-table.co-s mor-empty .empty-image i.iconfont,
@@ -31772,8 +31968,19 @@ mor-table.co-w.ts-zp .co-style tr:nth-child(2n) td {
 mor-table.co-w.ts-zp .table tr:hover td,
 mor-table.co-w .table tr:hover td,
 mor-table.co-w.ts-zp .table tr.hover td,
-mor-table.co-w .table tr.hover td {
+mor-table.co-w .table tr.hover td,
+mor-table.co-w.ts-zp .table tr.last-click td,
+mor-table.co-w .table tr.last-click td {
   background-color: #b06d0f;
+  border-color: #b06d0f !important;
+}
+mor-table.co-w.ts-zp .table tr:hover + tr > td,
+mor-table.co-w .table tr:hover + tr > td,
+mor-table.co-w.ts-zp .table tr.hover + tr > td,
+mor-table.co-w .table tr.hover + tr > td,
+mor-table.co-w.ts-zp .table tr.last-click + tr > td,
+mor-table.co-w .table tr.last-click + tr > td {
+  border-top-color: #b06d0f !important;
 }
 mor-table.co-w mor-empty .empty-image i,
 mor-table.co-w mor-empty .empty-image i.iconfont,
@@ -31814,8 +32021,19 @@ mor-table.co-d.ts-zp .co-style tr:nth-child(2n) td {
 mor-table.co-d.ts-zp .table tr:hover td,
 mor-table.co-d .table tr:hover td,
 mor-table.co-d.ts-zp .table tr.hover td,
-mor-table.co-d .table tr.hover td {
+mor-table.co-d .table tr.hover td,
+mor-table.co-d.ts-zp .table tr.last-click td,
+mor-table.co-d .table tr.last-click td {
   background-color: #712116;
+  border-color: #712116 !important;
+}
+mor-table.co-d.ts-zp .table tr:hover + tr > td,
+mor-table.co-d .table tr:hover + tr > td,
+mor-table.co-d.ts-zp .table tr.hover + tr > td,
+mor-table.co-d .table tr.hover + tr > td,
+mor-table.co-d.ts-zp .table tr.last-click + tr > td,
+mor-table.co-d .table tr.last-click + tr > td {
+  border-top-color: #712116 !important;
 }
 mor-table.co-d mor-empty .empty-image i,
 mor-table.co-d mor-empty .empty-image i.iconfont,
@@ -31856,8 +32074,19 @@ mor-table.co-p.ts-zp .co-style tr:nth-child(2n) td {
 mor-table.co-p.ts-zp .table tr:hover td,
 mor-table.co-p .table tr:hover td,
 mor-table.co-p.ts-zp .table tr.hover td,
-mor-table.co-p .table tr.hover td {
+mor-table.co-p .table tr.hover td,
+mor-table.co-p.ts-zp .table tr.last-click td,
+mor-table.co-p .table tr.last-click td {
   background-color: #103f62;
+  border-color: #103f62 !important;
+}
+mor-table.co-p.ts-zp .table tr:hover + tr > td,
+mor-table.co-p .table tr:hover + tr > td,
+mor-table.co-p.ts-zp .table tr.hover + tr > td,
+mor-table.co-p .table tr.hover + tr > td,
+mor-table.co-p.ts-zp .table tr.last-click + tr > td,
+mor-table.co-p .table tr.last-click + tr > td {
+  border-top-color: #103f62 !important;
 }
 mor-table.co-p mor-empty .empty-image i,
 mor-table.co-p mor-empty .empty-image i.iconfont,
@@ -31898,8 +32127,19 @@ mor-table.co-m.ts-zp .co-style tr:nth-child(2n) td {
 mor-table.co-m.ts-zp .table tr:hover td,
 mor-table.co-m .table tr:hover td,
 mor-table.co-m.ts-zp .table tr.hover td,
-mor-table.co-m .table tr.hover td {
+mor-table.co-m .table tr.hover td,
+mor-table.co-m.ts-zp .table tr.last-click td,
+mor-table.co-m .table tr.last-click td {
   background-color: #696969;
+  border-color: #696969 !important;
+}
+mor-table.co-m.ts-zp .table tr:hover + tr > td,
+mor-table.co-m .table tr:hover + tr > td,
+mor-table.co-m.ts-zp .table tr.hover + tr > td,
+mor-table.co-m .table tr.hover + tr > td,
+mor-table.co-m.ts-zp .table tr.last-click + tr > td,
+mor-table.co-m .table tr.last-click + tr > td {
+  border-top-color: #696969 !important;
 }
 mor-table.co-m mor-empty .empty-image i,
 mor-table.co-m mor-empty .empty-image i.iconfont,
@@ -31940,8 +32180,19 @@ mor-table.co-i.ts-zp .co-style tr:nth-child(2n) td {
 mor-table.co-i.ts-zp .table tr:hover td,
 mor-table.co-i .table tr:hover td,
 mor-table.co-i.ts-zp .table tr.hover td,
-mor-table.co-i .table tr.hover td {
+mor-table.co-i .table tr.hover td,
+mor-table.co-i.ts-zp .table tr.last-click td,
+mor-table.co-i .table tr.last-click td {
   background-color: #01353c;
+  border-color: #01353c !important;
+}
+mor-table.co-i.ts-zp .table tr:hover + tr > td,
+mor-table.co-i .table tr:hover + tr > td,
+mor-table.co-i.ts-zp .table tr.hover + tr > td,
+mor-table.co-i .table tr.hover + tr > td,
+mor-table.co-i.ts-zp .table tr.last-click + tr > td,
+mor-table.co-i .table tr.last-click + tr > td {
+  border-top-color: #01353c !important;
 }
 mor-table.co-i mor-empty .empty-image i,
 mor-table.co-i mor-empty .empty-image i.iconfont,
@@ -31982,8 +32233,19 @@ mor-table.co-bk.ts-zp .co-style tr:nth-child(2n) td {
 mor-table.co-bk.ts-zp .table tr:hover td,
 mor-table.co-bk .table tr:hover td,
 mor-table.co-bk.ts-zp .table tr.hover td,
-mor-table.co-bk .table tr.hover td {
-  background-color: #17212D;
+mor-table.co-bk .table tr.hover td,
+mor-table.co-bk.ts-zp .table tr.last-click td,
+mor-table.co-bk .table tr.last-click td {
+  background-color: #202d3e;
+  border-color: #202d3e !important;
+}
+mor-table.co-bk.ts-zp .table tr:hover + tr > td,
+mor-table.co-bk .table tr:hover + tr > td,
+mor-table.co-bk.ts-zp .table tr.hover + tr > td,
+mor-table.co-bk .table tr.hover + tr > td,
+mor-table.co-bk.ts-zp .table tr.last-click + tr > td,
+mor-table.co-bk .table tr.last-click + tr > td {
+  border-top-color: #202d3e !important;
 }
 mor-table.co-bk mor-empty .empty-image i,
 mor-table.co-bk mor-empty .empty-image i.iconfont,
@@ -32024,8 +32286,19 @@ mor-table.co-lbk.ts-zp .co-style tr:nth-child(2n) td {
 mor-table.co-lbk.ts-zp .table tr:hover td,
 mor-table.co-lbk .table tr:hover td,
 mor-table.co-lbk.ts-zp .table tr.hover td,
-mor-table.co-lbk .table tr.hover td {
-  background-color: #303C4B;
+mor-table.co-lbk .table tr.hover td,
+mor-table.co-lbk.ts-zp .table tr.last-click td,
+mor-table.co-lbk .table tr.last-click td {
+  background-color: #3a485b;
+  border-color: #3a485b !important;
+}
+mor-table.co-lbk.ts-zp .table tr:hover + tr > td,
+mor-table.co-lbk .table tr:hover + tr > td,
+mor-table.co-lbk.ts-zp .table tr.hover + tr > td,
+mor-table.co-lbk .table tr.hover + tr > td,
+mor-table.co-lbk.ts-zp .table tr.last-click + tr > td,
+mor-table.co-lbk .table tr.last-click + tr > td {
+  border-top-color: #3a485b !important;
 }
 mor-table.co-lbk mor-empty .empty-image i,
 mor-table.co-lbk mor-empty .empty-image i.iconfont,
@@ -32066,8 +32339,19 @@ mor-table.co-elbk.ts-zp .co-style tr:nth-child(2n) td {
 mor-table.co-elbk.ts-zp .table tr:hover td,
 mor-table.co-elbk .table tr:hover td,
 mor-table.co-elbk.ts-zp .table tr.hover td,
-mor-table.co-elbk .table tr.hover td {
-  background-color: #45505C;
+mor-table.co-elbk .table tr.hover td,
+mor-table.co-elbk.ts-zp .table tr.last-click td,
+mor-table.co-elbk .table tr.last-click td {
+  background-color: #4c5865;
+  border-color: #4c5865 !important;
+}
+mor-table.co-elbk.ts-zp .table tr:hover + tr > td,
+mor-table.co-elbk .table tr:hover + tr > td,
+mor-table.co-elbk.ts-zp .table tr.hover + tr > td,
+mor-table.co-elbk .table tr.hover + tr > td,
+mor-table.co-elbk.ts-zp .table tr.last-click + tr > td,
+mor-table.co-elbk .table tr.last-click + tr > td {
+  border-top-color: #4c5865 !important;
 }
 mor-table.co-elbk mor-empty .empty-image i,
 mor-table.co-elbk mor-empty .empty-image i.iconfont,
@@ -32108,8 +32392,19 @@ mor-table.co-bu.ts-zp .co-style tr:nth-child(2n) td {
 mor-table.co-bu.ts-zp .table tr:hover td,
 mor-table.co-bu .table tr:hover td,
 mor-table.co-bu.ts-zp .table tr.hover td,
-mor-table.co-bu .table tr.hover td {
+mor-table.co-bu .table tr.hover td,
+mor-table.co-bu.ts-zp .table tr.last-click td,
+mor-table.co-bu .table tr.last-click td {
   background-color: #424c5b;
+  border-color: #424c5b !important;
+}
+mor-table.co-bu.ts-zp .table tr:hover + tr > td,
+mor-table.co-bu .table tr:hover + tr > td,
+mor-table.co-bu.ts-zp .table tr.hover + tr > td,
+mor-table.co-bu .table tr.hover + tr > td,
+mor-table.co-bu.ts-zp .table tr.last-click + tr > td,
+mor-table.co-bu .table tr.last-click + tr > td {
+  border-top-color: #424c5b !important;
 }
 mor-table.co-bu mor-empty .empty-image i,
 mor-table.co-bu mor-empty .empty-image i.iconfont,
@@ -32148,8 +32443,19 @@ mor-table.co-lbu.ts-zp .co-style tr:nth-child(2n) td {
 mor-table.co-lbu.ts-zp .table tr:hover td,
 mor-table.co-lbu .table tr:hover td,
 mor-table.co-lbu.ts-zp .table tr.hover td,
-mor-table.co-lbu .table tr.hover td {
+mor-table.co-lbu .table tr.hover td,
+mor-table.co-lbu.ts-zp .table tr.last-click td,
+mor-table.co-lbu .table tr.last-click td {
   background-color: #4f5c6f;
+  border-color: #4f5c6f !important;
+}
+mor-table.co-lbu.ts-zp .table tr:hover + tr > td,
+mor-table.co-lbu .table tr:hover + tr > td,
+mor-table.co-lbu.ts-zp .table tr.hover + tr > td,
+mor-table.co-lbu .table tr.hover + tr > td,
+mor-table.co-lbu.ts-zp .table tr.last-click + tr > td,
+mor-table.co-lbu .table tr.last-click + tr > td {
+  border-top-color: #4f5c6f !important;
 }
 mor-table.co-lbu mor-empty .empty-image i,
 mor-table.co-lbu mor-empty .empty-image i.iconfont,
@@ -32188,8 +32494,19 @@ mor-table.co-elbu.ts-zp .co-style tr:nth-child(2n) td {
 mor-table.co-elbu.ts-zp .table tr:hover td,
 mor-table.co-elbu .table tr:hover td,
 mor-table.co-elbu.ts-zp .table tr.hover td,
-mor-table.co-elbu .table tr.hover td {
+mor-table.co-elbu .table tr.hover td,
+mor-table.co-elbu.ts-zp .table tr.last-click td,
+mor-table.co-elbu .table tr.last-click td {
   background-color: #61728a;
+  border-color: #61728a !important;
+}
+mor-table.co-elbu.ts-zp .table tr:hover + tr > td,
+mor-table.co-elbu .table tr:hover + tr > td,
+mor-table.co-elbu.ts-zp .table tr.hover + tr > td,
+mor-table.co-elbu .table tr.hover + tr > td,
+mor-table.co-elbu.ts-zp .table tr.last-click + tr > td,
+mor-table.co-elbu .table tr.last-click + tr > td {
+  border-top-color: #61728a !important;
 }
 mor-table.co-elbu mor-empty .empty-image i,
 mor-table.co-elbu mor-empty .empty-image i.iconfont,
@@ -32228,8 +32545,19 @@ mor-table.co-si.ts-zp .co-style tr:nth-child(2n) td {
 mor-table.co-si.ts-zp .table tr:hover td,
 mor-table.co-si .table tr:hover td,
 mor-table.co-si.ts-zp .table tr.hover td,
-mor-table.co-si .table tr.hover td {
+mor-table.co-si .table tr.hover td,
+mor-table.co-si.ts-zp .table tr.last-click td,
+mor-table.co-si .table tr.last-click td {
   background-color: #b7c3d1;
+  border-color: #b7c3d1 !important;
+}
+mor-table.co-si.ts-zp .table tr:hover + tr > td,
+mor-table.co-si .table tr:hover + tr > td,
+mor-table.co-si.ts-zp .table tr.hover + tr > td,
+mor-table.co-si .table tr.hover + tr > td,
+mor-table.co-si.ts-zp .table tr.last-click + tr > td,
+mor-table.co-si .table tr.last-click + tr > td {
+  border-top-color: #b7c3d1 !important;
 }
 mor-table.co-si mor-empty .empty-image i,
 mor-table.co-si mor-empty .empty-image i.iconfont,
@@ -32268,8 +32596,19 @@ mor-table.co-lsi.ts-zp .co-style tr:nth-child(2n) td {
 mor-table.co-lsi.ts-zp .table tr:hover td,
 mor-table.co-lsi .table tr:hover td,
 mor-table.co-lsi.ts-zp .table tr.hover td,
-mor-table.co-lsi .table tr.hover td {
+mor-table.co-lsi .table tr.hover td,
+mor-table.co-lsi.ts-zp .table tr.last-click td,
+mor-table.co-lsi .table tr.last-click td {
   background-color: #c2cfdb;
+  border-color: #c2cfdb !important;
+}
+mor-table.co-lsi.ts-zp .table tr:hover + tr > td,
+mor-table.co-lsi .table tr:hover + tr > td,
+mor-table.co-lsi.ts-zp .table tr.hover + tr > td,
+mor-table.co-lsi .table tr.hover + tr > td,
+mor-table.co-lsi.ts-zp .table tr.last-click + tr > td,
+mor-table.co-lsi .table tr.last-click + tr > td {
+  border-top-color: #c2cfdb !important;
 }
 mor-table.co-lsi mor-empty .empty-image i,
 mor-table.co-lsi mor-empty .empty-image i.iconfont,
@@ -32308,8 +32647,19 @@ mor-table.co-elsi.ts-zp .co-style tr:nth-child(2n) td {
 mor-table.co-elsi.ts-zp .table tr:hover td,
 mor-table.co-elsi .table tr:hover td,
 mor-table.co-elsi.ts-zp .table tr.hover td,
-mor-table.co-elsi .table tr.hover td {
+mor-table.co-elsi .table tr.hover td,
+mor-table.co-elsi.ts-zp .table tr.last-click td,
+mor-table.co-elsi .table tr.last-click td {
   background-color: #ccd7e3;
+  border-color: #ccd7e3 !important;
+}
+mor-table.co-elsi.ts-zp .table tr:hover + tr > td,
+mor-table.co-elsi .table tr:hover + tr > td,
+mor-table.co-elsi.ts-zp .table tr.hover + tr > td,
+mor-table.co-elsi .table tr.hover + tr > td,
+mor-table.co-elsi.ts-zp .table tr.last-click + tr > td,
+mor-table.co-elsi .table tr.last-click + tr > td {
+  border-top-color: #ccd7e3 !important;
 }
 mor-table.co-elsi mor-empty .empty-image i,
 mor-table.co-elsi mor-empty .empty-image i.iconfont,
@@ -32323,7 +32673,7 @@ mor-table.co-g {
   border-color: #d9d9d9 !important;
 }
 mor-table.co-g header {
-  background-color: #d9d9d9;
+  background-color: #e1e1e1;
   color: #17212D;
 }
 mor-table.co-g .co-style {
@@ -32348,8 +32698,19 @@ mor-table.co-g.ts-zp .co-style tr:nth-child(2n) td {
 mor-table.co-g.ts-zp .table tr:hover td,
 mor-table.co-g .table tr:hover td,
 mor-table.co-g.ts-zp .table tr.hover td,
-mor-table.co-g .table tr.hover td {
-  background-color: #d9d9d9;
+mor-table.co-g .table tr.hover td,
+mor-table.co-g.ts-zp .table tr.last-click td,
+mor-table.co-g .table tr.last-click td {
+  background-color: #fde5e9;
+  border-color: #fde5e9 !important;
+}
+mor-table.co-g.ts-zp .table tr:hover + tr > td,
+mor-table.co-g .table tr:hover + tr > td,
+mor-table.co-g.ts-zp .table tr.hover + tr > td,
+mor-table.co-g .table tr.hover + tr > td,
+mor-table.co-g.ts-zp .table tr.last-click + tr > td,
+mor-table.co-g .table tr.last-click + tr > td {
+  border-top-color: #fde5e9 !important;
 }
 mor-table.co-g mor-empty .empty-image i,
 mor-table.co-g mor-empty .empty-image i.iconfont,
@@ -32363,7 +32724,7 @@ mor-table.co-lg {
   border-color: #e3e3e3 !important;
 }
 mor-table.co-lg header {
-  background-color: #e3e3e3;
+  background-color: #ebebeb;
   color: #17212D;
 }
 mor-table.co-lg .co-style {
@@ -32388,8 +32749,19 @@ mor-table.co-lg.ts-zp .co-style tr:nth-child(2n) td {
 mor-table.co-lg.ts-zp .table tr:hover td,
 mor-table.co-lg .table tr:hover td,
 mor-table.co-lg.ts-zp .table tr.hover td,
-mor-table.co-lg .table tr.hover td {
-  background-color: #e3e3e3;
+mor-table.co-lg .table tr.hover td,
+mor-table.co-lg.ts-zp .table tr.last-click td,
+mor-table.co-lg .table tr.last-click td {
+  background-color: #fde5e9;
+  border-color: #fde5e9 !important;
+}
+mor-table.co-lg.ts-zp .table tr:hover + tr > td,
+mor-table.co-lg .table tr:hover + tr > td,
+mor-table.co-lg.ts-zp .table tr.hover + tr > td,
+mor-table.co-lg .table tr.hover + tr > td,
+mor-table.co-lg.ts-zp .table tr.last-click + tr > td,
+mor-table.co-lg .table tr.last-click + tr > td {
+  border-top-color: #fde5e9 !important;
 }
 mor-table.co-lg mor-empty .empty-image i,
 mor-table.co-lg mor-empty .empty-image i.iconfont,
@@ -32428,8 +32800,19 @@ mor-table.co-wh.ts-zp .co-style tr:nth-child(2n) td {
 mor-table.co-wh.ts-zp .table tr:hover td,
 mor-table.co-wh .table tr:hover td,
 mor-table.co-wh.ts-zp .table tr.hover td,
-mor-table.co-wh .table tr.hover td {
-  background-color: #f2f2f2;
+mor-table.co-wh .table tr.hover td,
+mor-table.co-wh.ts-zp .table tr.last-click td,
+mor-table.co-wh .table tr.last-click td {
+  background-color: #fde5e9;
+  border-color: #fde5e9 !important;
+}
+mor-table.co-wh.ts-zp .table tr:hover + tr > td,
+mor-table.co-wh .table tr:hover + tr > td,
+mor-table.co-wh.ts-zp .table tr.hover + tr > td,
+mor-table.co-wh .table tr.hover + tr > td,
+mor-table.co-wh.ts-zp .table tr.last-click + tr > td,
+mor-table.co-wh .table tr.last-click + tr > td {
+  border-top-color: #fde5e9 !important;
 }
 mor-table .table th.cco-t,
 mor-table .table td.cco-t {
@@ -32627,7 +33010,7 @@ mor-table .table td.cell-disabled {
   cursor: not-allowed;
 }
 mor-table header {
-  background-color: #e3e3e3;
+  background-color: #ebebeb;
   color: #17212D;
 }
 mor-table .co-style {
@@ -32652,8 +33035,19 @@ mor-table.ts-zp .co-style tr:nth-child(2n) td {
 mor-table.ts-zp .table tr:hover td,
 mor-table .table tr:hover td,
 mor-table.ts-zp .table tr.hover td,
-mor-table .table tr.hover td {
-  background-color: #e3e3e3;
+mor-table .table tr.hover td,
+mor-table.ts-zp .table tr.last-click td,
+mor-table .table tr.last-click td {
+  background-color: #fde5e9;
+  border-color: #fde5e9 !important;
+}
+mor-table.ts-zp .table tr:hover + tr > td,
+mor-table .table tr:hover + tr > td,
+mor-table.ts-zp .table tr.hover + tr > td,
+mor-table .table tr.hover + tr > td,
+mor-table.ts-zp .table tr.last-click + tr > td,
+mor-table .table tr.last-click + tr > td {
+  border-top-color: #fde5e9 !important;
 }
 mor-table mor-empty .empty-image i,
 mor-table mor-empty .empty-image i.iconfont,
@@ -32662,6 +33056,30 @@ mor-table mor-empty .empty-image i.mo-icon {
 }
 mor-table mor-empty .empty-note {
   color: #b0b0b0;
+}
+mor-table > .wrap tr > td.no-data {
+  padding: 10px !important;
+}
+mor-table header {
+  height: 52px;
+}
+mor-table header h1 {
+  font-size: 24px !important;
+  padding: 8px 16px !important;
+  line-height: 36px;
+  height: 52px;
+}
+mor-table header .custom-header {
+  height: 52px;
+}
+mor-table .table {
+  font-size: 14px;
+}
+mor-table .table tr th {
+  padding: 10px !important;
+}
+mor-table .table tr td {
+  padding: 10px !important;
 }
 mor-menu {
   display: block;
@@ -33144,9 +33562,6 @@ mor-menu.co-bk.block .pos-top .root-menu > li.current > a,
 mor-menu.co-bk.block .pos-top .sub-menu > li.current > a {
   background-color: #45505C;
 }
-mor-menu.co-bk.block .pos-side .sub-menu > li.last-current > a {
-  background-color: #45505C;
-}
 mor-menu.co-bk.collapse .pos-side .root-menu > li > a:hover {
   background: #202d3e;
 }
@@ -33234,9 +33649,6 @@ mor-menu.co-lbk.block .pos-top .root-menu > li.current > a,
 mor-menu.co-lbk.block .pos-top .sub-menu > li.current > a {
   background-color: #45505C;
 }
-mor-menu.co-lbk.block .pos-side .sub-menu > li.last-current > a {
-  background-color: #45505C;
-}
 mor-menu.co-lbk.collapse .pos-side .root-menu > li > a:hover {
   background: #3a485b;
 }
@@ -33322,9 +33734,6 @@ mor-menu.co-elbk.block .pos-top .root-menu > li:not(.is-disable) > a:hover {
 }
 mor-menu.co-elbk.block .pos-top .root-menu > li.current > a,
 mor-menu.co-elbk.block .pos-top .sub-menu > li.current > a {
-  background-color: #7C8BA0;
-}
-mor-menu.co-elbk.block .pos-side .sub-menu > li.last-current > a {
   background-color: #7C8BA0;
 }
 mor-menu.co-elbk.collapse .pos-side .root-menu > li > a:hover {

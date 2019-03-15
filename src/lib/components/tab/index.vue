@@ -248,11 +248,11 @@ export default {
                 // init new select tab
                 if (this.conf.tab) {
 
-                    this.switch(this._getClosestCanSelectTab(this.conf.tab));
+                    this.switch(this._getClosestCanSelectTab(this.conf.tab), true);
 
                 } else {
 
-                    this.switch(this._getClosestCanSelectTab(this.data.tabs[0]));
+                    this.switch(this._getClosestCanSelectTab(this.data.tabs[0]), true);
 
                 }
 
@@ -363,7 +363,7 @@ export default {
             }
 
         },
-        switch : function (name) {
+        switch : function (name, dontEmitEvt = false) {
 
             if (name === this.data.selectTab) {
 
@@ -403,7 +403,11 @@ export default {
 
             this.data.selectTab = name;
 
-            this.$emit('switch');
+            if (!dontEmitEvt) {
+                
+                this.$emit('switch', name);
+
+            }
 
             return this;
 

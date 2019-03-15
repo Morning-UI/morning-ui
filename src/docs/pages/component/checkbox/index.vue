@@ -444,6 +444,61 @@
             }"
         ></ui-checkbox>
     </div>
+    ---
+    #demo
+    >desc
+    多个复选框组件绑定到一个父选项上。
+    >tpl
+    <div style="width:300px;">
+        <ui-checkbox
+            form-name="Continents"
+            id="continents5"
+            :list="{
+                asia : 'Asia',
+                europe : 'Europe'
+            }"
+        ></ui-checkbox>
+        <ui-checkbox 
+            form-name="Asia / China" 
+            parent="#continents5:asia" 
+            :list="{
+                beijing : 'Beijing',
+                shanghai : 'Shanghai'
+            }"
+        ></ui-checkbox>
+        <ui-checkbox 
+            form-name="Asia / Japan" 
+            parent="#continents5:asia" 
+            :list="{
+                tokyo : 'Tokyo',
+                osaka : 'Osaka'
+            }"
+        ></ui-checkbox>
+        <ui-checkbox 
+            form-name="Asia / Korea" 
+            parent="#continents5:asia" 
+            :list="{
+                seoul : 'Seoul',
+                busan : 'Busan'
+            }"
+        ></ui-checkbox>
+        <ui-checkbox 
+            form-name="Europe / UK" 
+            parent="#continents5:europe" 
+            :list="{
+                london : 'London',
+                manchester : 'Manchester'
+            }"
+        ></ui-checkbox>
+        <ui-checkbox 
+            form-name="Europe / France" 
+            parent="#continents5:europe" 
+            :list="{
+                paris : 'Paris',
+                lyon : 'Lyon'
+            }"
+        ></ui-checkbox>
+    </div>
     :::
 
     [[[方法]]]
