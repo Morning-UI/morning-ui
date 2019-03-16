@@ -739,25 +739,54 @@ export default {
 
                                 offsetFixed = (offsets0.popper.width + offsets0.popper.left - offsets1.popper.left) / 2;
 
-                                popover0._tipUpdateOptions({
-                                    options : {
-                                        modifiers : {
-                                            offset : {
-                                                offset : `${-offsetFixed}px, ${popover0OriginOffsetY}`
-                                            }
-                                        }
-                                    }
-                                });
+                                // case 5 is minimum
+                                if (offsets0.popper.left === 5) {
 
-                                popover1._tipUpdateOptions({
-                                    options : {
-                                        modifiers : {
-                                            offset : {
-                                                offset : `${offsetFixed}px, ${popover1OriginOffsetY}`
+                                    popover1._tipUpdateOptions({
+                                        options : {
+                                            modifiers : {
+                                                offset : {
+                                                    offset : `${offsetFixed * 2}px, ${popover1OriginOffsetY}`
+                                                }
                                             }
                                         }
-                                    }
-                                });
+                                    });
+
+                                } else if ((document.body.clientWidth - offsets1.popper.right) < 5) {
+
+                                    popover0._tipUpdateOptions({
+                                        options : {
+                                            modifiers : {
+                                                offset : {
+                                                    offset : `${-offsetFixed * 2}px, ${popover1OriginOffsetY}`
+                                                }
+                                            }
+                                        }
+                                    });
+
+                                } else {
+
+                                    popover0._tipUpdateOptions({
+                                        options : {
+                                            modifiers : {
+                                                offset : {
+                                                    offset : `${-offsetFixed}px, ${popover0OriginOffsetY}`
+                                                }
+                                            }
+                                        }
+                                    });
+
+                                    popover1._tipUpdateOptions({
+                                        options : {
+                                            modifiers : {
+                                                offset : {
+                                                    offset : `${offsetFixed}px, ${popover1OriginOffsetY}`
+                                                }
+                                            }
+                                        }
+                                    });
+
+                                }
 
                             }
 
