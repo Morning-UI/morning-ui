@@ -124,20 +124,20 @@ export default {
 
     },
     methods : {
-        _nodeEmit : function (path) {
+        _nodeEmit : function (path, nodes) {
 
             this.data.currentNode = path.join('/');
-            this.$emit('node-emit', path);
+            this.$emit('node-emit', path, nodes);
 
         },
-        _nodeFold : function (path) {
+        _nodeFold : function (path, nodes) {
 
-            this.$emit('node-fold', path);
+            this.$emit('node-fold', path, nodes);
 
         },
-        _nodeUnfold : function (path) {
+        _nodeUnfold : function (path, nodes) {
 
-            this.$emit('node-unfold', path);
+            this.$emit('node-unfold', path, nodes);
 
         },
         foldNode : function (pathArr, fold) {

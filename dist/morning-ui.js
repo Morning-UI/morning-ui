@@ -26584,18 +26584,18 @@ exports.default = {
         };
     },
     methods: {
-        _nodeEmit: function _nodeEmit(path) {
+        _nodeEmit: function _nodeEmit(path, nodes) {
 
             this.data.currentNode = path.join('/');
-            this.$emit('node-emit', path);
+            this.$emit('node-emit', path, nodes);
         },
-        _nodeFold: function _nodeFold(path) {
+        _nodeFold: function _nodeFold(path, nodes) {
 
-            this.$emit('node-fold', path);
+            this.$emit('node-fold', path, nodes);
         },
-        _nodeUnfold: function _nodeUnfold(path) {
+        _nodeUnfold: function _nodeUnfold(path, nodes) {
 
-            this.$emit('node-unfold', path);
+            this.$emit('node-unfold', path, nodes);
         },
         foldNode: function foldNode(pathArr, fold) {
 
@@ -49225,6 +49225,10 @@ var _arrayUniq = __webpack_require__(6);
 
 var _arrayUniq2 = _interopRequireDefault(_arrayUniq);
 
+var _extend = __webpack_require__(2);
+
+var _extend2 = _interopRequireDefault(_extend);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
@@ -49380,21 +49384,34 @@ exports.default = {
                 return;
             }
 
-            var nodePath = this.conf.parentPath.concat([key]);
-
-            this.$emit('node-emit', nodePath);
+            this.$emit('node-emit', [key], [this.conf.tree[key]], (0, _extend2.default)(true, [], this.conf.parentPath));
         },
-        _nodeEmit: function _nodeEmit(path) {
+        _nodeEmit: function _nodeEmit(path, nodeOptions, bubble) {
 
-            this.$emit('node-emit', path);
+            var key = bubble.pop();
+
+            nodeOptions.unshift(this.conf.tree[key]);
+            path.unshift(key);
+
+            this.$emit('node-emit', path, nodeOptions, bubble);
         },
-        _nodeFold: function _nodeFold(path) {
+        _nodeFold: function _nodeFold(path, nodeOptions, bubble) {
 
-            this.$emit('node-fold', path);
+            var key = bubble.pop();
+
+            nodeOptions.unshift(this.conf.tree[key]);
+            path.unshift(key);
+
+            this.$emit('node-fold', path, nodeOptions, bubble);
         },
-        _nodeUnfold: function _nodeUnfold(path) {
+        _nodeUnfold: function _nodeUnfold(path, nodeOptions, bubble) {
 
-            this.$emit('node-unfold', path);
+            var key = bubble.pop();
+
+            nodeOptions.unshift(this.conf.tree[key]);
+            path.unshift(key);
+
+            this.$emit('node-unfold', path, nodeOptions, bubble);
         },
         _nodeFoldSwitch: function _nodeFoldSwitch(key, fold) {
 
@@ -49405,20 +49422,20 @@ exports.default = {
                 if (index === -1) {
 
                     this.data.unfoldKeys.push(key);
-                    this.$emit('node-unfold', this.conf.parentPath.concat([key]));
+                    this.$emit('node-unfold', [key], [this.conf.tree[key]], (0, _extend2.default)(true, [], this.conf.parentPath));
                 } else {
 
                     this.data.unfoldKeys.splice(index, 1);
-                    this.$emit('node-fold', this.conf.parentPath.concat([key]));
+                    this.$emit('node-fold', [key], [this.conf.tree[key]], (0, _extend2.default)(true, [], this.conf.parentPath));
                 }
             } else if (fold === false && index === -1) {
 
                 this.data.unfoldKeys.push(key);
-                this.$emit('node-unfold', this.conf.parentPath.concat([key]));
+                this.$emit('node-unfold', [key], [this.conf.tree[key]], (0, _extend2.default)(true, [], this.conf.parentPath));
             } else if (fold === true && index !== -1) {
 
                 this.data.unfoldKeys.splice(index, 1);
-                this.$emit('node-fold', this.conf.parentPath.concat([key]));
+                this.$emit('node-fold', [key], [this.conf.tree[key]], (0, _extend2.default)(true, [], this.conf.parentPath));
             }
         },
         _syncChildHitSearch: function _syncChildHitSearch(childPath, hitKey) {
@@ -49523,7 +49540,7 @@ exports.default = {
 
                         _this.data.unfoldKeys.push(key);
                         _this.data.unfoldKeys = (0, _arrayUniq2.default)(_this.data.unfoldKeys);
-                        _this.$emit('node-unfold', _this.conf.parentPath.concat([key]));
+                        _this.$emit('node-unfold', [key], [_this.conf.tree[key]], (0, _extend2.default)(true, [], _this.conf.parentPath));
                     } else if (item.unfold === false) {
 
                         index = _this.data.unfoldKeys.indexOf(key);
@@ -49531,7 +49548,7 @@ exports.default = {
                         if (index > -1) {
 
                             _this.data.unfoldKeys.splice(index, 1);
-                            _this.$emit('node-fold', _this.conf.parentPath.concat([key]));
+                            _this.$emit('node-fold', [key], [_this.conf.tree[key]], (0, _extend2.default)(true, [], _this.conf.parentPath));
                         }
                     }
                 }
