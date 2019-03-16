@@ -235,7 +235,7 @@
 
     #### 修复
 
-    - 修复`ui-textinput`组件在使用`prepend`/`append`和`append-type`配置时的一个样式问题
+    - 修复`ui-textinput`组件在使用`prepend` / `append`和`append-type`配置时的一个样式问题
     - 修复`ui-textinput`在使用`prepend`和`append`配置时，同时使用表单的禁用和只读状态时，表单样式错误的问题
     - 修复`ui-formgroup`组件会影响子组件中`.item`元素的样式的问题
     - 修复表单组件在设置纯数字字符串(比如：`"99"`)时，在转换过程中字符串会被转换成数字类型，若字符串中为较长数字或小数，最终导致输入数据不正确的问题
@@ -1317,7 +1317,7 @@
 
     - 新增`ui-datepicker`日期选择器组件
     - 修复`ui-select`在同时使用`multi-select`配置和`v-for`生成列表时无法选择的问题
-    - `ui-calendar`新增`highlight-hover`/`background-mark`/`point-mark`配置以及`click-date`事件
+    - `ui-calendar`新增`highlight-hover` / `background-mark` / `point-mark`配置以及`click-date`事件
 
     ---
 

@@ -696,7 +696,7 @@
     >conf-desc
     预设的三种风格的折叠/未折叠图标，方便开发者使用。
     <br>
-    需要注意若同时配置了`fold-style`和`custom-fold-icon`/`custom-unfold-icon`/`custom-leafnode-icon`配置，则后者的优先级更高。
+    需要注意若同时配置了`fold-style`和`custom-fold-icon` / `custom-unfold-icon` / `custom-leafnode-icon`配置，则后者的优先级更高。
     >conf-accept
     `arrow`:箭头风格<br>`folder`:文件夹风格<br>`symbol`:加减符号风格
     >conf-type
