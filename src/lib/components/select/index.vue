@@ -18,6 +18,7 @@
         :max-show="maxShow"
         :max-show-height="maxShowHeight"
         :auto-close="autoClose"
+        :done-hidden="doneHidden"
         :can-search="canSearch"
         :multi-select="multiSelect"
         :can-move="canMove"
@@ -175,6 +176,10 @@ export default {
             type : Boolean,
             default : true
         },
+        doneHidden : {
+            type : [Boolean, String],
+            default : 'auto'
+        },
         canSearch : {
             type : Boolean,
             default : false
@@ -230,6 +235,7 @@ export default {
                 maxShow : this.maxShow,
                 maxShowHeight : this.maxShowHeight,
                 autoClose : this.autoClose,
+                doneHidden : this.doneHidden,
                 canSearch : this.canSearch,
                 multiSelect : this.multiSelect,
                 canMove : this.canMove,
@@ -731,14 +737,22 @@ export default {
 
                 this.set(value);
 
-                if (!this.conf.multiSelect) {
+                if (this.conf.doneHidden === 'auto') {
+
+                    if (!this.conf.multiSelect) {
+
+                        this.toggle();
+                    
+                    } else if (value.length >= this.conf.max) {
+
+                        this.toggle();
+                    
+                    }
+
+                } else if (this.conf.doneHidden) {
 
                     this.toggle();
-                
-                } else if (value.length >= this.conf.max) {
 
-                    this.toggle();
-                
                 }
 
             } else {
@@ -991,11 +1005,23 @@ export default {
         _checkArea : function (evt) {
 
             let $wrap = this.data.$selectArea.querySelector('.wrap');
+            let popoverVm;
+
+            if (this.conf.separateEmit) {
+
+                popoverVm = this.$refs[`ui-select-popover-${this.uiid}`];
+
+            } else {
+
+                popoverVm = this.$refs[`ui-select-area-${this.uiid}`].$refs[`ui-select-popover-${this.uiid}`];
+
+            }
 
             if (this.data.showlist &&
                 this.conf.autoClose &&
                 evt.path.indexOf(this.$el) === -1 &&
                 evt.path.indexOf($wrap) === -1 &&
+                evt.path.indexOf(popoverVm.$el) === -1 &&
                 (
                     (this.conf.separateEmit && evt.path.indexOf(this.data.$emitTarget) === -1) ||
                     !this.conf.separateEmit
