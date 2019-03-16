@@ -871,7 +871,6 @@ export default {
         _getColorString : function (type = this.data.showValueType, colorObj = this.colorObj) {
 
             let alpha = Math.round(colorObj.alpha() * maxAlpha);
-            let alphaPer = colorObj.alpha();
 
             if (type === 'hex') {
 
@@ -893,7 +892,7 @@ export default {
 
                 }
 
-                return `rgba(${Math.round(colorObj.red())}, ${Math.round(colorObj.green())}, ${Math.round(colorObj.blue())}, ${alphaPer || 1})`;
+                return `rgba(${Math.round(colorObj.red())}, ${Math.round(colorObj.green())}, ${Math.round(colorObj.blue())}, ${this.alphaPer})`;
 
             } else if (type === 'hsla') {
 
@@ -905,7 +904,7 @@ export default {
 
                 }
 
-                return `hsla(${Math.round(hslObj.h)}, ${Math.round(hslObj.s)}%, ${Math.round(hslObj.l)}%, ${alphaPer || 1})`;
+                return `hsla(${Math.round(hslObj.h)}, ${Math.round(hslObj.s)}%, ${Math.round(hslObj.l)}%, ${this.alphaPer})`;
 
             }
 

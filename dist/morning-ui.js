@@ -45938,7 +45938,6 @@ exports.default = {
 
 
             var alpha = Math.round(colorObj.alpha() * maxAlpha);
-            var alphaPer = colorObj.alpha();
 
             if (type === 'hex') {
 
@@ -45957,7 +45956,7 @@ exports.default = {
                     return 'rgb(' + Math.round(colorObj.red()) + ', ' + Math.round(colorObj.green()) + ', ' + Math.round(colorObj.blue()) + ')';
                 }
 
-                return 'rgba(' + Math.round(colorObj.red()) + ', ' + Math.round(colorObj.green()) + ', ' + Math.round(colorObj.blue()) + ', ' + (alphaPer || 1) + ')';
+                return 'rgba(' + Math.round(colorObj.red()) + ', ' + Math.round(colorObj.green()) + ', ' + Math.round(colorObj.blue()) + ', ' + this.alphaPer + ')';
             } else if (type === 'hsla') {
 
                 var hslObj = colorObj.hsl().object();
@@ -45967,7 +45966,7 @@ exports.default = {
                     return 'hsl(' + Math.round(hslObj.h) + ', ' + Math.round(hslObj.s) + '%, ' + Math.round(hslObj.l) + '%)';
                 }
 
-                return 'hsla(' + Math.round(hslObj.h) + ', ' + Math.round(hslObj.s) + '%, ' + Math.round(hslObj.l) + '%, ' + (alphaPer || 1) + ')';
+                return 'hsla(' + Math.round(hslObj.h) + ', ' + Math.round(hslObj.s) + '%, ' + Math.round(hslObj.l) + '%, ' + this.alphaPer + ')';
             }
 
             return defaultColor;
