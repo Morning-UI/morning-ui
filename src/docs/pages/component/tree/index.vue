@@ -73,7 +73,7 @@
     - `disabled` : 禁用这个节点(无法选中及切换展开状态)
     - `unfold` : 默认展开这个节点
     - `icon` : 为节点设置icon(若设为空字符串则无icon，且仅对叶子节点生效)
-    - `child` : 子节点对象
+    - `children` : 子节点对象
     >conf-accept
     对象
     >conf-type
