@@ -833,7 +833,9 @@ String
 ---
 #config
 >conf-desc
-表单的Key（用于逻辑中作为识别标示）。
+表单的Key（用于表单的唯一识别标示）。
+<br><br>
+表单的Key可配合[\`group\`配置](#group)来管理一组表单，详见：[表单/表单组](/guide/form.html#表单组)。
 >conf-accept
 任意字符串(唯一)
 >conf-type
@@ -854,6 +856,8 @@ String
 #config
 >conf-desc
 表单组，用于将多个表单的数值添加到同一个对象中。一个表单可以同时属于多个组。
+<br><br>
+表单组可配合[\`form-key\`配置](#form-key)来管理一组表单，详见：[表单/表单组](/guide/form.html#表单组)。
 >conf-accept
 若是字符串，则将表单添加到单个组<br>若是数组，则将表单添加到多个组
 >conf-type
@@ -1047,6 +1051,8 @@ Boolean
 #method
 >method-desc
 设置表单的KEY。
+<br><br>
+表单的KEY可配合[\`group\`配置](#group)来管理一组表单，详见：[表单/表单组](/guide/form.html#表单组)。
 >method-args
 |key|YES|需要设置表单的KEY，如果需要清空表单的KEY，可以不传此参数。|任意字符串|String|\`undefined\`|
 >method-return
@@ -1069,6 +1075,8 @@ Boolean
 #method
 >method-desc
 获取表单的KEY。
+<br><br>
+表单的KEY可配合[\`group\`配置](#group)来管理一组表单，详见：[表单/表单组](/guide/form.html#表单组)。
 >method-return
 返回组件的KEY。
 ---
@@ -1087,6 +1095,8 @@ Boolean
 #method
 >method-desc
 设置表单所属的表单组。
+<br><br>
+表单所属的表单组可配合[\`form-key\`配置](#form-key)来管理一组表单，详见：[表单/表单组](/guide/form.html#表单组)。
 >method-args
 |groups|YES|需要设置的表单组。如果需要清空所有表单组，可以不传此参数。|\`undefined\`:清空所有表单组<br>String:设置一个表单组<br>Array:设置多个表单组。|String<br>Array<br>Undefined|\`undefined\`|
 >method-return
@@ -1111,6 +1121,8 @@ Boolean
 #method
 >method-desc
 获取表单所属的表单组。
+<br><br>
+表单所属的表单组可配合[\`form-key\`配置](#form-key)来管理一组表单，详见：[表单/表单组](/guide/form.html#表单组)。
 >method-return
 返回组件的表单组。
 ---
