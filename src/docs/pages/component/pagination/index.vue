@@ -157,7 +157,7 @@
     >name
     size-repeat
     >tpl
-    <ui-pagination :total="10" :page="2" size="{$sizeKey}"></ui-pagination> &nbsp;&nbsp; <span>{$&sizeName}</span>
+    <ui-pagination :total="10" size="{$sizeKey}"></ui-pagination> &nbsp;&nbsp; <span>{$&sizeName}</span>
     <br>
     <ui-pagination :total="10" :page="2" size="{$sizeKey}" type="simple"></ui-pagination> &nbsp;&nbsp; <span>{$&sizeName}</span>
     <br>
@@ -168,7 +168,7 @@
     :::vue
     @layout:color
     ---
-    <ui-pagination :total="10" :page="2" color="{$colorKey}"></ui-pagination> &nbsp;&nbsp; <span>{$&colorName}</span>
+    <ui-pagination :total="10" color="{$colorKey}"></ui-pagination> &nbsp;&nbsp; <span>{$&colorName}</span>
     <br>
     <ui-pagination :total="10" :page="2" color="{$colorKey}" type="simple"></ui-pagination> &nbsp;&nbsp; <span>{$&colorName}</span>
     <br>
