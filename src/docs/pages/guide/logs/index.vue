@@ -18,6 +18,37 @@
     
     ### 更新记录
 
+    ### 0.12.9 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2019年3月17日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.9" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.9/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.9/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 新特性
+
+    - `ui-tree`的`node-emit`、`node-fold`、`node-unfold`事件新增`nodes`参数
+    - `ui-select`新增`done-hidden`配置
+    - `ui-pagination`新增`type`配置，支持简洁和迷你模式的分页组件
+
+    #### 改进
+
+    -  优化文档中对于`form-key`、`group`配置及`setKey()`、`getKey()`、`setGroup()`、`getGroup()`方法的说明
+
+    #### 修复
+
+    - 修复`ui-tree`文档中的一处错误
+    - 修复`ui-colorpicker`透明度选择器背景显示问题
+    - 修复`ui-colorpicker`在HALS和RGBA模式下拷贝透明度不正确的问题
+    - 修复`ui-datepicker`和`ui-datetimepicker`在靠近左右边界时，弹出框错位的问题
+
+    ---
+
     ### 0.12.8 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="light-blue">
