@@ -1,7 +1,7 @@
 <template>
     <mor-pagination
         :_uiid="uiid"
-        :class="[sizeClass, colorClass]"
+        :class="[sizeClass, colorClass, moreClass]"
 
         :total="total"
         :list="list"
@@ -9,6 +9,7 @@
         :page="page"
         :max-show="maxShow"
         :jump-page="jumpPage"
+        :type="type"
     >
 
     <div class="page-content">
@@ -19,38 +20,81 @@
     </div>
 
     <div class="list">
-        <template v-for="index in data.total">
-            
-            <!-- eslint-disable vue/require-v-for-key -->
-            <template v-if="(data.hideEnd - 1) === index && data.hideEnd !== 1">
-                <a href="javascript:;" class="prev" @click="to(data.currentPage - 1)"><i class="mo-icon mo-icon-left"></i></a>
-                <a href="javascript:;" class="ignore">...</a>
-            </template>
-            
-            <template v-if="index >= data.hideEnd && index <= data.hideStart">
-                <a
-                    v-if="data.currentPage === index"
-                    href="javascript:;"
-                    class="current"
-                >
-                    {{index}}
-                </a>
+        <template v-if="conf.type === 'normal'">
+            <template v-for="index in data.total">
                 
-                <a
-                    v-else
-                    href="javascript:;"
-                    @click="to(index)"
-                >
-                    {{index}}
-                </a>
-            </template>
+                <!-- eslint-disable vue/require-v-for-key -->
+                <template v-if="(data.hideEnd - 1) === index && data.hideEnd !== 1">
+                    <a href="javascript:;" class="prev" @click="to(data.currentPage - 1)"><i class="mo-icon mo-icon-left"></i></a>
+                    <a href="javascript:;" class="ignore">...</a>
+                </template>
+                
+                <template v-if="index >= data.hideEnd && index <= data.hideStart">
+                    <a
+                        v-if="data.currentPage === index"
+                        href="javascript:;"
+                        class="current"
+                    >
+                        {{index}}
+                    </a>
+                    
+                    <a
+                        v-else
+                        href="javascript:;"
+                        @click="to(index)"
+                    >
+                        {{index}}
+                    </a>
+                </template>
 
-            <template v-if="(data.hideStart + 1) === index && data.hideStart !== data.total">
-                <a href="javascript:;" class="ignore">...</a>
-                <a href="javascript:;" class="next" @click="to(data.currentPage + 1)"><i class="mo-icon mo-icon-right"></i></a>
-            </template>
-            <!-- eslint-enable vue/require-v-for-key -->
+                <template v-if="(data.hideStart + 1) === index && data.hideStart !== data.total">
+                    <a href="javascript:;" class="ignore">...</a>
+                    <a href="javascript:;" class="next" @click="to(data.currentPage + 1)"><i class="mo-icon mo-icon-right"></i></a>
+                </template>
+                <!-- eslint-enable vue/require-v-for-key -->
 
+            </template>
+        </template>
+
+        <template v-else-if="conf.type === 'simple'">
+            <a
+                href="javascript:;"
+                class="prev"
+                :class="{
+                    'disabled' : data.currentPage <= 1
+                }"
+                @click="to(data.currentPage - 1)"
+            ><i class="mo-icon mo-icon-left"></i></a>
+            <div class="page-nav">
+                {{data.currentPage}} / {{data.total}}
+            </div>
+            <a
+                href="javascript:;"
+                class="next"
+                :class="{
+                    'disabled' : data.currentPage >= data.total
+                }"
+                @click="to(data.currentPage + 1)"
+            ><i class="mo-icon mo-icon-right"></i></a>
+        </template>
+
+        <template v-else>
+            <a
+                href="javascript:;"
+                class="prev"
+                :class="{
+                    'disabled' : data.currentPage <= 1
+                }"
+                @click="to(data.currentPage - 1)"
+            ><i class="mo-icon mo-icon-left"></i></a>
+            <a
+                href="javascript:;"
+                class="next"
+                :class="{
+                    'disabled' : data.currentPage >= data.total
+                }"
+                @click="to(data.currentPage + 1)"
+            ><i class="mo-icon mo-icon-right"></i></a>
         </template>
 
         <div
@@ -95,6 +139,11 @@ export default {
         jumpPage : {
             type : Boolean,
             default : true
+        },
+        type : {
+            type : String,
+            default : 'normal',
+            validator : (value => ['normal', 'simple', 'mini'].indexOf(value) !== -1)
         }
     },
     computed : {
@@ -106,7 +155,16 @@ export default {
                 pageSize : this.pageSize,
                 page : this.page,
                 maxShow : this.maxShow,
-                jumpPage : this.jumpPage
+                jumpPage : this.jumpPage,
+                type : this.type
+            };
+
+        },
+        moreClass : function () {
+
+            return {
+                'type-simple' : this.conf.type === 'simple',
+                'type-mini' : this.conf.type === 'mini'
             };
 
         }
