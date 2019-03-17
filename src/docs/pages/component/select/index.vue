@@ -1087,6 +1087,99 @@
     :::
 
     :::vue
+    @name:done-hidden
+    ---
+    #config
+    >conf-desc
+    当完成选择后选择器是否需要关闭。
+    >conf-accept
+    `true`: 选择后关闭<br>`false`: 选择后不关闭<br>`'auto'`: 自动，单选选择后或选择后超过`max`限制时关闭
+    >conf-type
+    Boolean<br>String
+    >conf-default
+    `'auto'`
+    ---
+    #demo
+    >desc
+    选择后不关闭选择器。<br>建议配合`:hide-selected="false"`一起使用。
+    >tpl
+    <div style="width:300px;">
+        <ui-select
+            form-name="Select designer"
+            :done-hidden="false"
+            :hide-selected="false"
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
+        </ui-select>
+    </div>
+    ---
+    #demo
+    >desc
+    选择后关闭选择器。
+    >tpl
+    <div style="width:300px;">
+        <ui-select
+            form-name="Select designer"
+            :done-hidden="true"
+            multi-select
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
+        </ui-select>
+    </div>
+    ---
+    #demo
+    >desc
+    自动模式，单选选择后或选择后超过`max`限制时关闭。
+    >tpl
+    <div style="width:300px;">
+        <ui-select
+            form-name="Select designer"
+            done-hidden="auto"
+            multi-select
+            :max="3"
+            :list="{
+                tim : 'Tim Boelaars',
+                andrew : 'Andrew Colin Beck',
+                gustavo : 'Gustavo Zambelli',
+                victor : 'Victor Erixon',
+                shaun : 'Shaun Moynihan',
+                emir : 'Emir Ayouni',
+                katherine : 'Katherine Rainey',
+                jax : 'Jax Berndt',
+                elizabeth : 'Elizabeth Chiu',
+                sara : 'Sara Nicely',
+                anna : 'Anna Broussard'
+            }"
+        >
+        </ui-select>
+    </div>
+    :::
+
+    :::vue
     @name:can-search
     ---
     #config

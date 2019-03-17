@@ -276,7 +276,8 @@ let TipManager = {
             if ((
                 evt.path.indexOf(this.Tip.$target) === notFound &&
                 evt.path.indexOf(this.$el) === notFound
-            ) && this.conf.trigger.indexOf('rclick') !== -1 &&
+            ) &&
+                this.conf.trigger.indexOf('rclick') !== -1 &&
                 this.Tip.activeTrigger.rclick) {
 
                 this.Tip.activeTrigger.rclick = false;

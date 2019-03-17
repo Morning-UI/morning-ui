@@ -36,7 +36,7 @@ const testOptions = {
     _baseTestHookBeforeSnapshot : async vm => {
 
         vm.$el = {
-            outerHTML : vm.$el.outerHTML.replace('GMT+0000 (UTC)', 'GMT+0800 (GMT+08:00)')
+            outerHTML : vm.$el.outerHTML.replace('GMT+0800 (CST)', 'GMT+0800 (GMT+08:00)').replace('GMT+0000 (UTC)', 'GMT+0800 (GMT+08:00)')
         };
 
         return vm;

@@ -73,7 +73,8 @@
     - `disabled` : 禁用这个节点(无法选中及切换展开状态)
     - `unfold` : 默认展开这个节点
     - `icon` : 为节点设置icon(若设为空字符串则无icon，且仅对叶子节点生效)
-    - `child` : 子节点对象
+    - `children` : 子节点对象
+    - 除了以上属性外，还可以添加额外的数据至节点中，当节点触发点击/展开/收起等事件时可以通过事件的参数获取到此对象，从而访问这些额外的数据。
     >conf-accept
     对象
     >conf-type
@@ -695,7 +696,7 @@
     >conf-desc
     预设的三种风格的折叠/未折叠图标，方便开发者使用。
     <br>
-    需要注意若同时配置了`fold-style`和`custom-fold-icon`/`custom-unfold-icon`/`custom-leafnode-icon`配置，则后者的优先级更高。
+    需要注意若同时配置了`fold-style`和`custom-fold-icon` / `custom-unfold-icon` / `custom-leafnode-icon`配置，则后者的优先级更高。
     >conf-accept
     `arrow`:箭头风格<br>`folder`:文件夹风格<br>`symbol`:加减符号风格
     >conf-type
@@ -930,6 +931,7 @@
     当节点被点击时触发。
     >event-args
     |path|触发节点的路径数组，这个是一个数组，数组的index表示节点所在的层级，数组的键值是被触发节点的KEY。|`Array`|
+    |nodes|从根节点至触发节点经过每一个节点的配置，这个是一个数组，数组的index表示节点所在的层级，数组的键值是对应节点在`tree`配置中对应的内容。|`Array`|
     ---
     #demo
     >tpl
@@ -939,8 +941,8 @@
     >script
     {
         methods : {
-            echo : function (path) {
-                console.log('demo4.console1', 'node-emit event!', path);
+            echo : function (path, nodes) {
+                console.log('demo4.console1', 'node-emit event!', path, nodes);
             }
         },
         data : {
@@ -972,6 +974,7 @@
     当节点被折叠时触发。
     >event-args
     |path|触发节点的路径数组，这个是一个数组，数组的index表示节点所在的层级，数组的键值是被触发节点的KEY。|`Array`|
+    |nodes|从根节点至触发节点经过每一个节点的配置，这个是一个数组，数组的index表示节点所在的层级，数组的键值是对应节点在`tree`配置中对应的内容。|`Array`|
     ---
     #demo
     >tpl
@@ -981,8 +984,8 @@
     >script
     {
         methods : {
-            echo : function (path) {
-                console.log('demo4.console1', 'node-fold event!', path);
+            echo : function (path, nodes) {
+                console.log('demo4.console1', 'node-fold event!', path, nodes);
             }
         },
         data : {
@@ -1014,6 +1017,7 @@
     当节点被展开时触发。
     >event-args
     |path|触发节点的路径数组，这个是一个数组，数组的index表示节点所在的层级，数组的键值是被触发节点的KEY。|`Array`|
+    |nodes|从根节点至触发节点经过每一个节点的配置，这个是一个数组，数组的index表示节点所在的层级，数组的键值是对应节点在`tree`配置中对应的内容。|`Array`|
     ---
     #demo
     >tpl
@@ -1023,8 +1027,8 @@
     >script
     {
         methods : {
-            echo : function (path) {
-                console.log('demo4.console1', 'node-unfold event!', path);
+            echo : function (path, nodes) {
+                console.log('demo4.console1', 'node-unfold event!', path, nodes);
             }
         },
         data : {

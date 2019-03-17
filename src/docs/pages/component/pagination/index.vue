@@ -157,15 +157,23 @@
     >name
     size-repeat
     >tpl
-    <ui-pagination :total='10' size="{$sizeKey}"></ui-pagination> &nbsp;&nbsp; <span>{$&sizeName}</span>
+    <ui-pagination :total="10" size="{$sizeKey}"></ui-pagination> &nbsp;&nbsp; <span>{$&sizeName}</span>
     <br>
+    <ui-pagination :total="10" :page="2" size="{$sizeKey}" type="simple"></ui-pagination> &nbsp;&nbsp; <span>{$&sizeName}</span>
+    <br>
+    <ui-pagination :total="10" :page="2" size="{$sizeKey}" type="mini" :jump-page="false"></ui-pagination> &nbsp;&nbsp; <span>{$&sizeName}</span>
+    <br><br>
     :::
 
     :::vue
     @layout:color
     ---
-    <ui-pagination :total='10' color="{$colorKey}"></ui-pagination> &nbsp;&nbsp; <span>{$&colorName}</span>
+    <ui-pagination :total="10" color="{$colorKey}"></ui-pagination> &nbsp;&nbsp; <span>{$&colorName}</span>
     <br>
+    <ui-pagination :total="10" :page="2" color="{$colorKey}" type="simple"></ui-pagination> &nbsp;&nbsp; <span>{$&colorName}</span>
+    <br>
+    <ui-pagination :total="10" :page="2" color="{$colorKey}" type="mini" :jump-page="false"></ui-pagination> &nbsp;&nbsp; <span>{$&colorName}</span>
+    <br><br>
     :::
 
     [[[配置]]]
@@ -280,6 +288,36 @@
     可以关闭通过页码跳转页面。
     >tpl
     <ui-pagination :total="10" :max-show="5" :jump-page="false"></ui-pagination>
+    :::
+
+    :::vue
+    @name:type
+    ---
+    #config
+    >conf-desc
+    分页组件的展现模式。
+    >conf-accept
+    `'normal'` : 正常<br>`'simple'` : 简洁<br>`'mini'` : 迷你
+    >conf-type
+    Boolean
+    >conf-default
+    `'normal'`
+    ---
+    #demo
+    >tpl
+    <ui-pagination :total="10" type="simple"></ui-pagination>
+    ---
+    #demo
+    >desc
+    简洁模式的分页组件配合`jump-page`一起使用。
+    >tpl
+    <ui-pagination :total="10" type="simple" :jump-page="false"></ui-pagination>
+    ---
+    #demo
+    >desc
+    迷你模式的分页组件。
+    >tpl
+    <ui-pagination :total="10" type="mini"></ui-pagination>
     :::
 
     [[[方法]]]

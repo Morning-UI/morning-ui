@@ -34065,7 +34065,7 @@ mor-pagination > .list > a.current {
 }
 mor-pagination > .list > a .mo-icon {
   font-size: 13px;
-  vertical-align: top !important;
+  vertical-align: 1px !important;
 }
 mor-pagination > .list > a.prev,
 mor-pagination > .list > a.next {
@@ -34093,6 +34093,25 @@ mor-pagination > .list > a:not(.current):not(.ignore):active {
 }
 mor-pagination > .list > a:not(.ignore).current {
   cursor: default;
+}
+mor-pagination > .list > a.disabled {
+  background: transparent !important;
+  cursor: default;
+  pointer-events: none;
+}
+mor-pagination > .list > a.disabled:hover {
+  background-color: transparent !important;
+}
+mor-pagination > .list > a.disabled .mo-icon {
+  visibility: hidden;
+}
+mor-pagination > .list > .page-nav {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0 0.8em;
+  line-height: 2.4em;
+  height: 2.4em;
+  color: #8E9CAF !important;
 }
 mor-pagination > .list > .page-jump {
   display: inline-block;
@@ -34130,7 +34149,29 @@ mor-pagination > .list > .page-jump .mo-icon {
 mor-pagination > .list > .page-jump .mo-icon:hover {
   color: #7C8BA0;
 }
-mor-pagination.si-xxl .list > a {
+mor-pagination.type-simple a.next {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+mor-pagination.type-simple > .list > .page-jump mor-textinput.page-num {
+  border-radius: 3px;
+}
+mor-pagination.type-simple > .list > .page-jump mor-textinput.page-num .textinput-wrap > input {
+  border-radius: 3px;
+}
+mor-pagination.type-mini a.next {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  margin-left: 2px;
+}
+mor-pagination.type-mini > .list > .page-jump mor-textinput.page-num {
+  border-radius: 3px;
+}
+mor-pagination.type-mini > .list > .page-jump mor-textinput.page-num .textinput-wrap > input {
+  border-radius: 3px;
+}
+mor-pagination.si-xxl .list > a,
+mor-pagination.si-xxl .list > .page-nav {
   font-size: 20.8px;
 }
 mor-pagination.si-xxl .list .page-jump .page-num > .textinput-wrap > input {
@@ -34140,7 +34181,8 @@ mor-pagination.si-xxl .list .page-jump .mo-icon {
   line-height: 50px;
   font-size: 17px;
 }
-mor-pagination.si-xl .list > a {
+mor-pagination.si-xl .list > a,
+mor-pagination.si-xl .list > .page-nav {
   font-size: 19.2px;
 }
 mor-pagination.si-xl .list .page-jump .page-num > .textinput-wrap > input {
@@ -34150,7 +34192,8 @@ mor-pagination.si-xl .list .page-jump .mo-icon {
   line-height: 46px;
   font-size: 16px;
 }
-mor-pagination.si-l .list > a {
+mor-pagination.si-l .list > a,
+mor-pagination.si-l .list > .page-nav {
   font-size: 17.6px;
 }
 mor-pagination.si-l .list .page-jump .page-num > .textinput-wrap > input {
@@ -34160,7 +34203,8 @@ mor-pagination.si-l .list .page-jump .mo-icon {
   line-height: 40px;
   font-size: 16px;
 }
-mor-pagination.si-m .list > a {
+mor-pagination.si-m .list > a,
+mor-pagination.si-m .list > .page-nav {
   font-size: 16px;
 }
 mor-pagination.si-m .list .page-jump .page-num > .textinput-wrap > input {
@@ -34170,7 +34214,8 @@ mor-pagination.si-m .list .page-jump .mo-icon {
   line-height: 40px;
   font-size: 15px;
 }
-mor-pagination.si-s .list > a {
+mor-pagination.si-s .list > a,
+mor-pagination.si-s .list > .page-nav {
   font-size: 14px;
 }
 mor-pagination.si-s .list .page-jump .page-num > .textinput-wrap > input {
@@ -34180,13 +34225,15 @@ mor-pagination.si-s .list .page-jump .mo-icon {
   line-height: 34px;
   font-size: 13px;
 }
-mor-pagination.si-xs .list > a {
+mor-pagination.si-xs .list > a,
+mor-pagination.si-xs .list > .page-nav {
   font-size: 12px;
   padding: 0 0.6em;
   line-height: 2.2em;
   height: 2.2em;
 }
-mor-pagination.si-xs .list > a.ignore {
+mor-pagination.si-xs .list > a.ignore,
+mor-pagination.si-xs .list > .page-nav.ignore {
   line-height: 1.6em;
   padding: 0 0.1em;
 }
@@ -34200,13 +34247,15 @@ mor-pagination.si-xs .list .page-jump .mo-icon {
   line-height: 25px;
   font-size: 12px;
 }
-mor-pagination.si-xxs .list > a {
+mor-pagination.si-xxs .list > a,
+mor-pagination.si-xxs .list > .page-nav {
   font-size: 12px;
   padding: 0 0.4em;
   line-height: 2em;
   height: 2em;
 }
-mor-pagination.si-xxs .list > a.ignore {
+mor-pagination.si-xxs .list > a.ignore,
+mor-pagination.si-xxs .list > .page-nav.ignore {
   line-height: 1.4em;
   padding: 0;
 }
@@ -34223,47 +34272,95 @@ mor-pagination.si-xxs .list .page-jump .mo-icon {
 mor-pagination.co-t .list > a.current {
   background-color: #F33D5D !important;
 }
+mor-pagination.co-t .page-jump .mo-icon:hover {
+  color: #F33D5D !important;
+}
 mor-pagination.co-lt .list > a.current {
   background-color: #F86F88 !important;
+}
+mor-pagination.co-lt .page-jump .mo-icon:hover {
+  color: #F86F88 !important;
 }
 mor-pagination.co-dt .list > a.current {
   background-color: #D22343 !important;
 }
+mor-pagination.co-dt .page-jump .mo-icon:hover {
+  color: #D22343 !important;
+}
 mor-pagination.co-s .list > a.current {
   background-color: #4DBD67 !important;
+}
+mor-pagination.co-s .page-jump .mo-icon:hover {
+  color: #4DBD67 !important;
 }
 mor-pagination.co-w .list > a.current {
   background-color: #F0AD4E !important;
 }
+mor-pagination.co-w .page-jump .mo-icon:hover {
+  color: #F0AD4E !important;
+}
 mor-pagination.co-d .list > a.current {
   background-color: #D64431 !important;
+}
+mor-pagination.co-d .page-jump .mo-icon:hover {
+  color: #D64431 !important;
 }
 mor-pagination.co-p .list > a.current {
   background-color: #2185D0 !important;
 }
+mor-pagination.co-p .page-jump .mo-icon:hover {
+  color: #2185D0 !important;
+}
 mor-pagination.co-m .list > a.current {
   background-color: #A9A9A9 !important;
+}
+mor-pagination.co-m .page-jump .mo-icon:hover {
+  color: #A9A9A9 !important;
 }
 mor-pagination.co-i .list > a.current {
   background-color: #03A6B9 !important;
 }
+mor-pagination.co-i .page-jump .mo-icon:hover {
+  color: #03A6B9 !important;
+}
 mor-pagination.co-bk .list > a.current {
   background-color: #17212D !important;
+}
+mor-pagination.co-bk .page-jump .mo-icon:hover {
+  color: #17212D !important;
 }
 mor-pagination.co-lbk .list > a.current {
   background-color: #303C4B !important;
 }
+mor-pagination.co-lbk .page-jump .mo-icon:hover {
+  color: #303C4B !important;
+}
 mor-pagination.co-elbk .list > a.current {
   background-color: #45505C !important;
+}
+mor-pagination.co-elbk .page-jump .mo-icon:hover {
+  color: #45505C !important;
 }
 mor-pagination.co-bu .list > a.current {
   background-color: #7C8BA0 !important;
 }
+mor-pagination.co-bu .page-jump .mo-icon:hover {
+  color: #7C8BA0 !important;
+}
 mor-pagination.co-lbu .list > a.current {
   background-color: #8E9CAF !important;
 }
+mor-pagination.co-lbu .page-jump .mo-icon:hover {
+  color: #8E9CAF !important;
+}
 mor-pagination.co-elbu .list > a.current {
   background-color: #A8B3C2 !important;
+}
+mor-pagination.co-elbu .page-jump .mo-icon {
+  color: #8E9CAF !important;
+}
+mor-pagination.co-elbu .page-jump .mo-icon:hover {
+  color: #A8B3C2 !important;
 }
 mor-pagination.co-si .list > a {
   background-color: #45505C !important;
@@ -34273,6 +34370,20 @@ mor-pagination.co-si .list > a.current {
   background-color: #D6DDE5 !important;
   color: #17212D !important;
 }
+mor-pagination.co-si .page-nav {
+  color: #FFFFFF !important;
+}
+mor-pagination.co-si .page-jump mor-textinput.page-num .textinput-wrap > input {
+  border: none;
+  background: #45505C;
+  color: #FFFFFF !important;
+}
+mor-pagination.co-si .page-jump .mo-icon {
+  color: #E6E6E6 !important;
+}
+mor-pagination.co-si .page-jump .mo-icon:hover {
+  color: #FFFFFF !important;
+}
 mor-pagination.co-lsi .list > a {
   background-color: #45505C !important;
   color: #FFFFFF !important;
@@ -34280,6 +34391,20 @@ mor-pagination.co-lsi .list > a {
 mor-pagination.co-lsi .list > a.current {
   background-color: #E2E8EE !important;
   color: #17212D !important;
+}
+mor-pagination.co-lsi .page-nav {
+  color: #FFFFFF !important;
+}
+mor-pagination.co-lsi .page-jump mor-textinput.page-num .textinput-wrap > input {
+  border: none;
+  background: #45505C;
+  color: #FFFFFF !important;
+}
+mor-pagination.co-lsi .page-jump .mo-icon {
+  color: #E6E6E6 !important;
+}
+mor-pagination.co-lsi .page-jump .mo-icon:hover {
+  color: #FFFFFF !important;
 }
 mor-pagination.co-elsi .list > a {
   background-color: #45505C !important;
@@ -34289,6 +34414,20 @@ mor-pagination.co-elsi .list > a.current {
   background-color: #EDF1F5 !important;
   color: #17212D !important;
 }
+mor-pagination.co-elsi .page-nav {
+  color: #FFFFFF !important;
+}
+mor-pagination.co-elsi .page-jump mor-textinput.page-num .textinput-wrap > input {
+  border: none;
+  background: #45505C;
+  color: #FFFFFF !important;
+}
+mor-pagination.co-elsi .page-jump .mo-icon {
+  color: #E6E6E6 !important;
+}
+mor-pagination.co-elsi .page-jump .mo-icon:hover {
+  color: #FFFFFF !important;
+}
 mor-pagination.co-g .list > a {
   background-color: #17212D !important;
   color: #FFFFFF !important;
@@ -34296,6 +34435,20 @@ mor-pagination.co-g .list > a {
 mor-pagination.co-g .list > a.current {
   background-color: #E6E6E6 !important;
   color: #17212D !important;
+}
+mor-pagination.co-g .page-nav {
+  color: #FFFFFF !important;
+}
+mor-pagination.co-g .page-jump mor-textinput.page-num .textinput-wrap > input {
+  border: none;
+  background: #17212D;
+  color: #FFFFFF !important;
+}
+mor-pagination.co-g .page-jump .mo-icon {
+  color: #45505C !important;
+}
+mor-pagination.co-g .page-jump .mo-icon:hover {
+  color: #FFFFFF !important;
 }
 mor-pagination.co-lg .list > a {
   background-color: #17212D !important;
@@ -34305,6 +34458,20 @@ mor-pagination.co-lg .list > a.current {
   background-color: #F0F0F0 !important;
   color: #17212D !important;
 }
+mor-pagination.co-lg .page-nav {
+  color: #FFFFFF !important;
+}
+mor-pagination.co-lg .page-jump mor-textinput.page-num .textinput-wrap > input {
+  border: none;
+  background: #17212D;
+  color: #FFFFFF !important;
+}
+mor-pagination.co-lg .page-jump .mo-icon {
+  color: #45505C !important;
+}
+mor-pagination.co-lg .page-jump .mo-icon:hover {
+  color: #FFFFFF !important;
+}
 mor-pagination.co-wh .list > a {
   background-color: #17212D !important;
   color: #FFFFFF !important;
@@ -34313,7 +34480,22 @@ mor-pagination.co-wh .list > a.current {
   background-color: #FFFFFF !important;
   color: #17212D !important;
 }
-mor-pagination .list > a {
+mor-pagination.co-wh .page-nav {
+  color: #FFFFFF !important;
+}
+mor-pagination.co-wh .page-jump mor-textinput.page-num .textinput-wrap > input {
+  border: none;
+  background: #17212D;
+  color: #FFFFFF !important;
+}
+mor-pagination.co-wh .page-jump .mo-icon {
+  color: #45505C !important;
+}
+mor-pagination.co-wh .page-jump .mo-icon:hover {
+  color: #FFFFFF !important;
+}
+mor-pagination .list > a,
+mor-pagination .list > .page-nav {
   font-size: 16px;
 }
 mor-pagination .list .page-jump .page-num > .textinput-wrap > input {
@@ -34325,6 +34507,9 @@ mor-pagination .list .page-jump .mo-icon {
 }
 mor-pagination .list > a.current {
   background-color: #F33D5D !important;
+}
+mor-pagination .page-jump .mo-icon:hover {
+  color: #F33D5D !important;
 }
 mor-dialog {
   width: 100%;
@@ -43018,19 +43203,21 @@ mor-colorpicker.st-readonly .preview .color {
   border-width: 0;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
 }
-.mor-colorpicker-popover .tools .slider-tool .alpha mor-slider .track::before {
+.mor-colorpicker-popover .tools .slider-tool .alpha mor-slider .wrap::before {
   background-image: -webkit-gradient(linear, 0 0, 100% 0, color-stop(0.5, #0000), color-stop(0.5, #fff), to(#fff));
   background-color: #DDD;
+  background-size: 10px;
   content: ' ';
   display: block;
-  width: 100%;
   height: 10px;
   position: absolute;
-  z-index: -1;
-  top: 0;
-  left: 0;
+  z-index: 0;
+  top: 6px;
+  left: 12px;
+  right: 12px;
   border-radius: 10em;
-  background-size: 10px;
+  font-size: 16px;
+  overflow: hidden;
 }
 .mor-colorpicker-popover .values {
   height: 56px;

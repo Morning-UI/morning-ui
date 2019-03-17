@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">40.12% </span>
+        <span class="strong">39.94% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>130/324</span>
+        <span class='fraction'>129/323</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">30.48% </span>
+        <span class="strong">31.07% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>64/210</span>
+        <span class='fraction'>64/206</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">36.46% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>35/96</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">43.77% </span>
+        <span class="strong">43.57% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>123/281</span>
+        <span class='fraction'>122/280</span>
       </div>
     </div>
     <p class="quiet">
@@ -1191,8 +1191,7 @@
 <a name='L1143'></a><a href='#L1143'>1143</a>
 <a name='L1144'></a><a href='#L1144'>1144</a>
 <a name='L1145'></a><a href='#L1145'>1145</a>
-<a name='L1146'></a><a href='#L1146'>1146</a>
-<a name='L1147'></a><a href='#L1147'>1147</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L1146'></a><a href='#L1146'>1146</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1455,19 +1454,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">181x</span>
-<span class="cline-any cline-yes">181x</span>
-<span class="cline-any cline-yes">181x</span>
-<span class="cline-any cline-yes">181x</span>
+<span class="cline-any cline-yes">88x</span>
+<span class="cline-any cline-yes">88x</span>
+<span class="cline-any cline-yes">88x</span>
+<span class="cline-any cline-yes">88x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">181x</span>
-<span class="cline-any cline-yes">181x</span>
-<span class="cline-any cline-yes">181x</span>
-<span class="cline-any cline-yes">181x</span>
-<span class="cline-any cline-yes">181x</span>
-<span class="cline-any cline-yes">181x</span>
-<span class="cline-any cline-yes">181x</span>
-<span class="cline-any cline-yes">181x</span>
+<span class="cline-any cline-yes">88x</span>
+<span class="cline-any cline-yes">88x</span>
+<span class="cline-any cline-yes">88x</span>
+<span class="cline-any cline-yes">88x</span>
+<span class="cline-any cline-yes">88x</span>
+<span class="cline-any cline-yes">88x</span>
+<span class="cline-any cline-yes">88x</span>
+<span class="cline-any cline-yes">88x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -2064,7 +2063,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">86x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">43x</span>
 <span class="cline-any cline-yes">43x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">43x</span>
@@ -3211,7 +3209,6 @@ export default {
         _getColorString : function (type = this.data.showValueType, colorObj = this.colorObj) {
 &nbsp;
             let alpha = Math.round(colorObj.alpha() * maxAlpha);
-            let alphaPer = colorObj.alpha();
 &nbsp;
             <span class="missing-if-branch" title="else path not taken" >E</span>if (type === 'hex') {
 &nbsp;
@@ -3233,7 +3230,7 @@ export default {
 &nbsp;
                 }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >                return `rgba(${Math.round(colorObj.red())}, ${Math.round(colorObj.green())}, ${Math.round(colorObj.blue())}, ${alphaPer || 1})`;</span>
+<span class="cstat-no" title="statement not covered" >                return `rgba(${Math.round(colorObj.red())}, ${Math.round(colorObj.green())}, ${Math.round(colorObj.blue())}, ${this.alphaPer})`;</span>
 &nbsp;
             } else <span class="cstat-no" title="statement not covered" >if (type === 'hsla') {</span>
 &nbsp;
@@ -3245,7 +3242,7 @@ export default {
 &nbsp;
                 }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >                return `hsla(${Math.round(hslObj.h)}, ${Math.round(hslObj.s)}%, ${Math.round(hslObj.l)}%, ${alphaPer || 1})`;</span>
+<span class="cstat-no" title="statement not covered" >                return `hsla(${Math.round(hslObj.h)}, ${Math.round(hslObj.s)}%, ${Math.round(hslObj.l)}%, ${this.alphaPer})`;</span>
 &nbsp;
             }
 &nbsp;
@@ -3490,7 +3487,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Mar 12 2019 09:39:56 GMT+0800 (CST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Mar 17 2019 12:45:45 GMT+0800 (CST)
 </div>
 </div>
 <script src="../../../prettify.js"></script>

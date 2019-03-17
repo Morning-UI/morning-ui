@@ -125,6 +125,7 @@
  
 <script>
 import arrayUniq                    from 'array-uniq';
+import extend                       from 'extend';
 
 export default {
     origin : 'UI',
@@ -289,24 +290,42 @@ export default {
 
             }
 
-            let nodePath = this.conf.parentPath.concat([key]);
-
-            this.$emit('node-emit', nodePath);
-
-        },
-        _nodeEmit : function (path) {
-
-            this.$emit('node-emit', path);
+            this.$emit(
+                'node-emit',
+                [key],
+                [this.conf.tree[key]],
+                extend(true, [], this.conf.parentPath)
+            );
 
         },
-        _nodeFold : function (path) {
+        _nodeEmit : function (path, nodeOptions, bubble) {
 
-            this.$emit('node-fold', path);
+            let key = bubble.pop();
+
+            nodeOptions.unshift(this.conf.tree[key]);
+            path.unshift(key);
+
+            this.$emit('node-emit', path, nodeOptions, bubble);
 
         },
-        _nodeUnfold : function (path) {
+        _nodeFold : function (path, nodeOptions, bubble) {
 
-            this.$emit('node-unfold', path);
+            let key = bubble.pop();
+
+            nodeOptions.unshift(this.conf.tree[key]);
+            path.unshift(key);
+
+            this.$emit('node-fold', path, nodeOptions, bubble);
+
+        },
+        _nodeUnfold : function (path, nodeOptions, bubble) {
+
+            let key = bubble.pop();
+
+            nodeOptions.unshift(this.conf.tree[key]);
+            path.unshift(key);
+
+            this.$emit('node-unfold', path, nodeOptions, bubble);
 
         },
         _nodeFoldSwitch : function (key, fold) {
@@ -318,24 +337,44 @@ export default {
                 if (index === -1) {
 
                     this.data.unfoldKeys.push(key);
-                    this.$emit('node-unfold', this.conf.parentPath.concat([key]));
+                    this.$emit(
+                        'node-unfold',
+                        [key],
+                        [this.conf.tree[key]],
+                        extend(true, [], this.conf.parentPath)
+                    );
 
                 } else {
 
                     this.data.unfoldKeys.splice(index, 1);
-                    this.$emit('node-fold', this.conf.parentPath.concat([key]));
+                    this.$emit(
+                        'node-fold',
+                        [key],
+                        [this.conf.tree[key]],
+                        extend(true, [], this.conf.parentPath)
+                    );
 
                 }
 
             } else if (fold === false && index === -1) {
 
                 this.data.unfoldKeys.push(key);
-                this.$emit('node-unfold', this.conf.parentPath.concat([key]));
+                this.$emit(
+                    'node-unfold',
+                    [key],
+                    [this.conf.tree[key]],
+                    extend(true, [], this.conf.parentPath)
+                );
 
             } else if (fold === true && index !== -1) {
 
                 this.data.unfoldKeys.splice(index, 1);
-                this.$emit('node-fold', this.conf.parentPath.concat([key]));
+                this.$emit(
+                    'node-fold',
+                    [key],
+                    [this.conf.tree[key]],
+                    extend(true, [], this.conf.parentPath)
+                );
 
             }
 
@@ -425,7 +464,12 @@ export default {
 
                     this.data.unfoldKeys.push(key);
                     this.data.unfoldKeys = arrayUniq(this.data.unfoldKeys);
-                    this.$emit('node-unfold', this.conf.parentPath.concat([key]));
+                    this.$emit(
+                        'node-unfold',
+                        [key],
+                        [this.conf.tree[key]],
+                        extend(true, [], this.conf.parentPath)
+                    );
 
                 } else if (item.unfold === false) {
 
@@ -434,7 +478,12 @@ export default {
                     if (index > -1) {
 
                         this.data.unfoldKeys.splice(index, 1);
-                        this.$emit('node-fold', this.conf.parentPath.concat([key]));
+                        this.$emit(
+                            'node-fold',
+                            [key],
+                            [this.conf.tree[key]],
+                            extend(true, [], this.conf.parentPath)
+                        );
 
                     }
 

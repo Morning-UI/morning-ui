@@ -33,7 +33,7 @@ mor-pagination{
 
             .mo-icon{
                 font-size: @fontSize*0.8125;
-                vertical-align: top !important;
+                vertical-align: 1px !important;
             }
 
             &.prev,
@@ -69,6 +69,32 @@ mor-pagination{
             &:not(.ignore).current{
                 cursor: default;
             }
+
+            &.disabled{
+                background: transparent !important;
+                cursor: default;
+                pointer-events: none;
+
+                &:hover{
+                    background-color: transparent !important;
+                }
+
+                .mo-icon{
+                    visibility: hidden;
+                }
+            }
+        }
+
+        > .page-nav{
+            display: inline-block;
+            vertical-align: middle;
+            padding: 0 0.8em;
+            // background-color: @colorExtraLightSilver !important;
+            // cursor: pointer;
+            line-height: 2.4em;
+            height: 2.4em;
+            color: @colorLightBlue !important;
+            // text-decoration: none !important;
         }
 
         > .page-jump{
@@ -118,9 +144,45 @@ mor-pagination{
         }
     }
 
+    &.type-simple{
+        a.next{
+            border-top-right-radius: @borderRadius;
+            border-bottom-right-radius: @borderRadius;
+        }
+
+        > .list > .page-jump{
+            mor-textinput.page-num{
+                border-radius: @borderRadius;
+
+                .textinput-wrap > input{
+                    border-radius: @borderRadius;
+                }
+            }
+        }
+    }
+
+    &.type-mini{
+        a.next{
+            border-top-right-radius: @borderRadius;
+            border-bottom-right-radius: @borderRadius;
+            margin-left: 2px;
+        }
+
+        > .list > .page-jump{
+            mor-textinput.page-num{
+                border-radius: @borderRadius;
+
+                .textinput-wrap > input{
+                    border-radius: @borderRadius;
+                }
+            }
+        }
+    }
+
     &.si-xxl{
         .list{
-            > a{
+            > a,
+            > .page-nav{
                 font-size: @fontSize*1.3;
             }
 
@@ -139,7 +201,8 @@ mor-pagination{
 
     &.si-xl{
         .list{
-            > a{
+            > a,
+            > .page-nav{
                 font-size: @fontSize*1.2;
             }
 
@@ -158,7 +221,8 @@ mor-pagination{
 
     &.si-l{
         .list{
-            > a{
+            > a,
+            > .page-nav{
                 font-size: @fontSize*1.1;
             }
 
@@ -177,7 +241,8 @@ mor-pagination{
 
     &.si-m{
         .list{
-            > a{
+            > a,
+            > .page-nav{
                 font-size: @fontSize*1;
             }
 
@@ -196,7 +261,8 @@ mor-pagination{
 
     &.si-s{
         .list{
-            > a{
+            > a,
+            > .page-nav{
                 font-size: @fontSize*0.875;
             }
 
@@ -215,7 +281,8 @@ mor-pagination{
 
     &.si-xs{
         .list{
-            > a{
+            > a,
+            > .page-nav{
                 font-size: @fontSize*0.75;
                 padding: 0 0.6em;
                 line-height: 2.2em;
@@ -245,7 +312,8 @@ mor-pagination{
 
     &.si-xxs{
         .list{
-            > a{
+            > a,
+            > .page-nav{
                 font-size: @fontSize*0.75;
                 padding: 0 0.4em;
                 line-height: 2em;
@@ -279,6 +347,10 @@ mor-pagination{
                 background-color: @colorTheme !important;
             }
         }
+
+        .page-jump .mo-icon:hover{
+            color: @colorTheme !important;
+        }
     }
 
     &.co-lt{
@@ -286,6 +358,10 @@ mor-pagination{
             &.current{
                 background-color: @colorLightTheme !important;
             }
+        }
+
+        .page-jump .mo-icon:hover{
+            color: @colorLightTheme !important;
         }
     }
 
@@ -295,6 +371,10 @@ mor-pagination{
                 background-color: @colorDarkTheme !important;
             }
         }
+
+        .page-jump .mo-icon:hover{
+            color: @colorDarkTheme !important;
+        }
     }
 
     &.co-s{
@@ -302,6 +382,10 @@ mor-pagination{
             &.current{
                 background-color: @colorSuccess !important;
             }
+        }
+
+        .page-jump .mo-icon:hover{
+            color: @colorSuccess !important;
         }
     }
 
@@ -311,6 +395,10 @@ mor-pagination{
                 background-color: @colorWarning !important;
             }
         }
+
+        .page-jump .mo-icon:hover{
+            color: @colorWarning !important;
+        }
     }
 
     &.co-d{
@@ -318,6 +406,10 @@ mor-pagination{
             &.current{
                 background-color: @colorDanger !important;
             }
+        }
+
+        .page-jump .mo-icon:hover{
+            color: @colorDanger !important;
         }
     }
 
@@ -327,6 +419,10 @@ mor-pagination{
                 background-color: @colorPrimary !important;
             }
         }
+
+        .page-jump .mo-icon:hover{
+            color: @colorPrimary !important;
+        }
     }
 
     &.co-m{
@@ -334,6 +430,10 @@ mor-pagination{
             &.current{
                 background-color: @colorMinor !important;
             }
+        }
+
+        .page-jump .mo-icon:hover{
+            color: @colorMinor !important;
         }
     }
 
@@ -343,6 +443,10 @@ mor-pagination{
                 background-color: @colorInfo !important;
             }
         }
+
+        .page-jump .mo-icon:hover{
+            color: @colorInfo !important;
+        }
     }
 
     &.co-bk{
@@ -350,6 +454,10 @@ mor-pagination{
             &.current{
                 background-color: @colorBlack !important;
             }
+        }
+
+        .page-jump .mo-icon:hover{
+            color: @colorBlack !important;
         }
     }
 
@@ -359,6 +467,10 @@ mor-pagination{
                 background-color: @colorLightBlack !important;
             }
         }
+
+        .page-jump .mo-icon:hover{
+            color: @colorLightBlack !important;
+        }
     }
 
     &.co-elbk{
@@ -366,6 +478,10 @@ mor-pagination{
             &.current{
                 background-color: @colorExtraLightBlack !important;
             }
+        }
+
+        .page-jump .mo-icon:hover{
+            color: @colorExtraLightBlack !important;
         }
     }
 
@@ -375,6 +491,10 @@ mor-pagination{
                 background-color: @colorBlue !important;
             }
         }
+
+        .page-jump .mo-icon:hover{
+            color: @colorBlue !important;
+        }
     }
 
     &.co-lbu{
@@ -383,12 +503,24 @@ mor-pagination{
                 background-color: @colorLightBlue !important;
             }
         }
+
+        .page-jump .mo-icon:hover{
+            color: @colorLightBlue !important;
+        }
     }
 
     &.co-elbu{
         .list > a{
             &.current{
                 background-color: @colorExtraLightBlue !important;
+            }
+        }
+
+        .page-jump .mo-icon{
+            color: @colorLightBlue !important;
+
+            &:hover{
+                color: @colorExtraLightBlue !important;
             }
         }
     }
@@ -403,6 +535,26 @@ mor-pagination{
                 color: @colorBlack !important;
             }
         }
+
+        .page-nav{
+            color: @colorWhite !important;
+        }
+
+        .page-jump{
+            mor-textinput.page-num .textinput-wrap > input{
+                border: none;
+                background: @colorExtraLightBlack;
+                color: @colorWhite !important;
+            }
+
+            .mo-icon{
+                color: @colorGray !important;
+
+                &:hover{
+                    color: @colorWhite !important;
+                }
+            }
+        }
     }
 
     &.co-lsi{
@@ -413,6 +565,26 @@ mor-pagination{
             &.current{
                 background-color: @colorLightSilver !important;
                 color: @colorBlack !important;
+            }
+        }
+
+        .page-nav{
+            color: @colorWhite !important;
+        }
+
+        .page-jump{
+            mor-textinput.page-num .textinput-wrap > input{
+                border: none;
+                background: @colorExtraLightBlack;
+                color: @colorWhite !important;
+            }
+
+            .mo-icon{
+                color: @colorGray !important;
+
+                &:hover{
+                    color: @colorWhite !important;
+                }
             }
         }
     }
@@ -427,6 +599,26 @@ mor-pagination{
                 color: @colorBlack !important;
             }
         }
+
+        .page-nav{
+            color: @colorWhite !important;
+        }
+
+        .page-jump{
+            mor-textinput.page-num .textinput-wrap > input{
+                border: none;
+                background: @colorExtraLightBlack;
+                color: @colorWhite !important;
+            }
+
+            .mo-icon{
+                color: @colorGray !important;
+
+                &:hover{
+                    color: @colorWhite !important;
+                }
+            }
+        }
     }
 
     &.co-g{
@@ -437,6 +629,26 @@ mor-pagination{
             &.current{
                 background-color: @colorGray !important;
                 color: @colorBlack !important;
+            }
+        }
+
+        .page-nav{
+            color: @colorWhite !important;
+        }
+
+        .page-jump{
+            mor-textinput.page-num .textinput-wrap > input{
+                border: none;
+                background: @colorBlack;
+                color: @colorWhite !important;
+            }
+
+            .mo-icon{
+                color: @colorExtraLightBlack !important;
+
+                &:hover{
+                    color: @colorWhite !important;
+                }
             }
         }
     }
@@ -451,6 +663,26 @@ mor-pagination{
                 color: @colorBlack !important;
             }
         }
+
+        .page-nav{
+            color: @colorWhite !important;
+        }
+
+        .page-jump{
+            mor-textinput.page-num .textinput-wrap > input{
+                border: none;
+                background: @colorBlack;
+                color: @colorWhite !important;
+            }
+
+            .mo-icon{
+                color: @colorExtraLightBlack !important;
+
+                &:hover{
+                    color: @colorWhite !important;
+                }
+            }
+        }
     }
 
     &.co-wh{
@@ -461,6 +693,26 @@ mor-pagination{
             &.current{
                 background-color: @colorWhite !important;
                 color: @colorBlack !important;
+            }
+        }
+
+        .page-nav{
+            color: @colorWhite !important;
+        }
+
+        .page-jump{
+            mor-textinput.page-num .textinput-wrap > input{
+                border: none;
+                background: @colorBlack;
+                color: @colorWhite !important;
+            }
+
+            .mo-icon{
+                color: @colorExtraLightBlack !important;
+
+                &:hover{
+                    color: @colorWhite !important;
+                }
             }
         }
     }
