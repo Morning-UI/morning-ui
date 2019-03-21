@@ -98,7 +98,8 @@ export default {
             data : {
                 historys : [],
                 lvlist : [],
-                currentLevel : {}
+                currentLevel : {},
+                firstEmit : true
             }
         };
 
@@ -205,7 +206,7 @@ export default {
     created : function () {},
     mounted : function () {
 
-        this.$watch('data.lvlist', () => {
+        this.$watch('data.lvlist', (val) => {
 
             let last = {},
                 keyList = [],
@@ -232,7 +233,13 @@ export default {
                 length : keyList.length
             };
 
-            this.$emit('emit');
+            if (!this.data.firstEmit) {
+
+                this.$emit('emit');
+
+            }
+
+            this.data.firstEmit = false;
 
         });
 

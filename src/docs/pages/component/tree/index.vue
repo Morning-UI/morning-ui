@@ -777,6 +777,54 @@
     }
     :::
 
+    :::vue
+    @name:block-leaf
+    ---
+    #config
+    >conf-desc
+    是否展示块状的子节点。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >tpl
+    <div style="width: 560px;">
+        <ui-tree :tree="tree" :block-leaf="true"></i>"></ui-tree>
+    </div>
+    >script
+    {
+        data : {
+            tree : {
+                0 : {
+                    name : 'ROOT',
+                    children : {
+                        '0-1' : '0-1',
+                        '0-2' : {
+                            name : '0-2',
+                            children : {
+                                '0-2-1' : '0-2-1',
+                                '0-2-2' : '0-2-2',
+                                '0-2-3' : '0-2-3'
+                            }
+                        },
+                        '0-3' : {
+                            name : '0-3',
+                            children : {
+                                '0-3-1' : '0-3-1',
+                                '0-3-2' : '0-3-2'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    :::
+
     [[[方法]]]
 
     :::vue
