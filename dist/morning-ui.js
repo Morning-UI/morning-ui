@@ -26503,6 +26503,7 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
 
 exports.default = {
     origin: 'UI',
@@ -26548,6 +26549,10 @@ exports.default = {
             validator: function validator(value) {
                 return ['arrow', 'folder', 'symbol'].indexOf(value) !== -1;
             }
+        },
+        blockLeaf: {
+            type: Boolean,
+            default: false
         }
     },
     computed: {
@@ -26562,7 +26567,8 @@ exports.default = {
                 customFoldIcon: this.customFoldIcon,
                 customUnfoldIcon: this.customUnfoldIcon,
                 customLeafnodeIcon: this.customLeafnodeIcon,
-                foldStyle: this.foldStyle
+                foldStyle: this.foldStyle,
+                blockLeaf: this.blockLeaf
             };
         },
         moreClass: function moreClass() {
@@ -26570,7 +26576,8 @@ exports.default = {
             return {
                 'has-cabel': this.conf.cable,
                 'can-click': this.conf.canClick,
-                foldable: this.conf.foldable
+                foldable: this.conf.foldable,
+                block: this.conf.blockLeaf
             };
         }
     },
@@ -32435,7 +32442,8 @@ exports.default = {
             data: {
                 historys: [],
                 lvlist: [],
-                currentLevel: {}
+                currentLevel: {},
+                firstEmit: true
             }
         };
     },
@@ -32593,7 +32601,12 @@ exports.default = {
                 length: keyList.length
             };
 
-            _this.$emit('emit');
+            if (!_this.data.firstEmit) {
+
+                _this.$emit('emit');
+            }
+
+            _this.data.firstEmit = false;
         });
 
         this.$watch('conf.list', function () {
@@ -55638,7 +55651,8 @@ var render = function() {
         "custom-fold-icon": _vm.customFoldIcon,
         "custom-unfold-icon": _vm.customUnfoldIcon,
         "custom-leafnode-icon": _vm.customLeafnodeIcon,
-        "fold-style": _vm.foldStyle
+        "fold-style": _vm.foldStyle,
+        "block-leaf": _vm.blockLeaf
       }
     },
     [
@@ -72513,7 +72527,7 @@ var morning = {
         white: 'wh'
     },
     isMorning: true,
-    version: '0.12.9',
+    version: '0.12.10',
     map: {}
 };
 

@@ -5,6 +5,28 @@ mor-tree{
         margin-bottom: @fontSize;
     }
 
+    &.block{
+        mor-private-tree{
+            ul.tree-body{
+                .tree-node{
+                    > span{
+                        display: flex;
+                        align-items: center;
+                        width: 100%;
+
+                        > .node-name{
+                            flex-grow: 1;
+                        }
+
+                        > .node-switcher{
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     &.foldable{
         mor-private-tree{
             ul.tree-body{
@@ -46,6 +68,11 @@ mor-tree{
             ul.tree-body{
                 .tree-node{
                     > span {
+                        > a{
+                            line-height: 1.5;
+                            text-decoration: none;
+                        }
+
                         > a:hover{
                             cursor: pointer;
                             text-decoration: none;

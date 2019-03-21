@@ -17,6 +17,33 @@
     <!-- ### 0.11.0 <ui-badge class="circle" s light-blue>Beta</ui-badge> -->
     
     ### 更新记录
+    
+    ### 0.12.10 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2019年3月21日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.10" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.10/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.10/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 新特性
+
+    - 所有表单的`value-change`事件支持`value`参数，可用于获取表单值
+    - `ui-tree`新增`block-leaf`配置，可用于展示块状的子节点
+
+    #### 改进
+
+    - 现在`ui-breadcrumbs`不会在组件初始化时被触发
+
+    #### 修复
+
+    - 修复`ui-tree`的一个图标对齐的问题
+
+    ---
 
     ### 0.12.9 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
