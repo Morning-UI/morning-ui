@@ -206,7 +206,7 @@ export default {
     created : function () {},
     mounted : function () {
 
-        this.$watch('data.lvlist', (val) => {
+        this.$watch('data.lvlist', () => {
 
             let last = {},
                 keyList = [],
