@@ -12,6 +12,7 @@
         :custom-unfold-icon="customUnfoldIcon"
         :custom-leafnode-icon="customLeafnodeIcon"
         :fold-style="foldStyle"
+        :block-leaf="blockLeaf"
     >
     
         <morning-textinput
@@ -85,6 +86,10 @@ export default {
             type : String,
             default : 'arrow',
             validator : (value => ['arrow', 'folder', 'symbol'].indexOf(value) !== -1)
+        },
+        blockLeaf : {
+            type : Boolean,
+            default : false
         }
     },
     computed : {
@@ -99,7 +104,8 @@ export default {
                 customFoldIcon : this.customFoldIcon,
                 customUnfoldIcon : this.customUnfoldIcon,
                 customLeafnodeIcon : this.customLeafnodeIcon,
-                foldStyle : this.foldStyle
+                foldStyle : this.foldStyle,
+                blockLeaf : this.blockLeaf
             };
 
         },
@@ -108,7 +114,8 @@ export default {
             return {
                 'has-cabel' : this.conf.cable,
                 'can-click' : this.conf.canClick,
-                foldable : this.conf.foldable
+                foldable : this.conf.foldable,
+                block : this.conf.blockLeaf
             };
 
         }

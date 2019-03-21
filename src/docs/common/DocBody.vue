@@ -1187,6 +1187,8 @@ Boolean
 #event
 >event-desc
 当表单值变化时触发。
+>event-args
+|value|新的表单值|详见[值类型](#值类型)|
 ---
 #demo
 >tpl
