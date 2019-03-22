@@ -17,6 +17,28 @@
     <!-- ### 0.11.0 <ui-badge class="circle" s light-blue>Beta</ui-badge> -->
     
     ### 更新记录
+
+    ### 0.12.11 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2019年3月22日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.11" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.11/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.11/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 新特性
+
+    - `ui-table`新增`hover-effect`配置，可以设置鼠标`hover`效果
+
+    #### 修复
+
+    - 修复`ui-table`的`multi-select`配置的一个问题
+
+    ---
     
     ### 0.12.10 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
