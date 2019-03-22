@@ -42,7 +42,10 @@
     Vue.use(morning);
     ```
 
-    由于Morning UI的样式中引用了`less`及`woff`文件，请确保你的模块打包器配置可处理此类型的文件。
+    使用时需要注意:
+
+    - 由于Morning UI的样式中引用了`less`及`woff`文件，请确保你的模块打包器配置可处理此类型的文件。
+    - 由于Morning UI依赖了额外的样式，需要安装依赖：`@csstools/normalize.css@9.0.1`和`quill@1.3.6`。
 
     注意：若你的项目未使用模块打包器，则暂时不支持定制化。
 

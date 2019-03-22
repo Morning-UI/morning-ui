@@ -1486,6 +1486,30 @@
     }
     :::
 
+    :::vue
+    @name:no-hover-effect
+    ---
+    #config
+    >conf-desc
+    是否显示鼠标`hover`时的效果。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `true`
+    ---
+    #demo
+    >tpl
+    <ui-table :list="list" :hover-effect="false"></ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.list
+        }
+    }
+    :::
+
     [[[方法]]]
 
     :::vue
