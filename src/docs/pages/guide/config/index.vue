@@ -342,6 +342,7 @@
     - `attach` : 附着
     - `pick-done` : 选择完成
     - `date-pick-done` : 日期选择完成
+    - `no-hover-effect` : 无Hover的效果
 
     </script>
     </doc-guide>

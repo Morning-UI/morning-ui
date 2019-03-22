@@ -26774,6 +26774,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
 
 var _arrayUniq = __webpack_require__(6);
 
@@ -26898,6 +26899,10 @@ exports.default = {
         multiSelect: {
             type: Boolean,
             default: false
+        },
+        hoverEffect: {
+            type: Boolean,
+            default: false
         }
     },
     computed: {
@@ -26922,7 +26927,8 @@ exports.default = {
                 csvName: this.csvName,
                 multiSort: this.multiSort,
                 highlightRow: this.highlightRow,
-                multiSelect: this.multiSelect
+                multiSelect: this.multiSelect,
+                hoverEffect: this.hoverEffect
             };
         },
         colSetMap: function colSetMap() {
@@ -26968,7 +26974,8 @@ exports.default = {
                 'ts-zp': this.conf.zebraPattern,
                 'vertical-border': this.conf.verticalBorder,
                 'horizontal-border': this.conf.horizontalBorder,
-                'has-title-col': this.data.titleKeys.length > 0
+                'has-title-col': this.data.titleKeys.length > 0,
+                'no-hover-effect': !this.conf.hoverEffect
             }, classes);
         }
     },
@@ -55739,7 +55746,8 @@ var render = function() {
         "csv-name": _vm.csvName,
         "multi-sort": _vm.multiSort,
         "highlight-row": _vm.highlightRow,
-        "multi-select": _vm.multiSelect
+        "multi-select": _vm.multiSelect,
+        "hover-effect": _vm.hoverEffect
       },
       on: { scroll: _vm._tableScroll }
     },
@@ -65659,7 +65667,7 @@ var render = function() {
           _c(
             "tr",
             [
-              _vm.conf.multiSelect
+              _vm.conf.multiSelect && _vm.data.titleKeys.length > 0
                 ? _c(
                     "th",
                     { staticClass: "table-checked" },
@@ -65832,7 +65840,7 @@ var render = function() {
             }
           },
           [
-            _vm.conf.multiSelect
+            _vm.conf.multiSelect && _vm.data.titleKeys.length > 0
               ? _c(
                   "td",
                   { staticClass: "table-checked" },
