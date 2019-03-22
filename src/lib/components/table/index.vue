@@ -22,6 +22,7 @@
         :multi-sort="multiSort"
         :highlight-row="highlightRow"
         :multi-select="multiSelect"
+        :hover-effect="hoverEffect"
 
         @scroll="_tableScroll"
     >
@@ -215,6 +216,10 @@ export default {
         multiSelect : {
             type : Boolean,
             default : false
+        },
+        hoverEffect : {
+            type : Boolean,
+            default : false
         }
     },
     computed : {
@@ -239,7 +244,8 @@ export default {
                 csvName : this.csvName,
                 multiSort : this.multiSort,
                 highlightRow : this.highlightRow,
-                multiSelect : this.multiSelect
+                multiSelect : this.multiSelect,
+                hoverEffect : this.hoverEffect
             };
 
         },
@@ -267,7 +273,8 @@ export default {
                 'ts-zp' : this.conf.zebraPattern,
                 'vertical-border' : this.conf.verticalBorder,
                 'horizontal-border' : this.conf.horizontalBorder,
-                'has-title-col' : (this.data.titleKeys.length > 0)
+                'has-title-col' : (this.data.titleKeys.length > 0),
+                'no-hover-effect' : !this.conf.hoverEffect
             }, classes);
 
         }
