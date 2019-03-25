@@ -17,6 +17,33 @@
     <!-- ### 0.11.0 <ui-badge class="circle" s light-blue>Beta</ui-badge> -->
     
     ### 更新记录
+    
+    ### 0.12.12 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2019年3月25日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.12" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.12/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.12/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 新特性
+
+    - `ui-grid`支持`ui-row`和`ui-col`写法，详见文档
+
+    #### 修复
+
+    - 修复日期组件在区间选择模式下，清空表单数据引起的一个问题
+    - 修复日期组件在区间选择模式下，仅选择一个日期时`getDate()`方法取值错误的问题
+
+    #### 更多
+
+    - 文档优化关于表单组件获取/设置数值的内容
+
+    ---
 
     ### 0.12.11 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
