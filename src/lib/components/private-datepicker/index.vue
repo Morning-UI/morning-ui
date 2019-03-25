@@ -207,8 +207,14 @@ export default {
         getHighlightDays : function () {
 
             let days = Object.assign([], this.conf.highlightDays);
+            let val = this.get();
 
-            days.push(this._dateStringToDate(this.get(), this.conf.format));
+            if (!(val === undefined ||
+                (val instanceof Array && val.length === 0))) {
+
+                days.push(this._dateStringToDate(this.get(), this.conf.format));
+
+            }
 
             return days;
 

@@ -1,6 +1,7 @@
 import                                  './styles/index.less';
 
 import extend                           from 'extend';
+import eleClass                         from 'Common/element';
 import uiClass                          from 'Common/ui';
 import formClass                        from 'Common/form';
 import browserPolyfill                  from './polyfill/index';
@@ -235,7 +236,8 @@ morning.install = function (Vue, options) {
 
     Vue.config.ignoredElements = [];
 
-    this._origin.UI = uiClass(Vue, this);
+    this._origin.Elements = eleClass(Vue, this);
+    this._origin.UI = uiClass(this._origin.Elements);
     this._origin.Form = formClass(this._origin.UI);
 
     // register component
@@ -253,6 +255,10 @@ morning.install = function (Vue, options) {
         } else if (creater.origin === 'Form') {
 
             component = this._origin.Form.extend(creater);
+
+        } else if (creater.origin === 'Element') {
+
+            component = this._origin.Elements.extend(creater);
 
         } else {
 
