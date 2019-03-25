@@ -888,7 +888,9 @@ export default {
             let start;
             let end;
 
-            if (!value) {
+            if (!value || (value instanceof Array && value.length === 0)) {
+
+                this._highlightDate();
 
                 return;
 
@@ -938,6 +940,13 @@ export default {
             if (!this.conf.isRange) {
 
                 return;
+
+            }
+
+            if (start === undefined && end === undefined) {
+
+                this.data.input0HighlightDays = [];
+                this.data.input1HighlightDays = [];
 
             }
 
@@ -1518,10 +1527,18 @@ export default {
 
                 if (this.conf.relative) {
 
-                    relativeDate = [
-                        this._parseRelativeDateToObj(value[0]),
-                        this._parseRelativeDateToObj(value[1])
-                    ];
+                    if (value[1] === undefined) {
+
+                        relativeDate = [this._parseRelativeDateToObj(value[0])];
+
+                    } else {
+
+                        relativeDate = [
+                            this._parseRelativeDateToObj(value[0]),
+                            this._parseRelativeDateToObj(value[1])
+                        ];
+
+                    }
 
                 }
 
@@ -1535,11 +1552,11 @@ export default {
 
                 }
 
-                if (this.conf.relative && relativeDate[1].relative) {
+                if (this.conf.relative && relativeDate[1] && relativeDate[1].relative) {
 
                     result[1] = this._getRelativeDate(relativeDate[1]);
 
-                } else {
+                } else if (result[1]) {
 
                     result[1] = this._dateStringToDate(value[1], this.conf.format);
 
@@ -1590,7 +1607,8 @@ export default {
 
             if (this.conf.isRange) {
 
-                if (this.data.value.length === 2) {
+                if (this.data.value !== undefined &&
+                    this.data.value.length === 2) {
 
                     this.$emit('pick-done');
 

@@ -942,6 +942,8 @@ Boolean
 #method
 >method-desc
 设置表单的值。
+<br>
+更多设置表单值方法，详见：[表单/获取设置表单值](/guide/form.html#获取设置表单值)
 >method-args
 |value|YES|需要设置表单的值，如果需要清空表单的值，可以不传此参数。|接受任何数值。<br/>\`undefined\`:清空表单的值<br>原始值:表单的原始值，根据表单不同可以是字符串、对象、数组等<br>JSON数值:表单原始值JSON序列化后的值，传入后表单会自动解析并还原原始值。|Any|\`undefined\`|
 >method-return
@@ -963,6 +965,8 @@ Boolean
 #method
 >method-desc
 获取表单的原始值。
+<br>
+更多获取表单值方法，详见：[表单/获取设置表单值](/guide/form.html#获取设置表单值)
 >method-return
 返回表单组件的值。
 ---
@@ -1187,6 +1191,8 @@ Boolean
 #event
 >event-desc
 当表单值变化时触发。
+<br>
+获取/设置表单值，详见：[表单/获取设置表单值](/guide/form.html#获取设置表单值)
 >event-args
 |value|新的表单值|详见[值类型](#值类型)|
 ---

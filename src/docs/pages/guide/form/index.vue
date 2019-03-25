@@ -71,7 +71,94 @@
     - 值格式 : 表单数值格式说明
     - 默认值
 
-    ## 表单组
+    ## 获取/设置表单值
+
+    #### 通过`v-model`
+
+    可以使用`v-model`指令将表单值绑定到父视图中，使用方法与Vue官方[表单输入绑定](https://cn.vuejs.org/v2/guide/forms.html)一致。
+
+    绑定是双向的，组件值改变会同步到父视图的data中，父视图的值改变也会改变组件的值：
+    
+    :::vue
+    #demo
+    >tpl
+    <div style="width:400px;">
+        <p>1. 修改下面表单内容，然后点击<code>获取父视图的data</code>，父视图的数据同步变化</p>
+        <p>2. 点击<code>修改父视图的data</code>，表单的值也会变化</p>
+        <ui-formgroup>
+        <ui-textinput v-model="name" form-name="姓名"></ui-textinput>
+        <br>
+        <ui-radio :list="{male:'Male',female:'Female'}" v-model="gender"></ui-radio>
+        </ui-formgroup>
+        <br><br>
+        <ui-btn js="alert(this.getData());">获取姓名及性别</ui-btn>
+        <ui-btn js="this.setData();">修改姓名及性别</ui-btn>
+    </div>
+    >script
+    {
+        data : {
+            name : "Jim",
+            gender : "male",
+        },
+        methods : {
+            getData : function() {
+                return JSON.stringify({
+                    name : this.name,
+                    gender : this.gender
+                })
+            },
+            setData : function() {
+                this.name = 'Sam';
+                this.gender = 'female';
+            }
+        }
+    }
+    :::
+
+    注意：如果表单处于`disable`状态，父视图中的数值变化将不会同步到表单(仅在初始化时`v-model`的数值会同步到表单)。
+
+    `v-model`指令的用法详见：<a href="https://cn.vuejs.org/v2/guide/forms.html" target="_blank">表单输入绑定</a>
+
+    #### 通过表单组件vm
+
+    若组件设置了`ref`，也可以通过`$refs`来获取组件的vm，调用组件的vm上的`get()` / `getJson()` / `set()`方法来获取/设置表单值。
+
+    :::vue
+    #demo
+    >tpl
+    <div style="width:400px;">
+        <ui-formgroup>
+        <ui-textinput ref="name" form-name="姓名" v-model="name"></ui-textinput>
+        <br>
+        <ui-radio :list="{male:'Male',female:'Female'}" ref="gender" v-model="gender"></ui-radio>
+        </ui-formgroup>
+        <br><br>
+        <ui-btn js="alert(this.getData());">获取姓名及性别</ui-btn>
+    </div>
+    >script
+    {
+        data : {
+            name : "Jim",
+            gender : "male",
+        },
+        methods : {
+            getData : function() {
+                return JSON.stringify({
+                    name : this.$refs.name.get(),
+                    gender : this.$refs.gender.get()
+                })
+            },
+            getGender : function() {
+                this.$refs.name.get('Sam');
+                this.$refs.gender.get('female');
+            }
+        }
+    }
+    :::
+
+    其中`get()`和`getJson()`的区别是，前者返回原始数据类型，后者返回JSON序列化后的数据，若数据需要和第三方交互采用字符串会更通用。
+
+    #### 通过表单组
 
     通过在组件上设置`group`属性，可以将表单组件添加到同一个表单组。
 
@@ -136,7 +223,7 @@
     </div>
     :::
 
-    #### 设置部分值
+    ##### 设置部分值
 
     在`dataJson`或`dataObject`中你可以只设置部分表单的数值，比如：
 
@@ -154,7 +241,7 @@
     </div>
     :::
 
-    #### 清空表单的值
+    ##### 清空表单的值
 
     在`dataJson`或`dataObject`中若显式的设置`undefined`，则会清空对应表单的值，比如：
 
@@ -179,7 +266,7 @@
     }
     :::
 
-    #### 清空一组表单的值
+    ##### 清空一组表单的值
 
     通过`cleanGroup`方法可以清空一整组表单的值，比如：
 
@@ -203,56 +290,10 @@
         }
     }
     :::
-
-    ## 表单数据双向绑定
     
-    大部分情况下表单的值和父视图中的数据是关联的，这时候可以使用`v-model`指令将表单值绑定到父视图中。
-
-    绑定是双向的，组件值改变会同步到父视图的data中，父视图的值改变也会改变组件的值：
-    
-    :::vue
-    #demo
-    >tpl
-    <div style="width:400px;">
-        <p>1. 修改下面表单内容，然后点击<code>获取父视图的data</code>，父视图的数据同步变化</p>
-        <p>2. 点击<code>修改父视图的data</code>，表单的值也会变化</p>
-        <ui-formgroup>
-        <ui-textinput v-model="name" form-name="姓名"></ui-textinput>
-        <br>
-        <ui-radio :list="{male:'Male',female:'Female'}" v-model="gender"></ui-radio>
-        </ui-formgroup>
-        <br><br>
-        <ui-btn js="alert(this.getData());">获取父视图的data</ui-btn>
-        <ui-btn js="this.setData();">修改父视图的data</ui-btn>
-    </div>
-    >script
-    {
-        data : {
-            name : "Jim",
-            gender : "male",
-        },
-        methods : {
-            getData : function() {
-                return JSON.stringify({
-                    name : this.name,
-                    gender : this.gender
-                })
-            },
-            setData : function() {
-                this.name = 'Sam';
-                this.gender = 'female';
-            }
-        }
-    }
-    :::
-
-    注意：如果表单处于`disable`状态，父视图中的数值变化将不会同步到表单(仅在初始化时`v-model`的数值会同步到表单)。
-
-    `v-model`指令的用法详见：<a href="https://cn.vuejs.org/v2/guide/forms.html" target="_blank">表单输入绑定</a>
-
     ## 全局扩展
 
-    MorningUI的全局对象`morning`上对表单组件进行了扩展，可以让使用者更方便的获取、设置表单值。
+    MorningUI的全局对象`morning`上对表单组件进行了扩展，可以让使用者更方便的获取、设置表单值。详见：[基础/全局扩展](/guide/morning.html)
 
     </script>
     </doc-guide>
