@@ -219,7 +219,7 @@ export default {
         },
         hoverEffect : {
             type : Boolean,
-            default : false
+            default : true
         }
     },
     computed : {
