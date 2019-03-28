@@ -26902,7 +26902,7 @@ exports.default = {
         },
         hoverEffect: {
             type: Boolean,
-            default: false
+            default: true
         }
     },
     computed: {
@@ -66029,14 +66029,12 @@ var render = function() {
                                 "!colSetMap[key] || !colSetMap[key].hide"
                             }
                           ],
-                          key: key
+                          key: key,
+                          domProps: {
+                            innerHTML: _vm._s(_vm.colSetMap[key].name)
+                          }
                         },
                         [
-                          _vm._v(
-                            "\n                        " +
-                              _vm._s(_vm.colSetMap[key].name) +
-                              "\n                        "
-                          ),
                           _vm.colSetMap[key].sort
                             ? _c("span", { staticClass: "th-sort" }, [
                                 !_vm.data.sort[key] ||
@@ -66324,14 +66322,12 @@ var render = function() {
                                 "!colSetMap[key] || !colSetMap[key].hide"
                             }
                           ],
-                          key: key
+                          key: key,
+                          domProps: {
+                            innerHTML: _vm._s(_vm.colSetMap[key].name)
+                          }
                         },
                         [
-                          _vm._v(
-                            "\n                    " +
-                              _vm._s(_vm.colSetMap[key].name) +
-                              "\n                    "
-                          ),
                           _vm.colSetMap[key].sort
                             ? _c("span", { staticClass: "th-sort" }, [
                                 !_vm.data.sort[key] ||
@@ -72868,7 +72864,7 @@ var morning = {
         white: 'wh'
     },
     isMorning: true,
-    version: '0.12.12',
+    version: '0.12.13',
     map: {}
 };
 
