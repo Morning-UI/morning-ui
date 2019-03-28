@@ -217,11 +217,20 @@
     #demo
     >desc
     表格数据列表支持传入HTML内容，在渲染时这些HTML也会被渲染。
+    <br>
+    列标题同样也支持HTML。
     >tpl
-    <ui-table :list="list"></ui-table>
+    <ui-table :list="list" :col-set="colset" :show-col-name="true"></ui-table>
     >script
     {
         data : {
+            colset : [
+                {col : 'name', name : '<span class="mo-co-font-theme">Name</span>'},
+                {col : 'age', name : 'Age'},
+                {col : 'gender', name : 'Gender'},
+                {col : 'job', name : 'Job'},
+                {col : 'action', name : 'Action'}
+            ],
             list : [
                 {name : 'Tim Boelaars', age : 20, gender : 'male', action : '<a href="#">发送</a>'},
                 {name : 'Andrew Colin Beck', age : 41, gender : 'female', action : '<a href="#">发送</a>'},
