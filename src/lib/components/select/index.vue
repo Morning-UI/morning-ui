@@ -45,6 +45,7 @@
             :stateClass="stateClass"
             :listStyle="listStyle"
             :uiid="uiid"
+            :isMax="isMax"
             :_wrapClick="_wrapClick"
             :_multiinputFocus="_multiinputFocus"
             :_multiinputValueChange="_multiinputValueChange"

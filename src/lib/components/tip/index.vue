@@ -1,7 +1,7 @@
 <template>
     <mor-tip
         :_uiid="uiid"
-        :class="[colorClass, moreClass, tipClass]"
+        :class="[colorClass, moreClass]"
 
         :target="target"
         :placement="placement"

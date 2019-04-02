@@ -1,7 +1,7 @@
 <template>
     <mor-popover
         :_uiid="uiid"
-        :class="[tipClass]"
+        :class="[]"
 
         :target="target"
         :placement="placement"
@@ -54,7 +54,24 @@ export default {
         trigger : {
             type : String,
             default : 'hover',
-            validator : (value => ['hover', 'click', 'rclick', 'focus', 'method'].indexOf(value) !== -1)
+            validator : value => {
+
+                let items = ['hover', 'click', 'rclick', 'focus', 'method'];
+                let values = value.split(' ');
+
+                for (let item of values) {
+
+                    if (items.indexOf(item) === -1) {
+
+                        return false;
+
+                    }
+
+                }
+
+                return true;
+
+            }
         },
         triggerInDelay : {
             type : Number,
