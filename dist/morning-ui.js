@@ -66113,12 +66113,15 @@ var render = function() {
                                 "!colSetMap[key] || !colSetMap[key].hide"
                             }
                           ],
-                          key: key,
-                          domProps: {
-                            innerHTML: _vm._s(_vm.colSetMap[key].name)
-                          }
+                          key: key
                         },
                         [
+                          _c("span", {
+                            domProps: {
+                              innerHTML: _vm._s(_vm.colSetMap[key].name)
+                            }
+                          }),
+                          _vm._v(" "),
                           _vm.colSetMap[key].sort
                             ? _c("span", { staticClass: "th-sort" }, [
                                 !_vm.data.sort[key] ||
@@ -66406,12 +66409,15 @@ var render = function() {
                                 "!colSetMap[key] || !colSetMap[key].hide"
                             }
                           ],
-                          key: key,
-                          domProps: {
-                            innerHTML: _vm._s(_vm.colSetMap[key].name)
-                          }
+                          key: key
                         },
                         [
+                          _c("span", {
+                            domProps: {
+                              innerHTML: _vm._s(_vm.colSetMap[key].name)
+                            }
+                          }),
+                          _vm._v(" "),
                           _vm.colSetMap[key].sort
                             ? _c("span", { staticClass: "th-sort" }, [
                                 !_vm.data.sort[key] ||
@@ -72958,7 +72964,7 @@ var morning = {
         white: 'wh'
     },
     isMorning: true,
-    version: '0.12.13',
+    version: '0.12.14',
     map: {}
 };
 
