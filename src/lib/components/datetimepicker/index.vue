@@ -964,7 +964,7 @@ export default {
 
                     result[1] = this._dtGetRelativeDatetime(relativeDate[1]);
 
-                } else {
+                } else if (value[1]){
 
                     result[1] = this._dateStringToDate(value[1], this.conf.format);
 

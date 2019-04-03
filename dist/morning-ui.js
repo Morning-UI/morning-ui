@@ -43772,7 +43772,7 @@ exports.default = {
                 if (this.conf.relative && relativeDate[1] && relativeDate[1].relative) {
 
                     result[1] = this._getRelativeDate(relativeDate[1]);
-                } else if (result[1]) {
+                } else if (value[1]) {
 
                     result[1] = this._dateStringToDate(value[1], this.conf.format);
                 }
@@ -44714,7 +44714,7 @@ exports.default = {
                 if (this.conf.relative && relativeDate[1].relative) {
 
                     result[1] = this._dtGetRelativeDatetime(relativeDate[1]);
-                } else {
+                } else if (value[1]) {
 
                     result[1] = this._dateStringToDate(value[1], this.conf.format);
                 }
