@@ -45,6 +45,7 @@
                         'last-current' : (key === currentMenuList[deep] && deep === currentMenuList.length-1),
                         'has-group' : name !== '__all',
                         'is-disable' : item.disable,
+                        'is-hidden' : item.hidden,
                         'show' : !!data.itemShowList['menu-item-'+conf.deep+'-'+key]
                     }"
                 >
