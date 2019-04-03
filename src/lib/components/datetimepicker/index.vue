@@ -381,7 +381,7 @@ export default {
 
             }
 
-            if (!this._checkSelectable(formatDate(date, this.conf.format))) {
+            if (!this._checkSelectable(date)) {
  
                 date = this._getClosestDate(date);
  
@@ -429,7 +429,7 @@ export default {
                                     $time._set(formatDate(timeDate, $time.conf.format), true);
 
                                 }
-    
+
                             }
     
                             if (value[1]) {
@@ -878,7 +878,7 @@ export default {
                 let start = this._dateStringToDate(ranges[0], this.conf.format);
                 let end = this._dateStringToDate(ranges[1], this.conf.format);
 
-                if (isWithinInterval(this._dateStringToDate(date), {
+                if (isWithinInterval(date, {
                     start,
                     end
                 })) {
@@ -899,7 +899,7 @@ export default {
                         let start = this._dateStringToDate(range[0], this.conf.format);
                         let end = this._dateStringToDate(range[1], this.conf.format);
 
-                        if (isWithinInterval(this._dateStringToDate(date), {
+                        if (isWithinInterval(this._dateStringToDate(date, this.conf.format), {
                             start,
                             end
                         })) {
