@@ -724,7 +724,16 @@ export default {
                                 .modifiers
                                 .offset
                                 .offset
-                                .split(' ')[1];
+                                .split(' ')[1].replace(/(px|,)/g, '');
+                            let popover0OriginOffsetX = popover0
+                                .Tip
+                                .data
+                                .instance
+                                .options
+                                .modifiers
+                                .offset
+                                .offset
+                                .split(' ')[0].replace(/(px|,)/g, '');
                             let popover1OriginOffsetY = popover1
                                 .Tip
                                 .data
@@ -733,7 +742,16 @@ export default {
                                 .modifiers
                                 .offset
                                 .offset
-                                .split(' ')[1];
+                                .split(' ')[1].replace(/(px|,)/g, '');
+                            let popover1OriginOffsetX = popover1
+                                .Tip
+                                .data
+                                .instance
+                                .options
+                                .modifiers
+                                .offset
+                                .offset
+                                .split(' ')[0].replace(/(px|,)/g, '');
 
                             if ((offsets0.popper.width + offsets0.popper.left) > offsets1.popper.left) {
 
@@ -746,7 +764,7 @@ export default {
                                         options : {
                                             modifiers : {
                                                 offset : {
-                                                    offset : `${offsetFixed * 2}px, ${popover1OriginOffsetY}`
+                                                    offset : `${(offsetFixed * 2) + Number(popover1OriginOffsetX)}px, ${popover1OriginOffsetY}`
                                                 }
                                             }
                                         }
@@ -758,7 +776,7 @@ export default {
                                         options : {
                                             modifiers : {
                                                 offset : {
-                                                    offset : `${-offsetFixed * 2}px, ${popover1OriginOffsetY}`
+                                                    offset : `${(-offsetFixed * 2) + Number(popover0OriginOffsetX)}px, ${popover1OriginOffsetY}`
                                                 }
                                             }
                                         }
@@ -770,7 +788,7 @@ export default {
                                         options : {
                                             modifiers : {
                                                 offset : {
-                                                    offset : `${-offsetFixed}px, ${popover0OriginOffsetY}`
+                                                    offset : `${-offsetFixed + Number(popover0OriginOffsetX)}px, ${popover0OriginOffsetY}`
                                                 }
                                             }
                                         }
@@ -780,7 +798,7 @@ export default {
                                         options : {
                                             modifiers : {
                                                 offset : {
-                                                    offset : `${offsetFixed}px, ${popover1OriginOffsetY}`
+                                                    offset : `${offsetFixed + Number(popover1OriginOffsetX)}px, ${popover1OriginOffsetY}`
                                                 }
                                             }
                                         }
@@ -1556,7 +1574,7 @@ export default {
 
                     result[1] = this._getRelativeDate(relativeDate[1]);
 
-                } else if (result[1]) {
+                } else if (value[1]) {
 
                     result[1] = this._dateStringToDate(value[1], this.conf.format);
 

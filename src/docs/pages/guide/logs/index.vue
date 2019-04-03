@@ -18,6 +18,33 @@
     
     ### 更新记录
 
+    ### 0.12.15 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
+
+    <ui-textcolor color="light-blue">
+        <ui-small>
+            发布于2019年4月3日，
+            Archive :
+            <a href="https://github.com/Morning-UI/morning-ui/releases/tag/0.12.15" target="_blank">Package</a>
+            <a href="https://cdn.jsdelivr.net/npm/morning-ui@0.12.15/dist/" target="_blank">jsdelivr(CDN)</a>
+            <a href="https://unpkg.com/morning-ui@0.12.15/dist/" target="_blank">unpkg(CDN)</a>
+        </ui-small>
+    </ui-textcolor>
+
+    #### 新特性
+
+    - `ui-table`支持`loading`和`loading-note`配置，可将表格设置为加载中状态
+    - `ui-menu`支持隐藏某一个菜单项，详见`menu`配置文档
+
+    #### 修复
+
+    -  修复`ui-datepicker`等日期时间选择组件的边界溢出错位问题
+    -  修复`ui-datetimepicker`组件在区间选择时开启`date-selectable-range`配置无效的问题
+    -  修复部分组件使用了未定义的属性
+    -  修复`ui-popover`组件的属性校验问题
+    -  修复`ui-select`是部分情况下错误的展示了为空的提示
+
+    ---
+
     ### 0.12.14 <ui-badge class="circle ver-canary" size="s" color="light-theme">Canary</ui-badge>
 
     <ui-textcolor color="light-blue">

@@ -148,6 +148,7 @@ export default {
         'stateClass',
         'listStyle',
         'uiid',
+        'isMax',
         '_wrapClick',
         '_multiinputFocus',
         '_multiinputValueChange',

@@ -1519,6 +1519,54 @@
     }
     :::
 
+    :::vue
+    @name:loading
+    ---
+    #config
+    >conf-desc
+    表格是否处于数据加载状态。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >tpl
+    <ui-table :list="list" :loading="true"></ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.list
+        }
+    }
+    :::
+
+    :::vue
+    @name:loading-note
+    ---
+    #config
+    >conf-desc
+    当表格处于数据加载状态时的提示内容。
+    >conf-accept
+    提示文案
+    >conf-type
+    String
+    >conf-default
+    `'数据加载中...'`
+    ---
+    #demo
+    >tpl
+    <ui-table :list="list" :loading="true" loading-note="请稍后"></ui-table>
+    >script
+    {
+        data : {
+            list : window.demodata.list
+        }
+    }
+    :::
+
     [[[方法]]]
 
     :::vue

@@ -1,7 +1,7 @@
 <template>
     <mor-dropdown
         :_uiid="uiid"
-        :class="[showClass]"
+        :class="[]"
         :id="'mor-dropdown-'+uiid"
 
         :done-hidden="doneHidden"
