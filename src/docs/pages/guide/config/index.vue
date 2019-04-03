@@ -343,6 +343,8 @@
     - `pick-done` : 选择完成
     - `date-pick-done` : 日期选择完成
     - `no-hover-effect` : 无Hover的效果
+    - `loading` : 加载状态
+    - `loading-note` : 加载提示文案
 
     </script>
     </doc-guide>
