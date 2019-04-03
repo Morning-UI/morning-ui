@@ -23,6 +23,8 @@
         :highlight-row="highlightRow"
         :multi-select="multiSelect"
         :hover-effect="hoverEffect"
+        :loading="loading"
+        :loading-note="loadingNote"
 
         @scroll="_tableScroll"
     >
@@ -119,6 +121,10 @@
             </tr>
         </tbody>
     </table>
+
+    <div class="load-mask" v-if="conf.loading">
+        <morning-load :done-time="false" size="xl" :note="conf.loadingNote"></morning-load>
+    </div>
 
     </mor-table>
 </template>
@@ -220,6 +226,14 @@ export default {
         hoverEffect : {
             type : Boolean,
             default : true
+        },
+        loading : {
+            type : Boolean,
+            default : false
+        },
+        loadingNote : {
+            type : String,
+            default : '数据加载中...'
         }
     },
     computed : {
@@ -245,7 +259,9 @@ export default {
                 multiSort : this.multiSort,
                 highlightRow : this.highlightRow,
                 multiSelect : this.multiSelect,
-                hoverEffect : this.hoverEffect
+                hoverEffect : this.hoverEffect,
+                loading : this.loading,
+                loadingNote : this.loadingNote
             };
 
         },

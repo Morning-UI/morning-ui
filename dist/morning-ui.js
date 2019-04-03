@@ -26775,6 +26775,12 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 var _arrayUniq = __webpack_require__(6);
 
@@ -26903,6 +26909,14 @@ exports.default = {
         hoverEffect: {
             type: Boolean,
             default: true
+        },
+        loading: {
+            type: Boolean,
+            default: false
+        },
+        loadingNote: {
+            type: String,
+            default: '数据加载中...'
         }
     },
     computed: {
@@ -26928,7 +26942,9 @@ exports.default = {
                 multiSort: this.multiSort,
                 highlightRow: this.highlightRow,
                 multiSelect: this.multiSelect,
-                hoverEffect: this.hoverEffect
+                hoverEffect: this.hoverEffect,
+                loading: this.loading,
+                loadingNote: this.loadingNote
             };
         },
         colSetMap: function colSetMap() {
@@ -32948,7 +32964,40 @@ exports.default = {
             type: String,
             default: 'hover',
             validator: function validator(value) {
-                return ['hover', 'click', 'rclick', 'focus', 'method'].indexOf(value) !== -1;
+
+                var items = ['hover', 'click', 'rclick', 'focus', 'method'];
+                var values = value.split(' ');
+
+                var _iteratorNormalCompletion = true;
+                var _didIteratorError = false;
+                var _iteratorError = undefined;
+
+                try {
+                    for (var _iterator = values[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                        var item = _step.value;
+
+
+                        if (items.indexOf(item) === -1) {
+
+                            return false;
+                        }
+                    }
+                } catch (err) {
+                    _didIteratorError = true;
+                    _iteratorError = err;
+                } finally {
+                    try {
+                        if (!_iteratorNormalCompletion && _iterator.return) {
+                            _iterator.return();
+                        }
+                    } finally {
+                        if (_didIteratorError) {
+                            throw _iteratorError;
+                        }
+                    }
+                }
+
+                return true;
             }
         },
         triggerInDelay: {
@@ -36624,6 +36673,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
 
 var _lodash = __webpack_require__(340);
 
@@ -38150,7 +38200,7 @@ exports.default = {
     components: {
         'select-list': _selectList2.default
     },
-    props: ['conf', 'data', 'stateClass', 'listStyle', 'uiid', '_wrapClick', '_multiinputFocus', '_multiinputValueChange', '_searchKeyChange', '_multiinputFocusNoSearch', '_textinputFocus', '_textinputBlur', '_listClick', '_itemHover', 'showItemList']
+    props: ['conf', 'data', 'stateClass', 'listStyle', 'uiid', 'isMax', '_wrapClick', '_multiinputFocus', '_multiinputValueChange', '_searchKeyChange', '_multiinputFocusNoSearch', '_textinputFocus', '_textinputBlur', '_listClick', '_itemHover', 'showItemList']
 }; //
 //
 //
@@ -38312,6 +38362,16 @@ __webpack_require__.r(__webpack_exports__);
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -43008,8 +43068,10 @@ exports.default = {
                             var offsets0 = popover0.Tip.data.offsets;
                             var offsets1 = popover1.Tip.data.offsets;
                             var offsetFixed = 0;
-                            var popover0OriginOffsetY = popover0.Tip.data.instance.options.modifiers.offset.offset.split(' ')[1];
-                            var popover1OriginOffsetY = popover1.Tip.data.instance.options.modifiers.offset.offset.split(' ')[1];
+                            var popover0OriginOffsetY = popover0.Tip.data.instance.options.modifiers.offset.offset.split(' ')[1].replace(/(px|,)/g, '');
+                            var popover0OriginOffsetX = popover0.Tip.data.instance.options.modifiers.offset.offset.split(' ')[0].replace(/(px|,)/g, '');
+                            var popover1OriginOffsetY = popover1.Tip.data.instance.options.modifiers.offset.offset.split(' ')[1].replace(/(px|,)/g, '');
+                            var popover1OriginOffsetX = popover1.Tip.data.instance.options.modifiers.offset.offset.split(' ')[0].replace(/(px|,)/g, '');
 
                             if (offsets0.popper.width + offsets0.popper.left > offsets1.popper.left) {
 
@@ -43022,7 +43084,7 @@ exports.default = {
                                         options: {
                                             modifiers: {
                                                 offset: {
-                                                    offset: offsetFixed * 2 + 'px, ' + popover1OriginOffsetY
+                                                    offset: offsetFixed * 2 + Number(popover1OriginOffsetX) + 'px, ' + popover1OriginOffsetY
                                                 }
                                             }
                                         }
@@ -43033,7 +43095,7 @@ exports.default = {
                                         options: {
                                             modifiers: {
                                                 offset: {
-                                                    offset: -offsetFixed * 2 + 'px, ' + popover1OriginOffsetY
+                                                    offset: -offsetFixed * 2 + Number(popover0OriginOffsetX) + 'px, ' + popover1OriginOffsetY
                                                 }
                                             }
                                         }
@@ -43044,7 +43106,7 @@ exports.default = {
                                         options: {
                                             modifiers: {
                                                 offset: {
-                                                    offset: -offsetFixed + 'px, ' + popover0OriginOffsetY
+                                                    offset: -offsetFixed + Number(popover0OriginOffsetX) + 'px, ' + popover0OriginOffsetY
                                                 }
                                             }
                                         }
@@ -43054,7 +43116,7 @@ exports.default = {
                                         options: {
                                             modifiers: {
                                                 offset: {
-                                                    offset: offsetFixed + 'px, ' + popover1OriginOffsetY
+                                                    offset: offsetFixed + Number(popover1OriginOffsetX) + 'px, ' + popover1OriginOffsetY
                                                 }
                                             }
                                         }
@@ -44146,7 +44208,7 @@ exports.default = {
                 date = this._dateGetStandardDate();
             }
 
-            if (!this._checkSelectable((0, _dateFns.format)(date, this.conf.format))) {
+            if (!this._checkSelectable(date)) {
 
                 date = this._getClosestDate(date);
             }
@@ -44565,7 +44627,7 @@ exports.default = {
                 var start = this._dateStringToDate(ranges[0], this.conf.format);
                 var end = this._dateStringToDate(ranges[1], this.conf.format);
 
-                if ((0, _dateFns.isWithinInterval)(this._dateStringToDate(date), {
+                if ((0, _dateFns.isWithinInterval)(date, {
                     start: start,
                     end: end
                 })) {
@@ -44588,7 +44650,7 @@ exports.default = {
                             var _start2 = this._dateStringToDate(range[0], this.conf.format);
                             var _end2 = this._dateStringToDate(range[1], this.conf.format);
 
-                            if ((0, _dateFns.isWithinInterval)(this._dateStringToDate(date), {
+                            if ((0, _dateFns.isWithinInterval)(this._dateStringToDate(date, this.conf.format), {
                                 start: _start2,
                                 end: _end2
                             })) {
@@ -49197,6 +49259,7 @@ __webpack_require__.r(__webpack_exports__);
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+//
 //
 //
 //
@@ -55466,7 +55529,7 @@ var render = function() {
   return _c(
     "mor-dropdown",
     {
-      class: [_vm.showClass],
+      class: [],
       attrs: {
         _uiid: _vm.uiid,
         id: "mor-dropdown-" + _vm.uiid,
@@ -55830,7 +55893,9 @@ var render = function() {
         "multi-sort": _vm.multiSort,
         "highlight-row": _vm.highlightRow,
         "multi-select": _vm.multiSelect,
-        "hover-effect": _vm.hoverEffect
+        "hover-effect": _vm.hoverEffect,
+        loading: _vm.loading,
+        "loading-note": _vm.loadingNote
       },
       on: { scroll: _vm._tableScroll }
     },
@@ -55994,7 +56059,24 @@ var render = function() {
               ])
             : _vm._e()
         ])
-      ])
+      ]),
+      _vm._v(" "),
+      _vm.conf.loading
+        ? _c(
+            "div",
+            { staticClass: "load-mask" },
+            [
+              _c("morning-load", {
+                attrs: {
+                  "done-time": false,
+                  size: "xl",
+                  note: _vm.conf.loadingNote
+                }
+              })
+            ],
+            1
+          )
+        : _vm._e()
     ],
     2
   )
@@ -56346,6 +56428,7 @@ var render = function() {
                               _vm.deep === _vm.currentMenuList.length - 1,
                             "has-group": name !== "__all",
                             "is-disable": item.disable,
+                            "is-hidden": item.hidden,
                             show: !!_vm.data.itemShowList[
                               "menu-item-" + _vm.conf.deep + "-" + key
                             ]
@@ -62446,6 +62529,7 @@ var render = function() {
                   stateClass: _vm.stateClass,
                   listStyle: _vm.listStyle,
                   uiid: _vm.uiid,
+                  isMax: _vm.isMax,
                   _wrapClick: _vm._wrapClick,
                   _multiinputFocus: _vm._multiinputFocus,
                   _multiinputValueChange: _vm._multiinputValueChange,
@@ -64885,7 +64969,7 @@ var render = function() {
   return _c(
     "mor-popover",
     {
-      class: [_vm.tipClass],
+      class: [],
       attrs: {
         _uiid: _vm.uiid,
         target: _vm.target,
@@ -64935,7 +65019,7 @@ var render = function() {
   return _c(
     "mor-tip",
     {
-      class: [_vm.colorClass, _vm.moreClass, _vm.tipClass],
+      class: [_vm.colorClass, _vm.moreClass],
       attrs: {
         _uiid: _vm.uiid,
         target: _vm.target,
@@ -66873,15 +66957,25 @@ var render = function() {
               class: {
                 show:
                   _vm.data.noMatch ||
-                  _vm.showItemList.length === 0 ||
-                  _vm.data.selectedAll
+                  (_vm.conf.hideSelected === true &&
+                    (_vm.showItemList.length === 0 || _vm.data.selectedAll)) ||
+                  (_vm.conf.hideSelected === false &&
+                    (_vm.conf.list === undefined ||
+                      Object.keys(_vm.conf.list).length === 0))
               }
             },
             [
               _vm.conf.canSearch &&
               (_vm.conf.dynamicList || _vm.showItemList.length === 0)
                 ? _c("morning-empty", { attrs: { note: "无匹配项目" } })
-                : _c("morning-empty", { attrs: { note: "无项目" } })
+                : _vm.conf.hideSelected === true &&
+                  (_vm.showItemList.length === 0 || _vm.data.selectedAll)
+                ? _c("morning-empty", { attrs: { note: "无项目" } })
+                : _vm.conf.hideSelected === false &&
+                  (_vm.conf.list === undefined ||
+                    Object.keys(_vm.conf.list).length === 0)
+                ? _c("morning-empty", { attrs: { note: "无项目" } })
+                : _vm._e()
             ],
             1
           ),

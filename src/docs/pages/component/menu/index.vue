@@ -50,9 +50,11 @@
         data : function () {
             return {
                 menu : {
-                    'home' : '首页',                            // 若目录的值是字符串，则此字符串是目录名称，这是一种简写
+                    // 若目录的值是字符串，则此字符串是目录名称，这是一种简写
+                    'home' : '首页',
+                    // 目录的值为对象时，可以通过`name`来设置目录的名称
                     'active' : {
-                        name : '活动'                           // 目录的值为对象时，可以通过`name`来设置目录的名称
+                        name : '活动'
                     },
                     'order' : {
                         name : '订单',          
@@ -65,26 +67,31 @@
                             'status' : '订单状态',
                             'data' : '数据统计'
                         },
-                        groups : {                              // `groups`可以用来给子菜单`children`分组
+                        // `groups`可以用来给子菜单`children`分组
+                        groups : {
                             '订单列表' : ['all', 'done', 'notshipped', 'intransit'],
                             '更多' : ['history', 'status', 'data']
                         }
                     },
                     'search' : {
                         name : '搜索',
-                        link : 'https://google.com/'            // 通过`link`设置点击后跳转的链接
+                        // 通过`link`设置点击后跳转的链接
+                        link : 'https://google.com/'
                     },
                     'map' : {
                         name : '地图',
                         link : 'https://maps.google.com/',
-                        newtab : true                           // 通过`newtab`设置点击后新窗口打开链接
+                        // 通过`newtab`设置点击后新窗口打开链接
+                        newtab : true
                     },             
                     'settings' : {
                         name : '设置',
-                        children : {                              // 通过`child`设置子目录，当一个目录包含`child`后，`link`会失效
+                        // 通过`child`设置子目录，当一个目录包含`child`后，`link`会失效
+                        children : {
                             'common' : {
                                 name : '通用设置',
-                                children : {                      // 支持多级子菜单
+                                // 支持多级子菜单
+                                children : {
                                     'theme' : {
                                         name : '模板',
                                         children : {
@@ -117,11 +124,13 @@
                     },
                     'logout' : {
                         name : '注销',
-                        handler : this.logout                   // 通过`handler`为目录指定点击后的处理函数
+                        // 通过`handler`为目录指定点击后的处理函数
+                        handler : this.logout
                     },
                     'help' : {
                         name : '帮助',
-                        disable : true                          // 禁用菜单项
+                        // 禁用菜单项
+                        disable : true
                     }
                 }
             };
@@ -1887,6 +1896,8 @@
     `handler`: 点击菜单项后的处理函数
     <br>
     `disable`: 禁用此菜单项
+    <br>
+    `hidden`: 视觉上隐藏菜单项
     <br><br>
     注意：当一个`object`包含`children`时`link`和`newtab`会失效。
     >conf-accept
@@ -1927,9 +1938,11 @@
         data : function () {
             return {
                 menu : {
-                    'home' : '首页',                            // 若目录的值是字符串，则此字符串是目录名称，这是一种简写
+                    // 若目录的值是字符串，则此字符串是目录名称，这是一种简写
+                    'home' : '首页',
+                    // 目录的值为对象时，可以通过`name`来设置目录的名称
                     'active' : {
-                        name : '活动'                           // 目录的值为对象时，可以通过`name`来设置目录的名称
+                        name : '活动'
                     },
                     'order' : {
                         name : '订单',          
@@ -1942,26 +1955,31 @@
                             'status' : '订单状态',
                             'data' : '数据统计'
                         },
-                        groups : {                              // `groups`可以用来给子菜单`children`分组
+                        // `groups`可以用来给子菜单`children`分组
+                        groups : {
                             '订单列表' : ['all', 'done', 'notshipped', 'intransit'],
                             '更多' : ['history', 'status', 'data']
                         }
                     },
                     'search' : {
                         name : '搜索',
-                        link : 'https://google.com/'            // 通过`link`设置点击后跳转的链接
+                        // 通过`link`设置点击后跳转的链接
+                        link : 'https://google.com/'
                     },
                     'map' : {
                         name : '地图',
                         link : 'https://maps.google.com/',
-                        newtab : true                           // 通过`newtab`设置点击后新窗口打开链接
+                        // 通过`newtab`设置点击后新窗口打开链接
+                        newtab : true
                     },             
                     'settings' : {
                         name : '设置',
-                        children : {                              // 通过`child`设置子目录，当一个目录包含`child`后，`link`会失效
+                        // 通过`children`设置子目录，当一个目录包含`children`后，`link`会失效
+                        children : {
                             'common' : {
                                 name : '通用设置',
-                                children : {                      // 支持多级子菜单
+                                // 支持多级子菜单
+                                children : {
                                     'theme' : {
                                         name : '模板',
                                         children : {
@@ -1987,18 +2005,24 @@
                                     'found' : '账户找回',
                                     'history' : '登录历史',
                                     'help' : '寻求帮助',
-                                    'blocked' : '锁定账户'
+                                    'blocked' : {
+                                        name : '锁定账户',
+                                        // 隐藏菜单项
+                                        hidden : true
+                                    }
                                 }
                             }
                         }
                     },
                     'logout' : {
                         name : '注销',
-                        handler : this.logout                   // 通过`handler`为目录指定点击后的处理函数
+                        // 通过`handler`为目录指定点击后的处理函数
+                        handler : this.logout
                     },
                     'help' : {
                         name : '帮助',
-                        disable : true                          // 禁用菜单项
+                        // 禁用菜单项
+                        disable : true
                     }
                 }
             };
