@@ -26775,6 +26775,12 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 var _arrayUniq = __webpack_require__(6);
 
@@ -26903,6 +26909,14 @@ exports.default = {
         hoverEffect: {
             type: Boolean,
             default: true
+        },
+        loading: {
+            type: Boolean,
+            default: false
+        },
+        loadingNote: {
+            type: String,
+            default: '数据加载中...'
         }
     },
     computed: {
@@ -26928,7 +26942,9 @@ exports.default = {
                 multiSort: this.multiSort,
                 highlightRow: this.highlightRow,
                 multiSelect: this.multiSelect,
-                hoverEffect: this.hoverEffect
+                hoverEffect: this.hoverEffect,
+                loading: this.loading,
+                loadingNote: this.loadingNote
             };
         },
         colSetMap: function colSetMap() {
@@ -49342,6 +49358,7 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
 
 exports.default = {
     origin: 'UI',
@@ -55876,7 +55893,9 @@ var render = function() {
         "multi-sort": _vm.multiSort,
         "highlight-row": _vm.highlightRow,
         "multi-select": _vm.multiSelect,
-        "hover-effect": _vm.hoverEffect
+        "hover-effect": _vm.hoverEffect,
+        loading: _vm.loading,
+        "loading-note": _vm.loadingNote
       },
       on: { scroll: _vm._tableScroll }
     },
@@ -56040,7 +56059,24 @@ var render = function() {
               ])
             : _vm._e()
         ])
-      ])
+      ]),
+      _vm._v(" "),
+      _vm.conf.loading
+        ? _c(
+            "div",
+            { staticClass: "load-mask" },
+            [
+              _c("morning-load", {
+                attrs: {
+                  "done-time": false,
+                  size: "xl",
+                  note: _vm.conf.loadingNote
+                }
+              })
+            ],
+            1
+          )
+        : _vm._e()
     ],
     2
   )
@@ -56392,6 +56428,7 @@ var render = function() {
                               _vm.deep === _vm.currentMenuList.length - 1,
                             "has-group": name !== "__all",
                             "is-disable": item.disable,
+                            "is-hidden": item.hidden,
                             show: !!_vm.data.itemShowList[
                               "menu-item-" + _vm.conf.deep + "-" + key
                             ]

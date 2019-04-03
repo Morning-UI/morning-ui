@@ -31446,6 +31446,15 @@ mor-table::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.1);
   border-radius: 4px;
 }
+mor-table .load-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  z-index: 19;
+}
 mor-table table {
   border-spacing: 0;
   border-collapse: collapse;
@@ -43991,6 +44000,10 @@ mor-private-menu .sub-menu > li.is-disable > a {
 }
 mor-private-menu .root-menu > li.is-disable .has-child-menu-icon,
 mor-private-menu .sub-menu > li.is-disable .has-child-menu-icon {
+  display: none;
+}
+mor-private-menu .root-menu > li.is-hidden,
+mor-private-menu .sub-menu > li.is-hidden {
   display: none;
 }
 mor-private-menu .sub-menu > li > a .iconfont,
