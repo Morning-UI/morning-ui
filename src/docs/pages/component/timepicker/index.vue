@@ -114,7 +114,7 @@
     [[[形态]]]
 
     :::preset
-    @name:formStatus
+    @name:formStatusWithSize
     @uikey:timepicker
     @defaultValue:'12:30:24'
     :::

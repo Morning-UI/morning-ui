@@ -8,7 +8,6 @@ mor-timepicker{
         display: flex;
 
         .input-group-addon{
-            padding: @fontSize*0.375 @fontSize*0.75;
             font-size: @fontSize*0.75;
             color: @colorBlue;
             text-align: center;
@@ -64,9 +63,6 @@ mor-timepicker{
         }
 
         .separator{
-            height: @formHeight;
-            line-height: @formHeight;
-            font-size: @fontSize*0.875;
             color: @colorBlue;
             text-align: center;
             box-sizing: border-box;
@@ -75,8 +71,6 @@ mor-timepicker{
 
             &.block{
                 background-color: @colorLightGray;
-                padding: 0 0.5em;
-                min-width: @formHeight;
             }
 
             &.inline{
@@ -103,12 +97,76 @@ mor-timepicker{
         }
     }
 
+    &.si-m{
+        .wrap{
+            .input-group-addon{
+                padding: 0 @fontSize*0.75;
+                height: @formHeight;
+                line-height: @formHeight;
+            }
+
+            .separator{
+                height: @formHeight;
+                line-height: @formHeight;
+                font-size: @formInputFontSize;
+
+                &.block{
+                    min-width: @formHeight;
+                    padding: 0 0.5em;
+                }
+            }
+        }
+    }
+
+    &.si-s{
+        .wrap{
+            .input-group-addon{
+                padding: 0 @fontSize*0.6;
+                height: @formHeightS;
+                line-height: @formHeightS;
+            }
+
+            .separator{
+                height: @formHeightS;
+                line-height: @formHeightS;
+                font-size: @formInputFontSizeS;
+
+                &.block{
+                    min-width: @formHeightS;
+                    padding: 0 0.5em;
+                }
+            }
+        }
+    }
+
+    &.si-xs{
+        .wrap{
+            .input-group-addon{
+                padding: 0 @fontSize*0.5;
+                height: @formHeightXs;
+                line-height: @formHeightXs;
+            }
+
+            .separator{
+                height: @formHeightXs;
+                line-height: @formHeightXs;
+                font-size: @formInputFontSizeXs;
+
+                &.block{
+                    min-width: @formHeightXs;
+                    padding: 0 0.5em;
+                }
+            }
+        }
+    }
+
     &.st-normal{}
 
     &.st-disabled{}
 
     // default status
     &{
+        .si-m;
         .st-normal;
     }
 }

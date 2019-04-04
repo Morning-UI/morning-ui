@@ -1,7 +1,7 @@
 <template>
     <mor-timepicker
         :_uiid="uiid"
-        :class="[formClass, stateClass, moreClass]"
+        :class="[formClass, sizeClass, stateClass, moreClass]"
 
         :form-name="formName"
         :form-key="formKey"
@@ -38,6 +38,7 @@
                     class="timepicker-select-0"
                     :ref="'ui-timepicker-select-0-'+uiid"
                     :state="conf.state"
+                    :size="conf.size"
 
                     :inside-name="(conf.startName === false) ? conf.insideName : conf.startName"
                     :align="conf.align"
@@ -53,6 +54,7 @@
                     class="timepicker-select-1"
                     :ref="'ui-timepicker-select-1-'+uiid"
                     :state="conf.state"
+                    :size="conf.size"
 
                     :inside-name="(conf.startName === false) ? conf.insideName : conf.startName"
                     :align="conf.align"
@@ -67,6 +69,7 @@
                 <morning-select
                     :ref="'ui-timepicker-select-0-'+uiid"
                     :state="conf.state"
+                    :size="conf.size"
 
                     :inside-name="conf.insideName"
                     :init-value="data.value"
@@ -85,6 +88,7 @@
                     class="timepicker-input-0"
                     :ref="'ui-timepicker-input-0-'+uiid"
                     :state="conf.state"
+                    :size="conf.size"
 
                     :inside-name="(conf.startName === false) ? conf.insideName : conf.startName"
                     :format="conf.format"
@@ -102,6 +106,7 @@
                     class="timepicker-input-1"
                     :ref="'ui-timepicker-input-1-'+uiid"
                     :state="conf.state"
+                    :size="conf.size"
                     
                     :inside-name="(conf.endName === false) ? conf.insideName : conf.endName"
                     :format="conf.format"
@@ -118,6 +123,7 @@
                 <morning-private-timepicker
                     :ref="'ui-timepicker-input-0-'+uiid"
                     :state="conf.state"
+                    :size="conf.size"
 
                     :inside-name="conf.insideName"
                     :init-value="data.value"

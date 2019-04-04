@@ -12,7 +12,6 @@ mor-multiinput{
     > .itemlist{
         border: 1px @colorFormBorder solid;
         border-radius: @borderRadius;
-        padding: @fontSize*0.2 @fontSize*0.3;
         position: relative;
         font-size: 0;
 
@@ -20,16 +19,12 @@ mor-multiinput{
             color: @colorFormItemColor !important;
             background-color: @colorFromItemBackground;
             display: inline-block;
-            padding: 0.4em 0.7em;
             border-radius: @borderRadius;
-            margin: @fontSize*0.2 @fontSize*0.1;
             vertical-align: top;
             max-width: 100%;
-            line-height: 1.2em;
             text-decoration: none;
             position: relative;
             cursor: default;
-            font-size: @fontSize*0.8125;
             box-sizing: border-box;
 
             > span{
@@ -38,9 +33,9 @@ mor-multiinput{
                 text-overflow: ellipsis;
                 overflow: hidden;
                 display: inline-block;
-                padding-right: 1em;
-                vertical-align: middle;
                 box-sizing: border-box;
+                vertical-align: middle;
+                line-height: 1.15;
             }
 
             &:hover{
@@ -81,17 +76,14 @@ mor-multiinput{
         }
 
         > input{
-            padding: 0.2em;
             border: none;
             outline: none;
-            font-size: @fontSize*0.875;
             color: @colorFormText !important;
-            line-height: 1.7em;
             width: 0;
-            margin: @fontSize*0.2 @fontSize*0.1;
             max-width: 100%;
             min-width: 2em;
             background: rgba(0, 0, 0, 0);
+            box-sizing: border-box;
 
             &::placeholder{
                 color: @colorFormText;
@@ -103,10 +95,8 @@ mor-multiinput{
         }
 
         > span{
-            font-size: 12px;
             color: @colorFormTextMisc !important;
             width: 100%;
-            padding: 0.4em 0.7em;
             text-align: center;
             display: block;
         }
@@ -126,6 +116,100 @@ mor-multiinput{
     &.can-move{
         > .itemlist > .multiinput-item{
             cursor: move;
+        }
+    }
+
+    &.si-m{
+        > .itemlist{
+            padding: @fontSize*0.1875 @fontSize*0.3125;
+
+            > .multiinput-item{
+                margin: @fontSize*0.1875 @fontSize*0.1;
+                padding: @fontSize*0.3125 @fontSize*0.5625;
+                font-size: @fontSize*0.8125;
+                height: calc(@formHeight - @fontSize*0.375 - @fontSize*0.375 - 2px);
+
+                > span{
+                    padding-right: 1em;
+                    line-height: calc(@formHeight - @fontSize*0.375 - @fontSize*0.375 - @fontSize*0.625 - 2px);
+                }
+            }
+
+            > input{
+                margin: @fontSize*0.1875 @fontSize*0.1;
+                padding: @fontSize*0.1875;
+                font-size: @fontSize*0.875;
+                line-height: calc(@formHeight - @fontSize*0.375 - @fontSize*0.375 - 2px);
+                height: calc(@formHeight - @fontSize*0.375 - @fontSize*0.375 - 2px);
+            }
+
+            > span{
+                font-size: @fontSize*0.75;
+                padding: 0.4em 0.7em;
+            }
+        }
+    }
+
+    &.si-s{
+        > .itemlist{
+            padding: @fontSize*0.125 @fontSize*0.25;
+
+            > .multiinput-item{
+                margin: @fontSize*0.0625 @fontSize*0.1;
+                padding: @fontSize*0.1875 @fontSize*0.375;
+                font-size: @fontSize*0.8125;
+                height: calc(@formHeightS - @fontSize*0.25 - 2px);
+
+                > span{
+                    padding-right: 1.5em;
+                    line-height: calc(@formHeightS - @fontSize*0.125 - @fontSize*0.25 - @fontSize*0.375 - 2px);
+                }
+            }
+
+            > input{
+                margin: @fontSize*0.0625 @fontSize*0.1;
+                padding: @fontSize*0.1875;
+                font-size: @fontSize*0.875;
+                line-height: calc(@formHeightS - @fontSize*0.125 - @fontSize*0.25 - 2px);
+                height: calc(@formHeightS - @fontSize*0.125 - @fontSize*0.25 - 2px);
+            }
+
+            > span{
+                font-size: @fontSize*0.75;
+                padding: 0.4em 0.7em;
+            }
+        }
+    }
+
+    &.si-xs{
+        > .itemlist{
+            padding: @fontSize*0.125 @fontSize*0.125;
+
+            > .multiinput-item{
+                margin: @fontSize*0.0625 @fontSize*0.1;
+                padding: @fontSize*0.125 @fontSize*0.375;
+                font-size: @fontSize*0.8125;
+                height: calc(@formHeightXs - @fontSize*0.25 - 2px);
+
+                > span{
+                    padding-right: 1.5em;
+                    vertical-align: top;
+                    line-height: calc(@formHeightXs - @fontSize*0.125 - @fontSize*0.25 - @fontSize*0.25 - 2px);
+                }
+            }
+
+            > input{
+                margin: @fontSize*0.0625 @fontSize*0.1;
+                padding: @fontSize*0.125;
+                font-size: @fontSize*0.875;
+                line-height: calc(@formHeightXs - @fontSize*0.125 - @fontSize*0.25 - 2px);
+                height: calc(@formHeightXs - @fontSize*0.125 - @fontSize*0.25 - 2px);
+            }
+
+            > span{
+                font-size: @fontSize*0.75;
+                padding: 0.4em 0.7em;
+            }
         }
     }
 
@@ -169,6 +253,7 @@ mor-multiinput{
 
     // default status
     &{
+        .si-m;
         .st-normal;
     }
 }

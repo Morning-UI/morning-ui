@@ -197,7 +197,7 @@
     [[[形态]]]
     
     :::preset
-    @name:formStatus
+    @name:formStatusWithSize
     @uikey:select
     @defaultValue:['tim']
     @attrs: :list="{tim:'Tim Boelaars', andrew:'Andrew Colin Beck', gustavo:'Gustavo Zambelli', victor:'Victor Erixon', shaun:'Shaun Moynihan', emir:'Emir Ayouni', katherine:'Katherine Rainey', jax:'Jax Berndt', elizabeth:'Elizabeth Chiu', sara:'Sara Nicely', anna:'Anna Broussard'}"

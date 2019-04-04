@@ -1,7 +1,7 @@
 <template>
     <mor-multiinput
         :_uiid="uiid"
-        :class="[formClass, stateClass, moreClass, moveClass]"
+        :class="[formClass, sizeClass, stateClass, moreClass, moveClass]"
 
         :form-name="formName"
         :form-key="formKey"

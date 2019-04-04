@@ -1,7 +1,7 @@
 <template>
     <mor-private-datepicker
         :_uiid="uiid"
-        :class="[formClass, stateClass]"
+        :class="[formClass, sizeClass, stateClass]"
 
         :form-name="formName"
         :form-key="formKey"
@@ -31,6 +31,7 @@
         :inside-name="conf.insideName"
         :align="conf.align"
         :state="conf.state"
+        :size="conf.size"
         prepend="<i class='mo-icon mo-icon-date'></i>"
 
         @focus="_inputFocus"
@@ -44,7 +45,8 @@
         :class="[
             'mor-private-datepicker-popover',
             dateSelectClass,
-            conf._datePopoverAddClass
+            conf._datePopoverAddClass,
+            sizeClass
         ]"
 
         :target="'#mor-private-datepicker-input-'+uiid"

@@ -80,7 +80,7 @@
     [[[形态]]]
 
     :::preset
-    @name:formStatus
+    @name:formStatusWithSize
     @uikey:datetimepicker
     @defaultValue:'2018-03-23 18:10:18'
     @attrs: :date="+new Date('2018-03-23 18:10:18')"
