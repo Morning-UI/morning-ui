@@ -1,7 +1,7 @@
 <template>
     <mor-radio
         :_uiid="uiid"
-        :class="[formClass, colorClass, stateClass]"
+        :class="[formClass, sizeClass, colorClass, stateClass]"
 
         :form-name="formName"
         :form-key="formKey"

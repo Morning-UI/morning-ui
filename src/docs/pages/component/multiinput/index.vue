@@ -37,7 +37,7 @@
     [[[形态]]]
 
     :::preset
-    @name:formStatus
+    @name:formStatusWithSize
     @uikey:multiinput
     @defaultValue:['value1', 'value2']
     :::

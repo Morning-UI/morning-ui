@@ -1,7 +1,7 @@
 <template>
     <mor-datepicker
         :_uiid="uiid"
-        :class="[formClass, stateClass, moreClass]"
+        :class="[formClass, sizeClass, stateClass, moreClass]"
 
         :form-name="formName"
         :form-key="formKey"
@@ -40,6 +40,7 @@
                     class="datepicker-input-0 datepicker-input-first"
                     :ref="'ui-datepicker-input-0-'+uiid"
                     :state="conf.state"
+                    :size="conf.size"
 
                     :inside-name="(conf.startName === false) ? conf.insideName : conf.startName"
                     :date="+data.currentDate || undefined"
@@ -176,6 +177,7 @@
                     class="datepicker-input-1"
                     :ref="'ui-datepicker-input-1-'+uiid"
                     :state="conf.state"
+                    :size="conf.size"
                     
                     :inside-name="(conf.endName === false) ? conf.insideName : conf.endName"
                     :date="+_addMonths(data.currentDate, 1) || undefined"
@@ -208,6 +210,7 @@
                     class="datepicker-input-first"
                     :ref="'ui-datepicker-input-0-'+uiid"
                     :state="conf.state"
+                    :size="conf.size"
 
                     :inside-name="conf.insideName"
                     :init-value="data.value"

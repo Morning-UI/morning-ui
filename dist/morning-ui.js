@@ -36674,6 +36674,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
 
 var _lodash = __webpack_require__(340);
 
@@ -38200,8 +38202,11 @@ exports.default = {
     components: {
         'select-list': _selectList2.default
     },
-    props: ['conf', 'data', 'stateClass', 'listStyle', 'uiid', 'isMax', '_wrapClick', '_multiinputFocus', '_multiinputValueChange', '_searchKeyChange', '_multiinputFocusNoSearch', '_textinputFocus', '_textinputBlur', '_listClick', '_itemHover', 'showItemList']
+    props: ['conf', 'data', 'sizeClass', 'stateClass', 'listStyle', 'uiid', 'isMax', '_wrapClick', '_multiinputFocus', '_multiinputValueChange', '_searchKeyChange', '_multiinputFocusNoSearch', '_textinputFocus', '_textinputBlur', '_listClick', '_itemHover', 'showItemList']
 }; //
+//
+//
+//
 //
 //
 //
@@ -38439,7 +38444,7 @@ Object.defineProperty(exports, "__esModule", {
 //
 
 exports.default = {
-    props: ['conf', 'data', 'stateClass', 'listStyle', '_listClick', 'showItemList', 'uiid', '_itemHover']
+    props: ['conf', 'data', 'sizeClass', 'stateClass', 'listStyle', '_listClick', 'showItemList', 'uiid', '_itemHover']
 };
 module.exports = exports['default'];
 
@@ -41909,6 +41914,12 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 var _dateFns = __webpack_require__(5);
 
@@ -42383,6 +42394,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; //
+//
+//
+//
 //
 //
 //
@@ -43857,6 +43871,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; //
+//
 //
 //
 //
@@ -47934,6 +47949,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
+//
 
 exports.default = {
     origin: 'Form',
@@ -48528,6 +48546,8 @@ var _DateTime2 = _interopRequireDefault(_DateTime);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+//
+//
 //
 //
 //
@@ -57201,7 +57221,7 @@ var render = function() {
   return _c(
     "mor-private-datepicker",
     {
-      class: [_vm.formClass, _vm.stateClass],
+      class: [_vm.formClass, _vm.sizeClass, _vm.stateClass],
       attrs: {
         _uiid: _vm.uiid,
         "form-name": _vm.formName,
@@ -57234,6 +57254,7 @@ var render = function() {
           "inside-name": _vm.conf.insideName,
           align: _vm.conf.align,
           state: _vm.conf.state,
+          size: _vm.conf.size,
           prepend: "<i class='mo-icon mo-icon-date'></i>"
         },
         on: { focus: _vm._inputFocus, blur: _vm._inputBlur },
@@ -57253,7 +57274,8 @@ var render = function() {
           class: [
             "mor-private-datepicker-popover",
             _vm.dateSelectClass,
-            _vm.conf._datePopoverAddClass
+            _vm.conf._datePopoverAddClass,
+            _vm.sizeClass
           ],
           attrs: {
             target: "#mor-private-datepicker-input-" + _vm.uiid,
@@ -57343,7 +57365,7 @@ var render = function() {
   return _c(
     "mor-private-timepicker",
     {
-      class: [_vm.formClass, _vm.stateClass],
+      class: [_vm.formClass, _vm.sizeClass, _vm.stateClass],
       attrs: {
         _uiid: _vm.uiid,
         "form-name": _vm.formName,
@@ -57367,6 +57389,7 @@ var render = function() {
           "inside-name": _vm.conf.insideName,
           align: _vm.conf.align,
           state: _vm.conf.state,
+          size: _vm.conf.size,
           prepend: "<i class='mo-icon mo-icon-time-co'></i>"
         },
         on: { blur: _vm._inputBlur, focus: _vm._inputFocus },
@@ -57383,7 +57406,7 @@ var render = function() {
         "morning-popover",
         {
           ref: "ui-private-timepicker-popover-" + _vm.uiid,
-          class: ["mor-private-timepicker-popover"],
+          class: ["mor-private-timepicker-popover", _vm.sizeClass],
           attrs: {
             target: "#mor-private-timepicker-input-" + _vm.uiid,
             placement: "bottom",
@@ -59538,7 +59561,7 @@ var render = function() {
   return _c(
     "mor-datetimepicker",
     {
-      class: [_vm.formClass, _vm.stateClass],
+      class: [_vm.formClass, _vm.sizeClass, _vm.stateClass],
       attrs: {
         _uiid: _vm.uiid,
         "form-name": _vm.formName,
@@ -59580,6 +59603,7 @@ var render = function() {
               ref: "ui-datetimepicker-date-" + _vm.uiid,
               attrs: {
                 state: _vm.conf.state,
+                size: _vm.conf.size,
                 "inside-name": _vm.conf.insideName,
                 date: _vm.conf.date,
                 format: _vm.conf.format,
@@ -59701,7 +59725,7 @@ var render = function() {
   return _c(
     "mor-datepicker",
     {
-      class: [_vm.formClass, _vm.stateClass, _vm.moreClass],
+      class: [_vm.formClass, _vm.sizeClass, _vm.stateClass, _vm.moreClass],
       attrs: {
         _uiid: _vm.uiid,
         "form-name": _vm.formName,
@@ -59755,6 +59779,7 @@ var render = function() {
                       staticClass: "datepicker-input-0 datepicker-input-first",
                       attrs: {
                         state: _vm.conf.state,
+                        size: _vm.conf.size,
                         "inside-name":
                           _vm.conf.startName === false
                             ? _vm.conf.insideName
@@ -60248,6 +60273,7 @@ var render = function() {
                       staticClass: "datepicker-input-1",
                       attrs: {
                         state: _vm.conf.state,
+                        size: _vm.conf.size,
                         "inside-name":
                           _vm.conf.endName === false
                             ? _vm.conf.insideName
@@ -60289,6 +60315,7 @@ var render = function() {
                       staticClass: "datepicker-input-first",
                       attrs: {
                         state: _vm.conf.state,
+                        size: _vm.conf.size,
                         "inside-name": _vm.conf.insideName,
                         "init-value": _vm.data.value,
                         date: +_vm.date,
@@ -60741,7 +60768,7 @@ var render = function() {
   return _c(
     "mor-timepicker",
     {
-      class: [_vm.formClass, _vm.stateClass, _vm.moreClass],
+      class: [_vm.formClass, _vm.sizeClass, _vm.stateClass, _vm.moreClass],
       attrs: {
         _uiid: _vm.uiid,
         "form-name": _vm.formName,
@@ -60792,6 +60819,7 @@ var render = function() {
                         staticClass: "timepicker-select-0",
                         attrs: {
                           state: _vm.conf.state,
+                          size: _vm.conf.size,
                           "inside-name":
                             _vm.conf.startName === false
                               ? _vm.conf.insideName
@@ -60816,6 +60844,7 @@ var render = function() {
                         staticClass: "timepicker-select-1",
                         attrs: {
                           state: _vm.conf.state,
+                          size: _vm.conf.size,
                           "inside-name":
                             _vm.conf.startName === false
                               ? _vm.conf.insideName
@@ -60831,6 +60860,7 @@ var render = function() {
                         ref: "ui-timepicker-select-0-" + _vm.uiid,
                         attrs: {
                           state: _vm.conf.state,
+                          size: _vm.conf.size,
                           "inside-name": _vm.conf.insideName,
                           "init-value": _vm.data.value,
                           align: _vm.conf.align,
@@ -60848,6 +60878,7 @@ var render = function() {
                         staticClass: "timepicker-input-0",
                         attrs: {
                           state: _vm.conf.state,
+                          size: _vm.conf.size,
                           "inside-name":
                             _vm.conf.startName === false
                               ? _vm.conf.insideName
@@ -60874,6 +60905,7 @@ var render = function() {
                         staticClass: "timepicker-input-1",
                         attrs: {
                           state: _vm.conf.state,
+                          size: _vm.conf.size,
                           "inside-name":
                             _vm.conf.endName === false
                               ? _vm.conf.insideName
@@ -60891,6 +60923,7 @@ var render = function() {
                         ref: "ui-timepicker-input-0-" + _vm.uiid,
                         attrs: {
                           state: _vm.conf.state,
+                          size: _vm.conf.size,
                           "inside-name": _vm.conf.insideName,
                           "init-value": _vm.data.value,
                           format: _vm.conf.format,
@@ -61436,7 +61469,13 @@ var render = function() {
   return _c(
     "mor-multiinput",
     {
-      class: [_vm.formClass, _vm.stateClass, _vm.moreClass, _vm.moveClass],
+      class: [
+        _vm.formClass,
+        _vm.sizeClass,
+        _vm.stateClass,
+        _vm.moreClass,
+        _vm.moveClass
+      ],
       attrs: {
         _uiid: _vm.uiid,
         "form-name": _vm.formName,
@@ -62159,7 +62198,7 @@ var render = function() {
   return _c(
     "mor-radio",
     {
-      class: [_vm.formClass, _vm.colorClass, _vm.stateClass],
+      class: [_vm.formClass, _vm.sizeClass, _vm.colorClass, _vm.stateClass],
       attrs: {
         _uiid: _vm.uiid,
         "form-name": _vm.formName,
@@ -62296,7 +62335,13 @@ var render = function() {
   return _c(
     "mor-checkbox",
     {
-      class: [_vm.formClass, _vm.colorClass, _vm.stateClass, _vm.moreClass],
+      class: [
+        _vm.formClass,
+        _vm.sizeClass,
+        _vm.colorClass,
+        _vm.stateClass,
+        _vm.moreClass
+      ],
       attrs: {
         _uiid: _vm.uiid,
         "form-name": _vm.formName,
@@ -62469,7 +62514,7 @@ var render = function() {
   return _c(
     "mor-select",
     {
-      class: [_vm.formClass, _vm.stateClass, _vm.moreClass],
+      class: [_vm.formClass, _vm.sizeClass, _vm.stateClass, _vm.moreClass],
       attrs: {
         _uiid: _vm.uiid,
         "form-name": _vm.formName,
@@ -62526,6 +62571,7 @@ var render = function() {
                 attrs: {
                   conf: _vm.conf,
                   data: _vm.data,
+                  sizeClass: _vm.sizeClass,
                   stateClass: _vm.stateClass,
                   listStyle: _vm.listStyle,
                   uiid: _vm.uiid,
@@ -62572,6 +62618,7 @@ var render = function() {
                     attrs: {
                       conf: _vm.conf,
                       data: _vm.data,
+                      sizeClass: _vm.sizeClass,
                       stateClass: _vm.stateClass,
                       listStyle: _vm.listStyle,
                       uiid: _vm.uiid,
@@ -66683,6 +66730,7 @@ var render = function() {
           showlist: !!_vm.data.showlist,
           "input-group": !!_vm.conf.prepend
         },
+        _vm.sizeClass,
         _vm.stateClass
       ]
     },
@@ -66709,7 +66757,8 @@ var render = function() {
                         max: _vm.conf.max,
                         "inside-name": _vm.conf.insideName,
                         "hide-name": _vm.conf.hideName,
-                        state: _vm.conf.state
+                        state: _vm.conf.state,
+                        size: _vm.conf.size
                       },
                       on: {
                         "input-focus": function($event) {
@@ -66731,7 +66780,8 @@ var render = function() {
                         max: _vm.conf.max,
                         "inside-name": _vm.conf.insideName,
                         "hide-name": _vm.conf.hideName,
-                        state: _vm.conf.state
+                        state: _vm.conf.state,
+                        size: _vm.conf.size
                       },
                       on: {
                         "input-focus": function($event) {
@@ -66750,7 +66800,8 @@ var render = function() {
                         key: "single-can-search",
                         attrs: {
                           id: "ui-select-ti-" + _vm.uiid,
-                          align: _vm.conf.align
+                          align: _vm.conf.align,
+                          size: _vm.conf.size
                         },
                         on: {
                           "value-change": function($event) {
@@ -66872,6 +66923,7 @@ var render = function() {
           "hide-selected": _vm.conf.hideSelected,
           "mor-select-wrap": !_vm.conf.separateEmit
         },
+        _vm.sizeClass,
         _vm.stateClass
       ]
     },
@@ -72964,7 +73016,7 @@ var morning = {
         white: 'wh'
     },
     isMorning: true,
-    version: '0.12.14',
+    version: '0.12.16',
     map: {}
 };
 

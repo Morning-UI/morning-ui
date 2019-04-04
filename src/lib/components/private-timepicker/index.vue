@@ -1,7 +1,7 @@
 <template>
     <mor-private-timepicker
         :_uiid="uiid"
-        :class="[formClass, stateClass]"
+        :class="[formClass, sizeClass, stateClass]"
 
         :form-name="formName"
         :form-key="formKey"
@@ -22,6 +22,8 @@
         :inside-name="conf.insideName"
         :align="conf.align"
         :state="conf.state"
+        :size="conf.size"
+        
         prepend="<i class='mo-icon mo-icon-time-co'></i>"
 
         @blur="_inputBlur"
@@ -33,7 +35,8 @@
     <morning-popover
         :ref="'ui-private-timepicker-popover-'+uiid"
         :class="[
-            'mor-private-timepicker-popover'
+            'mor-private-timepicker-popover',
+            sizeClass
         ]"
 
         :target="'#mor-private-timepicker-input-'+uiid"

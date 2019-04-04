@@ -31,16 +31,14 @@ mor-radio{
     > .il{
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
+        justify-content: flex-start;
 
         label{
             display: inline-block;
-            margin: 0 1em 0.5em 0;
             cursor: pointer;
 
             span{
                 vertical-align: middle;
-                font-size: @fontSize*0.875;
                 color: @colorFormText;
                 transition: 0.2s;
                 -webkit-user-select: text;
@@ -49,13 +47,10 @@ mor-radio{
             .box{
                 vertical-align: middle;
                 background: @colorWhite;
-                width: @fontSize*1.25;
-                height: @fontSize*1.25;
                 border-radius: 50%;
                 display: inline-block;
                 border: 1px @colorFormBorder solid;
                 transition: 0.2s;
-                margin: 0 0.375em 0 0;
                 box-sizing: border-box;
             }
 
@@ -64,10 +59,8 @@ mor-radio{
                 opacity: 0;
                 transform: scale(0);
                 transition: 0.2s;
-                font-size: @fontSize*0.75;
                 width: 100%;
                 display: block;
-                line-height: @fontSize*1.25 - 1px;
                 text-align: center;
                 vertical-align: middle;
                 word-break: break-word;
@@ -107,8 +100,6 @@ mor-radio{
     &.border{
         > .il{
             label{
-                padding: 0.4em 0.6em;
-                margin: 0 0.5em 0.5em 0;
                 border: 1px @colorFormBorder solid;
                 border-radius: @borderRadius;
 
@@ -123,6 +114,96 @@ mor-radio{
         > .il label{
             margin: 0 0 0.6em;
             width: 100%;
+        }
+    }
+
+    &.si-m{
+        > .il label{
+            margin: 0 1em 0.5em 0;
+
+            span{
+                font-size: @fontSize*0.875;
+            }
+
+            .box{
+                width: @fontSize*1.25;
+                height: @fontSize*1.25;
+                margin: 0 0.375em 0 0;
+            }
+
+            .mo-icon{
+                font-size: @fontSize*0.75;
+                line-height: @fontSize*1.25 - 1px;
+            }
+        }
+
+        &.border{
+            > .il{
+                label{
+                    padding: 0.4em 0.6em;
+                    margin: 0 0.5em 0.5em 0;
+                }
+            }
+        }
+    }
+
+    &.si-s{
+        > .il label{
+            margin: 0 0.75em 0.2em 0;
+
+            span{
+                font-size: @fontSize*0.875;
+            }
+
+            .box{
+                width: @fontSize;
+                height: @fontSize;
+                margin: 0 0.25em 0 0;
+            }
+
+            .mo-icon{
+                font-size: @fontSize*0.75;
+                line-height: @fontSize - 1px;
+            }
+        }
+
+        &.border{
+            > .il{
+                label{
+                    padding: 0.3em 0.4em;
+                    margin: 0 0.4em 0.4em 0;
+                }
+            }
+        }
+    }
+
+    &.si-xs{
+        > .il label{
+            margin: 0 0.75em 0 0;
+
+            span{
+                font-size: @fontSize*0.75;
+            }
+
+            .box{
+                width: @fontSize*0.875;
+                height: @fontSize*0.875;
+                margin: 0 0.25em 0 0;
+            }
+
+            .mo-icon{
+                font-size: @fontSize*0.75;
+                line-height: @fontSize*0.875 - 1px;
+            }
+        }
+
+        &.border{
+            > .il{
+                label{
+                    padding: 0.2em 0.3em;
+                    margin: 0 0.3em 0.3em 0;
+                }
+            }
         }
     }
 
@@ -871,6 +952,7 @@ mor-radio{
 
     // default status
     &{
+        .si-m;
         .co-t;
         .st-normal;
     }

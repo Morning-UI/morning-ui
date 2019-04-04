@@ -5,7 +5,7 @@
             showlist : !!data.showlist,
             'hide-selected' : conf.hideSelected,
             'mor-select-wrap' : !conf.separateEmit
-        }, stateClass]"
+        }, sizeClass, stateClass]"
     >
         <ul
             class="list"
@@ -78,6 +78,7 @@ export default {
     props : [
         'conf',
         'data',
+        'sizeClass',
         'stateClass',
         'listStyle',
         '_listClick',

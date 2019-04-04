@@ -1,7 +1,7 @@
 <template>
     <mor-checkbox
         :_uiid="uiid"
-        :class="[formClass, colorClass, stateClass, moreClass]"
+        :class="[formClass, sizeClass, colorClass, stateClass, moreClass]"
 
         :form-name="formName"
         :form-key="formKey"

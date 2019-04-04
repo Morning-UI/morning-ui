@@ -1,5 +1,26 @@
 # CHANGELOG
 
+## 0.12.16
+
+`2019年4月4日`
+
+#### 新特性
+
+- `ui-textinput`、`ui-select`、`ui-checkbox`、`ui-radio`、`ui-multiinput`、`ui-timepicker`、`ui-datepicker`、`ui-datetimepicker`支持`s`和`xs`尺寸
+
+#### 改进
+
+- 优化`ui-tab`选中状态样式
+- 优化`ui-menu`菜单项文字对齐方式和字体大小
+
+#### 废弃
+
+- 移除了`ui-textinput`的`l`和`xl`尺寸
+
+<ui-label color="primary">升级注意事项</ui-label>
+
+- `ui-textinput`的`l`和`xl`尺寸被移除了，可以通过覆写样式来支持
+
 ## 0.12.15
 
 `2019年4月3日`

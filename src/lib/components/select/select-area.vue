@@ -12,7 +12,7 @@
             'is-max' : !!isMax,
             showlist : !!data.showlist,
             'input-group' : !!conf.prepend
-        }, stateClass]"
+        }, sizeClass, stateClass]"
     >
         <div
             class="wrap"
@@ -31,6 +31,7 @@
                     :inside-name="conf.insideName"
                     :hide-name="conf.hideName"
                     :state="conf.state"
+                    :size="conf.size"
                     key="multi-can-search"
 
                     v-if="conf.canSearch"
@@ -47,6 +48,7 @@
                     :inside-name="conf.insideName"
                     :hide-name="conf.hideName"
                     :state="conf.state"
+                    :size="conf.size"
                     key="multi-no-search"
 
                     v-else
@@ -61,6 +63,7 @@
                     <morning-textinput
                         :id="'ui-select-ti-' + uiid"
                         :align="conf.align"
+                        :size="conf.size"
                         @value-change="_searchKeyChange()"
                         @focus="_textinputFocus()"
                         @blur="_textinputBlur()"
@@ -145,6 +148,7 @@ export default {
     props : [
         'conf',
         'data',
+        'sizeClass',
         'stateClass',
         'listStyle',
         'uiid',
