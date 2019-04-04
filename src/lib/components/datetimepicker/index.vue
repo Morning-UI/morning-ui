@@ -1,7 +1,7 @@
 <template>
     <mor-datetimepicker
         :_uiid="uiid"
-        :class="[formClass, stateClass]"
+        :class="[formClass, sizeClass, stateClass]"
 
         :form-name="formName"
         :form-key="formKey"
@@ -31,6 +31,7 @@
         <morning-datepicker
             :ref="'ui-datetimepicker-date-'+uiid"
             :state="conf.state"
+            :size="conf.size"
             :inside-name="conf.insideName"
             :date="conf.date"
             :format="conf.format"
@@ -964,7 +965,7 @@ export default {
 
                     result[1] = this._dtGetRelativeDatetime(relativeDate[1]);
 
-                } else if (value[1]){
+                } else if (value[1]) {
 
                     result[1] = this._dateStringToDate(value[1], this.conf.format);
 

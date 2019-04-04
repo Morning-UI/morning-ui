@@ -69,7 +69,7 @@
     [[[形态]]]
 
     :::preset
-    @name:formStatusWithStyle
+    @name:formStatusWithStyleAndSize
     @uikey:radio
     @defaultValue:'Tim'
     @attrs: :list="{Tim:'Tim Boelaars',Andrew:'Andrew Colin Beck',Victor:'Victor Erixon'}"

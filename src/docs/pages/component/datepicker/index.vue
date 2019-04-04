@@ -92,7 +92,7 @@
     [[[形态]]]
     
     :::preset
-    @name:formStatus
+    @name:formStatusWithSize
     @uikey:datepicker
     @defaultValue:'2018-03-23'
     @attrs: :date="+new Date('2018-03-23')"

@@ -749,6 +749,59 @@ normal,disabled,readonly
 }
 :::
 `,
+    formStatusWithSize : `
+#### 支持
+
+|类型|支持|默认|
+|-|-|-|
+|尺寸|\`xs\` / \`s\` / \`m\`|\`m\`|
+|色彩|不支持|-|
+|状态|\`normal\`<br/>\`disabled\`<br>\`readonly\`|\`normal\`|
+
+<a href="/guide/status.html">查看形态文档</a>
+
+:::vue
+@name:尺寸
+---
+#renderer
+>name
+size-repeat
+>rules
+m,s,xs
+>tpl
+<div style="width:300px;{%wrapStyle%}">
+    <ui-{%uikey%} size="{$sizeKey}" v-model="value" form-name="{$&sizeName}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
+</div>
+<br>
+>script
+{
+    data : {
+        value : {%&defaultValue%}
+    }
+}
+:::
+
+:::vue
+@name:状态
+---
+#renderer
+>name
+state-repeat
+>rules
+normal,disabled,readonly
+>tpl
+<div style="width:300px;{%wrapStyle%}">
+    <ui-{%uikey%} state="{$stateKey}" v-model="value" form-name="{$&stateName}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
+</div>
+<br>
+>script
+{
+    data : {
+        value : {%&defaultValue%}
+    }
+}
+:::
+`,
     formStatusWithStyle : `
 #### 支持
 
@@ -759,6 +812,85 @@ normal,disabled,readonly
 |状态|\`normal\`<br/>\`disabled\`<br>\`readonly\`|\`normal\`|
 
 <a href="/guide/status.html">查看形态文档</a>
+
+:::vue
+@name:色彩
+---
+#renderer
+>name
+color-repeat
+>rules
+color:theme
+color:feature
+color:black
+color:blue
+color:silver
+color:gray
+>tpl
+<div style="width:300px;{%wrapStyle%}">
+    <ui-{%uikey%} color="{$colorKey}" v-model="value" form-name="{$&colorName}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
+</div>
+<br>
+>script
+{
+    data : {
+        value : {%&defaultValue%}
+    }
+}
+:::
+
+:::vue
+@name:状态
+---
+#renderer
+>name
+state-repeat
+>rules
+normal,disabled,readonly
+>tpl
+<div style="width:300px;{%wrapStyle%}">
+    <ui-{%uikey%} state="{$stateKey}" v-model="value" form-name="{$&stateName}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
+</div>
+<br>
+>script
+{
+    data : {
+        value : {%&defaultValue%}
+    }
+}
+:::
+`,
+    formStatusWithStyleAndSize : `
+#### 支持
+
+|类型|支持|默认|
+|-|-|-|
+|尺寸|\`xs\` / \`s\` / \`m\`|\`m\`|
+|色彩|全部|\`theme\`|
+|状态|\`normal\`<br/>\`disabled\`<br>\`readonly\`|\`normal\`|
+
+<a href="/guide/status.html">查看形态文档</a>
+
+:::vue
+@name:尺寸
+---
+#renderer
+>name
+size-repeat
+>rules
+m,s,xs
+>tpl
+<div style="width:300px;{%wrapStyle%}">
+    <ui-{%uikey%} size="{$sizeKey}" v-model="value" form-name="{$&sizeName}" {%&attrs%}>{%&slot%}</ui-{%uikey%}>
+</div>
+<br>
+>script
+{
+    data : {
+        value : {%&defaultValue%}
+    }
+}
+:::
 
 :::vue
 @name:色彩

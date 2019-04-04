@@ -129,101 +129,210 @@
     }
 }
 .setup-wrap(@is-separate){
-    border: 1px solid @colorFormBorder;
-    border-top-width: if(@is-separate, 0, 1px);
-    border-left-width: if(@is-separate, 0, 1px);
-    border-right-width: if(@is-separate, 0, 1px);
-    border-radius: @borderRadius;
-    position: relative;
-    cursor: pointer;
-    transition: border-radius 0.2s, border 0.2s;
-    -webkit-user-select: none;
-    background-color: #FFF;
-    overflow: hidden;
-
-    > mor-textinput{
-        width: if(@is-separate, 100%, calc(100% - 30px));
-        height: @formHeight - 2px;
-        line-height: @formHeight - 2px;
-        padding: 0;
+    .wrap{
+        border: 1px solid @colorFormBorder;
+        border-top-width: if(@is-separate, 0, 1px);
+        border-left-width: if(@is-separate, 0, 1px);
+        border-right-width: if(@is-separate, 0, 1px);
+        border-radius: @borderRadius;
+        position: relative;
         cursor: pointer;
-        margin: 0;
-        position: absolute;
+        transition: border-radius 0.2s, border 0.2s;
+        -webkit-user-select: none;
+        background-color: #FFF;
+        overflow: hidden;
 
-        input{
-            vertical-align: top !important;
-            border: none;
-            height: @formHeight - 2px;
-            line-height: @formHeight - 2px;
-            font-size: @fontSize*0.875;
+        > mor-textinput{
+            width: if(@is-separate, 100%, calc(100% - 30px));
+            padding: 0;
+            cursor: pointer;
+            margin: 0;
+            position: absolute;
+
+            input{
+                vertical-align: top !important;
+                border: none;
+            }
+        }
+
+        > mor-multiinput{
+            margin: 0;
+            width: calc(100% - 2em);
+            background-color: #FFF;
+            vertical-align: top;
+            left: 0.35em;
+
+            .itemlist{
+                border: none;
+
+                > input{
+                    cursor: pointer;
+                }
+            }
+        }
+
+        > .selected{
+            color: @colorFormText;
+            width: calc(100% - 2em);
+            padding: 0 1em;
+            position: relative;
+            pointer-events: none;
+            z-index: 1;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            box-sizing: border-box;
+
+            img,
+            mor-img {
+                height: 2em !important;
+                width: 2em !important;
+                margin-right: 0.5em;
+                vertical-align: middle;
+            }
+
+            mor-img > img{
+                vertical-align: top;
+            }
+        }
+
+        > .mo-icon{
+            position: absolute;
+            width: 24px;
+            transform: rotateX(0deg);
+            transition: transform 0.2s;
+            z-index: 2;
+            color: @colorFormText;
+
+            &.drop{
+                top: 0;
+                right: 0;
+                font-size: 30px;
+                text-indent: 1px;
+            }
+        }
+
+        &.hover{
+            border-color: @colorFormBorderHover;
         }
     }
 
-    > mor-multiinput{
-        margin: 0;
-        width: calc(100% - 2em);
-        background-color: #FFF;
-        vertical-align: top;
-        min-height: @formHeight - 2px;
-        left: 0.35em;
-        font-size: @fontSize*0.875;
+    &.si-m{
+        .wrap{
+            > mor-textinput{
+                height: @formHeight - 2px;
+                line-height: @formHeight - 2px;
+            }
 
-        .itemlist{
-            border: none;
+            > mor-multiinput{
+                min-height: @formHeight - 2px;
+                font-size: @formInputFontSize;
+            }
 
-            > input{
-                cursor: pointer;
+            .textinput-wrap > input{
+                height: @formHeight - 2px;
+                line-height: @formHeight - 2px;
+                font-size: @formInputFontSize;
+            }
+
+            > .selected{
+                height: @formHeight - 2px;
+                line-height: @formHeight - 2px;
+                font-size: @formInputFontSize;
+            }
+
+            > .mo-icon{
+                line-height: @formHeight - 2px;
+            }
+        }
+
+        &.input-group {
+            .input-group-addon{
+                height: @formHeight;
+                line-height: @formHeight - 2px;
+                font-size: @formInputFontSize;
             }
         }
     }
 
-    > .selected{
-        color: @colorFormText;
-        width: calc(100% - 2em);
-        height: @formHeight - 2px;
-        line-height: @formHeight - 2px;
-        padding: 0 1em;
-        position: relative;
-        pointer-events: none;
-        z-index: 1;
-        font-size: @fontSize*0.875;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
-        box-sizing: border-box;
+    &.si-s{
+        .wrap{
+            > mor-textinput{
+                height: @formHeightS - 2px;
+                line-height: @formHeightS - 2px;
+            }
 
-        img,
-        mor-img {
-            height: 2em !important;
-            width: 2em !important;
-            margin-right: 0.5em;
-            vertical-align: middle;
+            > mor-multiinput{
+                min-height: @formHeightS - 2px;
+                font-size: @formInputFontSizeS;
+            }
+
+            .textinput-wrap > input{
+                height: @formHeightS - 2px;
+                line-height: @formHeightS - 2px;
+                font-size: @formInputFontSizeS;
+            }
+
+            > .selected{
+                height: @formHeightS - 2px;
+                line-height: @formHeightS - 2px;
+                font-size: @formInputFontSizeS;
+            }
+
+            > .mo-icon{
+                line-height: @formHeightS - 2px;
+            }
         }
 
-        mor-img > img{
-            vertical-align: top;
-        }
-    }
-
-    > .mo-icon{
-        position: absolute;
-        line-height: @formHeight - 2px;
-        width: 24px;
-        transform: rotateX(0deg);
-        transition: transform 0.2s;
-        z-index: 2;
-        color: @colorFormText;
-
-        &.drop{
-            top: 0;
-            right: 0;
-            font-size: 30px;
-            text-indent: 1px;
+        &.input-group {
+            .input-group-addon{
+                height: @formHeightS;
+                line-height: @formHeightS - 2px;
+                font-size: @formInputFontSizeS;
+            }
         }
     }
 
-    &.hover{
-        border-color: @colorFormBorderHover;
+    &.si-xs{
+        .wrap{
+            > mor-textinput{
+                height: @formHeightXs - 2px;
+                line-height: @formHeightXs - 2px;
+            }
+
+            > mor-multiinput{
+                min-height: @formHeightXs - 2px;
+                font-size: @formInputFontSizeXs;
+            }
+
+            .textinput-wrap > input{
+                height: @formHeightXs - 2px;
+                line-height: @formHeightXs - 2px;
+                font-size: @formInputFontSizeXs;
+            }
+
+            > .selected{
+                height: @formHeightXs - 2px;
+                line-height: @formHeightXs - 2px;
+                font-size: @formInputFontSizeXs;
+            }
+
+            > .mo-icon{
+                line-height: @formHeightXs - 2px;
+            }
+        }
+
+        &.input-group {
+            .input-group-addon{
+                height: @formHeightXs;
+                line-height: @formHeightXs - 2px;
+                font-size: @formInputFontSizeXs;
+            }
+        }
+    }
+
+    &{
+        .si-m;
     }
 }
 
@@ -244,9 +353,7 @@ mor-select{
         .setup-select-area();
     }
 
-    .wrap{
-        .setup-wrap(false);
-    }
+    .setup-wrap(false);
 
     &.separate{
         height: 0;
@@ -267,7 +374,6 @@ mor-select{
 
         .input-group-addon {
             padding: @fontSize*0.375 @fontSize*0.75;
-            font-size: @fontSize*0.75;
             color: @colorBlue;
             text-align: center;
             background-color: @colorLightGray;
@@ -397,10 +503,10 @@ mor-select{
         }
     }
 
+    .setup-wrap(true);
+
     .wrap{
         border-radius: @borderRadius @borderRadius 0 0;
-
-        .setup-wrap(true);
 
         > .selected{
             width: 100%;

@@ -50,7 +50,7 @@
 
     |类型|支持|默认|
     |-|-|-|
-    |尺寸|`xs` / `s` / `m` / `l` / `xl`|`m`|
+    |尺寸|`xs` / `s` / `m`|`m`|
     |色彩|不支持|-|
     |状态|`normal`<br/>`disabled`<br>`readonly`|`normal`|
 
@@ -63,7 +63,7 @@
     >name
     size-repeat
     >rules
-    xl,l,m,s,xs
+    m,s,xs
     >tpl
     <div style="width:300px;">
         <ui-textinput size="{$sizeKey}"  v-model="value" form-name="{$&sizeName}"></ui-textinput>

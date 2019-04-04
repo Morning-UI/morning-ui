@@ -1,7 +1,7 @@
 <template>
     <mor-select
         :_uiid="uiid"
-        :class="[formClass, stateClass, moreClass]"
+        :class="[formClass, sizeClass, stateClass, moreClass]"
 
         :form-name="formName"
         :form-key="formKey"
@@ -42,6 +42,7 @@
             :ref="'ui-select-area-'+uiid"
             :conf="conf"
             :data="data"
+            :sizeClass="sizeClass"
             :stateClass="stateClass"
             :listStyle="listStyle"
             :uiid="uiid"
@@ -79,6 +80,7 @@
                 :ref="'ui-select-area-'+uiid"
                 :conf="conf"
                 :data="data"
+                :sizeClass="sizeClass"
                 :stateClass="stateClass"
                 :listStyle="listStyle"
                 :uiid="uiid"
