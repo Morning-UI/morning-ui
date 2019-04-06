@@ -945,15 +945,24 @@ mor-switch{
     &.st-readonly{
         .point{
             transform: scale(0.85);
+            box-shadow: none !important;
+            background: @colorExtraLightBlue !important;
         }
 
         .track{
             cursor: not-allowed !important;
             color: @colorFormBorderDisable !important;
+            background: @colorLightSilver !important;
+            box-shadow: none !important;
+            border-color: @colorLightSilver !important;
 
             .point{
                 background: lighten(@colorFormBorderDisable, 15%);
             }
+        }
+
+        .open-mark{
+            color: @colorExtraLightBlue;
         }
     }
 
