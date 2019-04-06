@@ -25,7 +25,7 @@
     [[[形态]]]
 
     :::preset
-    @name:formStatus
+    @name:formStatusWithSize
     @uikey:colorpicker
     @defaultValue:'#ff0000'
     :::

@@ -47,22 +47,54 @@ mor-colorpicker{
     }
 
     .preview-wrap{
-        width: @fontSize*2 + 8px;
         border: 1px @colorFormBorder solid;
         border-radius: @borderRadius;
-        padding: 3px;
         box-sizing: border-box;
         margin-bottom: 5px;
     }
 
     .preview{
-        width: @fontSize*2;
-        height: @fontSize*2;
         box-sizing: border-box;
         border-radius: @borderRadius;
         cursor: pointer;
         overflow: hidden;
         position: relative;
+    }
+
+    &.si-m{
+        .preview-wrap{
+            width: @formHeight;
+            padding: 3px;
+        }
+
+        .preview{
+            width: @formHeight - 8px;
+            height: @formHeight - 8px;
+        }
+    }
+
+    &.si-s{
+        .preview-wrap{
+            width: @formHeightS;
+            padding: 2px;
+        }
+
+        .preview{
+            width: @formHeightS - 6px;
+            height: @formHeightS - 6px;
+        }
+    }
+
+    &.si-xs{
+        .preview-wrap{
+            width: @formHeightXs;
+            padding: 1px;
+        }
+
+        .preview{
+            width: @formHeightXs - 4px;
+            height: @formHeightXs - 4px;
+        }
     }
 
     &.st-normal{}
@@ -83,6 +115,7 @@ mor-colorpicker{
 
     // default status
     &{
+        .si-m;
         .st-normal;
     }
 }
