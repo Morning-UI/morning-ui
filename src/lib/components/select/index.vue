@@ -1567,6 +1567,8 @@ export default {
     beforeDestroy : function () {
 
         this._globalEventRemove('click', '_checkArea');
+        this._globalEventRemove('keydown', '_keyHandler');
+        this._globalEventRemove('mousemove', '_unlockMouseenterLock');
 
     }
 };

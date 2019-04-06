@@ -13,6 +13,7 @@
         :max="max"
 
         @keydown.enter="_enterInput"
+        @keydown.backspace="_deleteItem(data.value.length - 1)"
         @click="_focusInput"
     >
 
