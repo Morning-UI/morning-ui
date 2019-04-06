@@ -36904,7 +36904,7 @@ exports.default = {
                 }
             }
 
-            if (!this.conf.multiSelect && this.data.value.length > 1) {
+            if (!this.conf.multiSelect && this.data.value && this.data.value.length > 1) {
 
                 return value.slice(0, 1);
             }
@@ -36915,7 +36915,7 @@ exports.default = {
         },
         _maxFilter: function _maxFilter(value) {
 
-            if (this.conf.multiSelect && this.conf.max && value.length > this.conf.max) {
+            if (this.conf.multiSelect && this.conf.max && value && value.length > this.conf.max) {
 
                 return value.slice(0, this.conf.max);
             }
@@ -38166,6 +38166,8 @@ exports.default = {
     beforeDestroy: function beforeDestroy() {
 
         this._globalEventRemove('click', '_checkArea');
+        this._globalEventRemove('keydown', '_keyHandler');
+        this._globalEventRemove('mousemove', '_unlockMouseenterLock');
     }
 };
 module.exports = exports['default'];
@@ -38563,6 +38565,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
 
 var _extend = __webpack_require__(2);
 
@@ -38607,6 +38610,13 @@ exports.default = {
         parent: {
             type: String,
             default: ''
+        },
+        type: {
+            type: String,
+            default: 'check',
+            validator: function validator(value) {
+                return ['check', 'button'].indexOf(value) !== -1;
+            }
         }
     },
     computed: {
@@ -38618,13 +38628,15 @@ exports.default = {
                 disabledOptions: this.disabledOptions,
                 hiddenOptions: this.hiddenOptions,
                 max: this.max,
-                parent: this.parent
+                parent: this.parent,
+                type: this.type
             };
         },
         moreClass: function moreClass() {
 
             return {
-                'is-max': this.isMax
+                'is-max': this.isMax,
+                'type-button': this.conf.type === 'button'
             };
         },
         isMax: function isMax() {
@@ -39050,6 +39062,13 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
     origin: 'Form',
@@ -39076,6 +39095,13 @@ exports.default = {
             default: function _default() {
                 return [];
             }
+        },
+        type: {
+            type: String,
+            default: 'check',
+            validator: function validator(value) {
+                return ['check', 'point', 'button'].indexOf(value) !== -1;
+            }
         }
     },
     computed: {
@@ -39085,7 +39111,15 @@ exports.default = {
                 acceptHtml: this.acceptHtml,
                 list: this.list,
                 disabledOptions: this.disabledOptions,
-                hiddenOptions: this.hiddenOptions
+                hiddenOptions: this.hiddenOptions,
+                type: this.type
+            };
+        },
+        moreClass: function moreClass() {
+
+            return {
+                'type-point': this.conf.type === 'point',
+                'type-button': this.conf.type === 'button'
             };
         }
     },
@@ -40064,6 +40098,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; //
+//
 //
 //
 //
@@ -61488,15 +61523,32 @@ var render = function() {
         max: _vm.max
       },
       on: {
-        keydown: function($event) {
-          if (
-            !$event.type.indexOf("key") &&
-            _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-          ) {
-            return null
+        keydown: [
+          function($event) {
+            if (
+              !$event.type.indexOf("key") &&
+              _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+            ) {
+              return null
+            }
+            return _vm._enterInput($event)
+          },
+          function($event) {
+            if (
+              !$event.type.indexOf("key") &&
+              _vm._k(
+                $event.keyCode,
+                "backspace",
+                undefined,
+                $event.key,
+                undefined
+              )
+            ) {
+              return null
+            }
+            return _vm._deleteItem(_vm.data.value.length - 1)
           }
-          return _vm._enterInput($event)
-        },
+        ],
         click: _vm._focusInput
       }
     },
@@ -62198,7 +62250,13 @@ var render = function() {
   return _c(
     "mor-radio",
     {
-      class: [_vm.formClass, _vm.sizeClass, _vm.colorClass, _vm.stateClass],
+      class: [
+        _vm.formClass,
+        _vm.sizeClass,
+        _vm.colorClass,
+        _vm.stateClass,
+        _vm.moreClass
+      ],
       attrs: {
         _uiid: _vm.uiid,
         "form-name": _vm.formName,
@@ -62209,7 +62267,8 @@ var render = function() {
         "accept-html": _vm.acceptHtml,
         list: _vm.list,
         "disabled-options": _vm.disabledOptions,
-        "hidden-options": _vm.hiddenOptions
+        "hidden-options": _vm.hiddenOptions,
+        type: _vm.type
       }
     },
     [
@@ -62245,7 +62304,9 @@ var render = function() {
                       },
                       [
                         _c("p", { staticClass: "box" }, [
-                          _c("i", { staticClass: "mo-icon mo-icon-check" })
+                          _vm.conf.type === "check"
+                            ? _c("i", { staticClass: "mo-icon mo-icon-check" })
+                            : _c("i", { staticClass: "radio-point" })
                         ]),
                         _vm._v(" "),
                         _vm.conf.acceptHtml
@@ -62277,7 +62338,9 @@ var render = function() {
                       },
                       [
                         _c("p", { staticClass: "box" }, [
-                          _c("i", { staticClass: "mo-icon mo-icon-check" })
+                          _vm.conf.type === "check"
+                            ? _c("i", { staticClass: "mo-icon mo-icon-check" })
+                            : _c("i", { staticClass: "radio-point" })
                         ]),
                         _vm._v(" "),
                         _vm.conf.acceptHtml
@@ -62354,7 +62417,8 @@ var render = function() {
         "disabled-options": _vm.disabledOptions,
         "hidden-options": _vm.hiddenOptions,
         max: _vm.max,
-        parent: _vm.parent
+        parent: _vm.parent,
+        type: _vm.type
       }
     },
     [
@@ -73999,7 +74063,8 @@ exports.default = function (UI) {
                 deep: true
             });
 
-            this.data.value = this.modelValue;
+            // this.data.value = this.modelValue;
+            this._set(this.modelValue, true);
 
             this._syncGroup();
             this.data.value = this._valueHandler(this.data.value);

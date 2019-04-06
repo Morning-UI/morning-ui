@@ -404,7 +404,8 @@ export default UI => UI.extend({
             deep : true
         });
 
-        this.data.value = this.modelValue;
+        // this.data.value = this.modelValue;
+        this._set(this.modelValue, true);
 
         this._syncGroup();
         this.data.value = this._valueHandler(this.data.value);

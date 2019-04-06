@@ -30855,7 +30855,7 @@ mor-tab > ul > li.disabled {
   background-color: #D6DDE5;
   color: #8E9CAF;
   border-color: #D6DDE5;
-  cursor: default;
+  cursor: not-allowed;
 }
 mor-tab > .contents {
   border: 1px #dce3ea solid;
@@ -30956,7 +30956,6 @@ mor-tab.block > ul > li.disabled {
   background-color: #D6DDE5;
   color: #8E9CAF;
   border-color: #D6DDE5;
-  cursor: default;
 }
 mor-tab.block.position-top > ul > li:not(:last-child),
 mor-tab.block.position-bottom > ul > li:not(:last-child) {
@@ -31018,7 +31017,6 @@ mor-tab.line > ul > li.current {
 }
 mor-tab.line > ul > li.disabled {
   color: #8E9CAF;
-  cursor: default;
 }
 mor-tab.line.position-top > ul::before,
 mor-tab.line.position-bottom > ul::before {
@@ -31133,7 +31131,6 @@ mor-tab.btn > ul > li.current {
 mor-tab.btn > ul > li.disabled {
   color: #8E9CAF;
   background-color: #D6DDE5;
-  cursor: default;
   border-color: #D6DDE5;
 }
 mor-tab.btn.position-top > ul > li,
@@ -36593,7 +36590,7 @@ mor-breadcrumbs ul li {
   vertical-align: middle;
 }
 mor-breadcrumbs ul li:hover {
-  color: #45505C;
+  color: #F33D5D;
   cursor: pointer;
 }
 mor-breadcrumbs ul li.root:not(.choose) {
@@ -40248,6 +40245,10 @@ mor-checkbox {
   display: inline-block;
   z-index: 9;
   -webkit-user-select: none;
+  box-sizing: border-box;
+}
+mor-checkbox[type='button'] {
+  -webkit-appearance: none;
 }
 mor-checkbox.has-cleanbtn {
   padding-bottom: 20px;
@@ -40314,7 +40315,6 @@ mor-checkbox > .il label.part-checked span {
 mor-checkbox > .il label.checked .mo-icon,
 mor-checkbox > .il label.part-checked .mo-icon {
   opacity: 1;
-  transform: scale(0.9);
 }
 mor-checkbox > .il label.part-checked .part-checked-icon {
   width: 60%;
@@ -40390,6 +40390,46 @@ mor-checkbox.vertical > .il label {
   margin: 0 0 0.6em;
   width: 100%;
 }
+mor-checkbox.type-button > .il {
+  flex-wrap: nowrap;
+}
+mor-checkbox.type-button > .il label {
+  border: 1px solid #E6E6E6;
+  border-right-width: 0;
+}
+mor-checkbox.type-button > .il label span {
+  color: #9a9a9a;
+}
+mor-checkbox.type-button > .il label .box {
+  display: none;
+}
+mor-checkbox.type-button > .il label:hover {
+  cursor: pointer;
+}
+mor-checkbox.type-button > .il label:first-child {
+  border-radius: 3px 0 0 3px;
+}
+mor-checkbox.type-button > .il label:last-child {
+  border-radius: 0 3px 3px 0;
+  border-right-width: 1px;
+}
+mor-checkbox.type-button > .il label.checked span {
+  color: #FFFFFF;
+}
+mor-checkbox.type-button > .il label.checked + label.checked {
+  border-left-color: #FFFFFF !important;
+}
+mor-checkbox.type-button > .il label.disabled {
+  background-color: #d2d2d2;
+  border-color: #d2d2d2;
+  cursor: not-allowed;
+}
+mor-checkbox.type-button > .il label.disabled + label:not(.checked):not(:hover) {
+  border-left-color: #d2d2d2;
+}
+mor-checkbox.type-button > .il label.disabled:hover span {
+  color: #9a9a9a;
+}
 mor-checkbox.si-m > .il label {
   margin: 0 1em 0.5em 0;
 }
@@ -40405,15 +40445,23 @@ mor-checkbox.si-m > .il label .mo-icon {
   font-size: 12px;
   line-height: 19px;
 }
+mor-checkbox.si-m > .il label.checked .mo-icon,
+mor-checkbox.si-m > .il label.part-checked .mo-icon {
+  transform: scale(0.9);
+}
 mor-checkbox.si-m.border > .il label {
   padding: 0.4em 0.6em;
   margin: 0 0.5em 0.5em 0;
+}
+mor-checkbox.si-m.type-button > .il label {
+  padding: 0.5em 1em;
+  margin: 0;
 }
 mor-checkbox.si-s > .il label {
   margin: 0 0.75em 0.2em 0;
 }
 mor-checkbox.si-s > .il label span {
-  font-size: 14px;
+  font-size: 13px;
 }
 mor-checkbox.si-s > .il label .box {
   width: 16px;
@@ -40424,9 +40472,17 @@ mor-checkbox.si-s > .il label .mo-icon {
   font-size: 12px;
   line-height: 15px;
 }
+mor-checkbox.si-s > .il label.checked .mo-icon,
+mor-checkbox.si-s > .il label.part-checked .mo-icon {
+  transform: scale(0.8);
+}
 mor-checkbox.si-s.border > .il label {
   padding: 0.3em 0.4em;
   margin: 0 0.4em 0.4em 0;
+}
+mor-checkbox.si-s.type-button > .il label {
+  padding: 0.3em 0.8em;
+  margin: 0;
 }
 mor-checkbox.si-xs > .il label {
   margin: 0 0.75em 0 0;
@@ -40443,9 +40499,17 @@ mor-checkbox.si-xs > .il label .mo-icon {
   font-size: 12px;
   line-height: 13px;
 }
+mor-checkbox.si-xs > .il label.checked .mo-icon,
+mor-checkbox.si-xs > .il label.part-checked .mo-icon {
+  transform: scale(0.7);
+}
 mor-checkbox.si-xs.border > .il label {
   padding: 0.2em 0.3em;
   margin: 0 0.3em 0.3em 0;
+}
+mor-checkbox.si-xs.type-button > .il label {
+  padding: 0.2em 0.6em;
+  margin: 0;
 }
 mor-checkbox.co-t > .il label.checked .box,
 mor-checkbox.co-t > .il label.part-checked .box {
@@ -40455,6 +40519,22 @@ mor-checkbox.co-t > .il label.part-checked .box {
 mor-checkbox.co-t.border > .il label.checked,
 mor-checkbox.co-t.border > .il label.part-checked {
   border-color: #F33D5D;
+}
+mor-checkbox.co-t.type-button > .il label:not(.checked):hover {
+  border-color: #F33D5D;
+}
+mor-checkbox.co-t.type-button > .il label:not(.checked):hover span {
+  color: #F33D5D;
+}
+mor-checkbox.co-t.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
+  border-left-color: #F33D5D;
+}
+mor-checkbox.co-t.type-button > .il label.checked {
+  background: #F33D5D;
+  border-color: #F33D5D;
+}
+mor-checkbox.co-t.type-button > .il label.checked + label {
+  border-left-color: #F33D5D;
 }
 mor-checkbox.co-t.st-disabled > .il label.checked .box,
 mor-checkbox.co-t.st-readonly > .il label.checked .box,
@@ -40477,6 +40557,22 @@ mor-checkbox.co-lt.border > .il label.checked,
 mor-checkbox.co-lt.border > .il label.part-checked {
   border-color: #F86F88;
 }
+mor-checkbox.co-lt.type-button > .il label:not(.checked):hover {
+  border-color: #F86F88;
+}
+mor-checkbox.co-lt.type-button > .il label:not(.checked):hover span {
+  color: #F86F88;
+}
+mor-checkbox.co-lt.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
+  border-left-color: #F86F88;
+}
+mor-checkbox.co-lt.type-button > .il label.checked {
+  background: #F86F88;
+  border-color: #F86F88;
+}
+mor-checkbox.co-lt.type-button > .il label.checked + label {
+  border-left-color: #F86F88;
+}
 mor-checkbox.co-lt.st-disabled > .il label.checked .box,
 mor-checkbox.co-lt.st-readonly > .il label.checked .box,
 mor-checkbox.co-lt.st-disabled > .il label.part-checked .box,
@@ -40497,6 +40593,22 @@ mor-checkbox.co-dt > .il label.part-checked .box {
 mor-checkbox.co-dt.border > .il label.checked,
 mor-checkbox.co-dt.border > .il label.part-checked {
   border-color: #D22343;
+}
+mor-checkbox.co-dt.type-button > .il label:not(.checked):hover {
+  border-color: #D22343;
+}
+mor-checkbox.co-dt.type-button > .il label:not(.checked):hover span {
+  color: #D22343;
+}
+mor-checkbox.co-dt.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
+  border-left-color: #D22343;
+}
+mor-checkbox.co-dt.type-button > .il label.checked {
+  background: #D22343;
+  border-color: #D22343;
+}
+mor-checkbox.co-dt.type-button > .il label.checked + label {
+  border-left-color: #D22343;
 }
 mor-checkbox.co-dt.st-disabled > .il label.checked .box,
 mor-checkbox.co-dt.st-readonly > .il label.checked .box,
@@ -40519,6 +40631,22 @@ mor-checkbox.co-s.border > .il label.checked,
 mor-checkbox.co-s.border > .il label.part-checked {
   border-color: #4DBD67;
 }
+mor-checkbox.co-s.type-button > .il label:not(.checked):hover {
+  border-color: #4DBD67;
+}
+mor-checkbox.co-s.type-button > .il label:not(.checked):hover span {
+  color: #4DBD67;
+}
+mor-checkbox.co-s.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
+  border-left-color: #4DBD67;
+}
+mor-checkbox.co-s.type-button > .il label.checked {
+  background: #4DBD67;
+  border-color: #4DBD67;
+}
+mor-checkbox.co-s.type-button > .il label.checked + label {
+  border-left-color: #4DBD67;
+}
 mor-checkbox.co-s.st-disabled > .il label.checked .box,
 mor-checkbox.co-s.st-readonly > .il label.checked .box,
 mor-checkbox.co-s.st-disabled > .il label.part-checked .box,
@@ -40539,6 +40667,22 @@ mor-checkbox.co-w > .il label.part-checked .box {
 mor-checkbox.co-w.border > .il label.checked,
 mor-checkbox.co-w.border > .il label.part-checked {
   border-color: #F0AD4E;
+}
+mor-checkbox.co-w.type-button > .il label:not(.checked):hover {
+  border-color: #F0AD4E;
+}
+mor-checkbox.co-w.type-button > .il label:not(.checked):hover span {
+  color: #F0AD4E;
+}
+mor-checkbox.co-w.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
+  border-left-color: #F0AD4E;
+}
+mor-checkbox.co-w.type-button > .il label.checked {
+  background: #F0AD4E;
+  border-color: #F0AD4E;
+}
+mor-checkbox.co-w.type-button > .il label.checked + label {
+  border-left-color: #F0AD4E;
 }
 mor-checkbox.co-w.st-disabled > .il label.checked .box,
 mor-checkbox.co-w.st-readonly > .il label.checked .box,
@@ -40561,6 +40705,22 @@ mor-checkbox.co-d.border > .il label.checked,
 mor-checkbox.co-d.border > .il label.part-checked {
   border-color: #D64431;
 }
+mor-checkbox.co-d.type-button > .il label:not(.checked):hover {
+  border-color: #D64431;
+}
+mor-checkbox.co-d.type-button > .il label:not(.checked):hover span {
+  color: #D64431;
+}
+mor-checkbox.co-d.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
+  border-left-color: #D64431;
+}
+mor-checkbox.co-d.type-button > .il label.checked {
+  background: #D64431;
+  border-color: #D64431;
+}
+mor-checkbox.co-d.type-button > .il label.checked + label {
+  border-left-color: #D64431;
+}
 mor-checkbox.co-d.st-disabled > .il label.checked .box,
 mor-checkbox.co-d.st-readonly > .il label.checked .box,
 mor-checkbox.co-d.st-disabled > .il label.part-checked .box,
@@ -40581,6 +40741,22 @@ mor-checkbox.co-p > .il label.part-checked .box {
 mor-checkbox.co-p.border > .il label.checked,
 mor-checkbox.co-p.border > .il label.part-checked {
   border-color: #2185D0;
+}
+mor-checkbox.co-p.type-button > .il label:not(.checked):hover {
+  border-color: #2185D0;
+}
+mor-checkbox.co-p.type-button > .il label:not(.checked):hover span {
+  color: #2185D0;
+}
+mor-checkbox.co-p.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
+  border-left-color: #2185D0;
+}
+mor-checkbox.co-p.type-button > .il label.checked {
+  background: #2185D0;
+  border-color: #2185D0;
+}
+mor-checkbox.co-p.type-button > .il label.checked + label {
+  border-left-color: #2185D0;
 }
 mor-checkbox.co-p.st-disabled > .il label.checked .box,
 mor-checkbox.co-p.st-readonly > .il label.checked .box,
@@ -40603,6 +40779,22 @@ mor-checkbox.co-m.border > .il label.checked,
 mor-checkbox.co-m.border > .il label.part-checked {
   border-color: #A9A9A9;
 }
+mor-checkbox.co-m.type-button > .il label:not(.checked):hover {
+  border-color: #A9A9A9;
+}
+mor-checkbox.co-m.type-button > .il label:not(.checked):hover span {
+  color: #A9A9A9;
+}
+mor-checkbox.co-m.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
+  border-left-color: #A9A9A9;
+}
+mor-checkbox.co-m.type-button > .il label.checked {
+  background: #A9A9A9;
+  border-color: #A9A9A9;
+}
+mor-checkbox.co-m.type-button > .il label.checked + label {
+  border-left-color: #A9A9A9;
+}
 mor-checkbox.co-m.st-disabled > .il label.checked .box,
 mor-checkbox.co-m.st-readonly > .il label.checked .box,
 mor-checkbox.co-m.st-disabled > .il label.part-checked .box,
@@ -40623,6 +40815,22 @@ mor-checkbox.co-i > .il label.part-checked .box {
 mor-checkbox.co-i.border > .il label.checked,
 mor-checkbox.co-i.border > .il label.part-checked {
   border-color: #03A6B9;
+}
+mor-checkbox.co-i.type-button > .il label:not(.checked):hover {
+  border-color: #03A6B9;
+}
+mor-checkbox.co-i.type-button > .il label:not(.checked):hover span {
+  color: #03A6B9;
+}
+mor-checkbox.co-i.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
+  border-left-color: #03A6B9;
+}
+mor-checkbox.co-i.type-button > .il label.checked {
+  background: #03A6B9;
+  border-color: #03A6B9;
+}
+mor-checkbox.co-i.type-button > .il label.checked + label {
+  border-left-color: #03A6B9;
 }
 mor-checkbox.co-i.st-disabled > .il label.checked .box,
 mor-checkbox.co-i.st-readonly > .il label.checked .box,
@@ -40645,6 +40853,22 @@ mor-checkbox.co-bk.border > .il label.checked,
 mor-checkbox.co-bk.border > .il label.part-checked {
   border-color: #17212D;
 }
+mor-checkbox.co-bk.type-button > .il label:not(.checked):hover {
+  border-color: #17212D;
+}
+mor-checkbox.co-bk.type-button > .il label:not(.checked):hover span {
+  color: #17212D;
+}
+mor-checkbox.co-bk.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
+  border-left-color: #17212D;
+}
+mor-checkbox.co-bk.type-button > .il label.checked {
+  background: #17212D;
+  border-color: #17212D;
+}
+mor-checkbox.co-bk.type-button > .il label.checked + label {
+  border-left-color: #17212D;
+}
 mor-checkbox.co-bk.st-disabled > .il label.checked .box,
 mor-checkbox.co-bk.st-readonly > .il label.checked .box,
 mor-checkbox.co-bk.st-disabled > .il label.part-checked .box,
@@ -40665,6 +40889,22 @@ mor-checkbox.co-lbk > .il label.part-checked .box {
 mor-checkbox.co-lbk.border > .il label.checked,
 mor-checkbox.co-lbk.border > .il label.part-checked {
   border-color: #303C4B;
+}
+mor-checkbox.co-lbk.type-button > .il label:not(.checked):hover {
+  border-color: #303C4B;
+}
+mor-checkbox.co-lbk.type-button > .il label:not(.checked):hover span {
+  color: #303C4B;
+}
+mor-checkbox.co-lbk.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
+  border-left-color: #303C4B;
+}
+mor-checkbox.co-lbk.type-button > .il label.checked {
+  background: #303C4B;
+  border-color: #303C4B;
+}
+mor-checkbox.co-lbk.type-button > .il label.checked + label {
+  border-left-color: #303C4B;
 }
 mor-checkbox.co-lbk.st-disabled > .il label.checked .box,
 mor-checkbox.co-lbk.st-readonly > .il label.checked .box,
@@ -40687,6 +40927,22 @@ mor-checkbox.co-elbk.border > .il label.checked,
 mor-checkbox.co-elbk.border > .il label.part-checked {
   border-color: #45505C;
 }
+mor-checkbox.co-elbk.type-button > .il label:not(.checked):hover {
+  border-color: #45505C;
+}
+mor-checkbox.co-elbk.type-button > .il label:not(.checked):hover span {
+  color: #45505C;
+}
+mor-checkbox.co-elbk.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
+  border-left-color: #45505C;
+}
+mor-checkbox.co-elbk.type-button > .il label.checked {
+  background: #45505C;
+  border-color: #45505C;
+}
+mor-checkbox.co-elbk.type-button > .il label.checked + label {
+  border-left-color: #45505C;
+}
 mor-checkbox.co-elbk.st-disabled > .il label.checked .box,
 mor-checkbox.co-elbk.st-readonly > .il label.checked .box,
 mor-checkbox.co-elbk.st-disabled > .il label.part-checked .box,
@@ -40707,6 +40963,22 @@ mor-checkbox.co-bu > .il label.part-checked .box {
 mor-checkbox.co-bu.border > .il label.checked,
 mor-checkbox.co-bu.border > .il label.part-checked {
   border-color: #7C8BA0;
+}
+mor-checkbox.co-bu.type-button > .il label:not(.checked):hover {
+  border-color: #7C8BA0;
+}
+mor-checkbox.co-bu.type-button > .il label:not(.checked):hover span {
+  color: #7C8BA0;
+}
+mor-checkbox.co-bu.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
+  border-left-color: #7C8BA0;
+}
+mor-checkbox.co-bu.type-button > .il label.checked {
+  background: #7C8BA0;
+  border-color: #7C8BA0;
+}
+mor-checkbox.co-bu.type-button > .il label.checked + label {
+  border-left-color: #7C8BA0;
 }
 mor-checkbox.co-bu.st-disabled > .il label.checked .box,
 mor-checkbox.co-bu.st-readonly > .il label.checked .box,
@@ -40729,6 +41001,22 @@ mor-checkbox.co-lbu.border > .il label.checked,
 mor-checkbox.co-lbu.border > .il label.part-checked {
   border-color: #8E9CAF;
 }
+mor-checkbox.co-lbu.type-button > .il label:not(.checked):hover {
+  border-color: #8E9CAF;
+}
+mor-checkbox.co-lbu.type-button > .il label:not(.checked):hover span {
+  color: #8E9CAF;
+}
+mor-checkbox.co-lbu.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
+  border-left-color: #8E9CAF;
+}
+mor-checkbox.co-lbu.type-button > .il label.checked {
+  background: #8E9CAF;
+  border-color: #8E9CAF;
+}
+mor-checkbox.co-lbu.type-button > .il label.checked + label {
+  border-left-color: #8E9CAF;
+}
 mor-checkbox.co-lbu.st-disabled > .il label.checked .box,
 mor-checkbox.co-lbu.st-readonly > .il label.checked .box,
 mor-checkbox.co-lbu.st-disabled > .il label.part-checked .box,
@@ -40749,6 +41037,22 @@ mor-checkbox.co-elbu > .il label.part-checked .box {
 mor-checkbox.co-elbu.border > .il label.checked,
 mor-checkbox.co-elbu.border > .il label.part-checked {
   border-color: #A8B3C2;
+}
+mor-checkbox.co-elbu.type-button > .il label:not(.checked):hover {
+  border-color: #A8B3C2;
+}
+mor-checkbox.co-elbu.type-button > .il label:not(.checked):hover span {
+  color: #A8B3C2;
+}
+mor-checkbox.co-elbu.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
+  border-left-color: #A8B3C2;
+}
+mor-checkbox.co-elbu.type-button > .il label.checked {
+  background: #A8B3C2;
+  border-color: #A8B3C2;
+}
+mor-checkbox.co-elbu.type-button > .il label.checked + label {
+  border-left-color: #A8B3C2;
 }
 mor-checkbox.co-elbu.st-disabled > .il label.checked .box,
 mor-checkbox.co-elbu.st-readonly > .il label.checked .box,
@@ -40786,6 +41090,31 @@ mor-checkbox.co-si.border > .il label.checked,
 mor-checkbox.co-si.border > .il label.part-checked {
   border-color: #D6DDE5;
 }
+mor-checkbox.co-si.type-button > .il label span {
+  color: #cccccc;
+}
+mor-checkbox.co-si.type-button > .il label:not(.checked):hover {
+  border-color: #D6DDE5;
+}
+mor-checkbox.co-si.type-button > .il label:not(.checked):hover span {
+  color: #FFFFFF;
+}
+mor-checkbox.co-si.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
+  border-left-color: #D6DDE5;
+}
+mor-checkbox.co-si.type-button > .il label.checked {
+  background: #D6DDE5;
+  border-color: #D6DDE5;
+}
+mor-checkbox.co-si.type-button > .il label.checked span {
+  color: #17212D;
+}
+mor-checkbox.co-si.type-button > .il label.checked + label {
+  border-left-color: #D6DDE5;
+}
+mor-checkbox.co-si.type-button > .il label.checked + label.checked {
+  border-left-color: #7C8BA0 !important;
+}
 mor-checkbox.co-si.st-disabled > .il label.checked .box,
 mor-checkbox.co-si.st-readonly > .il label.checked .box,
 mor-checkbox.co-si.st-disabled > .il label.part-checked .box,
@@ -40821,6 +41150,31 @@ mor-checkbox.co-lsi > .il label.part-checked .mo-icon {
 mor-checkbox.co-lsi.border > .il label.checked,
 mor-checkbox.co-lsi.border > .il label.part-checked {
   border-color: #E2E8EE;
+}
+mor-checkbox.co-lsi.type-button > .il label span {
+  color: #cccccc;
+}
+mor-checkbox.co-lsi.type-button > .il label:not(.checked):hover {
+  border-color: #E2E8EE;
+}
+mor-checkbox.co-lsi.type-button > .il label:not(.checked):hover span {
+  color: #FFFFFF;
+}
+mor-checkbox.co-lsi.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
+  border-left-color: #E2E8EE;
+}
+mor-checkbox.co-lsi.type-button > .il label.checked {
+  background: #E2E8EE;
+  border-color: #E2E8EE;
+}
+mor-checkbox.co-lsi.type-button > .il label.checked span {
+  color: #17212D;
+}
+mor-checkbox.co-lsi.type-button > .il label.checked + label {
+  border-left-color: #E2E8EE;
+}
+mor-checkbox.co-lsi.type-button > .il label.checked + label.checked {
+  border-left-color: #7C8BA0 !important;
 }
 mor-checkbox.co-lsi.st-disabled > .il label.checked .box,
 mor-checkbox.co-lsi.st-readonly > .il label.checked .box,
@@ -40858,6 +41212,31 @@ mor-checkbox.co-elsi.border > .il label.checked,
 mor-checkbox.co-elsi.border > .il label.part-checked {
   border-color: #EDF1F5;
 }
+mor-checkbox.co-elsi.type-button > .il label span {
+  color: #cccccc;
+}
+mor-checkbox.co-elsi.type-button > .il label:not(.checked):hover {
+  border-color: #EDF1F5;
+}
+mor-checkbox.co-elsi.type-button > .il label:not(.checked):hover span {
+  color: #FFFFFF;
+}
+mor-checkbox.co-elsi.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
+  border-left-color: #EDF1F5;
+}
+mor-checkbox.co-elsi.type-button > .il label.checked {
+  background: #EDF1F5;
+  border-color: #EDF1F5;
+}
+mor-checkbox.co-elsi.type-button > .il label.checked span {
+  color: #17212D;
+}
+mor-checkbox.co-elsi.type-button > .il label.checked + label {
+  border-left-color: #EDF1F5;
+}
+mor-checkbox.co-elsi.type-button > .il label.checked + label.checked {
+  border-left-color: #7C8BA0 !important;
+}
 mor-checkbox.co-elsi.st-disabled > .il label.checked .box,
 mor-checkbox.co-elsi.st-readonly > .il label.checked .box,
 mor-checkbox.co-elsi.st-disabled > .il label.part-checked .box,
@@ -40893,6 +41272,31 @@ mor-checkbox.co-g > .il label.part-checked .mo-icon {
 mor-checkbox.co-g.border > .il label.checked,
 mor-checkbox.co-g.border > .il label.part-checked {
   border-color: #E6E6E6;
+}
+mor-checkbox.co-g.type-button > .il label span {
+  color: #cccccc;
+}
+mor-checkbox.co-g.type-button > .il label:not(.checked):hover {
+  border-color: #E6E6E6;
+}
+mor-checkbox.co-g.type-button > .il label:not(.checked):hover span {
+  color: #FFFFFF;
+}
+mor-checkbox.co-g.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
+  border-left-color: #E6E6E6;
+}
+mor-checkbox.co-g.type-button > .il label.checked {
+  background: #E6E6E6;
+  border-color: #E6E6E6;
+}
+mor-checkbox.co-g.type-button > .il label.checked span {
+  color: #17212D;
+}
+mor-checkbox.co-g.type-button > .il label.checked + label {
+  border-left-color: #E6E6E6;
+}
+mor-checkbox.co-g.type-button > .il label.checked + label.checked {
+  border-left-color: #D6DDE5 !important;
 }
 mor-checkbox.co-g.st-disabled > .il label.checked .box,
 mor-checkbox.co-g.st-readonly > .il label.checked .box,
@@ -40930,6 +41334,31 @@ mor-checkbox.co-lg.border > .il label.checked,
 mor-checkbox.co-lg.border > .il label.part-checked {
   border-color: #F0F0F0;
 }
+mor-checkbox.co-lg.type-button > .il label span {
+  color: #cccccc;
+}
+mor-checkbox.co-lg.type-button > .il label:not(.checked):hover {
+  border-color: #F0F0F0;
+}
+mor-checkbox.co-lg.type-button > .il label:not(.checked):hover span {
+  color: #FFFFFF;
+}
+mor-checkbox.co-lg.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
+  border-left-color: #F0F0F0;
+}
+mor-checkbox.co-lg.type-button > .il label.checked {
+  background: #F0F0F0;
+  border-color: #F0F0F0;
+}
+mor-checkbox.co-lg.type-button > .il label.checked span {
+  color: #17212D;
+}
+mor-checkbox.co-lg.type-button > .il label.checked + label {
+  border-left-color: #F0F0F0;
+}
+mor-checkbox.co-lg.type-button > .il label.checked + label.checked {
+  border-left-color: #D6DDE5 !important;
+}
 mor-checkbox.co-lg.st-disabled > .il label.checked .box,
 mor-checkbox.co-lg.st-readonly > .il label.checked .box,
 mor-checkbox.co-lg.st-disabled > .il label.part-checked .box,
@@ -40965,6 +41394,31 @@ mor-checkbox.co-wh > .il label.part-checked .mo-icon {
 mor-checkbox.co-wh.border > .il label.checked,
 mor-checkbox.co-wh.border > .il label.part-checked {
   border-color: #FFFFFF;
+}
+mor-checkbox.co-wh.type-button > .il label span {
+  color: #cccccc;
+}
+mor-checkbox.co-wh.type-button > .il label:not(.checked):hover {
+  border-color: #FFFFFF;
+}
+mor-checkbox.co-wh.type-button > .il label:not(.checked):hover span {
+  color: #FFFFFF;
+}
+mor-checkbox.co-wh.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
+  border-left-color: #FFFFFF;
+}
+mor-checkbox.co-wh.type-button > .il label.checked {
+  background: #FFFFFF;
+  border-color: #FFFFFF;
+}
+mor-checkbox.co-wh.type-button > .il label.checked span {
+  color: #17212D;
+}
+mor-checkbox.co-wh.type-button > .il label.checked + label {
+  border-left-color: #FFFFFF;
+}
+mor-checkbox.co-wh.type-button > .il label.checked + label.checked {
+  border-left-color: #E6E6E6 !important;
 }
 mor-checkbox.co-wh.st-disabled > .il label.checked .box,
 mor-checkbox.co-wh.st-readonly > .il label.checked .box,
@@ -41025,9 +41479,17 @@ mor-checkbox > .il label .mo-icon {
   font-size: 12px;
   line-height: 19px;
 }
+mor-checkbox > .il label.checked .mo-icon,
+mor-checkbox > .il label.part-checked .mo-icon {
+  transform: scale(0.9);
+}
 mor-checkbox.border > .il label {
   padding: 0.4em 0.6em;
   margin: 0 0.5em 0.5em 0;
+}
+mor-checkbox.type-button > .il label {
+  padding: 0.5em 1em;
+  margin: 0;
 }
 mor-checkbox > .il label.checked .box,
 mor-checkbox > .il label.part-checked .box {
@@ -41037,6 +41499,22 @@ mor-checkbox > .il label.part-checked .box {
 mor-checkbox.border > .il label.checked,
 mor-checkbox.border > .il label.part-checked {
   border-color: #F33D5D;
+}
+mor-checkbox.type-button > .il label:not(.checked):hover {
+  border-color: #F33D5D;
+}
+mor-checkbox.type-button > .il label:not(.checked):hover span {
+  color: #F33D5D;
+}
+mor-checkbox.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
+  border-left-color: #F33D5D;
+}
+mor-checkbox.type-button > .il label.checked {
+  background: #F33D5D;
+  border-color: #F33D5D;
+}
+mor-checkbox.type-button > .il label.checked + label {
+  border-left-color: #F33D5D;
 }
 mor-checkbox.st-disabled > .il label.checked .box,
 mor-checkbox.st-readonly > .il label.checked .box,
@@ -41056,6 +41534,10 @@ mor-radio {
   display: inline-block;
   z-index: 9;
   -webkit-user-select: none;
+  box-sizing: border-box;
+}
+mor-radio[type='button'] {
+  -webkit-appearance: none;
 }
 mor-radio.has-cleanbtn {
   padding-bottom: 20px;
@@ -41119,7 +41601,6 @@ mor-radio > .il label.checked span {
 }
 mor-radio > .il label.checked .mo-icon {
   opacity: 1;
-  transform: scale(0.9);
 }
 mor-radio > .il label.disabled {
   border-color: #d2d2d2;
@@ -41149,16 +41630,72 @@ mor-radio > .il label.disabled.checked .mo-icon {
 mor-radio > .il label.hidden {
   display: none;
 }
-mor-radio.border > .il label {
+mor-radio.border:not(.type-button) > .il label {
   border: 1px #E6E6E6 solid;
   border-radius: 3px;
 }
-mor-radio.border > .il label:hover {
+mor-radio.border:not(.type-button) > .il label:hover {
   border-color: #bdbdbd;
 }
 mor-radio.vertical > .il label {
   margin: 0 0 0.6em;
   width: 100%;
+}
+mor-radio.type-point .radio-point {
+  display: inline-block;
+  border-radius: 50%;
+  position: relative;
+  vertical-align: top;
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity 0.2s, transform 0.2s;
+}
+mor-radio.type-point > .il label.checked .box {
+  background: #FFFFFF !important;
+}
+mor-radio.type-point > .il label.checked .radio-point {
+  opacity: 1;
+  transform: scale(1);
+}
+mor-radio.type-button > .il {
+  flex-wrap: nowrap;
+}
+mor-radio.type-button > .il label {
+  border: 1px solid #E6E6E6;
+  border-right-width: 0;
+}
+mor-radio.type-button > .il label span {
+  color: #9a9a9a;
+}
+mor-radio.type-button > .il label .box {
+  display: none;
+}
+mor-radio.type-button > .il label:hover {
+  cursor: pointer;
+}
+mor-radio.type-button > .il label:first-child {
+  border-radius: 3px 0 0 3px;
+}
+mor-radio.type-button > .il label:last-child {
+  border-radius: 0 3px 3px 0;
+  border-right-width: 1px;
+}
+mor-radio.type-button > .il label.checked {
+  cursor: default;
+}
+mor-radio.type-button > .il label.checked span {
+  color: #FFFFFF;
+}
+mor-radio.type-button > .il label.disabled {
+  background-color: #d2d2d2;
+  border-color: #d2d2d2;
+  cursor: not-allowed;
+}
+mor-radio.type-button > .il label.disabled + label:not(.checked):not(:hover) {
+  border-left-color: #d2d2d2;
+}
+mor-radio.type-button > .il label.disabled:hover span {
+  color: #9a9a9a;
 }
 mor-radio.si-m > .il label {
   margin: 0 1em 0.5em 0;
@@ -41175,15 +41712,28 @@ mor-radio.si-m > .il label .mo-icon {
   font-size: 12px;
   line-height: 19px;
 }
-mor-radio.si-m.border > .il label {
+mor-radio.si-m > .il label .radio-point {
+  width: 10px;
+  height: 10px;
+  left: 4px;
+  top: 4px;
+}
+mor-radio.si-m > .il label.checked .mo-icon {
+  transform: scale(0.9);
+}
+mor-radio.si-m.border:not(.type-button) > .il label {
   padding: 0.4em 0.6em;
   margin: 0 0.5em 0.5em 0;
+}
+mor-radio.si-m.type-button > .il label {
+  padding: 0.5em 1em;
+  margin: 0;
 }
 mor-radio.si-s > .il label {
   margin: 0 0.75em 0.2em 0;
 }
 mor-radio.si-s > .il label span {
-  font-size: 14px;
+  font-size: 13px;
 }
 mor-radio.si-s > .il label .box {
   width: 16px;
@@ -41194,9 +41744,22 @@ mor-radio.si-s > .il label .mo-icon {
   font-size: 12px;
   line-height: 15px;
 }
-mor-radio.si-s.border > .il label {
+mor-radio.si-s > .il label .radio-point {
+  width: 8px;
+  height: 8px;
+  left: 3px;
+  top: 3px;
+}
+mor-radio.si-s > .il label.checked .mo-icon {
+  transform: scale(0.8);
+}
+mor-radio.si-s.border:not(.type-button) > .il label {
   padding: 0.3em 0.4em;
   margin: 0 0.4em 0.4em 0;
+}
+mor-radio.si-s.type-button > .il label {
+  padding: 0.3em 0.8em;
+  margin: 0;
 }
 mor-radio.si-xs > .il label {
   margin: 0 0.75em 0 0;
@@ -41213,9 +41776,22 @@ mor-radio.si-xs > .il label .mo-icon {
   font-size: 12px;
   line-height: 13px;
 }
-mor-radio.si-xs.border > .il label {
+mor-radio.si-xs > .il label .radio-point {
+  width: 6px;
+  height: 6px;
+  left: 3px;
+  top: 3px;
+}
+mor-radio.si-xs > .il label.checked .mo-icon {
+  transform: scale(0.7);
+}
+mor-radio.si-xs.border:not(.type-button) > .il label {
   padding: 0.2em 0.3em;
   margin: 0 0.3em 0.3em 0;
+}
+mor-radio.si-xs.type-button > .il label {
+  padding: 0.2em 0.6em;
+  margin: 0;
 }
 mor-radio.co-t > .il label.checked .box {
   background: #F33D5D;
@@ -41223,6 +41799,25 @@ mor-radio.co-t > .il label.checked .box {
 }
 mor-radio.co-t.border > .il label.checked {
   border-color: #F33D5D;
+}
+mor-radio.co-t.type-point .radio-point {
+  background: #F33D5D;
+}
+mor-radio.co-t.type-button > .il label:not(.checked):hover {
+  border-color: #F33D5D;
+}
+mor-radio.co-t.type-button > .il label:not(.checked):hover span {
+  color: #F33D5D;
+}
+mor-radio.co-t.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
+  border-left-color: #F33D5D;
+}
+mor-radio.co-t.type-button > .il label.checked {
+  background: #F33D5D;
+  border-color: #F33D5D;
+}
+mor-radio.co-t.type-button > .il label.checked + label {
+  border-left-color: #F33D5D;
 }
 mor-radio.co-t.st-disabled > .il label.checked .box,
 mor-radio.co-t.st-readonly > .il label.checked .box {
@@ -41240,6 +41835,25 @@ mor-radio.co-lt > .il label.checked .box {
 mor-radio.co-lt.border > .il label.checked {
   border-color: #F86F88;
 }
+mor-radio.co-lt.type-point .radio-point {
+  background: #F86F88;
+}
+mor-radio.co-lt.type-button > .il label:not(.checked):hover {
+  border-color: #F86F88;
+}
+mor-radio.co-lt.type-button > .il label:not(.checked):hover span {
+  color: #F86F88;
+}
+mor-radio.co-lt.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
+  border-left-color: #F86F88;
+}
+mor-radio.co-lt.type-button > .il label.checked {
+  background: #F86F88;
+  border-color: #F86F88;
+}
+mor-radio.co-lt.type-button > .il label.checked + label {
+  border-left-color: #F86F88;
+}
 mor-radio.co-lt.st-disabled > .il label.checked .box,
 mor-radio.co-lt.st-readonly > .il label.checked .box {
   background: #e97e92;
@@ -41255,6 +41869,25 @@ mor-radio.co-dt > .il label.checked .box {
 }
 mor-radio.co-dt.border > .il label.checked {
   border-color: #D22343;
+}
+mor-radio.co-dt.type-point .radio-point {
+  background: #D22343;
+}
+mor-radio.co-dt.type-button > .il label:not(.checked):hover {
+  border-color: #D22343;
+}
+mor-radio.co-dt.type-button > .il label:not(.checked):hover span {
+  color: #D22343;
+}
+mor-radio.co-dt.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
+  border-left-color: #D22343;
+}
+mor-radio.co-dt.type-button > .il label.checked {
+  background: #D22343;
+  border-color: #D22343;
+}
+mor-radio.co-dt.type-button > .il label.checked + label {
+  border-left-color: #D22343;
 }
 mor-radio.co-dt.st-disabled > .il label.checked .box,
 mor-radio.co-dt.st-readonly > .il label.checked .box {
@@ -41272,6 +41905,25 @@ mor-radio.co-s > .il label.checked .box {
 mor-radio.co-s.border > .il label.checked {
   border-color: #4DBD67;
 }
+mor-radio.co-s.type-point .radio-point {
+  background: #4DBD67;
+}
+mor-radio.co-s.type-button > .il label:not(.checked):hover {
+  border-color: #4DBD67;
+}
+mor-radio.co-s.type-button > .il label:not(.checked):hover span {
+  color: #4DBD67;
+}
+mor-radio.co-s.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
+  border-left-color: #4DBD67;
+}
+mor-radio.co-s.type-button > .il label.checked {
+  background: #4DBD67;
+  border-color: #4DBD67;
+}
+mor-radio.co-s.type-button > .il label.checked + label {
+  border-left-color: #4DBD67;
+}
 mor-radio.co-s.st-disabled > .il label.checked .box,
 mor-radio.co-s.st-readonly > .il label.checked .box {
   background: #65a574;
@@ -41287,6 +41939,25 @@ mor-radio.co-w > .il label.checked .box {
 }
 mor-radio.co-w.border > .il label.checked {
   border-color: #F0AD4E;
+}
+mor-radio.co-w.type-point .radio-point {
+  background: #F0AD4E;
+}
+mor-radio.co-w.type-button > .il label:not(.checked):hover {
+  border-color: #F0AD4E;
+}
+mor-radio.co-w.type-button > .il label:not(.checked):hover span {
+  color: #F0AD4E;
+}
+mor-radio.co-w.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
+  border-left-color: #F0AD4E;
+}
+mor-radio.co-w.type-button > .il label.checked {
+  background: #F0AD4E;
+  border-color: #F0AD4E;
+}
+mor-radio.co-w.type-button > .il label.checked + label {
+  border-left-color: #F0AD4E;
 }
 mor-radio.co-w.st-disabled > .il label.checked .box,
 mor-radio.co-w.st-readonly > .il label.checked .box {
@@ -41304,6 +41975,25 @@ mor-radio.co-d > .il label.checked .box {
 mor-radio.co-d.border > .il label.checked {
   border-color: #D64431;
 }
+mor-radio.co-d.type-point .radio-point {
+  background: #D64431;
+}
+mor-radio.co-d.type-button > .il label:not(.checked):hover {
+  border-color: #D64431;
+}
+mor-radio.co-d.type-button > .il label:not(.checked):hover span {
+  color: #D64431;
+}
+mor-radio.co-d.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
+  border-left-color: #D64431;
+}
+mor-radio.co-d.type-button > .il label.checked {
+  background: #D64431;
+  border-color: #D64431;
+}
+mor-radio.co-d.type-button > .il label.checked + label {
+  border-left-color: #D64431;
+}
 mor-radio.co-d.st-disabled > .il label.checked .box,
 mor-radio.co-d.st-readonly > .il label.checked .box {
   background: #bd574a;
@@ -41319,6 +42009,25 @@ mor-radio.co-p > .il label.checked .box {
 }
 mor-radio.co-p.border > .il label.checked {
   border-color: #2185D0;
+}
+mor-radio.co-p.type-point .radio-point {
+  background: #2185D0;
+}
+mor-radio.co-p.type-button > .il label:not(.checked):hover {
+  border-color: #2185D0;
+}
+mor-radio.co-p.type-button > .il label:not(.checked):hover span {
+  color: #2185D0;
+}
+mor-radio.co-p.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
+  border-left-color: #2185D0;
+}
+mor-radio.co-p.type-button > .il label.checked {
+  background: #2185D0;
+  border-color: #2185D0;
+}
+mor-radio.co-p.type-button > .il label.checked + label {
+  border-left-color: #2185D0;
 }
 mor-radio.co-p.st-disabled > .il label.checked .box,
 mor-radio.co-p.st-readonly > .il label.checked .box {
@@ -41336,6 +42045,25 @@ mor-radio.co-m > .il label.checked .box {
 mor-radio.co-m.border > .il label.checked {
   border-color: #A9A9A9;
 }
+mor-radio.co-m.type-point .radio-point {
+  background: #A9A9A9;
+}
+mor-radio.co-m.type-button > .il label:not(.checked):hover {
+  border-color: #A9A9A9;
+}
+mor-radio.co-m.type-button > .il label:not(.checked):hover span {
+  color: #A9A9A9;
+}
+mor-radio.co-m.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
+  border-left-color: #A9A9A9;
+}
+mor-radio.co-m.type-button > .il label.checked {
+  background: #A9A9A9;
+  border-color: #A9A9A9;
+}
+mor-radio.co-m.type-button > .il label.checked + label {
+  border-left-color: #A9A9A9;
+}
 mor-radio.co-m.st-disabled > .il label.checked .box,
 mor-radio.co-m.st-readonly > .il label.checked .box {
   background: #a9a9a9;
@@ -41351,6 +42079,25 @@ mor-radio.co-i > .il label.checked .box {
 }
 mor-radio.co-i.border > .il label.checked {
   border-color: #03A6B9;
+}
+mor-radio.co-i.type-point .radio-point {
+  background: #03A6B9;
+}
+mor-radio.co-i.type-button > .il label:not(.checked):hover {
+  border-color: #03A6B9;
+}
+mor-radio.co-i.type-button > .il label:not(.checked):hover span {
+  color: #03A6B9;
+}
+mor-radio.co-i.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
+  border-left-color: #03A6B9;
+}
+mor-radio.co-i.type-button > .il label.checked {
+  background: #03A6B9;
+  border-color: #03A6B9;
+}
+mor-radio.co-i.type-button > .il label.checked + label {
+  border-left-color: #03A6B9;
 }
 mor-radio.co-i.st-disabled > .il label.checked .box,
 mor-radio.co-i.st-readonly > .il label.checked .box {
@@ -41368,6 +42115,25 @@ mor-radio.co-bk > .il label.checked .box {
 mor-radio.co-bk.border > .il label.checked {
   border-color: #17212D;
 }
+mor-radio.co-bk.type-point .radio-point {
+  background: #17212D;
+}
+mor-radio.co-bk.type-button > .il label:not(.checked):hover {
+  border-color: #17212D;
+}
+mor-radio.co-bk.type-button > .il label:not(.checked):hover span {
+  color: #17212D;
+}
+mor-radio.co-bk.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
+  border-left-color: #17212D;
+}
+mor-radio.co-bk.type-button > .il label.checked {
+  background: #17212D;
+  border-color: #17212D;
+}
+mor-radio.co-bk.type-button > .il label.checked + label {
+  border-left-color: #17212D;
+}
 mor-radio.co-bk.st-disabled > .il label.checked .box,
 mor-radio.co-bk.st-readonly > .il label.checked .box {
   background: #142130;
@@ -41383,6 +42149,25 @@ mor-radio.co-lbk > .il label.checked .box {
 }
 mor-radio.co-lbk.border > .il label.checked {
   border-color: #303C4B;
+}
+mor-radio.co-lbk.type-point .radio-point {
+  background: #303C4B;
+}
+mor-radio.co-lbk.type-button > .il label:not(.checked):hover {
+  border-color: #303C4B;
+}
+mor-radio.co-lbk.type-button > .il label:not(.checked):hover span {
+  color: #303C4B;
+}
+mor-radio.co-lbk.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
+  border-left-color: #303C4B;
+}
+mor-radio.co-lbk.type-button > .il label.checked {
+  background: #303C4B;
+  border-color: #303C4B;
+}
+mor-radio.co-lbk.type-button > .il label.checked + label {
+  border-left-color: #303C4B;
 }
 mor-radio.co-lbk.st-disabled > .il label.checked .box,
 mor-radio.co-lbk.st-readonly > .il label.checked .box {
@@ -41400,6 +42185,25 @@ mor-radio.co-elbk > .il label.checked .box {
 mor-radio.co-elbk.border > .il label.checked {
   border-color: #45505C;
 }
+mor-radio.co-elbk.type-point .radio-point {
+  background: #45505C;
+}
+mor-radio.co-elbk.type-button > .il label:not(.checked):hover {
+  border-color: #45505C;
+}
+mor-radio.co-elbk.type-button > .il label:not(.checked):hover span {
+  color: #45505C;
+}
+mor-radio.co-elbk.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
+  border-left-color: #45505C;
+}
+mor-radio.co-elbk.type-button > .il label.checked {
+  background: #45505C;
+  border-color: #45505C;
+}
+mor-radio.co-elbk.type-button > .il label.checked + label {
+  border-left-color: #45505C;
+}
 mor-radio.co-elbk.st-disabled > .il label.checked .box,
 mor-radio.co-elbk.st-readonly > .il label.checked .box {
   background: #3d5064;
@@ -41415,6 +42219,25 @@ mor-radio.co-bu > .il label.checked .box {
 }
 mor-radio.co-bu.border > .il label.checked {
   border-color: #7C8BA0;
+}
+mor-radio.co-bu.type-point .radio-point {
+  background: #7C8BA0;
+}
+mor-radio.co-bu.type-button > .il label:not(.checked):hover {
+  border-color: #7C8BA0;
+}
+mor-radio.co-bu.type-button > .il label:not(.checked):hover span {
+  color: #7C8BA0;
+}
+mor-radio.co-bu.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
+  border-left-color: #7C8BA0;
+}
+mor-radio.co-bu.type-button > .il label.checked {
+  background: #7C8BA0;
+  border-color: #7C8BA0;
+}
+mor-radio.co-bu.type-button > .il label.checked + label {
+  border-left-color: #7C8BA0;
 }
 mor-radio.co-bu.st-disabled > .il label.checked .box,
 mor-radio.co-bu.st-readonly > .il label.checked .box {
@@ -41432,6 +42255,25 @@ mor-radio.co-lbu > .il label.checked .box {
 mor-radio.co-lbu.border > .il label.checked {
   border-color: #8E9CAF;
 }
+mor-radio.co-lbu.type-point .radio-point {
+  background: #8E9CAF;
+}
+mor-radio.co-lbu.type-button > .il label:not(.checked):hover {
+  border-color: #8E9CAF;
+}
+mor-radio.co-lbu.type-button > .il label:not(.checked):hover span {
+  color: #8E9CAF;
+}
+mor-radio.co-lbu.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
+  border-left-color: #8E9CAF;
+}
+mor-radio.co-lbu.type-button > .il label.checked {
+  background: #8E9CAF;
+  border-color: #8E9CAF;
+}
+mor-radio.co-lbu.type-button > .il label.checked + label {
+  border-left-color: #8E9CAF;
+}
 mor-radio.co-lbu.st-disabled > .il label.checked .box,
 mor-radio.co-lbu.st-readonly > .il label.checked .box {
   background: #989da5;
@@ -41447,6 +42289,25 @@ mor-radio.co-elbu > .il label.checked .box {
 }
 mor-radio.co-elbu.border > .il label.checked {
   border-color: #A8B3C2;
+}
+mor-radio.co-elbu.type-point .radio-point {
+  background: #A8B3C2;
+}
+mor-radio.co-elbu.type-button > .il label:not(.checked):hover {
+  border-color: #A8B3C2;
+}
+mor-radio.co-elbu.type-button > .il label:not(.checked):hover span {
+  color: #A8B3C2;
+}
+mor-radio.co-elbu.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
+  border-left-color: #A8B3C2;
+}
+mor-radio.co-elbu.type-button > .il label.checked {
+  background: #A8B3C2;
+  border-color: #A8B3C2;
+}
+mor-radio.co-elbu.type-button > .il label.checked + label {
+  border-left-color: #A8B3C2;
 }
 mor-radio.co-elbu.st-disabled > .il label.checked .box,
 mor-radio.co-elbu.st-readonly > .il label.checked .box {
@@ -41478,6 +42339,34 @@ mor-radio.co-si > .il label.checked .mo-icon {
 mor-radio.co-si.border > .il label.checked {
   border-color: #E2E8EE;
 }
+mor-radio.co-si.type-point .il label.checked .box {
+  background: #17212D !important;
+}
+mor-radio.co-si.type-point .radio-point {
+  background: #D6DDE5;
+}
+mor-radio.co-si.type-button > .il label span {
+  color: #cccccc;
+}
+mor-radio.co-si.type-button > .il label:not(.checked):hover {
+  border-color: #D6DDE5;
+}
+mor-radio.co-si.type-button > .il label:not(.checked):hover span {
+  color: #FFFFFF;
+}
+mor-radio.co-si.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
+  border-left-color: #D6DDE5;
+}
+mor-radio.co-si.type-button > .il label.checked {
+  background: #D6DDE5;
+  border-color: #D6DDE5;
+}
+mor-radio.co-si.type-button > .il label.checked span {
+  color: #17212D;
+}
+mor-radio.co-si.type-button > .il label.checked + label {
+  border-left-color: #D6DDE5;
+}
 mor-radio.co-si.st-disabled > .il label.checked .box,
 mor-radio.co-si.st-readonly > .il label.checked .box {
   background: #ddddde;
@@ -41507,6 +42396,34 @@ mor-radio.co-lsi > .il label.checked .mo-icon {
 }
 mor-radio.co-lsi.border > .il label.checked {
   border-color: #E2E8EE;
+}
+mor-radio.co-lsi.type-point .il label.checked .box {
+  background: #17212D !important;
+}
+mor-radio.co-lsi.type-point .radio-point {
+  background: #E2E8EE;
+}
+mor-radio.co-lsi.type-button > .il label span {
+  color: #cccccc;
+}
+mor-radio.co-lsi.type-button > .il label:not(.checked):hover {
+  border-color: #E2E8EE;
+}
+mor-radio.co-lsi.type-button > .il label:not(.checked):hover span {
+  color: #E2E8EE;
+}
+mor-radio.co-lsi.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
+  border-left-color: #E2E8EE;
+}
+mor-radio.co-lsi.type-button > .il label.checked {
+  background: #E2E8EE;
+  border-color: #E2E8EE;
+}
+mor-radio.co-lsi.type-button > .il label.checked span {
+  color: #17212D;
+}
+mor-radio.co-lsi.type-button > .il label.checked + label {
+  border-left-color: #E2E8EE;
 }
 mor-radio.co-lsi.st-disabled > .il label.checked .box,
 mor-radio.co-lsi.st-readonly > .il label.checked .box {
@@ -41538,6 +42455,34 @@ mor-radio.co-elsi > .il label.checked .mo-icon {
 mor-radio.co-elsi.border > .il label.checked {
   border-color: #EDF1F5;
 }
+mor-radio.co-elsi.type-point .il label.checked .box {
+  background: #17212D !important;
+}
+mor-radio.co-elsi.type-point .radio-point {
+  background: #EDF1F5;
+}
+mor-radio.co-elsi.type-button > .il label span {
+  color: #cccccc;
+}
+mor-radio.co-elsi.type-button > .il label:not(.checked):hover {
+  border-color: #EDF1F5;
+}
+mor-radio.co-elsi.type-button > .il label:not(.checked):hover span {
+  color: #FFFFFF;
+}
+mor-radio.co-elsi.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
+  border-left-color: #EDF1F5;
+}
+mor-radio.co-elsi.type-button > .il label.checked {
+  background: #EDF1F5;
+  border-color: #EDF1F5;
+}
+mor-radio.co-elsi.type-button > .il label.checked span {
+  color: #17212D;
+}
+mor-radio.co-elsi.type-button > .il label.checked + label {
+  border-left-color: #EDF1F5;
+}
 mor-radio.co-elsi.st-disabled > .il label.checked .box,
 mor-radio.co-elsi.st-readonly > .il label.checked .box {
   background: #f0f1f2;
@@ -41567,6 +42512,34 @@ mor-radio.co-g > .il label.checked .mo-icon {
 }
 mor-radio.co-g.border > .il label.checked {
   border-color: #E6E6E6;
+}
+mor-radio.co-g.type-point .il label.checked .box {
+  background: #17212D !important;
+}
+mor-radio.co-g.type-point .radio-point {
+  background: #E6E6E6;
+}
+mor-radio.co-g.type-button > .il label span {
+  color: #cccccc;
+}
+mor-radio.co-g.type-button > .il label:not(.checked):hover {
+  border-color: #E6E6E6;
+}
+mor-radio.co-g.type-button > .il label:not(.checked):hover span {
+  color: #FFFFFF;
+}
+mor-radio.co-g.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
+  border-left-color: #E6E6E6;
+}
+mor-radio.co-g.type-button > .il label.checked {
+  background: #E6E6E6;
+  border-color: #E6E6E6;
+}
+mor-radio.co-g.type-button > .il label.checked span {
+  color: #17212D;
+}
+mor-radio.co-g.type-button > .il label.checked + label {
+  border-left-color: #E6E6E6;
 }
 mor-radio.co-g.st-disabled > .il label.checked .box,
 mor-radio.co-g.st-readonly > .il label.checked .box {
@@ -41598,6 +42571,34 @@ mor-radio.co-lg > .il label.checked .mo-icon {
 mor-radio.co-lg.border > .il label.checked {
   border-color: #F0F0F0;
 }
+mor-radio.co-lg.type-point .il label.checked .box {
+  background: #17212D !important;
+}
+mor-radio.co-lg.type-point .radio-point {
+  background: #F0F0F0;
+}
+mor-radio.co-lg.type-button > .il label span {
+  color: #cccccc;
+}
+mor-radio.co-lg.type-button > .il label:not(.checked):hover {
+  border-color: #F0F0F0;
+}
+mor-radio.co-lg.type-button > .il label:not(.checked):hover span {
+  color: #FFFFFF;
+}
+mor-radio.co-lg.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
+  border-left-color: #F0F0F0;
+}
+mor-radio.co-lg.type-button > .il label.checked {
+  background: #F0F0F0;
+  border-color: #F0F0F0;
+}
+mor-radio.co-lg.type-button > .il label.checked span {
+  color: #17212D;
+}
+mor-radio.co-lg.type-button > .il label.checked + label {
+  border-left-color: #F0F0F0;
+}
 mor-radio.co-lg.st-disabled > .il label.checked .box,
 mor-radio.co-lg.st-readonly > .il label.checked .box {
   background: #f0f0f0;
@@ -41627,6 +42628,34 @@ mor-radio.co-wh > .il label.checked .mo-icon {
 }
 mor-radio.co-wh.border > .il label.checked {
   border-color: #FFFFFF;
+}
+mor-radio.co-wh.type-point .il label.checked .box {
+  background: #17212D !important;
+}
+mor-radio.co-wh.type-point .radio-point {
+  background: #FFFFFF;
+}
+mor-radio.co-wh.type-button > .il label span {
+  color: #cccccc;
+}
+mor-radio.co-wh.type-button > .il label:not(.checked):hover {
+  border-color: #FFFFFF;
+}
+mor-radio.co-wh.type-button > .il label:not(.checked):hover span {
+  color: #FFFFFF;
+}
+mor-radio.co-wh.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
+  border-left-color: #FFFFFF;
+}
+mor-radio.co-wh.type-button > .il label.checked {
+  background: #FFFFFF;
+  border-color: #FFFFFF;
+}
+mor-radio.co-wh.type-button > .il label.checked span {
+  color: #17212D;
+}
+mor-radio.co-wh.type-button > .il label.checked + label {
+  border-left-color: #FFFFFF;
 }
 mor-radio.co-wh.st-disabled > .il label.checked .box,
 mor-radio.co-wh.st-readonly > .il label.checked .box {
@@ -41684,9 +42713,22 @@ mor-radio > .il label .mo-icon {
   font-size: 12px;
   line-height: 19px;
 }
-mor-radio.border > .il label {
+mor-radio > .il label .radio-point {
+  width: 10px;
+  height: 10px;
+  left: 4px;
+  top: 4px;
+}
+mor-radio > .il label.checked .mo-icon {
+  transform: scale(0.9);
+}
+mor-radio.border:not(.type-button) > .il label {
   padding: 0.4em 0.6em;
   margin: 0 0.5em 0.5em 0;
+}
+mor-radio.type-button > .il label {
+  padding: 0.5em 1em;
+  margin: 0;
 }
 mor-radio > .il label.checked .box {
   background: #F33D5D;
@@ -41694,6 +42736,25 @@ mor-radio > .il label.checked .box {
 }
 mor-radio.border > .il label.checked {
   border-color: #F33D5D;
+}
+mor-radio.type-point .radio-point {
+  background: #F33D5D;
+}
+mor-radio.type-button > .il label:not(.checked):hover {
+  border-color: #F33D5D;
+}
+mor-radio.type-button > .il label:not(.checked):hover span {
+  color: #F33D5D;
+}
+mor-radio.type-button > .il label:not(.checked):hover:not(.checked) + label:not(.checked) {
+  border-left-color: #F33D5D;
+}
+mor-radio.type-button > .il label.checked {
+  background: #F33D5D;
+  border-color: #F33D5D;
+}
+mor-radio.type-button > .il label.checked + label {
+  border-left-color: #F33D5D;
 }
 mor-radio.st-disabled > .il label.checked .box,
 mor-radio.st-readonly > .il label.checked .box {

@@ -353,6 +353,7 @@ export default {
             }
 
             if (!this.conf.multiSelect &&
+                this.data.value &&
                 this.data.value.length > 1) {
 
                 return value.slice(0, 1);
@@ -368,6 +369,7 @@ export default {
 
             if (this.conf.multiSelect &&
                 this.conf.max &&
+                value &&
                 value.length > this.conf.max) {
 
                 return value.slice(0, this.conf.max);
