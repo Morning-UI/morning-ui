@@ -8,6 +8,8 @@
     
     <doc-component-status page="small"></doc-component-status>
 
+    <doc-component-not-recommended date="2019年4月6日" plan="使用<small>标签替代"></doc-component-not-recommended>
+
     [[[开始]]]
 
     标记一段小号内容，这是一个内联元素。
