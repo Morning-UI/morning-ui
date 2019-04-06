@@ -79,4 +79,4 @@ Tested With
 
 [MIT](http://opensource.org/licenses/MIT)
 
-Copyright (c) 2015-2017, Early He
+Copyright (c) 2015-2019, Early He
