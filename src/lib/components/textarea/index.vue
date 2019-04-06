@@ -1,7 +1,7 @@
 <template>
     <mor-textarea
         :_uiid="uiid"
-        :class="[formClass, stateClass, moreClass]"
+        :class="[formClass, sizeClass, stateClass, moreClass]"
 
         :form-name="formName"
         :form-key="formKey"

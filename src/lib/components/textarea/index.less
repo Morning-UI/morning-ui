@@ -11,8 +11,6 @@ mor-textarea{
     textarea{
         box-sizing: border-box;
         z-index: 2;
-        font-size: 14px;
-        padding: 0.8em;
         width: 100%;
         background: @colorFormBackground;
         border: 1px @colorFormBorder solid;
@@ -67,6 +65,27 @@ mor-textarea{
         }
     }
 
+    &.si-m{
+        textarea{
+            padding: 0.8em;
+            font-size: @formInputFontSize;
+        }
+    }
+
+    &.si-s{
+        textarea{
+            padding: 0.6em;
+            font-size: @formInputFontSizeS;
+        }
+    }
+
+    &.si-xs{
+        textarea{
+            padding: 0.4em;
+            font-size: @formInputFontSizeXs;
+        }
+    }
+
     &.st-normal{}
 
     &.st-disabled,
@@ -82,6 +101,7 @@ mor-textarea{
 
     // default status
     &{
+        .si-m;
         .st-normal;
     }
 }
