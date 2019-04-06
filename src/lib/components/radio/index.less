@@ -83,7 +83,6 @@ mor-radio{
 
                 .mo-icon{
                     opacity: 1;
-                    transform: scale(0.9);
                 }
             }
 
@@ -135,6 +134,12 @@ mor-radio{
                 font-size: @fontSize*0.75;
                 line-height: @fontSize*1.25 - 1px;
             }
+
+            &.checked{
+                .mo-icon{
+                    transform: scale(0.9);
+                }
+            }
         }
 
         &.border{
@@ -165,6 +170,12 @@ mor-radio{
                 font-size: @fontSize*0.75;
                 line-height: @fontSize - 1px;
             }
+
+            &.checked{
+                .mo-icon{
+                    transform: scale(0.8);
+                }
+            }
         }
 
         &.border{
@@ -194,6 +205,12 @@ mor-radio{
             .mo-icon{
                 font-size: @fontSize*0.75;
                 line-height: @fontSize*0.875 - 1px;
+            }
+
+            &.checked{
+                .mo-icon{
+                    transform: scale(0.7);
+                }
             }
         }
 
