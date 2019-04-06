@@ -25,7 +25,7 @@
     [[[形态]]]
 
     :::preset
-    @name:formStatus
+    @name:formStatusWithStyleAndSize
     @uikey:switch
     @defaultValue:true
     @attrs:open-mark="开" close-mark="关"

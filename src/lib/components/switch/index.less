@@ -1,43 +1,127 @@
-@keyframes switchOpen{
+@keyframes switchOpenM{
     0%{
         left: 2px;
-        width: 24px;
+        width: 26px;
     }
 
     15%{
         left: 2px;
-        width: 30px;
+        width: 32px;
     }
 
     50%{
         left: 13px;
-        width: 30px;
+        width: 32px;
     }
 
     100%{
-        left: 22px;
-        width: 24px;
+        left: @formHeight - 10px - 6px - 3px;
+        width: 26px;
     }
 }
-@keyframes switchClose{
+@keyframes switchCloseM{
     0%{
-        left: 22px;
-        width: 24px;
+        left: @formHeight - 10px - 6px - 3px;
+        width: 26px;
     }
 
     15%{
         left: 18px;
-        width: 30px;
+        width: 32px;
     }
 
     50%{
         left: 13px;
-        width: 30px;
+        width: 32px;
     }
 
     100%{
         left: 2px;
-        width: 24px;
+        width: 26px;
+    }
+}
+@keyframes switchOpenS{
+    0%{
+        left: 2px;
+        width: 20px;
+    }
+
+    15%{
+        left: 2px;
+        width: 25px;
+    }
+
+    50%{
+        left: 13px;
+        width: 25px;
+    }
+
+    100%{
+        left: @formHeightS - 6px - 6px;
+        width: 20px;
+    }
+}
+@keyframes switchCloseS{
+    0%{
+        left: @formHeightS - 6px - 6px;
+        width: 20px;
+    }
+
+    15%{
+        left: 18px;
+        width: 25px;
+    }
+
+    50%{
+        left: 13px;
+        width: 25px;
+    }
+
+    100%{
+        left: 2px;
+        width: 20px;
+    }
+}
+@keyframes switchOpenXs{
+    0%{
+        left: 2px;
+        width: 18px;
+    }
+
+    15%{
+        left: 2px;
+        width: 23px;
+    }
+
+    50%{
+        left: 13px;
+        width: 23px;
+    }
+
+    100%{
+        left: @formHeightXs - 6px - 4px;
+        width: 18px;
+    }
+}
+@keyframes switchCloseXs{
+    0%{
+        left: @formHeightXs - 6px - 4px;
+        width: 18px;
+    }
+
+    15%{
+        left: 18px;
+        width: 22px;
+    }
+
+    50%{
+        left: 13px;
+        width: 22px;
+    }
+
+    100%{
+        left: 2px;
+        width: 18px;
     }
 }
 
@@ -65,8 +149,6 @@ mor-switch{
 
     .open-note,
     .close-note{
-        font-size: @fontSize*0.8125;
-        max-width: 60px;
         display: inline-block;
         vertical-align: top;
         line-height: 30px;
@@ -76,40 +158,26 @@ mor-switch{
         text-overflow: ellipsis;
     }
 
-    .open-note{
-        padding-left: 6px;
-    }
-
     .close-note{
-        padding-right: 6px;
         font-weight: 700;
     }
 
     .open-mark,
     .close-mark{
-        font-size: @fontSize*0.75;
         position: absolute;
-        top: 5px;
-        width: 15px;
         text-align: center;
         display: inline-block;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
         transition: none;
-
-        > i{
-            font-size: 12px;
-        }
     }
 
     .open-mark{
-        left: 5px;
         color: @colorWhite;
     }
 
     .close-mark{
-        right: 5px;
         color: @colorExtraLightBlue;
     }
 
@@ -127,13 +195,9 @@ mor-switch{
         display: inline-block;
         vertical-align: top;
         position: relative;
-        right: 0;
-        height: 30px;
-        width: 50px;
         background: @colorWhite;
         box-shadow: 0 0 2px @colorFormBorder inset;
         border: 1px lighten(@colorFormBorder, 2%) solid;
-        border-radius: 15px;
         cursor: pointer;
         box-sizing: border-box;
         -webkit-user-select: none;
@@ -145,17 +209,11 @@ mor-switch{
         }
 
         .point{
+            background: @colorWhite;
             z-index: 2;
-            border-radius: 12px;
-            height: 24px;
-            width: 24px;
-            background: #FFF;
             box-shadow: 0 0 4px darken(@colorFormBorder, 14%);
             display: inline-block;
             position: absolute;
-            left: 2px;
-            top: 2px;
-            animation-name: switchClose;
             animation-duration: 0.24s;
             animation-fill-mode: forwards;
         }
@@ -164,9 +222,183 @@ mor-switch{
     &.open{
         .track{
             .point{
-                animation-name: switchOpen;
                 animation-duration: 0.24s;
                 animation-fill-mode: forwards;
+            }
+        }
+    }
+
+    &.si-m{
+        .open-note,
+        .close-note{
+            font-size: @formInputFontSize;
+            line-height: @formHeight - 10px;
+        }
+
+        .open-note{
+            padding-left: 6px;
+        }
+
+        .close-note{
+            padding-right: 6px;
+        }
+
+        .open-mark,
+        .close-mark{
+            font-size: @fontSize*0.75;
+            top: 6px;
+            width: 15px;
+
+            > i{
+                font-size: @fontSize*0.75;
+            }
+        }
+
+        .open-mark{
+            left: @formHeight / 8;
+        }
+
+        .close-mark{
+            right: @formHeight / 8;
+        }
+
+        .track{
+            height: @formHeight - 10px;
+            width: (@formHeight - 10px) * 1.7;
+            border-radius: (@formHeight - 10px) / 2;
+
+            .point{
+                border-radius: (@formHeight - 10px - 6px) / 2;
+                height: @formHeight - 10px - 6px;
+                width: @formHeight - 10px - 6px;
+                left: 2px;
+                top: 2px;
+                animation-name: switchCloseM;
+            }
+        }
+
+        &.open{
+            .track{
+                .point{
+                    animation-name: switchOpenM;
+                }
+            }
+        }
+    }
+
+    &.si-s{
+        .open-note,
+        .close-note{
+            font-size: @formInputFontSizeS;
+            line-height: @formHeightS - 8px;
+        }
+
+        .open-note{
+            padding-left: 6px;
+        }
+
+        .close-note{
+            padding-right: 6px;
+        }
+
+        .open-mark,
+        .close-mark{
+            font-size: @fontSize*0.75;
+            top: 3px;
+            width: 15px;
+
+            > i{
+                font-size: @fontSize*0.75;
+            }
+        }
+
+        .open-mark{
+            left: @formHeightS / 9;
+        }
+
+        .close-mark{
+            right: @formHeightS / 9;
+        }
+
+        .track{
+            height: @formHeightS - 6px;
+            width: (@formHeightS - 6px) * 1.7;
+            border-radius: (@formHeightS - 6px) / 2;
+
+            .point{
+                border-radius: (@formHeightS - 6px - 6px) / 2;
+                height: @formHeightS - 6px - 6px;
+                width: @formHeightS - 6px - 6px;
+                left: 2px;
+                top: 2px;
+                animation-name: switchCloseS;
+            }
+        }
+
+        &.open{
+            .track{
+                .point{
+                    animation-name: switchOpenS;
+                }
+            }
+        }
+    }
+
+    &.si-xs{
+        .open-note,
+        .close-note{
+            font-size: @formInputFontSizeXs;
+            line-height: @formHeightXs - 4px;
+        }
+
+        .open-note{
+            padding-left: 6px;
+        }
+
+        .close-note{
+            padding-right: 6px;
+        }
+
+        .open-mark,
+        .close-mark{
+            font-size: @fontSize*0.75;
+            top: 2px;
+            width: 15px;
+            transform: scale(0.9);
+
+            > i{
+                font-size: @fontSize*0.75;
+            }
+        }
+
+        .open-mark{
+            left: @formHeightXs / 10;
+        }
+
+        .close-mark{
+            right: @formHeightXs / 10;
+        }
+
+        .track{
+            height: @formHeightXs - 4px;
+            width: (@formHeightXs - 4px) * 1.7;
+            border-radius: (@formHeightXs - 4px) / 2;
+
+            .point{
+                border-radius: (@formHeightXs - 4px - 6px) / 2;
+                height: @formHeightXs - 4px - 6px;
+                width: @formHeightXs - 4px - 6px;
+                left: 2px;
+                top: 2px;
+                animation-name: switchCloseXs;
+            }
+        }
+
+        &.open{
+            .track{
+                .point{
+                    animation-name: switchOpenXs;
+                }
             }
         }
     }
@@ -968,6 +1200,7 @@ mor-switch{
 
     // default status
     &{
+        .si-m;
         .co-t;
         .st-normal;
     }
