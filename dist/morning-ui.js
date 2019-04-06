@@ -57797,7 +57797,7 @@ var render = function() {
                   on: {
                     mousedown: function($event) {
                       if (
-                        "keyCode" in $event &&
+                        !$event.type.indexOf("key") &&
                         _vm._k($event.keyCode, "left", 37, $event.key, [
                           "Left",
                           "ArrowLeft"
@@ -57849,7 +57849,7 @@ var render = function() {
                         on: {
                           mousedown: function($event) {
                             if (
-                              "keyCode" in $event &&
+                              !$event.type.indexOf("key") &&
                               _vm._k($event.keyCode, "left", 37, $event.key, [
                                 "Left",
                                 "ArrowLeft"
@@ -57871,7 +57871,7 @@ var render = function() {
                         on: {
                           mousedown: function($event) {
                             if (
-                              "keyCode" in $event &&
+                              !$event.type.indexOf("key") &&
                               _vm._k($event.keyCode, "left", 37, $event.key, [
                                 "Left",
                                 "ArrowLeft"
@@ -57893,7 +57893,7 @@ var render = function() {
                         on: {
                           mousedown: function($event) {
                             if (
-                              "keyCode" in $event &&
+                              !$event.type.indexOf("key") &&
                               _vm._k($event.keyCode, "left", 37, $event.key, [
                                 "Left",
                                 "ArrowLeft"
@@ -57919,7 +57919,7 @@ var render = function() {
                         on: {
                           mousedown: function($event) {
                             if (
-                              "keyCode" in $event &&
+                              !$event.type.indexOf("key") &&
                               _vm._k($event.keyCode, "left", 37, $event.key, [
                                 "Left",
                                 "ArrowLeft"
@@ -57941,7 +57941,7 @@ var render = function() {
                         on: {
                           mousedown: function($event) {
                             if (
-                              "keyCode" in $event &&
+                              !$event.type.indexOf("key") &&
                               _vm._k($event.keyCode, "left", 37, $event.key, [
                                 "Left",
                                 "ArrowLeft"
@@ -57967,7 +57967,7 @@ var render = function() {
                         on: {
                           mousedown: function($event) {
                             if (
-                              "keyCode" in $event &&
+                              !$event.type.indexOf("key") &&
                               _vm._k($event.keyCode, "left", 37, $event.key, [
                                 "Left",
                                 "ArrowLeft"
@@ -57989,7 +57989,7 @@ var render = function() {
                         on: {
                           mousedown: function($event) {
                             if (
-                              "keyCode" in $event &&
+                              !$event.type.indexOf("key") &&
                               _vm._k($event.keyCode, "left", 37, $event.key, [
                                 "Left",
                                 "ArrowLeft"
@@ -58015,7 +58015,7 @@ var render = function() {
                         on: {
                           mousedown: function($event) {
                             if (
-                              "keyCode" in $event &&
+                              !$event.type.indexOf("key") &&
                               _vm._k($event.keyCode, "left", 37, $event.key, [
                                 "Left",
                                 "ArrowLeft"
@@ -61490,7 +61490,7 @@ var render = function() {
       on: {
         keydown: function($event) {
           if (
-            "keyCode" in $event &&
+            !$event.type.indexOf("key") &&
             _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
           ) {
             return null
