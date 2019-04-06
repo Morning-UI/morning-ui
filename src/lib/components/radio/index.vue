@@ -1,7 +1,7 @@
 <template>
     <mor-radio
         :_uiid="uiid"
-        :class="[formClass, sizeClass, colorClass, stateClass]"
+        :class="[formClass, sizeClass, colorClass, stateClassm, moreClass]"
 
         :form-name="formName"
         :form-key="formKey"
@@ -12,6 +12,7 @@
         :list="list"
         :disabled-options="disabledOptions"
         :hidden-options="hiddenOptions"
+        :type="type"
     >
 
     <div class="form-name" v-if="!conf.hideName && !!conf.formName">{{conf.formName}}</div>
@@ -30,7 +31,10 @@
                     :key="key"
                     @click="conf.state !== 'readonly' && toggle(key)"
                 >
-                    <p class="box"><i class="mo-icon mo-icon-check"></i></p>
+                    <p class="box">
+                        <i class="mo-icon mo-icon-check" v-if="conf.type === 'check'"></i>
+                        <i class="radio-point" v-else></i>
+                    </p>
                     <template v-if="conf.acceptHtml">
                         <span v-html="name"></span>
                     </template>
@@ -50,7 +54,10 @@
                     :key="key"
                     @click="conf.state !== 'readonly' && toggle(key)"
                 >
-                    <p class="box"><i class="mo-icon mo-icon-check"></i></p>
+                    <p class="box">
+                        <i class="mo-icon mo-icon-check" v-if="conf.type === 'check'"></i>
+                        <i class="radio-point" v-else></i>
+                    </p>
                     <template v-if="conf.acceptHtml">
                         <span v-html="name"></span>
                     </template>
@@ -88,6 +95,11 @@ export default {
         hiddenOptions : {
             type : Array,
             default : () => ([])
+        },
+        type : {
+            type : String,
+            default : 'check',
+            validator : (value => ['check', 'point', 'button'].indexOf(value) !== -1)
         }
     },
     computed : {
@@ -97,7 +109,16 @@ export default {
                 acceptHtml : this.acceptHtml,
                 list : this.list,
                 disabledOptions : this.disabledOptions,
-                hiddenOptions : this.hiddenOptions
+                hiddenOptions : this.hiddenOptions,
+                type : this.type
+            };
+
+        },
+        moreClass : function () {
+
+            return {
+                'type-point' : (this.conf.type === 'point'),
+                'type-button' : (this.conf.type === 'button')
             };
 
         }
