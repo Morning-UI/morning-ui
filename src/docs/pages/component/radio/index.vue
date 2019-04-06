@@ -35,6 +35,8 @@
     #demo
     >desc
     通过`border`样式类指定单选框组以带边框的样式显示。
+    <br>
+    注意：此样式无法和`type="button"`配置一起使用。
     >tpl
     <div style="width:320px;">
         <ui-radio
