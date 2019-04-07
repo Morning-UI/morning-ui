@@ -14,11 +14,9 @@ mor-multiform{
     > .itemlist{
         border: 1px @colorFormBorder solid;
         border-radius: @borderRadius;
-        padding: @fontSize*0.2 @fontSize*0.3;
         position: relative;
         overflow: hidden;
         font-size: 0;
-        min-height: @formHeight;
         box-sizing: border-box;
 
         > .name{
@@ -29,7 +27,6 @@ mor-multiform{
             margin: 0;
             background-color: @colorLightGray;
             color: @colorBlue;
-            font-size: @fontSize*0.8125;
             display: inline-block;
             left: 0;
             top: 0;
@@ -52,16 +49,11 @@ mor-multiform{
                 color: @colorFormItemColor !important;
                 background-color: @colorFromItemBackground;
                 display: inline-block;
-                padding: 0 1.2em;
                 border-radius: @borderRadiusMax;
-                margin: @fontSize*0.2 @fontSize*0.1;
                 vertical-align: top;
-                line-height: 2.4em;
-                height: 2.4em;
                 text-decoration: none;
                 position: relative;
                 cursor: pointer;
-                font-size: @fontSize*0.8125;
                 box-sizing: border-box;
                 max-width: 95%;
 
@@ -72,7 +64,7 @@ mor-multiform{
                     overflow: hidden;
                     display: inline-block;
                     padding-right: 1em;
-                    vertical-align: middle;
+                    vertical-align: top;
                     box-sizing: border-box;
                 }
 
@@ -86,11 +78,10 @@ mor-multiform{
                     opacity: 0.2;
                 }
 
-                > i.mo-icon{
-                    font-size: @fontSize*0.75;
+                > i.mo-icon,
+                > i.iconfont,
+                > i{
                     position: absolute;
-                    right: 1em;
-                    top: 50%;
                     transform: translateY(-50%);
                     cursor: pointer;
 
@@ -115,16 +106,13 @@ mor-multiform{
                 }
 
                 &.add{
-                    padding: 0 1.4em;
-
                     > span{
                         padding-right: 0;
-                        padding-left: 1em;
                     }
 
-                    > i.mo-icon{
-                        top: 52%;
-                        left: 1.3em;
+                    > i.mo-icon,
+                    > i.iconfont,
+                    > i{
                         right: auto;
                     }
 
@@ -139,14 +127,11 @@ mor-multiform{
 
                 &.has-img{
                     border-radius: 0 @borderRadiusMax @borderRadiusMax 0;
-                    padding-left: 3em;
 
                     .thumb{
                         position: absolute;
                         top: 0;
                         left: 0;
-                        height: 2.4em;
-                        width: 2.4em;
                         padding: 1px;
                         box-sizing: border-box;
                         background: darken(@colorGray, 2%);
@@ -155,10 +140,8 @@ mor-multiform{
             }
 
             > span{
-                font-size: @fontSize*0.75;
                 color: @colorFormTextMisc !important;
                 width: 100%;
-                padding: 0.4em 0.7em;
                 text-align: center;
                 display: block;
             }
@@ -175,6 +158,180 @@ mor-multiform{
     &.can-move{
         > .itemlist > .itemwrap > .multiform-item:not(.add){
             cursor: move;
+        }
+    }
+
+    &.si-m{
+        > .itemlist{
+            padding: @fontSize*0.1875 @fontSize*0.3125;
+            min-height: @formHeight;
+
+            > .name{
+                font-size: @formInputFontSize - 1px;
+            }
+
+            > .itemwrap{
+                > .multiform-item{
+                    padding: 0 1.2em;
+                    margin: @fontSize*0.125 @fontSize*0.125;
+                    line-height: @formHeight - 6px - 4px - 2px;
+                    height: @formHeight - 6px - 4px - 2px;
+                    font-size: @formInputFontSize - 1px;
+
+                    > i.mo-icon,
+                    > i.iconfont,
+                    > i{
+                        right: 1em;
+                        font-size: @fontSize*0.75;
+                        top: 50%;
+                    }
+
+                    &.add{
+                        padding: 0 1.4em;
+
+                        > span{
+                            padding-left: 1em;
+                        }
+
+                        > i.mo-icon,
+                        > i.iconfont,
+                        > i{
+                            top: 50%;
+                            left: 1.3em;
+                        }
+                    }
+
+                    &.has-img{
+                        padding-left: 3em;
+
+                        .thumb{
+                            height: @formHeight - 6px - 4px - 2px;
+                            width: @formHeight - 6px - 4px - 2px;
+                        }
+                    }
+                }
+
+                > span{
+                    font-size: @fontSize*0.75;
+                    padding: 0.4em 0.7em;
+                }
+            }
+        }
+    }
+
+    &.si-s{
+        > .itemlist{
+            padding: @fontSize*0.125 @fontSize*0.25;
+            min-height: @formHeightS;
+
+            > .name{
+                font-size: @formInputFontSizeS - 1px;
+            }
+
+            > .itemwrap{
+                > .multiform-item{
+                    padding: 0 1em;
+                    margin: @fontSize*0.0625 @fontSize*0.125;
+                    line-height: @formHeightS - 4px - 2px - 2px;
+                    height: @formHeightS - 4px - 2px - 2px;
+                    font-size: @formInputFontSizeS - 1px;
+
+                    > i.mo-icon,
+                    > i.iconfont,
+                    > i{
+                        right: 0.6em;
+                        font-size: @fontSize*0.75;
+                        top: 50%;
+                    }
+
+                    &.add{
+                        padding: 0 1.2em;
+
+                        > span{
+                            padding-left: 1em;
+                        }
+
+                        > i.mo-icon,
+                        > i.iconfont,
+                        > i{
+                            top: 50%;
+                            left: 1em;
+                        }
+                    }
+
+                    &.has-img{
+                        padding-left: 2.6em;
+
+                        .thumb{
+                            height: @formHeightS - 4px - 2px - 2px;
+                            width: @formHeightS - 4px - 2px - 2px;
+                        }
+                    }
+                }
+
+                > span{
+                    font-size: @fontSize*0.75;
+                    padding: 0.4em 0.7em;
+                }
+            }
+        }
+    }
+
+    &.si-xs{
+        > .itemlist{
+            padding: @fontSize*0.0625 @fontSize*0.25;
+            min-height: @formHeightXs;
+
+            > .name{
+                font-size: @formInputFontSizeXs - 1px;
+            }
+
+            > .itemwrap{
+                > .multiform-item{
+                    padding: 0 1em;
+                    margin: @fontSize*0.0625 @fontSize*0.125;
+                    line-height: @formHeightXs - 2px - 2px - 2px;
+                    height: @formHeightXs - 2px - 2px - 2px;
+                    font-size: @formInputFontSizeXs - 1px;
+
+                    > i.mo-icon,
+                    > i.iconfont,
+                    > i{
+                        right: 0.6em;
+                        font-size: @fontSize*0.75;
+                        top: 50%;
+                    }
+
+                    &.add{
+                        padding: 0 1.2em;
+
+                        > span{
+                            padding-left: 1em;
+                        }
+
+                        > i.mo-icon,
+                        > i.iconfont,
+                        > i{
+                            top: 50%;
+                            left: 1em;
+                        }
+                    }
+
+                    &.has-img{
+                        padding-left: 2.4em;
+
+                        .thumb{
+                            height: @formHeightXs - 2px - 2px - 2px;
+                            width: @formHeightXs - 2px - 2px - 2px;
+                        }
+                    }
+                }
+
+                > span{
+                    font-size: @fontSize*0.75;
+                    padding: 0.4em 0.7em;
+                }
+            }
         }
     }
 
@@ -218,6 +375,7 @@ mor-multiform{
 
     // default status
     &{
+        .si-m;
         .st-normal;
     }
 }
