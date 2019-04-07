@@ -38393,8 +38393,6 @@ mor-textarea > .form-name {
 mor-textarea textarea {
   box-sizing: border-box;
   z-index: 2;
-  font-size: 14px;
-  padding: 0.8em;
   width: 100%;
   background: #FFFFFF;
   border: 1px #E6E6E6 solid;
@@ -38447,6 +38445,18 @@ mor-textarea .maxlength {
 mor-textarea.is-maxlength .maxlength {
   color: #D64431;
 }
+mor-textarea.si-m textarea {
+  padding: 0.8em;
+  font-size: 14px;
+}
+mor-textarea.si-s textarea {
+  padding: 0.6em;
+  font-size: 13px;
+}
+mor-textarea.si-xs textarea {
+  padding: 0.4em;
+  font-size: 12px;
+}
 mor-textarea.st-disabled textarea,
 mor-textarea.st-readonly textarea {
   border: 1px #a6a6a6 solid;
@@ -38454,6 +38464,10 @@ mor-textarea.st-readonly textarea {
   -webkit-user-select: none;
   cursor: not-allowed !important;
   color: #8d8d8d !important;
+}
+mor-textarea textarea {
+  padding: 0.8em;
+  font-size: 14px;
 }
 mor-texteditor {
   display: block;
@@ -38549,40 +38563,112 @@ mor-texteditor.st-readonly .ql-container {
 .mo-texteditor-dialog header .mo-icon:hover {
   color: #7C8BA0;
 }
-@keyframes switchOpen {
+@keyframes switchOpenM {
   0% {
     left: 2px;
-    width: 24px;
+    width: 26px;
   }
   15% {
     left: 2px;
-    width: 30px;
+    width: 32px;
   }
   50% {
     left: 13px;
-    width: 30px;
+    width: 32px;
   }
   100% {
-    left: 22px;
-    width: 24px;
+    left: 23px;
+    width: 26px;
   }
 }
-@keyframes switchClose {
+@keyframes switchCloseM {
   0% {
-    left: 22px;
-    width: 24px;
+    left: 23px;
+    width: 26px;
   }
   15% {
     left: 18px;
-    width: 30px;
+    width: 32px;
   }
   50% {
     left: 13px;
-    width: 30px;
+    width: 32px;
   }
   100% {
     left: 2px;
-    width: 24px;
+    width: 26px;
+  }
+}
+@keyframes switchOpenS {
+  0% {
+    left: 2px;
+    width: 20px;
+  }
+  15% {
+    left: 2px;
+    width: 25px;
+  }
+  50% {
+    left: 13px;
+    width: 25px;
+  }
+  100% {
+    left: 20px;
+    width: 20px;
+  }
+}
+@keyframes switchCloseS {
+  0% {
+    left: 20px;
+    width: 20px;
+  }
+  15% {
+    left: 18px;
+    width: 25px;
+  }
+  50% {
+    left: 13px;
+    width: 25px;
+  }
+  100% {
+    left: 2px;
+    width: 20px;
+  }
+}
+@keyframes switchOpenXs {
+  0% {
+    left: 2px;
+    width: 18px;
+  }
+  15% {
+    left: 2px;
+    width: 23px;
+  }
+  50% {
+    left: 13px;
+    width: 23px;
+  }
+  100% {
+    left: 18px;
+    width: 18px;
+  }
+}
+@keyframes switchCloseXs {
+  0% {
+    left: 18px;
+    width: 18px;
+  }
+  15% {
+    left: 18px;
+    width: 22px;
+  }
+  50% {
+    left: 13px;
+    width: 22px;
+  }
+  100% {
+    left: 2px;
+    width: 18px;
   }
 }
 mor-switch {
@@ -38620,8 +38706,6 @@ mor-switch .wrap {
 }
 mor-switch .open-note,
 mor-switch .close-note {
-  font-size: 13px;
-  max-width: 60px;
   display: inline-block;
   vertical-align: top;
   line-height: 30px;
@@ -38630,19 +38714,12 @@ mor-switch .close-note {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-mor-switch .open-note {
-  padding-left: 6px;
-}
 mor-switch .close-note {
-  padding-right: 6px;
   font-weight: 700;
 }
 mor-switch .open-mark,
 mor-switch .close-mark {
-  font-size: 12px;
   position: absolute;
-  top: 5px;
-  width: 15px;
   text-align: center;
   display: inline-block;
   white-space: nowrap;
@@ -38650,16 +38727,10 @@ mor-switch .close-mark {
   text-overflow: ellipsis;
   transition: none;
 }
-mor-switch .open-mark > i,
-mor-switch .close-mark > i {
-  font-size: 12px;
-}
 mor-switch .open-mark {
-  left: 5px;
   color: #FFFFFF;
 }
 mor-switch .close-mark {
-  right: 5px;
   color: #A8B3C2;
 }
 mor-switch.open .open-note {
@@ -38672,13 +38743,9 @@ mor-switch .track {
   display: inline-block;
   vertical-align: top;
   position: relative;
-  right: 0;
-  height: 30px;
-  width: 50px;
   background: #FFFFFF;
   box-shadow: 0 0 2px #E6E6E6 inset;
   border: 1px #ebebeb solid;
-  border-radius: 15px;
   cursor: pointer;
   box-sizing: border-box;
   -webkit-user-select: none;
@@ -38689,24 +38756,147 @@ mor-switch .track:hover {
   border: 1px #d9d9d9 solid;
 }
 mor-switch .track .point {
+  background: #FFFFFF;
   z-index: 2;
-  border-radius: 12px;
-  height: 24px;
-  width: 24px;
-  background: #FFF;
   box-shadow: 0 0 4px #c2c2c2;
   display: inline-block;
   position: absolute;
-  left: 2px;
-  top: 2px;
-  animation-name: switchClose;
   animation-duration: 0.24s;
   animation-fill-mode: forwards;
 }
 mor-switch.open .track .point {
-  animation-name: switchOpen;
   animation-duration: 0.24s;
   animation-fill-mode: forwards;
+}
+mor-switch.si-m .open-note,
+mor-switch.si-m .close-note {
+  font-size: 14px;
+  line-height: 32px;
+}
+mor-switch.si-m .open-note {
+  padding-left: 6px;
+}
+mor-switch.si-m .close-note {
+  padding-right: 6px;
+}
+mor-switch.si-m .open-mark,
+mor-switch.si-m .close-mark {
+  font-size: 12px;
+  top: 6px;
+  width: 15px;
+}
+mor-switch.si-m .open-mark > i,
+mor-switch.si-m .close-mark > i {
+  font-size: 12px;
+}
+mor-switch.si-m .open-mark {
+  left: 5.25px;
+}
+mor-switch.si-m .close-mark {
+  right: 5.25px;
+}
+mor-switch.si-m .track {
+  height: 32px;
+  width: 54.4px;
+  border-radius: 16px;
+}
+mor-switch.si-m .track .point {
+  border-radius: 13px;
+  height: 26px;
+  width: 26px;
+  left: 2px;
+  top: 2px;
+  animation-name: switchCloseM;
+}
+mor-switch.si-m.open .track .point {
+  animation-name: switchOpenM;
+}
+mor-switch.si-s .open-note,
+mor-switch.si-s .close-note {
+  font-size: 13px;
+  line-height: 24px;
+}
+mor-switch.si-s .open-note {
+  padding-left: 6px;
+}
+mor-switch.si-s .close-note {
+  padding-right: 6px;
+}
+mor-switch.si-s .open-mark,
+mor-switch.si-s .close-mark {
+  font-size: 12px;
+  top: 3px;
+  width: 15px;
+}
+mor-switch.si-s .open-mark > i,
+mor-switch.si-s .close-mark > i {
+  font-size: 12px;
+}
+mor-switch.si-s .open-mark {
+  left: 3.55555556px;
+}
+mor-switch.si-s .close-mark {
+  right: 3.55555556px;
+}
+mor-switch.si-s .track {
+  height: 26px;
+  width: 44.2px;
+  border-radius: 13px;
+}
+mor-switch.si-s .track .point {
+  border-radius: 10px;
+  height: 20px;
+  width: 20px;
+  left: 2px;
+  top: 2px;
+  animation-name: switchCloseS;
+}
+mor-switch.si-s.open .track .point {
+  animation-name: switchOpenS;
+}
+mor-switch.si-xs .open-note,
+mor-switch.si-xs .close-note {
+  font-size: 12px;
+  line-height: 24px;
+}
+mor-switch.si-xs .open-note {
+  padding-left: 6px;
+}
+mor-switch.si-xs .close-note {
+  padding-right: 6px;
+}
+mor-switch.si-xs .open-mark,
+mor-switch.si-xs .close-mark {
+  font-size: 12px;
+  top: 2px;
+  width: 15px;
+  transform: scale(0.9);
+}
+mor-switch.si-xs .open-mark > i,
+mor-switch.si-xs .close-mark > i {
+  font-size: 12px;
+}
+mor-switch.si-xs .open-mark {
+  left: 2.8px;
+}
+mor-switch.si-xs .close-mark {
+  right: 2.8px;
+}
+mor-switch.si-xs .track {
+  height: 24px;
+  width: 40.8px;
+  border-radius: 12px;
+}
+mor-switch.si-xs .track .point {
+  border-radius: 9px;
+  height: 18px;
+  width: 18px;
+  left: 2px;
+  top: 2px;
+  animation-name: switchCloseXs;
+}
+mor-switch.si-xs.open .track .point {
+  animation-name: switchOpenXs;
 }
 mor-switch.co-t .open-note {
   color: #8E9CAF;
@@ -39239,15 +39429,67 @@ mor-switch.co-wh.open .track .point {
 mor-switch.st-disabled .point,
 mor-switch.st-readonly .point {
   transform: scale(0.85);
+  box-shadow: none !important;
+  background: #A8B3C2 !important;
 }
 mor-switch.st-disabled .track,
 mor-switch.st-readonly .track {
   cursor: not-allowed !important;
   color: #a6a6a6 !important;
+  background: #E2E8EE !important;
+  box-shadow: none !important;
+  border-color: #E2E8EE !important;
 }
 mor-switch.st-disabled .track .point,
 mor-switch.st-readonly .track .point {
   background: #cdcdcd;
+}
+mor-switch.st-disabled .open-mark,
+mor-switch.st-readonly .open-mark {
+  color: #A8B3C2;
+}
+mor-switch .open-note,
+mor-switch .close-note {
+  font-size: 14px;
+  line-height: 32px;
+}
+mor-switch .open-note {
+  padding-left: 6px;
+}
+mor-switch .close-note {
+  padding-right: 6px;
+}
+mor-switch .open-mark,
+mor-switch .close-mark {
+  font-size: 12px;
+  top: 6px;
+  width: 15px;
+}
+mor-switch .open-mark > i,
+mor-switch .close-mark > i {
+  font-size: 12px;
+}
+mor-switch .open-mark {
+  left: 5.25px;
+}
+mor-switch .close-mark {
+  right: 5.25px;
+}
+mor-switch .track {
+  height: 32px;
+  width: 54.4px;
+  border-radius: 16px;
+}
+mor-switch .track .point {
+  border-radius: 13px;
+  height: 26px;
+  width: 26px;
+  left: 2px;
+  top: 2px;
+  animation-name: switchCloseM;
+}
+mor-switch.open .track .point {
+  animation-name: switchOpenM;
 }
 mor-switch .open-note {
   color: #8E9CAF;
@@ -39410,10 +39652,7 @@ mor-counter .counter-wrap {
 mor-counter .sub-step,
 mor-counter .add-step {
   display: inline-block;
-  font-size: 14px;
-  height: 35.7px;
   box-sizing: border-box;
-  line-height: 35.7px;
   vertical-align: top;
   padding: 0 0.7em;
   border: 1px #E6E6E6 solid;
@@ -39435,10 +39674,6 @@ mor-counter .add-step:active {
   background: #D6DDE5;
   z-index: 3;
 }
-mor-counter .sub-step .mo-icon,
-mor-counter .add-step .mo-icon {
-  font-size: 14px;
-}
 mor-counter .sub-step {
   border-radius: 3px 0 0 3px;
 }
@@ -39446,13 +39681,9 @@ mor-counter .add-step {
   border-radius: 0 3px 3px 0;
   margin-left: -2px;
 }
-mor-counter .step-controls {
-  height: 35.7px;
-}
 mor-counter .step-controls .sub-step,
 mor-counter .step-controls .add-step {
   height: 50%;
-  line-height: 17.85px;
 }
 mor-counter .step-controls .sub-step {
   border-radius: 0 0 3px 0;
@@ -39469,12 +39700,8 @@ mor-counter input {
   display: inline-block;
   box-sizing: border-box;
   z-index: 2;
-  font-size: 14px;
-  padding: 0 1em;
   background: #FFFFFF;
   border: 1px #E6E6E6 solid;
-  height: 35.7px;
-  line-height: 35.7px;
   color: #b3b3b3 !important;
   outline: none;
   -webkit-appearance: none;
@@ -39500,6 +39727,75 @@ mor-counter.controls-on-both input {
 mor-counter.controls-on-right input {
   border-radius: 3px 0 0 3px;
   margin-left: 0;
+}
+mor-counter.si-m .sub-step,
+mor-counter.si-m .add-step {
+  font-size: 14px;
+  height: 42px;
+  line-height: 42px;
+}
+mor-counter.si-m .sub-step .mo-icon,
+mor-counter.si-m .add-step .mo-icon {
+  font-size: 14px;
+}
+mor-counter.si-m .step-controls {
+  height: 42px;
+}
+mor-counter.si-m .step-controls .sub-step,
+mor-counter.si-m .step-controls .add-step {
+  line-height: 21px;
+}
+mor-counter.si-m input {
+  font-size: 16px;
+  height: 42px;
+  line-height: 42px;
+  padding: 0 0.6em;
+}
+mor-counter.si-s .sub-step,
+mor-counter.si-s .add-step {
+  font-size: 13px;
+  height: 32px;
+  line-height: 32px;
+}
+mor-counter.si-s .sub-step .mo-icon,
+mor-counter.si-s .add-step .mo-icon {
+  font-size: 13px;
+}
+mor-counter.si-s .step-controls {
+  height: 32px;
+}
+mor-counter.si-s .step-controls .sub-step,
+mor-counter.si-s .step-controls .add-step {
+  line-height: 16px;
+}
+mor-counter.si-s input {
+  font-size: 15px;
+  height: 32px;
+  line-height: 32px;
+  padding: 0 0.6em;
+}
+mor-counter.si-xs .sub-step,
+mor-counter.si-xs .add-step {
+  font-size: 12px;
+  height: 28px;
+  line-height: 28px;
+}
+mor-counter.si-xs .sub-step .mo-icon,
+mor-counter.si-xs .add-step .mo-icon {
+  font-size: 12px;
+}
+mor-counter.si-xs .step-controls {
+  height: 28px;
+}
+mor-counter.si-xs .step-controls .sub-step,
+mor-counter.si-xs .step-controls .add-step {
+  line-height: 14px;
+}
+mor-counter.si-xs input {
+  font-size: 13px;
+  height: 28px;
+  line-height: 28px;
+  padding: 0 0.6em;
 }
 mor-counter.st-disabled input,
 mor-counter.st-readonly input {
@@ -39531,6 +39827,29 @@ mor-counter.st-readonly .add-step:active {
   color: #7C8BA0;
   border-color: #a6a6a6;
   z-index: 1;
+}
+mor-counter .sub-step,
+mor-counter .add-step {
+  font-size: 14px;
+  height: 42px;
+  line-height: 42px;
+}
+mor-counter .sub-step .mo-icon,
+mor-counter .add-step .mo-icon {
+  font-size: 14px;
+}
+mor-counter .step-controls {
+  height: 42px;
+}
+mor-counter .step-controls .sub-step,
+mor-counter .step-controls .add-step {
+  line-height: 21px;
+}
+mor-counter input {
+  font-size: 16px;
+  height: 42px;
+  line-height: 42px;
+  padding: 0 0.6em;
 }
 mor-select {
   position: relative;
@@ -44604,21 +44923,41 @@ mor-colorpicker .cleanbtn {
   left: 0;
 }
 mor-colorpicker .preview-wrap {
-  width: 40px;
   border: 1px #E6E6E6 solid;
   border-radius: 3px;
-  padding: 3px;
   box-sizing: border-box;
   margin-bottom: 5px;
 }
 mor-colorpicker .preview {
-  width: 32px;
-  height: 32px;
   box-sizing: border-box;
   border-radius: 3px;
   cursor: pointer;
   overflow: hidden;
   position: relative;
+}
+mor-colorpicker.si-m .preview-wrap {
+  width: 42px;
+  padding: 3px;
+}
+mor-colorpicker.si-m .preview {
+  width: 34px;
+  height: 34px;
+}
+mor-colorpicker.si-s .preview-wrap {
+  width: 32px;
+  padding: 2px;
+}
+mor-colorpicker.si-s .preview {
+  width: 26px;
+  height: 26px;
+}
+mor-colorpicker.si-xs .preview-wrap {
+  width: 28px;
+  padding: 1px;
+}
+mor-colorpicker.si-xs .preview {
+  width: 24px;
+  height: 24px;
 }
 mor-colorpicker.st-disabled .preview-wrap,
 mor-colorpicker.st-readonly .preview-wrap {
@@ -44628,6 +44967,14 @@ mor-colorpicker.st-disabled .preview .color,
 mor-colorpicker.st-readonly .preview .color {
   box-shadow: 0 0 6px inset #000;
   cursor: default;
+}
+mor-colorpicker .preview-wrap {
+  width: 42px;
+  padding: 3px;
+}
+mor-colorpicker .preview {
+  width: 34px;
+  height: 34px;
 }
 .mor-colorpicker-popover {
   width: 256px;
