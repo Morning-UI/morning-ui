@@ -71,7 +71,7 @@
                 :ref="'ui-slider-tip-'+this.uiid"
                 color="extra-light-blue"
                 trigger="method"
-                offset="0 0"
+                offset="0, 0"
             >{{conf.tipFormatter(data.end)}}</morning-tip>
             <!-- <div class="sub-slider"></div> -->
         </div>
