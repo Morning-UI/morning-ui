@@ -10,7 +10,7 @@
     
     [[[开始]]]
 
-    定义富文本编辑器。
+    定义富文本编辑器，支持富文本编辑及Markdown编辑。
 
     富文本编辑器基于[quilljs](https://quilljs.com/)(版本1.3.6)打造，Morning UI深度定制并扩展了[quilljs](https://quilljs.com/)。
 
@@ -25,11 +25,11 @@
     :::
 
     :::vue
-    @name:获取富文本并渲染HTML
+    @name:富文本编辑并渲染HTML
     ---
     #demo
     >desc
-    富文本编辑器的取值自带了基础样式，用于还原富文本内容的样式。所以你可以直接将获取的到数值插入至HTML，即可还原富文本。
+    富文本编辑模式的取值自带了基础样式，用于还原富文本内容的样式。所以你可以直接将获取的到数值插入至HTML，即可还原富文本。
     >tpl
     <div>
         <div style="width:100%;height:320px;padding-bottom:70px;">
@@ -51,6 +51,46 @@
                 let $preview = this.$el.querySelector('.demo1-preview');
                 
                 $preview && ($preview.innerHTML = value);
+
+            }
+        }
+    }
+    :::
+
+    :::vue
+    @name:Markdown编辑并渲染HTML
+    ---
+    #demo
+    >desc
+    Markdown编辑模式下，编辑器仅输出纯文本，转换成Markdown格式的HTML及样式需要使用第三方库。
+    <br><br>
+    HTML转换推荐使用：[markdown-it](https://github.com/markdown-it/markdown-it)
+    <br>
+    Markdown样式：[github-markdown-css](https://www.npmjs.com/package/github-markdown-css)
+    >tpl
+    <div>
+        <div style="width:100%;height:320px;padding-bottom:70px;">
+            <ui-texteditor form-name="文章编辑" @value-change="syncHtml" markdown></ui-texteditor>
+        </div>
+        <br>
+        <br>
+        <br>
+        <h3>预览</h3>
+        <div class="demo1-preview" style="width:100%;height:320px;border:1px #e0e0e0 solid;padding:15px;overflow-x: scroll;">
+            
+        </div>
+    </div>
+    >script
+    {
+        methods : {
+            syncHtml : function (value) {
+
+                let $preview = this.$el.querySelector('.demo1-preview');
+                let markdown = new MarkdownIt({
+                    html : true
+                });
+                
+                $preview && ($preview.innerHTML = markdown.render(value));
 
             }
         }
@@ -248,6 +288,48 @@
                 ['clean']
             ]"
         ></ui-texteditor>
+    </div>
+    :::
+
+    :::vue
+    @name:markdown
+    ---
+    #config
+    >conf-desc
+    开启Markdown编辑模式，开启后会清除所有文本样式，且`tools`和`plain-clipboard`将采用预设配置，自定义配置无效。
+    <br>
+    注意：开启后编辑器仅输出Markdown文本，转换成Markdown格式的HTML及样式需要使用第三方库。详见：[Markdown编辑并渲染HTML](#Markdown编辑并渲染HTML)。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `true`
+    ---
+    #demo
+    >tpl
+    <div style="width:100%;height:240px;padding-bottom:70px;">
+        <ui-texteditor markdown></ui-texteditor>
+    </div>
+    :::
+
+    :::vue
+    @name:plain-clipboard
+    ---
+    #config
+    >conf-desc
+    从剪切板粘贴的内容不附带样式，仅粘贴纯文本。
+    >conf-accept
+    `true`<br>`false`
+    >conf-type
+    Boolean
+    >conf-default
+    `false`
+    ---
+    #demo
+    >tpl
+    <div style="width:100%;height:240px;padding-bottom:70px;">
+        <ui-texteditor plain-clipboard></ui-texteditor>
     </div>
     :::
 

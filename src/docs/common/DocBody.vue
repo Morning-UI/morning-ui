@@ -48,6 +48,8 @@ import DocComponentNotRecommended   from 'Docs/common/DocComponentNotRecommended
 const randomRangeMin = 1e4;
 const randomRangeMax = 9e4;
 
+window.MarkdownIt = MarkdownIt;
+
 const markdown = new MarkdownIt({
     html : true
 });
