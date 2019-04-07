@@ -62079,7 +62079,7 @@ var render = function() {
                   target: "#ui-slider-tip-" + this.uiid,
                   color: "extra-light-blue",
                   trigger: "method",
-                  offset: "0 0"
+                  offset: "0, 0"
                 }
               },
               [_vm._v(_vm._s(_vm.conf.tipFormatter(_vm.data.end)))]
@@ -73663,7 +73663,7 @@ var morning = {
         white: 'wh'
     },
     isMorning: true,
-    version: '0.12.16',
+    version: '0.12.17',
     map: {}
 };
 
