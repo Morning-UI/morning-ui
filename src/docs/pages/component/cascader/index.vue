@@ -74,7 +74,7 @@
     [[[形态]]]
 
     :::preset
-    @name:formStatus
+    @name:formStatusWithSize
     @uikey:cascader
     @defaultValue:['zj', 'hz', 'jgq']
     @attrs: :list="{'zj':{name:'浙江省',children:{'hz':{name:'杭州',children:{'xcq':'下城区','xhq':'西湖区','jgq':'江干区'}},'nb':{name:'宁波',children:{'jbq':'江北区','zhq':'镇海区'}},'wz':'温州'}},'js':{name:'江苏省',children:{'nj':{name:'南京',children:{'xwq':'玄武区','jnq':'江宁区'}},'sz':'苏州'}},'gd':{name:'广东省',children:{'gz':'广州','sz':'深圳','fs':'佛山'}}}"
